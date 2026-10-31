@@ -1,0 +1,59 @@
+### GET /api/v1/admin
+{"statusCode":200,"message":"success","data":[],"totalElements":0,"totalPages":0,"pageSize":10,"currentPage":1,"from":0,"to":0}
+-- status: 200
+
+### GET /api/v1/admin?page=1&limit=5
+{"statusCode":200,"message":"success","data":[],"totalElements":0,"totalPages":0,"pageSize":5,"currentPage":1,"from":0,"to":0}
+-- status: 200
+
+### GET /api/v1/admin/all/admin
+{"statusCode":200,"message":"success","data":[{"id":"1e46532b-b571-4cee-bcba-1b63d445f6c3","created_at":"2026-10-30T21:51:28.101Z","updated_at":"2026-10-30T21:51:28.101Z","username":"superadmin","hashed_password":"$2b$07$enFTYtafyq3/cblRBmZRcuD3tu/7EhcBGCKUKHVSCYHyNyak4XkX2","full_name":"Super Admin","phone_number":"+998901234567","role":"superAdmin","is_active":true}]}
+-- status: 200
+
+### GET /api/v1/admin/1e46532b-b571-4cee-bcba-1b63d445f6c3
+{"statusCode":200,"message":"success","data":{"id":"1e46532b-b571-4cee-bcba-1b63d445f6c3","created_at":"2026-10-30T21:51:28.101Z","updated_at":"2026-10-30T21:51:28.101Z","username":"superadmin","hashed_password":"$2b$07$enFTYtafyq3/cblRBmZRcuD3tu/7EhcBGCKUKHVSCYHyNyak4XkX2","full_name":"Super Admin","phone_number":"+998901234567","role":"superAdmin","is_active":true}}
+-- status: 200
+
+### GET /api/v1/admin/11111111-2222-3333-4444-555555555555
+{"statusCode":404,"error":{"message":"not found"}}
+-- status: 404
+
+### GET /api/v1/admin/abc
+{"statusCode":500,"error":{"message":"Internal server error"}}
+-- status: 500
+
+--- server log (oxirgi 25 satr):
+    column: undefined,
+    dataType: undefined,
+    constraint: undefined,
+    file: 'uuid.c',
+    line: '138',
+    routine: 'string_to_uuid'
+  },
+  length: 135,
+  severity: 'ERROR',
+  code: '22P02',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: "unnamed portal parameter $1 = '...'",
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'uuid.c',
+  line: '138',
+  routine: 'string_to_uuid'
+}
+
+### GET /api/v1/admin/all/admin
+{"statusCode":401,"error":{"message":"Unauthorized"}}
+-- status: 401
+
+### GET /api/v1/admin/all/admin
+{"statusCode":401,"error":{"message":"Unauthorized"}}
+-- status: 401
+

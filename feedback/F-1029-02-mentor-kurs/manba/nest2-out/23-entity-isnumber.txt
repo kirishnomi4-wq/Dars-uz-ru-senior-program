@@ -1,0 +1,19 @@
+--- server ishga tushdimi: 1
+--- \d cars (price ustuni bormi?):
+ brand        | character varying           |           | not null | 
+ model        | character varying           |           | not null | 
+
+### POST /api/v1/car   body: {"brand":"Chevrolet","model":"Malibu","price":250}
+{"statusCode":201,"message":"success","data":{"id":"65a081e9-a56e-476a-8411-0c7790a0154c","created_at":"2026-10-30T22:41:15.812Z","updated_at":"2026-10-30T22:41:15.812Z","brand":"Chevrolet","model":"Malibu","is_available":true}}
+-- status: 201
+
+--- bazada:
+   brand   | model  
+-----------+--------
+ Chevrolet | Malibu
+(1 row)
+
+--- query log:
+
+--- tiklangandan keyin \d cars price:
+ price        | integer                     |           | not null | 

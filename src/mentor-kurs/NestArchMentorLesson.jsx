@@ -1,21 +1,67 @@
 // ============================================================
-//  MENTOR KURSI · 1-dars «NestJS arxitekturasi: Module, Controller, Service»
-//  F-1029-02 · ovozli, segment-sinxron dars. YIG'ILGAN FAYL — manba: parts/01…06
-//  (yig'ish: cat parts/*.jsx > NestArchMentorLesson.jsx). Platforma SDK: bitta .jsx,
-//  import faqat react + '@lesson/runtime' (LESSON_PROMPT_WITH_UNLOCK.md).
+//  MENTOR KURSI — UMUMIY DVIGATEL (parts/01–02), hamma mentor darsi uchun bitta (PRD §9-1).
+//  F-1029-02 · ovozli, segment-sinxron dars. YIG'ILGAN FAYL — manba: bo'laklar.
+//  Yig'ish: Nest-1 — cat parts/*.jsx > NestArchMentorLesson.jsx;
+//           Nest-2 — cat parts/01-asos.jsx parts/02-dvigatel.jsx nest2/parts/*.jsx > NestRepoMentorLesson.jsx.
+//  Darsga xos narsa (dars ID'si, loyiha nomi, fayl ro'yxati) dvigatelda EMAS — darsning o'z bo'lagida (MKCFG, 02-dvigatel).
+//  Platforma SDK: bitta .jsx, import faqat react + '@lesson/runtime' (LESSON_PROMPT_WITH_UNLOCK.md).
 //  Metodika: chapda USTOZ GAPI (faqat hozirgi segment), o'ngda SAHNA; segment = qadam:
 //  element kiradi / yoritiladi / xiralashadi; ovoz tugagach «Davom» yonadi.
 // ============================================================
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useAudio, useSfx, useNextLessonAccess } from '@lesson/runtime';
 
-const LESSON_ID = 'mentor-nest-01-arxitektura-v1';
 const UZ = "[O'zbekcha tallaffuz] ";
+const RU_MARK = '[Русское произношение] ';
+
+// UZ-RU (F-1030-38). Ikki yo'l:
+// 1) t(uz, ru) — sahna va dvigateldagi yozuv uchun; faqat render ichida chaqiriladi (modul darajasida EMAS).
+// 2) Ekran ma'lumotlari (S, kod satrlari, qadamlar, uyga vazifa) o'zbekcha holicha qoladi; ruschasi parts/08-ru.jsx da
+//    ru(obj, {…}) bilan ro'yxatga olinadi. setLang('ru') ildizda bir marta ishlaydi: o'zbekcha nusxa saqlanadi va
+//    obyektning O'ZI ruschaga almashtiriladi — shunda S1.plan kabi to'g'ridan o'qiladigan joy ham ruscha bo'ladi.
+//    Massivda segment `id` bo'yicha (yoki indeks), obyektda maydon bo'yicha; ruschasi yo'q joy o'zbekcha qoladi.
+//    O'zbekcha rejimda hech narsa almashtirilmaydi (ruscha ko'rilgandan keyin qaytsa — nusxadan tiklanadi).
+let LANG = 'uz';
+const t = (uz, ru) => (LANG === 'ru' && ru != null ? ru : uz);
+const RU_OF = new Map();
+const UZ_OF = new Map();
+const ru = (obj, tr) => { RU_OF.set(obj, tr); return obj; };
+const isPlain = (x) => x && typeof x === 'object' && !React.isValidElement(x);
+const snap = (x) => (Array.isArray(x) ? x.map(snap) : isPlain(x) ? Object.keys(x).reduce((o, k) => { o[k] = snap(x[k]); return o; }, {}) : x); // reduce — .oz.jsx Chrome 70 ga mos
+function ruMerge(b, r) {
+  if (r == null) return b;
+  if (!isPlain(r)) return r;
+  if (Array.isArray(b)) return b.map((x, i) => ruMerge(x, x && x.id != null && !Array.isArray(r) && r[x.id] !== undefined ? r[x.id] : r[i]));
+  if (isPlain(b)) { const o = { ...b }; Object.keys(r).forEach((k) => { o[k] = ruMerge(b[k], r[k]); }); return o; }
+  return r;
+}
+// Ruscha ma'lumot o'zbekchada yo'q joyga tushsa (noto'g'ri indeks, segment id yoki maydon) — jim o'tmasin
+function ruCheck(b, r, path) {
+  if (!isPlain(r)) return;
+  if (!isPlain(b)) { console.error('[ru] o\'zbekchada yo\'q: ' + path); return; }
+  Object.keys(r).forEach((k) => {
+    if (r[k] == null) return;
+    const hit = Array.isArray(b) && !Array.isArray(r) ? (b.find((x) => x && x.id === k) || b[k]) : b[k];
+    if (hit === undefined) console.error('[ru] o\'zbekchada yo\'q: ' + path + '.' + k);
+    else ruCheck(hit, r[k], path + '.' + k);
+  });
+}
+function setLang(lang) {
+  const L = lang === 'ru' ? 'ru' : 'uz';
+  if (L === LANG) return;
+  RU_OF.forEach((tr, obj) => {
+    if (!UZ_OF.has(obj)) { UZ_OF.set(obj, snap(obj)); ruCheck(obj, tr, Array.isArray(obj) ? '[]' : (obj.kicker || obj.title || '{}')); }
+    const v = L === 'ru' ? ruMerge(snap(UZ_OF.get(obj)), tr) : snap(UZ_OF.get(obj));
+    if (Array.isArray(obj)) obj.splice(0, obj.length, ...v);
+    else { Object.keys(obj).forEach((k) => { delete obj[k]; }); Object.assign(obj, v); }
+  });
+  LANG = L;
+}
 
 const T = {
   bg: '#F5F6F8', paper: '#FFFFFF', ink: '#0F1115', ink2: '#4B5162', ink3: '#8A90A2', line: '#E3E6EC',
   accent: '#E2451F', blue: '#0E7FB8', green: '#12805A', yellow: '#B57A00', purple: '#6D3BE4',
-  code: '#0F1115', codeInk: '#E8EAF0', codeDim: 'rgba(232,234,240,0.38)', codeHl: 'rgba(226,69,31,0.16)',
+  code: '#0F1115', codeInk: '#E8EAF0', codeDim: 'rgba(232,234,240,0.38)', codeHl: 'rgba(226,69,31,0.24)',
 };
 const PART = { ctrl: T.blue, svc: T.green, mod: T.yellow };
 const SANS = 'system-ui,-apple-system,"Segoe UI",Roboto,sans-serif';
@@ -31,41 +77,93 @@ const CSS = `
 .mk-kicker{font:600 11px/1 ${MONO};letter-spacing:.14em;text-transform:uppercase;color:${T.ink3};display:flex;align-items:center;gap:8px}
 .mk-kicker i{width:6px;height:6px;border-radius:50%;background:${T.accent};display:inline-block}
 .mk-count{font:700 13px/1 ${MONO};color:${T.ink}}
-.mk-body{flex:1;min-height:0;display:grid;grid-template-columns:minmax(320px,5fr) 7fr;gap:28px;padding:22px 28px}
+.mk-body{flex:1;min-height:0;display:grid;grid-template-columns:minmax(320px,4fr) 8fr;gap:24px;padding:22px 28px}
+@media (min-width:1600px){.mk-panel{font-size:14px}.mk-explorer{font-size:13px}}
 @media (max-width:900px){.mk-body{grid-template-columns:1fr;grid-template-rows:auto 1fr;gap:14px;padding:14px}}
+.mk-ide{display:grid;grid-template-columns:218px minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);align-items:stretch;flex:0 1 auto;max-height:100%;min-height:0;background:#E9ECF1;border:1px solid #D5DAE2;border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(15,17,21,.10)}
+.mk-ide-bar{grid-column:1/-1;display:flex;align-items:center;gap:7px;padding:8px 14px;background:#DDE1E8;border-bottom:1px solid #D0D5DD;font:600 11px/1 ${MONO};color:${T.ink2};letter-spacing:.04em}
+.mk-ide-bar i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.mk-ide-bar i:nth-child(1){background:#FF5F57}.mk-ide-bar i:nth-child(2){background:#FEBC2E}.mk-ide-bar i:nth-child(3){background:#28C840}
+.mk-ide-bar span{margin-left:10px}
+.mk-ide-main{display:flex;flex-direction:column;gap:12px;min-width:0;min-height:0;padding:12px;background:${T.bg};overflow:auto}
+.mk-ide-main>*{flex:0 0 auto}
+.mk-ide-main>.mk-panel{max-height:none}
+.mk-ide .mk-explorer{border:0;border-right:1px solid #D5DAE2;border-radius:0;background:transparent}
+.mk-ide .mk-panel{box-shadow:none;border-radius:12px}
+.mk-ide .mk-panel{padding-top:0}
+.mk-ide .mk-panel .fn{position:sticky;top:0;left:auto;right:auto;display:block;width:max-content;max-width:100%;margin:0 0 8px -20px;padding:6px 14px;background:#24272F;color:${T.codeInk};border-radius:12px 0 10px 0;letter-spacing:.02em;font-size:11.5px;z-index:2}
+.mk-ide .mk-panel .fn+div{padding-top:0 !important}
+@media (max-width:900px){.mk-ide{grid-template-columns:1fr}}
+.mk-explorer{background:#EEF0F4;border:1px solid ${T.line};border-radius:14px;padding:10px 6px 12px;font:12px/1.75 ${MONO};color:${T.ink2};align-self:stretch;overflow:hidden}
+.mk-explorer .hd{font:600 10px/1 ${MONO};letter-spacing:.12em;text-transform:uppercase;color:${T.ink3};padding:0 8px 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mk-explorer .dir{color:${T.ink};font-weight:700;white-space:nowrap}
+.mk-explorer .dir,.mk-explorer .fi{position:relative}
+.mk-explorer .ig{position:absolute;top:0;bottom:0;width:1px;background:#C3C9D2;pointer-events:none}
+.mk-explorer .dir.shut{font-weight:500;color:${T.ink3}}
+.mk-explorer .dir .chev{display:inline-block;width:12px;font-size:9px;color:${T.ink3}}
+.mk-explorer .fi.mute{opacity:.5}
+.mk-codebar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:0 0 12px}
+.mk-codebar .what{font-size:15px;color:${T.ink2}}
+.mk-codebar .what b{color:${T.ink};font-family:${MONO};font-size:14px}
+.mk-codebar .end{margin-left:auto}
+.mk-trbtn{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:transparent;border:1.5px solid transparent;border-radius:12px;padding:11px 14px;font:inherit;color:${T.ink};cursor:pointer;transition:border-color .3s,background .3s}
+.mk-trbtn:hover{background:#F6F7F9}
+.mk-trbtn .q{font-weight:700;font-size:15px}
+.mk-trbtn .n{font-size:13px;color:${T.ink3}}
+.mk-trbtn .ar{margin-left:auto;font:700 14px/1 ${MONO};color:${T.ink3}}
+.mk-trbtn.hot{border-color:${T.accent};animation:mk-pulse 1.4s ease 3}
+.mk-trbtn.hot .q{color:${T.accent}}
+.mk-trbtn[aria-expanded="true"]{border-bottom-left-radius:0;border-bottom-right-radius:0}
+.mk-explorer .fi{display:flex;align-items:center;gap:7px;padding:1px 8px;border-radius:7px;border-left:3px solid transparent;transition:background .3s,opacity .3s;white-space:nowrap}
+.mk-explorer .fi i{width:8px;height:8px;border-radius:2px;background:var(--c);flex:0 0 auto}
+.mk-explorer .fi.on{background:#fff;border-left-color:${T.accent};color:${T.ink};font-weight:700;box-shadow:0 2px 8px rgba(15,17,21,.08)}
+.mk-explorer .fi.clk{cursor:pointer}
+.mk-explorer .fi.clk:hover{background:#fff}
+.mk-explorer .fi.new{animation:mk-up .45s ease both}
+.mk-explorer.big{font-size:14px;line-height:2;padding:14px 10px}
+.mk-explorer.big .fi{padding:3px 10px;border-radius:9px}
+.mk-explorer.big .fi .d{font:12.5px ${SANS};color:${T.ink3};margin-left:10px;white-space:normal}
+.mk-explorer.big .fi.on .d{color:${T.ink2}}
+.mk-browser{display:flex;gap:14px;align-items:center;padding:12px 16px}
+.mk-browser .url{font:13px ${MONO};padding:6px 12px;border:1px solid ${T.line};border-radius:10px;background:${T.paper}}
+.mk-browser .out{font-size:20px;font-weight:800}
+.mk-browser .out.er{color:${T.accent}}
 .mk-say{display:flex;flex-direction:column;min-height:0}
 .mk-eyebrow{font:600 11px/1 ${MONO};letter-spacing:.12em;text-transform:uppercase;color:${T.accent};margin:0 0 10px}
 .mk-title{font-size:clamp(20px,2.2vw,28px);line-height:1.2;font-weight:800;margin:0 0 18px;letter-spacing:-.01em}
 .mk-cap{flex:1;min-height:0;display:flex;flex-direction:column}
 .mk-key{font-size:clamp(22px,2.1vw,30px);line-height:1.25;font-weight:700;color:${T.ink};margin:0;letter-spacing:-.01em;animation:mk-up .45s ease both}
 .mk-key b{color:${T.accent}}
-.mk-key code{font:0.85em ${MONO};background:#EEF0F4;padding:1px 7px;border-radius:6px;font-weight:600}
+.mk-key code{font:0.82em ${MONO};background:${T.code};color:#fff;padding:2px 10px;border-radius:8px;font-weight:600}
 .mk-tr{margin:0;padding:0;list-style:none;display:grid;gap:8px;max-height:52vh;overflow:auto;padding-right:6px}
 .mk-input{width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid ${T.line};border-radius:8px;font:13px/1.4 ${MONO};background:#fff;color:${T.ink}}
 .mk-input:focus{outline:2px solid ${T.accent};outline-offset:1px}
 .mk-tr li{font-size:14px;line-height:1.5;color:${T.ink3};padding:6px 10px;border-radius:8px;border-left:3px solid transparent}
 .mk-tr li.on{color:${T.ink};background:#FFF7F3;border-left-color:${T.accent}}
 .mk-tr li.done{color:${T.ink2}}
-.mk-tr code{font:0.92em ${MONO};background:#EEF0F4;padding:0 5px;border-radius:5px}
+.mk-tr code{font:0.92em ${MONO};background:#E3E6EC;border:1px solid #D3D7DF;padding:0 5px;border-radius:5px;color:${T.ink}}
 .mk-ask{margin-top:18px;padding:14px 16px;border:1.5px solid ${T.accent};border-radius:12px;background:#FFF7F3;animation:mk-up .4s ease both}
 .mk-ask p{margin:0 0 10px;font-weight:600}
 .mk-ask .row{display:flex;gap:10px;flex-wrap:wrap}
 .mk-ask .res{margin-top:10px;font-size:14px;color:${T.ink2}}
 .mk-now{font-size:clamp(17px,1.45vw,21px);line-height:1.6;color:${T.ink};margin:0;animation:mk-up .45s ease both}
 .mk-now b{color:${T.accent};font-weight:700}
-.mk-now code,.mk-prev code{font:0.92em ${MONO};background:#EEF0F4;padding:0 5px;border-radius:5px}
+.mk-now code,.mk-prev code{font:0.92em ${MONO};background:#E3E6EC;border:1px solid #D3D7DF;padding:0 5px;border-radius:5px}
 .mk-dots{display:flex;gap:6px;margin:16px 0 0}
 .mk-dots i{width:22px;height:4px;border-radius:2px;background:${T.line};display:inline-block;transition:background .3s}
 .mk-dots i.on{background:${T.accent}}
 .mk-dots i.done{background:${T.ink3}}
 .mk-below{margin-top:18px}
-.mk-scene{min-height:0;display:flex;flex-direction:column;justify-content:center;gap:14px}
+.mk-review{margin:14px 0 0;padding:10px 12px;border-radius:10px;background:#EEF0F4;color:${T.ink2};font-size:13.5px;line-height:1.45}
+.mk-scene{min-height:0;display:flex;flex-direction:column;justify-content:flex-start;gap:14px;overflow:auto}
+.mk-scene:not(.top)>:first-child{margin-top:auto}
+.mk-scene:not(.top)>:last-child{margin-bottom:auto}
 .mk-scene.top{justify-content:flex-start}
 .mk-panel{flex:0 1 auto;max-height:100%;min-height:0;background:${T.code};color:${T.codeInk};border-radius:16px;padding:18px 20px;font:13px/1.55 ${MONO};overflow:auto;position:relative;box-shadow:0 10px 30px rgba(15,17,21,.12)}
 .mk-panel .fn{position:absolute;top:10px;right:14px;font-size:11px;color:${T.codeDim};letter-spacing:.06em}
 .mk-ln{display:flex;gap:14px;padding:1px 8px;border-radius:6px;white-space:pre;opacity:0;transform:translateY(6px);transition:opacity .35s,transform .35s,background .35s}
 .mk-ln.in{opacity:1;transform:none}
-.mk-ln.dim{opacity:.38}
+.mk-ln.dim{opacity:.5}
 .mk-ln.hl{background:${T.codeHl};box-shadow:inset 3px 0 0 ${T.accent}}
 .mk-ln.gone{opacity:.25;text-decoration:line-through;text-decoration-color:#FCA5A5}
 .mk-ln.new{background:rgba(18,128,90,.22);box-shadow:inset 3px 0 0 #86EFAC}
@@ -87,6 +185,14 @@ const CSS = `
 .mk-btn.soft{background:transparent;color:${T.ink2};border-color:${T.line};font-weight:500}
 .mk-btn.sm{padding:7px 12px;font-size:13px;border-radius:9px}
 .mk-btn:disabled{opacity:.35;cursor:not-allowed}
+.mk-lockhint{margin-left:auto;font-size:13.5px;color:${T.ink2};display:flex;align-items:center;gap:8px}
+.mk-lockhint i{width:7px;height:7px;border-radius:50%;background:${T.accent};display:inline-block;animation:mk-pulse 1.6s ease-in-out infinite}
+.mk-say.mc>:first-child{margin-top:auto}
+.mk-say.mc>:last-child{margin-bottom:auto}
+.mk-say.mc .mk-opt{font-size:18px;padding:16px 18px}
+.mk-body.mc-split{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
+.mk-body.mc-split>.mk-say.mc>:first-child{margin-top:0}
+@media (max-width:1300px){.mk-body.mc-split{grid-template-columns:1fr;grid-auto-rows:max-content;overflow:auto}.mk-body.mc-split>.mk-say.mc,.mk-body.mc-split>.mc-after{overflow:visible!important}}
 .mk-btn.ready{background:${T.accent};border-color:${T.accent};animation:mk-pulse 1.6s ease-in-out infinite}
 .mk-audio{display:flex;align-items:center;gap:6px}
 .mk-audio button{background:transparent;border:1px solid ${T.line};border-radius:8px;padding:5px 8px;cursor:pointer;color:${T.ink2};font:12px/1 ${SANS};display:inline-flex;align-items:center;gap:6px}
@@ -96,7 +202,7 @@ const CSS = `
 .mk-bars i:nth-child(2){animation-delay:.15s}.mk-bars i:nth-child(3){animation-delay:.3s}
 .mk-in{opacity:0;transform:translateY(8px);transition:opacity .4s,transform .4s}
 .mk-in.on{opacity:1;transform:none}
-.mk-in.dim{opacity:.35}
+.mk-in.dim{opacity:.55}
 .mk-box{border-radius:14px;padding:12px 14px;background:${T.paper};border:2px solid var(--c);color:${T.ink};transition:opacity .4s,transform .4s,box-shadow .4s}
 .mk-box.hl{box-shadow:0 0 0 4px rgba(226,69,31,.16),0 12px 28px rgba(15,17,21,.12)}
 .mk-box h4{margin:0 0 4px;font-size:15px;color:var(--c)}
@@ -168,6 +274,7 @@ const CSS = `
 @keyframes mk-up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @keyframes mk-pulse{0%,100%{box-shadow:0 0 0 0 rgba(226,69,31,.35)}50%{box-shadow:0 0 0 8px rgba(226,69,31,0)}}
 @keyframes mk-eq{0%,100%{height:4px}50%{height:12px}}
+@keyframes mk-route{0%{left:calc((100% - 88px) / 6)}35%{left:50%}55%{left:calc(100% - (100% - 88px) / 6)}80%{left:50%}100%{left:calc((100% - 88px) / 6)}}
 `;
 function useCss() {
   useEffect(() => {
@@ -186,27 +293,50 @@ const html = (s) => ({ __html: s });
 const DIGITS = [['ming ikki yuz qirq', '1240'], ["to'rt yuz to'rt", '404'], ["to'rt yuz bir", '401'], ["to'rt yuz uch", '403'], ['ikki yuz bir', '201'], ['besh yuz', '500'], ["to'rt yuz", '400'], ['ikki yuz', '200'], ['uch ming', '3000'], ["to'qson to'qqiz", '99'], ['index nol', 'index [0]'],
   ["o'n birinchi versiya", '11-versiya'], ["o'n-o'n besh", '10–15'], ["o'n marta", '10 marta'], ['ikki-besh', '2–5'], ['yigirma ikki', '22'], ["o'ttizdan oltmishgacha", '30–60'], ["oltmishdan to'qsongacha", '60–90'], ['yigirma', '20'], ["o'ttiz", '30'], ["to'qson", '90']];
 const digits = (t) => DIGITS.reduce((acc, [w, d]) => acc.replace(new RegExp(w.replace(/'/g, "['’]"), 'gi'), d), t || '');
+// Ovozga ketadigan matn (platforma qoidasi, LESSON_PROMPT_WITH_UNLOCK «Multilingual narration»): host-marker + haqiqiy inglizcha
+// IBORALAR `[English pronunciation] … [end]` ichida (terminal xabarlari, atama-iboralar). Yakka atamalar (Controller, route)
+// o'ralmaydi — qoida «faqat kerak joyda». Ekranda/«Matn»da teg ko'rinmaydi: voice() faqat useAudio'ga beriladi.
+const EN_PHRASES = [
+  /Unable to connect to the database/g, /client password must be a string/g, /password authentication failed for user/g,
+  /Nest application successfully started/g, /successfully started/g, /Validation failed/g, /Internal server error/g,
+  /can't resolve dependencies/g, /invalid controller/g, /Dependency Injection/g, /Hello World/g, /Cannot GET/g,
+  /Bad Request/g, /Not Found/g, /does not exist/g, /Potential solutions/g, /Car with id [\w' ]+? not found/g,
+];
+const voice = (t) => {
+  const keep = [];
+  let out = t || '';
+  EN_PHRASES.forEach((re) => { out = out.replace(re, (m) => { keep.push(m); return `\u0000${keep.length - 1}\u0000`; }); });
+  return (LANG === 'ru' ? RU_MARK : UZ) + out.replace(/\u0000(\d+)\u0000/g, (_, i) => `[English pronunciation] ${keep[i]} [end]`);
+};
 const HELP_ROW = ['Hech biri emas', "Skrinshot + xato matnini mentor-kurs Telegram guruhiga yuboring; darsni to'xtatmang, keyingi ekranga o'ting"];
 const vis = (at, beat) => at == null || at <= beat;
 
 // useAudio(segments) → currentId. Qadam faqat oldinga o'sadi. `ask` segmenti: ovoz savol beradi va
-// tugma bosilguncha kutadi (waits_for button_click/step) — bashorat.
-function useBeats(segments) {
-  const segs = useMemo(() => segments.map((s, i) => ({ id: s.id, text: UZ + s.text, trigger: i === 0 ? 'on_mount' : 'after_previous', waits_for: s.ask ? { type: 'button_click', target: 'step' } : s.waits_for })), [segments]);
+// tugma bosilguncha kutadi (waits_for button_click/step) — «o'ylab ko'ring».
+// `review` (Orqaga bilan qaytilgan ekran, A12): ovoz yo'q, ekran yakuniy holatda; ↺ boshidan — ovoz bilan qayta
+function useBeats(segments, review) {
+  const segs = useMemo(() => review ? [] : segments.map((s, i) => ({ id: s.id, text: voice(s.text), trigger: i === 0 ? 'on_mount' : 'after_previous', waits_for: s.ask ? { type: 'button_click', target: 'step' } : s.waits_for })), [segments, review]);
   const audio = useAudio(segs);
-  const [beat, setBeat] = useState(0);
-  const [done, setDone] = useState(false);
+  const [beat, setBeat] = useState(review ? segments.length - 1 : 0);
+  const [done, setDone] = useState(!!review);
   const [guess, setGuess] = useState({});
   const started = useRef(false);
   useEffect(() => {
     const i = segments.findIndex((s) => s.id === audio.currentId);
     if (i >= 0) { started.current = true; setBeat((b) => Math.max(b, i)); }
   }, [audio.currentId, segments]);
+  // Runtime savolda kutyapti, lekin savol segmenti currentId'da ko'rinmay o'tib ketgan bo'lsa (ovoz rad etilgan / juda qisqa) —
+  // qadamni o'sha savolga suramiz, aks holda savol chiqmaydi va ekran qotadi
+  useEffect(() => {
+    if (!audio.waitingFor || audio.currentId) return;
+    const k = segments.findIndex((s, i) => i >= beat && s.ask);
+    if (k >= 0) { started.current = true; setBeat((b) => Math.max(b, k)); }
+  }, [audio.waitingFor, audio.currentId, beat, segments]);
   useEffect(() => {
     if (!audio.isPlaying && !audio.waitingFor && started.current && beat >= segments.length - 1) setDone(true);
   }, [audio.isPlaying, audio.waitingFor, beat, segments.length]);
   const stepManual = useCallback(() => { setBeat((b) => { const n = Math.min(b + 1, segments.length - 1); if (n === segments.length - 1) setDone(true); return n; }); }, [segments.length]);
-  // Bashorat: tugma ovoz paytida ham bosiladi; runtime hali kutmayotgan bo'lsa, kutishga o'tganda yuboriladi
+  // «O'ylab ko'ring»: tugma ovoz paytida ham bosiladi; runtime hali kutmayotgan bo'lsa, kutishga o'tganda yuboriladi
   const pendingAsk = useRef(false);
   const answerAsk = useCallback((segId, i) => {
     setGuess((g) => ({ ...g, [segId]: i }));
@@ -218,19 +348,31 @@ function useBeats(segments) {
   return { audio, beat, done, stepManual, seg: segments[beat], guess, answerAsk };
 }
 
-function AudioChip({ audio }) {
+// ↺ = ekranni BOSHIDAN (ovoz + sahna + qadamlar) — root komponent ekranni qayta o'rnatadi (F-1030-05); onRestart bo'lmasa — hozirgi gap
+function AudioChip({ audio, onRestart }) {
   return (
     <div className="mk-audio">
-      <button className={audio.isPlaying ? 'live' : ''} onClick={audio.toggleMute} title={audio.muted ? 'Ovozni yoqish' : "Ovozni o'chirish"}>
+      <button className={audio.isPlaying ? 'live' : ''} onClick={audio.toggleMute} title={audio.muted ? t('Ovozni yoqish', 'Включить звук') : t("Ovozni o'chirish", 'Выключить звук')}>
         {audio.isPlaying ? <span className="mk-bars"><i /><i /><i /></span> : <span>{audio.muted ? '🔇' : '🔈'}</span>}
-        {audio.muted ? "o'chiq" : (audio.isPlaying ? 'ustoz gapiryapti' : 'ovoz')}
+        {audio.muted ? t("o'chiq", 'выкл.') : (audio.isPlaying ? t('ustoz gapiryapti', 'учитель говорит') : t('ovoz', 'звук'))}
       </button>
-      <button onClick={audio.replay} title="Qaytarish">↺</button>
+      <button onClick={onRestart || audio.replay} title={t('Ekranni boshidan', 'Экран с начала')}>{t('↺ boshidan', '↺ с начала')}</button>
     </div>
   );
 }
 
-function Stage({ kicker, idx, total, audio, children, onBack, onNext, nextReady, nextDisabled, nextLabel = 'Davom', extra }) {
+// lockHint — Davom nega yopiqligini aytadi (UX-1); → / Enter — Davom ochiq bo'lsa keyingi ekran (UX-8; matn maydonida ishlamaydi)
+function Stage({ kicker, idx, total, audio, children, onBack, onNext, onRestart, nextReady, nextDisabled, nextLabel, extra, lockHint }) {
+  useEffect(() => {
+    const onKey = (e) => {
+      if (nextDisabled || !onNext || e.altKey || e.ctrlKey || e.metaKey) return;
+      const t = document.activeElement; const tag = t && t.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || (e.key === 'Enter' && (tag === 'BUTTON' || tag === 'A'))) return;
+      if (e.key === 'ArrowRight' || e.key === 'Enter') { e.preventDefault(); onNext(); }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [nextDisabled, onNext]);
   return (
     <div className="mk-stage">
       <div className="mk-head">
@@ -238,33 +380,34 @@ function Stage({ kicker, idx, total, audio, children, onBack, onNext, nextReady,
         <div className="mk-chrome">
           <div className="mk-kicker"><i />{kicker}</div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-            {audio && <AudioChip audio={audio} />}
+            {audio && <AudioChip audio={audio} onRestart={onRestart} />}
             <span className="mk-count">{String(idx + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}</span>
           </div>
         </div>
       </div>
       {children}
       <div className="mk-nav">
-        {onBack ? <button className="mk-btn ghost" onClick={onBack}>← Orqaga</button> : <span />}
+        {onBack ? <button className="mk-btn ghost" onClick={onBack}>{t('← Orqaga', '← Назад')}</button> : <span />}
         {extra}
-        <button className={`mk-btn${nextReady && !nextDisabled ? ' ready' : ''}`} disabled={!!nextDisabled} style={{ marginLeft: 'auto' }} onClick={onNext}>{nextLabel} →</button>
+        {nextDisabled && lockHint && <span className="mk-lockhint"><i />{lockHint}</span>}
+        <button className={`mk-btn${nextReady && !nextDisabled ? ' ready' : ''}`} disabled={!!nextDisabled} style={{ marginLeft: nextDisabled && lockHint ? 12 : 'auto' }} onClick={onNext} title={nextDisabled ? lockHint || '' : t('Davom (→ yoki Enter)', 'Далее (→ или Enter)')}>{nextLabel || t('Davom', 'Далее')} →</button>
       </div>
     </div>
   );
 }
 
-// Chap ustun: sarlavha + KALIT IBORA (hozirgi segment) + qadam chiziqchalari + «Matn» (butun transkript) + bashorat
-function Say({ eyebrow, title, segments, beat, audio, stepManual, below, guess, answerAsk }) {
+// Chap ustun: sarlavha + KALIT IBORA (hozirgi segment) + qadam chiziqchalari + «Matn» (butun transkript) + «o'ylab ko'ring»
+function Say({ eyebrow, title, segments, beat, audio, stepManual, below, guess, answerAsk, review }) {
   const now = segments[beat];
   const [tr, setTr] = useState(false);
-  const showManual = audio.muted || (!audio.isPlaying && !audio.waitingFor && beat < segments.length - 1 && audio.status === 'idle' && !now.ask);
+  const showManual = !review && (audio.muted || (!audio.isPlaying && !audio.waitingFor && beat < segments.length - 1 && audio.status === 'idle' && !now.ask));
   const asking = now.ask && guess && guess[now.id] === undefined;
   const prevAsk = beat > 0 && segments[beat - 1].ask ? segments[beat - 1] : null;
   return (
     <div className="mk-say">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 10 }}>
         <div>{eyebrow && <p className="mk-eyebrow">{eyebrow}</p>}<h2 className="mk-title">{title}</h2></div>
-        <button className="mk-btn soft sm" onClick={() => setTr((v) => !v)} title="Ustoz gapining to'liq matni">{tr ? 'Matnni yopish' : 'Matn'}</button>
+        <button className="mk-btn soft sm" onClick={() => setTr((v) => !v)} title={t("Ustoz gapining to'liq matni", 'Полный текст учителя')}>{tr ? t('Matnni yopish', 'Скрыть текст') : t('Matn', 'Текст')}</button>
       </div>
       <div className="mk-cap">
         {tr ? (
@@ -273,15 +416,16 @@ function Say({ eyebrow, title, segments, beat, audio, stepManual, below, guess, 
           <p className="mk-key" key={now.id} dangerouslySetInnerHTML={html(now.key || now.show || digits(now.text))} />
         )}
         <div className="mk-dots">{segments.map((s, i) => <i key={s.id} className={i === beat ? 'on' : (i < beat ? 'done' : '')} />)}</div>
+        {review && <p className="mk-review">{t("Takrorlash: ekran tayyor holatda, ovozsiz. Ovoz bilan qayta eshitish — tepadagi «↺ boshidan». To'liq matn — «Matn».", 'Повтор: экран в готовом виде, без звука. Послушать заново со звуком — «↺ с начала» вверху. Полный текст — «Текст».')}</p>}
         {asking && (
           <div className="mk-ask"><p>{now.ask.q}</p><div className="row">{now.ask.opts.map((o, i) => <button key={i} className="mk-btn ghost sm" onClick={() => answerAsk(now.id, i)}>{o}</button>)}</div></div>
         )}
         {prevAsk && guess && guess[prevAsk.id] !== undefined && (
           <div className="mk-ask" style={{ borderColor: guess[prevAsk.id] === prevAsk.ask.answer ? T.green : T.ink3, background: guess[prevAsk.id] === prevAsk.ask.answer ? '#E3F5EC' : '#F0F2F5' }}>
-            <div className="res">Sizning bashoratingiz: <b>{prevAsk.ask.opts[guess[prevAsk.id]]}</b> — {guess[prevAsk.id] === prevAsk.ask.answer ? "to'g'ri" : "aslida: " + prevAsk.ask.opts[prevAsk.ask.answer]}</div>
+            <div className="res">{t('Sizning javobingiz:', 'Ваш ответ:')} <b>{prevAsk.ask.opts[guess[prevAsk.id]]}</b> — {guess[prevAsk.id] === prevAsk.ask.answer ? t("to'g'ri", 'верно') : t('aslida: ', 'на самом деле: ') + prevAsk.ask.opts[prevAsk.ask.answer]}</div>
           </div>
         )}
-        {showManual && <div style={{ marginTop: 14 }}><button className="mk-btn soft sm" onClick={stepManual}>Keyingi qadam →</button></div>}
+        {showManual && <div style={{ marginTop: 14 }}><button className="mk-btn soft sm" onClick={stepManual}>{t('Keyingi qadam →', 'Следующий шаг →')}</button></div>}
         {below && <div className="mk-below">{below}</div>}
       </div>
     </div>
@@ -293,17 +437,20 @@ function CodePanel({ file, lines, beat = 99, focus = [], numbers = true, wrap = 
   const anyFocus = focus.length > 0;
   const ref = useRef(null);
   const focusKey = focus.join('|');
-  // Kichik ekran (1366×768 va past): panel ichida aylansa — yoritilgan yoki shu qadamda kirgan satr ko'rinib tursin
+  // Kichik ekran (1280×720 va past): yoritilgan yoki shu qadamda kirgan satr ko'rinib tursin — panelning o'zi yoki
+  // eng yaqin aylanadigan konteyner (VS Code oynasining editori / sahna) aylantiriladi; sahifaning o'zi hech qachon
   useEffect(() => {
-    const p = ref.current; if (!p || p.scrollHeight <= p.clientHeight + 4) return;
+    const p = ref.current; if (!p) return;
     const hls = Array.from(p.querySelectorAll('.mk-ln.hl'));
     const first = hls[0] || Array.from(p.querySelectorAll('.mk-ln.in')).filter((n) => n.dataset.at === String(beat)).pop();
     if (!first) return;
     const last = hls.length ? hls[hls.length - 1] : first;
-    const top = first.offsetTop - 12, bottom = last.offsetTop + last.offsetHeight + 12, h = p.clientHeight;
-    if (top >= p.scrollTop && bottom <= p.scrollTop + h) return;            // butun blok ko'rinib turibdi
-    const want = (bottom - top > h || top < p.scrollTop) ? top : bottom - h; // sig'masa — boshidan; pastga chiqsa — oxirini ko'rsat
-    p.scrollTo({ top: Math.max(0, want), behavior: 'smooth' });
+    const box = scrollBox(p); if (!box) return;
+    const br = box.getBoundingClientRect(), fr = first.getBoundingClientRect(), lr = last.getBoundingClientRect();
+    const top = fr.top - br.top + box.scrollTop - 12, bottom = lr.bottom - br.top + box.scrollTop + 12, h = box.clientHeight;
+    if (top >= box.scrollTop && bottom <= box.scrollTop + h) return;            // butun blok ko'rinib turibdi
+    const want = (bottom - top > h || top < box.scrollTop) ? top : bottom - h; // sig'masa — boshidan; pastga chiqsa — oxirini ko'rsat
+    box.scrollTo({ top: Math.max(0, want), behavior: 'smooth' });
   }, [beat, focusKey]);
   return (
     <div className="mk-panel" style={style} ref={ref}>
@@ -322,26 +469,95 @@ function CodePanel({ file, lines, beat = 99, focus = [], numbers = true, wrap = 
 }
 
 function Block({ at, beat, dim, className = '', style, children }) {
-  return <div className={`mk-in${vis(at, beat) ? ' on' : ''}${dim ? ' dim' : ''} ${className}`} style={style}>{children}</div>;
+  return <div className={`mk-in${vis(at, beat) ? ' on' : ''}${dim ? ' dim' : ''} ${className}`} style={style} data-at={at}>{children}</div>;
+}
+// Eng yaqin aylanadigan konteyner (o'zi ham), .mk-stage gacha — sahifa siljimasin (1280×720 da sarlavha tugmalarni yopgan edi)
+function scrollBox(el) {
+  for (let n = el; n && !(n.classList && n.classList.contains('mk-stage')); n = n.parentElement) {
+    const o = getComputedStyle(n).overflowY;
+    if ((o === 'auto' || o === 'scroll') && n.scrollHeight > n.clientHeight + 4) return n;
+  }
+  return null;
 }
 
-// Oddiy ekran qolipi: Say + sahna
-function Lesson({ p, S, scene, below, ready }) {
-  const b = useBeats(S.segments);
+// Brauzer kartasi: manzil + javob (terminaldan alohida, chunki mentor brauzerda ko'radi)
+function Browser({ url, out, er }) {
+  return <div className="mk-light mk-browser"><span className="url">{url}</span><span className={`out${er ? ' er' : ''}`}>{out}</span></div>;
+}
+
+// Explorer (VS Code) — MENTOR_DARS_ETALON 1-qonun (F-1030-10): loyiha fayli ko'rsatilgan HAR sahnada chapda.
+// `files` — shu paytgacha mavjud fayllar (yo'li bilan), `active` — hozir ochiq fayl (yoritiladi), `fresh` — shu qadamda paydo bo'lgan,
+// `onOpen` — bosilsa ochiladi (amaliyotda), `big`+`desc` — S5a'dagi katta ko'rinish (vazifa izohi bilan).
+// Darsga xos sozlama — har dars o'z bo'lagining boshida to'ldiradi: loyiha nomi (Explorer sarlavhasi), standart fayl ro'yxati,
+// qo'shimcha fayl ranglari (kind(f) → rang yoki null; null bo'lsa quyidagi umumiy qoida). Dvigatelda darsga xos qiymat yo'q.
+const MKCFG = { root: 'project', files: [], kind: null };
+const FILE_KIND = (f) => (MKCFG.kind && MKCFG.kind(f)) || (/\.module\.ts$/.test(f) ? PART.mod : /\.controller\.ts$/.test(f) ? PART.ctrl : /\.service\.ts$/.test(f) ? PART.svc : /main\.ts$/.test(f) ? T.ink2 : T.ink3);
+const baseName = (f) => f.split('/').pop();
+// F-1031-02: VS Code'dagidek daraja chiziqlari — har ota-papka uchun bitta vertikal chiziq (qaysi fayl qaysi papkada — ko'rinadi).
+// shift: fayl qatorida chap ramka 3px (faol fayl belgisi) — chiziq papka qatoridagi bilan bir tekisda tursin.
+// step: daraja oralig'i — katta xaritada (big) 18px, oddiy Explorer'da 12px.
+const treeGuides = (depth, shift, step) => Array.from({ length: depth }, (_, l) => <b key={'g' + l} className="ig" style={{ left: 12 + l * step - shift }} />);
+// F-1031-04: '/' bilan tugagan yozuv — yopiq papka (▸, ichi ochilmaydi; loyihaning to'liq ko'rinishi uchun).
+// clickable: berilsa, faqat shu fayllar bosiladi, qolganlari xira turadi (bosilmaydi).
+function FileTree({ root = MKCFG.root, files = MKCFG.files, active, onOpen, big, desc, fresh = [], clickable }) {
+  const rows = []; const seenDir = new Set(); const step = big ? 18 : 12;
+  files.forEach((f) => {
+    const shut = f.endsWith('/');
+    const parts = (shut ? f.slice(0, -1) : f).split('/'); const name = shut ? null : parts.pop();
+    let path = '';
+    parts.forEach((d, i) => { path += d + '/'; if (!seenDir.has(path)) { seenDir.add(path); rows.push({ dir: true, depth: i, t: d + '/', shut: shut && i === parts.length - 1 }); } });
+    if (!shut) rows.push({ f, name, depth: parts.length, c: FILE_KIND(f) });
+  });
+  const can = (f) => !!onOpen && (!clickable || clickable.includes(f));
+  return <div className={`mk-explorer${big ? ' big' : ''}`}>
+    <div className="hd">Explorer · {root}</div>
+    {rows.map((r, i) => r.dir
+      ? <div key={'d' + i} className={`dir${r.shut ? ' shut' : ''}`} style={{ paddingLeft: 8 + r.depth * step }}>{treeGuides(r.depth, 0, step)}{r.shut && <span className="chev" aria-hidden="true">▸</span>}{r.t}</div>
+      : <div key={r.f} className={`fi${r.f === active ? ' on' : ''}${can(r.f) ? ' clk' : ''}${clickable && !can(r.f) && r.f !== active ? ' mute' : ''}${fresh.includes(r.f) ? ' new' : ''}`} style={{ '--c': r.c, paddingLeft: 8 + r.depth * step }} onClick={can(r.f) ? () => onOpen(r.f) : undefined}>
+          {treeGuides(r.depth, 3, step)}<i /><span>{r.name}</span>{desc && desc[r.f] && <span className="d">{desc[r.f]}</span>}
+        </div>)}
+  </div>;
+}
+// Bitta VS Code oynasi (F-1030-22): sarlavha · chapda Explorer · o'ngda editor (kod panelida fayl yorlig'i — tab)
+function Ide({ root = MKCFG.root, files, active, onOpen, fresh, clickable, children, style }) {
+  return <div className="mk-ide" style={style}>
+    <div className="mk-ide-bar"><i /><i /><i /><span>{root} — Visual Studio Code</span></div>
+    <FileTree root={root} files={files} active={active} onOpen={onOpen} fresh={fresh} clickable={clickable} />
+    <div className="mk-ide-main">{children}</div>
+  </div>;
+}
+
+// Oddiy ekran qolipi: Say + sahna. Davom QULF: ovoz tugamaguncha (va `ready` bo'lmaguncha) bosilmaydi — MENTOR_DARS_ETALON 4-qonun (F-1030-01);
+// ekran avval to'liq ko'rilgan bo'lsa (p.seen) — qulf yo'q, chunki mentor qaytib kelgan.
+function Lesson({ p, S, scene, below, ready, sceneTop }) {
+  const b = useBeats(S.segments, p.review);
   const ok = ready ? ready(b) : true;
+  const canNext = (b.done && ok) || p.seen;
+  // Kichik ekran: sahna sig'masa, shu qadamda paydo bo'lgan oxirgi blok ko'rinishga aylantiriladi (pastda yashirinib qolmasin)
+  const sceneRef = useRef(null);
+  // Faqat AYNAN shu qadamda paydo bo'lgan blok uchun (aks holda kod panelining yoritish-aylantirishini bosib ketadi)
+  useEffect(() => {
+    const s = sceneRef.current; if (!s) return;
+    const last = Array.from(s.querySelectorAll('.mk-in.on')).filter((n) => n.dataset.at === String(b.beat)).pop(); if (!last) return;
+    const box = scrollBox(last.parentElement); if (!box) return;
+    const r = last.getBoundingClientRect(), br = box.getBoundingClientRect();
+    if (r.bottom > br.bottom) box.scrollTo({ top: box.scrollTop + (r.bottom - br.bottom) + 12, behavior: 'smooth' });
+  }, [b.beat]);
   return (
-    <Stage kicker={S.kicker} idx={p.idx} total={p.total} audio={b.audio} onBack={p.onBack} onNext={p.onNext} nextReady={b.done && ok} nextDisabled={b.done && !ok}>
+    <Stage kicker={S.kicker} idx={p.idx} total={p.total} audio={b.audio} onBack={p.onBack} onNext={p.onNext} onRestart={p.onRestart} nextReady={b.done && ok} nextDisabled={!canNext} lockHint={!b.done ? t("Ustoz gapirib bo'lgach ochiladi", 'Откроется, когда учитель договорит') : (S.lockHint || t('Topshiriqni bajaring', 'Выполните задание'))}>
       <div className="mk-body">
-        <Say eyebrow={S.eyebrow} title={S.title} segments={S.segments} beat={b.beat} audio={b.audio} stepManual={b.stepManual} guess={b.guess} answerAsk={b.answerAsk} below={below ? below(b) : null} />
-        <div className="mk-scene">{scene(b)}</div>
+        <Say eyebrow={S.eyebrow} title={S.title} segments={S.segments} beat={b.beat} audio={b.audio} stepManual={b.stepManual} guess={b.guess} answerAsk={b.answerAsk} below={below ? below(b) : null} review={p.review} />
+        {/* UX-3: hamma ekranda sahna yuqoridan — Davom bosilganda oyna sakramaydi */}
+        <div ref={sceneRef} className="mk-scene top" style={{ overflow: 'auto' }} data-top={sceneTop ? 1 : 0}>{scene(b)}</div>
       </div>
     </Stage>
   );
 }
 
 // Tekshiruv (tanlov): xato variant yopiladi, to'g'risini topguncha bosadi
-function MCRetry({ idx, total, onBack, onNext, stored, onAnswer, kicker, eyebrow, title, q, opts, correct, ok, okShort, wrong, above }) {
-  const segs = useMemo(() => [{ id: 'q', text: UZ + q, trigger: 'on_mount', waits_for: { type: 'option_picked' } }], [q]);
+// `after` — to'g'ri javobdan keyin ko'rsatiladigan blok (masalan tuzatilgan fayl, 2-qonun, F-1030 qo'shimcha 1)
+function MCRetry({ idx, total, onBack, onNext, onRestart, stored, onAnswer, review, kicker, eyebrow, title, q, opts, correct, ok, okShort, wrong, above, after }) {
+  const segs = useMemo(() => review ? [] : [{ id: 'q', text: voice(q), trigger: 'on_mount', waits_for: { type: 'option_picked' } }], [q, review]);
   const audio = useAudio(segs);
   const sfx = useSfx();
   const [bad, setBad] = useState(stored ? stored.bad || [] : []);
@@ -353,44 +569,51 @@ function MCRetry({ idx, total, onBack, onNext, stored, onAnswer, kicker, eyebrow
     if (i === correct) {
       setSolved(true); setLast(i); sfx.playCorrect();
       onAnswer({ picked: i, correct: true, tries: bad.length + 1, firstTry: bad.length === 0, bad, type: 'mc' });
-      setTimeout(() => audio.pushOneOff(UZ + ok), 300);
+      setTimeout(() => audio.pushOneOff(voice(ok)), 300);
     } else {
       const nb = [...bad, i]; setBad(nb); setLast(i); sfx.playWrong();
-      setTimeout(() => audio.pushOneOff(UZ + (wrong[i] || 'Unday emas.') + " Yana o'ylab ko'ring."), 300);
+      setTimeout(() => audio.pushOneOff(voice((wrong[i] || t('Unday emas.', 'Не совсем.')) + t(" Yana o'ylab ko'ring.", ' Подумайте ещё раз.'))), 300);
     }
   };
   const fbOk = solved && last === correct;
   return (
-    <Stage kicker={kicker} idx={idx} total={total} audio={audio} onBack={onBack} onNext={onNext} nextReady={solved} nextDisabled={!solved}>
-      <div className="mk-body" style={{ gridTemplateColumns: '1fr', maxWidth: 860, width: '100%', margin: '0 auto' }}>
-        <div className="mk-say" style={{ justifyContent: 'center' }}>
-          <p className="mk-eyebrow">{eyebrow} · 1-urinish hisoblanadi</p>
+    <Stage kicker={kicker} idx={idx} total={total} audio={audio} onBack={onBack} onNext={onNext} onRestart={onRestart} nextReady={solved} nextDisabled={!solved} lockHint={t("To'g'ri javobni toping", 'Найдите верный ответ')}>
+      {/* F-1031-07: to'g'ri javobdan keyin tuzatilgan kod bo'lsa — ikki ustun (chapda savol, o'ngda kod), sahifa sig'adi */}
+      <div className={`mk-body${solved && after ? ' mc-split' : ''}`} style={solved && after ? undefined : { gridTemplateColumns: '1fr', maxWidth: 980, width: '100%', margin: '0 auto' }}>
+        {/* UX-5: savol bloki xavfsiz markazda (sig'masa tepasi kesilmaydi), variantlar 18 px */}
+        <div className="mk-say mc" style={{ overflow: 'auto', paddingRight: 4 }}>
+          <p className="mk-eyebrow">{eyebrow} · {t('1-urinish hisoblanadi', 'считается 1-я попытка')}</p>
           {above}
-          <h2 className="mk-title" style={{ fontSize: 'clamp(22px,2.4vw,30px)' }}>{title}</h2>
+          <h2 className="mk-title" style={{ fontSize: 'clamp(24px,2.6vw,34px)' }}>{title}</h2>
           <div style={{ display: 'grid', gap: 10 }}>
             {opts.map((o, i) => {
+              // Topilgach faqat to'g'ri variant qoladi — sahifa toza, tuzatilgan blok darhol ostida (F-1030-27)
+              if (solved && i !== correct) return null;
               let cls = 'mk-opt';
-              if (solved) cls += i === correct ? ' ok' : ' off';
+              if (solved) cls += ' ok';
               else if (bad.includes(i)) cls += ' bad';
               return <button key={i} className={cls} disabled={solved || bad.includes(i)} onClick={() => pick(i)}><span className="l">{String.fromCharCode(65 + i)}</span><span>{o}</span></button>;
             })}
           </div>
           {last !== null && (
             <div className="mk-fb" key={last + (solved ? 'ok' : 'bad')} style={{ '--c': fbOk ? T.green : T.accent, '--bg': fbOk ? '#E3F5EC' : '#FFF0EB' }}>
-              <b>{fbOk ? "To'g'ri" : "Unday emas — yana o'ylab ko'ring"}</b>
+              <b>{fbOk ? t("To'g'ri", 'Верно') : t("Unday emas — yana o'ylab ko'ring", 'Не совсем — подумайте ещё раз')}</b>
               <span>{fbOk ? (okShort || digits(ok)) : digits(wrong[last])}</span>
             </div>
           )}
         </div>
+        {solved && after && <div className="mk-scene top mc-after" style={{ overflow: 'auto', animation: 'mk-up .45s ease both' }}>{after}</div>}
       </div>
     </Stage>
   );
 }
 
-// Tekshiruv (qaysi satr xato): kod ko'rsatiladi, mentor satrni bosadi, topguncha bosadi
-function LineCheck({ idx, total, onBack, onNext, stored, onAnswer, kicker, eyebrow, title, q, file, lines, target, ok, okShort, hint }) {
+// Tekshiruv (qaysi satr xato): kod ko'rsatiladi, mentor satrni bosadi, topguncha bosadi.
+// `task` — shart (ekranga xos, F-1030-11); `fixed` — topilgach TUZATILGAN kod (eski satr chizilgan, yangisi yashil) — 2-qonun (F-1030-14);
+// `fixedExtra` — tuzatish boshqa faylga ham tegsa; `tree` — Explorer {root, files, active}.
+function LineCheck({ idx, total, onBack, onNext, onRestart, stored, onAnswer, review, kicker, eyebrow, title, q, task, file, lines, target, ok, okShort, hint, fixed, fixedExtra, tree }) {
   const targets = Array.isArray(target) ? target : [target];
-  const segs = useMemo(() => [{ id: 'q', text: UZ + q, trigger: 'on_mount', waits_for: { type: 'option_picked' } }], [q]);
+  const segs = useMemo(() => review ? [] : [{ id: 'q', text: voice(q), trigger: 'on_mount', waits_for: { type: 'option_picked' } }], [q, review]);
   const audio = useAudio(segs);
   const sfx = useSfx();
   const [bad, setBad] = useState(stored ? stored.bad || [] : []);
@@ -399,23 +622,31 @@ function LineCheck({ idx, total, onBack, onNext, stored, onAnswer, kicker, eyebr
   const onLine = (i, l) => {
     if (solved || bad.includes(i) || !l.h.trim()) return;
     if (bad.length === 0) audio.triggerEvent('option_picked');
-    if (targets.includes(i)) { setSolved(true); sfx.playCorrect(); onAnswer({ picked: i, correct: true, tries: bad.length + 1, firstTry: bad.length === 0, bad, type: 'mc' }); setTimeout(() => audio.pushOneOff(UZ + ok), 300); }
-    else { setBad((b) => [...b, i]); sfx.playWrong(); setTimeout(() => audio.pushOneOff(UZ + hint), 300); }
+    if (targets.includes(i)) { setSolved(true); sfx.playCorrect(); onAnswer({ picked: i, correct: true, tries: bad.length + 1, firstTry: bad.length === 0, bad, type: 'mc' }); setTimeout(() => audio.pushOneOff(voice(ok)), 300); }
+    else { setBad((b) => [...b, i]); sfx.playWrong(); setTimeout(() => audio.pushOneOff(voice(hint)), 300); }
   };
+  const showFixed = solved && fixed;
+  const panels = showFixed
+    ? (<>
+        <div className="mk-tag" style={{ color: T.green, margin: 0 }}>{t('Tuzatildi — eski satr chizilgan, yangisi yashil', 'Исправлено — старая строка зачёркнута, новая зелёная')}</div>
+        <CodePanel file={file} lines={fixed} />
+        {(fixedExtra || []).map((x) => <CodePanel key={x.file} file={x.file} lines={x.lines} />)}
+      </>)
+    : <CodePanel file={file} lines={lines} onLine={solved ? undefined : onLine} marks={marks} />;
   return (
-    <Stage kicker={kicker} idx={idx} total={total} audio={audio} onBack={onBack} onNext={onNext} nextReady={solved} nextDisabled={!solved}>
+    <Stage kicker={kicker} idx={idx} total={total} audio={audio} onBack={onBack} onNext={onNext} onRestart={onRestart} nextReady={solved} nextDisabled={!solved} lockHint={t('Xato satrni toping', 'Найдите строку с ошибкой')}>
       <div className="mk-body">
         <div className="mk-say">
-          <p className="mk-eyebrow">{eyebrow} · 1-urinish hisoblanadi</p>
+          <p className="mk-eyebrow">{eyebrow} · {t('1-urinish hisoblanadi', 'считается 1-я попытка')}</p>
           <h2 className="mk-title">{title}</h2>
-          <p className="mk-now">Kodda bitta xato bor. Xato satrni bosing.</p>
+          <p className="mk-now" dangerouslySetInnerHTML={html(task || t('Kodda bitta xato bor. Xato satrni bosing.', 'В коде одна ошибка. Нажмите на строку с ошибкой.'))} />
           {(bad.length > 0 || solved) && (
             <div className="mk-fb" key={bad.length + (solved ? 'ok' : '')} style={{ '--c': solved ? T.green : T.accent, '--bg': solved ? '#E3F5EC' : '#FFF0EB' }}>
-              <b>{solved ? "To'g'ri" : "Bu satr emas"}</b><span>{solved ? (okShort || digits(ok)) : digits(hint)}</span>
+              <b>{solved ? t("To'g'ri", 'Верно') : t('Bu satr emas', 'Не эта строка')}</b><span>{solved ? (okShort || digits(ok)) : digits(hint)}</span>
             </div>
           )}
         </div>
-        <div className="mk-scene"><CodePanel file={file} lines={lines} onLine={solved ? undefined : onLine} marks={marks} /></div>
+        <div className="mk-scene top" style={{ overflow: 'auto' }}>{tree ? <Ide root={tree.root} files={tree.files} active={tree.active}>{panels}</Ide> : panels}</div>
       </div>
     </Stage>
   );
@@ -424,45 +655,65 @@ function LineCheck({ idx, total, onBack, onNext, stored, onAnswer, kicker, eyebr
 // Amaliyot ekrani: qadamlar (katakcha, nusxalash), «boshqacha chiqsa» jadvali, ixtiyoriy kod ko'rinishi
 function CopyBtn({ text }) {
   const [ok, setOk] = useState(false);
-  return <button className="mk-copy" onClick={() => { try { navigator.clipboard.writeText(text); setOk(true); setTimeout(() => setOk(false), 1200); } catch (e) {} }}>{ok ? 'nusxalandi' : 'nusxalash'}</button>;
+  return <button className="mk-copy" onClick={() => { try { navigator.clipboard.writeText(text); setOk(true); setTimeout(() => setOk(false), 1200); } catch (e) {} }}>{ok ? t('nusxalandi', 'скопировано') : t('nusxalash', 'копировать')}</button>;
 }
 const plain = (lines) => lines.map((l) => l.h.replace(/<[^>]+>/g, '').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/\\`/g, '`').replace(/\\\$/g, '$')).join('\n');
-function Practice({ p, S, steps, trouble, code, proof }) {
-  const b = useBeats(S.segments);
+// Davom QULF: ovoz tugamaguncha + hamma katakcha + isbot to'g'ri bo'lmaguncha (F-1030-01). Kod: har qadam ichida «Kodni ochish» tugmasi,
+// sahnada Explorer — fayl bosilsa almashadi (F-1030-12); `code[i].step` — qaysi qadamga tegishli.
+function Practice({ p, S, steps, trouble, code, proof, tree }) {
+  const b = useBeats(S.segments, p.review);
   const { seg, beat } = b;
   const [checked, setChecked] = useState(p.stored && p.stored.checked ? p.stored.checked : []);
   const [proofVal, setProofVal] = useState(p.stored && p.stored.proof ? p.stored.proof : '');
-  const [showCode, setShowCode] = useState(false);
+  const [openFile, setOpenFile] = useState(null);
+  const [tOpen, setTOpen] = useState(false); // F-1031-03: «Boshqacha chiqdimi?» jadvali yopiq, bosilganda ochiladi
   const proofOk = !proof || proof.check(proofVal.trim());
   const report = (n, pv) => p.onAnswer({ type: 'practice', checked: n, proof: pv, proofOk: !proof || proof.check(pv.trim()), done: n.length === steps.length && (!proof || proof.check(pv.trim())) });
   const toggle = (i) => { const n = checked.includes(i) ? checked.filter((x) => x !== i) : [...checked, i]; setChecked(n); report(n, proofVal); };
   const onProof = (v) => { setProofVal(v); report(checked, v); };
   const allDone = checked.length === steps.length && proofOk;
   const rows = trouble ? [...trouble, HELP_ROW] : [HELP_ROW];
+  const cur = code && openFile ? code.find((c) => c.file === openFile) : null;
   return (
-    <Stage kicker={S.kicker} idx={p.idx} total={p.total} audio={b.audio} onBack={p.onBack} onNext={p.onNext} nextReady={b.done && allDone}
-      extra={code ? <button className={`mk-btn soft${showCode ? ' ready' : ''}`} onClick={() => setShowCode((v) => !v)}>{showCode ? 'Qadamlarga qaytish' : 'Kod'}</button> : null}>
+    <Stage kicker={S.kicker} idx={p.idx} total={p.total} audio={b.audio} onBack={p.onBack} onNext={p.onNext} onRestart={p.onRestart} nextReady={b.done && allDone} nextDisabled={!(b.done && allDone)} lockHint={!allDone ? (proof ? t("Katakchalar va isbotni to'ldiring", 'Отметьте пункты и заполните подтверждение') : t('Katakchalarni belgilang', 'Отметьте пункты')) : t("Ustoz gapirib bo'lgach ochiladi", 'Откроется, когда учитель договорит')}>
       <div className="mk-body">
-        <Say eyebrow={S.eyebrow} title={S.title} segments={S.segments} beat={beat} audio={b.audio} stepManual={b.stepManual} guess={b.guess} answerAsk={b.answerAsk}
-          below={<div className="mk-card" style={{ background: allDone ? '#E3F5EC' : T.paper, borderColor: allDone ? T.green : T.line }}><h5>Bajarildi</h5><div style={{ fontSize: 15, fontWeight: 700 }}>{checked.length} / {steps.length} qadam{proof ? (proofOk && proofVal.trim() ? ' · isbot ✓' : ' · isbot kutilmoqda') : ''}{allDone ? " — Davom bosing" : ''}</div>
+        <Say eyebrow={S.eyebrow} title={S.title} segments={S.segments} beat={beat} audio={b.audio} stepManual={b.stepManual} guess={b.guess} answerAsk={b.answerAsk} review={p.review}
+          below={<div className="mk-card" style={{ background: allDone ? '#E3F5EC' : T.paper, borderColor: allDone ? T.green : T.line }}><h5>{t('Bajarildi', 'Выполнено')}</h5><div style={{ fontSize: 15, fontWeight: 700 }}>{checked.length} / {steps.length} {t('qadam', 'шагов')}{proof ? (proofOk && proofVal.trim() ? t(' · isbot ✓', ' · подтверждение ✓') : t(' · isbot kutilmoqda', ' · ждём подтверждение')) : ''}{allDone ? (b.done ? t(' — Davom bosing', ' — нажмите «Далее»') : t(' — ovoz tugagach Davom ochiladi', ' — «Далее» откроется после озвучки')) : ''}</div>
             {proof && <div style={{ marginTop: 10 }}><div className="exp" style={{ marginBottom: 4 }}>{proof.label}</div><input className="mk-input" value={proofVal} placeholder={proof.placeholder} onChange={(e) => onProof(e.target.value)} />{proofVal.trim() && !proofOk && <div className="exp" style={{ color: T.accent, marginTop: 4 }}>{proof.wrong}</div>}</div>}
           </div>} />
         <div className="mk-scene top" style={{ overflow: 'auto' }}>
-          {showCode ? code.map((c) => <div key={c.file}><div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8, marginBottom: 4, alignItems: 'center' }}>{c.copy === false ? <span className="mk-tag" style={{ margin: 0, color: T.accent }}>namuna — o'zingiz yozing, nusxalash yo'q</span> : <CopyBtn text={plain(c.lines)} />}<span style={{ fontSize: 12, color: T.ink3 }}>{c.file}</span></div><CodePanel file={c.file} lines={c.lines} style={{ fontSize: 12, marginBottom: 12 }} /></div>) : (<>
+          {cur ? (<>
+            {/* F-1031-05: qaytish tugmasi oynadan tashqarida, katta — kod ko'rilgach qadamlarga qaytish ko'rinib tursin */}
+            <div className="mk-codebar">
+              <button className="mk-btn" onClick={() => setOpenFile(null)}>{t('← Qadamlarga qaytish', '← Назад к шагам')}</button>
+              <span className="what">{cur.copy === false ? t('Kod namunasi', 'Образец кода') : t('Kod', 'Код')} · <b>{baseName(cur.file)}</b></span>
+              <span className="end">{cur.copy === false ? <span className="mk-tag" style={{ margin: 0, color: T.accent }}>{t("namuna — o'zingiz yozing, nusxalash yo'q", 'образец — напишите сами, без копирования')}</span> : <CopyBtn text={plain(cur.lines)} />}</span>
+            </div>
+            <Ide files={tree || code.map((c) => c.file)} clickable={code.map((c) => c.file)} active={cur.file} onOpen={setOpenFile}>
+              <CodePanel file={cur.file} lines={cur.lines} style={{ fontSize: 12.5 }} />
+            </Ide>
+          </>) : (<>
             <div style={{ display: 'grid', gap: 8 }}>
-              {steps.map((s, i) => (
+              {steps.map((s, i) => {
+                const c = code ? code.find((x) => x.step === i) : null;
+                return (
                 <div key={i} className={`mk-step${(seg.hl || []).includes(i) ? ' hl' : ''}`} style={{ opacity: (seg.hl || []).length && !seg.hl.includes(i) ? 0.55 : 1 }}>
                   <input type="checkbox" checked={checked.includes(i)} onChange={() => toggle(i)} />
                   <div className="t"><b>{i + 1}. {s.t}</b>
-                    {s.cmds.map((c) => <div key={c} className="cmd"><code>{c}</code><CopyBtn text={c} /></div>)}
-                    <div className="exp">Kutilgan: {s.exp}</div>
+                    {s.cmds.map((cm) => <div key={cm} className="cmd"><code>{cm}</code><CopyBtn text={cm} /></div>)}
+                    {c && <div style={{ margin: '4px 0 6px' }}><button className="mk-btn soft sm" style={{ borderColor: T.ink, color: T.ink }} onClick={() => setOpenFile(c.file)}>{t('Kodni ochish', 'Открыть код')} · {baseName(c.file)}{c.copy === false ? t(' (namuna)', ' (образец)') : ''}</button></div>}
+                    <div className="exp">{t('Kutilgan:', 'Ожидается:')} {s.exp}</div>
                   </div>
                 </div>
-              ))}
+              ); })}
             </div>
-            <Block at={S.tableAt} beat={beat}><div className="mk-light" style={{ padding: 12, marginTop: 10 }}>
-              <div className="mk-tag">Boshqacha chiqdimi?</div>
-              <table className="mk-tbl"><tbody>{rows.map(([a, c]) => <tr key={a}><td><code>{a}</code></td><td>{c}</td></tr>)}</tbody></table>
+            <Block at={S.tableAt} beat={beat}><div className="mk-light mk-trouble" style={{ padding: 0, marginTop: 10 }}>
+              <button type="button" className={`mk-trbtn${beat === S.tableAt && !tOpen ? ' hot' : ''}`} aria-expanded={tOpen} onClick={() => setTOpen((v) => !v)}>
+                <span className="q">{t('Boshqacha chiqdimi?', 'Вышло иначе?')}</span>
+                {rows.length > 1 && <span className="n">{t(`${rows.length - 1} ta holat va yechim`, `ситуации и решения: ${rows.length - 1}`)}</span>}
+                <span className="ar" aria-hidden="true">{tOpen ? '▾' : '▸'}</span>
+              </button>
+              {tOpen && <div style={{ padding: '0 12px 12px', animation: 'mk-up .3s ease both' }}><table className="mk-tbl"><tbody>{rows.map(([a, c]) => <tr key={a}><td><code>{a}</code></td><td>{c}</td></tr>)}</tbody></table></div>}
             </div></Block>
           </>)}
         </div>
@@ -472,27 +723,37 @@ function Practice({ p, S, steps, trouble, code, proof }) {
 }
 
 // ============================================================
+//  NEST-1 SOZLAMASI (31.10: dvigateldan ko'chirildi — dvigatel umumiy, darsga xos qiymat shu yerda)
+// ============================================================
+const LESSON_ID = 'mentor-nest-01-arxitektura-v1';
+const APP_FILES = ['src/main.ts', 'src/app.module.ts', 'src/app.controller.ts', 'src/app.service.ts'];
+const CARS_FILES = ['src/cars/cars.module.ts', 'src/cars/cars.controller.ts', 'src/cars/cars.service.ts'];
+const ALL_FILES = [...APP_FILES, ...CARS_FILES];
+MKCFG.root = 'cars-api';
+MKCFG.files = ALL_FILES;
+
+// ============================================================
 //  1–2-BOSQICH · S1–S5b
 //  Ovoz qoidasi: kod o'qilmaydi, nima bo'layotgani aytiladi; «/» va «@» so'z bilan.
 // ============================================================
 const S1 = {
   kicker: 'Kirish', eyebrow: 'Mentor kursi · 1-dars', title: "Siz Express'ni bilasiz. Endi Nest.",
-  plan: ['Nega Nest', "Uch bo'lak: Controller · Service · Module", 'Dependency Injection', 'cars manzilini quramiz', "Buzamiz va xatoni o'qiymiz", "Amaliyot (to'rt bo'lak)", "O'quvchi darsiga ko'prik"],
+  plan: ['Nega Nest', "Uch bo'lak: Controller · Service · Module", 'Dependency Injection', "cars route'larini quramiz", "Buzamiz va xatoni o'qiymiz", "Amaliyot (to'rt bo'lak)", "O'quvchi darsiga ko'prik"],
   segments: [
-    { id: 'a', key: "Express bilimingiz ustiga <b>Nest</b> qo'yamiz", text: "Assalomu alaykum. Siz Express bilan server yozgansiz: marshrut ochgansiz, so'rovni qabul qilgansiz, javob qaytargansiz. Bugun shu bilimingiz ustiga NestJS qo'yamiz. Nest Express'ni bekor qilmaydi, aksincha, uning ustiga tartib o'rnatadi.", hl: [] },
-    { id: 'b', key: "Dars oxirida: <b>ishlaydigan server</b>", text: "Dars oxirida siz bo'sh papkadan boshlab mashinalar ro'yxatini qaytaradigan server qurasiz.", hl: [3] },
-    { id: 'c', key: "Nest xatolarini <b>o'qiy olasiz</b>", text: "Nest'ning xato xabarlarini o'qiy olasiz: kim, nima yetishmayapti, qayerda.", hl: [4] },
-    { id: 'd', key: "O'quvchi darsining <b>tilini</b> bilasiz", text: "Va o'quvchi darsida qaysi so'z nimani anglatishini bilasiz.", hl: [6] },
-    { id: 'e', key: "Yetti bosqich. Shoshilmang.", text: "Dars yetti bosqichdan iborat. Shoshilmang: har ekranda ovozni to'xtatish, qaytarish va matnini o'qish mumkin. Tayyor bo'lsangiz, Davom tugmasini bosing.", hl: [] },
+    { id: 'a', key: "Express bilimingiz ustiga <b>Nest</b> qo'yamiz: u Express'ni bekor qilmaydi, tartib beradi", text: "Assalomu alaykum. Siz Express bilan server yozgansiz: route ochgansiz, so'rovni qabul qilgansiz, javob qaytargansiz. Bugun shu bilimingiz ustiga NestJS qo'yamiz. Nest Express'ni bekor qilmaydi, aksincha, uning ustiga tartib o'rnatadi.", hl: [] },
+    { id: 'b', key: "Dars oxirida bo'sh papkadan <b>ishlaydigan server</b> qurib bo'lasiz", text: "Dars oxirida siz bo'sh papkadan boshlab mashinalar ro'yxatini qaytaradigan server qurasiz.", hl: [3] },
+    { id: 'c', key: "Nest xato xabarini <b>o'qiy olasiz</b>: qaysi klass, qaysi dependency yetishmayapti, qaysi fayl", text: "Nest'ning xato xabarlarini o'qiy olasiz: qaysi klassda xato, qaysi dependency yetishmayapti va qaysi faylni ochish kerak.", hl: [4] },
+    { id: 'd', key: "O'quvchi darsidagi <b>har so'z</b> nimani anglatishini bilib olasiz", text: "Va o'quvchi darsida qaysi so'z nimani anglatishini bilasiz.", hl: [6] },
+    { id: 'e', key: "Yetti bosqich. <b>Shoshilmang</b>: ustoz gapirib bo'lgach Davom ochiladi", text: "Dars yetti bosqichdan iborat. Shoshilmang: har ekranda ovozni o'chirish, ekranni boshidan eshitish va to'liq matnini o'qish mumkin. Ustoz gapirib bo'lgach, Davom tugmasi ochiladi. Bosing, boshlaymiz.", hl: [] },
   ],
 };
 function Screen1(p) {
   return <Lesson p={p} S={S1} scene={({ seg }) => <div className="mk-light"><div className="mk-plan">
-    {S1.plan.map((t, i) => <div key={i} className={seg.hl.includes(i) ? 'hl' : (seg.hl.length ? 'dim' : '')}><b>0{i + 1}</b><span>{t}</span></div>)}
+    {S1.plan.map((x, i) => <div key={i} className={seg.hl.includes(i) ? 'hl' : (seg.hl.length ? 'dim' : '')}><b>0{i + 1}</b><span>{x}</span></div>)}
   </div></div>} />;
 }
 
-// --- S2 Express: 38 qator → o'sgan loyiha (misol) ---
+// --- S2 Express: 20 qator → o'sgan loyiha (misol) ---
 const EXPRESS_LINES = [
   { h: `<span class="k">const</span> express = <span class="c">require</span>(<span class="s">'express'</span>);` },
   { h: `<span class="k">const</span> app = <span class="c">express</span>();` },
@@ -528,19 +789,19 @@ const GROWN_LINES = [
 const S2 = {
   kicker: '1-bosqich · Nega Nest', title: "Express: tanish manzara va og'riq",
   segments: [
-    { id: 'a', key: "Tanish fayl: <code>server.js</code>", text: "Mana sizga tanish fayl. Express, bitta server js.", focus: [] },
-    { id: 'b', key: "Ro'yxat: <b>GET /cars</b>", text: "cars manziliga GET kelsa, ro'yxatni qaytaramiz.", show: "<code>/cars</code> manziliga GET kelsa, ro'yxatni qaytaramiz.", focus: ['route1'] },
-    { id: 'c', key: "Bittasi: <b>GET /cars/:id</b>", text: "cars manzilidan keyin id kelsa, bittasini qidiramiz.", show: "<code>/cars/:id</code> kelsa, bittasini qidiramiz.", focus: ['route2'] },
-    { id: 'd', key: "Yangisi: <b>POST /cars</b>. 38 qator, muammo yo'q", text: "POST kelsa, yangisini qo'shamiz. Hammasi o'ttiz sakkiz qator, hammasi ko'z oldingizda. Bu bosqichda hech qanday muammo yo'q.", show: "<code>POST /cars</code> kelsa, yangisini qo'shamiz. Hammasi 38 qator, hammasi ko'z oldingizda. Bu bosqichda hech qanday muammo yo'q.", focus: ['route3'] },
-    { id: 'e', key: "Loyiha o'sdi: <b>1240 qator</b> (shartli misol). Login qayerda?", text: "Muammo loyiha o'sganda boshlanadi. Foydalanuvchilar qo'shildi, kirish va ro'yxatdan o'tish qo'shildi, buyurtmalar, to'lov, fayl yuklash. Mana shartli misol, haqiqiy loyiha emas: fayl ming ikki yuz qirq qator deylik. Login qayerda edi? Qidirasiz.", show: "Muammo loyiha o'sganda boshlanadi. Foydalanuvchilar, kirish, buyurtmalar, to'lov, fayl yuklash. Mana <b>shartli misol</b> (haqiqiy loyiha emas): fayl <b>1240 qator</b>. Login qayerda edi? Qidirasiz.", focus: ['login'], grow: true },
-    { id: 'f', key: "Sinab bo'lmaydi, to'qnashuv. <b>Nest shu og'riq uchun</b>", text: "Bitta marshrut ichida ham so'rovni o'qish, ham tekshirish, ham bazaga yozish bor. Shu bo'lakni alohida sinab bo'lmaydi, chunki u marshrutdan ajralmagan. Ikki kishi bir faylda ishlasa, har kuni to'qnashuv. Siz buni his qilgansiz. Nest aynan shu og'riq uchun yaratilgan. O'quvchi darsi ham aynan shu misoldan boshlanadi.", focus: [], grow: true },
+    { id: 'a', key: "Tanish manzara: butun Express server bitta <code>server.js</code> faylida", text: "Avval sizga tanish narsadan boshlaymiz, Express'dan. Mana tanish manzara: butun server bitta server js faylida.", focus: [] },
+    { id: 'b', key: "<code>GET /cars</code> kelsa, mashinalar <b>ro'yxatini</b> qaytaramiz", text: "cars route'iga GET kelsa, ro'yxatni qaytaramiz.", show: "<code>/cars</code> route'iga GET kelsa, ro'yxatni qaytaramiz.", focus: ['route1'] },
+    { id: 'c', key: "<code>GET /cars/:id</code> kelsa, <b>bitta mashinani</b> qidiramiz, topilmasa 404", text: "cars path'idan keyin id kelsa, bittasini qidiramiz, topilmasa to'rt yuz to'rt.", show: "<code>/cars/:id</code> kelsa, bittasini qidiramiz, topilmasa 404.", focus: ['route2'] },
+    { id: 'd', key: "<code>POST /cars</code> yangisini qo'shadi. Hammasi <b>20 qator</b> — muammo yo'q", text: "POST kelsa, yangisini qo'shamiz. Hammasi yigirma qator, hammasi ko'z oldingizda. Bu bosqichda hech qanday muammo yo'q.", show: "<code>POST /cars</code> kelsa, yangisini qo'shamiz. Hammasi 20 qator, hammasi ko'z oldingizda. Bu bosqichda hech qanday muammo yo'q.", focus: ['route3'] },
+    { id: 'e', key: "Loyiha o'sib <b>1240 qatorga</b> yetdi (shartli misol) — login qayerdaligini qidirasiz", text: "Muammo loyiha o'sganda boshlanadi. Foydalanuvchilar qo'shildi, kirish va ro'yxatdan o'tish qo'shildi, buyurtmalar, to'lov, fayl yuklash. Mana shartli misol, haqiqiy loyiha emas: fayl ming ikki yuz qirq qator deylik. Login qayerda edi? Qidirasiz.", show: "Muammo loyiha o'sganda boshlanadi. Foydalanuvchilar, kirish, buyurtmalar, to'lov, fayl yuklash. Mana <b>shartli misol</b> (haqiqiy loyiha emas): fayl <b>1240 qator</b>. Login qayerda edi? Qidirasiz.", focus: ['login'], grow: true },
+    { id: 'f', key: "Xulosa: bitta route'da hamma ish — sinab bo'lmaydi, ikki kishi to'qnashadi. <b>Nest shu og'riq uchun</b>", text: "Xulosa: bitta route ichida ham so'rovni o'qish, ham tekshirish, ham bazaga yozish bor. Shu bo'lakni alohida sinab bo'lmaydi, chunki u route'dan ajralmagan. Ikki kishi bir faylda ishlasa, har kuni to'qnashuv. Siz buni his qilgansiz. Nest aynan shu og'riq uchun yaratilgan. O'quvchi darsi ham aynan shu misoldan boshlanadi.", focus: [], grow: true },
   ],
 };
 function Screen2(p) {
   return <Lesson p={p} S={S2} scene={({ seg }) => {
     const grown = !!seg.grow;
-    const lines = grown ? [...EXPRESS_LINES.slice(0, 6).map((l) => ({ ...l, id: null })), { n: '…', h: `<span class="cm">// … 200 qator</span>` }, ...GROWN_LINES] : EXPRESS_LINES;
-    return <CodePanel key={grown ? 'g' : 'n'} file={grown ? "server.js · 1240 qator (shartli misol, haqiqiy loyiha emas)" : 'server.js · 38 qator'} lines={lines} focus={seg.focus} />;
+    const lines = grown ? [...EXPRESS_LINES.slice(0, 6).map((l) => ({ ...l, id: null })), { n: '…', h: t('<span class="cm">// … 200 qator</span>', '<span class="cm">// … 200 строк</span>') }, ...GROWN_LINES] : EXPRESS_LINES;
+    return <Ide root="express-api" files={['server.js']} active="server.js"><CodePanel key={grown ? 'g' : 'n'} file={grown ? t('server.js · 1240 qator (shartli misol, haqiqiy loyiha emas)', 'server.js · 1240 строк (условный пример, не реальный проект)') : t('server.js · 20 qator', 'server.js · 20 строк')} lines={lines} focus={seg.focus} /></Ide>;
   }} />;
 }
 
@@ -548,36 +809,36 @@ function Screen2(p) {
 const S3 = {
   kicker: '1-bosqich · Nega Nest', title: 'Nest nima beradi: majburiy tartib',
   segments: [
-    { id: 'a', key: "Express'da har jamoa <b>o'zicha</b> bo'ladi", text: "Tajribali Express dasturchi ham faylni bo'ladi: marshrutlar papkasi, kontrollerlar papkasi, servislar papkasi. Lekin har jamoa buni o'zicha qiladi, yangi odam kelganda tartibni qaytadan o'rganadi.", show: "Tajribali Express dasturchi ham faylni bo'ladi: <code>routes/</code>, <code>controllers/</code>, <code>services/</code>. Lekin har jamoa buni o'zicha qiladi, yangi odam kelganda tartibni qaytadan o'rganadi." },
-    { id: 'b', key: "Nest: tartib <b>majburiy va bir xil</b>", text: "Nest shu tartibni majburiy va bir xil qiladi. U uchta bo'lakka nom beradi: Controller, Service, Module." },
-    { id: 'c', key: "Toshkent yozdi, Berlin bir daqiqada tushundi", text: "Har Nest loyihasida ular bir xil joyda, bir xil nomda turadi. Shuning uchun Toshkentdagi jamoa yozgan loyihani Berlindagi dasturchi ochsa, qayerda nima turganini bir daqiqada topadi." },
-    { id: 'd', key: "Ichida <b>o'sha Express</b> ishlaydi", text: "Yana bir muhim fakt: Nest ichida o'sha Express ishlaydi. So'rovni haqiqatda Express qabul qiladi, Nest esa uni to'g'ri bo'lakka yo'naltiradi. Demak siz bilgan hech narsa bekor bo'lmaydi." },
+    { id: 'a', key: "Express'da har jamoa papkalarni <b>o'zicha</b> bo'ladi — yangi odam qaytadan o'rganadi", text: "Xo'sh, og'riqni ko'rdik: hamma narsa bitta faylda. Tajribali Express dasturchi bunga nima qiladi? Faylni bo'ladi: routes papkasi, controllers papkasi, services papkasi. Lekin har jamoa buni o'zicha qiladi, yangi odam kelganda tartibni qaytadan o'rganadi.", show: "Xo'sh, og'riqni ko'rdik: hamma narsa bitta faylda. Tajribali Express dasturchi bunga nima qiladi? Faylni bo'ladi: <code>routes/</code>, <code>controllers/</code>, <code>services/</code>. Lekin har jamoa buni o'zicha qiladi, yangi odam kelganda tartibni qaytadan o'rganadi." },
+    { id: 'b', key: "Nest tartibni <b>majburiy</b> qiladi: uch bo'lak — Controller, Service, Module", text: "Nest shu tartibni majburiy va bir xil qiladi. U uchta bo'lakka nom beradi: Controller, Service, Module." },
+    { id: 'c', key: "Har Nest loyihasida bo'laklar bir joyda, bir nomda — <b>Toshkentda yozilganini Berlin bir daqiqada tushunadi</b>", text: "Har Nest loyihasida ular bir xil joyda, bir xil nomda turadi. Shuning uchun Toshkentdagi jamoa yozgan loyihani Berlindagi dasturchi ochsa, qayerda nima turganini bir daqiqada topadi." },
+    { id: 'd', key: "Xulosa: Nest ichida <b>o'sha Express</b> ishlaydi — bilganingiz bekor bo'lmaydi, ustiga tartib qo'shiladi", text: "Xulosa va muhim fakt: Nest ichida o'sha Express ishlaydi. So'rovni haqiqatda Express qabul qiladi, Nest esa uni to'g'ri bo'lakka yo'naltiradi. Demak siz bilgan hech narsa bekor bo'lmaydi." },
   ],
 };
 function Screen3(p) {
   const teams = [['routes/', 'controllers/', 'services/'], ['api/', 'handlers/', 'logic/'], ['src/', 'lib/', 'utils/']];
   return <Lesson p={p} S={S3} scene={({ beat }) => (<>
     <Block at={0} beat={beat} dim={beat >= 1}><div className="mk-light" style={{ padding: 14 }}>
-      <div className="mk-tag">Express · har jamoa o'zicha</div>
+      <div className="mk-tag">{t("Express · har jamoa o'zicha", 'Express · каждая команда по-своему')}</div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10 }}>
-        {teams.map((t, i) => <div key={i} className="mk-card"><h5>{i + 1}-jamoa</h5>{t.map((f) => <div key={f} className="mk-file" style={{ padding: '2px 0' }}><i style={{ background: T.ink3 }} />{f}</div>)}</div>)}
+        {teams.map((tm, i) => <div key={i} className="mk-card"><h5>{t(`${i + 1}-jamoa`, `Команда ${i + 1}`)}</h5>{tm.map((f) => <div key={f} className="mk-file" style={{ padding: '2px 0' }}><i style={{ background: T.ink3 }} />{f}</div>)}</div>)}
       </div>
     </div></Block>
     <Block at={1} beat={beat}><div className="mk-light" style={{ padding: 16, border: `2px solid ${beat >= 3 ? T.line : T.accent}`, transition: 'border-color .4s' }}>
-      <div className="mk-tag" style={{ color: T.accent }}>NestJS · tartib va nomlar — hamma loyihada bir xil</div>
+      <div className="mk-tag" style={{ color: T.accent }}>{t('NestJS · tartib va nomlar — hamma loyihada bir xil', 'NestJS · порядок и имена — одинаковы в любом проекте')}</div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12 }}>
-        {[['Controller', PART.ctrl, "so'rovni qabul qiladi"], ['Service', PART.svc, 'ishni bajaradi'], ['Module', PART.mod, "ro'yxat: nima bor"]].map(([n, c, d], i) => (
+        {[['Controller', PART.ctrl, t("so'rovni qabul qiladi", 'принимает запрос')], ['Service', PART.svc, t('ishni bajaradi', 'выполняет работу')], ['Module', PART.mod, t("ro'yxat: nima bor", 'список: что есть')]].map(([n, c, d], i) => (
           <div key={n} className="mk-box" style={{ '--c': c, animation: beat >= 1 ? `mk-up .45s ${i * 0.18}s ease both` : 'none' }}><h4>{n}</h4><p>{d}</p></div>
         ))}
       </div>
       <div style={{ marginTop: 14, padding: '10px 14px', borderRadius: 10, background: beat >= 3 ? '#FFF0EB' : '#F0F2F5', border: `1px solid ${beat >= 3 ? T.accent : T.line}`, transition: 'all .4s', fontSize: 14 }}>
-        <b style={{ color: beat >= 3 ? T.accent : T.ink2 }}>Ichida: Express (platform-express)</b>{beat >= 3 && <span style={{ color: T.ink2 }}> — so'rovni haqiqatda Express qabul qiladi, Nest yo'naltiradi.</span>}
+        <b style={{ color: beat >= 3 ? T.accent : T.ink2 }}>{t('Ichida: Express (platform-express)', 'Внутри: Express (platform-express)')}</b>{beat >= 3 && <span style={{ color: T.ink2 }}>{t(" — so'rovni haqiqatda Express qabul qiladi, Nest yo'naltiradi.", ' — запрос на самом деле принимает Express, Nest его направляет.')}</span>}
       </div>
     </div></Block>
   </>)} />;
 }
 
-// --- S4 TypeScript va dekorator ---
+// --- S4 TypeScript va decorator ---
 const DECO_LINES = [
   { id: 'l-ctrl', h: `<span class="d">@Controller</span>(<span class="s">'cars'</span>)` },
   { id: 'l-class', h: `<span class="k">export class</span> <span class="c">CarsController</span> {` },
@@ -586,66 +847,56 @@ const DECO_LINES = [
   { h: `}` },
 ];
 const S4 = {
-  kicker: '1-bosqich · Nega Nest', title: 'TypeScript va dekorator: @ belgisi',
+  kicker: '1-bosqich · Nega Nest', title: 'TypeScript va decorator: @ belgisi',
   segments: [
-    { id: 'a', key: "TypeScript = JavaScript + <b>tiplar</b>", text: "Nest loyihalari TypeScript'da yoziladi. TypeScript bu JavaScript'ning o'zi, faqat tiplari bor: string, number va shunga o'xshash. Siz JavaScript bilsangiz, TypeScript'ni o'qiy olasiz.", focus: [] },
-    { id: 'b', key: "Yangi narsa: <b>@ belgili satr = dekorator</b>", text: "Lekin bitta yangi narsa bor, u bilan ko'p uchrashasiz: et belgisi bilan boshlanadigan satrlar. Masalan, Controller dekoratori, qavsda cars. Bu dekorator deyiladi.", show: "Lekin bitta yangi narsa bor, u bilan ko'p uchrashasiz: <b>@</b> belgisi bilan boshlanadigan satrlar. Masalan, <code>@Controller('cars')</code>. Bu <b>dekorator</b> (decorator) deyiladi.", focus: ['l-ctrl'] },
-    { id: 'c', key: "Dekorator Nest'ga aytadi: <b>«bu nima»</b>", text: "Dekorator klass yoki metodning tepasiga yoziladi va Nest'ga xabar beradi: bu klass Controller, uning manzili cars. Get dekoratori esa metod ustida turadi: GET so'rov kelsa, shu metod.", show: "Dekorator klass yoki metodning tepasiga yoziladi va Nest'ga xabar beradi: «bu klass Controller, uning manzili cars». <code>@Get</code> esa metod ustida turadi: «GET so'rov kelsa, shu metod».", focus: ['l-get'] },
-    { id: 'd', key: "Belgi yo'q — Nest <b>tanimaydi</b>", text: "Dekorator kodni bajarmaydi, u belgi qo'yadi. Nest ishga tushganda shu belgilarni o'qib, hamma bo'lakni joyiga qo'yadi. Shuni eslab qoling: dekorator yo'q bo'lsa, Nest o'sha klassni tanimaydi. Buni keyinroq ataylab buzib ham ko'rsatamiz.", focus: [] },
+    { id: 'a', key: "TypeScript — <b>tiplari bor</b> JavaScript: JavaScript bilsangiz, o'qiy olasiz", text: "Nest kodini ochishdan oldin bitta yangi narsani bilib olaylik, aks holda kod sizga begona ko'rinadi. Nest loyihalari TypeScript'da yoziladi. TypeScript bu JavaScript'ning o'zi, faqat tiplari bor: string, number va shunga o'xshash. Siz JavaScript bilsangiz, TypeScript'ni o'qiy olasiz.", focus: [] },
+    { id: 'b', key: "Yangi narsa: <b>@</b> (kuchukcha) bilan boshlanadigan satr — <b>decorator</b>", text: "Lekin bitta yangi narsa bor, u bilan ko'p uchrashasiz: kuchukcha belgisi bilan boshlanadigan satrlar. Masalan, Controller decorator'i, qavsda cars. Bu decorator deyiladi.", show: "Lekin bitta yangi narsa bor, u bilan ko'p uchrashasiz: <b>@</b> (kuchukcha) belgisi bilan boshlanadigan satrlar. Masalan, <code>@Controller('cars')</code>. Bu <b>decorator</b> deyiladi.", focus: ['l-ctrl'] },
+    { id: 'c', key: "Decorator Nest'ga aytadi: <b>bu klass Controller</b>, bu metod GET'ni qabul qiladi", text: "Decorator klass yoki metodning tepasiga yoziladi va Nest'ga xabar beradi: bu klass Controller, uning path'i cars. Get decorator'i esa metod ustida turadi: GET so'rov kelsa, shu metod.", show: "Decorator klass yoki metodning tepasiga yoziladi va Nest'ga xabar beradi: «bu klass Controller, uning path'i cars». <code>@Get</code> esa metod ustida turadi: «GET so'rov kelsa, shu metod».", focus: ['l-get'] },
+    { id: 'd', key: "Xulosa: decorator kod bajarmaydi, belgi qo'yadi — <b>belgi yo'q bo'lsa, Nest klassni tanimaydi</b>", text: "Xulosa: decorator kodni bajarmaydi, u belgi qo'yadi. Nest ishga tushganda shu belgilarni o'qib, hamma bo'lakni joyiga qo'yadi. Shuni eslab qoling: decorator yo'q bo'lsa, Nest o'sha klassni tanimaydi. Beshinchi bosqichda buni ataylab buzib, xatosini ham ko'ramiz.", focus: [] },
   ],
 };
 function Screen4(p) {
   return <Lesson p={p} S={S4} scene={({ seg, beat }) => (<>
-    <Block at={0} beat={beat}><div style={{ display: 'flex', gap: 10, marginBottom: 4 }}>
-      <span className="mk-card" style={{ fontSize: 13 }}><b>JavaScript</b> → <code>let price = 250</code></span>
-      <span className="mk-card" style={{ fontSize: 13 }}><b>TypeScript</b> → <code>let price: number = 250</code></span>
-    </div></Block>
-    <CodePanel file="cars.controller.ts" lines={DECO_LINES} focus={seg.focus} style={{ fontSize: 15 }} />
-    <Block at={3} beat={beat}><div className="mk-rule"><b>Dekorator</b> (decorator) — klass yoki metod ustidagi <b>@</b> belgi. Kod bajarmaydi, Nest'ga «bu nima» deb aytadi. Belgi yo'q — Nest klassni tanimaydi.</div></Block>
+    {/* UX-7: JS/TS solishtiruvi oynaning ichida, editor ustida — alohida «suzib» turmaydi */}
+    <Ide files={['src/cars/cars.controller.ts']} active="src/cars/cars.controller.ts">
+      <Block at={0} beat={beat}><div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+        <span className="mk-card" style={{ fontSize: 13.5 }}><b>JavaScript</b> → <code>let price = 250</code></span>
+        <span className="mk-card" style={{ fontSize: 13.5 }}><b>TypeScript</b> → <code>let price: number = 250</code></span>
+      </div></Block>
+      <CodePanel file="src/cars/cars.controller.ts" lines={DECO_LINES} focus={seg.focus} style={{ fontSize: 15 }} />
+    </Ide>
+    <Block at={3} beat={beat}><div className="mk-rule">{t(<><b>Decorator</b> — klass yoki metod ustidagi <b>@</b> (kuchukcha) belgili satr. Kod bajarmaydi, Nest'ga «bu nima» deb aytadi. Belgi yo'q — Nest klassni tanimaydi.</>, <><b>Decorator</b> — строка со знаком <b>@</b> («собачка») над классом или методом. Код не выполняет, говорит Nest, «что это». Нет метки — Nest не узнаёт класс.</>)}</div></Block>
   </>)} />;
 }
 
-// --- S5a Fayllar ---
-const FILES5 = [
-  { n: 'src/main.ts', k: 'main', c: T.ink2, d: 'ilovani ishga tushiradi' },
-  { n: 'src/app.module.ts', k: 'module', c: PART.mod, d: "ro'yxat" },
-  { n: 'src/app.controller.ts', k: 'controller', c: PART.ctrl, d: "so'rovni qabul qiladi" },
-  { n: 'src/app.service.ts', k: 'service', c: PART.svc, d: 'ishni bajaradi' },
-  { n: 'src/app.controller.spec.ts', k: 'spec', c: T.ink3, d: 'test (Jest darsida)' },
-];
+// --- S5a Fayllar: VS Code Explorer (katta ko'rinish, vazifa izohi bilan) ---
+const FILES5 = ['src/main.ts', 'src/app.module.ts', 'src/app.controller.ts', 'src/app.service.ts', 'src/app.controller.spec.ts', 'test/app.e2e-spec.ts', 'package.json', 'tsconfig.json'];
+const FILES5_DESC = { 'src/main.ts': 'ilovani ishga tushiradi', 'src/app.module.ts': "ro'yxat", 'src/app.controller.ts': "so'rovni qabul qiladi", 'src/app.service.ts': 'ishni bajaradi', 'src/app.controller.spec.ts': 'avtomatik test — bugun tegmaymiz', 'test/app.e2e-spec.ts': 'avtomatik test — bugun tegmaymiz', 'package.json': "paketlar va npm buyruqlari (start:dev)", 'tsconfig.json': 'TypeScript sozlamasi' };
 const S5a = {
   kicker: "2-bosqich · Uch bo'lak", title: 'Tirik loyiha: nest new nimani yaratdi',
   segments: [
-    { id: 'a', key: "<code>nest new cars-api</code> — fayllar", text: "Endi haqiqiy loyihaga qaraymiz. nest new cars-api buyrug'i mana shu fayllarni yaratdi. src papkasida to'rtta asosiy fayl bor.", hl: [] },
-    { id: 'b', key: "<b>main</b> — ishga tushiradi", text: "main ts: ilovani ishga tushiradi, boshqa hech narsa qilmaydi.", hl: ['main'] },
-    { id: 'c', key: "<b>app.module</b> — ro'yxat", text: "app module ts: ro'yxat. Nest shu ro'yxatga qarab hamma narsani yig'adi.", hl: ['module'] },
-    { id: 'd', key: "<b>app.controller</b> — so'rovni qabul qiladi", text: "app controller ts: so'rovni qabul qiladi.", hl: ['controller'] },
-    { id: 'e', key: "<b>app.service</b> — ishni bajaradi", text: "app service ts: ishni bajaradi. Beshinchi fayl, spec, bu test, unga Jest darsida qaytamiz.", hl: ['service', 'spec'] },
-    { id: 'f', key: "Uch rang — <b>uch bo'lak</b>, dars bo'yi", text: "Uchta rangni eslab qoling: ko'k Controller, yashil Service, sariq Module. Dars davomida shu uch rang bilan yuramiz. Keyingi ekranda siz ham shu loyihani o'zingizda yaratib qo'yasiz, o'rnatilguncha dars davom etadi.", hl: [] },
+    { id: 'a', key: "<code>nest new cars-api</code> yaratgan loyiha: <b>src</b> ichida to'rtta asosiy fayl", text: "Endi tayyorsiz: decorator'ni bilasiz, uch bo'lakning nomini bilasiz. Haqiqiy loyihaga qaraymiz. nest new cars-api buyrug'i mana shu papka va fayllarni yaratdi, xuddi VS Code'ning chap panelida ko'rganingizdek. Bizga kerakli hamma narsa src papkasida: to'rtta asosiy fayl.", hl: null },
+    { id: 'b', key: "<b>main.ts</b> ilovani ishga tushiradi — boshqa hech narsa qilmaydi", text: "main ts: ilovani ishga tushiradi, boshqa hech narsa qilmaydi.", hl: 'src/main.ts' },
+    { id: 'c', key: "<b>app.module.ts</b> — ro'yxat: Nest shunga qarab hamma narsani yig'adi", text: "app module ts: ro'yxat. Nest shu ro'yxatga qarab hamma narsani yig'adi.", hl: 'src/app.module.ts' },
+    { id: 'd', key: "<b>app.controller.ts</b> so'rovni qabul qiladi va javobni qaytaradi", text: "app controller ts: so'rovni qabul qiladi va javobni qaytaradi.", hl: 'src/app.controller.ts' },
+    { id: 'e', key: "<b>app.service.ts</b> ishni bajaradi; <b>spec</b> fayllar — avtomatik test, bugun tegmaymiz", text: "app service ts: ishni bajaradi. spec bilan tugaydigan fayllar avtomatik testlar, ularni Jest ishga tushiradi. Bugun ularga tegmaymiz. package json'da npm buyruqlari turadi, start dev ham shu yerda.", hl: 'src/app.service.ts' },
+    { id: 'f', key: "Xulosa: uch bo'lak, uch rang — <b>ko'k Controller · yashil Service · sariq Module</b>", text: "Xulosa: loyihada uch turdagi bo'lak bor, har biri o'z faylida. Uchta rangni eslab qoling: ko'k Controller, yashil Service, sariq Module. Dars davomida har kod yonida shu Explorer turadi va qaysi faylda ekaningizni ko'rsatib boradi. Keyingi ekranda siz ham shu loyihani o'zingizda yaratib qo'yasiz.", hl: null },
   ],
 };
 function Screen5a(p) {
-  return <Lesson p={p} S={S5a} scene={({ seg }) => <div className="mk-light" style={{ padding: 16 }}>
-    <div className="mk-tag">cars-api / src</div>
-    <div style={{ display: 'grid', gap: 8 }}>
-      {FILES5.map((f, i) => <div key={f.k} className="mk-step" style={{ borderColor: seg.hl.includes(f.k) ? f.c : T.line, boxShadow: seg.hl.includes(f.k) ? `0 0 0 3px rgba(226,69,31,.12)` : 'none', opacity: seg.hl.length && !seg.hl.includes(f.k) ? 0.45 : 1, animation: `mk-up .4s ${i * 0.1}s ease both` }}>
-        <i style={{ width: 10, height: 10, borderRadius: 3, background: f.c, marginTop: 6, flex: '0 0 auto' }} />
-        <div className="t"><b style={{ fontFamily: MONO, fontSize: 13 }}>{f.n}</b><div className="exp">{f.d}</div></div>
-      </div>)}
-    </div>
-  </div>} />;
+  return <Lesson p={p} S={S5a} scene={({ seg }) => <FileTree big files={FILES5} active={seg.hl} desc={FILES5_DESC} />} />;
 }
 
 // --- S5b So'rov yo'li ---
 const S5b = {
   kicker: "2-bosqich · Uch bo'lak", title: "Bitta so'rovning yo'li",
   segments: [
-    { id: 'a', key: "Brauzer: <code>localhost:3000</code>", text: "Bitta so'rovning yo'lini kuzataylik. Brauzer localhost uch ming manziliga keldi.", dot: 'browser', boxes: ['browser'] },
-    { id: 'b', key: "<b>Controller</b> qabul qildi", text: "So'rovni AppController qabul qildi, chunki unda GET uchun metod bor.", dot: 'ctrl', boxes: ['browser', 'ctrl'], box: 'ctrl' },
-    { id: 'c', key: "Controller <b>Service'dan so'raydi</b>", text: "Controller o'zi javob o'ylab topmaydi, u AppService'dan so'raydi. Service Hello World matnini qaytaradi.", dot: 'svc', boxes: ['browser', 'ctrl', 'svc'], box: 'svc' },
-    { id: 'd', key: "Javob <b>brauzerga qaytdi</b>", text: "Controller shu matnni brauzerga yuboradi.", dot: 'browser', boxes: ['browser', 'ctrl', 'svc'], box: 'ctrl', reply: true },
-    { id: 'e', key: "<b>Module</b> ikkalasini ro'yxatda ushlaydi", text: "AppModule esa bu ikkalasini bitta ro'yxatda ushlab turadi, Nest shu ro'yxatga qarab ularni yig'adi.", dot: null, boxes: ['browser', 'ctrl', 'svc', 'mod'], box: 'mod' },
-    { id: 'f', key: "So'rov → Controller → Service → javob", text: "Mana shu yo'lni, so'rov, Controller, Service, javob, dars davomida ko'p marta ko'rasiz. Keyingi uch ekranda har faylni ochib o'qiymiz.", dot: null, boxes: ['browser', 'ctrl', 'svc', 'mod'] },
+    { id: 'a', key: "Brauzer <code>localhost:3000</code> manziliga <b>GET so'rov</b> yubordi", text: "Loyihangiz fonda o'rnatilayotganda, fayllar bir-biri bilan qanday ishlashini ko'raylik. Buning eng yaxshi yo'li, bitta so'rovning yo'lini kuzatish. Brauzer localhost uch ming manziliga GET so'rov yubordi.", dot: 'browser', boxes: ['browser'], file: null },
+    { id: 'b', key: "So'rovni <b>AppController</b> qabul qildi — unda GET uchun metod bor", text: "So'rovni AppController qabul qildi, chunki unda GET uchun metod bor. U app controller ts faylida yashaydi, nomi qutining pastida.", dot: 'ctrl', boxes: ['browser', 'ctrl'], box: 'ctrl', file: 'src/app.controller.ts' },
+    { id: 'c', key: "Controller javobni o'zi o'ylamaydi — <b>AppService'dan so'raydi</b>", text: "Controller o'zi javob o'ylab topmaydi, u AppService'dan so'raydi. Service Hello World matnini qaytaradi.", dot: 'svc', boxes: ['browser', 'ctrl', 'svc'], box: 'svc', file: 'src/app.service.ts' },
+    { id: 'd', key: "Controller Service bergan matnni <b>brauzerga qaytardi</b>", text: "Controller shu matnni brauzerga yuboradi. Brauzerda Hello World chiqadi.", dot: 'browser', boxes: ['browser', 'ctrl', 'svc'], box: 'ctrl', reply: true, file: 'src/app.controller.ts' },
+    { id: 'e', key: "<b>AppModule</b> ikkalasini ro'yxatda ushlaydi — Nest shunga qarab yig'adi", text: "AppModule esa bu ikkalasini bitta ro'yxatda ushlab turadi, Nest shu ro'yxatga qarab ularni yig'adi.", dot: null, boxes: ['browser', 'ctrl', 'svc', 'mod'], box: 'mod', file: 'src/app.module.ts' },
+    { id: 'f', key: "Xulosa: yo'l doim shu — <b>so'rov → Controller → Service → javob</b>", text: "Xulosa: har so'rov bir xil yo'l bosadi. So'rov, Controller, Service, javob. Module esa bu bo'laklarni ro'yxatda ushlaydi. Bu yo'lni dars davomida ko'p marta ko'rasiz. Keyingi uch ekranda har faylni ochib, satrma-satr o'qiymiz.", dot: null, boxes: ['browser', 'ctrl', 'svc', 'mod'], file: null },
   ],
 };
 const DOT_LEFT = { browser: 'calc((100% - 88px) / 6)', ctrl: '50%', svc: 'calc(100% - (100% - 88px) / 6)' };
@@ -654,19 +905,21 @@ function Screen5b(p) {
     const boxes = seg.boxes;
     const boxStyle = (k, c) => ({ '--c': c, opacity: boxes.includes(k) ? (seg.box && seg.box !== k ? 0.4 : 1) : 0, transform: boxes.includes(k) ? 'none' : 'translateY(10px)' });
     const cls = (k) => `mk-box${seg.box === k ? ' hl' : ''}`;
+    // F-1030-24: Explorer yonida brauzer ham «fayllar ichida»dek ko'rinardi — endi fayl nomi qutining o'zida
+    const fileTag = (f) => <div style={{ font: `600 11.5px ${MONO}`, color: T.ink3, marginTop: 6 }}>{f}</div>;
     return <div className="mk-light" style={{ padding: 20 }}>
-      <div className="mk-tag">So'rov yo'li</div>
+      <div className="mk-tag">{t("So'rov yo'li — brauzerdan fayllarga va qaytib", 'Путь запроса — из браузера к файлам и обратно')}</div>
       <div className="mk-flow">
         <div className={`mk-dot${seg.dot ? ' in' : ''}${seg.reply ? ' back' : ''}`} style={{ left: DOT_LEFT[seg.dot || 'browser'] }} />
         <div className="mk-row">
-          <div className={cls('browser')} style={boxStyle('browser', T.ink2)}><h4 style={{ color: T.ink }}>Brauzer</h4><p>GET localhost:3000</p></div>
+          <div className={cls('browser')} style={boxStyle('browser', T.ink2)}><h4 style={{ color: T.ink }}>{t('Brauzer', 'Браузер')}</h4><p>GET localhost:3000</p><div style={{ font: `600 11.5px ${SANS}`, color: T.ink3, marginTop: 6 }}>{t('loyihadan tashqarida', 'вне проекта')}</div></div>
           <div className={`mk-arrow${seg.dot === 'ctrl' || seg.dot === 'svc' ? ' on' : ''}${seg.reply ? ' back' : ''}`}>{seg.reply ? '←' : '→'}</div>
-          <div className={cls('ctrl')} style={boxStyle('ctrl', PART.ctrl)}><h4>AppController</h4><p>so'rovni qabul qiladi, Service'ni chaqiradi</p></div>
+          <div className={cls('ctrl')} style={boxStyle('ctrl', PART.ctrl)}><h4>AppController</h4><p>{t("so'rovni qabul qiladi, Service'ni chaqiradi", 'принимает запрос, вызывает Service')}</p>{fileTag('src/app.controller.ts')}</div>
           <div className={`mk-arrow${seg.dot === 'svc' ? ' on' : ''}${seg.reply ? ' back' : ''}`}>{seg.reply ? '←' : '→'}</div>
-          <div className={cls('svc')} style={boxStyle('svc', PART.svc)}><h4>AppService</h4><p>ishni bajaradi → 'Hello World!'</p></div>
+          <div className={cls('svc')} style={boxStyle('svc', PART.svc)}><h4>AppService</h4><p>{t("ishni bajaradi → 'Hello World!'", "выполняет работу → 'Hello World!'")}</p>{fileTag('src/app.service.ts')}</div>
         </div>
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: 22 }}>
-          <div className={cls('mod')} style={{ ...boxStyle('mod', PART.mod), minWidth: '62%' }}><h4>AppModule</h4><p><code>controllers: [AppController]</code> · <code>providers: [AppService]</code></p></div>
+          <div className={cls('mod')} style={{ ...boxStyle('mod', PART.mod), minWidth: '62%' }}><h4>AppModule</h4><p><code>controllers: [AppController]</code> · <code>providers: [AppService]</code></p>{fileTag('src/app.module.ts')}</div>
         </div>
       </div>
     </div>;
@@ -677,11 +930,11 @@ function Screen5b(p) {
 const P0 = {
   kicker: 'Amaliyot 1 / 4', eyebrow: "Hozir o'zingizda · 3–5 daqiqa (o'rnatish fonda)", title: "Nest'ni o'rnating, loyihani boshlab qo'ying", tableAt: 4,
   segments: [
-    { id: 'a', key: "Endi <b>siz</b>: o'rnatib, nest new ni boshlab qo'yasiz", text: "Endi navbat sizga. Hozirgina ko'rgan loyihani o'zingizda yaratib qo'yasiz: uchta qadam. O'rnatish bir-uch daqiqa oladi, kutmaysiz, Davom bosib darsni davom ettirasiz, loyiha fonda o'rnatiladi.", hl: [] },
-    { id: 'b', key: "1 · Node <b>20 yoki yuqori</b>", text: "Birinchi: node versiyasini tekshiring. Nest o'n birinchi versiya Node yigirma yoki undan yuqorisini talab qiladi. Past bo'lsa, jadvaldagi yo'l bilan yangilang.", hl: [0] },
-    { id: 'c', key: "2 · Nest CLI: <code>npm i -g @nestjs/cli</code>", text: "Ikkinchi: Nest CLI'ni global o'rnating va versiyasini tekshiring. Chiqqan raqamni pastdagi isbot maydoniga yozing.", hl: [1] },
-    { id: 'd', key: "3 · <code>nest new cars-api</code> — boshlab qo'ying", text: "Uchinchi: nest new cars-api. Paket menejeri so'ralsa npm'ni tanlang. O'rnatish boshlangach, kutmang: katakchani belgilang va Davom bosing.", hl: [2] },
-    { id: 'e', key: "Boshqacha chiqdimi — jadval", text: "Biror narsa boshqacha chiqsa, pastdagi jadvalga qarang. Uchala katakcha va isbot to'ldirilgach, davom eting.", hl: [] },
+    { id: 'a', key: "Endi <b>siz</b>: Nest'ni o'rnatib, loyihani yaratishni boshlab qo'yasiz", text: "Endi navbat sizga. Hozirgina ko'rgan loyihani o'zingizda yaratib qo'yasiz: uchta qadam. O'rnatish bir-uch daqiqa oladi, kutmaysiz, Davom bosib darsni davom ettirasiz, loyiha fonda o'rnatiladi.", hl: [] },
+    { id: 'b', key: "1-qadam: Node versiyasi <b>20 yoki undan yuqori</b> bo'lishi shart", text: "Birinchi: node versiyasini tekshiring. Nest o'n birinchi versiya Node yigirma yoki undan yuqorisini talab qiladi. Past bo'lsa, jadvaldagi yo'l bilan yangilang.", hl: [0] },
+    { id: 'c', key: "2-qadam: <b>Nest CLI</b>'ni o'rnating, versiyasini isbot maydoniga yozing", text: "Ikkinchi: Nest CLI'ni global o'rnating va versiyasini tekshiring. Chiqqan raqamni pastdagi isbot maydoniga yozing.", hl: [1] },
+    { id: 'd', key: "3-qadam: <code>nest new cars-api</code> — o'rnatish fonda, kutmasdan davom eting", text: "Uchinchi: nest new cars-api. Paket menejeri so'ralsa npm'ni tanlang. O'rnatish boshlangach, kutmang: katakchani belgilang va Davom bosing.", hl: [2] },
+    { id: 'e', key: "Boshqacha chiqsa — pastdagi <b>«Boshqacha chiqdimi?»</b> tugmasi; katakcha va isbotsiz Davom ochilmaydi", text: "Biror narsa boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing: xato va yechimi o'sha yerda. Uchala katakcha belgilanmaguncha va isbot to'g'ri yozilmaguncha Davom tugmasi ochilmaydi.", hl: [] },
   ],
 };
 const P0_STEPS = [
@@ -694,7 +947,7 @@ const P0_TROUBLE = [
   ['nest: command not found', "CLI o'rnatilmagan yoki terminal yangilanmagan: 2-qadamni qaytaring, terminalni qayta oching"],
   ['npm install uzoq / xato', "internetni tekshiring; nest new --skip-install, keyin papkada npm install"],
 ];
-const P0_PROOF = { label: "Isbot: nest --version nima chiqardi?", placeholder: '11.0.10', check: (v) => /^v?11\./.test(v), wrong: "Kutilgan 11.x.x — CLI o'rnatilmagan yoki eski versiya" };
+const P0_PROOF = { label: "Isbot: nest --version nima chiqardi?", placeholder: 'terminalda chiqqan raqamni yozing', check: (v) => /^v?11\./.test(v), wrong: "Kutilgan 11.x.x — CLI o'rnatilmagan yoki eski versiya" };
 function ScreenP0(p) { return <Practice p={p} S={P0} steps={P0_STEPS} trouble={P0_TROUBLE} proof={P0_PROOF} />; }
 
 // ============================================================
@@ -717,19 +970,19 @@ const CTRL_LINES = [
 const S6 = {
   kicker: '2-bosqich · Controller', title: "Controller — so'rovni qabul qiladi",
   segments: [
-    { id: 'a', key: "<b>Controller dekoratori</b>: manzil ildiz", text: "app controller ts. To'rtinchi satrda Controller dekoratori, qavsi bo'sh. Demak bu Controller'ning manzili ildiz manzil. Qavsga cars yozsak, uning hamma metodlari cars manzili bilan boshlanadi.", show: "app.controller.ts. To'rtinchi satr: <code>@Controller()</code>, qavsi bo'sh. Demak bu Controller'ning manzili ildiz, ya'ni <code>/</code>. Qavsga cars yozsak, uning hamma metodlari <code>/cars</code> bilan boshlanadi.", focus: ['l-decorator'] },
-    { id: 'b', key: "Oddiy klass: <b>AppController</b>", text: "Keyin oddiy klass: AppController.", focus: ['l-class'] },
-    { id: 'c', key: "Konstruktor: <b>«menga AppService kerak»</b>", text: "Konstruktorda bitta satr bor: unda AppService nomli bo'lak so'raladi. Buni hozircha shunday tushuning: bu Controller'ga AppService kerak. Qanday kelishini alohida ekranda gaplashamiz.", show: "Konstruktorda bitta satr: <code>private readonly appService: AppService</code>. Buni hozircha shunday tushuning: «bu Controller'ga AppService kerak». Qanday kelishini alohida ekranda gaplashamiz.", focus: ['l-ctor'] },
-    { id: 'c2', key: "<code>private readonly</code> = maydon <b>o'zi yaratiladi</b>", text: "Bir TypeScript qisqa yozuvi: konstruktor parametri oldida private readonly tursa, u avtomatik klassning maydoni bo'ladi. JavaScript'da this nuqta appService teng appService deb yozardingiz, bu yerda o'sha satr yozilmaydi, u o'zi bajariladi.", show: "TypeScript qisqa yozuvi: parametr oldida <code>private readonly</code> tursa, u avtomatik klass maydoni bo'ladi. JavaScript'dagi <code>this.appService = appService</code> satri yozilmaydi, u o'zi bajariladi.", focus: ['l-ctor'] },
-    { id: 'd', key: "<b>Get dekoratori</b> = GET kelsa shu metod", text: "Pastda Get dekoratori. U metod ustida turibdi va aytyapti: GET so'rov kelsa, shu metodni chaqir. Express'dagi app get bilan bir xil ma'no, faqat endi metodning ustida.", show: "Pastda <code>@Get()</code>. U metod ustida turibdi va aytyapti: «GET so'rov kelsa, shu metodni chaqir». Express'dagi <code>app.get</code> bilan bir xil ma'no, faqat endi metodning ustida.", focus: ['l-get', 'l-method'] },
-    { id: 'e', key: "Bitta ish: <b>Service'ni chaqirib natijani qaytarish</b>", text: "Metod ichida bitta ish: Service'ning metodini chaqirib, natijasini qaytarish.", show: "Metod ichida bitta ish: <code>this.appService.getHello()</code> natijasini qaytarish.", focus: ['l-return'] },
-    { id: 'f', key: "Controller <b>yupqa</b>: oldi, chaqirdi, qaytardi", text: "E'tibor bering: Controller'da mantiq yo'q. U so'rovni oldi, kerakli Service'ni chaqirdi, javobni qaytardi. Controller shunday yupqa bo'lishi kerak.", focus: [] },
+    { id: 'a', key: "<code>@Controller()</code> qavsi bo'sh — bu Controller'ning path'i <b>root</b> (<code>/</code>)", text: "So'rov yo'lidagi birinchi bekat Controller edi. So'rov aynan shu faylga keladi, shuning uchun undan boshlaymiz. Mana app controller ts. To'rtinchi satrda Controller decorator'i, qavsi bo'sh. Demak bu Controller'ning path'i root. Qavsga cars yozsak, uning hamma metodlari cars path'i bilan boshlanadi.", show: "So'rov yo'lidagi birinchi bekat Controller edi — so'rov aynan shu faylga keladi, shuning uchun undan boshlaymiz. <b>app.controller.ts</b>. To'rtinchi satr: <code>@Controller()</code>, qavsi bo'sh. Demak bu Controller'ning path'i root, ya'ni <code>/</code>. Qavsga cars yozsak, uning hamma metodlari <code>/cars</code> bilan boshlanadi.", focus: ['l-decorator'] },
+    { id: 'b', key: "Decorator ostida <b>oddiy TypeScript klass</b>: AppController", text: "Keyin oddiy klass: AppController. Uni Controller qilgan narsa ustidagi decorator.", focus: ['l-class'] },
+    { id: 'c', key: "Konstruktor aytadi: <b>«menga AppService kerak»</b> — qanday kelishi 14-ekranda", text: "Konstruktorda bitta satr bor: unda AppService nomli bo'lak so'raladi. Buni hozircha shunday tushuning: bu Controller'ga AppService kerak. Qanday kelishini o'n to'rtinchi ekranda ko'ramiz.", show: "Konstruktorda bitta satr: <code>private readonly appService: AppService</code>. Buni hozircha shunday tushuning: «bu Controller'ga AppService kerak». Qanday kelishini 14-ekranda ko'ramiz.", focus: ['l-ctor'] },
+    { id: 'c2', key: "<code>private readonly</code> parametr <b>o'zi klass maydoniga</b> aylanadi — <code>this.appService</code> tayyor", text: "Bir TypeScript qisqa yozuvi: konstruktor parametri oldida private readonly tursa, u avtomatik klassning maydoni bo'ladi. JavaScript'da this nuqta appService teng appService deb yozardingiz, bu yerda o'sha satr yozilmaydi, u o'zi bajariladi.", show: "TypeScript qisqa yozuvi: parametr oldida <code>private readonly</code> tursa, u avtomatik klass maydoni bo'ladi. JavaScript'dagi <code>this.appService = appService</code> satri yozilmaydi, u o'zi bajariladi.", focus: ['l-ctor'] },
+    { id: 'd', key: "<code>@Get()</code> metod ustida: <b>GET so'rov kelsa, shu metodni chaqir</b>", text: "Pastda Get decorator'i. U metod ustida turibdi va aytyapti: GET so'rov kelsa, shu metodni chaqir. Express'dagi app get bilan bir xil ma'no, faqat endi metodning ustida.", show: "Pastda <code>@Get()</code>. U metod ustida turibdi va aytyapti: «GET so'rov kelsa, shu metodni chaqir». Express'dagi <code>app.get</code> bilan bir xil ma'no, faqat endi metodning ustida.", focus: ['l-get', 'l-method'] },
+    { id: 'e', key: "Metod ichida bitta ish: <b>Service'ni chaqirib, natijani qaytarish</b>", text: "Metod ichida bitta ish: Service'ning metodini chaqirib, natijasini qaytarish.", show: "Metod ichida bitta ish: <code>this.appService.getHello()</code> natijasini qaytarish.", focus: ['l-return'] },
+    { id: 'f', key: "Xulosa: Controller'da <b>logika yozilmaydi</b> — so'rovni oldi, Service'ni chaqirdi, javobni qaytardi", text: "Xulosa: Controller'da logika yozilmaydi. U so'rovni oldi, kerakli Service'ni chaqirdi, javobni qaytardi. Controller shunday bo'lishi kerak: logika Service'da, Controller faqat ulaydi.", focus: [] },
   ],
 };
 function Screen6(p) {
   return <Lesson p={p} S={S6} scene={({ seg, beat }) => (<>
-    <CodePanel file="src/app.controller.ts" lines={CTRL_LINES} focus={seg.focus} />
-    <Block at={6} beat={beat}><div className="mk-rule"><b>Controller yupqa:</b> so'rovni oladi → Service'ni chaqiradi → javobni qaytaradi. If yo'q, hisob yo'q, baza yo'q.</div></Block>
+    <Ide files={APP_FILES} active="src/app.controller.ts"><CodePanel file="src/app.controller.ts" lines={CTRL_LINES} focus={seg.focus} /></Ide>
+    <Block at={6} beat={beat}><div className="mk-rule">{t(<><b>Controller'da logika yozilmaydi:</b> so'rovni oladi → Service'ni chaqiradi → javobni qaytaradi. <code>if</code>, hisob, baza — Service'da.</>, <><b>В Controller логику не пишут:</b> принимает запрос → вызывает Service → возвращает ответ. <code>if</code>, расчёты, база — в Service.</>)}</div></Block>
   </>)} />;
 }
 
@@ -747,26 +1000,26 @@ const SVC_LINES = [
 const S7 = {
   kicker: '2-bosqich · Service', title: 'Service — ishni bajaradi',
   segments: [
-    { id: 'a', key: "<b>Injectable</b> = «yetkazib berish mumkin»", text: "app service ts. Ustida Injectable dekoratori. Bu so'z inglizcha, yetkazib berish mumkin degani: Nest'ga aytadi, shu klassni kerak bo'lgan joyga yetkazib bersa bo'ladi.", show: "app.service.ts. Ustida <code>@Injectable()</code>. Bu so'z inglizcha, «yetkazib berish mumkin» degani: Nest'ga aytadi, shu klassni kerak bo'lgan joyga yetkazib bersa bo'ladi.", focus: ['l-injectable'] },
-    { id: 'b', key: "<b>Haqiqiy ish Service'da</b>: hisob, qoida, baza", text: "Ichida getHello metodi, u Hello World qaytaradi. Hozir bu juda kichkina, lekin qoida katta loyihada ham o'zgarmaydi: haqiqiy ish Service'da bo'ladi. Narxni hisoblash, qoidani tekshirish, bazaga yozish, hammasi shu yerda.", focus: ['l-method'] },
-    { id: 'c', key: "Service so'rov haqida <b>bilmaydi</b> → serversiz sinaladi", text: "Bir narsaga e'tibor bering: Service so'rov haqida hech narsa bilmaydi. Unda req ham, res ham yo'q. Shuning uchun uni alohida sinash oson: metodni chaqirasiz, natijani tekshirasiz, server shart emas. Jest darsida aynan shuni qilasiz.", focus: [] },
-    { id: 'd', key: "Bitta Service — <b>ikki joyda</b> ishlatiladi", text: "Va shuning uchun bitta Service'ni ikki joy ishlatishi mumkin: HTTP Controller ham, Telegram bot ham.", focus: [] },
+    { id: 'a', key: "<code>@Injectable()</code> — «bu klassni kerakli joyga <b>inject qilish mumkin</b>»", text: "Controller so'rovni oldi va ishni Service'ga uzatdi. Demak keyingi bekat Service, uni ochamiz: app service ts. Ustida Injectable decorator'i. Bu so'z inglizcha, inject qilish mumkin degani: Nest'ga aytadi, shu klassni kerak bo'lgan joyga inject qilsa bo'ladi.", show: "Controller so'rovni oldi va ishni Service'ga uzatdi. Demak keyingi bekat — Service: <b>app.service.ts</b>. Ustida <code>@Injectable()</code>. Bu so'z inglizcha, «inject qilish mumkin» degani: Nest'ga aytadi, shu klassni kerak bo'lgan joyga inject qilsa bo'ladi.", focus: ['l-injectable'] },
+    { id: 'b', key: "Haqiqiy ish <b>Service'da</b>: narx hisobi, qoida tekshiruvi, bazaga yozish", text: "Ichida getHello metodi, u Hello World qaytaradi. Hozir bu juda kichkina, lekin qoida katta loyihada ham o'zgarmaydi: haqiqiy ish Service'da bo'ladi. Narxni hisoblash, qoidani tekshirish, bazaga yozish, hammasi shu yerda.", focus: ['l-method'] },
+    { id: 'c', key: "Service'da <code>req</code> ham, <code>res</code> ham yo'q — shuning uchun <b>serversiz sinaladi</b>", text: "Bir narsaga e'tibor bering: Service so'rov haqida hech narsa bilmaydi. Unda req ham, res ham yo'q. Shuning uchun uni alohida sinash oson: test fayli metodni chaqiradi va natijani kutilgan qiymat bilan solishtiradi, server ishga tushirilmaydi.", focus: [] },
+    { id: 'd', key: "Xulosa: bitta Service'ni <b>HTTP Controller ham, Telegram bot ham</b> ishlatadi", text: "Va shuning uchun bitta Service'ni ikki joy ishlatishi mumkin: HTTP Controller ham, Telegram bot ham. Xulosa: ish Service'da, Controller faqat uni so'rovga ulaydi.", focus: [] },
   ],
 };
 function Screen7(p) {
   return <Lesson p={p} S={S7} scene={({ seg, beat }) => (<>
-    <CodePanel file="src/app.service.ts" lines={SVC_LINES} focus={seg.focus} />
+    <Ide files={APP_FILES} active="src/app.service.ts"><CodePanel file="src/app.service.ts" lines={SVC_LINES} focus={seg.focus} /></Ide>
     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-      <Block at={1} beat={beat}><div className="mk-card" style={{ borderColor: PART.svc }}><h5 style={{ color: PART.svc }}>Service'da bor</h5><div style={{ fontSize: 14 }}>hisob · qoida · bazaga murojaat</div></div></Block>
-      <Block at={2} beat={beat}><div className="mk-card"><h5>Service'da yo'q</h5><div style={{ fontSize: 14 }}><code>req</code> · <code>res</code> · manzil — shuning uchun serversiz sinaladi</div></div></Block>
+      <Block at={1} beat={beat}><div className="mk-card" style={{ borderColor: PART.svc }}><h5 style={{ color: PART.svc }}>{t("Service'da bor", 'В Service есть')}</h5><div style={{ fontSize: 14 }}>{t('hisob · qoida · bazaga murojaat', 'расчёты · правила · обращение к базе')}</div></div></Block>
+      <Block at={2} beat={beat}><div className="mk-card"><h5>{t("Service'da yo'q", 'В Service нет')}</h5><div style={{ fontSize: 14 }}><code>req</code> · <code>res</code> · route — {t('shuning uchun serversiz sinaladi', 'поэтому тестируется без сервера')}</div></div></Block>
     </div>
     <Block at={3} beat={beat}><div className="mk-light" style={{ padding: 14 }}>
       <div className="mk-row">
-        <div className="mk-box" style={{ '--c': PART.ctrl }}><h4>HTTP Controller</h4><p>brauzer so'rovi</p></div>
+        <div className="mk-box" style={{ '--c': PART.ctrl }}><h4>HTTP Controller</h4><p>{t("brauzer so'rovi", 'запрос из браузера')}</p></div>
         <div className="mk-arrow on">→</div>
-        <div className="mk-box hl" style={{ '--c': PART.svc }}><h4>CarsService</h4><p>bitta nusxa, bitta mantiq</p></div>
+        <div className="mk-box hl" style={{ '--c': PART.svc }}><h4>CarsService</h4><p>{t('bitta instance, bitta logika', 'один instance, одна логика')}</p></div>
         <div className="mk-arrow on">←</div>
-        <div className="mk-box" style={{ '--c': T.purple }}><h4>Telegram bot</h4><p>bot buyrug'i</p></div>
+        <div className="mk-box" style={{ '--c': T.purple }}><h4>{t('Telegram bot', 'Telegram-бот')}</h4><p>{t("bot buyrug'i", 'команда бота')}</p></div>
       </div>
     </div></Block>
   </>)} />;
@@ -788,19 +1041,19 @@ const MOD_LINES = [
 const S8 = {
   kicker: '2-bosqich · Module', title: "Module — ro'yxat",
   segments: [
-    { id: 'a', key: "<b>Module dekoratori</b>: uchta ro'yxat", text: "app module ts. Module dekoratori va ichida uchta ro'yxat.", focus: ['l-module'] },
-    { id: 'b', key: "<code>controllers</code> · <code>providers</code> (= Service'lar)", text: "controllers: shu modulga tegishli Controller'lar. providers: shu modul yaratib beradigan narsalar, hozircha bu Service'lar. provider so'zini eslab qoling, Nest Service'ni shunday ataydi.", focus: ['l-controllers', 'l-providers'] },
-    { id: 'c', key: "<code>imports</code> — boshqa modullar. <b>Ro'yxat hal qiluvchi</b>", text: "imports: boshqa modullar, hozir bo'sh. Module hech qanday ish qilmaydi, u ro'yxat. Lekin bu ro'yxat hal qiluvchi: Nest faqat shu yerda yozilgan narsani ko'radi.", focus: ['l-imports'] },
-    { id: 'd', key: "Ro'yxatda yo'q = <b>Nest uchun yo'q</b>", text: "Controller yozib, uni controllers ro'yxatiga qo'shmasangiz, u yo'qdek. Service yozib, providers'ga qo'shmasangiz, Nest uni yetkazib bera olmaydi.", focus: [] },
-    { id: 'e', key: "<b>AppModule</b> tepada, qolganlari <code>imports</code> orqali", text: "Loyihada bir nechta modul bo'ladi: cars uchun, users uchun, orders uchun. Hammasining tepasida AppModule turadi va qolganlarini imports orqali o'ziga ulaydi.", focus: ['l-imports'] },
+    { id: 'a', key: "<code>@Module</code> ichida <b>uchta ro'yxat</b>: imports · controllers · providers", text: "Controller ham, Service ham tayyor. Lekin Nest ularning borligini qayerdan biladi? Javob uchinchi faylda, Module'da. app module ts: Module decorator'i va ichida uchta ro'yxat.", focus: ['l-module'] },
+    { id: 'b', key: "<code>controllers</code> — Controller'lar, <code>providers</code> — Nest yaratadigan <b>Service'lar</b>", text: "controllers: shu modulga tegishli Controller'lar. providers: shu modul yaratib beradigan narsalar, hozircha bu Service'lar. provider so'zini eslab qoling, Nest Service'ni shunday ataydi.", focus: ['l-controllers', 'l-providers'] },
+    { id: 'c', key: "<code>imports</code> — boshqa modullar. Nest <b>faqat ro'yxatdagini</b> ko'radi", text: "imports: boshqa modullar, hozir bo'sh. Module hech qanday ish qilmaydi, u ro'yxat. Lekin bu ro'yxat hal qiluvchi: Nest faqat shu yerda yozilgan narsani ko'radi.", focus: ['l-imports'] },
+    { id: 'd', key: "Fayl bor, lekin ro'yxatda yo'q — <b>Nest uchun u yo'q</b>", text: "Controller yozib, uni controllers ro'yxatiga qo'shmasangiz, u yo'qdek. Service yozib, providers'ga qo'shmasangiz, Nest uni inject qila olmaydi.", focus: [] },
+    { id: 'e', key: "Xulosa: <b>AppModule</b> tepada, qolgan modullar unga <code>imports</code> orqali ulanadi", text: "Loyihada bir nechta modul bo'ladi: cars uchun, users uchun, orders uchun. Hammasining tepasida AppModule turadi va qolganlarini imports orqali o'ziga ulaydi. Xulosa: Module ish qilmaydi, lekin u ro'yxat bo'lgani uchun xatolarning ko'pi aynan shu faylda tuzatiladi.", focus: ['l-imports'] },
   ],
 };
 function Screen8(p) {
   return <Lesson p={p} S={S8} scene={({ seg, beat }) => (<>
-    <CodePanel file="src/app.module.ts" lines={MOD_LINES} focus={seg.focus} />
-    <Block at={3} beat={beat} dim={beat >= 4}><div className="mk-rule"><b>Ro'yxatda yo'q = Nest uchun yo'q.</b> Controller → <code>controllers</code>, Service → <code>providers</code>, boshqa modul → <code>imports</code>.</div></Block>
+    <Ide files={APP_FILES} active="src/app.module.ts"><CodePanel file="src/app.module.ts" lines={MOD_LINES} focus={seg.focus} /></Ide>
+    <Block at={3} beat={beat} dim={beat >= 4}><div className="mk-rule">{t(<><b>Ro'yxatda yo'q = Nest uchun yo'q.</b> Controller → <code>controllers</code>, Service → <code>providers</code>, boshqa modul → <code>imports</code>.</>, <><b>Нет в списке = нет для Nest.</b> Controller → <code>controllers</code>, Service → <code>providers</code>, другой модуль → <code>imports</code>.</>)}</div></Block>
     <Block at={4} beat={beat}><div className="mk-light" style={{ padding: 14 }}>
-      <div className="mk-tag">Modullar daraxti</div>
+      <div className="mk-tag">{t('Modullar strukturasi', 'Структура модулей')}</div>
       <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 10 }}><div className="mk-box hl" style={{ '--c': PART.mod, minWidth: 220 }}><h4>AppModule</h4><p><code>imports: [CarsModule, UsersModule, OrdersModule]</code></p></div></div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10 }}>
         {['CarsModule', 'UsersModule', 'OrdersModule'].map((m, i) => <div key={m} className="mk-box" style={{ '--c': PART.mod, animation: `mk-up .4s ${0.15 + i * 0.15}s ease both` }}><h4>{m}</h4><p>controllers · providers</p></div>)}
@@ -809,7 +1062,7 @@ function Screen8(p) {
   </>)} />;
 }
 
-// --- S9 main.ts va jurnal ---
+// --- S9 main.ts va terminal chiqishi ---
 const MAIN_LINES = [
   { h: `<span class="k">import</span> { NestFactory } <span class="k">from</span> <span class="s">'@nestjs/core'</span>;` },
   { h: `<span class="k">import</span> { AppModule } <span class="k">from</span> <span class="s">'./app.module'</span>;` },
@@ -829,41 +1082,40 @@ const LOG_LINES = [
   { at: 3, id: 'log5', h: `[Nest] LOG [NestApplication] Nest application successfully started` },
 ];
 const S9 = {
-  kicker: '2-bosqich · main.ts', title: 'main.ts va ishga tushish jurnali',
+  kicker: '2-bosqich · main.ts', title: "main.ts va terminaldagi ishga tushish satrlari",
   segments: [
-    { id: 'a', key: "Bosh modul Nest'ga beriladi, <b>Nest yig'adi</b>", text: "Hammasi main ts dan boshlanadi. Birinchi satr: Nest'ga bosh modulni beramiz. U modul ro'yxatini o'qiydi, Service'larni yaratadi, Controller'larni ulaydi.", show: "Hammasi main.ts dan boshlanadi. <code>NestFactory.create(AppModule)</code>: Nest'ga bosh modulni beramiz. U modul ro'yxatini o'qiydi, Service'larni yaratadi, Controller'larni ulaydi.", focus: ['main-create'], lf: [] },
-    { id: 'b', key: "Port 3000 tinglanadi. Terminal: <code>npm run start:dev</code>", text: "Keyin uch ming portni tinglaydi, Express'dagi kabi. Endi terminalga qarang, npm run start dev yozdik.", show: "Keyin <code>listen(3000)</code>: Express'dagi kabi portni tinglaydi. Endi terminalga qarang, <code>npm run start:dev</code> yozdik.", focus: ['main-listen'], lf: [] },
-    { id: 'c', key: "Jurnal: <b>bog'liqliklar tayyor</b>", text: "Birinchi satr: Nest ilovasi ishga tushmoqda. Ikkinchi: AppModule'ning bog'liqliklari tayyor, ya'ni ro'yxatdagi hamma narsa yaratildi.", show: "Starting Nest application. <b>AppModule dependencies initialized</b>: AppModule'ning bog'liqliklari tayyor, ya'ni ro'yxatdagi hamma narsa yaratildi.", focus: [], lf: ['log1', 'log2'] },
-    { id: 'd', key: "Jurnal: <b>Mapped</b> = marshrut ulandi", text: "Keyin: AppController topildi va unga ildiz manzil berildi. Mapped satri: ildiz manzilga GET marshruti ulandi. Va oxirgisi: ilova muvaffaqiyatli ishga tushdi.", show: "<code>AppController {/}</code>: Controller topildi va unga manzil berildi. <b>Mapped {/, GET} route</b>: ildiz manzilga GET marshruti ulandi. Nest application successfully started.", focus: [], lf: ['log3', 'log4', 'log5'] },
-    { id: 'e', key: "Odat: marshrut ishlamasa — <b>avval jurnal</b>", text: "Bu satrlarni o'qishni odat qiling. Keyinchalik biror marshrut ishlamasa, birinchi qiladigan ishingiz shu jurnalga qarash bo'ladi: Mapped satri bormi, yo'qmi.", focus: [], lf: ['log4'] },
-    { id: 'f', key: "Brauzer: <b>Hello World!</b>", text: "Brauzerda localhost uch ming, javob: Hello World.", show: "Brauzerda <code>localhost:3000</code>, javob: <b>Hello World!</b>", focus: [], lf: [] },
+    { id: 'a', key: "<code>main.ts</code> bosh modulni Nest'ga beradi — <b>Nest hammasini yig'adi</b>", text: "Uch bo'lakni ko'rdik. Endi ular qanday ishga tushadi? Hammasi main ts dan boshlanadi. Birinchi satr: Nest'ga bosh modulni beramiz. U modul ro'yxatini o'qiydi, Service'larni yaratadi, Controller'larni ulaydi.", show: "Uch bo'lakni ko'rdik. Endi ular qanday ishga tushadi? Hammasi main.ts dan boshlanadi. <code>NestFactory.create(AppModule)</code>: Nest'ga bosh modulni beramiz. U modul ro'yxatini o'qiydi, Service'larni yaratadi, Controller'larni ulaydi.", focus: ['main-create'], lf: [] },
+    { id: 'b', key: "Port 3000 tinglanadi. Terminalda: <code>npm run start:dev</code>", text: "Keyin uch ming portni tinglaydi, Express'dagi kabi. Endi terminalga qarang, npm run start dev yozdik.", show: "Keyin <code>listen(3000)</code>: Express'dagi kabi portni tinglaydi. Endi terminalga qarang, <code>npm run start:dev</code> yozdik.", focus: ['main-listen'], lf: [] },
+    { id: 'c', key: "Terminal: <b>dependencies initialized</b> — ro'yxatdagi hamma narsa yaratildi", text: "Birinchi satr: Nest ilovasi ishga tushmoqda. Ikkinchi: AppModule'ning dependency'lari tayyor, ya'ni ro'yxatdagi hamma narsa yaratildi.", show: "Starting Nest application. <b>AppModule dependencies initialized</b>: AppModule'ning dependency'lari tayyor, ya'ni ro'yxatdagi hamma narsa yaratildi.", focus: [], lf: ['log1', 'log2'] },
+    { id: 'd', key: "Terminal: <b>Mapped {/, GET}</b> — root path'ga GET route'i ulandi", text: "Keyin: AppController topildi va unga root path berildi. Mapped satri: root path'ga GET route'i ulandi. Va oxirgisi: ilova muvaffaqiyatli ishga tushdi.", show: "<code>AppController {/}</code>: Controller topildi va unga path berildi. <b>Mapped {/, GET} route</b>: root path'ga GET route'i ulandi. Nest application successfully started.", focus: [], lf: ['log3', 'log4', 'log5'] },
+    { id: 'e', key: "Odat: route ishlamasa — <b>avval terminaldagi Mapped satrini</b> qidiring", text: "Bu satrlarni o'qishni odat qiling. Keyinchalik biror route ishlamasa, birinchi qiladigan ishingiz terminaldagi shu satrlarga qarash bo'ladi: Mapped satri bormi, yo'qmi.", focus: [], lf: ['log4'] },
+    { id: 'f', key: "Xulosa: main.ts → modul → Controller → brauzerda <b>Hello World!</b>", text: "Brauzerda localhost uch ming, javob: Hello World. Xulosa: main ts bosh modulni beradi, Nest ro'yxatdan hamma bo'lakni yig'adi va route'larni ulaydi, terminal esa nima ulanganini aytib turadi.", show: "Brauzerda <code>localhost:3000</code>, javob: <b>Hello World!</b> Xulosa: main.ts bosh modulni beradi, Nest ro'yxatdan hamma bo'lakni yig'adi va route'larni ulaydi, terminal esa nima ulanganini aytib turadi.", focus: [], lf: [] },
   ],
 };
 function Screen9(p) {
   return <Lesson p={p} S={S9} scene={({ seg, beat }) => (<>
-    <CodePanel file="src/main.ts" lines={MAIN_LINES} focus={seg.focus} />
-    <Block at={1} beat={beat}><CodePanel file="terminal" lines={LOG_LINES} beat={beat} focus={seg.lf} numbers={false} wrap style={{ background: '#111827' }} /></Block>
-    <Block at={5} beat={beat}><div className="mk-light" style={{ padding: '12px 16px', display: 'flex', gap: 14, alignItems: 'center' }}>
-      <span className="mk-card" style={{ fontFamily: MONO, fontSize: 13, padding: '6px 12px' }}>localhost:3000</span>
-      <span style={{ fontSize: 22, fontWeight: 800 }}>Hello World!</span>
-    </div></Block>
+    <Ide files={APP_FILES} active="src/main.ts">
+      <CodePanel file="src/main.ts" lines={MAIN_LINES} focus={seg.focus} />
+      <Block at={1} beat={beat}><CodePanel file="terminal" lines={LOG_LINES} beat={beat} focus={seg.lf} numbers={false} wrap style={{ background: '#111827' }} /></Block>
+      <Block at={5} beat={beat}><Browser url="localhost:3000" out="Hello World!" /></Block>
+    </Ide>
   </>)} />;
 }
 
 // --- Amaliyot 1: loyihani yarating va ishga tushiring ---
 const P1 = {
-  kicker: 'Amaliyot 2 / 4', eyebrow: "Hozir o'zingizda · 3–5 daqiqa", title: "Ishga tushiring va jurnalni o'qing", tableAt: 4,
+  kicker: 'Amaliyot 2 / 4', eyebrow: "Hozir o'zingizda · 3–5 daqiqa", title: "Ishga tushiring va terminalni o'qing", tableAt: 4,
   segments: [
-    { id: 'a', key: "Loyihangiz o'rnatildi — endi <b>ishga tushiring</b>", text: "Yana navbat sizga. Birinchi amaliyotda boshlab qo'ygan loyihangiz o'rnatilib bo'lgan bo'lsa kerak. Uch qadam: ishga tushirasiz, jurnalni o'qiysiz, brauzerda ko'rasiz.", hl: [] },
-    { id: 'b', key: "1 · <code>npm run start:dev</code>", text: "Birinchi: papkaga kiring va npm run start dev yozing.", hl: [0] },
-    { id: 'c', key: "2 · jurnalda <b>Mapped</b> satrini toping", text: "Ikkinchi: jurnalda Mapped satrini toping va uni aynan nusxalab, pastdagi isbot maydoniga qo'ying.", hl: [1] },
-    { id: 'd', key: "3 · brauzer: <b>Hello World</b>", text: "Uchinchi: brauzerda localhost uch ming, Hello World ni ko'ring.", hl: [2] },
-    { id: 'e', key: "Boshqacha chiqdimi — jadval", text: "Boshqacha chiqsa, jadvalga qarang. Uchala katakcha va isbot to'ldirilgach, davom eting.", hl: [] },
+    { id: 'a', key: "1-amaliyotdagi loyihangiz o'rnatildi — endi uni <b>ishga tushirasiz</b>", text: "Yana navbat sizga. Birinchi amaliyotda boshlab qo'ygan loyihangiz o'rnatilib bo'lgan bo'lsa kerak. Uch qadam: ishga tushirasiz, terminaldagi satrlarni o'qiysiz, brauzerda ko'rasiz.", hl: [] },
+    { id: 'b', key: "1-qadam: papkaga kirib <code>npm run start:dev</code> yozing", text: "Birinchi: papkaga kiring va npm run start dev yozing.", hl: [0] },
+    { id: 'c', key: "2-qadam: terminalda <b>Mapped</b> satrini toping va isbot maydoniga qo'ying", text: "Ikkinchi: terminalda Mapped satrini toping va uni aynan nusxalab, pastdagi isbot maydoniga qo'ying.", hl: [1] },
+    { id: 'd', key: "3-qadam: brauzerda <code>localhost:3000</code> — <b>Hello World!</b> chiqsin", text: "Uchinchi: brauzerda localhost uch ming, Hello World ni ko'ring.", hl: [2] },
+    { id: 'e', key: "Boshqacha chiqsa — pastdagi <b>«Boshqacha chiqdimi?»</b> tugmasi; katakcha va isbotsiz Davom ochilmaydi", text: "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing. Uchala katakcha belgilanmaguncha va isbot to'g'ri qo'yilmaguncha Davom ochilmaydi.", hl: [] },
   ],
 };
 const P1_STEPS = [
   { t: 'Ishga tushirish', cmds: ['cd cars-api', 'npm run start:dev'], exp: 'oxirida «Nest application successfully started»' },
-  { t: 'Jurnal', cmds: [], exp: 'Mapped {/, GET} route satri — nusxalab isbot maydoniga qo\'ying' },
+  { t: 'Terminal', cmds: [], exp: 'Mapped {/, GET} route satri — nusxalab isbot maydoniga qo\'ying' },
   { t: 'Brauzer', cmds: [], exp: 'localhost:3000 → Hello World!' },
 ];
 const P1_TROUBLE = [
@@ -871,59 +1123,67 @@ const P1_TROUBLE = [
   ['EADDRINUSE :::3000', "3000-portda boshqa server ochiq: uni yoping yoki PORT=3001 npm run start:dev"],
   ['Mapped satri yo\'q, xato bor', "Xato matnini o'qing: qizil TypeScript xatosi bo'lsa fayl:satr ko'rsatilgan; nest new tugamagan bo'lsa kuting"],
 ];
-const P1_PROOF = { label: 'Isbot: jurnaldagi Mapped satrini nusxalang', placeholder: 'Mapped {/, GET} route', check: (v) => /Mapped\s*\{\s*\/\s*,\s*GET\s*\}/i.test(v), wrong: "Kutilgan: Mapped {/, GET} route — jurnaldagi satrni aynan nusxalang" };
+const P1_PROOF = { label: 'Isbot: terminaldagi Mapped satrini nusxalang', placeholder: "terminaldagi satrni shu yerga qo'ying", check: (v) => /Mapped\s*\{\s*\/\s*,\s*GET\s*\}/i.test(v), wrong: "Kutilgan: Mapped {/, GET} route — terminaldagi satrni aynan nusxalang" };
 function ScreenP1(p) { return <Practice p={p} S={P1} steps={P1_STEPS} trouble={P1_TROUBLE} proof={P1_PROOF} />; }
 
 // --- S10 Tekshiruv 1 ---
 function Screen10(p) {
-  return <MCRetry {...p} kicker="Tekshiruv 1" eyebrow="Tekshiruv · 1 / 5"
-    title="Mashina narxiga chegirma hisoblaydigan kodni qayerga yozasiz?"
-    q="Birinchi tekshiruv. Faraz qiling, mashina narxiga chegirma hisoblash kerak. Bu kod qayerga yoziladi? Variantni tanlang."
-    opts={['Controller metodi ichiga', 'Service metodi ichiga', 'AppModule ichiga', 'main.ts ichiga']} correct={1}
-    ok="Service. Hisob, qoida va bazaga murojaat Service'da turadi. Controller faqat so'rovni oladi va Service'ni chaqiradi. Shunda chegirmani serversiz ham sinab ko'rish mumkin."
-    okShort="Service: hisob, qoida, baza — shu yerda. Controller faqat oladi va chaqiradi."
-    wrong={{ 0: "Controller yupqa qoladi: u so'rovni oladi va uzatadi, hisoblamaydi.", 2: "Module ro'yxat, unda ish bajaradigan kod yozilmaydi.", 3: "main.ts faqat ilovani ishga tushiradi." }} />;
+  return <MCRetry {...p} kicker={t('Tekshiruv 1', 'Проверка 1')} eyebrow={t('Tekshiruv · 1 / 5', 'Проверка · 1 / 5')}
+    title={t('Mashina narxiga chegirma hisoblaydigan kodni qayerga yozasiz?', 'Куда вы напишете код, который считает скидку на цену машины?')}
+    q={t("Uch bo'lakni ko'rdingiz, endi tekshirib olaylik. Birinchi tekshiruv. Faraz qiling, mashina narxiga chegirma hisoblash kerak. Bu kod qayerga yoziladi? Variantni tanlang.", 'Три части вы увидели, теперь проверим. Первая проверка. Представьте, что нужно посчитать скидку на цену машины. Куда пишется этот код? Выберите вариант.')}
+    opts={t(['Controller metodi ichiga', 'Service metodi ichiga', 'AppModule ichiga', 'main.ts ichiga'], ['Внутрь метода Controller', 'Внутрь метода Service', 'Внутрь AppModule', 'Внутрь main.ts'])} correct={1}
+    ok={t("Service. Hisob, qoida va bazaga murojaat Service'da turadi. Controller faqat so'rovni oladi va Service'ni chaqiradi. Shunda chegirmani serversiz ham sinab ko'rish mumkin.", 'Service. Расчёты, правила и обращение к базе живут в Service. Controller только принимает запрос и вызывает Service. Тогда скидку можно проверить и без сервера.')}
+    okShort={t("Service: hisob, qoida, baza — shu yerda. Controller faqat oladi va chaqiradi.", 'Service: расчёты, правила, база — здесь. Controller только принимает и вызывает.')}
+    wrong={t({ 0: "Controller'da logika yozilmaydi: u so'rovni oladi va Service'ga uzatadi, hisoblamaydi.", 2: "Module ro'yxat, unda ish bajaradigan kod yozilmaydi.", 3: "main.ts faqat ilovani ishga tushiradi." }, { 0: 'В Controller логику не пишут: он принимает запрос и передаёт его в Service, а не считает.', 2: 'Module — это список, код, который выполняет работу, в нём не пишут.', 3: 'main.ts только запускает приложение.' })} />;
 }
 
-// --- S11 Dependency Injection ---
+// --- S11 Dependency Injection — qadam-baqadam, fayllar bilan (F-1030-06: avvalgi ko'rinish tushunarsiz edi) ---
+// Savol (konstruktorda so'ralgan, lekin hech kim new qilmagan) → Express'da qanday edi → Nest'ning 3 qadami (module o'qiydi → 1 instance → konstruktorga beradi) → nom → foyda → xulosa
 const S11 = {
   kicker: '3-bosqich · Dependency Injection', title: "Service Controller'ga qanday keladi",
   segments: [
-    { id: 'a', key: "Konstruktordagi <b>o'sha satr</b>", text: "Endi konstruktordagi o'sha satrga qaytamiz: Controller'ga AppService kerak deb yozilgan joy.", show: "Endi konstruktordagi o'sha satrga qaytamiz: <code>constructor(private readonly appService: AppService)</code>." },
-    { id: 'b', key: "Express: o'zingiz yaratardingiz. Nest: <b>«menga kerak»</b> deysiz", text: "Express'da siz Service'ni o'zingiz chaqirardingiz: require qilib, new bilan yaratib, har kerakli faylda qaytadan. Nest'da siz yaratmaysiz. Siz faqat aytasiz: menga AppService kerak." },
-    { id: 'c', key: "Nest <b>bir marta yaratadi</b>, konstruktorga beradi", text: "Nest ishga tushganda providers ro'yxatiga qaraydi, AppService'ni bir marta yaratadi va kimga kerak bo'lsa, konstruktor orqali qo'liga beradi." },
-    { id: 'd', key: "<b>Dependency Injection</b> = bog'liqlikni yetkazib berish", text: "Bu usul Dependency Injection deyiladi, bog'liqlikni yetkazib berish. Bog'liqlik, chunki Controller Service'ga bog'liq. Yetkazib berish, chunki uni Nest olib keladi." },
-    { id: 'e', key: "Foyda: <b>1 nusxa · test oson · bog'lanmagan</b>", text: "Nega bu yaxshi? Birinchidan, butun loyihada bitta nusxa. Ikkinchidan, test paytida haqiqiy Service o'rniga soxtasini berish mumkin, Controller buni sezmaydi. Uchinchidan, Controller Service qayerdan kelganini bilishi shart emas." },
-    { id: 'f', key: "Tip = <b>buyurtma varaqasi</b>", text: "Konstruktordagi tip, AppService, Nest uchun buyurtma varaqasi: tipga qarab nimani berishni biladi." },
+    { id: 'a', key: "Konstruktorda <b>«menga AppService kerak»</b> — lekin uni hech kim <code>new</code> bilan yaratmagan", text: "Tekshiruvda Controller Service'ni chaqiradi dedik. Lekin Controller Service'ni qayerdan oladi? Shu savol bilan Controller faylidagi konstruktorga qaytamiz. Bu yerda yozilgan: menga AppService kerak. Lekin butun loyihada new AppService degan satr yo'q. Unda Service qayerdan keladi? Shu ekranda aynan shuni qadam-baqadam ko'ramiz.", show: "Tekshiruvda «Controller Service'ni chaqiradi» dedik. Lekin Controller Service'ni qayerdan oladi? Shu savol bilan Controller faylidagi konstruktorga qaytamiz: <code>constructor(private readonly appService: AppService)</code> — «menga AppService kerak». Lekin butun loyihada <code>new AppService()</code> degan satr yo'q. Unda Service qayerdan keladi?", st: 'ctrl' },
+    { id: 'b', key: "Express'da o'zingiz yaratardingiz: <code>require</code> + <code>new</code>, <b>har faylda qaytadan</b>", text: "Express'da buni o'zingiz qilardingiz: require qilib, new bilan yaratib, har kerakli faylda qaytadan. Uchta faylga kerak bo'lsa, uch marta. Nest'da bu ish sizdan olingan.", st: 'express' },
+    { id: 'c', key: "1-qadam: Nest ishga tushganda <b>app.module.ts</b>'dagi <code>providers</code>'ni o'qiydi", text: "Birinchi qadam. Server ishga tushganda Nest app module ts faylini ochadi va providers ro'yxatini o'qiydi: unda AppService turibdi.", st: 'mod' },
+    { id: 'd', key: "2-qadam: Nest AppService'dan <b>bitta instance</b> yaratib, o'zida saqlaydi", text: "Ikkinchi qadam. Nest AppService'dan bitta instance yaratadi va o'zida saqlab qo'yadi. Bu ombor Nest konteyneri deyiladi.", st: 'make' },
+    { id: 'e', key: "3-qadam: konstruktordagi tip <code>AppService</code> — Nest <b>shu instance'ni konstruktorga beradi</b>", text: "Uchinchi qadam. Nest AppController'ni yaratayotib uning konstruktoriga qaraydi: parametrning tipi AppService. Tip buyurtma varaqasi kabi ishlaydi: Nest konteynerdan aynan shu tipdagi instance'ni olib, konstruktorga beradi. Endi this appService tayyor.", st: 'give' },
+    { id: 'f', key: "Bu usulning nomi: <b>Dependency Injection</b> — dependency'ni inject qilish", text: "Bu usul Dependency Injection deyiladi, dependency'ni inject qilish. Dependency, chunki Controller Service'siz ishlay olmaydi. Inject, chunki uni siz emas, Nest tashqaridan olib kelib beradi.", st: 'give' },
+    { id: 'g', key: "Foyda: <b>bitta instance</b>, testda <b>soxtasini berish</b> mumkin, Controller manbani bilmaydi", text: "Nega bu yaxshi? Birinchidan, butun loyihada bitta instance. Ikkinchidan, testda haqiqiy Service o'rniga soxtasini berish mumkin, Controller buni sezmaydi. Uchinchidan, Controller Service qayerdan kelganini bilishi shart emas.", st: 'give' },
+    { id: 'h', key: "Xulosa: siz ikki ish qilasiz — <b>providers'ga yozasiz, konstruktorda so'raysiz</b>", text: "Xulosa. Sizning ishingiz ikkita: Service'ni modulning providers ro'yxatiga yozish va kerakli joyda konstruktorda so'rash. Yaratish va inject qilishni Nest qiladi. Ikkalasidan biri unutilsa nima bo'lishini beshinchi bosqichda ataylab buzib ko'ramiz.", st: 'give' },
   ],
 };
 function Screen11(p) {
-  return <Lesson p={p} S={S11} scene={({ beat }) => (<>
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-      <Block at={1} beat={beat} dim={beat >= 2}><CodePanel file="Express · 3 faylda qaytadan" numbers={false} lines={[
-        { h: `<span class="k">const</span> CarsService = <span class="c">require</span>(<span class="s">'./cars.service'</span>);` },
-        { h: `<span class="k">const</span> service = <span class="k">new</span> <span class="c">CarsService</span>();` },
-        { h: `<span class="cm">// orders.js da yana… users.js da yana…</span>` }]} /></Block>
-      <Block at={0} beat={beat} dim={beat === 1}><CodePanel file="Nest · bir satr" numbers={false} lines={[
-        { h: `<span class="k">constructor</span>(` },
-        { id: 't', h: `  <span class="k">private readonly</span> appService: <span class="c">AppService</span>` },
-        { h: `) {}` }]} focus={beat >= 5 ? ['t'] : []} /></Block>
-    </div>
-    <Block at={2} beat={beat}><div className="mk-light" style={{ padding: 14 }}>
-      <div className="mk-tag">Nest konteyneri</div>
-      <div className="mk-row">
-        <div className="mk-box" style={{ '--c': PART.mod }}><h4>providers</h4><p><code>[AppService]</code> — ro'yxat</p></div>
-        <div className="mk-arrow on">→</div>
-        <div className="mk-box hl" style={{ '--c': PART.svc }}><h4>AppService</h4><p><b>1 nusxa</b> — Nest yaratdi</p></div>
-        <div className="mk-arrow on">→</div>
-        <div className="mk-box" style={{ '--c': PART.ctrl }}><h4>AppController</h4><p>konstruktor orqali oldi</p></div>
-      </div>
-    </div></Block>
-    <Block at={3} beat={beat}><div className="mk-rule"><b>Dependency Injection</b> — bog'liqlikni yetkazib berish: siz yaratmaysiz, Nest <code>providers</code>'ga qarab yaratadi va konstruktorga beradi.</div></Block>
-    <Block at={4} beat={beat}><div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10 }}>
-      {[['1 nusxa', 'butun loyihada bitta'], ['Test oson', 'soxta Service beriladi, Controller sezmaydi'], ["Bog'lanmagan", 'Controller qayerdan kelganini bilmaydi']].map(([h, d], i) => <div key={h} className="mk-card" style={{ animation: `mk-up .4s ${i * 0.15}s ease both` }}><h5>{h}</h5><div style={{ fontSize: 13 }}>{d}</div></div>)}
-    </div></Block>
-  </>)} />;
+  return <Lesson p={p} S={S11} sceneTop scene={({ seg, beat }) => {
+    const inMod = seg.st === 'mod' || seg.st === 'make';
+    const file = inMod ? 'src/app.module.ts' : 'src/app.controller.ts';
+    const step = (n) => beat >= n ? (beat === n ? ' hl' : '') : '';
+    return (
+      <Ide files={APP_FILES} active={file}>
+        {seg.st === 'express'
+          ? <CodePanel file="express-api · cars.js, orders.js, users.js" numbers={false} lines={[
+              { h: `<span class="cm">// cars.js</span>` },
+              { h: `<span class="k">const</span> CarsService = <span class="c">require</span>(<span class="s">'./cars.service'</span>);` },
+              { h: `<span class="k">const</span> service = <span class="k">new</span> <span class="c">CarsService</span>();` },
+              { h: t('<span class="cm">// orders.js — yana require + new … users.js — yana require + new …</span>', '<span class="cm">// orders.js — снова require + new … users.js — снова require + new …</span>') }]} style={{ fontSize: 13 }} />
+          : <CodePanel key={file} file={`${file} · ${t('parcha', 'фрагмент')}`} lines={(inMod ? MOD_LINES.slice(4, 9) : CTRL_LINES.slice(3, 7)).map((l, k) => ({ ...l, n: (inMod ? 5 : 4) + k }))} focus={inMod ? ['l-providers'] : ['l-ctor']} style={{ fontSize: 13 }} />}
+        <div className="mk-light" style={{ padding: 14 }}>
+          <div className="mk-tag">{t('Server ishga tushganda Nest nima qiladi', 'Что делает Nest при запуске сервера')}</div>
+          <div className="mk-row">
+            <div className={`mk-box${step(2)}`} style={{ '--c': PART.mod, opacity: beat >= 2 ? 1 : 0.25 }}><h4>1 · app.module.ts</h4><p><code>providers: [AppService]</code> — {t("o'qidi", 'прочитал')}</p></div>
+            <div className={`mk-arrow${beat >= 3 ? ' on' : ''}`}>→</div>
+            <div className={`mk-box${step(3)}`} style={{ '--c': PART.svc, opacity: beat >= 3 ? 1 : 0.25 }}><h4>{t('2 · Nest konteyneri', '2 · Контейнер Nest')}</h4><p><b>AppService</b> — {t('1 instance yaratdi', 'создал 1 instance')}</p></div>
+            <div className={`mk-arrow${beat >= 4 ? ' on' : ''}`}>→</div>
+            <div className={`mk-box${step(4)}`} style={{ '--c': PART.ctrl, opacity: beat >= 4 ? 1 : 0.25 }}><h4>3 · AppController</h4><p>{t('konstruktor tipi', 'тип в конструкторе')} <code>AppService</code> → {t("instance'ni oldi", 'получил instance')}</p></div>
+          </div>
+        </div>
+        <Block at={5} beat={beat}><div className="mk-rule">{t(<><b>Dependency Injection</b> — dependency'ni inject qilish: siz yaratmaysiz, Nest <code>providers</code>'ga qarab yaratadi va konstruktorga beradi.</>, <><b>Dependency Injection</b> — внедрение dependency: вы не создаёте, Nest создаёт по <code>providers</code> и передаёт в конструктор.</>)}</div></Block>
+        <Block at={6} beat={beat}><div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10 }}>
+          {t([['1 instance', 'butun loyihada bitta'], ['Test oson', 'testda soxta Service beriladi, Controller sezmaydi'], ["Bog'lanmagan", 'Controller Service qayerdan kelganini bilmaydi']], [['1 instance', 'один на весь проект'], ['Тест — легко', 'в тесте подставляют фейковый Service, Controller не замечает'], ['Не связаны', 'Controller не знает, откуда пришёл Service']]).map(([h, d], i) => <div key={h} className="mk-card"><h5>{h}</h5><div style={{ fontSize: 13 }}>{d}</div></div>)}
+        </div></Block>
+        <Block at={7} beat={beat}><div className="mk-card" style={{ borderColor: T.accent }}><h5 style={{ color: T.accent }}>{t('Sizning ishingiz — ikkita', 'Ваша работа — две вещи')}</h5><div style={{ fontSize: 14 }}>{t(<>1) Service'ni modulning <code>providers</code>'iga yozish · 2) kerakli joyda konstruktorda so'rash. Qolganini Nest qiladi.</>, <>1) записать Service в <code>providers</code> модуля · 2) попросить его в конструкторе там, где он нужен. Остальное делает Nest.</>)}</div></div></Block>
+      </Ide>
+    );
+  }} />;
 }
 
 // ============================================================
@@ -952,49 +1212,65 @@ const DIFF_LINES = [
 const S12 = {
   kicker: '4-bosqich · CLI', title: 'CLI bilan cars modulini yaratamiz',
   segments: [
-    { id: 'a', key: "<code>nest g module cars</code> — g = generate", text: "Endi o'zimiz quramiz. Mashinalar uchun alohida modul kerak. Nest CLI buni uch buyruq bilan yaratadi. Birinchisi: nest g module cars. g bu generate, yaratish.", focus: ['cmd1'] },
-    { id: 'b', key: "CLI bosh modulga <b>o'zi yozdi</b>: UPDATE", text: "Natija ikki satr: CREATE, cars module yaratildi, va UPDATE, app module o'zgartirildi. Ikkinchi satrga e'tibor bering: CLI bosh modulga o'zi kirib, imports ro'yxatiga CarsModule'ni qo'shib qo'ydi. Qo'l bilan qilsangiz, aynan shuni unutasiz.", focus: ['out1u'] },
-    { id: 'c', key: "<code>nest g controller cars</code> — ro'yxatga yozildi", text: "Ikkinchi buyruq: nest g controller cars. no-spec qo'shimchasi test faylini hozircha yaratma degani, Jest darsida qaytamiz. Controller yaratildi va cars modulining controllers ro'yxatiga yozildi.", show: "<code>nest g controller cars --no-spec</code>. <code>--no-spec</code>: test faylini hozircha yaratma, Jest darsida qaytamiz. Controller yaratildi va cars modulining <code>controllers</code> ro'yxatiga yozildi.", focus: ['cmd2', 'out2'] },
-    { id: 'd', key: "<code>nest g service cars</code> — providers'ga yozildi", text: "Uchinchi buyruq: nest g service cars. Service yaratildi va providers ro'yxatiga yozildi.", focus: ['cmd3', 'out3'] },
-    { id: 'e', key: "3 buyruq → 3 CREATE + 3 UPDATE. <b>Nima qilganini biling</b>", text: "Uch buyruq, oltita o'zgarish va hamma ro'yxat to'g'ri. CLI'ga ishonish mumkin, lekin u nima qilganini bilish shart, chunki buzilganda qo'l bilan tuzatasiz.", focus: [] },
+    { id: 'a', key: "Birinchi buyruq: <code>nest g module cars</code> — g = generate, ya'ni yaratish", text: "Asoslar tayyor: uch bo'lakni va Dependency Injection'ni bilasiz. Endi o'zimiz quramiz. Mashinalar uchun alohida modul kerak. Nest CLI buni uch buyruq bilan yaratadi. Birinchisi: nest g module cars. g bu generate, yaratish.", focus: ['cmd1'] },
+    { id: 'b', key: "CLI bosh modulga <b>o'zi kirib</b>, <code>imports</code>'ga CarsModule'ni qo'shdi — UPDATE", text: "Natija ikki satr: CREATE, cars module yaratildi, va UPDATE, app module o'zgartirildi. Ikkinchi satrga e'tibor bering: CLI bosh modulga o'zi kirib, imports ro'yxatiga CarsModule'ni qo'shib qo'ydi. Qo'l bilan qilsangiz, aynan shuni unutasiz.", focus: ['out1u'] },
+    { id: 'c', key: "<code>nest g controller cars</code> — Controller yaratildi va <b>controllers'ga yozildi</b>", text: "Ikkinchi buyruq: nest g controller cars. no-spec qo'shimchasi test faylini yaratma degani: bu darsda testlar bilan ishlamaymiz, fayllar kamroq bo'lsin. Controller yaratildi va cars modulining controllers ro'yxatiga yozildi.", show: "<code>nest g controller cars --no-spec</code>. <code>--no-spec</code>: test faylini yaratma — bu darsda testlar bilan ishlamaymiz. Controller yaratildi va cars modulining <code>controllers</code> ro'yxatiga yozildi.", focus: ['cmd2', 'out2'] },
+    { id: 'd', key: "<code>nest g service cars</code> — Service yaratildi va <b>providers'ga yozildi</b>", text: "Uchinchi buyruq: nest g service cars. Service yaratildi va providers ro'yxatiga yozildi.", focus: ['cmd3', 'out3'] },
+    { id: 'e', key: "Xulosa: 3 buyruq — 3 CREATE, 3 UPDATE. <b>CLI nima qilganini biling</b>, buzilsa qo'lda tuzatasiz", text: "Xulosa: uch buyruq, oltita o'zgarish va hamma ro'yxat to'g'ri. Chapdagi Explorer'da cars papkasi va uch yangi fayl paydo bo'ldi. CLI'ga ishonish mumkin, lekin u nima qilganini bilish shart, chunki buzilganda qo'l bilan tuzatasiz.", focus: [] },
   ],
 };
 function Screen12(p) {
-  return <Lesson p={p} S={S12} scene={({ seg, beat }) => (<>
-    <CodePanel file="terminal" lines={CLI_LINES} beat={beat} focus={seg.focus} numbers={false} style={{ background: '#111827' }} />
-    <Block at={1} beat={beat} dim={beat >= 2}><CodePanel file="src/app.module.ts · CLI o'zi o'zgartirdi" lines={DIFF_LINES} numbers={false} /></Block>
-    <Block at={4} beat={beat}><div className="mk-rule"><b>3 buyruq → 3 CREATE + 3 UPDATE.</b> Har ro'yxat (imports · controllers · providers) CLI tomonidan to'ldirildi.</div></Block>
-  </>)} />;
+  // Explorer buyruq bilan birga o'sadi: har CREATE — yangi fayl paydo bo'ladi, UPDATE qilingan fayl yoritiladi
+  return <Lesson p={p} S={S12} scene={({ seg, beat }) => {
+    const files = [...APP_FILES, ...(beat >= 1 ? [CARS_FILES[0]] : []), ...(beat >= 2 ? [CARS_FILES[1]] : []), ...(beat >= 3 ? [CARS_FILES[2]] : [])];
+    const fresh = beat === 1 ? [CARS_FILES[0]] : beat === 2 ? [CARS_FILES[1]] : beat === 3 ? [CARS_FILES[2]] : [];
+    const active = beat === 1 ? 'src/app.module.ts' : beat === 2 ? CARS_FILES[1] : beat === 3 ? CARS_FILES[2] : null;
+    return (
+      <Ide files={files} active={active} fresh={fresh}>
+        <CodePanel file="terminal" lines={CLI_LINES} beat={beat} focus={seg.focus} numbers={false} style={{ background: '#111827' }} />
+        <Block at={1} beat={beat} dim={beat >= 2}><CodePanel file={t("src/app.module.ts · CLI o'zi o'zgartirdi", 'src/app.module.ts · CLI изменил сам')} lines={DIFF_LINES} numbers={false} /></Block>
+        <Block at={4} beat={beat}><div className="mk-rule">{t(<><b>3 buyruq → 3 CREATE + 3 UPDATE.</b> Har ro'yxat (imports · controllers · providers) CLI tomonidan to'ldirildi.</>, <><b>3 команды → 3 CREATE + 3 UPDATE.</b> Каждый список (imports · controllers · providers) заполнил CLI.</>)}</div></Block>
+      </Ide>
+    );
+  }} />;
 }
 
-// --- S13 Bo'sh fayllar (+ bashorat) ---
+// --- S13 Bo'sh fayllar (+ o'ylab ko'ring) — F-1030-09: avval uch fayl birdan chiqardi; endi bittadan, Explorer bilan ---
+// Fayl → savol → fayl → fayl → terminal → brauzer → xulosa (manzil Controller'dan, route metoddan)
+const S13_FILES = {
+  'src/cars/cars.module.ts': [{ h: `<span class="d">@Module</span>({` }, { id: 'lst', h: `  controllers: [<span class="c">CarsController</span>],` }, { id: 'lst', h: `  providers: [<span class="c">CarsService</span>]` }, { h: `})` }, { h: `<span class="k">export class</span> <span class="c">CarsModule</span> {}` }],
+  'src/cars/cars.controller.ts': [{ h: `<span class="k">import</span> { Controller } <span class="k">from</span> <span class="s">'@nestjs/common'</span>;` }, { h: `` }, { id: 'dec', h: `<span class="d">@Controller</span>(<span class="s">'cars'</span>)` }, { id: 'body', h: `<span class="k">export class</span> <span class="c">CarsController</span> {}   <span class="cm">// ichi bo'sh — metod yo'q</span>` }],
+  'src/cars/cars.service.ts': [{ h: `<span class="k">import</span> { Injectable } <span class="k">from</span> <span class="s">'@nestjs/common'</span>;` }, { h: `` }, { h: `<span class="d">@Injectable</span>()` }, { id: 'body', h: `<span class="k">export class</span> <span class="c">CarsService</span> {}   <span class="cm">// ichi bo'sh</span>` }],
+};
 const S13 = {
-  kicker: "4-bosqich · bo'sh fayllar", title: "Controller ro'yxatda, lekin marshrut yo'q",
+  kicker: "4-bosqich · bo'sh fayllar", title: "CLI yaratgan fayllar bo'sh: path bor, route yo'q",
   segments: [
-    { id: 'a', key: "<b>cars.module.ts</b>: ikkala ro'yxat to'ldirilgan", text: "Yaratilgan fayllarga qarang. cars module: controllers'da CarsController, providers'da CarsService." },
-    { id: 'b', key: "Bashorat: CLI yaratgan fayllar bilan server…", text: "Fayllarni ochishdan oldin bashorat qiling. CLI hozirgina yaratgan Controller va Service bilan serverni ishga tushirsak, nima bo'ladi? Uchta variantdan birini bosing.", ask: { q: "CLI yaratgan fayllar bilan server nima qiladi?", opts: ['Xato bilan yiqiladi', "Ishga tushadi, /cars → 404", "Ishga tushadi, /cars → 200, bo'sh ro'yxat"], answer: 1 } },
-    { id: 'c', key: "Controller va Service: <b>bo'sh klasslar</b>", text: "Fayllarga qaraymiz. cars controller: Controller dekoratori, qavsda cars, va bo'sh klass. cars service: Injectable dekoratori va bo'sh klass. Ichida bitta ham metod yo'q.", show: "<b>cars.controller.ts</b>: <code>@Controller('cars')</code> va bo'sh klass. <b>cars.service.ts</b>: <code>@Injectable()</code> va bo'sh klass. Ichida bitta ham metod yo'q." },
-    { id: 'd', key: "Controller ko'rindi, lekin <b>Mapped yo'q</b>", text: "Jurnalda yangi satr bor: CarsController, qavs ichida cars manzili. Nest Controller'ni ko'rdi va unga manzil berdi. Lekin Mapped satri yo'q, chunki klass ichida hali bitta ham metod yo'q.", show: "Jurnalda yangi satr: <code>CarsController {/cars}</code>. Nest Controller'ni ko'rdi va unga manzil berdi. Lekin <b>Mapped satri yo'q</b>, chunki klass ichida hali bitta ham metod yo'q." },
-    { id: 'e', key: "cars manzili: <b>404</b>, eshik bor, ichida hech kim yo'q", text: "Brauzerda cars manzilini ochsak: to'rt yuz to'rt, Cannot GET cars. Bu xato emas, bu tabiiy holat: eshik bor, ichida hech kim yo'q.", show: "Brauzerda /cars ochsak: <b>404, Cannot GET /cars</b>. Bu xato emas, bu tabiiy holat: eshik bor, ichida hech kim yo'q." },
-    { id: 'f', key: "Tartib: avval <b>Service</b>, keyin <b>Controller</b>", text: "Keyingi ikki ekranda avval Service'ni, keyin Controller'ni to'ldiramiz. Tartib aynan shunday: avval ishni bajaradigan bo'lak, keyin uni chaqiradigan bo'lak." },
+    { id: 'a', key: "<b>cars.module.ts</b>: ikkala ro'yxatni CLI <b>o'zi to'ldirdi</b>", text: "CLI uch faylni yaratdi va ro'yxatlarga yozdi. Ichida nima bor? Birma-bir ochamiz. Birinchisi cars module ts: controllers ro'yxatida CarsController, providers ro'yxatida CarsService. Ikkalasini CLI o'zi yozdi.", file: 'src/cars/cars.module.ts', focus: ['lst'] },
+    { id: 'b', key: "O'ylab ko'ring: shu fayllar bilan server ishga tushsa, <code>/cars</code> nima qaytaradi?", text: "Boshqa fayllarni ochishdan oldin o'ylab ko'ring. CLI hozirgina yaratgan Controller va Service bilan serverni ishga tushirsak, cars route'i nima qaytaradi? Uchta variantdan birini bosing.", ask: { q: "CLI yaratgan fayllar bilan server nima qiladi?", opts: ['Xato bilan yiqiladi', "Ishga tushadi, /cars → 404", "Ishga tushadi, /cars → 200, bo'sh ro'yxat"], answer: 1 }, file: 'src/cars/cars.module.ts', focus: [] },
+    { id: 'c', key: "<b>cars.controller.ts</b>: decorator bor, lekin klass ichi <b>bo'sh — birorta metod yo'q</b>", text: "Endi cars controller ts. Controller decorator'i bor, qavsda cars. Lekin klassning ichi bo'sh: Get ham, Post ham, birorta metod yo'q.", show: "<b>cars.controller.ts</b>: <code>@Controller('cars')</code> bor, lekin klass ichi bo'sh — <code>@Get</code> ham, <code>@Post</code> ham, birorta metod yo'q.", file: 'src/cars/cars.controller.ts', focus: ['dec', 'body'] },
+    { id: 'd', key: "<b>cars.service.ts</b>: <code>@Injectable()</code> bor, ichi ham <b>bo'sh</b>", text: "cars service ts ham xuddi shunday: Injectable decorator'i bor, ichi bo'sh.", show: "<b>cars.service.ts</b>: <code>@Injectable()</code> bor, ichi ham bo'sh.", file: 'src/cars/cars.service.ts', focus: ['body'] },
+    { id: 'e', key: "Terminalda <code>CarsController {/cars}</code> bor, lekin <b>Mapped satri yo'q</b>", text: "Serverni ishga tushiramiz. Terminalda yangi satr bor: CarsController, qavs ichida cars path'i. Nest Controller'ni ko'rdi va unga path berdi. Lekin Mapped satri yo'q, chunki route metoddan paydo bo'ladi, metod esa yo'q.", show: "Terminalda yangi satr: <code>CarsController {/cars}</code>. Nest Controller'ni ko'rdi va unga path berdi. Lekin <b>Mapped satri yo'q</b>, chunki route metoddan paydo bo'ladi, metod esa yo'q.", file: null, focus: [] },
+    { id: 'f', key: "Brauzerda <code>/cars</code> → <b>404</b>: eshik bor, ichida hech kim yo'q", text: "Brauzerda cars route'ini ochsak: to'rt yuz to'rt, Cannot GET cars. Bu xato emas, bu tabiiy holat: eshik bor, ichida hech kim yo'q.", show: "Brauzerda /cars ochsak: <b>404, Cannot GET /cars</b>. Bu xato emas, bu tabiiy holat: eshik bor, ichida hech kim yo'q.", file: null, focus: [] },
+    { id: 'g', key: "Xulosa: path'ni Controller beradi, route'ni <b>metod</b> beradi — endi avval Service, keyin Controller", text: "Xulosa: path'ni Controller decorator'i beradi, route'ni esa metod va uning ustidagi Get yoki Post beradi. Metod yo'q ekan, Mapped ham yo'q, javob to'rt yuz to'rt. Keyingi ikki ekranda fayllarni to'ldiramiz: avval ishni bajaradigan Service, keyin uni chaqiradigan Controller.", file: null, focus: [] },
   ],
 };
 function Screen13(p) {
-  const mini = (file, lines) => <CodePanel file={file} numbers={false} lines={lines} style={{ padding: '14px 14px', fontSize: 12.5 }} />;
-  return <Lesson p={p} S={S13} scene={({ beat }) => (<>
-    <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr 1fr', gap: 10 }}>
-      <Block at={0} beat={beat} dim={beat === 2}>{mini('cars.module.ts', [{ h: `<span class="d">@Module</span>({` }, { h: `  controllers: [<span class="c">CarsController</span>],` }, { h: `  providers: [<span class="c">CarsService</span>]` }, { h: `})` }, { h: `<span class="k">export class</span> <span class="c">CarsModule</span> {}` }])}</Block>
-      <Block at={2} beat={beat}>{mini('cars.controller.ts', [{ h: `<span class="d">@Controller</span>(<span class="s">'cars'</span>)` }, { h: `<span class="k">export class</span> <span class="c">CarsController</span> {}` }])}</Block>
-      <Block at={2} beat={beat}>{mini('cars.service.ts', [{ h: `<span class="d">@Injectable</span>()` }, { h: `<span class="k">export class</span> <span class="c">CarsService</span> {}` }])}</Block>
-    </div>
-    <Block at={3} beat={beat}><CodePanel file="terminal" numbers={false} wrap style={{ background: '#111827' }} beat={beat} lines={[
-      { at: 3, h: `[Nest] LOG [InstanceLoader] CarsModule dependencies initialized` },
-      { at: 3, id: 'x', h: `[Nest] LOG [RoutesResolver] <span class="ok">CarsController {/cars}:</span>` },
-      { at: 3, h: `[Nest] LOG [NestApplication] Nest application successfully started` },
-      { at: 4, h: `` },
-      { at: 4, h: `<span class="p">GET /cars</span> → <span class="er">404</span>  {"message":"Cannot GET /cars","error":"Not Found","statusCode":404}` }]} focus={beat === 3 ? ['x'] : []} /></Block>
-    <Block at={5} beat={beat}><div className="mk-rule">Tartib: avval <b>Service</b> (ishni bajaradigan), keyin <b>Controller</b> (uni chaqiradigan).</div></Block>
-  </>)} />;
+  return <Lesson p={p} S={S13} sceneTop scene={({ seg, beat }) => (
+    <Ide files={ALL_FILES} active={seg.file}>
+      {beat < 4
+        ? <CodePanel key={seg.file} file={seg.file} lines={S13_FILES[seg.file]} focus={seg.focus} style={{ fontSize: 14 }} />
+        : <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr 1fr', gap: 10 }}>
+            {CARS_FILES.map((f) => <CodePanel key={f} file={baseName(f)} numbers={false} lines={S13_FILES[f].filter((l) => l.h && !/import/.test(l.h)).map((l) => ({ ...l, h: l.h.replace(/\s*<span class="cm">[^<]*<\/span>/, '') }))} style={{ padding: '14px 12px', fontSize: 11.5 }} />)}
+          </div>}
+      <Block at={4} beat={beat}><CodePanel file="terminal" numbers={false} wrap style={{ background: '#111827' }} lines={[
+        { h: `[Nest] LOG [InstanceLoader] CarsModule dependencies initialized` },
+        { id: 'x', h: `[Nest] LOG [RoutesResolver] <span class="ok">CarsController {/cars}:</span>` },
+        { id: 'miss', keep: true, h: t("<span class=\"er\">⟵ bu yerda Mapped {/cars, GET} bo'lishi kerak edi — metod yo'q, satr ham yo'q</span>", '<span class="er">⟵ здесь должна была быть строка Mapped {/cars, GET} — метода нет, и строки нет</span>') },
+        { h: `[Nest] LOG [NestApplication] Nest application successfully started` }]} focus={beat === 4 ? ['x', 'miss'] : []} /></Block>
+      <Block at={5} beat={beat}><Browser url="localhost:3000/cars" out={'404 · {"message":"Cannot GET /cars"}'} er /></Block>
+      <Block at={6} beat={beat}><div className="mk-rule">{t(<><b>Path — Controller'dan, route — metoddan.</b> Metod yo'q → Mapped yo'q → 404. Tartib: avval <b>Service</b> (ishni bajaradigan), keyin <b>Controller</b> (uni chaqiradigan).</>, <><b>Path — от Controller, route — от метода.</b> Нет метода → нет Mapped → 404. Порядок: сначала <b>Service</b> (выполняет работу), потом <b>Controller</b> (вызывает его).</>)}</div></Block>
+    </Ide>
+  )} />;
 }
 
 // --- S14 Service kodi ---
@@ -1030,15 +1306,15 @@ const CARS_SVC_LINES = [
 const S14 = {
   kicker: '4-bosqich · Service', title: "Service: ro'yxat va uch metod",
   segments: [
-    { id: 'a', key: "<b>Car interfeysi</b>: id, brand, model, price — shakl", text: "cars service ni to'ldiramiz. Avval Car interfeysi: mashinada id, brand, model va price bo'ladi. Interface TypeScript'ning shakl tavsifi, bazadagi jadval emas, hozircha shunchaki shakl.", focus: ['l-interface'] },
-    { id: 'b', key: "Ro'yxat xotirada: Malibu, K5. <b>Baza hali yo'q</b>", text: "Keyin ro'yxat: ikkita mashina, Chevrolet Malibu va Kia K5, narxi million so'mda. Baza hali yo'q, ma'lumot xotirada turibdi, bu dars uchun yetarli.", focus: ['l-array'] },
-    { id: 'c', key: "<code>findAll</code> — hammasi · <code>findOne</code> — id bo'yicha", text: "findAll ro'yxatni qaytaradi. findOne id bo'yicha qidiradi.", focus: ['l-findAll', 'l-findOne'] },
-    { id: 'd', key: "Topilmasa: <b>NotFoundException</b> → Nest o'zi 404 qiladi", text: "Topilmasa, NotFoundException tashlaydi. Bu Nest'ning tayyor xatosi: siz uni tashlaysiz, Nest uni o'zi to'rt yuz to'rt javobga aylantiradi, statusi va xabari bilan. Express'da buni qo'lda, status to'rt yuz to'rt va json deb yozardingiz.", show: "Topilmasa, <b>NotFoundException</b> tashlaydi. Bu Nest'ning tayyor xatosi: siz uni tashlaysiz, Nest uni o'zi 404 javobga aylantiradi, statusi va xabari bilan. Express'da buni <code>res.status(404).json</code> deb qo'lda yozardingiz.", focus: ['l-notfound'] },
-    { id: 'e', key: "<code>create</code> qo'shadi. <code>Omit&lt;Car,'id'&gt;</code> = Car'ning id'siz shakli", text: "create yangi mashinani ro'yxatga qo'shadi va qaytaradi. Qavsdagi Omit Car vergul id, TypeScript yozuvi: Car'ning id'siz shakli, chunki id'ni biz o'zimiz beramiz. Yana bir marta qarang: bu faylda so'rov haqida bitta so'z ham yo'q. Faqat mashinalar va ular bilan ishlaydigan uch metod.", show: "<code>create</code> yangi mashinani qo'shadi va qaytaradi. <code>Omit&lt;Car, 'id'&gt;</code> — TypeScript yozuvi: Car'ning id'siz shakli, chunki id'ni biz beramiz. Bu faylda so'rov haqida bitta so'z ham yo'q.", focus: ['l-create'] },
+    { id: 'a', key: "<code>Car</code> interfeysi — mashinaning <b>shakli</b>: id, brand, model, price (bazadagi jadval emas)", text: "Fayllar bo'sh, route yo'q. Tartib bo'yicha avval ishni bajaradigan bo'lakni, Service'ni to'ldiramiz. cars service ts. Avval Car interfeysi: mashinada id, brand, model va price bo'ladi. Interface TypeScript'ning shakl tavsifi, bazadagi jadval emas, hozircha shunchaki shakl.", focus: ['l-interface'] },
+    { id: 'b', key: "Ro'yxat hozircha <b>xotirada</b>: Malibu va K5 — bu darsda baza kerak emas", text: "Keyin ro'yxat: ikkita mashina, Chevrolet Malibu va Kia K5, narxi million so'mda. Baza hali yo'q, ma'lumot xotirada turibdi, bu dars uchun yetarli.", focus: ['l-array'] },
+    { id: 'c', key: "<code>findAll</code> hammasini qaytaradi, <code>findOne</code> <b>id bo'yicha</b> bittasini qidiradi", text: "findAll ro'yxatni qaytaradi. findOne id bo'yicha qidiradi.", focus: ['l-findAll', 'l-findOne'] },
+    { id: 'd', key: "Topilmasa <b>NotFoundException</b> tashlaydi — Nest uni o'zi <b>404 javobga</b> aylantiradi", text: "Topilmasa, NotFoundException tashlaydi. Bu Nest'ning tayyor xatosi: siz uni tashlaysiz, Nest uni o'zi to'rt yuz to'rt javobga aylantiradi, statusi va xabari bilan. Express'da buni qo'lda, status to'rt yuz to'rt va json deb yozardingiz.", show: "Topilmasa, <b>NotFoundException</b> tashlaydi. Bu Nest'ning tayyor xatosi: siz uni tashlaysiz, Nest uni o'zi 404 javobga aylantiradi, statusi va xabari bilan. Express'da buni <code>res.status(404).json</code> deb qo'lda yozardingiz.", focus: ['l-notfound'] },
+    { id: 'e', key: "Xulosa: <code>create</code> qo'shadi, Service'da esa <b>so'rov haqida bitta so'z yo'q</b>", text: "create yangi mashinani ro'yxatga qo'shadi va qaytaradi. Qavsdagi Omit Car vergul id, TypeScript yozuvi: Car'ning id'siz shakli, chunki id'ni biz o'zimiz beramiz. Xulosa: bu faylda so'rov haqida bitta so'z ham yo'q, req ham, res ham yo'q. Faqat mashinalar va ular bilan ishlaydigan uch metod. Shuning uchun uni Controller ham, Telegram bot ham ishlata oladi.", show: "<code>create</code> yangi mashinani qo'shadi va qaytaradi. <code>Omit&lt;Car, 'id'&gt;</code> — TypeScript yozuvi: Car'ning id'siz shakli, chunki id'ni biz beramiz. <b>Xulosa:</b> bu faylda so'rov haqida bitta so'z ham yo'q — faqat mashinalar va uch metod.", focus: ['l-create'] },
   ],
 };
 function Screen14(p) {
-  return <Lesson p={p} S={S14} scene={({ seg, beat }) => <CodePanel file="src/cars/cars.service.ts" lines={CARS_SVC_LINES} beat={beat} focus={seg.focus} />} />;
+  return <Lesson p={p} S={S14} scene={({ seg, beat }) => <Ide files={ALL_FILES} active="src/cars/cars.service.ts"><CodePanel file="src/cars/cars.service.ts" lines={CARS_SVC_LINES} beat={beat} focus={seg.focus} /></Ide>} />;
 }
 
 // --- S15 Controller kodi ---
@@ -1071,17 +1347,17 @@ const EXN_ROWS = [
   { at: 3, e: 'app.use(express.json())', n: 'kerak emas — yoqilgan' },
 ];
 const S15 = {
-  kicker: '4-bosqich · Controller', title: 'Controller: uch marshrut',
+  kicker: '4-bosqich · Controller', title: 'Controller: uch route',
   segments: [
-    { id: 'a', key: "Manzil <b>cars</b>; konstruktor: «menga CarsService kerak»", text: "cars controller. Controller dekoratori, qavsda cars: hamma metod cars manzili bilan boshlanadi. Konstruktor: menga CarsService kerak.", show: "cars.controller.ts. <code>@Controller('cars')</code>: hamma metod /cars bilan boshlanadi. Konstruktor: «menga CarsService kerak».", focus: ['l-ctrl', 'l-ctor'] },
-    { id: 'b', key: "Bo'sh <code>@Get()</code> = <b>GET /cars</b> → findAll", text: "Get dekoratori bo'sh: GET cars. Metod Service'ning findAll'ini chaqiradi.", show: "<code>@Get()</code> bo'sh: <b>GET /cars</b>. Metod findAll'ni chaqiradi.", focus: ['l-get'] },
-    { id: 'c', key: "<code>@Get(':id')</code> = <b>GET /cars/:id</b> · <b>@Param</b> = req.params, qiymat — matn", text: "Get dekoratori ikki nuqta id bilan: cars manzilidan keyin raqam, masalan cars besh. Param dekoratori Express'dagi req params id ning o'zi, faqat dekorator orqali olinadi. Manzildan kelgan qiymat har doim matn, shuning uchun Number bilan raqamga o'tkazamiz.", show: "<code>@Get(':id')</code>: <b>GET /cars/5</b> kabi manzil. <code>@Param('id') id</code>: Express'dagi <code>req.params.id</code> ning o'zi, faqat dekorator orqali olinadi. Manzildan kelgan qiymat har doim matn, shuning uchun <code>Number</code> bilan raqamga o'tkazamiz.", focus: ['l-getid', 'l-param'] },
-    { id: 'd', key: "<code>@Post()</code> = <b>POST /cars</b> · <b>@Body</b> = req.body, express.json kerak emas", text: "Post dekoratori: POST cars. Body dekoratori Express'dagi req body. Nest'da express json ni qo'lda ulash shart emas, u ichida yoqilgan.", show: "<code>@Post()</code>: <b>POST /cars</b>. <code>@Body() body</code>: Express'dagi <code>req.body</code>. Nest'da <code>express.json()</code> ni qo'lda ulash shart emas, u ichida yoqilgan.", focus: ['l-post', 'l-body'] },
-    { id: 'e', key: "Uch metod bir shaklda: <b>ol → chaqir → qaytar</b>", text: "Qarang, uchala metod ham bir xil shaklda: so'rovdan kerakli qismni olish, Service metodini chaqirish, natijani qaytarish. Controller'da if yo'q, hisob yo'q, baza yo'q.", focus: [] },
+    { id: 'a', key: "<code>@Controller('cars')</code>: hamma metod <b>/cars</b> bilan boshlanadi; konstruktor CarsService so'raydi", text: "Service tayyor: mashinalar ro'yxati va uchta metod. Endi Service'ni so'rovga ulaydigan bo'lakni, Controller'ni yozamiz. cars controller ts. Controller decorator'i, qavsda cars: hamma metod cars path'i bilan boshlanadi. Konstruktor: menga CarsService kerak.", show: "Service tayyor: mashinalar ro'yxati va uchta metod. Endi Service'ni so'rovga ulaydigan bo'lakni — Controller'ni yozamiz. <b>cars.controller.ts</b>. <code>@Controller('cars')</code>: hamma metod /cars bilan boshlanadi. Konstruktor: «menga CarsService kerak».", focus: ['l-ctrl', 'l-ctor'] },
+    { id: 'b', key: "Bo'sh <code>@Get()</code> = <b>GET /cars</b> → Service'ning findAll'i chaqiriladi", text: "Get decorator'i bo'sh: GET cars. Metod Service'ning findAll'ini chaqiradi.", show: "<code>@Get()</code> bo'sh: <b>GET /cars</b>. Metod findAll'ni chaqiradi.", focus: ['l-get'] },
+    { id: 'c', key: "<code>@Get(':id')</code> = <b>GET /cars/5</b>; <code>@Param('id')</code> — Express'dagi req.params.id, qiymati matn", text: "Get decorator'i ikki nuqta id bilan: cars path'idan keyin raqam, masalan cars besh. Param decorator'i Express'dagi req params id ning o'zi, faqat decorator orqali olinadi. URL'dan kelgan qiymat har doim matn, shuning uchun Number bilan raqamga o'tkazamiz.", show: "<code>@Get(':id')</code>: <b>GET /cars/5</b> kabi path. <code>@Param('id') id</code>: Express'dagi <code>req.params.id</code> ning o'zi, faqat decorator orqali olinadi. URL'dan kelgan qiymat har doim matn, shuning uchun <code>Number</code> bilan raqamga o'tkazamiz.", focus: ['l-getid', 'l-param'] },
+    { id: 'd', key: "<code>@Post()</code> = <b>POST /cars</b>; <code>@Body()</code> — req.body, express.json ulash shart emas", text: "Post decorator'i: POST cars. Body decorator'i Express'dagi req body. Nest'da express json ni qo'lda ulash shart emas, u ichida yoqilgan.", show: "<code>@Post()</code>: <b>POST /cars</b>. <code>@Body() body</code>: Express'dagi <code>req.body</code>. Nest'da <code>express.json()</code> ni qo'lda ulash shart emas, u ichida yoqilgan.", focus: ['l-post', 'l-body'] },
+    { id: 'e', key: "Xulosa: uch metod bir shaklda — <b>so'rovdan olinadi, Service chaqiriladi, natija qaytariladi</b>", text: "Xulosa: uchala metod ham bir xil shaklda. So'rovdan kerakli qism olinadi, Service metodi chaqiriladi, natija qaytariladi. Controller'da if yo'q, hisob yo'q, baza yo'q. Chapdagi jadval Express'dagi tanish yozuvlarning Nest'dagi o'rnini ko'rsatadi.", focus: [] },
   ],
 };
 function Screen15(p) {
-  return <Lesson p={p} S={S15} scene={({ seg }) => <CodePanel file="src/cars/cars.controller.ts" lines={CARS_CTRL_LINES} focus={seg.focus} />}
+  return <Lesson p={p} S={S15} scene={({ seg }) => <Ide files={ALL_FILES} active="src/cars/cars.controller.ts"><CodePanel file="src/cars/cars.controller.ts" lines={CARS_CTRL_LINES} focus={seg.focus} /></Ide>}
     below={({ beat }) => beat >= 1 && <table className="mk-tbl"><thead><tr><th>Express</th><th>Nest</th></tr></thead><tbody>
       {EXN_ROWS.filter((r) => r.at <= beat).map((r, i) => <tr key={i} className={r.at === beat ? 'hl' : ''}><td><code>{r.e}</code></td><td><code>{r.n}</code></td></tr>)}
     </tbody></table>} />;
@@ -1104,16 +1380,36 @@ const LC1_LINES = [
   { h: `  }` },
   { h: `}` },
 ];
+// Topilgach — tuzatilgan holat (F-1030-14): hisob Controller'dan olinadi, Service'ning findOne'iga ko'chadi
+const LC1_FIXED = [
+  ...LC1_LINES.slice(0, 9),
+  { gone: true, h: LC1_LINES[9].h },
+  { gone: true, h: LC1_LINES[10].h },
+  { gone: true, h: LC1_LINES[11].h },
+  { neu: true, h: `    <span class="k">return this</span>.carsService.<span class="c">findOne</span>(<span class="c">Number</span>(id));   <span class="cm">// yana bitta satr</span>` },
+  ...LC1_LINES.slice(12),
+];
+const LC1_SVC_FIXED = [
+  { h: `  <span class="c">findOne</span>(id: <span class="k">number</span>): <span class="c">Car</span> {` },
+  { h: `    <span class="k">const</span> car = <span class="k">this</span>.cars.<span class="c">find</span>((c) => c.id === id);` },
+  { h: `    <span class="k">if</span> (!car) <span class="k">throw new</span> <span class="c">NotFoundException</span>(<span class="s">\`Car with id \${id} not found\`</span>);` },
+  { neu: true, h: `    <span class="k">if</span> (car.price > <span class="d">300</span>) <span class="k">return</span> { ...car, price: car.price * <span class="d">0.9</span> };   <span class="cm">// chegirma — Service'da</span>` },
+  { h: `    <span class="k">return</span> car;` },
+  { h: `  }` },
+];
 function ScreenLC1(p) {
-  return <LineCheck {...p} kicker="Tekshiruv 2" eyebrow="Tekshiruv · 2 / 5 — qaysi satr xato?" title="Bu Controller ishlaydi, lekin bitta satr noto'g'ri joyda"
-    q="Ikkinchi tekshiruv. Ekrandagi Controller ishlaydi, xato chiqarmaydi. Lekin bitta satr bu faylda turmasligi kerak. Qaysi satr? Bosing."
+  return <LineCheck {...p} kicker={t('Tekshiruv 2', 'Проверка 2')} eyebrow={t('Tekshiruv · 2 / 5 — qaysi satr xato?', 'Проверка · 2 / 5 — какая строка с ошибкой?')} title={t("Bu Controller ishlaydi, lekin bitta satr noto'g'ri faylda turibdi", 'Этот Controller работает, но одна строка стоит не в том файле')}
+    task={t("Qoida: Controller faqat so'rovdan oladi, Service'ni chaqiradi va natijani qaytaradi — <b>hisob qilmaydi</b>. Bu Controller'da bitta satr hisob qilyapti. <b>O'sha satrni bosing.</b>", 'Правило: Controller только берёт из запроса, вызывает Service и возвращает результат — <b>не считает</b>. В этом Controller одна строка считает. <b>Нажмите на эту строку.</b>')}
+    q={t("Controller'ni yozdik, endi o'zingiz tekshiring. Ikkinchi tekshiruv. Qoidani eslang: Controller faqat so'rovdan oladi, Service'ni chaqiradi va natijani qaytaradi, hisob qilmaydi. Ekrandagi Controller ishlaydi, lekin bitta satr hisob qilyapti. O'sha satrni bosing.", 'Controller мы написали, теперь проверьте сами. Вторая проверка. Вспомните правило: Controller только берёт из запроса, вызывает Service и возвращает результат, он не считает. Controller на экране работает, но одна строка в нём считает. Нажмите на эту строку.')}
     file="src/cars/cars.controller.ts" lines={LC1_LINES} target={10}
-    ok="Chegirma hisobi Controller'da turibdi. Ishlaydi, lekin bu mantiq, u Service'ga tegishli: alohida sinab bo'lmaydi va Telegram bot shu chegirmani ololmaydi. Controller oladi, chaqiradi, qaytaradi."
-    okShort="11-satr: chegirma hisobi — mantiq, u Service'ga tegishli. Controller oladi, chaqiradi, qaytaradi."
-    hint="Bu satr Controller'ning ishi: so'rovni olish, Service'ni chaqirish yoki qaytarish. Hisob qayerda?" />;
+    tree={{ files: ALL_FILES, active: 'src/cars/cars.controller.ts' }}
+    fixed={LC1_FIXED} fixedExtra={[{ file: 'src/cars/cars.service.ts · findOne', lines: LC1_SVC_FIXED }]}
+    ok={t("To'g'ri. O'n birinchi satr narxga chegirma hisoblayapti. Ishlaydi, lekin bu biznes logika, u Service'ga tegishli: Controller'da tursa, uni alohida sinab bo'lmaydi va Telegram bot shu chegirmani ololmaydi. Ekranda tuzatilgan holat: hisob Service'ning findOne metodiga ko'chdi, Controller'da yana bitta satr qoldi.", 'Верно. Одиннадцатая строка считает скидку на цену. Это работает, но это бизнес-логика, и она относится к Service: пока она в Controller, её нельзя протестировать отдельно, и Telegram-бот не получит эту скидку. На экране исправленный вариант: расчёт перенесён в метод findOne в Service, а в Controller снова одна строка.')}
+    okShort={t("11-satr: chegirma hisobi — biznes logika, u Service'ga tegishli. Tuzatildi: hisob cars.service.ts → findOne'ga ko'chdi, Controller'da yana bitta satr.", 'Строка 11: расчёт скидки — бизнес-логика, она относится к Service. Исправлено: расчёт перенесён в cars.service.ts → findOne, в Controller снова одна строка.')}
+    hint={t("Bu satr Controller'ning o'z ishi: so'rovdan olish, Service'ni chaqirish yoki qaytarish. Narxni o'zgartirib, hisob qilayotgan satrni qidiring.", 'Эта строка — собственная работа Controller: взять из запроса, вызвать Service или вернуть. Ищите строку, которая меняет цену, то есть считает.')} />;
 }
 
-// --- S16 Jurnal va javoblar ---
+// --- S16 Terminal va javoblar ---
 const REQS = [
   { k: 'r1', m: 'GET', u: '/cars', st: 200, body: `[{"id":1,"brand":"Chevrolet","model":"Malibu","price":250},\n {"id":2,"brand":"Kia","model":"K5","price":320}]` },
   { k: 'r2', m: 'GET', u: '/cars/1', st: 200, body: `{"id":1,"brand":"Chevrolet","model":"Malibu","price":250}` },
@@ -1122,15 +1418,16 @@ const REQS = [
   { k: 'r5', m: 'POST', u: '/cars  {}  (bo\'sh)', st: 201, body: `{"id":4}` },
 ];
 const S16 = {
-  kicker: '4-bosqich · ishga tushdi', title: 'Jurnal va javoblar',
+  kicker: '4-bosqich · ishga tushdi', title: 'Terminal va javoblar', lockHint: "Beshala so'rov tugmasini bosing",
   segments: [
-    { id: 'a', key: "Uchta <b>Mapped</b>: uchala marshrut ulangan", text: "Server ishga tushdi. Jurnalda uchta yangi Mapped satri: cars GET, cars id GET, cars POST. Uchala marshrut ulangan. Endi so'rov yuboramiz.", open: null },
-    { id: 'b', key: "<code>GET /cars</code> → <b>200</b>, JSON o'zi yasaladi", text: "GET cars: ikki yuz va ikki mashinalik ro'yxat, JSON ko'rinishida. Biz JSON stringify yozmadik, Nest obyektni o'zi JSON qiladi.", show: "<code>GET /cars</code>: <b>200</b> va ikki mashinalik ro'yxat, JSON ko'rinishida. Biz <code>JSON.stringify</code> yozmadik, Nest obyektni o'zi JSON qiladi.", open: 'r1' },
-    { id: 'c', key: "<code>GET /cars/1</code> → <b>200</b>, Malibu", text: "GET cars bir: ikki yuz va Malibu.", show: "<code>GET /cars/1</code>: <b>200</b> va Malibu.", open: 'r2' },
-    { id: 'd', key: "<code>GET /cars/99</code> → <b>404</b> + xabar", text: "GET cars to'qson to'qqiz: to'rt yuz to'rt va xabar, Car with id 99 not found. Bu bizning NotFoundException, Nest uni shu ko'rinishga keltirdi: message, error, statusCode.", show: "<code>GET /cars/99</code>: <b>404</b> va xabar, Car with id 99 not found. Bu bizning NotFoundException, Nest uni shu ko'rinishga keltirdi: <code>message</code>, <code>error</code>, <code>statusCode</code>.", open: 'r3' },
-    { id: 'e', key: "<code>POST /cars</code> → <b>201 Created</b> o'zi qo'yiladi", text: "POST cars bilan Cobalt yuboramiz: ikki yuz bir Created va yangi mashina, id uch. E'tibor bering, biz ikki yuz birni yozmadik. Nest POST uchun uni o'zi qo'yadi, Express'da ikki yuz bo'lardi.", show: "<code>POST /cars</code> bilan Cobalt yuboramiz: <b>201 Created</b> va yangi mashina, id 3. Biz 201 yozmadik, Nest POST uchun o'zi qo'yadi; Express'da 200 bo'lardi.", open: 'r4' },
-    { id: 'f', key: "<code>POST /cars {}</code> → <b>201, {id:4}</b>. Tekshiruv yo'q", text: "Yana bir sinov: bo'sh POST yuboramiz, ichida hech narsa yo'q. Nest baribir ikki yuz bir qaytaradi va faqat id to'rt bo'lgan mashina yaratadi. Nest kiruvchi ma'lumotni o'zi tekshirmaydi, siz aytmaguncha. Tekshiruv keyingi darsda, DTO bilan.", show: "Bo'sh <code>POST /cars {}</code>: Nest baribir <b>201</b> qaytaradi va faqat <code>{id:4}</code> yaratadi. Nest kiruvchi ma'lumotni o'zi tekshirmaydi, siz aytmaguncha — tekshiruv keyingi darsda, DTO bilan.", open: 'r5' },
-    { id: 'g', key: "Besh tugmani <b>o'zingiz bosing</b> — keyin Davom", text: "Endi beshala tugmani o'zingiz bosib, har javobni o'qing. Davom besh tugmadan keyin ochiladi.", open: null },
+    { id: 'a', key: "Terminalda uchta <b>Mapped</b> satri — uchala route ulangan", text: "Service ham, Controller ham tayyor. Endi eng qiziq joyi: serverni ishga tushirib, haqiqiy so'rov yuboramiz. Server ishga tushdi. Terminalda uchta yangi Mapped satri: cars GET, cars id GET, cars POST. Uchala route ulangan. Endi so'rov yuboramiz.", open: null },
+    { id: 'b', key: "<code>GET /cars</code> → <b>200</b>: JSON'ni Nest o'zi yasadi, stringify yozilmadi", text: "GET cars: ikki yuz va ikki mashinalik ro'yxat, JSON ko'rinishida. Biz JSON stringify yozmadik, Nest obyektni o'zi JSON qiladi.", show: "<code>GET /cars</code>: <b>200</b> va ikki mashinalik ro'yxat, JSON ko'rinishida. Biz <code>JSON.stringify</code> yozmadik, Nest obyektni o'zi JSON qiladi.", open: 'r1' },
+    { id: 'c', key: "<code>GET /cars/1</code> → <b>200</b> va bitta mashina — Malibu", text: "GET cars bir: ikki yuz va Malibu.", show: "<code>GET /cars/1</code>: <b>200</b> va Malibu.", open: 'r2' },
+    { id: 'd', key: "<code>GET /cars/99</code> → <b>404</b>: bizning NotFoundException, Nest xabar bilan qaytardi", text: "GET cars to'qson to'qqiz: to'rt yuz to'rt va xabar, Car with id 99 not found. Bu bizning NotFoundException, Nest uni shu ko'rinishga keltirdi: message, error, statusCode.", show: "<code>GET /cars/99</code>: <b>404</b> va xabar, Car with id 99 not found. Bu bizning NotFoundException, Nest uni shu ko'rinishga keltirdi: <code>message</code>, <code>error</code>, <code>statusCode</code>.", open: 'r3' },
+    { id: 'e', key: "<code>POST /cars</code> → <b>201 Created</b> — bu status kodini Nest o'zi qo'ydi", text: "POST cars bilan Cobalt yuboramiz: ikki yuz bir Created va yangi mashina, id uch. E'tibor bering, biz ikki yuz birni yozmadik. Nest POST uchun uni o'zi qo'yadi, Express'da ikki yuz bo'lardi.", show: "<code>POST /cars</code> bilan Cobalt yuboramiz: <b>201 Created</b> va yangi mashina, id 3. Biz 201 yozmadik, Nest POST uchun o'zi qo'yadi; Express'da 200 bo'lardi.", open: 'r4' },
+    { id: 'f', key: "Bo'sh <code>POST {}</code> ham <b>201</b> — Nest kiruvchi ma'lumotni <b>o'zi tekshirmaydi</b>", text: "Yana bir sinov: bo'sh POST yuboramiz, ichida hech narsa yo'q. Nest baribir ikki yuz bir qaytaradi va faqat id to'rt bo'lgan mashina yaratadi. Nest kiruvchi ma'lumotni o'zi tekshirmaydi, siz aytmaguncha.", show: "Bo'sh <code>POST /cars {}</code>: Nest baribir <b>201</b> qaytaradi va faqat <code>{id:4}</code> yaratadi. Nest kiruvchi ma'lumotni o'zi tekshirmaydi, siz aytmaguncha.", open: 'r5' },
+    { id: 'f2', key: "Aytish usuli — <b>DTO + ValidationPipe</b>: bo'sh so'rovga Nest o'zi <b>400</b> qaytaradi", text: "Aytish usuli DTO: alohida klassda brand matn va majburiy, price raqam deb yoziladi, ValidationPipe yoqiladi. Shunda bo'sh so'rovga Nest o'zi to'rt yuz, Bad Request qaytaradi. Bu darsda uni yozmaymiz, lekin o'quvchi so'rasa, javobingiz shu.", show: "Aytish usuli — <b>DTO</b>: alohida klassda <code>brand</code> matn va majburiy, <code>price</code> raqam deb yoziladi, <code>ValidationPipe</code> yoqiladi; bo'sh so'rovga Nest o'zi <b>400 Bad Request</b> qaytaradi: <code>[&quot;brand should not be empty&quot;, …]</code> (sinab ko'rilgan). Bu darsda yozmaymiz — o'quvchi so'rasa, javobingiz shu.", open: 'r5' },
+    { id: 'g', key: "Xulosa: JSON, 201 va 404 xabarini <b>Nest o'zi qiladi</b> — beshala tugmani bosib ko'ring", text: "Xulosa: Nest JSON'ni, POST uchun ikki yuz birni va xato xabarini o'zi qiladi, kiruvchi ma'lumotni tekshirishni esa siz aytmaguncha qilmaydi. Endi beshala tugmani o'zingiz bosib, har javobni o'qing. Davom besh tugmadan keyin ochiladi.", open: null },
   ],
 };
 function Screen16(p) {
@@ -1146,7 +1443,7 @@ function Screen16(p) {
         { h: `[Nest] LOG [RouterExplorer] <span class="ok">Mapped {/cars, POST} route</span>` },
         { h: `[Nest] LOG [NestApplication] Nest application successfully started` }]} />
       <Block at={1} beat={beat}><div className="mk-light" style={{ padding: 14 }}>
-        <div className="mk-tag">So'rov yuborish — bosing</div>
+        <div className="mk-tag">{t("So'rov yuborish — bosing", 'Отправить запрос — нажмите')}</div>
         <div className="mk-req">
           {REQS.map((r) => <button key={r.k} className={(open || seg.open) === r.k ? 'hl' : ''} onClick={() => { setOpen(r.k); setClicked((c) => c.includes(r.k) ? c : [...c, r.k]); }}><span className={`st s${String(r.st)[0]}`}>{r.st}</span><span>{r.m} {r.u}</span></button>)}
         </div>
@@ -1156,42 +1453,44 @@ function Screen16(p) {
   }} />;
 }
 
-// --- S17 Tekshiruv 3 — bashorat ---
+// --- S17 Tekshiruv 3 — o'ylab ko'ring ---
 function Screen17(p) {
-  return <MCRetry {...p} kicker="Tekshiruv 3" eyebrow="Tekshiruv · 3 / 5 — bashorat"
-    title="Kodimiz hozirgi holatda. GET /cars/abc so'rovi kelsa, javob qanday bo'ladi?"
-    q="Uchinchi tekshiruv, bashorat qiling. Kimdir cars manzilidan keyin abc deb yubordi. Kodimiz hozirgi holatda. Javob qanday bo'ladi?"
-    opts={["200 va bo'sh obyekt", '500 Internal server error', '404 va «Car with id NaN not found»', '400 Bad Request']} correct={2}
-    ok="To'rt yuz to'rt va Car with id NaN not found. Number abc natijasi NaN. Ro'yxatda id NaN bo'lgan mashina yo'q, shuning uchun findOne NotFoundException tashlaydi. Ishlaydi, lekin xabar chiroyli emas: foydalanuvchi NaN so'zini ko'rmasligi kerak. Nest kiruvchi ma'lumotni o'zi tekshirmaydi, siz aytmaguncha; buni keyingi darsda DTO bilan qilasiz."
-    okShort="404, «Car with id NaN not found»: Number('abc') = NaN → findOne topmaydi → NotFoundException. Tekshiruv yo'q — DTO keyingi darsda."
-    wrong={{ 0: "find hech narsa topmasa undefined qaytaradi, bizning kod esa bu holatda xato tashlaydi.", 1: "Besh yuz faqat biz kutmagan xato bo'lganda chiqadi; bu yerda xatoni o'zimiz NotFoundException bilan tashladik.", 3: "To'rt yuzni hech kim qaytarmaydi, chunki tekshiruv yozilmagan." }} />;
+  return <MCRetry {...p} kicker={t('Tekshiruv 3', 'Проверка 3')} eyebrow={t("Tekshiruv · 3 / 5 — o'ylab ko'ring", 'Проверка · 3 / 5 — подумайте')}
+    title={t("Kodimiz hozirgi holatda. GET /cars/abc so'rovi kelsa, javob qanday bo'ladi?", 'Код в текущем виде. Пришёл запрос GET /cars/abc — каким будет ответ?')}
+    q={t("Javoblarni ko'rdik. Endi bir qadam oldinga o'ylaymiz. Uchinchi tekshiruv, o'ylab ko'ring. Kimdir cars path'idan keyin abc deb yubordi. Kodimiz hozirgi holatda. Javob qanday bo'ladi?", 'Ответы мы увидели. Теперь подумаем на шаг вперёд. Третья проверка, подумайте. Кто-то отправил abc после пути cars. Код в текущем виде. Каким будет ответ?')}
+    opts={t(["200 va bo'sh obyekt", '500 Internal server error', '404 va «Car with id NaN not found»', '400 Bad Request'], ['200 и пустой объект', '500 Internal server error', '404 и «Car with id NaN not found»', '400 Bad Request'])} correct={2}
+    ok={t("To'rt yuz to'rt va Car with id NaN not found. Number abc natijasi NaN. Ro'yxatda id NaN bo'lgan mashina yo'q, shuning uchun findOne NotFoundException tashlaydi. Ishlaydi, lekin xabar chiroyli emas: foydalanuvchi NaN so'zini ko'rmasligi kerak. Nest kiruvchi ma'lumotni o'zi tekshirmaydi, siz aytmaguncha. Aytish usuli: id'ni ParseIntPipe bilan olish. Unda abc kelsa, Nest o'zi to'rt yuz, Bad Request qaytaradi.", '404 и Car with id NaN not found. Number от abc даёт NaN. В списке нет машины с id NaN, поэтому findOne бросает NotFoundException. Работает, но сообщение некрасивое: пользователь не должен видеть слово NaN. Nest сам не проверяет входящие данные, пока вы не скажете. Как сказать: брать id через ParseIntPipe. Тогда, если придёт abc, Nest сам вернёт 400, Bad Request.')}
+    okShort={t("404, «Car with id NaN not found»: Number('abc') = NaN → findOne topmaydi → NotFoundException. Tekshiruv yo'q; @Param('id', ParseIntPipe) yozilsa — 400 «Validation failed (numeric string is expected)» (sinab ko'rilgan).", "404, «Car with id NaN not found»: Number('abc') = NaN → findOne не находит → NotFoundException. Проверки нет; если написать @Param('id', ParseIntPipe) — 400 «Validation failed (numeric string is expected)» (проверено).")}
+    wrong={t({ 0: "find hech narsa topmasa undefined qaytaradi, bizning kod esa bu holatda xato tashlaydi.", 1: "Besh yuz faqat biz kutmagan xato bo'lganda chiqadi; bu yerda xatoni o'zimiz NotFoundException bilan tashladik.", 3: "To'rt yuzni hech kim qaytarmaydi, chunki tekshiruv yozilmagan." }, { 0: 'Если find ничего не находит, он возвращает undefined, а наш код в этом случае бросает ошибку.', 1: '500 появляется только при ошибке, которую мы не ожидали; здесь ошибку мы бросили сами через NotFoundException.', 3: '400 никто не возвращает, потому что проверка не написана.' })} />;
 }
 
 // --- Amaliyot 2: cars modulini quring ---
 const P2 = {
   kicker: 'Amaliyot 3 / 4', eyebrow: "Hozir o'zingizda · 10–15 daqiqa", title: 'cars modulini quring', tableAt: 5,
   segments: [
-    { id: 'a', key: "Endi <b>siz</b>: cars moduli, to'rt qadam", text: "Yana navbat sizga. Hozirgina ko'rgan cars modulini o'z loyihangizda qurasiz: to'rt qadam, o'n-o'n besh daqiqa.", hl: [] },
-    { id: 'b', key: "1 · uch CLI buyrug'i", text: "Birinchi: uch buyruq bilan modul, controller va service yarating. Terminalda uchta CREATE va uchta UPDATE chiqishi kerak.", hl: [0] },
-    { id: 'c', key: "2 · Service — <b>nusxalang</b> («Kod»)", text: "Ikkinchi: Service'ni darsdagi kod bilan to'ldiring. U pastdagi Kod tugmasida turibdi, nusxalab qo'ying.", hl: [1] },
-    { id: 'd', key: "3 · Controller — <b>o'zingiz yozing</b>, 20 qator", text: "Uchinchi: Controller'ni o'zingiz yozing, yigirma qator. Namuna Kod tugmasida ko'rinadi, lekin nusxalanmaydi, ataylab. Dekorator va konstruktorni qo'lingiz his qilsin. Jurnalda uchta Mapped satri chiqsin.", hl: [2] },
-    { id: 'e', key: "4 · to'rt so'rov: 200 · 200 · 404 · 201", text: "To'rtinchi: brauzer yoki Postman bilan to'rtta so'rovni yuboring va javoblarni darsdagi bilan solishtiring: ikki yuz, ikki yuz, to'rt yuz to'rt, ikki yuz bir. cars to'qson to'qqiz javobidagi xabarni isbot maydoniga yozing.", hl: [3] },
-    { id: 'f', key: "Boshqacha chiqdimi — jadval", text: "Boshqacha chiqsa, jadvalga qarang. To'rtala katakcha va isbot to'ldirilgach, davom eting.", hl: [] },
+    { id: 'a', key: "Endi <b>siz</b>: cars modulini o'z loyihangizda to'rt qadamda qurasiz", text: "Yana navbat sizga. Hozirgina ko'rgan cars modulini o'z loyihangizda qurasiz: to'rt qadam, o'n-o'n besh daqiqa.", hl: [] },
+    { id: 'b', key: "1-qadam: uch CLI buyrug'i — terminalda <b>3 CREATE, 3 UPDATE</b> chiqsin", text: "Birinchi: uch buyruq bilan modul, controller va service yarating. Terminalda uchta CREATE va uchta UPDATE chiqishi kerak.", hl: [0] },
+    { id: 'c', key: "2-qadam: Service kodini <b>nusxalang</b> — qadam ichidagi «Kodni ochish» tugmasida", text: "Ikkinchi: Service'ni darsdagi kod bilan to'ldiring. Ikkinchi qadam ichida Kodni ochish tugmasi bor, kod o'sha yerda, nusxalab qo'ying.", hl: [1] },
+    { id: 'd', key: "3-qadam: Controller'ni <b>o'zingiz yozing</b> — namunani ko'rasiz, lekin nusxalanmaydi", text: "Uchinchi: Controller'ni o'zingiz yozing, yigirma qator. Namuna uchinchi qadam ichidagi Kodni ochish tugmasida ko'rinadi, lekin nusxalanmaydi, ataylab. Decorator va konstruktorni qo'lingiz his qilsin. Terminalda uchta Mapped satri chiqsin.", hl: [2] },
+    { id: 'e', key: "4-qadam: to'rtta so'rov — javoblar <b>200 · 200 · 404 · 201</b> bo'lsin", text: "To'rtinchi: brauzer yoki Postman bilan to'rtta so'rovni yuboring va javoblarni darsdagi bilan solishtiring: ikki yuz, ikki yuz, to'rt yuz to'rt, ikki yuz bir. cars to'qson to'qqiz javobidagi xabarni isbot maydoniga yozing.", hl: [3] },
+    { id: 'f', key: "Boshqacha chiqsa — pastdagi <b>«Boshqacha chiqdimi?»</b> tugmasi; katakcha va isbotsiz Davom ochilmaydi", text: "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing. To'rtala katakcha belgilanmaguncha va isbot to'g'ri yozilmaguncha Davom ochilmaydi.", hl: [] },
   ],
 };
 const P2_STEPS = [
   { t: 'cars moduli', cmds: ['nest g module cars', 'nest g controller cars --no-spec', 'nest g service cars --no-spec'], exp: '3 CREATE, 3 UPDATE' },
-  { t: 'Service — nusxalang', cmds: [], exp: 'cars.service.ts — «Kod» tugmasidan nusxalang' },
-  { t: "Controller — o'zingiz yozing", cmds: [], exp: "cars.controller.ts — 20 qator, namuna «Kod»da (nusxalanmaydi) · jurnalda 3 ta Mapped {/cars…}" },
+  { t: 'Service — nusxalang', cmds: [], exp: "cars.service.ts — «Kodni ochish» → «nusxalash», faylga qo'ying" },
+  { t: "Controller — o'zingiz yozing", cmds: [], exp: "cars.controller.ts — 20 qator, namunani «Kodni ochish»da ko'ring (nusxalanmaydi) · terminalda 3 ta Mapped {/cars…}" },
   { t: "So'rovlar", cmds: [], exp: 'GET /cars · /cars/1 · /cars/99 · POST /cars → 200 · 200 · 404 · 201' },
 ];
-const P2_PROOF = { label: 'Isbot: GET /cars/99 javobidagi message maydoni', placeholder: 'Car with id 99 not found', check: (v) => /not found/i.test(v) && /99/.test(v), wrong: 'Kutilgan: Car with id 99 not found — javobdagi message qiymatini aynan yozing' };
+const P2_PROOF = { label: 'Isbot: GET /cars/99 javobidagi message maydoni', placeholder: "javobdagi message matnini yozing", check: (v) => /not found/i.test(v) && /99/.test(v), wrong: 'Kutilgan: Car with id 99 not found — javobdagi message qiymatini aynan yozing' };
 const P2_TROUBLE = [
-  ['Qizil TypeScript xatosi (fayl:satr)', "Nusxalashda satr tushib qolgan: ko'rsatilgan satrni «Kod» bilan solishtiring"],
-  ['Cannot GET /cars', "Jurnalda Mapped {/cars…} bormi? Yo'q bo'lsa app.module.ts → imports: [CarsModule]"],
+  ['Qizil TypeScript xatosi (fayl:satr)', "Nusxalashda satr tushib qolgan: ko'rsatilgan satrni «Kodni ochish»dagi kod bilan solishtiring"],
+  ['Cannot GET /cars', "Terminalda Mapped {/cars…} bormi? Yo'q bo'lsa app.module.ts → imports: [CarsModule]"],
   ['POST da body undefined', "Postman'da Body → raw → JSON tanlanganmi? Content-Type: application/json"],
 ];
-function ScreenP2(p) { return <Practice p={p} S={P2} steps={P2_STEPS} trouble={P2_TROUBLE} proof={P2_PROOF} code={[{ file: 'src/cars/cars.service.ts', lines: CARS_SVC_LINES }, { file: 'src/cars/cars.controller.ts', lines: CARS_CTRL_LINES, copy: false }]} />; }
+// F-1031-04: «Kodni ochish» oynasida butun cars-api ko'rinadi; faqat amaliyot fayllari bosiladi
+const P2_TREE = ['dist/', 'node_modules/', ...ALL_FILES, 'test/', 'package.json'];
+function ScreenP2(p) { return <Practice p={p} S={P2} steps={P2_STEPS} trouble={P2_TROUBLE} proof={P2_PROOF} tree={P2_TREE} code={[{ file: 'src/cars/cars.service.ts', lines: CARS_SVC_LINES, step: 1 }, { file: 'src/cars/cars.controller.ts', lines: CARS_CTRL_LINES, copy: false, step: 2 }]} />; }
 
 // ============================================================
 //  5-BOSQICH · S18–S23, LineCheck 2, Amaliyot 3
@@ -1213,117 +1512,169 @@ const ERR1 = [
   { at: 4, id: 'e-solutions', h: `- If CarsService is a provider, is it part of the current CarsModule?` },
   { at: 4, id: 'e-solutions', h: `- If CarsService is exported from a separate @Module, is that module imported within CarsModule?` },
 ];
+// Tuzatilgan holat va muvaffaqiyatli terminal — har «Buzamiz» ekrani tuzatish bilan tugaydi (MENTOR_DARS_ETALON 3-qonun, F-1030-13)
+const MODULE_FIXED = [
+  { h: `<span class="d">@Module</span>({` },
+  { h: `  controllers: [<span class="c">CarsController</span>],` },
+  { gone: true, h: `  providers: []` },
+  { neu: true, h: `  providers: [<span class="c">CarsService</span>]` },
+  { h: `})` },
+];
+const OK_CARS = [
+  { h: `[Nest] LOG [RoutesResolver] CarsController {/cars}:` },
+  { h: `[Nest] LOG [RouterExplorer] <span class="ok">Mapped {/cars, GET} route</span>` },
+  { h: `[Nest] LOG [RouterExplorer] <span class="ok">Mapped {/cars/:id, GET} route</span>` },
+  { h: `[Nest] LOG [RouterExplorer] <span class="ok">Mapped {/cars, POST} route</span>` },
+  { h: `[Nest] LOG [NestApplication] <span class="ok">Nest application successfully started</span>` },
+];
 const S18 = {
   kicker: '5-bosqich · buzamiz 1', title: "Buzamiz 1: providers bo'sh",
   segments: [
-    { id: 'a', key: "Ataylab buzamiz: <b>providers bo'sh</b>", text: "Endi ataylab buzamiz, chunki o'quvchilaringiz aynan shu xatolarni qiladi, siz esa ularni o'qiy olishingiz kerak. Birinchi holat: cars module da providers ro'yxatidan CarsService'ni o'chirdik.", focus: [] },
-    { id: 'b', key: "<b>Kim?</b> CarsController. (?) = topilmagan joy", text: "Serverni ishga tushiramiz, u yiqiladi. Xabarni bo'lak-bo'lak o'qiymiz. Birinchi bo'lak: Nest CarsController'ning bog'liqliklarini topa olmadi. Qavsdagi so'roq belgisi bu topilmagan joy.", show: "Serverni ishga tushiramiz, u yiqiladi. Xabarni bo'lak-bo'lak o'qiymiz. <b>Nest can't resolve dependencies of the CarsController</b>: Nest CarsController'ning bog'liqliklarini topa olmadi. Qavsdagi <b>(?)</b> bu topilmagan joy.", focus: ['e-who'] },
-    { id: 'c', key: "<b>Nima yetishmayapti?</b> CarsService, index 0", text: "Ikkinchi bo'lak: nolinchi argument, ya'ni konstruktordagi birinchi parametr, CarsService, mavjud emas.", show: "<b>argument CarsService at index [0] is available</b>: nolinchi argument, ya'ni konstruktordagi birinchi parametr, CarsService, mavjud emas.", focus: ['e-what'] },
-    { id: 'd', key: "<b>Qayerda?</b> CarsModule", text: "Uchinchi bo'lak: qaysi modulda qidirdi, CarsModule'da. Mana, uch savolga javob bor: kim, nima yetishmayapti, qayerda.", show: "<b>in the CarsModule module</b>: qaysi modulda qidirdi, CarsModule'da. Mana, uch savolga javob bor: <b>kim, nima yetishmayapti, qayerda</b>.", focus: ['e-where'] },
-    { id: 'e', key: "Nest yechimlarni <b>o'zi sanaydi</b>", text: "Pastda Nest o'zi yechimlarni sanaydi: CarsService provider bo'lsa, u shu modulda bormi? Javob: cars module ni ochamiz, providers'ga CarsService'ni qaytaramiz.", focus: ['e-solutions'] },
-    { id: 'f', key: "Eng ko'p uchraydigan xato → <b>modul faylini oching</b>", text: "Bu Nest'dagi eng ko'p uchraydigan xato. Uni ko'rsangiz, har doim modul faylini oching.", focus: [] },
+    { id: 'a', key: "Ataylab buzamiz: <code>cars.module.ts</code>'da <b>providers bo'sh</b> qoldi", text: "Ishlaydigan modulimiz bor. Endi uni ataylab buzamiz, chunki o'quvchilaringiz aynan shu xatolarni qiladi, siz esa ularni o'qiy olishingiz kerak. Birinchi holat: cars module da providers ro'yxatidan CarsService'ni o'chirdik.", focus: [] },
+    { id: 'b', key: "Server yiqildi. 1-bo'lak — <b>qaysi klass?</b> CarsController; <code>(?)</code> — topilmagan dependency o'rni", text: "Serverni ishga tushiramiz, u yiqiladi. Xabarni uch bo'lakka bo'lib o'qiymiz. Birinchi bo'lak, qaysi klass: Nest CarsController'ning dependency'larini topa olmadi. Qavsdagi so'roq belgisi topilmagan dependency'ning o'rni.", show: "Serverni ishga tushiramiz, u yiqiladi. Xabarni uch bo'lakka bo'lib o'qiymiz. 1 · <b>qaysi klass</b>: <b>Nest can't resolve dependencies of the CarsController</b> — Nest CarsController'ning dependency'larini topa olmadi. Qavsdagi <b>(?)</b> — topilmagan dependency'ning o'rni.", focus: ['e-who'] },
+    { id: 'c', key: "2-bo'lak — <b>qaysi dependency yetishmayapti?</b> CarsService, konstruktordagi 0-argument", text: "Ikkinchi bo'lak, qaysi dependency yetishmayapti: nolinchi argument, ya'ni konstruktordagi birinchi parametr, CarsService.", show: "2 · <b>qaysi dependency</b>: <b>argument CarsService at index [0] is available</b> — nolinchi argument, ya'ni konstruktordagi birinchi parametr, CarsService.", focus: ['e-what'] },
+    { id: 'd', key: "3-bo'lak — <b>qaysi fayl?</b> CarsModule, ya'ni <code>cars.module.ts</code>", text: "Uchinchi bo'lak, qaysi faylni ochamiz: Nest CarsModule'da qidirdi va topmadi, demak cars module ts fayli. Mana, uch savolga javob bor: qaysi klass, qaysi dependency, qaysi fayl.", show: "3 · <b>qaysi fayl</b>: <b>in the CarsModule module</b> — Nest CarsModule'da qidirdi va topmadi, demak <code>cars.module.ts</code>. Uch savolga javob bor: <b>qaysi klass · qaysi dependency · qaysi fayl</b>.", focus: ['e-where'] },
+    { id: 'e', key: "Pastda Nest <b>yechimni o'zi taklif qiladi</b>: CarsService shu modulda bormi?", text: "Pastda Nest o'zi yechimlarni sanaydi. Ikkinchisi bizning holat: CarsService provider bo'lsa, u shu modulda bormi? Yo'q, biz uni o'chirganmiz.", focus: ['e-solutions'] },
+    { id: 'f', key: "Tuzatamiz: <code>providers: [CarsService]</code> qaytdi — server <b>ishga tushdi</b>", text: "Tuzatamiz: cars module ts faylini ochib, providers ro'yxatiga CarsService'ni qaytaramiz va saqlaymiz. start dev serverni o'zi qayta yuklaydi: terminalda Mapped satrlari va successfully started.", focus: [] },
+    { id: 'g', key: "Xulosa: «can't resolve dependencies» ko'rsangiz — <b>modul faylini oching</b>, providers'ni tekshiring", text: "Xulosa: bu Nest'dagi eng ko'p uchraydigan xato. Xabarni uch savol bilan o'qiysiz: qaysi klass, qaysi dependency, qaysi fayl. Javob esa doim modul faylida: yetishmayotgan Service providers ro'yxatiga yoziladi.", focus: [] },
   ],
 };
 function Screen18(p) {
-  return <Lesson p={p} S={S18} scene={({ seg, beat }) => (<>
-    <Block at={0} beat={beat} dim={beat >= 1 && beat <= 4}><CodePanel file="src/cars/cars.module.ts" numbers={false} lines={MODULE_BROKEN} /></Block>
-    <Block at={1} beat={beat}><CodePanel file="terminal — server yiqildi" numbers={false} wrap style={{ background: '#1F1115' }} beat={beat} lines={ERR1} focus={seg.focus} /></Block>
-    <Block at={5} beat={beat}><div className="mk-rule"><b>Kim · nima · qayerda.</b> «can't resolve dependencies» ko'rsangiz — modul faylini oching, <code>providers</code>'ni tekshiring.</div></Block>
-  </>)} />;
+  return <Lesson p={p} S={S18} sceneTop scene={({ seg, beat }) => {
+    const fixed = beat >= 5;
+    return (
+      <Ide files={ALL_FILES} active="src/cars/cars.module.ts">
+        <CodePanel key={fixed ? 'f' : 'b'} file="src/cars/cars.module.ts" numbers={false} lines={fixed ? MODULE_FIXED : MODULE_BROKEN} style={{ opacity: beat >= 1 && beat <= 4 ? 0.5 : 1, transition: 'opacity .4s' }} />
+        {fixed
+          ? <CodePanel file={t('terminal — tuzatildi, server ishga tushdi', 'terminal — исправлено, сервер запустился')} numbers={false} wrap style={{ background: '#111827' }} lines={OK_CARS} />
+          : <Block at={1} beat={beat}><CodePanel file={t('terminal — server yiqildi', 'terminal — сервер упал')} numbers={false} wrap style={{ background: '#1F1115' }} beat={beat} lines={ERR1} focus={seg.focus} /></Block>}
+        <Block at={6} beat={beat}><div className="mk-rule">{t(<><b>Qaysi klass · qaysi dependency · qaysi fayl.</b> «can't resolve dependencies» ko'rsangiz — modul faylini oching, <code>providers</code>'ni tekshiring.</>, <><b>Какой класс · какой dependency · какой файл.</b> Видите «can't resolve dependencies» — откройте файл модуля, проверьте <code>providers</code>.</>)}</div></Block>
+      </Ide>
+    );
+  }} />;
 }
 
-// --- S19 jim xato (+ bashorat) ---
+// --- S19 jim xato (+ o'ylab ko'ring) ---
 const S19 = {
   kicker: '5-bosqich · buzamiz 2', title: "Buzamiz 2: imports'da CarsModule yo'q",
   segments: [
-    { id: 'a', key: "Bosh modul <code>imports</code>'idan CarsModule o'chirildi", text: "Ikkinchi holat. app module da imports ro'yxatidan CarsModule'ni olib tashladik." },
-    { id: 'b', key: "Bashorat: server ishga tushadimi?", text: "Bashorat qiling: serverni ishga tushirsak, xato chiqib yiqiladimi, yoki ishga tushadimi?", ask: { q: 'Server nima qiladi?', opts: ['Xato bilan yiqiladi', 'Ishga tushadi'], answer: 1 } },
-    { id: 'c', key: "<b>Ishga tushdi</b>, xato yo'q", text: "Server ishga tushdi, muvaffaqiyatli deb yozdi, hamma narsa yaxshidek. Xato yo'q." },
-    { id: 'd', key: "Lekin cars → <b>404</b>. Ildiz ishlaydi", text: "Lekin cars manzilini so'rasak, to'rt yuz to'rt, Cannot GET cars. Ildiz manzil esa ishlaydi.", show: "Lekin <code>/cars</code> so'rasak, <b>404, Cannot GET /cars</b>. <code>/</code> esa ishlaydi." },
-    { id: 'e', key: "Nest cars papkasini <b>umuman o'qimadi</b>", text: "Nima bo'ldi? AppModule CarsModule'ni ulamadi, shuning uchun Nest cars papkasini umuman o'qimadi. Xato yo'q, chunki Nest uchun u modul shunchaki yo'q. Bu jim xato, eng xavflisi." },
-    { id: 'f', key: "Jurnalda <b>CarsController satri yo'q</b>", text: "Buni qanday topasiz? Jurnalga qarang: CarsController satri yo'q, cars uchun Mapped satri yo'q. Jurnalni o'qishni odat qiling degan edim, sabab mana shu." },
-    { id: 'g', key: "Qoida: 404 + kod to'g'ri → <b>jurnal, keyin imports</b>", text: "Qoida: marshrut to'rt yuz to'rt bersa va kodingiz to'g'ri ko'rinsa, avval jurnalda Mapped satrini qidiring, keyin bosh modulning imports ro'yxatini tekshiring." },
+    { id: 'a', key: "Ataylab buzamiz: <code>app.module.ts</code>'ning <code>imports</code>'idan CarsModule olindi", text: "Birinchi xatoni o'qidik va tuzatdik. Ikkinchi holat boshqacha: bu safar server yiqilmaydi, va aynan shuning uchun xavfli. app module da imports ro'yxatidan CarsModule'ni olib tashladik." },
+    { id: 'b', key: "O'ylab ko'ring: server <b>xato bilan yiqiladimi</b> yoki ishga tushadimi?", text: "O'ylab ko'ring: serverni ishga tushirsak, xato chiqib yiqiladimi, yoki ishga tushadimi?", ask: { q: 'Server nima qiladi?', opts: ['Xato bilan yiqiladi', 'Ishga tushadi'], answer: 1 } },
+    { id: 'c', key: "Server <b>ishga tushdi</b> — «successfully started», xato yo'q", text: "Server ishga tushdi, muvaffaqiyatli deb yozdi, hamma narsa yaxshidek. Xato yo'q." },
+    { id: 'd', key: "Lekin <code>/cars</code> → <b>404</b>, root path esa ishlaydi", text: "Lekin cars route'ini so'rasak, to'rt yuz to'rt, Cannot GET cars. Root path esa ishlaydi.", show: "Lekin <code>/cars</code> so'rasak, <b>404, Cannot GET /cars</b>. <code>/</code> esa ishlaydi." },
+    { id: 'e', key: "AppModule CarsModule'ni ulamadi — Nest cars papkasini <b>umuman o'qimadi</b>. Bu jim xato", text: "Nima bo'ldi? AppModule CarsModule'ni ulamadi, shuning uchun Nest cars papkasini umuman o'qimadi. Xato yo'q, chunki Nest uchun u modul shunchaki yo'q. Bu jim xato, eng xavflisi." },
+    { id: 'f', key: "Topish yo'li: terminalda <b>CarsController satri ham, Mapped ham yo'q</b>", text: "Buni qanday topasiz? Terminalga qarang: CarsController satri yo'q, cars uchun Mapped satri yo'q. Terminaldagi satrlarni o'qishni odat qiling degan edim, sabab mana shu." },
+    { id: 'g', key: "Tuzatamiz: <code>imports: [CarsModule]</code> qaytdi — Mapped satrlari <b>qaytib keldi</b>", text: "Tuzatamiz: app module ts faylida imports ro'yxatiga CarsModule'ni qaytaramiz. Server qayta yuklanadi va terminalda CarsController hamda uchta Mapped satri qaytib keladi. cars route'i yana ishlaydi." },
+    { id: 'h', key: "Xulosa: 404 bo'lsa-yu kod to'g'ri ko'rinsa — <b>avval terminaldagi Mapped</b>, keyin imports", text: "Xulosa: route to'rt yuz to'rt bersa va kodingiz to'g'ri ko'rinsa, avval terminalda Mapped satrini qidiring, keyin bosh modulning imports ro'yxatini tekshiring." },
   ],
 };
 function Screen19(p) {
-  return <Lesson p={p} S={S19} scene={({ beat }) => (<>
+  return <Lesson p={p} S={S19} sceneTop scene={({ beat }) => beat >= 6 ? (
+    <Ide files={ALL_FILES} active="src/app.module.ts">
+      <CodePanel key="f" file="src/app.module.ts" numbers={false} lines={[{ h: `<span class="d">@Module</span>({` }, { gone: true, h: `  imports: [],` }, { neu: true, h: `  imports: [<span class="c">CarsModule</span>],` }, { h: `  controllers: [<span class="c">AppController</span>],` }, { h: `  providers: [<span class="c">AppService</span>],` }, { h: `})` }]} />
+      <CodePanel file={t('terminal — tuzatildi', 'terminal — исправлено')} numbers={false} wrap style={{ background: '#111827' }} lines={[...OK_CARS, { h: `` }, { h: `<span class="p">GET /cars</span> → <span class="ok">200</span>  [{"id":1,"brand":"Chevrolet",…}, …]` }]} />
+      <Block at={7} beat={beat}><div className="mk-rule">{t(<><b>404 + kod to'g'ri ko'rinadi?</b> 1) terminalda <code>Mapped</code> satrini qidiring · 2) bosh modulning <code>imports</code>'ini tekshiring.</>, <><b>404, а код выглядит верным?</b> 1) ищите в терминале строку <code>Mapped</code> · 2) проверьте <code>imports</code> главного модуля.</>)}</div></Block>
+    </Ide>
+  ) : (
+    <Ide files={ALL_FILES} active="src/app.module.ts">
     <Block at={0} beat={beat} dim={beat >= 2 && beat !== 4}><CodePanel file="src/app.module.ts" numbers={false} lines={[{ h: `<span class="d">@Module</span>({` }, { gone: true, h: `  imports: [<span class="c">CarsModule</span>],` }, { neu: true, h: `  imports: [],` }, { h: `  controllers: [<span class="c">AppController</span>],` }, { h: `  providers: [<span class="c">AppService</span>],` }, { h: `})` }]} /></Block>
-    <Block at={2} beat={beat}><CodePanel file="terminal — xato YO'Q" numbers={false} wrap style={{ background: '#111827' }} beat={beat} lines={[
+    <Block at={2} beat={beat}><CodePanel file={t("terminal — xato YO'Q", 'terminal — ошибки НЕТ')} numbers={false} wrap style={{ background: '#111827' }} beat={beat} lines={[
       { at: 2, h: `[Nest] LOG [InstanceLoader] AppModule dependencies initialized` },
       { at: 2, h: `[Nest] LOG [RoutesResolver] AppController {/}:` },
       { at: 2, h: `[Nest] LOG [RouterExplorer] Mapped {/, GET} route` },
-      { at: 5, id: 'miss', keep: true, h: `<span class="er">⟵ bu yerda CarsController {/cars} va Mapped {/cars…} bo'lishi kerak edi — yo'q</span>` },
+      { at: 5, id: 'miss', keep: true, h: t("<span class=\"er\">⟵ bu yerda CarsController {/cars} va Mapped {/cars…} bo'lishi kerak edi — yo'q</span>", '<span class="er">⟵ здесь должны были быть CarsController {/cars} и Mapped {/cars…} — их нет</span>') },
       { at: 2, id: 'ok', h: `[Nest] LOG [NestApplication] <span class="ok">Nest application successfully started</span>` },
       { at: 3, h: `` },
       { at: 3, h: `<span class="p">GET /cars</span> → <span class="er">404</span>  {"message":"Cannot GET /cars","error":"Not Found","statusCode":404}` },
       { at: 3, h: `<span class="p">GET /</span>     → <span class="ok">200</span>  Hello World!` }]} focus={beat === 2 ? ['ok'] : (beat === 5 ? ['miss'] : [])} /></Block>
-    <Block at={6} beat={beat}><div className="mk-rule"><b>404 + kod to'g'ri ko'rinadi?</b> 1) jurnalda <code>Mapped</code> satrini qidiring · 2) bosh modulning <code>imports</code>'ini tekshiring.</div></Block>
-  </>)} />;
+    </Ide>
+  )} />;
 }
 
-// --- S20 Controller dekoratori yo'q ---
+// --- S20 Controller decorator'i yo'q ---
 const S20 = {
-  kicker: '5-bosqich · buzamiz 3', title: "Buzamiz 3: Controller dekoratori yo'q",
+  kicker: '5-bosqich · buzamiz 3', title: "Buzamiz 3: Controller decorator'i yo'q",
   segments: [
-    { id: 'a', key: "Dekorator o'chirildi, klass qoldi → <b>yiqiladi</b>", text: "Uchinchi holat: cars controller da Controller dekoratorini o'chirdik, klass joyida qoldi. Server yiqiladi." },
-    { id: 'b', key: "«<b>Invalid controller</b>»: belgi yo'q, lekin ro'yxatda bor", text: "Xabar: noto'g'ri controller aniqlandi. CarsController'da Controller dekoratori yo'q, lekin u qaysidir modulning controllers ro'yxatida turibdi.", show: "<b>An invalid controller has been detected.</b> CarsController does not have the @Controller() decorator, but it is being listed in the controllers array of some module." },
-    { id: 'c', key: "Belgi bo'lmasa Nest <b>tanimaydi</b>", text: "Nest aniq aytyapti: siz uni ro'yxatga yozgansiz, lekin klassda belgi yo'q. Dekoratorlar ekranida aytganimni eslang: belgi bo'lmasa, Nest klassni tanimaydi." },
-    { id: 'd', key: "Yechim: <b>bitta satr</b>, dekoratorni qaytarish", text: "Yechim bitta satr: dekoratorni qaytarish. O'quvchilar buni ko'pincha kodni nusxalab yozganda, birinchi satrni tushirib qoldirganda qiladi." },
+    { id: 'a', key: "Ataylab buzamiz: <code>@Controller('cars')</code> o'chirildi, klass qoldi — server <b>yiqiladi</b>", text: "Jim xatoni ko'rdik. Uchinchi holat decorator haqida: to'rtinchi ekranda aytgan qoidani endi amalda ko'ramiz. cars controller da Controller decorator'ini o'chirdik, klass joyida qoldi. Server yiqiladi." },
+    { id: 'b', key: "Xabar: «<b>invalid controller</b>» — belgi yo'q, lekin controllers ro'yxatida turibdi", text: "Xabar: noto'g'ri controller aniqlandi. CarsController'da Controller decorator'i yo'q, lekin u qaysidir modulning controllers ro'yxatida turibdi.", show: "<b>An invalid controller has been detected.</b> CarsController does not have the @Controller() decorator, but it is being listed in the controllers array of some module." },
+    { id: 'c', key: "4-ekrandagi qoida ishladi: belgi bo'lmasa, <b>Nest klassni tanimaydi</b>", text: "Nest aniq aytyapti: siz uni ro'yxatga yozgansiz, lekin klassda belgi yo'q. Decorator'lar ekranida aytganimni eslang: belgi bo'lmasa, Nest klassni tanimaydi." },
+    { id: 'd', key: "Tuzatamiz: decorator qaytdi — server <b>ishga tushdi</b>, Mapped satrlari joyida", text: "Tuzatish bitta satr: decorator'ni qaytaramiz. Server qayta yuklanadi, terminalda Mapped satrlari va successfully started." },
+    { id: 'e', key: "Xulosa: «invalid controller» — <b>birinchi satr tushib qolgan</b>, decorator'ni qaytaring", text: "Xulosa: invalid controller xabarini ko'rsangiz, xabarda aytilgan klassning ustiga qarang. O'quvchilar buni ko'pincha kodni qo'lda ko'chirganda, birinchi satrni tushirib qoldirganda qiladi." },
   ],
 };
 function Screen20(p) {
-  return <Lesson p={p} S={S20} scene={({ beat }) => {
+  return <Lesson p={p} S={S20} sceneTop scene={({ beat }) => {
     const fixed = beat >= 3;
-    return (<>
+    return (<Ide files={ALL_FILES} active="src/cars/cars.controller.ts">
       <CodePanel key={fixed ? 'f' : 'b'} file="src/cars/cars.controller.ts" lines={[
         { h: `<span class="k">import</span> { Body, Controller, Get, Param, Post } <span class="k">from</span> <span class="s">'@nestjs/common'</span>;` },
         { h: `` },
-        fixed ? { neu: true, h: `<span class="d">@Controller</span>(<span class="s">'cars'</span>)` } : { gone: true, h: `<span class="d">@Controller</span>(<span class="s">'cars'</span>)   <span class="cm">← o'chirildi</span>` },
+        fixed ? { neu: true, h: `<span class="d">@Controller</span>(<span class="s">'cars'</span>)` } : { gone: true, h: `<span class="d">@Controller</span>(<span class="s">'cars'</span>)   <span class="cm">${t("← o'chirildi", '← удалено')}</span>` },
         { h: `<span class="k">export class</span> <span class="c">CarsController</span> {` },
         { h: `  <span class="k">constructor</span>(<span class="k">private readonly</span> carsService: <span class="c">CarsService</span>) {}` },
         { h: `  <span class="cm">// …</span>` },
         { h: `}` }]} />
-      <Block at={1} beat={beat} dim={fixed}><CodePanel file="terminal — server yiqildi" numbers={false} wrap style={{ background: '#1F1115' }} lines={[
-        { h: `UnknownRequestMappingException [Error]: <span class="er">An invalid controller has been detected.</span>` },
-        { h: `"CarsController" <span class="er">does not have the @Controller() decorator</span>` },
-        { h: `but it is being listed in the "controllers" array of some module.` }]} /></Block>
-      <Block at={3} beat={beat}><div className="mk-rule"><b>Yechim: bitta satr.</b> Dekoratorni qaytaring. Nusxalashda birinchi satr tushib qolgan bo'ladi.</div></Block>
-    </>);
+      {fixed
+        ? <CodePanel file={t('terminal — tuzatildi, server ishga tushdi', 'terminal — исправлено, сервер запустился')} numbers={false} wrap style={{ background: '#111827' }} lines={OK_CARS} />
+        : <Block at={1} beat={beat}><CodePanel file={t('terminal — server yiqildi', 'terminal — сервер упал')} numbers={false} wrap style={{ background: '#1F1115' }} lines={[
+            { h: `UnknownRequestMappingException [Error]: <span class="er">An invalid controller has been detected.</span>` },
+            { h: `"CarsController" <span class="er">does not have the @Controller() decorator</span>` },
+            { h: `but it is being listed in the "controllers" array of some module.` }]} /></Block>}
+      <Block at={4} beat={beat}><div className="mk-rule">{t(<><b>«invalid controller»</b> → xabardagi klass ustiga qarang: decorator tushib qolgan. Bitta satr bilan tuzatiladi.</>, <><b>«invalid controller»</b> → посмотрите над классом из сообщения: пропал decorator. Исправляется одной строкой.</>)}</div></Block>
+    </Ide>);
   }} />;
 }
 
-// --- S21 Injectable yo'q (+ bashorat) ---
+// --- S21 Injectable yo'q (+ o'ylab ko'ring) — haqiqiy chiqishlar: manba/nest-out/12 (500) va 14 (nazorat, 200) ---
 const S21 = {
-  kicker: '5-bosqich · buzamiz 4', title: "Buzamiz 4: Injectable dekoratori yo'q",
+  kicker: '5-bosqich · buzamiz 4', title: "Buzamiz 4: Injectable decorator'i yo'q",
   segments: [
-    { id: 'a', key: "Service'dan <b>Injectable</b> o'chirildi", text: "To'rtinchi holat. cars service dan Injectable dekoratorini o'chirdik. Service'ning o'zida konstruktor yo'q, u hech kimga bog'liq emas." },
-    { id: 'b', key: "Bashorat: ishlaydimi?", text: "Bashorat qiling: serverni ishga tushirsak, cars manzili ishlaydimi?", ask: { q: 'Injectable dekoratorisiz /cars ishlaydimi?', opts: ['Ha, ishlaydi', "Yo'q, xato chiqadi"], answer: 0 } },
-    { id: 'c', key: "<b>Ishlayapti.</b> Nega?", text: "Kutilmagan natija: hammasi ishlayapti, cars manzili ikki yuz qaytaryapti. Nega? CarsService'ning o'zining konstruktorida hech qanday bog'liqlik yo'q. Nest uni bog'liqliksiz yaratib qo'ya oldi." },
-    { id: 'd', key: "Injectable = «konstruktorga qarab <b>nima kerakligini aniqla</b>»", text: "Injectable aslida Nest'ga shuni aytadi: bu klassning konstruktoriga qarab, unga nima kerakligini aniqlang. Belgi bo'lmasa, Nest konstruktorga qaramaydi." },
-    { id: 'd2', key: "Bog'liqlik qo'shsak: <b>server ishga tushadi</b>, so'rovda <b>500</b>. Jim xato", text: "Endi sinab ko'ramiz: shu Injectable'siz Service'ga bog'liqlik qo'shamiz, konstruktorida PricingService so'raladi. Natija kutilmagan: server xatosiz ishga tushadi, Mapped satrlari joyida. Lekin cars so'rovi besh yuz qaytaradi, jurnalda TypeError: undefined ning withDiscount xossasini o'qib bo'lmaydi. Nest bog'liqlikni jimgina yetkazmadi, maydon bo'sh qoldi. Bu jim xato: ishga tushishda emas, birinchi so'rovda chiqadi.", show: "Injectable'siz Service'ga bog'liqlik qo'shdik (<code>constructor(private pricing: PricingService)</code>). Server <b>xatosiz ishga tushadi</b>, lekin <code>GET /cars</code> → <b>500</b>, jurnalda <code>TypeError: Cannot read properties of undefined (reading 'withDiscount')</code>. Nest bog'liqlikni jimgina yetkazmadi — maydon bo'sh. <b>Jim xato</b>: ishga tushishda emas, birinchi so'rovda." },
-    { id: 'e', key: "Qoida: <b>har Service'ga yoziladi</b>, kerak bo'lmasa ham", text: "Shuning uchun qoida sodda: Injectable har Service'ga yoziladi, hozir kerak bo'lmasa ham. O'quvchi men o'chirdim, ishlayapti, demak kerak emas desa, siz nega kerakligini tushuntira olasiz: bog'liqlik paydo bo'lganda xato ishga tushishda emas, so'rov paytida chiqadi, uni topish qiyin." },
+    { id: 'a', key: "Ataylab buzamiz: <code>cars.service.ts</code>'dan <code>@Injectable()</code> o'chirildi", text: "Controller decorator'siz Nest klassni tanimadi. Service'da ham shundaymi? To'rtinchi holat: cars service dan Injectable decorator'ini o'chirdik. Service'ning o'zida konstruktor yo'q, u hech kimga bog'liq emas." },
+    { id: 'b', key: "O'ylab ko'ring: <code>@Injectable()</code>'siz <code>/cars</code> <b>ishlaydimi?</b>", text: "O'ylab ko'ring: serverni ishga tushirsak, cars route'i ishlaydimi?", ask: { q: "Injectable decorator'siz /cars ishlaydimi?", opts: ['Ha, ishlaydi', "Yo'q, xato chiqadi"], answer: 0 } },
+    { id: 'c', key: "<b>Ishlayapti!</b> CarsService hech kimga bog'liq emas — Nest uni oddiy yaratdi", text: "Kutilmagan natija: hammasi ishlayapti, cars route'i ikki yuz qaytaryapti. Nega? CarsService'ning o'zining konstruktorida hech qanday dependency yo'q. Nest uni dependency'siz yaratib qo'ya oldi." },
+    { id: 'd', key: "<code>@Injectable()</code> Nest'ga aytadi: <b>konstruktorga qarab, nima kerakligini aniqla</b>", text: "Injectable aslida Nest'ga shuni aytadi: bu klassning konstruktoriga qarab, unga nima kerakligini aniqlang. Belgi bo'lmasa, Nest konstruktorga qaramaydi." },
+    { id: 'd2', key: "Dependency qo'shsak: server <b>ishga tushadi</b>, lekin so'rovda <b>500</b> — bu jim xato", text: "Endi sinab ko'ramiz: shu Injectable'siz Service'ga dependency qo'shamiz, konstruktorida PricingService so'raladi. Natija kutilmagan: server xatosiz ishga tushadi, Mapped satrlari joyida. Lekin cars so'rovi besh yuz qaytaradi, terminalda TypeError: undefined ning withDiscount xossasini o'qib bo'lmaydi. Nest dependency'ni jimgina inject qilmadi, maydon bo'sh qoldi. Bu jim xato: ishga tushishda emas, birinchi so'rovda chiqadi.", show: "Injectable'siz Service'ga dependency qo'shdik (<code>constructor(private pricing: PricingService)</code>). Server <b>xatosiz ishga tushadi</b>, lekin <code>GET /cars</code> → <b>500</b>, terminalda <code>TypeError: Cannot read properties of undefined (reading 'withDiscount')</code>. Nest dependency'ni jimgina inject qilmadi — maydon bo'sh. <b>Jim xato</b>: ishga tushishda emas, birinchi so'rovda." },
+    { id: 'd3', key: "Tuzatamiz: <code>@Injectable()</code> qaytdi — PricingService inject qilindi, <code>/cars</code> → <b>200</b>", text: "Tuzatamiz: Injectable decorator'ini qaytaramiz. PricingService modulning providers ro'yxatida turibdi. Endi Nest konstruktorga qaraydi, PricingService'ni inject qiladi va cars so'rovi yana ikki yuz qaytaradi.", show: "Tuzatamiz: <code>@Injectable()</code> qaytdi. <code>PricingService</code> modulning <code>providers</code>'ida turibdi. Endi Nest konstruktorga qaraydi, PricingService'ni inject qiladi va <code>GET /cars</code> yana <b>200</b> qaytaradi." },
+    { id: 'e', key: "Xulosa: <code>@Injectable()</code> <b>har Service'ga yoziladi</b>, hozir kerak bo'lmasa ham", text: "Xulosa va qoida: Injectable har Service'ga yoziladi, hozir kerak bo'lmasa ham. O'quvchi men o'chirdim, ishlayapti, demak kerak emas desa, siz nega kerakligini tushuntira olasiz: dependency paydo bo'lganda xato ishga tushishda emas, so'rov paytida chiqadi, uni topish qiyin." },
   ],
 };
 function Screen21(p) {
-  return <Lesson p={p} S={S21} scene={({ beat }) => (<>
-    <CodePanel file="src/cars/cars.service.ts" lines={[
-      { gone: true, h: `<span class="d">@Injectable</span>()   <span class="cm">← o'chirildi</span>` },
+  // Kod qadamga qarab: 0–3 Injectable'siz, dependency'siz · 4 Injectable'siz + PricingService dependency'si · 5+ tuzatildi
+  const svcLines = (beat) => {
+    const withDep = beat >= 4;
+    const fixed = beat >= 5;
+    return [
+      fixed ? { neu: true, h: `<span class="d">@Injectable</span>()   <span class="cm">${t('← qaytdi', '← вернули')}</span>` } : { gone: true, h: `<span class="d">@Injectable</span>()   <span class="cm">${t("← o'chirildi", '← удалено')}</span>` },
       { h: `<span class="k">export class</span> <span class="c">CarsService</span> {` },
-      { id: 'ctor', h: `  <span class="cm">// konstruktor yo'q — hech kimga bog'liq emas</span>` },
+      withDep
+        ? { id: 'ctor', neu: !fixed, h: `  <span class="k">constructor</span>(<span class="k">private readonly</span> pricing: <span class="c">PricingService</span>) {}` }
+        : { id: 'ctor', h: `  <span class="cm">${t("// konstruktor yo'q — hech kimga bog'liq emas", '// конструктора нет — ни от кого не зависит')}</span>` },
       { h: `  <span class="k">private</span> cars: <span class="c">Car</span>[] = [ <span class="cm">…</span> ];` },
-      { h: `  <span class="c">findAll</span>() { <span class="k">return this</span>.cars; }` },
-      { h: `}` }]} focus={beat === 0 || beat === 2 ? ['ctor'] : []} />
-    <Block at={2} beat={beat}><CodePanel file="terminal" numbers={false} wrap style={{ background: '#111827' }} lines={[
-      { h: `[Nest] LOG [RouterExplorer] <span class="ok">Mapped {/cars, GET} route</span>` },
-      { h: `[Nest] LOG [NestApplication] <span class="ok">Nest application successfully started</span>` },
-      { h: `<span class="p">GET /cars</span> → <span class="ok">200</span>  [{"id":1,"brand":"Chevrolet",…}, {"id":2,"brand":"Kia",…}]` }]} /></Block>
-    <Block at={4} beat={beat} dim={beat >= 5}><CodePanel file="terminal — Injectable'siz + bog'liqlik (haqiqiy chiqish)" numbers={false} wrap style={{ background: '#1F1115' }} lines={[
-      { h: `[Nest] LOG [NestApplication] <span class="ok">Nest application successfully started</span>` },
-      { h: `<span class="p">GET /cars</span> → <span class="er">500</span>  {"statusCode":500,"message":"Internal server error"}` },
-      { h: `[Nest] ERROR [ExceptionsHandler] <span class="er">TypeError: Cannot read properties of undefined (reading 'withDiscount')</span>` },
-      { h: `    at CarsService.findAll (src/cars/cars.service.ts:21:22)` }]} /></Block>
-    <Block at={5} beat={beat}><div className="mk-rule"><b>Qoida:</b> <code>@Injectable()</code> har Service'ga yoziladi, bog'liqligi bo'lmasa ham. Bo'lmasa — bog'liqlik paydo bo'lganda <b>jim xato</b>: server ishga tushadi, so'rovda 500.</div></Block>
-  </>)} />;
+      withDep
+        ? { h: `  <span class="c">findAll</span>() { <span class="k">return this</span>.cars.<span class="c">map</span>((c) => ({ ...c, price: <span class="k">this</span>.pricing.<span class="c">withDiscount</span>(c.price) })); }` }
+        : { h: `  <span class="c">findAll</span>() { <span class="k">return this</span>.cars; }` },
+      { h: `}` }];
+  };
+  return <Lesson p={p} S={S21} sceneTop scene={({ beat }) => (
+    <Ide files={[...ALL_FILES, 'src/cars/pricing.service.ts']} active="src/cars/cars.service.ts">
+      <CodePanel key={beat >= 5 ? 'f' : beat >= 4 ? 'd' : 'b'} file="src/cars/cars.service.ts" lines={svcLines(beat)} focus={beat === 0 || beat === 2 || beat === 4 ? ['ctor'] : []} />
+      {beat >= 5
+        ? <CodePanel file={t('terminal — tuzatildi (haqiqiy chiqish)', 'terminal — исправлено (реальный вывод)')} numbers={false} wrap style={{ background: '#111827' }} lines={[
+            { h: `[Nest] LOG [NestApplication] <span class="ok">Nest application successfully started</span>` },
+            { h: `<span class="p">GET /cars</span> → <span class="ok">200</span>  [{"id":1,"brand":"Chevrolet",…}, {"id":2,"brand":"Kia",…}]` }]} />
+        : beat >= 4
+          ? <CodePanel file={t("terminal — Injectable'siz + dependency (haqiqiy chiqish)", 'terminal — без Injectable + dependency (реальный вывод)')} numbers={false} wrap style={{ background: '#1F1115' }} lines={[
+              { h: `[Nest] LOG [NestApplication] <span class="ok">Nest application successfully started</span>` },
+              { h: `<span class="p">GET /cars</span> → <span class="er">500</span>  {"statusCode":500,"message":"Internal server error"}` },
+              { h: `[Nest] ERROR [ExceptionsHandler] <span class="er">TypeError: Cannot read properties of undefined (reading 'withDiscount')</span>` },
+              { h: `    at CarsService.findAll (src/cars/cars.service.ts:21:22)` }]} />
+          : <Block at={2} beat={beat}><CodePanel file="terminal" numbers={false} wrap style={{ background: '#111827' }} lines={[
+              { h: `[Nest] LOG [RouterExplorer] <span class="ok">Mapped {/cars, GET} route</span>` },
+              { h: `[Nest] LOG [NestApplication] <span class="ok">Nest application successfully started</span>` },
+              { h: `<span class="p">GET /cars</span> → <span class="ok">200</span>  [{"id":1,"brand":"Chevrolet",…}, {"id":2,"brand":"Kia",…}]` }]} /></Block>}
+      <Block at={6} beat={beat}><div className="mk-rule">{t(<><b>Qoida:</b> <code>@Injectable()</code> har Service'ga yoziladi, dependency'si bo'lmasa ham. Bo'lmasa — dependency paydo bo'lganda <b>jim xato</b>: server ishga tushadi, so'rovda 500.</>, <><b>Правило:</b> <code>@Injectable()</code> пишут на каждый Service, даже без dependency. Иначе, когда dependency появится, — <b>тихая ошибка</b>: сервер запускается, а на запросе 500.</>)}</div></Block>
+    </Ide>
+  )} />;
 }
 
 // --- Tekshiruv 4: qaysi satr xato (modul) ---
@@ -1340,112 +1691,174 @@ const LC2_LINES = [
   { h: `})` },
   { h: `<span class="k">export class</span> <span class="c">OrdersModule</span> {}` },
 ];
+// Topilgach — tuzatilgan holat (F-1030-14): PaymentService controllers'dan chiqadi, providers'ga kiradi
+const LC2_FIXED = [
+  ...LC2_LINES.slice(0, 7),
+  { gone: true, h: LC2_LINES[7].h },
+  { neu: true, h: `  controllers: [<span class="c">OrdersController</span>],   <span class="cm">// faqat Controller qoldi</span>` },
+  { gone: true, h: LC2_LINES[8].h },
+  { neu: true, h: `  providers: [<span class="c">OrdersService</span>, <span class="c">PaymentService</span>],   <span class="cm">// Service — shu yerda</span>` },
+  ...LC2_LINES.slice(9),
+];
 function ScreenLC2(p) {
-  return <LineCheck {...p} kicker="Tekshiruv 4" eyebrow="Tekshiruv · 4 / 5 — qaysi satr xato?" title="Server yiqiladi: «can't resolve dependencies of the OrdersController»"
-    q="To'rtinchi tekshiruv. Bu modul bilan server yiqiladi: OrdersController'ning bog'liqligi topilmadi deydi. Xato qaysi satrda? Bosing."
+  return <LineCheck {...p} kicker={t('Tekshiruv 4', 'Проверка 4')} eyebrow={t('Tekshiruv · 4 / 5 — qaysi satr xato?', 'Проверка · 4 / 5 — какая строка с ошибкой?')} title={t("Server yiqiladi: «can't resolve dependencies of the OrdersController»", "Сервер падает: «can't resolve dependencies of the OrdersController»")}
+    task={t("Qoida: Controller — <code>controllers</code>'da, Service — <code>providers</code>'da. Bu modulda bitta narsa <b>noto'g'ri ro'yxatga</b> yozilgan. <b>O'sha satrni bosing.</b>", 'Правило: Controller — в <code>controllers</code>, Service — в <code>providers</code>. В этом модуле одна вещь записана <b>не в тот список</b>. <b>Нажмите на эту строку.</b>')}
+    q={t("To'rt xato holatini ko'rdingiz, endi o'zingiz toping. To'rtinchi tekshiruv. Bu modul bilan server yiqiladi: OrdersController'ning dependency'si topilmadi deydi. Qoidani eslang: Controller controllers ro'yxatida, Service providers ro'yxatida. Bitta narsa noto'g'ri ro'yxatda. O'sha satrni bosing.", 'Четыре случая ошибок вы увидели, теперь найдите сами. Четвёртая проверка. С этим модулем сервер падает: пишет, что не найден dependency для OrdersController. Вспомните правило: Controller в списке controllers, Service в списке providers. Одна вещь стоит не в том списке. Нажмите на эту строку.')}
     file="src/orders/orders.module.ts" lines={LC2_LINES} target={[7, 8]}
-    ok="PaymentService Service, u controllers ro'yxatiga yozilgan, providers'da esa yo'q. Ikkala satr birga tuzatiladi: sakkizinchi satrdan PaymentService olinadi, to'qqizinchi satrga, providers'ga, qo'shiladi. Controllers'da faqat OrdersController qoladi."
-    okShort="8 va 9-satr birga: PaymentService controllers'dan olinadi (8), providers'ga qo'shiladi (9)."
-    hint="Xato ro'yxatlarda. Har narsa o'z ro'yxatidami: Controller controllers'da, Service providers'da?" />;
+    tree={{ root: 'shop-api', files: ['src/orders/orders.module.ts', 'src/orders/orders.controller.ts', 'src/orders/orders.service.ts', 'src/orders/payment.service.ts'], active: 'src/orders/orders.module.ts' }}
+    fixed={LC2_FIXED}
+    ok={t("To'g'ri. PaymentService bu Service, lekin u controllers ro'yxatiga yozilgan, providers'da esa yo'q. Ekranda tuzatilgan holat: sakkizinchi satrda faqat OrdersController qoldi, PaymentService to'qqizinchi satrga, providers'ga ko'chdi. Endi Nest uni yaratadi va OrdersController'ga inject qiladi.", 'Верно. PaymentService — это Service, но он записан в список controllers, а в providers его нет. На экране исправленный вариант: в восьмой строке остался только OrdersController, а PaymentService перенесён в девятую строку, в providers. Теперь Nest его создаст и сделает inject в OrdersController.')}
+    okShort={t("PaymentService — Service, u providers'da bo'lishi kerak. Tuzatildi: controllers: [OrdersController] · providers: [OrdersService, PaymentService].", 'PaymentService — это Service, он должен быть в providers. Исправлено: controllers: [OrdersController] · providers: [OrdersService, PaymentService].')}
+    hint={t("Bu satr o'z joyida. Har narsa o'z ro'yxatidami: Controller controllers'da, Service providers'da? Nomi Service bilan tugaydigan narsani qidiring.", 'Эта строка на своём месте. Всё ли в своём списке: Controller в controllers, Service в providers? Ищите то, что заканчивается на Service.')} />;
 }
 
 // --- S22 Error vs HttpException ---
 const S22 = {
   kicker: '5-bosqich · xato turi', title: 'Xatoning ikki turi: Error va HttpException',
   segments: [
-    { id: 'a', key: "findOne'da oddiy <b>Error</b> tashladik", text: "Oxirgi holat xato haqida. findOne ichida NotFoundException o'rniga oddiy Error tashladik, matni topilmadi." },
-    { id: 'b', key: "Javob: <b>500</b>, matnimiz yo'qoldi — to'g'ri shunday", text: "Javob: besh yuz, Internal server error. Bizning topilmadi matnimiz yo'qoldi. Nest kutilmagan xatoni foydalanuvchiga ko'rsatmaydi, bu to'g'ri: ichki tafsilot tashqariga chiqmasligi kerak." },
-    { id: 'c', key: "<b>HttpException oilasi</b>: Nest taniydi, status + xabar", text: "NotFoundException esa Nest'ning HttpException oilasidan. Nest uni taniydi va to'g'ri status bilan, xabari bilan qaytaradi." },
-    { id: 'd', key: "400 · 401 · 403 · 404", text: "Oilada boshqalari ham bor: BadRequest to'rt yuz, Unauthorized to'rt yuz bir, Forbidden to'rt yuz uch, NotFound to'rt yuz to'rt." },
-    { id: 'e', key: "Qoida: foydalanuvchi bilishi kerak → HttpException. «Nega 500?» → <b>qanday xato tashladingiz?</b>", text: "Qoida: foydalanuvchi bilishi kerak bo'lgan xato HttpException bilan tashlanadi, qolgani besh yuz bo'lib qoladi. O'quvchi nega besh yuz chiqyapti desa, birinchi savolingiz: qanday xato tashladingiz?" },
+    { id: 'a', key: "Ataylab buzamiz: <code>findOne</code>'da NotFoundException o'rniga <b>oddiy Error</b> tashladik", text: "Hozirgacha xatolar server ishga tushayotganda chiqdi. Oxirgi holat boshqa: server ishlayapti, xato so'rov paytida tashlanadi. Qaysi status qaytadi? cars service ts ichidagi findOne'da NotFoundException o'rniga oddiy Error tashladik, matni topilmadi." },
+    { id: 'b', key: "Javob <b>500</b>, «topilmadi» matni yo'qoldi — Nest kutilmagan xatoni yashiradi", text: "Javob: besh yuz, Internal server error. Bizning topilmadi matnimiz yo'qoldi. Nest kutilmagan xatoni foydalanuvchiga ko'rsatmaydi, bu to'g'ri: ichki tafsilot tashqariga chiqmasligi kerak." },
+    { id: 'c', key: "<b>HttpException oilasini</b> Nest taniydi: to'g'ri status va xabar bilan qaytaradi", text: "NotFoundException esa Nest'ning HttpException oilasidan. Nest uni taniydi va to'g'ri status bilan, xabari bilan qaytaradi." },
+    { id: 'd', key: "Oila: <b>400</b> BadRequest · <b>401</b> Unauthorized · <b>403</b> Forbidden · <b>404</b> NotFound", text: "Oilada boshqalari ham bor: BadRequest to'rt yuz, noto'g'ri ma'lumot. Unauthorized to'rt yuz bir, kirish qilinmagan. Forbidden to'rt yuz uch, ruxsat yo'q. NotFound to'rt yuz to'rt, topilmadi." },
+    { id: 'e', key: "Tuzatamiz: <code>Error</code> → <code>NotFoundException</code> — javob yana <b>404</b> va xabar", text: "Tuzatamiz: findOne'dagi oddiy Error'ni NotFoundException'ga almashtiramiz. Endi cars to'qson to'qqiz so'roviga yana to'rt yuz to'rt va Car with id 99 not found xabari keladi." },
+    { id: 'f', key: "Xulosa: o'quvchi «nega 500?» desa — <b>«qanday xato tashladingiz?»</b> deb so'rang va almashtiring", text: "Xulosa va sinfdagi qoida: foydalanuvchi bilishi kerak bo'lgan xato HttpException oilasi bilan tashlanadi, qolgani besh yuz bo'lib qoladi va xabari yashiriladi. O'quvchi nega besh yuz chiqyapti desa, birinchi savolingiz: qanday xato tashladingiz? Oddiy Error bo'lsa, mos HttpException'ga almashtirasiz: topilmasa NotFound, ma'lumot noto'g'ri bo'lsa BadRequest." },
   ],
 };
 function Screen22(p) {
-  return <Lesson p={p} S={S22} scene={({ beat }) => (<>
+  return <Lesson p={p} S={S22} sceneTop scene={({ beat }) => beat >= 4 ? (
+    <Ide files={ALL_FILES} active="src/cars/cars.service.ts">
+      <CodePanel file="src/cars/cars.service.ts · findOne" lines={[
+        { h: `  <span class="c">findOne</span>(id: <span class="k">number</span>): <span class="c">Car</span> {` },
+        { h: `    <span class="k">const</span> car = <span class="k">this</span>.cars.<span class="c">find</span>((c) => c.id === id);` },
+        { gone: true, h: `    <span class="k">if</span> (!car) <span class="k">throw new</span> <span class="c">Error</span>(<span class="s">'${t('topilmadi', 'не найдено')}'</span>);` },
+        { neu: true, h: `    <span class="k">if</span> (!car) <span class="k">throw new</span> <span class="c">NotFoundException</span>(<span class="s">\`Car with id \${id} not found\`</span>);` },
+        { h: `    <span class="k">return</span> car;` },
+        { h: `  }` }]} />
+      <CodePanel file={t('terminal — tuzatildi', 'terminal — исправлено')} numbers={false} wrap style={{ background: '#111827' }} lines={[
+        { h: `<span class="p">GET /cars/99</span> → <span class="ok">404</span>  {"message":"Car with id 99 not found","error":"Not Found","statusCode":404}` }]} />
+      <Block at={5} beat={beat}><div className="mk-rule">{t(<><b>«Nega 500?»</b> → «Qanday xato tashladingiz?» Oddiy <code>Error</code> → mos HttpException: topilmasa <code>NotFoundException</code> (404), ma'lumot noto'g'ri bo'lsa <code>BadRequestException</code> (400).</>, <><b>«Почему 500?»</b> → «Какую ошибку вы бросили?» Обычный <code>Error</code> → подходящий HttpException: не найдено — <code>NotFoundException</code> (404), неверные данные — <code>BadRequestException</code> (400).</>)}</div></Block>
+    </Ide>
+  ) : (<Ide files={ALL_FILES} active="src/cars/cars.service.ts">
     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-      <Block at={0} beat={beat} dim={beat >= 2 && beat <= 3}><CodePanel file="oddiy Error" numbers={false} wrap beat={beat} lines={[
-        { h: `<span class="k">throw new</span> <span class="c">Error</span>(<span class="s">'topilmadi'</span>);` },
+      <Block at={0} beat={beat} dim={beat >= 2 && beat <= 3}><CodePanel file={t('oddiy Error', 'обычный Error')} numbers={false} wrap beat={beat} lines={[
+        { h: `<span class="k">throw new</span> <span class="c">Error</span>(<span class="s">'${t('topilmadi', 'не найдено')}'</span>);` },
         { at: 1, h: `` },
         { at: 1, h: `<span class="p">GET /cars/99</span> → <span class="er">500</span>` },
         { at: 1, h: `{"statusCode":500,"message":"Internal server error"}` },
-        { at: 1, h: `<span class="cm">// «topilmadi» yo'qoldi — yashirildi</span>` }]} /></Block>
-      <Block at={2} beat={beat}><CodePanel file="HttpException oilasi" numbers={false} wrap beat={beat} lines={[
+        { at: 1, h: `<span class="cm">${t("// «topilmadi» yo'qoldi — yashirildi", '// «не найдено» пропало — скрыто')}</span>` }]} /></Block>
+      <Block at={2} beat={beat}><CodePanel file={t('HttpException oilasi', 'семейство HttpException')} numbers={false} wrap beat={beat} lines={[
         { h: `<span class="k">throw new</span> <span class="c">NotFoundException</span>(<span class="s">'Car with id 99 not found'</span>);` },
         { h: `` },
         { h: `<span class="p">GET /cars/99</span> → <span class="ok">404</span>` },
         { h: `{"message":"Car with id 99 not found","error":"Not Found","statusCode":404}` }]} /></Block>
     </div>
     <Block at={3} beat={beat}><div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 10 }}>
-      {[['BadRequestException', 400], ['UnauthorizedException', 401], ['ForbiddenException', 403], ['NotFoundException', 404]].map(([n, c], i) => <div key={n} className="mk-card" style={{ animation: `mk-up .4s ${i * 0.12}s ease both` }}><h5 style={{ color: T.accent }}>{c}</h5><code style={{ fontSize: 12 }}>{n}</code></div>)}
+      {[['BadRequestException', 400, t("ma'lumot noto'g'ri", 'неверные данные')], ['UnauthorizedException', 401, t('kirish qilinmagan', 'вход не выполнен')], ['ForbiddenException', 403, t("ruxsat yo'q", 'нет доступа')], ['NotFoundException', 404, t('topilmadi', 'не найдено')]].map(([n, c, d], i) => <div key={n} className="mk-card" style={{ animation: `mk-up .4s ${i * 0.12}s ease both` }}><h5 style={{ color: T.accent }}>{c} · {d}</h5><code style={{ fontSize: 11.5 }}>{n}</code></div>)}
     </div></Block>
-    <Block at={4} beat={beat}><div className="mk-rule"><b>Foydalanuvchi bilishi kerak</b> → HttpException (404/400/401/403). Qolgani → 500, xabari yashirin.</div></Block>
-  </>)} />;
+  </Ide>)} />;
 }
 
 // --- S23 Tekshiruv 5 — xatoni o'qish ---
 function Screen23(p) {
-  const above = <CodePanel numbers={false} wrap style={{ marginBottom: 18, background: '#1F1115' }} lines={[
+  const above = <CodePanel numbers={false} wrap style={{ marginBottom: 18, background: '#1F1115', flex: '0 0 auto', maxHeight: 'none' }} lines={[
     { h: `Nest can't resolve dependencies of the OrdersController (<span class="er">?</span>, OrdersService).` },
     { h: `Please make sure that the argument <span class="er">PaymentService at index [0]</span> is available` },
     { h: `in the <span class="er">OrdersModule</span> module.` }]} />;
-  return <MCRetry {...p} kicker="Tekshiruv 5" eyebrow="Tekshiruv · 5 / 5 — xatoni o'qish" above={above}
-    title="Bu o'quvchingizning loyihasi. Qaysi faylni ochasiz va nimani tuzatasiz?"
-    q="Beshinchi tekshiruv. Ekrandagi xabarni o'qing. Bu sizning emas, o'quvchingizning loyihasi, u yordam so'radi. Qaysi faylni ochasiz va nimani tuzatasiz?"
-    opts={["orders.controller.ts — konstruktordan OrdersService'ni o'chirish", "orders.module.ts — providers'ga PaymentService qo'shish", "app.module.ts — imports'ga OrdersController qo'shish", "payment.service.ts — Controller dekoratori qo'shish"]} correct={1}
-    ok="orders module, providers ro'yxatiga PaymentService. Xabarda hamma narsa yozilgan: kim, OrdersController; nima yetishmayapti, PaymentService, index nol; qayerda, OrdersModule. Qavsda so'roq belgisi birinchi o'rinda, OrdersService ikkinchi o'rinda topilgan. Demak faqat PaymentService yetishmayapti."
-    okShort="orders.module.ts → providers: [OrdersService, PaymentService]. Kim: OrdersController · nima: PaymentService, index [0] · qayerda: OrdersModule."
-    wrong={{ 0: "OrdersService topilgan, muammo unda emas.", 2: "Controller imports'ga yozilmaydi, imports faqat modullar uchun.", 3: "Controller dekoratori Service'ga qo'yilmaydi; bu xabar PaymentService modul ro'yxatida yo'qligini aytyapti." }} />;
+  // To'g'ri javobdan keyin — tuzatilgan fayl Explorer bilan (M2: har kod misolida tuzatish ko'rinadi)
+  const after = <>
+    <div className="mk-tag" style={{ color: T.green, marginBottom: 8 }}>{t('Tuzatildi — yangi satr yashil', 'Исправлено — новая строка зелёная')}</div>
+    <Ide root="shop-api" files={['src/orders/orders.module.ts', 'src/orders/orders.controller.ts', 'src/orders/orders.service.ts', 'src/orders/payment.service.ts']} active="src/orders/orders.module.ts">
+      <CodePanel file="src/orders/orders.module.ts" numbers={false} lines={[
+        { h: `<span class="d">@Module</span>({` },
+        { h: `  controllers: [<span class="c">OrdersController</span>],` },
+        { gone: true, h: `  providers: [<span class="c">OrdersService</span>],` },
+        { neu: true, h: `  providers: [<span class="c">OrdersService</span>, <span class="c">PaymentService</span>],   <span class="cm">${t("// qo'shildi", '// добавлено')}</span>` },
+        { h: `})` }]} />
+      <CodePanel file={t('terminal — tuzatildi', 'terminal — исправлено')} numbers={false} wrap style={{ background: '#111827' }} lines={[
+        { h: `[Nest] LOG [InstanceLoader] <span class="ok">OrdersModule dependencies initialized</span>` },
+        { h: `[Nest] LOG [NestApplication] <span class="ok">Nest application successfully started</span>` }]} />
+    </Ide>
+  </>;
+  return <MCRetry {...p} kicker={t('Tekshiruv 5', 'Проверка 5')} eyebrow={t("Tekshiruv · 5 / 5 — xatoni o'qish", 'Проверка · 5 / 5 — чтение ошибки')} above={above} after={after}
+    title={t("Bu o'quvchingizning loyihasi. Qaysi faylni ochasiz va nimani tuzatasiz?", 'Это проект вашего ученика. Какой файл вы откроете и что исправите?')}
+    q={t("Oxirgi tekshiruv, sinfdagi haqiqiy holat. Beshinchi tekshiruv. Ekrandagi xabarni o'qing. Bu sizning emas, o'quvchingizning loyihasi, u yordam so'radi. Qaysi faylni ochasiz va nimani tuzatasiz?", 'Последняя проверка, настоящая ситуация в классе. Пятая проверка. Прочитайте сообщение на экране. Это не ваш проект, а проект вашего ученика, он попросил помощи. Какой файл вы откроете и что исправите?')}
+    opts={t(["orders.controller.ts — konstruktordan OrdersService'ni o'chirish", "orders.module.ts — providers'ga PaymentService qo'shish", "app.module.ts — imports'ga OrdersController qo'shish", "payment.service.ts — Controller decorator'i qo'shish"], ['orders.controller.ts — удалить OrdersService из конструктора', 'orders.module.ts — добавить PaymentService в providers', 'app.module.ts — добавить OrdersController в imports', 'payment.service.ts — добавить decorator Controller'])} correct={1}
+    ok={t("orders module, providers ro'yxatiga PaymentService. Xabarda hamma narsa yozilgan. Qaysi klass: OrdersController. Qaysi dependency: PaymentService, index nol. Qaysi fayl: OrdersModule, ya'ni orders module ts. Qavsda so'roq belgisi birinchi o'rinda, OrdersService ikkinchi o'rinda topilgan. Demak faqat PaymentService yetishmayapti. Ekranda tuzatilgan fayl: providers ro'yxatiga PaymentService qo'shildi va server ishga tushdi.", 'orders module, PaymentService в список providers. В сообщении написано всё. Какой класс: OrdersController. Какой dependency: PaymentService, index ноль. Какой файл: OrdersModule, то есть orders module ts. В скобках знак вопроса стоит на первом месте, а OrdersService на втором найден. Значит, не хватает только PaymentService. На экране исправленный файл: PaymentService добавлен в список providers, и сервер запустился.')}
+    okShort={t("orders.module.ts → providers: [OrdersService, PaymentService]. Klass: OrdersController · dependency: PaymentService, index [0] · fayl: orders.module.ts.", 'orders.module.ts → providers: [OrdersService, PaymentService]. Класс: OrdersController · dependency: PaymentService, index [0] · файл: orders.module.ts.')}
+    wrong={t({ 0: "OrdersService topilgan, muammo unda emas.", 2: "Controller imports'ga yozilmaydi, imports faqat modullar uchun.", 3: "Controller decorator'i Service'ga qo'yilmaydi; bu xabar PaymentService modul ro'yxatida yo'qligini aytyapti." }, { 0: 'OrdersService найден, проблема не в нём.', 2: 'Controller не пишут в imports, imports — только для модулей.', 3: 'Decorator Controller не ставят на Service; это сообщение говорит, что PaymentService нет в списке модуля.' })} />;
 }
 
 // --- Amaliyot 3: o'zingiz buzing va tuzating ---
 const P3 = {
   kicker: 'Amaliyot 4 / 4', eyebrow: "Hozir o'zingizda · 5 daqiqa", title: "O'zingiz buzing va tuzating", tableAt: 3,
   segments: [
-    { id: 'a', key: "Endi <b>siz buzasiz</b>: ikki holat", text: "Oxirgi amaliyot: endi siz buzasiz. Ikki holat, besh daqiqa. Maqsad xatoni o'z ko'zingiz bilan ko'rish va o'qish.", hl: [] },
-    { id: 'b', key: "1 · providers'ni bo'shating → xatoni o'qing → qaytaring", text: "Birinchi: cars module da providers ro'yxatini bo'shating, serverni ishga tushiring, xatodan kim, nima, qayerda ni toping. Xabardagi in the nuqta nuqta module so'zlari orasidagi modul nomini isbot maydoniga yozing, keyin qaytaring.", hl: [0] },
-    { id: 'c', key: "2 · imports'dan CarsModule'ni oling → jurnalga qarang", text: "Ikkinchi: app module da imports'dan CarsModule'ni olib tashlang. Server ishga tushadi. Jurnalda qaysi satr yo'qolganini toping, cars manzilini so'rang, keyin qaytaring.", hl: [1] },
-    { id: 'd', key: "Isbot: <b>skrinshot</b> (Mapped satrlari + cars 99 javobi)", text: "Hammasi qaytarilgach, jurnaldagi Mapped satrlari va cars to'qson to'qqiz javobi ko'ringan skrinshotni saqlab qo'ying. Bu sizning bajarganingiz isboti, platformada amaliyotni yuklash oynasi bo'ladi.", hl: [2] },
+    { id: 'a', key: "Endi <b>siz buzasiz</b>: ikki holat — xatoni o'z ko'zingiz bilan o'qiysiz", text: "Oxirgi amaliyot: endi siz buzasiz. Ikki holat, besh daqiqa. Maqsad xatoni o'z ko'zingiz bilan ko'rish va o'qish.", hl: [] },
+    { id: 'b', key: "1-qadam: <code>providers</code>'ni bo'shating, xabardan <b>qaysi klass · qaysi dependency · qaysi fayl</b>'ni toping, qaytaring", text: "Birinchi: cars module da providers ro'yxatini bo'shating, serverni ishga tushiring, xabardan qaysi klass, qaysi dependency va qaysi fayl ekanini toping. Topgan uchta javobingizni, klass, dependency va faylni, vergul bilan isbot maydoniga yozing, keyin providers'ni qaytaring.", hl: [0] },
+    { id: 'c', key: "2-qadam: <code>imports</code>'dan CarsModule'ni oling — terminalda <b>qaysi satr yo'qolganini</b> toping", text: "Ikkinchi: app module da imports'dan CarsModule'ni olib tashlang. Server ishga tushadi. Terminalda qaysi satr yo'qolganini toping, cars route'ini so'rang, keyin qaytaring.", hl: [1] },
+    { id: 'd', key: "3-qadam: hammasini qaytaring — terminalda <b>3 ta Mapped</b>, <code>/cars/99</code> → <b>404</b>", text: "Uchinchi: hammasini qaytaring va tekshiring. Terminalda yana uchta Mapped satri bo'lsin, cars to'qson to'qqiz so'rovi to'rt yuz to'rt va xabar qaytarsin. Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing. Uchala katakcha va isbot to'g'ri bo'lmaguncha Davom ochilmaydi.", hl: [2] },
   ],
 };
 const P3_STEPS = [
-  { t: "providers bo'sh", cmds: [], exp: "«Nest can't resolve dependencies of the CarsController (?)» → kim · nima · qayerda → providers: [CarsService] qaytaring" },
-  { t: "imports'da CarsModule yo'q", cmds: [], exp: "server ishga tushadi · jurnalda CarsController satri YO'Q · GET /cars → 404 → imports: [CarsModule] qaytaring" },
-  { t: 'Skrinshot', cmds: [], exp: 'jurnalda 3 ta Mapped {/cars…} + GET /cars/99 → 404 JSON' },
+  { t: "providers bo'sh", cmds: [], exp: "«Nest can't resolve dependencies of the CarsController (?)» → klass · dependency · fayl → providers: [CarsService] qaytaring" },
+  { t: "imports'da CarsModule yo'q", cmds: [], exp: "server ishga tushadi · terminalda CarsController satri YO'Q · GET /cars → 404 → imports: [CarsModule] qaytaring" },
+  { t: 'Qaytaring va tekshiring', cmds: [], exp: 'terminalda yana 3 ta Mapped {/cars…} · GET /cars/99 → 404 «Car with id 99 not found»' },
 ];
 const P3_TROUBLE = [
-  ['Qaytardim, baribir xato', "Faylni saqladingizmi? start:dev saqlashda o'zi qayta yuklaydi; terminalda yangi jurnalni kuting"],
-  ['Boshqa xato chiqdi', "Xabarni bo'lak-bo'lak o'qing: kim · nima · qayerda. Potential solutions ro'yxati yechimni aytadi"],
+  ['Qaytardim, baribir xato', "Faylni saqladingizmi? start:dev saqlashda o'zi qayta yuklaydi; terminalda yangi satrlarni kuting"],
+  ['Boshqa xato chiqdi', "Xabarni uch savol bilan o'qing: qaysi klass · qaysi dependency · qaysi fayl. Potential solutions ro'yxati yechimni aytadi"],
 ];
-const P3_PROOF = { label: 'Isbot: xabardagi «in the ___ module» — modul nomi', placeholder: 'CarsModule', check: (v) => /^carsmodule$/i.test(v.replace(/\s/g, '')), wrong: "Xabarni qayta o'qing: «in the … module» orasidagi nom" };
+// Isbot = M18 formulasi: xabardan topilgan uch javob (klass · dependency · fayl); fayl nomi yoki modul nomi qabul
+const P3_PROOF = { label: "Isbot: 1-qadam xabaridan — qaysi klass, qaysi dependency, qaysi fayl? (vergul bilan)", placeholder: 'klass, dependency, fayl', check: (v) => { const x = v.toLowerCase().replace(/\s/g, ''); return x.includes('carscontroller') && x.includes('carsservice') && (x.includes('cars.module') || x.includes('carsmodule')); }, wrong: "Xabarni qayta o'qing: «of the ___» — klass, «argument ___ at index [0]» — dependency, «in the ___ module» — fayl" };
 function ScreenP3(p) { return <Practice p={p} S={P3} steps={P3_STEPS} trouble={P3_TROUBLE} proof={P3_PROOF} />; }
 
 // ============================================================
-//  7-BOSQICH · ko'prik (2), o'tish rejasi (3), savollar, o'z-sinov, yakun + ILDIZ
+//  7-BOSQICH · ko'prik (2), o'tish rejasi (3), savollar, o'z-sinov, yakun + root komponent
 // ============================================================
+// 30.10: haqiqiy repo strukturasi (GitHub API, IntroNestArxitechture HEAD) — M10
 const TREE = [
-  { t: 'IntroNestArxitechture/', f: true }, { t: '  src/main.ts', g: 'g' },
-  { t: '  src/api/', f: true }, { t: '    app.module.ts', g: 'g' }, { t: '    admin/admin.module.ts', g: 'g' }, { t: '    admin/admin.controller.ts', g: 'g' }, { t: '    admin/admin.service.ts', g: 'g' }, { t: '    admin/dto/create-admin.dto.ts', g: 'y' }, { t: '    auth/ (kirish)', g: 'r' },
-  { t: '  src/core/', f: true }, { t: '    entity/admin.entity.ts', g: 'y' }, { t: '    repository/admin.repository.ts', g: 'y' },
-  { t: '  src/common/', f: true }, { t: '    guard/auth.guard.ts', g: 'r' }, { t: '    guard/roles.guard.ts', g: 'r' }, { t: '    decorator/', g: 'r' },
-  { t: '  src/infrastructure/', f: true }, { t: '    lib/BaseService.ts', g: 'r' }, { t: '    lib/token/Token.ts', g: 'r' }, { t: '    response/successRes.ts', g: 'r' }, { t: '    pagination/', g: 'r' },
+  { t: 'IntroNestArxitechture/', f: true }, { t: '  src/main.ts', g: 'r' }, { t: '  src/config/index.ts', g: 'r' },
+  { t: '  src/api/', f: true }, { t: '    app.module.ts', g: 'g' }, { t: '    app.service.ts  (Service emas!)', g: 'r' },
+  { t: '    admin/admin.module.ts', g: 'g' }, { t: '    admin/admin.controller.ts', g: 'g' }, { t: '    admin/admin.service.ts', g: 'g' },
+  { t: '    admin/dto/ (create · update · signin)', g: 'y' }, { t: '    auth/ (kirish)', g: 'r' },
+  { t: '  src/core/', f: true }, { t: '    entity/Base.entity.ts · admin.entity.ts', g: 'y' }, { t: '    repository/admin.repository.ts', g: 'y' },
+  { t: '  src/common/', f: true }, { t: '    guard/ (auth · roles)', g: 'r' }, { t: '    decorator/ · interface/ · enum/ · dto/', g: 'r' },
+  { t: '  src/infrastructure/', f: true }, { t: '    base/base.service.ts', g: 'r' }, { t: '    exception/AllException.filter.ts', g: 'r' },
+  { t: '    lib/token/ · lib/crypto/', g: 'r' }, { t: '    response/successRes.ts · pagination/', g: 'r' },
 ];
+// F-1030-16: mentor kursdagi hamma darsni o'tib bo'lgan — «keyingi darsda» deyilmaydi; har rangli joy uchun mentorning TAYYOR GAPI shu yerda
+const S25A_SAY = {
+  y: [['Entity', "bazadagi jadval shakli: TypeORM shu klassdan jadval yasaydi"], ['DTO', "kiruvchi ma'lumot shakli: majburiy maydon va tiplar shu yerda tekshiriladi, xato bo'lsa 400"], ['Repository', "bazaga yozish va o'qish metodlari: Service bazaga shu orqali murojaat qiladi"]],
+  r: [['auth', "kirish va ro'yxatdan o'tish moduli"], ['Guard', "so'rov Controller'ga yetguncha tokenni tekshiradi, yaroqsiz bo'lsa to'xtatadi"], ['BaseService', "hamma Service uchun tayyor CRUD metodlari, admin service undan meros oladi"], ['Token', "kirgan foydalanuvchining ruxsatnomasi"], ['successRes', "hamma javob bir xil shaklda qaytishi uchun yordamchi"], ['main.ts → app.service.ts', "server shu yerda ishga tushadi (Aplication klassi). Nomi app.service, lekin bu loyihada Service emas"], ['AllExceptionFilter', "hamma xatoni bitta shaklda qaytaradi: { statusCode, error: { message } }"], ['config', ".env qiymatlarini (PORT, DEV_DB_URL) o'qiydi"]],
+};
 const S25a = {
   kicker: "7-bosqich · ko'prik", title: "O'quvchi clone qiladigan loyiha",
   segments: [
-    { id: 'a', key: "O'quvchi <b>noldan yozmaydi</b>: tayyor loyihani clone qiladi", text: "Endi o'quvchi darsiga qaraymiz, chunki u bu mavzuni boshqacha ko'radi. O'quvchi noldan yozmaydi: GitHub'dan tayyor loyihani clone qiladi, IntroNestArxitechture, va uni ishga tushiradi.", lit: null },
-    { id: 'b', key: "Kattaroq: <code>api</code> · <code>core</code> · <code>common</code> · <code>infrastructure</code>", text: "Loyiha kattaroq: api, core, common, infrastructure papkalari.", lit: 'f' },
-    { id: 'c', key: "<b>Yashil</b> — bugun to'liq bilasiz", text: "Yashil belgilangan joylarni siz bugun to'liq bilasiz: admin module, admin controller, admin service, main. Ular aynan bizning cars fayllarimiz, faqat admin uchun va kattaroq.", lit: 'g' },
-    { id: 'd', key: "<b>Sariq</b> — keyingi dars: entity, dto, repository", text: "Sariq joylar keyingi darsda: entity, bu bazadagi jadval shakli; dto, kiruvchi ma'lumot shakli; repository, baza bilan gaplashuvchi.", lit: 'y' },
-    { id: 'e', key: "<b>Kulrang</b> — keyinroq: auth, guard, BaseService, token, javob shakli", text: "Kulrang joylar undan keyin: auth moduli, guard, BaseService, token, bir xil javob shakli. Bu fayllarning kodini bu darsda ko'rmaysiz, bu ataylab. O'quvchi ularni so'rasa, javob: nom va vazifa, kod keyingi darslarda. Hozir faqat qayerda turganini biling.", show: "Kulrang joylar undan keyin: auth, guard, BaseService, token, bir xil javob shakli. Bu fayllarning kodini bu darsda ko'rmaysiz — ataylab. O'quvchi so'rasa: <b>nom va vazifa, kod keyingi darslarda</b>.", lit: 'r' },
+    { id: 'a', key: "O'quvchi <b>noldan yozmaydi</b>: GitHub'dan tayyor loyihani clone qilib, ishga tushiradi", text: "Siz Nest'ni o'zingiz qurdingiz va o'zingiz buzdingiz. Endi darsning asosiy maqsadiga o'tamiz: bu mavzuni o'quvchiga o'tish. Avval o'quvchi darsiga qaraymiz, chunki u bu mavzuni boshqacha ko'radi. O'quvchi noldan yozmaydi: GitHub'dan tayyor loyihani clone qiladi, IntroNestArxitechture, va uni ishga tushiradi.", lit: null },
+    { id: 'b', key: "Loyiha kattaroq: <code>api</code> · <code>core</code> · <code>common</code> · <code>infrastructure</code> papkalari", text: "Loyiha kattaroq: api, core, common, infrastructure papkalari.", lit: 'f' },
+    { id: 'c', key: "<b>Yashil</b> — bugun kod bilan ko'rdingiz: admin module, controller, service — bizning cars'ning o'zi", text: "Yashil belgilangan joylarni siz bugun kod bilan ko'rdingiz: admin module, admin controller, admin service va bosh modul. Ular aynan bizning cars fayllarimiz, faqat admin uchun va kattaroq. Darsda ularni kodi bilan ko'rsatasiz.", lit: 'g' },
+    { id: 'd', key: "<b>Sariq</b> — Entity · DTO · Repository: o'quvchi so'rasa, <b>bir gapda</b> tushuntirasiz", text: "Sariq joylar: entity, dto va repository. O'quvchi darsida ular nomi va vazifasi bilan chiqadi, so'rasa bir gapda tushuntirasiz. Entity, bazadagi jadval shakli: TypeORM shu klassdan jadval yasaydi.", lit: 'y' },
+    { id: 'd2', key: "<b>DTO</b> — kiruvchi ma'lumot shakli, <b>Repository</b> — bazaga yozish va o'qish", text: "DTO, kiruvchi ma'lumot shakli: majburiy maydonlar va tiplar shu yerda tekshiriladi. Repository, bazaga yozish va o'qish metodlari: Service bazaga shu orqali murojaat qiladi. Ularning kodini kursdagi keyingi mentor darslarida to'liq o'rganasiz, hozir bir gap yetarli.", lit: 'y' },
+    { id: 'e', key: "<b>Kulrang</b> — auth, Guard, BaseService, filter, config: <b>nom va vazifa</b>, bittadan gap", text: "Kulrang joylar. Auth moduli kirish va ro'yxatdan o'tishni qiladi. Guard so'rov Controller'ga yetguncha tokenni tekshiradi, yaroqsiz bo'lsa to'xtatadi. BaseService hamma Service uchun tayyor CRUD metodlari, admin service undan meros oladi. Token, kirgan foydalanuvchining ruxsatnomasi. successRes, hamma javob bir xil shaklda qaytishi uchun yordamchi.", lit: 'r' },
+    { id: 'e2', key: "Ehtiyot joy: server <code>api/app.service.ts</code>'da ishga tushadi — nomi Service, lekin <b>Service emas</b>", text: "Bitta ehtiyot joy: bu loyihada server main ts'da emas, api papkasidagi app service ts faylida ishga tushadi. Nomi app service, lekin u Service emas, serverni ishga tushiradigan klass. O'quvchi so'rasa, shuni ayting.", lit: 'r' },
+    { id: 'e3', key: "Xavotir olmang: bu loyihaning o'ziga xos joylarini <b>keyingi mentor darsida</b> clone qilib ko'rasiz", text: "Xavotir olmang: bu loyihaning o'ziga xos joylarini, route'lar api v1 bilan boshlanishini, xato javobining shaklini va BaseService'ni keyingi mentor darsida clone qilib, o'zingiz ko'rasiz. O'quvchi darsida esa shu gaplar yetarli.", lit: 'r' },
+    { id: 'f', key: "Xulosa: strukturadagi <b>har rangli joy uchun bitta tayyor gapingiz</b> bor", text: "Xulosa: yashil fayllarni kod bilan ko'rsatasiz, sariq va kulranglarni bittadan gap bilan tushuntirib, darsga qaytasiz. O'quvchi darsi bu fayllarning kodini ochmaydi, shuning uchun bitta gap yetarli.", lit: null },
   ],
 };
 function Screen25a(p) {
-  return <Lesson p={p} S={S25a} scene={({ seg, beat }) => {
-    const lit = (g) => (g === 'g' && beat >= 2) || (g === 'y' && beat >= 3) || (g === 'r' && beat >= 4);
-    return <div className="mk-light" style={{ padding: 14 }}>
-      <div className="mk-tag">github.com/Azizbekcrypto/IntroNestArxitechture</div>
-      <div className="mk-tree" style={{ fontSize: 13.5 }}>{TREE.map((n, i) => <div key={i} className={n.f ? (beat >= 1 ? 'f' : '') : (n.g && lit(n.g) ? n.g : '')} style={{ opacity: beat >= 1 || n.f ? 1 : 0.6, outline: seg.lit && n.g === seg.lit && lit(n.g) ? `2px solid ${T.accent}` : 'none', outlineOffset: -2 }}>{n.t}</div>)}</div>
-      <div style={{ display: 'flex', gap: 10, marginTop: 10, fontSize: 12 }}><span className="mk-tree"><span className="g" style={{ padding: '1px 6px' }}>bugun</span></span><span className="mk-tree"><span className="y" style={{ padding: '1px 6px' }}>keyingi dars</span></span><span className="mk-tree"><span className="r" style={{ padding: '1px 6px' }}>keyinroq</span></span></div>
+  return <Lesson p={p} S={S25a} sceneTop scene={({ seg, beat }) => {
+    // rang shu rangning birinchi segmentidan yonadi (segment bo'linsa ham siljimaydi)
+    const lit = (g) => { const k = S25a.segments.findIndex((s) => s.lit === g); return k >= 0 && beat >= k; };
+    const say = seg.lit === 'y' || seg.lit === 'r' ? S25A_SAY[seg.lit] : null;
+    return <div style={{ display: 'grid', gridTemplateColumns: say ? 'minmax(0,1fr) minmax(0,1fr)' : '1fr', gap: 12, alignItems: 'start' }}>
+      <div className="mk-light" style={{ padding: 14 }}>
+        <div className="mk-tag">github.com/Azizbekcrypto/IntroNestArxitechture</div>
+        <div className="mk-tree" style={{ fontSize: 13 }}>{TREE.map((n, i) => <div key={i} className={n.f ? (beat >= 1 ? 'f' : '') : (n.g && lit(n.g) ? n.g : '')} style={{ opacity: beat >= 1 || n.f ? 1 : 0.6, outline: seg.lit && n.g === seg.lit && lit(n.g) ? `2px solid ${T.accent}` : 'none', outlineOffset: -2 }}>{n.t}</div>)}</div>
+        <div style={{ display: 'flex', gap: 10, marginTop: 10, fontSize: 12, flexWrap: 'wrap' }}><span className="mk-tree"><span className="g" style={{ padding: '1px 6px' }}>{t("kod bilan ko'rsatasiz", 'показываете с кодом')}</span></span><span className="mk-tree"><span className="y" style={{ padding: '1px 6px' }}>{t('bir gapda tushuntirasiz', 'объясняете одной фразой')}</span></span><span className="mk-tree"><span className="r" style={{ padding: '1px 6px' }}>{t('nom va vazifa', 'название и задача')}</span></span></div>
+      </div>
+      {say && <div key={seg.lit} className="mk-light" style={{ padding: 14, animation: 'mk-up .4s ease both' }}>
+        <div className="mk-tag" style={{ color: T.accent }}>{t("O'quvchi so'rasa — sizning gapingiz", 'Если ученик спросит — ваша фраза')}</div>
+        <div style={{ display: 'grid', gap: 8 }}>{say.map(([a, b]) => <div key={a} style={{ fontSize: 13.5, lineHeight: 1.45 }}><code style={{ fontFamily: MONO, fontWeight: 700 }}>{a}</code> — {b}</div>)}</div>
+      </div>}
     </div>;
   }} />;
 }
@@ -1454,18 +1867,18 @@ const DICT = [['ofitsiant', 'Controller', "so'rovni oladi, oshxonaga uzatadi"], 
 const S25b = {
   kicker: "7-bosqich · ko'prik", title: "O'quvchi darsining tili: restoran",
   segments: [
-    { id: 'a', key: "O'quvchi darsi <b>restoran tilida</b> gapiradi", text: "O'quvchi darsi restoran tilida gapiradi: Controller ofitsiant, Service oshpaz, Repository omborchi, Guard nazoratchi, Module shtat jadvali. O'quvchi shu so'zlarda o'ylaydi.", n: 8 },
-    { id: 'b', key: "«oshpaz» desa — siz <b>Service</b> ekanini bilasiz", text: "Siz endi ikkala tilni bilasiz: o'quvchi oshpaz desa, siz Service ekanini bilasiz va to'g'ri faylni ko'rsatasiz. Darsda ikkala so'zni birga ayting: oshpaz, ya'ni Service.", n: 8 },
-    { id: 'c', key: "Metafora chegarasi: <b>vazifa</b> o'xshaydi, kod emas", text: "Bitta ogohlantirish: metafora vazifani tushuntiradi, kodni emas. O'quvchi ofitsiant oshxonaga kirmaydi deganda, Controller Service'ni chaqiradi, lekin ichida hisob qilmaydi degan ma'noni tushunsin. Shu chegarani siz ushlab turasiz.", n: 8 },
+    { id: 'a', key: "O'quvchi darsi <b>restoran tilida</b> gapiradi: ofitsiant, oshpaz, omborchi…", text: "Loyihaning fayllarini ko'rdik. Endi o'quvchi shu fayllarni qanday so'zlar bilan eslashini bilib olaylik. O'quvchi darsi restoran tilida gapiradi: Controller ofitsiant, Service oshpaz, Repository omborchi, Guard nazoratchi, Module shtat jadvali. O'quvchi shu so'zlarda o'ylaydi.", n: 8 },
+    { id: 'b', key: "O'quvchi «oshpaz» desa — siz <b>Service</b> ekanini bilasiz va faylni ko'rsatasiz", text: "Siz endi ikkala tilni bilasiz: o'quvchi oshpaz desa, siz Service ekanini bilasiz va to'g'ri faylni ko'rsatasiz. Darsda ikkala so'zni birga ayting: oshpaz, ya'ni Service.", n: 8 },
+    { id: 'c', key: "Xulosa: metafora <b>vazifani</b> tushuntiradi, kodni emas — ikkala so'zni birga ayting", text: "Xulosa va bitta ogohlantirish: metafora vazifani tushuntiradi, kodni emas. O'quvchi ofitsiant oshxonaga kirmaydi deganda, Controller Service'ni chaqiradi, lekin ichida hisob qilmaydi degan ma'noni tushunsin. Shu chegarani siz ushlab turasiz.", n: 8 },
   ],
 };
 function Screen25b(p) {
   return <Lesson p={p} S={S25b} scene={({ beat }) => <div className="mk-light" style={{ padding: 14 }}>
-    <div className="mk-tag">O'quvchi eshitadi → atama → vazifa</div>
-    <table className="mk-tbl"><thead><tr><th>o'quvchi darsida</th><th>atama</th><th>vazifa</th></tr></thead><tbody>
+    <div className="mk-tag">{t("O'quvchi eshitadi → atama → vazifa", 'Ученик слышит → термин → задача')}</div>
+    <table className="mk-tbl"><thead><tr><th>{t("o'quvchi darsida", 'в уроке ученика')}</th><th>{t('atama', 'термин')}</th><th>{t('vazifa', 'задача')}</th></tr></thead><tbody>
       {DICT.map(([a, b, c], i) => <tr key={a} style={{ animation: `mk-up .35s ${i * 0.08}s ease both` }}><td>{a}</td><td><code>{b}</code></td><td style={{ color: T.ink2 }}>{c}</td></tr>)}
     </tbody></table>
-    <Block at={2} beat={beat}><div className="mk-rule" style={{ marginTop: 12 }}>Ikkala so'zni birga ayting: <b>«oshpaz, ya'ni Service»</b>. Metafora vazifani tushuntiradi, kodni emas.</div></Block>
+    <Block at={2} beat={beat}><div className="mk-rule" style={{ marginTop: 12 }}>{t(<>Ikkala so'zni birga ayting: <b>«oshpaz, ya'ni Service»</b>. Metafora vazifani tushuntiradi, kodni emas.</>, <>Говорите оба слова вместе: <b>«повар, то есть Service»</b>. Метафора объясняет задачу, а не код.</>)}</div></Block>
   </div>} />;
 }
 
@@ -1473,28 +1886,29 @@ function Screen25b(p) {
 const MAP = [
   { t: 'Kirish', s: 's0–s1', d: "1240 qatorli server.js og'rig'i → «tayyor loyihani clone qilamiz», 4 qadam rejasi", m: "Siz buni shu darsning 2-ekranida ko'rdingiz: o'quvchi ham aynan shu og'riqdan boshlaydi. Nest nomini erta aytmang, avval og'riq." },
   { t: 'Clone va ishga tushirish', s: 's2–s4', d: "git clone + npm install, .env to'ldirish, start:dev; test: kalit qayerda turadi", m: "Eng ko'p vaqt shu yerda ketadi. Hammaning serveri ishlamaguncha oldinga o'tmang." },
-  { t: 'Swagger va bino xaritasi', s: 's5–s8', d: 'Swagger eshiklari (endpointlar), papkalar daraxti; test: Controller vazifasi', m: "«Ofitsiant» so'zi shu yerda kiradi. Daraxtda yashil fayllarni (module/controller/service) o'zingiz ko'rsating." },
-  { t: "Buyurtma yo'li", s: 's9–s10', d: 'Guard → Controller → Service → Repository → successRes tartibi sudrab teriladi; test', m: "Bu bizning «so'rov yo'li» ekranimiz, faqat ikki bekat ko'p: Guard va Repository. Nega ko'p — keyingi dars deb ayting." },
-  { t: 'Qatlamlar', s: 's11–s16', d: 'Entity/BaseEntity, DTO (201/400), BaseService (CRUD tayyor), Module (smena), 5 qadam tartibi; test', m: "Chuqur emas: nom va vazifa. Entity va DTO keyingi darsda qo'l bilan yoziladi." },
+  { t: 'Swagger va bino xaritasi', s: 's5–s8', d: "Swagger eshiklari (endpoint'lar), papka strukturasi; test: Controller vazifasi", m: "«Ofitsiant» so'zi shu yerda kiradi. Strukturada yashil fayllarni (module/controller/service) o'zingiz ko'rsating." },
+  { t: "Buyurtma yo'li", s: 's9–s10', d: 'Guard → Controller → Service → Repository → successRes tartibi sudrab teriladi; test', m: "Bu bizning «so'rov yo'li» ekranimiz, faqat ikki bekat ko'p: Guard tokenni tekshiradi, Repository bazaga yozadi. Har biriga bir gap — 31-ekrandagi tayyor gaplar." },
+  { t: 'Qatlamlar', s: 's11–s16', d: 'Entity/BaseEntity, DTO (201/400), BaseService (CRUD tayyor), Module (smena), 5 qadam tartibi; test', m: "Chuqur emas: har biriga bir gap. Entity — jadval shakli, DTO — kiruvchi ma'lumot shakli (noto'g'ri bo'lsa 400), BaseService — tayyor CRUD, Module — ro'yxat. Xavotir olmang: Entity, DTO va Repository'ni kursdagi keyingi mentor darslarida to'liq, kodi bilan o'rganasiz." },
   { t: 'Qurish va yakun', s: 's18–s20', d: "AI 5 faylni yozadi, yakuniy debugging (xato qatorni olib tashlash), amaliy topshiriq, arena, kartochkalar", m: "Debugging ekranida siz bugun o'rgangan qoida ishlaydi: Controller'da hisob bo'lmaydi." },
 ];
 const R1 = {
   kicker: "7-bosqich · o'tish rejasi", eyebrow: "m4a-01 · «Nest arxitektura — tirik ko'rish»", title: "O'quvchi darsining xaritasi: 6 blok, 22 ekran",
   segments: [
-    { id: 'a', key: "O'quvchi darsi: <b>6 blok, 22 ekran</b>", text: "Endi o'quvchi darsini o'zini ko'ramiz, chunki siz uni o'tasiz. Yigirma ikki ekran, oltita blok. Har blok uchun o'quvchi nima qiladi va siz nima deysiz.", hl: [] },
-    { id: 'b', key: "1 · Kirish: <b>o'sha og'riq</b>", text: "Birinchi blok, kirish: o'quvchi ming ikki yuz qirq qatorli faylni ko'radi va tayyor loyihani clone qilish rejasini oladi. Siz buni shu darsning boshida ko'rdingiz. Nest nomini erta aytmang, avval og'riq.", hl: [0] },
-    { id: 'c', key: "2 · Clone va ishga tushirish: <b>eng ko'p vaqt</b>", text: "Ikkinchi blok, clone va ishga tushirish: git clone, npm install, env fayli, start dev. Eng ko'p vaqt shu yerda ketadi. Hammaning serveri ishlamaguncha oldinga o'tmang.", hl: [1] },
-    { id: 'd', key: "3 · Swagger va bino xaritasi: <b>«ofitsiant» kiradi</b>", text: "Uchinchi blok: Swagger'da eshiklarni ko'radi, keyin papkalar daraxtini. Ofitsiant so'zi shu yerda kiradi. Daraxtda module, controller, service fayllarini o'zingiz ko'rsating.", hl: [2] },
-    { id: 'e', key: "4 · Buyurtma yo'li: <b>bizning so'rov yo'li + 2 bekat</b>", text: "To'rtinchi blok, buyurtma yo'li: o'quvchi nazoratchi, ofitsiant, oshpaz, omborchi, lagan tartibini sudrab teradi. Bu bizning so'rov yo'li ekranimiz, faqat ikki bekat ko'p: Guard va Repository. Nega ko'p, keyingi dars deb ayting.", hl: [3] },
-    { id: 'f', key: "5 · Qatlamlar: <b>nom va vazifa</b>, chuqur emas", text: "Beshinchi blok, qatlamlar: Entity, DTO, BaseService, Module va besh qadam tartibi. Chuqur emas: nom va vazifa. Entity va DTO keyingi darsda qo'l bilan yoziladi.", hl: [4] },
-    { id: 'g', key: "6 · Qurish va yakun: <b>debugging'da bugungi qoida</b>", text: "Oltinchi blok: o'quvchi AI'ga beshta faylni yozdiradi, keyin yakuniy debugging, xato qatorni topib olib tashlaydi, so'ng amaliy topshiriq va arena. Debugging ekranida siz bugun o'rgangan qoida ishlaydi: Controller'da hisob bo'lmaydi.", hl: [5] },
+    { id: 'a', key: "O'quvchi darsi <b>m4a-01</b>: 6 blok, 22 ekran — har blokda siz nima deysiz", text: "Loyihani ham, o'quvchi tilini ham bilasiz. Endi o'quvchi darsining o'zini ekranma-ekran ko'ramiz, chunki siz uni o'tasiz. Yigirma ikki ekran, oltita blok. Har blok uchun o'quvchi nima qiladi va siz nima deysiz.", hl: [] },
+    { id: 'b', key: "1-blok · kirish: o'quvchi ham <b>o'sha og'riqdan</b> boshlaydi — Nest nomini erta aytmang", text: "Birinchi blok, kirish: o'quvchi ming ikki yuz qirq qatorli faylni ko'radi va tayyor loyihani clone qilish rejasini oladi. Siz buni shu darsning boshida ko'rdingiz. Nest nomini erta aytmang, avval og'riq.", hl: [0] },
+    { id: 'c', key: "2-blok · clone va ishga tushirish: <b>eng ko'p vaqt</b> shu yerda ketadi", text: "Ikkinchi blok, clone va ishga tushirish: git clone, npm install, env fayli, start dev. Eng ko'p vaqt shu yerda ketadi. Hammaning serveri ishlamaguncha oldinga o'tmang.", hl: [1] },
+    { id: 'd', key: "3-blok · Swagger va papka strukturasi: <b>«ofitsiant»</b> so'zi shu yerda kiradi", text: "Uchinchi blok: Swagger'da eshiklarni ko'radi, keyin papka strukturasini. Ofitsiant so'zi shu yerda kiradi. Strukturada module, controller, service fayllarini o'zingiz ko'rsating.", hl: [2] },
+    { id: 'e', key: "4-blok · buyurtma yo'li: bizning so'rov yo'li + <b>Guard va Repository</b>", text: "To'rtinchi blok, buyurtma yo'li: o'quvchi nazoratchi, ofitsiant, oshpaz, omborchi, lagan tartibini sudrab teradi. Bu bizning so'rov yo'li ekranimiz, faqat ikki bekat ko'p: Guard tokenni tekshiradi, Repository bazaga yozadi. Har biriga bitta gap yetarli.", hl: [3] },
+    { id: 'f', key: "5-blok · qatlamlar: Entity, DTO, BaseService — <b>har biriga bir gap</b>, chuqur emas", text: "Beshinchi blok, qatlamlar: Entity, DTO, BaseService, Module va besh qadam tartibi. Chuqur emas, har biriga bir gap. Entity, jadval shakli. DTO, kiruvchi ma'lumot shakli, noto'g'ri bo'lsa to'rt yuz. BaseService, tayyor CRUD metodlari. Module, ro'yxat. Xavotir olmang: Entity, DTO va Repository'ni kursdagi keyingi mentor darslarida to'liq, kodi bilan o'rganasiz. O'quvchi darsining bu blokida esa bir gap yetarli.", hl: [4] },
+    { id: 'g', key: "6-blok · AI bilan qurish va debugging: <b>Controller'da hisob bo'lmaydi</b> qoidasi ishlaydi", text: "Oltinchi blok: o'quvchi AI'ga beshta faylni yozdiradi, keyin yakuniy debugging, xato qatorni topib olib tashlaydi, so'ng amaliy topshiriq va arena. Debugging ekranida siz bugun o'rgangan qoida ishlaydi: Controller'da hisob bo'lmaydi.", hl: [5] },
+    { id: 'h', key: "Xulosa: eng ko'p kuch — <b>2-blok (server)</b> va <b>6-blok (debugging)</b>", text: "Xulosa: oltita blokdan ikkitasi sizdan eng ko'p kuch talab qiladi. Ikkinchisi, chunki hammaning serveri ishlashi kerak. Oltinchisi, chunki debugging'da bugungi qoidani o'quvchi o'zi topishi kerak.", hl: [1, 5] },
   ],
 };
 function ScreenR1(p) {
   return <Lesson p={p} S={R1} scene={({ seg }) => <div style={{ display: 'grid', gap: 8 }}>
     {MAP.map((b, i) => <div key={i} className={`mk-step${seg.hl.includes(i) ? ' hl' : ''}`} style={{ opacity: seg.hl.length && !seg.hl.includes(i) ? 0.5 : 1 }}>
       <span style={{ fontFamily: MONO, fontWeight: 700, color: T.accent, minWidth: 22 }}>{i + 1}</span>
-      <div className="t"><b>{b.t} <span style={{ fontFamily: MONO, fontWeight: 500, color: T.ink3, fontSize: 12 }}>{b.s}</span></b><div style={{ fontSize: 13 }}>{b.d}</div>{seg.hl.includes(i) && <div className="exp" style={{ color: T.accent, marginTop: 4 }}>Siz: {b.m}</div>}</div>
+      <div className="t"><b>{b.t} <span style={{ fontFamily: MONO, fontWeight: 500, color: T.ink3, fontSize: 12 }}>{b.s}</span></b><div style={{ fontSize: 13 }}>{b.d}</div>{seg.hl.includes(i) && <div className="exp" style={{ color: T.accent, marginTop: 4 }}>{t('Siz: ', 'Вы: ')}{b.m}</div>}</div>
     </div>)}
   </div>} />;
 }
@@ -1503,21 +1917,23 @@ function ScreenR1(p) {
 const STUMBLE = [
   { q: 'git clone ishlamaydi', a: "Git o'rnatilmagan yoki internet yo'q. Zaxira: GitHub'dan ZIP yuklab olib ochish. Darsdan oldin o'zingiz bir marta clone qilib ko'ring." },
   { q: 'npm install uzoq yoki xato', a: "Sabr: 2–5 daqiqa normal. Xato bo'lsa Node versiyasini tekshiring (20+), node_modules'ni o'chirib qayta urining." },
-  { q: ".env to'ldirilmagan — server yiqiladi", a: "Loyiha PostgreSQL'ga ulanadi: «Unable to connect to the database» — ikkinchi satr sababni aytadi (keyingi ekranda to'rt xabar). .env.example'dan nusxa oling, PostgreSQL darsidagi bazani yoqing." },
+  { q: ".env to'ldirilmagan — server yiqiladi", a: "Loyiha PostgreSQL'ga ulanadi: «Unable to connect to the database» — ikkinchi satr sababni aytadi (keyingi ekranda to'rt xabar). cp .env.example .env, keyin PostgreSQL ishlayotganini tekshiring." },
   { q: 'Port 3000 band', a: "Oldingi dars serveri ochiq qolgan. Uni yoping yoki PORT=3001 bilan ishga tushiring." },
-  { q: "«can't resolve dependencies»", a: "Siz endi o'qiy olasiz: kim, nima, qayerda. O'quvchi bilan birga jurnalni o'qing, javobni aytmang, savol bering: qaysi modul? qaysi ro'yxat?" },
+  { q: "«can't resolve dependencies»", a: "Siz endi o'qiy olasiz: qaysi klass, qaysi dependency, qaysi fayl. O'quvchi bilan birga terminaldagi xabarni o'qing, javobni aytmang, savol bering: qaysi fayl? qaysi ro'yxat?" },
   { q: '«Nega Express emas?» yoki metafora chalkashdi', a: "Bitta gap: katta loyihada tartib kerak, Nest tartibni majburiy qiladi, ichida o'sha Express. Metafora chalkashsa lug'atga qaytaring: oshpaz, ya'ni Service." },
 ];
 const R2 = {
   kicker: "7-bosqich · o'tish rejasi", eyebrow: "m4a-01 · darsda nima bo'ladi", title: "O'quvchi qoqiladigan 6 joy",
   segments: [
-    { id: 'a', key: "Sinfda <b>albatta</b> uchraydigan 6 holat", text: "Darsda albatta uchraydigan oltita holat. Har biriga tayyor javobingiz bo'lsin.", hl: [] },
-    { id: 'b', key: "1 · clone ishlamaydi → <b>ZIP zaxirasi</b>", text: "Birinchi: git clone ishlamaydi. Git o'rnatilmagan yoki internet yo'q. Zaxira: GitHub'dan ZIP yuklab olib ochish. Darsdan oldin o'zingiz bir marta clone qilib ko'ring.", hl: [0] },
-    { id: 'c', key: "2 · npm install → <b>sabr, Node 20+</b>", text: "Ikkinchi: npm install uzoq yoki xato. Ikki-besh daqiqa normal. Xato bo'lsa Node versiyasini tekshiring, yigirma yoki undan yuqori bo'lsin, node modules papkasini o'chirib qayta urining.", hl: [1] },
-    { id: 'd', key: "3 · .env va PostgreSQL → <b>server yiqiladi</b>", text: "Uchinchi, eng muhimi: env fayli to'ldirilmagan. Loyiha PostgreSQL'ga ulanadi. Bazaning manzili bo'lmasa yoki PostgreSQL ishlamasa, server ishga tushmaydi: Unable to connect to the database. Keyingi ekranda shu xatoning uch ko'rinishini o'qiymiz.", hl: [2] },
-    { id: 'e', key: "4 · port band → <b>oldingi serverni yoping</b>", text: "To'rtinchi: port uch ming band. Oldingi dars serveri ochiq qolgan. Uni yoping yoki boshqa port bilan ishga tushiring.", hl: [3] },
-    { id: 'f', key: "5 · can't resolve → <b>birga o'qing, javobni aytmang</b>", text: "Beshinchi: can't resolve dependencies xatosi. Siz endi o'qiy olasiz: kim, nima, qayerda. O'quvchi bilan birga jurnalni o'qing, javobni aytmang, savol bering: qaysi modul, qaysi ro'yxat.", hl: [4] },
-    { id: 'g', key: "6 · «Nega Express emas?» → <b>bitta gap</b>", text: "Oltinchi: nega Express emas degan savol yoki metafora chalkashuvi. Bitta gap: katta loyihada tartib kerak, Nest tartibni majburiy qiladi, ichida o'sha Express. Metafora chalkashsa lug'atga qaytaring.", hl: [5] },
+    { id: 'a', key: "Sinfda <b>albatta</b> uchraydigan 6 holat — har biriga tayyor javobingiz bo'lsin", text: "Rejani bilasiz. Endi reja buziladigan joylarni ko'raylik: darsda albatta uchraydigan oltita holat. Har biriga tayyor javobingiz bo'lsin.", hl: [] },
+    { id: 'b', key: "1 · <code>git clone</code> ishlamaydi → zaxira: GitHub'dan <b>ZIP yuklab olish</b>", text: "Birinchi: git clone ishlamaydi. Git o'rnatilmagan yoki internet yo'q. Zaxira: GitHub'dan ZIP yuklab olib ochish. Darsdan oldin o'zingiz bir marta clone qilib ko'ring.", hl: [0] },
+    { id: 'c', key: "2 · <code>npm install</code> uzoq yoki xato → 2–5 daqiqa normal, <b>Node 20+</b>", text: "Ikkinchi: npm install uzoq yoki xato. Ikki-besh daqiqa normal. Xato bo'lsa Node versiyasini tekshiring, yigirma yoki undan yuqori bo'lsin, node modules papkasini o'chirib qayta urining.", hl: [1] },
+    { id: 'd', key: "3 · <code>.env</code> yo'q yoki PostgreSQL ishlamaydi → server <b>yiqiladi</b>", text: "Uchinchi, eng muhimi: env fayli yaratilmagan. Loyiha PostgreSQL'ga ulanadi. Bazaning manzili bo'lmasa yoki PostgreSQL ishlamasa, server ishga tushmaydi: Unable to connect to the database. Keyingi ekranda shu xatoning to'rt ko'rinishini o'qiymiz.", hl: [2] },
+    { id: 'e', key: "4 · port 3000 band → <b>oldingi serverni yoping</b> yoki boshqa port bering", text: "To'rtinchi: port uch ming band. Oldingi dars serveri ochiq qolgan. Uni yoping yoki boshqa port bilan ishga tushiring.", hl: [3] },
+    { id: 'f', key: "5 · «can't resolve» → o'quvchi bilan <b>birga o'qing</b>, javobni aytmang", text: "Beshinchi: can't resolve dependencies xatosi. Siz endi o'qiy olasiz: qaysi klass, qaysi dependency, qaysi fayl. O'quvchi bilan birga terminaldagi xabarni o'qing, javobni aytmang, savol bering: qaysi fayl, qaysi ro'yxat.", hl: [4] },
+    { id: 'g', key: "6 · «Nega Express emas?» → <b>bitta gap</b>: tartib kerak, ichida o'sha Express", text: "Oltinchi: nega Express emas degan savol yoki metafora chalkashuvi. Bitta gap: katta loyihada tartib kerak, Nest tartibni majburiy qiladi, ichida o'sha Express. Metafora chalkashsa lug'atga qaytaring.", hl: [5] },
+    { id: 'h0', key: "Ogohlantirish: o'quvchi loyihasida route'lar <code>/api/v1</code> bilan boshlanadi — prefiks unutilsa <b>404</b>", text: "Yana bitta ogohlantirish: o'quvchi loyihasida hamma route api v1 bilan boshlanadi, admin emas, api v1 admin. Prefiks unutilsa to'rt yuz to'rt chiqadi. Bu loyihani keyingi mentor darsida to'liq, clone qilib ko'rasiz.", show: "Yana bitta ogohlantirish: o'quvchi loyihasida hamma route <code>/api/v1</code> bilan boshlanadi — <code>/admin</code> emas, <code>/api/v1/admin</code>; prefiks unutilsa <b>404</b>. Bu loyihani keyingi mentor darsida to'liq, clone qilib ko'rasiz.", hl: [] },
+    { id: 'h', key: "Xulosa: darsdan oldin loyihani <b>o'zingiz bir marta ko'taring</b> — qoqiladigan joyni oldindan bilasiz", text: "Xulosa: bu holatlarning ko'pi darsning birinchi yigirma daqiqasida chiqadi. Shuning uchun darsdan oldin loyihani o'zingiz bir marta clone qilib, env bilan ishga tushirib ko'ring: qayerda qoqilish mumkinligini o'zingiz his qilasiz.", show: "Xulosa: bu holatlarning ko'pi darsning birinchi 20 daqiqasida chiqadi. Darsdan oldin loyihani o'zingiz bir marta clone qilib, .env bilan ishga tushirib ko'ring: qayerda qoqilish mumkinligini o'zingiz his qilasiz.", hl: [] },
   ],
 };
 function ScreenR2(p) {
@@ -1544,29 +1960,29 @@ const DB_ERRS = [
   { at: 5, id: 'db5', h: `<span class="er">ERROR [ExceptionHandler] error: …</span>   <span class="cm">← 10 urinishdan keyin server yiqiladi</span>` },
 ];
 const DB_ROWS = [
-  { at: 1, m: 'connect ECONNREFUSED 127.0.0.1:5432', s: "PostgreSQL ishlamayapti yoki port noto'g'ri", f: "pg_isready yoki xizmatni yoqing; .env'dagi port 5432 mi" },
-  { at: 2, m: 'client password must be a string', s: ".env yo'q yoki DEV_DB_URL o'qilmagan (parol undefined)", f: ".env.example'dan .env nusxalang, serverni qayta ishga tushiring" },
-  { at: 3, m: 'password authentication failed for user', s: ".env'dagi parol yoki foydalanuvchi noto'g'ri", f: "psql bilan shu parolni sinang, .env'ni to'g'rilang" },
-  { at: 4, m: 'database "…" does not exist', s: "ulanish va parol to'g'ri, lekin shu nomli baza yaratilmagan", f: "createdb bilan bazani yarating yoki .env'dagi nomni tekshiring" },
+  { at: 1, m: 'connect ECONNREFUSED 127.0.0.1:5432', s: "PostgreSQL ishlamayapti yoki port noto'g'ri", f: "<b>PostgreSQL'ni ishga tushiring</b>: Windows — Services → postgresql → Start · Mac — <code>brew services start postgresql</code> · Linux — <code>sudo systemctl start postgresql</code>. Keyin .env'dagi port 5432 ekanini tekshiring" },
+  { at: 2, m: 'client password must be a string', s: ".env yo'q yoki DEV_DB_URL o'qilmagan (parol undefined)", f: "<b>Loyiha papkasida: <code>cp .env.example .env</code></b> (Windows: <code>copy .env.example .env</code>). Ichida <code>DEV_DB_URL</code> tayyor — parolni o'zingiznikiga almashtiring, serverni qayta ishga tushiring" },
+  { at: 3, m: 'password authentication failed for user', s: ".env'dagi parol yoki foydalanuvchi noto'g'ri", f: ".env.example'da parol shunchaki <code>password</code> — <code>DEV_DB_URL</code>'ga o'z PostgreSQL parolingizni yozing; <code>psql -U postgres</code> bilan sinang" },
+  { at: 4, m: 'database "…" does not exist', s: "ulanish va parol to'g'ri, lekin shu nomli baza yaratilmagan", f: "bazani yarating: <code>createdb -U postgres nestarxitechture</code> (nom — DEV_DB_URL oxiridagi so'z)" },
 ];
 const RDB = {
   kicker: "7-bosqich · o'tish rejasi", eyebrow: "m4a-01 · sinfda eng ko'p chiqadigan xato", title: "Baza ulanmadi: to'rt xabar, to'rt sabab",
   segments: [
-    { id: 'a', key: "O'quvchi loyihasi <b>PostgreSQL'ga ulanadi</b> — sinfdagi 1-xato shu", text: "Bugun to'rt Nest xatosini o'rgandingiz. Lekin sinfda eng ko'p chiqadigani boshqa: o'quvchi loyihasi PostgreSQL'ga ulanadi, va ulanish ko'pincha birinchi urinishda bo'lmaydi. Xabar har doim bir xil boshlanadi: Unable to connect to the database, Retrying. Sabab esa ikkinchi satrda. To'rtta haqiqiy holat." },
-    { id: 'b', key: "1 · <b>ECONNREFUSED</b> → PostgreSQL ishlamayapti yoki port", text: "Birinchi: connect ECONNREFUSED, manzil va port. Demak shu portda hech kim javob bermayapti: PostgreSQL ishlamayapti yoki env faylida port noto'g'ri. Yechim: xizmatni yoqing, portni tekshiring.", show: "<b>connect ECONNREFUSED 127.0.0.1:5432</b>: shu portda hech kim javob bermayapti — PostgreSQL ishlamayapti yoki .env'dagi port noto'g'ri. Yechim: xizmatni yoqing, portni tekshiring." },
-    { id: 'c', key: "2 · <b>client password must be a string</b> → .env yo'q", text: "Ikkinchi, eng chalg'ituvchisi: client password must be a string. Bu parol noto'g'ri degani emas. Parol umuman yo'q, undefined: env fayli yo'q yoki DEV DB URL o'qilmagan. Yechim: env example dan nusxa oling, serverni qayta ishga tushiring.", show: "<b>client password must be a string</b> — eng chalg'ituvchisi: parol noto'g'ri emas, parol <b>umuman yo'q</b> (undefined): .env yo'q yoki DEV_DB_URL o'qilmagan. Yechim: .env.example → .env, serverni qayta." },
-    { id: 'd', key: "3 · <b>password authentication failed</b> → parol/foydalanuvchi", text: "Uchinchi: password authentication failed for user. Bu endi haqiqatan parol yoki foydalanuvchi nomi noto'g'ri. Yechim: env faylidagi qiymatlarni tekshiring, psql bilan sinang.", show: "<b>password authentication failed for user \"postgres\"</b>: endi haqiqatan parol yoki foydalanuvchi noto'g'ri. Yechim: .env qiymatlarini psql bilan sinang." },
-    { id: 'd2', key: "4 · <b>database … does not exist</b> → baza yaratilmagan", text: "To'rtinchi: database, nomi, does not exist. Ulanish bor, parol ham to'g'ri, lekin PostgreSQL'da bunday nomli baza yo'q: uni hali hech kim yaratmagan. Yechim: bazani yarating yoki env faylidagi nomni tekshiring.", show: "<b>database \"cars_db\" does not exist</b>: ulanish va parol to'g'ri, lekin bunday nomli baza <b>yaratilmagan</b>. Yechim: <code>createdb cars_db</code> yoki .env'dagi nomni tekshiring." },
-    { id: 'e', key: "Qoida: «Unable to connect» → <b>kodga tegmang</b>: .env va PostgreSQL", text: "TypeORM o'n marta qayta urinadi, keyin server yiqiladi. Qoida: Unable to connect ko'rsangiz, kodga tegmang, muammo kodda emas. Ikkinchi satrni o'qing, env faylini va PostgreSQL'ni tekshiring. Bu to'rt xabar eslatmada ham bor." },
+    { id: 'a', key: "O'quvchi loyihasi <b>PostgreSQL'ga ulanadi</b> — sinfdagi 1-xato shu, sabab doim <b>2-satrda</b>", text: "Oldingi ekrandagi uchinchi holatni, env va PostgreSQL'ni, alohida ko'ramiz, chunki sinfda eng ko'p vaqt shunga ketadi. Bugun to'rt Nest xatosini o'rgandingiz. Lekin sinfda eng ko'p chiqadigani boshqa: o'quvchi loyihasi PostgreSQL'ga ulanadi, va ulanish ko'pincha birinchi urinishda bo'lmaydi. Xabar har doim bir xil boshlanadi: Unable to connect to the database, Retrying. Sabab esa ikkinchi satrda. To'rtta haqiqiy holat." },
+    { id: 'b', key: "1 · <b>ECONNREFUSED</b> → PostgreSQL ishlamayapti: <b>PostgreSQL'ni ishga tushiring</b>", text: "Birinchi: connect ECONNREFUSED, manzil va port. Demak shu portda hech kim javob bermayapti: PostgreSQL ishlamayapti yoki env faylida port noto'g'ri. Yechim: PostgreSQL'ni ishga tushiring. Windows'da Services oynasida postgresql'ni Start qilasiz, Mac va Linux'da jadvaldagi buyruq bilan. Keyin portni tekshiring.", show: "<b>connect ECONNREFUSED 127.0.0.1:5432</b>: shu portda hech kim javob bermayapti — PostgreSQL ishlamayapti yoki .env'dagi port noto'g'ri. Yechim: <b>PostgreSQL'ni ishga tushiring</b> (Windows: Services → postgresql → Start; Mac/Linux: jadvaldagi buyruq), keyin portni tekshiring." },
+    { id: 'c', key: "2 · <b>client password must be a string</b> → .env yo'q: <code>cp .env.example .env</code>", text: "Ikkinchi, eng chalg'ituvchisi: client password must be a string. Bu parol noto'g'ri degani emas. Parol umuman yo'q, undefined: env fayli yo'q. O'quvchi loyihasida tayyor namuna bor, env example fayli. Yechim bitta: shu namunadan nusxa olib, env faylini yaratish, ichidagi parolni o'ziniki bilan almashtirish va serverni qayta ishga tushirish. Sinfda buni hammaga birinchi bo'lib ayting.", show: "<b>client password must be a string</b> — eng chalg'ituvchisi: parol noto'g'ri emas, parol <b>umuman yo'q</b> (undefined) — .env fayli yo'q. Loyihada tayyor namuna bor: <b>.env.example</b>. Yechim: <code>cp .env.example .env</code>, ichidagi parolni o'zingiznikiga almashtiring, serverni qayta ishga tushiring. Sinfda buni hammaga birinchi bo'lib ayting." },
+    { id: 'd', key: "3 · <b>password authentication failed</b> → .env'dagi parol noto'g'ri: <b>o'z parolingizni</b> yozing", text: "Uchinchi: password authentication failed for user. Bu endi haqiqatan parol yoki foydalanuvchi nomi noto'g'ri. Sinfda bu tez-tez chiqadi, chunki env example'dagi parol shunchaki password so'zi. Yechim: DEV DB URL ichiga o'quvchining o'z PostgreSQL parolini yozish.", show: "<b>password authentication failed for user \"postgres\"</b>: endi haqiqatan parol yoki foydalanuvchi noto'g'ri. Sinfda tez-tez chiqadi: .env.example'dagi parol shunchaki <code>password</code>. Yechim: <code>DEV_DB_URL</code>'ga o'z PostgreSQL parolingizni yozing." },
+    { id: 'd2', key: "4 · <b>database … does not exist</b> → baza yaratilmagan: <code>createdb</code>", text: "To'rtinchi: database, nomi, does not exist. Ulanish bor, parol ham to'g'ri, lekin PostgreSQL'da bunday nomli baza yo'q: uni hali hech kim yaratmagan. O'quvchi loyihasida nom DEV DB URL oxirida, nestarxitechture. Yechim: shu nom bilan bazani yaratish.", show: "<b>database \"…\" does not exist</b>: ulanish va parol to'g'ri, lekin bunday nomli baza <b>yaratilmagan</b>. O'quvchi loyihasida nom <code>DEV_DB_URL</code> oxirida: <code>nestarxitechture</code>. Yechim: <code>createdb -U postgres nestarxitechture</code>." },
+    { id: 'e', key: "Xulosa: «Unable to connect» → <b>kodga tegmang</b> — 2-satrni o'qing, .env va PostgreSQL'ni tekshiring", text: "TypeORM o'n marta qayta urinadi, keyin server yiqiladi. Xulosa va qoida: Unable to connect ko'rsangiz, kodga tegmang, muammo kodda emas. Ikkinchi satrni o'qing, env faylini va PostgreSQL'ni tekshiring. Bu to'rt xabar eslatmada ham bor." },
   ],
 };
 function ScreenRdb(p) {
   return <Lesson p={p} S={RDB} scene={({ seg, beat }) => (<>
-    <CodePanel file="terminal — o'quvchi loyihasi, haqiqiy chiqishlar" numbers={false} wrap style={{ background: '#1F1115' }} beat={beat} lines={DB_ERRS} focus={beat >= 1 && beat <= 5 ? ['db' + beat] : []} />
-    <Block at={1} beat={beat}><table className="mk-tbl"><thead><tr><th>xabar (2-satr)</th><th>sabab</th><th>yechim</th></tr></thead><tbody>
-      {DB_ROWS.filter((r) => r.at <= beat).map((r, i) => <tr key={i} className={r.at === beat ? 'hl' : ''}><td><code>{r.m}</code></td><td>{r.s}</td><td>{r.f}</td></tr>)}
+    <CodePanel file={t('terminal — haqiqiy chiqishlar (sinovdagi baza nomi: cars_db)', 'terminal — реальный вывод (имя базы в проверке: cars_db)')} numbers={false} wrap style={{ background: '#1F1115' }} beat={beat} lines={DB_ERRS} focus={beat >= 1 && beat <= 4 ? ['db' + beat] : []} />
+    <Block at={1} beat={beat}><table className="mk-tbl"><thead><tr><th>{t('xabar (2-satr)', 'сообщение (2-я строка)')}</th><th>{t('sabab', 'причина')}</th><th>{t('yechim', 'решение')}</th></tr></thead><tbody>
+      {DB_ROWS.filter((r) => r.at <= beat).map((r, i) => <tr key={i} className={r.at === beat ? 'hl' : ''}><td><code>{r.m}</code></td><td>{r.s}</td><td dangerouslySetInnerHTML={html(r.f)} /></tr>)}
     </tbody></table></Block>
-    <Block at={5} beat={beat}><div className="mk-rule"><b>«Unable to connect»</b> → kodga tegmang: 2-satrni o'qing, <code>.env</code> va PostgreSQL'ni tekshiring.</div></Block>
+    <Block at={5} beat={beat}><div className="mk-rule">{t(<><b>«Unable to connect»</b> → TypeORM 10 marta qayta urinadi, keyin server yiqiladi. <b>Kodga tegmang:</b> 2-satrni o'qing, <code>.env</code> va PostgreSQL'ni tekshiring.</>, <><b>«Unable to connect»</b> → TypeORM делает 10 попыток, потом сервер падает. <b>Код не трогайте:</b> прочитайте 2-ю строку, проверьте <code>.env</code> и PostgreSQL.</>)}</div></Block>
   </>)} />;
 }
 
@@ -1582,11 +1998,11 @@ const PLAN90 = [
 const R3 = {
   kicker: "7-bosqich · o'tish rejasi", eyebrow: 'm4a-01 · 90 daqiqa (taklif)', title: "Vaqt rejasi va uch qoida",
   segments: [
-    { id: 'a', key: "90 daqiqa: <b>oltita bo'lak</b>", text: "Taklif qilingan vaqt rejasi: to'qson daqiqa, oltita bo'lak. Bu taklif, sinfingizga qarab o'zgartirasiz.", hl: [] },
-    { id: 'b', key: "0–30: kirish va <b>hammada server ishlaguncha</b>", text: "Birinchi o'ttiz daqiqa: kirish va clone. Eng xavfli bo'lak clone va ishga tushirish, shuning uchun unga yigirma daqiqa.", hl: [0, 1] },
-    { id: 'c', key: "30–60: Swagger, xarita, <b>buyurtma yo'li</b>", text: "O'ttizdan oltmishgacha: Swagger, bino xaritasi, buyurtma yo'li va uchta test.", hl: [2, 3] },
-    { id: 'd', key: "60–90: qatlamlar, <b>AI qurish, debugging</b>", text: "Oltmishdan to'qsongacha: qatlamlar, AI bilan qurish, yakuniy debugging va arena.", hl: [4, 5] },
-    { id: 'e', key: "Uch qoida: <b>server · ikki so'z · jurnal birga</b>", text: "Va uch qoida. Birinchi: hammaning serveri ishlamaguncha oldinga o'tmang. Ikkinchi: metafora va atamani birga ayting, oshpaz, ya'ni Service. Uchinchi: xato chiqsa jurnalni o'quvchi bilan birga o'qing, javobni aytmang.", hl: [] },
+    { id: 'a', key: "Taklif: <b>90 daqiqa, oltita bo'lak</b> — sinfingizga qarab o'zgartirasiz", text: "Qoqiladigan joylarni va ularning yechimini bilasiz. Endi vaqtni rejalaymiz. Taklif qilingan vaqt rejasi: to'qson daqiqa, oltita bo'lak. Bu taklif, sinfingizga qarab o'zgartirasiz.", hl: [] },
+    { id: 'b', key: "0–30: kirish va clone — <b>hammada server ishlaguncha</b> oldinga o'tmang", text: "Birinchi o'ttiz daqiqa: kirish va clone. Eng xavfli bo'lak clone va ishga tushirish, shuning uchun unga yigirma daqiqa.", hl: [0, 1] },
+    { id: 'c', key: "30–60: Swagger, papkalar xaritasi, <b>buyurtma yo'li</b> va uchta test", text: "O'ttizdan oltmishgacha: Swagger, bino xaritasi, buyurtma yo'li va uchta test.", hl: [2, 3] },
+    { id: 'd', key: "60–90: qatlamlar, <b>AI bilan qurish</b>, debugging va arena", text: "Oltmishdan to'qsongacha: qatlamlar, AI bilan qurish, yakuniy debugging va arena.", hl: [4, 5] },
+    { id: 'e', key: "Xulosa — uch qoida: <b>server avval · ikki so'z birga · xabarni birga o'qish</b>", text: "Xulosa: uch qoida. Birinchi: hammaning serveri ishlamaguncha oldinga o'tmang. Ikkinchi: metafora va atamani birga ayting, oshpaz, ya'ni Service. Uchinchi: xato chiqsa terminaldagi xabarni o'quvchi bilan birga o'qing, javobni aytmang.", hl: [] },
   ],
 };
 function ScreenR3(p) {
@@ -1598,7 +2014,7 @@ function ScreenR3(p) {
       </div>)}
     </div>
     <Block at={4} beat={beat}><div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10 }}>
-      {[['Server avval', "hammada ishlamaguncha oldinga o'tmang"], ["Ikki so'z birga", '«oshpaz, ya\'ni Service»'], ['Jurnal birga', "javobni aytmang, savol bering"]].map(([h, d], i) => <div key={h} className="mk-card" style={{ borderColor: T.accent, animation: `mk-up .4s ${i * 0.15}s ease both` }}><h5 style={{ color: T.accent }}>{h}</h5><div style={{ fontSize: 13 }}>{d}</div></div>)}
+      {t([['Server avval', "hammada ishlamaguncha oldinga o'tmang"], ["Ikki so'z birga", '«oshpaz, ya\'ni Service»'], ['Xabarni birga o\'qing', "javobni aytmang, savol bering"]], [['Сначала сервер', 'пока не работает у всех, дальше не идите'], ['Два слова вместе', '«повар, то есть Service»'], ['Читайте сообщение вместе', 'ответ не говорите, задавайте вопрос']]).map(([h, d], i) => <div key={h} className="mk-card" style={{ borderColor: T.accent, animation: `mk-up .4s ${i * 0.15}s ease both` }}><h5 style={{ color: T.accent }}>{h}</h5><div style={{ fontSize: 13 }}>{d}</div></div>)}
     </div></Block>
   </>)} />;
 }
@@ -1606,23 +2022,23 @@ function ScreenR3(p) {
 // --- S26 O'quvchi so'raydigan savollar ---
 const QA = [
   ['Nega Express emas, Nest?', "Loyiha katta bo'lganda tartib kerak; Nest tartibni majburiy qiladi, ichida esa o'sha Express."],
-  ["Dekorator nima o'zi?", "Klass yoki metod ustidagi belgi; Nest'ga shu narsa nima ekanini aytadi, kod bajarmaydi."],
+  ["Decorator nima o'zi?", "Klass yoki metod ustidagi belgi; Nest'ga shu narsa nima ekanini aytadi, kod bajarmaydi."],
   ['providers nima?', "Shu modul yaratib beradigan narsalar, asosan Service'lar."],
-  ["Service'ni nega alohida qildik?", "Alohida sinash va qayta ishlatish uchun; Controller yupqa qoladi."],
+  ["Service'ni nega alohida qildik?", "Alohida sinash va qayta ishlatish uchun; Controller'da esa logika qolmaydi."],
   ["Nest Express'dan tezmi?", "Yo'q, tezlik bir xil, ichida Express. Nest tezlik emas, tartib beradi."],
-  ["Injectable'ni o'chirdim, ishlayapti. Kerak emasmi?", "Bog'liqligi bo'lmagani uchun ishladi; bog'liqlik paydo bo'lganda server ishga tushadi, lekin so'rovda 500 TypeError — jim xato. Shuning uchun doim yoziladi."],
+  ["Injectable'ni o'chirdim, ishlayapti. Kerak emasmi?", "Dependency'si bo'lmagani uchun ishladi; dependency paydo bo'lganda server ishga tushadi, lekin so'rovda 500 TypeError — jim xato. Shuning uchun doim yoziladi."],
 ];
 const S26 = {
   kicker: "7-bosqich · savollar", title: "O'quvchi so'raydigan savollar",
   segments: [
-    { id: 'a', key: "Sizga beriladigan <b>6 savol</b>", text: "Darsda sizga beriladigan savollar taxminan shular bo'ladi.", hl: [] },
-    { id: 'q1', key: "1 · Nega Express emas? → <b>tartib</b>", text: "Birinchisi: nega Express emas, Nest? Javob: loyiha katta bo'lganda tartib kerak, Nest tartibni majburiy qiladi, ichida esa o'sha Express.", hl: [0] },
-    { id: 'q2', key: "2 · Dekorator? → <b>belgi</b>", text: "Ikkinchisi: dekorator nima? Klass yoki metod ustidagi belgi, Nest'ga shu narsa nima ekanini aytadi.", hl: [1] },
-    { id: 'q3', key: "3 · providers? → <b>Service'lar</b>", text: "Uchinchisi: providers nima? Shu modul yaratib beradigan narsalar, asosan Service'lar.", hl: [2] },
-    { id: 'q4', key: "4 · Nega alohida Service? → <b>sinash, qayta ishlatish</b>", text: "To'rtinchisi: Service'ni nega alohida qildik? Alohida sinash va qayta ishlatish uchun, Controller esa yupqa qoladi.", hl: [3] },
-    { id: 'q5', key: "5 · Tezmi? → <b>yo'q, tartib</b>", text: "Beshinchisi: Nest tezmi? Yo'q, tezlik bir xil, chunki ichida Express. Nest tezlik emas, tartib beradi.", hl: [4] },
-    { id: 'q6', key: "6 · Injectable'siz ishlayapti? → <b>hozircha, keyin jim xato</b>", text: "Oltinchisi: Injectable'ni o'chirdim, ishlayapti. Bog'liqligi bo'lmagani uchun; bog'liqlik paydo bo'lganda server ishga tushadi, lekin so'rovda besh yuz, jim xato. Shuning uchun doim yoziladi.", hl: [5] },
-    { id: 'z', key: "Har kartani <b>bosib</b> o'qing", text: "Har kartani bosib, javobni o'qing. O'zingiz javob bera olmaydigan savol kelsa, darsdagi shu ekranga qayting.", hl: [], closeAll: true },
+    { id: 'a', key: "Darsda sizga beriladigan <b>6 savol</b> va tayyor javoblar", text: "Dars rejasi tayyor. Oxirgi tayyorgarlik: o'quvchi sizga beradigan savollar. Ular taxminan shular bo'ladi.", hl: [] },
+    { id: 'q1', key: "1 · «Nega Express emas?» → katta loyihada <b>tartib kerak</b>, ichida o'sha Express", text: "Birinchisi: nega Express emas, Nest? Javob: loyiha katta bo'lganda tartib kerak, Nest tartibni majburiy qiladi, ichida esa o'sha Express.", hl: [0] },
+    { id: 'q2', key: "2 · «Decorator nima?» → klass ustidagi <b>belgi</b>: Nest'ga «bu nima»ligini aytadi", text: "Ikkinchisi: decorator nima? Klass yoki metod ustidagi belgi, Nest'ga shu narsa nima ekanini aytadi.", hl: [1] },
+    { id: 'q3', key: "3 · «providers nima?» → modul <b>yaratib beradigan</b> narsalar, asosan Service'lar", text: "Uchinchisi: providers nima? Shu modul yaratib beradigan narsalar, asosan Service'lar.", hl: [2] },
+    { id: 'q4', key: "4 · «Nega alohida Service?» → <b>alohida sinash</b> va qayta ishlatish uchun", text: "To'rtinchisi: Service'ni nega alohida qildik? Alohida sinash va qayta ishlatish uchun, Controller'da esa logika qolmaydi.", hl: [3] },
+    { id: 'q5', key: "5 · «Nest tezroqmi?» → yo'q, ichida Express; Nest <b>tezlik emas, tartib</b> beradi", text: "Beshinchisi: Nest tezmi? Yo'q, tezlik bir xil, chunki ichida Express. Nest tezlik emas, tartib beradi.", hl: [4] },
+    { id: 'q6', key: "6 · «Injectable'siz ishlayapti-ku?» → hozircha; dependency qo'shilsa — <b>jim xato, 500</b>", text: "Oltinchisi: Injectable'ni o'chirdim, ishlayapti. Dependency'si bo'lmagani uchun; dependency paydo bo'lganda server ishga tushadi, lekin so'rovda besh yuz, jim xato. Shuning uchun doim yoziladi.", hl: [5] },
+    { id: 'z', key: "Xulosa: javob bera olmagan savolingiz bo'lsa — <b>darsdagi o'sha ekranga</b> qayting", text: "Xulosa: bu oltita javob sizda tayyor bo'lsin. Har kartani bosib, javobni o'zingiz yana o'qing. O'zingiz javob bera olmaydigan savol bo'lsa, darsdagi o'sha ekranga qayting.", hl: [], closeAll: true },
   ],
 };
 function Screen26(p) {
@@ -1638,19 +2054,35 @@ function Screen26(p) {
 // --- S27 O'z-sinov — 8 savol, HAR SAVOLDA BITTA URINISH ---
 const FINAL = [
   { q: "Nest ichida so'rovni haqiqatda qaysi kutubxona qabul qiladi?", o: ["Nest'ning o'z HTTP serveri", 'Express (platform-express)', 'Node http moduli bevosita', 'Har doim Fastify'], c: 1, e: "Nest Express ustidagi qatlam; Fastify'ga almashtirish mumkin, lekin standart Express.", s: 3 },
-  { q: "@Controller('cars') va @Get(':id') birga qaysi manzilni ochadi?", o: ['/cars?id=5', '/id/cars', '/cars/5', '/:id/cars'], c: 2, e: "Controller prefiksi + metod yo'li.", s: 18 },
+  { q: "@Controller('cars') va @Get(':id') birga qaysi path'ni ochadi?", o: ['/cars?id=5', '/id/cars', '/cars/5', '/:id/cars'], c: 2, e: "Controller prefiksi + metod yo'li.", s: 18 },
   { q: 'POST metodida status yozilmagan. Nest nima qaytaradi?', o: ['200', '201', '204', '202'], c: 1, e: "Nest POST uchun 201 ni o'zi qo'yadi.", s: 20 },
-  { q: "«Nest can't resolve dependencies of the X (?)» — so'roq belgisi nimani bildiradi?", o: ["Noma'lum modul", "Topilmagan argument o'rni", 'Sintaksis xatosi', "Marshrut yo'q"], c: 1, e: 'Qavs ichida konstruktor argumentlari, ? — topilmagani.', s: 23 },
-  { q: "Server «successfully started», /cars 404, jurnalda Mapped {/cars…} yo'q. Eng ehtimoliy sabab?", o: ["CarsModule AppModule imports'ida yo'q", "Injectable yo'q", 'Port band', "Service'da xato"], c: 0, e: "Jim xato: modul ulanmagan, Nest papkani o'qimagan.", s: 24 },
+  { q: "«Nest can't resolve dependencies of the X (?)» — so'roq belgisi nimani bildiradi?", o: ["Noma'lum modul", "Topilmagan argument o'rni", 'Sintaksis xatosi', "Route yo'q"], c: 1, e: 'Qavs ichida konstruktor argumentlari, ? — topilmagani.', s: 23 },
+  { q: "Server «successfully started», /cars 404, terminalda Mapped {/cars…} yo'q. Eng ehtimoliy sabab?", o: ["CarsModule AppModule imports'ida yo'q", "Injectable yo'q", 'Port band', "Service'da xato"], c: 0, e: "Jim xato: modul ulanmagan, Nest papkani o'qimagan.", s: 24 },
   { q: "Service ichida throw new Error('x'). Mijozga nima boradi?", o: ['404 va «x»', '500 Internal server error', '400', 'Hech narsa, server yiqiladi'], c: 1, e: 'Oddiy Error → 500, xabar yashiriladi.', s: 28 },
-  { q: "Yangi xabar: «Nest can't resolve dependencies of the UsersService (?, JwtService). Please make sure that the argument ConfigService at index [0] is available in the UsersModule module.» Nima qilasiz?", o: ["users.module.ts — providers'ga ConfigService (yoki ConfigModule import)", "users.service.ts — konstruktordan JwtService'ni o'chirish", "app.module.ts — controllers'ga UsersService", "UsersService'ga @Injectable() qo'shish"], c: 0, e: "Kim: UsersService · nima: ConfigService, index [0] · qayerda: UsersModule. JwtService topilgan (ikkinchi o'rin), muammo unda emas.", s: 23 },
+  { q: "Yangi xabar: «Nest can't resolve dependencies of the UsersService (?, JwtService). Please make sure that the argument ConfigService at index [0] is available in the UsersModule module.» Nima qilasiz?", o: ["users.module.ts — providers'ga ConfigService (yoki ConfigModule import)", "users.service.ts — konstruktordan JwtService'ni o'chirish", "app.module.ts — controllers'ga UsersService", "UsersService'ga @Injectable() qo'shish"], c: 0, e: "Klass: UsersService · dependency: ConfigService, index [0] · fayl: users.module.ts (UsersModule). JwtService topilgan (ikkinchi o'rin), muammo unda emas.", s: 23 },
   { q: "orders.module.ts: controllers: [OrdersController], providers: [] — OrdersController konstruktorida OrdersService so'ralgan. Server nima qiladi?", o: ["Ishga tushadi, /orders → 404", "Yiqiladi: can't resolve dependencies of the OrdersController (?)", "Ishga tushadi, /orders → 500", "Yiqiladi: invalid controller detected"], c: 1, e: "providers bo'sh → Nest OrdersService'ni topa olmaydi → ishga tushishda yiqiladi (1-buzish bilan bir xil).", s: 23 },
 ];
 function Screen27(p) {
-  const segs = useMemo(() => [{ id: 'intro', text: UZ + "Yakuniy sinov, sakkiz savol. Bu o'zingizni halol o'lchash: har savolda bitta urinish, javobdan keyin to'g'risi va izohi ochiladi. Olti va undan ko'p, dars o'zlashtirilgan. Kam bo'lsa, ko'rsatilgan ekranlarga qaytib, sinovni qayta topshirasiz.", trigger: 'on_mount' }], []);
+  const st = p.stored || {};
+  // Kirish gapi holatga qarab (F-1030-19): birinchi marta — sinov sharti; natijadan ekranga borib qaytganda — xatolarni o'rganishda davom etish;
+  // o'tgan bo'lsa — natija saqlangan. Qayta o'qilmaydi.
+  const segs = useMemo(() => {
+    const sc = (st.res || []).filter((x) => x && x.correct).length;
+    const text = LANG === 'ru' ? (!st.showResult
+      ? 'Вы всё посмотрели, теперь проверьте себя. Итоговый тест, восемь вопросов. Это честная проверка себя: на каждый вопрос одна попытка, после ответа открывается верный вариант и пояснение. Шесть и больше — урок усвоен. Если меньше, вернётесь к указанным экранам и пройдёте тест заново.'
+      : sc >= 6
+        ? 'Ваш результат сохранён: ' + sc + ' из восьми. Урок усвоен, нажмите «Далее».'
+        : 'Хорошо, одну ошибку вы разобрали. Вернитесь и к экранам остальных красных вопросов. Когда будете готовы, нажмите кнопку «Пройти тест заново».')
+      : !st.showResult
+      ? "Hammasini ko'rib chiqdingiz, endi o'zingizni tekshiring. Yakuniy sinov, sakkiz savol. Bu o'zingizni halol o'lchash: har savolda bitta urinish, javobdan keyin to'g'risi va izohi ochiladi. Olti va undan ko'p, dars o'zlashtirilgan. Kam bo'lsa, ko'rsatilgan ekranlarga qaytib, sinovni qayta topshirasiz."
+      : sc >= 6
+        ? "Natijangiz saqlangan: sakkizdan " + ['nol', 'bir', 'ikki', 'uch', "to'rt", 'besh', 'olti', 'yetti', 'sakkiz'][sc] + ". Dars o'zlashtirilgan, Davom bosing."
+        : "Yaxshi, bir xatoyingizni ko'rib chiqdingiz. Qolgan qizil savollarning ekranlariga ham qayting. Tayyor bo'lgach, Sinovni qayta topshirish tugmasini bosing.";
+    return p.review ? [] : [{ id: 'intro', text: voice(text), trigger: 'on_mount' }];
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const audio = useAudio(segs);
   const sfx = useSfx();
-  const st = p.stored || {};
   const [i, setI] = useState(st.i || 0);
   const [res, setRes] = useState(st.res || []);
   const [attempt, setAttempt] = useState(st.attempt || 1);
@@ -1666,36 +2098,36 @@ function Screen27(p) {
     const r = [...res]; r[i] = { picked: k, correct: k === q.c }; setRes(r);
     if (k === q.c) sfx.playCorrect(); else sfx.playWrong();
     const sc = r.filter((x) => x && x.correct).length; save({ res: r, score: sc });
-    if (r.filter(Boolean).length === FINAL.length) setTimeout(() => audio.pushOneOff(UZ + (sc >= 6 ? "Dars o'zlashtirildi. Endi o'quvchi darsiga kirsangiz, har so'z tanish bo'ladi." : "Hali bir necha joy mustahkam emas. Ko'rsatilgan ekranlarga qayting, keyin sinovni qayta topshiring. Bu normal holat, Nest birinchi kunda hammaga ham o'tirmaydi.")), 400);
+    if (r.filter(Boolean).length === FINAL.length) setTimeout(() => audio.pushOneOff(voice(sc >= 6 ? t("Dars o'zlashtirildi. Endi o'quvchi darsiga kirsangiz, har so'z tanish bo'ladi.", 'Урок усвоен. Теперь, когда вы откроете урок ученика, каждое слово будет знакомым.') : t("Hali bir necha joy mustahkam emas. Ko'rsatilgan ekranlarga qayting, keyin sinovni qayta topshiring. Bu normal holat, Nest birinchi kunda hammaga ham o'tirmaydi.", 'Несколько мест пока не закрепились. Вернитесь к указанным экранам, потом пройдите тест заново. Это нормально: Nest не у всех укладывается в первый день.'))), 400);
   };
   const next = () => { if (i < FINAL.length - 1) { setI(i + 1); save({ i: i + 1 }); } else { setShowResult(true); save({ showResult: true }); } };
   const retake = () => { setRes([]); setI(0); setShowResult(false); setAttempt(attempt + 1); save({ res: [], i: 0, showResult: false, attempt: attempt + 1, score: 0 }); };
   return (
-    <Stage kicker="O'z-sinov" idx={p.idx} total={p.total} audio={audio} onBack={p.onBack} onNext={p.onNext} nextReady={finished && showResult} nextDisabled={!finished}>
-      <div className="mk-body" style={{ gridTemplateColumns: '1fr', maxWidth: 860, width: '100%', margin: '0 auto' }}>
-        <div className="mk-say" style={{ justifyContent: 'center' }}>
+    <Stage kicker={t("O'z-sinov", 'Самопроверка')} idx={p.idx} total={p.total} audio={audio} onBack={p.onBack} onNext={p.onNext} onRestart={p.onRestart} nextReady={finished && showResult} nextDisabled={!(finished && showResult)} lockHint={!finished ? t('Savollarga javob bering', 'Ответьте на вопросы') : t('Natijani oching', 'Откройте результат')}>
+      <div className="mk-body" style={{ gridTemplateColumns: '1fr', maxWidth: 980, width: '100%', margin: '0 auto' }}>
+        <div className="mk-say mc" style={{ overflow: 'auto', paddingRight: 4 }}>
           {showResult ? (<>
-            <p className="mk-eyebrow">O'z-sinov · natija{attempt > 1 ? ` · ${attempt}-urinish` : ''}</p>
-            <h2 className="mk-title" style={{ fontSize: 'clamp(22px,2.4vw,30px)' }}>{score} / {FINAL.length} — {score >= 6 ? "dars o'zlashtirildi" : "yana bir ko'rib chiqing"}</h2>
+            <p className="mk-eyebrow">{t("O'z-sinov · natija", 'Самопроверка · результат')}{attempt > 1 ? t(` · ${attempt}-urinish`, ` · попытка ${attempt}`) : ''}</p>
+            <h2 className="mk-title" style={{ fontSize: 'clamp(22px,2.4vw,30px)' }}>{score} / {FINAL.length} — {score >= 6 ? t("dars o'zlashtirildi", 'урок усвоен') : t("yana bir ko'rib chiqing", 'посмотрите ещё раз')}</h2>
             <div style={{ display: 'grid', gap: 8 }}>
               {FINAL.map((f, k) => <div key={k} className="mk-card" style={{ display: 'flex', gap: 12, alignItems: 'center', borderColor: res[k] && res[k].correct ? T.green : T.accent }}>
                 <span style={{ fontFamily: MONO, fontWeight: 700, color: res[k] && res[k].correct ? T.green : T.accent, minWidth: 22 }}>{res[k] && res[k].correct ? '✓' : '✗'}</span>
                 <span style={{ flex: 1, fontSize: 14 }}>{f.q}</span>
-                {res[k] && !res[k].correct && p.onGoto && <button className="mk-btn soft sm" onClick={() => p.onGoto(f.s - 1)}>{f.s}-ekran</button>}
+                {res[k] && !res[k].correct && p.onGoto && <button className="mk-btn soft sm" onClick={() => p.onGoto(f.s - 1)}>{t(`${f.s}-ekran`, `экран ${f.s}`)}</button>}
               </div>)}
             </div>
             <div style={{ display: 'flex', gap: 10, alignItems: 'center', marginTop: 14, flexWrap: 'wrap' }}>
-              {score < 6 && <button className="mk-btn ghost" onClick={retake}>Sinovni qayta topshirish</button>}
-              <span style={{ color: T.ink2, fontSize: 14 }}>Ekranga qaytib «Davom» bossangiz, shu natijaga qaytasiz.</span>
+              {score < 6 && <button className="mk-btn ghost" onClick={retake}>{t('Sinovni qayta topshirish', 'Пройти тест заново')}</button>}
+              <span style={{ color: T.ink2, fontSize: 14 }}>{t('Ekranga qaytib «Davom» bossangiz, shu natijaga qaytasiz.', 'Если вернётесь к экрану и нажмёте «Далее», попадёте обратно к этому результату.')}</span>
             </div>
           </>) : (<>
-            <p className="mk-eyebrow">O'z-sinov · {i + 1} / {FINAL.length} · bitta urinish · to'g'ri: {score}</p>
+            <p className="mk-eyebrow">{t("O'z-sinov", 'Самопроверка')} · {i + 1} / {FINAL.length} · {t("bitta urinish · to'g'ri:", 'одна попытка · верно:')} {score}</p>
             <h2 className="mk-title" style={{ fontSize: 'clamp(20px,2.2vw,28px)' }}>{q.q}</h2>
             <div style={{ display: 'grid', gap: 10 }}>
               {q.o.map((o, k) => { let cls = 'mk-opt'; if (picked !== null) { if (k === q.c) cls += ' ok'; else if (k === picked) cls += ' bad'; else cls += ' off'; } return <button key={k} className={cls} disabled={picked !== null} onClick={() => pick(k)}><span className="l">{String.fromCharCode(65 + k)}</span><span>{o}</span></button>; })}
             </div>
-            {picked !== null && <div className="mk-fb" style={{ '--c': picked === q.c ? T.green : T.accent, '--bg': picked === q.c ? '#E3F5EC' : '#FFF0EB' }}><b>{picked === q.c ? "To'g'ri" : "Noto'g'ri — to'g'risi yashil"}</b><span>{q.e}</span></div>}
-            {picked !== null && <div style={{ marginTop: 14 }}><button className="mk-btn ready" onClick={next}>{i < FINAL.length - 1 ? 'Keyingi savol →' : "Natijani ko'rish →"}</button></div>}
+            {picked !== null && <div className="mk-fb" style={{ '--c': picked === q.c ? T.green : T.accent, '--bg': picked === q.c ? '#E3F5EC' : '#FFF0EB' }}><b>{picked === q.c ? t("To'g'ri", 'Верно') : t("Noto'g'ri — to'g'risi yashil", 'Неверно — правильный ответ зелёный')}</b><span>{q.e}</span></div>}
+            {picked !== null && <div style={{ marginTop: 14 }}><button className="mk-btn ready" onClick={next}>{i < FINAL.length - 1 ? t('Keyingi savol →', 'Следующий вопрос →') : t("Natijani ko'rish →", 'Посмотреть результат →')}</button></div>}
           </>)}
         </div>
       </div>
@@ -1709,69 +2141,126 @@ const CHEATSHEET = `# Nest 1-dars — mentor eslatmasi
 npm i -g @nestjs/cli · nest new cars-api · npm run start:dev
 nest g module cars · nest g controller cars --no-spec · nest g service cars --no-spec
 ## Uch bo'lak
-Controller — so'rovni oladi, Service'ni chaqiradi, qaytaradi (yupqa)
+Controller — so'rovni oladi, Service'ni chaqiradi, qaytaradi (logika yozilmaydi)
 Service — ish: hisob, qoida, baza; req/res yo'q; @Injectable()
 Module — ro'yxat: imports · controllers · providers; ro'yxatda yo'q = Nest uchun yo'q
 ## Dependency Injection
-constructor(private readonly carsService: CarsService) — siz yaratmaysiz, Nest providers'dan yaratib beradi (1 nusxa)
+constructor(private readonly carsService: CarsService) — siz yaratmaysiz, Nest providers'dan yaratib beradi (1 instance)
 ## 4 xato
 1 «can't resolve dependencies of the X (?) … argument Y at index [0] … in the Z module» → Z modulining providers'iga Y
-2 server ishga tushdi, /cars 404, jurnalda Mapped {/cars…} yo'q → AppModule imports: [CarsModule]
-3 «invalid controller … does not have the @Controller() decorator» → dekoratorni qaytaring
-4 @Injectable'siz ishlaydi (bog'liqlik yo'q) → bog'liqlik qo'shilsa: server ishga tushadi, so'rovda 500 TypeError (jim xato) → baribir yoziladi
+2 server ishga tushdi, /cars 404, terminalda Mapped {/cars…} yo'q → AppModule imports: [CarsModule]
+3 «invalid controller … does not have the @Controller() decorator» → decorator'ni qaytaring
+4 @Injectable'siz ishlaydi (dependency yo'q) → dependency qo'shilsa: server ishga tushadi, so'rovda 500 TypeError (jim xato) → baribir yoziladi
 ## Baza ulanmadi (o'quvchi loyihasi, TypeORM — «Unable to connect to the database. Retrying (1)…», 10 urinish, keyin yiqiladi)
-connect ECONNREFUSED 127.0.0.1:5432 → PostgreSQL ishlamayapti yoki port noto'g'ri · SASL … client password must be a string → .env yo'q/o'qilmagan · password authentication failed for user → .env'dagi parol/foydalanuvchi noto'g'ri · database "…" does not exist → baza yaratilmagan (createdb) yoki .env'dagi nom noto'g'ri
+connect ECONNREFUSED 127.0.0.1:5432 → PostgreSQL'ni ishga tushiring (Windows: Services → postgresql; Mac: brew services start postgresql; Linux: sudo systemctl start postgresql)
+SASL … client password must be a string → .env yo'q: cp .env.example .env, parolni o'zingiznikiga almashtiring
+password authentication failed for user → .env.example'dagi parol «password» — DEV_DB_URL'ga o'z parolingiz
+database "…" does not exist → createdb -U postgres nestarxitechture (nom — DEV_DB_URL oxirida)
 ## Yordam
 Hech biri mos kelmasa: skrinshot + xato matni → mentor-kurs Telegram guruhi
 ## Xato turi
 HttpException oilasi (NotFound 404, BadRequest 400, Unauthorized 401, Forbidden 403) → status + xabar · oddiy Error → 500, xabar yashirin
 ## Javoblar
-GET /cars 200 · GET /cars/1 200 · GET /cars/99 404 · POST /cars 201 (o'zi) · /cars/abc → 404 «NaN» (tekshiruv yo'q — DTO keyingi dars)
+GET /cars 200 · GET /cars/1 200 · GET /cars/99 404 · POST /cars 201 (o'zi) · /cars/abc → 404 «NaN» (tekshiruv yo'q; @Param('id', ParseIntPipe) yoki DTO + ValidationPipe → 400)
 ## O'quvchi darsi tili
 ofitsiant=Controller · oshpaz=Service · omborchi=Repository · javon chizmasi=Entity · anketa=DTO · nazoratchi=Guard · shtat jadvali=Module
 ## Uch qoida (dars o'tishda)
-hammada server ishlaguncha oldinga o'tmang · «oshpaz, ya'ni Service» · xato chiqsa jurnalni birga o'qing, javobni aytmang`;
-const S28 = {
-  kicker: 'Yakun', title: 'Endi siz bilasiz',
-  items: ["Nest — Express ustidagi majburiy tartib", "Controller so'rovni oladi va yupqa qoladi", "Service ishni bajaradi va so'rov haqida bilmaydi", "Module — ro'yxat, Nest faqat ro'yxatdagini ko'radi", 'Dependency Injection: siz yaratmaysiz, Nest konstruktor orqali beradi', "Nest xatolari o'qiladi: kim · nima · qayerda"],
-  segments: [
-    { id: 'a', key: "Darsni yakunlaymiz", text: "Darsni yakunlaymiz. Endi siz bilasiz.", hl: [] },
-    { id: 'b1', key: "Nest = Express + <b>majburiy tartib</b>", text: "Nest bu Express ustidagi majburiy tartib.", hl: [0] },
-    { id: 'b2', key: "Controller <b>yupqa</b>", text: "Controller so'rovni oladi va yupqa qoladi.", hl: [1] },
-    { id: 'b3', key: "Service <b>ishlaydi</b>, so'rovni bilmaydi", text: "Service ishni bajaradi va so'rov haqida bilmaydi.", hl: [2] },
-    { id: 'b4', key: "Module <b>ro'yxat</b>", text: "Module ro'yxat, Nest faqat ro'yxatdagini ko'radi.", hl: [3] },
-    { id: 'b5', key: "DI: <b>Nest beradi</b>", text: "Dependency Injection: siz yaratmaysiz, Nest konstruktor orqali beradi.", hl: [4] },
-    { id: 'b6', key: "Xatolar <b>o'qiladi</b>: kim · nima · qayerda", text: "Va eng muhimi: Nest xatolari o'qiladi, ularda kim, nima, qayerda yozilgan.", hl: [5] },
-    { id: 'c', key: "<b>Eslatmani oling</b>. Keyingi dars: Entity, DTO, Repository", text: "Pastda bir sahifalik eslatma: buyruqlar, to'rt xato, qoidalar va o'quvchi darsi lug'ati. Nusxalab yoki yuklab oling. Keyingi dars: birinchi resursni qo'lda qo'shish, mashinalar: Entity, DTO va Repository. U yerda bugungi cars moduli haqiqiy PostgreSQL bazasiga ulanadi. Rahmat.", hl: [] },
-  ],
-};
+hammada server ishlaguncha oldinga o'tmang · «oshpaz, ya'ni Service» · xato chiqsa terminaldagi xabarni birga o'qing, javobni aytmang
+## Uyga vazifa
+cars-api'ga users moduli: nest g module/controller/service users · Service: ro'yxat + findAll/findOne/create, topilmasa NotFoundException · Controller: GET /users · GET /users/:id · POST /users · bir marta ataylab buzing (providers bo'sh) va tuzating · GitHub'ga push → repo linki platformadagi uyga vazifaga`;
+// --- S28 Yakun (F-1030-20): Barakalla → animatsion xulosa (so'rov yo'li qayta chiziladi, 6 band birin-ketin) → uyga vazifa → eslatma → «Darsni yakunlash» ---
+// hl — xulosa xaritasida yoritiladigan qism: all · ctrl · svc · mod · di · err
+const S28_ITEMS = [
+  { k: 'all', t: "Nest — Express ustidagi majburiy tartib" },
+  { k: 'ctrl', t: "Controller so'rovni oladi — unda logika yozilmaydi" },
+  { k: 'svc', t: "Service ishni bajaradi va so'rov haqida bilmaydi" },
+  { k: 'mod', t: "Module — ro'yxat, Nest faqat ro'yxatdagini ko'radi" },
+  { k: 'di', t: 'Dependency Injection: siz yaratmaysiz, Nest konstruktor orqali beradi' },
+  { k: 'err', t: "Nest xatosi o'qiladi: qaysi klass · qaysi dependency · qaysi fayl" },
+];
+const HOMEWORK = [
+  { t: 'users moduli', c: ['nest g module users', 'nest g controller users --no-spec', 'nest g service users --no-spec'] },
+  { t: "Service: foydalanuvchilar ro'yxati + findAll, findOne, create; topilmasa NotFoundException", c: [] },
+  { t: 'Controller: GET /users · GET /users/:id · POST /users — terminalda 3 ta Mapped', c: [] },
+  { t: "Bir marta ataylab buzing (providers'ni bo'shating), xabarni o'qing, tuzating", c: [] },
+  { t: "GitHub'ga chiqaring va repo linkini platformadagi uyga vazifangizga qo'ying", c: ['git add . && git commit -m "users moduli"', 'git push'] },
+];
+const s28Segments = (passed) => s28Ru(passed, [
+  passed
+    ? { id: 'a', key: "<b>Barakalla!</b> Siz darsni yaxshi o'rgandingiz — bugungi darsni bir qarashda yig'amiz", text: "Barakalla! Siz darsni yaxshi o'rgandingiz. Endi bugun o'rganganlaringizni bir qarashda yig'amiz.", hl: null }
+    : { id: 'a', key: "Dars oxiriga yetdingiz — sinovni <b>qayta topshirishni</b> maslahat beraman", text: "Dars oxiriga yetdingiz. Yakuniy sinovdan olti ball kerak edi, yakunlashdan oldin sinovni qayta topshirishni maslahat beraman. Hozir esa bugungi darsni bir qarashda yig'amiz.", hl: null },
+  { id: 'b1', key: "Nest — Express ustidagi <b>majburiy tartib</b>", text: "Birinchi: Nest bu Express ustidagi majburiy tartib. Ichida o'sha Express ishlaydi.", hl: 'all' },
+  { id: 'b2', key: "<b>Controller</b> so'rovni oladi, Service'ni chaqiradi, javobni qaytaradi — <b>logika yozilmaydi</b>", text: "Ikkinchi: Controller so'rovni oladi, Service'ni chaqiradi va javobni qaytaradi. Unda hisob yo'q.", hl: 'ctrl' },
+  { id: 'b3', key: "<b>Service</b> ishni bajaradi va so'rov haqida bilmaydi", text: "Uchinchi: Service ishni bajaradi va so'rov haqida hech narsa bilmaydi. Shuning uchun uni alohida sinash va qayta ishlatish oson.", hl: 'svc' },
+  { id: 'b4', key: "<b>Module</b> — ro'yxat: Nest faqat ro'yxatdagini ko'radi", text: "To'rtinchi: Module ro'yxat. Nest faqat ro'yxatda yozilganini ko'radi.", hl: 'mod' },
+  { id: 'b5', key: "<b>Dependency Injection</b>: providers'ga yozasiz, konstruktorda so'raysiz — Nest inject qiladi", text: "Beshinchi: Dependency Injection. Siz Service'ni providers'ga yozasiz va konstruktorda so'raysiz, yaratib inject qilishni Nest qiladi.", hl: 'di' },
+  { id: 'b6', key: "Nest xatosi <b>o'qiladi</b>: qaysi klass · qaysi dependency · qaysi fayl", text: "Va eng muhimi: Nest xatosi o'qiladi. Xabarda qaysi klass, qaysi dependency yetishmayapti va qaysi faylni ochish kerakligi yozilgan, javob esa ko'pincha modul faylida.", hl: 'err' },
+  { id: 'hw', key: "<b>Uyga vazifa</b>: cars-api'ga <code>users</code> modulini o'zingiz qo'shing va GitHub'ga chiqaring", text: "Uyga vazifa. cars api loyihangizga users modulini shu darsdagi usulda qo'shing: uchta CLI buyrug'i, Service'da foydalanuvchilar ro'yxati va findAll, findOne, create metodlari, topilmasa NotFoundException. Controller'da uchta route. Keyin bir marta ataylab buzing, masalan providers'ni bo'shating, xabarni o'qing va tuzating. Tayyor loyihani GitHub'ga chiqaring va repo linkini platformadagi uyga vazifangizga qo'ying.", hl: 'hw' },
+  { id: 'c', key: "<b>Eslatmani oling</b>: buyruqlar, xatolar, qoidalar va uyga vazifa — bir sahifada", text: "Pastda bir sahifalik eslatma: buyruqlar, to'rt Nest xatosi, baza ulanish xatolari, qoidalar, o'quvchi darsi lug'ati va uyga vazifa. Nusxalab yoki yuklab oling, o'quvchi darsini o'tayotganda yoningizda tursin.", hl: 'note' },
+  { id: 'z', key: "Rahmat! <b>Darsni yakunlash</b> tugmasini bosing", text: "Rahmat. Darsni yakunlash tugmasini bosing, dars tugallangan deb belgilanadi.", hl: 'note' },
+]);
+// UZ-RU: ruscha segmentlar parts/08-ru.jsx dagi S28_RU dan (id bo'yicha; 'a' — o'tgan/o'tmagan ikki varianti)
+const s28Ru = (passed, segs) => (LANG === 'ru' ? segs.map((s) => ({ ...s, ...(S28_RU[s.id === 'a' ? (passed ? 'a_pass' : 'a_fail') : s.id] || {}) })) : segs);
+function SummaryMap({ hl }) {
+  const on = (k) => hl === 'all' || hl === k || (hl === 'di' && (k === 'svc' || k === 'ctrl' || k === 'mod'));
+  const box = (k, c, h, d) => <div className={`mk-box${hl === k ? ' hl' : ''}`} style={{ '--c': c, opacity: on(k) ? 1 : 0.35 }}><h4>{h}</h4><p>{d}</p></div>;
+  return <div className="mk-light" style={{ padding: 16 }}>
+    <div className="mk-tag">{t('Bugungi dars — bir qarashda', 'Сегодняшний урок — одним взглядом')}</div>
+    <div className="mk-flow" style={{ paddingTop: 22 }}>
+      <div className="mk-dot in" style={{ left: 'calc((100% - 88px) / 6)', animation: 'mk-route 4.5s ease-in-out infinite' }} />
+      <div className="mk-row">
+        {box('req', T.ink2, t("So'rov", 'Запрос'), 'GET /cars')}
+        <div className="mk-arrow on">→</div>
+        {box('ctrl', PART.ctrl, 'Controller', t('oladi · chaqiradi · qaytaradi', 'принимает · вызывает · возвращает'))}
+        <div className={`mk-arrow${hl === 'di' ? ' back' : ' on'}`}>{hl === 'di' ? '←' : '→'}</div>
+        {box('svc', PART.svc, 'Service', t('ish · hisob · qoida', 'работа · расчёты · правила'))}
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 16 }}>
+        <div className={`mk-box${hl === 'mod' || hl === 'di' ? ' hl' : ''}`} style={{ '--c': PART.mod, minWidth: '62%', opacity: on('mod') ? 1 : 0.35 }}><h4>Module</h4><p><code>controllers: [CarsController]</code> · <code>providers: [CarsService]</code>{hl === 'di' ? t(' — Nest shu ro\'yxatdan yaratib, konstruktorga beradi', ' — Nest создаёт по этому списку и передаёт в конструктор') : ''}</p></div>
+      </div>
+    </div>
+    <div className="mk-rule" style={{ marginTop: 14, opacity: hl === 'err' || hl === 'all' ? 1 : 0.35, transition: 'opacity .4s' }}>{t(<><b>Xato chiqsa:</b> qaysi klass · qaysi dependency · qaysi fayl → modul faylini oching. <b>Unable to connect</b> → kodga tegmang: .env va PostgreSQL.</>, <><b>Если ошибка:</b> какой класс · какой dependency · какой файл → откройте файл модуля. <b>Unable to connect</b> → код не трогайте: .env и PostgreSQL.</>)}</div>
+  </div>;
+}
 function Screen28(p) {
   const completeLesson = useNextLessonAccess();
   const once = useRef(false);
   useEffect(() => { if (once.current) return; once.current = true; completeLesson().catch(() => {}); }, [completeLesson]);
-  const download = () => { try { const b = new Blob([CHEATSHEET], { type: 'text/markdown' }); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'nest-1-dars-eslatma.md'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); } catch (e) {} };
-  const b = useBeats(S28.segments);
-  // Kichik ekran: eslatma 7-qadamda kiradi va sahnadan pastda qoladi — ovoz u haqida gapirganda ko'rinishga aylantiriladi
-  const sceneRef = useRef(null);
-  useEffect(() => {
-    const s = sceneRef.current; if (!s || b.beat < 7 || s.scrollHeight <= s.clientHeight + 4) return;
-    const t = s.querySelector('.mk-light'); if (!t) return;
-    s.scrollTo({ top: Math.max(0, t.getBoundingClientRect().top - s.getBoundingClientRect().top + s.scrollTop - 8), behavior: 'smooth' });
-  }, [b.beat]);
+  const sheet = t(CHEATSHEET, CHEATSHEET_RU);
+  const download = () => { try { const b = new Blob([sheet], { type: 'text/markdown' }); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = t('nest-1-dars-eslatma.md', 'nest-urok-1-pamyatka.md'); a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); } catch (e) {} };
+  const passed = (p.testScore || 0) >= 6;
+  const segments = useMemo(() => s28Segments(passed), [passed]);
+  const b = useBeats(segments, p.review);
+  const hl = b.seg.hl;
+  const phase = hl === 'hw' ? 'hw' : hl === 'note' ? 'note' : 'sum';
+  const shown = segments.slice(0, b.beat + 1).filter((s) => s.id.startsWith('b')).length; // nechta xulosa bandi chiqdi
   return (
-    <Stage kicker={S28.kicker} idx={p.idx} total={p.total} audio={b.audio} onBack={p.onBack} onNext={p.onFinish} nextReady={b.done} nextLabel="Darsni yakunlash">
+    <Stage kicker={t('Yakun', 'Итог')} idx={p.idx} total={p.total} audio={b.audio} onBack={p.onBack} onNext={p.onFinish} onRestart={p.onRestart} nextReady={b.done} nextDisabled={!b.done} nextLabel={t('Darsni yakunlash', 'Завершить урок')} lockHint={t("Ustoz gapirib bo'lgach ochiladi", 'Откроется, когда учитель договорит')}>
       <div className="mk-body">
-        <Say title={S28.title} segments={S28.segments} beat={b.beat} audio={b.audio} stepManual={b.stepManual} guess={b.guess} answerAsk={b.answerAsk} />
-        <div className="mk-scene top" style={{ overflow: 'auto' }} ref={sceneRef}>
-          <div className="mk-plan">{S28.items.map((t, i) => <div key={i} className={b.seg.hl.includes(i) ? 'hl' : (b.seg.hl.length ? 'dim' : '')} style={{ opacity: b.beat === 0 ? 0.35 : undefined }}><b>0{i + 1}</b><span>{t}</span></div>)}</div>
-          <Block at={7} beat={b.beat}><div className="mk-light" style={{ padding: 14 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-              <div className="mk-tag" style={{ margin: 0 }}>Mentor eslatmasi · 1 sahifa</div>
-              <div style={{ display: 'flex', gap: 8 }}><CopyBtn text={CHEATSHEET} /><button className="mk-copy" onClick={download}>yuklab olish (.md)</button></div>
+        <Say title={passed ? t('Barakalla! Endi siz bilasiz', 'Отлично! Теперь вы знаете') : t('Endi siz bilasiz', 'Теперь вы знаете')} segments={segments} beat={b.beat} audio={b.audio} stepManual={b.stepManual} guess={b.guess} answerAsk={b.answerAsk} review={p.review} />
+        <div className="mk-scene top" style={{ overflow: 'auto' }}>
+          {phase === 'sum' && (<>
+            <SummaryMap hl={hl} />
+            <div className="mk-plan">{S28_ITEMS.slice(0, shown).map((it, i) => <div key={it.k} className={it.k === hl ? 'hl' : ''} style={{ animation: 'mk-up .45s ease both' }}><b>0{i + 1}</b><span>{it.t}</span></div>)}</div>
+          </>)}
+          {phase === 'hw' && <div className="mk-light" style={{ padding: 16, animation: 'mk-up .45s ease both' }}>
+            <div className="mk-tag" style={{ color: T.accent }}>{t('Uyga vazifa · 40–60 daqiqa', 'Домашнее задание · 40–60 минут')}</div>
+            <div style={{ display: 'grid', gap: 8 }}>
+              {HOMEWORK.map((h, i) => <div key={i} className="mk-step" style={{ animation: `mk-up .4s ${i * 0.12}s ease both` }}>
+                <span style={{ fontFamily: MONO, fontWeight: 700, color: T.accent, minWidth: 20 }}>{i + 1}</span>
+                <div className="t"><b style={{ marginBottom: 2 }}>{h.t}</b>{h.c.map((c) => <div key={c} className="cmd"><code>{c}</code><CopyBtn text={c} /></div>)}</div>
+              </div>)}
             </div>
-            <pre style={{ margin: '10px 0 0', font: `12px/1.5 ${MONO}`, whiteSpace: 'pre-wrap', color: T.ink2, maxHeight: 220, overflow: 'auto' }}>{CHEATSHEET}</pre>
-            <div className="mk-card" style={{ marginTop: 10, borderColor: T.accent }}><h5 style={{ color: T.accent }}>Keyingi dars</h5><div style={{ fontSize: 15, fontWeight: 700 }}>Birinchi resursni qo'lda qo'shish — mashinalar</div><div className="exp">Entity, DTO, Repository — CRUD · bugungi cars moduli haqiqiy PostgreSQL bazasiga ulanadi</div></div>
-          </div></Block>
+            <div className="mk-rule" style={{ marginTop: 12 }}>{t(<><b>Topshirish:</b> GitHub repo linki → platformadagi uyga vazifangiz. Tekshiruvchi qaraydi: 3 ta Mapped, 404 xabari, buzib-tuzatilgan joy (commit tarixida).</>, <><b>Сдача:</b> ссылка на репозиторий GitHub → ваше домашнее задание на платформе. Проверяющий смотрит: 3 строки Mapped, сообщение 404, место, которое сломали и исправили (в истории commit).</>)}</div>
+          </div>}
+          {phase === 'note' && <div className="mk-light" style={{ padding: 14, animation: 'mk-up .45s ease both' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+              <div className="mk-tag" style={{ margin: 0 }}>{t('Mentor eslatmasi · 1 sahifa', 'Памятка ментора · 1 страница')}</div>
+              <div style={{ display: 'flex', gap: 8 }}><CopyBtn text={sheet} /><button className="mk-copy" onClick={download}>{t('yuklab olish (.md)', 'скачать (.md)')}</button></div>
+            </div>
+            <pre style={{ margin: '10px 0 0', font: `12px/1.5 ${MONO}`, whiteSpace: 'pre-wrap', color: T.ink2, maxHeight: 300, overflow: 'auto' }}>{sheet}</pre>
+            <div className="mk-card" style={{ marginTop: 10, borderColor: T.accent }}><h5 style={{ color: T.accent }}>{t('Kursdagi keyingi dars', 'Следующий урок курса')}</h5><div style={{ fontSize: 15, fontWeight: 700 }}>{t("Birinchi resursni qo'lda qo'shish — mashinalar", 'Первый ресурс вручную — машины')}</div><div className="exp">{t('Entity, DTO, Repository — CRUD · bugungi cars moduli haqiqiy PostgreSQL bazasiga ulanadi', 'Entity, DTO, Repository — CRUD · сегодняшний модуль cars подключается к настоящей базе PostgreSQL')}</div></div>
+          </div>}
         </div>
       </div>
     </Stage>
@@ -1779,37 +2268,40 @@ function Screen28(p) {
 }
 
 // ============================================================
-//  MUQOVA + ILDIZ
+//  MUQOVA + ROOT KOMPONENT
 // ============================================================
 function Cover({ onStart }) {
   return (
     <div className="mk-cover"><div className="card">
-      <p className="mk-eyebrow">Mentor kursi · 1-dars</p>
-      <h1>NestJS arxitekturasi: Module, Controller, Service</h1>
-      <p>Bu dars ovozli. Ustoz har ekranda gapiradi, ekran u bilan birga o'zgaradi. Quloqchin yoki ovoz balandligini tekshiring.</p>
+      <p className="mk-eyebrow">{t('Mentor kursi · 1-dars', 'Курс для менторов · урок 1')}</p>
+      <h1>{t('NestJS arxitekturasi: Module, Controller, Service', 'Архитектура NestJS: Module, Controller, Service')}</h1>
+      <p>{t("Bu dars ovozli. Ustoz har ekranda gapiradi, ekran u bilan birga o'zgaradi. Quloqchin yoki ovoz balandligini tekshiring.", 'Урок озвучен. На каждом экране говорит учитель, и экран меняется вместе с ним. Проверьте наушники или громкость.')}</p>
       <ul>
-        <li>Jami 60–70 daqiqa: ovoz 25 daqiqa · to'rt amaliyot 25 daqiqa · 5 tekshiruv · o'z-sinov 8 savol</li>
-        <li>Kerak: Node.js 20+, VS Code, terminal — amaliyot dars ichida, har amaliyotda isbot maydoni</li>
-        <li>Har ekranda: ovozni qaytarish, o'chirish, «Matn» tugmasi</li>
+        {t(["Jami taxminan 1,5–2 soat: ovoz ~50 daqiqa · to'rt amaliyot 25–35 daqiqa · 5 tekshiruv · o'z-sinov 8 savol. 22-ekrandan keyin tanaffus qilsangiz bo'ladi", 'Kerak: Node.js 20+, VS Code, terminal — amaliyot dars ichida, har amaliyotda isbot maydoni', "Har ekranda: «↺ boshidan», ovozni o'chirish, «Matn» tugmasi. Ustoz gapirib bo'lgach Davom ochiladi"], ['Всего примерно 1,5–2 часа: озвучка ~50 минут · четыре практики 25–35 минут · 5 проверок · самопроверка 8 вопросов. После 22-го экрана можно сделать перерыв', 'Нужно: Node.js 20+, VS Code, терминал — практика внутри урока, в каждой практике поле подтверждения', 'На каждом экране: «↺ с начала», выключение звука, кнопка «Текст». «Далее» откроется, когда учитель договорит']).map((x) => <li key={x}>{x}</li>)}
       </ul>
-      <button className="mk-btn ready" onClick={onStart}>Boshlash →</button>
+      <button className="mk-btn ready" onClick={onStart}>{t('Boshlash →', 'Начать →')}</button>
     </div></div>
   );
 }
 const SCREENS = [Screen1, Screen2, Screen3, Screen4, Screen5a, ScreenP0, Screen5b, Screen6, Screen7, Screen8, Screen9, ScreenP1, Screen10, Screen11, Screen12, Screen13, Screen14, Screen15, ScreenLC1, Screen16, Screen17, ScreenP2, Screen18, Screen19, Screen20, Screen21, ScreenLC2, Screen22, Screen23, ScreenP3, Screen25a, Screen25b, ScreenR1, ScreenR2, ScreenRdb, ScreenR3, Screen26, Screen27, Screen28];
 const PRACTICE_COUNT = SCREENS.filter((S) => /^ScreenP\d/.test(S.name)).length;
 export default function NestArchMentorLesson({ studentName, lang = 'uz', onFinished, startAt }) {
+  setLang(lang); // UZ-RU (F-1030-38): render'dan oldin — ma'lumot va t() shu tilda
   useCss();
   const total = SCREENS.length;
   const [started, setStarted] = useState(startAt != null);
   const [idx, setIdx] = useState(Math.min(Math.max(0, startAt || 0), total - 1));
   const [answers, setAnswers] = useState({});
   const [returnTo, setReturnTo] = useState(null);
+  const [seen, setSeen] = useState({});   // to'liq ko'rilgan ekranlar — qaytib kelganda Davom qulfi yo'q (F-1030-01)
+  const [rev, setRev] = useState(0);      // ↺ boshidan: key o'zgaradi → ekran qayta o'rnatiladi (F-1030-05)
+  const [mode, setMode] = useState('live'); // A12: Orqaga/Davom bilan ko'rilgan ekranga kelinsa — 'review' (tayyor holat, ovozsiz); ↺ va N-ekranga o'tish — 'live'
   const startTime = useRef(Date.now());
   const finished = useRef(false);
   const onAnswer = useCallback((payload) => setAnswers((a) => ({ ...a, [idx]: payload })), [idx]);
-  const goto = useCallback((to) => { setReturnTo(idx); setIdx(Math.max(0, Math.min(to, total - 1))); }, [idx, total]);
-  const next = () => { if (returnTo != null) { const r = returnTo; setReturnTo(null); setIdx(r); } else setIdx((i) => Math.min(i + 1, total - 1)); };
+  const goto = useCallback((to) => { setMode('live'); setReturnTo(idx); setIdx(Math.max(0, Math.min(to, total - 1))); }, [idx, total]);
+  const next = () => { setMode('review'); setSeen((s) => ({ ...s, [idx]: true })); if (returnTo != null) { const r = returnTo; setReturnTo(null); setIdx(r); } else setIdx((i) => Math.min(i + 1, total - 1)); };
+  const restart = useCallback(() => { setMode('live'); setRev((r) => r + 1); }, []);
   const finish = () => {
     if (finished.current) return; finished.current = true;
     const vals = Object.values(answers);
@@ -1830,5 +2322,560 @@ export default function NestArchMentorLesson({ studentName, lang = 'uz', onFinis
   };
   if (!started) return <Cover onStart={() => setStarted(true)} />;
   const S = SCREENS[idx];
-  return <S key={idx} idx={idx} total={total} lang={lang} stored={answers[idx]} onAnswer={onAnswer} onNext={next} onBack={idx > 0 ? () => setIdx((i) => i - 1) : null} onFinish={finish} onGoto={goto} />;
+  const fin = Object.values(answers).find((a) => a && a.type === 'final');
+  return <S key={`${idx}:${rev}`} idx={idx} total={total} lang={lang} stored={answers[idx]} testScore={fin ? fin.score : 0} seen={!!seen[idx]} review={mode === 'review' && !!seen[idx]} onAnswer={onAnswer} onNext={next} onBack={idx > 0 ? () => { setMode('review'); setIdx((i) => i - 1); } : null} onFinish={finish} onGoto={goto} onRestart={restart} />;
 }
+
+// ============================================================
+//  RU — ruscha matn (F-1030-38). O'zbekcha matn parts/03–07 da etalon holida turadi;
+//  bu yerda faqat ruschasi: ru(obj, {…}) → setLang('ru') ildizda obyektning o'zini almashtiradi.
+//  Segmentlar id bo'yicha, kod satrlari va qadamlar indeks bo'yicha. Yozilmagan maydon — o'zbekcha qoladi.
+//  Uslub: «Вы», mentor imtihoni — dasturlash atamalari inglizcha (Controller, Service, route, dependency…);
+//  ovoz matnida kod va belgilar o'qilmaydi (fayl nomi «app controller ts»), raqam raqam bilan (TTS o'qiydi).
+// ============================================================
+ru(HELP_ROW, ['Ничего не подошло', 'Скриншот и текст ошибки отправьте в Telegram-группу курса для менторов; урок не останавливайте, переходите к следующему экрану']);
+
+// --- 03 · S1–S5b, Практика 1 ---
+ru(S1, {
+  kicker: 'Вступление', eyebrow: 'Курс для менторов · урок 1', title: 'Вы знаете Express. Теперь Nest.',
+  plan: ['Зачем Nest', 'Три части: Controller · Service · Module', 'Dependency Injection', 'Пишем routes для cars', 'Ломаем и читаем ошибку', 'Практика (четыре части)', 'Мост к уроку ученика'],
+  segments: {
+    a: { key: 'Поверх ваших знаний Express ставим <b>Nest</b>: он не отменяет Express, а наводит порядок', text: 'Здравствуйте. Вы писали сервер на Express: открывали route, принимали запрос, возвращали ответ. Сегодня поверх этих знаний ставим NestJS. Nest не отменяет Express, наоборот, он наводит над ним порядок.' },
+    b: { key: 'К концу урока вы с пустой папки соберёте <b>работающий сервер</b>', text: 'К концу урока вы, начиная с пустой папки, соберёте сервер, который возвращает список машин.' },
+    c: { key: 'Сможете <b>читать</b> ошибки Nest: в каком классе, какого dependency не хватает, какой файл открыть', text: 'Вы научитесь читать сообщения об ошибках Nest: в каком классе ошибка, какого dependency не хватает и какой файл нужно открыть.' },
+    d: { key: 'Узнаете, что значит <b>каждое слово</b> в уроке ученика', text: 'И будете знать, что означает каждое слово в уроке ученика.' },
+    e: { key: 'Семь этапов. <b>Не спешите</b>: «Далее» откроется, когда учитель договорит', text: 'Урок состоит из семи этапов. Не спешите: на каждом экране можно выключить звук, прослушать экран с начала и прочитать полный текст. Когда учитель договорит, откроется кнопка «Далее». Нажмите её, начинаем.' },
+  },
+});
+ru(EXPRESS_LINES, { 10: { h: `  <span class="k">if</span> (!car) <span class="k">return</span> res.<span class="c">status</span>(<span class="d">404</span>).<span class="c">json</span>({ message: <span class="s">'не найдено'</span> });` } });
+ru(GROWN_LINES, {
+  2: { h: `  <span class="cm">// ... 40 строк проверок</span>` },
+  4: { h: `  <span class="cm">// ... оплата, email, база — всё здесь</span>` },
+  5: { h: `<span class="cm">// где же login??? на 1000 строк ниже...</span>` },
+});
+ru(S2, {
+  kicker: 'Этап 1 · Зачем Nest', title: 'Express: знакомая картина и боль',
+  segments: {
+    a: { key: 'Знакомая картина: весь сервер на Express в одном файле <code>server.js</code>', text: 'Начнём со знакомого, с Express. Вот знакомая картина: весь сервер в одном файле server js.' },
+    b: { key: 'Приходит <code>GET /cars</code> — возвращаем <b>список</b> машин', text: 'Если на route cars приходит GET, возвращаем список.', show: 'Если на route <code>/cars</code> приходит GET, возвращаем список.' },
+    c: { key: 'Приходит <code>GET /cars/:id</code> — ищем <b>одну машину</b>, не нашли — 404', text: 'Если после пути cars идёт id, ищем одну машину, а если не нашли, отвечаем 404.', show: 'Если приходит <code>/cars/:id</code>, ищем одну машину, не нашли — 404.' },
+    d: { key: '<code>POST /cars</code> добавляет новую. Всего <b>20 строк</b> — проблем нет', text: 'Если приходит POST, добавляем новую. Всего 20 строк, всё перед глазами. На этом этапе никаких проблем нет.', show: 'Если приходит <code>POST /cars</code>, добавляем новую. Всего 20 строк, всё перед глазами. На этом этапе никаких проблем нет.' },
+    e: { key: 'Проект вырос до <b>1240 строк</b> (условный пример) — ищете, где login', text: 'Проблема начинается, когда проект растёт. Добавились пользователи, вход и регистрация, заказы, оплата, загрузка файлов. Вот условный пример, не реальный проект: допустим, в файле 1240 строк. Где был login? Ищете.', show: 'Проблема начинается, когда проект растёт. Пользователи, вход, заказы, оплата, загрузка файлов. Вот <b>условный пример</b> (не реальный проект): в файле <b>1240 строк</b>. Где был login? Ищете.' },
+    f: { key: 'Вывод: вся работа в одном route — не протестировать, двое мешают друг другу. <b>Nest создан от этой боли</b>', text: 'Вывод: внутри одного route и чтение запроса, и проверка, и запись в базу. Эту часть нельзя протестировать отдельно, потому что она не отделена от route. Если двое работают в одном файле, каждый день конфликты. Вы это чувствовали. Nest создан именно от этой боли. Урок ученика тоже начинается именно с этого примера.' },
+  },
+});
+ru(S3, {
+  kicker: 'Этап 1 · Зачем Nest', title: 'Что даёт Nest: обязательный порядок',
+  segments: {
+    a: { key: 'В Express каждая команда делит папки <b>по-своему</b> — новичок заново учит порядок', text: 'Итак, боль мы увидели: всё в одном файле. Что с этим делает опытный Express-разработчик? Делит файл: папка routes, папка controllers, папка services. Но каждая команда делает это по-своему, и новый человек заново изучает порядок.', show: 'Итак, боль мы увидели: всё в одном файле. Что с этим делает опытный Express-разработчик? Делит файл: <code>routes/</code>, <code>controllers/</code>, <code>services/</code>. Но каждая команда делает это по-своему, и новый человек заново изучает порядок.' },
+    b: { key: 'Nest делает порядок <b>обязательным</b>: три части — Controller, Service, Module', text: 'Nest делает этот порядок обязательным и одинаковым. Он даёт имена трём частям: Controller, Service, Module.' },
+    c: { key: 'В каждом проекте Nest части в одном месте, с одним именем — <b>проект из Ташкента в Берлине поймут за минуту</b>', text: 'В каждом проекте Nest они лежат в одном и том же месте, под одними и теми же именами. Поэтому если разработчик в Берлине откроет проект команды из Ташкента, он за минуту найдёт, что где лежит.' },
+    d: { key: 'Вывод: внутри Nest работает <b>тот же Express</b> — ваши знания не пропадают, сверху добавляется порядок', text: 'Вывод и важный факт: внутри Nest работает тот же Express. Запрос на самом деле принимает Express, а Nest направляет его в нужную часть. Значит, ничего из того, что вы знаете, не пропадает.' },
+  },
+});
+ru(S4, {
+  kicker: 'Этап 1 · Зачем Nest', title: 'TypeScript и decorator: знак @',
+  segments: {
+    a: { key: 'TypeScript — это JavaScript <b>с типами</b>: знаете JavaScript — сможете читать', text: 'Прежде чем открывать код Nest, узнаем одну новую вещь, иначе код покажется вам чужим. Проекты на Nest пишут на TypeScript. TypeScript — это тот же JavaScript, только с типами: string, number и тому подобное. Если вы знаете JavaScript, вы сможете читать TypeScript.' },
+    b: { key: 'Новое: строка, которая начинается с <b>@</b> («собачка»), — это <b>decorator</b>', text: 'Но есть одна новая вещь, вы будете часто её встречать: строки, которые начинаются со знака собачка. Например, decorator Controller, в скобках cars. Это называется decorator.', show: 'Но есть одна новая вещь, вы будете часто её встречать: строки, которые начинаются со знака <b>@</b> («собачка»). Например, <code>@Controller(\'cars\')</code>. Это называется <b>decorator</b>.' },
+    c: { key: 'Decorator говорит Nest: <b>этот класс — Controller</b>, этот метод принимает GET', text: 'Decorator пишут над классом или методом, и он сообщает Nest: этот класс Controller, его path cars. А decorator Get стоит над методом: если пришёл GET-запрос, вызвать этот метод.', show: 'Decorator пишут над классом или методом, и он сообщает Nest: «этот класс — Controller, его path — cars». А <code>@Get</code> стоит над методом: «пришёл GET-запрос — вызвать этот метод».' },
+    d: { key: 'Вывод: decorator не выполняет код, а ставит метку — <b>нет метки, и Nest не узнаёт класс</b>', text: 'Вывод: decorator не выполняет код, он ставит метку. Когда Nest запускается, он читает эти метки и расставляет все части по местам. Запомните: если decorator нет, Nest этот класс не узнаёт. На пятом этапе мы специально это сломаем и увидим ошибку.' },
+  },
+});
+ru(FILES5_DESC, { 'src/main.ts': 'запускает приложение', 'src/app.module.ts': 'список', 'src/app.controller.ts': 'принимает запрос', 'src/app.service.ts': 'выполняет работу', 'src/app.controller.spec.ts': 'автотест — сегодня не трогаем', 'test/app.e2e-spec.ts': 'автотест — сегодня не трогаем', 'package.json': 'пакеты и команды npm (start:dev)', 'tsconfig.json': 'настройки TypeScript' });
+ru(S5a, {
+  kicker: 'Этап 2 · Три части', title: 'Живой проект: что создал nest new',
+  segments: {
+    a: { key: 'Проект от <code>nest new cars-api</code>: в <b>src</b> четыре главных файла', text: 'Теперь вы готовы: вы знаете decorator и имена трёх частей. Смотрим на настоящий проект. Команда nest new cars-api создала вот эти папки и файлы, как вы видите в левой панели VS Code. Всё, что нам нужно, лежит в папке src: четыре главных файла.' },
+    b: { key: '<b>main.ts</b> запускает приложение — и больше ничего не делает', text: 'main ts: запускает приложение и больше ничего не делает.' },
+    c: { key: '<b>app.module.ts</b> — список: по нему Nest собирает всё', text: 'app module ts: список. По этому списку Nest собирает всё.' },
+    d: { key: '<b>app.controller.ts</b> принимает запрос и возвращает ответ', text: 'app controller ts: принимает запрос и возвращает ответ.' },
+    e: { key: '<b>app.service.ts</b> выполняет работу; файлы <b>spec</b> — автотесты, сегодня не трогаем', text: 'app service ts: выполняет работу. Файлы, которые заканчиваются на spec, это автотесты, их запускает Jest. Сегодня мы их не трогаем. В package json лежат команды npm, start dev тоже здесь.' },
+    f: { key: 'Вывод: три части, три цвета — <b>синий Controller · зелёный Service · жёлтый Module</b>', text: 'Вывод: в проекте три вида частей, каждая в своём файле. Запомните три цвета: синий Controller, зелёный Service, жёлтый Module. Весь урок рядом с каждым кодом будет этот Explorer, и он будет показывать, в каком вы файле. На следующем экране вы тоже создадите этот проект у себя.' },
+  },
+});
+ru(S5b, {
+  kicker: 'Этап 2 · Три части', title: 'Путь одного запроса',
+  segments: {
+    a: { key: 'Браузер отправил <b>GET-запрос</b> на <code>localhost:3000</code>', text: 'Пока ваш проект устанавливается в фоне, посмотрим, как файлы работают друг с другом. Лучший способ — проследить путь одного запроса. Браузер отправил GET-запрос на адрес localhost 3000.' },
+    b: { key: 'Запрос принял <b>AppController</b> — в нём есть метод для GET', text: 'Запрос принял AppController, потому что в нём есть метод для GET. Он живёт в файле app controller ts, имя файла внизу блока.' },
+    c: { key: 'Controller сам ответ не придумывает — <b>спрашивает AppService</b>', text: 'Controller сам ответ не придумывает, он спрашивает AppService. Service возвращает текст Hello World.' },
+    d: { key: 'Controller <b>вернул в браузер</b> текст от Service', text: 'Controller отправляет этот текст в браузер. В браузере появляется Hello World.' },
+    e: { key: '<b>AppModule</b> держит обоих в списке — по нему Nest их собирает', text: 'А AppModule держит их обоих в одном списке, и по этому списку Nest их собирает.' },
+    f: { key: 'Вывод: путь всегда один — <b>запрос → Controller → Service → ответ</b>', text: 'Вывод: каждый запрос проходит один и тот же путь. Запрос, Controller, Service, ответ. А Module держит эти части в списке. Этот путь вы увидите на уроке много раз. На следующих трёх экранах откроем каждый файл и прочитаем его построчно.' },
+  },
+});
+ru(P0, {
+  kicker: 'Практика 1 / 4', eyebrow: 'Сейчас у вас · 3–5 минут (установка в фоне)', title: 'Установите Nest, запустите создание проекта',
+  segments: {
+    a: { key: 'Теперь <b>вы</b>: установите Nest и запустите создание проекта', text: 'Теперь ваша очередь. Проект, который вы только что видели, вы создадите у себя: три шага. Установка занимает от одной до трёх минут. Не ждите: нажмите «Далее» и продолжайте урок, проект установится в фоне.' },
+    b: { key: 'Шаг 1: версия Node должна быть <b>20 или выше</b>', text: 'Первое: проверьте версию node. Nest версии 11 требует Node 20 или выше. Если ниже, обновите способом из таблицы.' },
+    c: { key: 'Шаг 2: установите <b>Nest CLI</b>, версию впишите в поле подтверждения', text: 'Второе: установите Nest CLI глобально и проверьте версию. Число, которое появится, впишите в поле подтверждения внизу.' },
+    d: { key: 'Шаг 3: <code>nest new cars-api</code> — установка в фоне, продолжайте, не дожидаясь', text: 'Третье: nest new cars-api. Если спросят менеджер пакетов, выберите npm. Когда установка началась, не ждите: отметьте пункт и нажмите «Далее».' },
+    e: { key: 'Вышло иначе — внизу кнопка <b>«Вышло иначе?»</b>; без отметок и подтверждения «Далее» не откроется', text: 'Если что-то вышло иначе, нажмите внизу кнопку «Вышло иначе»: там ошибка и её решение. Пока не отмечены все три пункта и не вписано верное подтверждение, кнопка «Далее» не откроется.' },
+  },
+});
+ru(P0_STEPS, [
+  { exp: 'v20 или выше (требование Nest 11)' },
+  null,
+  { t: 'Проект — запустите создание', exp: 'менеджер пакетов: npm · установка 1–3 минуты — не ждите, нажмите «Далее»' },
+]);
+ru(P0_TROUBLE, [
+  ['node: v18 или ниже', 'установите LTS (20+) с nodejs.org, откройте терминал заново, повторите node --version'],
+  [null, 'CLI не установлен или терминал не обновился: повторите шаг 2, откройте терминал заново'],
+  ['npm install долго / ошибка', 'проверьте интернет; nest new --skip-install, затем npm install в папке'],
+]);
+ru(P0_PROOF, { label: 'Подтверждение: что вывел nest --version?', placeholder: 'впишите число из терминала', wrong: 'Ожидается 11.x.x — CLI не установлен или версия старая' });
+
+// --- 04 · S6–S9, Практика 2, S10, S11 ---
+ru(S6, {
+  kicker: 'Этап 2 · Controller', title: 'Controller — принимает запрос',
+  segments: {
+    a: { key: 'У <code>@Controller()</code> пустые скобки — значит, path этого Controller — <b>root</b> (<code>/</code>)', text: 'Первой остановкой на пути запроса был Controller. Запрос приходит именно в этот файл, поэтому с него и начнём. Вот app controller ts. В четвёртой строке decorator Controller, скобки пустые. Значит, path этого Controller — root. Если написать в скобках cars, все его методы будут начинаться с пути cars.', show: 'Первой остановкой на пути запроса был Controller — запрос приходит именно в этот файл, поэтому с него и начнём. <b>app.controller.ts</b>. Четвёртая строка: <code>@Controller()</code>, скобки пустые. Значит, path этого Controller — root, то есть <code>/</code>. Если написать в скобках cars, все его методы будут начинаться с <code>/cars</code>.' },
+    b: { key: 'Под decorator — <b>обычный класс TypeScript</b>: AppController', text: 'Дальше обычный класс: AppController. Делает его Controller именно decorator над ним.' },
+    c: { key: 'Конструктор говорит: <b>«мне нужен AppService»</b> — как он приходит, увидим на 14-м экране', text: 'В конструкторе одна строка: в ней запрашивается часть под именем AppService. Пока понимайте так: этому Controller нужен AppService. Как он приходит, увидим на четырнадцатом экране.', show: 'В конструкторе одна строка: <code>private readonly appService: AppService</code>. Пока понимайте так: «этому Controller нужен AppService». Как он приходит, увидим на 14-м экране.' },
+    c2: { key: 'Параметр с <code>private readonly</code> <b>сам становится полем класса</b> — <code>this.appService</code> готов', text: 'Одна короткая запись TypeScript: если перед параметром конструктора стоит private readonly, он автоматически становится полем класса. В JavaScript вы бы написали this точка appService равно appService, а здесь эту строку не пишут, она выполняется сама.', show: 'Короткая запись TypeScript: если перед параметром стоит <code>private readonly</code>, он автоматически становится полем класса. Строку <code>this.appService = appService</code> из JavaScript не пишут, она выполняется сама.' },
+    d: { key: '<code>@Get()</code> над методом: <b>пришёл GET-запрос — вызови этот метод</b>', text: 'Ниже decorator Get. Он стоит над методом и говорит: если пришёл GET-запрос, вызови этот метод. Тот же смысл, что app get в Express, только теперь над методом.', show: 'Ниже <code>@Get()</code>. Он стоит над методом и говорит: «пришёл GET-запрос — вызови этот метод». Тот же смысл, что <code>app.get</code> в Express, только теперь над методом.' },
+    e: { key: 'Внутри метода одно дело: <b>вызвать Service и вернуть результат</b>', text: 'Внутри метода одно дело: вызвать метод Service и вернуть его результат.', show: 'Внутри метода одно дело: вернуть результат <code>this.appService.getHello()</code>.' },
+    f: { key: 'Вывод: в Controller <b>логику не пишут</b> — принял запрос, вызвал Service, вернул ответ', text: 'Вывод: в Controller логику не пишут. Он принял запрос, вызвал нужный Service, вернул ответ. Таким Controller и должен быть: логика в Service, а Controller только соединяет.' },
+  },
+});
+ru(S7, {
+  kicker: 'Этап 2 · Service', title: 'Service — выполняет работу',
+  segments: {
+    a: { key: '<code>@Injectable()</code> — «этот класс <b>можно передать через inject</b> туда, где он нужен»', text: 'Controller принял запрос и передал работу в Service. Значит, следующая остановка — Service, открываем его: app service ts. Над ним decorator Injectable. Это английское слово, оно значит «можно сделать inject». Оно говорит Nest: этот класс можно передать через inject туда, где он нужен.', show: 'Controller принял запрос и передал работу в Service. Значит, следующая остановка — Service: <b>app.service.ts</b>. Над ним <code>@Injectable()</code>. Это английское слово, оно значит «можно сделать inject». Оно говорит Nest: этот класс можно передать через inject туда, где он нужен.' },
+    b: { key: 'Настоящая работа <b>в Service</b>: расчёт цены, проверка правил, запись в базу', text: 'Внутри метод getHello, он возвращает Hello World. Сейчас это совсем маленький метод, но правило не меняется и в большом проекте: настоящая работа делается в Service. Посчитать цену, проверить правило, записать в базу — всё здесь.' },
+    c: { key: 'В Service нет ни <code>req</code>, ни <code>res</code> — поэтому его <b>тестируют без сервера</b>', text: 'Обратите внимание на одну вещь: Service ничего не знает о запросе. В нём нет ни req, ни res. Поэтому его легко тестировать отдельно: тестовый файл вызывает метод и сравнивает результат с ожидаемым значением, а сервер не запускается.' },
+    d: { key: 'Вывод: один Service используют <b>и HTTP Controller, и Telegram-бот</b>', text: 'И поэтому один Service могут использовать два места: и HTTP Controller, и Telegram-бот. Вывод: работа в Service, а Controller только связывает его с запросом.' },
+  },
+});
+ru(S8, {
+  kicker: 'Этап 2 · Module', title: 'Module — список',
+  segments: {
+    a: { key: 'Внутри <code>@Module</code> <b>три списка</b>: imports · controllers · providers', text: 'И Controller, и Service готовы. Но откуда Nest знает, что они есть? Ответ в третьем файле, в Module. app module ts: decorator Module и внутри три списка.' },
+    b: { key: '<code>controllers</code> — список Controller, <code>providers</code> — список <b>Service</b>, которые создаёт Nest', text: 'controllers: Controller этого модуля. providers: то, что этот модуль создаёт, сейчас это Service. Запомните слово provider, так Nest называет Service.' },
+    c: { key: '<code>imports</code> — другие модули. Nest видит <b>только то, что в списке</b>', text: 'imports: другие модули, сейчас список пуст. Module никакой работы не делает, это список. Но этот список решающий: Nest видит только то, что здесь записано.' },
+    d: { key: 'Файл есть, но в списке его нет — <b>для Nest его нет</b>', text: 'Если вы написали Controller, но не добавили его в список controllers, его как будто нет. Если написали Service, но не добавили в providers, Nest не сможет сделать его inject.' },
+    e: { key: 'Вывод: <b>AppModule</b> наверху, остальные модули подключаются к нему через <code>imports</code>', text: 'В проекте бывает несколько модулей: для cars, для users, для orders. Над всеми стоит AppModule и подключает остальные к себе через imports. Вывод: Module не делает работу, но раз это список, большинство ошибок исправляется именно в этом файле.' },
+  },
+});
+ru(S9, {
+  kicker: 'Этап 2 · main.ts', title: 'main.ts и строки запуска в терминале',
+  segments: {
+    a: { key: '<code>main.ts</code> отдаёт Nest главный модуль — <b>Nest собирает всё</b>', text: 'Три части мы увидели. А как они запускаются? Всё начинается с main ts. Первая строка: отдаём Nest главный модуль. Он читает список модуля, создаёт Service и подключает Controller.', show: 'Три части мы увидели. А как они запускаются? Всё начинается с main.ts. <code>NestFactory.create(AppModule)</code>: отдаём Nest главный модуль. Он читает список модуля, создаёт Service и подключает Controller.' },
+    b: { key: 'Слушаем порт 3000. В терминале: <code>npm run start:dev</code>', text: 'Потом он слушает порт 3000, как в Express. Теперь посмотрите на терминал, мы написали npm run start dev.', show: 'Потом <code>listen(3000)</code>: слушает порт, как в Express. Теперь посмотрите на терминал, мы написали <code>npm run start:dev</code>.' },
+    c: { key: 'Терминал: <b>dependencies initialized</b> — всё из списка создано', text: 'Первая строка: приложение Nest запускается. Вторая: dependency модуля AppModule готовы, то есть всё из списка создано.', show: 'Starting Nest application. <b>AppModule dependencies initialized</b>: dependency модуля AppModule готовы, то есть всё из списка создано.' },
+    d: { key: 'Терминал: <b>Mapped {/, GET}</b> — к root path подключён GET route', text: 'Дальше: AppController найден, и ему дан root path. Строка Mapped: к root path подключён GET route. И последняя: приложение успешно запущено.', show: '<code>AppController {/}</code>: Controller найден, ему дан path. <b>Mapped {/, GET} route</b>: к root path подключён GET route. Nest application successfully started.' },
+    e: { key: 'Привычка: route не работает — <b>сначала ищите строку Mapped</b> в терминале', text: 'Возьмите в привычку читать эти строки. Если потом какой-то route не работает, первым делом смотрите на эти строки в терминале: есть строка Mapped или нет.' },
+    f: { key: 'Вывод: main.ts → модуль → Controller → в браузере <b>Hello World!</b>', text: 'В браузере localhost 3000, ответ: Hello World. Вывод: main ts отдаёт главный модуль, Nest по списку собирает все части и подключает routes, а терминал сообщает, что подключено.', show: 'В браузере <code>localhost:3000</code>, ответ: <b>Hello World!</b> Вывод: main.ts отдаёт главный модуль, Nest по списку собирает все части и подключает routes, а терминал сообщает, что подключено.' },
+  },
+});
+ru(P1, {
+  kicker: 'Практика 2 / 4', eyebrow: 'Сейчас у вас · 3–5 минут', title: 'Запустите и прочитайте терминал',
+  segments: {
+    a: { key: 'Проект из 1-й практики установился — теперь вы его <b>запустите</b>', text: 'Снова ваша очередь. Проект, который вы начали в первой практике, наверное, уже установился. Три шага: запускаете, читаете строки в терминале, смотрите в браузере.' },
+    b: { key: 'Шаг 1: зайдите в папку и напишите <code>npm run start:dev</code>', text: 'Первое: зайдите в папку и напишите npm run start dev.' },
+    c: { key: 'Шаг 2: найдите в терминале строку <b>Mapped</b> и вставьте её в поле подтверждения', text: 'Второе: найдите в терминале строку Mapped, скопируйте её точно и вставьте в поле подтверждения внизу.' },
+    d: { key: 'Шаг 3: в браузере <code>localhost:3000</code> — должно появиться <b>Hello World!</b>', text: 'Третье: откройте в браузере localhost 3000 и увидите Hello World.' },
+    e: { key: 'Вышло иначе — внизу кнопка <b>«Вышло иначе?»</b>; без отметок и подтверждения «Далее» не откроется', text: 'Если вышло иначе, нажмите внизу кнопку «Вышло иначе». Пока не отмечены все три пункта и не вставлено верное подтверждение, «Далее» не откроется.' },
+  },
+});
+ru(P1_STEPS, [
+  { t: 'Запуск', exp: 'в конце «Nest application successfully started»' },
+  { t: 'Терминал', exp: 'строка Mapped {/, GET} route — скопируйте и вставьте в поле подтверждения' },
+  { t: 'Браузер', exp: 'localhost:3000 → Hello World!' },
+]);
+ru(P1_TROUBLE, [
+  ['nest new ещё не закончился', 'Дождитесь в терминале «Successfully created project»; если дольше 5 минут — интернет или npm install идёт долго (--skip-install, затем npm install)'],
+  [null, 'На порту 3000 открыт другой сервер: закройте его или PORT=3001 npm run start:dev'],
+  ['Строки Mapped нет, есть ошибка', 'Прочитайте текст ошибки: у красной ошибки TypeScript указаны файл:строка; если nest new не закончился — подождите'],
+]);
+ru(P1_PROOF, { label: 'Подтверждение: скопируйте строку Mapped из терминала', placeholder: 'вставьте сюда строку из терминала', wrong: 'Ожидается: Mapped {/, GET} route — скопируйте строку из терминала точно' });
+ru(S11, {
+  kicker: 'Этап 3 · Dependency Injection', title: 'Как Service попадает в Controller',
+  segments: {
+    a: { key: 'В конструкторе <b>«мне нужен AppService»</b> — но никто не создавал его через <code>new</code>', text: 'На проверке мы сказали: Controller вызывает Service. Но откуда Controller берёт Service? С этим вопросом вернёмся к конструктору в файле Controller. Здесь написано: мне нужен AppService. Но во всём проекте нет строки new AppService. Тогда откуда берётся Service? На этом экране разберём это шаг за шагом.', show: 'На проверке мы сказали: «Controller вызывает Service». Но откуда Controller берёт Service? С этим вопросом вернёмся к конструктору в файле Controller: <code>constructor(private readonly appService: AppService)</code> — «мне нужен AppService». Но во всём проекте нет строки <code>new AppService()</code>. Тогда откуда берётся Service?' },
+    b: { key: 'В Express вы создавали сами: <code>require</code> + <code>new</code>, <b>в каждом файле заново</b>', text: 'В Express вы делали это сами: require, создать через new, и так заново в каждом файле, где он нужен. Нужен в трёх файлах — три раза. В Nest эту работу у вас забрали.' },
+    c: { key: 'Шаг 1: при запуске Nest читает <code>providers</code> в <b>app.module.ts</b>', text: 'Первый шаг. Когда сервер запускается, Nest открывает файл app module ts и читает список providers: там стоит AppService.' },
+    d: { key: 'Шаг 2: Nest создаёт <b>один instance</b> AppService и хранит его у себя', text: 'Второй шаг. Nest создаёт один instance AppService и хранит его у себя. Это хранилище называется контейнером Nest.' },
+    e: { key: 'Шаг 3: тип в конструкторе — <code>AppService</code>, и Nest <b>передаёт этот instance в конструктор</b>', text: 'Третий шаг. Создавая AppController, Nest смотрит на его конструктор: тип параметра — AppService. Тип работает как бланк заказа: Nest берёт из контейнера instance именно этого типа и передаёт в конструктор. Теперь this appService готов.' },
+    f: { key: 'Название этого способа: <b>Dependency Injection</b> — внедрение dependency', text: 'Этот способ называется Dependency Injection, то есть внедрение dependency. Dependency — потому что Controller не может работать без Service. Inject — потому что его приносите не вы, а Nest передаёт его снаружи.' },
+    g: { key: 'Польза: <b>один instance</b>, в тесте можно <b>подставить фейк</b>, Controller не знает источник', text: 'Почему это хорошо? Во-первых, во всём проекте один instance. Во-вторых, в тесте вместо настоящего Service можно подставить фейковый, и Controller этого не заметит. В-третьих, Controller не обязан знать, откуда пришёл Service.' },
+    h: { key: 'Вывод: вы делаете две вещи — <b>пишете в providers, просите в конструкторе</b>', text: 'Вывод. Ваша работа — две вещи: записать Service в список providers модуля и попросить его в конструкторе там, где он нужен. Создание и inject делает Nest. Что будет, если забыть одно из двух, мы специально сломаем на пятом этапе.' },
+  },
+});
+
+// --- 05 · S12–S17, Проверка 2, Практика 3 ---
+ru(S12, {
+  kicker: 'Этап 4 · CLI', title: 'Создаём модуль cars через CLI',
+  segments: {
+    a: { key: 'Первая команда: <code>nest g module cars</code> — g = generate, то есть «создать»', text: 'Основа готова: вы знаете три части и Dependency Injection. Теперь строим сами. Для машин нужен отдельный модуль. Nest CLI создаёт его тремя командами. Первая: nest g module cars. g — это generate, создать.' },
+    b: { key: 'CLI <b>сам зашёл</b> в главный модуль и добавил CarsModule в <code>imports</code> — UPDATE', text: 'Результат — две строки: CREATE, создан cars module, и UPDATE, изменён app module. Обратите внимание на вторую строку: CLI сам зашёл в главный модуль и добавил CarsModule в список imports. Если делать вручную, именно это вы и забудете.' },
+    c: { key: '<code>nest g controller cars</code> — Controller создан и <b>записан в controllers</b>', text: 'Вторая команда: nest g controller cars. Флаг no-spec значит «не создавай тестовый файл»: на этом уроке мы не работаем с тестами, пусть файлов будет меньше. Controller создан и записан в список controllers модуля cars.', show: '<code>nest g controller cars --no-spec</code>. <code>--no-spec</code>: не создавать тестовый файл — на этом уроке мы не работаем с тестами. Controller создан и записан в список <code>controllers</code> модуля cars.' },
+    d: { key: '<code>nest g service cars</code> — Service создан и <b>записан в providers</b>', text: 'Третья команда: nest g service cars. Service создан и записан в список providers.' },
+    e: { key: 'Вывод: 3 команды — 3 CREATE, 3 UPDATE. <b>Знайте, что сделал CLI</b>: сломается — исправите вручную', text: 'Вывод: три команды, шесть изменений, и все списки верные. В Explorer слева появилась папка cars и три новых файла. CLI можно доверять, но знать, что он сделал, обязательно: когда что-то сломается, исправлять будете вручную.' },
+  },
+});
+ru(S13_FILES, {
+  'src/cars/cars.controller.ts': { 3: { h: `<span class="k">export class</span> <span class="c">CarsController</span> {}   <span class="cm">// пусто — методов нет</span>` } },
+  'src/cars/cars.service.ts': { 3: { h: `<span class="k">export class</span> <span class="c">CarsService</span> {}   <span class="cm">// пусто</span>` } },
+});
+ru(S13, {
+  kicker: 'Этап 4 · пустые файлы', title: 'Файлы от CLI пустые: path есть, route нет',
+  segments: {
+    a: { key: '<b>cars.module.ts</b>: оба списка CLI <b>заполнил сам</b>', text: 'CLI создал три файла и записал их в списки. Что внутри? Откроем по одному. Первый — cars module ts: в списке controllers стоит CarsController, в списке providers — CarsService. Оба записал сам CLI.' },
+    b: { key: 'Подумайте: если запустить сервер с этими файлами, что вернёт <code>/cars</code>?', text: 'Прежде чем открывать другие файлы, подумайте. Если запустить сервер с Controller и Service, которые только что создал CLI, что вернёт route cars? Нажмите один из трёх вариантов.', ask: { q: 'Что сделает сервер с файлами от CLI?', opts: ['Упадёт с ошибкой', 'Запустится, /cars → 404', 'Запустится, /cars → 200, пустой список'] } },
+    c: { key: '<b>cars.controller.ts</b>: decorator есть, но класс <b>пустой — ни одного метода</b>', text: 'Теперь cars controller ts. Decorator Controller есть, в скобках cars. Но внутри класс пустой: ни Get, ни Post, ни одного метода.', show: '<b>cars.controller.ts</b>: <code>@Controller(\'cars\')</code> есть, но внутри класс пустой — ни <code>@Get</code>, ни <code>@Post</code>, ни одного метода.' },
+    d: { key: '<b>cars.service.ts</b>: <code>@Injectable()</code> есть, внутри тоже <b>пусто</b>', text: 'cars service ts — то же самое: decorator Injectable есть, внутри пусто.', show: '<b>cars.service.ts</b>: <code>@Injectable()</code> есть, внутри тоже пусто.' },
+    e: { key: 'В терминале есть <code>CarsController {/cars}</code>, но <b>строки Mapped нет</b>', text: 'Запускаем сервер. В терминале новая строка: CarsController, в фигурных скобках путь cars. Nest увидел Controller и дал ему path. Но строки Mapped нет, потому что route появляется из метода, а метода нет.', show: 'В терминале новая строка: <code>CarsController {/cars}</code>. Nest увидел Controller и дал ему path. Но <b>строки Mapped нет</b>, потому что route появляется из метода, а метода нет.' },
+    f: { key: 'В браузере <code>/cars</code> → <b>404</b>: дверь есть, а внутри никого', text: 'Если открыть в браузере route cars: 404, Cannot GET cars. Это не ошибка, это естественное состояние: дверь есть, а внутри никого.', show: 'Если открыть в браузере /cars: <b>404, Cannot GET /cars</b>. Это не ошибка, это естественное состояние: дверь есть, а внутри никого.' },
+    g: { key: 'Вывод: path даёт Controller, route даёт <b>метод</b> — теперь сначала Service, потом Controller', text: 'Вывод: path даёт decorator Controller, а route — метод и Get или Post над ним. Раз метода нет, нет и Mapped, ответ 404. На следующих двух экранах заполним файлы: сначала Service, который выполняет работу, потом Controller, который его вызывает.' },
+  },
+});
+ru(S14, {
+  kicker: 'Этап 4 · Service', title: 'Service: список и три метода',
+  segments: {
+    a: { key: 'Интерфейс <code>Car</code> — <b>форма</b> машины: id, brand, model, price (не таблица в базе)', text: 'Файлы пустые, route нет. По порядку сначала заполняем часть, которая выполняет работу, — Service. cars service ts. Сначала интерфейс Car: у машины есть id, brand, model и price. Interface — это описание формы в TypeScript, не таблица в базе, пока просто форма.' },
+    b: { key: 'Список пока <b>в памяти</b>: Malibu и K5 — база на этом уроке не нужна', text: 'Дальше список: две машины, Chevrolet Malibu и Kia K5, цена в миллионах сумов. Базы пока нет, данные лежат в памяти, для этого урока этого достаточно.' },
+    c: { key: '<code>findAll</code> возвращает все, <code>findOne</code> ищет одну <b>по id</b>', text: 'findAll возвращает список. findOne ищет по id.' },
+    d: { key: 'Не нашли — бросает <b>NotFoundException</b>, и Nest сам превращает её <b>в ответ 404</b>', text: 'Если не нашли, бросает NotFoundException. Это готовая ошибка Nest: вы её бросаете, а Nest сам превращает её в ответ 404, со статусом и сообщением. В Express вы писали это вручную: status 404 и json.', show: 'Если не нашли, бросает <b>NotFoundException</b>. Это готовая ошибка Nest: вы её бросаете, а Nest сам превращает её в ответ 404, со статусом и сообщением. В Express вы писали это вручную: <code>res.status(404).json</code>.' },
+    e: { key: 'Вывод: <code>create</code> добавляет, а в Service <b>ни слова о запросе</b>', text: 'create добавляет новую машину в список и возвращает её. Omit Car, id в скобках — это запись TypeScript: форма Car без id, потому что id мы даём сами. Вывод: в этом файле ни слова о запросе, нет ни req, ни res. Только машины и три метода для работы с ними. Поэтому его могут использовать и Controller, и Telegram-бот.', show: '<code>create</code> добавляет новую машину и возвращает её. <code>Omit&lt;Car, \'id\'&gt;</code> — запись TypeScript: форма Car без id, потому что id мы даём сами. <b>Вывод:</b> в этом файле ни слова о запросе — только машины и три метода.' },
+  },
+});
+ru(EXN_ROWS, { 3: { n: 'не нужно — уже включено' } });
+ru(S15, {
+  kicker: 'Этап 4 · Controller', title: 'Controller: три route',
+  segments: {
+    a: { key: '<code>@Controller(\'cars\')</code>: все методы начинаются с <b>/cars</b>; конструктор просит CarsService', text: 'Service готов: список машин и три метода. Теперь пишем часть, которая связывает Service с запросом, — Controller. cars controller ts. Decorator Controller, в скобках cars: все методы начинаются с пути cars. Конструктор: мне нужен CarsService.', show: 'Service готов: список машин и три метода. Теперь пишем часть, которая связывает Service с запросом, — Controller. <b>cars.controller.ts</b>. <code>@Controller(\'cars\')</code>: все методы начинаются с /cars. Конструктор: «мне нужен CarsService».' },
+    b: { key: 'Пустой <code>@Get()</code> = <b>GET /cars</b> → вызывается findAll из Service', text: 'Decorator Get пустой: GET cars. Метод вызывает findAll из Service.', show: '<code>@Get()</code> пустой: <b>GET /cars</b>. Метод вызывает findAll.' },
+    c: { key: '<code>@Get(\':id\')</code> = <b>GET /cars/5</b>; <code>@Param(\'id\')</code> — это req.params.id из Express, значение — строка', text: 'Decorator Get с двоеточием и id: после пути cars идёт число, например cars 5. Decorator Param — это тот же req params id из Express, только берётся через decorator. Значение из URL всегда строка, поэтому переводим его в число через Number.', show: '<code>@Get(\':id\')</code>: path вида <b>GET /cars/5</b>. <code>@Param(\'id\') id</code> — это тот же <code>req.params.id</code> из Express, только берётся через decorator. Значение из URL всегда строка, поэтому переводим его в число через <code>Number</code>.' },
+    d: { key: '<code>@Post()</code> = <b>POST /cars</b>; <code>@Body()</code> — это req.body, express.json подключать не нужно', text: 'Decorator Post: POST cars. Decorator Body — это req body из Express. В Nest не нужно вручную подключать express json, он включён внутри.', show: '<code>@Post()</code>: <b>POST /cars</b>. <code>@Body() body</code>: это <code>req.body</code> из Express. В Nest не нужно вручную подключать <code>express.json()</code>, он включён внутри.' },
+    e: { key: 'Вывод: три метода одной формы — <b>взяли из запроса, вызвали Service, вернули результат</b>', text: 'Вывод: все три метода одной формы. Из запроса берётся нужная часть, вызывается метод Service, возвращается результат. В Controller нет if, нет расчётов, нет базы. Таблица слева показывает, где в Nest знакомые записи из Express.' },
+  },
+});
+ru(LC1_FIXED, { 12: { h: `    <span class="k">return this</span>.carsService.<span class="c">findOne</span>(<span class="c">Number</span>(id));   <span class="cm">// снова одна строка</span>` } });
+ru(LC1_SVC_FIXED, { 3: { h: `    <span class="k">if</span> (car.price > <span class="d">300</span>) <span class="k">return</span> { ...car, price: car.price * <span class="d">0.9</span> };   <span class="cm">// скидка — в Service</span>` } });
+ru(REQS, { 4: { u: '/cars  {}  (пусто)' } });
+ru(S16, {
+  kicker: 'Этап 4 · запустилось', title: 'Терминал и ответы', lockHint: 'Нажмите все пять кнопок запросов',
+  segments: {
+    a: { key: 'В терминале три строки <b>Mapped</b> — все три route подключены', text: 'И Service, и Controller готовы. Теперь самое интересное: запускаем сервер и отправляем настоящие запросы. Сервер запустился. В терминале три новые строки Mapped: cars GET, cars id GET, cars POST. Все три route подключены. Теперь отправляем запросы.' },
+    b: { key: '<code>GET /cars</code> → <b>200</b>: JSON Nest сделал сам, stringify не писали', text: 'GET cars: 200 и список из двух машин в виде JSON. Мы не писали JSON stringify, Nest сам превращает объект в JSON.', show: '<code>GET /cars</code>: <b>200</b> и список из двух машин в виде JSON. Мы не писали <code>JSON.stringify</code>, Nest сам превращает объект в JSON.' },
+    c: { key: '<code>GET /cars/1</code> → <b>200</b> и одна машина — Malibu', text: 'GET cars 1: 200 и Malibu.', show: '<code>GET /cars/1</code>: <b>200</b> и Malibu.' },
+    d: { key: '<code>GET /cars/99</code> → <b>404</b>: наша NotFoundException, Nest вернул её с сообщением', text: 'GET cars 99: 404 и сообщение Car with id 99 not found. Это наша NotFoundException, Nest привёл её к такому виду: message, error, statusCode.', show: '<code>GET /cars/99</code>: <b>404</b> и сообщение Car with id 99 not found. Это наша NotFoundException, Nest привёл её к такому виду: <code>message</code>, <code>error</code>, <code>statusCode</code>.' },
+    e: { key: '<code>POST /cars</code> → <b>201 Created</b> — этот статус Nest поставил сам', text: 'Отправляем POST cars с Cobalt: 201 Created и новая машина, id 3. Обратите внимание, 201 мы не писали. Nest ставит его для POST сам, в Express было бы 200.', show: 'Отправляем <code>POST /cars</code> с Cobalt: <b>201 Created</b> и новая машина, id 3. 201 мы не писали, Nest ставит его для POST сам; в Express было бы 200.' },
+    f: { key: 'Пустой <code>POST {}</code> тоже <b>201</b> — Nest <b>сам не проверяет</b> входящие данные', text: 'Ещё одна проверка: отправляем пустой POST, внутри ничего нет. Nest всё равно возвращает 201 и создаёт машину только с id 4. Nest сам не проверяет входящие данные, пока вы ему не скажете.', show: 'Пустой <code>POST /cars {}</code>: Nest всё равно возвращает <b>201</b> и создаёт только <code>{id:4}</code>. Nest сам не проверяет входящие данные, пока вы ему не скажете.' },
+    f2: { key: 'Как сказать — <b>DTO + ValidationPipe</b>: на пустой запрос Nest сам вернёт <b>400</b>', text: 'Как сказать: через DTO. В отдельном классе пишут, что brand — строка и обязателен, price — число, и включают ValidationPipe. Тогда на пустой запрос Nest сам вернёт 400, Bad Request. На этом уроке мы его не пишем, но если ученик спросит, ваш ответ такой.', show: 'Как сказать — <b>DTO</b>: в отдельном классе пишут, что <code>brand</code> — строка и обязателен, <code>price</code> — число, и включают <code>ValidationPipe</code>; на пустой запрос Nest сам вернёт <b>400 Bad Request</b>: <code>[&quot;brand should not be empty&quot;, …]</code> (проверено). На этом уроке не пишем — если ученик спросит, ваш ответ такой.' },
+    g: { key: 'Вывод: JSON, 201 и сообщение 404 <b>Nest делает сам</b> — нажмите все пять кнопок', text: 'Вывод: Nest сам делает JSON, 201 для POST и сообщение об ошибке, а проверку входящих данных не делает, пока вы не скажете. Теперь сами нажмите все пять кнопок и прочитайте каждый ответ. «Далее» откроется после пяти кнопок.' },
+  },
+});
+ru(P2, {
+  kicker: 'Практика 3 / 4', eyebrow: 'Сейчас у вас · 10–15 минут', title: 'Постройте модуль cars',
+  segments: {
+    a: { key: 'Теперь <b>вы</b>: строите модуль cars в своём проекте за четыре шага', text: 'Снова ваша очередь. Модуль cars, который вы только что видели, вы построите в своём проекте: четыре шага, от десяти до пятнадцати минут.' },
+    b: { key: 'Шаг 1: три команды CLI — в терминале <b>3 CREATE, 3 UPDATE</b>', text: 'Первое: тремя командами создайте module, controller и service. В терминале должны появиться три CREATE и три UPDATE.' },
+    c: { key: 'Шаг 2: <b>скопируйте</b> код Service — кнопка «Открыть код» внутри шага', text: 'Второе: заполните Service кодом из урока. Внутри второго шага есть кнопка «Открыть код», код там, скопируйте его.' },
+    d: { key: 'Шаг 3: Controller <b>напишите сами</b> — образец увидите, но скопировать нельзя', text: 'Третье: Controller напишите сами, двадцать строк. Образец виден по кнопке «Открыть код» внутри третьего шага, но скопировать его нельзя, это специально. Пусть рука почувствует decorator и конструктор. В терминале должны появиться три строки Mapped.' },
+    e: { key: 'Шаг 4: четыре запроса — ответы <b>200 · 200 · 404 · 201</b>', text: 'Четвёртое: браузером или Postman отправьте четыре запроса и сравните ответы с уроком: 200, 200, 404, 201. Сообщение из ответа на cars 99 впишите в поле подтверждения.' },
+    f: { key: 'Вышло иначе — внизу кнопка <b>«Вышло иначе?»</b>; без отметок и подтверждения «Далее» не откроется', text: 'Если вышло иначе, нажмите внизу кнопку «Вышло иначе». Пока не отмечены все четыре пункта и не вписано верное подтверждение, «Далее» не откроется.' },
+  },
+});
+ru(P2_STEPS, [
+  { t: 'Модуль cars' },
+  { t: 'Service — скопируйте', exp: 'cars.service.ts — «Открыть код» → «копировать», вставьте в файл' },
+  { t: 'Controller — напишите сами', exp: 'cars.controller.ts — 20 строк, образец смотрите в «Открыть код» (не копируется) · в терминале 3 строки Mapped {/cars…}' },
+  { t: 'Запросы' },
+]);
+ru(P2_PROOF, { label: 'Подтверждение: поле message в ответе на GET /cars/99', placeholder: 'впишите текст message из ответа', wrong: 'Ожидается: Car with id 99 not found — впишите значение message точно' });
+ru(P2_TROUBLE, [
+  ['Красная ошибка TypeScript (файл:строка)', 'При копировании пропала строка: сравните указанную строку с кодом в «Открыть код»'],
+  [null, 'Есть ли в терминале Mapped {/cars…}? Если нет — app.module.ts → imports: [CarsModule]'],
+  ['В POST body undefined', 'В Postman выбрано Body → raw → JSON? Content-Type: application/json'],
+]);
+
+// --- 06 · S18–S23, Проверка 4, Практика 4 ---
+ru(S18, {
+  kicker: 'Этап 5 · ломаем 1', title: 'Ломаем 1: providers пустой',
+  segments: {
+    a: { key: 'Ломаем специально: в <code>cars.module.ts</code> <b>providers остался пустым</b>', text: 'У нас есть работающий модуль. Теперь специально его сломаем, потому что ваши ученики делают именно эти ошибки, а вы должны уметь их читать. Первый случай: в cars module мы удалили CarsService из списка providers.' },
+    b: { key: 'Сервер упал. Часть 1 — <b>какой класс?</b> CarsController; <code>(?)</code> — место ненайденного dependency', text: 'Запускаем сервер, он падает. Читаем сообщение, разделив его на три части. Первая часть, какой класс: Nest не смог найти dependency для CarsController. Знак вопроса в скобках — место ненайденного dependency.', show: 'Запускаем сервер, он падает. Читаем сообщение, разделив его на три части. 1 · <b>какой класс</b>: <b>Nest can\'t resolve dependencies of the CarsController</b> — Nest не смог найти dependency для CarsController. <b>(?)</b> в скобках — место ненайденного dependency.' },
+    c: { key: 'Часть 2 — <b>какого dependency не хватает?</b> CarsService, 0-й аргумент конструктора', text: 'Вторая часть, какого dependency не хватает: нулевой аргумент, то есть первый параметр конструктора, CarsService.', show: '2 · <b>какой dependency</b>: <b>argument CarsService at index [0] is available</b> — нулевой аргумент, то есть первый параметр конструктора, CarsService.' },
+    d: { key: 'Часть 3 — <b>какой файл?</b> CarsModule, то есть <code>cars.module.ts</code>', text: 'Третья часть, какой файл открываем: Nest искал в CarsModule и не нашёл, значит, это файл cars module ts. Вот ответы на три вопроса: какой класс, какой dependency, какой файл.', show: '3 · <b>какой файл</b>: <b>in the CarsModule module</b> — Nest искал в CarsModule и не нашёл, значит, <code>cars.module.ts</code>. Есть ответы на три вопроса: <b>какой класс · какой dependency · какой файл</b>.' },
+    e: { key: 'Ниже Nest <b>сам предлагает решение</b>: есть ли CarsService в этом модуле?', text: 'Ниже Nest сам перечисляет решения. Второе — наш случай: если CarsService — это provider, есть ли он в этом модуле? Нет, мы его удалили.' },
+    f: { key: 'Исправляем: <code>providers: [CarsService]</code> вернули — сервер <b>запустился</b>', text: 'Исправляем: открываем файл cars module ts, возвращаем CarsService в список providers и сохраняем. start dev сам перезапускает сервер: в терминале строки Mapped и successfully started.' },
+    g: { key: 'Вывод: видите «can\'t resolve dependencies» — <b>откройте файл модуля</b>, проверьте providers', text: 'Вывод: это самая частая ошибка в Nest. Сообщение читаете тремя вопросами: какой класс, какой dependency, какой файл. А ответ всегда в файле модуля: недостающий Service записывается в список providers.' },
+  },
+});
+ru(S19, {
+  kicker: 'Этап 5 · ломаем 2', title: 'Ломаем 2: в imports нет CarsModule',
+  segments: {
+    a: { key: 'Ломаем специально: из <code>imports</code> в <code>app.module.ts</code> убрали CarsModule', text: 'Первую ошибку мы прочитали и исправили. Второй случай другой: на этот раз сервер не падает, и именно поэтому это опасно. В app module мы убрали CarsModule из списка imports.' },
+    b: { key: 'Подумайте: сервер <b>упадёт с ошибкой</b> или запустится?', text: 'Подумайте: если запустить сервер, он упадёт с ошибкой или запустится?', ask: { q: 'Что сделает сервер?', opts: ['Упадёт с ошибкой', 'Запустится'] } },
+    c: { key: 'Сервер <b>запустился</b> — «successfully started», ошибки нет', text: 'Сервер запустился, написал, что всё успешно, вроде бы всё хорошо. Ошибки нет.' },
+    d: { key: 'Но <code>/cars</code> → <b>404</b>, а root path работает', text: 'Но если запросить route cars, получим 404, Cannot GET cars. А root path работает.', show: 'Но если запросить <code>/cars</code>, получим <b>404, Cannot GET /cars</b>. А <code>/</code> работает.' },
+    e: { key: 'AppModule не подключил CarsModule — Nest <b>вообще не прочитал</b> папку cars. Это тихая ошибка', text: 'Что случилось? AppModule не подключил CarsModule, поэтому Nest вообще не прочитал папку cars. Ошибки нет, потому что для Nest этого модуля просто не существует. Это тихая ошибка, самая опасная.' },
+    f: { key: 'Как найти: в терминале <b>нет ни строки CarsController, ни Mapped</b>', text: 'Как это найти? Посмотрите на терминал: строки CarsController нет, строки Mapped для cars нет. Я говорил: возьмите в привычку читать строки в терминале. Вот причина.' },
+    g: { key: 'Исправляем: <code>imports: [CarsModule]</code> вернули — строки Mapped <b>вернулись</b>', text: 'Исправляем: в файле app module ts возвращаем CarsModule в список imports. Сервер перезапускается, и в терминале возвращаются CarsController и три строки Mapped. Route cars снова работает.' },
+    h: { key: 'Вывод: 404, а код выглядит верным — <b>сначала Mapped в терминале</b>, потом imports', text: 'Вывод: если route отдаёт 404, а код выглядит верным, сначала ищите в терминале строку Mapped, потом проверяйте список imports главного модуля.' },
+  },
+});
+ru(S20, {
+  kicker: 'Этап 5 · ломаем 3', title: 'Ломаем 3: нет decorator Controller',
+  segments: {
+    a: { key: 'Ломаем специально: <code>@Controller(\'cars\')</code> удалили, класс остался — сервер <b>падает</b>', text: 'Тихую ошибку мы увидели. Третий случай про decorator: правило с четвёртого экрана теперь увидим на практике. В cars controller мы удалили decorator Controller, класс остался на месте. Сервер падает.' },
+    b: { key: 'Сообщение: «<b>invalid controller</b>» — метки нет, но класс стоит в списке controllers', text: 'Сообщение: обнаружен неверный controller. У CarsController нет decorator Controller, но он стоит в списке controllers какого-то модуля.' },
+    c: { key: 'Сработало правило с 4-го экрана: нет метки — <b>Nest не узнаёт класс</b>', text: 'Nest говорит прямо: вы записали его в список, но у класса нет метки. Вспомните, что я говорил на экране про decorator: нет метки — Nest не узнаёт класс.' },
+    d: { key: 'Исправляем: decorator вернули — сервер <b>запустился</b>, строки Mapped на месте', text: 'Исправление — одна строка: возвращаем decorator. Сервер перезапускается, в терминале строки Mapped и successfully started.' },
+    e: { key: 'Вывод: «invalid controller» — <b>пропала первая строка</b>, верните decorator', text: 'Вывод: если видите сообщение invalid controller, посмотрите над классом, который назван в сообщении. Ученики часто делают это, когда переписывают код вручную и пропускают первую строку.' },
+  },
+});
+ru(S21, {
+  kicker: 'Этап 5 · ломаем 4', title: 'Ломаем 4: нет decorator Injectable',
+  segments: {
+    a: { key: 'Ломаем специально: из <code>cars.service.ts</code> удалили <code>@Injectable()</code>', text: 'Без decorator Nest не узнал класс Controller. А с Service так же? Четвёртый случай: из cars service мы удалили decorator Injectable. У самого Service нет конструктора, он ни от кого не зависит.' },
+    b: { key: 'Подумайте: без <code>@Injectable()</code> <code>/cars</code> <b>будет работать?</b>', text: 'Подумайте: если запустить сервер, route cars будет работать?', ask: { q: 'Без decorator Injectable /cars будет работать?', opts: ['Да, будет', 'Нет, будет ошибка'] } },
+    c: { key: '<b>Работает!</b> CarsService ни от кого не зависит — Nest создал его как обычно', text: 'Неожиданный результат: всё работает, route cars возвращает 200. Почему? В конструкторе самого CarsService нет никаких dependency. Nest смог создать его без dependency.' },
+    d: { key: '<code>@Injectable()</code> говорит Nest: <b>посмотри на конструктор и определи, что нужно</b>', text: 'На самом деле Injectable говорит Nest вот что: посмотрите на конструктор этого класса и определите, что ему нужно. Нет метки — Nest на конструктор не смотрит.' },
+    d2: { key: 'Добавим dependency: сервер <b>запускается</b>, но на запросе <b>500</b> — это тихая ошибка', text: 'Теперь проверим: добавим этому Service без Injectable dependency, в конструкторе запрашивается PricingService. Результат неожиданный: сервер запускается без ошибок, строки Mapped на месте. Но запрос cars возвращает 500, а в терминале TypeError: нельзя прочитать свойство withDiscount у undefined. Nest молча не сделал inject, поле осталось пустым. Это тихая ошибка: она появляется не при запуске, а на первом запросе.', show: 'Добавили dependency в Service без Injectable (<code>constructor(private pricing: PricingService)</code>). Сервер <b>запускается без ошибок</b>, но <code>GET /cars</code> → <b>500</b>, в терминале <code>TypeError: Cannot read properties of undefined (reading \'withDiscount\')</code>. Nest молча не сделал inject — поле пустое. <b>Тихая ошибка</b>: не при запуске, а на первом запросе.' },
+    d3: { key: 'Исправляем: <code>@Injectable()</code> вернули — PricingService передан через inject, <code>/cars</code> → <b>200</b>', text: 'Исправляем: возвращаем decorator Injectable. PricingService стоит в списке providers модуля. Теперь Nest смотрит на конструктор, делает inject PricingService, и запрос cars снова возвращает 200.', show: 'Исправляем: <code>@Injectable()</code> вернули. <code>PricingService</code> стоит в <code>providers</code> модуля. Теперь Nest смотрит на конструктор, делает inject PricingService, и <code>GET /cars</code> снова возвращает <b>200</b>.' },
+    e: { key: 'Вывод: <code>@Injectable()</code> <b>пишут на каждый Service</b>, даже если сейчас он не нужен', text: 'Вывод и правило: Injectable пишут на каждый Service, даже если сейчас он не нужен. Если ученик скажет: я удалил, всё работает, значит, не нужен, — вы сможете объяснить, зачем он: когда появится dependency, ошибка выйдет не при запуске, а во время запроса, и найти её трудно.' },
+  },
+});
+ru(LC2_FIXED, {
+  8: { h: `  controllers: [<span class="c">OrdersController</span>],   <span class="cm">// остался только Controller</span>` },
+  10: { h: `  providers: [<span class="c">OrdersService</span>, <span class="c">PaymentService</span>],   <span class="cm">// Service — здесь</span>` },
+});
+ru(S22, {
+  kicker: 'Этап 5 · вид ошибки', title: 'Два вида ошибок: Error и HttpException',
+  segments: {
+    a: { key: 'Ломаем специально: в <code>findOne</code> вместо NotFoundException бросили <b>обычный Error</b>', text: 'До сих пор ошибки появлялись при запуске сервера. Последний случай другой: сервер работает, а ошибка бросается во время запроса. Какой статус вернётся? В findOne внутри cars service ts вместо NotFoundException мы бросили обычный Error с текстом «не найдено».' },
+    b: { key: 'Ответ <b>500</b>, текст «не найдено» пропал — Nest скрывает неожиданную ошибку', text: 'Ответ: 500, Internal server error. Наш текст «не найдено» пропал. Nest не показывает неожиданную ошибку пользователю, и это правильно: внутренние детали не должны выходить наружу.' },
+    c: { key: '<b>Семейство HttpException</b> Nest узнаёт: возвращает с верным статусом и сообщением', text: 'А NotFoundException — из семейства HttpException в Nest. Nest узнаёт его и возвращает с верным статусом и сообщением.' },
+    d: { key: 'Семейство: <b>400</b> BadRequest · <b>401</b> Unauthorized · <b>403</b> Forbidden · <b>404</b> NotFound', text: 'В семействе есть и другие: BadRequest, 400, неверные данные. Unauthorized, 401, вход не выполнен. Forbidden, 403, нет доступа. NotFound, 404, не найдено.' },
+    e: { key: 'Исправляем: <code>Error</code> → <code>NotFoundException</code> — ответ снова <b>404</b> с сообщением', text: 'Исправляем: меняем обычный Error в findOne на NotFoundException. Теперь на запрос cars 99 снова приходит 404 и сообщение Car with id 99 not found.' },
+    f: { key: 'Вывод: ученик спрашивает «почему 500?» — спросите <b>«какую ошибку вы бросили?»</b> и замените', text: 'Вывод и правило для класса: ошибку, о которой пользователь должен знать, бросают через семейство HttpException, а всё остальное становится 500, и сообщение скрывается. Если ученик спросит, почему выходит 500, ваш первый вопрос: какую ошибку вы бросили? Если обычный Error, замените его на подходящий HttpException: не найдено — NotFound, неверные данные — BadRequest.' },
+  },
+});
+ru(P3, {
+  kicker: 'Практика 4 / 4', eyebrow: 'Сейчас у вас · 5 минут', title: 'Сломайте и исправьте сами',
+  segments: {
+    a: { key: 'Теперь <b>ломаете вы</b>: два случая — прочитаете ошибку своими глазами', text: 'Последняя практика: теперь ломаете вы. Два случая, пять минут. Цель — увидеть и прочитать ошибку своими глазами.' },
+    b: { key: 'Шаг 1: очистите <code>providers</code>, найдите в сообщении <b>какой класс · какой dependency · какой файл</b>, верните', text: 'Первое: в cars module очистите список providers, запустите сервер и найдите в сообщении, какой класс, какой dependency и какой файл. Три найденных ответа, класс, dependency и файл, впишите через запятую в поле подтверждения, потом верните providers.' },
+    c: { key: 'Шаг 2: уберите CarsModule из <code>imports</code> — найдите, <b>какая строка пропала</b> в терминале', text: 'Второе: в app module уберите CarsModule из imports. Сервер запустится. Найдите, какая строка пропала в терминале, запросите route cars, потом верните.' },
+    d: { key: 'Шаг 3: верните всё — в терминале <b>3 строки Mapped</b>, <code>/cars/99</code> → <b>404</b>', text: 'Третье: верните всё и проверьте. В терминале снова должны быть три строки Mapped, а запрос cars 99 должен вернуть 404 и сообщение. Если вышло иначе, нажмите внизу кнопку «Вышло иначе». Пока все три пункта и подтверждение не верны, «Далее» не откроется.' },
+  },
+});
+ru(P3_STEPS, [
+  { t: 'providers пустой', exp: '«Nest can\'t resolve dependencies of the CarsController (?)» → класс · dependency · файл → верните providers: [CarsService]' },
+  { t: 'В imports нет CarsModule', exp: 'сервер запускается · в терминале НЕТ строки CarsController · GET /cars → 404 → верните imports: [CarsModule]' },
+  { t: 'Верните и проверьте', exp: 'в терминале снова 3 строки Mapped {/cars…} · GET /cars/99 → 404 «Car with id 99 not found»' },
+]);
+ru(P3_TROUBLE, [
+  ['Вернул, но ошибка осталась', 'Вы сохранили файл? start:dev сам перезапускается при сохранении; дождитесь новых строк в терминале'],
+  ['Вышла другая ошибка', 'Прочитайте сообщение тремя вопросами: какой класс · какой dependency · какой файл. Список Potential solutions подскажет решение'],
+]);
+ru(P3_PROOF, { label: 'Подтверждение: из сообщения шага 1 — какой класс, какой dependency, какой файл? (через запятую)', placeholder: 'класс, dependency, файл', wrong: 'Перечитайте сообщение: «of the ___» — класс, «argument ___ at index [0]» — dependency, «in the ___ module» — файл' });
+
+// --- 07 · мост, план урока, вопросы, самопроверка, итог ---
+ru(TREE, { 5: { t: '    app.service.ts  (это не Service!)' }, 10: { t: '    auth/ (вход)' } });
+ru(S25A_SAY, {
+  y: [[null, 'форма таблицы в базе: TypeORM строит таблицу по этому классу'], [null, 'форма входящих данных: здесь проверяются обязательные поля и типы, при ошибке — 400'], [null, 'методы записи в базу и чтения: через него Service обращается к базе']],
+  r: [[null, 'модуль входа и регистрации'], [null, 'проверяет токен, пока запрос не дошёл до Controller; если токен недействителен, останавливает запрос'], [null, 'готовые методы CRUD для всех Service, admin service наследуется от него'], [null, 'пропуск вошедшего пользователя'], [null, 'помощник, чтобы все ответы возвращались в одной форме'], [null, 'здесь запускается сервер (класс Aplication). Называется app.service, но в этом проекте это не Service'], [null, 'возвращает все ошибки в одной форме: { statusCode, error: { message } }'], [null, 'читает значения из .env (PORT, DEV_DB_URL)']],
+});
+ru(S25a, {
+  kicker: 'Этап 7 · мост', title: 'Проект, который клонирует ученик',
+  segments: {
+    a: { key: 'Ученик <b>не пишет с нуля</b>: клонирует готовый проект с GitHub и запускает его', text: 'Вы сами построили Nest и сами его сломали. Теперь переходим к главной цели урока: передать эту тему ученику. Сначала посмотрим на урок ученика, потому что он видит эту тему по-другому. Ученик не пишет с нуля: он клонирует с GitHub готовый проект, IntroNestArxitechture, и запускает его.' },
+    b: { key: 'Проект больше: папки <code>api</code> · <code>core</code> · <code>common</code> · <code>infrastructure</code>', text: 'Проект больше: папки api, core, common, infrastructure.' },
+    c: { key: '<b>Зелёное</b> — сегодня видели в коде: admin module, controller, service — это наш cars', text: 'Места, отмеченные зелёным, вы сегодня видели в коде: admin module, admin controller, admin service и главный модуль. Это ровно наши файлы cars, только для admin и побольше. На уроке вы покажете их с кодом.' },
+    d: { key: '<b>Жёлтое</b> — Entity · DTO · Repository: если ученик спросит, объясните <b>одной фразой</b>', text: 'Жёлтые места: entity, dto и repository. В уроке ученика они появляются с названием и задачей, если спросят — объясните одной фразой. Entity — форма таблицы в базе: TypeORM строит таблицу по этому классу.' },
+    d2: { key: '<b>DTO</b> — форма входящих данных, <b>Repository</b> — запись в базу и чтение', text: 'DTO — форма входящих данных: здесь проверяются обязательные поля и типы. Repository — методы записи в базу и чтения: через него Service обращается к базе. Их код вы полностью изучите в следующих уроках курса для менторов, сейчас достаточно одной фразы.' },
+    e: { key: '<b>Серое</b> — auth, Guard, BaseService, filter, config: <b>название и задача</b>, по одной фразе', text: 'Серые места. Модуль auth отвечает за вход и регистрацию. Guard проверяет токен, пока запрос не дошёл до Controller, и если токен недействителен, останавливает запрос. BaseService — готовые методы CRUD для всех Service, admin service наследуется от него. Token — пропуск вошедшего пользователя. successRes — помощник, чтобы все ответы возвращались в одной форме.' },
+    e2: { key: 'Осторожно: сервер запускается в <code>api/app.service.ts</code> — называется Service, но <b>это не Service</b>', text: 'Одно место, где нужно быть осторожным: в этом проекте сервер запускается не в main ts, а в файле app service ts в папке api. Называется app service, но это не Service, а класс, который запускает сервер. Если ученик спросит, скажите именно это.' },
+    e3: { key: 'Не волнуйтесь: особенности этого проекта вы <b>склонируете и посмотрите на следующем уроке для менторов</b>', text: 'Не волнуйтесь: особенности этого проекта — то, что routes начинаются с api v1, форму ответа с ошибкой и BaseService — вы сами склонируете и посмотрите на следующем уроке для менторов. А для урока ученика этих фраз достаточно.' },
+    f: { key: 'Вывод: для <b>каждого цветного места в структуре у вас есть готовая фраза</b>', text: 'Вывод: зелёные файлы показываете с кодом, жёлтые и серые объясняете одной фразой и возвращаетесь к уроку. Урок ученика не открывает код этих файлов, поэтому одной фразы достаточно.' },
+  },
+});
+ru(DICT, [
+  ['официант', null, 'принимает запрос, передаёт на кухню'], ['повар', null, 'выполняет работу'], ['кладовщик', null, 'общается с базой'], ['чертёж стеллажа', null, 'форма таблицы'],
+  ['анкета заказа', null, 'форма входящих данных'], ['контролёр', null, 'проверяет токен'], ['одинаковый поднос', null, 'форма ответа'], ['штатное расписание', null, 'список'],
+]);
+ru(S25b, {
+  kicker: 'Этап 7 · мост', title: 'Язык урока ученика: ресторан',
+  segments: {
+    a: { key: 'Урок ученика говорит <b>языком ресторана</b>: официант, повар, кладовщик…', text: 'Файлы проекта мы увидели. Теперь узнаем, какими словами ученик их запоминает. Урок ученика говорит языком ресторана: Controller — официант, Service — повар, Repository — кладовщик, Guard — контролёр, Module — штатное расписание. Ученик думает этими словами.' },
+    b: { key: 'Ученик говорит «повар» — вы знаете, что это <b>Service</b>, и показываете файл', text: 'Теперь вы знаете оба языка: ученик говорит «повар», а вы знаете, что это Service, и показываете нужный файл. На уроке говорите оба слова вместе: повар, то есть Service.' },
+    c: { key: 'Вывод: метафора объясняет <b>задачу</b>, а не код — говорите оба слова вместе', text: 'Вывод и одно предупреждение: метафора объясняет задачу, а не код. Когда ученик слышит «официант не заходит на кухню», пусть понимает: Controller вызывает Service, но сам ничего не считает. Эту границу держите вы.' },
+  },
+});
+ru(MAP, [
+  { t: 'Вступление', d: '«Боль» server.js на 1240 строк → «клонируем готовый проект», план из 4 шагов', m: 'Вы видели это на 2-м экране этого урока: ученик тоже начинает с этой боли. Не называйте Nest рано — сначала боль.' },
+  { t: 'Clone и запуск', d: 'git clone + npm install, заполнить .env, start:dev; тест: где лежит ключ', m: 'Больше всего времени уходит здесь. Пока сервер не работает у всех, дальше не идите.' },
+  { t: 'Swagger и карта здания', d: 'двери Swagger (endpoints), структура папок; тест: задача Controller', m: 'Здесь появляется слово «официант». В структуре сами покажите зелёные файлы (module/controller/service).' },
+  { t: 'Путь заказа', d: 'порядок Guard → Controller → Service → Repository → successRes собирают перетаскиванием; тест', m: 'Это наш экран «путь запроса», только на две остановки больше: Guard проверяет токен, Repository пишет в базу. На каждую — одна фраза, готовые фразы на 31-м экране.' },
+  { t: 'Слои', d: 'Entity/BaseEntity, DTO (201/400), BaseService (готовый CRUD), Module (смена), порядок из 5 шагов; тест', m: 'Не глубоко: по одной фразе на каждый. Entity — форма таблицы, DTO — форма входящих данных (если неверные — 400), BaseService — готовый CRUD, Module — список. Не волнуйтесь: Entity, DTO и Repository вы полностью, с кодом, изучите в следующих уроках курса для менторов.' },
+  { t: 'Сборка и итог', d: 'ИИ пишет 5 файлов, итоговый debugging (убрать строку с ошибкой), практическое задание, арена, карточки', m: 'На экране debugging работает правило, которое вы сегодня выучили: в Controller не считают.' },
+]);
+ru(R1, {
+  kicker: 'Этап 7 · план урока', eyebrow: 'm4a-01 · «Nest архитектура — живой обзор»', title: 'Карта урока ученика: 6 блоков, 22 экрана',
+  segments: {
+    a: { key: 'Урок ученика <b>m4a-01</b>: 6 блоков, 22 экрана — что вы говорите в каждом блоке', text: 'Вы знаете и проект, и язык ученика. Теперь посмотрим сам урок ученика экран за экраном, потому что вести его будете вы. Двадцать два экрана, шесть блоков. Для каждого блока: что делает ученик и что говорите вы.' },
+    b: { key: 'Блок 1 · вступление: ученик тоже начинает <b>с той же боли</b> — не называйте Nest рано', text: 'Первый блок, вступление: ученик видит файл на 1240 строк и получает план — клонировать готовый проект. Вы видели это в начале этого урока. Не называйте Nest рано, сначала боль.' },
+    c: { key: 'Блок 2 · clone и запуск: здесь уходит <b>больше всего времени</b>', text: 'Второй блок, clone и запуск: git clone, npm install, файл env, start dev. Больше всего времени уходит здесь. Пока сервер не работает у всех, дальше не идите.' },
+    d: { key: 'Блок 3 · Swagger и структура папок: здесь появляется слово <b>«официант»</b>', text: 'Третий блок: ученик смотрит двери в Swagger, потом структуру папок. Здесь появляется слово «официант». В структуре сами покажите файлы module, controller и service.' },
+    e: { key: 'Блок 4 · путь заказа: наш путь запроса + <b>Guard и Repository</b>', text: 'Четвёртый блок, путь заказа: ученик перетаскиванием собирает порядок — контролёр, официант, повар, кладовщик, поднос. Это наш экран «путь запроса», только на две остановки больше: Guard проверяет токен, Repository пишет в базу. На каждую достаточно одной фразы.' },
+    f: { key: 'Блок 5 · слои: Entity, DTO, BaseService — <b>по одной фразе</b>, не глубоко', text: 'Пятый блок, слои: Entity, DTO, BaseService, Module и порядок из пяти шагов. Не глубоко, по одной фразе на каждый. Entity — форма таблицы. DTO — форма входящих данных, если они неверные — 400. BaseService — готовые методы CRUD. Module — список. Не волнуйтесь: Entity, DTO и Repository вы полностью, с кодом, изучите в следующих уроках курса для менторов. А в этом блоке урока ученика достаточно одной фразы.' },
+    g: { key: 'Блок 6 · сборка с ИИ и debugging: работает правило <b>«в Controller не считают»</b>', text: 'Шестой блок: ученик поручает ИИ написать пять файлов, потом итоговый debugging — находит и убирает строку с ошибкой, затем практическое задание и арена. На экране debugging работает правило, которое вы сегодня выучили: в Controller не считают.' },
+    h: { key: 'Вывод: больше всего сил — <b>блок 2 (сервер)</b> и <b>блок 6 (debugging)</b>', text: 'Вывод: из шести блоков два требуют от вас больше всего сил. Второй — потому что сервер должен работать у всех. Шестой — потому что в debugging ученик должен сам найти сегодняшнее правило.' },
+  },
+});
+ru(STUMBLE, [
+  { q: 'git clone не работает', a: 'Git не установлен или нет интернета. Запасной вариант: скачать ZIP с GitHub и распаковать. Перед уроком сами один раз склонируйте проект.' },
+  { q: 'npm install долго или с ошибкой', a: 'Терпение: 2–5 минут — это нормально. Если ошибка — проверьте версию Node (20+), удалите node_modules и попробуйте снова.' },
+  { q: '.env не заполнен — сервер падает', a: 'Проект подключается к PostgreSQL: «Unable to connect to the database» — причину говорит вторая строка (на следующем экране четыре сообщения). cp .env.example .env, потом проверьте, что PostgreSQL запущен.' },
+  { q: 'Порт 3000 занят', a: 'Остался открытым сервер с прошлого урока. Закройте его или запустите с PORT=3001.' },
+  { a: 'Теперь вы умеете это читать: какой класс, какой dependency, какой файл. Прочитайте сообщение в терминале вместе с учеником, ответ не говорите, задавайте вопросы: какой файл? какой список?' },
+  { q: '«Почему не Express?» или путаница в метафоре', a: 'Одна фраза: в большом проекте нужен порядок, Nest делает порядок обязательным, а внутри тот же Express. Если метафора запуталась, верните к словарю: повар, то есть Service.' },
+]);
+ru(R2, {
+  kicker: 'Этап 7 · план урока', eyebrow: 'm4a-01 · что происходит на уроке', title: '6 мест, где ученик спотыкается',
+  segments: {
+    a: { key: '6 ситуаций, которые <b>обязательно</b> будут в классе, — на каждую нужен готовый ответ', text: 'План вы знаете. Теперь посмотрим, где план ломается: шесть ситуаций, которые на уроке будут обязательно. На каждую у вас должен быть готовый ответ.' },
+    b: { key: '1 · <code>git clone</code> не работает → запасной вариант: <b>скачать ZIP</b> с GitHub', text: 'Первая: git clone не работает. Git не установлен или нет интернета. Запасной вариант: скачать ZIP с GitHub и распаковать. Перед уроком сами один раз склонируйте проект.' },
+    c: { key: '2 · <code>npm install</code> долго или с ошибкой → 2–5 минут — норма, <b>Node 20+</b>', text: 'Вторая: npm install идёт долго или с ошибкой. От двух до пяти минут — это нормально. Если ошибка, проверьте версию Node, она должна быть 20 или выше, удалите папку node modules и попробуйте снова.' },
+    d: { key: '3 · нет <code>.env</code> или не работает PostgreSQL → сервер <b>падает</b>', text: 'Третья, самая важная: не создан файл env. Проект подключается к PostgreSQL. Если нет адреса базы или PostgreSQL не работает, сервер не запустится: Unable to connect to the database. На следующем экране прочитаем четыре вида этой ошибки.' },
+    e: { key: '4 · порт 3000 занят → <b>закройте прошлый сервер</b> или дайте другой порт', text: 'Четвёртая: порт 3000 занят. Остался открытым сервер с прошлого урока. Закройте его или запустите на другом порту.' },
+    f: { key: '5 · «can\'t resolve» → <b>читайте вместе</b> с учеником, ответ не говорите', text: 'Пятая: ошибка can\'t resolve dependencies. Теперь вы умеете это читать: какой класс, какой dependency, какой файл. Прочитайте сообщение в терминале вместе с учеником, ответ не говорите, задавайте вопросы: какой файл, какой список.' },
+    g: { key: '6 · «Почему не Express?» → <b>одна фраза</b>: нужен порядок, внутри тот же Express', text: 'Шестая: вопрос «почему не Express» или путаница в метафоре. Одна фраза: в большом проекте нужен порядок, Nest делает порядок обязательным, а внутри тот же Express. Если метафора запуталась, верните к словарю.' },
+    h0: { key: 'Внимание: в проекте ученика routes начинаются с <code>/api/v1</code> — забыли префикс — <b>404</b>', text: 'Ещё одно предупреждение: в проекте ученика все routes начинаются с api v1, не admin, а api v1 admin. Если забыть префикс, будет 404. Этот проект вы полностью, с клонированием, посмотрите на следующем уроке для менторов.', show: 'Ещё одно предупреждение: в проекте ученика все routes начинаются с <code>/api/v1</code> — не <code>/admin</code>, а <code>/api/v1/admin</code>; забыли префикс — <b>404</b>. Этот проект вы полностью, с клонированием, посмотрите на следующем уроке для менторов.' },
+    h: { key: 'Вывод: перед уроком <b>сами один раз поднимите проект</b> — заранее узнаете, где споткнутся', text: 'Вывод: большинство этих ситуаций случается в первые двадцать минут урока. Поэтому перед уроком сами один раз склонируйте проект и запустите его с env: вы сами почувствуете, где можно споткнуться.', show: 'Вывод: большинство этих ситуаций случается в первые 20 минут урока. Перед уроком сами один раз склонируйте проект и запустите его с .env: вы сами почувствуете, где можно споткнуться.' },
+  },
+});
+ru(DB_ERRS, { 13: { h: `<span class="er">ERROR [ExceptionHandler] error: …</span>   <span class="cm">← после 10 попыток сервер падает</span>` } });
+ru(DB_ROWS, [
+  { s: 'PostgreSQL не запущен или неверный порт', f: '<b>Запустите PostgreSQL</b>: Windows — Services → postgresql → Start · Mac — <code>brew services start postgresql</code> · Linux — <code>sudo systemctl start postgresql</code>. Потом проверьте, что в .env порт 5432' },
+  { s: '.env нет или DEV_DB_URL не прочитан (пароль undefined)', f: '<b>В папке проекта: <code>cp .env.example .env</code></b> (Windows: <code>copy .env.example .env</code>). Внутри <code>DEV_DB_URL</code> уже есть — замените пароль на свой и перезапустите сервер' },
+  { s: 'неверный пароль или пользователь в .env', f: 'в .env.example пароль просто <code>password</code> — впишите в <code>DEV_DB_URL</code> свой пароль от PostgreSQL; проверьте через <code>psql -U postgres</code>' },
+  { s: 'подключение и пароль верные, но базы с таким именем нет', f: 'создайте базу: <code>createdb -U postgres nestarxitechture</code> (имя — последнее слово в DEV_DB_URL)' },
+]);
+ru(RDB, {
+  kicker: 'Этап 7 · план урока', eyebrow: 'm4a-01 · самая частая ошибка в классе', title: 'База не подключилась: четыре сообщения, четыре причины',
+  segments: {
+    a: { key: 'Проект ученика <b>подключается к PostgreSQL</b> — это ошибка №1 в классе, причина всегда <b>во 2-й строке</b>', text: 'Третью ситуацию с прошлого экрана, env и PostgreSQL, разберём отдельно, потому что в классе на неё уходит больше всего времени. Сегодня вы изучили четыре ошибки Nest. Но в классе чаще всего выходит другая: проект ученика подключается к PostgreSQL, и подключение часто не получается с первого раза. Сообщение всегда начинается одинаково: Unable to connect to the database, Retrying. А причина во второй строке. Четыре реальных случая.' },
+    b: { key: '1 · <b>ECONNREFUSED</b> → PostgreSQL не запущен: <b>запустите PostgreSQL</b>', text: 'Первый: connect ECONNREFUSED, адрес и порт. Значит, на этом порту никто не отвечает: PostgreSQL не запущен или в файле env неверный порт. Решение: запустите PostgreSQL. В Windows в окне Services запускаете postgresql кнопкой Start, в Mac и Linux — командой из таблицы. Потом проверьте порт.', show: '<b>connect ECONNREFUSED 127.0.0.1:5432</b>: на этом порту никто не отвечает — PostgreSQL не запущен или в .env неверный порт. Решение: <b>запустите PostgreSQL</b> (Windows: Services → postgresql → Start; Mac/Linux: команда из таблицы), потом проверьте порт.' },
+    c: { key: '2 · <b>client password must be a string</b> → нет .env: <code>cp .env.example .env</code>', text: 'Второй, самый обманчивый: client password must be a string. Это не значит, что пароль неверный. Пароля нет совсем, он undefined: нет файла env. В проекте ученика есть готовый образец, файл env example. Решение одно: скопировать этот образец в файл env, заменить внутри пароль на свой и перезапустить сервер. В классе скажите это всем в первую очередь.', show: '<b>client password must be a string</b> — самый обманчивый: пароль не неверный, пароля <b>нет совсем</b> (undefined) — нет файла .env. В проекте есть готовый образец: <b>.env.example</b>. Решение: <code>cp .env.example .env</code>, замените внутри пароль на свой, перезапустите сервер. В классе скажите это всем в первую очередь.' },
+    d: { key: '3 · <b>password authentication failed</b> → неверный пароль в .env: впишите <b>свой пароль</b>', text: 'Третий: password authentication failed for user. Вот теперь действительно неверный пароль или имя пользователя. В классе это бывает часто, потому что в env example пароль — просто слово password. Решение: вписать в DEV DB URL свой пароль от PostgreSQL.', show: '<b>password authentication failed for user "postgres"</b>: теперь действительно неверный пароль или пользователь. В классе бывает часто: в .env.example пароль просто <code>password</code>. Решение: впишите в <code>DEV_DB_URL</code> свой пароль от PostgreSQL.' },
+    d2: { key: '4 · <b>database … does not exist</b> → база не создана: <code>createdb</code>', text: 'Четвёртый: database, имя, does not exist. Подключение есть, пароль верный, но в PostgreSQL нет базы с таким именем: её ещё никто не создал. В проекте ученика имя в конце DEV DB URL, nestarxitechture. Решение: создать базу с этим именем.', show: '<b>database "…" does not exist</b>: подключение и пароль верные, но базы с таким именем <b>не создано</b>. В проекте ученика имя в конце <code>DEV_DB_URL</code>: <code>nestarxitechture</code>. Решение: <code>createdb -U postgres nestarxitechture</code>.' },
+    e: { key: 'Вывод: «Unable to connect» → <b>код не трогайте</b> — читайте 2-ю строку, проверяйте .env и PostgreSQL', text: 'TypeORM делает десять попыток, потом сервер падает. Вывод и правило: если видите Unable to connect, код не трогайте, проблема не в коде. Прочитайте вторую строку, проверьте файл env и PostgreSQL. Эти четыре сообщения есть и в памятке.' },
+  },
+});
+ru(PLAN90, [
+  { n: 'Вступление и боль', d: 'пример server.js, план из 4 шагов' },
+  { n: 'Clone и запуск', d: 'пока сервер не заработает у всех; .env и PostgreSQL' },
+  { n: 'Swagger, карта здания, тесты 1–2', d: 'двери, папки, «официант»' },
+  { n: 'Путь заказа, тест 3' },
+  { n: 'Слои, тест 4', d: 'Entity, DTO, BaseService, Module — название и задача' },
+  { n: 'Сборка с ИИ, debugging, арена', d: 'сегодняшнее правило: в Controller не считают' },
+]);
+ru(R3, {
+  kicker: 'Этап 7 · план урока', eyebrow: 'm4a-01 · 90 минут (предложение)', title: 'План по времени и три правила',
+  segments: {
+    a: { key: 'Предложение: <b>90 минут, шесть частей</b> — меняйте под свой класс', text: 'Места, где спотыкаются, и решения вы знаете. Теперь распланируем время. Предлагаемый план: девяносто минут, шесть частей. Это предложение, меняйте его под свой класс.' },
+    b: { key: '0–30: вступление и clone — <b>пока сервер не работает у всех</b>, дальше не идите', text: 'Первые тридцать минут: вступление и clone. Самая опасная часть — clone и запуск, поэтому на неё двадцать минут.' },
+    c: { key: '30–60: Swagger, карта папок, <b>путь заказа</b> и три теста', text: 'С тридцатой по шестидесятую минуту: Swagger, карта здания, путь заказа и три теста.' },
+    d: { key: '60–90: слои, <b>сборка с ИИ</b>, debugging и арена', text: 'С шестидесятой по девяностую: слои, сборка с ИИ, итоговый debugging и арена.' },
+    e: { key: 'Вывод — три правила: <b>сначала сервер · два слова вместе · читать сообщение вместе</b>', text: 'Вывод: три правила. Первое: пока сервер не работает у всех, дальше не идите. Второе: говорите метафору и термин вместе: повар, то есть Service. Третье: если вышла ошибка, читайте сообщение в терминале вместе с учеником, ответ не говорите.' },
+  },
+});
+ru(QA, [
+  ['Почему Nest, а не Express?', 'Когда проект большой, нужен порядок; Nest делает порядок обязательным, а внутри тот же Express.'],
+  ['Что такое decorator?', 'Метка над классом или методом; говорит Nest, что это такое, код не выполняет.'],
+  ['Что такое providers?', 'То, что этот модуль создаёт, в основном Service.'],
+  ['Зачем мы вынесли Service отдельно?', 'Чтобы тестировать отдельно и использовать повторно; а в Controller не остаётся логики.'],
+  ['Nest быстрее Express?', 'Нет, скорость одинаковая, внутри Express. Nest даёт не скорость, а порядок.'],
+  ['Я удалил Injectable, всё работает. Он не нужен?', 'Сработало, потому что нет dependency; когда dependency появится, сервер запустится, но на запросе будет 500 TypeError — тихая ошибка. Поэтому его пишут всегда.'],
+]);
+ru(S26, {
+  kicker: 'Этап 7 · вопросы', title: 'Вопросы, которые задаст ученик',
+  segments: {
+    a: { key: '<b>6 вопросов</b>, которые вам зададут на уроке, и готовые ответы', text: 'План урока готов. Последняя подготовка: вопросы, которые вам задаст ученик. Примерно такие.' },
+    q1: { key: '1 · «Почему не Express?» → в большом проекте <b>нужен порядок</b>, внутри тот же Express', text: 'Первый: почему Nest, а не Express? Ответ: когда проект большой, нужен порядок, Nest делает порядок обязательным, а внутри тот же Express.' },
+    q2: { key: '2 · «Что такое decorator?» → <b>метка</b> над классом: говорит Nest, «что это»', text: 'Второй: что такое decorator? Метка над классом или методом, она говорит Nest, что это такое.' },
+    q3: { key: '3 · «Что такое providers?» → то, что модуль <b>создаёт</b>, в основном Service', text: 'Третий: что такое providers? То, что этот модуль создаёт, в основном Service.' },
+    q4: { key: '4 · «Зачем отдельный Service?» → чтобы <b>тестировать отдельно</b> и использовать повторно', text: 'Четвёртый: зачем мы вынесли Service отдельно? Чтобы тестировать отдельно и использовать повторно, а в Controller не остаётся логики.' },
+    q5: { key: '5 · «Nest быстрее?» → нет, внутри Express; Nest даёт <b>не скорость, а порядок</b>', text: 'Пятый: Nest быстрее? Нет, скорость одинаковая, потому что внутри Express. Nest даёт не скорость, а порядок.' },
+    q6: { key: '6 · «Без Injectable же работает?» → пока да; добавится dependency — <b>тихая ошибка, 500</b>', text: 'Шестой: я удалил Injectable, а всё работает. Это потому, что нет dependency; когда dependency появится, сервер запустится, но на запросе будет 500, тихая ошибка. Поэтому его пишут всегда.' },
+    z: { key: 'Вывод: если на какой-то вопрос не можете ответить — <b>вернитесь к тому экрану урока</b>', text: 'Вывод: пусть эти шесть ответов будут у вас наготове. Нажмите на каждую карточку и прочитайте ответ ещё раз. Если на какой-то вопрос сами ответить не можете, вернитесь к тому экрану урока.' },
+  },
+});
+ru(FINAL, [
+  { q: 'Какая библиотека на самом деле принимает запрос внутри Nest?', o: ['Собственный HTTP-сервер Nest', null, 'Напрямую модуль http из Node', 'Всегда Fastify'], e: 'Nest — слой над Express; его можно заменить на Fastify, но по умолчанию это Express.' },
+  { q: 'Какой path открывают вместе @Controller(\'cars\') и @Get(\':id\')?', e: 'Префикс Controller + путь метода.' },
+  { q: 'В методе POST статус не указан. Что вернёт Nest?', e: 'Для POST Nest сам ставит 201.' },
+  { q: '«Nest can\'t resolve dependencies of the X (?)» — что означает знак вопроса?', o: ['Неизвестный модуль', 'Место ненайденного аргумента', 'Синтаксическая ошибка', 'Нет route'], e: 'В скобках аргументы конструктора, ? — тот, что не найден.' },
+  { q: 'Сервер «successfully started», /cars 404, в терминале нет Mapped {/cars…}. Самая вероятная причина?', o: ['CarsModule нет в imports AppModule', 'Нет Injectable', 'Порт занят', 'Ошибка в Service'], e: 'Тихая ошибка: модуль не подключён, Nest не прочитал папку.' },
+  { q: 'Внутри Service throw new Error(\'x\'). Что получит клиент?', o: ['404 и «x»', null, null, 'Ничего, сервер упадёт'], e: 'Обычный Error → 500, сообщение скрыто.' },
+  { q: 'Новое сообщение: «Nest can\'t resolve dependencies of the UsersService (?, JwtService). Please make sure that the argument ConfigService at index [0] is available in the UsersModule module.» Что вы сделаете?', o: ['users.module.ts — добавить ConfigService в providers (или import ConfigModule)', 'users.service.ts — удалить JwtService из конструктора', 'app.module.ts — UsersService в controllers', 'Добавить @Injectable() в UsersService'], e: 'Класс: UsersService · dependency: ConfigService, index [0] · файл: users.module.ts (UsersModule). JwtService найден (второе место), проблема не в нём.' },
+  { q: 'orders.module.ts: controllers: [OrdersController], providers: [] — в конструкторе OrdersController запрашивается OrdersService. Что сделает сервер?', o: ['Запустится, /orders → 404', 'Упадёт: can\'t resolve dependencies of the OrdersController (?)', 'Запустится, /orders → 500', 'Упадёт: invalid controller detected'], e: 'providers пустой → Nest не может найти OrdersService → падает при запуске (как в «ломаем 1»).' },
+]);
+ru(S28_ITEMS, [
+  { t: 'Nest — обязательный порядок поверх Express' },
+  { t: 'Controller принимает запрос — логику в нём не пишут' },
+  { t: 'Service выполняет работу и ничего не знает о запросе' },
+  { t: 'Module — список, Nest видит только то, что в списке' },
+  { t: 'Dependency Injection: вы не создаёте, Nest передаёт через конструктор' },
+  { t: 'Ошибку Nest читают: какой класс · какой dependency · какой файл' },
+]);
+ru(HOMEWORK, [
+  { t: 'Модуль users' },
+  { t: 'Service: список пользователей + findAll, findOne, create; если не найден — NotFoundException' },
+  { t: 'Controller: GET /users · GET /users/:id · POST /users — в терминале 3 строки Mapped' },
+  { t: 'Один раз специально сломайте (очистите providers), прочитайте сообщение, исправьте' },
+  { t: 'Выложите на GitHub и вставьте ссылку на репозиторий в домашнее задание на платформе', c: ['git add . && git commit -m "модуль users"', null] },
+]);
+// S28: segmentlar render paytida yig'iladi (o'tgan/o'tmagan) — ruschasi id bo'yicha, s28Ru() qo'yadi
+const S28_RU = {
+  a_pass: { key: '<b>Отлично!</b> Вы хорошо усвоили урок — соберём сегодняшний урок одним взглядом', text: 'Отлично! Вы хорошо усвоили урок. Теперь соберём всё, что вы сегодня изучили, одним взглядом.' },
+  a_fail: { key: 'Вы дошли до конца урока — советую <b>пройти тест заново</b>', text: 'Вы дошли до конца урока. В итоговом тесте нужно было шесть баллов, поэтому перед завершением советую пройти тест заново. А сейчас соберём сегодняшний урок одним взглядом.' },
+  b1: { key: 'Nest — <b>обязательный порядок</b> поверх Express', text: 'Первое: Nest — это обязательный порядок поверх Express. Внутри работает тот же Express.' },
+  b2: { key: '<b>Controller</b> принимает запрос, вызывает Service, возвращает ответ — <b>логику не пишут</b>', text: 'Второе: Controller принимает запрос, вызывает Service и возвращает ответ. Расчётов в нём нет.' },
+  b3: { key: '<b>Service</b> выполняет работу и ничего не знает о запросе', text: 'Третье: Service выполняет работу и ничего не знает о запросе. Поэтому его легко тестировать отдельно и использовать повторно.' },
+  b4: { key: '<b>Module</b> — список: Nest видит только то, что в списке', text: 'Четвёртое: Module — это список. Nest видит только то, что записано в списке.' },
+  b5: { key: '<b>Dependency Injection</b>: пишете в providers, просите в конструкторе — inject делает Nest', text: 'Пятое: Dependency Injection. Вы записываете Service в providers и просите его в конструкторе, а создаёт его и делает inject Nest.' },
+  b6: { key: 'Ошибку Nest <b>читают</b>: какой класс · какой dependency · какой файл', text: 'И самое важное: ошибку Nest можно прочитать. В сообщении написано, какой класс, какого dependency не хватает и какой файл открыть, а ответ чаще всего в файле модуля.' },
+  hw: { key: '<b>Домашнее задание</b>: сами добавьте в cars-api модуль <code>users</code> и выложите на GitHub', text: 'Домашнее задание. Добавьте в свой проект cars api модуль users тем же способом, что на этом уроке: три команды CLI, в Service список пользователей и методы findAll, findOne, create, а если не найден — NotFoundException. В Controller три route. Потом один раз специально сломайте, например очистите providers, прочитайте сообщение и исправьте. Готовый проект выложите на GitHub и вставьте ссылку на репозиторий в домашнее задание на платформе.' },
+  c: { key: '<b>Возьмите памятку</b>: команды, ошибки, правила и домашнее задание — на одной странице', text: 'Ниже памятка на одну страницу: команды, четыре ошибки Nest, ошибки подключения к базе, правила, словарь урока ученика и домашнее задание. Скопируйте или скачайте её, пусть будет рядом, когда будете вести урок ученика.' },
+  z: { key: 'Спасибо! Нажмите <b>«Завершить урок»</b>', text: 'Спасибо. Нажмите кнопку «Завершить урок», и урок будет отмечен как пройденный.' },
+};
+const CHEATSHEET_RU = `# Nest, урок 1 — памятка ментора
+## Команды
+npm i -g @nestjs/cli · nest new cars-api · npm run start:dev
+nest g module cars · nest g controller cars --no-spec · nest g service cars --no-spec
+## Три части
+Controller — принимает запрос, вызывает Service, возвращает ответ (логику не пишут)
+Service — работа: расчёты, правила, база; нет req/res; @Injectable()
+Module — список: imports · controllers · providers; нет в списке = нет для Nest
+## Dependency Injection
+constructor(private readonly carsService: CarsService) — вы не создаёте, Nest создаёт по providers (1 instance)
+## 4 ошибки
+1 «can't resolve dependencies of the X (?) … argument Y at index [0] … in the Z module» → Y в providers модуля Z
+2 сервер запустился, /cars 404, в терминале нет Mapped {/cars…} → AppModule imports: [CarsModule]
+3 «invalid controller … does not have the @Controller() decorator» → верните decorator
+4 без @Injectable работает (нет dependency) → если добавить dependency: сервер запускается, на запросе 500 TypeError (тихая ошибка) → всё равно пишут
+## База не подключилась (проект ученика, TypeORM — «Unable to connect to the database. Retrying (1)…», 10 попыток, потом падает)
+connect ECONNREFUSED 127.0.0.1:5432 → запустите PostgreSQL (Windows: Services → postgresql; Mac: brew services start postgresql; Linux: sudo systemctl start postgresql)
+SASL … client password must be a string → нет .env: cp .env.example .env, замените пароль на свой
+password authentication failed for user → в .env.example пароль «password» — в DEV_DB_URL свой пароль
+database "…" does not exist → createdb -U postgres nestarxitechture (имя — в конце DEV_DB_URL)
+## Помощь
+Если ничего не подошло: скриншот + текст ошибки → Telegram-группа курса для менторов
+## Вид ошибки
+семейство HttpException (NotFound 404, BadRequest 400, Unauthorized 401, Forbidden 403) → статус + сообщение · обычный Error → 500, сообщение скрыто
+## Ответы
+GET /cars 200 · GET /cars/1 200 · GET /cars/99 404 · POST /cars 201 (сам) · /cars/abc → 404 «NaN» (проверки нет; @Param('id', ParseIntPipe) или DTO + ValidationPipe → 400)
+## Язык урока ученика
+официант=Controller · повар=Service · кладовщик=Repository · чертёж стеллажа=Entity · анкета=DTO · контролёр=Guard · штатное расписание=Module
+## Три правила (на уроке)
+пока сервер не работает у всех, дальше не идите · «повар, то есть Service» · если ошибка — читайте сообщение в терминале вместе, ответ не говорите
+## Домашнее задание
+модуль users в cars-api: nest g module/controller/service users · Service: список + findAll/findOne/create, если не найден — NotFoundException · Controller: GET /users · GET /users/:id · POST /users · один раз специально сломайте (пустой providers) и исправьте · push на GitHub → ссылку на репозиторий в домашнее задание на платформе`;

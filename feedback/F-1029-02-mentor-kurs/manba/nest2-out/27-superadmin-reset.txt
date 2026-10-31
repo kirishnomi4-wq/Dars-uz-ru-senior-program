@@ -1,0 +1,34 @@
+## 1) .env Superadmin bo'sh → ishga tushirish
+Super admin created: 1
+ username |    role    
+----------+------------
+ ali      | admin
+          | superAdmin
+(2 rows)
+
+## 2) .env to'ldirildi, bo'sh superadmin satri bazada qoldi → qayta ishga tushirish
+Super admin created: 0
+ username |    role    
+----------+------------
+ ali      | admin
+          | superAdmin
+(2 rows)
+
+### POST /api/v1/admin/signin   body: {"username":"superadmin","password":"Superadmin1!"}
+{"statusCode":401,"error":{"message":"Admin not fount"}}
+-- status: 401
+
+## 3) DELETE FROM admins WHERE role='superAdmin'; → qayta ishga tushirish
+DELETE 1
+Super admin created: 1
+Super admin created successfully
+  username  |    role    
+------------+------------
+ ali        | admin
+ superadmin | superAdmin
+(2 rows)
+
+### POST /api/v1/admin/signin   body: {"username":"superadmin","password":"Superadmin1!"}
+{"statusCode":200,"message":"success","data":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc1NjhkNmFjLWNiODYtNGIzYy1iYTkzLTIwYjRmOTEwZTg3NyIsImlzQWN0aXZlIjp0cnVlLCJyb2xlIjoic3VwZXJBZG1pbiIsImlhdCI6MTc5MzQzNTc1MCwiZXhwIjoxNzkzNTIyMTUwfQ.kTs2wi-s1kzjqNNnNx-zikxi2k0einARhl6sQ14QBTE"}}
+-- status: 201
+

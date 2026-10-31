@@ -1,0 +1,8 @@
+### POST /api/v1/admin/signin   body: {"username":"superadmin","password":"Notogri1!"}
+{"statusCode":400,"error":{"message":"username or password incorect"}}
+-- status: 400
+
+### POST /api/v1/admin/signin   body: {"username":"superadmin","password":"notogri"}
+{"statusCode":400,"error":{"message":"password is not strong enough"}}
+-- status: 400
+

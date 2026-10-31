@@ -1,0 +1,53 @@
+--- admins jadvali:
+  username  |  full_name  |    role    | is_active |        created_at         
+------------+-------------+------------+-----------+---------------------------
+ superadmin | Super Admin | superAdmin | t         | 2026-10-31 02:51:28.10198
+(1 row)
+
+
+--- jadval tuzilishi (\d admins):
+                                      Table "public.admins"
+     Column      |            Type             | Collation | Nullable |          Default          
+-----------------+-----------------------------+-----------+----------+---------------------------
+ id              | uuid                        |           | not null | uuid_generate_v4()
+ created_at      | timestamp without time zone |           | not null | now()
+ updated_at      | timestamp without time zone |           | not null | now()
+ username        | character varying           |           | not null | 
+ hashed_password | character varying           |           | not null | 
+ full_name       | character varying           |           | not null | 
+ phone_number    | character varying           |           | not null | 
+ role            | admins_role_enum            |           | not null | 'admin'::admins_role_enum
+ is_active       | boolean                     |           | not null | true
+Indexes:
+    "PK_e3b38270c97a854c48d2e80874e" PRIMARY KEY, btree (id)
+    "UQ_4ba6d0c734d53f8e1b2e24b6c56" UNIQUE CONSTRAINT, btree (username)
+
+
+### POST /api/v1/admin/signin   body: {"username":"superadmin","password":"Superadmin1!"}
+HTTP/1.1 201 Created
+X-Powered-By: Express
+Set-Cookie: adminToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFlNDY1MzJiLWI1NzEtNGNlZS1iY2JhLTFiNjNkNDQ1ZjZjMyIsImlzQWN0aXZlIjp0cnVlLCJyb2xlIjoic3VwZXJBZG1pbiIsImlhdCI6MTc5MzQyOTQ4OCwiZXhwIjoxNzk2MDIxNDg4fQ.VIBzTZ3Vbmfc70iHe622crUgU4lAUeX-fM6oi0h5Atc; Max-Age=2592000; Path=/; Expires=Mon, 30 Nov 2026 06:51:28 GMT; HttpOnly
+Content-Type: application/json; charset=utf-8
+Content-Length: 293
+ETag: W/"125-NiF26Ox6sPORdCAcfgWMiZsT2zM"
+Date: Sat, 31 Oct 2026 06:51:28 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+{"statusCode":200,"message":"success","data":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFlNDY1MzJiLWI1NzEtNGNlZS1iY2JhLTFiNjNkNDQ1ZjZjMyIsImlzQWN0aXZlIjp0cnVlLCJyb2xlIjoic3VwZXJBZG1pbiIsImlhdCI6MTc5MzQyOTQ4OCwiZXhwIjoxNzkzNTE1ODg4fQ.weNFXCzDRPvmcdFemNfXYc2n7PqyvdrG371PFSdU52U"}}
+-- status: 201
+
+### POST /api/v1/admin/signin   body: {"username":"superadmin","password":"notogri"}
+{"statusCode":400,"error":{"message":"password is not strong enough"}}
+-- status: 400
+
+### POST /api/v1/admin/signin   body: {"username":"kimdir","password":"Superadmin1!"}
+{"statusCode":401,"error":{"message":"Admin not fount"}}
+-- status: 401
+
+### POST /api/v1/admin/signin   body: {"username":"superadmin"}
+{"statusCode":400,"error":{"message":"password is not strong enough"}}
+-- status: 400
+
+token uzunligi: 235
+superadmin id: 1e46532b-b571-4cee-bcba-1b63d445f6c3

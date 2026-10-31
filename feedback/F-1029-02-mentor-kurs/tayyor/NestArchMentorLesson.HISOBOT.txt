@@ -1,0 +1,7 @@
+== NestArchMentorLesson (393 KB) — 2026-10-31 18:12
+NestArchMentorLesson.jsx: 8/8 katta literal JSON'ga o'tdi (27 KB → 27 KB): RDB 4 KB, R2 3 KB, S25a 3 KB, S21 3 KB, S16 4 KB, S13 3 KB, S11 3 KB, S6 3 KB
+c.jsx: 394 KB → 352 KB (11% kam) | CSS shablon 1/1 ta, 18 KB → 18 KB [xavfsiz] | JSX-min ha | yengil rejim | moslik: JS→chrome70+polyfill, CSS zaxira dvh 0, color-mix 0, inset 0, transform 0; zaxirasiz: :has 0, @container 0, aspect-ratio 0, text-wrap 0
+NestArchMentorLesson.oz.jsx: ichki JS 366 KB (tree-shake) → gzip 96 KB → base64 127 KB → fayl 133 KB | modullar: react, @lesson/runtime
+moslik auditi (ASL fayl qaysi brauzerni talab qiladi; .oz.jsx da JS Chrome 70+ ga pasaytirilgan):
+| mentor-kurs/NestArchMentorLesson | Chrome 92 / Safari 15.4 | .at() (Chr 92, Saf 15.4) ×8; {...obj} (Chr 60, Saf 11.1) ×12; padStart (Chr 57, Saf 10) ×2 | Chrome 93 / Safari 15.4 | accent-color (Chr 93, Saf 15.4) ×1; gap (flex bo'lsa) (Chr 84, Saf 14.1) ×56; clamp() (Chr 79, Saf 13.1) ×7; grid (Chr 57, Saf 10.1) ×9 |
+NATIJA: feedback/F-1029-02-mentor-kurs/tayyor/NestArchMentorLesson.oz.jsx (133 KB) — LMS'ga shuni yuklang. Muqobil (o'qiladigan): feedback/F-1029-02-mentor-kurs/tayyor/NestArchMentorLesson.jsx (352 KB)

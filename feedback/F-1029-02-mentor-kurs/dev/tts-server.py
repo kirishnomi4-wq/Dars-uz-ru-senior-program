@@ -10,6 +10,7 @@ import edge_tts
 PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 5332
 CACHE = pathlib.Path(__file__).resolve().parent.parent / 'korik' / 'tts-cache'; CACHE.mkdir(parents=True, exist_ok=True)
 VOICE, RATE = 'uz-UZ-SardorNeural', '-5%'
+VOICE_RU, RATE_RU = 'ru-RU-DmitryNeural', '+0%'   # F-1030-38: matn [Русское произношение] bilan boshlansa
 TAG = re.compile(r'\[[^\]]{1,40}\]')          # [O'zbekcha tallaffuz] [pause] [English pronunciation] [end] ...
 SUBS = [('@', ''), ('·', ','), ('→', ''), ('`', ''), ('**', '')]
 
@@ -18,8 +19,8 @@ def clean(text):
     for a, b in SUBS: s = s.replace(a, b)
     return re.sub(r'\s+', ' ', s).strip()
 
-async def synth(text, path):
-    com = edge_tts.Communicate(text, VOICE, rate=RATE)
+async def synth(text, path, voice=VOICE, rate=RATE):
+    com = edge_tts.Communicate(text, voice, rate=rate)
     with open(path, 'wb') as f:
         async for ch in com.stream():
             if ch['type'] == 'audio': f.write(ch['data'])
@@ -33,12 +34,14 @@ class H(BaseHTTPRequestHandler):
         u = urllib.parse.urlparse(self.path)
         if u.path != '/tts': return self._send(404, b'{"error":"/tts?text=..."}')
         q = urllib.parse.parse_qs(u.query); text = (q.get('text') or [''])[0]
+        is_ru = text.lstrip().startswith('[Русское произношение]')
+        voice, rate = (VOICE_RU, RATE_RU) if is_ru else (VOICE, RATE)
         c = clean(text)
         if not c: return self._send(400, b'{"error":"bo\'sh matn"}')
-        h = hashlib.sha1((VOICE + RATE + c).encode('utf-8')).hexdigest()
+        h = hashlib.sha1((voice + rate + c).encode('utf-8')).hexdigest()
         p = CACHE / (h + '.mp3')
         if not p.exists() or p.stat().st_size < 500:
-            try: asyncio.run(synth(c, p))
+            try: asyncio.run(synth(c, p, voice, rate))
             except Exception as e:
                 if p.exists(): p.unlink()
                 return self._send(502, json.dumps({'error': str(e)}).encode())

@@ -1,0 +1,38 @@
+--- admins jadvali (superadmin .env'da bo'sh edi):
+ username | full_name | phone_number |    role    | is_active 
+----------+-----------+--------------+------------+-----------
+          |           |              | superAdmin | t
+(1 row)
+
+
+--- Swagger sahifasi sarlavhasi:
+<title>Swagger UI</title>
+
+--- Swagger JSON — route'lar:
+title: Azizbek | version: 1.0
+  POST   /api/v1/admin
+  GET    /api/v1/admin
+  POST   /api/v1/admin/signin
+  POST   /api/v1/admin/token
+  POST   /api/v1/admin/signout
+  GET    /api/v1/admin/all/admin
+  GET    /api/v1/admin/{id}
+  PATCH  /api/v1/admin/{id}
+  DELETE /api/v1/admin/{id}
+
+### GET /admin
+{"statusCode":404,"error":{"message":"Cannot GET /admin"}}
+-- status: 404
+
+### GET /api/v1/admin
+{"statusCode":401,"error":{"message":"Unauthorized"}}
+-- status: 401
+
+### POST /api/v1/admin/signin   body: {"username":"undefined","password":"undefined"}
+{"statusCode":400,"error":{"message":"password is not strong enough"}}
+-- status: 400
+
+### POST /api/v1/admin/signin   body: {"username":"superadmin","password":"Superadmin1!"}
+{"statusCode":401,"error":{"message":"Admin not fount"}}
+-- status: 401
+

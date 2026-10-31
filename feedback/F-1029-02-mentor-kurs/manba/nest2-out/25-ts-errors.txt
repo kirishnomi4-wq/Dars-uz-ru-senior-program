@@ -1,0 +1,22 @@
+## a) super(carRepo) olib tashlandi:
+src/api/car/car.service.ts:11:3 - error TS2377: Constructors for derived classes must contain a 'super' call.
+
+11   constructor(
+     ~~~~~~~~~~~
+
+## b) Controller'da findOne (BaseService'da yo'q):
+src/api/car/car.controller.ts:22:28 - error TS2551: Property 'findOne' does not exist on type 'CarService'. Did you mean 'findOneBy'?
+
+22     return this.carService.findOne(id);
+                              ~~~~~~~
+
+## c) core/index.ts'da car export yo'q:
+src/api/car/car.module.ts:3:10 - error TS2305: Module '"src/core"' has no exported member 'CarEntity'.
+
+3 import { CarEntity } from 'src/core';
+           ~~~~~~~~~
+src/api/car/car.service.ts:5:10 - error TS2305: Module '"src/core"' has no exported member 'CarEntity'.
+
+5 import { CarEntity } from 'src/core';
+           ~~~~~~~~~
+

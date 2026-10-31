@@ -1,0 +1,288 @@
+<title>Nest-2 MD ko'rigi</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Layout: chapda bosqichlar ro'yxati (keng ekranda), o'ngda 30 ekran kartasi — har kartaning pastida ko'rik paneli. Telefonda bitta ustun. */
+:root {
+  --bg: #F4F6F8; --surface: #FFFFFF; --ink: #16212C; --muted: #5A6876; --line: #DCE2E8; --soft: #EEF1F4;
+  --accent: #D7193F; --accent-soft: #FCE8EC; --ok: #1E7F4F; --ok-soft: #E3F4EA; --warn: #9A6410; --warn-soft: #FBF0DC;
+  --code-bg: #0F1720; --code-ink: #E3E9EF; --code-muted: #8A99A8;
+  --f-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-head: "IBM Plex Sans Condensed", "Arial Narrow", "IBM Plex Sans", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0D1217; --surface: #141B22; --ink: #E4EAF0; --muted: #94A2B0; --line: #25303A; --soft: #1A232C;
+  --accent: #FF4F6E; --accent-soft: #3A1620; --ok: #45C083; --ok-soft: #12301F; --warn: #E3AC4F; --warn-soft: #33260F;
+  --code-bg: #090D11; --code-ink: #E3E9EF; --code-muted: #7D8B99; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0D1217; --surface: #141B22; --ink: #E4EAF0; --muted: #94A2B0; --line: #25303A; --soft: #1A232C;
+  --accent: #FF4F6E; --accent-soft: #3A1620; --ok: #45C083; --ok-soft: #12301F; --warn: #E3AC4F; --warn-soft: #33260F;
+  --code-bg: #090D11; --code-ink: #E3E9EF; --code-muted: #7D8B99; color-scheme: dark }
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 15px/1.55 var(--f-body); margin: 0; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface); }
+.wrap { max-width: 1180px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--f-head); text-wrap: balance; margin: 0; }
+code { font-family: var(--f-mono); font-size: .88em; background: var(--soft); padding: .05em .35em; border-radius: 4px; overflow-wrap: anywhere; }
+pre { margin: 8px 0; background: var(--code-bg); color: var(--code-ink); border-radius: 8px; padding: 10px 12px; overflow-x: auto; font: 12.5px/1.5 var(--f-mono); }
+pre code { background: none; padding: 0; color: inherit; font-size: inherit; }
+b, strong { font-weight: 600; }
+button { font: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* top bar */
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--surface); border-bottom: 1px solid var(--line); }
+.bar .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; padding-block: 10px; }
+.brand { display: flex; align-items: baseline; gap: 10px; min-width: 0; }
+.brand h1 { font-size: 20px; letter-spacing: .01em; }
+.brand .tag { font: 600 11px/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+.counts { display: flex; gap: 6px; flex-wrap: wrap; margin-left: auto; }
+.chip { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 4px 11px; font-size: 13px; display: inline-flex; gap: 6px; align-items: center; font-variant-numeric: tabular-nums; }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+.chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); }
+.chip .dot.ok { background: var(--ok); } .chip .dot.warn { background: var(--warn); }
+.copy { border: 0; background: var(--accent); color: #fff; border-radius: 8px; padding: 7px 14px; font-weight: 600; }
+.note-line { font-size: 13px; color: var(--muted); }
+.note-line.err { color: var(--warn); }
+
+/* intro */
+.intro { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 20px; padding-block: 22px 8px; }
+.intro p { margin: 0 0 10px; max-width: 64ch; }
+.intro .lead { font-size: 16px; }
+.pas { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+.pas summary { font-weight: 600; cursor: pointer; }
+.pas dl { margin: 10px 0 0; display: grid; gap: 8px; }
+.pas dt { font: 600 11px/1.2 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.pas dd { margin: 2px 0 0; font-size: 13.5px; }
+.general { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+.general label { font-weight: 600; display: block; margin-bottom: 6px; }
+
+/* main grid */
+.main { display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: 24px; padding-block: 12px 60px; align-items: start; }
+nav.stages { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 70px); display: grid; gap: 2px; }
+nav.stages a { display: flex; justify-content: space-between; gap: 8px; text-decoration: none; color: var(--muted); padding: 6px 10px; border-radius: 6px; font-size: 13.5px; }
+nav.stages a:hover { background: var(--soft); color: var(--ink); }
+nav.stages a span:last-child { font: 12px var(--f-mono); font-variant-numeric: tabular-nums; }
+.list { display: grid; gap: 14px; min-width: 0; }
+.stage-h { font: 700 13px/1 var(--f-head); letter-spacing: .1em; text-transform: uppercase; color: var(--accent); padding: 14px 2px 0; scroll-margin-top: 80px; }
+
+/* screen card */
+.scr { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; scroll-margin-top: 80px; min-width: 0; }
+.scr[data-status="ok"] { border-color: color-mix(in srgb, var(--ok) 45%, var(--line)); }
+.scr[data-status="change"] { border-color: color-mix(in srgb, var(--warn) 55%, var(--line)); }
+.scr-h { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 4px 14px; align-items: start; padding: 14px 16px 6px; }
+.num { font: 600 26px/1 var(--f-mono); color: var(--accent); font-variant-numeric: tabular-nums; padding-top: 2px; }
+.scr-h h2 { font-size: 19px; line-height: 1.25; }
+.type { font: 600 11px/1 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 5px 9px; white-space: nowrap; }
+.head { padding: 0 16px 8px 16px; color: var(--muted); font-size: 14px; }
+.head p { margin: 0; }
+.segs { list-style: none; margin: 0; padding: 4px 16px 6px; display: grid; gap: 10px; counter-reset: seg; }
+.segs li { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 2px 8px; counter-increment: seg; }
+.segs li::before { content: counter(seg); font: 600 12px/22px var(--f-mono); color: var(--muted); background: var(--soft); border-radius: 6px; text-align: center; height: 22px; }
+.key { font-weight: 500; }
+.voice { grid-column: 2; color: var(--muted); font-size: 14px; border-left: 2px solid var(--line); padding-left: 10px; }
+.voice::before { content: "Ovoz: "; font: 600 11px var(--f-mono); letter-spacing: .05em; text-transform: uppercase; color: var(--accent); }
+.extra { grid-column: 2; font-size: 13px; }
+details.more { margin: 4px 16px 10px; border-top: 1px dashed var(--line); padding-top: 8px; }
+details.more summary { cursor: pointer; color: var(--muted); font-size: 13.5px; font-weight: 500; }
+.md { font-size: 13.5px; min-width: 0; }
+.md p { margin: 6px 0; }
+.md ul { margin: 6px 0; padding-left: 18px; }
+.tbl { overflow-x: auto; margin: 8px 0; border: 1px solid var(--line); border-radius: 8px; }
+.tbl table { border-collapse: collapse; width: 100%; font-size: 12.5px; }
+.tbl th, .tbl td { text-align: left; vertical-align: top; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+.tbl th { background: var(--soft); font-weight: 600; }
+.tbl tr:last-child td { border-bottom: 0; }
+
+/* review panel */
+.rev { background: var(--soft); border-top: 1px solid var(--line); padding: 10px 16px 12px; display: grid; gap: 8px; }
+.rev .btns { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.rb { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 8px; padding: 6px 12px; font-size: 13.5px; font-weight: 500; }
+.rb.ok[aria-pressed="true"] { background: var(--ok); border-color: var(--ok); color: #fff; }
+.rb.change[aria-pressed="true"] { background: var(--warn); border-color: var(--warn); color: #fff; }
+.saved { font-size: 12.5px; color: var(--muted); margin-left: auto; }
+textarea { width: 100%; min-height: 58px; resize: vertical; font: 14px/1.45 var(--f-body); color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; }
+.hidden-by-filter { display: none; }
+.copybox { width: 100%; min-height: 120px; margin-top: 8px; }
+
+@media (max-width: 860px) {
+  .intro { grid-template-columns: 1fr; }
+  .main { grid-template-columns: 1fr; }
+  nav.stages { position: static; grid-auto-flow: column; grid-auto-columns: max-content; overflow-x: auto; padding-bottom: 4px; }
+  .counts { margin-left: 0; }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+</style>
+
+<header class="bar">
+  <div class="wrap">
+    <div class="brand"><span class="tag">GATE M</span><h1>Nest-2 MD ko'rigi</h1></div>
+    <div class="counts" role="group" aria-label="Filtr">
+      <button class="chip" type="button" data-filter="all" aria-pressed="true">Hammasi <b id="c-all">30</b></button>
+      <button class="chip" type="button" data-filter="todo" aria-pressed="false"><span class="dot"></span>Ko'rilmagan <b id="c-todo">30</b></button>
+      <button class="chip" type="button" data-filter="ok" aria-pressed="false"><span class="dot ok"></span>Ma'qul <b id="c-ok">0</b></button>
+      <button class="chip" type="button" data-filter="change" aria-pressed="false"><span class="dot warn"></span>O'zgartirish <b id="c-change">0</b></button>
+    </div>
+    <button class="copy" type="button" id="copyBtn">Izohlarni nusxalash</button>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="intro">
+    <div>
+      <p class="lead">Mentor kursi, 4-dars: <b>«O'quvchi reposi: bitta resurs, Guard va sinfdagi xatolar»</b>. 30 ekran, ovoz ≈ 35 daqiqa, jami ≈ 1 soat 20 daqiqa.</p>
+      <p>Har ekranda kalit ibora (ekranda chapda ko'rinadi) va ovoz matni bor. Sahna, kod va haqiqiy chiqishlar «Sahna, kod va manba» ichida. Har ekranni ko'rib, <b>Ma'qul</b> yoki <b>O'zgartirish kerak</b> ni bosing, kerak bo'lsa izoh yozing.</p>
+      <p class="note-line" id="storeNote">Izohlar saqlanishi tekshirilmoqda…</p>
+    </div>
+    <div style="display:grid; gap:12px; min-width:0">
+      <div class="general">
+        <label for="general-note">Umumiy fikr (butun dars bo'yicha)</label>
+        <textarea id="general-note" placeholder="Masalan: tartib, hajm, ohang…"></textarea>
+        <div class="saved" id="general-saved" style="margin-top:4px"></div>
+      </div>
+      <details class="pas"><summary>Pasport</summary><dl id="pas"></dl></details>
+    </div>
+  </section>
+  <div id="copyArea" hidden><textarea class="copybox" id="copyText" readonly></textarea></div>
+  <div class="main">
+    <nav class="stages" id="nav" aria-label="Bosqichlar"></nav>
+    <div class="list" id="list"></div>
+  </div>
+</div>
+
+<script>
+const DATA = /*DATA*/null;
+const TYPE = { Lesson: "Dars ekrani", Practice: "Amaliyot", MCRetry: "Tekshiruv", LineCheck: "Tekshiruv · satr", Screen27: "O'z-sinov", Screen28: "Yakun" };
+const pad = (n) => String(n).padStart(2, "0");
+const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+function inline(s) {
+  const parts = String(s).split(/(`[^`]+`)/g);
+  return parts.map((p) => p.startsWith("`") && p.endsWith("`") && p.length > 1
+    ? "<code>" + esc(p.slice(1, -1)) + "</code>"
+    : esc(p).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>")).join("");
+}
+function md(text) {
+  const lines = String(text || "").split("\n"); let out = "", i = 0;
+  while (i < lines.length) {
+    const l = lines[i];
+    if (/^\s*```/.test(l)) { const buf = []; i++; while (i < lines.length && !/^\s*```/.test(lines[i])) { buf.push(lines[i].replace(/^ {0,4}/, "")); i++; } i++; out += "<pre><code>" + esc(buf.join("\n")) + "</code></pre>"; continue; }
+    if (/^\s*\|/.test(l)) { const rows = []; while (i < lines.length && /^\s*\|/.test(lines[i])) { rows.push(lines[i].trim()); i++; }
+      const cells = (r) => r.replace(/^\||\|$/g, "").split("|").map((c) => c.trim());
+      const body = rows.filter((r) => !/^\|[\s|:-]+\|$/.test(r));
+      out += '<div class="tbl"><table>' + body.map((r, k) => "<tr>" + cells(r).map((c) => k === 0 ? "<th>" + inline(c) + "</th>" : "<td>" + inline(c) + "</td>").join("") + "</tr>").join("") + "</table></div>"; continue; }
+    if (/^\s*- /.test(l)) { const items = []; while (i < lines.length && /^\s*- /.test(lines[i])) { items.push(lines[i].replace(/^\s*- /, "")); i++; } out += "<ul>" + items.map((t) => "<li>" + inline(t) + "</li>").join("") + "</ul>"; continue; }
+    if (l.trim()) out += "<p>" + inline(l.trim()) + "</p>";
+    i++;
+  }
+  return out;
+}
+
+const state = {};      // n -> {status, note}
+let filter = "all";
+let store = null;      // db namespace yoki null
+const LS = "nest2-review-v4";
+function loadLocal() { try { return JSON.parse(localStorage.getItem(LS) || "{}"); } catch (e) { return {}; } }
+function saveLocal() { try { localStorage.setItem(LS, JSON.stringify(state)); } catch (e) {} }
+
+function render() {
+  const nav = document.getElementById("nav"), list = document.getElementById("list");
+  const stages = []; DATA.screens.forEach((s) => { if (!stages.includes(s.stage)) stages.push(s.stage); });
+  nav.innerHTML = stages.map((st, k) => { const n = DATA.screens.filter((s) => s.stage === st).length; return '<a href="#st' + k + '"><span>' + esc(st) + "</span><span>" + n + "</span></a>"; }).join("");
+  let html = "", last = null;
+  DATA.screens.forEach((s) => {
+    if (s.stage !== last) { html += '<h3 class="stage-h" id="st' + stages.indexOf(s.stage) + '">' + esc(s.stage) + "</h3>"; last = s.stage; }
+    const segs = s.segs.length ? '<ol class="segs">' + s.segs.map((g) => "<li><div class=\"key\">" + inline(g.key) + "</div>" + (g.voice ? '<div class="voice">' + esc(g.voice) + "</div>" : "") + (g.extra ? '<div class="extra md">' + md(g.extra) + "</div>" : "") + "</li>").join("") + "</ol>" : "";
+    const det = s.details.length ? '<details class="more"' + (s.segs.length ? "" : " open") + "><summary>" + (s.segs.length ? "Sahna, kod va manba" : "Ekran mazmuni") + '</summary><div class="md">' + s.details.map((d) => md("- " + d.split("\n")[0]) + md(d.split("\n").slice(1).join("\n"))).join("") + "</div></details>" : "";
+    html += '<article class="scr" id="s' + pad(s.n) + '" data-n="' + s.n + '">' +
+      '<div class="scr-h"><div class="num">' + pad(s.n) + "</div><h2>" + inline(s.title) + '</h2><span class="type">' + esc(TYPE[s.type] || s.type) + "</span></div>" +
+      '<div class="head md">' + md(s.head) + "</div>" + segs + det +
+      '<div class="rev"><div class="btns">' +
+      '<button type="button" class="rb ok" data-act="ok" aria-pressed="false">Ma\'qul</button>' +
+      '<button type="button" class="rb change" data-act="change" aria-pressed="false">O\'zgartirish kerak</button>' +
+      '<span class="saved" id="saved-' + s.n + '"></span></div>' +
+      '<textarea id="note-' + s.n + '" aria-label="' + s.n + '-ekran uchun izoh" placeholder="Izoh: nima o\'zgarsin, qaysi gap tushunarsiz…"></textarea></div></article>';
+  });
+  list.innerHTML = html;
+  document.getElementById("pas").innerHTML = DATA.pasport.map((p) => "<div><dt>" + esc(p[0]) + "</dt><dd>" + inline(p[1]) + "</dd></div>").join("");
+}
+
+function paint() {
+  let c = { ok: 0, change: 0, todo: 0 };
+  DATA.screens.forEach((s) => {
+    const st = state[s.n] || {}; const el = document.getElementById("s" + pad(s.n)); if (!el) return;
+    el.dataset.status = st.status || "";
+    el.querySelectorAll(".rb").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.act === st.status)));
+    const ta = document.getElementById("note-" + s.n); if (ta && document.activeElement !== ta && ta.value !== (st.note || "")) ta.value = st.note || "";
+    if (st.status === "ok") c.ok++; else if (st.status === "change") c.change++; else c.todo++;
+    const show = filter === "all" || (filter === "todo" ? !st.status : st.status === filter);
+    el.classList.toggle("hidden-by-filter", !show);
+  });
+  document.getElementById("c-ok").textContent = c.ok; document.getElementById("c-change").textContent = c.change; document.getElementById("c-todo").textContent = c.todo;
+  const g = state.umumiy || {}; const gt = document.getElementById("general-note"); if (document.activeElement !== gt && gt.value !== (g.note || "")) gt.value = g.note || "";
+}
+
+// Bir hujjatga bir vaqtda bitta yozuv: har hujjat uchun navbat
+const queue = {};
+function persist(key) {
+  const label = document.getElementById(key === "umumiy" ? "general-saved" : "saved-" + key);
+  const body = Object.assign({ n: key === "umumiy" ? 0 : Number(key) }, state[key] || {});
+  if (!store) { saveLocal(); if (label) label.textContent = "Shu brauzerda saqlandi"; return; }
+  if (label) label.textContent = "Saqlanmoqda…";
+  queue[key] = (queue[key] || Promise.resolve()).then(() => store.doc("review/" + (key === "umumiy" ? "umumiy" : "s" + pad(key))).set(body))
+    .then(() => { if (label) label.textContent = "Saqlandi"; })
+    .catch((e) => { saveLocal(); if (label) label.textContent = "Saqlab bo'lmadi — shu brauzerda qoldi"; });
+}
+const timers = {};
+function debounced(key) { clearTimeout(timers[key]); timers[key] = setTimeout(() => persist(key), 900); }
+
+document.addEventListener("click", (e) => {
+  const b = e.target.closest(".rb"); if (b) {
+    const n = Number(b.closest(".scr").dataset.n); const st = state[n] = state[n] || {};
+    st.status = st.status === b.dataset.act ? "" : b.dataset.act; st.at = Date.now(); paint(); persist(n); return;
+  }
+  const f = e.target.closest(".chip"); if (f) { filter = f.dataset.filter; document.querySelectorAll(".chip").forEach((x) => x.setAttribute("aria-pressed", String(x === f))); paint(); }
+});
+document.addEventListener("input", (e) => {
+  const t = e.target; if (t.tagName !== "TEXTAREA" || t.readOnly) return;
+  const key = t.id === "general-note" ? "umumiy" : Number(t.id.replace("note-", ""));
+  const st = state[key] = state[key] || {}; st.note = t.value; st.at = Date.now();
+  const label = document.getElementById(key === "umumiy" ? "general-saved" : "saved-" + key); if (label) label.textContent = "Yozilmoqda…";
+  debounced(key);
+});
+
+document.getElementById("copyBtn").addEventListener("click", async () => {
+  const lines = ["GATE M · Nest-2 MD v4 ko'rigi"];
+  const g = (state.umumiy || {}).note; if (g && g.trim()) lines.push("Umumiy: " + g.trim());
+  const ok = [], ch = [];
+  DATA.screens.forEach((s) => { const st = state[s.n] || {}; if (st.status === "ok" && !(st.note || "").trim()) ok.push(s.n);
+    else if (st.status || (st.note || "").trim()) ch.push(s.n + "-ekran «" + s.title.replace(/`/g, "") + "»: " + (st.status === "ok" ? "ma'qul" : st.status === "change" ? "o'zgartirish kerak" : "izoh") + ((st.note || "").trim() ? " — " + st.note.trim() : "")); });
+  if (ok.length) lines.push("Ma'qul: " + ok.join(", "));
+  lines.push(...ch);
+  const todo = DATA.screens.filter((s) => !(state[s.n] || {}).status).map((s) => s.n); if (todo.length) lines.push("Ko'rilmagan: " + todo.join(", "));
+  const text = lines.join("\n"); const btn = document.getElementById("copyBtn");
+  try { await navigator.clipboard.writeText(text); btn.textContent = "Nusxalandi"; setTimeout(() => (btn.textContent = "Izohlarni nusxalash"), 1800); }
+  catch (e) { const area = document.getElementById("copyArea"), ta = document.getElementById("copyText"); area.hidden = false; ta.value = text; ta.focus(); ta.select(); btn.textContent = "Matnni belgilab nusxalang"; }
+});
+
+render();
+Object.assign(state, loadLocal());
+paint();
+
+(async () => {
+  const note = document.getElementById("storeNote");
+  let db = null;
+  try { db = window.claude && window.claude.use ? await window.claude.use("db") : null; } catch (e) { db = null; }
+  if (!db) { note.textContent = "Izohlar shu brauzerda saqlanadi. Tugatgach «Izohlarni nusxalash» ni bosib, chatga qo'ying."; return; }
+  store = db;
+  const timer = setTimeout(() => { note.textContent = "Saqlangan izohlarni hali o'qib bo'lmadi — yozganlaringiz baribir saqlanadi."; note.classList.add("err"); }, 10000);
+  db.collection("review").onSnapshot((snap) => {
+    snap.docs.forEach((d) => { const v = d.data() || {}; const key = d.id === "umumiy" ? "umumiy" : Number(d.id.replace(/^s/, ""));
+      const local = state[key]; if (!local || !local.at || (v.at || 0) >= local.at) state[key] = { status: v.status || "", note: v.note || "", at: v.at || 0 }; });
+    if (!snap.metadata.fromCache) { clearTimeout(timer); note.textContent = "Izohlaringiz saqlanadi va Claude ularni o'qiy oladi. Xohlasangiz «Izohlarni nusxalash» bilan chatga ham qo'yishingiz mumkin."; note.classList.remove("err"); }
+    paint();
+  }, (err) => { clearTimeout(timer); store = null; note.textContent = "Saqlash ishlamayapti — izohlar shu brauzerda qoladi. Tugatgach «Izohlarni nusxalash» ni bosing."; note.classList.add("err"); });
+})();
+</script>

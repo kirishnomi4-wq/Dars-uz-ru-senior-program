@@ -1,21 +1,67 @@
 // ============================================================
-//  MENTOR KURSI · 1-dars «NestJS arxitekturasi: Module, Controller, Service»
-//  F-1029-02 · ovozli, segment-sinxron dars. YIG'ILGAN FAYL — manba: parts/01…06
-//  (yig'ish: cat parts/*.jsx > NestArchMentorLesson.jsx). Platforma SDK: bitta .jsx,
-//  import faqat react + '@lesson/runtime' (LESSON_PROMPT_WITH_UNLOCK.md).
+//  MENTOR KURSI — UMUMIY DVIGATEL (parts/01–02), hamma mentor darsi uchun bitta (PRD §9-1).
+//  F-1029-02 · ovozli, segment-sinxron dars. YIG'ILGAN FAYL — manba: bo'laklar.
+//  Yig'ish: Nest-1 — cat parts/*.jsx > NestArchMentorLesson.jsx;
+//           Nest-2 — cat parts/01-asos.jsx parts/02-dvigatel.jsx nest2/parts/*.jsx > NestRepoMentorLesson.jsx.
+//  Darsga xos narsa (dars ID'si, loyiha nomi, fayl ro'yxati) dvigatelda EMAS — darsning o'z bo'lagida (MKCFG, 02-dvigatel).
+//  Platforma SDK: bitta .jsx, import faqat react + '@lesson/runtime' (LESSON_PROMPT_WITH_UNLOCK.md).
 //  Metodika: chapda USTOZ GAPI (faqat hozirgi segment), o'ngda SAHNA; segment = qadam:
 //  element kiradi / yoritiladi / xiralashadi; ovoz tugagach «Davom» yonadi.
 // ============================================================
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useAudio, useSfx, useNextLessonAccess } from '@lesson/runtime';
 
-const LESSON_ID = 'mentor-nest-01-arxitektura-v1';
 const UZ = "[O'zbekcha tallaffuz] ";
+const RU_MARK = '[Русское произношение] ';
+
+// UZ-RU (F-1030-38). Ikki yo'l:
+// 1) t(uz, ru) — sahna va dvigateldagi yozuv uchun; faqat render ichida chaqiriladi (modul darajasida EMAS).
+// 2) Ekran ma'lumotlari (S, kod satrlari, qadamlar, uyga vazifa) o'zbekcha holicha qoladi; ruschasi parts/08-ru.jsx da
+//    ru(obj, {…}) bilan ro'yxatga olinadi. setLang('ru') ildizda bir marta ishlaydi: o'zbekcha nusxa saqlanadi va
+//    obyektning O'ZI ruschaga almashtiriladi — shunda S1.plan kabi to'g'ridan o'qiladigan joy ham ruscha bo'ladi.
+//    Massivda segment `id` bo'yicha (yoki indeks), obyektda maydon bo'yicha; ruschasi yo'q joy o'zbekcha qoladi.
+//    O'zbekcha rejimda hech narsa almashtirilmaydi (ruscha ko'rilgandan keyin qaytsa — nusxadan tiklanadi).
+let LANG = 'uz';
+const t = (uz, ru) => (LANG === 'ru' && ru != null ? ru : uz);
+const RU_OF = new Map();
+const UZ_OF = new Map();
+const ru = (obj, tr) => { RU_OF.set(obj, tr); return obj; };
+const isPlain = (x) => x && typeof x === 'object' && !React.isValidElement(x);
+const snap = (x) => (Array.isArray(x) ? x.map(snap) : isPlain(x) ? Object.keys(x).reduce((o, k) => { o[k] = snap(x[k]); return o; }, {}) : x); // reduce — .oz.jsx Chrome 70 ga mos
+function ruMerge(b, r) {
+  if (r == null) return b;
+  if (!isPlain(r)) return r;
+  if (Array.isArray(b)) return b.map((x, i) => ruMerge(x, x && x.id != null && !Array.isArray(r) && r[x.id] !== undefined ? r[x.id] : r[i]));
+  if (isPlain(b)) { const o = { ...b }; Object.keys(r).forEach((k) => { o[k] = ruMerge(b[k], r[k]); }); return o; }
+  return r;
+}
+// Ruscha ma'lumot o'zbekchada yo'q joyga tushsa (noto'g'ri indeks, segment id yoki maydon) — jim o'tmasin
+function ruCheck(b, r, path) {
+  if (!isPlain(r)) return;
+  if (!isPlain(b)) { console.error('[ru] o\'zbekchada yo\'q: ' + path); return; }
+  Object.keys(r).forEach((k) => {
+    if (r[k] == null) return;
+    const hit = Array.isArray(b) && !Array.isArray(r) ? (b.find((x) => x && x.id === k) || b[k]) : b[k];
+    if (hit === undefined) console.error('[ru] o\'zbekchada yo\'q: ' + path + '.' + k);
+    else ruCheck(hit, r[k], path + '.' + k);
+  });
+}
+function setLang(lang) {
+  const L = lang === 'ru' ? 'ru' : 'uz';
+  if (L === LANG) return;
+  RU_OF.forEach((tr, obj) => {
+    if (!UZ_OF.has(obj)) { UZ_OF.set(obj, snap(obj)); ruCheck(obj, tr, Array.isArray(obj) ? '[]' : (obj.kicker || obj.title || '{}')); }
+    const v = L === 'ru' ? ruMerge(snap(UZ_OF.get(obj)), tr) : snap(UZ_OF.get(obj));
+    if (Array.isArray(obj)) obj.splice(0, obj.length, ...v);
+    else { Object.keys(obj).forEach((k) => { delete obj[k]; }); Object.assign(obj, v); }
+  });
+  LANG = L;
+}
 
 const T = {
   bg: '#F5F6F8', paper: '#FFFFFF', ink: '#0F1115', ink2: '#4B5162', ink3: '#8A90A2', line: '#E3E6EC',
   accent: '#E2451F', blue: '#0E7FB8', green: '#12805A', yellow: '#B57A00', purple: '#6D3BE4',
-  code: '#0F1115', codeInk: '#E8EAF0', codeDim: 'rgba(232,234,240,0.38)', codeHl: 'rgba(226,69,31,0.16)',
+  code: '#0F1115', codeInk: '#E8EAF0', codeDim: 'rgba(232,234,240,0.38)', codeHl: 'rgba(226,69,31,0.24)',
 };
 const PART = { ctrl: T.blue, svc: T.green, mod: T.yellow };
 const SANS = 'system-ui,-apple-system,"Segoe UI",Roboto,sans-serif';
@@ -31,41 +77,93 @@ const CSS = `
 .mk-kicker{font:600 11px/1 ${MONO};letter-spacing:.14em;text-transform:uppercase;color:${T.ink3};display:flex;align-items:center;gap:8px}
 .mk-kicker i{width:6px;height:6px;border-radius:50%;background:${T.accent};display:inline-block}
 .mk-count{font:700 13px/1 ${MONO};color:${T.ink}}
-.mk-body{flex:1;min-height:0;display:grid;grid-template-columns:minmax(320px,5fr) 7fr;gap:28px;padding:22px 28px}
+.mk-body{flex:1;min-height:0;display:grid;grid-template-columns:minmax(320px,4fr) 8fr;gap:24px;padding:22px 28px}
+@media (min-width:1600px){.mk-panel{font-size:14px}.mk-explorer{font-size:13px}}
 @media (max-width:900px){.mk-body{grid-template-columns:1fr;grid-template-rows:auto 1fr;gap:14px;padding:14px}}
+.mk-ide{display:grid;grid-template-columns:218px minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);align-items:stretch;flex:0 1 auto;max-height:100%;min-height:0;background:#E9ECF1;border:1px solid #D5DAE2;border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(15,17,21,.10)}
+.mk-ide-bar{grid-column:1/-1;display:flex;align-items:center;gap:7px;padding:8px 14px;background:#DDE1E8;border-bottom:1px solid #D0D5DD;font:600 11px/1 ${MONO};color:${T.ink2};letter-spacing:.04em}
+.mk-ide-bar i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.mk-ide-bar i:nth-child(1){background:#FF5F57}.mk-ide-bar i:nth-child(2){background:#FEBC2E}.mk-ide-bar i:nth-child(3){background:#28C840}
+.mk-ide-bar span{margin-left:10px}
+.mk-ide-main{display:flex;flex-direction:column;gap:12px;min-width:0;min-height:0;padding:12px;background:${T.bg};overflow:auto}
+.mk-ide-main>*{flex:0 0 auto}
+.mk-ide-main>.mk-panel{max-height:none}
+.mk-ide .mk-explorer{border:0;border-right:1px solid #D5DAE2;border-radius:0;background:transparent}
+.mk-ide .mk-panel{box-shadow:none;border-radius:12px}
+.mk-ide .mk-panel{padding-top:0}
+.mk-ide .mk-panel .fn{position:sticky;top:0;left:auto;right:auto;display:block;width:max-content;max-width:100%;margin:0 0 8px -20px;padding:6px 14px;background:#24272F;color:${T.codeInk};border-radius:12px 0 10px 0;letter-spacing:.02em;font-size:11.5px;z-index:2}
+.mk-ide .mk-panel .fn+div{padding-top:0 !important}
+@media (max-width:900px){.mk-ide{grid-template-columns:1fr}}
+.mk-explorer{background:#EEF0F4;border:1px solid ${T.line};border-radius:14px;padding:10px 6px 12px;font:12px/1.75 ${MONO};color:${T.ink2};align-self:stretch;overflow:hidden}
+.mk-explorer .hd{font:600 10px/1 ${MONO};letter-spacing:.12em;text-transform:uppercase;color:${T.ink3};padding:0 8px 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mk-explorer .dir{color:${T.ink};font-weight:700;white-space:nowrap}
+.mk-explorer .dir,.mk-explorer .fi{position:relative}
+.mk-explorer .ig{position:absolute;top:0;bottom:0;width:1px;background:#C3C9D2;pointer-events:none}
+.mk-explorer .dir.shut{font-weight:500;color:${T.ink3}}
+.mk-explorer .dir .chev{display:inline-block;width:12px;font-size:9px;color:${T.ink3}}
+.mk-explorer .fi.mute{opacity:.5}
+.mk-codebar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:0 0 12px}
+.mk-codebar .what{font-size:15px;color:${T.ink2}}
+.mk-codebar .what b{color:${T.ink};font-family:${MONO};font-size:14px}
+.mk-codebar .end{margin-left:auto}
+.mk-trbtn{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:transparent;border:1.5px solid transparent;border-radius:12px;padding:11px 14px;font:inherit;color:${T.ink};cursor:pointer;transition:border-color .3s,background .3s}
+.mk-trbtn:hover{background:#F6F7F9}
+.mk-trbtn .q{font-weight:700;font-size:15px}
+.mk-trbtn .n{font-size:13px;color:${T.ink3}}
+.mk-trbtn .ar{margin-left:auto;font:700 14px/1 ${MONO};color:${T.ink3}}
+.mk-trbtn.hot{border-color:${T.accent};animation:mk-pulse 1.4s ease 3}
+.mk-trbtn.hot .q{color:${T.accent}}
+.mk-trbtn[aria-expanded="true"]{border-bottom-left-radius:0;border-bottom-right-radius:0}
+.mk-explorer .fi{display:flex;align-items:center;gap:7px;padding:1px 8px;border-radius:7px;border-left:3px solid transparent;transition:background .3s,opacity .3s;white-space:nowrap}
+.mk-explorer .fi i{width:8px;height:8px;border-radius:2px;background:var(--c);flex:0 0 auto}
+.mk-explorer .fi.on{background:#fff;border-left-color:${T.accent};color:${T.ink};font-weight:700;box-shadow:0 2px 8px rgba(15,17,21,.08)}
+.mk-explorer .fi.clk{cursor:pointer}
+.mk-explorer .fi.clk:hover{background:#fff}
+.mk-explorer .fi.new{animation:mk-up .45s ease both}
+.mk-explorer.big{font-size:14px;line-height:2;padding:14px 10px}
+.mk-explorer.big .fi{padding:3px 10px;border-radius:9px}
+.mk-explorer.big .fi .d{font:12.5px ${SANS};color:${T.ink3};margin-left:10px;white-space:normal}
+.mk-explorer.big .fi.on .d{color:${T.ink2}}
+.mk-browser{display:flex;gap:14px;align-items:center;padding:12px 16px}
+.mk-browser .url{font:13px ${MONO};padding:6px 12px;border:1px solid ${T.line};border-radius:10px;background:${T.paper}}
+.mk-browser .out{font-size:20px;font-weight:800}
+.mk-browser .out.er{color:${T.accent}}
 .mk-say{display:flex;flex-direction:column;min-height:0}
 .mk-eyebrow{font:600 11px/1 ${MONO};letter-spacing:.12em;text-transform:uppercase;color:${T.accent};margin:0 0 10px}
 .mk-title{font-size:clamp(20px,2.2vw,28px);line-height:1.2;font-weight:800;margin:0 0 18px;letter-spacing:-.01em}
 .mk-cap{flex:1;min-height:0;display:flex;flex-direction:column}
 .mk-key{font-size:clamp(22px,2.1vw,30px);line-height:1.25;font-weight:700;color:${T.ink};margin:0;letter-spacing:-.01em;animation:mk-up .45s ease both}
 .mk-key b{color:${T.accent}}
-.mk-key code{font:0.85em ${MONO};background:#EEF0F4;padding:1px 7px;border-radius:6px;font-weight:600}
+.mk-key code{font:0.82em ${MONO};background:${T.code};color:#fff;padding:2px 10px;border-radius:8px;font-weight:600}
 .mk-tr{margin:0;padding:0;list-style:none;display:grid;gap:8px;max-height:52vh;overflow:auto;padding-right:6px}
 .mk-input{width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid ${T.line};border-radius:8px;font:13px/1.4 ${MONO};background:#fff;color:${T.ink}}
 .mk-input:focus{outline:2px solid ${T.accent};outline-offset:1px}
 .mk-tr li{font-size:14px;line-height:1.5;color:${T.ink3};padding:6px 10px;border-radius:8px;border-left:3px solid transparent}
 .mk-tr li.on{color:${T.ink};background:#FFF7F3;border-left-color:${T.accent}}
 .mk-tr li.done{color:${T.ink2}}
-.mk-tr code{font:0.92em ${MONO};background:#EEF0F4;padding:0 5px;border-radius:5px}
+.mk-tr code{font:0.92em ${MONO};background:#E3E6EC;border:1px solid #D3D7DF;padding:0 5px;border-radius:5px;color:${T.ink}}
 .mk-ask{margin-top:18px;padding:14px 16px;border:1.5px solid ${T.accent};border-radius:12px;background:#FFF7F3;animation:mk-up .4s ease both}
 .mk-ask p{margin:0 0 10px;font-weight:600}
 .mk-ask .row{display:flex;gap:10px;flex-wrap:wrap}
 .mk-ask .res{margin-top:10px;font-size:14px;color:${T.ink2}}
 .mk-now{font-size:clamp(17px,1.45vw,21px);line-height:1.6;color:${T.ink};margin:0;animation:mk-up .45s ease both}
 .mk-now b{color:${T.accent};font-weight:700}
-.mk-now code,.mk-prev code{font:0.92em ${MONO};background:#EEF0F4;padding:0 5px;border-radius:5px}
+.mk-now code,.mk-prev code{font:0.92em ${MONO};background:#E3E6EC;border:1px solid #D3D7DF;padding:0 5px;border-radius:5px}
 .mk-dots{display:flex;gap:6px;margin:16px 0 0}
 .mk-dots i{width:22px;height:4px;border-radius:2px;background:${T.line};display:inline-block;transition:background .3s}
 .mk-dots i.on{background:${T.accent}}
 .mk-dots i.done{background:${T.ink3}}
 .mk-below{margin-top:18px}
-.mk-scene{min-height:0;display:flex;flex-direction:column;justify-content:center;gap:14px}
+.mk-review{margin:14px 0 0;padding:10px 12px;border-radius:10px;background:#EEF0F4;color:${T.ink2};font-size:13.5px;line-height:1.45}
+.mk-scene{min-height:0;display:flex;flex-direction:column;justify-content:flex-start;gap:14px;overflow:auto}
+.mk-scene:not(.top)>:first-child{margin-top:auto}
+.mk-scene:not(.top)>:last-child{margin-bottom:auto}
 .mk-scene.top{justify-content:flex-start}
 .mk-panel{flex:0 1 auto;max-height:100%;min-height:0;background:${T.code};color:${T.codeInk};border-radius:16px;padding:18px 20px;font:13px/1.55 ${MONO};overflow:auto;position:relative;box-shadow:0 10px 30px rgba(15,17,21,.12)}
 .mk-panel .fn{position:absolute;top:10px;right:14px;font-size:11px;color:${T.codeDim};letter-spacing:.06em}
 .mk-ln{display:flex;gap:14px;padding:1px 8px;border-radius:6px;white-space:pre;opacity:0;transform:translateY(6px);transition:opacity .35s,transform .35s,background .35s}
 .mk-ln.in{opacity:1;transform:none}
-.mk-ln.dim{opacity:.38}
+.mk-ln.dim{opacity:.5}
 .mk-ln.hl{background:${T.codeHl};box-shadow:inset 3px 0 0 ${T.accent}}
 .mk-ln.gone{opacity:.25;text-decoration:line-through;text-decoration-color:#FCA5A5}
 .mk-ln.new{background:rgba(18,128,90,.22);box-shadow:inset 3px 0 0 #86EFAC}
@@ -87,6 +185,14 @@ const CSS = `
 .mk-btn.soft{background:transparent;color:${T.ink2};border-color:${T.line};font-weight:500}
 .mk-btn.sm{padding:7px 12px;font-size:13px;border-radius:9px}
 .mk-btn:disabled{opacity:.35;cursor:not-allowed}
+.mk-lockhint{margin-left:auto;font-size:13.5px;color:${T.ink2};display:flex;align-items:center;gap:8px}
+.mk-lockhint i{width:7px;height:7px;border-radius:50%;background:${T.accent};display:inline-block;animation:mk-pulse 1.6s ease-in-out infinite}
+.mk-say.mc>:first-child{margin-top:auto}
+.mk-say.mc>:last-child{margin-bottom:auto}
+.mk-say.mc .mk-opt{font-size:18px;padding:16px 18px}
+.mk-body.mc-split{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
+.mk-body.mc-split>.mk-say.mc>:first-child{margin-top:0}
+@media (max-width:1300px){.mk-body.mc-split{grid-template-columns:1fr;grid-auto-rows:max-content;overflow:auto}.mk-body.mc-split>.mk-say.mc,.mk-body.mc-split>.mc-after{overflow:visible!important}}
 .mk-btn.ready{background:${T.accent};border-color:${T.accent};animation:mk-pulse 1.6s ease-in-out infinite}
 .mk-audio{display:flex;align-items:center;gap:6px}
 .mk-audio button{background:transparent;border:1px solid ${T.line};border-radius:8px;padding:5px 8px;cursor:pointer;color:${T.ink2};font:12px/1 ${SANS};display:inline-flex;align-items:center;gap:6px}
@@ -96,7 +202,7 @@ const CSS = `
 .mk-bars i:nth-child(2){animation-delay:.15s}.mk-bars i:nth-child(3){animation-delay:.3s}
 .mk-in{opacity:0;transform:translateY(8px);transition:opacity .4s,transform .4s}
 .mk-in.on{opacity:1;transform:none}
-.mk-in.dim{opacity:.35}
+.mk-in.dim{opacity:.55}
 .mk-box{border-radius:14px;padding:12px 14px;background:${T.paper};border:2px solid var(--c);color:${T.ink};transition:opacity .4s,transform .4s,box-shadow .4s}
 .mk-box.hl{box-shadow:0 0 0 4px rgba(226,69,31,.16),0 12px 28px rgba(15,17,21,.12)}
 .mk-box h4{margin:0 0 4px;font-size:15px;color:var(--c)}
@@ -168,6 +274,7 @@ const CSS = `
 @keyframes mk-up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @keyframes mk-pulse{0%,100%{box-shadow:0 0 0 0 rgba(226,69,31,.35)}50%{box-shadow:0 0 0 8px rgba(226,69,31,0)}}
 @keyframes mk-eq{0%,100%{height:4px}50%{height:12px}}
+@keyframes mk-route{0%{left:calc((100% - 88px) / 6)}35%{left:50%}55%{left:calc(100% - (100% - 88px) / 6)}80%{left:50%}100%{left:calc((100% - 88px) / 6)}}
 `;
 function useCss() {
   useEffect(() => {

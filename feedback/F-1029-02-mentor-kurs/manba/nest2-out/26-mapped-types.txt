@@ -1,0 +1,12 @@
+## a) PartialType @nestjs/swagger (hozirgi) — UpdateCarDto Swagger'da:
+{"type": "object", "properties": {"brand": {"type": "string", "example": "Chevrolet"}, "model": {"type": "string", "example": "Malibu"}, "price": {"type": "number", "example": 250}, "is_available": {"type": "boolean", "example": true}}}
+PATCH requestBody: {"required": true, "content": {"application/json": {"schema": {"$ref": "#/components/schemas/UpdateCarDto"}}}}
+
+## b) PartialType @nestjs/mapped-types — UpdateCarDto Swagger'da:
+{"type": "object", "properties": {}}
+PATCH requestBody: {"required": true, "content": {"application/json": {"schema": {"$ref": "#/components/schemas/UpdateCarDto"}}}}
+
+### PATCH /api/v1/car/da946d7c-7359-4069-a435-95a86e8b6486   body: {"price":300}
+{"statusCode":200,"message":"success","data":{"id":"da946d7c-7359-4069-a435-95a86e8b6486","created_at":"2026-10-30T22:41:30.213Z","updated_at":"2026-10-30T22:42:29.350Z","brand":"Kia","model":"K5","price":300,"is_available":true}}
+-- status: 200
+

@@ -23,8 +23,11 @@ const muteListeners = new Set();
 // Oldindan yuklash: keyingi segmentlar audio'si brauzer keshiga tushsin (dev TTS sekin bo'lishi mumkin)
 function prefetch(text) { try { fetch(TTS(text), { cache: 'force-cache' }).catch(() => {}); } catch (e) {} }
 
+// Dev-tekshiruv (F-1030-38): ovozga berilgan hamma matn window.__ttsTexts ga yoziladi — RU qoldiq-skripti o'qiydi
+const rec = (text) => { try { (window.__ttsTexts = window.__ttsTexts || new Set()).add(text); } catch (e) {} };
 export function useAudio(segments) {
   const segs = Array.isArray(segments) ? segments : [];
+  segs.forEach((s) => s && s.text && rec(s.text));
   const [isPlaying, setPlaying] = useState(false);
   const [currentId, setCurrentId] = useState(null);
   const [waitingFor, setWaiting] = useState(null); // { type, target } yoki null
@@ -82,6 +85,7 @@ export function useAudio(segments) {
   }, [waitingFor, runFrom]);
 
   const pushOneOff = useCallback((text) => {
+    rec(text);
     if (!text) return;
     const resume = idx.current; // one-off tugagach zanjir davom etmaydi (runtime ham davom ettirmaydi)
     oneOff.current = text;

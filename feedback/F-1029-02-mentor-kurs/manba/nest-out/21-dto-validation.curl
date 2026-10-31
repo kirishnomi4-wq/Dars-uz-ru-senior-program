@@ -1,0 +1,33 @@
+### POST /cars {}
+HTTP/1.1 400 Bad Request
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 223
+ETag: W/"df-HD3TQbSFu3VfU8tvbCMhpxT5Ji4"
+Date: Fri, 30 Oct 2026 13:12:03 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+{"message":["brand should not be empty","brand must be a string","model should not be empty","model must be a string","price must be a number conforming to the specified constraints"],"error":"Bad Request","statusCode":400}
+### POST /cars {"brand":"Kia","model":"K5","price":"arzon"}
+HTTP/1.1 400 Bad Request
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 117
+ETag: W/"75-Pj31SoP9VP1wDDBVqJ3dpyL8KXI"
+Date: Fri, 30 Oct 2026 13:12:03 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+{"message":["price must be a number conforming to the specified constraints"],"error":"Bad Request","statusCode":400}
+### POST /cars {"brand":"Chevrolet","model":"Cobalt","price":145}
+HTTP/1.1 201 Created
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 57
+ETag: W/"39-exUPktNT1p6w3vzYZPIfuHxZN6g"
+Date: Fri, 30 Oct 2026 13:12:03 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+{"id":3,"brand":"Chevrolet","model":"Cobalt","price":145}

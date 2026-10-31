@@ -1,0 +1,47 @@
+superadmin token: 235 belgi · ali (role admin) token: 228 belgi
+
+## @Roles('admin') POST /api/v1/book
+### POST /api/v1/book   body: {"title":"Test kitob","author":"Muallif","price":1000,"categoryId":"aa8481e7-08eb-4b4d-a756-f0f378b2b107"}
+{"statusCode":401,"error":{"message":"Unauthorized"}}
+-- status: 401
+
+### POST /api/v1/book   body: {"title":"Test kitob","author":"Muallif","price":1000,"categoryId":"aa8481e7-08eb-4b4d-a756-f0f378b2b107"}
+{"statusCode":403,"error":{"message":"Forbidden resource"}}
+-- status: 403
+
+### POST /api/v1/book   body: {"title":"Test kitob","author":"Muallif","price":1000,"categoryId":"aa8481e7-08eb-4b4d-a756-f0f378b2b107"}
+{"statusCode":201,"message":"success","data":{"id":"ac8277ea-8d51-4b8e-af92-6de609d194da","created_at":"2026-10-30T22:41:06.909Z","updated_at":"2026-10-30T22:41:06.909Z","title":"Test kitob","author":"Muallif","price":1000,"is_featured":false,"categoryId":"aa8481e7-08eb-4b4d-a756-f0f378b2b107"}}
+-- status: 201
+
+## @Roles('public') GET /api/v1/book (tokensiz)
+### GET /api/v1/book
+{"statusCode":200,"message":"success","data":[{"id":"4303fcf2-a3f9-4b81-9eb3-f1cfd17c1f8e","created_at":"2026-10-30T21:52:51.450Z","updated_at":"2026-10-30T21:52:51.450Z","title":"Sherlok Holms","author":"Artur Konan Doyl","price":45000,"is_featured":false,"category":{"id":"aa8481e7-08eb-4b4d-a756-f0f378b2b107","created_at":"2026-10-30T21:52:51.402Z","updated_at":"2026-10-30T21:52:51.402Z","name":"Detektiv"},"categoryId":"aa8481e7-08eb-4b4d-a756-f0f378b2b107"},{"id":"ac8277ea-8d51-4b8e-af92-6de609d194da","created_at":"2026-10-30T22:41:06.909Z","updated_at":"2026-10-30T22:41:06.909Z","title":"Test kitob","author":"Muallif","price":1000,"is_featured":false,"category":{"id":"aa8481e7-08eb-4b4d-a756-f0f378b2b107","created_at":"2026-10-30T21:52:51.402Z","updated_at":"2026-10-30T21:52:51.402Z","name":"Detektiv"},"categoryId":"aa8481e7-08eb-4b4d-a756-f0f378b2b107"}]}
+-- status: 200
+
+## @Roles YO'Q — PATCH /api/v1/book/:id («tizimga kirganlar»)
+### PATCH /api/v1/book/ac8277ea-8d51-4b8e-af92-6de609d194da   body: {"price":1500}
+{"statusCode":401,"error":{"message":"Unauthorized"}}
+-- status: 401
+
+### PATCH /api/v1/book/ac8277ea-8d51-4b8e-af92-6de609d194da   body: {"price":1500}
+{"statusCode":200,"message":"success","data":{"id":"ac8277ea-8d51-4b8e-af92-6de609d194da","created_at":"2026-10-30T22:41:06.909Z","updated_at":"2026-10-30T22:41:07.001Z","title":"Test kitob","author":"Muallif","price":1500,"is_featured":false,"categoryId":"aa8481e7-08eb-4b4d-a756-f0f378b2b107"}}
+-- status: 200
+
+### PATCH /api/v1/book/ac8277ea-8d51-4b8e-af92-6de609d194da   body: {"price":1600}
+{"statusCode":200,"message":"success","data":{"id":"ac8277ea-8d51-4b8e-af92-6de609d194da","created_at":"2026-10-30T22:41:06.909Z","updated_at":"2026-10-30T22:41:07.019Z","title":"Test kitob","author":"Muallif","price":1600,"is_featured":false,"categoryId":"aa8481e7-08eb-4b4d-a756-f0f378b2b107"}}
+-- status: 200
+
+## @Roles(UserRole.ADMIN) DELETE /api/v1/book/:id
+### DELETE /api/v1/book/ac8277ea-8d51-4b8e-af92-6de609d194da
+{"statusCode":403,"error":{"message":"Forbidden resource"}}
+-- status: 403
+
+### DELETE /api/v1/book/ac8277ea-8d51-4b8e-af92-6de609d194da
+{"statusCode":200,"message":"success","data":{}}
+-- status: 200
+
+## POST /api/v1/admin tokensiz (S7 holati)
+### POST /api/v1/admin   body: {}
+{"statusCode":401,"error":{"message":"Unauthorized"}}
+-- status: 401
+

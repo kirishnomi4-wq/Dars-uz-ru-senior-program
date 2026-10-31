@@ -1,0 +1,31 @@
+ M package-lock.json
+ M src/api/app.module.ts
+ M src/core/index.ts
+?? src/api/book/
+?? src/api/car/
+?? src/api/category/
+?? src/core/entity/book.entity.ts
+?? src/core/entity/car.entity.ts
+?? src/core/entity/category.entity.ts
+
+--- qo'shilgan fayllar:
+package-lock.json
+src/api/app.module.ts
+src/core/index.ts
+src/api/book/
+src/api/car/
+src/api/category/
+src/core/entity/book.entity.ts
+src/core/entity/car.entity.ts
+src/core/entity/category.entity.ts
+
+--- bazadagi jadvallar:
+             List of tables
+ Schema |    Name    | Type  |  Owner   
+--------+------------+-------+----------
+ public | admins     | table | postgres
+ public | books      | table | postgres
+ public | cars       | table | postgres
+ public | categories | table | postgres
+(4 rows)
+

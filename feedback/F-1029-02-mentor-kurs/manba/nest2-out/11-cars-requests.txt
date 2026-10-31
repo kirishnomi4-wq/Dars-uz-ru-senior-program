@@ -1,0 +1,121 @@
+--- jadvallar (\dt):
+           List of tables
+ Schema |  Name  | Type  |  Owner   
+--------+--------+-------+----------
+ public | admins | table | postgres
+ public | cars   | table | postgres
+(2 rows)
+
+
+--- cars tuzilishi (\d cars) — synchronize o'zi yaratdi:
+                                  Table "public.cars"
+    Column    |            Type             | Collation | Nullable |      Default       
+--------------+-----------------------------+-----------+----------+--------------------
+ id           | uuid                        |           | not null | uuid_generate_v4()
+ created_at   | timestamp without time zone |           | not null | now()
+ updated_at   | timestamp without time zone |           | not null | now()
+ brand        | character varying           |           | not null | 
+ model        | character varying           |           | not null | 
+ price        | integer                     |           | not null | 
+ is_available | boolean                     |           | not null | true
+Indexes:
+    "PK_fc218aa84e79b477d55322271b6" PRIMARY KEY, btree (id)
+
+
+--- Swagger JSON — car route'lari:
+  POST   /api/v1/car
+  GET    /api/v1/car
+  GET    /api/v1/car/{id}
+  PATCH  /api/v1/car/{id}
+  DELETE /api/v1/car/{id}
+
+### POST /api/v1/car   body: {"brand":"Chevrolet","model":"Malibu","price":250}
+{"statusCode":201,"message":"success","data":{"id":"efa80745-74d8-4b56-8ea1-f786f2fff787","created_at":"2026-10-30T21:51:37.138Z","updated_at":"2026-10-30T21:51:37.138Z","brand":"Chevrolet","model":"Malibu","price":250,"is_available":true}}
+-- status: 201
+
+### POST /api/v1/car   body: {"brand":"Kia","model":"K5","price":320,"is_available":false}
+{"statusCode":201,"message":"success","data":{"id":"1746997c-5bde-46eb-8917-5b974105fac8","created_at":"2026-10-30T21:51:37.160Z","updated_at":"2026-10-30T21:51:37.160Z","brand":"Kia","model":"K5","price":320,"is_available":false}}
+-- status: 201
+
+birinchi mashina id: efa80745-74d8-4b56-8ea1-f786f2fff787
+### GET /api/v1/car
+{"statusCode":200,"message":"success","data":[{"id":"efa80745-74d8-4b56-8ea1-f786f2fff787","created_at":"2026-10-30T21:51:37.138Z","updated_at":"2026-10-30T21:51:37.138Z","brand":"Chevrolet","model":"Malibu","price":250,"is_available":true},{"id":"1746997c-5bde-46eb-8917-5b974105fac8","created_at":"2026-10-30T21:51:37.160Z","updated_at":"2026-10-30T21:51:37.160Z","brand":"Kia","model":"K5","price":320,"is_available":false}]}
+-- status: 200
+
+### GET /api/v1/car/efa80745-74d8-4b56-8ea1-f786f2fff787
+{"statusCode":200,"message":"success","data":{"id":"efa80745-74d8-4b56-8ea1-f786f2fff787","created_at":"2026-10-30T21:51:37.138Z","updated_at":"2026-10-30T21:51:37.138Z","brand":"Chevrolet","model":"Malibu","price":250,"is_available":true}}
+-- status: 200
+
+### PATCH /api/v1/car/efa80745-74d8-4b56-8ea1-f786f2fff787   body: {"price":240}
+{"statusCode":200,"message":"success","data":{"id":"efa80745-74d8-4b56-8ea1-f786f2fff787","created_at":"2026-10-30T21:51:37.138Z","updated_at":"2026-10-30T21:51:37.228Z","brand":"Chevrolet","model":"Malibu","price":240,"is_available":true}}
+-- status: 200
+
+### GET /api/v1/car/11111111-2222-3333-4444-555555555555
+{"statusCode":404,"error":{"message":"not found"}}
+-- status: 404
+
+### GET /api/v1/car/1
+{"statusCode":500,"error":{"message":"Internal server error"}}
+-- status: 500
+
+--- server log (oxirgi 20 satr):
+    routine: 'string_to_uuid'
+  },
+  length: 133,
+  severity: 'ERROR',
+  code: '22P02',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: "unnamed portal parameter $1 = '...'",
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'uuid.c',
+  line: '138',
+  routine: 'string_to_uuid'
+}
+
+### POST /api/v1/car   body: {}
+{"statusCode":400,"error":{"message":"brand should not be empty, brand must be a string, model should not be empty, model must be a string, price must be a number conforming to the specified constraints"}}
+-- status: 400
+
+### POST /api/v1/car   body: {"brand":"Chevrolet","model":"Cobalt","price":"arzon"}
+{"statusCode":400,"error":{"message":"price must be a number conforming to the specified constraints"}}
+-- status: 400
+
+### POST /api/v1/car   body: {"brand":"Chevrolet","model":"Cobalt","price":"145"}
+{"statusCode":400,"error":{"message":"price must be a number conforming to the specified constraints"}}
+-- status: 400
+
+### POST /api/v1/car   body: {"brand":"Chevrolet","model":"Cobalt","price":145,"color":"oq"}
+{"statusCode":400,"error":{"message":"property color should not exist"}}
+-- status: 400
+
+### GET /car
+{"statusCode":404,"error":{"message":"Cannot GET /car"}}
+-- status: 404
+
+### GET /cars
+{"statusCode":404,"error":{"message":"Cannot GET /cars"}}
+-- status: 404
+
+### DELETE /api/v1/car/efa80745-74d8-4b56-8ea1-f786f2fff787
+{"statusCode":200,"message":"success","data":{}}
+-- status: 200
+
+### GET /api/v1/car/efa80745-74d8-4b56-8ea1-f786f2fff787
+{"statusCode":404,"error":{"message":"not found"}}
+-- status: 404
+
+--- cars jadvali (psql):
+ brand | model | price | is_available |   id8    
+-------+-------+-------+--------------+----------
+ Kia   | K5    |   320 | f            | 1746997c
+(1 row)
+
+

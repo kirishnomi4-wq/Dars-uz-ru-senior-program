@@ -1,0 +1,554 @@
+
+// ============================================================
+//  RU — ruscha matn (F-1030-38). O'zbekcha matn parts/03–07 da etalon holida turadi;
+//  bu yerda faqat ruschasi: ru(obj, {…}) → setLang('ru') ildizda obyektning o'zini almashtiradi.
+//  Segmentlar id bo'yicha, kod satrlari va qadamlar indeks bo'yicha. Yozilmagan maydon — o'zbekcha qoladi.
+//  Uslub: «Вы», mentor imtihoni — dasturlash atamalari inglizcha (Controller, Service, route, dependency…);
+//  ovoz matnida kod va belgilar o'qilmaydi (fayl nomi «app controller ts»), raqam raqam bilan (TTS o'qiydi).
+// ============================================================
+ru(HELP_ROW, ['Ничего не подошло', 'Скриншот и текст ошибки отправьте в Telegram-группу курса для менторов; урок не останавливайте, переходите к следующему экрану']);
+
+// --- 03 · S1–S5b, Практика 1 ---
+ru(S1, {
+  kicker: 'Вступление', eyebrow: 'Курс для менторов · урок 1', title: 'Вы знаете Express. Теперь Nest.',
+  plan: ['Зачем Nest', 'Три части: Controller · Service · Module', 'Dependency Injection', 'Пишем routes для cars', 'Ломаем и читаем ошибку', 'Практика (четыре части)', 'Мост к уроку ученика'],
+  segments: {
+    a: { key: 'Поверх ваших знаний Express ставим <b>Nest</b>: он не отменяет Express, а наводит порядок', text: 'Здравствуйте. Вы писали сервер на Express: открывали route, принимали запрос, возвращали ответ. Сегодня поверх этих знаний ставим NestJS. Nest не отменяет Express, наоборот, он наводит над ним порядок.' },
+    b: { key: 'К концу урока вы с пустой папки соберёте <b>работающий сервер</b>', text: 'К концу урока вы, начиная с пустой папки, соберёте сервер, который возвращает список машин.' },
+    c: { key: 'Сможете <b>читать</b> ошибки Nest: в каком классе, какого dependency не хватает, какой файл открыть', text: 'Вы научитесь читать сообщения об ошибках Nest: в каком классе ошибка, какого dependency не хватает и какой файл нужно открыть.' },
+    d: { key: 'Узнаете, что значит <b>каждое слово</b> в уроке ученика', text: 'И будете знать, что означает каждое слово в уроке ученика.' },
+    e: { key: 'Семь этапов. <b>Не спешите</b>: «Далее» откроется, когда учитель договорит', text: 'Урок состоит из семи этапов. Не спешите: на каждом экране можно выключить звук, прослушать экран с начала и прочитать полный текст. Когда учитель договорит, откроется кнопка «Далее». Нажмите её, начинаем.' },
+  },
+});
+ru(EXPRESS_LINES, { 10: { h: `  <span class="k">if</span> (!car) <span class="k">return</span> res.<span class="c">status</span>(<span class="d">404</span>).<span class="c">json</span>({ message: <span class="s">'не найдено'</span> });` } });
+ru(GROWN_LINES, {
+  2: { h: `  <span class="cm">// ... 40 строк проверок</span>` },
+  4: { h: `  <span class="cm">// ... оплата, email, база — всё здесь</span>` },
+  5: { h: `<span class="cm">// где же login??? на 1000 строк ниже...</span>` },
+});
+ru(S2, {
+  kicker: 'Этап 1 · Зачем Nest', title: 'Express: знакомая картина и боль',
+  segments: {
+    a: { key: 'Знакомая картина: весь сервер на Express в одном файле <code>server.js</code>', text: 'Начнём со знакомого, с Express. Вот знакомая картина: весь сервер в одном файле server js.' },
+    b: { key: 'Приходит <code>GET /cars</code> — возвращаем <b>список</b> машин', text: 'Если на route cars приходит GET, возвращаем список.', show: 'Если на route <code>/cars</code> приходит GET, возвращаем список.' },
+    c: { key: 'Приходит <code>GET /cars/:id</code> — ищем <b>одну машину</b>, не нашли — 404', text: 'Если после пути cars идёт id, ищем одну машину, а если не нашли, отвечаем 404.', show: 'Если приходит <code>/cars/:id</code>, ищем одну машину, не нашли — 404.' },
+    d: { key: '<code>POST /cars</code> добавляет новую. Всего <b>20 строк</b> — проблем нет', text: 'Если приходит POST, добавляем новую. Всего 20 строк, всё перед глазами. На этом этапе никаких проблем нет.', show: 'Если приходит <code>POST /cars</code>, добавляем новую. Всего 20 строк, всё перед глазами. На этом этапе никаких проблем нет.' },
+    e: { key: 'Проект вырос до <b>1240 строк</b> (условный пример) — ищете, где login', text: 'Проблема начинается, когда проект растёт. Добавились пользователи, вход и регистрация, заказы, оплата, загрузка файлов. Вот условный пример, не реальный проект: допустим, в файле 1240 строк. Где был login? Ищете.', show: 'Проблема начинается, когда проект растёт. Пользователи, вход, заказы, оплата, загрузка файлов. Вот <b>условный пример</b> (не реальный проект): в файле <b>1240 строк</b>. Где был login? Ищете.' },
+    f: { key: 'Вывод: вся работа в одном route — не протестировать, двое мешают друг другу. <b>Nest создан от этой боли</b>', text: 'Вывод: внутри одного route и чтение запроса, и проверка, и запись в базу. Эту часть нельзя протестировать отдельно, потому что она не отделена от route. Если двое работают в одном файле, каждый день конфликты. Вы это чувствовали. Nest создан именно от этой боли. Урок ученика тоже начинается именно с этого примера.' },
+  },
+});
+ru(S3, {
+  kicker: 'Этап 1 · Зачем Nest', title: 'Что даёт Nest: обязательный порядок',
+  segments: {
+    a: { key: 'В Express каждая команда делит папки <b>по-своему</b> — новичок заново учит порядок', text: 'Итак, боль мы увидели: всё в одном файле. Что с этим делает опытный Express-разработчик? Делит файл: папка routes, папка controllers, папка services. Но каждая команда делает это по-своему, и новый человек заново изучает порядок.', show: 'Итак, боль мы увидели: всё в одном файле. Что с этим делает опытный Express-разработчик? Делит файл: <code>routes/</code>, <code>controllers/</code>, <code>services/</code>. Но каждая команда делает это по-своему, и новый человек заново изучает порядок.' },
+    b: { key: 'Nest делает порядок <b>обязательным</b>: три части — Controller, Service, Module', text: 'Nest делает этот порядок обязательным и одинаковым. Он даёт имена трём частям: Controller, Service, Module.' },
+    c: { key: 'В каждом проекте Nest части в одном месте, с одним именем — <b>проект из Ташкента в Берлине поймут за минуту</b>', text: 'В каждом проекте Nest они лежат в одном и том же месте, под одними и теми же именами. Поэтому если разработчик в Берлине откроет проект команды из Ташкента, он за минуту найдёт, что где лежит.' },
+    d: { key: 'Вывод: внутри Nest работает <b>тот же Express</b> — ваши знания не пропадают, сверху добавляется порядок', text: 'Вывод и важный факт: внутри Nest работает тот же Express. Запрос на самом деле принимает Express, а Nest направляет его в нужную часть. Значит, ничего из того, что вы знаете, не пропадает.' },
+  },
+});
+ru(S4, {
+  kicker: 'Этап 1 · Зачем Nest', title: 'TypeScript и decorator: знак @',
+  segments: {
+    a: { key: 'TypeScript — это JavaScript <b>с типами</b>: знаете JavaScript — сможете читать', text: 'Прежде чем открывать код Nest, узнаем одну новую вещь, иначе код покажется вам чужим. Проекты на Nest пишут на TypeScript. TypeScript — это тот же JavaScript, только с типами: string, number и тому подобное. Если вы знаете JavaScript, вы сможете читать TypeScript.' },
+    b: { key: 'Новое: строка, которая начинается с <b>@</b> («собачка»), — это <b>decorator</b>', text: 'Но есть одна новая вещь, вы будете часто её встречать: строки, которые начинаются со знака собачка. Например, decorator Controller, в скобках cars. Это называется decorator.', show: 'Но есть одна новая вещь, вы будете часто её встречать: строки, которые начинаются со знака <b>@</b> («собачка»). Например, <code>@Controller(\'cars\')</code>. Это называется <b>decorator</b>.' },
+    c: { key: 'Decorator говорит Nest: <b>этот класс — Controller</b>, этот метод принимает GET', text: 'Decorator пишут над классом или методом, и он сообщает Nest: этот класс Controller, его path cars. А decorator Get стоит над методом: если пришёл GET-запрос, вызвать этот метод.', show: 'Decorator пишут над классом или методом, и он сообщает Nest: «этот класс — Controller, его path — cars». А <code>@Get</code> стоит над методом: «пришёл GET-запрос — вызвать этот метод».' },
+    d: { key: 'Вывод: decorator не выполняет код, а ставит метку — <b>нет метки, и Nest не узнаёт класс</b>', text: 'Вывод: decorator не выполняет код, он ставит метку. Когда Nest запускается, он читает эти метки и расставляет все части по местам. Запомните: если decorator нет, Nest этот класс не узнаёт. На пятом этапе мы специально это сломаем и увидим ошибку.' },
+  },
+});
+ru(FILES5_DESC, { 'src/main.ts': 'запускает приложение', 'src/app.module.ts': 'список', 'src/app.controller.ts': 'принимает запрос', 'src/app.service.ts': 'выполняет работу', 'src/app.controller.spec.ts': 'автотест — сегодня не трогаем', 'test/app.e2e-spec.ts': 'автотест — сегодня не трогаем', 'package.json': 'пакеты и команды npm (start:dev)', 'tsconfig.json': 'настройки TypeScript' });
+ru(S5a, {
+  kicker: 'Этап 2 · Три части', title: 'Живой проект: что создал nest new',
+  segments: {
+    a: { key: 'Проект от <code>nest new cars-api</code>: в <b>src</b> четыре главных файла', text: 'Теперь вы готовы: вы знаете decorator и имена трёх частей. Смотрим на настоящий проект. Команда nest new cars-api создала вот эти папки и файлы, как вы видите в левой панели VS Code. Всё, что нам нужно, лежит в папке src: четыре главных файла.' },
+    b: { key: '<b>main.ts</b> запускает приложение — и больше ничего не делает', text: 'main ts: запускает приложение и больше ничего не делает.' },
+    c: { key: '<b>app.module.ts</b> — список: по нему Nest собирает всё', text: 'app module ts: список. По этому списку Nest собирает всё.' },
+    d: { key: '<b>app.controller.ts</b> принимает запрос и возвращает ответ', text: 'app controller ts: принимает запрос и возвращает ответ.' },
+    e: { key: '<b>app.service.ts</b> выполняет работу; файлы <b>spec</b> — автотесты, сегодня не трогаем', text: 'app service ts: выполняет работу. Файлы, которые заканчиваются на spec, это автотесты, их запускает Jest. Сегодня мы их не трогаем. В package json лежат команды npm, start dev тоже здесь.' },
+    f: { key: 'Вывод: три части, три цвета — <b>синий Controller · зелёный Service · жёлтый Module</b>', text: 'Вывод: в проекте три вида частей, каждая в своём файле. Запомните три цвета: синий Controller, зелёный Service, жёлтый Module. Весь урок рядом с каждым кодом будет этот Explorer, и он будет показывать, в каком вы файле. На следующем экране вы тоже создадите этот проект у себя.' },
+  },
+});
+ru(S5b, {
+  kicker: 'Этап 2 · Три части', title: 'Путь одного запроса',
+  segments: {
+    a: { key: 'Браузер отправил <b>GET-запрос</b> на <code>localhost:3000</code>', text: 'Пока ваш проект устанавливается в фоне, посмотрим, как файлы работают друг с другом. Лучший способ — проследить путь одного запроса. Браузер отправил GET-запрос на адрес localhost 3000.' },
+    b: { key: 'Запрос принял <b>AppController</b> — в нём есть метод для GET', text: 'Запрос принял AppController, потому что в нём есть метод для GET. Он живёт в файле app controller ts, имя файла внизу блока.' },
+    c: { key: 'Controller сам ответ не придумывает — <b>спрашивает AppService</b>', text: 'Controller сам ответ не придумывает, он спрашивает AppService. Service возвращает текст Hello World.' },
+    d: { key: 'Controller <b>вернул в браузер</b> текст от Service', text: 'Controller отправляет этот текст в браузер. В браузере появляется Hello World.' },
+    e: { key: '<b>AppModule</b> держит обоих в списке — по нему Nest их собирает', text: 'А AppModule держит их обоих в одном списке, и по этому списку Nest их собирает.' },
+    f: { key: 'Вывод: путь всегда один — <b>запрос → Controller → Service → ответ</b>', text: 'Вывод: каждый запрос проходит один и тот же путь. Запрос, Controller, Service, ответ. А Module держит эти части в списке. Этот путь вы увидите на уроке много раз. На следующих трёх экранах откроем каждый файл и прочитаем его построчно.' },
+  },
+});
+ru(P0, {
+  kicker: 'Практика 1 / 4', eyebrow: 'Сейчас у вас · 3–5 минут (установка в фоне)', title: 'Установите Nest, запустите создание проекта',
+  segments: {
+    a: { key: 'Теперь <b>вы</b>: установите Nest и запустите создание проекта', text: 'Теперь ваша очередь. Проект, который вы только что видели, вы создадите у себя: три шага. Установка занимает от одной до трёх минут. Не ждите: нажмите «Далее» и продолжайте урок, проект установится в фоне.' },
+    b: { key: 'Шаг 1: версия Node должна быть <b>20 или выше</b>', text: 'Первое: проверьте версию node. Nest версии 11 требует Node 20 или выше. Если ниже, обновите способом из таблицы.' },
+    c: { key: 'Шаг 2: установите <b>Nest CLI</b>, версию впишите в поле подтверждения', text: 'Второе: установите Nest CLI глобально и проверьте версию. Число, которое появится, впишите в поле подтверждения внизу.' },
+    d: { key: 'Шаг 3: <code>nest new cars-api</code> — установка в фоне, продолжайте, не дожидаясь', text: 'Третье: nest new cars-api. Если спросят менеджер пакетов, выберите npm. Когда установка началась, не ждите: отметьте пункт и нажмите «Далее».' },
+    e: { key: 'Вышло иначе — внизу кнопка <b>«Вышло иначе?»</b>; без отметок и подтверждения «Далее» не откроется', text: 'Если что-то вышло иначе, нажмите внизу кнопку «Вышло иначе»: там ошибка и её решение. Пока не отмечены все три пункта и не вписано верное подтверждение, кнопка «Далее» не откроется.' },
+  },
+});
+ru(P0_STEPS, [
+  { exp: 'v20 или выше (требование Nest 11)' },
+  null,
+  { t: 'Проект — запустите создание', exp: 'менеджер пакетов: npm · установка 1–3 минуты — не ждите, нажмите «Далее»' },
+]);
+ru(P0_TROUBLE, [
+  ['node: v18 или ниже', 'установите LTS (20+) с nodejs.org, откройте терминал заново, повторите node --version'],
+  [null, 'CLI не установлен или терминал не обновился: повторите шаг 2, откройте терминал заново'],
+  ['npm install долго / ошибка', 'проверьте интернет; nest new --skip-install, затем npm install в папке'],
+]);
+ru(P0_PROOF, { label: 'Подтверждение: что вывел nest --version?', placeholder: 'впишите число из терминала', wrong: 'Ожидается 11.x.x — CLI не установлен или версия старая' });
+
+// --- 04 · S6–S9, Практика 2, S10, S11 ---
+ru(S6, {
+  kicker: 'Этап 2 · Controller', title: 'Controller — принимает запрос',
+  segments: {
+    a: { key: 'У <code>@Controller()</code> пустые скобки — значит, path этого Controller — <b>root</b> (<code>/</code>)', text: 'Первой остановкой на пути запроса был Controller. Запрос приходит именно в этот файл, поэтому с него и начнём. Вот app controller ts. В четвёртой строке decorator Controller, скобки пустые. Значит, path этого Controller — root. Если написать в скобках cars, все его методы будут начинаться с пути cars.', show: 'Первой остановкой на пути запроса был Controller — запрос приходит именно в этот файл, поэтому с него и начнём. <b>app.controller.ts</b>. Четвёртая строка: <code>@Controller()</code>, скобки пустые. Значит, path этого Controller — root, то есть <code>/</code>. Если написать в скобках cars, все его методы будут начинаться с <code>/cars</code>.' },
+    b: { key: 'Под decorator — <b>обычный класс TypeScript</b>: AppController', text: 'Дальше обычный класс: AppController. Делает его Controller именно decorator над ним.' },
+    c: { key: 'Конструктор говорит: <b>«мне нужен AppService»</b> — как он приходит, увидим на 14-м экране', text: 'В конструкторе одна строка: в ней запрашивается часть под именем AppService. Пока понимайте так: этому Controller нужен AppService. Как он приходит, увидим на четырнадцатом экране.', show: 'В конструкторе одна строка: <code>private readonly appService: AppService</code>. Пока понимайте так: «этому Controller нужен AppService». Как он приходит, увидим на 14-м экране.' },
+    c2: { key: 'Параметр с <code>private readonly</code> <b>сам становится полем класса</b> — <code>this.appService</code> готов', text: 'Одна короткая запись TypeScript: если перед параметром конструктора стоит private readonly, он автоматически становится полем класса. В JavaScript вы бы написали this точка appService равно appService, а здесь эту строку не пишут, она выполняется сама.', show: 'Короткая запись TypeScript: если перед параметром стоит <code>private readonly</code>, он автоматически становится полем класса. Строку <code>this.appService = appService</code> из JavaScript не пишут, она выполняется сама.' },
+    d: { key: '<code>@Get()</code> над методом: <b>пришёл GET-запрос — вызови этот метод</b>', text: 'Ниже decorator Get. Он стоит над методом и говорит: если пришёл GET-запрос, вызови этот метод. Тот же смысл, что app get в Express, только теперь над методом.', show: 'Ниже <code>@Get()</code>. Он стоит над методом и говорит: «пришёл GET-запрос — вызови этот метод». Тот же смысл, что <code>app.get</code> в Express, только теперь над методом.' },
+    e: { key: 'Внутри метода одно дело: <b>вызвать Service и вернуть результат</b>', text: 'Внутри метода одно дело: вызвать метод Service и вернуть его результат.', show: 'Внутри метода одно дело: вернуть результат <code>this.appService.getHello()</code>.' },
+    f: { key: 'Вывод: в Controller <b>логику не пишут</b> — принял запрос, вызвал Service, вернул ответ', text: 'Вывод: в Controller логику не пишут. Он принял запрос, вызвал нужный Service, вернул ответ. Таким Controller и должен быть: логика в Service, а Controller только соединяет.' },
+  },
+});
+ru(S7, {
+  kicker: 'Этап 2 · Service', title: 'Service — выполняет работу',
+  segments: {
+    a: { key: '<code>@Injectable()</code> — «этот класс <b>можно передать через inject</b> туда, где он нужен»', text: 'Controller принял запрос и передал работу в Service. Значит, следующая остановка — Service, открываем его: app service ts. Над ним decorator Injectable. Это английское слово, оно значит «можно сделать inject». Оно говорит Nest: этот класс можно передать через inject туда, где он нужен.', show: 'Controller принял запрос и передал работу в Service. Значит, следующая остановка — Service: <b>app.service.ts</b>. Над ним <code>@Injectable()</code>. Это английское слово, оно значит «можно сделать inject». Оно говорит Nest: этот класс можно передать через inject туда, где он нужен.' },
+    b: { key: 'Настоящая работа <b>в Service</b>: расчёт цены, проверка правил, запись в базу', text: 'Внутри метод getHello, он возвращает Hello World. Сейчас это совсем маленький метод, но правило не меняется и в большом проекте: настоящая работа делается в Service. Посчитать цену, проверить правило, записать в базу — всё здесь.' },
+    c: { key: 'В Service нет ни <code>req</code>, ни <code>res</code> — поэтому его <b>тестируют без сервера</b>', text: 'Обратите внимание на одну вещь: Service ничего не знает о запросе. В нём нет ни req, ни res. Поэтому его легко тестировать отдельно: тестовый файл вызывает метод и сравнивает результат с ожидаемым значением, а сервер не запускается.' },
+    d: { key: 'Вывод: один Service используют <b>и HTTP Controller, и Telegram-бот</b>', text: 'И поэтому один Service могут использовать два места: и HTTP Controller, и Telegram-бот. Вывод: работа в Service, а Controller только связывает его с запросом.' },
+  },
+});
+ru(S8, {
+  kicker: 'Этап 2 · Module', title: 'Module — список',
+  segments: {
+    a: { key: 'Внутри <code>@Module</code> <b>три списка</b>: imports · controllers · providers', text: 'И Controller, и Service готовы. Но откуда Nest знает, что они есть? Ответ в третьем файле, в Module. app module ts: decorator Module и внутри три списка.' },
+    b: { key: '<code>controllers</code> — список Controller, <code>providers</code> — список <b>Service</b>, которые создаёт Nest', text: 'controllers: Controller этого модуля. providers: то, что этот модуль создаёт, сейчас это Service. Запомните слово provider, так Nest называет Service.' },
+    c: { key: '<code>imports</code> — другие модули. Nest видит <b>только то, что в списке</b>', text: 'imports: другие модули, сейчас список пуст. Module никакой работы не делает, это список. Но этот список решающий: Nest видит только то, что здесь записано.' },
+    d: { key: 'Файл есть, но в списке его нет — <b>для Nest его нет</b>', text: 'Если вы написали Controller, но не добавили его в список controllers, его как будто нет. Если написали Service, но не добавили в providers, Nest не сможет сделать его inject.' },
+    e: { key: 'Вывод: <b>AppModule</b> наверху, остальные модули подключаются к нему через <code>imports</code>', text: 'В проекте бывает несколько модулей: для cars, для users, для orders. Над всеми стоит AppModule и подключает остальные к себе через imports. Вывод: Module не делает работу, но раз это список, большинство ошибок исправляется именно в этом файле.' },
+  },
+});
+ru(S9, {
+  kicker: 'Этап 2 · main.ts', title: 'main.ts и строки запуска в терминале',
+  segments: {
+    a: { key: '<code>main.ts</code> отдаёт Nest главный модуль — <b>Nest собирает всё</b>', text: 'Три части мы увидели. А как они запускаются? Всё начинается с main ts. Первая строка: отдаём Nest главный модуль. Он читает список модуля, создаёт Service и подключает Controller.', show: 'Три части мы увидели. А как они запускаются? Всё начинается с main.ts. <code>NestFactory.create(AppModule)</code>: отдаём Nest главный модуль. Он читает список модуля, создаёт Service и подключает Controller.' },
+    b: { key: 'Слушаем порт 3000. В терминале: <code>npm run start:dev</code>', text: 'Потом он слушает порт 3000, как в Express. Теперь посмотрите на терминал, мы написали npm run start dev.', show: 'Потом <code>listen(3000)</code>: слушает порт, как в Express. Теперь посмотрите на терминал, мы написали <code>npm run start:dev</code>.' },
+    c: { key: 'Терминал: <b>dependencies initialized</b> — всё из списка создано', text: 'Первая строка: приложение Nest запускается. Вторая: dependency модуля AppModule готовы, то есть всё из списка создано.', show: 'Starting Nest application. <b>AppModule dependencies initialized</b>: dependency модуля AppModule готовы, то есть всё из списка создано.' },
+    d: { key: 'Терминал: <b>Mapped {/, GET}</b> — к root path подключён GET route', text: 'Дальше: AppController найден, и ему дан root path. Строка Mapped: к root path подключён GET route. И последняя: приложение успешно запущено.', show: '<code>AppController {/}</code>: Controller найден, ему дан path. <b>Mapped {/, GET} route</b>: к root path подключён GET route. Nest application successfully started.' },
+    e: { key: 'Привычка: route не работает — <b>сначала ищите строку Mapped</b> в терминале', text: 'Возьмите в привычку читать эти строки. Если потом какой-то route не работает, первым делом смотрите на эти строки в терминале: есть строка Mapped или нет.' },
+    f: { key: 'Вывод: main.ts → модуль → Controller → в браузере <b>Hello World!</b>', text: 'В браузере localhost 3000, ответ: Hello World. Вывод: main ts отдаёт главный модуль, Nest по списку собирает все части и подключает routes, а терминал сообщает, что подключено.', show: 'В браузере <code>localhost:3000</code>, ответ: <b>Hello World!</b> Вывод: main.ts отдаёт главный модуль, Nest по списку собирает все части и подключает routes, а терминал сообщает, что подключено.' },
+  },
+});
+ru(P1, {
+  kicker: 'Практика 2 / 4', eyebrow: 'Сейчас у вас · 3–5 минут', title: 'Запустите и прочитайте терминал',
+  segments: {
+    a: { key: 'Проект из 1-й практики установился — теперь вы его <b>запустите</b>', text: 'Снова ваша очередь. Проект, который вы начали в первой практике, наверное, уже установился. Три шага: запускаете, читаете строки в терминале, смотрите в браузере.' },
+    b: { key: 'Шаг 1: зайдите в папку и напишите <code>npm run start:dev</code>', text: 'Первое: зайдите в папку и напишите npm run start dev.' },
+    c: { key: 'Шаг 2: найдите в терминале строку <b>Mapped</b> и вставьте её в поле подтверждения', text: 'Второе: найдите в терминале строку Mapped, скопируйте её точно и вставьте в поле подтверждения внизу.' },
+    d: { key: 'Шаг 3: в браузере <code>localhost:3000</code> — должно появиться <b>Hello World!</b>', text: 'Третье: откройте в браузере localhost 3000 и увидите Hello World.' },
+    e: { key: 'Вышло иначе — внизу кнопка <b>«Вышло иначе?»</b>; без отметок и подтверждения «Далее» не откроется', text: 'Если вышло иначе, нажмите внизу кнопку «Вышло иначе». Пока не отмечены все три пункта и не вставлено верное подтверждение, «Далее» не откроется.' },
+  },
+});
+ru(P1_STEPS, [
+  { t: 'Запуск', exp: 'в конце «Nest application successfully started»' },
+  { t: 'Терминал', exp: 'строка Mapped {/, GET} route — скопируйте и вставьте в поле подтверждения' },
+  { t: 'Браузер', exp: 'localhost:3000 → Hello World!' },
+]);
+ru(P1_TROUBLE, [
+  ['nest new ещё не закончился', 'Дождитесь в терминале «Successfully created project»; если дольше 5 минут — интернет или npm install идёт долго (--skip-install, затем npm install)'],
+  [null, 'На порту 3000 открыт другой сервер: закройте его или PORT=3001 npm run start:dev'],
+  ['Строки Mapped нет, есть ошибка', 'Прочитайте текст ошибки: у красной ошибки TypeScript указаны файл:строка; если nest new не закончился — подождите'],
+]);
+ru(P1_PROOF, { label: 'Подтверждение: скопируйте строку Mapped из терминала', placeholder: 'вставьте сюда строку из терминала', wrong: 'Ожидается: Mapped {/, GET} route — скопируйте строку из терминала точно' });
+ru(S11, {
+  kicker: 'Этап 3 · Dependency Injection', title: 'Как Service попадает в Controller',
+  segments: {
+    a: { key: 'В конструкторе <b>«мне нужен AppService»</b> — но никто не создавал его через <code>new</code>', text: 'На проверке мы сказали: Controller вызывает Service. Но откуда Controller берёт Service? С этим вопросом вернёмся к конструктору в файле Controller. Здесь написано: мне нужен AppService. Но во всём проекте нет строки new AppService. Тогда откуда берётся Service? На этом экране разберём это шаг за шагом.', show: 'На проверке мы сказали: «Controller вызывает Service». Но откуда Controller берёт Service? С этим вопросом вернёмся к конструктору в файле Controller: <code>constructor(private readonly appService: AppService)</code> — «мне нужен AppService». Но во всём проекте нет строки <code>new AppService()</code>. Тогда откуда берётся Service?' },
+    b: { key: 'В Express вы создавали сами: <code>require</code> + <code>new</code>, <b>в каждом файле заново</b>', text: 'В Express вы делали это сами: require, создать через new, и так заново в каждом файле, где он нужен. Нужен в трёх файлах — три раза. В Nest эту работу у вас забрали.' },
+    c: { key: 'Шаг 1: при запуске Nest читает <code>providers</code> в <b>app.module.ts</b>', text: 'Первый шаг. Когда сервер запускается, Nest открывает файл app module ts и читает список providers: там стоит AppService.' },
+    d: { key: 'Шаг 2: Nest создаёт <b>один instance</b> AppService и хранит его у себя', text: 'Второй шаг. Nest создаёт один instance AppService и хранит его у себя. Это хранилище называется контейнером Nest.' },
+    e: { key: 'Шаг 3: тип в конструкторе — <code>AppService</code>, и Nest <b>передаёт этот instance в конструктор</b>', text: 'Третий шаг. Создавая AppController, Nest смотрит на его конструктор: тип параметра — AppService. Тип работает как бланк заказа: Nest берёт из контейнера instance именно этого типа и передаёт в конструктор. Теперь this appService готов.' },
+    f: { key: 'Название этого способа: <b>Dependency Injection</b> — внедрение dependency', text: 'Этот способ называется Dependency Injection, то есть внедрение dependency. Dependency — потому что Controller не может работать без Service. Inject — потому что его приносите не вы, а Nest передаёт его снаружи.' },
+    g: { key: 'Польза: <b>один instance</b>, в тесте можно <b>подставить фейк</b>, Controller не знает источник', text: 'Почему это хорошо? Во-первых, во всём проекте один instance. Во-вторых, в тесте вместо настоящего Service можно подставить фейковый, и Controller этого не заметит. В-третьих, Controller не обязан знать, откуда пришёл Service.' },
+    h: { key: 'Вывод: вы делаете две вещи — <b>пишете в providers, просите в конструкторе</b>', text: 'Вывод. Ваша работа — две вещи: записать Service в список providers модуля и попросить его в конструкторе там, где он нужен. Создание и inject делает Nest. Что будет, если забыть одно из двух, мы специально сломаем на пятом этапе.' },
+  },
+});
+
+// --- 05 · S12–S17, Проверка 2, Практика 3 ---
+ru(S12, {
+  kicker: 'Этап 4 · CLI', title: 'Создаём модуль cars через CLI',
+  segments: {
+    a: { key: 'Первая команда: <code>nest g module cars</code> — g = generate, то есть «создать»', text: 'Основа готова: вы знаете три части и Dependency Injection. Теперь строим сами. Для машин нужен отдельный модуль. Nest CLI создаёт его тремя командами. Первая: nest g module cars. g — это generate, создать.' },
+    b: { key: 'CLI <b>сам зашёл</b> в главный модуль и добавил CarsModule в <code>imports</code> — UPDATE', text: 'Результат — две строки: CREATE, создан cars module, и UPDATE, изменён app module. Обратите внимание на вторую строку: CLI сам зашёл в главный модуль и добавил CarsModule в список imports. Если делать вручную, именно это вы и забудете.' },
+    c: { key: '<code>nest g controller cars</code> — Controller создан и <b>записан в controllers</b>', text: 'Вторая команда: nest g controller cars. Флаг no-spec значит «не создавай тестовый файл»: на этом уроке мы не работаем с тестами, пусть файлов будет меньше. Controller создан и записан в список controllers модуля cars.', show: '<code>nest g controller cars --no-spec</code>. <code>--no-spec</code>: не создавать тестовый файл — на этом уроке мы не работаем с тестами. Controller создан и записан в список <code>controllers</code> модуля cars.' },
+    d: { key: '<code>nest g service cars</code> — Service создан и <b>записан в providers</b>', text: 'Третья команда: nest g service cars. Service создан и записан в список providers.' },
+    e: { key: 'Вывод: 3 команды — 3 CREATE, 3 UPDATE. <b>Знайте, что сделал CLI</b>: сломается — исправите вручную', text: 'Вывод: три команды, шесть изменений, и все списки верные. В Explorer слева появилась папка cars и три новых файла. CLI можно доверять, но знать, что он сделал, обязательно: когда что-то сломается, исправлять будете вручную.' },
+  },
+});
+ru(S13_FILES, {
+  'src/cars/cars.controller.ts': { 3: { h: `<span class="k">export class</span> <span class="c">CarsController</span> {}   <span class="cm">// пусто — методов нет</span>` } },
+  'src/cars/cars.service.ts': { 3: { h: `<span class="k">export class</span> <span class="c">CarsService</span> {}   <span class="cm">// пусто</span>` } },
+});
+ru(S13, {
+  kicker: 'Этап 4 · пустые файлы', title: 'Файлы от CLI пустые: path есть, route нет',
+  segments: {
+    a: { key: '<b>cars.module.ts</b>: оба списка CLI <b>заполнил сам</b>', text: 'CLI создал три файла и записал их в списки. Что внутри? Откроем по одному. Первый — cars module ts: в списке controllers стоит CarsController, в списке providers — CarsService. Оба записал сам CLI.' },
+    b: { key: 'Подумайте: если запустить сервер с этими файлами, что вернёт <code>/cars</code>?', text: 'Прежде чем открывать другие файлы, подумайте. Если запустить сервер с Controller и Service, которые только что создал CLI, что вернёт route cars? Нажмите один из трёх вариантов.', ask: { q: 'Что сделает сервер с файлами от CLI?', opts: ['Упадёт с ошибкой', 'Запустится, /cars → 404', 'Запустится, /cars → 200, пустой список'] } },
+    c: { key: '<b>cars.controller.ts</b>: decorator есть, но класс <b>пустой — ни одного метода</b>', text: 'Теперь cars controller ts. Decorator Controller есть, в скобках cars. Но внутри класс пустой: ни Get, ни Post, ни одного метода.', show: '<b>cars.controller.ts</b>: <code>@Controller(\'cars\')</code> есть, но внутри класс пустой — ни <code>@Get</code>, ни <code>@Post</code>, ни одного метода.' },
+    d: { key: '<b>cars.service.ts</b>: <code>@Injectable()</code> есть, внутри тоже <b>пусто</b>', text: 'cars service ts — то же самое: decorator Injectable есть, внутри пусто.', show: '<b>cars.service.ts</b>: <code>@Injectable()</code> есть, внутри тоже пусто.' },
+    e: { key: 'В терминале есть <code>CarsController {/cars}</code>, но <b>строки Mapped нет</b>', text: 'Запускаем сервер. В терминале новая строка: CarsController, в фигурных скобках путь cars. Nest увидел Controller и дал ему path. Но строки Mapped нет, потому что route появляется из метода, а метода нет.', show: 'В терминале новая строка: <code>CarsController {/cars}</code>. Nest увидел Controller и дал ему path. Но <b>строки Mapped нет</b>, потому что route появляется из метода, а метода нет.' },
+    f: { key: 'В браузере <code>/cars</code> → <b>404</b>: дверь есть, а внутри никого', text: 'Если открыть в браузере route cars: 404, Cannot GET cars. Это не ошибка, это естественное состояние: дверь есть, а внутри никого.', show: 'Если открыть в браузере /cars: <b>404, Cannot GET /cars</b>. Это не ошибка, это естественное состояние: дверь есть, а внутри никого.' },
+    g: { key: 'Вывод: path даёт Controller, route даёт <b>метод</b> — теперь сначала Service, потом Controller', text: 'Вывод: path даёт decorator Controller, а route — метод и Get или Post над ним. Раз метода нет, нет и Mapped, ответ 404. На следующих двух экранах заполним файлы: сначала Service, который выполняет работу, потом Controller, который его вызывает.' },
+  },
+});
+ru(S14, {
+  kicker: 'Этап 4 · Service', title: 'Service: список и три метода',
+  segments: {
+    a: { key: 'Интерфейс <code>Car</code> — <b>форма</b> машины: id, brand, model, price (не таблица в базе)', text: 'Файлы пустые, route нет. По порядку сначала заполняем часть, которая выполняет работу, — Service. cars service ts. Сначала интерфейс Car: у машины есть id, brand, model и price. Interface — это описание формы в TypeScript, не таблица в базе, пока просто форма.' },
+    b: { key: 'Список пока <b>в памяти</b>: Malibu и K5 — база на этом уроке не нужна', text: 'Дальше список: две машины, Chevrolet Malibu и Kia K5, цена в миллионах сумов. Базы пока нет, данные лежат в памяти, для этого урока этого достаточно.' },
+    c: { key: '<code>findAll</code> возвращает все, <code>findOne</code> ищет одну <b>по id</b>', text: 'findAll возвращает список. findOne ищет по id.' },
+    d: { key: 'Не нашли — бросает <b>NotFoundException</b>, и Nest сам превращает её <b>в ответ 404</b>', text: 'Если не нашли, бросает NotFoundException. Это готовая ошибка Nest: вы её бросаете, а Nest сам превращает её в ответ 404, со статусом и сообщением. В Express вы писали это вручную: status 404 и json.', show: 'Если не нашли, бросает <b>NotFoundException</b>. Это готовая ошибка Nest: вы её бросаете, а Nest сам превращает её в ответ 404, со статусом и сообщением. В Express вы писали это вручную: <code>res.status(404).json</code>.' },
+    e: { key: 'Вывод: <code>create</code> добавляет, а в Service <b>ни слова о запросе</b>', text: 'create добавляет новую машину в список и возвращает её. Omit Car, id в скобках — это запись TypeScript: форма Car без id, потому что id мы даём сами. Вывод: в этом файле ни слова о запросе, нет ни req, ни res. Только машины и три метода для работы с ними. Поэтому его могут использовать и Controller, и Telegram-бот.', show: '<code>create</code> добавляет новую машину и возвращает её. <code>Omit&lt;Car, \'id\'&gt;</code> — запись TypeScript: форма Car без id, потому что id мы даём сами. <b>Вывод:</b> в этом файле ни слова о запросе — только машины и три метода.' },
+  },
+});
+ru(EXN_ROWS, { 3: { n: 'не нужно — уже включено' } });
+ru(S15, {
+  kicker: 'Этап 4 · Controller', title: 'Controller: три route',
+  segments: {
+    a: { key: '<code>@Controller(\'cars\')</code>: все методы начинаются с <b>/cars</b>; конструктор просит CarsService', text: 'Service готов: список машин и три метода. Теперь пишем часть, которая связывает Service с запросом, — Controller. cars controller ts. Decorator Controller, в скобках cars: все методы начинаются с пути cars. Конструктор: мне нужен CarsService.', show: 'Service готов: список машин и три метода. Теперь пишем часть, которая связывает Service с запросом, — Controller. <b>cars.controller.ts</b>. <code>@Controller(\'cars\')</code>: все методы начинаются с /cars. Конструктор: «мне нужен CarsService».' },
+    b: { key: 'Пустой <code>@Get()</code> = <b>GET /cars</b> → вызывается findAll из Service', text: 'Decorator Get пустой: GET cars. Метод вызывает findAll из Service.', show: '<code>@Get()</code> пустой: <b>GET /cars</b>. Метод вызывает findAll.' },
+    c: { key: '<code>@Get(\':id\')</code> = <b>GET /cars/5</b>; <code>@Param(\'id\')</code> — это req.params.id из Express, значение — строка', text: 'Decorator Get с двоеточием и id: после пути cars идёт число, например cars 5. Decorator Param — это тот же req params id из Express, только берётся через decorator. Значение из URL всегда строка, поэтому переводим его в число через Number.', show: '<code>@Get(\':id\')</code>: path вида <b>GET /cars/5</b>. <code>@Param(\'id\') id</code> — это тот же <code>req.params.id</code> из Express, только берётся через decorator. Значение из URL всегда строка, поэтому переводим его в число через <code>Number</code>.' },
+    d: { key: '<code>@Post()</code> = <b>POST /cars</b>; <code>@Body()</code> — это req.body, express.json подключать не нужно', text: 'Decorator Post: POST cars. Decorator Body — это req body из Express. В Nest не нужно вручную подключать express json, он включён внутри.', show: '<code>@Post()</code>: <b>POST /cars</b>. <code>@Body() body</code>: это <code>req.body</code> из Express. В Nest не нужно вручную подключать <code>express.json()</code>, он включён внутри.' },
+    e: { key: 'Вывод: три метода одной формы — <b>взяли из запроса, вызвали Service, вернули результат</b>', text: 'Вывод: все три метода одной формы. Из запроса берётся нужная часть, вызывается метод Service, возвращается результат. В Controller нет if, нет расчётов, нет базы. Таблица слева показывает, где в Nest знакомые записи из Express.' },
+  },
+});
+ru(LC1_FIXED, { 12: { h: `    <span class="k">return this</span>.carsService.<span class="c">findOne</span>(<span class="c">Number</span>(id));   <span class="cm">// снова одна строка</span>` } });
+ru(LC1_SVC_FIXED, { 3: { h: `    <span class="k">if</span> (car.price > <span class="d">300</span>) <span class="k">return</span> { ...car, price: car.price * <span class="d">0.9</span> };   <span class="cm">// скидка — в Service</span>` } });
+ru(REQS, { 4: { u: '/cars  {}  (пусто)' } });
+ru(S16, {
+  kicker: 'Этап 4 · запустилось', title: 'Терминал и ответы', lockHint: 'Нажмите все пять кнопок запросов',
+  segments: {
+    a: { key: 'В терминале три строки <b>Mapped</b> — все три route подключены', text: 'И Service, и Controller готовы. Теперь самое интересное: запускаем сервер и отправляем настоящие запросы. Сервер запустился. В терминале три новые строки Mapped: cars GET, cars id GET, cars POST. Все три route подключены. Теперь отправляем запросы.' },
+    b: { key: '<code>GET /cars</code> → <b>200</b>: JSON Nest сделал сам, stringify не писали', text: 'GET cars: 200 и список из двух машин в виде JSON. Мы не писали JSON stringify, Nest сам превращает объект в JSON.', show: '<code>GET /cars</code>: <b>200</b> и список из двух машин в виде JSON. Мы не писали <code>JSON.stringify</code>, Nest сам превращает объект в JSON.' },
+    c: { key: '<code>GET /cars/1</code> → <b>200</b> и одна машина — Malibu', text: 'GET cars 1: 200 и Malibu.', show: '<code>GET /cars/1</code>: <b>200</b> и Malibu.' },
+    d: { key: '<code>GET /cars/99</code> → <b>404</b>: наша NotFoundException, Nest вернул её с сообщением', text: 'GET cars 99: 404 и сообщение Car with id 99 not found. Это наша NotFoundException, Nest привёл её к такому виду: message, error, statusCode.', show: '<code>GET /cars/99</code>: <b>404</b> и сообщение Car with id 99 not found. Это наша NotFoundException, Nest привёл её к такому виду: <code>message</code>, <code>error</code>, <code>statusCode</code>.' },
+    e: { key: '<code>POST /cars</code> → <b>201 Created</b> — этот статус Nest поставил сам', text: 'Отправляем POST cars с Cobalt: 201 Created и новая машина, id 3. Обратите внимание, 201 мы не писали. Nest ставит его для POST сам, в Express было бы 200.', show: 'Отправляем <code>POST /cars</code> с Cobalt: <b>201 Created</b> и новая машина, id 3. 201 мы не писали, Nest ставит его для POST сам; в Express было бы 200.' },
+    f: { key: 'Пустой <code>POST {}</code> тоже <b>201</b> — Nest <b>сам не проверяет</b> входящие данные', text: 'Ещё одна проверка: отправляем пустой POST, внутри ничего нет. Nest всё равно возвращает 201 и создаёт машину только с id 4. Nest сам не проверяет входящие данные, пока вы ему не скажете.', show: 'Пустой <code>POST /cars {}</code>: Nest всё равно возвращает <b>201</b> и создаёт только <code>{id:4}</code>. Nest сам не проверяет входящие данные, пока вы ему не скажете.' },
+    f2: { key: 'Как сказать — <b>DTO + ValidationPipe</b>: на пустой запрос Nest сам вернёт <b>400</b>', text: 'Как сказать: через DTO. В отдельном классе пишут, что brand — строка и обязателен, price — число, и включают ValidationPipe. Тогда на пустой запрос Nest сам вернёт 400, Bad Request. На этом уроке мы его не пишем, но если ученик спросит, ваш ответ такой.', show: 'Как сказать — <b>DTO</b>: в отдельном классе пишут, что <code>brand</code> — строка и обязателен, <code>price</code> — число, и включают <code>ValidationPipe</code>; на пустой запрос Nest сам вернёт <b>400 Bad Request</b>: <code>[&quot;brand should not be empty&quot;, …]</code> (проверено). На этом уроке не пишем — если ученик спросит, ваш ответ такой.' },
+    g: { key: 'Вывод: JSON, 201 и сообщение 404 <b>Nest делает сам</b> — нажмите все пять кнопок', text: 'Вывод: Nest сам делает JSON, 201 для POST и сообщение об ошибке, а проверку входящих данных не делает, пока вы не скажете. Теперь сами нажмите все пять кнопок и прочитайте каждый ответ. «Далее» откроется после пяти кнопок.' },
+  },
+});
+ru(P2, {
+  kicker: 'Практика 3 / 4', eyebrow: 'Сейчас у вас · 10–15 минут', title: 'Постройте модуль cars',
+  segments: {
+    a: { key: 'Теперь <b>вы</b>: строите модуль cars в своём проекте за четыре шага', text: 'Снова ваша очередь. Модуль cars, который вы только что видели, вы построите в своём проекте: четыре шага, от десяти до пятнадцати минут.' },
+    b: { key: 'Шаг 1: три команды CLI — в терминале <b>3 CREATE, 3 UPDATE</b>', text: 'Первое: тремя командами создайте module, controller и service. В терминале должны появиться три CREATE и три UPDATE.' },
+    c: { key: 'Шаг 2: <b>скопируйте</b> код Service — кнопка «Открыть код» внутри шага', text: 'Второе: заполните Service кодом из урока. Внутри второго шага есть кнопка «Открыть код», код там, скопируйте его.' },
+    d: { key: 'Шаг 3: Controller <b>напишите сами</b> — образец увидите, но скопировать нельзя', text: 'Третье: Controller напишите сами, двадцать строк. Образец виден по кнопке «Открыть код» внутри третьего шага, но скопировать его нельзя, это специально. Пусть рука почувствует decorator и конструктор. В терминале должны появиться три строки Mapped.' },
+    e: { key: 'Шаг 4: четыре запроса — ответы <b>200 · 200 · 404 · 201</b>', text: 'Четвёртое: браузером или Postman отправьте четыре запроса и сравните ответы с уроком: 200, 200, 404, 201. Сообщение из ответа на cars 99 впишите в поле подтверждения.' },
+    f: { key: 'Вышло иначе — внизу кнопка <b>«Вышло иначе?»</b>; без отметок и подтверждения «Далее» не откроется', text: 'Если вышло иначе, нажмите внизу кнопку «Вышло иначе». Пока не отмечены все четыре пункта и не вписано верное подтверждение, «Далее» не откроется.' },
+  },
+});
+ru(P2_STEPS, [
+  { t: 'Модуль cars' },
+  { t: 'Service — скопируйте', exp: 'cars.service.ts — «Открыть код» → «копировать», вставьте в файл' },
+  { t: 'Controller — напишите сами', exp: 'cars.controller.ts — 20 строк, образец смотрите в «Открыть код» (не копируется) · в терминале 3 строки Mapped {/cars…}' },
+  { t: 'Запросы' },
+]);
+ru(P2_PROOF, { label: 'Подтверждение: поле message в ответе на GET /cars/99', placeholder: 'впишите текст message из ответа', wrong: 'Ожидается: Car with id 99 not found — впишите значение message точно' });
+ru(P2_TROUBLE, [
+  ['Красная ошибка TypeScript (файл:строка)', 'При копировании пропала строка: сравните указанную строку с кодом в «Открыть код»'],
+  [null, 'Есть ли в терминале Mapped {/cars…}? Если нет — app.module.ts → imports: [CarsModule]'],
+  ['В POST body undefined', 'В Postman выбрано Body → raw → JSON? Content-Type: application/json'],
+]);
+
+// --- 06 · S18–S23, Проверка 4, Практика 4 ---
+ru(S18, {
+  kicker: 'Этап 5 · ломаем 1', title: 'Ломаем 1: providers пустой',
+  segments: {
+    a: { key: 'Ломаем специально: в <code>cars.module.ts</code> <b>providers остался пустым</b>', text: 'У нас есть работающий модуль. Теперь специально его сломаем, потому что ваши ученики делают именно эти ошибки, а вы должны уметь их читать. Первый случай: в cars module мы удалили CarsService из списка providers.' },
+    b: { key: 'Сервер упал. Часть 1 — <b>какой класс?</b> CarsController; <code>(?)</code> — место ненайденного dependency', text: 'Запускаем сервер, он падает. Читаем сообщение, разделив его на три части. Первая часть, какой класс: Nest не смог найти dependency для CarsController. Знак вопроса в скобках — место ненайденного dependency.', show: 'Запускаем сервер, он падает. Читаем сообщение, разделив его на три части. 1 · <b>какой класс</b>: <b>Nest can\'t resolve dependencies of the CarsController</b> — Nest не смог найти dependency для CarsController. <b>(?)</b> в скобках — место ненайденного dependency.' },
+    c: { key: 'Часть 2 — <b>какого dependency не хватает?</b> CarsService, 0-й аргумент конструктора', text: 'Вторая часть, какого dependency не хватает: нулевой аргумент, то есть первый параметр конструктора, CarsService.', show: '2 · <b>какой dependency</b>: <b>argument CarsService at index [0] is available</b> — нулевой аргумент, то есть первый параметр конструктора, CarsService.' },
+    d: { key: 'Часть 3 — <b>какой файл?</b> CarsModule, то есть <code>cars.module.ts</code>', text: 'Третья часть, какой файл открываем: Nest искал в CarsModule и не нашёл, значит, это файл cars module ts. Вот ответы на три вопроса: какой класс, какой dependency, какой файл.', show: '3 · <b>какой файл</b>: <b>in the CarsModule module</b> — Nest искал в CarsModule и не нашёл, значит, <code>cars.module.ts</code>. Есть ответы на три вопроса: <b>какой класс · какой dependency · какой файл</b>.' },
+    e: { key: 'Ниже Nest <b>сам предлагает решение</b>: есть ли CarsService в этом модуле?', text: 'Ниже Nest сам перечисляет решения. Второе — наш случай: если CarsService — это provider, есть ли он в этом модуле? Нет, мы его удалили.' },
+    f: { key: 'Исправляем: <code>providers: [CarsService]</code> вернули — сервер <b>запустился</b>', text: 'Исправляем: открываем файл cars module ts, возвращаем CarsService в список providers и сохраняем. start dev сам перезапускает сервер: в терминале строки Mapped и successfully started.' },
+    g: { key: 'Вывод: видите «can\'t resolve dependencies» — <b>откройте файл модуля</b>, проверьте providers', text: 'Вывод: это самая частая ошибка в Nest. Сообщение читаете тремя вопросами: какой класс, какой dependency, какой файл. А ответ всегда в файле модуля: недостающий Service записывается в список providers.' },
+  },
+});
+ru(S19, {
+  kicker: 'Этап 5 · ломаем 2', title: 'Ломаем 2: в imports нет CarsModule',
+  segments: {
+    a: { key: 'Ломаем специально: из <code>imports</code> в <code>app.module.ts</code> убрали CarsModule', text: 'Первую ошибку мы прочитали и исправили. Второй случай другой: на этот раз сервер не падает, и именно поэтому это опасно. В app module мы убрали CarsModule из списка imports.' },
+    b: { key: 'Подумайте: сервер <b>упадёт с ошибкой</b> или запустится?', text: 'Подумайте: если запустить сервер, он упадёт с ошибкой или запустится?', ask: { q: 'Что сделает сервер?', opts: ['Упадёт с ошибкой', 'Запустится'] } },
+    c: { key: 'Сервер <b>запустился</b> — «successfully started», ошибки нет', text: 'Сервер запустился, написал, что всё успешно, вроде бы всё хорошо. Ошибки нет.' },
+    d: { key: 'Но <code>/cars</code> → <b>404</b>, а root path работает', text: 'Но если запросить route cars, получим 404, Cannot GET cars. А root path работает.', show: 'Но если запросить <code>/cars</code>, получим <b>404, Cannot GET /cars</b>. А <code>/</code> работает.' },
+    e: { key: 'AppModule не подключил CarsModule — Nest <b>вообще не прочитал</b> папку cars. Это тихая ошибка', text: 'Что случилось? AppModule не подключил CarsModule, поэтому Nest вообще не прочитал папку cars. Ошибки нет, потому что для Nest этого модуля просто не существует. Это тихая ошибка, самая опасная.' },
+    f: { key: 'Как найти: в терминале <b>нет ни строки CarsController, ни Mapped</b>', text: 'Как это найти? Посмотрите на терминал: строки CarsController нет, строки Mapped для cars нет. Я говорил: возьмите в привычку читать строки в терминале. Вот причина.' },
+    g: { key: 'Исправляем: <code>imports: [CarsModule]</code> вернули — строки Mapped <b>вернулись</b>', text: 'Исправляем: в файле app module ts возвращаем CarsModule в список imports. Сервер перезапускается, и в терминале возвращаются CarsController и три строки Mapped. Route cars снова работает.' },
+    h: { key: 'Вывод: 404, а код выглядит верным — <b>сначала Mapped в терминале</b>, потом imports', text: 'Вывод: если route отдаёт 404, а код выглядит верным, сначала ищите в терминале строку Mapped, потом проверяйте список imports главного модуля.' },
+  },
+});
+ru(S20, {
+  kicker: 'Этап 5 · ломаем 3', title: 'Ломаем 3: нет decorator Controller',
+  segments: {
+    a: { key: 'Ломаем специально: <code>@Controller(\'cars\')</code> удалили, класс остался — сервер <b>падает</b>', text: 'Тихую ошибку мы увидели. Третий случай про decorator: правило с четвёртого экрана теперь увидим на практике. В cars controller мы удалили decorator Controller, класс остался на месте. Сервер падает.' },
+    b: { key: 'Сообщение: «<b>invalid controller</b>» — метки нет, но класс стоит в списке controllers', text: 'Сообщение: обнаружен неверный controller. У CarsController нет decorator Controller, но он стоит в списке controllers какого-то модуля.' },
+    c: { key: 'Сработало правило с 4-го экрана: нет метки — <b>Nest не узнаёт класс</b>', text: 'Nest говорит прямо: вы записали его в список, но у класса нет метки. Вспомните, что я говорил на экране про decorator: нет метки — Nest не узнаёт класс.' },
+    d: { key: 'Исправляем: decorator вернули — сервер <b>запустился</b>, строки Mapped на месте', text: 'Исправление — одна строка: возвращаем decorator. Сервер перезапускается, в терминале строки Mapped и successfully started.' },
+    e: { key: 'Вывод: «invalid controller» — <b>пропала первая строка</b>, верните decorator', text: 'Вывод: если видите сообщение invalid controller, посмотрите над классом, который назван в сообщении. Ученики часто делают это, когда переписывают код вручную и пропускают первую строку.' },
+  },
+});
+ru(S21, {
+  kicker: 'Этап 5 · ломаем 4', title: 'Ломаем 4: нет decorator Injectable',
+  segments: {
+    a: { key: 'Ломаем специально: из <code>cars.service.ts</code> удалили <code>@Injectable()</code>', text: 'Без decorator Nest не узнал класс Controller. А с Service так же? Четвёртый случай: из cars service мы удалили decorator Injectable. У самого Service нет конструктора, он ни от кого не зависит.' },
+    b: { key: 'Подумайте: без <code>@Injectable()</code> <code>/cars</code> <b>будет работать?</b>', text: 'Подумайте: если запустить сервер, route cars будет работать?', ask: { q: 'Без decorator Injectable /cars будет работать?', opts: ['Да, будет', 'Нет, будет ошибка'] } },
+    c: { key: '<b>Работает!</b> CarsService ни от кого не зависит — Nest создал его как обычно', text: 'Неожиданный результат: всё работает, route cars возвращает 200. Почему? В конструкторе самого CarsService нет никаких dependency. Nest смог создать его без dependency.' },
+    d: { key: '<code>@Injectable()</code> говорит Nest: <b>посмотри на конструктор и определи, что нужно</b>', text: 'На самом деле Injectable говорит Nest вот что: посмотрите на конструктор этого класса и определите, что ему нужно. Нет метки — Nest на конструктор не смотрит.' },
+    d2: { key: 'Добавим dependency: сервер <b>запускается</b>, но на запросе <b>500</b> — это тихая ошибка', text: 'Теперь проверим: добавим этому Service без Injectable dependency, в конструкторе запрашивается PricingService. Результат неожиданный: сервер запускается без ошибок, строки Mapped на месте. Но запрос cars возвращает 500, а в терминале TypeError: нельзя прочитать свойство withDiscount у undefined. Nest молча не сделал inject, поле осталось пустым. Это тихая ошибка: она появляется не при запуске, а на первом запросе.', show: 'Добавили dependency в Service без Injectable (<code>constructor(private pricing: PricingService)</code>). Сервер <b>запускается без ошибок</b>, но <code>GET /cars</code> → <b>500</b>, в терминале <code>TypeError: Cannot read properties of undefined (reading \'withDiscount\')</code>. Nest молча не сделал inject — поле пустое. <b>Тихая ошибка</b>: не при запуске, а на первом запросе.' },
+    d3: { key: 'Исправляем: <code>@Injectable()</code> вернули — PricingService передан через inject, <code>/cars</code> → <b>200</b>', text: 'Исправляем: возвращаем decorator Injectable. PricingService стоит в списке providers модуля. Теперь Nest смотрит на конструктор, делает inject PricingService, и запрос cars снова возвращает 200.', show: 'Исправляем: <code>@Injectable()</code> вернули. <code>PricingService</code> стоит в <code>providers</code> модуля. Теперь Nest смотрит на конструктор, делает inject PricingService, и <code>GET /cars</code> снова возвращает <b>200</b>.' },
+    e: { key: 'Вывод: <code>@Injectable()</code> <b>пишут на каждый Service</b>, даже если сейчас он не нужен', text: 'Вывод и правило: Injectable пишут на каждый Service, даже если сейчас он не нужен. Если ученик скажет: я удалил, всё работает, значит, не нужен, — вы сможете объяснить, зачем он: когда появится dependency, ошибка выйдет не при запуске, а во время запроса, и найти её трудно.' },
+  },
+});
+ru(LC2_FIXED, {
+  8: { h: `  controllers: [<span class="c">OrdersController</span>],   <span class="cm">// остался только Controller</span>` },
+  10: { h: `  providers: [<span class="c">OrdersService</span>, <span class="c">PaymentService</span>],   <span class="cm">// Service — здесь</span>` },
+});
+ru(S22, {
+  kicker: 'Этап 5 · вид ошибки', title: 'Два вида ошибок: Error и HttpException',
+  segments: {
+    a: { key: 'Ломаем специально: в <code>findOne</code> вместо NotFoundException бросили <b>обычный Error</b>', text: 'До сих пор ошибки появлялись при запуске сервера. Последний случай другой: сервер работает, а ошибка бросается во время запроса. Какой статус вернётся? В findOne внутри cars service ts вместо NotFoundException мы бросили обычный Error с текстом «не найдено».' },
+    b: { key: 'Ответ <b>500</b>, текст «не найдено» пропал — Nest скрывает неожиданную ошибку', text: 'Ответ: 500, Internal server error. Наш текст «не найдено» пропал. Nest не показывает неожиданную ошибку пользователю, и это правильно: внутренние детали не должны выходить наружу.' },
+    c: { key: '<b>Семейство HttpException</b> Nest узнаёт: возвращает с верным статусом и сообщением', text: 'А NotFoundException — из семейства HttpException в Nest. Nest узнаёт его и возвращает с верным статусом и сообщением.' },
+    d: { key: 'Семейство: <b>400</b> BadRequest · <b>401</b> Unauthorized · <b>403</b> Forbidden · <b>404</b> NotFound', text: 'В семействе есть и другие: BadRequest, 400, неверные данные. Unauthorized, 401, вход не выполнен. Forbidden, 403, нет доступа. NotFound, 404, не найдено.' },
+    e: { key: 'Исправляем: <code>Error</code> → <code>NotFoundException</code> — ответ снова <b>404</b> с сообщением', text: 'Исправляем: меняем обычный Error в findOne на NotFoundException. Теперь на запрос cars 99 снова приходит 404 и сообщение Car with id 99 not found.' },
+    f: { key: 'Вывод: ученик спрашивает «почему 500?» — спросите <b>«какую ошибку вы бросили?»</b> и замените', text: 'Вывод и правило для класса: ошибку, о которой пользователь должен знать, бросают через семейство HttpException, а всё остальное становится 500, и сообщение скрывается. Если ученик спросит, почему выходит 500, ваш первый вопрос: какую ошибку вы бросили? Если обычный Error, замените его на подходящий HttpException: не найдено — NotFound, неверные данные — BadRequest.' },
+  },
+});
+ru(P3, {
+  kicker: 'Практика 4 / 4', eyebrow: 'Сейчас у вас · 5 минут', title: 'Сломайте и исправьте сами',
+  segments: {
+    a: { key: 'Теперь <b>ломаете вы</b>: два случая — прочитаете ошибку своими глазами', text: 'Последняя практика: теперь ломаете вы. Два случая, пять минут. Цель — увидеть и прочитать ошибку своими глазами.' },
+    b: { key: 'Шаг 1: очистите <code>providers</code>, найдите в сообщении <b>какой класс · какой dependency · какой файл</b>, верните', text: 'Первое: в cars module очистите список providers, запустите сервер и найдите в сообщении, какой класс, какой dependency и какой файл. Три найденных ответа, класс, dependency и файл, впишите через запятую в поле подтверждения, потом верните providers.' },
+    c: { key: 'Шаг 2: уберите CarsModule из <code>imports</code> — найдите, <b>какая строка пропала</b> в терминале', text: 'Второе: в app module уберите CarsModule из imports. Сервер запустится. Найдите, какая строка пропала в терминале, запросите route cars, потом верните.' },
+    d: { key: 'Шаг 3: верните всё — в терминале <b>3 строки Mapped</b>, <code>/cars/99</code> → <b>404</b>', text: 'Третье: верните всё и проверьте. В терминале снова должны быть три строки Mapped, а запрос cars 99 должен вернуть 404 и сообщение. Если вышло иначе, нажмите внизу кнопку «Вышло иначе». Пока все три пункта и подтверждение не верны, «Далее» не откроется.' },
+  },
+});
+ru(P3_STEPS, [
+  { t: 'providers пустой', exp: '«Nest can\'t resolve dependencies of the CarsController (?)» → класс · dependency · файл → верните providers: [CarsService]' },
+  { t: 'В imports нет CarsModule', exp: 'сервер запускается · в терминале НЕТ строки CarsController · GET /cars → 404 → верните imports: [CarsModule]' },
+  { t: 'Верните и проверьте', exp: 'в терминале снова 3 строки Mapped {/cars…} · GET /cars/99 → 404 «Car with id 99 not found»' },
+]);
+ru(P3_TROUBLE, [
+  ['Вернул, но ошибка осталась', 'Вы сохранили файл? start:dev сам перезапускается при сохранении; дождитесь новых строк в терминале'],
+  ['Вышла другая ошибка', 'Прочитайте сообщение тремя вопросами: какой класс · какой dependency · какой файл. Список Potential solutions подскажет решение'],
+]);
+ru(P3_PROOF, { label: 'Подтверждение: из сообщения шага 1 — какой класс, какой dependency, какой файл? (через запятую)', placeholder: 'класс, dependency, файл', wrong: 'Перечитайте сообщение: «of the ___» — класс, «argument ___ at index [0]» — dependency, «in the ___ module» — файл' });
+
+// --- 07 · мост, план урока, вопросы, самопроверка, итог ---
+ru(TREE, { 5: { t: '    app.service.ts  (это не Service!)' }, 10: { t: '    auth/ (вход)' } });
+ru(S25A_SAY, {
+  y: [[null, 'форма таблицы в базе: TypeORM строит таблицу по этому классу'], [null, 'форма входящих данных: здесь проверяются обязательные поля и типы, при ошибке — 400'], [null, 'методы записи в базу и чтения: через него Service обращается к базе']],
+  r: [[null, 'модуль входа и регистрации'], [null, 'проверяет токен, пока запрос не дошёл до Controller; если токен недействителен, останавливает запрос'], [null, 'готовые методы CRUD для всех Service, admin service наследуется от него'], [null, 'пропуск вошедшего пользователя'], [null, 'помощник, чтобы все ответы возвращались в одной форме'], [null, 'здесь запускается сервер (класс Aplication). Называется app.service, но в этом проекте это не Service'], [null, 'возвращает все ошибки в одной форме: { statusCode, error: { message } }'], [null, 'читает значения из .env (PORT, DEV_DB_URL)']],
+});
+ru(S25a, {
+  kicker: 'Этап 7 · мост', title: 'Проект, который клонирует ученик',
+  segments: {
+    a: { key: 'Ученик <b>не пишет с нуля</b>: клонирует готовый проект с GitHub и запускает его', text: 'Вы сами построили Nest и сами его сломали. Теперь переходим к главной цели урока: передать эту тему ученику. Сначала посмотрим на урок ученика, потому что он видит эту тему по-другому. Ученик не пишет с нуля: он клонирует с GitHub готовый проект, IntroNestArxitechture, и запускает его.' },
+    b: { key: 'Проект больше: папки <code>api</code> · <code>core</code> · <code>common</code> · <code>infrastructure</code>', text: 'Проект больше: папки api, core, common, infrastructure.' },
+    c: { key: '<b>Зелёное</b> — сегодня видели в коде: admin module, controller, service — это наш cars', text: 'Места, отмеченные зелёным, вы сегодня видели в коде: admin module, admin controller, admin service и главный модуль. Это ровно наши файлы cars, только для admin и побольше. На уроке вы покажете их с кодом.' },
+    d: { key: '<b>Жёлтое</b> — Entity · DTO · Repository: если ученик спросит, объясните <b>одной фразой</b>', text: 'Жёлтые места: entity, dto и repository. В уроке ученика они появляются с названием и задачей, если спросят — объясните одной фразой. Entity — форма таблицы в базе: TypeORM строит таблицу по этому классу.' },
+    d2: { key: '<b>DTO</b> — форма входящих данных, <b>Repository</b> — запись в базу и чтение', text: 'DTO — форма входящих данных: здесь проверяются обязательные поля и типы. Repository — методы записи в базу и чтения: через него Service обращается к базе. Их код вы полностью изучите в следующих уроках курса для менторов, сейчас достаточно одной фразы.' },
+    e: { key: '<b>Серое</b> — auth, Guard, BaseService, filter, config: <b>название и задача</b>, по одной фразе', text: 'Серые места. Модуль auth отвечает за вход и регистрацию. Guard проверяет токен, пока запрос не дошёл до Controller, и если токен недействителен, останавливает запрос. BaseService — готовые методы CRUD для всех Service, admin service наследуется от него. Token — пропуск вошедшего пользователя. successRes — помощник, чтобы все ответы возвращались в одной форме.' },
+    e2: { key: 'Осторожно: сервер запускается в <code>api/app.service.ts</code> — называется Service, но <b>это не Service</b>', text: 'Одно место, где нужно быть осторожным: в этом проекте сервер запускается не в main ts, а в файле app service ts в папке api. Называется app service, но это не Service, а класс, который запускает сервер. Если ученик спросит, скажите именно это.' },
+    e3: { key: 'Не волнуйтесь: особенности этого проекта вы <b>склонируете и посмотрите на следующем уроке для менторов</b>', text: 'Не волнуйтесь: особенности этого проекта — то, что routes начинаются с api v1, форму ответа с ошибкой и BaseService — вы сами склонируете и посмотрите на следующем уроке для менторов. А для урока ученика этих фраз достаточно.' },
+    f: { key: 'Вывод: для <b>каждого цветного места в структуре у вас есть готовая фраза</b>', text: 'Вывод: зелёные файлы показываете с кодом, жёлтые и серые объясняете одной фразой и возвращаетесь к уроку. Урок ученика не открывает код этих файлов, поэтому одной фразы достаточно.' },
+  },
+});
+ru(DICT, [
+  ['официант', null, 'принимает запрос, передаёт на кухню'], ['повар', null, 'выполняет работу'], ['кладовщик', null, 'общается с базой'], ['чертёж стеллажа', null, 'форма таблицы'],
+  ['анкета заказа', null, 'форма входящих данных'], ['контролёр', null, 'проверяет токен'], ['одинаковый поднос', null, 'форма ответа'], ['штатное расписание', null, 'список'],
+]);
+ru(S25b, {
+  kicker: 'Этап 7 · мост', title: 'Язык урока ученика: ресторан',
+  segments: {
+    a: { key: 'Урок ученика говорит <b>языком ресторана</b>: официант, повар, кладовщик…', text: 'Файлы проекта мы увидели. Теперь узнаем, какими словами ученик их запоминает. Урок ученика говорит языком ресторана: Controller — официант, Service — повар, Repository — кладовщик, Guard — контролёр, Module — штатное расписание. Ученик думает этими словами.' },
+    b: { key: 'Ученик говорит «повар» — вы знаете, что это <b>Service</b>, и показываете файл', text: 'Теперь вы знаете оба языка: ученик говорит «повар», а вы знаете, что это Service, и показываете нужный файл. На уроке говорите оба слова вместе: повар, то есть Service.' },
+    c: { key: 'Вывод: метафора объясняет <b>задачу</b>, а не код — говорите оба слова вместе', text: 'Вывод и одно предупреждение: метафора объясняет задачу, а не код. Когда ученик слышит «официант не заходит на кухню», пусть понимает: Controller вызывает Service, но сам ничего не считает. Эту границу держите вы.' },
+  },
+});
+ru(MAP, [
+  { t: 'Вступление', d: '«Боль» server.js на 1240 строк → «клонируем готовый проект», план из 4 шагов', m: 'Вы видели это на 2-м экране этого урока: ученик тоже начинает с этой боли. Не называйте Nest рано — сначала боль.' },
+  { t: 'Clone и запуск', d: 'git clone + npm install, заполнить .env, start:dev; тест: где лежит ключ', m: 'Больше всего времени уходит здесь. Пока сервер не работает у всех, дальше не идите.' },
+  { t: 'Swagger и карта здания', d: 'двери Swagger (endpoints), структура папок; тест: задача Controller', m: 'Здесь появляется слово «официант». В структуре сами покажите зелёные файлы (module/controller/service).' },
+  { t: 'Путь заказа', d: 'порядок Guard → Controller → Service → Repository → successRes собирают перетаскиванием; тест', m: 'Это наш экран «путь запроса», только на две остановки больше: Guard проверяет токен, Repository пишет в базу. На каждую — одна фраза, готовые фразы на 31-м экране.' },
+  { t: 'Слои', d: 'Entity/BaseEntity, DTO (201/400), BaseService (готовый CRUD), Module (смена), порядок из 5 шагов; тест', m: 'Не глубоко: по одной фразе на каждый. Entity — форма таблицы, DTO — форма входящих данных (если неверные — 400), BaseService — готовый CRUD, Module — список. Не волнуйтесь: Entity, DTO и Repository вы полностью, с кодом, изучите в следующих уроках курса для менторов.' },
+  { t: 'Сборка и итог', d: 'ИИ пишет 5 файлов, итоговый debugging (убрать строку с ошибкой), практическое задание, арена, карточки', m: 'На экране debugging работает правило, которое вы сегодня выучили: в Controller не считают.' },
+]);
+ru(R1, {
+  kicker: 'Этап 7 · план урока', eyebrow: 'm4a-01 · «Nest архитектура — живой обзор»', title: 'Карта урока ученика: 6 блоков, 22 экрана',
+  segments: {
+    a: { key: 'Урок ученика <b>m4a-01</b>: 6 блоков, 22 экрана — что вы говорите в каждом блоке', text: 'Вы знаете и проект, и язык ученика. Теперь посмотрим сам урок ученика экран за экраном, потому что вести его будете вы. Двадцать два экрана, шесть блоков. Для каждого блока: что делает ученик и что говорите вы.' },
+    b: { key: 'Блок 1 · вступление: ученик тоже начинает <b>с той же боли</b> — не называйте Nest рано', text: 'Первый блок, вступление: ученик видит файл на 1240 строк и получает план — клонировать готовый проект. Вы видели это в начале этого урока. Не называйте Nest рано, сначала боль.' },
+    c: { key: 'Блок 2 · clone и запуск: здесь уходит <b>больше всего времени</b>', text: 'Второй блок, clone и запуск: git clone, npm install, файл env, start dev. Больше всего времени уходит здесь. Пока сервер не работает у всех, дальше не идите.' },
+    d: { key: 'Блок 3 · Swagger и структура папок: здесь появляется слово <b>«официант»</b>', text: 'Третий блок: ученик смотрит двери в Swagger, потом структуру папок. Здесь появляется слово «официант». В структуре сами покажите файлы module, controller и service.' },
+    e: { key: 'Блок 4 · путь заказа: наш путь запроса + <b>Guard и Repository</b>', text: 'Четвёртый блок, путь заказа: ученик перетаскиванием собирает порядок — контролёр, официант, повар, кладовщик, поднос. Это наш экран «путь запроса», только на две остановки больше: Guard проверяет токен, Repository пишет в базу. На каждую достаточно одной фразы.' },
+    f: { key: 'Блок 5 · слои: Entity, DTO, BaseService — <b>по одной фразе</b>, не глубоко', text: 'Пятый блок, слои: Entity, DTO, BaseService, Module и порядок из пяти шагов. Не глубоко, по одной фразе на каждый. Entity — форма таблицы. DTO — форма входящих данных, если они неверные — 400. BaseService — готовые методы CRUD. Module — список. Не волнуйтесь: Entity, DTO и Repository вы полностью, с кодом, изучите в следующих уроках курса для менторов. А в этом блоке урока ученика достаточно одной фразы.' },
+    g: { key: 'Блок 6 · сборка с ИИ и debugging: работает правило <b>«в Controller не считают»</b>', text: 'Шестой блок: ученик поручает ИИ написать пять файлов, потом итоговый debugging — находит и убирает строку с ошибкой, затем практическое задание и арена. На экране debugging работает правило, которое вы сегодня выучили: в Controller не считают.' },
+    h: { key: 'Вывод: больше всего сил — <b>блок 2 (сервер)</b> и <b>блок 6 (debugging)</b>', text: 'Вывод: из шести блоков два требуют от вас больше всего сил. Второй — потому что сервер должен работать у всех. Шестой — потому что в debugging ученик должен сам найти сегодняшнее правило.' },
+  },
+});
+ru(STUMBLE, [
+  { q: 'git clone не работает', a: 'Git не установлен или нет интернета. Запасной вариант: скачать ZIP с GitHub и распаковать. Перед уроком сами один раз склонируйте проект.' },
+  { q: 'npm install долго или с ошибкой', a: 'Терпение: 2–5 минут — это нормально. Если ошибка — проверьте версию Node (20+), удалите node_modules и попробуйте снова.' },
+  { q: '.env не заполнен — сервер падает', a: 'Проект подключается к PostgreSQL: «Unable to connect to the database» — причину говорит вторая строка (на следующем экране четыре сообщения). cp .env.example .env, потом проверьте, что PostgreSQL запущен.' },
+  { q: 'Порт 3000 занят', a: 'Остался открытым сервер с прошлого урока. Закройте его или запустите с PORT=3001.' },
+  { a: 'Теперь вы умеете это читать: какой класс, какой dependency, какой файл. Прочитайте сообщение в терминале вместе с учеником, ответ не говорите, задавайте вопросы: какой файл? какой список?' },
+  { q: '«Почему не Express?» или путаница в метафоре', a: 'Одна фраза: в большом проекте нужен порядок, Nest делает порядок обязательным, а внутри тот же Express. Если метафора запуталась, верните к словарю: повар, то есть Service.' },
+]);
+ru(R2, {
+  kicker: 'Этап 7 · план урока', eyebrow: 'm4a-01 · что происходит на уроке', title: '6 мест, где ученик спотыкается',
+  segments: {
+    a: { key: '6 ситуаций, которые <b>обязательно</b> будут в классе, — на каждую нужен готовый ответ', text: 'План вы знаете. Теперь посмотрим, где план ломается: шесть ситуаций, которые на уроке будут обязательно. На каждую у вас должен быть готовый ответ.' },
+    b: { key: '1 · <code>git clone</code> не работает → запасной вариант: <b>скачать ZIP</b> с GitHub', text: 'Первая: git clone не работает. Git не установлен или нет интернета. Запасной вариант: скачать ZIP с GitHub и распаковать. Перед уроком сами один раз склонируйте проект.' },
+    c: { key: '2 · <code>npm install</code> долго или с ошибкой → 2–5 минут — норма, <b>Node 20+</b>', text: 'Вторая: npm install идёт долго или с ошибкой. От двух до пяти минут — это нормально. Если ошибка, проверьте версию Node, она должна быть 20 или выше, удалите папку node modules и попробуйте снова.' },
+    d: { key: '3 · нет <code>.env</code> или не работает PostgreSQL → сервер <b>падает</b>', text: 'Третья, самая важная: не создан файл env. Проект подключается к PostgreSQL. Если нет адреса базы или PostgreSQL не работает, сервер не запустится: Unable to connect to the database. На следующем экране прочитаем четыре вида этой ошибки.' },
+    e: { key: '4 · порт 3000 занят → <b>закройте прошлый сервер</b> или дайте другой порт', text: 'Четвёртая: порт 3000 занят. Остался открытым сервер с прошлого урока. Закройте его или запустите на другом порту.' },
+    f: { key: '5 · «can\'t resolve» → <b>читайте вместе</b> с учеником, ответ не говорите', text: 'Пятая: ошибка can\'t resolve dependencies. Теперь вы умеете это читать: какой класс, какой dependency, какой файл. Прочитайте сообщение в терминале вместе с учеником, ответ не говорите, задавайте вопросы: какой файл, какой список.' },
+    g: { key: '6 · «Почему не Express?» → <b>одна фраза</b>: нужен порядок, внутри тот же Express', text: 'Шестая: вопрос «почему не Express» или путаница в метафоре. Одна фраза: в большом проекте нужен порядок, Nest делает порядок обязательным, а внутри тот же Express. Если метафора запуталась, верните к словарю.' },
+    h0: { key: 'Внимание: в проекте ученика routes начинаются с <code>/api/v1</code> — забыли префикс — <b>404</b>', text: 'Ещё одно предупреждение: в проекте ученика все routes начинаются с api v1, не admin, а api v1 admin. Если забыть префикс, будет 404. Этот проект вы полностью, с клонированием, посмотрите на следующем уроке для менторов.', show: 'Ещё одно предупреждение: в проекте ученика все routes начинаются с <code>/api/v1</code> — не <code>/admin</code>, а <code>/api/v1/admin</code>; забыли префикс — <b>404</b>. Этот проект вы полностью, с клонированием, посмотрите на следующем уроке для менторов.' },
+    h: { key: 'Вывод: перед уроком <b>сами один раз поднимите проект</b> — заранее узнаете, где споткнутся', text: 'Вывод: большинство этих ситуаций случается в первые двадцать минут урока. Поэтому перед уроком сами один раз склонируйте проект и запустите его с env: вы сами почувствуете, где можно споткнуться.', show: 'Вывод: большинство этих ситуаций случается в первые 20 минут урока. Перед уроком сами один раз склонируйте проект и запустите его с .env: вы сами почувствуете, где можно споткнуться.' },
+  },
+});
+ru(DB_ERRS, { 13: { h: `<span class="er">ERROR [ExceptionHandler] error: …</span>   <span class="cm">← после 10 попыток сервер падает</span>` } });
+ru(DB_ROWS, [
+  { s: 'PostgreSQL не запущен или неверный порт', f: '<b>Запустите PostgreSQL</b>: Windows — Services → postgresql → Start · Mac — <code>brew services start postgresql</code> · Linux — <code>sudo systemctl start postgresql</code>. Потом проверьте, что в .env порт 5432' },
+  { s: '.env нет или DEV_DB_URL не прочитан (пароль undefined)', f: '<b>В папке проекта: <code>cp .env.example .env</code></b> (Windows: <code>copy .env.example .env</code>). Внутри <code>DEV_DB_URL</code> уже есть — замените пароль на свой и перезапустите сервер' },
+  { s: 'неверный пароль или пользователь в .env', f: 'в .env.example пароль просто <code>password</code> — впишите в <code>DEV_DB_URL</code> свой пароль от PostgreSQL; проверьте через <code>psql -U postgres</code>' },
+  { s: 'подключение и пароль верные, но базы с таким именем нет', f: 'создайте базу: <code>createdb -U postgres nestarxitechture</code> (имя — последнее слово в DEV_DB_URL)' },
+]);
+ru(RDB, {
+  kicker: 'Этап 7 · план урока', eyebrow: 'm4a-01 · самая частая ошибка в классе', title: 'База не подключилась: четыре сообщения, четыре причины',
+  segments: {
+    a: { key: 'Проект ученика <b>подключается к PostgreSQL</b> — это ошибка №1 в классе, причина всегда <b>во 2-й строке</b>', text: 'Третью ситуацию с прошлого экрана, env и PostgreSQL, разберём отдельно, потому что в классе на неё уходит больше всего времени. Сегодня вы изучили четыре ошибки Nest. Но в классе чаще всего выходит другая: проект ученика подключается к PostgreSQL, и подключение часто не получается с первого раза. Сообщение всегда начинается одинаково: Unable to connect to the database, Retrying. А причина во второй строке. Четыре реальных случая.' },
+    b: { key: '1 · <b>ECONNREFUSED</b> → PostgreSQL не запущен: <b>запустите PostgreSQL</b>', text: 'Первый: connect ECONNREFUSED, адрес и порт. Значит, на этом порту никто не отвечает: PostgreSQL не запущен или в файле env неверный порт. Решение: запустите PostgreSQL. В Windows в окне Services запускаете postgresql кнопкой Start, в Mac и Linux — командой из таблицы. Потом проверьте порт.', show: '<b>connect ECONNREFUSED 127.0.0.1:5432</b>: на этом порту никто не отвечает — PostgreSQL не запущен или в .env неверный порт. Решение: <b>запустите PostgreSQL</b> (Windows: Services → postgresql → Start; Mac/Linux: команда из таблицы), потом проверьте порт.' },
+    c: { key: '2 · <b>client password must be a string</b> → нет .env: <code>cp .env.example .env</code>', text: 'Второй, самый обманчивый: client password must be a string. Это не значит, что пароль неверный. Пароля нет совсем, он undefined: нет файла env. В проекте ученика есть готовый образец, файл env example. Решение одно: скопировать этот образец в файл env, заменить внутри пароль на свой и перезапустить сервер. В классе скажите это всем в первую очередь.', show: '<b>client password must be a string</b> — самый обманчивый: пароль не неверный, пароля <b>нет совсем</b> (undefined) — нет файла .env. В проекте есть готовый образец: <b>.env.example</b>. Решение: <code>cp .env.example .env</code>, замените внутри пароль на свой, перезапустите сервер. В классе скажите это всем в первую очередь.' },
+    d: { key: '3 · <b>password authentication failed</b> → неверный пароль в .env: впишите <b>свой пароль</b>', text: 'Третий: password authentication failed for user. Вот теперь действительно неверный пароль или имя пользователя. В классе это бывает часто, потому что в env example пароль — просто слово password. Решение: вписать в DEV DB URL свой пароль от PostgreSQL.', show: '<b>password authentication failed for user "postgres"</b>: теперь действительно неверный пароль или пользователь. В классе бывает часто: в .env.example пароль просто <code>password</code>. Решение: впишите в <code>DEV_DB_URL</code> свой пароль от PostgreSQL.' },
+    d2: { key: '4 · <b>database … does not exist</b> → база не создана: <code>createdb</code>', text: 'Четвёртый: database, имя, does not exist. Подключение есть, пароль верный, но в PostgreSQL нет базы с таким именем: её ещё никто не создал. В проекте ученика имя в конце DEV DB URL, nestarxitechture. Решение: создать базу с этим именем.', show: '<b>database "…" does not exist</b>: подключение и пароль верные, но базы с таким именем <b>не создано</b>. В проекте ученика имя в конце <code>DEV_DB_URL</code>: <code>nestarxitechture</code>. Решение: <code>createdb -U postgres nestarxitechture</code>.' },
+    e: { key: 'Вывод: «Unable to connect» → <b>код не трогайте</b> — читайте 2-ю строку, проверяйте .env и PostgreSQL', text: 'TypeORM делает десять попыток, потом сервер падает. Вывод и правило: если видите Unable to connect, код не трогайте, проблема не в коде. Прочитайте вторую строку, проверьте файл env и PostgreSQL. Эти четыре сообщения есть и в памятке.' },
+  },
+});
+ru(PLAN90, [
+  { n: 'Вступление и боль', d: 'пример server.js, план из 4 шагов' },
+  { n: 'Clone и запуск', d: 'пока сервер не заработает у всех; .env и PostgreSQL' },
+  { n: 'Swagger, карта здания, тесты 1–2', d: 'двери, папки, «официант»' },
+  { n: 'Путь заказа, тест 3' },
+  { n: 'Слои, тест 4', d: 'Entity, DTO, BaseService, Module — название и задача' },
+  { n: 'Сборка с ИИ, debugging, арена', d: 'сегодняшнее правило: в Controller не считают' },
+]);
+ru(R3, {
+  kicker: 'Этап 7 · план урока', eyebrow: 'm4a-01 · 90 минут (предложение)', title: 'План по времени и три правила',
+  segments: {
+    a: { key: 'Предложение: <b>90 минут, шесть частей</b> — меняйте под свой класс', text: 'Места, где спотыкаются, и решения вы знаете. Теперь распланируем время. Предлагаемый план: девяносто минут, шесть частей. Это предложение, меняйте его под свой класс.' },
+    b: { key: '0–30: вступление и clone — <b>пока сервер не работает у всех</b>, дальше не идите', text: 'Первые тридцать минут: вступление и clone. Самая опасная часть — clone и запуск, поэтому на неё двадцать минут.' },
+    c: { key: '30–60: Swagger, карта папок, <b>путь заказа</b> и три теста', text: 'С тридцатой по шестидесятую минуту: Swagger, карта здания, путь заказа и три теста.' },
+    d: { key: '60–90: слои, <b>сборка с ИИ</b>, debugging и арена', text: 'С шестидесятой по девяностую: слои, сборка с ИИ, итоговый debugging и арена.' },
+    e: { key: 'Вывод — три правила: <b>сначала сервер · два слова вместе · читать сообщение вместе</b>', text: 'Вывод: три правила. Первое: пока сервер не работает у всех, дальше не идите. Второе: говорите метафору и термин вместе: повар, то есть Service. Третье: если вышла ошибка, читайте сообщение в терминале вместе с учеником, ответ не говорите.' },
+  },
+});
+ru(QA, [
+  ['Почему Nest, а не Express?', 'Когда проект большой, нужен порядок; Nest делает порядок обязательным, а внутри тот же Express.'],
+  ['Что такое decorator?', 'Метка над классом или методом; говорит Nest, что это такое, код не выполняет.'],
+  ['Что такое providers?', 'То, что этот модуль создаёт, в основном Service.'],
+  ['Зачем мы вынесли Service отдельно?', 'Чтобы тестировать отдельно и использовать повторно; а в Controller не остаётся логики.'],
+  ['Nest быстрее Express?', 'Нет, скорость одинаковая, внутри Express. Nest даёт не скорость, а порядок.'],
+  ['Я удалил Injectable, всё работает. Он не нужен?', 'Сработало, потому что нет dependency; когда dependency появится, сервер запустится, но на запросе будет 500 TypeError — тихая ошибка. Поэтому его пишут всегда.'],
+]);
+ru(S26, {
+  kicker: 'Этап 7 · вопросы', title: 'Вопросы, которые задаст ученик',
+  segments: {
+    a: { key: '<b>6 вопросов</b>, которые вам зададут на уроке, и готовые ответы', text: 'План урока готов. Последняя подготовка: вопросы, которые вам задаст ученик. Примерно такие.' },
+    q1: { key: '1 · «Почему не Express?» → в большом проекте <b>нужен порядок</b>, внутри тот же Express', text: 'Первый: почему Nest, а не Express? Ответ: когда проект большой, нужен порядок, Nest делает порядок обязательным, а внутри тот же Express.' },
+    q2: { key: '2 · «Что такое decorator?» → <b>метка</b> над классом: говорит Nest, «что это»', text: 'Второй: что такое decorator? Метка над классом или методом, она говорит Nest, что это такое.' },
+    q3: { key: '3 · «Что такое providers?» → то, что модуль <b>создаёт</b>, в основном Service', text: 'Третий: что такое providers? То, что этот модуль создаёт, в основном Service.' },
+    q4: { key: '4 · «Зачем отдельный Service?» → чтобы <b>тестировать отдельно</b> и использовать повторно', text: 'Четвёртый: зачем мы вынесли Service отдельно? Чтобы тестировать отдельно и использовать повторно, а в Controller не остаётся логики.' },
+    q5: { key: '5 · «Nest быстрее?» → нет, внутри Express; Nest даёт <b>не скорость, а порядок</b>', text: 'Пятый: Nest быстрее? Нет, скорость одинаковая, потому что внутри Express. Nest даёт не скорость, а порядок.' },
+    q6: { key: '6 · «Без Injectable же работает?» → пока да; добавится dependency — <b>тихая ошибка, 500</b>', text: 'Шестой: я удалил Injectable, а всё работает. Это потому, что нет dependency; когда dependency появится, сервер запустится, но на запросе будет 500, тихая ошибка. Поэтому его пишут всегда.' },
+    z: { key: 'Вывод: если на какой-то вопрос не можете ответить — <b>вернитесь к тому экрану урока</b>', text: 'Вывод: пусть эти шесть ответов будут у вас наготове. Нажмите на каждую карточку и прочитайте ответ ещё раз. Если на какой-то вопрос сами ответить не можете, вернитесь к тому экрану урока.' },
+  },
+});
+ru(FINAL, [
+  { q: 'Какая библиотека на самом деле принимает запрос внутри Nest?', o: ['Собственный HTTP-сервер Nest', null, 'Напрямую модуль http из Node', 'Всегда Fastify'], e: 'Nest — слой над Express; его можно заменить на Fastify, но по умолчанию это Express.' },
+  { q: 'Какой path открывают вместе @Controller(\'cars\') и @Get(\':id\')?', e: 'Префикс Controller + путь метода.' },
+  { q: 'В методе POST статус не указан. Что вернёт Nest?', e: 'Для POST Nest сам ставит 201.' },
+  { q: '«Nest can\'t resolve dependencies of the X (?)» — что означает знак вопроса?', o: ['Неизвестный модуль', 'Место ненайденного аргумента', 'Синтаксическая ошибка', 'Нет route'], e: 'В скобках аргументы конструктора, ? — тот, что не найден.' },
+  { q: 'Сервер «successfully started», /cars 404, в терминале нет Mapped {/cars…}. Самая вероятная причина?', o: ['CarsModule нет в imports AppModule', 'Нет Injectable', 'Порт занят', 'Ошибка в Service'], e: 'Тихая ошибка: модуль не подключён, Nest не прочитал папку.' },
+  { q: 'Внутри Service throw new Error(\'x\'). Что получит клиент?', o: ['404 и «x»', null, null, 'Ничего, сервер упадёт'], e: 'Обычный Error → 500, сообщение скрыто.' },
+  { q: 'Новое сообщение: «Nest can\'t resolve dependencies of the UsersService (?, JwtService). Please make sure that the argument ConfigService at index [0] is available in the UsersModule module.» Что вы сделаете?', o: ['users.module.ts — добавить ConfigService в providers (или import ConfigModule)', 'users.service.ts — удалить JwtService из конструктора', 'app.module.ts — UsersService в controllers', 'Добавить @Injectable() в UsersService'], e: 'Класс: UsersService · dependency: ConfigService, index [0] · файл: users.module.ts (UsersModule). JwtService найден (второе место), проблема не в нём.' },
+  { q: 'orders.module.ts: controllers: [OrdersController], providers: [] — в конструкторе OrdersController запрашивается OrdersService. Что сделает сервер?', o: ['Запустится, /orders → 404', 'Упадёт: can\'t resolve dependencies of the OrdersController (?)', 'Запустится, /orders → 500', 'Упадёт: invalid controller detected'], e: 'providers пустой → Nest не может найти OrdersService → падает при запуске (как в «ломаем 1»).' },
+]);
+ru(S28_ITEMS, [
+  { t: 'Nest — обязательный порядок поверх Express' },
+  { t: 'Controller принимает запрос — логику в нём не пишут' },
+  { t: 'Service выполняет работу и ничего не знает о запросе' },
+  { t: 'Module — список, Nest видит только то, что в списке' },
+  { t: 'Dependency Injection: вы не создаёте, Nest передаёт через конструктор' },
+  { t: 'Ошибку Nest читают: какой класс · какой dependency · какой файл' },
+]);
+ru(HOMEWORK, [
+  { t: 'Модуль users' },
+  { t: 'Service: список пользователей + findAll, findOne, create; если не найден — NotFoundException' },
+  { t: 'Controller: GET /users · GET /users/:id · POST /users — в терминале 3 строки Mapped' },
+  { t: 'Один раз специально сломайте (очистите providers), прочитайте сообщение, исправьте' },
+  { t: 'Выложите на GitHub и вставьте ссылку на репозиторий в домашнее задание на платформе', c: ['git add . && git commit -m "модуль users"', null] },
+]);
+// S28: segmentlar render paytida yig'iladi (o'tgan/o'tmagan) — ruschasi id bo'yicha, s28Ru() qo'yadi
+const S28_RU = {
+  a_pass: { key: '<b>Отлично!</b> Вы хорошо усвоили урок — соберём сегодняшний урок одним взглядом', text: 'Отлично! Вы хорошо усвоили урок. Теперь соберём всё, что вы сегодня изучили, одним взглядом.' },
+  a_fail: { key: 'Вы дошли до конца урока — советую <b>пройти тест заново</b>', text: 'Вы дошли до конца урока. В итоговом тесте нужно было шесть баллов, поэтому перед завершением советую пройти тест заново. А сейчас соберём сегодняшний урок одним взглядом.' },
+  b1: { key: 'Nest — <b>обязательный порядок</b> поверх Express', text: 'Первое: Nest — это обязательный порядок поверх Express. Внутри работает тот же Express.' },
+  b2: { key: '<b>Controller</b> принимает запрос, вызывает Service, возвращает ответ — <b>логику не пишут</b>', text: 'Второе: Controller принимает запрос, вызывает Service и возвращает ответ. Расчётов в нём нет.' },
+  b3: { key: '<b>Service</b> выполняет работу и ничего не знает о запросе', text: 'Третье: Service выполняет работу и ничего не знает о запросе. Поэтому его легко тестировать отдельно и использовать повторно.' },
+  b4: { key: '<b>Module</b> — список: Nest видит только то, что в списке', text: 'Четвёртое: Module — это список. Nest видит только то, что записано в списке.' },
+  b5: { key: '<b>Dependency Injection</b>: пишете в providers, просите в конструкторе — inject делает Nest', text: 'Пятое: Dependency Injection. Вы записываете Service в providers и просите его в конструкторе, а создаёт его и делает inject Nest.' },
+  b6: { key: 'Ошибку Nest <b>читают</b>: какой класс · какой dependency · какой файл', text: 'И самое важное: ошибку Nest можно прочитать. В сообщении написано, какой класс, какого dependency не хватает и какой файл открыть, а ответ чаще всего в файле модуля.' },
+  hw: { key: '<b>Домашнее задание</b>: сами добавьте в cars-api модуль <code>users</code> и выложите на GitHub', text: 'Домашнее задание. Добавьте в свой проект cars api модуль users тем же способом, что на этом уроке: три команды CLI, в Service список пользователей и методы findAll, findOne, create, а если не найден — NotFoundException. В Controller три route. Потом один раз специально сломайте, например очистите providers, прочитайте сообщение и исправьте. Готовый проект выложите на GitHub и вставьте ссылку на репозиторий в домашнее задание на платформе.' },
+  c: { key: '<b>Возьмите памятку</b>: команды, ошибки, правила и домашнее задание — на одной странице', text: 'Ниже памятка на одну страницу: команды, четыре ошибки Nest, ошибки подключения к базе, правила, словарь урока ученика и домашнее задание. Скопируйте или скачайте её, пусть будет рядом, когда будете вести урок ученика.' },
+  z: { key: 'Спасибо! Нажмите <b>«Завершить урок»</b>', text: 'Спасибо. Нажмите кнопку «Завершить урок», и урок будет отмечен как пройденный.' },
+};
+const CHEATSHEET_RU = `# Nest, урок 1 — памятка ментора
+## Команды
+npm i -g @nestjs/cli · nest new cars-api · npm run start:dev
+nest g module cars · nest g controller cars --no-spec · nest g service cars --no-spec
+## Три части
+Controller — принимает запрос, вызывает Service, возвращает ответ (логику не пишут)
+Service — работа: расчёты, правила, база; нет req/res; @Injectable()
+Module — список: imports · controllers · providers; нет в списке = нет для Nest
+## Dependency Injection
+constructor(private readonly carsService: CarsService) — вы не создаёте, Nest создаёт по providers (1 instance)
+## 4 ошибки
+1 «can't resolve dependencies of the X (?) … argument Y at index [0] … in the Z module» → Y в providers модуля Z
+2 сервер запустился, /cars 404, в терминале нет Mapped {/cars…} → AppModule imports: [CarsModule]
+3 «invalid controller … does not have the @Controller() decorator» → верните decorator
+4 без @Injectable работает (нет dependency) → если добавить dependency: сервер запускается, на запросе 500 TypeError (тихая ошибка) → всё равно пишут
+## База не подключилась (проект ученика, TypeORM — «Unable to connect to the database. Retrying (1)…», 10 попыток, потом падает)
+connect ECONNREFUSED 127.0.0.1:5432 → запустите PostgreSQL (Windows: Services → postgresql; Mac: brew services start postgresql; Linux: sudo systemctl start postgresql)
+SASL … client password must be a string → нет .env: cp .env.example .env, замените пароль на свой
+password authentication failed for user → в .env.example пароль «password» — в DEV_DB_URL свой пароль
+database "…" does not exist → createdb -U postgres nestarxitechture (имя — в конце DEV_DB_URL)
+## Помощь
+Если ничего не подошло: скриншот + текст ошибки → Telegram-группа курса для менторов
+## Вид ошибки
+семейство HttpException (NotFound 404, BadRequest 400, Unauthorized 401, Forbidden 403) → статус + сообщение · обычный Error → 500, сообщение скрыто
+## Ответы
+GET /cars 200 · GET /cars/1 200 · GET /cars/99 404 · POST /cars 201 (сам) · /cars/abc → 404 «NaN» (проверки нет; @Param('id', ParseIntPipe) или DTO + ValidationPipe → 400)
+## Язык урока ученика
+официант=Controller · повар=Service · кладовщик=Repository · чертёж стеллажа=Entity · анкета=DTO · контролёр=Guard · штатное расписание=Module
+## Три правила (на уроке)
+пока сервер не работает у всех, дальше не идите · «повар, то есть Service» · если ошибка — читайте сообщение в терминале вместе, ответ не говорите
+## Домашнее задание
+модуль users в cars-api: nest g module/controller/service users · Service: список + findAll/findOne/create, если не найден — NotFoundException · Controller: GET /users · GET /users/:id · POST /users · один раз специально сломайте (пустой providers) и исправьте · push на GitHub → ссылку на репозиторий в домашнее задание на платформе`;

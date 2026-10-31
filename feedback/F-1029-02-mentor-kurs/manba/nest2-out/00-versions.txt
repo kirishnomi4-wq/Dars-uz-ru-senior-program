@@ -1,0 +1,7 @@
+node v24.18.0
+npm 11.16.0
+nest CLI (global) 11.0.10
+psql (PostgreSQL) 18.4 (Debian 18.4-1+b1)
+Ver Cluster Port Status Owner    Data directory              Log file
+17  main    5432 online postgres /var/lib/postgresql/17/main /var/log/postgresql/postgresql-17-main.log
+Sat Oct 31 11:49:41 AM +05 2026

@@ -1,0 +1,23 @@
+--- car.controller.ts findOne (ParseUUIDPipe bilan):
+1:import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Patch, Post } from '@nestjs/common';
+21:  findOne(@Param('id', ParseUUIDPipe) id: string) {
+--- dist ichida:
+dist/api/car/car.controller.js
+
+### GET /api/v1/car/1
+{"statusCode":400,"error":{"message":"Validation failed (uuid is expected)"}}
+-- status: 400
+
+### GET /api/v1/car/abc
+{"statusCode":400,"error":{"message":"Validation failed (uuid is expected)"}}
+-- status: 400
+
+### GET /api/v1/car/1746997c-5bde-46eb-8917-5b974105fac8
+{"statusCode":200,"message":"success","data":{"id":"1746997c-5bde-46eb-8917-5b974105fac8","created_at":"2026-10-30T21:51:37.160Z","updated_at":"2026-10-30T21:51:37.160Z","brand":"Kia","model":"K5","price":320,"is_available":false}}
+-- status: 200
+
+--- server log:
+BadRequestException: Validation failed (uuid is expected)
+    message: 'Validation failed (uuid is expected)',
+  message: 'Validation failed (uuid is expected)',
+
