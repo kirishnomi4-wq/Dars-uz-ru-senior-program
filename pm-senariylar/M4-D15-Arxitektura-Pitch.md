@@ -1,5 +1,7 @@
 # M4-D15 — «Bu qanday ishlaydi?» deb so'rashsa, nima deysiz? (SENARIY, PM_Prompt_v8 · 2-TUR)
 
+> 🔴 **F-1102-01 (02.11.2026) — dars 16 → 11 ekranga qisqartirildi** (m3-14 mentor fidbekining sinf-supurishi: Demo Day oldidan chiqishga vaqt). s3, s6–s7 (Airbnb), s10 (VS Code), s12, s14 chiqdi; s16 «Sahna» (navbat bilan, 2 daqiqa taymer) qo'shildi. «sahna-taymeri YO'Q» qarori bekor. Manba-haqiqat: `feedback/F-1102-01-predemo/16-PmLesson14-v3.md`.
+
 > Holat: YOZILDI (senariy-bosqichi) → pm-metodist korrekturasi → **[GATE S]** kutmoqda.
 > Fayl (kelajakda): `src/4-Modull/PmLesson14.jsx` (hozirgi `-v16` avlod dars BUTUNLAY almashadi;
 > yangi `lessonId: pm-m4d15-v1`). Fayl nomi va `App.jsx` ulanishi TEGILMAYDI.
