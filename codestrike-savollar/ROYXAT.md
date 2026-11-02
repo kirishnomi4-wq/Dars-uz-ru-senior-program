@@ -1,6 +1,6 @@
 # CodeStrike savollari — darsma-dars (Learn uchun)
 
-AVTO: `node scripts/codestrike-savollar.mjs --yoz` (2026-10-28). Qo'lda tahrirlanmaydi.
+AVTO: `node scripts/codestrike-savollar.mjs --yoz` (2026-11-02). Qo'lda tahrirlanmaydi.
 Savollar dars faylidagi `QUIZ_BANK` dan olingan — Learn'dagi savollar CodeStrike bilan aynan bir xil.
 Bir xilligini tekshirish: `node scripts/codestrike-savollar.mjs --tekshir`.
 
@@ -48,7 +48,7 @@ CRM darslari: 172 · CodeStrike bor: 172 · yo'q: 0 · xato: 0
 | 4 | 12 | Praktika: React Router — ko'p sahifali ilova | m3-11 | ✓ | `4-Modul/12-ReactRouterPracticeLesson.json` | 0d38b4d4 |
 | 4 | 13 | Praktika: Loyiha kuni — AvtoIjara | m3-12 | ✓ | `4-Modul/13-ReactProjectDayLesson.json` | d796cd10 |
 | 4 | 14 | Praktika: Istalgan saytni qurish — bo'laklash + aniq prompt | m3-13 | ✓ | `4-Modul/14-ReactBuildSiteLesson.json` | 33628b86 |
-| 4 | 15 | Ishlayotgan saytingizni qanday ko'rsatasiz? | m3-14 | ✓ | `4-Modul/15-PmLesson10.json` | 7f9bea71 |
+| 4 | 15 | Ishlayotgan saytingizni qanday ko'rsatasiz? | m3-14 | ✓ | `4-Modul/15-PmLesson10.json` | b215ac44 |
 | 5 | 1 | Ma'lumot va bog'lanishlar: JSON, jadval, sxema | m4-01 | ✓ | `5-Modul/01-DataIntroLesson.json` | 52dddcb8 |
 | 5 | 2 | Ilova nimani eslab qolsin? | m4-02 | ✓ | `5-Modul/02-PmLesson11.json` | f675b008 |
 | 5 | 3 | SQL vs NoSQL — nega PostgreSQL | m4-03 | ✓ | `5-Modul/03-DbSqlNosqlLesson.json` | 0e548129 |
@@ -63,7 +63,7 @@ CRM darslari: 172 · CodeStrike bor: 172 · yo'q: 0 · xato: 0
 | 5 | 12 | Ilova nimani yozib qoladi? | m4-12 | ✓ | `5-Modul/12-PmLesson13.json` | 8134ce52 |
 | 5 | 13 | Praktika: Loyiha kuni — AvtoStoyanka | m4-13 | ✓ | `5-Modul/13-FullstackProjectDayLesson.json` | f90987ac |
 | 5 | 14 | Praktika: Feedback bilan yaxshilash — AvtoStoyanka | m4-14 | ✓ | `5-Modul/14-FullstackFeedbackLesson.json` | 0d5389a5 |
-| 5 | 15 | «Qanday ishlaydi?» deb so'rashsa | m4-15 | ✓ | `5-Modul/15-PmLesson14.json` | 5327d0eb |
+| 5 | 15 | «Qanday ishlaydi?» deb so'rashsa | m4-15 | ✓ | `5-Modul/15-PmLesson14.json` | daa53d39 |
 | 6 | 1 | Nest arxitektura — tirik ko'rish | m4a-01 | ✓ | `6-Modul/01-NestArchAliveLesson.json` | ac8ef94e |
 | 6 | 2 | Hamma birdan kirsa, sayt chidaydimi? | m4a-02 | ✓ | `6-Modul/02-PmLesson15.json` | 1b404730 |
 | 6 | 3 | Birinchi resursni qo'lda qo'shish — mashinalar | m4a-03 | ✓ | `6-Modul/03-NestArchResourceLesson.json` | be0f9416 |

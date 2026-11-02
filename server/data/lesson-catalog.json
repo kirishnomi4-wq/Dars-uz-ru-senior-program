@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-27T08:41:02.053Z",
+  "generated_at": "2026-11-02T13:22:19.000Z",
   "count": 183,
   "lessons": [
     {
@@ -4172,12 +4172,6 @@
           "name": "Spot On!",
           "title_uz": "Ko'rsatiladigan harakatni topdingiz",
           "title_ru": "Вы нашли действие, которое показывают"
-        },
-        {
-          "id": "liveproof",
-          "name": "Live Proof!",
-          "title_uz": "Natijani ekranda ko'rinadigan qildingiz",
-          "title_ru": "Вы сделали результат видимым на экране"
         }
       ]
     },
@@ -4469,12 +4463,6 @@
           "name": "Good Reason!",
           "title_uz": "Uchala qarorga mos sababni topdingiz",
           "title_ru": "Вы нашли подходящую причину для всех трёх решений"
-        },
-        {
-          "id": "onscreen",
-          "name": "On Screen!",
-          "title_uz": "Ko'rinmas qavatni ekranda ko'rsatdingiz",
-          "title_ru": "Вы показали невидимый этаж на экране"
         }
       ]
     },

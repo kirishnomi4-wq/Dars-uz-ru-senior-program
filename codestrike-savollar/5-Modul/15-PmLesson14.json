@@ -8,7 +8,7 @@
     "ru": "Если спросят: «Как это работает?»"
   },
   "src": "src/4-Modull/PmLesson14.jsx",
-  "barmoq_izi": "5327d0eb37b5b92bb01baf931209b8af",
+  "barmoq_izi": "daa53d39d587cbf38b19f36380402b45",
   "savollar": [
     {
       "n": 1,
@@ -190,21 +190,21 @@
       "n": 9,
       "togri": 0,
       "uz": {
-        "savol": "Airbnb besh qadamida qaysi biri yo'q edi?",
+        "savol": "«Nega PostgreSQL?» deb so'rashdi. Qaysi javob odamga yetib boradi?",
         "variantlar": [
-          "Sayt qanday qurilgani",
-          "Odamlarning qiyinchiligi",
-          "Qancha odam kutayotgani",
-          "Ishni kim qilayotgani"
+          "«Telefon o'chsa ham joylar saqlanadi»",
+          "«Chunki u relyatsion ma'lumotlar bazasi»",
+          "«Chunki SQL so'rovlari juda tez ishlaydi»",
+          "«Chunki hamma dasturchilar shuni ishlatadi»"
         ]
       },
       "ru": {
-        "savol": "Чего не было в пяти шагах Airbnb?",
+        "savol": "«Почему PostgreSQL?» — спросили вас. Какой ответ дойдёт до человека?",
         "variantlar": [
-          "Как устроен сайт",
-          "Трудности людей",
-          "Сколько людей ждут решения",
-          "Кто делает работу"
+          "«Места сохранятся, даже если телефон выключат»",
+          "«Потому что это реляционная база данных»",
+          "«Потому что SQL-запросы работают очень быстро»",
+          "«Потому что её используют все программисты»"
         ]
       }
     },
@@ -212,21 +212,21 @@
       "n": 10,
       "togri": 2,
       "uz": {
-        "savol": "Airbnb ishini avval nima bilan tushuntirgan?",
+        "savol": "Qaysi gap texnik so'zsiz aytilgan?",
         "variantlar": [
-          "Tayyor sayt bilan",
-          "Uzun video bilan",
-          "O'nga yaqin varaq bilan",
-          "Uzun maktublar bilan"
+          "«Ma'lumot PostgreSQL'da turadi»",
+          "«Server POST so'rovni qabul qiladi»",
+          "«Bitta joy ikki odamga tushmaydi»",
+          "«Sahifa React'da yozilgan»"
         ]
       },
       "ru": {
-        "savol": "Чем Airbnb сначала объяснял свою работу?",
+        "savol": "Какая фраза сказана без технических слов?",
         "variantlar": [
-          "Готовым сайтом",
-          "Длинным видео",
-          "Примерно десятью листами",
-          "Длинными письмами"
+          "«Данные хранятся в PostgreSQL»",
+          "«Сервер принимает POST-запрос»",
+          "«Одно место не достанется двоим»",
+          "«Страница написана на React»"
         ]
       }
     },
@@ -256,21 +256,21 @@
       "n": 12,
       "togri": 3,
       "uz": {
-        "savol": "Ko'rinmas qavat ishlayotganini odam qanday ko'radi?",
+        "savol": "Tinglovchi «tushunmadim» dedi. Nima qilasiz?",
         "variantlar": [
-          "Server javobini o'qib",
-          "Baza jadvalini ochib",
-          "Kodni ochib ko'rib",
-          "Holat-qatorini o'qib"
+          "Texnik so'zni yana takrorlaysiz",
+          "Kodni ekranda ochib berasiz",
+          "Xuddi shu gapni tezroq aytasiz",
+          "Oddiy so'z bilan qayta aytasiz"
         ]
       },
       "ru": {
-        "savol": "Как человек видит, что невидимый этаж работает?",
+        "savol": "Слушатель сказал: «не понял». Что вы сделаете?",
         "variantlar": [
-          "Читая ответ сервера",
-          "Открыв таблицу базы",
-          "Открыв код",
-          "Читая строку состояния"
+          "Ещё раз повторите техническое слово",
+          "Откроете код на экране",
+          "Скажете ту же фразу быстрее",
+          "Скажете заново простыми словами"
         ]
       }
     }

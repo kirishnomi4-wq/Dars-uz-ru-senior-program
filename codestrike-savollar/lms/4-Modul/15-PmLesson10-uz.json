@@ -227,23 +227,23 @@
   {
     "type": "selected-file",
     "lang": "uz",
-    "question": "Airbnb o'z ishini nima bilan tushuntirgan?",
+    "question": "Tugmani bosdingiz, ekranda hech narsa o'zgarmadi. Odam nimani bilmaydi?",
     "order_number": 10,
     "options": [
       {
-        "value": "Uzun yozma hisobot bilan",
+        "value": "Saytning nomini",
         "hint": "Noto'g'ri"
       },
       {
-        "value": "O'ntacha oddiy varaq bilan",
+        "value": "Ish bajarilganini",
         "hint": "To'g'ri!"
       },
       {
-        "value": "Ko'chadagi reklama bilan",
+        "value": "Tugmaning rangini",
         "hint": "Noto'g'ri"
       },
       {
-        "value": "Bir soatlik video bilan",
+        "value": "Menyu qayerdaligini",
         "hint": "Noto'g'ri"
       }
     ],
@@ -252,23 +252,23 @@
   {
     "type": "selected-file",
     "lang": "uz",
-    "question": "Airbnb taqdimoti nima bilan tugagan?",
+    "question": "Qaysi gap ko'rsatuvga yangi narsa qo'shadi?",
     "order_number": 11,
     "options": [
       {
-        "value": "Jamoa varag'i bilan",
+        "value": "«Ilgari guruhda so'rab yurardik»",
         "hint": "To'g'ri!"
       },
       {
-        "value": "Sayt ekranlari bilan",
+        "value": "«Bu — bosh sahifa, tepada menyu»",
         "hint": "Noto'g'ri"
       },
       {
-        "value": "Narx varag'i bilan",
+        "value": "«Bu yerda kun bo'yicha qidiruv bor»",
         "hint": "Noto'g'ri"
       },
       {
-        "value": "Xarita varag'i bilan",
+        "value": "«Bu yerda tugmalar va menyu bor»",
         "hint": "Noto'g'ri"
       }
     ],
@@ -277,23 +277,23 @@
   {
     "type": "selected-file",
     "lang": "uz",
-    "question": "Odam natijani ko'rishi uchun kodda nima kerak?",
+    "question": "Tinglovchi «qayerni bosdingiz?» deb so'radi. Bu nimani bildiradi?",
     "order_number": 12,
     "options": [
       {
-        "value": "Faqat dasturchiga yozuv",
+        "value": "Ko'rsatuv juda uzun bo'ldi",
         "hint": "Noto'g'ri"
       },
       {
-        "value": "Kod ichidagi izoh qatori",
+        "value": "Sayt umuman ishlamadi",
         "hint": "Noto'g'ri"
       },
       {
-        "value": "Boshqa sahifaga tugma",
+        "value": "Gap ekranni takrorladi",
         "hint": "Noto'g'ri"
       },
       {
-        "value": "Ekranda tasdiq qatori",
+        "value": "Harakat aniq aytilmadi",
         "hint": "To'g'ri!"
       }
     ],

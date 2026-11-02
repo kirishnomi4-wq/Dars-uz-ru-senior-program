@@ -8,7 +8,7 @@
     "ru": "Как показать свой работающий сайт?"
   },
   "src": "src/3-Modull/PmLesson10.jsx",
-  "barmoq_izi": "7f9bea7179da98f78213afa517d850f0",
+  "barmoq_izi": "b215ac44e4c6eb1357b009d8bfa67eec",
   "savollar": [
     {
       "n": 1,
@@ -212,21 +212,21 @@
       "n": 10,
       "togri": 1,
       "uz": {
-        "savol": "Airbnb o'z ishini nima bilan tushuntirgan?",
+        "savol": "Tugmani bosdingiz, ekranda hech narsa o'zgarmadi. Odam nimani bilmaydi?",
         "variantlar": [
-          "Uzun yozma hisobot bilan",
-          "O'ntacha oddiy varaq bilan",
-          "Ko'chadagi reklama bilan",
-          "Bir soatlik video bilan"
+          "Saytning nomini",
+          "Ish bajarilganini",
+          "Tugmaning rangini",
+          "Menyu qayerdaligini"
         ]
       },
       "ru": {
-        "savol": "Чем Airbnb объяснял свою идею?",
+        "savol": "Вы нажали кнопку, а на экране ничего не изменилось. Чего не узнает человек?",
         "variantlar": [
-          "Длинным письменным отчётом",
-          "Примерно десятью простыми слайдами",
-          "Уличной рекламой",
-          "Часовым видео"
+          "Название сайта",
+          "Что дело сделано",
+          "Цвет кнопки",
+          "Где находится меню"
         ]
       }
     },
@@ -234,21 +234,21 @@
       "n": 11,
       "togri": 0,
       "uz": {
-        "savol": "Airbnb taqdimoti nima bilan tugagan?",
+        "savol": "Qaysi gap ko'rsatuvga yangi narsa qo'shadi?",
         "variantlar": [
-          "Jamoa varag'i bilan",
-          "Sayt ekranlari bilan",
-          "Narx varag'i bilan",
-          "Xarita varag'i bilan"
+          "«Ilgari guruhda so'rab yurardik»",
+          "«Bu — bosh sahifa, tepada menyu»",
+          "«Bu yerda kun bo'yicha qidiruv bor»",
+          "«Bu yerda tugmalar va menyu bor»"
         ]
       },
       "ru": {
-        "savol": "Чем закончилась презентация Airbnb?",
+        "savol": "Какая фраза добавляет к показу новое?",
         "variantlar": [
-          "Слайдом о команде",
-          "Экранами сайта",
-          "Слайдом с ценой",
-          "Слайдом с картой"
+          "«Раньше спрашивали в группе»",
+          "«Это — главная, сверху меню»",
+          "«Здесь есть поиск по дням»",
+          "«Тут есть кнопки и меню»"
         ]
       }
     },
@@ -256,21 +256,21 @@
       "n": 12,
       "togri": 3,
       "uz": {
-        "savol": "Odam natijani ko'rishi uchun kodda nima kerak?",
+        "savol": "Tinglovchi «qayerni bosdingiz?» deb so'radi. Bu nimani bildiradi?",
         "variantlar": [
-          "Faqat dasturchiga yozuv",
-          "Kod ichidagi izoh qatori",
-          "Boshqa sahifaga tugma",
-          "Ekranda tasdiq qatori"
+          "Ko'rsatuv juda uzun bo'ldi",
+          "Sayt umuman ishlamadi",
+          "Gap ekranni takrorladi",
+          "Harakat aniq aytilmadi"
         ]
       },
       "ru": {
-        "savol": "Что нужно в коде, чтобы человек увидел результат?",
+        "savol": "Слушатель спросил: «а куда вы нажали?». О чём это говорит?",
         "variantlar": [
-          "Запись только для программиста",
-          "Строка-комментарий в коде",
-          "Кнопка на другую страницу",
-          "Строка-подтверждение на экране"
+          "Показ получился слишком длинным",
+          "Сайт вообще не работал",
+          "Фраза повторила экран",
+          "Действие названо неточно"
         ]
       }
     }

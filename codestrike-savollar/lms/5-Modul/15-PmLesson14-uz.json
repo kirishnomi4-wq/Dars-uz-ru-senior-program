@@ -202,23 +202,23 @@
   {
     "type": "selected-file",
     "lang": "uz",
-    "question": "Airbnb besh qadamida qaysi biri yo'q edi?",
+    "question": "«Nega PostgreSQL?» deb so'rashdi. Qaysi javob odamga yetib boradi?",
     "order_number": 9,
     "options": [
       {
-        "value": "Sayt qanday qurilgani",
+        "value": "«Telefon o'chsa ham joylar saqlanadi»",
         "hint": "To'g'ri!"
       },
       {
-        "value": "Odamlarning qiyinchiligi",
+        "value": "«Chunki u relyatsion ma'lumotlar bazasi»",
         "hint": "Noto'g'ri"
       },
       {
-        "value": "Qancha odam kutayotgani",
+        "value": "«Chunki SQL so'rovlari juda tez ishlaydi»",
         "hint": "Noto'g'ri"
       },
       {
-        "value": "Ishni kim qilayotgani",
+        "value": "«Chunki hamma dasturchilar shuni ishlatadi»",
         "hint": "Noto'g'ri"
       }
     ],
@@ -227,23 +227,23 @@
   {
     "type": "selected-file",
     "lang": "uz",
-    "question": "Airbnb ishini avval nima bilan tushuntirgan?",
+    "question": "Qaysi gap texnik so'zsiz aytilgan?",
     "order_number": 10,
     "options": [
       {
-        "value": "Tayyor sayt bilan",
+        "value": "«Ma'lumot PostgreSQL'da turadi»",
         "hint": "Noto'g'ri"
       },
       {
-        "value": "Uzun video bilan",
+        "value": "«Server POST so'rovni qabul qiladi»",
         "hint": "Noto'g'ri"
       },
       {
-        "value": "O'nga yaqin varaq bilan",
+        "value": "«Bitta joy ikki odamga tushmaydi»",
         "hint": "To'g'ri!"
       },
       {
-        "value": "Uzun maktublar bilan",
+        "value": "«Sahifa React'da yozilgan»",
         "hint": "Noto'g'ri"
       }
     ],
@@ -277,23 +277,23 @@
   {
     "type": "selected-file",
     "lang": "uz",
-    "question": "Ko'rinmas qavat ishlayotganini odam qanday ko'radi?",
+    "question": "Tinglovchi «tushunmadim» dedi. Nima qilasiz?",
     "order_number": 12,
     "options": [
       {
-        "value": "Server javobini o'qib",
+        "value": "Texnik so'zni yana takrorlaysiz",
         "hint": "Noto'g'ri"
       },
       {
-        "value": "Baza jadvalini ochib",
+        "value": "Kodni ekranda ochib berasiz",
         "hint": "Noto'g'ri"
       },
       {
-        "value": "Kodni ochib ko'rib",
+        "value": "Xuddi shu gapni tezroq aytasiz",
         "hint": "Noto'g'ri"
       },
       {
-        "value": "Holat-qatorini o'qib",
+        "value": "Oddiy so'z bilan qayta aytasiz",
         "hint": "To'g'ri!"
       }
     ],
