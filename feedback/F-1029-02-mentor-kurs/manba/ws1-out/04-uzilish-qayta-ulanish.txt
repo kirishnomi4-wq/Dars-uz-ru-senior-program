@@ -1,0 +1,13 @@
+$ node uzilish.js   # 3 s da Backend to'xtatildi, ~4 s dan keyin qayta yoqildi
+ 0.0s  [Ali] ulanmoqda  (io() chaqirildi)
+ 0.0s  [Ali] ulangan  (connect)
+ 0.5s  [Ali] transport: websocket
+ 2.8s  --- Backend to'xtatildi ---
+ 2.8s  [Ali] ulanmoqda  (disconnect: transport close · active=true)
+ 3.7s  [Ali] ulanmoqda  (connect_error: xhr poll error · active=true)
+ 5.7s  [Ali] ulanmoqda  (connect_error: xhr poll error · active=true)
+ 7.7s  [Ali] ulanmoqda  (connect_error: xhr poll error · active=true)
+ 8.9s  --- Backend qayta yoqildi ---
+ 9.7s  [Ali] ulangan  (connect)
+10.2s  [Ali] transport: websocket
+14.0s  [Ali] ulanmagan  (disconnect: io client disconnect · active=false)

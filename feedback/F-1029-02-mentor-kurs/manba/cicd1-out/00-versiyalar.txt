@@ -1,0 +1,19 @@
+v24.18.0
+11.16.0
+45071ac 2026-06-15 Base arxitechture DDD
+.
+..
+.env.example
+eslint.config.mjs
+.git
+.gitignore
+nest-cli.json
+package.json
+package-lock.json
+.prettierrc
+README.md
+src
+test
+tsconfig.build.json
+tsconfig.json
+Sun Nov  1 01:22:31 AM +05 2026

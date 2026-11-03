@@ -1,0 +1,7 @@
+== JestEdgeMentorLesson (157 KB) — 2026-11-01 02:34
+JestEdgeMentorLesson.jsx: 1/1 katta literal JSON'ga o'tdi (29 KB → 26 KB): MDT 29 KB
+c.jsx: 155 KB → 124 KB (20% kam) | CSS shablon 2/2 ta, 20 KB → 20 KB [xavfsiz] | JSX-min ha | yengil rejim | moslik: JS→chrome70+polyfill, CSS zaxira dvh 0, color-mix 0, inset 0, transform 0; zaxirasiz: :has 0, @container 0, aspect-ratio 0, text-wrap 0
+JestEdgeMentorLesson.oz.jsx: ichki JS 132 KB (tree-shake) → gzip 38 KB → base64 51 KB → fayl 57 KB | modullar: react, @lesson/runtime
+moslik auditi (ASL fayl qaysi brauzerni talab qiladi; .oz.jsx da JS Chrome 70+ ga pasaytirilgan):
+| mentor-kurs/JestEdgeMentorLesson | Chrome 92 / Safari 15.4 | .at() (Chr 92, Saf 15.4) ×4; flat/flatMap (Chr 69, Saf 12) ×1; {...obj} (Chr 60, Saf 11.1) ×17; padStart (Chr 57, Saf 10) ×2 | Chrome 93 / Safari 15.4 | accent-color (Chr 93, Saf 15.4) ×1; text-decoration-thickness (Chr 87, Saf 12.1) ×2; gap (flex bo'lsa) (Chr 84, Saf 14.1) ×71; clamp() (Chr 79, Saf 13.1) ×7 |
+NATIJA: feedback/F-1029-02-mentor-kurs/tayyor/JestEdgeMentorLesson.oz.jsx (56 KB) — LMS'ga shuni yuklang. Muqobil (o'qiladigan): feedback/F-1029-02-mentor-kurs/tayyor/JestEdgeMentorLesson.jsx (124 KB)

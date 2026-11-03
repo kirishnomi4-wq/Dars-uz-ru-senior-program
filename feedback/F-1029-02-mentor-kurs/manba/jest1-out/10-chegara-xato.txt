@@ -1,0 +1,31 @@
+$ npm test
+
+> IntroNestArxitechture@0.0.1 test
+> jest
+
+PASS src/order.spec.ts
+FAIL src/delivery.spec.ts
+  ● deliveryFee › aynan 100 000 — bepul
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 15000
+
+       6 |   });
+       7 |   it('aynan 100 000 — bepul', () => {
+    >  8 |     expect(deliveryFee(100000)).toBe(0);
+         |                                 ^
+       9 |   });
+      10 |   it('99 000 — 15 000', () => {
+      11 |     expect(deliveryFee(99000)).toBe(15000);
+
+      at Object.<anonymous> (delivery.spec.ts:8:33)
+
+Test Suites: 1 failed, 1 passed, 2 total
+Tests:       1 failed, 3 passed, 4 total
+Snapshots:   0 total
+Time:        0.436 s, estimated 1 s
+Ran all test suites.
+[chiqish kodi: 1]
+

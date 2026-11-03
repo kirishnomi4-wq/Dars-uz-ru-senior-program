@@ -1,0 +1,27 @@
+# 01.11.2026 avtopilot, qo'lda (script -qc psql), psql 18.4 → tizim PG17 :5432 (postgres bazasi). Collation ogohlantirishi va terminal kodlari olib tashlandi.
+# Tranzaksiya holati promptda: =*# ochiq · -*# davom · =!# xato bo'ldi; qavs ichida davom qatori (#
+
+postgres=# BEGIN;
+BEGIN
+postgres=*# SELECT 1
+postgres-*# ;
+ ?column? 
+----------
+        1
+(1 row)
+postgres=*# SELECT 1/0;
+ERROR:  division by zero
+postgres=!# COMMIT;
+ROLLBACK
+postgres=# \q
+
+postgres=# BEGIN;
+BEGIN
+postgres=*# CREATE TABLE pg1_prompt_sinov (
+postgres(*# id SERIAL PRIMARY KEY,
+postgres(*# nomi TEXT
+postgres(*# );
+CREATE TABLE
+postgres=*# ROLLBACK;
+ROLLBACK
+postgres=# \q

@@ -859,6 +859,49 @@
       "severity": "warn",
       "suggest": "dasturlash/internet ma'nosida — «link» (linkni, linklar, linkka, linki); kod id'si bo'lsa (holat: 'havola') — e'tibor bermang",
       "law": "MATN_ETALONI lug'at · KORPUS §LINK-MENU · F-1019-10"
+    },
+    {
+      "id": "mentor-jim",
+      "pattern": "(?<![A-Za-z'ʻ’«])[Jj]im(gina|roq)?\\b",
+      "flags": "",
+      "severity": "error",
+      "except": "jim o'tmasin",
+      "onlyFiles": [
+        "src/mentor-kurs/"
+      ],
+      "suggest": "mentor darsida «jim» ishlatilmaydi (istisno: o'quvchi darsi atamasi «jim buzilish» qo'shtirnoqda, yonida mentor so'zi — 2-savol A, 02.11): fe'l bilan — «xato bermay» (xato bermay saqladi), ot bilan — «yashirin» (yashirin xato, yashirin buzilish), bot — «javob bermaydi»",
+      "law": "MENTOR_DARS_ETALON M32 · MATN_KORPUS §MENTOR-JIM · F-1102-15 (02.11)"
+    },
+    {
+      "id": "mentor-jim-ru",
+      "pattern": "(?<![А-Яа-яЁё])(?:[Тт]их(?:ая|ую|ой|ие|их|о)|[Мм]олча)(?![А-Яа-яЁё])",
+      "flags": "",
+      "severity": "error",
+      "onlyFiles": ["src/mentor-kurs/"],
+      "suggest": "ru-jufti «jim» kabi: «тихая ошибка» → «скрытая ошибка» (uz «yashirin»), «тихо удаляется» → «удаляется без ошибки» (uz «xato bermay»), «молча» → «без ошибки»",
+      "law": "MENTOR_DARS_ETALON M32 · F-1102-15 ru-supurish (02.11)"
+    },
+    {
+      "id": "mentor-koprik",
+      "pattern": "[Kk]o['ʻ’]prik",
+      "flags": "",
+      "severity": "error",
+      "onlyFiles": [
+        "src/mentor-kurs/"
+      ],
+      "suggest": "«ko'prik» tushunarsiz: bosqich nomi — «O'quvchi darsini o'tish»; gapda nima bog'lanishini to'g'ridan-to'g'ri ayting",
+      "law": "MENTOR_DARS_ETALON M32 · F-1102-11 (02.11)"
+    },
+    {
+      "id": "mentor-bu-kursda",
+      "pattern": "\\b[Bb]u kursda\\b",
+      "flags": "",
+      "severity": "error",
+      "onlyFiles": [
+        "src/mentor-kurs/"
+      ],
+      "suggest": "qaysi kurs ekani aniq aytiladi: «AI Startup kursidagi o'quvchilar…», «AI Startup kursida emas»",
+      "law": "MENTOR_DARS_ETALON M32 · F-1102-10 (02.11)"
     }
   ]
 }

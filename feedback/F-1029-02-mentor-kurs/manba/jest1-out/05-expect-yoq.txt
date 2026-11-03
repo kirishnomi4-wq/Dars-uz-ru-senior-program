@@ -1,0 +1,21 @@
+$ npm test
+
+> IntroNestArxitechture@0.0.1 test
+> jest
+
+  console.log
+    20000
+
+      at Object.<anonymous> (order.spec.ts:6:13)
+
+PASS src/order.spec.ts
+  orderTotal
+    ✓ 2 kitob narxini hisoblaydi (15 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        0.405 s, estimated 1 s
+Ran all test suites.
+[chiqish kodi: 0]
+

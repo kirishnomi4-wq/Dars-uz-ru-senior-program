@@ -1,0 +1,20 @@
+ALTER TABLE products ADD COLUMN extra JSONB;
+ALTER TABLE
+INSERT INTO products (nomi, stock, extra) VALUES
+  ('Futbolka', 12, '{"rang": "qora", "olcham": "M"}'),
+  ('Quloqchin', 5, '{"rang": "oq", "bluetooth": true}');
+INSERT 0 2
+SELECT nomi, extra FROM products;
+   nomi    |               extra               
+-----------+-----------------------------------
+ Telefon   | 
+ Futbolka  | {"rang": "qora", "olcham": "M"}
+ Quloqchin | {"rang": "oq", "bluetooth": true}
+(3 rows)
+
+SELECT nomi, extra->>'rang' AS rang FROM products WHERE extra->>'rang' = 'qora';
+   nomi   | rang 
+----------+------
+ Futbolka | qora
+(1 row)
+

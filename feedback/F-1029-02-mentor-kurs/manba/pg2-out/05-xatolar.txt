@@ -1,0 +1,36 @@
+shop=# SELECT * FROM product WHERE price < 100000;
+ERROR:  relation "product" does not exist
+LINE 1: SELECT * FROM product WHERE price < 100000;
+                      ^
+
+shop=# SELECT * FROM products WHERE narx < 100000;
+ERROR:  column "narx" does not exist
+LINE 1: SELECT * FROM products WHERE narx < 100000;
+                                     ^
+HINT:  Perhaps you meant to reference the column "products.name".
+
+shop=# INSERT INTO products (name, price, stock) VALUES ('Planshet', 'arzon', 3);
+ERROR:  invalid input syntax for type integer: "arzon"
+LINE 1: ...products (name, price, stock) VALUES ('Planshet', 'arzon', 3...
+                                                             ^
+
+shop=# INSERT INTO products (name, price, stock) VALUES ('O'yinchoq', 30000, 4);
+ERROR:  syntax error at or near "yinchoq"
+LINE 1: ...ERT INTO products (name, price, stock) VALUES ('O'yinchoq', ...
+                                                             ^
+
+shop=# INSERT INTO products (name, price, stock) VALUES ('Planshet', 300000);
+ERROR:  INSERT has more target columns than expressions
+LINE 1: INSERT INTO products (name, price, stock) VALUES ('Planshet'...
+                                           ^
+
+shop=# INSERT INTO products (price, stock) VALUES (30000, 4);
+INSERT 0 1
+
+shop=# SELECT * FROM products WHERE name IS NULL;
+ id | name | price | stock 
+----+------+-------+-------
+  5 |      | 30000 |     4
+(1 row)
+
+

@@ -194,13 +194,14 @@ const LC1_LINES = [
   { h: `}` },
 ];
 // Topilgach — tuzatilgan holat (F-1030-14): hisob Controller'dan olinadi, Service'ning findOne'iga ko'chadi
+// n — tuzatilgan fayldagi haqiqiy satr raqami (o'chgan satr raqamsiz; raqamlar siljimasin — nest-linecheck/TAKLIF.md)
 const LC1_FIXED = [
-  ...LC1_LINES.slice(0, 9),
-  { gone: true, h: LC1_LINES[9].h },
-  { gone: true, h: LC1_LINES[10].h },
-  { gone: true, h: LC1_LINES[11].h },
-  { neu: true, h: `    <span class="k">return this</span>.carsService.<span class="c">findOne</span>(<span class="c">Number</span>(id));   <span class="cm">// yana bitta satr</span>` },
-  ...LC1_LINES.slice(12),
+  ...LC1_LINES.slice(0, 9).map((l, i) => ({ ...l, n: i + 1 })),
+  { gone: true, n: '', h: LC1_LINES[9].h },
+  { gone: true, n: '', h: LC1_LINES[10].h },
+  { gone: true, n: '', h: LC1_LINES[11].h },
+  { neu: true, n: 10, h: `    <span class="k">return this</span>.carsService.<span class="c">findOne</span>(<span class="c">Number</span>(id));   <span class="cm">// yana bitta satr</span>` },
+  ...LC1_LINES.slice(12).map((l, i) => ({ ...l, n: 11 + i })),
 ];
 const LC1_SVC_FIXED = [
   { h: `  <span class="c">findOne</span>(id: <span class="k">number</span>): <span class="c">Car</span> {` },
@@ -217,7 +218,7 @@ function ScreenLC1(p) {
     file="src/cars/cars.controller.ts" lines={LC1_LINES} target={10}
     tree={{ files: ALL_FILES, active: 'src/cars/cars.controller.ts' }}
     fixed={LC1_FIXED} fixedExtra={[{ file: 'src/cars/cars.service.ts · findOne', lines: LC1_SVC_FIXED }]}
-    ok={t("To'g'ri. O'n birinchi satr narxga chegirma hisoblayapti. Ishlaydi, lekin bu biznes logika, u Service'ga tegishli: Controller'da tursa, uni alohida sinab bo'lmaydi va Telegram bot shu chegirmani ololmaydi. Ekranda tuzatilgan holat: hisob Service'ning findOne metodiga ko'chdi, Controller'da yana bitta satr qoldi.", 'Верно. Одиннадцатая строка считает скидку на цену. Это работает, но это бизнес-логика, и она относится к Service: пока она в Controller, её нельзя протестировать отдельно, и Telegram-бот не получит эту скидку. На экране исправленный вариант: расчёт перенесён в метод findOne в Service, а в Controller снова одна строка.')}
+    ok={t("To'g'ri. O'n birinchi satr narxga chegirma hisoblayapti. Ishlaydi, lekin bu biznes logika, u Service'ga tegishli: Controller'da tursa, uni alohida sinab bo'lmaydi va Telegram bot shu chegirmani ololmaydi. Ekranda tuzatilgan holat ko'rinib turibdi: hisob Service'ning findOne metodiga ko'chdi, Controller'da yana bitta satr qoldi. Demak, Controller'da hisob ko'rsangiz, uni Service'ga ko'chirish kerak.", 'Верно. Одиннадцатая строка считает скидку на цену. Это работает, но это бизнес-логика, и она относится к Service: пока она в Controller, её нельзя протестировать отдельно, и Telegram-бот не получит эту скидку. На экране виден исправленный вариант: расчёт перенесён в метод findOne в Service, а в Controller снова одна строка. Значит, если видите расчёт в Controller, его нужно перенести в Service.')}
     okShort={t("11-satr: chegirma hisobi — biznes logika, u Service'ga tegishli. Tuzatildi: hisob cars.service.ts → findOne'ga ko'chdi, Controller'da yana bitta satr.", 'Строка 11: расчёт скидки — бизнес-логика, она относится к Service. Исправлено: расчёт перенесён в cars.service.ts → findOne, в Controller снова одна строка.')}
     hint={t("Bu satr Controller'ning o'z ishi: so'rovdan olish, Service'ni chaqirish yoki qaytarish. Narxni o'zgartirib, hisob qilayotgan satrni qidiring.", 'Эта строка — собственная работа Controller: взять из запроса, вызвать Service или вернуть. Ищите строку, которая меняет цену, то есть считает.')} />;
 }
@@ -272,7 +273,7 @@ function Screen17(p) {
     title={t("Kodimiz hozirgi holatda. GET /cars/abc so'rovi kelsa, javob qanday bo'ladi?", 'Код в текущем виде. Пришёл запрос GET /cars/abc — каким будет ответ?')}
     q={t("Javoblarni ko'rdik. Endi bir qadam oldinga o'ylaymiz. Uchinchi tekshiruv, o'ylab ko'ring. Kimdir cars path'idan keyin abc deb yubordi. Kodimiz hozirgi holatda. Javob qanday bo'ladi?", 'Ответы мы увидели. Теперь подумаем на шаг вперёд. Третья проверка, подумайте. Кто-то отправил abc после пути cars. Код в текущем виде. Каким будет ответ?')}
     opts={t(["200 va bo'sh obyekt", '500 Internal server error', '404 va «Car with id NaN not found»', '400 Bad Request'], ['200 и пустой объект', '500 Internal server error', '404 и «Car with id NaN not found»', '400 Bad Request'])} correct={2}
-    ok={t("To'rt yuz to'rt va Car with id NaN not found. Number abc natijasi NaN. Ro'yxatda id NaN bo'lgan mashina yo'q, shuning uchun findOne NotFoundException tashlaydi. Ishlaydi, lekin xabar chiroyli emas: foydalanuvchi NaN so'zini ko'rmasligi kerak. Nest kiruvchi ma'lumotni o'zi tekshirmaydi, siz aytmaguncha. Aytish usuli: id'ni ParseIntPipe bilan olish. Unda abc kelsa, Nest o'zi to'rt yuz, Bad Request qaytaradi.", '404 и Car with id NaN not found. Number от abc даёт NaN. В списке нет машины с id NaN, поэтому findOne бросает NotFoundException. Работает, но сообщение некрасивое: пользователь не должен видеть слово NaN. Nest сам не проверяет входящие данные, пока вы не скажете. Как сказать: брать id через ParseIntPipe. Тогда, если придёт abc, Nest сам вернёт 400, Bad Request.')}
+    ok={t("To'g'ri: to'rt yuz to'rt va Car with id NaN not found. Number abc natijasi NaN, bunday id'li mashina yo'q, shuning uchun findOne NotFoundException tashlaydi. Ishlaydi, lekin foydalanuvchi NaN so'zini ko'rmasligi kerak. Id ParseIntPipe bilan olinsa, abc kelganda Nest o'zi to'rt yuz, Bad Request qaytaradi. Demak, Nest kiruvchi ma'lumotni siz pipe bilan aytmaguncha tekshirmaydi.", 'Верно: 404 и Car with id NaN not found. Number от abc даёт NaN, машины с таким id нет, поэтому findOne бросает NotFoundException. Это работает, но пользователь не должен видеть слово NaN. Если брать id через ParseIntPipe, то при abc Nest сам вернёт 400, Bad Request. Значит, Nest не проверяет входящие данные, пока вы не скажете ему это через pipe.')}
     okShort={t("404, «Car with id NaN not found»: Number('abc') = NaN → findOne topmaydi → NotFoundException. Tekshiruv yo'q; @Param('id', ParseIntPipe) yozilsa — 400 «Validation failed (numeric string is expected)» (sinab ko'rilgan).", "404, «Car with id NaN not found»: Number('abc') = NaN → findOne не находит → NotFoundException. Проверки нет; если написать @Param('id', ParseIntPipe) — 400 «Validation failed (numeric string is expected)» (проверено).")}
     wrong={t({ 0: "find hech narsa topmasa undefined qaytaradi, bizning kod esa bu holatda xato tashlaydi.", 1: "Besh yuz faqat biz kutmagan xato bo'lganda chiqadi; bu yerda xatoni o'zimiz NotFoundException bilan tashladik.", 3: "To'rt yuzni hech kim qaytarmaydi, chunki tekshiruv yozilmagan." }, { 0: 'Если find ничего не находит, он возвращает undefined, а наш код в этом случае бросает ошибку.', 1: '500 появляется только при ошибке, которую мы не ожидали; здесь ошибку мы бросили сами через NotFoundException.', 3: '400 никто не возвращает, потому что проверка не написана.' })} />;
 }
@@ -286,7 +287,7 @@ const P2 = {
     { id: 'c', key: "2-qadam: Service kodini <b>nusxalang</b> — qadam ichidagi «Kodni ochish» tugmasida", text: "Ikkinchi: Service'ni darsdagi kod bilan to'ldiring. Ikkinchi qadam ichida Kodni ochish tugmasi bor, kod o'sha yerda, nusxalab qo'ying.", hl: [1] },
     { id: 'd', key: "3-qadam: Controller'ni <b>o'zingiz yozing</b> — namunani ko'rasiz, lekin nusxalanmaydi", text: "Uchinchi: Controller'ni o'zingiz yozing, yigirma qator. Namuna uchinchi qadam ichidagi Kodni ochish tugmasida ko'rinadi, lekin nusxalanmaydi, ataylab. Decorator va konstruktorni qo'lingiz his qilsin. Terminalda uchta Mapped satri chiqsin.", hl: [2] },
     { id: 'e', key: "4-qadam: to'rtta so'rov — javoblar <b>200 · 200 · 404 · 201</b> bo'lsin", text: "To'rtinchi: brauzer yoki Postman bilan to'rtta so'rovni yuboring va javoblarni darsdagi bilan solishtiring: ikki yuz, ikki yuz, to'rt yuz to'rt, ikki yuz bir. cars to'qson to'qqiz javobidagi xabarni isbot maydoniga yozing.", hl: [3] },
-    { id: 'f', key: "Boshqacha chiqsa — pastdagi <b>«Boshqacha chiqdimi?»</b> tugmasi; katakcha va isbotsiz Davom ochilmaydi", text: "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing. To'rtala katakcha belgilanmaguncha va isbot to'g'ri yozilmaguncha Davom ochilmaydi.", hl: [] },
+    { id: 'f', key: "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi", text: "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha belgilanmaguncha va isbot to'g'ri yozilmaguncha Davom ochilmaydi. Demak, shu amaliyotdan keyin sizda o'zingiz qurgan cars moduli bor va u so'rovlarga javob beradi.", hl: [] },
   ],
 };
 const P2_STEPS = [

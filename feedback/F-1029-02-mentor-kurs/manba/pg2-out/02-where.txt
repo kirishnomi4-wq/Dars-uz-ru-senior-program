@@ -1,0 +1,16 @@
+shop=# SELECT * FROM products WHERE price < 100000;
+ id |    name    | price | stock 
+----+------------+-------+-------
+  2 | Sichqoncha | 75000 |    15
+  3 | Quloqchin  | 95000 |     5
+  4 | Mishka     | 50000 |    10
+(3 rows)
+
+
+shop=# SELECT * FROM products WHERE stock < 6;
+ id |   name    | price | stock 
+----+-----------+-------+-------
+  3 | Quloqchin | 95000 |     5
+(1 row)
+
+

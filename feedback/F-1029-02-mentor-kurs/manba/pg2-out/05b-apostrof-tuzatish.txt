@@ -1,0 +1,8 @@
+shop=# INSERT INTO products (name, price, stock) VALUES ('O''yinchoq', 30000, 4) RETURNING *;
+ id |   name    | price | stock 
+----+-----------+-------+-------
+  6 | O'yinchoq | 30000 |     4
+(1 row)
+
+INSERT 0 1
+

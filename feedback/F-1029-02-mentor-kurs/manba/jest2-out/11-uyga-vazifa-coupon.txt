@@ -1,0 +1,15 @@
+$ npm test
+
+> IntroNestArxitechture@0.0.1 test
+> jest
+
+PASS src/order.spec.ts
+PASS src/coupon.spec.ts
+
+Test Suites: 2 passed, 2 total
+Tests:       11 passed, 11 total
+Snapshots:   0 total
+Time:        0.429 s, estimated 1 s
+Ran all test suites.
+[chiqish kodi: 0]
+

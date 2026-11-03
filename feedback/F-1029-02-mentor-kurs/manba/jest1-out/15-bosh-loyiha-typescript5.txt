@@ -1,0 +1,21 @@
+$ npm i -D typescript@5
+npm warn allow-scripts Run `npm approve-scripts --allow-scripts-pending` to review, or `npm approve-scripts <pkg>` to allow.
+typescript 5.9.3
+
+$ npm test
+
+> bosh@1.0.0 test
+> jest
+
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151001: [0mIf you have issues related to imports, you should consider setting `esModuleInterop` to `true` in your TypeScript configuration file (usually `tsconfig.json`). See https://blogs.msdn.microsoft.com/typescript/2018/01/31/announcing-typescript-2-7/#easier-ecmascript-module-interoperability for more information.
+PASS ./order.spec.ts
+  orderTotal
+    ✓ 2 kitob narxini hisoblaydi (2 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        1.664 s
+Ran all test suites.
+[chiqish kodi: 0]
+

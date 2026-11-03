@@ -1,0 +1,9 @@
+$ psql -U postgres -h localhost   (Windows: xizmat to'xtagan)
+psql: error: connection to server at "localhost" (::1), port 5439 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5439 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+$ psql -U postgres   (macOS: Postgres.app'da server to'xtagan)
+psql: error: connection to server on socket "/tmp/.s.PGSQL.5439" failed: No such file or directory
+	Is the server running locally and accepting connections on that socket?

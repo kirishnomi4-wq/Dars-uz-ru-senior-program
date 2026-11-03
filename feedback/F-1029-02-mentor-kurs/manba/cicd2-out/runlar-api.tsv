@@ -1,0 +1,27 @@
+27	41312438092	CI	secret	push	success	secret: logda	2026-11-01T13:41:01Z	2026-11-01T13:41:07Z
+26	41312362682	CI	cache	push	success	cache: 2-run	2026-11-01T13:40:05Z	2026-11-01T13:40:39Z
+25	41312257467	CI	cache	push	success	cache: setup-node cache npm (1)	2026-11-01T13:38:42Z	2026-11-01T13:39:43Z
+24	41312164455	CI	cache	push	success	cache: cache'siz o'lchov	2026-11-01T13:37:32Z	2026-11-01T13:38:27Z
+23	41312124240	CI	cache	push	failure	cache: o'quvchi darsidagidek	2026-11-01T13:37:01Z	2026-11-01T13:37:11Z
+22	41312070181	CI	matrix	push	success	matrix: node-version ulandi	2026-11-01T13:36:20Z	2026-11-01T13:36:34Z
+21	41312019250	CI	matrix	push	success	matrix: o'quvchi darsidagidek	2026-11-01T13:35:42Z	2026-11-01T13:35:55Z
+20	41311735959	CI	yaml	push	cancelled	yaml: runs-on my-laptop	2026-11-01T13:32:17Z	2026-11-01T13:35:30Z
+19	41311712563	CI	yaml	push	failure	yaml: echo ichida ikki nuqta	2026-11-01T13:32:00Z	2026-11-01T13:32:00Z
+18	41311690722	CI	yaml	push	failure	yaml: surilish	2026-11-01T13:31:45Z	2026-11-01T13:31:45Z
+17	41311669043	CI	yaml	push	failure	yaml: runs-on yoq	2026-11-01T13:31:28Z	2026-11-01T13:31:28Z
+16	41311640424	CI	yaml	push	failure	yaml: on once	2026-11-01T13:31:08Z	2026-11-01T13:31:08Z
+15	41311602909	CI	mashq	push	failure	ci: git push qatori	2026-11-01T13:30:42Z	2026-11-01T13:30:50Z
+14	41311563024	CI	mashq	push	failure	ci: print('test') qatori	2026-11-01T13:30:16Z	2026-11-01T13:30:25Z
+13	41311525939	CI	mashq	push	success	ci: v7, node 22	2026-11-01T13:29:50Z	2026-11-01T13:29:59Z
+12	41311494840	CI	mashq	push	success	ci: test qadamisiz	2026-11-01T13:29:25Z	2026-11-01T13:29:34Z
+11	41311460402	CI	mashq	push	failure	ci: checkout'siz	2026-11-01T13:28:58Z	2026-11-01T13:29:06Z
+10	41311425951	CI	mashq	push	failure	sinov: test ataylab buzildi	2026-11-01T13:28:31Z	2026-11-01T13:28:40Z
+9	41311391902	CI	mashq	push	failure	ci: npm ci (andozadagidek)	2026-11-01T13:28:05Z	2026-11-01T13:28:14Z
+8	41311353505	CI	mashq	push	success	ci: yo'l xaritasi (o'quvchi amaliyoti, @v4)	2026-11-01T13:27:36Z	2026-11-01T13:27:47Z
+7	41311265640	CI	main	push	success	ci: tavsiya	2026-11-01T13:26:30Z	2026-11-01T13:27:16Z
+6	41311151858	CI	main	push	success	ci: v4 (o'quvchi darsidagi)	2026-11-01T13:25:05Z	2026-11-01T13:26:15Z
+5	41311117764	CI	main	push	failure	ci: tartib xato	2026-11-01T13:24:39Z	2026-11-01T13:24:48Z
+4	41311072242	CI	main	push	failure	ci: npm ci	2026-11-01T13:24:04Z	2026-11-01T13:24:19Z
+3	41310963553	CI	main	push	success	tuzatildi	2026-11-01T13:22:40Z	2026-11-01T13:23:48Z
+2	41310851212	CI	main	push	failure	sinov: buzildi	2026-11-01T13:21:16Z	2026-11-01T13:22:21Z
+1	41310764794	CI	main	push	success	ci: lenta (CI/CD-1 tavsiya)	2026-11-01T13:20:13Z	2026-11-01T13:20:59Z

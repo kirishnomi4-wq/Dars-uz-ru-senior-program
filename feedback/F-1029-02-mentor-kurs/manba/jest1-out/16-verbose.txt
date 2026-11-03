@@ -1,0 +1,18 @@
+$ npx jest --verbose
+PASS src/delivery.spec.ts
+  deliveryFee
+    ✓ 150 000 — yetkazish bepul (2 ms)
+    ✓ aynan 100 000 — bepul
+    ✓ 99 000 — 15 000 (1 ms)
+
+PASS src/order.spec.ts
+  orderTotal
+    ✓ 2 kitob narxini hisoblaydi
+
+Test Suites: 2 passed, 2 total
+Tests:       4 passed, 4 total
+Snapshots:   0 total
+Time:        0.475 s, estimated 1 s
+Ran all test suites.
+[chiqish kodi: 0]
+

@@ -1,0 +1,3 @@
+# TOLOV_KALITI= (bo'sh) bilan Backend
+$ … tolov-mashq/yubor {"tur":"tolash"}
+{"tolovRaqami":"m-1793494246616","javoblar":[{"holat":401,"tana":{"message":"Imzo mos emas","error":"Unauthorized","statusCode":401}}]}

@@ -1,0 +1,5 @@
+# imzo shu matndan: {"tolovRaqami":"m-xom-1","holat":"tolandi","summa":10000,"oyinchiId":11}
+# yuborilgan matn: { "tolovRaqami": "m-xom-1", "holat": "tolandi", "summa": 10000, "oyinchiId": 11 }
+{"message":"Imzo mos emas","error":"Unauthorized","statusCode":401} [HTTP 401]
+# xuddi o'sha matn yuborildi:
+{"ok":true} [HTTP 200]

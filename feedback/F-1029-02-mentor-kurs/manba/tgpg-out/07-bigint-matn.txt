@@ -1,0 +1,4 @@
+$ node bigint.js
+rows[0].telegram_id = "5123456789" · typeof: string
+v === 5123456789 → false
+Number(v) === 5123456789 → true

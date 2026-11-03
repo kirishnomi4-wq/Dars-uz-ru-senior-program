@@ -1,0 +1,5 @@
+v24.18.0
+telegraf 4.16.3
+pg 8.23.1
+postgres (PostgreSQL) 18.4 (Debian 18.4-1+b1)
+Sun Nov  1 03:36:16 AM +05 2026

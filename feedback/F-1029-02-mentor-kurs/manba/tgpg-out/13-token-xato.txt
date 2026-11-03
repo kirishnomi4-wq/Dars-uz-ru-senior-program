@@ -1,0 +1,4 @@
+$ npm run start   # BOT_TOKEN=123:SOXTA, DATABASE_URL — lokal PostgreSQL
+[Nest] 1098094  - 11/01/2026, 3:36:31 AM     LOG [InstanceLoader] TelegramModule dependencies initialized +0ms
+Server 3000-portda ishlayapti
+Telegram ulanmadi: 401: Unauthorized — README, «Xatolar» jadvali

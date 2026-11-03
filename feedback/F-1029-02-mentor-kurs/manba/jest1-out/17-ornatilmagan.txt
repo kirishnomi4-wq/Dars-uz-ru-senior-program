@@ -1,0 +1,8 @@
+$ npm test
+
+> IntroNestArxitechture@0.0.1 test
+> jest
+
+sh: 1: jest: not found
+[chiqish kodi: 127]
+

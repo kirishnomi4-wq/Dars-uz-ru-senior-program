@@ -1,0 +1,16 @@
+$ node ws2-sinov.js xona eski
+# ilova: ulanish.ts — m12-dars-04-done (agent «bajardim» degan holat) · o'yin 1 «Mahalla maydoni»
+  0.9s  [Ali] ulangan
+  1.3s  [Ali] «O'yin» ekrani ochildi → oyin-ochildi { oyinId: 1 }
+  1.3s  [Ali] Hozir ko'ryapti: 1  (korayotganlar-ozgardi {"oyinId":1,"soni":1})
+  2.3s  --- Backend yangi versiyasi: qayta ishga tushirildi ---
+  2.3s  [Ali] ulanmoqda  (disconnect: transport close)
+  3.1s  [Ali] ulanmoqda  (connect_error: xhr poll error) …
+  6.1s  [Ali] ulangan
+  7.2s  [Vali] ulangan
+  7.2s  [Vali] GET /oyinlar (qayta ulanganda) → Mahalla maydoni: 8 / 10
+  7.5s  [Vali] «O'yin» ekrani ochildi → oyin-ochildi { oyinId: 1 }
+  7.5s  [Vali] Hozir ko'ryapti: 1  (korayotganlar-ozgardi {"oyinId":1,"soni":1})
+  9.0s  NATIJA: ikkala telefonda shu o'yin ochiq — kutilgan «Hozir ko'ryapti: 2»
+  9.0s  [Ali] ulanmagan  (disconnect: io client disconnect)
+  9.0s  [Vali] ulanmagan  (disconnect: io client disconnect)

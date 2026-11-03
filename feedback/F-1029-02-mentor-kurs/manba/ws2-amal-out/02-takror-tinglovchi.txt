@@ -1,0 +1,13 @@
+$ TOKEN=<Ali tokeni> OYIN=3 node klient.js   # 2 s da Backend terminalida Ctrl+C, 3 s dan keyin npm run start
+  0.0s  ulangan
+  0.0s  Hozir ko'ryapti: 1
+  1.8s  ulanmoqda  (disconnect: transport close)
+ 12.7s  ulangan
+ 14.7s  HODISA oyin-ozgardi {"oyinId":3,"sabab":"qoshildi"} — tinglovchi ishladi (1)
+ 14.7s  HODISA oyin-ozgardi {"oyinId":3,"sabab":"qoshildi"} — tinglovchi ishladi (2)
+ 14.7s  GET /oyinlar (hodisa kelgach) → Park maydoni: 5 / 8
+ 14.7s  GET /oyinlar (hodisa kelgach) → Park maydoni: 5 / 8
+
+# ikkinchi terminal:
+$ curl -X POST localhost:3000/oyinlar/3/qoshilish -H "Authorization: Bearer <Vali>"
+{"holat":"qoshildi"} [HTTP 201]

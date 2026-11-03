@@ -1,0 +1,16 @@
+# main tarmog'ida backend/ yo'q:
+$ ls
+README.md
+$ git checkout -f m12-dars-02-done
+HEAD is now at a5e3753 m12-02: README «Real vaqt» — real vaqt oqimi sxemasi (besh qator: nuqta · kim nima qiladi · hodisa · kim oladi · ekranda), oyin-ozgardi { oyinId, sabab }; hodisalar hali yuborilmaydi
+$ cd backend
+$ npm ci
+added 282 packages in 3s
+$ psql -U postgres -c "CREATE DATABASE maydon_jamoa;"
+CREATE DATABASE
+$ cp .env.example .env
+# .env: DATABASE_URL — faqat port o'zgartirildi (bu kompyuterda 5449), qolgani namunadagidek
+$ npm run start
+LOG [NestFactory] Starting Nest application...
+LOG [NestApplication] Nest application successfully started +0ms
+# start: 4.0 s (nest start — avval TypeScript build)

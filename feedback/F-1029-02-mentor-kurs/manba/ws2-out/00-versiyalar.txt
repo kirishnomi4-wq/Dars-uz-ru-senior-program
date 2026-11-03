@@ -1,0 +1,13 @@
+699a865 m12-04: rejalashtirilgan eslatma (expo-notifications) — «Qo'shilaman»dan keyin o'yindan 
+adbb638 m12-05: BUZISH.md — uch urinish (internetni uzish — buzildi · fonga olish — buzilmadi
+v24.18.0
+socket.io-client 4.8.4
+# m12-04 → m12-05: Backend o'zgarmagan:
+(bo'sh — o'zgarish yo'q)
+ BUZISH.md                   | 25 +++++++++++++++++++++++++
+ README.md                   |  5 +++++
+ mobil/src/app/index.tsx     |  4 ++--
+ mobil/src/app/oyin/[id].tsx |  7 ++++---
+ mobil/src/ulanish.ts        | 32 ++++++++++++++++++++++++--------
+ 5 files changed, 60 insertions(+), 13 deletions(-)
+Sun Nov  1 04:59:14 AM +05 2026

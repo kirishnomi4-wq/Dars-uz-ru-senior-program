@@ -1,0 +1,65 @@
+--- Post.find().populate('author')
+[
+  {
+    "_id": "6ae62798721f5b830b674729",
+    "author": {
+      "_id": "6ae62798721f5b830b674728",
+      "username": "ali",
+      "__v": 0
+    },
+    "izoh": "Birinchi post",
+    "__v": 0
+  }
+]
+--- muallifi yo'q post saqlandi; populate
+[
+  {
+    "_id": "6ae62798721f5b830b674729",
+    "author": {
+      "_id": "6ae62798721f5b830b674728",
+      "username": "ali",
+      "__v": 0
+    },
+    "izoh": "Birinchi post",
+    "__v": 0
+  },
+  {
+    "_id": "6ae62798721f5b830b67472b",
+    "author": null,
+    "izoh": "Muallifi yo'q post",
+    "__v": 0
+  }
+]
+--- posts kolleksiyasi (har hujjat har xil)
+[
+  {
+    "author": "6ae62798721f5b830b674728",
+    "izoh": "Birinchi post"
+  },
+  {
+    "author": "6ae62798721f5b830b67472a",
+    "izoh": "Muallifi yo'q post"
+  },
+  {
+    "muallif": "vali",
+    "matn": "Salom",
+    "like": 5
+  }
+]
+--- tranzaksiya (standalone mongod)
+XATO: This MongoDB deployment does not support retryable writes. Please add retryWrites=false to your connection string.
+--- oxirgi telefon — 2 xaridor bir vaqtda updateOne({stock: {$gt: 0}}, {$inc: {stock: -1}})
+{
+  "xaridor1": {
+    "modifiedCount": 0
+  },
+  "xaridor2": {
+    "modifiedCount": 1
+  },
+  "keyin": {
+    "nomi": "Telefon",
+    "stock": 0
+  }
+}
+--- tranzaksiya (retryWrites=false bilan)
+XATO: This MongoDB deployment does not support retryable writes. Please add retryWrites=false to your connection string.

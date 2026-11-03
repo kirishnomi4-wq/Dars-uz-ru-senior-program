@@ -1,0 +1,14 @@
+dars	holat	log	onFinished	xatolar	vaqt
+pg-02	passed	28	{"passed":true,"testPassed":true,"practiceDone":true,"correctAnswers":8,"totalQuestions":8,"finalAttempts":1,"checks":4,"answers":9,"durationSec":131}	[]	134s
+jest-01	passed	26	{"passed":true,"testPassed":true,"practiceDone":true,"correctAnswers":8,"totalQuestions":8,"finalAttempts":1,"checks":4,"answers":9,"durationSec":114}	[]	117s
+jest-02	passed	24	{"passed":true,"testPassed":true,"practiceDone":true,"correctAnswers":8,"totalQuestions":8,"finalAttempts":1,"checks":4,"answers":9,"durationSec":91}	[]	93s
+cicd-01	passed	25	{"passed":true,"testPassed":true,"practiceDone":true,"correctAnswers":8,"totalQuestions":8,"finalAttempts":1,"checks":4,"answers":8,"durationSec":95}	[]	97s
+cicd-02	passed	25	{"passed":true,"testPassed":true,"practiceDone":true,"correctAnswers":8,"totalQuestions":8,"finalAttempts":1,"checks":4,"answers":8,"durationSec":102}	[]	105s
+tgpg-01	passed	25	{"passed":true,"testPassed":true,"practiceDone":true,"correctAnswers":8,"totalQuestions":8,"finalAttempts":1,"checks":4,"answers":8,"durationSec":85}	[]	88s
+ws1-01	passed	22	{"passed":true,"testPassed":true,"practiceDone":true,"correctAnswers":8,"totalQuestions":8,"finalAttempts":1,"checks":4,"answers":8,"durationSec":80}	[]	82s
+ws2-01	passed	20	{"passed":true,"testPassed":true,"practiceDone":true,"correctAnswers":8,"totalQuestions":8,"finalAttempts":1,"checks":4,"answers":8,"durationSec":68}	[]	72s
+wh-01	passed	20	{"passed":true,"testPassed":true,"practiceDone":true,"correctAnswers":8,"totalQuestions":8,"finalAttempts":1,"checks":4,"answers":8,"durationSec":70}	[]	72s
+nest-02	passed	29	{"passed":true,"testPassed":true,"practiceDone":true,"correctAnswers":8,"totalQuestions":8,"finalAttempts":1,"checks":4,"answers":9,"durationSec":153}	[]	156s
+nest-01	passed	39	{"passed":true,"testPassed":true,"practiceDone":true,"correctAnswers":8,"totalQuestions":8,"finalAttempts":1,"checks":5,"answers":10,"durationSec":218}	[]	221s
+pg-01	passed	29	{"passed":true,"testPassed":true,"practiceDone":true,"correctAnswers":8,"totalQuestions":8,"finalAttempts":1,"checks":4,"answers":9,"durationSec":158}	[]	161s
+TUGADI

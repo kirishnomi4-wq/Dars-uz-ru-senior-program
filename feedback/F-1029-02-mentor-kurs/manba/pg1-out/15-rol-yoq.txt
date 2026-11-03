@@ -1,0 +1,12 @@
+$ psql -U postgres
+psql: error: connection to server on socket "/tmp/.s.PGSQL.5434" failed: FATAL:  role "postgres" does not exist
+
+$ createuser -s postgres
+(xabarsiz — tayyor)
+
+$ psql -U postgres -c "SELECT current_user;"
+ current_user 
+--------------
+ postgres
+(1 row)
+

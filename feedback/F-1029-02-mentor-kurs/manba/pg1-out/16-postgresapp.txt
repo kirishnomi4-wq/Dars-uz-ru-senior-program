@@ -1,0 +1,12 @@
+$ psql -U postgres -c "SELECT current_user;"   (parol so'ralmaydi)
+ current_user 
+--------------
+ postgres
+(1 row)
+
+$ psql -c "SELECT current_user, current_database();"
+ current_user | current_database 
+--------------+------------------
+ kali         | kali
+(1 row)
+

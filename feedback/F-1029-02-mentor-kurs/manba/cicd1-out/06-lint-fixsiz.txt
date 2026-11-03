@@ -1,0 +1,173 @@
+$ npx eslint {src,apps,libs,test}/**/*.ts
+
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src/api/admin/admin.controller.ts
+  11:3  error  'HttpStatus' is defined but never used  @typescript-eslint/no-unused-vars
+
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src/api/admin/admin.service.ts
+   56:14  error    'error' is defined but never used                                                                                                  @typescript-eslint/no-unused-vars
+  105:25  warning  Unsafe argument of type `any` assigned to a parameter of type `CreateAdminDto`                                                     @typescript-eslint/no-unsafe-argument
+  120:7   warning  Unsafe argument of type `any` assigned to a parameter of type `string`                                                             @typescript-eslint/no-unsafe-argument
+  120:7   error    This assertion is unnecessary since the receiver accepts the original type of the expression                                       @typescript-eslint/no-unnecessary-type-assertion
+  132:41  error    Replace `res,·'adminToken',·refreshToken,·30·*·24` with `⏎······res,⏎······'adminToken',⏎······refreshToken,⏎······30·*·24,⏎····`  prettier/prettier
+
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src/api/admin/dto/signin-admin.dto.ts
+  5:15  error  Replace `·'phone_number'` with `⏎··'phone_number',`  prettier/prettier
+
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src/api/app.module.ts
+   5:1   error  Delete `⏎`  prettier/prettier
+   8:49  error  Delete `⏎`  prettier/prettier
+  24:16  error  Delete `⏎`  prettier/prettier
+
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src/api/auth/auht.service.ts
+  25:11  error  Unsafe assignment of an `any` value                @typescript-eslint/no-unsafe-assignment
+  25:54  error  Unsafe assignment of an `any` value                @typescript-eslint/no-unsafe-assignment
+  25:64  error  Unsafe member access .id on an `any` value         @typescript-eslint/no-unsafe-member-access
+  30:7   error  Unsafe assignment of an `any` value                @typescript-eslint/no-unsafe-assignment
+  30:16  error  Unsafe member access .id on an `any` value         @typescript-eslint/no-unsafe-member-access
+  31:7   error  Unsafe assignment of an `any` value                @typescript-eslint/no-unsafe-assignment
+  31:22  error  Unsafe member access .is_active on an `any` value  @typescript-eslint/no-unsafe-member-access
+  32:7   error  Unsafe assignment of an `any` value                @typescript-eslint/no-unsafe-assignment
+  32:18  error  Unsafe member access .role on an `any` value       @typescript-eslint/no-unsafe-member-access
+  51:11  error  Unsafe assignment of an `any` value                @typescript-eslint/no-unsafe-assignment
+  51:54  error  Unsafe assignment of an `any` value                @typescript-eslint/no-unsafe-assignment
+  51:64  error  Unsafe member access .id on an `any` value         @typescript-eslint/no-unsafe-member-access
+
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src/api/auth/auth.module.ts
+  14:38  error  Delete `·`  prettier/prettier
+  19:27  error  Delete `·`  prettier/prettier
+
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src/common/decorator/cookie-getter-decorator.ts
+   9:68  error  Async arrow function has no 'await' expression   @typescript-eslint/require-await
+  11:13  error  Unsafe assignment of an `any` value              @typescript-eslint/no-unsafe-assignment
+  12:13  error  Unsafe assignment of an `any` value              @typescript-eslint/no-unsafe-assignment
+  12:36  error  Unsafe member access .cookies on an `any` value  @typescript-eslint/no-unsafe-member-access
+  16:7   error  Unsafe return of a value of type `any`           @typescript-eslint/no-unsafe-return
+
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src/common/decorator/get-request-user-decorator.ts
+   9:70  error  Async arrow function has no 'await' expression  @typescript-eslint/require-await
+  11:13  error  Unsafe assignment of an `any` value             @typescript-eslint/no-unsafe-assignment
+  12:13  error  Unsafe assignment of an `any` value             @typescript-eslint/no-unsafe-assignment
+  12:38  error  Unsafe member access [data] on an `any` value   @typescript-eslint/no-unsafe-member-access
+
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src/common/enum/user-enum.ts
+  2:3  error  Delete `··`  prettier/prettier
+  3:3  error  Delete `··`  prettier/prettier
+  4:1  error  Delete `··`  prettier/prettier
+  5:3  error  Delete `··`  prettier/prettier
+  6:1  error  Delete `··`  prettier/prettier
+  7:1  error  Delete `··`  prettier/prettier
+
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src/common/guard/auth.guard.ts
+   3:3   error  Delete `··`                                      prettier/prettier
+   4:1   error  Delete `··`                                      prettier/prettier
+   5:1   error  Replace `····` with `··`                         prettier/prettier
+   6:1   error  Delete `··`                                      prettier/prettier
+   7:1   error  Delete `··`                                      prettier/prettier
+   8:1   error  Delete `··`                                      prettier/prettier
+   9:1   error  Delete `··`                                      prettier/prettier
+  10:1   error  Delete `··`                                      prettier/prettier
+  11:1   error  Delete `··`                                      prettier/prettier
+  12:1   error  Delete `··`                                      prettier/prettier
+  13:1   error  Delete `··`                                      prettier/prettier
+  14:1   error  Delete `··`                                      prettier/prettier
+  15:1   error  Replace `····` with `··`                         prettier/prettier
+  16:1   error  Delete `··`                                      prettier/prettier
+  17:1   error  Delete `··`                                      prettier/prettier
+  18:5   error  Delete `··`                                      prettier/prettier
+  19:1   error  Delete `··`                                      prettier/prettier
+  20:1   error  Replace `········` with `······`                 prettier/prettier
+  21:7   error  Delete `··`                                      prettier/prettier
+  22:1   error  Replace `······` with `····`                     prettier/prettier
+  23:1   error  Delete `··`                                      prettier/prettier
+  24:1   error  Delete `··`                                      prettier/prettier
+  25:5   error  Delete `··`                                      prettier/prettier
+  25:13  error  Unsafe assignment of an `any` value              @typescript-eslint/no-unsafe-assignment
+  26:1   error  Delete `··`                                      prettier/prettier
+  26:24  error  Unsafe member access .headers on an `any` value  @typescript-eslint/no-unsafe-member-access
+  27:1   error  Delete `··`                                      prettier/prettier
+  28:1   error  Delete `··`                                      prettier/prettier
+  29:1   error  Delete `··`                                      prettier/prettier
+  30:1   error  Delete `··`                                      prettier/prettier
+  31:5   error  Delete `··`                                      prettier/prettier
+  32:1   error  Replace `········` with `······`                 prettier/prettier
+  33:7   error  Delete `··`                                      prettier/prettier
+  33:13  error  Unsafe member access .user on an `any` value     @typescript-eslint/no-unsafe-member-access
+  34:1   error  Delete `··`                                      prettier/prettier
+  35:7   error  Delete `··`                                      prettier/prettier
+  36:5   error  Delete `··`                                      prettier/prettier
+  37:1   error  Replace `········` with `······`                 prettier/prettier
+  38:5   error  Delete `··`                                      prettier/prettier
+  39:1   error  Delete `··`                                      prettier/prettier
+  40:1   error  Delete `··`                                      prettier/prettier
+  41:1   error  Delete `··`                                      prettier/prettier
+
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src/common/guard/roles.guard.ts
+  12:11  error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+  24:12  error    Unsafe member access .user on an `any` value                            @typescript-eslint/no-unsafe-member-access
+  24:41  warning  Unsafe argument of type `any` assigned to a parameter of type `string`  @typescript-eslint/no-unsafe-argument
+  24:45  error    Unsafe member access .user on an `any` value                            @typescript-eslint/no-unsafe-member-access
+  25:36  error    Unsafe member access .user on an `any` value                            @typescript-eslint/no-unsafe-member-access
+  25:53  error    Unsafe member access .params on an `any` value                          @typescript-eslint/no-unsafe-member-access
+
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src/common/interface/paginationRes-interface.ts
+  13:18  error  An interface declaring no members is equivalent to its supertype  @typescript-eslint/no-empty-object-type
+
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src/config/index.ts
+   4:1   error  Delete `⏎`       prettier/prettier
+  22:23  error  Insert `⏎·····`  prettier/prettier
+  23:67  error  Insert `⏎·····`  prettier/prettier
+  30:37  error  Insert `,`       prettier/prettier
+
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src/core/entity/admin.entity.ts
+   1:10  error  Replace `·Column,·Entity·}·from·"typeorm"` with `Column,·Entity·}·from·'typeorm'`  prettier/prettier
+   2:28  error  Replace `"./Base.entity"` with `'./Base.entity'`                                   prettier/prettier
+   3:26  error  Replace `"src/common/enum/user-enum";⏎` with `'src/common/enum/user-enum';`        prettier/prettier
+  25:1   error  Replace `⏎}` with `}⏎`                                                             prettier/prettier
+
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src/core/index.ts
+  5:1  error  Delete `⏎`  prettier/prettier
+
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src/core/repository/admin.repository.ts
+  4:55  error  Replace `·` with `⏎`  prettier/prettier
+
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src/infrastructure/base/base.service.ts
+   3:48  error    Insert `;`                                                                                        prettier/prettier
+  20:16  error    This assertion is unnecessary since it does not change the type of the expression                 @typescript-eslint/no-unnecessary-type-assertion
+  23:5   error    Unsafe assignment of an `any` value                                                               @typescript-eslint/no-unsafe-assignment
+  43:38  error    Insert `·`                                                                                        prettier/prettier
+  69:38  warning  Unsafe argument of type `any` assigned to a parameter of type `_QueryDeepPartialEntity<unknown>`  @typescript-eslint/no-unsafe-argument
+  70:11  error    Unsafe assignment of an `any` value                                                               @typescript-eslint/no-unsafe-assignment
+
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src/infrastructure/exception/AllException.filter.ts
+  34:15  error  Unsafe assignment of an `any` value              @typescript-eslint/no-unsafe-assignment
+  34:52  error  Unsafe member access .message on an `any` value  @typescript-eslint/no-unsafe-member-access
+  39:11  error  Unsafe assignment of an `any` value              @typescript-eslint/no-unsafe-assignment
+
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src/infrastructure/lib/crypto/brypt.ts
+   6:3   error  Async method 'encrypt' has no 'await' expression  @typescript-eslint/require-await
+   7:5   error  Unsafe return of a value of type error            @typescript-eslint/no-unsafe-return
+   7:12  error  Unsafe call of a type that could not be resolved  @typescript-eslint/no-unsafe-call
+  10:3   error  Async method 'decrypt' has no 'await' expression  @typescript-eslint/require-await
+  11:5   error  Unsafe return of a value of type error            @typescript-eslint/no-unsafe-return
+  11:12  error  Unsafe call of a type that could not be resolved  @typescript-eslint/no-unsafe-call
+
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src/infrastructure/lib/token/Token.ts
+   9:8   error  Replace `·access_token_key,·access_token_time,·refresh_token_key,·refresh_token_time·` with `⏎··access_token_key,⏎··access_token_time,⏎··refresh_token_key,⏎··refresh_token_time,⏎`  prettier/prettier
+  44:3   error  Async method 'writeCookie' has no 'await' expression                                                                                                                                 @typescript-eslint/require-await
+  44:21  error  Replace `res:·Response,·key:·string,·value:·string,·hours:·number` with `⏎····res:·Response,⏎····key:·string,⏎····value:·string,⏎····hours:·number,⏎··`                              prettier/prettier
+  52:3   error  Async method 'clearCookie' has no 'await' expression                                                                                                                                 @typescript-eslint/require-await
+
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src/infrastructure/pagination/RepositoryPager.ts
+  29:9  error  'page' is never reassigned. Use 'const' instead  prefer-const
+
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src/infrastructure/response/successRes.ts
+  7:5  error  Unsafe assignment of an `any` value  @typescript-eslint/no-unsafe-assignment
+
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src/main.ts
+  4:1  error  Delete `····`  prettier/prettier
+
+✖ 120 problems (116 errors, 4 warnings)
+  70 errors and 0 warnings potentially fixable with the `--fix` option.
+
+[chiqish kodi: 1]
+

@@ -341,3 +341,195 @@ Foydalanuvchi: «hozir nest darslarimizni tugatib olaylik, keyin tayyorman desan
 **Darvozalar:** esbuild ikkala dars ✓ · vite build ✓ · lint:jsx TOZA · lint:til 0 error (ikkala dars).
 **Dev ovoz:** ruscha edge-tts keshi 126/130 (4 tasi 502 — faqat lokal, platformada ElevenLabs).
 **Keyingi:** commit — foydalanuvchi buyrug'i bilan (push yo'q) · LMS — buyruq bilan (Nest-1, Nest-2 `.oz.jsx` + m4a-03/04 v6) · keyin PostgreSQL-1 (konveyer F).
+
+
+## 31.10 19:33 — Commit c9706d63 (A–E) · PostgreSQL-1 boshlandi: manba yig'ish + PRD qoralama
+Commit: foydalanuvchi «xa commit qil, keyin PostgreSQL-1 ni boshlaymiz» → `c9706d63` (25 fayl; push yo'q; F-1023-01 jurnallari va boshqa seanslarning fayllari qo'shilmadi).
+**Manba (konveyer F, 1-qadam):** o'quvchi darsi m4-03 `src/4-Modull/DbSqlNosqlLesson.jsx` (App.jsx `comp: DbSqlNosqlLesson`, 21 ekran, kodsiz; matn `scratchpad/m403-uz.txt`), uyga vazifa `src/hw-qa/data.js` (`dbsqlnosqllesson`: 4 yozma topshiriq), oldingi m4-01 (PK/FK, NEW emas), keyingi m4-06 CRUD (psql/VS Code) va m4-08 AvtoIjara.
+Topilma: o'quvchi darslarida PostgreSQL'ni o'rnatish o'rgatilmaydi — m4-08 «`psql -U postgres` (parol — o'rnatilganda berilgan)» deb tayyor holatni kutadi. Lokal: psql 18.4, klaster PG17 :5432.
+Yo'l-yo'lakay: m4-03 amaliyotida «daftar yoki og'zaki» — «daftar» taqiq (memory `daftar-sozi-taqiq`); o'quvchi darsi, tegilmadi.
+**PRD qoralama:** `05-PostgreSQL1-PRD.md` (Ilova A). **Qaror sahifasi:** https://claude.ai/artifact/2vejgmEVhoB8UMc1EDiWrZ (db `qaror`: q1…q4) — 1) eski dasturdagi baza 2) chuqurlik: tushuncha + qo'l bilan (tavsiya) yoki faqat tushuncha 3) mentor kompyuteri OS 4) sinfda PostgreSQL'ni kim o'rnatadi.
+**Keyingi:** javoblar → PRD yangilash → [GATE PRD] → `manba/drive-pg1.sh` (haqiqiy chiqishlar, `pg1_mentor` bazasi) → MD → [GATE M].
+
+
+## 31.10 19:53 — PostgreSQL-1: javoblar olindi, haqiqiy chiqishlar yig'ildi; MD boshlanmadi (foydalanuvchi: «jarayonni saqla, 1–2 soatda davom etamiz»)
+**Javoblar (artifact `qaror`):** 1 eski dastur — MongoDB (Mongoose) · 2 chuqurlik — tushuncha + qo'l bilan · 3 mentor kompyuteri — har xil, macOS ham, Windows ham · 4 sinf kompyuterlariga PostgreSQL'ni mentor o'rnatadi. PRD → v1 (`05-PostgreSQL1-PRD.md`).
+**Rasmiy manbalar tekshirildi:**
+- Windows: postgresql.org → EDB o'rnatuvchisi, eng yangisi 18 (19 — RC 15.10). Komponentlar, parol, port 5432; PATH'ni o'zgartirmaydi.
+- macOS: Postgres.app — Initialize, PATH buyrug'i, parolsiz. `postgres` roli BOR: manba kodi `Postgres/Server.swift` — `initdb -U postgres` + `createuser --superuser <mac foydalanuvchisi>`. Bir blogdagi «yo'q» degan gap noto'g'ri chiqdi.
+**Haqiqiy chiqishlar:** `manba/drive-pg1.sh` → `manba/pg1-out/` (22 fayl + README). Tizimga tegmaydi: PG18 klasterlari va `mongod` vaqtinchalik papkada, oxirida to'xtatiladi.
+- **A klaster** — Windows o'rnatuvchisi kabi: version, `\l`, `blog` + `users`/`posts` (o'quvchi amaliyotidagi namuna), NOT NULL / UNIQUE / FK insert / FK delete xatolari, JOIN (to'g'ri · `ON users.id = posts.id` jim noto'g'ri natija · LEFT JOIN).
+- **Tranzaksiya (A):** oxirgi telefon — 2-xaridor 1-ni kutib `UPDATE 0`; CHECK xatosi; buyurtma + ombor → `ROLLBACK`, `orders` bo'sh.
+- **Qo'shimcha (A):** jsonb, `relation … does not exist`, `already exists`, `syntax error`.
+- **Tizim PG17 :5432:** parol xato, `database "blog" does not exist`.
+- **B klaster** (Homebrew kabi): `role "postgres" does not exist` → `createuser -s postgres`.
+- **C klaster** (Postgres.app kabi): parolsiz `postgres`.
+- **Server yo'q:** `Connection refused` / socket xatosi.
+- **MongoDB 6.0 + Mongoose 9.11:**
+  - `populate`;
+  - muallifi yo'q post jim saqlanadi (`author: null`);
+  - har hujjat har xil;
+  - **oxirgi telefon Mongo'da ham bittaga sotiladi** (bitta hujjat atomik);
+  - ko'p hujjatli tranzaksiya oddiy `mongod`da ishlamaydi (`retryWrites=false` bilan ham o'sha xabar).
+**Muhim xulosa (MD'ga):** o'quvchi m4-03 darsi «oxirgi telefon — SQL kuchi» deb soddalashtirgan. Mentorga halol farq aytiladi: bir nechta jadval bitta tranzaksiyada «hammasi yoki hech narsa» (oddiy o'rnatishda), CHECK/FK — baza o'zi qo'riqlaydi.
+**MD rejasi (28 ekran, hali yozilmagan) — keyingi seans shundan:**
+1. Kirish
+2. Siz bilgan Mongoose
+3. Mongo jim qoldiradigan joylar
+4. Mongo ↔ PostgreSQL lug'ati
+5. Tekshiruv 1
+6. Windows o'rnatuvchisi
+7. macOS Postgres.app (+ Homebrew tuzog'i)
+8. Birinchi ulanish (`psql`, version, `\l`)
+9. Amaliyot 1
+10. Baza va users
+11. posts va tashqi kalit
+12. Baza o'zi tekshiradi (4 xato; o'qish formulasi «qaysi jadval · qaysi qoida · qaysi qiymat»)
+13. Tekshiruv 2
+14. Amaliyot 2
+15. JOIN
+16. Tekshiruv 3 (LineCheck: `ON users.id = posts.id`)
+17. Amaliyot 3
+18. Oxirgi telefon
+19. Hammasi yoki hech narsa
+20. JSON ham saqlaydi
+21. Tekshiruv 4
+22. Amaliyot 4 (ikki oyna)
+23. Sinf kompyuterlariga o'rnatish (tekshiruv ro'yxati)
+24. m4-03 xaritasi
+25. O'quvchi tili
+26. O'quvchi savollari va darsdagi soddalashtirish
+27. O'z-sinov 8
+28. Yakun (uyga vazifa: `blog-db` repo — schema/data/queries.sql + README 4 mezon → faqat GitHub linki)
+
+Format — `03-Nest2-mentor-v4.md` (pasport, A-bo'lim, ekran: kicker/sarlavha/sahna/segmentlar/manba). Qonunlar M1–M31.
+
+**19:56 — kompyuter o'chirishga tayyorlandi.** `drive-pg1.sh` Mongoose'ni o'zi o'rnatadigan qilindi (scratchpad qayta yoqilganda tozalanadi). Toza papkadan sinaldi: 22 fayl, oldingi natija bilan farq faqat vaqtinchalik papka yo'lida (`01-initdb.txt`). DAVOM.md tepasida «qayta yoqilgandan keyin» bo'limi: nima yo'qoladi, nima diskda, serverlarni qanday yoqish, birinchi ish — MD.
+
+## 31.10 22:02 — PostgreSQL-1 MD v1 yozildi (`06-PostgreSQL1-mentor-v1.md`, 28 ekran) — [GATE M] kutilmoqda
+**Foydalanuvchi:** «ruxsat beraman boshla psql1 darsni».
+**Manba yig'ildi:** PRD v1, `pg1-out/` 22 fayl, `MENTOR_DARS_ETALON.md` M1–M31, qolip `03-Nest2-mentor-v4.md`, o'quvchi darsi `DbSqlNosqlLesson.jsx` (SCREEN_META 21, ekran matnlari, amaliyot namunasi, kartochkalar).
+**Yangi haqiqiy chiqish:** `pg1-out/21-psql-kirish.txt` — `Password for user postgres:` so'rovi, salom qatori, `;` unutilsa `postgres-#` (qo'lda, `script`; README'ga qator qo'shildi). `drive-pg1.sh` ga kirmagan — qo'lda olingani faylning o'zida yozilgan.
+**MD:** 28 ekran · 6 bosqich (Mongo bilan solishtirish · o'rnatish · jadval va bog'lanish · JOIN · ishonchlilik · ko'prik) · 4 amaliyot (isbot: version satri · `posts_user_id_fkey` · LEFT JOIN 4 · `UPDATE 0`) · 4 tekshiruv (populate↔JOIN · DELETE FK · LineCheck `ON users.id = posts.id` · ROLLBACK) · 8 savol · uyga vazifa `blog-db` (README 4 mezon + schema/data/queries.sql + FK `DETAIL`) → faqat GitHub linki.
+**Halollik qarorlari MD'da:** oxirgi telefonni shart + qator qulfi saqlaydi (o'quvchi darsi «tranzaksiya» deydi — 26-ekranda soddalashtirish deb aytiladi); Mongo ham bittaga sotdi; farq — ko'p jadvalli tranzaksiya oddiy o'rnatishda + qoidalar bazada. Windows/macOS oynalari — maket, «⚠ rasmiy hujjatdan, sinalmagan».
+**Tekshiruv (skript):** kalit iboralar 7–18 so'z ✓ · segment ≤ 60 so'z (eng uzuni 42) ✓ · har `Lesson` 1-gap ko'prik, oxirgisi «Xulosa» ✓ · ovoz ≈ 3230 so'z (≈ 30 daq) · M9 taqiq so'zlari dars matnida 0 · `lint:til` 0 error (1 warn — sarlavhadagi xizmat qatori, Nest-2 MD'da ham bor) · `lint:prompt` 0.
+**Ochiq ([GATE M]):** 1) `psql` sahnasi Explorer'siz (M1 istisnosi) · 2) o'rnatuvchi maketlari yoki foydalanuvchi skrinshoti · 3) sinf paroli tavsiyasi (`password` — Nest `.env.example`) · 4) hajm 28 ekran (~1 s 10 daq; qisqartirish nomzodlari 20, 25) · 5) RU'da SQL qiymatlari.
+**⚠ qurishdan oldin yurgiziladi (MD «KOD 6»):** tuzatilgan `tags`, 13-ekran `after` (DELETE posts → users, `DELETE 0`), `blog already exists`, `DROP TABLE`, `FROM posts LEFT JOIN users`, 22-ekran «Boshqacha» holatlari.
+**O'quvchi darslari (qaror kerak, tegilmadi):** m4-03 amaliyotida «daftar» · «tranzaksiya» soddalashtirishi · o'rnatish tekshiruvi.
+Commit yo'q.
+
+## 01.11 06:43 — AVTOPILOT YAKUNI (31.10 22:05 → 01.11): 9 mentor darsi qurildi, GATE M kutilmoqda
+**Foydalanuvchi:** «8:30 gacha … birma-bir, shoshilmasdan» · «soni muhim emas, sifati» (memory `sifat-son-emas`).
+**Qurildi (MD → generator → .jsx → tekshiruv → .oz.jsx → ko'rik sahifasi):** PostgreSQL-1 (28) · PostgreSQL-2 (27) · Jest-1 (26) · Jest-2 (24) · CI/CD-1 (25) · Telegraf+PG (25) · WebSocket-1 (22) · WebSocket-2 (20) · Webhook (20). Ko'rik sahifalari va to'liq holat — `AVTOPILOT.md` «YAKUNIY HISOBOT».
+**Tekshiruv (har darsda):** gates 12/13 (esbuild faqat `@lesson/runtime`) · lint:jsx 0 · lint:til 0 error · o'lchov 1920/1280 toza · ovozli e2e 1920+1280 hamma ekran, qulf, onFinished ✓ · `.oz.jsx` render ✓.
+**Haqiqiylik:** har da'vo `manba/<dars>-out/` dagi yurgizishdan (drive-*.sh); WebSocket va Webhook'da o'quvchi reposi `maydon-jamoa` Backend'i haqiqiy, amaliyotlar mentor yo'lida aynan yurgizilgan (`*-amal-out/`). Sinalmagan (telefon, Expo, Render, Neon, GitHub Actions) — «⚠».
+**Qurilmadi:** GitHub Actions — push/sinov repo ruxsati kerak (PRD `15`).
+**Qaror kerak:** MD «Ochiq savollar» · AVTOPILOT «Avtopilot qarorlari» · `nest-linecheck/TAKLIF.md` (Nest-1 · 27-ekranda ovoz 8/9-satr, ekranda 9/11) · o'quvchi darslari bo'yicha topilmalar (tegilmadi) · RU (M24).
+**Nest-1/Nest-2 va umumiy dvigatel** — o'zgarmagan (`git diff` bo'sh). Commit/push/LMS — yo'q.
+
+## 01.11 10:55 — Ertalab: GitHub Actions uchun sinov repo ruxsati; seans yopildi
+- Foydalanuvchi qaytdi, yakuniy hisobotni oldi. Ruxsat: «ha sinov repo ochishga ruxsat beraman bemaloll» — faqat yangi sinov repo (Actions'ni haqiqiy yurgizish); mavjud repolarga push yo'q.
+- `gh auth status`: faol akkaunt `kirishnomi4-wq`.
+- Keyingi seans: CI/CD-2 (m4c-03) — `15-CICD2-PRD.md` + `manba/cicd2-out/` dan; DAVOM.md «01.11 10:55» bloki.
+
+## 01.11 16:55 — CI/CD-2 avtopilot (11:05–17:00): run'lar qilinmadi, run'siz qism tayyor
+- **Foydalanuvchi:** «17:00 gacha avtopilotda … halol hal qilib davom ettir» · «sifat juda muhim» · qarorlar 11:03: Actions oynasi — API'dan maket; CI/CD-1 — MD + qayta qurish.
+- **Sinov repo** `kirishnomi4-wq/mentor-ci-sinov` (private) 10:59 yaratildi. Push rad: `refusing to allow an OAuth App to create or update workflow .github/workflows/ci.yml without workflow scope`. Device-kod ikki marta (11:08, 11:28) — tasdiqlanmadi. Kuzatuvchi 16:55 gacha — huquq kelmadi. **Actions run: 0.**
+- **Tayyorlandi:** `manba/drive-cicd2-actions.sh` (6 qism, ~27 run) · `manba/cicd2-xulosa.py` · `manba/cicd2-yml/` + `cicd2-out/05` (rasmiy tahlilchi: matrix/keysiz cache schema'da xatosiz; `echo "Kalit: …"` → compact mappings xatosi) · `manba/cicd2-oquvchi-xarita.md` · `dev/cicd2-matn.py` · `src/mentor-kurs/cicd2/parts/04-yordam.jsx` (ActionsList/ActionsRun) · `24-CICD2-mentor-v1.md` v0 qoralama (lint:til 0 error, lint:prompt 0).
+- **O'quvchi m4c-03 (tegilmadi, run bilan tasdiqlanadi):** s13 matrix `node-version`ga ulanmagan · s14 `actions/cache@v4` `key`siz · s18 testsiz lenta «qizil chiroq» deyilgan · «Repongiz yo'qmi?» — qizil run imkonsiz · `@v4`.
+- **Keyingi:** `gh auth refresh -h github.com -s workflow` → run'lar → `AVTOPILOT-CICD2.md` «YAKUNIY HISOBOT» tartibi.
+
+## 01.11 18:44 — CI/CD-2: GitHub Actions'da 28 ta haqiqiy tajriba (18:20–18:43)
+- 18:19 `workflow` huquqi olindi (foydalanuvchi kirishnomi4-wq bilan brauzerda tasdiqladi; 2 marta Azizbekcrypto'dan kelib rad etilgan edi).
+- `drive-cicd2-actions.sh` nest · mashq · yaml · matrix · cache · secret + yangi `papka` (C11) → `manba/cicd2-out/10–61`, jamlanma **`06-actions-xulosa.md`**, linklar `runlar.tsv`.
+- Tasdiqlandi: m4c-03 s13 matrix ulanmagan (3 lenta ham Node 22), s14 cache key'siz → qizil, kesh ~2,8× (5× emas), s16 secret bo'laklab ochiq chiqadi, s17 begona qatorlar → qizil, s18 testsiz → yashil. O'quvchi darsiga tegilmadi — ro'yxat.
+- Ochiq: YAML xatosi run'larida aniq matn API'da yo'q (Actions sahifasi skrinshoti kerak). Keyingi: CI/CD-1 C1–C13 «oldin → keyin» → foydalanuvchi tasdig'i.
+
+## 01.11 19:09 — CI/CD-1 tuzatildi (foydalanuvchi tasdig'i «ha tasdiqlayman davom et») · CI/CD-2 MD v1 va dars qurildi
+- **CI/CD-1 «oldin → keyin» (C1–C13):** MD 24 qator (pasport — Actions haqiqiy run'lar; 4-ekran Ubuntu 24.04.5 run logidan + Ubuntu 26 eslatmasi, ovoz «Odatda» → «Hozir»; 11-ekran ovozi «GitHub'da o'zimiz sinamadik» → «GitHub'da ham sinadik: … qizil» + manba `cicd2-out/13`; 12-ekran ovozi «to'rtinchisini sinamadik» → «ishlaydi, lekin GitHub eskirgan deb ogohlantiradi»; 14/19/25 amaliyot «⚠ … (hujjat bo'yicha)» olib tashlandi; 16-ekran maket → «haqiqiy run qadamlaridan»; 17-ekran ovozi «matn boshqacha bo'lishi mumkin ⚠» → «GitHub'da lenta darhol qizil, qadam ham, log ham yo'q» (aniq Actions matni manbada ⚠); ochiq savol 1 ✅; o'quvchi darslari 1, 3 run raqamlari bilan). Kod: `05` 2, `06` 6, `04-yordam` 3 (+ yorliq rangi yashil), `08` 1 joy; generator qayta. Tekshiruv: gates 12/13 (esbuild faqat `@lesson/runtime`), lint:jsx 0, lint:til 0 error, e2e 1920/1280 25/25 (qulf 25/25, onFinished ✓, xato 0), o'lchov 1920/1280 25/25 toza. Ko'rik sahifasi (26fyW5…) hali eski.
+- **CI/CD-2 MD v1** `24-CICD2-mentor-v1.md`: 25 ekran, 5 bosqich, 3 amaliyot (isbot: `node:` satri · kod 127 · `v20.…`), 4 tekshiruv, 8 savol; har da'vo `cicd2-out/` run'idan; lint:til 0 error; ovoz ≤60, kalit 7–18, taqiqli so'z 0. Ochiq ⚠: fayl xatosi sahifasining aniq matni (skrinshot kerak).
+- **Qurish:** `dev/cicd2-matn.py` (EMPH 76), yangi `dev/cicd2-runlar.py` → `cicd2/parts/04-runlar.gen.jsx` (26 run: raqam, nom, sha, job, qadam soniyalari, izohlar — API'dan), `05–08` bo'laklar → `GithubActionsMentorLesson.jsx` (`?dars=cicd-02`); e2e/o'lchov/surat skriptlariga `cicd-02` sozlamasi. Ko'z bilan topilgan: run ro'yxatida yashil nomlar och yashil (umumiy `.ok` klassi) → `.c2-gh` ichida bosildi; 22-ekran «Repongiz yo'qmi?» qatori qizil emas, neytral.
+
+## 01.11 19:41 — GitHub sahifalari skrinshotlari (foydalanuvchi, 19:27–19:33) · CI/CD-1 17-ekran (foydalanuvchi «ha, 17-ekranga qo'sh»)
+- 6 skrinshot → `cicd2-out/{30,31,32,34,21}-actions-sahifa-skrinshot.png`, `runlar-royxati-skrinshot.png` (README jadvali). Fakt: maydon xatolarida (`on: once`, `runs-on` yo'q) GitHub izohi tahlilchi bilan aynan (`(Line: 2, Col: 5) …`); sintaksis xatolarida umumiy «You have an error in your yaml syntax on line N» — `echo "Natija: ok"` da N=8 to'g'ri, **surilishda N=4 (xato 8-qatorda — blok boshi)**; tahlilchi 8 ni ko'rsatadi (`07-yml-30-34-tahlil.txt`). Run ro'yxati, #2 sahifasi (1m 5s, job 1m 3s, izohlar) API ma'lumotiga mos.
+- CI/CD-2: 13-ekran 5 segment (GitHub izohi + 4/8-qator solishtiruvi), to'rt karta «tahlilchi / GitHub», ro'yxat qatori «CI #N: Commit … pushed by …» + tarmoq belgisi; MD pasport/ochiq savol 1 ✅. Secret sozlamalari sahifasi — 500 (manzil xato), ⚠ qoladi.
+- CI/CD-1 17-ekran: xulosa ovoziga «GitHub sahifasida surilish xatosi umumiy yaml syntax xabari bo'lib chiqadi va qator raqami blok boshini ko'rsatishi mumkin»; sahnada ogohlantirish qutisi (sum); MD manba + ochiq savol 1. gates 12/13, lint:jsx 0, lint:til 0 error, o'lchov 1920/1280 17-ekran toza.
+- Sifat ko'rigi (8 dars) → `SIFAT-KORIGI-2026-11-01.md`: ⚠ 34 (PG-1 11, TgPg 7, WS-1 5, WS-2 8, WH 3; PG-2/Jest-1/2 — 0), B1 WS-2 kartasidagi eskirgan «dars hali yozilmagan», B2 TgPg kartasi nomi WS-1 nomiga mos emas, B3 CI/CD-1 kartasi izohi; B5 «namunani yurgizmasdan baholash» — 0. O'zgartirish yo'q.
+
+## 01.11 20:08 — Kartalar B1–B3 (tasdiq) · 10 ko'rik sahifasi · .oz.jsx
+- B1 WS-2 kartasi «Webhook — to'lov xabari: imzo, takror va rad» (⚠ «yozilmagan» olib tashlandi), B2 TgPg kartasi «WebSocket: doimiy ulanish — Backend o'zi xabar yuboradi», B3 CI/CD-1 kartasi «GitHub Actions — run, log va o'quvchi darsidagi namunalar»; CI/CD-2 LESSON_TITLE to'liq nom. Har darsda yig'ishdagi farq faqat shu qator; gates 12/13 (esbuild — @lesson/runtime), lint:jsx 0; yakuniy ekran o'lchovi 4/4 toza; CI/CD-1 e2e 1920/1280 25/25 (onFinished ✓, xato 0).
+- **Ko'rik shabloni xatosi (sinf):** `template-surat.html` da Nest-2 lead («4-dars: O'quvchi reposi…») va `build.py` STAGES («Resurs», «Guard») qattiq — 8 ta e'lon qilingan sahifada noto'g'ri edi. `build-surat.py`: bosqichlar MD «Ekranlar» jadvalidan, sarlavha/lead MD H1 va pasport «Hajm» dan, `DARS` muhit o'zgaruvchisi. Sinf-supurish: 10 sahifa — CI/CD-2 yangi (5PbVbh…), CI/CD-1 yangi suratlar bilan (v6), PG-1, PG-2, Jest-1, Jest-2, TgPg, WS-1, WS-2, Webhook — db `review` bo'sh ekani tekshirildi, live versiya nusxa bilan sha256 bir xil, faqat HTML qayta e'lon (rasmlar o'zgarmadi). Nest-2 sahifasi (GAcnL…) — o'zi to'g'ri.
+- `.oz.jsx`: CI/CD-1 58 KB, CI/CD-2 66 KB, TgPg 59 KB, WS-2 54 KB — vaqtinchalik `-oz` kalit bilan render 5/5 ekran ×4, xato 0; kalitlar olib tashlandi. `korish-dist` qayta yasaldi, :5334 ishlayapti.
+- Ochiq: foydalanuvchi «⚠ sinovlar» savoliga «hozircha hech biri + o'zing shu generatsiya qilda qandaydir demo ko'rinishini ham» — aniqlik so'raldi (1 — ko'rik sahifalarini qayta yasash ✓ qilindi; 2 — maketlarni alohida ko'rsatish?), javob kutilmoqda.
+
+## 01.11 20:16 — SEANS YOPILDI
+Foydalanuvchi: «bu ishlarni ertaga yozaman, birga qilamiz; hozirgi holatni to'liq saqlab bugungi ishni tugatamiz». Holat DAVOM.md eng yuqori blokida (ertangi 5 band, 10 ko'rik linki, serverlar). Bugun: 17:53 → workflow huquqi (18:19) → 28 Actions tajribasi → CI/CD-1 C1–C13 + 17-ekran → CI/CD-2 MD v1 + dars + ko'rik → 6 skrinshot → sifat ko'rigi + kartalar B1–B3 → 10 ko'rik sahifasi to'g'rilandi → 4 .oz.jsx. Nazoratchi cron o'chirildi. Commit/push/LMS — yo'q.
+
+## 02.11 16:40 — PG-1 ovozli ko'rik: 13 rasm + 1 umumiy savol → F-1102-10…21 (B retsepti, tasdiq 02.11 «boshla»)
+Foydalanuvchi PG-1 ni :5334 da ovozi bilan to'liq ko'rdi («manga yoqdi»). ID'lar F-1102-10 dan (01–02 — parallel seans, Pre-Demo).
+- **F-1102-17 (eng jiddiy)** 16-ekran ovozi «…«Bugun Nest o'rgandim»» da kesilgan — «Xato satrni bosing» eshitilmagan. Sabab: 10 generatorda `«(.+?)»` ichki » da to'xtaydi. Tuzatish: naqsh `«(.+?)»(?=\s*·\s|\s*$)` + yopilmagan « himoyasi (yig'ish to'xtaydi). Supurish: 6 joy (PG-1 q, Jest-1/Jest-2/CI/CD-1 hint, CI/CD-2 va TgPg xato izohi); diff — faqat shu 6 qator. → M38.
+- **F-1102-10** «Bu kursda o'quvchilar» → «AI Startup kursidagi o'quvchilar» (PG-1 s1); Webhook «bu kursda emas» → «AI Startup kursida emas» (MD + 2 joy kodda).
+- **F-1102-11** «ko'prik» — bosqich nomi «O'quvchi darsini o'tish» (10 MD reja/kicker + 12 dars kodi PLAN/kicker; RU Nest-1/2 «Как вести урок(и) ученика»); PG-2 «server va baza orasidagi ko'prik» → «server bazaga shu yo'l bilan ulanadi». MD pasport/reja jadvalidagi ichki «ko'prik» (M17 atamasi) — ekranga chiqmaydi, qoldi.
+- **F-1102-15** «jim» — 22 fayl: fe'l «xato bermay», ot «yashirin», bot «javob bermaydi»; generator EMPH kalitlari (pg2, jest2, tgpg) ham. Eski 01-NestArch v1 MD (tarix) tegilmadi. ⚠ O'quvchi darsi `4b-Modull/EdgeCasesTestLesson.jsx` «jim buzilish» atamasini ishlatadi — mentor darsida endi «yashirin buzilish» (qaror kerak: mentorga o'quvchi atamasini aytish kerakmi).
+- **F-1102-19** ovozda «psql» → «PostgreSQL terminali» (PG-1 20 gap, PG-2 13, TgPg 2 + kod 9 joy); buyruq (`psql minus U postgres`, «psql buyrug'i PATH'da») qoladi; PG-1 s5 lug'atida birinchi izoh. PG-2 kicker «CRUD PostgreSQL terminalida».
+- **F-1102-14** M32 to'liq gap: PG-1 s12 («users jadvali tayyor. Endi ikkinchi jadvalni yaratamiz…»), s25 (qaror ko'rsatkichi), s26 (o'quvchi so'zlari — «til»/«ko'prik» yo'q; qaror ko'rsatkichi m4-03 dagi aynan 4 savol: bog'langanmi · shakli qat'iymi · xato qimmatmi · ulkan-oddiy-tez), kod jadvali va eslatma.
+- **F-1102-13** M33 «Demak, …»: PG-1 4 tekshiruv to'g'ri javobi + 4 amaliyot oxirgi segmenti. Qolgan 11 dars — har birining ko'rigida.
+- **F-1102-21** M39 yangi **2-ekran «SQL va NoSQL: bitta ma'lumot — ikki shakl»** (5 segment, galma-gal): Mongo `users` 2 hujjat (vali — qo'shimcha `shahar`) ↔ PostgreSQL jadval (ustun, qator) + `column "shahar" … does not exist` + `SELECT … WHERE id = 2` → vali; moslik qoidasi. Haqiqiy: `manba/drive-pg1-sqlnosql.sh` → `pg1-out/25–26` (mongosh + PG18, vaqtinchalik klaster). Dars 28 → **29 ekran**: MD sarlavha/reja/havolalar (raqamli va so'z bilan: «to'rtinchi ekranda», «20-ekranning 3-qadami»…), o'z-sinov manba ustuni, generator EMPH, kod `mkS`/`MDT`, `SCREENS`, e2e/surat/olchov sozlamalari. 3-ekran 1-gapi ko'prik qilib qayta yozildi.
+- **Dvigatel (12 darsga birdan):** F-1102-12 «Boshqacha chiqdimi?» → `TroubleModal` oyna (✕/tashqari/Esc; M34, M26-1 o'rniga) · F-1102-16 `MCRetry` boshidan ikki ustun, o'ngda «natija shu yerda ochiladi», variantlar o'z joyida (to'g'ri yashil, qolgan xira; M35, M29 va F-1030-27 o'rniga), sarlavha 20–26 px; PG-1 s22 «????» → savol · F-1102-18 `.mk-ln.gone` qizil fon/matn, qalin chiziq (M36) · F-1102-20 isbot maydoni `.need` yonadi + qalin «Isbot:» (M37).
+- Tekshiruv: generatorlar 10/10 ✓; yig'ish `dev/yig.sh` (yangi, 12 dars; avvalgi fayllar bilan aynan — faqat generator farqi); esbuild (runtime external) 12/12 ✓; gates 12/13 hammasida (esbuild — @lesson/runtime, kutilgan; Nest-1 dark — HEAD'da ham bor); lint:til mentor-* 0; lint:prompt 0. Suratlar 1920: s02 (5 segment), s14, s17, s22, s10 isbot + oyna — ko'z bilan ✓ (2 tuzatish: jadval sarlavha/qator yoritish, kartalar xiralanmasin; oyna jadvali ustunlari 48/52). PG-1 ovozli to'liq o'tish **1920 29/29 ✓ · 1280 29/29 ✓** (onFinished passed, xato 0).
+- Muhr: MENTOR_DARS_ETALON M32–M39 + tekshiruv 19–23 + jurnal; MATN_KORPUS §MENTOR-USTOZ-GAP, §MENTOR-DEMAK; til-lint `mentor-jim`, `mentor-koprik`, `mentor-bu-kursda` (error, faqat src/mentor-kurs). Nest-1 yakuniy MD koddan qayta yasaldi.
+- Ochiq: foydalanuvchi 17-ekran (eski raqam; JOIN amaliyoti) rasmiga izoh yozmagan — so'raladi. `.oz.jsx` (tayyor/) va 10 ko'rik sahifasi eski holatda — buyruq bilan. Commit/LMS yo'q.
+
+## 02.11 17:58 — TIKLASH: 16:41–17:47 oralig'idagi ish jurnalga yozilmagan edi (notebuk o'chdi), fayl-vaqtlaridan tiklandi
+Oldingi seans PG-1 ko'rigidagi M32/M33 ni qolgan darslarga o'zi tarqata boshlagan, JURNAL/DAVOM yangilanmagan. Fayl mtime bo'yicha:
+- **Bajarildi (MD + 03-matn.gen.jsx qayta yasaldi):** PG-2 17:15 (Demak 9, yangi amaliyot kalit-iborasi 8) · Jest-1 17:27 (Demak 8/8; 22-ekran «O'quvchi tili» → «O'quvchi darsidagi so'zlar») · Jest-2 17:35 (9/8) · CI/CD-1 17:41 (7/6) · CI/CD-2 17:47 (7/6).
+- **Qilinmagan:** TgPg (Demak 1, eski kalit-ibora 3) · WS-1 · WS-2 · Webhook (0 / 3) · Nest-2 (0 / 1) · Nest-1 (0 / 3). 19-WS1 va 23-WH MD'larida «O'quvchi tili va sinfdagi holatlar» ekran nomi qoldi; tgpg gen 582-satr, nest2 06 56-satr «O'quvchi tili» sarlavha.
+- **Yangi yordamchilar:** `dev/ovoz-tahrir.py` (MD ovozida aniq juft-almashtirish + amaliyot 4-segmentiga «Demak, …»; kirish JSON scratchpad'da edi — yo'qoldi) · `dev/ekran-qosh.py` (yangi ekran kiritganda raqamlarni surish, M39 uchun; PG-2 hali 28 ekran — qo'llanmagan) · `dev/pg2-matn.py`, `dev/jest1-matn.py`.
+- 17:28 — 12 darsning oxirgi bo'laklarida (sinov-yakun) supurish; 17:47 — 12 dars `dev/yig.sh` bilan qayta yig'ildi. Bu seansda tekshirildi: esbuild 12/12 ✓, lint:til 12 darsda 0 error, lint:jsx toza. **e2e ovozli o'tish o'zgargan 5 darsda yurgizilmagan** — endi yurgiziladi.
+- Serverlar o'chgan edi, scratchpad bo'sh. Commit/LMS yo'q.
+
+## 02.11 18:30 — TIKLASH-2 (18:00–18:16 ish qayd etilmagan edi) + yangi seans tekshiruvi; e2e 12 dars fonda
+Oldingi seans 17:59 dan keyin ham ishlagan, jurnal yozilmagan (seans uzildi). Fayl-vaqt va diff bo'yicha:
+- **18:03–18:07 — M33 «Demak» TgPg (1→8), WS-1 (0→7), WS-2 (0→7), Webhook (0→7):** `dev/ovoz-tahrir.py` bilan (yangilangan 18:03), MD + `03-matn.gen.jsx` + yig'ilgan dars. Eski amaliyot kalit-iborasi («pastdagi … tugmasi; katakcha va isbotsiz») 12 darsda 0.
+- **18:09–18:11 — Nest-2 (0→8):** `nest2/parts/03…06` + MD v4 + RU `08-ru.jsx`. **18:13–18:14 — Nest-1 (0→9):** `parts/03…06` + RU `08-ru.jsx`, yig'ildi, yakuniy MD koddan qayta yasaldi.
+- **18:15 — til-lint `mentor-jim-ru`** (ru: «тихая/тихо/молча» → «скрытая / без ошибки»); RU'da ham F-1102-11 («Мост к урокам ученика» → «Как вести уроки ученика», kicker «Этап 6 · мост» → «как вести урок ученика») va F-1102-15 supurilgan. 18:15–18:16 tts-kesh 11 yangi mp3 — ovoz yasash boshlangan, logi yo'q.
+- **Yangi seans tekshiruvi (18:20–18:26):** M33 formula 12/12 (Demak ≥ MCRetry+LineCheck+Practice: 9/9 · 8/8 · 10/8 · 9/8 · 8/8 · 9/8 · 7/7 · 7/7 · 8/7 · 7/7 · 7/7 · 7/7) · RU «тих/молча» 0 · generator 10/10 MD↔gen AYNAN · `yig.sh` 12/12 AYNAN · esbuild 12/12 · lint:jsx toza · lint:prompt 0 · **lint:til 1 error** — `parts/02-dvigatel.jsx` 10-qator `digits()` regex satrida qiyshiq apostrof (HEAD'da ham bor edi) → `"['’]"` (xatti-harakat aynan) → 0 error.
+- **MD qoldig'i (F-1102-14 supurish):** «O'quvchi tili» 6 qator / 5 MD (PG-1 reja+sarlavha 26, Jest-1 22, Jest-2 21, CI/CD-1 23, CI/CD-2 23) → kodda allaqachon turgan nom «O'quvchi darsidagi so'zlar(…)». Kod o'zgarmadi (generator sarlavhani boshqa maydondan oladi — 5 gen AYNAN).
+- Serverlar yoqildi: tts :5332 · dev :5333 · **muzlatilgan nusxa :5334** (foydalanuvchi ko'rigi uchun, 12 dars). **e2e ovozli o'tish 12 dars × 1920, keyin × 1280** fonda ketma-ket (`scratchpad/e2e/runner.sh`, natija `e2e/natija.tsv`) — yakuni keyingi yozuvda.
+- Ochiq (o'zgarmadi): foydalanuvchi bilan qolgan 11 dars ko'rigi (har birida M32-1 to'liq gap, M39 poydevor ekran) · 17-ekran rasmi izohi · «jim buzilish» o'quvchi atamasi qarori · `.oz.jsx` va 10 ko'rik sahifasi eski (buyruq bilan) · commit/LMS yo'q.
+- **18:50 — e2e 1920 yakuni: 12/12 passed** (oxirgi ekran · soniya 16× ovozda): pg-02 28·133 · jest-01 26·116 · jest-02 24·92 · cicd-01 25·96 · cicd-02 25·103 · tgpg-01 25·102 · ws1-01 22·92 · ws2-01 20·78 · wh-01 20·82 · nest-02 29·181 · nest-01 39·231 · pg-01 29·159; hammasida onFinished passed, yakuniy sinov 8/8, konsol xato 0, QOTDI 0. 1280×720 navbati fonda davom etmoqda. Foydalanuvchiga PG-2 ko'rik manzili berildi (:5334).
+
+## 02.11 19:32 — YANGI SEANS (notebuk yana o'chdi): holat butun, «oldin va hozir» suratli sahifa
+- Tekshiruv: 18:51 dan keyin hech bir fayl o'zgarmagan (find -newermt), ya'ni bu safar yo'qolgan ish yo'q. Scratchpad tozalangan: e2e 1280 natijasi va muzlatilgan build yo'qolgan edi, serverlar o'chgan.
+- Serverlar qayta: tts :5332 · dev :5333 · **hozirgi muzlatilgan nusxa :5334** (korish-dist qayta qurildi) · **kechagi nusxa :5335** — `tayyor/*.jsx` (01.11 20:02 holati, siz PG-1 ni aynan shu holatda ko'rgansiz) alohida papkada vite bilan qurildi (`scratchpad/oldin/`, node_modules symlink). Ikkalasi bir xil ekranlarda suratga olindi (1600×900, ovoz 16×, oxirgi segmentgacha; skript `scratchpad/shot.mjs`).
+- Foydalanuvchi so'rovi «nima oldin edi, hozir qanday, halol vizual»: **https://claude.ai/artifact/2oFH2GkLbK1xmSu6eR3FzW** — 7 bo'lim: 12 dars jadvali (ekran soni, «Demak», taqiq so'zlar, ovozda psql, e2e, RU, .oz.jsx, git) · dvigatel 5 juftlik (M34–M37, PG-2) · so'zlar 3 (reja, bosqich yorlig'i, «jim») · PG-1 (M39 2-ekran 5 surat, M38 ovoz matni oldin/hozir, M32 s26 juftlik, 3 karta) · PG-2 M39 CRUD 4 surat + manzil · «nima qilinmagan» 8 band · 3 savol (17-ekran rasmi · «jim buzilish» o'quvchi atamasi · PG-2 ko'rik usuli), «Javobni nusxalash».
+- Halol sanoqlar (MDT matnidan, `scratchpad/matn.mjs`): PG-2 27→28 ekran (M39 «CRUD» 2-ekran — kecha qayd etilmagan edi), PG-1 28→29; ovozda psql PG-1 28→13 (qolgani buyruq), PG-2 13→0, TgPg 2→0; «jim/ko'prik/bu kursda» 10 darsda 0, Nest'da bittadan kod izohi; «Demak» 12/12; **eng uzun ovoz segmenti o'sdi** — PG-1 42→56, WS-1 28→47, TgPg 28→39, WH 30→41, WS-2 26→38 so'z (chegara 60, hammasi ichida, kuzatuvda). Ko'z bilan topildi: PG-2 24-ekran o'ng izohida «haqiqiy psql» qolgan (dastur nomi; sahifada aytildi, qaror foydalanuvchida).
+- Surat skripti tuzog'i: `text=Boshqacha chiqdimi?` selektori chapdagi sarlavhaga tushib tugma bosilmagan — `.mk-trouble button` bilan to'g'rilandi (surat-segment.mjs da bunday bosish yo'q, ta'sir qilmaydi).
+- e2e 1280×720 12 dars fonda qayta (`scratchpad/e2e/runner.sh`): 19:32 gacha 7/12 passed (pg-02, jest-01, jest-02, cicd-01, cicd-02, tgpg-01, ws1-01), qolgani ketmoqda — yakuni keyingi qatorda. Commit/LMS yo'q.
+- **19:43 — e2e 1280×720 yakuni: 12/12 passed** (oxirgi ekran · soniya 16× ovozda): pg-02 28·131 · jest-01 26·114 · jest-02 24·91 · cicd-01 25·95 · cicd-02 25·102 · tgpg-01 25·85 · ws1-01 22·80 · ws2-01 20·68 · wh-01 20·70 · nest-02 29·153 · nest-01 39·218 · pg-01 29·158; hammasida onFinished passed, yakuniy sinov 8/8, konsol xato 0, QOTDI 0. Sahifa jadvali to'ldirildi (2oFH2G…). Endi 1920 ham, 1280 ham bugungi hamma o'zgarishdan keyin yashil.
+
+## 02.11 19:50 — Javoblar 1–3 (A·A·A) + F-1102-22 tashxis: chap panel matni «katta va qo'pol» (B retsepti, tasdiq kutilmoqda)
+- Foydalanuvchi sahifadan: 1-savol A (17-ekran rasmida muammo yo'q) · 2-savol A (Jest-2 «O'quvchi darsini o'tish» bosqichida «o'quvchi darsida bu 'jim buzilish' deb ataladi» gapi qo'shiladi) · 3-savol A (PG-2 ko'rigi :5334 da ovoz bilan). 2-savol tuzatishi — PG-2 ko'rigi bilan birga, tasdiqdan keyin.
+- **F-1102-22** — rasm: PG-2 24-ekran chap paneli belgilangan; so'z: «juda katta, qo'pol, gapga mos bo'lsin; testlarda ham, kodli joyda ham, boshida ham — o'qituvchining qaragisi kelmaydi». Tashxis (`parts/01-asos.jsx`): `.mk-title` clamp(20,2.2vw,28px)/800 · `.mk-key` clamp(22,2.1vw,30px)/700 (sarlavhadan katta) · `.mk-key code` qora blok/oq/600 · `.mk-title.mc-q` 26/800, `.mk-say.mc .mk-opt` 18 · `.mk-cover h1` 38/800. Hech biri gap uzunligiga qaramaydi.
+- Taklif — 3 variant haqiqiy renderda (uslub ustidan `addStyleTag`, `scratchpad/var/{A,B,C}.css`, LEN: gap >110 belgi → data-len=long): **A yengil (tavsiya)** 22/600 xira sarlavha, gap 22/500 (uzun 19), och chip, test 22/600, variant 16, muqova 30 · **B o'rtacha** 24/700, gap 24/600 (uzun 21), yumshoq to'q chip, test 24/700, variant 17, muqova 33 · **C faqat og'irlik** 800→700, 700→600. 8 ekran × 4 (hozir/A/B/C) = 32 surat sahifaning 4-savolida (2oFH2G…). Topildi: chipning qatorda bo'linishi — `white-space:nowrap` kerak (A/B ga kiritildi). Darsga tegilmagan. Qonun-nomzod: M40 «chap panel matni gapga mos» — tanlovdan keyin.
+- **19:52 — 2-savol A bajarildi (Jest-2 21-ekran):** MD `12-Jest2-mentor-v1.md` 21-ekran 2-segment — jadval qatori «kartochkada «jim buzilish» → yashirin buzilish», kalit ibora (17 so'z), ovoz (46 so'z): «…kartochkasida esa «jim buzilish» deb yozilgan. Siz buni yashirin buzilish deysiz, ikkalasi bitta narsa.» Generator → `jest2/parts/03-matn.gen.jsx` → `yig.sh`. `til-lint` `mentor-jim` naqshiga « lookbehind istisnosi (qo'shtirnoqdagi o'quvchi atamasi o'tadi), suggest yangilandi; `MENTOR_DARS_ETALON` M32 ga istisno bandi. Darvozalar: esbuild ✓ · lint:til 0 error · lint:jsx toza. e2e jest-02 — F-1102-22 bilan birga yurgiziladi. :5334 hali eski (PG-2 ko'rigi ta'sirlanmaydi).
+
+## 02.11 20:17 — SEANS TO'XTATILDI (foydalanuvchi: «holatni saqla, 1 soatda notebukni qayta yoqib davom etamiz»)
+- Scratchpad o'chadi — kerakli narsalar repoga ko'chirildi: `dev/surat-ekran.mjs` (umumiy surat skripti: CSS ustidan, LEN, muqova) · `dev/matn-mdt.mjs` (eski/yangi dars faylidan MDT) · `dev/e2e-hammasi.sh` (12 dars e2e, OUT= bilan) · `dev/f1102-22-variantlar/{A,B,C}.css + README.md` (kiritish tartibi) · `dev/korik-sahifa/oldin-hozir-2026-11-02.html` (sahifa manbasi; rasmlar artifact'da turibdi) · e2e 1280 natija tsv.
+- Yo'qoladigan: :5334/:5335 build papkalari (qayta quriladi), kechagi nusxa harness (`tayyor/*.jsx` dan 2 daqiqada qayta: DAVOM da retsept).
+- **OCHIQ:** F-1102-22 tanlovi (A/B/C) — sahifa 4-savol · Jest-2 (2-savol A) e2e yurgizilmagan · PG-2 ko'rigi (3-savol A, :5334 ovoz bilan) · .oz.jsx/ko'rik sahifalari eski · commit/LMS yo'q. lint:prompt 0.
+
+## 03.11 11:34 — F-1102-22 BAJARILDI: chap panel matni A varianti dvigatelga kirdi (M40)
+- Yangi seans: serverlar qayta yoqildi (tts :5332, dev :5333, :5334 muzlatilgan); repoda 02.11 20:17 dan keyin o'zgarish yo'q edi.
+- Foydalanuvchi tanlovi: **A** (sahifa 2oFH2G… 4-savol). Kiritish README tartibida: `parts/01-asos.jsx` — `T.chip`/`T.chipLine`, `.mk-title` 19–22/600 xira, `.mk-key` 19–22/500 (+`[data-len="long"]` 17–19), `b` 600, `code` och chip nowrap, `.mc-q` 19–22/600 to'q, variant 16, muqova h1 24–30/700; `parts/02-dvigatel.jsx` — `lenTag()` (teglarsiz ≤70 short / ≤110 mid / long), `keyHtml`, `data-len` Say kalit gap+sarlavha, MCRetry, LineCheck. «IBM Plex Mono» A.css'da bor edi, lekin tizimda ham, sahifada ham yo'q — suratlar fallback bilan chiqqan, shuning uchun kodga `MONO` qoldi (ko'rinish aynan).
+- Tekshiruv: yig.sh 12 dars · esbuild (external runtime) 12/12 · lint:jsx 0 · lint:til mentor-* 0 error (wh 🟡 «hisoblanadi» — eski, tegilmagan) · **haqiqiy build (:5334) vs A surati (eski build + A.css + LEN): PG-2 24-ekran 0 px, muqova 0 px**.
+- **Topilma (sinf-supurish):** 12 darsning yakuniy sinov bo'lagida savol `h2.mk-title` va ball sarlavhasi inline `fontSize` bilan (28px / 30px) — A tegmagan, ustiga yangi xira rang tushgan. Foydalanuvchi tasdig'i → 12/12 faylda savol `mk-title mc-q` (inline olib tashlandi), ball `clamp(22px,1.9vw,26px)`. Surat: PG-2 27-ekran savol 22px/600 to'q — 9-ekran tekshiruv bilan bir xil.
+- Qonun: **M40** + tekshiruv 24-band + etalon jurnali. e2e 1920 → 1280 (12 dars) fonda qayta boshlandi (birinchisi tuzatish uchun to'xtatilgan edi) — natija pastdagi yozuvda.
+- Qolgan: PG-2 ko'rigi foydalanuvchi bilan (:5334, ovoz) · .oz.jsx (12) va 10 ko'rik sahifasi eski · commit/LMS yo'q.
+
+## 03.11 12:26 — F-1103-01 Nest satr raqamlari · F-1103-02 test sahifasi · F-1103-03 «avval mentor o'rganadi» (tashxis + qarorlar)
+- **e2e 12 dars (A varianti bilan): 1920 12/12 ✓ · 1280 12/12 ✓** (`scratchpad/e2e-1920|1280/natija.tsv`; birinchi yurgizish Nest tuzatishi uchun to'xtatilgan, qayta boshidan).
+- **F-1103-01 (nest-linecheck/TAKLIF.md, 01.11 dan ochiq) — foydalanuvchi «Ha, hozir tuzat»:** Nest-1 `parts/05-s12-s17.jsx` LC1_FIXED (yangi satr 10, qavslar 11–12) · `parts/06-s18-s23.jsx` LC2_FIXED (controllers 8, providers 9 — ovoz bilan bir xil) · Nest-2 `nest2/parts/04-s08-s15.jsx` LC2_FIXED (import o'chgan → keyingilar bittaga yuqoriga, yangi @Column 12); o'chgan satr `n: ''`. Massiv tartibi o'zgarmadi → RU indekslari (8-ru.jsx 229/230/317, nest2 168) o'z joyida. Tekshiruv: scratch yig'ish esbuild+jsx-lint toza → haqiqiy yig.sh → esbuild 12/12 · lint:jsx 0 · lint:til 0 error · surat oldin/keyin (`scratchpad/nest-lc/`): 27-ekran 9/11 → **8/9** ✓. Nest-1/2 e2e 1920+1280 — fonda (birinchi urinish zsh so'z-bo'linish tuzog'i: `set -- "$wh"` bitta arg; qayta aniq argumentlar bilan).
+- **Qarorlar (foydalanuvchi):** 10 eski suratli ko'rik sahifasi (01.11 artifact'lari) — **kerak emas, eskirgan deb belgilanadi** (ko'rik :5334 da) · **commit — ha** (lokal, push yo'q; e2e dan keyin) · .oz.jsx 12 — **ko'riklar tugagach bir yo'la**. `dev/korik-sahifa/__pycache__` indeksdan chiqarildi (`.gitignore` +`__pycache__/`).
+- **F-1103-02 — test sahifasi (PG-2 6-ekran rasmi): «gapning ochig'i yoqmadi».** Tashxis: 1) savol o'quvchi tilidan · 2) variantlar quruq · 3) javobdan keyin bir xil gap uch joyda (karta, o'ng izoh, ovoz) · 4) ko'rinish anketa kabi, yarmi bo'sh. Foydalanuvchi: **«ko'rinish anketa kabi» + «bir xil gap uch joyda» + «dizayn umuman yoqmagan»**. Keyingi: 2–3 variant haqiqiy renderda surat (artifact), tanlov → dvigatel MCRetry (12 darsga birdan) → qonun.
+- **F-1103-03 — «juda o'quvchi darsiga kirishamiz; mentor bilimsiz qolmasin, haqiqiy dars; o'quvchi tayyorgarligi oxirida ozroq».** O'lchov PG-2: 28 ekrandan mavzu 21, o'quvchi darsi 4 (11, 24–26), tekshiruv 3/3 «O'quvchi: … yozdim», «o'quvchi» so'zi 70+; misol-ip m4-06 do'koni; chuqurlik o'quvchi darsi darajasida. 10 yangi darsda o'quvchi-sarlavhali ekran 2–6 tadan. Taklif — qonun-nomzod **M41 «Avval mentor o'rganadi»**: tana faqat mavzu (nima · nega · ichida qanday · qachon buziladi, haqiqiy yurgizish) · tekshiruv/amaliyot mentorning o'z tushunchasini sinaydi (bashorat, sabab, tuzatish) · misol-ip o'quvchi darsiga bog'lanmaydi · oxirida «Sinfga tayyorgarlik» 2–3 ekran. **Foydalanuvchi: «Ha, PG-2 dan boshla»** → PG-2 MD v2 → ko'rik → qurish → 9 dars; Nest-1/2 alohida tekshiriladi. Joriy PG-2 ko'rigi — faqat umumiy taassurot (dars qayta yoziladi).

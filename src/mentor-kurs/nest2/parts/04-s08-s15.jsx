@@ -433,8 +433,9 @@ export class CarEntity extends BaseEntity {
   @Column({ default: true })
   is_available: boolean;
 }`);
-const LC2_FIXED = LC2_LINES.map((l, i) => i === 1 ? { ...l, gone: true } : i === 12 ? { ...l, gone: true } : l)
-  .flatMap((l, i) => i === 12 ? [l, { neu: true, h: `  <span class="d">@Column</span>()   <span class="cm">// ustun — Entity'da; @IsNumber — DTO'da</span>` }] : [l]);
+// n — tuzatilgan fayldagi haqiqiy satr raqami: 2-satr (import) o'chgan, keyingilar bittaga yuqoriga, yangi @Column() — 12 (nest-linecheck/TAKLIF.md)
+const LC2_FIXED = LC2_LINES.map((l, i) => (i === 1 || i === 12) ? { ...l, gone: true, n: '' } : { ...l, n: i < 1 ? i + 1 : i })
+  .flatMap((l, i) => i === 12 ? [l, { neu: true, n: 12, h: `  <span class="d">@Column</span>()   <span class="cm">// ustun — Entity'da; @IsNumber — DTO'da</span>` }] : [l]);
 function Screen14(p) {
   return <LineCheck {...p} kicker={t('Tekshiruv 2', 'Проверка 2')} eyebrow={t('Tekshiruv · 2 / 4 — qaysi satr xato?', 'Проверка · 2 / 4 — какая строка с ошибкой?')}
     title={t("Bu Entity'da bitta satr boshqa qatlamniki", 'В этой Entity одна строка из другого слоя')}
@@ -450,7 +451,7 @@ tuzatilgach:     price | integer | not null`, String.raw`
 сломано:         brand · model · is_available   ← колонки price НЕТ (synchronize удалил)
 POST /api/v1/car {…,"price":250} → 201, в ответе и в базе price нет
 исправлено:      price | integer | not null`)) }]}
-    ok={t("To'g'ri. O'n uchinchi satr IsNumber, bu tekshirish qoidasi, u DTO'ga tegishli. Bu xato jim ishlaydi, sinab ko'rdik: server xatosiz ishga tushadi, lekin synchronize price ustunini bazadan o'chiradi. POST ikki yuz bir qaytaradi, narx esa hech qayerda saqlanmaydi. Ekranda tuzatilgan holat: Entity'da Column.", 'Верно. Тринадцатая строка IsNumber, это правило проверки, оно относится к DTO. Эта ошибка тихая, мы проверили: сервер запускается без ошибок, но synchronize удаляет колонку price из базы. POST возвращает 201, а цена нигде не сохраняется. На экране исправленный вариант: в Entity Column.')}
+    ok={t("To'g'ri. O'n uchinchi satr IsNumber, bu tekshirish qoidasi, u DTO'ga tegishli. Bu xato yashirin: sinab ko'rdik: server xatosiz ishga tushadi, lekin synchronize price ustunini bazadan o'chiradi. POST ikki yuz bir qaytaradi, narx esa hech qayerda saqlanmaydi. Ekranda tuzatilgan holat ko'rinib turibdi: Entity'da Column. Demak, ustunni Entity'dagi Column yaratadi, DTO qoidasi esa faqat kirayotgan ma'lumotni tekshiradi.", 'Верно. Тринадцатая строка IsNumber, это правило проверки, оно относится к DTO. Эта ошибка скрытая, мы проверили: сервер запускается без ошибок, но synchronize удаляет колонку price из базы. POST возвращает 201, а цена нигде не сохраняется. На экране виден исправленный вариант: в Entity стоит Column. Значит, колонку создаёт Column в Entity, а правило DTO только проверяет входящие данные.')}
     okShort={t("13-satr: @IsNumber — DTO qoidasi. Sinalgan: server ishga tushadi, price ustuni bazadan o'chadi, POST 201, narx yo'q. Tuzatildi: @Column().", 'Строка 13: @IsNumber — правило DTO. Проверено: сервер запускается, колонка price удаляется из базы, POST 201, цены нет. Исправлено: @Column().')}
     hint={t("Bu satr Entity'ning o'z ishi: import, jadval nomi yoki ustun. Ustun yaratmaydigan, qiymatni tekshiradigan decorator'ni qidiring.", 'Эта строка — работа самой Entity: import, имя таблицы или колонка. Ищите decorator, который не создаёт колонку, а проверяет значение.')} />;
 }
@@ -464,7 +465,7 @@ const P2 = {
     sg('a', "Endi siz <b>car resursini qo'shasiz</b> — o'quvchining «Ochilish kuni», sinfdan oldin", "Endi navbat sizga: car resursini o'z loyihangizga qo'shasiz. Bu o'quvchi darsining Ochilish kuni, siz uni sinfdan oldin bir marta o'zingiz qilib ko'rasiz. Yigirma daqiqacha. Har qadamda Kodni ochish tugmasi bor: bu namuna, kodni o'zingiz yozing.", { hl: [] }),
     sg('b', "1–3-qadam: Entity va <code>core/index.ts</code>, ikki DTO, Service", "Birinchi: Entity va core index'ga export. Ikkinchi: ikki DTO. Uchinchi: Service, super'ni unutmang.", { hl: [0, 1, 2] }),
     sg('c', "4–5-qadam: Controller, Module va AppModule — terminalda <b>beshta Mapped</b>", "To'rtinchi: Controller, beshta route. Beshinchi: Module va bosh modulga ulash. Terminalda beshta Mapped satrini ko'rsangiz, resurs tirik.", { hl: [3, 4] }),
-    sg('d', "6-qadam: Swagger'da POST → <b>201</b>; isbot — javobdagi <code>id</code>ning birinchi 8 belgisi", "Oltinchi: Swagger'da bitta mashina qo'shing, ikki yuz bir. Javobdagi id'ning birinchi sakkiz belgisini isbot maydoniga yozing. Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing. Katakchalar va isbot bo'lmasa, Davom ochilmaydi.", { hl: [5] }),
+    sg('d', "6-qadam: Swagger'da POST → <b>201</b>; isbot — javobdagi <code>id</code>ning birinchi 8 belgisi", "Oltinchi: Swagger'da bitta mashina qo'shing, ikki yuz bir. Javobdagi id'ning birinchi sakkiz belgisini isbot maydoniga yozing. Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. Katakchalar va isbot bo'lmasa, Davom ochilmaydi. Demak, endi car resursi o'z loyihangizda ishlaydi.", { hl: [5] }),
   ],
 };
 const P2_STEPS = [

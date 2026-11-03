@@ -1,0 +1,9 @@
+$ node hodisa-yoq.js
+ 0.0s  [Ali] ulanmoqda  (io() chaqirildi)
+ 0.0s  [Ali] ulangan  (connect)
+ 0.5s  [Ali] transport: websocket
+ 1.0s  [Ali] GET /oyinlar (ochilganda) → Mahalla maydoni 2026-11-08 17:00: 9 / 10
+ 1.1s  [Vali] POST /oyinlar/4/qoshilish → 201
+ 3.6s  [Ali] 2,5 s kutdi — hodisa kelmadi, ekrandagi son o'zgarmadi
+ 3.6s  [Ali] GET /oyinlar (pastga tortildi) → Mahalla maydoni 2026-11-08 17:00: 10 / 10
+ 3.6s  [Ali] ulanmagan  (disconnect: io client disconnect · active=false)

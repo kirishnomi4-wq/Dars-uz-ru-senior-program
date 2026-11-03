@@ -1,0 +1,24 @@
+# Manba: github.com/actions/runner-images (gh api, 2026-11-01)
+| Ubuntu 24.04<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fubuntu24.json) | x64 | `ubuntu-latest` or `ubuntu-24.04` | [ubuntu-24.04] |
+GitHub Actions and Azure DevOps use the `-latest` YAML label (ex: `ubuntu-latest`, `windows-latest`, and `macos-latest`). These labels point towards the newest stable OS version available.
+# Ubuntu 24.04
+- OS Version: 24.04.5 LTS
+- Node.js 22.23.4
+# Eng so'nggi relizlar (gh api releases/latest):
+actions/checkout v7.0.1 2026-07-20T15:10:05Z
+actions/setup-node v7.1.0 2026-10-08T02:52:34Z
+# actions/checkout README:
+This action checks-out your repository under `$GITHUB_WORKSPACE`, so your workflow can access it.
+# GitHub rasmiy Node.js andozasi (actions/starter-workflows ci/node.js.yml):
+    - uses: actions/checkout@v4
+      uses: actions/setup-node@v4
+    - run: npm ci
+    - run: npm run build --if-present
+    - run: npm test
+# GitHub Actions narxi (github/docs content/billing/concepts/product-billing/github-actions.md):
+* **Private repositories:** The runner cost draws from your account or organization's included compute usage. Additional usage is billed at standard {% data variables.product.prodname_actions %} rates.
+* **Public repositories:** This usage remains free.
+
+--
+The use of standard {% data variables.product.github %}-hosted runners is free:
+

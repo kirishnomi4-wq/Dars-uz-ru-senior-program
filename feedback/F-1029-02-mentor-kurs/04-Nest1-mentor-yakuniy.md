@@ -7,7 +7,7 @@
 
 ## 1 · Siz Express'ni bilasiz. Endi Nest.  ← `Lesson` (`Screen1`)
 - Kicker: `Kirish` · Eyebrow: Mentor kursi · NestJS
-- Reja: Nega Nest · Uch bo'lak: Controller · Service · Module · Dependency Injection · cars route'larini quramiz · Buzamiz va xatoni o'qiymiz · Amaliyot (to'rt bo'lak) · O'quvchi darsiga ko'prik
+- Reja: Nega Nest · Uch bo'lak: Controller · Service · Module · Dependency Injection · cars route'larini quramiz · Buzamiz va xatoni o'qiymiz · Amaliyot (to'rt bo'lak) · O'quvchi darsini o'tish
 1. **Express bilimingiz ustiga Nest qo'yamiz: u Express'ni bekor qilmaydi, tartib beradi**
    Ovoz: «Assalomu alaykum. Siz Express bilan server yozgansiz: route ochgansiz, so'rovni qabul qilgansiz, javob qaytargansiz. Bugun shu bilimingiz ustiga NestJS qo'yamiz. Nest Express'ni bekor qilmaydi, aksincha, uning ustiga tartib o'rnatadi.»
 2. **Dars oxirida bo'sh papkadan ishlaydigan server qurib bo'lasiz**
@@ -91,8 +91,8 @@
    Ovoz: «Ikkinchi: Nest CLI'ni global o'rnating va versiyasini tekshiring. Chiqqan raqamni pastdagi isbot maydoniga yozing.»
 4. **3-qadam: `nest new cars-api` — o'rnatish fonda, kutmasdan davom eting**
    Ovoz: «Uchinchi: nest new cars-api. Paket menejeri so'ralsa npm'ni tanlang. O'rnatish boshlangach, kutmang: katakchani belgilang va Davom bosing.»
-5. **Boshqacha chiqsa — pastdagi «Boshqacha chiqdimi?» tugmasi; katakcha va isbotsiz Davom ochilmaydi**
-   Ovoz: «Biror narsa boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing: xato va yechimi o'sha yerda. Uchala katakcha belgilanmaguncha va isbot to'g'ri yozilmaguncha Davom tugmasi ochilmaydi.»
+5. **Boshqacha chiqsa, «Boshqacha chiqdimi?» tugmasini bosing — yechimlar oynasi ochiladi**
+   Ovoz: «Biror narsa boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing: yechimlar oynasi ochiladi, xato va yechimi o'sha yerda. Uchala katakcha belgilanmaguncha va isbot to'g'ri yozilmaguncha Davom tugmasi ochilmaydi. Demak, shu amaliyotdan keyin kompyuteringizda Nest o'rnatilgan va yangi loyiha yaratilmoqda.»
 - Qadamlar:
   1. **Node** — `node --version` → kutilgan: v20 yoki undan yuqori (Nest 11 talabi)
   2. **Nest CLI** — `npm i -g @nestjs/cli` · `nest --version` → kutilgan: 11.x.x
@@ -196,8 +196,8 @@
    Ovoz: «Ikkinchi: terminalda Mapped satrini toping va uni aynan nusxalab, pastdagi isbot maydoniga qo'ying.»
 4. **3-qadam: brauzerda `localhost:3000` — Hello World! chiqsin**
    Ovoz: «Uchinchi: brauzerda localhost uch ming, Hello World ni ko'ring.»
-5. **Boshqacha chiqsa — pastdagi «Boshqacha chiqdimi?» tugmasi; katakcha va isbotsiz Davom ochilmaydi**
-   Ovoz: «Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing. Uchala katakcha belgilanmaguncha va isbot to'g'ri qo'yilmaguncha Davom ochilmaydi.»
+5. **Boshqacha chiqsa, «Boshqacha chiqdimi?» tugmasini bosing — yechimlar oynasi ochiladi**
+   Ovoz: «Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. Uchala katakcha belgilanmaguncha va isbot to'g'ri qo'yilmaguncha Davom ochilmaydi. Demak, shu amaliyotdan keyin loyihangiz ishga tushgan va siz terminaldagi Mapped satrlarini o'qiy olasiz.»
 - Qadamlar:
   1. **Ishga tushirish** — `cd cars-api` · `npm run start:dev` → kutilgan: oxirida «Nest application successfully started»
   2. **Terminal** — kutilgan: Mapped {/, GET} route satri — nusxalab isbot maydoniga qo'ying
@@ -219,7 +219,7 @@
   - A noto'g'ri: Controller'da logika yozilmaydi: u so'rovni oladi va Service'ga uzatadi, hisoblamaydi.
   - C noto'g'ri: Module ro'yxat, unda ish bajaradigan kod yozilmaydi.
   - D noto'g'ri: main.ts faqat ilovani ishga tushiradi.
-- To'g'ri javobdan keyin (ovoz): «Service. Hisob, qoida va bazaga murojaat Service'da turadi. Controller faqat so'rovni oladi va Service'ni chaqiradi. Shunda chegirmani serversiz ham sinab ko'rish mumkin.»
+- To'g'ri javobdan keyin (ovoz): «To'g'ri, Service. Hisob, qoida va bazaga murojaat Service'da turadi. Controller faqat so'rovni oladi va Service'ni chaqiradi. Shunda chegirmani serversiz ham sinab ko'rish mumkin. Demak, biznes logika qayerda turadi deb so'ralsa, javob doim Service.»
 - Ekranda: Service: hisob, qoida, baza — shu yerda. Controller faqat oladi va chaqiradi.
 
 ---
@@ -315,7 +315,7 @@
 - Ovoz (savol): «Controller'ni yozdik, endi o'zingiz tekshiring. Ikkinchi tekshiruv. Qoidani eslang: Controller faqat so'rovdan oladi, Service'ni chaqiradi va natijani qaytaradi, hisob qilmaydi. Ekrandagi Controller ishlaydi, lekin bitta satr hisob qilyapti. O'sha satrni bosing.»
 - To'g'ri satr (0 dan): 10
 - Yo'llanma (noto'g'ri bosilsa): Bu satr Controller'ning o'z ishi: so'rovdan olish, Service'ni chaqirish yoki qaytarish. Narxni o'zgartirib, hisob qilayotgan satrni qidiring.
-- To'g'ri javobdan keyin (ovoz): «To'g'ri. O'n birinchi satr narxga chegirma hisoblayapti. Ishlaydi, lekin bu biznes logika, u Service'ga tegishli: Controller'da tursa, uni alohida sinab bo'lmaydi va Telegram bot shu chegirmani ololmaydi. Ekranda tuzatilgan holat: hisob Service'ning findOne metodiga ko'chdi, Controller'da yana bitta satr qoldi.»
+- To'g'ri javobdan keyin (ovoz): «To'g'ri. O'n birinchi satr narxga chegirma hisoblayapti. Ishlaydi, lekin bu biznes logika, u Service'ga tegishli: Controller'da tursa, uni alohida sinab bo'lmaydi va Telegram bot shu chegirmani ololmaydi. Ekranda tuzatilgan holat ko'rinib turibdi: hisob Service'ning findOne metodiga ko'chdi, Controller'da yana bitta satr qoldi. Demak, Controller'da hisob ko'rsangiz, uni Service'ga ko'chirish kerak.»
 - Ekranda: 11-satr: chegirma hisobi — biznes logika, u Service'ga tegishli. Tuzatildi: hisob cars.service.ts → findOne'ga ko'chdi, Controller'da yana bitta satr.
 
 ---
@@ -350,7 +350,7 @@
   - A noto'g'ri: find hech narsa topmasa undefined qaytaradi, bizning kod esa bu holatda xato tashlaydi.
   - B noto'g'ri: Besh yuz faqat biz kutmagan xato bo'lganda chiqadi; bu yerda xatoni o'zimiz NotFoundException bilan tashladik.
   - D noto'g'ri: To'rt yuzni hech kim qaytarmaydi, chunki tekshiruv yozilmagan.
-- To'g'ri javobdan keyin (ovoz): «To'rt yuz to'rt va Car with id NaN not found. Number abc natijasi NaN. Ro'yxatda id NaN bo'lgan mashina yo'q, shuning uchun findOne NotFoundException tashlaydi. Ishlaydi, lekin xabar chiroyli emas: foydalanuvchi NaN so'zini ko'rmasligi kerak. Nest kiruvchi ma'lumotni o'zi tekshirmaydi, siz aytmaguncha. Aytish usuli: id'ni ParseIntPipe bilan olish. Unda abc kelsa, Nest o'zi to'rt yuz, Bad Request qaytaradi.»
+- To'g'ri javobdan keyin (ovoz): «To'g'ri: to'rt yuz to'rt va Car with id NaN not found. Number abc natijasi NaN, bunday id'li mashina yo'q, shuning uchun findOne NotFoundException tashlaydi. Ishlaydi, lekin foydalanuvchi NaN so'zini ko'rmasligi kerak. Id ParseIntPipe bilan olinsa, abc kelganda Nest o'zi to'rt yuz, Bad Request qaytaradi. Demak, Nest kiruvchi ma'lumotni siz pipe bilan aytmaguncha tekshirmaydi.»
 - Ekranda: 404, «Car with id NaN not found»: Number('abc') = NaN → findOne topmaydi → NotFoundException. Tekshiruv yo'q; @Param('id', ParseIntPipe) yozilsa — 400 «Validation failed (numeric string is expected)» (sinab ko'rilgan).
 
 ---
@@ -367,8 +367,8 @@
    Ovoz: «Uchinchi: Controller'ni o'zingiz yozing, yigirma qator. Namuna uchinchi qadam ichidagi Kodni ochish tugmasida ko'rinadi, lekin nusxalanmaydi, ataylab. Decorator va konstruktorni qo'lingiz his qilsin. Terminalda uchta Mapped satri chiqsin.»
 5. **4-qadam: to'rtta so'rov — javoblar 200 · 200 · 404 · 201 bo'lsin**
    Ovoz: «To'rtinchi: brauzer yoki Postman bilan to'rtta so'rovni yuboring va javoblarni darsdagi bilan solishtiring: ikki yuz, ikki yuz, to'rt yuz to'rt, ikki yuz bir. cars to'qson to'qqiz javobidagi xabarni isbot maydoniga yozing.»
-6. **Boshqacha chiqsa — pastdagi «Boshqacha chiqdimi?» tugmasi; katakcha va isbotsiz Davom ochilmaydi**
-   Ovoz: «Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing. To'rtala katakcha belgilanmaguncha va isbot to'g'ri yozilmaguncha Davom ochilmaydi.»
+6. **Boshqacha chiqsa, «Boshqacha chiqdimi?» tugmasini bosing — yechimlar oynasi ochiladi**
+   Ovoz: «Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha belgilanmaguncha va isbot to'g'ri yozilmaguncha Davom ochilmaydi. Demak, shu amaliyotdan keyin sizda o'zingiz qurgan cars moduli bor va u so'rovlarga javob beradi.»
 - Qadamlar:
   1. **cars moduli** — `nest g module cars` · `nest g controller cars --no-spec` · `nest g service cars --no-spec` → kutilgan: 3 CREATE, 3 UPDATE
   2. **Service — nusxalang** — kutilgan: cars.service.ts — «Kodni ochish» → «nusxalash», faylga qo'ying
@@ -413,8 +413,8 @@
    Ovoz: «Server ishga tushdi, muvaffaqiyatli deb yozdi, hamma narsa yaxshidek. Xato yo'q.»
 4. **Lekin `/cars` → 404, root path esa ishlaydi**
    Ovoz: «Lekin cars route'ini so'rasak, to'rt yuz to'rt, Cannot GET cars. Root path esa ishlaydi.»
-5. **AppModule CarsModule'ni ulamadi — Nest cars papkasini umuman o'qimadi. Bu jim xato**
-   Ovoz: «Nima bo'ldi? AppModule CarsModule'ni ulamadi, shuning uchun Nest cars papkasini umuman o'qimadi. Xato yo'q, chunki Nest uchun u modul shunchaki yo'q. Bu jim xato, eng xavflisi.»
+5. **AppModule CarsModule'ni ulamadi — Nest cars papkasini umuman o'qimadi. Bu yashirin xato**
+   Ovoz: «Nima bo'ldi? AppModule CarsModule'ni ulamadi, shuning uchun Nest cars papkasini umuman o'qimadi. Xato yo'q, chunki Nest uchun u modul shunchaki yo'q. Bu yashirin xato, eng xavflisi.»
 6. **Topish yo'li: terminalda CarsController satri ham, Mapped ham yo'q**
    Ovoz: «Buni qanday topasiz? Terminalga qarang: CarsController satri yo'q, cars uchun Mapped satri yo'q. Terminaldagi satrlarni o'qishni odat qiling degan edim, sabab mana shu.»
 7. **Tuzatamiz: `imports: [CarsModule]` qaytdi — Mapped satrlari qaytib keldi**
@@ -427,7 +427,7 @@
 ## 25 · Buzamiz 3: Controller decorator'i yo'q  ← `Lesson` (`Screen20`)
 - Kicker: `5-bosqich · buzamiz 3`
 1. **Ataylab buzamiz: `@Controller('cars')` o'chirildi, klass qoldi — server yiqiladi**
-   Ovoz: «Jim xatoni ko'rdik. Uchinchi holat decorator haqida: to'rtinchi ekranda aytgan qoidani endi amalda ko'ramiz. cars controller da Controller decorator'ini o'chirdik, klass joyida qoldi. Server yiqiladi.»
+   Ovoz: «Yashirin xatoni ko'rdik. Uchinchi holat decorator haqida: to'rtinchi ekranda aytgan qoidani endi amalda ko'ramiz. cars controller da Controller decorator'ini o'chirdik, klass joyida qoldi. Server yiqiladi.»
 2. **Xabar: «invalid controller» — belgi yo'q, lekin controllers ro'yxatida turibdi**
    Ovoz: «Xabar: noto'g'ri controller aniqlandi. CarsController'da Controller decorator'i yo'q, lekin u qaysidir modulning controllers ro'yxatida turibdi.»
 3. **4-ekrandagi qoida ishladi: belgi bo'lmasa, Nest klassni tanimaydi**
@@ -450,8 +450,8 @@
    Ovoz: «Kutilmagan natija: hammasi ishlayapti, cars route'i ikki yuz qaytaryapti. Nega? CarsService'ning o'zining konstruktorida hech qanday dependency yo'q. Nest uni dependency'siz yaratib qo'ya oldi.»
 4. **`@Injectable()` Nest'ga aytadi: konstruktorga qarab, nima kerakligini aniqla**
    Ovoz: «Injectable aslida Nest'ga shuni aytadi: bu klassning konstruktoriga qarab, unga nima kerakligini aniqlang. Belgi bo'lmasa, Nest konstruktorga qaramaydi.»
-5. **Dependency qo'shsak: server ishga tushadi, lekin so'rovda 500 — bu jim xato**
-   Ovoz: «Endi sinab ko'ramiz: shu Injectable'siz Service'ga dependency qo'shamiz, konstruktorida PricingService so'raladi. Natija kutilmagan: server xatosiz ishga tushadi, Mapped satrlari joyida. Lekin cars so'rovi besh yuz qaytaradi, terminalda TypeError: undefined ning withDiscount xossasini o'qib bo'lmaydi. Nest dependency'ni jimgina inject qilmadi, maydon bo'sh qoldi. Bu jim xato: ishga tushishda emas, birinchi so'rovda chiqadi.»
+5. **Dependency qo'shsak: server ishga tushadi, lekin so'rovda 500 — bu yashirin xato**
+   Ovoz: «Endi sinab ko'ramiz: shu Injectable'siz Service'ga dependency qo'shamiz, konstruktorida PricingService so'raladi. Natija kutilmagan: server xatosiz ishga tushadi, Mapped satrlari joyida. Lekin cars so'rovi besh yuz qaytaradi, terminalda TypeError: undefined ning withDiscount xossasini o'qib bo'lmaydi. Nest dependency'ni inject qilmadi va xato ham bermadi, maydon bo'sh qoldi. Bu yashirin xato: ishga tushishda emas, birinchi so'rovda chiqadi.»
 6. **Tuzatamiz: `@Injectable()` qaytdi — PricingService inject qilindi, `/cars` → 200**
    Ovoz: «Tuzatamiz: Injectable decorator'ini qaytaramiz. PricingService modulning providers ro'yxatida turibdi. Endi Nest konstruktorga qaraydi, PricingService'ni inject qiladi va cars so'rovi yana ikki yuz qaytaradi.»
 7. **Xulosa: `@Injectable()` har Service'ga yoziladi, hozir kerak bo'lmasa ham**
@@ -464,7 +464,7 @@
 - Ovoz (savol): «To'rt xato holatini ko'rdingiz, endi o'zingiz toping. To'rtinchi tekshiruv. Bu modul bilan server yiqiladi: OrdersController'ning dependency'si topilmadi deydi. Qoidani eslang: Controller controllers ro'yxatida, Service providers ro'yxatida. Bitta narsa noto'g'ri ro'yxatda. O'sha satrni bosing.»
 - To'g'ri satr (0 dan): [7, 8]
 - Yo'llanma (noto'g'ri bosilsa): Bu satr o'z joyida. Har narsa o'z ro'yxatidami: Controller controllers'da, Service providers'da? Nomi Service bilan tugaydigan narsani qidiring.
-- To'g'ri javobdan keyin (ovoz): «To'g'ri. PaymentService bu Service, lekin u controllers ro'yxatiga yozilgan, providers'da esa yo'q. Ekranda tuzatilgan holat: sakkizinchi satrda faqat OrdersController qoldi, PaymentService to'qqizinchi satrga, providers'ga ko'chdi. Endi Nest uni yaratadi va OrdersController'ga inject qiladi.»
+- To'g'ri javobdan keyin (ovoz): «To'g'ri. PaymentService bu Service, lekin u controllers ro'yxatiga yozilgan, providers'da esa yo'q. Ekranda tuzatilgan holat ko'rinib turibdi: sakkizinchi satrda faqat OrdersController qoldi, PaymentService to'qqizinchi satrga, providers'ga ko'chdi. Endi Nest uni yaratadi va OrdersController'ga inject qiladi. Demak, Service doim providers ro'yxatiga yoziladi, controllers'ga emas.»
 - Ekranda: PaymentService — Service, u providers'da bo'lishi kerak. Tuzatildi: controllers: [OrdersController] · providers: [OrdersService, PaymentService].
 
 ---
@@ -495,7 +495,7 @@
   - A noto'g'ri: OrdersService topilgan, muammo unda emas.
   - C noto'g'ri: Controller imports'ga yozilmaydi, imports faqat modullar uchun.
   - D noto'g'ri: Controller decorator'i Service'ga qo'yilmaydi; bu xabar PaymentService modul ro'yxatida yo'qligini aytyapti.
-- To'g'ri javobdan keyin (ovoz): «orders module, providers ro'yxatiga PaymentService. Xabarda hamma narsa yozilgan. Qaysi klass: OrdersController. Qaysi dependency: PaymentService, index nol. Qaysi fayl: OrdersModule, ya'ni orders module ts. Qavsda so'roq belgisi birinchi o'rinda, OrdersService ikkinchi o'rinda topilgan. Demak faqat PaymentService yetishmayapti. Ekranda tuzatilgan fayl: providers ro'yxatiga PaymentService qo'shildi va server ishga tushdi.»
+- To'g'ri javobdan keyin (ovoz): «To'g'ri: orders module faylida providers ro'yxatiga PaymentService qo'shiladi. Xabarda hamma narsa yozilgan: klass OrdersController, dependency PaymentService, index nol, fayl OrdersModule. Qavsda so'roq belgisi birinchi o'rinda turibdi, OrdersService esa ikkinchi o'rinda topilgan. Ekranda tuzatilgan fayl: PaymentService qo'shildi va server ishga tushdi. Demak, so'roq belgisi turgan o'rindagi dependency yetishmayapti.»
 - Ekranda: orders.module.ts → providers: [OrdersService, PaymentService]. Klass: OrdersController · dependency: PaymentService, index [0] · fayl: orders.module.ts.
 
 ---
@@ -509,7 +509,7 @@
 3. **2-qadam: `imports`'dan CarsModule'ni oling — terminalda qaysi satr yo'qolganini toping**
    Ovoz: «Ikkinchi: app module da imports'dan CarsModule'ni olib tashlang. Server ishga tushadi. Terminalda qaysi satr yo'qolganini toping, cars route'ini so'rang, keyin qaytaring.»
 4. **3-qadam: hammasini qaytaring — terminalda 3 ta Mapped, `/cars/99` → 404**
-   Ovoz: «Uchinchi: hammasini qaytaring va tekshiring. Terminalda yana uchta Mapped satri bo'lsin, cars to'qson to'qqiz so'rovi to'rt yuz to'rt va xabar qaytarsin. Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing. Uchala katakcha va isbot to'g'ri bo'lmaguncha Davom ochilmaydi.»
+   Ovoz: «Uchinchi: hammasini qaytaring va tekshiring. Terminalda yana uchta Mapped satri bo'lsin, cars to'qson to'qqiz so'rovi to'rt yuz to'rt va xabar qaytarsin. Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. Uchala katakcha va isbot to'g'ri bo'lmaguncha Davom ochilmaydi. Demak, endi siz Nest xabaridan klass, dependency va faylni o'zingiz topa olasiz.»
 - Qadamlar:
   1. **providers bo'sh** — kutilgan: «Nest can't resolve dependencies of the CarsController (?)» → klass · dependency · fayl → providers: [CarsService] qaytaring
   2. **imports'da CarsModule yo'q** — kutilgan: server ishga tushadi · terminalda CarsController satri YO'Q · GET /cars → 404 → imports: [CarsModule] qaytaring
@@ -522,7 +522,7 @@
 ---
 
 ## 31 · O'quvchi clone qiladigan loyiha  ← `Lesson` (`Screen25a`)
-- Kicker: `7-bosqich · ko'prik`
+- Kicker: `7-bosqich · o'quvchi darsini o'tish`
 1. **O'quvchi noldan yozmaydi: GitHub'dan tayyor loyihani clone qilib, ishga tushiradi**
    Ovoz: «Siz Nest'ni o'zingiz qurdingiz va o'zingiz buzdingiz. Endi darsning asosiy maqsadiga o'tamiz: bu mavzuni o'quvchiga o'tish. Avval o'quvchi darsiga qaraymiz, chunki u bu mavzuni boshqacha ko'radi. O'quvchi noldan yozmaydi: GitHub'dan tayyor loyihani clone qiladi, IntroNestArxitechture, va uni ishga tushiradi.»
 2. **Loyiha kattaroq: `api` · `core` · `common` · `infrastructure` papkalari**
@@ -545,7 +545,7 @@
 ---
 
 ## 32 · O'quvchi darsining tili: restoran  ← `Lesson` (`Screen25b`)
-- Kicker: `7-bosqich · ko'prik`
+- Kicker: `7-bosqich · o'quvchi darsini o'tish`
 1. **O'quvchi darsi restoran tilida gapiradi: ofitsiant, oshpaz, omborchi…**
    Ovoz: «Loyihaning fayllarini ko'rdik. Endi o'quvchi shu fayllarni qanday so'zlar bilan eslashini bilib olaylik. O'quvchi darsi restoran tilida gapiradi: Controller ofitsiant, Service oshpaz, Repository omborchi, Guard nazoratchi, Module shtat jadvali. O'quvchi shu so'zlarda o'ylaydi.»
 2. **O'quvchi «oshpaz» desa — siz Service ekanini bilasiz va faylni ko'rsatasiz**
@@ -645,8 +645,8 @@
    Ovoz: «To'rtinchisi: Service'ni nega alohida qildik? Alohida sinash va qayta ishlatish uchun, Controller'da esa logika qolmaydi.»
 6. **5 · «Nest tezroqmi?» → yo'q, ichida Express; Nest tezlik emas, tartib beradi**
    Ovoz: «Beshinchisi: Nest tezmi? Yo'q, tezlik bir xil, chunki ichida Express. Nest tezlik emas, tartib beradi.»
-7. **6 · «Injectable'siz ishlayapti-ku?» → hozircha; dependency qo'shilsa — jim xato, 500**
-   Ovoz: «Oltinchisi: Injectable'ni o'chirdim, ishlayapti. Dependency'si bo'lmagani uchun; dependency paydo bo'lganda server ishga tushadi, lekin so'rovda besh yuz, jim xato. Shuning uchun doim yoziladi.»
+7. **6 · «Injectable'siz ishlayapti-ku?» → hozircha; dependency qo'shilsa — yashirin xato, 500**
+   Ovoz: «Oltinchisi: Injectable'ni o'chirdim, ishlayapti. Dependency'si bo'lmagani uchun; dependency paydo bo'lganda server ishga tushadi, lekin so'rovda besh yuz, yashirin xato. Shuning uchun doim yoziladi.»
 8. **Xulosa: javob bera olmagan savolingiz bo'lsa — darsdagi o'sha ekranga qayting**
    Ovoz: «Xulosa: bu oltita javob sizda tayyor bo'lsin. Har kartani bosib, javobni o'zingiz yana o'qing. O'zingiz javob bera olmaydigan savol bo'lsa, darsdagi o'sha ekranga qayting.»
 
@@ -683,7 +683,7 @@
      B) Injectable yo'q
      C) Port band
      D) Service'da xato
-     Izoh: Jim xato: modul ulanmagan, Nest papkani o'qimagan. · ekran 24
+     Izoh: Yashirin xato: modul ulanmagan, Nest papkani o'qimagan. · ekran 24
   6. Service ichida throw new Error('x'). Mijozga nima boradi?
      A) 404 va «x»
      B) 500 Internal server error  ✔
@@ -751,7 +751,7 @@ constructor(private readonly carsService: CarsService) — siz yaratmaysiz, Nest
 1 «can't resolve dependencies of the X (?) … argument Y at index [0] … in the Z module» → Z modulining providers'iga Y
 2 server ishga tushdi, /cars 404, terminalda Mapped {/cars…} yo'q → AppModule imports: [CarsModule]
 3 «invalid controller … does not have the @Controller() decorator» → decorator'ni qaytaring
-4 @Injectable'siz ishlaydi (dependency yo'q) → dependency qo'shilsa: server ishga tushadi, so'rovda 500 TypeError (jim xato) → baribir yoziladi
+4 @Injectable'siz ishlaydi (dependency yo'q) → dependency qo'shilsa: server ishga tushadi, so'rovda 500 TypeError (yashirin xato) → baribir yoziladi
 ## Baza ulanmadi (o'quvchi loyihasi, TypeORM — «Unable to connect to the database. Retrying (1)…», 10 urinish, keyin yiqiladi)
 connect ECONNREFUSED 127.0.0.1:5432 → PostgreSQL'ni ishga tushiring (Windows: Services → postgresql; Mac: brew services start postgresql; Linux: sudo systemctl start postgresql)
 SASL … client password must be a string → .env yo'q: cp .env.example .env, parolni o'zingiznikiga almashtiring

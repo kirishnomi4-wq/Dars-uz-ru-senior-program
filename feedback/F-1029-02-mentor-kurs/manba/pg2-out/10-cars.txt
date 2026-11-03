@@ -1,0 +1,15 @@
+car_rental=# CREATE TABLE cars (id SERIAL PRIMARY KEY, model TEXT, daily_price INTEGER, year INTEGER, is_rented BOOLEAN);
+CREATE TABLE
+
+car_rental=# INSERT INTO cars (model, daily_price, year, is_rented) VALUES ('Chevrolet Cobalt', 280000, 2022, false), ('Chevrolet Malibu', 520000, 2023, false), ('Kia K5', 610000, 2023, false);
+INSERT 0 3
+
+car_rental=# SELECT * FROM cars;
+ id |      model       | daily_price | year | is_rented 
+----+------------------+-------------+------+-----------
+  1 | Chevrolet Cobalt |      280000 | 2022 | f
+  2 | Chevrolet Malibu |      520000 | 2023 | f
+  3 | Kia K5           |      610000 | 2023 | f
+(3 rows)
+
+

@@ -1,0 +1,9 @@
+# "test": "echo xato && exit 1" ga o'zgartirildi
+$ npm test
+
+> ci-mashq@1.0.0 test
+> echo xato && exit 1
+
+xato
+[chiqish kodi: 1]
+

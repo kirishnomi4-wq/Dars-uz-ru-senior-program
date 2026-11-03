@@ -1,0 +1,8 @@
+# ikki curl bir vaqtda: {"tolovRaqami":"m-bir-vaqtda","holat":"tolandi","summa":10000,"oyinchiId":11}
+{"ok":true} [HTTP 200]
+{"takror":true} [HTTP 200]
+ count 
+-------
+     1
+(1 row)
+

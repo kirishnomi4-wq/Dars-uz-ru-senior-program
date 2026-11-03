@@ -1,0 +1,101 @@
+$ npm run lint
+
+> IntroNestArxitechture@0.0.1 lint
+> eslint "{src,apps,libs,test}/**/*.ts" --fix
+
+
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src/api/admin/admin.controller.ts
+  11:3  error  'HttpStatus' is defined but never used  @typescript-eslint/no-unused-vars
+
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src/api/admin/admin.service.ts
+   56:14  error    'error' is defined but never used                                               @typescript-eslint/no-unused-vars
+  105:25  warning  Unsafe argument of type `any` assigned to a parameter of type `CreateAdminDto`  @typescript-eslint/no-unsafe-argument
+
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src/api/auth/auht.service.ts
+  25:11  error  Unsafe assignment of an `any` value                @typescript-eslint/no-unsafe-assignment
+  25:54  error  Unsafe assignment of an `any` value                @typescript-eslint/no-unsafe-assignment
+  25:64  error  Unsafe member access .id on an `any` value         @typescript-eslint/no-unsafe-member-access
+  30:7   error  Unsafe assignment of an `any` value                @typescript-eslint/no-unsafe-assignment
+  30:16  error  Unsafe member access .id on an `any` value         @typescript-eslint/no-unsafe-member-access
+  31:7   error  Unsafe assignment of an `any` value                @typescript-eslint/no-unsafe-assignment
+  31:22  error  Unsafe member access .is_active on an `any` value  @typescript-eslint/no-unsafe-member-access
+  32:7   error  Unsafe assignment of an `any` value                @typescript-eslint/no-unsafe-assignment
+  32:18  error  Unsafe member access .role on an `any` value       @typescript-eslint/no-unsafe-member-access
+  51:11  error  Unsafe assignment of an `any` value                @typescript-eslint/no-unsafe-assignment
+  51:54  error  Unsafe assignment of an `any` value                @typescript-eslint/no-unsafe-assignment
+  51:64  error  Unsafe member access .id on an `any` value         @typescript-eslint/no-unsafe-member-access
+
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src/common/decorator/cookie-getter-decorator.ts
+   9:68  error  Async arrow function has no 'await' expression   @typescript-eslint/require-await
+  11:13  error  Unsafe assignment of an `any` value              @typescript-eslint/no-unsafe-assignment
+  12:13  error  Unsafe assignment of an `any` value              @typescript-eslint/no-unsafe-assignment
+  12:36  error  Unsafe member access .cookies on an `any` value  @typescript-eslint/no-unsafe-member-access
+  16:7   error  Unsafe return of a value of type `any`           @typescript-eslint/no-unsafe-return
+
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src/common/decorator/get-request-user-decorator.ts
+   9:70  error  Async arrow function has no 'await' expression  @typescript-eslint/require-await
+  11:13  error  Unsafe assignment of an `any` value             @typescript-eslint/no-unsafe-assignment
+  12:13  error  Unsafe assignment of an `any` value             @typescript-eslint/no-unsafe-assignment
+  12:38  error  Unsafe member access [data] on an `any` value   @typescript-eslint/no-unsafe-member-access
+
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src/common/guard/auth.guard.ts
+  25:11  error  Unsafe assignment of an `any` value              @typescript-eslint/no-unsafe-assignment
+  26:22  error  Unsafe member access .headers on an `any` value  @typescript-eslint/no-unsafe-member-access
+  33:11  error  Unsafe member access .user on an `any` value     @typescript-eslint/no-unsafe-member-access
+
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src/common/guard/roles.guard.ts
+  12:11  error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+  24:12  error    Unsafe member access .user on an `any` value                            @typescript-eslint/no-unsafe-member-access
+  24:41  warning  Unsafe argument of type `any` assigned to a parameter of type `string`  @typescript-eslint/no-unsafe-argument
+  24:45  error    Unsafe member access .user on an `any` value                            @typescript-eslint/no-unsafe-member-access
+  25:36  error    Unsafe member access .user on an `any` value                            @typescript-eslint/no-unsafe-member-access
+  25:53  error    Unsafe member access .params on an `any` value                          @typescript-eslint/no-unsafe-member-access
+
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src/common/interface/paginationRes-interface.ts
+  13:18  error  An interface declaring no members is equivalent to its supertype  @typescript-eslint/no-empty-object-type
+
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src/infrastructure/base/base.service.ts
+  23:5   error    Unsafe assignment of an `any` value                                                               @typescript-eslint/no-unsafe-assignment
+  69:38  warning  Unsafe argument of type `any` assigned to a parameter of type `_QueryDeepPartialEntity<unknown>`  @typescript-eslint/no-unsafe-argument
+  70:11  error    Unsafe assignment of an `any` value                                                               @typescript-eslint/no-unsafe-assignment
+
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src/infrastructure/exception/AllException.filter.ts
+  34:15  error  Unsafe assignment of an `any` value              @typescript-eslint/no-unsafe-assignment
+  34:52  error  Unsafe member access .message on an `any` value  @typescript-eslint/no-unsafe-member-access
+  39:11  error  Unsafe assignment of an `any` value              @typescript-eslint/no-unsafe-assignment
+
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src/infrastructure/lib/crypto/brypt.ts
+   6:3   error  Async method 'encrypt' has no 'await' expression  @typescript-eslint/require-await
+   7:5   error  Unsafe return of a value of type error            @typescript-eslint/no-unsafe-return
+   7:12  error  Unsafe call of a type that could not be resolved  @typescript-eslint/no-unsafe-call
+  10:3   error  Async method 'decrypt' has no 'await' expression  @typescript-eslint/require-await
+  11:5   error  Unsafe return of a value of type error            @typescript-eslint/no-unsafe-return
+  11:12  error  Unsafe call of a type that could not be resolved  @typescript-eslint/no-unsafe-call
+
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src/infrastructure/lib/token/Token.ts
+  49:3  error  Async method 'writeCookie' has no 'await' expression  @typescript-eslint/require-await
+  62:3  error  Async method 'clearCookie' has no 'await' expression  @typescript-eslint/require-await
+
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src/infrastructure/response/successRes.ts
+  7:5  error  Unsafe assignment of an `any` value  @typescript-eslint/no-unsafe-assignment
+
+✖ 49 problems (46 errors, 3 warnings)
+
+[chiqish kodi: 1]
+
+$ git status --short
+ M package-lock.json
+ M src/api/admin/admin.service.ts
+ M src/api/admin/dto/signin-admin.dto.ts
+ M src/api/app.module.ts
+ M src/api/auth/auth.module.ts
+ M src/common/enum/user-enum.ts
+ M src/common/guard/auth.guard.ts
+ M src/config/index.ts
+ M src/core/entity/admin.entity.ts
+ M src/core/index.ts
+ M src/core/repository/admin.repository.ts
+ M src/infrastructure/base/base.service.ts
+ M src/infrastructure/lib/token/Token.ts
+ M src/infrastructure/pagination/RepositoryPager.ts
+ M src/main.ts

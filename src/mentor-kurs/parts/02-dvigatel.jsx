@@ -3,11 +3,17 @@
 //  DVIGATEL — segment-qadam, sahna qobig'i, umumiy komponentlar
 // ============================================================
 const html = (s) => ({ __html: s });
+// F-1102-22 (M40): chap panel gapining uzunligi — CSS `.mk-key[data-len]` shu bilan o'lchamni moslaydi (teglarsiz belgi soni)
+const lenTag = (s) => {
+  if (typeof s !== 'string') return undefined;
+  const n = s.replace(/<[^>]+>/g, '').trim().length;
+  return n <= 70 ? 'short' : n <= 110 ? 'mid' : 'long';
+};
 // Ovoz matni so'z bilan («to'rt yuz to'rt»), ekran raqam bilan (404): show berilmagan matn uchun
 // Tartib muhim: uzun ibora oldin («ming ikki yuz qirq» → 1240, keyin «ikki yuz» → 200 uni buzmaydi)
 const DIGITS = [['ming ikki yuz qirq', '1240'], ["to'rt yuz to'rt", '404'], ["to'rt yuz bir", '401'], ["to'rt yuz uch", '403'], ['ikki yuz bir', '201'], ['besh yuz', '500'], ["to'rt yuz", '400'], ['ikki yuz', '200'], ['uch ming', '3000'], ["to'qson to'qqiz", '99'], ['index nol', 'index [0]'],
   ["o'n birinchi versiya", '11-versiya'], ["o'n-o'n besh", '10–15'], ["o'n marta", '10 marta'], ['ikki-besh', '2–5'], ['yigirma ikki', '22'], ["o'ttizdan oltmishgacha", '30–60'], ["oltmishdan to'qsongacha", '60–90'], ['yigirma', '20'], ["o'ttiz", '30'], ["to'qson", '90']];
-const digits = (t) => DIGITS.reduce((acc, [w, d]) => acc.replace(new RegExp(w.replace(/'/g, "['’]"), 'gi'), d), t || '');
+const digits = (t) => DIGITS.reduce((acc, [w, d]) => acc.replace(new RegExp(w.replace(/'/g, "['\u2019]"), 'gi'), d), t || '');
 // Ovozga ketadigan matn (platforma qoidasi, LESSON_PROMPT_WITH_UNLOCK «Multilingual narration»): host-marker + haqiqiy inglizcha
 // IBORALAR `[English pronunciation] … [end]` ichida (terminal xabarlari, atama-iboralar). Yakka atamalar (Controller, route)
 // o'ralmaydi — qoida «faqat kerak joyda». Ekranda/«Matn»da teg ko'rinmaydi: voice() faqat useAudio'ga beriladi.
@@ -116,6 +122,7 @@ function Stage({ kicker, idx, total, audio, children, onBack, onNext, onRestart,
 // Chap ustun: sarlavha + KALIT IBORA (hozirgi segment) + qadam chiziqchalari + «Matn» (butun transkript) + «o'ylab ko'ring»
 function Say({ eyebrow, title, segments, beat, audio, stepManual, below, guess, answerAsk, review }) {
   const now = segments[beat];
+  const keyHtml = now.key || now.show || digits(now.text);
   const [tr, setTr] = useState(false);
   const showManual = !review && (audio.muted || (!audio.isPlaying && !audio.waitingFor && beat < segments.length - 1 && audio.status === 'idle' && !now.ask));
   const asking = now.ask && guess && guess[now.id] === undefined;
@@ -123,14 +130,14 @@ function Say({ eyebrow, title, segments, beat, audio, stepManual, below, guess, 
   return (
     <div className="mk-say">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 10 }}>
-        <div>{eyebrow && <p className="mk-eyebrow">{eyebrow}</p>}<h2 className="mk-title">{title}</h2></div>
+        <div>{eyebrow && <p className="mk-eyebrow">{eyebrow}</p>}<h2 className="mk-title" data-len={lenTag(title)}>{title}</h2></div>
         <button className="mk-btn soft sm" onClick={() => setTr((v) => !v)} title={t("Ustoz gapining to'liq matni", 'Полный текст учителя')}>{tr ? t('Matnni yopish', 'Скрыть текст') : t('Matn', 'Текст')}</button>
       </div>
       <div className="mk-cap">
         {tr ? (
           <ul className="mk-tr">{segments.map((s, i) => <li key={s.id} className={i === beat ? 'on' : (i < beat ? 'done' : '')} dangerouslySetInnerHTML={html(s.show || digits(s.text))} />)}</ul>
         ) : (
-          <p className="mk-key" key={now.id} dangerouslySetInnerHTML={html(now.key || now.show || digits(now.text))} />
+          <p className="mk-key" key={now.id} data-len={lenTag(keyHtml)} dangerouslySetInnerHTML={html(keyHtml)} />
         )}
         <div className="mk-dots">{segments.map((s, i) => <i key={s.id} className={i === beat ? 'on' : (i < beat ? 'done' : '')} />)}</div>
         {review && <p className="mk-review">{t("Takrorlash: ekran tayyor holatda, ovozsiz. Ovoz bilan qayta eshitish — tepadagi «↺ boshidan». To'liq matn — «Matn».", 'Повтор: экран в готовом виде, без звука. Послушать заново со звуком — «↺ с начала» вверху. Полный текст — «Текст».')}</p>}
@@ -293,21 +300,22 @@ function MCRetry({ idx, total, onBack, onNext, onRestart, stored, onAnswer, revi
     }
   };
   const fbOk = solved && last === correct;
+  // F-1102-16: tuzatilgan/haqiqiy natija bloki bo'lsa — ekran BOSHIDAN ikki ustun va joyi qimirlamaydi:
+  // chapda savol va variantlar, o'ngda xabar (above) va javobdan keyin uning ostida natija (after).
+  // Javobdan keyin variantlar o'z joyida qoladi (to'g'risi yashil, qolgani xira) — hech narsa sakramaydi.
+  const split = !!after;
   return (
     <Stage kicker={kicker} idx={idx} total={total} audio={audio} onBack={onBack} onNext={onNext} onRestart={onRestart} nextReady={solved} nextDisabled={!solved} lockHint={t("To'g'ri javobni toping", 'Найдите верный ответ')}>
-      {/* F-1031-07: to'g'ri javobdan keyin tuzatilgan kod bo'lsa — ikki ustun (chapda savol, o'ngda kod), sahifa sig'adi */}
-      <div className={`mk-body${solved && after ? ' mc-split' : ''}`} style={solved && after ? undefined : { gridTemplateColumns: '1fr', maxWidth: 980, width: '100%', margin: '0 auto' }}>
+      <div className={`mk-body${split ? ' mc-split' : ''}`} style={split ? undefined : { gridTemplateColumns: '1fr', maxWidth: 980, width: '100%', margin: '0 auto' }}>
         {/* UX-5: savol bloki xavfsiz markazda (sig'masa tepasi kesilmaydi), variantlar 18 px */}
         <div className="mk-say mc" style={{ overflow: 'auto', paddingRight: 4 }}>
           <p className="mk-eyebrow">{eyebrow} · {t('1-urinish hisoblanadi', 'считается 1-я попытка')}</p>
-          {above}
-          <h2 className="mk-title" style={{ fontSize: 'clamp(24px,2.6vw,34px)' }}>{title}</h2>
+          {!split && above}
+          <h2 className="mk-title mc-q" data-len={lenTag(title)}>{title}</h2>
           <div style={{ display: 'grid', gap: 10 }}>
             {opts.map((o, i) => {
-              // Topilgach faqat to'g'ri variant qoladi — sahifa toza, tuzatilgan blok darhol ostida (F-1030-27)
-              if (solved && i !== correct) return null;
               let cls = 'mk-opt';
-              if (solved) cls += ' ok';
+              if (solved) cls += i === correct ? ' ok' : ' off';
               else if (bad.includes(i)) cls += ' bad';
               return <button key={i} className={cls} disabled={solved || bad.includes(i)} onClick={() => pick(i)}><span className="l">{String.fromCharCode(65 + i)}</span><span>{o}</span></button>;
             })}
@@ -319,7 +327,12 @@ function MCRetry({ idx, total, onBack, onNext, onRestart, stored, onAnswer, revi
             </div>
           )}
         </div>
-        {solved && after && <div className="mk-scene top mc-after" style={{ overflow: 'auto', animation: 'mk-up .45s ease both' }}>{after}</div>}
+        {split && <div className="mk-scene top mc-after" style={{ overflow: 'auto', display: 'grid', gap: 12, alignContent: 'start' }}>
+          {above}
+          {solved
+            ? <div style={{ animation: 'mk-up .45s ease both' }}>{after}</div>
+            : <div className="mc-wait">{t("To'g'ri javobni topganingizdan keyin shu yerda haqiqiy natija ochiladi", 'Когда найдёте верный ответ, здесь откроется реальный результат')}</div>}
+        </div>}
       </div>
     </Stage>
   );
@@ -355,7 +368,7 @@ function LineCheck({ idx, total, onBack, onNext, onRestart, stored, onAnswer, re
       <div className="mk-body">
         <div className="mk-say">
           <p className="mk-eyebrow">{eyebrow} · {t('1-urinish hisoblanadi', 'считается 1-я попытка')}</p>
-          <h2 className="mk-title">{title}</h2>
+          <h2 className="mk-title" data-len={lenTag(title)}>{title}</h2>
           <p className="mk-now" dangerouslySetInnerHTML={html(task || t('Kodda bitta xato bor. Xato satrni bosing.', 'В коде одна ошибка. Нажмите на строку с ошибкой.'))} />
           {(bad.length > 0 || solved) && (
             <div className="mk-fb" key={bad.length + (solved ? 'ok' : '')} style={{ '--c': solved ? T.green : T.accent, '--bg': solved ? '#E3F5EC' : '#FFF0EB' }}>
@@ -375,6 +388,26 @@ function CopyBtn({ text }) {
   return <button className="mk-copy" onClick={() => { try { navigator.clipboard.writeText(text); setOk(true); setTimeout(() => setOk(false), 1200); } catch (e) {} }}>{ok ? t('nusxalandi', 'скопировано') : t('nusxalash', 'копировать')}</button>;
 }
 const plain = (lines) => lines.map((l) => l.h.replace(/<[^>]+>/g, '').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/\\`/g, '`').replace(/\\\$/g, '$')).join('\n');
+// «Boshqacha chiqdimi?» oynasi (F-1102-12): sahifa ustida, orqa fon xiralashadi; ✕ / tashqarini bosish / Esc — yopadi
+function TroubleModal({ rows, onClose }) {
+  useEffect(() => {
+    const k = (e) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', k);
+    return () => window.removeEventListener('keydown', k);
+  }, [onClose]);
+  return (
+    <div className="mk-modal" role="dialog" aria-modal="true" aria-label={t('Boshqacha chiqdimi?', 'Вышло иначе?')} onClick={onClose}>
+      <div className="box" onClick={(e) => e.stopPropagation()}>
+        <div className="hd">
+          <b>{t('Boshqacha chiqdimi?', 'Вышло иначе?')}</b>
+          {rows.length > 1 && <span>{t(`${rows.length - 1} ta holat va yechim`, `ситуации и решения: ${rows.length - 1}`)}</span>}
+          <button type="button" className="x" aria-label={t('Yopish', 'Закрыть')} onClick={onClose}>✕</button>
+        </div>
+        <div className="bd"><table className="mk-tbl"><tbody>{rows.map(([a, c]) => <tr key={a}><td><code>{a}</code></td><td>{c}</td></tr>)}</tbody></table></div>
+      </div>
+    </div>
+  );
+}
 // Davom QULF: ovoz tugamaguncha + hamma katakcha + isbot to'g'ri bo'lmaguncha (F-1030-01). Kod: har qadam ichida «Kodni ochish» tugmasi,
 // sahnada Explorer — fayl bosilsa almashadi (F-1030-12); `code[i].step` — qaysi qadamga tegishli.
 function Practice({ p, S, steps, trouble, code, proof, tree }) {
@@ -396,7 +429,8 @@ function Practice({ p, S, steps, trouble, code, proof, tree }) {
       <div className="mk-body">
         <Say eyebrow={S.eyebrow} title={S.title} segments={S.segments} beat={beat} audio={b.audio} stepManual={b.stepManual} guess={b.guess} answerAsk={b.answerAsk} review={p.review}
           below={<div className="mk-card" style={{ background: allDone ? '#E3F5EC' : T.paper, borderColor: allDone ? T.green : T.line }}><h5>{t('Bajarildi', 'Выполнено')}</h5><div style={{ fontSize: 15, fontWeight: 700 }}>{checked.length} / {steps.length} {t('qadam', 'шагов')}{proof ? (proofOk && proofVal.trim() ? t(' · isbot ✓', ' · подтверждение ✓') : t(' · isbot kutilmoqda', ' · ждём подтверждение')) : ''}{allDone ? (b.done ? t(' — Davom bosing', ' — нажмите «Далее»') : t(' — ovoz tugagach Davom ochiladi', ' — «Далее» откроется после озвучки')) : ''}</div>
-            {proof && <div style={{ marginTop: 10 }}><div className="exp" style={{ marginBottom: 4 }}>{proof.label}</div><input className="mk-input" value={proofVal} placeholder={proof.placeholder} onChange={(e) => onProof(e.target.value)} />{proofVal.trim() && !proofOk && <div className="exp" style={{ color: T.accent, marginTop: 4 }}>{proof.wrong}</div>}</div>}
+            {/* F-1102-20: isbot maydoni to'ldirilmaguncha yumshoq yonib-o'chadi — «shu yerga yozing» ko'rinib tursin */}
+            {proof && <div style={{ marginTop: 10 }}><div className="exp" style={{ marginBottom: 4, fontWeight: 700, color: proofOk && proofVal.trim() ? T.green : T.ink }}>{t('Isbot', 'Подтверждение')}: {String(proof.label).replace(/^(Isbot|Подтверждение)\s*:\s*/, '')}</div><input className={`mk-input${proofOk && proofVal.trim() ? '' : ' need'}`} value={proofVal} placeholder={proof.placeholder} onChange={(e) => onProof(e.target.value)} />{proofVal.trim() && !proofOk && <div className="exp" style={{ color: T.accent, marginTop: 4 }}>{proof.wrong}</div>}</div>}
           </div>} />
         <div className="mk-scene top" style={{ overflow: 'auto' }}>
           {cur ? (<>
@@ -425,13 +459,14 @@ function Practice({ p, S, steps, trouble, code, proof, tree }) {
               ); })}
             </div>
             <Block at={S.tableAt} beat={beat}><div className="mk-light mk-trouble" style={{ padding: 0, marginTop: 10 }}>
-              <button type="button" className={`mk-trbtn${beat === S.tableAt && !tOpen ? ' hot' : ''}`} aria-expanded={tOpen} onClick={() => setTOpen((v) => !v)}>
+              <button type="button" className={`mk-trbtn${beat === S.tableAt && !tOpen ? ' hot' : ''}`} aria-haspopup="dialog" aria-expanded={tOpen} onClick={() => setTOpen(true)}>
                 <span className="q">{t('Boshqacha chiqdimi?', 'Вышло иначе?')}</span>
                 {rows.length > 1 && <span className="n">{t(`${rows.length - 1} ta holat va yechim`, `ситуации и решения: ${rows.length - 1}`)}</span>}
-                <span className="ar" aria-hidden="true">{tOpen ? '▾' : '▸'}</span>
+                <span className="ar" aria-hidden="true">↗</span>
               </button>
-              {tOpen && <div style={{ padding: '0 12px 12px', animation: 'mk-up .3s ease both' }}><table className="mk-tbl"><tbody>{rows.map(([a, c]) => <tr key={a}><td><code>{a}</code></td><td>{c}</td></tr>)}</tbody></table></div>}
             </div></Block>
+            {/* F-1102-12: jadval sahifa ichida emas — ustida oyna (popup). ✕, tashqarisi yoki Esc yopadi; tugma joyida qoladi */}
+            {tOpen && <TroubleModal rows={rows} onClose={() => setTOpen(false)} />}
           </>)}
         </div>
       </div>

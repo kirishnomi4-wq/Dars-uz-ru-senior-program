@@ -1,0 +1,35 @@
+$ npm test
+
+> IntroNestArxitechture@0.0.1 test
+> jest
+
+FAIL src/order.spec.ts
+  orderTotal
+    ✓ 2 kitob narxini hisoblaydi (2 ms)
+    ✕ matn kelsa (2 ms)
+    ✓ null kelsa
+
+  ● orderTotal › matn kelsa
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: NaN
+
+       6 |   });
+       7 |   it('matn kelsa', () => {
+    >  8 |     expect(orderTotal(10000, 'ikki')).toBe(0);
+         |                                       ^
+       9 |   });
+      10 |   it('null kelsa', () => {
+      11 |     expect(orderTotal(10000, null)).toBe(0);
+
+      at Object.<anonymous> (order.spec.ts:8:39)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 2 passed, 3 total
+Snapshots:   0 total
+Time:        0.408 s, estimated 1 s
+Ran all test suites.
+[chiqish kodi: 1]
+

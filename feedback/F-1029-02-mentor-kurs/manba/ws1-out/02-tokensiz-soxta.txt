@@ -1,0 +1,7 @@
+$ node tokensiz.js
+ 0.0s  [tokensiz] ulanmoqda  (io() chaqirildi)
+ 0.0s  [soxta token] ulanmoqda  (io() chaqirildi)
+ 0.0s  [tokensiz] ulangan  (connect)
+ 0.0s  [tokensiz] ulanmagan  (disconnect: io server disconnect · active=false)
+ 0.0s  [soxta token] ulangan  (connect)
+ 0.0s  [soxta token] ulanmagan  (disconnect: io server disconnect · active=false)

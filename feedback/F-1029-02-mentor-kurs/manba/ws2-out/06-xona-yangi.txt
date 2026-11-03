@@ -1,0 +1,19 @@
+$ node ws2-sinov.js xona yangi
+# ilova: ulanish.ts — m12-dars-05-done (tuzatilgan) · o'yin 1 «Mahalla maydoni»
+  0.9s  [Ali] ulangan
+  0.9s  [Ali] GET /oyinlar (qayta ulanganda) → Mahalla maydoni: 8 / 10
+  1.3s  [Ali] «O'yin» ekrani ochildi → oyin-ochildi { oyinId: 1 }
+  1.3s  [Ali] Hozir ko'ryapti: 1  (korayotganlar-ozgardi {"oyinId":1,"soni":1})
+  2.3s  --- Backend yangi versiyasi: qayta ishga tushirildi ---
+  2.3s  [Ali] ulanmoqda  (disconnect: transport close)
+  3.7s  [Ali] ulangan
+  3.7s  [Ali] Hozir ko'ryapti: 1  (korayotganlar-ozgardi {"oyinId":1,"soni":1})
+  3.8s  [Ali] GET /oyinlar (qayta ulanganda) → Mahalla maydoni: 8 / 10
+  4.7s  [Vali] ulangan
+  4.7s  [Vali] GET /oyinlar (qayta ulanganda) → Mahalla maydoni: 8 / 10
+  5.1s  [Vali] «O'yin» ekrani ochildi → oyin-ochildi { oyinId: 1 }
+  5.1s  [Ali] Hozir ko'ryapti: 2  (korayotganlar-ozgardi {"oyinId":1,"soni":2})
+  5.1s  [Vali] Hozir ko'ryapti: 2  (korayotganlar-ozgardi {"oyinId":1,"soni":2})
+  6.6s  NATIJA: ikkala telefonda shu o'yin ochiq — kutilgan «Hozir ko'ryapti: 2»
+  6.6s  [Ali] ulanmagan  (disconnect: io client disconnect)
+  6.6s  [Vali] ulanmagan  (disconnect: io client disconnect)

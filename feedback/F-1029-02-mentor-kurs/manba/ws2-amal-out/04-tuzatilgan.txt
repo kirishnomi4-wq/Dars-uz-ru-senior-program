@@ -1,0 +1,22 @@
+$ TOKEN=<Ali tokeni> OYIN=3 node klient.js   # tuzatilgan klient; 2 s da Ctrl+C, 3 s dan keyin npm run start
+  0.0s  ulangan
+  0.0s  Hozir ko'ryapti: 1
+  0.0s  GET /oyinlar (ulanganda) → Park maydoni: 5 / 8
+  1.8s  ulanmoqda  (disconnect: transport close)
+ 12.8s  ulangan
+ 12.8s  Hozir ko'ryapti: 1
+ 12.8s  GET /oyinlar (ulanganda) → Park maydoni: 5 / 8
+ 14.6s  Hozir ko'ryapti: 2
+ 16.4s  HODISA oyin-ozgardi {"oyinId":3,"sabab":"chiqdi"} — tinglovchi ishladi (1)
+ 16.4s  GET /oyinlar (hodisa kelgach) → Park maydoni: 4 / 8
+
+# ikkinchi terminal:
+$ TOKEN=<Vali tokeni> OYIN=3 node klient.js
+  0.0s  ulangan
+  0.0s  Hozir ko'ryapti: 2
+  0.0s  GET /oyinlar (ulanganda) → Park maydoni: 5 / 8
+  1.8s  HODISA oyin-ozgardi {"oyinId":3,"sabab":"chiqdi"} — tinglovchi ishladi (1)
+  1.8s  GET /oyinlar (hodisa kelgach) → Park maydoni: 4 / 8
+
+$ curl -X POST localhost:3000/oyinlar/3/chiqish -H "Authorization: Bearer <Vali>"
+{"holat":"chiqdi"} [HTTP 201]

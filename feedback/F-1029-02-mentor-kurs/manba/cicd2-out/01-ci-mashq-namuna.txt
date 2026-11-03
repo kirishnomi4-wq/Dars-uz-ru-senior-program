@@ -1,0 +1,7 @@
+$ cat package.json
+{
+  "name": "ci-mashq",
+  "version": "1.0.0",
+  "scripts": { "test": "echo ok && exit 0" }
+}
+

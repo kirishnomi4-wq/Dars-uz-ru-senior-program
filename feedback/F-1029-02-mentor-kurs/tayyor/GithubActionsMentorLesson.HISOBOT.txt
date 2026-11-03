@@ -1,0 +1,7 @@
+== GithubActionsMentorLesson (193 KB) — 2026-11-01 20:02
+GithubActionsMentorLesson.jsx: 2/2 katta literal JSON'ga o'tdi (52 KB → 48 KB): RUNS 21 KB, MDT 31 KB
+c.jsx: 190 KB → 157 KB (18% kam) | CSS shablon 2/2 ta, 25 KB → 24 KB [xavfsiz] | JSX-min ha | yengil rejim | moslik: JS→chrome70+polyfill, CSS zaxira dvh 0, color-mix 0, inset 0, transform 0; zaxirasiz: :has 0, @container 0, aspect-ratio 0, text-wrap 0
+GithubActionsMentorLesson.oz.jsx: ichki JS 164 KB (tree-shake) → gzip 46 KB → base64 61 KB → fayl 67 KB | modullar: react, @lesson/runtime
+moslik auditi (ASL fayl qaysi brauzerni talab qiladi; .oz.jsx da JS Chrome 70+ ga pasaytirilgan):
+| mentor-kurs/GithubActionsMentorLesson | Chrome 92 / Safari 15.4 | .at() (Chr 92, Saf 15.4) ×5; flat/flatMap (Chr 69, Saf 12) ×1; {...obj} (Chr 60, Saf 11.1) ×16; padStart (Chr 57, Saf 10) ×3 | Chrome 93 / Safari 15.4 | accent-color (Chr 93, Saf 15.4) ×1; gap (flex bo'lsa) (Chr 84, Saf 14.1) ×83; clamp() (Chr 79, Saf 13.1) ×7; grid (Chr 57, Saf 10.1) ×24 |
+NATIJA: feedback/F-1029-02-mentor-kurs/tayyor/GithubActionsMentorLesson.oz.jsx (66 KB) — LMS'ga shuni yuklang. Muqobil (o'qiladigan): feedback/F-1029-02-mentor-kurs/tayyor/GithubActionsMentorLesson.jsx (156 KB)

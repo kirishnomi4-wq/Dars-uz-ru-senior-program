@@ -1,0 +1,29 @@
+=== parol noto'g'ri
+$ node server.js
+Server 3000-portda ishlayapti
+$ GET /api/cars 
+→ 500
+{"error":"password authentication failed for user \"postgres\""}
+
+--- server terminali
+Server 3000-portda ishlayapti
+password authentication failed for user "postgres"
+
+=== parol undefined (process.env.DB_PASSWORD yo'q)
+$ GET /api/cars 
+→ 500
+{"error":"SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string"}
+
+--- server terminali
+Server 3000-portda ishlayapti
+SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string
+
+=== baza nomi xato (carrental)
+$ GET /api/cars 
+→ 500
+{"error":"database \"carrental\" does not exist"}
+
+--- server terminali
+Server 3000-portda ishlayapti
+database "carrental" does not exist
+

@@ -62,6 +62,7 @@ const T = {
   bg: '#F5F6F8', paper: '#FFFFFF', ink: '#0F1115', ink2: '#4B5162', ink3: '#8A90A2', line: '#E3E6EC',
   accent: '#E2451F', blue: '#0E7FB8', green: '#12805A', yellow: '#B57A00', purple: '#6D3BE4',
   code: '#0F1115', codeInk: '#E8EAF0', codeDim: 'rgba(232,234,240,0.38)', codeHl: 'rgba(226,69,31,0.24)',
+  chip: '#EEF0F4', chipLine: '#DDE1E8',
 };
 const PART = { ctrl: T.blue, svc: T.green, mod: T.yellow };
 const SANS = 'system-ui,-apple-system,"Segoe UI",Roboto,sans-serif';
@@ -130,14 +131,28 @@ const CSS = `
 .mk-browser .out.er{color:${T.accent}}
 .mk-say{display:flex;flex-direction:column;min-height:0}
 .mk-eyebrow{font:600 11px/1 ${MONO};letter-spacing:.12em;text-transform:uppercase;color:${T.accent};margin:0 0 10px}
-.mk-title{font-size:clamp(20px,2.2vw,28px);line-height:1.2;font-weight:800;margin:0 0 18px;letter-spacing:-.01em}
+.mk-title{font-size:clamp(19px,1.5vw,22px);line-height:1.3;font-weight:600;color:${T.ink2};margin:0 0 14px;letter-spacing:0}
 .mk-cap{flex:1;min-height:0;display:flex;flex-direction:column}
-.mk-key{font-size:clamp(22px,2.1vw,30px);line-height:1.25;font-weight:700;color:${T.ink};margin:0;letter-spacing:-.01em;animation:mk-up .45s ease both}
-.mk-key b{color:${T.accent}}
-.mk-key code{font:0.82em ${MONO};background:${T.code};color:#fff;padding:2px 10px;border-radius:8px;font-weight:600}
+.mk-key{font-size:clamp(19px,1.45vw,22px);line-height:1.42;font-weight:500;color:${T.ink};margin:0;letter-spacing:0;animation:mk-up .45s ease both}
+.mk-key[data-len="long"]{font-size:clamp(17px,1.3vw,19px)}
+.mk-key b{color:${T.accent};font-weight:600}
+.mk-key code{font:.88em ${MONO};background:${T.chip};color:${T.ink};border:1px solid ${T.chipLine};padding:1px 7px;border-radius:6px;font-weight:500;white-space:nowrap}
 .mk-tr{margin:0;padding:0;list-style:none;display:grid;gap:8px;max-height:52vh;overflow:auto;padding-right:6px}
 .mk-input{width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid ${T.line};border-radius:8px;font:13px/1.4 ${MONO};background:#fff;color:${T.ink}}
 .mk-input:focus{outline:2px solid ${T.accent};outline-offset:1px}
+.mk-input.need{border-color:${T.accent};animation:mk-glow 1.8s ease-in-out infinite}
+.mk-input.need:focus{animation:none}
+.mk-modal{position:fixed;inset:0;z-index:50;background:rgba(15,17,21,.45);display:flex;align-items:center;justify-content:center;padding:24px;animation:mk-fade .2s ease both}
+.mk-modal .box{background:${T.paper};border-radius:16px;max-width:960px;width:100%;max-height:82vh;display:flex;flex-direction:column;box-shadow:0 24px 60px rgba(15,17,21,.35);animation:mk-up .25s ease both}
+.mk-modal .hd{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid ${T.line}}
+.mk-modal .hd b{font-size:17px;color:${T.accent}}
+.mk-modal .hd span{font-size:13px;color:${T.ink3}}
+.mk-modal .hd .x{margin-left:auto;width:36px;height:36px;border-radius:10px;border:1px solid ${T.line};background:${T.paper};font-size:16px;cursor:pointer;color:${T.ink}}
+.mk-modal .hd .x:hover{border-color:${T.ink}}
+.mk-modal .bd{padding:6px 18px 18px;overflow:auto}
+.mk-modal .mk-tbl{table-layout:fixed;width:100%}
+.mk-modal .mk-tbl td:first-child{width:48%}
+.mk-modal .mk-tbl code{white-space:normal;word-break:break-word}
 .mk-tr li{font-size:14px;line-height:1.5;color:${T.ink3};padding:6px 10px;border-radius:8px;border-left:3px solid transparent}
 .mk-tr li.on{color:${T.ink};background:#FFF7F3;border-left-color:${T.accent}}
 .mk-tr li.done{color:${T.ink2}}
@@ -165,7 +180,8 @@ const CSS = `
 .mk-ln.in{opacity:1;transform:none}
 .mk-ln.dim{opacity:.5}
 .mk-ln.hl{background:${T.codeHl};box-shadow:inset 3px 0 0 ${T.accent}}
-.mk-ln.gone{opacity:.25;text-decoration:line-through;text-decoration-color:#FCA5A5}
+.mk-ln.gone{opacity:1;background:rgba(239,68,68,.22);box-shadow:inset 3px 0 0 #F87171;text-decoration:line-through;text-decoration-color:#F87171;text-decoration-thickness:2px}
+.mk-ln.gone,.mk-ln.gone *{color:#FCA5A5!important}
 .mk-ln.new{background:rgba(18,128,90,.22);box-shadow:inset 3px 0 0 #86EFAC}
 .mk-ln .n{color:${T.codeDim};min-width:2ch;text-align:right;user-select:none}
 .mk-ln.wrap{white-space:pre-wrap}
@@ -189,9 +205,11 @@ const CSS = `
 .mk-lockhint i{width:7px;height:7px;border-radius:50%;background:${T.accent};display:inline-block;animation:mk-pulse 1.6s ease-in-out infinite}
 .mk-say.mc>:first-child{margin-top:auto}
 .mk-say.mc>:last-child{margin-bottom:auto}
-.mk-say.mc .mk-opt{font-size:18px;padding:16px 18px}
+.mk-say.mc .mk-opt{font-size:16px;padding:13px 16px}
 .mk-body.mc-split{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
 .mk-body.mc-split>.mk-say.mc>:first-child{margin-top:0}
+.mk-title.mc-q{font-size:clamp(19px,1.5vw,22px);font-weight:600;color:${T.ink}}
+.mc-wait{border:1.5px dashed ${T.line};border-radius:12px;padding:16px 18px;color:${T.ink3};font-size:14px;background:${T.paper}}
 @media (max-width:1300px){.mk-body.mc-split{grid-template-columns:1fr;grid-auto-rows:max-content;overflow:auto}.mk-body.mc-split>.mk-say.mc,.mk-body.mc-split>.mc-after{overflow:visible!important}}
 .mk-btn.ready{background:${T.accent};border-color:${T.accent};animation:mk-pulse 1.6s ease-in-out infinite}
 .mk-audio{display:flex;align-items:center;gap:6px}
@@ -261,7 +279,7 @@ const CSS = `
 .mk-tree .f{color:${T.ink};font-weight:700}
 .mk-cover{height:100vh;display:grid;place-items:center;background:${T.bg};padding:24px;color:${T.ink};font:16px/1.5 ${SANS}}
 .mk-cover .card{max-width:760px;width:100%;background:${T.paper};border:1px solid ${T.line};border-radius:20px;padding:36px 40px;box-shadow:0 20px 60px rgba(15,17,21,.08)}
-.mk-cover h1{font-size:clamp(26px,3vw,38px);line-height:1.15;margin:8px 0 10px;letter-spacing:-.02em}
+.mk-cover h1{font-size:clamp(24px,2.3vw,30px);line-height:1.15;font-weight:700;margin:8px 0 10px;letter-spacing:-.01em}
 .mk-cover p{color:${T.ink2};font-size:17px;line-height:1.55;margin:0 0 22px}
 .mk-cover ul{margin:0 0 26px;padding:0;list-style:none;display:grid;gap:8px;color:${T.ink2};font-size:15px}
 .mk-cover li::before{content:"—";color:${T.accent};margin-right:10px}
@@ -272,6 +290,8 @@ const CSS = `
 .mk-req .st.s2{background:#E3F5EC;color:${T.green}}.mk-req .st.s4{background:#FFF0EB;color:${T.accent}}
 .mk-req pre{margin:6px 0 0;font:12px/1.45 ${MONO};white-space:pre-wrap;color:${T.ink2}}
 @keyframes mk-up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes mk-fade{from{opacity:0}to{opacity:1}}
+@keyframes mk-glow{0%,100%{box-shadow:0 0 0 0 rgba(226,69,31,0)}50%{box-shadow:0 0 0 5px rgba(226,69,31,.16)}}
 @keyframes mk-pulse{0%,100%{box-shadow:0 0 0 0 rgba(226,69,31,.35)}50%{box-shadow:0 0 0 8px rgba(226,69,31,0)}}
 @keyframes mk-eq{0%,100%{height:4px}50%{height:12px}}
 @keyframes mk-route{0%{left:calc((100% - 88px) / 6)}35%{left:50%}55%{left:calc(100% - (100% - 88px) / 6)}80%{left:50%}100%{left:calc((100% - 88px) / 6)}}

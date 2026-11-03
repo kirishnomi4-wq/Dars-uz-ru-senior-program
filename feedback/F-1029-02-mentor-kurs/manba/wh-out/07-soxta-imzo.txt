@@ -1,0 +1,15 @@
+# tana: {"tolovRaqami":"soxta-1","holat":"tolandi","summa":10000,"oyinchiId":11}
+$ curl … (X-Imzo yo'q)
+{"message":"Imzo mos emas","error":"Unauthorized","statusCode":401} [HTTP 401]
+$ curl … -H "X-Imzo: abc"
+{"message":"Imzo mos emas","error":"Unauthorized","statusCode":401} [HTTP 401]
+$ curl … -H "X-Imzo: <boshqa kalit bilan imzo>"
+{"message":"Imzo mos emas","error":"Unauthorized","statusCode":401} [HTTP 401]
+$ curl … -H "X-Imzo: <to'g'ri kalit, summa 10000 bilan imzo>" -d '{"tolovRaqami":"soxta-1","holat":"tolandi","summa":1,"oyinchiId":11}'   # summa o'zgartirildi
+{"message":"Imzo mos emas","error":"Unauthorized","statusCode":401} [HTTP 401]
+$ psql: soxta-1 yozildimi?
+ count 
+-------
+     0
+(1 row)
+

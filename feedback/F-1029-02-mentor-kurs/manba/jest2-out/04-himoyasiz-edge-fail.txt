@@ -1,0 +1,50 @@
+$ npm test
+
+> IntroNestArxitechture@0.0.1 test
+> jest
+
+FAIL src/order.spec.ts
+  orderTotal
+    ✓ 2 kitob narxini hisoblaydi (2 ms)
+    ✕ 0 dona — xato (1 ms)
+    ✕ manfiy — xato (1 ms)
+
+  ● orderTotal › 0 dona — xato
+
+    expect(received).toThrow()
+
+    Received function did not throw
+
+       6 |   });
+       7 |   it('0 dona — xato', () => {
+    >  8 |     expect(() => orderTotal(10000, 0)).toThrow();
+         |                                        ^
+       9 |   });
+      10 |   it('manfiy — xato', () => {
+      11 |     expect(() => orderTotal(10000, -1)).toThrow();
+
+      at Object.<anonymous> (order.spec.ts:8:40)
+
+  ● orderTotal › manfiy — xato
+
+    expect(received).toThrow()
+
+    Received function did not throw
+
+       9 |   });
+      10 |   it('manfiy — xato', () => {
+    > 11 |     expect(() => orderTotal(10000, -1)).toThrow();
+         |                                         ^
+      12 |   });
+      13 | });
+      14 |
+
+      at Object.<anonymous> (order.spec.ts:11:41)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 1 passed, 3 total
+Snapshots:   0 total
+Time:        0.401 s, estimated 1 s
+Ran all test suites.
+[chiqish kodi: 1]
+

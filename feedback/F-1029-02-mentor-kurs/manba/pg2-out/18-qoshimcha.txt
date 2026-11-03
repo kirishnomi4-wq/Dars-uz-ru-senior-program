@@ -1,0 +1,25 @@
+--- 5-ekran: huquqi yo'q foydalanuvchi (faqat SELECT berilgan)
+shop=> UPDATE products SET price = 1 WHERE id = 1;
+ERROR:  permission denied for table products
+
+--- 9-ekran: BEGIN siz ROLLBACK
+shop=# ROLLBACK;
+WARNING:  there is no transaction in progress
+ROLLBACK
+
+--- 12-ekran: qo'shtirnoqli matn
+shop=# INSERT INTO products (name, price, stock) VALUES ("O'yinchoq", 30000, 4);
+ERROR:  column "O'yinchoq" does not exist
+LINE 1: INSERT INTO products (name, price, stock) VALUES ("O'yinchoq...
+                                                          ^
+
+--- 25-ekran: kichik harf va katta harfli jadval nomi
+shop=# select name, price from PRODUCTS where price < 60000;
+   name    | price 
+-----------+-------
+ Mishka    | 50000
+           | 30000
+ O'yinchoq | 30000
+(3 rows)
+
+

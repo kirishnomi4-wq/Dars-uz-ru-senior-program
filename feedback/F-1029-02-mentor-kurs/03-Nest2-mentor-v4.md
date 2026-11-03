@@ -69,7 +69,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M24 · Haqiqiy chiqishlar: `manba/nest2-out/
 | 22 | Tekshiruv 4 — o'quvchi KitobShop'idagi xato | MCRetry | 5 |
 | 23 | Amaliyot 4 — o'zingiz buzing | Practice | 5 |
 | 24 | m4a-03 va undagi `/car` xatosi | Lesson | 6 · ko'prik |
-| 25 | O'quvchi tili | Lesson | 6 |
+| 25 | O'quvchi darsidagi so'zlar | Lesson | 6 |
 | 26 | m4a-04 KitobShop va tayyorgarlik | Lesson | 6 |
 | 27 | Sinfdagi 6 holat va o'quvchi savollari | Lesson | 6 |
 | 28 | Uyga vazifalarni tekshirish | Lesson | 6 |
@@ -83,7 +83,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M24 · Haqiqiy chiqishlar: `manba/nest2-out/
 ## 1 · Kirish  ← `Lesson`
 - Kicker: `Kirish` · Eyebrow: `Mentor kursi · NestJS` · Sarlavha: **Siz cars-api'ni qurdingiz. Endi o'quvchi reposi.**
 - Sahna: chapda reja (6 bosqich, ovoz bilan yonadi); o'ngda natija — Swagger maketi: `GET /api/v1/car` ochiq, javob `{"statusCode":200,"message":"success","data":[…]}`.
-- Reja: 01 Ishga tushirish · 02 cars-api'dan farqlar · 03 Resurs: 5 qatlam · 04 Guard va token · 05 Buzamiz · 06 O'quvchi darslariga ko'prik
+- Reja: 01 Ishga tushirish · 02 cars-api'dan farqlar · 03 Resurs: 5 qatlam · 04 Guard va token · 05 Buzamiz · 06 O'quvchi darslarini o'tish
 1. **Nest-1 da loyihani noldan qurdingiz — o'quvchi esa tayyor loyihani clone qiladi**
    Ovoz: «Assalomu alaykum. Nest birinchi darsida siz cars api'ni bo'sh papkadan qurdingiz. O'quvchingiz esa noldan yozmaydi: u GitHub'dan tayyor loyihani clone qiladi. Bugun aynan shu loyihani ochamiz, unga bitta resurs qo'shamiz va sinfda chiqadigan xatolarni ko'ramiz.»
 2. **Dars oxirida loyiha sizda ishlaydi va unga car resursini o'zingiz qo'shgan bo'lasiz**
@@ -143,8 +143,8 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M24 · Haqiqiy chiqishlar: `manba/nest2-out/
    Ovoz: «Birinchi: clone va npm install. Ikkinchi: env example'dan env yarating va uch joyni to'ldiring. Superadmin blokini to'ldirmasdan serverni ishga tushirmang, keyin tuzatish qiyinroq.»
 3. **3–4-qadam: baza, server, Swagger; isbot — `successfully started` satri sanasi bilan**
    Ovoz: «Uchinchi: bazani yarating va serverni ishga tushiring. To'rtinchi: brauzerda Swagger'ni oching. Isbot maydoniga terminaldagi successfully started satrini butunligicha, sanasi bilan nusxalang.»
-4. **Boshqacha chiqsa — pastdagi «Boshqacha chiqdimi?» tugmasi; katakcha va isbotsiz Davom ochilmaydi**
-   Ovoz: «Biror narsa boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing: sinfda ham aynan shu holatlar chiqadi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi.»
+4. **Boshqacha chiqsa, «Boshqacha chiqdimi?» tugmasini bosing — yechimlar oynasi ochiladi**
+   Ovoz: «Biror narsa boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing: yechimlar oynasi ochiladi, sinfda ham aynan shu holatlar chiqadi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin o'quvchi reposi sizning kompyuteringizda ishlaydi va Swagger ochiladi.»
 - Qadamlar:
   | # | Qadam | Buyruq | Kutilgan |
   |---|---|---|---|
@@ -182,7 +182,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M24 · Haqiqiy chiqishlar: `manba/nest2-out/
 - Manba: repo `src/main.ts`, `src/api/app.service.ts`, `src/infrastructure/exception/AllException.filter.ts`, `response/successRes.ts`; `nest2-out/06-requests.txt`, `08-auth-requests.txt`.
 
 ## 6 · Farqlar: `.env`, config va ikki tuzoq  ← `Lesson`
-- Kicker: `2-bosqich · farqlar` · Sarlavha: **To'rtinchi farq: hamma sozlama `.env`dan — va ikki jim tuzoq**
+- Kicker: `2-bosqich · farqlar` · Sarlavha: **To'rtinchi farq: hamma sozlama `.env`dan — va ikki yashirin tuzoq**
 - Sahna: `Ide`: `src/config/index.ts` (11–17, 26–31-satr) + `.env` paneli; 3-segmentda terminal (ikki holat), 4-segmentda psql va signin javobi; 5-segmentda qoida-karta.
 1. **`config/index.ts` `.env`ni o'qiydi: port, baza, token kaliti, superadmin**
    Ovoz: «Ikkinchi ekranda env'ni to'ldirdik. Endi uni kim o'qishini ko'ramiz: config papkasidagi index ts. U env'dan port, baza manzili, token kaliti va superadmin ma'lumotlarini oladi. Loyihaning qolgan qismi env'ga emas, shu config'ga murojaat qiladi.»
@@ -196,8 +196,8 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M24 · Haqiqiy chiqishlar: `manba/nest2-out/
    ---
    InternalServerErrorException: error in creating super admin
    ```
-4. **Jim tuzoq: superadmin bo'sh qolsa — bazada nomsiz superadmin; `.env`ni keyin to'ldirish yordam bermaydi**
-   Ovoz: «Ikkinchi tuzoq jimroq. Superadmin bloki bo'sh qolsa, server xatosiz ishga tushadi va bazaga nomsiz superadmin yozadi. Keyin env to'ldirilsa ham yangisi yaratilmaydi: server superadmin bor deb hisoblaydi. Sinab ko'rdik: env'dagi nom bilan kirilsa to'rt yuz bir, Admin not fount.»
+4. **Yashirin tuzoq: superadmin bo'sh qolsa — bazada nomsiz superadmin; `.env`ni keyin to'ldirish yordam bermaydi**
+   Ovoz: «Ikkinchi tuzoq yashirinroq. Superadmin bloki bo'sh qolsa, server xatosiz ishga tushadi va bazaga nomsiz superadmin yozadi. Keyin env to'ldirilsa ham yangisi yaratilmaydi: server superadmin bor deb hisoblaydi. Sinab ko'rdik: env'dagi nom bilan kirilsa to'rt yuz bir, Admin not fount.»
    psql: `username | role` → `ali | admin` · `  | superAdmin` (nomsiz) · `.env` to'ldirilgach qayta ishga tushirish: `Super admin created` — 0 marta · signin → `{"statusCode":401,"error":{"message":"Admin not fount"}}`
 5. **Xulosa: o'quvchi kira olmasa — bo'sh superadmin satrini o'chirib, serverni qayta yoqing**
    Ovoz: «Xulosa: env'da NODE ENV dev bo'lsin va superadmin bloki to'liq bo'lsin. O'quvchi to'g'ri nom bilan kira olmasa va bazada nomsiz superadmin bo'lsa, o'sha satrni o'chiring va serverni qayta ishga tushiring. Sinab ko'rdik: superadmin env'dan yangidan yoziladi va signin ishlaydi.»
@@ -209,7 +209,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M24 · Haqiqiy chiqishlar: `manba/nest2-out/
 - Sarlavha: **O'quvchi: «Brauzerda `localhost:3000/admin` ochdim — 404». Birinchi nimani tekshirasiz?**
 - Ovoz: «Farqlarni ko'rdingiz, tekshirib olaylik. Birinchi tekshiruv. O'quvchi aytadi: brauzerda localhost uch ming slesh admin ochdim, to'rt yuz to'rt. Server ishlayapti, terminalda xato yo'q. Birinchi nimani tekshirasiz? Variantni tanlang.»
 - Variantlar (to'g'risi — 2): 1 `app.module.ts` — AdminModule `imports`da bormi · 2 Manzil — prefiks `/api/v1` tushib qolgan · 3 `.env` — PostgreSQL paroli to'g'rimi · 4 Swagger — Authorize bosilganmi
-- To'g'ri (ovoz): «Manzil. Bu loyihada hamma route api v bir bilan boshlanadi. Slesh admin degan route yo'q, shuning uchun to'rt yuz to'rt va Cannot GET slesh admin. Terminalda Mapped satrlari api v bir slesh admin deb turibdi. To'g'ri manzilda to'rt yuz bir chiqadi, bu token masalasi.» · qisqa: «Prefiks: `/api/v1/admin`. Terminalda `Mapped {/api/v1/admin…}` — route bor, manzil noto'g'ri.»
+- To'g'ri (ovoz): «To'g'ri, manzil. Bu loyihada hamma route api v bir bilan boshlanadi. Slesh admin degan route yo'q, shuning uchun to'rt yuz to'rt va Cannot GET slesh admin. Terminalda Mapped satrlari api v bir slesh admin deb turibdi. To'g'ri manzilda to'rt yuz bir chiqadi, bu token masalasi. Demak, to'rt yuz to'rt chiqsa, avval manzil api v bir bilan boshlanganini tekshiring.» · qisqa: «Prefiks: `/api/v1/admin`. Terminalda `Mapped {/api/v1/admin…}` — route bor, manzil noto'g'ri.»
 - Xato izohlari: 1 — «Modul ulanmagan bo'lsa admin uchun Mapped satri bo'lmasdi; u bor.» · 3 — «Parol noto'g'ri bo'lsa server ishga tushmasdi: Unable to connect.» · 4 — «Token yo'q bo'lsa javob 401 bo'ladi, 404 emas.»
 - Manba: `nest2-out/06-requests.txt`.
 
@@ -508,7 +508,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M24 · Haqiqiy chiqishlar: `manba/nest2-out/
   18  }
   ```
 - Tuzatilgan (`fixed`): 13-satr chizilgan, o'rniga yashil `@Column()`; 2-satr (import) chizilgan. `fixedExtra`: haqiqiy natija — `\d cars`: buzuq holatda `price` ustuni yo'q, tuzatilgach `price | integer | not null`.
-- To'g'ri (ovoz, `ok`): «To'g'ri. O'n uchinchi satr IsNumber, bu tekshirish qoidasi, u DTO'ga tegishli. Bu xato jim ishlaydi, sinab ko'rdik: server xatosiz ishga tushadi, lekin synchronize price ustunini bazadan o'chiradi. POST ikki yuz bir qaytaradi, narx esa hech qayerda saqlanmaydi. Ekranda tuzatilgan holat: Entity'da Column.»
+- To'g'ri (ovoz, `ok`): «To'g'ri. O'n uchinchi satr IsNumber, bu tekshirish qoidasi, u DTO'ga tegishli. Bu xato yashirin: sinab ko'rdik: server xatosiz ishga tushadi, lekin synchronize price ustunini bazadan o'chiradi. POST ikki yuz bir qaytaradi, narx esa hech qayerda saqlanmaydi. Ekranda tuzatilgan holat ko'rinib turibdi: Entity'da Column. Demak, ustunni Entity'dagi Column yaratadi, DTO qoidasi esa faqat kirayotgan ma'lumotni tekshiradi.»
 - Qisqa (`okShort`): «13-satr: `@IsNumber` — DTO qoidasi. Sinalgan: server ishga tushadi, `price` ustuni bazadan o'chadi, POST 201, narx yo'q. Tuzatildi: `@Column()`.»
 - Maslahat (`hint`): «Bu satr Entity'ning o'z ishi: import, jadval nomi yoki ustun. Ustun yaratmaydigan, qiymatni tekshiradigan decorator'ni qidiring.»
 - Manba: `nest2-out/23-entity-isnumber.txt` (`\d cars` — `price` yo'q; POST 201 javobida `price` yo'q; bazada faqat brand, model), `23b-entity-restored.log`.
@@ -522,7 +522,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M24 · Haqiqiy chiqishlar: `manba/nest2-out/
 3. **4–5-qadam: Controller, Module va AppModule — terminalda beshta Mapped**
    Ovoz: «To'rtinchi: Controller, beshta route. Beshinchi: Module va bosh modulga ulash. Terminalda beshta Mapped satrini ko'rsangiz, resurs tirik.»
 4. **6-qadam: Swagger'da POST → 201; isbot — javobdagi `id`ning birinchi 8 belgisi**
-   Ovoz: «Oltinchi: Swagger'da bitta mashina qo'shing, ikki yuz bir. Javobdagi id'ning birinchi sakkiz belgisini isbot maydoniga yozing. Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing. Katakchalar va isbot bo'lmasa, Davom ochilmaydi.»
+   Ovoz: «Oltinchi: Swagger'da bitta mashina qo'shing, ikki yuz bir. Javobdagi id'ning birinchi sakkiz belgisini isbot maydoniga yozing. Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. Katakchalar va isbot bo'lmasa, Davom ochilmaydi. Demak, endi car resursi o'z loyihangizda ishlaydi.»
 - Qadamlar:
   | # | Qadam | Fayl | Kutilgan |
   |---|---|---|---|
@@ -627,7 +627,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M24 · Haqiqiy chiqishlar: `manba/nest2-out/
 - Sarlavha: **O'quvchi: «KitobShop'da superadmin tokeni bilan kitob qo'shdim — 403». Sabab?**
 - Ovoz: «Ikkala qo'riqchini bilasiz, tekshirib olaylik. Uchinchi tekshiruv. O'quvchi KitobShop'da superadmin tokeni bilan kitob qo'shmoqchi, javob to'rt yuz uch. Ekranda route kodi va javob. Sabab nima? Variantni tanlang.»
 - Variantlar (to'g'risi — 3): 1 Token muddati o'tgan, qayta signin kerak · 2 Authorize bosilmagan, so'rovda token yo'q · 3 Ro'yxatda faqat `admin`, superadminning roli boshqa · 4 BookModule `AppModule`ga ulanmagan
-- To'g'ri (ovoz): «Ro'yxatda faqat admin, superadminning roli esa superAdmin, boshqa so'z. Token yaroqli, shuning uchun to'rt yuz bir emas, to'rt yuz uch. Yechim: superadmin bilan oddiy admin yaratib, KitobShop'ni o'sha admin bilan sinash. Ekranda natija: oddiy admin tokeni bilan ikki yuz bir.» · qisqa: «`superAdmin` va `admin` — har xil rol. Token yaroqli → 403 (401 emas). Oddiy admin bilan → 201.»
+- To'g'ri (ovoz): «To'g'ri. Ro'yxatda faqat admin bor, superadminning roli esa superAdmin, bu boshqa so'z. Token yaroqli, shuning uchun to'rt yuz bir emas, to'rt yuz uch chiqadi. Yechim shunday: superadmin bilan oddiy admin yarating va KitobShop'ni o'sha admin bilan sinang. Ekranda natija: oddiy admin tokeni bilan ikki yuz bir. Demak, to'rt yuz uch token emas, rol yetmasligini bildiradi.» · qisqa: «`superAdmin` va `admin` — har xil rol. Token yaroqli → 403 (401 emas). Oddiy admin bilan → 201.»
 - `after`: haqiqiy javob — `ali` (role `admin`) tokeni bilan `POST /api/v1/book` → `{"statusCode":201,"message":"success","data":{…"title":"Test kitob"…}}`
 - Xato izohlari: 1 — «Token eskirgan bo'lsa Auth guard 401 berardi, 403 emas.» · 2 — «Token yo'q bo'lsa ham 401. 403 — token bor, rol ro'yxatda yo'q.» · 4 — «Modul ulanmagan bo'lsa route topilmaydi: 404.»
 - Manba: `nest2-out/21-roles-superadmin.txt`.
@@ -641,7 +641,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M24 · Haqiqiy chiqishlar: `manba/nest2-out/
 3. **3-qadam: POST admin bilan oddiy admin yarating; isbot — uning `id`sidan 8 belgi**
    Ovoz: «Uchinchi: POST admin bilan oddiy admin yarating, paroli kuchli bo'lsin. Javob ikki yuz bir, yangi adminning roli admin. Uning id'sidan birinchi sakkiz belgini isbot maydoniga yozing.»
 4. **4-qadam: yangi admin bilan kiring va POST admin qiling — 403 chiqishi kerak**
-   Ovoz: «To'rtinchi: Authorize'dan chiqing, yangi admin bilan kiring va yana POST admin qiling: to'rt yuz uch, chunki admin yaratish faqat superadmin uchun. Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing. Katakchalar va isbot bo'lmasa, Davom ochilmaydi.»
+   Ovoz: «To'rtinchi: Authorize'dan chiqing, yangi admin bilan kiring va yana POST admin qiling: to'rt yuz uch, chunki admin yaratish faqat superadmin uchun. Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. Katakchalar va isbot bo'lmasa, Davom ochilmaydi. Demak, siz admin va superadmin rollari farqini o'z loyihangizda ko'rdingiz.»
 - Qadamlar (haqiqiy javoblar):
   | # | Qadam | Swagger | Kutilgan |
   |---|---|---|---|
@@ -689,7 +689,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M24 · Haqiqiy chiqishlar: `manba/nest2-out/
 - Manba: `nest2-out/12-break-forfeature.log`, `11-cars-start.log`.
 
 ## 21 · Buzamiz 2: Entity o'zgardi — baza o'zgardi  ← `Lesson`
-- Kicker: `5-bosqich · buzamiz 2` · Sarlavha: **Entity o'zgarsa, baza o'zi o'zgaradi — jim yoki yiqilib**
+- Kicker: `5-bosqich · buzamiz 2` · Sarlavha: **Entity o'zgarsa, baza o'zi o'zgaradi — xato bermay yoki yiqilib**
 - Sahna: chapda `Ide` `car.entity.ts` (holatga qarab o'zgaradi), o'ngda psql `\d cars` paneli «oldin / keyin» va terminal.
 1. **`synchronize` har ishga tushishda bazani Entity'ga moslaydi — qulay ham, xavfli ham**
    Ovoz: «Ikkinchi holat bazada ko'rinadi. Dev rejimida synchronize yoqilgan: server har ishga tushganda bazani Entity'ga moslaydi. Jadval o'zi yaratilgani qulay edi. Lekin Entity o'zgarsa, baza ham so'ramasdan o'zgaradi.»
@@ -704,7 +704,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M24 · Haqiqiy chiqishlar: `manba/nest2-out/
 4. **Yechim: yangi ustun `nullable: true` — server ishga tushadi, eski ma'lumot joyida**
    Ovoz: «Yechim: yangi ustunni ixtiyoriy qilish, nullable true. Sinab ko'rdik: shunday qilinsa server ishga tushdi, ustun va tashqi kalit yaratildi, eski mashinalar joyida qoldi.» · `brandId | uuid | (nullable)` · `FOREIGN KEY ("brandId") REFERENCES brands(id)`
 5. **Xulosa: Entity'ni o'zgartirish — bazani o'zgartirish; «ma'lumot yo'qoldi» desa — Entity'ni so'rang**
-   Ovoz: «Xulosa: Entity'ni o'zgartirish bazani o'zgartirish demak. Ustun olib tashlansa, ma'lumot jim o'chadi; majburiy ustun qo'shilsa, server yiqiladi. O'quvchi ma'lumotlarim yo'qoldi yoki contains null values desa, birinchi savol: Entity'da nimani o'zgartirdingiz?»
+   Ovoz: «Xulosa: Entity'ni o'zgartirish bazani o'zgartirish demak. Ustun olib tashlansa, ma'lumot xato bermay o'chadi; majburiy ustun qo'shilsa, server yiqiladi. O'quvchi ma'lumotlarim yo'qoldi yoki contains null values desa, birinchi savol: Entity'da nimani o'zgartirdingiz?»
 - Manba: `nest2-out/23-entity-isnumber.txt`, `24-brand-fk.txt`, `24-brand-notnull.log`, `24-brand-nullable.log`.
 
 ## 22 · Tekshiruv 4 — o'quvchi KitobShop'idagi xato  ← `MCRetry`
@@ -717,7 +717,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M24 · Haqiqiy chiqishlar: `manba/nest2-out/
 - Sarlavha: **O'quvchingizning KitobShop'i yiqildi. Qaysi faylni ochasiz va nimani tuzatasiz?**
 - Ovoz: «Oxirgi tekshiruv, sinfdagi haqiqiy holat. To'rtinchi tekshiruv. O'quvchi agent yozgan kitob resursini ishga tushirdi, server yiqildi, ekranda xabar. U yordam so'radi. Qaysi faylni ochasiz va nimani tuzatasiz?»
 - Variantlar (to'g'risi — 1): 1 `book.module.ts` — `imports`ga `TypeOrmModule.forFeature([BookEntity])` · 2 `app.module.ts` — `providers`ga `BookService` · 3 `book.service.ts` — konstruktordan Repository'ni olib tashlash · 4 `book.entity.ts` — `@Injectable()` qo'shish
-- To'g'ri (ovoz): «book module, imports'ga forFeature Book entity bilan. Qaysi klass: Book service. Qaysi dependency: Book entity Repository. Qaysi fayl: Book module. Repository so'zi, demak forFeature. Ekranda tuzatilgan fayl va terminal: Book module tayyor, Book controller va Mapped satrlari.» · qisqa: «Klass `BookService` · dependency `BookEntityRepository` · fayl `book.module.ts` → `forFeature([BookEntity])`.»
+- To'g'ri (ovoz): «To'g'ri: book module faylida imports ro'yxatiga Book entity bilan forFeature qo'shiladi. Xabar uch narsani aytadi: klass Book service, dependency Book entity Repository, fayl Book module. Ekranda tuzatilgan fayl va terminaldagi Book controller va Mapped satrlari ko'rinib turibdi. Demak, dependency nomida Repository so'zi bo'lsa, javob modulning forFeature ro'yxatida.» · qisqa: «Klass `BookService` · dependency `BookEntityRepository` · fayl `book.module.ts` → `forFeature([BookEntity])`.»
 - `after`: `book.module.ts` tuzatilgan + yashil terminal (haqiqiy): `BookModule dependencies initialized` · `BookController {/api/v1/book}:` · `Mapped {/api/v1/book, POST} route` · `Mapped {/api/v1/book, GET} route`
 - Xato izohlari: 2 — «Service bosh modulning providers'iga yozilmaydi; xabar BookModule haqida.» · 3 — «Repository'siz Service bazaga yoza olmaydi; dependency kerak, uni beradigan satr yetishmayapti.» · 4 — «`@Injectable` Entity'ga qo'yilmaydi; xabar Repository topilmaganini aytyapti.»
 - Manba: `nest2-out/12-break-forfeature.log` (xabar shakli), `16-book-start.log`, `src-book/book/book.module.ts`.
@@ -729,7 +729,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M24 · Haqiqiy chiqishlar: `manba/nest2-out/
 2. **1-qadam: `forFeature`ni oling, xabardan klass, dependency va faylni isbotga yozing, keyin qaytaring**
    Ovoz: «Birinchi: car module'dan forFeature satrini olib tashlang va saqlang, server yiqiladi. Xabardan qaysi klass, qaysi dependency, qaysi fayl ekanini toping va vergul bilan isbot maydoniga yozing. Keyin satrni joyiga qaytaring.»
 3. **2-qadam: `/api/v1/car/1` 500 beradi, sababi terminalda; `ParseUUIDPipe` qo'shsangiz — tushunarli 400**
-   Ovoz: «Ikkinchi: Swagger'da car'ni id bir bilan so'rang: besh yuz. Terminalda invalid input syntax for type uuid satrini toping. Keyin Controller'da id parametriga ParseUUIDPipe qo'shing va so'rovni takrorlang: to'rt yuz. Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing. Katakchalar va isbot bo'lmasa, Davom ochilmaydi.»
+   Ovoz: «Ikkinchi: Swagger'da car'ni id bir bilan so'rang: besh yuz. Terminalda invalid input syntax for type uuid satrini toping. Keyin Controller'da id parametriga ParseUUIDPipe qo'shing va so'rovni takrorlang: to'rt yuz. Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. Katakchalar va isbot bo'lmasa, Davom ochilmaydi. Demak, endi siz besh yuz sababini terminaldan topib, uni tushunarli to'rt yuzga aylantira olasiz.»
 - Qadamlar:
   | # | Qadam | Nima | Kutilgan |
   |---|---|---|---|
@@ -748,7 +748,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M24 · Haqiqiy chiqishlar: `manba/nest2-out/
 ---
 
 ## 24 · m4a-03 va undagi `/car` xatosi  ← `Lesson`
-- Kicker: `6-bosqich · ko'prik` · Eyebrow: `m4a-03 · «Birinchi resursni qo'lda qo'shish — mashinalar»` · Sarlavha: **m4a-03: o'quvchi siz bugun qilgan ishni qiladi**
+- Kicker: `6-bosqich · o'quvchi darsini o'tish` · Eyebrow: `m4a-03 · «Birinchi resursni qo'lda qo'shish — mashinalar»` · Sarlavha: **m4a-03: o'quvchi siz bugun qilgan ishni qiladi**
 - Sahna: o'quvchi darsi xaritasi — 5 blok kartasi (segment bilan yonadi); 3-segmentda o'quvchi darsidagi amaliyot ro'yxati qatori qizil: «Brauzerda `/car` ni oching — `200` javobini ko'ring (404 emas)» va yonida haqiqiy javob `{"statusCode":404,"error":{"message":"Cannot GET /car"}}`; 4-segmentda vaqt chizig'i.
 - Bloklar (o'quvchi darsidan): 1 kirish va reja (1–3-ekran) · 2 besh bosqich, har bosqichdan keyin test (4–15) · 3 so'rov yo'li, agent 5 faylni yozadi, debugging — agent Controller'ga `@Column` qo'yib yuborgan (16–18) · 4 «Ochilish kuni» — haqiqiy loyihada, VS Code'da (19) · 5 podium, 12 kartochka, yakun (20–22).
 1. **m4a-03 — siz bugun qilgan ish: car resursi, besh bosqich, 22 ekran**
@@ -763,8 +763,8 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M24 · Haqiqiy chiqishlar: `manba/nest2-out/
    Ovoz: «Xulosa: o'quvchi darsi besh fayl deydi, ikki DTO'ni bitta deb sanaydi, bu xato emas. Haqiqiy loyihada qoqilgan o'quvchiga ikkinchi amaliyotdagi jadvalingiz bilan yordam berasiz: har xabar va uning yechimi o'sha yerda.»
 - Manba: `src/4a-Modull/NestArchResourceLesson.jsx` (SCREEN_META 22, ekran sarlavhalari, `ScreenCarPractice` ro'yxati; `/car` prefikssiz 67 marta, `api/v1` — 2); `nest2-out/11-cars-requests.txt` (`GET /car` → 404).
 
-## 25 · O'quvchi tili  ← `Lesson`
-- Kicker: `6-bosqich · ko'prik` · Sarlavha: **O'quvchi tili: javon chizmasi, anketa, retsept kitobi…**
+## 25 · O'quvchi darsidagi so'zlar  ← `Lesson`
+- Kicker: `6-bosqich · o'quvchi darsini o'tish` · Sarlavha: **O'quvchi darsidagi so'zlar: javon chizmasi, anketa, retsept kitobi…**
 - Sahna: ikki ustunli lug'at kartalari (Nest-1 S25b uslubi), guruh-guruh yonadi.
 - Lug'at (o'quvchi darslaridan aynan):
   | O'quvchi aytadi | Siz bilasiz | Qayerdan |
@@ -789,7 +789,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M24 · Haqiqiy chiqishlar: `manba/nest2-out/
 - Manba: `NestArchResourceLesson.jsx` (RULE_CARDS, FLASHCARDS), `NestArchPracticeLesson.jsx` (🔒/🌐, yorliq), `NestArchAliveLesson.jsx` (omborchi, ofitsiant).
 
 ## 26 · m4a-04 KitobShop va tayyorgarlik  ← `Lesson`
-- Kicker: `6-bosqich · ko'prik` · Eyebrow: `m4a-04 · «Praktika — KitobShop backend»` · Sarlavha: **KitobShop: o'quvchi buyuradi, agent yozadi — sizning tayyorgarligingiz**
+- Kicker: `6-bosqich · o'quvchi darsini o'tish` · Eyebrow: `m4a-04 · «Praktika — KitobShop backend»` · Sarlavha: **KitobShop: o'quvchi buyuradi, agent yozadi — sizning tayyorgarligingiz**
 - Sahna: 9 ekran kartasi; 2–3-segmentda «darsdan oldin» ro'yxati (3 band) yonadi; 4-segmentda `Ide` paneli — haqiqiy `book.entity.ts` va javoblar.
 - Ekranlar (o'quvchi darsidan): 1 kirish · 2 reja (3 resurs, Copilot Agent) · 3 Amaliyot 1 — aniq buyruq · 4 Amaliyot 2 — 3 playbook: Category → Book (`@ManyToOne → Category`) → Order (`@ManyToOne → Book`), har biridan keyin tekshiruv ro'yxati, keyin «Keep» · 5 Amaliyot 3 — `@Roles`: qaysi eshik ochiq · 6 Amaliyot 4 — eshik sinovi: agent `POST /order`ga `@Roles(ADMIN)` qo'ygan → `'public'` · 7 test · 8 podium · 9 yakun.
 - Kod (haqiqiy yurgizilgan, `nest2-out/src-book/book.entity.ts`):
@@ -832,7 +832,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M24 · Haqiqiy chiqishlar: `manba/nest2-out/
   | 3 | Resurs ko'rinmaydi | `Mapped` yo'q + `404` · yoki `can't resolve … "CarEntityRepository"` | `app.module.ts` imports · `forFeature` |
   | 4 | Raqamli id | `500` + `invalid input syntax for type uuid: "1"` | id — javobdagi uuid |
   | 5 | Token va rol | `401 Unauthorized` · `403 Forbidden resource` | Authorize · `@Roles` ro'yxati (superadmin va admin — har xil rol) |
-  | 6 | Entity o'zgardi | `column "…" contains null values` · ma'lumot jim yo'qoldi | yangi ustun `nullable: true` · Entity'da nima o'zgarganini so'rang |
+  | 6 | Entity o'zgardi | `column "…" contains null values` · ma'lumot xato bermay yo'qoldi | yangi ustun `nullable: true` · Entity'da nima o'zgarganini so'rang |
 - O'quvchi so'rasa (QA kartalari):
   - «Nega id raqam emas?» → uuid taxmin qilib bo'lmaydigan noyob matn, ikki server bir vaqtda yozsa ham to'qnashmaydi; `BaseEntity`da bir marta yozilgan.
   - «Nega javob `data` ichida?» → `successRes`: hamma muvaffaqiyat bir shaklda, frontend doim `data`ni o'qiydi; xato — `error.message`.
@@ -859,7 +859,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M24 · Haqiqiy chiqishlar: `manba/nest2-out/
   | 2 | `POST /api/v1/car` bo'sh `{}` bilan yuborildi. Javob? | 201, bo'sh mashina yaratiladi · 404, route topilmadi · 500, server xatosi · 400, buzilgan qoidalar ro'yxati | 4 | Global ValidationPipe DTO qoidalarini tekshiradi. | 13 |
   | 3 | `GET /api/v1/car/1` — nima bo'ladi? | 500, terminalda uuid xatosi · 404, mashina topilmadi · 200, birinchi mashina · 400, DTO qoidasi buzildi | 1 | id uuid; «1» bazada xato beradi, filtr uni 500 qiladi. | 13 |
   | 4 | Tokensiz `GET /api/v1/admin` yuborildi. Javob? | 403, rol yetmaydi · 404, route yo'q · 401, token yo'q · 200, adminlar ro'yxati | 3 | AuthGuard: `Authorization` yo'q → 401. | 16 |
-  | 5 | Entity'da `price`dan `@Column` olib tashlandi, server qayta yoqildi. Nima bo'ladi? | Server yiqiladi, xato chiqadi · Ustun bazadan jim o'chadi · Ustun bazada o'zgarmay qoladi · Faqat DTO xato beradi | 2 | `synchronize` bazani Entity'ga moslaydi — ustun o'chadi, xabar yo'q. | 21 |
+  | 5 | Entity'da `price`dan `@Column` olib tashlandi, server qayta yoqildi. Nima bo'ladi? | Server yiqiladi, xato chiqadi · Ustun bazadan xato bermay o'chadi · Ustun bazada o'zgarmay qoladi · Faqat DTO xato beradi | 2 | `synchronize` bazani Entity'ga moslaydi — ustun o'chadi, xabar yo'q. | 21 |
   | 6 | O'quvchi m4a-03 bo'yicha `localhost:3000/car`ni ochdi — 404, terminalda car uchun 5 ta Mapped bor. Nima deysiz? | Manzil `/api/v1/car` bo'lishi kerak · CarModule'ni AppModule'ga ulang · Serverni qayta ishga tushiring · Authorize'ga token qo'ying | 1 | Mapped bor — route bor; o'quvchi darsida prefiks yozilmagan. | 24 |
   | 7 | KitobShop: superadmin tokeni bilan `POST /book` — 403. O'quvchiga nima deysiz? | Qayta signin qiling, token eskirgan · Authorize'ga tokenni qayta qo'ying · BookModule'ni AppModule'ga ulang · Oddiy admin yarating va u bilan kiring | 4 | `@Roles('admin')` — `superAdmin` ro'yxatda yo'q; token yaroqli, shuning uchun 403. | 26 |
   | 8 | O'quvchi `.env`ni keyin to'ldirdi, lekin kira olmayapti; bazada nomsiz superadmin bor. Nima qilasiz? | `.env`ni yana bir marta saqlang · Serverni ikki marta qayta yoqing · Bazadagi o'sha satrni o'chirib, qayta yoqing · `USER_NAME`ni boshqa nomga o'zgartiring | 3 | Superadmin bor bo'lsa `onModuleInit` yangisini yaratmaydi. | 6 |
@@ -872,7 +872,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M24 · Haqiqiy chiqishlar: `manba/nest2-out/
   2. Resurs — 5 qatlam: Entity · DTO · Service (BaseService + Repository) · Controller · Module (+ `core/index.ts`, AppModule).
   3. 400 — DTO qoidasi yoki ortiqcha maydon; 500 — terminalni o'qing (`/car/1` — id uuid).
   4. 401 — token yo'q; 403 — rol ro'yxatda yo'q; superadmin va admin — har xil rol.
-  5. Entity o'zgarsa baza o'zgaradi: ustun jim o'chadi, majburiy ustun serverni yiqitadi.
+  5. Entity o'zgarsa baza o'zgaradi: ustun xato bermay o'chadi, majburiy ustun serverni yiqitadi.
   6. O'quvchi darslarida 3 xato: `/car` → `/api/v1/car` · token va Authorize'ni siz ko'rsatasiz · KitobShop'dan oldin oddiy admin.
 - Segment ovozlari: a — «Barakalla! Siz darsni yaxshi o'rgandingiz. Endi bugun o'rganganlaringizni bir qarashda yig'amiz.» / o'tmagan: «Dars oxiriga yetdingiz. Yakuniy sinovdan olti ball kerak edi, yakunlashdan oldin sinovni qayta topshirishni maslahat beraman. Hozir esa bugungi darsni bir qarashda yig'amiz.» · b1…b6 — yuqoridagi bandlar · hw — uyga vazifa · c — eslatma · z — «Rahmat. Darsni yakunlash tugmasini bosing, dars tugallangan deb belgilanadi.»
 - **Uyga vazifa** (M14; ovoz `hw`): «Uyga vazifa. O'z loyihangizga brand resursini qo'shing, aynan o'quvchining uyga vazifasi: name va country, DTO qoidalari, Base service'dan meros, to'rt eshik va bosh modul. Keyin car'ni brand'ga bog'lang, yangi ustun ixtiyoriy bo'lsin. Bir marta ataylab forFeature'ni olib tashlang, xabarni o'qing va tuzating. GitHub'ga chiqaring va repo linkini platformadagi uyga vazifangizga qo'ying, boshqa hech narsa kerak emas.»

@@ -62,6 +62,7 @@ const T = {
   bg: '#F5F6F8', paper: '#FFFFFF', ink: '#0F1115', ink2: '#4B5162', ink3: '#8A90A2', line: '#E3E6EC',
   accent: '#E2451F', blue: '#0E7FB8', green: '#12805A', yellow: '#B57A00', purple: '#6D3BE4',
   code: '#0F1115', codeInk: '#E8EAF0', codeDim: 'rgba(232,234,240,0.38)', codeHl: 'rgba(226,69,31,0.24)',
+  chip: '#EEF0F4', chipLine: '#DDE1E8',
 };
 const PART = { ctrl: T.blue, svc: T.green, mod: T.yellow };
 const SANS = 'system-ui,-apple-system,"Segoe UI",Roboto,sans-serif';
@@ -130,14 +131,28 @@ const CSS = `
 .mk-browser .out.er{color:${T.accent}}
 .mk-say{display:flex;flex-direction:column;min-height:0}
 .mk-eyebrow{font:600 11px/1 ${MONO};letter-spacing:.12em;text-transform:uppercase;color:${T.accent};margin:0 0 10px}
-.mk-title{font-size:clamp(20px,2.2vw,28px);line-height:1.2;font-weight:800;margin:0 0 18px;letter-spacing:-.01em}
+.mk-title{font-size:clamp(19px,1.5vw,22px);line-height:1.3;font-weight:600;color:${T.ink2};margin:0 0 14px;letter-spacing:0}
 .mk-cap{flex:1;min-height:0;display:flex;flex-direction:column}
-.mk-key{font-size:clamp(22px,2.1vw,30px);line-height:1.25;font-weight:700;color:${T.ink};margin:0;letter-spacing:-.01em;animation:mk-up .45s ease both}
-.mk-key b{color:${T.accent}}
-.mk-key code{font:0.82em ${MONO};background:${T.code};color:#fff;padding:2px 10px;border-radius:8px;font-weight:600}
+.mk-key{font-size:clamp(19px,1.45vw,22px);line-height:1.42;font-weight:500;color:${T.ink};margin:0;letter-spacing:0;animation:mk-up .45s ease both}
+.mk-key[data-len="long"]{font-size:clamp(17px,1.3vw,19px)}
+.mk-key b{color:${T.accent};font-weight:600}
+.mk-key code{font:.88em ${MONO};background:${T.chip};color:${T.ink};border:1px solid ${T.chipLine};padding:1px 7px;border-radius:6px;font-weight:500;white-space:nowrap}
 .mk-tr{margin:0;padding:0;list-style:none;display:grid;gap:8px;max-height:52vh;overflow:auto;padding-right:6px}
 .mk-input{width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid ${T.line};border-radius:8px;font:13px/1.4 ${MONO};background:#fff;color:${T.ink}}
 .mk-input:focus{outline:2px solid ${T.accent};outline-offset:1px}
+.mk-input.need{border-color:${T.accent};animation:mk-glow 1.8s ease-in-out infinite}
+.mk-input.need:focus{animation:none}
+.mk-modal{position:fixed;inset:0;z-index:50;background:rgba(15,17,21,.45);display:flex;align-items:center;justify-content:center;padding:24px;animation:mk-fade .2s ease both}
+.mk-modal .box{background:${T.paper};border-radius:16px;max-width:960px;width:100%;max-height:82vh;display:flex;flex-direction:column;box-shadow:0 24px 60px rgba(15,17,21,.35);animation:mk-up .25s ease both}
+.mk-modal .hd{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid ${T.line}}
+.mk-modal .hd b{font-size:17px;color:${T.accent}}
+.mk-modal .hd span{font-size:13px;color:${T.ink3}}
+.mk-modal .hd .x{margin-left:auto;width:36px;height:36px;border-radius:10px;border:1px solid ${T.line};background:${T.paper};font-size:16px;cursor:pointer;color:${T.ink}}
+.mk-modal .hd .x:hover{border-color:${T.ink}}
+.mk-modal .bd{padding:6px 18px 18px;overflow:auto}
+.mk-modal .mk-tbl{table-layout:fixed;width:100%}
+.mk-modal .mk-tbl td:first-child{width:48%}
+.mk-modal .mk-tbl code{white-space:normal;word-break:break-word}
 .mk-tr li{font-size:14px;line-height:1.5;color:${T.ink3};padding:6px 10px;border-radius:8px;border-left:3px solid transparent}
 .mk-tr li.on{color:${T.ink};background:#FFF7F3;border-left-color:${T.accent}}
 .mk-tr li.done{color:${T.ink2}}
@@ -165,7 +180,8 @@ const CSS = `
 .mk-ln.in{opacity:1;transform:none}
 .mk-ln.dim{opacity:.5}
 .mk-ln.hl{background:${T.codeHl};box-shadow:inset 3px 0 0 ${T.accent}}
-.mk-ln.gone{opacity:.25;text-decoration:line-through;text-decoration-color:#FCA5A5}
+.mk-ln.gone{opacity:1;background:rgba(239,68,68,.22);box-shadow:inset 3px 0 0 #F87171;text-decoration:line-through;text-decoration-color:#F87171;text-decoration-thickness:2px}
+.mk-ln.gone,.mk-ln.gone *{color:#FCA5A5!important}
 .mk-ln.new{background:rgba(18,128,90,.22);box-shadow:inset 3px 0 0 #86EFAC}
 .mk-ln .n{color:${T.codeDim};min-width:2ch;text-align:right;user-select:none}
 .mk-ln.wrap{white-space:pre-wrap}
@@ -189,9 +205,11 @@ const CSS = `
 .mk-lockhint i{width:7px;height:7px;border-radius:50%;background:${T.accent};display:inline-block;animation:mk-pulse 1.6s ease-in-out infinite}
 .mk-say.mc>:first-child{margin-top:auto}
 .mk-say.mc>:last-child{margin-bottom:auto}
-.mk-say.mc .mk-opt{font-size:18px;padding:16px 18px}
+.mk-say.mc .mk-opt{font-size:16px;padding:13px 16px}
 .mk-body.mc-split{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
 .mk-body.mc-split>.mk-say.mc>:first-child{margin-top:0}
+.mk-title.mc-q{font-size:clamp(19px,1.5vw,22px);font-weight:600;color:${T.ink}}
+.mc-wait{border:1.5px dashed ${T.line};border-radius:12px;padding:16px 18px;color:${T.ink3};font-size:14px;background:${T.paper}}
 @media (max-width:1300px){.mk-body.mc-split{grid-template-columns:1fr;grid-auto-rows:max-content;overflow:auto}.mk-body.mc-split>.mk-say.mc,.mk-body.mc-split>.mc-after{overflow:visible!important}}
 .mk-btn.ready{background:${T.accent};border-color:${T.accent};animation:mk-pulse 1.6s ease-in-out infinite}
 .mk-audio{display:flex;align-items:center;gap:6px}
@@ -261,7 +279,7 @@ const CSS = `
 .mk-tree .f{color:${T.ink};font-weight:700}
 .mk-cover{height:100vh;display:grid;place-items:center;background:${T.bg};padding:24px;color:${T.ink};font:16px/1.5 ${SANS}}
 .mk-cover .card{max-width:760px;width:100%;background:${T.paper};border:1px solid ${T.line};border-radius:20px;padding:36px 40px;box-shadow:0 20px 60px rgba(15,17,21,.08)}
-.mk-cover h1{font-size:clamp(26px,3vw,38px);line-height:1.15;margin:8px 0 10px;letter-spacing:-.02em}
+.mk-cover h1{font-size:clamp(24px,2.3vw,30px);line-height:1.15;font-weight:700;margin:8px 0 10px;letter-spacing:-.01em}
 .mk-cover p{color:${T.ink2};font-size:17px;line-height:1.55;margin:0 0 22px}
 .mk-cover ul{margin:0 0 26px;padding:0;list-style:none;display:grid;gap:8px;color:${T.ink2};font-size:15px}
 .mk-cover li::before{content:"—";color:${T.accent};margin-right:10px}
@@ -272,6 +290,8 @@ const CSS = `
 .mk-req .st.s2{background:#E3F5EC;color:${T.green}}.mk-req .st.s4{background:#FFF0EB;color:${T.accent}}
 .mk-req pre{margin:6px 0 0;font:12px/1.45 ${MONO};white-space:pre-wrap;color:${T.ink2}}
 @keyframes mk-up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes mk-fade{from{opacity:0}to{opacity:1}}
+@keyframes mk-glow{0%,100%{box-shadow:0 0 0 0 rgba(226,69,31,0)}50%{box-shadow:0 0 0 5px rgba(226,69,31,.16)}}
 @keyframes mk-pulse{0%,100%{box-shadow:0 0 0 0 rgba(226,69,31,.35)}50%{box-shadow:0 0 0 8px rgba(226,69,31,0)}}
 @keyframes mk-eq{0%,100%{height:4px}50%{height:12px}}
 @keyframes mk-route{0%{left:calc((100% - 88px) / 6)}35%{left:50%}55%{left:calc(100% - (100% - 88px) / 6)}80%{left:50%}100%{left:calc((100% - 88px) / 6)}}
@@ -288,11 +308,17 @@ function useCss() {
 //  DVIGATEL — segment-qadam, sahna qobig'i, umumiy komponentlar
 // ============================================================
 const html = (s) => ({ __html: s });
+// F-1102-22 (M40): chap panel gapining uzunligi — CSS `.mk-key[data-len]` shu bilan o'lchamni moslaydi (teglarsiz belgi soni)
+const lenTag = (s) => {
+  if (typeof s !== 'string') return undefined;
+  const n = s.replace(/<[^>]+>/g, '').trim().length;
+  return n <= 70 ? 'short' : n <= 110 ? 'mid' : 'long';
+};
 // Ovoz matni so'z bilan («to'rt yuz to'rt»), ekran raqam bilan (404): show berilmagan matn uchun
 // Tartib muhim: uzun ibora oldin («ming ikki yuz qirq» → 1240, keyin «ikki yuz» → 200 uni buzmaydi)
 const DIGITS = [['ming ikki yuz qirq', '1240'], ["to'rt yuz to'rt", '404'], ["to'rt yuz bir", '401'], ["to'rt yuz uch", '403'], ['ikki yuz bir', '201'], ['besh yuz', '500'], ["to'rt yuz", '400'], ['ikki yuz', '200'], ['uch ming', '3000'], ["to'qson to'qqiz", '99'], ['index nol', 'index [0]'],
   ["o'n birinchi versiya", '11-versiya'], ["o'n-o'n besh", '10–15'], ["o'n marta", '10 marta'], ['ikki-besh', '2–5'], ['yigirma ikki', '22'], ["o'ttizdan oltmishgacha", '30–60'], ["oltmishdan to'qsongacha", '60–90'], ['yigirma', '20'], ["o'ttiz", '30'], ["to'qson", '90']];
-const digits = (t) => DIGITS.reduce((acc, [w, d]) => acc.replace(new RegExp(w.replace(/'/g, "['’]"), 'gi'), d), t || '');
+const digits = (t) => DIGITS.reduce((acc, [w, d]) => acc.replace(new RegExp(w.replace(/'/g, "['\u2019]"), 'gi'), d), t || '');
 // Ovozga ketadigan matn (platforma qoidasi, LESSON_PROMPT_WITH_UNLOCK «Multilingual narration»): host-marker + haqiqiy inglizcha
 // IBORALAR `[English pronunciation] … [end]` ichida (terminal xabarlari, atama-iboralar). Yakka atamalar (Controller, route)
 // o'ralmaydi — qoida «faqat kerak joyda». Ekranda/«Matn»da teg ko'rinmaydi: voice() faqat useAudio'ga beriladi.
@@ -401,6 +427,7 @@ function Stage({ kicker, idx, total, audio, children, onBack, onNext, onRestart,
 // Chap ustun: sarlavha + KALIT IBORA (hozirgi segment) + qadam chiziqchalari + «Matn» (butun transkript) + «o'ylab ko'ring»
 function Say({ eyebrow, title, segments, beat, audio, stepManual, below, guess, answerAsk, review }) {
   const now = segments[beat];
+  const keyHtml = now.key || now.show || digits(now.text);
   const [tr, setTr] = useState(false);
   const showManual = !review && (audio.muted || (!audio.isPlaying && !audio.waitingFor && beat < segments.length - 1 && audio.status === 'idle' && !now.ask));
   const asking = now.ask && guess && guess[now.id] === undefined;
@@ -408,14 +435,14 @@ function Say({ eyebrow, title, segments, beat, audio, stepManual, below, guess, 
   return (
     <div className="mk-say">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 10 }}>
-        <div>{eyebrow && <p className="mk-eyebrow">{eyebrow}</p>}<h2 className="mk-title">{title}</h2></div>
+        <div>{eyebrow && <p className="mk-eyebrow">{eyebrow}</p>}<h2 className="mk-title" data-len={lenTag(title)}>{title}</h2></div>
         <button className="mk-btn soft sm" onClick={() => setTr((v) => !v)} title={t("Ustoz gapining to'liq matni", 'Полный текст учителя')}>{tr ? t('Matnni yopish', 'Скрыть текст') : t('Matn', 'Текст')}</button>
       </div>
       <div className="mk-cap">
         {tr ? (
           <ul className="mk-tr">{segments.map((s, i) => <li key={s.id} className={i === beat ? 'on' : (i < beat ? 'done' : '')} dangerouslySetInnerHTML={html(s.show || digits(s.text))} />)}</ul>
         ) : (
-          <p className="mk-key" key={now.id} dangerouslySetInnerHTML={html(now.key || now.show || digits(now.text))} />
+          <p className="mk-key" key={now.id} data-len={lenTag(keyHtml)} dangerouslySetInnerHTML={html(keyHtml)} />
         )}
         <div className="mk-dots">{segments.map((s, i) => <i key={s.id} className={i === beat ? 'on' : (i < beat ? 'done' : '')} />)}</div>
         {review && <p className="mk-review">{t("Takrorlash: ekran tayyor holatda, ovozsiz. Ovoz bilan qayta eshitish — tepadagi «↺ boshidan». To'liq matn — «Matn».", 'Повтор: экран в готовом виде, без звука. Послушать заново со звуком — «↺ с начала» вверху. Полный текст — «Текст».')}</p>}
@@ -578,21 +605,22 @@ function MCRetry({ idx, total, onBack, onNext, onRestart, stored, onAnswer, revi
     }
   };
   const fbOk = solved && last === correct;
+  // F-1102-16: tuzatilgan/haqiqiy natija bloki bo'lsa — ekran BOSHIDAN ikki ustun va joyi qimirlamaydi:
+  // chapda savol va variantlar, o'ngda xabar (above) va javobdan keyin uning ostida natija (after).
+  // Javobdan keyin variantlar o'z joyida qoladi (to'g'risi yashil, qolgani xira) — hech narsa sakramaydi.
+  const split = !!after;
   return (
     <Stage kicker={kicker} idx={idx} total={total} audio={audio} onBack={onBack} onNext={onNext} onRestart={onRestart} nextReady={solved} nextDisabled={!solved} lockHint={t("To'g'ri javobni toping", 'Найдите верный ответ')}>
-      {/* F-1031-07: to'g'ri javobdan keyin tuzatilgan kod bo'lsa — ikki ustun (chapda savol, o'ngda kod), sahifa sig'adi */}
-      <div className={`mk-body${solved && after ? ' mc-split' : ''}`} style={solved && after ? undefined : { gridTemplateColumns: '1fr', maxWidth: 980, width: '100%', margin: '0 auto' }}>
+      <div className={`mk-body${split ? ' mc-split' : ''}`} style={split ? undefined : { gridTemplateColumns: '1fr', maxWidth: 980, width: '100%', margin: '0 auto' }}>
         {/* UX-5: savol bloki xavfsiz markazda (sig'masa tepasi kesilmaydi), variantlar 18 px */}
         <div className="mk-say mc" style={{ overflow: 'auto', paddingRight: 4 }}>
           <p className="mk-eyebrow">{eyebrow} · {t('1-urinish hisoblanadi', 'считается 1-я попытка')}</p>
-          {above}
-          <h2 className="mk-title" style={{ fontSize: 'clamp(24px,2.6vw,34px)' }}>{title}</h2>
+          {!split && above}
+          <h2 className="mk-title mc-q" data-len={lenTag(title)}>{title}</h2>
           <div style={{ display: 'grid', gap: 10 }}>
             {opts.map((o, i) => {
-              // Topilgach faqat to'g'ri variant qoladi — sahifa toza, tuzatilgan blok darhol ostida (F-1030-27)
-              if (solved && i !== correct) return null;
               let cls = 'mk-opt';
-              if (solved) cls += ' ok';
+              if (solved) cls += i === correct ? ' ok' : ' off';
               else if (bad.includes(i)) cls += ' bad';
               return <button key={i} className={cls} disabled={solved || bad.includes(i)} onClick={() => pick(i)}><span className="l">{String.fromCharCode(65 + i)}</span><span>{o}</span></button>;
             })}
@@ -604,7 +632,12 @@ function MCRetry({ idx, total, onBack, onNext, onRestart, stored, onAnswer, revi
             </div>
           )}
         </div>
-        {solved && after && <div className="mk-scene top mc-after" style={{ overflow: 'auto', animation: 'mk-up .45s ease both' }}>{after}</div>}
+        {split && <div className="mk-scene top mc-after" style={{ overflow: 'auto', display: 'grid', gap: 12, alignContent: 'start' }}>
+          {above}
+          {solved
+            ? <div style={{ animation: 'mk-up .45s ease both' }}>{after}</div>
+            : <div className="mc-wait">{t("To'g'ri javobni topganingizdan keyin shu yerda haqiqiy natija ochiladi", 'Когда найдёте верный ответ, здесь откроется реальный результат')}</div>}
+        </div>}
       </div>
     </Stage>
   );
@@ -640,7 +673,7 @@ function LineCheck({ idx, total, onBack, onNext, onRestart, stored, onAnswer, re
       <div className="mk-body">
         <div className="mk-say">
           <p className="mk-eyebrow">{eyebrow} · {t('1-urinish hisoblanadi', 'считается 1-я попытка')}</p>
-          <h2 className="mk-title">{title}</h2>
+          <h2 className="mk-title" data-len={lenTag(title)}>{title}</h2>
           <p className="mk-now" dangerouslySetInnerHTML={html(task || t('Kodda bitta xato bor. Xato satrni bosing.', 'В коде одна ошибка. Нажмите на строку с ошибкой.'))} />
           {(bad.length > 0 || solved) && (
             <div className="mk-fb" key={bad.length + (solved ? 'ok' : '')} style={{ '--c': solved ? T.green : T.accent, '--bg': solved ? '#E3F5EC' : '#FFF0EB' }}>
@@ -660,6 +693,26 @@ function CopyBtn({ text }) {
   return <button className="mk-copy" onClick={() => { try { navigator.clipboard.writeText(text); setOk(true); setTimeout(() => setOk(false), 1200); } catch (e) {} }}>{ok ? t('nusxalandi', 'скопировано') : t('nusxalash', 'копировать')}</button>;
 }
 const plain = (lines) => lines.map((l) => l.h.replace(/<[^>]+>/g, '').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/\\`/g, '`').replace(/\\\$/g, '$')).join('\n');
+// «Boshqacha chiqdimi?» oynasi (F-1102-12): sahifa ustida, orqa fon xiralashadi; ✕ / tashqarini bosish / Esc — yopadi
+function TroubleModal({ rows, onClose }) {
+  useEffect(() => {
+    const k = (e) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', k);
+    return () => window.removeEventListener('keydown', k);
+  }, [onClose]);
+  return (
+    <div className="mk-modal" role="dialog" aria-modal="true" aria-label={t('Boshqacha chiqdimi?', 'Вышло иначе?')} onClick={onClose}>
+      <div className="box" onClick={(e) => e.stopPropagation()}>
+        <div className="hd">
+          <b>{t('Boshqacha chiqdimi?', 'Вышло иначе?')}</b>
+          {rows.length > 1 && <span>{t(`${rows.length - 1} ta holat va yechim`, `ситуации и решения: ${rows.length - 1}`)}</span>}
+          <button type="button" className="x" aria-label={t('Yopish', 'Закрыть')} onClick={onClose}>✕</button>
+        </div>
+        <div className="bd"><table className="mk-tbl"><tbody>{rows.map(([a, c]) => <tr key={a}><td><code>{a}</code></td><td>{c}</td></tr>)}</tbody></table></div>
+      </div>
+    </div>
+  );
+}
 // Davom QULF: ovoz tugamaguncha + hamma katakcha + isbot to'g'ri bo'lmaguncha (F-1030-01). Kod: har qadam ichida «Kodni ochish» tugmasi,
 // sahnada Explorer — fayl bosilsa almashadi (F-1030-12); `code[i].step` — qaysi qadamga tegishli.
 function Practice({ p, S, steps, trouble, code, proof, tree }) {
@@ -681,7 +734,8 @@ function Practice({ p, S, steps, trouble, code, proof, tree }) {
       <div className="mk-body">
         <Say eyebrow={S.eyebrow} title={S.title} segments={S.segments} beat={beat} audio={b.audio} stepManual={b.stepManual} guess={b.guess} answerAsk={b.answerAsk} review={p.review}
           below={<div className="mk-card" style={{ background: allDone ? '#E3F5EC' : T.paper, borderColor: allDone ? T.green : T.line }}><h5>{t('Bajarildi', 'Выполнено')}</h5><div style={{ fontSize: 15, fontWeight: 700 }}>{checked.length} / {steps.length} {t('qadam', 'шагов')}{proof ? (proofOk && proofVal.trim() ? t(' · isbot ✓', ' · подтверждение ✓') : t(' · isbot kutilmoqda', ' · ждём подтверждение')) : ''}{allDone ? (b.done ? t(' — Davom bosing', ' — нажмите «Далее»') : t(' — ovoz tugagach Davom ochiladi', ' — «Далее» откроется после озвучки')) : ''}</div>
-            {proof && <div style={{ marginTop: 10 }}><div className="exp" style={{ marginBottom: 4 }}>{proof.label}</div><input className="mk-input" value={proofVal} placeholder={proof.placeholder} onChange={(e) => onProof(e.target.value)} />{proofVal.trim() && !proofOk && <div className="exp" style={{ color: T.accent, marginTop: 4 }}>{proof.wrong}</div>}</div>}
+            {/* F-1102-20: isbot maydoni to'ldirilmaguncha yumshoq yonib-o'chadi — «shu yerga yozing» ko'rinib tursin */}
+            {proof && <div style={{ marginTop: 10 }}><div className="exp" style={{ marginBottom: 4, fontWeight: 700, color: proofOk && proofVal.trim() ? T.green : T.ink }}>{t('Isbot', 'Подтверждение')}: {String(proof.label).replace(/^(Isbot|Подтверждение)\s*:\s*/, '')}</div><input className={`mk-input${proofOk && proofVal.trim() ? '' : ' need'}`} value={proofVal} placeholder={proof.placeholder} onChange={(e) => onProof(e.target.value)} />{proofVal.trim() && !proofOk && <div className="exp" style={{ color: T.accent, marginTop: 4 }}>{proof.wrong}</div>}</div>}
           </div>} />
         <div className="mk-scene top" style={{ overflow: 'auto' }}>
           {cur ? (<>
@@ -710,13 +764,14 @@ function Practice({ p, S, steps, trouble, code, proof, tree }) {
               ); })}
             </div>
             <Block at={S.tableAt} beat={beat}><div className="mk-light mk-trouble" style={{ padding: 0, marginTop: 10 }}>
-              <button type="button" className={`mk-trbtn${beat === S.tableAt && !tOpen ? ' hot' : ''}`} aria-expanded={tOpen} onClick={() => setTOpen((v) => !v)}>
+              <button type="button" className={`mk-trbtn${beat === S.tableAt && !tOpen ? ' hot' : ''}`} aria-haspopup="dialog" aria-expanded={tOpen} onClick={() => setTOpen(true)}>
                 <span className="q">{t('Boshqacha chiqdimi?', 'Вышло иначе?')}</span>
                 {rows.length > 1 && <span className="n">{t(`${rows.length - 1} ta holat va yechim`, `ситуации и решения: ${rows.length - 1}`)}</span>}
-                <span className="ar" aria-hidden="true">{tOpen ? '▾' : '▸'}</span>
+                <span className="ar" aria-hidden="true">↗</span>
               </button>
-              {tOpen && <div style={{ padding: '0 12px 12px', animation: 'mk-up .3s ease both' }}><table className="mk-tbl"><tbody>{rows.map(([a, c]) => <tr key={a}><td><code>{a}</code></td><td>{c}</td></tr>)}</tbody></table></div>}
             </div></Block>
+            {/* F-1102-12: jadval sahifa ichida emas — ustida oyna (popup). ✕, tashqarisi yoki Esc yopadi; tugma joyida qoladi */}
+            {tOpen && <TroubleModal rows={rows} onClose={() => setTOpen(false)} />}
           </>)}
         </div>
       </div>
@@ -864,7 +919,7 @@ const METHOD_C = { GET: '#61AFFE', POST: '#49CC90', PATCH: '#50E3C2', DELETE: '#
 // ============================================================
 const S1 = {
   kicker: 'Kirish', eyebrow: 'Mentor kursi · NestJS', title: "Siz cars-api'ni qurdingiz. Endi o'quvchi reposi.",
-  plan: ['Ishga tushirish', "cars-api'dan farqlar", 'Resurs: 5 qatlam', 'Guard va token', 'Buzamiz', "O'quvchi darslariga ko'prik"],
+  plan: ['Ishga tushirish', "cars-api'dan farqlar", 'Resurs: 5 qatlam', 'Guard va token', 'Buzamiz', "O'quvchi darslarini o'tish"],
   segments: [
     sg('a', "Nest-1 da loyihani noldan qurdingiz — o'quvchi esa <b>tayyor loyihani clone qiladi</b>", "Assalomu alaykum. Nest birinchi darsida siz cars api'ni bo'sh papkadan qurdingiz. O'quvchingiz esa noldan yozmaydi: u GitHub'dan tayyor loyihani clone qiladi. Bugun aynan shu loyihani ochamiz, unga bitta resurs qo'shamiz va sinfda chiqadigan xatolarni ko'ramiz.", { hl: [] }),
     sg('b', "Dars oxirida loyiha sizda ishlaydi va unga <b>car resursini o'zingiz qo'shgan</b> bo'lasiz", "Dars oxirida loyiha sizning kompyuteringizda bazasi bilan ishlaydi, unga o'zingiz car resursini qo'shgan bo'lasiz. Resursning beshta qatlamini bir marta, tartib bilan yozamiz.", { hl: [0, 2] }),
@@ -995,7 +1050,7 @@ const P1 = {
     sg('a', "Endi siz: loyihani <b>o'zingizda ishga tushirasiz</b> — to'rt qadam", "Endi navbat sizga: loyihani o'z kompyuteringizda ishga tushirasiz. To'rt qadam, o'n-o'n besh daqiqa. Boshlashdan oldin PostgreSQL ishlab turganini tekshiring.", { hl: [] }),
     sg('b', "1–2-qadam: clone, install, <code>.env</code> — <b>Superadmin blokini to'ldirmasdan</b> ishga tushirmang", "Birinchi: clone va npm install. Ikkinchi: env example'dan env yarating va uch joyni to'ldiring. Superadmin blokini to'ldirmasdan serverni ishga tushirmang, keyin tuzatish qiyinroq.", { hl: [0, 1] }),
     sg('c', "3–4-qadam: baza, server, Swagger; isbot — <code>successfully started</code> satri <b>sanasi bilan</b>", "Uchinchi: bazani yarating va serverni ishga tushiring. To'rtinchi: brauzerda Swagger'ni oching. Isbot maydoniga terminaldagi successfully started satrini butunligicha, sanasi bilan nusxalang.", { hl: [2, 3] }),
-    sg('d', "Boshqacha chiqsa — pastdagi <b>«Boshqacha chiqdimi?»</b> tugmasi; katakcha va isbotsiz Davom ochilmaydi", "Biror narsa boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing: sinfda ham aynan shu holatlar chiqadi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi.", { hl: [] }),
+    sg('d', "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi", "Biror narsa boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing: yechimlar oynasi ochiladi, sinfda ham aynan shu holatlar chiqadi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin o'quvchi reposi sizning kompyuteringizda ishlaydi va Swagger ochiladi.", { hl: [] }),
   ],
 };
 const P1_STEPS = [
@@ -1131,12 +1186,12 @@ $ psql -d nestarxitechture -c "select username, role from admins"
 POST /api/v1/admin/signin  {"username":"superadmin","password":"Superadmin1!"}
 {"statusCode":401,"error":{"message":"Admin not fount"}}`, { 5: { id: 'blank' }, 8: { id: 'res' } });
 const S6 = {
-  kicker: '2-bosqich · farqlar', title: "To'rtinchi farq: hamma sozlama .env'dan — va ikki jim tuzoq",
+  kicker: '2-bosqich · farqlar', title: "To'rtinchi farq: hamma sozlama .env'dan — va ikki yashirin tuzoq",
   segments: [
     sg('a', "<code>config/index.ts</code> <code>.env</code>ni o'qiydi: <b>port, baza, token kaliti, superadmin</b>", "Ikkinchi ekranda env'ni to'ldirdik. Endi uni kim o'qishini ko'ramiz: config papkasidagi index ts. U env'dan port, baza manzili, token kaliti va superadmin ma'lumotlarini oladi. Loyihaning qolgan qismi env'ga emas, shu config'ga murojaat qiladi.", { focus: ['dot'] }),
     sg('b', "<code>NODE_ENV=dev</code> → dev bazasi va <b>jadvallar o'zi yaratiladi</b>; boshqa qiymat → prod bazasi", "Eng muhim qator: NODE ENV dev bo'lsa, dev baza manzili olinadi va synchronize yoqiladi, ya'ni TypeORM jadvallarni o'zi yaratadi. Boshqa har qanday qiymatda prod manzili olinadi va jadvallar yaratilmaydi.", { focus: ['db'] }),
     sg('c', "<code>NODE_ENV</code> noto'g'ri: <b>does not exist</b> yoki <b>error in creating super admin</b> — sabab yashirin", "Sinab ko'rdik: NODE ENV prod bo'lsa va prod bazasi yo'q bo'lsa, server database does not exist deb yiqiladi. Prod bazasi bor, lekin bo'sh bo'lsa, xabar boshqa: error in creating super admin. Haqiqiy sabab, jadval yo'qligi, kod ichida yashirin. Ikkala holatda javob bitta: NODE ENV dev.", { focus: ['db'] }),
-    sg('d', "Jim tuzoq: superadmin bo'sh qolsa — bazada <b>nomsiz superadmin</b>; <code>.env</code>ni keyin to'ldirish yordam bermaydi", "Ikkinchi tuzoq jimroq. Superadmin bloki bo'sh qolsa, server xatosiz ishga tushadi va bazaga nomsiz superadmin yozadi. Keyin env to'ldirilsa ham yangisi yaratilmaydi: server superadmin bor deb hisoblaydi. Sinab ko'rdik: env'dagi nom bilan kirilsa to'rt yuz bir, Admin not fount.", { focus: ['sa'] }),
+    sg('d', "Yashirin tuzoq: superadmin bo'sh qolsa — bazada <b>nomsiz superadmin</b>; <code>.env</code>ni keyin to'ldirish yordam bermaydi", "Ikkinchi tuzoq yashirinroq. Superadmin bloki bo'sh qolsa, server xatosiz ishga tushadi va bazaga nomsiz superadmin yozadi. Keyin env to'ldirilsa ham yangisi yaratilmaydi: server superadmin bor deb hisoblaydi. Sinab ko'rdik: env'dagi nom bilan kirilsa to'rt yuz bir, Admin not fount.", { focus: ['sa'] }),
     sg('e', "Xulosa: o'quvchi kira olmasa — <b>bo'sh superadmin satrini o'chirib</b>, serverni qayta yoqing", "Xulosa: env'da NODE ENV dev bo'lsin va superadmin bloki to'liq bo'lsin. O'quvchi to'g'ri nom bilan kira olmasa va bazada nomsiz superadmin bo'lsa, o'sha satrni o'chiring va serverni qayta ishga tushiring. Sinab ko'rdik: superadmin env'dan yangidan yoziladi va signin ishlaydi.", { focus: [] }),
   ],
 };
@@ -1157,7 +1212,7 @@ function Screen7(p) {
     title={t("O'quvchi: «Brauzerda localhost:3000/admin ochdim — 404». Birinchi nimani tekshirasiz?", 'Ученик: «Открыл в браузере localhost:3000/admin — 404». Что проверите первым?')}
     q={t("Farqlarni ko'rdingiz, tekshirib olaylik. Birinchi tekshiruv. O'quvchi aytadi: brauzerda localhost uch ming slesh admin ochdim, to'rt yuz to'rt. Server ishlayapti, terminalda xato yo'q. Birinchi nimani tekshirasiz? Variantni tanlang.", 'Вы видели отличия, давайте проверим. Первая проверка. Ученик говорит: открыл в браузере localhost 3000 admin, получил 404. Сервер работает, в терминале ошибок нет. Что вы проверите первым? Выберите вариант.')}
     opts={t(['app.module.ts — AdminModule imports\'da bormi', 'Manzil — prefiks /api/v1 tushib qolgan', '.env — PostgreSQL paroli to\'g\'rimi', 'Swagger — Authorize bosilganmi'], ['app.module.ts — есть ли AdminModule в imports', 'Адрес — пропущен префикс /api/v1', '.env — верный ли пароль PostgreSQL', 'Swagger — нажата ли Authorize'])} correct={1}
-    ok={t("Manzil. Bu loyihada hamma route api v bir bilan boshlanadi. Slesh admin degan route yo'q, shuning uchun to'rt yuz to'rt va Cannot GET slesh admin. Terminalda Mapped satrlari api v bir slesh admin deb turibdi. To'g'ri manzilda to'rt yuz bir chiqadi, bu token masalasi.", 'Адрес. В этом проекте все routes начинаются с api v1. Route просто admin нет, поэтому 404 и Cannot GET admin. В терминале строки Mapped показывают api v1 admin. По правильному адресу будет 401, а это уже вопрос токена.')}
+    ok={t("To'g'ri, manzil. Bu loyihada hamma route api v bir bilan boshlanadi. Slesh admin degan route yo'q, shuning uchun to'rt yuz to'rt va Cannot GET slesh admin. Terminalda Mapped satrlari api v bir slesh admin deb turibdi. To'g'ri manzilda to'rt yuz bir chiqadi, bu token masalasi. Demak, to'rt yuz to'rt chiqsa, avval manzil api v bir bilan boshlanganini tekshiring.", 'Верно, адрес. В этом проекте все routes начинаются с api v1. Route просто admin нет, поэтому 404 и Cannot GET admin. В терминале строки Mapped показывают api v1 admin. По правильному адресу будет 401, а это уже вопрос токена. Значит, если пришёл 404, сначала проверьте, что адрес начинается с api v1.')}
     okShort={t("Prefiks: /api/v1/admin. Terminalda Mapped {/api/v1/admin…} — route bor, manzil noto'g'ri.", 'Префикс: /api/v1/admin. В терминале Mapped {/api/v1/admin…} — route есть, адрес неверный.')}
     wrong={t({ 0: "Modul ulanmagan bo'lsa admin uchun Mapped satri bo'lmasdi; u bor.", 2: "Parol noto'g'ri bo'lsa server ishga tushmasdi: Unable to connect.", 3: "Token yo'q bo'lsa javob 401 bo'ladi, 404 emas." }, { 0: 'Если бы модуль не был подключён, строки Mapped для admin не было бы; а она есть.', 2: 'При неверном пароле сервер бы не запустился: Unable to connect.', 3: 'Без токена ответ был бы 401, а не 404.' })} />;
 }
@@ -1596,8 +1651,9 @@ export class CarEntity extends BaseEntity {
   @Column({ default: true })
   is_available: boolean;
 }`);
-const LC2_FIXED = LC2_LINES.map((l, i) => i === 1 ? { ...l, gone: true } : i === 12 ? { ...l, gone: true } : l)
-  .flatMap((l, i) => i === 12 ? [l, { neu: true, h: `  <span class="d">@Column</span>()   <span class="cm">// ustun — Entity'da; @IsNumber — DTO'da</span>` }] : [l]);
+// n — tuzatilgan fayldagi haqiqiy satr raqami: 2-satr (import) o'chgan, keyingilar bittaga yuqoriga, yangi @Column() — 12 (nest-linecheck/TAKLIF.md)
+const LC2_FIXED = LC2_LINES.map((l, i) => (i === 1 || i === 12) ? { ...l, gone: true, n: '' } : { ...l, n: i < 1 ? i + 1 : i })
+  .flatMap((l, i) => i === 12 ? [l, { neu: true, n: 12, h: `  <span class="d">@Column</span>()   <span class="cm">// ustun — Entity'da; @IsNumber — DTO'da</span>` }] : [l]);
 function Screen14(p) {
   return <LineCheck {...p} kicker={t('Tekshiruv 2', 'Проверка 2')} eyebrow={t('Tekshiruv · 2 / 4 — qaysi satr xato?', 'Проверка · 2 / 4 — какая строка с ошибкой?')}
     title={t("Bu Entity'da bitta satr boshqa qatlamniki", 'В этой Entity одна строка из другого слоя')}
@@ -1613,7 +1669,7 @@ tuzatilgach:     price | integer | not null`, String.raw`
 сломано:         brand · model · is_available   ← колонки price НЕТ (synchronize удалил)
 POST /api/v1/car {…,"price":250} → 201, в ответе и в базе price нет
 исправлено:      price | integer | not null`)) }]}
-    ok={t("To'g'ri. O'n uchinchi satr IsNumber, bu tekshirish qoidasi, u DTO'ga tegishli. Bu xato jim ishlaydi, sinab ko'rdik: server xatosiz ishga tushadi, lekin synchronize price ustunini bazadan o'chiradi. POST ikki yuz bir qaytaradi, narx esa hech qayerda saqlanmaydi. Ekranda tuzatilgan holat: Entity'da Column.", 'Верно. Тринадцатая строка IsNumber, это правило проверки, оно относится к DTO. Эта ошибка тихая, мы проверили: сервер запускается без ошибок, но synchronize удаляет колонку price из базы. POST возвращает 201, а цена нигде не сохраняется. На экране исправленный вариант: в Entity Column.')}
+    ok={t("To'g'ri. O'n uchinchi satr IsNumber, bu tekshirish qoidasi, u DTO'ga tegishli. Bu xato yashirin: sinab ko'rdik: server xatosiz ishga tushadi, lekin synchronize price ustunini bazadan o'chiradi. POST ikki yuz bir qaytaradi, narx esa hech qayerda saqlanmaydi. Ekranda tuzatilgan holat ko'rinib turibdi: Entity'da Column. Demak, ustunni Entity'dagi Column yaratadi, DTO qoidasi esa faqat kirayotgan ma'lumotni tekshiradi.", 'Верно. Тринадцатая строка IsNumber, это правило проверки, оно относится к DTO. Эта ошибка скрытая, мы проверили: сервер запускается без ошибок, но synchronize удаляет колонку price из базы. POST возвращает 201, а цена нигде не сохраняется. На экране виден исправленный вариант: в Entity стоит Column. Значит, колонку создаёт Column в Entity, а правило DTO только проверяет входящие данные.')}
     okShort={t("13-satr: @IsNumber — DTO qoidasi. Sinalgan: server ishga tushadi, price ustuni bazadan o'chadi, POST 201, narx yo'q. Tuzatildi: @Column().", 'Строка 13: @IsNumber — правило DTO. Проверено: сервер запускается, колонка price удаляется из базы, POST 201, цены нет. Исправлено: @Column().')}
     hint={t("Bu satr Entity'ning o'z ishi: import, jadval nomi yoki ustun. Ustun yaratmaydigan, qiymatni tekshiradigan decorator'ni qidiring.", 'Эта строка — работа самой Entity: import, имя таблицы или колонка. Ищите decorator, который не создаёт колонку, а проверяет значение.')} />;
 }
@@ -1627,7 +1683,7 @@ const P2 = {
     sg('a', "Endi siz <b>car resursini qo'shasiz</b> — o'quvchining «Ochilish kuni», sinfdan oldin", "Endi navbat sizga: car resursini o'z loyihangizga qo'shasiz. Bu o'quvchi darsining Ochilish kuni, siz uni sinfdan oldin bir marta o'zingiz qilib ko'rasiz. Yigirma daqiqacha. Har qadamda Kodni ochish tugmasi bor: bu namuna, kodni o'zingiz yozing.", { hl: [] }),
     sg('b', "1–3-qadam: Entity va <code>core/index.ts</code>, ikki DTO, Service", "Birinchi: Entity va core index'ga export. Ikkinchi: ikki DTO. Uchinchi: Service, super'ni unutmang.", { hl: [0, 1, 2] }),
     sg('c', "4–5-qadam: Controller, Module va AppModule — terminalda <b>beshta Mapped</b>", "To'rtinchi: Controller, beshta route. Beshinchi: Module va bosh modulga ulash. Terminalda beshta Mapped satrini ko'rsangiz, resurs tirik.", { hl: [3, 4] }),
-    sg('d', "6-qadam: Swagger'da POST → <b>201</b>; isbot — javobdagi <code>id</code>ning birinchi 8 belgisi", "Oltinchi: Swagger'da bitta mashina qo'shing, ikki yuz bir. Javobdagi id'ning birinchi sakkiz belgisini isbot maydoniga yozing. Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing. Katakchalar va isbot bo'lmasa, Davom ochilmaydi.", { hl: [5] }),
+    sg('d', "6-qadam: Swagger'da POST → <b>201</b>; isbot — javobdagi <code>id</code>ning birinchi 8 belgisi", "Oltinchi: Swagger'da bitta mashina qo'shing, ikki yuz bir. Javobdagi id'ning birinchi sakkiz belgisini isbot maydoniga yozing. Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. Katakchalar va isbot bo'lmasa, Davom ochilmaydi. Demak, endi car resursi o'z loyihangizda ishlaydi.", { hl: [5] }),
   ],
 };
 const P2_STEPS = [
@@ -1811,7 +1867,7 @@ export class BookController {
     title={t("O'quvchi: «KitobShop'da superadmin tokeni bilan kitob qo'shdim — 403». Sabab?", 'Ученик: «В KitobShop добавил книгу с токеном суперадмина — 403». Причина?')}
     q={t("Ikkala qo'riqchini bilasiz, tekshirib olaylik. Uchinchi tekshiruv. O'quvchi KitobShop'da superadmin tokeni bilan kitob qo'shmoqchi, javob to'rt yuz uch. Ekranda route kodi va javob. Sabab nima? Variantni tanlang.", 'Вы знаете обоих охранников, давайте проверим. Третья проверка. Ученик в KitobShop хочет добавить книгу с токеном superadmin, ответ 403. На экране код route и ответ. В чём причина? Выберите вариант.')}
     opts={t(["Token muddati o'tgan, qayta signin kerak", "Authorize bosilmagan, so'rovda token yo'q", "Ro'yxatda faqat admin, superadminning roli boshqa", "BookModule AppModule'ga ulanmagan"], ['Срок токена истёк, нужен новый signin', 'Authorize не нажата, в запросе нет токена', 'В списке только admin, у superadmin другая роль', 'BookModule не подключён к AppModule'])} correct={2}
-    ok={t("Ro'yxatda faqat admin, superadminning roli esa superAdmin, boshqa so'z. Token yaroqli, shuning uchun to'rt yuz bir emas, to'rt yuz uch. Yechim: superadmin bilan oddiy admin yaratib, KitobShop'ni o'sha admin bilan sinash. Ekranda natija: oddiy admin tokeni bilan ikki yuz bir.", 'В списке только admin, а роль superadmin — superAdmin, это другое слово. Токен действующий, поэтому не 401, а 403. Решение: создать через superadmin обычного админа и проверять KitobShop под ним. На экране результат: с токеном обычного админа 201.')}
+    ok={t("To'g'ri. Ro'yxatda faqat admin bor, superadminning roli esa superAdmin, bu boshqa so'z. Token yaroqli, shuning uchun to'rt yuz bir emas, to'rt yuz uch chiqadi. Yechim shunday: superadmin bilan oddiy admin yarating va KitobShop'ni o'sha admin bilan sinang. Ekranda natija: oddiy admin tokeni bilan ikki yuz bir. Demak, to'rt yuz uch token emas, rol yetmasligini bildiradi.", 'Верно. В списке только admin, а роль superadmin — superAdmin, это другое слово. Токен действующий, поэтому не 401, а 403. Решение такое: создайте через superadmin обычного админа и проверяйте KitobShop под ним. На экране результат: с токеном обычного админа 201. Значит, 403 говорит не о токене, а о том, что не хватает роли.')}
     okShort={t('superAdmin va admin — har xil rol. Token yaroqli → 403 (401 emas). Oddiy admin bilan → 201.', 'superAdmin и admin — разные роли. Токен действующий → 403 (не 401). С обычным админом → 201.')}
     wrong={t({ 0: "Token eskirgan bo'lsa Auth guard 401 berardi, 403 emas.", 1: "Token yo'q bo'lsa ham 401. 403 — token bor, rol ro'yxatda yo'q.", 3: "Modul ulanmagan bo'lsa route topilmaydi: 404." }, { 0: 'Если бы токен истёк, Auth guard дал бы 401, а не 403.', 1: 'Без токена тоже 401. 403 — токен есть, роли нет в списке.', 3: 'Если модуль не подключён, route не найден: 404.' })} />;
 }
@@ -1825,7 +1881,7 @@ const P3 = {
     sg('a', "Endi siz: <b>signin, Authorize va oddiy admin</b> — KitobShop darsidan oldingi tayyorgarlik", "Endi navbat sizga. Bu amaliyot KitobShop darsidan oldin har o'quvchi qiladigan tayyorgarlik: superadmin bilan kirish, oddiy admin yaratish va farqni ko'rish. To'rt qadam, o'n daqiqacha.", { hl: [] }),
     sg('b', "1–2-qadam: superadmin bilan <b>signin</b> qiling, tokenni <b>Authorize</b>'ga qo'ying — adminlar ro'yxati 200 bilan ochiladi", "Birinchi: Swagger'da signin, env'dagi superadmin nomi va paroli bilan. Javobdagi tokenni qo'shtirnoqsiz nusxalang. Ikkinchi: tokenni Authorize oynasiga qo'ying va adminlar ro'yxatini so'rang: ikki yuz.", { hl: [0, 1] }),
     sg('c', "3-qadam: <code>POST admin</code> bilan <b>oddiy admin</b> yarating; isbot — uning <code>id</code>sidan 8 belgi", "Uchinchi: POST admin bilan oddiy admin yarating, paroli kuchli bo'lsin. Javob ikki yuz bir, yangi adminning roli admin. Uning id'sidan birinchi sakkiz belgini isbot maydoniga yozing.", { hl: [2] }),
-    sg('d', "4-qadam: yangi admin bilan kiring va <code>POST admin</code> qiling — <b>403</b> chiqishi kerak", "To'rtinchi: Authorize'dan chiqing, yangi admin bilan kiring va yana POST admin qiling: to'rt yuz uch, chunki admin yaratish faqat superadmin uchun. Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing. Katakchalar va isbot bo'lmasa, Davom ochilmaydi.", { hl: [3] }),
+    sg('d', "4-qadam: yangi admin bilan kiring va <code>POST admin</code> qiling — <b>403</b> chiqishi kerak", "To'rtinchi: Authorize'dan chiqing, yangi admin bilan kiring va yana POST admin qiling: to'rt yuz uch, chunki admin yaratish faqat superadmin uchun. Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. Katakchalar va isbot bo'lmasa, Davom ochilmaydi. Demak, siz admin va superadmin rollari farqini o'z loyihangizda ko'rdingiz.", { hl: [3] }),
   ],
 };
 const P3_STEPS = [
@@ -1893,13 +1949,13 @@ function Screen20(p) {
 //  21 · Buzamiz 2: Entity o'zgardi — baza o'zgardi
 // ============================================================
 const S21 = {
-  kicker: '5-bosqich · buzamiz 2', title: "Entity o'zgarsa, baza o'zi o'zgaradi — jim yoki yiqilib",
+  kicker: '5-bosqich · buzamiz 2', title: "Entity o'zgarsa, baza o'zi o'zgaradi — xato bermay yoki yiqilib",
   segments: [
     sg('a', "<code>synchronize</code> har ishga tushishda bazani <b>Entity'ga moslaydi</b> — qulay ham, xavfli ham", "Ikkinchi holat bazada ko'rinadi. Dev rejimida synchronize yoqilgan: server har ishga tushganda bazani Entity'ga moslaydi. Jadval o'zi yaratilgani qulay edi. Lekin Entity o'zgarsa, baza ham so'ramasdan o'zgaradi.", { v: 'sync' }),
     sg('b', "Ustundan <code>@Column</code> olib tashlansa — ustun bazadan <b>o'chadi</b>: server xatosiz, narx yo'q", "Ikkinchi tekshiruvdagi holatni haqiqatda yurgizdik: price'dan Column olib tashlandi. Server xatosiz ishga tushdi, synchronize price ustunini bazadan o'chirdi. POST ikki yuz bir qaytaradi, lekin narx na javobda, na bazada. Hech qanday xabar chiqmaydi.", { v: 'drop' }),
     sg('c', "Bor jadvalga majburiy ustun qo'shilsa — server <b>yiqiladi</b>: <code>contains null values</code>", "Teskari holat: jadvalda mashinalar bor, Entity'ga esa majburiy yangi ustun qo'shildi, masalan brand'ga bog'lash uchun brandId. Server ishga tushmaydi: column brandId contains null values. Eski satrlarda bu ustun bo'sh, majburiy ustun esa bo'sh bo'la olmaydi.", { v: 'add' }),
     sg('d', "Yechim: yangi ustun <b><code>nullable: true</code></b> — server ishga tushadi, eski ma'lumot joyida", "Yechim: yangi ustunni ixtiyoriy qilish, nullable true. Sinab ko'rdik: shunday qilinsa server ishga tushdi, ustun va tashqi kalit yaratildi, eski mashinalar joyida qoldi.", { v: 'fix' }),
-    sg('e', "Xulosa: Entity'ni o'zgartirish — <b>bazani o'zgartirish</b>; «ma'lumot yo'qoldi» desa — Entity'ni so'rang", "Xulosa: Entity'ni o'zgartirish bazani o'zgartirish demak. Ustun olib tashlansa, ma'lumot jim o'chadi; majburiy ustun qo'shilsa, server yiqiladi. O'quvchi ma'lumotlarim yo'qoldi yoki contains null values desa, birinchi savol: Entity'da nimani o'zgartirdingiz?", { v: 'sum' }),
+    sg('e', "Xulosa: Entity'ni o'zgartirish — <b>bazani o'zgartirish</b>; «ma'lumot yo'qoldi» desa — Entity'ni so'rang", "Xulosa: Entity'ni o'zgartirish bazani o'zgartirish demak. Ustun olib tashlansa, ma'lumot xato bermay o'chadi; majburiy ustun qo'shilsa, server yiqiladi. O'quvchi ma'lumotlarim yo'qoldi yoki contains null values desa, birinchi savol: Entity'da nimani o'zgartirdingiz?", { v: 'sum' }),
   ],
 };
 const ENT_DROP = ts(String.raw`
@@ -1974,7 +2030,7 @@ function Screen22(p) {
     title={t("O'quvchingizning KitobShop'i yiqildi. Qaysi faylni ochasiz va nimani tuzatasiz?", 'KitobShop вашего ученика упал. Какой файл откроете и что исправите?')}
     q={t("Oxirgi tekshiruv, sinfdagi haqiqiy holat. To'rtinchi tekshiruv. O'quvchi agent yozgan kitob resursini ishga tushirdi, server yiqildi, ekranda xabar. U yordam so'radi. Qaysi faylni ochasiz va nimani tuzatasiz?", 'Последняя проверка, реальный случай из класса. Четвёртая проверка. Ученик запустил ресурс книг, написанный агентом, сервер упал, на экране сообщение. Он просит помощи. Какой файл вы откроете и что исправите?')}
     opts={t(["book.module.ts — imports'ga TypeOrmModule.forFeature([BookEntity])", "app.module.ts — providers'ga BookService", "book.service.ts — konstruktordan Repository'ni olib tashlash", "book.entity.ts — @Injectable() qo'shish"], ["book.module.ts — в imports TypeOrmModule.forFeature([BookEntity])", "app.module.ts — в providers BookService", 'book.service.ts — убрать Repository из конструктора', 'book.entity.ts — добавить @Injectable()'])} correct={0}
-    ok={t("book module, imports'ga forFeature Book entity bilan. Qaysi klass: Book service. Qaysi dependency: Book entity Repository. Qaysi fayl: Book module. Repository so'zi, demak forFeature. Ekranda tuzatilgan fayl va terminal: Book module tayyor, Book controller va Mapped satrlari.", 'book module, в imports forFeature с Book entity. Какой класс: Book service. Какой dependency: Book entity Repository. Какой файл: Book module. Слово Repository, значит, forFeature. На экране исправленный файл и терминал: Book module готов, Book controller и строки Mapped.')}
+    ok={t("To'g'ri: book module faylida imports ro'yxatiga Book entity bilan forFeature qo'shiladi. Xabar uch narsani aytadi: klass Book service, dependency Book entity Repository, fayl Book module. Ekranda tuzatilgan fayl va terminaldagi Book controller va Mapped satrlari ko'rinib turibdi. Demak, dependency nomida Repository so'zi bo'lsa, javob modulning forFeature ro'yxatida.", 'Верно: в файле book module в список imports добавляется forFeature с Book entity. Сообщение называет три вещи: класс Book service, dependency Book entity Repository, файл Book module. На экране виден исправленный файл и в терминале Book controller и строки Mapped. Значит, если в имени dependency есть слово Repository, ответ — в списке forFeature модуля.')}
     okShort={t('Klass BookService · dependency BookEntityRepository · fayl book.module.ts → forFeature([BookEntity]).', 'Класс BookService · dependency BookEntityRepository · файл book.module.ts → forFeature([BookEntity]).')}
     wrong={t({ 1: "Service bosh modulning providers'iga yozilmaydi; xabar BookModule haqida.", 2: "Repository'siz Service bazaga yoza olmaydi; dependency kerak, uni beradigan satr yetishmayapti.", 3: "@Injectable Entity'ga qo'yilmaydi; xabar Repository topilmaganini aytyapti." }, { 1: 'Service не пишут в providers главного модуля; сообщение про BookModule.', 2: 'Без Repository Service не сможет писать в базу; dependency нужен, не хватает строки, которая его даёт.', 3: '@Injectable на Entity не ставят; сообщение говорит, что не найден Repository.' })} />;
 }
@@ -1987,7 +2043,7 @@ const P4 = {
   segments: [
     sg('a', "Oxirgi amaliyot: <b>o'zingiz buzasiz</b> — ikki qadam, xabar o'z terminalingizda", "Oxirgi amaliyot: endi o'zingiz buzasiz. Ikki qadam, yetti daqiqacha. Maqsad xabarni o'z terminalingizda ko'rish va o'qish.", { hl: [] }),
     sg('b', "1-qadam: <code>forFeature</code>ni oling, xabardan <b>klass, dependency va faylni</b> isbotga yozing, keyin qaytaring", "Birinchi: car module'dan forFeature satrini olib tashlang va saqlang, server yiqiladi. Xabardan qaysi klass, qaysi dependency, qaysi fayl ekanini toping va vergul bilan isbot maydoniga yozing. Keyin satrni joyiga qaytaring.", { hl: [0] }),
-    sg('c', "2-qadam: <code>/api/v1/car/1</code> 500 beradi, sababi terminalda; <b><code>ParseUUIDPipe</code></b> qo'shsangiz — tushunarli 400", "Ikkinchi: Swagger'da car'ni id bir bilan so'rang: besh yuz. Terminalda invalid input syntax for type uuid satrini toping. Keyin Controller'da id parametriga ParseUUIDPipe qo'shing va so'rovni takrorlang: to'rt yuz. Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing. Katakchalar va isbot bo'lmasa, Davom ochilmaydi.", { hl: [1] }),
+    sg('c', "2-qadam: <code>/api/v1/car/1</code> 500 beradi, sababi terminalda; <b><code>ParseUUIDPipe</code></b> qo'shsangiz — tushunarli 400", "Ikkinchi: Swagger'da car'ni id bir bilan so'rang: besh yuz. Terminalda invalid input syntax for type uuid satrini toping. Keyin Controller'da id parametriga ParseUUIDPipe qo'shing va so'rovni takrorlang: to'rt yuz. Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. Katakchalar va isbot bo'lmasa, Davom ochilmaydi. Demak, endi siz besh yuz sababini terminaldan topib, uni tushunarli to'rt yuzga aylantira olasiz.", { hl: [1] }),
   ],
 };
 const P4_STEPS = [
@@ -2004,7 +2060,7 @@ const P4_PROOF = { label: "Isbot: 1-qadam xabaridan — qaysi klass, qaysi depen
 function ScreenP4(p) { return <Practice p={p} S={P4} steps={P4_STEPS} trouble={P4_TROUBLE} proof={P4_PROOF} />; }
 
 // ============================================================
-//  6-BOSQICH · O'quvchi darslariga ko'prik (24–28)
+//  6-BOSQICH · O'quvchi darslarini o'tish (24–28)
 // ============================================================
 const MAP03 = [
   { t: 'Kirish va reja', s: '1–3', d: "«Admin tizimi tayyor — avtosalonda mashina yo'q» → alohida resurs; reja — 5 bosqich; mashina shakli — 4 ustun", m: "«Resurs — bir tur ma'lumot, o'z papkasi, o'z 5 bosqichi»; id ustuni yozilmaydi" },
@@ -2014,7 +2070,7 @@ const MAP03 = [
   { t: 'Podium, kartochkalar, yakun', s: '20–22', d: '12 kartochka: Resurs, Entity, BaseEntity, DTO, 400, PartialType, BaseService, super, @Post, Module, 404, DI', m: 'kartochkalarni birga o\'qing — har biri bugungi bir ekraningiz' },
 ];
 const S24 = {
-  kicker: "6-bosqich · ko'prik", eyebrow: "m4a-03 · «Birinchi resursni qo'lda qo'shish — mashinalar»", title: "m4a-03: o'quvchi siz bugun qilgan ishni qiladi",
+  kicker: "6-bosqich · o'quvchi darsini o'tish", eyebrow: "m4a-03 · «Birinchi resursni qo'lda qo'shish — mashinalar»", title: "m4a-03: o'quvchi siz bugun qilgan ishni qiladi",
   segments: [
     sg('a', "m4a-03 — <b>siz bugun qilgan ish</b>: car resursi, besh bosqich, 22 ekran", "Endi darsning asosiy maqsadi: bu mavzuni o'quvchiga o'tish. Ikkita o'quvchi darsi bor. Birinchisi m4a-03: o'quvchi aynan siz bugun qilgan ishni qiladi, car resursini besh bosqichda qo'shadi. Yigirma ikki ekran.", { hl: [] }),
     sg('b', "Har bosqichda o'quvchi <b>shu faylga tegishli qatorni</b> tanlaydi, keyin test, agent va haqiqiy loyiha", "Har bosqichda o'quvchi qatorlarni tanlaydi, qaysi biri shu faylga tegishli, keyin qisqa test. So'ng agent besh faylni yozadi va o'quvchi agent xatosini topadi. Oxirida amaliyot haqiqiy loyihada. Siz har bosqichda qoidani aytasiz: ustun Entity'da, qoida DTO'da, eshik Controller'da.", { hl: [1, 2] }),
@@ -2043,7 +2099,7 @@ function Screen24(p) {
 }
 
 // ============================================================
-//  25 · O'quvchi tili
+//  25 · O'quvchi darsidagi so'zlar
 // ============================================================
 const DICT2 = [
   ['javon chizmasi', 'Entity', 'jadval shakli', 'm4a-03'],
@@ -2057,7 +2113,7 @@ const DICT2 = [
   ['yorliq — ko\'p kitob bitta yorliqda, yorliq kitobda', '@ManyToOne', 'categoryId kitob jadvalida', 'm4a-04'],
 ];
 const S25 = {
-  kicker: "6-bosqich · ko'prik", title: "O'quvchi tili: javon chizmasi, anketa, retsept kitobi…",
+  kicker: "6-bosqich · o'quvchi darsini o'tish", title: "O'quvchi darsidagi so'zlar: javon chizmasi, anketa, retsept kitobi…",
   segments: [
     sg('a', "O'quvchi darslari <b>restoran tilida</b> gapiradi — siz ikkala tilni birga aytasiz", "Ikkinchi darsga o'tishdan oldin til. O'quvchi darslari Nest birinchi darsidagidek restoran tilida gapiradi. Siz ikkala tilni bilasiz va sinfda ularni birga aytasiz.", { rows: [] }),
     sg('b', "Entity <b>javon chizmasi</b> deyiladi, DTO — <b>buyurtma anketasi</b>, 400 esa nazoratchi to'xtatgani", "Entity javon chizmasi. DTO buyurtma anketasi, Partial type uning nusxasi. Anketa qoidasi buzilsa nazoratchi to'xtatadi, to'rt yuz.", { rows: [0, 1, 2] }),
@@ -2067,7 +2123,7 @@ const S25 = {
 };
 function Screen25(p) {
   return <Lesson p={p} S={S25} scene={({ seg, beat }) => <div className="mk-light" style={{ padding: 14 }}>
-    <div className="mk-tag">{t("O'quvchi aytadi → siz bilasiz", 'Ученик говорит → вы знаете')}</div>
+    <div className="mk-tag">{t("O'quvchi darsidagi so'z → uning atamasi", 'Слово из урока ученика → термин')}</div>
     <table className="mk-tbl"><thead><tr><th>{t("o'quvchi darsida", 'в уроке ученика')}</th><th>{t('atama', 'термин')}</th><th>{t('vazifa', 'задача')}</th><th>{t('qayerdan', 'откуда')}</th></tr></thead><tbody>
       {DICT2.map(([a, b, c, d], i) => <tr key={a} className={seg.rows.includes(i) ? 'hl' : ''} style={{ opacity: seg.rows.length && !seg.rows.includes(i) ? 0.55 : 1 }}><td>{a}</td><td><code>{b}</code></td><td style={{ color: T.ink2 }}>{c}</td><td style={{ color: T.ink3, fontSize: 12 }}>{d}</td></tr>)}
     </tbody></table>
@@ -2099,7 +2155,7 @@ export class BookEntity extends BaseEntity {
   @Column() categoryId: string;
 }`, { 8: { id: 'm' }, 9: { id: 'm' }, 10: { id: 'm' }, 12: { id: 'm' } });
 const S26 = {
-  kicker: "6-bosqich · ko'prik", eyebrow: "m4a-04 · «Praktika — KitobShop backend»", title: "KitobShop: o'quvchi buyuradi, agent yozadi — sizning tayyorgarligingiz",
+  kicker: "6-bosqich · o'quvchi darsini o'tish", eyebrow: "m4a-04 · «Praktika — KitobShop backend»", title: "KitobShop: o'quvchi buyuradi, agent yozadi — sizning tayyorgarligingiz",
   segments: [
     sg('a', "m4a-04 — <b>uch resurs agent bilan</b>: o'quvchi buyuradi, tekshiradi va shundan keyin qabul qiladi", "Ikkinchi dars m4a-04, KitobShop. Besh qadamni endi Copilot agenti qiladi, uch resurs uchun: kategoriya, kitob va buyurtma. O'quvchi yozmaydi: buyuradi, natijani tekshiruv ro'yxati bilan solishtiradi va shundan keyingina qabul qiladi.", { prep: -1, v: 'map' }),
     sg('b', "Diqqat: o'quvchi darslari <b>token va Authorize'ni o'rgatmaydi</b> — darsning boshida siz ko'rsatasiz", "Diqqat, ikkinchi xato. KitobShop'da yopiq eshiklar bor, ular token so'raydi. Lekin o'quvchi darslarining hech birida signin, token va Authorize o'rgatilmagan. Darsning boshida uchinchi amaliyotdagi ishni o'quvchilar bilan birga qiling: signin va Authorize.", { prep: 0, v: 'prep' }),
@@ -2137,7 +2193,7 @@ const STUMBLE2 = [
   ["Resurs ko'rinmaydi", "Mapped yo'q + 404 · yoki can't resolve … \"CarEntityRepository\"", 'app.module.ts imports · forFeature'],
   ['Raqamli id', '500 + invalid input syntax for type uuid: "1"', "id — javobdagi uuid"],
   ['Token va rol', '401 Unauthorized · 403 Forbidden resource', "Authorize · @Roles ro'yxati (superadmin va admin — har xil rol)"],
-  ["Entity o'zgardi", "column \"…\" contains null values · ma'lumot jim yo'qoldi", "yangi ustun nullable: true · Entity'da nima o'zgarganini so'rang"],
+  ["Entity o'zgardi", "column \"…\" contains null values · ma'lumot xato bermay yo'qoldi", "yangi ustun nullable: true · Entity'da nima o'zgarganini so'rang"],
 ];
 const QA2 = [
   ['Nega id raqam emas?', "uuid taxmin qilib bo'lmaydigan noyob matn, ikki server bir vaqtda yozsa ham to'qnashmaydi; BaseEntity'da bir marta yozilgan."],
@@ -2177,7 +2233,7 @@ const FINAL = [
   { q: "POST /api/v1/car bo'sh {} bilan yuborildi. Javob?", o: ["201, bo'sh mashina yaratiladi", '404, route topilmadi', '500, server xatosi', "400, buzilgan qoidalar ro'yxati"], c: 3, e: 'Global ValidationPipe DTO qoidalarini tekshiradi.', s: 13 },
   { q: 'GET /api/v1/car/1 — nima bo\'ladi?', o: ['500, terminalda uuid xatosi', '404, mashina topilmadi', '200, birinchi mashina', '400, DTO qoidasi buzildi'], c: 0, e: "id uuid; «1» bazada xato beradi, filtr uni 500 qiladi.", s: 13 },
   { q: 'Tokensiz GET /api/v1/admin yuborildi. Javob?', o: ['403, rol yetmaydi', "404, route yo'q", "401, token yo'q", "200, adminlar ro'yxati"], c: 2, e: "AuthGuard: Authorization yo'q → 401.", s: 16 },
-  { q: "Entity'da price'dan @Column olib tashlandi, server qayta yoqildi. Nima bo'ladi?", o: ['Server yiqiladi, xato chiqadi', "Ustun bazadan jim o'chadi", "Ustun bazada o'zgarmay qoladi", 'Faqat DTO xato beradi'], c: 1, e: "synchronize bazani Entity'ga moslaydi — ustun o'chadi, xabar yo'q.", s: 21 },
+  { q: "Entity'da price'dan @Column olib tashlandi, server qayta yoqildi. Nima bo'ladi?", o: ['Server yiqiladi, xato chiqadi', "Ustun bazadan xato bermay o'chadi", "Ustun bazada o'zgarmay qoladi", 'Faqat DTO xato beradi'], c: 1, e: "synchronize bazani Entity'ga moslaydi — ustun o'chadi, xabar yo'q.", s: 21 },
   { q: "O'quvchi m4a-03 bo'yicha localhost:3000/car'ni ochdi — 404, terminalda car uchun 5 ta Mapped bor. Nima deysiz?", o: ["Manzil /api/v1/car bo'lishi kerak", "CarModule'ni AppModule'ga ulang", 'Serverni qayta ishga tushiring', "Authorize'ga token qo'ying"], c: 0, e: "Mapped bor — route bor; o'quvchi darsida prefiks yozilmagan.", s: 24 },
   { q: "KitobShop: superadmin tokeni bilan POST /book — 403. O'quvchiga nima deysiz?", o: ['Qayta signin qiling, token eskirgan', "Authorize'ga tokenni qayta qo'ying", "BookModule'ni AppModule'ga ulang", 'Oddiy admin yarating va u bilan kiring'], c: 3, e: "@Roles('admin') — superAdmin ro'yxatda yo'q; token yaroqli, shuning uchun 403.", s: 26 },
   { q: "O'quvchi .env'ni keyin to'ldirdi, lekin kira olmayapti; bazada nomsiz superadmin bor. Nima qilasiz?", o: [".env'ni yana bir marta saqlang", 'Serverni ikki marta qayta yoqing', "Bazadagi o'sha satrni o'chirib, qayta yoqing", "USER_NAME'ni boshqa nomga o'zgartiring"], c: 2, e: "Superadmin bor bo'lsa onModuleInit yangisini yaratmaydi.", s: 6 },
@@ -2226,7 +2282,7 @@ function Screen28(p) {
         <div className="mk-say mc" style={{ overflow: 'auto', paddingRight: 4 }}>
           {showResult ? (<>
             <p className="mk-eyebrow">{t("O'z-sinov · natija", 'Самопроверка · результат')}{attempt > 1 ? t(` · ${attempt}-urinish`, ` · попытка ${attempt}`) : ''}</p>
-            <h2 className="mk-title" style={{ fontSize: 'clamp(22px,2.4vw,30px)' }}>{score} / {FINAL.length} — {score >= 6 ? t("dars o'zlashtirildi", 'урок усвоен') : t("yana bir ko'rib chiqing", 'посмотрите ещё раз')}</h2>
+            <h2 className="mk-title mc-q" style={{ fontSize: 'clamp(22px,1.9vw,26px)' }}>{score} / {FINAL.length} — {score >= 6 ? t("dars o'zlashtirildi", 'урок усвоен') : t("yana bir ko'rib chiqing", 'посмотрите ещё раз')}</h2>
             <div style={{ display: 'grid', gap: 8 }}>
               {FINAL.map((f, k) => <div key={k} className="mk-card" style={{ display: 'flex', gap: 12, alignItems: 'center', borderColor: res[k] && res[k].correct ? T.green : T.accent }}>
                 <span style={{ fontFamily: MONO, fontWeight: 700, color: res[k] && res[k].correct ? T.green : T.accent, minWidth: 22 }}>{res[k] && res[k].correct ? '✓' : '✗'}</span>
@@ -2240,7 +2296,7 @@ function Screen28(p) {
             </div>
           </>) : (<>
             <p className="mk-eyebrow">{t("O'z-sinov", 'Самопроверка')} · {i + 1} / {FINAL.length} · {t("bitta urinish · to'g'ri:", 'одна попытка · верно:')} {score}</p>
-            <h2 className="mk-title" style={{ fontSize: 'clamp(20px,2.2vw,28px)' }}>{q.q}</h2>
+            <h2 className="mk-title mc-q">{q.q}</h2>
             <div style={{ display: 'grid', gap: 10 }}>
               {q.o.map((o, k) => { let cls = 'mk-opt'; if (picked !== null) { if (k === q.c) cls += ' ok'; else if (k === picked) cls += ' bad'; else cls += ' off'; } return <button key={k} className={cls} disabled={picked !== null} onClick={() => pick(k)}><span className="l">{String.fromCharCode(65 + k)}</span><span>{o}</span></button>; })}
             </div>
@@ -2261,7 +2317,7 @@ const SUM2 = [
   { k: 'layer', t: 'Resurs — 5 qatlam: Entity · DTO · Service (BaseService + Repository) · Controller · Module (+ core/index.ts, AppModule)', st: ['ctrl', 'svc', 'repo', 'db'] },
   { k: 'err', t: '400 — DTO qoidasi yoki ortiqcha maydon; 500 — terminalni o\'qing (/car/1 — id uuid)', st: ['pipe'] },
   { k: 'guard', t: "401 — token yo'q; 403 — rol ro'yxatda yo'q; superadmin va admin — har xil rol", st: ['guard'] },
-  { k: 'sync', t: "Entity o'zgarsa baza o'zgaradi: ustun jim o'chadi, majburiy ustun serverni yiqitadi", st: ['db'] },
+  { k: 'sync', t: "Entity o'zgarsa baza o'zgaradi: ustun xato bermay o'chadi, majburiy ustun serverni yiqitadi", st: ['db'] },
   { k: 'bridge', t: "O'quvchi darslarida 3 xato: /car → /api/v1/car · token va Authorize'ni siz ko'rsatasiz · KitobShop'dan oldin oddiy admin", st: ['br'] },
 ];
 const STATIONS = [['br', t2('Brauzer', 'Браузер'), T.ink2], ['pre', '/api/v1', T.ink2], ['guard', 'Guard', N2.guard], ['pipe', 'ValidationPipe', N2.dto], ['ctrl', 'Controller', PART.ctrl], ['svc', 'Service', PART.svc], ['repo', 'Repository', N2.entity], ['db', t2('jadval', 'таблица'), N2.entity]];
@@ -2298,10 +2354,10 @@ src/core/entity/car.entity.ts (+ core/index.ts export) · src/api/car/dto/create
 ## Guard
 'public' — hamma · @Roles yozilmagan — tizimga kirganlar · 'ID' — o'z yozuvi · superAdmin va admin — har xil rol (@Roles('admin') → superadmin 403) · token 24 soat, eskirsa — qayta signin (/admin/token eskirganni tiklamaydi)
 ## synchronize tuzoqlari
-@Column olib tashlansa — ustun bazadan jim o'chadi · bor jadvalga majburiy ustun → «contains null values» → nullable: true
+@Column olib tashlansa — ustun bazadan xato bermay o'chadi · bor jadvalga majburiy ustun → «contains null values» → nullable: true
 ## O'quvchi darslaridagi 3 xato
 m4a-03: /car → /api/v1/car · token/Authorize o'rgatilmagan — siz ko'rsatasiz · m4a-04: KitobShop'dan oldin oddiy admin
-## O'quvchi tili
+## O'quvchi darsidagi so'zlar
 javon chizmasi=Entity · anketa=DTO · nazoratchi=ValidationPipe · retsept kitobi=BaseService · omborchi=Repository · ofitsiant=Controller · kirish taxtasi=Module · qo'riqchi=Guard · yorliq=@ManyToOne
 ## Sizning uyga vazifangiz
 brand resursi + car → brand (@ManyToOne, brandId nullable) + forFeature'ni buzib tuzatish → GitHub → repo linki platformadagi uyga vazifaga`;
@@ -2315,7 +2371,7 @@ const s29Segments = (passed) => s29Ru(passed, [
   sg('b2', "Resurs — <b>5 qatlam</b>: Entity, DTO, Service, Controller, Module", "Ikkinchi: resurs besh qatlam. Entity, DTO, Base service'dan meros olgan Service, Controller va Module, ustiga core index va bosh modul.", { hl: 'layer' }),
   sg('b3', "<b>400</b> — DTO qoidasi; <b>500</b> — terminalni o'qing", "Uchinchi: to'rt yuz DTO qoidasidan keladi, besh yuz bo'lsa sabab terminalda, masalan id uuid bo'lgani uchun.", { hl: 'err' }),
   sg('b4', "<b>401</b> — token yo'q, <b>403</b> — rol yo'q; superadmin va admin — har xil rol", "To'rtinchi: to'rt yuz bir token yo'q, to'rt yuz uch rol ro'yxatda yo'q. Superadmin va admin har xil rol.", { hl: 'guard' }),
-  sg('b5', "Entity o'zgarsa <b>baza o'zgaradi</b> — jim yoki yiqilib", "Beshinchi: Entity o'zgarsa baza ham o'zgaradi. Ustun olib tashlansa ma'lumot jim o'chadi, majburiy ustun qo'shilsa server yiqiladi.", { hl: 'sync' }),
+  sg('b5', "Entity o'zgarsa <b>baza o'zgaradi</b> — xato bermay yoki yiqilib", "Beshinchi: Entity o'zgarsa baza ham o'zgaradi. Ustun olib tashlansa ma'lumot xato bermay o'chadi, majburiy ustun qo'shilsa server yiqiladi.", { hl: 'sync' }),
   sg('b6', "O'quvchi darslarida <b>3 xato</b> — sinfda siz tuzatasiz", "Oltinchi, sinf uchun eng muhimi: o'quvchi darslarida uchta xato bor. Slesh car o'rniga api v bir slesh car, token va Authorize'ni siz ko'rsatasiz, KitobShop'dan oldin oddiy admin.", { hl: 'bridge' }),
   sg('hw', "<b>Uyga vazifa</b>: brand resursi, car'ni brand'ga bog'lash va bitta buzib-tuzatish", "Uyga vazifa. O'z loyihangizga brand resursini qo'shing, aynan o'quvchining uyga vazifasi: name va country, DTO qoidalari, Base service'dan meros, to'rt eshik va bosh modul. Keyin car'ni brand'ga bog'lang, yangi ustun ixtiyoriy bo'lsin. Bir marta ataylab forFeature'ni olib tashlang, xabarni o'qing va tuzating.", { hl: 'hw' }),
   sg('hw2', "Topshirish: GitHub'dagi repo linkini <b>platformadagi uyga vazifaga</b> qo'ying — boshqa hech narsa kerak emas", "GitHub'ga chiqaring va repo linkini platformadagi uyga vazifangizga qo'ying, boshqa hech narsa kerak emas. Qirq-oltmish daqiqa.", { hl: 'hw' }),
@@ -2439,7 +2495,7 @@ const rs = (key, text) => ({ key, text, show: text });
 // --- 03 · 1–7-ekran, Amaliyot 1 ---
 ru(S1, {
   kicker: 'Вступление', eyebrow: 'Курс для менторов · NestJS', title: 'Вы собрали cars-api. Теперь — репозиторий ученика.',
-  plan: ['Запуск', 'Отличия от cars-api', 'Ресурс: 5 слоёв', 'Guard и токен', 'Ломаем', 'Мост к урокам ученика'],
+  plan: ['Запуск', 'Отличия от cars-api', 'Ресурс: 5 слоёв', 'Guard и токен', 'Ломаем', 'Как вести уроки ученика'],
   segments: {
     a: rs('В Nest-1 вы собрали проект с нуля — ученик же <b>клонирует готовый проект</b>', 'Здравствуйте. На первом уроке по Nest вы собрали cars api с пустой папки. Ваш ученик с нуля не пишет: он клонирует готовый проект с GitHub. Сегодня откроем именно этот проект, добавим в него один ресурс и посмотрим ошибки, которые появляются в классе.'),
     b: rs('К концу урока проект работает у вас, и вы <b>сами добавили в него ресурс car</b>', 'К концу урока проект будет работать на вашем компьютере вместе с базой, и вы сами добавите в него ресурс car. Пять слоёв ресурса напишем один раз, по порядку.'),
@@ -2481,7 +2537,7 @@ ru(P1, {
     a: rs('Теперь вы: <b>запускаете проект у себя</b> — четыре шага', 'Теперь ваша очередь: запустите проект на своём компьютере. Четыре шага, десять-пятнадцать минут. Перед началом проверьте, что PostgreSQL работает.'),
     b: rs('Шаги 1–2: clone, install, <code>.env</code> — <b>не запускайте, не заполнив блок Superadmin</b>', 'Первое: clone и npm install. Второе: сделайте env из env example и заполните три места. Не запускайте сервер, не заполнив блок Superadmin, потом исправлять сложнее.'),
     c: rs('Шаги 3–4: база, сервер, Swagger; подтверждение — строка <code>successfully started</code> <b>с датой</b>', 'Третье: создайте базу и запустите сервер. Четвёртое: откройте Swagger в браузере. В поле подтверждения скопируйте строку successfully started из терминала целиком, с датой.'),
-    d: rs('Вышло иначе — внизу кнопка <b>«Вышло иначе?»</b>; без отметок и подтверждения «Далее» не откроется', 'Если что-то вышло иначе, нажмите внизу кнопку «Вышло иначе»: в классе будут именно эти случаи. Пока не отмечены все четыре пункта и нет подтверждения, «Далее» не откроется.'),
+    d: rs('Вышло иначе — нажмите <b>«Вышло иначе?»</b>, откроется окно с решениями', 'Если что-то вышло иначе, нажмите внизу кнопку «Вышло иначе»: откроется окно с решениями, в классе будут именно эти случаи. Пока не отмечены все четыре пункта и нет подтверждения, «Далее» не откроется. Значит, после этой практики репозиторий ученика работает на вашем компьютере и Swagger открывается.'),
   },
 });
 ru(P1_STEPS, [
@@ -2519,12 +2575,12 @@ ru(BLANK_SA, {
   5: { h: '# .env заполнен, сервер перезапущен: «Super admin created» — 0 раз' },
 });
 ru(S6, {
-  kicker: 'Этап 2 · отличия', title: 'Четвёртое отличие: все настройки из .env — и две тихие ловушки',
+  kicker: 'Этап 2 · отличия', title: 'Четвёртое отличие: все настройки из .env — и две скрытые ловушки',
   segments: {
     a: rs('<code>config/index.ts</code> читает <code>.env</code>: <b>порт, база, ключ токена, superadmin</b>', 'На втором экране мы заполнили env. Теперь посмотрим, кто его читает: index ts в папке config. Он берёт из env порт, адрес базы, ключ токена и данные superadmin. Остальной проект обращается не к env, а к этому config.'),
     b: rs('<code>NODE_ENV=dev</code>: база dev и <b>таблицы создаются сами</b>; любое другое значение — база prod', 'Самая важная строка: если NODE ENV равно dev, берётся адрес базы dev и включается synchronize, то есть TypeORM сам создаёт таблицы. При любом другом значении берётся адрес prod, и таблицы не создаются.'),
     c: rs('<code>NODE_ENV</code> неверный: <b>does not exist</b> или <b>error in creating super admin</b> — причина скрыта', 'Мы проверили: если NODE ENV равно prod, а базы prod нет, сервер падает с database does not exist. Если база prod есть, но пустая, сообщение другое: error in creating super admin. Настоящая причина, отсутствие таблицы, спрятана в коде. В обоих случаях ответ один: NODE ENV dev.'),
-    d: rs('Тихая ловушка: пустой блок superadmin — в базе <b>superadmin без имени</b>; заполнить <code>.env</code> потом не поможет', 'Вторая ловушка тише. Если блок superadmin оставить пустым, сервер запускается без ошибок и пишет в базу superadmin без имени. Даже если потом заполнить env, новый не создаётся: сервер считает, что superadmin уже есть. Мы проверили: вход с именем из env даёт 401, Admin not fount.'),
+    d: rs('Скрытая ловушка: пустой блок superadmin — в базе <b>superadmin без имени</b>; заполнить <code>.env</code> потом не поможет', 'Вторая ловушка тише. Если блок superadmin оставить пустым, сервер запускается без ошибок и пишет в базу superadmin без имени. Даже если потом заполнить env, новый не создаётся: сервер считает, что superadmin уже есть. Мы проверили: вход с именем из env даёт 401, Admin not fount.'),
     e: rs('Вывод: ученик не может войти — <b>удалите строку пустого superadmin</b> и перезапустите сервер', 'Вывод: в env должно быть NODE ENV dev и полностью заполненный блок superadmin. Если ученик не может войти с правильным именем, а в базе superadmin без имени, удалите эту строку и перезапустите сервер. Мы проверили: superadmin заново записывается из env, и signin работает.'),
   },
 });
@@ -2600,7 +2656,7 @@ ru(P2, {
     a: rs('Теперь вы <b>добавляете ресурс car</b> — «День открытия» ученика, до урока', 'Теперь ваша очередь: добавьте ресурс car в свой проект. Это «День открытия» из урока ученика, вы один раз пройдёте его сами до урока. Около двадцати минут. У каждого шага есть кнопка «Открыть код»: это образец, код пишите сами.'),
     b: rs('Шаги 1–3: Entity и <code>core/index.ts</code>, два DTO, Service', 'Первое: Entity и export в core index. Второе: два DTO. Третье: Service, не забудьте super.'),
     c: rs('Шаги 4–5: Controller, Module и AppModule — в терминале <b>пять строк Mapped</b>', 'Четвёртое: Controller, пять routes. Пятое: Module и подключение к главному модулю. Увидели в терминале пять строк Mapped, ресурс ожил.'),
-    d: rs('Шаг 6: POST в Swagger — <b>201</b>; подтверждение — первые 8 символов <code>id</code> из ответа', 'Шестое: добавьте одну машину в Swagger, 201. Впишите в поле подтверждения первые восемь символов id из ответа. Если вышло иначе, нажмите внизу кнопку «Вышло иначе». Без отметок и подтверждения «Далее» не откроется.'),
+    d: rs('Шаг 6: POST в Swagger — <b>201</b>; подтверждение — первые 8 символов <code>id</code> из ответа', 'Шестое: добавьте одну машину в Swagger, 201. Впишите в поле подтверждения первые восемь символов id из ответа. Если вышло иначе, нажмите внизу кнопку «Вышло иначе», откроется окно с решениями. Без отметок и подтверждения «Далее» не откроется. Значит, теперь ресурс car работает в вашем проекте.'),
   },
 });
 ru(P2_STEPS, [{}, {}, {}, {}, { exp: 'src/api/car/car.module.ts + app.module.ts → imports: [..., CarModule] · терминал: CarController {/api/v1/car} + 5 строк Mapped' }, {}]);
@@ -2644,7 +2700,7 @@ ru(P3, {
     a: rs('Теперь вы: <b>signin, Authorize и обычный админ</b> — подготовка к уроку KitobShop', 'Теперь ваша очередь. Эту подготовку каждый ученик делает перед уроком KitobShop: вход как superadmin, создание обычного админа и разница между ними. Четыре шага, около десяти минут.'),
     b: rs('Шаги 1–2: <b>signin</b> как superadmin, вставьте токен в <b>Authorize</b> — список админов откроется с 200', 'Первое: signin в Swagger с именем и паролем superadmin из env. Скопируйте токен из ответа без кавычек. Второе: вставьте токен в окно Authorize и запросите список админов: 200.'),
     c: rs('Шаг 3: создайте <b>обычного админа</b> через <code>POST admin</code>; подтверждение — 8 символов его <code>id</code>', 'Третье: создайте обычного админа через POST admin, пароль надёжный. Ответ 201, роль нового админа admin. Впишите в поле подтверждения первые восемь символов его id.'),
-    d: rs('Шаг 4: войдите новым админом и сделайте <code>POST admin</code> — должно быть <b>403</b>', 'Четвёртое: выйдите из Authorize, войдите новым админом и снова сделайте POST admin: 403, потому что создавать админов может только superadmin. Если вышло иначе, нажмите внизу кнопку «Вышло иначе». Без отметок и подтверждения «Далее» не откроется.'),
+    d: rs('Шаг 4: войдите новым админом и сделайте <code>POST admin</code> — должно быть <b>403</b>', 'Четвёртое: выйдите из Authorize, войдите новым админом и снова сделайте POST admin: 403, потому что создавать админов может только superadmin. Если вышло иначе, нажмите внизу кнопку «Вышло иначе», откроется окно с решениями. Без отметок и подтверждения «Далее» не откроется. Значит, вы увидели разницу ролей admin и superadmin в своём проекте.'),
   },
 });
 ru(P3_STEPS, [{}, {}, { t: 'Обычный админ' }, { t: 'Разница', exp: 'Logout → signin как ali → Authorize → POST /api/v1/admin → 403 {"statusCode":403,"error":{"message":"Forbidden resource"}}' }]);
@@ -2667,13 +2723,13 @@ ru(S20, {
   },
 });
 ru(S21, {
-  kicker: 'Этап 5 · ломаем 2', title: 'Изменилась Entity — база меняется сама, тихо или с падением',
+  kicker: 'Этап 5 · ломаем 2', title: 'Изменилась Entity — база меняется сама, без ошибки или с падением',
   segments: {
     a: rs('<code>synchronize</code> при каждом запуске <b>подгоняет базу под Entity</b> — удобно и опасно', 'Второй случай виден в базе. В режиме dev включён synchronize: при каждом запуске сервер подгоняет базу под Entity. Было удобно, что таблица создалась сама. Но если Entity меняется, база тоже меняется без спроса.'),
     b: rs('Убрали у колонки <code>@Column</code> — колонка <b>удаляется</b> из базы: сервер без ошибок, цены нет', 'Случай из второй проверки мы запустили по-настоящему: у price убрали Column. Сервер запустился без ошибок, synchronize удалил колонку price из базы. POST возвращает 201, но цены нет ни в ответе, ни в базе. Никакого сообщения.'),
     c: rs('Добавили обязательную колонку в таблицу с данными — сервер <b>падает</b>: <code>contains null values</code>', 'Обратный случай: в таблице есть машины, а в Entity добавили новую обязательную колонку, например brandId для связи с brand. Сервер не запускается: column brandId contains null values. В старых строках эта колонка пустая, а обязательная колонка пустой быть не может.'),
     d: rs('Решение: новая колонка <b><code>nullable: true</code></b> — сервер запускается, старые данные на месте', 'Решение: сделать новую колонку необязательной, nullable true. Мы проверили: так сервер запустился, колонка и внешний ключ созданы, старые машины остались на месте.'),
-    e: rs('Вывод: изменить Entity — значит <b>изменить базу</b>; «данные пропали» — спросите про Entity', 'Вывод: изменить Entity значит изменить базу. Убрали колонку, и данные тихо удаляются; добавили обязательную, и сервер падает. Если ученик говорит «пропали данные» или contains null values, первый вопрос: что вы изменили в Entity?'),
+    e: rs('Вывод: изменить Entity — значит <b>изменить базу</b>; «данные пропали» — спросите про Entity', 'Вывод: изменить Entity значит изменить базу. Убрали колонку, и данные удаляются без ошибки; добавили обязательную, и сервер падает. Если ученик говорит «пропали данные» или contains null values, первый вопрос: что вы изменили в Entity?'),
   },
 });
 ru(ENT_DROP, { 3: { h: `  <span class="d">@IsNumber</span>()        <span class="cm">// вместо @Column</span>` } });
@@ -2682,7 +2738,7 @@ ru(P4, {
   segments: {
     a: rs('Последняя практика: <b>ломаете вы</b> — два шага, сообщение в вашем терминале', 'Последняя практика: теперь ломаете вы. Два шага, около семи минут. Цель — увидеть и прочитать сообщение в своём терминале.'),
     b: rs('Шаг 1: уберите <code>forFeature</code>, впишите в подтверждение <b>класс, dependency и файл</b>, потом верните', 'Первое: уберите из car module строку forFeature и сохраните, сервер упадёт. Найдите в сообщении, какой класс, какой dependency и какой файл, и впишите их через запятую в поле подтверждения. Потом верните строку на место.'),
-    c: rs('Шаг 2: <code>/api/v1/car/1</code> даёт 500, причина в терминале; добавите <b><code>ParseUUIDPipe</code></b> — понятный 400', 'Второе: запросите в Swagger car с id 1: 500. Найдите в терминале строку invalid input syntax for type uuid. Потом добавьте в Controller параметру id ParseUUIDPipe и повторите запрос: 400. Если вышло иначе, нажмите внизу кнопку «Вышло иначе». Без отметок и подтверждения «Далее» не откроется.'),
+    c: rs('Шаг 2: <code>/api/v1/car/1</code> даёт 500, причина в терминале; добавите <b><code>ParseUUIDPipe</code></b> — понятный 400', 'Второе: запросите в Swagger car с id 1: 500. Найдите в терминале строку invalid input syntax for type uuid. Потом добавьте в Controller параметру id ParseUUIDPipe и повторите запрос: 400. Если вышло иначе, нажмите внизу кнопку «Вышло иначе», откроется окно с решениями. Без отметок и подтверждения «Далее» не откроется. Значит, теперь вы умеете найти причину 500 в терминале и превратить её в понятный 400.'),
   },
 });
 ru(P4_STEPS, [
@@ -2707,7 +2763,7 @@ ru(MAP03, [
 ]);
 ru(TIME03, [[null, 'вступление, план, форма машины'], [null, 'пять этапов + тесты'], [null, 'путь запроса, агент, debugging'], [null, 'День открытия — реальный проект'], [null, 'подиум, карточки, итог']]);
 ru(S24, {
-  kicker: 'Этап 6 · мост', eyebrow: 'm4a-03 · «Первый ресурс вручную — машины»', title: 'm4a-03: ученик делает то, что вы сделали сегодня',
+  kicker: 'Этап 6 · как вести урок ученика', eyebrow: 'm4a-03 · «Первый ресурс вручную — машины»', title: 'm4a-03: ученик делает то, что вы сделали сегодня',
   segments: {
     a: rs('m4a-03 — <b>то, что вы сделали сегодня</b>: ресурс car, пять этапов, 22 экрана', 'Теперь главная цель урока: передать эту тему ученику. Уроков ученика два. Первый, m4a-03: ученик делает ровно то, что вы сделали сегодня, добавляет ресурс car за пять этапов. Двадцать два экрана.'),
     b: rs('На каждом этапе ученик выбирает <b>строку, относящуюся к этому файлу</b>, потом тест, агент и реальный проект', 'На каждом этапе ученик выбирает строки, какая относится к этому файлу, потом короткий тест. Затем агент пишет пять файлов, и ученик находит ошибку агента. В конце практика в реальном проекте. Вы на каждом этапе называете правило: колонка в Entity, правило в DTO, дверь в Controller.'),
@@ -2728,7 +2784,7 @@ ru(DICT2, [
   ['ярлык — много книг на одном ярлыке, ярлык в книге', null, 'categoryId в таблице книг'],
 ]);
 ru(S25, {
-  kicker: 'Этап 6 · мост', title: 'Язык ученика: чертёж стеллажа, бланк, книга рецептов…',
+  kicker: 'Этап 6 · как вести урок ученика', title: 'Слова из урока ученика: чертёж стеллажа, бланк, книга рецептов…',
   segments: {
     a: rs('Уроки ученика говорят <b>языком ресторана</b> — вы называете оба языка вместе', 'Перед вторым уроком — о языке. Уроки ученика, как и первый урок по Nest, говорят языком ресторана. Вы знаете оба языка и в классе называете их вместе.'),
     b: rs('Entity называют <b>чертежом стеллажа</b>, DTO — <b>бланком заказа</b>, а 400 — это контролёр остановил', 'Entity — чертёж стеллажа. DTO — бланк заказа, Partial type — его копия. Нарушено правило бланка, и контролёр останавливает, 400.'),
@@ -2743,7 +2799,7 @@ ru(PREP04, [
   ['категория раньше книги', 'с несуществующей категорией 500 (foreign key), при неверном формате id 400'],
 ]);
 ru(S26, {
-  kicker: 'Этап 6 · мост', eyebrow: 'm4a-04 · «Практика — бэкенд KitobShop»', title: 'KitobShop: ученик командует, агент пишет — ваша подготовка',
+  kicker: 'Этап 6 · как вести урок ученика', eyebrow: 'm4a-04 · «Практика — бэкенд KitobShop»', title: 'KitobShop: ученик командует, агент пишет — ваша подготовка',
   segments: {
     a: rs('m4a-04 — <b>три ресурса с агентом</b>: ученик командует, проверяет и только потом принимает', 'Второй урок m4a-04, KitobShop. Пять шагов теперь делает агент Copilot, для трёх ресурсов: категория, книга и заказ. Ученик не пишет: он командует, сверяет результат со списком проверки и только после этого принимает.'),
     b: rs('Внимание: уроки ученика <b>не учат токену и Authorize</b> — в начале урока покажете вы', 'Внимание, вторая ошибка. В KitobShop есть закрытые двери, они требуют токен. Но ни в одном уроке ученика signin, токен и Authorize не изучаются. В начале урока сделайте с учениками то, что было в третьей практике: signin и Authorize.'),
@@ -2758,7 +2814,7 @@ ru(STUMBLE2, [
   ['Ресурс не виден', 'нет Mapped + 404 · или can\'t resolve … "CarEntityRepository"', 'imports в app.module.ts · forFeature'],
   ['Числовой id', null, 'id — это uuid из ответа'],
   ['Токен и роль', null, 'Authorize · список @Roles (superadmin и admin — разные роли)'],
-  ['Изменилась Entity', 'column "…" contains null values · данные тихо пропали', 'новая колонка nullable: true · спросите, что изменили в Entity'],
+  ['Изменилась Entity', 'column "…" contains null values · данные пропали без ошибки', 'новая колонка nullable: true · спросите, что изменили в Entity'],
 ]);
 ru(QA2, [
   ['Почему id не число?', 'uuid — уникальная строка, её не угадать, и две записи с двух серверов одновременно не столкнутся; написан один раз в BaseEntity.'],
@@ -2781,7 +2837,7 @@ ru(FINAL, [
   { q: 'POST /api/v1/car отправлен с пустым {}. Ответ?', o: ['201, создаётся пустая машина', '404, route не найден', '500, ошибка сервера', '400, список нарушенных правил'], e: 'Глобальный ValidationPipe проверяет правила DTO.' },
   { q: 'GET /api/v1/car/1 — что будет?', o: ['500, в терминале ошибка uuid', '404, машина не найдена', '200, первая машина', '400, нарушено правило DTO'], e: '«1» не uuid, база выдаёт ошибку, фильтр превращает её в 500.' },
   { q: 'Отправлен GET /api/v1/admin без токена. Ответ?', o: ['403, не хватает роли', '404, route нет', '401, нет токена', '200, список админов'], e: 'AuthGuard: нет Authorization → 401.' },
-  { q: 'В Entity у price убрали @Column, сервер перезапустили. Что будет?', o: ['Сервер упадёт с ошибкой', 'Колонка тихо удалится из базы', 'Колонка останется в базе как была', 'Ошибку даст только DTO'], e: 'synchronize подгоняет базу под Entity — колонка удаляется, сообщения нет.' },
+  { q: 'В Entity у price убрали @Column, сервер перезапустили. Что будет?', o: ['Сервер упадёт с ошибкой', 'Колонка удалится без ошибки из базы', 'Колонка останется в базе как была', 'Ошибку даст только DTO'], e: 'synchronize подгоняет базу под Entity — колонка удаляется, сообщения нет.' },
   { q: 'Ученик по m4a-03 открыл localhost:3000/car — 404, в терминале 5 строк Mapped для car. Что скажете?', o: ['Адрес должен быть /api/v1/car', 'Подключите CarModule к AppModule', 'Перезапустите сервер', 'Вставьте токен в Authorize'], e: 'Mapped есть — route есть; в уроке ученика не указан префикс.' },
   { q: 'KitobShop: POST /book с токеном superadmin — 403. Что скажете ученику?', o: ['Сделайте signin заново, токен истёк', 'Вставьте токен в Authorize ещё раз', 'Подключите BookModule к AppModule', 'Создайте обычного админа и войдите под ним'], e: "@Roles('admin') — superAdmin нет в списке; токен действующий, поэтому 403." },
   { q: 'Ученик заполнил .env потом, но не может войти; в базе superadmin без имени. Что сделаете?', o: ['Ещё раз сохраните .env', 'Перезапустите сервер дважды', 'Удалите эту строку в базе и перезапустите', 'Смените USER_NAME на другое имя'], e: 'Если superadmin уже есть, onModuleInit нового не создаёт.' },
@@ -2791,7 +2847,7 @@ ru(SUM2, [
   { t: 'Ресурс — 5 слоёв: Entity · DTO · Service (BaseService + Repository) · Controller · Module (+ core/index.ts, AppModule)' },
   { t: '400 — правило DTO или лишнее поле; 500 — читайте терминал (/car/1 — id это uuid)' },
   { t: '401 — нет токена; 403 — роли нет в списке; superadmin и admin — разные роли' },
-  { t: 'Изменилась Entity — меняется база: колонка тихо удаляется, обязательная колонка роняет сервер' },
+  { t: 'Изменилась Entity — меняется база: колонка удаляется без ошибки, обязательная колонка роняет сервер' },
   { t: 'В уроках ученика 3 ошибки: /car → /api/v1/car · токен и Authorize показываете вы · перед KitobShop обычный админ' },
 ]);
 ru(HOMEWORK2, [
@@ -2809,7 +2865,7 @@ const S29_RU = {
   b2: rs('Ресурс — <b>5 слоёв</b>: Entity, DTO, Service, Controller, Module', 'Второе: ресурс — пять слоёв. Entity, DTO, Service с наследованием от Base service, Controller и Module, плюс core index и главный модуль.'),
   b3: rs('<b>400</b> — правило DTO; <b>500</b> — читайте терминал', 'Третье: 400 приходит от правила DTO, при 500 причина в терминале, например потому что id это uuid.'),
   b4: rs('<b>401</b> — нет токена, <b>403</b> — нет роли; superadmin и admin — разные роли', 'Четвёртое: 401, нет токена, 403, роли нет в списке. Superadmin и admin — разные роли.'),
-  b5: rs('Изменилась Entity — <b>меняется база</b>: тихо или с падением', 'Пятое: изменилась Entity, меняется и база. Убрали колонку, данные тихо удаляются, добавили обязательную, сервер падает.'),
+  b5: rs('Изменилась Entity — <b>меняется база</b>: без ошибки или с падением', 'Пятое: изменилась Entity, меняется и база. Убрали колонку, данные удаляются без ошибки, добавили обязательную, сервер падает.'),
   b6: rs('В уроках ученика <b>3 ошибки</b> — в классе их исправляете вы', 'Шестое, самое важное для класса: в уроках ученика три ошибки. Вместо car — api v1 car, токен и Authorize показываете вы, перед KitobShop обычный админ.'),
   hw: rs('<b>Домашнее задание</b>: ресурс brand, связь car с brand и одна поломка с исправлением', 'Домашнее задание. Добавьте в свой проект ресурс brand, ровно домашнее задание ученика: name и country, правила DTO, наследование от Base service, четыре двери и главный модуль. Потом свяжите car с brand, новая колонка пусть будет необязательной. Один раз специально уберите forFeature, прочитайте сообщение и исправьте.'),
   hw2: rs('Сдача: вставьте ссылку на репозиторий GitHub <b>в домашнее задание на платформе</b> — больше ничего не нужно', 'Выложите на GitHub и вставьте ссылку на репозиторий в домашнее задание на платформе, больше ничего не нужно. Сорок-шестьдесят минут.'),
@@ -2831,10 +2887,10 @@ src/core/entity/car.entity.ts (+ export в core/index.ts) · src/api/car/dto/cre
 ## Guard
 'public' — все · @Roles не указан — вошедшие в систему · 'ID' — своя запись · superAdmin и admin — разные роли (@Roles('admin') → superadmin 403) · токен 24 часа, истёк — снова signin (/admin/token просроченный не восстанавливает)
 ## Ловушки synchronize
-убрали @Column — колонка тихо удаляется из базы · обязательная колонка в таблице с данными → «contains null values» → nullable: true
+убрали @Column — колонка удаляется без ошибки из базы · обязательная колонка в таблице с данными → «contains null values» → nullable: true
 ## 3 ошибки в уроках ученика
 m4a-03: /car → /api/v1/car · токен/Authorize не изучаются — показываете вы · m4a-04: перед KitobShop обычный админ
-## Язык ученика
+## Слова из урока ученика
 чертёж стеллажа=Entity · бланк=DTO · контролёр=ValidationPipe · книга рецептов=BaseService · кладовщик=Repository · официант=Controller · табличка у входа=Module · охранник=Guard · ярлык=@ManyToOne
 ## Ваше домашнее задание
 ресурс brand + car → brand (@ManyToOne, brandId nullable) + сломать и исправить forFeature → GitHub → ссылка на репозиторий в домашнее задание на платформе`;

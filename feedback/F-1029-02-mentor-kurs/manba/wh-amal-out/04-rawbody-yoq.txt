@@ -1,0 +1,4 @@
+# src/main.ts:
+9:  const app = await NestFactory.create(AppModule);
+# brauzer: «To'lash (mashq)»
+To'lash (mashq) · m-1793494322810 — 401 {"message":"Imzo mos emas","error":"Unauthorized","statusCode":401}

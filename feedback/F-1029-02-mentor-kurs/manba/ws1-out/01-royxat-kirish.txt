@@ -1,0 +1,4 @@
+$ curl -X POST /royxat {"ism":"Ali","telefon":"+998 90 000 00 01","parol":"parol123"}
+{"id":11,"ism":"Ali"} [HTTP 201]
+$ curl -X POST /kirish {"telefon":"+998 90 000 00 01","parol":"parol123"}
+{"token":"eyJ…(qisqartirildi)"} [HTTP 200]

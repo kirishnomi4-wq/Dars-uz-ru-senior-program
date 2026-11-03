@@ -1,0 +1,5 @@
+$ node holatsiz.js
+Aziza (5123456789): Pitsa buyurtma qilaman
+  bot → 5123456789: Ajoyib! Qaysi pitsa?
+Aziza (5123456789): Pepperoni
+  bot → 5123456789: Nima «Pepperoni»? Tushunmadim.

@@ -1,0 +1,3 @@
+blog=# UPDATE products SET stock = stock - 1 WHERE id = 1;
+ERROR:  new row for relation "products" violates check constraint "products_stock_check"
+DETAIL:  Failing row contains (1, Telefon, -1).

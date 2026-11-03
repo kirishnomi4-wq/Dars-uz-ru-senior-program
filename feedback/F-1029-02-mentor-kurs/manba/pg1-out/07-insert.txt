@@ -1,0 +1,20 @@
+INSERT INTO users (username) VALUES ('ali'), ('vali'), ('sardor');
+INSERT 0 3
+INSERT INTO posts (user_id, izoh) VALUES (1, 'Birinchi post'), (1, 'Bugun Nest o''rgandim'), (2, 'Salom hammaga');
+INSERT 0 3
+SELECT * FROM users;
+ id | username 
+----+----------
+  1 | ali
+  2 | vali
+  3 | sardor
+(3 rows)
+
+SELECT * FROM posts;
+ id | user_id |         izoh         
+----+---------+----------------------
+  1 |       1 | Birinchi post
+  2 |       1 | Bugun Nest o'rgandim
+  3 |       2 | Salom hammaga
+(3 rows)
+

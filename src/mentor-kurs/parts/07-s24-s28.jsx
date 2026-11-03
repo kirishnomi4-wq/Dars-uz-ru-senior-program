@@ -19,7 +19,7 @@ const S25A_SAY = {
   r: [['auth', "kirish va ro'yxatdan o'tish moduli"], ['Guard', "so'rov Controller'ga yetguncha tokenni tekshiradi, yaroqsiz bo'lsa to'xtatadi"], ['BaseService', "hamma Service uchun tayyor CRUD metodlari, admin service undan meros oladi"], ['Token', "kirgan foydalanuvchining ruxsatnomasi"], ['successRes', "hamma javob bir xil shaklda qaytishi uchun yordamchi"], ['main.ts → app.service.ts', "server shu yerda ishga tushadi (Aplication klassi). Nomi app.service, lekin bu loyihada Service emas"], ['AllExceptionFilter', "hamma xatoni bitta shaklda qaytaradi: { statusCode, error: { message } }"], ['config', ".env qiymatlarini (PORT, DEV_DB_URL) o'qiydi"]],
 };
 const S25a = {
-  kicker: "7-bosqich · ko'prik", title: "O'quvchi clone qiladigan loyiha",
+  kicker: "7-bosqich · o'quvchi darsini o'tish", title: "O'quvchi clone qiladigan loyiha",
   segments: [
     { id: 'a', key: "O'quvchi <b>noldan yozmaydi</b>: GitHub'dan tayyor loyihani clone qilib, ishga tushiradi", text: "Siz Nest'ni o'zingiz qurdingiz va o'zingiz buzdingiz. Endi darsning asosiy maqsadiga o'tamiz: bu mavzuni o'quvchiga o'tish. Avval o'quvchi darsiga qaraymiz, chunki u bu mavzuni boshqacha ko'radi. O'quvchi noldan yozmaydi: GitHub'dan tayyor loyihani clone qiladi, IntroNestArxitechture, va uni ishga tushiradi.", lit: null },
     { id: 'b', key: "Loyiha kattaroq: <code>api</code> · <code>core</code> · <code>common</code> · <code>infrastructure</code> papkalari", text: "Loyiha kattaroq: api, core, common, infrastructure papkalari.", lit: 'f' },
@@ -53,7 +53,7 @@ function Screen25a(p) {
 
 const DICT = [['ofitsiant', 'Controller', "so'rovni oladi, oshxonaga uzatadi"], ['oshpaz', 'Service', 'ishni bajaradi'], ['omborchi', 'Repository', 'baza bilan gaplashadi'], ['javon chizmasi', 'Entity', 'jadval shakli'], ['buyurtma anketasi', 'DTO', "kiruvchi ma'lumot shakli"], ['nazoratchi', 'Guard', 'tokenni tekshiradi'], ['bir xil lagan', 'successRes', 'javob shakli'], ['shtat jadvali', 'Module', "ro'yxat"]];
 const S25b = {
-  kicker: "7-bosqich · ko'prik", title: "O'quvchi darsining tili: restoran",
+  kicker: "7-bosqich · o'quvchi darsini o'tish", title: "O'quvchi darsining tili: restoran",
   segments: [
     { id: 'a', key: "O'quvchi darsi <b>restoran tilida</b> gapiradi: ofitsiant, oshpaz, omborchi…", text: "Loyihaning fayllarini ko'rdik. Endi o'quvchi shu fayllarni qanday so'zlar bilan eslashini bilib olaylik. O'quvchi darsi restoran tilida gapiradi: Controller ofitsiant, Service oshpaz, Repository omborchi, Guard nazoratchi, Module shtat jadvali. O'quvchi shu so'zlarda o'ylaydi.", n: 8 },
     { id: 'b', key: "O'quvchi «oshpaz» desa — siz <b>Service</b> ekanini bilasiz va faylni ko'rsatasiz", text: "Siz endi ikkala tilni bilasiz: o'quvchi oshpaz desa, siz Service ekanini bilasiz va to'g'ri faylni ko'rsatasiz. Darsda ikkala so'zni birga ayting: oshpaz, ya'ni Service.", n: 8 },
@@ -214,7 +214,7 @@ const QA = [
   ['providers nima?', "Shu modul yaratib beradigan narsalar, asosan Service'lar."],
   ["Service'ni nega alohida qildik?", "Alohida sinash va qayta ishlatish uchun; Controller'da esa logika qolmaydi."],
   ["Nest Express'dan tezmi?", "Yo'q, tezlik bir xil, ichida Express. Nest tezlik emas, tartib beradi."],
-  ["Injectable'ni o'chirdim, ishlayapti. Kerak emasmi?", "Dependency'si bo'lmagani uchun ishladi; dependency paydo bo'lganda server ishga tushadi, lekin so'rovda 500 TypeError — jim xato. Shuning uchun doim yoziladi."],
+  ["Injectable'ni o'chirdim, ishlayapti. Kerak emasmi?", "Dependency'si bo'lmagani uchun ishladi; dependency paydo bo'lganda server ishga tushadi, lekin so'rovda 500 TypeError — yashirin xato. Shuning uchun doim yoziladi."],
 ];
 const S26 = {
   kicker: "7-bosqich · savollar", title: "O'quvchi so'raydigan savollar",
@@ -225,7 +225,7 @@ const S26 = {
     { id: 'q3', key: "3 · «providers nima?» → modul <b>yaratib beradigan</b> narsalar, asosan Service'lar", text: "Uchinchisi: providers nima? Shu modul yaratib beradigan narsalar, asosan Service'lar.", hl: [2] },
     { id: 'q4', key: "4 · «Nega alohida Service?» → <b>alohida sinash</b> va qayta ishlatish uchun", text: "To'rtinchisi: Service'ni nega alohida qildik? Alohida sinash va qayta ishlatish uchun, Controller'da esa logika qolmaydi.", hl: [3] },
     { id: 'q5', key: "5 · «Nest tezroqmi?» → yo'q, ichida Express; Nest <b>tezlik emas, tartib</b> beradi", text: "Beshinchisi: Nest tezmi? Yo'q, tezlik bir xil, chunki ichida Express. Nest tezlik emas, tartib beradi.", hl: [4] },
-    { id: 'q6', key: "6 · «Injectable'siz ishlayapti-ku?» → hozircha; dependency qo'shilsa — <b>jim xato, 500</b>", text: "Oltinchisi: Injectable'ni o'chirdim, ishlayapti. Dependency'si bo'lmagani uchun; dependency paydo bo'lganda server ishga tushadi, lekin so'rovda besh yuz, jim xato. Shuning uchun doim yoziladi.", hl: [5] },
+    { id: 'q6', key: "6 · «Injectable'siz ishlayapti-ku?» → hozircha; dependency qo'shilsa — <b>yashirin xato, 500</b>", text: "Oltinchisi: Injectable'ni o'chirdim, ishlayapti. Dependency'si bo'lmagani uchun; dependency paydo bo'lganda server ishga tushadi, lekin so'rovda besh yuz, yashirin xato. Shuning uchun doim yoziladi.", hl: [5] },
     { id: 'z', key: "Xulosa: javob bera olmagan savolingiz bo'lsa — <b>darsdagi o'sha ekranga</b> qayting", text: "Xulosa: bu oltita javob sizda tayyor bo'lsin. Har kartani bosib, javobni o'zingiz yana o'qing. O'zingiz javob bera olmaydigan savol bo'lsa, darsdagi o'sha ekranga qayting.", hl: [], closeAll: true },
   ],
 };
@@ -245,7 +245,7 @@ const FINAL = [
   { q: "@Controller('cars') va @Get(':id') birga qaysi path'ni ochadi?", o: ['/cars?id=5', '/id/cars', '/cars/5', '/:id/cars'], c: 2, e: "Controller prefiksi + metod yo'li.", s: 18 },
   { q: 'POST metodida status yozilmagan. Nest nima qaytaradi?', o: ['200', '201', '204', '202'], c: 1, e: "Nest POST uchun 201 ni o'zi qo'yadi.", s: 20 },
   { q: "«Nest can't resolve dependencies of the X (?)» — so'roq belgisi nimani bildiradi?", o: ["Noma'lum modul", "Topilmagan argument o'rni", 'Sintaksis xatosi', "Route yo'q"], c: 1, e: 'Qavs ichida konstruktor argumentlari, ? — topilmagani.', s: 23 },
-  { q: "Server «successfully started», /cars 404, terminalda Mapped {/cars…} yo'q. Eng ehtimoliy sabab?", o: ["CarsModule AppModule imports'ida yo'q", "Injectable yo'q", 'Port band', "Service'da xato"], c: 0, e: "Jim xato: modul ulanmagan, Nest papkani o'qimagan.", s: 24 },
+  { q: "Server «successfully started», /cars 404, terminalda Mapped {/cars…} yo'q. Eng ehtimoliy sabab?", o: ["CarsModule AppModule imports'ida yo'q", "Injectable yo'q", 'Port band', "Service'da xato"], c: 0, e: "Yashirin xato: modul ulanmagan, Nest papkani o'qimagan.", s: 24 },
   { q: "Service ichida throw new Error('x'). Mijozga nima boradi?", o: ['404 va «x»', '500 Internal server error', '400', 'Hech narsa, server yiqiladi'], c: 1, e: 'Oddiy Error → 500, xabar yashiriladi.', s: 28 },
   { q: "Yangi xabar: «Nest can't resolve dependencies of the UsersService (?, JwtService). Please make sure that the argument ConfigService at index [0] is available in the UsersModule module.» Nima qilasiz?", o: ["users.module.ts — providers'ga ConfigService (yoki ConfigModule import)", "users.service.ts — konstruktordan JwtService'ni o'chirish", "app.module.ts — controllers'ga UsersService", "UsersService'ga @Injectable() qo'shish"], c: 0, e: "Klass: UsersService · dependency: ConfigService, index [0] · fayl: users.module.ts (UsersModule). JwtService topilgan (ikkinchi o'rin), muammo unda emas.", s: 23 },
   { q: "orders.module.ts: controllers: [OrdersController], providers: [] — OrdersController konstruktorida OrdersService so'ralgan. Server nima qiladi?", o: ["Ishga tushadi, /orders → 404", "Yiqiladi: can't resolve dependencies of the OrdersController (?)", "Ishga tushadi, /orders → 500", "Yiqiladi: invalid controller detected"], c: 1, e: "providers bo'sh → Nest OrdersService'ni topa olmaydi → ishga tushishda yiqiladi (1-buzish bilan bir xil).", s: 23 },
@@ -296,7 +296,7 @@ function Screen27(p) {
         <div className="mk-say mc" style={{ overflow: 'auto', paddingRight: 4 }}>
           {showResult ? (<>
             <p className="mk-eyebrow">{t("O'z-sinov · natija", 'Самопроверка · результат')}{attempt > 1 ? t(` · ${attempt}-urinish`, ` · попытка ${attempt}`) : ''}</p>
-            <h2 className="mk-title" style={{ fontSize: 'clamp(22px,2.4vw,30px)' }}>{score} / {FINAL.length} — {score >= 6 ? t("dars o'zlashtirildi", 'урок усвоен') : t("yana bir ko'rib chiqing", 'посмотрите ещё раз')}</h2>
+            <h2 className="mk-title mc-q" style={{ fontSize: 'clamp(22px,1.9vw,26px)' }}>{score} / {FINAL.length} — {score >= 6 ? t("dars o'zlashtirildi", 'урок усвоен') : t("yana bir ko'rib chiqing", 'посмотрите ещё раз')}</h2>
             <div style={{ display: 'grid', gap: 8 }}>
               {FINAL.map((f, k) => <div key={k} className="mk-card" style={{ display: 'flex', gap: 12, alignItems: 'center', borderColor: res[k] && res[k].correct ? T.green : T.accent }}>
                 <span style={{ fontFamily: MONO, fontWeight: 700, color: res[k] && res[k].correct ? T.green : T.accent, minWidth: 22 }}>{res[k] && res[k].correct ? '✓' : '✗'}</span>
@@ -310,7 +310,7 @@ function Screen27(p) {
             </div>
           </>) : (<>
             <p className="mk-eyebrow">{t("O'z-sinov", 'Самопроверка')} · {i + 1} / {FINAL.length} · {t("bitta urinish · to'g'ri:", 'одна попытка · верно:')} {score}</p>
-            <h2 className="mk-title" style={{ fontSize: 'clamp(20px,2.2vw,28px)' }}>{q.q}</h2>
+            <h2 className="mk-title mc-q">{q.q}</h2>
             <div style={{ display: 'grid', gap: 10 }}>
               {q.o.map((o, k) => { let cls = 'mk-opt'; if (picked !== null) { if (k === q.c) cls += ' ok'; else if (k === picked) cls += ' bad'; else cls += ' off'; } return <button key={k} className={cls} disabled={picked !== null} onClick={() => pick(k)}><span className="l">{String.fromCharCode(65 + k)}</span><span>{o}</span></button>; })}
             </div>
@@ -338,7 +338,7 @@ constructor(private readonly carsService: CarsService) — siz yaratmaysiz, Nest
 1 «can't resolve dependencies of the X (?) … argument Y at index [0] … in the Z module» → Z modulining providers'iga Y
 2 server ishga tushdi, /cars 404, terminalda Mapped {/cars…} yo'q → AppModule imports: [CarsModule]
 3 «invalid controller … does not have the @Controller() decorator» → decorator'ni qaytaring
-4 @Injectable'siz ishlaydi (dependency yo'q) → dependency qo'shilsa: server ishga tushadi, so'rovda 500 TypeError (jim xato) → baribir yoziladi
+4 @Injectable'siz ishlaydi (dependency yo'q) → dependency qo'shilsa: server ishga tushadi, so'rovda 500 TypeError (yashirin xato) → baribir yoziladi
 ## Baza ulanmadi (o'quvchi loyihasi, TypeORM — «Unable to connect to the database. Retrying (1)…», 10 urinish, keyin yiqiladi)
 connect ECONNREFUSED 127.0.0.1:5432 → PostgreSQL'ni ishga tushiring (Windows: Services → postgresql; Mac: brew services start postgresql; Linux: sudo systemctl start postgresql)
 SASL … client password must be a string → .env yo'q: cp .env.example .env, parolni o'zingiznikiga almashtiring

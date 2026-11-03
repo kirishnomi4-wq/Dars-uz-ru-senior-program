@@ -1,0 +1,39 @@
+$ node sinov-nest.js   # dars-04-done kodi, haqiqiy PostgreSQL, Telegram serverisiz
+# 1-ishga tushirish
+Telegram bot ulandi
+Aziza (5123456789): /start
+  bot → 5123456789: Salom! Ismingiz nima?
+Aziza (5123456789): Aziza
+  bot → 5123456789: Xush kelibsiz, Aziza! Endi sizni eslab qolaman.
+Jasur (6234567890): /start
+  bot → 6234567890: Salom! Ismingiz nima?
+# bot to'xtatildi (app.close) va qayta ishga tushirildi
+Telegram bot ulandi
+Aziza (5123456789): /start
+  bot → 5123456789: Yana salom, Aziza! Menyu uchun /menu ni bosing.
+Jasur (6234567890): Jasur
+  bot → 6234567890: Xush kelibsiz, Jasur! Endi sizni eslab qolaman.
+Jasur (6234567890): salom
+  bot → 6234567890: Bu buyruqni bilmayman. /menu ni bosing.
+
+$ psql botnest -c "\d users"
+                                     Table "public.users"
+   Column    |            Type             | Collation | Nullable |          Default           
+-------------+-----------------------------+-----------+----------+----------------------------
+ id          | uuid                        |           | not null | uuid_generate_v4()
+ created_at  | timestamp without time zone |           | not null | now()
+ updated_at  | timestamp without time zone |           | not null | now()
+ telegram_id | bigint                      |           | not null | 
+ ism         | character varying           |           |          | 
+ holat       | character varying           |           | not null | 'yangi'::character varying
+Indexes:
+    "PK_a3ffb1c0c8416b9fc6f907b7433" PRIMARY KEY, btree (id)
+    "UQ_1a1e4649fd31ea6ec6b025c7bfc" UNIQUE CONSTRAINT, btree (telegram_id)
+
+$ psql botnest -c "SELECT telegram_id, ism, holat FROM users"
+ telegram_id |  ism  | holat  
+-------------+-------+--------
+  5123456789 | Aziza | tayyor
+  6234567890 | Jasur | tayyor
+(2 rows)
+

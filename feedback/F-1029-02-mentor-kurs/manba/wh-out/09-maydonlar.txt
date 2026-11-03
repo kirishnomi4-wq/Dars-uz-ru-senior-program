@@ -1,0 +1,6 @@
+$ … -d '{"tolovRaqami":"m-x2","holat":"ok","summa":10000,"oyinchiId":11}'
+{"message":"holat — tolandi yoki rad","error":"Bad Request","statusCode":400} [HTTP 400]
+$ … -d '{"tolovRaqami":"m-x3","holat":"tolandi","summa":"10000","oyinchiId":11}'
+{"message":"summa — musbat butun son (so'm)","error":"Bad Request","statusCode":400} [HTTP 400]
+$ … -d '{"tolovRaqami":"m-x4","holat":"tolandi","summa":10000,"oyinchiId":999}'
+{"message":"oyinchiId — mavjud hisob","error":"Bad Request","statusCode":400} [HTTP 400]

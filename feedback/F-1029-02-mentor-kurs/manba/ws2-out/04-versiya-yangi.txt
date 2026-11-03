@@ -1,0 +1,14 @@
+$ node ws2-sinov.js versiya yangi
+# ilova: ulanish.ts — m12-dars-05-done (tuzatilgan) · o'yin 3 «Park maydoni»
+  0.9s  [Ali] ulangan
+  0.9s  [Ali] GET /oyinlar (qayta ulanganda) → Park maydoni: 5 / 8
+  2.1s  --- Backend yangi versiyasi: qayta ishga tushirildi ---
+  2.1s  [Ali] ulanmoqda  (disconnect: transport close)
+  2.8s  [Ali] ulanmoqda  (connect_error: xhr poll error) …
+  5.8s  [Ali] ulangan
+  5.8s  [Ali] GET /oyinlar (qayta ulanganda) → Park maydoni: 5 / 8
+  6.8s  [Ali] oyin-ozgardi {"oyinId":3,"sabab":"qoshildi"} — tinglovchi ishladi (1)
+  6.9s  [Aziz] POST /oyinlar/3/qoshilish → 201
+  6.9s  [Ali] GET /oyinlar (hodisa kelgach) → Park maydoni: 6 / 8
+  8.4s  NATIJA: bitta o'zgarish — Ali'da tinglovchi 1 marta ishladi
+  8.4s  [Ali] ulanmagan  (disconnect: io client disconnect)

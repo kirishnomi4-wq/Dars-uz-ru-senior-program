@@ -1,0 +1,7 @@
+--- himoyasiz orderTotal (price * quantity), JavaScript'da chaqirilganda:
+orderTotal(10000, 2) → 20000
+orderTotal(10000, 0) → 0
+orderTotal(10000, -1) → -10000
+orderTotal(10000, 1) → 10000
+orderTotal(10000, 'ikki') → NaN
+orderTotal(10000, null) → 0

@@ -1,0 +1,42 @@
+$ npm test
+
+> IntroNestArxitechture@0.0.1 test
+> jest
+
+FAIL src/order.spec.ts
+  orderTotal
+    ✓ 2 kitob narxini hisoblaydi (2 ms)
+    ✓ 1 dona — eng kichik haqiqiy buyurtma (1 ms)
+    ✓ 0 dona — xato (5 ms)
+    ✓ manfiy — xato (1 ms)
+    ✕ matn — xato (11 ms)
+
+  ● orderTotal › matn — xato
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "narx xato"
+    Received message:   "quantity musbat raqam bo'lsin"
+
+          1 | export function orderTotal(price: number, quantity: number): number {
+          2 |   if (typeof quantity !== 'number' || Number.isNaN(quantity) || quantity <= 0) {
+        > 3 |     throw new Error("quantity musbat raqam bo'lsin");
+            |           ^
+          4 |   }
+          5 |   return price * quantity;
+          6 | }
+
+      at orderTotal (order.ts:3:11)
+      at order.spec.ts:17:28
+      at Object.<anonymous> (../node_modules/expect/build/index.js:1824:9)
+      at Object.throwingMatcher [as toThrow] (../node_modules/expect/build/index.js:2235:93)
+      at Object.<anonymous> (order.spec.ts:17:52)
+      at Object.<anonymous> (order.spec.ts:17:52)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 4 passed, 5 total
+Snapshots:   0 total
+Time:        0.396 s, estimated 1 s
+Ran all test suites.
+[chiqish kodi: 1]
+

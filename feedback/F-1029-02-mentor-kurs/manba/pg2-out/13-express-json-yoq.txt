@@ -1,0 +1,8 @@
+$ POST /api/cars { "model": "Hyundai Elantra", "daily_price": 450000, "year": 2022 }
+→ 500
+{"error":"Cannot destructure property 'model' of 'req.body' as it is undefined."}
+
+--- server terminali
+Server 3000-portda ishlayapti
+Cannot destructure property 'model' of 'req.body' as it is undefined.
+

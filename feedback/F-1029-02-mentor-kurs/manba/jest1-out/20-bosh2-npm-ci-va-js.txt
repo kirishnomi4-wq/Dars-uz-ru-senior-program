@@ -1,0 +1,79 @@
+typescript 6.0.3
+$ npm ci
+npm warn allow-scripts Run `npm approve-scripts --allow-scripts-pending` to review, or `npm approve-scripts <pkg>` to allow.
+typescript 6.0.3
+
+$ npm test
+
+> bosh2@1.0.0 test
+> jest
+
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151001: [0mIf you have issues related to imports, you should consider setting `esModuleInterop` to `true` in your TypeScript configuration file (usually `tsconfig.json`). See https://blogs.msdn.microsoft.com/typescript/2018/01/31/announcing-typescript-2-7/#easier-ecmascript-module-interoperability for more information.
+FAIL ./order.spec.ts
+  ● Test suite failed to run
+
+    [96morder.spec.ts[0m:[93m3[0m:[93m1[0m - [91merror[0m[90m TS2593: [0mCannot find name 'describe'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha` and then add 'jest' or 'mocha' to the types field in your tsconfig.
+
+    [7m3[0m describe('orderTotal', () => {
+    [7m [0m [91m~~~~~~~~[0m
+    [96morder.spec.ts[0m:[93m4[0m:[93m3[0m - [91merror[0m[90m TS2593: [0mCannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha` and then add 'jest' or 'mocha' to the types field in your tsconfig.
+
+    [7m4[0m   it('2 kitob narxini hisoblaydi', () => {
+    [7m [0m [91m  ~~[0m
+    [96morder.spec.ts[0m:[93m5[0m:[93m5[0m - [91merror[0m[90m TS2304: [0mCannot find name 'expect'.
+
+    [7m5[0m     expect(orderTotal(10000, 2)).toBe(20000);
+    [7m [0m [91m    ~~~~~~[0m
+
+Test Suites: 1 failed, 1 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        0.754 s
+Ran all test suites.
+[chiqish kodi: 1]
+
+--- test faylini .js qilish (ichida TypeScript turlari qoldi)
+$ npm test
+
+> bosh2@1.0.0 test
+> jest
+
+FAIL ./order.spec.js
+  ● Test suite failed to run
+
+    Jest encountered an unexpected token
+
+    Jest failed to parse a file. This happens e.g. when your code or its dependencies use non-standard JavaScript syntax, or when Jest is not configured to support such syntax.
+
+    Out of the box Jest supports Babel, which will be used to transform your files into valid JS based on your Babel configuration.
+
+    By default "node_modules" folder is ignored by transformers.
+
+    Here's what you can do:
+     • If you are trying to use TypeScript, see https://jestjs.io/docs/getting-started#using-typescript
+     • To have some of your "node_modules" files transformed, you can specify a custom "transformIgnorePatterns" in your config.
+     • If you need a custom transformation, specify a "transform" option in your config.
+     • If you simply want to mock your non-JS modules (e.g. binary assets) you can stub them out with the "moduleNameMapper" config option.
+
+    You'll find more details and examples of these config options in the docs:
+    https://jestjs.io/docs/configuration
+    For information about custom transformations, see:
+    https://jestjs.io/docs/code-transformation
+
+    Details:
+
+    /tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/jest1-run/bosh2/order.spec.js:1
+    import { orderTotal } from './order';
+    ^^^^^^
+
+    SyntaxError: Cannot use import statement outside a module
+
+      at ModuleExecutor.compile (node_modules/jest-runtime/build/index.js:3081:44)
+
+Test Suites: 1 failed, 1 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        0.159 s
+Ran all test suites.
+[chiqish kodi: 1]
+

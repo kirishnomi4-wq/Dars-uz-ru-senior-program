@@ -1,0 +1,8 @@
+$ curl -X POST localhost:3000/royxat -H "Content-Type: application/json" -d '{"ism":"Ali","telefon":"+998 90 000 00 01","parol":"parol123"}'
+{"id":11,"ism":"Ali"} [HTTP 201]
+$ curl -X POST localhost:3000/royxat -H "Content-Type: application/json" -d '{"ism":"Vali","telefon":"+998 90 000 00 02","parol":"parol123"}'
+{"id":12,"ism":"Vali"} [HTTP 201]
+$ curl -X POST localhost:3000/kirish -H "Content-Type: application/json" -d '{"telefon":"+998 90 000 00 01","parol":"parol123"}'
+{"token":"eyJ…(qisqartirildi)"} [HTTP 200]
+# takror ro'yxat (sinf holati):
+{"message":"Bu telefon ro'yxatdan o'tgan","error":"Conflict","statusCode":409} [HTTP 409]

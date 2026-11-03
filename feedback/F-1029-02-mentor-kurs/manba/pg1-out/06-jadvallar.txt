@@ -1,0 +1,35 @@
+postgres=# CREATE DATABASE blog;
+CREATE DATABASE
+postgres=# \c blog
+
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  username TEXT NOT NULL UNIQUE
+);
+CREATE TABLE
+CREATE TABLE posts (
+  id SERIAL PRIMARY KEY,
+  user_id INT NOT NULL REFERENCES users(id),
+  izoh TEXT NOT NULL
+);
+CREATE TABLE
+\dt
+          List of tables
+ Schema | Name  | Type  |  Owner   
+--------+-------+-------+----------
+ public | posts | table | postgres
+ public | users | table | postgres
+(2 rows)
+
+\d posts
+                             Table "public.posts"
+ Column  |  Type   | Collation | Nullable |              Default              
+---------+---------+-----------+----------+-----------------------------------
+ id      | integer |           | not null | nextval('posts_id_seq'::regclass)
+ user_id | integer |           | not null | 
+ izoh    | text    |           | not null | 
+Indexes:
+    "posts_pkey" PRIMARY KEY, btree (id)
+Foreign-key constraints:
+    "posts_user_id_fkey" FOREIGN KEY (user_id) REFERENCES users(id)
+

@@ -1,0 +1,4 @@
+postgres=# SELECT * FROM posts;   (blog emas, postgres bazasida)
+ERROR:  relation "posts" does not exist
+LINE 1: SELECT * FROM posts;
+                      ^

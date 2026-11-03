@@ -1,0 +1,21 @@
+shop=# UPDATE products SET price = 99000 WHERE id = 1;
+UPDATE 1
+
+shop=# DELETE FROM products WHERE id = 3;
+DELETE 1
+
+shop=# SELECT * FROM products;
+ id |    name    | price | stock 
+----+------------+-------+-------
+  2 | Sichqoncha | 75000 |    15
+  4 | Mishka     | 50000 |    10
+  1 | Klaviatura | 99000 |     8
+(3 rows)
+
+
+shop=# UPDATE products SET price = 1 WHERE id = 99;
+UPDATE 0
+
+shop=# DELETE FROM products WHERE id = 99;
+DELETE 0
+

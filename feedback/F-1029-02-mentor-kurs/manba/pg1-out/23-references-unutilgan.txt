@@ -1,0 +1,19 @@
+blog_fk=# CREATE TABLE users (id SERIAL PRIMARY KEY, username TEXT NOT NULL UNIQUE);
+CREATE TABLE
+
+blog_fk=# CREATE TABLE posts (id SERIAL PRIMARY KEY, user_id INT NOT NULL, izoh TEXT NOT NULL);
+CREATE TABLE
+
+blog_fk=# INSERT INTO posts (user_id, izoh) VALUES (99, 'Muallifi yo''q post');
+INSERT 0 1
+
+blog_fk=# DROP TABLE posts;
+DROP TABLE
+
+blog_fk=# CREATE TABLE posts (id SERIAL PRIMARY KEY, user_id INT NOT NULL REFERENCES users(id), izoh TEXT NOT NULL);
+CREATE TABLE
+
+blog_fk=# INSERT INTO posts (user_id, izoh) VALUES (99, 'Muallifi yo''q post');
+ERROR:  insert or update on table "posts" violates foreign key constraint "posts_user_id_fkey"
+DETAIL:  Key (user_id)=(99) is not present in table "users".
+

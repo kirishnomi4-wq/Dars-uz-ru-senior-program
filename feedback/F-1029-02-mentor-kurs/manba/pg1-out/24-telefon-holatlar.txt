@@ -1,0 +1,62 @@
+=== A: 1-oyna COMMIT allaqachon qilgan, keyin 2-oyna ===
+blog=# UPDATE products SET stock = 1 WHERE id = 1;
+UPDATE 1
+
+[1-oyna]
+BEGIN;
+BEGIN
+UPDATE products SET stock = stock - 1 WHERE id = 1 AND stock > 0 RETURNING stock;
+ stock 
+-------
+     0
+(1 row)
+
+UPDATE 1
+COMMIT;
+COMMIT
+[2-oyna]
+ stock 
+-------
+(0 rows)
+
+UPDATE 0
+2-oyna tugadi: .076 s
+
+=== B: telefon 2 ta (stock = 2), ikki oyna ===
+blog=# UPDATE products SET stock = 2 WHERE id = 1;
+UPDATE 1
+
+[1-oyna]
+BEGIN;
+BEGIN
+UPDATE products SET stock = stock - 1 WHERE id = 1 AND stock > 0 RETURNING stock;
+ stock 
+-------
+     1
+(1 row)
+
+UPDATE 1
+SELECT pg_sleep(3);
+ pg_sleep 
+----------
+ 
+(1 row)
+
+COMMIT;
+COMMIT
+[2-oyna]
+ stock 
+-------
+     0
+(1 row)
+
+UPDATE 1
+2-oyna tugadi: 3.08 s (1 s da boshlagan)
+
+blog=# SELECT id, nomi, stock FROM products WHERE id = 1;
+ id |  nomi   | stock 
+----+---------+-------
+  1 | Telefon |     0
+(1 row)
+
+

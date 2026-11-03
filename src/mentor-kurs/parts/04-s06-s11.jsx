@@ -159,7 +159,7 @@ const P1 = {
     { id: 'b', key: "1-qadam: papkaga kirib <code>npm run start:dev</code> yozing", text: "Birinchi: papkaga kiring va npm run start dev yozing.", hl: [0] },
     { id: 'c', key: "2-qadam: terminalda <b>Mapped</b> satrini toping va isbot maydoniga qo'ying", text: "Ikkinchi: terminalda Mapped satrini toping va uni aynan nusxalab, pastdagi isbot maydoniga qo'ying.", hl: [1] },
     { id: 'd', key: "3-qadam: brauzerda <code>localhost:3000</code> — <b>Hello World!</b> chiqsin", text: "Uchinchi: brauzerda localhost uch ming, Hello World ni ko'ring.", hl: [2] },
-    { id: 'e', key: "Boshqacha chiqsa — pastdagi <b>«Boshqacha chiqdimi?»</b> tugmasi; katakcha va isbotsiz Davom ochilmaydi", text: "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing. Uchala katakcha belgilanmaguncha va isbot to'g'ri qo'yilmaguncha Davom ochilmaydi.", hl: [] },
+    { id: 'e', key: "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi", text: "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. Uchala katakcha belgilanmaguncha va isbot to'g'ri qo'yilmaguncha Davom ochilmaydi. Demak, shu amaliyotdan keyin loyihangiz ishga tushgan va siz terminaldagi Mapped satrlarini o'qiy olasiz.", hl: [] },
   ],
 };
 const P1_STEPS = [
@@ -181,7 +181,7 @@ function Screen10(p) {
     title={t('Mashina narxiga chegirma hisoblaydigan kodni qayerga yozasiz?', 'Куда вы напишете код, который считает скидку на цену машины?')}
     q={t("Uch bo'lakni ko'rdingiz, endi tekshirib olaylik. Birinchi tekshiruv. Faraz qiling, mashina narxiga chegirma hisoblash kerak. Bu kod qayerga yoziladi? Variantni tanlang.", 'Три части вы увидели, теперь проверим. Первая проверка. Представьте, что нужно посчитать скидку на цену машины. Куда пишется этот код? Выберите вариант.')}
     opts={t(['Controller metodi ichiga', 'Service metodi ichiga', 'AppModule ichiga', 'main.ts ichiga'], ['Внутрь метода Controller', 'Внутрь метода Service', 'Внутрь AppModule', 'Внутрь main.ts'])} correct={1}
-    ok={t("Service. Hisob, qoida va bazaga murojaat Service'da turadi. Controller faqat so'rovni oladi va Service'ni chaqiradi. Shunda chegirmani serversiz ham sinab ko'rish mumkin.", 'Service. Расчёты, правила и обращение к базе живут в Service. Controller только принимает запрос и вызывает Service. Тогда скидку можно проверить и без сервера.')}
+    ok={t("To'g'ri, Service. Hisob, qoida va bazaga murojaat Service'da turadi. Controller faqat so'rovni oladi va Service'ni chaqiradi. Shunda chegirmani serversiz ham sinab ko'rish mumkin. Demak, biznes logika qayerda turadi deb so'ralsa, javob doim Service.", 'Верно, Service. Расчёты, правила и обращение к базе живут в Service. Controller только принимает запрос и вызывает Service. Тогда скидку можно проверить и без сервера. Значит, если спрашивают, где живёт бизнес-логика, ответ всегда Service.')}
     okShort={t("Service: hisob, qoida, baza — shu yerda. Controller faqat oladi va chaqiradi.", 'Service: расчёты, правила, база — здесь. Controller только принимает и вызывает.')}
     wrong={t({ 0: "Controller'da logika yozilmaydi: u so'rovni oladi va Service'ga uzatadi, hisoblamaydi.", 2: "Module ro'yxat, unda ish bajaradigan kod yozilmaydi.", 3: "main.ts faqat ilovani ishga tushiradi." }, { 0: 'В Controller логику не пишут: он принимает запрос и передаёт его в Service, а не считает.', 2: 'Module — это список, код, который выполняет работу, в нём не пишут.', 3: 'main.ts только запускает приложение.' })} />;
 }

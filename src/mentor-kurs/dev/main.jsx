@@ -6,6 +6,16 @@ import { createRoot } from 'react-dom/client';
 const DARSLAR = {
   'nest-01': () => import('../NestArchMentorLesson.jsx'),
   'nest-02': () => import('../NestRepoMentorLesson.jsx'),
+  'pg-01': () => import('../PgIntroMentorLesson.jsx'),
+  'pg-02': () => import('../PgCrudMentorLesson.jsx'),
+  'jest-01': () => import('../JestUnitMentorLesson.jsx'),
+  'jest-02': () => import('../JestEdgeMentorLesson.jsx'),
+  'cicd-01': () => import('../CiCdIntroMentorLesson.jsx'),
+  'cicd-02': () => import('../GithubActionsMentorLesson.jsx'),
+  'tgpg-01': () => import('../TgPgMentorLesson.jsx'),
+  'ws1-01': () => import('../WsBasicsMentorLesson.jsx'),
+  'ws2-01': () => import('../WsReconnectMentorLesson.jsx'),
+  'wh-01': () => import('../WebhookMentorLesson.jsx'),
 };
 
 function Harness() {

@@ -1,0 +1,4 @@
+# src/main.ts qaytarildi:
+9:  const app = await NestFactory.create(AppModule, { rawBody: true });
+# brauzer: «To'lash (mashq)»
+To'lash (mashq) · m-1793494329491 — 200 {"ok":true}

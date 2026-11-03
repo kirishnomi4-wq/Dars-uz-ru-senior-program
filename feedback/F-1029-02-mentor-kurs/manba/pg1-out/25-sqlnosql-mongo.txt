@@ -1,0 +1,12 @@
+--- MongoDB (mongosh): users collection, ikki hujjat — ikkinchisida qo'shimcha maydon
+[
+  {
+    _id: ObjectId('6ae871ed092c9346048de666'),
+    username: 'ali'
+  },
+  {
+    _id: ObjectId('6ae871ed092c9346048de667'),
+    username: 'vali',
+    shahar: 'Toshkent'
+  }
+]

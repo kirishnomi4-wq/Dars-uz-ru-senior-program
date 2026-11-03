@@ -1,0 +1,3 @@
+# drive-wh.sh yurgizilganda PostgreSQL logi (wh-run/pg.log) — butun yurgizishda yagona 'duplicate key':
+ERROR:  duplicate key value violates unique constraint "UQ_8d49ab7ce320a778ace3fb848bd"
+DETAIL:  Key (tolov_raqami)=(m-bir-vaqtda) already exists.

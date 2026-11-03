@@ -15,6 +15,16 @@ await page.goto(`http://localhost:5333/mentor-kurs.html?dars=${DARS}&lang=${LANG
 await page.click(LANG === 'ru' ? 'text=Начать' : 'text=Boshlash');
 const CFG = {
   'nest-01': { PROOF: { 6: '11.0.10', 12: 'Mapped {/, GET} route', 22: 'Car with id 99 not found', 30: 'CarsController, CarsService, cars.module.ts' }, FINAL_C: [1, 2, 1, 1, 0, 1, 0, 1], REQ: 20, TEST: 38, LAST: 39 },
+  'pg-01': { PROOF: { 10: 'PostgreSQL 18.4 (Debian 18.4-1+b1) on x86_64-pc-linux-gnu', 15: '"posts_user_id_fkey" FOREIGN KEY (user_id) REFERENCES users(id)', 18: '(4 rows)', 23: 'UPDATE 0' }, FINAL_C: [1, 0, 2, 3, 0, 1, 3, 2], REQ: 0, TEST: 28, LAST: 29 },
+  'pg-02': { PROOF: { 7: '(3 rows)', 10: '99000', 17: '201', 23: '{"error":"column \\"price\\" of relation \\"cars\\" does not exist"}' }, FINAL_C: [2, 0, 1, 3, 0, 1, 2, 3], REQ: 0, TEST: 27, LAST: 28 },
+  'jest-01': { PROOF: { 7: 'Tests:       1 passed, 1 total', 12: '10002', 16: 'aynan 100 000 — bepul', 20: 'No tests found, exiting with code 1' }, FINAL_C: [1, 0, 2, 3, 0, 1, 2, 3], REQ: 0, TEST: 25, LAST: 26 },
+  'jest-02': { PROOF: { 7: 'Tests:       5 passed, 5 total', 12: 'Received message:   "quantity musbat raqam bo\'lsin"', 16: 'NaN', 19: 'chegara 100 % — 0' }, FINAL_C: [1, 0, 2, 3, 0, 1, 2, 3], REQ: 0, TEST: 23, LAST: 24 },
+  'cicd-01': { PROOF: { 9: 'UCHIRISH', 14: 'Tests:       1 passed, 1 total', 19: '10002' }, FINAL_C: [0, 1, 2, 3, 0, 1, 2, 3], REQ: 0, TEST: 24, LAST: 25 },
+  'cicd-02': { PROOF: { 6: 'node: v22.23.4', 12: '127', 19: 'v20.20.2' }, FINAL_C: [0, 1, 2, 3, 0, 1, 2, 3], REQ: 0, TEST: 24, LAST: 25 },
+  'tgpg-01': { PROOF: { 12: 'Yana salom, Aziza!', 17: 'ERROR:  integer out of range', 20: 'tayyor' }, FINAL_C: [0, 1, 2, 3, 0, 1, 2, 3], REQ: 0, TEST: 24, LAST: 25 },
+  'ws1-01': { PROOF: { 7: "LOG [Ulanish] ulandi: o'yinchi 11", 13: 'transport close', 17: 'HODISA oyin-ozgardi {"oyinId":2,"sabab":"qoshildi"}' }, FINAL_C: [0, 1, 2, 3, 0, 1, 2, 3], REQ: 0, TEST: 21, LAST: 22 },
+  'ws2-01': { PROOF: { 9: 'HODISA oyin-ozgardi {"oyinId":3,"sabab":"qoshildi"} — tinglovchi ishladi (2)', 12: '1', 14: '2' }, FINAL_C: [0, 1, 2, 3, 0, 1, 2, 3], REQ: 0, TEST: 19, LAST: 20 },
+  'wh-01': { PROOF: { 9: 'Rad etish (mashq) · m-1793494313096 — 200 {"ok":true}', 13: 'Ikki marta yuborish · m-1793494315387 — 200 {"takror":true}', 15: "To'lash (mashq) · m-1793494322810 — 401" }, FINAL_C: [0, 1, 2, 3, 0, 1, 2, 3], REQ: 0, TEST: 19, LAST: 20 },
   'nest-02': { PROOF: { 4: '[Nest] 4120  - 10/31/2026, 2:12:07 PM     LOG [NestApplication] Nest application successfully started', 15: '3b9f1c2a', 19: '7e5d0a91', 23: 'CarService, CarEntityRepository, car.module.ts' }, FINAL_C: [1, 3, 0, 2, 1, 0, 3, 2], REQ: 13, TEST: 28, LAST: 29 } // F-1031-09: 29 ekran,
 }[DARS];
 const { PROOF, FINAL_C } = CFG;

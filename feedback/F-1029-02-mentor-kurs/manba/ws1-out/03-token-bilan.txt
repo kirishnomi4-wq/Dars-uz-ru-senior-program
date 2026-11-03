@@ -1,0 +1,9 @@
+$ node tokenli.js
+ 0.0s  [Ali] ulanmoqda  (io() chaqirildi)
+ 0.0s  [Ali] ulangan  (connect)
+ 0.5s  [Ali] transport: websocket
+ 2.5s  [Ali] ulanmagan  (disconnect: io client disconnect · active=false)
+
+# Backend terminali:
+LOG [Ulanish] ulandi: o'yinchi 11
+LOG [Ulanish] uzildi: o'yinchi 11

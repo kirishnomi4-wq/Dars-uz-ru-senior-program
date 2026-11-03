@@ -1,0 +1,5 @@
+$ npm test && npm run build && echo "UCHIRISH"
+[chiqish kodi: 1]
+$ npm test && npm run build && echo "UCHIRISH"
+UCHIRISH
+[chiqish kodi: 0]

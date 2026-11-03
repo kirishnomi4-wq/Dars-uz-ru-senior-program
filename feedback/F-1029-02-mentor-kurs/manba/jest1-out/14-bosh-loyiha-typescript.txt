@@ -1,0 +1,27 @@
+$ npm i -D typescript @types/jest
+npm warn allow-scripts
+npm warn allow-scripts Run `npm approve-scripts --allow-scripts-pending` to review, or `npm approve-scripts <pkg>` to allow.
+
+$ npm test
+
+> bosh@1.0.0 test
+> jest
+
+FAIL ./order.spec.ts
+  ● Test suite failed to run
+
+    The TypeScript compiler "typescript" (version 7.0.2) does not expose the JavaScript compiler API required by ts-jest. To use TypeScript 7 for project type-checking, install it as "@typescript/native" and alias "@typescript/typescript6" as "typescript" for ts-jest.
+
+      at Importer.typescript (node_modules/ts-jest/dist/utils/importer.js:35:19)
+      at new ConfigSet (node_modules/ts-jest/dist/legacy/config/config-set.js:203:51)
+      at TsJestTransformer._createConfigSet (node_modules/ts-jest/dist/legacy/ts-jest-transformer.js:119:16)
+      at TsJestTransformer._configsFor (node_modules/ts-jest/dist/legacy/ts-jest-transformer.js:98:34)
+      at TsJestTransformer.getCacheKey (node_modules/ts-jest/dist/legacy/ts-jest-transformer.js:252:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        0.157 s
+Ran all test suites.
+[chiqish kodi: 1]
+

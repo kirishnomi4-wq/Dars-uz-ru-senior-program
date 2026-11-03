@@ -2,3 +2,4 @@
 korik/tts-cache/
 korik/audio/
 korik/*.log
+__pycache__/

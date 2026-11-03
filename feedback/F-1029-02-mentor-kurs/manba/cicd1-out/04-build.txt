@@ -1,0 +1,7 @@
+$ npm run build
+
+> IntroNestArxitechture@0.0.1 build
+> nest build
+
+[chiqish kodi: 0]
+

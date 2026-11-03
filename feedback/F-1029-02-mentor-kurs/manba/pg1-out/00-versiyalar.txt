@@ -1,0 +1,6 @@
+psql (PostgreSQL) 18.4 (Debian 18.4-1+b1)
+postgres (PostgreSQL) 18.4 (Debian 18.4-1+b1)
+db version v6.0.27
+node v24.18.0
+mongoose 9.11.4
+Sat Oct 31 10:38:22 PM +05 2026

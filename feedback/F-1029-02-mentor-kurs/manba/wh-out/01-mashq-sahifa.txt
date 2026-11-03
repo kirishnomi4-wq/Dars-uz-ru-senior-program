@@ -1,0 +1,8 @@
+$ curl localhost:3000/tolov-mashq?oyinchi=11
+Mashq to'lov
+Bu sahifa — mashq. Karta so'ralmaydi, pul yechilmaydi.
+Maydon Jamoa — Pro, 30 kun · 10 000 so'm
+To'lash (mashq)
+Rad etish (mashq)
+Ikki marta yuborish
+Imzosiz yuborish

@@ -1,0 +1,28 @@
+# ci.yml: runs-on qatori yo'q
+# run 41311669043 · branch yaml · commit 2419f11 · natija: failure · yozildi 2026-11-01 18:31:36 +0500
+# https://github.com/kirishnomi4-wq/mentor-ci-sinov/actions/runs/41311669043
+
+$ cat .github/workflows/*.yml
+name: CI
+on: push
+jobs:
+  test:
+    steps:
+      - uses: actions/checkout@v7
+      - run: npm test
+
+## gh run view
+
+X yaml CI · 41311669043
+Triggered via push less than a minute ago
+
+X This run likely failed because of a workflow file issue.
+
+For more information, see: https://github.com/kirishnomi4-wq/mentor-ci-sinov/actions/runs/41311669043
+
+## job → step (API: actions/runs/41311669043/jobs)
+
+## annotatsiyalar (check-runs)
+
+## to'liq log (gh run view --log)
+failed to get run log: log not found

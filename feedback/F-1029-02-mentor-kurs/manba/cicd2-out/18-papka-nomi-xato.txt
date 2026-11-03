@@ -1,0 +1,11 @@
+# CI/CD-1 C11: ci.yml noto'g'ri papkada — .github/workflow/ci.yml (workflows emas)
+# commit 75260e4 · branch papka · tekshirildi 2026-11-01 18:43:36 +0500 (push'dan 90 s keyin)
+
+$ find .github -type f
+.github/workflow/ci.yml
+
+## gh run list --commit 75260e4
+(soni: 0)
+
+## gh workflow list
+CI	active	403566065

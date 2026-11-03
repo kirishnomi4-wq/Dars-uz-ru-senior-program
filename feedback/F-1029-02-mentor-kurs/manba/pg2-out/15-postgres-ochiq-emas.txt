@@ -1,0 +1,30 @@
+=== PostgreSQL to'xtatilgan
+$ node server.js
+Server 3000-portda ishlayapti
+$ GET /api/cars 
+→ 500
+{"error":""}
+
+--- server terminali
+Server 3000-portda ishlayapti
+
+
+
+=== console.error(err.message) o'rniga console.error(err)
+$ GET /api/cars 
+→ 500
+{"error":""}
+
+--- server terminali (birinchi 12 satr)
+Server 3000-portda ishlayapti
+AggregateError [ECONNREFUSED]: 
+    at /tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/pg2-node/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async /tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/pg2-node/server.js:17:20 {
+  code: 'ECONNREFUSED',
+  [errors]: [
+    Error: connect ECONNREFUSED ::1:5436
+        at createConnectionError (node:net:1741:14)
+        at afterConnectMultiple (node:net:1771:16) {
+      errno: -111,
+      code: 'ECONNREFUSED',

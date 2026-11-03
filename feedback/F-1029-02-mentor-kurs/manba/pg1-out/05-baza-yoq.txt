@@ -1,0 +1,2 @@
+$ psql -U postgres -h localhost -d blog   (bunday baza yo'q)
+psql: error: connection to server at "localhost" (::1), port 5432 failed: FATAL:  database "blog" does not exist

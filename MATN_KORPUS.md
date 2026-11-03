@@ -4635,3 +4635,20 @@ Sinf-supurish (19.10): ta'rif-qatori faqat 12-M da topildi (13 qator, 5 dars) �
   ✅ «Juftlikda: sherigingiz shartlaringizni o'qiydi. U «buni qanday tekshiraman?» deb so'rasa — shart qayta yoziladi.»
 - ✅ Qoladi: «Cyberpunk studiyasi dasturchilari» (haqiqiy keysdagi uchinchi shaxs) · «Frontend dasturchi» (kasb nomi, §214) · texnik darsda «dasturchining, ya'ni sizning ishingiz» (o'quvchining o'zi).
 **Qoida (110-qonun):** PM/bridge darsida o'quvchi ish beruvchi emas — o'zi quradi. Ish bajaruvchi va «tayyor» deydigan tomon — AI; shartlar promptga yoziladi; jamoa o'rniga «siz»/«sherigingiz»; mijoz o'rniga o'quvchining o'zi yoki haqiqiy foydalanuvchi. Test: ekranni o'quvchi o'z nomidan aytib bera oladimi («bu menda bo'ladi»)? — yo'q bo'lsa, qayta yoziladi. til-lint `dasturchi-topshiriq` (PM + bridge, error).
+
+## §MENTOR-USTOZ-GAP — mentor darsi: to'liq gap, taqiq so'zlar (F-1102-10/11/14/15/19, 02.11; foydalanuvchi PG-1 ni ovozi bilan tinglab: «haqiqiy ustozday gapirsin… nimaga chala ishlayapti!»)
+
+- ❌ «users tayyor, endi posts.»  ✅ «users jadvali tayyor. Endi ikkinchi jadvalni yaratamiz: postlar saqlanadigan posts jadvali.»
+- ❌ «Qaror ko'rsatkichi to'rt savol: bog'lanish, shakl, ishonchlilik va hajm.»  ✅ «Darsdagi qaror ko'rsatkichi to'rtta savoldan iborat: ma'lumot bog'langanmi, shakli qat'iymi, xato qimmatga tushadimi va ulkan, oddiy, tez saqlash kerakmi.»
+- ❌ «Ko'prikning keyingi qismi til.»  ✅ «Endi o'quvchi darsida qanday so'zlar ishlatilishini ko'ramiz.»
+- ❌ «Mongo buni jim saqlagan edi.»  ✅ «Mongo buni xato bermay saqlagan edi.» · ❌ «jim xato» ✅ «yashirin xato» · ❌ «bot jim» ✅ «bot javob bermaydi»
+- ❌ «Bu kursda o'quvchilar PostgreSQL bilan ishlaydi.»  ✅ «AI Startup kursidagi o'quvchilar PostgreSQL bilan ishlaydi.»
+- ❌ (ovoz) «Biz buni ikki psql oynasida sinab ko'rdik.»  ✅ «Biz buni ikkita PostgreSQL terminali oynasida sinab ko'rdik.» — buyruq sifatida qoladi: «psql minus U postgres».
+**Qoida (MENTOR_DARS_ETALON M32):** mentor eshitadi, o'qimaydi — har gapda ega va kesim bor; ro'yxatdan oldin nima ekani aytiladi («… savoldan iborat:»). Shifr-ibora (ikki ot, vergul, tire) ovozga yozilmaydi.
+🔧 Tekshiruv: til-lint `mentor-jim`, `mentor-koprik`, `mentor-bu-kursda` (error, faqat `src/mentor-kurs/`); to'liq gap — ko'rikda ko'z bilan.
+
+## §MENTOR-DEMAK — xulosasi yo'q ekranda mustahkamlovchi gap (F-1102-13, 02.11; «ba'zi page'lardan mohiyat topolmayapman»)
+
+- ❌ (tekshiruv, to'g'ri javob) «…Ekranda tuzatilgan holat: posts user id, va natija to'g'ri.»  ✅ «…va natija to'g'ri. **Demak, on satrida doim tashqi kalit ustuni turadi, ya'ni posts user id.**»
+- ❌ (amaliyot oxiri) «To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi.»  ✅ «…Davom ochilmaydi. **Demak, shu amaliyotdan keyin PostgreSQL kompyuteringizda o'rnatilgan va siz unga terminaldan ulana olasiz.**»
+**Qoida (M33):** «Demak, …» — bitta umumiy qoida yoki natija, misolning takrori emas.

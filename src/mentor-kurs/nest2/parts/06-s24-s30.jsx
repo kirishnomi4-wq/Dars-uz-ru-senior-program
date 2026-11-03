@@ -1,6 +1,6 @@
 
 // ============================================================
-//  6-BOSQICH · O'quvchi darslariga ko'prik (24–28)
+//  6-BOSQICH · O'quvchi darslarini o'tish (24–28)
 // ============================================================
 const MAP03 = [
   { t: 'Kirish va reja', s: '1–3', d: "«Admin tizimi tayyor — avtosalonda mashina yo'q» → alohida resurs; reja — 5 bosqich; mashina shakli — 4 ustun", m: "«Resurs — bir tur ma'lumot, o'z papkasi, o'z 5 bosqichi»; id ustuni yozilmaydi" },
@@ -10,7 +10,7 @@ const MAP03 = [
   { t: 'Podium, kartochkalar, yakun', s: '20–22', d: '12 kartochka: Resurs, Entity, BaseEntity, DTO, 400, PartialType, BaseService, super, @Post, Module, 404, DI', m: 'kartochkalarni birga o\'qing — har biri bugungi bir ekraningiz' },
 ];
 const S24 = {
-  kicker: "6-bosqich · ko'prik", eyebrow: "m4a-03 · «Birinchi resursni qo'lda qo'shish — mashinalar»", title: "m4a-03: o'quvchi siz bugun qilgan ishni qiladi",
+  kicker: "6-bosqich · o'quvchi darsini o'tish", eyebrow: "m4a-03 · «Birinchi resursni qo'lda qo'shish — mashinalar»", title: "m4a-03: o'quvchi siz bugun qilgan ishni qiladi",
   segments: [
     sg('a', "m4a-03 — <b>siz bugun qilgan ish</b>: car resursi, besh bosqich, 22 ekran", "Endi darsning asosiy maqsadi: bu mavzuni o'quvchiga o'tish. Ikkita o'quvchi darsi bor. Birinchisi m4a-03: o'quvchi aynan siz bugun qilgan ishni qiladi, car resursini besh bosqichda qo'shadi. Yigirma ikki ekran.", { hl: [] }),
     sg('b', "Har bosqichda o'quvchi <b>shu faylga tegishli qatorni</b> tanlaydi, keyin test, agent va haqiqiy loyiha", "Har bosqichda o'quvchi qatorlarni tanlaydi, qaysi biri shu faylga tegishli, keyin qisqa test. So'ng agent besh faylni yozadi va o'quvchi agent xatosini topadi. Oxirida amaliyot haqiqiy loyihada. Siz har bosqichda qoidani aytasiz: ustun Entity'da, qoida DTO'da, eshik Controller'da.", { hl: [1, 2] }),
@@ -39,7 +39,7 @@ function Screen24(p) {
 }
 
 // ============================================================
-//  25 · O'quvchi tili
+//  25 · O'quvchi darsidagi so'zlar
 // ============================================================
 const DICT2 = [
   ['javon chizmasi', 'Entity', 'jadval shakli', 'm4a-03'],
@@ -53,7 +53,7 @@ const DICT2 = [
   ['yorliq — ko\'p kitob bitta yorliqda, yorliq kitobda', '@ManyToOne', 'categoryId kitob jadvalida', 'm4a-04'],
 ];
 const S25 = {
-  kicker: "6-bosqich · ko'prik", title: "O'quvchi tili: javon chizmasi, anketa, retsept kitobi…",
+  kicker: "6-bosqich · o'quvchi darsini o'tish", title: "O'quvchi darsidagi so'zlar: javon chizmasi, anketa, retsept kitobi…",
   segments: [
     sg('a', "O'quvchi darslari <b>restoran tilida</b> gapiradi — siz ikkala tilni birga aytasiz", "Ikkinchi darsga o'tishdan oldin til. O'quvchi darslari Nest birinchi darsidagidek restoran tilida gapiradi. Siz ikkala tilni bilasiz va sinfda ularni birga aytasiz.", { rows: [] }),
     sg('b', "Entity <b>javon chizmasi</b> deyiladi, DTO — <b>buyurtma anketasi</b>, 400 esa nazoratchi to'xtatgani", "Entity javon chizmasi. DTO buyurtma anketasi, Partial type uning nusxasi. Anketa qoidasi buzilsa nazoratchi to'xtatadi, to'rt yuz.", { rows: [0, 1, 2] }),
@@ -63,7 +63,7 @@ const S25 = {
 };
 function Screen25(p) {
   return <Lesson p={p} S={S25} scene={({ seg, beat }) => <div className="mk-light" style={{ padding: 14 }}>
-    <div className="mk-tag">{t("O'quvchi aytadi → siz bilasiz", 'Ученик говорит → вы знаете')}</div>
+    <div className="mk-tag">{t("O'quvchi darsidagi so'z → uning atamasi", 'Слово из урока ученика → термин')}</div>
     <table className="mk-tbl"><thead><tr><th>{t("o'quvchi darsida", 'в уроке ученика')}</th><th>{t('atama', 'термин')}</th><th>{t('vazifa', 'задача')}</th><th>{t('qayerdan', 'откуда')}</th></tr></thead><tbody>
       {DICT2.map(([a, b, c, d], i) => <tr key={a} className={seg.rows.includes(i) ? 'hl' : ''} style={{ opacity: seg.rows.length && !seg.rows.includes(i) ? 0.55 : 1 }}><td>{a}</td><td><code>{b}</code></td><td style={{ color: T.ink2 }}>{c}</td><td style={{ color: T.ink3, fontSize: 12 }}>{d}</td></tr>)}
     </tbody></table>
@@ -95,7 +95,7 @@ export class BookEntity extends BaseEntity {
   @Column() categoryId: string;
 }`, { 8: { id: 'm' }, 9: { id: 'm' }, 10: { id: 'm' }, 12: { id: 'm' } });
 const S26 = {
-  kicker: "6-bosqich · ko'prik", eyebrow: "m4a-04 · «Praktika — KitobShop backend»", title: "KitobShop: o'quvchi buyuradi, agent yozadi — sizning tayyorgarligingiz",
+  kicker: "6-bosqich · o'quvchi darsini o'tish", eyebrow: "m4a-04 · «Praktika — KitobShop backend»", title: "KitobShop: o'quvchi buyuradi, agent yozadi — sizning tayyorgarligingiz",
   segments: [
     sg('a', "m4a-04 — <b>uch resurs agent bilan</b>: o'quvchi buyuradi, tekshiradi va shundan keyin qabul qiladi", "Ikkinchi dars m4a-04, KitobShop. Besh qadamni endi Copilot agenti qiladi, uch resurs uchun: kategoriya, kitob va buyurtma. O'quvchi yozmaydi: buyuradi, natijani tekshiruv ro'yxati bilan solishtiradi va shundan keyingina qabul qiladi.", { prep: -1, v: 'map' }),
     sg('b', "Diqqat: o'quvchi darslari <b>token va Authorize'ni o'rgatmaydi</b> — darsning boshida siz ko'rsatasiz", "Diqqat, ikkinchi xato. KitobShop'da yopiq eshiklar bor, ular token so'raydi. Lekin o'quvchi darslarining hech birida signin, token va Authorize o'rgatilmagan. Darsning boshida uchinchi amaliyotdagi ishni o'quvchilar bilan birga qiling: signin va Authorize.", { prep: 0, v: 'prep' }),
@@ -133,7 +133,7 @@ const STUMBLE2 = [
   ["Resurs ko'rinmaydi", "Mapped yo'q + 404 · yoki can't resolve … \"CarEntityRepository\"", 'app.module.ts imports · forFeature'],
   ['Raqamli id', '500 + invalid input syntax for type uuid: "1"', "id — javobdagi uuid"],
   ['Token va rol', '401 Unauthorized · 403 Forbidden resource', "Authorize · @Roles ro'yxati (superadmin va admin — har xil rol)"],
-  ["Entity o'zgardi", "column \"…\" contains null values · ma'lumot jim yo'qoldi", "yangi ustun nullable: true · Entity'da nima o'zgarganini so'rang"],
+  ["Entity o'zgardi", "column \"…\" contains null values · ma'lumot xato bermay yo'qoldi", "yangi ustun nullable: true · Entity'da nima o'zgarganini so'rang"],
 ];
 const QA2 = [
   ['Nega id raqam emas?', "uuid taxmin qilib bo'lmaydigan noyob matn, ikki server bir vaqtda yozsa ham to'qnashmaydi; BaseEntity'da bir marta yozilgan."],
@@ -173,7 +173,7 @@ const FINAL = [
   { q: "POST /api/v1/car bo'sh {} bilan yuborildi. Javob?", o: ["201, bo'sh mashina yaratiladi", '404, route topilmadi', '500, server xatosi', "400, buzilgan qoidalar ro'yxati"], c: 3, e: 'Global ValidationPipe DTO qoidalarini tekshiradi.', s: 13 },
   { q: 'GET /api/v1/car/1 — nima bo\'ladi?', o: ['500, terminalda uuid xatosi', '404, mashina topilmadi', '200, birinchi mashina', '400, DTO qoidasi buzildi'], c: 0, e: "id uuid; «1» bazada xato beradi, filtr uni 500 qiladi.", s: 13 },
   { q: 'Tokensiz GET /api/v1/admin yuborildi. Javob?', o: ['403, rol yetmaydi', "404, route yo'q", "401, token yo'q", "200, adminlar ro'yxati"], c: 2, e: "AuthGuard: Authorization yo'q → 401.", s: 16 },
-  { q: "Entity'da price'dan @Column olib tashlandi, server qayta yoqildi. Nima bo'ladi?", o: ['Server yiqiladi, xato chiqadi', "Ustun bazadan jim o'chadi", "Ustun bazada o'zgarmay qoladi", 'Faqat DTO xato beradi'], c: 1, e: "synchronize bazani Entity'ga moslaydi — ustun o'chadi, xabar yo'q.", s: 21 },
+  { q: "Entity'da price'dan @Column olib tashlandi, server qayta yoqildi. Nima bo'ladi?", o: ['Server yiqiladi, xato chiqadi', "Ustun bazadan xato bermay o'chadi", "Ustun bazada o'zgarmay qoladi", 'Faqat DTO xato beradi'], c: 1, e: "synchronize bazani Entity'ga moslaydi — ustun o'chadi, xabar yo'q.", s: 21 },
   { q: "O'quvchi m4a-03 bo'yicha localhost:3000/car'ni ochdi — 404, terminalda car uchun 5 ta Mapped bor. Nima deysiz?", o: ["Manzil /api/v1/car bo'lishi kerak", "CarModule'ni AppModule'ga ulang", 'Serverni qayta ishga tushiring', "Authorize'ga token qo'ying"], c: 0, e: "Mapped bor — route bor; o'quvchi darsida prefiks yozilmagan.", s: 24 },
   { q: "KitobShop: superadmin tokeni bilan POST /book — 403. O'quvchiga nima deysiz?", o: ['Qayta signin qiling, token eskirgan', "Authorize'ga tokenni qayta qo'ying", "BookModule'ni AppModule'ga ulang", 'Oddiy admin yarating va u bilan kiring'], c: 3, e: "@Roles('admin') — superAdmin ro'yxatda yo'q; token yaroqli, shuning uchun 403.", s: 26 },
   { q: "O'quvchi .env'ni keyin to'ldirdi, lekin kira olmayapti; bazada nomsiz superadmin bor. Nima qilasiz?", o: [".env'ni yana bir marta saqlang", 'Serverni ikki marta qayta yoqing', "Bazadagi o'sha satrni o'chirib, qayta yoqing", "USER_NAME'ni boshqa nomga o'zgartiring"], c: 2, e: "Superadmin bor bo'lsa onModuleInit yangisini yaratmaydi.", s: 6 },
@@ -222,7 +222,7 @@ function Screen28(p) {
         <div className="mk-say mc" style={{ overflow: 'auto', paddingRight: 4 }}>
           {showResult ? (<>
             <p className="mk-eyebrow">{t("O'z-sinov · natija", 'Самопроверка · результат')}{attempt > 1 ? t(` · ${attempt}-urinish`, ` · попытка ${attempt}`) : ''}</p>
-            <h2 className="mk-title" style={{ fontSize: 'clamp(22px,2.4vw,30px)' }}>{score} / {FINAL.length} — {score >= 6 ? t("dars o'zlashtirildi", 'урок усвоен') : t("yana bir ko'rib chiqing", 'посмотрите ещё раз')}</h2>
+            <h2 className="mk-title mc-q" style={{ fontSize: 'clamp(22px,1.9vw,26px)' }}>{score} / {FINAL.length} — {score >= 6 ? t("dars o'zlashtirildi", 'урок усвоен') : t("yana bir ko'rib chiqing", 'посмотрите ещё раз')}</h2>
             <div style={{ display: 'grid', gap: 8 }}>
               {FINAL.map((f, k) => <div key={k} className="mk-card" style={{ display: 'flex', gap: 12, alignItems: 'center', borderColor: res[k] && res[k].correct ? T.green : T.accent }}>
                 <span style={{ fontFamily: MONO, fontWeight: 700, color: res[k] && res[k].correct ? T.green : T.accent, minWidth: 22 }}>{res[k] && res[k].correct ? '✓' : '✗'}</span>
@@ -236,7 +236,7 @@ function Screen28(p) {
             </div>
           </>) : (<>
             <p className="mk-eyebrow">{t("O'z-sinov", 'Самопроверка')} · {i + 1} / {FINAL.length} · {t("bitta urinish · to'g'ri:", 'одна попытка · верно:')} {score}</p>
-            <h2 className="mk-title" style={{ fontSize: 'clamp(20px,2.2vw,28px)' }}>{q.q}</h2>
+            <h2 className="mk-title mc-q">{q.q}</h2>
             <div style={{ display: 'grid', gap: 10 }}>
               {q.o.map((o, k) => { let cls = 'mk-opt'; if (picked !== null) { if (k === q.c) cls += ' ok'; else if (k === picked) cls += ' bad'; else cls += ' off'; } return <button key={k} className={cls} disabled={picked !== null} onClick={() => pick(k)}><span className="l">{String.fromCharCode(65 + k)}</span><span>{o}</span></button>; })}
             </div>
@@ -257,7 +257,7 @@ const SUM2 = [
   { k: 'layer', t: 'Resurs — 5 qatlam: Entity · DTO · Service (BaseService + Repository) · Controller · Module (+ core/index.ts, AppModule)', st: ['ctrl', 'svc', 'repo', 'db'] },
   { k: 'err', t: '400 — DTO qoidasi yoki ortiqcha maydon; 500 — terminalni o\'qing (/car/1 — id uuid)', st: ['pipe'] },
   { k: 'guard', t: "401 — token yo'q; 403 — rol ro'yxatda yo'q; superadmin va admin — har xil rol", st: ['guard'] },
-  { k: 'sync', t: "Entity o'zgarsa baza o'zgaradi: ustun jim o'chadi, majburiy ustun serverni yiqitadi", st: ['db'] },
+  { k: 'sync', t: "Entity o'zgarsa baza o'zgaradi: ustun xato bermay o'chadi, majburiy ustun serverni yiqitadi", st: ['db'] },
   { k: 'bridge', t: "O'quvchi darslarida 3 xato: /car → /api/v1/car · token va Authorize'ni siz ko'rsatasiz · KitobShop'dan oldin oddiy admin", st: ['br'] },
 ];
 const STATIONS = [['br', t2('Brauzer', 'Браузер'), T.ink2], ['pre', '/api/v1', T.ink2], ['guard', 'Guard', N2.guard], ['pipe', 'ValidationPipe', N2.dto], ['ctrl', 'Controller', PART.ctrl], ['svc', 'Service', PART.svc], ['repo', 'Repository', N2.entity], ['db', t2('jadval', 'таблица'), N2.entity]];
@@ -294,10 +294,10 @@ src/core/entity/car.entity.ts (+ core/index.ts export) · src/api/car/dto/create
 ## Guard
 'public' — hamma · @Roles yozilmagan — tizimga kirganlar · 'ID' — o'z yozuvi · superAdmin va admin — har xil rol (@Roles('admin') → superadmin 403) · token 24 soat, eskirsa — qayta signin (/admin/token eskirganni tiklamaydi)
 ## synchronize tuzoqlari
-@Column olib tashlansa — ustun bazadan jim o'chadi · bor jadvalga majburiy ustun → «contains null values» → nullable: true
+@Column olib tashlansa — ustun bazadan xato bermay o'chadi · bor jadvalga majburiy ustun → «contains null values» → nullable: true
 ## O'quvchi darslaridagi 3 xato
 m4a-03: /car → /api/v1/car · token/Authorize o'rgatilmagan — siz ko'rsatasiz · m4a-04: KitobShop'dan oldin oddiy admin
-## O'quvchi tili
+## O'quvchi darsidagi so'zlar
 javon chizmasi=Entity · anketa=DTO · nazoratchi=ValidationPipe · retsept kitobi=BaseService · omborchi=Repository · ofitsiant=Controller · kirish taxtasi=Module · qo'riqchi=Guard · yorliq=@ManyToOne
 ## Sizning uyga vazifangiz
 brand resursi + car → brand (@ManyToOne, brandId nullable) + forFeature'ni buzib tuzatish → GitHub → repo linki platformadagi uyga vazifaga`;
@@ -311,7 +311,7 @@ const s29Segments = (passed) => s29Ru(passed, [
   sg('b2', "Resurs — <b>5 qatlam</b>: Entity, DTO, Service, Controller, Module", "Ikkinchi: resurs besh qatlam. Entity, DTO, Base service'dan meros olgan Service, Controller va Module, ustiga core index va bosh modul.", { hl: 'layer' }),
   sg('b3', "<b>400</b> — DTO qoidasi; <b>500</b> — terminalni o'qing", "Uchinchi: to'rt yuz DTO qoidasidan keladi, besh yuz bo'lsa sabab terminalda, masalan id uuid bo'lgani uchun.", { hl: 'err' }),
   sg('b4', "<b>401</b> — token yo'q, <b>403</b> — rol yo'q; superadmin va admin — har xil rol", "To'rtinchi: to'rt yuz bir token yo'q, to'rt yuz uch rol ro'yxatda yo'q. Superadmin va admin har xil rol.", { hl: 'guard' }),
-  sg('b5', "Entity o'zgarsa <b>baza o'zgaradi</b> — jim yoki yiqilib", "Beshinchi: Entity o'zgarsa baza ham o'zgaradi. Ustun olib tashlansa ma'lumot jim o'chadi, majburiy ustun qo'shilsa server yiqiladi.", { hl: 'sync' }),
+  sg('b5', "Entity o'zgarsa <b>baza o'zgaradi</b> — xato bermay yoki yiqilib", "Beshinchi: Entity o'zgarsa baza ham o'zgaradi. Ustun olib tashlansa ma'lumot xato bermay o'chadi, majburiy ustun qo'shilsa server yiqiladi.", { hl: 'sync' }),
   sg('b6', "O'quvchi darslarida <b>3 xato</b> — sinfda siz tuzatasiz", "Oltinchi, sinf uchun eng muhimi: o'quvchi darslarida uchta xato bor. Slesh car o'rniga api v bir slesh car, token va Authorize'ni siz ko'rsatasiz, KitobShop'dan oldin oddiy admin.", { hl: 'bridge' }),
   sg('hw', "<b>Uyga vazifa</b>: brand resursi, car'ni brand'ga bog'lash va bitta buzib-tuzatish", "Uyga vazifa. O'z loyihangizga brand resursini qo'shing, aynan o'quvchining uyga vazifasi: name va country, DTO qoidalari, Base service'dan meros, to'rt eshik va bosh modul. Keyin car'ni brand'ga bog'lang, yangi ustun ixtiyoriy bo'lsin. Bir marta ataylab forFeature'ni olib tashlang, xabarni o'qing va tuzating.", { hl: 'hw' }),
   sg('hw2', "Topshirish: GitHub'dagi repo linkini <b>platformadagi uyga vazifaga</b> qo'ying — boshqa hech narsa kerak emas", "GitHub'ga chiqaring va repo linkini platformadagi uyga vazifangizga qo'ying, boshqa hech narsa kerak emas. Qirq-oltmish daqiqa.", { hl: 'hw' }),

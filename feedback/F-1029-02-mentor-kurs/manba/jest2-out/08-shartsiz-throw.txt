@@ -1,0 +1,48 @@
+$ npm test
+
+> IntroNestArxitechture@0.0.1 test
+> jest
+
+FAIL src/order.spec.ts
+  orderTotal
+    ✕ 2 kitob narxini hisoblaydi (2 ms)
+    ✕ 1 dona — eng kichik haqiqiy buyurtma
+    ✓ 0 dona — xato (2 ms)
+    ✓ manfiy — xato (1 ms)
+    ✓ matn — xato (4 ms)
+
+  ● orderTotal › 2 kitob narxini hisoblaydi
+
+    quantity musbat raqam bo'lsin
+
+      1 | export function orderTotal(price: number, quantity: number): number {
+    > 2 |   throw new Error("quantity musbat raqam bo'lsin");
+        |         ^
+      3 |   return price * quantity;
+      4 | }
+      5 |
+
+      at orderTotal (order.ts:2:9)
+      at Object.<anonymous> (order.spec.ts:5:22)
+
+  ● orderTotal › 1 dona — eng kichik haqiqiy buyurtma
+
+    quantity musbat raqam bo'lsin
+
+      1 | export function orderTotal(price: number, quantity: number): number {
+    > 2 |   throw new Error("quantity musbat raqam bo'lsin");
+        |         ^
+      3 |   return price * quantity;
+      4 | }
+      5 |
+
+      at orderTotal (order.ts:2:9)
+      at Object.<anonymous> (order.spec.ts:8:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 3 passed, 5 total
+Snapshots:   0 total
+Time:        0.406 s, estimated 1 s
+Ran all test suites.
+[chiqish kodi: 1]
+

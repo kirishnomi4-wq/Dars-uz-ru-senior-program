@@ -1,0 +1,33 @@
+$ npm test
+
+> IntroNestArxitechture@0.0.1 test
+> jest
+
+FAIL src/order.spec.ts
+  orderTotal
+    ✕ 2 kitob narxini hisoblaydi (4 ms)
+
+  ● orderTotal › 2 kitob narxini hisoblaydi
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 20000
+    Received: 10002
+
+      4 |   it('2 kitob narxini hisoblaydi', () => {
+      5 |     const result = orderTotal(10000, 2);
+    > 6 |     expect(result).toBe(20000);
+        |                    ^
+      7 |   });
+      8 | });
+      9 |
+
+      at Object.<anonymous> (order.spec.ts:6:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.404 s, estimated 1 s
+Ran all test suites.
+[chiqish kodi: 1]
+

@@ -1,0 +1,22 @@
+$ node baza.js 1      # 1-ishga tushirish
+Aziza (5123456789): /start
+  bot → 5123456789: Ismingiz nima?
+Aziza (5123456789): Aziza
+  bot → 5123456789: Tanishganimdan xursandman, Aziza!
+Jasur (6234567890): /start
+  bot → 6234567890: Ismingiz nima?
+
+# bot to'xtatildi va qayta ishga tushirildi
+$ node baza.js 2
+Aziza (5123456789): /start
+  bot → 5123456789: Yana salom, Aziza!
+Jasur (6234567890): Jasur
+  bot → 6234567890: Tanishganimdan xursandman, Jasur!
+
+$ psql -c "SELECT telegram_id, ism, holat FROM users"
+ telegram_id |  ism  | holat  
+-------------+-------+--------
+  5123456789 | Aziza | TAYYOR
+  6234567890 | Jasur | TAYYOR
+(2 rows)
+

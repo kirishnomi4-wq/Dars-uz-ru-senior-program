@@ -1,0 +1,10 @@
+$ curl localhost:3000/oyinlar -H "Authorization: Bearer <Ali>"   # 2-o'yin
+{"id":2,"maydon":"Maktab maydoni","qoshilgan":6,"kerak":10}
+$ curl -X POST localhost:3000/oyinlar/2/qoshilish -H "Authorization: Bearer <Vali>"
+{"holat":"qoshildi"} [HTTP 201]
+# takror (sinf holati):
+{"message":"Siz bu o'yinga qo'shilgansiz","error":"Conflict","statusCode":409} [HTTP 409]
+
+# Ali klienti (TOKEN=<Ali> node klient.js):
+  0.0s  ulangan  (connect)
+  1.9s  HODISA oyin-ozgardi {"oyinId":2,"sabab":"qoshildi"}

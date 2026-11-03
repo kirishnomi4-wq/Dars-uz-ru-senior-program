@@ -1,0 +1,41 @@
+$ node server.js
+Server 3000-portda ishlayapti
+
+$ GET /api/cars 
+→ 200
+[{"id":1,"model":"Chevrolet Cobalt","daily_price":280000,"year":2022,"is_rented":false},{"id":2,"model":"Chevrolet Malibu","daily_price":520000,"year":2023,"is_rented":false},{"id":3,"model":"Kia K5","daily_price":610000,"year":2023,"is_rented":false}]
+
+$ POST /api/cars { "model": "Chevrolet Spark", "daily_price": 190000, "year": 2021 }
+→ 201
+{"id":4,"model":"Chevrolet Spark","daily_price":190000,"year":2021,"is_rented":null}
+
+$ PUT /api/cars/2 { "daily_price": 480000 }
+→ 200
+{"id":2,"model":"Chevrolet Malibu","daily_price":480000,"year":2023,"is_rented":false}
+
+$ DELETE /api/cars/1 
+→ 200
+{"message":"O'chirildi","deleted":1}
+
+$ PUT /api/cars/99 { "daily_price": 1 }
+→ 404
+{"error":"Mashina topilmadi"}
+
+$ DELETE /api/cars/99 
+→ 404
+{"error":"Mashina topilmadi"}
+
+$ GET /api/cars 
+→ 200
+[{"id":3,"model":"Kia K5","daily_price":610000,"year":2023,"is_rented":false},{"id":4,"model":"Chevrolet Spark","daily_price":190000,"year":2021,"is_rented":null},{"id":2,"model":"Chevrolet Malibu","daily_price":480000,"year":2023,"is_rented":false}]
+
+--- psql
+car_rental=# SELECT * FROM cars;
+ id |      model       | daily_price | year | is_rented 
+----+------------------+-------------+------+-----------
+  3 | Kia K5           |      610000 | 2023 | f
+  4 | Chevrolet Spark  |      190000 | 2021 | 
+  2 | Chevrolet Malibu |      480000 | 2023 | f
+(3 rows)
+
+

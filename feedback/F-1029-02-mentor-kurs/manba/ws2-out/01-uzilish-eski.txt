@@ -1,0 +1,12 @@
+$ node ws2-sinov.js uzilish eski
+# ilova: ulanish.ts — m12-dars-04-done (agent «bajardim» degan holat) · o'yin 2 «Maktab maydoni»
+  0.9s  [Ali] ulangan
+  1.0s  [Ali] GET /oyinlar (ekran ochildi) → Maktab maydoni: 6 / 10
+  1.8s  --- internet uzildi ---
+  1.8s  [Ali] ulanmoqda  (disconnect: transport close)
+  2.4s  [Ali] ulanmoqda  (connect_error: xhr poll error) …
+  3.3s  [Sardor] POST /oyinlar/2/qoshilish → 201
+  4.8s  --- internet qaytdi ---
+  5.3s  [Ali] ulangan
+  6.8s  NATIJA: Ali ekranida 6 / 10 · Backend'da 7 / 10
+  6.8s  [Ali] ulanmagan  (disconnect: io client disconnect)

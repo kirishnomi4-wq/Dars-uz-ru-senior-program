@@ -1,0 +1,10 @@
+$ node muzlash.js   # 3 s da Backend muzlatildi (SIGSTOP), 60 s dan keyin davom etdi (SIGCONT)
+ 0.0s  [Ali] ulanmoqda  (io() chaqirildi)
+ 0.0s  [Ali] ulangan  (connect)
+ 0.5s  [Ali] transport: websocket
+ 2.8s  --- Backend muzlatildi (javob bermaydi, ulanish yopilmagan) ---
+45.0s  [Ali] ulanmoqda  (disconnect: ping timeout · active=true)
+62.8s  --- Backend davom etdi ---
+62.8s  [Ali] ulangan  (connect)
+63.3s  [Ali] transport: websocket
+75.0s  [Ali] ulanmagan  (disconnect: io client disconnect · active=false)

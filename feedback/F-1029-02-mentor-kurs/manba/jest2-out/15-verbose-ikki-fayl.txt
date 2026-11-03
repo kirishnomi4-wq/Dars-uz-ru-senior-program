@@ -1,0 +1,24 @@
+$ npx jest --verbose
+PASS src/order.spec.ts
+  orderTotal
+    ✓ 2 kitob narxini hisoblaydi (2 ms)
+    ✓ 1 dona — eng kichik haqiqiy buyurtma (1 ms)
+    ✓ 0 dona — xato (5 ms)
+    ✓ manfiy — xato
+    ✓ matn — xato (1 ms)
+
+PASS src/coupon.spec.ts
+  applyCoupon
+    ✓ 100 000 dan 10 % — 90 000
+    ✓ chegara 0 % — o'zgarmaydi
+    ✓ chegara 100 % — 0
+    ✓ 101 % — xato (2 ms)
+    ✓ -1 % — xato (1 ms)
+    ✓ total matn — xato
+
+Test Suites: 2 passed, 2 total
+Tests:       11 passed, 11 total
+Snapshots:   0 total
+Time:        0.518 s, estimated 1 s
+Ran all test suites.
+[chiqish kodi: 0]

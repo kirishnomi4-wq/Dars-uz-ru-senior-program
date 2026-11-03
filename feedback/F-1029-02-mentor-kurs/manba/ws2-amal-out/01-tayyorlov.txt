@@ -1,0 +1,4 @@
+$ git checkout -f m12-dars-04-done · npm ci · cp .env.example .env · npm run start
+# successfully started: 1
+$ curl localhost:3000/oyinlar -H "Authorization: Bearer <Ali>"   # 3-o'yin
+{"id":3,"maydon":"Park maydoni","qoshilgan":4,"kerak":8}

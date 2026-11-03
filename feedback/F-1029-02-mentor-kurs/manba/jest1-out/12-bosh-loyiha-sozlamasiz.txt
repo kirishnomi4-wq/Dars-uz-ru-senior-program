@@ -1,0 +1,30 @@
+$ npm i -D jest ts-jest
+npm warn allow-scripts   @parcel/watcher@2.6.0 (install: node scripts/build-from-source.js)
+npm warn allow-scripts
+npm warn allow-scripts Run `npm approve-scripts --allow-scripts-pending` to review, or `npm approve-scripts <pkg>` to allow.
+--- package.json: "test": "jest"
+
+$ npm test
+
+> bosh@1.0.0 test
+> jest
+
+FAIL ./order.spec.ts
+  ● Test suite failed to run
+
+    Must use import to load ES Module: /tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/jest1-run/bosh/order.spec.ts
+
+    The file contains ESM syntax (import/export) that could not be executed as CommonJS. Either:
+      - Configure a transform (e.g. babel-jest) that compiles this file to CommonJS (see https://jestjs.io/docs/code-transformation)
+      - If the file is in "node_modules", allow it to be transformed by adjusting "transformIgnorePatterns" (see https://jestjs.io/docs/configuration#transformignorepatterns-arraystring)
+      - Use Node v24.9+ where Jest supports require(esm) natively (see https://jestjs.io/docs/ecmascript-modules#require-of-esm)
+
+      at createRequireEsmError (node_modules/jest-runtime/build/index.js:452:17)
+
+Test Suites: 1 failed, 1 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        0.257 s
+Ran all test suites.
+[chiqish kodi: 1]
+

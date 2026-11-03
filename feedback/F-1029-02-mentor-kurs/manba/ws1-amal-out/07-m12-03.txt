@@ -1,0 +1,7 @@
+$ git checkout -f m12-dars-03-done
+HEAD is now at 64283b2 m12-03: ulanish holatlari ekranda («Ulanmoqda…» — ro'yxat qoladi, eskirgan bo'lishi mumkin; «Ulanmagan» — pastga tortib yangilang); README «Real vaqt» — «Ulanish holatlari» va «Chekka holatlar»
+$ npm ci
+added 282 packages in 3s
+# .env joyida qoldi (gitignore)
+$ npm run start
+# successfully started: 1

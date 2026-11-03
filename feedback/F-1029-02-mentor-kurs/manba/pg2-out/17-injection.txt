@@ -1,0 +1,36 @@
+=== yopishtirilgan: DELETE FROM cars WHERE id = ' + req.params.id
+--- oldin
+ id |      model       
+----+------------------
+  3 | Kia K5
+  4 | Chevrolet Spark
+  2 | Chevrolet Malibu
+(3 rows)
+
+$ DELETE /api/cars/1%20OR%201=1 
+→ 200
+{"message":"O'chirildi","deleted":3}
+
+--- keyin
+ id | model 
+----+-------
+(0 rows)
+
+
+=== $1 bilan: DELETE FROM cars WHERE id = $1
+$ DELETE /api/cars/1%20OR%201=1 
+→ 500
+{"error":"invalid input syntax for type integer: \"1 OR 1=1\""}
+
+--- server terminali
+Server 3000-portda ishlayapti
+invalid input syntax for type integer: "1 OR 1=1"
+
+--- jadval joyida
+ id |      model       
+----+------------------
+  3 | Kia K5
+  4 | Chevrolet Spark
+  2 | Chevrolet Malibu
+(3 rows)
+

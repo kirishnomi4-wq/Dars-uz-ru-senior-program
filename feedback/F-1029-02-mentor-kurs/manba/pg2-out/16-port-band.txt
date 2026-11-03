@@ -1,0 +1,3 @@
+$ node server.js   (ikkinchi oynada, birinchisi ishlab turibdi)
+Server 3000-portda ishlayapti
+[chiqish kodi: 0]

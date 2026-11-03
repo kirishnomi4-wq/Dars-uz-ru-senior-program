@@ -1,0 +1,15 @@
+$ npm test
+
+> IntroNestArxitechture@0.0.1 test
+> jest
+
+No tests found, exiting with code 1
+Run with `--passWithNoTests` to exit with code 0
+In /tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/cicd1-run/nest/src
+  37 files checked.
+  testMatch:  - 0 matches
+  testPathIgnorePatterns: /node_modules/ - 37 matches
+  testRegex: .*\.spec\.ts$ - 0 matches
+Pattern:  - 0 matches
+[chiqish kodi: 1]
+

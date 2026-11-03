@@ -1,0 +1,4 @@
+# src/main.ts: NestFactory.create(AppModule) — rawBody yo'q
+9:  const app = await NestFactory.create(AppModule);
+$ … tolov-mashq/yubor {"tur":"tolash"}
+{"tolovRaqami":"m-1793494250782","javoblar":[{"holat":401,"tana":{"message":"Imzo mos emas","error":"Unauthorized","statusCode":401}}]}

@@ -1,0 +1,11 @@
+/* A — Yengil: sarlavha xira va o'rtacha, gap 22px/500, uzun gap 19px; kod chipi och */
+.mk-title{font-size:clamp(19px,1.5vw,22px);font-weight:600;color:#4B5162;letter-spacing:0;line-height:1.3;margin:0 0 14px}
+.mk-key{font-size:clamp(19px,1.45vw,22px);font-weight:500;line-height:1.42;letter-spacing:0}
+.mk-key[data-len="long"]{font-size:clamp(17px,1.3vw,19px)}
+.mk-key b{font-weight:600}
+.mk-key code{font:.88em "IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;background:#EEF0F4;color:#0F1115;border:1px solid #DDE1E8;padding:1px 7px;border-radius:6px;font-weight:500}
+.mk-title.mc-q{font-size:clamp(19px,1.5vw,22px);font-weight:600;color:#0F1115}
+.mk-say.mc .mk-opt{font-size:16px;padding:13px 16px}
+.mk-cover h1{font-size:clamp(24px,2.3vw,30px);font-weight:700;letter-spacing:-.01em}
+
+.mk-key code{white-space:nowrap}

@@ -1,0 +1,29 @@
+# ci.yml: on: once (o'quvchi darsidagi noto'g'ri variant)
+# run 41311640424 · branch yaml · commit 630ac32 · natija: failure · yozildi 2026-11-01 18:31:19 +0500
+# https://github.com/kirishnomi4-wq/mentor-ci-sinov/actions/runs/41311640424
+
+$ cat .github/workflows/*.yml
+name: CI
+on: once
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - run: npm test
+
+## gh run view
+
+X yaml CI · 41311640424
+Triggered via push less than a minute ago
+
+X This run likely failed because of a workflow file issue.
+
+For more information, see: https://github.com/kirishnomi4-wq/mentor-ci-sinov/actions/runs/41311640424
+
+## job → step (API: actions/runs/41311640424/jobs)
+
+## annotatsiyalar (check-runs)
+
+## to'liq log (gh run view --log)
+failed to get run log: log not found

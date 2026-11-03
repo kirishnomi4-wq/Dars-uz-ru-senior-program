@@ -1,0 +1,4 @@
+=== callback xatoni o'qiydi: app.listen(3000, (err) => { if (err) … })
+$ node server.js   (ikkinchi oynada, birinchisi ishlab turibdi)
+listen EADDRINUSE: address already in use :::3000
+[chiqish kodi: 1]

@@ -1,0 +1,1909 @@
+// ============================================================
+//  MENTOR KURSI — UMUMIY DVIGATEL (parts/01–02), hamma mentor darsi uchun bitta (PRD §9-1).
+//  F-1029-02 · ovozli, segment-sinxron dars. YIG'ILGAN FAYL — manba: bo'laklar.
+//  Yig'ish: Nest-1 — cat parts/*.jsx > NestArchMentorLesson.jsx;
+//           Nest-2 — cat parts/01-asos.jsx parts/02-dvigatel.jsx nest2/parts/*.jsx > NestRepoMentorLesson.jsx.
+//  Darsga xos narsa (dars ID'si, loyiha nomi, fayl ro'yxati) dvigatelda EMAS — darsning o'z bo'lagida (MKCFG, 02-dvigatel).
+//  Platforma SDK: bitta .jsx, import faqat react + '@lesson/runtime' (LESSON_PROMPT_WITH_UNLOCK.md).
+//  Metodika: chapda USTOZ GAPI (faqat hozirgi segment), o'ngda SAHNA; segment = qadam:
+//  element kiradi / yoritiladi / xiralashadi; ovoz tugagach «Davom» yonadi.
+// ============================================================
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useAudio, useSfx, useNextLessonAccess } from '@lesson/runtime';
+
+const UZ = "[O'zbekcha tallaffuz] ";
+const RU_MARK = '[Русское произношение] ';
+
+// UZ-RU (F-1030-38). Ikki yo'l:
+// 1) t(uz, ru) — sahna va dvigateldagi yozuv uchun; faqat render ichida chaqiriladi (modul darajasida EMAS).
+// 2) Ekran ma'lumotlari (S, kod satrlari, qadamlar, uyga vazifa) o'zbekcha holicha qoladi; ruschasi parts/08-ru.jsx da
+//    ru(obj, {…}) bilan ro'yxatga olinadi. setLang('ru') ildizda bir marta ishlaydi: o'zbekcha nusxa saqlanadi va
+//    obyektning O'ZI ruschaga almashtiriladi — shunda S1.plan kabi to'g'ridan o'qiladigan joy ham ruscha bo'ladi.
+//    Massivda segment `id` bo'yicha (yoki indeks), obyektda maydon bo'yicha; ruschasi yo'q joy o'zbekcha qoladi.
+//    O'zbekcha rejimda hech narsa almashtirilmaydi (ruscha ko'rilgandan keyin qaytsa — nusxadan tiklanadi).
+let LANG = 'uz';
+const t = (uz, ru) => (LANG === 'ru' && ru != null ? ru : uz);
+const RU_OF = new Map();
+const UZ_OF = new Map();
+const ru = (obj, tr) => { RU_OF.set(obj, tr); return obj; };
+const isPlain = (x) => x && typeof x === 'object' && !React.isValidElement(x);
+const snap = (x) => (Array.isArray(x) ? x.map(snap) : isPlain(x) ? Object.keys(x).reduce((o, k) => { o[k] = snap(x[k]); return o; }, {}) : x); // reduce — .oz.jsx Chrome 70 ga mos
+function ruMerge(b, r) {
+  if (r == null) return b;
+  if (!isPlain(r)) return r;
+  if (Array.isArray(b)) return b.map((x, i) => ruMerge(x, x && x.id != null && !Array.isArray(r) && r[x.id] !== undefined ? r[x.id] : r[i]));
+  if (isPlain(b)) { const o = { ...b }; Object.keys(r).forEach((k) => { o[k] = ruMerge(b[k], r[k]); }); return o; }
+  return r;
+}
+// Ruscha ma'lumot o'zbekchada yo'q joyga tushsa (noto'g'ri indeks, segment id yoki maydon) — jim o'tmasin
+function ruCheck(b, r, path) {
+  if (!isPlain(r)) return;
+  if (!isPlain(b)) { console.error('[ru] o\'zbekchada yo\'q: ' + path); return; }
+  Object.keys(r).forEach((k) => {
+    if (r[k] == null) return;
+    const hit = Array.isArray(b) && !Array.isArray(r) ? (b.find((x) => x && x.id === k) || b[k]) : b[k];
+    if (hit === undefined) console.error('[ru] o\'zbekchada yo\'q: ' + path + '.' + k);
+    else ruCheck(hit, r[k], path + '.' + k);
+  });
+}
+function setLang(lang) {
+  const L = lang === 'ru' ? 'ru' : 'uz';
+  if (L === LANG) return;
+  RU_OF.forEach((tr, obj) => {
+    if (!UZ_OF.has(obj)) { UZ_OF.set(obj, snap(obj)); ruCheck(obj, tr, Array.isArray(obj) ? '[]' : (obj.kicker || obj.title || '{}')); }
+    const v = L === 'ru' ? ruMerge(snap(UZ_OF.get(obj)), tr) : snap(UZ_OF.get(obj));
+    if (Array.isArray(obj)) obj.splice(0, obj.length, ...v);
+    else { Object.keys(obj).forEach((k) => { delete obj[k]; }); Object.assign(obj, v); }
+  });
+  LANG = L;
+}
+
+const T = {
+  bg: '#F5F6F8', paper: '#FFFFFF', ink: '#0F1115', ink2: '#4B5162', ink3: '#8A90A2', line: '#E3E6EC',
+  accent: '#E2451F', blue: '#0E7FB8', green: '#12805A', yellow: '#B57A00', purple: '#6D3BE4',
+  code: '#0F1115', codeInk: '#E8EAF0', codeDim: 'rgba(232,234,240,0.38)', codeHl: 'rgba(226,69,31,0.24)',
+  chip: '#EEF0F4', chipLine: '#DDE1E8',
+};
+const PART = { ctrl: T.blue, svc: T.green, mod: T.yellow };
+const SANS = 'system-ui,-apple-system,"Segoe UI",Roboto,sans-serif';
+const MONO = 'ui-monospace,Menlo,Consolas,monospace';
+
+const CSS = `
+.mk-stage,.mk-stage *,.mk-cover,.mk-cover *{box-sizing:border-box}
+.mk-stage{height:100vh;width:100%;background:${T.bg};color:${T.ink};font:16px/1.5 ${SANS};display:flex;flex-direction:column;overflow:hidden}
+.mk-head{flex:0 0 auto;background:${T.paper};border-bottom:1px solid ${T.line}}
+.mk-prog{height:3px;background:${T.line}}
+.mk-prog>div{height:100%;background:${T.accent};transition:width .5s}
+.mk-chrome{display:flex;justify-content:space-between;align-items:center;padding:10px 28px}
+.mk-kicker{font:600 11px/1 ${MONO};letter-spacing:.14em;text-transform:uppercase;color:${T.ink3};display:flex;align-items:center;gap:8px}
+.mk-kicker i{width:6px;height:6px;border-radius:50%;background:${T.accent};display:inline-block}
+.mk-count{font:700 13px/1 ${MONO};color:${T.ink}}
+.mk-body{flex:1;min-height:0;display:grid;grid-template-columns:minmax(320px,4fr) 8fr;gap:24px;padding:22px 28px}
+@media (min-width:1600px){.mk-panel{font-size:14px}.mk-explorer{font-size:13px}}
+@media (max-width:900px){.mk-body{grid-template-columns:1fr;grid-template-rows:auto 1fr;gap:14px;padding:14px}}
+.mk-ide{display:grid;grid-template-columns:218px minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);align-items:stretch;flex:0 1 auto;max-height:100%;min-height:0;background:#E9ECF1;border:1px solid #D5DAE2;border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(15,17,21,.10)}
+.mk-ide-bar{grid-column:1/-1;display:flex;align-items:center;gap:7px;padding:8px 14px;background:#DDE1E8;border-bottom:1px solid #D0D5DD;font:600 11px/1 ${MONO};color:${T.ink2};letter-spacing:.04em}
+.mk-ide-bar i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.mk-ide-bar i:nth-child(1){background:#FF5F57}.mk-ide-bar i:nth-child(2){background:#FEBC2E}.mk-ide-bar i:nth-child(3){background:#28C840}
+.mk-ide-bar span{margin-left:10px}
+.mk-ide-main{display:flex;flex-direction:column;gap:12px;min-width:0;min-height:0;padding:12px;background:${T.bg};overflow:auto}
+.mk-ide-main>*{flex:0 0 auto}
+.mk-ide-main>.mk-panel{max-height:none}
+.mk-ide .mk-explorer{border:0;border-right:1px solid #D5DAE2;border-radius:0;background:transparent}
+.mk-ide .mk-panel{box-shadow:none;border-radius:12px}
+.mk-ide .mk-panel{padding-top:0}
+.mk-ide .mk-panel .fn{position:sticky;top:0;left:auto;right:auto;display:block;width:max-content;max-width:100%;margin:0 0 8px -20px;padding:6px 14px;background:#24272F;color:${T.codeInk};border-radius:12px 0 10px 0;letter-spacing:.02em;font-size:11.5px;z-index:2}
+.mk-ide .mk-panel .fn+div{padding-top:0 !important}
+@media (max-width:900px){.mk-ide{grid-template-columns:1fr}}
+.mk-explorer{background:#EEF0F4;border:1px solid ${T.line};border-radius:14px;padding:10px 6px 12px;font:12px/1.75 ${MONO};color:${T.ink2};align-self:stretch;overflow:hidden}
+.mk-explorer .hd{font:600 10px/1 ${MONO};letter-spacing:.12em;text-transform:uppercase;color:${T.ink3};padding:0 8px 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mk-explorer .dir{color:${T.ink};font-weight:700;white-space:nowrap}
+.mk-explorer .dir,.mk-explorer .fi{position:relative}
+.mk-explorer .ig{position:absolute;top:0;bottom:0;width:1px;background:#C3C9D2;pointer-events:none}
+.mk-explorer .dir.shut{font-weight:500;color:${T.ink3}}
+.mk-explorer .dir .chev{display:inline-block;width:12px;font-size:9px;color:${T.ink3}}
+.mk-explorer .fi.mute{opacity:.5}
+.mk-codebar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:0 0 12px}
+.mk-codebar .what{font-size:15px;color:${T.ink2}}
+.mk-codebar .what b{color:${T.ink};font-family:${MONO};font-size:14px}
+.mk-codebar .end{margin-left:auto}
+.mk-trbtn{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:transparent;border:1.5px solid transparent;border-radius:12px;padding:11px 14px;font:inherit;color:${T.ink};cursor:pointer;transition:border-color .3s,background .3s}
+.mk-trbtn:hover{background:#F6F7F9}
+.mk-trbtn .q{font-weight:700;font-size:15px}
+.mk-trbtn .n{font-size:13px;color:${T.ink3}}
+.mk-trbtn .ar{margin-left:auto;font:700 14px/1 ${MONO};color:${T.ink3}}
+.mk-trbtn.hot{border-color:${T.accent};animation:mk-pulse 1.4s ease 3}
+.mk-trbtn.hot .q{color:${T.accent}}
+.mk-trbtn[aria-expanded="true"]{border-bottom-left-radius:0;border-bottom-right-radius:0}
+.mk-explorer .fi{display:flex;align-items:center;gap:7px;padding:1px 8px;border-radius:7px;border-left:3px solid transparent;transition:background .3s,opacity .3s;white-space:nowrap}
+.mk-explorer .fi i{width:8px;height:8px;border-radius:2px;background:var(--c);flex:0 0 auto}
+.mk-explorer .fi.on{background:#fff;border-left-color:${T.accent};color:${T.ink};font-weight:700;box-shadow:0 2px 8px rgba(15,17,21,.08)}
+.mk-explorer .fi.clk{cursor:pointer}
+.mk-explorer .fi.clk:hover{background:#fff}
+.mk-explorer .fi.new{animation:mk-up .45s ease both}
+.mk-explorer.big{font-size:14px;line-height:2;padding:14px 10px}
+.mk-explorer.big .fi{padding:3px 10px;border-radius:9px}
+.mk-explorer.big .fi .d{font:12.5px ${SANS};color:${T.ink3};margin-left:10px;white-space:normal}
+.mk-explorer.big .fi.on .d{color:${T.ink2}}
+.mk-browser{display:flex;gap:14px;align-items:center;padding:12px 16px}
+.mk-browser .url{font:13px ${MONO};padding:6px 12px;border:1px solid ${T.line};border-radius:10px;background:${T.paper}}
+.mk-browser .out{font-size:20px;font-weight:800}
+.mk-browser .out.er{color:${T.accent}}
+.mk-say{display:flex;flex-direction:column;min-height:0}
+.mk-eyebrow{font:600 11px/1 ${MONO};letter-spacing:.12em;text-transform:uppercase;color:${T.accent};margin:0 0 10px}
+.mk-title{font-size:clamp(19px,1.5vw,22px);line-height:1.3;font-weight:600;color:${T.ink2};margin:0 0 14px;letter-spacing:0}
+.mk-cap{flex:1;min-height:0;display:flex;flex-direction:column}
+.mk-key{font-size:clamp(19px,1.45vw,22px);line-height:1.42;font-weight:500;color:${T.ink};margin:0;letter-spacing:0;animation:mk-up .45s ease both}
+.mk-key[data-len="long"]{font-size:clamp(17px,1.3vw,19px)}
+.mk-key b{color:${T.accent};font-weight:600}
+.mk-key code{font:.88em ${MONO};background:${T.chip};color:${T.ink};border:1px solid ${T.chipLine};padding:1px 7px;border-radius:6px;font-weight:500;white-space:nowrap}
+.mk-tr{margin:0;padding:0;list-style:none;display:grid;gap:8px;max-height:52vh;overflow:auto;padding-right:6px}
+.mk-input{width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid ${T.line};border-radius:8px;font:13px/1.4 ${MONO};background:#fff;color:${T.ink}}
+.mk-input:focus{outline:2px solid ${T.accent};outline-offset:1px}
+.mk-input.need{border-color:${T.accent};animation:mk-glow 1.8s ease-in-out infinite}
+.mk-input.need:focus{animation:none}
+.mk-modal{position:fixed;inset:0;z-index:50;background:rgba(15,17,21,.45);display:flex;align-items:center;justify-content:center;padding:24px;animation:mk-fade .2s ease both}
+.mk-modal .box{background:${T.paper};border-radius:16px;max-width:960px;width:100%;max-height:82vh;display:flex;flex-direction:column;box-shadow:0 24px 60px rgba(15,17,21,.35);animation:mk-up .25s ease both}
+.mk-modal .hd{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid ${T.line}}
+.mk-modal .hd b{font-size:17px;color:${T.accent}}
+.mk-modal .hd span{font-size:13px;color:${T.ink3}}
+.mk-modal .hd .x{margin-left:auto;width:36px;height:36px;border-radius:10px;border:1px solid ${T.line};background:${T.paper};font-size:16px;cursor:pointer;color:${T.ink}}
+.mk-modal .hd .x:hover{border-color:${T.ink}}
+.mk-modal .bd{padding:6px 18px 18px;overflow:auto}
+.mk-modal .mk-tbl{table-layout:fixed;width:100%}
+.mk-modal .mk-tbl td:first-child{width:48%}
+.mk-modal .mk-tbl code{white-space:normal;word-break:break-word}
+.mk-tr li{font-size:14px;line-height:1.5;color:${T.ink3};padding:6px 10px;border-radius:8px;border-left:3px solid transparent}
+.mk-tr li.on{color:${T.ink};background:#FFF7F3;border-left-color:${T.accent}}
+.mk-tr li.done{color:${T.ink2}}
+.mk-tr code{font:0.92em ${MONO};background:#E3E6EC;border:1px solid #D3D7DF;padding:0 5px;border-radius:5px;color:${T.ink}}
+.mk-ask{margin-top:18px;padding:14px 16px;border:1.5px solid ${T.accent};border-radius:12px;background:#FFF7F3;animation:mk-up .4s ease both}
+.mk-ask p{margin:0 0 10px;font-weight:600}
+.mk-ask .row{display:flex;gap:10px;flex-wrap:wrap}
+.mk-ask .res{margin-top:10px;font-size:14px;color:${T.ink2}}
+.mk-now{font-size:clamp(17px,1.45vw,21px);line-height:1.6;color:${T.ink};margin:0;animation:mk-up .45s ease both}
+.mk-now b{color:${T.accent};font-weight:700}
+.mk-now code,.mk-prev code{font:0.92em ${MONO};background:#E3E6EC;border:1px solid #D3D7DF;padding:0 5px;border-radius:5px}
+.mk-dots{display:flex;gap:6px;margin:16px 0 0}
+.mk-dots i{width:22px;height:4px;border-radius:2px;background:${T.line};display:inline-block;transition:background .3s}
+.mk-dots i.on{background:${T.accent}}
+.mk-dots i.done{background:${T.ink3}}
+.mk-below{margin-top:18px}
+.mk-review{margin:14px 0 0;padding:10px 12px;border-radius:10px;background:#EEF0F4;color:${T.ink2};font-size:13.5px;line-height:1.45}
+.mk-scene{min-height:0;display:flex;flex-direction:column;justify-content:flex-start;gap:14px;overflow:auto}
+.mk-scene:not(.top)>:first-child{margin-top:auto}
+.mk-scene:not(.top)>:last-child{margin-bottom:auto}
+.mk-scene.top{justify-content:flex-start}
+.mk-panel{flex:0 1 auto;max-height:100%;min-height:0;background:${T.code};color:${T.codeInk};border-radius:16px;padding:18px 20px;font:13px/1.55 ${MONO};overflow:auto;position:relative;box-shadow:0 10px 30px rgba(15,17,21,.12)}
+.mk-panel .fn{position:absolute;top:10px;right:14px;font-size:11px;color:${T.codeDim};letter-spacing:.06em}
+.mk-ln{display:flex;gap:14px;padding:1px 8px;border-radius:6px;white-space:pre;opacity:0;transform:translateY(6px);transition:opacity .35s,transform .35s,background .35s}
+.mk-ln.in{opacity:1;transform:none}
+.mk-ln.dim{opacity:.5}
+.mk-ln.hl{background:${T.codeHl};box-shadow:inset 3px 0 0 ${T.accent}}
+.mk-ln.gone{opacity:1;background:rgba(239,68,68,.22);box-shadow:inset 3px 0 0 #F87171;text-decoration:line-through;text-decoration-color:#F87171;text-decoration-thickness:2px}
+.mk-ln.gone,.mk-ln.gone *{color:#FCA5A5!important}
+.mk-ln.new{background:rgba(18,128,90,.22);box-shadow:inset 3px 0 0 #86EFAC}
+.mk-ln .n{color:${T.codeDim};min-width:2ch;text-align:right;user-select:none}
+.mk-ln.wrap{white-space:pre-wrap}
+.mk-ln.clk{cursor:pointer}
+.mk-ln.clk:hover{background:rgba(232,234,240,.08)}
+.mk-ln.bad{background:rgba(226,69,31,.28);box-shadow:inset 3px 0 0 #FCA5A5}
+.mk-ln.good{background:rgba(18,128,90,.3);box-shadow:inset 3px 0 0 #86EFAC}
+.k{color:#C792EA}.s{color:#C3E88D}.d{color:#FFCB6B}.c{color:#82AAFF}.m{color:#89DDFF}.cm{color:#6B7280;font-style:italic}
+.p{color:#7DD3FC}.ok{color:#86EFAC}.er{color:#FCA5A5}.wn{color:#FDE68A}
+.mk-light{flex:0 1 auto;max-height:100%;min-height:0;background:${T.paper};border:1px solid ${T.line};border-radius:16px;padding:20px;position:relative;overflow:auto}
+.mk-light.fill{flex:1}
+.mk-tag{font:600 11px/1 ${MONO};letter-spacing:.08em;color:${T.ink3};text-transform:uppercase;margin:0 0 10px}
+.mk-nav{flex:0 0 auto;background:${T.paper};border-top:1px solid ${T.line};padding:12px 28px;display:flex;align-items:center;gap:12px}
+.mk-btn{border:1.5px solid ${T.ink};background:${T.ink};color:#fff;border-radius:12px;padding:11px 20px;font:600 15px/1 ${SANS};cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:transform .12s,opacity .3s,background .3s}
+.mk-btn:active{transform:scale(.97)}
+.mk-btn.ghost{background:transparent;color:${T.ink}}
+.mk-btn.soft{background:transparent;color:${T.ink2};border-color:${T.line};font-weight:500}
+.mk-btn.sm{padding:7px 12px;font-size:13px;border-radius:9px}
+.mk-btn:disabled{opacity:.35;cursor:not-allowed}
+.mk-lockhint{margin-left:auto;font-size:13.5px;color:${T.ink2};display:flex;align-items:center;gap:8px}
+.mk-lockhint i{width:7px;height:7px;border-radius:50%;background:${T.accent};display:inline-block;animation:mk-pulse 1.6s ease-in-out infinite}
+.mk-say.mc>:first-child{margin-top:auto}
+.mk-say.mc>:last-child{margin-bottom:auto}
+.mk-say.mc .mk-opt{font-size:16px;padding:13px 16px}
+.mk-body.mc-split{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
+.mk-body.mc-split>.mk-say.mc>:first-child{margin-top:0}
+.mk-title.mc-q{font-size:clamp(19px,1.5vw,22px);font-weight:600;color:${T.ink}}
+.mc-wait{border:1.5px dashed ${T.line};border-radius:12px;padding:16px 18px;color:${T.ink3};font-size:14px;background:${T.paper}}
+@media (max-width:1300px){.mk-body.mc-split{grid-template-columns:1fr;grid-auto-rows:max-content;overflow:auto}.mk-body.mc-split>.mk-say.mc,.mk-body.mc-split>.mc-after{overflow:visible!important}}
+.mk-btn.ready{background:${T.accent};border-color:${T.accent};animation:mk-pulse 1.6s ease-in-out infinite}
+.mk-audio{display:flex;align-items:center;gap:6px}
+.mk-audio button{background:transparent;border:1px solid ${T.line};border-radius:8px;padding:5px 8px;cursor:pointer;color:${T.ink2};font:12px/1 ${SANS};display:inline-flex;align-items:center;gap:6px}
+.mk-audio .live{color:${T.accent};border-color:${T.accent}}
+.mk-bars{display:inline-flex;gap:2px;align-items:flex-end;height:12px}
+.mk-bars i{width:3px;background:currentColor;border-radius:1px;animation:mk-eq .9s ease-in-out infinite}
+.mk-bars i:nth-child(2){animation-delay:.15s}.mk-bars i:nth-child(3){animation-delay:.3s}
+.mk-in{opacity:0;transform:translateY(8px);transition:opacity .4s,transform .4s}
+.mk-in.on{opacity:1;transform:none}
+.mk-in.dim{opacity:.55}
+.mk-box{border-radius:14px;padding:12px 14px;background:${T.paper};border:2px solid var(--c);color:${T.ink};transition:opacity .4s,transform .4s,box-shadow .4s}
+.mk-box.hl{box-shadow:0 0 0 4px rgba(226,69,31,.16),0 12px 28px rgba(15,17,21,.12)}
+.mk-box h4{margin:0 0 4px;font-size:15px;color:var(--c)}
+.mk-box p{margin:0;font-size:12.5px;color:${T.ink2};line-height:1.35}
+.mk-box code{font:12px ${MONO};color:${T.ink}}
+.mk-flow{position:relative;padding-top:26px}
+.mk-row{display:grid;grid-template-columns:1fr 44px 1fr 44px 1fr;align-items:stretch}
+.mk-arrow{display:flex;align-items:center;justify-content:center;color:${T.line};font-size:22px;transition:color .4s}
+.mk-arrow.on{color:${T.accent}}.mk-arrow.back{color:${T.green}}
+.mk-dot{position:absolute;top:0;width:16px;height:16px;border-radius:50%;background:${T.accent};box-shadow:0 0 0 6px rgba(226,69,31,.18);transform:translateX(-50%);transition:left .9s cubic-bezier(.4,0,.2,1),opacity .3s,background .3s;opacity:0}
+.mk-dot.in{opacity:1}.mk-dot.back{background:${T.green};box-shadow:0 0 0 6px rgba(18,128,90,.18)}
+.mk-file{display:flex;align-items:center;gap:8px;padding:5px 10px;border-radius:8px;font:13px/1.4 ${MONO};color:${T.ink2};transition:opacity .35s,background .35s}
+.mk-file.hl{background:#EEF0F4;color:var(--c);font-weight:700}
+.mk-file i{width:8px;height:8px;border-radius:2px;background:var(--c,${T.ink3});display:inline-block;flex:0 0 auto}
+.mk-plan{display:grid;gap:10px}
+.mk-plan div{display:flex;gap:12px;align-items:center;padding:12px 14px;border:1px solid ${T.line};border-radius:12px;background:${T.paper};transition:border-color .3s,box-shadow .3s,opacity .3s}
+.mk-plan div.hl{border-color:${T.accent};box-shadow:0 0 0 3px rgba(226,69,31,.12)}
+.mk-plan div.dim{opacity:.5}
+.mk-plan b{font:700 12px/1 ${MONO};color:${T.accent};min-width:22px}
+.mk-opt{display:flex;gap:12px;align-items:center;text-align:left;width:100%;padding:14px 16px;border-radius:12px;border:1.5px solid ${T.line};background:${T.paper};color:${T.ink};font:500 16px/1.35 ${SANS};cursor:pointer;transition:border-color .2s,background .2s,transform .12s,opacity .3s}
+.mk-opt:hover:not(:disabled){border-color:${T.ink}}
+.mk-opt:disabled{cursor:default}
+.mk-opt .l{font:700 12px/1 ${MONO};color:${T.ink3};min-width:18px}
+.mk-opt.ok{border-color:${T.green};background:#E3F5EC;color:${T.green}}
+.mk-opt.bad{border-color:${T.accent};background:#FFF0EB;color:${T.accent};opacity:.75}
+.mk-opt.off{opacity:.45}
+.mk-fb{margin-top:14px;padding:14px 16px;border-radius:12px;border-left:4px solid var(--c);background:var(--bg);animation:mk-up .4s ease both}
+.mk-fb b{display:block;font:700 11px/1 ${MONO};letter-spacing:.1em;text-transform:uppercase;color:var(--c);margin:0 0 6px}
+.mk-card{border:1px solid ${T.line};border-radius:12px;padding:12px 14px;background:${T.paper}}
+.mk-card h5{margin:0 0 6px;font-size:13px;color:${T.ink3};font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.mk-rule{border-left:4px solid ${T.accent};background:#FFF0EB;border-radius:10px;padding:12px 14px;font-size:15px;line-height:1.5}
+.mk-rule b{color:${T.accent}}
+.mk-tbl{width:100%;border-collapse:collapse;font-size:13.5px}
+.mk-tbl th,.mk-tbl td{text-align:left;padding:7px 10px;border-bottom:1px solid ${T.line};vertical-align:top}
+.mk-tbl th{font:600 11px/1 ${MONO};letter-spacing:.08em;text-transform:uppercase;color:${T.ink3}}
+.mk-tbl code{font:12.5px ${MONO};background:#EEF0F4;padding:1px 6px;border-radius:5px;white-space:nowrap}
+.mk-tbl tr.hl td{background:#FFF7F3}
+.mk-step{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;border:1px solid ${T.line};border-radius:12px;background:${T.paper};transition:border-color .3s,box-shadow .3s,opacity .3s}
+.mk-step.hl{border-color:${T.accent};box-shadow:0 0 0 3px rgba(226,69,31,.12)}
+.mk-step input{width:18px;height:18px;margin-top:3px;accent-color:${T.green}}
+.mk-step .t{flex:1;min-width:0}
+.mk-step .t b{display:block;font-size:14px;margin-bottom:3px}
+.mk-step .cmd{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:4px 0}
+.mk-step code{font:12.5px ${MONO};background:#EEF0F4;padding:2px 7px;border-radius:6px}
+.mk-step .exp{font-size:12.5px;color:${T.ink3}}
+.mk-copy{border:1px solid ${T.line};background:#fff;border-radius:6px;padding:2px 7px;font:11px ${SANS};cursor:pointer;color:${T.ink2}}
+.mk-qa{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mk-qa button{text-align:left;border:1px solid ${T.line};border-radius:12px;background:${T.paper};padding:12px 14px;cursor:pointer;font:inherit;color:${T.ink};transition:border-color .3s,box-shadow .3s,opacity .3s}
+.mk-qa button.hl{border-color:${T.accent};box-shadow:0 0 0 3px rgba(226,69,31,.12)}
+.mk-qa button.dim{opacity:.5}
+.mk-qa b{display:block;font-size:14px;margin-bottom:6px}
+.mk-qa p{margin:0;font-size:13px;color:${T.ink2};line-height:1.45}
+.mk-tree{font:12.5px/1.6 ${MONO};color:${T.ink3}}
+.mk-tree div{padding:0 6px;border-radius:5px;transition:background .3s,color .3s}
+.mk-tree .g{color:${T.green};background:#E3F5EC}.mk-tree .y{color:${T.yellow};background:#FFF6E2}.mk-tree .r{color:${T.ink2};background:#EFF1F4}
+.mk-tree .f{color:${T.ink};font-weight:700}
+.mk-cover{height:100vh;display:grid;place-items:center;background:${T.bg};padding:24px;color:${T.ink};font:16px/1.5 ${SANS}}
+.mk-cover .card{max-width:760px;width:100%;background:${T.paper};border:1px solid ${T.line};border-radius:20px;padding:36px 40px;box-shadow:0 20px 60px rgba(15,17,21,.08)}
+.mk-cover h1{font-size:clamp(24px,2.3vw,30px);line-height:1.15;font-weight:700;margin:8px 0 10px;letter-spacing:-.01em}
+.mk-cover p{color:${T.ink2};font-size:17px;line-height:1.55;margin:0 0 22px}
+.mk-cover ul{margin:0 0 26px;padding:0;list-style:none;display:grid;gap:8px;color:${T.ink2};font-size:15px}
+.mk-cover li::before{content:"—";color:${T.accent};margin-right:10px}
+.mk-req{display:grid;gap:8px}
+.mk-req button{display:flex;gap:10px;align-items:center;border:1px solid ${T.line};border-radius:10px;background:${T.paper};padding:9px 12px;cursor:pointer;font:600 13px ${MONO};color:${T.ink};text-align:left;transition:border-color .3s}
+.mk-req button.hl{border-color:${T.accent}}
+.mk-req .st{font:700 11px ${MONO};padding:2px 7px;border-radius:6px;background:#EEF0F4;color:${T.ink2}}
+.mk-req .st.s2{background:#E3F5EC;color:${T.green}}.mk-req .st.s4{background:#FFF0EB;color:${T.accent}}
+.mk-req pre{margin:6px 0 0;font:12px/1.45 ${MONO};white-space:pre-wrap;color:${T.ink2}}
+@keyframes mk-up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes mk-fade{from{opacity:0}to{opacity:1}}
+@keyframes mk-glow{0%,100%{box-shadow:0 0 0 0 rgba(226,69,31,0)}50%{box-shadow:0 0 0 5px rgba(226,69,31,.16)}}
+@keyframes mk-pulse{0%,100%{box-shadow:0 0 0 0 rgba(226,69,31,.35)}50%{box-shadow:0 0 0 8px rgba(226,69,31,0)}}
+@keyframes mk-eq{0%,100%{height:4px}50%{height:12px}}
+@keyframes mk-route{0%{left:calc((100% - 88px) / 6)}35%{left:50%}55%{left:calc(100% - (100% - 88px) / 6)}80%{left:50%}100%{left:calc((100% - 88px) / 6)}}
+`;
+function useCss() {
+  useEffect(() => {
+    let s = document.getElementById('mk-css');
+    if (!s) { s = document.createElement('style'); s.id = 'mk-css'; document.head.appendChild(s); }
+    if (s.textContent !== CSS) s.textContent = CSS;
+  }, []);
+}
+
+// ============================================================
+//  DVIGATEL — segment-qadam, sahna qobig'i, umumiy komponentlar
+// ============================================================
+const html = (s) => ({ __html: s });
+// F-1102-22 (M40): chap panel gapining uzunligi — CSS `.mk-key[data-len]` shu bilan o'lchamni moslaydi (teglarsiz belgi soni)
+const lenTag = (s) => {
+  if (typeof s !== 'string') return undefined;
+  const n = s.replace(/<[^>]+>/g, '').trim().length;
+  return n <= 70 ? 'short' : n <= 110 ? 'mid' : 'long';
+};
+// Ovoz matni so'z bilan («to'rt yuz to'rt»), ekran raqam bilan (404): show berilmagan matn uchun
+// Tartib muhim: uzun ibora oldin («ming ikki yuz qirq» → 1240, keyin «ikki yuz» → 200 uni buzmaydi)
+const DIGITS = [['ming ikki yuz qirq', '1240'], ["to'rt yuz to'rt", '404'], ["to'rt yuz bir", '401'], ["to'rt yuz uch", '403'], ['ikki yuz bir', '201'], ['besh yuz', '500'], ["to'rt yuz", '400'], ['ikki yuz', '200'], ['uch ming', '3000'], ["to'qson to'qqiz", '99'], ['index nol', 'index [0]'],
+  ["o'n birinchi versiya", '11-versiya'], ["o'n-o'n besh", '10–15'], ["o'n marta", '10 marta'], ['ikki-besh', '2–5'], ['yigirma ikki', '22'], ["o'ttizdan oltmishgacha", '30–60'], ["oltmishdan to'qsongacha", '60–90'], ['yigirma', '20'], ["o'ttiz", '30'], ["to'qson", '90']];
+const digits = (t) => DIGITS.reduce((acc, [w, d]) => acc.replace(new RegExp(w.replace(/'/g, "['\u2019]"), 'gi'), d), t || '');
+// Ovozga ketadigan matn (platforma qoidasi, LESSON_PROMPT_WITH_UNLOCK «Multilingual narration»): host-marker + haqiqiy inglizcha
+// IBORALAR `[English pronunciation] … [end]` ichida (terminal xabarlari, atama-iboralar). Yakka atamalar (Controller, route)
+// o'ralmaydi — qoida «faqat kerak joyda». Ekranda/«Matn»da teg ko'rinmaydi: voice() faqat useAudio'ga beriladi.
+const EN_PHRASES = [
+  /Unable to connect to the database/g, /client password must be a string/g, /password authentication failed for user/g,
+  /Nest application successfully started/g, /successfully started/g, /Validation failed/g, /Internal server error/g,
+  /can't resolve dependencies/g, /invalid controller/g, /Dependency Injection/g, /Hello World/g, /Cannot GET/g,
+  /Bad Request/g, /Not Found/g, /does not exist/g, /Potential solutions/g, /Car with id [\w' ]+? not found/g,
+];
+const voice = (t) => {
+  const keep = [];
+  let out = t || '';
+  EN_PHRASES.forEach((re) => { out = out.replace(re, (m) => { keep.push(m); return `\u0000${keep.length - 1}\u0000`; }); });
+  return (LANG === 'ru' ? RU_MARK : UZ) + out.replace(/\u0000(\d+)\u0000/g, (_, i) => `[English pronunciation] ${keep[i]} [end]`);
+};
+const HELP_ROW = ['Hech biri emas', "Skrinshot + xato matnini mentor-kurs Telegram guruhiga yuboring; darsni to'xtatmang, keyingi ekranga o'ting"];
+const vis = (at, beat) => at == null || at <= beat;
+
+// useAudio(segments) → currentId. Qadam faqat oldinga o'sadi. `ask` segmenti: ovoz savol beradi va
+// tugma bosilguncha kutadi (waits_for button_click/step) — «o'ylab ko'ring».
+// `review` (Orqaga bilan qaytilgan ekran, A12): ovoz yo'q, ekran yakuniy holatda; ↺ boshidan — ovoz bilan qayta
+function useBeats(segments, review) {
+  const segs = useMemo(() => review ? [] : segments.map((s, i) => ({ id: s.id, text: voice(s.text), trigger: i === 0 ? 'on_mount' : 'after_previous', waits_for: s.ask ? { type: 'button_click', target: 'step' } : s.waits_for })), [segments, review]);
+  const audio = useAudio(segs);
+  const [beat, setBeat] = useState(review ? segments.length - 1 : 0);
+  const [done, setDone] = useState(!!review);
+  const [guess, setGuess] = useState({});
+  const started = useRef(false);
+  useEffect(() => {
+    const i = segments.findIndex((s) => s.id === audio.currentId);
+    if (i >= 0) { started.current = true; setBeat((b) => Math.max(b, i)); }
+  }, [audio.currentId, segments]);
+  // Runtime savolda kutyapti, lekin savol segmenti currentId'da ko'rinmay o'tib ketgan bo'lsa (ovoz rad etilgan / juda qisqa) —
+  // qadamni o'sha savolga suramiz, aks holda savol chiqmaydi va ekran qotadi
+  useEffect(() => {
+    if (!audio.waitingFor || audio.currentId) return;
+    const k = segments.findIndex((s, i) => i >= beat && s.ask);
+    if (k >= 0) { started.current = true; setBeat((b) => Math.max(b, k)); }
+  }, [audio.waitingFor, audio.currentId, beat, segments]);
+  // F-1031-16: oxirgi segment ovozi YUKLANAYOTGANDA ham isPlaying=false bo'ladi — Davom erta ochilmasin:
+  // zanjir tugaganini currentId bo'shagani bilan bilamiz (platforma ham, dev shim ham oxirida null qiladi)
+  useEffect(() => {
+    if (!audio.isPlaying && !audio.waitingFor && !audio.currentId && started.current && beat >= segments.length - 1) setDone(true);
+  }, [audio.isPlaying, audio.waitingFor, audio.currentId, beat, segments.length]);
+  const stepManual = useCallback(() => { setBeat((b) => { const n = Math.min(b + 1, segments.length - 1); if (n === segments.length - 1) setDone(true); return n; }); }, [segments.length]);
+  // «O'ylab ko'ring»: tugma ovoz paytida ham bosiladi; runtime hali kutmayotgan bo'lsa, kutishga o'tganda yuboriladi
+  const pendingAsk = useRef(false);
+  const answerAsk = useCallback((segId, i) => {
+    setGuess((g) => ({ ...g, [segId]: i }));
+    if (audio.waitingFor) audio.triggerEvent('button_click', 'step');
+    else if (audio.muted || audio.status === 'idle') stepManual();
+    else pendingAsk.current = true;
+  }, [audio, stepManual]);
+  useEffect(() => { if (audio.waitingFor && pendingAsk.current) { pendingAsk.current = false; audio.triggerEvent('button_click', 'step'); } }, [audio.waitingFor, audio]);
+  return { audio, beat, done, stepManual, seg: segments[beat], guess, answerAsk };
+}
+
+// ↺ = ekranni BOSHIDAN (ovoz + sahna + qadamlar) — root komponent ekranni qayta o'rnatadi (F-1030-05); onRestart bo'lmasa — hozirgi gap
+function AudioChip({ audio, onRestart }) {
+  return (
+    <div className="mk-audio">
+      <button className={audio.isPlaying ? 'live' : ''} onClick={audio.toggleMute} title={audio.muted ? t('Ovozni yoqish', 'Включить звук') : t("Ovozni o'chirish", 'Выключить звук')}>
+        {audio.isPlaying ? <span className="mk-bars"><i /><i /><i /></span> : <span>{audio.muted ? '🔇' : '🔈'}</span>}
+        {audio.muted ? t("o'chiq", 'выкл.') : (audio.isPlaying ? t('ustoz gapiryapti', 'учитель говорит') : t('ovoz', 'звук'))}
+      </button>
+      <button onClick={onRestart || audio.replay} title={t('Ekranni boshidan', 'Экран с начала')}>{t('↺ boshidan', '↺ с начала')}</button>
+    </div>
+  );
+}
+
+// lockHint — Davom nega yopiqligini aytadi (UX-1); → / Enter — Davom ochiq bo'lsa keyingi ekran (UX-8; matn maydonida ishlamaydi)
+function Stage({ kicker, idx, total, audio, children, onBack, onNext, onRestart, nextReady, nextDisabled, nextLabel, extra, lockHint }) {
+  useEffect(() => {
+    const onKey = (e) => {
+      if (nextDisabled || !onNext || e.altKey || e.ctrlKey || e.metaKey) return;
+      const t = document.activeElement; const tag = t && t.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || (e.key === 'Enter' && (tag === 'BUTTON' || tag === 'A'))) return;
+      if (e.key === 'ArrowRight' || e.key === 'Enter') { e.preventDefault(); onNext(); }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [nextDisabled, onNext]);
+  return (
+    <div className="mk-stage">
+      <div className="mk-head">
+        <div className="mk-prog"><div style={{ width: `${((idx + 1) / total) * 100}%` }} /></div>
+        <div className="mk-chrome">
+          <div className="mk-kicker"><i />{kicker}</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+            {audio && <AudioChip audio={audio} onRestart={onRestart} />}
+            <span className="mk-count">{String(idx + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}</span>
+          </div>
+        </div>
+      </div>
+      {children}
+      <div className="mk-nav">
+        {onBack ? <button className="mk-btn ghost" onClick={onBack}>{t('← Orqaga', '← Назад')}</button> : <span />}
+        {extra}
+        {nextDisabled && lockHint && <span className="mk-lockhint"><i />{lockHint}</span>}
+        <button className={`mk-btn${nextReady && !nextDisabled ? ' ready' : ''}`} disabled={!!nextDisabled} style={{ marginLeft: nextDisabled && lockHint ? 12 : 'auto' }} onClick={onNext} title={nextDisabled ? lockHint || '' : t('Davom (→ yoki Enter)', 'Далее (→ или Enter)')}>{nextLabel || t('Davom', 'Далее')} →</button>
+      </div>
+    </div>
+  );
+}
+
+// Chap ustun: sarlavha + KALIT IBORA (hozirgi segment) + qadam chiziqchalari + «Matn» (butun transkript) + «o'ylab ko'ring»
+function Say({ eyebrow, title, segments, beat, audio, stepManual, below, guess, answerAsk, review }) {
+  const now = segments[beat];
+  const keyHtml = now.key || now.show || digits(now.text);
+  const [tr, setTr] = useState(false);
+  const showManual = !review && (audio.muted || (!audio.isPlaying && !audio.waitingFor && beat < segments.length - 1 && audio.status === 'idle' && !now.ask));
+  const asking = now.ask && guess && guess[now.id] === undefined;
+  const prevAsk = beat > 0 && segments[beat - 1].ask ? segments[beat - 1] : null;
+  return (
+    <div className="mk-say">
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 10 }}>
+        <div>{eyebrow && <p className="mk-eyebrow">{eyebrow}</p>}<h2 className="mk-title" data-len={lenTag(title)}>{title}</h2></div>
+        <button className="mk-btn soft sm" onClick={() => setTr((v) => !v)} title={t("Ustoz gapining to'liq matni", 'Полный текст учителя')}>{tr ? t('Matnni yopish', 'Скрыть текст') : t('Matn', 'Текст')}</button>
+      </div>
+      <div className="mk-cap">
+        {tr ? (
+          <ul className="mk-tr">{segments.map((s, i) => <li key={s.id} className={i === beat ? 'on' : (i < beat ? 'done' : '')} dangerouslySetInnerHTML={html(s.show || digits(s.text))} />)}</ul>
+        ) : (
+          <p className="mk-key" key={now.id} data-len={lenTag(keyHtml)} dangerouslySetInnerHTML={html(keyHtml)} />
+        )}
+        <div className="mk-dots">{segments.map((s, i) => <i key={s.id} className={i === beat ? 'on' : (i < beat ? 'done' : '')} />)}</div>
+        {review && <p className="mk-review">{t("Takrorlash: ekran tayyor holatda, ovozsiz. Ovoz bilan qayta eshitish — tepadagi «↺ boshidan». To'liq matn — «Matn».", 'Повтор: экран в готовом виде, без звука. Послушать заново со звуком — «↺ с начала» вверху. Полный текст — «Текст».')}</p>}
+        {asking && (
+          <div className="mk-ask"><p>{now.ask.q}</p><div className="row">{now.ask.opts.map((o, i) => <button key={i} className="mk-btn ghost sm" onClick={() => answerAsk(now.id, i)}>{o}</button>)}</div></div>
+        )}
+        {prevAsk && guess && guess[prevAsk.id] !== undefined && (
+          <div className="mk-ask" style={{ borderColor: guess[prevAsk.id] === prevAsk.ask.answer ? T.green : T.ink3, background: guess[prevAsk.id] === prevAsk.ask.answer ? '#E3F5EC' : '#F0F2F5' }}>
+            <div className="res">{t('Sizning javobingiz:', 'Ваш ответ:')} <b>{prevAsk.ask.opts[guess[prevAsk.id]]}</b> — {guess[prevAsk.id] === prevAsk.ask.answer ? t("to'g'ri", 'верно') : t('aslida: ', 'на самом деле: ') + prevAsk.ask.opts[prevAsk.ask.answer]}</div>
+          </div>
+        )}
+        {showManual && <div style={{ marginTop: 14 }}><button className="mk-btn soft sm" onClick={stepManual}>{t('Keyingi qadam →', 'Следующий шаг →')}</button></div>}
+        {below && <div className="mk-below">{below}</div>}
+      </div>
+    </div>
+  );
+}
+
+// Kod/terminal paneli: satr `at` qadamida kiradi; `focus` id'lari yoritiladi, qolgani xiralashadi; `onLine` — bosiladigan
+function CodePanel({ file, lines, beat = 99, focus = [], numbers = true, wrap = false, style, onLine, marks = {} }) {
+  const anyFocus = focus.length > 0;
+  const ref = useRef(null);
+  const focusKey = focus.join('|');
+  // Kichik ekran (1280×720 va past): yoritilgan yoki shu qadamda kirgan satr ko'rinib tursin — panelning o'zi yoki
+  // eng yaqin aylanadigan konteyner (VS Code oynasining editori / sahna) aylantiriladi; sahifaning o'zi hech qachon
+  useEffect(() => {
+    const p = ref.current; if (!p) return;
+    const hls = Array.from(p.querySelectorAll('.mk-ln.hl'));
+    const first = hls[0] || Array.from(p.querySelectorAll('.mk-ln.in')).filter((n) => n.dataset.at === String(beat)).pop();
+    if (!first) return;
+    const last = hls.length ? hls[hls.length - 1] : first;
+    const box = scrollBox(p); if (!box) return;
+    const br = box.getBoundingClientRect(), fr = first.getBoundingClientRect(), lr = last.getBoundingClientRect();
+    const top = fr.top - br.top + box.scrollTop - 12, bottom = lr.bottom - br.top + box.scrollTop + 12, h = box.clientHeight;
+    if (top >= box.scrollTop && bottom <= box.scrollTop + h) return;            // butun blok ko'rinib turibdi
+    const want = (bottom - top > h || top < box.scrollTop) ? top : bottom - h; // sig'masa — boshidan; pastga chiqsa — oxirini ko'rsat
+    box.scrollTo({ top: Math.max(0, want), behavior: 'smooth' });
+  }, [beat, focusKey]);
+  return (
+    <div className="mk-panel" style={style} ref={ref}>
+      {file && <span className="fn">{file}</span>}
+      <div style={{ paddingTop: file ? 10 : 0 }}>
+        {lines.map((l, i) => {
+          const v = vis(l.at, beat);
+          const hl = anyFocus && l.id && focus.includes(l.id);
+          const mk = marks[i] || '';
+          const cls = `mk-ln${wrap ? ' wrap' : ''}${v ? ' in' : ''}${hl ? ' hl' : (anyFocus && v && !l.keep ? ' dim' : '')}${l.gone ? ' gone' : ''}${l.neu ? ' new' : ''}${onLine ? ' clk' : ''}${mk ? ' ' + mk : ''}`;
+          return <div key={i} className={cls} data-at={l.at} onClick={onLine ? () => onLine(i, l) : undefined}>{numbers && <span className="n">{l.n != null ? l.n : i + 1}</span>}<span dangerouslySetInnerHTML={html(l.h)} /></div>;
+        })}
+      </div>
+    </div>
+  );
+}
+
+function Block({ at, beat, dim, className = '', style, children }) {
+  return <div className={`mk-in${vis(at, beat) ? ' on' : ''}${dim ? ' dim' : ''} ${className}`} style={style} data-at={at}>{children}</div>;
+}
+// Eng yaqin aylanadigan konteyner (o'zi ham), .mk-stage gacha — sahifa siljimasin (1280×720 da sarlavha tugmalarni yopgan edi)
+function scrollBox(el) {
+  for (let n = el; n && !(n.classList && n.classList.contains('mk-stage')); n = n.parentElement) {
+    const o = getComputedStyle(n).overflowY;
+    if ((o === 'auto' || o === 'scroll') && n.scrollHeight > n.clientHeight + 4) return n;
+  }
+  return null;
+}
+
+// Brauzer kartasi: manzil + javob (terminaldan alohida, chunki mentor brauzerda ko'radi)
+function Browser({ url, out, er }) {
+  return <div className="mk-light mk-browser"><span className="url">{url}</span><span className={`out${er ? ' er' : ''}`}>{out}</span></div>;
+}
+
+// Explorer (VS Code) — MENTOR_DARS_ETALON 1-qonun (F-1030-10): loyiha fayli ko'rsatilgan HAR sahnada chapda.
+// `files` — shu paytgacha mavjud fayllar (yo'li bilan), `active` — hozir ochiq fayl (yoritiladi), `fresh` — shu qadamda paydo bo'lgan,
+// `onOpen` — bosilsa ochiladi (amaliyotda), `big`+`desc` — S5a'dagi katta ko'rinish (vazifa izohi bilan).
+// Darsga xos sozlama — har dars o'z bo'lagining boshida to'ldiradi: loyiha nomi (Explorer sarlavhasi), standart fayl ro'yxati,
+// qo'shimcha fayl ranglari (kind(f) → rang yoki null; null bo'lsa quyidagi umumiy qoida). Dvigatelda darsga xos qiymat yo'q.
+const MKCFG = { root: 'project', files: [], kind: null };
+const FILE_KIND = (f) => (MKCFG.kind && MKCFG.kind(f)) || (/\.module\.ts$/.test(f) ? PART.mod : /\.controller\.ts$/.test(f) ? PART.ctrl : /\.service\.ts$/.test(f) ? PART.svc : /main\.ts$/.test(f) ? T.ink2 : T.ink3);
+const baseName = (f) => f.split('/').pop();
+// F-1031-02: VS Code'dagidek daraja chiziqlari — har ota-papka uchun bitta vertikal chiziq (qaysi fayl qaysi papkada — ko'rinadi).
+// shift: fayl qatorida chap ramka 3px (faol fayl belgisi) — chiziq papka qatoridagi bilan bir tekisda tursin.
+// step: daraja oralig'i — katta xaritada (big) 18px, oddiy Explorer'da 12px.
+const treeGuides = (depth, shift, step) => Array.from({ length: depth }, (_, l) => <b key={'g' + l} className="ig" style={{ left: 12 + l * step - shift }} />);
+// F-1031-04: '/' bilan tugagan yozuv — yopiq papka (▸, ichi ochilmaydi; loyihaning to'liq ko'rinishi uchun).
+// clickable: berilsa, faqat shu fayllar bosiladi, qolganlari xira turadi (bosilmaydi).
+function FileTree({ root = MKCFG.root, files = MKCFG.files, active, onOpen, big, desc, fresh = [], clickable }) {
+  const rows = []; const seenDir = new Set(); const step = big ? 18 : 12;
+  files.forEach((f) => {
+    const shut = f.endsWith('/');
+    const parts = (shut ? f.slice(0, -1) : f).split('/'); const name = shut ? null : parts.pop();
+    let path = '';
+    parts.forEach((d, i) => { path += d + '/'; if (!seenDir.has(path)) { seenDir.add(path); rows.push({ dir: true, depth: i, t: d + '/', shut: shut && i === parts.length - 1 }); } });
+    if (!shut) rows.push({ f, name, depth: parts.length, c: FILE_KIND(f) });
+  });
+  const can = (f) => !!onOpen && (!clickable || clickable.includes(f));
+  return <div className={`mk-explorer${big ? ' big' : ''}`}>
+    <div className="hd">Explorer · {root}</div>
+    {rows.map((r, i) => r.dir
+      ? <div key={'d' + i} className={`dir${r.shut ? ' shut' : ''}`} style={{ paddingLeft: 8 + r.depth * step }}>{treeGuides(r.depth, 0, step)}{r.shut && <span className="chev" aria-hidden="true">▸</span>}{r.t}</div>
+      : <div key={r.f} className={`fi${r.f === active ? ' on' : ''}${can(r.f) ? ' clk' : ''}${clickable && !can(r.f) && r.f !== active ? ' mute' : ''}${fresh.includes(r.f) ? ' new' : ''}`} style={{ '--c': r.c, paddingLeft: 8 + r.depth * step }} onClick={can(r.f) ? () => onOpen(r.f) : undefined}>
+          {treeGuides(r.depth, 3, step)}<i /><span>{r.name}</span>{desc && desc[r.f] && <span className="d">{desc[r.f]}</span>}
+        </div>)}
+  </div>;
+}
+// Bitta VS Code oynasi (F-1030-22): sarlavha · chapda Explorer · o'ngda editor (kod panelida fayl yorlig'i — tab)
+function Ide({ root = MKCFG.root, files, active, onOpen, fresh, clickable, children, style }) {
+  return <div className="mk-ide" style={style}>
+    <div className="mk-ide-bar"><i /><i /><i /><span>{root} — Visual Studio Code</span></div>
+    <FileTree root={root} files={files} active={active} onOpen={onOpen} fresh={fresh} clickable={clickable} />
+    <div className="mk-ide-main">{children}</div>
+  </div>;
+}
+
+// Oddiy ekran qolipi: Say + sahna. Davom QULF: ovoz tugamaguncha (va `ready` bo'lmaguncha) bosilmaydi — MENTOR_DARS_ETALON 4-qonun (F-1030-01);
+// ekran avval to'liq ko'rilgan bo'lsa (p.seen) — qulf yo'q, chunki mentor qaytib kelgan.
+function Lesson({ p, S, scene, below, ready, sceneTop }) {
+  const b = useBeats(S.segments, p.review);
+  const ok = ready ? ready(b) : true;
+  const canNext = (b.done && ok) || p.seen;
+  // Kichik ekran: sahna sig'masa, shu qadamda paydo bo'lgan oxirgi blok ko'rinishga aylantiriladi (pastda yashirinib qolmasin)
+  const sceneRef = useRef(null);
+  // Faqat AYNAN shu qadamda paydo bo'lgan blok uchun (aks holda kod panelining yoritish-aylantirishini bosib ketadi)
+  useEffect(() => {
+    const s = sceneRef.current; if (!s) return;
+    const last = Array.from(s.querySelectorAll('.mk-in.on')).filter((n) => n.dataset.at === String(b.beat)).pop(); if (!last) return;
+    const box = scrollBox(last.parentElement); if (!box) return;
+    const r = last.getBoundingClientRect(), br = box.getBoundingClientRect();
+    if (r.bottom > br.bottom) box.scrollTo({ top: box.scrollTop + (r.bottom - br.bottom) + 12, behavior: 'smooth' });
+  }, [b.beat]);
+  return (
+    <Stage kicker={S.kicker} idx={p.idx} total={p.total} audio={b.audio} onBack={p.onBack} onNext={p.onNext} onRestart={p.onRestart} nextReady={b.done && ok} nextDisabled={!canNext} lockHint={!b.done ? t("Ustoz gapirib bo'lgach ochiladi", 'Откроется, когда учитель договорит') : (S.lockHint || t('Topshiriqni bajaring', 'Выполните задание'))}>
+      <div className="mk-body">
+        <Say eyebrow={S.eyebrow} title={S.title} segments={S.segments} beat={b.beat} audio={b.audio} stepManual={b.stepManual} guess={b.guess} answerAsk={b.answerAsk} below={below ? below(b) : null} review={p.review} />
+        {/* UX-3: hamma ekranda sahna yuqoridan — Davom bosilganda oyna sakramaydi */}
+        <div ref={sceneRef} className="mk-scene top" style={{ overflow: 'auto' }} data-top={sceneTop ? 1 : 0}>{scene(b)}</div>
+      </div>
+    </Stage>
+  );
+}
+
+// Tekshiruv (tanlov): xato variant yopiladi, to'g'risini topguncha bosadi
+// `after` — to'g'ri javobdan keyin ko'rsatiladigan blok (masalan tuzatilgan fayl, 2-qonun, F-1030 qo'shimcha 1)
+function MCRetry({ idx, total, onBack, onNext, onRestart, stored, onAnswer, review, kicker, eyebrow, title, q, opts, correct, ok, okShort, wrong, above, after }) {
+  const segs = useMemo(() => review ? [] : [{ id: 'q', text: voice(q), trigger: 'on_mount', waits_for: { type: 'option_picked' } }], [q, review]);
+  const audio = useAudio(segs);
+  const sfx = useSfx();
+  const [bad, setBad] = useState(stored ? stored.bad || [] : []);
+  const [solved, setSolved] = useState(!!(stored && stored.correct));
+  const [last, setLast] = useState(stored && stored.correct ? correct : null);
+  const pick = (i) => {
+    if (solved || bad.includes(i)) return;
+    if (bad.length === 0) audio.triggerEvent('option_picked');
+    if (i === correct) {
+      setSolved(true); setLast(i); sfx.playCorrect();
+      onAnswer({ picked: i, correct: true, tries: bad.length + 1, firstTry: bad.length === 0, bad, type: 'mc' });
+      setTimeout(() => audio.pushOneOff(voice(ok)), 300);
+    } else {
+      const nb = [...bad, i]; setBad(nb); setLast(i); sfx.playWrong();
+      setTimeout(() => audio.pushOneOff(voice((wrong[i] || t('Unday emas.', 'Не совсем.')) + t(" Yana o'ylab ko'ring.", ' Подумайте ещё раз.'))), 300);
+    }
+  };
+  const fbOk = solved && last === correct;
+  // F-1102-16: tuzatilgan/haqiqiy natija bloki bo'lsa — ekran BOSHIDAN ikki ustun va joyi qimirlamaydi:
+  // chapda savol va variantlar, o'ngda xabar (above) va javobdan keyin uning ostida natija (after).
+  // Javobdan keyin variantlar o'z joyida qoladi (to'g'risi yashil, qolgani xira) — hech narsa sakramaydi.
+  const split = !!after;
+  return (
+    <Stage kicker={kicker} idx={idx} total={total} audio={audio} onBack={onBack} onNext={onNext} onRestart={onRestart} nextReady={solved} nextDisabled={!solved} lockHint={t("To'g'ri javobni toping", 'Найдите верный ответ')}>
+      <div className={`mk-body${split ? ' mc-split' : ''}`} style={split ? undefined : { gridTemplateColumns: '1fr', maxWidth: 980, width: '100%', margin: '0 auto' }}>
+        {/* UX-5: savol bloki xavfsiz markazda (sig'masa tepasi kesilmaydi), variantlar 18 px */}
+        <div className="mk-say mc" style={{ overflow: 'auto', paddingRight: 4 }}>
+          <p className="mk-eyebrow">{eyebrow} · {t('1-urinish hisoblanadi', 'считается 1-я попытка')}</p>
+          {!split && above}
+          <h2 className="mk-title mc-q" data-len={lenTag(title)}>{title}</h2>
+          <div style={{ display: 'grid', gap: 10 }}>
+            {opts.map((o, i) => {
+              let cls = 'mk-opt';
+              if (solved) cls += i === correct ? ' ok' : ' off';
+              else if (bad.includes(i)) cls += ' bad';
+              return <button key={i} className={cls} disabled={solved || bad.includes(i)} onClick={() => pick(i)}><span className="l">{String.fromCharCode(65 + i)}</span><span>{o}</span></button>;
+            })}
+          </div>
+          {last !== null && (
+            <div className="mk-fb" key={last + (solved ? 'ok' : 'bad')} style={{ '--c': fbOk ? T.green : T.accent, '--bg': fbOk ? '#E3F5EC' : '#FFF0EB' }}>
+              <b>{fbOk ? t("To'g'ri", 'Верно') : t("Unday emas — yana o'ylab ko'ring", 'Не совсем — подумайте ещё раз')}</b>
+              <span>{fbOk ? (okShort || digits(ok)) : digits(wrong[last])}</span>
+            </div>
+          )}
+        </div>
+        {split && <div className="mk-scene top mc-after" style={{ overflow: 'auto', display: 'grid', gap: 12, alignContent: 'start' }}>
+          {above}
+          {solved
+            ? <div style={{ animation: 'mk-up .45s ease both' }}>{after}</div>
+            : <div className="mc-wait">{t("To'g'ri javobni topganingizdan keyin shu yerda haqiqiy natija ochiladi", 'Когда найдёте верный ответ, здесь откроется реальный результат')}</div>}
+        </div>}
+      </div>
+    </Stage>
+  );
+}
+
+// Tekshiruv (qaysi satr xato): kod ko'rsatiladi, mentor satrni bosadi, topguncha bosadi.
+// `task` — shart (ekranga xos, F-1030-11); `fixed` — topilgach TUZATILGAN kod (eski satr chizilgan, yangisi yashil) — 2-qonun (F-1030-14);
+// `fixedExtra` — tuzatish boshqa faylga ham tegsa; `tree` — Explorer {root, files, active}.
+function LineCheck({ idx, total, onBack, onNext, onRestart, stored, onAnswer, review, kicker, eyebrow, title, q, task, file, lines, target, ok, okShort, hint, fixed, fixedExtra, tree }) {
+  const targets = Array.isArray(target) ? target : [target];
+  const segs = useMemo(() => review ? [] : [{ id: 'q', text: voice(q), trigger: 'on_mount', waits_for: { type: 'option_picked' } }], [q, review]);
+  const audio = useAudio(segs);
+  const sfx = useSfx();
+  const [bad, setBad] = useState(stored ? stored.bad || [] : []);
+  const [solved, setSolved] = useState(!!(stored && stored.correct));
+  const marks = {}; bad.forEach((i) => { marks[i] = 'bad'; }); if (solved) targets.forEach((t) => { marks[t] = 'good'; });
+  const onLine = (i, l) => {
+    if (solved || bad.includes(i) || !l.h.trim()) return;
+    if (bad.length === 0) audio.triggerEvent('option_picked');
+    if (targets.includes(i)) { setSolved(true); sfx.playCorrect(); onAnswer({ picked: i, correct: true, tries: bad.length + 1, firstTry: bad.length === 0, bad, type: 'mc' }); setTimeout(() => audio.pushOneOff(voice(ok)), 300); }
+    else { setBad((b) => [...b, i]); sfx.playWrong(); setTimeout(() => audio.pushOneOff(voice(hint)), 300); }
+  };
+  const showFixed = solved && fixed;
+  const panels = showFixed
+    ? (<>
+        <div className="mk-tag" style={{ color: T.green, margin: 0 }}>{t('Tuzatildi — eski satr chizilgan, yangisi yashil', 'Исправлено — старая строка зачёркнута, новая зелёная')}</div>
+        <CodePanel file={file} lines={fixed} />
+        {(fixedExtra || []).map((x) => <CodePanel key={x.file} file={x.file} lines={x.lines} />)}
+      </>)
+    : <CodePanel file={file} lines={lines} onLine={solved ? undefined : onLine} marks={marks} />;
+  return (
+    <Stage kicker={kicker} idx={idx} total={total} audio={audio} onBack={onBack} onNext={onNext} onRestart={onRestart} nextReady={solved} nextDisabled={!solved} lockHint={t('Xato satrni toping', 'Найдите строку с ошибкой')}>
+      <div className="mk-body">
+        <div className="mk-say">
+          <p className="mk-eyebrow">{eyebrow} · {t('1-urinish hisoblanadi', 'считается 1-я попытка')}</p>
+          <h2 className="mk-title" data-len={lenTag(title)}>{title}</h2>
+          <p className="mk-now" dangerouslySetInnerHTML={html(task || t('Kodda bitta xato bor. Xato satrni bosing.', 'В коде одна ошибка. Нажмите на строку с ошибкой.'))} />
+          {(bad.length > 0 || solved) && (
+            <div className="mk-fb" key={bad.length + (solved ? 'ok' : '')} style={{ '--c': solved ? T.green : T.accent, '--bg': solved ? '#E3F5EC' : '#FFF0EB' }}>
+              <b>{solved ? t("To'g'ri", 'Верно') : t('Bu satr emas', 'Не эта строка')}</b><span>{solved ? (okShort || digits(ok)) : digits(hint)}</span>
+            </div>
+          )}
+        </div>
+        <div className="mk-scene top" style={{ overflow: 'auto' }}>{tree ? <Ide root={tree.root} files={tree.files} active={tree.active}>{panels}</Ide> : panels}</div>
+      </div>
+    </Stage>
+  );
+}
+
+// Amaliyot ekrani: qadamlar (katakcha, nusxalash), «boshqacha chiqsa» jadvali, ixtiyoriy kod ko'rinishi
+function CopyBtn({ text }) {
+  const [ok, setOk] = useState(false);
+  return <button className="mk-copy" onClick={() => { try { navigator.clipboard.writeText(text); setOk(true); setTimeout(() => setOk(false), 1200); } catch (e) {} }}>{ok ? t('nusxalandi', 'скопировано') : t('nusxalash', 'копировать')}</button>;
+}
+const plain = (lines) => lines.map((l) => l.h.replace(/<[^>]+>/g, '').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/\\`/g, '`').replace(/\\\$/g, '$')).join('\n');
+// «Boshqacha chiqdimi?» oynasi (F-1102-12): sahifa ustida, orqa fon xiralashadi; ✕ / tashqarini bosish / Esc — yopadi
+function TroubleModal({ rows, onClose }) {
+  useEffect(() => {
+    const k = (e) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', k);
+    return () => window.removeEventListener('keydown', k);
+  }, [onClose]);
+  return (
+    <div className="mk-modal" role="dialog" aria-modal="true" aria-label={t('Boshqacha chiqdimi?', 'Вышло иначе?')} onClick={onClose}>
+      <div className="box" onClick={(e) => e.stopPropagation()}>
+        <div className="hd">
+          <b>{t('Boshqacha chiqdimi?', 'Вышло иначе?')}</b>
+          {rows.length > 1 && <span>{t(`${rows.length - 1} ta holat va yechim`, `ситуации и решения: ${rows.length - 1}`)}</span>}
+          <button type="button" className="x" aria-label={t('Yopish', 'Закрыть')} onClick={onClose}>✕</button>
+        </div>
+        <div className="bd"><table className="mk-tbl"><tbody>{rows.map(([a, c]) => <tr key={a}><td><code>{a}</code></td><td>{c}</td></tr>)}</tbody></table></div>
+      </div>
+    </div>
+  );
+}
+// Davom QULF: ovoz tugamaguncha + hamma katakcha + isbot to'g'ri bo'lmaguncha (F-1030-01). Kod: har qadam ichida «Kodni ochish» tugmasi,
+// sahnada Explorer — fayl bosilsa almashadi (F-1030-12); `code[i].step` — qaysi qadamga tegishli.
+function Practice({ p, S, steps, trouble, code, proof, tree }) {
+  const b = useBeats(S.segments, p.review);
+  const { seg, beat } = b;
+  const [checked, setChecked] = useState(p.stored && p.stored.checked ? p.stored.checked : []);
+  const [proofVal, setProofVal] = useState(p.stored && p.stored.proof ? p.stored.proof : '');
+  const [openFile, setOpenFile] = useState(null);
+  const [tOpen, setTOpen] = useState(false); // F-1031-03: «Boshqacha chiqdimi?» jadvali yopiq, bosilganda ochiladi
+  const proofOk = !proof || proof.check(proofVal.trim());
+  const report = (n, pv) => p.onAnswer({ type: 'practice', checked: n, proof: pv, proofOk: !proof || proof.check(pv.trim()), done: n.length === steps.length && (!proof || proof.check(pv.trim())) });
+  const toggle = (i) => { const n = checked.includes(i) ? checked.filter((x) => x !== i) : [...checked, i]; setChecked(n); report(n, proofVal); };
+  const onProof = (v) => { setProofVal(v); report(checked, v); };
+  const allDone = checked.length === steps.length && proofOk;
+  const rows = trouble ? [...trouble, HELP_ROW] : [HELP_ROW];
+  const cur = code && openFile ? code.find((c) => c.file === openFile) : null;
+  return (
+    <Stage kicker={S.kicker} idx={p.idx} total={p.total} audio={b.audio} onBack={p.onBack} onNext={p.onNext} onRestart={p.onRestart} nextReady={b.done && allDone} nextDisabled={!(b.done && allDone)} lockHint={!allDone ? (proof ? t("Katakchalar va isbotni to'ldiring", 'Отметьте пункты и заполните подтверждение') : t('Katakchalarni belgilang', 'Отметьте пункты')) : t("Ustoz gapirib bo'lgach ochiladi", 'Откроется, когда учитель договорит')}>
+      <div className="mk-body">
+        <Say eyebrow={S.eyebrow} title={S.title} segments={S.segments} beat={beat} audio={b.audio} stepManual={b.stepManual} guess={b.guess} answerAsk={b.answerAsk} review={p.review}
+          below={<div className="mk-card" style={{ background: allDone ? '#E3F5EC' : T.paper, borderColor: allDone ? T.green : T.line }}><h5>{t('Bajarildi', 'Выполнено')}</h5><div style={{ fontSize: 15, fontWeight: 700 }}>{checked.length} / {steps.length} {t('qadam', 'шагов')}{proof ? (proofOk && proofVal.trim() ? t(' · isbot ✓', ' · подтверждение ✓') : t(' · isbot kutilmoqda', ' · ждём подтверждение')) : ''}{allDone ? (b.done ? t(' — Davom bosing', ' — нажмите «Далее»') : t(' — ovoz tugagach Davom ochiladi', ' — «Далее» откроется после озвучки')) : ''}</div>
+            {/* F-1102-20: isbot maydoni to'ldirilmaguncha yumshoq yonib-o'chadi — «shu yerga yozing» ko'rinib tursin */}
+            {proof && <div style={{ marginTop: 10 }}><div className="exp" style={{ marginBottom: 4, fontWeight: 700, color: proofOk && proofVal.trim() ? T.green : T.ink }}>{t('Isbot', 'Подтверждение')}: {String(proof.label).replace(/^(Isbot|Подтверждение)\s*:\s*/, '')}</div><input className={`mk-input${proofOk && proofVal.trim() ? '' : ' need'}`} value={proofVal} placeholder={proof.placeholder} onChange={(e) => onProof(e.target.value)} />{proofVal.trim() && !proofOk && <div className="exp" style={{ color: T.accent, marginTop: 4 }}>{proof.wrong}</div>}</div>}
+          </div>} />
+        <div className="mk-scene top" style={{ overflow: 'auto' }}>
+          {cur ? (<>
+            {/* F-1031-05: qaytish tugmasi oynadan tashqarida, katta — kod ko'rilgach qadamlarga qaytish ko'rinib tursin */}
+            <div className="mk-codebar">
+              <button className="mk-btn" onClick={() => setOpenFile(null)}>{t('← Qadamlarga qaytish', '← Назад к шагам')}</button>
+              <span className="what">{cur.copy === false ? t('Kod namunasi', 'Образец кода') : t('Kod', 'Код')} · <b>{baseName(cur.file)}</b></span>
+              <span className="end">{cur.copy === false ? <span className="mk-tag" style={{ margin: 0, color: T.accent }}>{t("namuna — o'zingiz yozing, nusxalash yo'q", 'образец — напишите сами, без копирования')}</span> : <CopyBtn text={plain(cur.lines)} />}</span>
+            </div>
+            <Ide files={tree || code.map((c) => c.file)} clickable={code.map((c) => c.file)} active={cur.file} onOpen={setOpenFile}>
+              <CodePanel file={cur.file} lines={cur.lines} style={{ fontSize: 12.5 }} />
+            </Ide>
+          </>) : (<>
+            <div style={{ display: 'grid', gap: 8 }}>
+              {steps.map((s, i) => {
+                const c = code ? code.find((x) => x.step === i) : null;
+                return (
+                <div key={i} className={`mk-step${(seg.hl || []).includes(i) ? ' hl' : ''}`} style={{ opacity: (seg.hl || []).length && !seg.hl.includes(i) ? 0.55 : 1 }}>
+                  <input type="checkbox" checked={checked.includes(i)} onChange={() => toggle(i)} />
+                  <div className="t"><b>{i + 1}. {s.t}</b>
+                    {s.cmds.map((cm) => <div key={cm} className="cmd"><code>{cm}</code><CopyBtn text={cm} /></div>)}
+                    {c && <div style={{ margin: '4px 0 6px' }}><button className="mk-btn soft sm" style={{ borderColor: T.ink, color: T.ink }} onClick={() => setOpenFile(c.file)}>{t('Kodni ochish', 'Открыть код')} · {baseName(c.file)}{c.copy === false ? t(' (namuna)', ' (образец)') : ''}</button></div>}
+                    <div className="exp">{t('Kutilgan:', 'Ожидается:')} {s.exp}</div>
+                  </div>
+                </div>
+              ); })}
+            </div>
+            <Block at={S.tableAt} beat={beat}><div className="mk-light mk-trouble" style={{ padding: 0, marginTop: 10 }}>
+              <button type="button" className={`mk-trbtn${beat === S.tableAt && !tOpen ? ' hot' : ''}`} aria-haspopup="dialog" aria-expanded={tOpen} onClick={() => setTOpen(true)}>
+                <span className="q">{t('Boshqacha chiqdimi?', 'Вышло иначе?')}</span>
+                {rows.length > 1 && <span className="n">{t(`${rows.length - 1} ta holat va yechim`, `ситуации и решения: ${rows.length - 1}`)}</span>}
+                <span className="ar" aria-hidden="true">↗</span>
+              </button>
+            </div></Block>
+            {/* F-1102-12: jadval sahifa ichida emas — ustida oyna (popup). ✕, tashqarisi yoki Esc yopadi; tugma joyida qoladi */}
+            {tOpen && <TroubleModal rows={rows} onClose={() => setTOpen(false)} />}
+          </>)}
+        </div>
+      </div>
+    </Stage>
+  );
+}
+
+// ============================================================
+//  PG-2 MATNLARI — AVTO: feedback/F-1029-02-mentor-kurs/dev/pg2-matn.py (manba: 08-PostgreSQL2-mentor-v1.md)
+//  QO'LDA TAHRIRLANMAYDI: matn MD'da o'zgaradi, keyin skript qayta yurgiziladi.
+// ============================================================
+const MDT = {
+ "1": {
+  "type": "Lesson",
+  "kicker": "Kirish",
+  "eyebrow": "Mentor kursi · PostgreSQL",
+  "title": "Jadval tayyor. Endi uni boshqaramiz — PostgreSQL terminalida va Express ichida.",
+  "seg": [
+   [
+    "a",
+    "PostgreSQL-1 da jadval yaratdingiz — bugun undagi ma'lumotni <b>to'rt buyruq bilan boshqaramiz</b>",
+    "Assalomu alaykum. Oldingi darsda PostgreSQL'ni o'rnatdingiz, jadval yaratdingiz va bog'ladingiz. Bugun jadvaldagi ma'lumotni boshqaramiz: qo'shish, ko'rish, o'zgartirish va o'chirish. Buni CRUD deyishadi, uning nimaligini keyingi ekranda aniq ko'ramiz."
+   ],
+   [
+    "b",
+    "Avval PostgreSQL terminalida qo'lda: o'quvchi m4-06 dagi <b>do'konning o'zi bilan</b>",
+    "Avval bu buyruqlarni PostgreSQL terminalida qo'lda yozamiz. Misol o'quvchi m4-06 darsidagi do'konning aynan o'zi: klaviatura, sichqoncha, quloqchin. Sinfda o'quvchi ekranda ko'radigan narsani siz bazada ko'rgan bo'lasiz."
+   ],
+   [
+    "c",
+    "Keyin o'sha so'rovlar <b>Express ichida</b> — o'quvchi m4-08 da AvtoIjara serverini quradi",
+    "Keyin xuddi shu so'rovlarni Express serveri ichiga qo'yamiz. O'quvchi m4-08 darsida AvtoIjara uchun server quradi, kodini Gemini yozadi. Siz bu serverni o'zingiz ishga tushirasiz, ataylab buzasiz va tuzatasiz."
+   ],
+   [
+    "d",
+    "Olti bosqich, to'rt amaliyot. <b>Shoshilmang</b>: ustoz gapirib bo'lgach Davom ochiladi",
+    "Dars olti bosqichdan iborat, orasida to'rtta amaliyot bor. Oxirida ikki o'quvchi darsini qanday o'tishni ko'ramiz. Shoshilmang: har ekranni boshidan eshitish va matnini o'qish mumkin. Ustoz gapirib bo'lgach Davom ochiladi. Boshlaymiz."
+   ]
+  ]
+ },
+ "2": {
+  "type": "Lesson",
+  "kicker": "1-bosqich · CRUD PostgreSQL terminalida",
+  "title": "CRUD — ma'lumot bilan qilinadigan to'rt amal: bazada buyruq, serverda endpoint",
+  "seg": [
+   [
+    "a",
+    "CRUD — to'rtta inglizcha so'zning <b>bosh harfi</b>: yaratish, o'qish, o'zgartirish, o'chirish",
+    "Bugungi darsning poydevori bitta so'z: CRUD. Bu to'rtta inglizcha so'zning bosh harfi: Create, Read, Update va Delete, ya'ni yaratish, o'qish, o'zgartirish va o'chirish. Har qanday ilova ma'lumot bilan aynan shu to'rt ishni qiladi: onlayn do'kon ham, Telegram ham."
+   ],
+   [
+    "b",
+    "PostgreSQL'da har amalning <b>o'z buyrug'i bor</b>: <code>INSERT</code>, <code>SELECT</code>, <code>UPDATE</code>, <code>DELETE</code>",
+    "PostgreSQL'da har amalning o'z buyrug'i bor. Yaratish insert, o'qish select, o'zgartirish update, o'chirish esa delete. Har buyruqdan keyin baza qisqa javob qaytaradi, masalan insert nol bir yoki update bir. Bu javobni o'qishni bugun alohida o'rganamiz."
+   ],
+   [
+    "c",
+    "Serverda xuddi shu to'rt amal <b>endpoint bo'ladi</b>: <code>POST</code>, <code>GET</code>, <code>PUT</code>, <code>DELETE</code>",
+    "Serverda xuddi shu to'rt amal endpoint bo'ladi. Yaratish POST, o'qish GET, o'zgartirish PUT, o'chirish DELETE. Har endpoint ichida o'sha SQL buyrug'i turadi. Postman javobida esa status chiqadi: yaratilganda ikki yuz bir, qolganlarida ikki yuz."
+   ],
+   [
+    "d",
+    "Xulosa: har amalning bazada bitta buyrug'i, serverda <b>bitta endpoint'i bor</b>",
+    "Xulosa: CRUD to'rtta amaldan iborat. Har amalning PostgreSQL'da bitta buyrug'i va serverda bitta endpoint'i bor. Demak, bugun avval buyruqlarni PostgreSQL terminalida qo'lda yozamiz, keyin xuddi shularni Express serveri ichiga qo'yamiz."
+   ]
+  ]
+ },
+ "3": {
+  "type": "Lesson",
+  "kicker": "1-bosqich · CRUD PostgreSQL terminalida",
+  "title": "products — o'quvchi darsidagi jadval aynan",
+  "seg": [
+   [
+    "a",
+    "O'quvchi m4-06 da <b>shu jadvalni ko'radi</b>: id, nom, narx va qoldiq",
+    "Jadvaldan boshlaymiz. O'quvchi m4-06 darsida aynan shu jadvalni ko'radi. Uning nomi products, unda to'rtta ustun bor: id o'zi o'sadi, nomi matn, narxi va qoldig'i esa butun son. Siz shop degan bazada uni PostgreSQL terminalida yaratasiz."
+   ],
+   [
+    "b",
+    "Bitta <code>INSERT</code> bilan uch qator; javobdagi oxirgi raqam — <b>qo'shilgan qatorlar soni</b>",
+    "Bitta insert bilan uchta mahsulot qo'shamiz, xuddi o'quvchi darsidagidek. Baza javobi insert, nol, uch. Oxirgi raqam nechta qator qo'shilganini aytadi. Keyin to'rtinchi mahsulotni qo'shamiz: Mishka, narxi ellik ming so'm."
+   ],
+   [
+    "c",
+    "<code>SELECT *</code> — hamma ustun; <code>id</code> larni biz yozmadik, <b>baza o'zi berdi</b>",
+    "Select yulduzcha hamma ustunni ko'rsatadi. id ustunini biz yozmadik, baza o'zi bir, ikki, uch, to'rt deb berdi. O'quvchi «id'ni qayerdan oldik?» desa, javob shu: serial."
+   ],
+   [
+    "d",
+    "Xulosa: jadval va ma'lumot o'quvchi darsidagidek — lekin ustunlarda <b><code>NOT NULL</code> yo'q</b>",
+    "Xulosa: bazangizda o'quvchi darsidagi do'konning aynan o'zi bor. Bitta narsani eslab qoling: bu jadvalda not null qoidasi yo'q. Nima bo'lishini uchinchi bosqichda ko'ramiz."
+   ]
+  ]
+ },
+ "4": {
+  "type": "Lesson",
+  "kicker": "1-bosqich · CRUD PostgreSQL terminalida",
+  "title": "WHERE — minglab qatordan faqat keraklisi",
+  "seg": [
+   [
+    "a",
+    "Hamma ustun kerak bo'lmasa — <code>SELECT</code>dan keyin <b>faqat kerakli ustunlar</b> yoziladi",
+    "Jadval bor, endi undan o'qiymiz. Hamma ustun kerak bo'lmasa, select'dan keyin faqat keraklisini yozasiz: nom va narx. Ma'lumot o'zgarmaydi, select faqat ko'rsatadi."
+   ],
+   [
+    "b",
+    "<code>WHERE price &lt; 100000</code> — yuz mingdan arzonlari: <b>uchta mahsulot</b>",
+    "Minglab mahsulotdan faqat keraklisini olish uchun where yoziladi. Narxi yuz mingdan kam bo'lganlarini so'raymiz: sichqoncha, quloqchin va mishka, ya'ni uchta qator. O'quvchi darsida bu filtr tugma bilan, siz esa uni so'rovda yozdingiz."
+   ],
+   [
+    "c",
+    "<code>WHERE stock &lt; 6</code> — tugayotgan mahsulot: <b>faqat quloqchin</b>",
+    "Ikkinchi filtr qoldig'i oltidan kam, ya'ni tugayotgan mahsulotlarni topadi. Natijada faqat quloqchin chiqdi, undan beshta qolgan. Do'kon menejeri aynan shu so'rov bilan nimani buyurtma qilishni biladi."
+   ],
+   [
+    "d",
+    "Xulosa: <code>SELECT</code> faqat o'qiydi; <b><code>WHERE</code> qatorlarni tanlaydi</b>",
+    "Xulosa: select hech narsani o'zgartirmaydi, faqat o'qiydi. Where qaysi qatorlar kerakligini aytadi. Bu ikkisini yaxshi tushungan o'quvchi update va delete'ni ham oson tushunadi, chunki ularda ham aynan shu where ishlaydi."
+   ]
+  ]
+ },
+ "5": {
+  "type": "Lesson",
+  "kicker": "1-bosqich · CRUD PostgreSQL terminalida",
+  "title": "UPDATE 1, DELETE 1 — javobdagi son nechta qator tegilganini aytadi",
+  "seg": [
+   [
+    "a",
+    "Klaviatura arzonladi: <code>UPDATE … WHERE id = 1</code> — javob <b><code>UPDATE 1</code></b>, bitta qator",
+    "O'quvchi darsidagi voqea: klaviatura narxi to'qson to'qqiz mingga tushdi. Buyruq shunday: update, set price, where id bir. Baza javobi update bir, ya'ni bitta qator o'zgardi. Javobdagi son doim nechta qator tegilganini aytadi."
+   ],
+   [
+    "b",
+    "Quloqchin sotuvdan chiqdi: <code>DELETE … WHERE id = 3</code> — <b><code>DELETE 1</code></b>",
+    "Quloqchin sotuvdan chiqdi, uni o'chiramiz: delete from products, where id uch. Baza javobi delete bir. Endi select bilan jadvalni ko'ramiz."
+   ],
+   [
+    "c",
+    "Diqqat: Klaviatura ro'yxat oxiriga tushdi — <code>ORDER BY</code> bo'lmasa <b>tartib kafolatlanmaydi</b>",
+    "Natijaga qarang: klaviatura birinchi emas, oxirida turibdi. Bu xato emas. Order by yozilmasa, baza qatorlarni istalgan tartibda qaytarishi mumkin. Sinfda o'quvchi «mahsulot o'rni o'zgardi» desa, javob shu. Tartib kerak bo'lsa, oxiriga order by id yoziladi."
+   ],
+   [
+    "d",
+    "Bunday <code>id</code> yo'q bo'lsa — <b>xato emas</b>, <code>UPDATE 0</code> va <code>DELETE 0</code>",
+    "To'qson to'qqizinchi mahsulotni o'zgartirib ko'ramiz. Xato chiqmaydi, javob update nol. Delete ham nol qaytaradi. Baza «bunday qator yo'q» deb aytmaydi, shunchaki hech narsaga tegmaydi. Shuning uchun javobdagi sonni o'qish kerak."
+   ],
+   [
+    "e",
+    "Xulosa: har <code>UPDATE</code> va <code>DELETE</code>dan keyin <b>javobdagi sonni o'qing</b>",
+    "Xulosa: update va delete'dan keyin javobdagi sonni o'qing. Bir bo'lsa, kutganingiz bo'ldi. Nol bo'lsa, where hech narsaga mos kelmadi. Kutilmagan katta son bo'lsa, where noto'g'ri yoki umuman yozilmagan. Buni keyingi bosqichda ko'ramiz."
+   ]
+  ]
+ },
+ "6": {
+  "type": "MCRetry",
+  "kicker": "Tekshiruv 1",
+  "eyebrow": "Tekshiruv · 1 / 4",
+  "title": "O'quvchi: «UPDATE products SET price = 1 WHERE id = 99; yozdim — xato chiqmadi, UPDATE 0». Nima bo'ldi?",
+  "q": "Javobdagi sonni ko'rdingiz, tekshirib olaylik. Birinchi tekshiruv. O'quvchi to'qson to'qqizinchi mahsulot narxini o'zgartirmoqchi bo'ldi. Xato yo'q, javob: update nol. Nima bo'ldi? Variantni tanlang.",
+  "ok": "To'g'ri. Where id to'qson to'qqiz hech qanday qatorga mos kelmadi, shuning uchun nol qator o'zgardi. Baza buni xato deb hisoblamaydi. O'quvchiga ayting: avval select bilan bunday id bor-yo'qligini tekshirsin. Demak, update nol xato emas: bu where hech qaysi qatorga mos kelmaganini bildiradi.",
+  "okShort": "<code>UPDATE 0</code> — <code>WHERE</code> hech bir qatorga mos kelmadi. Xato emas: avval <code>SELECT … WHERE id = 99</code> bilan tekshiring.",
+  "hint": "Javobdagi son nimani sanaydi? WHERE qaysi qatorni topishi kerak edi?",
+  "correct": 0,
+  "opts": [
+   "id = 99 qator yo'q — WHERE hech narsaga mos kelmadi",
+   "Narxni o'zgartirishga ruxsat yo'q",
+   "Jadval bo'shab qoldi",
+   "Narx o'zgardi, lekin hali saqlanmadi"
+  ],
+  "wrong": {
+   "1": "Ruxsat yo'q bo'lsa ERROR:  permission denied for table products chiqardi; bu yerda xato yo'q.",
+   "2": "Jadval joyida: UPDATE 0 hech narsani o'chirmaydi.",
+   "3": "Tranzaksiyasiz UPDATE darhol saqlanadi; son esa nechta qator tegilganini aytadi."
+  }
+ },
+ "7": {
+  "type": "Practice",
+  "kicker": "Amaliyot 1 / 4",
+  "eyebrow": "Hozir o'zingizda · 10–15 daqiqa",
+  "title": "shop bazasi va CRUD — o'quvchi darsidagi to'rt voqea",
+  "seg": [
+   [
+    "a",
+    "Endi siz: o'quvchi darsidagi to'rt voqeani <b>o'z bazangizda bajarasiz</b>",
+    "Endi navbat sizga. O'quvchi darsidagi to'rt voqeani o'z bazangizda bajarasiz: jadval yaratasiz, mahsulot qo'shasiz, filtrlaysiz, keyin narxni o'zgartirib, bitta mahsulotni o'chirasiz. Bunga o'n-o'n besh daqiqa ketadi."
+   ],
+   [
+    "b",
+    "1–3-qadam: baza, jadval, mahsulotlar va <b>ikki filtr</b>",
+    "Birinchi qadamda shop bazasi va products jadvalini yaratasiz. Ikkinchisida to'rtta mahsulot qo'shasiz. Uchinchisida ikkita filtr yozasiz: arzonlarini va tugayotganlarini. Har buyruqdan keyin javob satrini o'qing."
+   ],
+   [
+    "c",
+    "4-qadam: narx va o'chirish; isbot — oxirgi <code>SELECT</code>dagi <b>qatorlar soni</b>",
+    "To'rtinchi qadamda klaviatura narxini o'zgartiring va quloqchinni o'chiring, keyin select yulduzcha. Isbot maydoniga oxirgi select natijasi ostidagi qatorlar sonini yozing."
+   ],
+   [
+    "d",
+    "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
+    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin siz CRUD'ning to'rt buyrug'ini o'z bazangizda yozgan va har javobdagi sonni o'qigan bo'lasiz."
+   ]
+  ]
+ },
+ "8": {
+  "type": "Lesson",
+  "kicker": "2-bosqich · xavfsiz sinash",
+  "title": "WHERE unutilsa — UPDATE 3, DELETE 3. Xavfsiz sinash: BEGIN … ROLLBACK",
+  "seg": [
+   [
+    "a",
+    "O'quvchi darsi ogohlantiradi: <code>WHERE</code>'siz — <b>hamma qator</b>. Buni xavfsiz ko'ramiz",
+    "O'quvchi darsida qizil ogohlantirish bor: update yoki delete'da where unutilsa, hamma qator o'zgaradi. Siz buni o'z ko'zingiz bilan ko'rishingiz kerak, lekin bazani buzmasdan. Usul: avval begin, ya'ni tranzaksiya ochamiz."
+   ],
+   [
+    "b",
+    "<code>WHERE</code>'siz <code>UPDATE</code> — <b><code>UPDATE 3</code></b>: hamma mahsulot to'qson to'qqiz ming",
+    "Begin'dan keyin where'siz update. Baza javobi update uch. Select qilsak, hamma mahsulot to'qson to'qqiz ming so'm: sichqoncha ham, mishka ham. Mana o'quvchi darsidagi ogohlantirishning o'zi."
+   ],
+   [
+    "c",
+    "<code>WHERE</code>'siz <code>DELETE</code> — <code>DELETE 3</code>, <b>jadval bo'sh</b>",
+    "Undan ham yomoni where'siz delete. Baza javobi delete uch, select esa nol qator qaytaradi. Haqiqiy do'konda bu butun katalog yo'qolgani."
+   ],
+   [
+    "d",
+    "<code>ROLLBACK</code> — <b>hammasi joyida</b>: tranzaksiya ichidagi o'zgarish bekor bo'ldi",
+    "Endi rollback yozamiz va select qilamiz: uchala mahsulot joyida, narxlari ham eski. Tranzaksiya ichida qilingan hamma narsa bekor bo'ldi. PostgreSQL-1 da tranzaksiya do'konni himoya qilgan edi, bu yerda u sizning sinov maydoningiz."
+   ],
+   [
+    "e",
+    "Xulosa: xavfli <code>UPDATE</code>/<code>DELETE</code>ni avval <b><code>BEGIN</code> ichida sinang</b>, <code>SELECT</code> bilan ko'ring",
+    "Xulosa: xavfli update yoki delete'ni avval begin ichida yurgizing, select bilan natijani ko'ring. To'g'ri bo'lsa commit, noto'g'ri bo'lsa rollback. Sinfda o'quvchiga ham shuni o'rgating: bu bitta qator, lekin butun jadvalni saqlab qoladi."
+   ]
+  ]
+ },
+ "9": {
+  "type": "MCRetry",
+  "kicker": "Tekshiruv 2",
+  "eyebrow": "Tekshiruv · 2 / 4",
+  "title": "BEGIN; → DELETE FROM products; (DELETE 3) → ROLLBACK; → SELECT * FROM products;. Nima chiqadi?",
+  "q": "Xavfsiz sinashni ko'rdingiz, tekshirib olaylik. Ikkinchi tekshiruv. Begin, where'siz delete, javob delete uch. Keyin rollback va select. Jadvalda nima bor? Variantni tanlang.",
+  "ok": "To'g'ri. Delete tranzaksiya ichida edi, rollback uni bekor qildi. Uchala mahsulot joyida. Commit yozilmaguncha o'zgarish saqlanmaydi. Demak, begin va rollback xavfli buyruqni bazani buzmasdan sinash imkonini beradi.",
+  "okShort": "<code>ROLLBACK</code> — tranzaksiya ichidagi hamma o'zgarish bekor: uch qator joyida.",
+  "hint": "ROLLBACK tranzaksiya ichidagi o'zgarishlar bilan nima qiladi?",
+  "correct": 2,
+  "opts": [
+   "Nol qator — DELETE 3 bajarilgan edi",
+   "Faqat bitta qator — oxirgisi qaytadi",
+   "Uchala mahsulot — ROLLBACK o'chirishni bekor qildi",
+   "ERROR — o'chirilgan jadvaldan o'qib bo'lmaydi"
+  ],
+  "wrong": {
+   "0": "DELETE 3 tranzaksiya ichida edi va COMMIT qilinmadi.",
+   "1": "ROLLBACK bitta qatorni emas, butun tranzaksiyani bekor qiladi.",
+   "3": "DELETE qatorlarni o'chiradi, jadvalni emas; jadval doim joyida."
+  }
+ },
+ "10": {
+  "type": "Practice",
+  "kicker": "Amaliyot 2 / 4",
+  "eyebrow": "Hozir o'zingizda · 5–10 daqiqa",
+  "title": "WHERE'siz UPDATEni xavfsiz sinang",
+  "seg": [
+   [
+    "a",
+    "Endi siz: <code>WHERE</code>'siz <code>UPDATE</code>ni o'z bazangizda, lekin <b>tranzaksiya ichida</b> qilasiz",
+    "Endi o'zingiz: where'siz update'ni o'z bazangizda qilasiz, lekin tranzaksiya ichida. Bunga besh-o'n daqiqa ketadi. Bu mashqni sinfda o'quvchilarga ham ko'rsatasiz."
+   ],
+   [
+    "b",
+    "1–2-qadam: <code>BEGIN</code>, <code>WHERE</code>'siz <code>UPDATE</code> va <code>SELECT</code> — <b>hamma narx bir xil</b>",
+    "Birinchi qadamda begin yozasiz. Ikkinchisida where'siz update qilib, select bilan hamma narx bir xil bo'lganini ko'rasiz. Commit yozmang."
+   ],
+   [
+    "c",
+    "3–4-qadam: <code>ROLLBACK</code> va <code>SELECT</code>; isbot — <b>klaviaturaning narxi</b>",
+    "Uchinchi qadamda rollback yozasiz, to'rtinchisida yana select qilasiz. Isbot maydoniga klaviaturaning hozirgi narxini yozing, rollback'dan keyingisini."
+   ],
+   [
+    "d",
+    "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
+    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, siz where'siz update qanday xavfli ekanini ko'rdingiz va rollback bilan hammasini qaytarishni o'rgandingiz."
+   ]
+  ]
+ },
+ "11": {
+  "type": "Lesson",
+  "kicker": "3-bosqich · xatolar",
+  "title": "Beshta xato — har birini xabarning o'zi aytadi",
+  "seg": [
+   [
+    "a",
+    "AI xatosi o'quvchi darsida bor: <code>product</code> — <b>bitta <code>s</code> yetmaydi</b>, jadval «yo'q»",
+    "Endi sinfda chiqadigan xatolar. Birinchisi o'quvchi darsida ham bor: AI products o'rniga product deb yozgan. Baza relation product does not exist deb javob beradi. Jadval bor, faqat nomi bitta harfga farq qiladi."
+   ],
+   [
+    "b",
+    "Ustun nomi xato: <code>narx</code> — <code>HINT</code> esa <b>noto'g'ri ustunni taklif qiladi</b>",
+    "Ikkinchisi ustun nomida. O'quvchi narx deb yozdi. Baza column narx does not exist deb javob beradi, ostida esa hint: perhaps you meant name. Diqqat: hint taxmin qiladi va bu yerda adashgan, kerakli ustun price. Hint'ni emas, jadval tuzilishini teskari chiziqcha d bilan tekshiring."
+   ],
+   [
+    "c",
+    "Son o'rniga matn va tushib qolgan qiymat — <b><code>invalid input syntax</code></b>, <code>more target columns</code>",
+    "Uchinchisi: narx ustuniga arzon degan so'z yozilgan, baza invalid input syntax for type integer deydi. To'rtinchisi: uchta ustun yozilgan, qiymat esa ikkita, baza insert has more target columns than expressions deydi. Ikkalasida ham strelka xato joyni ko'rsatadi."
+   ],
+   [
+    "d",
+    "O'zbekcha apostrof satrni yopadi: <code>syntax error at or near \"yinchoq\"</code> — <b>ikki marta yoziladi</b>",
+    "Beshinchisi, o'zbek sinfida eng ko'p uchraydigani: apostrof. O'yinchoq so'zidagi apostrof satrni yopib qo'yadi, baza yinchoq so'zida adashadi. Tuzatish: apostrofni ikki marta yozish. Shunda mahsulot saqlanadi."
+   ],
+   [
+    "e",
+    "Xulosa: xabar ichidagi nomni <b>jadval tuzilishi bilan solishtiring</b> — <code>\\d products</code>",
+    "Xulosa: bu xatolarning hammasida xabar ichida nom yoki qiymat turadi. Uni jadval tuzilishi bilan solishtiring, teskari chiziqcha d products. Apostrof uchun bitta qoida: so'z ichidagi apostrof ikki marta yoziladi."
+   ]
+  ]
+ },
+ "12": {
+  "type": "Lesson",
+  "kicker": "3-bosqich · xatolar",
+  "title": "Qoida yozilmagan bo'lsa, baza qo'riqlamaydi: nomsiz mahsulot xato bermay saqlandi",
+  "seg": [
+   [
+    "a",
+    "PostgreSQL-1 da baza bo'sh nomni rad etgan edi — bu jadvalda esa <b>xato yo'q</b>",
+    "PostgreSQL-1 da bo'sh username'ni baza rad etgan edi. Bu jadvalda sinab ko'ramiz: nomsiz mahsulot qo'shamiz. Xato chiqmadi, baza javobi insert nol bir."
+   ],
+   [
+    "b",
+    "<code>WHERE name IS NULL</code> — <b>bo'sh nomli qator</b> do'kon katalogida turibdi",
+    "Where name is null bilan qidiramiz. Beshinchi qator chiqdi: nomi bo'sh, narxi o'ttiz ming. Saytda bu nomsiz mahsulot bo'lib chiqadi."
+   ],
+   [
+    "c",
+    "Sabab: o'quvchi darsidagi jadvalda <code>NOT NULL</code> yo'q — baza <b>faqat yozilgan qoidani</b> qo'riqlaydi",
+    "Sabab jadvalning o'zida: o'quvchi darsidagi products'da not null yo'q. Baza faqat yozilgan qoidani qo'riqlaydi. PostgreSQL-1 dagi «baza o'zi tekshiradi» degan gap qoida yozilgandagina to'g'ri."
+   ],
+   [
+    "d",
+    "Xulosa: o'quvchi darsini o'zgartirmaysiz, lekin o'z jadvalida <b><code>NOT NULL</code> yozishni</b> maslahat berasiz",
+    "Xulosa: o'quvchi darsidagi jadvalni o'zgartirmaysiz, u sodda bo'lishi uchun shunday. Lekin amaliyotda o'quvchi o'z do'koni jadvalini yaratadi. O'shanda maslahat bering: nom va narxga not null yozsin."
+   ]
+  ]
+ },
+ "13": {
+  "type": "MCRetry",
+  "kicker": "Tekshiruv 3",
+  "eyebrow": "Tekshiruv · 3 / 4",
+  "title": "O'quvchi VALUES ('O'yinchoq', 30000, 4) yozdi va syntax error at or near \"yinchoq\" oldi. Nima deysiz?",
+  "q": "Xatolarni ko'rdingiz, tekshirib olaylik. Uchinchi tekshiruv. O'quvchi o'yinchoq degan mahsulot qo'shmoqchi, baza syntax error, yinchoq so'zida. Unga nima deysiz? Variantni tanlang.",
+  "ok": "To'g'ri. SQL'da matn bir tirnoq ichida, so'z ichidagi apostrof uni erta yopadi. Ikki marta yozilsa, baza uni bitta apostrof deb tushunadi va mahsulot o'yinchoq nomi bilan saqlanadi. Demak, SQL matnidagi har bir apostrof ikki marta yoziladi.",
+  "okShort": "<code>'O''yinchoq'</code> — so'z ichidagi apostrof ikki marta. Saqlanganda bitta bo'ladi: <code>O'yinchoq</code>.",
+  "hint": "Matn qaysi belgi bilan boshlanib, qaysi belgi bilan tugaydi? Apostrof shu belgining o'zi.",
+  "correct": 1,
+  "opts": [
+   "Mahsulot nomini lotincha emas, kirillda yozing",
+   "So'z ichidagi apostrofni ikki marta yozing: 'O''yinchoq'",
+   "Nomni qo'shtirnoqqa oling: \"O'yinchoq\"",
+   "name ustunining turini VARCHAR qiling"
+  ],
+  "wrong": {
+   "0": "Muammo harfda emas, apostrofda: u matnni erta yopyapti.",
+   "2": "Qo'shtirnoq SQL'da ustun yoki jadval nomi uchun — sinab ko'rdik: column \"O'yinchoq\" does not exist.",
+   "3": "Ustun turi bu xatoga aloqasiz: xato matn yozilishida."
+  }
+ },
+ "14": {
+  "type": "Lesson",
+  "kicker": "4-bosqich · Express",
+  "title": "m4-08: cars jadvali o'quvchining o'zi yozadi, server.js ni Gemini",
+  "seg": [
+   [
+    "a",
+    "PostgreSQL terminalidagi CRUD endi <b>server ichida</b>: o'quvchi m4-08 da AvtoIjara uchun quradi",
+    "PostgreSQL terminalida qo'lda qildingiz, endi xuddi shu so'rovlar server ichida. O'quvchi m4-08 darsida avval cars jadvalini PostgreSQL terminalida o'zi yozadi: model, kunlik narx, yil va ijaradami. Keyin server kodini Gemini yozadi."
+   ],
+   [
+    "b",
+    "<code>Pool</code> — bazaga ulanish sozlamalari: foydalanuvchi, parol, baza nomi <b>bir joyda</b>",
+    "Kodning tepasida pg paketidan Pool olinadi. Unga foydalanuvchi, parol, baza nomi, host va port beriladi. Parolni o'quvchi o'zi yozadi, PostgreSQL o'rnatilganda berilgan parol. Shuning uchun sinf paroli hammada bir xil bo'lsa, ishingiz oson."
+   ],
+   [
+    "c",
+    "<code>GET /api/cars</code>: <code>pool.query</code> so'rovni bazaga olib boradi, <b><code>rows</code></b> — javobga ketadi",
+    "Endi GET api cars endpoint'i. Pool query select'ni bazaga olib boradi, natijaning rows qismi, ya'ni qatorlar, res json bilan qaytadi. Postman'da ikki yuz va uchta mashina. Bu PostgreSQL terminalidagi select'ning o'zi, faqat javob JSON ko'rinishida."
+   ],
+   [
+    "d",
+    "Xatoda <code>catch</code>: <b>status 500 va xato matni</b> — o'quvchi uni Postman'da ko'radi",
+    "Pastda catch turibdi: xato bo'lsa, server besh yuz status va xato matnini qaytaradi. Bu muhim: sinfdagi xatolarning ko'pini o'quvchi aynan shu javobda ko'radi. Beshinchi bosqichda shu yo'l bilan buzamiz."
+   ],
+   [
+    "e",
+    "Xulosa: <code>Pool</code> → <code>pool.query</code> → <code>rows</code> → <code>res.json</code> — <b>server bazaga shu yo'l bilan ulanadi</b>",
+    "Xulosa: so'rov serverdan bazaga to'rt qadamda boradi. Pool ulanadi, pool query so'rov yuboradi, rows qatorlarni oladi, res json javob qaytaradi. O'quvchi darsidagi test savoli ham shu haqda: serverni bazaga pool query ulaydi."
+   ]
+  ]
+ },
+ "15": {
+  "type": "Lesson",
+  "kicker": "4-bosqich · Express",
+  "title": "To'rt endpoint — to'rt SQL buyruq; javob statusi bilan",
+  "seg": [
+   [
+    "a",
+    "<code>POST</code> — <code>INSERT … RETURNING *</code>: yangi qator javobda, <b>status 201</b>",
+    "GET o'qiydi, qolgan uchtasi yozadi. POST'da insert, oxirida returning yulduzcha: baza yangi qatorni, id bilan, qaytaradi. Status ikki yuz bir, ya'ni yaratildi. Chevrolet Spark to'rtinchi id bilan qo'shildi."
+   ],
+   [
+    "b",
+    "<code>is_rented: null</code> — <code>POST</code>da berilmagan ustun bo'sh qoladi, <b><code>DEFAULT</code> yo'q</b>",
+    "Javobga qarang: is rented null. POST'da bu ustun berilmadi, jadvalda esa default qiymat yo'q. Sinfda o'quvchi «nega null?» desa, javob shu. Kerak bo'lsa, jadvalda default false yoziladi."
+   ],
+   [
+    "c",
+    "<code>PUT</code> — <code>UPDATE … WHERE id = $2</code>, <code>DELETE</code> — <code>WHERE id = $1</code>: <b>200</b>",
+    "PUT ikkinchi mashina narxini yangiladi, ikki yuz va yangilangan qator. DELETE birinchi mashinani o'chirdi, ikki yuz. Ikkalasida ham where bor, faqat id endi URL'dan keladi."
+   ],
+   [
+    "d",
+    "Yo'q <code>id</code>: kod <code>rowCount</code>ni tekshiradi va 404 qaytaradi — bu namunaning <b>to'g'ri qarori</b>",
+    "To'qson to'qqizinchi mashina: to'rt yuz to'rt, mashina topilmadi. Nega? Baza update nol qaytaradi, xato emas. Bu namunada kod rowCount nolmi deb tekshiradi va to'rt yuz to'rt beradi. To'g'ri qaror: aks holda o'quvchi ikki yuz ko'rib, «o'zgardi» deb o'ylaydi. Gemini buni har doim ham yozmaydi."
+   ],
+   [
+    "e",
+    "Xulosa: GET — 200, POST — 201, PUT/DELETE — 200, <b>topilmasa — 404</b>, xato — 500",
+    "Xulosa: GET ikki yuz, POST ikki yuz bir, PUT va DELETE ikki yuz qaytaradi; qator topilmasa to'rt yuz to'rt, xato bo'lsa besh yuz. Har biri PostgreSQL terminalidagi bitta buyruq. Javobdagi son, ya'ni rowCount, PostgreSQL terminalidagi update bir yoki update nol'ning o'zi."
+   ]
+  ]
+ },
+ "16": {
+  "type": "Lesson",
+  "kicker": "4-bosqich · Express",
+  "title": "Yopishtirilgan SQL: 1 OR 1=1 — uchala mashina o'chdi. $1 bilan — 500, jadval joyida",
+  "seg": [
+   [
+    "a",
+    "O'quvchi testida savol bor: «Nega <code>$1</code>?». <b>Sinab ko'rdik</b> — javob ekranda",
+    "O'quvchi darsining testida savol bor: nega dollar bir ishlatamiz? Javob: matn kod bo'lib qolmasin. Bu quruq gap emas, sinab ko'rdik. Delete'da id'ni SQL matniga to'g'ridan-to'g'ri yopishtirdik."
+   ],
+   [
+    "b",
+    "URL'ga <code>1 OR 1=1</code> yozildi — so'rov «hammasi» bo'lib qoldi: <b><code>deleted: 3</code></b>",
+    "Endi URL'da id o'rniga bir or bir teng bir yuborildi. Yopishtirilgan satr shunday SQL bo'ldi: where id bir, yoki bir teng bir. Bir teng bir doim to'g'ri. Javob ikki yuz, deleted uch, ya'ni jadval bo'sh qoldi. Buni SQL injection deyishadi."
+   ],
+   [
+    "c",
+    "<code>$1</code> bilan xuddi shu so'rov: <code>invalid input syntax for type integer</code> — 500, <b>jadval joyida</b>",
+    "Endi dollar bir bilan. Qiymat SQL matniga kirmaydi, alohida beriladi. Baza bir or bir teng bir'ni son sifatida o'qishga urinadi va rad etadi: invalid input syntax for type integer. Besh yuz, lekin jadval joyida, uchala mashina bor."
+   ],
+   [
+    "d",
+    "Xulosa: qiymat doim <b><code>$1, $2</code> bilan</b> — Gemini promptida ham shunday yozilgan",
+    "Xulosa: foydalanuvchidan kelgan har qiymat dollar bir, dollar ikki bilan beriladi. O'quvchi darsidagi Gemini promptida ham shunday talab bor: qiymatlarni SQL matniga yopishtirma. Gemini boshqacha yozsa, o'quvchi buni tekshirishi kerak, siz esa shu misolni ko'rsatasiz."
+   ]
+  ]
+ },
+ "17": {
+  "type": "Practice",
+  "kicker": "Amaliyot 3 / 4",
+  "eyebrow": "Hozir o'zingizda · 15–20 daqiqa",
+  "title": "car_rental va server.js — o'quvchi m4-08 dagi ish",
+  "seg": [
+   [
+    "a",
+    "Endi siz: m4-08 dagi ishni <b>o'zingiz qilasiz</b> — jadval qo'lda, server Gemini bilan yoki namunadan",
+    "Endi o'zingiz qilasiz, o'quvchi m4-08 da qiladigan ishni. Jadvalni PostgreSQL terminalida qo'lda yozasiz. Server kodini o'quvchi promptlari bilan Gemini'dan oling yoki namunani o'zingiz yozing. O'n besh-yigirma daqiqa."
+   ],
+   [
+    "b",
+    "1–2-qadam: <code>car_rental</code> va <code>cars</code>; papka, <b><code>express</code> va <code>pg</code></b>",
+    "Birinchi qadamda car rental bazasi va cars jadvalini yaratib, uchta mashina qo'shasiz. Ikkinchisida avto ijara server papkasini ochib, npm init qilasiz va express bilan pg paketlarini o'rnatasiz."
+   ],
+   [
+    "c",
+    "3–4-qadam: <code>server.js</code>, <code>node server.js</code>, Postman; isbot — <b><code>POST</code> javobining statusi</b>",
+    "Uchinchi qadamda server js faylini yozasiz, unga parolingizni qo'yib, node server js bilan ishga tushirasiz. To'rtinchisida Postman'da GET va POST yuborasiz. Isbot maydoniga POST javobining statusini yozing."
+   ],
+   [
+    "d",
+    "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
+    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. Beshinchi bosqichda bu xatolarning hammasini buzib ko'ramiz. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin sizda o'quvchi m4-08 da quradigan server ishlab turadi va siz uni Postman bilan sinagan bo'lasiz."
+   ]
+  ]
+ },
+ "18": {
+  "type": "Lesson",
+  "kicker": "5-bosqich · buzamiz",
+  "title": "column \"price\" of relation \"cars\" does not exist — kodda price, jadvalda daily_price",
+  "seg": [
+   [
+    "a",
+    "O'quvchi darsidagi AI xatosini o'zimiz takrorlaymiz: <b><code>INSERT</code>da <code>price</code></b>",
+    "Buzishni o'quvchi darsidagi xatodan boshlaymiz. Gemini insert'da daily price o'rniga price yozgan. Serverni ishga tushiramiz: xato yo'q, server ishlayapti deb yozadi. Xato faqat POST yuborilganda chiqadi."
+   ],
+   [
+    "b",
+    "POST → 500, xabarda <b>jadval va ustun</b>: <code>\"price\"</code> · <code>\"cars\"</code>",
+    "POST yuboramiz, javob besh yuz. Xabarni o'qiymiz: column price of relation cars does not exist. Ustun price, jadval esa cars. O'quvchi darsida xabar qisqaroq yozilgan, haqiqiysi shu, relation cars bilan."
+   ],
+   [
+    "c",
+    "Tuzatish: kodda <code>daily_price</code> — serverni qayta ishga tushirib, <b>POST → 201</b>",
+    "Jadval tuzilishiga qaraymiz: ustun daily price. Kodda tuzatamiz, serverni to'xtatib, qayta ishga tushiramiz. POST yuboramiz: javob ikki yuz bir, yangi mashina id bilan qaytdi."
+   ],
+   [
+    "d",
+    "Xulosa: 500 bo'lsa — <code>error</code> matnidagi nomni <b><code>\\d cars</code> bilan solishtiring</b>",
+    "Xulosa: besh yuz chiqsa, xato matnini o'qing, ichida ustun va jadval nomi bor. Uni PostgreSQL terminalidagi teskari chiziqcha d cars bilan solishtiring. Kod o'zgargandan keyin serverni albatta qayta ishga tushiring."
+   ]
+  ]
+ },
+ "19": {
+  "type": "Lesson",
+  "kicker": "5-bosqich · buzamiz",
+  "title": "Cannot destructure property 'model' of 'req.body' — so'rov tanasi o'qilmagan",
+  "seg": [
+   [
+    "a",
+    "Bitta satrni olib tashlaymiz: <code>app.use(express.json())</code> — <b>server baribir ishga tushadi</b>",
+    "Endi ikkinchi buzish. Gemini ba'zan bitta satrni unutadi: app use express json. Shu satrni olib tashlaymiz. Server xatosiz ishga tushadi, GET ham ishlaydi. Muammo faqat tanasi bor so'rovlarda."
+   ],
+   [
+    "b",
+    "POST → 500: <code>req.body</code> — <b><code>undefined</code></b>, <code>model</code>ni olib bo'lmaydi",
+    "POST yuboramiz, javob besh yuz. Xabar shunday: cannot destructure property model of req body as it is undefined. Ya'ni req body umuman yo'q: Express so'rov tanasini o'qimagan, chunki json'ni o'qiydigan qism ulanmagan."
+   ],
+   [
+    "c",
+    "Tuzatish: satr qaytariladi, <code>app</code> yaratilgandan keyin — <b>POST → 201</b>",
+    "Tuzatish uchun app use express json satrini app yaratilgandan keyin, endpoint'lardan oldin qaytaramiz. Server qayta ishga tushadi, POST ikki yuz bir."
+   ],
+   [
+    "d",
+    "Xulosa: <code>req.body</code> <code>undefined</code> bo'lsa — birinchi qaraladigan joy <b><code>express.json()</code></b>",
+    "Xulosa: req body undefined degan xato chiqsa, birinchi qaraladigan joy app use express json. GET ishlab, POST va PUT ishlamasa ham shu satr. O'quvchi darsidagi Gemini promptining birinchi bandi aynan shu."
+   ]
+  ]
+ },
+ "20": {
+  "type": "Lesson",
+  "kicker": "5-bosqich · buzamiz",
+  "title": "Server «ishlayapti» deydi — parol, baza va PostgreSQL xatosi birinchi so'rovda chiqadi",
+  "seg": [
+   [
+    "a",
+    "<code>Pool</code> darhol ulanmaydi: server ishga tushadi, <b>xato birinchi so'rovda</b>",
+    "Parol xatosini ko'rdik, endi uning g'alati tomoni. Pool server ishga tushganda bazaga ulanmaydi, birinchi so'rovda ulanadi. Shuning uchun parol xato bo'lsa ham terminalda server ishlayapti deb yoziladi. O'quvchi «server ishlayapti, lekin besh yuz» desa, xabarni o'qing."
+   ],
+   [
+    "b",
+    "Parol xato — <b><code>password authentication failed</code></b>; parol bo'sh — <b><code>client password must be a string</code></b>",
+    "Parol xato bo'lsa: password authentication failed for user postgres. Parol umuman berilmasa, masalan process env'dan o'qilmagan bo'lsa: client password must be a string. Ikkinchisi g'alati ko'rinadi, lekin ma'nosi oddiy: parol o'zgaruvchisi bo'sh."
+   ],
+   [
+    "c",
+    "Baza nomi xato — <code>database \"carrental\" does not exist</code>: <b>pastki chiziq tushib qolgan</b>",
+    "Baza nomida pastki chiziq tushib qolsa: database carrental does not exist. Baza bor, faqat nomi car pastki chiziq rental. PostgreSQL terminalidagi teskari chiziqcha l bilan aniq nomni ko'ring."
+   ],
+   [
+    "d",
+    "PostgreSQL o'chiq — xato matni bo'sh; <code>console.error(err)</code> — <b><code>ECONNREFUSED</code> ko'rinadi</b>",
+    "Eng chalkashi: PostgreSQL ishlamasa, javob besh yuz, lekin error bo'sh, terminalda ham bo'sh qator. Sinab ko'rdik: console error'ga err message emas, err'ning o'zini bersak, ECONNREFUSED chiqadi, ya'ni ulanish rad etildi. Yechim: PostgreSQL'ni ishga tushiring."
+   ],
+   [
+    "e",
+    "Xulosa: «ishlayapti» — <b>faqat Express</b>; baza xatosini birinchi so'rov va terminal aytadi",
+    "Xulosa: terminaldagi ishlayapti degan satr faqat Express haqida. Bazaga ulanish birinchi so'rovda tekshiriladi. Xabar bo'sh bo'lsa, console error'ga butun xatoni bering. PostgreSQL'ni ishga tushirish: Windows'da Services, Mac'da Postgres.app."
+   ]
+  ]
+ },
+ "21": {
+  "type": "Lesson",
+  "kicker": "5-bosqich · buzamiz",
+  "title": "Ikkinchi node server.js ham «ishlayapti» deydi — javobni esa eski server beradi",
+  "seg": [
+   [
+    "a",
+    "Sinfdagi eng chalkash holat: «kodni tuzatdim, <b>hech narsa o'zgarmadi</b>»",
+    "Sinfdagi eng chalkash holat: o'quvchi kodni tuzatadi, serverni yana ishga tushiradi, lekin javob o'zgarmaydi. Sabab ko'pincha bitta: birinchi server boshqa terminalda hali ishlab turibdi."
+   ],
+   [
+    "b",
+    "Sinab ko'rdik: ikkinchi server ham «ishlayapti» deb yozdi va <b>xato bermay chiqib ketdi</b>",
+    "Sinab ko'rdik. Birinchi server ishlab turganda ikkinchi oynada node server js. Kutganimiz port band degan xato edi. Haqiqatda ikkinchi server ham ishlayapti deb yozdi va xato bermay chiqib ketdi. So'rovlarga birinchi, eski server javob beradi."
+   ],
+   [
+    "c",
+    "Sabab Express 5 da: xato <code>listen</code> callback'iga beriladi, namunadagi <b>callback uni o'qimaydi</b>",
+    "Sabab Express beshinchi versiyasida: listen xatoni callback'ga beradi. Gemini yozgan callback esa xatoni o'qimaydi, faqat ishlayapti deb chiqaradi. Bu namuna kodidagi kamchilik, Express'niki emas, lekin sinfda aynan shunday ko'rinadi."
+   ],
+   [
+    "d",
+    "Xulosa: bitta loyiha — <b>bitta terminal</b>; qayta ishga tushirishdan oldin <code>Ctrl+C</code>",
+    "Xulosa: sinfda qoida qo'ying, bitta loyiha uchun bitta terminal. Qayta ishga tushirishdan oldin Ctrl C bilan eski serverni to'xtating. O'quvchi «o'zgarmadi» desa, birinchi savol: boshqa terminalda server ochiq qolmadimi?"
+   ]
+  ]
+ },
+ "22": {
+  "type": "LineCheck",
+  "kicker": "Tekshiruv 4",
+  "eyebrow": "Tekshiruv · 4 / 4 — qaysi satr xato?",
+  "title": "POST 500: column \"price\" of relation \"cars\" does not exist. Xato satrni toping",
+  "q": "Buzishni ko'rdingiz, endi o'zingiz toping. To'rtinchi tekshiruv. Jadval ustunlarini eslang: id, model, daily price, year, is rented. Bu POST bo'lagida bitta satr jadvalda yo'q ustunni so'rayapti. O'sha satrni bosing.",
+  "ok": "To'g'ri. To'rtinchi satrda insert'da price yozilgan, jadvalda esa daily price. Uchinchi satrdagi daily price faqat JavaScript o'zgaruvchisi, baza uni ko'rmaydi, u SQL matnidagi nomni ko'radi. Ekranda tuzatilgan holat: daily price, POST ikki yuz bir. Demak, besh yuz chiqsa, SQL matnidagi har nomni jadval ustunlari bilan solishtiring.",
+  "okShort": "4-satr: SQL'da <code>price</code> — jadvalda <code>daily_price</code>. 3-satrdagi <code>daily_price</code> — JS o'zgaruvchisi, baza ko'rmaydi.",
+  "hint": "Baza JavaScript o'zgaruvchilarini ko'rmaydi — faqat qo'shtirnoq ichidagi SQL matnini. O'sha matndagi ustun nomlarini qidiring.",
+  "task": "Qoida: SQL'dagi ustun nomlari jadvaldagi bilan aynan bir xil bo'ladi — <code>cars</code>: <code>id, model, daily_price, year, is_rented</code>. Bu POST bo'lagida bitta satr jadvalda yo'q ustunni so'rayapti. <b>O'sha satrni bosing.</b>"
+ },
+ "23": {
+  "type": "Practice",
+  "kicker": "Amaliyot 4 / 4",
+  "eyebrow": "Hozir o'zingizda · 10 daqiqa",
+  "title": "Ikki buzish, ikki tuzatish — o'z serveringizda",
+  "seg": [
+   [
+    "a",
+    "Endi siz: o'z serveringizda ikkita xatoni <b>ataylab chiqarasiz va tuzatasiz</b>",
+    "Oxirgi amaliyot: o'z serveringizda ikkita xatoni ataylab chiqarasiz va tuzatasiz. O'n daqiqa. Sinfda xuddi shu xatolar chiqqanda, ularni birinchi marta ko'rayotgan bo'lmaysiz."
+   ],
+   [
+    "b",
+    "1–2-qadam: <code>price</code> xatosi — 500, <b>xabarni o'qing</b>, tuzating, 201",
+    "Birinchi qadamda insert'dagi daily price'ni price qilib, serverni qayta ishga tushirasiz va POST yuborasiz. Ikkinchisida xabarni o'qib, xatoni tuzatasiz va qayta ishga tushirasiz: javob ikki yuz bir bo'lishi kerak."
+   ],
+   [
+    "c",
+    "3–4-qadam: eski serverni yopmasdan yangisini yoqing; isbot — <b>500 xabarining matni</b>",
+    "Uchinchi qadamda birinchi server ishlab turganda ikkinchi terminalda yana node server js qilasiz va ishlayapti satrini ko'rasiz. To'rtinchisida ikkalasini ham Ctrl C bilan to'xtatasiz. Isbot maydoniga birinchi qadamdagi besh yuz xabarini nusxalang."
+   ],
+   [
+    "d",
+    "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
+    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, sinfda bu ikki xato chiqqanda siz ularni birinchi marta ko'rayotgan bo'lmaysiz va xabardan sababini darhol topasiz."
+   ]
+  ]
+ },
+ "24": {
+  "type": "Lesson",
+  "kicker": "6-bosqich · o'quvchi darsini o'tish",
+  "eyebrow": "m4-06 · «PostgreSQL so'rovlar — CRUD + AI bilan»",
+  "title": "m4-06: o'quvchi do'konni tugmalar bilan boshqaradi, amaliyotda — haqiqiy PostgreSQL terminalida",
+  "seg": [
+   [
+    "a",
+    "m4-06 da o'quvchi do'konni tugmalar bilan boshqaradi — amaliyotda esa <b>haqiqiy PostgreSQL terminali</b>",
+    "Endi o'quvchi darslarini ko'ramiz. Birinchisi m4-06, unda yigirma bir ekran bor. Ko'p qismida o'quvchi do'konni tugmalar bilan boshqaradi: insert, select, where, update, delete. Lekin amaliyotda u haqiqiy PostgreSQL terminali yoki VS Code'da AI bilan o'z do'koni jadvalini yaratadi. Demak bu darsda PostgreSQL har kompyuterda ishlab turishi shart."
+   ],
+   [
+    "b",
+    "CRUD bloki — siz bugun qo'lda qilgan ish; har <code>UPDATE</code>da <b>javobdagi sonni so'rang</b>",
+    "CRUD bloki siz bugun qo'lda qilgan ishning o'zi. Qo'shimcha gapingiz: javobdagi son va begin, rollback. O'quvchi where'siz update'ni faqat ogohlantirishda ko'radi, siz uni proyektorda xavfsiz ko'rsating."
+   ],
+   [
+    "c",
+    "AI bloki: o'quvchi AI yozgan SQL'ni tekshiradi — sizning misollaringiz <code>product</code> va <b>noto'g'ri <code>HINT</code></b>",
+    "AI bloki: o'quvchi AI yozgan SQL'ni tekshirishni o'rganadi, o'quvchi darsidagi misol product xatosi. Sizda yana bir misol bor: hint ham adashadi. Xulosa bitta: AI yozadi, o'quvchi tekshiradi."
+   ],
+   [
+    "d",
+    "Xulosa: amaliyot oldidan har kompyuterda <b>PostgreSQL terminali ochilishini</b> tekshiring; apostrof va <code>NOT NULL</code>ni ayting",
+    "Xulosa: amaliyot oldidan har kompyuterda PostgreSQL terminali ochilishini tekshiring. O'quvchi o'z do'konini yaratayotganda ikki narsani ayting: so'z ichidagi apostrof ikki marta yoziladi, nom va narxga not null qo'yiladi. Vaqt, taklif: to'qson daqiqaning yigirma beshi amaliyotga."
+   ]
+  ]
+ },
+ "25": {
+  "type": "Lesson",
+  "kicker": "6-bosqich · o'quvchi darsini o'tish",
+  "eyebrow": "m4-08 · «Praktika: Backend CRUD — AvtoIjara»",
+  "title": "m4-08: jadval qo'lda, server Gemini bilan — darsdagi to'rt farqni oldindan biling",
+  "seg": [
+   [
+    "a",
+    "m4-08 — <b>to'qqiz ekran</b>: jadvalni o'quvchi yozadi, serverni Gemini, Postman bilan sinaladi",
+    "Ikkinchi dars m4-08, AvtoIjara, unda to'qqiz ekran bor. O'quvchi cars jadvalini PostgreSQL terminalida o'zi yozadi, server kodini Gemini'dan oladi, Postman bilan sinaydi va AI xatosini topadi. Siz bugun xuddi shuni qildingiz."
+   ],
+   [
+    "b",
+    "Farq 1: darsdagi xato matni qisqartirilgan; Farq 2: Gemini kodi <b>har kimda boshqacha</b>",
+    "Darsdagi to'rt farqni oldindan biling. Birinchisi: xato matni darsda qisqaroq, haqiqiysida relation cars ham bor. Ikkinchisi: Gemini har o'quvchiga boshqacha kod yozadi. Topilmasa nima qaytishi, bitta yoki ikkita satr har xil bo'ladi. Promptdagi talablar bajarilganini tekshiring, satrma-satr bir xillikni emas."
+   ],
+   [
+    "c",
+    "Farq 3: <code>is_rented</code> — <code>null</code>; Farq 4: <b>port band bo'lsa ham «ishlayapti»</b>",
+    "Uchinchisi: POST'dan keyin is rented null chiqadi, chunki u berilmaydi. To'rtinchisi: ikki terminalda ikki server ochilsa, xato chiqmaydi, eski server javob beradi. Ikkalasini ham o'quvchilarga oldindan ayting."
+   ],
+   [
+    "d",
+    "Xulosa: darsdan oldin — parol, Postman va <b>bitta terminal qoidasi</b>",
+    "Xulosa: m4-08 dan oldin uch narsani tayyorlang. Sinf paroli hammaga ma'lum, Postman o'rnatilgan, va qoida: bitta loyiha, bitta terminal. Vaqt, taklif: to'qson daqiqaning qirqi server va Postman'ga, chunki eng ko'p qoqiladigan joy shu."
+   ]
+  ]
+ },
+ "26": {
+  "type": "Lesson",
+  "kicker": "6-bosqich · sinfda",
+  "title": "Olti holat va tayyor javoblar",
+  "seg": [
+   [
+    "a",
+    "Sinfda albatta chiqadigan <b>olti holat</b> — hammasini bugun o'zingiz ko'rdingiz",
+    "Ikki o'quvchi darsini bilasiz. Endi sinfda albatta chiqadigan oltita holatni ko'ramiz. Hammasini bugun o'zingiz ko'rdingiz, shuning uchun qisqa aytaman."
+   ],
+   [
+    "b",
+    "Nom xatosi va apostrof — <code>\\d</code> bilan solishtiring, <b>apostrof ikki marta</b>",
+    "Birinchi holat jadval yoki ustun nomidagi xato: xabar ichidagi nomni teskari chiziqcha d bilan solishtiring, hint'ga ishonmang. Ikkinchisi apostrof: u ikki marta yoziladi."
+   ],
+   [
+    "c",
+    "<code>WHERE</code>'siz va ulanish xatolari — <code>BEGIN</code>, parol va <b>bo'sh xabar</b>",
+    "Uchinchisi where'siz update yoki delete: uning oldi begin bilan olinadi. To'rtinchisi parol yoki baza nomidagi xato: uni Pool sozlamalarida qidiring. Beshinchisi: xabar bo'sh bo'lsa, console error'ga butun xatoni bering va PostgreSQL'ni tekshiring."
+   ],
+   [
+    "d",
+    "Xulosa: o'zgarmasa — ikkinchi terminal; avval <b>xabarni o'quvchi bilan birga o'qing</b>",
+    "Oltinchisi: o'quvchi «o'zgarmadi» desa, ikkinchi terminalda eski server qolganini tekshiring. Xulosa va usul bitta: javobni darhol aytmang, xabarni o'quvchi bilan birga o'qing. Pastda o'quvchi savollariga tayyor javoblar bor."
+   ]
+  ]
+ },
+ "27": {
+  "type": "Screen27",
+  "kicker": "O'z-sinov",
+  "title": "Sakkiz savol. Bitta urinish. Oltitasi — o'tdingiz",
+  "final": [
+   {
+    "q": "UPDATE products SET price = 99000; — WHERE yo'q. Javob?",
+    "o": [
+     "UPDATE 1",
+     "ERROR",
+     "UPDATE 3 — hamma qator",
+     "UPDATE 0"
+    ],
+    "c": 2,
+    "e": "WHERE'siz — jadvaldagi hamma qator.",
+    "s": 8
+   },
+   {
+    "q": "BEGIN; → DELETE FROM products; → ROLLBACK; → SELECT *. Natija?",
+    "o": [
+     "Hamma mahsulot joyida",
+     "(0 rows)",
+     "Faqat birinchi qator",
+     "ERROR"
+    ],
+    "c": 0,
+    "e": "ROLLBACK tranzaksiyani bekor qiladi.",
+    "s": 8
+   },
+   {
+    "q": "WHERE id = 99 — bunday qator yo'q. UPDATE javobi?",
+    "o": [
+     "ERROR: not found",
+     "UPDATE 0",
+     "UPDATE 1",
+     "DELETE 0"
+    ],
+    "c": 1,
+    "e": "Mos qator yo'q — 0, xato emas.",
+    "s": 5
+   },
+   {
+    "q": "VALUES ('O'yinchoq', 30000, 4) → syntax error. Tuzatish?",
+    "o": [
+     "\"O'yinchoq\"",
+     "VARCHAR qilish",
+     "Kirillda yozish",
+     "'O''yinchoq'"
+    ],
+    "c": 3,
+    "e": "So'z ichidagi apostrof ikki marta.",
+    "s": 11
+   },
+   {
+    "q": "Express'da bazaga SQL nima bilan yuboriladi?",
+    "o": [
+     "pool.query(sql, [qiymatlar])",
+     "res.json",
+     "app.listen",
+     "console.log"
+    ],
+    "c": 0,
+    "e": "Pool — server bazaga shu yo'l bilan ulanadi.",
+    "s": 14
+   },
+   {
+    "q": "Server «ishlayapti», GET ishlaydi, POST — Cannot destructure property 'model' of 'req.body'. Sabab?",
+    "o": [
+     "Parol xato",
+     "app.use(express.json()) yo'q",
+     "Jadval yo'q",
+     "Port band"
+    ],
+    "c": 1,
+    "e": "req.body o'qilmagan.",
+    "s": 19
+   },
+   {
+    "q": "POST 500, {\"error\":\"\"}, terminalda bo'sh qator. Birinchi qadam?",
+    "o": [
+     "Serverni o'chirish",
+     "Gemini'dan yangi kod",
+     "console.error(err) — butun xatoni ko'rish",
+     "npm install"
+    ],
+    "c": 2,
+    "e": "Bo'sh xabar — ECONNREFUSED yashiringan.",
+    "s": 20
+   },
+   {
+    "q": "O'quvchi: «Kodni tuzatdim, node server.js qildim — javob o'zgarmadi». Birinchi savolingiz?",
+    "o": [
+     "Gemini'dan qayta so'radingmi?",
+     "Bazani o'chirdingmi?",
+     "Postman yangilandimi?",
+     "Boshqa terminalda server ochiq qolmadimi?"
+    ],
+    "c": 3,
+    "e": "Express 5 da ikkinchi server ham «ishlayapti» deydi.",
+    "s": 21
+   }
+  ]
+ },
+ "28": {
+  "type": "Screen28",
+  "kicker": "Yakun",
+  "title": "Endi siz bilasiz"
+ }
+};
+
+// ============================================================
+//  MENTOR KURSI · PostgreSQL-2 «CRUD so'rovlar va Express'dan bazaga»
+//  F-1029-02 · manba-haqiqat: feedback/F-1029-02-mentor-kurs/08-PostgreSQL2-mentor-v1.md (MD v1, GATE M kutilmoqda; 01.11 avtopilot)
+//  Haqiqiy chiqishlar: feedback/F-1029-02-mentor-kurs/manba/pg2-out/ (00–20)
+//  Yig'ish: cat parts/01-asos.jsx parts/02-dvigatel.jsx pg2/parts/*.jsx > PgCrudMentorLesson.jsx
+//  Yordamchilar PG-1 dan nusxa (pg1/parts/04-yordam.jsx) — darslar bir-biriga bog'liq emas
+// ============================================================
+const LESSON_ID = 'mentor-pg-02-crud-express-v1';
+const LESSON_TITLE = "CRUD so'rovlar va Express'dan bazaga";
+const PG = { mongo: '#13AA52', pg: '#336791', term: '#111827', termEr: '#1F1115', win: '#0067C0', post: '#FF6C37' };
+MKCFG.root = 'avto-ijara-server';
+MKCFG.kind = (f) => /\.js$/.test(f) ? T.yellow : /\.sql$/.test(f) ? PG.pg : /\.json$/.test(f) ? T.ink2 : null;
+MKCFG.files = ['node_modules/', 'package.json', 'server.js'];
+
+// Segment: MD'dagi ekran matni (03-matn.gen.jsx) + sahna maydonlari (extras — segment tartibida)
+const sg = (id, key, text, extra = {}) => ({ id, key, text, show: wr(text), ...extra });
+const mkS = (n, extras = [], more = {}) => {
+  const m = MDT[n];
+  return { kicker: m.kicker, eyebrow: m.eyebrow, title: m.title, ...more, segments: m.seg.map(([id, key, text], i) => sg(id, key, text, extras[i] || {})) };
+};
+
+// Ovoz → «Matn» (transkript) uchun yozma ko'rinish. Uzun ibora oldin.
+const SPOKEN = [
+  ['psql minus U postgres', 'psql -U postgres'], ['teskari chiziqcha d products', '\\d products'], ['teskari chiziqcha d cars', '\\d cars'],
+  ['teskari chiziqcha l', '\\l'], ['teskari chiziqcha d', '\\d'], ['teskari chiziqcha c', '\\c'],
+  ['app use express json', 'app.use(express.json())'], ['express json', 'express.json()'], ['pool query', 'pool.query'], ['res json', 'res.json'],
+  ['req body', 'req.body'], ['node server js', 'node server.js'], ['server js', 'server.js'], ['console error', 'console.error'], ['err message', 'err.message'],
+  ['daily price', 'daily_price'], ['is rented', 'is_rented'], ['car rental', 'car_rental'], ['avto ijara server', 'avto-ijara-server'], ['rowCount', 'rowCount'],
+  ['dollar bir, dollar ikki', '$1, $2'], ['dollar bir', '$1'], ['dollar ikki', '$2'], ['bir or bir teng bir', '1 OR 1=1'],
+  ['order by id', 'ORDER BY id'], ['order by', 'ORDER BY'], ['returning yulduzcha', 'RETURNING *'], ['select yulduzcha', 'SELECT *'],
+  ['insert, nol, uch', 'INSERT 0 3'], ['insert nol bir', 'INSERT 0 1'], ['update bir', 'UPDATE 1'], ['update nol', 'UPDATE 0'], ['update uch', 'UPDATE 3'],
+  ['delete bir', 'DELETE 1'], ['delete uch', 'DELETE 3'], ['deleted uch', 'deleted: 3'], ['not null', 'NOT NULL'], ['default false', 'DEFAULT false'],
+  ['where name is null', 'WHERE name IS NULL'], ['process env', 'process.env'], ['Ctrl C', 'Ctrl+C'], ['npm init', 'npm init -y'],
+];
+DIGITS.unshift(["to'qson to'qqiz ming", '99 000'], ['yuz ming', '100 000'], ['ellik ming', '50 000'], ["o'ttiz ming", '30 000'],
+  ["to'qson to'qqizinchi", '99-'], ['yigirma bir', '21'], ['yigirma beshi', '25 tasi'], ["o'n besh-yigirma", '15–20'], ["besh-o'n", '5–10'],
+  ['bir, ikki, uch, to\'rt', '1, 2, 3, 4'], ['id bir', 'id 1'], ['id uch', 'id 3'], ["to'qqiz ekran", '9 ekran']);
+const wr = (s) => digits(SPOKEN.reduce((acc, [a, b]) => acc.split(a).join(b), s));
+// Haqiqiy inglizcha iboralar ovozda [English pronunciation] ichida (M21) — uzunlari oldin
+EN_PHRASES.unshift(
+  /violates foreign key constraint/g, /is not present in table/g, /is still referenced from table/g, /violates check constraint/g,
+  /violates not-null constraint/g, /duplicate key value/g, /already exists/g, /syntax error/g, /Connection refused/g,
+  /Cannot destructure property/g, /client password must be a string/g, /there is no transaction in progress/g, /permission denied/g,
+  /invalid input syntax for type integer/g, /has more target columns than expressions/g, /address already in use/g, /Perhaps you meant/g,
+);
+
+// Kod rang beruvchi: JS (Mongo sahnasi) va SQL/psql (qolgan hammasi). Matn — String.raw, HTML'siz.
+const escH = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const JS_KW = /^(const|let|await|new|async|return|true|false|null|require)$/;
+function jsLine(src) {
+  const re = /(\/\/.*$)|('(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*")|([A-Za-z_$][\w$]*)|(\d+)/g;
+  let out = '', last = 0, m;
+  while ((m = re.exec(src))) {
+    out += escH(src.slice(last, m.index)); last = re.lastIndex;
+    const [w, cm, str, id, num] = m;
+    if (cm) out += `<span class="cm">${escH(cm)}</span>`;
+    else if (str) out += `<span class="s">${escH(str)}</span>`;
+    else if (id) out += JS_KW.test(id) ? `<span class="k">${id}</span>` : /^[A-Z]/.test(id) ? `<span class="c">${id}</span>` : id;
+    else if (num) out += `<span class="d">${num}</span>`;
+    else out += escH(w);
+  }
+  return out + escH(src.slice(last));
+}
+const js = (src, meta = {}) => src.replace(/^\n/, '').replace(/\n\s*$/, '').split('\n').map((l, i) => ({ h: jsLine(l), ...(meta[i + 1] || {}) }));
+const SQL_KW = /^(SELECT|FROM|WHERE|JOIN|LEFT|ON|AND|AS|INSERT|INTO|VALUES|UPDATE|SET|DELETE|CREATE|TABLE|DATABASE|ALTER|ADD|COLUMN|DROP|PRIMARY|KEY|REFERENCES|NOT|NULL|UNIQUE|CHECK|SERIAL|INT|TEXT|JSONB|BEGIN|COMMIT|ROLLBACK|RETURNING|DEFAULT)$/;
+function sqlLine(src) {
+  const re = /(--.*$)|('(?:[^']|'')*')|([A-Za-z_][\w]*)|(\d+)/g;
+  let out = '', last = 0, m;
+  while ((m = re.exec(src))) {
+    out += escH(src.slice(last, m.index)); last = re.lastIndex;
+    const [w, cm, str, id, num] = m;
+    if (cm) out += `<span class="cm">${escH(cm)}</span>`;
+    else if (str) out += `<span class="s">${escH(str)}</span>`;
+    else if (id) out += SQL_KW.test(id) ? `<span class="k">${id}</span>` : id;
+    else if (num) out += `<span class="d">${num}</span>`;
+    else out += escH(w);
+  }
+  return out + escH(src.slice(last));
+}
+const sql = (src, meta = {}) => src.replace(/^\n/, '').replace(/\n\s*$/, '').split('\n').map((l, i) => ({ h: sqlLine(l), ...(meta[i + 1] || {}) }));
+// psql terminali: prompt (blog=# · postgres-# · $) alohida rangda; xato qizil, DETAIL/LINE sariq, buyruq javobi yashil
+const RESULT_OK = /^(CREATE TABLE|CREATE DATABASE|ALTER TABLE|DROP TABLE|INSERT \d+ \d+|UPDATE [1-9]\d*|DELETE \d+|BEGIN|COMMIT)\s*$/;
+function psqlLine(l) {
+  let m = /^(\w+[=\-(][*!]?# ?)(.*)$/.exec(l); // blog=# · blog-# · blog(# · tranzaksiyada blog=*# · xatoda blog=!# (pg1-out/25)
+  if (m) return `<span class="p">${escH(m[1])}</span>${/^\\/.test(m[2]) ? `<span class="m">${escH(m[2])}</span>` : sqlLine(m[2])}`;
+  m = /^(\$ )(.*)$/.exec(l);
+  if (m) return `<span class="p">$ </span><span class="m">${escH(m[2])}</span>`;
+  if (/ERROR:|FATAL:|psql: error|XATO:|not recognized|command not found/.test(l)) return `<span class="er">${escH(l)}</span>`;
+  if (/^(DETAIL|HINT|LINE \d|WARNING)|^\s+\^\s*$|Is the server running/.test(l)) return `<span class="wn">${escH(l)}</span>`;
+  if (/^(UPDATE 0|ROLLBACK)\s*$/.test(l)) return `<span class="wn">${escH(l)}</span>`;
+  if (RESULT_OK.test(l)) return `<span class="ok">${escH(l)}</span>`;
+  if (/^(Password for user|Type "help"|psql \()/.test(l)) return `<span class="cm">${escH(l)}</span>`;
+  if (/^\s*--/.test(l)) return `<span class="cm">${escH(l)}</span>`;
+  if (/^\s*(SELECT|FROM|JOIN|LEFT|WHERE|INSERT|UPDATE|DELETE|CREATE|ALTER|DROP|BEGIN|COMMIT|\(|\)|id |user_id|izoh|username|nomi|stock|product_id|xaridor|\('|  \(')/.test(l) && !/\|/.test(l)) return sqlLine(l);
+  return escH(l);
+}
+const psql = (src, meta = {}) => src.replace(/^\n/, '').replace(/\n\s*$/, '').split('\n').map((l, i) => ({ h: psqlLine(l), ...(meta[i + 1] || {}) }));
+// Bitta qatorga «at» (qadam) va «id» (yoritish) beruvchi qisqa yozuv: rng(2, 5, {at: 1}) → {2:{at:1}, …, 5:{at:1}}
+const rng = (a, b, v) => { const o = {}; for (let i = a; i <= b; i++) o[i] = { ...v }; return o; };
+const mergeMeta = (...ms) => ms.reduce((acc, m) => { Object.keys(m).forEach((k) => { acc[k] = { ...(acc[k] || {}), ...m[k] }; }); return acc; }, {});
+
+const Psql = ({ lines, title = 'psql — blog', er, beat, focus, style }) => <CodePanel file={title} numbers={false} wrap style={{ background: er ? PG.termEr : PG.term, ...(style || {}) }} lines={lines} beat={beat} focus={focus} />;
+// Rasmiy hujjatdan olingan maket (bu kompyuterda sinalmagan) — har oynada belgi (MD Ochiq savol 2)
+function Win({ title, os = 'win', children, hl }) {
+  return <div className={`pg-win${os === 'mac' ? ' mac' : ''}${hl ? ' hl' : ''}`}>
+    <div className="bar">{os === 'mac' ? <><i /><i /><i /></> : <span className="ico">▣</span>}<span className="tt">{title}</span><span className="warn">{t('⚠ rasmiy hujjatdan, sinalmagan', '⚠ по официальной документации, не проверено')}</span></div>
+    <div className="bd">{children}</div>
+  </div>;
+}
+function MiniTable({ name, cols, rows, hlRow = [], hlCol = [], color = PG.pg, dimRow = [] }) {
+  return <div className="pg-mt" style={{ '--c': color }}>
+    <div className="nm">{name}</div>
+    <table><thead><tr>{cols.map((c, i) => <th key={c} className={hlCol.includes(i) ? 'hl' : ''}>{c}</th>)}</tr></thead>
+      <tbody>{rows.map((r, i) => <tr key={i} className={`${hlRow.includes(i) ? 'hl' : ''}${dimRow.includes(i) ? ' dim' : ''}`}>{r.map((c, j) => <td key={j} className={hlCol.includes(j) ? 'hlc' : ''}>{c}</td>)}</tr>)}</tbody></table>
+  </div>;
+}
+// Postman ko'rinishidagi karta (PRD Q2): javob — haqiqiy, curl bilan olingan (pg2-out)
+const METHOD_C = { GET: '#61AFFE', POST: '#49CC90', PUT: '#FCA130', DELETE: '#F93E3E' };
+function PostmanCard({ m, url, body, st, res, hl }) {
+  const c = String(st)[0];
+  return <div className={`pg-pm${hl ? ' hl' : ''}`}>
+    <div className="top"><span className="lg">Postman</span><span className="m" style={{ background: METHOD_C[m] }}>{m}</span><span className="u">{url}</span><span className="tg">haqiqiy javob</span></div>
+    {body && <pre className="b">{body}</pre>}
+    <div className="r"><span className={`st s${c}`}>{st}</span><pre>{res}</pre></div>
+  </div>;
+}
+const Doc = ({ children, odd, er }) => <pre className={`pg-doc${odd ? ' odd' : ''}${er ? ' er' : ''}`}>{children}</pre>;
+
+// PG-1 ga xos qo'shimcha CSS (dvigatel CSS'iga tegilmaydi). Izohda backtick yo'q (CLAUDE.md).
+const CSS3 = `
+.mk-explorer{overflow:auto}
+/* ogohlantirish qutisi — Nest-2 dagi bilan bir xil (u bo'lak bu darsga kirmaydi) */
+.n2-warn{border-left:4px solid ${T.accent};background:#FFF0EB;border-radius:10px;padding:10px 12px;font-size:14px;line-height:1.5}
+.n2-warn b{color:${T.accent}}
+.pg-win{background:${T.paper};border:1px solid #CBD2DC;border-radius:10px;overflow:hidden;box-shadow:0 10px 30px rgba(15,17,21,.10);transition:box-shadow .3s,border-color .3s}
+.pg-win.hl{border-color:${T.accent};box-shadow:0 0 0 4px rgba(226,69,31,.14),0 10px 30px rgba(15,17,21,.10)}
+.pg-win .bar{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#F3F3F3;border-bottom:1px solid #DADDE3;font:600 12px ${SANS};color:${T.ink2}}
+.pg-win.mac .bar{background:#E8E8EA}
+.pg-win .bar i{width:10px;height:10px;border-radius:50%;display:inline-block;background:#FF5F57}
+.pg-win .bar i:nth-child(2){background:#FEBC2E}.pg-win .bar i:nth-child(3){background:#28C840}
+.pg-win .bar .ico{color:${PG.win};font-size:13px}
+.pg-win .bar .warn{margin-left:auto;font:600 10.5px ${MONO};letter-spacing:.04em;color:${T.yellow};background:#FFF6E2;border:1px solid #F1D38A;border-radius:6px;padding:3px 7px}
+.pg-win .bd{padding:14px 16px;font-size:14px;line-height:1.5}
+.pg-win .bd h4{margin:0 0 10px;font-size:16px}
+.pg-chk{display:grid;gap:6px;margin:4px 0}
+.pg-chk div{display:flex;gap:10px;align-items:center;padding:6px 10px;border:1px solid ${T.line};border-radius:8px;font-size:14px}
+.pg-chk div.off{color:${T.ink3};text-decoration:line-through}
+.pg-chk div b{font-family:${MONO};font-size:13px;min-width:18px}
+.pg-field{display:grid;grid-template-columns:120px 1fr;gap:8px;align-items:center;margin:6px 0;font-size:14px}
+.pg-field span:last-child{font:13px ${MONO};border:1px solid #BFC6D1;border-radius:6px;padding:6px 10px;background:#fff}
+.pg-btn{display:inline-block;margin-top:10px;padding:8px 18px;border-radius:6px;background:${PG.win};color:#fff;font-weight:700;font-size:14px}
+.pg-win.mac .pg-btn{background:#1E6FD9}
+.pg-mt{border:1.5px solid var(--c);border-radius:12px;overflow:hidden;background:${T.paper}}
+.pg-mt .nm{font:700 12px/1 ${MONO};color:#fff;background:var(--c);padding:7px 10px;letter-spacing:.04em}
+.pg-mt table{width:100%;border-collapse:collapse;font:12.5px ${MONO}}
+.pg-mt th,.pg-mt td{padding:5px 10px;border-bottom:1px solid ${T.line};text-align:left;transition:background .3s}
+.pg-mt th{color:${T.ink3};font-weight:600}
+.pg-mt th.hl{color:${T.accent};background:#FFF0EB}
+.pg-mt td.hlc{background:#FFF7F3;color:${T.accent};font-weight:700}
+.pg-mt tr.hl td{background:#FFF0EB}
+.pg-mt tr.dim td{opacity:.4}
+.pg-doc{margin:0;font:12.5px/1.5 ${MONO};white-space:pre-wrap;word-break:break-word;color:#0B5A33;background:#E9F7EF;border:1.5px solid ${PG.mongo};border-radius:10px;padding:10px 12px}
+.pg-doc.odd{color:#7A4B00;background:#FFF6E2;border-color:#E3B341}
+.pg-doc.er{color:#8A1C1C;background:#FDECEC;border-color:#F3A6A6}
+.pg-dict{width:100%;border-collapse:separate;border-spacing:0 6px;font-size:13.5px}
+.pg-dict td{padding:8px 12px;background:${T.paper};border-top:1px solid ${T.line};border-bottom:1px solid ${T.line};transition:opacity .3s,background .3s}
+.pg-dict td:first-child{border-left:4px solid ${PG.mongo};border-radius:10px 0 0 10px}
+.pg-dict td:last-child{border-right:1px solid ${T.line};border-radius:0 10px 10px 0}
+.pg-dict td:nth-child(2){color:${T.ink3};width:28px;text-align:center}
+.pg-dict td:nth-child(3){border-left:0}
+.pg-dict tr.hl td{background:#FFF7F3}
+.pg-dict tr.hl td:first-child{border-left-color:${T.accent}}
+.pg-dict tr.dim td{opacity:.4}
+.pg-dict code{font:12.5px ${MONO};background:#EEF0F4;padding:1px 6px;border-radius:5px}
+.pg-dict th{font:600 11px/1 ${MONO};letter-spacing:.08em;text-transform:uppercase;text-align:left;padding:0 12px 4px}
+.pg-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;align-items:start}
+@media (max-width:1300px){.pg-two{grid-template-columns:1fr}}
+.pg-three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:start}
+@media (max-width:1300px){.pg-three{grid-template-columns:1fr}}
+.pg-lab{font:700 11px/1 ${MONO};letter-spacing:.08em;text-transform:uppercase;color:${T.ink3};margin:0 0 6px;display:flex;gap:8px;align-items:center}
+.pg-lab .tm{color:${T.accent}}
+.pg-wait{display:inline-flex;gap:8px;align-items:center;font:600 13px ${MONO};color:${T.yellow};background:#FFF6E2;border:1px solid #F1D38A;border-radius:8px;padding:6px 10px;animation:mk-pulse 1.6s ease-in-out infinite}
+.pg-row{display:flex;gap:10px;align-items:center;padding:8px 12px;border:1px solid ${T.line};border-radius:10px;background:${T.paper};font:13px ${MONO}}
+.pg-row .v{margin-left:auto;font-weight:800;font-size:18px}
+.pg-row .v.z{color:${T.accent}}
+.pg-cmp{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pg-cmp .mk-card h5{display:flex;gap:8px;align-items:center}
+.pg-cmp .mk-card h5 i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.pg-qa{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:1300px){.pg-qa{grid-template-columns:1fr}}
+.pg-qa button{text-align:left;border:1px solid ${T.line};border-radius:12px;background:${T.paper};padding:12px 14px;cursor:pointer;font:inherit;color:${T.ink}}
+.pg-qa b{display:block;font-size:14px}
+.pg-qa p{margin:6px 0 0;font-size:13px;color:${T.ink2};line-height:1.45}
+.pg-pm{background:${T.paper};border:1px solid #D8DDE5;border-radius:12px;overflow:hidden;transition:box-shadow .3s,border-color .3s}
+.pg-pm.hl{border-color:${T.accent};box-shadow:0 0 0 4px rgba(226,69,31,.14)}
+.pg-pm .top{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#F7F8FA;border-bottom:1px solid #E6E9EE;font:12.5px ${MONO}}
+.pg-pm .lg{font:700 11px ${SANS};color:${PG.post};letter-spacing:.04em}
+.pg-pm .m{font:700 11px ${MONO};color:#fff;border-radius:5px;padding:3px 7px}
+.pg-pm .u{color:${T.ink};overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pg-pm .tg{margin-left:auto;font:600 10px ${MONO};color:${T.ink3};letter-spacing:.06em;text-transform:uppercase}
+.pg-pm .b{margin:0;padding:8px 12px;font:12px/1.45 ${MONO};color:${T.ink2};border-bottom:1px dashed #E6E9EE;white-space:pre-wrap}
+.pg-pm .r{display:flex;gap:10px;align-items:flex-start;padding:8px 12px}
+.pg-pm .r pre{margin:0;font:12px/1.45 ${MONO};white-space:pre-wrap;word-break:break-word;color:${T.ink}}
+.pg-pm .st{font:700 12px ${MONO};border-radius:6px;padding:3px 8px;flex:0 0 auto}
+.pg-pm .st.s2{background:#E3F5EC;color:${T.green}}.pg-pm .st.s4{background:#FFF6E2;color:${T.yellow}}.pg-pm .st.s5{background:#FDECEC;color:#B91C1C}
+/* F-1102-21 · 2-ekran CRUD jadvali (ustunlar galma-gal ochiladi) */
+.pg-crud{width:100%;border-collapse:separate;border-spacing:0 8px;font-size:15px}
+.pg-crud th{font:700 11px/1 ${MONO};letter-spacing:.08em;text-transform:uppercase;color:${T.ink3};text-align:left;padding:0 12px 2px}
+.pg-crud th.sql{color:${PG.pg}}.pg-crud th.ex{color:${T.green}}
+.pg-crud td{padding:12px;background:${T.paper};border-top:1px solid ${T.line};border-bottom:1px solid ${T.line};transition:opacity .35s}
+.pg-crud td:first-child{border-left:4px solid ${T.accent};border-radius:10px 0 0 10px;font-weight:800}
+.pg-crud td:last-child{border-right:1px solid ${T.line};border-radius:0 10px 10px 0}
+.pg-crud td.off>*{opacity:0}
+.pg-crud code{font:13px ${MONO};background:#EEF0F4;padding:2px 7px;border-radius:5px}
+.pg-crud td.sql code{background:#E8F0F8;color:${PG.pg}}.pg-crud td.ex code{background:#E3F5EC;color:${T.green}}
+`;
+function useCss3() {
+  useEffect(() => {
+    let s = document.getElementById('mk-css-pg2');
+    if (!s) { s = document.createElement('style'); s.id = 'mk-css-pg2'; document.head.appendChild(s); }
+    if (s.textContent !== CSS3) s.textContent = CSS3;
+  }, []);
+}
+
+// ============================================================
+//  DEMO (faqat dev, F-1103-02): tekshiruv ekrani dizayn variantlari A va B — PG-2 6-ekran matni ustida.
+//  Yig'ish: cat parts/01-asos.jsx parts/02-dvigatel.jsx pg2/parts/03-matn.gen.jsx pg2/parts/04-yordam.jsx demo/parts/03-demo.jsx > dev/DemoMcLesson.jsx
+//  Sahifa: /mentor-demo.html?s=0 (A) · ?s=1 (B). Darslarga kirmaydi.
+// ============================================================
+const DEMO_CMD = psql(String.raw`
+shop=# UPDATE products SET price = 1 WHERE id = 99;
+UPDATE 0`);
+const DEMO_PROOF = psql(String.raw`
+shop=# SELECT * FROM products;
+ id |    name    | price | stock
+  2 | Sichqoncha | 75000 |    15
+  4 | Mishka     | 50000 |    10
+  1 | Klaviatura | 99000 |     8
+(3 rows)`);
+const DEMO_CSS = `
+.mk-body.mcv{padding:22px 28px}
+.mk-body.mcv-a{grid-template-columns:minmax(360px,4fr) minmax(0,8fr);gap:28px}
+.mcv .mk-say.mc>:first-child{margin-top:0}
+.mcv .mk-title.mc-q{margin:0 0 16px}
+.mcv-opts{display:grid;gap:8px}
+.mcv .mk-opt{padding:11px 14px;font-size:15px;border-radius:10px;align-items:flex-start}
+.mcv .mk-opt .l{margin-top:3px}
+.mcv .mk-opt .t{display:grid;gap:4px}
+.mcv .mk-opt .why{font-size:13.5px;line-height:1.4;color:#12805A;font-weight:500}
+.mcv .mk-opt.ok{color:#0F1115}
+.mcv .mk-opt .why code{font:.92em ui-monospace,Menlo,Consolas,monospace;background:#EEF0F4;border:1px solid #DDE1E8;border-radius:5px;padding:0 5px;color:#0F1115}
+.mcv-s .mk-panel{flex:1 1 auto;min-height:0}
+.mcv-demak{min-height:52px;display:flex;align-items:center;font-size:15px;line-height:1.45;color:#0F1115;padding:0 4px}
+.mcv-demak.on{border-left:3px solid #12805A;padding-left:12px;animation:mk-up .45s ease both}
+.mcv-demak b{color:#12805A;margin-right:6px}
+.mcv-demak code{font:.92em ui-monospace,Menlo,Consolas,monospace;background:#EEF0F4;border:1px solid #DDE1E8;border-radius:5px;padding:0 5px}
+.mk-body.mcv-b{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto;gap:22px;max-width:1360px;width:100%;margin:0 auto}
+.mk-body.mcv-b .mk-panel{flex:1 1 auto;min-height:0}
+.mcv-low{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:28px;align-items:start}
+.mk-body.mcv-b .mcv-opts{grid-template-columns:1fr 1fr}
+@media (max-width:1300px){.mk-body.mcv-a{grid-template-columns:1fr;grid-auto-rows:max-content;overflow:auto}.mcv-low{grid-template-columns:1fr}.mk-body.mcv-b .mcv-opts{grid-template-columns:1fr}}
+`;
+function useDemoCss() { useEffect(() => { const el = document.createElement('style'); el.textContent = DEMO_CSS; document.head.appendChild(el); return () => el.remove(); }, []); }
+
+function MCDemo({ variant, idx, total, onAnswer, onBack, onNext, onRestart }) {
+  const m = MDT[6];
+  const segs = useMemo(() => [{ id: 'q', text: voice("Javobdagi sonni ko'rdingiz, tekshirib olaylik. Birinchi tekshiruv. Buyruq xatosiz o'tdi, lekin javob: update nol. Bu nimani bildiradi? Variantni tanlang."), trigger: 'on_mount', waits_for: { type: 'option_picked' } }], []);
+  const audio = useAudio(segs);
+  const sfx = useSfx();
+  const [bad, setBad] = useState([]);
+  const [solved, setSolved] = useState(false);
+  const pick = (i) => {
+    if (solved || bad.includes(i)) return;
+    if (bad.length === 0) audio.triggerEvent('option_picked');
+    if (i === m.correct) { setSolved(true); sfx.playCorrect(); onAnswer({ picked: i, correct: true, tries: bad.length + 1, firstTry: bad.length === 0, bad, type: 'mc' }); setTimeout(() => audio.pushOneOff(voice(m.ok)), 300); }
+    else { setBad([...bad, i]); sfx.playWrong(); }
+  };
+  const opts = (
+    <div className="mcv-opts">{m.opts.map((o, i) => {
+      let cls = 'mk-opt'; if (solved) cls += i === m.correct ? ' ok' : ' off'; else if (bad.includes(i)) cls += ' bad';
+      return <button key={i} className={cls} disabled={solved || bad.includes(i)} onClick={() => pick(i)}><span className="l">{String.fromCharCode(65 + i)}</span><span className="t"><span>{o}</span>{solved && i === m.correct && <small className="why" dangerouslySetInnerHTML={html(m.okShort)} />}</span></button>;
+    })}</div>
+  );
+  const panel = <CodePanel file="psql — shop" numbers={false} wrap style={{ background: PG.term }} lines={solved ? [...DEMO_CMD, ...DEMO_PROOF] : DEMO_CMD} />;
+  const demak = <div className={`mcv-demak${solved ? ' on' : ''}`}>{solved && <><b>Demak,</b><span><code>UPDATE 0</code> xato emas: <code>WHERE</code> hech qaysi qatorga mos kelmaganini bildiradi.</span></>}</div>;
+  const head = <><p className="mk-eyebrow">{m.eyebrow} · 1-urinish hisoblanadi</p><h2 className="mk-title mc-q">Buyruq xatosiz o'tdi, javob <code>UPDATE 0</code>. Bu nimani bildiradi?</h2></>;
+  const scene = <div className="mk-scene top mcv-s"><div className="mk-tag" style={{ margin: 0 }}>psql — haqiqiy natija</div>{panel}{demak}</div>;
+  return (
+    <Stage kicker={`${m.kicker} · ${variant} varianti`} idx={idx} total={total} audio={audio} onBack={onBack} onNext={onNext} onRestart={onRestart} nextReady={solved} nextDisabled={!solved} lockHint="To'g'ri javobni toping">
+      {variant === 'A'
+        ? <div className="mk-body mcv mcv-a"><div className="mk-say mc">{head}{opts}</div>{scene}</div>
+        : <div className="mk-body mcv mcv-b">{scene}<div className="mcv-low"><div className="mk-say mc">{head}</div>{opts}</div></div>}
+    </Stage>
+  );
+}
+function DemoA(p) { return <MCDemo {...p} variant="A" />; }
+function DemoB(p) { return <MCDemo {...p} variant="B" />; }
+const DEMO_SCREENS = [DemoA, DemoB];
+export default function DemoMcLesson({ lang = 'uz', startAt }) {
+  setLang(lang); useCss(); useCss3(); useDemoCss();
+  const [idx, setIdx] = useState(Math.min(startAt || 0, DEMO_SCREENS.length - 1));
+  const [answers, setAnswers] = useState({});
+  const S = DEMO_SCREENS[idx];
+  return <S key={idx} idx={idx} total={DEMO_SCREENS.length} stored={answers[idx]} onAnswer={(a) => setAnswers((x) => ({ ...x, [idx]: a }))} onNext={() => setIdx((i) => Math.min(i + 1, DEMO_SCREENS.length - 1))} onBack={idx > 0 ? () => setIdx((i) => i - 1) : undefined} onRestart={() => {}} />;
+}

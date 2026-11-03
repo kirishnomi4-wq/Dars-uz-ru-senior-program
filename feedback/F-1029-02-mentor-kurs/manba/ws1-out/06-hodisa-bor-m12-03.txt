@@ -1,0 +1,10 @@
+64283b2 m12-03: ulanish holatlari ekranda («Ulanmoqda…» — ro'yxat qoladi, eskirgan b
+$ node hodisa-bor.js
+ 0.0s  [Ali] ulanmoqda  (io() chaqirildi)
+ 0.0s  [Ali] ulangan  (connect)
+ 0.5s  [Ali] transport: websocket
+ 1.0s  [Ali] GET /oyinlar (ochilganda) → Maktab maydoni 2026-11-07 20:00: 6 / 10
+ 1.1s  [Ali] HODISA oyin-ozgardi {"oyinId":2,"sabab":"qoshildi"}
+ 1.1s  [Vali] POST /oyinlar/2/qoshilish → 201
+ 1.1s  [Ali] GET /oyinlar (hodisa kelgach) → Maktab maydoni 2026-11-07 20:00: 7 / 10
+ 2.6s  [Ali] ulanmagan  (disconnect: io client disconnect · active=false)

@@ -1,0 +1,249 @@
+# o'quvchi s14: actions/cache@v4, path: node_modules, key YO'Q
+# run 41312124240 · branch cache · commit 0b68ae1 · natija: failure · yozildi 2026-11-01 18:37:21 +0500
+# https://github.com/kirishnomi4-wq/mentor-ci-sinov/actions/runs/41312124240
+
+$ cat .github/workflows/*.yml
+name: CI
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - uses: actions/cache@v4
+        with:
+          path: node_modules
+      - run: npm install
+      - run: npm run build
+
+## gh run view
+
+X cache CI · 41312124240
+Triggered via push less than a minute ago
+
+JOBS
+X test in 7s (ID 124864501536)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7
+  ✓ Run actions/setup-node@v7
+  X Run actions/cache@v4
+  - Run npm install
+  - Run npm run build
+  - Post Run actions/cache@v4
+  - Post Run actions/setup-node@v7
+  ✓ Post Run actions/checkout@v7
+  ✓ Complete job
+
+ANNOTATIONS
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+test: .github#2
+
+X Input required and not supplied: key
+test: .github#9
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+test: .github#1
+
+
+To see what failed, try: gh run view 41312124240 --log-failed
+View this run on GitHub: https://github.com/kirishnomi4-wq/mentor-ci-sinov/actions/runs/41312124240
+
+## job → step (API: actions/runs/41312124240/jobs)
+JOB test · failure · 2026-11-01T13:37:04Z → 2026-11-01T13:37:11Z · runner: GitHub Actions 1000001262 · ubuntu-latest
+  1. Set up job · completed/success · 2026-11-01T13:37:05Z → 2026-11-01T13:37:06Z
+  2. Run actions/checkout@v7 · completed/success · 2026-11-01T13:37:06Z → 2026-11-01T13:37:07Z
+  3. Run actions/setup-node@v7 · completed/success · 2026-11-01T13:37:07Z → 2026-11-01T13:37:08Z
+  4. Run actions/cache@v4 · completed/failure · 2026-11-01T13:37:08Z → 2026-11-01T13:37:08Z
+  5. Run npm install · completed/skipped · 2026-11-01T13:37:08Z → 2026-11-01T13:37:08Z
+  6. Run npm run build · completed/skipped · 2026-11-01T13:37:08Z → 2026-11-01T13:37:08Z
+  10. Post Run actions/cache@v4 · completed/skipped · 2026-11-01T13:37:08Z → 2026-11-01T13:37:08Z
+  11. Post Run actions/setup-node@v7 · completed/skipped · 2026-11-01T13:37:08Z → 2026-11-01T13:37:08Z
+  12. Post Run actions/checkout@v7 · completed/success · 2026-11-01T13:37:08Z → 2026-11-01T13:37:09Z
+  13. Complete job · completed/success · 2026-11-01T13:37:09Z → 2026-11-01T13:37:09Z
+
+## annotatsiyalar (check-runs)
+  [warning] : Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+  [failure] : Input required and not supplied: key
+  [notice] : "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+
+## to'liq log (gh run view --log)
+test	Set up job	﻿2026-11-01T13:37:05.2153582Z Current runner version: '2.338.2'
+test	Set up job	2026-11-01T13:37:05.2184357Z ##[group]Runner Image Provisioner
+test	Set up job	2026-11-01T13:37:05.2185439Z Hosted Compute Agent
+test	Set up job	2026-11-01T13:37:05.2186561Z Version: 20261021.618
+test	Set up job	2026-11-01T13:37:05.2187389Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+test	Set up job	2026-11-01T13:37:05.2188257Z Build Date: 2026-10-21T00:45:21Z
+test	Set up job	2026-11-01T13:37:05.2189190Z Worker ID: {ecbb55d7-271c-4393-9b36-59560226ab1d}
+test	Set up job	2026-11-01T13:37:05.2190100Z Region: westus3
+test	Set up job	2026-11-01T13:37:05.2190819Z Cloud: Azure
+test	Set up job	2026-11-01T13:37:05.2191581Z ##[endgroup]
+test	Set up job	2026-11-01T13:37:05.2193254Z ##[group]Operating System
+test	Set up job	2026-11-01T13:37:05.2194104Z Ubuntu
+test	Set up job	2026-11-01T13:37:05.2194907Z 24.04.5
+test	Set up job	2026-11-01T13:37:05.2195562Z LTS
+test	Set up job	2026-11-01T13:37:05.2196493Z ##[endgroup]
+test	Set up job	2026-11-01T13:37:05.2197197Z ##[group]Runner Image
+test	Set up job	2026-11-01T13:37:05.2197980Z Image: ubuntu-24.04
+test	Set up job	2026-11-01T13:37:05.2198686Z Version: 20261025.353.1
+test	Set up job	2026-11-01T13:37:05.2200062Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261025.353/images/ubuntu/Ubuntu2404-Readme.md
+test	Set up job	2026-11-01T13:37:05.2202448Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261025.353
+test	Set up job	2026-11-01T13:37:05.2203776Z ##[endgroup]
+test	Set up job	2026-11-01T13:37:05.2205346Z ##[group]GITHUB_TOKEN Permissions
+test	Set up job	2026-11-01T13:37:05.2208055Z Contents: read
+test	Set up job	2026-11-01T13:37:05.2208800Z Metadata: read
+test	Set up job	2026-11-01T13:37:05.2209471Z Packages: read
+test	Set up job	2026-11-01T13:37:05.2210219Z ##[endgroup]
+test	Set up job	2026-11-01T13:37:05.2212615Z Secret source: Actions
+test	Set up job	2026-11-01T13:37:05.2214275Z Cache mode: write
+test	Set up job	2026-11-01T13:37:05.2215126Z Prepare workflow directory
+test	Set up job	2026-11-01T13:37:05.2708122Z Prepare all required actions
+test	Set up job	2026-11-01T13:37:05.2805593Z Getting action download info
+test	Set up job	2026-11-01T13:37:05.6398982Z Download action repository 'actions/checkout@v7' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+test	Set up job	2026-11-01T13:37:05.8237107Z Download action repository 'actions/setup-node@v7' (SHA:949feb2413d6458794dcd2491c4babbbce0c15c1)
+test	Set up job	2026-11-01T13:37:05.9869313Z Download action repository 'actions/cache@v4' (SHA:0057852bfaa89a56745cba8c7296529d2fc39830)
+test	Set up job	2026-11-01T13:37:06.3461553Z Complete job name: test
+test	Run actions/checkout@v7	﻿2026-11-01T13:37:06.4219492Z ##[group]Run actions/checkout@v7
+test	Run actions/checkout@v7	2026-11-01T13:37:06.4220439Z with:
+test	Run actions/checkout@v7	2026-11-01T13:37:06.4220890Z   repository: kirishnomi4-wq/mentor-ci-sinov
+test	Run actions/checkout@v7	2026-11-01T13:37:06.4224648Z   token: ***
+test	Run actions/checkout@v7	2026-11-01T13:37:06.4225052Z   ssh-strict: true
+test	Run actions/checkout@v7	2026-11-01T13:37:06.4225451Z   ssh-user: git
+test	Run actions/checkout@v7	2026-11-01T13:37:06.4225865Z   persist-credentials: true
+test	Run actions/checkout@v7	2026-11-01T13:37:06.4226546Z   clean: true
+test	Run actions/checkout@v7	2026-11-01T13:37:06.4226962Z   sparse-checkout-cone-mode: true
+test	Run actions/checkout@v7	2026-11-01T13:37:06.4227427Z   fetch-depth: 1
+test	Run actions/checkout@v7	2026-11-01T13:37:06.4227820Z   fetch-tags: false
+test	Run actions/checkout@v7	2026-11-01T13:37:06.4228217Z   show-progress: true
+test	Run actions/checkout@v7	2026-11-01T13:37:06.4228624Z   lfs: false
+test	Run actions/checkout@v7	2026-11-01T13:37:06.4229006Z   submodules: false
+test	Run actions/checkout@v7	2026-11-01T13:37:06.4229420Z   set-safe-directory: true
+test	Run actions/checkout@v7	2026-11-01T13:37:06.4229860Z   allow-unsafe-pr-checkout: false
+test	Run actions/checkout@v7	2026-11-01T13:37:06.4230529Z ##[endgroup]
+test	Run actions/checkout@v7	2026-11-01T13:37:06.6641939Z Syncing repository: kirishnomi4-wq/mentor-ci-sinov
+test	Run actions/checkout@v7	2026-11-01T13:37:06.6644459Z ##[group]Getting Git version info
+test	Run actions/checkout@v7	2026-11-01T13:37:06.6668360Z Working directory is '/home/runner/work/mentor-ci-sinov/mentor-ci-sinov'
+test	Run actions/checkout@v7	2026-11-01T13:37:06.6687228Z [command]/usr/bin/git version
+test	Run actions/checkout@v7	2026-11-01T13:37:06.6827620Z git version 2.56.0
+test	Run actions/checkout@v7	2026-11-01T13:37:06.6867723Z ##[endgroup]
+test	Run actions/checkout@v7	2026-11-01T13:37:06.6893500Z Temporarily overriding HOME='/home/runner/work/_temp/0ac2a6be-7544-4995-b988-426ed8d11edf' before making global git config changes
+test	Run actions/checkout@v7	2026-11-01T13:37:06.6895799Z Adding repository directory to the temporary git global config as a safe directory
+test	Run actions/checkout@v7	2026-11-01T13:37:06.6898354Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/mentor-ci-sinov/mentor-ci-sinov
+test	Run actions/checkout@v7	2026-11-01T13:37:06.6958936Z Deleting the contents of '/home/runner/work/mentor-ci-sinov/mentor-ci-sinov'
+test	Run actions/checkout@v7	2026-11-01T13:37:06.6960943Z ##[group]Determining repository object format
+test	Run actions/checkout@v7	2026-11-01T13:37:06.6962706Z ##[endgroup]
+test	Run actions/checkout@v7	2026-11-01T13:37:06.6968422Z ##[group]Initializing the repository
+test	Run actions/checkout@v7	2026-11-01T13:37:06.6970436Z [command]/usr/bin/git init /home/runner/work/mentor-ci-sinov/mentor-ci-sinov
+test	Run actions/checkout@v7	2026-11-01T13:37:06.7159651Z hint: Using 'master' as the name for the initial branch. This default branch name
+test	Run actions/checkout@v7	2026-11-01T13:37:06.7164715Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+test	Run actions/checkout@v7	2026-11-01T13:37:06.7167946Z hint: to use in all of your new repositories, which will suppress this warning,
+test	Run actions/checkout@v7	2026-11-01T13:37:06.7169237Z hint: call:
+test	Run actions/checkout@v7	2026-11-01T13:37:06.7182245Z hint:
+test	Run actions/checkout@v7	2026-11-01T13:37:06.7183069Z hint: 	git config --global init.defaultBranch <name>
+test	Run actions/checkout@v7	2026-11-01T13:37:06.7184039Z hint:
+test	Run actions/checkout@v7	2026-11-01T13:37:06.7185016Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+test	Run actions/checkout@v7	2026-11-01T13:37:06.7187252Z hint: 'development'. The just-created branch can be renamed via this command:
+test	Run actions/checkout@v7	2026-11-01T13:37:06.7188461Z hint:
+test	Run actions/checkout@v7	2026-11-01T13:37:06.7189129Z hint: 	git branch -m <name>
+test	Run actions/checkout@v7	2026-11-01T13:37:06.7189894Z hint:
+test	Run actions/checkout@v7	2026-11-01T13:37:06.7190884Z hint: Disable this message with "git config set advice.defaultBranchName false"
+test	Run actions/checkout@v7	2026-11-01T13:37:06.7192535Z Initialized empty Git repository in /home/runner/work/mentor-ci-sinov/mentor-ci-sinov/.git/
+test	Run actions/checkout@v7	2026-11-01T13:37:06.7195132Z [command]/usr/bin/git remote add origin https://github.com/kirishnomi4-wq/mentor-ci-sinov
+test	Run actions/checkout@v7	2026-11-01T13:37:06.7197593Z ##[endgroup]
+test	Run actions/checkout@v7	2026-11-01T13:37:06.7198606Z ##[group]Disabling automatic garbage collection
+test	Run actions/checkout@v7	2026-11-01T13:37:06.7200189Z [command]/usr/bin/git config --local gc.auto 0
+test	Run actions/checkout@v7	2026-11-01T13:37:06.7267923Z ##[endgroup]
+test	Run actions/checkout@v7	2026-11-01T13:37:06.7279728Z ##[group]Setting up auth
+test	Run actions/checkout@v7	2026-11-01T13:37:06.7287003Z Removing SSH command configuration
+test	Run actions/checkout@v7	2026-11-01T13:37:06.7288179Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+test	Run actions/checkout@v7	2026-11-01T13:37:06.7332020Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+test	Run actions/checkout@v7	2026-11-01T13:37:06.7789731Z Removing HTTP extra header
+test	Run actions/checkout@v7	2026-11-01T13:37:06.7799572Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+test	Run actions/checkout@v7	2026-11-01T13:37:06.7851713Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+test	Run actions/checkout@v7	2026-11-01T13:37:06.8161393Z Removing includeIf entries pointing to credentials config files
+test	Run actions/checkout@v7	2026-11-01T13:37:06.8169815Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+test	Run actions/checkout@v7	2026-11-01T13:37:06.8233057Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+test	Run actions/checkout@v7	2026-11-01T13:37:06.8455676Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-b8a915ed-c944-4518-a797-4aa79692fc23.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+test	Run actions/checkout@v7	2026-11-01T13:37:06.8500285Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/mentor-ci-sinov/mentor-ci-sinov/.git.path /home/runner/work/_temp/git-credentials-b8a915ed-c944-4518-a797-4aa79692fc23.config
+test	Run actions/checkout@v7	2026-11-01T13:37:06.8539431Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/mentor-ci-sinov/mentor-ci-sinov/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-b8a915ed-c944-4518-a797-4aa79692fc23.config
+test	Run actions/checkout@v7	2026-11-01T13:37:06.8578441Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-b8a915ed-c944-4518-a797-4aa79692fc23.config
+test	Run actions/checkout@v7	2026-11-01T13:37:06.8617788Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-b8a915ed-c944-4518-a797-4aa79692fc23.config
+test	Run actions/checkout@v7	2026-11-01T13:37:06.8656753Z ##[endgroup]
+test	Run actions/checkout@v7	2026-11-01T13:37:06.8658553Z ##[group]Fetching the repository
+test	Run actions/checkout@v7	2026-11-01T13:37:06.8663176Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +0b68ae115b05c320411d64031519db6a6d593e46:refs/remotes/origin/cache
+test	Run actions/checkout@v7	2026-11-01T13:37:07.6620819Z From https://github.com/kirishnomi4-wq/mentor-ci-sinov
+test	Run actions/checkout@v7	2026-11-01T13:37:07.6623268Z  * [new ref]         0b68ae115b05c320411d64031519db6a6d593e46 -> origin/cache
+test	Run actions/checkout@v7	2026-11-01T13:37:07.6631396Z [command]/usr/bin/git branch --list --remote origin/cache
+test	Run actions/checkout@v7	2026-11-01T13:37:07.6672321Z   origin/cache
+test	Run actions/checkout@v7	2026-11-01T13:37:07.6683442Z [command]/usr/bin/git rev-parse refs/remotes/origin/cache
+test	Run actions/checkout@v7	2026-11-01T13:37:07.6733331Z 0b68ae115b05c320411d64031519db6a6d593e46
+test	Run actions/checkout@v7	2026-11-01T13:37:07.6736886Z ##[endgroup]
+test	Run actions/checkout@v7	2026-11-01T13:37:07.6738504Z ##[group]Determining the checkout info
+test	Run actions/checkout@v7	2026-11-01T13:37:07.6740256Z ##[endgroup]
+test	Run actions/checkout@v7	2026-11-01T13:37:07.6756890Z [command]/usr/bin/git sparse-checkout disable
+test	Run actions/checkout@v7	2026-11-01T13:37:07.6828925Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+test	Run actions/checkout@v7	2026-11-01T13:37:07.7058715Z ##[group]Checking out the ref
+test	Run actions/checkout@v7	2026-11-01T13:37:07.7061195Z [command]/usr/bin/git checkout --progress --force -B cache refs/remotes/origin/cache
+test	Run actions/checkout@v7	2026-11-01T13:37:07.7074637Z Switched to a new branch 'cache'
+test	Run actions/checkout@v7	2026-11-01T13:37:07.7080633Z branch 'cache' set up to track 'origin/cache'.
+test	Run actions/checkout@v7	2026-11-01T13:37:07.7090687Z ##[endgroup]
+test	Run actions/checkout@v7	2026-11-01T13:37:07.7158796Z [command]/usr/bin/git log -1 --format=%H
+test	Run actions/checkout@v7	2026-11-01T13:37:07.7185604Z 0b68ae115b05c320411d64031519db6a6d593e46
+test	Run actions/setup-node@v7	﻿2026-11-01T13:37:07.7635466Z ##[group]Run actions/setup-node@v7
+test	Run actions/setup-node@v7	2026-11-01T13:37:07.7637039Z with:
+test	Run actions/setup-node@v7	2026-11-01T13:37:07.7638103Z   node-version: 22
+test	Run actions/setup-node@v7	2026-11-01T13:37:07.7639170Z   check-latest: false
+test	Run actions/setup-node@v7	2026-11-01T13:37:07.7652781Z   token: ***
+test	Run actions/setup-node@v7	2026-11-01T13:37:07.7653869Z   package-manager-cache: true
+test	Run actions/setup-node@v7	2026-11-01T13:37:07.7655108Z ##[endgroup]
+test	Run actions/setup-node@v7	2026-11-01T13:37:07.9201503Z Found in cache @ /opt/hostedtoolcache/node/22.23.4/x64
+test	Run actions/setup-node@v7	2026-11-01T13:37:08.0380553Z ##[group]Environment details
+test	Run actions/setup-node@v7	2026-11-01T13:37:08.5747684Z node: v22.23.4
+test	Run actions/setup-node@v7	2026-11-01T13:37:08.5760466Z npm: 10.9.9
+test	Run actions/setup-node@v7	2026-11-01T13:37:08.5773747Z yarn: 1.22.22
+test	Run actions/setup-node@v7	2026-11-01T13:37:08.5787472Z ##[endgroup]
+test	Run actions/cache@v4	﻿2026-11-01T13:37:08.5953312Z ##[group]Run actions/cache@v4
+test	Run actions/cache@v4	2026-11-01T13:37:08.5953581Z with:
+test	Run actions/cache@v4	2026-11-01T13:37:08.5953754Z   path: node_modules
+test	Run actions/cache@v4	2026-11-01T13:37:08.5953960Z   enableCrossOsArchive: false
+test	Run actions/cache@v4	2026-11-01T13:37:08.5954176Z   fail-on-cache-miss: false
+test	Run actions/cache@v4	2026-11-01T13:37:08.5954368Z   lookup-only: false
+test	Run actions/cache@v4	2026-11-01T13:37:08.5954538Z   save-always: false
+test	Run actions/cache@v4	2026-11-01T13:37:08.5954708Z ##[endgroup]
+test	Run actions/cache@v4	2026-11-01T13:37:08.7485658Z ##[error]Input required and not supplied: key
+test	Post Run actions/checkout@v7	﻿2026-11-01T13:37:08.7650526Z Post job cleanup.
+test	Post Run actions/checkout@v7	2026-11-01T13:37:08.8543971Z [command]/usr/bin/git version
+test	Post Run actions/checkout@v7	2026-11-01T13:37:08.8617960Z git version 2.56.0
+test	Post Run actions/checkout@v7	2026-11-01T13:37:08.8666782Z Temporarily overriding HOME='/home/runner/work/_temp/0f1ea78c-3a2a-47bb-ac67-bcd0e4e251e8' before making global git config changes
+test	Post Run actions/checkout@v7	2026-11-01T13:37:08.8679524Z Adding repository directory to the temporary git global config as a safe directory
+test	Post Run actions/checkout@v7	2026-11-01T13:37:08.8681066Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/mentor-ci-sinov/mentor-ci-sinov
+test	Post Run actions/checkout@v7	2026-11-01T13:37:08.8758011Z Removing SSH command configuration
+test	Post Run actions/checkout@v7	2026-11-01T13:37:08.8782031Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+test	Post Run actions/checkout@v7	2026-11-01T13:37:08.8806921Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+test	Post Run actions/checkout@v7	2026-11-01T13:37:08.9272627Z Removing HTTP extra header
+test	Post Run actions/checkout@v7	2026-11-01T13:37:08.9273935Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+test	Post Run actions/checkout@v7	2026-11-01T13:37:08.9339190Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+test	Post Run actions/checkout@v7	2026-11-01T13:37:08.9698326Z Removing includeIf entries pointing to credentials config files
+test	Post Run actions/checkout@v7	2026-11-01T13:37:08.9699248Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+test	Post Run actions/checkout@v7	2026-11-01T13:37:08.9727467Z includeif.gitdir:/home/runner/work/mentor-ci-sinov/mentor-ci-sinov/.git.path
+test	Post Run actions/checkout@v7	2026-11-01T13:37:08.9728810Z includeif.gitdir:/home/runner/work/mentor-ci-sinov/mentor-ci-sinov/.git/worktrees/*.path
+test	Post Run actions/checkout@v7	2026-11-01T13:37:08.9730219Z includeif.gitdir:/github/workspace/.git.path
+test	Post Run actions/checkout@v7	2026-11-01T13:37:08.9731101Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+test	Post Run actions/checkout@v7	2026-11-01T13:37:08.9737417Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/mentor-ci-sinov/mentor-ci-sinov/.git.path
+test	Post Run actions/checkout@v7	2026-11-01T13:37:08.9768108Z /home/runner/work/_temp/git-credentials-b8a915ed-c944-4518-a797-4aa79692fc23.config
+test	Post Run actions/checkout@v7	2026-11-01T13:37:08.9779888Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/mentor-ci-sinov/mentor-ci-sinov/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-b8a915ed\-c944\-4518\-a797\-4aa79692fc23\.config
+test	Post Run actions/checkout@v7	2026-11-01T13:37:08.9824122Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/mentor-ci-sinov/mentor-ci-sinov/.git/worktrees/*.path
+test	Post Run actions/checkout@v7	2026-11-01T13:37:08.9859070Z /home/runner/work/_temp/git-credentials-b8a915ed-c944-4518-a797-4aa79692fc23.config
+test	Post Run actions/checkout@v7	2026-11-01T13:37:08.9936837Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/mentor-ci-sinov/mentor-ci-sinov/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-b8a915ed\-c944\-4518\-a797\-4aa79692fc23\.config
+test	Post Run actions/checkout@v7	2026-11-01T13:37:08.9985112Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+test	Post Run actions/checkout@v7	2026-11-01T13:37:09.0001342Z /github/runner_temp/git-credentials-b8a915ed-c944-4518-a797-4aa79692fc23.config
+test	Post Run actions/checkout@v7	2026-11-01T13:37:09.0019205Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-b8a915ed\-c944\-4518\-a797\-4aa79692fc23\.config
+test	Post Run actions/checkout@v7	2026-11-01T13:37:09.0076620Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+test	Post Run actions/checkout@v7	2026-11-01T13:37:09.0163380Z /github/runner_temp/git-credentials-b8a915ed-c944-4518-a797-4aa79692fc23.config
+test	Post Run actions/checkout@v7	2026-11-01T13:37:09.0165679Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-b8a915ed\-c944\-4518\-a797\-4aa79692fc23\.config
+test	Post Run actions/checkout@v7	2026-11-01T13:37:09.0329916Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+test	Post Run actions/checkout@v7	2026-11-01T13:37:09.0543243Z Removing credentials config '/home/runner/work/_temp/git-credentials-b8a915ed-c944-4518-a797-4aa79692fc23.config'
+test	Complete job	﻿2026-11-01T13:37:09.0747366Z Cleaning up orphan processes
+test	Complete job	2026-11-01T13:37:09.1046161Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

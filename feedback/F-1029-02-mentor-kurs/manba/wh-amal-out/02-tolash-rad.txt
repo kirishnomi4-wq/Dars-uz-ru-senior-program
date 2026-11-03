@@ -1,0 +1,10 @@
+# brauzer: localhost:3000/tolov-mashq?oyinchi=11&summa=10000 — «To'lash (mashq)», keyin «Rad etish (mashq)»
+To'lash (mashq) · m-1793494311872 — 200 {"ok":true}
+Rad etish (mashq) · m-1793494313096 — 200 {"ok":true}
+$ psql -c "SELECT tolov_raqami, holat FROM tolovlar;"
+  tolov_raqami   |  holat  
+-----------------+---------
+ m-1793494311872 | tolandi
+ m-1793494313096 | rad
+(2 rows)
+

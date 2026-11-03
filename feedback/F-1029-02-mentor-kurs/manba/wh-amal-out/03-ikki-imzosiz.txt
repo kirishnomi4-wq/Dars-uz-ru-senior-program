@@ -1,0 +1,10 @@
+# brauzer: «Ikki marta yuborish», keyin «Imzosiz yuborish»
+Ikki marta yuborish · m-1793494315387 — 200 {"ok":true}
+Ikki marta yuborish · m-1793494315387 — 200 {"takror":true}
+Imzosiz yuborish · m-1793494316611 — 401 {"message":"Imzo mos emas","error":"Unauthorized","statusCode":401}
+$ psql -c "SELECT count(*) FROM tolovlar;"
+ count 
+-------
+     3
+(1 row)
+

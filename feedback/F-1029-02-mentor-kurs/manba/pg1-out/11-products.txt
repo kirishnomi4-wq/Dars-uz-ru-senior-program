@@ -1,0 +1,14 @@
+CREATE TABLE products (
+  id SERIAL PRIMARY KEY,
+  nomi TEXT NOT NULL,
+  stock INT NOT NULL CHECK (stock >= 0)
+);
+CREATE TABLE
+INSERT INTO products (nomi, stock) VALUES ('Telefon', 1);
+INSERT 0 1
+SELECT * FROM products;
+ id |  nomi   | stock 
+----+---------+-------
+  1 | Telefon |     1
+(1 row)
+

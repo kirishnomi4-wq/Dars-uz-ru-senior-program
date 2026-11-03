@@ -1,0 +1,7 @@
+blog=# CREATE TABLE users (id SERIAL PRIMARY KEY, username TEXT NOT NULL UNIQUE);
+ERROR:  relation "users" already exists
+
+blog=# CREATE TABLE tags (id SERIAL PRIMARY KEY name TEXT);
+ERROR:  syntax error at or near "name"
+LINE 1: CREATE TABLE tags (id SERIAL PRIMARY KEY name TEXT);
+                                                 ^

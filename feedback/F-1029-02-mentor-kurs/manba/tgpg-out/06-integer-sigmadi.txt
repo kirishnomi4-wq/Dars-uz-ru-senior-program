@@ -1,0 +1,2 @@
+$ INSERT INTO users_int (telegram_id) VALUES (5123456789);
+ERROR:  integer out of range

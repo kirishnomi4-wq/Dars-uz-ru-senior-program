@@ -1,0 +1,8 @@
+$ psql -c "SELECT tolov_raqami, oyinchi_id, summa, holat FROM tolovlar ORDER BY id;"
+  tolov_raqami   | oyinchi_id | summa |  holat  
+-----------------+------------+-------+---------
+ m-1793494239802 |         11 | 10000 | tolandi
+ m-1793494240938 |         11 | 10000 | tolandi
+ m-1793494242061 |         11 | 10000 | rad
+(3 rows)
+

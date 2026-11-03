@@ -1,0 +1,14 @@
+$ node ws2-sinov.js versiya eski
+# ilova: ulanish.ts — m12-dars-04-done (agent «bajardim» degan holat) · o'yin 3 «Park maydoni»
+  0.9s  [Ali] ulangan
+  1.0s  [Ali] GET /oyinlar (ekran ochildi) → Park maydoni: 4 / 8
+  1.8s  --- Backend yangi versiyasi: qayta ishga tushirildi ---
+  1.8s  [Ali] ulanmoqda  (disconnect: transport close)
+  2.9s  [Ali] ulangan
+  4.0s  [Ali] oyin-ozgardi {"oyinId":3,"sabab":"qoshildi"} — tinglovchi ishladi (1)
+  4.0s  [Ali] oyin-ozgardi {"oyinId":3,"sabab":"qoshildi"} — tinglovchi ishladi (2)
+  4.0s  [Bekzod] POST /oyinlar/3/qoshilish → 201
+  4.0s  [Ali] GET /oyinlar (hodisa kelgach) → Park maydoni: 5 / 8
+  4.0s  [Ali] GET /oyinlar (hodisa kelgach) → Park maydoni: 5 / 8
+  5.5s  NATIJA: bitta o'zgarish — Ali'da tinglovchi 2 marta ishladi
+  5.5s  [Ali] ulanmagan  (disconnect: io client disconnect)

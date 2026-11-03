@@ -1,0 +1,529 @@
+<title>Mentor kursi: oldin va hozir</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Layout: yuqorida yopishqoq sarlavha + holat chiplari; keyin bir ustunli bo'limlar — jadval, «oldin | hozir» surat juftliklari, savollar. Telefonda juftliklar ustma-ust tushadi. */
+:root {
+  --bg: #F4F6F8; --surface: #FFFFFF; --ink: #16212C; --muted: #5A6876; --line: #DCE2E8; --soft: #EEF1F4;
+  --accent: #D7193F; --accent-soft: #FCE8EC; --ok: #1E7F4F; --ok-soft: #E3F4EA; --warn: #9A6410; --warn-soft: #FBF0DC;
+  --old: #6B7785; --old-soft: #ECEFF2; --new: #1E7F4F;
+  --f-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-head: "IBM Plex Sans Condensed", "Arial Narrow", "IBM Plex Sans", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0D1217; --surface: #141B22; --ink: #E4EAF0; --muted: #94A2B0; --line: #25303A; --soft: #1A232C;
+  --accent: #FF4F6E; --accent-soft: #3A1620; --ok: #45C083; --ok-soft: #12301F; --warn: #E3AC4F; --warn-soft: #33260F;
+  --old: #8A98A6; --old-soft: #1E2832; --new: #45C083; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0D1217; --surface: #141B22; --ink: #E4EAF0; --muted: #94A2B0; --line: #25303A; --soft: #1A232C;
+  --accent: #FF4F6E; --accent-soft: #3A1620; --ok: #45C083; --ok-soft: #12301F; --warn: #E3AC4F; --warn-soft: #33260F;
+  --old: #8A98A6; --old-soft: #1E2832; --new: #45C083; color-scheme: dark }
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 15px/1.55 var(--f-body); margin: 0; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface); }
+.wrap { max-width: 1180px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--f-head); text-wrap: balance; margin: 0; }
+h2 { font-size: 24px; line-height: 1.2; }
+h3 { font-size: 17px; line-height: 1.3; }
+p { margin: 0; }
+code { font-family: var(--f-mono); font-size: .88em; background: var(--soft); padding: .05em .35em; border-radius: 4px; overflow-wrap: anywhere; }
+b { font-weight: 600; }
+button { font: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+a { color: inherit; }
+
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--surface); border-bottom: 1px solid var(--line); }
+.bar .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; padding-block: 10px; }
+.brand { display: flex; align-items: baseline; gap: 10px; min-width: 0; flex-wrap: wrap; }
+.brand h1 { font-size: 20px; letter-spacing: .01em; }
+.brand .tag { font: 600 11px/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+.chips { display: flex; gap: 6px; flex-wrap: wrap; margin-left: auto; }
+.chip { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 4px 11px; font-size: 13px; display: inline-flex; gap: 6px; align-items: center; font-variant-numeric: tabular-nums; }
+.chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); }
+.chip .dot.ok { background: var(--ok); } .chip .dot.warn { background: var(--warn); } .chip .dot.acc { background: var(--accent); }
+
+.intro { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 20px; padding-block: 24px 10px; }
+.intro .lead { font-size: 17px; max-width: 62ch; }
+.intro p + p { margin-top: 10px; }
+.legend { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; display: grid; gap: 10px; font-size: 14px; }
+.legend .row { display: grid; grid-template-columns: 74px minmax(0, 1fr); gap: 10px; align-items: start; }
+.lab { font: 600 11px/1.3 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; padding: 4px 7px; border-radius: 5px; text-align: center; }
+.lab.old { background: var(--old-soft); color: var(--old); }
+.lab.new { background: var(--ok-soft); color: var(--new); }
+
+section { padding-block: 26px 10px; }
+.sec-h { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 6px; }
+.sec-h .n { font: 600 13px/1 var(--f-mono); color: var(--accent); letter-spacing: .08em; }
+.sub { color: var(--muted); max-width: 70ch; margin-bottom: 14px; }
+
+/* holat jadvali */
+.tbl { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; min-width: 980px; }
+th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+th { background: var(--soft); font-weight: 600; font-size: 12px; letter-spacing: .03em; white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+td.name { font-weight: 600; white-space: nowrap; }
+td.name small { display: block; font-weight: 400; color: var(--muted); font-size: 12px; white-space: normal; max-width: 26ch; }
+.arrow { color: var(--muted); }
+.yes { color: var(--ok); font-weight: 600; } .no { color: var(--muted); } .warn-t { color: var(--warn); font-weight: 600; } .wait { color: var(--warn); }
+.ok-pill, .no-pill, .wait-pill { display: inline-block; border-radius: 999px; padding: 1px 8px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+.ok-pill { background: var(--ok-soft); color: var(--ok); } .no-pill { background: var(--soft); color: var(--muted); } .wait-pill { background: var(--warn-soft); color: var(--warn); }
+.foot { font-size: 13px; color: var(--muted); margin-top: 10px; display: grid; gap: 4px; }
+
+/* oldin | hozir juftlik */
+.pair { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px 16px; display: grid; gap: 12px; margin-bottom: 14px; }
+.pair-h { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 12px; align-items: baseline; }
+.pair-h .law { font: 600 12px/1 var(--f-mono); color: var(--accent); background: var(--accent-soft); padding: 5px 8px; border-radius: 6px; white-space: nowrap; }
+.pair-h p { grid-column: 2; color: var(--muted); font-size: 14px; max-width: 80ch; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+figure { margin: 0; display: grid; gap: 6px; min-width: 0; }
+figure .thumb { display: block; width: 100%; max-width: 100%; padding: 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--soft); aspect-ratio: 16 / 9; }
+figure .thumb img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+figure .thumb:hover { border-color: var(--accent); }
+figcaption { font-size: 13px; color: var(--muted); display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px; align-items: start; }
+.strip { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+.strip figcaption { grid-template-columns: 1fr; }
+.quote { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.q { border-left: 3px solid var(--old); background: var(--old-soft); padding: 10px 12px; border-radius: 0 8px 8px 0; font-size: 14px; min-width: 0; }
+.q.new { border-color: var(--new); background: var(--ok-soft); }
+.q .lab { display: inline-block; margin-bottom: 6px; }
+.q mark { background: transparent; color: var(--accent); font-weight: 600; }
+.q del { color: var(--muted); }
+.note { font-size: 13.5px; color: var(--muted); border-top: 1px dashed var(--line); padding-top: 8px; }
+.note.warn { color: var(--warn); }
+
+/* ro'yxatlar */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: grid; gap: 8px; align-content: start; }
+.card h3 { display: flex; gap: 10px; align-items: baseline; }
+.card h3 .fid { font: 600 12px/1 var(--f-mono); color: var(--muted); }
+.card ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: 14px; }
+.card .st { font-size: 13px; }
+.notdone { display: grid; gap: 8px; }
+.notdone .item { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--warn); border-radius: 10px; padding: 10px 14px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 14px; align-items: baseline; font-size: 14px; }
+.notdone .item b { display: block; }
+.notdone .item .who { font-size: 12.5px; color: var(--muted); white-space: nowrap; }
+
+/* savollar */
+.qs { display: grid; gap: 14px; }
+.question { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: grid; gap: 12px; }
+.question h3 { font-size: 19px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 4px 10px; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; background: var(--surface); text-align: left; color: var(--ink); align-items: start; }
+.opt[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); }
+.opt .l { font: 600 13px/22px var(--f-mono); color: var(--muted); background: var(--soft); border-radius: 6px; text-align: center; height: 22px; }
+.opt[aria-pressed="true"] .l { background: var(--accent); color: #fff; }
+.opt .t { font-weight: 500; }
+.opt .pm { grid-column: 2; font-size: 13px; color: var(--muted); display: grid; gap: 2px; }
+.opt .pm .p::before { content: "+ "; color: var(--ok); font-weight: 700; } .opt .pm .m::before { content: "− "; color: var(--accent); font-weight: 700; }
+.rec { font-size: 13.5px; color: var(--ok); font-weight: 500; }
+textarea { width: 100%; min-height: 56px; resize: vertical; font: 14px/1.45 var(--f-body); color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; }
+.copyrow { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.copy { border: 0; background: var(--accent); color: #fff; border-radius: 8px; padding: 9px 16px; font-weight: 600; }
+.copy-note { font-size: 13px; color: var(--muted); }
+.copybox { width: 100%; min-height: 110px; margin-top: 4px; font-family: var(--f-mono); font-size: 13px; }
+
+.four { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.four figcaption { grid-template-columns: 1fr; font-size: 12.5px; }
+.vlab { display: inline-block; font: 600 11px/1 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; padding: 3px 7px; border-radius: 5px; background: var(--soft); color: var(--muted); }
+.vlab.rec { background: var(--ok-soft); color: var(--ok); }
+.row-h { font-size: 14px; color: var(--muted); margin-top: 4px; }
+.row-h b { color: var(--ink); }
+.ans { display: inline-block; margin-left: 8px; font: 600 12px/1 var(--f-mono); color: var(--ok); background: var(--ok-soft); padding: 4px 8px; border-radius: 6px; vertical-align: middle; }
+.diag { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+.diag .d { background: var(--soft); border-radius: 10px; padding: 10px 12px; font-size: 13.5px; display: grid; gap: 4px; }
+.diag .d b { font-size: 14px; }
+.diag .d .px { font: 600 12px var(--f-mono); color: var(--accent); }
+@media (max-width: 760px) { .four { grid-template-columns: 1fr 1fr; } }
+dialog { border: 0; border-radius: 12px; padding: 0; max-width: min(96vw, 1400px); background: var(--surface); color: var(--ink); box-shadow: 0 30px 80px rgba(0,0,0,.4); }
+dialog::backdrop { background: rgba(10, 14, 18, .72); }
+dialog img { display: block; max-width: 100%; max-height: 84vh; }
+dialog .cap { padding: 10px 14px; font-size: 14px; display: flex; gap: 12px; align-items: center; }
+dialog .cap button { margin-left: auto; border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 8px; padding: 6px 12px; }
+
+.addr { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: 14px; display: grid; gap: 6px; }
+footer { padding-block: 24px 48px; color: var(--muted); font-size: 13px; }
+@media (max-width: 760px) { .intro, .two, .quote { grid-template-columns: 1fr; } .chips { margin-left: 0; } table { min-width: 900px; } }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+
+<header class="bar"><div class="wrap">
+  <div class="brand"><span class="tag">F-1029-02 · 02.11.2026</span><h1>Mentor kursi: oldin va hozir</h1></div>
+  <div class="chips">
+    <span class="chip"><span class="dot acc"></span>12 dars qurilgan</span>
+    <span class="chip"><span class="dot ok"></span>3 tasini siz ko'rgansiz</span>
+    <span class="chip"><span class="dot ok"></span>e2e 1920: 12/12</span>
+    <span class="chip" id="chip1280"><span class="dot ok"></span>e2e 1280: 12/12</span>
+  </div>
+</div></header>
+
+<div class="wrap">
+<div class="intro">
+  <div>
+    <p class="lead">Bu sahifada kechagi holat bilan bugungi holat yonma-yon turibdi. Har surat haqiqiy: ikkala nusxa qayta qurilib, bir xil ekranlar brauzerda suratga olindi.</p>
+    <p>Bugun siz PG-1 ni ovozi bilan to'liq ko'rdingiz va 13 rasm yubordingiz. Shundan 12 fikr chiqdi. Dvigateldagi to'rt o'zgarish 12 darsga birdan kirdi, so'z tuzatishlari ham. «Demak» xulosasi hamma darsga tarqatildi.</p>
+    <p>Pastda avval umumiy jadval, keyin o'zgarishlar suratda, keyin nima qilinmagani va oxirida uchta savol.</p>
+  </div>
+  <div class="legend">
+    <div class="row"><span class="lab old">Oldin</span><span>Kecha kechqurun (01.11, 20:16) saqlangan nusxa. Siz bugun PG-1 ni aynan shu holatda ko'rgansiz. Fayllar: <code>tayyor/*.jsx</code>.</span></div>
+    <div class="row"><span class="lab new">Hozir</span><span>Bugun 18:26 da yig'ilgan 12 dars. Muzlatilgan nusxa <code>localhost:5334</code> da turibdi, kechagisi taqqoslash uchun <code>localhost:5335</code> da.</span></div>
+    <div class="row"><span class="lab" style="background:var(--soft);color:var(--muted)">Surat</span><span>1600×900, ovoz 16 marta tezlashtirilib oxirgi segmentgacha kutildi. Bosilsa kattalashadi.</span></div>
+  </div>
+</div>
+
+<section id="holat">
+  <div class="sec-h"><span class="n">1</span><h2>12 dars bir qarashda</h2></div>
+  <p class="sub">Har qatorda «oldin → hozir». So'zlar ustunida taqiqlangan so'zlar soni: «jim», «ko'prik», «bu kursda». Nol bo'lsa, o'quvchi ko'radigan matnda qolmagan.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Dars</th><th>Ekran</th><th>Siz ko'rdingiz</th><th>«Demak»</th><th>Taqiq so'zlar</th><th>Ovozda «psql»</th><th>e2e 1920</th><th>e2e 1280</th><th>RU</th><th>Platforma fayli</th><th>Git</th></tr></thead>
+    <tbody>
+      <tr><td class="name">Nest-1<small>Express'dan Nest arxitekturasiga</small></td><td>39 <span class="arrow">→</span> 39</td><td><span class="ok-pill">✓ 30.10</span></td><td>0 <span class="arrow">→</span> 9</td><td>15 <span class="arrow">→</span> 0¹</td><td>—</td><td><span class="ok-pill">✓</span></td><td data-e2e="nest-01"><span class="ok-pill">✓</span></td><td><span class="yes">bor</span></td><td><span class="warn-t">eski</span> 31.10</td><td>eski commit'da, bugungisi yo'q</td></tr>
+      <tr><td class="name">Nest-2<small>O'quvchi reposi: resurs, Guard, xatolar</small></td><td>29 <span class="arrow">→</span> 29</td><td><span class="ok-pill">✓ 31.10</span></td><td>0 <span class="arrow">→</span> 8</td><td>15 <span class="arrow">→</span> 0¹</td><td>—</td><td><span class="ok-pill">✓</span></td><td data-e2e="nest-02"><span class="ok-pill">✓</span></td><td><span class="yes">bor</span></td><td><span class="warn-t">eski</span> 31.10</td><td>eski commit'da, bugungisi yo'q</td></tr>
+      <tr><td class="name">PG-1<small>Siz bilgan Mongo'dan PostgreSQL jadvallariga</small></td><td>28 <span class="arrow">→</span> <b>29</b></td><td><span class="ok-pill">✓ 02.11 ovoz bilan</span></td><td>1 <span class="arrow">→</span> 10</td><td>15 <span class="arrow">→</span> 0</td><td>28 <span class="arrow">→</span> 13²</td><td><span class="ok-pill">✓</span></td><td data-e2e="pg-01"><span class="ok-pill">✓</span></td><td><span class="no">yo'q</span></td><td><span class="warn-t">eski</span> 01.11</td><td>commit yo'q</td></tr>
+      <tr><td class="name">PG-2<small>CRUD so'rovlar va Express'dan bazaga</small></td><td>27 <span class="arrow">→</span> <b>28</b></td><td><span class="no-pill">yo'q</span></td><td>0 <span class="arrow">→</span> 9</td><td>8 <span class="arrow">→</span> 0</td><td>13 <span class="arrow">→</span> 0</td><td><span class="ok-pill">✓</span></td><td data-e2e="pg-02"><span class="ok-pill">✓</span></td><td><span class="no">yo'q</span></td><td><span class="warn-t">eski</span> 01.11</td><td>commit yo'q</td></tr>
+      <tr><td class="name">Jest-1<small>Birinchi unit-test: o'quvchi reposida</small></td><td>26 <span class="arrow">→</span> 26</td><td><span class="no-pill">yo'q</span></td><td>0 <span class="arrow">→</span> 8</td><td>3 <span class="arrow">→</span> 0</td><td>—</td><td><span class="ok-pill">✓</span></td><td data-e2e="jest-01"><span class="ok-pill">✓</span></td><td><span class="no">yo'q</span></td><td><span class="warn-t">eski</span> 01.11</td><td>commit yo'q</td></tr>
+      <tr><td class="name">Jest-2<small>Edge cases va error path</small></td><td>24 <span class="arrow">→</span> 24</td><td><span class="no-pill">yo'q</span></td><td>0 <span class="arrow">→</span> 9</td><td>12 <span class="arrow">→</span> 0</td><td>—</td><td><span class="ok-pill">✓</span></td><td data-e2e="jest-02"><span class="ok-pill">✓</span></td><td><span class="no">yo'q</span></td><td><span class="warn-t">eski</span> 01.11</td><td>commit yo'q</td></tr>
+      <tr><td class="name">CI/CD-1<small>CI/CD nima va nega: lenta o'quvchi reposida</small></td><td>25 <span class="arrow">→</span> 25</td><td><span class="no-pill">yo'q</span></td><td>0 <span class="arrow">→</span> 7</td><td>1 <span class="arrow">→</span> 0</td><td>—</td><td><span class="ok-pill">✓</span></td><td data-e2e="cicd-01"><span class="ok-pill">✓</span></td><td><span class="no">yo'q</span></td><td><span class="warn-t">eski</span> 01.11</td><td>commit yo'q</td></tr>
+      <tr><td class="name">CI/CD-2<small>GitHub Actions: run, log va namunalar</small></td><td>25 <span class="arrow">→</span> 25</td><td><span class="no-pill">yo'q</span></td><td>0 <span class="arrow">→</span> 7</td><td>2 <span class="arrow">→</span> 0</td><td>—</td><td><span class="ok-pill">✓</span></td><td data-e2e="cicd-02"><span class="ok-pill">✓</span></td><td><span class="no">yo'q</span></td><td><span class="warn-t">eski</span> 01.11</td><td>commit yo'q</td></tr>
+      <tr><td class="name">Telegraf+PG<small>Bot eslab qoladi: holat bazada</small></td><td>25 <span class="arrow">→</span> 25</td><td><span class="no-pill">yo'q</span></td><td>1 <span class="arrow">→</span> 8</td><td>8 <span class="arrow">→</span> 0</td><td>2 <span class="arrow">→</span> 0</td><td><span class="ok-pill">✓</span></td><td data-e2e="tgpg-01"><span class="ok-pill">✓</span></td><td><span class="no">yo'q</span></td><td><span class="warn-t">eski</span> 01.11</td><td>commit yo'q</td></tr>
+      <tr><td class="name">WebSocket-1<small>Doimiy ulanish: Backend o'zi xabar yuboradi</small></td><td>22 <span class="arrow">→</span> 22</td><td><span class="no-pill">yo'q</span></td><td>0 <span class="arrow">→</span> 7</td><td>2 <span class="arrow">→</span> 0</td><td>—</td><td><span class="ok-pill">✓</span></td><td data-e2e="ws1-01"><span class="ok-pill">✓</span></td><td><span class="no">yo'q</span></td><td><span class="warn-t">eski</span> 01.11</td><td>commit yo'q</td></tr>
+      <tr><td class="name">WebSocket-2<small>Ulanish uzilsa: buzamiz va tuzatamiz</small></td><td>20 <span class="arrow">→</span> 20</td><td><span class="no-pill">yo'q</span></td><td>0 <span class="arrow">→</span> 7</td><td>3 <span class="arrow">→</span> 0</td><td>—</td><td><span class="ok-pill">✓</span></td><td data-e2e="ws2-01"><span class="ok-pill">✓</span></td><td><span class="no">yo'q</span></td><td><span class="warn-t">eski</span> 01.11</td><td>commit yo'q</td></tr>
+      <tr><td class="name">Webhook<small>To'lov xabari: imzo, takror va rad</small></td><td>20 <span class="arrow">→</span> 20</td><td><span class="no-pill">yo'q</span></td><td>0 <span class="arrow">→</span> 7</td><td>3 <span class="arrow">→</span> 0</td><td>—</td><td><span class="ok-pill">✓</span></td><td data-e2e="wh-01"><span class="ok-pill">✓</span></td><td><span class="no">yo'q</span></td><td><span class="warn-t">eski</span> 01.11</td><td>commit yo'q</td></tr>
+    </tbody>
+  </table></div>
+  <div class="foot">
+    <span>¹ Nest darslarida bittadan «jim» va «ko'prik» qolgan, ikkalasi ham kod izohida. Ekranga chiqmaydi.</span>
+    <span>² PG-1 ovozida qolgan 13 ta «psql» — buyruqning o'zi («psql minus U postgres»). Qaror shunday edi: buyruq nomi qoladi, gapdagisi «PostgreSQL terminali» bo'ladi.</span>
+    <span>«Platforma fayli» — <code>tayyor/*.oz.jsx</code>. Hammasi bugungi o'zgarishlardan oldin yasalgan. Git: 10 dars hech qachon commit qilinmagan, Nest-1 va Nest-2 ning bugungi o'zgarishlari ham. e2e 1920 (18:50) va 1280 (bu seansda) — ikkalasi 12/12, hamma o'zgarishdan keyin: onFinished passed, yakuniy sinov 8/8, konsol xato 0.</span>
+  </div>
+</section>
+
+<section id="dvigatel">
+  <div class="sec-h"><span class="n">2</span><h2>Dvigatel: to'rt o'zgarish, 12 darsga birdan</h2></div>
+  <p class="sub">Suratlar PG-2 dan, chunki u navbatdagi ko'rik. Ammo bu qism umumiy: har darsning tekshiruv, amaliyot va «qaysi satr» ekranlari shu ko'rinishda.</p>
+
+  <div class="pair">
+    <div class="pair-h"><span class="law">M35 · F-1102-16</span><h3>Tekshiruv ekrani boshidan ikki ustun</h3><p>Oldin savol ekran o'rtasida yolg'iz turardi, natija javobdan keyin paydo bo'lib hammasini surardi. Hozir chapda savol, o'ngda «natija shu yerda ochiladi» joyi boshidan bor. Hech narsa qimirlamaydi.</p></div>
+    <div class="two">
+      <figure><button class="thumb" data-full="img/pg2-tekshiruv-bosh-oldin.jpg"><img src="img/pg2-tekshiruv-bosh-oldin.jpg" alt="Oldin: tekshiruv savoli ekran o'rtasida, o'ng tomon bo'sh" loading="lazy"></button><figcaption><span class="lab old">Oldin</span><span>Savol o'rtada, boshqa hech narsa yo'q.</span></figcaption></figure>
+      <figure><button class="thumb" data-full="img/pg2-tekshiruv-bosh-hozir.jpg"><img src="img/pg2-tekshiruv-bosh-hozir.jpg" alt="Hozir: chapda savol va variantlar, o'ngda natija uchun bo'sh joy" loading="lazy"></button><figcaption><span class="lab new">Hozir</span><span>Chapda savol, o'ngda natija joyi tayyor turibdi.</span></figcaption></figure>
+    </div>
+  </div>
+
+  <div class="pair">
+    <div class="pair-h"><span class="law">M35 · F-1102-16</span><h3>Javobdan keyin variantlar joyida qoladi</h3><p>Oldin to'g'ri javobdan keyin qolgan uch variant yo'qolardi. Hozir to'g'risi yashil, qolgani xira, o'ngda haqiqiy terminal natijasi ochiladi. Ovozda xulosaga «Demak, …» gapi qo'shildi (M33).</p></div>
+    <div class="two">
+      <figure><button class="thumb" data-full="img/pg2-tekshiruv-javob-oldin.jpg"><img src="img/pg2-tekshiruv-javob-oldin.jpg" alt="Oldin: faqat to'g'ri variant qolgan, o'ngda natija" loading="lazy"></button><figcaption><span class="lab old">Oldin</span><span>Faqat to'g'ri variant qoladi, qolgani yo'qoladi.</span></figcaption></figure>
+      <figure><button class="thumb" data-full="img/pg2-tekshiruv-javob-hozir.jpg"><img src="img/pg2-tekshiruv-javob-hozir.jpg" alt="Hozir: to'rt variant joyida, to'g'risi yashil, o'ngda natija" loading="lazy"></button><figcaption><span class="lab new">Hozir</span><span>To'rttasi joyida, to'g'risi yashil, qolgani xira.</span></figcaption></figure>
+    </div>
+    <div class="quote">
+      <div class="q"><span class="lab old">Ovoz oldin</span><br>To'g'ri. Where id to'qson to'qqiz hech qanday qatorga mos kelmadi, shuning uchun nol qator o'zgardi. Baza buni xato deb hisoblamaydi. O'quvchiga ayting: avval select bilan bunday id bor-yo'qligini tekshirsin.</div>
+      <div class="q new"><span class="lab new">Ovoz hozir</span><br>… O'quvchiga ayting: avval select bilan bunday id bor-yo'qligini tekshirsin. <mark>Demak, update nol xato emas: bu where hech qaysi qatorga mos kelmaganini bildiradi.</mark></div>
+    </div>
+  </div>
+
+  <div class="pair">
+    <div class="pair-h"><span class="law">M34 · F-1102-12</span><h3>«Boshqacha chiqdimi?» sahifa ustida oyna</h3><p>Oldin tugma bosilganda jadval sahifa ichida ochilib, pastga cho'zilardi. Hozir sahifa ustida oyna: ✕, Esc yoki tashqarini bosish yopadi, tugma joyida qoladi.</p></div>
+    <div class="two">
+      <figure><button class="thumb" data-full="img/pg2-boshqacha-oldin.jpg"><img src="img/pg2-boshqacha-oldin.jpg" alt="Oldin: yechimlar jadvali sahifa ichida pastda ochilgan" loading="lazy"></button><figcaption><span class="lab old">Oldin</span><span>Jadval sahifa ichida, pastga cho'ziladi, qismi ko'rinmaydi.</span></figcaption></figure>
+      <figure><button class="thumb" data-full="img/pg2-boshqacha-hozir.jpg"><img src="img/pg2-boshqacha-hozir.jpg" alt="Hozir: yechimlar jadvali sahifa ustidagi oynada, orqa fon xira" loading="lazy"></button><figcaption><span class="lab new">Hozir</span><span>Oyna, beshta holat birdan ko'rinadi, ✕ bilan yopiladi.</span></figcaption></figure>
+    </div>
+  </div>
+
+  <div class="pair">
+    <div class="pair-h"><span class="law">M37 · F-1102-20</span><h3>Isbot maydoni to'ldirilmaguncha yonadi</h3><p>Oldin isbot maydoni oddiy kulrang edi, mentor uni sezmay qolardi. Hozir qizil ramka sekin yonib turadi, «Isbot:» so'zi qalin. To'ldirilgach o'chadi.</p></div>
+    <div class="two">
+      <figure><button class="thumb" data-full="img/pg2-isbot-oldin.jpg"><img src="img/pg2-isbot-oldin.jpg" alt="Oldin: isbot maydoni kulrang ramkali" loading="lazy"></button><figcaption><span class="lab old">Oldin</span><span>Kulrang ramka, oddiy yozuv.</span></figcaption></figure>
+      <figure><button class="thumb" data-full="img/pg2-isbot-hozir.jpg"><img src="img/pg2-isbot-hozir.jpg" alt="Hozir: isbot maydoni qizil ramkali, yozuv qalin" loading="lazy"></button><figcaption><span class="lab new">Hozir</span><span>Qizil ramka yonadi, «Isbot:» qalin.</span></figcaption></figure>
+    </div>
+  </div>
+
+  <div class="pair">
+    <div class="pair-h"><span class="law">M36 · F-1102-18</span><h3>Tuzatilgan kodda eski satr qizil</h3><p>Oldin xato satr kulrang chizilgan edi, yashil yangisi yonida ko'zga tashlanmasdi. Hozir eski satr qizil fonda, chiziq qalin. Qaysi satr ketgani bir qarashda ko'rinadi.</p></div>
+    <div class="two">
+      <figure><button class="thumb" data-full="img/pg2-satr-oldin.jpg"><img src="img/pg2-satr-oldin.jpg" alt="Oldin: eski satr kulrang chizilgan, yangi satr yashil" loading="lazy"></button><figcaption><span class="lab old">Oldin</span><span>Eski satr kulrang, deyarli ko'rinmaydi.</span></figcaption></figure>
+      <figure><button class="thumb" data-full="img/pg2-satr-hozir.jpg"><img src="img/pg2-satr-hozir.jpg" alt="Hozir: eski satr qizil fonda chizilgan, yangi satr yashil" loading="lazy"></button><figcaption><span class="lab new">Hozir</span><span>Eski satr qizil, yangisi yashil.</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="sozlar">
+  <div class="sec-h"><span class="n">3</span><h2>So'zlar: 12 darsda bir xil</h2></div>
+  <p class="sub">Siz PG-1 da aytgan to'rt so'z hamma darsda qidirilib almashtirildi. Jadvaldagi sonlar shundan.</p>
+
+  <div class="pair">
+    <div class="pair-h"><span class="law">M32 · F-1102-11 · F-1102-19</span><h3>Reja ekrani: «ko'prik» va «psql» ketdi</h3><p>«O'quvchi darslariga ko'prik» → «O'quvchi darslarini o'tish». «CRUD psql'da» → «CRUD PostgreSQL terminalida». Sarlavhada ham.</p></div>
+    <div class="two">
+      <figure><button class="thumb" data-full="img/pg2-reja-oldin.jpg"><img src="img/pg2-reja-oldin.jpg" alt="Oldin: reja ro'yxatida «CRUD psql'da» va «O'quvchi darslariga ko'prik»" loading="lazy"></button><figcaption><span class="lab old">Oldin</span><span>01 «CRUD psql'da» · 06 «O'quvchi darslariga ko'prik».</span></figcaption></figure>
+      <figure><button class="thumb" data-full="img/pg2-reja-hozir.jpg"><img src="img/pg2-reja-hozir.jpg" alt="Hozir: reja ro'yxatida «CRUD PostgreSQL terminalida» va «O'quvchi darslarini o'tish»" loading="lazy"></button><figcaption><span class="lab new">Hozir</span><span>01 «CRUD PostgreSQL terminalida» · 06 «O'quvchi darslarini o'tish».</span></figcaption></figure>
+    </div>
+  </div>
+
+  <div class="pair">
+    <div class="pair-h"><span class="law">M32 · F-1102-11 · F-1102-19</span><h3>Bosqich yorlig'i va gap ichidagi so'z</h3><p>Yuqoridagi yorliq «6-bosqich · ko'prik» → «6-bosqich · o'quvchi darsini o'tish». Gapda «psql ochiladimi» → «PostgreSQL terminali ochilishini tekshiring».</p></div>
+    <div class="two">
+      <figure><button class="thumb" data-full="img/pg2-otish-oldin.jpg"><img src="img/pg2-otish-oldin.jpg" alt="Oldin: yorliq «6-bosqich · ko'prik», gapda «psql ochiladimi»" loading="lazy"></button><figcaption><span class="lab old">Oldin</span><span>Yorliq «KO'PRIK», gapda «psql ochiladimi».</span></figcaption></figure>
+      <figure><button class="thumb" data-full="img/pg2-otish-hozir.jpg"><img src="img/pg2-otish-hozir.jpg" alt="Hozir: yorliq «6-bosqich · o'quvchi darsini o'tish», gapda «PostgreSQL terminali ochilishini tekshiring»" loading="lazy"></button><figcaption><span class="lab new">Hozir</span><span>Yorliq «O'QUVCHI DARSINI O'TISH», gapda «PostgreSQL terminali».</span></figcaption></figure>
+    </div>
+    <p class="note warn">Halol eslatma: o'ng pastdagi izohda «haqiqiy psql'da ishlaydi» ikkalasida ham qolgan. Bu yerda psql dastur nomi sifatida turibdi, qaror bo'yicha qoldirildi. Xohlasangiz buni ham o'zgartiraman.</p>
+  </div>
+
+  <div class="pair">
+    <div class="pair-h"><span class="law">M32 · F-1102-15</span><h3>«Jim» o'rniga aniq so'z</h3><p>22 faylda almashtirildi. Fe'l bo'lsa «xato bermay», ot bo'lsa «yashirin», bot haqida «javob bermaydi». PG-1 dan bitta sarlavha misoli:</p></div>
+    <div class="quote">
+      <div class="q"><span class="lab old">Oldin</span><br>Mongo ikki holatda <del>jim qoladi</del>: yo'q muallif va har xil hujjat</div>
+      <div class="q new"><span class="lab new">Hozir</span><br>Mongo ikki holatda <mark>xato bermaydi</mark>: yo'q muallif va har xil hujjat</div>
+    </div>
+  </div>
+</section>
+
+<section id="pg1">
+  <div class="sec-h"><span class="n">4</span><h2>PG-1: siz aytgan 12 fikr</h2></div>
+  <p class="sub">Dvigatel va so'zlar yuqorida. Bu yerda faqat PG-1 ning o'ziga tegishli uchtasi, surat yoki matn bilan.</p>
+
+  <div class="pair">
+    <div class="pair-h"><span class="law">M39 · F-1102-21</span><h3>Yangi 2-ekran: «SQL va NoSQL: bitta ma'lumot ikki xil shaklda»</h3><p>Siz «dars boshida SQL va NoSQL farqi ko'rinmaydi» degan edingiz. Endi 2-ekranda besh segment: Mongo'dagi ikki hujjat, PostgreSQL jadvali, «shahar» ustuni yo'q xatosi, SELECT natijasi, moslik qoidasi. Hammasi haqiqiy yurgizishdan. Dars 28 dan 29 ekranga chiqdi.</p></div>
+    <div class="strip">
+      <figure><button class="thumb" data-full="img/pg1-sqlnosql-1.jpg"><img src="img/pg1-sqlnosql-1.jpg" alt="2-ekran, 1-segment: Mongo kolleksiyasi" loading="lazy"></button><figcaption>1 · Mongo'da ikki hujjat</figcaption></figure>
+      <figure><button class="thumb" data-full="img/pg1-sqlnosql-2.jpg"><img src="img/pg1-sqlnosql-2.jpg" alt="2-ekran, 2-segment: PostgreSQL jadvali" loading="lazy"></button><figcaption>2 · PostgreSQL'da jadval</figcaption></figure>
+      <figure><button class="thumb" data-full="img/pg1-sqlnosql-3.jpg"><img src="img/pg1-sqlnosql-3.jpg" alt="2-ekran, 3-segment: shahar ustuni yo'q xatosi" loading="lazy"></button><figcaption>3 · «shahar» ustuni yo'q</figcaption></figure>
+      <figure><button class="thumb" data-full="img/pg1-sqlnosql-4.jpg"><img src="img/pg1-sqlnosql-4.jpg" alt="2-ekran, 4-segment: SELECT natijasi" loading="lazy"></button><figcaption>4 · SELECT so'rovi</figcaption></figure>
+      <figure><button class="thumb" data-full="img/pg1-sqlnosql-5.jpg"><img src="img/pg1-sqlnosql-5.jpg" alt="2-ekran, 5-segment: moslik qoidasi" loading="lazy"></button><figcaption>5 · Moslik qoidasi</figcaption></figure>
+    </div>
+  </div>
+
+  <div class="pair">
+    <div class="pair-h"><span class="law">M38 · F-1102-17</span><h3>Kesilgan ovoz: eski 16-ekran, hozir 17</h3><p>Siz «ovoz «Bugun Nest o'rgandim» da to'xtadi, nimani bosishni aytmadi» degan edingiz. Sabab generatorda edi: ichki « » belgisi gapni kesardi. Tuzatildi, 6 joyda shu xato bor ekan, hammasi to'g'rilandi. Ekranning ko'rinishi o'zgarmagan, farq ovozda:</p></div>
+    <div class="quote">
+      <div class="q"><span class="lab old">Ovoz oldin</span><br>JOIN'ni ko'rdingiz, endi xato topamiz. Uchinchi tekshiruv. Bu so'rov xato bermadi, baza javob qaytardi. Lekin natija noto'g'ri: «Bugun Nest o'rgandim <del>— shu yerda uziladi</del></div>
+      <div class="q new"><span class="lab new">Ovoz hozir</span><br>… Lekin natija noto'g'ri: «Bugun Nest o'rgandim» <mark>ali'niki, bu yerda esa vali'niki bo'lib chiqqan. Qoidani eslang: on satri tashqi kalitni tenglaydi. Xato satrni bosing.</mark></div>
+    </div>
+  </div>
+
+  <div class="pair">
+    <div class="pair-h"><span class="law">M32 · F-1102-14</span><h3>Ustozdek to'liq gap: 26-ekran</h3><p>«O'quvchi tili» degan qisqa sarlavha yo'q. Endi sarlavha ham, qaror ko'rsatkichi qatori ham to'liq gap. 12-ekranda ham shunday: «users tayyor — endi posts» o'rniga «users jadvali tayyor. Endi ikkinchi jadval — posts».</p></div>
+    <div class="two">
+      <figure><button class="thumb" data-full="img/pg1-s26-oldin.jpg"><img src="img/pg1-s26-oldin.jpg" alt="Oldin: sarlavha «O'quvchi tili: Excel jadvali, papkadagi qog'ozlar, qaror ko'rsatkichi»" loading="lazy"></button><figcaption><span class="lab old">Oldin</span><span>«O'quvchi tili: Excel jadvali, papkadagi qog'ozlar…», yorliq «ko'prik».</span></figcaption></figure>
+      <figure><button class="thumb" data-full="img/pg1-s26-hozir.jpg"><img src="img/pg1-s26-hozir.jpg" alt="Hozir: sarlavha «O'quvchi darsi atamalarni kundalik so'zlar bilan tushuntiradi — siz ularni atama bilan bog'laysiz»" loading="lazy"></button><figcaption><span class="lab new">Hozir</span><span>«O'quvchi darsi atamalarni kundalik so'zlar bilan tushuntiradi…», qaror ko'rsatkichi to'rt savol bilan.</span></figcaption></figure>
+    </div>
+  </div>
+
+  <div class="cards">
+    <div class="card"><h3><span class="fid">F-1102-10</span>«Bu kursda»</h3><ul><li>«Bu kursda o'quvchilar» → «AI Startup kursidagi o'quvchilar» (PG-1, 1-ekran).</li><li>Webhook darsida ham: «bu kursda emas» → «AI Startup kursida emas».</li></ul><p class="st"><span class="ok-pill">✓ bajarildi</span></p></div>
+    <div class="card"><h3><span class="fid">F-1102-13</span>«Demak, …» xulosasi</h3><ul><li>PG-1: 4 tekshiruv javobi va 4 amaliyot oxiri. 1 → 10.</li><li>Qolgan 11 darsga ham tarqatildi (jadval ustuni). Hammasi ovozda, bir gap.</li></ul><p class="st"><span class="ok-pill">✓ 12/12 dars</span></p></div>
+    <div class="card"><h3><span class="fid">F-1102-19</span>«psql» ovozda</h3><ul><li>Gapda «psql» → «PostgreSQL terminali»: PG-1 da 20 gap, PG-2 da 13, Telegraf+PG da 2.</li><li>Buyruqning o'zi qoldi: «psql minus U postgres». PG-1 lug'at ekranida birinchi izoh shu.</li></ul><p class="st"><span class="ok-pill">✓ bajarildi</span></p></div>
+  </div>
+</section>
+
+<section id="pg2">
+  <div class="sec-h"><span class="n">5</span><h2>PG-2: navbatdagi ko'rik</h2></div>
+  <p class="sub">Siz PG-2 ni hali ko'rmagansiz. Unga ham poydevor ekran qo'shildi (M39): 2-ekran «CRUD — ma'lumot bilan qilinadigan to'rt amal». Dars 27 dan 28 ekranga chiqdi. Qolgan 8 darsda bunday ekran yo'q, har birining ko'rigida hal qilinadi.</p>
+  <div class="pair">
+    <div class="pair-h"><span class="law">M39</span><h3>PG-2 yangi 2-ekran: CRUD jadvali to'rt segmentda ochiladi</h3><p>Create, Read, Update, Delete qatorlari birin-ketin keladi: bazadagi buyruq, baza javobi, Express endpoint'i, status.</p></div>
+    <div class="strip">
+      <figure><button class="thumb" data-full="img/pg2-crud-1.jpg"><img src="img/pg2-crud-1.jpg" alt="PG-2 2-ekran, 1-segment" loading="lazy"></button><figcaption>1 · Create</figcaption></figure>
+      <figure><button class="thumb" data-full="img/pg2-crud-2.jpg"><img src="img/pg2-crud-2.jpg" alt="PG-2 2-ekran, 2-segment" loading="lazy"></button><figcaption>2 · Read</figcaption></figure>
+      <figure><button class="thumb" data-full="img/pg2-crud-3.jpg"><img src="img/pg2-crud-3.jpg" alt="PG-2 2-ekran, 3-segment" loading="lazy"></button><figcaption>3 · Update</figcaption></figure>
+      <figure><button class="thumb" data-full="img/pg2-crud-4.jpg"><img src="img/pg2-crud-4.jpg" alt="PG-2 2-ekran, 4-segment: to'liq jadval va xulosa" loading="lazy"></button><figcaption>4 · Delete va xulosa</figcaption></figure>
+    </div>
+  </div>
+  <div class="addr">
+    <b>Ko'rish manzili (hozirgi nusxa, ovoz bilan):</b>
+    <code>http://localhost:5334/mentor-kurs.html?dars=pg-02</code>
+    <span style="color:var(--muted)">Muqovada «Boshlash» bosilsa ovoz ishlaydi. Kechagi nusxa taqqoslash uchun: <code>http://localhost:5335/mentor-kurs.html?dars=pg-02</code>.</span>
+  </div>
+</section>
+
+<section id="qilinmagan">
+  <div class="sec-h"><span class="n">6</span><h2>Nima qilinmagan</h2></div>
+  <p class="sub">Halol ro'yxat. Hech biri yashirilmagan, har biri buyruq kutadi yoki navbatda. e2e 1280 bu ro'yxatdan chiqdi: 12/12 o'tdi.</p>
+  <div class="notdone">
+    <div class="item"><span><b>9 dars siz ko'rmagansiz</b>PG-2, Jest-1, Jest-2, CI/CD-1, CI/CD-2, Telegraf+PG, WebSocket-1, WebSocket-2, Webhook. Ularda «ustozdek to'liq gap» (M32-1) va «poydevor ekran» (M39) faqat ko'rikda tekshiriladi, PG-1 dagidek.</span><span class="who">navbatda</span></div>
+    <div class="item"><span><b>Platforma fayllari eski</b>12 ta <code>.oz.jsx</code> bugungi o'zgarishlardan oldin yasalgan. Qayta yasash 10 daqiqa, lekin siz «shoshilma» degansiz.</span><span class="who">buyruq bilan</span></div>
+    <div class="item"><span><b>10 suratli ko'rik sahifasi eski</b>Kecha e'lon qilingan sahifalarda kechagi suratlar. Agar ko'rikni suratli sahifada qilsangiz, avval yangilayman.</span><span class="who">buyruq bilan</span></div>
+    <div class="item"><span><b>Commit va LMS yo'q</b>10 dars git'da umuman yo'q, Nest-1 va Nest-2 ning bugungi o'zgarishlari ham commit qilinmagan. LMS'ga hech narsa chiqmagan.</span><span class="who">buyruq bilan</span></div>
+    <div class="item"><span><b>Ovoz segmentlari uzaydi</b>«Demak» qo'shilgani uchun eng uzun segment o'sdi: PG-1 42 → 56 so'z, WebSocket-1 28 → 47, Telegraf+PG 28 → 39. Chegara 60 so'z, hammasi ichida. Lekin 56 chegaraga yaqin.</span><span class="who">kuzatuvda</span></div>
+    <div class="item"><span><b>«haqiqiy psql» izohi qoldi</b>PG-2 ning o'quvchi darsini o'tish ekranida (yuqoridagi 3-bo'lim). Dastur nomi sifatida qoldirilgan.</span><span class="who">sizning qaroringiz</span></div>
+    <div class="item"><span><b>ElevenLabs sinalmagan</b>Ovoz hozir lokal (edge-tts). Platformadagi ovoz faqat yuklangandan keyin eshitiladi.</span><span class="who">yuklashdan keyin</span></div>
+  </div>
+</section>
+
+<section id="savollar">
+  <div class="sec-h"><span class="n">7</span><h2>To'rt savol</h2></div>
+  <p class="sub">Dastlabki uchtasiga chatda javob berdingiz (A · A · A), ular qabul qilindi. To'rtinchisi yangi: siz yuborgan rasmdagi chap panel matni. Variantni bosing, «Javobni nusxalash» ni bosib chatga tashlang.</p>
+  <div class="qs">
+
+    <div class="question" data-q="1">
+      <h3>1 · PG-1 da 17-ekran rasmini yuborgan edingiz, izohsiz. Nimani ko'rsatmoqchi edingiz?<span class="ans">Javobingiz: A</span></h3>
+      <p style="color:var(--muted)">Eski raqam 17, hozir 18: «JOIN, xato ON va LEFT JOIN» amaliyoti. Ikkala holat quyida, tuzatishlar faqat dvigateldan (isbot ramkasi, tugma matni).</p>
+      <div class="two">
+        <figure><button class="thumb" data-full="img/pg1-amal3-oldin.jpg"><img src="img/pg1-amal3-oldin.jpg" alt="PG-1 amaliyot 3, oldin" loading="lazy"></button><figcaption><span class="lab old">Oldin</span><span>Siz ko'rgan holat (17 / 28).</span></figcaption></figure>
+        <figure><button class="thumb" data-full="img/pg1-amal3-hozir.jpg"><img src="img/pg1-amal3-hozir.jpg" alt="PG-1 amaliyot 3, hozir" loading="lazy"></button><figcaption><span class="lab new">Hozir</span><span>Hozirgi holat (18 / 29).</span></figcaption></figure>
+      </div>
+      <div class="opts">
+        <button class="opt" data-v="A"><span class="l">A</span><span class="t">Muammo yo'q edi, tasodifan ketgan. O'tkazib yuboring.</span></button>
+        <button class="opt" data-v="B"><span class="t" style="grid-column:2">Bu ekranda muammo bor. Izohda yozaman.</span><span class="l" style="grid-row:1">B</span></button>
+      </div>
+      <textarea id="c1" placeholder="Izoh (B bo'lsa, nimani o'zgartirish kerak)"></textarea>
+    </div>
+
+    <div class="question" data-q="2">
+      <h3>2 · O'quvchi darsida «jim buzilish» atamasi bor. Mentor darsida endi «yashirin buzilish». Mentorga o'quvchi so'zini ham aytamizmi?<span class="ans">Javobingiz: A</span></h3>
+      <div class="quote">
+        <div class="q"><span class="lab" style="background:var(--soft);color:var(--muted)">O'quvchi darsi</span><br>Jest-2 ga tegishli o'quvchi darsi (<code>EdgeCasesTestLesson</code>) kartochkasida: «Noto'g'ri ma'lumot (matn, null) → NaN/0 — <mark>jim buzilish</mark>, xavfli».</div>
+        <div class="q new"><span class="lab new">Mentor darsi hozir</span><br>Jest-2 da 10 ta «jim» almashtirilgan: «<mark>yashirin</mark> buzilish», «xato <mark>bermay</mark> o'tadi». O'quvchi atamasi hech qayerda aytilmaydi.</div>
+      </div>
+      <div class="opts">
+        <button class="opt" data-v="A"><span class="l">A</span><span class="t">Bir joyda aytiladi: Jest-2 ning «O'quvchi darsini o'tish» bosqichida «o'quvchi darsida bu 'jim buzilish' deb ataladi» gapi qo'shiladi. (Tavsiya)</span><span class="pm"><span class="p">Mentor sinfda o'quvchi so'zini taniydi, ikkalasini bog'lab aytadi</span><span class="m">Bitta gap qo'shiladi, o'sha ekran ovozi qayta yasaladi</span></span></button>
+        <button class="opt" data-v="B"><span class="l">B</span><span class="t">Hech narsa qo'shilmaydi, faqat «yashirin buzilish» qoladi.</span><span class="pm"><span class="p">Hech narsa o'zgarmaydi</span><span class="m">O'quvchi «jim buzilish» desa, mentor bu nima ekanini bog'lamasligi mumkin</span></span></button>
+        <button class="opt" data-v="C"><span class="l">C</span><span class="t">O'quvchi darsini ham «yashirin buzilish»ga o'zgartirish.</span><span class="pm"><span class="p">Ikki dars bir tilda gapiradi</span><span class="m">Alohida ish: o'quvchi darsi fayli, uz+ru, LMS'ga qayta yuklash. Bugun emas.</span></span></button>
+      </div>
+      <p class="rec">Tavsiyam: A. Mentor o'quvchi ishlatadigan so'zni bilishi kerak, lekin o'zi aniq so'z bilan gapiradi.</p>
+      <textarea id="c2" placeholder="Izoh (ixtiyoriy)"></textarea>
+    </div>
+
+    <div class="question" data-q="3">
+      <h3>3 · PG-2 ko'rigini qanday qilamiz?<span class="ans">Javobingiz: A</span></h3>
+      <div class="opts">
+        <button class="opt" data-v="A"><span class="l">A</span><span class="t">PG-1 dagidek: :5334 da ovozi bilan o'zingiz ko'rasiz, ekran rasmini yuborasiz. (Tavsiya)</span><span class="pm"><span class="p">PG-1 da 12 fikr aynan shu yo'l bilan chiqdi, ovoz ham eshitiladi</span><span class="m">28 ekran, 30 daqiqa vaqt oladi</span></span></button>
+        <button class="opt" data-v="B"><span class="l">B</span><span class="t">Suratli ko'rik sahifasini yangilab beraman, u yerda «Ma'qul / O'zgartirish» bosasiz.</span><span class="pm"><span class="p">Tez, segmentma-segment, istalgan joyda</span><span class="m">Ovoz yo'q, kesilgan ovoz kabi xatolar ko'rinmaydi</span></span></button>
+        <button class="opt" data-v="C"><span class="l">C</span><span class="t">Ikkalasi: avval sahifada tez ko'rasiz, keyin ovoz bilan to'liq.</span><span class="pm"><span class="p">Eng to'liq</span><span class="m">Eng uzun</span></span></button>
+      </div>
+      <p class="rec">Tavsiyam: A. Mentor darsi ovozli, uni ovoz bilan ko'rgan ma'qul.</p>
+      <textarea id="c3" placeholder="Izoh (ixtiyoriy)"></textarea>
+    </div>
+
+    <div class="question" data-q="4">
+      <h3>4 · Yangi fikringiz (F-1102-22): chap paneldagi matn katta va qo'pol. Qaysi ko'rinish?</h3>
+      <p style="color:var(--muted);max-width:80ch">Siz: «juda katta, qo'pol; gapga mos bo'lsin; testlarda ham, kodli joyda ham, boshida ham — o'qituvchining qaragisi kelmaydi». Tashxis: dvigatelda chap panel matni hamma darsga bir xil, va hozir u shunday:</p>
+      <div class="diag">
+        <div class="d"><b>Sarlavha</b><span class="px">28 px · og'irlik 800</span><span>Eng qalin og'irlik, katta. Gap uzunligiga qaramaydi.</span></div>
+        <div class="d"><b>Ustoz gapi (kalit ibora)</b><span class="px">30 px · og'irlik 700</span><span>Sarlavhadan ham katta. Uzun gap uch qator bo'lib qoladi.</span></div>
+        <div class="d"><b>Gap ichidagi kod</b><span class="px">qora blok, oq matn, qalin</span><span>Gap o'rtasida og'ir qora to'rtburchak («NOT NULL», «pool.query»).</span></div>
+        <div class="d"><b>Test savoli · muqova</b><span class="px">26 px · 800 · muqova 38 px</span><span>Test sarlavhasi ham qalin va katta, variantlar 18 px. Muqova sarlavhasi 38 px.</span></div>
+      </div>
+      <p style="color:var(--muted);max-width:80ch">Uch variant tayyorladim, hammasi haqiqiy render (uslub ustidan yozilib, bir xil ekranlar suratga olindi). A va B da «gapga mos» qoidasi bor: gap 110 belgidan uzun bo'lsa, bir pog'ona kichrayadi. Hech narsa darsga hali kirgani yo'q, siz tanlagach dvigatelga bir joyda yoziladi va 12 darsga birdan tushadi.</p>
+      <p class="row-h"><b>Siz belgilagan ekran — 24, «o'quvchi darsini o'tish»</b></p>
+      <div class="four">
+        <figure><button class="thumb" data-full="img/var-hozir-otish.jpg"><img src="img/var-hozir-otish.jpg" alt="Hozirgi ko'rinish: Siz belgilagan ekran — 24, «o'quvchi darsini o'tish»" loading="lazy"></button><figcaption><span class="vlab">Hozir</span></figcaption></figure>
+        <figure><button class="thumb" data-full="img/var-A-otish.jpg"><img src="img/var-A-otish.jpg" alt="A variant: Siz belgilagan ekran — 24, «o'quvchi darsini o'tish»" loading="lazy"></button><figcaption><span class="vlab rec">A · yengil</span></figcaption></figure>
+        <figure><button class="thumb" data-full="img/var-B-otish.jpg"><img src="img/var-B-otish.jpg" alt="B variant: Siz belgilagan ekran — 24, «o'quvchi darsini o'tish»" loading="lazy"></button><figcaption><span class="vlab">B · o'rtacha</span></figcaption></figure>
+        <figure><button class="thumb" data-full="img/var-C-otish.jpg"><img src="img/var-C-otish.jpg" alt="C variant: Siz belgilagan ekran — 24, «o'quvchi darsini o'tish»" loading="lazy"></button><figcaption><span class="vlab">C · faqat og'irlik</span></figcaption></figure>
+      </div>
+      <p class="row-h"><b>1-ekran, kirish</b></p>
+      <div class="four">
+        <figure><button class="thumb" data-full="img/var-hozir-kirish.jpg"><img src="img/var-hozir-kirish.jpg" alt="Hozirgi ko'rinish: 1-ekran, kirish" loading="lazy"></button><figcaption><span class="vlab">Hozir</span></figcaption></figure>
+        <figure><button class="thumb" data-full="img/var-A-kirish.jpg"><img src="img/var-A-kirish.jpg" alt="A variant: 1-ekran, kirish" loading="lazy"></button><figcaption><span class="vlab rec">A · yengil</span></figcaption></figure>
+        <figure><button class="thumb" data-full="img/var-B-kirish.jpg"><img src="img/var-B-kirish.jpg" alt="B variant: 1-ekran, kirish" loading="lazy"></button><figcaption><span class="vlab">B · o'rtacha</span></figcaption></figure>
+        <figure><button class="thumb" data-full="img/var-C-kirish.jpg"><img src="img/var-C-kirish.jpg" alt="C variant: 1-ekran, kirish" loading="lazy"></button><figcaption><span class="vlab">C · faqat og'irlik</span></figcaption></figure>
+      </div>
+      <p class="row-h"><b>Tekshiruv savoli (6-ekran)</b></p>
+      <div class="four">
+        <figure><button class="thumb" data-full="img/var-hozir-test-bosh.jpg"><img src="img/var-hozir-test-bosh.jpg" alt="Hozirgi ko'rinish: Tekshiruv savoli (6-ekran)" loading="lazy"></button><figcaption><span class="vlab">Hozir</span></figcaption></figure>
+        <figure><button class="thumb" data-full="img/var-A-test-bosh.jpg"><img src="img/var-A-test-bosh.jpg" alt="A variant: Tekshiruv savoli (6-ekran)" loading="lazy"></button><figcaption><span class="vlab rec">A · yengil</span></figcaption></figure>
+        <figure><button class="thumb" data-full="img/var-B-test-bosh.jpg"><img src="img/var-B-test-bosh.jpg" alt="B variant: Tekshiruv savoli (6-ekran)" loading="lazy"></button><figcaption><span class="vlab">B · o'rtacha</span></figcaption></figure>
+        <figure><button class="thumb" data-full="img/var-C-test-bosh.jpg"><img src="img/var-C-test-bosh.jpg" alt="C variant: Tekshiruv savoli (6-ekran)" loading="lazy"></button><figcaption><span class="vlab">C · faqat og'irlik</span></figcaption></figure>
+      </div>
+      <p class="row-h"><b>Tekshiruv javobdan keyin</b></p>
+      <div class="four">
+        <figure><button class="thumb" data-full="img/var-hozir-test-javob.jpg"><img src="img/var-hozir-test-javob.jpg" alt="Hozirgi ko'rinish: Tekshiruv javobdan keyin" loading="lazy"></button><figcaption><span class="vlab">Hozir</span></figcaption></figure>
+        <figure><button class="thumb" data-full="img/var-A-test-javob.jpg"><img src="img/var-A-test-javob.jpg" alt="A variant: Tekshiruv javobdan keyin" loading="lazy"></button><figcaption><span class="vlab rec">A · yengil</span></figcaption></figure>
+        <figure><button class="thumb" data-full="img/var-B-test-javob.jpg"><img src="img/var-B-test-javob.jpg" alt="B variant: Tekshiruv javobdan keyin" loading="lazy"></button><figcaption><span class="vlab">B · o'rtacha</span></figcaption></figure>
+        <figure><button class="thumb" data-full="img/var-C-test-javob.jpg"><img src="img/var-C-test-javob.jpg" alt="C variant: Tekshiruv javobdan keyin" loading="lazy"></button><figcaption><span class="vlab">C · faqat og'irlik</span></figcaption></figure>
+      </div>
+      <p class="row-h"><b>Kodli gap: chiplar bilan (14-ekran)</b></p>
+      <div class="four">
+        <figure><button class="thumb" data-full="img/var-hozir-kod.jpg"><img src="img/var-hozir-kod.jpg" alt="Hozirgi ko'rinish: Kodli gap: chiplar bilan (14-ekran)" loading="lazy"></button><figcaption><span class="vlab">Hozir</span></figcaption></figure>
+        <figure><button class="thumb" data-full="img/var-A-kod.jpg"><img src="img/var-A-kod.jpg" alt="A variant: Kodli gap: chiplar bilan (14-ekran)" loading="lazy"></button><figcaption><span class="vlab rec">A · yengil</span></figcaption></figure>
+        <figure><button class="thumb" data-full="img/var-B-kod.jpg"><img src="img/var-B-kod.jpg" alt="B variant: Kodli gap: chiplar bilan (14-ekran)" loading="lazy"></button><figcaption><span class="vlab">B · o'rtacha</span></figcaption></figure>
+        <figure><button class="thumb" data-full="img/var-C-kod.jpg"><img src="img/var-C-kod.jpg" alt="C variant: Kodli gap: chiplar bilan (14-ekran)" loading="lazy"></button><figcaption><span class="vlab">C · faqat og'irlik</span></figcaption></figure>
+      </div>
+      <p class="row-h"><b>«Qaysi satr xato» (22-ekran)</b></p>
+      <div class="four">
+        <figure><button class="thumb" data-full="img/var-hozir-satr.jpg"><img src="img/var-hozir-satr.jpg" alt="Hozirgi ko'rinish: «Qaysi satr xato» (22-ekran)" loading="lazy"></button><figcaption><span class="vlab">Hozir</span></figcaption></figure>
+        <figure><button class="thumb" data-full="img/var-A-satr.jpg"><img src="img/var-A-satr.jpg" alt="A variant: «Qaysi satr xato» (22-ekran)" loading="lazy"></button><figcaption><span class="vlab rec">A · yengil</span></figcaption></figure>
+        <figure><button class="thumb" data-full="img/var-B-satr.jpg"><img src="img/var-B-satr.jpg" alt="B variant: «Qaysi satr xato» (22-ekran)" loading="lazy"></button><figcaption><span class="vlab">B · o'rtacha</span></figcaption></figure>
+        <figure><button class="thumb" data-full="img/var-C-satr.jpg"><img src="img/var-C-satr.jpg" alt="C variant: «Qaysi satr xato» (22-ekran)" loading="lazy"></button><figcaption><span class="vlab">C · faqat og'irlik</span></figcaption></figure>
+      </div>
+      <p class="row-h"><b>Amaliyot (7-ekran)</b></p>
+      <div class="four">
+        <figure><button class="thumb" data-full="img/var-hozir-amal.jpg"><img src="img/var-hozir-amal.jpg" alt="Hozirgi ko'rinish: Amaliyot (7-ekran)" loading="lazy"></button><figcaption><span class="vlab">Hozir</span></figcaption></figure>
+        <figure><button class="thumb" data-full="img/var-A-amal.jpg"><img src="img/var-A-amal.jpg" alt="A variant: Amaliyot (7-ekran)" loading="lazy"></button><figcaption><span class="vlab rec">A · yengil</span></figcaption></figure>
+        <figure><button class="thumb" data-full="img/var-B-amal.jpg"><img src="img/var-B-amal.jpg" alt="B variant: Amaliyot (7-ekran)" loading="lazy"></button><figcaption><span class="vlab">B · o'rtacha</span></figcaption></figure>
+        <figure><button class="thumb" data-full="img/var-C-amal.jpg"><img src="img/var-C-amal.jpg" alt="C variant: Amaliyot (7-ekran)" loading="lazy"></button><figcaption><span class="vlab">C · faqat og'irlik</span></figcaption></figure>
+      </div>
+      <p class="row-h"><b>Muqova — darsning boshi</b></p>
+      <div class="four">
+        <figure><button class="thumb" data-full="img/var-hozir-muqova.jpg"><img src="img/var-hozir-muqova.jpg" alt="Hozirgi ko'rinish: Muqova — darsning boshi" loading="lazy"></button><figcaption><span class="vlab">Hozir</span></figcaption></figure>
+        <figure><button class="thumb" data-full="img/var-A-muqova.jpg"><img src="img/var-A-muqova.jpg" alt="A variant: Muqova — darsning boshi" loading="lazy"></button><figcaption><span class="vlab rec">A · yengil</span></figcaption></figure>
+        <figure><button class="thumb" data-full="img/var-B-muqova.jpg"><img src="img/var-B-muqova.jpg" alt="B variant: Muqova — darsning boshi" loading="lazy"></button><figcaption><span class="vlab">B · o'rtacha</span></figcaption></figure>
+        <figure><button class="thumb" data-full="img/var-C-muqova.jpg"><img src="img/var-C-muqova.jpg" alt="C variant: Muqova — darsning boshi" loading="lazy"></button><figcaption><span class="vlab">C · faqat og'irlik</span></figcaption></figure>
+      </div>
+      <div class="opts">
+        <button class="opt" data-v="A"><span class="l">A</span><span class="t">Yengil: sarlavha 22 px, xira, 600; ustoz gapi 22 px, 500 (uzun gap 19 px), urg'u qizil; kod chipi och kulrang; test savoli 22 px, variantlar 16 px; muqova 30 px. (Tavsiya)</span><span class="pm"><span class="p">Ustoz gapi o'qiladigan matn bo'lib qoladi, sarlavha fonga o'tadi, kod chipi gapni bo'lmaydi</span><span class="m">Katta ekranda (1920) matn avvalgidan ancha kichik ko'rinadi, ko'z o'rganishi kerak</span></span></button>
+        <button class="opt" data-v="B"><span class="l">B</span><span class="t">O'rtacha: sarlavha 24 px, 700; ustoz gapi 24 px, 600 (uzun gap 21 px); kod chipi yumshoq to'q; test savoli 24 px, variantlar 17 px; muqova 33 px.</span><span class="pm"><span class="p">Hozirgiga yaqin, lekin bir pog'ona kichik va yengil</span><span class="m">Kod chipi hali to'q blok, ustoz gapi hali sarlavha bilan bir xil og'irlikda kurashadi</span></span></button>
+        <button class="opt" data-v="C"><span class="l">C</span><span class="t">Faqat og'irlik: o'lchamlar hozirgidek, 800 → 700, 700 → 600, kod chipi yumshoq.</span><span class="pm"><span class="p">Eng kichik o'zgarish</span><span class="m">Katta-katta qoladi, «gapga mos» emas</span></span></button>
+      </div>
+      <p class="rec">Tavsiyam: A. Mentor bu matnni ovoz bilan birga o'qiydi, u sarlavha emas, gap. Gap 22 px da ham bemalol o'qiladi, katta ekranda ham. Agar A yoqsa-yu, bir oz kattaroq bo'lsin desangiz, izohga «A, lekin 24» deb yozing.</p>
+      <textarea id="c4" placeholder="Izoh (masalan: «A, lekin gap 24 px» yoki boshqa taklif)"></textarea>
+    </div>
+
+    <div class="question">
+      <div class="copyrow"><button class="copy" id="copyBtn">Javobni nusxalash</button><span class="copy-note" id="copyNote">Nusxalangach chatga tashlang.</span></div>
+      <textarea class="copybox" id="copyBox" readonly aria-label="Yig'ilgan javob"></textarea>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap" style="padding-left:0;padding-right:0">
+  <p>Manba: <code>feedback/F-1029-02-mentor-kurs/JURNAL.md</code> («02.11 16:40», «17:58», «18:30» yozuvlari) · suratlar shu seansda olingan · sonlar <code>tayyor/*.jsx</code> va <code>src/mentor-kurs/*.jsx</code> matnlaridan sanalgan.</p>
+</footer>
+</div>
+
+<dialog id="dlg"><div class="cap"><span id="dlgCap"></span><button id="dlgClose" type="button">Yopish</button></div><img id="dlgImg" alt=""></dialog>
+
+<script>
+(function () {
+  var dlg = document.getElementById('dlg'), img = document.getElementById('dlgImg'), cap = document.getElementById('dlgCap');
+  document.querySelectorAll('.thumb').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var i = b.querySelector('img'); img.src = b.getAttribute('data-full'); img.alt = i ? i.alt : ''; cap.textContent = i ? i.alt : '';
+      if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+    });
+  });
+  document.getElementById('dlgClose').addEventListener('click', function () { dlg.close ? dlg.close() : dlg.removeAttribute('open'); });
+  dlg.addEventListener('click', function (e) { if (e.target === dlg) { dlg.close ? dlg.close() : dlg.removeAttribute('open'); } });
+
+  var KEY = 'mentor-oldin-hozir-javob';
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { state = {}; }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  function render() {
+    document.querySelectorAll('.question[data-q]').forEach(function (q) {
+      var n = q.getAttribute('data-q');
+      q.querySelectorAll('.opt').forEach(function (o) { o.setAttribute('aria-pressed', String(state['q' + n] === o.getAttribute('data-v'))); });
+      var ta = document.getElementById('c' + n); if (ta && state['c' + n] != null && ta.value !== state['c' + n]) ta.value = state['c' + n];
+    });
+    var lines = [];
+    [1, 2, 3, 4].forEach(function (n) {
+      var v = state['q' + n] || '—', c = (state['c' + n] || '').trim();
+      lines.push(n + '-savol: ' + v + (c ? ' — ' + c : ''));
+    });
+    document.getElementById('copyBox').value = 'Mentor kursi, 02.11 javoblar\n' + lines.join('\n');
+  }
+  document.querySelectorAll('.question[data-q] .opt').forEach(function (o) {
+    o.addEventListener('click', function () { var q = o.closest('.question').getAttribute('data-q'); state['q' + q] = o.getAttribute('data-v'); save(); render(); });
+  });
+  [1, 2, 3, 4].forEach(function (n) { var ta = document.getElementById('c' + n); ta.addEventListener('input', function () { state['c' + n] = ta.value; save(); render(); }); });
+  document.getElementById('copyBtn').addEventListener('click', function () {
+    var box = document.getElementById('copyBox'), note = document.getElementById('copyNote');
+    var done = function () { note.textContent = 'Nusxalandi. Endi chatga tashlang.'; };
+    var fallback = function () { box.focus(); box.select(); note.textContent = 'Matn belgilandi: Ctrl+C bosing.'; };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(box.value).then(done, fallback); else fallback();
+  });
+  render();
+})();
+</script>

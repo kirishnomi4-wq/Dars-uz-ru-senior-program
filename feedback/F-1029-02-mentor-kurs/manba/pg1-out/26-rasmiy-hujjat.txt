@@ -1,0 +1,13 @@
+# 6–7-ekran o'rnatish da'volari — rasmiy hujjat bilan solishtirish (01.11.2026, WebFetch; bu kompyuterda sinalmagan — Linux)
+## EDB (enterprisedb.com/docs/supported-open-source/postgresql/installing/windows/)
+Select Components: "PostgreSQL Server" · "pgAdmin 4" · "Stack Builder" · "Command Line Tools" (psql, pg_isready, pgbench)
+"The default listener port is 5432."
+"The installer doesn't change the system path by default." — PATH'ga install papkasi + \bin qo'shiladi; yangi command prompt'da `psql -U postgres` → o'rnatishda berilgan parol so'raladi.
+## postgresql.org/download/windows/
+Installer — EDB, "certified by EDB for all supported Postgres versions"; ro'yxatda 18 (Windows 2025, 2022) … 13.
+## postgresapp.com
+"Download ➜ Move to Applications folder ➜ Double Click" · "Click "Initialize" to create a new server"
+$PATH: sudo mkdir -p /etc/paths.d && echo /Applications/Postgres.app/Contents/Versions/latest/bin | sudo tee /etc/paths.d/postgresapp
+Default: User — your system user name · Password — none · Database — user bilan bir xil.
+## Natija
+MD 6–7-ekran va 9-amaliyot qadamlari shu manbalarga mos. Ekrandagi «⚠ rasmiy hujjatdan, sinalmagan» belgisi to'g'ri qoladi (Windows/macOS'da o'zimiz yurgizmadik).

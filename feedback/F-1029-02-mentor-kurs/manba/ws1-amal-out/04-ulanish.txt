@@ -1,0 +1,5 @@
+$ TOKEN=<Ali tokeni> node klient.js
+  0.0s  ulangan  (connect)
+
+# Backend terminali:
+LOG [Ulanish] ulandi: o'yinchi 11

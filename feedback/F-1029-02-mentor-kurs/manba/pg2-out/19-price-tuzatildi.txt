@@ -1,0 +1,5 @@
+=== price → daily_price tuzatildi, server qayta ishga tushdi
+$ POST /api/cars { "model": "Hyundai Elantra", "daily_price": 450000, "year": 2022 }
+→ 201
+{"id":5,"model":"Hyundai Elantra","daily_price":450000,"year":2022,"is_rented":null}
+

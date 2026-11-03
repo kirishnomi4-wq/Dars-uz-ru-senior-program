@@ -1,0 +1,2 @@
+--- himoyasiz funksiya: orderTotal(10000, 'ikki' as any)
+NaN

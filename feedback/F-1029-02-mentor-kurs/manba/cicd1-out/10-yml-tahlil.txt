@@ -1,0 +1,111 @@
+$ node tekshir (@actions/workflow-parser 0.3.61) yml/*.yml
+--- 1-oquvchi-darsi.yml
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: npm install
+      - run: npm test
+  ✓ xato yo'q (schema bo'yicha to'g'ri)
+
+--- 2-tavsiya.yml
+name: CI
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - run: npm install
+      - run: npm test
+      - run: npm run build
+  ✓ xato yo'q (schema bo'yicha to'g'ri)
+
+--- 3-once.yml
+on: once
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: npm test
+  XATO: 3-once.yml (Line: 1, Col: 5): Unexpected value 'once'
+
+--- 4-runs-on-yoq.yml
+on: push
+jobs:
+  test:
+    steps:
+      - run: npm test
+  XATO: 4-runs-on-yoq.yml (Line: 4, Col: 5): Required property is missing: runs-on
+
+--- 5-surilish-xato.yml
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - run: npm install
+      - run: npm test
+  XATO: 5-surilish-xato.yml: A block sequence may not be used as an implicit map key at line 7, column 1:
+
+    - run: npm install
+      - run: npm test
+^
+
+  XATO: 5-surilish-xato.yml: Implicit keys need to be on a single line at line 7, column 7:
+
+    - run: npm install
+      - run: npm test
+      ^
+
+  XATO: 5-surilish-xato.yml: Implicit map keys need to be followed by map values at line 7, column 7:
+
+    - run: npm install
+      - run: npm test
+      ^
+
+
+--- 6-steps-yoq.yml
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    - run: npm test
+  XATO: 6-steps-yoq.yml: A block sequence may not be used as an implicit map key at line 5, column 1:
+
+    runs-on: ubuntu-latest
+    - run: npm test
+^
+
+  XATO: 6-steps-yoq.yml: Implicit keys need to be on a single line at line 5, column 5:
+
+    runs-on: ubuntu-latest
+    - run: npm test
+    ^
+
+  XATO: 6-steps-yoq.yml: Implicit map keys need to be followed by map values at line 5, column 5:
+
+    runs-on: ubuntu-latest
+    - run: npm test
+    ^
+
+
+--- 7-npm-ci.yml
+name: CI
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npm test
+  ✓ xato yo'q (schema bo'yicha to'g'ri)
+

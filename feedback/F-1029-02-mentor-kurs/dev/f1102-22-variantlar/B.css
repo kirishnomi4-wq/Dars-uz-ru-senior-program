@@ -1,0 +1,10 @@
+/* B — O'rtacha: hamma narsa bir pog'ona kichik, og'irlik 700/600, kod chipi yumshoq to'q */
+.mk-title{font-size:clamp(20px,1.7vw,24px);font-weight:700;letter-spacing:-.005em;line-height:1.25;margin:0 0 16px}
+.mk-key{font-size:clamp(20px,1.7vw,24px);font-weight:600;line-height:1.35;letter-spacing:0}
+.mk-key[data-len="long"]{font-size:clamp(18px,1.5vw,21px)}
+.mk-key code{font:.85em "IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;background:#2B3040;color:#F3F4F8;padding:1px 8px;border-radius:6px;font-weight:500}
+.mk-title.mc-q{font-size:clamp(20px,1.7vw,24px);font-weight:700}
+.mk-say.mc .mk-opt{font-size:17px;padding:14px 16px}
+.mk-cover h1{font-size:clamp(25px,2.6vw,33px);font-weight:700}
+
+.mk-key code{white-space:nowrap}

@@ -1,0 +1,31 @@
+# ci.yml: runs-on: my-laptop (o'quvchi darsidagi noto'g'ri variant) — bunday runner yo'q
+# run 41311735959 · commit e9b1869
+# https://github.com/kirishnomi4-wq/mentor-ci-sinov/actions/runs/41311735959
+
+name: CI
+on: push
+jobs:
+  test:
+    runs-on: my-laptop
+    steps:
+      - uses: actions/checkout@v7
+      - run: npm test
+
+## 20 s dan keyin: status=queued conclusion=
+## 60 s dan keyin: status=queued conclusion=
+## 180 s dan keyin: status=queued conclusion=
+
+
+* yaml CI · 41311735959
+Triggered via push about 3 minutes ago
+
+JOBS
+* test (ID 124863359149)
+
+For more information about the job, try: gh run view --job=124863359149
+View this run on GitHub: https://github.com/kirishnomi4-wq/mentor-ci-sinov/actions/runs/41311735959
+JOB test · status=queued · labels=my-laptop
+
+## bekor qilindi: gh run cancel
+✓ Request to cancel workflow 41311735959 submitted.
+status=completed conclusion=cancelled

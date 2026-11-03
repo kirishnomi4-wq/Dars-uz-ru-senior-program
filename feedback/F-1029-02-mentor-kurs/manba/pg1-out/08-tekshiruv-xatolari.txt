@@ -1,0 +1,16 @@
+blog=# INSERT INTO users (username) VALUES (NULL);
+ERROR:  null value in column "username" of relation "users" violates not-null constraint
+DETAIL:  Failing row contains (4, null).
+
+blog=# INSERT INTO users (username) VALUES ('ali');
+ERROR:  duplicate key value violates unique constraint "users_username_key"
+DETAIL:  Key (username)=(ali) already exists.
+
+blog=# INSERT INTO posts (user_id, izoh) VALUES (99, 'Muallifi yo''q post');
+ERROR:  insert or update on table "posts" violates foreign key constraint "posts_user_id_fkey"
+DETAIL:  Key (user_id)=(99) is not present in table "users".
+
+blog=# DELETE FROM users WHERE id = 1;
+ERROR:  update or delete on table "users" violates foreign key constraint "posts_user_id_fkey" on table "posts"
+DETAIL:  Key (id)=(1) is still referenced from table "posts".
+

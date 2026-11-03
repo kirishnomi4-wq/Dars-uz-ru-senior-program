@@ -1,0 +1,36 @@
+# tolov.controller.ts — imzo tekshiruvi insert'dan keyin:
+  async webhook(@Req() sorov: RawBodyRequest<Request>, @Headers('x-imzo') imzo: string | undefined) {
+    const tana = (sorov.body ?? {}) as Record<string, unknown>;
+    const tolovRaqami = typeof tana.tolovRaqami === 'string' ? tana.tolovRaqami.trim() : '';
+    const holat = tana.holat;
+    const summa = tana.summa;
+    const oyinchiId = tana.oyinchiId;
+    if (!tolovRaqami || tolovRaqami.length > 40) throw new BadRequestException("tolovRaqami bo'sh");
+    if (typeof holat !== 'string' || !HOLATLAR.includes(holat)) throw new BadRequestException('holat — tolandi yoki rad');
+    if (typeof summa !== 'number' || !Number.isInteger(summa) || summa <= 0) {
+      throw new BadRequestException("summa — musbat butun son (so'm)");
+    }
+    if (typeof oyinchiId !== 'number' || !Number.isInteger(oyinchiId) || !(await this.oyinchilar.existsBy({ id: oyinchiId }))) {
+      throw new BadRequestException('oyinchiId — mavjud hisob');
+    }
+
+    if (await this.tolovlar.existsBy({ tolov_raqami: tolovRaqami })) return { takror: true };
+    try {
+      await this.tolovlar.insert({ tolov_raqami: tolovRaqami, oyinchi_id: oyinchiId, summa, holat });
+    } catch (e) {
+      // Ikki bir xil xabar bir vaqtda keldi: ikkinchisini jadvaldagi noyoblik to'xtatdi — u ham takror (500 emas)
+      if ((e as { code?: string }).code === '23505') return { takror: true };
+      throw e;
+    }
+    if (!imzoTogrimi(sorov.rawBody, imzo)) throw new UnauthorizedException("Imzo mos emas");
+    return { ok: true };
+  }
+
+$ … tolov-mashq/yubor {"tur":"imzosiz"}
+{"tolovRaqami":"m-1793494254980","javoblar":[{"holat":401,"tana":{"message":"Imzo mos emas","error":"Unauthorized","statusCode":401}}]}
+$ psql: oxirgi qator
+  tolov_raqami   |  holat  
+-----------------+---------
+ m-1793494254980 | tolandi
+(1 row)
+

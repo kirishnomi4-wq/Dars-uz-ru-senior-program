@@ -1,0 +1,22 @@
+--- PostgreSQL (psql): users jadvali — ustunlar va qatorlar
+CREATE TABLE users (id SERIAL PRIMARY KEY, username TEXT NOT NULL UNIQUE);
+CREATE TABLE
+INSERT INTO users (username) VALUES ('ali'), ('vali');
+INSERT 0 2
+SELECT * FROM users;
+ id | username 
+----+----------
+  1 | ali
+  2 | vali
+(2 rows)
+
+INSERT INTO users (username, shahar) VALUES ('sardor', 'Toshkent');
+ERROR:  column "shahar" of relation "users" does not exist
+LINE 1: INSERT INTO users (username, shahar) VALUES ('sardor', 'Tosh...
+                                     ^
+SELECT username FROM users WHERE id = 2;
+ username 
+----------
+ vali
+(1 row)
+

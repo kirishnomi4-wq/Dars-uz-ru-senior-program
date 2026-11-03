@@ -1,0 +1,16 @@
+# 31.10.2026, qo'lda (script -qc "psql -h localhost -U postgres"), psql 18.4 → tizim PG17 :5432.
+# Olib tashlandi: shu kompyuterga xos collation ogohlantirishi (WARNING/DETAIL/HINT) va SSL qatori; terminal boshqaruv belgilari.
+
+$ psql -U postgres
+Password for user postgres: 
+psql (18.4 (Debian 18.4-1+b1), server 17.2 (Debian 17.2-1+b2))
+Type "help" for help.
+
+postgres=# SELECT 1
+postgres-# ;
+ ?column? 
+----------
+        1
+(1 row)
+
+postgres=# \q

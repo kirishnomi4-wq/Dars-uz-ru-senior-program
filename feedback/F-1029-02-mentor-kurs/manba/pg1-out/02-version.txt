@@ -1,0 +1,7 @@
+$ psql -U postgres
+postgres=# SELECT version();
+                                                           version                                                            
+------------------------------------------------------------------------------------------------------------------------------
+ PostgreSQL 18.4 (Debian 18.4-1+b1) on x86_64-pc-linux-gnu, compiled by x86_64-linux-gnu-gcc (Debian 15.3.0-1) 15.3.0, 64-bit
+(1 row)
+

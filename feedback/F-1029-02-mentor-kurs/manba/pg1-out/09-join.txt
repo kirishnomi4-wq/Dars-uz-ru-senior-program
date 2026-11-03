@@ -1,0 +1,33 @@
+SELECT users.username, posts.izoh
+FROM posts
+JOIN users ON users.id = posts.user_id;
+ username |         izoh         
+----------+----------------------
+ ali      | Birinchi post
+ ali      | Bugun Nest o'rgandim
+ vali     | Salom hammaga
+(3 rows)
+
+-- ON satri xato: posts.id bilan ulangan
+SELECT users.username, posts.izoh
+FROM posts
+JOIN users ON users.id = posts.id;
+ username |         izoh         
+----------+----------------------
+ ali      | Birinchi post
+ vali     | Bugun Nest o'rgandim
+ sardor   | Salom hammaga
+(3 rows)
+
+-- postsiz foydalanuvchi ham chiqsin
+SELECT users.username, posts.izoh
+FROM users
+LEFT JOIN posts ON posts.user_id = users.id;
+ username |         izoh         
+----------+----------------------
+ ali      | Birinchi post
+ ali      | Bugun Nest o'rgandim
+ vali     | Salom hammaga
+ sardor   | 
+(4 rows)
+

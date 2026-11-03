@@ -1,0 +1,28 @@
+--- 10-ekran: vergul qo'yilgan tags
+blog=# CREATE TABLE tags (id SERIAL PRIMARY KEY, name TEXT);
+CREATE TABLE
+
+--- 14-ekran: baza ikkinchi marta
+postgres=# CREATE DATABASE blog;
+ERROR:  database "blog" already exists
+
+--- 17-ekran: FROM posts LEFT JOIN users (teskari tomondan)
+blog=# SELECT users.username, posts.izoh FROM posts LEFT JOIN users ON users.id = posts.user_id;
+ username |         izoh         
+----------+----------------------
+ ali      | Birinchi post
+ ali      | Bugun Nest o'rgandim
+ vali     | Salom hammaga
+(3 rows)
+
+
+--- 13-ekran after: avval postlar, keyin foydalanuvchi; yo'q id
+blog=# DELETE FROM posts WHERE user_id = 1;
+DELETE 2
+
+blog=# DELETE FROM users WHERE id = 1;
+DELETE 1
+
+blog=# DELETE FROM users WHERE id = 99;
+DELETE 0
+

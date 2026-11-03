@@ -1,0 +1,2 @@
+$ curl -X POST localhost:3000/tolov-mashq/yubor -d '{"tur":"rad","oyinchi":11,"summa":10000}'   # «rad» tugmasi
+{"tolovRaqami":"m-1793494242061","javoblar":[{"holat":200,"tana":{"ok":true}}]}

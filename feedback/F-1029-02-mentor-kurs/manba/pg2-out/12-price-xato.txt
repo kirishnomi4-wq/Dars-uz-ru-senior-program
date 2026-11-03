@@ -1,0 +1,8 @@
+$ POST /api/cars { "model": "Hyundai Elantra", "daily_price": 450000, "year": 2022 }
+→ 500
+{"error":"column \"price\" of relation \"cars\" does not exist"}
+
+--- server terminali
+Server 3000-portda ishlayapti
+column "price" of relation "cars" does not exist
+

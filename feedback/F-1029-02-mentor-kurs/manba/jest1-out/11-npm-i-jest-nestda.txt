@@ -1,0 +1,28 @@
+--- oldin
+jest 30.4.2 · ts-jest 29.4.11
+$ npm i -D jest ts-jest
+npm error 404
+npm error 404  The requested resource 'unrs-resolver@https://registry.npmjs.org/unrs-resolver/-/unrs-resolver-1.13.0.tgz' could not be found or you do not have permission to access it.
+npm error 404
+npm error 404 Note that you can also install from a
+npm error 404 tarball, folder, http url, or git url.
+npm error A complete log of this run can be found in: /home/kali/.npm/_logs/2026-10-31T19_04_38_614Z-debug-0.log
+[chiqish kodi: 1]
+--- keyin
+jest 30.4.2 · ts-jest 29.4.11
+
+$ npm test
+
+> IntroNestArxitechture@0.0.1 test
+> jest
+
+PASS src/delivery.spec.ts
+PASS src/order.spec.ts
+
+Test Suites: 2 passed, 2 total
+Tests:       4 passed, 4 total
+Snapshots:   0 total
+Time:        0.42 s, estimated 1 s
+Ran all test suites.
+[chiqish kodi: 0]
+

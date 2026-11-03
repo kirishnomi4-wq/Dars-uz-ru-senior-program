@@ -7,7 +7,7 @@ const [W, H] = size.split('x').map(Number);
 const idxs = list.split(',').map(Number);
 const LANG = process.argv[5] === 'ru' ? 'ru' : 'uz'; // F-1030-38
 const DARS = process.env.DARS || 'nest-01'; // DARS=nest-02 node ekran-olchov.mjs …
-const CLICK = DARS === 'nest-02' ? { 13: 12 } : { 18: 10, 26: 7 }; // LineCheck: to'g'ri satr (0-based)
+const CLICK = DARS === 'nest-02' ? { 13: 12 } : DARS === 'pg-01' ? { 16: 2 } : DARS === 'pg-02' ? { 21: 3 } : DARS === 'jest-01' ? { 10: 5 } : DARS === 'jest-02' ? { 10: 1 } : DARS === 'cicd-01' ? { 12: 10 } : DARS === 'cicd-02' ? { 10: 10 } : DARS === 'tgpg-01' ? { 15: 2 } : DARS === 'ws1-01' ? { 7: 4 } : DARS === 'ws2-01' ? { 7: 2 } : DARS === 'wh-01' ? { 7: 5 } : { 18: 10, 26: 7 }; // LineCheck: to'g'ri satr (0-based)
 const browser = await chromium.launch({ executablePath: '/usr/bin/google-chrome', headless: true });
 const page = await browser.newPage({ viewport: { width: W, height: H } });
 const errs = [];
@@ -21,7 +21,7 @@ for (const i of idxs) {
     await page.waitForTimeout(400);
     const ask = await page.$('.mk-ask .row button');
     if (ask) { await ask.click(); continue; }
-    const man = await page.$('button:has-text("Keyingi qadam"), button:has-text("Следующий шаг")');
+    const man = await page.$('button:text-matches("^(Keyingi qadam|Следующий шаг)")');
     if (man) { await man.click(); continue; }
   }
   if (CLICK[i] != null) { const ln = await page.$$('.mk-ln.clk'); if (ln[CLICK[i]]) { await ln[CLICK[i]].click(); await page.waitForTimeout(900); } }

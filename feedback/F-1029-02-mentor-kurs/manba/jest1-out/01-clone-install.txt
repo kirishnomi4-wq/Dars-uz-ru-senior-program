@@ -1,0 +1,42 @@
+HEAD 45071ac · 2026-06-15 · Base arxitechture DDD
+$ npm ci
+npm error code EUSAGE
+npm error
+npm error `npm ci` can only install packages when your package.json and package-lock.json or npm-shrinkwrap.json are in sync. Please update your lock file with `npm install` before continuing.
+npm error
+npm error Missing: @nestjs/jwt@11.0.2 from lock file
+npm error Missing: @types/jsonwebtoken@9.0.10 from lock file
+npm error Missing: bcrypt@6.0.0 from lock file
+npm error Missing: class-transformer@0.5.1 from lock file
+[chiqish kodi: 1]
+$ npm install
+npm warn allow-scripts
+npm warn allow-scripts Run `npm approve-scripts --allow-scripts-pending` to review, or `npm approve-scripts <pkg>` to allow.
+[chiqish kodi: 0]
+{
+ "test": "jest",
+ "jest": {
+  "moduleFileExtensions": [
+   "js",
+   "json",
+   "ts"
+  ],
+  "rootDir": "src",
+  "testRegex": ".*\\.spec\\.ts$",
+  "transform": {
+   "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "collectCoverageFrom": [
+   "**/*.(t|j)s"
+  ],
+  "coverageDirectory": "../coverage",
+  "testEnvironment": "node"
+ },
+ "dev": {
+  "@types/jest": "^30.0.0",
+  "jest": "^30.0.0",
+  "ts-jest": "^29.2.5",
+  "typescript": "^5.7.3",
+  "typescript-eslint": "^8.20.0"
+ }
+}

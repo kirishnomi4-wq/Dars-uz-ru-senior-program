@@ -1,0 +1,5 @@
+6a1ed16 m13-03: «Mashq to'lov» sahifasi — GET /tolov-mashq?oyinchi=…&summa=… (karta so'ralmaydi, pul y
+v24.18.0
+TOLOV_KALITI: 64 belgili tasodifiy hex (qiymat yozilmaydi)
+royxat → {"id":11,"ism":"Ali"}
+LOG [NestApplication] Nest application successfully started +0ms

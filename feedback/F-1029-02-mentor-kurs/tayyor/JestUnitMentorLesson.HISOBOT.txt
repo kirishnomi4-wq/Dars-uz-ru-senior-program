@@ -1,0 +1,7 @@
+== JestUnitMentorLesson (168 KB) — 2026-11-01 02:34
+JestUnitMentorLesson.jsx: 1/1 katta literal JSON'ga o'tdi (36 KB → 33 KB): MDT 36 KB
+c.jsx: 166 KB → 134 KB (19% kam) | CSS shablon 2/2 ta, 24 KB → 24 KB [xavfsiz] | JSX-min ha | yengil rejim | moslik: JS→chrome70+polyfill, CSS zaxira dvh 0, color-mix 0, inset 0, transform 0; zaxirasiz: :has 0, @container 0, aspect-ratio 0, text-wrap 0
+JestUnitMentorLesson.oz.jsx: ichki JS 139 KB (tree-shake) → gzip 42 KB → base64 55 KB → fayl 61 KB | modullar: react, @lesson/runtime
+moslik auditi (ASL fayl qaysi brauzerni talab qiladi; .oz.jsx da JS Chrome 70+ ga pasaytirilgan):
+| mentor-kurs/JestUnitMentorLesson | Chrome 92 / Safari 15.4 | .at() (Chr 92, Saf 15.4) ×4; flat/flatMap (Chr 69, Saf 12) ×1; {...obj} (Chr 60, Saf 11.1) ×23; padStart (Chr 57, Saf 10) ×2 | Chrome 93 / Safari 15.4 | accent-color (Chr 93, Saf 15.4) ×1; gap (flex bo'lsa) (Chr 84, Saf 14.1) ×68; clamp() (Chr 79, Saf 13.1) ×7; grid (Chr 57, Saf 10.1) ×15 |
+NATIJA: feedback/F-1029-02-mentor-kurs/tayyor/JestUnitMentorLesson.oz.jsx (61 KB) — LMS'ga shuni yuklang. Muqobil (o'qiladigan): feedback/F-1029-02-mentor-kurs/tayyor/JestUnitMentorLesson.jsx (134 KB)

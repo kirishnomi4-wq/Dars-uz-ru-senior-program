@@ -1,0 +1,6 @@
+$ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"   # → .env: TOLOV_KALITI=<64 belgi>
+# kalit uzunligi: 64
+$ npm run start
+# successfully started: 1
+$ curl -X POST localhost:3000/royxat -H "Content-Type: application/json" -d '{"ism":"Ali","login":"ali","parol":"parol123"}'
+{"id":11,"ism":"Ali"}

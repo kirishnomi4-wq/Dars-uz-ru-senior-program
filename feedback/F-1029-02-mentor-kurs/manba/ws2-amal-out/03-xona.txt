@@ -1,0 +1,3 @@
+$ TOKEN=<Vali tokeni> OYIN=3 node klient.js   # Ali klienti ham ishlab turibdi, 3-o'yin ochiq
+  0.0s  ulangan
+  0.0s  Hozir ko'ryapti: 1

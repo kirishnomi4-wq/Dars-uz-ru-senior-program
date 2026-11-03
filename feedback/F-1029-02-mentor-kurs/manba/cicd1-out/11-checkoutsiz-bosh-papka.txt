@@ -1,0 +1,27 @@
+# bo'sh papka (checkout qadami yo'q bo'lsa — GitHub mashinasidagi holat, rasmiy hujjat bo'yicha)
+$ ls -a
+.
+..
+
+$ npm install
+npm error code ENOENT
+npm error syscall open
+npm error path /tmp/claude-1000/-home-kali-Desktop-internetLesson/***/scratchpad/cicd1-run/bosh-papka/package.json
+npm error errno -2
+npm error enoent Could not read package.json: Error: ENOENT: no such file or directory, open '/tmp/claude-1000/-home-kali-Desktop-internetLesson/***/scratchpad/cicd1-run/bosh-papka/package.json'
+npm error enoent This is related to npm not being able to find a file.
+npm error enoent
+npm error A complete log of this run can be found in: /home/kali/.npm/_logs/2026-10-31T20_23_02_681Z-debug-0.log
+[chiqish kodi: 254]
+
+$ npm test
+npm error code ENOENT
+npm error syscall open
+npm error path /tmp/claude-1000/-home-kali-Desktop-internetLesson/***/scratchpad/cicd1-run/bosh-papka/package.json
+npm error errno -2
+npm error enoent Could not read package.json: Error: ENOENT: no such file or directory, open '/tmp/claude-1000/-home-kali-Desktop-internetLesson/***/scratchpad/cicd1-run/bosh-papka/package.json'
+npm error enoent This is related to npm not being able to find a file.
+npm error enoent
+npm error A complete log of this run can be found in: /home/kali/.npm/_logs/2026-10-31T20_23_03_028Z-debug-0.log
+[chiqish kodi: 254]
+

@@ -1,0 +1,3 @@
+# Telegram Bot API (core.telegram.org/bots/api, 01.11.2026, WebFetch) — User.id va Chat.id:
+"This number may have more than 32 significant bits" · "But it has at most 52 significant bits, so a (signed) 64-bit integer or double-precision float type are safe"
+→ PostgreSQL'da INTEGER (32 bit, 06: integer out of range) emas, BIGINT kerak; JavaScript number (double) xavfsiz; node-pg BIGINT'ni matn qilib qaytaradi (07).

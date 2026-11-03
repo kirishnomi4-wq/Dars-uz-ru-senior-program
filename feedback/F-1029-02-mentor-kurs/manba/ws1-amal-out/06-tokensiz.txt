@@ -1,0 +1,3 @@
+$ TOKEN= node klient.js
+  0.0s  ulangan  (connect)
+  0.0s  ulanmagan  (disconnect: io server disconnect · active=false)

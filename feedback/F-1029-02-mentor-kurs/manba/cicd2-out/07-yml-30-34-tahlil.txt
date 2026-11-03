@@ -1,0 +1,67 @@
+# 30–34 fayllari (GitHub'ga push qilinganlarning aynan o'zi, NN-*.txt dan) — rasmiy tahlilchi @actions/workflow-parser 0.3.61 · 2026-11-01 19:29:02 +0500
+# Solishtirish: GitHub run #18 (32) sahifasi — «Invalid workflow file: .github/workflows/ci.yml#L4 · You have an error in your yaml syntax on line 4» (skrinshot 32-actions-sahifa-skrinshot.png, foydalanuvchi 01.11 19:27)
+
+--- 30.yml
+name: CI
+on: once
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - run: npm test
+  XATO: 30.yml (Line: 2, Col: 5): Unexpected value 'once'
+
+--- 31.yml
+name: CI
+on: push
+jobs:
+  test:
+    steps:
+      - uses: actions/checkout@v7
+      - run: npm test
+  XATO: 31.yml (Line: 5, Col: 5): Required property is missing: runs-on
+
+--- 32.yml
+name: CI
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+    - run: npm test
+  XATO: 32.yml: A block sequence may not be used as an implicit map key at line 8, column 1:
+
+      - uses: actions/checkout@v7
+    - run: npm test
+^
+
+  XATO: 32.yml: Implicit keys need to be on a single line at line 8, column 5:
+
+      - uses: actions/checkout@v7
+    - run: npm test
+    ^
+
+  XATO: 32.yml: Implicit map keys need to be followed by map values at line 8, column 5:
+
+      - uses: actions/checkout@v7
+    - run: npm test
+    ^
+
+
+--- 34.yml
+name: CI
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - run: echo "Natija: ok"
+  XATO: 34.yml: Nested mappings are not allowed in compact mappings at line 8, column 14:
+
+      - run: echo "Natija: ok"
+             ^
+
+

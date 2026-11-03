@@ -1,0 +1,89 @@
+$ node tekshir (@actions/workflow-parser 0.3.61) cicd2-yml/*.yml
+--- 1-oquvchi-amaliyot.yml
+name: CI
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+      - run: npm install
+      - run: npm test
+  ✓ xato yo'q (schema bo'yicha to'g'ri)
+
+--- 2-matrix-oquvchi.yml
+name: CI
+on: push
+jobs:
+  test:
+    strategy:
+      matrix:
+        node: [18, 20, 22]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+      - run: npm test
+  ✓ xato yo'q (schema bo'yicha to'g'ri)
+
+--- 3-matrix-ulangan.yml
+name: CI
+on: push
+jobs:
+  test:
+    strategy:
+      matrix:
+        node: [18, 20, 22]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm test
+  ✓ xato yo'q (schema bo'yicha to'g'ri)
+
+--- 4-cache-oquvchi.yml
+name: CI
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/cache@v4
+        with:
+          path: node_modules
+      - run: npm install
+  ✓ xato yo'q (schema bo'yicha to'g'ri)
+
+--- 5-setup-node-cache.yml
+name: CI
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm install
+  ✓ xato yo'q (schema bo'yicha to'g'ri)
+
+--- 6-secret.yml
+name: CI
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Kalit: ${{ secrets.API_KEY }}"
+  XATO: 6-secret.yml: Nested mappings are not allowed in compact mappings at line 7, column 14:
+
+      - run: echo "Kalit: ${{ secrets.API_KEY }}"
+             ^
+
+
