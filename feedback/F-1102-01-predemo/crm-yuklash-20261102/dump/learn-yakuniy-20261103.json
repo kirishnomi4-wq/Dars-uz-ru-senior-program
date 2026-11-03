@@ -1,0 +1,295 @@
+{
+ "oqildi": "2026-11-03 yakuniy (keshsiz; Active qatorlar; tahrir oynasi saqlanmasdan)",
+ "oyna": {
+  "3198": {
+   "18616": {
+    "lang": "uz",
+    "order": "10",
+    "question": "Tugmani bosdingiz, ekranda hech narsa o'zgarmadi. Odam nimani bilmaydi?",
+    "opts": [
+     "Saytning nomini",
+     "Ish bajarilganini",
+     "Tugmaning rangini",
+     "Menyu qayerdaligini"
+    ],
+    "hints": [
+     "Noto'g'ri",
+     "To'g'ri!",
+     "Noto'g'ri",
+     "Noto'g'ri"
+    ],
+    "correctIdx": 1
+   },
+   "21781": {
+    "lang": "uz",
+    "order": "11",
+    "question": "Qaysi gap ko'rsatuvga yangi narsa qo'shadi?",
+    "opts": [
+     "«Ilgari guruhda so'rab yurardik»",
+     "«Bu — bosh sahifa, tepada menyu»",
+     "«Bu yerda kun bo'yicha qidiruv bor»",
+     "«Bu yerda tugmalar va menyu bor»"
+    ],
+    "hints": [
+     "To'g'ri!",
+     "Noto'g'ri",
+     "Noto'g'ri",
+     "Noto'g'ri"
+    ],
+    "correctIdx": 0
+   },
+   "21782": {
+    "lang": "uz",
+    "order": "12",
+    "question": "Tinglovchi «qayerni bosdingiz?» deb so'radi. Bu nimani bildiradi?",
+    "opts": [
+     "Ko'rsatuv juda uzun bo'ldi",
+     "Sayt umuman ishlamadi",
+     "Gap ekranni takrorladi",
+     "Harakat aniq aytilmadi"
+    ],
+    "hints": [
+     "Noto'g'ri",
+     "Noto'g'ri",
+     "Noto'g'ri",
+     "To'g'ri!"
+    ],
+    "correctIdx": 3
+   },
+   "18628": {
+    "lang": "ru",
+    "order": "22",
+    "question": "Вы нажали кнопку, а на экране ничего не изменилось. Чего не узнает человек?",
+    "opts": [
+     "Название сайта",
+     "Что дело сделано",
+     "Цвет кнопки",
+     "Где находится меню"
+    ],
+    "hints": [
+     "Неверно",
+     "Верно!",
+     "Неверно",
+     "Неверно"
+    ],
+    "correctIdx": 1
+   },
+   "21783": {
+    "lang": "ru",
+    "order": "23",
+    "question": "Какая фраза добавляет к показу новое?",
+    "opts": [
+     "«Раньше спрашивали в группе»",
+     "«Это — главная, сверху меню»",
+     "«Здесь есть поиск по дням»",
+     "«Тут есть кнопки и меню»"
+    ],
+    "hints": [
+     "Верно!",
+     "Неверно",
+     "Неверно",
+     "Неверно"
+    ],
+    "correctIdx": 0
+   },
+   "21784": {
+    "lang": "ru",
+    "order": "24",
+    "question": "Слушатель спросил: «а куда вы нажали?». О чём это говорит?",
+    "opts": [
+     "Показ получился слишком длинным",
+     "Сайт вообще не работал",
+     "Фраза повторила экран",
+     "Действие названо неточно"
+    ],
+    "hints": [
+     "Неверно",
+     "Неверно",
+     "Неверно",
+     "Верно!"
+    ],
+    "correctIdx": 3
+   }
+  },
+  "3213": {
+   "21775": {
+    "lang": "uz",
+    "order": "9",
+    "question": "«Nega PostgreSQL?» deb so'rashdi. Qaysi javob odamga yetib boradi?",
+    "opts": [
+     "«Telefon o'chsa ham joylar saqlanadi»",
+     "«Chunki u relyatsion ma'lumotlar bazasi»",
+     "«Chunki SQL so'rovlari juda tez ishlaydi»",
+     "«Chunki hamma dasturchilar shuni ishlatadi»"
+    ],
+    "hints": [
+     "To'g'ri!",
+     "Noto'g'ri",
+     "Noto'g'ri",
+     "Noto'g'ri"
+    ],
+    "correctIdx": 0
+   },
+   "21776": {
+    "lang": "uz",
+    "order": "10",
+    "question": "Qaysi gap texnik so'zsiz aytilgan?",
+    "opts": [
+     "«Ma'lumot PostgreSQL'da turadi»",
+     "«Server POST so'rovni qabul qiladi»",
+     "«Bitta joy ikki odamga tushmaydi»",
+     "«Sahifa React'da yozilgan»"
+    ],
+    "hints": [
+     "Noto'g'ri",
+     "Noto'g'ri",
+     "To'g'ri!",
+     "Noto'g'ri"
+    ],
+    "correctIdx": 2
+   },
+   "21777": {
+    "lang": "uz",
+    "order": "12",
+    "question": "Tinglovchi «tushunmadim» dedi. Nima qilasiz?",
+    "opts": [
+     "Texnik so'zni yana takrorlaysiz",
+     "Kodni ekranda ochib berasiz",
+     "Xuddi shu gapni tezroq aytasiz",
+     "Oddiy so'z bilan qayta aytasiz"
+    ],
+    "hints": [
+     "Noto'g'ri",
+     "Noto'g'ri",
+     "Noto'g'ri",
+     "To'g'ri!"
+    ],
+    "correctIdx": 3
+   },
+   "21778": {
+    "lang": "ru",
+    "order": "21",
+    "question": "«Почему PostgreSQL?» — спросили вас. Какой ответ дойдёт до человека?",
+    "opts": [
+     "«Места сохранятся, даже если телефон выключат»",
+     "«Потому что это реляционная база данных»",
+     "«Потому что SQL-запросы работают очень быстро»",
+     "«Потому что её используют все программисты»"
+    ],
+    "hints": [
+     "Верно!",
+     "Неверно",
+     "Неверно",
+     "Неверно"
+    ],
+    "correctIdx": 0
+   },
+   "21779": {
+    "lang": "ru",
+    "order": "22",
+    "question": "Какая фраза сказана без технических слов?",
+    "opts": [
+     "«Данные хранятся в PostgreSQL»",
+     "«Сервер принимает POST-запрос»",
+     "«Одно место не достанется двоим»",
+     "«Страница написана на React»"
+    ],
+    "hints": [
+     "Неверно",
+     "Неверно",
+     "Верно!",
+     "Неверно"
+    ],
+    "correctIdx": 2
+   },
+   "21780": {
+    "lang": "ru",
+    "order": "24",
+    "question": "Слушатель сказал: «не понял». Что вы сделаете?",
+    "opts": [
+     "Ещё раз повторите техническое слово",
+     "Откроете код на экране",
+     "Скажете ту же фразу быстрее",
+     "Скажете заново простыми словами"
+    ],
+    "hints": [
+     "Неверно",
+     "Неверно",
+     "Неверно",
+     "Верно!"
+    ],
+    "correctIdx": 3
+   }
+  }
+ },
+ "jadval_active": {
+  "3198": [
+   "18607|1|uz|Ishlaydigan sayt o'zi nimani aytmaydi?",
+   "18608|2|uz|Ekranni takrorlagan gap nima qo'shadi?",
+   "18609|3|uz|«Bu — bosh sahifa» degan gap nima qiladi?",
+   "18610|4|uz|Ko'rsatuv nechta kadrdan iborat?",
+   "18611|5|uz|Birinchi kadrda nima aytiladi?",
+   "18612|6|uz|Ikkinchi kadrda nima bo'ladi?",
+   "18613|7|uz|Uchinchi kadrda nima aytiladi?",
+   "18614|8|uz|Ko'rsatuvda nechta harakat bosiladi?",
+   "18615|9|uz|Ko'rsatuvda qanday joy bosiladi?",
+   "18616|10|uz|Tugmani bosdingiz, ekranda hech narsa o'zgarmadi. Odam nimani bilmaydi?",
+   "21781|11|uz|Qaysi gap ko'rsatuvga yangi narsa qo'shadi?",
+   "21782|12|uz|Tinglovchi «qayerni bosdingiz?» deb so'radi. Bu nimani bildiradi?",
+   "18619|13|ru|Чего не говорит сам работающий сайт?",
+   "18620|14|ru|Что добавляет фраза, повторяющая экран?",
+   "18621|15|ru|Что делает фраза «Это — главная страница»?",
+   "18622|16|ru|Из скольких кадров состоит показ?",
+   "18623|17|ru|Что говорят в первом кадре?",
+   "18624|18|ru|Что происходит во втором кадре?",
+   "18625|19|ru|Что говорят в третьем кадре?",
+   "18626|20|ru|Сколько действий нажимают во время показа?",
+   "18627|21|ru|Какое место нажимают в показе?",
+   "18628|22|ru|Вы нажали кнопку, а на экране ничего не изменилось. Чего не узнает человек?",
+   "21783|23|ru|Какая фраза добавляет к показу новое?",
+   "21784|24|ru|Слушатель спросил: «а куда вы нажали?». О чём это говорит?"
+  ],
+  "3213": [
+   "18967|1|uz|Texnik so'zli javobdan odam nima oladi?",
+   "18968|2|uz|Rost javob qachon odamga yetib boradi?",
+   "18969|3|uz|Sayt nechta qavatdan turadi?",
+   "18970|4|uz|Ko'rinadigan sahifa nima qiladi?",
+   "18971|5|uz|Server nima qiladi?",
+   "18972|6|uz|Baza nima qiladi?",
+   "18973|7|uz|Bitta bosish qavatlardan qaysi tartibda o'tadi?",
+   "18974|8|uz|Telefon o'chsa ham joylar saqlanadi. Qaysi qavat?",
+   "21775|9|uz|«Nega PostgreSQL?» deb so'rashdi. Qaysi javob odamga yetib boradi?",
+   "21776|10|uz|Qaysi gap texnik so'zsiz aytilgan?",
+   "18977|11|uz|Ko'rsatuvda texnik qarorni nima tushuntiradi?",
+   "21777|12|uz|Tinglovchi «tushunmadim» dedi. Nima qilasiz?",
+   "18979|13|ru|Что человек получает из ответа с техническим словом?",
+   "18980|14|ru|Когда правдивый ответ доходит до человека?",
+   "18981|15|ru|Из скольких этажей состоит сайт?",
+   "18982|16|ru|Что делает видимая страница?",
+   "18983|17|ru|Что делает сервер?",
+   "18984|18|ru|Что делает база?",
+   "18985|19|ru|В каком порядке одно нажатие проходит этажи?",
+   "18986|20|ru|Места сохраняются, даже если телефон выключен. Какой этаж?",
+   "21778|21|ru|«Почему PostgreSQL?» — спросили вас. Какой ответ дойдёт до человека?",
+   "21779|22|ru|Какая фраза сказана без технических слов?",
+   "18989|23|ru|Что в показе объясняет техническое решение?",
+   "21780|24|ru|Слушатель сказал: «не понял». Что вы сделаете?"
+  ]
+ },
+ "archive": {
+  "3198": [
+   "18617",
+   "18618",
+   "18629",
+   "18630"
+  ],
+  "3213": [
+   "18975",
+   "18976",
+   "18978",
+   "18987",
+   "18988",
+   "18990"
+  ]
+ }
+}

@@ -1,0 +1,294 @@
+{
+ "3198": [
+  {
+   "lang": "uz",
+   "question": "Tugmani bosdingiz, ekranda hech narsa o'zgarmadi. Odam nimani bilmaydi?",
+   "order_number": 10,
+   "options": [
+    {
+     "value": "Saytning nomini",
+     "hint": "Noto'g'ri"
+    },
+    {
+     "value": "Ish bajarilganini",
+     "hint": "To'g'ri!"
+    },
+    {
+     "value": "Tugmaning rangini",
+     "hint": "Noto'g'ri"
+    },
+    {
+     "value": "Menyu qayerdaligini",
+     "hint": "Noto'g'ri"
+    }
+   ],
+   "answer_index": 1
+  },
+  {
+   "lang": "uz",
+   "question": "Qaysi gap ko'rsatuvga yangi narsa qo'shadi?",
+   "order_number": 11,
+   "options": [
+    {
+     "value": "«Ilgari guruhda so'rab yurardik»",
+     "hint": "To'g'ri!"
+    },
+    {
+     "value": "«Bu — bosh sahifa, tepada menyu»",
+     "hint": "Noto'g'ri"
+    },
+    {
+     "value": "«Bu yerda kun bo'yicha qidiruv bor»",
+     "hint": "Noto'g'ri"
+    },
+    {
+     "value": "«Bu yerda tugmalar va menyu bor»",
+     "hint": "Noto'g'ri"
+    }
+   ],
+   "answer_index": 0
+  },
+  {
+   "lang": "uz",
+   "question": "Tinglovchi «qayerni bosdingiz?» deb so'radi. Bu nimani bildiradi?",
+   "order_number": 12,
+   "options": [
+    {
+     "value": "Ko'rsatuv juda uzun bo'ldi",
+     "hint": "Noto'g'ri"
+    },
+    {
+     "value": "Sayt umuman ishlamadi",
+     "hint": "Noto'g'ri"
+    },
+    {
+     "value": "Gap ekranni takrorladi",
+     "hint": "Noto'g'ri"
+    },
+    {
+     "value": "Harakat aniq aytilmadi",
+     "hint": "To'g'ri!"
+    }
+   ],
+   "answer_index": 3
+  },
+  {
+   "lang": "ru",
+   "question": "Вы нажали кнопку, а на экране ничего не изменилось. Чего не узнает человек?",
+   "order_number": 22,
+   "options": [
+    {
+     "value": "Название сайта",
+     "hint": "Неверно"
+    },
+    {
+     "value": "Что дело сделано",
+     "hint": "Верно!"
+    },
+    {
+     "value": "Цвет кнопки",
+     "hint": "Неверно"
+    },
+    {
+     "value": "Где находится меню",
+     "hint": "Неверно"
+    }
+   ],
+   "answer_index": 1
+  },
+  {
+   "lang": "ru",
+   "question": "Какая фраза добавляет к показу новое?",
+   "order_number": 23,
+   "options": [
+    {
+     "value": "«Раньше спрашивали в группе»",
+     "hint": "Верно!"
+    },
+    {
+     "value": "«Это — главная, сверху меню»",
+     "hint": "Неверно"
+    },
+    {
+     "value": "«Здесь есть поиск по дням»",
+     "hint": "Неверно"
+    },
+    {
+     "value": "«Тут есть кнопки и меню»",
+     "hint": "Неверно"
+    }
+   ],
+   "answer_index": 0
+  },
+  {
+   "lang": "ru",
+   "question": "Слушатель спросил: «а куда вы нажали?». О чём это говорит?",
+   "order_number": 24,
+   "options": [
+    {
+     "value": "Показ получился слишком длинным",
+     "hint": "Неверно"
+    },
+    {
+     "value": "Сайт вообще не работал",
+     "hint": "Неверно"
+    },
+    {
+     "value": "Фраза повторила экран",
+     "hint": "Неверно"
+    },
+    {
+     "value": "Действие названо неточно",
+     "hint": "Верно!"
+    }
+   ],
+   "answer_index": 3
+  }
+ ],
+ "3213": [
+  {
+   "lang": "uz",
+   "question": "«Nega PostgreSQL?» deb so'rashdi. Qaysi javob odamga yetib boradi?",
+   "order_number": 9,
+   "options": [
+    {
+     "value": "«Telefon o'chsa ham joylar saqlanadi»",
+     "hint": "To'g'ri!"
+    },
+    {
+     "value": "«Chunki u relyatsion ma'lumotlar bazasi»",
+     "hint": "Noto'g'ri"
+    },
+    {
+     "value": "«Chunki SQL so'rovlari juda tez ishlaydi»",
+     "hint": "Noto'g'ri"
+    },
+    {
+     "value": "«Chunki hamma dasturchilar shuni ishlatadi»",
+     "hint": "Noto'g'ri"
+    }
+   ],
+   "answer_index": 0
+  },
+  {
+   "lang": "uz",
+   "question": "Qaysi gap texnik so'zsiz aytilgan?",
+   "order_number": 10,
+   "options": [
+    {
+     "value": "«Ma'lumot PostgreSQL'da turadi»",
+     "hint": "Noto'g'ri"
+    },
+    {
+     "value": "«Server POST so'rovni qabul qiladi»",
+     "hint": "Noto'g'ri"
+    },
+    {
+     "value": "«Bitta joy ikki odamga tushmaydi»",
+     "hint": "To'g'ri!"
+    },
+    {
+     "value": "«Sahifa React'da yozilgan»",
+     "hint": "Noto'g'ri"
+    }
+   ],
+   "answer_index": 2
+  },
+  {
+   "lang": "uz",
+   "question": "Tinglovchi «tushunmadim» dedi. Nima qilasiz?",
+   "order_number": 12,
+   "options": [
+    {
+     "value": "Texnik so'zni yana takrorlaysiz",
+     "hint": "Noto'g'ri"
+    },
+    {
+     "value": "Kodni ekranda ochib berasiz",
+     "hint": "Noto'g'ri"
+    },
+    {
+     "value": "Xuddi shu gapni tezroq aytasiz",
+     "hint": "Noto'g'ri"
+    },
+    {
+     "value": "Oddiy so'z bilan qayta aytasiz",
+     "hint": "To'g'ri!"
+    }
+   ],
+   "answer_index": 3
+  },
+  {
+   "lang": "ru",
+   "question": "«Почему PostgreSQL?» — спросили вас. Какой ответ дойдёт до человека?",
+   "order_number": 21,
+   "options": [
+    {
+     "value": "«Места сохранятся, даже если телефон выключат»",
+     "hint": "Верно!"
+    },
+    {
+     "value": "«Потому что это реляционная база данных»",
+     "hint": "Неверно"
+    },
+    {
+     "value": "«Потому что SQL-запросы работают очень быстро»",
+     "hint": "Неверно"
+    },
+    {
+     "value": "«Потому что её используют все программисты»",
+     "hint": "Неверно"
+    }
+   ],
+   "answer_index": 0
+  },
+  {
+   "lang": "ru",
+   "question": "Какая фраза сказана без технических слов?",
+   "order_number": 22,
+   "options": [
+    {
+     "value": "«Данные хранятся в PostgreSQL»",
+     "hint": "Неверно"
+    },
+    {
+     "value": "«Сервер принимает POST-запрос»",
+     "hint": "Неверно"
+    },
+    {
+     "value": "«Одно место не достанется двоим»",
+     "hint": "Верно!"
+    },
+    {
+     "value": "«Страница написана на React»",
+     "hint": "Неверно"
+    }
+   ],
+   "answer_index": 2
+  },
+  {
+   "lang": "ru",
+   "question": "Слушатель сказал: «не понял». Что вы сделаете?",
+   "order_number": 24,
+   "options": [
+    {
+     "value": "Ещё раз повторите техническое слово",
+     "hint": "Неверно"
+    },
+    {
+     "value": "Откроете код на экране",
+     "hint": "Неверно"
+    },
+    {
+     "value": "Скажете ту же фразу быстрее",
+     "hint": "Неверно"
+    },
+    {
+     "value": "Скажете заново простыми словами",
+     "hint": "Верно!"
+    }
+   ],
+   "answer_index": 3
+  }
+ ]
+}

@@ -1,0 +1,208 @@
+[
+ {
+  "qid": "18607",
+  "tartib": "1",
+  "lang": "uz",
+  "type": "selected-file",
+  "savol": "Ishlaydigan sayt o'zi nimani aytmaydi?",
+  "status": "Active"
+ },
+ {
+  "qid": "18608",
+  "tartib": "2",
+  "lang": "uz",
+  "type": "selected-file",
+  "savol": "Ekranni takrorlagan gap nima qo'shadi?",
+  "status": "Active"
+ },
+ {
+  "qid": "18609",
+  "tartib": "3",
+  "lang": "uz",
+  "type": "selected-file",
+  "savol": "«Bu — bosh sahifa» degan gap nima qiladi?",
+  "status": "Active"
+ },
+ {
+  "qid": "18610",
+  "tartib": "4",
+  "lang": "uz",
+  "type": "selected-file",
+  "savol": "Ko'rsatuv nechta kadrdan iborat?",
+  "status": "Active"
+ },
+ {
+  "qid": "18611",
+  "tartib": "5",
+  "lang": "uz",
+  "type": "selected-file",
+  "savol": "Birinchi kadrda nima aytiladi?",
+  "status": "Active"
+ },
+ {
+  "qid": "18612",
+  "tartib": "6",
+  "lang": "uz",
+  "type": "selected-file",
+  "savol": "Ikkinchi kadrda nima bo'ladi?",
+  "status": "Active"
+ },
+ {
+  "qid": "18613",
+  "tartib": "7",
+  "lang": "uz",
+  "type": "selected-file",
+  "savol": "Uchinchi kadrda nima aytiladi?",
+  "status": "Active"
+ },
+ {
+  "qid": "18614",
+  "tartib": "8",
+  "lang": "uz",
+  "type": "selected-file",
+  "savol": "Ko'rsatuvda nechta harakat bosiladi?",
+  "status": "Active"
+ },
+ {
+  "qid": "18615",
+  "tartib": "9",
+  "lang": "uz",
+  "type": "selected-file",
+  "savol": "Ko'rsatuvda qanday joy bosiladi?",
+  "status": "Active"
+ },
+ {
+  "qid": "18616",
+  "tartib": "10",
+  "lang": "uz",
+  "type": "selected-file",
+  "savol": "Airbnb o'z ishini nima bilan tushuntirgan?",
+  "status": "Active"
+ },
+ {
+  "qid": "18617",
+  "tartib": "11",
+  "lang": "uz",
+  "type": "selected-file",
+  "savol": "Airbnb taqdimoti nima bilan tugagan?",
+  "status": "Active"
+ },
+ {
+  "qid": "18618",
+  "tartib": "12",
+  "lang": "uz",
+  "type": "selected-file",
+  "savol": "Odam natijani ko'rishi uchun kodda nima kerak?",
+  "status": "Active"
+ },
+ {
+  "qid": "18619",
+  "tartib": "13",
+  "lang": "ru",
+  "type": "selected-file",
+  "savol": "Чего не говорит сам работающий сайт?",
+  "status": "Active"
+ },
+ {
+  "qid": "18620",
+  "tartib": "14",
+  "lang": "ru",
+  "type": "selected-file",
+  "savol": "Что добавляет фраза, повторяющая экран?",
+  "status": "Active"
+ },
+ {
+  "qid": "18621",
+  "tartib": "15",
+  "lang": "ru",
+  "type": "selected-file",
+  "savol": "Что делает фраза «Это — главная страница»?",
+  "status": "Active"
+ },
+ {
+  "qid": "18622",
+  "tartib": "16",
+  "lang": "ru",
+  "type": "selected-file",
+  "savol": "Из скольких кадров состоит показ?",
+  "status": "Active"
+ },
+ {
+  "qid": "18623",
+  "tartib": "17",
+  "lang": "ru",
+  "type": "selected-file",
+  "savol": "Что говорят в первом кадре?",
+  "status": "Active"
+ },
+ {
+  "qid": "18624",
+  "tartib": "18",
+  "lang": "ru",
+  "type": "selected-file",
+  "savol": "Что происходит во втором кадре?",
+  "status": "Active"
+ },
+ {
+  "qid": "18625",
+  "tartib": "19",
+  "lang": "ru",
+  "type": "selected-file",
+  "savol": "Что говорят в третьем кадре?",
+  "status": "Active"
+ },
+ {
+  "qid": "18626",
+  "tartib": "20",
+  "lang": "ru",
+  "type": "selected-file",
+  "savol": "Сколько действий нажимают во время показа?",
+  "status": "Active"
+ },
+ {
+  "qid": "18627",
+  "tartib": "21",
+  "lang": "ru",
+  "type": "selected-file",
+  "savol": "Какое место нажимают в показе?",
+  "status": "Active"
+ },
+ {
+  "qid": "18628",
+  "tartib": "22",
+  "lang": "ru",
+  "type": "selected-file",
+  "savol": "Чем Airbnb объяснял свою идею?",
+  "status": "Active"
+ },
+ {
+  "qid": "18629",
+  "tartib": "23",
+  "lang": "ru",
+  "type": "selected-file",
+  "savol": "Чем закончилась презентация Airbnb?",
+  "status": "Active"
+ },
+ {
+  "qid": "18630",
+  "tartib": "24",
+  "lang": "ru",
+  "type": "selected-file",
+  "savol": "Что нужно в коде, чтобы человек увидел результат?",
+  "status": "Active"
+ },
+ {
+  "qid": "",
+  "tartib": "",
+  "lang": "",
+  "type": "",
+  "savol": ""
+ },
+ {
+  "qid": "",
+  "tartib": "",
+  "lang": "",
+  "type": "",
+  "savol": ""
+ }
+]

@@ -1,0 +1,77 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Nega PostgreSQL?» deb so'rashdi. Qaysi javob odamga yetib boradi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "«Telefon o'chsa ham joylar saqlanadi»",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«Chunki u relyatsion ma'lumotlar bazasi»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Chunki SQL so'rovlari juda tez ishlaydi»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Chunki hamma dasturchilar shuni ishlatadi»",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi gap texnik so'zsiz aytilgan?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "«Ma'lumot PostgreSQL'da turadi»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Server POST so'rovni qabul qiladi»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Bitta joy ikki odamga tushmaydi»",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«Sahifa React'da yozilgan»",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tinglovchi «tushunmadim» dedi. Nima qilasiz?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Texnik so'zni yana takrorlaysiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kodni ekranda ochib berasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xuddi shu gapni tezroq aytasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Oddiy so'z bilan qayta aytasiz",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

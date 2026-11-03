@@ -6,11 +6,13 @@ Yangi seans SHU fayldan boshlanadi. To'liq tarix: `JURNAL.md` (shu papka), reja:
 - 172 dars / 344 qator CRM'da (paket `yuklash-20261029-prod`, commit `15039598`); md5 344/344 ✓ (modul bo'yicha + mustaqil keshsiz qayta o'qish; sarlavha/tartib/til/holat o'zgarmagan, #13379/#13380 tegilmagan).
 - Muhr: `LMS_REESTR.json` + `LMS_DEPLOY_JURNAL.md` (172 dars, server `0f242c77`). Commit + push — foydalanuvchi ruxsati bilan (29.10 21:5x).
 - Natijalar: `crm-yuklash-20261029/dump/` (hash-m2…m14, crm-keyin.json, zanjir.json).
-- **Keyingi:** Learn'larni Active qilish — yakshanba 01.11, foydalanuvchi bilan (alohida ish). Prod smoke (o'quvchi ko'zi bilan 1–2 dars) — foydalanuvchi xohlasa.
+- ✅ Prod smoke (LMS preview, 29.10 22:05): Internet uz/ru + Investor pitch ochildi, konsol xatosi 0.
+- ✅ **Learn'lar ACTIVE 172/172** (29.10, foydalanuvchi buyrug'i bilan — 01.11 o'rniga). Draft'ga UI'dan qaytarib bo'lmaydi.
+- **Ochiq:** shu yozuvlar commit qilinmagan (JURNAL, DAVOM, dump/learn-aktiv-*, status-skript.json).
 
 ## ✅ Savol yuklash TUGADI (29.10 tungi avtopilot)
 172/172 Learn'da CodeStrike savollari (4128 ta: har Learn 12 uz + 12 ru), har modul CRM'dan keshsiz qayta o'qib xesh bilan tekshirilgan; yakuniy sanoq 172/172. Holat: `savol-yuklash/YUKLASH-REJA.csv` — hammasi ✓.
-Learn'lar **Draft** — Active qilish **yakshanba (01.11)**, foydalanuvchi bilan.
+Learn'lar 29.10 da **Active** qilindi (172/172).
 
 ## Boshqa ochiq ishlar
 | # | Ish | Holat |

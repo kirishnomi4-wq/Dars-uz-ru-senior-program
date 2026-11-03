@@ -1,0 +1,77 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tugmani bosdingiz, ekranda hech narsa o'zgarmadi. Odam nimani bilmaydi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Saytning nomini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ish bajarilganini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Tugmaning rangini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Menyu qayerdaligini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi gap ko'rsatuvga yangi narsa qo'shadi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "«Ilgari guruhda so'rab yurardik»",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«Bu — bosh sahifa, tepada menyu»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Bu yerda kun bo'yicha qidiruv bor»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Bu yerda tugmalar va menyu bor»",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tinglovchi «qayerni bosdingiz?» deb so'radi. Bu nimani bildiradi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Ko'rsatuv juda uzun bo'ldi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sayt umuman ishlamadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Gap ekranni takrorladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Harakat aniq aytilmadi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]
