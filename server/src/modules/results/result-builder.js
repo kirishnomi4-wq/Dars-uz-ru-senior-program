@@ -50,6 +50,26 @@ export function arenaQuestions(keys) {
 /** Orqaga moslik: mode bo'yicha to'plam (ikkala rejimda ham dars-testlari) */
 export function questionSet(keys, _mode) { return lessonQuestions(keys); }
 
+// F-1106-01 (2026-11-06, prod: 33 solo hodisa 422 «The correct flag does not match the selected option»):
+// `record_attempt`/`submit_answer` `correct` ni JAVOB PAYTIDAGI kalitdan yozadi; kalit hali bo'lmasa — `false`.
+// Payload yig'ilganda esa kalit bor → `correct_option` tanlangan variant bilan bir xil, `correct` esa false (ziddiyat),
+// va `correct_answers` (tanga) ham kam sanalgan. Shuning uchun `correct` YIG'ISH paytida kalitdan qayta hisoblanadi —
+// server SQL'dagi qoida bilan aynan bir xil (picked = correct_idx). Kalit yo'q yoki -1 (ishtirok) — yozilgani qoladi.
+const isPicked = (v) => v !== null && v !== undefined && v !== '' && Number.isInteger(Number(v));
+export function keyCorrect(picked, ci, fallback) {
+  if (Number.isInteger(ci) && ci >= 0 && isPicked(picked)) return Number(picked) === ci;
+  return fallback === true;
+}
+const keyMap = (keys) => new Map((keys || []).filter((k) => k && typeof k.question_id === 'string').map((k) => [k.question_id, Number.isInteger(Number(k.correct_idx)) && k.correct_idx !== null ? Number(k.correct_idx) : null]));
+/** Ball-qatorlari (live_answers) `correct` kalitdan qayta hisoblangan nusxasi. */
+export function rescoreAnswers(answers, keys) {
+  const km = keyMap(keys);
+  return (answers || []).map((a) => {
+    const correct = keyCorrect(a.picked, km.get(a.question_id), a.correct);
+    return correct === a.correct ? a : { ...a, correct };
+  });
+}
+
 /**
  * Bitta o'yinchining ko'rsatkichlari (berilgan savol-to'plami bo'yicha).
  * @param {Array<{question_id: string, screen_idx: number, correct: boolean, elapsed_ms: number, answered_at: string|Date}>} answers
@@ -126,7 +146,8 @@ export function badgesFor({ stats, total, rank, completed, groupMedianAvg, arena
  * @returns {Array<{ event_id: string, payload: object }>}
  */
 export function buildLivePayloads(input) {
-  const { session, lessonTitle, keys, participants, answersByPlayer } = input;
+  const { session, lessonTitle, keys, participants } = input;
+  const answersByPlayer = new Map([...(input.answersByPlayer || new Map())].map(([pid, list]) => [pid, rescoreAnswers(list, keys)])); // F-1106-01
   const players = input.players && input.players.length ? input.players : participants.map((p) => ({ id: p.player_id, joined_at: p.joined_at }));
   const finishedAt = new Date(session.finished_at || input.now || Date.now());
   const startedAt = new Date(session.started_at);
@@ -173,7 +194,7 @@ export function buildLivePayloads(input) {
     if (!details) return base;
     return { ...base, ...buildStudentDetails({
       answers: answersByPlayer.get(p.player_id) || [], attempts: details.attemptsByPlayer?.get(p.player_id) || [],
-      keys, achievements: details.achievementsByPlayer?.get(p.player_id) || [], catalog: details.catalog,
+      keys, achievements: details.achievementsByPlayer?.get(p.player_id) || [], catalog: details.catalog, mode: 'live',
     }) };
   });
 
@@ -206,7 +227,8 @@ export function buildLivePayloads(input) {
  *           keys: Array<{question_id: string}>, answers: Array<any> }} input
  */
 export function buildSoloPayload(input) {
-  const { attempt, subjectId, lessonId, lessonTitle, keys, answers } = input;
+  const { attempt, subjectId, lessonId, lessonTitle, keys } = input;
+  const answers = rescoreAnswers(input.answers, keys); // F-1106-01
   const lessonQ = lessonQuestions(keys);
   const stats = studentStats(answers || [], lessonQ);
   const total = Math.max(1, lessonQ.size, stats.answered);
@@ -230,7 +252,7 @@ export function buildSoloPayload(input) {
   if (input.details) {
     Object.assign(student, buildStudentDetails({
       answers: answers || [], attempts: input.details.attempts || [], keys,
-      achievements: input.details.achievements || [], catalog: input.details.catalog,
+      achievements: input.details.achievements || [], catalog: input.details.catalog, mode: 'solo',
     }));
   }
   return {
@@ -277,7 +299,7 @@ export function validatePayload(p) {
     if (s.badges.some((b) => !/^[a-z0-9]+(?:_[a-z0-9]+)*$/.test(b) || b.length > 64)) errs.push(`badge key ${k}`);
     if (Array.isArray(s.badges) && !s.badges.length) errs.push(`badges bo'sh ${k}`); // F-0917-02: School API bo'sh massivni 422 bilan rad etadi
     if (!(s.duration_sec >= 0 && s.duration_sec <= 86400)) errs.push(`duration ${k}`);
-    errs.push(...validateStudentDetails(s));
+    errs.push(...validateStudentDetails(s, p.mode));
   }
   return errs;
 }
@@ -294,6 +316,17 @@ export const DETAILS_LIMITS = Object.freeze({
   achievements: 20, name: 40, title: 200, elapsedMs: 3_600_000, payloadBytes: 1_000_000,
 });
 const ACH_ID_RE = /^[a-z0-9_-]{1,32}$/;
+
+/** F-1107-01: ikki urinish matni bir xil savol-versiyasidanmi (matn yo'q bo'lsa — solishtirib bo'lmaydi, qoladi). */
+export function sameVersion(t, ref) {
+  if (!t || typeof t !== 'object' || !ref || typeof ref !== 'object') return true;
+  if (t.question && ref.question && t.question !== ref.question) return false;
+  if (Array.isArray(t.options) && Array.isArray(ref.options)) {
+    const norm = (o) => String(o ?? '');
+    if (t.options.length !== ref.options.length || t.options.some((o, i) => norm(o) !== norm(ref.options[i]))) return false;
+  }
+  return true;
+}
 
 const qNum = (id) => { const m = /^(?:s|quiz-)(\d+)([a-z]*)$/i.exec(id); return m ? [Number(m[1]), m[2]] : null; };
 const cutStr = (v, n) => (typeof v === 'string' ? v.slice(0, n) : undefined);
@@ -326,10 +359,14 @@ export function questionOrder(keys) {
  *           catalog?: Array<{id:string, name:string, title_uz?:string, title_ru?:string}>, lang?: 'uz'|'ru' }} input
  * @returns {{ lang: 'uz'|'ru', questions: Array<object>, achievements: Array<object> }}
  */
-export function buildStudentDetails({ answers, attempts, keys, achievements, catalog, lang: langHint }) {
+export function buildStudentDetails({ answers: rawAnswers, attempts, keys, achievements, catalog, lang: langHint, mode }) {
   const L = DETAILS_LIMITS;
   const order = questionOrder(keys);
-  const correctIdx = new Map((keys || []).filter((k) => k && typeof k.question_id === 'string').map((k) => [k.question_id, Number.isInteger(k.correct_idx) ? k.correct_idx : null]));
+  const correctIdx = keyMap(keys);
+  const answers = rescoreAnswers(rawAnswers, keys); // F-1106-01 (build* allaqachon qilgan bo'lsa — o'zgarmaydi)
+  // F-1106-01 (prod: 15 jonli hodisa 422 «Live mode permits exactly one attempt per question» + «elapsed times must increase»):
+  // jonli darsda School API har savolga AYNAN bitta urinish qabul qiladi — ball-qatori bilan bir xil birinchisi ketadi.
+  const maxAttempts = mode === 'live' ? 1 : L.attempts;
 
   const byScreen = new Map();
   const langCount = { uz: 0, ru: 0 };
@@ -350,21 +387,28 @@ export function buildStudentDetails({ answers, attempts, keys, achievements, cat
     .sort((x, y) => order.get(x.question_id) - order.get(y.question_id))
     .slice(0, L.questions)
     .map((a) => {
-      const hist = (byScreen.get(Number(a.screen_idx)) || []).slice(0, L.attempts);
-      const texts = (hist.find((h) => h.texts && typeof h.texts === 'object') || {}).texts;
+      const sameQ = (byScreen.get(Number(a.screen_idx)) || []).filter((h) => !h.question_id || !a.question_id || h.question_id === a.question_id);
+      const ci = correctIdx.get(a.question_id);
+      const texts = (sameQ.find((h) => h.texts && typeof h.texts === 'object') || {}).texts;
+      // F-1107-01 (prod 07.11: solo_29085_pm-m3d14-v1 — urinish 31.10 da boshlangan, dars 02.11 da qisqartirilgan, 07.11 da
+      // yangi versiyada davom etgan → o'sha ekran raqamidagi BOSHQA savolning javoblari shu savol tarixiga tushgan; 23.09:
+      // solo_35887_pm-m2d2-v1 — variant matni tahrirlangan). Tarixga faqat birinchi matnli urinish bilan BIR XIL savol va
+      // variantli urinishlar kiradi; boshqa versiyadagilar tashlanadi (ularni «tuzatib» yuborish — yolg'on ma'lumot).
+      const hist = sameQ.filter((h) => sameVersion(h.texts, texts)).slice(0, maxAttempts);
       const options = texts && Array.isArray(texts.options) ? texts.options.slice(0, L.options).map((o) => String(o ?? '').slice(0, L.text)) : undefined;
       // F-0918-02: urinishda matn bo'lmasa (tarmoq / eski dars) javob-matni variantlar ro'yxatidan tiklanadi: option → options[option]
       const optText = (idx) => (options && Number.isInteger(idx) && idx >= 0 && idx < options.length ? options[idx] : undefined);
       const mk = (h, i) => {
-        const option = Number.isInteger(Number(h.picked)) ? Number(h.picked) : -1;
+        const option = isPicked(h.picked) ? Number(h.picked) : -1;
         return dropUndefined({
-          n: i + 1, option, answer: cutStr(h.texts && h.texts.picked, L.text) ?? optText(option), correct: h.correct === true,
+          // F-1106-01 (prod: 1 solo hodisa 422 «The answer must match options[option]»): urinish kunlar davomida bo'lsa
+          // orada variant matni o'zgarishi mumkin — javob-matni yuboriladigan `options` ro'yxatining o'zidan olinadi.
+          n: i + 1, option, answer: optText(option) ?? cutStr(h.texts && h.texts.picked, L.text), correct: keyCorrect(option, ci, h.correct),
           elapsed_ms: clamp(Number(h.elapsed_ms) || 0, 0, L.elapsedMs), at: isoUtc(h.answered_at || a.answered_at || 0),
         });
       };
       // tarix yo'q (eski dars / arena / tarmoq) → ball-qatorining o'zi bitta urinish
       const atts = hist.length ? hist.map(mk) : [mk({ picked: a.picked, correct: a.correct, elapsed_ms: a.elapsed_ms, answered_at: a.answered_at }, 0)];
-      const ci = correctIdx.get(a.question_id);
       const correctOption = Number.isInteger(ci) && ci >= 0 && ci <= 5 ? ci : undefined;
       return dropUndefined({
         question_id: a.question_id,
@@ -414,7 +458,7 @@ export function isCompleteQuestion(q) {
 }
 
 /** StudentResult'dagi detallar (bo'lsa) TZ §4 qoidalari va invariantlariga mosmi. @returns {string[]} */
-export function validateStudentDetails(s) {
+export function validateStudentDetails(s, mode) {
   const L = DETAILS_LIMITS;
   const errs = [];
   const k = `${s.id_type}:${s.student_id}`;
@@ -437,14 +481,26 @@ export function validateStudentDetails(s) {
         const optN = Array.isArray(q.options) ? q.options.length : 0;
         if (!optN || optN > L.options || q.options.some((o) => !isStr(o, L.text) || !o)) errs.push(`q options ${qid}`);
         if (q.correct_option !== undefined && !(Number.isInteger(q.correct_option) && q.correct_option >= 0 && q.correct_option <= 5)) errs.push(`q correct_option ${qid}`);
+        // F-1107-01: to'g'ri javob matni variantlardan biri, lekin hozirgi kalit BOSHQA variantni ko'rsatadi — kalit dars
+        // versiyasi bilan almashgan; `correct` ni kalitdan qayta hisoblash yolg'on natija beradi → bu o'quvchi detali tashlanadi.
+        // F-1107-02 (prod: pg-crud-04-05-v18 s5b/s12): dars {uz, ru} obyektni matnga o'girmay yuborgan → «[object Object]» — matn yo'q
+        if (optN && [q.question, q.correct_answer, ...q.options].some((v) => v === '[object Object]')) errs.push(`q text obyekt ${qid}`);
+        if (Number.isInteger(q.correct_option) && optN && q.options.includes(q.correct_answer) && q.options.indexOf(q.correct_answer) !== q.correct_option) errs.push(`q key≠text ${qid}`);
         if (typeof q.correct !== 'boolean' || typeof q.solved !== 'boolean') errs.push(`q flags ${qid}`);
         if (!Array.isArray(q.attempts) || q.attempts.length < 1 || q.attempts.length > L.attempts) errs.push(`q attempts ${qid}`);
         else {
-          let prev = 0;
+          // F-1106-01: School API prod'da 422 bergan qoidalar — bu yerda ushlanadi (faqat o'sha o'quvchining detallari tashlanadi,
+          // butun guruh-hodisasi yiqilmaydi): jonli — bitta urinish · elapsed o'sadi · correct = (option = correct_option) · answer = options[option]
+          if (mode === 'live' && q.attempts.length !== 1) errs.push(`q live attempts ${qid}`);
+          let prev = 0, prevElapsed = -1;
           q.attempts.forEach((a, i) => {
             if (a.n !== i + 1 || typeof a.correct !== 'boolean' || !(a.elapsed_ms >= 0 && a.elapsed_ms <= L.elapsedMs)) errs.push(`q attempt ${qid}#${i + 1}`);
             if (!(Number.isInteger(a.option) && a.option >= 0 && a.option < optN)) errs.push(`q option ${qid}#${i + 1}`); // «The option must reference an item in options.»
             if (!isStr(a.answer, L.text) || !a.answer) errs.push(`q answer ${qid}#${i + 1}`);
+            else if (optN && a.answer !== q.options[a.option]) errs.push(`q answer≠option ${qid}#${i + 1}`); // «The answer must match options[option].»
+            if (Number.isInteger(q.correct_option) && a.correct !== (a.option === q.correct_option)) errs.push(`q correct≠key ${qid}#${i + 1}`); // «The correct flag does not match the selected option.»
+            if (mode === 'live' && i > 0 && !(a.elapsed_ms > prevElapsed)) errs.push(`q elapsed ${qid}#${i + 1}`); // «Attempt elapsed times must increase.» — prod'da faqat jonlida ko'rilgan (solo'da 2 holat o'tgan)
+            prevElapsed = a.elapsed_ms;
             const t = new Date(a.at).getTime();
             if (!(t > 0) || t < prev) errs.push(`q at ${qid}#${i + 1}`);
             prev = Math.max(prev, t || 0);
@@ -492,7 +548,7 @@ export function finalizePayload(p) {
   // F-0918-02: detallar O'QUVCHI-darajasida tekshiriladi — bittasiniki buzuq bo'lsa faqat o'shaniki tashlanadi, qolganlarniki ketadi
   const dropped = [];
   const students = (p.students || []).map((s) => {
-    const errs = validateStudentDetails(s);
+    const errs = validateStudentDetails(s, p.mode);
     if (!errs.length) return s;
     dropped.push(`${s.id_type}:${s.student_id} (${errs.join(', ')})`);
     const { lang: _l, questions: _q, achievements: _a, ...rest } = s;

@@ -6,7 +6,7 @@ import { buildLivePayloads, buildSoloPayload, finalizePayload } from './result-b
 /** Detallar uchun qo'shimcha manba (RESULT_DETAILS=a): urinish-tarixi, yutuq-vaqtlari, katalogdagi yutuq-ta'riflari */
 async function loadDetailsSource(pool, { pin, playerId = null, sessionId = null, attemptId = null, lessonId }) {
   const { rows: attempts } = await pool.query(
-    `select player_id, screen_idx, attempt_no, picked, correct, elapsed_ms, texts, answered_at
+    `select player_id, screen_idx, question_id, attempt_no, picked, correct, elapsed_ms, texts, answered_at
        from answer_attempts where pin = $1 and ($2::uuid is null or player_id = $2) and screen_idx < 500
       order by screen_idx, attempt_no`,
     [pin, playerId],
@@ -168,8 +168,8 @@ export async function enqueueLiveSession(pool, log, sessionId, opts = {}) {
   return { created, skipped: !created && skippedAll ? 'already_rewarded' : null };
 }
 
-/** Solo urinish uchun hodisa (completed yoki auto_7d). restarted — yuborilmaydi. */
-export async function enqueueSoloAttempt(pool, log, attemptId, opts = {}) {
+/** Tugagan solo urinish (tanga-qoidasidan tashqari) — enqueueSoloAttempt va rebuildEvent uchun umumiy */
+async function loadSoloAttempt(pool, attemptId) {
   const { rows } = await pool.query(
     `select a.*, p.player_id, p.joined_at, s.pin, lc.title_uz
        from attempts a
@@ -179,7 +179,21 @@ export async function enqueueSoloAttempt(pool, log, attemptId, opts = {}) {
       where a.id = $1 and a.kind = 'solo' and a.status = 'finished' and a.finish_reason in ('completed', 'auto_7d')`,
     [attemptId],
   );
-  const a = rows[0];
+  return rows[0] || null;
+}
+async function buildSoloFromAttempt(pool, a, opts = {}) {
+  const { rows: keys } = await pool.query('select question_id, correct_idx from quiz_keys where lesson_id = $1', [a.lesson_id]);
+  const { rows: answers } = await pool.query(
+    'select player_id, screen_idx, question_id, picked, correct, elapsed_ms, answered_at from live_answers where pin = $1 and player_id = $2 and screen_idx < 500',
+    [a.pin, a.player_id],
+  );
+  const details = opts.details ? await loadDetailsSource(pool, { pin: a.pin, playerId: a.player_id, attemptId: a.id, lessonId: a.lesson_id }) : null;
+  return buildSoloPayload({ attempt: a, subjectId: Number(a.subject_id), lessonId: a.lesson_id, lessonTitle: a.title_uz || a.lesson_id, keys, answers, details });
+}
+
+/** Solo urinish uchun hodisa (completed yoki auto_7d). restarted — yuborilmaydi. */
+export async function enqueueSoloAttempt(pool, log, attemptId, opts = {}) {
+  const a = await loadSoloAttempt(pool, attemptId);
   if (!a) return { created: 0, skipped: 'not_eligible' };
   // Tanga-qoidasi: oldin tugallangan natija bo'lsa — bu urinish LMS'ga ketmaydi (bizda ko'rish/analitika uchun qoladi)
   if (await hasRewardedResult(pool, Number(a.subject_id), a.lesson_id)) {
@@ -187,13 +201,7 @@ export async function enqueueSoloAttempt(pool, log, attemptId, opts = {}) {
     log.info({ attemptId, lessonId: a.lesson_id }, 'solo natija yuborilmadi: bu dars uchun tanga-hodisa allaqachon bor');
     return { created: 0, skipped: 'already_rewarded' };
   }
-  const { rows: keys } = await pool.query('select question_id, correct_idx from quiz_keys where lesson_id = $1', [a.lesson_id]);
-  const { rows: answers } = await pool.query(
-    'select player_id, screen_idx, question_id, picked, correct, elapsed_ms, answered_at from live_answers where pin = $1 and player_id = $2 and screen_idx < 500',
-    [a.pin, a.player_id],
-  );
-  const details = opts.details ? await loadDetailsSource(pool, { pin: a.pin, playerId: a.player_id, attemptId, lessonId: a.lesson_id }) : null;
-  const ev = buildSoloPayload({ attempt: a, subjectId: Number(a.subject_id), lessonId: a.lesson_id, lessonTitle: a.title_uz || a.lesson_id, keys, answers, details });
+  const ev = await buildSoloFromAttempt(pool, a, opts);
   const { payload, problems, detailsDropped } = finalizePayload(ev.payload);
   if (detailsDropped) log.warn({ attemptId, eventId: ev.event_id, reason: detailsDropped }, 'natija-detallari tashlandi (asosiy payload ketadi)');
   if (problems.length) {
@@ -245,4 +253,120 @@ export async function sweepResults(pool, log, opts = {}) {
     out.solo += res.created;
   }
   return out;
+}
+
+// ---------------------------------------------------------------------------------------------------------------
+// F-1106-01 (2026-11-06): School API rad etgan (manual_review) hodisani manbadan QAYTA YIG'ISH.
+// `requeue` eski payload'ni yuboradi (u yana 422 oladi). Bu yerda hodisa sessiya/urinishdan YANGI kod bilan yig'iladi,
+// tanga-qoidasi qayta qo'llanadi (natijasi allaqachon yetkazilgan/yuborilayotgan o'quvchi chiqariladi) va o'sha qatorning
+// o'zida almashtiriladi; eski holat result_event_revisions'ga ko'chadi (0011). `dry` (sukut) — hech narsa o'zgarmaydi.
+// ---------------------------------------------------------------------------------------------------------------
+
+export const REBUILD_SUFFIX_RE = /^r[1-9][0-9]?$/;
+const baseEventId = (id) => String(id).replace(/_r[1-9][0-9]?$/, '');
+
+/**
+ * @param {{ dry?: boolean, suffix?: string|null, details?: boolean, planned?: Set<string>|null }} opts
+ *   suffix — yangi event_id uchun (`r1` → `<asl>_r1`); berilmasa id o'zgarmaydi.
+ *   planned — dry-to'plamda oldingi hodisalar «yuboriladi» deb belgilagan `lesson:student` lar (bir o'quvchi — bir tanga).
+ * @returns {Promise<object>} xulosa (dry'da `payload` ham)
+ */
+export async function rebuildEvent(pool, log, eventId, opts = {}) {
+  const dry = opts.dry !== false;
+  const fail = (error, extra = {}) => ({ event_id: eventId, dry, action: 'error', error, ...extra });
+  const { rows: [row] } = await pool.query('select * from result_events where event_id = $1', [eventId]);
+  if (!row) return fail('not_found');
+  if (row.status !== 'manual_review') return fail(`status:${row.status}`);
+  const suffix = opts.suffix ?? null;
+  if (suffix !== null && !REBUILD_SUFFIX_RE.test(String(suffix))) return fail('bad_suffix');
+  const base = baseEventId(row.event_id);
+  const newId = suffix ? `${base}_${suffix}` : row.event_id;
+  if (newId.length > 128) return fail('new_id_too_long');
+  if (newId !== row.event_id) {
+    const { rowCount } = await pool.query('select 1 from result_events where event_id = $1', [newId]);
+    if (rowCount) return fail('new_id_exists', { new_event_id: newId });
+  }
+
+  let ev = null;
+  if (row.mode === 'live') {
+    const src = await loadLiveSource(pool, row.session_id, { details: !!opts.details });
+    if (!src) return fail('no_source');
+    ev = buildLivePayloads(src).find((e) => e.event_id === base) || null;
+  } else {
+    const a = await loadSoloAttempt(pool, row.attempt_id);
+    if (!a) return fail('no_source');
+    ev = await buildSoloFromAttempt(pool, a, { details: !!opts.details });
+    if (ev.event_id !== base) ev = null;
+  }
+  if (!ev) return fail('id_mismatch');
+
+  // Tanga-qoidasi: shu dars bo'yicha boshqa hodisada TUGALLANGAN natijasi yuborilgan/yuborilayotgan o'quvchi chiqadi
+  const built = { ...ev.payload, event_id: newId };
+  const key = (sid) => `${row.lesson_id}:${sid}`;
+  const rewarded = await rewardedStudents(pool, row.lesson_id, built.students.map((s) => s.student_id), row.event_id);
+  for (const s of built.students) if (opts.planned?.has(key(s.student_id))) rewarded.add(String(s.student_id));
+  const kept = built.students.filter((s) => !rewarded.has(String(s.student_id)));
+  const excluded = built.students.filter((s) => rewarded.has(String(s.student_id))).map((s) => s.student_id);
+
+  let payload = built;
+  let detailsDropped = null;
+  if (kept.length) {
+    const fin = finalizePayload({ ...built, students: kept });
+    if (fin.problems.length) return fail('validate', { new_event_id: newId, problems: fin.problems });
+    payload = fin.payload;
+    detailsDropped = fin.detailsDropped;
+  }
+  const action = kept.length ? 'send' : 'skip';
+  if (opts.planned && kept.length) for (const s of payload.students) if (s.completed) opts.planned.add(key(s.student_id));
+
+  const oldBy = new Map((row.payload?.students || []).map((s) => [String(s.student_id), s]));
+  const newIds = new Set(built.students.map((s) => String(s.student_id)));
+  const summary = {
+    event_id: row.event_id, new_event_id: newId, mode: row.mode, lesson_id: row.lesson_id, dry, action,
+    students_before: oldBy.size, students_after: action === 'send' ? payload.students.length : 0,
+    excluded,
+    not_in_source: [...oldBy.keys()].filter((sid) => !newIds.has(sid)).map(Number),
+    correct_changes: (action === 'send' ? payload.students : [])
+      .filter((s) => oldBy.has(String(s.student_id)) && oldBy.get(String(s.student_id)).correct_answers !== s.correct_answers)
+      .map((s) => ({ student_id: s.student_id, before: oldBy.get(String(s.student_id)).correct_answers, after: s.correct_answers })),
+    details_dropped: detailsDropped,
+  };
+  if (dry) return { ...summary, payload };
+
+  const client = await pool.connect();
+  try {
+    await client.query('begin');
+    const { rows: [cur] } = await client.query('select status from result_events where event_id = $1 for update', [row.event_id]);
+    if (!cur || cur.status !== 'manual_review') { await client.query('rollback'); return fail(`changed:${cur?.status ?? 'gone'}`); }
+    await client.query(
+      `insert into result_event_revisions (event_id, new_event_id, reason, old_status, old_payload, old_response, old_last_http_status, old_last_request_id, old_last_error, old_send_attempts)
+       values ($1, $2, $3, $4, $5::jsonb, $6::jsonb, $7, $8, $9, $10)`,
+      [row.event_id, newId, 'rebuild:F-1106-01', row.status, JSON.stringify(row.payload), JSON.stringify(row.response ?? null), row.last_http_status, row.last_request_id, row.last_error, row.send_attempts],
+    );
+    await client.query(
+      `update result_events set event_id = $2, payload = $3::jsonb, students_count = $4, status = $5, send_attempts = 0, next_try_at = now(),
+              last_http_status = null, last_request_id = null, last_error = $6, response = null, delivered_at = null, updated_at = now()
+        where event_id = $1`,
+      [row.event_id, newId, JSON.stringify(payload), payload.students.length, action === 'send' ? 'pending' : 'skipped', action === 'send' ? null : 'already_rewarded (rebuild)'],
+    );
+    await client.query('commit');
+  } catch (e) {
+    await client.query('rollback').catch(() => {});
+    throw e;
+  } finally {
+    client.release();
+  }
+  log.info({ eventId: row.event_id, newEventId: newId, action, students: summary.students_after, excluded: excluded.length, correctChanges: summary.correct_changes.length }, 'natija qayta yig\'ildi (F-1106-01)');
+  return summary;
+}
+
+/** Bir nechta hodisa — yaratilgan vaqti bo'yicha (eskisi oldin: bir o'quvchi — bir tanga, birinchi dars yutadi). */
+export async function rebuildEvents(pool, log, eventIds, opts = {}) {
+  const ids = [...new Set(eventIds || [])];
+  const { rows } = await pool.query('select event_id from result_events where event_id = any($1::text[]) order by created_at asc, event_id asc', [ids]);
+  const ordered = [...rows.map((r) => r.event_id), ...ids.filter((id) => !rows.some((r) => r.event_id === id))];
+  const planned = opts.dry !== false ? new Set() : null;
+  const results = [];
+  for (const id of ordered) results.push(await rebuildEvent(pool, log, id, { ...opts, planned }));
+  return results;
 }

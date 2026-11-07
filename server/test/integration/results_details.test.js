@@ -32,7 +32,7 @@ after(async () => { await t?.close(); });
 const join = (tok, body) => post(t.app, '/api/v1/lms/join', body, bearer(tok));
 const rpc = (fn, body) => post(t.app, `/api/v1/live/rpc/${fn}`, body);
 const stu = (sub, name, jti) => mintToken({ role: 'student', sub, name, jti });
-const texts = (lang, picked) => ({ question: lang === 'ru' ? 'Что такое интернет?' : 'Internet nima?', options: ['A', 'B', 'C', 'D'], picked, correct: 'B', lang });
+const texts = (lang, picked, correct = 'B') => ({ question: lang === 'ru' ? 'Что такое интернет?' : 'Internet nima?', options: ['A', 'B', 'C', 'D'], picked, correct, lang }); // F-1107-01: to'g'ri javob matni kalit bilan mos (s4 → 'B', s9 → 'C')
 const record = (pin, p, screen, qid, picked, elapsed, tx) => rpc('record_attempt', { p_pin: pin, p_player_id: p.playerId, p_token: p.playerToken, p_screen: screen, p_question_id: qid, p_picked: picked, p_elapsed_ms: elapsed, ...(tx ? { p_texts: tx } : {}) });
 const submit = (pin, p, screen, qid, picked) => rpc('submit_answer', { p_pin: pin, p_player_id: p.playerId, p_token: p.playerToken, p_screen: screen, p_question_id: qid, p_picked: picked, p_correct: false, p_elapsed_ms: 1000 });
 const progress = (tok, attemptId, body) => t.app.inject({ method: 'PUT', url: '/api/v1/me/progress', payload: { lesson_id: LESSON, attempt_id: attemptId, screen: 5, total: 22, answers: {}, client_ts: Date.now(), ...body }, headers: { 'content-type': 'application/json', ...bearer(tok) } });
@@ -46,7 +46,7 @@ test('jonli: s4 ikki urinish (noto\'g\'ri→to\'g\'ri) + s9 faqat submit_answer 
   assert.equal((await record(mentor.pin, ali, 4, 's4', 1, 9800, texts('ru', 'B'))).json(), 2);
   assert.equal((await submit(mentor.pin, ali, 4, 's4', 1)).json(), false, 'ball-qatori record_attempt bilan allaqachon qo\'yilgan');
   // F-0918-02: matnsiz test-javob (faqat submit_answer, eski dars) endi ro'yxatga kirmaydi → s9 ham matn bilan (dars `record_attempt` yozadi)
-  assert.equal((await record(mentor.pin, ali, 9, 's9', 2, 2000, { ...texts('ru', 'C'), correct: 'C' })).json(), 1);
+  assert.equal((await record(mentor.pin, ali, 9, 's9', 2, 2000, { ...texts('ru', 'C', 'C'), correct: 'C' })).json(), 1);
   assert.equal((await submit(mentor.pin, ali, 9, 's9', 2)).json(), false);
   await rpc('quiz_control', { p_pin: mentor.pin, p_token: mentor.token, p_state: 'q', p_q: 0 });
   // arena: quiz-0 matn BILAN (KATTA: dars arena-matnini yozganda shu yo'l) → kiradi; quiz-1 matnsiz (hozirgi darslar) → kirmaydi
@@ -67,12 +67,12 @@ test('jonli: s4 ikki urinish (noto\'g\'ri→to\'g\'ri) + s9 faqat submit_answer 
   assert.equal(ev.status, 'delivered', ev.last_error);
   const s = ev.payload.students[0];
   assert.deepEqual([s.student_id, s.correct_answers, s.answered, s.lang], [3001, 1, 2, 'ru']);
-  assert.deepEqual(s.questions.map((q) => [q.question_id, q.kind, q.order, q.correct, q.solved, q.attempts.length]), [['s4', 'test', 1, false, true, 2], ['s9', 'test', 2, true, true, 1], ['quiz-0', 'arena', 3, true, true, 1]]);
+  assert.deepEqual(s.questions.map((q) => [q.question_id, q.kind, q.order, q.correct, q.solved, q.attempts.length]), [['s4', 'test', 1, false, false, 1], ['s9', 'test', 2, true, true, 1], ['quiz-0', 'arena', 3, true, true, 1]]); // F-1106-01: jonli — School API har savolga AYNAN 1 urinish
   const q4 = s.questions[0];
   assert.deepEqual([q4.question, q4.options, q4.correct_option, q4.correct_answer], ['Что такое интернет?', ['A', 'B', 'C', 'D'], 1, 'B']);
-  assert.deepEqual(q4.attempts.map((a) => [a.n, a.option, a.answer, a.correct, a.elapsed_ms]), [[1, 0, 'A', false, 4200], [2, 1, 'B', true, 9800]]);
+  assert.deepEqual(q4.attempts.map((a) => [a.n, a.option, a.answer, a.correct, a.elapsed_ms]), [[1, 0, 'A', false, 4200]]); // 2-urinish bazada qoladi, LMS'ga ketmaydi
   assert.ok(q4.attempts.every((a) => /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ$/.test(a.at)));
-  assert.ok(new Date(q4.attempts[0].at) <= new Date(q4.attempts[1].at));
+  assert.equal((await t.db.query(`select count(*)::int as n from answer_attempts where pin = $1 and screen_idx = 4`, [mentor.pin])).rows[0].n, 2, 'urinish-tarixi bazada to\'liq');
   const q9 = s.questions[1];
   assert.deepEqual([q9.question, q9.correct_option, q9.correct_answer, q9.attempts[0].n, q9.attempts[0].option, q9.attempts[0].answer, q9.attempts[0].correct], ['Что такое интернет?', 2, 'C', 1, 2, 'C', true]);
   // F-0918-02: arena quiz-0 matn bilan → to'liq yozuv; quiz-1 matnsiz → ro'yxatda YO'Q (School API 422 bermasin)
@@ -92,8 +92,8 @@ test('solo: record_attempt → oxirgi ekran → hodisada questions (uz) + achiev
   const s = (await join(await stu(3003, 'Sobir', 'd-s3'), { lesson_id: LESSON })).json();
   assert.equal(s.mode, 'solo');
   assert.equal((await record(s.pin, s, 4, 's4', 1, 3000, texts('uz', 'B'))).json(), 1);
-  assert.equal((await record(s.pin, s, 9, 's9', 0, 2000, texts('uz', 'A'))).json(), 1);
-  assert.equal((await record(s.pin, s, 9, 's9', 2, 2500, texts('uz', 'C'))).json(), 2);
+  assert.equal((await record(s.pin, s, 9, 's9', 0, 2000, texts('uz', 'A', 'C'))).json(), 1);
+  assert.equal((await record(s.pin, s, 9, 's9', 2, 2500, texts('uz', 'C', 'C'))).json(), 2);
   const pr = await progress(await stu(3003, 'Sobir', 'd-s3p'), s.attempt.id, { screen: 21, earned: ['graduate', 'secretBadge'] });
   assert.equal(pr.json().status, 'finished');
   await t.app.results.runOnce();

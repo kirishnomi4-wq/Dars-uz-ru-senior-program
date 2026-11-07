@@ -2,7 +2,7 @@
 // Statuslar (LMS §8, §10): 201/200 → delivered (duplicate flag saqlanadi) · tarmoq/429/5xx → retry_wait (jadval retry.js) ·
 // 401/403/409/422/404 → manual_review + Telegram. Loglarda: event_id, HTTP kod, X-Request-ID — payload/token YO'Q.
 // Bitta jarayon; ustma-ust tick'lar `running` bilan to'siladi; qatorlar `for update skip locked` bilan olinadi.
-import { sweepResults } from './result-service.js';
+import { sweepResults, rebuildEvents } from './result-service.js';
 import { nextDelayMs, isRetryable, MAX_SEND_ATTEMPTS } from './retry.js';
 
 /**
@@ -109,6 +109,12 @@ export function createResultWorker({ pool, log, schoolApi, notify, batch = 10, d
       this._first = first;
     },
     stop() { clearTimeout(this._first); if (timer) clearInterval(timer); timer = null; },
+    /** Admin (F-1106-01): manual_review hodisalarni manbadan yangi kod bilan qayta yig'ish. dry (sukut) — hech narsa o'zgarmaydi. */
+    async rebuild(eventIds, { dry = true, suffix = null } = {}) {
+      const results = await rebuildEvents(pool, log, eventIds, { dry, suffix, details: !!details });
+      if (!dry && results.some((r) => r.action === 'send')) setTimeout(() => runOnce().catch(() => {}), 50);
+      return results;
+    },
     /** Admin: qayta navbatga (manual_review → pending) */
     async requeue(eventId) {
       const r = await pool.query(`update result_events set status = 'pending', next_try_at = now(), last_error = null, updated_at = now() where event_id = $1 and status <> 'delivered'`, [eventId]);

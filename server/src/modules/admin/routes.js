@@ -4,6 +4,8 @@
 //   GET  /admin/api/results?status=   — hodisalar ro'yxati (payload'siz), 100 tagacha
 //   GET  /admin/api/results/:id       — bitta hodisa (payload + javob)
 //   POST /admin/api/results/:id/requeue — manual_review/retry_wait → pending
+//   POST /admin/api/results/rebuild    — F-1106-01: manual_review hodisalarni manbadan YANGI kod bilan qayta yig'ish
+//        body { event_ids: [..1-100], dry: true (sukut — faqat ko'rsatadi), suffix?: 'r1', include_payload?: false }
 //   GET  /admin/api/sessions?status=live|ended&limit= — LMS sessiyalari (dars, guruh, mentor, o'quvchi soni, ekran, natija) — sinov-dalili
 //   GET  /admin/api/sessions/:id      — bitta sessiya: ishtirokchilar (rol, subject_id, javoblar soni, oxirigacha yetdimi), natija-hodisa
 // Shaxsiy ma'lumot: ismlar ko'rsatilmaydi, faqat sonlar va ID'lar.
@@ -86,6 +88,30 @@ export async function adminRoutes(app) {
     req.log.info({ eventId: req.params.id }, 'admin: natija qayta navbatga');
     setTimeout(() => app.results.runOnce().catch(() => {}), 50);
     return { ok: true };
+  });
+
+  // F-1106-01: requeue eski payload'ni yuboradi (yana 422). Bu yerda hodisa manbadan qayta yig'iladi; eski holat
+  // result_event_revisions'ga ko'chadi. dry sukut bo'yicha true — haqiqiy almashtirish faqat `"dry": false` bilan.
+  app.post('/api/results/rebuild', {
+    config: { rateLimit: false },
+    schema: { body: { type: 'object', additionalProperties: false, required: ['event_ids'], properties: {
+      event_ids: { type: 'array', minItems: 1, maxItems: 100, uniqueItems: true, items: { type: 'string', minLength: 1, maxLength: 128, pattern: '^[A-Za-z0-9][A-Za-z0-9._:@-]*$' } },
+      dry: { type: 'boolean', default: true },
+      suffix: { type: 'string', pattern: '^r[1-9][0-9]?$' },
+      include_payload: { type: 'boolean', default: false },
+    } } },
+  }, async (req) => {
+    if (!app.results?.rebuild) throw notFound("LMS-ko'prik o'chiq — natija-navbat yo'q.");
+    const { event_ids: ids, dry, suffix = null, include_payload: withPayload } = req.body;
+    const results = await app.results.rebuild(ids, { dry, suffix });
+    const count = (a) => results.filter((r) => r.action === a).length;
+    req.log.info({ dry, suffix, n: ids.length, send: count('send'), skip: count('skip'), error: count('error') }, 'admin: natija qayta yig\'ish');
+    return {
+      dry, suffix,
+      totals: { events: results.length, send: count('send'), skip: count('skip'), error: count('error'),
+        students: results.reduce((n, r) => n + (r.students_after || 0), 0), correct_changes: results.reduce((n, r) => n + (r.correct_changes?.length || 0), 0) },
+      results: results.map(({ payload, ...r }) => (withPayload && dry ? { ...r, payload } : r)),
+    };
   });
 
   // ---- Sessiyalar (LMS §13 sinov-dalili: kim ochdi, kim qo'shildi, natija ketdimi) — ismlar YO'Q
