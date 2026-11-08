@@ -768,7 +768,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const PARTS = {
     val: { word: { uz: 'likes — joriy qiymat', ru: 'likes — текущее значение' }, info: { uz: <>Xotiradagi hozirgi qiymat. Uni JSX ichida o'qiysiz: <span className="mono">{'👍 {likes}'}</span>. Faqat <b>o'qish</b> uchun — to'g'ridan-to'g'ri o'zgartirib bo'lmaydi!</>, ru: <>Нынешнее значение в памяти. Вы читаете его внутри JSX: <span className="mono">{'👍 {likes}'}</span>. Только для <b>чтения</b> — напрямую менять нельзя!</> } },
     set: { word: { uz: 'setLikes — yangilovchi', ru: 'setLikes — обновитель' }, info: { uz: <>Qiymatni o'zgartiradigan <b>yagona to'g'ri yo'l</b>. <span className="mono">setLikes(5)</span> deysiz — React xotirani yangilaydi VA ekranni qayta chizadi. Mana 1-versiyada yetishmagan narsa!</>, ru: <><b>Единственный правильный способ</b> изменить значение. Говорите <span className="mono">setLikes(5)</span> — React обновляет память И перерисовывает экран. Вот чего не хватало 1-й версии!</> } },
-    init: { word: { uz: "useState(0) — boshlang'ich", ru: 'useState(0) — начальное' }, info: { uz: <>Qavs ichidagi qiymat — xotiraning <b>boshlang'ich holati</b>. <span className="mono">useState(0)</span> → birinchi ko'rinishda 👍 0. <span className="mono">useState(100)</span> yozsangiz — 100 dan boshlanadi.</>, ru: <>Значение в скобках — <b>начальное состояние</b> памяти. <span className="mono">useState(0)</span> → при первом показе 👍 0. Напишете <span className="mono">useState(100)</span> — начнётся со 100.</> } }
+    init: { word: { uz: "0 — boshlang'ich qiymat", ru: '0 — начальное значение' }, info: { uz: <>Qavs ichidagi 0 — xotiraning <b>boshlang'ich holati</b>. <span className="mono">useState(0)</span> → birinchi ko'rinishda 👍 0. <span className="mono">useState(100)</span> yozsangiz — 100 dan boshlanadi.</>, ru: <>0 в скобках — <b>начальное состояние</b> памяти. <span className="mono">useState(0)</span> → при первом показе 👍 0. Напишете <span className="mono">useState(100)</span> — начнётся со 100.</> } }
   };
   const [active, setActive] = useState(null);
   const [seen, setSeen] = useState(storedAnswer ? new Set(['val', 'set', 'init']) : new Set());
@@ -787,7 +787,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             <pre className="code-box fade-up delay-1" style={{ lineHeight: 2.4, fontSize: 'clamp(12.5px,1.6vw,14.5px)' }}>
               <Jx>{'const'}</Jx>{' ['}<span className={tokCls('val')} onClick={() => tap('val')}><At>likes</At></span>{', '}<span className={tokCls('set')} onClick={() => tap('set')}><At>setLikes</At></span>{'] ='}{'\n'}
-              {'      '}<span className={tokCls('init')} onClick={() => tap('init')}><Jx>{'useState'}</Jx>{'('}<St>0</St>{')'}</span>{';'}
+              {'      '}<Jx>{'useState'}</Jx>{'('}<span className={tokCls('init')} onClick={() => tap('init')}><St>0</St></span>{')'}{';'}{/* F-1107-08: boshlang'ich qiymat — faqat 0, useState emas */}
             </pre>
             {/* F-0926-06: kod ostidagi takror chorlov olindi — mentor aytadi (159/1, 159/5) */}
             <div className="hint fade-up delay-2"><p className="small" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>O'qilishi: "menga <b style={{ color: T.blue }}>likes</b> degan xotira ber, boshlang'ichi <b style={{ color: T.success }}>0</b>, o'zgartirish uchun <b style={{ color: T.accent }}>setLikes</b> beraman".</>, ru: <>Читается так: «дай мне память по имени <b style={{ color: T.blue }}>likes</b>, начальное значение <b style={{ color: T.success }}>0</b>, для изменения дам <b style={{ color: T.accent }}>setLikes</b>».</> })}</p></div>
@@ -812,9 +812,9 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 4 — TEST 1 (useState nima beradi?) =====
 const Screen4 = (props) => (
   <QuestionScreen {...props} idx={4} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 1-savol', ru: 'Практика · вопрос 1' })}
-    questionText="useState(0) nima beradi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>useState(0)</span> nima beradi?</>, ru: <>Что даёт <span className="mono" style={{ color: T.accent }}>useState(0)</span>?</> })}</h2></>}
-    options={[tr({ uz: "Faqat boshlang'ich 0 sonini", ru: 'Только начальное число 0' }), tr({ uz: "Juftlik: qiymat va yangilovchi funksiya", ru: 'Пару: значение и функцию-обновитель' }), tr({ uz: 'Butunlay yangi komponent', ru: 'Совершенно новый компонент' }), tr({ uz: 'CSS uslublar klassini', ru: 'Класс CSS-стилей' })]} correctIdx={1}
+    questionText="useState(0) nima qaytaradi?"
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>useState(0)</span> nima qaytaradi?</>, ru: <>Что возвращает <span className="mono" style={{ color: T.accent }}>useState(0)</span>?</> })}</h2></>}
+    options={[tr({ uz: "Faqat 0 sonini", ru: 'Только число 0' }), tr({ uz: "Juftlik: qiymat va yangilovchi funksiya", ru: 'Пару: значение и функцию-обновитель' }), tr({ uz: 'Butunlay yangi komponent', ru: 'Совершенно новый компонент' }), tr({ uz: 'CSS uslublar klassini', ru: 'Класс CSS-стилей' })]} correctIdx={1}
     explainCorrect={tr({ uz: "`useState` ikki narsa beradi: `likes` va `setLikes`.", ru: '`useState` даёт две вещи: `likes` и `setLikes`.' })}
     explainWrong={{
       0: tr({ uz: "0 — faqat boshlang'ich qiymat, `useState` ko'proq beradi.", ru: '0 — лишь начальное значение, а `useState` даёт больше.' }),

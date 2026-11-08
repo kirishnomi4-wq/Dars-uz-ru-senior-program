@@ -1354,7 +1354,10 @@ const ScrLaunchList = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [saved, setSaved] = useState(!!storedAnswer);
   const inB = (k) => items.filter(f => (res[f.id] || 'v2') === k);
   const v1 = inB('v1'), v2 = inB('v2'), bl = inB('backlog');
-  const move = (id, k) => { if (saved) return; setRes(p => ({ ...p, [id]: k })); };
+  // F-1107-07: karta ko'chgach keyingisi tugma ostiga suriladi — ikki marta tez bosish ikkita kartani ko'chirardi.
+  // Ko'chishdan keyin 450 ms ikkinchi bosish hisobga olinmaydi.
+  const lastMove = useRef(0);
+  const move = (id, k) => { if (saved) return; const t = Date.now(); if (t - lastMove.current < 450) return; lastMove.current = t; setRes(p => ({ ...p, [id]: k })); };
   const ready = v1.length === V1_CAP;
   const lockLabel = v1.length > V1_CAP
     ? tr({ uz: `🔒 Yana ${v1.length - V1_CAP} tasini ⚡ ga suring`, ru: `🔒 Переместите ещё ${v1.length - V1_CAP} в ⚡` })

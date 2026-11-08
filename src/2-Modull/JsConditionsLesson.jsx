@@ -815,7 +815,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   const PreviewBlock = (
     <Col>
       <p className="flow-label">{tr({ uz: 'Bugun shunday kod yozasiz', ru: 'Сегодня вы напишете такой код' })}</p>
-      <pre className="code-box fade-up" style={{ fontSize: 'clamp(12.5px,1.9vw,14.5px)' }}><Kw>if</Kw> (<Vr>age</Vr> <Op>{'>='}</Op> <Nm>16</Nm>) {'{'}{'\n'}{'  '}<Vr>console</Vr>.<Vr>log</Vr>(<St>{tr({ uz: '"ID-karta olishingiz mumkin"', ru: '"Можно получить ID-карту"' })}</St>){'\n'}{'}'} <Kw>else</Kw> {'{'}{'\n'}{'  '}<Vr>console</Vr>.<Vr>log</Vr>(<St>{tr({ uz: '"Yoshingiz hali kichik"', ru: '"Вы ещё слишком молоды"' })}</St>){'\n'}{'}'}</pre>
+      <pre className="code-box fade-up" style={{ fontSize: 'clamp(12.5px,1.9vw,14.5px)' }}>{/* F-1107-03: o'zgaruvchi qayerdan kelgani qutida ko'rinadi */}<Kw>let</Kw> <Vr>age</Vr> <Op>=</Op> <Nm>17</Nm>{'\n'}{'\n'}<Kw>if</Kw> (<Vr>age</Vr> <Op>{'>='}</Op> <Nm>16</Nm>) {'{'}{'\n'}{'  '}<Vr>console</Vr>.<Vr>log</Vr>(<St>{tr({ uz: '"ID-karta olishingiz mumkin"', ru: '"Можно получить ID-карту"' })}</St>){'\n'}{'}'} <Kw>else</Kw> {'{'}{'\n'}{'  '}<Vr>console</Vr>.<Vr>log</Vr>(<St>{tr({ uz: '"Yoshingiz hali kichik"', ru: '"Вы ещё слишком молоды"' })}</St>){'\n'}{'}'}</pre>
       {/* F-0926-06: «→ dastur qaror qabul qiladi» olindi — sarlavha «Kod endi o'zi tanlaydi» shuni aytadi (159/1) */}
     </Col>
   );
@@ -979,6 +979,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {[14, 17].map(a => (<button key={a} className={`chip ${age === a ? 'chip-on' : ''}`} onClick={() => setA(a)}>{a} {tr({ uz: 'yosh', ru: 'лет' })}</button>))}
             </div>
             <pre className="code-box fade-up delay-2" style={{ fontSize: 'clamp(12.5px,1.9vw,14.5px)' }}>
+              {/* F-1107-03 */}<Kw>let</Kw> <Vr>age</Vr> <Op>=</Op> <Nm>{age}</Nm>{'\n'}{'\n'}
               <Kw>if</Kw> (<Vr>age</Vr> <Op>{'>='}</Op> <Nm>16</Nm>) {'{'}{'\n'}
               <span style={{ background: allowed ? 'rgba(31,122,77,0.25)' : 'transparent', borderRadius: 4, opacity: allowed ? 1 : 0.4, transition: 'background 0.35s, opacity 0.35s' }}>{'  '}<Vr>console</Vr>.<Vr>log</Vr>(<St>{tr({ uz: '"ID-karta olishingiz mumkin"', ru: '"Можно получить ID-карту"' })}</St>)</span>{'\n'}
               {'}'} <Kw>else</Kw> {'{'}{'\n'}
@@ -1086,11 +1087,11 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">score = {ball}</p>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 7, flexWrap: 'wrap' }}>
               {BALLS.map(b => (<button key={b} className={`chip ${ball === b ? 'chip-on' : ''}`} onClick={() => setB(b)}>{b}</button>))}
             </div>
             <pre className="code-box fade-up delay-2" style={{ fontSize: 'clamp(11.5px,1.7vw,13.5px)' }}>
+              {/* F-1107-03 */}<span style={{ display: 'block', padding: '2px 4px' }}><Kw>let</Kw> <Vr>score</Vr> <Op>=</Op> <Nm>{ball}</Nm></span>
               {LINES.map((l, i) => (<span key={i} style={{ display: 'block', background: branch === i ? 'rgba(31,122,77,0.25)' : 'transparent', borderRadius: 4, opacity: branch === i ? 1 : 0.45, padding: '2px 4px', transition: 'background 0.35s, opacity 0.35s' }}>{branch === i && <span style={{ color: CODE.str, fontWeight: 700 }}>▶ </span>}{l.c}</span>))}
             </pre>
           </Col>
@@ -1187,11 +1188,11 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">age = {age}</p>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
               {AGES.map(a => (<button key={a} className={`chip ${age === a ? 'chip-on' : ''}`} onClick={() => setA(a)}>{a} {tr({ uz: 'yosh', ru: 'лет' })}</button>))}
             </div>
             <pre className="code-box fade-up delay-2" style={{ fontSize: 'clamp(11.5px,1.7vw,13.5px)' }}>
+              {/* F-1107-03 */}<span style={{ display: 'block', padding: '2px 4px' }}><Kw>let</Kw> <Vr>age</Vr> <Op>=</Op> <Nm>{age}</Nm></span>
               {LINES.map((l, i) => (<span key={i} style={{ display: 'block', background: branch === i ? 'rgba(31,122,77,0.25)' : 'transparent', borderRadius: 4, opacity: branch === i ? 1 : 0.45, padding: '2px 4px', transition: 'background 0.35s, opacity 0.35s' }}>{branch === i && <span style={{ color: CODE.str, fontWeight: 700 }}>▶ </span>}{l}</span>))}
             </pre>
           </Col>
@@ -2371,7 +2372,7 @@ const TASK_RADAR = {
   requirements: [
     { id: 'if', label: { uz: 'if sharti yozildi', ru: 'условие if написано' }, check: C.js(/if\s*\(/, { uz: "`if (speed > 60) {` deb yozing", ru: 'Напишите `if (speed > 60) {`' }) },
     { id: 'else', label: { uz: 'else qismi yozildi', ru: 'часть else написана' }, check: C.js(/\belse\b/, { uz: "Shartdan keyin `} else {` qo'shing", ru: 'После условия добавьте `} else {`' }) },
-    { id: 'log', label: { uz: 'konsolda: Siz jarimaga tushdingiz', ru: 'в консоли: Вы получили штраф' }, check: C.logs({ uz: 'Siz jarimaga tushdingiz', ru: 'Вы получили штраф' }, { uz: "Shart ichida `console.log(\"Siz jarimaga tushdingiz\")` yozing", ru: 'Внутри условия напишите `console.log(\"Вы получили штраф\")`' }) },
+    { id: 'log', label: { uz: 'konsolda: Siz jarimaga tushdingiz', ru: 'в консоли: Вы получили штраф' }, check: C.logs({ uz: 'jarimaga', ru: 'получили' }, /* F-1107-04: gap emas, to'g'ri yo'lni ajratuvchi so'z — «Jarima yo'q» da bu so'z yo'q */ { uz: "Shart ichida `console.log(\"Siz jarimaga tushdingiz\")` yozing", ru: 'Внутри условия напишите `console.log(\"Вы получили штраф\")`' }) },
   ],
 };
 
@@ -2400,7 +2401,7 @@ const TASK_RADAR_LEVELS = {
   ],
   requirements: [
     { id: 'elseif', label: { uz: 'else if ishlatildi', ru: 'использован else if' }, check: C.js(/else\s+if\s*\(/, { uz: "Ikkinchi yo'l uchun `} else if (speed <= 80) {` yozing", ru: 'Для второго пути напишите `} else if (speed <= 80) {`' }) },
-    { id: 'log', label: { uz: 'konsolda Katta jarima', ru: 'в консоли Большой штраф' }, check: C.logs({ uz: 'Katta jarima', ru: 'Большой штраф' }, { uz: "Oxirgi `else` ichida `console.log(\"Katta jarima\")` yozing", ru: 'В последнем `else` напишите `console.log(\"Большой штраф\")`' }) },
+    { id: 'log', label: { uz: 'konsolda Katta jarima', ru: 'в консоли Большой штраф' }, check: C.logs({ uz: 'katta', ru: 'большой' }, /* F-1107-04: «Jarima yo'q» va «Ogohlantirish» da bu so'z yo'q */ { uz: "Oxirgi `else` ichida `console.log(\"Katta jarima\")` yozing", ru: 'В последнем `else` напишите `console.log(\"Большой штраф\")`' }) },
   ],
 };
 

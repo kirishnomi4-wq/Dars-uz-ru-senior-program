@@ -1178,11 +1178,9 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const enough = sel.length >= 3;
   const toggle = (key) => setSel(p => (p.includes(key) ? p.filter(x => x !== key) : (p.length >= 3 ? p : [...p, key])));
   useEffect(() => {
-    if (enough) {
-      const picked = sel.map(k => { const r = rows.find(x => x.key === k); return r ? tr(r.text) : ''; }).filter(Boolean);
-      lsWrite(PICKED_KEY, picked);
-      if (storedAnswer === undefined) onAnswer(screen, { stage: 'exploration', screenIdx: screen, sel, correct: true, picked: true });
-    }
+    // F-1107-06: 1–2 ta belgilansa ham eslab qolinadi (jonli darsda o'quvchi 3 tasiz o'tib ketishi mumkin)
+    if (sel.length) lsWrite(PICKED_KEY, sel.map(k => { const r = rows.find(x => x.key === k); return r ? tr(r.text) : ''; }).filter(Boolean));
+    if (enough && storedAnswer === undefined) onAnswer(screen, { stage: 'exploration', screenIdx: screen, sel, correct: true, picked: true });
   }, [enough, sel]); // eslint-disable-line
   return (
     <Stage eyebrow={tr({ uz: 'Muammolaringiz', ru: 'Ваши проблемы' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!enough} label={enough ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Uchtasini belgilang (${sel.length}/3)`, ru: `Отметьте три (${sel.length}/3)` }} onClick={onNext} /></>}>
@@ -1226,7 +1224,12 @@ const ScreenWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
   const isMentor = !!(live && live.mode === 'mentor');
-  const picked = useMemo(() => { const a = lsRead(PICKED_KEY); return Array.isArray(a) ? a : []; }, []);
+  // F-1107-06: belgilangan muammolar, keyin zaxira ro'yxatdan qolganlari — muammo maydoni bo'sh qolmaydi
+  const picked = useMemo(() => {
+    const a = lsRead(PICKED_KEY); const own = Array.isArray(a) ? a.filter(x => typeof x === 'string' && x.trim()) : [];
+    const low = (x) => x.trim().toLowerCase();
+    return [...own, ...FALLBACK_PAINS.map(p => tr(p)).filter(t => !own.some(o => low(o) === low(t)))];
+  }, []);
   const [st, setSt] = useState(() => {
     const saved = readFeatures().slice(0, 3);
     return { saved, draft: { muammo: '', yechim: '' }, editIdx: -1, done: !!(storedAnswer && storedAnswer.solved) || saved.length >= 3 };
@@ -1237,7 +1240,9 @@ const ScreenWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   // Yangi karta ochilganda muammo maydoni s7 da belgilangan qator bilan tayyor turadi
   useEffect(() => {
     if (editIdx >= 0) return;
-    if (draft.muammo === '' && picked[saved.length]) setSt(p => ({ ...p, draft: { ...p.draft, muammo: picked[saved.length] } }));
+    const used = saved.map(c => (c.muammo || '').trim().toLowerCase());
+    const next = picked.find(t => !used.includes(t.trim().toLowerCase()));
+    if (draft.muammo === '' && next) setSt(p => ({ ...p, draft: { ...p.draft, muammo: next } }));
   }, [saved.length, editIdx]); // eslint-disable-line
   useEffect(() => {
     if (done && storedAnswer === undefined && saved.length >= 3) {
@@ -1340,7 +1345,7 @@ const ScreenWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             edi; endi o'sha bilim o'z vaqtida — yozayotganda, javob-qatorida beriladi. */}
         <StudentPracticePulse live={live} screen={screen} />
         <MentorPracticeStats live={live} screen={screen} label={{ uz: '✍️ Uchala kartani yozib bo\'lganlar', ru: '✍️ Кто записал три карточки' }} />
-        <MentorNote>{tr({ uz: "Bu amaliyotni o'quvchilar bajaradi, siz kuzatasiz; «Davom etish» siz uchun ochiq. Baholash-mezoni: har kartada bitta muammo va bitta yechim, yechim harakat bilan yozilgan, uch karta uch xil muammoga tegishli.", ru: 'Это задание выполняют ученики, вы наблюдаете; «Продолжить» для вас открыто. Критерий проверки: в каждой карточке одна проблема и одно решение, решение записано действием, три карточки — о трёх разных проблемах.' })}</MentorNote>
+        <MentorNote>{tr({ uz: "Bu amaliyotni o'quvchilar bajaradi, siz kuzatasiz; «Davom etish» siz uchun ochiq. Muammo o'tgan ekranda belgilanganidan olinadi; o'quvchi uni o'zgartirishi mumkin. Baholash-mezoni: har kartada bitta muammo va bitta yechim, yechim harakat bilan yozilgan, uch karta uch xil muammoga tegishli.", ru: 'Это задание выполняют ученики, вы наблюдаете; «Продолжить» для вас открыто. Проблема берётся из отмеченных на прошлом экране; ученик может её изменить. Критерий проверки: в каждой карточке одна проблема и одно решение, решение записано действием, три карточки — о трёх разных проблемах.' })}</MentorNote>
       </div>
     </Stage>
   );
@@ -2315,7 +2320,7 @@ const PM4_FLASHCARDS = [
   { front: { uz: 'Har yechim qaysi savolga javob berishi kerak?', ru: 'На какой вопрос должна отвечать каждое решение?' }, back: { uz: '«Bu kimning qaysi muammosini yo\'qotadi?»', ru: '«Чью и какую проблему это убирает?»' }, note: { uz: 'har karta shu savol bilan tekshiriladi', ru: 'каждая карточка проверяется этим вопросом' } },
   { front: { uz: 'Muammosi topilmagan yechim nima bo\'ladi?', ru: 'Что происходит с решением без проблемы?' }, back: { uz: 'Ro\'yxatdan chiqariladi', ru: 'Её убирают из списка' }, note: { uz: 'u hech kimga foyda bermaydi', ru: 'она никому не приносит пользы' } },
   { front: { uz: 'Karta nimalardan iborat?', ru: 'Из чего состоит карточка?' }, back: { uz: 'Ikki bo\'lakdan: muammo va uni yo\'qotadigan yechim', ru: 'Из двух частей: проблема и решение, которое её убирает' }, note: { uz: '«film qachon boshlanishini bilmaydi» ↔ «Seans jadvali»', ru: '«не знает, когда начинается фильм» ↔ «Расписание сеансов»' } },
-  { front: { uz: 'Yechim sifat bilan yozilsa nima bo\'ladi?', ru: 'Что будет, если записать решение прилагательным?' }, back: { uz: 'Sayt nima qilishi noma\'lum qoladi', ru: 'Останется неизвестным, что делает сайт' }, note: { uz: 'shuning uchun harakat bilan yoziladi', ru: 'поэтому её пишут действием' } },
+  { front: { uz: 'Yechimni «sayt chiroyli bo\'lsin» deb yozsa nima bo\'ladi?', ru: 'Что будет, если записать решение как «пусть сайт будет красивым»?' }, back: { uz: 'Sayt aynan nima qilishi bilinmaydi', ru: 'Непонятно, что именно делает сайт' }, note: { uz: '«film vaqtini ko\'rsatadi» — aniq', ru: '«показывает время фильма» — понятно' } }, // F-1107-05: «sifat/harakat» atamasi o'rniga darsdagi misol
   { front: { uz: 'Bitta muammoga nechta yechimdan boshlanadi?', ru: 'Со скольких решений начинают одну проблему?' }, back: { uz: 'Bittadan', ru: 'С одной' }, note: { uz: 'har yechim o\'z muammosiga qaraydi', ru: 'каждое решение смотрит на свою проблему' } },
   { front: { uz: 'Uzum ishni nimadan boshlagan?', ru: 'С чего начал Uzum?' }, back: { uz: 'O\'z yetkazib berish xizmatidan', ru: 'Со своей службы доставки' }, note: { uz: 'mashinalar va topshirish punktlari', ru: 'машины и пункты выдачи' } },
   { front: { uz: 'Nima uchun Uzum yetkazib berishdan boshlagan?', ru: 'Почему Uzum начал с доставки?' }, back: { uz: 'Eng katta muammo shu edi', ru: 'Это была самая большая проблема' }, note: { uz: 'olgan narsasi qo\'liga qanday yetib kelishi', ru: 'как купленное доберётся до рук' } },
