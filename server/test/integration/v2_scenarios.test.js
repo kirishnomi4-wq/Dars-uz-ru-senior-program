@@ -11,7 +11,7 @@ const LESSON = 'internet-01-v18';
 const KEYS = { s4: 1, 'quiz-0': 0, 'quiz-1': 1 };
 let t;
 let getState = 'queued';
-const ctxFetch = fakeSchoolApi({ 9501: [9601], 9502: [9601], 9511: [9611], 9521: [9621], 9531: [9631], 9541: [9641], 9542: [9641], 9551: [9651], 9561: [], 9571: [9671] });
+const ctxFetch = fakeSchoolApi({ 9501: [9601], 9502: [9601], 9511: [9611], 9521: [9621], 9531: [9631], 9541: [9641], 9542: [9641], 9551: [9651], 9561: [], 9571: [9671], 9581: [9681] });
 async function fetchStub(url, init) {
   const u = String(url);
   if (u.endsWith('/integrations/dars-platform/lesson-results') && init?.method === 'POST') {
@@ -219,4 +219,20 @@ test('16#23 / 25§12 #16: 201 dan keyin uzoq queued — 60 daqiqadan keyin ogohl
   await t.app.results.runOnce();
   assert.equal((await ev(id2)).processing_status, 'failed');
   getState = 'queued';
+});
+
+test('S10/L3/L6: screen_open, arena_shown, record_practice HTTP orqali; begona token → xato; ortiqcha maydon → 400', async () => {
+  const { m, st: [a] } = await liveClass(9681, 9781, [9581]);
+  const base = { p_pin: m.pin, p_player_id: a.playerId, p_token: a.playerToken };
+  assert.equal((await rpc('screen_open', { ...base, p_screen: 2, p_screen_id: 's2', p_by_student: true, p_client_ts: Date.now() })).json(), true);
+  assert.equal((await rpc('screen_open', { ...base, p_screen: 3, p_by_student: false })).json(), true);
+  const sv = (await q('select screen_idx, by_student, closed_at is not null as closed from screen_views where attempt_id = $1 order by opened_at', [a.attempt.id])).rows;
+  assert.deepEqual(sv.map((x) => [x.screen_idx, x.by_student, x.closed]), [[2, true, true], [3, false, false]]);
+  assert.equal((await rpc('record_practice', { ...base, p_screen: 15, p_screen_id: 's15', p_checked: true, p_correct: false, p_text: 'console.log(1)' })).json(), 1);
+  assert.equal((await rpc('record_practice', { ...base, p_screen: 15, p_screen_id: 's15', p_checked: false, p_correct: null })).json(), 2);
+  await qc(m, 'lobby'); await qc(m, 'q', 0);
+  assert.equal((await rpc('arena_shown', { ...base, p_question_id: 'quiz-0', p_order: 1 })).json(), true);
+  assert.equal((await rpc('arena_shown', { ...base, p_question_id: 'quiz-1', p_order: 2 })).json(), false, 'bir marta');
+  assert.ok((await rpc('screen_open', { ...base, p_token: '0'.repeat(32), p_screen: 4, p_by_student: true })).statusCode >= 400);
+  assert.equal((await rpc('screen_open', { ...base, p_screen: 4, p_by_student: true, x: 1 })).statusCode, 400);
 });

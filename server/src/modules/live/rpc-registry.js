@@ -108,6 +108,40 @@ export const RPC = Object.freeze({
       ['p_pin', 'p_player_id', 'p_token', 'p_screen', 'p_question_id', 'p_picked', 'p_elapsed_ms'],
     ),
   },
+  // F-1105-03 S10 / L3 / L6 (0012 SQL funksiyalari — endi HTTP orqali ham): o'quvchining o'z tokeni bilan.
+  // Hech biri ball yozmaydi; faqat analitika (screen_views, arena_participants, practice_attempts). Urinish faol bo'lmasa — false/0.
+  screen_open: {
+    args: ['p_pin', 'p_player_id', 'p_token', 'p_screen', 'p_screen_id', 'p_by_student', 'p_client_ts'],
+    returns: 'scalar',
+    body: obj({
+      p_pin: PIN, p_player_id: UUID, p_token: TOKEN,
+      p_screen: { type: 'integer', minimum: 0, maximum: 9999 },
+      p_screen_id: { type: 'string', maxLength: 64 },
+      p_by_student: { type: 'boolean' },
+      p_client_ts: { type: 'integer', minimum: 0 },
+    }, ['p_pin', 'p_player_id', 'p_token', 'p_screen', 'p_by_student']),
+  },
+  arena_shown: {
+    args: ['p_pin', 'p_player_id', 'p_token', 'p_question_id', 'p_order'],
+    returns: 'scalar',
+    body: obj({
+      p_pin: PIN, p_player_id: UUID, p_token: TOKEN,
+      p_question_id: { type: 'string', minLength: 1, maxLength: 64 },
+      p_order: { type: 'integer', minimum: 1, maximum: 999 },
+    }),
+  },
+  record_practice: {
+    args: ['p_pin', 'p_player_id', 'p_token', 'p_screen', 'p_screen_id', 'p_checked', 'p_correct', 'p_text'],
+    returns: 'scalar',
+    body: obj({
+      p_pin: PIN, p_player_id: UUID, p_token: TOKEN,
+      p_screen: { type: 'integer', minimum: 0, maximum: 9999 },
+      p_screen_id: { type: 'string', minLength: 1, maxLength: 64 },
+      p_checked: { type: 'boolean' },
+      p_correct: { type: ['boolean', 'null'] },
+      p_text: { type: ['string', 'null'], maxLength: 300 },
+    }, ['p_pin', 'p_player_id', 'p_token', 'p_screen', 'p_screen_id', 'p_checked']),
+  },
   set_quiz_keys: {
     args: ['p_lesson_id', 'p_mentor_code', 'p_keys'],
     returns: 'scalar',

@@ -183,6 +183,52 @@ export async function adminRoutes(app) {
     return { session, participants, pin_players, results: events };
   });
 
+  // ---- S9 (Shahzoda 04 §1.2): doimiy savol kaliti + reviziya — reliz skripti (scripts/savol-kalitlari.mjs) yuklaydi.
+  //   PUT /admin/api/question-keys  { rows: [{ lesson_key, lesson_version, question_id, question_key, revision, kind, order_no?, text_uz?, text_ru? }] } — upsert, 1–500 qator
+  //   GET /admin/api/question-keys?lesson_key=&lesson_version=
+  const QK_ROW = { type: 'object', additionalProperties: false, required: ['lesson_key', 'lesson_version', 'question_id', 'question_key', 'revision', 'kind'], properties: {
+    lesson_key: { type: 'string', minLength: 1, maxLength: 96, pattern: '^[a-z0-9][a-z0-9-]*$' },
+    lesson_version: { type: 'string', minLength: 1, maxLength: 32 },
+    question_id: { type: 'string', minLength: 1, maxLength: 64 },
+    question_key: { type: 'string', minLength: 3, maxLength: 170 },
+    revision: { type: 'string', pattern: '^[0-9a-f]{12}$' },
+    kind: { type: 'string', enum: ['test', 'arena', 'practice'] },
+    order_no: { type: ['integer', 'null'], minimum: 1, maximum: 999 },
+    text_uz: { type: ['string', 'null'], maxLength: 600 },
+    text_ru: { type: ['string', 'null'], maxLength: 600 },
+  } };
+  app.put('/api/question-keys', {
+    bodyLimit: 1024 * 1024,
+    config: { rateLimit: false },
+    schema: { body: { type: 'object', additionalProperties: false, required: ['rows'], properties: { rows: { type: 'array', minItems: 1, maxItems: 500, items: QK_ROW } } } },
+  }, async (req, reply) => {
+    const bad = req.body.rows.filter((r) => r.question_key !== `${r.lesson_key}:${r.question_id}`).map((r) => r.question_key);
+    if (bad.length) return reply.code(400).send({ error: 'validation_failed', message: 'question_key = lesson_key:question_id bo\'lishi kerak', details: bad.slice(0, 10) });
+    const { rows: [{ n }] } = await app.db.query(
+      `with x as (select * from jsonb_to_recordset($1::jsonb) as t(lesson_key text, lesson_version text, question_id text, question_key text, revision text, kind text, order_no int, text_uz text, text_ru text)),
+            up as (insert into question_keys (lesson_key, lesson_version, question_id, question_key, revision, kind, order_no, text_uz, text_ru)
+                   select lesson_key, lesson_version, question_id, question_key, revision, kind, order_no, text_uz, text_ru from x
+                   on conflict (lesson_key, lesson_version, question_id) do update set question_key = excluded.question_key, revision = excluded.revision,
+                     kind = excluded.kind, order_no = excluded.order_no, text_uz = excluded.text_uz, text_ru = excluded.text_ru, updated_at = now()
+                   returning 1)
+       select count(*)::int as n from up`,
+      [JSON.stringify(req.body.rows)],
+    );
+    req.log.info({ rows: n }, 'admin: savol kalitlari yuklandi');
+    return { upserted: n };
+  });
+  app.get('/api/question-keys', {
+    config: { rateLimit: false },
+    schema: { querystring: { type: 'object', additionalProperties: false, properties: { lesson_key: { type: 'string', maxLength: 96 }, lesson_version: { type: 'string', maxLength: 32 } } } },
+  }, async (req) => {
+    const { rows } = await app.db.query(
+      `select lesson_key, lesson_version, question_id, question_key, revision, kind, order_no, text_uz, text_ru, updated_at from question_keys
+        where ($1::text is null or lesson_key = $1) and ($2::text is null or lesson_version = $2) order by lesson_key, lesson_version, kind desc, order_no limit 2000`,
+      [req.query.lesson_key ?? null, req.query.lesson_version ?? null],
+    );
+    return rows;
+  });
+
   app.get('/', { config: { rateLimit: false } }, async (req, reply) => {
     reply.type('text/html; charset=utf-8');
     return ADMIN_HTML;

@@ -90,3 +90,17 @@ test('admin HTML: ichki skript sintaksisi buzilmagan', async () => {
   assert.doesNotThrow(() => new Function(js));
   assert.match(js, /v2_processing/);
 });
+
+test('S9: savol kalitlari — PUT upsert (kalit = lesson_key:question_id), GET filtr, revision qolipi', async () => {
+  const put = (rows) => t.app.inject({ method: 'PUT', url: '/admin/api/question-keys', payload: { rows }, headers: { ...ADMIN, 'content-type': 'application/json' } });
+  const row = { lesson_key: 'internet-01', lesson_version: 'v18', question_id: 's4', question_key: 'internet-01:s4', revision: 'a1b2c3d4e5f6', kind: 'test', order_no: 1, text_uz: 'Savol?', text_ru: 'Вопрос?' };
+  const r1 = await put([row, { ...row, question_id: 'quiz-0', question_key: 'internet-01:quiz-0', kind: 'arena' }]);
+  assert.equal(r1.statusCode, 200, r1.body);
+  assert.equal(r1.json().upserted, 2);
+  assert.equal((await put([{ ...row, revision: 'ffffffffffff', text_uz: 'Yangi savol?' }])).json().upserted, 1);
+  const list = (await get('/admin/api/question-keys?lesson_key=internet-01')).json();
+  assert.deepEqual(list.map((x) => [x.question_id, x.revision]), [['s4', 'ffffffffffff'], ['quiz-0', 'a1b2c3d4e5f6']]);
+  assert.equal((await put([{ ...row, question_key: 'boshqa:s4' }])).statusCode, 400);
+  assert.equal((await put([{ ...row, revision: 'XYZ' }])).statusCode, 400);
+  assert.equal((await t.app.inject({ method: 'PUT', url: '/admin/api/question-keys', payload: { rows: [row] }, headers: { 'content-type': 'application/json' } })).statusCode, 401);
+});
