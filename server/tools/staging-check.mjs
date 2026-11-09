@@ -150,8 +150,10 @@ await check('features', async () => {
   const notes = [];
   if (!f.results_worker) notes.push('natija-ishchi o\'chiq (RESULTS_WORKER_ENABLED=false) — natijalar LMS\'ga ketmaydi');
   if (f.result_details !== want) notes.push(`RESULT_DETAILS serverda ${f.result_details}, env-faylda ${want}`);
+  const wantV2 = ENV.RESULT_SCHEMA_V2 || 'off';
+  if (f.result_schema_v2 !== undefined && f.result_schema_v2 !== wantV2) notes.push(`RESULT_SCHEMA_V2 serverda ${f.result_schema_v2}, env-faylda ${wantV2}`);
   if (notes.length) throw new Warn(notes.join(' · '));
-  return `bridge on · worker on · details ${f.result_details}`;
+  return `bridge on · worker on · details ${f.result_details}${f.result_schema_v2 !== undefined ? ` · v2 ${f.result_schema_v2}` : ''}`;
 });
 
 await check('clock', async () => {
@@ -270,6 +272,24 @@ await check('admin', async () => {
   const sesNote = ses.status === 200 && Array.isArray(ses.json) ? `sessiyalar ✓ (${ses.json.length})` : `sessiyalar-endpoint yo'q (${ses.status}, eski image)`;
   const q = Object.entries(ok.json.queue).map(([k, v]) => `${k} ${v}`).join(', ') || 'bo\'sh';
   return `401 ✓ · kirish ✓ · ${sesNote} · navbat: ${q} · faol: live ${ok.json.active_sessions?.live} solo ${ok.json.active_sessions?.solo}`;
+});
+
+// F-1105-03 S8: v2 oqimi — bayroq, v2 navbati va qo'llash holati, savol kalitlari (admin orqali, faqat o'qish)
+await check('v2', async () => {
+  const f = health.features || {};
+  if (f.result_schema_v2 === undefined) throw new Warn('health\'da result_schema_v2 yo\'q (eski image)');
+  if (!ENV.ADMIN_USER || !ENV.ADMIN_PASSWORD) throw new Skip('ADMIN_* yo\'q');
+  const auth = { authorization: 'Basic ' + Buffer.from(`${ENV.ADMIN_USER}:${ENV.ADMIN_PASSWORD}`).toString('base64') };
+  const ov = await req(`${BASE}/admin/api/overview`, { headers: auth });
+  const list = await req(`${BASE}/admin/api/results?schema=2`, { headers: auth });
+  const qk = await req(`${BASE}/admin/api/question-keys?lesson_key=internet-01`, { headers: auth });
+  if (list.status !== 200) throw new Error(`/admin/api/results?schema=2 → HTTP ${list.status}`);
+  const p = Object.entries(ov.json?.v2_processing || {}).map(([k, v]) => `${k} ${v}`).join(', ') || 'yo\'q';
+  const keys = qk.status === 200 && Array.isArray(qk.json) ? qk.json.length : `HTTP ${qk.status}`;
+  const failed = (ov.json?.v2_processing?.failed || 0) + (ov.json?.v2_processing?.review || 0);
+  const msg = `bayroq ${f.result_schema_v2} · v2 hodisa ${list.json.length}${list.json.length >= 100 ? '+' : ''} · qo'llash: ${p} · savol kaliti (internet-01) ${keys}`;
+  if (failed) throw new Warn(`${msg} — failed/review ${failed} (admin «E'tibor kerak»)`);
+  return msg;
 });
 
 let mentorSession = null;

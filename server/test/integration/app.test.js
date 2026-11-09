@@ -32,7 +32,7 @@ test('health: 200, no-store, versiya, db ok', async () => {
   assert.ok(Math.abs(Date.parse(b.time) - Date.now()) < 5000, 'server vaqti (JWT ±60 s tekshiruvi uchun)');
   assert.ok(Number.isInteger(b.checks.migrations) && b.checks.migrations >= 6, `migrations: ${b.checks.migrations}`);
   assert.equal(typeof b.checks.catalog, 'number');
-  assert.deepEqual(b.features, { lms_bridge: false, results_worker: true, result_details: 'off' });
+  assert.deepEqual(b.features, { lms_bridge: false, results_worker: true, result_details: 'off', result_schema_v2: 'off' });
   assert.equal(typeof b.client.ip, 'string');
   assert.equal(b.client.forwarded, false);
 });

@@ -33,6 +33,7 @@ export async function healthRoutes(app) {
         lms_bridge: !!app.config.lmsBridgeEnabled,
         results_worker: !!app.config.resultsWorkerEnabled,
         result_details: app.config.resultDetails || 'off',
+        result_schema_v2: app.config.resultSchemaV2 || 'off', // F-1105-03 S8: v2 hodisalar (lr_/ap_/ar_) yoqilganmi
       },
     };
   });
