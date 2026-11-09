@@ -1,11 +1,12 @@
 // Admin — kuzatuv (basic auth, ADMIN_USER/ADMIN_PASSWORD). O'chiq bo'lsa 404 (yo'l borligi ham bilinmaydi).
 //   GET  /admin                       — kichik HTML sahifa (overview'ni chizadi)
 //   GET  /admin/api/overview          — faol sessiyalar, navbat statuslari, oxirgi hodisalar/xatolar
-//   GET  /admin/api/results?status=   — hodisalar ro'yxati (payload'siz), 100 tagacha
+//   GET  /admin/api/results?status=&schema=1|2&processing=&event_type= — hodisalar ro'yxati (payload'siz), 100 tagacha (S6: v2 filtrlari)
 //   GET  /admin/api/results/:id       — bitta hodisa (payload + javob)
 //   POST /admin/api/results/:id/requeue — manual_review/retry_wait → pending
 //   POST /admin/api/results/rebuild    — F-1106-01: manual_review hodisalarni manbadan YANGI kod bilan qayta yig'ish
 //        body { event_ids: [..1-100], dry: true (sukut — faqat ko'rsatadi), suffix?: 'r1', include_payload?: false }
+//        S6: v2 id (lr_/ap_/ar_) — o'sha id bilan qayta yig'iladi (suffix qo'llanmaydi), processed_at saqlanadi
 //   GET  /admin/api/sessions?status=live|ended&limit= — LMS sessiyalari (dars, guruh, mentor, o'quvchi soni, ekran, natija) — sinov-dalili
 //   GET  /admin/api/sessions/:id      — bitta sessiya: ishtirokchilar (rol, subject_id, javoblar soni, oxirigacha yetdimi), natija-hodisa
 // Shaxsiy ma'lumot: ismlar ko'rsatilmaydi, faqat sonlar va ID'lar.
@@ -38,9 +39,11 @@ export async function adminRoutes(app) {
     const [sessions, queue, recent, errors] = await Promise.all([
       app.db.query(`select count(*) filter (where mode = 'live') as live, count(*) filter (where mode = 'solo') as solo from lms_sessions where status = 'live'`),
       app.db.query(`select status, count(*)::int as n from result_events group by status`),
-      app.db.query(`select event_id, mode, status, students_count, send_attempts, last_http_status, updated_at from result_events order by updated_at desc limit 20`),
-      app.db.query(`select event_id, status, last_http_status, last_error, updated_at from result_events where status in ('manual_review', 'retry_wait') order by updated_at desc limit 20`),
+      app.db.query(`select event_id, mode, schema_version, event_type, status, processing_status, students_count, send_attempts, last_http_status, updated_at from result_events order by updated_at desc limit 20`),
+      app.db.query(`select event_id, status, processing_status, last_http_status, last_error, updated_at from result_events where status in ('manual_review', 'retry_wait') or processing_status in ('failed', 'review') order by updated_at desc limit 20`),
     ]);
+    // S6 (25 §7): v2 qo'llash holati (School API ichida) — yetkazilgan v2 hodisalar bo'yicha
+    const v2 = await app.db.query(`select coalesce(processing_status, 'none') as p, count(*)::int as n from result_events where schema_version = 2 group by 1`);
     const players = await app.db.query(`select count(*)::int as n from live_players lp join live_sessions ls on ls.pin = lp.pin where ls.status = 'live'`);
     return {
       version: app.appVersion,
@@ -48,6 +51,7 @@ export async function adminRoutes(app) {
       now: new Date().toISOString(),
       active_sessions: { live: Number(sessions.rows[0].live), solo: Number(sessions.rows[0].solo), players_online: players.rows[0].n },
       queue: Object.fromEntries(queue.rows.map((r) => [r.status, r.n])),
+      v2_processing: Object.fromEntries(v2.rows.map((r) => [r.p, r.n])),
       recent: recent.rows,
       attention: errors.rows,
     };
@@ -55,13 +59,21 @@ export async function adminRoutes(app) {
 
   app.get('/api/results', {
     config: { rateLimit: false },
-    schema: { querystring: { type: 'object', additionalProperties: false, properties: { status: { type: 'string', enum: ['pending', 'retry_wait', 'delivered', 'manual_review'] } } } },
+    schema: { querystring: { type: 'object', additionalProperties: false, properties: {
+      status: { type: 'string', enum: ['pending', 'retry_wait', 'delivered', 'manual_review', 'skipped'] },
+      schema: { type: 'string', enum: ['1', '2'] }, // S6: v1 guruh/solo yoki v2 (lr_/ap_/ar_)
+      processing: { type: 'string', enum: ['queued', 'applied', 'failed', 'review'] },
+      event_type: { type: 'string', enum: ['lesson_result', 'arena_participation', 'arena_result'] },
+    } } },
   }, async (req) => {
-    const { status } = req.query;
+    const { status = null, schema = null, processing = null, event_type: eventType = null } = req.query;
     const { rows } = await app.db.query(
-      `select event_id, mode, lesson_id, status, students_count, send_attempts, next_try_at, last_http_status, last_request_id, last_error, delivered_at, created_at, updated_at
-         from result_events ${status ? 'where status = $1' : ''} order by updated_at desc limit 100`,
-      status ? [status] : [],
+      `select event_id, mode, schema_version, event_type, student_id::text as student_id, lesson_id, status, processing_status, processing_next_at, processing_checked_at,
+              students_count, send_attempts, next_try_at, last_http_status, last_request_id, last_error, occurred_at, delivered_at, created_at, updated_at
+         from result_events
+        where ($1::text is null or status = $1) and ($2::int is null or schema_version = $2) and ($3::text is null or processing_status = $3) and ($4::text is null or event_type = $4)
+        order by updated_at desc limit 100`,
+      [status, schema === null ? null : Number(schema), processing, eventType],
     );
     return rows;
   });
@@ -145,7 +157,8 @@ export async function adminRoutes(app) {
   }, async (req) => {
     const { rows } = await app.db.query(
       `select s.id, s.pin, s.mode, s.lesson_id, s.lesson_version, s.gid::int as gid, s.teacher_id::int as teacher_id, s.status, s.end_reason, s.started_at, s.finished_at,
-              lc.title_uz, ls.cur_screen, ls.max_screen, ls.status as live_status, ls.quiz_state, ls.updated_at as live_updated_at
+              lc.title_uz, ls.cur_screen, ls.max_screen, ls.status as live_status, ls.quiz_state, ls.updated_at as live_updated_at,
+              ls.quiz_first_q_at as arena_started_at, ls.quiz_done_at as arena_finished_at, ls.quiz_end_reason as arena_end_reason, ls.quiz_max_q + 1 as arena_questions_shown
          from lms_sessions s join live_sessions ls on ls.pin = s.pin left join lesson_catalog lc on lc.lesson_id = s.lesson_id
         where s.id = $1`, [req.params.id]);
     const session = rows[0];
@@ -155,11 +168,16 @@ export async function adminRoutes(app) {
               (select count(*)::int from live_answers x where x.player_id = p.player_id and x.screen_idx < 100) as answers,
               (select count(*)::int from live_answers x where x.player_id = p.player_id and x.screen_idx < 100 and x.correct) as correct,
               (select count(*)::int from answer_attempts t where t.player_id = p.player_id) as attempts,
-              (select count(*)::int from achievement_events e where e.attempt_id = p.attempt_id) as achievements
-         from lms_participants p left join attempts a on a.id = p.attempt_id
+              (select count(*)::int from achievement_events e where e.attempt_id = p.attempt_id) as achievements,
+              a.lesson_version, a.version_source,
+              (select count(*)::int from screen_views v where v.attempt_id = p.attempt_id) as screen_views,
+              (select count(*)::int from screen_views v where v.attempt_id = p.attempt_id and v.by_student) as screen_views_by_student,
+              (select count(*)::int from practice_attempts pa where pa.attempt_id = p.attempt_id) as practice_attempts,
+              (select ap.source from arena_participants ap where ap.pin = s.pin and ap.player_id = p.player_id) as arena_participation
+         from lms_participants p left join attempts a on a.id = p.attempt_id join lms_sessions s on s.id = p.session_id
         where p.session_id = $1 order by p.role desc, p.joined_at`, [req.params.id]);
     const { rows: events } = await app.db.query(
-      `select event_id, status, students_count, send_attempts, last_http_status, last_error, delivered_at, updated_at
+      `select event_id, schema_version, event_type, student_id::text as student_id, status, processing_status, students_count, send_attempts, last_http_status, last_error, delivered_at, updated_at
          from result_events where session_id = $1 order by created_at`, [req.params.id]);
     const { rows: [{ pin_players }] } = await app.db.query('select count(*)::int as pin_players from live_players where pin = $1', [session.pin]);
     return { session, participants, pin_players, results: events };
@@ -190,9 +208,9 @@ button{background:#ff4f28;color:#fff;border:0;border-radius:99px;padding:4px 10p
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 async function load(){const r=await fetch('api/overview');if(!r.ok){document.body.innerHTML='<main>401 — kirish kerak</main>';return}const d=await r.json();
 document.getElementById('meta').textContent=d.version+' · '+d.env+' · '+new Date(d.now).toLocaleTimeString();
-const q=d.queue||{};document.getElementById('cards').innerHTML=[['Jonli sessiya',d.active_sessions.live],['Solo',d.active_sessions.solo],["Onlayn o'quvchi",d.active_sessions.players_online],['Navbat',(q.pending||0)+(q.retry_wait||0)],['Yetkazildi',q.delivered||0],['manual_review',q.manual_review||0]].map(([k,v])=>'<div class="card">'+esc(k)+'<b>'+esc(v)+'</b></div>').join('');
+const q=d.queue||{};document.getElementById('cards').innerHTML=[['Jonli sessiya',d.active_sessions.live],['Solo',d.active_sessions.solo],["Onlayn o'quvchi",d.active_sessions.players_online],['Navbat',(q.pending||0)+(q.retry_wait||0)],['Yetkazildi',q.delivered||0],['manual_review',q.manual_review||0],['v2 qo\\'llanmoqda',(d.v2_processing||{}).queued||0],['v2 qo\\'llandi',(d.v2_processing||{}).applied||0],['v2 failed/review',((d.v2_processing||{}).failed||0)+((d.v2_processing||{}).review||0)]].map(([k,v])=>'<div class="card">'+esc(k)+'<b>'+esc(v)+'</b></div>').join('');
 document.getElementById('att').innerHTML=d.attention.map(e=>'<tr><td><code>'+esc(e.event_id)+'</code></td><td class="st-'+esc(e.status)+'">'+esc(e.status)+'</td><td>'+esc(e.last_http_status)+'</td><td>'+esc(e.last_error)+'</td><td>'+new Date(e.updated_at).toLocaleString()+'</td><td><button onclick="requeue(\\''+esc(e.event_id)+'\\')">qayta yubor</button></td></tr>').join('')||'<tr><td colspan="6"><small>hammasi joyida</small></td></tr>';
-document.getElementById('rec').innerHTML=d.recent.map(e=>'<tr><td><code>'+esc(e.event_id)+'</code></td><td>'+esc(e.mode)+'</td><td class="st-'+esc(e.status)+'">'+esc(e.status)+'</td><td>'+esc(e.students_count)+'</td><td>'+esc(e.send_attempts)+'</td><td>'+esc(e.last_http_status)+'</td><td>'+new Date(e.updated_at).toLocaleString()+'</td></tr>').join('')||'<tr><td colspan="7"><small>hali hodisa yo\\'q</small></td></tr>';}
+document.getElementById('rec').innerHTML=d.recent.map(e=>'<tr><td><code>'+esc(e.event_id)+'</code></td><td>'+esc(e.schema_version===2?('v2 '+(e.event_type||'')):e.mode)+'</td><td class="st-'+esc(e.status)+'">'+esc(e.status)+(e.processing_status?' <small>'+esc(e.processing_status)+'</small>':'')+'</td><td>'+esc(e.students_count)+'</td><td>'+esc(e.send_attempts)+'</td><td>'+esc(e.last_http_status)+'</td><td>'+new Date(e.updated_at).toLocaleString()+'</td></tr>').join('')||'<tr><td colspan="7"><small>hali hodisa yo\\'q</small></td></tr>';}
 async function requeue(id){await fetch('api/results/'+encodeURIComponent(id)+'/requeue',{method:'POST'});setTimeout(load,800)}
 async function loadSessions(){const r=await fetch('api/sessions?limit=30');if(!r.ok)return;const rows=await r.json();
 document.getElementById('ses').innerHTML=rows.map(s=>'<tr><td>'+esc(new Date(s.started_at).toLocaleString())+'</td><td>'+esc(s.mode)+'</td><td>'+esc(s.title_uz||s.lesson_id)+' <small>'+esc(s.pin)+'</small></td><td>'+esc(s.gid??'')+'</td><td>'+esc(s.teacher_id??'')+'</td><td>'+esc(s.students)+(s.players>s.students?' <small>(+'+esc(s.players-s.students)+' PIN)</small>':'')+'</td><td>'+esc(s.answers)+'</td><td>'+esc(s.cur_screen??'')+'/'+esc(s.max_screen??'')+'</td><td class="st-'+esc(s.status)+'">'+esc(s.status)+(s.end_reason?' <small>'+esc(s.end_reason)+'</small>':'')+'</td><td>'+esc(s.result_status||'—')+'</td><td><button onclick="detail(&quot;'+esc(s.id)+'&quot;)">batafsil</button></td></tr>').join('')||'<tr><td colspan="11"><small>sessiya yo‘q</small></td></tr>';}

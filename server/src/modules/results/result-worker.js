@@ -3,7 +3,7 @@
 // 401/403/409/422/404 → manual_review + Telegram. Loglarda: event_id, HTTP kod, X-Request-ID — payload/token YO'Q.
 // Bitta jarayon; ustma-ust chaqiriqlar BIRLASHTIRILADI (joriy yurish tugagach bitta qo'shimcha yurish); qatorlar `for update skip locked` bilan olinadi.
 import { sweepResults, rebuildEvents } from './result-service.js';
-import { sweepV2, nextProcessingCheck, PROCESSING_REVIEW_MS, PROCESSING_WARN_MS } from './v2-service.js';
+import { sweepV2, rebuildV2, nextProcessingCheck, PROCESSING_REVIEW_MS, PROCESSING_WARN_MS } from './v2-service.js';
 import { nextDelayMs, isRetryable, MAX_SEND_ATTEMPTS } from './retry.js';
 
 /**
@@ -190,7 +190,13 @@ export function createResultWorker({ pool, log, schoolApi, notify, batch = 10, d
     stop() { clearTimeout(this._first); if (timer) clearInterval(timer); timer = null; },
     /** Admin (F-1106-01): manual_review hodisalarni manbadan yangi kod bilan qayta yig'ish. dry (sukut) — hech narsa o'zgarmaydi. */
     async rebuild(eventIds, { dry = true, suffix = null } = {}) {
-      const results = await rebuildEvents(pool, log, eventIds, { dry, suffix, details: !!details });
+      // S6: v2 hodisalar (lr_/ap_/ar_) o'z yo'lidan — id o'zgarmaydi, suffix qo'llanmaydi; v1 — F-1106-01 qoidasi bilan
+      const ids = [...new Set(eventIds || [])];
+      const { rows: v2rows } = await pool.query('select event_id from result_events where event_id = any($1::text[]) and schema_version = 2', [ids]);
+      const v2ids = new Set(v2rows.map((r) => r.event_id));
+      const v1 = ids.filter((id) => !v2ids.has(id));
+      const results = v1.length ? await rebuildEvents(pool, log, v1, { dry, suffix, details: !!details }) : [];
+      for (const id of v2ids) results.push(await rebuildV2(pool, log, id, { dry }));
       if (!dry && results.some((r) => r.action === 'send')) setTimeout(() => runOnce().catch(() => {}), 50);
       return results;
     },

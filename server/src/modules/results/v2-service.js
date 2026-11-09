@@ -77,7 +77,7 @@ export async function loadAttemptSource(pool, attemptId) {
   const arenaStarted = a.quiz_first_q_at || null;
   const arenaQ = arenaQuestions(keys).size;
   return {
-    attempt: { id: a.id, kind: a.kind, lesson_id: a.lesson_id, lesson_version: a.lesson_version, version_source: a.version_source, started_at: a.started_at, finished_at: a.finished_at, finish_reason: a.finish_reason, reached_end: a.reached_end, reached_end_at: a.reached_end_at, status: a.status },
+    attempt: { id: a.id, kind: a.kind, session_id: a.session_id, lesson_id: a.lesson_id, lesson_version: a.lesson_version, version_source: a.version_source, started_at: a.started_at, finished_at: a.finished_at, finish_reason: a.finish_reason, reached_end: a.reached_end, reached_end_at: a.reached_end_at, status: a.status },
     student: { subject_id: a.subject_id, crm_id: a.crm_id },
     session: live ? { id: a.lms_session_id, pin: a.pin, gid: a.gid, teacher_id: a.teacher_id, started_at: a.session_started_at, finished_at: a.session_finished_at, end_reason: a.session_end_reason, status: a.session_status } : null,
     lesson: { lesson_id: a.lesson_id, title: a.title_uz || a.lesson_id },
@@ -121,26 +121,78 @@ const triggerFor = (a) => {
   return 'session_closed';
 };
 
-export async function emitLessonResult(pool, log, attemptId, { now = new Date() } = {}) {
+/** Manbadan bitta v2 hodisa yig'ish (yaratish ham, qayta yig'ish ham shu yo'ldan). null — bu tur uchun manba yetarli emas. */
+function buildV2For(eventType, src, { now = new Date(), processedAt = null } = {}) {
+  if (eventType === 'lesson_result') return buildLessonResult({ ...src, trigger: triggerFor(src.attempt), now, processedAt: processedAt || now });
+  if (eventType === 'arena_participation') {
+    if (!src.session || !src.participation || !src.arena?.started_at) return null;
+    return buildArenaParticipation({ attempt: src.attempt, student: src.student, session: src.session, lesson: src.lesson, arena: { started_at: src.arena.started_at, questions_total: src.arena.questions_total }, participation: src.participation });
+  }
+  if (eventType === 'arena_result') {
+    if (!src.session) return null;
+    return buildArenaResult({ ...src, arena: { ...src.arena, finished_at: src.arena.finished_at || src.session.finished_at || now }, now, ...(processedAt ? { processedAt } : {}) });
+  }
+  return null;
+}
+
+async function emitV2(pool, log, eventType, attemptId, opts) {
   const src = await loadAttemptSource(pool, attemptId);
   if (!src) return false;
-  const trigger = triggerFor(src.attempt);
-  const ev = buildLessonResult({ ...src, trigger, now, processedAt: now });
-  return insertV2(pool, log, { ev, src, eventType: 'lesson_result' });
+  const ev = buildV2For(eventType, src, opts);
+  if (!ev) return false;
+  return insertV2(pool, log, { ev, src, eventType });
 }
+export const emitLessonResult = (pool, log, attemptId, { now = new Date() } = {}) => emitV2(pool, log, 'lesson_result', attemptId, { now });
+export const emitArenaParticipation = (pool, log, attemptId) => emitV2(pool, log, 'arena_participation', attemptId, {});
+export const emitArenaResult = (pool, log, attemptId, { now = new Date() } = {}) => emitV2(pool, log, 'arena_result', attemptId, { now });
 
-export async function emitArenaParticipation(pool, log, attemptId) {
-  const src = await loadAttemptSource(pool, attemptId);
-  if (!src || !src.session || !src.participation || !src.arena?.started_at) return false;
-  const ev = buildArenaParticipation({ attempt: src.attempt, student: src.student, session: src.session, lesson: src.lesson, arena: { started_at: src.arena.started_at, questions_total: src.arena.questions_total }, participation: src.participation });
-  return insertV2(pool, log, { ev, src, eventType: 'arena_participation' });
-}
-
-export async function emitArenaResult(pool, log, attemptId, { now = new Date() } = {}) {
-  const src = await loadAttemptSource(pool, attemptId);
-  if (!src || !src.session) return false;
-  const ev = buildArenaResult({ ...src, arena: { ...src.arena, finished_at: src.arena.finished_at || src.session.finished_at || now }, now });
-  return insertV2(pool, log, { ev, src, eventType: 'arena_result' });
+/**
+ * S6: v2 hodisani manbadan JORIY kod bilan qayta yig'ish (faqat manual_review). event_id o'zgarmaydi (lr_/ap_/ar_ +
+ * attempt_id — deterministik, School API takrorni shu id bilan taniydi), `processed_at` birinchi yig'ilgandagisi saqlanadi
+ * (25 §5). Eski holat result_event_revisions'ga. dry (sukut) — hech narsa o'zgarmaydi.
+ */
+export async function rebuildV2(pool, log, eventId, { dry = true } = {}) {
+  const fail = (error, extra = {}) => ({ event_id: eventId, dry, action: 'error', error, ...extra });
+  const { rows: [row] } = await pool.query('select * from result_events where event_id = $1', [eventId]);
+  if (!row) return fail('not_found');
+  if (Number(row.schema_version) !== 2) return fail('not_v2');
+  if (row.status !== 'manual_review') return fail(`status:${row.status}`);
+  const src = await loadAttemptSource(pool, row.attempt_id);
+  if (!src) return fail('no_source');
+  const processedAt = row.payload?.result?.processed_at ? new Date(row.payload.result.processed_at) : null;
+  const ev = buildV2For(row.event_type, src, { processedAt });
+  if (!ev) return fail('no_source');
+  if (ev.event_id !== row.event_id) return fail('id_mismatch', { built_event_id: ev.event_id });
+  const problems = ev.error ? [ev.error] : validateV2(ev.payload);
+  const summary = { event_id: row.event_id, event_type: row.event_type, dry, action: problems.length ? 'error' : 'send', problems, details_dropped: ev.detailsDropped || null, old_error: row.last_error };
+  if (dry) return { ...summary, payload: ev.payload };
+  if (problems.length) return summary;
+  const client = await pool.connect();
+  try {
+    await client.query('begin');
+    const { rows: [cur] } = await client.query('select status from result_events where event_id = $1 for update', [row.event_id]);
+    if (!cur || cur.status !== 'manual_review') { await client.query('rollback'); return fail(`changed:${cur?.status ?? 'gone'}`); }
+    await client.query(
+      `insert into result_event_revisions (event_id, new_event_id, reason, old_status, old_payload, old_response, old_last_http_status, old_last_request_id, old_last_error, old_send_attempts)
+       values ($1, $1, 'rebuild:v2', $2, $3::jsonb, $4::jsonb, $5, $6, $7, $8)`,
+      [row.event_id, row.status, JSON.stringify(row.payload), JSON.stringify(row.response ?? null), row.last_http_status, row.last_request_id, row.last_error, row.send_attempts],
+    );
+    await client.query(
+      `update result_events set payload = $2::jsonb, occurred_at = $3, status = 'pending', send_attempts = 0, next_try_at = now(), last_http_status = null,
+              last_request_id = null, last_error = null, response = null, delivered_at = null, processing_status = null, processing_next_at = null,
+              processing_checked_at = null, processing_response = null, updated_at = now()
+        where event_id = $1`,
+      [row.event_id, JSON.stringify(ev.payload), ev.payload.occurred_at],
+    );
+    await client.query('commit');
+  } catch (e) {
+    await client.query('rollback').catch(() => {});
+    throw e;
+  } finally {
+    client.release();
+  }
+  log.info({ eventId: row.event_id, eventType: row.event_type }, 'v2 hodisa qayta yig\'ildi');
+  return summary;
 }
 
 /**
