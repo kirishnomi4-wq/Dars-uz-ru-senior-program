@@ -45,7 +45,9 @@ export async function loadAttemptSource(pool, attemptId) {
     pool.query('select screen_idx, screen_id, opened_at, closed_at, by_student from screen_views where attempt_id = $1 order by opened_at', [attemptId]).then((r) => r.rows),
     pool.query('select screen, total, updated_at from student_progress where attempt_id = $1', [attemptId]).then((r) => r.rows[0] || null),
     pool.query('select achievement_id, earned_at from achievement_events where attempt_id = $1 order by earned_at', [attemptId]).then((r) => r.rows),
-    pool.query('select count(*)::int as n from attempts where subject_id = $1 and lesson_id = $2 and started_at <= $3', [a.subject_id, a.lesson_id, a.started_at]).then((r) => r.rows[0].n),
+    // attempt_no: solishtirish SQL ichida (o'z qatorining started_at i) — JS Date millisekundga kesadi, mikrosekundli
+    // started_at o'zini sanamay qolardi (har doim bittaga kam, `|| 1` yashirgan; S5 testi ochdi)
+    pool.query('select count(*)::int as n from attempts x where x.subject_id = $1 and x.lesson_id = $2 and x.started_at <= (select started_at from attempts where id = $3)', [a.subject_id, a.lesson_id, attemptId]).then((r) => r.rows[0].n),
     pool.query('select first_question_id, first_question_order, first_shown_at, source from arena_participants where pin = $1 and player_id = $2', [a.pin, a.player_id]).then((r) => r.rows[0] || null),
     a.session_mode === 'live'
       ? pool.query(
@@ -65,8 +67,9 @@ export async function loadAttemptSource(pool, attemptId) {
          from arena_participants ap
          join lms_participants p2 on p2.player_id = ap.player_id and p2.role = 'student'
          join lms_sessions s2 on s2.id = p2.session_id
-        where p2.subject_id = $1 and s2.lesson_id = $2 and ap.first_shown_at <= $3`,
-      [a.subject_id, a.lesson_id, arenaPart.first_shown_at],
+        where p2.subject_id = $1 and s2.lesson_id = $2
+          and ap.first_shown_at <= (select first_shown_at from arena_participants where pin = $3 and player_id = $4)`, // attempt_no bilan bir xil sabab (ms kesilishi)
+      [a.subject_id, a.lesson_id, a.pin, a.player_id],
     );
     studentArenaNo = Math.max(1, n);
   }

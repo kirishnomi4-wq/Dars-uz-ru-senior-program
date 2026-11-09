@@ -60,8 +60,22 @@ export async function finishAttempt(c, attemptId, reason) {
  * F-1105-03 S2 (25-kontrakt §9): urinish ochilganda dars versiyasi yoziladi — `attempt` manbasi. Versiya kelmasa (eski dars
  * yuki, T dan oldin) — `null` + `unknown`; keyin taxmin bilan to'ldirilmaydi.
  */
+/** Dars yuki yuborgan versiya — urinishga yoziladigan shaklda (bo'sh → null). */
+export const normVersion = (v) => (typeof v === 'string' && v.trim() ? v.trim().slice(0, 32) : null);
+
+/**
+ * F-1105-03 S5 (25 §9, 16 §4.3 qoida 2): kelgan versiya urinishning O'Z versiyasiga mos emasmi.
+ * Versiya kelmasa (eski dars yuki) — dalil yo'q, mos deb olinadi. Urinish versiyasi null (T dan oldin ochilgan) va yangi
+ * yuk versiya yuborsa — bu boshqa fayl, mos emas.
+ */
+export const versionMismatch = (attempt, incoming) => {
+  const v = normVersion(incoming);
+  return v !== null && (attempt.lesson_version ?? null) !== v;
+};
+export const versionChangedError = () => new AppError('version_changed', 409, 'Dars yangilandi, sahifani yangilang.');
+
 export async function createAttempt(c, { subjectId, lessonId, kind, sessionId, lessonVersion = null }) {
-  const v = typeof lessonVersion === 'string' && lessonVersion.trim() ? lessonVersion.trim().slice(0, 32) : null;
+  const v = normVersion(lessonVersion);
   const { rows } = await c.query(
     `insert into attempts (subject_id, lesson_id, kind, session_id, lesson_version, version_source) values ($1, $2, $3, $4, $5, $6) returning *`,
     [subjectId, lessonId, kind, sessionId, v, v ? 'attempt' : 'unknown'],
@@ -137,6 +151,8 @@ export async function closeSoloSession(c, attempt, reason) {
  */
 export async function putProgress(c, attempt, body) {
   if (attempt.status !== 'active') throw new AppError('attempt_finished', 409, 'Bu urinish yakunlangan. Qaytadan boshlash uchun «Qaytadan boshlash» ni bosing.');
+  // S5 qoida 2: eski attempt_id bilan boshqa versiyadagi fayl yozmoqchi → javob qabul qilinmaydi (sahifa yangilanadi → join yangi urinish)
+  if (versionMismatch(attempt, body.lesson_version)) throw versionChangedError();
   const answersJson = JSON.stringify(body.answers ?? {});
   if (Buffer.byteLength(answersJson, 'utf8') > MAX_ANSWERS_BYTES) throw new AppError('payload_too_large', 413, 'Javoblar hajmi juda katta.');
 

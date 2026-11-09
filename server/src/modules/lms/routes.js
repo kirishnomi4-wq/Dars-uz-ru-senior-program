@@ -122,6 +122,7 @@ export async function lmsRoutes(app, opts = {}) {
           earned: { type: 'array', maxItems: 200, items: { type: 'string', maxLength: 64 } },
           started_at_ms: { type: 'integer', minimum: 0 },
           client_ts: { type: 'integer', minimum: 0 },
+          lesson_version: { type: 'string', maxLength: 32 }, // S5: urinish versiyasiga mos kelmasa 409 version_changed
         },
       },
     },

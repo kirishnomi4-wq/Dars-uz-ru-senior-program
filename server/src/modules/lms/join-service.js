@@ -14,7 +14,7 @@ import { AppError, notFound, conflict, forbidden } from '../../lib/errors.js';
 import { encryptText, decryptText } from '../../lib/crypto.js';
 import {
   progressPayload, attemptPayload, getProgress, activeAttempt, latestFinishedAttempt,
-  finishAttempt, createAttempt, createSoloAttempt, closeSoloSession, joinLivePlayer,
+  finishAttempt, createAttempt, createSoloAttempt, closeSoloSession, joinLivePlayer, normVersion, versionMismatch,
 } from './progress-service.js';
 
 const TOKEN_BOUND_ELSEWHERE = "Bu kirish tokeni boshqa sessiyaga bog'langan. Sahifani yangilang.";
@@ -285,6 +285,20 @@ export async function joinStudent(deps, claims, body) {
     await lockStudentLesson(c, claims.sub, lessonId);
     const { boundSessionId } = await registerToken(c, claims);
 
+    // S5 (25 §9): sahifa yangilanib YANGI versiyali fayl ochildi — tugallanmagan solo urinish version_changed bilan yopiladi
+    // (lesson_result completed:false sweepV2 da), keyin yangi urinish. Eski tab o'z versiyasi bilan kelsa — tegilmaydi (qoida 1).
+    // Jonli urinish versiyasi = mentor ochgan sessiya versiyasi; reliz jonli 0 da — bu yerda almashtirilmaydi.
+    let versionClosed = false;
+    if (normVersion(body.lesson_version)) {
+      const act = await activeAttempt(c, claims.sub, lessonId);
+      if (act && act.kind === 'solo' && versionMismatch(act, body.lesson_version)) {
+        const fin = await finishAttempt(c, act.id, 'version_changed');
+        await closeSoloSession(c, fin, 'version_changed');
+        versionClosed = true;
+        deps.log.info({ lessonId, attemptId: act.id, from: act.lesson_version, to: normVersion(body.lesson_version) }, 'lms: dars versiyasi almashdi — eski solo urinish yopildi');
+      }
+    }
+
     // 0) faol urinish — jonli bo'lsa darhol davom; solo bo'lsa avval 1-qadam (F-0910-01)
     const resumed = await resumeActive(c, deps, claims, lessonId, boundSessionId);
     if (resumed && !resumed.solo) return resumed.payload;
@@ -324,8 +338,8 @@ export async function joinStudent(deps, claims, body) {
     }
     if (resumed) return resumed.payload; // solo davom
 
-    // 2) tugagan urinish → ko'rish rejimi
-    const last = await latestFinishedAttempt(c, claims.sub, lessonId);
+    // 2) tugagan urinish → ko'rish rejimi (versiya almashib hozir yopilgan bo'lsa — emas: o'quvchi darsni davom ettiryapti)
+    const last = versionClosed ? null : await latestFinishedAttempt(c, claims.sub, lessonId);
     if (last) return reviewPayload(last, await getProgress(c, last.id));
 
     // 3) solo
