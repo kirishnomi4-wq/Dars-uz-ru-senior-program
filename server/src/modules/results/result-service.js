@@ -69,11 +69,11 @@ async function loadLiveSource(pool, sessionId, opts = {}) {
 export async function hasRewardedResult(pool, subjectId, lessonId) {
   const { rows } = await pool.query(
     `select 1 from result_events r
-      where r.lesson_id = $1 and r.mode = 'live'
+      where r.lesson_id = $1 and r.mode = 'live' and r.schema_version = 1
         and r.payload->'students' @> jsonb_build_array(jsonb_build_object('student_id', $2::bigint))
      union all
      select 1 from result_events r
-      where r.lesson_id = $1 and r.mode = 'solo'
+      where r.lesson_id = $1 and r.mode = 'solo' and r.schema_version = 1
         and (r.payload->'students'->0->>'student_id')::bigint = $2
         and (r.payload->'students'->0->>'completed')::boolean = true
      limit 1`,
@@ -106,7 +106,7 @@ export async function rewardedBy(pool, lessonId, studentIds, exceptEventId) {
     `select distinct on (sid) sid, event_id, status, delivered_at
        from (select st->>'student_id' as sid, r.event_id, r.status, r.delivered_at, r.created_at
                from result_events r, jsonb_array_elements(r.payload->'students') st
-              where r.lesson_id = $1 and r.event_id <> $2
+              where r.lesson_id = $1 and r.event_id <> $2 and r.schema_version = 1
                 and r.status in ('pending', 'retry_wait', 'delivered')
                 and st->>'completed' = 'true'
                 and st->>'student_id' = any($3::text[])) x
@@ -235,6 +235,8 @@ export async function enqueueSoloAttempt(pool, log, attemptId, opts = {}) {
  *  - live: lms_sessions mode=live, status=ended YOKI live_sessions ended (mentor «Erkin qilish», auto_replaced, stale), hodisasiz
  *  - solo: attempts finished (completed|auto_7d), hodisasiz
  */
+// F-1105-03 S4: v1 va v2 yonma-yon — v1 tekshiruvlari (sessiyada hodisa bormi, tanga-qoidasi) FAQAT schema_version = 1
+// qatorlarini ko'radi. Aks holda sweepV2 yozgan lr_ (mode 'live', session_id bor) v1 guruh-xabarini «allaqachon bor» deb to'sardi.
 export async function sweepResults(pool, log, opts = {}) {
   const out = { live: 0, solo: 0 };
   const { rows: liveRows } = await pool.query(
@@ -242,7 +244,7 @@ export async function sweepResults(pool, log, opts = {}) {
        from lms_sessions s
        join live_sessions ls on ls.pin = s.pin
       where s.mode = 'live' and (s.status = 'ended' or ls.status = 'ended')
-        and not exists (select 1 from result_events r where r.session_id = s.id and r.mode = 'live')
+        and not exists (select 1 from result_events r where r.session_id = s.id and r.mode = 'live' and r.schema_version = 1)
         and exists (select 1 from lms_participants p where p.session_id = s.id and p.role = 'student')
       order by s.updated_at asc limit 50`,
   );
@@ -257,7 +259,7 @@ export async function sweepResults(pool, log, opts = {}) {
     `select a.id from attempts a
       where a.kind = 'solo' and a.status = 'finished' and a.finish_reason in ('completed', 'auto_7d')
         and a.result_event_id is null
-        and not exists (select 1 from result_events r where r.attempt_id = a.id and r.mode = 'solo')
+        and not exists (select 1 from result_events r where r.attempt_id = a.id and r.mode = 'solo' and r.schema_version = 1)
       order by a.finished_at asc limit 50`,
   );
   for (const r of soloRows) {
@@ -288,6 +290,7 @@ export async function rebuildEvent(pool, log, eventId, opts = {}) {
   const fail = (error, extra = {}) => ({ event_id: eventId, dry, action: 'error', error, ...extra });
   const { rows: [row] } = await pool.query('select * from result_events where event_id = $1', [eventId]);
   if (!row) return fail('not_found');
+  if (Number(row.schema_version) === 2) return fail('v2_event'); // v2 hodisa v1 qoidasi bilan qayta yig'ilmaydi (S6 — alohida)
   if (row.status !== 'manual_review') return fail(`status:${row.status}`);
   const suffix = opts.suffix ?? null;
   if (suffix !== null && !REBUILD_SUFFIX_RE.test(String(suffix))) return fail('bad_suffix');

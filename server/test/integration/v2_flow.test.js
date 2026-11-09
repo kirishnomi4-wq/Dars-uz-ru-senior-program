@@ -40,8 +40,8 @@ const q = (sql, params) => t.db.query(sql, params);
 const record = (pin, p, screen, qid, picked, elapsed, tx) => rpc('record_attempt', { p_pin: pin, p_player_id: p.playerId, p_token: p.playerToken, p_screen: screen, p_question_id: qid, p_picked: picked, p_elapsed_ms: elapsed, ...(tx ? { p_texts: tx } : {}) });
 const submit = (pin, p, screen, qid, picked) => rpc('submit_answer', { p_pin: pin, p_player_id: p.playerId, p_token: p.playerToken, p_screen: screen, p_question_id: qid, p_picked: picked, p_correct: false, p_elapsed_ms: 1500 });
 const progress = (tok, attemptId, body) => t.app.inject({ method: 'PUT', url: '/api/v1/me/progress', payload: { lesson_id: LESSON, attempt_id: attemptId, screen: 5, total: 22, answers: {}, client_ts: Date.now(), ...body }, headers: { 'content-type': 'application/json', ...bearer(tok) } });
-// Marshrutlar (end_session, progress) o'zlari runOnce'ni fon'da chaqiradi; u ishlayotganda bizniki `skipped` qaytadi —
-// shuning uchun HAQIQIY ikki yurish bo'lguncha kutiladi (aks holda tekshiruv erta bo'lib qaltis yiqiladi).
+// Marshrutlar (end_session, progress) o'zlari runOnce'ni fon'da chaqiradi; worker chaqiriqlarni birlashtiradi (band bo'lsa
+// kutib, keyin yuradi) — baribir ikki to'liq yurish kutiladi: 1-si hodisani yozadi, 2-si yuboradi/kuzatadi.
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const settle = async () => { await sleep(300); let done = 0; for (let i = 0; i < 40 && done < 2; i++) { const r = await t.app.results.runOnce(); if (r?.skipped) { await sleep(100); continue; } done++; } };
 const ev = async (id) => (await q('select * from result_events where event_id = $1', [id])).rows[0];

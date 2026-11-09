@@ -142,10 +142,10 @@ export async function emitArenaResult(pool, log, attemptId, { now = new Date() }
 
 /**
  * Server tomonidan yopishlar (25 §6) va hodisalarni navbatga qo'yish. Har tick chaqiriladi (RESULT_SCHEMA_V2=on).
- * @returns {Promise<{ sessionLimit: number, arenaClosed: number, lessonResults: number, arenaParticipations: number, arenaResults: number }>}
+ * @returns {Promise<{ sessionLimit: number, liveEnded: number, arenaClosed: number, lessonResults: number, arenaParticipations: number, arenaResults: number }>}
  */
 export async function sweepV2(pool, log, { now = new Date(), limit = 100 } = {}) {
-  const out = { sessionLimit: 0, arenaClosed: 0, lessonResults: 0, arenaParticipations: 0, arenaResults: 0 };
+  const out = { sessionLimit: 0, liveEnded: 0, arenaClosed: 0, lessonResults: 0, arenaParticipations: 0, arenaResults: 0 };
 
   // 1) Jonli sessiya 2 soatlik mutlaq chegara: lms + live yopiladi, arena session_limit bilan, urinishlar live_ended
   const { rows: limited } = await pool.query(
@@ -160,6 +160,17 @@ export async function sweepV2(pool, log, { now = new Date(), limit = 100 } = {})
     await pool.query(`update attempts set status = 'finished', finish_reason = 'live_ended', finished_at = now(), updated_at = now() where session_id = $1 and kind = 'live' and status = 'active'`, [s.id]);
     out.sessionLimit++;
   }
+
+  // 1a) Yopilgan jonli sessiyaning FAOL urinishlari → finished (live_ended), finished_at = sessiya yopilgan vaqti.
+  //     Mentor «Darsni tugatish» (end_session), stale-closer, auto_replaced — hammasi lms_sessions'ni yopadi, urinishni emas;
+  //     uni LMS xizmat-ishi 15 daqiqada bir yopardi → 8002 kabi oxiriga yetmagan o'quvchining lesson_result (session_closed)
+  //     hodisasi 15 daqiqagacha kechikardi, testda esa umuman chiqmasdi (F-1105-03 S4). Endi har tick'da, 3-qadamdan oldin.
+  const { rowCount: liveEnded } = await pool.query(
+    `update attempts a set status = 'finished', finish_reason = 'live_ended', finished_at = coalesce(s.finished_at, now()), updated_at = now()
+       from lms_sessions s
+      where a.session_id = s.id and a.kind = 'live' and a.status = 'active' and s.mode = 'live' and s.status = 'ended'`,
+  );
+  out.liveEnded = liveEnded;
 
   // 2) Arena yopilishi (server): 45 daqiqa · oxirgi savol + 1 daqiqa · sessiya yopilgan
   const { rows: openArenas } = await pool.query(

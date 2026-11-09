@@ -1,7 +1,7 @@
 // Navbat-ishchi: har tick'da (5 s) sweeper + kutilayotgan hodisalarni School API'ga yuboradi.
 // Statuslar (LMS §8, §10): 201/200 → delivered (duplicate flag saqlanadi) · tarmoq/429/5xx → retry_wait (jadval retry.js) ·
 // 401/403/409/422/404 → manual_review + Telegram. Loglarda: event_id, HTTP kod, X-Request-ID — payload/token YO'Q.
-// Bitta jarayon; ustma-ust tick'lar `running` bilan to'siladi; qatorlar `for update skip locked` bilan olinadi.
+// Bitta jarayon; ustma-ust chaqiriqlar BIRLASHTIRILADI (joriy yurish tugagach bitta qo'shimcha yurish); qatorlar `for update skip locked` bilan olinadi.
 import { sweepResults, rebuildEvents } from './result-service.js';
 import { sweepV2, nextProcessingCheck, PROCESSING_REVIEW_MS, PROCESSING_WARN_MS } from './v2-service.js';
 import { nextDelayMs, isRetryable, MAX_SEND_ATTEMPTS } from './retry.js';
@@ -12,7 +12,8 @@ import { nextDelayMs, isRetryable, MAX_SEND_ATTEMPTS } from './retry.js';
  *   v2 — F-1105-03 (25-kontrakt): sweepV2 (hodisalar + server yopishlari) va qo'llash kuzatuvi (processing) yoqiladi.
  */
 export function createResultWorker({ pool, log, schoolApi, notify, batch = 10, details = false, liveRepeat = 'skip', v2 = false }) {
-  let running = false;
+  let inflight = null; // joriy yurish (Promise) yoki null
+  let rerun = null;    // yurish paytida kelgan chaqiriqlar uchun bitta umumiy keyingi yurish
   const sweepOpts = { details: !!details, liveRepeat };
 
   async function claimDue(client) {
@@ -145,31 +146,37 @@ export function createResultWorker({ pool, log, schoolApi, notify, batch = 10, d
     return markManual(client, ev, res, res.body?.message || `HTTP ${res.status}`);
   }
 
-  /** Bitta tick: sweeper + due hodisalar. Test uchun ham chaqiriladi. */
-  async function runOnce() {
-    if (running) return { skipped: true };
-    running = true;
-    const out = { swept: null, sent: 0, v2: null, tracked: 0 };
-    try {
-      try { out.swept = await sweepResults(pool, log, sweepOpts); } catch (e) { log.error({ err: e }, 'sweeper xato'); }
-      if (v2) { try { out.v2 = await sweepV2(pool, log); } catch (e) { log.error({ err: e }, 'v2 sweeper xato'); } }
-      const client = await pool.connect();
-      try {
-        await client.query('begin');
-        const due = await claimDue(client);
-        for (const ev of due) { await sendOne(client, ev); out.sent++; }
-        if (v2) { try { out.tracked = await trackProcessing(client); } catch (e) { log.error({ err: e }, 'v2 kuzatuv xato'); } }
-        await client.query('commit');
-      } catch (e) {
-        await client.query('rollback').catch(() => {});
-        log.error({ err: e }, 'natija-ishchi xato');
-      } finally {
-        client.release();
-      }
-      return out;
-    } finally {
-      running = false;
+  /** Bitta tick: sweeper + due hodisalar. Test va admin ham chaqiradi.
+   *  Yurish ketayotganda kelgan chaqiriq O'TKAZIB YUBORILMAYDI: joriy yurish tugagach bitta qo'shimcha yurish bo'ladi, shu
+   *  paytda kelgan hamma kutuvchilar o'sha bittasini oladi (navbat o'smaydi). Ilgari `{ skipped: true }` qaytarardi — marshrut
+   *  150–200 ms dan keyin fon'da boshlagan yurish bilan to'qnashganda test/admin chaqirig'i hech narsa qilmasdi (F-1105-03 S4). */
+  function runOnce() {
+    if (inflight) {
+      if (!rerun) rerun = inflight.catch(() => {}).then(() => { rerun = null; return runOnce(); });
+      return rerun;
     }
+    inflight = tick().finally(() => { inflight = null; });
+    return inflight;
+  }
+
+  async function tick() {
+    const out = { swept: null, sent: 0, v2: null, tracked: 0 };
+    try { out.swept = await sweepResults(pool, log, sweepOpts); } catch (e) { log.error({ err: e }, 'sweeper xato'); }
+    if (v2) { try { out.v2 = await sweepV2(pool, log); } catch (e) { log.error({ err: e }, 'v2 sweeper xato'); } }
+    const client = await pool.connect();
+    try {
+      await client.query('begin');
+      const due = await claimDue(client);
+      for (const ev of due) { await sendOne(client, ev); out.sent++; }
+      if (v2) { try { out.tracked = await trackProcessing(client); } catch (e) { log.error({ err: e }, 'v2 kuzatuv xato'); } }
+      await client.query('commit');
+    } catch (e) {
+      await client.query('rollback').catch(() => {});
+      log.error({ err: e }, 'natija-ishchi xato');
+    } finally {
+      client.release();
+    }
+    return out;
   }
 
   let timer = null;
