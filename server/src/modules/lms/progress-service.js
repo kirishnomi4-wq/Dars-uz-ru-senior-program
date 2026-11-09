@@ -166,7 +166,7 @@ export async function putProgress(c, attempt, body) {
   const reachedEnd = Number.isInteger(body.total) && body.total > 0 && body.screen >= body.total - 1;
   let a = attempt;
   if (reachedEnd && !attempt.reached_end) {
-    ({ rows: [a] } = await c.query('update attempts set reached_end = true, updated_at = now() where id = $1 returning *', [attempt.id]));
+    ({ rows: [a] } = await c.query('update attempts set reached_end = true, reached_end_at = coalesce(reached_end_at, now()), updated_at = now() where id = $1 returning *', [attempt.id])); // 0013: lahza (v2 completed_at)
   }
   if (reachedEnd && attempt.kind === 'solo') {
     a = await finishAttempt(c, attempt.id, 'completed');
