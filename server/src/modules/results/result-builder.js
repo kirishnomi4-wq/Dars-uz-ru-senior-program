@@ -31,15 +31,37 @@ const isArenaQ = (id) => /^quiz-\d+$/.test(id);
 // F-0916-03 (2026-09-16): ISHTIROK-KALIT — `correct_idx = -1` VA id `s<raqam>` qolipida EMAS (`practice`, `kadrlar`, `joy`, `koding`).
 // Darsda bular amaliy ekranlar («Bajardim» → ishtirok, PRACTICE_BASE zonasi, screen_idx ≥ 500) — ball-ekran emas. Ilgari
 // lessonQuestions ularni ham sanab, total_questions'ni oshirib yuborardi (PmLesson10: 8, ekranda 4; 38/70 CRM-darsda).
-// `s16: -1` kabi yakuniy amaliy BALL-ekranlar s-qolipda va test-zonada yuboriladi — ular hisobda QOLADI (ekran bilan bir xil).
 // Dars tomonidagi darvoza: scripts/lint-keys.mjs (s-kalitlar to'plami == scored ekranlar to'plami).
-export const isParticipationKey = (k) => !!k && Number(k.correct_idx) === -1 && !/^s\d+[a-z]*$/i.test(String(k.question_id));
+// F-1109-03a (2026-11-09, Abdulloh 18-javobi §2): `s16: -1` kabi yakuniy AMALIYOT ekranlari ham testdan TASHQARI — har qanday
+// `correct_idx = -1` kalit `tests` hisobiga (answered / correct_answers / total_questions) va questions[] ga kirmaydi.
+// Sabab: School API `answered = questions[]` tengligini tekshiradi, amaliyot ekranida esa savol-matni yo'q (30321 · css-01:
+// 5-javob s15 amaliyot edi); tekshiruvsiz «Bajardim» tekshirilgan to'g'ri javob bilan bir xil ma'no bermaydi (`correct:null`
+// kelishuvi, 07-hujjat). Amaliyot natijasi v2 kontraktida alohida blok bo'ladi. Ilgari (F-0916-03) s-qolipli -1 hisobda qolardi.
+const SN_RE = /^s\d+[a-z]*$/i;
+export const isPracticeKey = (k) => !!k && Number(k.correct_idx) === -1;
+export const isParticipationKey = (k) => isPracticeKey(k) && !SN_RE.test(String(k.question_id));
 
-/** Dars-testlari to'plami (arena va ishtirok-kalitlar tashqari) — tanga-hisob va total_questions shu bo'yicha */
+/** Dars-testlari to'plami (arena va -1 amaliyot/ishtirok kalitlari tashqari) — tanga-hisob va total_questions shu bo'yicha */
 export function lessonQuestions(keys) {
   const ids = new Set();
-  for (const k of keys || []) if (k && typeof k.question_id === 'string' && !isArenaQ(k.question_id) && !isParticipationKey(k)) ids.add(k.question_id);
+  for (const k of keys || []) if (k && typeof k.question_id === 'string' && !isArenaQ(k.question_id) && !isPracticeKey(k)) ids.add(k.question_id);
   return ids;
+}
+
+/**
+ * F-1109-03c: QAYTA YIG'ISHDA total_questions — saqlangan eski payload'dagi total (hodisa yopilgan paytdagi fakt) minus shu
+ * sessiyada/urinishda BAJARILGAN s-qolipli amaliyot (-1) kalitlari (ular eski hisobda bor edi, F-1109-03a dan keyin yo'q).
+ * Hozirgi quiz_keys'dan sanash yaramaydi: kalitlar versiyasiz upsert bo'ladi, dars o'zgarsa eski kalitlar qolib total oshadi
+ * (prod 09.11: html-practice-portfolio-v2 — 16.10 da 6 test → 1 test, qayta yig'ishda total 6→7, 20 o'quvchida nishon tushdi).
+ * Bajarilmagan amaliyot ayirilmaydi (eski hisobda ham javobsiz turgan — hech kimga yangi huquq bermaydi).
+ * @returns {number|null} null — eski total yo'q (oddiy hisob)
+ */
+export function rebuildTotal(oldTotal, keys, answerLists) {
+  if (!Number.isInteger(oldTotal) || oldTotal < 1) return null;
+  const practice = new Set((keys || []).filter((k) => isPracticeKey(k) && SN_RE.test(String(k.question_id))).map((k) => k.question_id));
+  const used = new Set();
+  for (const list of answerLists || []) for (const a of list || []) if (a && practice.has(a.question_id)) used.add(a.question_id);
+  return Math.max(1, oldTotal - used.size);
 }
 /** Arena savollari (quiz-N) — faqat nishon uchun */
 export function arenaQuestions(keys) {
@@ -169,14 +191,16 @@ export function buildLivePayloads(input) {
     .map((p) => ({ subjectId: Number(p.subject_id), p, row: byPlayer.get(p.player_id) || { stats: studentStats([], lessonQ), arena: studentStats([], arenaQ) } }))
     .sort((a, b) => a.subjectId - b.subjectId);
   if (!rows.length) return [];
-  const total = Math.max(1, lessonQ.size, ...rows.map((r) => r.row.stats.answered));
+  const total = Math.max(1, input.totalOverride ?? lessonQ.size, ...rows.map((r) => r.row.stats.answered)); // totalOverride — F-1109-03c (qayta yig'ish)
   const groupMedianAvg = median(allRows.map((r) => r.stats.avgElapsed));
 
   const details = input.details || null; // { attemptsByPlayer, achievementsByPlayer, catalog } — RESULT_DETAILS=a
   const students = rows.map(({ subjectId, p, row }) => {
     const { stats } = row;
     const rank = ranks.get(p.player_id) ?? null;
-    const completed = !!p.reached_end || (stats.answered >= total && total > 0);
+    // F-1109-03b (Abdulloh 18-javobi §4): kelishilgan mezon — OXIRGI o'quv ekraniga yetganlik (attempts.reached_end, progress'dan).
+    // «Hamma savolga javob berdi» zaxirasi olib tashlandi (prod 30321 · css-01: reached_end=false, lekin qayta yig'ishda completed=true chiqqan edi).
+    const completed = !!p.reached_end;
     const badges = badgesFor({ stats, total, rank, completed, groupMedianAvg, arenaRank: arenaRanks.get(p.player_id) ?? null });
     const end = Math.max(stats.lastAnsweredAt, row.arena.lastAnsweredAt, 0) || finishedAt.getTime();
     const duration = clamp(Math.round((Math.min(end, finishedAt.getTime()) - new Date(p.joined_at).getTime()) / 1000), 0, 86400);
@@ -231,7 +255,7 @@ export function buildSoloPayload(input) {
   const answers = rescoreAnswers(input.answers, keys); // F-1106-01
   const lessonQ = lessonQuestions(keys);
   const stats = studentStats(answers || [], lessonQ);
-  const total = Math.max(1, lessonQ.size, stats.answered);
+  const total = Math.max(1, input.totalOverride ?? lessonQ.size, stats.answered); // totalOverride — F-1109-03c (qayta yig'ish)
   const startedAt = new Date(attempt.started_at);
   const finishedAt = new Date(attempt.finished_at || Date.now());
   const completed = !!attempt.reached_end;
@@ -338,8 +362,8 @@ const dropUndefined = (o) => { for (const k of Object.keys(o)) if (o[k] === unde
  * @returns {Map<string, number>}
  */
 export function questionOrder(keys) {
-  // F-0916-03: ishtirok-kalitlar tartibga kirmaydi (aks holda arena `order` siljiydi: quiz-0 → 9, 5 emas)
-  const ids = [...new Set((keys || []).filter((k) => k && typeof k.question_id === 'string' && k.question_id && !isParticipationKey(k)).map((k) => k.question_id))];
+  // F-0916-03: ishtirok-kalitlar tartibga kirmaydi (aks holda arena `order` siljiydi: quiz-0 → 9, 5 emas); F-1109-03a: har qanday -1 kalit
+  const ids = [...new Set((keys || []).filter((k) => k && typeof k.question_id === 'string' && k.question_id && !isPracticeKey(k)).map((k) => k.question_id))];
   const cmp = (a, b) => {
     const na = qNum(a), nb = qNum(b);
     if (na && nb) return (na[0] - nb[0]) || na[1].localeCompare(nb[1]);

@@ -40,10 +40,16 @@ async function runSession(msub, plan) {
   n++;
   const m = (await join(await mintToken({ role: 'mentor', sub: msub, gid: 871, jti: `rp-m-${n}` }), { lesson_id: LESSON })).json();
   for (const [sub, how] of Object.entries(plan)) {
-    const s = (await join(await mintToken({ role: 'student', sub: Number(sub), name: `O${sub}`, jti: `rp-s-${n}-${sub}` }), { lesson_id: LESSON })).json();
+    const stok = await mintToken({ role: 'student', sub: Number(sub), name: `O${sub}`, jti: `rp-s-${n}-${sub}` });
+    const s = (await join(stok, { lesson_id: LESSON })).json();
     assert.equal(s.mode, 'student', `o'quvchi ${sub} jonli darsga kirdi`);
     await answer(m.pin, s, 4, 's4', 1);
-    if (how === 'full') await answer(m.pin, s, 9, 's9', 2);
+    if (how === 'full') {
+      await answer(m.pin, s, 9, 's9', 2);
+      // F-1109-03b: completed = oxirgi ekranga yetganlik (progress → attempts.reached_end), javob soni emas
+      const pr = await t.app.inject({ method: 'PUT', url: '/api/v1/me/progress', payload: { lesson_id: LESSON, attempt_id: s.attempt.id, screen: 21, total: 22, answers: {}, client_ts: 1 }, headers: { 'content-type': 'application/json', authorization: `Bearer ${stok}` } });
+      assert.equal(pr.json().reached_end, true, pr.body);
+    }
   }
   assert.equal((await rpc('end_session', { p_pin: m.pin, p_token: m.token })).statusCode, 204);
   await new Promise((res) => setTimeout(res, 300));

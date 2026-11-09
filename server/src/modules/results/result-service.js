@@ -1,7 +1,7 @@
 // Natija-xizmat: manbadan (sessiya / urinish) payload yig'ib result_events'ga «pending» yozadi.
 // Sweeper: yopilgan-lekin-hodisasiz jonli sessiyalar va tugagan solo urinishlar → navbat (idempotent: UNIQUE indekslar).
 // Kim chaqiradi: worker tick (har 5 s) va end_session RPC'dan keyin darhol.
-import { buildLivePayloads, buildSoloPayload, finalizePayload } from './result-builder.js';
+import { buildLivePayloads, buildSoloPayload, finalizePayload, rebuildTotal } from './result-builder.js';
 
 /** Detallar uchun qo'shimcha manba (RESULT_DETAILS=a): urinish-tarixi, yutuq-vaqtlari, katalogdagi yutuq-ta'riflari */
 async function loadDetailsSource(pool, { pin, playerId = null, sessionId = null, attemptId = null, lessonId }) {
@@ -91,18 +91,29 @@ export async function hasRewardedResult(pool, subjectId, lessonId) {
  * @returns {Promise<Set<string>>} student_id lar (satr ko'rinishida)
  */
 export async function rewardedStudents(pool, lessonId, studentIds, exceptEventId) {
+  return new Set((await rewardedBy(pool, lessonId, studentIds, exceptEventId)).keys());
+}
+
+/**
+ * F-1109-03d (Abdulloh 18-javobi §8.1): o'sha qoida, lekin QAYSI hodisa o'rnini bosgani bilan — hisobotda «yetkazilgan yoki
+ * oldinroq yuboriladi» emas, aniq `event_id` kerak. Bir o'quvchiga bir nechta bo'lsa: avval `delivered`, keyin eng eskisi.
+ * @returns {Promise<Map<string, { event_id: string, status: string, delivered_at: string|null }>>} student_id (satr) → hodisa
+ */
+export async function rewardedBy(pool, lessonId, studentIds, exceptEventId) {
   const ids = [...new Set((studentIds || []).map(String))];
-  if (!ids.length) return new Set();
+  if (!ids.length) return new Map();
   const { rows } = await pool.query(
-    `select distinct st->>'student_id' as sid
-       from result_events r, jsonb_array_elements(r.payload->'students') st
-      where r.lesson_id = $1 and r.event_id <> $2
-        and r.status in ('pending', 'retry_wait', 'delivered')
-        and st->>'completed' = 'true'
-        and st->>'student_id' = any($3::text[])`,
+    `select distinct on (sid) sid, event_id, status, delivered_at
+       from (select st->>'student_id' as sid, r.event_id, r.status, r.delivered_at, r.created_at
+               from result_events r, jsonb_array_elements(r.payload->'students') st
+              where r.lesson_id = $1 and r.event_id <> $2
+                and r.status in ('pending', 'retry_wait', 'delivered')
+                and st->>'completed' = 'true'
+                and st->>'student_id' = any($3::text[])) x
+      order by sid, (status = 'delivered') desc, created_at asc`,
     [lessonId, exceptEventId, ids],
   );
-  return new Set(rows.map((r) => r.sid));
+  return new Map(rows.map((r) => [r.sid, { event_id: r.event_id, status: r.status, delivered_at: r.delivered_at ? new Date(r.delivered_at).toISOString() : null }]));
 }
 
 async function insertEvent(pool, { event_id, mode, session_id = null, attempt_id = null, lesson_id, payload }) {
@@ -188,7 +199,8 @@ async function buildSoloFromAttempt(pool, a, opts = {}) {
     [a.pin, a.player_id],
   );
   const details = opts.details ? await loadDetailsSource(pool, { pin: a.pin, playerId: a.player_id, attemptId: a.id, lessonId: a.lesson_id }) : null;
-  return buildSoloPayload({ attempt: a, subjectId: Number(a.subject_id), lessonId: a.lesson_id, lessonTitle: a.title_uz || a.lesson_id, keys, answers, details });
+  const totalOverride = rebuildTotal(opts.oldTotal ?? null, keys, [answers]); // F-1109-03c: faqat qayta yig'ishda (oldTotal berilsa)
+  return buildSoloPayload({ attempt: a, subjectId: Number(a.subject_id), lessonId: a.lesson_id, lessonTitle: a.title_uz || a.lesson_id, keys, answers, details, ...(totalOverride ? { totalOverride } : {}) });
 }
 
 /** Solo urinish uchun hodisa (completed yoki auto_7d). restarted — yuborilmaydi. */
@@ -266,9 +278,9 @@ export const REBUILD_SUFFIX_RE = /^r[1-9][0-9]?$/;
 const baseEventId = (id) => String(id).replace(/_r[1-9][0-9]?$/, '');
 
 /**
- * @param {{ dry?: boolean, suffix?: string|null, details?: boolean, planned?: Set<string>|null }} opts
+ * @param {{ dry?: boolean, suffix?: string|null, details?: boolean, planned?: Map<string, string>|null }} opts
  *   suffix — yangi event_id uchun (`r1` → `<asl>_r1`); berilmasa id o'zgarmaydi.
- *   planned — dry-to'plamda oldingi hodisalar «yuboriladi» deb belgilagan `lesson:student` lar (bir o'quvchi — bir tanga).
+ *   planned — dry-to'plamda oldingi hodisalar «yuboriladi» deb belgilagan `lesson:student` → event_id (bir o'quvchi — bir tanga).
  * @returns {Promise<object>} xulosa (dry'da `payload` ham)
  */
 export async function rebuildEvent(pool, log, eventId, opts = {}) {
@@ -287,15 +299,18 @@ export async function rebuildEvent(pool, log, eventId, opts = {}) {
     if (rowCount) return fail('new_id_exists', { new_event_id: newId });
   }
 
+  // F-1109-03c: total — hodisa yopilgan paytdagi fakt (saqlangan payload), hozirgi quiz_keys emas (eski kalitlar qolib ketadi)
+  const oldTotal = Number.isInteger(row.payload?.total_questions) ? row.payload.total_questions : null;
   let ev = null;
   if (row.mode === 'live') {
     const src = await loadLiveSource(pool, row.session_id, { details: !!opts.details });
     if (!src) return fail('no_source');
-    ev = buildLivePayloads(src).find((e) => e.event_id === base) || null;
+    const totalOverride = rebuildTotal(oldTotal, src.keys, [...src.answersByPlayer.values()]);
+    ev = buildLivePayloads(totalOverride ? { ...src, totalOverride } : src).find((e) => e.event_id === base) || null;
   } else {
     const a = await loadSoloAttempt(pool, row.attempt_id);
     if (!a) return fail('no_source');
-    ev = await buildSoloFromAttempt(pool, a, { details: !!opts.details });
+    ev = await buildSoloFromAttempt(pool, a, { details: !!opts.details, oldTotal });
     if (ev.event_id !== base) ev = null;
   }
   if (!ev) return fail('id_mismatch');
@@ -303,8 +318,11 @@ export async function rebuildEvent(pool, log, eventId, opts = {}) {
   // Tanga-qoidasi: shu dars bo'yicha boshqa hodisada TUGALLANGAN natijasi yuborilgan/yuborilayotgan o'quvchi chiqadi
   const built = { ...ev.payload, event_id: newId };
   const key = (sid) => `${row.lesson_id}:${sid}`;
-  const rewarded = await rewardedStudents(pool, row.lesson_id, built.students.map((s) => s.student_id), row.event_id);
-  for (const s of built.students) if (opts.planned?.has(key(s.student_id))) rewarded.add(String(s.student_id));
+  const rewarded = await rewardedBy(pool, row.lesson_id, built.students.map((s) => s.student_id), row.event_id);
+  for (const s of built.students) {
+    const sid = String(s.student_id); const plannedId = opts.planned?.get(key(sid));
+    if (plannedId && !rewarded.has(sid)) rewarded.set(sid, { event_id: plannedId, status: 'planned', delivered_at: null }); // shu to'plamda oldinroq
+  }
   const kept = built.students.filter((s) => !rewarded.has(String(s.student_id)));
   const excluded = built.students.filter((s) => rewarded.has(String(s.student_id))).map((s) => s.student_id);
 
@@ -317,14 +335,16 @@ export async function rebuildEvent(pool, log, eventId, opts = {}) {
     detailsDropped = fin.detailsDropped;
   }
   const action = kept.length ? 'send' : 'skip';
-  if (opts.planned && kept.length) for (const s of payload.students) if (s.completed) opts.planned.add(key(s.student_id));
+  if (opts.planned && kept.length) for (const s of payload.students) if (s.completed) opts.planned.set(key(s.student_id), newId);
 
   const oldBy = new Map((row.payload?.students || []).map((s) => [String(s.student_id), s]));
   const newIds = new Set(built.students.map((s) => String(s.student_id)));
   const summary = {
     event_id: row.event_id, new_event_id: newId, mode: row.mode, lesson_id: row.lesson_id, dry, action,
     students_before: oldBy.size, students_after: action === 'send' ? payload.students.length : 0,
+    total_before: oldTotal, total_after: built.total_questions, // F-1109-03c
     excluded,
+    excluded_by: excluded.map((sid) => ({ student_id: sid, ...rewarded.get(String(sid)) })), // F-1109-03d: o'rnini bosgan hodisa
     not_in_source: [...oldBy.keys()].filter((sid) => !newIds.has(sid)).map(Number),
     correct_changes: (action === 'send' ? payload.students : [])
       .filter((s) => oldBy.has(String(s.student_id)) && oldBy.get(String(s.student_id)).correct_answers !== s.correct_answers)
@@ -365,7 +385,7 @@ export async function rebuildEvents(pool, log, eventIds, opts = {}) {
   const ids = [...new Set(eventIds || [])];
   const { rows } = await pool.query('select event_id from result_events where event_id = any($1::text[]) order by created_at asc, event_id asc', [ids]);
   const ordered = [...rows.map((r) => r.event_id), ...ids.filter((id) => !rows.some((r) => r.event_id === id))];
-  const planned = opts.dry !== false ? new Set() : null;
+  const planned = opts.dry !== false ? new Map() : null; // F-1109-03d: `lesson:student` → shu to'plamda uni «yuboradi» deb belgilagan event_id
   const results = [];
   for (const id of ordered) results.push(await rebuildEvent(pool, log, id, { ...opts, planned }));
   return results;

@@ -4,7 +4,7 @@ import {
   buildLivePayloads, buildSoloPayload, validatePayload, assignRanks, badgesFor, studentStats,
   lessonQuestions, arenaQuestions, liveEventId, soloEventId,
   questionOrder, buildStudentDetails, validateStudentDetails, finalizePayload, stripDetails, hasDetails, payloadBytes, DETAILS_LIMITS, isCompleteQuestion,
-  rescoreAnswers, keyCorrect,
+  rescoreAnswers, keyCorrect, rebuildTotal, isPracticeKey,
 } from '../../src/modules/results/result-builder.js';
 import { nextDelayMs, isRetryable, MAX_SEND_ATTEMPTS } from '../../src/modules/results/retry.js';
 
@@ -59,12 +59,12 @@ const PM10_KEYS = [
   { question_id: 'kadrlar', correct_idx: -1 }, { question_id: 'practice', correct_idx: -1 }, { question_id: 'joy', correct_idx: -1 }, { question_id: 'koding', correct_idx: -1 },
   { question_id: 'quiz-0', correct_idx: 2 }, { question_id: 'quiz-1', correct_idx: 0 },
 ];
-test('F-0916-03: ishtirok-kalitlar (-1, s-qolipsiz) dars-savoli emas — total 4 (8 emas), arena order 5, s16:-1 qoladi', () => {
+test('F-0916-03: ishtirok-kalitlar (-1, s-qolipsiz) dars-savoli emas — total 4 (8 emas), arena order 5; F-1109-03a: s16:-1 ham chiqadi', () => {
   assert.deepEqual([...lessonQuestions(PM10_KEYS)], ['s3', 's5', 's7', 's11']);
   assert.deepEqual([...arenaQuestions(PM10_KEYS)], ['quiz-0', 'quiz-1']);
   assert.deepEqual([...questionOrder(PM10_KEYS).entries()], [['s3', 1], ['s5', 2], ['s7', 3], ['s11', 4], ['quiz-0', 5], ['quiz-1', 6]]);
-  // yakuniy amaliy ball-ekran (ReactApiPost s16: -1) — s-qolipda → hisobda qoladi
-  assert.deepEqual([...lessonQuestions([{ question_id: 's4', correct_idx: 1 }, { question_id: 's16', correct_idx: -1 }, { question_id: 'practice', correct_idx: -1 }])], ['s4', 's16']);
+  // yakuniy amaliyot ekrani (ReactApiPost s16: -1) — F-1109-03a dan beri testdan TASHQARI (avval s-qolipda qolardi)
+  assert.deepEqual([...lessonQuestions([{ question_id: 's4', correct_idx: 1 }, { question_id: 's16', correct_idx: -1 }, { question_id: 'practice', correct_idx: -1 }])], ['s4']);
   // correct_idx yo'q (eski kalit) → ishtirok emas
   assert.deepEqual([...lessonQuestions([{ question_id: 'practice' }, { question_id: 's4' }])], ['practice', 's4']);
   // solo payload: total_questions = 4, ishtirok-javob (screen_idx ≥ 500) sanalmaydi
@@ -509,4 +509,46 @@ test('F-1106-01 validateStudentDetails: School API 422 qoidalari bizda ushlanadi
   assert.ok(validateStudentDetails({ ...base, questions: [q({ attempts: [A({ answer: 'Boshqa matn' })] })] }).some((e) => e.startsWith('q answer≠option')));
   // correct_option yo'q (kalit yo'q) — correct tekshirilmaydi
   assert.deepEqual(validateStudentDetails({ ...base, questions: [q({ correct_option: undefined })] }), []);
+});
+
+// F-1109-03 (2026-11-09, Abdulloh 18-javobi): a) -1 amaliyot kaliti testdan tashqari · b) jonli completed = reached_end · c) qayta yig'ishda total tarixiy
+test('F-1109-03a: s-qolipli -1 (yakuniy amaliyot) ham answered/correct/total/questions[] dan tashqari', () => {
+  const k = [{ question_id: 's4', correct_idx: 1 }, { question_id: 's9', correct_idx: 2 }, { question_id: 's15', correct_idx: -1 }, { question_id: 'quiz-0', correct_idx: 0 }];
+  assert.deepEqual([...lessonQuestions(k)], ['s4', 's9']);
+  assert.deepEqual([...questionOrder(k).entries()], [['s4', 1], ['s9', 2], ['quiz-0', 3]]);
+  assert.ok(isPracticeKey({ question_id: 's15', correct_idx: -1 }) && isPracticeKey({ question_id: 'practice', correct_idx: -1 }) && !isPracticeKey({ question_id: 's4', correct_idx: 0 }));
+  // prod 30321 · css-01-v17: testlar + s15 amaliyot (correct:true) → s15 hisobga kirmaydi
+  const answers = [ans('p', 's4', 4, true, 1000, 1), ans('p', 's9', 9, false, 1000, 2), ans('p', 's15', 15, true, 1000, 3)];
+  const st = studentStats(answers, lessonQuestions(k));
+  assert.deepEqual([st.answered, st.correct], [2, 1]);
+  const solo = buildSoloPayload({ attempt: { started_at: T0, finished_at: min(10), reached_end: true }, subjectId: 30321, lessonId: 'css-01-v17', lessonTitle: 'CSS', keys: k, answers });
+  assert.deepEqual([solo.payload.total_questions, solo.payload.students[0].answered, solo.payload.students[0].correct_answers], [2, 2, 1]);
+});
+
+test('F-1109-03b: jonli completed FAQAT reached_end — hamma savolga javob bergan, lekin oxiriga yetmagan → false', () => {
+  const inp = liveInput();
+  inp.participants = inp.participants.map((p) => (p.subject_id === 34174 ? { ...p, reached_end: false } : p)); // pA: 3/3 javob
+  const [ev] = buildLivePayloads(inp);
+  const a = ev.payload.students.find((s) => s.student_id === 34174);
+  assert.deepEqual([a.answered, a.completed, a.badges.includes('graduate')], [3, false, false]);
+  const b = ev.payload.students.find((s) => s.student_id === 34175);
+  assert.deepEqual([b.completed, b.badges.includes('graduate')], [true, true]);
+});
+
+test('F-1109-03c: rebuildTotal — eski total minus bajarilgan s-qolipli amaliyot; bajarilmagani ayirilmaydi; eski total yo\'q → null', () => {
+  const k = [{ question_id: 's4', correct_idx: 1 }, { question_id: 's15', correct_idx: -1 }, { question_id: 's16', correct_idx: -1 }, { question_id: 'practice', correct_idx: -1 }];
+  const done = [[{ question_id: 's4' }, { question_id: 's15' }], [{ question_id: 'practice' }]];
+  assert.equal(rebuildTotal(5, k, done), 4); // s15 bajarilgan → ayiriladi; s16 bajarilmagan, `practice` s-qolipsiz (eski hisobda ham yo'q edi)
+  assert.equal(rebuildTotal(6, k, [[]]), 6);
+  assert.equal(rebuildTotal(1, k, done), 1); // 1 dan pastga tushmaydi
+  assert.equal(rebuildTotal(null, k, done), null);
+  assert.equal(rebuildTotal(0, k, done), null);
+  // builder: totalOverride (html-practice-portfolio-v2 holati — hozirgi kalitlar 7, eski total 6)
+  const inp = liveInput(); inp.totalOverride = 6;
+  const [ev] = buildLivePayloads(inp);
+  assert.equal(ev.payload.total_questions, 6);
+  const a = ev.payload.students.find((s) => s.student_id === 34174);
+  assert.ok(!a.badges.includes('all_correct'), '3/6 — all_correct yo\'q');
+  const solo = buildSoloPayload({ attempt: { started_at: T0, finished_at: min(10), reached_end: true }, subjectId: 1, lessonId: 'l', lessonTitle: 'L', keys, answers: [], totalOverride: 4 });
+  assert.equal(solo.payload.total_questions, 4);
 });
