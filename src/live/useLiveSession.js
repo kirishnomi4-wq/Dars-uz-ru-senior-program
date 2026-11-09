@@ -18,6 +18,7 @@ import {
 import { setProgressChannel } from './progressSync.js';
 import { BUILD_LESSON_VERSION } from './lessonVersion.js';
 import { setDarsApi } from './resultSchema.js';
+import { PRACTICE_CHECKED } from './practiceMeta.js';
 import { notePreviewProps } from './previewMode.js';
 
 // Ekranlar shu kontekst orqali «qulf»ni va live obyektini oladi: { locked, live }
@@ -205,6 +206,7 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
 
   // O'quvchi javobini serverga yozish — birinchi javob qotadi (server unique). Jonli VA solo rejimda.
   // Tarmoq uzilsa 3 martagacha qayta uriniladi (javob yo'qolmasin).
+  const practiceOffRef = useRef(false); // L3: eski server record_practice'ni bilmasa — to'xtaydi
   const submitAnswer = useCallback((screenIdx, questionId, picked, correct, elapsedMs) => {
     // Arena (quiz-N) javobi — onFinished detallariga (2026-09-10). F-1023-01: jonli VA solo (uyda, mentorsiz) — birinchi o'yin hisob;
     // solo'da serverga YOZILMAYDI (yolg'iz o'quvchi arena_top_1 nishoni/tanga olib qolmasin), faqat natija-JSON (`codestrike`).
@@ -219,6 +221,20 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
     };
     const attempt = (n) => { liveRpc('submit_answer', body).catch(() => { if (n < 3) setTimeout(() => attempt(n + 1), 3000 * (n + 1)); }); };
     attempt(0);
+    // L3 (F-1109-01 B, 25 §5 practice): amaliyot ekrani — ball bilan birga `record_practice` (faqat LMS urinishi; bizning baza).
+    //   practice-N (LMS kompilyator praktikasi tugadi) va INLINE_KEYS -1 («Bajardim») → checked=false, correct=null;
+    //   practiceMeta.js dagi kalitli yakuniy ekran → checked=true, correct. Matn (≤300) markaziy olinmaydi — dars bermaydi.
+    if (!lmsTokenRef.current || practiceOffRef.current || isArena) return;
+    const qid = String(questionId || '');
+    const pm = /^practice-(\d+)$/.exec(qid);
+    const key = keyRef.current && Object.prototype.hasOwnProperty.call(keyRef.current, qid) ? keyRef.current[qid] : undefined;
+    const kind = pm ? 'done' : key === -1 ? 'done' : (PRACTICE_CHECKED[lessonId] || []).includes(qid) ? 'checked' : null;
+    if (!kind) return;
+    const scr = pm ? Number(pm[1]) : screenIdx;
+    if (!Number.isInteger(scr) || scr < 0 || scr > 9999) return;
+    liveRpc('record_practice', { p_pin: pin, p_player_id: playerRef.current.id, p_token: playerRef.current.token, p_screen: scr, p_screen_id: qid.slice(0, 64),
+      p_checked: kind === 'checked', p_correct: kind === 'checked' ? !!correct : null })
+      .catch((e) => { if (e && (e.status === 404 || e.status === 400)) practiceOffRef.current = true; });
   }, [mode, pin, lessonId]);
 
   // BUG-01 v2: arena o'yini chegarasi (dars QuizArena'si chaqiradi). Faqat natija yoziladigan rejimlarda (student / solo).

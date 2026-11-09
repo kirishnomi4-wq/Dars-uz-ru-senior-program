@@ -104,6 +104,23 @@ if (YOZ) {
     }
   }
   writeFileSync('QUIZ_LEARN.csv', '\ufeff' + [qcols.join(','), ...qrows.map((r) => qcols.map((c) => csvCell(r[c])).join(','))].join('\n') + '\n');
+  // L3 (F-1109-01 B): amaliyot ekranlari xaritasi — src/live/practiceMeta.js (markaziy) + AMALIYOT_ROYXATI.csv (Shahzodaga 2 ro'yxat)
+  //   tekshiruvsiz — INLINE_KEYS da -1 («Bajardim», correct null) · tekshiriladigan — kalitli, lekin variant-matnsiz yakuniy ekran
+  //   (savol-matnlari brauzerda matn ololmagan: dars recordAttempt chaqirmaydi, faqat submitAnswer bilan ball yozadi).
+  const checked = {}; const prow = [];
+  for (const [lessonId, d] of Object.entries(reestr)) {
+    const src = readFileSync(d.src, 'utf8');
+    const kb = (/const INLINE_KEYS\s*=\s*\{([^}]*)\}/.exec(src) || [])[1] || '';
+    for (const m of kb.matchAll(/([A-Za-z_][A-Za-z0-9_]*)\s*:\s*(-?\d+)/g)) if (Number(m[2]) === -1) prow.push({ lesson_id: lessonId, crm_modul: d.modul, crm_tartib: d.tartib, screen_id: m[1], tur: 'tekshiruvsiz' });
+    for (const x of matn.lessons[lessonId]?.missing || []) { (checked[lessonId] ||= []).push(x.id); prow.push({ lesson_id: lessonId, crm_modul: d.modul, crm_tartib: d.tartib, screen_id: x.id, tur: 'tekshiriladigan' }); }
+  }
+  writeFileSync('src/live/practiceMeta.js', `// AVTOMATIK — scripts/savol-kalitlari.mjs --yoz (${new Date().toISOString().slice(0, 10)}). Qo'lda tahrirlanmaydi.\n` +
+    `// L3: tekshiriladigan yakuniy amaliyot ekranlari (kalitli, variant-matnsiz) — useLiveSession.submitAnswer record_practice(checked=true) yuboradi.\n` +
+    `// Tekshiruvsiz («Bajardim») ekranlar bu yerda emas — ular INLINE_KEYS dagi -1 dan aniqlanadi.\n` +
+    `export const PRACTICE_CHECKED = ${JSON.stringify(checked, null, 1)};\n`);
+  const pc = ['lesson_id', 'crm_modul', 'crm_tartib', 'screen_id', 'tur'];
+  writeFileSync('AMALIYOT_ROYXATI.csv', '\ufeff' + [pc.join(','), ...prow.map((r) => pc.map((c) => csvCell(r[c])).join(','))].join('\n') + '\n');
+  console.log(`yozildi: src/live/practiceMeta.js (${Object.keys(checked).length} dars) · AMALIYOT_ROYXATI.csv (${prow.length}: tekshiruvsiz ${prow.filter((r) => r.tur === 'tekshiruvsiz').length}, tekshiriladigan ${prow.filter((r) => r.tur !== 'tekshiruvsiz').length})`);
   console.log(`yozildi: QUIZ_LEARN.csv (${qrows.length} qator · Learn id topilmagan dars: ${new Set(qrows.filter((r) => !r.learn_id).map((r) => r.lesson_id)).size})`);
 }
 if (SQL) {
