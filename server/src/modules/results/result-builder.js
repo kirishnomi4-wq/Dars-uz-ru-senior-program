@@ -510,12 +510,12 @@ export function validateStudentDetails(s, mode) {
         }
         if (q.kind === 'test') { testN++; if (q.correct === true) testCorrect++; }
       }
-      // F-1109-01 (2026-11-09): yakuniy amaliyot ekrani (SCREEN_META custom, scored) ballni `submit_answer` bilan yozadi, matnni
-      // (`record_attempt`) yozmaydi → isCompleteQuestion uni tashlaydi. Eski qoida (testN === answered, TZ §4 invarianti) shu sababli
-      // darsni TUGATGAN o'quvchining butun tafsilotini tashlardi (prod 09.11: jonli 69/118, solo 33/69 tafsilotsiz; 87/172 darsda).
-      // Endi QISMAN tafsilot ruxsat: questions[] agregatdan KO'P bo'lsa — xato (tafsilot agregatga zid), KAM bo'lsa — ketadi.
-      if (testN > s.answered) errs.push(`questions>answered ${k}`);
-      if (testCorrect > s.correct_answers) errs.push(`correct>answered ${k}`);
+      // TZ §4 invarianti: answered = test-yozuvlar soni, correct_answers = ulardagi to'g'ri birinchi javoblar. School API ham
+      // aynan shu TENGLIKNI tekshiradi («The answered count must equal the number of test question details», 6b3c85d).
+      // F-1109-01 (09.11 14:24) qisman tafsilotga ruxsat bergan edi (yakuniy amaliyot ekrani matnsiz ball yozadi) — natijada
+      // 15:02–16:48 da 19 hodisa (3 jonli) 422 → F-1109-02: tenglik QAYTARILDI. Qisman tafsilot faqat v2 kontraktda, Abdulloh QA'sidan keyin.
+      if (testN !== s.answered) errs.push(`answered≠questions ${k}`);
+      if (testCorrect !== s.correct_answers) errs.push(`correct≠questions ${k}`);
     }
   }
   if (s.achievements !== undefined) {

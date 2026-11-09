@@ -326,10 +326,10 @@ test('validateStudentDetails: invariant buzilishlari topiladi', () => {
   assert.ok(validateStudentDetails({ ...base, lang: 'en' }).some((e) => e.startsWith('lang')));
   assert.ok(validateStudentDetails({ ...base, questions: [q({ correct: false, solved: false })] }).some((e) => e.startsWith('q first')));
   assert.ok(validateStudentDetails({ ...base, questions: [q({ solved: false })] }).some((e) => e.startsWith('q solved')));
-  // F-1109-01: questions < answered — QISMAN tafsilot ruxsat (yakuniy amaliyot ekrani matnsiz); questions > answered yoki correct > correct_answers — xato
-  assert.deepEqual(validateStudentDetails({ ...base, answered: 2, questions: [q()] }), []);
-  assert.ok(validateStudentDetails({ ...base, answered: 0, correct_answers: 0, questions: [q()] }).some((e) => e.startsWith('questions>answered')));
-  assert.ok(validateStudentDetails({ ...base, correct_answers: 0, questions: [q()] }).some((e) => e.startsWith('correct>answered')));
+  // F-1109-02: TENGLIK (School API ham shuni tekshiradi) — qisman tafsilot (questions < answered) ham, ortiqcha ham xato
+  assert.ok(validateStudentDetails({ ...base, answered: 2, questions: [q()] }).some((e) => e.startsWith('answered≠')));
+  assert.ok(validateStudentDetails({ ...base, answered: 0, correct_answers: 0, questions: [q()] }).some((e) => e.startsWith('answered≠')));
+  assert.ok(validateStudentDetails({ ...base, correct_answers: 0, questions: [q()] }).some((e) => e.startsWith('correct≠')));
   assert.ok(validateStudentDetails({ ...base, questions: [q({ attempts: [{ n: 1, option: 1, answer: 'x', correct: true, elapsed_ms: 10, at: '2026-09-03T09:00:10Z' }, { n: 2, option: 0, answer: 'y', correct: false, elapsed_ms: 10, at: '2026-09-03T09:00:00Z' }] })] }).some((e) => e.startsWith('q at')));
   // F-0918-02: School API `required` — matnsiz yozuv/urinish, options'dan tashqari option
   assert.ok(validateStudentDetails({ ...base, questions: [q({ question: undefined })] }).some((e) => e.startsWith('q question')));
@@ -356,22 +356,24 @@ test('finalizePayload: detallar buzuq → detallar tashlanadi, asosiy ketadi; ha
   const r = finalizePayload(bad);
   assert.deepEqual([r.problems, hasDetails(r.payload), 'questions' in r.payload.students[0], 'questions' in r.payload.students[1]], [[], true, false, true]);
   assert.match(r.detailsDropped, /q solved/);
-  // F-1109-01: matnsiz (eski dars yoki yakuniy amaliyot ekrani) — test-yozuv tushadi, lekin QISMAN tafsilot ruxsat: detallar qoladi (questions: []), hodisa ketadi
+  // matnsiz (eski dars yoki yakuniy amaliyot ekrani): test-yozuv tushadi → answered≠questions → o'sha o'quvchilar detalsiz, hodisa KETAVERADI (tanga to'xtamaydi)
   const [noTx] = buildLivePayloads({ ...liveInput(), details: { attemptsByPlayer: new Map(), achievementsByPlayer: new Map(), catalog: [] } });
   const n = finalizePayload(noTx.payload);
-  assert.deepEqual([n.problems, n.detailsDropped, n.payload.students.every((s) => Array.isArray(s.questions))], [[], null, true]);
-  // qisman: bitta test-yozuv yo'q (questions < answered) → ketadi
+  assert.deepEqual([n.problems, n.payload.students.filter((s) => 'questions' in s).map((s) => s.student_id)], [[], [34177]]); // pD: 0 javob — bo'sh detal to'g'ri
+  assert.match(n.detailsDropped, /answered≠questions lms:34174/);
+  // F-1109-02: qisman (bitta test-yozuv yo'q, questions < answered) — School API 422 beradi, shuning uchun o'sha o'quvchining detallari tashlanadi
   const part = structuredClone(ev.payload); const s0 = part.students[0];
   const firstTest = s0.questions.findIndex((q) => q.kind === 'test');
   assert.ok(s0.answered >= 1 && firstTest >= 0, 'fixture: kamida 1 test-yozuv');
   s0.questions = s0.questions.filter((_, i) => i !== firstTest);
   const pr = finalizePayload(part);
-  assert.deepEqual([pr.problems, pr.detailsDropped, 'questions' in pr.payload.students[0]], [[], null, true]);
+  assert.deepEqual([pr.problems, 'questions' in pr.payload.students[0], 'questions' in pr.payload.students[1]], [[], false, true]);
+  assert.match(pr.detailsDropped, /answered≠questions lms:/);
   // questions > answered (tafsilot agregatga zid) → faqat o'sha o'quvchining detallari tashlanadi
   const over = structuredClone(ev.payload); over.students[0].answered = 0; over.students[0].correct_answers = 0;
   const ov = finalizePayload(over);
   assert.deepEqual([ov.problems, 'questions' in ov.payload.students[0], 'questions' in ov.payload.students[1]], [[], false, true]);
-  assert.match(ov.detailsDropped, /questions>answered lms:/);
+  assert.match(ov.detailsDropped, /answered≠questions lms:/);
   // hajm
   const big = structuredClone(ev.payload); big.students[0].questions[0].question = 'x'.repeat(DETAILS_LIMITS.text);
   big.students[0].achievements = Array.from({ length: 20 }, (_, i) => ({ id: `a${i}`, name: 'n'.repeat(40), title: 't'.repeat(200), earned_at: '2026-09-03T09:00:00Z' }));
