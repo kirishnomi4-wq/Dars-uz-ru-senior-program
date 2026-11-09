@@ -1,7 +1,7 @@
 # Abdullohga: 50 ta xabar — sinov rejimida qayta yig'ish hisoboti (hech narsa yuborilmagan)
 
 **Sana:** 2026-11-09 · **Format:** `16-…` hujjat 5-bo'limi · **Jadval:** `17a-50-XABAR-HISOBOT.csv` (229 qator = o'quvchi × xabar)
-**Manba:** prod Dars API, server `0.1.0+92087d0e`, qayta yig'ish `dry: true` — bazaga yozilmadi, School API'ga yuborilmadi.
+**Manba:** prod Dars API, server `0.1.0+873334d7`, qayta yig'ish `dry: true` — bazaga yozilmadi, School API'ga yuborilmadi.
 
 ## 1. Yig'ma
 
@@ -14,14 +14,19 @@
 | Bizda chiqariladi (shu dars bo'yicha tugallangan natija allaqachon yetkazilgan) | 16 |
 | Manbada topilmadi | 0 |
 | `correct_answers` o'zgaradi | 28 o'quvchida, jami +57 |
-| Tafsiloti tushirilgan yozuvlar | 35 |
+| `answered` o'zgaradi | 1 (css-01-v17 · 30321: 4 → 5) |
+| `completed` o'zgaradi | 1 (css-01-v17 · 30321: yo'q → ha) |
+| Tafsiloti tushirilgan yozuvlar | 13 |
 | Tarixdan chiqarilgan urinishlar | 29 |
 | Xabar holati | yuboriladi 46 · butunlay chiqariladi 4 · xato 0 |
 
-**Tafsilot nega tushirilgan** (35 yozuv): `matnsiz savol` — 22 · `invalid_text` — 13.
-- `matnsiz savol` — darsning yakuniy amaliyot ekrani (yozma topshiriq) natijani ball sifatida yozadi, lekin savol va variant matni yo'q; Dars API'ning hozirgi qoidasi bo'yicha shunday o'quvchining tafsiloti to'liq bo'lmagani uchun **butunlay** yuborilmaydi. **Eski xabarda ham shu o'quvchilarda tafsilot bo'sh edi** — bu yangi o'zgarish emas, asosiy natija (`answered`, `correct_answers`) ta'sirlanmaydi. Bu qoida 87 darsga tegadi va alohida hal qilinadi (16-hujjat 2.2 `details` bloki: qisman tafsilot). Agar siz ma'qul desangiz, 50 xabar yuborilishidan oldin qoida yumshatiladi va bu 22 o'quvchida qolgan savollar tafsiloti ketadi.
-- `invalid_text` — `[object Object]` (bitta dars, `pg-crud-04-05-v18`, 14-hujjat 1.2).
-- `version_mismatch` — kalit o'quvchi ko'rgan matnga mos emas.
+**`completed` o'zgargan 1 o'quvchi:** eski xabarda oxirgi javobi yo'q edi — u natija yig'ilgandan keyin serverga yetgan (dars tarmoqdan qayta urinadi). Manbada hamma savolga javob bor, shuning uchun qayta yig'ilganda `completed: true` (qoida: barcha savolga javob bergan = tugatgan). Bu yozuvda coin huquqi paydo bo'ladi — `sizda_tekshirish` uchun alohida e'tibor.
+
+**Tafsilot holati** (javob bergan o'quvchilar ichida): `qisman` — 22 · `invalid_text` — 13.
+- `qisman` — o'quvchi darsning yakuniy amaliyot ekranini (yozma topshiriq, variantsiz) bajargan: u `answered` ga kiradi, lekin `questions[]` da yozuvi yo'q, qolgan savollar to'liq. 16-hujjat 2.2 `details.status: partial`. Dars API qoidasi 09.11 da shunga moslandi (avval bunday o'quvchining butun tafsiloti tushirilardi — eski xabarlarda ham shunday edi).
+- `tushirildi: invalid_text` — `[object Object]` (bitta dars, `pg-crud-04-05-v18`, 14-hujjat 1.2): asosiy natija ketadi, tafsilot yo'q.
+- `tushirildi: version_mismatch` — kalit o'quvchi ko'rgan matnga mos emas.
+- `tushirildi: matnsiz savol` — faqat eski qoida bilan yig'ilgan hisobotda uchraydi; yangi qoidada `qisman` ga aylanadi.
 
 ## 2. Xabarlar bo'yicha
 
@@ -40,7 +45,7 @@
 | 11 | 2026-09-30 | `solo_31293_vscode-start-01-v1_20260923T050927Z` | solo | vscode-start-01-v1 | The correct flag does not match the selected option. | 1 → 1 | 0 | 1 (+1) | 0 | 0 | yuboriladi |
 | 12 | 2026-09-30 | `solo_35887_pm-m2d2-v1_20260923T114932Z` | solo | pm-m2d2-v1 | The answer must match options[option]. | 1 → 1 | 0 | 0 | 0 | 2 | yuboriladi |
 | 13 | 2026-09-30 | `solo_31136_pm-m2d13-v1_20260925T104945Z` | solo | pm-m2d13-v1 | The correct flag does not match the selected option. | 1 → 1 | 0 | 1 (+3) | 0 | 0 | yuboriladi |
-| 14 | 2026-09-30 | `sess_819479_20260930T103109Z` | live | js-intro-01-v18 | Live mode permits exactly one attempt per question. | 8 → 8 | 0 | 0 | 7 | 3 | yuboriladi |
+| 14 | 2026-09-30 | `sess_819479_20260930T103109Z` | live | js-intro-01-v18 | Live mode permits exactly one attempt per question. | 8 → 8 | 0 | 0 | 0 | 3 | yuboriladi |
 | 15 | 2026-09-30 | `sess_330364_20260930T103644Z` | live | pm-m2d7-v1 | Live mode permits exactly one attempt per question. | 12 → 12 | 0 | 0 | 0 | 2 | yuboriladi |
 | 16 | 2026-09-30 | `solo_36342_pm-m1d2-v1_20260923T130935Z` | solo | pm-m1d2-v1 | The correct flag does not match the selected option. | 1 → 1 | 0 | 0 | 0 | 0 | yuboriladi |
 | 17 | 2026-09-30 | `solo_31826_internet-01-v18_20260923T131526Z` | solo | internet-01-v18 | The correct flag does not match the selected option. | 1 → 1 | 0 | 1 (+1) | 0 | 0 | yuboriladi |
@@ -65,7 +70,7 @@
 | 36 | 2026-10-07 | `solo_30549_pm-m4d2-v1_20260930T144337Z` | solo | pm-m4d2-v1 | The correct flag does not match the selected option. | 1 → 1 | 0 | 1 (+3) | 0 | 0 | yuboriladi |
 | 37 | 2026-10-09 | `solo_30648_pm-m4d2-v1_20261002T130852Z` | solo | pm-m4d2-v1 | The correct flag does not match the selected option. | 1 → 1 | 0 | 1 (+2) | 0 | 0 | yuboriladi |
 | 38 | 2026-10-09 | `sess_019443_20261009T121448Z` | live | js-loops-01-v18 | Live mode permits exactly one attempt per question. | 16 → 16 | 0 | 0 | 0 | 1 | yuboriladi |
-| 39 | 2026-10-12 | `sess_819195_20261012T103453Z` | live | css-01-v17 | Live mode permits exactly one attempt per question. | 16 → 16 | 0 | 1 (+1) | 15 | 2 | yuboriladi |
+| 39 | 2026-10-12 | `sess_819195_20261012T103453Z` | live | css-01-v17 | Live mode permits exactly one attempt per question. | 16 → 16 | 0 | 1 (+1) | 0 | 2 | yuboriladi |
 | 40 | 2026-10-12 | `sess_098894_20261012T135339Z` | live | html-practice-portfolio-v2 | Live mode permits exactly one attempt per question. | 15 → 15 | 0 | 0 | 0 | 1 | yuboriladi |
 | 41 | 2026-10-15 | `solo_32378_react-build-site-final-p4-v18_20261008T113007Z` | solo | react-build-site-final-p4-v18 | The correct flag does not match the selected option. | 1 → 1 | 0 | 1 (+4) | 0 | 0 | yuboriladi |
 | 42 | 2026-10-17 | `solo_32323_react-build-site-final-p4-v18_20261010T090701Z` | solo | react-build-site-final-p4-v18 | The correct flag does not match the selected option. | 1 → 1 | 0 | 1 (+4) | 0 | 0 | yuboriladi |
@@ -87,7 +92,7 @@
 | `takror` | Shu o'quvchi + dars 50 ta xabarning boshqasida ham bor |
 | `eski_xato` | School API'ning 422 sababi |
 | `eski_*` / `yangi_*` | 422 olgan xabardagi qiymat / qayta yig'ilgan qiymat (`answered`, `correct`, `completed`, `badges`) |
-| `tafsilot` | `to'liq` · `tushirildi: invalid_text` ([object Object]) · `tushirildi: version_mismatch` (kalit o'quvchi ko'rgan matnga mos emas) · `tushirildi: size` |
+| `tafsilot` | `to'liq` · `qisman (amaliyot ekranisiz)` (16-hujjat 2.2 `partial`) · `tushirildi: invalid_text` ([object Object]) · `tushirildi: version_mismatch` (kalit o'quvchi ko'rgan matnga mos emas) · `tushirildi: size` |
 | `chiqarilgan_urinishlar` | Savol tarixidan olib tashlangan urinishlar soni va sababi |
 | `bizda_holat` | `yuboriladi` · `chiqariladi: …` · `manbada topilmadi` |
 | `sizda_tekshirish` | Bo'sh — brauzer natijasi va coin reyestri bo'yicha sizning belgingiz |

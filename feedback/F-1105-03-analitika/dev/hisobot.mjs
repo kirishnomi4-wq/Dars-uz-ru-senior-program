@@ -38,7 +38,8 @@ for (const r of dry.results) {
     const oldAtt = attCount(os), newAtt = ns ? attCount(ns) : null;
     const dropped = ns && qCount(ns) ? Math.max(0, oldAtt - newAtt) : 0; attDropped += dropped;
     if (per.has(sid)) causes.set(reason(per.get(sid)), (causes.get(reason(per.get(sid))) || 0) + 1);
-    const detail = per.has(sid) ? `tushirildi: ${reason(per.get(sid))}${qCount(os) === 0 && (os.answered || 0) > 0 ? ' (eski xabarda ham yo\'q edi)' : ''}` : size ? `tushirildi: size` : ns ? (qCount(ns) ? "to'liq" : (ns.answered ? 'tafsilot yo\'q' : "to'liq (javob yo'q)")) : '';
+    const detail = per.has(sid) ? `tushirildi: ${reason(per.get(sid))}${qCount(os) === 0 && (os.answered || 0) > 0 ? ' (eski xabarda ham yo\'q edi)' : ''}` : size ? `tushirildi: size` : ns ? (qCount(ns) ? (qCount(ns) < (ns.answered || 0) ? 'qisman (amaliyot ekranisiz)' : "to'liq") : ((ns.answered || 0) > 0 ? 'qisman (faqat amaliyot ekrani, 0 yozuv)' : "to'liq (javob yo'q)")) : '';
+    if (ns && /^qisman/.test(detail)) causes.set('qisman', (causes.get('qisman') || 0) + 1);
     const holat = excluded.has(sid) ? 'chiqariladi: shu dars bo\'yicha tugallangan natija allaqachon yetkazilgan yoki shu to\'plamda oldinroq yuboriladi'
       : notSrc.has(sid) ? 'manbada topilmadi' : r.action === 'send' && ns ? 'yuboriladi' : r.action === 'error' ? `xato: ${r.error}` : r.action === 'skip' ? 'hodisa butunlay chiqariladi' : '';
     rows.push({
@@ -58,6 +59,9 @@ const head = Object.keys(rows[0]);
 fs.writeFileSync(OUT_CSV, [head.join(','), ...rows.map((r) => head.map((k) => esc(r[k])).join(','))].join('\n') + '\n');
 const T = dry.totals || {}; const sum = (k) => ev.reduce((n, x) => n + (Number(x[k]) || 0), 0);
 const uniqPairs = new Set(rows.map((r) => `${r.lesson_id}:${r.student_id}`)).size, uniqStudents = new Set(rows.map((r) => r.student_id)).size;
+const compFlip = rows.filter((r) => r.yangi_completed && r.eski_completed !== r.yangi_completed);
+const ansChg = rows.filter((r) => r.yangi_answered !== '' && String(r.eski_answered) !== String(r.yangi_answered));
+const chgTxt = (list, a, b) => list.length ? ` (${list.map((r) => `${r.lesson_id} · ${r.student_id}: ${r[a]} → ${r[b]}`).join('; ')})` : '';
 const md = `# Abdullohga: 50 ta xabar — sinov rejimida qayta yig'ish hisoboti (hech narsa yuborilmagan)
 
 **Sana:** ${new Date().toISOString().slice(0, 10)} · **Format:** \`16-…\` hujjat 5-bo'limi · **Jadval:** \`17a-50-XABAR-HISOBOT.csv\` (${rows.length} qator = o'quvchi × xabar)
@@ -74,14 +78,17 @@ const md = `# Abdullohga: 50 ta xabar — sinov rejimida qayta yig'ish hisoboti 
 | Bizda chiqariladi (shu dars bo'yicha tugallangan natija allaqachon yetkazilgan) | ${sum('excluded')} |
 | Manbada topilmadi | ${sum('not_in_source')} |
 | \`correct_answers\` o'zgaradi | ${T.correct_changes ?? sum('correct_changes')} o'quvchida, jami ${sum('dCorrect') >= 0 ? '+' : ''}${sum('dCorrect')} |
+| \`answered\` o'zgaradi | ${ansChg.length}${chgTxt(ansChg, 'eski_answered', 'yangi_answered')} |
+| \`completed\` o'zgaradi | ${compFlip.length}${chgTxt(compFlip, 'eski_completed', 'yangi_completed')} |
 | Tafsiloti tushirilgan yozuvlar | ${sum('dropped_students')} |
 | Tarixdan chiqarilgan urinishlar | ${sum('attDropped')} |
 | Xabar holati | yuboriladi ${ev.filter((x) => x.action === 'send').length} · butunlay chiqariladi ${ev.filter((x) => x.action === 'skip').length} · xato ${ev.filter((x) => x.action === 'error').length} |
 
-**Tafsilot nega tushirilgan** (${sum('dropped_students')} yozuv): ${[...causes.entries()].map(([k, v]) => `\`${k}\` — ${v}`).join(' · ')}.
-- \`matnsiz savol\` — darsning yakuniy amaliyot ekrani (yozma topshiriq) natijani ball sifatida yozadi, lekin savol va variant matni yo'q; Dars API'ning hozirgi qoidasi bo'yicha shunday o'quvchining tafsiloti to'liq bo'lmagani uchun **butunlay** yuborilmaydi. **Eski xabarda ham shu o'quvchilarda tafsilot bo'sh edi** — bu yangi o'zgarish emas, asosiy natija (\`answered\`, \`correct_answers\`) ta'sirlanmaydi. Bu qoida 87 darsga tegadi va alohida hal qilinadi (16-hujjat 2.2 \`details\` bloki: qisman tafsilot). Agar siz ma'qul desangiz, 50 xabar yuborilishidan oldin qoida yumshatiladi va bu 22 o'quvchida qolgan savollar tafsiloti ketadi.
-- \`invalid_text\` — \`[object Object]\` (bitta dars, \`pg-crud-04-05-v18\`, 14-hujjat 1.2).
-- \`version_mismatch\` — kalit o'quvchi ko'rgan matnga mos emas.
+${compFlip.length ? `**\`completed\` o'zgargan ${compFlip.length} o'quvchi:** eski xabarda oxirgi javobi yo'q edi — u natija yig'ilgandan keyin serverga yetgan (dars tarmoqdan qayta urinadi). Manbada hamma savolga javob bor, shuning uchun qayta yig'ilganda \`completed: true\` (qoida: barcha savolga javob bergan = tugatgan). Bu yozuvda coin huquqi paydo bo'ladi — \`sizda_tekshirish\` uchun alohida e'tibor.\n\n` : ''}**Tafsilot holati** (javob bergan o'quvchilar ichida): ${[...causes.entries()].map(([k, v]) => `\`${k}\` — ${v}`).join(' · ') || "hammasi to'liq"}.
+- \`qisman\` — o'quvchi darsning yakuniy amaliyot ekranini (yozma topshiriq, variantsiz) bajargan: u \`answered\` ga kiradi, lekin \`questions[]\` da yozuvi yo'q, qolgan savollar to'liq. 16-hujjat 2.2 \`details.status: partial\`. Dars API qoidasi 09.11 da shunga moslandi (avval bunday o'quvchining butun tafsiloti tushirilardi — eski xabarlarda ham shunday edi).
+- \`tushirildi: invalid_text\` — \`[object Object]\` (bitta dars, \`pg-crud-04-05-v18\`, 14-hujjat 1.2): asosiy natija ketadi, tafsilot yo'q.
+- \`tushirildi: version_mismatch\` — kalit o'quvchi ko'rgan matnga mos emas.
+- \`tushirildi: matnsiz savol\` — faqat eski qoida bilan yig'ilgan hisobotda uchraydi; yangi qoidada \`qisman\` ga aylanadi.
 
 ## 2. Xabarlar bo'yicha
 
@@ -98,7 +105,7 @@ ${ev.map((x, i) => `| ${i + 1} | ${x.sana} | \`${x.event_id}\` | ${x.mode} | ${x
 | \`takror\` | Shu o'quvchi + dars 50 ta xabarning boshqasida ham bor |
 | \`eski_xato\` | School API'ning 422 sababi |
 | \`eski_*\` / \`yangi_*\` | 422 olgan xabardagi qiymat / qayta yig'ilgan qiymat (\`answered\`, \`correct\`, \`completed\`, \`badges\`) |
-| \`tafsilot\` | \`to'liq\` · \`tushirildi: invalid_text\` ([object Object]) · \`tushirildi: version_mismatch\` (kalit o'quvchi ko'rgan matnga mos emas) · \`tushirildi: size\` |
+| \`tafsilot\` | \`to'liq\` · \`qisman (amaliyot ekranisiz)\` (16-hujjat 2.2 \`partial\`) · \`tushirildi: invalid_text\` ([object Object]) · \`tushirildi: version_mismatch\` (kalit o'quvchi ko'rgan matnga mos emas) · \`tushirildi: size\` |
 | \`chiqarilgan_urinishlar\` | Savol tarixidan olib tashlangan urinishlar soni va sababi |
 | \`bizda_holat\` | \`yuboriladi\` · \`chiqariladi: …\` · \`manbada topilmadi\` |
 | \`sizda_tekshirish\` | Bo'sh — brauzer natijasi va coin reyestri bo'yicha sizning belgingiz |
