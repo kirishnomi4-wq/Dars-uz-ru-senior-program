@@ -7,7 +7,7 @@
 //   review (tugagan urinish — javoblar ko'rinadi, yozilmaydi) · self (kodsiz, o'zi ko'radi) · choosing (darvoza)
 // Darslar 'student'/'mentor' bo'lmagan har rejimni 'self' kabi ko'radi — solo/review shu tufayli qo'shimcha kodsiz ishlaydi.
 import { useState, useEffect, useRef, useCallback, createContext, useContext } from 'react';
-import { logAttempt, logArena, resetResultDetails, unsealPayload, arenaStart as rdArenaStart, arenaDone as rdArenaDone, arenaPlace as rdArenaPlace, podiumExpected } from './resultDetails.js';
+import { asText, logAttempt, logArena, resetResultDetails, unsealPayload, arenaStart as rdArenaStart, arenaDone as rdArenaDone, arenaPlace as rdArenaPlace, podiumExpected } from './resultDetails.js';
 import { arenaPlaceOf, finishHold } from './podium.js';
 import { tr } from './i18n.js';
 import {
@@ -16,6 +16,8 @@ import {
   lmsJoin, lmsRestart, peekTokenRole,
 } from './liveClient.js';
 import { setProgressChannel } from './progressSync.js';
+import { BUILD_LESSON_VERSION } from './lessonVersion.js';
+import { setDarsApi } from './resultSchema.js';
 import { notePreviewProps } from './previewMode.js';
 
 // Ekranlar shu kontekst orqali «qulf»ni va live obyektini oladi: { locked, live }
@@ -37,7 +39,7 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
   if (previewRef.current === null) previewRef.current = notePreviewProps(opts);
   const preview = previewRef.current;
   const liveToken = preview ? null : (opts.liveToken || null);
-  const lessonVersion = opts.lessonVersion || null;
+  const lessonVersion = opts.lessonVersion || BUILD_LESSON_VERSION; // L1: yig'ma versiyasi (build-lms define) — join/restart/progress'ga
   const keyRef = useRef(answerKey); keyRef.current = answerKey; // javob kaliti — mentor darsni ochganda serverga avto-yuklanadi (SQL shart emas)
   useEffect(() => { unsealPayload(lessonId); }, [lessonId]); // F-0918-07: dars har ochilganda onFinished muhri toza — eski sessiya yuki yangi urinishga o'tmaydi
   const initRef = useRef(undefined);
@@ -54,6 +56,7 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
   const sessionRef = useRef(init?.sessionId || null); // LMS jonli sessiya id'si — CodeStrike podium `game_id` (28.10)
   const nickRef = useRef(init?.nickname || '');
   const [mentorScreen, setMentorScreen] = useState(init?.lastScreen || 0);
+  const mentorScreenRef = useRef(0); mentorScreenRef.current = mentorScreen; // L6: screen_open by_student taxmini
   // mentorMax — sinf ENG UZOQ borgan nuqta (faqat o'sadi). DARVOZA mentorScreen (cur) bilan,
   // TEST-JAVOBINI OCHISH esa mentorMax bilan ishlaydi: mentor orqaga qaytsa allaqachon
   // ochilgan javob qayta yashirinib qolmasin (F-0726-02).
@@ -185,7 +188,19 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
   }, [lessonId]);
 
   const selfStudy = useCallback(() => { setMode('self'); liveStore(lessonId, { mode: 'self' }); }, [lessonId]);
-  const reportScreen = useCallback((idx) => { if (mode === 'mentor' && pin) liveRpc('advance_session', { p_pin: pin, p_token: tokenRef.current, p_screen: idx }).catch(() => {}); }, [mode, pin]);
+  // L6 (S10): o'quvchi ekrani almashganda serverga `screen_open` (faqat LMS urinishi bor student/solo; PIN-o'yinchi va self — yo'q).
+  // Har almashishda bitta so'rov (server bir xil ekranni takrorlamaydi). by_student — taxmin: jonli darsda mentor hozir ochgan
+  // ekranga tushish «mentor o'tkazdi» (false), boshqasi — o'quvchi o'zi. Server bu RPC ni bilmasa (eski server) — 404 dan keyin to'xtaydi.
+  const screenOpenRef = useRef({ off: false, last: null });
+  const reportScreen = useCallback((idx) => {
+    if (mode === 'mentor' && pin) { liveRpc('advance_session', { p_pin: pin, p_token: tokenRef.current, p_screen: idx }).catch(() => {}); return; }
+    const so = screenOpenRef.current;
+    if ((mode !== 'student' && mode !== 'solo') || !pin || !playerRef.current || so.off || !lmsTokenRef.current || !Number.isInteger(idx) || idx < 0 || so.last === `${pin}:${idx}`) return;
+    so.last = `${pin}:${idx}`;
+    const byStudent = !(mode === 'student' && idx === mentorScreenRef.current);
+    liveRpc('screen_open', { p_pin: pin, p_player_id: playerRef.current.id, p_token: playerRef.current.token, p_screen: idx, p_by_student: byStudent, p_client_ts: Date.now() })
+      .catch((e) => { if (e && (e.status === 404 || e.status === 400)) so.off = true; });
+  }, [mode, pin]);
   const endSession = useCallback(() => { if (mode === 'mentor' && pin) { liveRpc('end_session', { p_pin: pin, p_token: tokenRef.current }).catch(() => {}); setEnded(true); } }, [mode, pin]);
 
   // O'quvchi javobini serverga yozish — birinchi javob qotadi (server unique). Jonli VA solo rejimda.
@@ -207,7 +222,26 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
   }, [mode, pin, lessonId]);
 
   // BUG-01 v2: arena o'yini chegarasi (dars QuizArena'si chaqiradi). Faqat natija yoziladigan rejimlarda (student / solo).
-  const arenaStart = useCallback((run) => { if (mode === 'student' || mode === 'solo') rdArenaStart(lessonId, { run, mode, pin }); }, [mode, pin, lessonId]);
+  // L6/S10 (25 §2): arena savoli o'quvchi EKRANIDA ko'rsatildi — dars har yangi savolda arenaStart'ni chaqiradi (172 dars, BUG-01 v2).
+  // Jonli LMS o'quvchisi uchun serverga `arena_shown` (birinchisi qotadi — Learn avtomatik hisobi shu lahzadan). Solo — yo'q (arena
+  // natijasi solo'da serverga ketmaydi). Eski server (RPC yo'q) — 404/400 dan keyin to'xtaydi.
+  const quizRef = useRef(quiz); quizRef.current = quiz;
+  const arenaShownRef = useRef({ off: false, pin: null });
+  const arenaStart = useCallback((run) => {
+    if (mode === 'student' || mode === 'solo') rdArenaStart(lessonId, { run, mode, pin });
+    const as = arenaShownRef.current;
+    if (mode !== 'student' || !pin || !playerRef.current || !lmsTokenRef.current || as.off || as.pin === pin) return;
+    as.pin = pin;
+    const player = playerRef.current;
+    // savol raqami: hook holati (bo'lsa) yoki sessiya qatori — dars o'z so'rovida ko'rgan savol (bitta qo'shimcha so'rov, sessiyada bir marta)
+    const qNow = quizRef.current;
+    (qNow && qNow.state === 'q' && qNow.q >= 0 ? Promise.resolve(qNow.q) : liveGet(pin).then((row) => (row && row.quiz_state === 'q' ? row.quiz_q : -1)))
+      .then((qq) => {
+        if (!(qq >= 0)) { as.pin = null; return null; } // savol hali yo'q — keyingi arenaStart'da yana
+        return liveRpc('arena_shown', { p_pin: pin, p_player_id: player.id, p_token: player.token, p_question_id: `quiz-${qq}`, p_order: qq + 1 });
+      })
+      .catch((e) => { as.pin = null; if (e && (e.status === 404 || e.status === 400)) as.off = true; });
+  }, [mode, pin, lessonId]);
   const arenaDone = useCallback(() => { if (mode === 'student' || mode === 'solo') rdArenaDone(lessonId); }, [mode, lessonId]);
   // ── CodeStrike podium (Abdulloh QA 28.10, PODIUM-02/03) ──────────────────────────────────────────────────────────────
   // Yakuniy o'rin faqat mentor testni yakunlagach (quiz_state 'done'), serverdan SHUNDAN KEYIN yuklangan jadvaldan hisoblanadi —
@@ -258,10 +292,11 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
   const recordAttempt = useCallback((screenIdx, questionId, picked, elapsedMs, texts) => {
     logAttempt(lessonId, screenIdx, { picked, texts, elapsedMs }); // onFinished detallari uchun — har rejimda (self ham)
     if ((mode !== 'student' && mode !== 'solo') || !pin || !playerRef.current) return;
-    const cut = (v) => (typeof v === 'string' ? v.slice(0, 300) : undefined);
+    const lang = texts && texts.lang === 'ru' ? 'ru' : 'uz';
+    const cut = (v) => { const x = asText(v, lang); return typeof x === 'string' ? x.slice(0, 300) : undefined; }; // L4: {uz,ru} → matn
     const t = texts && typeof texts === 'object' ? {
       question: cut(texts.question),
-      options: Array.isArray(texts.options) ? texts.options.slice(0, 6).map((o) => cut(String(o ?? ''))) : undefined,
+      options: Array.isArray(texts.options) ? texts.options.slice(0, 6).map((o) => cut(o) ?? '') : undefined,
       picked: cut(texts.picked), correct: cut(texts.correct),
       lang: texts.lang === 'ru' ? 'ru' : 'uz',
     } : undefined;
@@ -301,13 +336,17 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
   const openChannel = useCallback((tok, att) => {
     if (!att || att.status !== 'active') { setProgressChannel(lessonId, null); return; }
     setProgressChannel(lessonId, {
-      token: tok, attemptId: att.id, status: 'active',
+      token: tok, attemptId: att.id, status: 'active', lessonVersion,
       onFinished: (info) => setAttempt((a) => (a && a.id === att.id ? { ...a, status: 'finished', finish_reason: info?.reason || 'completed' } : a)),
     });
-  }, [lessonId]);
+  }, [lessonId, lessonVersion]);
 
   const applyServerSession = useCallback((p, tok) => {
     if (!p || typeof p !== 'object') return false;
+    // L2 (25 §8): brauzer yuki bog'lanishi — urinish, sessiya kaliti (server bilan bir xil), urinish versiyasi
+    const att = p.attempt && p.attempt.id ? p.attempt : null;
+    setDarsApi(lessonId, att && p.mode !== 'mentor' ? { attempt_id: att.id, session_key: p.session_key ?? null, lesson_version: att.lesson_version ?? lessonVersion ?? null } : null,
+      { auto: !!att && att.status === 'active' && (p.mode === 'student' || p.mode === 'solo') });
     const prog = p.progress ? { ...p.progress, seq: Date.now() + Math.random() } : null;
     if (p.mode === 'mentor' && p.pin && p.token) {
       tokenRef.current = p.token; setPin(p.pin); setEnded(false); setJoinError(''); setMode('mentor');
@@ -340,7 +379,7 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
       return true;
     }
     return false;
-  }, [lessonId, openChannel]);
+  }, [lessonId, lessonVersion, openChannel]);
 
   // sessionId — «tanlov» ekranidan (o'quvchi 2+ guruhda va ikkalasida jonli dars bo'lsa)
   const joinWithToken = useCallback(async (sessionId) => {
@@ -369,13 +408,13 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
     if (!tok) return false;
     setBusy(true);
     try {
-      const res = await lmsRestart(tok, lessonId);
+      const res = await lmsRestart(tok, lessonId, lessonVersion);
       return applyServerSession(res, tok);
     } catch (e) {
       setJoinError(String((e && e.message) || tr({ uz: "Qaytadan boshlab bo'lmadi.", ru: 'Не удалось начать заново.' })));
       return false;
     } finally { setBusy(false); }
-  }, [lessonId, applyServerSession]);
+  }, [lessonId, lessonVersion, applyServerSession]);
 
   useEffect(() => {
     if (!LIVE_ENABLED || !liveToken || lmsTokenRef.current === liveToken) return;

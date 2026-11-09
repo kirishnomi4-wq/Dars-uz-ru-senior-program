@@ -545,3 +545,14 @@ test('podium · 4: muhr — «Tamom»dan keyin kelgan o\'rin muhrlangan yukni o\
   arenaPlace('P10', { gameId: GID, pin: '483920', place: 1 });
   assert.equal(sealPayload('P10', mk()).resultDetails.codestrike.podium, undefined);
 });
+
+test('L4 (F-1107-02): asText — {uz,ru} obyekt tanlangan tilga, satr/son o\'zi, boshqa obyekt — matn yo\'q', async () => {
+  const { asText } = await import('./resultDetails.js');
+  assert.equal(asText({ uz: 'Jadval', ru: 'Таблица' }, 'ru'), 'Таблица');
+  assert.equal(asText({ uz: 'Jadval', ru: 'Таблица' }, 'uz'), 'Jadval');
+  assert.equal(asText({ uz: 'Faqat uz' }, 'ru'), 'Faqat uz');
+  assert.equal(asText('SELECT 1', 'ru'), 'SELECT 1');
+  assert.equal(asText(42), '42');
+  assert.equal(asText({ props: {} }), undefined);
+  assert.equal(asText(null), undefined);
+});

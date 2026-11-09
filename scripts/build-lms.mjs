@@ -34,7 +34,15 @@ import { join, basename, resolve, dirname } from 'node:path';
 import { mergeReactImports } from './react-merge.mjs';
 import { createHash } from 'node:crypto';
 
-const OUT_DIR = process.env.LMS_OUT_DIR || 'lms'; // LMS_OUT_DIR — mashq/sinov uchun boshqa papka (lms/ ga tegmasdan)
+const OUT_DIR = process.env.LMS_OUT_DIR || 'lms';
+// F-1105-03 L1: yig'ma qaysi nashr — LMS_REESTR.json dagi shu dars (src bo'yicha) versiyasi. Relizda LESSON_VERSION_BUMP=1:
+// yuklanadigan yangi nashr = reestr v + 1 (lms-farq muhrlaganda reestr shu songa tenglashadi). Reestrda yo'q dars — '' (null).
+const REESTR_SRC = (() => { try { return new Map(Object.values(JSON.parse(readFileSync('LMS_REESTR.json', 'utf8')).darslar).map((d) => [resolve(d.src), d.v])); } catch { return new Map(); } })();
+function lessonVersionFor(absPath) {
+  const v = REESTR_SRC.get(resolve(absPath));
+  if (!Number.isInteger(v)) return '';
+  return `v${v + (process.env.LESSON_VERSION_BUMP === '1' ? 1 : 0)}`;
+} // LMS_OUT_DIR — mashq/sinov uchun boshqa papka (lms/ ga tegmasdan)
 // ── Modul → LMS papkasi (2026-08-25) ────────────────────────────────────────
 //  Foydalanuvchi CRM'ga papka-papka yuklaydi, shuning uchun chiqish MODUL bo'yicha
 //  ajratiladi. MUHIM: chiqish MANZILI bitta — ildizda ham, papkada ham nusxa
@@ -129,6 +137,8 @@ async function one(entry, sharedSpec, asPath = null) {
     // almashtirilmaydi, har dars o'z rejimi va xotirasiga qaraydi. Faqat erkin (e'lon qilinmagan) nomlar almashadi.
     define: {
       __DARS_API_URL__: JSON.stringify(process.env.DARS_API_URL || ''),
+      __LESSON_VERSION__: JSON.stringify(lessonVersionFor(abs)), // F-1105-03 L1: src/live/lessonVersion.js
+      __RESULT_SCHEMA_V2__: JSON.stringify(process.env.RESULT_SCHEMA_V2 === 'on' ? 'on' : ''), // F-1105-03 L2: T kuni RESULT_SCHEMA_V2=on — src/live/resultSchema.js
       localStorage: '__ccLocalStorage', sessionStorage: '__ccSessionStorage',
       'window.localStorage': '__ccLocalStorage', 'window.sessionStorage': '__ccSessionStorage',
       'globalThis.localStorage': '__ccLocalStorage', 'globalThis.sessionStorage': '__ccSessionStorage',

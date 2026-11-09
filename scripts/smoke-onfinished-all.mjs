@@ -22,6 +22,7 @@ const args = process.argv.slice(2);
 const opt = (k, d) => { const i = args.indexOf(k); return i >= 0 && args[i + 1] ? args[i + 1] : d; };
 const LANGS = opt('--lang', 'both') === 'both' ? ['uz', 'ru'] : [opt('--lang', 'uz')];
 const ONLY = opt('--only', null);
+const DUMP = args.includes('--dump'); // F-1105-03 S9: natijaga savol matnlari (question_id, kind, order, question, options) — savol-kalitlari.mjs uchun
 const SEAL = args.includes('--seal'); // F-0918-07 + 151-qonun 6-band: I10 (qayta bosish = AYNAN o'sha yuk) · I11 («Qaytadan» → mashq → yakun = birinchi o'tish)
 const OUT = opt('--out', 'feedback/lms-sinov-2026-09-16');
 const argFiles = args.filter((a, i) => !a.startsWith('--') && !['--lang', '--only', '--out'].includes(args[i - 1]));
@@ -199,7 +200,8 @@ for (const file of files) {
     const problems = payload ? [...check(L, lang, payload, expect, errs), ...sealProblems] : [`onFinished KELMADI (${how || 'tugma yo\'q'}; ekran: ${screenText})`, ...errs.map((e) => 'pageerror: ' + e)];
     const q = payload?.questions || [];
     const row = { file, lessonId: L.lessonId, lang, ok: problems.length === 0, scored: expect.scored, mcq: expect.mcq, totalQuestions: payload?.totalQuestions ?? null, correctAnswers: payload?.correctAnswers ?? null,
-      questionsTest: q.filter((x) => x.kind === 'test').length, achievements: payload?.achievements?.length ?? null, finish: how.trim(), problems };
+      questionsTest: q.filter((x) => x.kind === 'test').length, achievements: payload?.achievements?.length ?? null, finish: how.trim(), problems,
+      ...(DUMP ? { questions: q.map((x) => ({ question_id: x.question_id, kind: x.kind, order: x.order ?? null, question: x.question, options: x.options, correct_option: x.correct_option })) } : {}) };
     results.push(row);
     console.log(`${row.ok ? '✓' : '✗'} ${L.lessonId} ${lang} · scored ${row.scored} · q ${row.questionsTest}/${row.mcq} · ${row.correctAnswers}/${row.totalQuestions} · yutuq ${row.achievements}${problems.length ? ' — ' + problems.join(' | ') : ''}`);
   }

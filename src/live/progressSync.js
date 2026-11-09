@@ -5,13 +5,14 @@
 import { progressPut, setProgWriteHook } from './liveClient.js';
 import { isPreview } from './previewMode.js';
 import { noteEarned } from './resultDetails.js';
+import { noteScreen } from './resultSchema.js';
 
 const DEBOUNCE_MS = 2000;
 /** @type {Map<string, Channel>} */
 const channels = new Map();
 
 /**
- * @typedef {{ token: string, attemptId: string, status: 'active'|'finished', timer: any, pending: object|null,
+ * @typedef {{ token: string, attemptId: string, status: 'active'|'finished', lessonVersion?: string|null, timer: any, pending: object|null,
  *             inFlight: boolean, onFinished?: (info: object) => void, onError?: (e: any) => void }} Channel
  */
 
@@ -30,6 +31,7 @@ export function progressChannelStatus(lessonId) {
 /** progWrite'dan: obj = { screen, answers, earned, startedAt, total, savedAt } */
 export function queueProgress(lessonId, obj) {
   if (obj && Array.isArray(obj.earned)) noteEarned(lessonId, obj.earned); // yutuq birinchi ko'ringan vaqt — server bo'lmasa ham
+  if (obj) noteScreen(lessonId, obj.screen, obj.total); // L2: oxirgi ekran — FinishBtn avto-yakuni (bayroq bilan)
   const ch = channels.get(lessonId);
   if (!ch || ch.status !== 'active' || !obj) return;
   ch.pending = {
@@ -41,6 +43,7 @@ export function queueProgress(lessonId, obj) {
     earned: Array.isArray(obj.earned) ? obj.earned.map(String) : [],
     started_at_ms: Number.isInteger(obj.startedAt) ? obj.startedAt : undefined,
     client_ts: Date.now(),
+    ...(ch.lessonVersion ? { lesson_version: ch.lessonVersion } : {}), // L1/S5: server urinish versiyasiga mos kelmasa 409 version_changed
   };
   clearTimeout(ch.timer);
   ch.timer = setTimeout(() => flush(lessonId), DEBOUNCE_MS);
@@ -62,7 +65,7 @@ async function flush(lessonId, { keepalive = false } = {}) {
     if (e && (e.status === 409 || e.status === 404 || e.status === 401 || e.status === 403)) {
       // urinish tugagan / yo'q / token eskirgan — sinxron to'xtaydi, dars ishlayveradi
       ch.status = 'finished';
-      if (e.status === 409) ch.onFinished?.({ reason: 'server' });
+      if (e.status === 409) ch.onFinished?.({ reason: e.code === 'version_changed' ? 'version_changed' : 'server' }); // S5: «Dars yangilandi»
     } else {
       // tarmoq — keyingi yozuvda qayta uriniladi (pending qayta to'ladi)
       if (!ch.pending) ch.pending = body;

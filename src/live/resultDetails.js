@@ -20,9 +20,21 @@
 import { getLiveLang } from './i18n.js';
 import { onRunChange } from './previewMode.js';
 import { podiumPlace } from './podium.js';
+import { toV4 } from './resultSchema.js';
 
 const LIM = { questions: 200, attempts: 10, options: 6, text: 300, achievements: 20, name: 40, title: 200, elapsed: 3_600_000 };
-const cut = (v, n) => (typeof v === 'string' ? v.slice(0, n) : undefined);
+// L4 (F-1107-02): dars ba'zan {uz, ru} obyektini beradi (pg-crud s5b/s12) — serverga «[object Object]» ketardi. Matnga keltiriladi:
+// satr → o'zi · son → satr · {uz, ru} → tanlangan til (bo'lmasa uz) · boshqa obyekt → undefined (matn yo'q deb).
+export function asText(v, lang = 'uz') {
+  if (typeof v === 'string') return v;
+  if (typeof v === 'number' || typeof v === 'boolean') return String(v);
+  if (v && typeof v === 'object' && !Array.isArray(v)) {
+    const x = lang === 'ru' ? (v.ru ?? v.uz) : (v.uz ?? v.ru);
+    return typeof x === 'string' ? x : (typeof x === 'number' ? String(x) : undefined);
+  }
+  return undefined;
+}
+const cut = (v, n, lang) => { const s = asText(v, lang); return typeof s === 'string' ? s.slice(0, n) : undefined; };
 const iso = (t) => new Date(t || Date.now()).toISOString().replace(/\.\d{3}Z$/, 'Z');
 const optText = (o, lang) => (o && typeof o === 'object' ? String(o[lang] ?? o.uz ?? '') : String(o ?? ''));
 
@@ -106,7 +118,7 @@ export function logAttempt(lessonId, screenIdx, { picked, texts, elapsedMs } = {
   if (!m.has(screenIdx)) m.set(screenIdx, []);
   const list = m.get(screenIdx);
   if (list.length >= LIM.attempts) return;
-  list.push({ option: Number.isInteger(picked) ? picked : -1, answer: cut(texts && texts.picked, LIM.text), elapsed_ms: Math.max(0, Math.min(LIM.elapsed, Math.round(elapsedMs || 0))), at: Date.now() });
+  list.push({ option: Number.isInteger(picked) ? picked : -1, answer: cut(texts && texts.picked, LIM.text, texts && texts.lang), elapsed_ms: Math.max(0, Math.min(LIM.elapsed, Math.round(elapsedMs || 0))), at: Date.now() });
   persist(lessonId);
 }
 
@@ -268,6 +280,7 @@ export function capPayload(payload, cap = CAP_BYTES) {
 
 export function sealPayload(lessonId, payload) {
   if (!lessonId || !payload || typeof payload !== 'object') return payload;
+  payload = toV4(lessonId, payload); // L2: bayroq yoqilgan bo'lsa v4 (schema_version 2 + dars_api, codestrike yo'q); o'chiq — o'zgarmaydi
   try {
     const key = sealKey(lessonId, payload);
     let held = sealedByLesson.get(lessonId);

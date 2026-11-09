@@ -5,6 +5,7 @@ import { tr } from './i18n.js';
 import { livePlayers, fmtPin, nickRead } from './liveClient.js';
 import { isPreview } from './previewMode.js'; // F-1017-225: preview'da «natija yozilmaydi» xabari
 import { finishHold } from './podium.js';
+import { RESULT_V4, autoFinishReady } from './resultSchema.js';
 
 export const LT = { bg: '#F6F4EF', ink: '#0E0E10', ink2: '#5A5A60', ink3: '#A7A6A2', paper: '#FFFFFF', accent: '#FF4F28', accentSoft: '#FFE8E1', success: '#1F7A4D' };
 
@@ -217,18 +218,30 @@ export function liveToast(node, ms = 6000) {
 // «Qaytadan» bosilsa yakun ekrani qayta yig'iladi — tugma tabiiy tiklanadi.
 export function FinishBtn({ onClick, children, disabled, ...rest }) {
   const [done, setDone] = useState(false);
-  const click = (e) => {
-    if (done) return;
+  const autoRef = React.useRef(false);
+  const fire = (e, { auto = false } = {}) => {
+    if (done && !RESULT_V4) return;
     // Foydalanuvchi qarori (18.10): o'quvchiga «yuborilmadi/qabul qilinmadi» xabari HECH QACHON ko'rsatilmaydi (oldin LMS'ning
     // qizil xabari sinfni xavotirga solgan). finishLesson yiqilsa — faqat konsolga, tugma bosilaveradi (eski xulq), xabar yo'q.
     try { if (typeof onClick === 'function') onClick(e); }
     catch (err) { console.error('[finish]', err); return; }
+    if (done) return; // L2: v4 da qayta bosish — o'sha muhrlangan yuk (chiqish/navigatsiya uchun), xabar takrorlanmaydi
     setDone(true);
     const toast = () => liveToast(isPreview()
       ? { uz: "Ko'rish rejimi — natija yozilmaydi.", ru: 'Режим просмотра — результат не записывается.' }
-      : { uz: "Dars yakunlandi ✓ Endi bu oynani yopsangiz bo'ladi.", ru: 'Урок завершён ✓ Теперь это окно можно закрыть.' });
+      : RESULT_V4
+        ? (auto ? { uz: "Dars yakunlandi ✓ Natija saqlanmoqda — oynani yopsangiz ham yetib boradi.", ru: 'Урок завершён ✓ Результат сохраняется — дойдёт, даже если закрыть окно.' }
+          : { uz: "Natija saqlanmoqda ✓ Endi bu oynani yopsangiz bo'ladi.", ru: 'Результат сохраняется ✓ Теперь это окно можно закрыть.' })
+        : { uz: "Dars yakunlandi ✓ Endi bu oynani yopsangiz bo'ladi.", ru: 'Урок завершён ✓ Теперь это окно можно закрыть.' });
     if (finishHold.get()) finishHold.whenReleased(toast); // CodeStrike podium kutilmoqda — xabar yuk ketganda (28.10)
     else toast();
   };
-  return <button {...rest} data-live={done ? 'finish-done' : 'finish'} disabled={disabled || done} onClick={click}>{done ? tr({ uz: 'Yakunlandi ✓', ru: 'Завершено ✓' }) : children}</button>;
+  // L2 (25 §8, bayroq bilan): oxirgi ekranda natija AVTOMATIK yuboriladi — tugmani bosish shart emas. Faqat faol LMS o'quvchi
+  // urinishida (mentor, self, preview — yo'q). Sahifadan chiqarish LMS ixtiyorida; tugma chiqish/navigatsiya uchun qoladi.
+  useEffect(() => {
+    if (!RESULT_V4 || disabled) return undefined;
+    const t = setTimeout(() => { if (!autoRef.current && autoFinishReady()) { autoRef.current = true; fire(null, { auto: true }); } }, 900);
+    return () => clearTimeout(t);
+  }, [disabled]); // eslint-disable-line react-hooks/exhaustive-deps
+  return <button {...rest} data-live={done ? 'finish-done' : 'finish'} disabled={disabled || (done && !RESULT_V4)} onClick={(e) => fire(e)}>{done ? tr({ uz: 'Yakunlandi ✓', ru: 'Завершено ✓' }) : children}</button>;
 }
