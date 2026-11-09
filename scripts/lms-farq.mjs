@@ -64,9 +64,9 @@ function registr() {
 const walk = (d) => readdirSync(d).flatMap((n) => { const p = join(d, n); return statSync(p).isDirectory() ? walk(p) : [p]; });
 
 // ── Hamma darsni vaqtinchalik papkaga yig'ish va ROYXAT'dan md5 o'qish ──────
-function yigish(mods) {
+function yigish(mods, env = {}) {
   const tmp = mkdtempSync(join(tmpdir(), 'lms-farq-'));
-  const y = run(process.execPath, ['scripts/yuklash-papka.mjs', '--out', tmp, '--moduls', mods.join(','), '--uyga-vazifasiz']);
+  const y = run(process.execPath, ['scripts/yuklash-papka.mjs', '--out', tmp, '--moduls', mods.join(','), '--uyga-vazifasiz'], env);
   if (y.status !== 0) die(`yuklash-papka yiqildi:\n${strip(y.stderr).slice(-800)}`);
   const res = {};
   for (const ro of walk(tmp).filter((f) => f.endsWith('ROYXAT.md'))) {
@@ -154,6 +154,10 @@ function paket() {
   const commit = git('rev-parse', '--short', 'HEAD');
   const lint = run('npm', ['run', '-s', 'lint:jsx']); if (lint.status !== 0) die('lint:jsx toza emas:\n' + strip(lint.stdout).slice(-600));
   const katalogsiz = list.filter((x) => !F.kat.ids.has(x.lid)).map((x) => x.lid); if (katalogsiz.length) die('katalogda yo\'q lesson_id: ' + katalogsiz.join(', '));
+  // F-1105-03 L1: yuklanadigan fayl ICHIDAGI versiya = paket versiyasi (reestr v + 1). Farq yuqorida +1 siz yig'mada aniqlandi
+  // (reestr md5 bilan solishtirish uchun); paketga esa LESSON_VERSION_BUMP=1 bilan yig'ilgan nusxa ketadi va uning md5'i muhrlanadi.
+  // Muhrdan keyin reestr v+1 bo'ladi — keyingi farq (+1 siz) aynan shu baytlarni yig'adi, ya'ni «o'zgarmagan» chiqadi.
+  const BUMP = yigish(mods, { LESSON_VERSION_BUMP: '1', ...(process.env.RESULT_SCHEMA_V2 ? { RESULT_SCHEMA_V2: process.env.RESULT_SCHEMA_V2 } : {}) });
   // paket papkasi
   if (existsSync(OUT)) rmSync(OUT, { recursive: true, force: true });
   const yakka = join(OUT, 'yakka'); mkdirSync(yakka, { recursive: true });
@@ -163,7 +167,8 @@ function paket() {
     const v = x.r ? x.r.v + 1 : (x.eski ? x.eski.v + 1 : 1);
     const nomi = x.b.fayl.replace(/\.jsx$/, '') + `-v${v}.jsx`;
     const d = join(yakka, `${x.mod}-Modul`); mkdirSync(d, { recursive: true });
-    copyFileSync(x.b.path, join(d, nomi));
+    const bb = BUMP.res[x.lid]; if (!bb) die(`${x.lid}: +1 versiyali yig'mada yo'q`);
+    copyFileSync(bb.path, join(d, nomi));
     const crm = reestr.crm_bolim[x.mod] || {}; const old = x.r || x.eski;
     const z = { ...x, v, nomi, crm, old, h: md5(join(d, nomi)) };
     (perMod[x.mod] ||= []).push(z);
@@ -206,6 +211,7 @@ function paket() {
   }
   hisobot.push('**Hukm: O\'TDI ✓**'); writeFileSync(join(OUT, 'HISOBOT.md'), hisobot.join('\n') + '\n');
   rmSync(F.tmp, { recursive: true, force: true });
+  rmSync(BUMP.tmp, { recursive: true, force: true });
   say(`\n${GRN}${B}PAKET TAYYOR${R}: ${OUT} — ${list.length} dars${serverKerak ? ` · ${RED}server avval${R}` : ''} · yuklovchiga: README.md + YUKLASH_PROTOKOLI.md`);
 }
 
