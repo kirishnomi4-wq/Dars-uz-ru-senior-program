@@ -75,6 +75,8 @@ test('jonli dars: reached_end → lr_ darhol (pending → delivered, processing 
   assert.deepEqual([lr1.schema_version, lr1.event_type, Number(lr1.student_id), lr1.status, lr1.processing_status, lr1.last_http_status], [2, 'lesson_result', 8001, 'delivered', 'queued', 201]);
   const p = lr1.payload;
   assert.deepEqual(validateV2(p), []);
+  assert.equal(p.session_key, s1.session_key, 'L2: join javobidagi session_key = server hodisasidagi (brauzer dars_api)');
+  assert.equal(s1.attempt.lesson_version, 'v6');
   assert.deepEqual([p.event_id, p.mode, p.lesson_version, p.version_source, p.group_id, p.teacher_id, p.student.student_id], [`lr_${s1.attempt.id}`, 'live', 'v6', 'attempt', 881, 801, 8001]);
   assert.deepEqual([p.result.trigger, p.result.participated, p.result.completed, p.result.attempt_no, p.result.screens], ['reached_end', true, true, 1, { reached: 22, total: 22 }]);
   assert.deepEqual(p.result.tests, { total_questions: 2, answered: 2, correct_answers: 1 });
@@ -135,6 +137,7 @@ test('solo: versiyali urinish, oxirgi ekran → lr_ (reached_end, completed, ses
   const tok3 = await mintToken({ role: 'student', sub: 8003, name: 'Uch', jti: 'v2f-s3' });
   const s3 = (await join(tok3, { lesson_id: LESSON, lesson_version: 'v6' })).json();
   assert.equal(s3.mode, 'solo');
+  assert.equal(s3.session_key, null, 'solo — null');
   await q('select screen_open($1, $2, $3, 2, $4, true, 1)', [s3.pin, s3.playerId, s3.playerToken, 's2']);
   assert.equal((await record(s3.pin, s3, 4, 's4', 1, 2000, tx('Savol 4?', O4, 1))).statusCode, 200);
   const pr = await progress(tok3, s3.attempt.id, { screen: 21, total: 22 });

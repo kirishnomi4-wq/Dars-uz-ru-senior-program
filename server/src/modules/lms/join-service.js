@@ -10,6 +10,7 @@
 //   2) tugagan urinish bor → KO'RISH rejimi (javoblar saqlangan, natija ko'rinadi, yozilmaydi)
 //   3) aks holda → SOLO (shaxsiy sessiya, server-ball, oxirgi ekranda tugaydi)
 import { withTransaction } from '../../db/pool.js';
+import { liveEventId } from '../results/result-builder.js';
 import { AppError, notFound, conflict, forbidden } from '../../lib/errors.js';
 import { encryptText, decryptText } from '../../lib/crypto.js';
 import {
@@ -160,8 +161,11 @@ async function groupsFor(deps, c, claims) {
   return { groups: ctx.groups, found: ctx.found, cached: false };
 }
 
+// L2 (25 §8): brauzer yuki `dars_api.session_key` — server v2 hodisasidagi bilan AYNAN bir xil (sess_<pin>_<boshlanish>)
+const sessionKeyOf = (row) => { const at = row.session_started_at ?? row.started_at; return row.pin && at ? liveEventId(row.pin, at) : null; };
 const studentPayload = (row, playerToken, attempt, progressRow) => ({
   mode: 'student',
+  session_key: sessionKeyOf(row),
   pin: row.pin,
   playerId: row.player_id,
   playerToken,
@@ -175,6 +179,7 @@ const studentPayload = (row, playerToken, attempt, progressRow) => ({
 
 const soloPayload = (sess, attempt, progressRow) => ({
   mode: 'solo',
+  session_key: null, // 25 §8: solo brauzer yukida null
   pin: sess.pin,
   playerId: sess.playerId,
   playerToken: sess.playerToken,
@@ -192,7 +197,7 @@ const reviewPayload = (attempt, progressRow) => ({
 /** Urinishning ishtirokchi + sessiya qatori (o'quvchi) */
 async function participationOf(c, attempt) {
   const { rows } = await c.query(
-    `select p.session_id, p.player_id, p.session_token_enc, p.display_name, s.pin, s.mode, s.status as lms_status,
+    `select p.session_id, p.player_id, p.session_token_enc, p.display_name, s.pin, s.mode, s.status as lms_status, s.started_at as session_started_at,
             ls.cur_screen, ls.max_screen, ls.status as live_status
        from lms_participants p
        join lms_sessions s on s.id = p.session_id

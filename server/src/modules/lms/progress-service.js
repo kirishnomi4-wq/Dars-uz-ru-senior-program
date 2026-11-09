@@ -23,7 +23,7 @@ export function progressPayload(row) {
   };
 }
 
-export const attemptPayload = (a) => a ? ({ id: a.id, kind: a.kind, status: a.status, reached_end: a.reached_end, finished_at: a.finished_at, finish_reason: a.finish_reason }) : null;
+export const attemptPayload = (a) => a ? ({ id: a.id, kind: a.kind, status: a.status, reached_end: a.reached_end, finished_at: a.finished_at, finish_reason: a.finish_reason, lesson_version: a.lesson_version ?? null }) : null; // L2: dars_api.lesson_version = urinishniki
 
 export async function getProgress(c, attemptId) {
   const { rows } = await c.query('select * from student_progress where attempt_id = $1', [attemptId]);
