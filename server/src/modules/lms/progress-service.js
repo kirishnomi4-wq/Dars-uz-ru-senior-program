@@ -56,10 +56,15 @@ export async function finishAttempt(c, attemptId, reason) {
   return rows[0] || null;
 }
 
-export async function createAttempt(c, { subjectId, lessonId, kind, sessionId }) {
+/**
+ * F-1105-03 S2 (25-kontrakt §9): urinish ochilganda dars versiyasi yoziladi — `attempt` manbasi. Versiya kelmasa (eski dars
+ * yuki, T dan oldin) — `null` + `unknown`; keyin taxmin bilan to'ldirilmaydi.
+ */
+export async function createAttempt(c, { subjectId, lessonId, kind, sessionId, lessonVersion = null }) {
+  const v = typeof lessonVersion === 'string' && lessonVersion.trim() ? lessonVersion.trim().slice(0, 32) : null;
   const { rows } = await c.query(
-    `insert into attempts (subject_id, lesson_id, kind, session_id) values ($1, $2, $3, $4) returning *`,
-    [subjectId, lessonId, kind, sessionId],
+    `insert into attempts (subject_id, lesson_id, kind, session_id, lesson_version, version_source) values ($1, $2, $3, $4, $5, $6) returning *`,
+    [subjectId, lessonId, kind, sessionId, v, v ? 'attempt' : 'unknown'],
   );
   return rows[0];
 }
@@ -87,7 +92,7 @@ export async function joinLivePlayer(c, pin, claims) {
  * Solo urinish: shaxsiy sessiya (o'sha SQL — server-ball ishlaydi), PIN yopiq (begona qo'shila olmaydi),
  * ishtirokchi + urinish yozuvi. Qaytaradi: { attempt, session: { pin, playerId, playerToken, nickname } }
  */
-export async function createSoloAttempt(c, deps, claims, lessonId) {
+export async function createSoloAttempt(c, deps, claims, lessonId, lessonVersion = null) {
   const { config, encKey } = deps;
   if (!config.liveMentorCode) throw new AppError('unavailable', 503, "Server sozlanmagan (mentor-kod yo'q).");
   const { rows: created } = await c.query('select * from create_session($1, $2)', [lessonId, config.liveMentorCode]);
@@ -100,7 +105,7 @@ export async function createSoloAttempt(c, deps, claims, lessonId) {
     [pin, lessonId],
   );
   const sessionId = ls[0].id;
-  const attempt = await createAttempt(c, { subjectId: claims.sub, lessonId, kind: 'solo', sessionId });
+  const attempt = await createAttempt(c, { subjectId: claims.sub, lessonId, kind: 'solo', sessionId, lessonVersion });
   await c.query(
     `insert into lms_participants (session_id, role, subject_id, player_id, session_token_enc, crm_id, display_name, attempt_id)
      values ($1, 'student', $2, $3, $4, $5, $6, $7)`,

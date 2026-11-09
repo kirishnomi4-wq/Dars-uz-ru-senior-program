@@ -95,8 +95,8 @@ export async function lmsRoutes(app, opts = {}) {
   app.post('/lms/restart', {
     preHandler: requireLiveToken,
     config: JOIN_LIMIT,
-    schema: { body: { type: 'object', additionalProperties: false, required: ['lesson_id'], properties: { lesson_id: LESSON_ID } } },
-  }, async (req) => restartStudent(deps, req.claims, req.body.lesson_id));
+    schema: { body: { type: 'object', additionalProperties: false, required: ['lesson_id'], properties: { lesson_id: LESSON_ID, lesson_version: { type: 'string', maxLength: 32 } } } },
+  }, async (req) => restartStudent(deps, req.claims, req.body.lesson_id, req.body.lesson_version ?? null)); // S2: yangi urinish versiyasi
 
   app.get('/lms/me', {
     preHandler: requireLiveToken,

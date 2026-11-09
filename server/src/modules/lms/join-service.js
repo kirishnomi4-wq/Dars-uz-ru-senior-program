@@ -101,7 +101,7 @@ export async function joinMentor(deps, claims, body) {
     if (old && Number(old.teacher_id) === claims.sub && old.session_token_enc) {
       await bindToken(c, claims.jti, old.id);
       const token = decryptText(encKey, old.session_token_enc);
-      if (body.answer_key) await c.query('select set_quiz_keys($1, $2, $3)', [lessonId, config.liveMentorCode, JSON.stringify(body.answer_key)]);
+      if (body.answer_key) await c.query('select set_quiz_keys_v($1, $2::text, $3, $4)', [lessonId, body.lesson_version ?? null, config.liveMentorCode, JSON.stringify(body.answer_key)]); // S2: versiyali kalit ham
       log.info({ sessionId: old.id, gid: claims.gid, lessonId }, 'lms: mentor sessiyani davom ettirdi');
       return { mode: 'mentor', pin: old.pin, token, gid: claims.gid, session_id: old.id, resumed: true };
     }
@@ -120,7 +120,7 @@ export async function joinMentor(deps, claims, body) {
 
     const { rows: created } = await c.query('select * from create_session($1, $2)', [lessonId, config.liveMentorCode]);
     const { pin, token } = created[0];
-    if (body.answer_key) await c.query('select set_quiz_keys($1, $2, $3)', [lessonId, config.liveMentorCode, JSON.stringify(body.answer_key)]);
+    if (body.answer_key) await c.query('select set_quiz_keys_v($1, $2::text, $3, $4)', [lessonId, body.lesson_version ?? null, config.liveMentorCode, JSON.stringify(body.answer_key)]); // S2: versiyali kalit ham
 
     const { rows: ins } = await c.query(
       `insert into lms_sessions (pin, lesson_id, lesson_version, mode, gid, teacher_id, mentor_jti)
@@ -236,7 +236,7 @@ async function resumeActive(c, deps, claims, lessonId, boundSessionId) {
 async function liveSessionsFor(c, lessonId, groups) {
   if (!groups.length) return [];
   const { rows } = await c.query(
-    `select s.id, s.pin, s.gid, s.started_at, ls.cur_screen, ls.max_screen, lc.title_uz, lc.title_ru
+    `select s.id, s.pin, s.gid, s.started_at, s.lesson_version, ls.cur_screen, ls.max_screen, lc.title_uz, lc.title_ru
        from lms_sessions s
        join live_sessions ls on ls.pin = s.pin
        left join lesson_catalog lc on lc.lesson_id = s.lesson_id
@@ -247,10 +247,11 @@ async function liveSessionsFor(c, lessonId, groups) {
   return rows;
 }
 
-async function enterLive(c, deps, claims, lessonId, target, { fromSolo = null } = {}) {
+async function enterLive(c, deps, claims, lessonId, target, { fromSolo = null, lessonVersion = null } = {}) {
   const { encKey, log } = deps;
   const { playerId, token, nick } = await joinLivePlayer(c, target.pin, claims);
-  const attempt = await createAttempt(c, { subjectId: claims.sub, lessonId, kind: 'live', sessionId: target.id });
+  // S2 (25 §4.2 jadvali): jonli urinish versiyasi — mentor ochgan sessiya versiyasi; u yo'q bo'lsa o'quvchi yuki yuborgani
+  const attempt = await createAttempt(c, { subjectId: claims.sub, lessonId, kind: 'live', sessionId: target.id, lessonVersion: target.lesson_version ?? lessonVersion });
   await c.query(
     `insert into lms_participants (session_id, role, subject_id, player_id, session_token_enc, crm_id, display_name, attempt_id)
      values ($1, 'student', $2, $3, $4, $5, $6, $7)`,
@@ -261,8 +262,8 @@ async function enterLive(c, deps, claims, lessonId, target, { fromSolo = null } 
   return studentPayload({ ...target, session_id: target.id, player_id: playerId, display_name: nick }, token, attempt, null);
 }
 
-async function enterSolo(c, deps, claims, lessonId) {
-  const { attempt, session } = await createSoloAttempt(c, deps, claims, lessonId);
+async function enterSolo(c, deps, claims, lessonId, lessonVersion = null) {
+  const { attempt, session } = await createSoloAttempt(c, deps, claims, lessonId, lessonVersion);
   await bindToken(c, claims.jti, attempt.session_id);
   deps.log.info({ lessonId, attemptId: attempt.id }, "lms: o'quvchi solo boshladi");
   return soloPayload(session, attempt, null);
@@ -319,7 +320,7 @@ export async function joinStudent(deps, claims, body) {
         await closeSoloSession(c, fin, 'live_started');
         deps.log.info({ lessonId, soloAttemptId: resumed.solo.attemptId, sessionId: target.id }, "lms: solo → jonli (mentor keyin ochdi)");
       }
-      return enterLive(c, deps, claims, lessonId, target, { fromSolo });
+      return enterLive(c, deps, claims, lessonId, target, { fromSolo, lessonVersion: body.lesson_version ?? null });
     }
     if (resumed) return resumed.payload; // solo davom
 
@@ -328,12 +329,12 @@ export async function joinStudent(deps, claims, body) {
     if (last) return reviewPayload(last, await getProgress(c, last.id));
 
     // 3) solo
-    return enterSolo(c, deps, claims, lessonId);
+    return enterSolo(c, deps, claims, lessonId, body.lesson_version ?? null);
   });
 }
 
 /** Ko'rishdan yangi urinish. Jonli urinish faol bo'lsa — rad (dars ketmoqda). */
-export async function restartStudent(deps, claims, lessonId) {
+export async function restartStudent(deps, claims, lessonId, lessonVersion = null) {
   const { pool } = deps;
   if (claims.role !== 'student') throw forbidden("Faqat o'quvchi uchun.");
   return withTransaction(pool, async (c) => {
@@ -353,7 +354,7 @@ export async function restartStudent(deps, claims, lessonId) {
         await closeSoloSession(c, fin, 'restarted');
       }
     }
-    return enterSolo(c, deps, claims, lessonId);
+    return enterSolo(c, deps, claims, lessonId, lessonVersion);
   });
 }
 

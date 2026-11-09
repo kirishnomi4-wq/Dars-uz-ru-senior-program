@@ -8,7 +8,7 @@ const LESSON = 'internet-01-v18';
 let t;
 
 before(async () => {
-  t = await makeTestApp({}, { lms: true, fetchImpl: fakeSchoolApi({ 7001: [871], 7002: [871] }) });
+  t = await makeTestApp({}, { lms: true, fetchImpl: fakeSchoolApi({ 7001: [871], 7002: [871], 7101: [872], 7102: [872], 7103: [872] }) });
   await t.seedCatalog([LESSON]);
 });
 after(async () => { await t?.close(); });
@@ -108,4 +108,23 @@ test('0012: jonli dars — quiz_control quiz_max_q/quiz_end_reason; arena_shown 
   await assert.rejects(q(`insert into result_events (event_id, mode, session_id, lesson_id, payload, schema_version) values ('lr_c', 'live', $1, $2, $3::jsonb, 2)`, [m.session_id, LESSON, pl]), /result_events_v2_consistent/);
   await q(`insert into result_events (event_id, mode, session_id, lesson_id, payload) values ('sess_v1', 'live', $1, $2, $3::jsonb)`, [m.session_id, LESSON, pl]); // v1 — sessiyaga bitta
   await assert.rejects(q(`insert into result_events (event_id, mode, session_id, lesson_id, payload) values ('sess_v1b', 'live', $1, $2, $3::jsonb)`, [m.session_id, LESSON, pl]), /result_events_live_session_idx/);
+});
+
+// S2: urinish versiyasi (25 §9): join'dagi lesson_version → attempts (attempt); yo'q → null/unknown; jonli — sessiya versiyasi; mentor kalitlari versiyali
+test('S2: solo join lesson_version bilan → attempt/vN; versiyasiz → unknown; mentor answer_key → quiz_key_versions; jonli o\'quvchi sessiya versiyasini oladi', async () => {
+  const solo1 = (await join(await mintToken({ role: 'student', sub: 7101, name: 'S1', jti: 'v2-ver-1' }), { lesson_id: LESSON, lesson_version: 'v5' })).json();
+  assert.equal(solo1.mode, 'solo');
+  assert.deepEqual((await q(`select lesson_version, version_source from attempts where id = $1`, [solo1.attempt.id])).rows[0], { lesson_version: 'v5', version_source: 'attempt' });
+  const solo2 = (await join(await mintToken({ role: 'student', sub: 7102, name: 'S2', jti: 'v2-ver-2' }), { lesson_id: LESSON })).json();
+  assert.deepEqual((await q(`select lesson_version, version_source from attempts where id = $1`, [solo2.attempt.id])).rows[0], { lesson_version: null, version_source: 'unknown' });
+
+  // mentor v6 bilan ochdi, kalit yubordi → sessiya v6, kalitlar v6 ostida; o'quvchi yuki v5 desa ham urinish v6 (mentor ochgan versiya)
+  const m = (await join(await mintToken({ role: 'mentor', sub: 702, gid: 872, jti: 'v2-ver-m' }), { lesson_id: LESSON, lesson_version: 'v6', answer_key: { s4: 1, s9: 2 } })).json();
+  assert.equal(m.mode, 'mentor');
+  assert.equal((await q(`select lesson_version from lms_sessions where id = $1`, [m.session_id])).rows[0].lesson_version, 'v6');
+  assert.equal((await q(`select count(*)::int as n from quiz_key_versions where lesson_id = $1 and lesson_version = 'v6'`, [LESSON])).rows[0].n, 2);
+  const live = (await join(await mintToken({ role: 'student', sub: 7103, name: 'S3', jti: 'v2-ver-3' }), { lesson_id: LESSON, lesson_version: 'v5' })).json();
+  assert.equal(live.mode, 'student');
+  assert.deepEqual((await q(`select lesson_version, version_source from attempts where id = $1`, [live.attempt.id])).rows[0], { lesson_version: 'v6', version_source: 'attempt' });
+  await rpc('end_session', { p_pin: m.pin, p_token: m.token });
 });
