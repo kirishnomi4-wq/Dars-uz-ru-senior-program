@@ -133,6 +133,8 @@ export async function lmsRoutes(app, opts = {}) {
       const attempt = rows[0];
       if (!attempt) throw notFound('Urinish topilmadi.');
       const r = await putProgress(c, attempt, body);
+      // F-1105-03 (25 §4): birinchi reached_end — lesson_result darhol (sweeper 5 s kutmasin); v2 o'chiq bo'lsa runOnce v1 ishini qiladi
+      if (r.reached_end && !attempt.reached_end && app.results) setTimeout(() => app.results.runOnce().catch(() => {}), 150);
       return { status: r.status, reached_end: r.reached_end, stale: r.stale, finish_reason: r.finish_reason ?? null, updated_at: r.progress.updatedAt };
     });
   });

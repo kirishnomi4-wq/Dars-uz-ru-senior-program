@@ -145,6 +145,11 @@ export function loadConfig(env = process.env) {
     // yuboradi — FAQAT sinov muhiti uchun (o'sha test-o'quvchi bilan bitta darsni qayta-qayta sinash kerak bo'lganda).
     resultLiveRepeat: read('RESULT_LIVE_REPEAT', { def: 'skip', enums: ['skip', 'send'] }),
 
+    // F-1105-03 (25-kontrakt): v2 hodisalar (lesson_result / arena_participation / arena_result, har o'quvchiga alohida,
+    // schema_version 2). off = yaratilmaydi ham, yuborilmaydi ham (prod T kunigacha) · on = sweeper yaratadi, ishchi yuboradi,
+    // qo'llash holati (processing) kuzatiladi. v1 oqimi bu bayroqdan mustaqil ishlayveradi (T+8 gacha yonma-yon).
+    resultSchemaV2: read('RESULT_SCHEMA_V2', { def: 'off', enums: ['off', 'on'] }),
+
     // ---- Natija-navbat ishchisi va kuzatuv
     resultsWorkerEnabled: read('RESULTS_WORKER_ENABLED', { def: true, parse: parseBool }),
     resultsTickMs: read('RESULTS_TICK_MS', { def: 5000, parse: parseInt_(1000, 600000) }),
