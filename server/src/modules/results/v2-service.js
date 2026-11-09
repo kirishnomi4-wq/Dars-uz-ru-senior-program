@@ -206,12 +206,12 @@ export async function sweepV2(pool, log, { now = new Date(), limit = 100 } = {})
   const { rows: limited } = await pool.query(
     `update lms_sessions s set status = 'ended', end_reason = coalesce(s.end_reason, 'session_limit'), finished_at = coalesce(s.finished_at, s.started_at + ${LIVE_LIMIT}), updated_at = now()
       where s.mode = 'live' and s.status = 'live' and s.started_at < $1::timestamptz - ${LIVE_LIMIT}
-      returning s.id, s.pin`,
+      returning s.id, s.pin, s.finished_at`,
     [now],
   );
   for (const s of limited) {
     await pool.query(`update live_sessions set status = 'ended', updated_at = now() where pin = $1 and status = 'live'`, [s.pin]);
-    await pool.query(`select quiz_close($1, 'session_limit')`, [s.pin]);
+    await pool.query(`select quiz_close($1, 'session_limit', $2)`, [s.pin, s.finished_at]); // 0015: yakun = start + 2 soat
     await pool.query(`update attempts set status = 'finished', finish_reason = 'live_ended', finished_at = now(), updated_at = now() where session_id = $1 and kind = 'live' and status = 'active'`, [s.id]);
     out.sessionLimit++;
   }
@@ -229,19 +229,25 @@ export async function sweepV2(pool, log, { now = new Date(), limit = 100 } = {})
 
   // 2) Arena yopilishi (server): 45 daqiqa · oxirgi savol + 1 daqiqa · sessiya yopilgan
   const { rows: openArenas } = await pool.query(
-    `select ls.pin, ls.lesson_id, ls.quiz_state, ls.quiz_q, ls.quiz_first_q_at, ls.quiz_started_at, s.status as lms_status,
+    `select ls.pin, ls.lesson_id, ls.quiz_state, ls.quiz_q, ls.quiz_first_q_at, ls.quiz_started_at, s.status as lms_status, s.finished_at as lms_finished_at,
             (select count(*)::int from quiz_keys k where k.lesson_id = ls.lesson_id and k.question_id ~ '^quiz-[0-9]+$') as arena_total
        from live_sessions ls join lms_sessions s on s.pin = ls.pin and s.mode = 'live'
       where ls.quiz_state in ('lobby', 'q', 'r') and ls.quiz_done_at is null`,
   );
   for (const ar of openArenas) {
     let reason = null;
+    let at = null; // 0015: mantiqiy yakun lahzasi (ishchi kechikishi o'yin vaqtini uzaytirmaydi — 25 §12 band 11)
     const t = now.getTime();
-    if (ar.lms_status === 'ended') reason = 'session_closed';
-    else if (ar.quiz_first_q_at && t - new Date(ar.quiz_first_q_at).getTime() > 45 * 60_000) reason = 'arena_limit';
-    else if (ar.quiz_state === 'q' && ar.arena_total > 0 && Number(ar.quiz_q) >= ar.arena_total - 1 && ar.quiz_started_at && t - new Date(ar.quiz_started_at).getTime() > ARENA_QUESTION_MS + 60_000) reason = 'last_question_timeout';
+    const firstQ = ar.quiz_first_q_at ? new Date(ar.quiz_first_q_at).getTime() : null;
+    const lastQ = ar.quiz_started_at ? new Date(ar.quiz_started_at).getTime() : null;
+    const isLast = ar.quiz_state === 'q' && ar.arena_total > 0 && Number(ar.quiz_q) >= ar.arena_total - 1 && lastQ !== null;
+    const cands = [];
+    if (firstQ !== null && t - firstQ > 45 * 60_000) cands.push(['arena_limit', firstQ + 45 * 60_000]);
+    if (isLast && t - lastQ > ARENA_QUESTION_MS + 60_000) cands.push(['last_question_timeout', lastQ + ARENA_QUESTION_MS + 60_000]);
+    if (ar.lms_status === 'ended') cands.push(['session_closed', ar.lms_finished_at ? new Date(ar.lms_finished_at).getTime() : t]);
+    if (cands.length) { cands.sort((a, b) => a[1] - b[1]); [reason, at] = cands[0]; } // eng erta chegara haqiqiy sabab
     if (!reason) continue;
-    const { rows: [{ quiz_close: closed }] } = await pool.query(`select quiz_close($1, $2)`, [ar.pin, reason]);
+    const { rows: [{ quiz_close: closed }] } = await pool.query(`select quiz_close($1, $2, $3)`, [ar.pin, reason, new Date(at)]);
     if (closed) { out.arenaClosed++; log.info({ pin: ar.pin, reason }, 'arena server tomonidan yopildi'); }
   }
 
