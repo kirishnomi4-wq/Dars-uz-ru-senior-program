@@ -18,13 +18,22 @@ const csv = (p) => {
 const cl = csv(`${R}/feedback/F-1023-01-learn/ommaviy-yuklash/CLASS-LEARN.csv`).filter((r) => r.lid && r.tur === 'Class' && r.holat === 'Active');
 const learn = new Map(csv(`${R}/feedback/F-1023-01-learn/ommaviy-yuklash/LEARN-OCHILDI.csv`).map((r) => [r.class_id, r.learn_id]));
 const byLid = new Map(cl.map((r) => [r.lid, r]));
+// F-1109-03 (Abdulloh 18-javobi §3): tashqi lesson_id tarixi — `dev/eski-id.sh` git'dan yig'adi (lesson_id_hozir,eski_id,commit,sana);
+// reestrga `eski_lesson_id` ustuni (yangi→eski tartibda, `|` bilan). Relizda joriy versiya yangilansa ham eski mosliklar o'chmaydi.
+const eskiPath = `${R}/feedback/F-1105-03-analitika/dev/eski-id.csv`;
+const eski = new Map();
+if (fs.existsSync(eskiPath)) {
+  const pairs = fs.readFileSync(eskiPath, 'utf8').split('\n').filter(Boolean).map((l) => l.split(',')).filter((c) => c.length >= 4 && c[0] !== c[1]);
+  pairs.sort((a, b) => b[3].localeCompare(a[3]));
+  for (const [now, old] of pairs) { if (!eski.has(now)) eski.set(now, []); if (!eski.get(now).includes(old)) eski.get(now).push(old); }
+}
 const out = [], miss = [];
 for (const [lid, d] of Object.entries(reestr)) {
   const c = byLid.get(lid);
   if (!c) { miss.push(`class yo'q: ${lid}`); continue; }
   const learnId = learn.get(c.class_id);
   if (!learnId) miss.push(`learn yo'q: ${lid} class ${c.class_id}`);
-  out.push({ modul: d.modul, crm_bolim: c.bolim, class_id: c.class_id, class_tartib: c.tartib, lesson_id: lid, lesson_version: `v${d.v}`, material_uz: d.crm?.uz ?? '', material_ru: d.crm?.ru ?? '', learn_id: learnId ?? '', nom_uz: d.nom_uz });
+  out.push({ modul: d.modul, crm_bolim: c.bolim, class_id: c.class_id, class_tartib: c.tartib, lesson_id: lid, lesson_version: `v${d.v}`, material_uz: d.crm?.uz ?? '', material_ru: d.crm?.ru ?? '', learn_id: learnId ?? '', nom_uz: d.nom_uz, eski_lesson_id: (eski.get(lid) || []).join('|') });
 }
 out.sort((a, b) => a.modul - b.modul || Number(a.class_tartib) - Number(b.class_tartib));
 const esc = (v) => (/[",\n]/.test(String(v)) ? `"${String(v).replace(/"/g, '""')}"` : String(v));

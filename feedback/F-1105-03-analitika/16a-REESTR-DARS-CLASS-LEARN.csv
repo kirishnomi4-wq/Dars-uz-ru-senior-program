@@ -1,173 +1,173 @@
-modul,crm_bolim,class_id,class_tartib,lesson_id,lesson_version,material_uz,material_ru,learn_id,nom_uz
-2,70,2374,10,internet-01-v18,v5,13381,14091,3148,Internet qanday ishlaydi
-2,70,2416,20,pm-m1d2-v1,v5,13535,13640,3159,Kim mening foydalanuvchim?
-2,70,2417,30,html-01-v17,v5,13556,14092,3160,HTML asoslari
-2,70,2419,50,html-02-v16,v5,13559,13705,3161,"HTML: rasm, struktura, forma, DevTools"
-2,70,2541,65,html-takrorlash-01-05-v2,v5,14088,14089,3162,Takrorlash: HTML ustaxonasi
-2,70,2423,70,pm-m1d6-v1,v5,13570,14093,3163,Struktura — foydalanuvchi uchun qilingan qulaylik
-2,70,2424,80,css-01-v17,v5,13599,14094,3164,"CSS asoslari: ranglar, shriftlar, bo'shliqlar"
-2,70,2425,90,css-02-v18,v5,13600,14095,3165,"CSS: layout, flexbox, DevTools"
-2,70,2542,100,vscode-start-01-v1,v5,14097,14100,3166,VS Code
-2,70,2426,105,html-practice-portfolio-v2,v6,13635,14096,3167,HTML Praktika — Portfolio sayt
-2,70,2428,110,css-practice-portfolio-v3,v5,14099,14098,3168,CSS Praktika — Demo Day saytini bezaymiz
-2,70,2427,121,git-github-v19,v5,13637,14101,3169,Git va GitHub — kodni internetga chiqaramiz
-2,70,2429,130,netlify-deploy-v19,v5,14085,14086,3170,Netlify va deploy
-2,70,2430,140,pm-pitch-03-v20,v5,14090,14102,3171,Demo Day — 3 daqiqalik nutq
-3,73,2431,10,js-intro-01-v18,v5,14104,14103,3172,Sistema va Algoritm
-3,73,2432,20,pm-m2d2-v1,v5,14106,14105,3173,Muammodan yechimga
-3,73,2433,30,js-vars-01-v18,v6,14108,14107,3174,JavaScript — O'zgaruvchilar
-3,73,2434,40,js-cond-01-v18,v5,14110,14109,3175,JavaScript — if/else
-3,73,2435,50,js-loops-01-v18,v6,14112,14111,3176,"JavaScript — Sikllar (for, while)"
-3,73,2436,60,js-functions-01-v18,v6,14114,14113,3177,"JavaScript — Funksiya, parametr, return"
-3,73,2437,70,pm-m2d7-v1,v6,14123,14115,3178,Dekompozitsiya — ochilish ro'yxati
-3,73,2438,80,practice-01-jonlantirish-v18,v6,14122,14116,3179,Praktika 1 — Saytni jonlantiramiz
-3,73,2439,90,practice-02-ai-promo-v18,v5,14124,14117,3180,Praktika 2 — AI bilan tez sayt
-3,73,2441,110,pean-stack-01-v18,v6,14128,14118,3181,"PERN Stack — 4 texnologiya, bitta jamoa"
-3,73,2442,120,practice-03-decompose-v18,v6,14125,14119,3182,Praktika 3 — Dekompozitsiya (mini-do'kon)
-3,73,2443,130,practice-04-mvp-deploy-v18,v6,14126,14120,3183,Praktika 4 — MVP tayyor (deploy)
-3,73,2444,140,pm-m2d13-v2,v5,14127,14121,3184,Sistemani qanday pitch qilish
-4,74,2445,10,react-intro-01-v18,v5,16356,16357,3185,React nima va nima uchun?
-4,74,2446,20,pm-m3d2-v3,v6,16358,16359,3186,User Story: kim va nima uchun?
-4,74,2447,30,react-first-component-02-v18,v6,16360,16361,3187,"Birinchi komponent: Vite, JSX, props"
-4,74,2448,40,react-state-effect-03-v18,v6,16362,16363,3188,State va Effect: useState + useEffect
-4,74,2449,50,pm-m3d5-v1,v6,16364,16365,3189,Qaysi ishni birinchi qilasiz?
-4,74,2450,60,react-props-reuse-04-v18,v6,16366,16367,3190,Props va qayta ishlatish
-4,74,2451,70,react-crud-practice-p1-v18,v6,16368,16369,3191,Praktika: CRUD — to'liq boshqariladigan ilova
-4,74,2453,90,react-api-get-05-v18,v5,16370,16371,3192,API bilan ishlash: GET — serverdan ma'lumot olish
-4,74,2455,110,react-api-post-06-v18,v6,16372,16373,3193,API: POST/PUT/DELETE — serverga ma'lumot yuborish
-4,74,2456,120,pm-m3d10-v1,v6,16374,16375,3194,Qachon «tayyor» deb ayta olamiz?
-4,74,2458,140,react-router-practice-p2-v18,v5,16376,16377,3195,Praktika: React Router — ko'p sahifali ilova
-4,74,2459,150,react-project-day-p3-v18,v6,16378,16379,3196,Praktika: Loyiha kuni — AvtoIjara
-4,74,2460,160,react-build-site-final-p4-v18,v6,16380,16381,3197,Praktika: Istalgan saytni qurish — bo'laklash + aniq prompt
-4,74,2461,170,pm-m3d14-v1,v7,16382,16383,3198,Ishlayotgan saytingizni qanday ko'rsatasiz?
-5,75,2462,10,data-intro-04-01-v18,v6,16384,16385,3199,"Ma'lumot va bog'lanishlar: JSON, jadval, sxema"
-5,75,2463,20,pm-m4d2-v1,v6,16386,16387,3200,Ilova nimani eslab qolsin?
-5,75,2464,30,db-sql-nosql-04-02-v18,v6,16388,16389,3201,SQL vs NoSQL — nega PostgreSQL
-5,75,2465,40,node-server-04-03-v18,v6,16391,16390,3202,Node.js — birinchi serveringiz
-5,75,2466,50,nest-routing-04-04-v18,v8,16393,16392,3203,Routing: server so'rovni qanday topadi
-5,75,2467,60,pg-crud-04-05-v18,v6,16395,16394,3204,PostgreSQL so'rovlar — CRUD + AI bilan
-5,75,2468,70,pm-m4d7-v1,v7,16397,16396,3205,"Sinfdoshingiz sahifangizni ochsa, nimani ko'radi?"
-5,75,2469,80,backend-crud-practice-p1-v18,v6,16399,16398,3206,Praktika: Backend CRUD — AvtoIjara
-5,75,2471,90,api-postman-04-06-v18,v6,16401,16400,3207,API va Postman — front backend bilan qanday gaplashadi
-5,75,2472,100,fullstack-connect-practice-p2-v18,v6,16403,16402,3208,Praktika: Fullstack ulash — AvtoIjara
-5,75,2473,110,auth-env-04-07-v18,v5,16405,16404,3209,"Autentifikatsiya va .env — login, JWT, maxfiy kalitlar"
-5,75,2474,120,pm-m4d12-v1,v7,16406,16407,3210,Ilova nimani yozib qoladi?
-5,75,2475,130,fullstack-projectday-p3-v18,v6,16409,16408,3211,Praktika: Loyiha kuni — AvtoStoyanka
-5,75,2476,140,fullstack-feedback-p4-v18,v6,16411,16410,3212,Praktika: Feedback bilan yaxshilash — AvtoStoyanka
-5,75,2477,150,pm-m4d15-v1,v7,16413,16412,3213,«Qanday ishlaydi?» deb so'rashsa
-6,90,2761,10,nest-arch-alive-4a-01-v18,v5,16414,16415,3214,Nest arxitektura — tirik ko'rish
-6,90,2762,20,pm-m4a2-v1,v6,16416,16417,3215,"Hamma birdan kirsa, sayt chidaydimi?"
-6,90,2763,30,nest-arch-resource-4a-02-v18,v6,16419,16418,3216,Birinchi resursni qo'lda qo'shish — mashinalar
-6,90,2764,40,nest-arch-practice-4a-03-v18,v6,16421,16420,3217,Praktika — KitobShop backend
-6,90,2765,50,jest-unit-04b-01-v18,v6,16423,16422,3218,Unit-test: Jest
-6,90,2766,60,pm-m4b2-v1,v7,16427,16424,3219,Bitta xato — nechta odam ketadi?
-6,90,2767,70,edge-cases-04b-02-v18,v5,16426,16425,3220,Edge cases va error path
-6,90,2768,80,cicd-intro-4c-01-v18,v5,16429,16428,3221,CI/CD nima va nega kerak
-6,90,2769,90,pm-m4c2-v1,v6,16431,16430,3222,Hammasini birdan chiqaraymi — yoki har hafta bo'lak?
-6,90,2770,100,github-actions-4c-02-v18,v5,16433,16432,3223,GitHub Actions — yo'l xaritasini yozish
-6,90,2771,110,cicd-full-pipeline-4c-03-v18,v5,16435,16434,3224,Loyiha kuni — to'liq lentani qurish
-6,90,2772,120,cicd-ai-pipeline-4c-05-v18,v5,16436,16437,3225,AI bilan lentani boshqarish
-6,90,2773,130,pm-m4c6-v1,v7,16438,16441,3226,Saytingiz hozir ochilyaptimi?
-6,90,2774,140,full-pro-pipeline-4c-04-v18,v5,16440,16439,3227,Loyiha kuni: ishonchli lenta
-7,80,2493,10,bot-intro-05-01-v18,v5,17095,17096,3228,Bot nima
-7,80,2494,20,pm-m5d2-v1,v6,17097,17098,3229,Botingizni birinchi kim ochadi?
-7,80,2495,30,bot-api-buttons-05-02-v18,v5,17099,17100,3230,Telegram Bot API + tugmalar
-7,80,2496,40,bot-stateful-memory-05-03-v18,v5,17101,17102,3231,Bot eslab qoladi — holat va PostgreSQL
-7,80,2498,50,bot-ai-project-05-05-v18,v5,17103,17104,3232,Loyiha kuni: AI bilan bot
-7,80,2499,60,bot-ai-brain-05-04-v18,v5,17105,17106,3233,Bot ichida AI
-7,80,2500,70,bot-full-project-05-07-v18,v5,17107,17108,3234,Loyiha kuni: bot + DB + AI
-7,80,2501,80,pm-m5d8-v1,v6,17109,17110,3235,Botingizni ishlatgan odamdan nimani so'raysiz?
-7,80,2502,90,bot-feedback-05-06-v18,v5,17111,17112,3236,Foydalanuvchi fikri va iteratsiya
-7,80,2503,100,bot-ai-agent-05-10-v18,v5,17113,17114,3237,AI-agent yaratish
-7,80,2981,105,pm-m5d11-metrika-v1,v6,17115,17116,3238,Botingiz yaxshi ishlayotganini qaysi raqam aytadi?
-7,80,2504,110,pm-m5d11-v1,v6,17117,17118,3239,Kecha kelgan odam bugun ham keldimi?
-8,81,2505,10,sys-arch-06-01-v18,v5,17119,17120,3240,Komponentlardan tizim
-8,81,2506,20,pm-m6d2-v1,v7,17121,17122,3241,Bitta gapni uch kishi bir xil tushunadimi?
-8,81,2507,30,arch-patterns-06-03-v18,v5,17123,17124,3242,Arxitektura patternlari
-8,81,2508,40,agent-arch-06-04-v18,v5,17125,17126,3243,AI-agent nima
-8,81,2509,50,claude-skills-06-05-v18,v5,17127,17128,3244,Claude Skills — nima
-8,81,2510,60,pm-m6d6-v1,v6,17129,17130,3245,"Ilova o'zi qaror qilsa, kimga tegadi?"
-8,81,2511,70,write-skill-06-07-v18,v5,17131,17132,3246,O'z Skill'ingizni yozing
-8,81,2512,80,pipeline-project-06-08-v18,v5,17133,17134,3247,Loyiha kuni: to'liq pipeline
-8,81,2513,90,rn-basics-06-09-v18,v5,17135,17136,3248,React Native — asoslari
-8,81,2514,100,rn-app-06-10-v18,v5,17137,17138,3249,"RN: komponent, navigatsiya, API"
-8,81,2515,110,mobile-practice-06-11-v18,v5,17139,17140,3250,Loyiha kuni: mobil ilova
-8,81,2516,120,pm-m6d12-v1,v6,17141,17142,3251,Bugun qaysi ish boshlanadi?
-8,81,2517,130,full-system-06-13-v18,v5,17143,17144,3252,Loyiha kuni: to'liq tizim
-8,81,2518,140,pm-m6d14-v1,v6,17145,17146,3253,Raqamingiz nimani isbotlaydi?
-9,108,2983,10,pm-m7d1-v1,v6,17147,17148,3254,Loyihangiz kimga kerak?
-9,108,2984,20,m7-02-v1,v6,17149,17150,3255,Besh odamdan nimani bilib olasiz?
-9,108,2985,30,pm-m7d3-v1,v6,17151,17152,3256,Besh suhbatdan qaysi muammo chiqdi?
-9,108,2986,40,m7-04-v1,v5,17153,17154,3257,Mini-MVP arxitekturasi
-9,108,2987,50,m7-05-v1,v5,17155,17156,3258,Animatsiya: interfeys javob beradi
-9,108,2988,60,m7-06-v1,v5,17157,17158,3259,Birinchi odam kirganda nimani ko'rasiz?
-9,108,2989,70,m7-07-v1,v5,17159,17160,3260,Loyiha kuni: MVP — birinchi ekran
-9,108,2990,80,m7-08-v1,v5,17161,17162,3261,Yaxshi interfeysdan nimani olasiz?
-9,108,2991,90,m7-09-v1,v5,17163,17164,3262,Loyiha kuni: MVP tayyor
-9,108,2992,100,m7-10-v1,v6,17165,17166,3263,Odam ilovangizda qayerda to'xtab qoladi?
-9,108,2993,110,m7-11-v1,v5,17167,17168,3264,Loyiha kuni: sinovdan keyingi tuzatish
-9,108,2994,120,m7-12-v2,v5,17169,17170,3265,Pitchingizda kimning hikoyasi bor?
-10,109,2995,10,pm-m8d1-okr-v1,v5,17171,17172,3266,Bir oyda qaysi raqamni o'stirasiz?
-10,109,2996,20,m8-02-event-tracking-v1,v5,17173,17174,3267,Hodisalar tizimi: har harakat jadvalga yoziladi
-10,109,2997,30,m8-03-v1,v5,17175,17176,3268,Loyiha kuni: jonli dashboard
-10,109,2998,40,m8-04-v1,v5,17177,17178,3269,Ikki variantdan qaysi biri yaxshiroq ishlaydi?
-10,109,2999,50,m8-05-security-basics-v1,v5,17179,17180,3270,Kiberxavfsizlik: zaiflikni topib yopamiz
-10,109,3000,60,m8-06-v1,v5,17181,17182,3271,Foydalanuvchi sizga ma'lumotini ishonadimi?
-10,109,3001,70,m8-07-production-deploy-v1,v5,17183,17184,3272,"Production deploy: domen, SSL, monitoring"
-10,109,3002,80,m8-08-v1,v5,17185,17186,3273,Loyiha kuni: prodga ko'tarish — 1-qism
-10,109,3003,90,m8-09-v1,v5,17187,17188,3274,Loyiha kuni: prodga ko'tarish — 2-qism
-10,109,3004,100,pm-m8d10-yol-v1,v6,17189,17190,3275,Bir yilda nimalarni qurdingiz?
-10,109,3005,110,pm-m8d11-pitch-v2,v5,17191,17192,3276,Besh daqiqada nimani ko'rsatasiz?
-11,110,3006,10,pm-m9d1-v1,v6,17193,17194,3277,Beshta g'oyani qayerdan topasiz?
-11,110,3007,20,pm-m9d2-v1,v6,17195,17196,3278,Beshta g'oyadan qaysi uchtasi qoladi?
-11,110,3008,30,pm-m9d3-v1,v6,17197,17198,3279,Ikki g'oyadan qaysi biri odamlarga kerak?
-11,110,3009,40,pm-m9d4-v1,v6,17199,17200,3280,O'n intervyudan keyin qaysi g'oya qoladi?
-11,110,3010,50,pm-m9d5-v1,v5,17201,17202,3281,G'oyangiz bir sahifaga sig'adimi?
-11,110,3011,60,pm-m9d6-v1,v6,17203,17204,3282,Bitiruvgacha nimani qachon qurasiz?
-11,110,3012,70,m9-07-v1,v5,17205,17206,3283,Jonli prototip: qog'ozdan bosiladigan ekrangacha
-11,110,3013,80,m9-08-v1,v5,17207,17208,3284,Arxitektura va platforma: web yoki mobil ilova
-11,110,3014,90,m9-09-v1,v5,17209,17210,3285,React Native va Expo: prototip telefonda
-11,110,3015,100,m9-10-v1,v5,17211,17212,3286,"Loyiha kuni: poydevor — Database, kirish, deploy"
-11,110,3016,110,m9-11-v1,v5,17213,17214,3287,Loyiha kuni: 1-asosiy funksiya
-11,110,3017,120,m9-12-v1,v5,17215,17216,3288,Loyiha kuni: 2-asosiy funksiya
-11,110,3018,130,pm-m9d13-v1,v5,17217,17218,3289,Uch foydalanuvchidan keyin nimani tuzatasiz?
-11,110,3019,140,m9-14-v1,v5,17219,17220,3290,Loyiha kuni: 3-asosiy funksiya
-11,110,3020,150,pm-m9d15-v1,v5,17221,17222,3291,Roadmap bo'yicha qayerdasiz?
-11,110,3021,160,pm-m9d16-v2,v5,17223,17224,3292,G'oyangiz va ilovangiz guruhni ishontiradimi?
-12,111,3023,10,pm-m10d1-v1,v5,17225,17226,3293,Mahsulotingizni bir sahifada qanday tanishtirasiz?
-12,111,3024,20,m10-02-v1,v5,17227,17228,3294,WebSocket: ekran o'zi yangilanadigan ulanish
-12,111,3025,30,pm-m10d3-v1,v5,17229,17230,3295,Ekran o'zi yangilanishi uchun nimani yozasiz?
-12,111,3026,40,m10-04-v1,v5,17231,17232,3296,Loyiha kuni: jonli xabar va eslatma
-12,111,3027,50,m10-05-v1,v5,17233,17234,3297,Ulanish uzilsa: buzamiz va tuzatamiz
-12,111,3028,60,pm-m10d6-v1,v6,17235,17236,3298,Birinchi foydalanuvchilar sizni qayerdan topadi?
-12,111,3029,70,pm-m10d7-v1,v5,17237,17238,3299,50 foydalanuvchiga qanday yetasiz?
-12,111,3030,80,pm-m10d8-v1,v5,17239,17240,3300,Foydalanuvchilar qaysi qadamda to'xtab qolyapti?
-12,111,3031,90,m10-09-v1,v5,17241,17242,3301,Loyiha kuni: foydalanuvchini qaytaradigan eslatma
-12,111,3032,100,pm-m10d10-v1,v5,17243,17244,3302,50 foydalanuvchiga yetdingizmi?
-12,111,3033,110,pm-m10d11-v2,v5,17245,17246,3303,Raqamlaringiz pitchni qanday o'zgartiradi?
-12,111,3034,120,pm-m10d12-v2,v6,17247,17248,3304,Raqamlaringiz zalni ishontiradimi?
-13,112,3035,10,pm-m11d1-v1,v6,17249,17250,3305,Bitta foydalanuvchi sizga qanchaga tushadi?
-13,112,3036,20,pm-m11d2-v1,v5,17251,17252,3306,Mahsulotingiz qanday pul topadi?
-13,112,3037,30,m11-03-v1,v5,17253,17254,3307,Webhook: to'lov Backend'ga qanday yetib keladi
-13,112,3038,40,pm-m11d4-v1,v5,17255,17256,3308,Narxni qanday belgilaysiz?
-13,112,3039,50,m11-05-v1,v5,17257,17258,3309,Loyiha kuni: to'lovni ulaymiz va buzib ko'ramiz
-13,112,3040,60,pm-m11d6-v1,v5,17259,17260,3310,Pul haqida qanday gaplashasiz?
-13,112,3041,70,pm-m11d7-v1,v5,17261,17262,3311,Foydalanuvchiga shartlarni qanday ochiq aytasiz?
-13,112,3042,80,m11-08-v1,v5,17263,17264,3312,Loyiha kuni: ketayotgan foydalanuvchini qaytarish
-13,112,3043,90,pm-m11d9-v1,v5,17265,17266,3313,Kim haqiqatan to'lashga tayyor?
-13,112,3044,100,m11-10-v1,v5,17267,17268,3314,Loyiha kuni: taklif linki va mukofot
-13,112,3045,110,pm-m11d11-v1,v5,17269,17270,3315,Mahsulotingiz hozir qayerda?
-13,112,3046,120,m11-12-v1,v5,17271,17272,3316,Loyiha kuni: barqarorlashtirish
-14,113,3047,10,pm-m12d1-v2,v5,17273,17274,3317,Investorga pitchni qanday tuzasiz?
-14,113,3048,20,pm-m12d2-v2,v5,17275,17276,3318,Mahsulotingiz hikoyasini qanday aytasiz?
-14,113,3049,30,m12-03-v1,v5,17277,17278,3319,Mahsulot tezligi: o'lchaymiz va tezlashtiramiz
-14,113,3050,40,m12-04-v1,v5,17279,17280,3320,Loyiha kuni: demo uchun sayqal
-14,113,3051,50,pm-m12d5-v2,v5,17281,17282,3321,Guruh pitchingizda nimani tuzatishni aytadi?
-14,113,3052,60,m12-06-v1,v5,17283,17284,3322,Demoga tayyorgarlik: risklar va B reja
-14,113,3053,70,pm-m12d7-v1,v5,17285,17286,3323,Investor ko'zi bilan: demo buzilmaydimi?
-14,113,3054,80,pm-m12d8-v2,v5,17287,17288,3324,Final pitchingiz 5 daqiqaga tayyormi?
-14,113,3055,90,m12-09-v1,v5,17289,17290,3325,Video-portfolio: 3 daqiqada o'zingiz va mahsulot
-14,113,3056,100,pm-m12d10-v1,v5,17291,17292,3326,Birinchi buyurtmani qayerdan topasiz?
-14,113,3057,110,pm-m12d11-v1,v5,17293,17294,3327,Qaysi xalqaro dasturga ariza berasiz?
-14,113,3058,120,pm-m12d12-v1,v5,17295,17296,3328,Keyingi olti oyda nima qilasiz?
-14,113,3059,130,pm-m12d13-v1,v5,17297,17298,3329,Demo Day'ga tayyormisiz?
+modul,crm_bolim,class_id,class_tartib,lesson_id,lesson_version,material_uz,material_ru,learn_id,nom_uz,eski_lesson_id
+2,70,2374,10,internet-01-v18,v5,13381,14091,3148,Internet qanday ishlaydi,
+2,70,2416,20,pm-m1d2-v1,v5,13535,13640,3159,Kim mening foydalanuvchim?,
+2,70,2417,30,html-01-v17,v5,13556,14092,3160,HTML asoslari,
+2,70,2419,50,html-02-v16,v5,13559,13705,3161,"HTML: rasm, struktura, forma, DevTools",
+2,70,2541,65,html-takrorlash-01-05-v2,v5,14088,14089,3162,Takrorlash: HTML ustaxonasi,
+2,70,2423,70,pm-m1d6-v1,v5,13570,14093,3163,Struktura — foydalanuvchi uchun qilingan qulaylik,pm-structure-02-v18|pm-structure-02-v17
+2,70,2424,80,css-01-v17,v5,13599,14094,3164,"CSS asoslari: ranglar, shriftlar, bo'shliqlar",
+2,70,2425,90,css-02-v18,v5,13600,14095,3165,"CSS: layout, flexbox, DevTools",css-02-v17
+2,70,2542,100,vscode-start-01-v1,v5,14097,14100,3166,VS Code,
+2,70,2426,105,html-practice-portfolio-v2,v6,13635,14096,3167,HTML Praktika — Portfolio sayt,html-practice-portfolio-v1
+2,70,2428,110,css-practice-portfolio-v3,v5,14099,14098,3168,CSS Praktika — Demo Day saytini bezaymiz,css-practice-portfolio-v2
+2,70,2427,121,git-github-v19,v5,13637,14101,3169,Git va GitHub — kodni internetga chiqaramiz,git-github-01-v18|git-github-01-v17
+2,70,2429,130,netlify-deploy-v19,v5,14085,14086,3170,Netlify va deploy,deploy-01-v18|deploy-01-v17
+2,70,2430,140,pm-pitch-03-v20,v5,14090,14102,3171,Demo Day — 3 daqiqalik nutq,pm-pitch-03-v19|pm-pitch-03-v18|pm-pitch-03-v17
+3,73,2431,10,js-intro-01-v18,v5,14104,14103,3172,Sistema va Algoritm,js-intro-01-v17
+3,73,2432,20,pm-m2d2-v1,v5,14106,14105,3173,Muammodan yechimga,pm-problem-solution-04-v18|pm-problem-solution-04-v17
+3,73,2433,30,js-vars-01-v18,v6,14108,14107,3174,JavaScript — O'zgaruvchilar,js-vars-01-v17
+3,73,2434,40,js-cond-01-v18,v5,14110,14109,3175,JavaScript — if/else,js-cond-01-v17
+3,73,2435,50,js-loops-01-v18,v6,14112,14111,3176,"JavaScript — Sikllar (for, while)",js-loops-01-v17
+3,73,2436,60,js-functions-01-v18,v6,14114,14113,3177,"JavaScript — Funksiya, parametr, return",js-functions-01-v17
+3,73,2437,70,pm-m2d7-v1,v6,14123,14115,3178,Dekompozitsiya — ochilish ro'yxati,pm-decomposition-05-v18|pm-decomposition-05-v17
+3,73,2438,80,practice-01-jonlantirish-v18,v6,14122,14116,3179,Praktika 1 — Saytni jonlantiramiz,practice-01-jonlantirish-v17
+3,73,2439,90,practice-02-ai-promo-v18,v5,14124,14117,3180,Praktika 2 — AI bilan tez sayt,practice-02-ai-promo-v17
+3,73,2441,110,pean-stack-01-v18,v6,14128,14118,3181,"PERN Stack — 4 texnologiya, bitta jamoa",pean-stack-01-v17
+3,73,2442,120,practice-03-decompose-v18,v6,14125,14119,3182,Praktika 3 — Dekompozitsiya (mini-do'kon),practice-03-decompose-v17
+3,73,2443,130,practice-04-mvp-deploy-v18,v6,14126,14120,3183,Praktika 4 — MVP tayyor (deploy),practice-04-mvp-deploy-v17
+3,73,2444,140,pm-m2d13-v2,v5,14127,14121,3184,Sistemani qanday pitch qilish,pm-m2d13-v1|pm-demoday-pitch-06-v18|pm-demoday-pitch-06-v17
+4,74,2445,10,react-intro-01-v18,v5,16356,16357,3185,React nima va nima uchun?,
+4,74,2446,20,pm-m3d2-v3,v6,16358,16359,3186,User Story: kim va nima uchun?,pm-m3d2-v1
+4,74,2447,30,react-first-component-02-v18,v6,16360,16361,3187,"Birinchi komponent: Vite, JSX, props",
+4,74,2448,40,react-state-effect-03-v18,v6,16362,16363,3188,State va Effect: useState + useEffect,
+4,74,2449,50,pm-m3d5-v1,v6,16364,16365,3189,Qaysi ishni birinchi qilasiz?,pm-priority-08-v16
+4,74,2450,60,react-props-reuse-04-v18,v6,16366,16367,3190,Props va qayta ishlatish,
+4,74,2451,70,react-crud-practice-p1-v18,v6,16368,16369,3191,Praktika: CRUD — to'liq boshqariladigan ilova,
+4,74,2453,90,react-api-get-05-v18,v5,16370,16371,3192,API bilan ishlash: GET — serverdan ma'lumot olish,
+4,74,2455,110,react-api-post-06-v18,v6,16372,16373,3193,API: POST/PUT/DELETE — serverga ma'lumot yuborish,
+4,74,2456,120,pm-m3d10-v1,v6,16374,16375,3194,Qachon «tayyor» deb ayta olamiz?,pm-acceptance-09-v16
+4,74,2458,140,react-router-practice-p2-v18,v5,16376,16377,3195,Praktika: React Router — ko'p sahifali ilova,
+4,74,2459,150,react-project-day-p3-v18,v6,16378,16379,3196,Praktika: Loyiha kuni — AvtoIjara,
+4,74,2460,160,react-build-site-final-p4-v18,v6,16380,16381,3197,Praktika: Istalgan saytni qurish — bo'laklash + aniq prompt,
+4,74,2461,170,pm-m3d14-v1,v7,16382,16383,3198,Ishlayotgan saytingizni qanday ko'rsatasiz?,pm-frontend-handoff-10-v16
+5,75,2462,10,data-intro-04-01-v18,v6,16384,16385,3199,"Ma'lumot va bog'lanishlar: JSON, jadval, sxema",
+5,75,2463,20,pm-m4d2-v1,v6,16386,16387,3200,Ilova nimani eslab qolsin?,pm-metrics-11-v16
+5,75,2464,30,db-sql-nosql-04-02-v18,v6,16388,16389,3201,SQL vs NoSQL — nega PostgreSQL,
+5,75,2465,40,node-server-04-03-v18,v6,16391,16390,3202,Node.js — birinchi serveringiz,
+5,75,2466,50,nest-routing-04-04-v18,v8,16393,16392,3203,Routing: server so'rovni qanday topadi,
+5,75,2467,60,pg-crud-04-05-v18,v6,16395,16394,3204,PostgreSQL so'rovlar — CRUD + AI bilan,
+5,75,2468,70,pm-m4d7-v1,v7,16397,16396,3205,"Sinfdoshingiz sahifangizni ochsa, nimani ko'radi?",pm-security-trust-12-v16
+5,75,2469,80,backend-crud-practice-p1-v18,v6,16399,16398,3206,Praktika: Backend CRUD — AvtoIjara,
+5,75,2471,90,api-postman-04-06-v18,v6,16401,16400,3207,API va Postman — front backend bilan qanday gaplashadi,
+5,75,2472,100,fullstack-connect-practice-p2-v18,v6,16403,16402,3208,Praktika: Fullstack ulash — AvtoIjara,
+5,75,2473,110,auth-env-04-07-v18,v5,16405,16404,3209,"Autentifikatsiya va .env — login, JWT, maxfiy kalitlar",
+5,75,2474,120,pm-m4d12-v1,v7,16406,16407,3210,Ilova nimani yozib qoladi?,pm-schema-prd-13-v16
+5,75,2475,130,fullstack-projectday-p3-v18,v6,16409,16408,3211,Praktika: Loyiha kuni — AvtoStoyanka,
+5,75,2476,140,fullstack-feedback-p4-v18,v6,16411,16410,3212,Praktika: Feedback bilan yaxshilash — AvtoStoyanka,
+5,75,2477,150,pm-m4d15-v1,v7,16413,16412,3213,«Qanday ishlaydi?» deb so'rashsa,pm-architecture-pitch-14-v16
+6,90,2761,10,nest-arch-alive-4a-01-v18,v5,16414,16415,3214,Nest arxitektura — tirik ko'rish,
+6,90,2762,20,pm-m4a2-v1,v6,16416,16417,3215,"Hamma birdan kirsa, sayt chidaydimi?",pm-scalability-15-v16
+6,90,2763,30,nest-arch-resource-4a-02-v18,v6,16419,16418,3216,Birinchi resursni qo'lda qo'shish — mashinalar,
+6,90,2764,40,nest-arch-practice-4a-03-v18,v6,16421,16420,3217,Praktika — KitobShop backend,
+6,90,2765,50,jest-unit-04b-01-v18,v6,16423,16422,3218,Unit-test: Jest,
+6,90,2766,60,pm-m4b2-v1,v7,16427,16424,3219,Bitta xato — nechta odam ketadi?,pm-quality-value-16-v16
+6,90,2767,70,edge-cases-04b-02-v18,v5,16426,16425,3220,Edge cases va error path,
+6,90,2768,80,cicd-intro-4c-01-v18,v5,16429,16428,3221,CI/CD nima va nega kerak,
+6,90,2769,90,pm-m4c2-v1,v6,16431,16430,3222,Hammasini birdan chiqaraymi — yoki har hafta bo'lak?,pm-delivery-speed-17-v16
+6,90,2770,100,github-actions-4c-02-v18,v5,16433,16432,3223,GitHub Actions — yo'l xaritasini yozish,
+6,90,2771,110,cicd-full-pipeline-4c-03-v18,v5,16435,16434,3224,Loyiha kuni — to'liq lentani qurish,
+6,90,2772,120,cicd-ai-pipeline-4c-05-v18,v5,16436,16437,3225,AI bilan lentani boshqarish,
+6,90,2773,130,pm-m4c6-v1,v7,16438,16441,3226,Saytingiz hozir ochilyaptimi?,pm-monitoring-18-v16
+6,90,2774,140,full-pro-pipeline-4c-04-v18,v5,16440,16439,3227,Loyiha kuni: ishonchli lenta,
+7,80,2493,10,bot-intro-05-01-v18,v5,17095,17096,3228,Bot nima,
+7,80,2494,20,pm-m5d2-v1,v6,17097,17098,3229,Botingizni birinchi kim ochadi?,pm-first-users-19-v16
+7,80,2495,30,bot-api-buttons-05-02-v18,v5,17099,17100,3230,Telegram Bot API + tugmalar,
+7,80,2496,40,bot-stateful-memory-05-03-v18,v5,17101,17102,3231,Bot eslab qoladi — holat va PostgreSQL,
+7,80,2498,50,bot-ai-project-05-05-v18,v5,17103,17104,3232,Loyiha kuni: AI bilan bot,bot-ai-project-v1
+7,80,2499,60,bot-ai-brain-05-04-v18,v5,17105,17106,3233,Bot ichida AI,
+7,80,2500,70,bot-full-project-05-07-v18,v5,17107,17108,3234,Loyiha kuni: bot + DB + AI,bot-full-project-v1
+7,80,2501,80,pm-m5d8-v1,v6,17109,17110,3235,Botingizni ishlatgan odamdan nimani so'raysiz?,pm-custdev-20-v16
+7,80,2502,90,bot-feedback-05-06-v18,v5,17111,17112,3236,Foydalanuvchi fikri va iteratsiya,
+7,80,2503,100,bot-ai-agent-05-10-v18,v5,17113,17114,3237,AI-agent yaratish,bot-ai-agent-v1
+7,80,2981,105,pm-m5d11-metrika-v1,v6,17115,17116,3238,Botingiz yaxshi ishlayotganini qaysi raqam aytadi?,pm-m8d1-v2|pm-m8d1-v1
+7,80,2504,110,pm-m5d11-v1,v6,17117,17118,3239,Kecha kelgan odam bugun ham keldimi?,pm-metrics-users-21-v16
+8,81,2505,10,sys-arch-06-01-v18,v5,17119,17120,3240,Komponentlardan tizim,sys-architecture-01-v16
+8,81,2506,20,pm-m6d2-v1,v7,17121,17122,3241,Bitta gapni uch kishi bir xil tushunadimi?,pm-prd-22-v16
+8,81,2507,30,arch-patterns-06-03-v18,v5,17123,17124,3242,Arxitektura patternlari,arch-patterns-02-v16
+8,81,2508,40,agent-arch-06-04-v18,v5,17125,17126,3243,AI-agent nima,agent-arch-03-v16
+8,81,2509,50,claude-skills-06-05-v18,v5,17127,17128,3244,Claude Skills — nima,claude-skills-04-v16
+8,81,2510,60,pm-m6d6-v1,v6,17129,17130,3245,"Ilova o'zi qaror qilsa, kimga tegadi?",pm-ethics-23-v16
+8,81,2511,70,write-skill-06-07-v18,v5,17131,17132,3246,O'z Skill'ingizni yozing,write-skill-05-v16
+8,81,2512,80,pipeline-project-06-08-v18,v5,17133,17134,3247,Loyiha kuni: to'liq pipeline,pipeline-project-09-v16
+8,81,2513,90,rn-basics-06-09-v18,v5,17135,17136,3248,React Native — asoslari,react-native-basics-06-v16
+8,81,2514,100,rn-app-06-10-v18,v5,17137,17138,3249,"RN: komponent, navigatsiya, API",react-native-app-07-v16
+8,81,2515,110,mobile-practice-06-11-v18,v5,17139,17140,3250,Loyiha kuni: mobil ilova,mobile-app-practice-09-v16
+8,81,2516,120,pm-m6d12-v1,v6,17141,17142,3251,Bugun qaysi ish boshlanadi?,pm-roadmap-24-v16
+8,81,2517,130,full-system-06-13-v18,v5,17143,17144,3252,Loyiha kuni: to'liq tizim,full-system-capstone-09-v16
+8,81,2518,140,pm-m6d14-v1,v6,17145,17146,3253,Raqamingiz nimani isbotlaydi?,pm-pitch-25-v16
+9,108,2983,10,pm-m7d1-v1,v6,17147,17148,3254,Loyihangiz kimga kerak?,
+9,108,2984,20,m7-02-v1,v6,17149,17150,3255,Besh odamdan nimani bilib olasiz?,
+9,108,2985,30,pm-m7d3-v1,v6,17151,17152,3256,Besh suhbatdan qaysi muammo chiqdi?,
+9,108,2986,40,m7-04-v1,v5,17153,17154,3257,Mini-MVP arxitekturasi,
+9,108,2987,50,m7-05-v1,v5,17155,17156,3258,Animatsiya: interfeys javob beradi,
+9,108,2988,60,m7-06-v1,v5,17157,17158,3259,Birinchi odam kirganda nimani ko'rasiz?,
+9,108,2989,70,m7-07-v1,v5,17159,17160,3260,Loyiha kuni: MVP — birinchi ekran,
+9,108,2990,80,m7-08-v1,v5,17161,17162,3261,Yaxshi interfeysdan nimani olasiz?,
+9,108,2991,90,m7-09-v1,v5,17163,17164,3262,Loyiha kuni: MVP tayyor,
+9,108,2992,100,m7-10-v1,v6,17165,17166,3263,Odam ilovangizda qayerda to'xtab qoladi?,
+9,108,2993,110,m7-11-v1,v5,17167,17168,3264,Loyiha kuni: sinovdan keyingi tuzatish,
+9,108,2994,120,m7-12-v2,v5,17169,17170,3265,Pitchingizda kimning hikoyasi bor?,m7-12-v1
+10,109,2995,10,pm-m8d1-okr-v1,v5,17171,17172,3266,Bir oyda qaysi raqamni o'stirasiz?,
+10,109,2996,20,m8-02-event-tracking-v1,v5,17173,17174,3267,Hodisalar tizimi: har harakat jadvalga yoziladi,
+10,109,2997,30,m8-03-v1,v5,17175,17176,3268,Loyiha kuni: jonli dashboard,
+10,109,2998,40,m8-04-v1,v5,17177,17178,3269,Ikki variantdan qaysi biri yaxshiroq ishlaydi?,
+10,109,2999,50,m8-05-security-basics-v1,v5,17179,17180,3270,Kiberxavfsizlik: zaiflikni topib yopamiz,
+10,109,3000,60,m8-06-v1,v5,17181,17182,3271,Foydalanuvchi sizga ma'lumotini ishonadimi?,
+10,109,3001,70,m8-07-production-deploy-v1,v5,17183,17184,3272,"Production deploy: domen, SSL, monitoring",
+10,109,3002,80,m8-08-v1,v5,17185,17186,3273,Loyiha kuni: prodga ko'tarish — 1-qism,
+10,109,3003,90,m8-09-v1,v5,17187,17188,3274,Loyiha kuni: prodga ko'tarish — 2-qism,
+10,109,3004,100,pm-m8d10-yol-v1,v6,17189,17190,3275,Bir yilda nimalarni qurdingiz?,
+10,109,3005,110,pm-m8d11-pitch-v2,v5,17191,17192,3276,Besh daqiqada nimani ko'rsatasiz?,pm-m8d11-pitch-v1
+11,110,3006,10,pm-m9d1-v1,v6,17193,17194,3277,Beshta g'oyani qayerdan topasiz?,
+11,110,3007,20,pm-m9d2-v1,v6,17195,17196,3278,Beshta g'oyadan qaysi uchtasi qoladi?,
+11,110,3008,30,pm-m9d3-v1,v6,17197,17198,3279,Ikki g'oyadan qaysi biri odamlarga kerak?,
+11,110,3009,40,pm-m9d4-v1,v6,17199,17200,3280,O'n intervyudan keyin qaysi g'oya qoladi?,
+11,110,3010,50,pm-m9d5-v1,v5,17201,17202,3281,G'oyangiz bir sahifaga sig'adimi?,
+11,110,3011,60,pm-m9d6-v1,v6,17203,17204,3282,Bitiruvgacha nimani qachon qurasiz?,
+11,110,3012,70,m9-07-v1,v5,17205,17206,3283,Jonli prototip: qog'ozdan bosiladigan ekrangacha,
+11,110,3013,80,m9-08-v1,v5,17207,17208,3284,Arxitektura va platforma: web yoki mobil ilova,
+11,110,3014,90,m9-09-v1,v5,17209,17210,3285,React Native va Expo: prototip telefonda,
+11,110,3015,100,m9-10-v1,v5,17211,17212,3286,"Loyiha kuni: poydevor — Database, kirish, deploy",
+11,110,3016,110,m9-11-v1,v5,17213,17214,3287,Loyiha kuni: 1-asosiy funksiya,
+11,110,3017,120,m9-12-v1,v5,17215,17216,3288,Loyiha kuni: 2-asosiy funksiya,
+11,110,3018,130,pm-m9d13-v1,v5,17217,17218,3289,Uch foydalanuvchidan keyin nimani tuzatasiz?,
+11,110,3019,140,m9-14-v1,v5,17219,17220,3290,Loyiha kuni: 3-asosiy funksiya,
+11,110,3020,150,pm-m9d15-v1,v5,17221,17222,3291,Roadmap bo'yicha qayerdasiz?,
+11,110,3021,160,pm-m9d16-v2,v5,17223,17224,3292,G'oyangiz va ilovangiz guruhni ishontiradimi?,pm-m9d16-v1
+12,111,3023,10,pm-m10d1-v1,v5,17225,17226,3293,Mahsulotingizni bir sahifada qanday tanishtirasiz?,
+12,111,3024,20,m10-02-v1,v5,17227,17228,3294,WebSocket: ekran o'zi yangilanadigan ulanish,
+12,111,3025,30,pm-m10d3-v1,v5,17229,17230,3295,Ekran o'zi yangilanishi uchun nimani yozasiz?,
+12,111,3026,40,m10-04-v1,v5,17231,17232,3296,Loyiha kuni: jonli xabar va eslatma,
+12,111,3027,50,m10-05-v1,v5,17233,17234,3297,Ulanish uzilsa: buzamiz va tuzatamiz,
+12,111,3028,60,pm-m10d6-v1,v6,17235,17236,3298,Birinchi foydalanuvchilar sizni qayerdan topadi?,
+12,111,3029,70,pm-m10d7-v1,v5,17237,17238,3299,50 foydalanuvchiga qanday yetasiz?,
+12,111,3030,80,pm-m10d8-v1,v5,17239,17240,3300,Foydalanuvchilar qaysi qadamda to'xtab qolyapti?,
+12,111,3031,90,m10-09-v1,v5,17241,17242,3301,Loyiha kuni: foydalanuvchini qaytaradigan eslatma,
+12,111,3032,100,pm-m10d10-v1,v5,17243,17244,3302,50 foydalanuvchiga yetdingizmi?,
+12,111,3033,110,pm-m10d11-v2,v5,17245,17246,3303,Raqamlaringiz pitchni qanday o'zgartiradi?,pm-m10d11-v1
+12,111,3034,120,pm-m10d12-v2,v6,17247,17248,3304,Raqamlaringiz zalni ishontiradimi?,pm-m10d12-v1
+13,112,3035,10,pm-m11d1-v1,v6,17249,17250,3305,Bitta foydalanuvchi sizga qanchaga tushadi?,
+13,112,3036,20,pm-m11d2-v1,v5,17251,17252,3306,Mahsulotingiz qanday pul topadi?,
+13,112,3037,30,m11-03-v1,v5,17253,17254,3307,Webhook: to'lov Backend'ga qanday yetib keladi,
+13,112,3038,40,pm-m11d4-v1,v5,17255,17256,3308,Narxni qanday belgilaysiz?,
+13,112,3039,50,m11-05-v1,v5,17257,17258,3309,Loyiha kuni: to'lovni ulaymiz va buzib ko'ramiz,
+13,112,3040,60,pm-m11d6-v1,v5,17259,17260,3310,Pul haqida qanday gaplashasiz?,
+13,112,3041,70,pm-m11d7-v1,v5,17261,17262,3311,Foydalanuvchiga shartlarni qanday ochiq aytasiz?,
+13,112,3042,80,m11-08-v1,v5,17263,17264,3312,Loyiha kuni: ketayotgan foydalanuvchini qaytarish,
+13,112,3043,90,pm-m11d9-v1,v5,17265,17266,3313,Kim haqiqatan to'lashga tayyor?,
+13,112,3044,100,m11-10-v1,v5,17267,17268,3314,Loyiha kuni: taklif linki va mukofot,
+13,112,3045,110,pm-m11d11-v1,v5,17269,17270,3315,Mahsulotingiz hozir qayerda?,
+13,112,3046,120,m11-12-v1,v5,17271,17272,3316,Loyiha kuni: barqarorlashtirish,
+14,113,3047,10,pm-m12d1-v2,v5,17273,17274,3317,Investorga pitchni qanday tuzasiz?,pm-m12d1-v1
+14,113,3048,20,pm-m12d2-v2,v5,17275,17276,3318,Mahsulotingiz hikoyasini qanday aytasiz?,pm-m12d2-v1
+14,113,3049,30,m12-03-v1,v5,17277,17278,3319,Mahsulot tezligi: o'lchaymiz va tezlashtiramiz,
+14,113,3050,40,m12-04-v1,v5,17279,17280,3320,Loyiha kuni: demo uchun sayqal,
+14,113,3051,50,pm-m12d5-v2,v5,17281,17282,3321,Guruh pitchingizda nimani tuzatishni aytadi?,pm-m12d5-v1
+14,113,3052,60,m12-06-v1,v5,17283,17284,3322,Demoga tayyorgarlik: risklar va B reja,
+14,113,3053,70,pm-m12d7-v1,v5,17285,17286,3323,Investor ko'zi bilan: demo buzilmaydimi?,
+14,113,3054,80,pm-m12d8-v2,v5,17287,17288,3324,Final pitchingiz 5 daqiqaga tayyormi?,pm-m12d8-v1
+14,113,3055,90,m12-09-v1,v5,17289,17290,3325,Video-portfolio: 3 daqiqada o'zingiz va mahsulot,
+14,113,3056,100,pm-m12d10-v1,v5,17291,17292,3326,Birinchi buyurtmani qayerdan topasiz?,
+14,113,3057,110,pm-m12d11-v1,v5,17293,17294,3327,Qaysi xalqaro dasturga ariza berasiz?,
+14,113,3058,120,pm-m12d12-v1,v5,17295,17296,3328,Keyingi olti oyda nima qilasiz?,
+14,113,3059,130,pm-m12d13-v1,v5,17297,17298,3329,Demo Day'ga tayyormisiz?,
