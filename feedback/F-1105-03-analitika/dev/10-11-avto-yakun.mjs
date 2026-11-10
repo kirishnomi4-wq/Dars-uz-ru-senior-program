@@ -1,0 +1,37 @@
+// Solo o'quvchi oxirgi ekranga O'ZI yetadi → natija tugmasiz avtomatik (server result_schema 2). Ishga tushirish: repo ildizidan.
+import { chromium } from '/home/kali/Desktop/internetLesson/node_modules/playwright-core/index.mjs';
+import { execFileSync } from 'node:child_process';
+const API = 'http://127.0.0.1:3001', BASE = 'http://localhost:5300', LID = 'internet-01-v18';
+const sub = String(900000 + Math.floor(Math.random() * 90000));
+const mint = () => execFileSync(process.execPath, ['--env-file=.env', 'tools/mint-token.mjs', '--role', 'student', '--sub', sub, '--name', 'Avto Sinov'], { cwd: 'server', encoding: 'utf8' }).trim();
+const tok = mint();
+const j = await (await fetch(`${API}/api/v1/lms/join`, { method: 'POST', headers: { authorization: `Bearer ${tok}`, 'content-type': 'application/json' }, body: JSON.stringify({ lesson_id: LID }) })).json();
+if (j.mode !== 'solo') throw new Error('solo emas: ' + JSON.stringify(j).slice(0, 200));
+console.log('join', j.mode, 'result_schema', j.result_schema, 'attempt', j.attempt.id);
+const pr = await fetch(`${API}/api/v1/me/progress`, { method: 'PUT', headers: { authorization: `Bearer ${tok}`, 'content-type': 'application/json' }, body: JSON.stringify({ lesson_id: LID, attempt_id: j.attempt.id, screen: 20, total: 22, answers: {}, client_ts: Date.now() }) });
+console.log('progress 20/22', pr.status);
+const browser = await chromium.launch({ executablePath: '/usr/bin/google-chrome', headless: true });
+const ctx = await browser.newContext({ viewport: { width: 1280, height: 800 } });
+await ctx.addInitScript(() => { for (const r of ['mentor', 'learner', 'student', 'self']) localStorage.setItem('inetOnboarded_' + r, '1'); });
+const page = await ctx.newPage();
+const errs = []; page.on('pageerror', (e) => errs.push(e.message));
+await page.goto(`${BASE}/lms-harness.html?lesson=m1-01&lang=uz&delay=300#token=${tok}`, { waitUntil: 'domcontentloaded' });
+await page.waitForSelector('.lesson-root', { timeout: 20000 });
+await page.waitForTimeout(2500);
+const before = await page.evaluate(() => window.__onFinished || null);
+console.log('20-ekranda yuk bormi:', !!before);
+const nx = page.locator('button', { hasText: /Keyingi|Davom|→/ }).last();
+await nx.evaluate((el) => el.click());
+let p = null;
+for (let i = 0; i < 20 && !p; i++) { await page.waitForTimeout(300); p = await page.evaluate(() => window.__onFinished || null); }
+const info = await page.evaluate(() => ({ txt: (document.querySelector('.lesson-root')?.innerText || '').slice(0, 300).replace(/\s+/g, ' '), btns: [...document.querySelectorAll('.lesson-root button')].map((b) => (b.innerText || '').trim().slice(0, 30) + '|' + (b.getAttribute('data-live') || '')).slice(0, 20) }));
+console.log('ekran:', info.txt); console.log('tugmalar:', info.btns.join(' · '));
+await page.screenshot({ path: '/tmp/claude-1000/-home-kali-Desktop-internetLesson/85fa0ead-ac46-4b82-add2-427bd1037d2b/scratchpad/avto-yakun.png' });
+const btn = await page.evaluate(() => document.querySelector('[data-live^="finish"]')?.getAttribute('data-live') || null);
+console.log('oxirgi ekranda tugmasiz yuk:', !!p, '· schema', p?.schema_version, '· dars_api', JSON.stringify(p?.dars_api), '· codestrike', p ? 'codestrike' in p : '-', '· tugma', btn);
+await page.waitForTimeout(2500);
+const st = await (await fetch(`${API}/api/v1/me/progress?lesson_id=${LID}`, { headers: { authorization: `Bearer ${tok}` } })).json();
+console.log('server urinish:', st.attempt?.status, st.attempt?.finish_reason, 'reached_end', st.attempt?.reached_end, '· sahifa xatolari', errs.length);
+await browser.close();
+const okAll = p && p.schema_version === 2 && p.dars_api?.attempt_id === j.attempt.id && p.dars_api.session_key === null && !('codestrike' in p) && !before;
+console.log(okAll ? 'NATIJA: ✓' : 'NATIJA: ✗'); process.exit(okAll ? 0 : 1);
