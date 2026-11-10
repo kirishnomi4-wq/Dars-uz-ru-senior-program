@@ -1394,7 +1394,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const wrongEverRef = useRef(false);
   const isCorrect = method === 'POST';
   const status = isCorrect ? 201 : (method === 'GET' ? 200 : method === 'DELETE' ? 400 : method === 'PUT' ? 400 : null);
-  const body = { nom: 'Mishka', narx: 50000, soni: 10 };
+  const body = { nom: 'Kolonka', narx: 50000, soni: 10 };
   const send = () => { if (!method || sending) return; setSending(true); setSent(false); setTimeout(() => { setSending(false); setSent(true); }, 850); };
   useEffect(() => {
     if (sent && !isCorrect && !passed) { wrongEverRef.current = true; if (achMiss) achMiss.miss(screen); }

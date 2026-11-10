@@ -35,6 +35,7 @@ export const OWN_KEY_PREFIXES = [
   'pm-', 'bridge-', 'ld-tahrir',
   'inetOnboarded_', 'hcOnboarded_', 'hcFont', 'hcSplit',
   'ccDokon', 'ccAvtoMustaqil', 'ccStoyankaFikr', 'ccPortfolio', 'ccPromo', // F-1017-226: PracticeLesson4 · FullstackConnectPractice · FullstackFeedback (reliz 18.10 keys-check)
+  'ccMentor:', // F-1103-06 (03.11, M44): mentor darsi progress saqlovi — foydalanuvchi ruxsati bilan qo'shildi
 ];
 // Til tanlovi — o'qituvchining tanlovi haqiqiy saqlovdan O'QILADI, lekin preview'da yozuv baribir varaq xotirasiga ketadi
 // (IT talabi: preview'da localStorage/sessionStorage'ga HECH NARSA yozilmaydi — F-1015-10)

@@ -221,7 +221,7 @@ const RECAPS = {
     title: { uz: "INSERT — jadvalga yangi mahsulot qo'shish", ru: 'INSERT — добавление нового товара в таблицу' },
     cards: [
       { ic: "🛒", h: "INSERT INTO products", body: { uz: <>Yangi qator <span className="mono">INSERT INTO products (...)</span> bilan qo'shiladi — jadval va ustunlar aytiladi.</>, ru: <>Новая строка добавляется через <span className="mono">INSERT INTO products (...)</span> — с таблицей и столбцами.</> } },
-      { ic: "🧾", h: { uz: "VALUES (...) — qiymatlar", ru: 'VALUES (...) — значения' }, body: { uz: <><span className="mono">VALUES ('Mishka', 50000, 10)</span> — kiritiladigan qiymatlar, matn qo'shtirnoq ichida.</>, ru: <><span className="mono">VALUES ('Mishka', 50000, 10)</span> — вводимые значения, текст в кавычках.</> } },
+      { ic: "🧾", h: { uz: "VALUES (...) — qiymatlar", ru: 'VALUES (...) — значения' }, body: { uz: <><span className="mono">VALUES ('Kolonka', 50000, 10)</span> — kiritiladigan qiymatlar, matn qo'shtirnoq ichida.</>, ru: <><span className="mono">VALUES ('Kolonka', 50000, 10)</span> — вводимые значения, текст в кавычках.</> } },
       { ic: "➕", h: { uz: "Yangi mahsulot = yangi qator", ru: 'Новый товар = новая строка' }, body: { uz: <>Har bir <span className="mono">INSERT</span> jadvalga bitta <b>yangi qator</b> (mahsulot) qo'shadi — mavjudini o'zgartirmaydi.</>, ru: <>Каждый <span className="mono">INSERT</span> добавляет в таблицу одну <b>новую строку</b> (товар) — существующие не меняет.</> }, ask: { uz: "Jadvalga yangi ma'lumot qo'shadigan buyruq qaysi?", ru: 'Какая команда добавляет в таблицу новые данные?' } },
     ]
   },
@@ -1029,9 +1029,9 @@ const Screen9 = (props) => (
 const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const achMiss = useContext(AchMissCtx);
   const EVENTS = [
-    { id: 'e1', icon: '🛒', title: tr({ uz: 'Yangi mahsulot keldi', ru: 'Привезли новый товар' }), desc: tr({ uz: "Mishka o'yinchoq — 50 000 so'm, 10 dona. Uni jadvalga kiriting.", ru: 'Игрушка Mishka — 50 000 сум, 10 штук. Внесите её в таблицу.' }), op: 'insert',
-      sql: "INSERT INTO products (name, price, stock)\nVALUES ('Mishka', 50000, 10)", okNote: tr({ uz: "Yangi qator qo'shildi — Mishka jadvalga tushdi.", ru: 'Новая строка добавлена — Mishka попал в таблицу.' }),
-      wrongNote: { select: tr({ uz: "SELECT faqat ko'radi — yangi mahsulot qo'shilmaydi.", ru: 'SELECT только смотрит — новый товар не добавится.' }), update: tr({ uz: "UPDATE mavjudini o'zgartiradi — yangi qo'shmaydi.", ru: 'UPDATE меняет существующее — нового не добавляет.' }), delete: tr({ uz: "DELETE tanladingiz — Mishka jadvalga tushmasdi, aksincha o'chirardi!", ru: 'Вы выбрали DELETE — Mishka не попал бы в таблицу, наоборот, что-то удалилось бы!' }) } },
+    { id: 'e1', icon: '🛒', title: tr({ uz: 'Yangi mahsulot keldi', ru: 'Привезли новый товар' }), desc: tr({ uz: "Kolonka — 50 000 so'm, 10 dona. Uni jadvalga kiriting.", ru: 'Колонка Kolonka — 50 000 сум, 10 штук. Внесите её в таблицу.' }), op: 'insert',
+      sql: "INSERT INTO products (name, price, stock)\nVALUES ('Kolonka', 50000, 10)", okNote: tr({ uz: "Yangi qator qo'shildi — Kolonka jadvalga tushdi.", ru: 'Новая строка добавлена — Kolonka попал в таблицу.' }),
+      wrongNote: { select: tr({ uz: "SELECT faqat ko'radi — yangi mahsulot qo'shilmaydi.", ru: 'SELECT только смотрит — новый товар не добавится.' }), update: tr({ uz: "UPDATE mavjudini o'zgartiradi — yangi qo'shmaydi.", ru: 'UPDATE меняет существующее — нового не добавляет.' }), delete: tr({ uz: "DELETE tanladingiz — Kolonka jadvalga tushmasdi, aksincha o'chirardi!", ru: 'Вы выбрали DELETE — Kolonka не попал бы в таблицу, наоборот, что-то удалилось бы!' }) } },
     { id: 'e2', icon: '🔍', title: tr({ uz: "Mijoz arzonlarini so'rayapti", ru: 'Клиент просит что подешевле' }), desc: tr({ uz: "Narxi 100 000 dan past mahsulotlarni ko'rsating (o'zgartirmang!).", ru: 'Покажите товары дешевле 100 000 (ничего не меняя!).' }), op: 'select',
       sql: "SELECT * FROM products\nWHERE price < 100000", okNote: tr({ uz: "Jadval filtrlandi — faqat arzonlari ko'rindi. Ma'lumot o'zgarmadi.", ru: 'Таблица отфильтрована — видны только дешёвые. Данные не изменились.' }),
       wrongNote: { insert: tr({ uz: "INSERT yangi qator qo'shadi — mijoz faqat ko'rmoqchi edi.", ru: 'INSERT добавит новую строку — а клиент хотел только посмотреть.' }), update: tr({ uz: "UPDATE narxni buzadi — mijoz faqat ko'rmoqchi edi!", ru: 'UPDATE испортит цену — клиент хотел только посмотреть!' }), delete: tr({ uz: "DELETE mahsulotni o'chiradi — mijoz ko'rmoqchi, o'chirmoqchi emas!", ru: 'DELETE удалит товар — клиент хотел посмотреть, а не удалять!' }) } },
@@ -1048,7 +1048,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     { op: 'update', word: 'UPDATE', label: tr({ uz: "o'zgartirish", ru: 'изменить' }), col: T.accent },
     { op: 'delete', word: 'DELETE', label: tr({ uz: "o'chirish", ru: 'удалить' }), col: '#9333ea' },
   ];
-  const FINAL_ROWS = [{ id: 1, name: 'Klaviatura', price: 99000, stock: 8 }, { id: 2, name: 'Sichqoncha', price: 75000, stock: 15 }, { id: 4, name: 'Mishka', price: 50000, stock: 10 }];
+  const FINAL_ROWS = [{ id: 1, name: 'Klaviatura', price: 99000, stock: 8 }, { id: 2, name: 'Sichqoncha', price: 75000, stock: 15 }, { id: 4, name: 'Kolonka', price: 50000, stock: 10 }];
   const [rows, setRows] = useState(() => storedAnswer ? FINAL_ROWS : PRODUCTS.map(p => ({ ...p })));
   const [step, setStep] = useState(storedAnswer ? 4 : 0);
   const [resolved, setResolved] = useState(false);
@@ -1065,7 +1065,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     if (resolved || !ev) return;
     if (op === ev.op) {
       setWrong(null); setPickedOp(op);
-      if (ev.op === 'insert') setRows(rs => [...rs, { id: 4, name: 'Mishka', price: 50000, stock: 10 }]);
+      if (ev.op === 'insert') setRows(rs => [...rs, { id: 4, name: 'Kolonka', price: 50000, stock: 10 }]);
       else if (ev.op === 'update') setRows(rs => rs.map(r => r.id === 1 ? { ...r, price: 99000 } : r));
       else if (ev.op === 'delete') { setDeleting(true); setTimeout(() => { setRows(rs => rs.filter(r => r.id !== 3)); setDeleting(false); }, 440); }
       setResolved(true);
@@ -1445,7 +1445,7 @@ const CRUD_FLASHCARDS = [
   { front: { uz: "products jadvalidagi bitta qator nimani bildiradi?", ru: 'Что означает одна строка в таблице products?' }, back: { uz: 'Bitta mahsulot', ru: 'Один товар' }, note: { uz: "ustunlar esa uning xususiyatlari: name, price, stock", ru: 'а столбцы — его свойства: name, price, stock' } },
   { front: { uz: "Yangi jadval yaratadigan buyruq qaysi?", ru: 'Какая команда создаёт новую таблицу?' }, back: "CREATE TABLE", note: "CREATE TABLE products (...)" },
   { front: { uz: "Jadvalga yangi mahsulot qo'shadigan buyruq qaysi?", ru: 'Какая команда добавляет в таблицу новый товар?' }, back: "INSERT INTO", note: { uz: "har INSERT bitta yangi qator qo'shadi", ru: 'каждый INSERT добавляет одну новую строку' } },
-  { front: { uz: "INSERT'da kiritiladigan qiymatlar qaysi so'zdan keyin yoziladi?", ru: 'После какого слова в INSERT пишутся вводимые значения?' }, back: "VALUES", note: "VALUES ('Mishka', 50000, 10)" },
+  { front: { uz: "INSERT'da kiritiladigan qiymatlar qaysi so'zdan keyin yoziladi?", ru: 'После какого слова в INSERT пишутся вводимые значения?' }, back: "VALUES", note: "VALUES ('Kolonka', 50000, 10)" },
   { front: { uz: "Bazadagi ma'lumotni ko'rish uchun qaysi buyruqni yozasiz?", ru: 'Какую команду Вы пишете, чтобы посмотреть данные в базе?' }, back: "SELECT * FROM products", note: { uz: "yulduzcha — barcha ustunlar", ru: 'звёздочка — все столбцы' } },
   { front: { uz: "Minglab qatordan faqat keraklisini topish uchun nima qo'shasiz?", ru: 'Что Вы добавляете, чтобы найти из тысяч строк только нужные?' }, back: "WHERE", note: "WHERE price < 100000" },
   { front: { uz: "Mahsulot narxini o'zgartirish uchun qaysi buyruq kerak?", ru: 'Какая команда нужна, чтобы изменить цену товара?' }, back: "UPDATE ... SET", note: "UPDATE products SET price = 99000 WHERE id = 1" },
