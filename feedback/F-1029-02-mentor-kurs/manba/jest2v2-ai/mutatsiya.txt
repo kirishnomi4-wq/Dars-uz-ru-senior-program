@@ -1,0 +1,24 @@
+## Men (/tmp/claude-1000/-home-kali-Desktop-internetLesson/acbddc95-9018-4213-96d2-b79eac22166a/scratchpad/jest2-men)
+buzilmagan: Tests:       25 passed, 25 total
+B1 regex: 9–13 → 8–13 raqam (8 ta raqam o'tadi): Tests:       1 failed, 24 passed, 25 total
+B2 place: stock < qty → stock <= qty: Tests:       2 failed, 23 passed, 25 total
+B3 place: UPDATE ombor tekshiruvidan OLDIN: Tests:       2 failed, 23 passed, 25 total
+B4 xabar: «Telefon raqami yo'q» → «Raqam yo'q»: Tests:       2 failed, 23 passed, 25 total
+B5 place: bo'sh savat tekshiruvi olib tashlandi: Tests:       2 failed, 23 passed, 25 total
+
+## Opus (/tmp/claude-1000/-home-kali-Desktop-internetLesson/acbddc95-9018-4213-96d2-b79eac22166a/scratchpad/jest2-ai1)
+buzilmagan: Tests:       50 passed, 50 total
+B1 regex: 9–13 → 8–13 raqam (8 ta raqam o'tadi): Tests:       1 failed, 49 passed, 50 total
+B2 place: stock < qty → stock <= qty: Tests:       10 passed, 10 total
+B3 place: UPDATE ombor tekshiruvidan OLDIN: Tests:       10 passed, 10 total
+B4 xabar: «Telefon raqami yo'q» → «Raqam yo'q»: Tests:       10 passed, 10 total
+B5 place: bo'sh savat tekshiruvi olib tashlandi: Tests:       10 passed, 10 total
+
+## Haiku (/tmp/claude-1000/-home-kali-Desktop-internetLesson/acbddc95-9018-4213-96d2-b79eac22166a/scratchpad/jest2-ai2)
+buzilmagan: Tests:       42 passed, 42 total
+B1 regex: 9–13 → 8–13 raqam (8 ta raqam o'tadi): Tests:       2 failed, 40 passed, 42 total
+B2 place: stock < qty → stock <= qty: Tests:       10 passed, 10 total
+B3 place: UPDATE ombor tekshiruvidan OLDIN: Tests:       10 passed, 10 total
+B4 xabar: «Telefon raqami yo'q» → «Raqam yo'q»: Tests:       10 passed, 10 total
+B5 place: bo'sh savat tekshiruvi olib tashlandi: Tests:       10 passed, 10 total
+

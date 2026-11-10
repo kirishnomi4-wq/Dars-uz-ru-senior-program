@@ -1,0 +1,12 @@
+$ npx jest order.service -t omborda
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/acbddc95-9018-4213-96d2-b79eac22166a/scratchpad/jest2v2-run/src/api/order/order.service.ts:48
+                    throw new Error(`${p.name}: omborda faqat ${p.stock} ta qoldi`);
+                          ^
+
+Error: Kolonka: omborda faqat 1 ta qoldi
+    at /tmp/claude-1000/-home-kali-Desktop-internetLesson/acbddc95-9018-4213-96d2-b79eac22166a/scratchpad/jest2v2-run/src/api/order/order.service.ts:37:17
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+
+Node.js v24.18.0
+[chiqish kodi: 1]
+

@@ -1,0 +1,12 @@
+PG-1
+PG-2
+Jest-1
+Jest-2
+CI/CD-1
+CI/CD-2
+Telegraf + PG
+WS-1
+WS-2
+Webhook
+Nest-1
+Nest-2

@@ -1,0 +1,25 @@
+v24.18.0
+11.16.0
+P HEAD 71c72a4 ws2-done: qayta ulanish — panel va npm run live har connect'da ro'yxatni 
+ M .env.example
+ M README.md
+ M package.json
+ M public/admin.html
+ M scripts/smoke.js
+ M src/api/app.module.ts
+ M src/api/live/admin.controller.spec.ts
+ M src/api/live/admin.controller.ts
+ M src/api/live/live.gateway.ts
+ M src/config/index.ts
+ M src/core/entity/index.ts
+ M src/core/entity/order.entity.ts
+ M src/infrastructure/data-source.ts
+ M src/main.ts
+?? scripts/pay.js
+?? src/api/payment/
+?? src/core/entity/payment.entity.ts
+?? src/infrastructure/migrations/1762300000000-payments.ts
+@nestjs/core 11.2.8
+@nestjs/platform-express 11.2.8
+Google Chrome 148.0.7778.96 
+Wed Nov  4 10:23:37 PM +05 2026

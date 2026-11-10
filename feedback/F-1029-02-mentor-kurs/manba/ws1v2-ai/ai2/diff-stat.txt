@@ -1,0 +1,16 @@
+ .env.example                            |   3 +
+ package-lock.json                       | 109 ++++++++++++++++++++++++-
+ package.json                            |   6 +-
+ src/api/app.module.ts                   |   3 +-
+ src/api/live/live.module.ts             |  12 +++
+ src/api/live/orders-panel.controller.ts |  29 +++++++
+ src/api/live/orders-panel.ts            | 137 ++++++++++++++++++++++++++++++++
+ src/api/live/orders.gateway.ts          |  78 ++++++++++++++++++
+ src/api/live/panel-auth.ts              |  11 +++
+ src/api/order/order-events.ts           |  47 +++++++++++
+ src/api/order/order.module.ts           |   5 +-
+ src/api/order/order.service.spec.ts     |  59 ++++++++++++++
+ src/api/order/order.service.ts          |  15 +++-
+ src/config/index.ts                     |   2 +
+ src/main.ts                             |   3 +
+ 15 files changed, 512 insertions(+), 7 deletions(-)

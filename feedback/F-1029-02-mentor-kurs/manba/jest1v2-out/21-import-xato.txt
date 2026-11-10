@@ -1,0 +1,30 @@
+# texts.spec.ts boshqa papkada: src/api/ (texts.ts esa src/api/telegram/ da)
+$ npx jest texts
+FAIL src/api/texts.spec.ts
+  ● Test suite failed to run
+
+    Cannot find module './texts' from 'api/texts.spec.ts'
+
+    However, Jest was able to find:
+    	'./texts.spec.ts'
+
+    You might want to include a file extension in your import, or update your 'moduleFileExtensions', which is currently ['js', 'json', 'ts'].
+
+    See https://jestjs.io/docs/configuration#modulefileextensions-arraystring
+
+    > 1 | import { som } from './texts';
+        | ^
+      2 |
+      3 | describe('som', () => {
+      4 |   it("120000 ni so'mda yozadi", () => {
+
+      at Resolver._throwModNotFoundError (../../../../../../../../home/kali/Desktop/order-bot/node_modules/jest-resolve/build/index.js:1031:11)
+      at Object.<anonymous> (api/texts.spec.ts:1:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        0.694 s
+Ran all test suites matching texts.
+[chiqish kodi: 1]
+

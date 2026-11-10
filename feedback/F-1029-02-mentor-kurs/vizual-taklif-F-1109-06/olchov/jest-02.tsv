@@ -1,0 +1,25 @@
+jest-02	1	0,0,1280,720	faqat-matn	386	Bot to'g'ri kirishda ishlaydi — endi noto'g'ri kirishda to'g'ri buziladimi, shun
+jest-02	2	0,0,1280,720	faqat-matn	755	Har funksiyada uch yo'l bor: kutilgan kirish, chegaradagi kirish va ataylab xato
+jest-02	3	0,0,1280,720	kod/terminal	1100	PHONE qoidasi telegram.service.ts ichida yashirin — testdan chaqirib bo'lmaydi, 
+jest-02	4	0,0,1280,720	kod/terminal+test	600	Mijoz raqamni «+998 90 123 45 67» deb yozdi. isPhone hozirgi regex bilan nima qa
+jest-02	5	0,0,1280,720	kod/terminal	554	Bitta qoidaga yettita kirish: ikkita to'g'ri, to'rtta noto'g'ri va bitta chegara
+jest-02	6	0,0,1280,720	faqat-matn	456	Tuzatish bitta satr: tekshirishdan oldin probel va chiziqchani olib tashlaymiz —
+jest-02	7	0,0,1280,720	amaliyot	1114	Telefon qoidasini alohida faylga chiqaring, chegara testlarini yozing va probel 
+jest-02	8	0,0,1280,720	jadval	727	Buyurtma berishda uchta xato bor: ikkitasi funksiyaning o'zida darhol, uchinchis
+jest-02	9	0,0,1280,720	kod/terminal	882	Unit-test bazasiz: DataSource o'rniga soxta obyekt, findOne biz aytgan mahsulotn
+jest-02	10	0,0,1280,720	kod/terminal	857	Sinxron xato — expect(() => …).toThrow(), promise xatosi — await expect(…).rejec
+jest-02	11	0,0,1280,720	kod/terminal	900	Ombor xatosini toThrow bilan yozsak, Jest qizil bermaydi — jarayonning o'zi qula
+jest-02	12	0,0,1280,720	kod/terminal+test	650	Telefon testini await expect(service.place(…)).rejects.toThrow() bilan yozdik. p
+jest-02	13	0,0,1280,720	kod/terminal	819	rejects to'g'ri, lekin await yo'q va xabar ataylab noto'g'ri: Jest xatoni topdi,
+jest-02	14	0,0,1280,720	kod/terminal	960	Bu test faylida npm test natija bermaydi — jarayon qulaydi. Sababchi satrni topi
+jest-02	15	0,0,1280,720	faqat-matn	489	Xato yo'lida test ikki narsani kutadi: xato chiqdi va ombor o'zgarmadi — expect(
+jest-02	16	0,0,1280,720	kod/terminal	744	Ombor tekshiruvini <= qilsak, aynan 2 ta qolganda 2 tasini sotib bo'lmaydi — to'
+jest-02	17	0,0,1280,720	amaliyot	1329	Mock bilan place ning uch xatosini va chegarasini sinang, keyin kodni buzib qizi
+jest-02	18	0,0,1280,720	faqat-matn	464	Sayt ham shunday sinaladi: supertest server ochmasdan Nest ilovasiga so'rov yubo
+jest-02	19	0,0,1280,720	kod/terminal+test	831	Ilovada faqat GET / route'i bor. Test GET /nope yubordi. res.status va res.body.
+jest-02	20	0,0,1280,720	kod/terminal	1325	Yangi ko'nikma davomi: AI edge va xato testlarini yozdi — ikki to'plam, ikkalasi
+jest-02	21	0,0,1280,720	jadval	817	Beshta buzish — uchala to'plam hammasini ushladi; oltinchi «buzilish»ni esa buzi
+jest-02	22	0,0,1280,720	amaliyot	1296	O'z AI'ingizga aniq shartli prompt bering, keyin to'rt tekshiruv va uchta buzish
+jest-02	23	0,0,1280,720	faqat-matn	807	O'quvchi darsi: KitobShop orderTotal, «shumtaka mijoz» va guard — siz bilgan yo'
+jest-02	24	0,0,1280,720	test	363	Mijoz «+998 90 123 45 67» yozdi, bot «Raqam noto'g'ri» dedi. Bu qaysi yo'l?
+jest-02	25	0,0,1280,720	faqat-matn	3488	Endi siz bilasiz

@@ -1,0 +1,1 @@
+OrderBotNest'dagi jonli buyurtmalar paneli (/admin) ba'zan yangi buyurtmani ko'rsatmaydi: server qayta ishga tushganda yoki internet uzilib qaytganda belgi «Ulangan» bo'ladi, lekin bot olgan buyurtma ro'yxatda yo'q — sahifani yangilasam chiqadi. Tuzatib ber.

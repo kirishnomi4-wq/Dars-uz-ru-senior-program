@@ -1,0 +1,6 @@
+v24.18.0
+HEAD 9d6b947 jest1-done: birinchi unit-testlar — som (bo'l
+jest 30.5.2
+ts-jest 29.4.15
+@nestjs/testing 11.2.8
+typescript 5.9.3

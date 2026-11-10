@@ -1,0 +1,7 @@
+oldin    · products [{"name":"Klaviatura","stock":8},{"name":"Kolonka","stock":10}] · orders 0 · cart_items 2
+query failed: INSERT INTO "order_items"("qty", "price", "order_id", "product_id") VALUES ($1, $2, $3, $4), ($5, $6, $7, $8) RETURNING "id" -- PARAMETERS: [1,120000,1,1,1,50000,1,4]
+error: error: SINOV: order_items yozilmadi
+bot: Buyurtma berilmadi: SINOV: order_items yozilmadi
+keyin    · products [{"name":"Klaviatura","stock":8},{"name":"Kolonka","stock":10}] · orders 0 · cart_items 2
+trigger olib tashlandi → bot: Buyurtma #2 qabul qilindi!
+keyin-2  · products [{"name":"Klaviatura","stock":7},{"name":"Kolonka","stock":9}] · orders 1 · cart_items 0

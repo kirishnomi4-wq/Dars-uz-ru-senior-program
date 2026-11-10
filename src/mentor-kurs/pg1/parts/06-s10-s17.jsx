@@ -26,12 +26,12 @@ const S10 = mkS(11, [{ focus: [] }, { focus: ['c'] }, { focus: ['id', 'un'] }, {
 function Screen10(p) {
   return <Lesson p={p} S={S10} scene={({ seg, beat }) => <>
     {beat === 0 && <div className="mk-light" style={{ padding: 14 }}>
-      <div className="mk-tag">O'quvchi m4-03 amaliyotidagi namuna — qog'ozda</div>
+      <div className="mk-tag">{t("O'quvchi m4-03 amaliyotidagi namuna — qog'ozda", 'Образец из практики ученика m4-03 — на бумаге')}</div>
       <div className="pg-two"><MiniTable name="users" cols={['id', 'username']} rows={[['1', 'ali'], ['2', 'vali'], ['3', 'sardor']]} /><MiniTable name="posts" cols={['id', 'user_id', 'izoh']} rows={[['1', '1', 'Birinchi post'], ['2', '1', "Bugun Nest o'rgandim"], ['3', '2', 'Salom hammaga']]} /></div>
     </div>}
     {beat >= 1 && !seg.err && <Psql title="psql" lines={DB10} beat={beat} focus={seg.focus} />}
     {seg.err && <><Psql title="psql — blog" er lines={ERR10} focus={seg.focus} /><Psql lines={FIX10} /></>}
-    <Block at={4} beat={beat}><div className="mk-rule">Baza <b>oldin yaratiladi</b> (<code>CREATE DATABASE</code>), unga <code>\c</code> bilan o'tiladi · ustun turi va qoidalari jadval bilan birga · <code>syntax error</code> — <code>^</code> ko'rsatgan so'zdan <b>oldin</b> qarang</div></Block>
+    <Block at={4} beat={beat}><div className="mk-rule">{t(<>Baza <b>oldin yaratiladi</b> (<code>CREATE DATABASE</code>), unga <code>\c</code> bilan o'tiladi · ustun turi va qoidalari jadval bilan birga · <code>syntax error</code> — <code>^</code> ko'rsatgan so'zdan <b>oldin</b> qarang</>, <>База <b>создаётся заранее</b> (<code>CREATE DATABASE</code>), в неё переходят через <code>\c</code> · тип колонки и её правила — вместе с таблицей · <code>syntax error</code> — смотрите <b>перед</b> словом, на которое указывает <code>^</code></>)}</div></Block>
   </>} />;
 }
 
@@ -84,10 +84,12 @@ function Screen11(p) {
   return <Lesson p={p} S={S11} scene={({ seg, beat }) => <>
     {seg.v === 'ddl' && <Psql lines={POSTS11} focus={seg.focus} />}
     {seg.v === 'd' && <Psql lines={D11} focus={seg.focus} />}
-    {seg.v === 'ins' && <><Psql lines={INS11} focus={seg.focus} /><div className="mk-tag" style={{ margin: 0 }}>SQL matnida apostrof ikki marta yoziladi: <code>o''rgandim</code></div>
+    {seg.v === 'ins' && <><Psql lines={INS11} focus={seg.focus} /><div className="mk-tag" style={{ margin: 0 }}>{t('SQL matnida apostrof ikki marta yoziladi:', 'В тексте SQL апостроф пишется дважды:')} <code>o''rgandim</code></div>
+      <div className="mk-pair"><b style={{ color: PG.mongo }}>{t("Mongoose'da:", 'В Mongoose:')}</b> <code>{"await User.create([{ username: 'ali' }, { username: 'vali' }, { username: 'sardor' }])"}</code></div>
       <div className="pg-two"><MiniTable name="users" cols={['id', 'username']} rows={[['1', 'ali'], ['2', 'vali'], ['3', 'sardor']]} hlRow={[2]} /><MiniTable name="posts" cols={['id', 'user_id', 'izoh']} rows={[['1', '1', 'Birinchi post'], ['2', '1', "Bugun Nest o'rgandim"], ['3', '2', 'Salom hammaga']]} hlCol={[1]} /></div></>}
-    {seg.v === 'rel' && <Psql title="psql — qayta ochildi" lines={REL11} focus={seg.focus} />}
-    <Block at={4} beat={beat}><div className="mk-rule"><code>REFERENCES</code> bog'lanishni <b>bazaga</b> yozadi · <code>\d jadval</code> — tuzilish · <code>does not exist</code> — avval <b>prompt</b>dagi baza nomi</div></Block>
+    {seg.v === 'rel' && <Psql title={t('psql — qayta ochildi', 'psql — открыт заново')} lines={REL11} focus={seg.focus} />}
+    {seg.v === 'rel' && <div className="mk-pair"><b style={{ color: PG.mongo }}>{t("Mongoose'da:", 'В Mongoose:')}</b> <code>await Post.find()</code></div>}
+    <Block at={4} beat={beat}><div className="mk-rule">{t(<><code>REFERENCES</code> bog'lanishni <b>bazaga</b> yozadi · <code>\d jadval</code> — tuzilish · <code>does not exist</code> — avval <b>prompt</b>dagi baza nomi</>, <><code>REFERENCES</code> записывает связь <b>в базу</b> · <code>\d таблица</code> — структура · <code>does not exist</code> — сначала имя базы в <b>приглашении</b></>)}</div></Block>
   </>} />;
 }
 
@@ -123,16 +125,16 @@ const S12 = mkS(13, [{ e: -1 }, { e: 0 }, { e: 1 }, { e: 2 }, { e: 9 }]);
 function Screen12(p) {
   return <Lesson p={p} S={S12} scene={({ seg, beat }) => <>
     <div className="mk-light" style={{ padding: 12 }}>
-      <div className="mk-tag">Xabarni o'qish — uch savol</div>
-      <div className="pg-three">{(READ12[seg.e === 9 ? 2 : beat] || [['qaysi jadval', 'jadval'], ['qaysi qoida', 'qoida'], ['qaysi qiymat (DETAIL)', 'qiymat']]).map(([v, k], i) => <div key={i} className="mk-box" style={{ '--c': [PG.pg, T.accent, T.yellow][i] }}><h4>{['Qaysi jadval', 'Qaysi qoida', 'Qaysi qiymat'][i]}</h4><p><code>{v}</code></p></div>)}</div>
+      <div className="mk-tag">{t("Xabarni o'qish — uch savol", 'Чтение сообщения — три вопроса')}</div>
+      <div className="pg-three">{(READ12[seg.e === 9 ? 2 : beat] || t([['qaysi jadval', 'jadval'], ['qaysi qoida', 'qoida'], ['qaysi qiymat (DETAIL)', 'qiymat']], [['какая таблица', 'jadval'], ['какое правило', 'qoida'], ['какое значение (DETAIL)', 'qiymat']])).map(([v, k], i) => <div key={i} className="mk-box" style={{ '--c': [PG.pg, T.accent, T.yellow][i] }}><h4>{t(['Qaysi jadval', 'Qaysi qoida', 'Qaysi qiymat'], ['Какая таблица', 'Какое правило', 'Какое значение'])[i]}</h4><p><code>{v}</code></p></div>)}</div>
     </div>
     {seg.e >= 0 && seg.e <= 2 && <Psql er lines={E12[seg.e]} />}
     {seg.e === 1 && <div className="pg-cmp">
-      <div className="mk-card"><h5><i style={{ background: PG.mongo }} />MongoDB — 4-ekran</h5><Doc>{`{ "author": null, "izoh": "Muallifi yo'q post" }   ← saqlandi`}</Doc></div>
-      <div className="mk-card" style={{ borderColor: PG.pg }}><h5><i style={{ background: PG.pg }} />PostgreSQL</h5><Doc er>{'ERROR … foreign key constraint   ← saqlanmadi'}</Doc></div>
+      <div className="mk-card"><h5><i style={{ background: PG.mongo }} />{t('MongoDB — 4-ekran', 'MongoDB — 4-й экран')}</h5><Doc>{t(`{ "author": null, "izoh": "Muallifi yo'q post" }   ← saqlandi`, `{ "author": null, "izoh": "Muallifi yo'q post" }   ← сохранено`)}</Doc></div>
+      <div className="mk-card" style={{ borderColor: PG.pg }}><h5><i style={{ background: PG.pg }} />PostgreSQL</h5><Doc er>{t('ERROR … foreign key constraint   ← saqlanmadi', 'ERROR … foreign key constraint   ← не сохранено')}</Doc></div>
     </div>}
     {seg.e === 9 && <Psql er lines={E12[1]} />}
-    {seg.e === 9 && <div className="mk-rule">Qoida buzilsa yozuv <b>saqlanmaydi</b>. O'quvchi bilan birga o'qing: jadval · qoida nomi · <b>DETAIL</b> qatoridagi qiymat — javob deyarli doim shu qatorda.</div>}
+    {seg.e === 9 && <div className="mk-rule">{t(<>Qoida buzilsa yozuv <b>saqlanmaydi</b>. O'quvchi bilan birga o'qing: jadval · qoida nomi · <b>DETAIL</b> qatoridagi qiymat — javob deyarli doim shu qatorda.</>, <>Если правило нарушено, запись <b>не сохраняется</b>. Прочитайте вместе с учеником: таблица · имя правила · значение в строке <b>DETAIL</b> — ответ почти всегда в этой строке.</>)}</div>}
   </>} />;
 }
 
@@ -144,13 +146,13 @@ function Screen13(p) {
   return <MCRetry {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} q={m.q} opts={m.opts} correct={m.correct} ok={m.ok} okShort={<span dangerouslySetInnerHTML={html(m.okShort)} />} wrong={m.wrong}
     above={<div style={{ marginBottom: 14 }}><Psql er lines={E12[2]} /></div>}
     after={<div style={{ display: 'grid', gap: 10 }}>
-      <div className="mk-tag" style={{ color: T.green, margin: 0 }}>Tuzatish — avval postlar, keyin foydalanuvchi (haqiqiy natija)</div>
+      <div className="mk-tag" style={{ color: T.green, margin: 0 }}>{t('Tuzatish — avval postlar, keyin foydalanuvchi (haqiqiy natija)', 'Исправление — сначала посты, потом пользователь (реальный результат)')}</div>
       <Psql lines={psql(String.raw`
 blog=# DELETE FROM posts WHERE user_id = 1;
 DELETE 2
 blog=# DELETE FROM users WHERE id = 1;
 DELETE 1`, { 1: { neu: true }, 3: { neu: true } })} />
-      <div className="mk-rule">Bunday <code>id</code> yo'q bo'lsa xato chiqmaydi: <code>DELETE 0</code>. Xato — qoida buzilganda.</div>
+      <div className="mk-rule">{t(<>Bunday <code>id</code> yo'q bo'lsa xato chiqmaydi: <code>DELETE 0</code>. Xato — qoida buzilganda.</>, <>Если такого <code>id</code> нет, ошибки не будет: <code>DELETE 0</code>. Ошибка — когда нарушено правило.</>)}</div>
     </div>} />;
 }
 
@@ -207,10 +209,10 @@ function Screen15(p) {
       <MiniTable name="posts" cols={['id', 'user_id', 'izoh']} rows={[['1', '1', 'Birinchi post'], ['2', '1', "Bugun Nest o'rgandim"], ['3', '2', 'Salom hammaga']]} hlCol={seg.on ? [1] : []} />
       <MiniTable name="users" cols={['id', 'username']} rows={[['1', 'ali'], ['2', 'vali'], ['3', 'sardor']]} hlCol={seg.on ? [0] : []} hlRow={seg.v === 'left' ? [2] : []} />
     </div>
-    {seg.on && <div className="mk-tag" style={{ margin: 0, color: T.accent }}>ON: users.id = posts.user_id — users'dagi id posts'dagi user_id'ga teng</div>}
-    {seg.v === 'join' && <Psql lines={JOIN15} focus={seg.focus} />}
+    {seg.on && <div className="mk-tag" style={{ margin: 0, color: T.accent }}>{t("ON: users.id = posts.user_id — users'dagi id posts'dagi user_id'ga teng", 'ON: users.id = posts.user_id — id из users равен user_id из posts')}</div>}
+    {seg.v === 'join' && beat < 4 && <Psql lines={JOIN15} focus={seg.focus} />}
     {seg.v === 'left' && <Psql lines={LEFT15} focus={seg.focus} />}
-    <Block at={4} beat={beat}><div className="mk-rule"><b>JOIN</b> — faqat jufti borlar · <b>LEFT JOIN</b> — chapdagi jadvalning hammasi · <code>ON</code>da tashqi kalit (<code>user_id</code>) boshqa jadvalning <code>id</code>'siga tenglanadi</div></Block>
+    <Block at={4} beat={beat}><div className="mk-rule">{t(<><b>JOIN</b> — faqat jufti borlar · <b>LEFT JOIN</b> — chapdagi jadvalning hammasi · <code>ON</code>da tashqi kalit (<code>user_id</code>) boshqa jadvalning <code>id</code>'siga tenglanadi</>, <><b>JOIN</b> — только строки, у которых есть пара · <b>LEFT JOIN</b> — вся левая таблица · в <code>ON</code> внешний ключ (<code>user_id</code>) приравнивается к <code>id</code> другой таблицы</>)}</div></Block>
   </>} />;
 }
 
@@ -239,8 +241,8 @@ const WRONG16_HTML = '<pre class="pg-doc er" style="margin-top:12px;font-size:12
 function Screen16(p) {
   const m = MDT[17];
   return <>
-    <LineCheck {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} task={m.task + WRONG16_HTML} q={m.q} file="psql — blog · so'rov" lines={LC16} target={2}
-      fixed={LC16_FIXED} fixedExtra={[{ file: "natija — to'g'ri (haqiqiy)", lines: JOIN15.slice(3) }]}
+    <LineCheck {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} task={m.task + t(WRONG16_HTML, WRONG16_HTML.replace(/← noto'g'ri/g, '← неверно'))} q={m.q} file={t("psql — blog · so'rov", 'psql — blog · запрос')} lines={LC16} target={2}
+      fixed={LC16_FIXED} fixedExtra={[{ file: t("natija — to'g'ri (haqiqiy)", 'результат — верный (реальный)'), lines: JOIN15.slice(3) }]}
       ok={m.ok} okShort={<span dangerouslySetInnerHTML={html(m.okShort)} />} hint={m.hint} />
   </>;
 }

@@ -1,0 +1,1 @@
+Bu NestJS loyihasi uchun GitHub Actions workflow yozib ber: har push'da testlar yursin.

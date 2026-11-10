@@ -15,7 +15,7 @@ const S24 = {
     sg('a', "m4a-03 — <b>siz bugun qilgan ish</b>: car resursi, besh bosqich, 22 ekran", "Endi darsning asosiy maqsadi: bu mavzuni o'quvchiga o'tish. Ikkita o'quvchi darsi bor. Birinchisi m4a-03: o'quvchi aynan siz bugun qilgan ishni qiladi, car resursini besh bosqichda qo'shadi. Yigirma ikki ekran.", { hl: [] }),
     sg('b', "Har bosqichda o'quvchi <b>shu faylga tegishli qatorni</b> tanlaydi, keyin test, agent va haqiqiy loyiha", "Har bosqichda o'quvchi qatorlarni tanlaydi, qaysi biri shu faylga tegishli, keyin qisqa test. So'ng agent besh faylni yozadi va o'quvchi agent xatosini topadi. Oxirida amaliyot haqiqiy loyihada. Siz har bosqichda qoidani aytasiz: ustun Entity'da, qoida DTO'da, eshik Controller'da.", { hl: [1, 2] }),
     sg('c', "Diqqat: o'quvchi darsida manzil <b><code>/car</code></b> deb yozilgan — haqiqatda <b>404</b>; <code>/api/v1/car</code> deb tuzating", "Diqqat, birinchi xato. O'quvchi darsida manzil hamma joyda prefikssiz, slesh car deb yozilgan, amaliyot ro'yxatida ham: brauzerda slesh car'ni oching, ikki yuz. Haqiqatda bu to'rt yuz to'rt. Darsdan oldin o'quvchilarga ayting: manzil api v bir slesh car.", { hl: [3], warn: true }),
-    sg('d', "90 daqiqaning <b>20 tasi haqiqiy loyihaga</b> ketadi — o'quvchilar eng ko'p shu yerda qoqiladi", "Vaqt rejasi, taklif: to'qson daqiqa. Kirish va reja o'n besh, besh bosqich qirq, agent va xato topish o'n, haqiqiy loyiha yigirma, yakun besh. Eng ko'p qoqiladigan joy haqiqiy loyiha: hammaning car route'i ishlamaguncha oldinga o'tmang.", { hl: [], time: true }),
+    sg('d', "90 daqiqaning <b>20 tasi haqiqiy loyihaga</b> ketadi — o'quvchilar eng ko'p shu yerda xato qiladi", "Vaqt rejasi, taklif: to'qson daqiqa. Kirish va reja o'n besh, besh bosqich qirq, agent va xato topish o'n, haqiqiy loyiha yigirma, yakun besh. O'quvchilar eng ko'p xato qiladigan joy haqiqiy loyiha: hammaning car route'i ishlamaguncha oldinga o'tmang.", { hl: [], time: true }),
     sg('e', "Xulosa: o'quvchi darsi <b>«5 fayl»</b> deydi — DTO'ni bitta sanaydi; qoqilganga 2-amaliyot jadvali bilan yordam bering", "Xulosa: o'quvchi darsi besh fayl deydi, ikki DTO'ni bitta deb sanaydi, bu xato emas. Haqiqiy loyihada qoqilgan o'quvchiga ikkinchi amaliyotdagi jadvalingiz bilan yordam berasiz: har xabar va uning yechimi o'sha yerda.", { hl: [1, 3] }),
   ],
 };
@@ -65,7 +65,7 @@ function Screen25(p) {
   return <Lesson p={p} S={S25} scene={({ seg, beat }) => <div className="mk-light" style={{ padding: 14 }}>
     <div className="mk-tag">{t("O'quvchi darsidagi so'z → uning atamasi", 'Слово из урока ученика → термин')}</div>
     <table className="mk-tbl"><thead><tr><th>{t("o'quvchi darsida", 'в уроке ученика')}</th><th>{t('atama', 'термин')}</th><th>{t('vazifa', 'задача')}</th><th>{t('qayerdan', 'откуда')}</th></tr></thead><tbody>
-      {DICT2.map(([a, b, c, d], i) => <tr key={a} className={seg.rows.includes(i) ? 'hl' : ''} style={{ opacity: seg.rows.length && !seg.rows.includes(i) ? 0.55 : 1 }}><td>{a}</td><td><code>{b}</code></td><td style={{ color: T.ink2 }}>{c}</td><td style={{ color: T.ink3, fontSize: 12 }}>{d}</td></tr>)}
+      {DICT2.map(([a, b, c, d], i) => (beat >= 3 && seg.rows.length && !seg.rows.includes(i)) ? null : <tr key={a} className={seg.rows.includes(i) ? 'hl' : ''} style={{ opacity: seg.rows.length && !seg.rows.includes(i) ? 0.55 : 1 }}><td>{a}</td><td><code>{b}</code></td><td style={{ color: T.ink2 }}>{c}</td><td style={{ color: T.ink3, fontSize: 12 }}>{d}</td></tr>)}
     </tbody></table>
     <Block at={3} beat={beat}><div className="mk-rule" style={{ marginTop: 12 }}>{t(<>Ikkala so'zni birga ayting: <b>«javon chizmasi, ya'ni Entity»</b>. Metafora vazifani tushuntiradi, kodni emas.</>, <>Говорите оба слова вместе: <b>«чертёж стеллажа, то есть Entity»</b>. Метафора объясняет задачу, а не код.</>)}</div></Block>
   </div>} />;
@@ -154,7 +154,7 @@ const S27 = {
 function Screen27(p) {
   const [open, setOpen] = useState([]);
   return <Lesson p={p} S={S27} scene={({ seg }) => <>
-    <div className="mk-qa">
+    <div className={`mk-qa${seg.qa ? ' n2-sm' : ''}`}>
       {STUMBLE2.map(([h, m, a], i) => <button key={i} className={seg.hl.includes(i) ? 'hl' : (seg.hl.length ? 'dim' : '')} style={{ cursor: 'default' }}><b>{i + 1}. {h}</b><p style={{ fontFamily: MONO, fontSize: 12, color: T.accent, margin: '0 0 4px' }}>{m}</p><p>{a}</p></button>)}
     </div>
     {seg.qa && <div className="mk-rule" style={{ animation: 'mk-up .45s ease both' }}>{t(<><b>404</b> — manzil yoki modul · <b>400</b> — DTO qoidasi · <b>401 / 403</b> — Guard · <b>500</b> — terminalni o'qing. Javobni aytmang: xabarni o'quvchi bilan birga o'qing.</>, <><b>404</b> — адрес или модуль · <b>400</b> — правило DTO · <b>401 / 403</b> — Guard · <b>500</b> — читайте терминал. Не говорите ответ: читайте сообщение вместе с учеником.</>)}</div>}
@@ -169,14 +169,14 @@ function Screen27(p) {
 //  28 · O'z-sinov — 8 savol (Nest-1 Screen27 bilan bir xil mexanika; M12)
 // ============================================================
 const FINAL = [
-  { q: "O'quvchi loyihasida server qaysi faylda ishga tushadi?", o: ['src/main.ts', 'src/api/app.service.ts', 'src/api/app.module.ts', 'src/config/index.ts'], c: 1, e: "main.ts faqat Aplication.main()ni chaqiradi; server app.service.ts'da.", s: 5 },
-  { q: "POST /api/v1/car bo'sh {} bilan yuborildi. Javob?", o: ["201, bo'sh mashina yaratiladi", '404, route topilmadi', '500, server xatosi', "400, buzilgan qoidalar ro'yxati"], c: 3, e: 'Global ValidationPipe DTO qoidalarini tekshiradi.', s: 13 },
-  { q: 'GET /api/v1/car/1 — nima bo\'ladi?', o: ['500, terminalda uuid xatosi', '404, mashina topilmadi', '200, birinchi mashina', '400, DTO qoidasi buzildi'], c: 0, e: "id uuid; «1» bazada xato beradi, filtr uni 500 qiladi.", s: 13 },
+  { q: "O'quvchi loyihasida server qaysi faylda ishga tushadi?", o: ["src/main.ts (bootstrap)", "src/api/app.service.ts", "src/api/app.module.ts", "src/config/index.ts"], c: 1, e: "main.ts faqat Aplication.main()ni chaqiradi; server app.service.ts'da.", s: 5 },
+  { q: "POST /api/v1/car bo'sh {} bilan yuborildi. Javob?", o: ["201, bo'sh mashina yaratiladi", "404, route topilmadi — POST yo'q", "500, server xatosi — baza rad etdi", "400, buzilgan qoidalar ro'yxati"], c: 3, e: 'Global ValidationPipe DTO qoidalarini tekshiradi.', s: 13 },
+  { q: 'GET /api/v1/car/1 — nima bo\'ladi?', o: ["500, terminalda uuid xatosi", "404, bunday mashina topilmadi", "200, birinchi mashina qaytadi", "400, DTO qoidasi buzilgani uchun"], c: 0, e: "id uuid; «1» bazada xato beradi, filtr uni 500 qiladi.", s: 13 },
   { q: 'Tokensiz GET /api/v1/admin yuborildi. Javob?', o: ['403, rol yetmaydi', "404, route yo'q", "401, token yo'q", "200, adminlar ro'yxati"], c: 2, e: "AuthGuard: Authorization yo'q → 401.", s: 16 },
-  { q: "Entity'da price'dan @Column olib tashlandi, server qayta yoqildi. Nima bo'ladi?", o: ['Server yiqiladi, xato chiqadi', "Ustun bazadan xato bermay o'chadi", "Ustun bazada o'zgarmay qoladi", 'Faqat DTO xato beradi'], c: 1, e: "synchronize bazani Entity'ga moslaydi — ustun o'chadi, xabar yo'q.", s: 21 },
-  { q: "O'quvchi m4a-03 bo'yicha localhost:3000/car'ni ochdi — 404, terminalda car uchun 5 ta Mapped bor. Nima deysiz?", o: ["Manzil /api/v1/car bo'lishi kerak", "CarModule'ni AppModule'ga ulang", 'Serverni qayta ishga tushiring', "Authorize'ga token qo'ying"], c: 0, e: "Mapped bor — route bor; o'quvchi darsida prefiks yozilmagan.", s: 24 },
-  { q: "KitobShop: superadmin tokeni bilan POST /book — 403. O'quvchiga nima deysiz?", o: ['Qayta signin qiling, token eskirgan', "Authorize'ga tokenni qayta qo'ying", "BookModule'ni AppModule'ga ulang", 'Oddiy admin yarating va u bilan kiring'], c: 3, e: "@Roles('admin') — superAdmin ro'yxatda yo'q; token yaroqli, shuning uchun 403.", s: 26 },
-  { q: "O'quvchi .env'ni keyin to'ldirdi, lekin kira olmayapti; bazada nomsiz superadmin bor. Nima qilasiz?", o: [".env'ni yana bir marta saqlang", 'Serverni ikki marta qayta yoqing', "Bazadagi o'sha satrni o'chirib, qayta yoqing", "USER_NAME'ni boshqa nomga o'zgartiring"], c: 2, e: "Superadmin bor bo'lsa onModuleInit yangisini yaratmaydi.", s: 6 },
+  { q: "Entity'da price'dan @Column olib tashlandi, server qayta yoqildi. Nima bo'ladi?", o: ["Server yiqiladi, terminalda xato chiqadi", "Ustun bazadan xato bermay o'chadi", "Ustun bazada o'zgarmay qoladi", "Faqat DTO xato beradi, baza o'zgarmaydi"], c: 1, e: "synchronize bazani Entity'ga moslaydi — ustun o'chadi, xabar yo'q.", s: 21 },
+  { q: "O'quvchi m4a-03 bo'yicha localhost:3000/car'ni ochdi — 404, terminalda car uchun 5 ta Mapped bor. Nima deysiz?", o: ["Manzil /api/v1/car bo'lishi kerak", "CarModule'ni AppModule'ga ulang", "Serverni qayta ishga tushiring", "Authorize'ga tokenni qayta qo'ying"], c: 0, e: "Mapped bor — route bor; o'quvchi darsida prefiks yozilmagan.", s: 24 },
+  { q: "KitobShop: superadmin tokeni bilan POST /book — 403. O'quvchiga nima deysiz?", o: ["Qayta signin qiling, token eskirib qolgan", "Authorize'ga tokenni qayta qo'ying", "BookModule'ni AppModule'ga ulab qo'ying", "Oddiy admin yarating va u bilan kiring"], c: 3, e: "@Roles('admin') — superAdmin ro'yxatda yo'q; token yaroqli, shuning uchun 403.", s: 26 },
+  { q: "O'quvchi .env'ni keyin to'ldirdi, lekin kira olmayapti; bazada nomsiz superadmin bor. Nima qilasiz?", o: [".env'ni yana bir marta saqlab, kutib turing", "Serverni ikki marta to'xtatib qayta yoqing", "Bazadagi o'sha satrni o'chirib, qayta yoqing", "USER_NAME'ni boshqa nomga o'zgartiring"], c: 2, e: "Superadmin bor bo'lsa onModuleInit yangisini yaratmaydi.", s: 6 },
 ];
 function Screen28(p) {
   const st = p.stored || {};
@@ -366,7 +366,7 @@ function Screen29(p) {
 // ============================================================
 //  Muqova va ildiz
 // ============================================================
-function Cover({ onStart }) {
+function Cover({ onStart, resume }) {
   return (
     <div className="mk-cover"><div className="card">
       <p className="mk-eyebrow">{t('Mentor kursi · NestJS', 'Курс для менторов · NestJS')}</p>
@@ -375,7 +375,7 @@ function Cover({ onStart }) {
       <ul>
         {t(["Jami taxminan 1 soat 20 daqiqa: ovoz ~35 daqiqa · to'rt amaliyot 35–45 daqiqa · 4 tekshiruv · o'z-sinov 8 savol. 15-ekrandan keyin tanaffus qilsangiz bo'ladi", "Kerak: Nest-1 darsi o'tilgan · Node.js 20+ · PostgreSQL ishlab turgan · Git · VS Code", "Loyiha: o'quvchi reposi IntroNestArxitechture — darsda uni o'zingizda ishga tushirasiz"], ['Всего около 1 часа 20 минут: озвучка ~35 минут · четыре практики 35–45 минут · 4 проверки · самопроверка 8 вопросов. После экрана 15 можно сделать перерыв', 'Нужно: пройден урок Nest-1 · Node.js 20+ · запущенный PostgreSQL · Git · VS Code', 'Проект: репозиторий ученика IntroNestArxitechture — на уроке вы запустите его у себя']).map((x) => <li key={x}>{x}</li>)}
       </ul>
-      <button className="mk-btn ready" onClick={onStart}>{t('Boshlash →', 'Начать →')}</button>
+      <CoverStart onStart={onStart} resume={resume} />
     </div></div>
   );
 }
@@ -393,6 +393,7 @@ export default function NestRepoMentorLesson({ studentName, lang = 'uz', onFinis
   const [seen, setSeen] = useState({});
   const [rev, setRev] = useState(0);
   const [mode, setMode] = useState('live');
+  const sv = useMentorSave({ id: LESSON_ID, total, startAt, started, idx, answers, seen, setIdx, setAnswers, setSeen, setStarted });
   const startTime = useRef(Date.now());
   const finished = useRef(false);
   const onAnswer = useCallback((payload) => setAnswers((a) => ({ ...a, [idx]: payload })), [idx]);
@@ -417,7 +418,7 @@ export default function NestRepoMentorLesson({ studentName, lang = 'uz', onFinis
       answers: Object.entries(answers).map(([i, a]) => ({ screen: Number(i) + 1, ...a })),
     });
   };
-  if (!started) return <Cover onStart={() => setStarted(true)} />;
+  if (!started) return <Cover onStart={sv.start} resume={sv.resume} />;
   const S = SCREENS[idx];
   const fin = Object.values(answers).find((a) => a && a.type === 'final');
   return <S key={`${idx}:${rev}`} idx={idx} total={total} lang={lang} stored={answers[idx]} testScore={fin ? fin.score : 0} seen={!!seen[idx]} review={mode === 'review' && !!seen[idx]} onAnswer={onAnswer} onNext={next} onBack={idx > 0 ? () => { setMode('review'); setIdx((i) => i - 1); } : null} onFinish={finish} onGoto={goto} onRestart={restart} />;

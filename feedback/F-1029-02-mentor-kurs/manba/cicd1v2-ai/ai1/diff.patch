@@ -1,0 +1,30 @@
+diff --git a/.github/workflows/test.yml b/.github/workflows/test.yml
+new file mode 100644
+index 0000000..e54bac7
+--- /dev/null
++++ b/.github/workflows/test.yml
+@@ -0,0 +1,24 @@
++name: Tests
++
++on:
++  push:
++
++jobs:
++  test:
++    runs-on: ubuntu-latest
++
++    steps:
++      - name: Kodni yuklab olish
++        uses: actions/checkout@v4
++
++      - name: Node.js 22 o'rnatish
++        uses: actions/setup-node@v4
++        with:
++          node-version: 22
++          cache: npm
++
++      - name: Kutubxonalarni o'rnatish
++        run: npm ci
++
++      - name: Testlar
++        run: npm test

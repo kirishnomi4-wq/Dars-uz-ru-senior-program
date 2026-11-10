@@ -1,0 +1,99 @@
+ALTER TABLE products ADD CONSTRAINT stock_nonneg CHECK (stock >= 0);
+ALTER TABLE
+CREATE TABLE orders (id SERIAL PRIMARY KEY, product_id INTEGER NOT NULL REFERENCES products(id), qty INTEGER NOT NULL CHECK (qty > 0), created_at TIMESTAMP DEFAULT now());
+CREATE TABLE
+                            Table "public.products"
+ Column |  Type   | Collation | Nullable |               Default                
+--------+---------+-----------+----------+--------------------------------------
+ id     | integer |           | not null | nextval('products_id_seq'::regclass)
+ name   | text    |           |          | 
+ price  | integer |           |          | 
+ stock  | integer |           |          | 
+Indexes:
+    "products_pkey" PRIMARY KEY, btree (id)
+Check constraints:
+    "stock_nonneg" CHECK (stock >= 0)
+Referenced by:
+    TABLE "orders" CONSTRAINT "orders_product_id_fkey" FOREIGN KEY (product_id) REFERENCES products(id)
+
+                                        Table "public.orders"
+   Column   |            Type             | Collation | Nullable |              Default               
+------------+-----------------------------+-----------+----------+------------------------------------
+ id         | integer                     |           | not null | nextval('orders_id_seq'::regclass)
+ product_id | integer                     |           | not null | 
+ qty        | integer                     |           | not null | 
+ created_at | timestamp without time zone |           |          | now()
+Indexes:
+    "orders_pkey" PRIMARY KEY, btree (id)
+Check constraints:
+    "orders_qty_check" CHECK (qty > 0)
+Foreign-key constraints:
+    "orders_product_id_fkey" FOREIGN KEY (product_id) REFERENCES products(id)
+
+BEGIN;
+BEGIN
+UPDATE products SET stock = stock - 1 WHERE id = 2 RETURNING name, stock;
+    name    | stock 
+------------+-------
+ Sichqoncha |    14
+(1 row)
+
+UPDATE 1
+INSERT INTO orders (product_id, qty) VALUES (2, 1) RETURNING *;
+ id | product_id | qty |         created_at         
+----+------------+-----+----------------------------
+  1 |          2 |   1 | 2026-11-03 12:56:34.321816
+(1 row)
+
+INSERT 0 1
+COMMIT;
+COMMIT
+SELECT id, name, stock FROM products ORDER BY id;
+ id |    name    | stock 
+----+------------+-------
+  1 | Klaviatura |     8
+  2 | Sichqoncha |    14
+  3 | Quloqchin  |     5
+  4 | Kolonka    |    10
+(4 rows)
+
+SELECT * FROM orders;
+ id | product_id | qty |         created_at         
+----+------------+-----+----------------------------
+  1 |          2 |   1 | 2026-11-03 12:56:34.321816
+(1 row)
+
+BEGIN;
+BEGIN
+INSERT INTO orders (product_id, qty) VALUES (3, 7) RETURNING id, product_id, qty;
+ id | product_id | qty 
+----+------------+-----
+  2 |          3 |   7
+(1 row)
+
+INSERT 0 1
+UPDATE products SET stock = stock - 7 WHERE id = 3;
+ERROR:  new row for relation "products" violates check constraint "stock_nonneg"
+DETAIL:  Failing row contains (3, Quloqchin, 95000, -2).
+SELECT * FROM orders;
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+ROLLBACK;
+ROLLBACK
+SELECT * FROM orders;
+ id | product_id | qty |         created_at         
+----+------------+-----+----------------------------
+  1 |          2 |   1 | 2026-11-03 12:56:34.321816
+(1 row)
+
+SELECT id, name, stock FROM products ORDER BY id;
+ id |    name    | stock 
+----+------------+-------
+  1 | Klaviatura |     8
+  2 | Sichqoncha |    14
+  3 | Quloqchin  |     5
+  4 | Kolonka    |    10
+(4 rows)
+
+UPDATE products SET stock = stock - 7 WHERE id = 3;
+ERROR:  new row for relation "products" violates check constraint "stock_nonneg"
+DETAIL:  Failing row contains (3, Quloqchin, 95000, -2).

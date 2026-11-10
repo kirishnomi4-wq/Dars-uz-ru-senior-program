@@ -26,107 +26,107 @@ npm init -y >/dev/null; npm install --no-audit --no-fund telegraf pg >/dev/null 
 { node --version; for p in telegraf pg; do echo "$p $(node -p "JSON.parse(require('fs').readFileSync('node_modules/$p/package.json')).version")"; done; $B/postgres --version; date; } > "$OUT/00-versiyalar.txt"
 
 # Soxta Telegram: update yasash va javobni ushlash (har skript shu yordamchini ishlatadi)
-cat > sinov.js <<'JS'
+cat > test-helper.js <<'JS'
 const { Telegraf, Telegram } = require('telegraf');
 // Telegraf har update uchun yangi Telegram obyekti yaratadi — shuning uchun prototipda ushlaymiz (tarmoqqa hech narsa ketmaydi)
 Telegram.prototype.callApi = async function (method, payload) { console.log(`  bot → ${payload.chat_id}: ${payload.text}`); return { message_id: 1 }; };
-function yangiBot() {
+function createBot() {
   const bot = new Telegraf('123:SOXTA');
   bot.botInfo = { id: 1, is_bot: true, first_name: 'AvtoPizza', username: 'avtopizza_bot' };
   return bot;
 }
 let uid = 1;
-async function yoz(bot, chatId, ism, text) {
-  console.log(`${ism} (${chatId}): ${text}`);
-  const message = { message_id: uid++, date: 0, chat: { id: chatId, type: 'private' }, from: { id: chatId, is_bot: false, first_name: ism }, text };
+async function send(bot, chatId, name, text) {
+  console.log(`${name} (${chatId}): ${text}`);
+  const message = { message_id: uid++, date: 0, chat: { id: chatId, type: 'private' }, from: { id: chatId, is_bot: false, first_name: name }, text };
   if (text.startsWith('/')) message.entities = [{ type: 'bot_command', offset: 0, length: text.split(' ')[0].length }];
   await bot.handleUpdate({ update_id: uid, message });
 }
-module.exports = { yangiBot, yoz };
+module.exports = { createBot, send };
 JS
 
-# 01 holatsiz bot: har xabar alohida (o'quvchi darsi s0/s2 suhbati)
-cat > holatsiz.js <<'JS'
-const { yangiBot, yoz } = require('./sinov');
-const bot = yangiBot();
+# 01 state'siz bot: har xabar alohida (o'quvchi darsi s0/s2 suhbati)
+cat > stateless.js <<'JS'
+const { createBot, send } = require('./test-helper');
+const bot = createBot();
 bot.hears(/pitsa/i, (ctx) => ctx.reply('Ajoyib! Qaysi pitsa?'));
 bot.on('text', (ctx) => ctx.reply(`Nima «${ctx.message.text}»? Tushunmadim.`));
 (async () => {
-  await yoz(bot, 5123456789, 'Aziza', 'Pitsa buyurtma qilaman');
-  await yoz(bot, 5123456789, 'Aziza', 'Pepperoni');
+  await send(bot, 5123456789, 'Aziza', 'Pitsa buyurtma qilaman');
+  await send(bot, 5123456789, 'Aziza', 'Pepperoni');
 })();
 JS
-{ echo '$ node holatsiz.js'; node holatsiz.js 2>&1; } > "$OUT/01-holatsiz.txt"
+{ echo '$ node stateless.js'; node stateless.js 2>&1; } > "$OUT/01-stateless.txt"
 
-# 02 holat dastur xotirasida (obyekt) — ishlaydi; qayta ishga tushsa yo'qoladi (ikki alohida jarayon)
-cat > xotira.js <<'JS'
-const { yangiBot, yoz } = require('./sinov');
-const holat = {}; // har chatning holati — oddiy obyektda (RAM)
-const bot = yangiBot();
+# 02 state dastur xotirasida (obyekt) — ishlaydi; qayta ishga tushsa yo'qoladi (ikki alohida jarayon)
+cat > memory.js <<'JS'
+const { createBot, send } = require('./test-helper');
+const state = {}; // har chatning state'i — oddiy obyektda (RAM)
+const bot = createBot();
 bot.on('text', (ctx) => {
   const id = ctx.chat.id, t = ctx.message.text;
-  if (!holat[id]) { holat[id] = 'PITSA_KUTYAPMAN'; return ctx.reply('Salom! Qaysi pitsa?'); }
-  if (holat[id] === 'PITSA_KUTYAPMAN') { holat[id] = 'OLCHAM_KUTYAPMAN'; return ctx.reply(`${t} — yaxshi tanlov! Qaysi o'lchamda?`); }
-  if (holat[id] === 'OLCHAM_KUTYAPMAN') { holat[id] = 'MANZIL_KUTYAPMAN'; return ctx.reply('Manzilni yuboring.'); }
-  return ctx.reply(`(holat: ${holat[id]})`);
+  if (!state[id]) { state[id] = 'WAITING_PIZZA'; return ctx.reply('Salom! Qaysi pitsa?'); }
+  if (state[id] === 'WAITING_PIZZA') { state[id] = 'WAITING_SIZE'; return ctx.reply(`${t} — yaxshi tanlov! Qaysi o'lchamda?`); }
+  if (state[id] === 'WAITING_SIZE') { state[id] = 'WAITING_ADDRESS'; return ctx.reply('Manzilni yuboring.'); }
+  return ctx.reply(`(state: ${state[id]})`);
 });
 (async () => {
-  const qism = process.argv[2];
-  if (qism === '1') { await yoz(bot, 5123456789, 'Aziza', 'Salom'); await yoz(bot, 5123456789, 'Aziza', 'Pepperoni'); }
-  else { await yoz(bot, 5123456789, 'Aziza', 'Katta'); }
-  console.log('  [xotiradagi holat]', JSON.stringify(holat));
+  const part = process.argv[2];
+  if (part === '1') { await send(bot, 5123456789, 'Aziza', 'Salom'); await send(bot, 5123456789, 'Aziza', 'Pepperoni'); }
+  else { await send(bot, 5123456789, 'Aziza', 'Katta'); }
+  console.log('  [xotiradagi state]', JSON.stringify(state));
 })();
 JS
-{ echo '$ node xotira.js 1      # 1-ishga tushirish'; node xotira.js 1 2>&1; echo; echo '# bot to'"'"'xtatildi va qayta ishga tushirildi (yangi jarayon)'; echo '$ node xotira.js 2'; node xotira.js 2 2>&1; } > "$OUT/02-xotira-qayta-ishga.txt"
+{ echo '$ node memory.js 1      # 1-ishga tushirish'; node memory.js 1 2>&1; echo; echo '# bot to'"'"'xtatildi va qayta ishga tushirildi (yangi jarayon)'; echo '$ node memory.js 2'; node memory.js 2 2>&1; } > "$OUT/02-memory-restart.txt"
 
 # 03 bitta umumiy o'zgaruvchi — ikki mijoz aralashadi
-cat > umumiy.js <<'JS'
-const { yangiBot, yoz } = require('./sinov');
-let tanlov = null; // HAMMA UCHUN BITTA
-const bot = yangiBot();
-bot.hears(/^(Pepperoni|Margarita)$/, (ctx) => { tanlov = ctx.message.text; return ctx.reply(`${tanlov}. O'lcham?`); });
-bot.hears(/^(Katta|Kichik)$/, (ctx) => ctx.reply(`Buyurtma: ${tanlov}, ${ctx.message.text.toLowerCase()}`));
+cat > shared.js <<'JS'
+const { createBot, send } = require('./test-helper');
+let choice = null; // HAMMA UCHUN BITTA
+const bot = createBot();
+bot.hears(/^(Pepperoni|Margarita)$/, (ctx) => { choice = ctx.message.text; return ctx.reply(`${choice}. O'lcham?`); });
+bot.hears(/^(Katta|Kichik)$/, (ctx) => ctx.reply(`Buyurtma: ${choice}, ${ctx.message.text.toLowerCase()}`));
 (async () => {
-  await yoz(bot, 5123456789, 'Aziza', 'Pepperoni');
-  await yoz(bot, 6234567890, 'Jasur', 'Margarita');
-  await yoz(bot, 5123456789, 'Aziza', 'Katta');
+  await send(bot, 5123456789, 'Aziza', 'Pepperoni');
+  await send(bot, 6234567890, 'Jasur', 'Margarita');
+  await send(bot, 5123456789, 'Aziza', 'Katta');
 })();
 JS
-{ echo '$ node umumiy.js'; node umumiy.js 2>&1; } > "$OUT/03-umumiy-aralashdi.txt"
+{ echo '$ node shared.js'; node shared.js 2>&1; } > "$OUT/03-shared-mixed.txt"
 
-# 04 jadval va PostgreSQL'dagi holat (o'quvchi darsidagi users jadvali) — SELECT → (yo'q bo'lsa INSERT) → UPDATE
-psql_ -d botdb -c "CREATE TABLE users (id SERIAL PRIMARY KEY, telegram_id BIGINT NOT NULL UNIQUE, ism TEXT, holat TEXT, tanlov TEXT);" > "$OUT/04-jadval.txt" 2>&1
-cat > baza.js <<'JS'
+# 04 jadval va PostgreSQL'dagi state (o'quvchi darsidagi users jadvali) — SELECT → (yo'q bo'lsa INSERT) → UPDATE
+psql_ -d botdb -c "CREATE TABLE users (id SERIAL PRIMARY KEY, telegram_id BIGINT NOT NULL UNIQUE, name TEXT, state TEXT, choice TEXT);" > "$OUT/04-jadval.txt" 2>&1
+cat > db.js <<'JS'
 const { Pool } = require('pg');
-const { yangiBot, yoz } = require('./sinov');
+const { createBot, send } = require('./test-helper');
 const pool = new Pool({ host: 'localhost', port: Number(process.env.PGPORT_), user: 'postgres', password: 'password', database: 'botdb' });
-const bot = yangiBot();
+const bot = createBot();
 bot.start(async (ctx) => {
   const { rows } = await pool.query('SELECT * FROM users WHERE telegram_id = $1', [ctx.chat.id]);
   if (rows.length === 0) {
-    await pool.query('INSERT INTO users (telegram_id, holat) VALUES ($1, $2)', [ctx.chat.id, 'ISM_KUTYAPMAN']);
+    await pool.query('INSERT INTO users (telegram_id, state) VALUES ($1, $2)', [ctx.chat.id, 'WAITING_NAME']);
     return ctx.reply('Ismingiz nima?');
   }
-  return ctx.reply(`Yana salom, ${rows[0].ism}!`);
+  return ctx.reply(`Yana salom, ${rows[0].name}!`);
 });
 bot.on('text', async (ctx) => {
   const { rows } = await pool.query('SELECT * FROM users WHERE telegram_id = $1', [ctx.chat.id]);
   const u = rows[0];
-  if (u && u.holat === 'ISM_KUTYAPMAN') {
-    await pool.query('UPDATE users SET ism = $1, holat = $2 WHERE telegram_id = $3', [ctx.message.text, 'TAYYOR', ctx.chat.id]);
+  if (u && u.state === 'WAITING_NAME') {
+    await pool.query('UPDATE users SET name = $1, state = $2 WHERE telegram_id = $3', [ctx.message.text, 'READY', ctx.chat.id]);
     return ctx.reply(`Tanishganimdan xursandman, ${ctx.message.text}!`);
   }
   return ctx.reply('Buyruqni tanlang: /start');
 });
 (async () => {
-  const qism = process.argv[2];
-  if (qism === '1') { await yoz(bot, 5123456789, 'Aziza', '/start'); await yoz(bot, 5123456789, 'Aziza', 'Aziza'); await yoz(bot, 6234567890, 'Jasur', '/start'); }
-  else { await yoz(bot, 5123456789, 'Aziza', '/start'); await yoz(bot, 6234567890, 'Jasur', 'Jasur'); }
+  const part = process.argv[2];
+  if (part === '1') { await send(bot, 5123456789, 'Aziza', '/start'); await send(bot, 5123456789, 'Aziza', 'Aziza'); await send(bot, 6234567890, 'Jasur', '/start'); }
+  else { await send(bot, 5123456789, 'Aziza', '/start'); await send(bot, 6234567890, 'Jasur', 'Jasur'); }
   await pool.end();
 })();
 JS
 export PGPORT_=$PORT
-{ echo '$ node baza.js 1      # 1-ishga tushirish'; node baza.js 1 2>&1; echo; echo '# bot to'"'"'xtatildi va qayta ishga tushirildi'; echo '$ node baza.js 2'; node baza.js 2 2>&1; echo; echo '$ psql -c "SELECT telegram_id, ism, holat FROM users"'; psql_ -d botdb -c "SELECT telegram_id, ism, holat FROM users ORDER BY id"; } > "$OUT/05-baza-qayta-ishga.txt"
+{ echo '$ node db.js 1      # 1-ishga tushirish'; node db.js 1 2>&1; echo; echo '# bot to'"'"'xtatildi va qayta ishga tushirildi'; echo '$ node db.js 2'; node db.js 2 2>&1; echo; echo '$ psql -c "SELECT telegram_id, name, state FROM users"'; psql_ -d botdb -c "SELECT telegram_id, name, state FROM users ORDER BY id"; } > "$OUT/05-db-restart.txt"
 
 # 06 INTEGER ustun — Telegram id 2^31 dan katta (5123456789) → out of range
 psql_ -d botdb -c "CREATE TABLE users_int (id SERIAL PRIMARY KEY, telegram_id INTEGER);" >/dev/null
@@ -148,7 +148,7 @@ JS
 { echo '$ node bigint.js'; node bigint.js 2>&1; } > "$OUT/07-bigint-matn.txt"
 
 # 08 SELECT'siz ikkinchi /start — INSERT takrorlanadi → UNIQUE xatosi
-{ echo "\$ INSERT INTO users (telegram_id, holat) VALUES (5123456789, 'ISM_KUTYAPMAN');  -- SELECT'siz, ikkinchi marta"; psql_ -d botdb -c "INSERT INTO users (telegram_id, holat) VALUES (5123456789, 'ISM_KUTYAPMAN');" 2>&1; } > "$OUT/08-unique-takror.txt"
+{ echo "\$ INSERT INTO users (telegram_id, state) VALUES (5123456789, 'WAITING_NAME');  -- SELECT'siz, ikkinchi marta"; psql_ -d botdb -c "INSERT INTO users (telegram_id, state) VALUES (5123456789, 'WAITING_NAME');" 2>&1; } > "$OUT/08-unique-takror.txt"
 
 # ================= B: o'quvchi reposi TelegramBotNest, dars-04-done (haqiqiy Nest + TypeORM kodi) =================
 psql_ -c "CREATE DATABASE botnest" >/dev/null

@@ -1,5 +1,5 @@
 $ npm run start   # .env yo'q
-/tmp/claude-1000/-home-kali-Desktop-internetLesson/169eda27-8c87-41d9-b609-24df2d959460/scratchpad/tgpg-run/nest/dist/infrastructure/database.module.js:14
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/6b93a425-f7cc-4527-b116-4c1b97bf7e4d/scratchpad/tgpg-run/nest/dist/infrastructure/database.module.js:14
     throw new Error('DATABASE_URL topilmadi. .env ga Neon bergan URL ni yozing (README, 4-dars).');
     ^
 

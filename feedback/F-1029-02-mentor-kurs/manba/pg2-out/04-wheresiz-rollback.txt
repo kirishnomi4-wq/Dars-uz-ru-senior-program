@@ -6,7 +6,7 @@ SELECT * FROM products;
  id |    name    | price | stock 
 ----+------------+-------+-------
   2 | Sichqoncha | 99000 |    15
-  4 | Mishka     | 99000 |    10
+  4 | Kolonka    | 99000 |    10
   1 | Klaviatura | 99000 |     8
 (3 rows)
 
@@ -23,7 +23,7 @@ SELECT * FROM products;
  id |    name    | price | stock 
 ----+------------+-------+-------
   2 | Sichqoncha | 75000 |    15
-  4 | Mishka     | 50000 |    10
+  4 | Kolonka    | 50000 |    10
   1 | Klaviatura | 99000 |     8
 (3 rows)
 

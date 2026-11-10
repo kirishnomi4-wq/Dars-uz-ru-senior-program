@@ -1,0 +1,8 @@
+## Men (/tmp/claude-1000/-home-kali-Desktop-internetLesson/acbddc95-9018-4213-96d2-b79eac22166a/scratchpad/jest2-men)
+buzilmagan: Tests:       25 passed, 25 total
+B1 regex: 9–13 → 8–13 raqam (8 ta raqam o'tadi): Tests:       1 failed, 24 passed, 25 total
+B2 place: stock < qty → stock <= qty: Tests:       1 failed, 24 passed, 25 total
+B3 place: UPDATE ombor tekshiruvidan OLDIN: Tests:       1 failed, 24 passed, 25 total
+B4 xabar: «Telefon raqami yo'q» → «Raqam yo'q»: Tests:       1 failed, 24 passed, 25 total
+B5 place: bo'sh savat tekshiruvi olib tashlandi: Tests:       1 failed, 24 passed, 25 total
+

@@ -1,0 +1,24 @@
+$ npm test
+PASS src/api/live/admin.controller.spec.ts
+PASS src/api/live/live.gateway.spec.ts
+PASS src/api/app.controller.spec.ts
+PASS src/api/order/order.service.spec.ts
+PASS src/api/telegram/keyboards.spec.ts
+PASS src/api/telegram/phone.spec.ts
+PASS src/api/telegram/texts.spec.ts
+Test Suites: 7 passed, 7 total
+Tests:       32 passed, 32 total
+
+$ npm run smoke
+— race: 1 ta Planshet, 5 mijoz bir vaqtda (3 raund); keyin ikki marta bekor
+Telegram bot ulandi
+  rad etilgan mijoz: «Buyurtma berilmadi: Planshet: omborda faqat 0 ta qoldi»
+  ✓ ortiqcha sotilmadi (sotildi/ombor): 1/0  1/0  1/0
+  ✓ ikki marta bir vaqtda bekor — ombor bir marta qaytdi: 0 → 1
+— live: jonli panel — tokensiz ulanish, yangi buyurtma va holat o'zgarishi
+Telegram bot ulandi
+  ✓ tokensiz ulanish — server yopdi: io server disconnect
+  ✓ yangi buyurtma → order-changed {"orderId":5,"reason":"new"}
+  ✓ GET /admin/orders 200 — eng yuqorida #5 · Bobur
+  ✓ admin tasdiqladi → order-changed {"orderId":5,"reason":"status"}
+NATIJA: 9/9 ✓

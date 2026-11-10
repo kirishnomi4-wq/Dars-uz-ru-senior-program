@@ -1,0 +1,4 @@
+v24.18.0
+11.16.0
+HEAD e15a44c jest2-done: xato yo'li va chegara testlari — isPhone al
+Wed Nov  4 05:19:25 PM +05 2026

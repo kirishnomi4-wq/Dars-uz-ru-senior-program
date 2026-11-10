@@ -1,0 +1,1514 @@
+[
+{
+"f": "04-yordam.jsx",
+"l": 10,
+"k": "str",
+"x": "Xato yo'li: bot noto'g'ri kirishda to'g'ri buziladimi",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 12,
+"k": "str",
+"x": "OrderBotNest",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 33,
+"k": "str",
+"x": "src/config/",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 33,
+"k": "str",
+"x": "README.md",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 62,
+"k": "str",
+"x": "beforeAll",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 62,
+"k": "str",
+"x": "afterAll",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 65,
+"k": "str",
+"x": "jest ikki start",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 66,
+"k": "str",
+"x": "plus to\\'qqiz to\\'qqiz sakkiz",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 68,
+"k": "str",
+"x": "o'ttiz yettinchi satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 68,
+"k": "str",
+"x": "37-satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 68,
+"k": "str",
+"x": "o'ttiz oltinchi satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 68,
+"k": "str",
+"x": "36-satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 68,
+"k": "str",
+"x": "yigirma to'rtinchi satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 68,
+"k": "str",
+"x": "24-satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 68,
+"k": "str",
+"x": "yigirma besh va yigirma oltinchi satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 68,
+"k": "str",
+"x": "25–26-satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 69,
+"k": "str",
+"x": "bir yuz ellik yettinchi satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 69,
+"k": "str",
+"x": "157-satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 69,
+"k": "str",
+"x": "o'n ikkinchi satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 69,
+"k": "str",
+"x": "12-satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 69,
+"k": "str",
+"x": "o'n oltinchi satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 69,
+"k": "str",
+"x": "16-satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 69,
+"k": "str",
+"x": "yigirma uchinchi satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 69,
+"k": "str",
+"x": "23-satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 69,
+"k": "str",
+"x": "sakkizinchi satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 69,
+"k": "str",
+"x": "8-satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 69,
+"k": "str",
+"x": "to'rtinchi satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 69,
+"k": "str",
+"x": "4-satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 69,
+"k": "str",
+"x": "ellik birinchi satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 69,
+"k": "str",
+"x": "51-satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 70,
+"k": "str",
+"x": "bir yuz qirq to'qqiz",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 70,
+"k": "str",
+"x": "yigirma besh",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 70,
+"k": "str",
+"x": "ellik",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 70,
+"k": "str",
+"x": "qirq ikki",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 70,
+"k": "str",
+"x": "bir yuz ming",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 70,
+"k": "str",
+"x": "to'qqizdan o'n uchtagacha",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 70,
+"k": "str",
+"x": "to'qqizni sakkizga",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 71,
+"k": "str",
+"x": "o'n ikki daqiqa",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 71,
+"k": "str",
+"x": "12 daqiqa",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 71,
+"k": "str",
+"x": "o'n to'rtta",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 71,
+"k": "str",
+"x": "sakkizta",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 71,
+"k": "str",
+"x": "to'qqizta",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 71,
+"k": "str",
+"x": "yigirma bir",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 116,
+"k": "str",
+"x": "VS Code terminali · OrderBotNest",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 128,
+"k": "str",
+"x": "ai-card${hl ? ' hl' : ''}",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 135,
+"k": "str",
+"x": "mk-box${hl ? ' hl' : ''}",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 152,
+"k": "str",
+"x": "regex 9–13 → 8–13 raqam (8 ta raqam o'tadi)",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 154,
+"k": "str",
+"x": "place: UPDATE ombor tekshiruvidan OLDIN",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 155,
+"k": "str",
+"x": "xabar «Telefon raqami yo'q» → «Raqam yo'q»",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 156,
+"k": "str",
+"x": "place: bo'sh savat tekshiruvi olib tashlandi",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 160,
+"k": "jsx",
+"x": "Buzish",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 161,
+"k": "str",
+"x": "${x === 0 ? 'zero' : 'red'}${hlCol === i ? ' col' : ''}",
+"m": false
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 5,
+"k": "str",
+"x": "Umumiy tushuncha",
+"m": true
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 5,
+"k": "str",
+"x": "Telefon: edge case",
+"m": true
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 5,
+"k": "str",
+"x": "Buyurtma: error path",
+"m": true
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 5,
+"k": "str",
+"x": "Chegara va «bo'lmasligi kerak»",
+"m": true
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 5,
+"k": "str",
+"x": "HTTP test va AI",
+"m": true
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 5,
+"k": "str",
+"x": "Sinfga tayyorgarlik",
+"m": true
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 14,
+"k": "str",
+"x": "VS Code terminali · npm test -- --verbose",
+"m": false
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 22,
+"k": "str",
+"x": "Happy path — kutilgan kirish",
+"m": true
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 22,
+"k": "str",
+"x": "omborda 10 ta",
+"m": true
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 22,
+"k": "str",
+"x": "Buyurtma qabul qilindi. Jest-1 ning hamma testi shu yo'lda edi.",
+"m": true
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 22,
+"k": "str",
+"x": "test: natija to'g'rimi",
+"m": true
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 23,
+"k": "str",
+"x": "Edge case — qoidaning chegarasi",
+"m": true
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 23,
+"k": "str",
+"x": "9 ta raqam",
+"m": true
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 23,
+"k": "str",
+"x": "omborda aynan 2 ta",
+"m": true
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 23,
+"k": "str",
+"x": "Kod xato bermaydi — lekin javobi to'g'rimi?",
+"m": true
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 23,
+"k": "str",
+"x": "test: chegarada ham to'g'rimi",
+"m": true
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 24,
+"k": "str",
+"x": "Error path — kod ataylab xato beradi",
+"m": true
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 24,
+"k": "str",
+"x": "telefon yo'q",
+"m": true
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 24,
+"k": "str",
+"x": "savat bo'sh",
+"m": true
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 24,
+"k": "str",
+"x": "omborda 1 ta, savatda 2",
+"m": true
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 24,
+"k": "str",
+"x": "Xato — to'g'ri xulq. Qaysi xabar? Keyin nima bo'lmaydi?",
+"m": true
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 24,
+"k": "str",
+"x": "test: xato chiqdi va keyingi qadam bo'lmadi",
+"m": true
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 29,
+"k": "str",
+"x": "path${seg.on === i ? ' hl' : ''}${seg.on >= 0 && seg.on !== i ? ' dim' : ''}",
+"m": false
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 42,
+"k": "str",
+"x": "TS_ONTEXT",
+"m": false
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 42,
+"k": "jsx",
+"x": ", ...kod('TS_ONTEXT',",
+"m": false
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 46,
+"k": "str",
+"x": "TS_ONTEXT_NEW",
+"m": false
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 46,
+"k": "jsx",
+"x": ", ...kod('TS_ONTEXT_NEW',",
+"m": false
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 58,
+"k": "jsx",
+"x": "Aziza yozdi:",
+"m": false
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 60,
+"k": "str",
+"x": "VS Code terminali · npm test -- phone",
+"m": false
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 72,
+"k": "str",
+"x": "VS Code terminali · npm test -- phone",
+"m": false
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 73,
+"k": "str",
+"x": "VS Code terminali · npm test -- phone",
+"m": false
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 84,
+"k": "str",
+"x": "nol",
+"m": true
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 84,
+"k": "str",
+"x": "nol",
+"m": true
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 87,
+"k": "str",
+"x": "VS Code terminali · npm test -- phone",
+"m": false
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 88,
+"k": "str",
+"x": "nol",
+"m": false
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 88,
+"k": "str",
+"x": "VS Code terminali · npm test -- phone",
+"m": false
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 116,
+"k": "jsx",
+"x": "funksiya chaqirildi",
+"m": false
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 118,
+"k": "str",
+"x": "fl-box${hl === 'sync' ? ' hl' : ''}",
+"m": false
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 118,
+"k": "str",
+"x": "q» · «Savat bo",
+"m": false
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 118,
+"k": "jsx",
+"x": "throw «Telefon raqami yo'q» · «Savat bo'sh»",
+"m": false
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 119,
+"k": "str",
+"x": "fl-box${hl === 'async' ? ' hl' : ''}",
+"m": false
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 119,
+"k": "jsx",
+"x": "throw «Kolonka: omborda faqat 1 ta qoldi»",
+"m": false
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 119,
+"k": "jsx",
+"x": "promise xatosi",
+"m": false
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 129,
+"k": "jsx",
+"x": "· promise xatosi —",
+"m": false
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 140,
+"k": "jsx",
+"x": "findOne",
+"m": false
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 152,
+"k": "str",
+"x": "VS Code terminali · npm test -- order.service",
+"m": false
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 155,
+"k": "str",
+"x": "Promise xatosi",
+"m": false
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 155,
+"k": "jsx",
+"x": "— darhol chaqiriladi, promise kutiladi",
+"m": false
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 164,
+"k": "str",
+"x": "toThrow o'ramni chaqirdi — place() promise qaytardi",
+"m": true
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 164,
+"k": "str",
+"x": "Shu paytda xato yo'q → Jest «test o'tdi» deb hisobladi",
+"m": true
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 164,
+"k": "str",
+"x": "Xato keyin, promise ichida otildi — hech kim ushlamadi",
+"m": true
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 164,
+"k": "str",
+"x": "Node butun jarayonni to\\'xtatdi: PASS ham, FAIL ham yo\\'q",
+"m": true
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 166,
+"k": "str",
+"x": "${i < on ? 'on' : ''}${bad === i ? ' bad' : ''}",
+"m": false
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 171,
+"k": "str",
+"x": "order.service.spec.ts · buzilgan",
+"m": false
+},
+{
+"f": "05-s01-s11.jsx",
+"l": 172,
+"k": "str",
+"x": "order.service.spec.ts · buzilgan",
+"m": false
+},
+{
+"f": "06-s12-s22.jsx",
+"l": 11,
+"k": "str",
+"x": "VS Code terminali · npm test -- order.service -t telefon",
+"m": false
+},
+{
+"f": "06-s12-s22.jsx",
+"l": 19,
+"k": "str",
+"x": "Test funksiyasi promise\\'ni kutmasdan darhol tugadi",
+"m": true
+},
+{
+"f": "06-s12-s22.jsx",
+"l": 19,
+"k": "str",
+"x": "Promise keyin rad etildi — Jest farqni ko\\'rdi (Expected / Received)",
+"m": true
+},
+{
+"f": "06-s12-s22.jsx",
+"l": 19,
+"k": "str",
+"x": "Lekin bu xato qaysi testniki? Jest bog\\'lay olmadi",
+"m": true
+},
+{
+"f": "06-s12-s22.jsx",
+"l": 19,
+"k": "str",
+"x": "Jarayon to\\'xtadi: PASS ham, FAIL ham yo\\'q",
+"m": true
+},
+{
+"f": "06-s12-s22.jsx",
+"l": 53,
+"k": "jsx",
+"x": "await expect(…).rejects.toThrow('Kolonka: omborda faqat 1 ta qoldi')",
+"m": false
+},
+{
+"f": "06-s12-s22.jsx",
+"l": 54,
+"k": "jsx",
+"x": "— ombor kamaymadi",
+"m": false
+},
+{
+"f": "06-s12-s22.jsx",
+"l": 69,
+"k": "str",
+"x": "order.service.ts · buzilgan",
+"m": false
+},
+{
+"f": "06-s12-s22.jsx",
+"l": 70,
+"k": "str",
+"x": "VS Code terminali · npm test -- order.service",
+"m": false
+},
+{
+"f": "06-s12-s22.jsx",
+"l": 97,
+"k": "str",
+"x": "VS Code terminali · OrderBotNest",
+"m": false
+},
+{
+"f": "06-s12-s22.jsx",
+"l": 99,
+"k": "str",
+"x": "VS Code terminali · npm test -- app.controller",
+"m": false
+},
+{
+"f": "06-s12-s22.jsx",
+"l": 116,
+"k": "str",
+"x": "VS Code terminali · npm test -- app.controller",
+"m": false
+},
+{
+"f": "06-s12-s22.jsx",
+"l": 127,
+"k": "jsx",
+"x": "· chegara",
+"m": false
+},
+{
+"f": "06-s12-s22.jsx",
+"l": 128,
+"k": "jsx",
+"x": "Savol:",
+"m": false
+},
+{
+"f": "06-s12-s22.jsx",
+"l": 136,
+"k": "str",
+"x": "1-AI · telegram.service.phone.spec.ts · rad ro'yxati",
+"m": false
+},
+{
+"f": "06-s12-s22.jsx",
+"l": 149,
+"k": "jsx",
+"x": "Nechta test qizardi (0 — buzilish sezilmadi) ·",
+"m": false
+},
+{
+"f": "06-s12-s22.jsx",
+"l": 149,
+"k": "jsx",
+"x": "jest2v2-mutatsiya.sh",
+"m": false
+},
+{
+"f": "06-s12-s22.jsx",
+"l": 165,
+"k": "str",
+"x": "prompt.txt",
+"m": true
+},
+{
+"f": "06-s12-s22.jsx",
+"l": 167,
+"k": "str",
+"x": "prompt.txt",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 5,
+"k": "str",
+"x": "shumtaka mijoz · g'alati buyurtma",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 5,
+"k": "str",
+"x": "edge case, noto'g'ri kirish",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 5,
+"k": "str",
+"x": "«hech kim sezmaydi» · «jim buzilish» (kartochka)",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 5,
+"k": "str",
+"x": "yashirin buzilish — xatosiz noto'g'ri natija (0, −10000, NaN)",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 5,
+"k": "str",
+"x": "guard · 🚧 shart · 🧯 xato tashlash",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 5,
+"k": "str",
+"x": "o'rab berish",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 5,
+"k": "str",
+"x": "expect(() => f()).toThrow() — sinxron xato",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 5,
+"k": "str",
+"x": "kutilgan kirish",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 6,
+"k": "str",
+"x": "«xato chiqdi» + «keyin nima bo\\'lmadi» — ikki qismli test",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 6,
+"k": "str",
+"x": "() => siz nima bo'ladi — haqiqiy chiqish (natija yo'q)",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 6,
+"k": "str",
+"x": "s7 o'rash",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 6,
+"k": "str",
+"x": "chegaraning ikki tomoni: aynan 0 va aynan 100",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 6,
+"k": "str",
+"x": "uyga vazifa applyCoupon",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 6,
+"k": "str",
+"x": "AI yozgan testni bir marta buzdirish",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 6,
+"k": "str",
+"x": "amaliyot oxiri",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 8,
+"k": "str",
+"x": "Himoya yo'q",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 8,
+"k": "str",
+"x": "guard yozilmagan yoki shart qiymatni o'tkazdi",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 9,
+"k": "str",
+"x": "() => yo'q",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 9,
+"k": "str",
+"x": "natija yo'q yoki test funksiya xatosi bilan yiqildi",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 10,
+"k": "str",
+"x": "Boshqa xabar",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 10,
+"k": "str",
+"x": "xabarni koddagi bilan moslang",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 13,
+"k": "str",
+"x": "«Nega xato tashlaymiz, 0 qaytarsak bo'lmaydimi?»",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 13,
+"k": "str",
+"x": "0 — yashirin buzilish: bepul buyurtma; xato esa darhol ko'rinadi.",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 14,
+"k": "str",
+"x": "«toThrow() ichida xabar shartmi?»",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 14,
+"k": "str",
+"x": "Shart emas, lekin xabar bilan test aniqroq: qaysi xato ekanini ham tekshiradi.",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 15,
+"k": "str",
+"x": "«'ikki' yozsam VS Code qizil chizadi»",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 15,
+"k": "str",
+"x": "TypeScript turini tekshiradi; test uchun as any — ataylab noto'g'ri tur beryapmiz.",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 16,
+"k": "str",
+"x": "«Guard'ni funksiya oxiriga yozsam bo'ladimi?»",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 16,
+"k": "str",
+"x": "Yo'q: xato hisobdan oldin chiqishi kerak, aks holda hisob baribir bajariladi.",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 27,
+"k": "jsx",
+"x": "OrderBotNest ·",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 30,
+"k": "jsx",
+"x": "Siz qo'shasiz",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 48,
+"k": "str",
+"x": "Hammasini ko'rib chiqdingiz, endi o'zingizni tekshiring. Yakuniy sinov, sakkiz savol: uch yo'l, qoidani ajratish, to throw va rejects, natija yo'q holatlari, bo'lmasligi kerak testi, chegara va HTTP. Har savolda bitta urinish, javobdan keyin to'g'risi va izohi ochiladi. Olti va undan ko'p, dars o'zlashtirilgan. Kam bo'lsa, ko'rsatilgan ekranlarga qaytib, sinovni qayta topshirasiz.",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 50,
+"k": "str",
+"x": "Natijangiz saqlangan: sakkizdan ",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 50,
+"k": "str",
+"x": "nol",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 50,
+"k": "str",
+"x": "ikki",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 50,
+"k": "str",
+"x": "uch",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 50,
+"k": "str",
+"x": "to'rt",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 50,
+"k": "str",
+"x": "besh",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 50,
+"k": "str",
+"x": "olti",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 50,
+"k": "str",
+"x": "yetti",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 50,
+"k": "str",
+"x": "sakkiz",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 50,
+"k": "str",
+"x": ". Dars o'zlashtirilgan, Davom bosing.",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 51,
+"k": "str",
+"x": "Yaxshi, bir xatoyingizni ko'rib chiqdingiz. Qolgan qizil savollarning ekranlariga ham qayting. Tayyor bo'lgach, Sinovni qayta topshirish tugmasini bosing.",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 87,
+"k": "str",
+"x": "mk-btn soft sm",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 91,
+"k": "str",
+"x": "mk-btn ghost",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 101,
+"k": "str",
+"x": "mk-btn ready",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 113,
+"k": "str",
+"x": "Uch yo'l: happy path (kutilgan kirish), edge case (chegara — kod xato bermaydi, javob to'g'rimi), error path (kod ataylab xato beradi — qaysi xabar, keyin nima bo'lmadi)",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 114,
+"k": "str",
+"x": "Sinamoqchi bo'lgan qoidani alohida funksiyaga ajrating (isPhone); it.each — bir test, ko'p kirish; chegara testi qoidaning tor (probel) va keng (9 ta nol) joyini ko'rsatadi",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 115,
+"k": "str",
+"x": "Baza o\\'rniga mock: jest.fn, mockResolvedValue, Test.createTestingModule — unit-test bazasiz, kod haqiqiy",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 116,
+"k": "str",
+"x": "Sinxron xato — expect(() => …).toThrow(); promise xatosi — await expect(…).rejects.toThrow(). Shakl noto'g'ri bo'lsa Jest natija bermaydi: jarayon qulaydi (toThrow promise'da · await'siz rejects)",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 117,
+"k": "str",
+"x": "Error path testi ikki qismli: xato chiqdi va keyingi qadam bajarilmadi (not.toHaveBeenCalled); har < / <= shartiga aynan teng qiymat bilan chegara testi",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 118,
+"k": "str",
+"x": "Sayt API'si supertest bilan: so'rov → status va tana; 404 — mijoz xatosi, 500 — server xatosi. AI testini qabul qilish: diff · await + rejects · «bo'lmasligi kerak» testi · «qoidami yoki kod hozir shunday?» · buzib tekshirish",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 120,
+"k": "str",
+"x": "AI testi",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 127,
+"k": "str",
+"x": "mk-box${cur && cur.st.includes(k) ? ' hl' : ''}",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 132,
+"k": "str",
+"x": "O'z nusxangiz — o'z reposingizda yangi tarmoq (yoki jest2-done dan)",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 133,
+"k": "str",
+"x": "cart.service.spec.ts — mock repo (query, delete): add — query 1 marta, RETURNING qty → natija; query rad etsa — await … rejects.toThrow, boshqa chaqiruv yo'q",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 134,
+"k": "str",
+"x": "user.service.spec.ts — mock repo (findOne, create, save): bor — save 0 · yo'q — save 1 · rol o'zgargan — save 1",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 135,
+"k": "str",
+"x": "Uch buzish — getOrCreate: if (!user) tekshiruvini olib tashlang · add: rows[0].qty → rows.length · rol tekshiruvi !== → === ; har biridan keyin npm test va git checkout",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 136,
+"k": "str",
+"x": "README «Testlar» bo'limi: buzish → qizargan test nomi (3 qator) → git push → repo linki platformadagi uyga vazifaga",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 136,
+"k": "str",
+"x": "git add . && git commit -m \"edge va error path testlari\"",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 158,
+"k": "str",
+"x": "rmadi, 5-si ko",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 164,
+"k": "str",
+"x": "q · natija yo",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 164,
+"k": "str",
+"x": "q · Expected substring / Received message → xabarni moslang · Nest can",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 166,
+"k": "str",
+"x": "rab berish = expect(() => …) · siz qo",
+"m": true
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 171,
+"k": "str",
+"x": "<b>Barakalla!</b> Siz darsni yaxshi o'rgandingiz — bugungi darsni bir qarashda yig'amiz",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 171,
+"k": "str",
+"x": "Barakalla! Siz darsni yaxshi o'rgandingiz. Endi bugun o'rganganlaringizni bir qarashda yig'amiz.",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 172,
+"k": "str",
+"x": "Dars oxiriga yetdingiz — sinovni <b>qayta topshirishni</b> maslahat beraman",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 172,
+"k": "str",
+"x": "Dars oxiriga yetdingiz. Yakuniy sinovdan olti ball kerak edi, yakunlashdan oldin sinovni qayta topshirishni maslahat beraman. Hozir esa bugungi darsni bir qarashda yig'amiz.",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 173,
+"k": "str",
+"x": "Uch yo'l: <b>happy path, edge case, error path</b> — test uchalasini sinaydi",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 173,
+"k": "str",
+"x": "Birinchi: har funksiyada uch yo'l bor. Happy path, kutilgan kirish. Edge case, qoidaning chegarasi, kod xato bermaydi, lekin javob to'g'rimi. Error path, kod ataylab xato beradi: qaysi xabar bilan va keyin nima bo'lmaydi.",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 174,
+"k": "str",
+"x": "Qoidani <b>alohida funksiyaga</b> ajrating; <b>it.each</b> va chegara testi",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 174,
+"k": "str",
+"x": "Ikkinchi: sinamoqchi bo'lgan qoidani alohida funksiyaga ajrating, is phone kabi. It each bilan bir testga ko'p kirish berasiz. Chegara testi qoidaning tor joyini ham, keng joyini ham ko'rsatadi.",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 175,
+"k": "str",
+"x": "Baza o'rniga <b>mock</b>: jest.fn, mockResolvedValue, Test.createTestingModule",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 175,
+"k": "str",
+"x": "Uchinchi: baza o'rniga mock. Jest fn chaqiruvni yozib qoladi, mock resolved value nima qaytarishini aytadi, test moduli Nest'ga soxta data source'ni beradi. Unit-test bazasiz, kod esa haqiqiy.",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 176,
+"k": "str",
+"x": "Sinxron — <b>toThrow</b>, promise — <b>await rejects.toThrow</b>; shakl noto'g'ri bo'lsa natija yo'q",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 176,
+"k": "str",
+"x": "To'rtinchi: sinxron xatoga o'ram va to throw, promise xatosiga await, rejects, to throw. Shakl noto'g'ri bo'lsa Jest qizil bermaydi, jarayon qulaydi. Natija umuman chiqmasa, avval shaklni tekshiring.",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 177,
+"k": "str",
+"x": "Error path testi <b>ikki qismli</b>; har shartga <b>aynan teng</b> qiymat bilan chegara testi",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 177,
+"k": "str",
+"x": "Beshinchi: xato yo'lining testi ikki qismli: xato chiqdi va keyingi qadam bajarilmadi, not to have been called bilan. Har kichik yoki katta shartiga aynan teng qiymat bilan chegara testi yozing.",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 178,
+"k": "str",
+"x": "Sayt API'si — <b>supertest</b>; AI testi: <b>qoidami yoki «kod hozir shunday»mi</b>",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 178,
+"k": "str",
+"x": "Oltinchi: saytning API'si supertest bilan sinaladi: so'rov, status va tana. AI yozgan testni qabul qilishda diff, await va rejects, bo'lmasligi kerak testi, va har testdan so'rang: bu qoidami yoki kod hozir shunday ishlaydimi. Keyin buzib tekshiring.",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 179,
+"k": "str",
+"x": "<b>Uyga vazifa</b>: savat va foydalanuvchi servislariga xato yo'li testlari",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 179,
+"k": "str",
+"x": "Uyga vazifa: OrderBotNest'ning o'z nusxangizda cart service'ning add va user service'ning get or create funksiyalariga xato yo'li va chegara testlarini yozing, mock bilan. Add'da so'rov bir marta ketadi, rad etilsa boshqa so'rov ketmaydi. Get or create'da save nechta marta chaqirilishini sanang.",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 180,
+"k": "str",
+"x": "<b>Uch buzish</b> va README jadvali; repo linki platformaga",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 180,
+"k": "str",
+"x": "Keyin uchta buzish qiling va har birida qaysi test qizarganini README'ga jadval qilib yozing. AI bilan yozsangiz ham bo'ladi, lekin har testda await va bo'lmasligi kerak qismini o'zingiz tekshiring. GitHub'ga chiqaring va linkni platformadagi uyga vazifangizga qo'ying. Ellik-yetmish daqiqa.",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 181,
+"k": "str",
+"x": "<b>Eslatmani oling</b>: uch yo'l, mock qolipi, xato shakli va AI tekshiruvi — bir sahifada",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 181,
+"k": "str",
+"x": "Pastda bir sahifalik eslatma: uch yo'l, qoidani ajratish, mock qolipi, xato shakli, natija yo'q holatlari, chegara, supertest, AI testini qabul qilish va xato qiladigan joylar. Nusxalab yoki yuklab oling, sinfda yoningizda tursin.",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 182,
+"k": "str",
+"x": "Rahmat! <b>Darsni yakunlash</b> tugmasini bosing",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 182,
+"k": "str",
+"x": "Rahmat. Darsni yakunlash tugmasini bosing, dars tugallangan deb belgilanadi.",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 210,
+"k": "str",
+"x": "cmd",
+"m": false
+},
+{
+"f": "07-s23-s25.jsx",
+"l": 287,
+"k": "jsx",
+"x": "onFinish=",
+"m": true
+}
+]

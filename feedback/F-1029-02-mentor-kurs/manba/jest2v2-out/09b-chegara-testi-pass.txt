@@ -1,0 +1,16 @@
+$ npx jest order.service --verbose
+PASS src/api/order/order.service.spec.ts
+  OrderService.place
+    ✓ telefon yo'q — darhol xato (19 ms)
+    ✓ savat bo'sh — darhol xato (2 ms)
+    ✓ omborda yetmaydi — tranzaksiya ichida xato, UPDATE bo'lmaydi (2 ms)
+    ✓ yetarli — jami narx hisoblanadi (3 ms)
+    ✓ chegara: omborda aynan 2 ta — 2 tasini olsa bo'ladi (2 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       5 passed, 5 total
+Snapshots:   0 total
+Time:        0.796 s, estimated 1 s
+Ran all test suites matching order.service.
+[chiqish kodi: 0]
+

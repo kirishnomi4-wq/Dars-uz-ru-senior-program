@@ -1,0 +1,53 @@
+<style>
+.vw{display:grid;gap:12px;color:#1F2937}
+.vw-card{background:#fff;border:1px solid #D7DCE3;border-radius:14px;padding:12px 10px 6px}
+.vw svg{display:block;width:100%;height:auto}
+.vw-t{font:12px ui-monospace,Menlo,Consolas,monospace;fill:#6B7280}
+.vw-l{font:700 13px system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;fill:#374151}
+.vw-s{font:12.5px system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.vw-res{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:10px}
+.vw-box{border-radius:12px;padding:10px 12px;display:grid;gap:4px;font-size:14px;background:#fff;border:1.5px solid #D7DCE3}
+.vw-box small{font:600 11px system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#6B7280}
+.vw-box b{font:700 18px ui-monospace,Menlo,Consolas,monospace}
+.vw-box.bad{border-color:#E2451F;background:#FFF5F2}
+.vw-box.fix{border-color:#0E7490}
+.vw-box.fix .vw-k{display:inline;font:13px ui-monospace,Menlo,Consolas,monospace;background:#ECFEFF;color:#0E7490;border-radius:5px;padding:1px 5px}
+</style>
+<div class="vw">
+  <div class="vw-card">
+    <svg viewBox="0 0 780 270" role="img" aria-label="Server qayta yonishi: hodisa panel ulanishidan oldin yuborildi">
+      <!-- yo'qolgan oraliq 37.0 → 39.2 -->
+      <rect x="397" y="28" width="98" height="206" fill="#FEE2E2"/>
+      <text x="446" y="22" text-anchor="middle" class="vw-s" fill="#B91C1C" font-weight="700">2,2 s — hodisa yo'qoldi</text>
+      <!-- o'q -->
+      <line x1="90" y1="234" x2="760" y2="234" stroke="#9CA3AF"/>
+      <g class="vw-t">
+        <text x="90" y="252" text-anchor="middle">:30</text><text x="224" y="252" text-anchor="middle">:33</text><text x="358" y="252" text-anchor="middle">:36</text>
+        <text x="492" y="252" text-anchor="middle">:39</text><text x="626" y="252" text-anchor="middle">:42</text><text x="760" y="252" text-anchor="middle">:45</text>
+      </g>
+      <g stroke="#D1D5DB"><line x1="90" y1="230" x2="90" y2="238"/><line x1="224" y1="230" x2="224" y2="238"/><line x1="358" y1="230" x2="358" y2="238"/><line x1="492" y1="230" x2="492" y2="238"/><line x1="626" y1="230" x2="626" y2="238"/><line x1="760" y1="230" x2="760" y2="238"/></g>
+      <!-- yo'laklar -->
+      <text x="8" y="70" class="vw-l">Server</text>
+      <rect x="90" y="56" width="268" height="22" rx="5" fill="#FECACA"/><text x="224" y="72" text-anchor="middle" class="vw-s" fill="#991B1B">o'chiq (Ctrl+C)</text>
+      <rect x="358" y="56" width="402" height="22" rx="5" fill="#BBF7D0"/><text x="560" y="72" text-anchor="middle" class="vw-s" fill="#166534">ishlayapti</text>
+
+      <text x="8" y="138" class="vw-l">Bot · baza</text>
+      <line x1="90" y1="132" x2="760" y2="132" stroke="#E5E7EB" stroke-width="2"/>
+      <circle cx="403" cy="132" r="9" fill="#EA580C"/>
+      <text x="418" y="122" class="vw-s" fill="#9A3412" font-weight="700">#2 bazada</text>
+      <text x="418" y="152" class="vw-s" fill="#9A3412">order-changed yuborildi</text>
+
+      <text x="8" y="206" class="vw-l">Panel</text>
+      <line x1="112" y1="200" x2="497" y2="200" stroke="#9CA3AF" stroke-width="4" stroke-dasharray="8 6"/>
+      <text x="230" y="190" text-anchor="middle" class="vw-s" fill="#4B5563">«Ulanmoqda…»</text>
+      <rect x="497" y="189" width="263" height="22" rx="5" fill="#BFDBFE"/><text x="628" y="205" text-anchor="middle" class="vw-s" fill="#1E3A8A">«Ulangan» · ro'yxat: #1</text>
+      <line x1="403" y1="141" x2="403" y2="186" stroke="#EA580C" stroke-width="2" stroke-dasharray="4 4"/>
+      <text x="410" y="178" class="vw-s" fill="#B91C1C" font-weight="700">✕</text>
+    </svg>
+  </div>
+  <div class="vw-res">
+    <div class="vw-box"><small>Bazada</small><b>2 ta buyurtma</b></div>
+    <div class="vw-box bad"><small>Panelda</small><b>faqat #1</b></div>
+    <div class="vw-box fix"><small>ws2-done tuzatishi</small><div>har <span class="vw-k">connect</span> da ro'yxatni bazadan qayta so'raydi</div></div>
+  </div>
+</div>

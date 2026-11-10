@@ -1,0 +1,1360 @@
+[
+{
+"f": "04-yordam.jsx",
+"l": 9,
+"k": "str",
+"x": "Ulanish uzilsa: buzamiz va tuzatamiz",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 51,
+"k": "str",
+"x": "localhost uch ming admin",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 55,
+"k": "str",
+"x": "BUZISH fayli",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 55,
+"k": "str",
+"x": "BUZISH.md fayli",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 58,
+"k": "str",
+"x": "o'n to'qqiz ekran",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 58,
+"k": "str",
+"x": "19 ekran",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 58,
+"k": "str",
+"x": "o'ttiz ikki",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 58,
+"k": "str",
+"x": "o'n besh daqiqa",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 58,
+"k": "str",
+"x": "15 daqiqa",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 58,
+"k": "str",
+"x": "yigirma daqiqa",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 58,
+"k": "str",
+"x": "20 daqiqa",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 59,
+"k": "str",
+"x": "yigirma besh va yigirma",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 59,
+"k": "str",
+"x": "25 va 20",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 59,
+"k": "str",
+"x": "sakkizinchi ekran",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 59,
+"k": "str",
+"x": "8-ekran",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 59,
+"k": "str",
+"x": "to'rtinchi ekran",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 59,
+"k": "str",
+"x": "4-ekran",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 114,
+"k": "str",
+"x": "namuna — sizning AI\\'ingiz boshqacha yozadi",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 145,
+"k": "str",
+"x": "haqiqiy brauzer",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 161,
+"k": "str",
+"x": "ekranda: ",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 177,
+"k": "str",
+"x": "${g.rc} qayta ulanishdan keyin",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 5,
+"k": "str",
+"x": "Tarmoq va tiklash",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 12,
+"k": "str",
+"x": "ws2-done · haqiqiy brauzer",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 12,
+"k": "jsx",
+"x": "Dars oxirida — server qayta yondi, o'chiq paytda berilgan buyurtma ham panelda (sariq)",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 20,
+"k": "str",
+"x": "#1 ko'rindi",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 20,
+"k": "str",
+"x": "server o'chdi",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 20,
+"k": "str",
+"x": "faqat #1",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 25,
+"k": "jsx",
+"x": "ni faqat",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 25,
+"k": "jsx",
+"x": "panellarga yuboradi va hech qayerda saqlamaydi.",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 27,
+"k": "jsx",
+"x": "ulanishning o'zi · token (",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 28,
+"k": "jsx",
+"x": "uzilish paytidagi hodisa · serverning shu ulanishga bog'lagan narsasi — masalan,",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 28,
+"k": "jsx",
+"x": "(o'quvchi darsida)",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 30,
+"k": "str",
+"x": "yxat <b>bazada</b>. Uzilishdan keyin panel nimani o",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 30,
+"k": "jsx",
+"x": ". Uzilishdan keyin panel nimani o'tkazib yuborganini bilmaydi — har qayta ulanishda ro'yxatni",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 30,
+"k": "jsx",
+"x": "kerak. Hozirgi panel buni qilmaydi.",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 39,
+"k": "str",
+"x": "deploy yoki xato — Ctrl+C va qayta",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 39,
+"k": "str",
+"x": "panel boshqa kompyuterda, server Render'da",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 44,
+"k": "jsx",
+"x": "Buzish yozuvi — BUZISH.md (o'quvchi darsidagi bilan bir xil ustunlar)",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 46,
+"k": "str",
+"x": "ldi» — <b>ekranda ko",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 46,
+"k": "jsx",
+"x": "«Nima bo'ldi» —",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 46,
+"k": "jsx",
+"x": "ekranda ko'rgan narsa",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 46,
+"k": "jsx",
+"x": ", taxmin emas.",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 47,
+"k": "jsx",
+"x": "shu paytda — buyurtma",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 48,
+"k": "jsx",
+"x": "ko'rilgan narsa kutilgandan farq qildi — muammo bor",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 48,
+"k": "jsx",
+"x": "shu kompyuterda, shu urinishda —",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 48,
+"k": "jsx",
+"x": "isbot emas",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 63,
+"k": "str",
+"x": "ws2-start · Ctrl+C dan keyin",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 63,
+"k": "jsx",
+"x": "— belgi «Ulanmoqda…», ro'yxat ekranda qoladi. Shu payt Bobur botga yozdi.",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 64,
+"k": "str",
+"x": "server logi · qayta ishga tushgandan keyin",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 85,
+"k": "str",
+"x": "panel · bu urinishda kech qoldi (01)",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 88,
+"k": "jsx",
+"x": "— kim tezroq. Ro'yxat esa bazada: panel ulanishi bilan uni qayta so'rasa, kim tez bo'lganining farqi qolmaydi.",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 116,
+"k": "str",
+"x": "ws2-start · Online'dan keyin",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 116,
+"k": "jsx",
+"x": "belgi «Ulanmoqda…» bo'lguncha",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 126,
+"k": "str",
+"x": "server logi · qayta ishga tushgandan keyin (01)",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 146,
+"k": "str",
+"x": "admin.html · kirish va sahifa ochilishi · ws2-start → ws2-done",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 146,
+"k": "str",
+"x": "brauzer · noto'g'ri token (09, ws2-done)",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 148,
+"k": "str",
+"x": "ws2-done · Offline 60 s, Online'dan keyin",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 148,
+"k": "str",
+"x": "npm test · npm run smoke (08) — server kodi o'zgarmagan",
+"m": false
+},
+{
+"f": "06-s10-s16.jsx",
+"l": 8,
+"k": "str",
+"x": "connect — birinchi ulanishda HAM har qayta ulanishda ishlaydi",
+"m": true
+},
+{
+"f": "06-s10-s16.jsx",
+"l": 8,
+"k": "str",
+"x": "ichidagi ulanish.on(…) har safar YANGI tinglovchi qo'shadi, eskisi o'chmaydi",
+"m": true
+},
+{
+"f": "06-s10-s16.jsx",
+"l": 8,
+"k": "str",
+"x": "ikki qayta ulanishdan keyin — uchta tinglovchi: bitta hodisaga uchta GET",
+"m": true
+},
+{
+"f": "06-s10-s16.jsx",
+"l": 8,
+"k": "str",
+"x": "connect ichida — faqat bir martalik ish (yukla()); tinglovchi bir marta, tashqarida",
+"m": true
+},
+{
+"f": "06-s10-s16.jsx",
+"l": 11,
+"k": "str",
+"x": "admin.html · xato nusxa (tinglovchi connect ichida)",
+"m": false
+},
+{
+"f": "06-s10-s16.jsx",
+"l": 15,
+"k": "str",
+"x": "xato nusxa · 1 qayta ulanishdan keyin",
+"m": false
+},
+{
+"f": "06-s10-s16.jsx",
+"l": 15,
+"k": "str",
+"x": "ws2-done · to'g'ri kod",
+"m": false
+},
+{
+"f": "06-s10-s16.jsx",
+"l": 26,
+"k": "str",
+"x": "order-changed #${g.id} · ${g.rc === 0 ? 'birinchi ulanish' : g.rc + ' qayta ulanishdan keyin'} → GET ×${g.n}",
+"m": true
+},
+{
+"f": "06-s10-s16.jsx",
+"l": 29,
+"k": "str",
+"x": "admin.html · ulan() · xato nusxa",
+"m": false
+},
+{
+"f": "06-s10-s16.jsx",
+"l": 30,
+"k": "str",
+"x": "Network · xato nusxa (06): bitta hodisaga GET soni",
+"m": false
+},
+{
+"f": "06-s10-s16.jsx",
+"l": 45,
+"k": "str",
+"x": "bot va baza ishlaydi",
+"m": true
+},
+{
+"f": "06-s10-s16.jsx",
+"l": 52,
+"k": "str",
+"x": "qadamlar (03)",
+"m": false
+},
+{
+"f": "06-s10-s16.jsx",
+"l": 74,
+"k": "str",
+"x": "qadamlar · B",
+"m": false
+},
+{
+"f": "06-s10-s16.jsx",
+"l": 74,
+"k": "str",
+"x": "klient · B — oldin hodisa olgan, keyin tarmoq uzildi",
+"m": false
+},
+{
+"f": "06-s10-s16.jsx",
+"l": 76,
+"k": "jsx",
+"x": "qisqa tarmoq uzilishida o'tkazilgan hodisalarni qaytaradi (",
+"m": false
+},
+{
+"f": "06-s10-s16.jsx",
+"l": 76,
+"k": "jsx",
+"x": "server qayta yonishi (deploy, xato) va hodisa olmagan klient — faqat",
+"m": false
+},
+{
+"f": "06-s10-s16.jsx",
+"l": 76,
+"k": "jsx",
+"x": "da gateway o'zgarmadi.",
+"m": false
+},
+{
+"f": "06-s10-s16.jsx",
+"l": 86,
+"k": "str",
+"x": "qadamlar · C",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 8,
+"k": "jsx",
+"x": "1–4-bosqich · siz",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 8,
+"k": "jsx",
+"x": "da'vo, uch usul, tuzatish, takror tinglovchi, tiklash",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 9,
+"k": "jsx",
+"x": "5-bosqich · AI tuzatadi, siz qabul qilasiz",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 9,
+"k": "jsx",
+"x": "shikoyat → ikki tuzatish → haqiqiy bazada sinov",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 11,
+"k": "str",
+"x": "Prompt — ikkala AI'ga bir xil",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 11,
+"k": "str",
+"x": "ishorasiz: connect, qayta so'rash, tinglovchi yo'q",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 13,
+"k": "str",
+"x": "rov raqami (<code>soroqRaqami</code>) — faqat oxirgi javob chiziladi · <code>try/catch</code> tarmoq xatosida · README",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 13,
+"k": "jsx",
+"x": "tarmoq xatosida · README'ga bir qator",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 17,
+"k": "str",
+"x": "1-AI javobidan",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 17,
+"k": "jsx",
+"x": "«Vaqtinchalik sinov serveri haqiqiy",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 17,
+"k": "jsx",
+"x": "ni ishlatdi, baza o'rnida restartdan o'tadigan JSON fayl turdi.»",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 18,
+"k": "str",
+"x": "2-AI javobidan",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 18,
+"k": "jsx",
+"x": "«Haqiqiy brauzerda (Chrome) qo'lda sinalmagan — jsdom bilan tekshirildi.» · sinov papkasi:",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 28,
+"k": "str",
+"x": "Ro'yxat connect'da so'raladimi?",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 28,
+"k": "str",
+"x": "Sinovda xato haqiqatan yuz berdimi — eski kod yiqildimi?",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 37,
+"k": "str",
+"x": "# hodisa oddiy yo\\'l bilan keldi — xato yuz bermagan, eski kod ham o\\'tardi",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 38,
+"k": "str",
+"x": "ning qayta ulanish tuzatishini qabul qilish — to",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 38,
+"k": "jsx",
+"x": "AI'ning qayta ulanish tuzatishini qabul qilish — to'rt savol",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 55,
+"k": "str",
+"x": "README «o'zi yangilanadi» (3-ekran)",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 55,
+"k": "str",
+"x": "4, 10-ekran; xona — 21-ekran",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 55,
+"k": "str",
+"x": "connect ichidagi on (11-ekran)",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 55,
+"k": "str",
+"x": "4 Yozuv va qayta tekshiruv",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 55,
+"k": "str",
+"x": "shu urinishda (3) · hodisa kelgan urinish — isbot emas (19)",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 55,
+"k": "str",
+"x": "5 Amaliyot",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 55,
+"k": "str",
+"x": "A1 o'z ilovasini buzish · A2 agentga tuzattirish",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 55,
+"k": "str",
+"x": "22-ekran",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 60,
+"k": "str",
+"x": "O'quvchi · m10-05 (19 ekran)",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 60,
+"k": "str",
+"x": "ning yangi versiyasi · buzish yozuvi · tuzatish <code>ulanish.ts</code> da</p>{seg.three && <p style={{ marginTop: 6 }}><b>Uch muammo:</b> son eski · jonli xabar ikki marta · «Hozir ko",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 60,
+"k": "jsx",
+"x": "— agent «uchala chekka holatni bajardim» · uch usul: internetni uzish · fonga olish · Backend'ning yangi versiyasi · buzish yozuvi · tuzatish",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 60,
+"k": "jsx",
+"x": "son eski · jonli xabar ikki marta · «Hozir ko'ryapti» kam",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 61,
+"k": "str",
+"x": "vo · uch usul · <code>connect</code> da qayta so",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 61,
+"k": "jsx",
+"x": "OrderBotNest: da'vo · uch usul ·",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 64,
+"k": "jsx",
+"x": "da; Backend o'zgarmagan",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 78,
+"k": "str",
+"x": "bor — 4, 6, 13-ekran",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 78,
+"k": "str",
+"x": "bor — s2–s3",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 78,
+"k": "str",
+"x": "tuzatishdagi tuzoq — 10-ekran",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 78,
+"k": "str",
+"x": "boshidan bor — s4–s5",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 78,
+"k": "str",
+"x": "yo'q — panel hammaga bitta hodisa oladi",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 78,
+"k": "str",
+"x": "bor — s6–s7",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 82,
+"k": "str",
+"x": "maydon-jamoa · m12-dars-05-start · Backend haqiqiy (05)",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 83,
+"k": "str",
+"x": "maydon-jamoa · yangi versiyadan keyin (05)",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 85,
+"k": "jsx",
+"x": "Maydon Jamoa (o'quvchi)",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 92,
+"k": "str",
+"x": "«Ulanmoqda…» kuting (bir daqiqagacha) → agent o'zgarish qiladi → uchish rejimini o'chiring",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 92,
+"k": "str",
+"x": "boshqa ilovaga o'ting → o'zgarish → bir daqiqadan keyin qayting",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 92,
+"k": "str",
+"x": "Render'da qayta chiqarish",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 92,
+"k": "str",
+"x": "«Manual Deploy» → «Deploy latest commit» — bir necha daqiqa (⚠ sinalmagan)",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 93,
+"k": "str",
+"x": "mobil/src/ulanish.ts va undan foydalanadigan ekran",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 93,
+"k": "str",
+"x": "yozuvdagi «buzildi» qatorlari bo'yicha tuzatish",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 98,
+"k": "str",
+"x": "Siz · Offline (6-ekran)",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 98,
+"k": "jsx",
+"x": "«bir daqiqagacha kuting» — erta qaytsa «buzilmadi»",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 99,
+"k": "jsx",
+"x": "Agentning «tuzatdim»i ham",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 99,
+"k": "jsx",
+"x": "— «buzildi» urinishlari xuddi shu usul bilan qaytariladi.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 106,
+"k": "str",
+"x": "uzilishdan keyin",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 106,
+"k": "str",
+"x": "connect da qayta so'rash yo'q",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 106,
+"k": "str",
+"x": "Jonli xabar ikki marta",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 106,
+"k": "str",
+"x": "qayta ulanishdan keyin",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 106,
+"k": "str",
+"x": "«Hozir ko'ryapti» kam",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 106,
+"k": "str",
+"x": "yangi versiyadan keyin",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 106,
+"k": "str",
+"x": "xonaga qayta kirish yo'q",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 106,
+"k": "str",
+"x": "uchish rejimi qisqa yoki Expo Go qayta yuklagan ⚠",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 106,
+"k": "str",
+"x": "bir daqiqa kuting; bu ham natija",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 106,
+"k": "str",
+"x": "bir necha daqiqa",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 106,
+"k": "str",
+"x": "xuddi shu usul bilan qaytarish",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 108,
+"k": "str",
+"x": "«Socket.io o'zi qayta ulanadi-ku, nega tuzatamiz?»",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 108,
+"k": "str",
+"x": "Ulanishni tiklaydi, lekin o'tkazib yuborilgan hodisani va xonani tiklamaydi.",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 109,
+"k": "str",
+"x": "«Server o'tkazilgan hodisani o'zi qayta bersa bo'lmaydimi?»",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 109,
+"k": "str",
+"x": "socket.io'da connectionStateRecovery bor, lekin u server xotirasida: yangi versiya chiqqanda yo'q. Qayta so'rash baribir kerak.",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 110,
+"k": "str",
+"x": "«Tinglovchi ikki marta bo\\'lsa, nima yomon?»",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 110,
+"k": "str",
+"x": "Har o'zgarish ikki marta so'raladi, jonli xabar ikki marta chiqadi; har qayta ulanishda yana ko'payadi.",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 111,
+"k": "str",
+"x": "«Backend'ni tuzatish kerakmi?»",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 121,
+"k": "jsx",
+"x": "O'quvchi so'rasa — bosib oching",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 137,
+"k": "str",
+"x": "Hammasini ko'rib chiqdingiz, endi o'zingizni tekshiring. Yakuniy sinov, sakkiz savol: qayta ulanish, uzilishdagi hodisa, tuzatish, takror tinglovchi, Offline, tiklash va AI sinovi. Har savolda bitta urinish, javobdan keyin to'g'risi va izohi ochiladi. Olti va undan ko'p, dars o'zlashtirilgan. Kam bo'lsa, ko'rsatilgan ekranlarga qaytib, sinovni qayta topshirasiz.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 139,
+"k": "str",
+"x": "ikki",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 139,
+"k": "str",
+"x": ". Dars o'zlashtirilgan, Davom bosing.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 140,
+"k": "str",
+"x": "Yaxshi, bir xatoyingizni ko'rib chiqdingiz. Qolgan qizil savollarning ekranlariga ham qayting. Tayyor bo'lgach, Sinovni qayta topshirish tugmasini bosing.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 202,
+"k": "str",
+"x": "socket.io ulanishni o'zi tiklaydi, lekin bu yangi ulanish: uzilish paytida yuborilgan hodisa unga kelmaydi — server hodisani faqat hozir ulanganlarga beradi",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 203,
+"k": "str",
+"x": "«O'zi yangilanadi» — da'vo; tekshiruv — buzib ko'rish va yozuv: usul · nima qildim · nima kutdim · nima bo'ldi → belgi (shu kompyuterda, shu urinishda)",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 204,
+"k": "str",
+"x": "Uch usul, bitta sabab: server qayta yonishi (Telegram navbati panel ulanishidan tez), Offline ping vaqtidan uzun (60 s buziladi, 6 s — yo'q), tarmoq uzilishi",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 205,
+"k": "str",
+"x": "Tuzatish: connect ichida yukla() — birinchi va har qayta ulanishda ro'yxat bazadan; tinglovchi bir marta, connect dan tashqarida (ichida — takror GET)",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 206,
+"k": "str",
+"x": "connectionStateRecovery — qisqa tarmoq uzilishida yordam beradi; server qayta yonganda va hodisa olmagan klientda — yo'q. Qayta so'rash majburiy, tiklash — qo'shimcha",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 207,
+"k": "str",
+"x": "AI tuzatishiga to'rt savol: qayerda so'raydi · tinglovchi nechta · sinovda eski kod yiqildimi · nima ortiqcha qo'shildi; hodisa kelgan urinish — isbot emas",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 209,
+"k": "str",
+"x": "connect'da so'rash",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 214,
+"k": "jsx",
+"x": "Bugungi dars — ulanish uzilsa: buzamiz va tuzatamiz",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 221,
+"k": "str",
+"x": "Holat — Offline («Ulanmoqda…» bo'lguncha) → admin botda /orders dan tasdiqlaydi → Online: «Tasdiqlandi» ko'rindimi",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 222,
+"k": "str",
+"x": "Yozuv — BUZISH.md ga yangi qator: usul · nima qildim · kutdim · bo'ldi · belgi",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 224,
+"k": "str",
+"x": "Tiklash — gateway'ga connectionStateRecovery: tarmoq uzilishi va server qayta yonishida recovered — ikki qator",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 225,
+"k": "str",
+"x": "git add . && git commit -m \"qayta ulanish: holat va tiklash sinovi\"",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 231,
+"k": "str",
+"x": "zi tiklaydi — bu YANGI ulanish · server.emit faqat hozir ulanganlarga · uzilish paytidagi hodisa keyin kelmaydi · ro",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 233,
+"k": "str",
+"x": "ldi · Belgi (buzildi / buzilmadi) · Tuzatish · Qayta tekshiruv — «nima bo",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 237,
+"k": "str",
+"x": "yxat ikki joyda: connect va order-changed · ulanish.on(",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 241,
+"k": "str",
+"x": "tkazilgan hodisa keladi · server qayta yonsa yoki klient hodisa olmagan bo",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 245,
+"k": "str",
+"x": "vo · uch usul: internetni uzish · fonga olish · Backend yangi versiyasi · uch muammo: son eski · jonli xabar ikki marta · «Hozir ko",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 249,
+"k": "str",
+"x": "zgarishini Offline bilan buzish · BUZISH.md qatori · live-client",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 252,
+"k": "str",
+"x": "<b>Barakalla!</b> Siz darsni yaxshi o'rgandingiz — bugungi darsni bir qarashda yig'amiz",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 252,
+"k": "str",
+"x": "Barakalla! Siz darsni yaxshi o'rgandingiz. Endi bugun o'rganganlaringizni bir qarashda yig'amiz.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 253,
+"k": "str",
+"x": "Dars oxiriga yetdingiz. Yakuniy sinovdan olti ball kerak edi, yakunlashdan oldin sinovni qayta topshirishni maslahat beraman. Hozir esa bugungi darsni bir qarashda yig'amiz.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 254,
+"k": "str",
+"x": "Birinchi: socket.io ulanishni o'zi tiklaydi, lekin bu yangi ulanish. Server hodisani faqat hozir ulanganlarga yuboradi, uzilish paytidagisi keyin kelmaydi.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 255,
+"k": "str",
+"x": "Ikkinchi: o'zi yangilanadi degan gap da'vo. Tekshiruv buzib ko'rish va har urinishni yozish: usul, nima qildim, nima kutdim, nima bo'ldi va belgi.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 256,
+"k": "str",
+"x": "<b>Uch usul, bitta sabab</b>: qayta yonish, Offline, tarmoq",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 256,
+"k": "str",
+"x": "Uchinchi: uch usul. Server qayta yonadi, Telegram navbati panel ulanishidan tez. Offline ping vaqtidan uzun, bir daqiqa. Tarmoq uziladi. Sabab bitta: hodisa o'tib ketgan.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 257,
+"k": "str",
+"x": "To'rtinchi: tuzatish connect ichida yukla, har ulanishda ro'yxat bazadan. Tinglovchi bir marta, connect'dan tashqarida, aks holda har qayta ulanishda yana bittasi qo'shiladi.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 258,
+"k": "str",
+"x": "Beshinchi: connection state recovery qisqa tarmoq uzilishida yordam beradi. Server qayta yonganda esa holat yo'qoladi. Shuning uchun qayta so'rash majburiy, tiklash faqat qo'shimcha.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 259,
+"k": "str",
+"x": "AI tuzatishiga <b>to'rt savol</b>: xato haqiqatan yuz berdimi",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 259,
+"k": "str",
+"x": "Oltinchi: AI tuzatishiga to'rt savol. Qayerda so'raydi, tinglovchi nechta, sinovda eski kod yiqildimi, nima ortiqcha qo'shildi. Hodisa kelgan urinish isbot emas.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 260,
+"k": "str",
+"x": "<b>Uyga vazifa</b>: holat o'zgarishini buzing; tiklashni sinang",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 260,
+"k": "str",
+"x": "Uyga vazifa: holat o'zgarishini ham buzib tekshiring. Offline paytida admin buyurtmani tasdiqlasin, keyin Online. Natijani buzish yozuviga qator qilib yozing.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 261,
+"k": "str",
+"x": "Klientda <b>recovered</b>, gateway'da tiklash — ikki holat; qaror README'ga",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 261,
+"k": "str",
+"x": "Keyin terminal klientiga recovered qiymatini qo'shing, gateway'da tiklashni yoqing va tarmoq uzilishi hamda server qayta yonishida natijani yozing. Qaroringizni README'ga, linkni platformaga. Qirq-oltmish daqiqa.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 262,
+"k": "str",
+"x": "<b>Eslatmani oling</b>: uch usul, tuzatish, tuzoq, tiklash, AI savollari — bir sahifada",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 262,
+"k": "str",
+"x": "Pastda bir sahifalik eslatma: umumiy tushuncha, buzish yozuvi, uch usul, tuzatish va tuzoq, tiklash chegarasi, AI'ga to'rt savol, m10-05 xaritasi va sinfdagi holatlar. Nusxalab yoki yuklab oling.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 263,
+"k": "str",
+"x": "Rahmat! <b>Darsni yakunlash</b> tugmasini bosing",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 263,
+"k": "str",
+"x": "Rahmat. Darsni yakunlash tugmasini bosing, dars tugallangan deb belgilanadi.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 294,
+"k": "jsx",
+"x": "yozuvda «Nima bo'ldi» — ko'rgani ·",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 294,
+"k": "jsx",
+"x": "qiymati ikki holatda · qaror sababi bilan ·",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 294,
+"k": "jsx",
+"x": "da qayta so'rash o'chirilmagan.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 320,
+"k": "str",
+"x": "Jami taxminan 1 soat 15–30 daqiqa: ovoz ~25 daqiqa · uchta amaliyot 50–60 daqiqa · 4 tekshiruv · o'z-sinov 8 savol. 12-ekrandan keyin tanaffus qilsangiz bo'ladi",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 320,
+"k": "str",
+"x": "Kerak: WebSocket-1 mentor darsi (OrderBotNest nusxangiz, jonli panel) · Telegraf darsidagi bot tokeni va PostgreSQL · Chrome (DevTools) · telefon · AI yordamchi",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 320,
+"k": "str",
+"x": "Loyiha: github.com/Azizbekcrypto/OrderBotNest — ws2-start (= ws1-done) → ws2-done; har chiqish haqiqiy server, baza va brauzerdan",
+"m": false
+}
+]

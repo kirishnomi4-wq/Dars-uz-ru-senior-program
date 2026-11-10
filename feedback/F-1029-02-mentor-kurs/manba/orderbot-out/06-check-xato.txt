@@ -1,0 +1,2 @@
+ERROR:  new row for relation "products" violates check constraint "stock_nonneg"
+DETAIL:  Failing row contains (5, Planshet, 300000, -17).

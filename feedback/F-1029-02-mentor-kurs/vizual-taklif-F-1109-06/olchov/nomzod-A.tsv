@@ -1,0 +1,45 @@
+pg-01	2	22	faqat-matn	SQL va NoSQL: bitta ma'lumot ikki xil shaklda saqlanadi
+pg-01	17	19	kod/terminal	So'rov xatosiz ishladi, lekin «Bugun Nest o'rgandim»ni vali yozgandek chiqdi
+pg-02	17	26	faqat-matn	Pool — ulanishlar to'plami: yaratilganda ulanmaydi, birinchi so'rovda ulanadi, k
+pg-02	18	28	faqat-matn	pool.query so'rovni bazaga olib boradi; javobda rows — qatorlar, rowCount — term
+pg-02	19	25	faqat-matn	Uch yozuvchi endpoint — uch SQL buyruq; javob statusi va rowCount bilan
+pg-02	23	25	faqat-matn	Cannot destructure property 'model' of 'req.body' — so'rov tanasi o'qilmagan
+jest-01	15	22	faqat-matn	Xato ko'pincha chegarada: birinchi, oxirgi va yagona sahifa uchun alohida test
+jest-02	6	15	faqat-matn	Tuzatish bitta satr: tekshirishdan oldin probel va chiziqchani olib tashlaymiz —
+jest-02	15	18	faqat-matn	Xato yo'lida test ikki narsani kutadi: xato chiqdi va ombor o'zgarmadi — expect(
+jest-02	18	17	faqat-matn	Sayt ham shunday sinaladi: supertest server ochmasdan Nest ilovasiga so'rov yubo
+cicd-01	2	28	faqat-matn	CI — har push'da toza mashinada sizning buyruqlaringiz yuradi; CD — tekshirilgan
+cicd-01	3	25	faqat-matn	Lenta — buyruqlar ketma-ketligi: har biri chiqish kodi qaytaradi, 0 — yashil, bo
+cicd-01	14	18	faqat-matn	package.jsonni qo'lda o'zgartirdik, lock qolmadi — npm ci lentada ham, lokalda h
+cicd-02	2	19	faqat-matn	Har push — run; faylda jobs: ostidagi har nom — alohida mashinada bitta job; job
+cicd-02	3	19	faqat-matn	Tayyor qadamlar yashirin emas: Set up job mashinani aytadi, checkout bo'sh papka
+cicd-02	8	26	faqat-matn	strategy.matrix.node-version: [22, 24] — bitta job ta'rifi, ikki mashina: test (
+cicd-02	12	14	faqat-matn	Jest testlari bazasiz (mock). Smoke esa haqiqiy Postgres'ga yozadi — lentada baz
+cicd-02	22	22	faqat-matn	O'quvchi darsidagi «Repongiz yo'qmi?» namunasi: lock fayl yo'q — npm ci qizil; "
+cicd-02	23	20	faqat-matn	Darsga siz qo'shadigan to'rt narsa, uch vaziyat va o'quvchi savollariga tayyor j
+ws1-01	2	28	kod/terminal	Oddiy HTTP'da server faqat so'ralganda javob beradi: panel so'ramasa, Bobur berg
+ws1-01	9	28	kod/terminal	public/admin.html: socket.io klienti serverning o'zidan; io({ auth: { token } })
+ws1-01	15	24	faqat-matn	Server jarayonini muzlatamiz: ulanish uzilmaydi, javob ham yo'q — klient 42 soni
+ws1-01	17	21	faqat-matn	Yangi ko'nikma davomi: ikki AI'ga bitta oddiy prompt — «jonli panel, WebSocket b
+ws1-01	21	15	faqat-matn	O'quvchi darsi: Maydon Jamoa'dagi «8 / 10» — siz bugun panelda qilgan narsaning 
+ws1-01	23	20	faqat-matn	Belgidan va server terminalidan sabab topiladi: oltita holat, har biri o'z xabar
+ws2-01	2	26	faqat-matn	socket.io ulanishni o'zi tiklaydi — lekin bu yangi ulanish. Uzilish paytida yubo
+ws2-01	3	15	faqat-matn	README: «ro'yxat o'zi yangilanadi». Bu da'vo — tekshirilmagan. Tekshiruv — buzib
+ws2-01	5	26	faqat-matn	Server o'chiq paytda Telegram xabarni saqlab turadi; bot ishga tushishi bilan un
+ws2-01	13	14	faqat-matn	Hayotda server Render'da, panel do'kon kompyuterida: ular orasidagi tarmoq uzila
+ws2-01	14	18	faqat-matn	Gateway'ga connectionStateRecovery — qisqa uzilishdan keyin o'tkazilgan hodisala
+ws2-01	17	21	faqat-matn	Ikki AI'ga buyurtmachining shikoyati, ishorasiz. Ikkalasi sababni to'g'ri topdi 
+ws2-01	20	17	faqat-matn	O'quvchi darsi: agent «uchala chekka holatni bajardim» degan — o'quvchi Maydon J
+ws2-01	21	25	jadval	Ilova o'yin ekranini ochganda xonaga kiradi; uzilganda server uni hamma xonadan 
+ws2-01	22	25	faqat-matn	A1: uch usul — uchish rejimi, fonga olish, Render'da qayta chiqarish; o'zgarishn
+ws2-01	23	26	faqat-matn	Olti holat, har biri o'z belgisi bilan — va o'quvchi so'raydigan to'rt savol
+wh-01	2	25	kod/terminal	To'lov xizmati natijani serverga o'zi yuboradi — bu webhook. Mijoz yoki ilovanin
+wh-01	3	14	faqat-matn	wh-start da xizmat xabar yubordi — Cannot POST /payments/webhook, 404. Buyurtma 
+wh-01	5	17	faqat-matn	payment.controller.ts: avval imzo (401), keyin maydonlar (400), keyin yozuv. Imz
+wh-01	9	15	faqat-matn	Imzosiz xabar ham, boshqa kalit bilan imzolangani ham — 401, payments da yangi q
+wh-01	15	17	faqat-matn	To'rtinchi xato — kalit .env da bo'sh: server ishga tushganda ogohlantiradi va h
+wh-01	18	22	faqat-matn	Ikki AI'ga xizmat hujjatidagi kabi qisqa talab: «POST, JSON, HMAC-SHA256, X-Sign
+wh-01	21	14	faqat-matn	O'quvchi darsi: Maydon Jamoa'da Pro obuna, test rejim — siz bugun OrderBotNest'd
+wh-01	23	20	faqat-matn	401 bo'lsa — kalit, rawBody, tartib; qolganida javob matnini o'qing: olti holat 
+nest-01	5	19	faqat-matn	Tirik loyiha: nest new nimani yaratdi
+nest-02	21	28	faqat-matn	Entity o'zgarsa, baza o'zi o'zgaradi — xato bermay yoki yiqilib

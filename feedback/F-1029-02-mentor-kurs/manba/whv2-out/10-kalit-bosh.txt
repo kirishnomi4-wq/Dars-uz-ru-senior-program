@@ -1,0 +1,13 @@
+# wh-done, .env da PAYMENT_WEBHOOK_SECRET bo'sh
+WARN [Payment] PAYMENT_WEBHOOK_SECRET bo'sh — har to'lov xabari 401 bilan rad etiladi (.env)
+
+$ npm run pay -- 1
+→ POST /payments/webhook {"paymentId":"pay_1882a443","orderId":1,"status":"paid","amount":120000}
+  X-Signature: 7226e09e00a6ba28…
+← 401 {"message":"imzo noto'g'ri","error":"Unauthorized","statusCode":401}
+
+$ psql: SELECT count(*) AS payments_qatorlari FROM payments
+ payments_qatorlari 
+--------------------
+                  0
+(1 row)

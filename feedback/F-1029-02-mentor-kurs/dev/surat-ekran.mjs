@@ -8,7 +8,7 @@ const PAGE = process.env.PAGE || 'mentor-kurs.html'; // F-1103-02: boshqa sahifa
 const jobs = JSON.parse(JOBS);
 fs.mkdirSync(OUT, { recursive: true });
 const b = await chromium.launch({ executablePath: '/usr/bin/google-chrome', headless: true, args: ['--autoplay-policy=no-user-gesture-required'] });
-const page = await b.newPage({ viewport: { width: 1600, height: 900 } });
+const page = await b.newPage({ viewport: { width: Number(process.env.VW) || 1600, height: Number(process.env.VH) || 900 } }); // VW/VH — o'lcham (F-1103-04)
 await page.addInitScript(() => { const p = HTMLMediaElement.prototype.play; HTMLMediaElement.prototype.play = function () { this.playbackRate = 16; return p.call(this); }; });
 const errs = []; page.on('pageerror', (e) => errs.push(String(e)));
 const CSS = process.env.CSS ? fs.readFileSync(process.env.CSS, 'utf8') : '';

@@ -1,0 +1,18 @@
+<style>
+.w9 td{vertical-align:top}
+</style>
+<div class="z">
+  <div class="z-card">
+    <p class="z-h">Bir xil to'lov — uch xil imzo (npm run pay -- 1 …)</p>
+    <table class="z-tbl w9">
+      <tr><th>xabar</th><th>javob</th><th>payments</th><th>server logi</th></tr>
+      <tr class="ok"><td>to'g'ri kalit bilan imzolangan</td><td>200 {"ok":true,"duplicate":false}</td><td>+1 qator</td><td>LOG pay_0005d844 · #1 · paid</td></tr>
+      <tr class="bad"><td>imzosiz</td><td>401 imzo noto'g'ri</td><td>yangi qator yo'q</td><td>WARN imzo noto'g'ri — rad etildi</td></tr>
+      <tr class="bad"><td>boshqa kalit bilan (soxta)</td><td>401 imzo noto'g'ri</td><td>yangi qator yo'q</td><td>WARN imzo noto'g'ri — rad etildi</td></tr>
+    </table>
+  </div>
+  <div class="z-two">
+    <div class="z-card" style="border-color:var(--ok)"><b style="color:var(--ok)">Kalit — butun himoya</b><span class="z-mut">to'g'ri imzoni faqat kalitni biladigan yasaydi</span></div>
+    <div class="z-card" style="border-color:var(--bad)"><b style="color:var(--bad)">Kalit qayerda</b><span class="z-mut">.env va hosting sozlamasi — kodda, git'da, chatda emas</span></div>
+  </div>
+</div>

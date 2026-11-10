@@ -1,0 +1,250 @@
+diff --git a/src/api/cart/cart-item.entity.ts b/src/api/cart/cart-item.entity.ts
+new file mode 100644
+index 0000000..309d76a
+--- /dev/null
++++ b/src/api/cart/cart-item.entity.ts
+@@ -0,0 +1,54 @@
++import {
++  Check,
++  Column,
++  CreateDateColumn,
++  Entity,
++  JoinColumn,
++  ManyToOne,
++  PrimaryGeneratedColumn,
++  Unique,
++} from 'typeorm';
++import { ProductEntity } from '../catalog/product.entity';
++import { UserEntity } from '../user/user.entity';
++
++// pg BIGINT ni satr qilib qaytaradi — kodda son bo'lsin (user.entity.ts dagi kabi)
++const bigintToNumber = {
++  to: (v: number) => v,
++  from: (v: string | null) => (v === null ? v : Number(v)),
++};
++
++// cart_items jadvali. Jadvalni migratsiya yaratadi (src/database/migrations).
++@Entity({ name: 'cart_items' })
++@Unique('UQ_cart_items_user_product', ['telegramId', 'productId'])
++@Check('CHK_cart_items_qty', '"qty" > 0')
++export class CartItemEntity {
++  @PrimaryGeneratedColumn()
++  id: number;
++
++  @Column({ name: 'telegram_id', type: 'bigint', transformer: bigintToNumber })
++  telegramId: number;
++
++  @Column({ name: 'product_id', type: 'integer' })
++  productId: number;
++
++  @Column({ type: 'integer', default: 1 })
++  qty: number;
++
++  @CreateDateColumn({ name: 'created_at', type: 'timestamptz' })
++  createdAt: Date;
++
++  @ManyToOne(() => UserEntity, { onDelete: 'CASCADE' })
++  @JoinColumn({
++    name: 'telegram_id',
++    referencedColumnName: 'telegramId',
++    foreignKeyConstraintName: 'FK_cart_items_user',
++  })
++  user?: UserEntity;
++
++  @ManyToOne(() => ProductEntity, { onDelete: 'CASCADE' })
++  @JoinColumn({
++    name: 'product_id',
++    foreignKeyConstraintName: 'FK_cart_items_product',
++  })
++  product?: ProductEntity;
++}
+diff --git a/src/api/cart/cart.module.ts b/src/api/cart/cart.module.ts
+index 8f99856..483012f 100644
+--- a/src/api/cart/cart.module.ts
++++ b/src/api/cart/cart.module.ts
+@@ -1,7 +1,10 @@
+ import { Module } from '@nestjs/common';
++import { TypeOrmModule } from '@nestjs/typeorm';
++import { CartItemEntity } from './cart-item.entity';
+ import { CartService } from './cart.service';
+ 
+ @Module({
++  imports: [TypeOrmModule.forFeature([CartItemEntity])],
+   providers: [CartService],
+   exports: [CartService],
+ })
+diff --git a/src/api/cart/cart.service.ts b/src/api/cart/cart.service.ts
+index 8bbf58c..ef01be9 100644
+--- a/src/api/cart/cart.service.ts
++++ b/src/api/cart/cart.service.ts
+@@ -1,25 +1,42 @@
+ import { Injectable } from '@nestjs/common';
++import { InjectRepository } from '@nestjs/typeorm';
++import { Repository } from 'typeorm';
+ import { CartItem } from '../../core/types';
++import { CartItemEntity } from './cart-item.entity';
+ 
+ @Injectable()
+ export class CartService {
+-  // telegramId → savat. Xotirada.
+-  private readonly carts = new Map<number, CartItem[]>();
++  // Savat PostgreSQL cart_items jadvalida: server qayta ishga tushsa ham saqlanadi
++  constructor(
++    @InjectRepository(CartItemEntity)
++    private readonly items: Repository<CartItemEntity>,
++  ) {}
+ 
+-  list(telegramId: number): CartItem[] {
+-    return this.carts.get(telegramId) ?? [];
++  async list(telegramId: number): Promise<CartItem[]> {
++    const rows = await this.items.find({
++      where: { telegramId },
++      order: { id: 'ASC' },
++    });
++    return rows.map((r) => ({ productId: r.productId, qty: r.qty }));
+   }
+ 
+-  add(telegramId: number, productId: number): CartItem[] {
+-    const cart = this.list(telegramId);
+-    const bor = cart.find((i) => i.productId === productId);
+-    if (bor) bor.qty += 1;
+-    else cart.push({ productId, qty: 1 });
+-    this.carts.set(telegramId, cart);
+-    return cart;
++  // Bitta so'rov: qator yo'q bo'lsa qo'shadi, bor bo'lsa qty + 1.
++  // Ikki marta tez bosilsa ham UNIQUE (telegram_id, product_id) ikkinchi qator
++  // ochishga yo'l qo'ymaydi — ikkinchi so'rov shu qatorning qty sini oshiradi.
++  // Qaytaradi: shu so'rovdan keyingi qty (RETURNING) — har bosishga o'z soni.
++  async add(telegramId: number, productId: number): Promise<CartItem> {
++    const rows: { qty: number }[] = await this.items.query(
++      `INSERT INTO "cart_items" ("telegram_id", "product_id", "qty")
++       VALUES ($1, $2, 1)
++       ON CONFLICT ("telegram_id", "product_id")
++       DO UPDATE SET "qty" = "cart_items"."qty" + 1
++       RETURNING "qty"`,
++      [telegramId, productId],
++    );
++    return { productId, qty: rows[0].qty };
+   }
+ 
+-  clear(telegramId: number): void {
+-    this.carts.delete(telegramId);
++  async clear(telegramId: number): Promise<void> {
++    await this.items.delete({ telegramId });
+   }
+ }
+diff --git a/src/api/telegram/telegram.service.ts b/src/api/telegram/telegram.service.ts
+index 6ee4262..8a74310 100644
+--- a/src/api/telegram/telegram.service.ts
++++ b/src/api/telegram/telegram.service.ts
+@@ -71,9 +71,10 @@ export class TelegramService implements OnModuleInit, OnModuleDestroy {
+     this.bot.action(/^add:(\d+)$/, async (ctx) => {
+       const p = await this.catalog.find(Number(ctx.match[1]));
+       if (!p) return ctx.answerCbQuery('Mahsulot topilmadi');
+-      const cart = this.cart.add(ctx.from.id, p.id);
+-      const qty = cart.find((i) => i.productId === p.id)?.qty ?? 1;
+-      await ctx.answerCbQuery(texts.added(p, qty));
++      // cart_items users ga bog'langan: /start bosmagan bo'lsa ham qator ochiladi
++      await this.users.getOrCreate(ctx.from);
++      const item = await this.cart.add(ctx.from.id, p.id);
++      await ctx.answerCbQuery(texts.added(p, item.qty));
+     });
+ 
+     this.bot.action('noop', (ctx) => ctx.answerCbQuery());
+@@ -85,7 +86,7 @@ export class TelegramService implements OnModuleInit, OnModuleDestroy {
+     });
+ 
+     this.bot.action('cart:clear', async (ctx) => {
+-      this.cart.clear(ctx.from.id);
++      await this.cart.clear(ctx.from.id);
+       await ctx.answerCbQuery();
+       await ctx.reply(texts.cartCleared);
+     });
+@@ -93,7 +94,7 @@ export class TelegramService implements OnModuleInit, OnModuleDestroy {
+     this.bot.action('checkout', async (ctx) => {
+       await ctx.answerCbQuery();
+       const user = await this.users.getOrCreate(ctx.from);
+-      if (this.cart.list(user.telegramId).length === 0) {
++      if ((await this.cart.list(user.telegramId)).length === 0) {
+         return ctx.reply(texts.cartEmpty);
+       }
+       if (!user.phone) {
+@@ -120,7 +121,7 @@ export class TelegramService implements OnModuleInit, OnModuleDestroy {
+   }
+ 
+   private async showCart(ctx: Context) {
+-    const items = this.cart.list(ctx.from!.id);
++    const items = await this.cart.list(ctx.from!.id);
+     if (items.length === 0) return ctx.reply(texts.cartEmpty);
+     const found = await Promise.all(
+       items.map(async (item) => ({
+@@ -139,9 +140,9 @@ export class TelegramService implements OnModuleInit, OnModuleDestroy {
+     try {
+       const order = await this.orders.place(
+         user,
+-        this.cart.list(user.telegramId),
++        await this.cart.list(user.telegramId),
+       );
+-      this.cart.clear(user.telegramId);
++      await this.cart.clear(user.telegramId);
+       await ctx.reply(texts.orderPlaced(order));
+       for (const admin of await this.users.admins()) {
+         if (admin.telegramId === user.telegramId) continue;
+diff --git a/src/database/migrations/1793733685607-CreateCartItems.ts b/src/database/migrations/1793733685607-CreateCartItems.ts
+new file mode 100644
+index 0000000..5b94241
+--- /dev/null
++++ b/src/database/migrations/1793733685607-CreateCartItems.ts
+@@ -0,0 +1,31 @@
++import { MigrationInterface, QueryRunner } from 'typeorm';
++
++export class CreateCartItems1793733685607 implements MigrationInterface {
++  name = 'CreateCartItems1793733685607';
++
++  public async up(queryRunner: QueryRunner): Promise<void> {
++    // UQ_cart_items_user_product: bitta foydalanuvchida bitta mahsulot — bitta qator.
++    // Tugma ikki marta tez bosilsa ham ikkinchi qator ochilmaydi, qty oshadi
++    // (CartService: INSERT ... ON CONFLICT ... DO UPDATE).
++    await queryRunner.query(`
++      CREATE TABLE "cart_items" (
++        "id"          SERIAL      NOT NULL,
++        "telegram_id" BIGINT      NOT NULL,
++        "product_id"  INTEGER     NOT NULL,
++        "qty"         INTEGER     NOT NULL DEFAULT 1,
++        "created_at"  TIMESTAMPTZ NOT NULL DEFAULT now(),
++        CONSTRAINT "PK_cart_items_id" PRIMARY KEY ("id"),
++        CONSTRAINT "UQ_cart_items_user_product" UNIQUE ("telegram_id", "product_id"),
++        CONSTRAINT "CHK_cart_items_qty" CHECK ("qty" > 0),
++        CONSTRAINT "FK_cart_items_user" FOREIGN KEY ("telegram_id")
++          REFERENCES "users" ("telegram_id") ON DELETE CASCADE,
++        CONSTRAINT "FK_cart_items_product" FOREIGN KEY ("product_id")
++          REFERENCES "products" ("id") ON DELETE CASCADE
++      )
++    `);
++  }
++
++  public async down(queryRunner: QueryRunner): Promise<void> {
++    await queryRunner.query(`DROP TABLE "cart_items"`);
++  }
++}
+diff --git a/src/database/typeorm.config.ts b/src/database/typeorm.config.ts
+index a0f8dbf..20e5f0a 100644
+--- a/src/database/typeorm.config.ts
++++ b/src/database/typeorm.config.ts
+@@ -3,6 +3,7 @@ import { DataSourceOptions } from 'typeorm';
+ import { config } from '../config';
+ import { ProductEntity } from '../api/catalog/product.entity';
+ import { UserEntity } from '../api/user/user.entity';
++import { CartItemEntity } from '../api/cart/cart-item.entity';
+ 
+ if (!config.DATABASE_URL) {
+   throw new Error(
+@@ -16,7 +17,7 @@ const MIGRATION_EXT = __filename.endsWith('.ts') ? 'ts' : 'js';
+ export const typeormOptions: DataSourceOptions = {
+   type: 'postgres',
+   url: config.DATABASE_URL,
+-  entities: [ProductEntity, UserEntity],
++  entities: [ProductEntity, UserEntity, CartItemEntity],
+   // ts-node (seed, CLI) — .ts; `nest build` dan keyin dist/ — faqat .js
+   // (*.{ts,js} dist/ dagi .d.ts fayllarni ham ushlab olardi)
+   migrations: [join(__dirname, 'migrations', `*.${MIGRATION_EXT}`)],

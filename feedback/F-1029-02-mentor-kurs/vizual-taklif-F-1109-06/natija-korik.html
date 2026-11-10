@@ -1,0 +1,576 @@
+<title>Mentor kursi: 34 ekran natijasi</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Ko'rik varag'i: tepada holat va savollar, pastda darsma-dars «oldin / endi» juftliklari, pastki panelda javob */
+:root{
+  --bg:#F3F4F7; --paper:#FFFFFF; --ink:#16181D; --ink2:#4A5060; --mut:#7B8293; --line:#DEE1E8;
+  --ac:#E2451F; --ac-soft:#FDEEE9; --ok:#15803D; --ok-soft:#E6F4EA; --warn:#B45309; --warn-soft:#FDF2E3;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121419;--paper:#1B1E25;--ink:#ECEEF3;--ink2:#B7BCC8;--mut:#8A90A0;--line:#2D323C;--ac:#FF6B47;--ac-soft:#3A221B;--ok:#4ADE80;--ok-soft:#173022;--warn:#F5A54A;--warn-soft:#3A2A17;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121419;--paper:#1B1E25;--ink:#ECEEF3;--ink2:#B7BCC8;--mut:#8A90A0;--line:#2D323C;--ac:#FF6B47;--ac-soft:#3A221B;--ok:#4ADE80;--ok-soft:#173022;--warn:#F5A54A;--warn-soft:#3A2A17;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.55 var(--sans)}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 120px;display:grid;gap:28px}
+h1{font-size:clamp(24px,3.2vw,32px);line-height:1.2;margin:0;text-wrap:balance;font-weight:700}
+.lead{color:var(--ink2);max-width:68ch;margin:6px 0 0}
+.eyebrow{font:600 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ac)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.stat{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.stat b{display:block;font:600 22px var(--mono);font-variant-numeric:tabular-nums}
+.stat span{color:var(--mut);font-size:13px}
+.sec{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:18px 20px;display:grid;gap:12px}
+.sec h2{margin:0;font-size:18px}
+.sec p,.sec li{max-width:80ch}
+.sec ul{margin:0;padding-left:20px;display:grid;gap:6px}
+.find{border-left:3px solid var(--warn);background:var(--warn-soft);padding:10px 14px;border-radius:8px}
+.qs{display:grid;gap:12px}
+.qq{display:grid;gap:6px;padding-top:12px;border-top:1px solid var(--line)}
+.qq:first-child{border-top:0;padding-top:0}
+.qq p{margin:0}
+.qq small{color:var(--mut)}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+button{font:500 14px var(--sans);border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:6px 14px;cursor:pointer}
+button:hover{border-color:var(--ink2)}
+button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+button.on[data-v="ok"],button.on[data-v="ha"]{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+button.on[data-v="fix"],button.on[data-v="yoq"]{background:var(--ac-soft);border-color:var(--ac);color:var(--ac)}
+nav.toc{display:flex;flex-wrap:wrap;gap:6px}
+nav.toc a{font:500 13px var(--mono);color:var(--ink2);text-decoration:none;border:1px solid var(--line);border-radius:6px;padding:3px 9px;background:var(--paper)}
+h2.dars{font-size:22px;margin:12px 0 -8px;scroll-margin-top:16px}
+.ek{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:12px}
+.ek header{display:grid;gap:2px}
+.ek h3{margin:0;font-size:17px;text-wrap:balance}
+.tag{font:600 12px var(--mono);color:var(--mut);letter-spacing:.04em}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+figure{margin:0;display:grid;gap:6px;min-width:0}
+figcaption{font:600 12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--mut)}
+figcaption.new{color:var(--ok)}
+figure img{display:block;width:100%;height:auto;max-width:100%;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+.meta{display:grid;gap:6px;color:var(--ink2);font-size:14px}
+.meta p,.meta ul{margin:0}
+.meta ul{padding-left:20px}
+.vote{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.vote input,.qq input{flex:1 1 220px;min-width:0;font:14px var(--sans);border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;padding:7px 10px}
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--paper);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+.bar .in{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:10px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.bar .cnt{font:500 13px var(--mono);color:var(--ink2);font-variant-numeric:tabular-nums}
+.bar .copy{background:var(--ac);border-color:var(--ac);color:#fff;font-weight:600}
+.bar textarea{width:100%;min-height:90px;font:12px var(--mono);border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px}
+@media (max-width:760px){.pair{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">F-1109-06 · mentor kursi vizuali · 10.11 ertalab</div>
+    <h1>Siz qabul qilgan 34 ekran darsga qo'yildi</h1>
+    <p class="lead">Har juftlikda chapda eski holat, o'ngda hozirgi lokal darsdagi oxirgi qadam (1280×720). Ovoz, chap panel matni va qoldirilgan 15 ekranga tegilmadi. Saytga hali chiqarilmadi: avval siz ko'rasiz.</p>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><b>34/34</b><span>ekran yozildi</span></div>
+    <div class="stat"><b>10</b><span>dars tegildi</span></div>
+    <div class="stat"><b>0</b><span>yangi ovoz kerak</span></div>
+    <div class="stat"><b>0</b><span>deploy · commit</span></div>
+  </div>
+
+  <section class="sec">
+    <h2>Qanday tekshirildi</h2>
+    <ul>
+      <li>Har chizmadagi raqam, vaqt va xabar darsning yozib olingan manbasi bilan qayta solishtirildi (terminal yozuvlari, AI xulosalari, server.js).</li>
+      <li>10 darsning hammasi yig'ildi va kompilyatsiyadan o'tdi. JSX tekshiruvi toza. Dars darvozalari 12/13, yiqilgani oldindan ma'lum (runtime importi).</li>
+      <li>Til darvozasi ikki joyni ushladi va tuzatildi: Nest-2 21 da «jim» so'zi «xato bermay» bo'ldi, Webhook 5 da 400 xabari endi qo'lda emas, haqiqiy yozuvdan olinadi.</li>
+      <li>Rus tilida har o'zgargan ekran yurib chiqildi. Natijasi pastdagi «Rus tili» bandida.</li>
+    </ul>
+  </section>
+
+  <section class="sec">
+    <h2>Yo'lda topilgan uch narsa (tegilmadi)</h2>
+    <div class="find"><b>WS-1 15-ekran.</b> Chap sarlavha va ovozda «42 soniya», o'ngdagi yangi vaqt o'qida haqiqiy 43 s. Endi ikkalasi bir ekranda yonma-yon turibdi.</div>
+    <div class="find"><b>PG-2 17-ekran.</b> Darsdagi terminal panelida pid 377093. Manbada esa 378069 (oxirgi yozuv) va 187528 (oldingisi). Chizmada ekran ichidagi 377093 ishlatildi, ziddiyat bo'lmasin deb.</div>
+    <div class="find"><b>Jest-2 15-ekran.</b> Chap sarlavha kesilgan: «…not.toHaveBeenCalle».</div>
+  </section>
+
+  <section class="sec qs" id="savollar">
+    <h2>Sizdan qarorlar</h2>
+    <div class="qq" data-q="deploy"><p><b>1. Saytga chiqaraymi?</b> coddycamp-mentor-kurs.vercel.app ga, 12 dars bilan.</p><div class="opts"><button type="button" data-v="ha">Ha, chiqar</button><button type="button" data-v="yoq">Hozircha yo'q</button></div></div>
+    <div class="qq" data-q="ws1-42"><p><b>2. WS-1 15: «42 soniya» → «43 soniya».</b></p><small>Chap panel va ovoz matni o'zgaradi, bitta yangi mp3 yasaladi.</small><div class="opts"><button type="button" data-v="ha">Tuzat</button><button type="button" data-v="yoq">Tegma</button></div></div>
+    <div class="qq" data-q="pg2-pid"><p><b>3. PG-2 17: pid ni manbadagi oxirgi yozuvga (378069) moslash.</b></p><small>Terminal paneli va chizma birga o'zgaradi.</small><div class="opts"><button type="button" data-v="ha">Mosla</button><button type="button" data-v="yoq">Tegma</button></div></div>
+    <div class="qq" data-q="jest2-sarlavha"><p><b>4. Jest-2 15: kesilgan chap sarlavhani tuzataymi?</b></p><div class="opts"><button type="button" data-v="ha">Tuzat</button><button type="button" data-v="yoq">Tegma</button></div></div>
+    <div class="qq" data-q="m50"><p><b>5. Qonun M50 yozilsinmi?</b> «Gapli karta o'rniga mexanizm chizmasi; xulosa qadamida rasm yashirilmaydi» va tekshiruv ro'yxatiga 35-band.</p><div class="opts"><button type="button" data-v="ha">Yoz</button><button type="button" data-v="yoq">Kerak emas</button></div></div>
+    <div class="qq" data-q="commit"><p><b>6. Commit qilaymi?</b></p><div class="opts"><button type="button" data-v="ha">Ha</button><button type="button" data-v="yoq">Hozircha yo'q</button></div></div>
+  </section>
+
+  <section class="sec" id="ru">
+    <h2>Rus tili</h2>
+    <p>34 ekranning hammasi rus tilida oxirigacha yurib chiqildi, konsol xatosi yo'q. Yangi chizmalardagi har yozuv ruschaga o'tadi. Tekshiruvchi topgan o'zbekcha so'zlar dastur chiqishidan: server logi («Server 3000-portda ishlayapti»), xato xabari («Kolonka: omborda faqat 1 ta qoldi»), o'quvchi panelidagi «Ulangan» belgisi, test nomlari va AI'ga berilgan o'zbekcha prompt. Ular darsda avvaldan asl holida turadi.</p>
+  </section>
+
+  <nav class="toc" aria-label="Darslar"><a href="#cicd1">CI/CD-1</a><a href="#cicd2">CI/CD-2</a><a href="#pg1">PG-1</a><a href="#pg2">PG-2</a><a href="#jest1">Jest-1</a><a href="#jest2">Jest-2</a><a href="#ws1">WebSocket-1</a><a href="#ws2">WebSocket-2</a><a href="#wh">Webhook</a><a href="#nest2">Nest-2</a></nav>
+
+<h2 class="dars" id="pg1">PG-1</h2>
+<article class="ek" data-id="pg1-02">
+  <header><span class="tag">PG-1 · 2-ekran</span><h3>SQL va NoSQL: bitta ma&#x27;lumot ikki shaklda</h3></header>
+  <div class="pair">
+    <figure><figcaption>Oldin</figcaption><a href="img/pg1-02-oldin.jpg" target="_blank" rel="noopener"><img src="img/pg1-02-oldin.jpg" alt="pg1-02 oldin" loading="lazy" width="1280" height="720"></a></figure>
+    <figure><figcaption class="new">Endi darsda</figcaption><a href="img/pg1-02-yangi.jpg" target="_blank" rel="noopener"><img src="img/pg1-02-yangi.jpg" alt="pg1-02 endi" loading="lazy" width="1280" height="720"></a></figure>
+  </div>
+  <div class="meta"><p><b>Nima o'zgardi:</b> Oxirgi qadamda hujjat ham, jadval ham yashiriladi: ikki bo&#x27;sh sarlavha va matnli moslik qoladi.</p><ul><li>Hujjat va jadval xulosada ham ko&#x27;rinadi. Moslik rang bilan ularning ustida: collection va jadval yashil, «vali» hujjati va 2-qator ko&#x27;k, username maydoni va ustuni to&#x27;q sariq.</li><li>Jadvalga shahar yozilmasligi haqiqiy xato bilan ko&#x27;rsatilgan.</li></ul><p class="q"><b>Qaysi qadamda:</b> hujjat va jadval oxirigacha turadi, 5-qadamda rang mosligi</p></div>
+  <div class="vote" role="group" aria-label="pg1-02 baho">
+    <button type="button" data-v="ok">Yaxshi</button><button type="button" data-v="fix">Tuzatish kerak</button>
+    <input type="text" id="iz-pg1-02" placeholder="Izoh (ixtiyoriy)" aria-label="pg1-02 izoh">
+  </div>
+</article>
+<h2 class="dars" id="pg2">PG-2</h2>
+<article class="ek" data-id="pg2-10">
+  <header><span class="tag">PG-2 · 10-ekran</span><h3>Tranzaksiya: prompt holatlari</h3></header>
+  <div class="pair">
+    <figure><figcaption>Oldin</figcaption><a href="img/pg2-10-oldin.jpg" target="_blank" rel="noopener"><img src="img/pg2-10-oldin.jpg" alt="pg2-10 oldin" loading="lazy" width="1280" height="720"></a></figure>
+    <figure><figcaption class="new">Endi darsda</figcaption><a href="img/pg2-10-yangi.jpg" target="_blank" rel="noopener"><img src="img/pg2-10-yangi.jpg" alt="pg2-10 endi" loading="lazy" width="1280" height="720"></a></figure>
+  </div>
+  <div class="meta"><p><b>Nima o'zgardi:</b> Uchta prompt (shop=#, shop=*#, shop=!#) alohida kartada, o&#x27;tishlar so&#x27;z bilan.</p><ul><li>Bitta holat sxemasi: BEGIN, xato, COMMIT, ROLLBACK o&#x27;tishlari strelka bilan.</li><li>!# holatida COMMIT ham ROLLBACK bo&#x27;ladi. Darsning o&#x27;z chiqishida baza javobi: ROLLBACK.</li></ul><p class="q"><b>Qaysi qadamda:</b> faqat xulosa qadami almashdi, oraliq kod va terminal qadamlari o&#x27;z joyida</p></div>
+  <div class="vote" role="group" aria-label="pg2-10 baho">
+    <button type="button" data-v="ok">Yaxshi</button><button type="button" data-v="fix">Tuzatish kerak</button>
+    <input type="text" id="iz-pg2-10" placeholder="Izoh (ixtiyoriy)" aria-label="pg2-10 izoh">
+  </div>
+</article>
+<article class="ek" data-id="pg2-17">
+  <header><span class="tag">PG-2 · 17-ekran</span><h3>Pool — ulanishlar to&#x27;plami</h3></header>
+  <div class="pair">
+    <figure><figcaption>Oldin</figcaption><a href="img/pg2-17-oldin.jpg" target="_blank" rel="noopener"><img src="img/pg2-17-oldin.jpg" alt="pg2-17 oldin" loading="lazy" width="1280" height="720"></a></figure>
+    <figure><figcaption class="new">Endi darsda</figcaption><a href="img/pg2-17-yangi.jpg" target="_blank" rel="noopener"><img src="img/pg2-17-yangi.jpg" alt="pg2-17 endi" loading="lazy" width="1280" height="720"></a></figure>
+  </div>
+  <div class="meta"><p><b>Nima o'zgardi:</b> Uchta karta va qoida, sahnaning 3/4 qismi bo&#x27;sh.</p><ul><li>Kod, Pool va PostgreSQL yo&#x27;laklari: yaratilganda ulanish 0, birinchi so&#x27;rovda ochiladi, keyingilari o&#x27;sha pid 187528 ni ishlatadi.</li><li>Parol xato: ishga tushish xatosiz, xato birinchi so&#x27;rovda chiqadi (password authentication failed).</li></ul><p class="q"><b>Qaysi qadamda:</b> faqat xulosa qadami almashdi, oraliq kod va terminal qadamlari o&#x27;z joyida</p></div>
+  <div class="vote" role="group" aria-label="pg2-17 baho">
+    <button type="button" data-v="ok">Yaxshi</button><button type="button" data-v="fix">Tuzatish kerak</button>
+    <input type="text" id="iz-pg2-17" placeholder="Izoh (ixtiyoriy)" aria-label="pg2-17 izoh">
+  </div>
+</article>
+<article class="ek" data-id="pg2-18">
+  <header><span class="tag">PG-2 · 18-ekran</span><h3>pool.query → rows, rowCount → res.json</h3></header>
+  <div class="pair">
+    <figure><figcaption>Oldin</figcaption><a href="img/pg2-18-oldin.jpg" target="_blank" rel="noopener"><img src="img/pg2-18-oldin.jpg" alt="pg2-18 oldin" loading="lazy" width="1280" height="720"></a></figure>
+    <figure><figcaption class="new">Endi darsda</figcaption><a href="img/pg2-18-yangi.jpg" target="_blank" rel="noopener"><img src="img/pg2-18-yangi.jpg" alt="pg2-18 endi" loading="lazy" width="1280" height="720"></a></figure>
+  </div>
+  <div class="meta"><p><b>Nima o'zgardi:</b> Oraliq qadamlarda kod, Postman va psql bor; xulosada to&#x27;rtta kichik karta qoladi.</p><ul><li>GET /api/cars yo&#x27;li to&#x27;rt qadamda, har qadam ostida haqiqiy qiymat: SELECT * FROM cars, rows: 3, 200.</li><li>rowCount va terminal mosligi jadvali; catch tarmog&#x27;i haqiqiy 500 xabari bilan.</li></ul><p class="q"><b>Qaysi qadamda:</b> faqat xulosa qadami almashdi, oraliq kod va terminal qadamlari o&#x27;z joyida</p></div>
+  <div class="vote" role="group" aria-label="pg2-18 baho">
+    <button type="button" data-v="ok">Yaxshi</button><button type="button" data-v="fix">Tuzatish kerak</button>
+    <input type="text" id="iz-pg2-18" placeholder="Izoh (ixtiyoriy)" aria-label="pg2-18 izoh">
+  </div>
+</article>
+<article class="ek" data-id="pg2-19">
+  <header><span class="tag">PG-2 · 19-ekran</span><h3>POST, PUT, DELETE: statuslar va 404</h3></header>
+  <div class="pair">
+    <figure><figcaption>Oldin</figcaption><a href="img/pg2-19-oldin.jpg" target="_blank" rel="noopener"><img src="img/pg2-19-oldin.jpg" alt="pg2-19 oldin" loading="lazy" width="1280" height="720"></a></figure>
+    <figure><figcaption class="new">Endi darsda</figcaption><a href="img/pg2-19-yangi.jpg" target="_blank" rel="noopener"><img src="img/pg2-19-yangi.jpg" alt="pg2-19 endi" loading="lazy" width="1280" height="720"></a></figure>
+  </div>
+  <div class="meta"><p><b>Nima o'zgardi:</b> Xulosada beshta status qutichasi va qoida.</p><ul><li>Har endpoint bir qator: SQL, baza javobi va status. PUT /api/cars/99 qatori (rowCount: 0 → 404) ajralib turadi.</li><li>server.js dagi haqiqiy 404 satri va POST javobidagi is_rented: null.</li></ul><p class="q"><b>Qaysi qadamda:</b> faqat xulosa qadami almashdi, oraliq kod va terminal qadamlari o&#x27;z joyida</p></div>
+  <div class="vote" role="group" aria-label="pg2-19 baho">
+    <button type="button" data-v="ok">Yaxshi</button><button type="button" data-v="fix">Tuzatish kerak</button>
+    <input type="text" id="iz-pg2-19" placeholder="Izoh (ixtiyoriy)" aria-label="pg2-19 izoh">
+  </div>
+</article>
+<article class="ek" data-id="pg2-23">
+  <header><span class="tag">PG-2 · 23-ekran</span><h3>express.json() yo&#x27;q — req.body undefined</h3></header>
+  <div class="pair">
+    <figure><figcaption>Oldin</figcaption><a href="img/pg2-23-oldin.jpg" target="_blank" rel="noopener"><img src="img/pg2-23-oldin.jpg" alt="pg2-23 oldin" loading="lazy" width="1280" height="720"></a></figure>
+    <figure><figcaption class="new">Endi darsda</figcaption><a href="img/pg2-23-yangi.jpg" target="_blank" rel="noopener"><img src="img/pg2-23-yangi.jpg" alt="pg2-23 endi" loading="lazy" width="1280" height="720"></a></figure>
+  </div>
+  <div class="meta"><p><b>Nima o'zgardi:</b> Xulosada kod yashiriladi, uchta gapli quti qoladi.</p><ul><li>Bitta POST ikki yo&#x27;lda: satr yo&#x27;q bo&#x27;lsa undefined va 500 (haqiqiy xabar), satr bor bo&#x27;lsa 201.</li><li>server.js dagi joyi va belgisi: GET 200, POST 500.</li></ul><p class="q"><b>Qaysi qadamda:</b> faqat xulosa qadami almashdi, oraliq kod va terminal qadamlari o&#x27;z joyida</p></div>
+  <div class="vote" role="group" aria-label="pg2-23 baho">
+    <button type="button" data-v="ok">Yaxshi</button><button type="button" data-v="fix">Tuzatish kerak</button>
+    <input type="text" id="iz-pg2-23" placeholder="Izoh (ixtiyoriy)" aria-label="pg2-23 izoh">
+  </div>
+</article>
+<h2 class="dars" id="jest1">Jest-1</h2>
+<article class="ek" data-id="jest1-15">
+  <header><span class="tag">Jest-1 · 15-ekran</span><h3>Chegara testi: oxirgi va yagona sahifa</h3></header>
+  <div class="pair">
+    <figure><figcaption>Oldin</figcaption><a href="img/jest1-15-oldin.jpg" target="_blank" rel="noopener"><img src="img/jest1-15-oldin.jpg" alt="jest1-15 oldin" loading="lazy" width="1280" height="720"></a></figure>
+    <figure><figcaption class="new">Endi darsda</figcaption><a href="img/jest1-15-yangi.jpg" target="_blank" rel="noopener"><img src="img/jest1-15-yangi.jpg" alt="jest1-15 endi" loading="lazy" width="1280" height="720"></a></figure>
+  </div>
+  <div class="meta"><p><b>Nima o'zgardi:</b> Xulosada sahifa belgilari qatori va qoida.</p><ul><li>4 sahifa va ikki shart (page &lt; pages − 1 va &lt;=): farq faqat chegarada, 2·2 va 0·0 da chiqadi.</li><li>Haqiqiy npx jest farqi: ikki testda ortiqcha ▶.</li></ul><p class="q"><b>Qaysi qadamda:</b> faqat xulosa qadami almashdi, oraliq kod va terminal qadamlari o&#x27;z joyida</p></div>
+  <div class="vote" role="group" aria-label="jest1-15 baho">
+    <button type="button" data-v="ok">Yaxshi</button><button type="button" data-v="fix">Tuzatish kerak</button>
+    <input type="text" id="iz-jest1-15" placeholder="Izoh (ixtiyoriy)" aria-label="jest1-15 izoh">
+  </div>
+</article>
+<h2 class="dars" id="jest2">Jest-2</h2>
+<article class="ek" data-id="jest2-05">
+  <header><span class="tag">Jest-2 · 5-ekran</span><h3>it.each: bitta qoida, yetti kirish</h3></header>
+  <div class="pair">
+    <figure><figcaption>Oldin</figcaption><a href="img/jest2-05-oldin.jpg" target="_blank" rel="noopener"><img src="img/jest2-05-oldin.jpg" alt="jest2-05 oldin" loading="lazy" width="1280" height="720"></a></figure>
+    <figure><figcaption class="new">Endi darsda</figcaption><a href="img/jest2-05-yangi.jpg" target="_blank" rel="noopener"><img src="img/jest2-05-yangi.jpg" alt="jest2-05 endi" loading="lazy" width="1280" height="720"></a></figure>
+  </div>
+  <div class="meta"><p><b>Nima o'zgardi:</b> Xulosada FAIL logidan bir parcha va qoida qoladi, spec kodi yashiriladi.</p><ul><li>it.each jadvalining o&#x27;zi: 7 kirish, kutilgan, isPhone natijasi va test belgisi; probel qatori qizil.</li><li>Qoida /^\+?\d{9,13}$/ raqamlar o&#x27;qida: 8 va 14 chegaradan tashqarida, probel qoidada yo&#x27;q.</li></ul><p class="q"><b>Qaysi qadamda:</b> faqat xulosa qadami almashdi, oraliq kod va terminal qadamlari o&#x27;z joyida</p></div>
+  <div class="vote" role="group" aria-label="jest2-05 baho">
+    <button type="button" data-v="ok">Yaxshi</button><button type="button" data-v="fix">Tuzatish kerak</button>
+    <input type="text" id="iz-jest2-05" placeholder="Izoh (ixtiyoriy)" aria-label="jest2-05 izoh">
+  </div>
+</article>
+<article class="ek" data-id="jest2-06">
+  <header><span class="tag">Jest-2 · 6-ekran</span><h3>Tuzatish: replace va «9 ta nol»</h3></header>
+  <div class="pair">
+    <figure><figcaption>Oldin</figcaption><a href="img/jest2-06-oldin.jpg" target="_blank" rel="noopener"><img src="img/jest2-06-oldin.jpg" alt="jest2-06 oldin" loading="lazy" width="1280" height="720"></a></figure>
+    <figure><figcaption class="new">Endi darsda</figcaption><a href="img/jest2-06-yangi.jpg" target="_blank" rel="noopener"><img src="img/jest2-06-yangi.jpg" alt="jest2-06 endi" loading="lazy" width="1280" height="720"></a></figure>
+  </div>
+  <div class="meta"><p><b>Nima o'zgardi:</b> Ikki karta: «qoida tor edi» va «qoida keng».</p><ul><li>phone.ts 4-satr diff: trim() o&#x27;rniga replace(/[\s-]/g, &#x27;&#x27;).</li><li>Bir xil kirishlar eski va yangi qoidada: probel qatori tor joy, 000000000 qatori keng joy — sizning qaroringiz.</li></ul><p class="q"><b>Qaysi qadamda:</b> faqat xulosa qadami almashdi, oraliq kod va terminal qadamlari o&#x27;z joyida</p></div>
+  <div class="vote" role="group" aria-label="jest2-06 baho">
+    <button type="button" data-v="ok">Yaxshi</button><button type="button" data-v="fix">Tuzatish kerak</button>
+    <input type="text" id="iz-jest2-06" placeholder="Izoh (ixtiyoriy)" aria-label="jest2-06 izoh">
+  </div>
+</article>
+<article class="ek" data-id="jest2-15">
+  <header><span class="tag">Jest-2 · 15-ekran</span><h3>Xato yo&#x27;li testi ikki qismli</h3></header>
+  <div class="pair">
+    <figure><figcaption>Oldin</figcaption><a href="img/jest2-15-oldin.jpg" target="_blank" rel="noopener"><img src="img/jest2-15-oldin.jpg" alt="jest2-15 oldin" loading="lazy" width="1280" height="720"></a></figure>
+    <figure><figcaption class="new">Endi darsda</figcaption><a href="img/jest2-15-yangi.jpg" target="_blank" rel="noopener"><img src="img/jest2-15-yangi.jpg" alt="jest2-15 endi" loading="lazy" width="1280" height="720"></a></figure>
+  </div>
+  <div class="meta"><p><b>Nima o'zgardi:</b> Ikki kartada ikki expect satri, sahnaning 4/5 qismi bo&#x27;sh. Chap sarlavha kesilgan.</p><ul><li>place() oqimi: savat, ombor (stock: 1), tekshiruv (throw), UPDATE chaqirilmadi. Har qutida service satri.</li><li>Ikki expect pastda va qaysi qutini tekshirishi yozilgan.</li></ul><p class="q"><b>Qaysi qadamda:</b> faqat xulosa qadami almashdi, oraliq kod va terminal qadamlari o&#x27;z joyida</p></div>
+  <div class="vote" role="group" aria-label="jest2-15 baho">
+    <button type="button" data-v="ok">Yaxshi</button><button type="button" data-v="fix">Tuzatish kerak</button>
+    <input type="text" id="iz-jest2-15" placeholder="Izoh (ixtiyoriy)" aria-label="jest2-15 izoh">
+  </div>
+</article>
+<article class="ek" data-id="jest2-18">
+  <header><span class="tag">Jest-2 · 18-ekran</span><h3>supertest: sayt ham shunday sinaladi</h3></header>
+  <div class="pair">
+    <figure><figcaption>Oldin</figcaption><a href="img/jest2-18-oldin.jpg" target="_blank" rel="noopener"><img src="img/jest2-18-oldin.jpg" alt="jest2-18 oldin" loading="lazy" width="1280" height="720"></a></figure>
+    <figure><figcaption class="new">Endi darsda</figcaption><a href="img/jest2-18-yangi.jpg" target="_blank" rel="noopener"><img src="img/jest2-18-yangi.jpg" alt="jest2-18 endi" loading="lazy" width="1280" height="720"></a></figure>
+  </div>
+  <div class="meta"><p><b>Nima o'zgardi:</b> Ikki karta: «Bot handler&#x27;i» va «Sayt route&#x27;i» — so&#x27;z bilan.</p><ul><li>Ikki parallel oqim bir xil qolipda: kirish → kod → chiqish → expect; haqiqiy qiymatlar (throw matni, 200 { ok: true }, 404 Cannot GET /nope).</li><li>Sayt testi xotirada: port ochilmaydi, baza yo&#x27;q.</li></ul><p class="q"><b>Qaysi qadamda:</b> faqat xulosa qadami almashdi, oraliq kod va terminal qadamlari o&#x27;z joyida</p></div>
+  <div class="vote" role="group" aria-label="jest2-18 baho">
+    <button type="button" data-v="ok">Yaxshi</button><button type="button" data-v="fix">Tuzatish kerak</button>
+    <input type="text" id="iz-jest2-18" placeholder="Izoh (ixtiyoriy)" aria-label="jest2-18 izoh">
+  </div>
+</article>
+<h2 class="dars" id="cicd1">CI/CD-1</h2>
+<article class="ek" data-id="cicd1-02">
+  <header><span class="tag">CI/CD-1 · 2-ekran</span><h3>CI va CD nima qiladi</h3></header>
+  <div class="pair">
+    <figure><figcaption>Oldin</figcaption><a href="img/cicd1-02-oldin.jpg" target="_blank" rel="noopener"><img src="img/cicd1-02-oldin.jpg" alt="cicd1-02 oldin" loading="lazy" width="1280" height="720"></a></figure>
+    <figure><figcaption class="new">Endi darsda</figcaption><a href="img/cicd1-02-yangi.jpg" target="_blank" rel="noopener"><img src="img/cicd1-02-yangi.jpg" alt="cicd1-02 endi" loading="lazy" width="1280" height="720"></a></figure>
+  </div>
+  <div class="meta"><p><b>Nima o'zgardi:</b> Xulosada «Bugun» rejasi to&#x27;rtta kartada, sahna bo&#x27;sh.</p><ul><li>git push → CI (toza mashina, to&#x27;rt qadam, haqiqiy kodlar 0) → CD (node dist/main: DATABASE_URL topilmadi) → server; ustida «bugun to&#x27;liq / chegaragacha / keyingi dars» chizig&#x27;i.</li><li>Pastda «menda ishlaydi» holati va CD ning ikki turi.</li></ul><p class="q"><b>Qaysi qadamda:</b> 1–4-qadam: chizma boshidan ko&#x27;rinadi, gapirilgan qism yonadi</p></div>
+  <div class="vote" role="group" aria-label="cicd1-02 baho">
+    <button type="button" data-v="ok">Yaxshi</button><button type="button" data-v="fix">Tuzatish kerak</button>
+    <input type="text" id="iz-cicd1-02" placeholder="Izoh (ixtiyoriy)" aria-label="cicd1-02 izoh">
+  </div>
+</article>
+<article class="ek" data-id="cicd1-03">
+  <header><span class="tag">CI/CD-1 · 3-ekran</span><h3>Lenta: chiqish kodi va qizilda to&#x27;xtash</h3></header>
+  <div class="pair">
+    <figure><figcaption>Oldin</figcaption><a href="img/cicd1-03-oldin.jpg" target="_blank" rel="noopener"><img src="img/cicd1-03-oldin.jpg" alt="cicd1-03 oldin" loading="lazy" width="1280" height="720"></a></figure>
+    <figure><figcaption class="new">Endi darsda</figcaption><a href="img/cicd1-03-yangi.jpg" target="_blank" rel="noopener"><img src="img/cicd1-03-yangi.jpg" alt="cicd1-03 endi" loading="lazy" width="1280" height="720"></a></figure>
+  </div>
+  <div class="meta"><p><b>Nima o'zgardi:</b> O&#x27;rta qadamda chiqish kodlari ro&#x27;yxati bor, xulosada faqat kichik lenta va qoida qoladi.</p><ul><li>Lenta jadvali: to&#x27;rt vaziyat × to&#x27;rt qadam, har katakda haqiqiy chiqish kodi (0 · 1 · 2 · 127) va vaqt; yurmagan qadamlar shtrixli.</li><li>Qoida: lenta faqat «nolmi?» deb qaraydi.</li></ul><p class="q"><b>Qaysi qadamda:</b> 1–4-qadam: jadval qatorlari navbat bilan yonadi</p></div>
+  <div class="vote" role="group" aria-label="cicd1-03 baho">
+    <button type="button" data-v="ok">Yaxshi</button><button type="button" data-v="fix">Tuzatish kerak</button>
+    <input type="text" id="iz-cicd1-03" placeholder="Izoh (ixtiyoriy)" aria-label="cicd1-03 izoh">
+  </div>
+</article>
+<article class="ek" data-id="cicd1-14">
+  <header><span class="tag">CI/CD-1 · 14-ekran</span><h3>npm ci va lock: «in sync» xatosi</h3></header>
+  <div class="pair">
+    <figure><figcaption>Oldin</figcaption><a href="img/cicd1-14-oldin.jpg" target="_blank" rel="noopener"><img src="img/cicd1-14-oldin.jpg" alt="cicd1-14 oldin" loading="lazy" width="1280" height="720"></a></figure>
+    <figure><figcaption class="new">Endi darsda</figcaption><a href="img/cicd1-14-yangi.jpg" target="_blank" rel="noopener"><img src="img/cicd1-14-yangi.jpg" alt="cicd1-14 endi" loading="lazy" width="1280" height="720"></a></figure>
+  </div>
+  <div class="meta"><p><b>Nima o'zgardi:</b> Xulosada ikki karta: «npm ci — lentada» va «npm install — lokalda».</p><ul><li>Biz qilgan yo&#x27;l: package.json 4.16.0 → npm install yo&#x27;q → lock 4.16.3 → npm ci chiqish kodi 1, haqiqiy EUSAGE xabari bilan.</li><li>To&#x27;g&#x27;ri yo&#x27;l: npm install → lock yangilanadi → ikkala fayl commit → lentada npm ci 0.</li></ul><p class="q"><b>Qaysi qadamda:</b> faqat xulosa qadami almashdi, oraliq kod va terminal qadamlari o&#x27;z joyida</p></div>
+  <div class="vote" role="group" aria-label="cicd1-14 baho">
+    <button type="button" data-v="ok">Yaxshi</button><button type="button" data-v="fix">Tuzatish kerak</button>
+    <input type="text" id="iz-cicd1-14" placeholder="Izoh (ixtiyoriy)" aria-label="cicd1-14 izoh">
+  </div>
+</article>
+<h2 class="dars" id="cicd2">CI/CD-2</h2>
+<article class="ek" data-id="cicd2-02">
+  <header><span class="tag">CI/CD-2 · 2-ekran</span><h3>run → job → step</h3></header>
+  <div class="pair">
+    <figure><figcaption>Oldin</figcaption><a href="img/cicd2-02-oldin.jpg" target="_blank" rel="noopener"><img src="img/cicd2-02-oldin.jpg" alt="cicd2-02 oldin" loading="lazy" width="1280" height="720"></a></figure>
+    <figure><figcaption class="new">Endi darsda</figcaption><a href="img/cicd2-02-yangi.jpg" target="_blank" rel="noopener"><img src="img/cicd2-02-yangi.jpg" alt="cicd2-02 endi" loading="lazy" width="1280" height="720"></a></figure>
+  </div>
+  <div class="meta"><p><b>Nima o'zgardi:</b> Uchta karta: run, job, step — ta&#x27;rif so&#x27;z bilan.</p><ul><li>Haqiqiy run 41845454983 ichma-ich: run ichida ikki job (test, smoke · needs), har job ichida qadamlar va soniyalar.</li><li>GitHub qo&#x27;shgan qadamlar kulrang, sizning buyruqlaringiz binafsha; pastda uch atama.</li></ul><p class="q"><b>Qaysi qadamda:</b> faqat xulosa qadami almashdi, oraliq kod va terminal qadamlari o&#x27;z joyida</p></div>
+  <div class="vote" role="group" aria-label="cicd2-02 baho">
+    <button type="button" data-v="ok">Yaxshi</button><button type="button" data-v="fix">Tuzatish kerak</button>
+    <input type="text" id="iz-cicd2-02" placeholder="Izoh (ixtiyoriy)" aria-label="cicd2-02 izoh">
+  </div>
+</article>
+<article class="ek" data-id="cicd2-03">
+  <header><span class="tag">CI/CD-2 · 3-ekran</span><h3>Tayyor qadamlar yashirin emas</h3></header>
+  <div class="pair">
+    <figure><figcaption>Oldin</figcaption><a href="img/cicd2-03-oldin.jpg" target="_blank" rel="noopener"><img src="img/cicd2-03-oldin.jpg" alt="cicd2-03 oldin" loading="lazy" width="1280" height="720"></a></figure>
+    <figure><figcaption class="new">Endi darsda</figcaption><a href="img/cicd2-03-yangi.jpg" target="_blank" rel="noopener"><img src="img/cicd2-03-yangi.jpg" alt="cicd2-03 endi" loading="lazy" width="1280" height="720"></a></figure>
+  </div>
+  <div class="meta"><p><b>Nima o'zgardi:</b> Uchta karta: Set up job, checkout, setup-node — log faktlari kichik matnda.</p><ul><li>Bitta job (run 41832879751, 25 s) qadamlari vaqt chizig&#x27;ida: GitHub qadamlari ko&#x27;k, sizniki kulrang.</li><li>Uch tayyor qadamning haqiqiy log satrlari: ubuntu-26.04 · Contents: read · git init · --depth=1 · node v24.22.1.</li></ul><p class="q"><b>Qaysi qadamda:</b> faqat xulosa qadami almashdi, oraliq kod va terminal qadamlari o&#x27;z joyida</p></div>
+  <div class="vote" role="group" aria-label="cicd2-03 baho">
+    <button type="button" data-v="ok">Yaxshi</button><button type="button" data-v="fix">Tuzatish kerak</button>
+    <input type="text" id="iz-cicd2-03" placeholder="Izoh (ixtiyoriy)" aria-label="cicd2-03 izoh">
+  </div>
+</article>
+<article class="ek" data-id="cicd2-08">
+  <header><span class="tag">CI/CD-2 · 8-ekran</span><h3>matrix va fail-fast</h3></header>
+  <div class="pair">
+    <figure><figcaption>Oldin</figcaption><a href="img/cicd2-08-oldin.jpg" target="_blank" rel="noopener"><img src="img/cicd2-08-oldin.jpg" alt="cicd2-08 oldin" loading="lazy" width="1280" height="720"></a></figure>
+    <figure><figcaption class="new">Endi darsda</figcaption><a href="img/cicd2-08-yangi.jpg" target="_blank" rel="noopener"><img src="img/cicd2-08-yangi.jpg" alt="cicd2-08 endi" loading="lazy" width="1280" height="720"></a></figure>
+  </div>
+  <div class="meta"><p><b>Nima o'zgardi:</b> Ikki karta: fail-fast true va false — natija so&#x27;z bilan.</p><ul><li>Ikki haqiqiy run vaqt o&#x27;qida: true da 22 qizil (10 s), 24 cancelled (22 s); false da 24 yashil (25 s, 25 passed).</li><li>Haqiqiy xabar: The strategy configuration was canceled because &quot;test._22&quot; failed.</li></ul><p class="q"><b>Qaysi qadamda:</b> faqat xulosa qadami almashdi, oraliq kod va terminal qadamlari o&#x27;z joyida</p></div>
+  <div class="vote" role="group" aria-label="cicd2-08 baho">
+    <button type="button" data-v="ok">Yaxshi</button><button type="button" data-v="fix">Tuzatish kerak</button>
+    <input type="text" id="iz-cicd2-08" placeholder="Izoh (ixtiyoriy)" aria-label="cicd2-08 izoh">
+  </div>
+</article>
+<article class="ek" data-id="cicd2-12">
+  <header><span class="tag">CI/CD-2 · 12-ekran</span><h3>Unit test bazasiz, smoke — services bilan</h3></header>
+  <div class="pair">
+    <figure><figcaption>Oldin</figcaption><a href="img/cicd2-12-oldin.jpg" target="_blank" rel="noopener"><img src="img/cicd2-12-oldin.jpg" alt="cicd2-12 oldin" loading="lazy" width="1280" height="720"></a></figure>
+    <figure><figcaption class="new">Endi darsda</figcaption><a href="img/cicd2-12-yangi.jpg" target="_blank" rel="noopener"><img src="img/cicd2-12-yangi.jpg" alt="cicd2-12 endi" loading="lazy" width="1280" height="720"></a></figure>
+  </div>
+  <div class="meta"><p><b>Nima o'zgardi:</b> Bitta qoida kartasi, sahnaning 85% bo&#x27;sh.</p><ul><li>Ikki job yonma-yon: test (manager — mock, baza yo&#x27;q, 19 s) va smoke (needs: test, postgres:18 konteyner 13 s da ko&#x27;tarildi, 41 s).</li><li>Lentadagi haqiqiy smoke logi: restart va race tekshiruvlari, NATIJA: 5/5 ✓.</li></ul><p class="q"><b>Qaysi qadamda:</b> faqat xulosa qadami almashdi, oraliq kod va terminal qadamlari o&#x27;z joyida</p></div>
+  <div class="vote" role="group" aria-label="cicd2-12 baho">
+    <button type="button" data-v="ok">Yaxshi</button><button type="button" data-v="fix">Tuzatish kerak</button>
+    <input type="text" id="iz-cicd2-12" placeholder="Izoh (ixtiyoriy)" aria-label="cicd2-12 izoh">
+  </div>
+</article>
+<h2 class="dars" id="ws1">WebSocket-1</h2>
+<article class="ek" data-id="ws1-02">
+  <header><span class="tag">WebSocket-1 · 2-ekran</span><h3>Oddiy HTTP: panel so&#x27;ramaguncha bilmaydi</h3></header>
+  <div class="pair">
+    <figure><figcaption>Oldin</figcaption><a href="img/ws1-02-oldin.jpg" target="_blank" rel="noopener"><img src="img/ws1-02-oldin.jpg" alt="ws1-02 oldin" loading="lazy" width="1280" height="720"></a></figure>
+    <figure><figcaption class="new">Endi darsda</figcaption><a href="img/ws1-02-yangi.jpg" target="_blank" rel="noopener"><img src="img/ws1-02-yangi.jpg" alt="ws1-02 endi" loading="lazy" width="1280" height="720"></a></figure>
+  </div>
+  <div class="meta"><p><b>Nima o'zgardi:</b> Kichik terminal (tokensiz 401) va qoida; sahnaning 3/4 qismi bo&#x27;sh.</p><ul><li>Ikki ketma-ketlik yonma-yon: HTTP — 1-so&#x27;rov [], Bobur buyurtma beradi (20:19:16), ekran eski, 2-so&#x27;rovda #1; tokensiz 401.</li><li>Doimiy ulanish — server o&#x27;zi yuboradi: order-changed {&quot;orderId&quot;:2,&quot;reason&quot;:&quot;new&quot;} va &quot;status&quot; (haqiqiy vaqtlar bilan).</li></ul><p class="q"><b>Qaysi qadamda:</b> 3- va 4-qadam (4-qadamda 401 qatori ajraladi)</p></div>
+  <div class="vote" role="group" aria-label="ws1-02 baho">
+    <button type="button" data-v="ok">Yaxshi</button><button type="button" data-v="fix">Tuzatish kerak</button>
+    <input type="text" id="iz-ws1-02" placeholder="Izoh (ixtiyoriy)" aria-label="ws1-02 izoh">
+  </div>
+</article>
+<article class="ek" data-id="ws1-15">
+  <header><span class="tag">WebSocket-1 · 15-ekran</span><h3>Server muzlasa: 45 soniyagacha bilinmaydi</h3></header>
+  <div class="pair">
+    <figure><figcaption>Oldin</figcaption><a href="img/ws1-15-oldin.jpg" target="_blank" rel="noopener"><img src="img/ws1-15-oldin.jpg" alt="ws1-15 oldin" loading="lazy" width="1280" height="720"></a></figure>
+    <figure><figcaption class="new">Endi darsda</figcaption><a href="img/ws1-15-yangi.jpg" target="_blank" rel="noopener"><img src="img/ws1-15-yangi.jpg" alt="ws1-15 endi" loading="lazy" width="1280" height="720"></a></figure>
+  </div>
+  <div class="meta"><p><b>Nima o'zgardi:</b> To&#x27;rtta kichik karta bir qatorda (STOP, +43 s, ping timeout, davom). Topilma: sarlavhada «42 soniya», haqiqiy farq 43 s (20:19:56 → 20:20:39).</p><ul><li>Haqiqiy vaqt o&#x27;qi 20:19:50–20:20:55: server muzlagan, klient «ulangan» deb turadi, 20:20:39 ping timeout, 20:20:48 davom — 43 s oraliq ajratilgan.</li><li>pingInterval 25 + pingTimeout 20 = 45 s gacha; sinf uchun bitta qoida.</li></ul><p class="q"><b>Qaysi qadamda:</b> faqat xulosa qadami almashdi, oraliq kod va terminal qadamlari o&#x27;z joyida</p></div>
+  <div class="vote" role="group" aria-label="ws1-15 baho">
+    <button type="button" data-v="ok">Yaxshi</button><button type="button" data-v="fix">Tuzatish kerak</button>
+    <input type="text" id="iz-ws1-15" placeholder="Izoh (ixtiyoriy)" aria-label="ws1-15 izoh">
+  </div>
+</article>
+<article class="ek" data-id="ws1-17">
+  <header><span class="tag">WebSocket-1 · 17-ekran</span><h3>Ikki AI panel yozdi</h3></header>
+  <div class="pair">
+    <figure><figcaption>Oldin</figcaption><a href="img/ws1-17-oldin.jpg" target="_blank" rel="noopener"><img src="img/ws1-17-oldin.jpg" alt="ws1-17 oldin" loading="lazy" width="1280" height="720"></a></figure>
+    <figure><figcaption class="new">Endi darsda</figcaption><a href="img/ws1-17-yangi.jpg" target="_blank" rel="noopener"><img src="img/ws1-17-yangi.jpg" alt="ws1-17 endi" loading="lazy" width="1280" height="720"></a></figure>
+  </div>
+  <div class="meta"><p><b>Nima o'zgardi:</b> Ikki AI javobidan ikki iqtibos kartada.</p><ul><li>Taqqoslash jadvali (AI tajribasi XULOSA dan): hajm, transport (xom ws), token (URL&#x27;da), hodisada butun buyurtma, mavjud kod o&#x27;zgardi, o&#x27;z sinovi mock bilan.</li><li>Har xavf belgisi bilan; xulosa — bazasiz sinagan, keyingi ekranda haqiqiy baza.</li></ul><p class="q"><b>Qaysi qadamda:</b> faqat xulosa qadami almashdi, oraliq kod va terminal qadamlari o&#x27;z joyida</p></div>
+  <div class="vote" role="group" aria-label="ws1-17 baho">
+    <button type="button" data-v="ok">Yaxshi</button><button type="button" data-v="fix">Tuzatish kerak</button>
+    <input type="text" id="iz-ws1-17" placeholder="Izoh (ixtiyoriy)" aria-label="ws1-17 izoh">
+  </div>
+</article>
+<h2 class="dars" id="ws2">WebSocket-2</h2>
+<article class="ek" data-id="ws2-02">
+  <header><span class="tag">WebSocket-2 · 2-ekran</span><h3>Qayta ulanish — yangi ulanish, hodisa o&#x27;tib ketgan</h3></header>
+  <div class="pair">
+    <figure><figcaption>Oldin</figcaption><a href="img/ws2-02-oldin.jpg" target="_blank" rel="noopener"><img src="img/ws2-02-oldin.jpg" alt="ws2-02 oldin" loading="lazy" width="1280" height="720"></a></figure>
+    <figure><figcaption class="new">Endi darsda</figcaption><a href="img/ws2-02-yangi.jpg" target="_blank" rel="noopener"><img src="img/ws2-02-yangi.jpg" alt="ws2-02 endi" loading="lazy" width="1280" height="720"></a></figure>
+  </div>
+  <div class="meta"><p><b>Nima o'zgardi:</b> Beshta kichik karta bir qatorda, to&#x27;rttasi xira; asosiy fikr ko&#x27;rinmaydi.</p><ul><li>Katta oqim: ulangan → uzildi → buyurtma #2 (order-changed → 0 panel) → qayta ulandi → ro&#x27;yxat eski.</li><li>Pastda yechim aylanasi: connect → GET /admin/orders → ro&#x27;yxat to&#x27;g&#x27;ri.</li></ul><p class="q"><b>Qaysi qadamda:</b> 2- va 4-qadam (yechim 4-qadamda yonadi)</p></div>
+  <div class="vote" role="group" aria-label="ws2-02 baho">
+    <button type="button" data-v="ok">Yaxshi</button><button type="button" data-v="fix">Tuzatish kerak</button>
+    <input type="text" id="iz-ws2-02" placeholder="Izoh (ixtiyoriy)" aria-label="ws2-02 izoh">
+  </div>
+</article>
+<article class="ek" data-id="ws2-03">
+  <header><span class="tag">WebSocket-2 · 3-ekran</span><h3>README da&#x27;vosi va BUZISH yozuvi</h3></header>
+  <div class="pair">
+    <figure><figcaption>Oldin</figcaption><a href="img/ws2-03-oldin.jpg" target="_blank" rel="noopener"><img src="img/ws2-03-oldin.jpg" alt="ws2-03 oldin" loading="lazy" width="1280" height="720"></a></figure>
+    <figure><figcaption class="new">Endi darsda</figcaption><a href="img/ws2-03-yangi.jpg" target="_blank" rel="noopener"><img src="img/ws2-03-yangi.jpg" alt="ws2-03 endi" loading="lazy" width="1280" height="720"></a></figure>
+  </div>
+  <div class="meta"><p><b>Nima o'zgardi:</b> Ikki karta: «buzildi» va «buzilmadi» ta&#x27;rifi.</p><ul><li>BUZISH.md ustunlari jadval bo&#x27;lib: usul · nima qildim · nima kutdim · nima bo&#x27;ldi · belgi; birinchi qator haqiqiy (server qayta yondi → buzildi), qolgan ikki usul keyingi ekranlarda to&#x27;ladi.</li><li>Belgi ma&#x27;nosi va «da&#x27;vo» qoidasi.</li></ul><p class="q"><b>Qaysi qadamda:</b> faqat xulosa qadami almashdi, oraliq kod va terminal qadamlari o&#x27;z joyida</p></div>
+  <div class="vote" role="group" aria-label="ws2-03 baho">
+    <button type="button" data-v="ok">Yaxshi</button><button type="button" data-v="fix">Tuzatish kerak</button>
+    <input type="text" id="iz-ws2-03" placeholder="Izoh (ixtiyoriy)" aria-label="ws2-03 izoh">
+  </div>
+</article>
+<article class="ek" data-id="ws2-05">
+  <header><span class="tag">WebSocket-2 · 5-ekran</span><h3>Server qayta yonganda hodisa yo&#x27;qoladi</h3></header>
+  <div class="pair">
+    <figure><figcaption>Oldin</figcaption><a href="img/ws2-05-oldin.jpg" target="_blank" rel="noopener"><img src="img/ws2-05-oldin.jpg" alt="ws2-05 oldin" loading="lazy" width="1280" height="720"></a></figure>
+    <figure><figcaption class="new">Endi darsda</figcaption><a href="img/ws2-05-yangi.jpg" target="_blank" rel="noopener"><img src="img/ws2-05-yangi.jpg" alt="ws2-05 endi" loading="lazy" width="1280" height="720"></a></figure>
+  </div>
+  <div class="meta"><p><b>Nima o'zgardi:</b> Beshta kichik karta bir qatorda, to&#x27;rttasi xira; asosiy voqea ko&#x27;rinmaydi.</p><ul><li>Haqiqiy vaqt o&#x27;qi :30 dan :45 gacha: #2 bazaga 21:37:37 da, panel 21:37:39 da ulanadi — 2,2 s bo&#x27;shliq.</li><li>Natija: bazada 2, panelda faqat #1, ws2-done tuzatishi.</li></ul><p class="q"><b>Qaysi qadamda:</b> 2- va 4-qadam (natija qutilari 4-qadamda)</p></div>
+  <div class="vote" role="group" aria-label="ws2-05 baho">
+    <button type="button" data-v="ok">Yaxshi</button><button type="button" data-v="fix">Tuzatish kerak</button>
+    <input type="text" id="iz-ws2-05" placeholder="Izoh (ixtiyoriy)" aria-label="ws2-05 izoh">
+  </div>
+</article>
+<article class="ek" data-id="ws2-13">
+  <header><span class="tag">WebSocket-2 · 13-ekran</span><h3>Uch usul — sabab bitta</h3></header>
+  <div class="pair">
+    <figure><figcaption>Oldin</figcaption><a href="img/ws2-13-oldin.jpg" target="_blank" rel="noopener"><img src="img/ws2-13-oldin.jpg" alt="ws2-13 oldin" loading="lazy" width="1280" height="720"></a></figure>
+    <figure><figcaption class="new">Endi darsda</figcaption><a href="img/ws2-13-yangi.jpg" target="_blank" rel="noopener"><img src="img/ws2-13-yangi.jpg" alt="ws2-13 endi" loading="lazy" width="1280" height="720"></a></figure>
+  </div>
+  <div class="meta"><p><b>Nima o'zgardi:</b> Uchta karta: «buzildi → takrorlanmadi» va fayl raqamlari.</p><ul><li>Natijalar jadvali: uch usul × ws2-start / ws2-done — har katakda haqiqiy panel ro&#x27;yxati va baza.</li><li>Tarmoq uzilishi sxemasi: server Render&#x27;da ishlayveradi, do&#x27;kon Wi-Fi uzildi, panel do&#x27;konda.</li></ul><p class="q"><b>Qaysi qadamda:</b> faqat xulosa qadami almashdi, oraliq kod va terminal qadamlari o&#x27;z joyida</p></div>
+  <div class="vote" role="group" aria-label="ws2-13 baho">
+    <button type="button" data-v="ok">Yaxshi</button><button type="button" data-v="fix">Tuzatish kerak</button>
+    <input type="text" id="iz-ws2-13" placeholder="Izoh (ixtiyoriy)" aria-label="ws2-13 izoh">
+  </div>
+</article>
+<article class="ek" data-id="ws2-14">
+  <header><span class="tag">WebSocket-2 · 14-ekran</span><h3>connectionStateRecovery — qo&#x27;shimcha, qayta so&#x27;rash — majburiy</h3></header>
+  <div class="pair">
+    <figure><figcaption>Oldin</figcaption><a href="img/ws2-14-oldin.jpg" target="_blank" rel="noopener"><img src="img/ws2-14-oldin.jpg" alt="ws2-14 oldin" loading="lazy" width="1280" height="720"></a></figure>
+    <figure><figcaption class="new">Endi darsda</figcaption><a href="img/ws2-14-yangi.jpg" target="_blank" rel="noopener"><img src="img/ws2-14-yangi.jpg" alt="ws2-14 endi" loading="lazy" width="1280" height="720"></a></figure>
+  </div>
+  <div class="meta"><p><b>Nima o'zgardi:</b> Ikki karta: «Tiklash — qo&#x27;shimcha» va «Qayta so&#x27;rash — majburiy».</p><ul><li>Uch tajriba × ikki mexanizm: B (recovered=true, #3 keldi), A va C (recovered=false) — klient logidagi haqiqiy satrlar bilan.</li><li>Qayta so&#x27;rash uchala holatda ✓.</li></ul><p class="q"><b>Qaysi qadamda:</b> faqat xulosa qadami almashdi, oraliq kod va terminal qadamlari o&#x27;z joyida</p></div>
+  <div class="vote" role="group" aria-label="ws2-14 baho">
+    <button type="button" data-v="ok">Yaxshi</button><button type="button" data-v="fix">Tuzatish kerak</button>
+    <input type="text" id="iz-ws2-14" placeholder="Izoh (ixtiyoriy)" aria-label="ws2-14 izoh">
+  </div>
+</article>
+<article class="ek" data-id="ws2-17">
+  <header><span class="tag">WebSocket-2 · 17-ekran</span><h3>Ikki AI shikoyatni tuzatdi</h3></header>
+  <div class="pair">
+    <figure><figcaption>Oldin</figcaption><a href="img/ws2-17-oldin.jpg" target="_blank" rel="noopener"><img src="img/ws2-17-oldin.jpg" alt="ws2-17 oldin" loading="lazy" width="1280" height="720"></a></figure>
+    <figure><figcaption class="new">Endi darsda</figcaption><a href="img/ws2-17-yangi.jpg" target="_blank" rel="noopener"><img src="img/ws2-17-yangi.jpg" alt="ws2-17 endi" loading="lazy" width="1280" height="720"></a></figure>
+  </div>
+  <div class="meta"><p><b>Nima o'zgardi:</b> Ikki AI javobidan ikki iqtibos kartada.</p><ul><li>Taqqoslash jadvali (AI XULOSA): sabab, tuzatish, o&#x27;zgargan fayllar, so&#x27;rov raqami, tinglovchi tuzog&#x27;i, o&#x27;z sinovi (bazasiz).</li><li>Xulosa: himoyani o&#x27;zi qo&#x27;shdi, lekin haqiqiy bazasiz sinagan.</li></ul><p class="q"><b>Qaysi qadamda:</b> faqat xulosa qadami almashdi, oraliq kod va terminal qadamlari o&#x27;z joyida</p></div>
+  <div class="vote" role="group" aria-label="ws2-17 baho">
+    <button type="button" data-v="ok">Yaxshi</button><button type="button" data-v="fix">Tuzatish kerak</button>
+    <input type="text" id="iz-ws2-17" placeholder="Izoh (ixtiyoriy)" aria-label="ws2-17 izoh">
+  </div>
+</article>
+<h2 class="dars" id="wh">Webhook</h2>
+<article class="ek" data-id="wh-02">
+  <header><span class="tag">Webhook · 2-ekran</span><h3>To&#x27;lov natijasi — webhook</h3></header>
+  <div class="pair">
+    <figure><figcaption>Oldin</figcaption><a href="img/wh-02-oldin.jpg" target="_blank" rel="noopener"><img src="img/wh-02-oldin.jpg" alt="wh-02 oldin" loading="lazy" width="1280" height="720"></a></figure>
+    <figure><figcaption class="new">Endi darsda</figcaption><a href="img/wh-02-yangi.jpg" target="_blank" rel="noopener"><img src="img/wh-02-yangi.jpg" alt="wh-02 endi" loading="lazy" width="1280" height="720"></a></figure>
+  </div>
+  <div class="meta"><p><b>Nima o'zgardi:</b> Kichik terminal (xabar tanasi va imzo) va qoida.</p><ul><li>Webhook yo&#x27;li: xizmat → POST (haqiqiy tana va X-Signature) → 200 {&quot;ok&quot;:true} → payments → orders (paid) → panel order-changed «payment».</li><li>«Dalil emas / dalil» juftligi.</li></ul><p class="q"><b>Qaysi qadamda:</b> 1, 2 va 4-qadam</p></div>
+  <div class="vote" role="group" aria-label="wh-02 baho">
+    <button type="button" data-v="ok">Yaxshi</button><button type="button" data-v="fix">Tuzatish kerak</button>
+    <input type="text" id="iz-wh-02" placeholder="Izoh (ixtiyoriy)" aria-label="wh-02 izoh">
+  </div>
+</article>
+<article class="ek" data-id="wh-03">
+  <header><span class="tag">Webhook · 3-ekran</span><h3>wh-start: Cannot POST, 404</h3></header>
+  <div class="pair">
+    <figure><figcaption>Oldin</figcaption><a href="img/wh-03-oldin.jpg" target="_blank" rel="noopener"><img src="img/wh-03-oldin.jpg" alt="wh-03 oldin" loading="lazy" width="1280" height="720"></a></figure>
+    <figure><figcaption class="new">Endi darsda</figcaption><a href="img/wh-03-yangi.jpg" target="_blank" rel="noopener"><img src="img/wh-03-yangi.jpg" alt="wh-03 endi" loading="lazy" width="1280" height="720"></a></figure>
+  </div>
+  <div class="meta"><p><b>Nima o'zgardi:</b> Uchta karta: manzil, imzo, bir martalik yozuv.</p><ul><li>Haqiqiy 404 javobi va orders jadvali: #1 NEW qoldi.</li><li>wh-done dagi uch tekshiruv oqim bo&#x27;lib.</li></ul><p class="q"><b>Qaysi qadamda:</b> faqat xulosa qadami almashdi, oraliq kod va terminal qadamlari o&#x27;z joyida</p></div>
+  <div class="vote" role="group" aria-label="wh-03 baho">
+    <button type="button" data-v="ok">Yaxshi</button><button type="button" data-v="fix">Tuzatish kerak</button>
+    <input type="text" id="iz-wh-03" placeholder="Izoh (ixtiyoriy)" aria-label="wh-03 izoh">
+  </div>
+</article>
+<article class="ek" data-id="wh-05">
+  <header><span class="tag">Webhook · 5-ekran</span><h3>payment.controller.ts: imzo, maydonlar, yozuv</h3></header>
+  <div class="pair">
+    <figure><figcaption>Oldin</figcaption><a href="img/wh-05-oldin.jpg" target="_blank" rel="noopener"><img src="img/wh-05-oldin.jpg" alt="wh-05 oldin" loading="lazy" width="1280" height="720"></a></figure>
+    <figure><figcaption class="new">Endi darsda</figcaption><a href="img/wh-05-yangi.jpg" target="_blank" rel="noopener"><img src="img/wh-05-yangi.jpg" alt="wh-05 endi" loading="lazy" width="1280" height="720"></a></figure>
+  </div>
+  <div class="meta"><p><b>Nima o'zgardi:</b> Uchta karta: «1 · Imzo», «2 · Maydonlar», «3 · Yozuv».</p><ul><li>Tekshiruv zanjiri: xabar → imzo (yiqilsa 401) → maydonlar (yiqilsa 400 «summa mos emas: 1200 ≠ 120000») → yozuv 200.</li><li>rawBody bor/yo&#x27;q: bo&#x27;sh joyli JSON 200 va to&#x27;g&#x27;ri imzo ham 401 — haqiqiy natijalar.</li></ul><p class="q"><b>Qaysi qadamda:</b> faqat xulosa qadami almashdi, oraliq kod va terminal qadamlari o&#x27;z joyida</p></div>
+  <div class="vote" role="group" aria-label="wh-05 baho">
+    <button type="button" data-v="ok">Yaxshi</button><button type="button" data-v="fix">Tuzatish kerak</button>
+    <input type="text" id="iz-wh-05" placeholder="Izoh (ixtiyoriy)" aria-label="wh-05 izoh">
+  </div>
+</article>
+<article class="ek" data-id="wh-09">
+  <header><span class="tag">Webhook · 9-ekran</span><h3>Imzosiz va soxta imzo — 401</h3></header>
+  <div class="pair">
+    <figure><figcaption>Oldin</figcaption><a href="img/wh-09-oldin.jpg" target="_blank" rel="noopener"><img src="img/wh-09-oldin.jpg" alt="wh-09 oldin" loading="lazy" width="1280" height="720"></a></figure>
+    <figure><figcaption class="new">Endi darsda</figcaption><a href="img/wh-09-yangi.jpg" target="_blank" rel="noopener"><img src="img/wh-09-yangi.jpg" alt="wh-09 endi" loading="lazy" width="1280" height="720"></a></figure>
+  </div>
+  <div class="meta"><p><b>Nima o'zgardi:</b> Ikki karta: «Kalit — butun himoya», «Kalit qayerda».</p><ul><li>Bir xil to&#x27;lov, uch xil imzo: javob, payments qatori va server logi — haqiqiy chiqishlar.</li><li>Ikki qoida kartasi saqlanadi.</li></ul><p class="q"><b>Qaysi qadamda:</b> faqat xulosa qadami almashdi, oraliq kod va terminal qadamlari o&#x27;z joyida</p></div>
+  <div class="vote" role="group" aria-label="wh-09 baho">
+    <button type="button" data-v="ok">Yaxshi</button><button type="button" data-v="fix">Tuzatish kerak</button>
+    <input type="text" id="iz-wh-09" placeholder="Izoh (ixtiyoriy)" aria-label="wh-09 izoh">
+  </div>
+</article>
+<article class="ek" data-id="wh-15">
+  <header><span class="tag">Webhook · 15-ekran</span><h3>Kalit .env da bo&#x27;sh</h3></header>
+  <div class="pair">
+    <figure><figcaption>Oldin</figcaption><a href="img/wh-15-oldin.jpg" target="_blank" rel="noopener"><img src="img/wh-15-oldin.jpg" alt="wh-15 oldin" loading="lazy" width="1280" height="720"></a></figure>
+    <figure><figcaption class="new">Endi darsda</figcaption><a href="img/wh-15-yangi.jpg" target="_blank" rel="noopener"><img src="img/wh-15-yangi.jpg" alt="wh-15 endi" loading="lazy" width="1280" height="720"></a></figure>
+  </div>
+  <div class="meta"><p><b>Nima o'zgardi:</b> Ikki karta: «Kalit — shu yerda» va «hech qachon».</p><ul><li>Haqiqiy ogohlantirish va natija: WARN … bo&#x27;sh, har xabar 401, payments: 0.</li><li>Kalit joylari teglar bilan: shu yerda (yashil) va hech qachon (qizil).</li></ul><p class="q"><b>Qaysi qadamda:</b> faqat xulosa qadami almashdi, oraliq kod va terminal qadamlari o&#x27;z joyida</p></div>
+  <div class="vote" role="group" aria-label="wh-15 baho">
+    <button type="button" data-v="ok">Yaxshi</button><button type="button" data-v="fix">Tuzatish kerak</button>
+    <input type="text" id="iz-wh-15" placeholder="Izoh (ixtiyoriy)" aria-label="wh-15 izoh">
+  </div>
+</article>
+<article class="ek" data-id="wh-18">
+  <header><span class="tag">Webhook · 18-ekran</span><h3>Ikki AI webhook yozdi</h3></header>
+  <div class="pair">
+    <figure><figcaption>Oldin</figcaption><a href="img/wh-18-oldin.jpg" target="_blank" rel="noopener"><img src="img/wh-18-oldin.jpg" alt="wh-18 oldin" loading="lazy" width="1280" height="720"></a></figure>
+    <figure><figcaption class="new">Endi darsda</figcaption><a href="img/wh-18-yangi.jpg" target="_blank" rel="noopener"><img src="img/wh-18-yangi.jpg" alt="wh-18 endi" loading="lazy" width="1280" height="720"></a></figure>
+  </div>
+  <div class="meta"><p><b>Nima o'zgardi:</b> Ikki AI javobidan ikki iqtibos.</p><ul><li>Taqqoslash jadvali (AI XULOSA): manzil, imzo, takror to&#x27;g&#x27;ri; summa farqida 2-AI «siz hal qiling» dedi; o&#x27;z sinovi; 1-AI doiradan chiqqanini o&#x27;zi aytdi.</li><li>Xulosa: AI o&#x27;zi aytgan gapni o&#x27;qing.</li></ul><p class="q"><b>Qaysi qadamda:</b> faqat xulosa qadami almashdi, oraliq kod va terminal qadamlari o&#x27;z joyida</p></div>
+  <div class="vote" role="group" aria-label="wh-18 baho">
+    <button type="button" data-v="ok">Yaxshi</button><button type="button" data-v="fix">Tuzatish kerak</button>
+    <input type="text" id="iz-wh-18" placeholder="Izoh (ixtiyoriy)" aria-label="wh-18 izoh">
+  </div>
+</article>
+<h2 class="dars" id="nest2">Nest-2</h2>
+<article class="ek" data-id="nest2-21">
+  <header><span class="tag">Nest-2 · 21-ekran</span><h3>synchronize: Entity o&#x27;zgarsa, baza o&#x27;zgaradi</h3></header>
+  <div class="pair">
+    <figure><figcaption>Oldin</figcaption><a href="img/nest2-21-oldin.jpg" target="_blank" rel="noopener"><img src="img/nest2-21-oldin.jpg" alt="nest2-21 oldin" loading="lazy" width="1280" height="720"></a></figure>
+    <figure><figcaption class="new">Endi darsda</figcaption><a href="img/nest2-21-yangi.jpg" target="_blank" rel="noopener"><img src="img/nest2-21-yangi.jpg" alt="nest2-21 endi" loading="lazy" width="1280" height="720"></a></figure>
+  </div>
+  <div class="meta"><p><b>Nima o'zgardi:</b> Ikki karta: synchronize ta&#x27;rifi va «ma&#x27;lumot yo&#x27;qoldi / contains null values» qoidasi.</p><ul><li>Entity → start:dev → jadval oqimi; ikki haqiqiy tajriba yonma-yon.</li><li>Ustun tushib qoldi: server ishga tushdi, price saqlanmadi (jim). NOT NULL ustun: QueryFailedError … contains null values, started = 0; nullable: true bilan started = 1.</li></ul><p class="q"><b>Qaysi qadamda:</b> faqat xulosa qadami almashdi, oraliq kod va terminal qadamlari o&#x27;z joyida</p></div>
+  <div class="vote" role="group" aria-label="nest2-21 baho">
+    <button type="button" data-v="ok">Yaxshi</button><button type="button" data-v="fix">Tuzatish kerak</button>
+    <input type="text" id="iz-nest2-21" placeholder="Izoh (ixtiyoriy)" aria-label="nest2-21 izoh">
+  </div>
+</article>
+</div>
+
+<div class="bar"><div class="in">
+  <span class="cnt" id="cnt">0/34 ekran baholandi · 0/6 savol</span>
+  <button type="button" class="copy" id="copy">Javobni nusxalash</button>
+  <span class="cnt" id="msg" aria-live="polite"></span>
+  <textarea id="out" hidden readonly aria-label="Javob matni"></textarea>
+</div></div>
+
+<script>
+(function(){
+  var KEY='mk-natija-f110906', st={e:{},q:{},iz:{}};
+  try{var s=JSON.parse(localStorage.getItem(KEY)||'null'); if(s) st=Object.assign(st,s);}catch(e){}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
+  var cards=[].slice.call(document.querySelectorAll('.ek')), qs=[].slice.call(document.querySelectorAll('.qq'));
+  function paint(){
+    cards.forEach(function(c){var id=c.dataset.id;c.querySelectorAll('.vote button').forEach(function(b){b.classList.toggle('on',st.e[id]===b.dataset.v)});var i=c.querySelector('input');if(i&&document.activeElement!==i)i.value=st.iz[id]||'';});
+    qs.forEach(function(q){var id=q.dataset.q;q.querySelectorAll('button').forEach(function(b){b.classList.toggle('on',st.q[id]===b.dataset.v)})});
+    document.getElementById('cnt').textContent=Object.keys(st.e).length+'/'+cards.length+' ekran baholandi · '+Object.keys(st.q).length+'/'+qs.length+' savol';
+  }
+  cards.forEach(function(c){var id=c.dataset.id;
+    c.querySelectorAll('.vote button').forEach(function(b){b.addEventListener('click',function(){st.e[id]=st.e[id]===b.dataset.v?undefined:b.dataset.v;if(!st.e[id])delete st.e[id];save();paint();})});
+    var i=c.querySelector('input');i.addEventListener('input',function(){st.iz[id]=i.value;save();});
+  });
+  qs.forEach(function(q){var id=q.dataset.q;q.querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){st.q[id]=st.q[id]===b.dataset.v?undefined:b.dataset.v;if(!st.q[id])delete st.q[id];save();paint();})})});
+  function text(){
+    var L=['F-1109-06 natija — javob'];
+    L.push('— Savollar');
+    qs.forEach(function(q){var b=q.querySelector('button[data-v="'+(st.q[q.dataset.q]||'')+'"]');L.push(q.dataset.q+': '+(b?b.textContent:'—'));});
+    L.push('— Ekranlar');
+    cards.forEach(function(c){var id=c.dataset.id,v=st.e[id],iz=(st.iz[id]||'').trim();if(v||iz)L.push(id+': '+(v==='ok'?'Yaxshi':v==='fix'?'Tuzatish kerak':'—')+(iz?' — '+iz:''));});
+    var rest=cards.filter(function(c){return !st.e[c.dataset.id]&&!(st.iz[c.dataset.id]||'').trim()}).length;
+    if(rest)L.push('(baholanmagan: '+rest+')');
+    return L.join('\n');
+  }
+  document.getElementById('copy').addEventListener('click',function(){
+    var t=text(),o=document.getElementById('out'),m=document.getElementById('msg');
+    o.value=t;
+    var done=function(){m.textContent='Nusxalandi — chatga tashlang';o.hidden=true;};
+    var fail=function(){o.hidden=false;o.focus();o.select();m.textContent='Matnni belgilab nusxalang';};
+    try{navigator.clipboard.writeText(t).then(done,fail);}catch(e){fail();}
+  });
+  paint();
+})();
+</script>

@@ -1,0 +1,29 @@
+$ npx jest texts
+FAIL src/api/telegram/texts.spec.ts
+  som
+    ✕ 120000 ni so'mda yozadi (18 ms)
+
+  ● som › 120000 ni so'mda yozadi
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "120 000 so'm"
+    Received: "120 000 so'm"
+
+      3 | describe('som', () => {
+      4 |   it("120000 ni so'mda yozadi", () => {
+    > 5 |     expect(som(120000)).toBe("120 000 so'm");
+        |                         ^
+      6 |   });
+      7 | });
+      8 |
+
+      at Object.<anonymous> (api/telegram/texts.spec.ts:5:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.396 s, estimated 1 s
+Ran all test suites matching texts.
+[chiqish kodi: 1]
+

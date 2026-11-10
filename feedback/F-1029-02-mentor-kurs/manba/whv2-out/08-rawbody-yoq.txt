@@ -1,0 +1,18 @@
+# nusxa: norawbody — main.ts da { rawBody: true } yo'q
+22:22:16 main.ts: NestFactory.create(AppModule)
+
+$ npm run pay -- 1
+→ POST /payments/webhook {"paymentId":"pay_fda9f50b","orderId":1,"status":"paid","amount":120000}
+  X-Signature: 4cfe76e89b38a3ab…
+← 401 {"message":"imzo noto'g'ri","error":"Unauthorized","statusCode":401}
+
+## Server logi
+LOG [InstanceLoader] PaymentModule dependencies initialized
+LOG [RoutesResolver] PaymentController {/payments}:
+WARN [Payment] imzo noto'g'ri — xabar rad etildi
+
+$ psql: SELECT count(*) AS payments_qatorlari FROM payments
+ payments_qatorlari 
+--------------------
+                  0
+(1 row)

@@ -1,0 +1,213 @@
+# actions/checkout yo'q — mashinada repo yo'q, npm ci nima deydi
+# run 41833077624 · branch ci-sinov · commit 33c3cc8 · natija: failure · yozildi 2026-11-04 17:53:05 +0500
+# https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41833077624
+
+$ cat .github/workflows/ci.yml
+name: CI
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm ci
+      - run: npm test
+
+## gh run view
+
+X ci-sinov CI · 41833077624
+Triggered via push less than a minute ago
+
+JOBS
+X test in 9s (ID 126584926533)
+  ✓ Set up job
+  ✓ Run actions/setup-node@v4
+  X Run npm ci
+  - Run npm test
+  - Post Run actions/setup-node@v4
+  ✓ Complete job
+
+ANNOTATIONS
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+test: .github#2
+
+X Process completed with exit code 1.
+test: .github#103
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+test: .github#1
+
+
+To see what failed, try: gh run view 41833077624 --log-failed
+View this run on GitHub: https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41833077624
+
+## job → step (API: actions/runs/41833077624/jobs)
+JOB test · failure · 2026-11-04T12:52:49Z → 2026-11-04T12:52:58Z · runner: GitHub Actions 1000000010 · ubuntu-latest
+  1. Set up job · success · 2026-11-04T12:52:50Z → 2026-11-04T12:52:51Z
+  2. Run actions/setup-node@v4 · success · 2026-11-04T12:52:51Z → 2026-11-04T12:52:55Z
+  3. Run npm ci · failure · 2026-11-04T12:52:55Z → 2026-11-04T12:52:56Z
+  4. Run npm test · skipped · 2026-11-04T12:52:56Z → 2026-11-04T12:52:56Z
+  8. Post Run actions/setup-node@v4 · skipped · 2026-11-04T12:52:56Z → 2026-11-04T12:52:56Z
+  9. Complete job · success · 2026-11-04T12:52:56Z → 2026-11-04T12:52:56Z
+
+## annotatsiyalar (check-runs)
+  [warning] : Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+  [failure] : Process completed with exit code 1.
+  [notice] : "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+
+## to'liq log (gh run view --log)
+test	Set up job	﻿2026-11-04T12:52:50.1882018Z Current runner version: '2.338.2'
+test	Set up job	2026-11-04T12:52:50.1908906Z ##[group]Runner Image Provisioner
+test	Set up job	2026-11-04T12:52:50.1909892Z Hosted Compute Agent
+test	Set up job	2026-11-04T12:52:50.1910499Z Version: 20261015.610
+test	Set up job	2026-11-04T12:52:50.1911129Z Commit: 267fdb4e8bbec4ab5ea31367f3a00d5c480c7656
+test	Set up job	2026-11-04T12:52:50.1911869Z Build Date: 2026-10-14T17:06:54Z
+test	Set up job	2026-11-04T12:52:50.1912552Z Worker ID: {17027fec-4628-4718-ac7c-9442bc4d8d00}
+test	Set up job	2026-11-04T12:52:50.1913279Z Region: us-east-1
+test	Set up job	2026-11-04T12:52:50.1913838Z Cloud: AWS
+test	Set up job	2026-11-04T12:52:50.1914385Z ##[endgroup]
+test	Set up job	2026-11-04T12:52:50.1915906Z ##[group]Operating System
+test	Set up job	2026-11-04T12:52:50.1916549Z Ubuntu
+test	Set up job	2026-11-04T12:52:50.1917128Z 26.04.1
+test	Set up job	2026-11-04T12:52:50.1917616Z LTS
+test	Set up job	2026-11-04T12:52:50.1918140Z ##[endgroup]
+test	Set up job	2026-11-04T12:52:50.1918670Z ##[group]Runner Image
+test	Set up job	2026-11-04T12:52:50.1919492Z Image: ubuntu-26.04
+test	Set up job	2026-11-04T12:52:50.1920053Z Version: 20261018.50.1
+test	Set up job	2026-11-04T12:52:50.1921156Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261018.50/images/ubuntu/Ubuntu2604-Readme.md
+test	Set up job	2026-11-04T12:52:50.1923215Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261018.50
+test	Set up job	2026-11-04T12:52:50.1924175Z ##[endgroup]
+test	Set up job	2026-11-04T12:52:50.1925321Z ##[group]GITHUB_TOKEN Permissions
+test	Set up job	2026-11-04T12:52:50.1927439Z Contents: read
+test	Set up job	2026-11-04T12:52:50.1928039Z Metadata: read
+test	Set up job	2026-11-04T12:52:50.1928584Z Packages: read
+test	Set up job	2026-11-04T12:52:50.1929309Z ##[endgroup]
+test	Set up job	2026-11-04T12:52:50.1931597Z Secret source: Actions
+test	Set up job	2026-11-04T12:52:50.1932475Z Cache mode: write
+test	Set up job	2026-11-04T12:52:50.1933315Z Prepare workflow directory
+test	Set up job	2026-11-04T12:52:50.2266968Z Prepare all required actions
+test	Set up job	2026-11-04T12:52:50.2320321Z Getting action download info
+test	Set up job	2026-11-04T12:52:50.3551489Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+test	Set up job	2026-11-04T12:52:51.4284049Z Complete job name: test
+test	Run actions/setup-node@v4	﻿2026-11-04T12:52:51.4916693Z ##[group]Run actions/setup-node@v4
+test	Run actions/setup-node@v4	2026-11-04T12:52:51.4917650Z with:
+test	Run actions/setup-node@v4	2026-11-04T12:52:51.4918093Z   node-version: 24
+test	Run actions/setup-node@v4	2026-11-04T12:52:51.4918598Z   always-auth: false
+test	Run actions/setup-node@v4	2026-11-04T12:52:51.4919304Z   check-latest: false
+test	Run actions/setup-node@v4	2026-11-04T12:52:51.4922489Z   token: ***
+test	Run actions/setup-node@v4	2026-11-04T12:52:51.4923103Z ##[endgroup]
+test	Run actions/setup-node@v4	2026-11-04T12:52:51.6039343Z Found in cache @ /opt/hostedtoolcache/node/24.22.0/x64
+test	Run actions/setup-node@v4	2026-11-04T12:52:51.6041111Z (node:2171) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+test	Run actions/setup-node@v4	2026-11-04T12:52:51.6042815Z (Use `node --trace-deprecation ...` to show where the warning was created)
+test	Run actions/setup-node@v4	2026-11-04T12:52:51.6045859Z ##[group]Environment details
+test	Run actions/setup-node@v4	2026-11-04T12:52:55.3409818Z node: v24.22.0
+test	Run actions/setup-node@v4	2026-11-04T12:52:55.3410478Z npm: 11.19.1
+test	Run actions/setup-node@v4	2026-11-04T12:52:55.3410784Z yarn: 1.22.22
+test	Run actions/setup-node@v4	2026-11-04T12:52:55.3412343Z ##[endgroup]
+test	Run npm ci	﻿2026-11-04T12:52:55.3588320Z ##[group]Run npm ci
+test	Run npm ci	2026-11-04T12:52:55.3588961Z ^[[36;1mnpm ci^[[0m
+test	Run npm ci	2026-11-04T12:52:55.3619175Z shell: /usr/bin/bash -e {0}
+test	Run npm ci	2026-11-04T12:52:55.3619611Z ##[endgroup]
+test	Run npm ci	2026-11-04T12:52:56.5943147Z npm error code EUSAGE
+test	Run npm ci	2026-11-04T12:52:56.5982128Z npm error
+test	Run npm ci	2026-11-04T12:52:56.5983125Z npm error The `npm ci` command can only install with an existing package-lock.json or
+test	Run npm ci	2026-11-04T12:52:56.5984078Z npm error npm-shrinkwrap.json with lockfileVersion >= 1. Run an install with npm@5 or
+test	Run npm ci	2026-11-04T12:52:56.5984846Z npm error later to generate a package-lock.json file, then try again.
+test	Run npm ci	2026-11-04T12:52:56.5985476Z npm error
+test	Run npm ci	2026-11-04T12:52:56.5985889Z npm error Clean install a project
+test	Run npm ci	2026-11-04T12:52:56.5986304Z npm error
+test	Run npm ci	2026-11-04T12:52:56.5986603Z npm error Usage:
+test	Run npm ci	2026-11-04T12:52:56.5986976Z npm error npm ci
+test	Run npm ci	2026-11-04T12:52:56.5987348Z npm error
+test	Run npm ci	2026-11-04T12:52:56.5987665Z npm error Options:
+test	Run npm ci	2026-11-04T12:52:56.5988306Z npm error [--install-strategy <hoisted|nested|shallow|linked>] [--legacy-bundling]
+test	Run npm ci	2026-11-04T12:52:56.5989611Z npm error [--global-style] [--omit <dev|optional|peer> [--omit <dev|optional|peer> ...]]
+test	Run npm ci	2026-11-04T12:52:56.5990551Z npm error [--include <prod|dev|optional|peer> [--include <prod|dev|optional|peer> ...]]
+test	Run npm ci	2026-11-04T12:52:56.5991766Z npm error [--strict-peer-deps] [--foreground-scripts] [--ignore-scripts]
+test	Run npm ci	2026-11-04T12:52:56.5992538Z npm error [--allow-directory <all|none|root>] [--allow-file <all|none|root>]
+test	Run npm ci	2026-11-04T12:52:56.5993347Z npm error [--allow-git <all|none|root>] [--allow-remote <all|none|root>]
+test	Run npm ci	2026-11-04T12:52:56.5994101Z npm error [--allow-scripts <package-list> [--allow-scripts <package-list> ...]]
+test	Run npm ci	2026-11-04T12:52:56.5994819Z npm error [--strict-allow-scripts] [--dangerously-allow-all-scripts] [--no-audit]
+test	Run npm ci	2026-11-04T12:52:56.5995880Z npm error [--no-bin-links] [--no-fund] [--dry-run]
+test	Run npm ci	2026-11-04T12:52:56.5996554Z npm error [-w|--workspace <workspace-name> [-w|--workspace <workspace-name> ...]]
+test	Run npm ci	2026-11-04T12:52:56.5997353Z npm error [--workspaces] [--include-workspace-root] [--install-links]
+test	Run npm ci	2026-11-04T12:52:56.5997899Z npm error
+test	Run npm ci	2026-11-04T12:52:56.5998354Z npm error   --install-strategy
+test	Run npm ci	2026-11-04T12:52:56.5999171Z npm error     Sets the strategy for installing packages in node_modules.
+test	Run npm ci	2026-11-04T12:52:56.5999678Z npm error
+test	Run npm ci	2026-11-04T12:52:56.6000073Z npm error   --legacy-bundling
+test	Run npm ci	2026-11-04T12:52:56.6000743Z npm error     Instead of hoisting package installs in `node_modules`, install packages
+test	Run npm ci	2026-11-04T12:52:56.6001326Z npm error
+test	Run npm ci	2026-11-04T12:52:56.6001728Z npm error   --global-style
+test	Run npm ci	2026-11-04T12:52:56.6002319Z npm error     Only install direct dependencies in the top level `node_modules`,
+test	Run npm ci	2026-11-04T12:52:56.6002847Z npm error
+test	Run npm ci	2026-11-04T12:52:56.6003217Z npm error   --omit
+test	Run npm ci	2026-11-04T12:52:56.6003774Z npm error     Dependency types to omit from the installation tree on disk.
+test	Run npm ci	2026-11-04T12:52:56.6004326Z npm error
+test	Run npm ci	2026-11-04T12:52:56.6004636Z npm error   --include
+test	Run npm ci	2026-11-04T12:52:56.6005296Z npm error     Option that allows for defining which types of dependencies to install.
+test	Run npm ci	2026-11-04T12:52:56.6005857Z npm error
+test	Run npm ci	2026-11-04T12:52:56.6006236Z npm error   --strict-peer-deps
+test	Run npm ci	2026-11-04T12:52:56.6006888Z npm error     If set to `true`, and `--legacy-peer-deps` is not set, then _any_
+test	Run npm ci	2026-11-04T12:52:56.6007390Z npm error
+test	Run npm ci	2026-11-04T12:52:56.6007808Z npm error   --foreground-scripts
+test	Run npm ci	2026-11-04T12:52:56.6008426Z npm error     Run all build scripts (ie, `preinstall`, `install`, and
+test	Run npm ci	2026-11-04T12:52:56.6009156Z npm error
+test	Run npm ci	2026-11-04T12:52:56.6009539Z npm error   --ignore-scripts
+test	Run npm ci	2026-11-04T12:52:56.6010211Z npm error     If true, npm does not run scripts specified in package.json files.
+test	Run npm ci	2026-11-04T12:52:56.6010787Z npm error
+test	Run npm ci	2026-11-04T12:52:56.6011149Z npm error   --allow-directory
+test	Run npm ci	2026-11-04T12:52:56.6011795Z npm error     Limits the ability for npm to install dependencies from directories.
+test	Run npm ci	2026-11-04T12:52:56.6012337Z npm error
+test	Run npm ci	2026-11-04T12:52:56.6012695Z npm error   --allow-file
+test	Run npm ci	2026-11-04T12:52:56.6013401Z npm error     Limits the ability for npm to install dependencies from tarball files.
+test	Run npm ci	2026-11-04T12:52:56.6014159Z npm error
+test	Run npm ci	2026-11-04T12:52:56.6014502Z npm error   --allow-git
+test	Run npm ci	2026-11-04T12:52:56.6015131Z npm error     Limits the ability for npm to fetch dependencies from git references.
+test	Run npm ci	2026-11-04T12:52:56.6015675Z npm error
+test	Run npm ci	2026-11-04T12:52:56.6016084Z npm error   --allow-remote
+test	Run npm ci	2026-11-04T12:52:56.6016651Z npm error     Limits the ability for npm to fetch dependencies from urls.
+test	Run npm ci	2026-11-04T12:52:56.6017151Z npm error
+test	Run npm ci	2026-11-04T12:52:56.6017502Z npm error   --allow-scripts
+test	Run npm ci	2026-11-04T12:52:56.6018146Z npm error     Comma-separated list of packages whose install-time lifecycle scripts
+test	Run npm ci	2026-11-04T12:52:56.6018911Z npm error
+test	Run npm ci	2026-11-04T12:52:56.6019381Z npm error   --strict-allow-scripts
+test	Run npm ci	2026-11-04T12:52:56.6020040Z npm error     If `true`, turn the install-script policy from a warning into a hard
+test	Run npm ci	2026-11-04T12:52:56.6020564Z npm error
+test	Run npm ci	2026-11-04T12:52:56.6020979Z npm error   --dangerously-allow-all-scripts
+test	Run npm ci	2026-11-04T12:52:56.6021792Z npm error     If `true`, bypass the `allowScripts` policy entirely and run every
+test	Run npm ci	2026-11-04T12:52:56.6022356Z npm error
+test	Run npm ci	2026-11-04T12:52:56.6022689Z npm error   --audit
+test	Run npm ci	2026-11-04T12:52:56.6023353Z npm error     When "true" submit audit reports alongside the current npm command to the
+test	Run npm ci	2026-11-04T12:52:56.6024092Z npm error
+test	Run npm ci	2026-11-04T12:52:56.6024447Z npm error   --bin-links
+test	Run npm ci	2026-11-04T12:52:56.6025083Z npm error     Tells npm to create symlinks (or `.cmd` shims on Windows) for package
+test	Run npm ci	2026-11-04T12:52:56.6025661Z npm error
+test	Run npm ci	2026-11-04T12:52:56.6026004Z npm error   --fund
+test	Run npm ci	2026-11-04T12:52:56.6026625Z npm error     When "true" displays the message at the end of each `npm install`
+test	Run npm ci	2026-11-04T12:52:56.6027161Z npm error
+test	Run npm ci	2026-11-04T12:52:56.6027479Z npm error   --dry-run
+test	Run npm ci	2026-11-04T12:52:56.6028089Z npm error     Indicates that you don't want npm to make any changes and that it should
+test	Run npm ci	2026-11-04T12:52:56.6028878Z npm error
+test	Run npm ci	2026-11-04T12:52:56.6029307Z npm error   -w|--workspace
+test	Run npm ci	2026-11-04T12:52:56.6030017Z npm error     Enable running a command in the context of the configured workspaces of the
+test	Run npm ci	2026-11-04T12:52:56.6030579Z npm error
+test	Run npm ci	2026-11-04T12:52:56.6030897Z npm error   --workspaces
+test	Run npm ci	2026-11-04T12:52:56.6031573Z npm error     Set to true to run the command in the context of **all** configured
+test	Run npm ci	2026-11-04T12:52:56.6032120Z npm error
+test	Run npm ci	2026-11-04T12:52:56.6032535Z npm error   --include-workspace-root
+test	Run npm ci	2026-11-04T12:52:56.6033213Z npm error     Include the workspace root when workspaces are enabled for a command.
+test	Run npm ci	2026-11-04T12:52:56.6033722Z npm error
+test	Run npm ci	2026-11-04T12:52:56.6034102Z npm error   --install-links
+test	Run npm ci	2026-11-04T12:52:56.6034854Z npm error     When set file: protocol dependencies will be packed and installed as
+test	Run npm ci	2026-11-04T12:52:56.6035296Z npm error
+test	Run npm ci	2026-11-04T12:52:56.6035542Z npm error
+test	Run npm ci	2026-11-04T12:52:56.6035941Z npm error aliases: clean-install, ic, install-clean, isntall-clean
+test	Run npm ci	2026-11-04T12:52:56.6036371Z npm error
+test	Run npm ci	2026-11-04T12:52:56.6036710Z npm error Run "npm help ci" for more info
+test	Run npm ci	2026-11-04T12:52:56.6037485Z npm error A complete log of this run can be found in: /home/runner/.npm/_logs/2026-11-04T12_52_55_404Z-debug-0.log
+test	Run npm ci	2026-11-04T12:52:56.6094562Z ##[error]Process completed with exit code 1.
+test	Complete job	﻿2026-11-04T12:52:56.6189633Z Cleaning up orphan processes
+test	Complete job	2026-11-04T12:52:56.6425030Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

@@ -1,0 +1,31 @@
+<style>
+.g5{display:grid;grid-template-columns:1fr 26px 1fr 26px 1fr 26px 1fr;align-items:stretch}
+.g5 .x{grid-column:span 1;margin-top:8px}
+.g5 .down{display:flex;justify-content:center;color:#DC2626;font-size:18px}
+</style>
+<div class="z">
+  <div class="z-card">
+    <p class="z-h">payment.controller.ts — tartib: imzo, maydonlar, yozuv</p>
+    <div class="g5">
+      <div class="z-st"><b>xabar</b><span class="zm" style="font-size:12px">req.rawBody + X-Signature</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st blue"><b>1 · imzo</b><span class="z-mut">rawBody dan HMAC</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st blue"><b>2 · maydonlar</b><span class="z-mut">paymentId · orderId · status · amount</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st ok"><b>3 · yozuv</b><span class="z-mut">payments va orders</span><span class="z-tag g">200</span></div>
+      <div></div><div></div>
+      <div class="down">↓</div><div></div><div class="down">↓</div><div></div><div></div>
+      <div></div><div></div>
+      <div class="z-st bad"><span class="z-tag r">401</span><span class="zm" style="font-size:12px">imzo noto'g'ri</span><span class="z-mut">hech narsa yozilmadi</span></div><div></div>
+      <div class="z-st bad"><span class="z-tag o">400</span><span class="zm" style="font-size:12px">summa mos emas: 1200 ≠ 120000</span></div><div></div><div></div>
+    </div>
+  </div>
+  <div class="z-card">
+    <p class="z-h">Imzo xom tanadan — shuning uchun main.ts da rawBody: true</p>
+    <div class="z-two">
+      <div class="z-st ok"><b>rawBody bilan</b><span class="zm" style="font-size:12px">bo'sh joyli JSON → 200 {"ok":true}</span></div>
+      <div class="z-st bad"><b>rawBody yo'q</b><span class="zm" style="font-size:12px">to'g'ri imzo ham → 401 · payments: 0</span></div>
+    </div>
+  </div>
+</div>

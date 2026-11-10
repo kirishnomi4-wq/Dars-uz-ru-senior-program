@@ -1,0 +1,18 @@
+== build ==
+== vaqtinchalik baza: shop_smoke ==
+Telegram bot ulandi
+  katalogda 6 ta mahsulot
+
+— restart: har qadam alohida jarayonda (server haqiqatan qayta ishga tushadi)
+  ✓ telefon kutish restartdan o'tdi → «Buyurtma #1 qabul qilindi!»
+  ✓ savat restartdan o'tdi → «Savat:»
+  ✓ buyurtma restartdan o'tdi → «#1 · Aziza · 120 000 so'm · 🆕 Yangi»
+
+— race: 1 ta Planshet, 5 mijoz bir vaqtda (3 raund); keyin ikki marta bekor
+Telegram bot ulandi
+  rad etilgan mijoz: «Buyurtma berilmadi: Planshet: omborda faqat 0 ta qoldi»
+  ✓ ortiqcha sotilmadi (sotildi/ombor): 1/0  1/0  1/0
+  ✓ ikki marta bir vaqtda bekor — ombor bir marta qaytdi: 0 → 1
+
+NATIJA: 5/5 ✓
+exit 0

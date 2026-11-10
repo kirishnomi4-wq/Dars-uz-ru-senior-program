@@ -1,0 +1,13 @@
+$ npx jest texts
+PASS src/api/telegram/texts.spec.ts
+  som
+    ✓ 120000 ni so'mda yozadi (16 ms)
+    ✓ kichik sonda probel yo'q (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        0.37 s, estimated 1 s
+Ran all test suites matching texts.
+[chiqish kodi: 0]
+

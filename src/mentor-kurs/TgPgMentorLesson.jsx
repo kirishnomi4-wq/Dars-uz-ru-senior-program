@@ -80,6 +80,9 @@ const CSS = `
 .mk-count{font:700 13px/1 ${MONO};color:${T.ink}}
 .mk-body{flex:1;min-height:0;display:grid;grid-template-columns:minmax(320px,4fr) 8fr;gap:24px;padding:22px 28px}
 @media (min-width:1600px){.mk-panel{font-size:14px}.mk-explorer{font-size:13px}}
+@media (max-width:1599px){.mk-ide{grid-template-columns:150px minmax(0,1fr)}.mk-ide .mk-panel{font-size:12px}.mk-ide .mk-explorer{font-size:11.5px}}
+.pg-two:has(.mk-ide),.pg-two:has(.mk-panel .mk-ln:nth-of-type(n+10)){grid-template-columns:minmax(0,1fr)}
+.mk-pair{font:12.5px/1.4 ${MONO};color:${T.ink3};padding:0 4px}.mk-pair b{font-weight:600}.mk-pair code{font:inherit;color:${T.ink2}}
 @media (max-width:900px){.mk-body{grid-template-columns:1fr;grid-template-rows:auto 1fr;gap:14px;padding:14px}}
 .mk-ide{display:grid;grid-template-columns:218px minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);align-items:stretch;flex:0 1 auto;max-height:100%;min-height:0;background:#E9ECF1;border:1px solid #D5DAE2;border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(15,17,21,.10)}
 .mk-ide-bar{grid-column:1/-1;display:flex;align-items:center;gap:7px;padding:8px 14px;background:#DDE1E8;border-bottom:1px solid #D0D5DD;font:600 11px/1 ${MONO};color:${T.ink2};letter-spacing:.04em}
@@ -184,7 +187,7 @@ const CSS = `
 .mk-ln.gone,.mk-ln.gone *{color:#FCA5A5!important}
 .mk-ln.new{background:rgba(18,128,90,.22);box-shadow:inset 3px 0 0 #86EFAC}
 .mk-ln .n{color:${T.codeDim};min-width:2ch;text-align:right;user-select:none}
-.mk-ln.wrap{white-space:pre-wrap}
+.mk-ln.wrap{white-space:pre}
 .mk-ln.clk{cursor:pointer}
 .mk-ln.clk:hover{background:rgba(232,234,240,.08)}
 .mk-ln.bad{background:rgba(226,69,31,.28);box-shadow:inset 3px 0 0 #FCA5A5}
@@ -192,6 +195,8 @@ const CSS = `
 .k{color:#C792EA}.s{color:#C3E88D}.d{color:#FFCB6B}.c{color:#82AAFF}.m{color:#89DDFF}.cm{color:#6B7280;font-style:italic}
 .p{color:#7DD3FC}.ok{color:#86EFAC}.er{color:#FCA5A5}.wn{color:#FDE68A}
 .mk-light{flex:0 1 auto;max-height:100%;min-height:0;background:${T.paper};border:1px solid ${T.line};border-radius:16px;padding:20px;position:relative;overflow:auto}
+/* 04.11 · past ekran (1280×720, 1366×768): bo'shliqlar ixcham — shrift deyarli o'zgarmaydi, sahna sig'ishi uchun */
+@media (max-height:800px){.mk-body{padding:14px 22px;gap:20px}.mk-scene{gap:10px}.mk-panel{padding:12px 16px;font-size:12.5px;line-height:1.45}.mk-explorer{line-height:1.45;padding:6px 6px 8px}.mk-light{padding:14px}.mk-box{padding:10px 12px}}
 .mk-light.fill{flex:1}
 .mk-tag{font:600 11px/1 ${MONO};letter-spacing:.08em;color:${T.ink3};text-transform:uppercase;margin:0 0 10px}
 .mk-nav{flex:0 0 auto;background:${T.paper};border-top:1px solid ${T.line};padding:12px 28px;display:flex;align-items:center;gap:12px}
@@ -205,12 +210,28 @@ const CSS = `
 .mk-lockhint i{width:7px;height:7px;border-radius:50%;background:${T.accent};display:inline-block;animation:mk-pulse 1.6s ease-in-out infinite}
 .mk-say.mc>:first-child{margin-top:auto}
 .mk-say.mc>:last-child{margin-bottom:auto}
-.mk-say.mc .mk-opt{font-size:16px;padding:13px 16px}
-.mk-body.mc-split{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
+.mk-say.mc .mk-opt{font-size:15px;padding:11px 14px;border-radius:10px;align-items:flex-start}
+.mk-opt .l{margin-top:3px}
+.mk-opt .t{display:grid;gap:4px;min-width:0}
+.mk-opt .why{font-size:13.5px;line-height:1.4;font-weight:500;color:${T.green}}
+.mk-opt.bad .why{color:${T.accent}}
+.mk-opt.ok{color:${T.ink}}
+.mk-opt .why code{font:.92em ${MONO};background:${T.chip};border:1px solid ${T.chipLine};border-radius:5px;padding:0 5px;color:${T.ink}}
+.mk-body.mc-split{grid-template-columns:minmax(340px,4fr) minmax(0,8fr);gap:24px}
+.mc-after{display:flex;flex-direction:column;gap:12px;overflow:auto}
+.mc-after>.mk-panel,.mc-after>.mc-proof{flex:0 0 auto;min-height:0}
+.mc-proof{display:flex;flex-direction:column;gap:10px}
+.mc-proof>div{display:flex!important;flex-direction:column;gap:10px;flex:0 0 auto;min-height:0}
+.mc-proof .mk-panel{flex:0 0 auto;min-height:0;max-height:none}
+.mc-proof .mk-rule,.mc-proof .mk-tag,.mc-after>.mk-tag{flex:0 0 auto}
+.mc-demak{flex:0 0 auto;min-height:52px;display:flex;align-items:center;gap:6px;font-size:15px;line-height:1.45;color:${T.ink};padding:0 4px}
+.mc-demak.on{border-left:3px solid ${T.green};padding-left:12px;animation:mk-up .45s ease both}
+.mc-demak b{color:${T.green}}
+.mc-demak code{font:.92em ${MONO};background:${T.chip};border:1px solid ${T.chipLine};border-radius:5px;padding:0 5px}
 .mk-body.mc-split>.mk-say.mc>:first-child{margin-top:0}
 .mk-title.mc-q{font-size:clamp(19px,1.5vw,22px);font-weight:600;color:${T.ink}}
-.mc-wait{border:1.5px dashed ${T.line};border-radius:12px;padding:16px 18px;color:${T.ink3};font-size:14px;background:${T.paper}}
-@media (max-width:1300px){.mk-body.mc-split{grid-template-columns:1fr;grid-auto-rows:max-content;overflow:auto}.mk-body.mc-split>.mk-say.mc,.mk-body.mc-split>.mc-after{overflow:visible!important}}
+.mc-wait{flex:0 0 auto;border:1.5px dashed ${T.line};border-radius:10px;padding:10px 14px;color:${T.ink3};font-size:13px;background:${T.paper}}
+@media (max-width:1000px){.mk-body.mc-split{grid-template-columns:1fr;grid-auto-rows:max-content;overflow:auto}.mk-body.mc-split>.mk-say.mc,.mk-body.mc-split>.mc-after{overflow:visible!important}}
 .mk-btn.ready{background:${T.accent};border-color:${T.accent};animation:mk-pulse 1.6s ease-in-out infinite}
 .mk-audio{display:flex;align-items:center;gap:6px}
 .mk-audio button{background:transparent;border:1px solid ${T.line};border-radius:8px;padding:5px 8px;cursor:pointer;color:${T.ink2};font:12px/1 ${SANS};display:inline-flex;align-items:center;gap:6px}
@@ -263,7 +284,9 @@ const CSS = `
 .mk-step input{width:18px;height:18px;margin-top:3px;accent-color:${T.green}}
 .mk-step .t{flex:1;min-width:0}
 .mk-step .t b{display:block;font-size:14px;margin-bottom:3px}
-.mk-step .cmd{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:4px 0}
+.mk-step .cmd{display:inline-flex;gap:6px;align-items:center;margin:3px 12px 3px 0;max-width:100%}
+.mk-step .cmd code{overflow-wrap:anywhere}
+@media (max-height:760px){.mk-step{padding:7px 10px}.mk-step .t b{margin-bottom:1px}.mk-step .cmd{margin:2px 10px 2px 0}}
 .mk-step code{font:12.5px ${MONO};background:#EEF0F4;padding:2px 7px;border-radius:6px}
 .mk-step .exp{font-size:12.5px;color:${T.ink3}}
 .mk-copy{border:1px solid ${T.line};background:#fff;border-radius:6px;padding:2px 7px;font:11px ${SANS};cursor:pointer;color:${T.ink2}}
@@ -281,6 +304,8 @@ const CSS = `
 .mk-cover .card{max-width:760px;width:100%;background:${T.paper};border:1px solid ${T.line};border-radius:20px;padding:36px 40px;box-shadow:0 20px 60px rgba(15,17,21,.08)}
 .mk-cover h1{font-size:clamp(24px,2.3vw,30px);line-height:1.15;font-weight:700;margin:8px 0 10px;letter-spacing:-.01em}
 .mk-cover p{color:${T.ink2};font-size:17px;line-height:1.55;margin:0 0 22px}
+.mk-resume{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.mk-cover p.mk-resume-note{flex-basis:100%;margin:6px 0 0;font-size:14px;color:${T.ink2}}
 .mk-cover ul{margin:0 0 26px;padding:0;list-style:none;display:grid;gap:8px;color:${T.ink2};font-size:15px}
 .mk-cover li::before{content:"—";color:${T.accent};margin-right:10px}
 .mk-req{display:grid;gap:8px}
@@ -289,6 +314,57 @@ const CSS = `
 .mk-req .st{font:700 11px ${MONO};padding:2px 7px;border-radius:6px;background:#EEF0F4;color:${T.ink2}}
 .mk-req .st.s2{background:#E3F5EC;color:${T.green}}.mk-req .st.s4{background:#FFF0EB;color:${T.accent}}
 .mk-req pre{margin:6px 0 0;font:12px/1.45 ${MONO};white-space:pre-wrap;color:${T.ink2}}
+/* F-1109-06: mexanizm chizmalari (oqim, yo'lak, vaqt o'qi, jadval) — gapli karta o'rniga */
+.z{--ac:#E2451F;--ac2:#FFF5F2;--pg:#336791;--ok:#15803D;--ok2:#DCFCE7;--bad:#DC2626;--bad2:#FEF2F2;--warn:#C2410C;--warn2:#FFEDD5;--blue:#1D4ED8;--blue2:#DBEAFE;--pur:#6D3BE4;--pur2:#EDE9FE;--ink:#1F2937;--ink2:#4B5563;--mut:#6B7280;--line:#D7DCE3;--soft:#F8FAFC;
+  display:grid;gap:12px;color:var(--ink);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.z *{box-sizing:border-box}
+.z .zm,.z .zm *{font-family:ui-monospace,Menlo,Consolas,monospace}
+.z .zm{font-size:13px;color:var(--ink)}
+.z-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;display:grid;gap:10px;min-width:0;align-content:start}
+.z-h{font:700 13px system-ui,sans-serif;letter-spacing:.01em;color:var(--mut);margin:0}
+.z-flow{display:flex;align-items:stretch;gap:0}
+.z-flow>.z-st{flex:1 1 0;min-width:0}
+.z-ar{flex:0 0 26px;display:flex;align-items:center;justify-content:center;color:#9CA3AF;font-size:20px}
+.z-ar.bad{color:var(--bad)}
+.z-st{border:1.5px solid var(--line);border-radius:10px;padding:10px;display:grid;gap:5px;align-content:start;background:var(--soft)}
+.z-st.ok{border-color:var(--ok);background:#F0FDF4}.z-st.bad{border-color:var(--bad);background:var(--bad2)}.z-st.ac{border-color:var(--ac);background:var(--ac2)}
+.z-st.blue{border-color:var(--pg);background:#EFF6FF}.z-st.off{border-style:dashed;background:#fff;color:var(--mut)}
+.z-st .ln{font:11.5px ui-monospace,Menlo,Consolas,monospace;color:var(--mut)}
+.z-tag{justify-self:start;display:inline-block;font:700 12px system-ui,sans-serif;border-radius:999px;padding:2px 9px;white-space:nowrap}
+.z-tag.r{background:var(--bad);color:#fff}.z-tag.g{background:var(--ok2);color:var(--ok)}.z-tag.b{background:var(--blue2);color:var(--blue)}.z-tag.o{background:var(--warn2);color:var(--warn)}.z-tag.n{background:#F1F3F6;color:var(--ink2)}
+.z-term{background:#111827;color:#E5E7EB;border-radius:10px;padding:10px 12px;font:13px/1.55 ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;word-break:break-word}
+.z-term .r{color:#FCA5A5}.z-term .g{color:#86EFAC}.z-term .y{color:#FDE68A}.z-term .c{color:#93C5FD}.z-term .m{color:#9CA3AF}
+.z-term .hl{background:rgba(226,69,31,.28);border-radius:3px}
+.z-two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.z-three{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.z-rule{border-left:4px solid var(--ac);background:var(--ac2);border-radius:10px;padding:10px 14px;font-size:15px}
+.z-rule b{color:var(--ac)}
+.z-k{display:inline;font:13px ui-monospace,Menlo,Consolas,monospace;background:#F1F3F6;border-radius:5px;padding:1px 6px;color:var(--ink)}
+.z-mut{color:var(--mut);font-size:13px}
+.z-lanes{display:grid;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.z-lanes>div{padding:9px 12px;border-bottom:1px solid #EEF0F3;display:flex;align-items:center;gap:8px;min-height:44px;font-size:14px}
+.z-lanes>.hd{font:700 12px system-ui,sans-serif;letter-spacing:.05em;text-transform:uppercase;background:var(--soft);color:var(--ink2)}
+.z-lanes>.rh{font:600 12px ui-monospace,Menlo,Consolas,monospace;color:var(--mut);background:var(--soft)}
+.z-tbl{border-collapse:collapse;width:100%;font:13px ui-monospace,Menlo,Consolas,monospace}
+.z-tbl th,.z-tbl td{border:1px solid #E5E7EB;padding:5px 9px;text-align:left;color:var(--ink)}
+.z-tbl th{background:var(--soft);font-weight:700}
+.z-tbl tr.hl td{background:var(--blue2)}.z-tbl tr.bad td{background:var(--bad2);color:#991B1B}.z-tbl tr.ok td{background:#F0FDF4}
+.z-svg{display:block;width:100%;height:auto}
+.z-svg text{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.z-svg .mono{font-family:ui-monospace,Menlo,Consolas,monospace}
+.z b,.z strong{color:inherit}
+.z .z-st>b{color:var(--ink)}
+.z .zm{overflow-wrap:anywhere}
+.z code{all:unset;display:inline;font:13px ui-monospace,Menlo,Consolas,monospace;background:#F1F3F6;border-radius:5px;padding:1px 6px;color:var(--ink)}
+.z-h .zk,.z-h code{text-transform:none;letter-spacing:0;font:600 12.5px ui-monospace,Menlo,Consolas,monospace;color:var(--ink2)}
+.z .mk-in{min-width:0}
+.z-st.dim,.z-card.dim{opacity:.45}
+.z-card.hl{border-color:#E2451F;box-shadow:0 0 0 3px rgba(226,69,31,.14)}
+.z-st.hl{box-shadow:0 0 0 3px rgba(226,69,31,.18)}
+.z-st,.z-card,.z-ar,.z-rule,.z-term,.z-tbl tr{transition:opacity .4s,box-shadow .4s,background .4s}
+.z .dim{opacity:.4}
+.z-band{display:grid;gap:8px;font:700 12px system-ui,sans-serif;text-align:center}
+.z-band>div{border-radius:8px;padding:5px 4px}
 @keyframes mk-up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @keyframes mk-fade{from{opacity:0}to{opacity:1}}
 @keyframes mk-glow{0%,100%{box-shadow:0 0 0 0 rgba(226,69,31,0)}50%{box-shadow:0 0 0 5px rgba(226,69,31,.16)}}
@@ -327,10 +403,18 @@ const EN_PHRASES = [
   /Nest application successfully started/g, /successfully started/g, /Validation failed/g, /Internal server error/g,
   /can't resolve dependencies/g, /invalid controller/g, /Dependency Injection/g, /Hello World/g, /Cannot GET/g,
   /Bad Request/g, /Not Found/g, /does not exist/g, /Potential solutions/g, /Car with id [\w' ]+? not found/g,
+  /\b[Bb]ackslash\b/g, // F-1109-01 (M49): `\` belgisi o'z nomi bilan; ko'rik saytida o'zbekcha ovoz uchun tts-server «bekslesh» qiladi
 ];
+// F-1109-02 (M49): o'quvchi darsi kodi (m4-03, m4a-03, m11-03) ovozga so'z bilan ketadi — raqam bo'lib ketsa «0» «o» harfi
+// bo'lib o'qiladi («m4 o uch»). Faqat o'zbekcha ovozda; ekranda va «Matn»da kod o'zgarmaydi.
+const SON_UZ = ['nol', 'bir', 'ikki', 'uch', "to'rt", 'besh', 'olti', 'yetti', 'sakkiz', "to'qqiz"];
+const ON_UZ = ['', "o'n", 'yigirma', "o'ttiz", 'qirq'];
+const sonUz = (n) => (n < 10 ? SON_UZ[n] : ON_UZ[Math.floor(n / 10)] + (n % 10 ? ' ' + SON_UZ[n % 10] : ''));
+const kodOvoz = (t) => t.replace(/\bm(\d{1,2})(a?)-(\d)(\d)\b/g, (_, m, a, d1, d2) =>
+  `em ${sonUz(+m)}${a ? ' a' : ''}, ${d1 === '0' ? 'nol ' + SON_UZ[+d2] : sonUz(+(d1 + d2))}`);
 const voice = (t) => {
   const keep = [];
-  let out = t || '';
+  let out = LANG === 'ru' ? (t || '') : kodOvoz(t || '');
   EN_PHRASES.forEach((re) => { out = out.replace(re, (m) => { keep.push(m); return `\u0000${keep.length - 1}\u0000`; }); });
   return (LANG === 'ru' ? RU_MARK : UZ) + out.replace(/\u0000(\d+)\u0000/g, (_, i) => `[English pronunciation] ${keep[i]} [end]`);
 };
@@ -462,7 +546,9 @@ function Say({ eyebrow, title, segments, beat, audio, stepManual, below, guess, 
 }
 
 // Kod/terminal paneli: satr `at` qadamida kiradi; `focus` id'lari yoritiladi, qolgani xiralashadi; `onLine` — bosiladigan
-function CodePanel({ file, lines, beat = 99, focus = [], numbers = true, wrap = false, style, onLine, marks = {} }) {
+// F-1103-04 (03.11, foydalanuvchi «1 qator kod 3 qator bo'lmasin»): kod HECH QACHON o'ralmaydi — `wrap` prop e'tiborsiz (eski chaqiruvlar buzilmasin).
+// Uzun qator — darsda Prettier (80 belgi) bilan bo'linadi; sig'masa panel ichida gorizontal skroll.
+function CodePanel({ file, lines, beat = 99, focus = [], numbers = true, style, onLine, marks = {} }) {
   const anyFocus = focus.length > 0;
   const ref = useRef(null);
   const focusKey = focus.join('|');
@@ -489,7 +575,7 @@ function CodePanel({ file, lines, beat = 99, focus = [], numbers = true, wrap = 
           const v = vis(l.at, beat);
           const hl = anyFocus && l.id && focus.includes(l.id);
           const mk = marks[i] || '';
-          const cls = `mk-ln${wrap ? ' wrap' : ''}${v ? ' in' : ''}${hl ? ' hl' : (anyFocus && v && !l.keep ? ' dim' : '')}${l.gone ? ' gone' : ''}${l.neu ? ' new' : ''}${onLine ? ' clk' : ''}${mk ? ' ' + mk : ''}`;
+          const cls = `mk-ln${v ? ' in' : ''}${hl ? ' hl' : (anyFocus && v && !l.keep ? ' dim' : '')}${l.gone ? ' gone' : ''}${l.neu ? ' new' : ''}${onLine ? ' clk' : ''}${mk ? ' ' + mk : ''}`;
           return <div key={i} className={cls} data-at={l.at} onClick={onLine ? () => onLine(i, l) : undefined}>{numbers && <span className="n">{l.n != null ? l.n : i + 1}</span>}<span dangerouslySetInnerHTML={html(l.h)} /></div>;
         })}
       </div>
@@ -585,7 +671,9 @@ function Lesson({ p, S, scene, below, ready, sceneTop }) {
 
 // Tekshiruv (tanlov): xato variant yopiladi, to'g'risini topguncha bosadi
 // `after` — to'g'ri javobdan keyin ko'rsatiladigan blok (masalan tuzatilgan fayl, 2-qonun, F-1030 qo'shimcha 1)
-function MCRetry({ idx, total, onBack, onNext, onRestart, stored, onAnswer, review, kicker, eyebrow, title, q, opts, correct, ok, okShort, wrong, above, after }) {
+// F-1103-02 (A varianti): `above` — savoldan oldin ko'rinadigan material (terminal, kod, xabar); `after` — to'g'ri javobdan keyin isbot;
+// `demak` — javobdan keyin o'ng ustun ostidagi bitta «Demak, …» gapi. Karta yo'q: sabab variantning ichida (to'g'risi yashil, xatosi qizil).
+function MCRetry({ idx, total, onBack, onNext, onRestart, stored, onAnswer, review, kicker, eyebrow, title, q, opts, correct, ok, okShort, wrong, above, after, demak }) {
   const segs = useMemo(() => review ? [] : [{ id: 'q', text: voice(q), trigger: 'on_mount', waits_for: { type: 'option_picked' } }], [q, review]);
   const audio = useAudio(segs);
   const sfx = useSfx();
@@ -604,11 +692,10 @@ function MCRetry({ idx, total, onBack, onNext, onRestart, stored, onAnswer, revi
       setTimeout(() => audio.pushOneOff(voice((wrong[i] || t('Unday emas.', 'Не совсем.')) + t(" Yana o'ylab ko'ring.", ' Подумайте ещё раз.'))), 300);
     }
   };
-  const fbOk = solved && last === correct;
   // F-1102-16: tuzatilgan/haqiqiy natija bloki bo'lsa — ekran BOSHIDAN ikki ustun va joyi qimirlamaydi:
   // chapda savol va variantlar, o'ngda xabar (above) va javobdan keyin uning ostida natija (after).
   // Javobdan keyin variantlar o'z joyida qoladi (to'g'risi yashil, qolgani xira) — hech narsa sakramaydi.
-  const split = !!after;
+  const split = !!(after || above);
   return (
     <Stage kicker={kicker} idx={idx} total={total} audio={audio} onBack={onBack} onNext={onNext} onRestart={onRestart} nextReady={solved} nextDisabled={!solved} lockHint={t("To'g'ri javobni toping", 'Найдите верный ответ')}>
       <div className={`mk-body${split ? ' mc-split' : ''}`} style={split ? undefined : { gridTemplateColumns: '1fr', maxWidth: 980, width: '100%', margin: '0 auto' }}>
@@ -622,21 +709,17 @@ function MCRetry({ idx, total, onBack, onNext, onRestart, stored, onAnswer, revi
               let cls = 'mk-opt';
               if (solved) cls += i === correct ? ' ok' : ' off';
               else if (bad.includes(i)) cls += ' bad';
-              return <button key={i} className={cls} disabled={solved || bad.includes(i)} onClick={() => pick(i)}><span className="l">{String.fromCharCode(65 + i)}</span><span>{o}</span></button>;
+              const why = solved && i === correct ? (okShort || digits(ok)) : (bad.includes(i) ? digits(wrong[i] || '') : null);
+              return <button key={i} className={cls} disabled={solved || bad.includes(i)} onClick={() => pick(i)}><span className="l">{String.fromCharCode(65 + i)}</span><span className="t"><span>{o}</span>{why ? <small className="why">{why}</small> : null}</span></button>;
             })}
           </div>
-          {last !== null && (
-            <div className="mk-fb" key={last + (solved ? 'ok' : 'bad')} style={{ '--c': fbOk ? T.green : T.accent, '--bg': fbOk ? '#E3F5EC' : '#FFF0EB' }}>
-              <b>{fbOk ? t("To'g'ri", 'Верно') : t("Unday emas — yana o'ylab ko'ring", 'Не совсем — подумайте ещё раз')}</b>
-              <span>{fbOk ? (okShort || digits(ok)) : digits(wrong[last])}</span>
-            </div>
-          )}
         </div>
-        {split && <div className="mk-scene top mc-after" style={{ overflow: 'auto', display: 'grid', gap: 12, alignContent: 'start' }}>
+        {split && <div className="mk-scene top mc-after">
           {above}
           {solved
-            ? <div style={{ animation: 'mk-up .45s ease both' }}>{after}</div>
-            : <div className="mc-wait">{t("To'g'ri javobni topganingizdan keyin shu yerda haqiqiy natija ochiladi", 'Когда найдёте верный ответ, здесь откроется реальный результат')}</div>}
+            ? (after ? <div className="mc-proof" style={{ animation: 'mk-up .45s ease both' }}>{after}</div> : null)
+            : (above ? null : <div className="mc-wait">{t("Javobdan keyin shu yerda haqiqiy natija", 'После ответа здесь — реальный результат')}</div>)}
+          {demak ? <div className={`mc-demak${solved ? ' on' : ''}`}>{solved ? <><b>{t('Demak,', 'Значит,')}</b><span>{demak}</span></> : null}</div> : null}
         </div>}
       </div>
     </Stage>
@@ -733,10 +816,18 @@ function Practice({ p, S, steps, trouble, code, proof, tree }) {
     <Stage kicker={S.kicker} idx={p.idx} total={p.total} audio={b.audio} onBack={p.onBack} onNext={p.onNext} onRestart={p.onRestart} nextReady={b.done && allDone} nextDisabled={!(b.done && allDone)} lockHint={!allDone ? (proof ? t("Katakchalar va isbotni to'ldiring", 'Отметьте пункты и заполните подтверждение') : t('Katakchalarni belgilang', 'Отметьте пункты')) : t("Ustoz gapirib bo'lgach ochiladi", 'Откроется, когда учитель договорит')}>
       <div className="mk-body">
         <Say eyebrow={S.eyebrow} title={S.title} segments={S.segments} beat={beat} audio={b.audio} stepManual={b.stepManual} guess={b.guess} answerAsk={b.answerAsk} review={p.review}
-          below={<div className="mk-card" style={{ background: allDone ? '#E3F5EC' : T.paper, borderColor: allDone ? T.green : T.line }}><h5>{t('Bajarildi', 'Выполнено')}</h5><div style={{ fontSize: 15, fontWeight: 700 }}>{checked.length} / {steps.length} {t('qadam', 'шагов')}{proof ? (proofOk && proofVal.trim() ? t(' · isbot ✓', ' · подтверждение ✓') : t(' · isbot kutilmoqda', ' · ждём подтверждение')) : ''}{allDone ? (b.done ? t(' — Davom bosing', ' — нажмите «Далее»') : t(' — ovoz tugagach Davom ochiladi', ' — «Далее» откроется после озвучки')) : ''}</div>
+          below={<><div className="mk-card" style={{ background: allDone ? '#E3F5EC' : T.paper, borderColor: allDone ? T.green : T.line }}><h5>{t('Bajarildi', 'Выполнено')}</h5><div style={{ fontSize: 15, fontWeight: 700 }}>{checked.length} / {steps.length} {t('qadam', 'шагов')}{proof ? (proofOk && proofVal.trim() ? t(' · isbot ✓', ' · подтверждение ✓') : t(' · isbot kutilmoqda', ' · ждём подтверждение')) : ''}{allDone ? (b.done ? t(' — Davom bosing', ' — нажмите «Далее»') : t(' — ovoz tugagach Davom ochiladi', ' — «Далее» откроется после озвучки')) : ''}</div>
             {/* F-1102-20: isbot maydoni to'ldirilmaguncha yumshoq yonib-o'chadi — «shu yerga yozing» ko'rinib tursin */}
             {proof && <div style={{ marginTop: 10 }}><div className="exp" style={{ marginBottom: 4, fontWeight: 700, color: proofOk && proofVal.trim() ? T.green : T.ink }}>{t('Isbot', 'Подтверждение')}: {String(proof.label).replace(/^(Isbot|Подтверждение)\s*:\s*/, '')}</div><input className={`mk-input${proofOk && proofVal.trim() ? '' : ' need'}`} value={proofVal} placeholder={proof.placeholder} onChange={(e) => onProof(e.target.value)} />{proofVal.trim() && !proofOk && <div className="exp" style={{ color: T.accent, marginTop: 4 }}>{proof.wrong}</div>}</div>}
-          </div>} />
+          </div>
+          {/* 04.11: «Boshqacha chiqdimi?» chap ustunda — o'ng ustun qadamlarga to'liq qoladi (1280×720 da kesilmasin) */}
+          <Block at={S.tableAt} beat={beat}><div className="mk-light mk-trouble" style={{ padding: 0, marginTop: 10 }}>
+              <button type="button" className={`mk-trbtn${beat === S.tableAt && !tOpen ? ' hot' : ''}`} aria-haspopup="dialog" aria-expanded={tOpen} onClick={() => setTOpen(true)}>
+                <span className="q">{t('Boshqacha chiqdimi?', 'Вышло иначе?')}</span>
+                {rows.length > 1 && <span className="n">{t(`${rows.length - 1} ta holat va yechim`, `ситуации и решения: ${rows.length - 1}`)}</span>}
+                <span className="ar" aria-hidden="true">↗</span>
+              </button>
+            </div></Block></>} />
         <div className="mk-scene top" style={{ overflow: 'auto' }}>
           {cur ? (<>
             {/* F-1031-05: qaytish tugmasi oynadan tashqarida, katta — kod ko'rilgach qadamlarga qaytish ko'rinib tursin */}
@@ -757,19 +848,15 @@ function Practice({ p, S, steps, trouble, code, proof, tree }) {
                   <input type="checkbox" checked={checked.includes(i)} onChange={() => toggle(i)} />
                   <div className="t"><b>{i + 1}. {s.t}</b>
                     {s.cmds.map((cm) => <div key={cm} className="cmd"><code>{cm}</code><CopyBtn text={cm} /></div>)}
-                    {c && <div style={{ margin: '4px 0 6px' }}><button className="mk-btn soft sm" style={{ borderColor: T.ink, color: T.ink }} onClick={() => setOpenFile(c.file)}>{t('Kodni ochish', 'Открыть код')} · {baseName(c.file)}{c.copy === false ? t(' (namuna)', ' (образец)') : ''}</button></div>}
-                    <div className="exp">{t('Kutilgan:', 'Ожидается:')} {s.exp}</div>
+                    {/* 04.11: «Kodni ochish» va «Kutilgan» bitta qatorda (sig'masa o'tadi) — 1280×720 da qadamlar sig'sin */}
+                    <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '4px 12px', margin: c ? '4px 0 2px' : 0 }}>
+                      {c && <button className="mk-btn soft sm" style={{ borderColor: T.ink, color: T.ink }} onClick={() => setOpenFile(c.file)}>{t('Kodni ochish', 'Открыть код')} · {baseName(c.file)}{c.copy === false ? t(' (namuna)', ' (образец)') : ''}</button>}
+                      <div className="exp">{t('Kutilgan:', 'Ожидается:')} {s.exp}</div>
+                    </div>
                   </div>
                 </div>
               ); })}
             </div>
-            <Block at={S.tableAt} beat={beat}><div className="mk-light mk-trouble" style={{ padding: 0, marginTop: 10 }}>
-              <button type="button" className={`mk-trbtn${beat === S.tableAt && !tOpen ? ' hot' : ''}`} aria-haspopup="dialog" aria-expanded={tOpen} onClick={() => setTOpen(true)}>
-                <span className="q">{t('Boshqacha chiqdimi?', 'Вышло иначе?')}</span>
-                {rows.length > 1 && <span className="n">{t(`${rows.length - 1} ta holat va yechim`, `ситуации и решения: ${rows.length - 1}`)}</span>}
-                <span className="ar" aria-hidden="true">↗</span>
-              </button>
-            </div></Block>
             {/* F-1102-12: jadval sahifa ichida emas — ustida oyna (popup). ✕, tashqarisi yoki Esc yopadi; tugma joyida qoladi */}
             {tOpen && <TroubleModal rows={rows} onClose={() => setTOpen(false)} />}
           </>)}
@@ -779,193 +866,1002 @@ function Practice({ p, S, steps, trouble, code, proof, tree }) {
   );
 }
 
+// ---------- Progress saqlovi (F-1103-06, 03.11): mentor darsni bo'lib o'tadi ----------
+// O'quvchi darslaridagi ccProgress kabi — brauzer xotirasida: ekran, ko'rilgan ekranlar, javoblar.
+// Ekranlar soni o'zgargan bo'lsa (dars qayta qurilgan) eski yozuv olinmaydi. startAt (dev) bo'lsa saqlov o'qilmaydi.
+// Qaytganda darhol ekranga tushilmaydi: brauzer ovozni faqat bosishdan keyin chaladi — kirish oynasida tugma.
+const SAVE_KEY = (id) => `ccMentor:${id}`;
+function loadSaved(id, total) {
+  try {
+    const v = JSON.parse(localStorage.getItem(SAVE_KEY(id)) || 'null');
+    if (!v || v.v !== 1 || v.total !== total || typeof v.idx !== 'number' || v.idx < 1) return null;
+    return v;
+  } catch (e) { return null; }
+}
+function clearSaved(id) { try { localStorage.removeItem(SAVE_KEY(id)); } catch (e) {} }
+function useMentorSave({ id, total, startAt, started, idx, answers, seen, setIdx, setAnswers, setSeen, setStarted }) {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const saved = useMemo(() => (startAt != null ? null : loadSaved(id, total)), []);
+  useEffect(() => {
+    if (!started) return;
+    try { localStorage.setItem(SAVE_KEY(id), JSON.stringify({ v: 1, total, idx, answers, seen, t: Date.now() })); } catch (e) {}
+  }, [started, idx, answers, seen, id, total]);
+  const start = useCallback((resume) => {
+    if (resume && saved) { setIdx(Math.min(saved.idx, total - 1)); setAnswers(saved.answers || {}); setSeen(saved.seen || {}); }
+    else clearSaved(id);
+    setStarted(true);
+  }, [saved, id, total, setIdx, setAnswers, setSeen, setStarted]);
+  return { resume: saved, start };
+}
+function CoverStart({ onStart, resume }) {
+  if (!resume) return <button className="mk-btn ready" onClick={() => onStart(false)}>{t('Boshlash →', 'Начать →')}</button>;
+  return (
+    <div className="mk-resume">
+      <button className="mk-btn ready" onClick={() => onStart(true)}>{t(`${resume.idx + 1}-ekrandan davom etish →`, `Продолжить с ${resume.idx + 1}-го экрана →`)}</button>
+      <button className="mk-btn soft" onClick={() => onStart(false)}>{t('Boshidan boshlash', 'Начать сначала')}</button>
+      <p className="mk-resume-note">{t(`Oxirgi marta ${resume.idx + 1}-ekrangacha kelgansiz. Javoblaringiz saqlangan.`, `В прошлый раз вы дошли до ${resume.idx + 1}-го экрана. Ответы сохранены.`)}</p>
+    </div>
+  );
+}
+
+// AVTO: feedback/F-1029-02-mentor-kurs/dev/tgpg-kod.py — OrderBotNest teglaridan aynan (qo'lda tahrirlanmaydi)
+const KOD = {
+ "START_START": {
+  "file": "src/api/telegram/telegram.service.ts",
+  "tag": "tgpg-start",
+  "lines": [
+   {
+    "t": "  private registerCustomer() {",
+    "n": 56
+   },
+   {
+    "t": "    this.bot.start(async (ctx) => {",
+    "n": 57
+   },
+   {
+    "t": "      const user = this.users.getOrCreate(ctx.from);",
+    "n": 58
+   },
+   {
+    "t": "      await ctx.reply(texts.start(user.name, user.role === 'admin'));",
+    "n": 59
+   },
+   {
+    "t": "    });",
+    "n": 60
+   }
+  ]
+ },
+ "START_USER": {
+  "file": "src/api/user/user.service.ts",
+  "tag": "tgpg-start",
+  "lines": [
+   {
+    "t": "@Injectable()",
+    "n": 5
+   },
+   {
+    "t": "export class UserService {",
+    "n": 6
+   },
+   {
+    "t": "  // telegramId → foydalanuvchi. Xotirada: server qayta ishga tushsa bo'shaydi.",
+    "n": 7
+   },
+   {
+    "t": "  private readonly users = new Map<number, User>();",
+    "n": 8
+   },
+   {
+    "t": "",
+    "n": 9
+   },
+   {
+    "t": "  getOrCreate(from: { id: number; first_name: string }): User {",
+    "n": 10
+   },
+   {
+    "t": "    const bor = this.users.get(from.id);",
+    "n": 11
+   },
+   {
+    "t": "    if (bor) return bor;",
+    "n": 12
+   },
+   {
+    "t": "    const user: User = {",
+    "n": 13
+   },
+   {
+    "t": "      telegramId: from.id,",
+    "n": 14
+   },
+   {
+    "t": "      name: from.first_name,",
+    "n": 15
+   },
+   {
+    "t": "      phone: null,",
+    "n": 16
+   },
+   {
+    "t": "      role: config.ADMIN_TELEGRAM_IDS.includes(from.id) ? 'admin' : 'customer',",
+    "n": 17
+   },
+   {
+    "t": "      state: 'IDLE',",
+    "n": 18
+   },
+   {
+    "t": "    };",
+    "n": 19
+   },
+   {
+    "t": "    this.users.set(from.id, user);",
+    "n": 20
+   },
+   {
+    "t": "    return user;",
+    "n": 21
+   },
+   {
+    "t": "  }",
+    "n": 22
+   }
+  ]
+ },
+ "START_ORDER": {
+  "file": "src/api/order/order.service.ts",
+  "tag": "tgpg-start",
+  "lines": [
+   {
+    "t": "@Injectable()",
+    "n": 11
+   },
+   {
+    "t": "export class OrderService {",
+    "n": 12
+   },
+   {
+    "t": "  // Buyurtmalar ro'yxati xotirada; id oddiy hisoblagich",
+    "n": 13
+   },
+   {
+    "t": "  private readonly orders: Order[] = [];",
+    "n": 14
+   },
+   {
+    "t": "  private nextId = 1;",
+    "n": 15
+   }
+  ]
+ },
+ "START_CAT": {
+  "file": "src/api/catalog/catalog.service.ts",
+  "tag": "tgpg-start",
+  "lines": [
+   {
+    "t": "// Katalog hozircha koddagi ro'yxat. Narx so'mda, stock — omborda nechta.",
+    "n": 6
+   },
+   {
+    "t": "const PRODUCTS: Product[] = [",
+    "n": 7
+   },
+   {
+    "t": "  { id: 1, name: 'Klaviatura', price: 120000, stock: 8 },",
+    "n": 8
+   },
+   {
+    "t": "  { id: 2, name: 'Sichqoncha', price: 75000, stock: 15 },",
+    "n": 9
+   },
+   {
+    "t": "  { id: 3, name: 'Quloqchin', price: 95000, stock: 5 },",
+    "n": 10
+   },
+   {
+    "t": "  { id: 4, name: 'Kolonka', price: 50000, stock: 10 },",
+    "n": 11
+   },
+   {
+    "t": "  { id: 5, name: 'Planshet', price: 300000, stock: 3 },",
+    "n": 12
+   },
+   {
+    "t": "  { id: 6, name: \"O'yinchoq\", price: 30000, stock: 4 },",
+    "n": 13
+   },
+   {
+    "t": "];",
+    "n": 14
+   }
+  ]
+ },
+ "DONE_PRODUCT": {
+  "file": "src/core/entity/product.entity.ts",
+  "tag": "tgpg-done",
+  "lines": [
+   {
+    "t": "import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';",
+    "n": 1
+   },
+   {
+    "t": "",
+    "n": 2
+   },
+   {
+    "t": "// products — PG-2 darsidagi jadvalning o'zi: id, name, price, stock",
+    "n": 3
+   },
+   {
+    "t": "@Entity('products')",
+    "n": 4
+   },
+   {
+    "t": "export class Product {",
+    "n": 5
+   },
+   {
+    "t": "  @PrimaryGeneratedColumn()",
+    "n": 6
+   },
+   {
+    "t": "  id: number;",
+    "n": 7
+   },
+   {
+    "t": "",
+    "n": 8
+   },
+   {
+    "t": "  @Column({ type: 'varchar', unique: true })",
+    "n": 9
+   },
+   {
+    "t": "  name: string;",
+    "n": 10
+   },
+   {
+    "t": "",
+    "n": 11
+   },
+   {
+    "t": "  @Column({ type: 'integer' })",
+    "n": 12
+   },
+   {
+    "t": "  price: number; // so'm",
+    "n": 13
+   },
+   {
+    "t": "",
+    "n": 14
+   },
+   {
+    "t": "  @Column({ type: 'integer', default: 0 })",
+    "n": 15
+   },
+   {
+    "t": "  stock: number; // omborda nechta; bazada CHECK (stock >= 0)",
+    "n": 16
+   },
+   {
+    "t": "}",
+    "n": 17
+   }
+  ]
+ },
+ "DONE_MIG": {
+  "file": "src/infrastructure/migrations/1762200000000-init.ts",
+  "tag": "tgpg-done",
+  "lines": [
+   {
+    "t": "  public async up(q: QueryRunner): Promise<void> {",
+    "n": 7
+   },
+   {
+    "t": "    await q.query(`CREATE TABLE \"products\" (",
+    "n": 8
+   },
+   {
+    "t": "      \"id\" SERIAL PRIMARY KEY,",
+    "n": 9
+   },
+   {
+    "t": "      \"name\" VARCHAR NOT NULL UNIQUE,",
+    "n": 10
+   },
+   {
+    "t": "      \"price\" INTEGER NOT NULL,",
+    "n": 11
+   },
+   {
+    "t": "      \"stock\" INTEGER NOT NULL DEFAULT 0,",
+    "n": 12
+   },
+   {
+    "t": "      CONSTRAINT \"stock_nonneg\" CHECK (\"stock\" >= 0)",
+    "n": 13
+   },
+   {
+    "t": "    )`);",
+    "n": 14
+   }
+  ]
+ },
+ "DONE_USER": {
+  "file": "src/core/entity/user.entity.ts",
+  "tag": "tgpg-done",
+  "lines": [
+   {
+    "t": "@Entity('users')",
+    "n": 11
+   },
+   {
+    "t": "export class User {",
+    "n": 12
+   },
+   {
+    "t": "  @PrimaryGeneratedColumn()",
+    "n": 13
+   },
+   {
+    "t": "  id: number;",
+    "n": 14
+   },
+   {
+    "t": "",
+    "n": 15
+   },
+   {
+    "t": "  // Telegram id 32 bitga sig'maydi (5 123 456 789) — BIGINT.",
+    "n": 16
+   },
+   {
+    "t": "  // node-pg BIGINT'ni MATN qilib qaytaradi, shuning uchun tipi string.",
+    "n": 17
+   },
+   {
+    "t": "  @Column({ name: 'telegram_id', type: 'bigint', unique: true })",
+    "n": 18
+   },
+   {
+    "t": "  telegram_id: string;",
+    "n": 19
+   },
+   {
+    "t": "",
+    "n": 20
+   },
+   {
+    "t": "  @Column({ type: 'varchar' })",
+    "n": 21
+   },
+   {
+    "t": "  name: string;",
+    "n": 22
+   },
+   {
+    "t": "",
+    "n": 23
+   },
+   {
+    "t": "  @Column({ type: 'varchar', nullable: true })",
+    "n": 24
+   },
+   {
+    "t": "  phone: string | null;",
+    "n": 25
+   },
+   {
+    "t": "",
+    "n": 26
+   },
+   {
+    "t": "  @Column({ type: 'varchar', default: 'customer' })",
+    "n": 27
+   },
+   {
+    "t": "  role: Role;",
+    "n": 28
+   },
+   {
+    "t": "",
+    "n": 29
+   },
+   {
+    "t": "  // Suhbat qaysi bosqichda — bazada, server qayta ishga tushsa ham qoladi",
+    "n": 30
+   },
+   {
+    "t": "  @Column({ type: 'varchar', default: 'IDLE' })",
+    "n": 31
+   },
+   {
+    "t": "  state: UserState;",
+    "n": 32
+   }
+  ]
+ },
+ "DONE_CART": {
+  "file": "src/api/cart/cart.service.ts",
+  "tag": "tgpg-done",
+  "lines": [
+   {
+    "t": "  // Bitta so'rov: yo'q bo'lsa INSERT, bor bo'lsa qty + 1 (ON CONFLICT — UNIQUE (user_id, product_id) ustiga)",
+    "n": 19
+   },
+   {
+    "t": "  async add(user: User, productId: number): Promise<number> {",
+    "n": 20
+   },
+   {
+    "t": "    const rows: { qty: number }[] = await this.repo.query(",
+    "n": 21
+   },
+   {
+    "t": "      `INSERT INTO cart_items (user_id, product_id, qty) VALUES ($1, $2, 1)",
+    "n": 22
+   },
+   {
+    "t": "       ON CONFLICT (user_id, product_id) DO UPDATE SET qty = cart_items.qty + 1",
+    "n": 23
+   },
+   {
+    "t": "       RETURNING qty`,",
+    "n": 24
+   },
+   {
+    "t": "      [user.id, productId],",
+    "n": 25
+   },
+   {
+    "t": "    );",
+    "n": 26
+   },
+   {
+    "t": "    return rows[0].qty;",
+    "n": 27
+   },
+   {
+    "t": "  }",
+    "n": 28
+   }
+  ]
+ },
+ "DONE_PLACE": {
+  "file": "src/api/order/order.service.ts",
+  "tag": "tgpg-done",
+  "lines": [
+   {
+    "t": "  place(user: User, cart: CartItem[]): Promise<Order> {",
+    "n": 24
+   },
+   {
+    "t": "    if (!user.phone) throw new Error(\"Telefon raqami yo'q\");",
+    "n": 25
+   },
+   {
+    "t": "    if (cart.length === 0) throw new Error(\"Savat bo'sh\");",
+    "n": 26
+   },
+   {
+    "t": "    return this.ds.transaction(async (m) => {",
+    "n": 27
+   },
+   {
+    "t": "      const items: OrderItem[] = [];",
+    "n": 28
+   },
+   {
+    "t": "      for (const c of cart) {",
+    "n": 29
+   },
+   {
+    "t": "        // 1) Qatorni qulflab o'qiymiz (SELECT ... FOR UPDATE): ikkinchi mijoz shu qatorni biz tugatguncha kutadi",
+    "n": 30
+   },
+   {
+    "t": "        const p = await m.findOne(Product, {",
+    "n": 31
+   },
+   {
+    "t": "          where: { id: c.product.id },",
+    "n": 32
+   },
+   {
+    "t": "          lock: { mode: 'pessimistic_write' },",
+    "n": 33
+   },
+   {
+    "t": "        });",
+    "n": 34
+   },
+   {
+    "t": "        if (!p) throw new Error(`Mahsulot topilmadi: ${c.product.name}`);",
+    "n": 35
+   },
+   {
+    "t": "        if (p.stock < c.qty) {",
+    "n": 36
+   },
+   {
+    "t": "          throw new Error(`${p.name}: omborda faqat ${p.stock} ta qoldi`);",
+    "n": 37
+   },
+   {
+    "t": "        }",
+    "n": 38
+   },
+   {
+    "t": "        // 2) Ayiramiz. Bazadagi CHECK (stock >= 0) — oxirgi qo'riqchi: kod xato qilsa ham manfiy bo'lmaydi.",
+    "n": 39
+   },
+   {
+    "t": "        //    Diqqat: tranzaksiya ichida xato chiqsa, keyingi so'rovlar ham rad etiladi",
+    "n": 40
+   },
+   {
+    "t": "        //    («current transaction is aborted») — faqat ROLLBACK qoladi.",
+    "n": 41
+   },
+   {
+    "t": "        await m.query(`UPDATE products SET stock = stock - $1 WHERE id = $2`, [",
+    "n": 42
+   },
+   {
+    "t": "          c.qty,",
+    "n": 43
+   },
+   {
+    "t": "          p.id,",
+    "n": 44
+   },
+   {
+    "t": "        ]);",
+    "n": 45
+   },
+   {
+    "t": "        items.push(",
+    "n": 46
+   },
+   {
+    "t": "          m.create(OrderItem, { product: p, qty: c.qty, price: p.price }),",
+    "n": 47
+   },
+   {
+    "t": "        );",
+    "n": 48
+   },
+   {
+    "t": "      }",
+    "n": 49
+   },
+   {
+    "t": "      const order = m.create(Order, {",
+    "n": 50
+   },
+   {
+    "t": "        user,",
+    "n": 51
+   },
+   {
+    "t": "        phone: user.phone!,",
+    "n": 52
+   },
+   {
+    "t": "        status: 'NEW',",
+    "n": 53
+   },
+   {
+    "t": "        total: items.reduce((s, i) => s + i.price * i.qty, 0),",
+    "n": 54
+   },
+   {
+    "t": "        items,",
+    "n": 55
+   },
+   {
+    "t": "      });",
+    "n": 56
+   },
+   {
+    "t": "      const saved = await m.save(order);",
+    "n": 57
+   },
+   {
+    "t": "      await m.delete(CartItem, { user: { id: user.id } });",
+    "n": 58
+   },
+   {
+    "t": "      return saved;",
+    "n": 59
+   },
+   {
+    "t": "    });",
+    "n": 60
+   },
+   {
+    "t": "  }",
+    "n": 61
+   }
+  ]
+ },
+ "DONE_DS": {
+  "file": "src/infrastructure/data-source.ts",
+  "tag": "tgpg-done",
+  "lines": [
+   {
+    "t": "// Bitta ulanish sozlamasi — ham Nest (DatabaseModule), ham typeorm CLI (migration:run) shuni ishlatadi",
+    "n": 7
+   },
+   {
+    "t": "export const dataSourceOptions = {",
+    "n": 8
+   },
+   {
+    "t": "  type: 'postgres' as const,",
+    "n": 9
+   },
+   {
+    "t": "  url: config.DATABASE_URL,",
+    "n": 10
+   },
+   {
+    "t": "  ssl: config.DATABASE_URL.includes('sslmode=require')",
+    "n": 11
+   },
+   {
+    "t": "    ? { rejectUnauthorized: false }",
+    "n": 12
+   },
+   {
+    "t": "    : false,",
+    "n": 13
+   },
+   {
+    "t": "  entities: [Product, User, CartItem, Order, OrderItem],",
+    "n": 14
+   },
+   {
+    "t": "  migrations: [Init1762200000000],",
+    "n": 15
+   },
+   {
+    "t": "  synchronize: false, // jadvallar faqat migratsiya bilan o'zgaradi",
+    "n": 16
+   },
+   {
+    "t": "  logging: config.DB_LOGGING ? ['query', 'error'] : ['error'],",
+    "n": 17
+   },
+   {
+    "t": "};",
+    "n": 18
+   },
+   {
+    "t": "",
+    "n": 19
+   }
+  ]
+ },
+ "BUZUQ": {
+  "file": "src/api/order/order.service.ts",
+  "tag": "buzuq",
+  "lines": [
+   {
+    "t": "      for (const c of cart) {",
+    "n": 29
+   },
+   {
+    "t": "        // 1) Mahsulotni o'qiymiz va omborda yetarlimi — tekshiramiz",
+    "n": 30
+   },
+   {
+    "t": "        const p = await m.findOneBy(Product, { id: c.product.id });",
+    "n": 31
+   },
+   {
+    "t": "        if (!p) throw new Error(`Mahsulot topilmadi: ${c.product.name}`);",
+    "n": 32
+   },
+   {
+    "t": "        if (p.stock < c.qty) {",
+    "n": 33
+   },
+   {
+    "t": "          throw new Error(`${p.name}: omborda faqat ${p.stock} ta qoldi`);",
+    "n": 34
+   },
+   {
+    "t": "        }",
+    "n": 35
+   },
+   {
+    "t": "        p.stock = p.stock - c.qty;",
+    "n": 36
+   },
+   {
+    "t": "        await m.save(p);",
+    "n": 37
+   },
+   {
+    "t": "        items.push(",
+    "n": 38
+   },
+   {
+    "t": "          m.create(OrderItem, { product: p, qty: c.qty, price: p.price }),",
+    "n": 39
+   },
+   {
+    "t": "        );",
+    "n": 40
+   },
+   {
+    "t": "      }",
+    "n": 41
+   }
+  ]
+ }
+};
+
 // ============================================================
-//  TELEGRAF+PG MATNLARI — AVTO: feedback/F-1029-02-mentor-kurs/dev/tgpg-matn.py (manba: 17-TgPg-mentor-v1.md)
+//  TgPg MATNLARI — AVTO: feedback/F-1029-02-mentor-kurs/dev/tgpg-matn.py (manba: 17-TgPg-mentor-v2.md, M41)
 //  QO'LDA TAHRIRLANMAYDI: matn MD'da o'zgaradi, keyin skript qayta yurgiziladi.
 // ============================================================
 const MDT = {
  "1": {
   "type": "Lesson",
   "kicker": "Kirish",
-  "eyebrow": "Mentor kursi · Telegraf",
-  "title": "Bot javob beradi. Lekin bir daqiqa oldingi gapni eslaydimi?",
+  "eyebrow": "Mentor kursi · Telegraf + PostgreSQL",
+  "title": "Tayyor buyurtma boti bor. Uni AI bilan PostgreSQL'ga ko'chiramiz — bosqichma-bosqich va har qadamni tekshirib",
   "seg": [
    [
     "a",
-    "Telegraf'ni bilasiz — bugun botga xotira beramiz: <b>holat bazada</b>",
-    "Assalomu alaykum. Telegraf'ni bilasiz: handler, reply, BotFather. Bugun botga xotira beramiz: suhbat qaysi bosqichda ekanini bot eslab qolsin, server qayta ishga tushsa ham."
+    "Telegraf bilan bot yozishni bilasiz — bugun <b>bot ma'lumotini PostgreSQL'da saqlaymiz</b>",
+    "Assalomu alaykum. Telegraf bilan bot yozishni, buyruq va inline tugmalarni videodarslarda ko'rgansiz. Bugun keyingi qadam: bot ma'lumotini PostgreSQL'da saqlaymiz. Shunda server qayta ishga tushsa ham savat, buyurtma va telefon raqami yo'qolmaydi."
    ],
    [
     "b",
-    "Avval holatsiz bot, keyin xotiradagi holat va <b>nega u yo'qoladi</b>",
-    "Avval holatsiz bot qanday adashishini ko'ramiz. Keyin holatni dastur xotirasida saqlaymiz va qayta ishga tushirganda nima bo'lishini ko'ramiz."
+    "Loyiha tayyor: <b>katalog, savat, buyurtma va admin</b> — Nest va Telegraf'da",
+    "Loyiha noldan yozilmaydi. GitHub'da tayyor buyurtma boti bor: katalog, savat, buyurtma va admin paneli, NestJS va Telegraf'da. U to'liq ishlaydi, faqat hamma ma'lumot xotirada turadi. Siz uni clone qilib, kamchiligini o'z ko'zingiz bilan ko'rasiz."
    ],
    [
     "c",
-    "Keyin PostgreSQL'da holat, uni <b>ataylab buzamiz</b> va o'quvchi reposini ishga tushiramiz",
-    "Keyin holatni PostgreSQL'ga ko'chiramiz, uni ataylab buzamiz va o'quvchi reposini o'z kompyuteringizda ishga tushiramiz."
+    "Kodni AI yozadi, siz <b>bosqichlab boshqarasiz va har bosqichni tekshirasiz</b>",
+    "Kodni AI yozadi: Antigravity, Claude Code, Codex yoki Copilot, qaysi biri bo'lsa ham. Sizning ishingiz boshqarish: ishni to'rt bosqichga bo'lasiz, har biriga prompt yozasiz va natijani o'zingiz tekshirasiz. Biz buni ikki xil AI bilan haqiqatan qilib ko'rdik, ekrandagi javoblar o'sha yurgizishlardan."
    ],
    [
     "d",
-    "Olti bosqich, uch amaliyot. <b>Shoshilmang</b>: ustoz gapirib bo'lgach Davom ochiladi",
-    "Dars olti bosqichdan iborat, uchta amaliyot bor. Shoshilmang: har ekranni boshidan eshitish mumkin. Ustoz gapirib bo'lgach Davom ochiladi. Boshlaymiz."
+    "Olti bosqich, to'rt amaliyot; oxirida <b>ikki ekran sinfga tayyorgarlik</b>. Shoshilmang",
+    "Dars olti bosqichdan iborat, to'rtta amaliyotda AI bilan o'zingiz ishlaysiz. Oxirgi ikki ekran sinfga tayyorgarlik: o'quvchi darsi xaritasi va o'quvchilar xato qiladigan joylar. Shoshilmang, har ekranni boshidan eshitish mumkin, dars qayerda to'xtaganingizni eslab qoladi. Boshlaymiz."
    ]
   ]
  },
  "2": {
   "type": "Lesson",
-  "kicker": "1-bosqich · holat",
-  "title": "«Pepperoni» — «Tushunmadim»: bot o'z savolini eslamaydi",
+  "kicker": "1-bosqich · loyiha va muammo",
+  "title": "Loyiha besh moduldan iborat: telegram, catalog, user, cart va order",
   "seg": [
    [
     "a",
-    "O'quvchi darsi shu suhbatdan boshlanadi: bot savol beradi, <b>javobni tushunmaydi</b>",
-    "O'quvchi darsi shu suhbatdan boshlanadi. Aziza pitsa buyurtma qilmoqchi. Bot qaysi pitsa deb so'raydi, Aziza pepperoni deydi, bot esa tushunmadim deydi."
+    "Bot buyruqlari bitta faylda: <b><code>telegram.service.ts</code> — siz bilgan Telegraf handler'lari</b>",
+    "Loyihani Explorer'da ochamiz. Bot buyruqlari bitta faylda: telegram service. Ichida siz bilgan Telegraf handler'lari turadi: bot start, bot command catalog va bot action. Tugmalar keyboards faylida, bot matnlari texts faylida."
    ],
    [
     "b",
-    "Har xabar alohida keladi: handler <b>oldingi xabarni bilmaydi</b>",
-    "Nega? Telegraf'da har xabar alohida keladi va handler faqat shu xabarni ko'radi. Pepperoni so'zi kelganda bot o'zi pitsa so'raganini bilmaydi."
+    "Logika to'rt Service'da: <b>katalog, foydalanuvchi, savat va buyurtma</b> — har biri o'z modulida",
+    "Handler'lar logikani o'zi yozmaydi, Service'ga beradi. Loyihada to'rtta Service bor: catalog mahsulotlar va omborni boshqaradi, user foydalanuvchi va uning state'ini, cart savatni, order buyurtmani. Har biri o'z modulida, Nest ularni telegram service'ga inject qiladi."
    ],
    [
     "c",
-    "Javob matnlari <b>haqiqiy Telegraf</b> handler'idan — Telegram oynasi esa maket",
-    "Ekrandagi javoblar haqiqiy Telegraf handler'idan olingan. Telegram serveriga ulanmadik: xabarni kod bilan berdik va botning javobini ushladik. Chat oynasi esa maket."
+    "Mijoz yo'li: <b>katalog → savat → telefon → buyurtma</b>, keyin admin tasdiqlaydi",
+    "Mijoz yo'lini ko'ramiz. Aziza katalogni ochadi, mahsulotlar ikkitadan sahifada. Tugmani bosib savatga qo'shadi, buyurtma beradi, bot telefon so'raydi. Raqam kelgach buyurtma yaratiladi va adminga xabar ketadi. Admin Jasur buyurtmani tasdiqlaydi, Azizaga xabar boradi."
    ],
    [
     "d",
-    "Xulosa: holatsiz bot har xabarni <b>birinchi xabardek</b> ko'radi — suhbat qayerdaligini bilmaydi",
-    "Xulosa: holatsiz bot har xabarni birinchi xabardek ko'radi. Suhbat qayerda turganini biladigan yozuv kerak. Uni holat deymiz."
+    "Xulosa: bot to'liq ishlaydi, lekin <b>hamma ma'lumot <code>Map</code> va massivda</b> turibdi",
+    "Xulosa: bot to'liq ishlaydi, admin roli ham bor. Lekin Service'larni ochsangiz, foydalanuvchilar Map'da, savatlar Map'da, buyurtmalar oddiy massivda turibdi. Bu ma'lumot qayerda yashashini keyingi ekranda ko'ramiz."
    ]
   ]
  },
  "3": {
   "type": "Lesson",
-  "kicker": "1-bosqich · holat",
-  "title": "holat[chat.id]: bot savolini eslab qoldi — suhbat davom etdi",
+  "kicker": "1-bosqich · ichida",
+  "title": "Map Node jarayonining xotirasida yashaydi: jarayon to'xtasa — u ham yo'qoladi",
   "seg": [
    [
     "a",
-    "Holatsiz botdan keyin eng oddiy yechim: <b>holatni obyektda saqlash</b>",
-    "Eng oddiy yechim: holatni oddiy obyektda saqlash. Kalit chat id, qiymat suhbat bosqichi, masalan pitsa kutyapman."
+    "1-jarayonda hammasi bor: <b>buyurtma #1, savatda Sichqoncha, Azizaning telefoni</b>",
+    "Birinchi jarayonda bot ishlayapti. Aziza buyurtma berdi, raqami bir, jami ikki yuz yigirma ming so'm. Admin uni tasdiqladi. Keyin Aziza savatga yana Sichqoncha qo'shdi. Telefoni ham botda saqlangan."
    ],
    [
     "b",
-    "Har xabarda bot <b>avval holatga qaraydi</b>, keyin javob beradi va holatni o'zgartiradi",
-    "Endi har xabarda bot avval holatga qaraydi. Pitsa kutayotgan bo'lsa, kelgan so'z pitsa nomi. Javob beradi va holatni o'lcham kutyapman qiladi."
+    "Server qayta ishga tushdi: <b>savat bo'sh, buyurtma yo'q</b>, telefon yana so'raladi",
+    "Endi serverni to'xtatib, qayta ishga tushiramiz. Aziza savatni ochadi: savat bo'sh. Admin buyurtmalarni ko'radi: hozircha buyurtma yo'q. Telefon raqami ham yo'qoldi, keyingi buyurtmada bot uni yana so'raydi. Xato xabari chiqmadi, ma'lumot shunchaki yo'q."
    ],
    [
     "c",
-    "Natija: «Pepperoni — yaxshi tanlov!», xotirada esa holat <b><code>OLCHAM_KUTYAPMAN</code></b> bo'ldi",
-    "Natija: pepperoni, yaxshi tanlov, qaysi o'lchamda. Suhbat davom etdi. Xotirada esa Azizaning holati: o'lcham kutyapman."
+    "Sabab: <code>Map</code> — <b>jarayon xotirasidagi obyekt</b>; jarayon bilan birga tug'iladi va o'ladi",
+    "Sababi oddiy. Map Node jarayonining operativ xotirasidagi obyekt. Jarayon ishga tushganda u bo'sh yaratiladi, jarayon to'xtaganda xotira bo'shaydi. Hosting serverni har deploy'da qayta ishga tushiradi, ya'ni haqiqiy botda bu kuniga bir necha marta bo'ladi."
    ],
    [
     "d",
-    "Xulosa: holat bilan bot suhbatni davom ettiradi — lekin bu holat <b>dastur xotirasida</b> turibdi",
-    "Xulosa: holat bilan bot suhbatni davom ettiradi. Lekin bu obyekt dastur xotirasida, RAM'da turibdi. Keyingi ekranda botni qayta ishga tushiramiz."
+    "Xulosa: <b>saqlanishi kerak bo'lgan har narsa bazaga</b> — beshta ma'lumot ro'yxati",
+    "Xulosa: restartdan keyin qolishi kerak bo'lgan har narsa bazada turishi kerak. Botda bunday ma'lumot beshta: mahsulot va ombor, foydalanuvchi va uning roli, telefon va state, savat, buyurtma. Bugun shu beshtasini PostgreSQL'ga ko'chiramiz."
    ]
   ]
  },
  "4": {
-  "type": "Lesson",
-  "kicker": "1-bosqich · holat",
-  "title": "Bot qayta ishga tushdi — «Katta» ga «Salom! Qaysi pitsa?»",
-  "seg": [
-   [
-    "a",
-    "Server vaqti-vaqti bilan <b>qayta ishga tushadi</b>: yangi versiya yoki nosozlikdan keyin",
-    "Bot serveri vaqti-vaqti bilan qayta ishga tushadi: yangi versiya chiqqanda yoki nosozlikdan keyin. Biz ham botni to'xtatib, qayta ishga tushirdik."
-   ],
-   [
-    "b",
-    "Aziza «Katta» deb yozdi — bot uni <b>yangi mijozdek</b> kutib oldi",
-    "Aziza o'lchamni yozdi: katta. Bot esa salom, qaysi pitsa deydi. Obyekt bo'sh boshlandi, Azizaning holati yo'q, bot uni yangi mijoz deb o'yladi."
-   ],
-   [
-    "c",
-    "RAM — dastur yashaganicha; jarayon tugasa, <b>obyekt ham yo'qoladi</b>",
-    "Sabab: obyekt dastur xotirasida, jarayon tugasa u ham yo'qoladi. O'quvchi darsi buni ikki quti bilan ko'rsatadi: dastur xotirasi vaqtinchalik, PostgreSQL doimiy."
-   ],
-   [
-    "d",
-    "Xulosa: qayta ishga tushirishdan keyin faqat <b>bazaga yozilgan holat</b> qoladi",
-    "Xulosa: qayta ishga tushirishdan keyin faqat bazaga yozilgan holat qoladi. Shuning uchun haqiqiy botda holat PostgreSQL'da turadi."
-   ]
-  ]
- },
- "5": {
   "type": "MCRetry",
   "kicker": "Tekshiruv 1",
   "eyebrow": "Tekshiruv · 1 / 4",
-  "title": "Bot qayta ishga tushdi. Qaysi holat saqlanib qoladi?",
-  "q": "Qayta ishga tushirishni ko'rdingiz, tekshirib olaylik. Birinchi tekshiruv. Bot qayta ishga tushdi. Qaysi holat saqlanib qoladi? Variantni tanlang.",
-  "ok": "To'g'ri, PostgreSQL'dagisi. Baza ma'lumotni diskka yozadi, bot qayta ishga tushsa ham u joyida. Obyekt va o'zgaruvchi dastur xotirasida, ular yo'qoladi. Demak, bot qayta ishga tushgandan keyin ham kerak bo'ladigan holat bazaga yoziladi.",
-  "okShort": "PostgreSQL — diskda, qoladi. Obyekt — RAM'da, yo'qoladi.",
-  "hint": "Qaysi biri diskka yoziladi?",
+  "title": "Katalog kodda yozilgan massiv, ombordagi son ham shu massivda. Restartdan keyin Kolonka qoldig'i nechta bo'ladi?",
+  "q": "Xotirani ko'rdingiz, endi tekshirib olaylik. Birinchi tekshiruv. Katalog kodda yozilgan massiv, ombordagi son ham shu massivda turadi. Aziza ikkita Kolonka oldi, qoldiq sakkiz bo'ldi. Server qayta ishga tushsa, Kolonka qoldig'i nechta bo'ladi? Variantni tanlang.",
+  "ok": "To'g'ri. Massiv kodda yozilgan, jarayon ishga tushganda u yana koddagi qiymat bilan yaratiladi: o'n. Ya'ni restart buyurtmani o'chirdi va omborni ham o'n ga qaytardi. Ikkalasi bir-biriga mos, faqat noto'g'ri. Demak, xotiradagi ma'lumot har restartda kod yozilgan boshlang'ich qiymatiga qaytadi.",
+  "okShort": "Massiv koddan qayta yaratiladi — <code>stock: 10</code>. Buyurtma yo'qoldi, ombor ham qaytdi.",
+  "hint": "Massiv qayerda yozilgan — kodda yoki bazada? Jarayon ishga tushganda kod massivga qaysi qiymatni beradi?",
+  "demak": "Xotiradagi ma'lumot har restartda koddagi boshlang'ich qiymatga qaytadi.",
   "correct": 1,
   "opts": [
-   "Koddagi obyektga yozilgan holat",
-   "PostgreSQL'dagi users jadvaliga yozilgan holat",
-   "Handler ichidagi o'zgaruvchi",
-   "Hech qaysi"
+   "8 — server oxirgi qiymatni eslab qoladi",
+   "10 — massiv koddan qaytadan yaratiladi",
+   "0 — RAM bo'shaydi, massiv ham bo'sh qoladi",
+   "Server xato beradi — ombor sinxron emas"
   ],
   "wrong": {
-   "0": "Obyekt RAM'da: qayta ishga tushganda bo'sh boshlanadi (4-ekran).",
-   "2": "Handler o'zgaruvchisi keyingi xabargacha ham yashamaydi.",
-   "3": "Bazaga yozilgani qoladi."
+   "0": "Eslab qolish uchun disk kerak; Map va massiv faqat RAM'da.",
+   "2": "Xotira bo'shaydi, lekin massiv kodda yozilgan — u qayta yaratiladi.",
+   "3": "Restart xato emas: server odatdagidek ko'tariladi."
   }
  },
- "6": {
-  "type": "Lesson",
-  "kicker": "2-bosqich · alohida",
-  "title": "Bitta tanlov o'zgaruvchisi: Aziza Jasurning Margaritasini oldi",
+ "5": {
+  "type": "Practice",
+  "kicker": "Amaliyot 1 / 4",
+  "eyebrow": "Hozir o'zingizda · 15 daqiqa",
+  "title": "Loyihani o'z kompyuteringizda ishga tushiring va restartda nima yo'qolishini ko'ring",
   "seg": [
    [
     "a",
-    "Bitta mijoz bilan ishladi — endi <b>ikki mijoz</b> bir vaqtda yozadi",
-    "Bitta mijoz bilan holat ishladi. Lekin botga bir vaqtda o'nlab odam yozadi. O'quvchi darsidagi holat: Aziza va Jasur."
+    "Endi siz: loyihani clone qilasiz, <b>o'z botingiz tokeni bilan</b> ishga tushirasiz",
+    "Endi navbat sizga. Loyihani clone qilasiz va o'z botingiz bilan ishga tushirasiz. Token uchun BotFather'da yangi sinov boti oching, videodarsdagi kabi. O'n besh daqiqa ketadi."
    ],
    [
     "b",
-    "Holat bitta umumiy o'zgaruvchida: har yangi xabar oldingisining <b>ustiga yozadi</b>",
-    "Bu kodda tanlov bitta umumiy o'zgaruvchida, hamma uchun bitta. Aziza pepperoni yozdi, keyin Jasur margarita yozdi va uning ustiga yozildi."
+    "1–2-qadam: clone, <code>tgpg-start</code> tegi, <code>npm install</code>, <code>.env</code> — <b>token va o'z id'ingiz</b>",
+    "Birinchi qadamda reponi clone qilib, tgpg start tegiga o'tasiz va npm install qilasiz. Ikkinchisida env example'dan env fayl yasaysiz: bot token va admin uchun o'z Telegram id'ingiz. Id'ni userinfobot'dan olasiz."
    ],
    [
     "c",
-    "Aziza «Katta» deydi — bot <b>«Buyurtma: Margarita, katta»</b> javobini beradi",
-    "Aziza katta deb yozdi va javob oldi: buyurtma margarita, katta. Aziza margarita so'ramagan. Xato hech qayerda chiqmadi, buyurtma xato bermay aralashdi."
+    "3–4-qadam: bot oqimi, keyin restart; isbot — <b>restartdan keyin <code>/cart</code> javobi</b>",
+    "Uchinchi qadamda Telegram'da start, catalog, ikki mahsulot va buyurtmani sinaysiz, admin sifatida orders'ni ko'rasiz. To'rtinchisida savatga mahsulot qo'shib, serverni Ctrl C bilan to'xtatib qayta yoqasiz. Isbot maydoniga cart buyrug'iga kelgan javobni yozing."
    ],
    [
     "d",
-    "Xulosa: umumiy o'zgaruvchi — ikki mijozning suhbati <b>xato bermay aralashadi</b>",
-    "Xulosa: umumiy o'zgaruvchida ikki mijozning suhbati xato bermay aralashadi. Har mijozning holati alohida turishi kerak."
+    "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
+    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin loyiha kompyuteringizda ishlaydi va qaysi ma'lumot restartda yo'qolishini o'zingiz ko'rgansiz."
+   ]
+  ],
+  "steps": [
+   {
+    "t": "Clone",
+    "cmds": [
+     "git clone https://github.com/Azizbekcrypto/OrderBotNest.git",
+     "cd OrderBotNest",
+     "git checkout tgpg-start",
+     "npm install"
+    ],
+    "exp": "added … packages"
+   },
+   {
+    "t": ".env — BOT_TOKEN (BotFather) va ADMIN_TELEGRAM_IDS (@userinfobot) yozing, keyin ishga tushiring",
+    "cmds": [
+     "cp .env.example .env",
+     "npm run start:dev"
+    ],
+    "exp": "Server 3000-portda ishlayapti · Telegram bot ulandi"
+   },
+   {
+    "t": "Bot oqimi — Telegram'da: /start → /catalog → ▶ → mahsulot → /cart → «✅ Buyurtma berish» → telefon → /orders",
+    "cmds": [
+     "/start",
+     "/catalog",
+     "/orders"
+    ],
+    "exp": "«Buyurtma #1 qabul qilindi!» · admin tugmalari"
+   },
+   {
+    "t": "Restart — savatga mahsulot qo'shing, serverni to'xtatib qayta yoqing, Telegram'da /cart va /orders",
+    "cmds": [
+     "Ctrl+C",
+     "npm run start:dev",
+     "npm run smoke -- restart"
+    ],
+    "exp": "«Savat bo'sh…» · «Hozircha buyurtma yo'q.» · NATIJA: 0/3"
+   }
+  ],
+  "proof": {
+   "label": "Restartdan keyin /cart ga kelgan javob",
+   "placeholder": "bot javobini nusxalang",
+   "re": "savat\\s+bo.?sh",
+   "flags": "i",
+   "wrong": "Restartdan keyin savat ochilganmi? Server Ctrl+C bilan to'xtab, qayta yoqilganini tekshiring."
+  },
+  "trouble": [
+   [
+    "BOT_TOKEN topilmadi",
+    ".env yo'q yoki bo'sh — cp .env.example .env, token yozing"
+   ],
+   [
+    "Server … ishlayapti va Telegram ulanmadi: 401: Unauthorized",
+    "token noto'g'ri; server ishlaydi, bot javob bermaydi — BotFather'dan qayta oling"
+   ],
+   [
+    "409: Conflict: terminated by other getUpdates request",
+    "shu token bilan ikkinchi nusxa ishlayapti — eski terminalni to'xtating (⚠ Telegram hujjatidan, sinalmagan — haqiqiy token kerak)"
+   ],
+   [
+    "/orders → «faqat admin uchun»",
+    "ADMIN_TELEGRAM_IDS da boshqa id — @userinfobot'dagi raqamni yozing"
+   ],
+   [
+    "EADDRINUSE :::3000",
+    "port band — eski server; Ctrl+C yoki .env da PORT=3001"
+   ]
+  ]
+ },
+ "6": {
+  "type": "Lesson",
+  "kicker": "2-bosqich · reja va prompt",
+  "title": "Beshta ma'lumot — to'rt bosqich: har bosqichdan keyin tekshiruv va commit",
+  "seg": [
+   [
+    "a",
+    "Ishni <b>to'rt bosqichga</b> bo'lamiz: ulanish va katalog, foydalanuvchi, savat, buyurtma",
+    "Beshta ma'lumotni bir yo'la ko'chirmaymiz. Ishni to'rt bosqichga bo'lamiz: avval bazaga ulanish va katalog, keyin foydalanuvchi va uning state'i, keyin savat, oxirida buyurtma va tranzaksiya. Tartib bog'liqlikka qarab: savat foydalanuvchi va mahsulotga, buyurtma hammasiga tayanadi."
+   ],
+   [
+    "b",
+    "Har bosqichdan keyin: <b>build, restart, psql — keyin commit</b>",
+    "Har bosqichdan keyin to'xtaymiz va tekshiramiz: loyiha build bo'ladimi, restartdan keyin nima qoladi, PostgreSQL terminalida jadval qanday. Hammasi to'g'ri bo'lsa, commit qilamiz. Keyingi bosqich xato qilsa, oxirgi ishlagan joyga qaytish oson bo'ladi."
+   ],
+   [
+    "c",
+    "Bir gapli promptda AI <b>1145 qatorni bir yo'la</b> o'zgartirdi — buni ko'rib chiqib bo'lmaydi",
+    "Nega bosqichlab? Biz sinab ko'rdik. AI'ga bir gapli prompt berdik: katalogni PostgreSQL'ga ko'chir. U faqat katalogni emas, hammasini ko'chirdi: yigirma ikki fayl, ming bir yuz qirq besh yangi qator. Kod ishladi, lekin bunday o'zgarishni mentor o'qib chiqa olmaydi, xato bo'lsa qayerdaligini topa olmaydi."
+   ],
+   [
+    "d",
+    "Xulosa: <b>bitta prompt — bitta bosqich</b>, natijani tekshirmaguncha keyingisiga o'tmaymiz",
+    "Xulosa: bitta prompt, bitta bosqich. Bosqich kichik bo'lsa, AI javobini o'qiysiz, diffni ko'rasiz va xatoni darhol topasiz. Tekshirmaguncha keyingi promptni yozmang. Endi promptning o'zini qanday yozishni ko'ramiz."
    ]
   ]
  },
  "7": {
   "type": "Lesson",
-  "kicker": "2-bosqich · alohida",
-  "title": "Har mijozning holati o'z chat.id si ostida: obyekt kaliti yoki jadval qatori",
+  "kicker": "2-bosqich · reja va prompt",
+  "title": "Yaxshi prompt beshta qismdan iborat: kontekst, maqsad, shartlar, chegara va javob",
   "seg": [
    [
     "a",
-    "Har mijozning Telegram raqami bor: shaxsiy chatda u <b><code>ctx.chat.id</code></b>",
-    "Aralashmaslik uchun har mijozni raqami bilan ajratamiz. Telegram'da har mijozning raqami bor, shaxsiy chatda u ctx chat id."
+    "Birinchi qism — <b>kontekst</b>: loyiha nima va hozir qanday ishlaydi",
+    "Promptning birinchi qismi kontekst: loyiha nima va hozir qanday ishlaydi. AI loyihani o'qiy oladi, lekin sizning maqsadingizni bilmaydi. Shuning uchun bitta gap yetadi: bu NestJS va Telegraf'dagi buyurtma boti, hamma ma'lumot xotirada, bosqichma-bosqich PostgreSQL'ga ko'chiramiz."
    ],
    [
     "b",
-    "3-ekrandagi obyekt shunday edi: kalit — <code>chat.id</code>, har mijozga <b>o'z holati</b>",
-    "Uchinchi ekrandagi obyekt aynan shunday edi: kalit chat id, qiymat holat. Azizaning holati Jasurnikiga tegmaydi."
+    "Ikkinchi va uchinchi qism — <b>bitta bosqich maqsadi va qat'iy shartlar</b>",
+    "Ikkinchi qism maqsad: faqat shu bosqich, bizda ulanish va katalog. Uchinchisi qat'iy shartlar: manzil env'dan o'qilsin, synchronize ishlatilmasin, jadval migratsiya bilan yaratilsin, stock manfiy bo'lmasin, seed ikkinchi marta takror qo'shmasin. Har shart keyin tekshiriladigan narsa."
    ],
    [
     "c",
-    "Bazada ham xuddi shu: har mijozga <b>bitta qator</b>, <code>telegram_id</code> ustuni bilan topiladi",
-    "Bazada ham xuddi shunday: users jadvalida har mijozga bitta qator. Bot qatorni telegram id ustuni bilan topadi."
+    "To'rtinchi va beshinchi qism — <b>nimaga tegmaslik va javobda nima bo'lishi</b>",
+    "To'rtinchi qism chegara: user, savat va buyurtma servislariga hali tegma. Beshinchisi javob: qaysi fayllar o'zgardi, qanday ishga tushirish va PostgreSQL terminalida nimani tekshirish. Shu qism AI'ni o'z ishini tushuntirishga majburlaydi, siz esa tekshirish ro'yxatini tayyor olasiz."
    ],
    [
     "d",
-    "Xulosa: sessiya — bitta mijozning alohida holati; kaliti — <b><code>chat.id</code></b>",
-    "Xulosa: bitta mijozning alohida holati sessiya deyiladi, uning kaliti chat id. O'quvchi darsi shu so'zni ishlatadi."
+    "Xulosa: har shart — <b>keyin tekshiriladigan bitta band</b>; tekshirib bo'lmaydigan shart yozilmaydi",
+    "Xulosa: prompt beshta qismdan iborat. Har shartni keyin tekshirish mumkin bo'lsin: stock manfiy bo'lmasin degan shartni PostgreSQL terminalida minus bir yozib tekshirasiz. Chiroyli qilib yoz degan shartni tekshirib bo'lmaydi, uni yozmang."
    ]
   ]
  },
@@ -973,534 +1869,814 @@ const MDT = {
   "type": "MCRetry",
   "kicker": "Tekshiruv 2",
   "eyebrow": "Tekshiruv · 2 / 4",
-  "title": "Umumiy tanlov: Aziza «Pepperoni», Jasur «Margarita», Aziza «Katta». Azizaga qanday javob keladi?",
-  "q": "Aralashishni ko'rdingiz, tekshirib olaylik. Ikkinchi tekshiruv. Tanlov bitta umumiy o'zgaruvchida. Aziza pepperoni, Jasur margarita, keyin Aziza katta deb yozdi. Azizaga qanday javob keladi? Variantni tanlang.",
-  "ok": "To'g'ri, margarita. Jasurning xabari umumiy o'zgaruvchining ustiga yozildi. Xato chiqmaydi, shuning uchun bunday xatoni sezish qiyin. Demak, har mijozning holati uning chat id'si bo'yicha alohida saqlanishi kerak.",
-  "okShort": "Margarita — Jasurniki ustiga yozildi, xato chiqmadi.",
-  "hint": "Oxirgi marta tanlov ga kim yozdi?",
+  "title": "Ikki AI'ga bir xil vazifa berildi. Qaysi natijani ko'rib chiqib, commit qilish mumkin?",
+  "q": "Prompt qolipini ko'rdingiz, endi tekshirib olaylik. Ikkinchi tekshiruv. Ikki AI'ga bir xil vazifa berildi: katalogni bazaga ko'chirish. Ekranda ikkala prompt, o'zgarish hajmi va AI javobidan parcha. Qaysi natijani ko'rib chiqib, commit qilish mumkin? Variantni tanlang.",
+  "ok": "To'g'ri. B faqat katalogni ko'chirdi va boshqa servislarga nega tekkanini o'zi aytdi: async bo'lgani uchun await kerak edi. Bu asosli va tekshirish oson. A ham ishladi, lekin so'ralmagan to'rt bosqichni bir yo'la qildi va buni aytmadi. Demak, commit qilinadigan natija hajmi siz so'ragan bosqichga teng bo'ladi.",
+  "okShort": "B — so'ralgan bosqich, chetga chiqish aytilgan. A — 1145 qator, so'ralmagan ish, aytilmagan.",
+  "hint": "Qaysi AI faqat so'ralgan ishni qildi? Qaysi biri qayerda chetga chiqqanini aytdi?",
+  "demak": "Commit qilinadigan o'zgarish hajmi siz so'ragan bosqichga teng bo'ladi.",
   "correct": 2,
   "opts": [
-   "«Buyurtma: Pepperoni, katta»",
-   "Xato chiqadi, bot to'xtaydi",
-   "«Buyurtma: Margarita, katta»",
-   "Bot javob bermaydi"
+   "A — hammasini bir yo'la qilgan, vaqt tejaldi",
+   "Ikkalasi bir xil — ikkalasi ham ishlaydi",
+   "B — faqat so'ralgan bosqich, chetini aytgan",
+   "Hech biri — AI kodini commit qilib bo'lmaydi"
   ],
   "wrong": {
-   "0": "Pepperoni Jasurning xabarida ustidan yozildi.",
-   "1": "Kod to'g'ri ishlaydi — faqat holat umumiy.",
-   "3": "Handler javob beradi, lekin noto'g'ri pitsa bilan."
+   "0": "Ko'p ish — ko'p ko'rib chiqish: 1145 qatorda xatoni topish qiyin.",
+   "1": "Ishlashi yetmaydi: siz har qatorga javob berasiz.",
+   "3": "Commit qilinadi — o'qib, tekshirib bo'lgandan keyin."
   }
  },
  "9": {
   "type": "Lesson",
-  "kicker": "3-bosqich · PostgreSQL",
-  "title": "telegram_id BIGINT NOT NULL UNIQUE: Telegram raqami 32 bitga sig'maydi",
+  "kicker": "3-bosqich · ulanish va katalog · ichida",
+  "title": "Entity jadvalni tasvirlaydi, migratsiya uni yaratadi, migrations jadvali nima yurganini eslaydi",
   "seg": [
    [
     "a",
-    "O'quvchi darsidagi jadval: har mijoz — <b>bitta qator</b>, holati shu qatorda",
-    "Endi holatni PostgreSQL'ga ko'chiramiz. O'quvchi darsidagi jadval: users. Har mijoz bitta qator, uning ismi va holati shu qatorda."
+    "Entity — <b>jadvalning kod ko'rinishi</b>: klass, ustunlar decorator bilan",
+    "Birinchi bosqich ichida nima bo'lishini ko'ramiz. TypeORM'da jadval entity klassi bilan tasvirlanadi: Entity decorator jadval nomini, Column decorator har ustunni beradi. Siz bilgan Mongoose'da bu schema edi."
    ],
    [
     "b",
-    "<code>telegram_id</code> — <code>BIGINT</code>: Telegram hujjati raqam <b>32 bitdan katta</b> bo'lishi mumkin deydi",
-    "Telegram id ustuni big int. Nega oddiy int emas? Telegram Bot API hujjati aytadi: bu raqam o'ttiz ikki bitdan katta bo'lishi mumkin. Oddiy int esa o'ttiz ikki bit."
+    "Migratsiya — <b>jadvalni yaratadigan SQL fayli</b>; <code>synchronize</code> o'chiq",
+    "Jadvalni entity emas, migratsiya yaratadi. Migratsiya oddiy SQL fayli: up metodida create table, down metodida drop table. Synchronize false, ya'ni TypeORM jadvalni o'zi o'zgartirmaydi. Mongoose'da migratsiya yo'q edi, chunki kolleksiyada ustun qoidasi yo'q. PostgreSQL'da qoida bor, uni fayl bilan o'zgartiramiz."
    ],
    [
     "c",
-    "<code>NOT NULL UNIQUE</code> — har mijozga <b>faqat bitta qator</b>, ikkinchisini baza o'zi rad etadi",
-    "Not null unique: raqamsiz qator yo'q va bitta mijozga faqat bitta qator. Ikkinchi qatorni baza o'zi rad etadi, buni o'n beshinchi ekranda ko'ramiz."
+    "<code>migrations</code> jadvali — <b>qaysi fayl yurganini eslaydi</b>; server ko'tarilganda yurmagani o'zi yuradi",
+    "Migratsiya yurgach, TypeORM migrations jadvaliga bitta qator yozadi: fayl nomi va vaqti. Server har ko'tarilganda shu jadvalga qaraydi va faqat yurmagan migratsiyani yurgizadi, bu migrations run true sozlamasi. Ikkinchi ishga tushirishda hech narsa takrorlanmaydi."
    ],
    [
     "d",
-    "Xulosa: jadval tayyor — <code>telegram_id</code> bilan qator topiladi, <code>holat</code> ustunida <b>suhbat bosqichi</b>",
-    "Xulosa: jadval tayyor. Telegram id bilan mijozning qatori topiladi, holat ustunida suhbat bosqichi turadi."
+    "Xulosa: jadvalni o'zgartirish — <b>yangi migratsiya fayli</b>, eskisi tahrirlanmaydi",
+    "Xulosa: entity jadvalni kodda tasvirlaydi, migratsiya uni bazada yaratadi, migrations jadvali qaysi fayl yurganini eslaydi. Keyin ustun qo'shmoqchi bo'lsangiz, yangi migratsiya yozasiz. Yurgan migratsiyani tahrirlash foyda bermaydi: baza uni qayta yurgizmaydi."
    ]
   ]
  },
  "10": {
   "type": "Lesson",
-  "kicker": "3-bosqich · PostgreSQL",
-  "title": "Har xabarda: avval o'qish, yangi mijozga INSERT, keyin yangi holat UPDATE bilan",
+  "kicker": "3-bosqich · ulanish va katalog",
+  "title": "AI javobini uch qismga ajrating: nima o'zgardi, qayerda chetga chiqdi, qanday tekshiriladi",
   "seg": [
    [
     "a",
-    "Har xabarda birinchi ish — <b>SELECT</b>: bu mijozning qatori bormi, holati qanday",
-    "Bazali bot har xabarda birinchi bo'lib o'qiydi: select, telegram id shu raqam bo'lgan qator. Qator bor bo'lsa, holat ma'lum."
+    "Birinchi: <b>o'zgargan fayllar ro'yxatini <code>git diff --stat</code> bilan</b> solishtiring",
+    "AI ishini tugatdi va javob yozdi. Uni uch qismga ajratib o'qing. Birinchisi: qaysi fayllar o'zgardi. AI'ning ro'yxatini git diff stat bilan solishtiring. Bu safar ro'yxat mos keldi: entity, migratsiya, seed, config va catalog service."
    ],
    [
     "b",
-    "Qator yo'q bo'lsa — yangi mijoz: <b>INSERT</b>, holat <code>ISM_KUTYAPMAN</code>, «Ismingiz nima?»",
-    "Qator topilmasa, bu yangi mijoz. Insert bilan qator qo'shamiz, holat ism kutyapman. Javob: ismingiz nima."
+    "Ikkinchi: <b>«chetga chiqdim» qismini</b> toping va sababini baholang",
+    "Ikkinchisi: AI qayerda chetga chiqdi. Biz user, savat va buyurtmaga tegma degan edik. AI order va telegram servislarini o'zgartirgan va buni ochiq yozgan: catalog service endi async, chaqiruvlarga await kerak. Sabab asosli. Agar sabab yozilmagan bo'lsa, diffdan o'zingiz qidirasiz."
    ],
    [
     "c",
-    "Holat <code>ISM_KUTYAPMAN</code> bo'lsa — kelgan matn ism: <b>UPDATE</b>, holat <code>TAYYOR</code>",
-    "Keyingi xabarda holat ism kutyapman bo'lsa, kelgan matn ism. Update bilan ismni yozamiz va holatni tayyor qilamiz."
+    "Uchinchi: tekshirish buyruqlarini <b>o'zingiz yurgizing</b> — AI'ning «sinadim» degan gapi isbot emas",
+    "Uchinchisi: tekshirish. AI o'zim sinadim deydi, lekin bu isbot emas. Buyruqlarni o'zingiz yurgizing. Seed birinchi marta olti mahsulot qo'shdi, ikkinchi marta nol. Backslash d products'da UNIQUE va CHECK bor. Build toza."
    ],
    [
     "d",
-    "Xulosa: SELECT → (yo'q bo'lsa INSERT) → javob → UPDATE; <b>tartibni almashtirib</b> bo'lmaydi",
-    "Xulosa: avval select, yo'q bo'lsa insert, keyin javob va update. O'quvchi darsida bu tartib bo'laklardan yig'iladi: update select'dan oldin bo'lsa, bot holatni bilmay turib yozib yuboradi."
+    "Xulosa: o'qing, solishtiring, yurgizing — <b>shundan keyin commit</b>",
+    "Xulosa: AI javobi uch qismdan o'qiladi: fayllar, chetga chiqish va tekshiruv. Fayllarni diff bilan solishtirasiz, chetga chiqish sababini baholaysiz, tekshiruvni o'zingiz yurgizasiz. Hammasi to'g'ri bo'lsa, commit qilasiz. Lekin bu bosqichda yana bitta yashirin muammo bor, uni keyingi ekranda ko'ramiz."
    ]
   ]
  },
  "11": {
   "type": "Lesson",
-  "kicker": "3-bosqich · PostgreSQL",
-  "title": "Bot qayta ishga tushdi — «Yana salom, Aziza!», Jasur o'z joyidan davom etdi",
+  "kicker": "3-bosqich · ichida",
+  "title": "Katalog bazada, buyurtma xotirada: restartdan keyin buyurtma yo'qoldi, ombor esa kamayib qoldi",
   "seg": [
    [
     "a",
-    "4-ekrandagi sinovni takrorlaymiz: bot to'xtaydi va <b>qayta ishga tushadi</b>",
-    "To'rtinchi ekrandagi sinovni bazali bot bilan takrorlaymiz. Aziza ismini aytdi, Jasur esa endigina start bosdi. Botni to'xtatib, qayta ishga tushiramiz."
+    "1-bosqichdan keyin bot ishlaydi: <b>katalog bazadan, buyurtma esa hali xotirada</b>",
+    "Birinchi bosqich tayyor, testlar toza. Endi bot oqimini restart bilan sinaymiz. Aziza buyurtma berdi: bitta klaviatura va ikkita kolonka. Ombor bazada kamaydi. Buyurtmaning o'zi esa hali xotiradagi massivda, chunki uni to'rtinchi bosqichda ko'chiramiz."
    ],
    [
     "b",
-    "Aziza /start — <b>«Yana salom, Aziza!»</b>: ism bazadan o'qildi",
-    "Aziza start bosdi: yana salom, Aziza. Bot ismni bazadan o'qidi, qayta ishga tushirish hech narsani o'chirmadi."
+    "Restart: <b>buyurtma yo'qoldi, ombor esa 7 va 8 da qoldi</b>",
+    "Serverni qayta ishga tushiramiz. Admin buyurtmalarni ochadi: hozircha buyurtma yo'q. PostgreSQL terminalida esa klaviatura yetti, kolonka sakkiz. Ya'ni mahsulot ombordan ketgan, lekin uni kim olgani haqida hech qanday yozuv yo'q. Bu xato xabari bermaydigan, eng yomon turdagi buzilish."
    ],
    [
     "c",
-    "Jasur ismini yozdi — bot uni ism deb tushundi, chunki <b>holat bazada qolgan</b>",
-    "Jasur qayta ishga tushgandan keyin ismini yozdi. Bot uni ism deb tushundi, chunki uning holati, ism kutyapman, bazada qolgan edi."
+    "Sabab: <b>bir ish ikki joyda yozildi</b> — biri doimiy, biri vaqtinchalik",
+    "Sababi: bitta sotuv ikki joyga yozildi. Ombordan ayirish bazaga, buyurtma esa xotiraga. Restart xotirani o'chirdi, bazaga tegmadi. Tekshiruv buni ko'rsatdi, chunki biz faqat build emas, restart bilan butun oqimni sinadik."
    ],
    [
     "d",
-    "Xulosa: holat bazada — qayta ishga tushirish ham, ikki mijoz ham <b>muammo emas</b>",
-    "Xulosa: holat bazada bo'lsa, qayta ishga tushirish ham, ikki mijoz ham muammo emas. Endi buni o'z botingizda qilasiz."
+    "Xulosa: <b>oraliq bosqichni prodga chiqarmang</b>; har bosqichdan keyin restart bilan sinang",
+    "Xulosa: bosqichma-bosqich ko'chirishda oraliq vaziyat bo'ladi, unda ma'lumot ikki joyda yashaydi. Oraliq bosqichni ishlab turgan botga chiqarmang, avval hamma bosqichni tugating. Har bosqichdan keyin restart bilan to'liq oqimni sinang: buni build ham, AI'ning o'z testlari ham ushlamaydi."
    ]
   ]
  },
  "12": {
   "type": "Practice",
-  "kicker": "Amaliyot 1 / 3",
-  "eyebrow": "Hozir o'zingizda · 15 daqiqa",
-  "title": "O'z botingiz: users jadvali, ism va qayta ishga tushirish",
+  "kicker": "Amaliyot 2 / 4",
+  "eyebrow": "Hozir o'zingizda · 20 daqiqa",
+  "title": "Ulanish, migratsiya va katalog — o'z AI'ingiz bilan, keyin o'zingiz tekshirasiz",
   "seg": [
    [
     "a",
-    "Endi siz: kichik bot yasaysiz, u ismingizni <b>bazada eslab qoladi</b>",
-    "Endi navbat sizga. Kichik bot yasaysiz, u ismingizni bazada eslab qoladi. Baza: PostgreSQL birinchi darsda o'rnatgan PostgreSQL'ingiz. O'n besh daqiqa."
+    "Endi siz: <b>1-promptni o'z AI'ingizga</b> berasiz va natijani tekshirasiz",
+    "Endi navbat sizga. Birinchi promptni o'z AI'ingizga berasiz: Antigravity, Claude Code yoki boshqasi. AI javobi bizdagidan boshqacha bo'ladi, bu normal. Tekshiruv bir xil. Yigirma daqiqa ketadi."
    ],
    [
     "b",
-    "1–2-qadam: jadval va bot fayli — <b>BotFather tokeni</b>, lokal baza",
-    "Birinchi: PostgreSQL terminalida botdb bazasi va users jadvali. Ikkinchi: yangi papka, telegraf va pg paketlari, bot js fayli. Token BotFather'dan, o'zingiz bilasiz."
+    "1–2-qadam: baza, prompt, <b>AI javobini uch qismga ajratib o'qish</b>",
+    "Birinchi qadamda PostgreSQL terminalida shop bazasini yaratasiz va env faylga database url yozasiz. Ikkinchisida promptni nusxalab AI'ga berasiz, javobini o'qiysiz: fayllar, chetga chiqish va tekshirish buyruqlari."
    ],
    [
     "c",
-    "3–4-qadam: /start va ism, keyin <b>Ctrl+C</b> va qayta ishga tushirish; isbot — javob matni",
-    "Uchinchi: botni yoqing, start bosing, ismingizni yozing. To'rtinchi: Ctrl C bilan to'xtating, yana yoqing, start bosing. Isbot maydoniga botning javobini yozing."
+    "3–4-qadam: seed ikki marta va <code>\\d products</code>; isbot — <b>ikkinchi seed'dan keyingi mahsulotlar soni</b>",
+    "Uchinchi qadamda seed'ni ikki marta yurgizasiz va backslash d products bilan CHECK borligini ko'rasiz. To'rtinchisida stock'ni minus bir qilib ko'rasiz: xato chiqishi kerak. Isbot maydoniga select count'dan chiqqan sonni yozing. Hammasi to'g'ri bo'lsa, commit qiling."
    ],
    [
     "d",
     "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
-    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin botingiz ismingizni bazada saqlaydi va qayta ishga tushgandan keyin ham uni eslab qoladi."
+    "Boshqacha chiqsa, «Boshqacha chiqdimi» tugmasini bosing. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin botingiz katalogni PostgreSQL'dan o'qiydi va siz AI ishini o'zingiz tekshirgan bo'lasiz."
+   ]
+  ],
+  "steps": [
+   {
+    "t": "Baza — PostgreSQL terminalida yarating, manzilini .env ga yozing",
+    "cmds": [
+     "psql -U postgres",
+     "CREATE DATABASE shop;",
+     "DATABASE_URL=postgresql://postgres:<parol>@localhost:5432/shop"
+    ],
+    "exp": "CREATE DATABASE"
+   },
+   {
+    "t": "Prompt — 1-promptni AI'ga bering, javobni uch qismga ajratib o'qing: fayllar · chetga chiqish · tekshirish",
+    "cmds": [
+     "git diff --stat"
+    ],
+    "exp": "ro'yxat diff bilan mos"
+   },
+   {
+    "t": "Seed va jadval",
+    "cmds": [
+     "npm run seed ×2",
+     "psql -U postgres -d shop",
+     "\\d products",
+     "SELECT * FROM migrations;"
+    ],
+    "exp": "2-marta 0 qo'shildi · CHECK (stock >= 0) · 1 qator"
+   },
+   {
+    "t": "Qoida va commit",
+    "cmds": [
+     "UPDATE products SET stock = -1 WHERE id = 1;",
+     "SELECT count(*) FROM products;",
+     "git add -A && git commit -m \"1-bosqich: katalog\""
+    ],
+    "exp": "violates check constraint · 6"
+   }
+  ],
+  "proof": {
+   "label": "SELECT count(*) FROM products; natijasi",
+   "placeholder": "natijadagi sonni yozing",
+   "re": "^\\s*6\\s*$",
+   "flags": "",
+   "wrong": "Seed ikki marta yurdi — takror qo'shmaganmi? 12 chiqsa, seed takrorlanmaslik shartini AI bajarmagan: unga shu haqida yozing."
+  },
+  "trouble": [
+   [
+    "count = 12",
+    "seed takror qo'shdi — AI'ga: «seed ikkinchi marta yurganda takror qo'shmasin, ON CONFLICT (name) DO NOTHING»"
+   ],
+   [
+    "UPDATE xatosiz o'tdi",
+    "CHECK yo'q — \\d products; AI'ga: «stock uchun bazada CHECK (stock >= 0) bo'lsin, yangi migratsiya bilan»"
+   ],
+   [
+    "relation \"products\" does not exist",
+    "migratsiya yurmagan — serverni bir marta ishga tushiring yoki npm run migration:run"
+   ],
+   [
+    "Unable to connect to the database. Retrying (1)... va error: database \"shop\" does not exist",
+    "1-qadam: CREATE DATABASE shop;"
+   ],
+   [
+    "Unable to connect to the database. Retrying (1)... va error: password authentication failed for user \"postgres\"",
+    ".env dagi parol — PostgreSQL-1 da qo'ygan parolingiz"
+   ],
+   [
+    "npm error Missing script: \"seed\"",
+    "AI seed'ni boshqa nom bilan yozgan yoki migratsiya ichiga qo'ygan — javobidan qidiring (2-tajribada shunday bo'ldi)"
    ]
   ]
  },
  "13": {
   "type": "Lesson",
-  "kicker": "4-bosqich · buzamiz",
-  "title": "telegram_id INTEGER — ERROR: integer out of range",
+  "kicker": "4-bosqich · foydalanuvchi, state, savat · ichida",
+  "title": "Telegram id INTEGERga sig'maydi — BIGINT kerak; lekin BIGINT kodga matn bo'lib keladi",
   "seg": [
    [
     "a",
-    "Birinchi buzish: o'quvchi <code>BIGINT</code> o'rniga odatdagi <b><code>INTEGER</code></b> yozadi",
-    "Birinchi buzish, sinfda albatta chiqadi. O'quvchi yoki AI telegram id uchun big int emas, odatdagi integer yozadi."
+    "Azizaning id'si 5 123 456 789 — <b><code>INTEGER</code> chegarasidan katta</b>, shuning uchun <code>BIGINT</code>",
+    "Ikkinchi bosqich: foydalanuvchilar. Birinchi tuzoq id'da. Telegram id ikki milliard bir yuz qirq yetti milliondan katta bo'lishi mumkin, bu integer'ning chegarasi. Azizaning id'si besh milliarddan oshadi. Shuning uchun ustun big int bo'ladi. Ikkala AI ham big int tanladi."
    ],
    [
     "b",
-    "Katta raqamli mijoz yozdi — <b><code>integer out of range</code></b>, qator saqlanmadi",
-    "Besh milliard bilan boshlanadigan raqamli mijoz yozdi. Natija: integer out of range. Qator saqlanmadi va bot bu mijozga javob bera olmaydi."
+    "Lekin node-pg va TypeORM <code>BIGINT</code> ustunini kodga <b>matn qilib qaytaradi</b>: <code>\"5123456789\"</code>",
+    "Ikkinchi tuzoq ko'rinmaydi. Big int JavaScript'ning oddiy sonidan katta bo'lishi mumkin, shuning uchun pg kutubxonasi uni matn qilib qaytaradi. TypeORM ham xuddi shunday. Matn bilan son uch tenglik bilan solishtirilsa, false chiqadi. Siz bilgan Mongoose'da bu son edi va true chiqardi."
    ],
    [
     "c",
-    "Kichik raqamli akkaunt bilan sinasa — hammasi ishlaydi, <b>xato keyin chiqadi</b>",
-    "Xavfli tomoni: o'quvchining o'z akkaunti eski bo'lsa, raqami kichik va hammasi ishlaydi. Xato boshqa mijoz kelganda chiqadi. Tuzatish: ustun big int."
+    "Ikki to'g'ri yo'l: <b>ustun turi <code>string</code></b> yoki <b>transformer bilan <code>number</code></b>",
+    "Ikki to'g'ri yo'l bor. Birinchisi: entity'da telegram id'ni string deb yozish va har joyda matn bilan ishlash. Ikkinchisi: transformer bilan bazadan kelganda songa aylantirish. Telegram id ellik ikki bitdan oshmaydi, JavaScript soni uni sig'diradi. Bizdagi tayyor kod birinchi yo'lni, AI ikkinchisini tanladi. Ikkalasi ishlaydi."
    ],
    [
     "d",
-    "Xulosa: <code>telegram_id</code> — <b>doim <code>BIGINT</code></b>; <code>INTEGER</code> bilan xato yangi mijozda chiqadi",
-    "Xulosa: telegram id doim big int. Tuzatilgan jadvalda shu raqam saqlandi, to'qqizinchi ekrandagi jadval aynan shunday."
+    "Xulosa: entity'dagi <b>id turini va solishtirishni</b> diffdan albatta tekshiring",
+    "Xulosa: Telegram id uchun big int, va kodda u matnmi yoki sonmi, buni bilib turing. AI kodini ko'rganda ikki joyga qarang: migratsiyada ustun turi big int'mi, entity'da qaysi tur va qayerda uch tenglik bilan solishtirilgan."
    ]
   ]
  },
  "14": {
   "type": "Lesson",
-  "kicker": "4-bosqich · buzamiz",
-  "title": "node-pg BIGINTni matn qaytaradi: '5123456789' === 5123456789 — false",
+  "kicker": "4-bosqich · ichida",
+  "title": "Mijoz tugmani ikki marta tez bosdi: avval qidirib keyin qo'shish ikki qator ochishi mumkin — ON CONFLICT bitta so'rovda hal qiladi",
   "seg": [
    [
     "a",
-    "Ikkinchi tuzoq: bazadan o'qilgan <code>telegram_id</code> <b>son emas, matn</b>",
-    "Ikkinchi tuzoq yashirinroq. Bazadan o'qilgan telegram id son emas, matn bo'lib keladi. Node pg big int'ni JavaScript soniga aylantirmaydi."
+    "Savatda bitta mahsulot — bitta qator: <b><code>UNIQUE (user_id, product_id)</code></b>",
+    "Uchinchi bosqich: savat. Bitta mijozda bitta mahsulot faqat bitta qator bo'ladi, qayta qo'shilsa qty bittaga oshadi. Bu qoidani kod ham, baza ham ushlaydi: cart items jadvalida user id va product id juftligi UNIQUE."
    ],
    [
     "b",
-    "Natija: <code>===</code> bilan solishtirish <b><code>false</code></b> — masalan admin tekshiruvi ishlamaydi",
-    "Natija: uch tenglik bilan ctx chat id ga solishtirsangiz, false. Masalan, admin raqamini shunday tekshirsa, bot adminni tanimaydi va xato chiqmaydi."
+    "Avval qidirib keyin qo'shish — <b>ikki tez bosishda ikkalasi «yo'q» ko'radi</b>",
+    "Oddiy yo'l: avval select bilan qidirish, yo'q bo'lsa insert. Lekin mijoz tugmani ikki marta tez bossa, ikki so'rov bir vaqtda qidiradi va ikkalasi ham yo'q deb ko'radi. Biz yigirma marta sinadik: o'n to'qqiz marta savatda ikki qator paydo bo'ldi. UNIQUE bo'lsa, ikkinchisi duplicate key xatosini oladi."
    ],
    [
     "c",
-    "O'quvchi reposida entity'da <code>telegram_id: string</code> — <b>muallif buni bilgan</b>",
-    "O'quvchi reposida entity'da telegram id string deb yozilgan, servisda esa raqam string'ga aylantirib qidiriladi. Bu to'g'ri qaror: TypeORM ham big int'ni matn qaytaradi."
+    "<code>ON CONFLICT … DO UPDATE</code> — <b>bitta so'rov</b>: yo'q bo'lsa qo'shadi, bor bo'lsa oshiradi",
+    "Yechim bitta so'rov: insert on conflict do update. Qator yo'q bo'lsa qo'shiladi, bor bo'lsa qty bittaga oshadi. Baza buni o'zi navbatga qo'yadi. Siz bilgan Mongoose'da bu upsert edi, lekin u ham unique index bo'lmasa ikki hujjat ochdi. Ikkala AI ham to'g'ri yo'lni tanladi."
    ],
    [
     "d",
-    "Xulosa: bazadagi <code>telegram_id</code> — matn; solishtirishdan oldin <b><code>Number()</code></b> yoki <b><code>String()</code></b>",
-    "Xulosa: bazadan kelgan telegram id matn. Solishtirishdan oldin ikkalasini bir turga keltiring: Number yoki String. Tuzatilganda natija true."
+    "Xulosa: <b>qidirib qo'shish</b> ko'rsangiz, <code>UNIQUE</code> va <code>ON CONFLICT</code> borligini tekshiring",
+    "Xulosa: avval qidirib keyin qo'shish bir mijozda ishlaydi, lekin tez bosishda buziladi. AI kodida shunday joy ko'rsangiz, ikki narsani tekshiring: jadvalda UNIQUE qoidasi bormi va so'rov on conflict bilanmi. Foydalanuvchida ham xuddi shu qoida: start ikki marta bosilsa ham bitta qator."
    ]
   ]
  },
  "15": {
   "type": "Lesson",
-  "kicker": "4-bosqich · buzamiz",
-  "title": "Ikkinchi /start'da yana INSERT — duplicate key value violates unique constraint",
+  "kicker": "4-bosqich · foydalanuvchi, state, savat",
+  "title": "WAITING_PHONE bazada: bot telefon so'radi, server qayta ishga tushdi — raqam kelganda bot uni taniydi",
   "seg": [
    [
     "a",
-    "Uchinchi buzish: /start har safar INSERT qiladi, <b>SELECT yo'q</b>",
-    "Uchinchi buzish: o'quvchi start handler'ida faqat insert yozadi, avval select qilmaydi. Birinchi start ishlaydi."
+    "State — <b>bot mijoz haqida eslab qolgan bosqich</b>: <code>IDLE</code> yoki <code>WAITING_PHONE</code>",
+    "State'ni ko'ramiz. State bot foydalanuvchi haqida eslab qolgan ma'lumot: qaysi qadamda turgani. Bizning botda ikkita: IDLE, ya'ni oddiy, va WAITING PHONE, ya'ni telefon kutilmoqda. Mijoz buyurtma berishni bosganda state WAITING PHONE bo'ladi."
    ],
    [
     "b",
-    "Ikkinchi /start — <code>duplicate key … already exists</code>: <b>UNIQUE uni to'xtatdi</b>",
-    "Ikkinchi start'da baza rad etadi: duplicate key, already exists. To'qqizinchi ekrandagi unique aynan shu yerda ishladi: bitta mijozga ikkita qator bo'lmaydi."
+    "Restartdan keyin raqam keldi — <b>bot uni telefon deb tanidi</b>, «Tushunmadim» demadi",
+    "Bobur buyurtma berishni bosdi, bot telefon so'radi. Shu payt server qayta ishga tushdi. Bobur raqamini yozdi. State bazada bo'lgani uchun bot raqamni telefon deb tanidi va buyurtmani yaratdi. State xotirada bo'lganda bot tushunmadim degan bo'lardi."
    ],
    [
     "c",
-    "Xabar <b><code>DETAIL</code></b> qatorida: qaysi ustun va qaysi raqam takrorlandi",
-    "Xabarni o'qing: detail qatorida qaysi ustun va qaysi raqam takrorlangani yozilgan. Telegram id, besh milliard bir yuz yigirma uch million. Demak, kodda select yo'q."
+    "Ikkinchi va uchinchi bosqichdan keyin <b>state ham, savat ham</b> restartdan o'tdi",
+    "Bu natija uchinchi bosqichdan keyin chiqdi. Ikkinchi bosqichdan keyin bot telefonni tanigan, lekin savat bo'sh edi, chunki savat hali xotirada edi. Bu yana oraliq vaziyat. Uchinchi bosqichdan keyin savat ham bazada, buyurtma raqami bir bo'lib yaratildi."
    ],
    [
     "d",
-    "Xulosa: tuzatish — <b>avval SELECT</b>, qator topilsa INSERT qilinmaydi",
-    "Xulosa: tuzatish o'ninchi ekrandagi oqim: avval select, topilsa insert qilinmaydi. Tuzatilgan bot ikkinchi start'ga yana salom deydi."
+    "Xulosa: state'ni sinash uchun <b>restartni suhbat o'rtasida</b> qiling",
+    "Xulosa: state'ni oddiy sinov ushlamaydi, chunki bitta jarayonda hamma narsa ishlaydi. Restartni suhbat o'rtasida qiling: bot savol berdi, server qayta yondi, keyin javob yozing. Bot davom etsa, state bazada."
    ]
   ]
  },
  "16": {
-  "type": "LineCheck",
+  "type": "MCRetry",
   "kicker": "Tekshiruv 3",
-  "eyebrow": "Tekshiruv · 3 / 4 — qaysi satr xato?",
-  "title": "Yangi mijoz yozdi — ERROR: integer out of range",
-  "q": "Buzishlarni ko'rdingiz, endi o'zingiz toping. Uchinchi tekshiruv. Yangi mijoz yozdi va baza integer out of range dedi. Sabab bo'lgan satrni bosing.",
-  "ok": "To'g'ri, uchinchi satr. Integer o'ttiz ikki bit, Telegram raqami esa undan katta bo'lishi mumkin. Big int bo'lsa saqlanadi, tuzatilgan jadval ekranda ko'rinib turibdi. Demak, Telegram raqami saqlanadigan ustun doim big int bo'ladi.",
-  "okShort": "3-satr: <code>INTEGER</code> — 32 bit. To'g'risi <code>BIGINT</code>.",
-  "hint": "Xabar raqam turidan: qaysi satr raqamni saqlaydi?",
-  "task": "Qoida: Telegram raqami 32 bitdan katta bo'lishi mumkin. Bu jadvalda yangi mijozning raqami saqlanmadi: <code>integer out of range</code>. <b>Shu xatoga sabab bo'lgan satrni bosing.</b>"
+  "eyebrow": "Tekshiruv · 3 / 4",
+  "title": "Admin tekshiruvi xom so'rov natijasi bilan yozilgan: rows[0].telegram_id !== 111. Jasur (id 111) /orders bosdi. Nima bo'ladi?",
+  "q": "Big int'ni ko'rdingiz, endi tekshirib olaylik. Uchinchi tekshiruv. Admin tekshiruvi xom so'rov bilan yozilgan: bazadan telegram id olinadi va bir yuz o'n birga teng emasmi deb solishtiriladi. TypeScript xato bermadi. Jasurning id'si haqiqatan bir yuz o'n bir. U orders bosdi. Nima bo'ladi? Variantni tanlang.",
+  "ok": "To'g'ri. Bazadan telegram id matn bo'lib keladi, bir yuz o'n bir qo'shtirnoq ichida. Matn bilan son hech qachon teng emas, shuning uchun Jasur admin bo'lmay qoladi. Xato xabari yo'q, bot faqat admin uchun deydi. Demak, big int ustunini solishtirishdan oldin turini bir xil qiling: matn bilan matn yoki son bilan son.",
+  "okShort": "<code>\"111\" !== 111</code> → <code>true</code>: admin tekshiruvi o'tmaydi, xato yo'q.",
+  "hint": "Bazadan telegram_id qaysi turda keladi? === turi har xil qiymatlarga nima deydi?",
+  "demak": "<code>BIGINT</code> ustunini solishtirishdan oldin ikki tomonning turi bir xil bo'lsin.",
+  "correct": 3,
+  "opts": [
+   "Jasur buyurtmalarni ko'radi — id 111 to'g'ri",
+   "Server ishga tushmaydi — tsc turni rad etadi",
+   "Baza xato beradi — id matn bilan so'raldi",
+   "«faqat admin uchun» chiqadi — \"111\" !== 111"
+  ],
+  "wrong": {
+   "0": "Bazadan matn keladi: \"111\" — son emas.",
+   "1": "Server ishlaydi va tsc ham xato bermaydi: raw (ichida ds.query) natijasi any. Entity'dagi string bilan solishtirilganda esa tsc TS2367 beradi — sinadik.",
+   "2": "Baza so'rovni bajardi; solishtirish JavaScript'da."
+  }
  },
  "17": {
   "type": "Practice",
-  "kicker": "Amaliyot 2 / 3",
-  "eyebrow": "Hozir o'zingizda · 10 daqiqa",
-  "title": "INTEGER va takror INSERT — xabarlarni o'z bazangizda o'qing",
+  "kicker": "Amaliyot 3 / 4",
+  "eyebrow": "Hozir o'zingizda · 25 daqiqa",
+  "title": "Foydalanuvchi, state va savat — ikki prompt, har biridan keyin restart",
   "seg": [
    [
     "a",
-    "Endi siz: o'z bazangizda <b>ikki xatoni ataylab</b> chiqarasiz va xabarlarni o'qiysiz",
-    "Endi o'z bazangizda ikki xatoni ataylab chiqarasiz. O'n daqiqa. Har xabarni o'qing, o'quvchi aynan shularni ko'rsatadi."
+    "Endi siz: <b>ikki prompt, ikki commit</b> — foydalanuvchi va state, keyin savat",
+    "Endi ikkita bosqichni o'zingiz qilasiz: foydalanuvchi va state, keyin savat. Har promptdan keyin tekshiruv va commit. Yigirma besh daqiqa ketadi."
    ],
    [
     "b",
-    "1–2-qadam: <code>INTEGER</code> jadval va katta raqam — <b><code>integer out of range</code></b>",
-    "Birinchi: botdb'da integer ustunli sinov jadvali. Ikkinchi: besh milliard bilan boshlanadigan raqamni qo'shing va xabarni o'qing."
+    "1–2-qadam: 2-prompt, javobni o'qish, <b><code>\\d users</code> — id turi <code>bigint</code></b>",
+    "Birinchi qadamda ikkinchi promptni AI'ga berasiz va javobni uch qismga ajratib o'qiysiz. Ikkinchisida backslash d users bilan telegram id turini ko'rasiz: big int bo'lishi kerak. Entity'da tur qanday ekaniga ham qarang."
    ],
    [
     "c",
-    "3–4-qadam: <code>users</code> ga <b>takror INSERT</b>, keyin sinov jadvalini o'chirish; isbot — xabar",
-    "Uchinchi: users jadvalingizga o'z raqamingizni yana bir marta insert qiling, duplicate key chiqadi. To'rtinchi: sinov jadvalini o'chiring. Isbot maydoniga ikkinchi qadamdagi xatoni yozing."
+    "3–4-qadam: 3-prompt, keyin <b>suhbat o'rtasida restart</b>; isbot — <code>state</code> ustuni",
+    "Uchinchi qadamda uchinchi promptni berasiz. To'rtinchisida savatga mahsulot qo'shib, buyurtma berishni bosasiz, bot telefon so'raydi. Shu payt PostgreSQL terminalida users jadvalidan state'ni ko'ring va isbot maydoniga yozing. Keyin restart qilib raqam yuboring: bot buyurtma yaratishi kerak."
    ],
    [
     "d",
     "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
-    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin siz integer out of range va duplicate key xabarlarini o'z bazangizda ko'rgan bo'lasiz va o'quvchida chiqqanda darhol taniysiz."
+    "Boshqacha chiqsa, «Boshqacha chiqdimi» tugmasini bosing. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin botingiz foydalanuvchini, state'ni va savatni bazada saqlaydi va siz buni restart bilan isbotlagansiz."
+   ]
+  ],
+  "steps": [
+   {
+    "t": "2-prompt — AI'ga bering, javobni uch qismga ajratib o'qing",
+    "cmds": [
+     "git diff --stat"
+    ],
+    "exp": "yangi migratsiya, birinchisi o'zgarmagan"
+   },
+   {
+    "t": "users — /start ni ikki marta bosing, tekshiring, commit qiling",
+    "cmds": [
+     "\\d users",
+     "SELECT telegram_id, count(*) FROM users GROUP BY 1;"
+    ],
+    "exp": "bigint · har id 1 marta"
+   },
+   {
+    "t": "3-prompt — AI'ga bering; Telegram'da bitta mahsulotni 3 marta bosing; tekshirib commit qiling",
+    "cmds": [
+     "\\d cart_items",
+     "SELECT * FROM cart_items;"
+    ],
+    "exp": "UNIQUE · bitta qator, qty 3"
+   },
+   {
+    "t": "Restart — «✅ Buyurtma berish» bosing; telefon so'ralganda state'ni ko'ring; serverni qayta yoqib raqam yuboring",
+    "cmds": [
+     "SELECT state FROM users WHERE telegram_id = <id>;",
+     "Ctrl+C",
+     "npm run start:dev"
+    ],
+    "exp": "WAITING_PHONE · «Buyurtma #… qabul qilindi!»"
+   }
+  ],
+  "proof": {
+   "label": "Telefon so'ralgan paytdagi state qiymati",
+   "placeholder": "psql natijasini yozing",
+   "re": "WAITING_PHONE",
+   "flags": "i",
+   "wrong": "Buyurtma berishni bosgandan keyin, raqam yozishdan oldin tekshiring. IDLE chiqsa — state bazaga yozilmagan: AI'ga state'ni bazada saqlash shartini qayta yozing."
+  },
+  "trouble": [
+   [
+    "telegram_id — integer",
+    "AI turni noto'g'ri tanladi — yangi migratsiya: ALTER COLUMN … TYPE BIGINT; katta id'da terminalda value \"5123456789\" is out of range for type integer, bot «Tushunmadim» deydi"
+   ],
+   [
+    "/start ikki marta — ikki qator",
+    "UNIQUE yo'q — AI'ga: «telegram_id takrorlanmasin, bazada ham»"
+   ],
+   [
+    "duplicate key value violates unique constraint",
+    "avval qidirmasdan qo'shilyapti — ON CONFLICT (14-ekran)"
+   ],
+   [
+    "Restartdan keyin «Tushunmadim»",
+    "state bazaga yozilmagan yoki o'qilmayapti — SELECT state …"
+   ],
+   [
+    "Restartdan keyin «Savat bo'sh»",
+    "savat hali xotirada — 3-prompt bajarilganmi"
+   ],
+   [
+    "Admin /orders — «faqat admin uchun»",
+    "\"111\" === 111 (16-ekran) — tur"
    ]
   ]
  },
  "18": {
   "type": "Lesson",
-  "kicker": "5-bosqich · o'quvchi reposi",
-  "title": "TelegramBotNest: entity, topOrYarat va holat — xuddi shu oqim, TypeORM bilan",
+  "kicker": "5-bosqich · buyurtma · ichida",
+  "title": "Buyurtma uch ish: ombordan ayirish, buyurtma yozish, savatni tozalash — yo hammasi, yo hech biri",
   "seg": [
    [
     "a",
-    "O'quvchi amaliyoti TelegramBotNest reposida: AI shu kodni yozadi, tayyor yechim <b><code>dars-04-done</code></b>",
-    "O'quvchi amaliyoti TelegramBotNest reposida. O'quvchi AI'ga prompt beradi, tayyor yechim esa dars to'rt done tegida. Shu kodni ochamiz."
+    "Buyurtma <b>uch jadvalga tegadi</b>: <code>products</code>, <code>orders</code> va <code>cart_items</code>",
+    "To'rtinchi bosqich: buyurtma. Bitta buyurtma uch jadvalga tegadi: products'dan ombor ayiriladi, orders va order items'ga buyurtma yoziladi, cart items'dan savat o'chiriladi. PostgreSQL-2 da ikki jadval bitta ish ekranini ko'rgansiz, bu o'shaning o'zi, faqat kod ichida."
    ],
    [
     "b",
-    "Entity: <code>telegram_id</code> — <b><code>bigint</code></b>, <code>unique</code>; <code>holat</code> — default <code>'yangi'</code>",
-    "Entity'da telegram id big int va unique, ism bo'sh bo'lishi mumkin, holat boshida yangi. Jadvalni TypeORM o'zi yaratadi, synchronize yoqilgan."
+    "TypeORM <code>transaction</code> — <b><code>START TRANSACTION</code> … <code>COMMIT</code></b> — SQL logda ko'rinadi",
+    "Kodda bu dataSource transaction. Ichidagi hamma so'rov bitta tranzaksiyada yuradi. SQL logni yoqsangiz, uning o'zini ko'rasiz: start transaction, ikkita update, ikkita insert, delete va commit. Bu PostgreSQL terminalidagi begin va commit'ning aynan o'zi."
    ],
    [
     "c",
-    "<b><code>topOrYarat</code></b> — SELECT va kerak bo'lsa INSERT; handler holatga qarab javob beradi",
-    "Top yoki yarat: avval qidiradi, topilmasa qator qo'shadi. Handler esa holatga qaraydi: ism kutilmoqda bo'lsa, matnni ism qiladi. O'ninchi ekrandagi oqimning o'zi."
+    "Birortasi yiqilsa — <b><code>ROLLBACK</code></b>: ombor, buyurtma va savat o'zgarmaydi",
+    "Ichida bitta so'rov yiqilsa, TypeORM rollback qiladi. Ombor ham, buyurtma ham, savat ham o'zgarmaydi. Biz buni ataylab sinadik: order items'ga yozishda xato beradigan trigger qo'ydik. Bot buyurtma berilmadi dedi, ombor sakkiz va o'nda, buyurtma nol, savat joyida qoldi."
    ],
    [
     "d",
-    "Xulosa: shu kodni <b>haqiqiy PostgreSQL</b> bilan yurgizdik — qayta ishga tushgach «Yana salom»",
-    "Xulosa: shu repo kodini haqiqiy PostgreSQL bilan yurgizdik. Qayta ishga tushgandan keyin yana salom, Aziza. Ikki mijoz alohida qoldi."
+    "Xulosa: bitta ishning <b>hamma so'rovi bitta tranzaksiyada</b>; SQL log — isbot",
+    "Xulosa: bir nechta jadvalga tegadigan bitta ish bitta tranzaksiyada bo'ladi. AI tranzaksiya qildim desa, SQL logni yoqib ko'ring: start transaction va commit orasida hamma so'rov bormi. Bu tekshiruv bir daqiqa oladi."
    ]
   ]
  },
  "19": {
   "type": "Lesson",
-  "kicker": "5-bosqich · o'quvchi reposi",
-  "title": "«Server ishlayapti», lekin «Telegram ulanmadi: 401» — bot javob bermaydi",
+  "kicker": "5-bosqich · ichida",
+  "title": "Omborda bitta Planshet, ikki mijoz bir vaqtda «Buyurtma berish» bosdi: bittasiga sotiladi, ikkinchisi aniq xabar oladi",
   "seg": [
    [
     "a",
-    "Sinfda eng ko'p chiqadigan holat: o'quvchi <b>«bot javob bermayapti»</b> deydi",
-    "Repo kodini ko'rdik, endi sinfda eng ko'p chiqadigan holat. O'quvchi bot javob bermayapti deydi. Terminalda server ishlayapti yozuvi turibdi."
+    "Sinov: omborda <b>bitta Planshet qoldi, ikki tranzaksiya bir vaqtda</b> boshlanadi",
+    "Endi eng og'ir sinov. Omborda bitta Planshet qoldi. Aziza va Bobur bir vaqtda buyurtma berishni bosadi. Ikki tranzaksiya bir vaqtda boshlanadi va ikkalasi ham Planshet qatoriga yetib boradi."
    ],
    [
     "b",
-    "Ikki satrni o'qing: server ishlaydi, Telegram esa <b><code>401: Unauthorized</code></b>",
-    "Ikki satrni birga o'qing. Server uch ming portda ishlayapti, lekin Telegram ulanmadi, to'rt yuz bir. Token noto'g'ri: server ishlaydi, bot esa javob bermaydi. Biz soxta token bilan sinadik."
+    "Birinchi tranzaksiya qatorni <b>qulflaydi</b>, ikkinchisi u tugashini kutadi",
+    "Birinchi tranzaksiya Planshet qatorini qulflaydi. Bizdagi kodda bu select for update, AI kodida update where stock katta yoki teng qty. Ikkinchi tranzaksiya shu qatorga yetganda kutadi. Birinchisi commit qilgach, ikkinchisi yangi qoldiqni ko'radi: nol."
    ],
    [
     "c",
-    "<code>.env</code> yo'q bo'lsa server umuman yonmaydi: <b><code>DATABASE_URL topilmadi</code></b>",
-    "Env fayli yo'q bo'lsa, server umuman yonmaydi: database url topilmadi. Bu xabarni repo muallifi o'zi yozgan, nima qilishni ham aytadi."
+    "Natija: <b>bitta sotildi, ombor 0</b>, Bobur aniq xabar oldi, savati saqlandi",
+    "Natija: Azizaga sotildi, ombor nol, manfiy emas. Bobur aniq xabar oldi: Planshet, omborda faqat nol ta qoldi. Uning tranzaksiyasi rollback bo'ldi, savati saqlanib qoldi. Biz bu sinovni o'zimizdagi kod va AI kodi bilan yurgizdik, natija bir xil."
    ],
    [
     "d",
-    "Xulosa: «bot javob bermaydi» bo'lsa — avval <b>«Telegram bot ulandi»</b> satri bormi, qarang",
-    "Xulosa: bot javob bermasa, terminalda Telegram bot ulandi satrini qidiring. Yo'q bo'lsa, uning o'rnidagi xato sababni aytadi. Repo README'sida xatolar jadvali ham bor."
+    "Xulosa: «ortiqcha sotilmasin» sharti <b>faqat bir vaqtdagi ko'p mijoz sinovi bilan</b> tekshiriladi",
+    "Xulosa: bitta mijoz bilan bu xato hech qachon ko'rinmaydi, faqat bir vaqtdagi ikki so'rov bilan. Ikki mijoz ham kam: tranzaksiya tez tugaydi va qulfsiz kod ham ko'pincha to'g'ri chiqadi. Shuning uchun smoke beshta mijozni uch raund yurgizadi. Qulf bo'lmasa nima bo'lishini keyingi ekranda ko'ramiz."
    ]
   ]
  },
  "20": {
-  "type": "Practice",
-  "kicker": "Amaliyot 3 / 3",
-  "eyebrow": "Hozir o'zingizda · 15 daqiqa",
-  "title": "dars-04-done ni o'z kompyuteringizda: lokal baza, o'z tokeningiz",
+  "type": "Lesson",
+  "kicker": "5-bosqich · buzamiz",
+  "title": "Qulfsiz «o'qi, tekshir, yoz»: hamma tranzaksiya qoldiq 1 ni ko'radi — bitta Planshet besh kishiga sotiladi, CHECK ham ushlamaydi",
   "seg": [
    [
     "a",
-    "Endi siz: o'quvchi yechimini <b>o'z kompyuteringizda</b> ishga tushirasiz",
-    "Oxirgi amaliyot: o'quvchi yechimini o'z kompyuteringizda ishga tushirasiz. Neon o'rniga lokal PostgreSQL. O'n besh daqiqa."
+    "Buzamiz: qatorni <b>qulfsiz o'qiymiz</b>, qoldiqni kodda hisoblab, yangisini yozamiz",
+    "Endi ataylab buzamiz. Qulfni olib tashlaymiz: mahsulotni oddiy find bilan o'qiymiz, qoldiq yetadimi deb kodda tekshiramiz, yangi qoldiqni hisoblab save qilamiz. AI'lar ko'pincha aynan shunday yozadi, ko'rinishi to'g'ri."
    ],
    [
     "b",
-    "1–2-qadam: clone, <code>dars-04-done</code>, <code>npm ci</code>; <code>.env</code> — <b>token va lokal baza</b>",
-    "Birinchi: clone, dars to'rt done, npm ci. Ikkinchi: env fayli: o'z tokeningiz va lokal bazaning manzili. Bazani avval yarating."
+    "Besh tranzaksiya <b>bir vaqtda «qoldiq 1» ni ko'radi</b> — hammasi tekshiruvdan o'tadi",
+    "Besh mijoz bir vaqtda bosadi. Hamma tranzaksiya qoldiqni o'qiydi: bir. Hammasi yetadi deb hisoblaydi va nolni yozadi. Biz buni besh raund yurgizdik: to'rt raundda bitta Planshet besh kishiga sotildi. Birinchi raundda tasodifan bittaga, shuning uchun bir marta sinash yetmaydi."
    ],
    [
     "c",
-    "3–4-qadam: /start, ism, qayta ishga tushirish; isbot — <b><code>holat</code> ustuni</b>",
-    "Uchinchi: npm run start, Telegram'da start va ismingiz. To'rtinchi: qayta ishga tushiring, yana start. Isbot maydoniga PostgreSQL terminalidagi holat ustuni qiymatini yozing."
+    "<code>CHECK (stock &gt;= 0)</code> <b>ushlamaydi</b>: yozilgan qiymat 0, manfiy emas",
+    "Baza qoidasi ham yordam bermaydi. Check stock katta yoki teng nol faqat manfiy qiymatni rad etadi. Har tranzaksiya nol yozdi, nol esa ruxsat etilgan. Ya'ni bu vaziyatda xato xabari yo'q, faqat bitta ortiqcha buyurtma bor."
    ],
    [
     "d",
-    "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
-    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin o'quvchi yechimi sizning kompyuteringizda ishlaydi va siz uning holatini bazadan o'qiy olasiz."
+    "Tuzatish ikki xil: <b>qulf bilan o'qish</b> yoki <b>bitta <code>UPDATE … WHERE</code></b> — yana 1 sotildi",
+    "Tuzatish ikki xil. Birinchisi: o'qishda qulf, find'ga lock pessimistic write qo'shiladi, ikkinchi tranzaksiya kutadi. Ikkinchisi: hisobni bazaga berish, update stock minus qty where stock katta yoki teng qty. Race qayta yurgizildi: besh raundda ham bitta sotildi, ombor nol. Demak, qoldiqni kodda hisoblab yozish qulfsiz ishlamaydi."
    ]
   ]
  },
  "21": {
-  "type": "MCRetry",
-  "kicker": "Tekshiruv 4",
-  "eyebrow": "Tekshiruv · 4 / 4",
-  "title": "Terminal: «Server 3000-portda ishlayapti» va «Telegram ulanmadi: 401: Unauthorized». Sabab?",
-  "q": "Repo xatolarini ko'rdingiz, tekshirib olaylik. To'rtinchi tekshiruv. Server ishlayapti, lekin Telegram ulanmadi, to'rt yuz bir. Sabab nima? Variantni tanlang.",
-  "ok": "To'g'ri, token. To'rt yuz bir, ruxsat yo'q: Telegram tokenni tanimadi. Server va baza ishlayapti, shuning uchun server ishlayapti yozuvi bor. Tokenni BotFather'dan qayta nusxalang. Demak, server ishga tushgan, lekin bot javob bermasa, birinchi navbatda tokenni tekshiring.",
-  "okShort": "401 — token noto'g'ri; server va baza ishlayapti.",
-  "hint": "401 — kim kimni tanimadi?",
-  "correct": 3,
-  "opts": [
-   "PostgreSQL ishlamayapti",
-   "Port 3000 band",
-   "users jadvali yo'q",
-   "BOT_TOKEN noto'g'ri"
-  ],
-  "wrong": {
-   "0": "Baza ishlamasa server yonmaydi.",
-   "1": "Port band bo'lsa «Server ishlayapti» chiqmaydi.",
-   "2": "TypeORM jadvalni o'zi yaratadi (synchronize)."
-  }
- },
- "22": {
   "type": "Lesson",
-  "kicker": "6-bosqich · o'quvchi darsini o'tish",
-  "eyebrow": "m5-04 · «Bot eslab qoladi»",
-  "title": "m5-04: AvtoPizza, ikki quti va users jadvali",
+  "kicker": "5-bosqich · ichida",
+  "title": "CHECK rad etgandan keyin o'sha tranzaksiyada yana so'rov: «current transaction is aborted» — PG-2 dagi shop=!# kod ichida",
   "seg": [
    [
     "a",
-    "m5-04 — 21 ekran: <b>AvtoPizza bot</b>, ikki quti va <code>users</code> jadvali",
-    "Endi o'quvchi darsi, m5-04, yigirma bir ekran. AvtoPizza bot, Aziza va Jasur, dastur xotirasi va PostgreSQL qutilari, users jadvali."
+    "Bu xatoni <b>biz o'zimiz qildik</b>: loyihani yozayotganda birinchi kod shunday edi",
+    "Bu xatoni AI emas, biz o'zimiz qildik: tayyor loyihani yozayotganda birinchi kod shunday edi. Fikr to'g'ri ko'ringan: avval ayiramiz, check rad etsa, mahsulotni qayta o'qib, mijozga qancha qolganini aytamiz."
    ],
    [
     "b",
-    "O'quvchi amaliyoti Neon'da: <code>DATABASE_URL</code> oxiridagi <b><code>sslmode=require</code></b> o'chirilmasligi kerak",
-    "O'quvchi amaliyoti Neon'da, internetdagi bepul bazada. Ulanish manzili oxiridagi sslmode require qolishi kerak, repo kodi shunga qarab ssl yoqadi. Neon'ni biz sinamadik."
+    "<code>CHECK</code> rad etdi — keyingi <code>SELECT</code> <b>«transaction is aborted»</b> oldi",
+    "Mijoz to'rtta Planshet so'radi, uchta bor edi. Update check'ga urildi. Keyin kod qoldiqni bilish uchun select qildi va xato oldi: current transaction is aborted. Mijozga esa tushunarsiz inglizcha xabar ketdi."
    ],
    [
     "c",
-    "AI kod yozadi: <code>telegram_id</code> turi va <b>SELECT borligini</b> o'quvchi bilan birga tekshiring",
-    "Kodni AI yozadi. Siz ikki narsani o'quvchi bilan birga tekshiring: telegram id big int'mi va start'da avval qidirish bormi. Sinfdagi xatolarning ko'pi shu ikkisidan."
+    "PostgreSQL qoidasi: tranzaksiyada xato chiqqandan keyin <b>faqat <code>ROLLBACK</code> yordam beradi</b>",
+    "Bu PostgreSQL-2 dagi undov belgili prompt'ning o'zi. Tranzaksiya ichida bitta xato bo'lsa, rollback'gacha hamma so'rov rad etiladi. Kodda ham shunday: xatodan keyin shu tranzaksiyada hech narsa so'rab bo'lmaydi."
    ],
    [
     "d",
-    "Xulosa: vaqt — ikki mijoz va qayta ishga tushirishni <b>sinfda jonli</b> ko'rsating",
-    "Xulosa: vaqt, taklif: ikki mijoz va qayta ishga tushirishni sinfda jonli ko'rsating, ikki telefon yoki ikki akkaunt bilan. O'quvchi aralashishni o'z ko'zi bilan ko'rsin."
+    "Tuzatish: <b>avval tekshirish, keyin yozish</b>; <code>CHECK</code> — oxirgi qo'riqchi",
+    "Tuzatish: tekshiruvni update'dan oldinga oldik. Qatorni qulf bilan o'qiymiz, yetmasa xabarni o'sha yerda beramiz. Check esa oxirgi qo'riqchi bo'lib qoladi: kod xato qilsa ham ombor manfiy bo'lmaydi. Demak, tranzaksiya ichida xatoni ushlab, so'rovni davom ettirib bo'lmaydi."
    ]
   ]
  },
+ "22": {
+  "type": "LineCheck",
+  "kicker": "Tekshiruv 4",
+  "eyebrow": "Tekshiruv · 4 / 4 — qaysi satr xato?",
+  "title": "Bitta Planshet besh kishiga sotildi. Xato satrni toping",
+  "q": "Buzishni ko'rdingiz, endi o'zingiz toping. To'rtinchi tekshiruv. Besh mijoz oxirgi Planshetni bir vaqtda oldi va besh buyurtma yaratildi. Bu bo'lakda bitta satr qatorni qulfsiz o'qiydi. O'sha satrni bosing.",
+  "ok": "To'g'ri. Find one by qatorni qulfsiz o'qiydi, shuning uchun hamma tranzaksiya bir xil qoldiqni ko'radi. Tekshiruv va hisob to'g'ri, lekin ular eski qiymat ustida ishlaydi. Ekranda tuzatilgan kod: lock pessimistic write, race'da bitta sotildi. Demak, ikki mijoz xatosida avval qoldiq qayerda o'qilganini qidiring.",
+  "okShort": "<code>findOneBy</code> — qulfsiz o'qish: hamma tranzaksiya qoldiq 1 ni ko'radi. <code>lock: pessimistic_write</code> bilan qolganlari navbat kutadi.",
+  "hint": "Tekshiruv satri to'g'ri hisoblaydi — lekin qaysi qiymat ustida? O'sha qiymat qaysi satrda va qanday o'qilgan?",
+  "task": "Qoida: tranzaksiya ichida o'qilgan qoldiq boshqa tranzaksiya uni o'zgartirmasligi uchun qulflanadi — yoki hisob bitta <code>UPDATE … WHERE</code> ichida bo'ladi. Bu bo'lakda bitta satr qatorni qulfsiz o'qiydi. <b>O'sha satrni bosing.</b>"
+ },
  "23": {
-  "type": "Lesson",
-  "kicker": "6-bosqich · sinfda",
-  "title": "Holat, sessiya, holatli bot — va olti holat",
+  "type": "Practice",
+  "kicker": "Amaliyot 4 / 4",
+  "eyebrow": "Hozir o'zingizda · 25 daqiqa",
+  "title": "Buyurtma tranzaksiyada — va besh mijoz oxirgi mahsulotni oladi",
   "seg": [
    [
     "a",
-    "O'quvchi darsidagi so'zlar: holat, sessiya, holatli bot — siz <b>inglizchasini birga</b> aytasiz",
-    "Xaritani ko'rdingiz. Endi o'quvchi darsida ishlatiladigan so'zlarni ko'ramiz: holat, sessiya va holatli bot. O'quvchi shu so'zni aytganda, siz inglizchasini ham ayting: state va stateful."
+    "Oxirgi bosqich: <b>4-prompt</b>, SQL log va ko'p mijoz sinovi",
+    "Oxirgi bosqich: buyurtmalarni bazaga ko'chirasiz. Keyin uchta tekshiruv: SQL logda tranzaksiya, ko'p mijoz sinovi va bekor qilish. Yigirma besh daqiqa ketadi."
    ],
    [
     "b",
-    "Uch holat xabarsiz yoki xabar bilan: <b>unutish, aralashish</b>, <code>integer out of range</code>",
-    "Endi sinfda uchraydigan olti holatni ko'ramiz. Birinchi ikkisida xato xabari chiqmaydi: bot ismni unutadi yoki ikki mijozning buyurtmasi aralashadi. Uchinchisida baza integer out of range xatosini beradi."
+    "1–2-qadam: 4-prompt, javob, <b>SQL logda <code>START TRANSACTION</code> … <code>COMMIT</code></b>",
+    "Birinchi qadamda to'rtinchi promptni AI'ga berib, javobni uch qismga ajratib o'qiysiz. Ikkinchisida env'da db logging true qilib, bitta buyurtma berasiz va terminalda start transaction va commit orasidagi so'rovlarni ko'rasiz."
    ],
    [
     "c",
-    "Qolgan uchtasi <b>xabardan taniladi</b>: <code>duplicate key</code>, <code>401</code>, <code>DATABASE_URL topilmadi</code>",
-    "To'rtinchi holat: duplicate key xatosi, sababi kodda select yo'q. Beshinchi holat: to'rt yuz bir, ya'ni token noto'g'ri. Oltinchi holat: database url topilmadi, bunda env fayli yo'q yoki o'qilmagan."
+    "3–4-qadam: <b>ko'p mijoz sinovi</b> va bekor qilish; isbot — ikkinchi mijozga kelgan xabar",
+    "Uchinchi qadamda smoke skriptini race rejimida yurgizasiz: besh mijoz bitta Planshetni bir vaqtda oladi. To'rtinchisida admin sifatida buyurtmani ikki marta bekor qilasiz: ombor bir marta qaytishi kerak. Isbot maydoniga ikkinchi mijozga kelgan xabarni yozing. Hammasi to'g'ri bo'lsa, commit."
    ],
    [
     "d",
-    "Xulosa: xato chiqmasa — holat <b>qayerda saqlanayotganiga</b> qarang",
-    "Xulosa va usul: xato chiqmagan holatlar eng qiyin. O'quvchi bilan birga holat qayerda saqlanayotganiga qarang: obyektdami, bazadami. Pastda savollarga tayyor javoblar."
+    "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
+    "Boshqacha chiqsa, «Boshqacha chiqdimi» tugmasini bosing. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin botingizning hamma ma'lumoti PostgreSQL'da va ortiqcha sotilmasligini o'zingiz isbotlagansiz."
+   ]
+  ],
+  "steps": [
+   {
+    "t": "4-prompt — AI'ga bering, javobni o'qing, yangi jadvallarni ko'ring",
+    "cmds": [
+     "git diff --stat",
+     "\\d orders",
+     "\\d order_items"
+    ],
+    "exp": "yangi migratsiya · texts.ts/keyboards.ts o'zgarmagan"
+   },
+   {
+    "t": "SQL log — .env ga qo'shing (AI boshqa nom bergan bo'lsa — javobidan), Telegram'da buyurtma bering",
+    "cmds": [
+     "DB_LOGGING=true"
+    ],
+    "exp": "START TRANSACTION … COMMIT"
+   },
+   {
+    "t": "Besh mijoz",
+    "cmds": [
+     "npm run smoke -- race (vaqtinchalik bazada, sizning bazangiz o'zgarmaydi)"
+    ],
+    "exp": "✓ ortiqcha sotilmadi (sotildi/ombor): 1/0  1/0  1/0"
+   },
+   {
+    "t": "Bekor — admin sifatida /orders da «❌ Bekor» ni ikki marta bosing, qoldiqni ko'ring, commit",
+    "cmds": [
+     "SELECT stock FROM products WHERE name = 'Planshet';"
+    ],
+    "exp": "1-chi «Bekor qilingan», 2-chi «allaqachon bekor qilingan» · 1"
+   }
+  ],
+  "proof": {
+   "label": "Ikkinchi mijozga kelgan xabar",
+   "placeholder": "smoke natijasidan nusxalang",
+   "re": "omborda\\s+faqat\\s+0\\s+ta",
+   "flags": "i",
+   "wrong": "Ikkalasiga ham \"qabul qilindi\" chiqdimi? Unda qulf yo'q — 20-ekran: place ichida qoldiq qanday o'qilganini qarang."
+  },
+  "trouble": [
+   [
+    "✗ ortiqcha sotilmadi (masalan 5/0)",
+    "qulfsiz o'qish (20, 22-ekran) — AI'ga: «qatorni FOR UPDATE bilan qulfla yoki UPDATE … WHERE stock >= qty»"
+   ],
+   [
+    "current transaction is aborted xatosi",
+    "xatodan keyin tranzaksiyada so'rov (21-ekran) — tekshiruv UPDATEdan oldin"
+   ],
+   [
+    "Bekor 2 marta — ombor 2 ga oshdi",
+    "bekor qilishda buyurtma qatori qulflanmagan yoki status tekshirilmagan — AI'ga shu haqida"
+   ],
+   [
+    "SQL logda START TRANSACTION yo'q",
+    "so'rovlar tranzaksiyasiz — dataSource.transaction"
+   ],
+   [
+    "smoke — Missing script",
+    "AI package.json dagi smoke qatorini o'chirgan — git checkout tgpg-start -- scripts/smoke.js va qatorni qaytaring"
    ]
   ]
  },
  "24": {
+  "type": "Lesson",
+  "kicker": "5-bosqich · xulosa",
+  "title": "Har bosqichdan keyin beshta tekshiruv: diff, build, restart, psql va ko'p mijoz",
+  "seg": [
+   [
+    "a",
+    "Birinchi ikki tekshiruv: <b>diff hajmi va build</b> — so'ralgan ish va toza kompilyatsiya",
+    "To'rt bosqichni o'tdingiz. Endi tekshiruvlarni bitta ro'yxatga yig'amiz, chunki ular har bosqichda bir xil. Birinchisi diff: o'zgarish hajmi so'ralgan bosqichga tengmi. Ikkinchisi build: loyiha xatosiz kompilyatsiya bo'ladimi."
+   ],
+   [
+    "b",
+    "Uchinchi va to'rtinchi: <b>restart va PostgreSQL terminali</b> — ma'lumot qayerda yashaydi",
+    "Uchinchisi restart: suhbat o'rtasida serverni qayta yoqing va nima qolganini ko'ring. Oraliq vaziyat va state faqat shu bilan ko'rinadi. To'rtinchisi PostgreSQL terminali: backslash d bilan ustun turlari va qoidalar, select bilan haqiqiy qatorlar."
+   ],
+   [
+    "c",
+    "Beshinchi: <b>bir vaqtdagi ko'p mijoz</b> — smoke bizning kodimizda ham xato topdi",
+    "Beshinchisi bir vaqtdagi ko'p mijoz: buni smoke'ning race rejimi qiladi. U bizning o'z kodimizda ham xato topdi: admin bekorni bir vaqtda ikki marta bossa, ombor ikki marta qaytardi. Buyurtma qatori qulflanmagan edi, tuzatdik. Ikki AI'ning kodi bu sinovdan o'tdi."
+   ],
+   [
+    "d",
+    "Xulosa: AI'ning <b>«sinadim» degan gapi — tekshiruv emas</b>; besh band — sizning qo'lingizda",
+    "Xulosa: ikki tajribada AI kodni ko'pincha to'g'ri yozdi. Lekin so'ralmagan ishni qildi, oraliq vaziyatni sezmadi, bir marta haqiqiy Telegram'ga so'rov yubordi. Buni AI aytmadi, tekshiruv topdi. Besh band har bosqichda sizning qo'lingizda, keyin commit."
+   ]
+  ]
+ },
+ "25": {
+  "type": "Lesson",
+  "kicker": "6-bosqich · sinfga tayyorgarlik",
+  "eyebrow": "m5-04 · «Bot eslab qoladi»",
+  "title": "O'quvchi darsi: bitta users jadvali, Neon va uch qatorli prompt — siz bilgan yo'lning kichik varianti",
+  "seg": [
+   [
+    "a",
+    "m5-04 — 20 ekran: o'quvchi boti <b>ismni eslab qoladi</b>, bitta <code>users</code> jadvali",
+    "Endi sinfga tayyorgarlik, ikki ekran. O'quvchi darsi m5-04, yigirma ekran. O'quvchi boti ismni eslab qolishi kerak: bitta users jadvali, unda telegram id big int, ism va holat ustunlari, ya'ni name va state. Siz bugun beshta jadval bilan ishladingiz, bu uning kichik varianti."
+   ],
+   [
+    "b",
+    "Amaliyot: <b>Neon va Antigravity</b>, <code>synchronize: true</code> — migratsiyasiz",
+    "O'quvchi amaliyotida baza internetdagi Neon'da, ulanish manzili oxirida sslmode require turadi. Kodni Antigravity uch qatorli prompt bilan yozadi. Jadvalni synchronize true o'zi yaratadi, migratsiya yo'q. O'quv loyiha uchun bu yetadi, siz farqini bilasiz."
+   ],
+   [
+    "c",
+    "Siz qo'shasiz: <b><code>\\d users</code> — <code>bigint</code></b>, ikki marta <code>/start</code>, restart suhbat o'rtasida",
+    "Darsga siz qo'shadigan narsalar: AI yozgandan keyin o'quvchi bilan backslash d users'ni ko'ring, telegram id big int bo'lsin. Start'ni ikki marta bosib, qator bitta qolganini ko'rsating. Restartni ism so'ralgan paytda qiling: bot davom etsa, state bazada."
+   ],
+   [
+    "d",
+    "Xulosa: darsdan oldin — <b>Neon akkaunti, BotFather sinov boti</b>, <code>dars-03-done</code> ishga tushgan",
+    "Xulosa: darsdan oldin uch narsani tekshiring: har o'quvchida Neon akkaunti ochiladi, BotFather'da sinov boti bor, va dars uchdagi bot ishlab turibdi. Vaqt bo'yicha taklif: amaliyotga eng ko'p vaqt bering, Neon va token bosqichida ko'pchilik xato qiladi."
+   ]
+  ]
+ },
+ "26": {
+  "type": "Lesson",
+  "kicker": "6-bosqich · sinfga tayyorgarlik",
+  "title": "To'rtta vaziyat va tayyor javoblar — hammasini bugun o'zingiz ko'rdingiz",
+  "seg": [
+   [
+    "a",
+    "Darsda albatta chiqadigan to'rt vaziyat — <b>ikkitasi xabar bilan, ikkitasi xabarsiz</b>",
+    "Endi o'quvchi darsida albatta chiqadigan to'rtta vaziyatni ko'ramiz. Ikkitasi xabar bilan keladi, ikkitasi xabarsiz. Hammasini bugun o'zingiz ko'rdingiz, shuning uchun qisqa aytaman."
+   ],
+   [
+    "b",
+    "401 va <code>DATABASE_URL topilmadi</code> — <b>xabardan darhol taniladi</b>",
+    "Birinchisi: server ishlayapti deydi, lekin bot javob bermaydi, terminalda to'rt yuz bir. Token noto'g'ri. Ikkinchisi: server umuman yonmaydi, database url topilmadi. Env fayli yo'q yoki manzil yozilmagan."
+   ],
+   [
+    "c",
+    "Ism unutildi va katta id — <b>restart va <code>\\d users</code> bilan</b> topiladi",
+    "Uchinchisi xabarsiz: restartdan keyin bot ismni yana so'raydi. State bazaga yozilmayapti, users jadvaliga qarang. To'rtinchisi: terminalda out of range for type integer yoki ikkinchi start'da duplicate key. Ustun turi va avval qidirish bormi, shuni tekshiring."
+   ],
+   [
+    "d",
+    "Xulosa: o'quvchi «AI yozdi, ishlayapti» desa — <b>restart va ikki marta <code>/start</code></b> qildiring",
+    "Xulosa va usul: o'quvchi AI yozdi, ishlayapti desa, ikki narsani o'zi qilsin: restartni suhbat o'rtasida va start'ni ikki marta. Javobni darhol aytmang, natijani birga ko'ring. Pastda o'quvchi savollariga tayyor javoblar bor."
+   ]
+  ]
+ },
+ "27": {
   "type": "Screen27",
   "kicker": "O'z-sinov",
   "title": "Sakkiz savol. Bitta urinish. Oltitasi — o'tdingiz",
   "final": [
    {
-    "q": "Holatsiz bot «Pepperoni» ni nega tushunmadi?",
+    "q": "Bot savat va buyurtmani Mapda saqlaydi. Server qayta ishga tushdi. Nima bo'ladi?",
     "o": [
-     "oldingi xabarni bilmaydi",
-     "internet sekin",
-     "token xato",
-     "Telegram aralashtirdi"
+     "Savat va buyurtma yo'qoladi, xato chiqmaydi",
+     "Server xato beradi — Map ichi buzilgan",
+     "Hammasi joyida qoladi — Map diskka yoziladi",
+     "Faqat buyurtma qoladi — u alohida massivda"
     ],
     "c": 0,
-    "e": "Har xabar alohida keladi.",
-    "s": 2
+    "e": "Map — jarayon xotirasida.",
+    "s": 3
    },
    {
-    "q": "Obyektdagi holat bot qayta ishga tushgach?",
+    "q": "AI'ga bir gapli prompt: «Katalogni ko'chir». U 22 fayl, 1145 qatorni o'zgartirdi, kod ishlaydi. To'g'ri qadam?",
     "o": [
-     "saqlanadi",
-     "yo'qoladi",
-     "bazaga o'tadi",
-     "ikki baravar bo'ladi"
+     "Darhol commit — kod ishlayapti, shu yetadi",
+     "Bekor qilib, bitta bosqichli prompt berish",
+     "AI'ni almashtirib, xuddi shu promptni berish",
+     "Hech narsa — 1145 qator ham oddiy hajm"
     ],
     "c": 1,
-    "e": "RAM — jarayon bilan birga.",
-    "s": 4
-   },
-   {
-    "q": "Umumiy tanlov bilan Aziza nima oladi?",
-    "o": [
-     "o'z buyurtmasini",
-     "xato",
-     "Jasurning pitsasini",
-     "javob yo'q"
-    ],
-    "c": 2,
-    "e": "Ustiga yozildi, xatosiz.",
+    "e": "Commit qilinadigan hajm — so'ralgan bosqich.",
     "s": 6
    },
    {
-    "q": "Holat qaysi kalit bilan ajratiladi?",
+    "q": "Katalog bazada, buyurtma hali xotirada. Buyurtmadan keyin restart. Natija?",
     "o": [
-     "ism",
-     "vaqt",
-     "token",
-     "chat.id"
+     "Hammasi joyida — katalog bazada saqlangan",
+     "Ikkalasi yo'qoladi — restart bazani tozalaydi",
+     "Buyurtma yo'qoladi, ombor esa kamayib qoladi",
+     "Server yonmaydi — baza va xotira mos emas"
+    ],
+    "c": 2,
+    "e": "Oraliq vaziyat: bir ish ikki joyda.",
+    "s": 11
+   },
+   {
+    "q": "Yurgan migratsiyaga ustun qo'shib tahrirladingiz, server qayta yondi. Ustun paydo bo'ladimi?",
+    "o": [
+     "Ha — migratsiya har restartda qayta yuradi",
+     "Ha — synchronize ustunni o'zi qo'shadi",
+     "Server xato beradi — fayl o'zgargani uchun",
+     "Yo'q — u yurgan, yangi migratsiya kerak"
     ],
     "c": 3,
-    "e": "Raqam takrorlanmaydi.",
-    "s": 7
+    "e": "Migratsiya bir marta yuradi.",
+    "s": 9
    },
    {
-    "q": "Har xabarda birinchi SQL?",
+    "q": "Bazadan telegram_id keldi, user.telegram_id === 111 false chiqdi, id esa 111. Sabab?",
     "o": [
-     "SELECT",
-     "INSERT",
-     "UPDATE",
-     "DELETE"
+     "BIGINT bazadan matn bo'lib keladi: \"111\"",
+     "Id noto'g'ri — Telegram boshqa id bergan",
+     "Baza ulanmagan — qiymat undefined keldi",
+     "=== katta sonlarda doim false beradi"
     ],
     "c": 0,
-    "e": "Avval holatni o'qish.",
-    "s": 10
-   },
-   {
-    "q": "telegram_id INTEGER — katta raqamda?",
-    "o": [
-     "saqlanadi",
-     "integer out of range",
-     "matn bo'ladi",
-     "duplicate key"
-    ],
-    "c": 1,
-    "e": "Telegram id 32 bitdan katta bo'lishi mumkin.",
+    "e": "node-pg bigintni matn qaytaradi.",
     "s": 13
    },
    {
-    "q": "node-pg'dan kelgan telegram_id turi?",
+    "q": "Mijoz tugmani ikki marta tez bosdi, savatda ikki bir xil qator paydo bo'ldi. Nima yetishmayapti?",
     "o": [
-     "number",
-     "boolean",
-     "string (matn)",
-     "object"
+     "Tranzaksiya — ikki bosish ketma-ket emas",
+     "UNIQUE (user_id, product_id) + ON CONFLICT",
+     "BIGINT — id sig'magani uchun ikki qator",
+     "Migratsiya — savat jadvali eskirib qolgan"
     ],
-    "c": 2,
-    "e": "=== bilan solishtirish false.",
+    "c": 1,
+    "e": "Avval qidirib qo'shish — ikki so'rov ikkalasi «yo'q» ko'radi.",
     "s": 14
    },
    {
-    "q": "«Server ishlayapti», «Telegram ulanmadi: 401» — sabab?",
+    "q": "Bitta Planshet, besh mijoz bir vaqtda; kod: findOneBy → if (stock < qty) → save. CHECK (stock >= 0) bor. Natija?",
     "o": [
-     "baza",
-     "port",
-     "jadval",
-     "token"
+     "Faqat biriga — CHECK qolganlarini to'xtatadi",
+     "CHECK xato beradi — ombor manfiy bo'ladi",
+     "Bir nechtasiga sotiladi, ombor 0, xato yo'q",
+     "Deadlock — tranzaksiyalar bir-birini kutadi"
+    ],
+    "c": 2,
+    "e": "Har biri 0 yozdi — manfiy emas (sinovda 5 tasiga).",
+    "s": 20
+   },
+   {
+    "q": "Tranzaksiyada CHECK xato berdi, kod shu tranzaksiyada SELECT qildi. Nima chiqadi?",
+    "o": [
+     "Oddiy natija — SELECT alohida ishlaydi",
+     "Baza o'zi COMMIT qiladi va natija beradi",
+     "0 rows — jadval bo'shab qoladi",
+     "current transaction is aborted xatosi"
     ],
     "c": 3,
-    "e": "401 — token tanilmadi.",
-    "s": 19
+    "e": "Xatodan keyin faqat ROLLBACK.",
+    "s": 21
    }
   ]
  },
- "25": {
+ "28": {
   "type": "Screen28",
   "kicker": "Yakun",
   "title": "Endi siz bilasiz"
  }
 };
-
 // ============================================================
-//  MENTOR KURSI · Telegraf + PostgreSQL «Bot eslab qoladi: holat bazada»
-//  F-1029-02 · manba-haqiqat: feedback/F-1029-02-mentor-kurs/17-TgPg-mentor-v1.md (MD v1, GATE M kutilmoqda; 01.11 avtopilot)
-//  Haqiqiy chiqishlar: feedback/F-1029-02-mentor-kurs/manba/tgpg-out/ (00–13; haqiqiy Telegraf + PostgreSQL, Telegram serverisiz)
+//  MENTOR KURSI · Telegraf + PostgreSQL «Buyurtma boti: AI bilan bazaga ko'chiramiz» (v2, F-1103-10)
+//  Manba-haqiqat: feedback/F-1029-02-mentor-kurs/17-TgPg-mentor-v2.md (GATE M 04.11)
+//  Loyiha: github.com/Azizbekcrypto/OrderBotNest — teglar tgpg-start → tgpg-done; kod bo'laklari 03b-kod.gen.jsx (aynan, satr raqami bilan)
+//  Haqiqiy chiqishlar: manba/orderbot-out/ (loyiha, smoke, KOD 3–8) · manba/orderbot-ai/ (Opus) · manba/orderbot-ai2/ (Haiku)
 //  Yig'ish: cat parts/01-asos.jsx parts/02-dvigatel.jsx tgpg/parts/*.jsx > TgPgMentorLesson.jsx
-//  Yordamchilar CI/CD-1 dan nusxa + SQL/psql (PG darslaridan) + Telegram chat maketi (⚠)
 // ============================================================
-const LESSON_ID = 'mentor-tgpg-01-holat-v1';
-const LESSON_TITLE = "Bot eslab qoladi: holat bazada";
-const PG = { term: '#111827', termEr: '#1F1115', tg: '#5B8DB8', tgBg: '#DCE7F0' };
-MKCFG.root = 'bot-holat';
-MKCFG.kind = (f) => /\.sql$/.test(f) ? T.green : /\.entity\.ts$/.test(f) ? T.purple : /\.service\.ts$/.test(f) ? T.green : /\.module\.ts$/.test(f) ? T.yellow : /\.(ts|js)$/.test(f) ? T.blue : /\.json$|^\.env/.test(f) ? T.yellow : null;
+const LESSON_ID = 'mentor-tgpg-01-holat-v1'; // M44: id o'zgarmaydi — ekranlar soni o'zgargani uchun eski saqlov o'zi bekor bo'ladi
+const LESSON_TITLE = "Buyurtma boti: AI bilan bazaga ko'chiramiz";
+const PG = { mongo: '#13AA52', pg: '#336791', term: '#111827', termEr: '#1F1115', tg: '#5B8DB8', tgBg: '#DCE7F0', ai: '#6D3BE4' };
+MKCFG.root = 'OrderBotNest';
+MKCFG.kind = (f) => /\.entity\.ts$/.test(f) ? T.purple : /migrations\//.test(f) ? PG.pg : /\.service\.ts$/.test(f) ? T.green : /\.module\.ts$/.test(f) ? T.yellow : /\.(ts|js)$/.test(f) ? T.blue : /\.json$|^\.env/.test(f) ? T.yellow : null;
 const byTree = (a, b) => {
   const A = a.split('/'), B = b.split('/');
   for (let i = 0; i < Math.min(A.length, B.length); i++) {
@@ -1512,11 +2688,29 @@ const byTree = (a, b) => {
   return A.length - B.length;
 };
 const tree = (...groups) => Array.from(new Set(groups.flat())).sort(byTree);
-// Mentorning kichik boti (12-amaliyot) va o'quvchi reposi TelegramBotNest (dars-04-done, haqiqiy fayllar ro'yxati — tgpg-out/12)
-const BOT_FILES = tree(['node_modules/', 'bot.js', 'package.json', 'package-lock.json']);
-const RF = { ent: 'src/core/entity/user.entity.ts', base: 'src/core/entity/base.entity.ts', usv: 'src/api/user/user.service.ts', tg: 'src/api/telegram/telegram.service.ts', db: 'src/infrastructure/database.module.ts', env: '.env' };
-const REPO_FILES = tree(['dist/', 'node_modules/', 'src/api/app.controller.ts', 'src/api/app.module.ts', 'src/api/telegram/telegram.module.ts', RF.tg, 'src/api/user/user.module.ts', RF.usv, 'src/config/', RF.base, RF.ent, RF.db, 'src/main.ts', '.env', '.env.example', 'Dockerfile', 'nest-cli.json', 'package.json', 'README.md', 'tsconfig.json']);
-MKCFG.files = BOT_FILES;
+const F = {
+  tg: 'src/api/telegram/telegram.service.ts', kb: 'src/api/telegram/keyboards.ts', tx: 'src/api/telegram/texts.ts',
+  cat: 'src/api/catalog/catalog.service.ts', usr: 'src/api/user/user.service.ts', cart: 'src/api/cart/cart.service.ts', ord: 'src/api/order/order.service.ts',
+  types: 'src/core/types.ts', cfg: 'src/config/index.ts', main: 'src/main.ts',
+  prod: 'src/core/entity/product.entity.ts', uent: 'src/core/entity/user.entity.ts', mig: 'src/infrastructure/migrations/1762200000000-init.ts', ds: 'src/infrastructure/data-source.ts',
+};
+const START_FILES = tree(['node_modules/', 'scripts/smoke.js', 'src/api/app.module.ts', F.cart, F.cat, F.ord, F.tg, F.kb, F.tx, F.usr, F.cfg, F.types, F.main, '.env', 'package.json', 'README.md']);
+const DONE_FILES = tree(['node_modules/', 'scripts/smoke.js', 'src/api/app.module.ts', F.cart, F.cat, F.ord, F.tg, F.kb, F.tx, F.usr, F.cfg, 'src/core/entity/cart-item.entity.ts', 'src/core/entity/order.entity.ts', 'src/core/entity/order-item.entity.ts', F.prod, F.uent, F.ds, 'src/infrastructure/database.module.ts', F.mig, 'src/infrastructure/seed.ts', F.main, '.env', 'package.json', 'README.md']);
+MKCFG.files = START_FILES;
+// VS Code'dagidek ixcham Explorer: faqat ochiq faylning papka zanjiri ochiq, qolgan papkalar yopiq (M27: '/' — yopiq papka).
+// Ildizdagi fayllar va yopiq papkalar ko'rinib turadi — loyiha strukturasi yo'qolmaydi, lekin 1280 da sahnaga sig'adi.
+const dirOf = (f) => (f.endsWith('/') ? f.slice(0, -1) : f).split('/').slice(0, -1).join('/');
+function compact(files, active) {
+  const A = active ? dirOf(active) : '';
+  const out = files.map((f) => {
+    const d = dirOf(f);
+    if (!d || d === A || A.startsWith(d + '/') || f.endsWith('/')) return f;
+    const ps = d.split('/'), as = A ? A.split('/') : [];
+    let k = 0; while (k < ps.length && ps[k] === as[k]) k++;
+    return ps.slice(0, k + 1).join('/') + '/';
+  });
+  return tree(out);
+}
 
 // Segment: MD'dagi ekran matni (03-matn.gen.jsx) + sahna maydonlari (extras — segment tartibida)
 const sg = (id, key, text, extra = {}) => ({ id, key, text, show: wr(text), ...extra });
@@ -1527,56 +2721,50 @@ const mkS = (n, extras = [], more = {}) => {
 
 // Ovoz → «Matn» (transkript) uchun yozma ko'rinish. Uzun ibora oldin.
 const SPOKEN = [
-  ['ctx chat id', 'ctx.chat.id'], ['chat id', 'chat.id'], ['Telegram id', 'telegram_id'], ['telegram id', 'telegram_id'], ['Big int', 'BIGINT'], ['big int', 'BIGINT'],
-  ['Not null unique', 'NOT NULL UNIQUE'], ['integer out of range', 'integer out of range'], ['duplicate key', 'duplicate key'], ['already exists', 'already exists'],
-  ['ism kutyapman', 'ISM_KUTYAPMAN'], ["o'lcham kutyapman", 'OLCHAM_KUTYAPMAN'], ['pitsa kutyapman', 'PITSA_KUTYAPMAN'], ['ism kutilmoqda', 'ism_kutilmoqda'],
-  ['dars to\'rt done', 'dars-04-done'], ['Top yoki yarat', 'topOrYarat'], ['database url topilmadi', 'DATABASE_URL topilmadi'], ['sslmode require', 'sslmode=require'],
-  ['env fayli', '.env fayli'], ['Env fayli', '.env fayli'], ['bot js', 'bot.js'], ['npm run start', 'npm run start'], ['Ctrl C', 'Ctrl+C'], ['uch tenglik', '==='],
-  ['select', 'SELECT'], ['insert', 'INSERT'], ['update', 'UPDATE'], ['Insert', 'INSERT'], ['Update', 'UPDATE'], ['Number yoki String', 'Number() yoki String()'],
+  ['backslash d products', '\\d products'], ['backslash d users', '\\d users'], ['backslash d', '\\d'],
+  ['insert on conflict do update', 'INSERT … ON CONFLICT DO UPDATE'], ['on conflict', 'ON CONFLICT'], ['select for update', 'SELECT … FOR UPDATE'],
+  ['update where stock katta yoki teng qty', 'UPDATE … WHERE stock >= qty'], ['update stock minus qty where stock katta yoki teng qty', 'UPDATE stock - qty WHERE stock >= qty'],
+  ['check stock katta yoki teng nol', 'CHECK (stock >= 0)'], ['lock pessimistic write', "lock: 'pessimistic_write'"], ['find one by', 'findOneBy'],
+  ['dataSource transaction', 'dataSource.transaction'], ['start transaction', 'START TRANSACTION'], ['migrations run true', 'migrationsRun: true'],
+  ['synchronize false', 'synchronize: false'], ['synchronize true', 'synchronize: true'], ['Synchronize false', 'synchronize: false'],
+  ['git diff stat', 'git diff --stat'], ['db logging true', 'DB_LOGGING=true'], ['database url', 'DATABASE_URL'], ['env example', '.env.example'],
+  ['sslmode require', 'sslmode=require'], ['tgpg start', 'tgpg-start'], ['tgpg done', 'tgpg-done'], ['telegram service', 'telegram.service'],
+  ['catalog service', 'catalog.service'], ['bot command catalog', "bot.command('catalog')"], ['bot action', 'bot.action'], ['bot start', 'bot.start'],
+  ['cart items', 'cart_items'], ['order items', 'order_items'], ['telegram id', 'telegram_id'], ['user id', 'user_id'], ['product id', 'product_id'],
+  ['WAITING PHONE', 'WAITING_PHONE'], ['big int', 'BIGINT'], ['Ctrl C', 'Ctrl+C'], ['userinfobot', '@userinfobot'], ['dars uchdagi', 'dars-03-done'],
+  ['Entity decorator', '@Entity'], ['Column decorator', '@Column'], ['up metodida', 'up()'], ['down metodida', 'down()'],
 ];
-DIGITS.unshift(["to'rt yuz bir", '401'], ["uch ming portda", '3000-portda'], ["besh milliard bir yuz yigirma uch million", '5 123 456 789'], ['besh milliard', '5 000 000 000'],
-  ["o'ttiz ikki bit", '32 bit'], ["yigirma bir ekran", '21 ekran'], ["o'n besh daqiqa", '15 daqiqa'], ["o'n daqiqa", '10 daqiqa'],
-  ["o'n beshinchi ekran", '15-ekran'], ["o'ninchi ekran", '10-ekran'], ["to'qqizinchi ekran", '9-ekran'], ["to'rtinchi ekran", '4-ekran'], ["Uchinchi ekran", '3-ekran'], ["o'nlab", "o'nlab"]);
+DIGITS.unshift(["ming bir yuz qirq besh", '1145'], ['yigirma ikki fayl', '22 fayl'], ["ikki milliard bir yuz qirq yetti milliondan", '2 147 483 647 dan'],
+  ['besh milliarddan', '5 milliarddan'], ['ellik ikki bitdan', '52 bitdan'], ['ikki yuz yigirma ming', '220 000'], ["o'n to'qqiz marta", '19 marta'],
+  ['yigirma marta', '20 marta'], ['bir yuz o\'n birga', '111 ga'], ['bir yuz o\'n bir', '111'], ["to'rt yuz bir", '401'], ['m5-04', 'm5-04']);
+// F-1109-01: gap boshidagi «Backslash l» ham «Matn»da kod bo'lib ko'rinsin
+SPOKEN.push(...SPOKEN.filter(([a]) => a.startsWith('backslash')).map(([a, b]) => ['B' + a.slice(1), b]));
 const wr = (s) => digits(SPOKEN.reduce((acc, [a, b]) => acc.split(a).join(b), s));
-// Haqiqiy inglizcha iboralar ovozda [English pronunciation] ichida (M21) — uzunlari oldin
-EN_PHRASES.unshift(/integer out of range/gi, /duplicate key/gi, /already exists/gi, /not null unique/gi, /stateful/gi);
+EN_PHRASES.unshift(
+  /current transaction is aborted/g, /is out of range for type integer/g, /violates check constraint/g, /duplicate key value/g, /Missing script/g,
+  /out of range for type integer/g, /Unauthorized/g, /Conflict/g,
+);
 
+// Kod rang beruvchilar. Matn — String.raw yoki KOD (03b-kod.gen.jsx), HTML'siz.
 const escH = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-const JS_KW = /^(const|let|await|new|async|return|true|false|null|require)$/;
-function jsLine(src) {
-  const re = /(\/\/.*$)|('(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*")|([A-Za-z_$][\w$]*)|(\d+)/g;
-  let out = '', last = 0, m;
-  while ((m = re.exec(src))) {
-    out += escH(src.slice(last, m.index)); last = re.lastIndex;
-    const [w, cm, str, id, num] = m;
-    if (cm) out += `<span class="cm">${escH(cm)}</span>`;
-    else if (str) out += `<span class="s">${escH(str)}</span>`;
-    else if (id) out += JS_KW.test(id) ? `<span class="k">${id}</span>` : /^[A-Z]/.test(id) ? `<span class="c">${id}</span>` : id;
-    else if (num) out += `<span class="d">${num}</span>`;
-    else out += escH(w);
-  }
-  return out + escH(src.slice(last));
-}
-const js = (src, meta = {}) => src.replace(/^\n/, '').replace(/\n\s*$/, '').split('\n').map((l, i) => ({ h: jsLine(l), ...(meta[i + 1] || {}) }));
-const rng = (a, b, v) => { const o = {}; for (let i = a; i <= b; i++) o[i] = { ...v }; return o; };
-
-const TS_KW = /^(import|from|export|function|return|const|let|describe|it|expect|number|string|boolean|true|false|null|undefined|if|throw|new|typeof|as|any)$/;
+const TS_KW = /^(import|from|export|class|private|readonly|public|async|await|function|return|const|let|new|if|throw|for|of|true|false|null|undefined|typeof|as|number|string)$/;
 function tsLine(src) {
-  const re = /(\/\/.*$)|('(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*")|([A-Za-z_$][\w$]*)|(\d+(?:\.\d+)?)/g;
+  const re = /(\/\/.*$|\/\*.*?\*\/)|(`(?:[^`\\]|\\.)*`?|'(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*")|(@\w+)|([A-Za-z_$][\w$]*)|(\d+(?:\.\d+)?)/g;
   let out = '', last = 0, m;
   while ((m = re.exec(src))) {
     out += escH(src.slice(last, m.index)); last = re.lastIndex;
-    const [w, cm, str, id, num] = m;
+    const [w, cm, str, dec, id, num] = m;
     if (cm) out += `<span class="cm">${escH(cm)}</span>`;
     else if (str) out += `<span class="s">${escH(str)}</span>`;
-    else if (id) out += TS_KW.test(id) ? `<span class="k">${id}</span>` : /^(toBe|toEqual|toThrow)$/.test(id) ? `<span class="d">${id}</span>` : /^(Error|Number)$/.test(id) ? `<span class="c">${id}</span>` : id;
+    else if (dec) out += `<span class="d">${escH(dec)}</span>`;
+    else if (id) out += TS_KW.test(id) ? `<span class="k">${id}</span>` : /^[A-Z]/.test(id) ? `<span class="c">${id}</span>` : id;
     else if (num) out += `<span class="d">${num}</span>`;
     else out += escH(w);
   }
   return out + escH(src.slice(last));
 }
 const ts = (src, meta = {}) => src.replace(/^\n/, '').replace(/\n\s*$/, '').split('\n').map((l, i) => ({ h: tsLine(l), ...(meta[i + 1] || {}) }));
-const SQL_KW = /^(SELECT|FROM|WHERE|JOIN|LEFT|ON|AND|AS|INSERT|INTO|VALUES|UPDATE|SET|DELETE|CREATE|TABLE|DATABASE|ALTER|ADD|COLUMN|DROP|PRIMARY|KEY|REFERENCES|NOT|NULL|UNIQUE|CHECK|SERIAL|INT|TEXT|JSONB|BEGIN|COMMIT|ROLLBACK|RETURNING|DEFAULT)$/;
+const SQL_KW = /^(SELECT|FROM|WHERE|JOIN|ON|AND|AS|INSERT|INTO|VALUES|UPDATE|SET|DELETE|CREATE|TABLE|DATABASE|ALTER|ADD|COLUMN|DROP|PRIMARY|KEY|REFERENCES|NOT|NULL|UNIQUE|CHECK|SERIAL|INTEGER|BIGINT|VARCHAR|BEGIN|COMMIT|ROLLBACK|RETURNING|DEFAULT|CONFLICT|DO|FOR|ORDER|BY|LIMIT|CONSTRAINT|START|TRANSACTION)$/;
 function sqlLine(src) {
   const re = /(--.*$)|('(?:[^']|'')*')|([A-Za-z_][\w]*)|(\d+)/g;
   let out = '', last = 0, m;
@@ -1591,86 +2779,135 @@ function sqlLine(src) {
   }
   return out + escH(src.slice(last));
 }
-const sql = (src, meta = {}) => src.replace(/^\n/, '').replace(/\n\s*$/, '').split('\n').map((l, i) => ({ h: sqlLine(l), ...(meta[i + 1] || {}) }));
-// psql terminali: prompt (blog=# · postgres-# · $) alohida rangda; xato qizil, DETAIL/LINE sariq, buyruq javobi yashil
-const RESULT_OK = /^(CREATE TABLE|CREATE DATABASE|ALTER TABLE|DROP TABLE|INSERT \d+ \d+|UPDATE [1-9]\d*|DELETE \d+|BEGIN|COMMIT)\s*$/;
+// psql: prompt (shop=#) alohida rangda; xato qizil; buyruq javobi yashil
 function psqlLine(l) {
-  let m = /^(\w+[=\-(][*!]?# ?)(.*)$/.exec(l); // blog=# · blog-# · blog(# · tranzaksiyada blog=*# · xatoda blog=!# (pg1-out/25)
+  let m = /^(\w+[=\-(][*!]?# ?)(.*)$/.exec(l);
   if (m) return `<span class="p">${escH(m[1])}</span>${/^\\/.test(m[2]) ? `<span class="m">${escH(m[2])}</span>` : sqlLine(m[2])}`;
   m = /^(\$ )(.*)$/.exec(l);
   if (m) return `<span class="p">$ </span><span class="m">${escH(m[2])}</span>`;
-  if (/ERROR:|FATAL:|psql: error|XATO:|not recognized|command not found/.test(l)) return `<span class="er">${escH(l)}</span>`;
-  if (/^(DETAIL|HINT|LINE \d|WARNING)|^\s+\^\s*$|Is the server running/.test(l)) return `<span class="wn">${escH(l)}</span>`;
-  if (/^(UPDATE 0|ROLLBACK)\s*$/.test(l)) return `<span class="wn">${escH(l)}</span>`;
-  if (RESULT_OK.test(l)) return `<span class="ok">${escH(l)}</span>`;
-  if (/^(Password for user|Type "help"|psql \()/.test(l)) return `<span class="cm">${escH(l)}</span>`;
-  if (/^\s*--/.test(l)) return `<span class="cm">${escH(l)}</span>`;
-  if (/^\s*(SELECT|FROM|JOIN|LEFT|WHERE|INSERT|UPDATE|DELETE|CREATE|ALTER|DROP|BEGIN|COMMIT|\(|\)|id |user_id|izoh|username|nomi|stock|product_id|xaridor|\('|  \(')/.test(l) && !/\|/.test(l)) return sqlLine(l);
+  if (/ERROR:|FATAL:/.test(l)) return `<span class="er">${escH(l)}</span>`;
+  if (/^(DETAIL|HINT)/.test(l)) return `<span class="wn">${escH(l)}</span>`;
   return escH(l);
 }
 const psql = (src, meta = {}) => src.replace(/^\n/, '').replace(/\n\s*$/, '').split('\n').map((l, i) => ({ h: psqlLine(l), ...(meta[i + 1] || {}) }));
-const Psql = ({ lines, title = 'psql — botdb', er, beat, focus, style }) => <CodePanel file={title} numbers={false} wrap style={{ background: er ? PG.termEr : PG.term, ...(style || {}) }} lines={lines} beat={beat} focus={focus} />;
-// Terminal: npm/jest/eslint chiqishlari. Kod satrlari (N |) birinchi; PASS/✓/UCHIRISH yashil; xato qizil
-function jestLine(l) {
-  if (/^\$ /.test(l)) return `<span class="p">$ </span><span class="m">${escH(l.slice(2))}</span>`;
-  if (/^\s*>\s*\d+ \|/.test(l) || /^\s+\|\s+\^/.test(l)) return `<span class="wn">${escH(l)}</span>`;
-  if (/^\s*\d+ \|/.test(l)) return `<span class="cm">${escH(l)}</span>`;
-  if (/^\s*at /.test(l)) return `<span class="cm">${escH(l)}</span>`;
-  if (/\[chiqish kodi: 0\]/.test(l)) return `<span class="ok">${escH(l)}</span>`;
-  if (/\[chiqish kodi: [1-9]\d*\]/.test(l)) return `<span class="er">${escH(l)}</span>`;
-  if (/^\s*PASS\b|✓|passed, \d+ total$|^UCHIRISH$|^added \d+ packages/.test(l) && !/failed/.test(l)) return `<span class="ok">${escH(l)}</span>`;
-  if (/^\s*Expected:/.test(l)) return `<span class="ok">${escH(l)}</span>`;
-  if (/^\s*Received:/.test(l)) return `<span class="er">${escH(l)}</span>`;
-  if (/warning|WARN/.test(l) && !/error/.test(l)) return `<span class="wn">${escH(l)}</span>`;
-  if (/^\s*FAIL\b|●|✕|failed|error|No tests found|✖|XATO/.test(l)) return `<span class="er">${escH(l)}</span>`;
-  if (/^>|^Snapshots|^Time|^Ran all|^---|^#|^\s*expect\(received\)|^In |files checked|testMatch|testPath|testRegex|Pattern|Run with/.test(l)) return `<span class="cm">${escH(l)}</span>`;
+// Oddiy terminal (npm, node, smoke, TypeORM logi)
+function termLine(l) {
+  const m = /^(\$ )(.*)$/.exec(l);
+  if (m) return `<span class="p">$ </span><span class="m">${escH(m[2])}</span>`;
+  if (/^\s*✗|error|Error|ERROR|query failed|Unauthorized|aborted|out of range|XATO|berilmadi/.test(l)) return `<span class="er">${escH(l)}</span>`;
+  if (/^\s*✓|NATIJA: 5\/5|qabul qilindi|ulandi|ishlayapti|tsc: xato yo'q|COMMIT/.test(l)) return `<span class="ok">${escH(l)}</span>`;
+  if (/^query: /.test(l)) return `<span class="cm">query: </span>${sqlLine(l.slice(7))}`;
+  if (/^\s*(#|—|\(|Eslatma)/.test(l)) return `<span class="cm">${escH(l)}</span>`;
   return escH(l);
 }
-const jt = (src, meta = {}) => src.replace(/^\n/, '').replace(/\n\s*$/, '').split('\n').map((l, i) => ({ h: jestLine(l), ...(meta[i + 1] || {}) }));
-const Term = ({ lines, title = 'terminal', er, beat, focus, style }) => <CodePanel file={title} numbers={false} wrap style={{ background: er ? PG.termEr : PG.term, ...(style || {}) }} lines={lines} beat={beat} focus={focus} />;
+const term = (src, meta = {}) => src.replace(/^\n/, '').replace(/\n\s*$/, '').split('\n').map((l, i) => ({ h: termLine(l), ...(meta[i + 1] || {}) }));
+const rng = (a, b, v) => { const o = {}; for (let i = a; i <= b; i++) o[i] = { ...v }; return o; };
+const mergeMeta = (...ms) => ms.reduce((acc, m) => { Object.keys(m).forEach((k) => { acc[k] = { ...(acc[k] || {}), ...m[k] }; }); return acc; }, {});
+const upto = (lines, beat) => lines.filter((l) => l.at == null || l.at <= beat);
 
-// Telegram chat — MAKET (Telegram serveriga ulanmadik): javob matnlari haqiqiy Telegraf handler'idan (tgpg-out), oyna esa maket
-function TgChat({ title = 'AvtoPizza bot', items = [], note }) {
-  return <div className="c1-tg">
-    <div className="bar"><span className="av">🍕</span><span className="tt">{title}</span><span className="warn">⚠ Telegram oynasi maket · javoblar haqiqiy</span></div>
-    <div className="bd">{items.map(([who, t, extra], i) => who === 'sep' ? <div key={i} className="sep">{t}</div> : <div key={i} className={`m ${who}${extra ? ' ' + extra : ''}`}>{t}</div>)}</div>
+const Term = ({ lines, title = t('terminal', "терминал"), er, beat, focus, style }) => <CodePanel file={title} numbers={false} style={{ background: er ? PG.termEr : PG.term, ...(style || {}) }} lines={lines} beat={beat} focus={focus} />;
+const Psql = ({ lines, title = 'psql — shop', er, beat, focus, style }) => <CodePanel file={title} numbers={false} style={{ background: er ? PG.termEr : PG.term, ...(style || {}) }} lines={lines} beat={beat} focus={focus} />;
+// Loyiha kodi (KOD — aynan, satr raqami bilan). ids: {satr: 'id'} — yoritish uchun; from/to — satr chegarasi
+const kod = (k, ids = {}, from, to) => KOD[k].lines.filter((l) => (from == null || l.n >= from) && (to == null || l.n <= to)).map((l) => ({ h: tsLine(l.t), n: l.n, ...(ids[l.n] ? { id: ids[l.n] } : {}) }));
+const Code = ({ k, ids, from, to, focus, beat, files, active, fresh, style }) => <Ide files={compact(files || (KOD[k].tag === 'tgpg-start' ? START_FILES : DONE_FILES), active || KOD[k].file)} active={active || KOD[k].file} fresh={fresh} style={style}>
+  <CodePanel file={baseName(KOD[k].file)} lines={kod(k, ids, from, to)} focus={focus} beat={beat} />
+</Ide>;
+// Mongoose jufti — bitta xira qator (M45): dvigatel .mk-pair
+const Pair = ({ code, res }) => <div className="mk-pair"><b style={{ color: PG.mongo }}>{t("Mongoose'da:", "В Mongoose:")}</b> <code>{code}</code>{res ? <> → {res}</> : null}</div>;
+
+// Bot oqimi kartasi — haqiqiy Nest + Telegraf kodi, Telegram serverisiz (handleUpdate + javob ushlanadi). Telegram ilovasi ko'rinishi EMAS (GATE M 04.11).
+// items: [kim, matn, belgi] — kim: 'u' mijoz · 'b' bot · 'sep' ajratgich · 'kb' tugmalar qatori
+function TgFlow({ title = t('Bot oqimi', "Поток бота"), items = [], note, src }) {
+  return <div className="tg-flow">
+    <div className="bar"><span className="av">🤖</span><span className="tt">{title}</span><span className="src">{src || t("haqiqiy bot javoblari · Telegram'siz sinov", "настоящие ответы бота · проверка без Telegram")}</span></div>
+    <div className="bd">{items.map(([who, tx, extra], i) => who === 'sep'
+      ? <div key={i} className="sep">{tx}</div>
+      : who === 'kb' ? <div key={i} className="kb">{tx.split(' | ').map((b) => <span key={b}>{b}</span>)}</div>
+        : <div key={i} className={`m ${who}${extra ? ' ' + extra : ''}`}>{tx}</div>)}</div>
     {note && <div className="nt">{note}</div>}
   </div>;
 }
+// AI javobi kartasi — prompt, AI javobidan qisqa parcha, git diff --stat (haqiqiy yurgizish, «namuna» belgisi bilan)
+function AiReply({ who, prompt, said, diff, hl, tag = t('namuna — sizning AI\'ingiz boshqacha yozadi', "образец — ваш AI напишет иначе") }) {
+  return <div className={`ai-card${hl ? ' hl' : ''}`}>
+    <div className="bar"><span className="lg">AI</span><span className="tt">{who}</span><span className="tg">{tag}</span></div>
+    {prompt && <pre className="pr">{prompt}</pre>}
+    {said && <div className="sd">{said}</div>}
+    {diff && <pre className="df">{diff}</pre>}
+  </div>;
+}
+const Card = ({ c = T.accent, h, children, hl, dim, style }) => <div className={`mk-box${hl ? ' hl' : ''}`} style={{ '--c': c, opacity: dim ? 0.4 : 1, transition: 'opacity .3s', ...(style || {}) }}><h4>{h}</h4>{children}</div>;
 
-// Telegraf+PG ga xos qo'shimcha CSS (dvigatel CSS'iga tegilmaydi). Izohda backtick yo'q (CLAUDE.md).
+// v2 qoliplari: amaliyot MD'dan (mkPractice), tekshiruv (MC) — M42: above/after/demak
+const mkPractice = (n, hls, extra = {}) => {
+  const m = MDT[n]; const pr = m.proof;
+  return {
+    S: mkS(n, hls.map((hl) => ({ hl })), { tableAt: 3 }), steps: m.steps, trouble: m.trouble,
+    proof: { label: pr.label, placeholder: pr.placeholder, check: (v) => new RegExp(pr.re, pr.flags).test(v), wrong: pr.wrong }, ...extra,
+  };
+};
+const Demak = (n) => <span dangerouslySetInnerHTML={html(MDT[n].demak)} />;
+function MC(p, n, more) {
+  const m = MDT[n];
+  return <MCRetry {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} q={m.q} opts={m.opts} correct={m.correct} ok={m.ok} okShort={<span dangerouslySetInnerHTML={html(m.okShort)} />} wrong={m.wrong} demak={Demak(n)} {...more} />;
+}
+
+// TgPg v2 ga xos CSS (dvigatel CSS'iga tegilmaydi). Izohda backtick yo'q (CLAUDE.md).
 const CSS3 = `
 .mk-explorer{overflow:auto}
-/* ogohlantirish qutisi — Nest-2 dagi bilan bir xil (u bo'lak bu darsga kirmaydi) */
 .n2-warn{border-left:4px solid ${T.accent};background:#FFF0EB;border-radius:10px;padding:10px 12px;font-size:14px;line-height:1.5}
 .n2-warn b{color:${T.accent}}
 .pg-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;align-items:start}
 @media (max-width:1300px){.pg-two{grid-template-columns:1fr}}
+.pg-2c{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;align-items:stretch}
 .pg-three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:start}
-@media (max-width:1300px){.pg-three{grid-template-columns:1fr}}
-.pg-row{display:flex;gap:10px;align-items:center;padding:8px 12px;border:1px solid ${T.line};border-radius:10px;background:${T.paper};font:13px ${MONO};transition:opacity .3s,border-color .3s,background .3s}
-.pg-row.hl{border-color:${T.accent};background:#FFF7F3}
-.pg-row .v{margin-left:auto;font-weight:800;font-size:16px}
+.pg-four{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;align-items:stretch}
+@media (max-width:1300px){.pg-three,.pg-four{grid-template-columns:1fr 1fr}}
 .pg-qa{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-@media (max-width:1300px){.pg-qa{grid-template-columns:1fr}}
+@media (max-width:1000px){.pg-qa{grid-template-columns:1fr}}
 .pg-qa button{text-align:left;border:1px solid ${T.line};border-radius:12px;background:${T.paper};padding:12px 14px;cursor:pointer;font:inherit;color:${T.ink}}
 .pg-qa b{display:block;font-size:14px}
 .pg-qa p{margin:6px 0 0;font-size:13px;color:${T.ink2};line-height:1.45}
-/* Xulosa qadamida tor ekranda (1280) kod oynasi yashiriladi — xulosa ko'rinib tursin */
-@media (max-width:1300px){.j2-wide-only{display:none}}
-/* Telegram chat maketi */
-.c1-tg{background:${PG.tgBg};border:1px solid #C5D3E0;border-radius:12px;overflow:hidden}
-.c1-tg .bar{display:flex;gap:8px;align-items:center;padding:8px 12px;background:#fff;border-bottom:1px solid #D7E0EA;font:600 13px ${SANS};color:${T.ink}}
-.c1-tg .bar .av{width:24px;height:24px;border-radius:50%;background:${PG.tg};display:inline-flex;align-items:center;justify-content:center;font-size:13px}
-.c1-tg .bar .warn{margin-left:auto;font:600 10.5px ${MONO};color:${T.yellow};background:#FFF6E2;border:1px solid #F1D38A;border-radius:6px;padding:3px 7px}
-.c1-tg .bd{padding:12px;display:flex;flex-direction:column;gap:6px}
-.c1-tg .m{max-width:78%;padding:7px 11px;border-radius:12px;font-size:14px;line-height:1.4;background:#fff;color:${T.ink};box-shadow:0 1px 1px rgba(0,0,0,.06)}
-.c1-tg .m.u{align-self:flex-end;background:#E1FEC6}
-.c1-tg .m.b{align-self:flex-start}
-.c1-tg .m.bad{border:1.5px solid ${T.accent}}
-.c1-tg .m.ok{border:1.5px solid ${T.green}}
-.c1-tg .sep{align-self:center;font:600 11px ${MONO};color:#5E6B78;background:rgba(255,255,255,.7);border-radius:10px;padding:3px 10px}
-.c1-tg .nt{padding:6px 12px 10px;font:12px ${MONO};color:#5E6B78}
+.pg-dict{width:100%;border-collapse:separate;border-spacing:0 6px;font-size:13.5px}
+.pg-dict td{padding:8px 12px;background:${T.paper};border-top:1px solid ${T.line};border-bottom:1px solid ${T.line}}
+.pg-dict td:first-child{border-left:4px solid ${T.accent};border-radius:10px 0 0 10px}
+.pg-dict td:last-child{border-right:1px solid ${T.line};border-radius:0 10px 10px 0;color:${T.ink2}}
+.pg-dict code{font:12.5px ${MONO};background:#EEF0F4;padding:1px 6px;border-radius:5px}
+.tg-flow{background:${PG.tgBg};border:1px solid #C5D3E0;border-radius:12px;overflow:hidden}
+.tg-flow .bar{display:flex;gap:8px;align-items:center;padding:8px 12px;background:#fff;border-bottom:1px solid #D7E0EA;font:600 13px ${SANS};color:${T.ink}}
+.tg-flow .bar .av{width:24px;height:24px;border-radius:50%;background:${PG.tg};display:inline-flex;align-items:center;justify-content:center;font-size:13px}
+.tg-flow .bar .src{margin-left:auto;font:600 10.5px ${MONO};color:${T.green};background:#E3F5EC;border:1px solid #A8D8C1;border-radius:6px;padding:3px 7px}
+.tg-flow .bd{padding:10px 12px;display:flex;flex-direction:column;gap:5px}
+.tg-flow .m{max-width:86%;padding:6px 10px;border-radius:12px;font-size:13.5px;line-height:1.4;background:#fff;color:${T.ink};white-space:pre-wrap;box-shadow:0 1px 1px rgba(0,0,0,.06)}
+.tg-flow .m.u{align-self:flex-end;background:#E1FEC6}
+.tg-flow .m.b{align-self:flex-start}
+.tg-flow .m.bad{border:1.5px solid ${T.accent}}
+.tg-flow .m.ok{border:1.5px solid ${T.green}}
+.tg-flow .kb{align-self:flex-start;display:flex;flex-wrap:wrap;gap:4px;max-width:86%}
+.tg-flow .kb span{font:12px ${SANS};background:rgba(255,255,255,.75);border:1px solid #BFD0E0;border-radius:8px;padding:4px 8px;color:${PG.tg}}
+.tg-flow .sep{align-self:center;font:600 11px ${MONO};color:#5E6B78;background:rgba(255,255,255,.75);border-radius:10px;padding:3px 10px}
+.tg-flow .nt{padding:6px 12px 10px;font:12px ${MONO};color:#5E6B78}
+.ai-card{background:${T.paper};border:1.5px solid #D9CCF7;border-radius:12px;overflow:hidden;transition:box-shadow .3s,border-color .3s}
+.ai-card.hl{border-color:${PG.ai};box-shadow:0 0 0 4px rgba(109,59,228,.14)}
+.ai-card .bar{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#F5F1FE;border-bottom:1px solid #E6DDFB;font:600 12.5px ${SANS};color:${T.ink}}
+.ai-card .lg{font:800 11px ${MONO};color:#fff;background:${PG.ai};border-radius:6px;padding:3px 7px}
+.ai-card .tg{margin-left:auto;font:600 10px ${MONO};color:${T.ink3};letter-spacing:.04em}
+.ai-card .pr{margin:0;padding:8px 12px;font:12px/1.5 ${MONO};color:${T.ink2};background:#FBFAFF;border-bottom:1px dashed #E6DDFB;white-space:pre-wrap}
+.ai-card .sd{padding:8px 12px;font-size:13.5px;line-height:1.45;color:${T.ink}}
+.ai-card .sd b{color:${PG.ai}}
+.ai-card .df{margin:0;padding:8px 12px;font:12px/1.5 ${MONO};color:${T.codeInk};background:${PG.term};white-space:pre;overflow-x:auto}
+.pr5{margin:0;font:13px/1.6 ${MONO};white-space:pre-wrap;background:${T.paper};border:1px solid ${T.line};border-radius:12px;padding:12px 14px}
+.pr5 span{transition:background .3s,color .3s;border-radius:4px;padding:1px 0}
+.pr5 span.on{background:#FFF0EB;color:${T.accent}}
+.pr5 span.dim{color:${T.ink3}}
+.pr5 i{font-style:normal;font:700 10.5px ${MONO};color:#fff;background:${T.accent};border-radius:4px;padding:1px 5px;margin-right:6px}
+.race{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center}
+.race .row{font:700 13px ${MONO};text-align:center;padding:10px;border:2px solid ${PG.pg};border-radius:12px;background:#E8F0F8}
+.race .tx{display:grid;gap:6px}
+.race .tx div{font:12.5px ${MONO};padding:6px 10px;border-radius:8px;border:1px solid ${T.line};background:${T.paper};color:${T.ink3};transition:all .3s}
+.race .tx div.w{border-color:${T.yellow};background:#FFF6E2;color:${T.ink}}
+.race .tx div.ok{border-color:${T.green};background:#E3F5EC;color:${T.ink}}
+.race .tx div.bad{border-color:${T.accent};background:#FFF0EB;color:${T.ink}}
 `;
 function useCss3() {
   useEffect(() => {
@@ -1679,636 +2916,560 @@ function useCss3() {
     if (s.textContent !== CSS3) s.textContent = CSS3;
   }, []);
 }
-// ============================================================
-//  Kod va chiqishlar (tgpg-out — haqiqiy Telegraf 4.16.3 + PostgreSQL 18.4, Telegram serverisiz)
-// ============================================================
-const HOLATSIZ_JS = js(String.raw`
-bot.hears(/pitsa/i, (ctx) => ctx.reply('Ajoyib! Qaysi pitsa?'));
-bot.on('text', (ctx) => ctx.reply(` + '`Nima «${ctx.message.text}»? Tushunmadim.`' + String.raw`));`, { 2: { id: 'x' } });
-const XOTIRA_JS = js(String.raw`
-const holat = {}; // har chatning holati — oddiy obyektda (RAM)
-
-bot.on('text', (ctx) => {
-  const id = ctx.chat.id, t = ctx.message.text;
-  if (!holat[id]) { holat[id] = 'PITSA_KUTYAPMAN'; return ctx.reply('Salom! Qaysi pitsa?'); }
-  if (holat[id] === 'PITSA_KUTYAPMAN') { holat[id] = 'OLCHAM_KUTYAPMAN'; return ctx.reply(` + '`${t} — yaxshi tanlov! Qaysi o\'lchamda?`' + String.raw`); }
-  if (holat[id] === 'OLCHAM_KUTYAPMAN') { holat[id] = 'MANZIL_KUTYAPMAN'; return ctx.reply('Manzilni yuboring.'); }
-});`, { 1: { id: 'o' }, 4: { id: 'k' }, 5: { id: 'r' }, 6: { id: 'r' }, 7: { id: 'r' } });
-const BAZA_JS = js(String.raw`
-const { Telegraf } = require('telegraf');
-const { Pool } = require('pg');
-const pool = new Pool({ connectionString: process.env.DATABASE_URL });
-const bot = new Telegraf(process.env.BOT_TOKEN);
-
-bot.start(async (ctx) => {
-  const { rows } = await pool.query('SELECT * FROM users WHERE telegram_id = $1', [ctx.chat.id]);
-  if (rows.length === 0) {
-    await pool.query('INSERT INTO users (telegram_id, holat) VALUES ($1, $2)', [ctx.chat.id, 'ISM_KUTYAPMAN']);
-    return ctx.reply('Ismingiz nima?');
-  }
-  return ctx.reply(` + '`Yana salom, ${rows[0].ism}!`' + String.raw`);
-});
-
-bot.on('text', async (ctx) => {
-  const { rows } = await pool.query('SELECT * FROM users WHERE telegram_id = $1', [ctx.chat.id]);
-  const u = rows[0];
-  if (u && u.holat === 'ISM_KUTYAPMAN') {
-    await pool.query('UPDATE users SET ism = $1, holat = $2 WHERE telegram_id = $3', [ctx.message.text, 'TAYYOR', ctx.chat.id]);
-    return ctx.reply(` + '`Tanishganimdan xursandman, ${ctx.message.text}!`' + String.raw`);
-  }
-  return ctx.reply('Buyruqni tanlang: /start');
-});
-
-bot.launch();`, { 7: { id: 'sel' }, 16: { id: 'sel' }, 8: { id: 'ins' }, 9: { id: 'ins' }, 10: { id: 'ins' }, 11: { id: 'ins' }, 18: { id: 'upd' }, 19: { id: 'upd' }, 20: { id: 'upd' }, 21: { id: 'upd' }, 25: { id: 'l' } });
-const USERS_SQL = sql(String.raw`
-CREATE TABLE users (
-  id SERIAL PRIMARY KEY,
-  telegram_id BIGINT NOT NULL UNIQUE,
-  ism TEXT,
-  holat TEXT,
-  tanlov TEXT
-);`, { 3: { id: 'tg' }, 5: { id: 'h' } });
-const OUT01 = jt(String.raw`
-$ node holatsiz.js
-Aziza (5123456789): Pitsa buyurtma qilaman
-  bot → 5123456789: Ajoyib! Qaysi pitsa?
-Aziza (5123456789): Pepperoni
-  bot → 5123456789: Nima «Pepperoni»? Tushunmadim.`, { 5: { id: 'x' } });
-const OUT02A = jt(String.raw`
-$ node xotira.js 1      # 1-ishga tushirish
-Aziza (5123456789): Salom
-  bot → 5123456789: Salom! Qaysi pitsa?
-Aziza (5123456789): Pepperoni
-  bot → 5123456789: Pepperoni — yaxshi tanlov! Qaysi o'lchamda?
-  [xotiradagi holat] {"5123456789":"OLCHAM_KUTYAPMAN"}`, { 5: { id: 'r' }, 6: { id: 'h' } });
-const OUT02B = jt(String.raw`
-# bot to'xtatildi va qayta ishga tushirildi (yangi jarayon)
-$ node xotira.js 2
-Aziza (5123456789): Katta
-  bot → 5123456789: Salom! Qaysi pitsa?
-  [xotiradagi holat] {"5123456789":"PITSA_KUTYAPMAN"}`, { 4: { id: 'x' }, 5: { id: 'x' } });
-const OUT03 = jt(String.raw`
-$ node umumiy.js
-Aziza (5123456789): Pepperoni
-  bot → 5123456789: Pepperoni. O'lcham?
-Jasur (6234567890): Margarita
-  bot → 6234567890: Margarita. O'lcham?
-Aziza (5123456789): Katta
-  bot → 5123456789: Buyurtma: Margarita, katta`, { 4: { id: 'j' }, 7: { id: 'x' } });
-const UMUMIY_JS = js(String.raw`
-let tanlov = null; // HAMMA UCHUN BITTA
-bot.hears(/^(Pepperoni|Margarita)$/, (ctx) => { tanlov = ctx.message.text; return ctx.reply(` + '`${tanlov}. O\'lcham?`' + String.raw`); });
-bot.hears(/^(Katta|Kichik)$/, (ctx) => ctx.reply(` + '`Buyurtma: ${tanlov}, ${ctx.message.text.toLowerCase()}`' + String.raw`));`, { 1: { id: 'x' }, 2: { id: 'w' } });
-const OUT05 = jt(String.raw`
-$ node baza.js 1      # 1-ishga tushirish
-Aziza (5123456789): /start
-  bot → 5123456789: Ismingiz nima?
-Aziza (5123456789): Aziza
-  bot → 5123456789: Tanishganimdan xursandman, Aziza!
-Jasur (6234567890): /start
-  bot → 6234567890: Ismingiz nima?
-
-# bot to'xtatildi va qayta ishga tushirildi
-$ node baza.js 2
-Aziza (5123456789): /start
-  bot → 5123456789: Yana salom, Aziza!
-Jasur (6234567890): Jasur
-  bot → 6234567890: Tanishganimdan xursandman, Jasur!`, { 12: { id: 'a' }, 14: { id: 'j' } });
-const PSQL05 = psql(String.raw`
-botdb=# SELECT telegram_id, ism, holat FROM users;
- telegram_id |  ism  | holat
--------------+-------+--------
-  5123456789 | Aziza | TAYYOR
-  6234567890 | Jasur | TAYYOR
-(2 rows)`, { 4: { id: 'r' }, 5: { id: 'r' } });
-const CHAT_HOLATSIZ = [['u', 'Pitsa buyurtma qilaman'], ['b', 'Ajoyib! Qaysi pitsa?'], ['u', 'Pepperoni'], ['b', 'Nima «Pepperoni»? Tushunmadim.', 'bad']];
 
 // ============================================================
-//  1 · Kirish
+//  1 · Kirish — dars oxiridagi natija: bot buyurtmani bazaga yozdi (orderbot-out/04, 05)
 // ============================================================
-const PLAN1 = ['Holat', 'Har mijozga alohida', "Holat PostgreSQL'da", 'Buzamiz', "O'quvchi reposi", "O'quvchi darsini o'tish"];
-const S1 = mkS(1, [{ hl: [] }, { hl: [0, 1] }, { hl: [2, 3, 4] }, { hl: [5] }], { plan: PLAN1 });
+const PLAN1 = ['Loyiha va muammo', 'Reja va prompt', 'Ulanish va katalog', 'Foydalanuvchi, state, savat', 'Buyurtma va tranzaksiya', 'Sinfga tayyorgarlik'];
+const S1 = mkS(1, [{ hl: [], res: true }, { hl: [0] }, { hl: [1, 2, 3, 4] }, { hl: [5] }], { plan: PLAN1 });
+const ORDER1 = "Buyurtma #1 qabul qilindi!\n• Klaviatura × 1 = 120 000 so'm\n• Kolonka × 2 = 100 000 so'm\n\nJami: 220 000 so'm\nTelefon: +998901234567\nHolati: 🆕 Yangi";
+const T1 = psql(String.raw`
+shop=# SELECT id, user_id, phone, total, status FROM orders;
+ id | user_id |     phone     | total  |  status
+----+---------+---------------+--------+-----------
+  1 |       2 | +998901234567 | 220000 | CONFIRMED
+(1 row)`);
 function Screen1(p) {
   return <Lesson p={p} S={S1} scene={({ seg }) => <div style={{ display: 'grid', gap: 14 }}>
     <div className="mk-light"><div className="mk-plan">
       {S1.plan.map((x, i) => <div key={i} className={seg.hl.includes(i) ? 'hl' : (seg.hl.length ? 'dim' : '')}><b>0{i + 1}</b><span>{x}</span></div>)}
     </div></div>
-    <div className="mk-tag" style={{ margin: 0 }}>Dars oxirida — bot qayta ishga tushsa ham eslaydi</div>
-    <TgChat items={[['sep', 'bot qayta ishga tushirildi'], ['u', '/start'], ['b', 'Yana salom, Aziza! Menyu uchun /menu ni bosing.', 'ok']]} />
-  </div>} />;
-}
-
-// ============================================================
-//  2 · Holatsiz bot (tgpg-out/01)
-// ============================================================
-const S2 = mkS(2, [{ v: 'chat' }, { v: 'code' }, { v: 'out' }, { v: 'out', sum: true }]);
-function Screen2(p) {
-  return <Lesson p={p} S={S2} scene={({ seg }) => <div className="pg-two">
-    <div style={{ display: 'grid', gap: 10, alignContent: 'start' }}>
-      <TgChat items={CHAT_HOLATSIZ} />
-      {seg.sum && <div className="mk-rule">Holatsiz bot har xabarni <b>birinchi xabardek</b> ko'radi — suhbat qayerdaligini bilmaydi.</div>}
-    </div>
-    <div style={{ display: 'grid', gap: 10, alignContent: 'start' }}>
-      {seg.v !== 'chat' && <div className={seg.sum ? 'j2-wide-only' : ''}><Ide root="bot-holat" files={tree(['node_modules/', 'holatsiz.js', 'package.json'])} active="holatsiz.js"><CodePanel file="holatsiz.js" wrap lines={HOLATSIZ_JS} focus={seg.v === 'code' ? ['x'] : []} /></Ide></div>}
-      {seg.v === 'out' && <Term lines={OUT01} focus={['x']} title="terminal — haqiqiy Telegraf, Telegram serverisiz" />}
-    </div>
-  </div>} />;
-}
-
-// ============================================================
-//  3 · Holat obyektda (tgpg-out/02, 1-jarayon)
-// ============================================================
-const S3 = mkS(3, [{ f: ['o', 'k'] }, { f: ['r'] }, { f: [], out: true }, { f: [], out: true, sum: true }]);
-function Screen3(p) {
-  return <Lesson p={p} S={S3} scene={({ seg }) => <div style={{ display: 'grid', gap: 12 }}>
-    <div className={seg.sum ? 'j2-wide-only' : ''}><Ide root="bot-holat" files={tree(['node_modules/', 'xotira.js', 'package.json'])} active="xotira.js"><CodePanel file="xotira.js" wrap lines={XOTIRA_JS} focus={seg.f} /></Ide></div>
-    {seg.out && <Term lines={OUT02A} focus={['r', 'h']} />}
-    {seg.sum && <div className="mk-rule">Holat bilan suhbat davom etdi — lekin obyekt <b>dastur xotirasida</b> (RAM).</div>}
-  </div>} />;
-}
-
-// ============================================================
-//  4 · Qayta ishga tushirish — RAM bo'shadi (tgpg-out/02, 2-jarayon)
-// ============================================================
-const S4 = mkS(4, [{ v: 'r' }, { v: 'out' }, { v: 'box' }, { v: 'box', sum: true }]);
-function Screen4(p) {
-  return <Lesson p={p} S={S4} scene={({ seg }) => <div style={{ display: 'grid', gap: 12 }}>
-    {seg.v === 'r' && <Term lines={OUT02A.slice(-1).concat(jt('# Ctrl+C → node xotira.js 2'))} title="terminal" />}
-    {seg.v !== 'r' && <div className="pg-two">
-      <Term er lines={OUT02B} focus={['x']} />
-      <TgChat items={[['u', 'Pepperoni'], ['b', "Pepperoni — yaxshi tanlov! Qaysi o'lchamda?"], ['sep', 'bot qayta ishga tushirildi'], ['u', 'Katta'], ['b', 'Salom! Qaysi pitsa?', 'bad']]} />
-    </div>}
-    {seg.v === 'box' && <div className="pg-two">
-      <div className="mk-box" style={{ '--c': T.accent }}><h4>Dastur xotirasi (RAM)</h4><p>vaqtinchalik — jarayon tugasa, obyekt bo'sh boshlanadi</p></div>
-      <div className="mk-box" style={{ '--c': T.green }}><h4>PostgreSQL</h4><p>doimiy — diskda, qayta ishga tushirishdan keyin ham joyida</p></div>
-    </div>}
-    {seg.sum && <div className="mk-rule">Qayta ishga tushirishdan keyin faqat <b>bazaga yozilgan</b> holat qoladi.</div>}
-  </div>} />;
-}
-
-// ============================================================
-//  5 · Tekshiruv 1
-// ============================================================
-function Screen5(p) {
-  const m = MDT[5];
-  return <MCRetry {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} q={m.q} opts={m.opts} correct={m.correct} ok={m.ok} okShort={<span dangerouslySetInnerHTML={html(m.okShort)} />} wrong={m.wrong}
-    after={<div style={{ display: 'grid', gap: 10 }}>
-      <div className="mk-tag" style={{ color: T.green, margin: 0 }}>Haqiqiy: bazadagi holat qayta ishga tushirishdan keyin ham bor</div>
-      <Term lines={OUT05.slice(9, 13)} focus={['a']} />
-      <Psql lines={PSQL05} focus={['r']} />
-    </div>} />;
-}
-
-// ============================================================
-//  6 · Umumiy o'zgaruvchi (tgpg-out/03)
-// ============================================================
-const S6 = mkS(6, [{ v: 'two' }, { v: 'code' }, { v: 'out' }, { v: 'out', sum: true }]);
-function Screen6(p) {
-  return <Lesson p={p} S={S6} scene={({ seg }) => <div className="pg-two">
-    <div style={{ display: 'grid', gap: 10, alignContent: 'start' }}>
-      {seg.v === 'two' ? <div className="pg-two">
-        <TgChat title="Aziza" items={[['u', 'Pepperoni'], ['b', "Pepperoni. O'lcham?"]]} />
-        <TgChat title="Jasur" items={[['u', 'Margarita'], ['b', "Margarita. O'lcham?"]]} />
-      </div> : <Ide root="bot-holat" files={tree(['node_modules/', 'umumiy.js', 'package.json'])} active="umumiy.js"><CodePanel file="umumiy.js" wrap lines={UMUMIY_JS} focus={seg.v === 'code' ? ['x', 'w'] : ['x']} /></Ide>}
-    </div>
-    <div style={{ display: 'grid', gap: 10, alignContent: 'start' }}>
-      {seg.v === 'out' && <><Term er lines={OUT03} focus={['j', 'x']} /><TgChat title="Aziza" items={[['u', 'Pepperoni'], ['b', "Pepperoni. O'lcham?"], ['u', 'Katta'], ['b', 'Buyurtma: Margarita, katta', 'bad']]} /></>}
-      {seg.sum && <div className="mk-rule">Umumiy o'zgaruvchi — ikki mijozning suhbati <b>xato bermay aralashadi</b>: xato chiqmaydi.</div>}
-    </div>
-  </div>} />;
-}
-
-// ============================================================
-//  7 · chat.id bo'yicha alohida
-// ============================================================
-const S7 = mkS(7, [{ v: 'id' }, { v: 'obj' }, { v: 'db' }, { v: 'db', sum: true }]);
-function Screen7(p) {
-  return <Lesson p={p} S={S7} scene={({ seg }) => <div style={{ display: 'grid', gap: 12 }}>
+    {seg.res && <><div className="mk-tag" style={{ margin: 0 }}>{t("Dars oxirida — bot buyurtmani PostgreSQL'ga yozadi", "В конце урока — бот пишет заказ в PostgreSQL")}</div>
     <div className="pg-two">
-      <div className="mk-box" style={{ '--c': T.blue }}><h4>Aziza</h4><p><code>ctx.chat.id</code> = 5123456789</p></div>
-      <div className="mk-box" style={{ '--c': T.purple }}><h4>Jasur</h4><p><code>ctx.chat.id</code> = 6234567890</p></div>
-    </div>
-    {seg.v === 'obj' && <Term lines={jt(String.raw`
-# 3-ekrandagi obyekt — kalit chat.id
-{ "5123456789": "OLCHAM_KUTYAPMAN",
-  "6234567890": "PITSA_KUTYAPMAN" }`)} title="xotira.js — holat" />}
-    {seg.v === 'db' && <Psql lines={PSQL05} focus={['r']} />}
-    {seg.sum && <div className="mk-rule"><b>Sessiya</b> — bitta mijozning alohida holati; kaliti — <code>chat.id</code>.</div>}
+      <TgFlow title="OrderBotNest" items={[['u', '+998901234567'], ['b', ORDER1, 'ok']]} />
+      <Psql lines={T1} />
+    </div></>}
   </div>} />;
 }
 
 // ============================================================
-//  8 · Tekshiruv 2
+//  2 · OrderBotNest: modullar va bot oqimi (tgpg-start; orderbot-out/01 1-jarayon)
 // ============================================================
-function Screen8(p) {
-  const m = MDT[8];
-  return <MCRetry {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} q={m.q} opts={m.opts} correct={m.correct} ok={m.ok} okShort={<span dangerouslySetInnerHTML={html(m.okShort)} />} wrong={m.wrong}
-    above={<div style={{ marginBottom: 14 }}><CodePanel file="umumiy.js" wrap lines={UMUMIY_JS} focus={['x']} /></div>}
-    after={<div style={{ display: 'grid', gap: 10 }}>
-      <div className="mk-tag" style={{ color: T.green, margin: 0 }}>Haqiqiy natija</div>
-      <Term er lines={OUT03} focus={['x']} />
-    </div>} />;
+const SVC2 = [['catalog', 'mahsulotlar va ombor', T.green], ['user', 'foydalanuvchi, rol, state', T.green], ['cart', 'savat', T.green], ['order', 'buyurtma, admin statusi', T.green]];
+const FLOW2 = [
+  ['u', '/catalog'], ['b', 'Katalog (1/3-sahifa). Qo\'shish uchun mahsulotni bosing:'], ['kb', 'Klaviatura · 120 000 so\'m | Sichqoncha · 75 000 so\'m | 1/3 | ▶ | …'],
+  ['u', '[Kolonka · 50 000 so\'m] ×2'], ['b', "Kolonka savatga qo'shildi (2 ta)."], ['u', '[✅ Buyurtma berish]'],
+  ['b', 'Buyurtma uchun telefon raqamingizni yozing (masalan, +998901234567):'], ['u', '+998901234567'], ['b', 'Buyurtma #1 qabul qilindi! … Jami: 220 000 so\'m'],
+  ['sep', 'admin Jasur'], ['b', "🆕 Yangi buyurtma #1 — Aziza, 220 000 so'm. /orders"], ['u', '[✅ Tasdiqlash]'], ['b', 'Buyurtmangiz #1: ✅ Tasdiqlangan', 'ok'],
+];
+const S2 = mkS(2, [{ v: 'tg' }, { v: 'svc' }, { v: 'flow' }, { v: 'map' }]);
+function Screen2(p) {
+  return <Lesson p={p} S={S2} scene={({ seg }) => <>
+    {(seg.v === 'tg' || seg.v === 'svc') && <Code k="START_START" />}
+    {seg.v === 'svc' && <div className="pg-four">{SVC2.map(([n, d, c]) => <Card key={n} c={c} h={`${n}.service.ts`}><p>{d}</p></Card>)}</div>}
+    {seg.v === 'flow' && <TgFlow title="OrderBotNest · tgpg-start" items={FLOW2} />}
+    {seg.v === 'map' && <Ide files={compact(START_FILES, F.usr)} active={F.usr}>
+      <CodePanel file="user.service.ts" lines={kod('START_USER', { 8: 'm' }, 6, 8)} focus={['m']} />
+      <CodePanel file="order.service.ts" lines={kod('START_ORDER', { 14: 'a' }, 12, 14)} focus={['a']} style={{ marginTop: 10 }} />
+    </Ide>}
+  </>} />;
 }
 
 // ============================================================
-//  9 · users jadvali va BIGINT (tgpg-out/04, 09)
+//  3 · Restart (orderbot-out/01-xotira-senariy — Map'lar yangidan; telefon qatori — 10-smoke-tgpg-start, alohida node jarayoni)
 // ============================================================
-const S9 = mkS(9, [{ f: [] }, { f: ['tg'], doc: true }, { f: ['tg'] }, { f: ['tg', 'h'], sum: true }]);
-function Screen9(p) {
-  return <Lesson p={p} S={S9} scene={({ seg }) => <div style={{ display: 'grid', gap: 12 }}>
-    <Psql title="psql — botdb" lines={USERS_SQL} focus={seg.f} />
-    {seg.doc && <div className="mk-card"><h5>Telegram Bot API — User.id va Chat.id</h5><div style={{ fontSize: 14.5, lineHeight: 1.55 }}>«This number may have <b>more than 32 significant bits</b> … a 64-bit integer … are safe»</div><div className="mk-tag" style={{ margin: '8px 0 0' }}>core.telegram.org/bots/api · 01.11.2026</div></div>}
-    {seg.sum && <div className="mk-rule"><code>telegram_id</code> bilan qator topiladi, <code>holat</code> ustunida suhbat bosqichi.</div>}
-  </div>} />;
-}
-
-// ============================================================
-//  10 · Oqim: SELECT → INSERT / UPDATE
-// ============================================================
-const S10 = mkS(10, [{ f: ['sel'] }, { f: ['ins'] }, { f: ['upd'] }, { f: ['sel', 'ins', 'upd'], sum: true }]);
-function Screen10(p) {
-  return <Lesson p={p} S={S10} scene={({ seg }) => <div style={{ display: 'grid', gap: 12 }}>
-    <div className={seg.sum ? 'j2-wide-only' : ''}><Ide root="bot-holat" files={BOT_FILES} active="bot.js"><CodePanel file="bot.js" wrap lines={BAZA_JS} focus={seg.sum ? [] : seg.f} /></Ide></div>
-    {seg.sum && <div className="pg-three">
-      <div className="mk-box" style={{ '--c': T.blue }}><h4>1 · SELECT</h4><p>holatni o'qish</p></div>
-      <div className="mk-box" style={{ '--c': T.yellow }}><h4>2 · INSERT</h4><p>faqat yangi mijozga</p></div>
-      <div className="mk-box" style={{ '--c': T.green }}><h4>3 · UPDATE</h4><p>yangi holat</p></div>
+const FLOW3A = [['sep', '1-jarayon'], ['u', '[Klaviatura] → [Kolonka] ×2 → telefon'], ['b', "Buyurtma #1 qabul qilindi! … Jami: 220 000 so'm", 'ok'], ['u', '/orders (admin) → [✅ Tasdiqlash]'], ['b', 'Buyurtmangiz #1: ✅ Tasdiqlangan'], ['u', '[Sichqoncha]'], ['b', "Sichqoncha savatga qo'shildi (1 ta)."]];
+const FLOW3B = [['sep', 'server qayta ishga tushdi'], ['u', '/cart'], ['b', "Savat bo'sh. /catalog dan mahsulot tanlang.", 'bad'], ['u', '/orders (admin)'], ['b', "Hozircha buyurtma yo'q.", 'bad'], ['sep', 'telefon so\'ralgan paytda restart'], ['u', '+998901234567'], ['b', 'Tushunmadim. /help ni bosing.', 'bad']];
+const LIST3 = ['mahsulot va ombor (stock)', 'foydalanuvchi va uning roli', 'telefon va state', 'savat', 'buyurtma'];
+const S3 = mkS(3, [{ v: 'a' }, { v: 'b' }, { v: 'map' }, { v: 'list' }]);
+function Screen3(p) {
+  return <Lesson p={p} S={S3} scene={({ seg }) => <>
+    {(seg.v === 'a' || seg.v === 'b') && <div className="pg-two">
+      <TgFlow title={t("1-jarayon", "1-й процесс")} items={FLOW3A} />
+      {seg.v === 'b' ? <TgFlow title="Restart" items={FLOW3B} /> : <div />}
     </div>}
-  </div>} />;
+    {seg.v === 'map' && <div className="pg-three">
+      <Card c={T.blue} h={t("Node jarayoni", "Процесс Node")}><p>{t("ishga tushadi → ", "запускается → ")}<code>new Map()</code>{t(" bo'sh", " пустой")}</p></Card>
+      <Card c={T.accent} h="RAM" hl><p>{t("Map, massiv — jarayon to'xtasa o'chadi", "Map, массив — остановился процесс, и они стёрты")}</p></Card>
+      <Card c={PG.pg} h={t("Disk (baza)", "Диск (база)")} dim><p>{t("hozir yo'q", "сейчас нет")}</p></Card>
+    </div>}
+    {seg.v === 'list' && <div className="mk-light" style={{ padding: 14 }}><div className="mk-tag">{t("Bazaga ko'chadigan beshta ma'lumot", "Пять данных, которые переезжают в базу")}</div>
+      <div className="mk-plan">{LIST3.map((x, i) => <div key={x} style={{ animation: `mk-up .4s ${i * 0.08}s ease both` }}><b>0{i + 1}</b><span>{x}</span></div>)}</div></div>}
+  </>} />;
 }
 
 // ============================================================
-//  11 · Qayta ishga tushgach — «Yana salom» (tgpg-out/05)
+//  4 · Tekshiruv 1 — restartdan keyin Kolonka (orderbot-out/12-k3-stock-restart.txt — ikki alohida jarayon)
 // ============================================================
-const S11 = mkS(11, [{ v: 'one' }, { v: 'two', f: ['a'] }, { v: 'two', f: ['j'] }, { v: 'two', f: ['a', 'j'], sum: true }]);
+const T4_AFTER = term(String.raw`
+$ node k3p.cjs tgpg-start 1
+jarayon 276989: Buyurtma #1 qabul qilindi! · Kolonka stock = 8
+$ node k3p.cjs tgpg-start 2
+jarayon 277003 (qayta ishga tushdi): Kolonka stock = 10`);
+function Screen4(p) {
+  return MC(p, 4, {
+    above: <div style={{ display: 'grid', gap: 8 }}><CodePanel file="catalog.service.ts" lines={kod('START_CAT', { 11: 'mi' }, 7, 14)} focus={['mi']} /><div className="mk-pair">{t("1-jarayon: Aziza [Kolonka] ×2 → «Buyurtma #1 qabul qilindi!» → qoldiq 8", "процесс 1: Азиза [Kolonka] ×2 → «Buyurtma #1 qabul qilindi!» → остаток 8")}</div></div>,
+    after: <Term title={t("terminal — ikki alohida jarayon", "терминал — два отдельных процесса")} lines={T4_AFTER} />,
+  });
+}
+
+// ============================================================
+//  5 · Amaliyot 1 — clone, ishga tushirish, restart
+// ============================================================
+const P5 = mkPractice(5, [[], [0, 1], [2, 3], []]);
+function ScreenP5(p) { return <Practice p={p} S={P5.S} steps={P5.steps} trouble={P5.trouble} proof={P5.proof} />; }
+
+// ============================================================
+//  6 · Reja: to'rt bosqich (orderbot-ai2 — oddiy prompt, 22 fayl / 1145 qator)
+// ============================================================
+const STAGES6 = [['1', 'Ulanish + katalog', 'TypeORM, migratsiya, products, seed'], ['2', 'Foydalanuvchi + state', 'users, BIGINT, WAITING_PHONE'], ['3', 'Savat', 'cart_items, UNIQUE, ON CONFLICT'], ['4', 'Buyurtma', 'orders, order_items, tranzaksiya']];
+const DIFF6 = ` src/db/database.module.ts               |  29 ++
+ src/db/migrations/1762000000000-Init.ts |  69 +++
+ 22 files changed, 1145 insertions(+), 210 deletions(-)`;
+const S6 = mkS(6, [{ v: 'st', hl: -1 }, { v: 'chk', hl: -1 }, { v: 'haiku' }, { v: 'st', hl: 'all' }]);
+function Screen6(p) {
+  return <Lesson p={p} S={S6} scene={({ seg }) => <>
+    <div className="pg-four">{STAGES6.map(([n, h, d], i) => <Card key={n} c={T.accent} h={`${n} · ${h}`} style={{ animation: `mk-up .4s ${i * 0.1}s ease both` }}><p>{d}</p>
+      {seg.v === 'chk' && <p style={{ marginTop: 6, color: T.green, fontFamily: MONO }}>✓ build · restart · psql → commit</p>}</Card>)}</div>
+    {seg.v === 'haiku' && <AiReply who={t("Oddiy prompt (2-tajriba)", "Обычный промпт (2-й опыт)")} prompt="Katalogni postgresqlga ko'chirib ber, TypeORM ishlat. .env da DATABASE_URL bor." said={<>{t("AI: «katalog va holat xotiradan PostgreSQL'ga ko'chirildi» — ", "AI: «каталог и состояние перенесены из памяти в PostgreSQL» — ")}<b>{t("hamma servis", "все сервисы")}</b>{t(" o'zgardi, chetga chiqqani alohida aytilmadi.", " изменены, выход за рамки отдельно не назван.")}</>} diff={DIFF6} hl />}
+    {seg.v === 'st' && seg.hl === 'all' && <div className="mk-rule">{t("Bitta prompt — ", "Один промпт — ")}<b>{t("bitta bosqich", "один этап")}</b>{t(". Tekshirmaguncha keyingisi yozilmaydi.", ". Пока не проверено, следующий не пишется.")}</div>}
+  </>} />;
+}
+
+// ============================================================
+//  7 · Besh qismli prompt (orderbot-ai/00-promptlar.md — Prompt 1, aynan)
+// ============================================================
+const PROMPT1 = [
+  ['1', "Bu NestJS + Telegraf loyihasi (Telegram buyurtma boti). Hozir katalog, savat, foydalanuvchilar va buyurtmalar xotirada (Map va array) — server qayta ishga tushsa hammasi yo'qoladi. Ularni PostgreSQL'ga bosqichma-bosqich ko'chiramiz.\n\n"],
+  ['2', "1-bosqich — faqat bazaga ulanish va katalog:\n"],
+  ['3', "- TypeORM ulang (@nestjs/typeorm, pg). Manzil .env dagi DATABASE_URL dan, src/config/index.ts orqali o'qilsin.\n- synchronize ishlatmang: jadvallar migratsiya bilan yaratilsin, server ko'tarilganda yurmagan migratsiya o'zi yursin.\n- products jadvali: id, name (takrorlanmas), price, stock; stock manfiy bo'lmasin — bazada CHECK.\n- Seed skript (npm run seed): hozirgi 6 mahsulotni kiritsin, ikkinchi marta yurganda takror qo'shmasin.\n- CatalogService bazadan o'qisin, sahifalash qolsin (2 tadan).\n"],
+  ['4', "- User, savat, buyurtma servislariga hali tegmang.\n\n"],
+  ['5', "Javobingizda: qaysi fayllar o'zgardi, qanday ishga tushirish va psql'da nimani tekshirish kerak."],
+];
+const PART7 = ['kontekst', 'maqsad', 'shartlar', 'chegara', 'javob'];
+const S7 = mkS(7, [{ on: ['1'] }, { on: ['2', '3'] }, { on: ['4', '5'] }, { on: [] }]);
+function Screen7(p) {
+  return <Lesson p={p} S={S7} scene={({ seg }) => <>
+    <div className="mk-light" style={{ padding: 12 }}><div className="mk-tag" style={{ display: 'flex', justifyContent: 'space-between' }}><span>{t("1-prompt — nusxalanadi (12-ekran)", "1-й промпт — копируется (экран 12)")}</span><CopyBtn text={PROMPT1.map((x) => x[1]).join('')} /></div>
+      <pre className="pr5">{PROMPT1.map(([k, tx]) => <span key={k} className={seg.on.includes(k) ? 'on' : seg.on.length ? 'dim' : ''}><i>{k} · {PART7[k - 1]}</i>{tx}</span>)}</pre></div>
+    {seg.on.length === 0 && <div className="mk-rule">{t("Har shart — keyin ", "Каждое условие — потом ")}<b>{t("tekshiriladigan bitta band", "один проверяемый пункт")}</b>: CHECK → <code>UPDATE … SET stock = -1</code>{t(" xato beradi; seed → ikkinchi marta 0 ta.", " даёт ошибку; seed → во второй раз 0.")}</div>}
+  </>} />;
+}
+
+// ============================================================
+//  8 · Tekshiruv 2 — qaysi prompt (orderbot-ai/p1, orderbot-ai2/p1)
+// ============================================================
+const DIFF8B = ` src/api/order/order.service.ts                     |  11 +-
+ src/api/telegram/telegram.service.ts               |  25 +-
+ (15 fayl, shundan package-lock.json 536 qator)`;
+function Screen8(p) {
+  return MC(p, 8, {
+    above: <div style={{ display: 'grid', gap: 10 }}>
+      <AiReply who="A · «Katalogni postgresqlga ko'chirib ber, TypeORM ishlat.»" said={t("«katalog va holat xotiradan PostgreSQL'ga ko'chirildi»", "«каталог и состояние перенесены из памяти в PostgreSQL»")} diff=" 22 files changed, 1145 insertions(+), 210 deletions(-)" />
+      <AiReply who={t("B · besh qismli prompt (faqat 1-bosqich, «tegmang»)", "B · промпт из пяти частей (только 1-й этап, «не трогай»)")} said={<>«<b>{t("Bitta chetga chiqish:", "Один выход за рамки:")}</b>{t(" order va telegram servislarida bir nechta qatorni o'zgartirdim… await qo'shilmasa, kod kompilyatsiyadan o'tmaydi.»", " в сервисах order и telegram я изменил несколько строк… если не добавить await, код не скомпилируется.»")}</>} diff=" 15 files changed, 721 insertions(+), 77 deletions(-)" />
+    </div>,
+    after: <Term title={t("B · git diff --stat (parcha)", "B · git diff --stat (фрагмент)")} lines={term(DIFF8B)} />,
+  });
+}
+
+// ============================================================
+//  9 · TypeORM ichida: entity → migratsiya → migrations (tgpg-done; orderbot-out/03; Mongoose — pg2-out/v2d-mongoose.txt)
+// ============================================================
+const T9 = psql(String.raw`
+shop=# \dt
+             List of tables
+ Schema |    Name     | Type  |  Owner
+--------+-------------+-------+----------
+ public | cart_items  | table | postgres
+ public | migrations  | table | postgres
+ public | order_items | table | postgres
+ public | orders      | table | postgres
+ public | products    | table | postgres
+ public | users       | table | postgres
+(6 rows)
+
+shop=# SELECT * FROM migrations;
+ id |   timestamp   |       name
+----+---------------+-------------------
+  1 | 1762200000000 | Init1762200000000
+(1 row)`, { 13: { id: 'm' }, 16: { id: 'm' } });
+const S9 = mkS(9, [{ v: 'ent' }, { v: 'mig' }, { v: 'tbl' }, { v: 'tbl', rule: true }]);
+function Screen9(p) {
+  return <Lesson p={p} S={S9} scene={({ seg }) => <>
+    {seg.v === 'ent' && <><Code k="DONE_PRODUCT" focus={['d']} ids={{ 4: 'd', 9: 'd', 12: 'd', 15: 'd' }} /><Pair code="new Schema({ _id: Number, name: String, price: Number, stock: Number })" res={t("migratsiya yo'q — shop bazasi birinchi create'da o'zi paydo bo'ldi", "миграции нет — база shop появилась сама при первом create")} /></>}
+    {seg.v === 'mig' && <><Code k="DONE_MIG" focus={['c']} ids={{ 13: 'c' }} active={F.mig} /><div className="mk-rule"><code>synchronize: false</code>{t(" — jadvalni faqat migratsiya o'zgartiradi · ", " — таблицу меняет только миграция · ")}<code>migrationsRun: true</code>{t(" — server ko'tarilganda yurmagani o'zi yuradi", " — при подъёме сервера незапущенная запускается сама")}</div></>}
+    {seg.v === 'tbl' && <Psql lines={T9} focus={seg.rule ? ['m'] : []} />}
+    {seg.rule && <div className="mk-rule">{t("Ustun qo'shish — ", "Добавить колонку — ")}<b>{t("yangi migratsiya fayli", "новый файл миграции")}</b>{t(". Yurgan migratsiyani tahrirlash foyda bermaydi: ", ". Править уже выполненную миграцию бесполезно: ")}<code>migrations</code>{t(" jadvalida u allaqachon bor.", " она уже есть в таблице.")}</div>}
+  </>} />;
+}
+
+// ============================================================
+//  10 · AI javobini o'qish (orderbot-ai/p1: 00-ai-javobi, diff-stat, 02-seed, 05-psql)
+// ============================================================
+const DIFF10 = ` .env.example                                       |   3 +
+ README.md                                          |  12 +-
+ package-lock.json                                  | 536 +++++++++++++++++++--
+ package.json                                       |  13 +-
+ src/api/app.module.ts                              |   4 +-
+ src/api/catalog/catalog.module.ts                  |   3 +
+ src/api/catalog/catalog.service.ts                 |  71 +--
+ src/api/catalog/product.entity.ts                  |  20 +
+ src/api/order/order.service.ts                     |  11 +-
+ src/api/telegram/telegram.service.ts               |  25 +-
+ src/config/index.ts                                |   2 +
+ src/database/data-source.ts                        |   6 +
+ .../migrations/1793733128247-CreateProducts.ts     |  23 +
+ src/database/seed.ts                               |  42 ++
+ src/database/typeorm.config.ts                     |  27 ++
+ 15 files changed, 721 insertions(+), 77 deletions(-)`;
+const DIFF10L = term(DIFF10, { 9: { id: 'x' }, 10: { id: 'x' } });
+const T10 = term(String.raw`
+$ npm run seed
+Seed: 6 ta mahsulot qo'shildi, 0 tasi bazada bor edi.
+$ npm run seed
+Seed: 0 ta mahsulot qo'shildi, 6 tasi bazada bor edi.
+$ psql -U postgres -d shop -c '\d products'
+    "UQ_products_name" UNIQUE CONSTRAINT, btree (name)
+    "CHK_products_stock" CHECK (stock >= 0)`);
+const S10 = mkS(10, [{ v: 'diff' }, { v: 'out' }, { v: 'run' }, { v: 'run' }]);
+function Screen10(p) {
+  return <Lesson p={p} S={S10} scene={({ seg }) => <>
+    {seg.v !== 'run' && <Term title={t("git diff --stat — 1-tajriba, 1-prompt", "git diff --stat — 1-й опыт, 1-й промпт")} lines={DIFF10L} focus={seg.v === 'out' ? ['x'] : []} />}
+    {seg.v === 'out' && <AiReply who={t("1-tajriba · 1-prompt", "1-й опыт · 1-й промпт")} said={<>«<b>{t("Bitta chetga chiqish (buni bilib qo'ying):", "Один выход за рамки (имейте в виду):")}</b>{t(" order va telegram servislarida bir nechta qatorni o'zgartirdim. Bazaga so'rov asinxron, shuning uchun CatalogService metodlari endi Promise qaytaradi…»", " в сервисах order и telegram я изменил несколько строк. Запрос к базе асинхронный, поэтому методы CatalogService теперь возвращают Promise…»")}</>} hl />}
+    {seg.v === 'run' && <Term title={t("terminal — o'zingiz yurgizasiz", "терминал — запускаете сами")} lines={T10} />}
+  </>} />;
+}
+
+// ============================================================
+//  11 · Oraliq vaziyat (orderbot-ai/p1: 04-senariy, 05-psql)
+// ============================================================
+const T11 = psql(String.raw`
+shop=# SELECT * FROM products ORDER BY id;
+ id |    name    | price  | stock
+----+------------+--------+-------
+  1 | Klaviatura | 120000 |     7
+  2 | Sichqoncha |  75000 |    15
+  3 | Quloqchin  |  95000 |     5
+  4 | Kolonka    |  50000 |     8
+  5 | Planshet   | 300000 |     3
+  6 | O'yinchoq  |  30000 |     4
+(6 rows)`, { 4: { id: 'k' }, 7: { id: 'k' } });
+const FLOW11A = [['sep', '1-bosqichdan keyin'], ['u', '[Klaviatura] → [Kolonka] ×2 → telefon'], ['b', "Buyurtma #1 qabul qilindi! … Jami: 220 000 so'm"]];
+const FLOW11B = [['sep', 'server qayta ishga tushdi'], ['u', '/orders (admin)'], ['b', "Hozircha buyurtma yo'q.", 'bad']];
+const S11 = mkS(11, [{ v: 'a' }, { v: 'b' }, { v: 'c' }, { v: 'c' }]);
 function Screen11(p) {
-  return <Lesson p={p} S={S11} scene={({ seg }) => <div className="pg-two">
-    <div className={seg.sum ? 'j2-wide-only' : ''}><Term lines={seg.v === 'one' ? OUT05.slice(0, 7) : OUT05} focus={seg.sum ? [] : (seg.f || [])} /></div>
-    <div style={{ display: 'grid', gap: 10, alignContent: 'start' }}>
-      {seg.v === 'two' && <TgChat title="Aziza" items={[['u', '/start'], ['b', 'Ismingiz nima?'], ['u', 'Aziza'], ['b', 'Tanishganimdan xursandman, Aziza!'], ['sep', 'bot qayta ishga tushirildi'], ['u', '/start'], ['b', 'Yana salom, Aziza!', 'ok']]} />}
-      {seg.sum && <><Psql lines={PSQL05} focus={['r']} /><div className="mk-rule">Holat bazada — qayta ishga tushirish ham, ikki mijoz ham <b>muammo emas</b>.</div></>}
-    </div>
-  </div>} />;
+  return <Lesson p={p} S={S11} scene={({ seg }) => <>
+    {seg.v !== 'c' && <div className="pg-two"><TgFlow title={t("buyurtma — xotirada", "заказ — в памяти")} items={FLOW11A} />{seg.v === 'b' && <TgFlow title="restart" items={FLOW11B} />}</div>}
+    {seg.v === 'b' && <Psql lines={T11} focus={['k']} />}
+    {seg.v === 'c' && <div className="pg-two"><Card c={PG.pg} h={t("ombor → bazaga yozildi", "склад → записан в базу")}><p>Klaviatura 8 → 7 · Kolonka 10 → 8</p></Card><Card c={T.accent} h={t("buyurtma → xotirada edi", "заказ → был в памяти")} hl><p>{t("restart o'chirdi — kim olgani noma'lum", "стёр перезапуск — кто взял, неизвестно")}</p></Card></div>}
+  </>} />;
 }
 
 // ============================================================
-//  12 · Amaliyot 1 — bot eslab qolsin
+//  12 · Amaliyot 2 — 1-prompt o'z AI'ingiz bilan
 // ============================================================
-const P1 = mkS(12, [{ hl: [] }, { hl: [0, 1] }, { hl: [2, 3] }, { hl: [] }], { tableAt: 3 });
-const P1_STEPS = [
-  { t: "Jadval — PostgreSQL terminalida botdb va users (9-ekran)", cmds: ['psql -U postgres', 'CREATE DATABASE botdb;', '\\c botdb'], exp: 'CREATE TABLE' },
-  { t: 'Bot — yangi papka, paketlar, bot.js', cmds: ['mkdir bot-holat && cd bot-holat', 'npm init -y', 'npm i telegraf pg'], exp: 'fayl saqlandi' },
-  { t: 'Ism — botni yoqing, Telegram: /start → ismingiz', cmds: ['BOT_TOKEN=… DATABASE_URL=postgresql://postgres:<parol>@localhost:5432/botdb node bot.js'], exp: '«Tanishganimdan xursandman, …!»' },
-  { t: 'Qayta ishga — Ctrl+C, xuddi shu buyruq, /start', cmds: [], exp: '«Yana salom, …!»' },
-];
-const P1_CODE = [{ file: 'jadval.sql', step: 0, lines: USERS_SQL, copy: true }, { file: 'bot.js', step: 1, lines: BAZA_JS, copy: false }];
-const P1_TROUBLE = [
-  ['password authentication failed for user "postgres"', "DATABASE_URL dagi parol — PostgreSQL-1 da o'rnatgan parolingiz"],
-  ['relation "users" does not exist', "jadval boshqa bazada — \\c botdb dan keyin yarating"],
-  ['Bot javob bermaydi, terminalda 401: Unauthorized', "token noto'g'ri nusxalangan (19-ekran)"],
-  ['Qayta ishga tushgach yana «Ismingiz nima?»', "ism UPDATE bo'lmagan — holat ISM_KUTYAPMAN da qolgan; SELECT * FROM users;"],
-];
-const P1_PROOF = { label: '4-qadamdagi bot javobi', placeholder: 'botning javobini yozing', check: (v) => /Yana salom, .+!/i.test(v), wrong: "Qayta ishga tushirilgandan keyin /start bosing — bot ismingiz bilan salomlashadi; o'sha gapni yozing" };
-function ScreenP1(p) { return <Practice p={p} S={P1} steps={P1_STEPS} trouble={P1_TROUBLE} proof={P1_PROOF} code={P1_CODE} tree={tree(BOT_FILES, ['jadval.sql'])} />; }
+const P12 = mkPractice(12, [[], [0, 1], [2, 3], []]);
+function ScreenP12(p) { return <Practice p={p} S={P12.S} steps={P12.steps} trouble={P12.trouble} proof={P12.proof} />; }
+
 // ============================================================
-//  Buzamiz chiqishlari (tgpg-out/06, 07, 08) va o'quvchi reposi (TelegramBotNest dars-04-done — 10…13)
+//  13 · BIGINT: Telegram id va matn (orderbot-out/05; tgpg-out/07, 14; orderbot-ai/p2; 12-k5 Mongoose)
 // ============================================================
-const OUT06 = psql(String.raw`
-botdb=# CREATE TABLE users_int (id SERIAL PRIMARY KEY, telegram_id INTEGER);
-CREATE TABLE
-botdb=# INSERT INTO users_int (telegram_id) VALUES (5123456789);
-ERROR:  integer out of range`, { 4: { id: 'x' } });
-const OUT06_OK = psql(String.raw`
-botdb=# INSERT INTO users (telegram_id, holat) VALUES (5123456789, 'ISM_KUTYAPMAN');
-INSERT 0 1`);
-const BIGINT_JS = js(String.raw`
-const { rows } = await pool.query('SELECT telegram_id FROM users WHERE telegram_id = $1', [5123456789]);
-const v = rows[0].telegram_id;
-console.log('rows[0].telegram_id =', JSON.stringify(v), '· typeof:', typeof v);
-console.log('v === 5123456789 →', v === 5123456789);
-console.log('Number(v) === 5123456789 →', Number(v) === 5123456789);`, { 4: { id: 'x' }, 5: { id: 'ok' } });
-const OUT07 = jt(String.raw`
-$ node bigint.js
+const T13A = psql(String.raw`
+shop=# SELECT telegram_id, pg_typeof(telegram_id), telegram_id > 2147483647 AS int4_sigmaydi FROM users;
+ telegram_id | pg_typeof | int4_sigmaydi
+-------------+-----------+---------------
+         111 | bigint    | f
+  5123456789 | bigint    | t
+(2 rows)`, { 6: { id: 'a' } });
+const T13B = term(String.raw`
+$ node bigint.js          # node-pg
 rows[0].telegram_id = "5123456789" · typeof: string
 v === 5123456789 → false
-Number(v) === 5123456789 → true`, { 2: { id: 's' }, 3: { id: 'x' }, 4: { id: 'ok' } });
-const OUT08 = psql(String.raw`
-botdb=# INSERT INTO users (telegram_id, holat) VALUES (5123456789, 'ISM_KUTYAPMAN');
-ERROR:  duplicate key value violates unique constraint "users_telegram_id_key"
-DETAIL:  Key (telegram_id)=(5123456789) already exists.`, { 2: { id: 'x' }, 3: { id: 'd' } });
-const START_INSERT = js(String.raw`
-bot.start(async (ctx) => {
-  await pool.query('INSERT INTO users (telegram_id, holat) VALUES ($1, $2)', [ctx.chat.id, 'ISM_KUTYAPMAN']);
-  return ctx.reply('Ismingiz nima?');
-});`, { 2: { id: 'x' } });
-const ENTITY_TS = ts(String.raw`
-import { Column, Entity } from 'typeorm';
-import { BaseEntity } from './base.entity';
-
-// 4-dars: users jadvali — kim yozdi, ismi nima, suhbat qaysi holatda
-@Entity('users')
-export class User extends BaseEntity {
-  @Column({ name: 'telegram_id', type: 'bigint', unique: true })
-  telegram_id: string;
-
-  @Column({ type: 'varchar', nullable: true })
-  ism: string | null;
-
-  @Column({ type: 'varchar', default: 'yangi' })
-  holat: string; // 'yangi' → 'ism_kutilmoqda' → 'tayyor'
-}`, { 7: { id: 'tg' }, 8: { id: 'tg' }, 13: { id: 'h' }, 14: { id: 'h' } });
-const USVC_TS = ts(String.raw`
-  // Bor bo'lsa topadi, bo'lmasa yangi qator ochadi
-  async topOrYarat(telegramId: number): Promise<User> {
-    const id = String(telegramId);
-    const bor = await this.repo.findOne({ where: { telegram_id: id } });
-    if (bor) return bor;
-    return this.repo.save(this.repo.create({ telegram_id: id }));
-  }
-
-  async ismQoy(user: User, ism: string): Promise<User> {
-    user.ism = ism;
-    user.holat = 'tayyor';
-    return this.repo.save(user);
-  }`, { 3: { id: 's' }, 4: { id: 'sel' }, 5: { id: 'sel' }, 6: { id: 'ins' }, 9: { id: 'upd' }, 10: { id: 'upd' }, 11: { id: 'upd' }, 12: { id: 'upd' } });
-USVC_TS.forEach((l, i) => { l.n = i < 7 ? 12 + i : 24 + (i - 7); }); // fayldagi raqamlar: topOrYarat 12–18, (holatQoy 20–23 tushirilgan), ismQoy 25–29
-const TGSVC_TS = ts(String.raw`
-    this.bot.start(async (ctx) => {
-      const user = await this.users.topOrYarat(ctx.from.id);
-      if (user.ism) {
-        await ctx.reply(` + '`Yana salom, ${user.ism}! Menyu uchun /menu ni bosing.`' + String.raw`);
-        return;
-      }
-      await this.users.holatQoy(user, 'ism_kutilmoqda');
-      await ctx.reply('Salom! Ismingiz nima?');
-    });
-    ...
-    this.bot.on('text', async (ctx) => {
-      const user = await this.users.topOrYarat(ctx.from.id);
-      if (user.holat === 'ism_kutilmoqda') {
-        await this.users.ismQoy(user, ctx.message.text.trim());`, { 2: { id: 'h' }, 3: { id: 'h' }, 12: { id: 'h' }, 13: { id: 'h' } });
-const OUT12 = jt(String.raw`
-$ node sinov-nest.js   # dars-04-done kodi, haqiqiy PostgreSQL, Telegram serverisiz
-# 1-ishga tushirish
-Telegram bot ulandi
-Aziza (5123456789): /start
-  bot → 5123456789: Salom! Ismingiz nima?
-Aziza (5123456789): Aziza
-  bot → 5123456789: Xush kelibsiz, Aziza! Endi sizni eslab qolaman.
-Jasur (6234567890): /start
-  bot → 6234567890: Salom! Ismingiz nima?
-# bot to'xtatildi (app.close) va qayta ishga tushirildi
-Telegram bot ulandi
-Aziza (5123456789): /start
-  bot → 5123456789: Yana salom, Aziza! Menyu uchun /menu ni bosing.
-Jasur (6234567890): Jasur
-  bot → 6234567890: Xush kelibsiz, Jasur! Endi sizni eslab qolaman.`, { 13: { id: 'a' }, 15: { id: 'j' } });
-const PSQL12 = psql(String.raw`
-botnest=# \d users
-   Column    |            Type             | Collation | Nullable |          Default
--------------+-----------------------------+-----------+----------+----------------------------
- id          | uuid                        |           | not null | uuid_generate_v4()
- created_at  | timestamp without time zone |           | not null | now()
- updated_at  | timestamp without time zone |           | not null | now()
- telegram_id | bigint                      |           | not null |
- ism         | character varying           |           |          |
- holat       | character varying           |           | not null | 'yangi'::character varying
-    "UQ_1a1e4649fd31ea6ec6b025c7bfc" UNIQUE CONSTRAINT, btree (telegram_id)
-botnest=# SELECT telegram_id, ism, holat FROM users;
- telegram_id |  ism  | holat
--------------+-------+--------
-  5123456789 | Aziza | tayyor
-  6234567890 | Jasur | tayyor
-(2 rows)`, { 7: { id: 't' }, 10: { id: 't' }, 14: { id: 'r' }, 15: { id: 'r' } });
-const OUT13 = jt(String.raw`
-$ npm run start   # BOT_TOKEN=123:SOXTA, DATABASE_URL — lokal PostgreSQL
-Server 3000-portda ishlayapti
-Telegram ulanmadi: 401: Unauthorized — README, «Xatolar» jadvali`, { 2: { id: 's' }, 3: { id: 'x' } });
-const OUT11 = jt(String.raw`
-$ npm run start   # .env yo'q
-…/dist/infrastructure/database.module.js:14
-    throw new Error('DATABASE_URL topilmadi. .env ga Neon bergan URL ni yozing (README, 4-dars).');
-Error: DATABASE_URL topilmadi. .env ga Neon bergan URL ni yozing (README, 4-dars).`, { 4: { id: 'x' } });
-
-// ============================================================
-//  13 · INTEGER sig'maydi (tgpg-out/06)
-// ============================================================
-const S13 = mkS(13, [{ v: 'sql' }, { v: 'err' }, { v: 'err', small: true }, { v: 'fix', sum: true }]);
+Number(v) === 5123456789 → true
+$ node sinov-typeorm.js   # TypeORM
+user.telegram_id = "5123456789" · typeof: string`);
+const S13 = mkS(13, [{ v: 'a' }, { v: 'b' }, { v: 'c' }, { v: 'd' }]);
 function Screen13(p) {
-  return <Lesson p={p} S={S13} scene={({ seg }) => <div style={{ display: 'grid', gap: 12 }}>
-    <Psql er={seg.v !== 'sql' && seg.v !== 'fix'} lines={seg.v === 'sql' ? OUT06.slice(0, 2) : OUT06} focus={seg.v === 'err' ? ['x'] : []} />
-    {seg.small && <div className="pg-two">
-      <div className="mk-box" style={{ '--c': T.green }}><h4>INTEGER</h4><p>eng katta: 2 147 483 647</p></div>
-      <div className="mk-box" style={{ '--c': T.accent }}><h4>Mijoz raqami</h4><p>5 123 456 789 — sig'maydi</p></div>
+  return <Lesson p={p} S={S13} scene={({ seg }) => <>
+    {seg.v === 'a' && <Psql lines={T13A} focus={['a']} />}
+    {seg.v !== 'a' && seg.v !== 'c' && <><Term lines={T13B} /><Pair code="User.create({ telegramId: 5123456789 })" res="typeof: number · === 5123456789 → true" /></>}
+    {seg.v === 'c' && <div className="pg-two">
+      <Card c={T.green} h={t("1 · tur — string (tgpg-done)", "1 · тип — string (tgpg-done)")}><p><code>telegram_id: string</code>{t(" · solishtirish ", " · сравнение ")}<code>String(ctx.from.id)</code>{t(" bilan", " через")}</p></Card>
+      <Card c={PG.ai} h="2 · transformer → number (AI)"><p>{t("bazadan kelganda ", "из базы — ")}<code>Number(v)</code>{t("; Telegram id 52 bitdan oshmaydi", "; Telegram id не больше 52 бит")}</p></Card>
     </div>}
-    {seg.v === 'fix' && <><div className="mk-tag" style={{ color: T.green, margin: 0 }}>Tuzatildi — BIGINT ustunli users jadvali (9-ekran)</div><Psql lines={OUT06_OK} /><div className="mk-rule"><code>telegram_id</code> — doim <b>BIGINT</b>.</div></>}
-  </div>} />;
+    {seg.v === 'c' && <Code k="DONE_USER" from={16} to={19} focus={['t']} ids={{ 18: 't', 19: 't' }} />}
+    {seg.v === 'd' && <div className="mk-rule">{t("Diffda ikki joy: migratsiyada ", "В diff два места: в миграции ")}<b>BIGINT</b>{t("mi · entity'da qaysi tur va qayerda ", "ли · какой тип в entity и где ")}<code>===</code>{t(" bilan solishtirilgan.", " сравнивается.")}</div>}
+  </>} />;
 }
 
 // ============================================================
-//  14 · BIGINT matn bo'lib keladi (tgpg-out/07)
+//  14 · ON CONFLICT — ikki marta bosish (orderbot-out/07, 12-k6; 12-k5 Mongoose)
 // ============================================================
-const S14 = mkS(14, [{ v: 'code', f: [] }, { v: 'out', f: ['s', 'x'] }, { v: 'repo' }, { v: 'fix', f: ['ok'], sum: true }]);
+const T14 = term(String.raw`
+# avval SELECT, keyin INSERT — UNIQUE yo'q, 20 urinish × 2 parallel bosish:
+1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+2 qator chiqqan urinishlar: 19/20
+# UNIQUE (user_id, product_id) bor:
+ok
+ERROR: duplicate key value violates unique constraint "c2_user_id_product_id_key"
+# INSERT … ON CONFLICT … DO UPDATE SET qty = qty + 1 (2 parallel):
+RETURNING qty: 1, 2
+[{"user_id":1,"product_id":2,"qty":2}]`, mergeMeta(rng(1, 6, { at: 1 }), rng(7, 9, { at: 2 }), { 3: { id: 'n' }, 6: { id: 'u' }, 8: { id: 'o' }, 9: { id: 'o' } }));
+const S14 = mkS(14, [{ v: 'code', f: ['u'] }, { v: 'race', f: ['n', 'u'] }, { v: 'oc', f: ['o'] }, { v: 'code', f: [] }]);
 function Screen14(p) {
-  return <Lesson p={p} S={S14} scene={({ seg }) => <div className="pg-two">
-    <div style={{ display: 'grid', gap: 10, alignContent: 'start' }}>
-      {seg.v === 'repo' ? <Ide root="TelegramBotNest" files={REPO_FILES} active={RF.ent}><CodePanel file={RF.ent} wrap lines={ENTITY_TS} focus={['tg']} /></Ide>
-        : <Ide root="bot-holat" files={tree(BOT_FILES, ['bigint.js'])} active="bigint.js"><CodePanel file="bigint.js" wrap lines={BIGINT_JS} focus={seg.v === 'fix' ? ['ok'] : ['x']} /></Ide>}
-    </div>
-    <div style={{ display: 'grid', gap: 10, alignContent: 'start' }}>
-      {seg.v !== 'code' && seg.v !== 'repo' && <Term er={seg.v === 'out'} lines={OUT07} focus={seg.f} />}
-      {seg.v === 'repo' && <Ide root="TelegramBotNest" files={REPO_FILES} active={RF.usv}><CodePanel file={RF.usv} wrap lines={USVC_TS} focus={['s']} /></Ide>}
-      {seg.sum && <div className="mk-rule">Bazadagi <code>telegram_id</code> — <b>matn</b>; solishtirishdan oldin <code>Number()</code> yoki <code>String()</code>.</div>}
-    </div>
-  </div>} />;
+  return <Lesson p={p} S={S14} scene={({ seg, beat }) => <>
+    {seg.v === 'code' && <Code k="DONE_CART" from={19} to={28} focus={['q']} ids={{ 22: 'q', 23: 'q', 24: 'q' }} active={F.cart} />}
+    {seg.v !== 'code' && <Term title={t("terminal — haqiqiy parallel sinov", "терминал — настоящая параллельная проверка")} lines={upto(T14, beat)} beat={beat} focus={seg.f} />}
+    {seg.v === 'oc' && <Pair code="findOneAndUpdate(…, { $inc: { qty: 1 } }, { upsert: true })" res={t("unique index'siz bir vaqtda — 2 hujjat · index bilan — 1", "без unique index одновременно — 2 документа · с index — 1")} />}
+    {seg.v === 'code' && seg.f.length === 0 && <div className="mk-rule">{t("«Avval qidirib, keyin qo'shish» ko'rsangiz: jadvalda ", "Видите «сначала найти, потом добавить»: есть ли в таблице ")}<b>UNIQUE</b>{t(" bormi va so'rov ", " и идёт ли запрос через ")}<b>ON CONFLICT</b>{t(" bilanmi.", " ?")}</div>}
+  </>} />;
 }
 
 // ============================================================
-//  15 · SELECT'siz takror INSERT (tgpg-out/08)
+//  15 · State bazada (orderbot-ai/p2, p3 04b-state-restart; 12-k3-state-psql)
 // ============================================================
-const S15 = mkS(15, [{ v: 'code' }, { v: 'err', f: ['x'] }, { v: 'err', f: ['d'] }, { v: 'fix', sum: true }]);
+const FLOW15 = [['u', '/start → [Sichqoncha] → [✅ Buyurtma berish]'], ['b', 'Buyurtma uchun telefon raqamingizni yozing (masalan, +998901234567):'], ['sep', 'server qayta ishga tushdi'], ['u', '+998935554433'], ['b', "Buyurtma #1 qabul qilindi!\n• Sichqoncha × 1 = 75 000 so'm", 'ok']];
+const FLOW15B = [['sep', '2-bosqichdan keyin (savat hali xotirada)'], ['u', '+998935554433'], ['b', "Buyurtma berilmadi: Savat bo'sh", 'bad']];
+const T15 = psql(String.raw`
+shop=# SELECT telegram_id, name, phone, state FROM users;
+ telegram_id | name  | phone |     state
+-------------+-------+-------+---------------
+  5123456789 | Aziza |       | WAITING_PHONE
+(1 row)`, { 4: { id: 's' } });
+const S15 = mkS(15, [{ v: 'a' }, { v: 'b' }, { v: 'c' }, { v: 'b' }]);
 function Screen15(p) {
-  return <Lesson p={p} S={S15} scene={({ seg }) => <div className="pg-two">
-    <div className={seg.sum ? 'j2-wide-only' : ''}><Ide root="bot-holat" files={BOT_FILES} active="bot.js"><CodePanel file="bot.js" wrap lines={seg.v === 'fix' ? BAZA_JS.slice(5, 13) : START_INSERT} focus={seg.v === 'fix' ? [] : ['x']} /></Ide></div>
-    <div style={{ display: 'grid', gap: 10, alignContent: 'start' }}>
-      {seg.v === 'err' && <Psql er lines={OUT08} focus={seg.f} />}
-      {seg.v === 'fix' && <><div className="mk-tag" style={{ color: T.green, margin: 0 }}>Tuzatildi — avval SELECT (10-ekran): ikkinchi /start</div><Term lines={OUT05.slice(10, 12)} focus={['a']} /><div className="mk-rule">Avval <b>SELECT</b> — qator topilsa INSERT qilinmaydi.</div></>}
-    </div>
-  </div>} />;
+  return <Lesson p={p} S={S15} scene={({ seg }) => <>
+    {seg.v === 'a' && <><Code k="DONE_USER" from={30} to={32} focus={['s']} ids={{ 31: 's', 32: 's' }} /><Psql title={t("psql — telefon so'ralgan payt", "psql — момент запроса телефона")} lines={T15} focus={['s']} /></>}
+    {seg.v === 'b' && <TgFlow title={t("Bobur — 3-bosqichdan keyin", "Бобур — после 3-го этапа")} items={FLOW15} />}
+    {seg.v === 'c' && <div className="pg-two"><TgFlow title={t("2-bosqichdan keyin", "после 2-го этапа")} items={FLOW15B} /><TgFlow title={t("3-bosqichdan keyin", "после 3-го этапа")} items={FLOW15.slice(2)} /></div>}
+  </>} />;
 }
 
 // ============================================================
-//  16 · Tekshiruv 3 — LineCheck (3-satr = 2)
+//  16 · Tekshiruv 3 — xom so'rov va "111" (orderbot-out/12-k7-tenglik.txt)
 // ============================================================
-const LC16 = sql(String.raw`
-CREATE TABLE users (
-  id SERIAL PRIMARY KEY,
-  telegram_id INTEGER NOT NULL UNIQUE,
-  ism TEXT,
-  holat TEXT
-);`);
-const LC16_FIXED = LC16.map((l, i) => ({ ...l, n: i + 1, ...(i === 2 ? { gone: true } : {}) }));
-LC16_FIXED.splice(3, 0, { h: sqlLine('  telegram_id BIGINT NOT NULL UNIQUE,'), n: 3, neu: true });
+const C16 = ts(String.raw`
+this.bot.command('orders', async (ctx) => {
+  await this.users.getOrCreate(ctx.from);
+  // raw = this.ds.query — natija turi any
+  const rows = await this.orders.raw(
+    'SELECT telegram_id FROM users WHERE telegram_id = $1',
+    [ctx.from.id],
+  );
+  if (rows[0].telegram_id !== 111) return ctx.reply(texts.adminOnly);`, { 8: { id: 'x' } });
+const T16 = term(String.raw`
+$ npx tsc --noEmit
+(tsc: xato yo'q)`);
+const T16_AFTER = term(String.raw`
+Jasur (id 111, ADMIN_TELEGRAM_IDS=111): /orders → bot: Bu buyruq faqat admin uchun.
+$ node bigint.js
+v === 5123456789 → false
+Number(v) === 5123456789 → true`);
 function Screen16(p) {
-  const m = MDT[16];
-  return <LineCheck {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} task={m.task} q={m.q} file="jadval.sql" lines={LC16} target={2}
-    tree={{ root: 'bot-holat', files: tree(BOT_FILES, ['jadval.sql']), active: 'jadval.sql' }}
-    fixed={LC16_FIXED} fixedExtra={[{ file: 'psql — botdb (haqiqiy, BIGINT jadval)', lines: OUT06_OK }]}
+  return MC(p, 16, {
+    above: <div style={{ display: 'grid', gap: 8 }}><CodePanel file="telegram.service.ts" lines={C16} focus={['x']} /><Term lines={T16} /></div>,
+    after: <Term title={t("terminal — haqiqiy natija", "терминал — настоящий результат")} lines={T16_AFTER} />,
+  });
+}
+
+// ============================================================
+//  17 · Amaliyot 3 — 2- va 3-prompt
+// ============================================================
+const P17 = mkPractice(17, [[], [0, 1], [2, 3], []]);
+function ScreenP17(p) { return <Practice p={p} S={P17.S} steps={P17.steps} trouble={P17.trouble} proof={P17.proof} />; }
+
+// ============================================================
+//  18 · Buyurtma — bitta tranzaksiya (orderbot-out/07-sql-log 33–41; 12-k8-trigger-rollback)
+// ============================================================
+const T18 = term(String.raw`
+query: START TRANSACTION
+query: SELECT … FROM "products" "Product" WHERE (("Product"."id" = $1)) LIMIT 1 FOR UPDATE -- PARAMETERS: [2]
+query: UPDATE products SET stock = stock - $1 WHERE id = $2 -- PARAMETERS: [1,2]
+query: SELECT … FROM "products" "Product" WHERE (("Product"."id" = $1)) LIMIT 1 FOR UPDATE -- PARAMETERS: [1]
+query: UPDATE products SET stock = stock - $1 WHERE id = $2 -- PARAMETERS: [1,1]
+query: INSERT INTO "orders"("phone", "total", "status", "created_at", "user_id") VALUES (…) RETURNING "id", "status", "created_at"
+query: INSERT INTO "order_items"("qty", "price", "order_id", "product_id") VALUES (…), (…) RETURNING "id"
+query: DELETE FROM "cart_items" WHERE "user_id" = $1 -- PARAMETERS: [2]
+query: COMMIT`, { 1: { id: 'tx' }, 9: { id: 'tx' } });
+const T18B = term(String.raw`
+oldin  · products Klaviatura 8, Kolonka 10 · orders 0 · cart_items 2
+query failed: INSERT INTO "order_items"(…) VALUES (…)
+error: error: SINOV: order_items yozilmadi
+bot: Buyurtma berilmadi: SINOV: order_items yozilmadi
+keyin  · products Klaviatura 8, Kolonka 10 · orders 0 · cart_items 2`);
+const S18 = mkS(18, [{ v: 'jad' }, { v: 'log' }, { v: 'rb' }, { v: 'log', f: ['tx'] }]);
+function Screen18(p) {
+  return <Lesson p={p} S={S18} scene={({ seg }) => <>
+    {seg.v === 'jad' && <div className="pg-three"><Card c={PG.pg} h="products"><p>{t("ombordan ayirish · ", "списание со склада · ")}<code>UPDATE</code></p></Card><Card c={T.green} h="orders + order_items"><p>{t("buyurtma · ", "заказ · ")}<code>INSERT</code></p></Card><Card c={T.yellow} h="cart_items"><p>{t("savatni tozalash · ", "очистка корзины · ")}<code>DELETE</code></p></Card></div>}
+    {seg.v === 'jad' && <Code k="DONE_PLACE" from={24} to={29} />}
+    {seg.v === 'log' && <Term title={t("DB_LOGGING=true — SQL log (SELECT ustunlari qisqartirilgan)", "DB_LOGGING=true — SQL-лог (колонки SELECT сокращены)")} lines={T18} focus={seg.f || []} />}
+    {seg.v === 'rb' && <Term title={t("terminal — trigger bilan ataylab xato", "терминал — нарочная ошибка через trigger")} lines={T18B} />}
+  </>} />;
+}
+
+// ============================================================
+//  19 · Ikki mijoz, bitta Planshet: qulf (orderbot-out/08, 10-smoke-tgpg-done; orderbot-ai/p4/04c)
+// ============================================================
+const FLOW19 = [['sep', 'omborda 1 ta Planshet'], ['u', 'Aziza: [✅ Buyurtma berish]   ·   Bobur: [✅ Buyurtma berish]'], ['b', 'Aziza ← Buyurtma #4 qabul qilindi!', 'ok'], ['b', 'Bobur ← Buyurtma berilmadi: Planshet: omborda faqat 0 ta qoldi', 'bad'], ['sep', 'ombor 0 · Boburning savati saqlandi']];
+function Race19({ step }) {
+  return <div className="mk-light" style={{ padding: 14 }}><div className="mk-tag">{t("Bitta qator, ikki tranzaksiya", "Одна строка, две транзакции")}</div>
+    <div className="race">
+      <div className="tx"><div className={step >= 1 ? 'ok' : ''}>{t("A: qatorni qulfladi", "A: заблокировала строку")}</div><div className={step >= 2 ? 'ok' : ''}>A: stock 1 → 0 · COMMIT</div></div>
+      <div className="row">Planshet<br />stock {step >= 2 ? 0 : 1}</div>
+      <div className="tx"><div className={step >= 1 ? 'w' : ''}>{t("B: kutadi…", "B: ждёт…")}</div><div className={step >= 2 ? 'bad' : ''}>{t("B: stock 0 — rad etildi · ROLLBACK", "B: stock 0 — отклонено · ROLLBACK")}</div></div>
+    </div></div>;
+}
+const T19 = term(String.raw`
+$ npm run smoke -- race
+  ✓ ortiqcha sotilmadi (sotildi/ombor): 1/0  1/0  1/0
+  ✓ ikki marta bir vaqtda bekor — ombor bir marta qaytdi: 0 → 1`);
+const S19 = mkS(19, [{ step: 0 }, { step: 1 }, { step: 2, flow: true }, { step: 2, smoke: true }]);
+function Screen19(p) {
+  return <Lesson p={p} S={S19} scene={({ seg }) => <>
+    <Race19 step={seg.step} />
+    {seg.flow && <TgFlow title={t("ikki mijoz bir vaqtda", "два клиента одновременно")} items={FLOW19} src="npm run smoke -- race" />}
+    {seg.smoke && <Term lines={T19} />}
+  </>} />;
+}
+
+// ============================================================
+//  20 · Buzamiz: qulfsiz o'qib yozish (manba/orderbot-buzuq-order.service.ts; orderbot-out/09, 10-smoke-buzuq)
+// ============================================================
+const T20 = term(String.raw`
+# 5 xaridor, 1 ta Planshet, bir vaqtda checkout — 5 raund
+buzuq (findOneBy → if → save):  sotildi/ombor  1/0  5/0  5/0  5/0  5/0
+$ npm run smoke -- race
+  ✗ ortiqcha sotilmadi (sotildi/ombor): 4/0  5/0  5/0`, { 2: { id: 'b' } });
+const T20_OK = term(String.raw`
+tgpg-done (lock: pessimistic_write):  sotildi/ombor  1/0  1/0  1/0  1/0  1/0
+$ npm run smoke -- race
+  ✓ ortiqcha sotilmadi (sotildi/ombor): 1/0  1/0  1/0`);
+const S20 = mkS(20, [{ v: 'code' }, { v: 'race' }, { v: 'race', chk: true }, { v: 'fix' }]);
+function Screen20(p) {
+  return <Lesson p={p} S={S20} scene={({ seg }) => <>
+    {seg.v === 'code' && <Code k="BUZUQ" focus={['r', 'w']} ids={{ 31: 'r', 36: 'w', 37: 'w' }} />}
+    {seg.v === 'race' && <CodePanel file="order.service.ts" lines={kod('BUZUQ', { 31: 'r', 36: 'w', 37: 'w' }, 31, 37)} focus={seg.chk ? [] : ['r']} />}
+    {seg.v === 'race' && <Term title={t("terminal — haqiqiy parallel sinov", "терминал — настоящая параллельная проверка")} lines={T20} focus={['b']} />}
+    {seg.chk && <div className="n2-warn">{t("Har tranzaksiya ", "Каждая транзакция ")}<b>0</b>{t(" yozdi — ", " записала — ")}<code>CHECK (stock &gt;= 0)</code>{t(" uchun 0 ruxsat etilgan: xato xabari yo'q, faqat ortiqcha buyurtmalar.", " 0 разрешён: сообщения об ошибке нет, только лишние заказы.")}</div>}
+    {seg.v === 'fix' && <><CodePanel file="order.service.ts · tgpg-done" lines={kod('DONE_PLACE', { 31: 'l', 32: 'l', 33: 'l', 34: 'l' }, 29, 38)} focus={['l']} /><Term lines={T20_OK} /></>}
+  </>} />;
+}
+
+// ============================================================
+//  21 · Tranzaksiya ichida xato: aborted (orderbot-out/04a — o'z birinchi kodimiz)
+// ============================================================
+const T21 = term(String.raw`
+Aziza: [✅ Buyurtma berish]     # 4 ta Planshet, omborda 3 ta
+query failed: UPDATE products SET stock = stock - $1 WHERE id = $2 -- PARAMETERS: [4,5]
+error: error: new row for relation "products" violates check constraint "stock_nonneg"
+query failed: SELECT "Product"."id" AS "Product_id", … FROM "products" "Product" WHERE (("Product"."id" = $1)) LIMIT 1 -- PARAMETERS: [5]
+error: error: current transaction is aborted, commands ignored until end of transaction block
+  bot → Aziza: Buyurtma berilmadi: current transaction is aborted, commands ignored until end of transaction block`, { 3: { id: 'c' }, 5: { id: 'a' }, 6: { id: 'a' } });
+const S21 = mkS(21, [{ v: 'log', f: [] }, { v: 'log', f: ['c', 'a'] }, { v: 'pg' }, { v: 'fix' }]);
+function Screen21(p) {
+  return <Lesson p={p} S={S21} scene={({ seg }) => <>
+    {seg.v === 'log' && <Term title={t("terminal — birinchi kodimiz (tgpg-done yozilayotganda)", "терминал — наш первый код (пока писался tgpg-done)")} lines={T21} focus={seg.f} />}
+    {seg.v === 'pg' && <div className="pg-three"><Card c={T.green} h="shop=#"><p>{t("oddiy — har buyruq o'zi saqlanadi", "обычное — каждая команда сохраняется сама")}</p></Card><Card c={T.yellow} h="shop=*#"><p>{t("tranzaksiya ochiq", "транзакция открыта")}</p></Card><Card c={T.accent} h="shop=!#" hl><p>{t("xato bo'ldi — faqat ROLLBACK", "была ошибка — только ROLLBACK")}</p></Card></div>}
+    {seg.v === 'pg' && <div className="mk-rule">{t("PostgreSQL-2 dagi undov belgili prompt — kodda ", "Промпт с восклицательным знаком из PostgreSQL-2 — в коде ")}<code>current transaction is aborted</code>{t(" bo'lib chiqadi.", " выходит.")}</div>}
+    {seg.v === 'fix' && <Code k="DONE_PLACE" from={31} to={45} focus={['t']} ids={{ 36: 't', 37: 't', 38: 't', 42: 'u' }} />}
+  </>} />;
+}
+
+// ============================================================
+//  22 · Tekshiruv 4 — qaysi satr ortiqcha sotadi (LineCheck; buzuq fayl 29–41, xato 31 → bo'lakda 3-satr, target 2)
+// ============================================================
+const LC22 = kod('BUZUQ').filter((l) => l.n !== 30); // 30-satr izohi — shovqin; satr raqamlari haqiqiy
+const LC22_FIXED = LC22.map((l) => (l.n === 31 ? { ...l, gone: true } : l));
+LC22_FIXED.splice(2, 0, ...ts(String.raw`
+        const p = await m.findOne(Product, {
+          where: { id: c.product.id },
+          lock: { mode: 'pessimistic_write' },
+        });`).map((l) => ({ ...l, neu: true })));
+function plainLines(src) { return src.split('\n').map((l) => ({ h: `<span class="ok">${escH(l)}</span>` })); }
+function Screen22(p) {
+  const m = MDT[22];
+  return <LineCheck {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} task={m.task} q={m.q} file="order.service.ts" lines={LC22} target={1}
+    tree={{ root: MKCFG.root, files: compact(DONE_FILES, F.ord), active: F.ord }}
+    fixed={LC22_FIXED} fixedExtra={[{ file: 'npm run smoke -- race', lines: plainLines('✓ ortiqcha sotilmadi (sotildi/ombor): 1/0  1/0  1/0') }]}
     ok={m.ok} okShort={<span dangerouslySetInnerHTML={html(m.okShort)} />} hint={m.hint} />;
 }
 
 // ============================================================
-//  17 · Amaliyot 2 — ikki buzish
+//  23 · Amaliyot 4 — 4-prompt va ko'p mijoz sinovi
 // ============================================================
-const P2 = mkS(17, [{ hl: [] }, { hl: [0, 1] }, { hl: [2, 3] }, { hl: [] }], { tableAt: 3 });
-const P2_STEPS = [
-  { t: 'Sinov jadvali — INTEGER ustun', cmds: ['CREATE TABLE users_int (id SERIAL PRIMARY KEY, telegram_id INTEGER);'], exp: 'CREATE TABLE' },
-  { t: 'Katta raqam', cmds: ['INSERT INTO users_int (telegram_id) VALUES (5123456789);'], exp: 'ERROR:  integer out of range' },
-  { t: "Takror — users dagi o'z raqamingiz bilan yana INSERT", cmds: ['SELECT telegram_id FROM users;'], exp: 'duplicate key value violates unique constraint' },
-  { t: 'Tozalash', cmds: ['DROP TABLE users_int;'], exp: 'DROP TABLE' },
-];
-const P2_TROUBLE = [
-  ['2-qadamda INSERT 0 1', 'raqam kichik yozilgan — 5123456789 kabi 2147483647 dan katta raqam'],
-  ['3-qadamda INSERT 0 1', "jadvalda bu raqam yo'q edi — avval SELECT dagi raqamni oling"],
-];
-const P2_PROOF = { label: '2-qadamdagi xato xabari', placeholder: "ERROR qatorini qo'ying", check: (v) => /integer out of range/i.test(v), wrong: 'ERROR: bilan boshlanadigan satrni butunligicha nusxalang' };
-function ScreenP2(p) { return <Practice p={p} S={P2} steps={P2_STEPS} trouble={P2_TROUBLE} proof={P2_PROOF} />; }
+const P23 = mkPractice(23, [[], [0, 1], [2, 3], []]);
+function ScreenP23(p) { return <Practice p={p} S={P23.S} steps={P23.steps} trouble={P23.trouble} proof={P23.proof} />; }
 
 // ============================================================
-//  18 · O'quvchi reposi dars-04-done (tgpg-out/10, 12)
+//  24 · Beshta tekshiruv (orderbot-ai/XULOSA; 10-smoke-tgpg-done — birinchi yurish ✗ bekor)
 // ============================================================
-const S18 = mkS(18, [{ v: 'out1' }, { v: 'ent' }, { v: 'svc' }, { v: 'out2', sum: true }]);
-function Screen18(p) {
-  return <Lesson p={p} S={S18} scene={({ seg }) => <div className="pg-two">
-    <div style={{ display: 'grid', gap: 10, alignContent: 'start' }}>
-      {seg.v === 'out1' && <Term lines={jt(String.raw`
-$ git clone https://github.com/Azizbekcrypto/TelegramBotNest.git
-$ git checkout -f dars-04-done
-46c67e7 4-dars: users jadvali (PostgreSQL), bot ismni so'raydi va eslab qoladi (dars-04-done)
-$ npm ci
-added 394 packages, and audited 395 packages in 4s`)} />}
-      {seg.v === 'ent' && <Ide root="TelegramBotNest" files={REPO_FILES} active={RF.ent}><CodePanel file={RF.ent} wrap lines={ENTITY_TS} focus={['tg', 'h']} /></Ide>}
-      {seg.v === 'svc' && <Ide root="TelegramBotNest" files={REPO_FILES} active={RF.usv}><CodePanel file={RF.usv} wrap lines={USVC_TS} focus={['sel', 'ins']} /></Ide>}
-      {seg.v === 'out2' && <Term lines={OUT12} focus={['a', 'j']} />}
-    </div>
-    <div style={{ display: 'grid', gap: 10, alignContent: 'start' }}>
-      {seg.v === 'ent' && <><div className="mk-tag" style={{ margin: 0 }}>TypeORM yaratgan jadval (synchronize) — \d users dan parcha</div><Psql title="psql — botnest" lines={[PSQL12[0], PSQL12[6], PSQL12[8], PSQL12[9]]} focus={['t']} /></>}
-      {seg.v === 'svc' && <CodePanel file={RF.tg + ' (parcha)'} numbers={false} wrap lines={TGSVC_TS} focus={['h']} />}
-      {seg.v === 'out2' && <><Psql title="psql — botnest" lines={PSQL12.slice(10)} focus={['r']} /><div className="mk-rule">O'quvchi yechimi haqiqiy PostgreSQL bilan — qayta ishga tushgach <b>«Yana salom»</b>, ikki mijoz alohida.</div></>}
-    </div>
-  </div>} />;
-}
-
-// ============================================================
-//  19 · Token xato va .env yo'q (tgpg-out/11, 13)
-// ============================================================
-const S19 = mkS(19, [{ v: 'tok', f: ['s'] }, { v: 'tok', f: ['s', 'x'] }, { v: 'env' }, { v: 'env', sum: true }]);
-function Screen19(p) {
-  return <Lesson p={p} S={S19} scene={({ seg }) => <div style={{ display: 'grid', gap: 12 }}>
-    <Term er lines={OUT13} focus={seg.v === 'tok' ? seg.f : []} />
-    {seg.v === 'env' && <Term er lines={OUT11} focus={['x']} />}
-    {seg.sum && <div className="mk-rule">Bot javob bermasa — <b>«Telegram bot ulandi»</b> satrini qidiring; yo'q bo'lsa, o'rnidagi xato sababni aytadi (repo README — «Xatolar»).</div>}
-  </div>} />;
-}
-
-// ============================================================
-//  20 · Amaliyot 3 — o'quvchi reposi
-// ============================================================
-const P3 = mkS(20, [{ hl: [] }, { hl: [0, 1] }, { hl: [2, 3] }, { hl: [] }], { tableAt: 3 });
-const P3_STEPS = [
-  { t: 'Repo — clone, dars-04-done, npm ci', cmds: ['git clone https://github.com/Azizbekcrypto/TelegramBotNest.git', 'cd TelegramBotNest', 'git checkout -f dars-04-done', 'npm ci'], exp: 'added … packages' },
-  { t: ".env — o'z tokeningiz va lokal baza", cmds: ['psql -U postgres -c "CREATE DATABASE botnest;"'], exp: 'CREATE DATABASE · .env: BOT_TOKEN=… · DATABASE_URL=postgresql://postgres:<parol>@localhost:5432/botnest' },
-  { t: 'Ishga — Telegram: /start → ismingiz', cmds: ['npm run start'], exp: 'Telegram bot ulandi · «Xush kelibsiz, …!»' },
-  { t: 'Qayta ishga — Ctrl+C, npm run start, /start, keyin psql', cmds: ['psql -U postgres -d botnest -c "SELECT ism, holat FROM users;"'], exp: '«Yana salom, …!» · tayyor' },
-];
-const P3_TROUBLE = [
-  ['DATABASE_URL topilmadi', ".env fayli loyiha ildizida emas yoki nomi .env.example (19-ekran)"],
-  ['Telegram ulanmadi: 401: Unauthorized', "token — BotFather'dan qayta nusxalang (19-ekran)"],
-  ['409: Conflict ⚠', "shu bot boshqa terminalda ham ishlayapti (12-amaliyotdagi bot.js) — eskisini to'xtating (README; sinalmagan)"],
-  ['holat — ism_kutilmoqda', "ism yozilmagan — Telegram'da ismingizni yuboring"],
-];
-const P3_PROOF = { label: 'holat ustunidagi qiymat', placeholder: 'psql natijasidagi holatni yozing', check: (v) => /^\s*tayyor\s*$/i.test(v), wrong: 'psql natijasida ism yonidagi ikkinchi ustun — holat; ism yozilgandan keyin u nima bo\'ladi?' };
-function ScreenP3(p) { return <Practice p={p} S={P3} steps={P3_STEPS} trouble={P3_TROUBLE} proof={P3_PROOF} />; }
-
-// ============================================================
-//  21 · Tekshiruv 4
-// ============================================================
-function Screen21(p) {
-  const m = MDT[21];
-  return <MCRetry {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} q={m.q} opts={m.opts} correct={m.correct} ok={m.ok} okShort={<span dangerouslySetInnerHTML={html(m.okShort)} />} wrong={m.wrong}
-    above={<div style={{ marginBottom: 14 }}><Term er lines={OUT13.slice(1)} /></div>}
-    after={<div style={{ display: 'grid', gap: 10 }}>
-      <div className="mk-tag" style={{ color: T.green, margin: 0 }}>To'g'ri token bilan — repo kodidagi satr</div>
-      <Term lines={jt('Telegram bot ulandi')} />
-    </div>} />;
-}
-// ============================================================
-//  22 · m5-04 xaritasi (BotStatefulMemoryLesson.jsx — SCREEN_META 21)
-// ============================================================
-const MAP22 = [
-  { t: 'Kirish', s: 's0–s1', d: 'adashgan suhbat · reja', m: 'holatsiz handler (2-ekran)' },
-  { t: 'Holat', s: 's2–s6, s8', d: "holatsiz · holat bilan · test · obyekt · qayta ishga tushirish (ikki quti) · test", m: "RAM'da yo'qolishi haqiqiy (4-ekran)" },
-  { t: 'Alohida', s: 's7, s9–s10', d: 'ikki mijoz · ikkalasi birdan · test', m: 'yashirin aralashish (6-ekran)' },
-  { t: 'Baza', s: 's11–s15', d: "users jadvali · qadam-baqadam holat · SQL bo'shliqlari · test · oqim tartibi", m: 'BIGINT va matn (13–14-ekran) · takror INSERT (15-ekran)' },
-  { t: 'Yakun', s: 's16', d: 'amaliyot (Neon + AI + TelegramBotNest) · kartochkalar · uyga vazifa', m: 'token, .env (19-ekran)' },
-];
-const S22 = mkS(22, [{ hl: [] }, { hl: [4], neon: true }, { hl: [3] }, { hl: [1, 2], sum: true }]);
-function Screen22(p) {
-  return <Lesson p={p} S={S22} scene={({ seg }) => <div style={{ display: 'grid', gap: 8 }}>
-    {MAP22.map((b, i) => <div key={i} className={`mk-step${seg.hl.includes(i) ? ' hl' : ''}`} style={{ opacity: seg.hl.length && !seg.hl.includes(i) ? 0.5 : 1 }}>
-      <span style={{ fontFamily: MONO, fontWeight: 700, color: T.accent, minWidth: 22 }}>{i + 1}</span>
-      <div className="t"><b>{b.t} <span style={{ fontFamily: MONO, fontWeight: 500, color: T.ink3, fontSize: 12 }}>{b.s}</span></b><div style={{ fontSize: 13 }}>{b.d}</div>{b.m && (seg.hl.includes(i) || !seg.hl.length) && <div className="exp" style={{ color: T.accent, marginTop: 4 }}>Siz qo'shasiz: {b.m}</div>}</div>
-    </div>)}
-    {seg.neon && <div className="n2-warn">Neon: <code>DATABASE_URL</code> oxiridagi <code>?sslmode=require</code> qolsin — repo kodi shunga qarab <code>ssl</code> yoqadi (<code>database.module.ts</code>). Neon'ni o'zimiz sinamadik.</div>}
-    {seg.sum && <div className="mk-rule">Ikki mijoz va qayta ishga tushirishni sinfda <b>jonli</b> ko'rsating — ikki akkaunt bilan.</div>}
-  </div>} />;
-}
-
-// ============================================================
-//  23 · O'quvchi darsidagi so'zlar va sinfdagi holatlar
-// ============================================================
-const DICT23 = [['holat · holatli bot', 'state · stateful bot'], ['sessiya', 'bitta mijozning holati, kaliti chat.id'], ['dastur xotirasi · PostgreSQL qutisi', 'RAM · disk']];
-const STUMBLE23 = [
-  ['Ism unutildi', 'qayta ishga tushgach «Ismingiz nima?»', 'holat RAM\'da — bazaga'],
-  ['Buyurtma aralashdi', "xato yo'q", 'umumiy o\'zgaruvchi — chat.id'],
-  ['Katta raqam', 'integer out of range', 'BIGINT'],
-  ['Ikkinchi /start', 'duplicate key', 'avval SELECT'],
-  ['Bot javob bermaydi', '401: Unauthorized', 'token'],
-  ['Server yonmaydi', 'DATABASE_URL topilmadi', '.env'],
-];
-const QA23 = [
-  ['«Holatni JSON faylda saqlasa bo\'lmaydimi?»', "bitta jarayonda ishlaydi, lekin bir vaqtda ko'p yozuvda va serverni almashtirganda baza ishonchli."],
-  ['«Nega ctx.chat.id, ism emas?»', "ism takrorlanadi, raqam — yo'q."],
-  ["«Neon'ni o'chirsam, holat nima bo'ladi?»", "baza bilan birga yo'qoladi."],
-  ['«Telegram raqam beradi-ku, nega matn bo\'lib keldi?»', "node-pg va TypeORM bigint'ni matn qaytaradi (14-ekran)."],
-];
-const S23 = mkS(23, [{ v: 'til' }, { hl: [0, 1, 2] }, { hl: [3, 4, 5] }, { hl: [], qa: true }]);
-function Screen23(p) {
-  const [open, setOpen] = useState([]);
-  return <Lesson p={p} S={S23} scene={({ seg }) => <>
-    {seg.v === 'til' ? <div className="mk-light" style={{ padding: 14 }}>
-      <div className="mk-tag">O'quvchi darsidagi so'z → uning atamasi</div>
-      <table className="mk-tbl"><tbody>{DICT23.map(([a, b]) => <tr key={a}><td>{a}</td><td><code>{b}</code></td></tr>)}</tbody></table>
-    </div> : <div className="mk-qa">
-      {STUMBLE23.map(([h, m, a], i) => <button key={i} className={seg.hl.includes(i) ? 'hl' : (seg.hl.length ? 'dim' : '')} style={{ cursor: 'default' }}><b>{i + 1}. {h}</b><p style={{ fontFamily: MONO, fontSize: 12, color: T.accent, margin: '0 0 4px' }}>{m}</p><p>{a}</p></button>)}
-    </div>}
-    {seg.qa && <div className="mk-rule" style={{ animation: 'mk-up .45s ease both' }}>Xato chiqmasa — o'quvchi bilan birga <b>holat qayerda saqlanayotganiga</b> qarang: obyektdami, bazadami.</div>}
-    {seg.qa && <div className="mk-light" style={{ padding: 12, animation: 'mk-up .45s ease both' }}>
-      <div className="mk-tag">O'quvchi so'rasa — bosing</div>
-      <div className="pg-qa">{QA23.map(([q, a], i) => <button key={i} onClick={() => setOpen((o) => o.includes(i) ? o.filter((x) => x !== i) : [...o, i])}><b>{q}</b>{open.includes(i) && <p>{a}</p>}</button>)}</div>
-    </div>}
+const CHK24 = [['1', 'diff', 'hajm = so\'ralgan bosqich (1145 qator — yo\'q)'], ['2', 'build', 'tsc · nest build'], ['3', 'restart', 'suhbat o\'rtasida · smoke restart'], ['4', 'psql', '\\d · CHECK · bigint · SELECT'], ['5', "ko'p mijoz", 'smoke race · ikki marta bekor']];
+const FOUND24 = ["so'ralmagan ishni qildi (22 fayl)", 'oraliq vaziyatni sezmadi', "sinovda Telegram'ga bitta so'rov ketdi (401)", 'bizning kodda: ikki marta «Bekor» → ombor 2'];
+const T24 = term(String.raw`
+$ npm run smoke        # tgpg-done, birinchi yurish
+  ✗ ikki marta bekor — ombor bir marta qaytdi: 2
+$ npm run smoke        # FOR UPDATE qo'shilgach
+  ✓ ikki marta bir vaqtda bekor — ombor bir marta qaytdi: 0 → 1
+NATIJA: 5/5 ✓`);
+const S24 = mkS(24, [{ on: ['1', '2'] }, { on: ['3', '4'] }, { on: ['5'], t: true }, { on: ['1', '2', '3', '4', '5'], f: true }]);
+function Screen24(p) {
+  return <Lesson p={p} S={S24} scene={({ seg }) => <>
+    <div className="pg-four" style={{ gridTemplateColumns: 'repeat(5,minmax(0,1fr))' }}>{CHK24.map(([n, h, d]) => { const cur = seg.on.includes(n) && seg.on.length < 5; return <Card key={n} c={cur ? T.accent : T.blue} h={`${n} · ${h}`} hl={cur} dim={!seg.on.includes(n)}><p>{d}</p></Card>; })}</div>
+    {seg.t && <Term lines={T24} />}
+    {seg.f && <div className="mk-light" style={{ padding: 14 }}><div className="mk-tag">{t("AI aytmadi — tekshiruv topdi", "AI не сказал — нашла проверка")}</div>
+      <div className="mk-plan">{FOUND24.map((x, i) => <div key={x} style={{ animation: `mk-up .4s ${i * 0.08}s ease both` }}><b>0{i + 1}</b><span>{x}</span></div>)}</div></div>}
   </>} />;
 }
+
 // ============================================================
-//  24 · O'z-sinov — 8 savol (Nest/PG-1 bilan bir xil mexanika; M12)
+//  25 · Sinfga tayyorgarlik: m5-04 (BotStatefulMemoryLesson.jsx — SCREEN_META 20; TelegramBotNest dars-04-done)
 // ============================================================
-const FINAL = MDT[24].final;
-function Screen24(p) {
+const ADD25 = [['\\d users — telegram_id bigint', 'amaliyot, AI yozgandan keyin'], ['/start ikki marta — SELECT count(*)', 'amaliyot, Telegram tekshiruvi'], ['restart ism so\'ralganda', 'amaliyot oxiri'], ['sslmode=require o\'chirilmasin', 'Neon qadami'], ['AI fayllari — git diff --stat', 'Antigravity qadami']];
+const S25 = mkS(25, [{ v: 'cards' }, { v: 'cards', hlO: true }, { v: 'add' }, { v: 'pre' }]);
+function Screen25(p) {
+  return <Lesson p={p} S={S25} scene={({ seg }) => <>
+    {seg.v === 'cards' && <div className="pg-two">
+      <Card c={T.blue} h={t("O'quvchi · m5-04 (20 ekran)", "Ученик · m5-04 (20 экранов)")} hl={seg.hlO}><p><code>TelegramBotNest</code>{t(" · dars-03-done → dars-04-done · bitta ", " · dars-03-done → dars-04-done · одна ")}<code>users</code> (<code>telegram_id bigint unique</code>, <code>ism</code>, <code>holat</code>{t(" — reponing state'i) · Neon (", " — state репозитория) · Neon (")}<code>sslmode=require</code>{t(") · Antigravity'ga 3 qatorli prompt · ", ") · промпт Antigravity из 3 строк · ")}<code>synchronize: true</code></p></Card>
+      <Card c={T.accent} h={t("Siz · bugun", "Вы · сегодня")}><p>{t("OrderBotNest · tgpg-start → tgpg-done · 5 jadval · migratsiya · 4 bosqich · besh tekshiruv · ", "OrderBotNest · tgpg-start → tgpg-done · 5 таблиц · миграция · 4 этапа · пять проверок · ")}<code>npm run smoke</code></p></Card>
+    </div>}
+    {seg.v === 'add' && <table className="pg-dict"><tbody>{ADD25.map(([a, b]) => <tr key={a}><td><code>{a}</code></td><td>{b}</td></tr>)}</tbody></table>}
+    {seg.v === 'pre' && <div className="mk-light" style={{ padding: 14 }}><div className="mk-tag">{t("Darsdan oldin", "До урока")}</div><div className="mk-plan">
+      {[t('Har o\'quvchida Neon akkaunti ochiladi', "У каждого ученика открывается аккаунт Neon"), t("BotFather'da sinov boti bor (token)", "В BotFather есть тестовый бот (токен)"), t('dars-03-done boti ishlab turibdi', "бот dars-03-done работает")].map((x, i) => <div key={x}><b>0{i + 1}</b><span>{x}</span></div>)}
+    </div></div>}
+  </>} />;
+}
+
+// ============================================================
+//  26 · Qoqiladigan joylar (tgpg-out/11, 13 — TelegramBotNest; orderbot-out/12-k4) + o'quvchi savollari
+// ============================================================
+const CARDS26 = [
+  ['Bot javob bermaydi', 'Telegram ulanmadi: 401: Unauthorized (server «ishlayapti»)', 'token — BotFather'],
+  ['Server yonmaydi', 'DATABASE_URL topilmadi. .env ga Neon bergan URL ni yozing', '.env'],
+  ['Restartdan keyin ism unutildi', 'xato yo\'q, «Salom! Ismingiz nima?»', 'state bazaga yozilmayapti — SELECT … FROM users'],
+  ['Katta id', 'value "5123456789" is out of range for type integer · yoki duplicate key', 'bigint; avval qidirish yoki ON CONFLICT'],
+];
+const QA26 = [
+  ['«AI yozdi, ishlayapti — yana nega tekshiramiz?»', 'Bitta sinovda ko\'rinmaydigan xato bor: restart va ikki marta bosish (11, 15-ekran).'],
+  ['«Nega synchronize: true, ishlab turgan loyihada ham shundaymi?»', 'Yo\'q: u ustunni ogohlantirmasdan o\'chirishi mumkin; ishlab turgan loyihada migratsiya (9-ekran).'],
+  ['«Telegram id raqam-ku, nega bazadan matn keldi?»', 'bigint JavaScript sonidan katta bo\'lishi mumkin, kutubxona matn beradi (13-ekran).'],
+  ['«Neon o\'rniga o\'z kompyuterimdagi PostgreSQL bo\'ladimi?»', 'Ha, DATABASE_URL ni o\'zgartirasiz; botni hostingga chiqarganda baza internetda bo\'lishi kerak.'],
+  ['«Ikki kishi bir vaqtda yozsa, ismlar aralashadimi?»', 'Yo\'q, har qator telegram_id bo\'yicha alohida.'],
+];
+function QA({ items }) {
+  const [open, setOpen] = useState(-1);
+  return <div className="pg-qa">{items.map(([q, a], i) => <button key={q} onClick={() => setOpen(open === i ? -1 : i)}><b>{q}</b>{open === i && <p>{a}</p>}</button>)}</div>;
+}
+const S26 = mkS(26, [{ on: [] }, { on: [0, 1] }, { on: [2, 3] }, { on: [0, 1, 2, 3], qa: true }]);
+function Screen26(p) {
+  return <Lesson p={p} S={S26} scene={({ seg }) => <>
+    <div className="pg-2c">{CARDS26.map(([h, x, y], i) => <Card key={h} c={i < 2 ? T.blue : T.accent} h={`${i + 1} · ${h}`} hl={seg.on.includes(i) && !seg.qa} dim={seg.on.length > 0 && !seg.on.includes(i)}><p><code>{x}</code></p><p style={{ marginTop: 4 }}>→ {y}</p></Card>)}</div>
+    {seg.qa && <><div className="mk-tag" style={{ margin: 0 }}>{t("O'quvchi so'rasa — bosib oching", "Если ученик спросит — нажмите, чтобы открыть")}</div><QA items={QA26} /></>}
+  </>} />;
+}
+
+// ============================================================
+//  27 · O'z-sinov — 8 savol (MD 27, FINAL)
+// ============================================================
+const FINAL = MDT[27].final;
+function Screen27(p) {
   const st = p.stored || {};
   const segs = useMemo(() => {
     const sc = (st.res || []).filter((x) => x && x.correct).length;
-    const text = !st.showResult
-      ? "Hammasini ko'rib chiqdingiz, endi o'zingizni tekshiring. Yakuniy sinov, sakkiz savol: holat, alohida sessiya, baza va tuzoqlar. Har savolda bitta urinish, javobdan keyin to'g'risi va izohi ochiladi. Olti va undan ko'p, dars o'zlashtirilgan. Kam bo'lsa, ko'rsatilgan ekranlarga qaytib, sinovni qayta topshirasiz."
+    const text = LANG === 'ru' ? (!st.showResult ? RS('FIN_INTRO')
+      : sc >= 6 ? 'Ваш результат сохранён: ' + sc + ' из восьми. Урок усвоен, нажмите «Далее».'
+        : 'Хорошо, одну ошибку вы разобрали. Вернитесь и к экранам остальных красных вопросов. Когда будете готовы, нажмите кнопку «Пройти тест заново».')
+      : !st.showResult
+      ? "Hammasini ko'rib chiqdingiz, endi o'zingizni tekshiring. Yakuniy sinov, sakkiz savol: xotira va restart, bosqichlar, migratsiya, big int, on conflict, qulf va tranzaksiya. Har savolda bitta urinish, javobdan keyin to'g'risi va izohi ochiladi. Olti va undan ko'p, dars o'zlashtirilgan. Kam bo'lsa, ko'rsatilgan ekranlarga qaytib, sinovni qayta topshirasiz."
       : sc >= 6
         ? "Natijangiz saqlangan: sakkizdan " + ['nol', 'bir', 'ikki', 'uch', "to'rt", 'besh', 'olti', 'yetti', 'sakkiz'][sc] + ". Dars o'zlashtirilgan, Davom bosing."
         : "Yaxshi, bir xatoyingizni ko'rib chiqdingiz. Qolgan qizil savollarning ekranlariga ham qayting. Tayyor bo'lgach, Sinovni qayta topshirish tugmasini bosing.";
@@ -2332,36 +3493,36 @@ function Screen24(p) {
     const r = [...res]; r[i] = { picked: k, correct: k === q.c }; setRes(r);
     if (k === q.c) sfx.playCorrect(); else sfx.playWrong();
     const sc = r.filter((x) => x && x.correct).length; save({ res: r, score: sc });
-    if (r.filter(Boolean).length === FINAL.length) setTimeout(() => audio.pushOneOff(voice(sc >= 6 ? "Dars o'zlashtirildi. Endi m5-04 dagi holat va sinfdagi tuzoqlar sizga tanish bo'ladi." : "Hali bir necha joy mustahkam emas. Ko'rsatilgan ekranlarga qayting, keyin sinovni qayta topshiring.")), 400);
+    if (r.filter(Boolean).length === FINAL.length) setTimeout(() => audio.pushOneOff(voice(sc >= 6 ? t("Dars o'zlashtirildi. Endi o'quvchi AI bilan bot yozganda, nimani tekshirishni bilasiz.", RS('FIN_PASS')) : t("Hali bir necha joy mustahkam emas. Ko'rsatilgan ekranlarga qayting, keyin sinovni qayta topshiring.", 'Несколько мест пока не закрепились. Вернитесь к указанным экранам, потом пройдите тест заново.'))), 400);
   };
   const next = () => { if (i < FINAL.length - 1) { setI(i + 1); save({ i: i + 1 }); } else { setShowResult(true); save({ showResult: true }); } };
   const retake = () => { setRes([]); setI(0); setShowResult(false); setAttempt(attempt + 1); save({ res: [], i: 0, showResult: false, attempt: attempt + 1, score: 0 }); };
   return (
-    <Stage kicker="O'z-sinov" idx={p.idx} total={p.total} audio={audio} onBack={p.onBack} onNext={p.onNext} onRestart={p.onRestart} nextReady={finished && showResult} nextDisabled={!(finished && showResult)} lockHint={!finished ? 'Savollarga javob bering' : 'Natijani oching'}>
+    <Stage kicker={t("O'z-sinov", 'Самопроверка')} idx={p.idx} total={p.total} audio={audio} onBack={p.onBack} onNext={p.onNext} onRestart={p.onRestart} nextReady={finished && showResult} nextDisabled={!(finished && showResult)} lockHint={!finished ? t('Savollarga javob bering', 'Ответьте на вопросы') : t('Natijani oching', 'Откройте результат')}>
       <div className="mk-body" style={{ gridTemplateColumns: '1fr', maxWidth: 980, width: '100%', margin: '0 auto' }}>
         <div className="mk-say mc" style={{ overflow: 'auto', paddingRight: 4 }}>
           {showResult ? (<>
-            <p className="mk-eyebrow">O'z-sinov · natija{attempt > 1 ? ` · ${attempt}-urinish` : ''}</p>
-            <h2 className="mk-title mc-q" style={{ fontSize: 'clamp(22px,1.9vw,26px)' }}>{score} / {FINAL.length} — {score >= 6 ? "dars o'zlashtirildi" : "yana bir ko'rib chiqing"}</h2>
+            <p className="mk-eyebrow">{t("O'z-sinov · natija", 'Самопроверка · результат')}{attempt > 1 ? t(` · ${attempt}-urinish`, ` · попытка ${attempt}`) : ''}</p>
+            <h2 className="mk-title mc-q" style={{ fontSize: 'clamp(22px,1.9vw,26px)' }}>{score} / {FINAL.length} — {score >= 6 ? t("dars o'zlashtirildi", 'урок усвоен') : t("yana bir ko'rib chiqing", 'посмотрите ещё раз')}</h2>
             <div style={{ display: 'grid', gap: 8 }}>
               {FINAL.map((f, k) => <div key={k} className="mk-card" style={{ display: 'flex', gap: 12, alignItems: 'center', borderColor: res[k] && res[k].correct ? T.green : T.accent }}>
                 <span style={{ fontFamily: MONO, fontWeight: 700, color: res[k] && res[k].correct ? T.green : T.accent, minWidth: 22 }}>{res[k] && res[k].correct ? '✓' : '✗'}</span>
                 <span style={{ flex: 1, fontSize: 14 }}>{f.q}</span>
-                {res[k] && !res[k].correct && p.onGoto && <button className="mk-btn soft sm" onClick={() => p.onGoto(f.s - 1)}>{f.s}-ekran</button>}
+                {res[k] && !res[k].correct && p.onGoto && <button className="mk-btn soft sm" onClick={() => p.onGoto(f.s - 1)}>{t(`${f.s}-ekran`, `экран ${f.s}`)}</button>}
               </div>)}
             </div>
             <div style={{ display: 'flex', gap: 10, alignItems: 'center', marginTop: 14, flexWrap: 'wrap' }}>
-              {score < 6 && <button className="mk-btn ghost" onClick={retake}>Sinovni qayta topshirish</button>}
-              <span style={{ color: T.ink2, fontSize: 14 }}>Ekranga qaytib «Davom» bossangiz, shu natijaga qaytasiz.</span>
+              {score < 6 && <button className="mk-btn ghost" onClick={retake}>{t('Sinovni qayta topshirish', 'Пройти тест заново')}</button>}
+              <span style={{ color: T.ink2, fontSize: 14 }}>{t('Ekranga qaytib «Davom» bossangiz, shu natijaga qaytasiz.', 'Если вернётесь к экрану и нажмёте «Далее», попадёте обратно к этому результату.')}</span>
             </div>
           </>) : (<>
-            <p className="mk-eyebrow">O'z-sinov · {i + 1} / {FINAL.length} · bitta urinish · to'g'ri: {score}</p>
+            <p className="mk-eyebrow">{t("O'z-sinov", 'Самопроверка')} · {i + 1} / {FINAL.length} · {t("bitta urinish · to'g'ri:", 'одна попытка · верно:')} {score}</p>
             <h2 className="mk-title mc-q">{q.q}</h2>
             <div style={{ display: 'grid', gap: 10 }}>
               {q.o.map((o, k) => { let cls = 'mk-opt'; if (picked !== null) { if (k === q.c) cls += ' ok'; else if (k === picked) cls += ' bad'; else cls += ' off'; } return <button key={k} className={cls} disabled={picked !== null} onClick={() => pick(k)}><span className="l">{String.fromCharCode(65 + k)}</span><span>{o}</span></button>; })}
             </div>
-            {picked !== null && <div className="mk-fb" style={{ '--c': picked === q.c ? T.green : T.accent, '--bg': picked === q.c ? '#E3F5EC' : '#FFF0EB' }}><b>{picked === q.c ? "To'g'ri" : "Noto'g'ri — to'g'risi yashil"}</b><span>{q.e}</span></div>}
-            {picked !== null && <div style={{ marginTop: 14 }}><button className="mk-btn ready" onClick={next}>{i < FINAL.length - 1 ? 'Keyingi savol →' : "Natijani ko'rish →"}</button></div>}
+            {picked !== null && <div className="mk-fb" style={{ '--c': picked === q.c ? T.green : T.accent, '--bg': picked === q.c ? '#E3F5EC' : '#FFF0EB' }}><b>{picked === q.c ? t("To'g'ri", 'Верно') : t("Noto'g'ri — to'g'risi yashil", 'Неверно — правильный ответ зелёный')}</b><span>{q.e}</span></div>}
+            {picked !== null && <div style={{ marginTop: 14 }}><button className="mk-btn ready" onClick={next}>{i < FINAL.length - 1 ? t('Keyingi savol →', 'Следующий вопрос →') : t("Natijani ko'rish →", 'Посмотреть результат →')}</button></div>}
           </>)}
         </div>
       </div>
@@ -2370,107 +3531,114 @@ function Screen24(p) {
 }
 
 // ============================================================
-//  25 · Yakun (M13)
+//  28 · Yakun (M13, M14, M30) — xulosa 6 band, uyga vazifa 5 qadam, eslatma
 // ============================================================
-const SUM25 = [
-  { k: 'hol', t: "Holat — suhbat bosqichi; holatsiz bot har xabarni birinchi xabardek ko'radi", st: ['msg', 'hol'] },
-  { k: 'ram', t: "RAM'dagi holat qayta ishga tushganda yo'qoladi, PostgreSQL'dagi qoladi", st: ['hol', 'db'] },
-  { k: 'id', t: "Har mijoz chat.id bo'yicha; umumiy o'zgaruvchi xato bermay aralashtiradi", st: ['msg', 'hol'] },
-  { k: 'oqim', t: "Oqim: SELECT → (yo'q bo'lsa INSERT) → javob → UPDATE", st: ['hol', 'db', 'msg'] },
-  { k: 'buz', t: "Tuzoqlar: BIGINT (INTEGER sig'maydi), bazadan matn keladi, SELECT'siz takror INSERT", st: ['db'] },
-  { k: 'repo', t: "O'quvchi reposi dars-04-done; token 401 — server ishlaydi, bot javob bermaydi", st: ['msg', 'db'] },
+const SUM28 = [
+  { k: 'mem', t: "Xotiradagi ma'lumot (Map, massiv) restartda yo'qoladi yoki koddagi boshlang'ich qiymatga qaytadi; saqlanishi kerak bo'lgan har narsa — bazada", st: ['bot', 'pg'] },
+  { k: 'ai', t: "AI bilan ish: bitta prompt — bitta bosqich; prompt besh qismli (kontekst · maqsad · shartlar · chegara · javob); javob uch qismdan o'qiladi (fayllar · chetga chiqish · tekshiruv)", st: ['ai'] },
+  { k: 'orm', t: "TypeORM: entity tasvirlaydi, migratsiya yaratadi, migrations jadvali eslaydi; synchronize: false; o'zgarish — yangi migratsiya", st: ['orm', 'pg'] },
+  { k: 'id', t: "Telegram id — BIGINT, kodga matn bo'lib keladi; takror qator — UNIQUE + ON CONFLICT; state bazada — suhbat o'rtasidagi restartdan o'tadi", st: ['bot', 'orm', 'pg'] },
+  { k: 'tx', t: "Buyurtma — bitta tranzaksiya; qoldiq qulf bilan o'qiladi yoki bitta UPDATE … WHERE stock >= qty; tranzaksiyada xatodan keyin faqat ROLLBACK", st: ['orm', 'pg'] },
+  { k: 'chk', t: "Besh tekshiruv har bosqichda: diff · build · restart · psql · ko'p mijoz (npm run smoke). Sinf: m5-04 — \\d users, ikki marta /start, restart ism so'ralganda", st: ['ai', 'bot', 'pg'] },
 ];
-const STATIONS25 = [['msg', 'xabar · chat.id', T.blue], ['hol', 'holat', T.purple], ['db', 'PostgreSQL · users', T.green], ['msg2', 'javob', T.ink]];
-function SummaryMap25({ hl }) {
-  const cur = SUM25.find((x) => x.k === hl);
-  const on = (k) => hl === 'all' || !cur || cur.st.includes(k) || (k === 'msg2' && cur.st.includes('msg'));
+const STATIONS28 = [['bot', 'Telegraf bot', PG.tg], ['ai', 'AI + prompt', PG.ai], ['orm', 'TypeORM', T.purple], ['pg', 'PostgreSQL', PG.pg]];
+function SummaryMap28({ hl }) {
+  const cur = SUM28.find((x) => x.k === hl);
+  const on = (k) => hl === 'all' || !cur || cur.st.includes(k);
   return <div className="mk-light" style={{ padding: 16 }}>
-    <div className="mk-tag">Bugungi dars — xabar yo'li</div>
+    <div className="mk-tag">{t("Bugungi dars — botdan bazagacha, AI bilan", "Сегодняшний урок — от бота до базы, с AI")}</div>
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0,1fr))', gap: 6 }}>
-      {STATIONS25.map(([k, n, c], i) => <div key={k} className={`mk-box${cur && cur.st.includes(k) ? ' hl' : ''}`} style={{ '--c': c, padding: '10px 6px', textAlign: 'center', opacity: on(k) ? 1 : 0.35, animation: `mk-up .4s ${i * 0.06}s ease both` }}><h4 style={{ fontSize: 12.5, margin: 0 }}>{n}</h4></div>)}
+      {STATIONS28.map(([k, n, c], i) => <div key={k} className={`mk-box${cur && cur.st.includes(k) ? ' hl' : ''}`} style={{ '--c': c, padding: '10px 6px', textAlign: 'center', opacity: on(k) ? 1 : 0.35, animation: `mk-up .4s ${i * 0.06}s ease both` }}><h4 style={{ fontSize: 13, margin: 0 }}>{n}</h4></div>)}
     </div>
   </div>;
 }
-const HOMEWORK25 = [
-  { t: 'Ustun: telefon raqami uchun', c: ['ALTER TABLE users ADD COLUMN telefon TEXT;'] },
-  { t: 'Holat: ISM_KUTYAPMAN → TELEFON_KUTYAPMAN → TAYYOR (12-amaliyotdagi bot.js da)', c: [] },
-  { t: "Qayta ishga: telefon bosqichida Ctrl+C → qayta yoqing → raqam yuboring — bot davom etsin", c: [] },
-  { t: 'Buzish: INTEGER sinovi (17-amaliyot) — integer out of range', c: [] },
-  { t: "GitHub'ga chiqaring va repo linkini platformadagi uyga vazifangizga qo'ying", c: ['git add . && git commit -m "bot holati"', 'git push'] },
+const HOMEWORK28 = [
+  { t: "O'z nusxangiz — GitHub'da yangi repo, OrderBotNest'ni unga chiqaring (tgpg-done yoki o'z 4-bosqichingiz)", c: ['git remote set-url origin <sizning repo>', 'git push -u origin main'] },
+  { t: "/report — faqat admin: bugungi buyurtmalar soni va summasi (CANCELLED hisobga olinmaydi), order_items bo'yicha top-3 (JOIN, GROUP BY, SUM). O'sha SQL'ni psql'da o'zingiz yozib, natijani bot javobi bilan solishtiring", c: [] },
+  { t: "Ogohlantirish — COMMIT'dan keyin qoldiq 2 dan kam bo'lgan mahsulot haqida adminga xabar; tranzaksiya ichida Telegram'ga so'rov yuborilmasin", c: [] },
+  { t: "Besh tekshiruv — diff · build · restart · psql · ko'p mijoz", c: ['npm run smoke'] },
+  { t: "README «AI bilan ish»: har bosqich prompti, AI chetga chiqqan joylar, tekshiruv topgan xatolar → git push → repo linki platformadagi uyga vazifaga", c: ['git add -A && git commit -m "report + ogohlantirish"', 'git push'] },
 ];
-const CHEATSHEET25 = `# Telegraf + PostgreSQL — mentor eslatmasi (bot eslab qoladi)
-## Holat
-holat — suhbat bosqichi (ISM_KUTYAPMAN, OLCHAM_KUTYAPMAN …); holatsiz bot: «Pepperoni» → «Tushunmadim»
-obyektdagi holat (RAM) qayta ishga tushganda yo'qoladi; PostgreSQL'dagi qoladi
-har mijoz ctx.chat.id bo'yicha; umumiy let tanlov → Aziza «Buyurtma: Margarita, katta» (xatosiz aralashish)
-## Jadval va oqim
-CREATE TABLE users (id SERIAL PRIMARY KEY, telegram_id BIGINT NOT NULL UNIQUE, ism TEXT, holat TEXT, tanlov TEXT);
-har xabar: SELECT * FROM users WHERE telegram_id = $1 → yo'q bo'lsa INSERT (holat ISM_KUTYAPMAN) → javob → UPDATE users SET ism = $1, holat = $2 WHERE telegram_id = $3
-## Tuzoqlar (haqiqiy xabarlar)
-INTEGER: ERROR: integer out of range (Telegram id 32 bitdan katta bo'lishi mumkin — Bot API hujjati) → BIGINT
-node-pg / TypeORM bigint → matn: '5123456789' === 5123456789 → false → Number() yoki String()
-SELECT'siz takror INSERT: duplicate key value violates unique constraint "users_telegram_id_key"
-## O'quvchi reposi TelegramBotNest (dars-04-done)
-git checkout -f dars-04-done · npm ci · .env: BOT_TOKEN, DATABASE_URL (Neon: ?sslmode=require qolsin)
-entity: telegram_id bigint unique (TS'da string), holat default 'yangi'; UserService.topOrYarat — SELECT + kerak bo'lsa INSERT
-token xato: «Server 3000-portda ishlayapti» + «Telegram ulanmadi: 401: Unauthorized» — bot javob bermaydi · .env yo'q: DATABASE_URL topilmadi
-## O'quvchi darsidagi so'zlar (m5-04)
-holat (state) · holatli bot (stateful) · sessiya · dastur xotirasi (RAM) va PostgreSQL qutisi
-## Sizning uyga vazifangiz
-ikki bosqichli holat (ism → telefon) + qayta ishga tushirishdan keyin davom + INTEGER sinovi → GitHub → repo linki platformadagi uyga vazifaga`;
-const s25Segments = (passed) => [
+const CHEATSHEET28 = `# Telegraf + PostgreSQL — mentor eslatmasi (OrderBotNest, AI bilan)
+## Loyiha
+git clone https://github.com/Azizbekcrypto/OrderBotNest.git · git checkout tgpg-start (xotirada) → tgpg-done (bazada) · npm run smoke [-- restart | race]
+## To'rt bosqich — bitta prompt, bitta bosqich
+1 ulanish + katalog (TypeORM, migratsiya, products, seed) · 2 users + state (BIGINT, WAITING_PHONE) · 3 savat (UNIQUE, ON CONFLICT) · 4 buyurtma (tranzaksiya, qulf, bekor → ombor)
+## Besh qismli prompt
+kontekst (loyiha nima, hozir qanday) · bitta bosqich maqsadi · qat'iy shartlar (har biri tekshiriladi) · nimaga tegmaslik · javobda nima (fayllar + tekshirish)
+## AI javobini o'qish
+fayllar ro'yxati = git diff --stat · «chetga chiqdim» qismi va sababi · tekshirish buyruqlarini o'zingiz yurgizing — «sinadim» isbot emas
+## TypeORM
+entity tasvirlaydi · migratsiya yaratadi · migrations jadvali eslaydi · synchronize: false · migrationsRun: true · o'zgarish — yangi migratsiya
+## Tuzoqlar (hammasi haqiqiy yurgizishdan)
+oraliq vaziyat: buyurtma xotirada, ombor bazada → restartdan keyin buyurtma yo'q, ombor kamaygan
+Telegram id > 2 147 483 647 → BIGINT; node-pg va TypeORM BIGINT'ni matn qaytaradi: "5123456789" === 5123456789 → false (Mongoose'da number)
+INTEGER ustun → value "5123456789" is out of range for type integer, bot «Tushunmadim»
+avval SELECT, keyin INSERT — UNIQUE'siz 19/20 urinishda 2 qator → UNIQUE + INSERT … ON CONFLICT DO UPDATE (Mongoose upsert ham unique index'siz 2 hujjat)
+qulfsiz findOneBy → save: 1 ta Planshet 5 kishiga sotildi, CHECK jim (0 manfiy emas) → lock: pessimistic_write yoki UPDATE … WHERE stock >= qty
+tranzaksiyada CHECK xatosidan keyin so'rov → current transaction is aborted → tekshiruv UPDATE'dan oldin; CHECK — oxirgi qo'riqchi
+ikki marta bir vaqtda «Bekor» → ombor 2 marta qaytdi → buyurtma qatori FOR UPDATE
+## Besh tekshiruv
+diff · build (tsc, nest build) · restart suhbat o'rtasida · psql (\\d, CHECK, bigint, SELECT) · ko'p mijoz (npm run smoke -- race)
+## Xatolar
+BOT_TOKEN topilmadi → .env · DATABASE_URL topilmadi → .env · Unable to connect … database "shop" does not exist → CREATE DATABASE shop · password authentication failed → parol · Telegram ulanmadi: 401 → token (server ishlayveradi) · 409 Conflict → ikkinchi nusxa (sinalmagan)
+## Sinfga tayyorgarlik (m5-04, 20 ekran)
+TelegramBotNest dars-03-done → dars-04-done · Neon (sslmode=require) · Antigravity 3 qatorli prompt · synchronize: true · siz qo'shasiz: \\d users (bigint), ikki marta /start, restart ism so'ralganda, git diff --stat
+## Sizning uyga vazifangiz (60–90 daqiqa)
+/report (JOIN + GROUP BY + SUM, CANCELLED'siz) + kam qoldiq ogohlantirishi (COMMIT'dan keyin) + besh tekshiruv + README «AI bilan ish» → GitHub → repo linki platformaga`;
+const s28Segments = (passed) => yakRu(passed, [
   passed
     ? sg('a', "<b>Barakalla!</b> Siz darsni yaxshi o'rgandingiz — bugungi darsni bir qarashda yig'amiz", "Barakalla! Siz darsni yaxshi o'rgandingiz. Endi bugun o'rganganlaringizni bir qarashda yig'amiz.", { hl: 'all' })
     : sg('a', "Dars oxiriga yetdingiz — sinovni <b>qayta topshirishni</b> maslahat beraman", "Dars oxiriga yetdingiz. Yakuniy sinovdan olti ball kerak edi, yakunlashdan oldin sinovni qayta topshirishni maslahat beraman. Hozir esa bugungi darsni bir qarashda yig'amiz.", { hl: 'all' }),
-  sg('b1', "Holat — <b>suhbat bosqichi</b>; holatsiz bot adashadi", "Birinchi: holat suhbat bosqichi. Holatsiz bot har xabarni birinchi xabardek ko'radi va adashadi.", { hl: 'hol' }),
-  sg('b2', "RAM'dagi holat yo'qoladi, <b>PostgreSQL'dagi qoladi</b>", "Ikkinchi: obyektdagi holat qayta ishga tushganda yo'qoladi. Bazaga yozilgani qoladi.", { hl: 'ram' }),
-  sg('b3', "Har mijoz <b>chat.id</b> bo'yicha alohida", "Uchinchi: har mijozning holati chat id bo'yicha alohida. Umumiy o'zgaruvchi suhbatlarni xato bermay aralashtiradi.", { hl: 'id' }),
-  sg('b4', "Oqim: <b>SELECT</b>, kerak bo'lsa INSERT, keyin UPDATE", "To'rtinchi: har xabarda avval select, yangi mijozga insert, javobdan keyin update.", { hl: 'oqim' }),
-  sg('b5', "Tuzoqlar: <b>BIGINT</b>, matn, takror INSERT", "Beshinchi: telegram id big int bo'lsin, bazadan matn bo'lib keladi, select'siz insert takrorlanadi.", { hl: 'buz' }),
-  sg('b6', "O'quvchi reposi: <b>dars-04-done</b>; 401 — bot javob bermaydi", "Oltinchi: o'quvchi reposida tayyor yechim dars to'rt done. Token xato bo'lsa server ishlaydi, bot esa javob bermaydi.", { hl: 'repo' }),
-  sg('hw', "<b>Uyga vazifa</b>: ikki bosqichli holat va qayta ishga tushirish", "Uyga vazifa: o'n ikkinchi amaliyotdagi botingizga ikkinchi bosqich qo'shing: ismdan keyin telefon raqamini so'rasin. Telefon bosqichida botni qayta ishga tushiring, bot davom etsin. Bir marta integer bilan buzib ko'ring.", { hl: 'hw' }),
-  sg('hw2', "<b>Repo linkini platformaga</b> qo'ying — boshqa hech narsa kerak emas", "GitHub'ga chiqaring va repo linkini platformadagi uyga vazifaga qo'ying, boshqa hech narsa kerak emas. Qirq-oltmish daqiqa.", { hl: 'hw' }),
-  sg('c', "<b>Eslatmani oling</b>: holat, jadval, oqim va tuzoqlar — bir sahifada", "Pastda bir sahifalik eslatma: holat, jadval va oqim, haqiqiy xato xabarlari, o'quvchi reposi va o'quvchi tili. Nusxalab yoki yuklab oling, sinfda yoningizda tursin.", { hl: 'note' }),
+  sg('b1', "Xotiradagi ma'lumot <b>restartda yo'qoladi</b> — saqlanishi kerak bo'lgan har narsa bazada", "Birinchi: Map va massiv jarayon xotirasida, restartda yo'qoladi yoki koddagi boshlang'ich qiymatga qaytadi. Saqlanishi kerak bo'lgan har narsa bazada turadi.", { hl: 'mem' }),
+  sg('b2', "AI bilan: <b>bitta prompt — bitta bosqich</b>; prompt besh qismli, javob uch qismdan o'qiladi", "Ikkinchi: AI bilan ishda bitta prompt, bitta bosqich. Prompt besh qismli: kontekst, maqsad, shartlar, chegara va javob. AI javobini uch qismdan o'qiysiz: fayllar, chetga chiqish va tekshiruv.", { hl: 'ai' }),
+  sg('b3', "TypeORM: <b>entity, migratsiya, migrations jadvali</b>; o'zgarish — yangi migratsiya", "Uchinchi: entity jadvalni tasvirlaydi, migratsiya uni yaratadi, migrations jadvali qaysi fayl yurganini eslaydi. Jadvalni o'zgartirish uchun yangi migratsiya yoziladi.", { hl: 'orm' }),
+  sg('b4', "Telegram id — <b>BIGINT, kodga matn</b>; takror qator — UNIQUE va ON CONFLICT; state bazada", "To'rtinchi: Telegram id big int, va u kodga matn bo'lib keladi. Takror qatorga qarshi UNIQUE va on conflict. State bazada bo'lsa, suhbat o'rtasidagi restartdan o'tadi.", { hl: 'id' }),
+  sg('b5', "Buyurtma — <b>bitta tranzaksiya va qulf</b>; xatodan keyin faqat ROLLBACK", "Beshinchi: buyurtma bitta tranzaksiya. Qoldiq qulf bilan o'qiladi yoki bitta update where stock katta yoki teng qty bilan ayiriladi. Tranzaksiyada xatodan keyin faqat rollback qoladi.", { hl: 'tx' }),
+  sg('b6', "<b>Besh tekshiruv</b> har bosqichda; sinfda — <b>\\d users</b>, ikki marta /start, restart", "Oltinchi: har bosqichda besh tekshiruv: diff, build, restart, PostgreSQL terminali va ko'p mijoz. Sinfda o'quvchi bilan backslash d users, ikki marta start va restartni ism so'ralganda qiling.", { hl: 'chk' }),
+  sg('hw', "<b>Uyga vazifa</b>: o'z nusxangizda admin uchun /report va kam qoldiq ogohlantirishi", "Uyga vazifa: OrderBotNest'ning o'z nusxangizga admin uchun ikki imkoniyat qo'shing, AI bilan, ikki bosqichda. Birinchisi report buyrug'i: bugungi buyurtmalar soni, summasi va eng ko'p sotilgan uchta mahsulot. Ikkinchisi: qoldiq ikkitadan kam qolsa, adminga ogohlantirish.", { hl: 'hw' }),
+  sg('hw2', "Har bosqichdan keyin <b>besh tekshiruv</b>; README'da AI tahlili; repo linki platformaga", "Har bosqichdan keyin besh tekshiruvni qiling. README'ga AI nimani to'g'ri, nimani noto'g'ri qilgani va siz uni qanday ushlaganingizni yozing. GitHub'ga chiqaring va repo linkini platformadagi uyga vazifangizga qo'ying. Oltmish-to'qson daqiqa.", { hl: 'hw' }),
+  sg('c', "<b>Eslatmani oling</b>: bosqichlar, prompt, tuzoqlar va tekshiruvlar — bir sahifada", "Pastda bir sahifalik eslatma: to'rt bosqich, prompt qolipi, AI javobini o'qish, tuzoqlar, besh tekshiruv, xatolar va sinfga tayyorgarlik. Nusxalab yoki yuklab oling, sinfda yoningizda tursin.", { hl: 'note' }),
   sg('z', "Rahmat! <b>Darsni yakunlash</b> tugmasini bosing", "Rahmat. Darsni yakunlash tugmasini bosing, dars tugallangan deb belgilanadi.", { hl: 'note' }),
-];
-function Screen25(p) {
+]);
+function Screen28(p) {
   const completeLesson = useNextLessonAccess();
   const once = useRef(false);
   useEffect(() => { if (once.current) return; once.current = true; completeLesson().catch(() => {}); }, [completeLesson]);
-  const sheet = CHEATSHEET25;
-  const download = () => { try { const b = new Blob([sheet], { type: 'text/markdown' }); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'telegraf-pg-mentor-eslatma.md'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); } catch (e) {} };
+  const sheet = t(CHEATSHEET28, RS('CHEAT'));
+  const download = () => { try { const b = new Blob([sheet], { type: 'text/markdown' }); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = t('telegraf-postgresql-mentor-eslatma.md', RS('FILE')); a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); } catch (e) {} };
   const passed = (p.testScore || 0) >= 6;
-  const segments = useMemo(() => s25Segments(passed), [passed]);
+  const segments = useMemo(() => s28Segments(passed), [passed]);
   const b = useBeats(segments, p.review);
   const hl = b.seg.hl;
   const phase = hl === 'hw' ? 'hw' : hl === 'note' ? 'note' : 'sum';
   const shown = segments.slice(0, b.beat + 1).filter((s) => /^b\d/.test(s.id)).length;
   return (
-    <Stage kicker="Yakun" idx={p.idx} total={p.total} audio={b.audio} onBack={p.onBack} onNext={p.onFinish} onRestart={p.onRestart} nextReady={b.done} nextDisabled={!b.done} nextLabel="Darsni yakunlash" lockHint="Ustoz gapirib bo'lgach ochiladi">
+    <Stage kicker={t('Yakun', 'Итог')} idx={p.idx} total={p.total} audio={b.audio} onBack={p.onBack} onNext={p.onFinish} onRestart={p.onRestart} nextReady={b.done} nextDisabled={!b.done} nextLabel={t('Darsni yakunlash', 'Завершить урок')} lockHint={t("Ustoz gapirib bo'lgach ochiladi", 'Откроется, когда учитель договорит')}>
       <div className="mk-body">
-        <Say title={passed ? 'Barakalla! Endi siz bilasiz' : 'Endi siz bilasiz'} segments={segments} beat={b.beat} audio={b.audio} stepManual={b.stepManual} guess={b.guess} answerAsk={b.answerAsk} review={p.review} />
+        <Say title={passed ? t('Barakalla! Endi siz bilasiz', 'Отлично! Теперь вы знаете') : t('Endi siz bilasiz', 'Теперь вы знаете')} segments={segments} beat={b.beat} audio={b.audio} stepManual={b.stepManual} guess={b.guess} answerAsk={b.answerAsk} review={p.review} />
         <div className="mk-scene top" style={{ overflow: 'auto' }}>
           {phase === 'sum' && (<>
-            <SummaryMap25 hl={hl} />
-            <div className="mk-plan">{SUM25.slice(0, shown).map((it, i) => <div key={it.k} className={it.k === hl ? 'hl' : ''} style={{ animation: 'mk-up .45s ease both' }}><b>0{i + 1}</b><span>{it.t}</span></div>)}</div>
+            <SummaryMap28 hl={hl} />
+            <div className="mk-plan">{SUM28.slice(0, shown).map((it, i) => <div key={it.k} className={it.k === hl ? 'hl' : ''} style={{ animation: 'mk-up .45s ease both' }}><b>0{i + 1}</b><span>{it.t}</span></div>)}</div>
           </>)}
           {phase === 'hw' && <div className="mk-light" style={{ padding: 16, animation: 'mk-up .45s ease both' }}>
-            <div className="mk-tag" style={{ color: T.accent }}>Uyga vazifa · 40–60 daqiqa</div>
+            <div className="mk-tag" style={{ color: T.accent }}>{t('Uyga vazifa · 60–90 daqiqa', 'Домашнее задание · 60–90 минут')}</div>
             <div style={{ display: 'grid', gap: 8 }}>
-              {HOMEWORK25.map((h, i) => <div key={i} className="mk-step" style={{ animation: `mk-up .4s ${i * 0.12}s ease both` }}>
+              {HOMEWORK28.map((h, i) => <div key={i} className="mk-step" style={{ animation: `mk-up .4s ${i * 0.12}s ease both` }}>
                 <span style={{ fontFamily: MONO, fontWeight: 700, color: T.accent, minWidth: 20 }}>{i + 1}</span>
                 <div className="t"><b style={{ marginBottom: 2 }}>{h.t}</b>{h.c.map((c) => <div key={c} className="cmd"><code>{c}</code><CopyBtn text={c} /></div>)}</div>
               </div>)}
             </div>
-            <div className="mk-rule" style={{ marginTop: 12 }}><b>Tekshiruvchi qaraydi:</b> holat bazada · chat.id bo'yicha · avval SELECT · telegram_id BIGINT.</div>
+            <div className="mk-rule" style={{ marginTop: 12 }}><b>{t("Tekshiruvchi qaraydi:", "Проверяющий смотрит:")}</b>{t(" /report raqamlari psql bilan mos · CANCELLED chiqarilgan · ogohlantirish tranzaksiyadan keyin · README'da AI tahlili (kamida bitta topilma).", " числа /report совпадают с psql · CANCELLED исключён · предупреждение после транзакции · в README разбор AI (хотя бы одна находка).")}</div>
           </div>}
           {phase === 'note' && <div className="mk-light" style={{ padding: 14, animation: 'mk-up .45s ease both' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-              <div className="mk-tag" style={{ margin: 0 }}>Mentor eslatmasi · 1 sahifa</div>
-              <div style={{ display: 'flex', gap: 8 }}><CopyBtn text={sheet} /><button className="mk-copy" onClick={download}>yuklab olish (.md)</button></div>
+              <div className="mk-tag" style={{ margin: 0 }}>{t('Mentor eslatmasi · 1 sahifa', 'Памятка ментора · 1 страница')}</div>
+              <div style={{ display: 'flex', gap: 8 }}><CopyBtn text={sheet} /><button className="mk-copy" onClick={download}>{t('yuklab olish (.md)', 'скачать (.md)')}</button></div>
             </div>
             <pre style={{ margin: '10px 0 0', font: `12px/1.5 ${MONO}`, whiteSpace: 'pre-wrap', color: T.ink2, maxHeight: 300, overflow: 'auto' }}>{sheet}</pre>
-            <div className="mk-card" style={{ marginTop: 10, borderColor: T.accent }}><h5 style={{ color: T.accent }}>Kursdagi keyingi mentor darsi</h5><div style={{ fontSize: 15, fontWeight: 700 }}>WebSocket: doimiy ulanish</div><div style={{ fontSize: 13.5, color: T.ink2 }}>Backend o'zi xabar yuboradi</div></div>
+            <div className="mk-card" style={{ marginTop: 10, borderColor: T.accent }}><h5 style={{ color: T.accent }}>{t("Kursdagi keyingi mentor darsi", "Следующий урок курса для менторов")}</h5><div style={{ fontSize: 15, fontWeight: 700 }}>{t("Jest: OrderBotNest'ga birinchi testlar", RS('NEXT_T'))}</div><div style={{ fontSize: 13.5, color: T.ink2 }}>{t("Yozamiz, buzamiz va AI yozgan testni tekshiramiz", RS('NEXT_D'))}</div></div>
           </div>}
         </div>
       </div>
@@ -2481,20 +3649,20 @@ function Screen25(p) {
 // ============================================================
 //  Muqova va ildiz
 // ============================================================
-function Cover({ onStart }) {
+function Cover({ onStart, resume }) {
   return (
     <div className="mk-cover"><div className="card">
-      <p className="mk-eyebrow">Mentor kursi · Telegraf</p>
-      <h1>{LESSON_TITLE}</h1>
-      <p>Bu dars ovozli. Ustoz har ekranda gapiradi, ekran u bilan birga o'zgaradi. Quloqchin yoki ovoz balandligini tekshiring.</p>
+      <p className="mk-eyebrow">{t("Mentor kursi · Telegraf + PostgreSQL", "Курс для менторов · Telegraf + PostgreSQL")}</p>
+      <h1>{t(LESSON_TITLE, RS('TITLE'))}</h1>
+      <p>{t("Bu dars ovozli. Ustoz har ekranda gapiradi, ekran u bilan birga o'zgaradi. Quloqchin yoki ovoz balandligini tekshiring.", 'Урок озвучен. На каждом экране говорит учитель, экран меняется вместе с ним. Проверьте наушники или громкость.')}</p>
       <ul>
-        {["Jami taxminan 1 soat: ovoz ~20 daqiqa · uch amaliyot ~40 daqiqa · 4 tekshiruv · o'z-sinov 8 savol. 12-ekrandan keyin tanaffus qilsangiz bo'ladi", "Kerak: PostgreSQL darslari o'tilgan (lokal PostgreSQL) · BotFather'dan sinov bot tokeni · Node.js 20+ · VS Code", "Loyiha: kichik bot (bot-holat) va o'quvchi reposi TelegramBotNest (dars-04-done)"].map((x) => <li key={x}>{x}</li>)}
+        {t(["Jami taxminan 1 soat 40 daqiqa – 2 soat: ovoz ~27 daqiqa · to'rt amaliyot AI bilan 70–90 daqiqa · 4 tekshiruv · o'z-sinov 8 savol. 12-ekrandan keyin tanaffus qilsangiz bo'ladi", "Kerak: Telegraf videodarslari · PostgreSQL-1 va PostgreSQL-2 · NestJS mentor darslari · PostgreSQL ishlab turgan · Node.js 20+ · VS Code · AI yordamchi (Antigravity, Claude Code, Codex yoki Copilot) · BotFather'da sinov boti", 'Loyiha: github.com/Azizbekcrypto/OrderBotNest — tgpg-start dan boshlaysiz'], RS('COVER')).map((x) => <li key={x}>{x}</li>)}
       </ul>
-      <button className="mk-btn ready" onClick={onStart}>Boshlash →</button>
+      <CoverStart onStart={onStart} resume={resume} />
     </div></div>
   );
 }
-const SCREENS = [Screen1, Screen2, Screen3, Screen4, Screen5, Screen6, Screen7, Screen8, Screen9, Screen10, Screen11, ScreenP1, Screen13, Screen14, Screen15, Screen16, ScreenP2, Screen18, Screen19, ScreenP3, Screen21, Screen22, Screen23, Screen24, Screen25];
+const SCREENS = [Screen1, Screen2, Screen3, Screen4, ScreenP5, Screen6, Screen7, Screen8, Screen9, Screen10, Screen11, ScreenP12, Screen13, Screen14, Screen15, Screen16, ScreenP17, Screen18, Screen19, Screen20, Screen21, Screen22, ScreenP23, Screen24, Screen25, Screen26, Screen27, Screen28];
 const PRACTICE_COUNT = SCREENS.filter((S) => /^ScreenP\d/.test(S.name)).length;
 export default function TgPgMentorLesson({ studentName, lang = 'uz', onFinished, startAt }) {
   setLang(lang);
@@ -2508,6 +3676,7 @@ export default function TgPgMentorLesson({ studentName, lang = 'uz', onFinished,
   const [seen, setSeen] = useState({});
   const [rev, setRev] = useState(0);
   const [mode, setMode] = useState('live');
+  const sv = useMentorSave({ id: LESSON_ID, total, startAt, started, idx, answers, seen, setIdx, setAnswers, setSeen, setStarted });
   const startTime = useRef(Date.now());
   const finished = useRef(false);
   const onAnswer = useCallback((payload) => setAnswers((a) => ({ ...a, [idx]: payload })), [idx]);
@@ -2532,8 +3701,1020 @@ export default function TgPgMentorLesson({ studentName, lang = 'uz', onFinished,
       answers: Object.entries(answers).map(([i, a]) => ({ screen: Number(i) + 1, ...a })),
     });
   };
-  if (!started) return <Cover onStart={() => setStarted(true)} />;
+  if (!started) return <Cover onStart={sv.start} resume={sv.resume} />;
   const S = SCREENS[idx];
   const fin = Object.values(answers).find((a) => a && a.type === 'final');
   return <S key={`${idx}:${rev}`} idx={idx} total={total} lang={lang} stored={answers[idx]} testScore={fin ? fin.score : 0} seen={!!seen[idx]} review={mode === 'review' && !!seen[idx]} onAnswer={onAnswer} onNext={next} onBack={idx > 0 ? () => { setMode('review'); setIdx((i) => i - 1); } : null} onFinish={finish} onGoto={goto} onRestart={restart} />;
 }
+
+// ============================================================
+//  RU — AVTO: feedback/F-1029-02-mentor-kurs/dev/ru-qur.py (manba: ru/tgpg-*.json, ru/tgpg-sahna.js). M24: UZ bo'laklarga tegilmaydi.
+//  Uslub: «Вы», dasturlash atamalari inglizcha; kod va haqiqiy chiqishlar — loyihadagidek. QO'LDA TAHRIRLANMAYDI.
+// ============================================================
+
+// --- sahna (ru/tgpg-sahna.js) ---
+// TgPg · sahna ruschasi (M24): modul darajasidagi ro'yxatlar va ekran obyektlariga qo'shimcha. ru() bitta obyektga bir marta.
+// Bot xabarlari (b) va tugmalar — OrderBotNest ning haqiqiy matni, o'zgarmaydi; faqat izoh qatorlari (sep) tarjima qilinadi.
+var RU_S = {
+  S1: { plan: ['Проект и проблема', 'План и промпт', 'Подключение и каталог', 'Пользователь, state, корзина', 'Заказ и транзакция', 'Подготовка к классу'] },
+};
+ru(SVC2, [[null, 'товары и склад', null], [null, 'пользователь, роль, state', null], [null, 'корзина', null], [null, 'заказ, статус админа', null]]);
+ru(FLOW2, [null, null, null, null, null, null, null, null, null, [null, 'админ Жасур'], null, null, null]);
+ru(FLOW3B, [[null, 'сервер перезапустился'], null, null, null, null, [null, 'перезапуск в момент запроса телефона'], null, null]);
+ru(LIST3, ['товар и склад (stock)', 'пользователь и его роль', 'телефон и state', 'корзина', 'заказ']);
+ru(PROMPT1, [
+  [null, 'Это проект NestJS + Telegraf (Telegram-бот заказов). Сейчас каталог, корзина, пользователи и заказы в памяти (Map и array) — при перезапуске сервера всё пропадает. Переносим их в PostgreSQL поэтапно.\n\n'],
+  [null, 'Этап 1 — только подключение к базе и каталог:\n'],
+  [null, '- Подключи TypeORM (@nestjs/typeorm, pg). Адрес — из DATABASE_URL в .env, читать через src/config/index.ts.\n- Не используй synchronize: таблицы создаются миграциями, при подъёме сервера незапущенная миграция запускается сама.\n- Таблица products: id, name (уникальное), price, stock; stock не может быть отрицательным — CHECK в базе.\n- Seed-скрипт (npm run seed): добавляет текущие 6 товаров, при втором запуске не добавляет повторно.\n- CatalogService читает из базы, пагинация остаётся (по 2).\n'],
+  [null, '- Сервисы user, корзины и заказа пока не трогай.\n\n'],
+  [null, 'В ответе: какие файлы изменились, как запустить и что проверить в psql.'],
+]);
+ru(FLOW11B, [[null, 'сервер перезапустился'], null, null]);
+ru(FLOW15, [null, null, [null, 'сервер перезапустился'], null, null]);
+ru(CHK24, [[null, null, 'объём = запрошенный этап (1145 строк — нет)'], null, [null, 'перезапуск', 'посреди разговора · smoke restart'], null, [null, 'много клиентов', 'smoke race · отмена дважды']]);
+ru(FOUND24, ['сделал работу, о которой не просили (22 файла)', 'не заметил промежуточного состояния', 'в проверке ушёл один запрос в Telegram (401)', 'в нашем коде: дважды «Bekor» → склад 2']);
+ru(ADD25, [[null, 'практика, после того как AI написал'], ['/start дважды — SELECT count(*)', 'практика, проверка в Telegram'], ['перезапуск, когда спрошено имя', 'конец практики'], ['sslmode=require не удалять', 'шаг Neon'], ['файлы AI — git diff --stat', 'шаг Antigravity']]);
+ru(CARDS26, [
+  ['Бот не отвечает', 'Telegram ulanmadi: 401: Unauthorized (сервер «работает»)', 'токен — BotFather'],
+  ['Сервер не запускается', null, '.env'],
+  ['После перезапуска имя забыто', 'ошибки нет, «Salom! Ismingiz nima?»', 'state не пишется в базу — SELECT … FROM users'],
+  ['Большой id', 'value "5123456789" is out of range for type integer · или duplicate key', 'bigint; сначала поиск или ON CONFLICT'],
+]);
+ru(QA26, [
+  ['«AI написал, работает — зачем ещё проверять?»', 'Есть ошибки, которые не видны в одной проверке: перезапуск и двойное нажатие (экраны 11, 15).'],
+  ['«Почему synchronize: true — и в рабочем проекте так же?»', 'Нет: он может без предупреждения удалить колонку; в рабочем проекте — миграции (экран 9).'],
+  ['«Telegram id же число, почему из базы пришла строка?»', 'bigint может быть больше числа JavaScript, библиотека отдаёт строку (экран 13).'],
+  ['«Можно вместо Neon PostgreSQL на своём компьютере?»', 'Да, меняете DATABASE_URL; когда выпускаете бота на хостинг, база должна быть в интернете.'],
+  ['«Если двое напишут одновременно, имена перепутаются?»', 'Нет, каждая строка отдельно по telegram_id.'],
+]);
+ru(SUM28, [
+  { t: 'Данные в памяти (Map, массив) при перезапуске пропадают или возвращаются к начальному значению из кода; всё, что должно сохраняться, — в базе' },
+  { t: 'Работа с AI: один промпт — один этап; промпт из пяти частей (контекст · цель · условия · граница · ответ); ответ читается в трёх частях (файлы · выход за рамки · проверка)' },
+  { t: 'TypeORM: entity описывает, миграция создаёт, таблица migrations помнит; synchronize: false; изменение — новая миграция' },
+  { t: 'Telegram id — BIGINT, приходит в код строкой; повторная строка — UNIQUE + ON CONFLICT; state в базе — переживает перезапуск посреди разговора' },
+  { t: 'Заказ — одна транзакция; остаток читается с блокировкой или вычитается одним UPDATE … WHERE stock >= qty; после ошибки в транзакции — только ROLLBACK' },
+  { t: 'Пять проверок на каждом этапе: diff · build · перезапуск · psql · много клиентов (npm run smoke). Класс: m5-04 — \\d users, дважды /start, перезапуск, когда спрошено имя' },
+]);
+ru(HOMEWORK28, [
+  { t: 'Своя копия — новый репозиторий на GitHub, выложите в него OrderBotNest (tgpg-done или ваш 4-й этап)' },
+  { t: '/report — только для админа: число и сумма заказов за сегодня (CANCELLED не считается), топ-3 по order_items (JOIN, GROUP BY, SUM). Тот же SQL напишите сами в psql и сравните с ответом бота' },
+  { t: 'Предупреждение — после COMMIT сообщение админу о товаре с остатком меньше 2; внутри транзакции запрос в Telegram не отправлять' },
+  { t: 'Пять проверок — diff · build · перезапуск · psql · много клиентов' },
+  { t: 'README «Работа с AI»: промпт каждого этапа, где AI вышел за рамки, какие ошибки нашла проверка → git push → ссылка на репозиторий в домашнее задание на платформе' },
+]);
+RU_S.SPOKEN = [['бэкслеша ', 'backslash '], ['Бэкслеш ', 'Backslash '], ['бэкслеш ', 'backslash ']];  // F-1109-01: ruscha ovoz → «Matn»da `\d products` kabi kod
+RU_S.TITLE = 'Бот заказов: переносим в базу вместе с AI';
+RU_S.COVER = ['Всего около 1 часа 40 минут – 2 часов: озвучка ~27 минут · четыре практики с AI 70–90 минут · 4 проверки · самопроверка 8 вопросов. После экрана 12 можно сделать перерыв', 'Нужно: видеоуроки по Telegraf · PostgreSQL-1 и PostgreSQL-2 · уроки для менторов по NestJS · работающий PostgreSQL · Node.js 20+ · VS Code · AI-помощник (Antigravity, Claude Code, Codex или Copilot) · тестовый бот в BotFather', 'Проект: github.com/Azizbekcrypto/OrderBotNest — начинаете с tgpg-start'];
+RU_S.FIN_INTRO = 'Вы всё посмотрели, теперь проверьте себя. Итоговый тест, восемь вопросов: память и перезапуск, этапы, миграция, big int, on conflict, блокировка и транзакция. На каждый вопрос одна попытка, после ответа откроются верный ответ и пояснение. Шесть и больше — урок усвоен. Если меньше, вернитесь к указанным экранам и пройдите тест заново.';
+RU_S.FIN_PASS = 'Урок усвоен. Теперь, когда ученик пишет бота с AI, вы знаете, что проверять.';
+RU_S.NEXT_T = 'Jest: первые тесты для OrderBotNest';
+RU_S.NEXT_D = 'Пишем, ломаем и проверяем тест, написанный AI';
+RU_S.FILE = 'telegraf-postgresql-pamyatka-mentora.md';
+RU_S.YAK = {
+  b1: ['Данные в памяти <b>пропадают при перезапуске</b> — всё, что должно сохраняться, в базе', 'Первое: Map и массив — в памяти процесса, при перезапуске пропадают или возвращаются к начальному значению из кода. Всё, что должно сохраняться, лежит в базе.'],
+  b2: ['С AI: <b>один промпт — один этап</b>; промпт из пяти частей, ответ читается в трёх', 'Второе: в работе с AI один промпт — один этап. Промпт из пяти частей: контекст, цель, условия, граница и ответ. Ответ AI читаете в трёх частях: файлы, выход за рамки и проверка.'],
+  b3: ['TypeORM: <b>entity, миграция, таблица migrations</b>; изменение — новая миграция', 'Третье: entity описывает таблицу, миграция её создаёт, таблица migrations помнит, какой файл запускался. Чтобы изменить таблицу, пишется новая миграция.'],
+  b4: ['Telegram id — <b>BIGINT, в коде строка</b>; повторная строка — UNIQUE и ON CONFLICT; state в базе', 'Четвёртое: Telegram id — big int, и в код он приходит строкой. Против повторной строки — UNIQUE и on conflict. Если state в базе, он переживает перезапуск посреди разговора.'],
+  b5: ['Заказ — <b>одна транзакция и блокировка</b>; после ошибки только ROLLBACK', 'Пятое: заказ — одна транзакция. Остаток читается с блокировкой или вычитается одним update where stock больше или равно qty. После ошибки в транзакции остаётся только rollback.'],
+  b6: ['<b>Пять проверок</b> на каждом этапе; в классе — <b>\\d users</b>, дважды /start, перезапуск', 'Шестое: на каждом этапе пять проверок: diff, build, перезапуск, терминал PostgreSQL и много клиентов. В классе сделайте с учеником бэкслеш d users, start дважды и перезапуск, когда спрошено имя.'],
+  hw: ['<b>Домашнее задание</b>: в своей копии /report для админа и предупреждение о малом остатке', 'Домашнее задание: добавьте в свою копию OrderBotNest две возможности для админа, с AI, в два этапа. Первая — команда report: число и сумма заказов за сегодня и три самых продаваемых товара. Вторая: если остаток меньше двух, предупреждение админу.'],
+  hw2: ['После каждого этапа <b>пять проверок</b>; разбор AI в README; ссылка на репозиторий — на платформу', 'После каждого этапа сделайте пять проверок. В README напишите, что AI сделал правильно, что неправильно и как вы это поймали. Выложите на GitHub и вставьте ссылку на репозиторий в домашнее задание на платформе. Шестьдесят–девяносто минут.'],
+  c: ['<b>Возьмите памятку</b>: этапы, промпт, ловушки и проверки — на одной странице', 'Внизу памятка на одну страницу: четыре этапа, шаблон промпта, чтение ответа AI, ловушки, пять проверок, ошибки и подготовка к классу. Скопируйте или скачайте, пусть будет рядом на уроке.'],
+};
+RU_S.CHEAT = `# Telegraf + PostgreSQL — памятка ментора (OrderBotNest, с AI)
+## Проект
+git clone https://github.com/Azizbekcrypto/OrderBotNest.git · git checkout tgpg-start (в памяти) → tgpg-done (в базе) · npm run smoke [-- restart | race]
+## Четыре этапа — один промпт, один этап
+1 подключение + каталог (TypeORM, миграция, products, seed) · 2 users + state (BIGINT, WAITING_PHONE) · 3 корзина (UNIQUE, ON CONFLICT) · 4 заказ (транзакция, блокировка, отмена → склад)
+## Промпт из пяти частей
+контекст (что за проект, как сейчас) · цель одного этапа · строгие условия (каждое проверяется) · что не трогать · что в ответе (файлы + проверка)
+## Чтение ответа AI
+список файлов = git diff --stat · часть «вышел за рамки» и её причина · команды проверки запускайте сами — «я проверил» не доказательство
+## TypeORM
+entity описывает · миграция создаёт · таблица migrations помнит · synchronize: false · migrationsRun: true · изменение — новая миграция
+## Ловушки (все из настоящих запусков)
+промежуточное состояние: заказ в памяти, склад в базе → после перезапуска заказа нет, а склад уменьшен
+Telegram id > 2 147 483 647 → BIGINT; node-pg и TypeORM возвращают BIGINT строкой: "5123456789" === 5123456789 → false (в Mongoose number)
+колонка INTEGER → value "5123456789" is out of range for type integer, бот «Tushunmadim»
+сначала SELECT, потом INSERT — без UNIQUE в 19/20 попыток 2 строки → UNIQUE + INSERT … ON CONFLICT DO UPDATE (upsert Mongoose без unique index тоже 2 документа)
+findOneBy без блокировки → save: 1 планшет продан пятерым, CHECK молчит (0 не отрицательное) → lock: pessimistic_write или UPDATE … WHERE stock >= qty
+запрос после ошибки CHECK в транзакции → current transaction is aborted → проверка до UPDATE; CHECK — последний сторож
+дважды одновременно «Bekor» → склад вернулся дважды → строка заказа FOR UPDATE
+## Пять проверок
+diff · build (tsc, nest build) · перезапуск посреди разговора · psql (\\d, CHECK, bigint, SELECT) · много клиентов (npm run smoke -- race)
+## Ошибки
+BOT_TOKEN topilmadi → .env · DATABASE_URL topilmadi → .env · Unable to connect … database "shop" does not exist → CREATE DATABASE shop · password authentication failed → пароль · Telegram ulanmadi: 401 → токен (сервер продолжает работать) · 409 Conflict → вторая копия (не проверено)
+## Подготовка к классу (m5-04, 20 экранов)
+TelegramBotNest dars-03-done → dars-04-done · Neon (sslmode=require) · промпт Antigravity из 3 строк · synchronize: true · вы добавляете: \\d users (bigint), дважды /start, перезапуск, когда спрошено имя, git diff --stat
+## Ваше домашнее задание (60–90 минут)
+/report (JOIN + GROUP BY + SUM, без CANCELLED) + предупреждение о малом остатке (после COMMIT) + пять проверок + README «Работа с AI» → GitHub → ссылка на репозиторий на платформу`;
+// 2-tur (05.11): skaner tuzatilgandan keyin topilgan modul ro'yxatlari. Bot xabarlari — haqiqiy chiqish, o'zgarmaydi; faqat 'sep' izohlari
+ru(FLOW3A, [[null, '1-й процесс']]);
+ru(FLOW11A, [[null, 'после 1-го этапа']]);
+ru(FLOW15B, [[null, 'после 2-го этапа (корзина ещё в памяти)']]);
+ru(FLOW19, [[null, 'на складе 1 Planshet'], null, null, null, [null, 'склад 0 · корзина Бобура сохранена']]);
+ru(STAGES6, [[null, 'Подключение + каталог', 'TypeORM, миграция, products, seed'], [null, 'Пользователь + state'], [null, 'Корзина'], [null, 'Заказ', 'orders, order_items, транзакция']]);
+ru(STATIONS28, [[null, 'Бот Telegraf']]);
+
+const RU_MDT = {
+ "1": {
+  "kicker": "Вступление",
+  "eyebrow": "Курс для менторов · Telegraf + PostgreSQL",
+  "title": "Есть готовый бот заказов. Переносим его с AI на PostgreSQL — поэтапно и проверяя каждый шаг",
+  "seg": {
+   "a": [
+    "Писать бота на Telegraf вы умеете — сегодня <b>храним данные бота в PostgreSQL</b>",
+    "Здравствуйте. Как писать бота на Telegraf, команды и inline-кнопки вы видели в видеоуроках. Сегодня следующий шаг: храним данные бота в PostgreSQL. Тогда даже при перезапуске сервера корзина, заказ и номер телефона не пропадут."
+   ],
+   "b": [
+    "Проект готов: <b>каталог, корзина, заказ и админ</b> — на Nest и Telegraf",
+    "Проект не пишется с нуля. На GitHub есть готовый бот заказов: каталог, корзина, заказ и панель админа, на NestJS и Telegraf. Он полностью работает, только все данные лежат в памяти. Вы сделаете clone и своими глазами увидите его недостаток."
+   ],
+   "c": [
+    "Код пишет AI, а вы <b>управляете по этапам и проверяете каждый этап</b>",
+    "Код пишет AI: Antigravity, Claude Code, Codex или Copilot, какой угодно. Ваша работа — управлять: делите задачу на четыре этапа, пишете на каждый промпт и сами проверяете результат. Мы действительно сделали это с двумя разными AI, ответы на экране — из этих запусков."
+   ],
+   "d": [
+    "Шесть этапов, четыре практики; в конце <b>два экрана подготовки к классу</b>. Не спешите",
+    "Урок состоит из шести этапов, в четырёх практиках вы работаете с AI сами. Последние два экрана — подготовка к классу: карта урока ученика и места, где ученики ошибаются. Не спешите: каждый экран можно прослушать с начала, урок запоминает, где вы остановились. Начинаем."
+   ]
+  }
+ },
+ "2": {
+  "kicker": "Этап 1 · проект и проблема",
+  "title": "Проект состоит из пяти модулей: telegram, catalog, user, cart и order",
+  "seg": {
+   "a": [
+    "Команды бота в одном файле: <b><code>telegram.service.ts</code> — знакомые вам handler Telegraf</b>",
+    "Открываем проект в Explorer. Команды бота — в одном файле: telegram service. Внутри знакомые вам handler Telegraf: bot start, bot command catalog и bot action. Кнопки — в файле keyboards, тексты бота — в файле texts."
+   ],
+   "b": [
+    "Логика в четырёх Service: <b>каталог, пользователь, корзина и заказ</b> — каждый в своём модуле",
+    "Handler сами логику не пишут, они передают её в Service. В проекте четыре Service: catalog управляет товарами и складом, user — пользователем и его state, cart — корзиной, order — заказом. Каждый в своём модуле, Nest inject-ит их в telegram service."
+   ],
+   "c": [
+    "Путь клиента: <b>каталог → корзина → телефон → заказ</b>, потом админ подтверждает",
+    "Посмотрим путь клиента. Азиза открывает каталог, товары по два на странице. Нажимает кнопку и кладёт в корзину, оформляет заказ, бот спрашивает телефон. Когда пришёл номер, создаётся заказ и уходит сообщение админу. Админ Жасур подтверждает заказ, Азизе приходит сообщение."
+   ],
+   "d": [
+    "Итог: бот полностью работает, но <b>все данные в <code>Map</code> и массиве</b>",
+    "Итог: бот полностью работает, роль админа тоже есть. Но если открыть Service, пользователи лежат в Map, корзины в Map, заказы — в обычном массиве. Где живут эти данные, посмотрим на следующем экране."
+   ]
+  }
+ },
+ "3": {
+  "kicker": "Этап 1 · внутри",
+  "title": "Map живёт в памяти процесса Node: остановился процесс — пропал и он",
+  "seg": {
+   "a": [
+    "В 1-м процессе всё есть: <b>заказ #1, в корзине мышка, телефон Азизы</b>",
+    "В первом процессе бот работает. Азиза сделала заказ, номер один, итого двести двадцать тысяч сум. Админ его подтвердил. Потом Азиза положила в корзину ещё мышку. Её телефон тоже сохранён в боте."
+   ],
+   "b": [
+    "Сервер перезапустился: <b>корзина пуста, заказа нет</b>, телефон снова спрашивают",
+    "Теперь останавливаем сервер и запускаем снова. Азиза открывает корзину: корзина пуста. Админ смотрит заказы: заказов пока нет. Номер телефона тоже пропал, при следующем заказе бот снова его спросит. Сообщения об ошибке не было, данных просто нет."
+   ],
+   "c": [
+    "Причина: <code>Map</code> — <b>объект в памяти процесса</b>; рождается и умирает вместе с процессом",
+    "Причина простая. Map — объект в оперативной памяти процесса Node. При запуске процесса он создаётся пустым, при остановке память освобождается. Хостинг перезапускает сервер при каждом deploy, то есть у настоящего бота это бывает несколько раз в день."
+   ],
+   "d": [
+    "Итог: <b>всё, что должно сохраняться, — в базу</b> — список из пяти данных",
+    "Итог: всё, что должно остаться после перезапуска, должно быть в базе. В боте таких данных пять: товар и склад, пользователь и его роль, телефон и state, корзина, заказ. Сегодня переносим эти пять в PostgreSQL."
+   ]
+  }
+ },
+ "4": {
+  "kicker": "Проверка 1",
+  "eyebrow": "Проверка · 1 / 4",
+  "title": "Каталог — массив в коде, число на складе тоже в этом массиве. Сколько мишек останется после перезапуска?",
+  "q": "Вы видели память, теперь проверим. Первая проверка. Каталог — массив, написанный в коде, число на складе тоже в этом массиве. Азиза взяла двух мишек, осталось восемь. Если сервер перезапустится, сколько мишек будет на складе? Выберите вариант.",
+  "ok": "Верно. Массив написан в коде, при запуске процесса он снова создаётся со значением из кода: десять. То есть перезапуск стёр заказ и вернул склад к десяти. Оба согласованы между собой, только неверны. Значит, данные в памяти при каждом перезапуске возвращаются к начальному значению из кода.",
+  "okShort": "Массив создаётся заново из кода — <code>stock: 10</code>. Заказ пропал, склад тоже вернулся.",
+  "hint": "Где написан массив — в коде или в базе? Какое значение даёт ему код при запуске процесса?",
+  "demak": "данные в памяти при каждом перезапуске возвращаются к начальному значению из кода.",
+  "opts": [
+   "8 — сервер помнит последнее значение",
+   "10 — массив создаётся заново из кода",
+   "0 — RAM очищается, массив тоже пустой",
+   "Сервер даст ошибку — склад не синхронен"
+  ],
+  "wrong": {
+   "0": "Чтобы помнить, нужен диск; Map и массив — только в RAM.",
+   "2": "Память очищается, но массив написан в коде — он создаётся заново.",
+   "3": "Перезапуск — не ошибка: сервер поднимается как обычно."
+  }
+ },
+ "5": {
+  "kicker": "Практика 1 / 4",
+  "eyebrow": "Сейчас у себя · 15 минут",
+  "title": "Запустите проект на своём компьютере и посмотрите, что пропадает при перезапуске",
+  "seg": {
+   "a": [
+    "Теперь вы: делаете clone проекта и запускаете <b>с токеном своего бота</b>",
+    "Теперь ваша очередь. Делаете clone проекта и запускаете со своим ботом. Для токена откройте в BotFather новый тестовый бот, как в видеоуроке. Займёт пятнадцать минут."
+   ],
+   "b": [
+    "Шаги 1–2: clone, тег <code>tgpg-start</code>, <code>npm install</code>, <code>.env</code> — <b>токен и ваш id</b>",
+    "На первом шаге делаете clone репозитория, переходите на тег tgpg start и делаете npm install. На втором создаёте env-файл из env example: bot token и ваш id в Telegram для админа. Id берёте у userinfobot."
+   ],
+   "c": [
+    "Шаги 3–4: поток бота, потом перезапуск; подтверждение — <b>ответ на <code>/cart</code> после перезапуска</b>",
+    "На третьем шаге в Telegram проверяете start, catalog, два товара и заказ, как админ смотрите orders. На четвёртом кладёте товар в корзину, останавливаете сервер через Ctrl C и запускаете снова. В поле подтверждения напишите ответ на команду cart."
+   ],
+   "d": [
+    "Если вышло иначе, нажмите кнопку <b>«Вышло иначе?»</b> — откроется окно с решениями",
+    "Если вышло иначе, нажмите кнопку «Вышло иначе?» внизу. Пока не отмечены все четыре пункта и нет подтверждения, «Далее» не откроется. Значит, после этой практики проект работает на вашем компьютере, и вы сами видели, какие данные пропадают при перезапуске."
+   ]
+  },
+  "steps": [
+   {
+    "t": "Clone",
+    "exp": "added … packages"
+   },
+   {
+    "t": ".env — впишите BOT_TOKEN (BotFather) и ADMIN_TELEGRAM_IDS (@userinfobot), потом запустите",
+    "exp": "Server 3000-portda ishlayapti · Telegram bot ulandi"
+   },
+   {
+    "t": "Поток бота — в Telegram: /start → /catalog → ▶ → товар → /cart → «✅ Buyurtma berish» → телефон → /orders",
+    "exp": "«Buyurtma #1 qabul qilindi!» · кнопки админа"
+   },
+   {
+    "t": "Перезапуск — положите товар в корзину, остановите сервер и включите снова, в Telegram /cart и /orders",
+    "exp": "«Savat bo'sh…» · «Hozircha buyurtma yo'q.» · NATIJA: 0/3"
+   }
+  ],
+  "proof": {
+   "label": "Ответ на /cart после перезапуска",
+   "placeholder": "скопируйте ответ бота",
+   "wrong": "Открывали ли корзину после перезапуска? Проверьте, что сервер остановлен через Ctrl+C и запущен снова."
+  },
+  "trouble": [
+   [
+    "BOT_TOKEN topilmadi",
+    "нет .env или он пустой — cp .env.example .env, впишите токен"
+   ],
+   [
+    "Server … ishlayapti и Telegram ulanmadi: 401: Unauthorized",
+    "неверный токен; сервер работает, бот не отвечает — получите заново в BotFather"
+   ],
+   [
+    "409: Conflict: terminated by other getUpdates request",
+    "с этим токеном работает вторая копия — остановите старый терминал (⚠ из документации Telegram, не проверено — нужен настоящий токен)"
+   ],
+   [
+    "/orders → «faqat admin uchun»",
+    "в ADMIN_TELEGRAM_IDS другой id — впишите число из @userinfobot"
+   ],
+   [
+    "EADDRINUSE :::3000",
+    "порт занят — старый сервер; Ctrl+C или в .env PORT=3001"
+   ]
+  ]
+ },
+ "6": {
+  "kicker": "Этап 2 · план и промпт",
+  "title": "Пять данных — четыре этапа: после каждого проверка и commit",
+  "seg": {
+   "a": [
+    "Делим работу на <b>четыре этапа</b>: подключение и каталог, пользователь, корзина, заказ",
+    "Пять данных не переносим разом. Делим работу на четыре этапа: сначала подключение к базе и каталог, потом пользователь и его state, потом корзина, в конце заказ и транзакция. Порядок — по зависимостям: корзина опирается на пользователя и товар, заказ — на всё."
+   ],
+   "b": [
+    "После каждого этапа: <b>build, перезапуск, psql — потом commit</b>",
+    "После каждого этапа останавливаемся и проверяем: собирается ли проект, что остаётся после перезапуска, какая таблица в терминале PostgreSQL. Если всё верно — делаем commit. Если следующий этап ошибётся, вернуться к последнему рабочему месту будет легко."
+   ],
+   "c": [
+    "По промпту в одно предложение AI <b>изменил 1145 строк разом</b> — это не проверить",
+    "Почему по этапам? Мы проверили. Дали AI промпт в одно предложение: перенеси каталог в PostgreSQL. Он перенёс не только каталог, а всё: двадцать два файла, тысяча сто сорок пять новых строк. Код заработал, но такое изменение ментор не сможет прочитать, а если будет ошибка — не найдёт, где она."
+   ],
+   "d": [
+    "Итог: <b>один промпт — один этап</b>, пока не проверили результат — к следующему не переходим",
+    "Итог: один промпт — один этап. Если этап маленький, вы читаете ответ AI, смотрите diff и сразу находите ошибку. Пока не проверили, следующий промпт не пишите. Теперь посмотрим, как писать сам промпт."
+   ]
+  }
+ },
+ "7": {
+  "kicker": "Этап 2 · план и промпт",
+  "title": "Хороший промпт состоит из пяти частей: контекст, цель, условия, граница и ответ",
+  "seg": {
+   "a": [
+    "Первая часть — <b>контекст</b>: что за проект и как он сейчас работает",
+    "Первая часть промпта — контекст: что за проект и как он сейчас работает. AI может прочитать проект, но не знает вашей цели. Поэтому хватит одного предложения: это бот заказов на NestJS и Telegraf, все данные в памяти, переносим в PostgreSQL по этапам."
+   ],
+   "b": [
+    "Вторая и третья часть — <b>цель одного этапа и строгие условия</b>",
+    "Вторая часть — цель: только этот этап, у нас подключение и каталог. Третья — строгие условия: адрес читается из env, synchronize не используется, таблица создаётся миграцией, stock не бывает отрицательным, seed при втором запуске не добавляет повторно. Каждое условие потом проверяется."
+   ],
+   "c": [
+    "Четвёртая и пятая — <b>что не трогать и что должно быть в ответе</b>",
+    "Четвёртая часть — граница: сервисы user, корзины и заказа пока не трогай. Пятая — ответ: какие файлы изменились, как запустить и что проверить в терминале PostgreSQL. Эта часть заставляет AI объяснить свою работу, а вы получаете готовый список проверки."
+   ],
+   "d": [
+    "Итог: каждое условие — <b>один пункт, который потом проверяется</b>; непроверяемое условие не пишется",
+    "Итог: промпт из пяти частей. Пусть каждое условие можно будет потом проверить: условие «stock не бывает отрицательным» проверяете в терминале PostgreSQL, написав минус один. Условие «напиши красиво» не проверить, не пишите его."
+   ]
+  }
+ },
+ "8": {
+  "kicker": "Проверка 2",
+  "eyebrow": "Проверка · 2 / 4",
+  "title": "Двум AI дали одинаковую задачу. Какой результат можно просмотреть и сделать commit?",
+  "q": "Вы видели шаблон промпта, теперь проверим. Вторая проверка. Двум AI дали одинаковую задачу: перенести каталог в базу. На экране оба промпта, объём изменений и фрагмент ответа AI. Какой результат можно просмотреть и сделать commit? Выберите вариант.",
+  "ok": "Верно. B перенёс только каталог и сам сказал, зачем тронул другие сервисы: стало async, понадобился await. Это обосновано и легко проверить. A тоже работал, но сделал разом четыре этапа, о которых не просили, и не сказал об этом. Значит, результат для commit по объёму равен этапу, который вы попросили.",
+  "okShort": "B — запрошенный этап, выход за рамки назван. A — 1145 строк, работа, о которой не просили, не названа.",
+  "hint": "Какой AI сделал только то, что просили? Какой сказал, где вышел за рамки?",
+  "demak": "изменение для commit по объёму равно этапу, который вы попросили.",
+  "opts": [
+   "A — сделал всё разом, время сэкономлено",
+   "Оба одинаковы — оба работают",
+   "B — только запрошенный этап, назвал, где вышел",
+   "Ни один — код AI нельзя коммитить"
+  ],
+  "wrong": {
+   "0": "Много работы — много просмотра: в 1145 строках ошибку найти трудно.",
+   "1": "Мало того, что работает: за каждую строку отвечаете вы.",
+   "3": "Коммитится — после того как прочитали и проверили."
+  }
+ },
+ "9": {
+  "kicker": "Этап 3 · подключение и каталог · внутри",
+  "title": "Entity описывает таблицу, миграция её создаёт, таблица migrations помнит, что запускалось",
+  "seg": {
+   "a": [
+    "Entity — <b>таблица в виде кода</b>: класс, колонки через decorator",
+    "Посмотрим, что происходит внутри первого этапа. В TypeORM таблица описывается классом entity: decorator Entity даёт имя таблицы, decorator Column — каждую колонку. В знакомом вам Mongoose это была schema."
+   ],
+   "b": [
+    "Миграция — <b>SQL-файл, создающий таблицу</b>; <code>synchronize</code> выключен",
+    "Таблицу создаёт не entity, а миграция. Миграция — обычный SQL-файл: в методе up create table, в методе down drop table. Synchronize false, то есть TypeORM сам таблицу не меняет. В Mongoose миграций не было, потому что у коллекции нет правил колонок. В PostgreSQL правила есть, и меняем их файлом."
+   ],
+   "c": [
+    "Таблица <code>migrations</code> — <b>помнит, какой файл запускался</b>; при подъёме сервера незапущенные запускаются сами",
+    "Когда миграция прошла, TypeORM пишет в таблицу migrations одну строку: имя файла и время. При каждом подъёме сервер смотрит в эту таблицу и запускает только незапущенные миграции, это настройка migrations run true. При втором запуске ничего не повторяется."
+   ],
+   "d": [
+    "Итог: изменить таблицу — <b>новый файл миграции</b>, старый не правится",
+    "Итог: entity описывает таблицу в коде, миграция создаёт её в базе, таблица migrations помнит, какой файл запускался. Если потом захотите добавить колонку — пишете новую миграцию. Править уже запущенную миграцию бесполезно: база её заново не запустит."
+   ]
+  }
+ },
+ "10": {
+  "kicker": "Этап 3 · подключение и каталог",
+  "title": "Разделите ответ AI на три части: что изменилось, где вышел за рамки, как проверить",
+  "seg": {
+   "a": [
+    "Первое: сравните <b>список изменённых файлов с <code>git diff --stat</code></b>",
+    "AI закончил работу и написал ответ. Читайте его, разделив на три части. Первая: какие файлы изменились. Сравните список AI с git diff stat. На этот раз список совпал: entity, миграция, seed, config и catalog service."
+   ],
+   "b": [
+    "Второе: найдите часть <b>«вышел за рамки»</b> и оцените причину",
+    "Вторая: где AI вышел за рамки. Мы сказали: не трогай пользователя, корзину и заказ. AI изменил сервисы order и telegram и открыто это написал: catalog service теперь async, вызовам нужен await. Причина обоснована. Если причина не написана, ищете в diff сами."
+   ],
+   "c": [
+    "Третье: команды проверки <b>запускайте сами</b> — «я проверил» от AI не доказательство",
+    "Третья: проверка. AI говорит «я сам проверил», но это не доказательство. Запускайте команды сами. Seed в первый раз добавил шесть товаров, во второй — ноль. В бэкслеш d products есть UNIQUE и CHECK. Build чистый."
+   ],
+   "d": [
+    "Итог: прочитайте, сравните, запустите — <b>потом commit</b>",
+    "Итог: ответ AI читается в трёх частях: файлы, выход за рамки и проверка. Файлы сравниваете с diff, причину выхода оцениваете, проверку запускаете сами. Если всё верно — commit. Но на этом этапе есть ещё одна скрытая проблема, увидим её на следующем экране."
+   ]
+  }
+ },
+ "11": {
+  "kicker": "Этап 3 · внутри",
+  "title": "Каталог в базе, заказ в памяти: после перезапуска заказ пропал, а склад остался уменьшенным",
+  "seg": {
+   "a": [
+    "После 1-го этапа бот работает: <b>каталог из базы, а заказ ещё в памяти</b>",
+    "Первый этап готов, тесты чистые. Теперь проверим поток бота с перезапуском. Азиза сделала заказ: одна клавиатура и две мышки. Склад в базе уменьшился. А сам заказ всё ещё в массиве в памяти, потому что его переносим на четвёртом этапе."
+   ],
+   "b": [
+    "Перезапуск: <b>заказ пропал, а склад остался 7 и 8</b>",
+    "Перезапускаем сервер. Админ открывает заказы: заказов пока нет. А в терминале PostgreSQL клавиатура — семь, мышка — восемь. То есть товар ушёл со склада, но записи о том, кто его взял, нет никакой. Это поломка худшего вида, без сообщения об ошибке."
+   ],
+   "c": [
+    "Причина: <b>одно дело записано в два места</b> — одно постоянное, другое временное",
+    "Причина: одна продажа записана в два места. Вычитание со склада — в базу, а заказ — в память. Перезапуск стёр память, базу не тронул. Проверка это показала, потому что мы проверили не только build, а весь поток с перезапуском."
+   ],
+   "d": [
+    "Итог: <b>промежуточный этап на прод не выпускайте</b>; после каждого этапа проверяйте с перезапуском",
+    "Итог: при поэтапном переносе бывает промежуточное состояние, когда данные живут в двух местах. Промежуточный этап на работающего бота не выпускайте, сначала закончите все этапы. После каждого этапа проверяйте полный поток с перезапуском: этого не поймают ни build, ни собственные тесты AI."
+   ]
+  }
+ },
+ "12": {
+  "kicker": "Практика 2 / 4",
+  "eyebrow": "Сейчас у себя · 20 минут",
+  "title": "Подключение, миграция и каталог — с вашим AI, потом проверяете сами",
+  "seg": {
+   "a": [
+    "Теперь вы: даёте <b>1-й промпт своему AI</b> и проверяете результат",
+    "Теперь ваша очередь. Даёте первый промпт своему AI: Antigravity, Claude Code или другому. Ответ AI будет не таким, как у нас, это нормально. Проверка та же. Займёт двадцать минут."
+   ],
+   "b": [
+    "Шаги 1–2: база, промпт, <b>чтение ответа AI в трёх частях</b>",
+    "На первом шаге создаёте в терминале PostgreSQL базу shop и пишете в env-файл database url. На втором копируете промпт, даёте AI и читаете ответ: файлы, выход за рамки и команды проверки."
+   ],
+   "c": [
+    "Шаги 3–4: seed дважды и <code>\\d products</code>; подтверждение — <b>число товаров после второго seed</b>",
+    "На третьем шаге запускаете seed дважды и через бэкслеш d products смотрите, что есть CHECK. На четвёртом пробуете сделать stock минус один: должна выйти ошибка. В поле подтверждения напишите число из select count. Если всё верно, сделайте commit."
+   ],
+   "d": [
+    "Если вышло иначе, нажмите кнопку <b>«Вышло иначе?»</b> — откроется окно с решениями",
+    "Если вышло иначе, нажмите кнопку «Вышло иначе?». Пока не отмечены все четыре пункта и нет подтверждения, «Далее» не откроется. Значит, после этой практики ваш бот читает каталог из PostgreSQL, а работу AI вы проверили сами."
+   ]
+  },
+  "steps": [
+   {
+    "t": "База — создайте в терминале PostgreSQL, адрес впишите в .env",
+    "exp": "CREATE DATABASE",
+    "cmds": [
+     null,
+     null,
+     "DATABASE_URL=postgresql://postgres:<пароль>@localhost:5432/shop"
+    ]
+   },
+   {
+    "t": "Промпт — дайте AI 1-й промпт, прочитайте ответ в трёх частях: файлы · выход за рамки · проверка",
+    "exp": "список совпадает с diff"
+   },
+   {
+    "t": "Seed и таблица",
+    "exp": "во 2-й раз добавлено 0 · CHECK (stock >= 0) · 1 строка"
+   },
+   {
+    "t": "Правило и commit",
+    "exp": "violates check constraint · 6"
+   }
+  ],
+  "proof": {
+   "label": "Результат SELECT count(*) FROM products;",
+   "placeholder": "напишите число из результата",
+   "wrong": "Seed запускался дважды — не добавил ли повторно? Если вышло 12, AI не выполнил условие про повтор seed: напишите ему об этом."
+  },
+  "trouble": [
+   [
+    "count = 12",
+    "seed добавил повторно — AI: «при втором запуске seed не добавляет повторно, ON CONFLICT (name) DO NOTHING»"
+   ],
+   [
+    "UPDATE прошёл без ошибки",
+    "нет CHECK — \\d products; AI: «пусть для stock в базе будет CHECK (stock >= 0), новой миграцией»"
+   ],
+   [
+    "relation \"products\" does not exist",
+    "миграция не запускалась — запустите сервер один раз или npm run migration:run"
+   ],
+   [
+    "Unable to connect to the database. Retrying (1)... и error: database \"shop\" does not exist",
+    "шаг 1: CREATE DATABASE shop;"
+   ],
+   [
+    "Unable to connect to the database. Retrying (1)... и error: password authentication failed for user \"postgres\"",
+    "пароль в .env — тот, что вы поставили в PostgreSQL-1"
+   ],
+   [
+    "npm error Missing script: \"seed\"",
+    "AI назвал seed иначе или положил внутрь миграции — ищите в его ответе (так было во 2-м опыте)"
+   ]
+  ]
+ },
+ "13": {
+  "kicker": "Этап 4 · пользователь, state, корзина · внутри",
+  "title": "Telegram id не помещается в INTEGER — нужен BIGINT; но BIGINT приходит в код строкой",
+  "seg": {
+   "a": [
+    "Id Азизы 5 123 456 789 — <b>больше предела <code>INTEGER</code></b>, поэтому <code>BIGINT</code>",
+    "Второй этап: пользователи. Первая ловушка — в id. Telegram id может быть больше двух миллиардов ста сорока семи миллионов, это предел integer. Id Азизы больше пяти миллиардов. Поэтому колонка — big int. Оба AI выбрали big int."
+   ],
+   "b": [
+    "Но node-pg и TypeORM <b>возвращают колонку <code>BIGINT</code> в код строкой</b>: <code>\"5123456789\"</code>",
+    "Вторая ловушка не видна. Big int может быть больше обычного числа JavaScript, поэтому библиотека pg возвращает его строкой. TypeORM так же. Если сравнить строку с числом через три равенства, выйдет false. В знакомом вам Mongoose это было число, и выходило true."
+   ],
+   "c": [
+    "Два верных пути: <b>тип колонки <code>string</code></b> или <b><code>number</code> через transformer</b>",
+    "Верных путей два. Первый: в entity написать telegram id как string и везде работать со строкой. Второй: через transformer превращать в число при чтении из базы. Telegram id не больше пятидесяти двух бит, число JavaScript его вмещает. Наш готовый код выбрал первый путь, AI — второй. Работают оба."
+   ],
+   "d": [
+    "Итог: <b>тип id и сравнение</b> в entity обязательно проверьте по diff",
+    "Итог: для Telegram id — big int, и знайте, строка он в коде или число. Глядя на код AI, посмотрите в два места: тип колонки в миграции — big int ли, и какой тип в entity и где он сравнивается через три равенства."
+   ]
+  }
+ },
+ "14": {
+  "kicker": "Этап 4 · внутри",
+  "title": "Клиент дважды быстро нажал кнопку: «сначала найти, потом добавить» может открыть две строки — ON CONFLICT решает одним запросом",
+  "seg": {
+   "a": [
+    "В корзине один товар — одна строка: <b><code>UNIQUE (user_id, product_id)</code></b>",
+    "Третий этап: корзина. У одного клиента один товар — только одна строка, при повторном добавлении qty увеличивается на один. Это правило держат и код, и база: в таблице cart items пара user id и product id — UNIQUE."
+   ],
+   "b": [
+    "Сначала найти, потом добавить — <b>при двух быстрых нажатиях оба видят «нет»</b>",
+    "Простой путь: сначала искать через select, если нет — insert. Но если клиент быстро нажмёт кнопку дважды, два запроса одновременно ищут, и оба видят «нет». Мы проверили двадцать раз: девятнадцать раз в корзине появились две строки. Если есть UNIQUE, второй получает ошибку duplicate key."
+   ],
+   "c": [
+    "<code>ON CONFLICT … DO UPDATE</code> — <b>один запрос</b>: нет — добавит, есть — увеличит",
+    "Решение — один запрос: insert on conflict do update. Если строки нет — добавится, если есть — qty увеличится на один. База сама ставит это в очередь. В знакомом вам Mongoose это был upsert, но и он без unique index открывал два документа. Оба AI выбрали верный путь."
+   ],
+   "d": [
+    "Итог: видите <b>«найти и добавить»</b> — проверьте, есть ли <code>UNIQUE</code> и <code>ON CONFLICT</code>",
+    "Итог: «сначала найти, потом добавить» работает для одного клиента, но ломается при быстрых нажатиях. Если видите такое место в коде AI, проверьте две вещи: есть ли в таблице правило UNIQUE и идёт ли запрос через on conflict. У пользователя то же правило: даже если start нажат дважды — одна строка."
+   ]
+  }
+ },
+ "15": {
+  "kicker": "Этап 4 · пользователь, state, корзина",
+  "title": "WAITING_PHONE в базе: бот спросил телефон, сервер перезапустился — когда пришёл номер, бот его узнаёт",
+  "seg": {
+   "a": [
+    "State — <b>этап, который бот запомнил о клиенте</b>: <code>IDLE</code> или <code>WAITING_PHONE</code>",
+    "Посмотрим на state. State — то, что бот запомнил о пользователе: на каком шаге он стоит. У нашего бота их два: IDLE, то есть обычный, и WAITING PHONE, то есть ждём телефон. Когда клиент нажимает «оформить заказ», state становится WAITING PHONE."
+   ],
+   "b": [
+    "После перезапуска пришёл номер — <b>бот узнал в нём телефон</b>, не сказал «Tushunmadim»",
+    "Бобур нажал «оформить заказ», бот спросил телефон. В этот момент сервер перезапустился. Бобур написал номер. Так как state в базе, бот узнал в номере телефон и создал заказ. Если бы state был в памяти, бот сказал бы «не понял»."
+   ],
+   "c": [
+    "После второго и третьего этапа <b>и state, и корзина</b> пережили перезапуск",
+    "Этот результат получился после третьего этапа. После второго бот узнал телефон, но корзина была пуста, потому что корзина ещё была в памяти. Это опять промежуточное состояние. После третьего этапа и корзина в базе, заказ создан под номером один."
+   ],
+   "d": [
+    "Итог: чтобы проверить state, <b>перезапускайте посреди разговора</b>",
+    "Итог: обычная проверка state не ловит, потому что в одном процессе всё работает. Перезапускайте посреди разговора: бот задал вопрос, сервер перезапустился, потом напишите ответ. Если бот продолжает — state в базе."
+   ]
+  }
+ },
+ "16": {
+  "kicker": "Проверка 3",
+  "eyebrow": "Проверка · 3 / 4",
+  "title": "Проверка админа написана на результате сырого запроса: rows[0].telegram_id !== 111. Жасур (id 111) нажал /orders. Что будет?",
+  "q": "Вы видели big int, теперь проверим. Третья проверка. Проверка админа написана сырым запросом: из базы берётся telegram id и сравнивается, не равен ли он ста одиннадцати. TypeScript ошибку не дал. Id Жасура действительно сто одиннадцать. Он нажал orders. Что будет? Выберите вариант.",
+  "ok": "Верно. Telegram id приходит из базы строкой, сто одиннадцать в кавычках. Строка никогда не равна числу, поэтому Жасур перестаёт быть админом. Сообщения об ошибке нет, бот просто говорит «только для админа». Значит, перед сравнением колонки big int приведите обе стороны к одному типу: строку со строкой или число с числом.",
+  "okShort": "<code>\"111\" !== 111</code> → <code>true</code>: проверка админа не проходит, ошибки нет.",
+  "hint": "В каком типе telegram_id приходит из базы? Что говорит === на значения разных типов?",
+  "demak": "перед сравнением колонки <code>BIGINT</code> тип обеих сторон должен быть одинаковым.",
+  "opts": [
+   "Жасур видит заказы — id 111 верный",
+   "Сервер не запустится — tsc отклонит тип",
+   "База выдаст ошибку — id запрошен строкой",
+   "Выйдет «faqat admin uchun» — \"111\" !== 111"
+  ],
+  "wrong": {
+   "0": "Из базы приходит строка: \"111\" — не число.",
+   "1": "Сервер работает, и tsc ошибки не даёт: результат raw (внутри ds.query) — any. А при сравнении со string из entity tsc даёт TS2367 — проверили.",
+   "2": "База выполнила запрос; сравнение — в JavaScript."
+  }
+ },
+ "17": {
+  "kicker": "Практика 3 / 4",
+  "eyebrow": "Сейчас у себя · 25 минут",
+  "title": "Пользователь, state и корзина — два промпта, после каждого перезапуск",
+  "seg": {
+   "a": [
+    "Теперь вы: <b>два промпта, два commit</b> — пользователь и state, потом корзина",
+    "Теперь два этапа делаете сами: пользователь и state, потом корзина. После каждого промпта проверка и commit. Займёт двадцать пять минут."
+   ],
+   "b": [
+    "Шаги 1–2: 2-й промпт, чтение ответа, <b><code>\\d users</code> — тип id <code>bigint</code></b>",
+    "На первом шаге даёте AI второй промпт и читаете ответ в трёх частях. На втором через бэкслеш d users смотрите тип telegram id: должен быть big int. Посмотрите и какой тип в entity."
+   ],
+   "c": [
+    "Шаги 3–4: 3-й промпт, потом <b>перезапуск посреди разговора</b>; подтверждение — колонка <code>state</code>",
+    "На третьем шаге даёте третий промпт. На четвёртом кладёте товар в корзину, нажимаете «оформить заказ», бот спрашивает телефон. В этот момент посмотрите в терминале PostgreSQL state в таблице users и напишите в поле подтверждения. Потом перезапустите и отправьте номер: бот должен создать заказ."
+   ],
+   "d": [
+    "Если вышло иначе, нажмите кнопку <b>«Вышло иначе?»</b> — откроется окно с решениями",
+    "Если вышло иначе, нажмите кнопку «Вышло иначе?». Пока не отмечены все четыре пункта и нет подтверждения, «Далее» не откроется. Значит, после этой практики ваш бот хранит в базе пользователя, state и корзину, и вы доказали это перезапуском."
+   ]
+  },
+  "steps": [
+   {
+    "t": "2-й промпт — дайте AI, прочитайте ответ в трёх частях",
+    "exp": "новая миграция, первая не изменена"
+   },
+   {
+    "t": "users — дважды нажмите /start, проверьте, сделайте commit",
+    "exp": "bigint · каждый id 1 раз"
+   },
+   {
+    "t": "3-й промпт — дайте AI; в Telegram нажмите один товар 3 раза; проверьте и сделайте commit",
+    "exp": "UNIQUE · одна строка, qty 3"
+   },
+   {
+    "t": "Перезапуск — нажмите «✅ Buyurtma berish»; когда спросят телефон, посмотрите state; перезапустите сервер и отправьте номер",
+    "exp": "WAITING_PHONE · «Buyurtma #… qabul qilindi!»"
+   }
+  ],
+  "proof": {
+   "label": "Значение state в момент, когда спросили телефон",
+   "placeholder": "напишите результат psql",
+   "wrong": "Проверяйте после нажатия «оформить заказ», до ввода номера. Если вышло IDLE — state не записан в базу: напишите AI заново условие хранить state в базе."
+  },
+  "trouble": [
+   [
+    "telegram_id — integer",
+    "AI выбрал неверный тип — новая миграция: ALTER COLUMN … TYPE BIGINT; при большом id в терминале value \"5123456789\" is out of range for type integer, бот говорит «Tushunmadim»"
+   ],
+   [
+    "/start дважды — две строки",
+    "нет UNIQUE — AI: «telegram_id не повторяется, и в базе тоже»"
+   ],
+   [
+    "duplicate key value violates unique constraint",
+    "добавляется, не поискав — ON CONFLICT (экран 14)"
+   ],
+   [
+    "После перезапуска «Tushunmadim»",
+    "state не записан в базу или не читается — SELECT state …"
+   ],
+   [
+    "После перезапуска «Savat bo'sh»",
+    "корзина ещё в памяти — выполнен ли 3-й промпт"
+   ],
+   [
+    "Админ /orders — «faqat admin uchun»",
+    "\"111\" === 111 (экран 16) — тип"
+   ]
+  ]
+ },
+ "18": {
+  "kicker": "Этап 5 · заказ · внутри",
+  "title": "Заказ — три дела: вычесть со склада, записать заказ, очистить корзину — либо всё, либо ничего",
+  "seg": {
+   "a": [
+    "Заказ <b>затрагивает три таблицы</b>: <code>products</code>, <code>orders</code> и <code>cart_items</code>",
+    "Четвёртый этап: заказ. Один заказ затрагивает три таблицы: из products вычитается склад, в orders и order items пишется заказ, из cart items удаляется корзина. В PostgreSQL-2 вы видели экран «две таблицы — одно дело», это оно же, только внутри кода."
+   ],
+   "b": [
+    "<code>transaction</code> TypeORM — <b><code>START TRANSACTION</code> … <code>COMMIT</code></b> — видно в SQL-логе",
+    "В коде это dataSource transaction. Все запросы внутри идут в одной транзакции. Если включить SQL-лог, увидите её саму: start transaction, два update, два insert, delete и commit. Это ровно begin и commit из терминала PostgreSQL."
+   ],
+   "c": [
+    "Если один упадёт — <b><code>ROLLBACK</code></b>: склад, заказ и корзина не меняются",
+    "Если внутри упадёт один запрос, TypeORM делает rollback. Не меняются ни склад, ни заказ, ни корзина. Мы проверили это нарочно: поставили trigger, дающий ошибку при записи в order items. Бот сказал «заказ не оформлен», склад на восьми и десяти, заказов ноль, корзина на месте."
+   ],
+   "d": [
+    "Итог: <b>все запросы одного дела — в одной транзакции</b>; SQL-лог — доказательство",
+    "Итог: одно дело, которое затрагивает несколько таблиц, делается в одной транзакции. Если AI говорит «сделал транзакцию», включите SQL-лог и посмотрите: все ли запросы между start transaction и commit. Эта проверка занимает минуту."
+   ]
+  }
+ },
+ "19": {
+  "kicker": "Этап 5 · внутри",
+  "title": "На складе один планшет, два клиента одновременно нажали «Buyurtma berish»: одному продаётся, второй получает понятное сообщение",
+  "seg": {
+   "a": [
+    "Проверка: на складе <b>остался один планшет, две транзакции начинаются одновременно</b>",
+    "Теперь самая тяжёлая проверка. На складе остался один планшет. Азиза и Бобур одновременно нажимают «оформить заказ». Две транзакции начинаются одновременно, и обе доходят до строки планшета."
+   ],
+   "b": [
+    "Первая транзакция <b>блокирует</b> строку, вторая ждёт её завершения",
+    "Первая транзакция блокирует строку планшета. В нашем коде это select for update, в коде AI — update where stock больше или равно qty. Вторая транзакция, дойдя до этой строки, ждёт. Когда первая сделала commit, вторая видит новый остаток: ноль."
+   ],
+   "c": [
+    "Результат: <b>продан один, склад 0</b>, Бобур получил понятное сообщение, корзина сохранена",
+    "Результат: Азизе продали, склад ноль, не минус. Бобур получил понятное сообщение: планшет, на складе осталось только ноль. Его транзакция откатилась, корзина сохранилась. Эту проверку мы запускали и на своём коде, и на коде AI, результат одинаковый."
+   ],
+   "d": [
+    "Итог: условие «не продать лишнего» <b>проверяется только многими клиентами одновременно</b>",
+    "Итог: с одним клиентом эта ошибка никогда не видна, только с двумя одновременными запросами. И двух клиентов мало: транзакция заканчивается быстро, и код без блокировки тоже часто выходит правильным. Поэтому smoke гоняет пять клиентов три раунда. Что будет без блокировки, увидим на следующем экране."
+   ]
+  }
+ },
+ "20": {
+  "kicker": "Этап 5 · ломаем",
+  "title": "«Прочитай, проверь, запиши» без блокировки: все транзакции видят остаток 1 — один планшет продаётся пятерым, и CHECK не ловит",
+  "seg": {
+   "a": [
+    "Ломаем: читаем строку <b>без блокировки</b>, считаем остаток в коде и пишем новый",
+    "Теперь нарочно ломаем. Убираем блокировку: читаем товар обычным find, в коде проверяем, хватает ли остатка, считаем новый остаток и делаем save. AI часто пишет именно так, выглядит правильно."
+   ],
+   "b": [
+    "Пять транзакций <b>одновременно видят «остаток 1»</b> — все проходят проверку",
+    "Пять клиентов нажимают одновременно. Каждая транзакция читает остаток: один. Все считают, что хватает, и пишут ноль. Мы прогнали это пять раундов: в четырёх один планшет продали пятерым. В первом раунде случайно одному, поэтому одной проверки мало."
+   ],
+   "c": [
+    "<code>CHECK (stock &gt;= 0)</code> <b>не ловит</b>: записано 0, не отрицательное",
+    "Правило базы тоже не помогает. Check stock больше или равно нулю отклоняет только отрицательное. Каждая транзакция записала ноль, а ноль разрешён. То есть в этой ситуации нет сообщения об ошибке, есть только лишние заказы."
+   ],
+   "d": [
+    "Исправлений два: <b>чтение с блокировкой</b> или <b>один <code>UPDATE … WHERE</code></b> — снова продан 1",
+    "Исправлений два. Первое: блокировка при чтении, в find добавляется lock pessimistic write, вторая транзакция ждёт. Второе: отдать счёт базе, update stock минус qty where stock больше или равно qty. Race прогнали заново: во всех пяти раундах продан один, склад ноль. Значит, считать остаток в коде и записывать без блокировки не работает."
+   ]
+  }
+ },
+ "21": {
+  "kicker": "Этап 5 · внутри",
+  "title": "После отказа CHECK — ещё запрос в той же транзакции: «current transaction is aborted» — shop=!# из PG-2 внутри кода",
+  "seg": {
+   "a": [
+    "Эту ошибку <b>сделали мы сами</b>: при написании проекта первый код был таким",
+    "Эту ошибку сделал не AI, а мы сами: при написании готового проекта первый код был таким. Мысль казалась верной: сначала вычитаем, если check отклонит, перечитаем товар и скажем клиенту, сколько осталось."
+   ],
+   "b": [
+    "<code>CHECK</code> отклонил — следующий <code>SELECT</code> получил <b>«transaction is aborted»</b>",
+    "Клиент попросил четыре планшета, было три. Update упёрся в check. Потом код сделал select, чтобы узнать остаток, и получил ошибку: current transaction is aborted. А клиенту ушло непонятное английское сообщение."
+   ],
+   "c": [
+    "Правило PostgreSQL: после ошибки в транзакции <b>помогает только <code>ROLLBACK</code></b>",
+    "Это то самое приглашение с восклицательным знаком из PostgreSQL-2. Если внутри транзакции одна ошибка, до rollback отклоняются все запросы. В коде так же: после ошибки в этой транзакции ничего спросить нельзя."
+   ],
+   "d": [
+    "Исправление: <b>сначала проверка, потом запись</b>; <code>CHECK</code> — последний сторож",
+    "Исправление: перенесли проверку раньше update. Читаем строку с блокировкой, если не хватает — сообщение даём там же. А check остаётся последним сторожем: даже если код ошибётся, склад не станет отрицательным. Значит, внутри транзакции нельзя поймать ошибку и продолжить запросы."
+   ]
+  }
+ },
+ "22": {
+  "kicker": "Проверка 4",
+  "eyebrow": "Проверка · 4 / 4 — какая строка с ошибкой?",
+  "title": "Один планшет продали пятерым. Найдите строку с ошибкой",
+  "q": "Вы видели поломку, теперь найдите сами. Четвёртая проверка. Пять клиентов одновременно взяли последний планшет, и создалось пять заказов. В этом фрагменте одна строка читает строку без блокировки. Нажмите на эту строку.",
+  "ok": "Верно. Find one by читает строку без блокировки, поэтому все транзакции видят один и тот же остаток. Проверка и счёт верные, но работают над старым значением. На экране исправленный код: lock pessimistic write, в race продан один. Значит, при ошибке двух клиентов сначала ищите, где прочитан остаток.",
+  "okShort": "<code>findOneBy</code> — чтение без блокировки: все транзакции видят остаток 1. С <code>lock: pessimistic_write</code> остальные ждут очереди.",
+  "hint": "Строка проверки считает верно — но над каким значением? В какой строке и как оно прочитано?",
+  "task": "Правило: остаток, прочитанный внутри транзакции, блокируется, чтобы другая транзакция его не изменила — или счёт идёт внутри одного <code>UPDATE … WHERE</code>. В этом фрагменте одна строка читает строку без блокировки. <b>Нажмите на эту строку.</b>"
+ },
+ "23": {
+  "kicker": "Практика 4 / 4",
+  "eyebrow": "Сейчас у себя · 25 минут",
+  "title": "Заказ в транзакции — и пять клиентов берут последний товар",
+  "seg": {
+   "a": [
+    "Последний этап: <b>4-й промпт</b>, SQL-лог и проверка многими клиентами",
+    "Последний этап: переносите заказы в базу. Потом три проверки: транзакция в SQL-логе, проверка многими клиентами и отмена. Займёт двадцать пять минут."
+   ],
+   "b": [
+    "Шаги 1–2: 4-й промпт, ответ, <b>в SQL-логе <code>START TRANSACTION</code> … <code>COMMIT</code></b>",
+    "На первом шаге даёте AI четвёртый промпт и читаете ответ в трёх частях. На втором в env ставите db logging true, делаете один заказ и смотрите в терминале запросы между start transaction и commit."
+   ],
+   "c": [
+    "Шаги 3–4: <b>проверка многими клиентами</b> и отмена; подтверждение — сообщение второму клиенту",
+    "На третьем шаге запускаете smoke-скрипт в режиме race: пять клиентов одновременно берут один планшет. На четвёртом как админ дважды отменяете заказ: склад должен вернуться один раз. В поле подтверждения напишите сообщение, которое пришло второму клиенту. Если всё верно — commit."
+   ],
+   "d": [
+    "Если вышло иначе, нажмите кнопку <b>«Вышло иначе?»</b> — откроется окно с решениями",
+    "Если вышло иначе, нажмите кнопку «Вышло иначе?». Пока не отмечены все четыре пункта и нет подтверждения, «Далее» не откроется. Значит, после этой практики все данные вашего бота в PostgreSQL, и вы сами доказали, что лишнего не продаётся."
+   ]
+  },
+  "steps": [
+   {
+    "t": "4-й промпт — дайте AI, прочитайте ответ, посмотрите новые таблицы",
+    "exp": "новая миграция · texts.ts/keyboards.ts не изменены"
+   },
+   {
+    "t": "SQL-лог — добавьте в .env (если AI дал другое имя — из его ответа), сделайте заказ в Telegram",
+    "exp": "START TRANSACTION … COMMIT"
+   },
+   {
+    "t": "Пять клиентов",
+    "exp": "✓ ortiqcha sotilmadi (sotildi/ombor): 1/0  1/0  1/0",
+    "cmds": [
+     "npm run smoke -- race (во временной базе, ваша база не меняется)"
+    ]
+   },
+   {
+    "t": "Отмена — как админ в /orders дважды нажмите «❌ Bekor», посмотрите остаток, commit",
+    "exp": "1-й «Bekor qilingan», 2-й «allaqachon bekor qilingan» · 1"
+   }
+  ],
+  "proof": {
+   "label": "Сообщение, пришедшее второму клиенту",
+   "placeholder": "скопируйте из результата smoke",
+   "wrong": "Обоим пришло \"qabul qilindi\"? Тогда блокировки нет — экран 20: посмотрите, как читается остаток внутри place."
+  },
+  "trouble": [
+   [
+    "✗ ortiqcha sotilmadi (например 5/0)",
+    "чтение без блокировки (экраны 20, 22) — AI: «заблокируй строку через FOR UPDATE или UPDATE … WHERE stock >= qty»"
+   ],
+   [
+    "ошибка current transaction is aborted",
+    "запрос в транзакции после ошибки (экран 21) — проверка до UPDATE"
+   ],
+   [
+    "Отмена 2 раза — склад вырос на 2",
+    "при отмене строка заказа не заблокирована или статус не проверяется — напишите об этом AI"
+   ],
+   [
+    "В SQL-логе нет START TRANSACTION",
+    "запросы без транзакции — dataSource.transaction"
+   ],
+   [
+    "smoke — Missing script",
+    "AI удалил строку smoke в package.json — git checkout tgpg-start -- scripts/smoke.js и верните строку"
+   ]
+  ]
+ },
+ "24": {
+  "kicker": "Этап 5 · итог",
+  "title": "После каждого этапа пять проверок: diff, build, перезапуск, psql и много клиентов",
+  "seg": {
+   "a": [
+    "Первые две проверки: <b>объём diff и build</b> — запрошенная работа и чистая компиляция",
+    "Вы прошли четыре этапа. Теперь соберём проверки в один список, потому что на каждом этапе они одинаковые. Первая — diff: равен ли объём изменений запрошенному этапу. Вторая — build: компилируется ли проект без ошибок."
+   ],
+   "b": [
+    "Третья и четвёртая: <b>перезапуск и терминал PostgreSQL</b> — где живут данные",
+    "Третья — перезапуск: перезапустите сервер посреди разговора и посмотрите, что осталось. Промежуточное состояние и state видны только так. Четвёртая — терминал PostgreSQL: через бэкслеш d типы колонок и правила, через select настоящие строки."
+   ],
+   "c": [
+    "Пятая: <b>много клиентов одновременно</b> — smoke нашёл ошибку и в нашем коде",
+    "Пятая — много клиентов одновременно: это делает режим race у smoke. Он нашёл ошибку и в нашем собственном коде: если админ одновременно дважды нажмёт «отменить», склад вернулся дважды. Строка заказа не была заблокирована, исправили. Код обоих AI эту проверку прошёл."
+   ],
+   "d": [
+    "Итог: <b>«я проверил» от AI — не проверка</b>; пять пунктов — в ваших руках",
+    "Итог: в двух опытах AI чаще всего писал код правильно. Но делал работу, о которой не просили, не заметил промежуточного состояния, один раз отправил запрос в настоящий Telegram. Этого AI не сказал, нашла проверка. Пять пунктов на каждом этапе — в ваших руках, потом commit."
+   ]
+  }
+ },
+ "25": {
+  "kicker": "Этап 6 · подготовка к классу",
+  "eyebrow": "m5-04 · «Bot eslab qoladi»",
+  "title": "Урок ученика: одна таблица users, Neon и промпт из трёх строк — маленький вариант пути, который вы знаете",
+  "seg": {
+   "a": [
+    "m5-04 — 20 экранов: бот ученика <b>запоминает имя</b>, одна таблица <code>users</code>",
+    "Теперь подготовка к классу, два экрана. Урок ученика m5-04, двадцать экранов. Бот ученика должен запомнить имя: одна таблица users, в ней telegram id big int, колонки имени и состояния, то есть name и state. Вы сегодня работали с пятью таблицами, это её маленький вариант."
+   ],
+   "b": [
+    "Практика: <b>Neon и Antigravity</b>, <code>synchronize: true</code> — без миграций",
+    "В практике ученика база в интернете, в Neon, в конце адреса подключения стоит sslmode require. Код пишет Antigravity промптом из трёх строк. Таблицу сам создаёт synchronize true, миграций нет. Для учебного проекта этого хватает, а разницу вы знаете."
+   ],
+   "c": [
+    "Вы добавляете: <b><code>\\d users</code> — <code>bigint</code></b>, дважды <code>/start</code>, перезапуск посреди разговора",
+    "Что вы добавляете к уроку: после того как AI написал, посмотрите с учеником бэкслеш d users, telegram id должен быть big int. Нажмите start дважды и покажите, что строка одна. Перезапуск сделайте, когда спрошено имя: если бот продолжает, state в базе."
+   ],
+   "d": [
+    "Итог: до урока — <b>аккаунт Neon, тестовый бот в BotFather</b>, запущен <code>dars-03-done</code>",
+    "Итог: до урока проверьте три вещи: у каждого ученика открывается аккаунт Neon, в BotFather есть тестовый бот, и бот из третьего урока работает. Предложение по времени: больше всего времени дайте практике, на шаге Neon и токена многие ошибаются."
+   ]
+  }
+ },
+ "26": {
+  "kicker": "Этап 6 · подготовка к классу",
+  "title": "Четыре ситуации и готовые ответы — все вы сегодня видели сами",
+  "seg": {
+   "a": [
+    "Четыре ситуации, которые обязательно будут на уроке — <b>две с сообщением, две без</b>",
+    "Теперь посмотрим четыре ситуации, которые обязательно возникнут на уроке ученика. Две приходят с сообщением, две без. Все вы сегодня видели сами, поэтому скажу коротко."
+   ],
+   "b": [
+    "401 и <code>DATABASE_URL topilmadi</code> — <b>узнаются по сообщению сразу</b>",
+    "Первая: сервер говорит, что работает, но бот не отвечает, в терминале четыреста один. Неверный токен. Вторая: сервер вообще не запускается, database url не найден. Нет env-файла или адрес не записан."
+   ],
+   "c": [
+    "Имя забыто и большой id — <b>находятся перезапуском и <code>\\d users</code></b>",
+    "Третья без сообщения: после перезапуска бот снова спрашивает имя. State не пишется в базу, посмотрите таблицу users. Четвёртая: в терминале out of range for type integer или при втором start duplicate key. Проверьте тип колонки и есть ли сначала поиск."
+   ],
+   "d": [
+    "Итог: если ученик говорит «AI написал, работает» — <b>пусть сделает перезапуск и дважды <code>/start</code></b>",
+    "Итог и способ: если ученик говорит, что AI написал и всё работает, пусть сам сделает две вещи: перезапуск посреди разговора и start дважды. Не говорите ответ сразу, посмотрите результат вместе. Внизу готовые ответы на вопросы учеников."
+   ]
+  }
+ },
+ "27": {
+  "kicker": "Самопроверка",
+  "title": "Восемь вопросов. Одна попытка. Шесть — вы прошли",
+  "final": [
+   {
+    "q": "Бот хранит корзину и заказ в Map. Сервер перезапустился. Что будет?",
+    "e": "Map — в памяти процесса.",
+    "o": [
+     "Корзина и заказ пропадут, ошибки не будет",
+     "Сервер даст ошибку — содержимое Map испорчено",
+     "Всё останется — Map пишется на диск",
+     "Останется только заказ — он в отдельном массиве"
+    ]
+   },
+   {
+    "q": "Промпт AI в одно предложение: «Перенеси каталог». Он изменил 22 файла, 1145 строк, код работает. Верный шаг?",
+    "e": "Объём для commit — запрошенный этап.",
+    "o": [
+     "Сразу commit — код работает, этого достаточно",
+     "Отменить и дать промпт на один этап",
+     "Сменить AI и дать тот же промпт",
+     "Ничего — 1145 строк тоже обычный объём"
+    ]
+   },
+   {
+    "q": "Каталог в базе, заказ ещё в памяти. После заказа перезапуск. Результат?",
+    "e": "Промежуточное состояние: одно дело в двух местах.",
+    "o": [
+     "Всё на месте — каталог сохранён в базе",
+     "Пропадёт и то, и другое — перезапуск чистит базу",
+     "Заказ пропадёт, а склад останется уменьшенным",
+     "Сервер не включится — база и память не совпадают"
+    ]
+   },
+   {
+    "q": "Вы поправили уже запущенную миграцию, добавив колонку, сервер перезапустился. Появится колонка?",
+    "e": "Миграция запускается один раз.",
+    "o": [
+     "Да — миграция запускается при каждом перезапуске",
+     "Да — synchronize сам добавит колонку",
+     "Сервер даст ошибку — потому что файл изменился",
+     "Нет — она уже запущена, нужна новая миграция"
+    ]
+   },
+   {
+    "q": "Из базы пришёл telegram_id, user.telegram_id === 111 дало false, а id равен 111. Причина?",
+    "e": "node-pg возвращает bigint строкой.",
+    "o": [
+     "BIGINT приходит из базы строкой: \"111\"",
+     "Id неверный — Telegram дал другой id",
+     "База не подключена — пришло undefined",
+     "=== на больших числах всегда даёт false"
+    ]
+   },
+   {
+    "q": "Клиент дважды быстро нажал кнопку, в корзине появились две одинаковые строки. Чего не хватает?",
+    "e": "Сначала поиск, потом добавление — два запроса оба видят «нет».",
+    "o": [
+     "Транзакции — два нажатия не по очереди",
+     "UNIQUE (user_id, product_id) + ON CONFLICT",
+     "BIGINT — две строки из-за того, что id не влез",
+     "Миграции — таблица корзины устарела"
+    ]
+   },
+   {
+    "q": "Один планшет, пять клиентов одновременно; код: findOneBy → if (stock < qty) → save. Есть CHECK (stock >= 0). Результат?",
+    "e": "Каждый записал 0 — не отрицательное (в проверке — пятерым).",
+    "o": [
+     "Только одному — CHECK остановит остальных",
+     "CHECK даст ошибку — склад станет отрицательным",
+     "Продадут нескольким, склад 0, ошибки нет",
+     "Deadlock — транзакции ждут друг друга"
+    ]
+   },
+   {
+    "q": "В транзакции CHECK дал ошибку, код в этой же транзакции сделал SELECT. Что выйдет?",
+    "e": "После ошибки — только ROLLBACK.",
+    "o": [
+     "Обычный результат — SELECT работает отдельно",
+     "База сама сделает COMMIT и даст результат",
+     "0 rows — таблица опустеет",
+     "Ошибка current transaction is aborted"
+    ]
+   }
+  ]
+ },
+ "28": {
+  "kicker": "Итог",
+  "title": "Теперь вы знаете"
+ }
+};
+// RS(k) — darsga xos ruscha (RU_S.k, ru/<dars>-sahna.js); yo'q bo'lsa null → t() o'zbekchani qoldiradi. wrRu — ovoz → «Matn» (RU_S.SPOKEN, keyin wr).
+function RS(k) { return typeof RU_S !== 'undefined' && RU_S[k] != null ? RU_S[k] : null; }
+function wrRu(s) { return wr((RS('SPOKEN') || []).reduce((a, [x, y]) => a.split(x).join(y), s)); }
+function rsY(key, text) { return { key, text, show: wrRu(text) }; }
+// Yakun segmentlari (ru-umumiy.py: sNNSegments → yakRu): umumiy a/z + RU_S.YAK (id bo'yicha)
+function yakRu(passed, segs) {
+  if (LANG !== 'ru') return segs;
+  const Y = { a_pass: rsY('<b>Отлично!</b> Вы хорошо прошли урок — соберём сегодняшний урок одним взглядом', 'Отлично! Вы хорошо прошли урок. Теперь соберём всё, что узнали сегодня, одним взглядом.'), a_fail: rsY('Вы дошли до конца урока — советую <b>пройти тест заново</b>', 'Вы дошли до конца урока. В итоговом тесте нужно было шесть баллов, перед завершением советую пройти тест заново. А сейчас соберём сегодняшний урок одним взглядом.'), z: rsY('Спасибо! Нажмите кнопку <b>«Завершить урок»</b>', 'Спасибо. Нажмите кнопку «Завершить урок», урок будет отмечен как пройденный.'), ...Object.fromEntries(Object.entries(RS('YAK') || {}).map(([k, [key, text]]) => [k, rsY(key, text)])) };
+  return segs.map((s) => ({ ...s, ...(Y[s.id === 'a' ? (passed ? 'a_pass' : 'a_fail') : s.id] || {}) }));
+}
+(function ruMdtQo() {
+  const segRu = (n) => { const r = RU_MDT[n] && RU_MDT[n].seg; if (!r) return undefined; const o = {}; Object.keys(r).forEach((id) => { const [key, text] = r[id]; o[id] = { ...(key != null ? { key } : {}), ...(text != null ? { text, show: wrRu(text) } : {}) }; }); return o; };
+  const head = (n) => { const r = RU_MDT[n] || {}; const o = {}; ['kicker', 'eyebrow', 'title'].forEach((k) => { if (r[k] != null) o[k] = r[k]; }); const s = segRu(n); if (s) o.segments = s; return o; };
+  const mdt = {}; Object.keys(RU_MDT).forEach((n) => { const r = { ...RU_MDT[n] }; if (r.seg) r.seg = MDT[n].seg.map(([id]) => (r.seg[id] ? [null, r.seg[id][0], r.seg[id][1]] : null)); mdt[n] = r; });
+  ru(MDT, mdt);
+  ru(S1, { ...head(1), ...((typeof RU_S !== 'undefined' && RU_S.S1) || {}) });
+  ru(S2, { ...head(2), ...((typeof RU_S !== 'undefined' && RU_S.S2) || {}) });
+  ru(S3, { ...head(3), ...((typeof RU_S !== 'undefined' && RU_S.S3) || {}) });
+  ru(S6, { ...head(6), ...((typeof RU_S !== 'undefined' && RU_S.S6) || {}) });
+  ru(S7, { ...head(7), ...((typeof RU_S !== 'undefined' && RU_S.S7) || {}) });
+  ru(S9, { ...head(9), ...((typeof RU_S !== 'undefined' && RU_S.S9) || {}) });
+  ru(S10, { ...head(10), ...((typeof RU_S !== 'undefined' && RU_S.S10) || {}) });
+  ru(S11, { ...head(11), ...((typeof RU_S !== 'undefined' && RU_S.S11) || {}) });
+  ru(S13, { ...head(13), ...((typeof RU_S !== 'undefined' && RU_S.S13) || {}) });
+  ru(S14, { ...head(14), ...((typeof RU_S !== 'undefined' && RU_S.S14) || {}) });
+  ru(S15, { ...head(15), ...((typeof RU_S !== 'undefined' && RU_S.S15) || {}) });
+  ru(S18, { ...head(18), ...((typeof RU_S !== 'undefined' && RU_S.S18) || {}) });
+  ru(S19, { ...head(19), ...((typeof RU_S !== 'undefined' && RU_S.S19) || {}) });
+  ru(S20, { ...head(20), ...((typeof RU_S !== 'undefined' && RU_S.S20) || {}) });
+  ru(S21, { ...head(21), ...((typeof RU_S !== 'undefined' && RU_S.S21) || {}) });
+  ru(S24, { ...head(24), ...((typeof RU_S !== 'undefined' && RU_S.S24) || {}) });
+  ru(S25, { ...head(25), ...((typeof RU_S !== 'undefined' && RU_S.S25) || {}) });
+  ru(S26, { ...head(26), ...((typeof RU_S !== 'undefined' && RU_S.S26) || {}) });
+  ru(P5.S, { ...head(5), ...((typeof RU_S !== 'undefined' && RU_S.P5_S) || {}) });
+  ru(P5.steps, RU_MDT[5].steps);
+  ru(P5.trouble, RU_MDT[5].trouble);
+  ru(P5.proof, RU_MDT[5].proof);
+  ru(P12.S, { ...head(12), ...((typeof RU_S !== 'undefined' && RU_S.P12_S) || {}) });
+  ru(P12.steps, RU_MDT[12].steps);
+  ru(P12.trouble, RU_MDT[12].trouble);
+  ru(P12.proof, RU_MDT[12].proof);
+  ru(P17.S, { ...head(17), ...((typeof RU_S !== 'undefined' && RU_S.P17_S) || {}) });
+  ru(P17.steps, RU_MDT[17].steps);
+  ru(P17.trouble, RU_MDT[17].trouble);
+  ru(P17.proof, RU_MDT[17].proof);
+  ru(P23.S, { ...head(23), ...((typeof RU_S !== 'undefined' && RU_S.P23_S) || {}) });
+  ru(P23.steps, RU_MDT[23].steps);
+  ru(P23.trouble, RU_MDT[23].trouble);
+  ru(P23.proof, RU_MDT[23].proof);
+  ru(FINAL, RU_MDT[27].final);
+})();

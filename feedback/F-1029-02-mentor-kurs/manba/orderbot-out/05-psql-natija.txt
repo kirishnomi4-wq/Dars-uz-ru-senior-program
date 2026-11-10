@@ -1,0 +1,38 @@
+ id | telegram_id | name  |     phone     |   role   | state 
+----+-------------+-------+---------------+----------+-------
+  1 |         111 | Jasur |               | admin    | IDLE
+  2 |  5123456789 | Aziza | +998901234567 | customer | IDLE
+(2 rows)
+
+ id |    name    | price  | stock 
+----+------------+--------+-------
+  1 | Klaviatura | 120000 |     7
+  2 | Sichqoncha |  75000 |    15
+  3 | Quloqchin  |  95000 |     5
+  4 | Kolonka    |  50000 |     8
+  5 | Planshet   | 300000 |     3
+  6 | O'yinchoq  |  30000 |     4
+(6 rows)
+
+ id | user_id |     phone     | total  |  status   
+----+---------+---------------+--------+-----------
+  1 |       2 | +998901234567 | 220000 | CONFIRMED
+(1 row)
+
+ id | order_id | product_id | qty | price  
+----+----------+------------+-----+--------
+  1 |        1 |          1 |   1 | 120000
+  2 |        1 |          4 |   2 |  50000
+(2 rows)
+
+ id | user_id | product_id | qty 
+----+---------+------------+-----
+  8 |       2 |          2 |   1
+(1 row)
+
+ telegram_id | pg_typeof | int4_sigmaydi 
+-------------+-----------+---------------
+         111 | bigint    | f
+  5123456789 | bigint    | t
+(2 rows)
+

@@ -1,0 +1,23 @@
+$ npm test
+PASS src/api/payment/signature.spec.ts
+PASS src/api/telegram/phone.spec.ts
+PASS src/api/telegram/texts.spec.ts
+PASS src/api/telegram/keyboards.spec.ts
+PASS src/api/app.controller.spec.ts
+PASS src/api/order/order.service.spec.ts
+PASS src/api/payment/payment.service.spec.ts
+PASS src/api/live/live.gateway.spec.ts
+PASS src/api/live/admin.controller.spec.ts
+PASS src/api/payment/payment.controller.spec.ts
+Tests:       48 passed, 48 total
+
+$ npm run smoke -- payment
+== vaqtinchalik baza: shop_smoke ==
+  katalogda 6 ta mahsulot
+— payment: to'lov webhook'i — imzo, takror, rad va panelga hodisa
+  ✓ imzosiz — 401, payments da qator yo'q
+  ✓ imzoli to'lov — 200 {"ok":true,"duplicate":false} · #1 payment_status=paid
+  ✓ panelga → order-changed {"orderId":1,"reason":"payment"}
+  ✓ takror — 200 {"ok":true,"duplicate":true} · payments da 1 qator
+  ✓ keyingi rad — yozildi, lekin to'langan buyurtma «paid» qoldi (paid)
+NATIJA: 5/5 ✓

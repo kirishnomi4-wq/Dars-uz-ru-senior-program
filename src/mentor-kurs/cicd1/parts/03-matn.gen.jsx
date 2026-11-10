@@ -1,6 +1,6 @@
 
 // ============================================================
-//  CI/CD-1 MATNLARI — AVTO: feedback/F-1029-02-mentor-kurs/dev/cicd1-matn.py (manba: 14-CICD1-mentor-v1.md)
+//  CI/CD-1 MATNLARI — AVTO: feedback/F-1029-02-mentor-kurs/dev/cicd1-matn.py (manba: 14-CICD1-mentor-v2.md, M41)
 //  QO'LDA TAHRIRLANMAYDI: matn MD'da o'zgaradi, keyin skript qayta yurgiziladi.
 // ============================================================
 const MDT = {
@@ -8,108 +8,108 @@ const MDT = {
   "type": "Lesson",
   "kicker": "Kirish",
   "eyebrow": "Mentor kursi · CI/CD",
-  "title": "Testlar bor. Ularni har push'da kim yurgizadi?",
+  "title": "Jest-2 da 25 test yozdingiz — bugun ular har push'da GitHub'ning o'zida yuradi, siz esa faqat yashil-qizilni ko'rasiz",
   "seg": [
    [
     "a",
-    "Testlarni har safar qo'lda yurgizish shart emas — <b>buni lenta qiladi</b>",
-    "Assalomu alaykum. Jest darslarida test yozdingiz va har safar npm test'ni o'zingiz yurgizdingiz. Bugun buni har push'da avtomatik qiladigan lentani ko'ramiz: CI/CD."
+    "Jest-2 da testlar yozildi — bugun ular <b>har push'da GitHub'ning o'zida</b> yuradi",
+    "Assalomu alaykum. Jest ikkinchi darsida OrderBotNest'ga yigirma beshta test yozdingiz. Hozir ular faqat siz npm test desangiz yuradi. Bugun ularni lentaga topshiramiz: har push'da GitHub'ning o'zida yuradi. Ekranda dars oxiridagi natija: oltita qadam, hammasi yashil."
    ],
    [
     "b",
-    "Avval tushuncha, keyin o'quvchi reposini <b>lentadan qo'lda o'tkazamiz</b>",
-    "Avval tushunchani ko'ramiz: CI nima va CD nima. Keyin o'quvchi reposini toza papkada lentadan qo'lda o'tkazamiz va qaysi qadamda qizil bo'lishini ko'ramiz."
+    "Avval <b>umumiy tushuncha</b>: CI/CD nima qiladi, lenta nima, nega kerak",
+    "Avval umumiy tushunchani olamiz: CI/CD nima qiladi va nega kerak. Keyin lentani o'z kompyuteringizda qo'lda yurgizasiz, shundan keyin GitHub'ga topshirasiz. Lenta qayerda yiqilishini to'rt tuzoqda ko'rasiz."
    ],
    [
     "c",
-    "Keyin <code>ci.yml</code> faylini o'qiymiz va uni <b>ataylab buzib</b>, xabarlarni ko'ramiz",
-    "Keyin lenta faylini, ci yml'ni o'qiymiz, uni ataylab buzamiz va xabarlarni ko'ramiz. Oxirida chiqarish turlarini va o'quvchi darsini ko'ramiz."
+    "Haqiqiy topilma: <b>lokalda yashil, lentada qizil</b> — va AI yozgan workflow'lar",
+    "Beshinchi bosqichda haqiqiy topilma: lokalda hammasi yashil edi, lentada qizil chiqdi. Sababini birga topamiz. Keyin ikki AI yozgan workflow'ni lentada sinaymiz. Oxirida CD nima va sinfga tayyorgarlik."
    ],
    [
     "d",
-    "Olti bosqich, uch amaliyot. <b>Shoshilmang</b>: ustoz gapirib bo'lgach Davom ochiladi",
-    "Dars olti bosqichdan iborat, uchta amaliyot bor. Shoshilmang: har ekranni boshidan eshitish mumkin. Ustoz gapirib bo'lgach Davom ochiladi. Boshlaymiz."
+    "Olti bosqich, uchta amaliyot; kerak: <b>GitHub'da o'z reposingiz</b>",
+    "Dars olti bosqich, uchta amaliyot. Amaliyotlar uchun GitHub'da o'z reposingiz kerak: OrderBotNest nusxangizni push qila olishingiz kifoya. Shoshilmang, har ekranni boshidan eshitish mumkin, dars qayerda to'xtaganingizni eslab qoladi. Boshlaymiz."
    ]
   ]
  },
  "2": {
   "type": "Lesson",
-  "kicker": "1-bosqich · tushuncha",
-  "title": "Har push'dan keyin besh qadam: o'rnatish, test, lint, build, chiqarish",
+  "kicker": "1-bosqich · umumiy tushuncha",
+  "title": "CI — har push'da toza mashinada sizning buyruqlaringiz yuradi; CD — tekshirilgan yukni chiqarish. Ikkalasi bitta narsani hal qiladi: «menda ishlaydi»",
   "seg": [
    [
     "a",
-    "Qo'lda: har push'dan keyin <b>besh buyruqni</b> o'zingiz, tartib bilan yurgizasiz",
-    "Kod yozildi va push qilindi. Endi qo'lda besh ish qilinadi: paketlarni o'rnatish, testlarni yurgizish, kod yozilish qoidasini tekshirish, build va saytni chiqarish. Bularning hammasi har push'da, tartib bilan qilinadi."
+    "Muammo: <b>«menda ishlaydi»</b> — hamkorda qizil, chunki uning mashinasi boshqa",
+    "Tanish holat: sizda npm test yashil, push qildingiz, hamkor clone qildi, unda qizil. Menda ishlaydi, deysiz. Ikkalangiz ham haqsiz: uning node modules papkasi boshqa, Node versiyasi boshqa, env fayli boshqa. Kod bir xil, mashina boshqa."
    ],
    [
     "b",
-    "Muammo: sekin, zerikarli va bir kuni <b>bittasini unutasiz</b>",
-    "Muammo shu: bu sekin va zerikarli. Bir kuni shoshilib testni tashlab ketasiz, buzuq kod foydalanuvchiga chiqadi. O'quvchi darsi ham aynan shu holatdan boshlanadi."
+    "CI: har push'da <b>toza mashinada sizning buyruqlaringiz</b> yuradi — hammaga bir xil javob",
+    "CI shuni hal qiladi. Continuous Integration: har push'dan keyin GitHub'dagi toza mashina kodni olib, aynan sizning buyruqlaringizni yurgizadi: o'rnatish, turlar, test, build. Mashina hamma uchun bir xil, javob ham bir xil: yashil yoki qizil. Menda ishlaydi, degan bahs yo'q."
    ],
    [
     "c",
-    "Lenta — xuddi shu besh qadamni har push'da <b>o'zi bajaradi</b>",
-    "Lenta, inglizchasi pipeline, xuddi shu qadamlarni har push'da o'zi bajaradi. Yangi buyruq yo'q: lentada sizning terminalingizdagi buyruqlar yuradi."
+    "CD: <b>tekshirilgan yukni chiqarish</b> — Delivery odam tasdiqlaydi, Deployment o'zi chiqaradi",
+    "CD ikkinchi yarmi: tekshirilgan yukni chiqarish. Continuous Delivery: paket tayyor, odam tugmani bosadi. Continuous Deployment: lenta o'zi chiqaradi, odam yo'q. Ikkalasi ham CI'dan keyin, chunki qizil yukni hech kim chiqarmaydi."
    ],
    [
     "d",
-    "Xulosa: lenta yangi narsa emas — <b>terminal buyruqlarini avtomatik</b> va tartib bilan yurgizadi",
-    "Xulosa: lenta yangi narsa emas. U terminal buyruqlarini avtomatik va har safar bir xil tartibda yurgizadi. O'quvchi darsida bu nuqtalar aeroport nomlari bilan atalgan, ularni oxirida ko'ramiz."
+    "Xulosa: bugun <b>CI to'liq, CD chegaragacha</b> — OrderBotNest'ning lentasi har push'da yashil yoki qizil",
+    "Xulosa: CI, har push'da toza mashinada tekshirish. CD, tekshirilgan yukni chiqarish. Bugun CI'ni oxirigacha qilamiz: OrderBotNest'ning lentasi har push'da yashil yoki qizil deydi. CD'ni chegarasigacha ko'ramiz: bot bazasiz va tokensiz chiqmaydi. Endi lentaning o'zi nima."
    ]
   ]
  },
  "3": {
   "type": "Lesson",
-  "kicker": "1-bosqich · tushuncha",
-  "title": "Continuous Integration: har kimning kodi umumiy repoga qo'shiladi va tekshiriladi",
+  "kicker": "1-bosqich · umumiy tushuncha",
+  "title": "Lenta — buyruqlar ketma-ketligi: har biri chiqish kodi qaytaradi, 0 — yashil, boshqasi — qizil; qizildan keyin qolgani yurmaydi",
   "seg": [
    [
     "a",
-    "CI — Continuous Integration: kod umumiy repoga qo'<b>shilishi bilan tekshiriladi</b>",
-    "Lenta har push'da aylanadi, demak avval push'ning o'zi. CI bu Continuous Integration, ya'ni uzluksiz birlashtirish. Har kim o'z kompyuterida yozadi, push qiladi, kod umumiy repoga qo'shiladi va shu zahoti tekshiriladi."
+    "To'rt qadam: <b><code>npm ci</code> → <code>tsc</code> → <code>npm test</code> → <code>npm run build</code></b> — har biri bitta terminal buyrug'i",
+    "Lenta sirli narsa emas: bu siz terminalda yozadigan buyruqlar ketma-ketligi. OrderBotNest uchun to'rtta: npm si ay, paketlarni o'rnatadi. npx tsc, turlarni tekshiradi. npm test. npm run build, dist papkasini yig'adi. Lenta shu to'rttasini tartib bilan yurgizadi."
    ],
    [
     "b",
-    "Tekshirishni hech kim so'ramaydi: lentani <b>push'ning o'zi</b> darhol boshlab beradi",
-    "Tekshirishni hech kim so'ramaydi va hafta oxirini kutmaydi. Push'ning o'zi lentani boshlaydi. Kuniga o'n marta push bo'lsa, lenta o'n marta aylanadi."
+    "Har qadam <b>bitta savolga javob beradi</b>: o'rnatildimi, turlar to'g'rimi, test yashilmi, yig'ildimi",
+    "Har qadam bitta savolga javob beradi. Paketlar o'rnatildimi. Turlar to'g'rimi. Testlar yashilmi. Build yig'ildimi. To'rt savol, to'rt javob. Hozircha eslint qadami yo'q: OrderBotNest'da lint sozlanmagan, lentaga faqat ishlaydigan buyruq qo'yiladi."
    ],
    [
     "c",
-    "Hamma <b>bir xil sharoitda</b>: «mening kompyuterimda ishlayapti» muammosi tugaydi",
-    "Eng muhimi: hammaning kodi bir xil toza mashinada sinaladi. Vali uyida ishlagan, lentada qizil bo'lsa, xato uyidagi sozlamada yashiringan bo'ladi."
+    "Chiqish kodi: <b>0 — yashil, boshqasi — qizil</b>; <code>tsc</code> 2 beradi, <code>jest: not found</code> 127 beradi",
+    "Har buyruq tugaganda son qaytaradi, bu chiqish kodi. Nol, hammasi yaxshi, yashil. Boshqa son, qizil. Jest qizil testda bir beradi, tsc tur xatosida ikki, buyruq topilmasa yuz yigirma yetti. Lenta sonning o'zini bilmaydi, faqat nolmi yoki yo'qmi, shuni qaraydi."
    ],
    [
     "d",
-    "Xulosa: CI har push'ni <b>bir xil toza sharoitda</b>, darhol tekshiradi",
-    "Xulosa: CI har push'ni darhol va bir xil toza sharoitda tekshiradi. Toza sharoit nimani anglatishini keyingi ekranda ko'ramiz, chunki o'quvchi reposidagi ko'p qizillar shundan keladi."
+    "Xulosa: <b>qizil qadamdan keyin qolgani yurmaydi</b> — test qizil bo'lsa, build boshlanmaydi",
+    "Xulosa: lenta to'rt buyruq, har biri chiqish kodi bilan. Birinchi qizil qadamda lenta to'xtaydi, qolgani yurmaydi: test qizil bo'lsa build boshlanmaydi, buzuq kod hech qachon yig'ilmaydi. Endi shu lentani o'z kompyuteringizda, toza papkada qo'lda yurgizamiz."
    ]
   ]
  },
  "4": {
   "type": "Lesson",
-  "kicker": "1-bosqich · tushuncha",
-  "title": "Lenta mashinasi har safar bo'sh papkadan boshlaydi va chiqish kodiga qaraydi",
+  "kicker": "2-bosqich · lenta qo'lda",
+  "title": "Lenta mashinasi har safar bo'sh papkadan boshlaydi — biz ham: yangi clone, node_modules yo'q, to'rt buyruq ketma-ket, har biri chiqish kodi bilan",
   "seg": [
    [
     "a",
-    "Lenta mashinasi — GitHub'dagi <b>toza kompyuter</b>, sizniki emas",
-    "Lenta qayerda yuradi? GitHub'dagi alohida kompyuterda, inglizchasi runner. Hozir ubuntu latest degani Ubuntu yigirma to'rt, unda Node yigirma ikki o'rnatilgan. Sizning kompyuteringiz o'chiq bo'lsa ham ishlaydi."
+    "Yangi papkaga clone: <b><code>node_modules</code> yo'q</b> — lenta mashinasi ham shunday boshlaydi",
+    "OrderBotNest'ni yangi papkaga clone qiling: git clone, keyin jest ikki done tegiga o'ting. VS Code'da oching, terminalda ls. Yetti narsa: package json, lock, src va hokazo. Node modules yo'q, env yo'q. Lenta mashinasi har safar aynan shunday bo'sh papkadan boshlaydi."
    ],
    [
     "b",
-    "Har safar <b>bo'sh papka</b>: <code>node_modules</code> ham, <code>.env</code> ham yo'q",
-    "Har safar bo'sh papkadan boshlaydi. Sizning node modules papkangiz ham, env faylingiz ham u yerda yo'q. Shuning uchun lentada o'rnatish qadami albatta bor."
+    "<code>npm ci</code>: <b>633 paket, 6 soniya</b> — lock fayldan aynan; keyin <code>tsc</code> — 3 soniya, chiqish kodi 0",
+    "Birinchi buyruq npm si ay: lock fayldagi versiyalarni aynan o'rnatadi, olti yuz o'ttiz uchta paket, olti soniya, chiqish kodi nol. Ikkinchisi npx tsc no emit: turlarni tekshiradi, fayl yozmaydi. Uch soniya, chiqish kodi nol: xato yo'q."
    ],
    [
     "c",
-    "Har buyruq <b>chiqish kodi</b> qaytaradi: 0 — yashil, 1 — qizil",
-    "Lenta qanday biladi: o'tdimi yoki yo'qmi? Har buyruq tugaganda bitta son qaytaradi, uni chiqish kodi deyishadi. Test yashil bo'lsa nol, qizil bo'lsa bir. Lenta faqat shu songa qaraydi."
+    "<code>npm test</code>: <b>25 test yashil, 2 soniya</b>; <code>npm run build</code>: <code>dist</code> papkasi, 4 soniya",
+    "Uchinchisi npm test: beshta fayl, yigirma beshta test, hammasi yashil, ikki soniya. To'rtinchisi npm run build: nest build dist papkasini yig'adi, to'rt soniya. Ls dist: main js va boshqa fayllar. To'rtala qadam nol bilan tugadi."
    ],
    [
     "d",
-    "Xulosa: lenta = <b>toza papka</b> + sizning buyruqlaringiz + <b>chiqish kodi</b>",
-    "Xulosa: lenta bu toza papka, sizning buyruqlaringiz va chiqish kodi. Nol bo'lmagan kod chiqqan qadamdan keyin lenta to'xtaydi. Endi buni tekshirib olaylik."
+    "Xulosa: <b>to'rt buyruq, 15 soniya, to'rt nol</b> — bu lenta; GitHub'da aynan shu yuradi",
+    "Xulosa: to'rt buyruq, jami o'n besh soniya, to'rtala chiqish kodi nol, lenta yashil. Siz hozir qo'lda qilgan ishni GitHub'dagi mashina har push'da o'zi qiladi, aynan shu buyruqlar bilan. Lekin avval bitta narsani tekshirib olaylik."
    ]
   ]
  },
@@ -117,485 +117,669 @@ const MDT = {
   "type": "MCRetry",
   "kicker": "Tekshiruv 1",
   "eyebrow": "Tekshiruv · 1 / 4",
-  "title": "Lentada npm test chiqish kodi 1 qaytardi. Keyin nima bo'ladi?",
-  "q": "Lenta mashinasini ko'rdingiz, tekshirib olaylik. Birinchi tekshiruv. Lentada npm test chiqish kodi bir qaytardi. Keyin nima bo'ladi? Variantni tanlang.",
-  "ok": "To'g'ri. Bir qizil degani. Lenta shu qadamda to'xtaydi, build ham, chiqarish ham yurmaydi. Foydalanuvchi eski, ishlayotgan saytni ko'radi, buzuq yuk uchmaydi. Demak, nol bo'lmagan chiqish kodi chiqqan joyda lenta to'xtaydi va keyingi qadamlar yurmaydi.",
-  "okShort": "Kod 1 — qizil: lenta to'xtaydi, buzuq yuk chiqmaydi.",
-  "hint": "Chiqish kodi 0 emas — qizil. Qizil qadamdan keyin lenta nima qiladi?",
-  "correct": 2,
+  "title": "Toza clone'da to'g'ridan npm test yozdik. Terminal: sh: 1: jest: not found, chiqish kodi 127. Sabab nima?",
+  "q": "Lentani ko'rdingiz, endi tekshirib olaylik. Birinchi tekshiruv. Toza clone'da npm si ay'ni o'tkazib yuborib, to'g'ridan npm test yozdik. Terminal: jest not found, chiqish kodi yuz yigirma yetti. Sabab nima? Variantni tanlang.",
+  "ok": "To'g'ri. Jest package json'da bor, lekin o'rnatilmagan: node modules papkasi yo'q, chunki npm si ay yurmadi. Lentada bu eng ko'p uchraydigan xato: o'rnatish qadami tushib qolgan yoki tartibi noto'g'ri. Demak, lentada birinchi qadam doim o'rnatish, qolgani undan keyin.",
+  "okShort": "<code>node_modules</code> yo'q — <code>npm ci</code> yurmagan. Lentada birinchi qadam doim o'rnatish.",
+  "hint": "ls da node_modules bormi? jest buyrug'i qayerdan keladi?",
+  "demak": "Lentada birinchi qadam — o'rnatish (<code>npm ci</code>); toza mashinada <code>node_modules</code> yo'q.",
+  "correct": 1,
   "opts": [
-   "Lenta davom etadi, build va chiqarish ham yuradi",
-   "Lenta xatoni o'zi tuzatadi",
-   "Lenta to'xtaydi, keyingi qadamlar yurmaydi, eski sayt joyida qoladi",
-   "Sayt o'chib qoladi"
+   "Jest package.jsonda umuman yo'q — avval ro'yxatga qo'shish kerak",
+   "node_modules yo'q — npm ci qadami tushib qolgan",
+   "Node versiyasi eski — Jest ishlamaydi",
+   "Test fayllari yo'q — Jest «not found» deydi"
   ],
   "wrong": {
-   "0": "Davom etsa, tekshirilmagan kod chiqadi — lenta buning teskarisi uchun bor.",
-   "1": "Lenta kod yozmaydi: tuzatish dasturchining ishi.",
-   "3": "Chiqarish yurmagani uchun eski versiya joyida qoladi."
+   "0": "package.json da jest bor (devDependencies); muammo o'rnatishda, ro'yxatda emas.",
+   "2": "Node 24 — yangi; not found versiya emas, fayl yo'qligi.",
+   "3": "Test fayli yo'q bo'lsa Jest No tests found deydi; bu yerda Jest'ning o'zi topilmadi."
   }
  },
  "6": {
   "type": "Lesson",
-  "kicker": "2-bosqich · o'quvchi reposi",
-  "title": "CI andozalarining o'rnatish buyrug'i — npm ci. O'quvchi reposida u yiqiladi",
+  "kicker": "2-bosqich · buzamiz",
+  "title": "Kodni buzamiz va to'rt buyruqni && bilan bog'laymiz: npm ci ✓, tsc ✓, test qizil — build boshlanmaydi, chiqish kodi 1",
   "seg": [
    [
     "a",
-    "Endi o'quvchi reposini lentadagidek o'tkazamiz: <b>toza clone</b>, toza muhit",
-    "Endi o'quvchi reposini lentadagidek o'tkazamiz: GitHub'dan yangi clone, toza papka, toza muhit. Lentaning birinchi qadami paketlarni o'rnatish."
+    "Buzamiz: <code>order.service.ts</code> 36-satr <b><code>&lt;</code> → <code>&lt;=</code></b> — Jest-2 dagi chegara testi buni ushlaydi",
+    "Endi ataylab buzamiz. Src, api, order papkasidagi order service ts faylining o'ttiz oltinchi satrida kichikni kichik yoki tengga almashtiring. Jest ikkinchi darsidan eslaysiz: aynan ikkita qolganda ikkitasini sotib bo'lmaydi, chegara testi buni ushlaydi."
    ],
    [
     "b",
-    "GitHub'ning tayyor Node.js andozasida ham <code>npm ci</code> turadi — u <b>lock faylga qat'iy</b> amal qiladi",
-    "GitHub Actions'dagi tayyor Node.js andozasini tanlasangiz ham, o'rnatish buyrug'i npm ci bo'ladi. U package lock fayliga qat'iy amal qiladi: ikkala fayl mos bo'lmasa, hech narsa o'rnatmaydi."
+    "To'rt buyruq <b><code>&amp;&amp;</code> bilan bitta qatorda</b>: oldingisi nol bersa, keyingisi yuradi",
+    "Bu safar to'rt buyruqni bitta qatorda yozamiz, oralarida ikki ampersand. Ma'nosi: oldingisi nol bersa, keyingisi yuradi, nol bermasa, to'xtaydi. Terminalda: npm si ay, ampersand, npx tsc, ampersand, npm test, ampersand, npm run build."
    ],
    [
     "c",
-    "O'quvchi reposida lock fayl eskirgan: <code>npm ci</code> — <b><code>in sync</code> xatosi</b>, kod 1",
-    "O'quvchi reposida lock fayl eskirgan: unda yangi paketlar yo'q. Natijada in sync xatosi chiqadi, chiqish kodi bir. Lenta birinchi qadamdayoq qizil bo'ladi, test'gacha yetmaydi."
+    "Natija: <b><code>npm ci</code> ✓, <code>tsc</code> ✓, test FAIL — <code>build</code> satri umuman yo'q</b>, chiqish kodi 1",
+    "Natijaga qarang. Npm si ay yashil, tsc yashil. Npm test: FAIL, chegara testi, Kolonka, omborda faqat ikkita qoldi, o'ttiz yettinchi satr. Va pastda build satri umuman yo'q: nest build boshlanmadi. Butun qatorning chiqish kodi bir."
    ],
    [
     "d",
-    "Xulosa: o'quvchi reposida o'rnatish — <b><code>npm install</code></b>; <code>npm ci</code> bilan lenta qizil",
-    "Xulosa: bu repoda o'rnatish qadami npm install bo'lsin. U ishlaydi va yetti yuz ellik to'qqiz paketni o'rnatadi. Jest birinchi darsida ham shu sabab bilan npm install ishlatgan edik."
+    "Xulosa: <b>zanjir birinchi qizilda uziladi</b> — GitHub lentasi ham aynan shunday, faqat «yurmadi» deb yozadi",
+    "Xulosa: zanjir birinchi qizil qadamda uziladi, buzuq kod yig'ilmaydi. GitHub lentasi aynan shunday ishlaydi, faqat yurmagan qadamni skipped, ya'ni yurmadi deb ko'rsatadi. Satrni tiklang: git checkout, order service ts. Endi lentani o'zingiz qo'lda yurgizasiz."
    ]
   ]
  },
  "7": {
-  "type": "Lesson",
-  "kicker": "2-bosqich · o'quvchi reposi",
-  "title": "Test fayli yo'q repoda npm test — No tests found, kod 1",
+  "type": "Practice",
+  "kicker": "Amaliyot 1 / 3",
+  "eyebrow": "Hozir o'zingizda · 12 daqiqa",
+  "title": "Toza clone'da to'rt buyruqni && bilan yurgiting, keyin kodni buzib zanjir uzilishini ko'ring",
   "seg": [
    [
     "a",
-    "Ikkinchi qadam — test. O'quvchi reposida hali <b>bitta ham test yo'q</b>",
-    "Ikkinchi qadam testlar. Toza clone'da o'quvchi reposida bitta ham test fayli yo'q: testlarni o'quvchi o'zi qo'shadi."
+    "Endi siz: <b>yangi papkaga clone, <code>jest2-done</code> tegi</b>, to'rt buyruq zanjiri",
+    "Endi navbat sizga. OrderBotNest'ni yangi papkaga clone qilasiz, jest ikki done tegiga o'tasiz, to'rt buyruqni ampersand bilan yurgizasiz. Baza va token kerak emas. O'n ikki daqiqa ketadi."
    ],
    [
     "b",
-    "<code>No tests found, exiting with code 1</code> — lenta buni <b>qizil deb biladi</b>",
-    "Natijada no tests found, exiting with code one chiqadi. Jest testni topmasa, chiqish kodi bir bilan tugaydi. Lenta buni xato deb biladi va to'xtaydi."
+    "1–2-qadam: <b>clone va zanjir</b> — to'rtala qadam nol, <code>dist</code> papkasi paydo bo'ladi",
+    "Birinchi qadamda git clone va git checkout jest ikki done. Ikkinchisida to'rt buyruq zanjiri: npm si ay, tsc, test, build. Oxirida dist papkasi paydo bo'lishi kerak, tests satri yigirma besh passed."
    ],
    [
     "c",
-    "Jest-1 dagi <code>order.spec.ts</code> qo'shilgach — <b>PASS va kod 0</b>",
-    "Jest birinchi darsidagi order spec faylini qo'shamiz. Natijada PASS chiqadi: bitta test o'tdi, chiqish kodi nol. Endi lenta keyingi qadamga o'tadi."
+    "3–4-qadam: <b>36-satrni buzib</b> zanjirni yurgizing — <code>build</code> yurmaydi; tiklang; isbot — <code>Tests:</code> satri",
+    "Uchinchi qadamda order service ts'ning o'ttiz oltinchi satrida kichikni kichik yoki tengga buzib, zanjirni qayta yurgizasiz: test qizil, build yurmaydi. To'rtinchisida git checkout bilan tiklaysiz. Isbot maydoniga uchinchi qadamdagi tests satrini nusxalang."
    ],
    [
     "d",
-    "Xulosa: lentaga test qadami qo'yishdan oldin repoda <b>kamida bitta test</b> bo'lsin",
-    "Xulosa: lentaga test qadamini qo'yishdan oldin repoda kamida bitta test bo'lsin. Aks holda lenta birinchi kundanoq qizil bo'ladi. Sinfda bu o'quvchilarda albatta chiqadi."
+    "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
+    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin siz lentani qo'lda yurgizgan va qizilda uzilishini ko'rgan bo'lasiz."
+   ]
+  ],
+  "steps": [
+   {
+    "t": "Toza clone",
+    "cmds": [
+     "git clone https://github.com/Azizbekcrypto/OrderBotNest.git lenta",
+     "cd lenta",
+     "git checkout jest2-done",
+     "ls"
+    ],
+    "exp": "node_modules yo'q"
+   },
+   {
+    "t": "Zanjir",
+    "cmds": [
+     "npm ci && npx tsc --noEmit && npm test && npm run build",
+     "ls dist"
+    ],
+    "exp": "Tests: 25 passed, 25 total · dist/main.js"
+   },
+   {
+    "t": "Buzish",
+    "cmds": [
+     "src/api/order/order.service.ts 36-satr < → <=",
+     "zanjirni qayta yurgizing"
+    ],
+    "exp": "Tests: 1 failed, 24 passed, 25 total · build yurmadi"
+   },
+   {
+    "t": "Tiklash",
+    "cmds": [
+     "git checkout -- src/api/order/order.service.ts",
+     "zanjir"
+    ],
+    "exp": "Tests: 25 passed, 25 total"
+   }
+  ],
+  "proof": {
+   "label": "3-qadamdagi Tests: satri",
+   "placeholder": "masalan: Tests: 1 failed, 24 passed, 25 total",
+   "re": "Tests:\\s+1 failed,\\s+24 passed",
+   "flags": "",
+   "wrong": "Buzilgan kodda bitta test qizil bo'lishi kerak — 3-qadamdagi Tests: qatorini qo'ying."
+  },
+  "trouble": [
+   [
+    "error: pathspec 'jest2-done' did not match",
+    "teglar olinmagan — git fetch --tags, keyin checkout"
+   ],
+   [
+    "sh: 1: jest: not found",
+    "npm ci yurmagan yoki zanjirda yo'q — birinchi buyruq npm ci"
+   ],
+   [
+    "3-qadamda hammasi ✓",
+    "36-satr o'zgarmagan yoki boshqa satr — if (p.stock <= c.qty) bo'lsin"
+   ],
+   [
+    "build baribir yurdi",
+    "buyruqlar ; bilan bog'langan — && bo'lsin: ; qizilda to'xtamaydi"
    ]
   ]
  },
  "8": {
   "type": "Lesson",
-  "kicker": "2-bosqich · o'quvchi reposi",
-  "title": "npm run build yashil. && zanjiri — lenta qoidasining o'zi",
+  "kicker": "3-bosqich · GitHub Actions",
+  "title": ".github/workflows/ci.yml — lentaning yo'l xaritasi: qachon (on), qaysi mashinada (runs-on), qaysi qadamlar (steps); uses — tayyor qadam, run — sizning buyrug'ingiz",
   "seg": [
    [
     "a",
-    "Uchinchi qadam — build: <code>nest build</code>, <b>xatosiz, kod 0</b>",
-    "Uchinchi qadam build. Nest build TypeScript'ni JavaScript'ga aylantiradi. O'quvchi reposida xatosiz o'tadi, chiqish kodi nol."
+    "Fayl <b><code>.github/workflows/ci.yml</code></b> — GitHub shu papkadagi har faylni lenta deb o'qiydi",
+    "OrderBotNest papkangizda, ildizda, nuqta github papkasini, ichida workflows papkasini, ichida ci yml faylini yarating. GitHub shu papkadagi har faylni lenta deb o'qiydi. Birinchi ikki satr: name, lentaning nomi, va on: qachon yursin. Push va pull request."
    ],
    [
     "b",
-    "<code>&amp;&amp;</code> — oldingi buyruq <b>yashil bo'lsagina</b> keyingisi yuradi",
-    "Lenta qoidasini terminalda ko'rish mumkin. Buyruqlar orasidagi ikki ampersand shuni bildiradi: oldingi buyruq nol qaytarsagina keyingisi yuradi. Uch buyruqni shunday ulaymiz, oxiriga esa uchirish so'zini chiqaradigan buyruq qo'yamiz."
+    "<code>jobs</code> → <code>test</code> → <b><code>runs-on: ubuntu-latest</code></b> — GitHub'dagi toza Ubuntu mashina",
+    "Uchinchidan beshinchi satrgacha: jobs, ya'ni ishlar. Bitta ish, nomi test. Runs on, ubuntu latest: GitHub'dagi toza Ubuntu mashina. Har run'da yangi mashina, bo'sh papka, siz to'rtinchi ekranda ko'rgan holat."
    ],
    [
     "c",
-    "Test qizil — build ham, «UCHIRISH» ham <b>yurmadi</b>; test yashil — hammasi yurdi",
-    "Kodni ataylab buzdik: test qizil bo'ldi, build yurmadi, uchirish yozuvi chiqmadi, chiqish kodi bir. Tuzatgandan keyin hammasi yurdi va oxirida uchirish chiqdi. Lenta aynan shunday ishlaydi."
+    "<code>steps</code>: <b><code>checkout</code> kodni olib keladi, <code>setup-node</code> Node 24 ni o'rnatadi</b> — <code>uses</code>, tayyor qadamlar",
+    "Oltinchidan: steps, qadamlar. Birinchi ikkitasi uses bilan, tayyor qadamlar. Actions checkout: mashinaga reponi olib keladi, usiz papka bo'sh. Setup node: Node yigirma to'rtni o'rnatadi, mashinangizdagi bilan bir xil, va npm keshini yoqadi."
    ],
    [
     "d",
-    "Xulosa: lenta — <code>&amp;&amp;</code> bilan ulangan buyruqlar; <b>birinchi qizilda to'xtaydi</b>",
-    "Xulosa: lentani ikki ampersand bilan ulangan buyruqlar deb tasavvur qiling. Birinchi qizil qadamda to'xtaydi. Endi buni o'zingiz yurgizasiz."
+    "Xulosa: <b>to'rt <code>run:</code> satri — to'rtinchi ekrandagi to'rt buyruq</b>, aynan o'sha tartibda",
+    "Xulosa: oxirgi to'rt satr run bilan, bular sizning buyruqlaringiz: npm si ay, tsc, test, build, aynan to'rtinchi ekrandagi tartibda. Ci yml uch qism: qachon, qaysi mashinada, qaysi qadamlar. Faylni saqlang, endi push qilamiz."
    ]
   ]
  },
  "9": {
-  "type": "Practice",
-  "kicker": "Amaliyot 1 / 3",
-  "eyebrow": "Hozir o'zingizda · 10 daqiqa",
-  "title": "Toza clone'da uch qadam va && zanjiri",
+  "type": "Lesson",
+  "kicker": "3-bosqich · GitHub Actions",
+  "title": "git push — va GitHub'ning Actions bo'limida run paydo bo'ladi: bitta job, oltita qadam, har biri soniyasi bilan, hammasi yashil",
   "seg": [
    [
     "a",
-    "Endi siz: o'quvchi reposini toza papkada <b>lentadagidek</b> o'tkazasiz",
-    "Endi navbat sizga. O'quvchi reposini yangi papkaga clone qiling va lentadagidek uch qadamdan o'tkazing. Bunga o'n daqiqa ketadi."
+    "Push qiling — <b>GitHub'da Actions bo'limi</b>: run paydo bo'ldi, sariq nuqta — yuryapti",
+    "Terminalda git add, commit, push. Brauzerda reponi oching, yuqorida Actions bo'limi. Yangi run paydo bo'ldi: nomi commit xabaringiz, yonida sariq nuqta, yuryapti. Bir daqiqadan kam kuting."
    ],
    [
     "b",
-    "1–2-qadam: clone va <code>npm ci</code> — <b><code>in sync</code></b> xatosini ko'ring, keyin <code>npm install</code>",
-    "Birinchi qadamda reponi yangi papkaga clone qilasiz. Ikkinchisida avval npm ci qilib, in sync xatosini o'qiysiz, keyin npm install qilasiz."
+    "Run ichida: <b>bitta job <code>test</code>, oltita qadam</b> — <code>checkout</code>, <code>setup-node</code>, to'rt buyruq, har biri soniyasi bilan",
+    "Run'ni oching. Chapda job: test. O'ngda qadamlar: set up job, GitHub'ning o'zi qo'shgan. Keyin checkout, setup node, va to'rt buyrug'ingiz. Har qadam yonida yashil belgi va necha soniya yurgani. Hammasi yashil, run yashil."
    ],
    [
     "c",
-    "3–4-qadam: <code>order</code> fayllari va zanjir; isbot — <b>oxirgi satr</b>",
-    "Uchinchi qadamda Jest birinchi darsidagi ikki order faylini qo'shasiz. To'rtinchisida zanjirni yurgizasiz. Isbot maydoniga oxirgi satrni yozing."
+    "Qadamni bossangiz — <b>log, sizning terminalingizdagi matn</b>: <code>PASS</code>, <code>Tests: 25 passed</code>",
+    "Npm test qadamini bosing: log ochiladi. Bu aynan sizning terminalingizdagi matn: PASS, beshta fayl, yigirma besh passed. Faqat uni siz emas, GitHub'dagi mashina yurgizdi. Shu logni o'qiy olsangiz, lentaning hamma xatosini topa olasiz."
    ],
    [
     "d",
-    "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
-    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, siz o'quvchi reposi qaysi qadamda qizil bo'lishini va qanday tuzatilishini o'z qo'lingiz bilan ko'rdingiz."
+    "Xulosa: <b>push → toza mashina → sizning buyruqlaringiz → yashil</b>; endi uni qizil qilamiz",
+    "Xulosa: push qildingiz, GitHub toza mashina ochdi, kodni olib keldi, Node o'rnatdi, to'rt buyrug'ingizni yurgizdi, yashil dedi. Siz hech narsa qilmadingiz. Endi kodni buzib push qilamiz va lenta qizilni qanday ko'rsatishini ko'ramiz."
    ]
   ]
  },
  "10": {
   "type": "Lesson",
-  "kicker": "3-bosqich · ci.yml",
-  "title": "ci.yml: qachon (on), qayerda (runs-on), nima (steps)",
+  "kicker": "3-bosqich · buzamiz",
+  "title": "<= bilan push: run qizil — npm test qadami ✗, npm run build «skipped», annotatsiyada Process completed with exit code 1",
   "seg": [
    [
     "a",
-    "Lenta qayerda yoziladi: repodagi <b><code>.github/workflows/ci.yml</code></b> faylida, GitHub uni o'zi topadi",
-    "Lenta qayerda yoziladi? Repodagi nuqta github, workflows papkasidagi yml faylida. GitHub shu papkani o'zi topadi. O'quvchi darsida bu fayl yo'l xaritasi deyiladi."
+    "36-satrni yana buzamiz va push — <b>run qizil</b>: ro'yxatda qizil belgi, commit xabari bilan",
+    "Oltinchi ekrandagi buzishni qaytaramiz: order service ts, o'ttiz oltinchi satr, kichik yoki teng. Commit, push. Actions bo'limida yangi run, bu safar qizil belgi. Run'ni ochamiz."
    ],
    [
     "b",
-    "<code>on: push</code> — <b>qachon</b>: har push'da lenta o'zi boshlanadi",
-    "Birinchi qator on push lenta qachon boshlanishini aytadi: har push'da u o'zi boshlanadi. Bu start signali."
+    "Qadamlar: <b><code>npm test</code> ✗, <code>npm run build</code> — «skipped»</b>; annotatsiya: chiqish kodi 1",
+    "Qadamlarga qarang: checkout, setup node, npm si ay, tsc, hammasi yashil. Npm test qizil. Npm run build: skipped, yurmadi. Yuqorida annotatsiya: process completed with exit code one. Oltinchi ekrandagi ampersand zanjiri bilan bir xil, faqat GitHub buni ko'rsatib beradi."
    ],
    [
     "c",
-    "<code>runs-on</code> — <b>qaysi mashinada</b>; <code>steps</code> — <b>qaysi buyruqlar</b>, yuqoridan pastga",
-    "Runs on qaysi mashinada yurishini aytadi: ubuntu latest. Steps esa qaysi buyruqlar yurishini aytadi: har chiziqcha bitta qadam, ular yuqoridan pastga bajariladi. Surilish muhim: har qator kimning ichida turganini ko'rsatadi."
+    "Logda <b>o'sha FAIL</b>: chegara testi, <code>Kolonka: omborda faqat 2 ta qoldi</code>, 37-satr",
+    "Qizil qadamni bosing: log. O'sha FAIL: order service spec, chegara testi, Kolonka, omborda faqat ikkita qoldi, o'ttiz yettinchi satr. Jest sizga lokalda aytadigan hamma narsa shu yerda. Pastda: process completed with exit code one."
    ],
    [
     "d",
-    "Xulosa: <code>on</code> · <code>runs-on</code> · <code>steps</code> — o'quvchi darsidagi <b>uch bo'shliq</b> aynan shular",
-    "Xulosa: faylning asosi uchta: on, runs on va steps. O'quvchi darsida aynan shu uch joy bo'sh qoldirilgan va o'quvchi to'ldiradi. Lekin bu faylda bitta muhim qadam yetishmaydi, uni keyingi ekranda ko'ramiz."
+    "Demak, sabab: <b>test chiqish kodi 1 berdi — lenta to'xtadi</b>, build yurmadi, buzuq kod yig'ilmadi",
+    "Demak, sabab bitta joyda: npm test chiqish kodi bir berdi, lenta shu qadamda to'xtadi, build yurmadi. Buzuq kod yig'ilmadi va hech qayerga chiqmadi. Satrni tiklab push qilsangiz, run yana yashil. Endi tekshirib olaylik."
    ]
   ]
  },
  "11": {
-  "type": "Lesson",
-  "kicker": "3-bosqich · ci.yml",
-  "title": "Rasmiy tahlilchi «xato yo'q» deydi — lekin mashinadagi papka bo'sh",
-  "seg": [
-   [
-    "a",
-    "Faylni GitHub'ning rasmiy tahlilchisida tekshirdik: u <b>«xato yo'q»</b> deb javob berdi",
-    "O'quvchi darsidagi faylni GitHub'ning rasmiy tahlilchisida tekshirdik. Natija: xato yo'q, ya'ni fayl to'g'ri yozilgan. Lekin yozilishi to'g'ri degani, ishlaydi degani emas."
-   ],
-   [
-    "b",
-    "Lenta mashinasi bo'sh papkada: repodagi kodni <b><code>actions/checkout</code></b> olib keladi",
-    "Eslang: mashina bo'sh papkadan boshlaydi. Repodagi kodni u yerga olib keladigan qadam actions checkout. Hujjati shunday deydi. O'quvchi faylida bu qadam yo'q."
-   ],
-   [
-    "c",
-    "Checkout'siz <code>npm install</code> — <b><code>Could not read package.json</code></b>",
-    "Bo'sh papkada npm install'ni yurgizdik va could not read package json xatosini oldik. Package json yo'q, chunki kod kelmagan. GitHub'da ham sinadik: checkout'siz lentada xuddi shu xato, lenta qizil."
-   ],
-   [
-    "d",
-    "Xulosa: har lentaning birinchi qadami — kodni olib keladigan <b><code>actions/checkout</code></b>",
-    "Xulosa: har lentaning birinchi qadami actions checkout. O'quvchilarga checkout m4c-03 da o'rgatiladi, amaliyot esa m4c-01 da. Shuning uchun amaliyotda bu qatorni o'zingiz qo'shtirasiz."
-   ]
-  ]
+  "type": "MCRetry",
+  "kicker": "Tekshiruv 2",
+  "eyebrow": "Tekshiruv · 2 / 4",
+  "title": "Lentada npx tsc --noEmit qadami chiqish kodi 2 bilan tugadi. npm test va npm run build qadamlari nima bo'ladi?",
+  "q": "Qizil run'ni ko'rdingiz, endi tekshirib olaylik. Ikkinchi tekshiruv. Lentada tsc qadami chiqish kodi ikki bilan tugadi: tur xatosi. Undan keyingi npm test va npm run build qadamlari nima bo'ladi? Variantni tanlang.",
+  "ok": "To'g'ri. Lenta birinchi qizil qadamda to'xtaydi: tsc ikki berdi, npm test ham, build ham skipped, yurmadi. Chiqish kodi ikkimi, birmi, lenta uchun farqi yo'q: nol emas, demak qizil. Demak, qadam tartibi muhim: arzon va tez tekshiruv oldinda, undan o'tmagan kod testgacha ham bormaydi.",
+  "okShort": "Birinchi qizil qadam — qolgani «skipped». 2 ham, 1 ham — nol emas.",
+  "hint": "Oltinchi ekrandagi && zanjirini eslang: qizildan keyin nima bo'ldi?",
+  "demak": "Lenta birinchi qizil qadamda to'xtaydi; keyingi qadamlar «skipped». Chiqish kodi nol emas — qizil.",
+  "correct": 2,
+  "opts": [
+   "Ikkalasi yuradi — tur xatosi testga ham, build'ga ham xalaqit bermaydi",
+   "npm test yuradi, build yurmaydi — test alohida",
+   "Ikkalasi «skipped» — birinchi qizildan keyin to'xtaydi",
+   "Ikkalasi yuradi, lekin run baribir qizil"
+  ],
+  "wrong": {
+   "0": "Lenta qadam ketma-ketligi: oldingisi qizil — keyingisi boshlanmaydi.",
+   "1": "Qadamlar bir-biriga bog'liq: tsc qizil bo'lsa test ham yurmaydi.",
+   "3": "Yurmaydi: GitHub ularni «skipped» deb belgilaydi, run qizil."
+  }
  },
  "12": {
-  "type": "Lesson",
-  "kicker": "3-bosqich · ci.yml",
-  "title": "Checkout, Node, install, test, build — besh qadam, tahlilchida xatosiz",
-  "seg": [
-   [
-    "a",
-    "<code>uses</code> — <b>tayyor qadam</b>: checkout kodni olib keladi, setup-node Node'ni o'rnatadi",
-    "Checkout kerakligini ko'rdik, endi to'liq fayl. Unda uses bilan yozilgan ikki yangi qadam bor: bular boshqalar yozib qo'ygan tayyor qadamlar. Checkout kodni olib keladi. Setup node kerakli Node versiyasini o'rnatadi, bu yerda yigirma ikki."
-   ],
-   [
-    "b",
-    "<code>run</code> — <b>sizning buyruqlaringiz</b>: <code>npm install</code>, <code>npm test</code>, <code>npm run build</code>",
-    "Qolgan qadamlar run bilan yoziladi, ular sizning buyruqlaringiz: npm install, npm test va npm run build. Bular amaliyotda terminalda yurgizgan uchta buyrug'ingiz."
-   ],
-   [
-    "c",
-    "Versiyalar: hozir checkout va setup-node — <b>v7</b>; o'quvchi darsida <b>v4</b> yozilgan",
-    "Endi versiyalar haqida. GitHub'da hozirgi so'nggi versiya yettinchi. O'quvchi m4c-03 darsida to'rtinchi versiya yozilgan. To'rtinchisi ham ishlaydi, lekin GitHub har safar eskirgan deb ogohlantiradi. Shuning uchun yettinchisini tavsiya qilamiz."
-   ],
-   [
-    "d",
-    "Xulosa: bu fayl o'quvchi reposi uchun — <b>lint qadamisiz</b>, sababini 15-ekranda ko'ramiz",
-    "Xulosa: o'quvchi reposi uchun shu besh qadam yetadi. Lint qadami ataylab yo'q, sababini o'n beshinchi ekranda ko'ramiz. Fayl tahlilchida xatosiz."
-   ]
-  ]
- },
- "13": {
-  "type": "LineCheck",
-  "kicker": "Tekshiruv 2",
-  "eyebrow": "Tekshiruv · 2 / 4 — qaysi satr xato?",
-  "title": "Fayl to'g'ri yozilgan, lekin o'quvchi reposida lenta birinchi run qadamida qizil",
-  "q": "Faylni ko'rdingiz, endi o'zingiz toping. Ikkinchi tekshiruv. Bu fayl yozilishi bo'yicha to'g'ri, lekin o'quvchi reposida lenta birinchi buyruqdayoq qizil. Shu satrni bosing.",
-  "ok": "To'g'ri. O'n birinchi satr, npm ci. O'quvchi reposida lock fayl eskirgan, npm ci in sync xatosi bilan to'xtaydi. Bu repoda npm install yozamiz. Ekranda tuzatilgan holat. Demak, lock fayli eskirgan repoda lentaning o'rnatish qadami npm install bo'ladi.",
-  "okShort": "11-satr: <code>npm ci</code> — lock sinxron emas. Bu repoda <code>npm install</code>.",
-  "hint": "Lentaning birinchi buyrug'i qaysi? Toza clone'da u nima degan edi (6-ekran)?",
-  "task": "Bu <code>ci.yml</code> tahlilchida xatosiz. Lekin o'quvchi reposida lenta birinchi buyruqdayoq qizil bo'ladi. <b>Shu satrni bosing.</b>"
- },
- "14": {
   "type": "Practice",
   "kicker": "Amaliyot 2 / 3",
-  "eyebrow": "Hozir o'zingizda · 15 daqiqa",
-  "title": "O'z reposingizga lenta: push va Actions'ni kuzatish",
+  "eyebrow": "Hozir o'zingizda · 20 daqiqa",
+  "title": "OrderBotNest nusxangizni GitHub'ga chiqaring, ci.yml yozing, push — Actions'da yashil run; keyin buzib qizilni ko'ring",
   "seg": [
    [
     "a",
-    "Endi siz: o'z GitHub reposingizga lenta qo'shasiz va <b>birinchi yashilni</b> ko'rasiz",
-    "Endi o'z reposingizga lenta qo'shasiz. Jest darslaridagi repo bo'lsa yaxshi, unda testlar bor. Bunga o'n besh daqiqa ketadi."
+    "Endi siz: <b>o'z GitHub reposingiz</b> — OrderBotNest nusxasi, <code>ci.yml</code>, push",
+    "Endi navbat sizga. GitHub'da o'zingizga yangi repo ochasiz, OrderBotNest nusxangizni unga push qilasiz, ci yml yozasiz va Actions'da yashil run'ni ko'rasiz. Yigirma daqiqa ketadi."
    ],
    [
     "b",
-    "1–2-qadam: <code>.github/workflows/ci.yml</code> — tavsiya fayl; <b>commit va push</b>",
-    "Birinchi qadamda nuqta github, workflows papkasida ci yml faylini yaratasiz: o'n ikkinchi ekrandagi fayl. Ikkinchisida commit va push qilasiz."
+    "1–2-qadam: <b>repo va push</b>, keyin <code>.github/workflows/ci.yml</code> — sakkizinchi ekrandagi 15 satr",
+    "Birinchi qadamda GitHub'da bo'sh repo ochib, git remote bilan ulaysiz va push qilasiz. Ikkinchisida nuqta github, workflows, ci yml faylini sakkizinchi ekrandagi o'n besh satr bilan yozasiz, push. Actions'da run yashil bo'lishi kerak."
    ],
    [
     "c",
-    "3–4-qadam: Actions bo'limi, qadamlar ro'yxati; isbot — <code>npm test</code> qadamidagi <b><code>Tests:</code> satri</b>",
-    "Uchinchi qadamda GitHub'da Actions bo'limini ochib, lentani kuzatasiz. To'rtinchisida npm test qadamini ochib, Tests satrini isbot maydoniga nusxalaysiz."
+    "3–4-qadam: <b>36-satrni buzib push</b> — run qizil, <code>build</code> skipped; tiklab push — yashil; isbot — run manzili",
+    "Uchinchi qadamda o'ttiz oltinchi satrni buzib push qilasiz: run qizil, npm test qadami qizil, build skipped. To'rtinchisida tiklab push: yashil. Isbot maydoniga yashil run'ning manzilini, brauzer qatoridan, nusxalang."
    ],
    [
     "d",
     "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
-    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin sizning reposingizda har push'da o'zi yuradigan lenta bor."
+    "Boshqacha chiqsa, «Boshqacha chiqdimi» tugmasini bosing. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin sizning reponingizda har push'da lenta yuradi, va siz uni bir marta qizil, bir marta yashil ko'rgansiz."
+   ]
+  ],
+  "steps": [
+   {
+    "t": "O'z repo",
+    "cmds": [
+     "GitHub → New repository (bo'sh, README'siz)",
+     "git remote add mine https://github.com/<siz>/OrderBotNest.git",
+     "git push mine jest2-done:main"
+    ],
+    "exp": "GitHub'da kod ko'rinadi"
+   },
+   {
+    "t": "ci.yml",
+    "cmds": [
+     ".github/workflows/ci.yml — 8-ekrandagi 15 satr (node-version — node --version raqamingiz)",
+     "git add .github && git commit -m \"ci: lenta\" && git push mine HEAD:main"
+    ],
+    "exp": "Actions: run ✓ (6 qadam yashil)"
+   },
+   {
+    "t": "Buzib push",
+    "cmds": [
+     "order.service.ts 36 < → <=",
+     "git commit -am \"sinov: chegara\" && git push mine HEAD:main"
+    ],
+    "exp": "run ✗: npm test ✗ · npm run build skipped"
+   },
+   {
+    "t": "Tiklab push",
+    "cmds": [
+     "git checkout -- src/api/order/order.service.ts",
+     "git commit -am \"tiklash\" && git push mine HEAD:main"
+    ],
+    "exp": "run ✓"
+   }
+  ],
+  "proof": {
+   "label": "4-qadamdagi yashil run manzili",
+   "placeholder": "masalan: https://github.com/siz/OrderBotNest/actions/runs/41831…",
+   "re": "github\\.com\\/[^\\s\\/]+\\/[^\\s\\/]+\\/actions\\/runs\\/\\d+",
+   "flags": "",
+   "wrong": "Actions'da run'ni ochib, brauzer qatoridagi manzilni qo'ying: …/actions/runs/<raqam>."
+  },
+  "trouble": [
+   [
+    "Actions bo'limida run yo'q",
+    "fayl .github/workflows/ papkasida emas yoki push mainga bormagan — yo'lni va git push mine HEAD:main ni tekshiring"
+   ],
+   [
+    "npm ci qadami qizil: Missing: … from lock file",
+    "runner'dagi Node mashinangizdan boshqa — node-version ni node --version raqamiga qo'ying (17-ekran)"
+   ],
+   [
+    "npm ci qizil: can only install with an existing package-lock.json",
+    "actions/checkout@v4 qadami yo'q — mashinada repo yo'q (13-ekran)"
+   ],
+   [
+    "Run qizil, ichida job yo'q",
+    "fayl xatosi — YAML surilish yoki runs-on yo'q (16-ekran)"
+   ]
+  ]
+ },
+ "13": {
+  "type": "Lesson",
+  "kicker": "4-bosqich · to'rt tuzoq",
+  "title": "actions/checkout satrini olib tashlasak — mashina bo'sh: npm ci «lock fayl yo'q» deydi, run qizil; birinchi tuzoq",
+  "seg": [
+   [
+    "a",
+    "Birinchi tuzoq: <b><code>checkout</code> satri yo'q</b> — to'g'ri ko'rinadi, YAML xatosi ham yo'q",
+    "To'rt tuzoqni ko'ramiz, har biri haqiqiy run. Birinchisi: ci yml'dan actions checkout satrini olib tashladik. Fayl to'g'ri ko'rinadi: setup node, npm si ay, npm test. YAML xatosi yo'q, GitHub faylni qabul qildi, run boshlandi."
+   ],
+   [
+    "b",
+    "Run: <code>setup-node</code> ✓, <b><code>npm ci</code> ✗ — «can only install with an existing package-lock.json»</b>",
+    "Run qizil. Setup node yashil, Node o'rnatildi. Npm si ay qizil, logda: npm si ay faqat mavjud package lock json bilan o'rnatadi, lock yarating, deydi. Lekin lock faylimiz repoda bor, siz uni to'rtinchi ekranda ko'rdingiz. Xabar aldaydi: lock yo'q emas, butun papka bo'sh."
+   ],
+   [
+    "c",
+    "Demak, sabab: <b>runner bo'sh papkadan boshlaydi</b> — kodni <code>checkout</code> olib keladi, u yo'q",
+    "Demak, sabab bitta: runner har safar bo'sh papkadan boshlaydi, to'rtinchi ekrandagi toza clone'dan ham bo'shroq, u yerda hatto clone ham yo'q. Kodni mashinaga actions checkout olib keladi. U yo'q, demak package json ham, lock ham yo'q, npm si ay nima o'rnatishini bilmaydi."
+   ],
+   [
+    "d",
+    "Xulosa: <b>birinchi qadam doim <code>checkout</code></b>; «lock yo'q» yoki «package.json yo'q» ko'rsangiz — shu satrni qidiring",
+    "Xulosa: har workflow'da birinchi qadam actions checkout. Logda lock fayl yo'q yoki package json yo'q ko'rsangiz, repongizni tekshirmang, ci yml'dagi shu satrni qidiring. O'quvchi darsidagi ci yml'da ham bu satr yo'q, yigirma uchinchi ekranda ko'ramiz. Ikkinchi tuzoq: lock fayl."
+   ]
+  ]
+ },
+ "14": {
+  "type": "Lesson",
+  "kicker": "4-bosqich · to'rt tuzoq",
+  "title": "package.jsonni qo'lda o'zgartirdik, lock qolmadi — npm ci lentada ham, lokalda ham yiqiladi: «package.json and package-lock.json … in sync»; ikkinchi tuzoq",
+  "seg": [
+   [
+    "a",
+    "Ikkinchi tuzoq: <code>package.json</code>da <b>versiyani qo'lda o'zgartirdik</b>, <code>npm install</code> yurgizmadik — lock eskicha",
+    "Ikkinchi tuzoq. Package json faylining o'ttizinchi satrida telegraf versiyasini qo'lda to'rt o'n olti nolga o'zgartirdik, npm install yurgizmadik. Package lock json'da hali to'rt o'n olti uch. Ikki fayl bir-biriga mos emas. Commit, push."
+   ],
+   [
+    "b",
+    "Lokalda ham, lentada ham: <b><code>npm ci</code> qizil — «in sync» emas</b>: lock'da 4.16.3, <code>package.json</code>da 4.16.0",
+    "Natija lokalda ham, lentada ham bir xil: npm si ay qizil. Xabar: package json va package lock json in sync emas, ya'ni mos emas. Pastda aniq sabab: lock fayldagi telegraf to'rt o'n olti uch, package json'dagi to'rt o'n olti nolga mos kelmaydi."
+   ],
+   [
+    "c",
+    "Demak, sabab: <b><code>npm ci</code> lock fayldan aynan o'rnatadi</b>, mos kelmasa — o'rnatmaydi, qizil beradi",
+    "Demak, sabab: npm si ay, ya'ni clean install, lock fayldan aynan o'rnatadi, bir baytini ham o'zgartirmaydi. Package json mos kelmasa, taxmin qilmaydi, qizil beradi. Bu to'g'ri: lentada hamma mashina aynan bir xil paketlarni olishi kerak."
+   ],
+   [
+    "d",
+    "Xulosa: <b>lokalda <code>npm install</code>, lentada <code>npm ci</code></b>; versiya o'zgarsa — lock ham commit'ga kiradi",
+    "Xulosa: paket qo'shsangiz yoki versiya o'zgartirsangiz, lokalda npm install yurgizing: u lock'ni yangilaydi. Lock faylni ham commit'ga qo'shing. Lentada esa doim npm si ay: u lock'ga ishonadi va mos kelmasa to'xtaydi. Uchinchi tuzoq eng xavflisi: yashil, lekin yolg'on."
    ]
   ]
  },
  "15": {
   "type": "Lesson",
-  "kicker": "4-bosqich · buzamiz",
-  "title": "O'quvchi darsidagi «O'lcham ramkasi» — o'quvchi reposida lint 46 error",
+  "kicker": "4-bosqich · ichida",
+  "title": "user.service.tsda tur xatosi: ts-jest testlarni baribir yashil o'tkazadi — tsc qadamisiz lenta yashil (yolg'on), tsc bilan qizil; uchinchi tuzoq",
   "seg": [
    [
     "a",
-    "O'quvchi darsidagi lentada lint nuqtasi bor — o'quvchi reposida <b>sinab ko'rdik</b>",
-    "O'quvchi darsidagi lentada o'lcham ramkasi bor, ya'ni lint: kod yozilish qoidasi. O'quvchi reposida npm run lint'ni yurgizdik."
+    "Uchinchi tuzoq: <b>tur xatosi, test yashil</b> — <code>ts-jest</code> turni tekshirmaydi, <code>tsc</code> tekshiradi",
+    "Uchinchi tuzoq. Src, api, user papkasidagi user service ts faylining o'n oltinchi satrida string'ni olib tashladik: telegram id endi number, ustun esa string. Npx tsc: yigirmanchi satrda xato, TS ikki uch ikki ikki, chiqish kodi ikki. Npm test: yigirma besh passed, yashil. Test turni tekshirmaydi."
    ],
    [
     "b",
-    "Natija: <b>46 error</b>, chiqish kodi 1 — lint qadami qo'yilsa, lenta har safar qizil",
-    "Natijada qirq olti error chiqdi, chiqish kodi bir. Repoda yozilish qoidasi buzilgan joylar ko'p. Lentaga lint qadami qo'yilsa, u har safar qizil bo'ladi, kod ishlasa ham."
+    "Lentada <code>tsc</code> qadami yo'q (run 14): <b>hammasi yashil — yolg'on</b>; kod kompilyatsiya bo'lmaydi",
+    "Shu kodni tsc qadamisiz ci yml bilan push qildik: checkout, setup node, npm si ay, npm test. Run yashil, oltita belgi yashil. Lekin bu yolg'on yashil: nest build bu kodni yig'a olmaydi, bot ishga tushmaydi. Lenta buni ko'rmadi, chunki hech kim so'ramadi."
    ],
    [
     "c",
-    "Diqqat: skriptda <code>--fix</code> bor — u <b>14 faylni o'zgartirib</b> qo'ydi",
-    "Yana bir narsa: o'quvchi reposidagi lint skriptida fix bor. U o'n to'rt faylni o'zi o'zgartirib qo'ydi. Lentada fayl o'zgartiradigan buyruq bo'lmasligi kerak."
+    "<code>tsc</code> qadami bilan (run 15): <b><code>tsc</code> ✗, test va build skipped</b> — run qizil, chiqish kodi 2",
+    "O'sha kod, tavsiya ci yml bilan: tsc qadami bor. Run qizil: tsc qizil, chiqish kodi ikki, npm test skipped, build skipped. Yonma-yon qarang: bir xil kod, bir xil testlar, bitta satr farq: npx tsc no emit. Birida yolg'on yashil, ikkinchisida haqiqiy qizil."
    ],
    [
     "d",
-    "Xulosa: bu repoda lint — <b>alohida ish</b>; lentaga test va build yetadi",
-    "Xulosa: bu repoda lint alohida ish, avval xatolar tozalanadi. Hozircha lentaga test va build yetadi. O'quvchi lint haqida so'rasa, shu raqamni ayting."
+    "Xulosa: <b>lenta faqat so'ralgan narsani tekshiradi</b> — <code>tsc</code> qadamini test'dan oldin qo'ying",
+    "Xulosa: lenta faqat siz so'ragan narsani tekshiradi. Testlar yashil, degani turlar to'g'ri degani emas. Npx tsc no emit qadamini npm test'dan oldin qo'ying: arzon, uch soniya, va build'gacha bormay to'xtatadi. To'rtinchi tuzoq: faylning o'zi."
    ]
   ]
  },
  "16": {
-  "type": "Lesson",
-  "kicker": "4-bosqich · buzamiz",
-  "title": "* o'rniga +: lentada FAIL, build yurmaydi",
-  "seg": [
-   [
-    "a",
-    "Jest-1 dagi buzish: <b><code>price + quantity</code></b> — lentada nima bo'ladi?",
-    "Jest birinchi darsidagi buzishni lentada ko'ramiz: ko'paytirish o'rniga qo'shish yozamiz va push qilamiz."
-   ],
-   [
-    "b",
-    "Test qadami qizil: Expected 20000, <b>Received 10002</b>, kod 1",
-    "Test qadami qizil: expected yigirma ming, received o'n ming ikki, chiqish kodi bir. Jest birinchi darsidagi xabarning o'zi, faqat endi u lenta logida."
-   ],
-   [
-    "c",
-    "Build va chiqarish kulrang — yurmadi; foydalanuvchi <b>eski saytni</b> ko'radi",
-    "Keyingi qadamlar, build ham, chiqarish ham, yurmadi. Buzuq kod foydalanuvchiga yetmadi, eski versiya ishlab turibdi. Dasturchi qizilni ko'radi va tuzatadi."
-   ],
-   [
-    "d",
-    "Xulosa: qizil lenta — yomon emas; u xatoni foydalanuvchidan <b>oldin ushladi</b>",
-    "Xulosa: qizil lenta yomon narsa emas. U xatoni foydalanuvchidan oldin ushladi. O'quvchiga shuni ayting: qizil, lenta ishlayapti degani."
-   ]
-  ]
+  "type": "LineCheck",
+  "kicker": "Tekshiruv 3",
+  "eyebrow": "Tekshiruv · 3 / 4 — qaysi satr xato?",
+  "title": "Bu ci.yml bilan push qildik — run qizil, lekin ichida bitta qadam ham yo'q: «workflow file issue». Sababchi satrni toping",
+  "q": "Uch tuzoqni ko'rdingiz, to'rtinchisini o'zingiz topasiz. Uchinchi tekshiruv. Bu ci yml bilan push qildik: run qizil, lekin ichida bitta qadam ham yo'q, GitHub workflow file issue dedi. YAML'da bitta ro'yxatning elementlari bir ustunda turadi. Ro'yxat yettinchi satrda boshlandi, keyingi element boshqa ustundan boshlanadi. Birinchi buzilgan satrni bosing.",
+  "ok": "To'g'ri. Sakkizinchi satr qo'shnisidan ikki probel o'ngda boshlanadi: YAML uni ro'yxat elementi emas, oldingi elementning davomi deb o'qiydi va tushunmaydi. GitHub bunday faylni yurgizmaydi: run ro'yxatda qizil, lekin ichida job yo'q, qadam yo'q, log yo'q, faqat workflow file issue. Ekranda tuzatilgan: hamma chiziqcha bir chuqurlikda. Pastda ikkinchi fayl xatosi: runs on yo'q.",
+  "okShort": "8-satr 2 probel o'ngda — YAML tushunmadi. Fayl xatosida job yo'q, qadam yo'q, log yo'q.",
+  "hint": "- uses va - run chiziqchalari bir ustunda turishi kerak. Qaysi biri surilgan?",
+  "task": "Qoida: YAML'da bitta ro'yxatning elementlari (<code>- </code>) bir ustunda turadi. Ro'yxat 7-satrda boshlandi; keyingi element boshqa ustundan boshlanadi — GitHub aynan shu satrni ko'rsatadi. <b>Birinchi buzilgan satrni bosing.</b>"
  },
  "17": {
   "type": "Lesson",
-  "kicker": "4-bosqich · buzamiz",
-  "title": "on: once, runs-on yo'q, surilish — uch xato va ularning xabari",
+  "kicker": "5-bosqich · mashina farqi",
+  "title": "Haqiqiy topilma: toza clone'da yashil edi, birinchi run'da npm ci qizil — Missing: webpack@5.112.2 from lock file; sabab — runner'da Node 22, mashinada Node 24",
   "seg": [
    [
     "a",
-    "O'quvchi darsidagi noto'g'ri variantlar: <code>once</code>, <code>my-laptop</code> — <b>tahlilchida sinadik</b>",
-    "O'quvchi darsida noto'g'ri variantlar bor: once, my laptop. Ularni va o'quvchilar ko'p qiladigan xatolarni rasmiy tahlilchida sinadik."
+    "Birinchi run'imiz aslida <b>qizil edi</b>: <code>npm ci</code> — <code>Missing: webpack@5.112.2 from lock file</code>",
+    "Endi haqiqiy topilma. Bu darsni tayyorlashda birinchi run qizil chiqdi. Npm si ay qadami: missing webpack from lock file. Lokalda esa to'rtinchi ekranda o'sha lock bilan npm si ay yashil edi. Bir xil kod, bir xil lock, boshqa natija. Menda ishlaydi, lekin lentada yo'q."
    ],
    [
     "b",
-    "<code>on: once</code> — <b><code>Unexpected value</code></b>; <code>runs-on</code> yo'q — <b><code>Required property is missing</code></b>",
-    "On once yozilsa, tahlilchi unexpected value deydi, ya'ni kutilmagan qiymat. Runs on qatori bo'lmasa, required property is missing deydi, ya'ni majburiy qator yetishmaydi. Ikkalasida ham qator raqami ko'rsatiladi."
+    "Farq: <b>mashinada Node 24 va npm 11, runner'da Node 22 va npm 10</b> — npm 10 lock'ni boshqacha o'qiydi",
+    "Ikki mashinani yonma-yon qo'yamiz. Sizniki: node yigirma to'rt, npm o'n bir. Runner: ci yml'da node version yigirma ikki yozilgan edi, u bilan npm o'n keladi. Npm o'n lock faylning bir yozuvini, peer paketni, boshqacha o'qiydi va yo'q deb hisoblaydi."
    ],
    [
     "c",
-    "Surilish xatosi — xabar tushunarsiz, lekin <b>qator raqami to'g'ri</b>",
-    "Eng ko'p uchraydigani surilish: bitta chiziqcha boshqa joyga siljigan. Uning xabari tushunarsiz: block sequence, implicit map key. Lekin qator raqami to'g'ri ko'rsatiladi, o'sha qatorga qarang."
+    "Isbot lokalda: <b>npm 10 bilan <code>npm ci</code> — o'sha xato</b>; demak sabab kod emas, npm versiyasi",
+    "Isbot: o'z mashinamizda npx bilan npm o'nni chaqirib npm si ay yurgizdik: aynan o'sha xato, missing webpack. Demak, sabab kodda ham, lock'da ham emas: lentadagi Node, demak npm, mashinadagidan boshqa. Lokalda yashil, lentada qizil bo'lsa, birinchi shuni solishtiring."
    ],
    [
     "d",
-    "Xulosa: YAML xabarida avval <b>qator raqamini</b> o'qing, keyin surilishni solishtiring",
-    "Xulosa: YAML xatosida avval qator raqamini o'qing, keyin o'sha qatorning surilishini yuqoridagi qator bilan solishtiring. GitHub'da bunday faylda lenta darhol qizil bo'ladi, ichida qadam ham, log ham yo'q. GitHub sahifasida surilish xatosi umumiy yaml syntax xabari bo'lib chiqadi va qator raqami blok boshini ko'rsatishi mumkin."
+    "Xulosa: <b><code>node-version</code> — <code>node --version</code> raqamingiz</b>; 22 → 24 qilindi, run yashil",
+    "Xulosa: ci yml'dagi node version mashinangizdagi node version bilan bir xil bo'lsin. Yigirma ikkini yigirma to'rtga o'zgartirdik, push, run yashil. Shuning uchun sakkizinchi ekrandagi faylda yigirma to'rt. Endi AI yozgan workflow'larni ko'ramiz: ikkalasi ham shu tuzoqqa tushdi."
    ]
   ]
  },
  "18": {
-  "type": "MCRetry",
-  "kicker": "Tekshiruv 3",
-  "eyebrow": "Tekshiruv · 3 / 4",
-  "title": "O'quvchi: «Lentam birinchi qadamda qizil: npm ci can only install packages when … in sync». Sabab?",
-  "q": "Buzishlarni ko'rdingiz, tekshirib olaylik. Uchinchi tekshiruv. O'quvchi lentasi birinchi qadamda qizil, xabarda in sync. Sabab nima? Variantni tanlang.",
-  "ok": "To'g'ri. Lock fayl package json'ga mos emas, npm ci bunday holatda hech narsa o'rnatmaydi. O'quvchi reposida aynan shunday. Yechim: npm install yozish yoki lock faylni yangilab push qilish. Demak, in sync xatosi chiqsa, sabab kodda emas, lock faylda.",
-  "okShort": "<code>in sync</code> — lock fayl mos emas: <code>npm install</code> yoki lock'ni yangilash.",
-  "hint": "Xabardagi ikki fayl nomini o'qing: qaysi ikki fayl mos emas?",
-  "correct": 1,
-  "opts": [
-   "Testlar yiqildi",
-   "Lock fayl package.jsonga mos emas — bu repoda npm install",
-   "Checkout qadami yo'q",
-   "GitHub ishlamayapti"
-  ],
-  "wrong": {
-   "0": "Test'gacha yetmadi: xato o'rnatish qadamida.",
-   "2": "Checkout'siz xabar boshqacha: Could not read package.json.",
-   "3": "Xabar npm'dan keldi va sababini aniq aytyapti."
-  }
- },
- "19": {
-  "type": "Practice",
-  "kicker": "Amaliyot 3 / 3",
-  "eyebrow": "Hozir o'zingizda · 10 daqiqa",
-  "title": "Ataylab buzing, qizil lentani o'qing, tuzating",
+  "type": "Lesson",
+  "kicker": "5-bosqich · AI",
+  "title": "Yangi ko'nikma davomi: ikki AI'ga bitta oddiy prompt — ikkalasi to'g'ri ko'rinadigan workflow yozdi; endi ularni o'qiymiz, keyin lentada sinaymiz",
   "seg": [
    [
     "a",
-    "Endi siz: kodni ataylab buzasiz va lentaning qizilini <b>o'z ko'zingiz bilan</b> ko'rasiz",
-    "Oxirgi amaliyot: kodni ataylab buzasiz va lentaning qizilini o'zingiz ko'rasiz. Bunga o'n daqiqa ketadi."
+    "Yana AI bosqichi: <b>workflow'ni AI yozadi, siz qabul qilasiz</b> — oddiy prompt, ishorasiz",
+    "Jest darslaridagi kabi oxirgi bosqich AI bilan. Prompt oddiy: bu NestJS loyihasi uchun GitHub Actions workflow yozib ber, har push'da testlar yursin. Checkout, setup node, versiya, tsc, build, bu so'zlarning hech biri promptda yo'q. Har AI loyihaning alohida nusxasida ishladi."
    ],
    [
     "b",
-    "1–2-qadam: <code>*</code> o'rniga <code>+</code>, push — <b>Actions'da qizil</b>",
-    "Birinchi qadamda order ts'da ko'paytirish o'rniga qo'shish yozasiz. Ikkinchisida commit va push qilib, Actions'da lenta qizil bo'lishini kutasiz."
+    "Ikkalasi <b>to'g'ri ko'rinadigan fayl</b> yozdi: checkout, setup-node, <code>npm ci</code>, <code>npm test</code>",
+    "Ikkalasi ham to'g'ri ko'rinadigan fayl yozdi. Birinchisi test yml, yigirma ikki satr: checkout, setup node, npm si ay, npm test, har qadamga o'zbekcha nom. Ikkinchisi ci yml, yigirma olti satr, xuddi shu qadamlar, qo'shimcha permissions contents read, faqat o'qish huquqi. YAML xatosi yo'q."
    ],
    [
     "c",
-    "3–4-qadam: qizil qadamdagi <code>Received</code>, keyin tuzatish va yashil; isbot — <b><code>Received</code> qiymati</b>",
-    "Uchinchi qadamda qizil qadamni ochib, received qiymatini o'qiysiz. To'rtinchisida xatoni tuzatib, push qilasiz va yashil lentani ko'rasiz. Isbot maydoniga received qiymatini yozing."
+    "Lekin ikkalasida <b><code>node-version: 22</code></b> — mashinangizni so'ramadi; va <b><code>tsc</code> ham, <code>build</code> ham yo'q</b>",
+    "Lekin ikki narsa. Ikkalasi ham node version yigirma ikki yozdi: sizning mashinangizda qaysi Node borligini so'ramadi, odatdagi raqamni qo'ydi. Va ikkalasida tsc ham, build ham yo'q: prompt testlar yursin dedi, AI aynan shuni qildi, ortig'ini emas."
    ],
    [
     "d",
-    "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
-    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, siz qizil lentaning logini o'qib, xatoni tuzatib, lentani yana yashilga qaytardingiz."
+    "Xulosa: <b>to'g'ri ko'ringan fayl hali tekshiruv emas</b> — lentaga qo'yib ko'ramiz",
+    "Xulosa: to'g'ri ko'ringan workflow hali tekshiruv emas. Jest'dagi yashil test kabi: fayl chiroyli, lekin sizning mashinangizni va loyihangizni bilmaydi. Ikkalasini ham OrderBotNest'ning sinov tarmog'iga push qildik. Natija ekranda."
+   ]
+  ]
+ },
+ "19": {
+  "type": "Lesson",
+  "kicker": "5-bosqich · ichida",
+  "title": "Ikkala AI workflow'i lentada qizil — npm ci, o'sha Missing: webpack… from lock file; faqat node-version tuzatilsa yashil, lekin tur xatosi baribir o'tadi",
+  "seg": [
+   [
+    "a",
+    "Run 19 va 20: <b>ikkalasi qizil, <code>npm ci</code> qadamida</b> — 17-ekrandagi o'sha xato",
+    "Ikkala run ham qizil, ikkalasi ham npm si ay qadamida: missing webpack from lock file. O'n yettinchi ekrandagi tuzoq: node version yigirma ikki, npm o'n, lock boshqacha o'qildi. AI buni bilishi mumkin emas edi: u sizning mashinangizni ko'rmaydi."
+   ],
+   [
+    "b",
+    "Faqat bitta raqam: <b>22 → 24 — run 21 yashil</b>, <code>npm ci</code> ✓, <code>npm test</code> ✓; qadam nomi hali «Node.js 22»",
+    "Birinchi AI faylida faqat bitta raqamni o'zgartirdik: node version yigirma to'rt. Push: run yashil, npm si ay o'tdi, npm test yigirma besh passed. Qadam nomi hali Node js yigirma ikki o'rnatish deb turibdi: nom emas, raqam ishlaydi. Bitta raqam, qizildan yashilga."
+   ],
+   [
+    "c",
+    "Lekin: <b><code>tsc</code> yo'q — 15-ekrandagi tur xatosi bu lentada yashil qoladi</b>; <code>build</code> ham yo'q",
+    "Lekin yashil hali to'liq emas. Bu workflow'da tsc yo'q: o'n beshinchi ekrandagi tur xatosini push qilsangiz, run yashil qoladi, yolg'on yashil. Build ham yo'q: yig'ilmaydigan kod yashil o'tadi. Prompt testlar yursin dedi, AI faqat shuni qildi."
+   ],
+   [
+    "d",
+    "Xulosa: AI workflow'ini <b>to'rt savol bilan</b> qabul qiling: checkout · <code>node-version</code> meniki · <code>npm ci</code> · <code>tsc</code> va <code>build</code>",
+    "Xulosa: AI yozgan workflow'ni to'rt savol bilan qabul qiling. Checkout bormi. Node version mening mashinamdagi bilan bir xilmi. Npm si ay'mi, install emasmi. Tsc va build qadamlari bormi. To'rttasiga ha bo'lsa, push qiling va run'ni ko'ring. Endi tekshirib olaylik."
    ]
   ]
  },
  "20": {
-  "type": "Lesson",
-  "kicker": "5-bosqich · CD",
-  "title": "CD — tekshirilgan yukni chiqarish: tasdiq bilan yoki o'zi",
-  "seg": [
-   [
-    "a",
-    "CI tekshiradi; CD — tekshiruvdan o'tgan yukni foydalanuvchiga <b>chiqaradi</b>",
-    "Lentamiz kodni build'gacha tekshirdi, bu CI. CD esa tekshiruvdan o'tgan yukni chiqaradi. O'quvchi darsida ikki rejim bor va ular faqat oxirgi qadamda farq qiladi."
-   ],
-   [
-    "b",
-    "Continuous Delivery — hammasi tayyor, lekin chiqarishni <b>odam tasdiqlaydi</b>",
-    "Continuous Delivery, ya'ni yetkazishda lenta oxirigacha yetadi va yuk tayyor turadi. Chiqarishni mas'ul odam tasdiqlaydi. Pul o'tkazish ilovasi kabi joylarda shunday."
-   ],
-   [
-    "c",
-    "Continuous Deployment — hamma qadam yashil bo'lsa, <b>o'zi chiqaradi</b>",
-    "Continuous Deployment'da esa hamma qadam yashil bo'lsa, hech kimdan so'ramay o'zi chiqaradi. Chiqarish uchun parol va kalitlar kerak, ular faylda emas, GitHub Secrets'da saqlanadi."
-   ],
-   [
-    "d",
-    "Xulosa: Delivery — <b>tasdiq bilan</b>, Deployment — <b>o'zi</b>; chiqarishni kursda keyin qilamiz",
-    "Xulosa: Delivery'da chiqarishni odam tasdiqlaydi, Deployment'da lenta o'zi chiqaradi. Bugun lentamiz build'da tugaydi. Haqiqiy chiqarishni o'quvchilar loyiha kunlarida qiladi."
-   ]
-  ]
- },
- "21": {
   "type": "MCRetry",
   "kicker": "Tekshiruv 4",
   "eyebrow": "Tekshiruv · 4 / 4",
-  "title": "Pul o'tkazish ilovasi: har yangilanishni mas'ul xodim ko'rib chiqadi. Qaysi rejim?",
-  "q": "Chiqarish rejimlarini ko'rdingiz, tekshirib olaylik. To'rtinchi tekshiruv. Pul o'tkazish ilovasida har yangilanishni mas'ul xodim ko'rib chiqadi. Qaysi rejim mos? Variantni tanlang.",
-  "ok": "To'g'ri, Delivery. Tekshiruvni lenta qiladi, chiqarishni xodim tasdiqlaydi. Deployment bo'lsa, xodim ko'rib chiqishga ulgurmaydi. Demak, chiqarishni odam tasdiqlasa Delivery, lenta o'zi chiqarsa Deployment.",
-  "okShort": "Delivery: lenta tekshiradi, xodim tasdiqlaydi.",
-  "hint": "Shartdagi kalit so'z: «ko'rib chiqadi». Qaysi rejimda tasdiq bor?",
-  "correct": 0,
+  "title": "AI yozgan workflow: checkout@v4 · setup-node@v4 (node-version: 22) · npm install · npm test. Mashinangizda Node 24. Lentaga qo'yishdan oldin nimani o'zgartirasiz?",
+  "q": "AI workflow'larini ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. AI yozgan faylda checkout bor, setup node yigirma ikki, npm install va npm test. Mashinangizda Node yigirma to'rt. Lentaga qo'yishdan oldin nimani o'zgartirasiz? Variantni tanlang.",
+  "ok": "To'g'ri. Uch narsa. Node version mashinangizdagi yigirma to'rt, aks holda o'n yettinchi ekrandagi qizil. Npm install o'rniga npm si ay: lentada lock'ga ishonamiz. Va tsc bilan build qadamlari: aks holda tur xatosi va yig'ilmaydigan kod yashil o'tadi. Demak, AI fayli boshlanish nuqtasi, to'rt savol esa sizniki.",
+  "okShort": "<code>node-version</code> = <code>node --version</code> · <code>npm ci</code> · <code>tsc</code> + <code>build</code> qadamlari. Checkout qoladi.",
+  "hint": "19-ekrandagi to'rt savolni shu faylga bering: checkout? versiya? ci? tsc/build?",
+  "demak": "AI workflow'i — boshlanish nuqtasi: <code>node-version</code> meniki · <code>npm ci</code> · <code>tsc</code> va <code>build</code> · <code>checkout</code> qoladi.",
+  "correct": 2,
   "opts": [
-   "Delivery — tekshiruvdan keyin tasdiq bilan chiqadi",
-   "Deployment — o'zi chiqadi",
-   "Lentasiz — hammasi qo'lda",
-   "Faqat CI, chiqarish umuman yo'q"
+   "Hech narsa — checkout bor, qolgani ishlaydi",
+   "Faqat npm install → npm ci — versiya muhim emas",
+   "node-version 24, npm ci, tsc va build qadamlari",
+   "checkoutni olib tashlash — setup-node o'zi olib keladi"
   ],
   "wrong": {
-   "1": "Tasdiqsiz chiqsa, xodim ko'rishga ulgurmaydi.",
-   "2": "Tekshiruvni lenta qilsa ham bo'ladi — faqat chiqarish tasdiq bilan.",
-   "3": "Ilova yangilanishi baribir chiqishi kerak."
+   "0": "node-version: 22 bilan npm ci qizil (17-ekran); npm install lentada lock'ni o'zgartiradi.",
+   "1": "Versiya muhim: runner'dagi npm lock'ni boshqacha o'qiydi — 17-ekran.",
+   "3": "setup-node faqat Node o'rnatadi; kodni checkout olib keladi (13-ekran)."
   }
  },
- "22": {
-  "type": "Lesson",
-  "kicker": "6-bosqich · o'quvchi darsini o'tish",
-  "eyebrow": "m4c-01 · «CI/CD nima va nega kerak»",
-  "title": "m4c-01: aeroport lentasi, chamadon va yo'l xaritasi",
+ "21": {
+  "type": "Practice",
+  "kicker": "Amaliyot 3 / 3",
+  "eyebrow": "Hozir o'zingizda · 20 daqiqa",
+  "title": "O'z AI'ingizga workflow yozdiring, to'rt savol bilan tuzating, push — yashil; keyin tur xatosi bilan push — qizil bo'lsin",
   "seg": [
    [
     "a",
-    "m4c-01 — 21 ekran: <b>aeroport lentasi</b>, chamadon va yo'l xaritasi",
-    "Endi o'quvchi darsini ko'ramiz: m4c-01, unda yigirma bir ekran bor. Darsda kod chamadonga, lenta aeroport lentasiga, ci yml esa yo'l xaritasiga o'xshatiladi. Lentada beshta nuqta bor: yig'ish, skaner, o'lcham ramkasi, o'rash va uchirish."
+    "Endi siz: AI'ga <b>aniq shartli prompt</b> — OrderBotNest uchun workflow",
+    "Endi navbat sizga. O'z AI'ingizga OrderBotNest uchun workflow yozdirasiz, promptni pastdagi tugma bilan nusxalaysiz. Keyin to'rt savol bilan tekshirib, o'z reponingizga push qilasiz. Yigirma daqiqa ketadi."
    ],
    [
     "b",
-    "Amaliyotdagi <code>ci.yml</code>da <b>checkout yo'q</b> — o'quvchilarga bu qatorni qo'shtiring",
-    "Eng muhim ogohlantirish: amaliyotdagi ci yml'da checkout yo'q. Uni yozmasa, lenta qizil bo'ladi. O'quvchilarga birinchi qadam sifatida actions checkout'ni qo'shtiring va o'rnatishni npm install bilan qoldiring."
+    "1–2-qadam: prompt va <b>to'rt savol</b> — checkout · <code>node-version</code> meniki · <code>npm ci</code> · <code>tsc</code> va <code>build</code>",
+    "Birinchi qadamda promptni berasiz. Ikkinchisida faylni to'rt savol bilan o'qiysiz: checkout bormi, node version mashinangizdagi raqammi, npm si ay'mi, tsc va build qadamlari bormi. Yetishmaganini qo'lda qo'shing yoki AI'dan so'rang."
    ],
    [
     "c",
-    "O'quvchi lentasida lint nuqtasi bor — o'quvchi reposida u qizil, <b>oldindan ayting</b>",
-    "Lenta o'yinida lint nuqtasi bor. O'quvchi uni lentaga qo'shmoqchi bo'lsa, oldindan ayting: bu repoda lint qirq olti error beradi."
+    "3–4-qadam: <b>push — yashil; tur xatosi bilan push — <code>tsc</code> qizil</b>, tiklash; isbot — qizil run'ning qadam nomi",
+    "Uchinchi qadamda push: run yashil bo'lishi kerak. To'rtinchisida user service ts'ning o'n oltinchi satrida string'ni olib tashlab push qilasiz: run qizil, tsc qadamida, test skipped. Tiklab push, yashil. Isbot maydoniga qizil run'da qaysi qadam qizarganini yozing."
    ],
    [
     "d",
-    "Xulosa: vaqt — amaliyotga ko'proq; har o'quvchi Actions'da <b>bitta yashil</b> ko'rsin",
-    "Xulosa: vaqt bo'yicha taklif, to'qson daqiqaning o'ttizini amaliyotga bering. Har o'quvchi Actions'da bitta yashil lentani o'z ko'zi bilan ko'rsin, qolgani shundan keyin oson."
+    "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
+    "Boshqacha chiqsa, «Boshqacha chiqdimi» tugmasini bosing. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin siz AI yozgan workflow'ni to'rt savol bilan qabul qilgansiz va lenta tur xatosini ham ushlashini o'zingiz ko'rgansiz."
+   ]
+  ],
+  "steps": [
+   {
+    "t": "Prompt",
+    "cmds": [
+     "yuqoridagi prompt — o'z AI'ingizga (<node --version raqamingiz> o'rniga o'z raqamingiz)"
+    ],
+    "exp": ".github/workflows/ci.yml"
+   },
+   {
+    "t": "To'rt savol",
+    "cmds": [
+     "checkout@v4 bor",
+     "node-version = node --version",
+     "npm ci (install emas)",
+     "npx tsc --noEmit va npm run build qadamlari bor — yetishmasa qo'shing"
+    ],
+    "exp": "4 ✓"
+   },
+   {
+    "t": "Push — yashil",
+    "cmds": [
+     "git add .github && git commit -m \"ci: AI workflow\" && git push mine HEAD:main"
+    ],
+    "exp": "run ✓ (checkout · setup-node · ci · tsc · test · build)"
+   },
+   {
+    "t": "Tur xatosi — qizil",
+    "cmds": [
+     "src/api/user/user.service.ts 16-satr String(from.id) → from.id",
+     "commit, push",
+     "keyin git checkout -- src/api/user/user.service.ts, commit, push"
+    ],
+    "exp": "run ✗: npx tsc --noEmit ✗ · npm test skipped → keyin run ✓"
+   }
+  ],
+  "proof": {
+   "label": "4-qadamdagi qizil run'da qizargan qadam nomi",
+   "placeholder": "masalan: npx tsc --noEmit",
+   "re": "tsc",
+   "flags": "i",
+   "wrong": "Qizil run'ni oching: qaysi qadam qizil? Uning nomini yozing (tsc bo'lishi kerak)."
+  },
+  "trouble": [
+   [
+    "npm ci qizil, Missing: … from lock file",
+    "node-version mashinangizdan boshqa — 2-savol (17-ekran)"
+   ],
+   [
+    "4-qadamda run yashil",
+    "tsc qadami yo'q yoki npm testdan keyin turibdi — npx tsc --noEmit npm cidan keyin, npm testdan oldin"
+   ],
+   [
+    "Run qizil, job yo'q (workflow file issue)",
+    "YAML surilish — - uses va - run bir ustunda (16-ekran)"
+   ],
+   [
+    "AI npm install yozdi",
+    "npm ci ga almashtiring (14-ekran)"
+   ]
+  ]
+ },
+ "22": {
+  "type": "Lesson",
+  "kicker": "6-bosqich · CD",
+  "title": "Lenta dist yig'di — lekin node dist/main toza mashinada darhol yiqiladi: DATABASE_URL topilmadi. CD shu yerdan boshlanadi: secret, server, chiqarish — keyingi darslar",
+  "seg": [
+   [
+    "a",
+    "Lenta <code>dist</code> yig'di — <b><code>node dist/main</code> toza mashinada yiqiladi</b>: <code>DATABASE_URL topilmadi</code>",
+    "CI tugadi: dist papkasi tayyor. Endi uni ishga tushirib ko'raylik, toza mashinada: node dist main. Darhol xato: DATABASE URL topilmadi, env'ga Postgres manzilini yozing. Lokalda env faylingiz bor, lentada yo'q, va bo'lmasligi ham kerak: parol commit'ga kirmaydi."
+   ],
+   [
+    "b",
+    "CD: <b>tekshirilgan paketni chiqarish</b> — Delivery: odam tugmani bosadi; Deployment: lenta o'zi",
+    "Mana CD'ning chegarasi. Continuous Delivery: lenta paketni tayyorlab qo'yadi, odam chiqar tugmasini bosadi. Continuous Deployment: yashil bo'lsa, lenta o'zi serverga chiqaradi. Ikkalasiga ham uch narsa kerak: maxfiy qiymatlar, server va chiqarish buyrug'i."
+   ],
+   [
+    "c",
+    "Kerak: <b><code>DATABASE_URL</code> va <code>BOT_TOKEN</code> — GitHub Secrets</b>; server; chiqarish buyrug'i",
+    "Maxfiy qiymatlar GitHub Secrets'da saqlanadi, ci yml ularni nom bilan oladi, qiymatini hech kim ko'rmaydi. Server, bot qayerda yuradi. Va chiqarish buyrug'i. Bularning har biri alohida mavzu, bugungi dars emas."
+   ],
+   [
+    "d",
+    "Xulosa: <b>bugun CI to'liq, CD chegarasi aniq</b>; secrets va run'ni o'qish — keyingi mentor darsida",
+    "Xulosa: bugun CI to'liq: har push'da to'rt qadam, yashil yoki qizil. CD'ning chegarasini ko'rdingiz: paket bor, lekin maxfiy qiymatlarsiz yurmaydi. Keyingi mentor darsida GitHub Actions'ga chuqurroq kiramiz: run'ni o'qish, secrets, cache. Hozir esa sinfga tayyorgarlik."
    ]
   ]
  },
  "23": {
   "type": "Lesson",
-  "kicker": "6-bosqich · sinfda",
-  "title": "Lenta nuqtalari — buyruqlar; olti holat va tayyor javoblar",
+  "kicker": "6-bosqich · sinfga tayyorgarlik",
+  "eyebrow": "m4c-01 · «CI/CD nima va nega kerak»",
+  "title": "O'quvchi darsi: aeroport lentasi — chamadon, Yig'ish, Skaner, O'lcham ramkasi, O'rash, Uchirish; siz bilgan to'rt qadamning rasmli varianti",
   "seg": [
    [
     "a",
-    "O'quvchi darsi aeroport so'zlarini ishlatadi — siz <b>buyruqni birga aytasiz</b>",
-    "Xaritani ko'rdingiz, endi o'quvchi darsida ishlatiladigan so'zlarni ko'ramiz. O'quvchi darsi aeroport so'zlarini ishlatadi: yig'ish, skaner, o'rash. Siz har so'z bilan buyruqni birga ayting: skaner, ya'ni npm test."
+    "m4c-01 — 20 ekran: <b>aeroport lentasi, besh nuqta</b>; o'quvchi <code>ci.yml</code> bo'shliqlarini to'ldiradi",
+    "Endi sinfga tayyorgarlik. O'quvchi darsi m4c-01, yigirma ekran. Metafora aeroport lentasi: chamadon bu kod, besh nuqta: yig'ish, skaner, o'lcham ramkasi, o'rash, uchirish. O'quvchi ci yml'dagi uch bo'shliqni to'ldiradi va amaliyotda o'z reposiga ci yml yozadi."
    ],
    [
     "b",
-    "<b>Uch xabar uch sabab</b>: <code>Could not read package.json</code>, <code>in sync</code>, <code>No tests found</code>",
-    "Endi sinfda albatta chiqadigan holatlar. Birinchi uchtasi xabardan taniladi. Could not read package json chiqsa, checkout yo'q. In sync chiqsa, sabab npm ci. No tests found chiqsa, repoda test yo'q."
+    "O'quvchi so'zlari: <b>Yig'ish — <code>npm install</code>, Skaner — <code>npm test</code>, start signali — <code>on: push</code></b>",
+    "O'quvchi so'zlari: yig'ish bu npm install, skaner npm test, o'lcham ramkasi eslint, o'rash build, uchirish deploy. Start signali on push, yo'l xaritasi ci yml, lenta mashinasi runner. Qizil chiroq, lenta to'xtaydi, bu chiqish kodi. Sinfda so'zni atamasi bilan birga ayting."
    ],
    [
     "c",
-    "Lint 46 error, YAML qator raqami, Actions bo'sh — sababi <b>bir qarashda</b>",
-    "Lint qirq olti error bersa, uni lentadan olib turing. YAML xatosida avval qator raqamini o'qing. Actions bo'limi bo'sh bo'lsa, papka nomi noto'g'ri yozilgan."
+    "Siz qo'shasiz: <b><code>checkout</code> satri — o'quvchi <code>ci.yml</code>ida yo'q</b>; <code>npm ci</code> sababi; bitta haqiqiy run",
+    "Darsga siz qo'shadigan narsalar. O'quvchi darsidagi ci yml'da checkout satri yo'q: amaliyotda bitta qator qo'shing, deb ayting, aks holda uning run'i o'n uchinchi ekrandagi xato bilan qizaradi. Npm si ay'ning sababini bir gapda ayting. Va bitta haqiqiy run'ni ekranda ko'rsating."
    ],
    [
     "d",
-    "Xulosa: lenta logini o'quvchi bilan <b>birga o'qing</b> — qaysi qadam qizil, keyin xabar",
-    "Xulosa va usul bitta: javobni darhol aytmang, lenta logini o'quvchi bilan birga o'qing. Avval qaysi qadam qizil ekanini toping, keyin uning xabarini o'qing. Pastda o'quvchi savollariga tayyor javoblar bor."
+    "Xulosa: o'quvchi «run yo'q» desa — <b>papka yo'li va push</b>; pastda uch vaziyat va savollar",
+    "Xulosa: o'quvchi Actions'da run yo'q desa, avval fayl yo'lini va push'ni tekshiring. Package json topilmadi chiqsa, checkout. Workflow file issue, YAML. Pastda uch vaziyat va o'quvchi savollariga tayyor javoblar bor."
    ]
   ]
  },
@@ -605,100 +789,100 @@ const MDT = {
   "title": "Sakkiz savol. Bitta urinish. Oltitasi — o'tdingiz",
   "final": [
    {
-    "q": "Lenta qadam qizilligini nimadan biladi?",
+    "q": "Sizda npm test yashil, hamkorda qizil. CI buni qanday hal qiladi?",
     "o": [
-     "chiqish kodi 0 emas",
-     "log uzunligi",
-     "vaqt",
-     "fayl hajmi"
-    ],
-    "c": 0,
-    "e": "0 — yashil, boshqasi — qizil.",
-    "s": 4
-   },
-   {
-    "q": "Lenta mashinasi har safar qanday papkadan boshlaydi?",
-    "o": [
-     "sizning papkangizdan",
-     "bo'sh papkadan",
-     "oldingi lentadan",
-     "node_modules bilan"
+     "Hamkorga sizning node_modulesingizni yuboradi",
+     "Har push'da toza mashinada bir xil buyruqlarni yurgizadi",
+     "Testlarni GitHub'ga ko'chiradi — lokalda npm test endi yurmaydi",
+     "Qizil testni avtomatik tuzatib qo'yadi"
     ],
     "c": 1,
-    "e": "Shuning uchun checkout va install kerak.",
-    "s": 4
+    "e": "Toza mashina — hammaga bir xil javob.",
+    "s": 2
    },
    {
-    "q": "O'quvchi reposida npm ci nima beradi?",
+    "q": "Lentada tsc qadami chiqish kodi 2 berdi. npm test qadami?",
     "o": [
-     "PASS",
-     "No tests found",
-     "in sync xatosi, kod 1",
-     "759 paket"
+     "Yuradi — tur xatosi testga aloqasi yo'q",
+     "Yuradi, lekin natijasi run holatiga hisobga olinmaydi",
+     "«Skipped» — birinchi qizil qadamdan keyin yurmaydi",
+     "Yuradi, run sariq bo'lib kutadi"
     ],
     "c": 2,
-    "e": "Lock fayl eskirgan.",
-    "s": 6
-   },
-   {
-    "q": "Test fayli yo'q repoda npm test?",
-    "o": [
-     "PASS",
-     "build yuradi",
-     "hech narsa",
-     "No tests found, kod 1"
-    ],
-    "c": 3,
-    "e": "Lenta qizil.",
-    "s": 7
-   },
-   {
-    "q": "ci.ymlda actions/checkout yo'q bo'lsa?",
-    "o": [
-     "papka bo'sh — Could not read package.json",
-     "tahlilchi xato beradi",
-     "lenta yuradi",
-     "testlar o'tadi"
-    ],
-    "c": 0,
-    "e": "Tahlilchi xato bermaydi — yozilishi to'g'ri.",
+    "e": "Nol emas — lenta to'xtaydi.",
     "s": 11
    },
    {
-    "q": "O'quvchi reposida lint qadami lentada?",
+    "q": "Toza clone'da npm test: sh: 1: jest: not found, kod 127. Sabab?",
     "o": [
-     "yashil",
-     "46 error — qizil",
-     "yurmaydi",
-     "faqat ogohlantirish"
+     "node_modules yo'q — o'rnatish qadami yurmagan",
+     "Jest package.jsonda yo'q — devDependenciesga qo'shish kerak",
+     "Node versiyasi eski — Jest yangi",
+     "Test fayllari yo'q — Jest topmadi"
+    ],
+    "c": 0,
+    "e": "Lentada birinchi qadam — npm ci.",
+    "s": 5
+   },
+   {
+    "q": "ci.ymlda actions/checkout satri yo'q. Lentada nima bo'ladi?",
+    "o": [
+     "YAML xatosi — GitHub faylni qabul qilmaydi",
+     "setup-node kodni o'zi olib keladi, yashil",
+     "npm ci qizil — «lock yo'q», chunki papka bo'sh",
+     "Run ochiladi, lekin hech qaysi qadam yurmaydi"
+    ],
+    "c": 2,
+    "e": "Runner bo'sh papkadan boshlaydi.",
+    "s": 13
+   },
+   {
+    "q": "package.jsonda versiyani qo'lda o'zgartirdingiz, lock eskicha. Lentada npm ci?",
+    "o": [
+     "O'rnatadi — package.json ustun",
+     "Lock'ni o'zi yangilab o'rnatadi",
+     "Qizil — «in sync» emas, mos kelmaydi",
+     "O'rnatadi, lekin terminalda ogohlantirish yozadi"
+    ],
+    "c": 2,
+    "e": "npm ci lock'dan aynan; mos kelmasa — qizil.",
+    "s": 14
+   },
+   {
+    "q": "Tur xatosi bor, ci.ymlda tsc qadami yo'q, testlar yashil. Run?",
+    "o": [
+     "Qizil — npm test tur xatosini ko'radi va to'xtaydi",
+     "Yashil — lenta so'ralmagan narsani tekshirmaydi",
+     "Qizil — setup-node turni tekshiradi",
+     "Sariq — GitHub ogohlantiradi, kutadi"
     ],
     "c": 1,
-    "e": "--fix ham 14 faylni o'zgartiradi.",
+    "e": "Yolg'on yashil — tsc qadamini qo'shing.",
     "s": 15
    },
    {
-    "q": "npm test && npm run build, test qizil — build?",
+    "q": "Lokalda npm ci yashil, lentada Missing: webpack… from lock file. Birinchi nimani solishtirasiz?",
     "o": [
-     "yuradi",
-     "yarim yuradi",
-     "yurmaydi",
-     "ikki marta yuradi"
+     "package.jsondagi webpack satrini",
+     "Lock faylning hajmini",
+     "node-version va node --version raqamini",
+     "npm test natijasini lokalda va lentada solishtirasiz"
     ],
     "c": 2,
-    "e": "&& — oldingisi yashil bo'lsa.",
-    "s": 8
+    "e": "Runner'dagi npm boshqa — lock'ni boshqacha o'qiydi.",
+    "s": 17
    },
    {
-    "q": "Har yangilanish tasdiq bilan chiqadi — bu?",
+    "q": "AI workflow: checkout, node-version: 22, npm install, npm test. Nima yetishmaydi?",
     "o": [
-     "Deployment",
-     "CI",
-     "lentasiz",
-     "Delivery"
+     "Hech narsa — to'rt qadam yetarli",
+     "permissions — usiz run ochilmaydi",
+     "Ikkinchi job — testlar va build alohida job'larda bo'lsin",
+     "Versiya meniki, npm ci, tsc va build qadamlari"
     ],
     "c": 3,
-    "e": "Delivery — tasdiq bilan.",
-    "s": 20
+    "e": "To'rt savol: checkout · versiya · ci · tsc/build.",
+    "s": 19
    }
   ]
  },

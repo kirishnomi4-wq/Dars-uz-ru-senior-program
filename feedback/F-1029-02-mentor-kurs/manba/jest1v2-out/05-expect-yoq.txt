@@ -1,0 +1,17 @@
+$ npx jest yolgon
+  console.log
+    120 000 so'm
+
+      at Object.<anonymous> (api/telegram/yolgon.spec.ts:5:13)
+
+PASS src/api/telegram/yolgon.spec.ts
+  som
+    ✓ 120000 ni so'mda yozadi (31 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        0.392 s, estimated 1 s
+Ran all test suites matching yolgon.
+[chiqish kodi: 0]
+

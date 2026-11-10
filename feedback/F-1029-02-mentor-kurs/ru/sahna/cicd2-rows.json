@@ -1,0 +1,1283 @@
+[
+{
+"f": "04-yordam.jsx",
+"l": 10,
+"k": "str",
+"x": "GitHub Actions ichida: qizil run'dan PR'gacha",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 62,
+"k": "str",
+"x": "TS ikki uch ikki ikki",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 63,
+"k": "str",
+"x": "the strategy configuration was canceled because test yigirma ikki failed",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 66,
+"k": "str",
+"x": "o'ttiz yettinchi satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 66,
+"k": "str",
+"x": "37-satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 66,
+"k": "str",
+"x": "yigirmanchi satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 66,
+"k": "str",
+"x": "20-satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 66,
+"k": "str",
+"x": "yigirma ikkinchi satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 66,
+"k": "str",
+"x": "22-satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 66,
+"k": "str",
+"x": "o'ninchi soniyada",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 67,
+"k": "str",
+"x": "besh ming to'rt yuz o'ttiz ikki",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 67,
+"k": "str",
+"x": "yigirma to'rt yigirma ikki bir",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 67,
+"k": "str",
+"x": "o'n bir o'n to'qqiz",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 67,
+"k": "str",
+"x": "yigirma ikki",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 67,
+"k": "str",
+"x": "yigirma uch ekran",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 67,
+"k": "str",
+"x": "23 ekran",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 68,
+"k": "str",
+"x": "o'n bir soniya",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 68,
+"k": "str",
+"x": "o'n ikki soniya",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 68,
+"k": "str",
+"x": "ikki soniya",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 68,
+"k": "str",
+"x": "o'n ikki daqiqa",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 68,
+"k": "str",
+"x": "12 daqiqa",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 68,
+"k": "str",
+"x": "o'n besh daqiqa",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 68,
+"k": "str",
+"x": "15 daqiqa",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 68,
+"k": "str",
+"x": "yigirma besh daqiqa",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 68,
+"k": "str",
+"x": "25 daqiqa",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 68,
+"k": "str",
+"x": "uch narsa",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 132,
+"k": "str",
+"x": "namuna — sizning AI\\'ingiz boshqacha yozadi",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 173,
+"k": "str",
+"x": "haqiqiy run · #${r.n}${r.ev === 'pull_request' ? ' · pull_request' : ''}",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 177,
+"k": "str",
+"x": "q · qadam yo",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 177,
+"k": "jsx",
+"x": "job yo'q · qadam yo'q · log yo'q",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 189,
+"k": "jsx",
+"x": "haqiqiy run'lar",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 213,
+"k": "jsx",
+"x": "gh pr view · haqiqiy",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 5,
+"k": "str",
+"x": "Qizilni o'qish va cache",
+"m": true
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 5,
+"k": "str",
+"x": "Smoke va secret",
+"m": true
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 5,
+"k": "str",
+"x": "PR va AI",
+"m": true
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 12,
+"k": "jsx",
+"x": "Dars oxirida — main'da ikki job: test va smoke (Postgres bilan)",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 26,
+"k": "jsx",
+"x": "bitta push → bitta run: yashil / qizil, commit xabari, soniya",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 27,
+"k": "jsx",
+"x": "tartib beradi",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 28,
+"k": "jsx",
+"x": "— «Run …» qatori; + GitHub qo'shganlari: Set up job · Post Run · Complete job",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 46,
+"k": "jsx",
+"x": "· action'lar yuklab olinadi (SHA bilan)",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 47,
+"k": "jsx",
+"x": "— faqat oxirgi commit",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 48,
+"k": "jsx",
+"x": "— runner'dagi tayyor Node ·",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 58,
+"k": "str",
+"x": "Qizil qadam (✗)",
+"m": true
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 58,
+"k": "str",
+"x": "Qadam logi — sabab shu yerda",
+"m": true
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 58,
+"k": "str",
+"x": "##[error] satrlari → annotatsiya (qisqa)",
+"m": true
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 65,
+"k": "jsx",
+"x": "Qizil run'ni o'qish tartibi",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 91,
+"k": "jsx",
+"x": ", to'g'rilik emas: «not found» xato emas, «hit» — lock o'zgarmagan.",
+"m": false
+},
+{
+"f": "06-s08-s15.jsx",
+"l": 14,
+"k": "jsx",
+"x": ". Tez, lekin javob chala: 24 yashilmi — noma'lum.",
+"m": false
+},
+{
+"f": "06-s08-s15.jsx",
+"l": 15,
+"k": "jsx",
+"x": "Hammasi oxirigacha. Run qizil (22), lekin",
+"m": false
+},
+{
+"f": "06-s08-s15.jsx",
+"l": 15,
+"k": "jsx",
+"x": "to'liq javob",
+"m": false
+},
+{
+"f": "06-s08-s15.jsx",
+"l": 17,
+"k": "jsx",
+"x": "matrix mashinani emas,",
+"m": false
+},
+{
+"f": "06-s08-s15.jsx",
+"l": 17,
+"k": "jsx",
+"x": "sinaydi: bitta kod × bir nechta Node, parallel.",
+"m": false
+},
+{
+"f": "06-s08-s15.jsx",
+"l": 32,
+"k": "jsx",
+"x": "Har xil loyihalarda, har xil Node'da ishlatiladi →",
+"m": false
+},
+{
+"f": "06-s08-s15.jsx",
+"l": 32,
+"k": "jsx",
+"x": "matrix kerak",
+"m": false
+},
+{
+"f": "06-s08-s15.jsx",
+"l": 33,
+"k": "jsx",
+"x": "Bitta serverda, bitta Node'da yuradi →",
+"m": false
+},
+{
+"f": "06-s08-s15.jsx",
+"l": 33,
+"k": "jsx",
+"x": "mashinangizdagi bitta raqam",
+"m": false
+},
+{
+"f": "06-s08-s15.jsx",
+"l": 33,
+"k": "jsx",
+"x": "yetadi (CI/CD-1 17-ekran).",
+"m": false
+},
+{
+"f": "06-s08-s15.jsx",
+"l": 35,
+"k": "jsx",
+"x": "— to'liq javob.",
+"m": false
+},
+{
+"f": "06-s08-s15.jsx",
+"l": 46,
+"k": "str",
+"x": "haqiqiy run · #21 · 10-soniyada",
+"m": false
+},
+{
+"f": "06-s08-s15.jsx",
+"l": 67,
+"k": "jsx",
+"x": "mock · baza yo'q · 25 test ·",
+"m": false
+},
+{
+"f": "06-s08-s15.jsx",
+"l": 67,
+"k": "jsx",
+"x": "— lentada bor",
+"m": false
+},
+{
+"f": "06-s08-s15.jsx",
+"l": 68,
+"k": "jsx",
+"x": "— haqiqiy Nest + Telegraf kodi,",
+"m": false
+},
+{
+"f": "06-s08-s15.jsx",
+"l": 68,
+"k": "jsx",
+"x": "haqiqiy Postgres",
+"m": false
+},
+{
+"f": "06-s08-s15.jsx",
+"l": 68,
+"k": "jsx",
+"x": "— lentada yo'q: runner'da baza yo'q",
+"m": false
+},
+{
+"f": "06-s08-s15.jsx",
+"l": 75,
+"k": "jsx",
+"x": "qadamlar",
+"m": false
+},
+{
+"f": "06-s08-s15.jsx",
+"l": 76,
+"k": "str",
+"x": "iladi (<code>Initialize containers</code>), job bilan o",
+"m": false
+},
+{
+"f": "06-s08-s15.jsx",
+"l": 76,
+"k": "jsx",
+"x": "job bilan tug'iladi (",
+"m": false
+},
+{
+"f": "06-s08-s15.jsx",
+"l": 76,
+"k": "jsx",
+"x": "), job bilan o'ladi (",
+"m": false
+},
+{
+"f": "06-s08-s15.jsx",
+"l": 91,
+"k": "str",
+"x": "ci.yml · smoke qadamlari",
+"m": false
+},
+{
+"f": "06-s08-s15.jsx",
+"l": 103,
+"k": "jsx",
+"x": "ci.yml, smoke qadami",
+"m": false
+},
+{
+"f": "06-s08-s15.jsx",
+"l": 103,
+"k": "jsx",
+"x": "yml'da ochiq — to'g'ri: konteyner job ichida tug'iladi va o'ladi, tashqaridan ulanib bo'lmaydi",
+"m": false
+},
+{
+"f": "06-s08-s15.jsx",
+"l": 104,
+"k": "jsx",
+"x": "haqiqiy baza, bot tokeni — yml'ga yozilmaydi: repo ochiq, tarix abadiy",
+"m": false
+},
+{
+"f": "06-s08-s15.jsx",
+"l": 109,
+"k": "str",
+"x": "ci.yml · 41-satr — harf tushib qolgan",
+"m": false
+},
+{
+"f": "06-s08-s15.jsx",
+"l": 110,
+"k": "jsx",
+"x": "Secret nomi xato — GitHub",
+"m": false
+},
+{
+"f": "06-s08-s15.jsx",
+"l": 110,
+"k": "jsx",
+"x": "ni o'zi yashiradi (run 33, secret'siz ham).",
+"m": false
+},
+{
+"f": "06-s08-s15.jsx",
+"l": 122,
+"k": "str",
+"x": "ci.yml · smoke qadamlari",
+"m": false
+},
+{
+"f": "06-s08-s15.jsx",
+"l": 124,
+"k": "str",
+"x": "GitHub · smoke job logi (run 33) — konteyner uchun oddiy env: ham yetadi (13-ekran)",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 5,
+"k": "str",
+"x": "$ git checkout -b lenta-smoke\\n$ git add .github README.md\\n$ git commit -m \"ci: smoke job (PostgreSQL xizmati) va README badge\"\\n$ git push -u origin lenta-smoke",
+"m": true
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 14,
+"k": "jsx",
+"x": "Reponi ochgan odam ko'radi",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 14,
+"k": "jsx",
+"x": "— main'dagi oxirgi run holati (",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 26,
+"k": "jsx",
+"x": "1–4-bosqich · siz",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 26,
+"k": "jsx",
+"x": "run'ni o'qish · cache · matrix · services + smoke · secret",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 27,
+"k": "jsx",
+"x": "5-bosqich · AI yozadi, siz qabul qilasiz",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 27,
+"k": "jsx",
+"x": "bitta prompt → ikki workflow → haqiqiy lentada sinov",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 29,
+"k": "str",
+"x": "Prompt — ikkala AI'ga bir xil",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 29,
+"k": "str",
+"x": "ishorasiz: services, konteyner, healthcheck, secret yo'q",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 31,
+"k": "jsx",
+"x": "+20 satr:",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 31,
+"k": "jsx",
+"x": "build'dan keyin ·",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 31,
+"k": "jsx",
+"x": "env faqat smoke qadamida",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 31,
+"k": "jsx",
+"x": "· 3 izoh («build ikki marta»)",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 32,
+"k": "jsx",
+"x": "+17 satr: xuddi shu services va healthcheck ·",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 32,
+"k": "jsx",
+"x": "(hamma qadamga) · smoke oxirida · izohsiz",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 43,
+"k": "str",
+"x": "`DATABASE_URL` smoke qadamiga yetib boradimi (`env` qayerda)?",
+"m": true
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 43,
+"k": "str",
+"x": "Tartib: smoke `build`dan keyinmi (yoki `needs: test`)?",
+"m": true
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 48,
+"k": "jsx",
+"x": "yo'q",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 49,
+"k": "jsx",
+"x": "CI/CD-2: AI sizning faylingizni o'zgartirdi",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 51,
+"k": "str",
+"x": "ci.yml · 1-AI — env faqat smoke qadamida",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 52,
+"k": "jsx",
+"x": "1-AI o'zi sezdi: smoke ichida yana",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 52,
+"k": "jsx",
+"x": "ikki marta",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 52,
+"k": "jsx",
+"x": "qadami qoladimi.",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 53,
+"k": "str",
+"x": "ini qabul qilish — to",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 53,
+"k": "jsx",
+"x": "AI smoke workflow'ini qabul qilish — to'rt savol",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 63,
+"k": "str",
+"x": "ci.yml · AI yozgan — smoke qadami",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 64,
+"k": "jsx",
+"x": "— konteyner job ichida, job bilan o'chadi",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 82,
+"k": "str",
+"x": "qadam logi · annotatsiya → qizil qadam → log (4-ekran)",
+"m": true
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 83,
+"k": "str",
+"x": "logda ***; nomi xato — bo'sh, xato yo'q (33)",
+"m": true
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 83,
+"k": "str",
+"x": "jurnal: sabab bitta satrda",
+"m": true
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 83,
+"k": "str",
+"x": "annotatsiya qisqa; sabab qadam logida (15, 11)",
+"m": true
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 83,
+"k": "str",
+"x": "badge.svg — main'dagi oxirgi run (37)",
+"m": true
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 88,
+"k": "str",
+"x": "O'quvchi · m4c-03 (23 ekran)",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 88,
+"k": "str",
+"x": "l xaritasi qayerda yashaydi (<code>.github/workflows/</code>) · nuqta = job, amal = step · signal va mashina · <code>uses</code>/<code>run</code> · «Jurnaldan sababni topish» · tartib (DragDrop) · parallel lentalar (matrix, 3 Node — simulyatsiya) · seyf (<code>secrets.API_KEY</code>) · tablo (badge) · amaliyot: o",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 88,
+"k": "jsx",
+"x": ") · tablo (badge) · amaliyot: o'z reposiga ci.yml",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 89,
+"k": "str",
+"x": "Siz · bugun (haqiqiy run'lar)",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 92,
+"k": "jsx",
+"x": "Simulyatsiya (o'quvchi darsi) ↔ haqiqiy Actions (bugun)",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 93,
+"k": "str",
+"x": "z reponingizdagi <b>bitta run",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 93,
+"k": "jsx",
+"x": "Simulyatsiya — tushuncha, haqiqiy run — tajriba. Sinfda o'z reponingizdagi",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 93,
+"k": "jsx",
+"x": "bitta run'ni proyektorda",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 93,
+"k": "jsx",
+"x": "oching: job → qadam → log → cache hit.",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 107,
+"k": "str",
+"x": "VS Code terminali · ci-mashq (o'quvchi namunasi)",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 111,
+"k": "str",
+"x": "1 · lock yo'q",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 111,
+"k": "jsx",
+"x": "yoki lock commit'ga.",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 112,
+"k": "jsx",
+"x": "hech qachon qizil bo'lmaydi → uyga vazifadagi «buzing» —",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 112,
+"k": "jsx",
+"x": "yoki Jest loyihasi.",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 113,
+"k": "str",
+"x": "3 · @v4 ishlaydi",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 113,
+"k": "jsx",
+"x": "Bugungi run'larda ham",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 113,
+"k": "jsx",
+"x": "✓; ogohlantirish «Node.js 20 is deprecated … forced to run on Node.js 24» — xato emas.",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 121,
+"k": "str",
+"x": "haqiqiy run'ni proyektorda: job → qadam → log; annotatsiya vs log (4-ekran)",
+"m": true
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 121,
+"k": "str",
+"x": "matrix'da haqiqiy natija: bitta versiya qizil bo'lishi mumkin, fail-fast qolganini to'xtatadi (8–9)",
+"m": true
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 121,
+"k": "str",
+"x": "secret nomi xato — xato chiqmaydi, bo'sh keladi (14); konteyner uchun secret kerak emas",
+"m": true
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 121,
+"k": "str",
+"x": "namunadagi npm ci va echo ok tuzoqlari (22)",
+"m": true
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 123,
+"k": "str",
+"x": "npm ci qizil, lock yo'q",
+"m": true
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 123,
+"k": "str",
+"x": "npm install (namuna) yoki lock commit'ga",
+"m": true
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 124,
+"k": "str",
+"x": "matrix'da bitta job «cancelled»",
+"m": true
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 124,
+"k": "str",
+"x": "xato boshqa job'da; fail-fast: false",
+"m": true
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 125,
+"k": "str",
+"x": "echo ok && exit 0 — buzilmaydi; exit 1 yoki Jest loyihasi",
+"m": true
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 128,
+"k": "str",
+"x": "run → job → qadam; qadam nomini bosing — log ochiladi.",
+"m": true
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 129,
+"k": "str",
+"x": "«Matrix'da hammasi yashil bo'lishi shartmi?»",
+"m": true
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 129,
+"k": "str",
+"x": "Yo'q — maqsad qaysi versiyada ishlashini bilish; qizil versiya — javob.",
+"m": true
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 130,
+"k": "str",
+"x": "«Seyfdagi kalitni ko'rsam bo'ladimi?»",
+"m": true
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 130,
+"k": "str",
+"x": "Yo'q — logda ***; qiymat faqat yozilganda ko'rinadi, keyin hech kim o'qiy olmaydi.",
+"m": true
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 131,
+"k": "str",
+"x": "«Badge qizil bo'lsa nima?»",
+"m": true
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 131,
+"k": "str",
+"x": "main'dagi oxirgi run qizil — Actions'ni ochib qaysi qadam qizilligini toping.",
+"m": true
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 142,
+"k": "jsx",
+"x": "O'quvchi so'rasa — bosib oching",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 158,
+"k": "str",
+"x": "Hammasini ko'rib chiqdingiz, endi o'zingizni tekshiring. Yakuniy sinov, sakkiz savol: job va mashina, checkout, qizilni o'qish, cache, fail fast, services, secret nomi va pull request. Har savolda bitta urinish, javobdan keyin to'g'risi va izohi ochiladi. Olti va undan ko'p, dars o'zlashtirilgan. Kam bo'lsa, ko'rsatilgan ekranlarga qaytib, sinovni qayta topshirasiz.",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 160,
+"k": "str",
+"x": "ikki",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 160,
+"k": "str",
+"x": "uch",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 160,
+"k": "str",
+"x": ". Dars o'zlashtirilgan, Davom bosing.",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 161,
+"k": "str",
+"x": "Yaxshi, bir xatoyingizni ko'rib chiqdingiz. Qolgan qizil savollarning ekranlariga ham qayting. Tayyor bo'lgach, Sinovni qayta topshirish tugmasini bosing.",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 224,
+"k": "str",
+"x": "Qizil run: belgi → job → qadam → log. Annotatsiya — manzil (##[error] satrlari), sabab — qadam logida. Cache: «saved» → «hit» (npm ci 11 s → 5 s); tarmoqqa bog'liq («not found» — xato emas)",
+"m": true
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 225,
+"k": "str",
+"x": "matrix — bitta job, bir nechta qiymat, parallel; fail-fast (odatiy) bittasi yiqilsa qolganini «cancelled» qiladi; to'liq javob — fail-fast: false. Bot/sayt uchun bitta Node yetadi",
+"m": true
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 227,
+"k": "str",
+"x": "env — konteyner (sir emas); Secrets — tashqi resurs (Settings → Secrets, ${{ secrets.NOM }}, logda ***). Nomi xato — xato yo'q, qiymat bo'sh, dastur yiqiladi («topilmadi»)",
+"m": true
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 228,
+"k": "str",
+"x": "Pull request: tarmoq → PR → pull_request run → checks → merge → main run; README badge. AI smoke workflow'i: tayanch (ci.yml) to'g'ri bo'lsa AI ham to'g'ri; to'rt savol: services + healthcheck · env yetadimi · tartib · secret kerakmi",
+"m": true
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 235,
+"k": "jsx",
+"x": "Bugungi dars — GitHub Actions ichida: qizil run'dan PR'gacha",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 242,
+"k": "str",
+"x": "lint job — ci.yml: jobs.lint — checkout · setup-node · npm ci · npx prettier --check \\\"src/**/*.ts\\\" (uch job: test · smoke · lint)",
+"m": true
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 244,
+"k": "str",
+"x": "Qizil PR — tarmoq lint-sinov, src/api/app.controller.ts formatini buzing (bir qatorga), push, PR: lint ✗, Merge yopiq",
+"m": true
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 264,
+"k": "str",
+"x": "ladi) · tashqi resurs (prod baza, bot token) — Settings → Secrets and variables → Actions; yml: \\${{ secrets.NOM }}; logda *** · nomi xato (DATABSE_URL) — xato yo",
+"m": true
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 268,
+"k": "str",
+"x": "dan keyin / needs: test) · secret kerakmi (konteyner — yo",
+"m": true
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 268,
+"k": "str",
+"x": "lsa AI ham to",
+"m": true
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 277,
+"k": "str",
+"x": "<b>Barakalla!</b> Siz darsni yaxshi o'rgandingiz — bugungi darsni bir qarashda yig'amiz",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 277,
+"k": "str",
+"x": "Barakalla! Siz darsni yaxshi o'rgandingiz. Endi bugun o'rganganlaringizni bir qarashda yig'amiz.",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 278,
+"k": "str",
+"x": "Dars oxiriga yetdingiz. Yakuniy sinovdan olti ball kerak edi, yakunlashdan oldin sinovni qayta topshirishni maslahat beraman. Hozir esa bugungi darsni bir qarashda yig'amiz.",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 279,
+"k": "str",
+"x": "<b>run → job → step</b>; GitHub qadamlari; uses ichi ochiq",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 279,
+"k": "str",
+"x": "Birinchi: run, job, step. GitHub o'zi set up job, post run va complete job'ni qo'shadi. Uses yashirin emas: checkout git init va fetch depth bir qiladi, setup node tayyor Node'ni topadi, logda Node va npm versiyasi.",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 280,
+"k": "str",
+"x": "Qizilni o'qish: <b>belgi → job → qadam → log</b>; cache saved → hit",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 280,
+"k": "str",
+"x": "Ikkinchi: qizil run'ni belgi, job, qadam, log tartibida o'qing. Annotatsiya manzil, sabab logda. Cache npm birinchi run'da saqlanadi, ikkinchisida hit, npm si ay ikki barobar tez. Boshqa tarmoqda not found, bu xato emas.",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 281,
+"k": "str",
+"x": "<b>matrix</b> — bir nechta versiya parallel; fail-fast qolganini bekor qiladi",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 281,
+"k": "str",
+"x": "Uchinchi: matrix bitta faylni bir nechta Node'da parallel sinaydi. Fail fast odatiy: bittasi yiqilsa qolgani cancelled. To'liq javob uchun fail fast false. Bot yoki sayt uchun mashinangizdagi bitta Node yetadi.",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 282,
+"k": "str",
+"x": "To'rtinchi: bazali tekshiruv lentada. Smoke job needs test bilan, services postgres o'n sakkiz, parol, baza nomi, port, pg is ready healthcheck. Initialize containers, npm run smoke, natija besh besh, stop containers.",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 283,
+"k": "str",
+"x": "<b>env</b> — konteyner, <b>secrets</b> — tashqi; nomi xato — bo'sh, xato yo'q",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 283,
+"k": "str",
+"x": "Beshinchi: konteyner paroli env'da ochiq, bu to'g'ri. Haqiqiy baza va token secrets'da, logda yulduzcha. Secret nomi xato bo'lsa GitHub indamaydi, qiymat bo'sh keladi, dastur topilmadi deb yiqiladi.",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 284,
+"k": "str",
+"x": "<b>Pull request</b> → checks → merge; badge; AI'ga to'rt savol",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 284,
+"k": "str",
+"x": "Oltinchi: yangi ish alohida tarmoqda, pull request, checks yashil, merge, main'da run. README'da badge. AI smoke workflow'i: tayanch to'g'ri bo'lsa AI ham to'g'ri; to'rt savol: services, env, tartib, secret kerakmi.",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 285,
+"k": "str",
+"x": "Uyga vazifa: lentaga uchinchi job lint, prettier check bilan. Keyin main tarmog'ini himoyalang: required status checks, test, smoke, lint. Ataylab noto'g'ri formatlangan fayl bilan pull request oching: lint qizil, merge yopiq.",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 286,
+"k": "str",
+"x": "Tuzatib push — <b>yashil, merge</b>; repo va PR manzili platformaga",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 286,
+"k": "str",
+"x": "Tuzatib push qiling: uchalasi yashil, merge. README'dagi badge yashil. Repo linkini va PR manzilini platformadagi uyga vazifaga qo'ying. Qirq-oltmish daqiqa.",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 287,
+"k": "str",
+"x": "Pastda bir sahifalik eslatma: run, job, step, uses loglari, qizilni o'qish, cache, matrix, smoke job qolipi, env va secrets, pull request, badge, AI'ga to'rt savol, sinf lug'ati va xato qiladigan joylar. Nusxalab yoki yuklab oling.",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 288,
+"k": "str",
+"x": "Rahmat! <b>Darsni yakunlash</b> tugmasini bosing",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 288,
+"k": "str",
+"x": "Rahmat. Darsni yakunlash tugmasini bosing, dars tugallangan deb belgilanadi.",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 319,
+"k": "jsx",
+"x": "da uch job · branch rule bor · PR tarixida qizil",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 319,
+"k": "jsx",
+"x": "run va keyin yashil merge.",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 345,
+"k": "str",
+"x": "Jami taxminan 1 soat 15–30 daqiqa: ovoz ~25 daqiqa · uchta amaliyot 50–65 daqiqa · 4 tekshiruv · o'z-sinov 8 savol. 11-ekrandan keyin tanaffus qilsangiz bo'ladi",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 345,
+"k": "str",
+"x": "Kerak: CI/CD-1 mentor darsi (o'z GitHub reponingizda ci.yml va yashil run) · Node.js 20+ · VS Code · AI yordamchi. Baza va bot tokeni kerak emas — Postgres lentada konteyner bo'lib ko'tariladi",
+"m": false
+},
+{
+"f": "07-s16-s25.jsx",
+"l": 345,
+"k": "str",
+"x": "Loyiha: github.com/Azizbekcrypto/OrderBotNest — cicd2-start (= cicd1-done) tegidan boshlaysiz; har run haqiqiy GitHub Actions'dan",
+"m": false
+}
+]

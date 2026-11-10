@@ -1,0 +1,1 @@
+{"id":"pg2-23","dars":"PG-2","ekran":23,"mavzu":"express.json() yo'q — req.body undefined","naqsh":"B","tur":"taklif","oldin":"Xulosada kod yashiriladi, uchta gapli quti qoladi.","keyin":["Bitta POST ikki yo'lda: satr yo'q bo'lsa undefined va 500 (haqiqiy xabar), satr bor bo'lsa 201.","server.js dagi joyi va belgisi: GET 200, POST 500."],"blok":[4,3]}

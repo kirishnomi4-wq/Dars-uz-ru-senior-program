@@ -1,0 +1,53 @@
+<style>
+.vz{--ex:#6D3BE4;--pl:#336791;--pg:#336791;--bad:#E2451F;--ok:#15803D;--ink:#1F2937;--mut:#6B7280;--line:#D7DCE3;display:grid;gap:12px;font-family:inherit;color:var(--ink)}
+.vz-lanes{display:grid;grid-template-columns:92px 1fr 1fr 1fr;gap:0;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.vz-lanes>div{padding:10px 12px;border-bottom:1px solid #EEF0F3;font-size:14px;line-height:1.35;display:flex;align-items:center;gap:8px;min-height:50px}
+.vz-h{font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase;background:#F8FAFC}
+.vz-h.ex{color:var(--ex)}.vz-h.pl{color:var(--pl)}.vz-h.pg{color:var(--pg)}
+.vz-t{font:600 12px ui-monospace,Menlo,Consolas,monospace;color:var(--mut);background:#F8FAFC}
+.vz code{font:13px ui-monospace,Menlo,Consolas,monospace;background:#F1F3F6;border-radius:5px;padding:1px 6px}
+.vz-dot{width:10px;height:10px;border-radius:50%;flex:none}
+.vz-cn{display:flex;align-items:center;gap:6px;width:100%}
+.vz-cn i{flex:1;height:0;border-top:2px dashed #C3CAD4}
+.vz-cn.on i{border-top:3px solid var(--pg)}
+.vz-pid{font:700 13px ui-monospace,Menlo,Consolas,monospace;color:#fff;background:var(--pg);border-radius:6px;padding:2px 8px;white-space:nowrap}
+.vz-same{font-size:12px;color:var(--pg);font-weight:700}
+.vz-ok{color:var(--ok);font-weight:700}
+.vz-bad{border:2px solid var(--bad);border-radius:14px;background:#FFF5F2;padding:12px 14px;display:grid;grid-template-columns:auto 1fr;gap:6px 12px;align-items:center;font-size:14px}
+.vz-bad b{color:var(--bad)}
+.vz-term{font:13px ui-monospace,Menlo,Consolas,monospace;background:#111827;color:#E5E7EB;border-radius:8px;padding:6px 10px}
+.vz-term .r{color:#FCA5A5}
+.vz-src{font-size:11.5px;color:var(--mut);text-align:right}
+</style>
+<div class="vz">
+  <div class="vz-lanes">
+    <div class="vz-h"></div><div class="vz-h ex">Kod · server.js</div><div class="vz-h pl">Pool</div><div class="vz-h pg">PostgreSQL</div>
+
+    <div class="vz-t">ishga<br>tushdi</div>
+    <div><code>new Pool({…})</code></div>
+    <div>yaratildi · <b>ulanish: 0</b></div>
+    <div><span class="vz-cn"><i></i></span><span style="color:var(--mut);white-space:nowrap">hali bog'lanmagan</span></div>
+
+    <div class="vz-t">so'rov 1</div>
+    <div><code>pool.query(…)</code></div>
+    <div><b>ulanish ochdi</b></div>
+    <div><span class="vz-cn on"><i></i></span><span class="vz-pid">pid 187528</span></div>
+
+    <div class="vz-t">so'rov 2</div>
+    <div><code>pool.query(…)</code></div>
+    <div>o'sha ulanish</div>
+    <div><span class="vz-cn on"><i></i></span><span class="vz-pid">pid 187528</span></div>
+
+    <div class="vz-t">so'rov 3</div>
+    <div><code>pool.query(…)</code></div>
+    <div>o'sha ulanish</div>
+    <div><span class="vz-cn on"><i></i></span><span class="vz-pid">pid 187528</span></div>
+  </div>
+
+  <div class="vz-bad">
+    <b>Parol xato</b>
+    <div>Ishga tushganda <span class="vz-ok">✓ xato yo'q</span> — Pool hali bazaga bormagan</div>
+    <span></span>
+    <div class="vz-term">Server 3000-portda ishlayapti<br><span class="r">so'rov 1 → password authentication failed for user "postgres"</span></div>
+  </div>
+</div>

@@ -11,6 +11,7 @@ PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 5332
 CACHE = pathlib.Path(__file__).resolve().parent.parent / 'korik' / 'tts-cache'; CACHE.mkdir(parents=True, exist_ok=True)
 VOICE, RATE = 'uz-UZ-SardorNeural', '-5%'
 VOICE_RU, RATE_RU = 'ru-RU-DmitryNeural', '+0%'   # F-1030-38: matn [Русское произношение] bilan boshlansa
+VOICE_RU_ZAXIRA = 'ru-RU-SvetlanaNeural'          # F-1105: Dmitry bitta gapni ham bermasa
 TAG = re.compile(r'\[[^\]]{1,40}\]')          # [O'zbekcha tallaffuz] [pause] [English pronunciation] [end] ...
 SUBS = [('@', ''), ('·', ','), ('→', ''), ('`', ''), ('**', '')]
 
@@ -19,11 +20,40 @@ def clean(text):
     for a, b in SUBS: s = s.replace(a, b)
     return re.sub(r'\s+', ' ', s).strip()
 
+async def _audio(text, voice, rate, timeout=40):
+    async def run():
+        b = bytearray()
+        async for ch in edge_tts.Communicate(text, voice, rate=rate).stream():
+            if ch['type'] == 'audio': b.extend(ch['data'])
+        return bytes(b)
+    try: return await asyncio.wait_for(run(), timeout)
+    except Exception as e: sys.stderr.write(f'[tts] {voice}: {type(e).__name__} — {text[:60]}\n'); return b''
+
+def _variants(s):
+    yield s
+    if s[:1].isupper(): yield s[0].lower() + s[1:]
+    yield '— ' + s
+    yield '… ' + s
+
 async def synth(text, path, voice=VOICE, rate=RATE):
-    com = edge_tts.Communicate(text, voice, rate=rate)
-    with open(path, 'wb') as f:
-        async for ch in com.stream():
-            if ch['type'] == 'audio': f.write(ch['data'])
+    data = await _audio(text, voice, rate)
+    if len(data) < 500 and voice == VOICE_RU:
+        # F-1105: DmitryNeural ba'zi iboralarda NoAudioReceived beradi (masalan «В списке …» bosh harf bilan) —
+        # gaplarga bo'lib, har gapni shakl-variantlar bilan; oxirgi chora — Svetlana (logda belgi)
+        parts = []
+        for sent in [x for x in re.split(r'(?<=[.!?:;])\s+', text) if x.strip()]:
+            got = b''
+            for v in _variants(sent):
+                got = await _audio(v, voice, rate)
+                if len(got) >= 500: break
+            if len(got) < 500:
+                got = await _audio(sent, VOICE_RU_ZAXIRA, rate)
+                sys.stderr.write(f'[tts] RU ZAXIRA Svetlana: {sent[:80]}\n')
+            if len(got) < 500: raise RuntimeError('ovoz yo\'q: ' + sent[:80])
+            parts.append(got)
+        data = b''.join(parts)
+    if len(data) < 500: raise RuntimeError('No audio was received')
+    with open(path, 'wb') as f: f.write(data)
 
 class H(BaseHTTPRequestHandler):
     def log_message(self, fmt, *a): sys.stderr.write('[tts] ' + (fmt % a) + '\n')
@@ -41,7 +71,9 @@ class H(BaseHTTPRequestHandler):
         h = hashlib.sha1((voice + rate + c).encode('utf-8')).hexdigest()
         p = CACHE / (h + '.mp3')
         if not p.exists() or p.stat().st_size < 500:
-            try: asyncio.run(synth(c, p, voice, rate))
+            # F-1109-01 (M49): o'zbekcha ovoz «backslash»ni harfma-harf o'qiydi — aytilishi bo'yicha yozamiz (xesh o'zgarmaydi)
+            say = c if is_ru else re.sub(r'\bbackslash\b', 'bekslesh', c, flags=re.I)
+            try: asyncio.run(synth(say, p, voice, rate))
             except Exception as e:
                 if p.exists(): p.unlink()
                 return self._send(502, json.dumps({'error': str(e)}).encode())

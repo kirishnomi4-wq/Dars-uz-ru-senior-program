@@ -1,0 +1,35 @@
+<div class="z">
+  <div class="z-card">
+    <p class="z-h">synchronize: true (NODE_ENV=dev) — har ishga tushishda Entity → baza</p>
+    <div class="z-flow">
+      <div class="z-st blue"><b>Entity o'zgardi</b><span class="z-mut">car.entity.ts</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st"><b>npm run start:dev</b><span class="z-mut">TypeORM jadvalni moslaydi</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st"><b>cars jadvali</b><span class="z-mut">ustun qo'shiladi yoki o'chiriladi</span></div>
+    </div>
+  </div>
+  <div class="z-two">
+    <div class="z-card" style="border-color:var(--warn)">
+      <p class="z-h" style="color:var(--warn)">Ustun tushib qoldi — xato bermay</p>
+      <span><span class="z-tag g">server ishga tushdi</span></span>
+      <div class="z-term"><span class="m">\d cars</span>
+ brand | character varying | not null
+ model | character varying | not null
+<span class="y">price — yo'q</span>
+<span class="m">POST {"brand":"Chevrolet","model":"Malibu","price":250} → 201</span>
+ brand     | model
+ Chevrolet | Malibu</div>
+      <span class="z-mut">price saqlanmadi — ma'lumot jim yo'qoldi</span>
+    </div>
+    <div class="z-card" style="border-color:var(--bad)">
+      <p class="z-h" style="color:var(--bad)">NOT NULL ustun qo'shildi — yiqildi</p>
+      <span><span class="z-tag r">successfully started = 0</span></span>
+      <div class="z-term"><span class="m">cars jadvalida 1 qator bor; brandId NOT NULL</span>
+<span class="r">QueryFailedError: column "brandId" of relation "cars" contains null values</span>
+<span class="m">nullable: true bilan →</span> <span class="g">successfully started = 1</span></div>
+      <span class="z-mut">eski qatorga bo'sh qiymat qo'yib bo'lmaydi</span>
+    </div>
+  </div>
+  <div class="z-rule">«Ma'lumot yo'qoldi» yoki <b>contains null values</b> — birinchi savol: <b>«Entity'da nimani o'zgartirdingiz?»</b></div>
+</div>

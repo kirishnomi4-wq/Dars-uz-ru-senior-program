@@ -1,6 +1,6 @@
 
 // ============================================================
-//  JEST-1 MATNLARI — AVTO: feedback/F-1029-02-mentor-kurs/dev/jest1-matn.py (manba: 10-Jest1-mentor-v1.md)
+//  Jest-1 MATNLARI — AVTO: feedback/F-1029-02-mentor-kurs/dev/jest1-matn.py (manba: 10-Jest1-mentor-v2.md, M41)
 //  QO'LDA TAHRIRLANMAYDI: matn MD'da o'zgaradi, keyin skript qayta yurgiziladi.
 // ============================================================
 const MDT = {
@@ -8,81 +8,81 @@ const MDT = {
   "type": "Lesson",
   "kicker": "Kirish",
   "eyebrow": "Mentor kursi · Jest",
-  "title": "Kodni o'zgartirdingiz. Hisob hali ham to'g'rimi — buni test aytadi.",
+  "title": "OrderBotNest'ga birinchi testlarni yozamiz: avval o'zingiz, keyin AI yozgan testni tekshirasiz",
   "seg": [
    [
     "a",
-    "Kod o'zgarganda eski hisoblar buzilmaganini har safar <b>qo'lda tekshirib bo'lmaydi</b>",
-    "Assalomu alaykum. Loyihada kod har kuni o'zgaradi. Har o'zgarishdan keyin eski hisoblar buzilmaganini qo'lda tekshirib bo'lmaydi: beshta hisob bo'lsa ham, ellikta bo'lsa ham. Bu ishni kompyuterga topshirish mumkin. Bu unit-test deyiladi, uni Jest ishga tushiradi."
+    "Buyurtma boti ishlaydi — bugun uning <b>qoidalarini test bilan qo'riqlaymiz</b>",
+    "Assalomu alaykum. O'tgan darsda buyurtma botini PostgreSQL'ga ko'chirdingiz. Bugun uning qoidalarini test bilan qo'riqlaymiz: narx qanday yoziladi, admin qaysi tugmani ko'radi, katalogning oxirgi sahifasida nima bo'ladi. Ekranda natija: o'nta test, yarim soniyada."
    ],
    [
     "b",
-    "Bugun o'quvchi reposida <b>birinchi testni yozasiz</b> va natijasini o'qiysiz",
-    "Bugun Nest darslaridagi o'quvchi reposida birinchi testni yozasiz. Misol o'quvchi darsidagi aynan funksiya: KitobShop'dagi buyurtma summasi. Test yashil bo'lganda va qizil bo'lganda terminal nima deyishini o'qishni o'rganasiz."
+    "Avval testni o'zingiz yozasiz, <b>FAIL va PASS'ni o'qishni</b> o'rganasiz",
+    "Avval testni qo'lda yozasiz va Jest javobini o'qishni o'rganasiz. Birinchi testning o'zi kutilmagan narsani ko'rsatadi: kod to'g'ri ishlaydi, test qizil, ikki qator esa bir xil ko'rinadi. Sababini darsda bilib olasiz."
    ],
    [
     "c",
-    "Testni ataylab buzamiz: <b>yolg'on yashil</b> va <b>noto'g'ri qizil</b> — ikkalasini tanib olasiz",
-    "Keyin testni ataylab buzamiz. Ba'zi test hech narsani tekshirmasa ham yashil bo'ladi, ba'zisi kod to'g'ri bo'lsa ham qizil. O'quvchi AI'dan test so'raydi, shuning uchun bu ikkisini tanish sizga albatta kerak."
+    "Keyin testni AI yozadi, siz <b>uni buzib tekshirasiz</b>",
+    "Keyin testni AI yozadi. Biz buni ikki xil AI bilan haqiqatan qilib ko'rdik. Ikkalasi o'ttizdan ortiq test yozdi, hammasi yashil. Lekin kodni ataylab buzganimizda ba'zi buzilishlarni hech bir test sezmadi. Shu tekshiruv usulini o'rganasiz."
    ],
    [
     "d",
-    "Olti bosqich, to'rt amaliyot. <b>Shoshilmang</b>: ustoz gapirib bo'lgach Davom ochiladi",
-    "Oxirida sinfdagi sozlash tuzoqlarini va o'quvchi darsini qanday o'tishni ko'ramiz. Dars olti bosqichdan iborat, to'rtta amaliyot bor. Shoshilmang: har ekranni boshidan eshitish mumkin. Ustoz gapirib bo'lgach Davom ochiladi. Boshlaymiz."
+    "Olti bosqich, uchta amaliyot; oxirida <b>ikki ekran sinfga tayyorgarlik</b>",
+    "Dars olti bosqichdan iborat, uchta amaliyotda o'zingiz ishlaysiz. Oxirgi ikki ekran sinfga tayyorgarlik: o'quvchi darsi xaritasi va o'quvchilar xato qiladigan joylar. Shoshilmang, har ekranni boshidan eshitish mumkin, dars qayerda to'xtaganingizni eslab qoladi. Boshlaymiz."
    ]
   ]
  },
  "2": {
   "type": "Lesson",
-  "kicker": "1-bosqich · unit-test",
-  "title": "Funksiya kirishni oladi, natija qaytaradi — test shu juftni tekshiradi",
+  "kicker": "1-bosqich · nega va qayerda",
+  "title": "Smoke butun botni tekshiradi, unit-test — bitta qoidani: biri ikkinchisining o'rnini bosmaydi",
   "seg": [
    [
     "a",
-    "O'quvchi darsi funksiyani <b>mashina</b> deb tushuntiradi: kirish beriladi, natija chiqadi",
-    "Testga o'tishdan oldin funksiyaga boshqacha qaraymiz. O'quvchi darsi uni mashina deb tushuntiradi: kirish berasiz, u natija qaytaradi. orderTotal'ga narx va soni beriladi, u summani qaytaradi. Masalan, o'n ming va ikkini bersak, natija yigirma ming bo'ladi."
+    "Telegraf+PG darsida <b>smoke butun botni tekshirdi</b>: baza, restart va besh mijoz",
+    "Telegraf va PostgreSQL darsida smoke skriptini yurgizgansiz. U butun botni tekshiradi: alohida baza ochadi, serverni qayta yoqadi, besh mijozni bir vaqtda yuboradi. Javobi bitta: bot ishlayaptimi yoki yo'q."
    ],
    [
     "b",
-    "Unit-test — shu juftni yozib qo'yish: <b>«shu kirishga aynan shu chiqish»</b>",
-    "Unit-test shu juftni yozib qo'yadi: shu kirishga aynan shu chiqish bo'lishi kerak. Bir marta yoziladi va har safar bitta buyruq bilan tekshiriladi. Unit bitta bo'lak degani: test bitta funksiyani bazasiz va serversiz sinaydi."
+    "Unit-test esa <b>bitta funksiyani bitta qoida bilan</b> tekshiradi",
+    "Unit-test boshqacha. U bitta funksiyani chaqiradi va bitta qoidani tekshiradi: masalan, katalogning oxirgi sahifasida o'ng strelka chiqmasin. Smoke buni sezmaydi, chunki bot baribir ishlaydi. Unit-test esa xato qaysi funksiyada va qaysi qatorda ekanini aytadi."
    ],
    [
     "c",
-    "Funksiyaning o'zi uch satr: <b><code>src/order.ts</code></b> — narx ko'paytirish soni",
-    "Funksiyaning o'zi uch satr, o'quvchi reposida src papkasidagi order ts faylida turadi. U narxni soniga ko'paytiradi. Hozir bu oddiy, lekin keyinroq ichiga chegirma yoki soliq qo'shilsa, test eski hisoblar buzilmaganini aytadi."
+    "Testda <b>Telegram ham, baza ham yo'q</b> — u bot yoki sayt ekanini bilmaydi",
+    "Endi loyihaning o'zini oching: Telegraf va PostgreSQL darsidagi OrderBotNest papkasini VS Code'da oching. Ekranda bugun yozadigan test: u src, api, telegram papkasidagi texts ts faylidan faqat som funksiyasini import qiladi. Telegram, baza va env fayli kerak emas, env faylisiz o'nta test yarim soniyada o'tdi. Shuning uchun bot ham, sayt ham bir xil sinaladi."
    ],
    [
     "d",
-    "Xulosa: unit-test — bitta funksiya, bitta kirish, <b>bitta kutilgan natija</b>",
-    "Xulosa: unit-test bitta funksiyani alohida sinaydi. Unda uch narsa bor: kirish, kutilgan natija va ularni solishtiradigan bitta tasdiq. Kutilgan natijani bugun etalon deb ataymiz, o'quvchi darsida u etalon kartochkasi."
+    "Xulosa: smoke — <b>«ishlayaptimi»</b>, unit-test — «shu qoida buzilmadimi»",
+    "Xulosa: smoke ishlayaptimi degan savolga javob beradi, unit-test esa shu qoida buzilmadimi degan savolga. Bugun unit-test yozamiz. Saytning so'rov va javobini sinash Jest ikkinchi darsida bo'ladi."
    ]
   ]
  },
  "3": {
   "type": "Lesson",
-  "kicker": "1-bosqich · unit-test",
-  "title": "package.jsondagi jest bo'limi: src ichida, nomi .spec.ts",
+  "kicker": "1-bosqich · ichida",
+  "title": "Jest sozlamasi package.jsonda tayyor: fayl src/ ichida, nomi .spec.ts bilan tugaydi",
   "seg": [
    [
     "a",
-    "Nest loyihasi Jest bilan birga yaratiladi — o'quvchi reposida u <b>allaqachon sozlangan</b>",
-    "Avval yaxshi xabar: Nest loyihasi Jest bilan birga yaratiladi. O'quvchi reposining package json faylida test buyrug'i ham, jest bo'limi ham tayyor. Hech narsa o'rnatish shart emas, npm install yetarli."
+    "Loyihada <b>test yozish uchun hamma narsa tayyor</b>: Jest, ts-jest va sozlama",
+    "Avval Jest testni qayerdan qidirishini ko'ramiz. VS Code'da OrderBotNest papkasining ildizidagi package json faylini oching. O'n to'rtinchi satrda test buyrug'i: jest. Pastroqda, qirq beshinchi satrdan, jest bo'limi boshlanadi. Nest loyihasida jest va ts jest paketlari allaqachon o'rnatilgan, hech narsa o'rnatmaysiz."
    ],
    [
     "b",
-    "Uch satr muhim: <code>rootDir</code> — <b><code>src</code></b>, <code>testRegex</code> — <b><code>.spec.ts</code></b>, <code>transform</code> — <code>ts-jest</code>",
-    "Jest bo'limida uchta satr muhim. Birinchisi root dir src: Jest faqat src papkasi ichini qaraydi. Ikkinchisi test regex: fayl nomi spec ts bilan tugashi kerak. Uchinchisi transform ts jest: TypeScript faylni Jest tushunadigan ko'rinishga o'tkazadi."
+    "Ikki satr hal qiladi: <b><code>rootDir: src</code> va <code>testRegex</code> — <code>.spec.ts</code></b>",
+    "Jest bo'limida ikki satr hal qiladi: ellik birinchi va ellik ikkinchi. Root dir src: Jest faqat src papkasi ichini ko'radi. Test regex: fayl nomi spec ts bilan tugashi kerak. Ellik to'rtinchi satrdagi transform ts jest esa TypeScript faylni JavaScript'ga aylantirib beradi."
    ],
    [
     "c",
-    "Hozir <code>npm test</code> — <b><code>No tests found</code></b>: repoda hali birorta test yo'q",
-    "Hozir npm test qilsak, Jest no tests found deydi, ya'ni test topilmadi, chiqish kodi esa bir. Jest o'ttiz yettita faylni ko'rdi, lekin ularning hech biri spec ts emas. Bu xato emas: o'quvchi birinchi testini yozmaguncha shunday bo'ladi."
+    "<b>VS Code terminalida <code>npm test</code></b>: hozir test fayli yo'q — <code>No tests found</code>",
+    "Endi VS Code'da Terminal menyusidan yangi terminal oching, u OrderBotNest papkasida ochiladi, va npm test yozing. Loyihada hali bitta ham test fayli yo'q, shuning uchun Jest no tests found deydi va bir kodi bilan chiqadi, ya'ni xato. Pastda: yigirma yetti fayl ko'rildi, test regex'ga nol mos keldi."
    ],
    [
     "d",
-    "Xulosa: test fayli — <b><code>src/</code> ichida</b> va nomi <code>.spec.ts</code> bilan tugaydi",
-    "Xulosa: o'quvchi reposida Jest tayyor, faqat ikki shart bor. Test fayli src papkasi ichida turadi va nomi spec ts bilan tugaydi. Bu ikki shartdan biri buzilsa, Jest testni ko'rmaydi. Sinfdagi eng ko'p savol aynan shu."
+    "Xulosa: <code>No tests found</code> chiqsa — <b>fayl joyi va nomini</b> tekshiring",
+    "Xulosa: no tests found ko'rsangiz, kodni emas, fayl joyi va nomini tekshiring. Sinab ko'rdik: nomi test ts bo'lsa ham, fayl src'dan tashqarida tursa ham, aynan shu xabar chiqadi."
    ]
   ]
  },
@@ -90,194 +90,243 @@ const MDT = {
   "type": "MCRetry",
   "kicker": "Tekshiruv 1",
   "eyebrow": "Tekshiruv · 1 / 4",
-  "title": "O'quvchi order.spec.ts yozdi va npm test qildi — No tests found. Birinchi nimani tekshirasiz?",
-  "q": "Jest sozlamasini ko'rdingiz, tekshirib olaylik. Birinchi tekshiruv. O'quvchi order spec ts faylini yozdi va npm test qildi, javob esa no tests found bo'ldi. Fayl ichidagi kod to'g'ri. Birinchi nimani tekshirasiz? Variantni tanlang.",
-  "ok": "To'g'ri, birinchi navbatda faylning joyini tekshirasiz. Sinab ko'rdik: xuddi shu fayl loyiha ildizida tursa, Jest uni ko'rmaydi va no tests found deydi, chunki root dir src. Fayl src ichiga ko'chirilsa, test topiladi. Nomi ham muhim: order test ts bo'lsa ham topilmaydi. Demak, no tests found chiqsa, avval test fayli src ichida turganini va nomi spec ts bilan tugashini tekshiring.",
-  "okShort": "<code>rootDir: src</code> — <code>src/</code>dan tashqaridagi fayl ko'rinmaydi. Nomi ham: <code>.test.ts</code> emas, <code>.spec.ts</code>.",
-  "hint": "Xabar «test topilmadi» deyapti, «xato» emas. Jest testni qayerdan va qaysi nom bilan qidiradi?",
+  "title": "Test fayli test/texts.spec.ts da — loyiha ildizidagi test papkasida. npm test nima deydi?",
+  "q": "Jest qayerdan qidirishini ko'rdingiz, endi tekshirib olaylik. Birinchi tekshiruv. Test fayli nomi to'g'ri, spec ts bilan tugaydi. Lekin u src ichida emas, loyiha ildizidagi test papkasida turibdi. Npm test nima deydi? Variantni tanlang.",
+  "ok": "To'g'ri. Root dir src bo'lgani uchun Jest test papkasiga umuman qaramaydi. Sinab ko'rdik: no tests found va bir kodi. Import xatosi chiqishi uchun Jest faylni ochishi kerak edi, u esa faylni ko'rmadi. Demak, test fayli src ichida, sinaladigan faylning yonida turadi.",
+  "okShort": "<code>rootDir: src</code> — <code>test/</code> ko'rinmaydi: <code>No tests found</code>.",
+  "hint": "rootDir qaysi papkani ko'rsatadi? Fayl o'sha papka ichidami?",
+  "demak": "Test fayli <code>src/</code> ichida, sinaladigan faylning yonida turadi.",
   "correct": 2,
   "opts": [
-   "npm install qayta qilinsin",
-   "expect to'g'ri yozilganmi",
-   "Fayl qayerda turibdi — src/ ichidami",
-   "Jest versiyasi"
+   "PASS — fayl nomi .spec.ts bilan tugaydi",
+   "Cannot find module — import yo'li buzildi",
+   "No tests found — fayl src/ dan tashqarida",
+   "PASS — Jest test/ papkasini o'zi qidiradi"
   ],
   "wrong": {
-   "0": "Jest o'rnatilmagan bo'lsa jest: not found chiqardi, No tests found emas.",
-   "1": "expect xato bo'lsa test topilib, FAIL bo'lardi.",
-   "3": "Versiya topish qoidasiga ta'sir qilmaydi — qoida package.jsonda."
+   "0": "Nom to'g'ri, lekin joy rootDir dan tashqarida.",
+   "1": "Import xatosi uchun Jest faylni ochishi kerak — u faylni ko'rmadi.",
+   "3": "Nest'ning e2e testlari uchun alohida sozlama kerak; bu loyihada u yo'q."
   }
  },
  "5": {
   "type": "Lesson",
   "kicker": "2-bosqich · birinchi test",
-  "title": "order.spec.ts — to'rt qism: import, describe, it, expect",
+  "title": "Test — uch qismli kod: qaysi funksiya, qaysi vaziyat va qanday natija kutiladi",
   "seg": [
    [
     "a",
-    "Test fayli <b>funksiya yonida</b>: <code>order.ts</code> — <code>order.spec.ts</code>, ikkalasi <code>src/</code> ichida",
-    "Test fayli funksiyaning yonida turadi: order ts yonida order spec ts. Birinchi qatordagi import funksiyani test fayliga olib kiradi. Jest bu faylni nomidan topadi va ichidagi testlarni ishga tushiradi."
+    "Birinchi test uchun <b><code>som</code> funksiyasini</b> olamiz: u narxni so'mda yozadi",
+    "Birinchi test uchun eng oddiy funksiyani olamiz. VS Code'da src, api, telegram papkasidagi texts ts faylini oching: to'rtinchi satrda som funksiyasi. U sonni oladi va bot matni uchun so'mda yozadi, bir yuz yigirma ming bir yuz yigirma ming so'm bo'ladi. Bot har narxni shu funksiya bilan chiqaradi."
    ],
    [
     "b",
-    "<code>describe</code> — <b>guruh</b>: bitta funksiyaning testlari bir joyda, nomi bilan",
-    "Describe bitta funksiyaning hamma testlarini guruhlaydi. Uning birinchi argumenti guruh nomi: orderTotal. Natijada shu nom ko'rinadi, shuning uchun qaysi funksiya xato berganini darhol bilasiz."
+    "Test fayli <b>yonida turadi</b>: <code>texts.ts</code> uchun — <code>texts.spec.ts</code>",
+    "Test faylini shu telegram papkasining o'zida, texts ts yonida yaratasiz: Explorer'da papkani o'ng tugma bilan bosib, New File, nomi texts spec ts. Nomi spec ts bilan tugashi shart. Birinchi satrda funksiyani import qilamiz. Telegraf ham, baza ham import qilinmaydi."
    ],
    [
     "c",
-    "<code>it</code> — <b>bitta holat</b>, nomi oddiy gap bilan: «2 kitob narxini hisoblaydi»",
-    "It bitta holatni sinaydi. Nomi oddiy gap bilan yoziladi: ikki kitob narxini hisoblaydi. Test qizil bo'lganda aynan shu gap chiqadi, shuning uchun nom tushunarli bo'lishi kerak."
+    "<code>describe</code> — funksiya, <code>it</code> — vaziyat, <b><code>expect … toBe</code> — kutilgan natija</b>",
+    "Keyingi uch qism. Describe som: bu testlar qaysi funksiya haqida. It: bitta vaziyat, nomi oddiy gap bilan yoziladi. Ichida expect: som bir yuz yigirma ming natijasi to be ichidagi etalonga teng bo'lsin. Etalon — kutilgan qiymat, uni qo'lda yozamiz."
    ],
    [
     "d",
-    "<code>expect(result).toBe(20000)</code> — <b>tasdiq</b>: natija etalonga teng bo'lishi shart",
-    "Eng muhim qator shu: expect, result, to be yigirma ming. Bu tasdiq: natija aynan yigirma ming bo'lishi kerak. Tepadagi qator funksiyani chaqiradi, bu qator tekshiradi. Tayyorlash, chaqirish, tekshirish: o'quvchi darsida bu uch qadam deyiladi."
-   ],
-   [
-    "e",
-    "Xulosa: <code>describe</code> — kim sinaladi, <code>it</code> — qaysi holat, <b><code>expect</code> — nima kutiladi</b>",
-    "Xulosa: describe qaysi funksiya sinalayotganini aytadi, it qaysi holatni, expect esa nima kutilayotganini. Testda haqiqatan tekshiradigan yagona qator expect. Uchinchi bosqichda ko'rasiz: expect'ni unutgan test hech narsani tekshirmaydi."
+    "Xulosa: <b>funksiyani chaqirish, etalon bilan solishtirish</b> — har test shu ikki qadam",
+    "Xulosa: har test ikki qadamdan iborat: funksiyani chaqirasiz va natijani qo'lda yozilgan etalon bilan solishtirasiz. Endi testni yurgizamiz: VS Code terminalida npm test, ikki chiziqcha va texts. Fayl nomini qo'shsak, faqat shu test fayli yuradi."
    ]
   ]
  },
  "6": {
   "type": "Lesson",
   "kicker": "2-bosqich · birinchi test",
-  "title": "PASS src/order.spec.ts — fayl, guruh, holat va jami",
+  "title": "Test qizil: Expected va Received bir xil ko'rinadi, lekin Jest ularni teng demayapti",
   "seg": [
    [
     "a",
-    "<code>npm test</code> — <code>package.json</code>dagi <code>jest</code> buyrug'i: <b>fayl topildi va yurdi</b>",
-    "Testni yozdik, endi npm test buyrug'ini beramiz. Bu package json'dagi jest buyrug'ini ishga tushiradi. Birinchi yashil satrda PASS va fayl yo'li turibdi: src order spec ts. Fayl topildi va undagi hamma test o'tdi."
+    "FAIL'ni <b>yuqoridan pastga</b> o'qiymiz: avval qaysi test yiqildi",
+    "Terminalda npm test, ikki chiziqcha va texts yozdik: test qizil. FAIL'ni yuqoridan pastga o'qiymiz. Nuqtali satr qaysi test yiqilganini aytadi: som guruhidagi bir yuz yigirma ming testi. Testlar ko'p bo'lsa, birinchi shu satrni qidirasiz."
    ],
    [
     "b",
-    "Ostida guruh nomi va holat: <code>orderTotal</code> → <b><code>✓ 2 kitob narxini hisoblaydi</code></b>",
-    "Uning ostida describe nomi, orderTotal, yozilgan, undan pastda esa belgi bilan it nomi: ikki kitob narxini hisoblaydi, ikki millisekundda. Nomlar aynan siz yozgan gaplar, shuning uchun ular tushunarli yozilishi kerak."
+    "Keyin ikki satr: <b><code>Expected</code> — etalon, <code>Received</code> — funksiya qaytargani</b>",
+    "Keyingi ikki satr asosiysi. Expected — siz test faylida yozgan matn. Received — som funksiyasi haqiqatda qaytargan matn. Jest sonni emas, shu ikki matnni solishtiradi va ular teng bo'lmasa, test yiqiladi. Lekin qarang: ikkala qator bir xil, bir yuz yigirma ming so'm."
    ],
    [
     "c",
-    "Pastda jami: <code>Test Suites</code> — fayllar, <code>Tests</code> — <b><code>it</code>lar soni</b>",
-    "Eng pastda jami turadi. Test suites fayllar sonini aytadi: bitta fayl, u o'tdi. Tests esa it'lar sonini aytadi: bitta. Testlar ko'paygach, sinfda o'quvchi bilan shu ikki satrga qaraysiz: nechta o'tdi, nechta yiqildi."
+    "Pastda <b>satr raqami</b>: <code>texts.spec.ts:5:25</code> — beshinchi satr, <code>toBe</code> belgisi",
+    "Pastda kod bo'lagi: katta belgisi va strelka xato bo'lgan joyni ko'rsatadi, test faylining beshinchi satri, to be. Eng oxirgi qatorda fayl nomi va satr raqami yana yozilgan. VS Code'da texts spec ts faylining aynan shu satrini ochasiz."
    ],
    [
     "d",
-    "Xulosa: PASS — fayl va holatlar o'tdi; <code>Tests:</code> satri — <b>nechta <code>it</code> tekshirildi</b>",
-    "Xulosa: PASS fayl va undagi hamma holat o'tganini bildiradi. Tests satri nechta it tekshirilganini aytadi. Lekin diqqat: PASS faqat expect'lar to'g'ri bo'lsa ma'noli. Buni uchinchi bosqichda isbotlaymiz."
+    "Demak, sabab bitta joyda: <b>bo'sh joy ikki matnda har xil belgi</b>",
+    "Demak, sabab bitta joyda: bir yuz yigirma va ming orasidagi bo'sh joy. Siz klaviaturada oddiy probel yozdingiz, som esa ko'zga ko'rinmaydigan boshqa belgi qo'ydi. Ekranda ikkalasi bir xil ko'rinadi, Jest uchun esa har xil. Keyingi ekranda ikki matnni belgima-belgi solishtirib, shu belgini o'z ko'zingiz bilan ko'rasiz."
    ]
   ]
  },
  "7": {
-  "type": "Practice",
-  "kicker": "Amaliyot 1 / 4",
-  "eyebrow": "Hozir o'zingizda · 10 daqiqa",
-  "title": "O'quvchi reposida order.ts va order.spec.ts",
+  "type": "Lesson",
+  "kicker": "2-bosqich · ichida",
+  "title": "toLocaleString minglarni oddiy probel bilan emas, bo'linmas probel bilan ajratadi",
   "seg": [
    [
     "a",
-    "Endi siz: o'quvchi reposida birinchi testni yozib, <b>yashil PASS</b>'ni ko'rasiz",
-    "Endi navbat sizga. O'quvchi reposida birinchi testni yozasiz. Nest darsidagi repo sizda bo'lsa, o'shani oching; bo'lmasa clone va npm install qiling. Bunga o'n daqiqa ketadi."
+    "<code>toBe</code> <b>belgi-belgi solishtiradi</b>: bitta belgi farq qilsa — teng emas",
+    "Endi sababini aniqlaymiz. To be ikki matnni belgi-belgi solishtiradi, Jest buni Object is deb yozadi. Ekranda ikki qator: yuqorida Expected, siz yozgan matn, pastda Received, som qaytargan matn. Belgilarni birma-bir taqqoslaymiz: bir, ikki, nol, keyin bo'sh joy."
    ],
    [
     "b",
-    "1–2-qadam: <code>npm test</code> — avval <b><code>No tests found</code></b>, keyin <code>src/order.ts</code>",
-    "Birinchi qadamda hech narsa yozmasdan npm test qiling va no tests found chiqishini ko'ring. Ikkinchisida src papkasida order ts faylini ochib, uch satrli funksiyani yozing."
+    "To'rtinchi belgida farq: <b><code>0020</code> — oddiy probel, <code>00a0</code> — bo'linmas probel</b>",
+    "Mana farq, to'rtinchi belgida. Expected'da oddiy probel, kodi nol nol ikki nol. Received'da nol nol a nol: bo'linmas probel. Ekranda u oddiy probeldek ko'rinadi, lekin boshqa belgi. Uni to locale string qo'ydi, rus tili qoidasi bo'yicha. Qolgan hamma belgi bir xil, ular yashil."
    ],
    [
     "c",
-    "3–4-qadam: <code>src/order.spec.ts</code> va <code>npm test</code>; isbot — <b><code>Tests:</code> satri</b>",
-    "Uchinchi qadamda uning yonida order spec ts faylini oching va kodni nusxalamasdan o'zingiz yozing. To'rtinchisida npm test qiling. Isbot maydoniga natijadagi Tests satrini nusxalang."
+    "Etalonni <b><code>\\u00a0</code> bilan ochiq yozamiz</b> — endi test yashil va o'qiladi",
+    "Kod to'g'ri: bo'linmas probel raqamni Telegram xabarida ikki qatorga bo'lib yubormaydi. Shuning uchun etalonni tuzatamiz va belgini ochiq yozamiz: backslash u, nol nol a nol. Ikkinchi testni kichik son uchun qo'shdik. Ikkalasi yashil."
    ],
    [
     "d",
-    "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
-    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin o'quvchi reposida sizning birinchi testingiz bor va siz PASS natijasini o'qiy olasiz."
+    "Xulosa: birinchi testning o'zi <b>kod haqida bilmagan narsangizni</b> ko'rsatdi",
+    "Xulosa: birinchi testning o'zi siz bilmagan narsani ko'rsatdi. Expected va received bir xil ko'rinsa, ko'rinmas belgini qidiring. Etalonga belgini ochiq yozing, ko'zga ko'rinmaydigan belgining o'zini emas: keyingi odam uni oddiy probel deb o'ylaydi."
    ]
   ]
  },
  "8": {
-  "type": "Lesson",
-  "kicker": "3-bosqich · buzamiz",
-  "title": "* o'rniga + — Expected: 20000, Received: 10002",
+  "type": "Practice",
+  "kicker": "Amaliyot 1 / 3",
+  "eyebrow": "Hozir o'zingizda · 10 daqiqa",
+  "title": "Birinchi testni o'zingiz yozing: avval qizilni ko'ring, keyin sababini topib yashil qiling",
   "seg": [
    [
     "a",
-    "O'quvchi darsidagi tajriba: ko'paytirish o'rniga qo'shish — <b>test buni tutadimi?</b>",
-    "O'quvchi darsidagi tajribani qilamiz: funksiyada ko'paytirish o'rniga xato bilan qo'shish yozildi. Kod ishlaydi, xato bermaydi, lekin natija noto'g'ri. npm test buni tutadimi?"
+    "Endi siz: <b><code>jest1-start</code> tegida</b> birinchi test faylini yozasiz",
+    "Endi navbat sizga. Telegraf va PostgreSQL darsidagi OrderBotNest papkasini ochasiz va jest bir start tegiga o'tasiz. Env fayli va baza kerak emas. O'n daqiqa ketadi."
    ],
    [
     "b",
-    "<code>FAIL</code> va <code>●</code> satri: qaysi fayl, qaysi guruh va <b>qaysi holat yiqildi</b>",
-    "Test buni tutdi: qizil FAIL chiqdi. Undan pastda nuqta bilan boshlangan satr bor: orderTotal, strelka, ikki kitob narxini hisoblaydi. U qaysi guruh va qaysi holat yiqilganini aytadi. Nomlar tushunarli bo'lsa, faylni ochmasdan ham nima buzilganini bilasiz."
+    "1–2-qadam: teg, fayl va <b>oddiy probelli etalon</b> — FAIL'ni o'zingiz ko'ring",
+    "Birinchi qadamda git fetch va checkout bilan tegga o'tasiz, npm test no tests found deydi. Ikkinchisida texts spec ts faylini yozasiz, etalonni klaviaturadagi oddiy probel bilan. Npm test texts: qizil, ikki qator bir xil."
    ],
    [
     "c",
-    "<code>Expected</code> — etalon, <code>Received</code> — funksiya qaytargani: <b>20000 kutildi, 10002 keldi</b>",
-    "Endi eng muhim ikki satr. Expected, ya'ni kutilgan qiymat yigirma ming: bu siz yozgan etalon. Received, ya'ni olingan qiymat o'n ming ikki: buni funksiya qaytardi, chunki o'n mingga ikki qo'shildi. Farqni ko'rib, xato qayerdaligini taxmin qilasiz."
+    "3–4-qadam: <b><code>\\u00a0</code></b> bilan tuzatish va ikkinchi test; isbot — <code>Tests:</code> satri",
+    "Uchinchi qadamda etalonga backslash u nol nol a nol yozasiz. To'rtinchisida besh yuz uchun ikkinchi testni qo'shasiz. Isbot maydoniga oxirgi natijaning tests satrini nusxalang."
    ],
    [
     "d",
-    "<code>&gt;</code> belgisi va <code>order.spec.ts:6:20</code> — testdagi <b>qaysi satr yiqilganini</b> ko'rsatadi",
-    "Pastda test faylining bo'lagi ko'rinadi, strelka oltinchi satrni, ya'ni expect'ni ko'rsatadi. Eng oxirida fayl, satr va ustun yozilgan: order spec ts, olti, yigirma. Diqqat: bu test yiqilgan joy, xato esa funksiyada, order ts'da. Funksiyada yana ko'paytirishni yozamiz va test yashil bo'ladi."
+    "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
+    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin siz test yozasiz, FAIL'ni o'qiysiz va ko'rinmas belgini topasiz."
+   ]
+  ],
+  "steps": [
+   {
+    "t": "Teg",
+    "cmds": [
+     "git fetch --tags",
+     "git checkout jest1-start",
+     "npm test"
+    ],
+    "exp": "No tests found, exiting with code 1"
+   },
+   {
+    "t": "Test — oddiy probel bilan",
+    "cmds": [
+     "src/api/telegram/texts.spec.ts (5-ekrandagi kod)",
+     "npm test -- texts"
+    ],
+    "exp": "FAIL · Expected: \"120 000 so'm\" · Received: \"120 000 so'm\""
+   },
+   {
+    "t": "Tuzatish",
+    "cmds": [
+     "etalon \"120\\u00a0000 so'm\"",
+     "npm test -- texts"
+    ],
+    "exp": "PASS"
+   },
+   {
+    "t": "Ikkinchi test",
+    "cmds": [
+     "it('kichik sonda probel yo\\'q', …) — som(500) → \"500 so'm\""
+    ],
+    "exp": "Tests: 2 passed, 2 total"
+   }
+  ],
+  "proof": {
+   "label": "Oxirgi natijaning Tests: satri",
+   "placeholder": "Tests: … qatorini nusxalang",
+   "re": "Tests:\\s+2 passed,\\s+2 total",
+   "flags": "",
+   "wrong": "Ikkala test yashilmi? npm test -- texts natijasidagi Tests: qatorini qo'ying."
+  },
+  "trouble": [
+   [
+    "error: pathspec 'jest1-start' did not match",
+    "teglar olinmagan — git fetch --tags, keyin checkout"
    ],
    [
-    "e",
-    "Xulosa: <b>FAIL o'qish tartibi</b> — <code>●</code> satr, <code>Expected</code>/<code>Received</code>, keyin funksiyaning o'zi",
-    "Xulosa: FAIL'ni shu tartibda o'qing. Avval nuqtali satrdan qaysi holat yiqilganini o'qing. Keyin expected va received'dan nima kutilgani va nima kelganini ko'ring. Oxirida funksiyani oching. Sinfda o'quvchiga javobni aytmang, shu uch qadamni birga o'qing."
+    "Your local changes … would be overwritten by checkout",
+    "Telegraf+PG darsidagi o'z o'zgarishlaringiz — git stash yoki commit, keyin checkout"
+   ],
+   [
+    "2-qadamda PASS",
+    "etalonni nusxa bilan qo'ydingiz — belgi ham ko'chdi; probelni klaviaturadan qayta yozing"
+   ],
+   [
+    "Cannot find module './texts'",
+    "fayl src/api/telegram/ da emas — texts.ts yoniga ko'chiring"
+   ],
+   [
+    "No tests found",
+    "nomi .spec.ts emas yoki src/ dan tashqarida (3–4-ekran)"
    ]
   ]
  },
  "9": {
   "type": "Lesson",
-  "kicker": "3-bosqich · buzamiz",
-  "title": "toBe(10002) — Expected: 10002, Received: 20000: xato testning o'zida",
+  "kicker": "3-bosqich · yolg'on testlar",
+  "title": "expectsiz test har doim yashil: u funksiyani chaqiradi, lekin hech narsani tekshirmaydi",
   "seg": [
    [
     "a",
-    "Endi aksincha: funksiya to'g'ri, lekin <b>etalon xato yozildi</b> — 10002",
-    "Endi aksincha: funksiya to'g'ri, unda ko'paytirish turibdi. Lekin testda etalon xato yozildi: o'n ming ikki. Bu o'quvchi darsidagi burilish: robot etalonga ishonadi."
+    "Test yozishni bildingiz — endi <b>testning o'zi qanday aldashini</b> ko'ramiz",
+    "Test yozishni bildingiz. Endi testning o'zi qanday aldashini ko'ramiz. Ekranda shu telegram papkasidagi yolgon spec ts fayli. Birinchi tur yolg'on test: unda expect yo'q, faqat console log. Bunday test ko'pincha qo'lda tekshirib ko'rish paytida qoladi."
    ],
    [
     "b",
-    "FAIL: <code>Expected: 10002</code>, <code>Received: 20000</code> — o'rinlari 8-ekrandagiga <b>teskari</b>",
-    "Natija yana qizil. Lekin qarang: expected o'n ming ikki, received yigirma ming. Bu sakkizinchi ekrandagiga teskari. Funksiya to'g'ri hisobladi, test noto'g'ri narsani kutdi."
+    "Jest natijani chop etdi va <b>PASS dedi</b> — hech narsa solishtirilmadi",
+    "Natija: terminalda Jest qiymatni chop etdi va PASS dedi. Lekin hech narsa solishtirilmadi. Jest uchun qoida oddiy: it ichida xato tashlanmasa, test o'tdi. Xatoni faqat expect tashlaydi."
    ],
    [
     "c",
-    "Qizil test har doim <b>kod xato degani emas</b>: avval etalonni qo'lda tekshiring",
-    "Demak qizil test har doim kod xato degani emas. Avval etalonni qo'lda hisoblang: o'n ming ko'paytirish ikki, yigirma ming. Etalon xato bo'lsa, testni tuzatasiz, kodni emas. Aks holda o'quvchi to'g'ri kodni buzib qo'yadi."
-   ],
-   [
-    "d",
-    "Xulosa: FAIL'da — <b>kim xato</b>: funksiyami yoki etalonmi? Etalonni qo'lda hisoblang",
-    "Xulosa: FAIL chiqqanda birinchi savol: kim xato, funksiyami yoki etalonmi. Etalonni qo'lda hisoblang. Etalon to'g'ri bo'lsa, funksiyani tuzating. Noto'g'ri bo'lsa, testni tuzating."
+    "Xulosa: har <code>it</code> ichida <b>kamida bitta <code>expect</code></b> bo'lsin — aks holda u test emas",
+    "Xulosa: har it ichida kamida bitta expect bo'lishi kerak, aks holda u test emas, faqat chaqiruv. Bunday test topish oson: console log bor, expect yo'q. Ikkinchi tur esa ancha yashirin, uni keyingi ekranda ko'ramiz."
    ]
   ]
  },
  "10": {
   "type": "Lesson",
-  "kicker": "3-bosqich · buzamiz",
-  "title": "console.log bor, expect yo'q — test hech narsani tekshirmay yashil bo'ldi",
+  "kicker": "3-bosqich · ichida",
+  "title": "Etalonni kodning o'zidan yasasangiz, kod buzilganda etalon ham buziladi — test yashil qoladi",
   "seg": [
    [
     "a",
-    "Eng xavfli test — <code>expect</code>siz: natija chiqariladi, lekin <b>solishtirilmaydi</b>",
-    "Endi eng xavfli holat. Testda expect o'rniga console log yozildi: natija ekranga chiqadi, lekin hech narsa bilan solishtirilmaydi. AI ham, o'quvchi ham buni ko'p qiladi."
+    "Ikki test savat matnini tekshiradi: <b>biri etalonni <code>som</code>dan oladi, biri qo'lda</b>",
+    "Ikkinchi tur. Telegram papkasidagi savat spec ts faylida ikkita test bor, ikkalasi savat matnidagi jami qatorini qidiradi. Birinchisida etalon som funksiyasining o'zidan yasalgan, ikkinchisida qo'lda yozilgan. Chizmaga qarang: hozir som to'g'ri, ikkala etalon ham yuz ming so'm, ikkalasi yashil."
    ],
    [
     "b",
-    "Natija: <code>console.log 20000</code> va yashil PASS — test <b>hech narsani tekshirmadi</b>",
-    "Natijada terminalga console log orqali yigirma ming chiqdi va yashil PASS turibdi. Ikki kitob narxini hisoblaydi degan holat ham tasdiq belgisi bilan. Lekin bu test hech narsani tekshirmadi. Funksiya bir million qaytarsa ham yashil bo'lardi."
+    "Kodni buzamiz: <b>narx endi «100,000» ko'rinishida</b> — bot noto'g'ri yozadi",
+    "Endi kodni ataylab buzamiz. Texts ts faylining to'rtinchi satrida, som funksiyasida rus tili o'rniga ingliz tili qoidasini qo'yamiz. Endi bot narxni vergul bilan yozadi: yuz ming emas, yuz, vergul, ming. Mijoz uchun bu boshqa son. Testlarni yurgizamiz."
    ],
    [
     "c",
-    "Jest qoidasi: <code>it</code> ichida xato chiqmasa — holat o'tdi; tekshiruvni <b>faqat <code>expect</code></b> qiladi",
-    "Nega yashil? Jest uchun qoida oddiy: it ichida xato chiqmasa, holat o'tdi. Xato chiqaradigan narsa faqat expect: natija etalonga teng bo'lmasa, u FAIL beradi. Expect yo'q bo'lsa, yiqilish ham yo'q."
+    "Koddan olingan etalon <b>buzilgan <code>som</code> bilan birga o'zgardi</b> — test yashil",
+    "Chizmaga qarang. Som endi yuz, vergul, ming deydi. Birinchi testning etaloni ham som'dan yasaladi, ya'ni u ham yuz, vergul, ming bo'ldi: ikki tomon birga buzildi va test yashil qoldi. Qo'lda yozilgan etalon o'zgarmadi, shuning uchun ikkinchi test qizil."
    ],
    [
     "d",
-    "Xulosa: har <code>it</code>da kamida bitta <code>expect</code> — aks holda <b>PASS yolg'on</b>",
-    "Xulosa: har it ichida kamida bitta expect bo'lishi shart. Sinfda yashil natijaga ishonishdan oldin it ichiga qarang: expect bormi? O'quvchi darsida buni yolg'on test deyishadi."
+    "Xulosa: <b>etalon qo'lda yoziladi</b> — sinalayotgan funksiya etalonda ishlatilmaydi",
+    "Xulosa: etalon qo'lda yoziladi. Sinalayotgan funksiya etalonni yasashda ishlatilmaydi. Testda dollar va qavs ichida shu funksiya chaqirilgan bo'lsa, bu ogohlantirish belgisi. Endi buni bitta kod bo'lagida o'zingiz topasiz."
    ]
   ]
  },
@@ -285,467 +334,560 @@ const MDT = {
   "type": "LineCheck",
   "kicker": "Tekshiruv 2",
   "eyebrow": "Tekshiruv · 2 / 4 — qaysi satr xato?",
-  "title": "Bu test doim yashil — hech narsani tekshirmaydi",
-  "q": "Yolg'on testni ko'rdingiz, endi o'zingiz toping. Ikkinchi tekshiruv. Qoidani eslang: test natijani etalon bilan solishtirishi kerak. Bu testda solishtirish yo'q, u doim yashil. Tekshiruv o'rnida turgan satrni bosing.",
-  "ok": "To'g'ri. Oltinchi satr console log: natijani faqat chiqaradi. Uning o'rnida expect, result, to be yigirma ming bo'lishi kerak. Ekranda tuzatilgan holat: endi funksiya buzilsa, test qizil bo'ladi. Demak, har it ichida natijani etalon bilan solishtiradigan expect bo'lishi shart.",
-  "okShort": "6-satr: <code>console.log</code> faqat chiqaradi. O'rniga <code>expect(result).toBe(20000)</code>.",
-  "hint": "Import, describe va funksiyani chaqirish — kerakli qismlar. Natija bilan nima qilinayotganiga qarang: solishtiriladimi yoki faqat chiqariladimi?",
-  "task": "Qoida: test natijani etalon bilan solishtirishi kerak — <code>expect(…).toBe(…)</code>. Bu testda solishtirish yo'q, u doim PASS beradi. <b>Tekshiruv o'rnida turgan satrni bosing.</b>"
+  "title": "Bu test som buzilganda ham yashil qoladi. Sababchi satrni toping",
+  "q": "Yolg'on testni ko'rdingiz, endi o'zingiz toping. Ikkinchi tekshiruv. Bu test buyurtma qabul qilingan xabarini tekshiradi. Som buzilganda ham u yashil qoladi. Bitta satr etalonni som funksiyasining o'zidan yasaydi. O'sha satrni bosing.",
+  "ok": "To'g'ri. Shu satrda etalon som'ning o'zidan yasaladi, shuning uchun som buzilsa, etalon ham u bilan birga buziladi. Ekranda tuzatilgan satr: etalon qo'lda, bo'linmas probel bilan. Endi som buzilsa, test qizaradi. Demak, etalonda sinalayotgan funksiya chaqirilgan satrni qidiring.",
+  "okShort": "<code>${som(50000)}</code> — etalon koddan: <code>som</code> buzilsa, ikkala tomon birga buziladi. Qo'lda yozilgan <code>\"Jami: 50\\u00a0000 so'm\"</code> buzilishni ushlaydi.",
+  "hint": "Qaysi satrda etalon qo'lda yozilmagan, funksiya chaqiruvidan yasalgan?",
+  "task": "Qoida: etalon qo'lda yoziladi, sinalayotgan funksiya etalonda chaqirilmaydi. Bu testda bitta satr etalonni <code>som</code> ning o'zidan yasaydi. <b>O'sha satrni bosing.</b>"
  },
  "12": {
-  "type": "Practice",
-  "kicker": "Amaliyot 2 / 4",
-  "eyebrow": "Hozir o'zingizda · 10 daqiqa",
-  "title": "Kodni, etalonni va expectni buzing — natijani o'qing",
+  "type": "Lesson",
+  "kicker": "4-bosqich · statuslar va chegara",
+  "title": "Buyurtma to'rt statusdan o'tadi — har statusga admin ko'radigan tugmalar uchun bitta test",
   "seg": [
    [
     "a",
-    "Endi siz: o'z testingizni <b>uch xil buzasiz</b> va har natijani o'qiysiz",
-    "Endi o'z testingizni uch xil buzasiz. Bunga o'n daqiqa ketadi. Har buzishdan keyin npm test va natijani ovoz chiqarib o'qing, sinfda xuddi shunday qilasiz."
+    "Admin har buyurtma ostida <b>statusiga qarab tugma</b> ko'radi",
+    "Endi admin tugmalarini sinaymiz. Telegraf va PostgreSQL darsidan bilasiz: buyurtma to'rt statusdan o'tadi. Yangi buyurtma ostida tasdiqlash va bekor tugmalari, tasdiqlanganida yetkazildi va bekor. Yetkazilgan yoki bekor qilingan buyurtmada tugma yo'q."
    ],
    [
     "b",
-    "1–2-qadam: funksiyada <code>+</code> — <b>FAIL</b>; tuzatib, etalonni 10002 qiling — FAIL",
-    "Birinchi qadamda order ts'da ko'paytirish o'rniga qo'shish yozing va FAIL'ni ko'ring. Received qiymatini eslab qoling. Ikkinchisida funksiyani tuzatib, testdagi etalonni o'n ming ikki qiling: yana FAIL chiqadi, lekin qiymatlar teskari bo'ladi."
+    "Bu qoida <b>bitta funksiyada</b>: <code>orderKeyboard</code> — buyurtma kiradi, klaviatura chiqadi",
+    "Bu qoida bitta funksiyada yozilgan: src, api, telegram papkasidagi keyboards ts faylida, o'ttiz yettinchi satrdan, order keyboard. Unga buyurtma beriladi, u Telegraf klaviaturasini qaytaradi yoki undefined. Tugma bosilganda bot callback satrini oladi: status, buyurtma raqami va yangi status."
    ],
    [
     "c",
-    "3–4-qadam: <code>expect</code> o'rniga <code>console.log</code> — PASS; tiklang; isbot — 1-qadamdagi <b><code>Received</code></b>",
-    "Uchinchi qadamda expect o'rniga console log yozing: test yashil bo'ladi, lekin yolg'on. To'rtinchisida testni asl holiga qaytaring. Isbot maydoniga birinchi qadamdagi received qiymatini yozing."
+    "Har statusga <b>bitta <code>it</code></b>: ikki tugma, ikki tugma, <code>toBeUndefined</code>",
+    "Test fayli yonida: keyboards spec ts. Har statusga bitta it yozamiz. Beshinchi satrdagi buttons yordamchisi klaviaturadan faqat tugma matni va callback'ni oladi. O'ttiz birinchi satrdagi testda to be undefined: yetkazilgan va bekor qilingan buyurtmada klaviatura yo'q. Terminalda uchala test yashil."
    ],
    [
     "d",
-    "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
-    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, siz FAIL'ning ikki xilini va yolg'on PASS'ni o'z ko'zingiz bilan ko'rdingiz."
+    "Xulosa: <b>har status — bitta vaziyat</b>; bittasi tushib qolsa, o'sha qoida qo'riqlanmaydi",
+    "Xulosa: statuslar jadvali bo'lsa, har qatori bitta test bo'ladi. To'rtta status uchun uchta test yozdik, oxirgisida ikkita expect. Birorta status tushib qolsa, o'sha qoida himoyasiz qoladi. Yordamchida nega to equal ishlatilganini keyingi ekranda bilib olasiz."
    ]
   ]
  },
  "13": {
   "type": "Lesson",
-  "kicker": "4-bosqich · chegara",
-  "title": "Aynan 100 000 — >= va > farqi faqat chegarada ko'rinadi",
+  "kicker": "4-bosqich · ichida",
+  "title": "Ikki massiv bir xil ko'rinsa ham toBe FAIL beradi: u ichini emas, aynan bitta massivmi — shuni tekshiradi",
   "seg": [
    [
     "a",
-    "O'quvchi uyga vazifasi: <b>100 000 dan</b> — yetkazish bepul, kam bo'lsa — 15 000",
-    "Chegara shartini qayerda ko'ramiz? O'quvchining uyga vazifasida, delivery fee funksiyasida. Buyurtma yuz ming va undan ko'p bo'lsa, yetkazish bepul, kam bo'lsa o'n besh ming. Funksiya bir satrdan iborat, unga uchta test yozamiz: yuz ellik ming, aynan yuz ming va to'qson to'qqiz ming uchun."
+    "Bir xil massiv, ikki solishtirish: <b><code>toBe</code> qizil, <code>toEqual</code> yashil</b>",
+    "Bir xil ikki massivni ikki usulda solishtiramiz. To be qizil, to equal yashil. Jest xabari ham shuni aytadi: received bir xil satrga aylanadi, lekin to be uni teng demaydi va to strict equal'ni taklif qiladi."
    ],
    [
     "b",
-    "Uch test va jami 4 o'tdi; ikki fayl bo'lsa nomlar faqat <b><code>--verbose</code></b> bilan chiqadi",
-    "npm test qilamiz: ikki fayl, order va delivery, to'rtta test, hammasi yashil. Diqqat: fayl ikkita bo'lsa, Jest test nomlarini ko'rsatmaydi, faqat PASS va fayl. Nomlarni ko'rish uchun npx jest minus minus verbose."
+    "<code>toBe</code> — <b>aynan bitta obyektmi</b>; <code>toEqual</code> — ichidagi qiymatlar tengmi",
+    "Sababi bunday. Satr va son uchun to be qiymatni solishtiradi. Massiv va obyekt uchun esa u ikkalasi xotirada aynan bitta obyektmi, shuni tekshiradi. Kodda ikki marta yozilgan massiv ikki xil obyekt. To equal esa ichini bittalab solishtiradi."
    ],
    [
     "c",
-    "<code>&gt;=</code> o'rniga <code>&gt;</code> — faqat <b>«aynan 100 000» qizil</b>: <code>Expected: 0</code>, <code>Received: 15000</code>",
-    "Endi kichik xato qilamiz: katta yoki teng o'rniga faqat katta yozamiz. Yuz ellik ming ham, to'qson to'qqiz ming ham o'zgarmadi, ular yashil. Faqat aynan yuz ming qizil bo'ldi: nol kutilgan edi, o'n besh ming keldi. Shu test bo'lmaganda, bu xatoni hech kim sezmasdi."
+    "Telegraf tugmaga <b><code>hide: false</code> qo'shadi</b> — shuning uchun yordamchi kerak bo'ldi",
+    "Klaviaturada yana bir nozik joy bor. Telegraf har tugmaga hide false maydonini o'zi qo'shadi, kodimizda u yozilmagan. Klaviaturani to'liq solishtirsak, etalonga ham shu maydonni yozishga to'g'ri keladi. Shuning uchun yordamchi faqat matn va callback'ni oladi."
    ],
    [
     "d",
-    "Xulosa: shartli funksiyada uch test — chegaradan yuqori, <b>aynan chegara</b>, chegaradan past",
-    "Xulosa: shart bor joyda kamida uchta test. Biri chegaradan yuqori, biri aynan chegarada, biri chegaradan past. Aynan chegara eng muhimi, xato ko'pincha shu yerda yashiringan. O'quvchi vazifasini tekshirganda shu uchta test bormi, shunga qarang."
+    "Xulosa: <b>son va satr — <code>toBe</code>, massiv va obyekt — <code>toEqual</code></b>",
+    "Xulosa: son va satr uchun to be, massiv va obyekt uchun to equal ishlating. Kutubxona qo'shadigan maydonlar testni ortiqcha og'irlashtirsa, solishtirishdan oldin kerakli qismini ajratib oling."
    ]
   ]
  },
  "14": {
   "type": "Lesson",
-  "kicker": "4-bosqich · chegara",
-  "title": "AI'ning testiga ikki savol: expect bormi? Etalon to'g'rimi?",
+  "kicker": "4-bosqich · statuslar va chegara",
+  "title": "Bekor qilingan buyurtmaga yana tugma chiqdi — test qaysi qoida buzilganini aniq aytadi",
   "seg": [
    [
     "a",
-    "O'quvchi darsida AI beshta test yozadi — ulardan <b>faqat ikkitasi haqiqiy</b>",
-    "O'quvchi darsida AI orderTotal uchun beshta test yozadi. O'quvchi ulardan haqiqiylarini tanlaydi. Bugun ko'rgan ikki xatoni endi AI testlarida qidiramiz."
+    "Shartdan <b><code>CANCELLED</code> tushib qoldi</b>: kod ishlaydi, server ham xato bermaydi",
+    "Endi kodni ataylab buzamiz. Keyboards ts faylining o'ttiz to'qqizinchi satridagi shartdan bekor qilingan status tushib qoldi. Bot ishlaydi, server ham xato bermaydi. Lekin admin bekor qilingan buyurtma ostida yana yetkazildi va bekor tugmalarini ko'radi. Testni yurgizamiz."
    ],
    [
     "b",
-    "Birinchi savol: <b><code>expect</code> bormi?</b> Yo'q bo'lsa — test doim yashil",
-    "Birinchi savol: testda expect bormi? Ikkita testda u yo'q: birida funksiya faqat chaqiriladi, birida console log turibdi. Ikkalasi ham doim yashil bo'ladi, o'ninchi ekrandagidek."
+    "Uchtadan bitta test qizil: <b><code>toBeUndefined</code> kutildi, lekin klaviatura keldi</b>",
+    "Uchta testdan bittasi qizil. Nuqtali satr qoidani aytadi: yetkazilgan va bekor qilingan, tugma yo'q. Received qatorida undefined o'rniga klaviatura keldi, ichida yetkazildi va bekor tugmalari. Katta belgisi o'ttiz uchinchi satrda: bekor qilingan status."
    ],
    [
     "c",
-    "Ikkinchi savol: <b>etalon to'g'rimi?</b> Qo'lda hisoblang — 10002 noto'g'ri",
-    "Ikkinchi savol: etalon to'g'rimi? Qo'lda hisoblaymiz: o'n ming ko'paytirish ikki yigirma ming bo'ladi, besh ming ko'paytirish uch esa o'n besh ming. O'n ming ikki degan etalon noto'g'ri, bu test to'g'ri kodni qizil qiladi."
-   ],
-   [
-    "d",
-    "Xulosa: AI test yozadi — o'quvchi har biriga <b>ikki savol</b> beradi",
-    "Xulosa: AI test yozishi mumkin, lekin har testga ikki savol beriladi: expect bormi va etalon qo'lda hisoblaganda to'g'rimi. Sinfda bu qoidani doskaga yozing, o'quvchi uni har AI testida ishlatsin."
+    "Xulosa: <b>test nomi qoidani aytadi</b> — FAIL'dan qaysi qoida buzilgani darhol ko'rinadi",
+    "Xulosa: test nomini qoida sifatida yozing, masalan «bekor qilingan, tugma yo'q». Shunda FAIL'ning birinchi satridan qaysi qoida buzilganini darhol bilasiz. Shartni tiklaymiz, test yana yashil."
    ]
   ]
  },
  "15": {
-  "type": "MCRetry",
-  "kicker": "Tekshiruv 3",
-  "eyebrow": "Tekshiruv · 3 / 4",
-  "title": "FAIL · Expected: 10002 · Received: 20000. orderTotal(10000, 2). Kim xato?",
-  "q": "FAIL o'qishni ko'rdingiz, tekshirib olaylik. Uchinchi tekshiruv. O'quvchi testi qizil: expected o'n ming ikki, received yigirma ming. Funksiyaga o'n ming va ikki berilgan. Kim xato? Variantni tanlang.",
-  "ok": "To'g'ri, xato etalonda. Funksiya yigirma ming qaytardi, bu to'g'ri: o'n ming ko'paytirish ikki. Test o'n ming ikki kutgan, etalon xato. Testni tuzatasiz, kodga tegmaysiz. Demak, FAIL chiqqanda avval etalonni qo'lda hisoblang, keyin kodga qarang.",
-  "okShort": "<code>Received: 20000</code> — to'g'ri hisob. <code>Expected: 10002</code> — etalon xato. Testni tuzating.",
-  "hint": "Received — funksiya qaytargan qiymat. Uni qo'lda hisoblaganingiz bilan solishtiring.",
-  "correct": 1,
-  "opts": [
-   "Funksiya — + yozilgan",
-   "Etalon — 10000 × 2 = 20000, test 10002 kutgan",
-   "Jest — versiya eski",
-   "Hech kim — qayta npm test"
-  ],
-  "wrong": {
-   "0": "+ bo'lsa Received: 10002 bo'lardi — bu yerda Received 20000.",
-   "2": "Jest faqat solishtiradi; versiya natijani o'zgartirmaydi.",
-   "3": "Kod va test o'zgarmasa, natija ham o'zgarmaydi."
-  }
- },
- "16": {
-  "type": "Practice",
-  "kicker": "Amaliyot 3 / 4",
-  "eyebrow": "Hozir o'zingizda · 10 daqiqa",
-  "title": "Uch test va chegara xatosi",
+  "type": "Lesson",
+  "kicker": "4-bosqich · statuslar va chegara",
+  "title": "Xato ko'pincha chegarada: birinchi, oxirgi va yagona sahifa uchun alohida test",
   "seg": [
    [
     "a",
-    "Endi siz: o'quvchi uyga vazifasini o'zingiz qilasiz — uch test va <b>bitta chegara xatosi</b>",
-    "Endi o'quvchi uyga vazifasini o'zingiz qilasiz: delivery fee funksiyasiga uchta test yozasiz, keyin chegarani ataylab buzasiz. Bunga o'n daqiqa ketadi."
+    "Katalog ikkitadan sahifada: <b>◀ birinchi sahifada yo'q, ▶ oxirgisida yo'q</b>",
+    "Katalogga o'tamiz. Mahsulotlar ikkitadan sahifada ko'rsatiladi. Birinchi sahifada chap strelka yo'q, oxirgisida o'ng strelka yo'q, o'rtada ikkalasi bor. Mahsulot ikkitadan kam bo'lsa, sahifa bitta va strelka umuman yo'q."
    ],
    [
     "b",
-    "1–2-qadam: <code>delivery.ts</code> va <code>delivery.spec.ts</code> — uch <code>it</code>, <code>npm test</code> — <b>4 passed</b>",
-    "Birinchi qadamda src papkasida delivery ts faylini yozasiz. Ikkinchisida delivery spec ts faylida uchta it yozasiz: yuz ellik ming, aynan yuz ming va to'qson to'qqiz ming uchun. npm test to'rtta yashil test ko'rsatadi."
+    "To'rt vaziyat — to'rt test: <b>birinchi, o'rta, oxirgi va yagona sahifa</b>",
+    "Shu to'rt vaziyatga to'rtta test yozamiz: birinchi, o'rtadagi, oxirgi va yagona sahifa. Keyboards spec ts faylining qirq birinchi satridagi nav yordamchisi klaviaturadan faqat strelkalar qatorini oladi. Beshinchi test tugagan mahsulotni tekshiradi: uni bosib bo'lmaydi."
    ],
    [
     "c",
-    "3–4-qadam: <code>&gt;=</code> → <code>&gt;</code>, <code>npm test</code>; isbot — <b>qizil testning nomi</b>",
-    "Uchinchi qadamda katta yoki teng o'rniga faqat katta yozib, npm test qilasiz. To'rtinchisida qaysi test qizil bo'lganini nuqtali satrdan o'qib, isbot maydoniga yozasiz. Keyin funksiyani tiklang."
+    "Kichikdan katta o'rniga <b>kichik yoki teng</b>: o'rtadagi sahifa buni sezmaydi",
+    "Kodni buzamiz: keyboards ts faylining yigirma birinchi satrida kichik belgisi o'rniga kichik yoki teng. Endi oxirgi sahifada ham o'ng strelka chiqadi. Natija: ikkita test qizil, oxirgi va yagona sahifa. O'rtadagi sahifa testi yashil qoldi, chunki u chegarada emas. Jest farqni plyus belgisi bilan ko'rsatdi."
+   ],
+   [
+    "d",
+    "Xulosa: <b>har shartga chegara testi</b> — chegarasiz testlar bu xatoni ko'rmaydi",
+    "Xulosa: har shartning chegarasiga alohida test yozing: birinchi, oxirgi va yagona sahifa. Faqat o'rtadagi sahifani sinasangiz, bu xato yashirin qoladi. Kichik va kichik yoki teng farqi faqat chegarada ko'rinadi."
+   ]
+  ]
+ },
+ "16": {
+  "type": "MCRetry",
+  "kicker": "Tekshiruv 3",
+  "eyebrow": "Tekshiruv · 3 / 4",
+  "title": "Faqat ikki test bor: «birinchi sahifa» va «o'rtadagi sahifa». Kodda page <= pages - 1 yozildi. npm test nima deydi?",
+  "q": "Chegarani ko'rdingiz, endi tekshirib olaylik. Uchinchi tekshiruv. Faqat ikki test bor: birinchi sahifa va o'rtadagi sahifa. Kodda kichik yoki teng yozildi, ya'ni oxirgi sahifada ham o'ng strelka chiqadi. Npm test nima deydi? Variantni tanlang.",
+  "ok": "To'g'ri. Birinchi va o'rtadagi sahifada o'ng strelka baribir bor, xato faqat oxirgi sahifada ko'rinadi. Sinab ko'rdik: to'rt test bilan ikkitasi qizardi, oxirgi va yagona sahifa. Bu ikkisi bo'lmasa, test yashil, xato esa kodda. Demak, yashil test faqat sinalgan vaziyatlar haqida gapiradi.",
+  "okShort": "Ikkala test chegarada emas — PASS. Xatoni faqat oxirgi va yagona sahifa testlari ushlaydi.",
+  "hint": "< va <= qaysi page qiymatida har xil natija beradi? O'sha qiymat testlarda bormi?",
+  "demak": "Yashil test faqat sinalgan vaziyatlar haqida gapiradi.",
+  "correct": 0,
+  "opts": [
+   "Ikkalasi PASS — xato faqat oxirgi sahifada",
+   "Ikkalasi FAIL — strelka qoidasi buzildi",
+   "«o'rtadagi sahifa» FAIL — u ▶ ni ikki marta oladi",
+   "TypeScript xato — <= bu yerda ishlamaydi"
+  ],
+  "wrong": {
+   "1": "Birinchi sahifada ▶ to'g'ri chiqadi — xato u yerda ko'rinmaydi.",
+   "2": "O'rtada ▶ baribir bor — < ham, <= ham bir xil natija beradi.",
+   "3": "<= — to'g'ri TypeScript; xato mantiqda."
+  }
+ },
+ "17": {
+  "type": "Practice",
+  "kicker": "Amaliyot 2 / 3",
+  "eyebrow": "Hozir o'zingizda · 15 daqiqa",
+  "title": "Admin tugmalari va katalog uchun testlar yozing, keyin kodni bir marta buzib qizilni ko'ring",
+  "seg": [
+   [
+    "a",
+    "Endi siz: <b><code>keyboards.spec.ts</code></b> — statuslar va katalog chegarasi",
+    "Endi navbat sizga. Keyboards uchun test faylini yozasiz: admin tugmalari va katalog sahifalari. Ekrandagi testlarni nusxalamang, o'zingiz yozing: etalonni har safar o'zingiz o'ylab chiqasiz. O'n besh daqiqa ketadi."
+   ],
+   [
+    "b",
+    "1–2-qadam: <b>har status va to'rt sahifa</b> uchun test; hammasi yashil",
+    "Birinchi qadamda order keyboard uchun har statusga test yozasiz. Ikkinchisida catalog keyboard uchun birinchi, oxirgi va yagona sahifa testlari. Npm test keyboards: hammasi yashil bo'lishi kerak."
+   ],
+   [
+    "c",
+    "3–4-qadam: kodni <b>ataylab buzing</b>, qizilni ko'ring va tiklang; isbot — qizil test nomi",
+    "Uchinchi qadamda keyboards faylida bitta shartni buzing: bekor qilingan status yoki kichik yoki teng. Qaysi test qizarganini ko'ring. To'rtinchisida kodni git checkout bilan tiklang. Isbot maydoniga qizargan test nomini yozing."
    ],
    [
     "d",
     "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
-    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, chegaradagi xatoni faqat aynan chegara uchun yozilgan test tutishini o'zingiz ko'rdingiz."
+    "Boshqacha chiqsa, «Boshqacha chiqdimi» tugmasini bosing. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin siz har status va chegaraga test yozasiz va uning xatoni ushlashini o'zingiz isbotlagansiz."
    ]
-  ]
- },
- "17": {
-  "type": "Lesson",
-  "kicker": "5-bosqich · tuzoqlar",
-  "title": "Uch tuzoq: src/dan tashqari, .test.ts, npm ci",
-  "seg": [
+  ],
+  "steps": [
+   {
+    "t": "orderKeyboard",
+    "cmds": [
+     "src/api/telegram/keyboards.spec.ts — NEW, CONFIRMED, DELIVERED / CANCELLED",
+     "npm test -- keyboards"
+    ],
+    "exp": "3 ta ✓"
+   },
+   {
+    "t": "catalogKeyboard",
+    "cmds": [
+     "birinchi",
+     "oxirgi",
+     "yagona sahifa (0, 3",
+     "2, 3",
+     "0, 1)"
+    ],
+    "exp": "Tests: … passed"
+   },
+   {
+    "t": "Buzish",
+    "cmds": [
+     "keyboards.ts 39-satrdan o.status === 'CANCELLED' shartini o'chiring yoki 21-satrda < → <=",
+     "npm test -- keyboards"
+    ],
+    "exp": "✕ oxirgi sahifada ▶ yo'q yoki ✕ yetkazilgan va bekor qilingan — tugma yo'q"
+   },
+   {
+    "t": "Tiklash",
+    "cmds": [
+     "git checkout -- src/api/telegram/keyboards.ts",
+     "npm test"
+    ],
+    "exp": "hammasi ✓"
+   }
+  ],
+  "proof": {
+   "label": "3-qadamda qizargan (✕) testning nomi — buyruq emas",
+   "placeholder": "masalan: oxirgi sahifada ▶ yo'q",
+   "re": "(bekor|oxirgi|bitta|yagona|cancel)",
+   "flags": "i",
+   "wrong": "Bu yerga buyruqni emas, terminalda ✕ belgisi yonidagi test nomini yozing, masalan: oxirgi sahifada ▶ yo'q."
+  },
+  "trouble": [
    [
-    "a",
-    "Sinfda test yozilgan, lekin ishlamaydi — sabab ko'pincha <b>koddan tashqarida</b>",
-    "Sinfda eng ko'p vaqt test kodiga emas, sozlashga ketadi. Uchta tuzoqni oldindan bilsangiz, ularni bir daqiqada tuzatasiz."
+    "toBe bilan serializes to the same string",
+    "massiv — toEqual (13-ekran)"
    ],
    [
-    "b",
-    "Fayl loyiha ildizida yoki nomi <code>.test.ts</code> — ikkalasida <b><code>No tests found</code></b>",
-    "Birinchi va ikkinchi tuzoq fayl joyi va nomida. Sinab ko'rdik: test fayli loyiha ildizida tursa, Jest no tests found deydi. Nomi order test ts bo'lsa ham shu javob chiqadi. Xabardagi test regex satri shuni aytadi: nol mos fayl."
+    "Etalonda hide: false yo'q — FAIL",
+    "Telegraf qo'shadi: faqat text va callback_datani ajrating yoki toMatchObject"
    ],
    [
-    "c",
-    "<code>npm ci</code> bu repoda yiqiladi — lock fayl sinxron emas; <b><code>npm install</code> ishlaydi</b>",
-    "Uchinchi tuzoq: ba'zi o'quvchi npm ci deb yozadi. Bu repoda u yiqiladi: package json va lock fayl sinxron emas. Npm install ishlaydi. Bu repo muallifining kamchiligi, o'quvchining xatosi emas."
-   ],
-   [
-    "d",
-    "Xulosa: <code>No tests found</code> — <b>joy va nom</b>; <code>npm ci</code> xatosi — <code>npm install</code>",
-    "Xulosa: no tests found ko'rsangiz, fayl joyi va nomini tekshiring, src ichida va spec ts. Npm ci yiqilsa, npm install qiling. Ikkalasi ham kodda emas, sozlamada."
+    "3-qadamda hammasi ✓",
+    "buzgan shartingizga test yo'q — o'sha vaziyatga test qo'shing (16-ekran)"
    ]
   ]
  },
  "18": {
   "type": "Lesson",
-  "kicker": "5-bosqich · tuzoqlar",
-  "title": "Bo'sh loyihada darsdagi ikki buyruq yetmaydi: to'rt xato ketma-ket",
+  "kicker": "5-bosqich · AI testi",
+  "title": "Yangi ko'nikma: AI yozgan testni qabul qilish — avval ikki AI tajribasi",
   "seg": [
    [
     "a",
-    "O'quvchi Nest emas, oddiy loyihada sinasa — <b>darsdagi buyruqlar yetmaydi</b>",
-    "Ba'zi o'quvchi testni Nest emas, oddiy bo'sh loyihada sinaydi. O'quvchi darsida ikki qadam bor: npm i minus D jest ts jest va test: jest. Sinab ko'rdik: bo'sh loyihada bu yetmaydi, to'rtta xato ketma-ket chiqadi."
+    "Yangi bosqich, yangi ko'nikma: <b>testni AI yozadi, siz uni qabul qilasiz</b>",
+    "Endi yangi bosqich boshlanadi va u boshqa ko'nikma. To'rt bosqichda testni o'zingiz yozdingiz va FAIL'ni o'qishni o'rgandingiz. Ishda esa testni ko'pincha AI yozadi. Sizning ishingiz endi yozish emas, qabul qilish: AI yozgan test haqiqatan xatoni ushlaydimi. Buni ikki xil AI bilan haqiqiy tajribada ko'ramiz."
    ],
    [
     "b",
-    "1-xato: <b><code>Must use import to load ES Module</code></b> — Jest TypeScript'ni o'qishni bilmaydi",
-    "Birinchi xato: must use import to load ES module. Jest TypeScript faylni o'qishni bilmaydi, unga sozlama kerak. Yechim: npx ts jest config init, u jest config faylini yaratadi."
+    "Prompt bitta gap: <b>«test yozib ber, yashil bo'lsin»</b> — mentor odatda shunday yozadi",
+    "Tajriba bunday edi. Biz ikki xil AI'ga bir xil oddiy prompt berdik: texts va keyboards uchun jest testlar yozib ber, npm test yashil bo'lsin. Ataylab qisqa, chunki mentor ko'pincha shunday yozadi. Har AI loyihaning alohida nusxasida ishladi."
    ],
    [
     "c",
-    "2-xato: <code>Cannot find name 'describe'</code> — <code>@types/jest</code> kerak; 3-xato: <b>TypeScript 6 yoki 7</b>",
-    "Ikkinchi xato: cannot find name describe, chunki Jest turlari yo'q. Yechim types jest va typescript paketlarini o'rnatish. Lekin shunda uchinchi xato chiqadi: eng yangi TypeScript o'rnatiladi. Alohida o'rnatilsa yettinchi, boshqa paketlar bilan birga oltinchi. Ikkalasida ham ts jest ishlamaydi."
+    "Ikkalasi <b>faqat ikki test fayl qo'shdi</b>, kodga tegmadi: 36 va 33 test, hammasi yashil",
+    "Natija yaxshi ko'rinadi. Ikkalasi faqat ikkita test fayl qo'shdi, kodga tegmadi, git diff stat buni tasdiqlaydi. Birinchisi o'ttiz olti, ikkinchisi o'ttiz uchta test yozdi, hammasi yashil. Ikkalasi bo'linmas probelni ham o'zi sezdi."
    ],
    [
     "d",
-    "Yechim: <b><code>typescript@5</code></b> — bo'sh loyiha ham yashil: <code>PASS ./order.spec.ts</code>",
-    "Yechim: typescript beshinchi versiyasini o'rnatish. Shundan keyin bo'sh loyiha ham yashil. Jami uchta qo'shimcha buyruq kerak bo'ldi: config init, types jest va typescript besh. Nest loyihasida bularning hammasi tayyor."
+    "Lekin probelni <b>ikki xil hal qildi</b>: biri almashtiradi, biri ko'rinmas belgini qo'ydi",
+    "Lekin probelni ikki xil hal qildi. Birinchisi solishtirishdan oldin bo'linmas probelni oddiysiga almashtiradi va yana bir belgi haqida yozdi: Node versiyasiga qarab u boshqa belgi bo'lishi mumkin. Bizdagi Node'da bunday emas, sinab ko'rdik. Ikkinchisining etalonida esa ko'rinmas belgining o'zi turibdi, yettinchi ekrandagi tuzoq."
    ],
    [
     "e",
-    "Xulosa: test — <b>Nest loyihasida</b>; bo'sh loyihada — <code>config:init</code>, <code>@types/jest</code>, <code>typescript@5</code>",
-    "Xulosa: sinfda testni o'quvchi reposida yozdiring, u yerda hammasi tayyor. O'quvchi baribir bo'sh loyihada sinasa, uchta buyruq: ts jest config init, types jest va typescript besh. Oltinchi va yettinchi TypeScript bilan ts jest hozircha ishlamaydi."
+    "Xulosa: <b>«hammasi yashil» — tekshiruv emas</b>; testning o'zini tekshirish kerak",
+    "Xulosa: ikki AI ham va'dasini bajardi, testlar yashil. Lekin yashil test yaxshi test degani emas. AI aytgan gapni ham tekshiramiz. Testning o'zi xatoni ushlaydimi, buni bilishning bitta ishonchli usulini keyingi ekranda ko'rasiz."
    ]
   ]
  },
  "19": {
-  "type": "MCRetry",
-  "kicker": "Tekshiruv 4",
-  "eyebrow": "Tekshiruv · 4 / 4",
-  "title": "Bo'sh loyiha: The TypeScript compiler \"typescript\" (version 7.0.2) does not expose … required by ts-jest. Nima qilasiz?",
-  "q": "Zanjirni ko'rdingiz, tekshirib olaylik. To'rtinchi tekshiruv. O'quvchi bo'sh loyihada TypeScript o'rnatdi va xabar oldi: TypeScript yettinchi versiya ts jest uchun kerakli qismni bermaydi. Nima qilasiz? Variantni tanlang.",
-  "ok": "To'g'ri. Ts jest hozircha TypeScript beshinchi versiyasi bilan ishlaydi. Typescript besh o'rnatilgach, sinab ko'rdik, test yashil. Nest reposida TypeScript besh allaqachon turibdi, shuning uchun u yerda bu xato chiqmaydi. Demak, ts jest bilan TypeScript beshinchi versiyasi ishlatiladi.",
-  "okShort": "<code>typescript@5</code> → <code>PASS</code>. Nest reposida TypeScript 5.9 allaqachon bor.",
-  "hint": "Xabar versiya haqida: qaysi versiya ts-jest bilan ishlaydi?",
-  "correct": 3,
-  "opts": [
-   "ts-jestni o'chirish",
-   "npm ci",
-   "Test faylini .js qilish",
-   "npm i -D typescript@5"
-  ],
-  "wrong": {
-   "0": "ts-jestsiz Jest TypeScript faylni o'qiy olmaydi — birinchi xatoga qaytasiz.",
-   "1": "npm ci lock fayldagi versiyani qayta o'rnatadi, yangisini tanlamaydi — sinab ko'rdik, versiya o'zgarmadi.",
-   "2": ".js nomida Jest TypeScript'ni o'qiy olmaydi — sinab ko'rdik: Jest encountered an unexpected token."
-  }
- },
- "20": {
-  "type": "Practice",
-  "kicker": "Amaliyot 4 / 4",
-  "eyebrow": "Hozir o'zingizda · 5 daqiqa",
-  "title": "Fayl joyi va nomi — ikki tuzoqni qo'l bilan ko'ring",
+  "type": "Lesson",
+  "kicker": "5-bosqich · ichida",
+  "title": "Test to'plamini kodni buzib tekshiramiz: qizarmasa — o'sha buzilish himoyasiz",
   "seg": [
    [
     "a",
-    "Endi siz: sinfdagi eng ko'p savolni o'zingiz chiqarasiz — <b><code>No tests found</code></b>",
-    "Oxirgi amaliyot qisqa, besh daqiqalik. Sinfdagi eng ko'p uchraydigan xabarni, no tests found'ni, o'zingiz chiqarasiz."
+    "Usul oddiy: <b>kodni ataylab buzing</b> va nechta test qizarganini sanang",
+    "Usul oddiy: kodni ataylab buzing va nechta test qizarganini sanang. Bitta ham qizarmasa, o'sha buzilish himoyasiz. Biz beshta buzish oldik: narx formati, savatdagi narx, bekor qilingan buyurtma tugmasi, oxirgi sahifa va status matni. Uchala to'plamni sinadik."
    ],
    [
     "b",
-    "1–2-qadam: <code>order.spec.ts</code>ni <b>loyiha ildiziga</b> ko'chiring — <code>No tests found</code>",
-    "Birinchi qadamda order spec ts'ni src'dan loyiha ildiziga ko'chirib, importni moslang. Ikkinchisida npm test qiling: no tests found chiqadi. Xabardagi testRegex satrini o'qing."
+    "Bizning <b>o'n testimiz ikki buzilishni sezmadi</b>: matnlarni sinamaganmiz",
+    "Avval o'zimiznikini tan olamiz. Bizning o'nta testimiz ikki buzilishni sezmadi: savatdagi narx va status matni. Sababi oddiy: texts faylidan faqat som'ni sinaganmiz. Test yo'q joy himoyasiz."
    ],
    [
     "c",
-    "3–4-qadam: <code>src/</code>ga qaytarib, nomini <b><code>.test.ts</code></b> qiling; isbot — xabarning birinchi satri",
-    "Uchinchi qadamda faylni src'ga qaytaring, lekin nomini order test ts qiling: yana no tests found chiqadi. To'rtinchisida nomini spec ts'ga qaytaring, test yashil bo'ladi. Isbot maydoniga xabarning birinchi satrini nusxalang."
+    "36 test <b>status matni o'zgarganini sezmadi</b>: <code>toBeTruthy</code> faqat «bormi» deydi",
+    "O'ttiz olti testli to'plam ham status matni o'zgarganini sezmadi. Uning testi faqat har status uchun qandaydir matn borligini tekshiradi, to be truthy bilan. Matn o'zgarsa ham test yashil. Ikkinchi to'plamda esa som buzilganda o'ttiz uchdan faqat bittasi qizardi: etaloni koddan olingan testlar."
+   ],
+   [
+    "d",
+    "Xulosa: <b>test soni sifat emas</b> — qaysi buzilishni ushlashi sifat",
+    "Xulosa: test soni sifat emas. O'ttiz olti test ham bitta buzilishni o'tkazib yubordi. Sifat — test qaysi buzilishni ushlashi. AI test yozgandan keyin uch to'rt joyda kodni buzib ko'ring. Qizarmagan joyga test qo'shing."
+   ]
+  ]
+ },
+ "20": {
+  "type": "MCRetry",
+  "kicker": "Tekshiruv 4",
+  "eyebrow": "Tekshiruv · 4 / 4",
+  "title": "AI testi: expect(STATUS_UZ.CANCELLED).toBeTruthy(). Kimdir matnni «Bekor qilingan» dan «Yangi» ga o'zgartirdi. Test nima deydi?",
+  "q": "Buzib tekshirishni ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. AI testi bekor qilingan status matnini to be truthy bilan tekshiradi. Kimdir matnni xato bilan yangi deb o'zgartirdi: mijoz bekor qilingan buyurtmasini yangi deb ko'radi. Test nima deydi? Variantni tanlang.",
+  "ok": "To'g'ri. To be truthy faqat qiymat bo'sh emasligini tekshiradi. Yangi degan matn ham bo'sh emas, shuning uchun test yashil. Mijoz esa noto'g'ri status ko'radi. Etalonni aniq yozsangiz, test qizaradi. Demak, to be truthy qiymat borligini tekshiradi, to'g'riligini emas.",
+  "okShort": "«Yangi» matni ham bo'sh emas — PASS. Statusning to'liq matnini kutgan aniq <code>toBe</code> buni ushlaydi.",
+  "hint": "toBeTruthy qaysi qiymatlarda FAIL beradi? «Yangi» matni shulardan birimi?",
+  "demak": "<code>toBeTruthy</code> qiymat borligini tekshiradi, to'g'riligini emas.",
+  "correct": 1,
+  "opts": [
+   "FAIL — toBeTruthy matn o'zgarganini sezadi",
+   "PASS — toBeTruthy faqat bo'sh emasmi deydi",
+   "TypeScript xato — status matni turi o'zgardi",
+   "FAIL — ikki status endi bir xil matnda"
+  ],
+  "wrong": {
+   "0": "toBeTruthy matnni etalon bilan solishtirmaydi — faqat bo'sh emasmi.",
+   "2": "Ikkalasi ham string — turi o'zgarmadi.",
+   "3": "Fayl joyi va nomi o'zgarmadi."
+  }
+ },
+ "21": {
+  "type": "Practice",
+  "kicker": "Amaliyot 3 / 3",
+  "eyebrow": "Hozir o'zingizda · 20 daqiqa",
+  "title": "O'z AI'ingizga aniq shartli prompt bering, keyin to'rt tekshiruv va uchta buzish",
+  "seg": [
+   [
+    "a",
+    "Endi siz: AI'ga <b>shartlari aniq prompt</b> berasiz — <code>texts.ts</code> dagi buyurtma matnlari uchun",
+    "Endi navbat sizga. O'z AI'ingizga test yozdirasiz, lekin bu safar shartlari aniq prompt bilan. Mavzu: texts faylidagi savat va buyurtma matnlari. Promptni pastdagi tugma bilan nusxalaysiz. Yigirma daqiqa ketadi."
+   ],
+   [
+    "b",
+    "1–2-qadam: prompt va <b>diff — faqat <code>.spec.ts</code></b>, etalonda <code>${…}</code> yo'q",
+    "Birinchi qadamda promptni berasiz. Ikkinchisida natijani tekshirasiz: git diff stat'da faqat spec fayl bo'lsin, har it'da expect bo'lsin, etalonda dollar va qavs ichida funksiya chaqirilmasin."
+   ],
+   [
+    "c",
+    "3–4-qadam: <b>uchta buzish</b> — hammasi qizarsin; isbot — qizarmagan buzish yoki «hammasi»",
+    "Uchinchi qadamda kodni uch joyda navbat bilan buzasiz: narx formati, savatdagi narx va status matni. Har biridan keyin npm test, keyin git checkout. Qizarmagan joy bo'lsa, AI'dan o'sha joyga test so'rang. Isbot maydoniga natijani yozing."
    ],
    [
     "d",
     "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
-    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, sinfda no tests found chiqsa, siz sababini fayl joyi va nomidan darhol topasiz."
+    "Boshqacha chiqsa, «Boshqacha chiqdimi» tugmasini bosing. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin siz AI yozgan testni soniga qarab emas, buzib tekshirib qabul qilasiz."
    ]
-  ]
- },
- "21": {
-  "type": "Lesson",
-  "kicker": "6-bosqich · o'quvchi darsini o'tish",
-  "eyebrow": "m4b-01 · «Unit-test: Jest»",
-  "title": "m4b-01: Jestbot, varaqa va etalon — amaliyot o'quvchi loyihasida",
-  "seg": [
+  ],
+  "steps": [
+   {
+    "t": "Prompt",
+    "cmds": [
+     "yuqoridagi prompt — o'z AI'ingizga",
+     "npm test"
+    ],
+    "exp": "PASS"
+   },
+   {
+    "t": "To'rt tekshiruv",
+    "cmds": [
+     "git diff --stat — faqat .spec.ts",
+     "har itda expect",
+     "etalonda ${som( yoki ${STATUS_UZ yo'q",
+     "grep -c 'u00a0' src/api/telegram/texts.spec.ts — 0 dan katta (escape matni bor)"
+    ],
+    "exp": "4 ✓"
+   },
+   {
+    "t": "Uch buzish",
+    "cmds": [
+     "texts.ts: 'ru-RU' → 'en-US'",
+     "(i.price ?? i.product.price) → i.product.price",
+     "'❌ Bekor qilingan' → '🆕 Yangi' — har biridan keyin npm test va git checkout -- src/api/telegram/texts.ts"
+    ],
+    "exp": "har biri ✕"
+   },
+   {
+    "t": "Qizarmagan joy",
+    "cmds": [
+     "AI'ga: «<buzish> ni hech bir test ushlamadi — shu qoidaga test yoz»",
+     "3-qadamni qaytaring"
+    ],
+    "exp": "uchalasi ✕"
+   }
+  ],
+  "proof": {
+   "label": "Uch buzishning natijasi",
+   "placeholder": "masalan: uchalasi qizardi · yoki: savatdagi narx — avval qizarmadi, test qo'shdim",
+   "re": "(qizar|fail|✕|uchala|hammasi|test qo'sh)",
+   "flags": "i",
+   "wrong": "Har buzishdan keyin npm test natijasini yozing."
+  },
+  "trouble": [
    [
-    "a",
-    "m4b-01 — 21 ekran: ko'p qismida o'quvchi <b>Jestbot</b> bilan o'ynaydi, terminalni amaliyotda ko'radi",
-    "Endi o'quvchi darsini ko'ramiz: m4b-01, unda yigirma bir ekran bor. Ko'p qismida o'quvchi Jestbot degan robot bilan ishlaydi: varaqa yig'adi, etalon qo'yadi, kodni buzadi. Haqiqiy terminalni u faqat amaliyotda, o'z loyihasida ko'radi."
+    "git diff --stat da texts.ts ham bor",
+    "AI kodni o'zgartirdi — git checkout -- src/api/telegram/texts.ts, promptdagi «Tegma» bandini takrorlang"
    ],
    [
-    "b",
-    "Yozish bloki: o'quvchi darsi haqiqiy chiqishni ko'rsatmaydi — siz <b>6-ekrandagini ko'rsatasiz</b>",
-    "Yozish blokida o'quvchi darsi natijani kartochka bilan ko'rsatadi, haqiqiy terminal chiqishini emas. Siz proyektorda oltinchi ekrandagi haqiqiy PASS'ni ko'rsating: fayl, guruh, holat va jami."
+    "Etalonda ${som(…)} qoldi",
+    "AI shartni bajarmadi — o'sha satrlarni qo'lda yozing (10-ekran)"
    ],
    [
-    "c",
-    "Buzish bloki: FAIL o'qish tartibi va <b>«kim xato» savoli</b> — ikkalasi sizdan",
-    "Buzish blokida o'quvchi expected va received'ni ko'radi. Siz o'qish tartibini o'rgatasiz: avval nuqtali satr, keyin expected va received, oxirida funksiya. Va har FAIL'da savol: kim xato, kodmi yoki etalonmi."
+    "AI «\\u00a0 bilan ochiq yozdim» dedi, grep -c 'u00a0' → 0",
+    "faylda ko'rinmas belgining o'zi — ikkala AI'da ham shunday chiqdi (p2/XULOSA); qatorlarni qo'lda \\u00a0 bilan yozing, keyin npm test"
    ],
    [
-    "d",
-    "Xulosa: amaliyot oldidan — repo <code>npm install</code> bilan, test <b><code>src/</code> ichida</b>, nomi <code>.spec.ts</code>",
-    "Xulosa: amaliyot oldidan uch narsani tekshiring. Repo npm install bilan o'rnatilgan, test fayli src ichida, nomi spec ts bilan tugaydi. Vaqt, taklif: to'qson daqiqaning yigirma beshi amaliyotga, chunki sozlashda vaqt ketadi."
+    "Savatdagi narx buzilishida hammasi ✓",
+    "price (buyurtma paytidagi narx) va product.price har xil bo'lgan test yo'q — ikkalasini farqli qilib test so'rang"
+   ],
+   [
+    "sed yoki tahrirdan keyin fayl o'zgarmadi",
+    "qo'lda tahrir qiling va saqlang (VS Code'da nuqta — saqlanmagan)"
    ]
   ]
  },
  "22": {
   "type": "Lesson",
-  "kicker": "6-bosqich · o'quvchi darsini o'tish",
-  "title": "O'quvchi darsidagi so'zlar: Jestbot, robot papkasi, sinov varaqasi, etalon kartochkasi",
+  "kicker": "6-bosqich · sinfga tayyorgarlik",
+  "eyebrow": "m4b-01 · «Unit-test: Jest»",
+  "title": "O'quvchi darsi: KitobShop sayti, bitta orderTotal funksiyasi va Jestbot — siz bilgan yo'lning kichik varianti",
   "seg": [
    [
     "a",
-    "O'quvchi darsi testni <b>robot misolida</b> tushuntiradi — siz har so'zni atamasi bilan birga aytasiz",
-    "Endi o'quvchi darsida qanday so'zlar ishlatilishini ko'ramiz. AI Startup kursidagi o'quvchi darsi testni robot misolida tushuntiradi, robotning ismi Jestbot. Siz har so'zni ham, uning atamasini ham bilasiz va sinfda ikkalasini birga aytasiz."
+    "m4b-01 — 21 ekran: <b>KitobShop sayti</b>, <code>orderTotal</code> — narx ko'paytirish son",
+    "Endi sinfga tayyorgarlik, ikki ekran. O'quvchi darsi m4b-01, yigirma bir ekran. Misol — KitobShop sayti: order total funksiyasi narxni songa ko'paytiradi. Ya'ni bot emas, sayt. Lekin describe, it va expect xuddi bugungidek, chunki test faqat funksiyani chaqiradi."
    ],
    [
     "b",
-    "Papka — <code>describe</code>, varaqa — <code>it</code>, <b>etalon kartochkasi — <code>expect</code></b>",
-    "Robot papkasi bu describe: u qaysi mashina sinalayotganini aytadi. Sinov varaqasi bu it: u nima tekshirilishini aytadi. Etalon kartochkasi bu expect: u qanday natija kutilishini aytadi. Mashina esa funksiyaning o'zi."
+    "O'quvchi darsi <b>Jestbot robot</b> misolida tushuntiradi — siz so'zni atamasi bilan aytasiz",
+    "O'quvchi darsi testni robot misolida tushuntiradi, robotning ismi Jestbot. Robot papkasi bu describe, sinov varaqasi bu it, etalon kartochkasi bu expect. Sinfda ikkalasini birga ayting: etalon kartochkasi, ya'ni expect, va o'sha satrni ko'rsating."
    ],
    [
     "c",
-    "Yolg'on test va uch qadam — o'quvchi bularni so'z bilan ham, <b>kodda ham taniydi</b>",
-    "Yolg'on test deganda etalon kartochkasi yo'q yoki noto'g'ri test tushuniladi. Uch qadam esa tayyorlash, chaqirish va tekshirish. O'quvchi bularni kodda ham tanishi kerak, shuning uchun har so'zni ekrandagi kod satri bilan ko'rsating."
+    "Siz qo'shasiz: <b>haqiqiy FAIL, kim xato, chegara va buzib ko'rish</b>",
+    "Darsga siz qo'shadigan narsalar: o'quvchi darsi natijani kartochkada ko'rsatadi, siz proyektorda haqiqiy FAIL'ni o'qib bering. Har FAIL'da savol bering: kim xato, kodmi yoki etalonmi. Uyga vazifadagi delivery fee'da aynan chegara qiymatini sinattiring. Test yashil bo'lsa, kodni bir marta buzdiring."
    ],
    [
     "d",
-    "Xulosa: «etalon kartochkasi, ya'ni <code>expect</code>» — so'zni <b>kod satri bilan birga</b> ko'rsating",
-    "Xulosa: so'zlarni birga ayting, masalan etalon kartochkasi, ya'ni expect, va o'sha satrni ko'rsating. Metafora testni tushuntiradi, lekin terminaldagi so'zlar inglizcha: PASS, FAIL, expected, received."
+    "Xulosa: amaliyot oldidan — <b>test <code>src/</code> ichida, nomi <code>.spec.ts</code></b>, <code>npm install</code> qilingan",
+    "Xulosa: amaliyot oldidan uch narsani tekshiring. Repo npm install bilan o'rnatilgan, test fayli src ichida, nomi spec ts bilan tugaydi. Vaqt bo'yicha taklif: to'qson daqiqaning yigirma beshi amaliyotga, chunki sozlashda vaqt ketadi."
    ]
   ]
  },
  "23": {
   "type": "Lesson",
-  "kicker": "6-bosqich · o'quvchi darsini o'tish",
-  "title": "Darsdagi o'rnatish qadami Nest reposida keraksiz, lekin zararsiz",
+  "kicker": "6-bosqich · sinfga tayyorgarlik",
+  "title": "Beshta vaziyat va tayyor javoblar — to'rttasini bugun o'zingiz ko'rdingiz",
   "seg": [
    [
     "a",
-    "O'quvchi darsi Jest'ni o'rnatishni buyuradi — Nest reposida u <b>allaqachon bor</b>",
-    "O'quvchi darsining beshinchi ekrani Jest'ni o'rnatishni buyuradi: npm i minus D jest ts jest va test: jest. Nest reposida ikkalasi allaqachon bor. O'quvchi «nega o'rnatyapmiz, bor-ku?» desa, javob tayyor bo'lsin."
+    "Sinfda albatta chiqadigan beshta vaziyat — <b>to'rttasi bugun sizda ham chiqdi</b>",
+    "Endi o'quvchi darsida albatta chiqadigan beshta vaziyatni ko'ramiz. To'rttasini bugun o'zingiz ko'rdingiz, shuning uchun qisqa aytaman. Beshinchisi o'quvchi reposiga xos."
    ],
    [
     "b",
-    "Sinab ko'rdik: faqat versiyalar ko'tarildi, testlar yashil — <b>zarari yo'q</b>",
-    "Sinab ko'rdik: buyruqdan keyin jest va ts jest kichik versiyaga ko'tarildi, testlar yashil qoldi. Zarari yo'q. Ikkinchi qism, test: jest, package json'da allaqachon shunday yozilgan."
+    "Topilmadi va <code>npm ci</code> — <b>joy, nom va <code>npm install</code></b>",
+    "Birinchisi no tests found: fayl joyi va nomini tekshiring. Ikkinchisi o'quvchi reposiga xos: npm ci yiqiladi, chunki package json va lock fayl sinxron emas. Npm install qiling. Bu repo kamchiligi, o'quvchining xatosi emas."
    ],
    [
     "c",
-    "Tavsiya: o'quvchi buyruqni bajarsin, siz <b>«Nest buni oldindan qo'ygan»</b> deb izohlang",
-    "Tavsiya: o'quvchi buyruqni bajaraversin, zarar yo'q. Siz bir gap qo'shing: Nest loyihasi Jest'ni oldindan qo'ygan, bu buyruq uni yangilaydi. O'quvchi bo'sh loyihada qilsa, o'n sakkizinchi ekrandagi zanjir."
+    "Yolg'on yashil va bir xil ko'ringan FAIL — <b><code>expect</code>, qo'lda etalon, <code>toEqual</code></b>",
+    "Uchinchisi: test yashil, lekin expect yo'q yoki etalon koddan olingan. To'rtinchisi: qatorlar bir xil, test qizil: ko'rinmas belgi yoki massivni to be bilan solishtirish. Beshinchisi bo'sh loyiha: eng tez yo'l testni o'quvchi reposida yozdirish."
    ],
    [
     "d",
-    "Xulosa: Nest reposida — zararsiz; bo'sh loyihada — <b>yetarli emas</b>",
-    "Xulosa: darsdagi o'rnatish qadami Nest reposida zararsiz, bo'sh loyihada esa yetarli emas. Shuning uchun sinfda testni o'quvchi reposida yozdiring."
+    "Xulosa: o'quvchi «AI yozdi, yashil» desa — <b>bitta joyni buzdiring</b>",
+    "Xulosa va usul: o'quvchi AI test yozdi, hammasi yashil desa, kodda bitta joyni o'zi buzsin va test qizarishini ko'rsin. Javobni darhol aytmang, terminaldagi xabarni birga o'qing. Pastda o'quvchi savollariga tayyor javoblar bor."
    ]
   ]
  },
  "24": {
-  "type": "Lesson",
-  "kicker": "6-bosqich · sinfda",
-  "title": "Olti holat va tayyor javoblar",
-  "seg": [
-   [
-    "a",
-    "Sinfda albatta chiqadigan <b>olti holat</b> — hammasini bugun o'zingiz ko'rdingiz",
-    "Endi sinfda albatta chiqadigan oltita holatni ko'ramiz. Hammasini bugun o'zingiz ko'rdingiz, shuning uchun qisqa aytaman."
-   ],
-   [
-    "b",
-    "Topilmadi va o'rnatish — joy, nom va <b><code>npm install</code></b>",
-    "Birinchi holat no tests found: fayl joyi va nomini tekshiring. Ikkinchisi: npm ci yiqilsa, npm install qiling."
-   ],
-   [
-    "c",
-    "Yolg'on yashil, qizil to'g'ri kod va chegara — <code>expect</code>, etalon, <b>uch test</b>",
-    "Uchinchisi: test yashil, lekin ichida expect yo'q. To'rtinchisi: test qizil, lekin kod to'g'ri, bunda etalonni qo'lda hisoblang. Beshinchisi: faqat aynan chegaradagi test qizil, shuning uchun har shartga uchta test yoziladi."
-   ],
-   [
-    "d",
-    "Xulosa: bo'sh loyiha — o'quvchi reposiga qaytaring; avval <b>xabarni birga o'qing</b>",
-    "Oltinchisi bo'sh loyihadagi xatolar zanjiri: eng tez yo'l testni o'quvchi reposida yozdirish. Xulosa va usul bitta: javobni darhol aytmang, terminaldagi xabarni o'quvchi bilan birga o'qing. Pastda o'quvchi savollariga tayyor javoblar bor."
-   ]
-  ]
- },
- "25": {
   "type": "Screen27",
   "kicker": "O'z-sinov",
   "title": "Sakkiz savol. Bitta urinish. Oltitasi — o'tdingiz",
   "final": [
    {
-    "q": "O'quvchi reposida Jest test faylini qayerdan qidiradi?",
+    "q": "package.json: rootDir: \"src\", testRegex: \".*\\\\.spec\\\\.ts$\". Fayl src/order.test.ts. npm test?",
     "o": [
-     "butun loyihadan, istalgan nom",
-     "src/ ichidan, nomi .spec.ts",
-     "test/ papkasidan",
-     "faqat package.json yonidan"
+     "No tests found — nomi .spec.ts emas",
+     "PASS — Jest .test.ts ni ham oladi",
+     "Cannot find module — order topilmadi",
+     "PASS — rootDir: src bo'lgani yetadi"
     ],
-    "c": 1,
-    "e": "rootDir: src, testRegex: .*\\.spec\\.ts$.",
+    "c": 0,
+    "e": "Nomi .spec.ts emas.",
     "s": 3
    },
    {
-    "q": "Testda expect yo'q, faqat console.log(result). Natija?",
+    "q": "Expected: \"120 000 so'm\" · Received: \"120 000 so'm\" — test FAIL. Birinchi qadam?",
     "o": [
-     "PASS — hech narsa tekshirilmadi",
-     "FAIL",
-     "No tests found",
-     "SyntaxError"
+     "Jest'ni qayta o'rnatib, yana yurgizish",
+     "Belgilar kodini chiqarib solishtirish",
+     "Testni o'chirib, qo'lda tekshirib ko'rish",
+     "toBe o'rniga toBeTruthy qo'yish"
     ],
-    "c": 0,
-    "e": "it ichida xato tashlanmasa — o'tdi.",
-    "s": 10
+    "c": 1,
+    "e": "toBe belgi-belgi solishtiradi: U+00A0.",
+    "s": 7
    },
    {
-    "q": "Expected: 20000 · Received: 10002. Nima bo'lgan?",
+    "q": "it ichida faqat console.log(som(120000)). Natija?",
     "o": [
-     "Etalon xato",
-     "Jest eskirgan",
-     "Funksiya noto'g'ri hisobladi (+)",
-     "Test topilmadi"
+     "FAIL — expect yo'qligi xato sanaladi",
+     "No tests found — bo'sh it sanalmaydi",
+     "PASS — Jest hech narsani solishtirmadi",
+     "SyntaxError — testda console.log taqiq"
     ],
     "c": 2,
-    "e": "Received — funksiya qaytargan; 10000 + 2.",
-    "s": 8
-   },
-   {
-    "q": "Expected: 10002 · Received: 20000, orderTotal(10000, 2). Nima qilasiz?",
-    "o": [
-     "Funksiyani o'zgartiraman",
-     "npm install",
-     "Testni o'chiraman",
-     "Etalonni 20000 ga tuzataman"
-    ],
-    "c": 3,
-    "e": "Funksiya to'g'ri — etalon xato.",
+    "e": "Xatoni faqat expect tashlaydi.",
     "s": 9
    },
    {
-    "q": "deliveryFee: >= o'rniga > yozildi. Qaysi test qizil?",
+    "q": "Etalon: ` Jami: ${som(100000)} . som` buzildi. Test?",
     "o": [
-     "aynan 100 000",
-     "150 000",
-     "99 000",
-     "hammasi"
+     "FAIL — som buzilgani darhol sezildi",
+     "TypeScript xato — shablon satr noto'g'ri",
+     "Cannot find module — som import bo'lmadi",
+     "PASS — etalon ham u bilan birga buzildi"
+    ],
+    "c": 3,
+    "e": "Etalon qo'lda yoziladi.",
+    "s": 10
+   },
+   {
+    "q": "expect(buttons).toBe([['◀', '1/3']]) — massivlar bir xil, lekin FAIL. Sabab?",
+    "o": [
+     "toBe bitta obyektni kutadi — toEqual kerak",
+     "Massivdagi strelka belgisi boshqa kodda",
+     "Jest eskirgan — massivni solishtira olmaydi",
+     "Emoji'lar massivda boshqacha saqlanadi"
     ],
     "c": 0,
-    "e": "Farq faqat chegarada.",
+    "e": "serializes to the same string.",
     "s": 13
    },
    {
-    "q": "O'quvchi npm ci qildi — in sync xatosi. Nima deysiz?",
+    "q": "Testlar faqat birinchi va o'rtadagi sahifani sinaydi, kodda <= xato. Natija?",
     "o": [
-     "Jest'ni qayta o'rnating",
-     "npm install qiling",
-     "Repoyni o'chiring",
-     "Node'ni yangilang"
+     "Ikkalasi FAIL — <= hamma sahifani buzadi",
+     "Ikkalasi PASS — xato chegarada yashirin",
+     "O'rtadagisi FAIL — u ▶ ni ikki marta oladi",
+     "TypeScript xato — <= sonlar uchun emas"
     ],
     "c": 1,
-    "e": "Lock fayl sinxron emas — npm install.",
-    "s": 17
+    "e": "Yashil test faqat sinalgan vaziyat haqida.",
+    "s": 16
    },
    {
-    "q": "Bo'sh loyiha: TypeScript 7.0.2 — does not expose … required by ts-jest. Yechim?",
+    "q": "AI 36 test yozdi, hammasi yashil. Qabul qilishdan oldin eng ishonchli tekshiruv?",
     "o": [
-     "ts-jestni o'chirish",
-     "npm ci",
-     "npm i -D typescript@5",
-     "faylni .js qilish"
+     "Test sonini sanab, 30 dan ko'pligini ko'rish",
+     "Testlarni qayta yurgizib, yana yashil ko'rish",
+     "Kodni 3 joyda buzib, test qizarishini ko'rish",
+     "AI'dan «hammasini tekshirdingmi» deb so'rash"
     ],
     "c": 2,
-    "e": "ts-jest TypeScript 5 bilan ishlaydi (6 va 7 bilan — yo'q).",
-    "s": 18
+    "e": "Son emas — ushlagan buzilish.",
+    "s": 19
    },
    {
-    "q": "AI 5 ta test yozdi. Har biriga qaysi ikki savol?",
+    "q": "expect(STATUS_UZ.CANCELLED).toBeTruthy(), matn «Yangi» ga o'zgardi. Test?",
     "o": [
-     "Tezmi va qisqami?",
-     "Nomi inglizchami?",
-     "Nechta satr?",
-     "expect bormi va etalon to'g'rimi?"
+     "FAIL — matn «bekor» emas, «yangi» bo'ldi",
+     "No tests found — STATUS_UZ topilmadi",
+     "TypeScript xato — matn turi o'zgardi",
+     "PASS — toBeTruthy faqat bo'sh emasmi"
     ],
     "c": 3,
-    "e": "Yolg'on testning ikki turi.",
-    "s": 14
+    "e": "toBeTruthy — bormi, to'g'rimi emas.",
+    "s": 20
    }
   ]
  },
- "26": {
+ "25": {
   "type": "Screen28",
   "kicker": "Yakun",
   "title": "Endi siz bilasiz"

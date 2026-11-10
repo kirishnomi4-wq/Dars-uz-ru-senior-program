@@ -1,0 +1,11 @@
+# package.json ga dayjs qo\x27shildi, package-lock.json o\x27zgarmadi
+$ npm ci --no-audit --no-fund
+npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+
+added 633 packages in 5s
+npm warn allow-scripts 1 package has install scripts not yet covered by allowScripts:
+npm warn allow-scripts   @parcel/watcher@2.6.0 (install: node scripts/build-from-source.js)
+npm warn allow-scripts
+npm warn allow-scripts Run `npm approve-scripts --allow-scripts-pending` to review, or `npm approve-scripts <pkg>` to allow.
+[chiqish kodi: 0 · 5.2 s]
+

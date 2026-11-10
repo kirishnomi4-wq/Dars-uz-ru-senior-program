@@ -1,0 +1,14 @@
+$ npx jest keyboards --verbose
+PASS src/api/telegram/keyboards.spec.ts
+  orderKeyboard
+    ✓ yangi buyurtma — Tasdiqlash va Bekor (3 ms)
+    ✓ tasdiqlangan — Yetkazildi va Bekor
+    ✓ yetkazilgan va bekor qilingan — tugma yo'q (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       3 passed, 3 total
+Snapshots:   0 total
+Time:        0.417 s, estimated 1 s
+Ran all test suites matching keyboards.
+[chiqish kodi: 0]
+

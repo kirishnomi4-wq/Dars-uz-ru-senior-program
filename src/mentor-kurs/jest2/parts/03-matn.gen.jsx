@@ -1,6 +1,6 @@
 
 // ============================================================
-//  JEST-2 MATNLARI — AVTO: feedback/F-1029-02-mentor-kurs/dev/jest2-matn.py (manba: 12-Jest2-mentor-v1.md)
+//  Jest-2 MATNLARI — AVTO: feedback/F-1029-02-mentor-kurs/dev/jest2-matn.py (manba: 12-Jest2-mentor-v2.md, M41)
 //  QO'LDA TAHRIRLANMAYDI: matn MD'da o'zgaradi, keyin skript qayta yurgiziladi.
 // ============================================================
 const MDT = {
@@ -8,81 +8,81 @@ const MDT = {
   "type": "Lesson",
   "kicker": "Kirish",
   "eyebrow": "Mentor kursi · Jest",
-  "title": "Test to'g'ri kirishni sinadi. Noto'g'ri kirish-chi?",
+  "title": "Bot to'g'ri kirishda ishlaydi — endi noto'g'ri kirishda to'g'ri buziladimi, shuni sinaymiz",
   "seg": [
    [
     "a",
-    "Jest-1 da to'g'ri kirishni sinadingiz — bugun <b>noto'g'ri kirishni sinaymiz</b>",
-    "Assalomu alaykum. Jest birinchi darsida orderTotal'ni oddiy kirish bilan sinadingiz: o'n ming va ikki. Lekin haqiqiy do'konda mijoz nol yozadi, minus yozadi, raqam o'rniga so'z yozadi. Bugun aynan shu noto'g'ri kirishni sinaymiz."
+    "Jest-1 da «ishlaydi»ni sinadingiz — bugun <b>«buzilganda to'g'ri buziladimi»</b>",
+    "Assalomu alaykum. Jest birinchi darsida bot to'g'ri kirishda to'g'ri ishlashini sinadingiz. Bugun teskarisi: mijoz noto'g'ri yozganda, ombor yetmaganda bot to'g'ri buziladimi. Ekranda dars oxiridagi natija: beshta test fayli, yigirma beshta test, hammasi yashil."
    ],
    [
     "b",
-    "Himoyasiz funksiya xato bermaydi, balki <b>noto'g'ri natija qaytaradi</b>",
-    "Avval ko'ramiz: himoyasiz funksiya noto'g'ri kirishda xato bermaydi, balki noto'g'ri natija qaytaradi. Keyin funksiyaga himoya qo'yamiz va bu himoyani test bilan tekshiramiz."
+    "Avval <b>umumiy tushuncha</b>: uch yo'l — happy path, edge case, error path",
+    "Avval umumiy tushunchani olamiz: kodning uch yo'li bor. Happy path, ya'ni kutilgan to'g'ri kirish. Edge case, ya'ni qoidaning chegarasi. Error path, ya'ni kod ataylab xato beradigan yo'l. Bugun uchalasini botning haqiqiy joylarida ko'rasiz."
    ],
    [
     "c",
-    "Xato tashlaydigan funksiyani sinash yo'li boshqacha — uni <b>ataylab buzamiz</b>",
-    "Xato tashlaydigan funksiyani sinash yo'li boshqacha, va o'quvchilar aynan shu yerda adashadi. Uni uch xil buzamiz. Keyin TypeScript tuzog'ini va o'quvchining uyga vazifasini ko'ramiz."
+    "Telefon qoidasi, buyurtmaning uch xatosi, <b>sayt API'siga HTTP test</b>",
+    "Keyin uchta haqiqiy joy: telefon raqami qoidasi, buyurtma berishdagi uchta xato va saytning API manzili. Oxirgisi Jest birinchi darsidagi savolga javob: sayt ham xuddi shunday sinaladi. Yo'lda ikkita yashirin tuzoqni ko'rasiz: ularda Jest qizil ham bermaydi."
    ],
    [
     "d",
-    "Olti bosqich, to'rt amaliyot. <b>Shoshilmang</b>: ustoz gapirib bo'lgach Davom ochiladi",
-    "Dars olti bosqichdan iborat, to'rtta amaliyot bor. Shoshilmang: har ekranni boshidan eshitish mumkin. Ustoz gapirib bo'lgach Davom ochiladi. Boshlaymiz."
+    "Olti bosqich, uchta amaliyot; oxirida <b>ikki ekran sinfga tayyorgarlik</b>",
+    "Dars olti bosqichdan iborat, uchta amaliyotda o'zingiz yozasiz. Oxirgi ikki ekran sinfga tayyorgarlik: o'quvchi darsi xaritasi va o'quvchilar xato qiladigan joylar. Shoshilmang, har ekranni boshidan eshitish mumkin, dars qayerda to'xtaganingizni eslab qoladi. Boshlaymiz."
    ]
   ]
  },
  "2": {
   "type": "Lesson",
-  "kicker": "1-bosqich · edge",
-  "title": "Oddiy yo'l — 2 kitob. Chegaradagi qiymatlar — 0, manfiy, 1",
+  "kicker": "1-bosqich · umumiy tushuncha",
+  "title": "Har funksiyada uch yo'l bor: kutilgan kirish, chegaradagi kirish va ataylab xato — test uchalasini sinaydi",
   "seg": [
    [
     "a",
-    "<b>Happy path</b> — hamma narsa rejadagidek: mijoz to'g'ri ma'lumot kiritadi",
-    "Ikki so'zdan boshlaymiz. Birinchisi happy path, ya'ni oddiy yo'l: hamma narsa rejadagidek, mijoz ikki kitob oladi. Jest birinchi darsida aynan shuni sinadingiz."
+    "Happy path — <b>kutilgan to'g'ri kirish</b>: Jest-1 ning hamma testi shu yo'lda edi",
+    "Birinchi yo'l happy path: mijoz raqamni to'g'ri yozdi, omborda yetarli, buyurtma qabul qilindi. Jest birinchi darsidagi hamma test shu yo'lda edi. Haqiqiy do'konda esa mijozlarning hammasi ham to'g'ri yozmaydi."
    ],
    [
     "b",
-    "<b>Edge case</b> — chegaradagi qiymat: 0, manfiy va eng kichik haqiqiy qiymat 1",
-    "Ikkinchisi edge case, ya'ni chegara holati: oddiy qiymatlarning chetida turgan qiymatlar. Masalan nol dona, minus bir dona va eng kichik haqiqiy buyurtma, ya'ni bir dona. Xatolar ko'pincha aynan shu chetlarda yashiringan."
+    "Edge case — <b>qoidaning chegarasi</b>: kod xato bermaydi, lekin javob to'g'rimi?",
+    "Ikkinchi yo'l edge case, ya'ni chegara. Mijoz raqamni probel bilan yozdi. Yoki raqam aynan to'qqizta, ya'ni eng qisqa ruxsat etilgani. Yoki omborda aynan ikkita bor va ikkitasi olinadi. Kod xato bermaydi, lekin javobi to'g'rimi, buni test aytadi."
    ],
    [
     "c",
-    "<b>Noto'g'ri tur</b> ham edge case: raqam o'rniga so'z yoki bo'sh qiymat",
-    "Chegara holatining yana bir turi noto'g'ri ma'lumot: raqam o'rniga ikki degan so'z yoki umuman bo'sh qiymat, ya'ni null. Formada xato bo'lsa, server aynan shunday ma'lumot olishi mumkin."
+    "Error path — <b>kod ataylab xato beradi</b>: qaysi xabar, keyin nima bo'lmaydi",
+    "Uchinchi yo'l error path: telefon yo'q, savat bo'sh, omborda yetmaydi. Bu yerda kod ataylab xato beradi, bu to'g'ri xulq. Test xatoning o'zini kutadi: xato chiqdimi, qaysi xabar bilan, va xatodan keyin ombor o'zgarmay qoldimi."
    ],
    [
     "d",
-    "Xulosa: har funksiya uchun — bitta oddiy holat va <b>bir nechta chegara holati</b>",
-    "Xulosa: har funksiya uchun bitta oddiy holat va bir nechta chegara holati. O'quvchi darsi shunday deydi: chegara nol bilan bir orasida. Endi himoyasiz funksiya bu holatlarda nima qilishini ko'ramiz."
+    "Xulosa: har funksiyaga <b>uch yo'lning testi</b> — bugun uchalasini yozamiz",
+    "Xulosa: bitta funksiyaga uch yo'lning testi yoziladi: kutilgan kirish, chegara va xato. Bugun telefon qoidasida chegarani, buyurtmada xato yo'lini, saytning API'sida esa so'rov va javobni sinaymiz. Telefon qoidasidan boshlaymiz."
    ]
   ]
  },
  "3": {
   "type": "Lesson",
-  "kicker": "1-bosqich · edge",
-  "title": "Himoyasiz price * quantity: xato yo'q — natija noto'g'ri",
+  "kicker": "2-bosqich · telefon",
+  "title": "PHONE qoidasi telegram.service.ts ichida yashirin — testdan chaqirib bo'lmaydi, shuning uchun alohida faylga chiqaramiz",
   "seg": [
    [
     "a",
-    "Nol dona — 0 so'm: <b>bepul buyurtma</b>, xato yo'q",
-    "Himoyasiz funksiyani chaqiramiz. Nol dona bersak, natija nol so'm bo'ladi: bepul buyurtma, va hech qanday xato yo'q. Funksiya o'z ishini qildi: o'n ming ko'paytirish nol."
+    "Qoida <b><code>telegram.service.ts</code> 12-satrda</b>: <code>+</code> ixtiyoriy, 9 dan 13 tagacha raqam",
+    "OrderBotNest papkangizni VS Code'da oching. Src, api, telegram papkasidagi telegram service ts faylining o'n ikkinchi satrida telefon qoidasi: regex. Plus ixtiyoriy, keyin to'qqizdan o'n uchtagacha raqam, boshqa hech narsa. Bir yuz ellik yettinchi satrda bot shu qoida bilan mijoz xabarini tekshiradi."
    ],
    [
     "b",
-    "Minus bir — minus o'n ming: <b>do'kon mijozga pul to'laydimi?</b>",
-    "Minus bir dona bersak, natija minus o'n ming: ya'ni do'kon mijozga pul to'lashi kerak. Yana xato yo'q. Bir dona esa to'g'ri hisoblanadi, o'n ming. Demak, chegara nol bilan bir orasida."
+    "Muammo: qoida <b><code>const</code>, eksport qilinmagan</b> — test uni chaqira olmaydi",
+    "Muammo shunda: qoida const, fayl ichida yashirin, eksport qilinmagan. Test uni chaqira olmaydi. Butun botni ko'tarib, Telegram xabarini soxtalashtirish esa unit-test emas. Shuning uchun qoidani alohida faylga chiqaramiz."
    ],
    [
     "c",
-    "So'z — NaN, null — 0: eng xavflisi, chunki <b>hech kim sezmaydi</b>",
-    "Ikki degan so'z bersak, natija NaN, ya'ni not a number, son emas. Null esa nolga aylanadi: yana bepul buyurtma. O'quvchi darsi bu haqda «hech kim sezmaydi» deydi. Eng xavflisi shu: dastur ishlayveradi, xato hech qayerda chiqmaydi."
+    "Yangi fayl <code>phone.ts</code>: <b><code>isPhone(text)</code> — bitta funksiya</b>, bot ham, test ham shuni chaqiradi",
+    "Shu telegram papkasida phone ts faylini yaratamiz. Ichida ikki narsa: o'sha regex va is phone funksiyasi, u matnni oladi va true yoki false qaytaradi. Endi bot ham, test ham bitta funksiyani chaqiradi. Qoida bitta joyda yashaydi."
    ],
    [
     "d",
-    "Xulosa: himoyasiz funksiya noto'g'ri kirishda xato bermaydi, balki <b>noto'g'ri ishlaydi</b>",
-    "Xulosa: himoyasiz funksiya noto'g'ri kirishda xato bermaydi, balki noto'g'ri ishlaydi. To'g'ri yo'l: noto'g'ri kirishni darhol rad etish, ya'ni xato tashlash. Buni ikkinchi bosqichda qilamiz."
+    "Xulosa: <b>sinamoqchi bo'lgan qoidani funksiyaga ajrating</b> — bu kodni ham tozalaydi",
+    "Xulosa: sinamoqchi bo'lgan qoida service ichida yashirin bo'lsa, uni alohida funksiyaga ajrating. Telegram service endi is phone'ni import qiladi va chaqiradi. Bu testni mumkin qiladi va kodni ham tozalaydi: qoida bitta joyda. Endi qoidaning o'zini sinaymiz."
    ]
   ]
  },
@@ -90,583 +90,811 @@ const MDT = {
   "type": "MCRetry",
   "kicker": "Tekshiruv 1",
   "eyebrow": "Tekshiruv · 1 / 4",
-  "title": "Himoyasiz orderTotal(10000, -1) nima qaytaradi?",
-  "q": "Yashirin buzilishni ko'rdingiz, tekshirib olaylik. Birinchi tekshiruv. Funksiyada hech qanday himoya yo'q, faqat narx ko'paytirish soni. Unga minus bir dona berildi. Nima qaytadi? Variantni tanlang.",
-  "ok": "To'g'ri, minus o'n ming. Funksiya shunchaki ko'paytiradi, manfiy son uni to'xtatmaydi. Xato yo'q, natija esa noto'g'ri: do'kon mijozga pul to'laydigan bo'ldi. Demak, himoyasiz funksiya noto'g'ri kirishda xato bermaydi, balki noto'g'ri hisoblaydi, shuning uchun himoya kerak.",
-  "okShort": "−10000 — xato yo'q, lekin natija noto'g'ri. Himoya (guard) kerak.",
-  "hint": "Funksiya faqat ko'paytiradi: 10000 × (−1) = ?",
+  "title": "Mijoz raqamni «+998 90 123 45 67» deb yozdi. isPhone hozirgi regex bilan nima qaytaradi?",
+  "q": "Qoidani ajratdik, endi tekshirib olaylik. Birinchi tekshiruv. Mijoz raqamni probellar bilan yozdi: plus to'qqiz to'qqiz sakkiz, probel, to'qson, probel va hokazo. Is phone hozirgi regex bilan nima qaytaradi? Variantni tanlang.",
+  "ok": "To'g'ri. Regex'da faqat plus va raqamlar bor, probel yo'q, shuning uchun false. Trim faqat boshi va oxiridagi probelni oladi, o'rtadagini emas. Bot bu raqamni rad etadi, mijoz esa raqamni to'g'ri yozganini o'ylaydi. Demak, edge case ko'pincha qoida emas, mijozning odatidan chiqadi.",
+  "okShort": "Regex'da probel yo'q → <code>false</code>. <code>trim()</code> faqat chekkadagi probelni oladi.",
+  "hint": "Regex'da qaysi belgilar ruxsat etilgan? Probel ular ichidami?",
+  "demak": "Edge case ko'pincha qoidadan emas, mijozning odatidan chiqadi.",
   "correct": 1,
   "opts": [
-   "Error — manfiy son taqiqlangan",
-   "−10000 — xato yo'q, lekin natija noto'g'ri",
-   "0",
-   "NaN"
+   "true — raqamlar soni to'g'ri, probel sanalmaydi",
+   "false — regex'da faqat raqam va +, probel yo'q",
+   "true — trim() probellarni olib tashlaydi",
+   "Xato — regex matndagi probelda yiqiladi"
   ],
   "wrong": {
-   "0": "Xato tashlash uchun funksiyada throw bo'lishi kerak — himoyasiz funksiyada yo'q.",
-   "2": "0 ni 0 dona beradi; −1 da natija manfiy.",
-   "3": "NaN — son bo'lmagan kirishda ('ikki'); −1 esa son."
+   "0": "Regex belgima-belgi tekshiradi: probel \\d emas.",
+   "2": "trim() faqat boshidagi va oxiridagi probelni oladi, o'rtadagini emas.",
+   "3": "Regex yiqilmaydi, u false qaytaradi — xato xabari yo'q."
   }
  },
  "5": {
   "type": "Lesson",
-  "kicker": "2-bosqich · guard",
-  "title": "toThrow() kutdi — Received function did not throw",
+  "kicker": "2-bosqich · telefon",
+  "title": "Bitta qoidaga yettita kirish: ikkita to'g'ri, to'rtta noto'g'ri va bitta chegara — it.each ularni bir jadvalda yozadi",
   "seg": [
    [
     "a",
-    "<b>Test avval yoziladi</b>: «0 dona — xato bo'lishi kerak», funksiya hali himoyasiz",
-    "Avval test yozamiz: nol dona va minus bir dona xato bo'lishi kerak. Funksiya hali himoyasiz. Expect ichida yangi narsa bor: to throw, ya'ni xato tashlashi kerak. Uning yozilishini sakkizinchi ekranda batafsil ko'ramiz."
+    "<code>it.each</code> — <b>bir xil test, har xil kirish</b>: ro'yxat beriladi, Jest har biriga alohida test yasaydi",
+    "Phone spec ts faylini telegram papkasida, phone ts yonida yaratamiz. Yangi narsa: it each. Unga kirishlar ro'yxati beriladi, Jest har biriga alohida test yasaydi. Birinchi ro'yxatda ikkita to'g'ri raqam: plus bilan va plussiz."
    ],
    [
     "b",
-    "Natija: <b>ikki edge testi qizil</b>, happy path yashil",
-    "npm test qilamiz: oddiy holat yashil, ikki chegara holati qizil. Fayl bitta bo'lgani uchun test nomlari ko'rinadi: belgi bilan o'tganlari, iks bilan yiqilganlari."
+    "To'rtta noto'g'ri kirish: <b>8 ta raqam, 14 ta raqam, harf, bo'sh</b> — har birining nomi bor",
+    "Ikkinchi ro'yxatda to'rtta noto'g'ri kirish: sakkizta raqam, ya'ni chegaradan bitta kam. O'n to'rtta raqam, chegaradan bitta ko'p. Harflar. Bo'sh matn. Har qatorda kirish va uning nomi: terminalda test nomi tushunarli bo'lsin."
    ],
    [
     "c",
-    "<code>Received function did not throw</code> — <b>funksiya xato tashlamadi</b>",
-    "Xabarni o'qiymiz: received function did not throw. Bu funksiya xato tashlamadi degani, test esa buni kutgan edi. Bu FAIL'da expected va received raqami yo'q, chunki solishtirilgan narsa xato bo'ldi."
+    "Yettinchi test — mijozning odati: <b>probel bilan yozilgan raqam <code>true</code> bo'lishi kerak</b>",
+    "Yettinchi test mijozning odati: probel bilan yozilgan raqam. Biz uni to'g'ri deb kutamiz, chunki bu haqiqiy raqam. VS Code terminalida npm test, ikki chiziqcha, phone. Oltita yashil, bittasi qizil: probel bilan yozilgan raqam."
    ],
    [
     "d",
-    "Xulosa: <code>did not throw</code> — funksiyada <b>himoya yo'q yoki shart noto'g'ri</b>",
-    "Xulosa: did not throw ko'rsangiz, sabab ikkitadan biri. Yo funksiyada himoya umuman yo'q, yo shart bu qiymatni o'tkazib yubordi. Ikkinchisini o'ninchi ekranda ko'ramiz."
+    "Demak, <b>qoida mijozdan tor</b>: probel bilan yozilgan haqiqiy raqamni bot rad etadi",
+    "Demak, sabab bitta joyda: qoida mijozdan tor. Mijoz probel bilan yozadi, regex esa faqat raqamlarni biladi. Test buni kod yozilgan kuniyoq ko'rsatdi, mijoz shikoyat qilguncha emas. Keyingi ekranda qoidani kengaytiramiz va yana bir chegarani ko'ramiz."
    ]
   ]
  },
  "6": {
   "type": "Lesson",
-  "kicker": "2-bosqich · guard",
-  "title": "Funksiya boshida shart: noto'g'ri bo'lsa — xato, to'g'ri bo'lsa — hisob",
+  "kicker": "2-bosqich · ichida",
+  "title": "Tuzatish bitta satr: tekshirishdan oldin probel va chiziqchani olib tashlaymiz — keyin test qoida nimani o'tkazib yuborishini ham ko'rsatadi",
   "seg": [
    [
     "a",
-    "Guard — funksiya boshidagi himoya: <b>avval shart, keyin xato, keyin hisob</b>",
-    "Did not throw, chunki himoya yo'q. Endi uni qo'yamiz. Himoya, inglizchasi guard, funksiyaning boshida turadi. Uning tartibi uch qadamdan iborat: avval shart, keyin xato tashlash, keyin oddiy hisob. O'quvchi darsida bu tartibni bloklardan yig'adi."
+    "Tuzatish: <b><code>replace(/[\\s-]/g, '')</code></b> — probel va chiziqcha olib tashlanadi, keyin tekshiriladi",
+    "Phone ts faylining to'rtinchi satrini o'zgartiramiz: trim o'rniga replace. U probel va chiziqchalarni olib tashlaydi, keyin regex tekshiradi. Mijoz qanday yozsa ham, raqamlar bir xil. Npm test phone: yettala test yashil."
    ],
    [
     "b",
-    "Shart <b>uchta tekshiruv</b>: son emasmi, NaN'mi, nol yoki manfiymi",
-    "Shartda uchta tekshiruv bor: quantity son emasmi, NaN emasmi va nol yoki undan kichikmi. Biri to'g'ri bo'lsa, funksiya to'xtaydi. Matn ham, minus ham, nol ham shu yerda ushlanadi."
+    "Yana bir test: <b>9 ta nol ham <code>true</code></b> — qoida buni to'g'ri raqam deydi",
+    "Endi qiziq test. To'qqizta nol: is phone nima deydi? True. Qoida bo'yicha bu to'g'ri raqam: to'qqizta raqam, boshqa hech narsa. Test yashil, lekin siz o'ylab qolasiz: haqiqatan ham to'qqizta nol telefon raqamimi?"
    ],
    [
     "c",
-    "<code>throw new Error('…')</code> — <b>funksiyani to'xtatadi</b>, xabar sababni aytadi",
-    "Throw new error funksiyani shu joyda to'xtatadi, return'gacha bormaydi. Xabarni tushunarli yozing, masalan: quantity musbat raqam bo'lsin. Keyin testda aynan shu xabarni tekshirish mumkin."
+    "Test <b>qoidani tekshiradi, qoidaning o'zi to'g'rimi</b> — bu sizning qaroringiz",
+    "Mana edge test'ning ikkinchi foydasi. Test qoidani tekshiradi, qoidaning o'zi to'g'rimi, buni test hal qilmaydi. To'qqizta nol o'tishi sizga kelishmasa, qoidani torroq yozasiz va test yana sizni qo'riqlaydi. Hozircha qoldiramiz: bot uchun yetarli."
    ],
    [
     "d",
-    "Natija: <b>beshala test yashil</b> — happy, 1 dona, 0, manfiy va matn",
-    "npm test qilamiz: beshala test yashil. Ikki dona va bir dona hisoblanadi, nol, minus va matn esa xato beradi. Bir dona testi muhim: himoya to'g'ri buyurtmani to'sib qo'ymaganini ko'rsatadi."
-   ],
-   [
-    "e",
-    "Xulosa: guard qo'yilgach — xato holatlari ham, <b>eng kichik to'g'ri holat ham</b> sinaladi",
-    "Xulosa: guard qo'yilgach ikki tomon sinaladi. Noto'g'ri kirish xato beradi, eng kichik to'g'ri kirish hisoblanadi. Faqat birini sinasangiz, himoya juda qattiq yoki juda yumshoq bo'lib qolganini bilmaysiz."
+    "Xulosa: <b>chegaradagi kirishni testga yozing</b> — u qoidani ko'zingiz oldiga olib keladi",
+    "Xulosa: chegaradagi kirishni testga yozing, u qoidani ko'zingiz oldiga olib keladi. Bitta test qoidaning tor joyini topdi, probel. Boshqasi qoidaning keng joyini ko'rsatdi, to'qqizta nol. Endi shu ikkala faylni o'zingiz yozasiz."
    ]
   ]
  },
  "7": {
   "type": "Practice",
-  "kicker": "Amaliyot 1 / 4",
-  "eyebrow": "Hozir o'zingizda · 10–15 daqiqa",
-  "title": "Avval qizil edge testlari, keyin guard va yashil",
+  "kicker": "Amaliyot 1 / 3",
+  "eyebrow": "Hozir o'zingizda · 12 daqiqa",
+  "title": "Telefon qoidasini alohida faylga chiqaring, chegara testlarini yozing va probel bilan qizilni ko'ring",
   "seg": [
    [
     "a",
-    "Endi siz: avval edge testlarini yozasiz va <b>qizilni ko'rasiz</b>, keyin himoya qo'yasiz",
-    "Endi navbat sizga. Jest birinchi darsidagi order fayllarini oching. Avval edge testlarini yozasiz va qizilni ko'rasiz, keyin himoya qo'yasiz. Bunga o'n-o'n besh daqiqa ketadi."
+    "Endi siz: <b><code>jest2-start</code> tegida</b> qoidani ajratasiz va yetti test yozasiz",
+    "Endi navbat sizga. OrderBotNest papkangizda jest ikki start tegiga o'tasiz. Telegram papkasida phone ts va phone spec ts yaratasiz. Baza va token kerak emas. O'n ikki daqiqa ketadi."
    ],
    [
     "b",
-    "1–2-qadam: 0 va manfiy uchun <code>toThrow</code> testlari — <b><code>did not throw</code></b>",
-    "Birinchi qadamda nol va minus bir uchun ikkita test yozasiz: expect ichida o'ralgan funksiya va to throw. Ikkinchisida npm test qilib, did not throw xabarini o'qiysiz."
+    "1–2-qadam: teg va <b><code>phone.ts</code>, <code>it.each</code> bilan yetti test</b> — probel testi qizil",
+    "Birinchi qadamda git fetch va checkout bilan tegga o'tasiz. Ikkinchisida phone ts'ga regex va is phone'ni, phone spec ts'ga it each bilan yetti testni yozasiz. Npm test phone: probel testi qizil bo'lishi kerak."
    ],
    [
     "c",
-    "3–4-qadam: guard va 1 dona testi; isbot — <b><code>Tests:</code> satri</b>",
-    "Uchinchi qadamda funksiya boshiga himoya qo'yasiz. To'rtinchisida bir dona va matn testlarini qo'shib, npm test qilasiz. Isbot maydoniga Tests satrini nusxalang."
+    "3–4-qadam: <b><code>replace</code> bilan tuzatish</b>, «9 ta nol» testi; isbot — <code>Tests:</code> satri",
+    "Uchinchi qadamda is phone'da trim o'rniga replace yozasiz: hammasi yashil. To'rtinchisida to'qqizta nol testini qo'shasiz va natijani ko'rasiz. Isbot maydoniga oxirgi natijaning tests satrini nusxalang."
    ],
    [
     "d",
     "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
-    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, siz test avval qizil, himoyadan keyin yashil bo'lishini o'z kodingizda ko'rdingiz."
+    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin siz qoidani testga ochasiz va chegara testini yozasiz."
+   ]
+  ],
+  "steps": [
+   {
+    "t": "Teg",
+    "cmds": [
+     "git fetch --tags",
+     "git checkout jest2-start",
+     "npm test"
+    ],
+    "exp": "Tests: 10 passed, 10 total"
+   },
+   {
+    "t": "phone.ts + phone.spec.ts (3–5-ekrandagi kod)",
+    "cmds": [
+     "src/api/telegram/phone.ts",
+     "src/api/telegram/phone.spec.ts",
+     "npm test -- phone"
+    ],
+    "exp": "✕ mijoz probel bilan yozadi · Tests: 1 failed, 6 passed"
+   },
+   {
+    "t": "Tuzatish",
+    "cmds": [
+     "isPhone da text.replace(/[\\s-]/g, '')",
+     "npm test -- phone"
+    ],
+    "exp": "Tests: 7 passed, 7 total"
+   },
+   {
+    "t": "Chegara",
+    "cmds": [
+     "it(\"9 ta nol ham o'tadi\") — isPhone('000000000') → true"
+    ],
+    "exp": "Tests: 8 passed, 8 total"
+   }
+  ],
+  "proof": {
+   "label": "Oxirgi natijaning Tests: satri",
+   "placeholder": "masalan: Tests: 8 passed, 8 total",
+   "re": "Tests:\\s+8 passed,\\s+8 total",
+   "flags": "",
+   "wrong": "Sakkizta test yashilmi? npm test -- phone natijasidagi Tests: qatorini qo'ying."
+  },
+  "trouble": [
+   [
+    "error: pathspec 'jest2-start' did not match",
+    "teglar olinmagan — git fetch --tags, keyin checkout"
+   ],
+   [
+    "2-qadamda hammasi ✓",
+    "probel testi yozilmagan yoki replace allaqachon qo'yilgan — 5-ekrandagi yettinchi testni tekshiring"
+   ],
+   [
+    "it.each da %s o'rniga undefined",
+    "ro'yxat elementlari massiv emas — ['12345678', '8 ta raqam'] juftlik bo'lsin"
+   ],
+   [
+    "Cannot find module './phone'",
+    "fayl src/api/telegram/ da emas — telegram.service.ts yoniga ko'chiring"
    ]
   ]
  },
  "8": {
   "type": "Lesson",
-  "kicker": "3-bosqich · buzamiz",
-  "title": "expect(orderTotal(10000, 0)).toThrow() — test xatoning o'zi bilan qulaydi",
+  "kicker": "3-bosqich · error path",
+  "title": "Buyurtma berishda uchta xato bor: ikkitasi funksiyaning o'zida darhol, uchinchisi tranzaksiya ichida — testda bu farq hal qiluvchi",
   "seg": [
    [
     "a",
-    "O'quvchi darsidagi savol: qaysi yozuv to'g'ri — <b>o'ralganmi yoki o'ralmaganmi?</b>",
-    "O'quvchi darsida savol bor: qaysi yozuv to'g'ri? Expect ichida funksiyani to'g'ridan-to'g'ri chaqirishmi yoki strelkali funksiya ichiga o'rashmi? Sinab ko'ramiz: o'rashni olib tashlaymiz."
+    "<code>order.service.ts</code> 24-satr: <b><code>place</code> ikki xatoni darhol otadi</b> — telefon yo'q, savat bo'sh",
+    "Endi buyurtmaga o'tamiz. Src, api, order papkasidagi order service ts faylini oching, yigirma to'rtinchi satr: place funksiyasi. Yigirma besh va yigirma oltinchi satrlarda ikki tekshiruv: telefon yo'q bo'lsa xato, savat bo'sh bo'lsa xato. Ikkalasi darhol, funksiyaning o'zida otiladi."
    ],
    [
     "b",
-    "O'ralmagan: funksiya expect'dan oldin ishlaydi va <b>xato testni qulatadi</b>",
-    "O'ralmagan holatda funksiya expect'ga yetmasdan ishlaydi va xato tashlaydi. Expect uni tutishga ulgurmaydi. Natijada test qizil, lekin xabarda expected va received yo'q, funksiyaning o'z xatosi turibdi: quantity musbat raqam bo'lsin."
+    "Uchinchi xato <b>tranzaksiya ichida, 37-satr</b>: omborda yetmasa — promise'da otiladi",
+    "Uchinchi xato o'ttiz yettinchi satrda: omborda yetmasa. Lekin u transaction ichida, ya'ni async funksiya ichida. Bu xato darhol emas, promise'da otiladi. Ekrandagi chizmaga qarang: ikki xato chapda, funksiyaning o'zida, bittasi o'ngda, promise ichida."
    ],
    [
     "c",
-    "Belgi: FAIL xabarida <code>at orderTotal (order.ts:…)</code> — xato <b>funksiya ichidan uchdi</b>",
-    "Qanday tanib olasiz: FAIL xabarida expect so'zi yo'q, o'rniga sizning xato xabaringiz va at orderTotal, order ts, uchinchi satr. Ya'ni xato test ichida tutilmadi, funksiyadan to'g'ridan-to'g'ri uchib chiqdi."
+    "Farq nega muhim: <b>Jest'da ikkita har xil usul</b> — sinxron uchun biri, promise uchun boshqasi",
+    "Bu farq test uchun hal qiluvchi. Sinxron xatoni expect, qavs ichida funksiya, to throw bilan ushlaymiz. Promise xatosini esa await expect, rejects, to throw bilan. Usulni almashtirib yuborsangiz, Jest qizil ham bermaydi, buni ikki ekrandan keyin ko'rasiz."
    ],
    [
     "d",
-    "Xulosa: xato kutilsa — funksiya <b><code>() =&gt;</code> ichida</b>; aks holda test o'zi qulaydi",
-    "Xulosa: xato kutilayotgan bo'lsa, funksiya doim strelka ichiga o'raladi. Shunda Jest uni o'zi chaqiradi va xatoni tutadi. O'quvchi darsida bu o'rab berish deyiladi."
+    "Xulosa: xatoni sinashdan oldin <b>qayerda otilishini</b> aniqlang — darholmi, promise ichidami",
+    "Xulosa: xatoni sinashdan oldin uning qayerda otilishini aniqlang: funksiyaning o'zida darholmi, yoki promise ichidami. Place'da ikkala tur ham bor. Lekin testdan oldin yana bir muammo: place bazaga yozadi, bizda esa test bazasi yo'q. Keyingi ekranda shuni hal qilamiz."
    ]
   ]
  },
  "9": {
   "type": "Lesson",
-  "kicker": "3-bosqich · buzamiz",
-  "title": "Expected substring va Received message — xato bor, lekin boshqa xato",
+  "kicker": "3-bosqich · ichida",
+  "title": "Unit-test bazasiz: DataSource o'rniga soxta obyekt, findOne biz aytgan mahsulotni qaytaradi — bu mock",
   "seg": [
    [
     "a",
-    "<code>toThrow()</code> faqat «xato bo'ldimi» deydi — <code>toThrow('matn')</code> <b>qaysi xato ekanini</b> tekshiradi",
-    "O'rash bilan xato tutildi. Endi qaysi xato tutilganini tekshiramiz. Bo'sh to throw faqat xato bo'ldimi, shuni tekshiradi. Qavs ichiga matn yozilsa, xabar shu matnni o'z ichiga olishi kerak. Bu muhim: funksiya boshqa sabab bilan yiqilsa ham bo'sh to throw yashil bo'lardi."
+    "<code>place</code> bazaga yozadi, test bazasi yo'q — <b>baza o'rniga mock</b>: soxta <code>manager</code>",
+    "Place funksiyasi transaction ichida bazaga yozadi: find one, update, save. Unit-testda baza yo'q va kerak emas. Shuning uchun baza o'rniga mock, ya'ni soxta obyekt beramiz. Order papkasida order service spec ts faylini yaratamiz, sakkizinchi satrdan manager obyekti."
    ],
    [
     "b",
-    "Xabar mos emas: <code>Expected substring</code> — kutilgani, <b><code>Received message</code></b> — kelgani",
-    "Testda narx xato deb yozdik, funksiya esa quantity musbat raqam bo'lsin deydi. Natija qizil: expected substring, ya'ni kutilgan bo'lak, va received message, ya'ni kelgan xabar. Bu Jest birinchi darsidagi expected va received'ning xato uchun ko'rinishi."
+    "<code>jest.fn()</code> — <b>chaqiruvni yozib qoladigan soxta funksiya</b>; <code>transaction</code> esa mock'ni callback'ka beradi",
+    "Jest fn soxta funksiya: u chaqirilganini va qanday argument bilan chaqirilganini yozib qoladi. Find one, query, save, hammasi shunday. O'n oltinchi satrda data source: uning transaction funksiyasi callback'ni darhol chaqirib, unga bizning manager'ni beradi. Place buni haqiqiy baza deb o'ylaydi."
    ],
    [
     "c",
-    "Xulosa: xabarni tekshiring — u xato <b>qaysi shartdan kelganini</b> aytadi",
-    "Xulosa: xato kutilgan joyda xabarni ham tekshiring. Bir funksiyada bir nechta himoya bo'lsa, xabar qaysi biri ishlaganini aytadi. Sinfda buni o'quvchiga ko'rsating: xabar aniq yozilsa, test ham aniq bo'ladi."
+    "<code>Test.createTestingModule</code>: <b>Nest'ga <code>DataSource</code> o'rniga mock'ni beramiz</b>, <code>OrderService</code> haqiqiy",
+    "Yigirma uchinchi satrdan Nest'ning test moduli. Providers ro'yxatida order service haqiqiy, data source o'rniga esa bizning soxta obyekt. Nest uni inject qiladi, order service farqini bilmaydi. Repository ham kerak, bo'sh obyekt yetadi: place uni ishlatmaydi."
+   ],
+   [
+    "d",
+    "Xulosa: har testda <b><code>mockResolvedValue</code> bilan mahsulotni biz beramiz</b> — omborda 1 ta yoki 10 ta",
+    "Xulosa: endi har testda omborni biz boshqaramiz. Mock resolved value bilan find one'ga nima qaytarishini aytamiz: omborda bitta Kolonka yoki o'nta. Baza yo'q, lekin place aynan haqiqiy kodda ishlaydi. Endi to'rtta testni yozamiz."
    ]
   ]
  },
  "10": {
   "type": "Lesson",
-  "kicker": "3-bosqich · buzamiz",
-  "title": "Shartsiz throw — oddiy holat ham qizil; < 0 — nol o'tib ketadi",
+  "kicker": "3-bosqich · error path",
+  "title": "Sinxron xato — expect(() => …).toThrow(), promise xatosi — await expect(…).rejects.toThrow(): to'rt test, hammasi yashil",
   "seg": [
    [
     "a",
-    "O'quvchi darsidagi tuzoq: <code>throw</code> bor, lekin <b><code>if</code> yo'q</b> — har chaqiriq xato beradi",
-    "O'quvchi darsida bloklarni yig'ishda tuzoq bor: throw qo'yilgan, lekin shart yo'q. Sinab ko'rdik: endi funksiya har chaqiriqda xato beradi."
+    "Sinxron xato: <b><code>expect(() =&gt; …)</code> — funksiyani o'rab beramiz</b>, Jest uni o'zi chaqiradi",
+    "Birinchi ikki test sinxron xato uchun. Qarang: expect ichida funksiyani darhol chaqirmaymiz, qavs, strelka, keyin chaqiruv. Jest o'sha o'ramni o'zi chaqiradi va xatoni ushlaydi. To throw ichida xabar: telefon raqami yo'q. Xabar mos bo'lmasa, test qizil."
    ],
    [
     "b",
-    "Natija: xato testlari yashil, lekin <b>happy va 1 dona — qizil</b>",
-    "Natija avvaliga g'alati ko'rinadi: xato kutgan testlar yashil, lekin ikki dona va bir dona qizil. Shuning uchun oddiy holat testi kerak: u himoya juda qattiq bo'lib qolganini ushlaydi."
+    "Promise xatosi: <b><code>await expect(…).rejects.toThrow()</code></b> — funksiya darhol chaqiriladi, promise kutiladi",
+    "Uchinchi test promise xatosi uchun, shakli boshqa. Expect ichida place darhol chaqiriladi, o'ramsiz, chunki u promise qaytaradi. Keyin rejects: promise xato bilan tugashini kutamiz. Va boshida await: Jest natijani kutsin. Mock'da omborda bitta Kolonka, savatda ikkita."
    ],
    [
     "c",
-    "<code>&lt;= 0</code> o'rniga <code>&lt; 0</code> — faqat <b>«0 dona» testi qizil</b>: <code>did not throw</code>",
-    "Ikkinchi buzish yumshoqroq: kichik yoki teng o'rniga faqat kichik yozamiz. Minus ham, matn ham ushlanadi, lekin nol o'tib ketadi. Faqat nol dona testi qizil, xabari did not throw. Bu Jest birinchi darsidagi chegara xatosining aynan o'zi."
+    "To'rtinchi test — happy path: <b>omborda 10 ta, jami 100 000</b>, <code>query</code> bir marta chaqirildi",
+    "To'rtinchi test happy path: omborda o'nta, buyurtma o'tadi, jami bir yuz ming so'm. Va yana bir tekshiruv: manager query bir marta chaqirildi, ya'ni update ketdi. VS Code terminalida npm test order service: to'rttala test yashil."
    ],
    [
     "d",
-    "Xulosa: happy testi himoyaning <b>qattiqligini</b>, edge testi <b>yumshoqligini</b> ushlaydi",
-    "Xulosa: ikki xil test ikki xil xatoni ushlaydi. Oddiy holat testi himoya juda qattiq bo'lsa qizil bo'ladi. Chegara testi esa himoyada teshik bo'lsa qizil bo'ladi. Ikkalasi ham kerak."
+    "Xulosa: <b>sinxron — o'rab <code>toThrow</code>, promise — <code>rejects</code> va <code>await</code></b>; endi ikkalasini almashtirib ko'ramiz",
+    "Xulosa: sinxron xatoga o'ram va to throw, promise xatosiga rejects va await. Ikkalasi yashil, lekin shakl muhim. Keyingi ikki ekranda ularni ataylab almashtiramiz va Jest nima qilishini ko'rasiz. Natija sizni hayron qoldiradi."
    ]
   ]
  },
  "11": {
-  "type": "LineCheck",
-  "kicker": "Tekshiruv 2",
-  "eyebrow": "Tekshiruv · 2 / 4 — qaysi satr xato?",
-  "title": "0 dona — xato qizil: Received function did not throw",
-  "q": "Buzishlarni ko'rdingiz, endi o'zingiz toping. Ikkinchi tekshiruv. Nol dona testi qizil: did not throw. Qoida: nol dona ham noto'g'ri buyurtma. Nolni o'tkazib yuborgan satrni bosing.",
-  "ok": "To'g'ri. Ikkinchi satrda faqat kichik yozilgan: nol noldan kichik emas, shuning uchun shart o'tkazib yuboradi. Kichik yoki teng bo'lsa, nol ham ushlanadi. Ekranda tuzatilgan holat, beshala test yashil. Demak, chegara shartida kichik yoki teng yoziladi, aks holda nol o'tib ketadi.",
-  "okShort": "2-satr: <code>quantity &lt; 0</code> — 0 o'tadi. To'g'risi <code>quantity &lt;= 0</code>.",
-  "hint": "Xato qaysi qiymatda: 0. Qaysi satr qiymatni tekshiradi va 0 uchun nima qaytaradi?",
-  "task": "Qoida: 0 dona ham noto'g'ri buyurtma — guard uni ushlashi kerak. Bu funksiyada <code>orderTotal(10000, 0)</code> xato tashlamadi. <b>0 ni o'tkazib yuborgan satrni bosing.</b>"
- },
- "12": {
-  "type": "Practice",
-  "kicker": "Amaliyot 2 / 4",
-  "eyebrow": "Hozir o'zingizda · 10 daqiqa",
-  "title": "() =>siz, noto'g'ri xabar va < 0",
+  "type": "Lesson",
+  "kicker": "3-bosqich · buzamiz",
+  "title": "Ombor xatosini toThrow bilan yozsak, Jest qizil bermaydi — jarayonning o'zi quladi, PASS ham, FAIL ham chiqmadi",
   "seg": [
    [
     "a",
-    "Endi siz: o'z testingizni <b>uch xil buzasiz</b> va har xabarni o'qiysiz",
-    "Endi o'z testingizni uch xil buzasiz. Bunga o'n daqiqa ketadi. Har buzishdan keyin npm test qilib, xabarni o'qing."
+    "Ombor testini <b><code>toThrow</code> bilan yozamiz</b> — sinxron shakl, promise xatosi uchun",
+    "Endi ataylab buzamiz. Ombor testini uchinchi testdagidek emas, birinchi testdagi shaklda yozamiz: o'ram va to throw, await yo'q, rejects yo'q. Ko'rinishi to'g'riga o'xshaydi: xabar ham o'sha. Npm test order service."
    ],
    [
     "b",
-    "1–2-qadam: <b><code>() =&gt;</code>ni olib tashlang</b>, keyin <code>toThrow</code>ga boshqa xabar yozing",
-    "Birinchi qadamda nol dona testida strelkani olib tashlang: test funksiyaning o'z xatosi bilan qulaydi. Keyin strelkani qaytaring. Ikkinchisida matn testida to throw ichiga narx xato deb yozing va received message'ni o'qing."
+    "Natija: <b>PASS ham, FAIL ham yo'q</b> — terminalda xato va <code>Node.js v24.18.0</code>, jarayon quladi",
+    "Natijaga qarang. PASS yo'q, FAIL yo'q, tests satri yo'q. Faqat xato: Kolonka, omborda faqat bitta qoldi, va Node versiyasi. Jest jarayonining o'zi quladi. Siz test qizil bo'ladi deb kutgan edingiz, u esa umuman natija bermadi."
    ],
    [
     "c",
-    "3–4-qadam: guardda <code>&lt; 0</code>, keyin tiklang; isbot — <b><code>Received message</code> satri</b>",
-    "Uchinchi qadamda guardda kichik yoki teng o'rniga faqat kichik yozing: did not throw chiqadi. To'rtinchisida hammasini tiklang. Isbot maydoniga ikkinchi qadamdagi received message satrini nusxalang."
+    "Demak, sabab: <b><code>toThrow</code> o'ramni chaqirdi, <code>place</code> promise qaytardi, xato keyin keldi</b> — hech kim ushlamadi",
+    "Demak, sabab bitta joyda. To throw o'ramni chaqirdi, place promise qaytardi, va shu paytda xato yo'q edi. Test o'tdi deb hisoblandi. Xato keyin, promise ichida otildi, uni hech kim ushlamadi, va Node butun jarayonni to'xtatdi. Bu yashirin xato: qizil emas, bo'sh."
    ],
    [
     "d",
-    "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
-    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, xato kutiladigan testdagi uch xil xabarni endi bir qarashda ajrata olasiz."
+    "Xulosa: promise xatosiga <b><code>toThrow</code> emas, <code>rejects</code></b> — aks holda Jest sizga hech narsa aytmaydi",
+    "Xulosa: promise ichidagi xatoga to throw yozilmaydi, rejects yoziladi. Aks holda Jest sizga hech narsa aytmaydi, jarayon qulaydi. Sinfda o'quvchi test natijasi chiqmayapti desa, birinchi shuni so'rang: xato promise ichidami. Endi teskarisini ko'ramiz."
    ]
   ]
  },
+ "12": {
+  "type": "MCRetry",
+  "kicker": "Tekshiruv 2",
+  "eyebrow": "Tekshiruv · 2 / 4",
+  "title": "Telefon testini await expect(service.place(…)).rejects.toThrow() bilan yozdik. place xatoni darhol, funksiya ichida otadi. Natija?",
+  "q": "Promise shaklini sinxron xatoga qo'yib ko'ramiz. Ikkinchi tekshiruv. Telefon testini rejects bilan yozdik, lekin place telefon xatosini darhol, funksiyaning o'zida otadi, promise qaytarmasdan. Npm test nima deydi? Variantni tanlang.",
+  "ok": "To'g'ri. Place chaqirilganda xato darhol otildi, expect hali ishga tushmagan edi. Jest bu xatoni testning o'zi yiqildi deb hisoblaydi va FAIL beradi, xabari: telefon raqami yo'q. Bu safar natija bor, chunki xato sinxron, Jest uni ushladi. Demak, rejects faqat promise'dan keladigan xatoni ushlaydi.",
+  "okShort": "Xato <code>expect</code>gacha otildi — FAIL, Jest ushladi. <code>rejects</code> faqat promise xatosi uchun.",
+  "hint": "service.place(…) qachon chaqiriladi — expect ichida, rejectsdan oldin. Xato qachon otiladi?",
+  "demak": "<code>rejects</code> faqat promise'dan keladigan xatoni ushlaydi; sinxron xato <code>expect</code>gacha otiladi.",
+  "correct": 2,
+  "opts": [
+   "PASS — rejects sinxron xatoni ham ushlaydi",
+   "Jarayon quladi — 11-ekrandagi kabi natija yo'q",
+   "FAIL — xato expect ishga tushguncha otildi",
+   "PASS — await xatoni promise'ga o'raydi"
+  ],
+  "wrong": {
+   "0": "rejects promise kutadi; xato expect ishga tushguncha otildi.",
+   "1": "Bu safar xato sinxron — Jest uni test ichida ushladi, natija bor.",
+   "3": "await xatoni o'ramaydi; place chaqirilgan paytdayoq otildi."
+  }
+ },
  "13": {
   "type": "Lesson",
-  "kicker": "4-bosqich · tuzoqlar",
-  "title": "orderTotal(10000, 'ikki'): npm test yuradi, VS Code esa TS2345",
+  "kicker": "3-bosqich · ichida",
+  "title": "rejects to'g'ri, lekin await yo'q va xabar ataylab noto'g'ri: Jest xatoni topdi, lekin testga bog'lay olmadi — yana natija yo'q",
   "seg": [
    [
     "a",
-    "O'quvchi darsi <code>'ikki'</code> va <code>null</code>ni sinaydi — <b>TypeScript faylda</b> bu nima bo'ladi?",
-    "O'quvchi darsida ikki degan so'z va null bilan sinash bor. Lekin test fayli TypeScript: funksiya son kutadi. Sinab ko'rdik, natija kutilmagan."
+    "Shakl deyarli to'g'ri: <code>rejects</code> bor, <b>faqat <code>await</code> yo'q</b>; xabarni ham ataylab noto'g'ri yozdik",
+    "Yana bir yashirin xato, bu safar ancha nozik. Rejects bor, to throw bor, faqat boshida await yo'q. Va xabarni ataylab noto'g'ri yozdik: Planshet, to'qqizta qoldi, kodda esa Kolonka, bitta. Test qizil bo'lishi kerak. Npm test."
    ],
    [
     "b",
-    "<code>npm test</code> <b>turlarni tekshirmaydi</b>: test yuradi, <code>Received: NaN</code>",
-    "Npm test turlarni tekshirmaydi: o'quvchi reposining sozlamasida isolated modules yoqilgan, shuning uchun ts jest faylni tekshirmasdan o'tkazadi. Test yuradi: matn NaN beradi, null esa nol."
+    "Natija: Jest farqni <b>topdi — <code>Expected</code> Planshet, <code>Received</code> Kolonka</b>, lekin PASS/FAIL yana yo'q",
+    "Natijaga qarang. Jest farqni topdi: expected Planshet, received Kolonka, o'ttiz yettinchi satr. Lekin pastda yana Node versiyasi, PASS yo'q, FAIL yo'q. Jest xatoni ko'rdi, lekin uni testga bog'lay olmadi."
    ],
    [
     "c",
-    "VS Code esa <b>qizil chizadi</b>: <code>TS2345: Argument of type 'string' is not assignable…</code>",
-    "Shu fayl VS Code'da qizil chiziq bilan ko'rinadi. Tsc buyrug'i ham shuni aytadi: string turidagi argument number'ga mos emas, null ham mos emas. O'quvchi qizilni ko'radi, lekin test baribir ishlayveradi va u adashadi."
+    "Demak, sabab: <b><code>await</code>siz test darhol tugadi</b>, promise keyin rad etildi — Jest uni qaysi testga yozishni bilmadi",
+    "Demak, sabab bitta: await yo'q. Test funksiyasi promise'ni kutmasdan darhol tugadi. Promise keyin rad etildi, Jest bu xato qaysi testniki ekanini bilmadi va jarayonni to'xtatdi. Await bo'lsa, bu oddiy qizil test bo'lar edi, xabar bilan."
    ],
    [
     "d",
-    "Xulosa: noto'g'ri turni ataylab sinashda — <b><code>'ikki' as any</code></b>; qizil chiziq yo'qoladi",
-    "Xulosa: noto'g'ri turni ataylab sinamoqchi bo'lsangiz, as any yozing: ikki as any. TypeScript'ga bu ataylab ekanini aytasiz, qizil chiziq yo'qoladi. Sinab ko'rdik, guard bilan bu test yashil."
+    "Xulosa: <b><code>rejects</code> oldida doim <code>await</code></b>; natija umuman chiqmasa — promise va <code>await</code>ni tekshiring",
+    "Xulosa: rejects oldida doim await, test funksiyasi esa async. Jest natija umuman bermasa, bu kodning xatosi emas, testning shakli: promise xatosiga to throw yoki await'siz rejects. Endi shu satrni o'zingiz topasiz."
    ]
   ]
  },
  "14": {
-  "type": "Lesson",
-  "kicker": "4-bosqich · tuzoqlar",
-  "title": "Ikki test fayli bo'lsa — faqat PASS fayl; nomlar --verbose bilan",
-  "seg": [
-   [
-    "a",
-    "Bitta faylda Jest har test nomini ko'rsatadi — ikkinchi fayl qo'shilganda <b>ko'rsatmaydi</b>",
-    "Endi kichik, lekin sinfda albatta chiqadigan holat. Fayl bitta bo'lsa, Jest har test nomini ko'rsatadi. Ikkinchi test fayli qo'shilganda faqat PASS va fayl nomi qoladi. O'quvchi «testlarim qayoqqa ketdi?» deydi."
-   ],
-   [
-    "b",
-    "Testlar joyida — jami soni o'zgarmadi; nomlarni ko'rish uchun <b><code>npx jest --verbose</code></b>",
-    "Testlar joyida: pastdagi jami o'n bir. Nomlarni ko'rish uchun npx jest minus minus verbose qiling. Shunda har fayl ostida nomlar va belgilar chiqadi."
-   ],
-   [
-    "c",
-    "Xulosa: nom ko'rinmasa — <b>xato emas</b>; jami sonni va <code>--verbose</code>ni ko'rsating",
-    "Xulosa: nomlar ko'rinmasa, bu xato emas. Avval jami songa qarang, kerak bo'lsa verbose bilan yurgizing. FAIL bo'lganda esa qizil test nomi baribir chiqadi."
-   ]
-  ]
+  "type": "LineCheck",
+  "kicker": "Tekshiruv 3",
+  "eyebrow": "Tekshiruv · 3 / 4 — qaysi satr xato?",
+  "title": "Bu test faylida npm test natija bermaydi — jarayon qulaydi. Sababchi satrni toping",
+  "q": "Yashirin xatoni ko'rdingiz, endi o'zingiz toping. Uchinchi tekshiruv. Bu test faylida npm test natija bermaydi, jarayon qulaydi. Bo'lakda bitta satr promise'ni kutmaydi. O'sha satrni bosing.",
+  "ok": "To'g'ri. Shu satrda await yo'q: test promise'ni kutmasdan tugaydi, xato keyin keladi va Jest uni testga bog'lay olmaydi. Ekranda tuzatilgan satr: await bilan. Endi noto'g'ri xabar oddiy qizil test beradi, expected va received bilan. Demak, natija chiqmasa, avval rejects oldidagi await'ni qidiring.",
+  "okShort": "<code>await</code> yo'q — test promise'ni kutmadi, jarayon quladi. <code>await</code> bilan — oddiy FAIL, <code>Expected</code>/<code>Received</code> bilan.",
+  "hint": "Qaysi satr promise qaytaradi va uni kutmaydi? rejects oldida nima bo'lishi kerak?",
+  "task": "Qoida: promise xatosi <code>await expect(…).rejects.toThrow()</code> bilan kutiladi. Bu bo'lakda bitta satr promise'ni kutmaydi. <b>O'sha satrni bosing.</b>"
  },
  "15": {
-  "type": "MCRetry",
-  "kicker": "Tekshiruv 3",
-  "eyebrow": "Tekshiruv · 3 / 4",
-  "title": "O'quvchi: «Received function did not throw chiqdi». Bu nima degani?",
-  "q": "Tuzoqlarni ko'rdingiz, tekshirib olaylik. Uchinchi tekshiruv. O'quvchi testi qizil: received function did not throw. Bu nima degani? Variantni tanlang.",
-  "ok": "To'g'ri. Funksiya xato tashlamadi, test esa kutgan edi. Sabab ikkita: guard umuman yo'q yoki shart bu qiymatni o'tkazib yubordi, masalan nol. Funksiyani oching va shu qiymat bilan shartni qo'lda tekshiring. Demak, did not throw — himoya yo'qligi yoki shart teshikligi haqida xabar.",
-  "okShort": "Funksiya xato tashlamadi: guard yo'q yoki shart qiymatni o'tkazdi.",
-  "hint": "«did not throw» — so'zma-so'z: funksiya … qilmadi.",
-  "correct": 0,
-  "opts": [
-   "Funksiya xato tashlamadi — guard yo'q yoki shart bu qiymatni o'tkazdi",
-   "Funksiya xato tashladi, lekin boshqa xabar bilan",
-   "Test fayli topilmadi",
-   "() => yozilmagan"
-  ],
-  "wrong": {
-   "1": "Boshqa xabar bo'lsa Expected substring / Received message chiqadi.",
-   "2": "Fayl topilmasa No tests found bo'ladi.",
-   "3": "() =>siz test funksiyaning o'z xatosi bilan qulaydi — did not throw emas."
-  }
- },
- "16": {
-  "type": "Practice",
-  "kicker": "Amaliyot 3 / 4",
-  "eyebrow": "Hozir o'zingizda · 5–10 daqiqa",
-  "title": "Qizil chiziq, lekin test yuradi — o'zingiz ko'ring",
+  "type": "Lesson",
+  "kicker": "4-bosqich · chegara va «bo'lmasligi kerak»",
+  "title": "Xato yo'lida test ikki narsani kutadi: xato chiqdi va ombor o'zgarmadi — not.toHaveBeenCalled()",
   "seg": [
    [
     "a",
-    "Endi siz: TypeScript tuzog'ini <b>o'z ko'zingiz bilan</b> ko'rasiz — VS Code va terminal",
-    "Endi TypeScript tuzog'ini o'zingiz ko'rasiz. Bunga besh-o'n daqiqa ketadi. VS Code'ni ham, terminalni ham kuzating."
+    "Xato chiqdi — bu yarmi. <b>Xatodan keyin <code>UPDATE</code> ketmaganini</b> ham tekshiramiz",
+    "Ombor testiga qaytamiz. Xato chiqdi, bu yarmi. Muhimroq savol: xatodan keyin ombor o'zgarmay qoldimi? Order service ts'da o'ttiz oltinchi satrdagi tekshiruv update'dan oldin turadi. Agar kimdir tartibni almashtirsa, xato chiqadi, lekin ombor baribir kamayadi."
    ],
    [
     "b",
-    "1–2-qadam: guardni vaqtincha oling, <code>'ikki'</code> testi — VS Code qizil, <b><code>npm test</code> yuradi</b>",
-    "Birinchi qadamda guard satrlarini vaqtincha izohga oling. Ikkinchisida matn testidagi as any'ni olib tashlang. VS Code qizil chizadi, lekin npm test yuradi va received NaN deydi."
+    "<code>expect(manager.query).not.toHaveBeenCalled()</code> — <b>mock chaqiruvni yozib qolgan</b>, biz so'raymiz",
+    "Mock bu yerda yordam beradi. Manager query jest fn, u chaqirilganini eslab qoladi. Biz so'raymiz: not to have been called, ya'ni umuman chaqirilmagan bo'lsin. Xato yo'lida bu eng muhim qator: bot xato berib, baribir omborni kamaytirmasin."
    ],
    [
     "c",
-    "3–4-qadam: <code>as any</code> va guardni qaytaring; isbot — 2-qadamdagi <b><code>Received</code> qiymati</b>",
-    "Uchinchi qadamda as any'ni qaytaring: qizil chiziq yo'qoladi. To'rtinchisida guardni qaytaring: hammasi yashil bo'ladi. Isbot maydoniga ikkinchi qadamdagi received qiymatini yozing."
+    "Happy path'da teskarisi: <b><code>toHaveBeenCalledTimes(1)</code></b> — <code>UPDATE</code> aynan bir marta ketdi",
+    "Happy path testida teskarisi: to have been called times bir. Update aynan bir marta ketdi, ikki marta emas, nol marta emas. Mock bilan siz kod bazaga nima yuborganini sanaysiz: nima ketdi, nima ketmadi."
    ],
    [
     "d",
-    "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
-    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, VS Code'dagi qizil chiziq va terminaldagi natija har xil narsa ekanini o'zingiz ko'rdingiz."
+    "Xulosa: error path testi <b>ikki qismli</b>: xato chiqdi va keyingi qadam bajarilmadi",
+    "Xulosa: xato yo'lining testi ikki qismli. Birinchisi: xato chiqdi, to'g'ri xabar bilan. Ikkinchisi: xatodan keyin bo'lmasligi kerak bo'lgan narsa bo'lmadi. Ikkinchisini ko'pchilik yozmaydi, aynan shu yerda bot pulni yo'qotadi. Endi chegarani buzamiz."
+   ]
+  ]
+ },
+ "16": {
+  "type": "Lesson",
+  "kicker": "4-bosqich · buzamiz",
+  "title": "Ombor tekshiruvini <= qilsak, aynan 2 ta qolganda 2 tasini sotib bo'lmaydi — to'rt test yashil qoladi, chegara testi qizaradi",
+  "seg": [
+   [
+    "a",
+    "Buzamiz: <b><code>&lt;</code> o'rniga <code>&lt;=</code></b> — omborda 2 ta, 2 tasini olsa, bot «faqat 2 ta qoldi» deydi",
+    "Order service ts'ning o'ttiz oltinchi satrida kichik belgisini kichik yoki tengga almashtiramiz. Endi omborda ikkita bo'lsa va mijoz ikkitasini olsa, bot xato beradi: faqat ikkita qoldi. Oxirgi mahsulot hech qachon sotilmaydi. Npm test order service."
+   ],
+   [
+    "b",
+    "To'rt test <b>yashil qoldi</b>: ular 1 ta va 10 ta ni sinaydi, chegarani emas",
+    "To'rttala test yashil. Sababi: ombor testi bitta qolganini sinaydi, happy path o'nta. Ikkalasi chegaradan uzoqda. Kichik va kichik yoki teng farqi faqat ikki son teng bo'lganda ko'rinadi. Jest birinchi darsidagi sahifalash xatosi bilan bir xil."
+   ],
+   [
+    "c",
+    "Beshinchi test — <b>omborda aynan 2 ta, 2 tasi olinadi</b>: endi qizil, «faqat 2 ta qoldi»",
+    "Beshinchi testni qo'shamiz: mock'da omborda aynan ikkita, savatda ikkita. Buyurtma o'tishi kerak, jami bir yuz ming. To'g'ri kod bilan beshtala yashil. Buzilgan kod bilan beshinchisi qizil: omborda faqat ikkita qoldi. Bitta belgi, bitta test uni ushladi."
+   ],
+   [
+    "d",
+    "Xulosa: har <b><code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code> shartiga chegara testi</b> — aynan teng bo'lgan qiymat bilan",
+    "Xulosa: kodda kichik, katta, kichik yoki teng ko'rsangiz, aynan teng bo'lgan qiymat bilan test yozing. Bu test odatda eng qisqa va eng ko'p xatoni ushlaydi. Shartni tiklaymiz, beshtala yashil. Endi order service testlarini o'zingiz yozasiz."
    ]
   ]
  },
  "17": {
-  "type": "Lesson",
-  "kicker": "5-bosqich · uyga vazifa misoli",
-  "title": "0 va 100 — ishlaydi; −1 va 101 — xato: chegaraning ikki tomoni",
-  "seg": [
-   [
-    "a",
-    "O'quvchi uyga vazifasi: kupon — summadan foiz chegirma, <b>0 dan 100 gacha</b>",
-    "Endi o'quvchining uyga vazifasi: apply coupon funksiyasi. U summadan foiz chegirma hisoblaydi. Unda ikki himoya bor: summa son bo'lishi kerak, foiz esa nol bilan yuz orasida. Sinab ko'rdik, beshta emas, oltita test chiqdi."
-   ],
-   [
-    "b",
-    "<b>Olti test</b>: oddiy (10 %), chegaralar 0 va 100, chegaradan tashqari 101 va −1, matn",
-    "Oltita test bor. Oddiy holat: o'n foiz, natija to'qson ming. Chegaraning ichki tomoni, nol foiz va yuz foiz, ishlaydi. Tashqi tomoni, yuz bir va minus bir, xato beradi. Oxirgisi matn summa. Hammasi yashil: ikki fayl bilan o'n bir test."
-   ],
-   [
-    "c",
-    "<code>&gt;</code> o'rniga <code>&gt;=</code> — faqat <b>«chegara 100 %» qizil</b>, o'z xatosi bilan",
-    "Endi chegara xatosini qilamiz: katta o'rniga katta yoki teng yozamiz. Natijada faqat yuz foiz testi qizil, xabari esa funksiyaning o'z xatosi: percent noldan yuzgacha bo'lsin. Yuz foiz endi taqiqlangan bo'lib qoldi."
-   ],
-   [
-    "d",
-    "Xulosa: <b>chegaraning ikki tomoni</b> — ichkarida ishlaydi (0, 100), tashqarida xato (−1, 101)",
-    "Xulosa: chegaraning ikki tomonini sinang. Ichkaridagi qiymatlar, nol va yuz, ishlashi kerak. Tashqaridagilar, minus bir va yuz bir, xato berishi kerak. O'quvchi vazifasini tekshirganda shu to'rt qiymat bormi, shunga qarang."
-   ]
-  ]
- },
- "18": {
-  "type": "MCRetry",
-  "kicker": "Tekshiruv 4",
-  "eyebrow": "Tekshiruv · 4 / 4",
-  "title": "applyCoupon guardida percent > 100 o'rniga percent >= 100. Qaysi test qizil bo'ladi?",
-  "q": "Chegarani ko'rdingiz, tekshirib olaylik. To'rtinchi tekshiruv. Kupon funksiyasida katta o'rniga katta yoki teng yozildi. Oltita testdan qaysi biri qizil bo'ladi? Variantni tanlang.",
-  "ok": "To'g'ri, yuz foiz. Katta yoki teng bo'lsa, yuz ham taqiqlanadi va funksiya xato tashlaydi. Test esa nol natija kutgan edi. Yuz bir baribir xato beradi, u yashil qoladi. Demak, chegarani sinash uchun aynan chegaradagi qiymat testi kerak.",
-  "okShort": "<code>&gt;= 100</code> — 100 ham xato; <code>chegara 100 %</code> qizil, qolgan 5 yashil.",
-  "hint": "Ikki shart faqat bitta qiymatda farq qiladi — qaysi biri?",
-  "correct": 2,
-  "opts": [
-   "101 % — xato",
-   "0 %",
-   "chegara 100 % — 0",
-   "hammasi"
-  ],
-  "wrong": {
-   "0": "101 ikkala shartda ham xato — test yashil qoladi.",
-   "1": "0 ga bu shart tegmaydi.",
-   "3": "Faqat chegaradagi qiymat farq qiladi."
-  }
- },
- "19": {
   "type": "Practice",
-  "kicker": "Amaliyot 4 / 4",
-  "eyebrow": "Hozir o'zingizda · 15 daqiqa",
-  "title": "O'quvchi uyga vazifasi — guard va olti test",
+  "kicker": "Amaliyot 2 / 3",
+  "eyebrow": "Hozir o'zingizda · 20 daqiqa",
+  "title": "Mock bilan place ning uch xatosini va chegarasini sinang, keyin kodni buzib qizilni ko'ring",
   "seg": [
    [
     "a",
-    "Endi siz: o'quvchi uyga vazifasini o'zingiz qilasiz — <b>guard va olti test</b>",
-    "Oxirgi amaliyotda o'quvchi uyga vazifasini o'zingiz qilasiz: kupon funksiyasi, ikki himoya va oltita test. Bunga o'n besh daqiqa ketadi."
+    "Endi siz: <b><code>order.service.spec.ts</code></b> — mock, uch xato, chegara va bitta buzish",
+    "Endi navbat sizga. Order papkasida order service spec ts yozasiz: mock, uchta xato, happy path va chegara. Ekrandagi namuna kodni ochishingiz mumkin, lekin o'zingiz yozing, nusxalamang. Yigirma daqiqa ketadi."
    ],
    [
     "b",
-    "1–2-qadam: <code>coupon.ts</code> va <code>coupon.spec.ts</code>, <code>npm test</code> — <b>hammasi yashil</b>",
-    "Birinchi qadamda coupon ts faylida ikki himoya va hisobni yozasiz. Ikkinchisida coupon spec ts faylida oltita test yozasiz. npm test qilganda hammasi yashil bo'lishi kerak."
+    "1–2-qadam: <b>mock va to'rt test</b> — sinxron <code>toThrow</code>, promise <code>rejects</code>, <code>not.toHaveBeenCalled</code>",
+    "Birinchi qadamda mock manager va test modulini yozasiz. Ikkinchisida to'rtta test: telefon va savat sinxron to throw bilan, ombor await rejects bilan va query chaqirilmaganini tekshirib, happy path jami bilan. Npm test order service: to'rttasi yashil."
    ],
    [
     "c",
-    "3–4-qadam: <code>&gt;</code> → <code>&gt;=</code>, <b>qizil test nomini</b> o'qing; isbot — o'sha nom",
-    "Uchinchi qadamda katta o'rniga katta yoki teng yozib, npm test qilasiz. To'rtinchisida qizil testning nomini nuqtali satrdan o'qib, isbot maydoniga yozasiz va funksiyani tiklaysiz."
+    "3–4-qadam: <b>chegara testi va <code>&lt;=</code> buzish</b>; isbot — qizargan (✕) testning nomi",
+    "Uchinchi qadamda chegara testini qo'shasiz: omborda aynan ikkita. To'rtinchisida order service ts'da kichikni kichik yoki tengga buzib, qaysi test qizarganini ko'rasiz va git checkout bilan tiklaysiz. Isbot maydoniga qizargan test nomini yozing."
    ],
    [
     "d",
     "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
-    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, siz o'quvchi uyga vazifasini to'liq qildingiz va uning to'rt chegara qiymatini bilasiz."
+    "Boshqacha chiqsa, «Boshqacha chiqdimi» tugmasini bosing. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin siz bazasiz xato yo'lini sinaysiz va chegara testining xatoni ushlashini o'zingiz ko'rgansiz."
+   ]
+  ],
+  "steps": [
+   {
+    "t": "Mock va modul",
+    "cmds": [
+     "src/api/order/order.service.spec.ts — manager, dataSource, Test.createTestingModule (9-ekran)"
+    ],
+    "exp": "fayl tayyor"
+   },
+   {
+    "t": "To'rt test",
+    "cmds": [
+     "telefon",
+     "savat (toThrow)",
+     "ombor (await … rejects.toThrow + not.toHaveBeenCalled)",
+     "yetarli (total 100000)",
+     "npm test -- order.service"
+    ],
+    "exp": "Tests: 4 passed, 4 total"
+   },
+   {
+    "t": "Chegara",
+    "cmds": [
+     "it(\"chegara: omborda aynan 2 ta…\") — stock: 2",
+     "npm test -- order.service"
+    ],
+    "exp": "Tests: 5 passed, 5 total"
+   },
+   {
+    "t": "Buzish va tiklash",
+    "cmds": [
+     "order.service.ts 36-satr < → <=",
+     "npm test -- order.service",
+     "git checkout -- src/api/order/order.service.ts"
+    ],
+    "exp": "✕ chegara: omborda aynan 2 ta — 2 tasini olsa bo'ladi"
+   }
+  ],
+  "proof": {
+   "label": "4-qadamda qizargan (✕) testning nomi — buyruq emas",
+   "placeholder": "masalan: chegara: omborda aynan 2 ta — 2 tasini olsa bo'ladi",
+   "re": "(chegara|aynan 2|2 ta)",
+   "flags": "i",
+   "wrong": "Bu yerga buyruqni emas, terminalda ✕ yonidagi test nomini yozing, masalan: chegara: omborda aynan 2 ta."
+  },
+  "trouble": [
+   [
+    "Natija umuman yo'q, Node.js v24…",
+    "promise xatosiga toThrow yoki rejects oldida await yo'q (11, 13-ekran)"
+   ],
+   [
+    "Nest can't resolve dependencies of the OrderService (?, DataSource)… \"OrderRepository\" at index [0]",
+    "providers da getRepositoryToken(Order) yo'q — bo'sh obyekt bilan qo'shing (9-ekran)"
+   ],
+   [
+    "Received message: \"Mahsulot topilmadi: Kolonka\"",
+    "mockResolvedValue shu testda yozilmagan — findOne undefined qaytardi, kod «topilmadi» dedi"
+   ],
+   [
+    "4-qadamda hammasi ✓",
+    "chegara testi stock: 2 emas — mock'da aynan 2 va savatda 2 bo'lsin"
    ]
   ]
  },
- "20": {
+ "18": {
   "type": "Lesson",
-  "kicker": "6-bosqich · o'quvchi darsini o'tish",
-  "eyebrow": "m4b-03 · «Edge cases va error path»",
-  "title": "m4b-03: shumtaka mijoz, guard va o'rash",
+  "kicker": "5-bosqich · HTTP va AI",
+  "title": "Sayt ham shunday sinaladi: supertest server ochmasdan Nest ilovasiga so'rov yuboradi — GET / 200 va JSON, GET /nope 404",
   "seg": [
    [
     "a",
-    "m4b-03 — 21 ekran: o'quvchi <b>«shumtaka mijoz»</b> kiritgan g'alati buyurtmalarni sinaydi",
-    "Endi o'quvchi darsini ko'ramiz: m4b-03, unda yigirma bir ekran bor. O'quvchi shumtaka mijoz kiritgan g'alati buyurtmalarni ko'radi, himoya yig'adi va xatoni test bilan sinashni o'rganadi."
+    "Jest-1 dagi savol: <b>«saytni test qila olamanmi?»</b> — ha, bitta paket: <code>supertest</code>",
+    "Jest birinchi darsida savol bor edi: botni sinadim, saytni-chi? Javob: xuddi shunday, bitta qo'shimcha paket bilan. VS Code terminalida npm i minus D supertest va types supertest. Supertest server ochmasdan Nest ilovasiga so'rov yuboradi."
    ],
    [
     "b",
-    "Guard bloki: o'quvchi o'rashni tanlaydi — siz <b>o'ralmagan holatning xabarini</b> ko'rsatasiz",
-    "Guard blokida o'quvchi to'g'ri yozuvni tanlaydi: o'ralgan funksiya. Siz proyektorda o'ralmaganini yurgizib ko'rsating: test funksiyaning o'z xatosi bilan qulaydi. Ko'rgan o'quvchi buni unutmaydi."
+    "<code>app.controller.spec.ts</code>: <b>Nest ilovasini xotirada ko'taramiz</b> — <code>createNestApplication</code>, <code>app.init()</code>",
+    "Src, api papkasida app controller spec ts yaratamiz. Before all'da test moduli faqat app controller bilan, keyin create nest application va init. Ilova xotirada ko'tarildi, port ochilmadi, baza yo'q. After all'da yopamiz."
    ],
    [
     "c",
-    "Amaliyot oldidan: <code>'ikki'</code> testida <b><code>as any</code></b> — aks holda VS Code qizil chizadi",
-    "Amaliyot va uyga vazifadan oldin bitta ogohlantirish: matn testida as any yozilsin. Yozilmasa, VS Code qizil chizadi, test esa baribir yuradi va o'quvchi adashadi."
+    "Ikki test: <b><code>GET /</code> → 200 va <code>{ ok: true }</code></b>, <code>GET /nope</code> → 404 «Cannot GET /nope»",
+    "Birinchi test: get, ildiz manzil. Status ikki yuz, tana ok true va service order bot, to equal bilan. Ikkinchisi error path: yo'q manzil. Status to'rt yuz to'rt, xabar cannot get nope. Npm test app controller: ikkalasi yashil."
    ],
    [
     "d",
-    "Xulosa: vaqt — guard va o'rashga ko'proq; uyga vazifada <b>to'rt chegara qiymati</b>",
-    "Xulosa: vaqt, taklif: to'qson daqiqaning yigirma beshi guard va o'rashga, chunki eng ko'p adashish shu yerda. Uyga vazifani tekshirganda to'rt qiymatga qarang: nol, yuz, minus bir va yuz bir."
+    "Xulosa: <b>so'rov → status va tana</b>; bot handler'i ham, sayt route'i ham bir xil sinaladi",
+    "Xulosa: HTTP test so'rov yuboradi va statusni, tanani tekshiradi. Bot handler'i ham, sayt route'i ham bitta usulda sinaladi: kirish beriladi, chiqish solishtiriladi. Kattaroq API'da shu qolip har route uchun takrorlanadi. Endi tekshirib olaylik."
+   ]
+  ]
+ },
+ "19": {
+  "type": "MCRetry",
+  "kicker": "Tekshiruv 4",
+  "eyebrow": "Tekshiruv · 4 / 4",
+  "title": "Ilovada faqat GET / route'i bor. Test GET /nope yubordi. res.status va res.body.message nima bo'ladi?",
+  "q": "HTTP testni ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. Ilovada faqat bitta route bor, ildiz. Test yo'q manzilga, nope'ga so'rov yubordi. Status va xabar nima bo'ladi? Variantni tanlang.",
+  "ok": "To'g'ri. Nest yo'q manzilga o'zi to'rt yuz to'rt qaytaradi, tanasida message: cannot get nope. Bu kodingizdagi xato emas, kutilgan error path, va test uni aynan shunday kutadi. Demak, yo'q manzil beshyuz emas, to'rt yuz to'rt: mijoz xatosi, server xatosi emas.",
+  "okShort": "Yo'q route → Nest'ning o'zi 404 va <code>Cannot GET /nope</code> — bu kutilgan error path.",
+  "hint": "Brauzerda yo'q sahifani ochsangiz qaysi raqam chiqadi? Nest ham shuni qaytaradi.",
+  "demak": "Yo'q manzil — 404, mijoz xatosi; 500 — server xatosi. Test ikkalasini farqlaydi.",
+  "correct": 3,
+  "opts": [
+   "200 va { ok: true } — Nest ildizga yo'naltiradi",
+   "500 — route topilmagani server xatosi",
+   "Test yiqiladi — supertest yo'q manzilni yubormaydi",
+   "404 va Cannot GET /nope — Nest'ning o'z javobi"
+  ],
+  "wrong": {
+   "0": "Nest yo'naltirmaydi: route yo'q bo'lsa — 404.",
+   "1": "500 — kod ichidagi xato; yo'q route oddiy 404.",
+   "2": "supertest istalgan manzilga yuboradi; javob 404 keladi, test yiqilmaydi."
+  }
+ },
+ "20": {
+  "type": "Lesson",
+  "kicker": "5-bosqich · AI",
+  "title": "Yangi ko'nikma davomi: AI edge va xato testlarini yozdi — ikki to'plam, ikkalasi yashil; endi ularni qabul qilamiz",
+  "seg": [
+   [
+    "a",
+    "Yana AI bosqichi: <b>edge va xato testlarini AI yozadi, siz qabul qilasiz</b>",
+    "Jest birinchi darsidagi kabi oxirgi bosqich AI bilan. Farqi: bu safar AI happy path emas, edge va xato testlarini yozadi, ya'ni bugungi mavzuni. Biz ikki xil AI'ga bitta oddiy prompt berdik va natijani olib keldik."
+   ],
+   [
+    "b",
+    "Prompt: <b>«place va telefon tekshiruvi uchun edge case va xato testlar yoz»</b> — ishorasiz",
+    "Prompt oddiy: order service'dagi place funksiyasi va telefon raqami tekshiruvi uchun edge case va xato holatlariga jest testlar yoz, npm test yashil bo'lsin. Rejects, await, chegara, mock, bu so'zlarning hech biri promptda yo'q. Har AI loyihaning alohida nusxasida ishladi."
+   ],
+   [
+    "c",
+    "Natija yaxshi: <b>50 va 42 test, kodga tegmadi</b>, <code>rejects</code> va <code>await</code> to'g'ri, «bo'lmasligi kerak» testlari bor",
+    "Natija yaxshi ko'rinadi. Ikkalasi faqat test fayllarini qo'shdi, kodga tegmadi. Birinchisi ellik, ikkinchisi qirq ikkita test, hammasi yashil. Ikkalasi ham promise xatosiga rejects va await yozdi, jarayon qulamadi. Ikkalasi ham xatodan keyin update ketmaganini tekshirdi."
+   ],
+   [
+    "d",
+    "Lekin: ikkalasi <b>qoidani ajratmadi</b> va <b>probelli raqam rad etilishini «to'g'ri» deb yozdi</b>",
+    "Lekin ikki narsa. Ikkalasi ham telefon qoidasini ajratmadi: uni butun handler orqali, to'rtta servisni soxtalab sinadi, birinchisida bir yuz qirq to'qqiz qator. Va ikkalasi ham probel bilan yozilgan raqam rad etilishini to'g'ri deb test qildi, biz esa buni oltinchi ekranda xato deb topgan edik."
+   ],
+   [
+    "e",
+    "Xulosa: <b>yashil hali tekshiruv emas</b>; buzib ko'ramiz — va yana bir savol: test qoidani sinaydimi, kodni muhrlaydimi",
+    "Xulosa: yashil hali tekshiruv emas, keyingi ekranda beshta buzish bilan tekshiramiz. Va yangi savol tug'ildi: AI yozgan test qoidani sinaydimi, yoki kod hozir qanday ishlasa, shuni muhrlaydimi. Probelli raqam testi ikkinchisi."
    ]
   ]
  },
  "21": {
   "type": "Lesson",
-  "kicker": "6-bosqich · o'quvchi darsini o'tish",
-  "title": "O'quvchi darsidagi so'zlar: shumtaka mijoz, «hech kim sezmaydi», guard bloklari, o'rab berish",
+  "kicker": "5-bosqich · ichida",
+  "title": "Beshta buzish — uchala to'plam hammasini ushladi; oltinchi «buzilish»ni esa buzib bo'lmaydi: AI probelli raqam rad etilishini muhrlab qo'ygan",
   "seg": [
    [
     "a",
-    "O'quvchi darsi «shumtaka mijoz» deydi — siz <b>«edge case»</b> atamasini birga aytasiz",
-    "Xaritani ko'rdingiz, endi o'quvchi darsida ishlatiladigan so'zlarni ko'ramiz. O'quvchi darsi shumtaka mijoz va g'alati buyurtma deydi. Siz uning yonida atamani ham ayting: edge case, ya'ni chegara holati."
+    "Beshta buzish — <b>bugungi beshta qoida</b>: regex chegarasi, <code>&lt;=</code>, tartib, xabar, bo'sh savat",
+    "Beshta buzish oldik, har biri bugungi bitta qoida. Regex'da to'qqizni sakkizga. Kichikni kichik yoki tengga. Update'ni ombor tekshiruvidan oldinga. Xato xabarini o'zgartirish. Bo'sh savat tekshiruvini olib tashlash. Uchala to'plamni sinadik: bizniki va ikki AI."
    ],
    [
     "b",
-    "«Hech kim sezmaydi», kartochkada «jim buzilish» — xatosiz noto'g'ri natija; guard esa uch blok: <b>shart, xato, hisob</b>",
-    "Xato chiqmasdan natija noto'g'ri bo'lgan holat haqida o'quvchi darsi «hech kim sezmaydi» deydi, kartochkasida esa «jim buzilish» deb yozilgan. Siz buni yashirin buzilish deysiz, ikkalasi bitta narsa. Guard o'quvchi darsida uch blokdan iborat: shart, xato tashlash va to'g'ri hisob. Kodda ular aynan if, throw va return."
+    "Natija: <b>uchala to'plam beshalasini ushladi</b> — bu safar AI xato yo'lini yaxshi yozdi",
+    "Natija: uchala to'plam beshala buzilishni ushladi. Bizning yigirma besh testimiz har buzilishda bittadan qizardi. Birinchi AI xabar o'zgarganda uchta, tartib buzilganda ikkita test bilan sezdi. Ikkinchi AI ham hammasini sezdi. Bu safar AI xato yo'lini yaxshi yozdi, buni tan olamiz."
    ],
    [
     "c",
-    "Xulosa: «o'rab berish, ya'ni <code>() =&gt;</code>» — so'zni <b>kod bilan birga</b> ko'rsating",
-    "Xulosa: o'rab berish deganda strelkali funksiya tushuniladi. So'zni aytganda ekranda kodni ham ko'rsating. Terminal so'zlari esa inglizcha qoladi: did not throw, received message."
+    "Oltinchi «buzilish» jadvalda yo'q: <b>AI probelli raqam rad etilishini muhrladi</b> — <code>replace</code> tuzatishi uning testini qizartiradi",
+    "Lekin bitta narsa jadvalga sig'maydi, chunki uni buzib bo'lmaydi: probel. Ikkala AI probelli raqam rad etilishini test qilib muhrladi. Siz oltinchi ekrandagi replace bilan tuzatsangiz, ularning testi qizaradi. Test qoidani emas, hozirgi kodni qo'riqlayapti. Mijoz odati haqida AI bilmaydi."
+   ],
+   [
+    "d",
+    "Xulosa: AI testi <b>xatoni ushlaydi, lekin hozirgi xulqni ham muhrlaydi</b> — har testdan «bu qoidami?» deb so'rang",
+    "Xulosa: AI yozgan test ikki narsa qiladi. Xatoni ushlaydi, bu yaxshi. Va hozirgi xulqni, shu jumladan xatoni ham, muhrlab qo'yadi. Har testni o'qib so'rang: bu qoidami, yoki kod shunchaki hozir shunday ishlaydimi. Endi o'z AI'ingiz bilan sinab ko'rasiz."
    ]
   ]
  },
  "22": {
-  "type": "Lesson",
-  "kicker": "6-bosqich · sinfda",
-  "title": "Olti holat va tayyor javoblar",
+  "type": "Practice",
+  "kicker": "Amaliyot 3 / 3",
+  "eyebrow": "Hozir o'zingizda · 20 daqiqa",
+  "title": "O'z AI'ingizga aniq shartli prompt bering, keyin to'rt tekshiruv va uchta buzish",
   "seg": [
    [
     "a",
-    "Sinfda albatta chiqadigan <b>olti holat</b> — hammasini bugun o'zingiz ko'rdingiz",
-    "Endi sinfda albatta chiqadigan oltita holatni ko'ramiz. Hammasini bugun o'zingiz ko'rdingiz."
+    "Endi siz: AI'ga <b>shartlari aniq prompt</b> — <code>setStatus</code> ning xato yo'li uchun",
+    "Endi navbat sizga. O'z AI'ingizga test yozdirasiz, mavzu: order service'dagi set status funksiyasi, uning xato yo'li. Promptni pastdagi tugma bilan nusxalaysiz. Yigirma daqiqa ketadi."
    ],
    [
     "b",
-    "Uch xabar <b>uch sabab</b>: <code>did not throw</code>, funksiya xatosi, <code>Received message</code>",
-    "Birinchi uchtasi xabardan taniladi. Did not throw chiqsa, himoya yo'q. Funksiyaning o'z xabari chiqsa, strelka yo'q. Received message chiqsa, boshqa xato tutilgan."
+    "1–2-qadam: prompt va <b>to'rt tekshiruv</b> — diff, <code>await</code> + <code>rejects</code>, <code>not.toHaveBeenCalled</code>, «qoidami?»",
+    "Birinchi qadamda promptni berasiz. Ikkinchisida natijani tekshirasiz: git diff stat'da faqat spec fayl, promise xatosida await va rejects, xatodan keyin increment chaqirilmaganini tekshiradigan test bor. Va har testdan so'rang: bu qoidami, yoki kod hozir shunday ishlaydimi."
    ],
    [
     "c",
-    "Happy qizil, <code>'ikki'</code> qizil chiziq, nomlar yo'q — shart, <b><code>as any</code></b>, <code>--verbose</code>",
-    "To'rtinchisi: oddiy holat qizil bo'lsa, himoya juda qattiq. Beshinchisi: matn testida qizil chiziq bo'lsa, as any yozing. Oltinchisi: nomlar ko'rinmasa, sabab ikkita fayl."
+    "3–4-qadam: <b>uchta buzish</b> — hammasi qizarsin; isbot — natija",
+    "Uchinchi qadamda set status'ni uch joyda navbat bilan buzasiz: bekor tekshiruvini olib tashlang, increment'ni tekshiruvdan oldinga ko'chiring, xabarni o'zgartiring. Har biridan keyin npm test va git checkout. Qizarmagan joyga AI'dan test so'rang. Isbot maydoniga natijani yozing."
    ],
    [
     "d",
-    "Xulosa: <b>xabarni o'quvchi bilan birga o'qing</b> — har xabar boshqa sababni aytadi",
-    "Xulosa va usul bitta: javobni darhol aytmang, xabarni o'quvchi bilan birga o'qing. Bu darsda har xabar boshqa sababni aytadi. Pastda o'quvchi savollariga tayyor javoblar bor."
+    "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
+    "Boshqacha chiqsa, «Boshqacha chiqdimi» tugmasini bosing. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin siz AI yozgan xato yo'li testini ikki qismi bo'yicha qabul qilasiz: xato chiqdi va keyingi qadam bo'lmadi."
+   ]
+  ],
+  "steps": [
+   {
+    "t": "Prompt",
+    "cmds": [
+     "yuqoridagi prompt — o'z AI'ingizga",
+     "npm test"
+    ],
+    "exp": "PASS"
+   },
+   {
+    "t": "To'rt tekshiruv",
+    "cmds": [
+     "git diff --stat — faqat .spec.ts",
+     "rejects oldida await",
+     "expect(manager.increment).not.toHaveBeenCalled() bor",
+     "har test «qoida»mi yoki «kod hozir shunday»mi — ikkinchisini belgilang"
+    ],
+    "exp": "4 ✓"
+   },
+   {
+    "t": "Uch buzish",
+    "cmds": [
+     "order.service.ts setStatus: if (order.status === 'CANCELLED') tekshiruvini olib tashlang",
+     "increment siklini tekshiruvdan oldinga ko'chiring",
+     "allaqachon bekor qilingan → bekor — har biridan keyin npm test va git checkout -- src/api/order/order.service.ts"
+    ],
+    "exp": "har biri ✕"
+   },
+   {
+    "t": "Qizarmagan joy",
+    "cmds": [
+     "AI'ga: «<buzish> ni hech bir test ushlamadi — shu qoidaga test yoz»",
+     "3-qadamni qaytaring"
+    ],
+    "exp": "uchalasi ✕"
+   }
+  ],
+  "proof": {
+   "label": "Uch buzishning natijasi",
+   "placeholder": "masalan: uchalasi qizardi · yoki: increment tartibi — avval qizarmadi, test qo'shdim",
+   "re": "(qizar|fail|✕|uchala|hammasi|test qo'sh)",
+   "flags": "i",
+   "wrong": "Har buzishdan keyin npm test natijasini yozing."
+  },
+  "trouble": [
+   [
+    "git diff --stat da order.service.ts ham bor",
+    "AI kodni o'zgartirdi — git checkout -- src/api/order/order.service.ts, «Tegma» bandini takrorlang"
+   ],
+   [
+    "Natija umuman yo'q, Node.js v24…",
+    "AI toThrow ni promise'da ishlatgan yoki await yo'q — 11, 13-ekran; satrni qo'lda tuzating"
+   ],
+   [
+    "increment tartibi buzilishida hammasi ✓",
+    "«bo'lmasligi kerak» testi yo'q — not.toHaveBeenCalled so'rang (15-ekran)"
+   ],
+   [
+    "order.items undefined",
+    "mock'dagi buyurtmada items: [] yo'q — mock'ga items bering"
    ]
   ]
  },
  "23": {
+  "type": "Lesson",
+  "kicker": "6-bosqich · sinfga tayyorgarlik",
+  "eyebrow": "m4b-03 · «Edge cases va error path»",
+  "title": "O'quvchi darsi: KitobShop orderTotal, «shumtaka mijoz» va guard — siz bilgan yo'lning kichik, bazasiz varianti",
+  "seg": [
+   [
+    "a",
+    "m4b-03 — 21 ekran: <b><code>orderTotal</code> ga guard</b>, shumtaka mijoz 0 va manfiy beradi",
+    "Endi sinfga tayyorgarlik. O'quvchi darsi m4b-03, yigirma bir ekran. O'quvchi Jest birinchi darsidagi order total funksiyasiga guard qo'shadi: nol, manfiy, matn kelsa xato tashlaydi. Dars buni shumtaka mijoz misolida tushuntiradi: g'alati buyurtma beradigan mijoz. Baza yo'q, promise yo'q, hammasi sinxron."
+   ],
+   [
+    "b",
+    "O'quvchi so'zlari: <b>shumtaka — edge case, guard — <code>if</code> <code>throw</code> <code>return</code></b>, o'rab berish — <code>expect(() =&gt; …)</code>",
+    "O'quvchi darsidagi so'zlar: shumtaka mijoz bu edge case. Guard bu if, throw, return. O'rab berish bu expect ichidagi qavs strelka. Kartochkadagi «jim buzilish» esa yashirin buzilish: xatosiz noto'g'ri natija. Sinfda so'zni atamasi bilan birga ayting."
+   ],
+   [
+    "c",
+    "Siz qo'shasiz: <b>ikki qismli test, <code>() =&gt;</code> siz natija, chegaraning ikki tomoni</b>",
+    "Darsga siz qo'shadigan narsalar. Guard testida ikki qism: xato chiqdi va hisob bajarilmadi. O'rab bermasa nima bo'lishini bir marta haqiqiy terminalda ko'rsating: natija yo'q, bugun o'zingiz ko'rgansiz. Uyga vazifada apply coupon'ning aynan nol va aynan yuz chegaralarini sinattiring."
+   ],
+   [
+    "d",
+    "Xulosa: o'quvchi «test natijasi chiqmayapti» desa — <b><code>() =&gt;</code> yo'q</b>; pastda uch vaziyat va savollar",
+    "Xulosa: o'quvchi test natijasi umuman chiqmayapti desa, birinchi expect ichidagi o'ramga qarang. Did not throw chiqsa, guard yo'q yoki shart qiymatni o'tkazgan. Pastda uch vaziyat va o'quvchi savollariga tayyor javoblar bor."
+   ]
+  ]
+ },
+ "24": {
   "type": "Screen27",
   "kicker": "O'z-sinov",
   "title": "Sakkiz savol. Bitta urinish. Oltitasi — o'tdingiz",
   "final": [
    {
-    "q": "Himoyasiz orderTotal(10000, 0) nima qaytaradi?",
+    "q": "Mijoz «+998 90 123 45 67» yozdi, bot «Raqam noto'g'ri» dedi. Bu qaysi yo'l?",
     "o": [
-     "Error",
-     "0 — xatosiz",
-     "NaN",
-     "10000"
-    ],
-    "c": 1,
-    "e": "Yashirin buzilish: bepul buyurtma.",
-    "s": 3
-   },
-   {
-    "q": "Received function did not throw nimani bildiradi?",
-    "o": [
-     "funksiya xato tashlamadi",
-     "boshqa xabar",
-     "fayl topilmadi",
-     "() => yo'q"
+     "Edge case — qoida mijoz odatidan tor",
+     "Error path — kod ataylab xato berdi, to'g'ri",
+     "Happy path — raqam to'g'ri, bot ham",
+     "Xato emas — mijoz noto'g'ri yozgan"
     ],
     "c": 0,
-    "e": "Guard yo'q yoki shart qiymatni o'tkazdi.",
+    "e": "Haqiqiy raqam, qoida tor.",
     "s": 5
    },
    {
-    "q": "Xato kutilayotgan testning to'g'ri yozuvi?",
+    "q": "const PHONE service ichida, eksport yo'q. Testda nima qilasiz?",
     "o": [
-     "expect(f(0)).toThrow()",
-     "f(0).toThrow()",
-     "expect(() => f(0)).toThrow()",
-     "expect(f(0)).toBe(0)"
+     "Butun botni ko'tarib, Telegram xabarini soxtalaymiz",
+     "Qoidani alohida funksiyaga ajratib, uni sinaymiz",
+     "Regex'ni testga nusxalab, o'sha yerda sinaymiz",
+     "Service'ni any qilib, PHONE ga kiramiz"
+    ],
+    "c": 1,
+    "e": "Bitta joy, bot ham test ham shuni chaqiradi.",
+    "s": 3
+   },
+   {
+    "q": "place ombor xatosini transaction ichida otadi. Qaysi shakl to'g'ri?",
+    "o": [
+     "expect(() => service.place(u, c)).toThrow('…') — o'ram bilan",
+     "expect(service.place(u, c)).toThrow('…')",
+     "await expect(service.place(u, c)).rejects.toThrow('…')",
+     "expect(await service.place(u, c)).toThrow('…') — await ichida"
     ],
     "c": 2,
-    "e": "Jest o'ralgan funksiyani o'zi chaqiradi.",
-    "s": 8
-   },
-   {
-    "q": "() =>siz toThrow — natija?",
-    "o": [
-     "PASS",
-     "did not throw",
-     "No tests found",
-     "test funksiyaning o'z xatosi bilan qulaydi"
-    ],
-    "c": 3,
-    "e": "Funksiya expect'dan oldin ishlaydi.",
-    "s": 8
-   },
-   {
-    "q": "Guardda <= 0 o'rniga < 0. Qaysi test qizil?",
-    "o": [
-     "0 dona — xato",
-     "manfiy — xato",
-     "2 kitob",
-     "matn — xato"
-    ],
-    "c": 0,
-    "e": "Faqat 0 da farq.",
+    "e": "Promise xatosi — rejects va await.",
     "s": 10
    },
    {
-    "q": ".spec.tsda orderTotal(10000, 'ikki') — o'quvchi reposida nima bo'ladi?",
+    "q": "Promise xatosiga toThrow yozildi. npm test nima ko'rsatadi?",
     "o": [
-     "npm test yurmaydi",
-     "VS Code qizil, test yuradi — NaN",
-     "hech narsa",
-     "No tests found"
+     "FAIL — xabar mos kelmadi",
+     "PASS — xato ushlanmadi, test o'tdi",
+     "FAIL — toThrow promise'ni darhol rad etadi",
+     "Natija yo'q — jarayon quladi, Node.js v24"
     ],
-    "c": 1,
-    "e": "isolatedModules — ts-jest turlarni tekshirmaydi.",
+    "c": 3,
+    "e": "Xato promise'da, hech kim ushlamadi.",
+    "s": 11
+   },
+   {
+    "q": "expect(service.place(u, c)).rejects.toThrow('…') — await yo'q, xabar noto'g'ri. Natija?",
+    "o": [
+     "Natija yo'q — Jest xatoni testga bog'lay olmadi",
+     "FAIL — Expected / Received farqi aniq ko'rsatiladi",
+     "PASS — rejects promise'ni o'zi kutib oladi",
+     "TypeScript xato — rejects oldida await shart"
+    ],
+    "c": 0,
+    "e": "Test promise'ni kutmay tugadi.",
     "s": 13
    },
    {
-    "q": "applyCouponda > 100 o'rniga >= 100. Qaysi test qizil?",
+    "q": "Xato yo'li testida «xato chiqdi»dan tashqari nima tekshiriladi?",
     "o": [
-     "101 %",
-     "0 %",
-     "chegara 100 %",
-     "hammasi"
+     "Xato necha millisekundda chiqqani — tezlik",
+     "Xatodan keyin UPDATE chaqirilmagani",
+     "Xato stack'ida qaysi fayl borligi",
+     "Xato obyekti Error turida ekani"
     ],
-    "c": 2,
-    "e": "100 ham taqiqlanadi.",
-    "s": 17
+    "c": 1,
+    "e": "«Nima bo'lmasligi kerak» — not.toHaveBeenCalled.",
+    "s": 15
    },
    {
-    "q": "Kupon uchun chegaraning ikki tomoni — qaysi to'rt qiymat?",
+    "q": "Mock'da omborda 1 ta va 10 ta sinalgan. Kodda < → <= buzildi. Testlar?",
     "o": [
-     "10, 20, 30, 40",
-     "1, 2, 3, 4",
-     "50, 60, 70, 80",
-     "0, 100, −1, 101"
+     "Ikkalasi FAIL — chegara buzilgani uchun",
+     "Ombor testi FAIL, happy PASS",
+     "Ikkalasi PASS — chegara sinalmagan",
+     "Natija yo'q — mock qulaydi"
+    ],
+    "c": 2,
+    "e": "Farq faqat aynan teng bo'lganda.",
+    "s": 16
+   },
+   {
+    "q": "supertest bilan GET /nope yuborildi, route yo'q. Javob?",
+    "o": [
+     "500 — server route topa olmadi",
+     "200 — Nest ildizga yo'naltiradi",
+     "Test yiqiladi — manzil mavjud bo'lmagani uchun",
+     "404 va Cannot GET /nope — Nest javobi"
     ],
     "c": 3,
-    "e": "Ichkari ishlaydi, tashqari xato.",
-    "s": 17
+    "e": "Nest'ning o'z 404 javobi — kutilgan error path.",
+    "s": 19
    }
   ]
  },
- "24": {
+ "25": {
   "type": "Screen28",
   "kicker": "Yakun",
   "title": "Endi siz bilasiz"

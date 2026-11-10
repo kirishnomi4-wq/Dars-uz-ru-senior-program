@@ -1,0 +1,36 @@
+# ws2-start: tarmoq uzildi
+# Panel proksi orqali (localhost:3101 → server 3100). Proksi kesilganda ochiq ulanish uziladi, yangisi qabul qilinmaydi; server va bot ishlab turibdi
+
+## Qadamlar
+21:40:05 — tarmoq uzildi (proksi)
+21:40:08 — Bobur buyurtma berdi (panel tarmoqsiz)
+21:40:12 — tarmoq qaytdi
+
+## Brauzer — panel
+21:40:04.849 brauzer: GET /admin/orders (1)
+21:40:04.870 brauzer: WebSocket ochildi
+21:40:05.483 panel ochildi — belgi «Ulangan» · ro'yxat: Hali buyurtma yo'q
+21:40:05.604 brauzer: WebSocket yopildi
+21:40:05.640 belgi: «Ulangan» → «Ulanmoqda…»
+21:40:07.658 SURAT 03-tarmoq-start-1 (1-tarmoq-yoq) — belgi «Ulanmoqda…» · ro'yxat: Hali buyurtma yo'q
+    Hali buyurtma yo'q
+21:40:13.613 brauzer: WebSocket ochildi
+21:40:13.619 belgi: «Ulanmoqda…» → «Ulangan»
+21:40:20.389 SURAT 03-tarmoq-start-2 (2-qayta-ulangan) — belgi «Ulangan» · ro'yxat: Hali buyurtma yo'q
+    Hali buyurtma yo'q
+21:40:20.852 tugadi — belgi «Ulangan» · ro'yxat: Hali buyurtma yo'q · jami GET: 1
+
+## Server logi
+LOG [InstanceLoader] LiveModule dependencies initialized
+21:40:03 Server 3100-portda ishlayapti
+LOG [Live] panel ulandi: Y2whZ46rcEXlodQqAAAA
+LOG [Live] panel uzildi: Y2whZ46rcEXlodQqAAAA
+21:40:08 — Bobur botda buyurtma beradi
+21:40:08 bot → 5987654321: Salom, Bobur! Bu CoddyCamp do'koni boti.
+21:40:08 bot → 5987654321: Buyurtma uchun telefon raqamingizni yozing (masalan, +998901234567):
+21:40:08 bot → 5987654321: Buyurtma #1 qabul qilindi!
+21:40:08 — buyurtma #1 bazada
+LOG [Live] panel ulandi: FxbJ0MjfHWCjRxaGAAAB
+LOG [Live] panel uzildi: FxbJ0MjfHWCjRxaGAAAB
+
+## Baza (psql): orders — 1 ta, eng yangisi #1

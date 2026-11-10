@@ -1,0 +1,13 @@
+$ npx jest savat --verbose
+PASS src/api/telegram/savat.spec.ts
+  texts.cart
+    ✓ etalon koddan (15 ms)
+    ✓ etalon qo'lda (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        0.388 s, estimated 1 s
+Ran all test suites matching savat.
+[chiqish kodi: 0]
+

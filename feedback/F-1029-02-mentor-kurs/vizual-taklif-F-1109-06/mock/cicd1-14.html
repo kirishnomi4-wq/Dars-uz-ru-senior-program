@@ -1,0 +1,32 @@
+<div class="z">
+  <div class="z-card">
+    <p class="z-h">Biz qildik — package.json qo'lda, npm install yo'q</p>
+    <div class="z-flow">
+      <div class="z-st ac"><b>package.json</b><span class="zm">"telegraf": "4.16.0"</span><span class="z-mut">qo'lda o'zgardi</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st off"><b>npm install</b><span class="z-mut">yurgizilmadi</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st ac"><b>package-lock.json</b><span class="zm">telegraf@4.16.3</span><span class="z-mut">eskicha qoldi</span></div>
+      <div class="z-ar bad">→</div>
+      <div class="z-st bad"><b>npm ci</b><span class="z-tag r">chiqish kodi 1</span><span class="z-mut">lokalda ham, lentada ham (run 13)</span></div>
+    </div>
+    <div class="z-term"><span class="r">npm error code EUSAGE</span>
+npm error `npm ci` can only install packages when your package.json and package-lock.json … are <span class="hl">in sync</span>.
+<span class="r">npm error Invalid: lock file's telegraf@4.16.3 does not satisfy telegraf@4.16.0</span></div>
+  </div>
+  <div class="z-card">
+    <p class="z-h">To'g'ri yo'l — versiya o'zgarsa</p>
+    <div class="z-flow">
+      <div class="z-st"><b>package.json</b><span class="z-mut">versiya o'zgardi</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st ok"><b>npm install</b><span class="z-mut">lokalda</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st ok"><b>package-lock.json</b><span class="z-mut">yangilandi</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st ok"><b>commit</b><span class="z-mut">ikkala fayl</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st ok"><b>npm ci</b><span class="z-tag g">lentada 0</span></div>
+    </div>
+    <span class="z-mut">npm ci lock fayldan aynan o'rnatadi; mos kelmasa — taxmin qilmaydi, to'xtaydi.</span>
+  </div>
+</div>

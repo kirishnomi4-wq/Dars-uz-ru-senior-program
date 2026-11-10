@@ -1,0 +1,61 @@
+F-1109-06 vizual — javob (49/49 ta qaror) — foydalanuvchi chatga tashladi 09.11 (kech)
+— PG-1
+pg1-02 · 2-ekran: Qabul
+pg1-17 · 17-ekran: Rozi — qoldiramiz
+— PG-2
+pg2-10 · 10-ekran: Qabul
+pg2-17 · 17-ekran: Qabul
+pg2-18 · 18-ekran: Qabul
+pg2-19 · 19-ekran: Qabul
+pg2-23 · 23-ekran: Qabul
+— Jest-1
+jest1-15 · 15-ekran: Qabul
+jest1-18 · 18-ekran: Rozi — qoldiramiz
+— Jest-2
+jest2-05 · 5-ekran: Qabul
+jest2-06 · 6-ekran: Qabul
+jest2-15 · 15-ekran: Qabul
+jest2-18 · 18-ekran: Qabul
+— CI/CD-1
+cicd1-02 · 2-ekran: Qabul
+cicd1-03 · 3-ekran: Qabul
+cicd1-14 · 14-ekran: Qabul
+— CI/CD-2
+cicd2-02 · 2-ekran: Qabul
+cicd2-03 · 3-ekran: Qabul
+cicd2-08 · 8-ekran: Qabul
+cicd2-12 · 12-ekran: Qabul
+cicd2-22 · 22-ekran: Rozi — qoldiramiz
+cicd2-23 · 23-ekran: Rozi — qoldiramiz
+— WS-1
+ws1-02 · 2-ekran: Qabul
+ws1-09 · 9-ekran: Rozi — qoldiramiz
+ws1-10 · 10-ekran: Rozi — qoldiramiz
+ws1-15 · 15-ekran: Qabul
+ws1-17 · 17-ekran: Qabul
+ws1-21 · 21-ekran: Rozi — qoldiramiz
+ws1-23 · 23-ekran: Rozi — qoldiramiz
+— WS-2
+ws2-02 · 2-ekran: Qabul
+ws2-03 · 3-ekran: Qabul
+ws2-05 · 5-ekran: Qabul
+ws2-13 · 13-ekran: Qabul
+ws2-14 · 14-ekran: Qabul
+ws2-17 · 17-ekran: Qabul
+ws2-20 · 20-ekran: Rozi — qoldiramiz
+ws2-21 · 21-ekran: Rozi — qoldiramiz
+ws2-22 · 22-ekran: Rozi — qoldiramiz
+ws2-23 · 23-ekran: Rozi — qoldiramiz
+— Webhook
+wh-02 · 2-ekran: Qabul
+wh-03 · 3-ekran: Qabul
+wh-05 · 5-ekran: Qabul
+wh-09 · 9-ekran: Qabul
+wh-15 · 15-ekran: Qabul
+wh-18 · 18-ekran: Qabul
+wh-21 · 21-ekran: Rozi — qoldiramiz
+wh-23 · 23-ekran: Rozi — qoldiramiz
+— Nest-1
+nest1-05 · 5-ekran: Rozi — qoldiramiz
+— Nest-2
+nest2-21 · 21-ekran: Qabul

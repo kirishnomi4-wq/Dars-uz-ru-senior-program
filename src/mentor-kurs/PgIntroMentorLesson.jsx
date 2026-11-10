@@ -80,6 +80,9 @@ const CSS = `
 .mk-count{font:700 13px/1 ${MONO};color:${T.ink}}
 .mk-body{flex:1;min-height:0;display:grid;grid-template-columns:minmax(320px,4fr) 8fr;gap:24px;padding:22px 28px}
 @media (min-width:1600px){.mk-panel{font-size:14px}.mk-explorer{font-size:13px}}
+@media (max-width:1599px){.mk-ide{grid-template-columns:150px minmax(0,1fr)}.mk-ide .mk-panel{font-size:12px}.mk-ide .mk-explorer{font-size:11.5px}}
+.pg-two:has(.mk-ide),.pg-two:has(.mk-panel .mk-ln:nth-of-type(n+10)){grid-template-columns:minmax(0,1fr)}
+.mk-pair{font:12.5px/1.4 ${MONO};color:${T.ink3};padding:0 4px}.mk-pair b{font-weight:600}.mk-pair code{font:inherit;color:${T.ink2}}
 @media (max-width:900px){.mk-body{grid-template-columns:1fr;grid-template-rows:auto 1fr;gap:14px;padding:14px}}
 .mk-ide{display:grid;grid-template-columns:218px minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);align-items:stretch;flex:0 1 auto;max-height:100%;min-height:0;background:#E9ECF1;border:1px solid #D5DAE2;border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(15,17,21,.10)}
 .mk-ide-bar{grid-column:1/-1;display:flex;align-items:center;gap:7px;padding:8px 14px;background:#DDE1E8;border-bottom:1px solid #D0D5DD;font:600 11px/1 ${MONO};color:${T.ink2};letter-spacing:.04em}
@@ -184,7 +187,7 @@ const CSS = `
 .mk-ln.gone,.mk-ln.gone *{color:#FCA5A5!important}
 .mk-ln.new{background:rgba(18,128,90,.22);box-shadow:inset 3px 0 0 #86EFAC}
 .mk-ln .n{color:${T.codeDim};min-width:2ch;text-align:right;user-select:none}
-.mk-ln.wrap{white-space:pre-wrap}
+.mk-ln.wrap{white-space:pre}
 .mk-ln.clk{cursor:pointer}
 .mk-ln.clk:hover{background:rgba(232,234,240,.08)}
 .mk-ln.bad{background:rgba(226,69,31,.28);box-shadow:inset 3px 0 0 #FCA5A5}
@@ -192,6 +195,8 @@ const CSS = `
 .k{color:#C792EA}.s{color:#C3E88D}.d{color:#FFCB6B}.c{color:#82AAFF}.m{color:#89DDFF}.cm{color:#6B7280;font-style:italic}
 .p{color:#7DD3FC}.ok{color:#86EFAC}.er{color:#FCA5A5}.wn{color:#FDE68A}
 .mk-light{flex:0 1 auto;max-height:100%;min-height:0;background:${T.paper};border:1px solid ${T.line};border-radius:16px;padding:20px;position:relative;overflow:auto}
+/* 04.11 · past ekran (1280×720, 1366×768): bo'shliqlar ixcham — shrift deyarli o'zgarmaydi, sahna sig'ishi uchun */
+@media (max-height:800px){.mk-body{padding:14px 22px;gap:20px}.mk-scene{gap:10px}.mk-panel{padding:12px 16px;font-size:12.5px;line-height:1.45}.mk-explorer{line-height:1.45;padding:6px 6px 8px}.mk-light{padding:14px}.mk-box{padding:10px 12px}}
 .mk-light.fill{flex:1}
 .mk-tag{font:600 11px/1 ${MONO};letter-spacing:.08em;color:${T.ink3};text-transform:uppercase;margin:0 0 10px}
 .mk-nav{flex:0 0 auto;background:${T.paper};border-top:1px solid ${T.line};padding:12px 28px;display:flex;align-items:center;gap:12px}
@@ -205,12 +210,28 @@ const CSS = `
 .mk-lockhint i{width:7px;height:7px;border-radius:50%;background:${T.accent};display:inline-block;animation:mk-pulse 1.6s ease-in-out infinite}
 .mk-say.mc>:first-child{margin-top:auto}
 .mk-say.mc>:last-child{margin-bottom:auto}
-.mk-say.mc .mk-opt{font-size:16px;padding:13px 16px}
-.mk-body.mc-split{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
+.mk-say.mc .mk-opt{font-size:15px;padding:11px 14px;border-radius:10px;align-items:flex-start}
+.mk-opt .l{margin-top:3px}
+.mk-opt .t{display:grid;gap:4px;min-width:0}
+.mk-opt .why{font-size:13.5px;line-height:1.4;font-weight:500;color:${T.green}}
+.mk-opt.bad .why{color:${T.accent}}
+.mk-opt.ok{color:${T.ink}}
+.mk-opt .why code{font:.92em ${MONO};background:${T.chip};border:1px solid ${T.chipLine};border-radius:5px;padding:0 5px;color:${T.ink}}
+.mk-body.mc-split{grid-template-columns:minmax(340px,4fr) minmax(0,8fr);gap:24px}
+.mc-after{display:flex;flex-direction:column;gap:12px;overflow:auto}
+.mc-after>.mk-panel,.mc-after>.mc-proof{flex:0 0 auto;min-height:0}
+.mc-proof{display:flex;flex-direction:column;gap:10px}
+.mc-proof>div{display:flex!important;flex-direction:column;gap:10px;flex:0 0 auto;min-height:0}
+.mc-proof .mk-panel{flex:0 0 auto;min-height:0;max-height:none}
+.mc-proof .mk-rule,.mc-proof .mk-tag,.mc-after>.mk-tag{flex:0 0 auto}
+.mc-demak{flex:0 0 auto;min-height:52px;display:flex;align-items:center;gap:6px;font-size:15px;line-height:1.45;color:${T.ink};padding:0 4px}
+.mc-demak.on{border-left:3px solid ${T.green};padding-left:12px;animation:mk-up .45s ease both}
+.mc-demak b{color:${T.green}}
+.mc-demak code{font:.92em ${MONO};background:${T.chip};border:1px solid ${T.chipLine};border-radius:5px;padding:0 5px}
 .mk-body.mc-split>.mk-say.mc>:first-child{margin-top:0}
 .mk-title.mc-q{font-size:clamp(19px,1.5vw,22px);font-weight:600;color:${T.ink}}
-.mc-wait{border:1.5px dashed ${T.line};border-radius:12px;padding:16px 18px;color:${T.ink3};font-size:14px;background:${T.paper}}
-@media (max-width:1300px){.mk-body.mc-split{grid-template-columns:1fr;grid-auto-rows:max-content;overflow:auto}.mk-body.mc-split>.mk-say.mc,.mk-body.mc-split>.mc-after{overflow:visible!important}}
+.mc-wait{flex:0 0 auto;border:1.5px dashed ${T.line};border-radius:10px;padding:10px 14px;color:${T.ink3};font-size:13px;background:${T.paper}}
+@media (max-width:1000px){.mk-body.mc-split{grid-template-columns:1fr;grid-auto-rows:max-content;overflow:auto}.mk-body.mc-split>.mk-say.mc,.mk-body.mc-split>.mc-after{overflow:visible!important}}
 .mk-btn.ready{background:${T.accent};border-color:${T.accent};animation:mk-pulse 1.6s ease-in-out infinite}
 .mk-audio{display:flex;align-items:center;gap:6px}
 .mk-audio button{background:transparent;border:1px solid ${T.line};border-radius:8px;padding:5px 8px;cursor:pointer;color:${T.ink2};font:12px/1 ${SANS};display:inline-flex;align-items:center;gap:6px}
@@ -263,7 +284,9 @@ const CSS = `
 .mk-step input{width:18px;height:18px;margin-top:3px;accent-color:${T.green}}
 .mk-step .t{flex:1;min-width:0}
 .mk-step .t b{display:block;font-size:14px;margin-bottom:3px}
-.mk-step .cmd{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:4px 0}
+.mk-step .cmd{display:inline-flex;gap:6px;align-items:center;margin:3px 12px 3px 0;max-width:100%}
+.mk-step .cmd code{overflow-wrap:anywhere}
+@media (max-height:760px){.mk-step{padding:7px 10px}.mk-step .t b{margin-bottom:1px}.mk-step .cmd{margin:2px 10px 2px 0}}
 .mk-step code{font:12.5px ${MONO};background:#EEF0F4;padding:2px 7px;border-radius:6px}
 .mk-step .exp{font-size:12.5px;color:${T.ink3}}
 .mk-copy{border:1px solid ${T.line};background:#fff;border-radius:6px;padding:2px 7px;font:11px ${SANS};cursor:pointer;color:${T.ink2}}
@@ -281,6 +304,8 @@ const CSS = `
 .mk-cover .card{max-width:760px;width:100%;background:${T.paper};border:1px solid ${T.line};border-radius:20px;padding:36px 40px;box-shadow:0 20px 60px rgba(15,17,21,.08)}
 .mk-cover h1{font-size:clamp(24px,2.3vw,30px);line-height:1.15;font-weight:700;margin:8px 0 10px;letter-spacing:-.01em}
 .mk-cover p{color:${T.ink2};font-size:17px;line-height:1.55;margin:0 0 22px}
+.mk-resume{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.mk-cover p.mk-resume-note{flex-basis:100%;margin:6px 0 0;font-size:14px;color:${T.ink2}}
 .mk-cover ul{margin:0 0 26px;padding:0;list-style:none;display:grid;gap:8px;color:${T.ink2};font-size:15px}
 .mk-cover li::before{content:"—";color:${T.accent};margin-right:10px}
 .mk-req{display:grid;gap:8px}
@@ -289,6 +314,57 @@ const CSS = `
 .mk-req .st{font:700 11px ${MONO};padding:2px 7px;border-radius:6px;background:#EEF0F4;color:${T.ink2}}
 .mk-req .st.s2{background:#E3F5EC;color:${T.green}}.mk-req .st.s4{background:#FFF0EB;color:${T.accent}}
 .mk-req pre{margin:6px 0 0;font:12px/1.45 ${MONO};white-space:pre-wrap;color:${T.ink2}}
+/* F-1109-06: mexanizm chizmalari (oqim, yo'lak, vaqt o'qi, jadval) — gapli karta o'rniga */
+.z{--ac:#E2451F;--ac2:#FFF5F2;--pg:#336791;--ok:#15803D;--ok2:#DCFCE7;--bad:#DC2626;--bad2:#FEF2F2;--warn:#C2410C;--warn2:#FFEDD5;--blue:#1D4ED8;--blue2:#DBEAFE;--pur:#6D3BE4;--pur2:#EDE9FE;--ink:#1F2937;--ink2:#4B5563;--mut:#6B7280;--line:#D7DCE3;--soft:#F8FAFC;
+  display:grid;gap:12px;color:var(--ink);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.z *{box-sizing:border-box}
+.z .zm,.z .zm *{font-family:ui-monospace,Menlo,Consolas,monospace}
+.z .zm{font-size:13px;color:var(--ink)}
+.z-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;display:grid;gap:10px;min-width:0;align-content:start}
+.z-h{font:700 13px system-ui,sans-serif;letter-spacing:.01em;color:var(--mut);margin:0}
+.z-flow{display:flex;align-items:stretch;gap:0}
+.z-flow>.z-st{flex:1 1 0;min-width:0}
+.z-ar{flex:0 0 26px;display:flex;align-items:center;justify-content:center;color:#9CA3AF;font-size:20px}
+.z-ar.bad{color:var(--bad)}
+.z-st{border:1.5px solid var(--line);border-radius:10px;padding:10px;display:grid;gap:5px;align-content:start;background:var(--soft)}
+.z-st.ok{border-color:var(--ok);background:#F0FDF4}.z-st.bad{border-color:var(--bad);background:var(--bad2)}.z-st.ac{border-color:var(--ac);background:var(--ac2)}
+.z-st.blue{border-color:var(--pg);background:#EFF6FF}.z-st.off{border-style:dashed;background:#fff;color:var(--mut)}
+.z-st .ln{font:11.5px ui-monospace,Menlo,Consolas,monospace;color:var(--mut)}
+.z-tag{justify-self:start;display:inline-block;font:700 12px system-ui,sans-serif;border-radius:999px;padding:2px 9px;white-space:nowrap}
+.z-tag.r{background:var(--bad);color:#fff}.z-tag.g{background:var(--ok2);color:var(--ok)}.z-tag.b{background:var(--blue2);color:var(--blue)}.z-tag.o{background:var(--warn2);color:var(--warn)}.z-tag.n{background:#F1F3F6;color:var(--ink2)}
+.z-term{background:#111827;color:#E5E7EB;border-radius:10px;padding:10px 12px;font:13px/1.55 ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;word-break:break-word}
+.z-term .r{color:#FCA5A5}.z-term .g{color:#86EFAC}.z-term .y{color:#FDE68A}.z-term .c{color:#93C5FD}.z-term .m{color:#9CA3AF}
+.z-term .hl{background:rgba(226,69,31,.28);border-radius:3px}
+.z-two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.z-three{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.z-rule{border-left:4px solid var(--ac);background:var(--ac2);border-radius:10px;padding:10px 14px;font-size:15px}
+.z-rule b{color:var(--ac)}
+.z-k{display:inline;font:13px ui-monospace,Menlo,Consolas,monospace;background:#F1F3F6;border-radius:5px;padding:1px 6px;color:var(--ink)}
+.z-mut{color:var(--mut);font-size:13px}
+.z-lanes{display:grid;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.z-lanes>div{padding:9px 12px;border-bottom:1px solid #EEF0F3;display:flex;align-items:center;gap:8px;min-height:44px;font-size:14px}
+.z-lanes>.hd{font:700 12px system-ui,sans-serif;letter-spacing:.05em;text-transform:uppercase;background:var(--soft);color:var(--ink2)}
+.z-lanes>.rh{font:600 12px ui-monospace,Menlo,Consolas,monospace;color:var(--mut);background:var(--soft)}
+.z-tbl{border-collapse:collapse;width:100%;font:13px ui-monospace,Menlo,Consolas,monospace}
+.z-tbl th,.z-tbl td{border:1px solid #E5E7EB;padding:5px 9px;text-align:left;color:var(--ink)}
+.z-tbl th{background:var(--soft);font-weight:700}
+.z-tbl tr.hl td{background:var(--blue2)}.z-tbl tr.bad td{background:var(--bad2);color:#991B1B}.z-tbl tr.ok td{background:#F0FDF4}
+.z-svg{display:block;width:100%;height:auto}
+.z-svg text{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.z-svg .mono{font-family:ui-monospace,Menlo,Consolas,monospace}
+.z b,.z strong{color:inherit}
+.z .z-st>b{color:var(--ink)}
+.z .zm{overflow-wrap:anywhere}
+.z code{all:unset;display:inline;font:13px ui-monospace,Menlo,Consolas,monospace;background:#F1F3F6;border-radius:5px;padding:1px 6px;color:var(--ink)}
+.z-h .zk,.z-h code{text-transform:none;letter-spacing:0;font:600 12.5px ui-monospace,Menlo,Consolas,monospace;color:var(--ink2)}
+.z .mk-in{min-width:0}
+.z-st.dim,.z-card.dim{opacity:.45}
+.z-card.hl{border-color:#E2451F;box-shadow:0 0 0 3px rgba(226,69,31,.14)}
+.z-st.hl{box-shadow:0 0 0 3px rgba(226,69,31,.18)}
+.z-st,.z-card,.z-ar,.z-rule,.z-term,.z-tbl tr{transition:opacity .4s,box-shadow .4s,background .4s}
+.z .dim{opacity:.4}
+.z-band{display:grid;gap:8px;font:700 12px system-ui,sans-serif;text-align:center}
+.z-band>div{border-radius:8px;padding:5px 4px}
 @keyframes mk-up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @keyframes mk-fade{from{opacity:0}to{opacity:1}}
 @keyframes mk-glow{0%,100%{box-shadow:0 0 0 0 rgba(226,69,31,0)}50%{box-shadow:0 0 0 5px rgba(226,69,31,.16)}}
@@ -327,10 +403,18 @@ const EN_PHRASES = [
   /Nest application successfully started/g, /successfully started/g, /Validation failed/g, /Internal server error/g,
   /can't resolve dependencies/g, /invalid controller/g, /Dependency Injection/g, /Hello World/g, /Cannot GET/g,
   /Bad Request/g, /Not Found/g, /does not exist/g, /Potential solutions/g, /Car with id [\w' ]+? not found/g,
+  /\b[Bb]ackslash\b/g, // F-1109-01 (M49): `\` belgisi o'z nomi bilan; ko'rik saytida o'zbekcha ovoz uchun tts-server «bekslesh» qiladi
 ];
+// F-1109-02 (M49): o'quvchi darsi kodi (m4-03, m4a-03, m11-03) ovozga so'z bilan ketadi — raqam bo'lib ketsa «0» «o» harfi
+// bo'lib o'qiladi («m4 o uch»). Faqat o'zbekcha ovozda; ekranda va «Matn»da kod o'zgarmaydi.
+const SON_UZ = ['nol', 'bir', 'ikki', 'uch', "to'rt", 'besh', 'olti', 'yetti', 'sakkiz', "to'qqiz"];
+const ON_UZ = ['', "o'n", 'yigirma', "o'ttiz", 'qirq'];
+const sonUz = (n) => (n < 10 ? SON_UZ[n] : ON_UZ[Math.floor(n / 10)] + (n % 10 ? ' ' + SON_UZ[n % 10] : ''));
+const kodOvoz = (t) => t.replace(/\bm(\d{1,2})(a?)-(\d)(\d)\b/g, (_, m, a, d1, d2) =>
+  `em ${sonUz(+m)}${a ? ' a' : ''}, ${d1 === '0' ? 'nol ' + SON_UZ[+d2] : sonUz(+(d1 + d2))}`);
 const voice = (t) => {
   const keep = [];
-  let out = t || '';
+  let out = LANG === 'ru' ? (t || '') : kodOvoz(t || '');
   EN_PHRASES.forEach((re) => { out = out.replace(re, (m) => { keep.push(m); return `\u0000${keep.length - 1}\u0000`; }); });
   return (LANG === 'ru' ? RU_MARK : UZ) + out.replace(/\u0000(\d+)\u0000/g, (_, i) => `[English pronunciation] ${keep[i]} [end]`);
 };
@@ -462,7 +546,9 @@ function Say({ eyebrow, title, segments, beat, audio, stepManual, below, guess, 
 }
 
 // Kod/terminal paneli: satr `at` qadamida kiradi; `focus` id'lari yoritiladi, qolgani xiralashadi; `onLine` — bosiladigan
-function CodePanel({ file, lines, beat = 99, focus = [], numbers = true, wrap = false, style, onLine, marks = {} }) {
+// F-1103-04 (03.11, foydalanuvchi «1 qator kod 3 qator bo'lmasin»): kod HECH QACHON o'ralmaydi — `wrap` prop e'tiborsiz (eski chaqiruvlar buzilmasin).
+// Uzun qator — darsda Prettier (80 belgi) bilan bo'linadi; sig'masa panel ichida gorizontal skroll.
+function CodePanel({ file, lines, beat = 99, focus = [], numbers = true, style, onLine, marks = {} }) {
   const anyFocus = focus.length > 0;
   const ref = useRef(null);
   const focusKey = focus.join('|');
@@ -489,7 +575,7 @@ function CodePanel({ file, lines, beat = 99, focus = [], numbers = true, wrap = 
           const v = vis(l.at, beat);
           const hl = anyFocus && l.id && focus.includes(l.id);
           const mk = marks[i] || '';
-          const cls = `mk-ln${wrap ? ' wrap' : ''}${v ? ' in' : ''}${hl ? ' hl' : (anyFocus && v && !l.keep ? ' dim' : '')}${l.gone ? ' gone' : ''}${l.neu ? ' new' : ''}${onLine ? ' clk' : ''}${mk ? ' ' + mk : ''}`;
+          const cls = `mk-ln${v ? ' in' : ''}${hl ? ' hl' : (anyFocus && v && !l.keep ? ' dim' : '')}${l.gone ? ' gone' : ''}${l.neu ? ' new' : ''}${onLine ? ' clk' : ''}${mk ? ' ' + mk : ''}`;
           return <div key={i} className={cls} data-at={l.at} onClick={onLine ? () => onLine(i, l) : undefined}>{numbers && <span className="n">{l.n != null ? l.n : i + 1}</span>}<span dangerouslySetInnerHTML={html(l.h)} /></div>;
         })}
       </div>
@@ -585,7 +671,9 @@ function Lesson({ p, S, scene, below, ready, sceneTop }) {
 
 // Tekshiruv (tanlov): xato variant yopiladi, to'g'risini topguncha bosadi
 // `after` — to'g'ri javobdan keyin ko'rsatiladigan blok (masalan tuzatilgan fayl, 2-qonun, F-1030 qo'shimcha 1)
-function MCRetry({ idx, total, onBack, onNext, onRestart, stored, onAnswer, review, kicker, eyebrow, title, q, opts, correct, ok, okShort, wrong, above, after }) {
+// F-1103-02 (A varianti): `above` — savoldan oldin ko'rinadigan material (terminal, kod, xabar); `after` — to'g'ri javobdan keyin isbot;
+// `demak` — javobdan keyin o'ng ustun ostidagi bitta «Demak, …» gapi. Karta yo'q: sabab variantning ichida (to'g'risi yashil, xatosi qizil).
+function MCRetry({ idx, total, onBack, onNext, onRestart, stored, onAnswer, review, kicker, eyebrow, title, q, opts, correct, ok, okShort, wrong, above, after, demak }) {
   const segs = useMemo(() => review ? [] : [{ id: 'q', text: voice(q), trigger: 'on_mount', waits_for: { type: 'option_picked' } }], [q, review]);
   const audio = useAudio(segs);
   const sfx = useSfx();
@@ -604,11 +692,10 @@ function MCRetry({ idx, total, onBack, onNext, onRestart, stored, onAnswer, revi
       setTimeout(() => audio.pushOneOff(voice((wrong[i] || t('Unday emas.', 'Не совсем.')) + t(" Yana o'ylab ko'ring.", ' Подумайте ещё раз.'))), 300);
     }
   };
-  const fbOk = solved && last === correct;
   // F-1102-16: tuzatilgan/haqiqiy natija bloki bo'lsa — ekran BOSHIDAN ikki ustun va joyi qimirlamaydi:
   // chapda savol va variantlar, o'ngda xabar (above) va javobdan keyin uning ostida natija (after).
   // Javobdan keyin variantlar o'z joyida qoladi (to'g'risi yashil, qolgani xira) — hech narsa sakramaydi.
-  const split = !!after;
+  const split = !!(after || above);
   return (
     <Stage kicker={kicker} idx={idx} total={total} audio={audio} onBack={onBack} onNext={onNext} onRestart={onRestart} nextReady={solved} nextDisabled={!solved} lockHint={t("To'g'ri javobni toping", 'Найдите верный ответ')}>
       <div className={`mk-body${split ? ' mc-split' : ''}`} style={split ? undefined : { gridTemplateColumns: '1fr', maxWidth: 980, width: '100%', margin: '0 auto' }}>
@@ -622,21 +709,17 @@ function MCRetry({ idx, total, onBack, onNext, onRestart, stored, onAnswer, revi
               let cls = 'mk-opt';
               if (solved) cls += i === correct ? ' ok' : ' off';
               else if (bad.includes(i)) cls += ' bad';
-              return <button key={i} className={cls} disabled={solved || bad.includes(i)} onClick={() => pick(i)}><span className="l">{String.fromCharCode(65 + i)}</span><span>{o}</span></button>;
+              const why = solved && i === correct ? (okShort || digits(ok)) : (bad.includes(i) ? digits(wrong[i] || '') : null);
+              return <button key={i} className={cls} disabled={solved || bad.includes(i)} onClick={() => pick(i)}><span className="l">{String.fromCharCode(65 + i)}</span><span className="t"><span>{o}</span>{why ? <small className="why">{why}</small> : null}</span></button>;
             })}
           </div>
-          {last !== null && (
-            <div className="mk-fb" key={last + (solved ? 'ok' : 'bad')} style={{ '--c': fbOk ? T.green : T.accent, '--bg': fbOk ? '#E3F5EC' : '#FFF0EB' }}>
-              <b>{fbOk ? t("To'g'ri", 'Верно') : t("Unday emas — yana o'ylab ko'ring", 'Не совсем — подумайте ещё раз')}</b>
-              <span>{fbOk ? (okShort || digits(ok)) : digits(wrong[last])}</span>
-            </div>
-          )}
         </div>
-        {split && <div className="mk-scene top mc-after" style={{ overflow: 'auto', display: 'grid', gap: 12, alignContent: 'start' }}>
+        {split && <div className="mk-scene top mc-after">
           {above}
           {solved
-            ? <div style={{ animation: 'mk-up .45s ease both' }}>{after}</div>
-            : <div className="mc-wait">{t("To'g'ri javobni topganingizdan keyin shu yerda haqiqiy natija ochiladi", 'Когда найдёте верный ответ, здесь откроется реальный результат')}</div>}
+            ? (after ? <div className="mc-proof" style={{ animation: 'mk-up .45s ease both' }}>{after}</div> : null)
+            : (above ? null : <div className="mc-wait">{t("Javobdan keyin shu yerda haqiqiy natija", 'После ответа здесь — реальный результат')}</div>)}
+          {demak ? <div className={`mc-demak${solved ? ' on' : ''}`}>{solved ? <><b>{t('Demak,', 'Значит,')}</b><span>{demak}</span></> : null}</div> : null}
         </div>}
       </div>
     </Stage>
@@ -733,10 +816,18 @@ function Practice({ p, S, steps, trouble, code, proof, tree }) {
     <Stage kicker={S.kicker} idx={p.idx} total={p.total} audio={b.audio} onBack={p.onBack} onNext={p.onNext} onRestart={p.onRestart} nextReady={b.done && allDone} nextDisabled={!(b.done && allDone)} lockHint={!allDone ? (proof ? t("Katakchalar va isbotni to'ldiring", 'Отметьте пункты и заполните подтверждение') : t('Katakchalarni belgilang', 'Отметьте пункты')) : t("Ustoz gapirib bo'lgach ochiladi", 'Откроется, когда учитель договорит')}>
       <div className="mk-body">
         <Say eyebrow={S.eyebrow} title={S.title} segments={S.segments} beat={beat} audio={b.audio} stepManual={b.stepManual} guess={b.guess} answerAsk={b.answerAsk} review={p.review}
-          below={<div className="mk-card" style={{ background: allDone ? '#E3F5EC' : T.paper, borderColor: allDone ? T.green : T.line }}><h5>{t('Bajarildi', 'Выполнено')}</h5><div style={{ fontSize: 15, fontWeight: 700 }}>{checked.length} / {steps.length} {t('qadam', 'шагов')}{proof ? (proofOk && proofVal.trim() ? t(' · isbot ✓', ' · подтверждение ✓') : t(' · isbot kutilmoqda', ' · ждём подтверждение')) : ''}{allDone ? (b.done ? t(' — Davom bosing', ' — нажмите «Далее»') : t(' — ovoz tugagach Davom ochiladi', ' — «Далее» откроется после озвучки')) : ''}</div>
+          below={<><div className="mk-card" style={{ background: allDone ? '#E3F5EC' : T.paper, borderColor: allDone ? T.green : T.line }}><h5>{t('Bajarildi', 'Выполнено')}</h5><div style={{ fontSize: 15, fontWeight: 700 }}>{checked.length} / {steps.length} {t('qadam', 'шагов')}{proof ? (proofOk && proofVal.trim() ? t(' · isbot ✓', ' · подтверждение ✓') : t(' · isbot kutilmoqda', ' · ждём подтверждение')) : ''}{allDone ? (b.done ? t(' — Davom bosing', ' — нажмите «Далее»') : t(' — ovoz tugagach Davom ochiladi', ' — «Далее» откроется после озвучки')) : ''}</div>
             {/* F-1102-20: isbot maydoni to'ldirilmaguncha yumshoq yonib-o'chadi — «shu yerga yozing» ko'rinib tursin */}
             {proof && <div style={{ marginTop: 10 }}><div className="exp" style={{ marginBottom: 4, fontWeight: 700, color: proofOk && proofVal.trim() ? T.green : T.ink }}>{t('Isbot', 'Подтверждение')}: {String(proof.label).replace(/^(Isbot|Подтверждение)\s*:\s*/, '')}</div><input className={`mk-input${proofOk && proofVal.trim() ? '' : ' need'}`} value={proofVal} placeholder={proof.placeholder} onChange={(e) => onProof(e.target.value)} />{proofVal.trim() && !proofOk && <div className="exp" style={{ color: T.accent, marginTop: 4 }}>{proof.wrong}</div>}</div>}
-          </div>} />
+          </div>
+          {/* 04.11: «Boshqacha chiqdimi?» chap ustunda — o'ng ustun qadamlarga to'liq qoladi (1280×720 da kesilmasin) */}
+          <Block at={S.tableAt} beat={beat}><div className="mk-light mk-trouble" style={{ padding: 0, marginTop: 10 }}>
+              <button type="button" className={`mk-trbtn${beat === S.tableAt && !tOpen ? ' hot' : ''}`} aria-haspopup="dialog" aria-expanded={tOpen} onClick={() => setTOpen(true)}>
+                <span className="q">{t('Boshqacha chiqdimi?', 'Вышло иначе?')}</span>
+                {rows.length > 1 && <span className="n">{t(`${rows.length - 1} ta holat va yechim`, `ситуации и решения: ${rows.length - 1}`)}</span>}
+                <span className="ar" aria-hidden="true">↗</span>
+              </button>
+            </div></Block></>} />
         <div className="mk-scene top" style={{ overflow: 'auto' }}>
           {cur ? (<>
             {/* F-1031-05: qaytish tugmasi oynadan tashqarida, katta — kod ko'rilgach qadamlarga qaytish ko'rinib tursin */}
@@ -757,25 +848,59 @@ function Practice({ p, S, steps, trouble, code, proof, tree }) {
                   <input type="checkbox" checked={checked.includes(i)} onChange={() => toggle(i)} />
                   <div className="t"><b>{i + 1}. {s.t}</b>
                     {s.cmds.map((cm) => <div key={cm} className="cmd"><code>{cm}</code><CopyBtn text={cm} /></div>)}
-                    {c && <div style={{ margin: '4px 0 6px' }}><button className="mk-btn soft sm" style={{ borderColor: T.ink, color: T.ink }} onClick={() => setOpenFile(c.file)}>{t('Kodni ochish', 'Открыть код')} · {baseName(c.file)}{c.copy === false ? t(' (namuna)', ' (образец)') : ''}</button></div>}
-                    <div className="exp">{t('Kutilgan:', 'Ожидается:')} {s.exp}</div>
+                    {/* 04.11: «Kodni ochish» va «Kutilgan» bitta qatorda (sig'masa o'tadi) — 1280×720 da qadamlar sig'sin */}
+                    <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '4px 12px', margin: c ? '4px 0 2px' : 0 }}>
+                      {c && <button className="mk-btn soft sm" style={{ borderColor: T.ink, color: T.ink }} onClick={() => setOpenFile(c.file)}>{t('Kodni ochish', 'Открыть код')} · {baseName(c.file)}{c.copy === false ? t(' (namuna)', ' (образец)') : ''}</button>}
+                      <div className="exp">{t('Kutilgan:', 'Ожидается:')} {s.exp}</div>
+                    </div>
                   </div>
                 </div>
               ); })}
             </div>
-            <Block at={S.tableAt} beat={beat}><div className="mk-light mk-trouble" style={{ padding: 0, marginTop: 10 }}>
-              <button type="button" className={`mk-trbtn${beat === S.tableAt && !tOpen ? ' hot' : ''}`} aria-haspopup="dialog" aria-expanded={tOpen} onClick={() => setTOpen(true)}>
-                <span className="q">{t('Boshqacha chiqdimi?', 'Вышло иначе?')}</span>
-                {rows.length > 1 && <span className="n">{t(`${rows.length - 1} ta holat va yechim`, `ситуации и решения: ${rows.length - 1}`)}</span>}
-                <span className="ar" aria-hidden="true">↗</span>
-              </button>
-            </div></Block>
             {/* F-1102-12: jadval sahifa ichida emas — ustida oyna (popup). ✕, tashqarisi yoki Esc yopadi; tugma joyida qoladi */}
             {tOpen && <TroubleModal rows={rows} onClose={() => setTOpen(false)} />}
           </>)}
         </div>
       </div>
     </Stage>
+  );
+}
+
+// ---------- Progress saqlovi (F-1103-06, 03.11): mentor darsni bo'lib o'tadi ----------
+// O'quvchi darslaridagi ccProgress kabi — brauzer xotirasida: ekran, ko'rilgan ekranlar, javoblar.
+// Ekranlar soni o'zgargan bo'lsa (dars qayta qurilgan) eski yozuv olinmaydi. startAt (dev) bo'lsa saqlov o'qilmaydi.
+// Qaytganda darhol ekranga tushilmaydi: brauzer ovozni faqat bosishdan keyin chaladi — kirish oynasida tugma.
+const SAVE_KEY = (id) => `ccMentor:${id}`;
+function loadSaved(id, total) {
+  try {
+    const v = JSON.parse(localStorage.getItem(SAVE_KEY(id)) || 'null');
+    if (!v || v.v !== 1 || v.total !== total || typeof v.idx !== 'number' || v.idx < 1) return null;
+    return v;
+  } catch (e) { return null; }
+}
+function clearSaved(id) { try { localStorage.removeItem(SAVE_KEY(id)); } catch (e) {} }
+function useMentorSave({ id, total, startAt, started, idx, answers, seen, setIdx, setAnswers, setSeen, setStarted }) {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const saved = useMemo(() => (startAt != null ? null : loadSaved(id, total)), []);
+  useEffect(() => {
+    if (!started) return;
+    try { localStorage.setItem(SAVE_KEY(id), JSON.stringify({ v: 1, total, idx, answers, seen, t: Date.now() })); } catch (e) {}
+  }, [started, idx, answers, seen, id, total]);
+  const start = useCallback((resume) => {
+    if (resume && saved) { setIdx(Math.min(saved.idx, total - 1)); setAnswers(saved.answers || {}); setSeen(saved.seen || {}); }
+    else clearSaved(id);
+    setStarted(true);
+  }, [saved, id, total, setIdx, setAnswers, setSeen, setStarted]);
+  return { resume: saved, start };
+}
+function CoverStart({ onStart, resume }) {
+  if (!resume) return <button className="mk-btn ready" onClick={() => onStart(false)}>{t('Boshlash →', 'Начать →')}</button>;
+  return (
+    <div className="mk-resume">
+      <button className="mk-btn ready" onClick={() => onStart(true)}>{t(`${resume.idx + 1}-ekrandan davom etish →`, `Продолжить с ${resume.idx + 1}-го экрана →`)}</button>
+      <button className="mk-btn soft" onClick={() => onStart(false)}>{t('Boshidan boshlash', 'Начать сначала')}</button>
+      <p className="mk-resume-note">{t(`Oxirgi marta ${resume.idx + 1}-ekrangacha kelgansiz. Javoblaringiz saqlangan.`, `В прошлый раз вы дошли до ${resume.idx + 1}-го экрана. Ответы сохранены.`)}</p>
+    </div>
   );
 }
 
@@ -930,8 +1055,8 @@ const MDT = {
    ],
    [
     "e",
-    "Xulosa: tushunchalar deyarli bir xil — farq <b>qoidalar qayerda turishida</b>",
-    "Xulosa: tushunchalarning ko'pi sizga tanish, faqat nomi boshqa. Asosiy farq qoidalar qayerda turishida: Mongo'da kodda, PostgreSQL'da jadvalda. O'quvchi «Mongo'dagi populate qani?» desa, javob: JOIN. Tekshirib olaylik."
+    "Xulosa: tushunchalar ham, buyruqlar ham juft — farq <b>qoidalar qayerda turishida</b>",
+    "Xulosa: tushunchalarning ko'pi sizga tanish, faqat nomi boshqa. Buyruqlar ham juft: create'ning jufti insert into, find'niki select, updateOne'niki update, deleteOne'niki delete. Ularni yozganingizda yonida eslatib o'taman. Asosiy farq qoidalar qayerda turishida: Mongo'da kodda, PostgreSQL'da jadvalda. O'quvchi «Mongo'dagi populate qani?» desa, javob: JOIN. Tekshirib olaylik."
    ]
   ]
  },
@@ -946,10 +1071,10 @@ const MDT = {
   "hint": "So'rov paytida ishlaydigan va ikki jadvalni bitta javobga yig'adigan buyruqni qidiring.",
   "correct": 2,
   "opts": [
-   "REFERENCES users(id)",
+   "… REFERENCES users(id)",
    "SERIAL PRIMARY KEY",
-   "JOIN … ON …",
-   "CREATE TABLE"
+   "SELECT … JOIN … ON …",
+   "CREATE TABLE … (…)"
   ],
   "wrong": {
    "0": "Bu refning jufti: bog'lanishni belgilaydi, lekin so'rov natijasini birlashtirmaydi.",
@@ -1044,12 +1169,12 @@ const MDT = {
    [
     "d",
     "<code>\\l</code> — <b>bazalar ro'yxati</b>: <code>postgres</code> va ikki shablon; <code>\\q</code> — PostgreSQL terminalidan chiqish",
-    "Teskari chiziqcha bilan boshlanadigan buyruqlar PostgreSQL terminalining o'zi uchun, ularga nuqta-vergul kerak emas. Teskari chiziqcha l bazalar ro'yxatini ko'rsatadi: postgres va ikkita template, ya'ni shablon. Shablonlarga tegmaysiz. Teskari chiziqcha q PostgreSQL terminalidan chiqaradi."
+    "Backslash bilan boshlanadigan buyruqlar PostgreSQL terminalining o'zi uchun, ularga nuqta-vergul kerak emas. Backslash l bazalar ro'yxatini ko'rsatadi: postgres va ikkita template, ya'ni shablon. Shablonlarga tegmaysiz. Backslash q PostgreSQL terminalidan chiqaradi."
    ],
    [
     "e",
     "Xulosa: prompt <b>qaysi bazada turganingizni</b> aytadi; SQL — nuqta-vergul bilan, <code>\\</code> buyruqlari — usiz",
-    "Xulosa: prompt'ga doim qarang, u qaysi bazada turganingizni aytadi. SQL buyrug'i nuqta-vergul bilan tugaydi, teskari chiziqchali buyruqlar esa usiz. Endi o'zingiz o'rnatib, ulanib ko'ring."
+    "Xulosa: prompt'ga doim qarang, u qaysi bazada turganingizni aytadi. SQL buyrug'i nuqta-vergul bilan tugaydi, backslash bilan boshlanadigan buyruqlar esa usiz. Endi o'zingiz o'rnatib, ulanib ko'ring."
    ]
   ]
  },
@@ -1072,7 +1197,7 @@ const MDT = {
    [
     "c",
     "3–4-qadam: <code>psql -U postgres</code>, <code>SELECT version();</code>; isbot — <b>natija qatorining boshi</b>",
-    "Uchinchi: psql minus U postgres bilan ulaning. To'rtinchi: select version so'rovini yurgizing va teskari chiziqcha l bilan bazalarni ko'ring. Isbot maydoniga version natijasini nusxalang, PostgreSQL so'zidan boshlab."
+    "Uchinchi: psql minus U postgres bilan ulaning. To'rtinchi: select version so'rovini yurgizing va backslash l bilan bazalarni ko'ring. Isbot maydoniga version natijasini nusxalang, PostgreSQL so'zidan boshlab."
    ],
    [
     "d",
@@ -1094,7 +1219,7 @@ const MDT = {
    [
     "b",
     "Mongo'da baza o'zi paydo bo'lardi, bu yerda avval <b><code>CREATE DATABASE</code></b>, keyin <code>\\c</code>",
-    "Mongo'da baza birinchi yozuvda o'zi paydo bo'lardi. PostgreSQL'da uni avval yaratasiz: create database blog. Keyin teskari chiziqcha c blog bilan unga o'tasiz. Prompt'ga qarang: endi postgres emas, blog."
+    "Mongo'da baza birinchi yozuvda o'zi paydo bo'lardi. PostgreSQL'da uni avval yaratasiz: create database blog. Keyin backslash c blog bilan unga o'tasiz. Prompt'ga qarang: endi postgres emas, blog."
    ],
    [
     "c",
@@ -1109,7 +1234,7 @@ const MDT = {
    [
     "e",
     "Xulosa: baza avval yaratiladi; <code>syntax error</code> bo'lsa — <b>strelka ko'rsatgan so'zdan oldin</b> qarang",
-    "Xulosa: PostgreSQL'da baza oldin yaratiladi va unga teskari chiziqcha c bilan o'tiladi. Ustunning turi va qoidalari jadval bilan birga yoziladi. Syntax error chiqsa, strelka ko'rsatgan so'zdan oldingi joyni tekshiring, odatda u yerda vergul yo'q."
+    "Xulosa: PostgreSQL'da baza oldin yaratiladi va unga backslash c bilan o'tiladi. Ustunning turi va qoidalari jadval bilan birga yoziladi. Syntax error chiqsa, strelka ko'rsatgan so'zdan oldingi joyni tekshiring, odatda u yerda vergul yo'q."
    ]
   ]
  },
@@ -1126,22 +1251,22 @@ const MDT = {
    [
     "b",
     "<code>\\d posts</code> — jadval tuzilishi; pastda baza o'zi nom bergan <b>tashqi kalit qatori</b>",
-    "Teskari chiziqcha dt jadvallar ro'yxatini, teskari chiziqcha d posts esa jadval tuzilishini ko'rsatadi: ustunlar, turlari, bo'sh bo'la oladimi. Eng pastda Foreign-key constraints qatori. Nomini baza o'zi berdi: jadval, ustun va fkey. Bu nomni keyin xato xabarida ko'rasiz."
+    "Backslash dt jadvallar ro'yxatini, backslash d posts esa jadval tuzilishini ko'rsatadi: ustunlar, turlari, bo'sh bo'la oladimi. Eng pastda Foreign-key constraints qatori. Nomini baza o'zi berdi: jadval, ustun va fkey. Bu nomni keyin xato xabarida ko'rasiz."
    ],
    [
     "c",
     "Uch foydalanuvchi va uch post qo'shildi: <code>INSERT 0 3</code> — oxirgi raqam <b>qatorlar soni</b>",
-    "Endi ma'lumot. Uch foydalanuvchi: ali, vali va sardor. Uch post: ikkitasi ali'niki, bittasi vali'niki. sardor'ning posti yo'q, bu to'rtinchi bosqichda kerak bo'ladi. Javobdagi insert, nol, uch: oxirgi raqam qo'shilgan qatorlar soni."
+    "Endi ma'lumot. Mongoose'da bu User.create edi, bu yerda insert into users, values. Uch foydalanuvchi: ali, vali va sardor. Uch post: ikkitasi ali'niki, bittasi vali'niki. sardor'ning posti yo'q, bu to'rtinchi bosqichda kerak bo'ladi. Javobdagi insert, nol, uch: oxirgi raqam qo'shilgan qatorlar soni."
    ],
    [
     "d",
     "Boshqa bazada tursangiz jadval «yo'q» bo'ladi: prompt'ga qarang va <b><code>\\c blog</code></b> qiling",
-    "Sinfda eng ko'p chiqadigan xatolardan biri. O'quvchi PostgreSQL terminalini qayta ochadi va darhol select qiladi: relation posts does not exist. Jadval bor, faqat u postgres bazasida turibdi. Prompt'ga qarang: postgres. Teskari chiziqcha c blog qilinsa, o'sha so'rov uchala postni ko'rsatadi."
+    "Sinfda eng ko'p chiqadigan xatolardan biri. O'quvchi PostgreSQL terminalini qayta ochadi va darhol select qiladi: relation posts does not exist. Jadval bor, faqat u postgres bazasida turibdi. Prompt'ga qarang: postgres. Backslash c blog qilinsa, o'sha so'rov uchala postni ko'rsatadi. Bu select Mongoose'dagi Post.find bilan bir xil ish qiladi."
    ],
    [
     "e",
     "Xulosa: tashqi kalit bog'lanishni <b>bazaga yozadi</b>; <code>does not exist</code> bo'lsa — avval prompt",
-    "Xulosa: references bog'lanishni bazaning o'ziga yozadi, Mongo'dagi ref'dan farqi shu. Teskari chiziqcha d bilan istalgan jadval tuzilishini ko'rasiz. Relation does not exist chiqsa, jadvalni qayta yaratishga shoshilmang: avval prompt'dagi baza nomini tekshiring."
+    "Xulosa: references bog'lanishni bazaning o'ziga yozadi, Mongo'dagi ref'dan farqi shu. Backslash d bilan istalgan jadval tuzilishini ko'rasiz. Relation does not exist chiqsa, jadvalni qayta yaratishga shoshilmang: avval prompt'dagi baza nomini tekshiring."
    ]
   ]
  },
@@ -1188,7 +1313,7 @@ const MDT = {
   "hint": "Xabardagi qoida nomini va DETAIL qatorini o'qing: qaysi jadval hali bu foydalanuvchiga ishora qilyapti?",
   "correct": 0,
   "opts": [
-   "Bu foydalanuvchining postlari bor — posts unga ishora qiladi",
+   "Foydalanuvchining postlari bor — posts unga bog'liq",
    "users jadvali blog bazasida yo'q",
    "id = 1 bo'lgan foydalanuvchi topilmadi",
    "DELETE uchun boshqa foydalanuvchining paroli kerak"
@@ -1213,12 +1338,12 @@ const MDT = {
    [
     "b",
     "1–4-qadam: baza, ikki jadval va ma'lumot; har buyruqdan keyin <b>javob satrini tekshiring</b>",
-    "Birinchi: baza va teskari chiziqcha c. Ikkinchi va uchinchi: users, keyin posts. Tartib muhim: posts users'ga ishora qiladi, shuning uchun users birinchi. To'rtinchi: uch foydalanuvchi va uch post."
+    "Birinchi: baza va backslash c. Ikkinchi va uchinchi: users, keyin posts. Tartib muhim: posts users'ga ishora qiladi, shuning uchun users birinchi. To'rtinchi: uch foydalanuvchi va uch post."
    ],
    [
     "c",
     "5-qadam: tashqi kalit xatosini <b>o'zingiz chiqaring</b>; isbot — <code>\\d posts</code>dagi kalit qatori",
-    "Beshinchi: to'qson to'qqizinchi foydalanuvchiga post yozib, tashqi kalit xatosini o'zingiz chiqaring va detail qatorini o'qing. Isbot maydoniga teskari chiziqcha d posts natijasidagi Foreign-key qatorini nusxalang."
+    "Beshinchi: to'qson to'qqizinchi foydalanuvchiga post yozib, tashqi kalit xatosini o'zingiz chiqaring va detail qatorini o'qing. Isbot maydoniga backslash d posts natijasidagi Foreign-key qatorini nusxalang."
    ],
    [
     "d",
@@ -1425,7 +1550,7 @@ const MDT = {
    [
     "a",
     "Endi siz: <b>ikki terminal oynasini</b> yonma-yon ochib, oxirgi telefonni o'zingiz sotasiz",
-    "Oxirgi amaliyot, eng qiziqarlisi. Ikkita terminal oynasini yonma-yon oching, ikkalasida PostgreSQL terminalini ochib, teskari chiziqcha c blog yozing. Biri birinchi xaridor, ikkinchisi ikkinchi xaridor. O'n-o'n besh daqiqa."
+    "Oxirgi amaliyot, eng qiziqarlisi. Ikkita terminal oynasini yonma-yon oching, ikkalasida PostgreSQL terminalini ochib, backslash c blog yozing. Biri birinchi xaridor, ikkinchisi ikkinchi xaridor. O'n-o'n besh daqiqa."
    ],
    [
     "b",
@@ -1588,10 +1713,10 @@ const MDT = {
    {
     "q": "Mac'da psql -U postgres → role \"postgres\" does not exist. Nima qilasiz?",
     "o": [
-     "createuser -s postgres",
-     "Parolni qayta kiritaman",
+     "createuser -s postgres bilan rol yaratish",
+     "Parolni qayta kiritib, yana ulanish",
      "Postgres.app'ni qayta Initialize qilaman",
-     "CREATE DATABASE postgres;"
+     "CREATE DATABASE postgres; buyrug'ini berish"
     ],
     "c": 0,
     "e": "Homebrew bilan o'rnatilgan: superuser — Mac foydalanuvchisi, postgres roli yo'q.",
@@ -1600,10 +1725,10 @@ const MDT = {
    {
     "q": "usersda 99-foydalanuvchi yo'q. INSERT INTO posts (user_id, izoh) VALUES (99, '…'); nima qaytaradi?",
     "o": [
-     "INSERT 0 1, muallif bo'sh",
-     "usersga 99 qo'shiladi",
+     "INSERT 0 1 — post muallifsiz saqlanadi",
+     "usersga 99-foydalanuvchi o'zi qo'shiladi",
      "Tashqi kalit xatosi, post saqlanmaydi",
-     "NOT NULL xatosi"
+     "NOT NULL xatosi — muallif bo'sh"
     ],
     "c": 2,
     "e": "posts_user_id_fkey: Key (user_id)=(99) is not present in table \"users\".",
@@ -1612,10 +1737,10 @@ const MDT = {
    {
     "q": "Prompt postgres=#. SELECT * FROM posts; → relation \"posts\" does not exist, lekin jadvalni yaratgansiz. Nima qilasiz?",
     "o": [
-     "Jadvalni qayta yarataman",
-     "Serverni qayta ishga tushiraman",
-     "Parolni tekshiraman",
-     "\\c blog"
+     "Jadvalni qayta yaratib, yana yozish",
+     "Serverni qayta ishga tushirish",
+     "Parolni tekshirib, qayta kirish",
+     "\\c blog — kerakli bazaga ulanish"
     ],
     "c": 3,
     "e": "Jadval blog bazasida; prompt boshqa bazani ko'rsatyapti.",
@@ -1638,8 +1763,8 @@ const MDT = {
     "o": [
      "Darhol UPDATE 1, telefon ikkalasiga",
      "Kutadi, 1-xaridor COMMITdan keyin UPDATE 0",
-     "Darhol CHECK xatosi",
-     "stock = -1 bo'ladi"
+     "Darhol CHECK xatosi — telefon hech kimga sotilmaydi",
+     "stock = -1 bo'ladi, ikkalasi ham oladi"
     ],
     "c": 1,
     "e": "Qator band — 2-xaridor kutadi, keyin shartni qayta tekshiradi: stock 0.",
@@ -1660,10 +1785,10 @@ const MDT = {
    {
     "q": "O'quvchi: «NoSQL zamonaviyroq, onlayn do'konimga MongoDB olaman». Nima deysiz?",
     "o": [
-     "To'g'ri, NoSQL yangiroq",
-     "MongoDB sekin, olmang",
-     "4 savol: buyurtma, mahsulot, to'lov bog'langan, xato qimmat — PostgreSQL",
-     "Farqi yo'q, istaganini oling"
+     "To'g'ri, NoSQL yangiroq — hamma joyda shuni oling",
+     "MongoDB sekin ishlaydi, uni umuman olmang",
+     "Ma'lumot bog'langan, xato qimmat — PostgreSQL",
+     "Farqi yo'q — o'quvchi istaganini olaversin"
     ],
     "c": 2,
     "e": "Tanlov modaga emas, vazifaga qarab; do'konda 3 mezon SQL tomonda.",
@@ -1702,8 +1827,8 @@ const mkS = (n, extras = [], more = {}) => {
 const SPOKEN = [
   ['psql minus U postgres, minus c va select version', 'psql -U postgres -c "SELECT version();"'],
   ['psql minus U postgres', 'psql -U postgres'], ['createuser minus s postgres', 'createuser -s postgres'],
-  ['teskari chiziqcha c blog', '\\c blog'], ['teskari chiziqcha d posts', '\\d posts'], ['teskari chiziqcha dt', '\\dt'],
-  ['teskari chiziqcha l', '\\l'], ['teskari chiziqcha q', '\\q'], ['teskari chiziqcha c', '\\c'], ['teskari chiziqcha d', '\\d'],
+  ['backslash c blog', '\\c blog'], ['backslash d posts', '\\d posts'], ['backslash dt', '\\dt'],
+  ['backslash l', '\\l'], ['backslash q', '\\q'], ['backslash c', '\\c'], ['backslash d', '\\d'],
   ['create database blog', 'CREATE DATABASE blog'], ['serial primary key', 'SERIAL PRIMARY KEY'], ['references users id', 'REFERENCES users(id)'],
   ['posts user id fkey', 'posts_user_id_fkey'], ['user id', 'user_id'], ['users id', 'users.id'],
   ['insert, nol, uch', 'INSERT 0 3'], ['update nol', 'UPDATE 0'], ['update bir', 'UPDATE 1'], ['insert bir', 'INSERT 0 1'],
@@ -1712,6 +1837,8 @@ const SPOKEN = [
 ];
 DIGITS.unshift(["besh ming to'rt yuz o'ttiz ikki", '5432'], ["to'qson to'qqizinchi", '99-'], ['yigirma oltinchi', '26-'], ['yigirma bir', '21'],
   ['yigirma besh', '25'], ["o'n sakkiz", '18'], ["o'n besh-yigirma", '15–20'], ['bir, ikki, uch', '1, 2, 3'], ['id bir', 'id 1']);
+// F-1109-01: gap boshidagi «Backslash l» ham «Matn»da kod bo'lib ko'rinsin
+SPOKEN.push(...SPOKEN.filter(([a]) => a.startsWith('backslash')).map(([a, b]) => ['B' + a.slice(1), b]));
 const wr = (s) => digits(SPOKEN.reduce((acc, [a, b]) => acc.split(a).join(b), s));
 // Haqiqiy inglizcha iboralar ovozda [English pronunciation] ichida (M21) — uzunlari oldin
 EN_PHRASES.unshift(
@@ -1794,6 +1921,16 @@ const Doc = ({ children, odd, er }) => <pre className={`pg-doc${odd ? ' odd' : '
 
 // PG-1 ga xos qo'shimcha CSS (dvigatel CSS'iga tegilmaydi). Izohda backtick yo'q (CLAUDE.md).
 const CSS3 = `
+.pg1-ms .pg-lab,.pg1-ms .pg-mt .nm,.pg1-ms .pg-doc,.pg1-ms .pg-mt th,.pg1-ms .pg-mt td,.pg1-ms .f{transition:background .4s,color .4s,outline-color .4s,box-shadow .4s}
+.pg1-ms.on .pg-lab.mc{display:inline-flex;background:#DCFCE7;color:#15803D;border-radius:6px;padding:4px 8px}
+.pg1-ms.on .pg-mt .nm{background:#DCFCE7;color:#15803D}
+.pg1-ms.on .pg-doc.odd{outline:3px solid #1D4ED8;outline-offset:2px}
+.pg1-ms.on .f{background:#FFEDD5;color:#7C2D12;border-radius:4px;padding:0 2px;margin:0 -2px}
+.pg1-ms.on .pg-mt th:nth-child(2){background:#FFEDD5;color:#7C2D12}
+.pg1-ms.on .pg-mt tbody tr:nth-child(2) td{background:#DBEAFE;color:#1E3A8A;font-weight:700}
+.pg1-key{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;background:#fff;border:1px solid #D7DCE3;border-radius:12px;padding:10px 12px;font-size:14px}
+.pg1-key span{display:inline-flex;gap:6px;align-items:center}
+.pg1-key i{width:14px;height:14px;border-radius:4px;display:inline-block}
 .mk-explorer{overflow:auto}
 /* ogohlantirish qutisi — Nest-2 dagi bilan bir xil (u bo'lak bu darsga kirmaydi) */
 .n2-warn{border-left:4px solid ${T.accent};background:#FFF0EB;border-radius:10px;padding:10px 12px;font-size:14px;line-height:1.5}
@@ -1833,6 +1970,7 @@ const CSS3 = `
 .pg-dict td:first-child{border-left:4px solid ${PG.mongo};border-radius:10px 0 0 10px}
 .pg-dict td:last-child{border-right:1px solid ${T.line};border-radius:0 10px 10px 0}
 .pg-dict td:nth-child(2){color:${T.ink3};width:28px;text-align:center}
+@media (max-width:1599px){.pg-dict{font-size:12.5px;border-spacing:0 4px}.pg-dict td{padding:5px 10px}}
 .pg-dict td:nth-child(3){border-left:0}
 .pg-dict tr.hl td{background:#FFF7F3}
 .pg-dict tr.hl td:first-child{border-left-color:${T.accent}}
@@ -1840,9 +1978,9 @@ const CSS3 = `
 .pg-dict code{font:12.5px ${MONO};background:#EEF0F4;padding:1px 6px;border-radius:5px}
 .pg-dict th{font:600 11px/1 ${MONO};letter-spacing:.08em;text-transform:uppercase;text-align:left;padding:0 12px 4px}
 .pg-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;align-items:start}
-@media (max-width:1300px){.pg-two{grid-template-columns:1fr}}
+@media (max-width:1000px){.pg-two{grid-template-columns:1fr}}
 .pg-three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:start}
-@media (max-width:1300px){.pg-three{grid-template-columns:1fr}}
+@media (max-width:1000px){.pg-three{grid-template-columns:1fr}}
 .pg-lab{font:700 11px/1 ${MONO};letter-spacing:.08em;text-transform:uppercase;color:${T.ink3};margin:0 0 6px;display:flex;gap:8px;align-items:center}
 .pg-lab .tm{color:${T.accent}}
 .pg-wait{display:inline-flex;gap:8px;align-items:center;font:600 13px ${MONO};color:${T.yellow};background:#FFF6E2;border:1px solid #F1D38A;border-radius:8px;padding:6px 10px;animation:mk-pulse 1.6s ease-in-out infinite}
@@ -1853,7 +1991,7 @@ const CSS3 = `
 .pg-cmp .mk-card h5{display:flex;gap:8px;align-items:center}
 .pg-cmp .mk-card h5 i{width:10px;height:10px;border-radius:50%;display:inline-block}
 .pg-qa{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-@media (max-width:1300px){.pg-qa{grid-template-columns:1fr}}
+@media (max-width:1000px){.pg-qa{grid-template-columns:1fr}}
 .pg-qa button{text-align:left;border:1px solid ${T.line};border-radius:12px;background:${T.paper};padding:12px 14px;cursor:pointer;font:inherit;color:${T.ink}}
 .pg-qa b{display:block;font-size:14px}
 .pg-qa p{margin:6px 0 0;font-size:13px;color:${T.ink2};line-height:1.45}
@@ -1880,14 +2018,14 @@ blog-# JOIN users ON users.id = posts.user_id;
  ali      | Bugun Nest o'rgandim
  vali     | Salom hammaga
 (3 rows)`);
-const S1 = mkS(1, [{ hl: [] }, { hl: [0, 1, 2, 3] }, { hl: [4] }, { hl: [5] }, { hl: [] }], { plan: PLAN1 });
+const S1 = mkS(1, [{ hl: [], res: true }, { hl: [0, 1, 2, 3] }, { hl: [4] }, { hl: [5] }, { hl: [] }], { plan: PLAN1 });
 function Screen1(p) {
   return <Lesson p={p} S={S1} scene={({ seg }) => <div style={{ display: 'grid', gap: 14 }}>
     <div className="mk-light"><div className="mk-plan">
       {S1.plan.map((x, i) => <div key={i} className={seg.hl.includes(i) ? 'hl' : (seg.hl.length ? 'dim' : '')}><b>0{i + 1}</b><span>{x}</span></div>)}
     </div></div>
-    <div className="mk-tag" style={{ margin: 0 }}>Dars oxirida — sizning kompyuteringizda</div>
-    <Psql lines={JOIN_OK} />
+    {seg.res && <><div className="mk-tag" style={{ margin: 0 }}>{t('Dars oxirida — sizning kompyuteringizda', 'В конце урока — на вашем компьютере')}</div>
+    <Psql lines={JOIN_OK} /></>}
   </div>} />;
 }
 
@@ -1905,32 +2043,38 @@ blog=# SELECT username FROM users WHERE id = 2;
  vali
 (1 row)`, { 1: { id: 'q' }, 4: { id: 'a' } });
 const S2SQL = mkS(2, [{}, { mongo: true }, { mongo: true, pg: true }, { mongo: true, pg: true, sql: true }, { mongo: true, pg: true, sql: true, rule: true }]);
+// F-1109-06: xulosa qadamida hujjat va jadval yashirilmaydi — moslik rang bilan ularning ustida (collection↔jadval, hujjat↔qator, maydon↔ustun)
 function ScreenSqlNosql(p) {
-  return <Lesson p={p} S={S2SQL} scene={({ seg, beat }) => <div style={{ display: 'grid', gap: 12 }}>
+  return <Lesson p={p} S={S2SQL} scene={({ seg, beat }) => <div className={'pg1-ms' + (seg.rule ? ' on' : '')} style={{ display: 'grid', gap: 12 }}>
     <div className="pg-two">
       <div className="mk-card" style={{ borderColor: PG.mongo }}>
         <h5 style={{ display: 'flex', gap: 8, alignItems: 'center' }}><i style={{ width: 10, height: 10, borderRadius: '50%', background: PG.mongo, display: 'inline-block' }} />MongoDB · NoSQL</h5>
         {seg.mongo ? <div style={{ display: 'grid', gap: 8, animation: 'mk-up .4s ease both' }}>
-          <div className="pg-lab">users — collection · 2 ta hujjat (document)</div>
-          <Doc>{`{ _id: ObjectId('6ae8…e666'),\n  username: 'ali' }`}</Doc>
-          <Doc odd>{`{ _id: ObjectId('6ae8…e667'),\n  username: 'vali',\n  shahar: 'Toshkent' }   ← qo'shimcha maydon`}</Doc>
-          <div style={{ fontSize: 13.5, color: T.ink2 }}>Har yozuv — <b>hujjat</b>: jingalak qavs ichida <b>maydon: qiymat</b>. Shakli har xil bo'lishi mumkin.</div>
-        </div> : <div className="pg-lab" style={{ margin: 0 }}>ma'lumot — hujjat ko'rinishida</div>}
+          <div className="pg-lab mc">{t('users — collection · 2 ta hujjat (document)', 'users — collection · 2 документа (document)')}</div>
+          <Doc>{`{ _id: ObjectId('6ae8…e666'),\n  `}<span className="f">username</span>{`: 'ali' }`}</Doc>
+          <Doc odd>{`{ _id: ObjectId('6ae8…e667'),\n  `}<span className="f">username</span>{`: 'vali',\n  shahar: 'Toshkent' }   ← ` + t("qo'shimcha maydon", 'дополнительное поле')}</Doc>
+          <div style={{ fontSize: 13.5, color: T.ink2 }}>{t(<>Har yozuv — <b>hujjat</b>: jingalak qavs ichida <b>maydon: qiymat</b>. Shakli har xil bo'lishi mumkin.</>, <>Каждая запись — <b>документ</b>: в фигурных скобках <b>поле: значение</b>. Форма может быть разной.</>)}</div>
+        </div> : <div className="pg-lab" style={{ margin: 0 }}>{t("ma'lumot — hujjat ko'rinishida", 'данные — в виде документа')}</div>}
       </div>
       <div className="mk-card" style={{ borderColor: PG.pg }}>
         <h5 style={{ display: 'flex', gap: 8, alignItems: 'center' }}><i style={{ width: 10, height: 10, borderRadius: '50%', background: PG.pg, display: 'inline-block' }} />PostgreSQL · SQL</h5>
         {seg.pg ? <div style={{ display: 'grid', gap: 8, animation: 'mk-up .4s ease both' }}>
-          <MiniTable name="users — jadval (table)" cols={['id', 'username']} rows={[['1', 'ali'], ['2', 'vali']]} hlHead={beat === 2} hlRow={beat === 2 ? [0] : []} />
-          <div style={{ fontSize: 13.5, color: T.ink2 }}>Tepada — <b>ustunlar (column)</b>: id, username. Har yozuv — bitta <b>qator (row)</b>: 1 | ali.</div>
-          <Psql er title="psql — blog · shahar ustuni yo'q" lines={SQL_ERR} />
-        </div> : <div className="pg-lab" style={{ margin: 0 }}>ma'lumot — jadval ko'rinishida</div>}
+          <MiniTable name={t('users — jadval (table)', 'users — таблица (table)')} cols={['id', 'username']} rows={[['1', 'ali'], ['2', 'vali']]} hlHead={beat === 2} hlRow={beat === 2 ? [0] : []} />
+          <div style={{ fontSize: 13.5, color: T.ink2 }}>{t(<>Tepada — <b>ustunlar (column)</b>: id, username. Har yozuv — bitta <b>qator (row)</b>: 1 | ali.</>, <>Сверху — <b>колонки (column)</b>: id, username. Каждая запись — одна <b>строка (row)</b>: 1 | ali.</>)}</div>
+          <Psql er title={t("psql — blog · shahar ustuni yo'q", 'psql — blog · колонки shahar нет')} lines={SQL_ERR} />
+        </div> : <div className="pg-lab" style={{ margin: 0 }}>{t("ma'lumot — jadval ko'rinishida", 'данные — в виде таблицы')}</div>}
       </div>
     </div>
-    {seg.sql && <div style={{ animation: 'mk-up .4s ease both' }}>
-      <div className="pg-lab">SQL — jadvalga so'rov yozish tili</div>
+    {seg.sql && !seg.rule && <div style={{ animation: 'mk-up .4s ease both' }}>
+      <div className="pg-lab">{t("SQL — jadvalga so'rov yozish tili", 'SQL — язык запросов к таблице')}</div>
       <Psql lines={SQL_SEL} focus={beat === 3 ? ['q', 'a'] : []} />
     </div>}
-    <Block at={4} beat={beat}><div className="mk-rule">Moslik: <b>collection</b> ↔ <b>jadval</b> · <b>hujjat (document)</b> ↔ <b>qator (row)</b> · <b>maydon (field)</b> ↔ <b>ustun (column)</b></div></Block>
+    {seg.rule && <div className="pg1-key" style={{ animation: 'mk-up .4s ease both' }}>
+      <b>{t("Moslik", "Соответствие")}</b>
+      <span><i style={{ background: '#DCFCE7', outline: '1.5px solid #15803D' }} />collection ↔ {t("jadval (table)", "таблица (table)")}</span>
+      <span><i style={{ background: '#DBEAFE', outline: '1.5px solid #1D4ED8' }} />{t("hujjat (document) ↔ qator (row)", "документ (document) ↔ строка (row)")}</span>
+      <span><i style={{ background: '#FFEDD5', outline: '1.5px solid #C2410C' }} />{t("maydon (field) ↔ ustun (column)", "поле (field) ↔ колонка (column)")}</span>
+    </div>}
   </div>} />;
 }
 
@@ -1954,29 +2098,36 @@ const S2 = mkS(3, [{ focus: ['m', 'ref'] }, { focus: ['ref'] }, { focus: ['pop']
 function Screen2(p) {
   return <Lesson p={p} S={S2} scene={({ seg, beat }) => <Ide files={MKCFG.files} active="blog.js">
     <CodePanel file="blog.js" lines={BLOG_JS} focus={seg.focus} />
-    <div className="mk-tag" style={{ margin: 0 }}>Sinov skriptidan, qisqartirilgan · MongoDB 6.0 · Mongoose 9.11</div>
-    {seg.out && <Psql title="terminal" lines={POP_OUT} focus={beat === 2 ? ['au'] : []} />}
-    <Block at={3} beat={beat}><div className="mk-rule"><b>ref</b> — bog'lanish (post ichida faqat id) · <b>populate</b> — birlashtirish (so'rov paytida id o'rniga hujjat)</div></Block>
+    <div className="mk-tag" style={{ margin: 0 }}>{t('Sinov skriptidan, qisqartirilgan · MongoDB 6.0 · Mongoose 9.11', 'Из тестового скрипта, сокращено · MongoDB 6.0 · Mongoose 9.11')}</div>
+    {seg.out && <Psql title={t("terminal", "терминал")} lines={POP_OUT} focus={beat === 2 ? ['au'] : []} />}
+    <Block at={3} beat={beat}><div className="mk-rule">{t(<><b>ref</b> — bog'lanish (post ichida faqat id) · <b>populate</b> — birlashtirish (so'rov paytida id o'rniga hujjat)</>, <><b>ref</b> — связь (в посте только id) · <b>populate</b> — объединение (во время запроса вместо id подставляется документ)</>)}</div></Block>
   </Ide>} />;
 }
 
 // ============================================================
 //  4 · Mongo xato bermaydigan joylar
 // ============================================================
-const BLOG3_JS = js(String.raw`
+const BLOG3_JS = js(`
 const User = mongoose.model('User', new mongoose.Schema({ username: String }));
-const Post = mongoose.model('Post', new mongoose.Schema({
-  author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-  izoh: String
-}));
+const Post = mongoose.model(
+  'Post',
+  new mongoose.Schema({
+    author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    izoh: String,
+  }),
+);
 
 // 1-tajriba: bazada yo'q foydalanuvchining id'si bilan post
-await Post.create({ author: new mongoose.Types.ObjectId(), izoh: "Muallifi yo'q post" });
+await Post.create({
+  author: new mongoose.Types.ObjectId(),
+  izoh: "Muallifi yo'q post",
+});
 await Post.find().populate('author');
 
 // 2-tajriba: Mongoose sxemasini chetlab, kolleksiyaning o'ziga
-await mongoose.connection.db.collection('posts').insertOne({ muallif: 'vali', matn: 'Salom', like: 5 });`,
-  { 3: { id: 'ref' }, 7: { at: 1 }, 8: { at: 1, neu: true, id: 'e1' }, 9: { at: 1, id: 'e1' }, 10: { at: 2 }, 11: { at: 2 }, 12: { at: 2, neu: true, id: 'e2' } });
+await mongoose.connection.db
+  .collection('posts')
+  .insertOne({ muallif: 'vali', matn: 'Salom', like: 5 });`, { 5: { id: 'ref' }, 10: { at: 1 }, 11: { at: 1, neu: true, id: 'e1' }, 12: { at: 1, neu: true, id: 'e1' }, 13: { at: 1, neu: true, id: 'e1' }, 14: { at: 1, neu: true, id: 'e1' }, 15: { at: 1, id: 'e1' }, 17: { at: 2 }, 18: { at: 2, neu: true, id: 'e2' }, 19: { at: 2, neu: true, id: 'e2' }, 20: { at: 2, neu: true, id: 'e2' } });
 const NULL_OUT = psql(String.raw`
 $ node blog.js
 … { "author": { "username": "ali" }, "izoh": "Birinchi post" },
@@ -1984,10 +2135,10 @@ $ node blog.js
 const S3 = mkS(4, [{ focus: ['ref'] }, { focus: ['e1'] }, { focus: ['e2'] }, { focus: [] }]);
 function Screen3(p) {
   return <Lesson p={p} S={S3} scene={({ seg, beat }) => <Ide files={MKCFG.files} active="blog.js">
-    <CodePanel file="blog.js" lines={BLOG3_JS} beat={beat} focus={seg.focus} />
-    {beat === 1 && <Psql title="terminal — xato yo'q" lines={NULL_OUT} focus={['nl']} />}
-    {beat >= 2 && <div style={{ display: 'grid', gap: 6 }}>
-      <div className="pg-lab">posts kolleksiyasi — uch hujjat <span className="tm">xato yo'q</span></div>
+    <CodePanel file="blog.js" lines={beat >= 3 ? BLOG3_JS.slice(9).map((l, k) => ({ ...l, n: 10 + k })) : BLOG3_JS} beat={beat} focus={seg.focus} />
+    {beat === 1 && <Psql title={t("terminal — xato yo'q", 'терминал — ошибки нет')} lines={NULL_OUT} focus={['nl']} />}
+    {beat === 2 && <div style={{ display: 'grid', gap: 6 }}>
+      <div className="pg-lab">{t(<>posts kolleksiyasi — uch hujjat <span className="tm">xato yo'q</span></>, <>коллекция posts — три документа <span className="tm">ошибки нет</span></>)}</div>
       <div className="pg-three">
         <Doc>{`{ "author": "…a728",\n  "izoh": "Birinchi post" }`}</Doc>
         <Doc>{`{ "author": "…a72a",\n  "izoh": "Muallifi yo'q post" }`}</Doc>
@@ -1995,8 +2146,8 @@ function Screen3(p) {
       </div>
     </div>}
     <Block at={3} beat={beat}><div className="pg-cmp">
-      <div className="mk-card"><h5><i style={{ background: PG.mongo }} />MongoDB</h5><div style={{ fontSize: 14 }}>Qoida — <b>kodda</b> (Mongoose sxemasi). Kodni chetlab yozilgan hujjat ham qabul qilinadi.</div></div>
-      <div className="mk-card" style={{ borderColor: PG.pg }}><h5><i style={{ background: PG.pg }} />PostgreSQL</h5><div style={{ fontSize: 14 }}>Qoida — <b>jadvalda</b>: <code>NOT NULL</code>, <code>REFERENCES</code>… Uni hech kim chetlab o'ta olmaydi.</div></div>
+      <div className="mk-card"><h5><i style={{ background: PG.mongo }} />MongoDB</h5><div style={{ fontSize: 14 }}>{t(<>Qoida — <b>kodda</b> (Mongoose sxemasi). Kodni chetlab yozilgan hujjat ham qabul qilinadi.</>, <>Правило — <b>в коде</b> (схема Mongoose). Документ, записанный в обход кода, тоже принимается.</>)}</div></div>
+      <div className="mk-card" style={{ borderColor: PG.pg }}><h5><i style={{ background: PG.pg }} />PostgreSQL</h5><div style={{ fontSize: 14 }}>{t(<>Qoida — <b>jadvalda</b>: <code>NOT NULL</code>, <code>REFERENCES</code>… Uni hech kim chetlab o'ta olmaydi.</>, <>Правило — <b>в таблице</b>: <code>NOT NULL</code>, <code>REFERENCES</code>… Обойти его не может никто.</>)}</div></div>
     </div></Block>
   </Ide>} />;
 }
@@ -2008,6 +2159,9 @@ const DICT4 = [
   ['baza', 'baza (database) — \\l'], ['collection posts', 'jadval (table) posts'], ['document', 'qator (row)'], ['maydon (field)', 'ustun (column) — turi bilan: INT, TEXT'],
   ['_id (ObjectId)', 'id SERIAL PRIMARY KEY — 1, 2, 3'], ["ref: 'User'", 'REFERENCES users(id) — tashqi kalit'], ['populate()', 'JOIN'],
   ['Schema — kodda', 'CREATE TABLE — bazada'], ['required: true · unique: true', 'NOT NULL · UNIQUE'], ['mongosh', 'psql'],
+  // F-1103-09 (03.11): buyruq juftlari — mentor bilgan Mongoose buyrug'i yonida PostgreSQL buyrug'i (haqiqiy: pg2-out/v2d-mongoose.txt)
+  ['Post.create({ … })', 'INSERT INTO posts (…) VALUES (…)'], ['Post.find({ author: id })', 'SELECT * FROM posts WHERE user_id = 1'],
+  ['Post.updateOne({ _id }, { izoh })', 'UPDATE posts SET izoh = … WHERE id = 1'], ['Post.deleteOne({ _id })', 'DELETE FROM posts WHERE id = 1'],
 ];
 const POSTS_DDL = sql(String.raw`
 CREATE TABLE posts (
@@ -2015,17 +2169,17 @@ CREATE TABLE posts (
   user_id INT NOT NULL REFERENCES users(id),
   izoh TEXT NOT NULL
 );`, { 1: { id: 'ddl' }, 2: { id: 'pk' }, 3: { id: 'fk' }, 4: { id: 'col' }, 5: { id: 'ddl' } });
-const S4 = mkS(5, [{ rows: [], focus: [] }, { rows: [0, 1, 2, 3], focus: ['col'] }, { rows: [4, 5, 6], focus: ['pk', 'fk'] }, { rows: [7, 8, 9], focus: ['ddl', 'fk', 'col'] }, { rows: [], focus: [] }]);
+const S4 = mkS(5, [{ rows: [], focus: [] }, { rows: [0, 1, 2, 3], focus: ['col'] }, { rows: [4, 5, 6], focus: ['pk', 'fk'] }, { rows: [7, 8, 9], focus: ['ddl', 'fk', 'col'] }, { rows: [10, 11, 12, 13], focus: [] }]);
 function Screen4(p) {
-  return <Lesson p={p} S={S4} scene={({ seg }) => <div className="pg-two">
+  return <Lesson p={p} S={S4} scene={({ seg }) => <div className="pg-two" style={{ gridTemplateColumns: seg.rows.includes(10) ? '1fr' : 'minmax(0,1.5fr) minmax(0,1fr)' }}>
     <div className="mk-light" style={{ padding: 12 }}>
       <table className="pg-dict"><thead><tr><th style={{ color: PG.mongo }}>MongoDB (Mongoose)</th><th /><th style={{ color: PG.pg }}>PostgreSQL</th></tr></thead><tbody>
-        {DICT4.map(([a, b], i) => <tr key={a} className={seg.rows.includes(i) ? 'hl' : (seg.rows.length ? 'dim' : '')}><td><code>{a}</code></td><td>↔</td><td><code>{b}</code></td></tr>)}
+        {DICT4.map(([a, b], i) => (seg.rows.includes(10) && !seg.rows.includes(i)) ? null : <tr key={a} className={seg.rows.includes(i) ? 'hl' : (seg.rows.length ? 'dim' : '')}><td><code>{a}</code></td><td>↔</td><td><code>{b}</code></td></tr>)}
       </tbody></table>
     </div>
     <div style={{ display: 'grid', gap: 10 }}>
-      <Psql title="CREATE TABLE posts" lines={POSTS_DDL} focus={seg.focus} />
-      <div className="mk-rule">Mongo'da qoida <b>kodda</b> (Mongoose sxemasi), PostgreSQL'da <b>jadvalda</b>. O'quvchi «populate qani?» desa — <b>JOIN</b>.</div>
+      {!seg.rows.includes(10) && <Psql title="CREATE TABLE posts" lines={POSTS_DDL} focus={seg.focus} />}
+      <div className="mk-rule">{t(<>Mongo'da qoida <b>kodda</b> (Mongoose sxemasi), PostgreSQL'da <b>jadvalda</b>. O'quvchi «populate qani?» desa — <b>JOIN</b>.</>, <>В Mongo правило <b>в коде</b> (схема Mongoose), в PostgreSQL — <b>в таблице</b>. Если ученик спросит «где populate?» — <b>JOIN</b>.</>)}</div>
     </div>
   </div>} />;
 }
@@ -2037,9 +2191,9 @@ function Screen5(p) {
   const m = MDT[6];
   return <MCRetry {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} q={m.q} opts={m.opts} correct={m.correct} ok={m.ok} okShort={<span dangerouslySetInnerHTML={html(m.okShort)} />} wrong={m.wrong}
     after={<div style={{ display: 'grid', gap: 10 }}>
-      <div className="mk-tag" style={{ color: T.green, margin: 0 }}>JOIN — so'rov paytida ikki jadval bitta javobda (populate kabi)</div>
+      <div className="mk-tag" style={{ color: T.green, margin: 0 }}>{t("JOIN — so'rov paytida ikki jadval bitta javobda (populate kabi)", 'JOIN — во время запроса две таблицы в одном ответе (как populate)')}</div>
       <Psql lines={JOIN_OK} />
-      <div className="mk-rule"><code>REFERENCES</code> — <b>ref</b>ning jufti: bog'lanishni belgilaydi va qo'riqlaydi, javobga hech narsa qo'shmaydi.</div>
+      <div className="mk-rule">{t(<><code>REFERENCES</code> — <b>ref</b>ning jufti: bog'lanishni belgilaydi va qo'riqlaydi, javobga hech narsa qo'shmaydi.</>, <><code>REFERENCES</code> — пара для <b>ref</b>: задаёт и охраняет связь, в ответ ничего не добавляет.</>)}</div>
     </div>} />;
 }
 
@@ -2052,15 +2206,15 @@ function Screen6(p) {
     {seg.v === 'dl' && <Win title="postgresql.org/download/windows/">
       <h4>Download PostgreSQL · Windows</h4>
       <div style={{ fontSize: 14, marginBottom: 8 }}>Interactive installer by <b>EDB</b> → Download the installer</div>
-      <div className="pg-chk"><div style={{ borderColor: T.accent }}><b>18</b>eng yangi barqaror versiya — shuni tanlang</div><div className="off"><b>19</b>hali RC (sinov versiyasi), 31.10.2026</div></div>
+      <div className="pg-chk"><div style={{ borderColor: T.accent }}><b>18</b>{t('eng yangi barqaror versiya — shuni tanlang', 'последняя стабильная версия — выбирайте её')}</div><div className="off"><b>19</b>{t('hali RC (sinov versiyasi), 31.10.2026', 'пока RC (тестовая версия), 31.10.2026')}</div></div>
     </Win>}
     {seg.v === 'comp' && <Win title="Setup — PostgreSQL 18 · Select Components">
       <h4>Select Components</h4>
       <div className="pg-chk">
-        <div><b>☑</b>PostgreSQL Server — bazaning o'zi</div>
-        <div><b>☑</b>pgAdmin 4 — grafik oyna (ixtiyoriy)</div>
-        <div className="off"><b>☐</b>Stack Builder — kerak emas</div>
-        <div style={{ borderColor: T.accent }}><b>☑</b>Command Line Tools — psql shu yerda, <b>albatta kerak</b></div>
+        <div><b>☑</b>{t("PostgreSQL Server — bazaning o'zi", 'PostgreSQL Server — сама база')}</div>
+        <div><b>☑</b>{t('pgAdmin 4 — grafik oyna (ixtiyoriy)', 'pgAdmin 4 — графическое окно (по желанию)')}</div>
+        <div className="off"><b>☐</b>{t('Stack Builder — kerak emas', 'Stack Builder — не нужен')}</div>
+        <div style={{ borderColor: T.accent }}><b>☑</b>{t(<>Command Line Tools — psql shu yerda, <b>albatta kerak</b></>, <>Command Line Tools — здесь psql, <b>обязательно нужен</b></>)}</div>
       </div>
     </Win>}
     {seg.v === 'pw' && <Win title="Setup — PostgreSQL 18 · Password / Port" hl>
@@ -2068,17 +2222,17 @@ function Screen6(p) {
       <div className="pg-field"><span>Password</span><span>••••••••</span></div>
       <div className="pg-field"><span>Retype password</span><span>••••••••</span></div>
       <div className="pg-field"><span>Port</span><span>5432</span></div>
-      <div className="n2-warn" style={{ marginTop: 10, fontSize: 14 }}><b>Parolni yozib qo'ying</b> — o'quvchi keyingi darslarda <code>psql</code>da va loyiha sozlamasida aynan shu parolni so'raydi.</div>
+      <div className="n2-warn" style={{ marginTop: 10, fontSize: 14 }}>{t(<><b>Parolni yozib qo'ying</b> — o'quvchi keyingi darslarda <code>psql</code>da va loyiha sozlamasida aynan shu parolni so'raydi.</>, <><b>Запишите пароль</b> — на следующих уроках ученик спросит именно этот пароль в <code>psql</code> и в настройках проекта.</>)}</div>
     </Win>}
     {seg.v === 'path' && <Win title="Environment Variables → Path → Edit">
       <h4>Edit environment variable · Path</h4>
       <div className="pg-chk"><div>C:\Windows\system32</div><div>C:\Program Files\nodejs\</div><div style={{ borderColor: T.green, background: '#E3F5EC' }}><b>+</b><code>C:\Program Files\PostgreSQL\18\bin</code></div></div>
-      <div style={{ fontSize: 13.5, color: T.ink2, marginTop: 8 }}>Keyin terminalni <b>yangidan</b> oching. Muqobil: Start → <b>SQL Shell (psql)</b>.</div>
+      <div style={{ fontSize: 13.5, color: T.ink2, marginTop: 8 }}>{t(<>Keyin terminalni <b>yangidan</b> oching. Muqobil: Start → <b>SQL Shell (psql)</b>.</>, <>Потом откройте терминал <b>заново</b>. Альтернатива: Пуск → <b>SQL Shell (psql)</b>.</>)}</div>
     </Win>}
-    {seg.v === 'sum' && <div className="mk-light"><div className="mk-tag">Windows — o'rnatgandan keyin uch narsa</div>
-      <div className="mk-plan"><div><b>01</b><span>Parol yozib qo'yilgan</span></div><div><b>02</b><span>Port <code>5432</code></span></div><div className="hl"><b>03</b><span><code>…\PostgreSQL\18\bin</code> — Path'da (aks holda <code>psql</code> tanilmaydi)</span></div></div>
+    {seg.v === 'sum' && <div className="mk-light"><div className="mk-tag">{t("Windows — o'rnatgandan keyin uch narsa", 'Windows — три вещи после установки')}</div>
+      <div className="mk-plan"><div><b>01</b><span>{t("Parol yozib qo'yilgan", 'Пароль записан')}</span></div><div><b>02</b><span>{t('Port', 'Порт')} <code>5432</code></span></div><div className="hl"><b>03</b><span><code>…\PostgreSQL\18\bin</code> {t(<>— Path'da (aks holda <code>psql</code> tanilmaydi)</>, <>— в Path (иначе <code>psql</code> не распознаётся)</>)}</span></div></div>
     </div>}
-    <div className="mk-tag" style={{ margin: 0, color: T.yellow }}>Maket — rasmiy hujjatdan (postgresql.org, EDB qo'llanmasi); bu kompyuterda sinalmagan</div>
+    <div className="mk-tag" style={{ margin: 0, color: T.yellow }}>{t("Maket — rasmiy hujjatdan (postgresql.org, EDB qo'llanmasi); bu kompyuterda sinalmagan", 'Макет — по официальной документации (postgresql.org, руководство EDB); на этом компьютере не проверялось')}</div>
   </>} />;
 }
 
@@ -2110,14 +2264,14 @@ function Screen7(p) {
   return <Lesson p={p} S={S7} scene={({ seg }) => <>
     {(seg.v === 'app' || seg.v === 'init') && <Win os="mac" title="Postgres.app" hl={seg.v === 'init'}>
       {seg.v === 'app'
-        ? <><h4>postgresapp.com → Download</h4><div style={{ fontSize: 14 }}>Yuklab olingan <b>Postgres.app</b> → <b>Applications</b> papkasiga ko'chiriladi → ochiladi</div></>
+        ? <><h4>postgresapp.com → Download</h4><div style={{ fontSize: 14 }}>{t(<>Yuklab olingan <b>Postgres.app</b> → <b>Applications</b> papkasiga ko'chiriladi → ochiladi</>, <>Скачанный <b>Postgres.app</b> → переносится в папку <b>Applications</b> → открывается</>)}</div></>
         : <><h4>Postgres.app</h4><div style={{ fontSize: 14 }}>Server · Port <code>5432</code> · <span style={{ color: T.green, fontWeight: 700 }}>Running</span></div><span className="pg-btn">Initialize</span></>}
     </Win>}
-    {seg.v === 'init' && <><div className="mk-tag" style={{ margin: 0 }}>Haqiqiy: Postgres.app kabi sozlangan server (parol so'ralmaydi)</div><Psql title="terminal" lines={APP_OUT} /></>}
-    {seg.v === 'path' && <><Psql title="terminal — rasmiy PATH buyrug'i" lines={MAC_PATH} /><div className="mk-tag" style={{ margin: 0, color: T.yellow }}>⚠ rasmiy hujjatdan (postgresapp.com), bu kompyuterda sinalmagan · keyin terminalni yopib, yangidan oching</div></>}
-    {seg.v === 'brew' && <><div className="mk-tag" style={{ margin: 0 }}>Haqiqiy: Homebrew kabi sozlangan server (superuser — kompyuter foydalanuvchisi)</div><Psql title="terminal — Homebrew" lines={BREW_OUT} focus={['er', 'fix']} /></>}
-    {seg.v === 'sum' && <div className="mk-light"><div className="mk-tag">macOS — xulosa</div>
-      <div className="mk-plan"><div><b>01</b><span>Postgres.app → Applications → <b>Initialize</b></span></div><div><b>02</b><span>PATH buyrug'i, terminal yangidan</span></div><div className="hl"><b>03</b><span>Homebrew bo'lsa: <code>createuser -s postgres</code> — o'quvchi darslari <code>psql -U postgres</code> kutadi</span></div></div>
+    {seg.v === 'init' && <><div className="mk-tag" style={{ margin: 0 }}>{t("Haqiqiy: Postgres.app kabi sozlangan server (parol so'ralmaydi)", 'Реально: сервер, настроенный как Postgres.app (пароль не спрашивается)')}</div><Psql title={t("terminal", "терминал")} lines={APP_OUT} /></>}
+    {seg.v === 'path' && <><Psql title={t("terminal — rasmiy PATH buyrug'i", 'терминал — официальная команда для PATH')} lines={MAC_PATH} /><div className="mk-tag" style={{ margin: 0, color: T.yellow }}>{t('⚠ rasmiy hujjatdan (postgresapp.com), bu kompyuterda sinalmagan · keyin terminalni yopib, yangidan oching', '⚠ по официальной документации (postgresapp.com), на этом компьютере не проверялось · потом закройте терминал и откройте заново')}</div></>}
+    {seg.v === 'brew' && <><div className="mk-tag" style={{ margin: 0 }}>{t('Haqiqiy: Homebrew kabi sozlangan server (superuser — kompyuter foydalanuvchisi)', 'Реально: сервер, настроенный как Homebrew (superuser — пользователь компьютера)')}</div><Psql title={t("terminal — Homebrew", "терминал — Homebrew")} lines={BREW_OUT} focus={['er', 'fix']} /></>}
+    {seg.v === 'sum' && <div className="mk-light"><div className="mk-tag">{t('macOS — xulosa', 'macOS — вывод')}</div>
+      <div className="mk-plan"><div><b>01</b><span>Postgres.app → Applications → <b>Initialize</b></span></div><div><b>02</b><span>{t("PATH buyrug'i, terminal yangidan", 'Команда для PATH, терминал заново')}</span></div><div className="hl"><b>03</b><span>{t(<>Homebrew bo'lsa: <code>createuser -s postgres</code> — o'quvchi darslari <code>psql -U postgres</code> kutadi</>, <>Если Homebrew: <code>createuser -s postgres</code> — уроки ученика ожидают <code>psql -U postgres</code></>)}</span></div></div>
     </div>}
   </>} />;
 }
@@ -2154,9 +2308,9 @@ postgres=# \q`, mergeMeta(rng(1, 1, { at: 0 }), rng(2, 6, { at: 1 }), rng(7, 16,
 const S8 = mkS(9, [{ focus: [] }, { focus: ['pw', 'pr'] }, { focus: ['semi', 'ver'] }, { focus: ['l', 'q'] }, { focus: [] }]);
 function Screen8(p) {
   return <Lesson p={p} S={S8} scene={({ seg, beat }) => <>
-    <Psql title="terminal — psql" lines={FIRST8} beat={beat} focus={seg.focus} />
-    <Block at={2} beat={beat}><div className="mk-tag" style={{ margin: 0 }}>Bu yerda Linux. Sizda <code>PostgreSQL 18…</code> dan keyin Windows yoki macOS yozuvi bo'ladi.</div></Block>
-    <Block at={4} beat={beat}><div className="mk-rule">Prompt — qaysi bazadasiz (<code>postgres=#</code>) · <code>-#</code> — davomini kutyapti · SQL — <b>nuqta-vergul</b> bilan · <code>\l</code> <code>\c</code> <code>\d</code> <code>\q</code> — usiz</div></Block>
+    <Psql title={t("terminal — psql", "терминал — psql")} lines={FIRST8} beat={beat} focus={seg.focus} />
+    <Block at={2} beat={beat}><div className="mk-tag" style={{ margin: 0 }}>{t(<>Bu yerda Linux. Sizda <code>PostgreSQL 18…</code> dan keyin Windows yoki macOS yozuvi bo'ladi.</>, <>Здесь Linux. У вас после <code>PostgreSQL 18…</code> будет надпись Windows или macOS.</>)}</div></Block>
+    <Block at={4} beat={beat}><div className="mk-rule">{t(<>Prompt — qaysi bazadasiz (<code>postgres=#</code>) · <code>-#</code> — davomini kutyapti · SQL — <b>nuqta-vergul</b> bilan · <code>\l</code> <code>\c</code> <code>\d</code> <code>\q</code> — usiz</>, <>Приглашение — в какой вы базе (<code>postgres=#</code>) · <code>-#</code> — ждёт продолжения · SQL — с <b>точкой с запятой</b> · <code>\l</code> <code>\c</code> <code>\d</code> <code>\q</code> — без неё</>)}</div></Block>
   </>} />;
 }
 
@@ -2209,12 +2363,12 @@ const S10 = mkS(11, [{ focus: [] }, { focus: ['c'] }, { focus: ['id', 'un'] }, {
 function Screen10(p) {
   return <Lesson p={p} S={S10} scene={({ seg, beat }) => <>
     {beat === 0 && <div className="mk-light" style={{ padding: 14 }}>
-      <div className="mk-tag">O'quvchi m4-03 amaliyotidagi namuna — qog'ozda</div>
+      <div className="mk-tag">{t("O'quvchi m4-03 amaliyotidagi namuna — qog'ozda", 'Образец из практики ученика m4-03 — на бумаге')}</div>
       <div className="pg-two"><MiniTable name="users" cols={['id', 'username']} rows={[['1', 'ali'], ['2', 'vali'], ['3', 'sardor']]} /><MiniTable name="posts" cols={['id', 'user_id', 'izoh']} rows={[['1', '1', 'Birinchi post'], ['2', '1', "Bugun Nest o'rgandim"], ['3', '2', 'Salom hammaga']]} /></div>
     </div>}
     {beat >= 1 && !seg.err && <Psql title="psql" lines={DB10} beat={beat} focus={seg.focus} />}
     {seg.err && <><Psql title="psql — blog" er lines={ERR10} focus={seg.focus} /><Psql lines={FIX10} /></>}
-    <Block at={4} beat={beat}><div className="mk-rule">Baza <b>oldin yaratiladi</b> (<code>CREATE DATABASE</code>), unga <code>\c</code> bilan o'tiladi · ustun turi va qoidalari jadval bilan birga · <code>syntax error</code> — <code>^</code> ko'rsatgan so'zdan <b>oldin</b> qarang</div></Block>
+    <Block at={4} beat={beat}><div className="mk-rule">{t(<>Baza <b>oldin yaratiladi</b> (<code>CREATE DATABASE</code>), unga <code>\c</code> bilan o'tiladi · ustun turi va qoidalari jadval bilan birga · <code>syntax error</code> — <code>^</code> ko'rsatgan so'zdan <b>oldin</b> qarang</>, <>База <b>создаётся заранее</b> (<code>CREATE DATABASE</code>), в неё переходят через <code>\c</code> · тип колонки и её правила — вместе с таблицей · <code>syntax error</code> — смотрите <b>перед</b> словом, на которое указывает <code>^</code></>)}</div></Block>
   </>} />;
 }
 
@@ -2267,10 +2421,12 @@ function Screen11(p) {
   return <Lesson p={p} S={S11} scene={({ seg, beat }) => <>
     {seg.v === 'ddl' && <Psql lines={POSTS11} focus={seg.focus} />}
     {seg.v === 'd' && <Psql lines={D11} focus={seg.focus} />}
-    {seg.v === 'ins' && <><Psql lines={INS11} focus={seg.focus} /><div className="mk-tag" style={{ margin: 0 }}>SQL matnida apostrof ikki marta yoziladi: <code>o''rgandim</code></div>
+    {seg.v === 'ins' && <><Psql lines={INS11} focus={seg.focus} /><div className="mk-tag" style={{ margin: 0 }}>{t('SQL matnida apostrof ikki marta yoziladi:', 'В тексте SQL апостроф пишется дважды:')} <code>o''rgandim</code></div>
+      <div className="mk-pair"><b style={{ color: PG.mongo }}>{t("Mongoose'da:", 'В Mongoose:')}</b> <code>{"await User.create([{ username: 'ali' }, { username: 'vali' }, { username: 'sardor' }])"}</code></div>
       <div className="pg-two"><MiniTable name="users" cols={['id', 'username']} rows={[['1', 'ali'], ['2', 'vali'], ['3', 'sardor']]} hlRow={[2]} /><MiniTable name="posts" cols={['id', 'user_id', 'izoh']} rows={[['1', '1', 'Birinchi post'], ['2', '1', "Bugun Nest o'rgandim"], ['3', '2', 'Salom hammaga']]} hlCol={[1]} /></div></>}
-    {seg.v === 'rel' && <Psql title="psql — qayta ochildi" lines={REL11} focus={seg.focus} />}
-    <Block at={4} beat={beat}><div className="mk-rule"><code>REFERENCES</code> bog'lanishni <b>bazaga</b> yozadi · <code>\d jadval</code> — tuzilish · <code>does not exist</code> — avval <b>prompt</b>dagi baza nomi</div></Block>
+    {seg.v === 'rel' && <Psql title={t('psql — qayta ochildi', 'psql — открыт заново')} lines={REL11} focus={seg.focus} />}
+    {seg.v === 'rel' && <div className="mk-pair"><b style={{ color: PG.mongo }}>{t("Mongoose'da:", 'В Mongoose:')}</b> <code>await Post.find()</code></div>}
+    <Block at={4} beat={beat}><div className="mk-rule">{t(<><code>REFERENCES</code> bog'lanishni <b>bazaga</b> yozadi · <code>\d jadval</code> — tuzilish · <code>does not exist</code> — avval <b>prompt</b>dagi baza nomi</>, <><code>REFERENCES</code> записывает связь <b>в базу</b> · <code>\d таблица</code> — структура · <code>does not exist</code> — сначала имя базы в <b>приглашении</b></>)}</div></Block>
   </>} />;
 }
 
@@ -2306,16 +2462,16 @@ const S12 = mkS(13, [{ e: -1 }, { e: 0 }, { e: 1 }, { e: 2 }, { e: 9 }]);
 function Screen12(p) {
   return <Lesson p={p} S={S12} scene={({ seg, beat }) => <>
     <div className="mk-light" style={{ padding: 12 }}>
-      <div className="mk-tag">Xabarni o'qish — uch savol</div>
-      <div className="pg-three">{(READ12[seg.e === 9 ? 2 : beat] || [['qaysi jadval', 'jadval'], ['qaysi qoida', 'qoida'], ['qaysi qiymat (DETAIL)', 'qiymat']]).map(([v, k], i) => <div key={i} className="mk-box" style={{ '--c': [PG.pg, T.accent, T.yellow][i] }}><h4>{['Qaysi jadval', 'Qaysi qoida', 'Qaysi qiymat'][i]}</h4><p><code>{v}</code></p></div>)}</div>
+      <div className="mk-tag">{t("Xabarni o'qish — uch savol", 'Чтение сообщения — три вопроса')}</div>
+      <div className="pg-three">{(READ12[seg.e === 9 ? 2 : beat] || t([['qaysi jadval', 'jadval'], ['qaysi qoida', 'qoida'], ['qaysi qiymat (DETAIL)', 'qiymat']], [['какая таблица', 'jadval'], ['какое правило', 'qoida'], ['какое значение (DETAIL)', 'qiymat']])).map(([v, k], i) => <div key={i} className="mk-box" style={{ '--c': [PG.pg, T.accent, T.yellow][i] }}><h4>{t(['Qaysi jadval', 'Qaysi qoida', 'Qaysi qiymat'], ['Какая таблица', 'Какое правило', 'Какое значение'])[i]}</h4><p><code>{v}</code></p></div>)}</div>
     </div>
     {seg.e >= 0 && seg.e <= 2 && <Psql er lines={E12[seg.e]} />}
     {seg.e === 1 && <div className="pg-cmp">
-      <div className="mk-card"><h5><i style={{ background: PG.mongo }} />MongoDB — 4-ekran</h5><Doc>{`{ "author": null, "izoh": "Muallifi yo'q post" }   ← saqlandi`}</Doc></div>
-      <div className="mk-card" style={{ borderColor: PG.pg }}><h5><i style={{ background: PG.pg }} />PostgreSQL</h5><Doc er>{'ERROR … foreign key constraint   ← saqlanmadi'}</Doc></div>
+      <div className="mk-card"><h5><i style={{ background: PG.mongo }} />{t('MongoDB — 4-ekran', 'MongoDB — 4-й экран')}</h5><Doc>{t(`{ "author": null, "izoh": "Muallifi yo'q post" }   ← saqlandi`, `{ "author": null, "izoh": "Muallifi yo'q post" }   ← сохранено`)}</Doc></div>
+      <div className="mk-card" style={{ borderColor: PG.pg }}><h5><i style={{ background: PG.pg }} />PostgreSQL</h5><Doc er>{t('ERROR … foreign key constraint   ← saqlanmadi', 'ERROR … foreign key constraint   ← не сохранено')}</Doc></div>
     </div>}
     {seg.e === 9 && <Psql er lines={E12[1]} />}
-    {seg.e === 9 && <div className="mk-rule">Qoida buzilsa yozuv <b>saqlanmaydi</b>. O'quvchi bilan birga o'qing: jadval · qoida nomi · <b>DETAIL</b> qatoridagi qiymat — javob deyarli doim shu qatorda.</div>}
+    {seg.e === 9 && <div className="mk-rule">{t(<>Qoida buzilsa yozuv <b>saqlanmaydi</b>. O'quvchi bilan birga o'qing: jadval · qoida nomi · <b>DETAIL</b> qatoridagi qiymat — javob deyarli doim shu qatorda.</>, <>Если правило нарушено, запись <b>не сохраняется</b>. Прочитайте вместе с учеником: таблица · имя правила · значение в строке <b>DETAIL</b> — ответ почти всегда в этой строке.</>)}</div>}
   </>} />;
 }
 
@@ -2327,13 +2483,13 @@ function Screen13(p) {
   return <MCRetry {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} q={m.q} opts={m.opts} correct={m.correct} ok={m.ok} okShort={<span dangerouslySetInnerHTML={html(m.okShort)} />} wrong={m.wrong}
     above={<div style={{ marginBottom: 14 }}><Psql er lines={E12[2]} /></div>}
     after={<div style={{ display: 'grid', gap: 10 }}>
-      <div className="mk-tag" style={{ color: T.green, margin: 0 }}>Tuzatish — avval postlar, keyin foydalanuvchi (haqiqiy natija)</div>
+      <div className="mk-tag" style={{ color: T.green, margin: 0 }}>{t('Tuzatish — avval postlar, keyin foydalanuvchi (haqiqiy natija)', 'Исправление — сначала посты, потом пользователь (реальный результат)')}</div>
       <Psql lines={psql(String.raw`
 blog=# DELETE FROM posts WHERE user_id = 1;
 DELETE 2
 blog=# DELETE FROM users WHERE id = 1;
 DELETE 1`, { 1: { neu: true }, 3: { neu: true } })} />
-      <div className="mk-rule">Bunday <code>id</code> yo'q bo'lsa xato chiqmaydi: <code>DELETE 0</code>. Xato — qoida buzilganda.</div>
+      <div className="mk-rule">{t(<>Bunday <code>id</code> yo'q bo'lsa xato chiqmaydi: <code>DELETE 0</code>. Xato — qoida buzilganda.</>, <>Если такого <code>id</code> нет, ошибки не будет: <code>DELETE 0</code>. Ошибка — когда нарушено правило.</>)}</div>
     </div>} />;
 }
 
@@ -2390,10 +2546,10 @@ function Screen15(p) {
       <MiniTable name="posts" cols={['id', 'user_id', 'izoh']} rows={[['1', '1', 'Birinchi post'], ['2', '1', "Bugun Nest o'rgandim"], ['3', '2', 'Salom hammaga']]} hlCol={seg.on ? [1] : []} />
       <MiniTable name="users" cols={['id', 'username']} rows={[['1', 'ali'], ['2', 'vali'], ['3', 'sardor']]} hlCol={seg.on ? [0] : []} hlRow={seg.v === 'left' ? [2] : []} />
     </div>
-    {seg.on && <div className="mk-tag" style={{ margin: 0, color: T.accent }}>ON: users.id = posts.user_id — users'dagi id posts'dagi user_id'ga teng</div>}
-    {seg.v === 'join' && <Psql lines={JOIN15} focus={seg.focus} />}
+    {seg.on && <div className="mk-tag" style={{ margin: 0, color: T.accent }}>{t("ON: users.id = posts.user_id — users'dagi id posts'dagi user_id'ga teng", 'ON: users.id = posts.user_id — id из users равен user_id из posts')}</div>}
+    {seg.v === 'join' && beat < 4 && <Psql lines={JOIN15} focus={seg.focus} />}
     {seg.v === 'left' && <Psql lines={LEFT15} focus={seg.focus} />}
-    <Block at={4} beat={beat}><div className="mk-rule"><b>JOIN</b> — faqat jufti borlar · <b>LEFT JOIN</b> — chapdagi jadvalning hammasi · <code>ON</code>da tashqi kalit (<code>user_id</code>) boshqa jadvalning <code>id</code>'siga tenglanadi</div></Block>
+    <Block at={4} beat={beat}><div className="mk-rule">{t(<><b>JOIN</b> — faqat jufti borlar · <b>LEFT JOIN</b> — chapdagi jadvalning hammasi · <code>ON</code>da tashqi kalit (<code>user_id</code>) boshqa jadvalning <code>id</code>'siga tenglanadi</>, <><b>JOIN</b> — только строки, у которых есть пара · <b>LEFT JOIN</b> — вся левая таблица · в <code>ON</code> внешний ключ (<code>user_id</code>) приравнивается к <code>id</code> другой таблицы</>)}</div></Block>
   </>} />;
 }
 
@@ -2422,8 +2578,8 @@ const WRONG16_HTML = '<pre class="pg-doc er" style="margin-top:12px;font-size:12
 function Screen16(p) {
   const m = MDT[17];
   return <>
-    <LineCheck {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} task={m.task + WRONG16_HTML} q={m.q} file="psql — blog · so'rov" lines={LC16} target={2}
-      fixed={LC16_FIXED} fixedExtra={[{ file: "natija — to'g'ri (haqiqiy)", lines: JOIN15.slice(3) }]}
+    <LineCheck {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} task={m.task + t(WRONG16_HTML, WRONG16_HTML.replace(/← noto'g'ri/g, '← неверно'))} q={m.q} file={t("psql — blog · so'rov", 'psql — blog · запрос')} lines={LC16} target={2}
+      fixed={LC16_FIXED} fixedExtra={[{ file: t("natija — to'g'ri (haqiqiy)", 'результат — верный (реальный)'), lines: JOIN15.slice(3) }]}
       ok={m.ok} okShort={<span dangerouslySetInnerHTML={html(m.okShort)} />} hint={m.hint} />
   </>;
 }
@@ -2489,18 +2645,18 @@ function Screen18(p) {
   return <Lesson p={p} S={S18} scene={({ seg, beat }) => <>
     <div className="pg-row"><span>products · id 1 · Telefon</span><span className={`v${beat >= 3 ? ' z' : ''}`}>stock {beat >= 3 ? 0 : 1}</span></div>
     {seg.v === 'intro' && <div className="pg-two">
-      <div className="mk-card"><h5>1-xaridor · Ali</h5><div style={{ fontSize: 15 }}>«Sotib olish» — 0 s</div></div>
-      <div className="mk-card"><h5>2-xaridor · Vali</h5><div style={{ fontSize: 15 }}>«Sotib olish» — 1 s</div></div>
+      <div className="mk-card"><h5>{t('1-xaridor · Ali', 'Покупатель 1 · Ali')}</h5><div style={{ fontSize: 15 }}>{t('«Sotib olish» — 0 s', '«Купить» — 0 с')}</div></div>
+      <div className="mk-card"><h5>{t('2-xaridor · Vali', 'Покупатель 2 · Vali')}</h5><div style={{ fontSize: 15 }}>{t('«Sotib olish» — 1 s', '«Купить» — 1 с')}</div></div>
     </div>}
     {seg.v === 'tab' && <Psql lines={PROD18} focus={['ck']} />}
-    {(seg.v === 'two' || seg.v === 'sum') && <div className="pg-two">
-      <div><div className="pg-lab">1-oyna · 1-xaridor <span className="tm">0 s</span></div><Psql lines={X1_18} beat={beat >= 4 ? 3 : beat} focus={beat === 3 ? ['cm'] : []} /></div>
-      <div><div className="pg-lab">2-oyna · 2-xaridor <span className="tm">1 s</span></div><Psql lines={X2_18} beat={beat >= 4 ? 3 : beat} focus={beat === 3 ? ['z'] : []} />
-        {beat === 2 && <div style={{ marginTop: 8 }}><span className="pg-wait">⏳ kutyapti — qator 1-oynada band</span></div>}
-        {beat >= 3 && <div className="mk-tag" style={{ marginTop: 8 }}>3,08 s da tugadi — 1-oyna COMMIT qilguncha kutdi</div>}
+    {seg.v === 'two' && <div className="pg-two">
+      <div><div className="pg-lab">{t('1-oyna · 1-xaridor', 'Окно 1 · покупатель 1')} <span className="tm">{t('0 s', '0 с')}</span></div><Psql lines={X1_18} beat={beat >= 4 ? 3 : beat} focus={beat === 3 ? ['cm'] : []} /></div>
+      <div><div className="pg-lab">{t('2-oyna · 2-xaridor', 'Окно 2 · покупатель 2')} <span className="tm">{t('1 s', '1 с')}</span></div><Psql lines={X2_18} beat={beat >= 4 ? 3 : beat} focus={beat === 3 ? ['z'] : []} />
+        {beat === 2 && <div style={{ marginTop: 8 }}><span className="pg-wait">{t('⏳ kutyapti — qator 1-oynada band', '⏳ ждёт — строка занята в окне 1')}</span></div>}
+        {beat >= 3 && <div className="mk-tag" style={{ marginTop: 8 }}>{t('3,08 s da tugadi — 1-oyna COMMIT qilguncha kutdi', 'завершилось через 3,08 с — ждало, пока окно 1 сделает COMMIT')}</div>}
       </div>
     </div>}
-    {seg.v === 'sum' && <><Psql er lines={CHECK18} /><div className="mk-rule">Telefonni <b>so'rovdagi shart</b> (<code>stock &gt; 0</code>) va <b>qator qulfi</b> saqladi. Shart yozilmasa — <code>CHECK</code> to'xtatadi.</div></>}
+    {seg.v === 'sum' && <><Psql er lines={CHECK18} /><div className="mk-rule">{t(<>Telefonni <b>so'rovdagi shart</b> (<code>stock &gt; 0</code>) va <b>qator qulfi</b> saqladi. Shart yozilmasa — <code>CHECK</code> to'xtatadi.</>, <>Телефон сохранили <b>условие в запросе</b> (<code>stock &gt; 0</code>) и <b>блокировка строки</b>. Если условие не написано — остановит <code>CHECK</code>.</>)}</div></>}
   </>} />;
 }
 
@@ -2531,18 +2687,18 @@ const S19 = mkS(20, [{ v: 'ddl' }, { v: 'tx', focus: ['ins', 'er'] }, { v: 'tx',
 function Screen19(p) {
   return <Lesson p={p} S={S19} scene={({ seg, beat }) => <>
     <div className="pg-two">
-      <MiniTable name="orders" cols={['id', 'product_id', 'xaridor']} rows={beat === 1 ? [['1', '1', 'vali  · tasdiqlanmagan']] : []} hlRow={beat === 1 ? [0] : []} />
+      <MiniTable name="orders" cols={['id', 'product_id', 'xaridor']} rows={beat === 1 ? [['1', '1', t('vali  · tasdiqlanmagan', 'vali  · не подтверждено')]] : []} hlRow={beat === 1 ? [0] : []} />
       <MiniTable name="products" cols={['id', 'nomi', 'stock']} rows={[['1', 'Telefon', '0']]} hlCol={beat === 1 ? [2] : []} />
     </div>
     {seg.v === 'ddl' && <Psql lines={ORD19} />}
     {seg.v === 'tx' && <Psql lines={TX19} beat={seg.sum ? 2 : beat} focus={seg.focus} />}
-    {seg.v === 'tx' && beat >= 1 && <div className="mk-tag" style={{ margin: 0 }}>Prompt: <code>blog=*#</code> — tranzaksiya ochiq · <code>blog=!#</code> — tranzaksiyada xato bo'ldi</div>}
+    {seg.v === 'tx' && beat >= 1 && <div className="mk-tag" style={{ margin: 0 }}>{t(<>Prompt: <code>blog=*#</code> — tranzaksiya ochiq · <code>blog=!#</code> — tranzaksiyada xato bo'ldi</>, <>Приглашение: <code>blog=*#</code> — транзакция открыта · <code>blog=!#</code> — в транзакции произошла ошибка</>)}</div>}
     {seg.v === 'mongo' && <div className="pg-cmp">
-      <div className="mk-card"><h5><i style={{ background: PG.mongo }} />MongoDB — oxirgi telefon</h5><Doc>{`updateOne({ stock: { $gt: 0 } }, { $inc: { stock: -1 } })\nxaridor1 → modifiedCount: 0\nxaridor2 → modifiedCount: 1\nstock: 0   ← bittaga sotildi`}</Doc>
-        <Doc er>{`tranzaksiya (oddiy mongod):\nXATO: This MongoDB deployment does not support\nretryable writes.`}</Doc></div>
-      <div className="mk-card" style={{ borderColor: PG.pg }}><h5><i style={{ background: PG.pg }} />PostgreSQL</h5><div style={{ fontSize: 14, lineHeight: 1.5 }}>Bir nechta jadval (<code>orders</code> + <code>products</code>) <b>bitta tranzaksiyada</b> — oddiy o'rnatishda ham. Xato bo'lsa — <code>ROLLBACK</code>, yarim ish qolmaydi.</div></div>
+      <div className="mk-card"><h5><i style={{ background: PG.mongo }} />{t('MongoDB — oxirgi telefon', 'MongoDB — последний телефон')}</h5><Doc>{t(`updateOne({ stock: { $gt: 0 } }, { $inc: { stock: -1 } })\nxaridor1 → modifiedCount: 0\nxaridor2 → modifiedCount: 1\nstock: 0   ← bittaga sotildi`, `updateOne({ stock: { $gt: 0 } }, { $inc: { stock: -1 } })\nxaridor1 → modifiedCount: 0\nxaridor2 → modifiedCount: 1\nstock: 0   ← продан одному`)}</Doc>
+        <Doc er>{t(`tranzaksiya (oddiy mongod):\nXATO: This MongoDB deployment does not support\nretryable writes.`, `транзакция (обычный mongod):\nОШИБКА: This MongoDB deployment does not support\nretryable writes.`)}</Doc></div>
+      <div className="mk-card" style={{ borderColor: PG.pg }}><h5><i style={{ background: PG.pg }} />PostgreSQL</h5><div style={{ fontSize: 14, lineHeight: 1.5 }}>{t(<>Bir nechta jadval (<code>orders</code> + <code>products</code>) <b>bitta tranzaksiyada</b> — oddiy o'rnatishda ham. Xato bo'lsa — <code>ROLLBACK</code>, yarim ish qolmaydi.</>, <>Несколько таблиц (<code>orders</code> + <code>products</code>) <b>в одной транзакции</b> — даже при обычной установке. Если ошибка — <code>ROLLBACK</code>, полдела не остаётся.</>)}</div></div>
     </div>}
-    {seg.sum && <div className="mk-rule">Bir nechta jadval birga o'zgarsa — <code>BEGIN … COMMIT</code>. Ichida xato bo'lsa, <code>COMMIT</code> javobi <b>ROLLBACK</b>: hammasi bekor.</div>}
+    {seg.sum && <div className="mk-rule">{t(<>Bir nechta jadval birga o'zgarsa — <code>BEGIN … COMMIT</code>. Ichida xato bo'lsa, <code>COMMIT</code> javobi <b>ROLLBACK</b>: hammasi bekor.</>, <>Если несколько таблиц меняются вместе — <code>BEGIN … COMMIT</code>. Если внутри ошибка, ответ на <code>COMMIT</code> — <b>ROLLBACK</b>: всё отменено.</>)}</div>}
   </>} />;
 }
 
@@ -2573,11 +2729,11 @@ blog=# SELECT nomi, extra->>'rang' AS rang FROM products WHERE extra->>'rang' = 
 const S20 = mkS(21, [{ v: 'mongo' }, { v: 'alt' }, { v: 'ins' }, { v: 'q' }, { v: 'q', sum: true }]);
 function Screen20(p) {
   return <Lesson p={p} S={S20} scene={({ seg }) => <>
-    {seg.v === 'mongo' && <div style={{ display: 'grid', gap: 8 }}><div className="pg-lab">4-ekran: Mongo'da har hujjat har xil</div><div className="pg-three"><Doc>{`{ "author": "…", "izoh": "…" }`}</Doc><Doc>{`{ "author": "…", "izoh": "…" }`}</Doc><Doc odd>{`{ "muallif": "vali", "matn": "Salom", "like": 5 }`}</Doc></div></div>}
+    {seg.v === 'mongo' && <div style={{ display: 'grid', gap: 8 }}><div className="pg-lab">{t("4-ekran: Mongo'da har hujjat har xil", '4-й экран: в Mongo каждый документ разный')}</div><div className="pg-three"><Doc>{`{ "author": "…", "izoh": "…" }`}</Doc><Doc>{`{ "author": "…", "izoh": "…" }`}</Doc><Doc odd>{`{ "muallif": "vali", "matn": "Salom", "like": 5 }`}</Doc></div></div>}
     {seg.v !== 'mongo' && <Psql lines={ALT20} />}
     {(seg.v === 'ins' || seg.v === 'q') && <Psql lines={INS20} />}
     {seg.v === 'q' && <Psql lines={Q20} focus={['q']} />}
-    {seg.sum && <div className="mk-rule">Hamma qatorda bor muhim maydon — <b>oddiy ustun</b> (qoidasi bilan) · har xil qo'shimcha — <code>jsonb</code>. «PostgreSQL JSON ham saqlaydi» — mana shu misol.</div>}
+    {seg.sum && <div className="mk-rule">{t(<>Hamma qatorda bor muhim maydon — <b>oddiy ustun</b> (qoidasi bilan) · har xil qo'shimcha — <code>jsonb</code>. «PostgreSQL JSON ham saqlaydi» — mana shu misol.</>, <>Важное поле, которое есть в каждой строке, — <b>обычная колонка</b> (со своим правилом) · разные дополнения — <code>jsonb</code>. «PostgreSQL хранит и JSON» — вот этот пример.</>)}</div>}
   </>} />;
 }
 
@@ -2598,7 +2754,7 @@ function Screen21(p) {
   return <MCRetry {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} q={m.q} opts={m.opts} correct={m.correct} ok={m.ok} okShort={<span dangerouslySetInnerHTML={html(m.okShort)} />} wrong={m.wrong}
     above={<div style={{ marginBottom: 14 }}><Psql lines={TX21} /></div>}
     after={<div style={{ display: 'grid', gap: 10 }}>
-      <div className="mk-tag" style={{ color: T.green, margin: 0 }}>Haqiqiy natija</div>
+      <div className="mk-tag" style={{ color: T.green, margin: 0 }}>{t('Haqiqiy natija', 'Реальный результат')}</div>
       <Psql lines={psql(String.raw`
 blog=!# COMMIT;
 ROLLBACK
@@ -2644,21 +2800,21 @@ const S23 = mkS(24, [{ v: 'line', on: 0 }, { v: 'line', on: 1 }, { v: 'list', on
 function Screen23(p) {
   return <Lesson p={p} S={S23} scene={({ seg }) => <>
     {seg.v === 'line' && <div className="mk-light" style={{ padding: 14 }}>
-      <div className="mk-tag">O'quvchi darslari — PostgreSQL qayerdan kerak</div>
+      <div className="mk-tag">{t("O'quvchi darslari — PostgreSQL qayerdan kerak", 'Уроки ученика — с какого места нужен PostgreSQL')}</div>
       <div className="mk-plan">
-        <div className={seg.on === 1 ? '' : ''}><b>m4-03</b><span>SQL vs NoSQL — kodsiz, baza kerak emas</span></div>
-        <div className={seg.on === 1 ? 'hl' : ''}><b>→</b><span><b>Shu oraliqda:</b> sinf kompyuterlariga PostgreSQL'ni siz o'rnatasiz</span></div>
-        <div><b>m4-06</b><span>CRUD — o'quvchi so'rov yozishni boshlaydi</span></div>
-        <div className={seg.on === 0 ? 'hl' : ''}><b>m4-08</b><span>AvtoIjara: <code>psql -U postgres</code> va «o'rnatishda berilgan parol» — tayyor deb kutiladi</span></div>
+        <div className={seg.on === 1 ? '' : ''}><b>m4-03</b><span>{t('SQL vs NoSQL — kodsiz, baza kerak emas', 'SQL vs NoSQL — без кода, база не нужна')}</span></div>
+        <div className={seg.on === 1 ? 'hl' : ''}><b>→</b><span>{t(<><b>Shu oraliqda:</b> sinf kompyuterlariga PostgreSQL'ni siz o'rnatasiz</>, <><b>В этом промежутке:</b> вы устанавливаете PostgreSQL на компьютеры класса</>)}</span></div>
+        <div><b>m4-06</b><span>{t("CRUD — o'quvchi so'rov yozishni boshlaydi", 'CRUD — ученик начинает писать запросы')}</span></div>
+        <div className={seg.on === 0 ? 'hl' : ''}><b>m4-08</b><span>{t(<>AvtoIjara: <code>psql -U postgres</code> va «o'rnatishda berilgan parol» — tayyor deb kutiladi</>, <>AvtoIjara: <code>psql -U postgres</code> и «пароль, заданный при установке» — ожидается, что всё готово</>)}</span></div>
       </div>
     </div>}
     {seg.v === 'list' && <div className="mk-light" style={{ padding: 14 }}>
-      <div className="mk-tag" style={{ color: T.accent }}>Darsdan oldin — har sinf kompyuterida</div>
+      <div className="mk-tag" style={{ color: T.accent }}>{t('Darsdan oldin — har sinf kompyuterida', 'Перед уроком — на каждом компьютере класса')}</div>
       <div style={{ display: 'grid', gap: 8 }}>{CHECK23.map((x, i) => <div key={i} className={`mk-step${i < seg.on ? '' : ' '}${(seg.on === 3 && i === 2) || (seg.on === 4 && i === 3) ? ' hl' : ''}`} style={{ opacity: i < seg.on ? 1 : 0.45 }}>
         <span style={{ fontFamily: MONO, fontWeight: 700, color: i < seg.on ? T.green : T.ink3, minWidth: 20 }}>{i < seg.on ? '☑' : '☐'}</span><div className="t"><b>{x}</b></div></div>)}</div>
     </div>}
-    {seg.on === 3 && <div className="n2-warn">Fakt: kursdagi Nest loyihasining <code>.env.example</code> faylida — <code>postgres://postgres:<b>password</b>@localhost:5432/…</code>. Sinf paroli shu bo'lsa, o'quvchi faylni o'zgartirmaydi.</div>}
-    {seg.ver && <Psql title="terminal — sinf kompyuteri" lines={VER23} />}
+    {seg.on === 3 && <div className="n2-warn">{t(<>Fakt: kursdagi Nest loyihasining <code>.env.example</code> faylida — <code>postgres://postgres:<b>password</b>@localhost:5432/…</code>. Sinf paroli shu bo'lsa, o'quvchi faylni o'zgartirmaydi.</>, <>Факт: в файле <code>.env.example</code> Nest-проекта курса — <code>postgres://postgres:<b>password</b>@localhost:5432/…</code>. Если пароль класса такой же, ученику не придётся менять файл.</>)}</div>}
+    {seg.ver && <Psql title={t('terminal — sinf kompyuteri', 'терминал — компьютер класса')} lines={VER23} />}
   </>} />;
 }
 
@@ -2676,12 +2832,12 @@ const TIME03 = [['0–20', 'kirish, ikki tur va shakl'], ['20–45', 'kuchlar: J
 const S24 = mkS(25, [{ hl: [] }, { hl: [0, 1] }, { hl: [2] }, { hl: [3, 4] }, { hl: [], time: true }]);
 function Screen24(p) {
   return <Lesson p={p} S={S24} scene={({ seg }) => seg.time
-    ? <div className="mk-light" style={{ padding: 14 }}><div className="mk-tag">m4-03 · 90 daqiqa (taklif)</div>
+    ? <div className="mk-light" style={{ padding: 14 }}><div className="mk-tag">{t('m4-03 · 90 daqiqa (taklif)', 'm4-03 · 90 минут (предложение)')}</div>
         <div style={{ display: 'grid', gap: 8 }}>{TIME03.map(([a, b, x]) => <div key={a} className={`mk-step${x ? ' hl' : ''}`}><span style={{ fontFamily: MONO, fontWeight: 700, color: T.accent, minWidth: 64 }}>{a}</span><div className="t">{b}</div></div>)}</div></div>
     : <div style={{ display: 'grid', gap: 8 }}>
         {MAP03.map((b, i) => <div key={i} className={`mk-step${seg.hl.includes(i) ? ' hl' : ''}`} style={{ opacity: seg.hl.length && !seg.hl.includes(i) ? 0.5 : 1 }}>
           <span style={{ fontFamily: MONO, fontWeight: 700, color: T.accent, minWidth: 22 }}>{i + 1}</span>
-          <div className="t"><b>{b.t} <span style={{ fontFamily: MONO, fontWeight: 500, color: T.ink3, fontSize: 12 }}>{b.s}</span></b><div style={{ fontSize: 13 }}>{b.d}</div>{(seg.hl.includes(i) || !seg.hl.length) && <div className="exp" style={{ color: T.accent, marginTop: 4 }}>Siz qo'shasiz: {b.m}</div>}</div>
+          <div className="t"><b>{b.t} <span style={{ fontFamily: MONO, fontWeight: 500, color: T.ink3, fontSize: 12 }}>{b.s}</span></b><div style={{ fontSize: 13 }}>{b.d}</div>{(seg.hl.includes(i) || !seg.hl.length) && <div className="exp" style={{ color: T.accent, marginTop: 4 }}>{t("Siz qo'shasiz:", 'Вы добавляете:')} {b.m}</div>}</div>
         </div>)}
       </div>} />;
 }
@@ -2701,11 +2857,11 @@ const DICT25 = [
 const S25 = mkS(26, [{ rows: [] }, { rows: [0, 1] }, { rows: [2, 3, 4] }, { rows: [5, 6] }]);
 function Screen25(p) {
   return <Lesson p={p} S={S25} scene={({ seg, beat }) => <div className="mk-light" style={{ padding: 14 }}>
-    <div className="mk-tag">O'quvchi darsidagi so'z → uning atamasi</div>
-    <table className="mk-tbl"><thead><tr><th>o'quvchi darsida</th><th>atama</th><th>qayerdan</th></tr></thead><tbody>
+    <div className="mk-tag">{t("O'quvchi darsidagi so'z → uning atamasi", 'Слово из урока ученика → термин')}</div>
+    <table className="mk-tbl"><thead><tr><th>{t("o'quvchi darsida", 'в уроке ученика')}</th><th>{t('atama', 'термин')}</th><th>{t('qayerdan', 'откуда')}</th></tr></thead><tbody>
       {DICT25.map(([a, b, c], i) => <tr key={a} className={seg.rows.includes(i) ? 'hl' : ''} style={{ opacity: seg.rows.length && !seg.rows.includes(i) ? 0.55 : 1 }}><td>{a}</td><td><code>{b}</code></td><td style={{ color: T.ink3, fontSize: 12 }}>{c}</td></tr>)}
     </tbody></table>
-    <Block at={3} beat={beat}><div className="mk-rule" style={{ marginTop: 12 }}>Birga ayting: <b>«Excel jadvaliga o'xshaydi, ya'ni table»</b>. Farqini siz ko'rsatasiz: Excel qoidani tekshirmaydi, PostgreSQL bo'sh nomni ham, yo'q muallifni ham rad etadi.</div></Block>
+    <Block at={3} beat={beat}><div className="mk-rule" style={{ marginTop: 12 }}>{t(<>Birga ayting: <b>«Excel jadvaliga o'xshaydi, ya'ni table»</b>. Farqini siz ko'rsatasiz: Excel qoidani tekshirmaydi, PostgreSQL bo'sh nomni ham, yo'q muallifni ham rad etadi.</>, <>Скажите вместе: <b>«похоже на таблицу Excel, то есть table»</b>. Разницу покажете вы: Excel правила не проверяет, а PostgreSQL отклоняет и пустое имя, и несуществующего автора.</>)}</div></Block>
   </div>} />;
 }
 
@@ -2729,9 +2885,9 @@ function Screen26(p) {
   return <Lesson p={p} S={S26} scene={({ seg }) => <>
     <div style={{ display: 'grid', gap: 8 }}>{SIMP26.map((x, i) => <div key={i} className={`mk-step${seg.hl.includes(i) ? ' hl' : ''}`} style={{ opacity: seg.hl.length && !seg.hl.includes(i) ? 0.5 : 1 }}>
       <span style={{ fontFamily: MONO, fontWeight: 700, color: T.accent, minWidth: 20 }}>{i + 1}</span>
-      <div className="t"><b>Darsda: {x.d}</b><div style={{ fontSize: 13 }}><b style={{ display: 'inline', color: T.green }}>Aslida:</b> {x.a}</div><div className="exp" style={{ color: T.accent, marginTop: 4 }}>Sinfda: {x.s}</div></div></div>)}</div>
+      <div className="t"><b>{t('Darsda:', 'В уроке:')} {x.d}</b><div style={{ fontSize: 13 }}><b style={{ display: 'inline', color: T.green }}>{t('Aslida:', 'На самом деле:')}</b> {x.a}</div><div className="exp" style={{ color: T.accent, marginTop: 4 }}>{t('Sinfda:', 'В классе:')} {x.s}</div></div></div>)}</div>
     {seg.qa && <div className="mk-light" style={{ padding: 12, animation: 'mk-up .45s ease both' }}>
-      <div className="mk-tag">O'quvchi so'rasa — bosing</div>
+      <div className="mk-tag">{t("O'quvchi so'rasa — bosing", 'Если ученик спросит — нажмите')}</div>
       <div className="pg-qa">{QA26.map(([q, a], i) => <button key={i} onClick={() => setOpen((o) => o.includes(i) ? o.filter((x) => x !== i) : [...o, i])}><b>{q}</b>{open.includes(i) && <p>{a}</p>}</button>)}</div>
     </div>}
   </>} />;
@@ -2745,7 +2901,10 @@ function Screen27(p) {
   const st = p.stored || {};
   const segs = useMemo(() => {
     const sc = (st.res || []).filter((x) => x && x.correct).length;
-    const text = !st.showResult
+    const text = LANG === 'ru' ? (!st.showResult ? RS('FIN_INTRO')
+      : sc >= 6 ? 'Ваш результат сохранён: ' + sc + ' из восьми. Урок усвоен, нажмите «Далее».'
+        : 'Хорошо, одну ошибку вы разобрали. Вернитесь и к экранам остальных красных вопросов. Когда будете готовы, нажмите кнопку «Пройти тест заново».')
+      : !st.showResult
       ? "Hammasini ko'rib chiqdingiz, endi o'zingizni tekshiring. Yakuniy sinov, sakkiz savol, ulardan ikkitasi sinf va o'quvchi darsi bo'yicha. Har savolda bitta urinish, javobdan keyin to'g'risi va izohi ochiladi. Olti va undan ko'p, dars o'zlashtirilgan. Kam bo'lsa, ko'rsatilgan ekranlarga qaytib, sinovni qayta topshirasiz."
       : sc >= 6
         ? "Natijangiz saqlangan: sakkizdan " + ['nol', 'bir', 'ikki', 'uch', "to'rt", 'besh', 'olti', 'yetti', 'sakkiz'][sc] + ". Dars o'zlashtirilgan, Davom bosing."
@@ -2770,36 +2929,36 @@ function Screen27(p) {
     const r = [...res]; r[i] = { picked: k, correct: k === q.c }; setRes(r);
     if (k === q.c) sfx.playCorrect(); else sfx.playWrong();
     const sc = r.filter((x) => x && x.correct).length; save({ res: r, score: sc });
-    if (r.filter(Boolean).length === FINAL.length) setTimeout(() => audio.pushOneOff(voice(sc >= 6 ? "Dars o'zlashtirildi. Endi sinf kompyuterlarini tayyorlab, m4-03 ni bemalol o'ta olasiz." : "Hali bir necha joy mustahkam emas. Ko'rsatilgan ekranlarga qayting, keyin sinovni qayta topshiring.")), 400);
+    if (r.filter(Boolean).length === FINAL.length) setTimeout(() => audio.pushOneOff(voice(sc >= 6 ? t("Dars o'zlashtirildi. Endi sinf kompyuterlarini tayyorlab, m4-03 ni bemalol o'ta olasiz.", RS('FIN_PASS')) : t("Hali bir necha joy mustahkam emas. Ko'rsatilgan ekranlarga qayting, keyin sinovni qayta topshiring.", 'Несколько мест пока не закрепились. Вернитесь к указанным экранам, потом пройдите тест заново.'))), 400);
   };
   const next = () => { if (i < FINAL.length - 1) { setI(i + 1); save({ i: i + 1 }); } else { setShowResult(true); save({ showResult: true }); } };
   const retake = () => { setRes([]); setI(0); setShowResult(false); setAttempt(attempt + 1); save({ res: [], i: 0, showResult: false, attempt: attempt + 1, score: 0 }); };
   return (
-    <Stage kicker="O'z-sinov" idx={p.idx} total={p.total} audio={audio} onBack={p.onBack} onNext={p.onNext} onRestart={p.onRestart} nextReady={finished && showResult} nextDisabled={!(finished && showResult)} lockHint={!finished ? 'Savollarga javob bering' : 'Natijani oching'}>
+    <Stage kicker={t("O'z-sinov", 'Самопроверка')} idx={p.idx} total={p.total} audio={audio} onBack={p.onBack} onNext={p.onNext} onRestart={p.onRestart} nextReady={finished && showResult} nextDisabled={!(finished && showResult)} lockHint={!finished ? t('Savollarga javob bering', 'Ответьте на вопросы') : t('Natijani oching', 'Откройте результат')}>
       <div className="mk-body" style={{ gridTemplateColumns: '1fr', maxWidth: 980, width: '100%', margin: '0 auto' }}>
         <div className="mk-say mc" style={{ overflow: 'auto', paddingRight: 4 }}>
           {showResult ? (<>
-            <p className="mk-eyebrow">O'z-sinov · natija{attempt > 1 ? ` · ${attempt}-urinish` : ''}</p>
-            <h2 className="mk-title mc-q" style={{ fontSize: 'clamp(22px,1.9vw,26px)' }}>{score} / {FINAL.length} — {score >= 6 ? "dars o'zlashtirildi" : "yana bir ko'rib chiqing"}</h2>
+            <p className="mk-eyebrow">{t("O'z-sinov · natija", 'Самопроверка · результат')}{attempt > 1 ? t(` · ${attempt}-urinish`, ` · попытка ${attempt}`) : ''}</p>
+            <h2 className="mk-title mc-q" style={{ fontSize: 'clamp(22px,1.9vw,26px)' }}>{score} / {FINAL.length} — {score >= 6 ? t("dars o'zlashtirildi", 'урок усвоен') : t("yana bir ko'rib chiqing", 'посмотрите ещё раз')}</h2>
             <div style={{ display: 'grid', gap: 8 }}>
               {FINAL.map((f, k) => <div key={k} className="mk-card" style={{ display: 'flex', gap: 12, alignItems: 'center', borderColor: res[k] && res[k].correct ? T.green : T.accent }}>
                 <span style={{ fontFamily: MONO, fontWeight: 700, color: res[k] && res[k].correct ? T.green : T.accent, minWidth: 22 }}>{res[k] && res[k].correct ? '✓' : '✗'}</span>
                 <span style={{ flex: 1, fontSize: 14 }}>{f.q}</span>
-                {res[k] && !res[k].correct && p.onGoto && <button className="mk-btn soft sm" onClick={() => p.onGoto(f.s - 1)}>{f.s}-ekran</button>}
+                {res[k] && !res[k].correct && p.onGoto && <button className="mk-btn soft sm" onClick={() => p.onGoto(f.s - 1)}>{t(`${f.s}-ekran`, `экран ${f.s}`)}</button>}
               </div>)}
             </div>
             <div style={{ display: 'flex', gap: 10, alignItems: 'center', marginTop: 14, flexWrap: 'wrap' }}>
-              {score < 6 && <button className="mk-btn ghost" onClick={retake}>Sinovni qayta topshirish</button>}
-              <span style={{ color: T.ink2, fontSize: 14 }}>Ekranga qaytib «Davom» bossangiz, shu natijaga qaytasiz.</span>
+              {score < 6 && <button className="mk-btn ghost" onClick={retake}>{t('Sinovni qayta topshirish', 'Пройти тест заново')}</button>}
+              <span style={{ color: T.ink2, fontSize: 14 }}>{t('Ekranga qaytib «Davom» bossangiz, shu natijaga qaytasiz.', 'Если вернётесь к экрану и нажмёте «Далее», попадёте обратно к этому результату.')}</span>
             </div>
           </>) : (<>
-            <p className="mk-eyebrow">O'z-sinov · {i + 1} / {FINAL.length} · bitta urinish · to'g'ri: {score}</p>
+            <p className="mk-eyebrow">{t("O'z-sinov", 'Самопроверка')} · {i + 1} / {FINAL.length} · {t("bitta urinish · to'g'ri:", 'одна попытка · верно:')} {score}</p>
             <h2 className="mk-title mc-q">{q.q}</h2>
             <div style={{ display: 'grid', gap: 10 }}>
               {q.o.map((o, k) => { let cls = 'mk-opt'; if (picked !== null) { if (k === q.c) cls += ' ok'; else if (k === picked) cls += ' bad'; else cls += ' off'; } return <button key={k} className={cls} disabled={picked !== null} onClick={() => pick(k)}><span className="l">{String.fromCharCode(65 + k)}</span><span>{o}</span></button>; })}
             </div>
-            {picked !== null && <div className="mk-fb" style={{ '--c': picked === q.c ? T.green : T.accent, '--bg': picked === q.c ? '#E3F5EC' : '#FFF0EB' }}><b>{picked === q.c ? "To'g'ri" : "Noto'g'ri — to'g'risi yashil"}</b><span>{q.e}</span></div>}
-            {picked !== null && <div style={{ marginTop: 14 }}><button className="mk-btn ready" onClick={next}>{i < FINAL.length - 1 ? 'Keyingi savol →' : "Natijani ko'rish →"}</button></div>}
+            {picked !== null && <div className="mk-fb" style={{ '--c': picked === q.c ? T.green : T.accent, '--bg': picked === q.c ? '#E3F5EC' : '#FFF0EB' }}><b>{picked === q.c ? t("To'g'ri", 'Верно') : t("Noto'g'ri — to'g'risi yashil", 'Неверно — правильный ответ зелёный')}</b><span>{q.e}</span></div>}
+            {picked !== null && <div style={{ marginTop: 14 }}><button className="mk-btn ready" onClick={next}>{i < FINAL.length - 1 ? t('Keyingi savol →', 'Следующий вопрос →') : t("Natijani ko'rish →", 'Посмотреть результат →')}</button></div>}
           </>)}
         </div>
       </div>
@@ -2823,7 +2982,7 @@ function SummaryMap28({ hl }) {
   const cur = SUM28.find((x) => x.k === hl);
   const on = (k) => hl === 'all' || !cur || cur.st.includes(k);
   return <div className="mk-light" style={{ padding: 16 }}>
-    <div className="mk-tag">Bugungi dars — ma'lumotning yo'li</div>
+    <div className="mk-tag">{t("Bugungi dars — ma'lumotning yo'li", 'Сегодняшний урок — путь данных')}</div>
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, minmax(0,1fr))', gap: 6 }}>
       {STATIONS28.map(([k, n, c], i) => <div key={k} className={`mk-box${cur && cur.st.includes(k) ? ' hl' : ''}`} style={{ '--c': c, padding: '10px 6px', textAlign: 'center', opacity: on(k) ? 1 : 0.35, animation: `mk-up .4s ${i * 0.06}s ease both` }}><h4 style={{ fontSize: 12.5, margin: 0 }}>{n}</h4></div>)}
     </div>
@@ -2866,7 +3025,7 @@ kodsiz, 21 ekran: kirish · ikki tur va shakl · kuchlar (JOIN, oxirgi telefon, 
 Excel jadvali = table · papkadagi turli qog'ozlar = document · id orqali bog'lash = JOIN · SQL nazorati = tranzaksiya · qaror ko'rsatkichi = 4 mezon
 ## Sizning uyga vazifangiz
 blog-db: README (4 mezon) + schema.sql + data.sql + queries.sql (JOIN, LEFT JOIN) + FK xatosining DETAIL satri → GitHub → repo linki platformadagi uyga vazifaga`;
-const s28Segments = (passed) => [
+const s28Segments = (passed) => yakRu(passed, [
   passed
     ? sg('a', "<b>Barakalla!</b> Siz darsni yaxshi o'rgandingiz — bugungi darsni bir qarashda yig'amiz", "Barakalla! Siz darsni yaxshi o'rgandingiz. Endi bugun o'rganganlaringizni bir qarashda yig'amiz.", { hl: 'all' })
     : sg('a', "Dars oxiriga yetdingiz — sinovni <b>qayta topshirishni</b> maslahat beraman", "Dars oxiriga yetdingiz. Yakuniy sinovdan olti ball kerak edi, yakunlashdan oldin sinovni qayta topshirishni maslahat beraman. Hozir esa bugungi darsni bir qarashda yig'amiz.", { hl: 'all' }),
@@ -2880,13 +3039,13 @@ const s28Segments = (passed) => [
   sg('hw2', "Topshirish: GitHub'dagi repo linkini <b>platformadagi uyga vazifaga</b> qo'ying — boshqa hech narsa kerak emas", "Xatoning detail qatorini README'ga yozing. GitHub'ga chiqaring va repo linkini platformadagi uyga vazifangizga qo'ying, boshqa hech narsa kerak emas. Qirq-oltmish daqiqa.", { hl: 'hw' }),
   sg('c', "<b>Eslatmani oling</b>: lug'at, o'rnatish, psql, qoidalar, JOIN — bir sahifada", "Pastda bir sahifalik eslatma: Mongo lug'ati, o'rnatish yo'llari, psql buyruqlari, qoidalar, JOIN, oxirgi telefon, ulanish xatolari va sinf kompyuterlari ro'yxati. Nusxalab yoki yuklab oling, sinfda yoningizda tursin.", { hl: 'note' }),
   sg('z', "Rahmat! <b>Darsni yakunlash</b> tugmasini bosing", "Rahmat. Darsni yakunlash tugmasini bosing, dars tugallangan deb belgilanadi.", { hl: 'note' }),
-];
+]);
 function Screen28(p) {
   const completeLesson = useNextLessonAccess();
   const once = useRef(false);
   useEffect(() => { if (once.current) return; once.current = true; completeLesson().catch(() => {}); }, [completeLesson]);
-  const sheet = CHEATSHEET28;
-  const download = () => { try { const b = new Blob([sheet], { type: 'text/markdown' }); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'postgresql-1-mentor-eslatma.md'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); } catch (e) {} };
+  const sheet = t(CHEATSHEET28, RS('CHEAT'));
+  const download = () => { try { const b = new Blob([sheet], { type: 'text/markdown' }); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = t('postgresql-1-mentor-eslatma.md', RS('FILE')); a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); } catch (e) {} };
   const passed = (p.testScore || 0) >= 6;
   const segments = useMemo(() => s28Segments(passed), [passed]);
   const b = useBeats(segments, p.review);
@@ -2894,31 +3053,31 @@ function Screen28(p) {
   const phase = hl === 'hw' ? 'hw' : hl === 'note' ? 'note' : 'sum';
   const shown = segments.slice(0, b.beat + 1).filter((s) => /^b\d/.test(s.id)).length;
   return (
-    <Stage kicker="Yakun" idx={p.idx} total={p.total} audio={b.audio} onBack={p.onBack} onNext={p.onFinish} onRestart={p.onRestart} nextReady={b.done} nextDisabled={!b.done} nextLabel="Darsni yakunlash" lockHint="Ustoz gapirib bo'lgach ochiladi">
+    <Stage kicker={t('Yakun', 'Итог')} idx={p.idx} total={p.total} audio={b.audio} onBack={p.onBack} onNext={p.onFinish} onRestart={p.onRestart} nextReady={b.done} nextDisabled={!b.done} nextLabel={t('Darsni yakunlash', 'Завершить урок')} lockHint={t("Ustoz gapirib bo'lgach ochiladi", 'Откроется, когда учитель договорит')}>
       <div className="mk-body">
-        <Say title={passed ? 'Barakalla! Endi siz bilasiz' : 'Endi siz bilasiz'} segments={segments} beat={b.beat} audio={b.audio} stepManual={b.stepManual} guess={b.guess} answerAsk={b.answerAsk} review={p.review} />
+        <Say title={passed ? t('Barakalla! Endi siz bilasiz', 'Отлично! Теперь вы знаете') : t('Endi siz bilasiz', 'Теперь вы знаете')} segments={segments} beat={b.beat} audio={b.audio} stepManual={b.stepManual} guess={b.guess} answerAsk={b.answerAsk} review={p.review} />
         <div className="mk-scene top" style={{ overflow: 'auto' }}>
           {phase === 'sum' && (<>
             <SummaryMap28 hl={hl} />
             <div className="mk-plan">{SUM28.slice(0, shown).map((it, i) => <div key={it.k} className={it.k === hl ? 'hl' : ''} style={{ animation: 'mk-up .45s ease both' }}><b>0{i + 1}</b><span>{it.t}</span></div>)}</div>
           </>)}
           {phase === 'hw' && <div className="mk-light" style={{ padding: 16, animation: 'mk-up .45s ease both' }}>
-            <div className="mk-tag" style={{ color: T.accent }}>Uyga vazifa · 40–60 daqiqa</div>
+            <div className="mk-tag" style={{ color: T.accent }}>{t('Uyga vazifa · 40–60 daqiqa', 'Домашнее задание · 40–60 минут')}</div>
             <div style={{ display: 'grid', gap: 8 }}>
               {HOMEWORK28.map((h, i) => <div key={i} className="mk-step" style={{ animation: `mk-up .4s ${i * 0.12}s ease both` }}>
                 <span style={{ fontFamily: MONO, fontWeight: 700, color: T.accent, minWidth: 20 }}>{i + 1}</span>
                 <div className="t"><b style={{ marginBottom: 2 }}>{h.t}</b>{h.c.map((c) => <div key={c} className="cmd"><code>{c}</code><CopyBtn text={c} /></div>)}</div>
               </div>)}
             </div>
-            <div className="mk-rule" style={{ marginTop: 12 }}><b>Tekshiruvchi qaraydi:</b> README'da 4 javob va asoslangan tanlov · schema.sql'da REFERENCES · queries.sql'da JOIN va LEFT JOIN · README'da haqiqiy DETAIL satri. <code>-f</code> bilan yurgizilganda xato oldiga <code>psql:schema.sql:N:</code> qo'shiladi — bu qaysi satr ekanini aytadi.</div>
+            <div className="mk-rule" style={{ marginTop: 12 }}>{t(<><b>Tekshiruvchi qaraydi:</b> README'da 4 javob va asoslangan tanlov · schema.sql'da REFERENCES · queries.sql'da JOIN va LEFT JOIN · README'da haqiqiy DETAIL satri. <code>-f</code> bilan yurgizilganda xato oldiga <code>psql:schema.sql:N:</code> qo'shiladi — bu qaysi satr ekanini aytadi.</>, <><b>Проверяющий смотрит:</b> в README 4 ответа и обоснованный выбор · в schema.sql REFERENCES · в queries.sql JOIN и LEFT JOIN · в README настоящая строка DETAIL. При запуске с <code>-f</code> перед ошибкой добавляется <code>psql:schema.sql:N:</code> — это номер строки.</>)}</div>
           </div>}
           {phase === 'note' && <div className="mk-light" style={{ padding: 14, animation: 'mk-up .45s ease both' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-              <div className="mk-tag" style={{ margin: 0 }}>Mentor eslatmasi · 1 sahifa</div>
-              <div style={{ display: 'flex', gap: 8 }}><CopyBtn text={sheet} /><button className="mk-copy" onClick={download}>yuklab olish (.md)</button></div>
+              <div className="mk-tag" style={{ margin: 0 }}>{t('Mentor eslatmasi · 1 sahifa', 'Памятка ментора · 1 страница')}</div>
+              <div style={{ display: 'flex', gap: 8 }}><CopyBtn text={sheet} /><button className="mk-copy" onClick={download}>{t('yuklab olish (.md)', 'скачать (.md)')}</button></div>
             </div>
             <pre style={{ margin: '10px 0 0', font: `12px/1.5 ${MONO}`, whiteSpace: 'pre-wrap', color: T.ink2, maxHeight: 300, overflow: 'auto' }}>{sheet}</pre>
-            <div className="mk-card" style={{ marginTop: 10, borderColor: T.accent }}><h5 style={{ color: T.accent }}>Kursdagi keyingi mentor darsi</h5><div style={{ fontSize: 15, fontWeight: 700 }}>PostgreSQL: CRUD so'rovlar</div><div style={{ fontSize: 13.5, color: T.ink2 }}>INSERT, SELECT, UPDATE, DELETE — o'quvchi m4-06 darsi va m4-08 AvtoIjara loyihasi uchun</div></div>
+            <div className="mk-card" style={{ marginTop: 10, borderColor: T.accent }}><h5 style={{ color: T.accent }}>{t('Kursdagi keyingi mentor darsi', 'Следующий урок курса для менторов')}</h5><div style={{ fontSize: 15, fontWeight: 700 }}>{t("PostgreSQL: CRUD so'rovlar", RS('NEXT_T'))}</div><div style={{ fontSize: 13.5, color: T.ink2 }}>{t("INSERT, SELECT, UPDATE, DELETE — o'quvchi m4-06 darsi va m4-08 AvtoIjara loyihasi uchun", RS('NEXT_D'))}</div></div>
           </div>}
         </div>
       </div>
@@ -2929,16 +3088,16 @@ function Screen28(p) {
 // ============================================================
 //  Muqova va ildiz
 // ============================================================
-function Cover({ onStart }) {
+function Cover({ onStart, resume }) {
   return (
     <div className="mk-cover"><div className="card">
-      <p className="mk-eyebrow">Mentor kursi · PostgreSQL</p>
-      <h1>{LESSON_TITLE}</h1>
-      <p>Bu dars ovozli. Ustoz har ekranda gapiradi, ekran u bilan birga o'zgaradi. Quloqchin yoki ovoz balandligini tekshiring.</p>
+      <p className="mk-eyebrow">{t("Mentor kursi · PostgreSQL", "Курс для менторов · PostgreSQL")}</p>
+      <h1>{t(LESSON_TITLE, RS('TITLE'))}</h1>
+      <p>{t("Bu dars ovozli. Ustoz har ekranda gapiradi, ekran u bilan birga o'zgaradi. Quloqchin yoki ovoz balandligini tekshiring.", 'Урок озвучен. На каждом экране говорит учитель, экран меняется вместе с ним. Проверьте наушники или громкость.')}</p>
       <ul>
-        {["Jami taxminan 1 soat 10 daqiqa: ovoz ~30 daqiqa · to'rt amaliyot 35–45 daqiqa · 4 tekshiruv · o'z-sinov 8 savol. 15-ekrandan keyin tanaffus qilsangiz bo'ladi", "Kerak: kompyuterda internet (PostgreSQL'ni yuklab olish uchun) · Windows yoki macOS · terminal", "Loyiha: blog bazasi — users va posts, o'quvchi m4-03 amaliyotidagi namuna"].map((x) => <li key={x}>{x}</li>)}
+        {t(["Jami taxminan 1 soat 10 daqiqa: ovoz ~30 daqiqa · to'rt amaliyot 35–45 daqiqa · 4 tekshiruv · o'z-sinov 8 savol. 15-ekrandan keyin tanaffus qilsangiz bo'ladi", "Kerak: kompyuterda internet (PostgreSQL'ni yuklab olish uchun) · Windows yoki macOS · terminal", "Loyiha: blog bazasi — users va posts, o'quvchi m4-03 amaliyotidagi namuna"], RS('COVER')).map((x) => <li key={x}>{x}</li>)}
       </ul>
-      <button className="mk-btn ready" onClick={onStart}>Boshlash →</button>
+      <CoverStart onStart={onStart} resume={resume} />
     </div></div>
   );
 }
@@ -2956,6 +3115,7 @@ export default function PgIntroMentorLesson({ studentName, lang = 'uz', onFinish
   const [seen, setSeen] = useState({});
   const [rev, setRev] = useState(0);
   const [mode, setMode] = useState('live');
+  const sv = useMentorSave({ id: LESSON_ID, total, startAt, started, idx, answers, seen, setIdx, setAnswers, setSeen, setStarted });
   const startTime = useRef(Date.now());
   const finished = useRef(false);
   const onAnswer = useCallback((payload) => setAnswers((a) => ({ ...a, [idx]: payload })), [idx]);
@@ -2980,8 +3140,947 @@ export default function PgIntroMentorLesson({ studentName, lang = 'uz', onFinish
       answers: Object.entries(answers).map(([i, a]) => ({ screen: Number(i) + 1, ...a })),
     });
   };
-  if (!started) return <Cover onStart={() => setStarted(true)} />;
+  if (!started) return <Cover onStart={sv.start} resume={sv.resume} />;
   const S = SCREENS[idx];
   const fin = Object.values(answers).find((a) => a && a.type === 'final');
   return <S key={`${idx}:${rev}`} idx={idx} total={total} lang={lang} stored={answers[idx]} testScore={fin ? fin.score : 0} seen={!!seen[idx]} review={mode === 'review' && !!seen[idx]} onAnswer={onAnswer} onNext={next} onBack={idx > 0 ? () => { setMode('review'); setIdx((i) => i - 1); } : null} onFinish={finish} onGoto={goto} onRestart={restart} />;
 }
+
+// ============================================================
+//  RU — AVTO: feedback/F-1029-02-mentor-kurs/dev/ru-qur.py (manba: ru/pg1-*.json, ru/pg1-sahna.js). M24: UZ bo'laklarga tegilmaydi.
+//  Uslub: «Вы», dasturlash atamalari inglizcha; kod va haqiqiy chiqishlar — loyihadagidek. QO'LDA TAHRIRLANMAYDI.
+// ============================================================
+
+// --- sahna (ru/pg1-sahna.js) ---
+// PG-1 · sahna ruschasi (M24): modul darajasidagi ro'yxatlar va ekran obyektlariga qo'shimcha. ru() bitta obyektga bir marta.
+var RU_S = {
+  S1: { plan: ['Сравнение с Mongo', 'Установка и подключение', 'Таблица и связь', 'JOIN', 'Надёжность: последний телефон', 'Как вести урок ученика'] },
+};
+ru(DICT4, [
+  [null, 'база (database) — \\l'], [null, 'таблица (table) posts'], [null, 'строка (row)'], ['поле (field)', 'колонка (column) — с типом: INT, TEXT'],
+  [null, null], [null, 'REFERENCES users(id) — внешний ключ'], [null, null],
+  ['Schema — в коде', 'CREATE TABLE — в базе'], [null, null], [null, null],
+]);
+// Kod izohlari: bitta ru() — ikkinchi ru() birinchisini bosib ketadi (RU_OF Map)
+const ruCm = (L, pairs) => { const r = {}; pairs.forEach(([re, txt]) => { const i = L.findIndex((l) => re.test(l.h)); if (i >= 0) r[i] = { h: `<span class="cm">${txt}</span>` }; }); ru(L, r); };
+ruCm(BLOG3_JS, [[/1-tajriba/, '// опыт 1: пост с id пользователя, которого нет в базе'], [/2-tajriba/, '// опыт 2: в обход схемы Mongoose, прямо в коллекцию']]);
+ru(P1_STEPS, [
+  { t: 'Установка — Windows: postgresql.org → EDB installer 18 (Server · pgAdmin 4 · Command Line Tools; пароль; порт 5432) · Mac: postgresapp.com → Applications → Initialize', exp: 'установщик завершился / в Postgres.app «Running»' },
+  { t: 'PATH — Windows: C:\\Program Files\\PostgreSQL\\18\\bin → Path, новый терминал · Mac: официальная команда, новый терминал' },
+  { t: 'Подключение', exp: 'Windows: Password for user postgres: → postgres=# · Mac: сразу postgres=#' },
+  { t: 'Первый запрос', exp: 'PostgreSQL 18… · 3 базы: postgres, template0, template1' },
+]);
+ru(P1_TROUBLE, [
+  [null, 'неверный пароль: тот, что вы записали при установке; проверьте раскладку (EN/RU) и Caps Lock'],
+  [null, 'PostgreSQL не работает — запустите его: Windows: Services → postgresql-x64-18 → Start ⚠ · Mac: Postgres.app → Start'],
+  [null, 'Mac: Postgres.app не открыт или сервер остановлен — откройте программу, Start'],
+  [null, 'Установлено через Homebrew — createuser -s postgres (8-й экран)'],
+  [null, 'PATH: шаг 2, потом откройте терминал заново; в Windows временно Пуск → SQL Shell (psql)'],
+  [null, 'Предупреждение Windows: работе не мешает, продолжайте'],
+  ['Приглашение стало postgres-#', 'забыли точку с запятой — напишите ; и Enter'],
+]);
+ru(P1_PROOF, { label: 'Подтверждение: результат SELECT version(); — начиная со слова PostgreSQL', placeholder: 'вставьте сюда строку результата', wrong: 'Результат начинается со слова «PostgreSQL» и номера версии — скопируйте всю строку из терминала' });
+// --- 06: ekran 15–18 ---
+ru(LC16_FIXED, { 3: { h: sqlLine('JOIN users ON users.id = posts.user_id;') + '  <span class="cm">-- внешний ключ</span>' } });
+ru(P2_STEPS, [
+  { t: 'База', exp: 'CREATE DATABASE · приглашение blog=#' }, null,
+  { exp: 'CREATE TABLE · 2 таблицы' }, { t: 'Данные' },
+  { t: 'Вызовите ошибку сами' },
+]);
+ru(P2_TROUBLE, [
+  [null, 'таблица уже создана — посмотрите через \\d users и переходите к следующему шагу'],
+  [null, 'перед словом, на которое указывает ^, пропущена запятая или скобка'],
+  [null, 'вы в другой базе (приглашение postgres=#) — \\c blog'],
+  [null, 'база уже создана — \\c blog и продолжайте'],
+  ['Приглашение postgres-# / blog-#', 'забыли ; — напишите ; и Enter'],
+  ['На 5-м шаге INSERT 0 1', 'не написан REFERENCES users(id) — в \\d posts нет строки с ключом; DROP TABLE posts; и шаг 3 заново'],
+]);
+ru(P2_PROOF, { label: 'Подтверждение: строка Foreign-key из результата \\d posts', placeholder: 'вставьте сюда строку с ключом из вывода \\d posts', wrong: 'В строке должны быть имя ключа (posts_user_id_fkey) и REFERENCES users(id) — последняя строка результата \\d posts' });
+ru(P3_STEPS, [
+  { exp: '3 строки: ali · ali · vali' }, { t: 'Неверный ON', exp: 'ошибки нет; ali · vali · sardor — авторы неверные' },
+  { exp: 'sardor — с пустым izoh' }, { t: 'Подсчёт', exp: 'последняя строка результата шага 3: (… rows)' },
+]);
+ru(P3_TROUBLE, [
+  [null, 'вы в другой базе — \\c blog'],
+  [null, 'INSERT выполнены в другой базе или не выполнены — проверьте через SELECT * FROM posts;, шаг 4 практики 2'],
+  [null, 'перед местом, на которое указывает ^, пропущена запятая или точка'],
+  ['sardor нет и в LEFT JOIN', 'написано FROM posts LEFT JOIN users — начните с FROM users'],
+]);
+ru(P3_PROOF, { label: 'Подтверждение: число строк в результате LEFT JOIN', placeholder: 'напишите число под результатом', wrong: 'Под результатом LEFT JOIN в скобках написано число строк — sardor тоже считается' });
+// --- 07: ekran 22–23 ---
+(() => { const i = TX21.findIndex((l) => /Variantni/.test(l.h)); if (i >= 0) ru(TX21, { [i]: { h: TX21[i].h.replace(/← .*$/, "← что база ответила на COMMIT? Выберите вариант") } }); })();
+ru(P4_STEPS, [
+  { t: 'Таблица' }, { t: 'Окно 1 — без COMMIT', exp: 'stock 0 · UPDATE 1 · транзакция пусть останется открытой' },
+  { t: 'Окно 2', exp: 'ответа нет — ждёт' }, { t: 'Окно 1 — COMMIT', exp: 'окно 1: COMMIT · окно 2: (0 rows) и последняя строка' },
+  { t: '(по желанию) jsonb', exp: 'INSERT и SELECT с 21-го экрана → Futbolka | qora; даже если не выполняете, отметьте галочку' },
+]);
+ru(P4_TROUBLE, [
+  ['Окно 2 не ждало, сразу UPDATE 0', 'в окне 1 COMMIT уже написан (или нет BEGIN) — телефон продан раньше; UPDATE products SET stock = 1 WHERE id = 1; и заново с шага 2'],
+  ['Окно 2 ждало, но UPDATE 1', 'телефонов больше одного (INSERT дважды) — посмотрите через SELECT id, nomi, stock FROM products;, UPDATE products SET stock = 1 WHERE id = 1; и заново с шага 2'],
+  [null, 'пропущено WHERE … stock > 0 — остановил CHECK (19-й экран, шаг 5)'],
+  [null, 'окно 2 в другой базе — \\c blog'],
+  [null, 'таблица уже создана (например, на 21-м экране) — переходите к шагу 2'],
+]);
+ru(P4_PROOF, { label: 'Последняя строка в окне 2', placeholder: 'напишите последнюю строку во втором окне', wrong: 'Окно 2 отвечает после того, как окно 1 сделало COMMIT — напишите самую последнюю строку точно' });
+// --- 08: ekran 24–29 ---
+ru(CHECK23, ['PostgreSQL 18 установлен (Windows: EDB · Mac: Postgres.app)', 'psql в PATH — в новом терминале psql --version', 'Пароль класса — одинаковый на всех компьютерах', 'psql -U postgres -c "SELECT version();" — и после перезагрузки']);
+ru(MAP03, [
+  { t: 'Вступление', d: '«Вид SQL или вид NoSQL?» → «Оба верны — зависит от задачи» · план (5 шагов)', m: 'Если вы работали с Mongo — скажите об этом одной фразой (3-й экран)' },
+  { t: 'Два типа и форма', d: 'таблица / документ · разложить карточки по таблице · тест', m: 'в таблице тип колонки задан заранее, в документе — свободно (5-й экран)' },
+  { t: 'Сильные стороны', d: 'JOIN — связь через id · тест · последний телефон · поток чата (NoSQL — объём)', m: 'строка ON (16-й экран) · что сохраняет телефон (19-й экран)' },
+  { t: 'Решение', d: '4 критерия: связь · форма · надёжность · объём · тест (банк) · почему PostgreSQL (5 причин) · совет AI · тест', m: '«JSON тоже» — пример с jsonb (21-й экран)' },
+  { t: 'Закрепление', d: 'сопоставление (банк, чат, магазин, логи) · миф-бастер · финал · практика · карточки · итог', m: '2 таблицы из практики — users / posts, которые вы создали сегодня' },
+]);
+ru(TIME03, [[null, 'вступление, два типа и форма'], [null, 'сильные стороны: JOIN, последний телефон, чат'], [null, 'указатель решения, почему PostgreSQL, AI'], [null, 'сопоставление, миф, финал, практика'], [null, 'итог']]);
+ru(DICT25, [
+  ['таблица — «Похоже на таблицу Excel», в каждой строке одни и те же колонки'],
+  ['документ — «Как разные бумаги в папке», { }'],
+  ['связать две таблицы через id', 'JOIN … ON …, внешний ключ'],
+  ['последний телефон — «SQL в один миг продаёт только одному», «контроль SQL»', 'условный UPDATE + блокировка строки; транзакция', 's6, карточки'],
+  ['указатель решения — 4 вопроса: связаны ли данные, строгая ли форма, дорого ли обходится ошибка, нужно ли огромно-просто-быстро', 'критерии выбора базы'],
+  ['«NoSQL современнее» — миф', 'выбор зависит от задачи'],
+  ['«JSON тоже»'],
+]);
+ru(SIMP26, [
+  { d: 'Последний телефон сохраняет «контроль SQL — транзакция»', a: 'условие в запросе (stock > 0) + блокировка строки; транзакция — выполнить несколько действий вместе; Mongo тоже в одном документе продал одному', s: 'фразы из урока достаточно; если сильный ученик спросит — «база заново проверяет условие, второй покупатель ждёт»' },
+  { d: 'В NoSQL «связывать отдельные документы трудно»', a: 'связь есть (populate), но база её не охраняет: author: null сохранился без ошибки', s: '«связать можно, но правильность охраняет код, а не база»' },
+]);
+ru(QA26, [
+  ['«Mongo плохая?»', 'Нет. Удобна для очень большого количества простых данных, как чат и логи. Выбор зависит от задачи: проверьте его четырьмя вопросами указателя решения.'],
+  ['«Чем отличается от MySQL?»', 'Обе — SQL: таблицы, JOIN, правила — одна и та же идея. В курсе PostgreSQL, потому что с ним работают проекты следующих уроков.'],
+  ['«Это же просто Excel?»', 'Внешне похоже. Но база сама проверяет правила (пустое имя, несуществующий автор — отказ) и не ошибается, даже если пишут много людей одновременно (последний телефон).'],
+  ['«Что такое Firebase?»', 'Документная база Google, NoSQL; в уроке пример вместе с MongoDB.'],
+  ['«Почему id 1, 2, 3, а не длинный, как в Mongo?»', 'SERIAL — число, которое растёт само; в Mongo _id — ObjectId. Оба уникальны.'],
+]);
+ru(SUM28, [
+  { t: 'Mongo ↔ PostgreSQL: collection — таблица, document — строка, ref — REFERENCES, populate — JOIN; правило в Mongo — в коде, в PostgreSQL — в таблице' },
+  { t: 'Установка: Windows — установщик EDB, пароль, порт 5432, bin в PATH; Mac — Postgres.app; если Homebrew — createuser -s postgres' },
+  { t: 'База проверяет сама: NOT NULL · UNIQUE · внешний ключ · CHECK; сообщение — какая таблица · какое правило · какое значение (DETAIL)' },
+  { t: 'JOIN: в ON внешний ключ приравнивается к id; неверный ON — без ошибки, но с неверным результатом; LEFT JOIN — и строки без пары' },
+  { t: 'Последний телефон: условие + блокировка строки → UPDATE 0; транзакция — всё или ничего; jsonb — свободные дополнения' },
+  { t: 'Класс: до m4-06 на каждом компьютере psql -U postgres -c "SELECT version();"; m4-03 без кода — в каждом блоке у вас одна добавка' },
+]);
+ru(STATIONS28, [[null, 'Запрос'], null, [null, 'Правила'], [null, 'Таблица'], null, [null, 'Ответ']]);
+ru(HOMEWORK28, [
+  { t: 'Репозиторий и идея: blog-db (или своё название) · README.md — идея одной фразой + ответы на 4 вопроса указателя решения (связаны ли, строгая ли форма, дорога ли ошибка, нужно ли огромно-просто-быстро) + выбор и причина' },
+  { t: 'schema.sql: 2 связанные таблицы — PRIMARY KEY, хотя бы один NOT NULL, один UNIQUE, REFERENCES → в \\d таблица строка Foreign-key', c: [null, 'psql -U postgres -d <baza> -f schema.sql'] },
+  { t: 'data.sql: в каждую таблицу 3+ строки, одна строка без пары (как sardor)' },
+  { t: 'queries.sql: JOIN и LEFT JOIN — в LEFT JOIN строк на одну больше, чем в JOIN' },
+  { t: 'Сломайте нарочно: INSERT с несуществующим id → «violates foreign key constraint» → запишите строку DETAIL в README' },
+  { t: 'Выложите на GitHub и вставьте ссылку на репозиторий в своё домашнее задание на платформе' },
+]);
+RU_S.SPOKEN = [['psql минус U postgres', 'psql -U postgres'], ['createuser минус s postgres', 'createuser -s postgres'], ...([['бэкслеша ', 'backslash '], ['Бэкслеш ', 'Backslash '], ['бэкслеш ', 'backslash ']])];  // F-1109-01
+RU_S.TITLE = 'От знакомого вам Mongo к таблицам PostgreSQL';
+RU_S.COVER = ['Всего около 1 часа 10 минут: озвучка ~30 минут · четыре практики 35–45 минут · 4 проверки · самопроверка 8 вопросов. После экрана 15 можно сделать перерыв', 'Нужно: интернет на компьютере (чтобы скачать PostgreSQL) · Windows или macOS · терминал', 'Проект: база блога — users и posts, образец из практики ученика m4-03'];
+RU_S.FIN_INTRO = 'Вы всё посмотрели, теперь проверьте себя. Итоговый тест, восемь вопросов, два из них — про класс и урок ученика. На каждый вопрос одна попытка, после ответа открывается верный вариант и пояснение. Шесть и больше — урок усвоен. Если меньше, вернётесь к указанным экранам и пройдёте тест заново.';
+RU_S.FIN_PASS = 'Урок усвоен. Теперь вы можете подготовить компьютеры класса и спокойно провести m4-03.';
+RU_S.NEXT_T = 'PostgreSQL: CRUD-запросы';
+RU_S.NEXT_D = 'INSERT, SELECT, UPDATE, DELETE — для урока ученика m4-06 и проекта m4-08 AvtoIjara';
+RU_S.FILE = 'postgresql-1-pamyatka-mentora.md';
+RU_S.YAK = {
+  b1: ['Mongo ↔ PostgreSQL: <b>правило в Mongo — в коде, в PostgreSQL — в таблице</b>', 'Первое: все знакомые вам понятия Mongo есть в PostgreSQL. Collection — таблица, document — строка, ref — внешний ключ, populate — JOIN. Главная разница: правило в Mongo живёт в коде, а в PostgreSQL — в самой таблице.'],
+  b2: ['Установка: в Windows — <b>пароль и PATH</b>, в Mac — Postgres.app', 'Второе: установка. В Windows — официальный установщик, записать пароль и добавить папку bin в Path. В Mac — Postgres.app. Если Homebrew — createuser минус s postgres.'],
+  b3: ['База проверяет сама — сообщение называет <b>таблицу, правило и значение</b>', 'Третье: если правило нарушено, база не сохраняет запись и сама называет причину. Читайте сообщение тремя вопросами: какая таблица, какое правило, какое значение. Ответ — в строке detail.'],
+  b4: ['В JOIN всё решает <b>строка ON</b>; LEFT JOIN — и строки без пары', 'Четвёртое: в JOIN всё решает строка on, внешний ключ приравнивается к id другой таблицы. Неверный on не даёт ошибки, но портит результат. Left join выводит и строки без пары.'],
+  b5: ['Последний телефон: <b>условие и блокировка строки</b>; транзакция — всё или ничего', 'Пятое: последний телефон сохраняют условие в запросе и блокировка строки, второй покупатель получает update ноль. Если несколько таблиц меняются вместе — транзакция: при ошибке отменяется всё.'],
+  b6: ['Класс: до m4-06 <b>на каждом компьютере</b> должен открываться psql', 'Шестое, самое важное для класса: до m4-06 на каждом компьютере класса должен работать PostgreSQL, с одним паролем. m4-03 без кода, но в каждом блоке у вас есть одна своя добавка.'],
+  hw: ['<b>Домашнее задание</b>: практика ученика — сами, на настоящей базе', 'Домашнее задание: полностью выполните практику ученика сами, но на настоящей базе. Возьмите одну идею проекта, например интернет-магазин. В README ответьте на четыре вопроса и выберите базу. Потом три файла: в schema две связанные таблицы, в data данные, в queries JOIN и left join. Один раз нарочно вызовите ошибку внешнего ключа.'],
+  hw2: ['Сдача: вставьте ссылку на репозиторий GitHub <b>в домашнее задание на платформе</b> — больше ничего не нужно', 'Строку detail из ошибки запишите в README. Выложите на GitHub и вставьте ссылку на репозиторий в своё домашнее задание на платформе, больше ничего не нужно. Сорок-шестьдесят минут.'],
+  c: ['<b>Возьмите памятку</b>: словарь, установка, psql, правила, JOIN — на одной странице', 'Внизу памятка на одну страницу: словарь Mongo, способы установки, команды psql, правила, JOIN, последний телефон, ошибки подключения и список для компьютеров класса. Скопируйте или скачайте, пусть будет рядом в классе.'],
+};
+RU_S.CHEAT = `# PostgreSQL-1 — памятка ментора (от Mongo к PostgreSQL)
+## Mongo ↔ PostgreSQL
+collection = таблица (table) · document = строка (row) · поле = колонка (column, с типом) · _id = id SERIAL PRIMARY KEY · ref = REFERENCES (внешний ключ) · populate = JOIN · Schema (в коде) = CREATE TABLE (в базе) · required/unique = NOT NULL/UNIQUE · mongosh = psql
+## Установка
+Windows: postgresql.org/download/windows → EDB installer 18 · Server + pgAdmin 4 + Command Line Tools (Stack Builder не нужен) · запишите пароль · порт 5432 · в Path C:\\Program Files\\PostgreSQL\\18\\bin (или Пуск → SQL Shell (psql))
+Mac: postgresapp.com → Applications → Initialize · PATH: sudo mkdir -p /etc/paths.d && echo /Applications/Postgres.app/Contents/Versions/latest/bin | sudo tee /etc/paths.d/postgresapp · без пароля
+Homebrew: role "postgres" does not exist → createuser -s postgres
+## psql
+psql -U postgres · -d <baza> · -c "<запрос>" · -f файл.sql · \\l базы · \\c blog переход · \\dt таблицы · \\d posts структура · \\q выход
+SQL — с точкой с запятой; postgres-# — ждёт продолжения; =*# — транзакция открыта; =!# — ошибка в транзакции
+## Таблицы и правила
+CREATE DATABASE blog; · CREATE TABLE users (id SERIAL PRIMARY KEY, username TEXT NOT NULL UNIQUE); · CREATE TABLE posts (id SERIAL PRIMARY KEY, user_id INT NOT NULL REFERENCES users(id), izoh TEXT NOT NULL);
+Чтение сообщения: какая таблица · какое правило (posts_user_id_fkey) · какое значение (DETAIL: Key (user_id)=(99))
+## JOIN
+SELECT users.username, posts.izoh FROM posts JOIN users ON users.id = posts.user_id; · LEFT JOIN — вся левая таблица · ON users.id = posts.id — ошибки нет, результат неверный
+## Надёжность
+Последний телефон: UPDATE … WHERE id = 1 AND stock > 0 — покупатель 2 ждёт, потом UPDATE 0 · CHECK (stock >= 0) — вторая защита
+BEGIN … COMMIT — всё или ничего; если внутри ошибка, COMMIT → ROLLBACK · jsonb: extra->>'rang'
+## Ошибки подключения
+password authentication failed → пароль · Connection refused / No such file (socket) → запустите PostgreSQL (Windows: Services → postgresql-x64-18 → Start · Mac: Postgres.app → Start) · relation … does not exist → база в приглашении, \\c blog · 'psql' is not recognized → PATH, новый терминал
+## Компьютеры класса (после m4-03, до m4-06)
+PostgreSQL 18 · команда psql в PATH · один пароль класса (в .env.example Nest-проекта — password) · psql -U postgres -c "SELECT version();" — и после перезагрузки
+## m4-03 и два упрощения
+без кода, 21 экран: вступление · два типа и форма · сильные стороны (JOIN, последний телефон, чат) · решение (4 критерия, почему PostgreSQL, AI) · закрепление
+«сохраняет транзакция» — на самом деле условие + блокировка строки · «в NoSQL связывать трудно» — связь есть, база её не охраняет
+## Слова из урока ученика
+таблица Excel = table · разные бумаги в папке = document · связь через id = JOIN · контроль SQL = транзакция · указатель решения = 4 критерия
+## Ваше домашнее задание
+blog-db: README (4 критерия) + schema.sql + data.sql + queries.sql (JOIN, LEFT JOIN) + строка DETAIL ошибки FK → GitHub → ссылка на репозиторий в домашнее задание на платформе`;
+
+const RU_MDT = {
+ "1": {
+  "kicker": "Вступление",
+  "eyebrow": "Курс для менторов · PostgreSQL",
+  "title": "Вы знаете Mongo. Сегодня тот же блог — в PostgreSQL.",
+  "seg": {
+   "a": [
+    "Вы писали блог на Mongo — сегодня <b>соберём тот же блог в PostgreSQL</b>",
+    "Здравствуйте. Вы работали с MongoDB через Mongoose: модели, ref, populate. Ученики курса AI Startup работают с PostgreSQL. Сегодня начнём с того, что вы уже знаете: возьмём простой блог на Mongo и соберём его заново в PostgreSQL."
+   ],
+   "b": [
+    "К концу урока PostgreSQL работает у вас, <b>две таблицы и JOIN</b> — своими руками",
+    "К концу урока PostgreSQL будет установлен на вашем компьютере. Вы сами создадите две связанные таблицы, прочитаете ошибки, которые возвращает база, и с помощью JOIN увидите две таблицы в одном ответе."
+   ],
+   "c": [
+    "«Последний телефон» из урока ученика увидите в двух окнах <b>своими глазами</b>",
+    "В уроке ученика есть пример, где два человека одновременно хотят купить один и тот же телефон. Вы проверите его не на словах, а сами, в двух окнах терминала, и точно узнаете, что его спасает."
+   ],
+   "d": [
+    "На компьютеры класса PostgreSQL <b>устанавливаете вы</b> — в уроке ученика этой части нет",
+    "И ещё важное: в уроках ученика установке PostgreSQL не учат. На компьютеры класса ставите его вы, и следующие уроки опираются на это. Это, а также то, как вести урок ученика, разберём на последнем этапе."
+   ],
+   "e": [
+    "Шесть этапов, четыре практики. <b>Не спешите</b>: «Далее» откроется, когда учитель договорит",
+    "Урок состоит из шести этапов, между ними четыре практики, их вы делаете на своём компьютере. Не спешите: каждый экран можно прослушать сначала и прочитать его текст. «Далее» откроется, когда учитель договорит. Начинаем."
+   ]
+  }
+ },
+ "2": {
+  "kicker": "Этап 1 · сравнение с Mongo",
+  "title": "SQL и NoSQL: одни и те же данные хранятся в двух разных формах",
+  "seg": {
+   "a": [
+    "Базы делятся на две большие семьи: SQL и NoSQL — <b>разница в форме данных</b>",
+    "Прежде чем сравнивать Mongo с PostgreSQL, разберём одно главное отличие. Базы делятся на две большие семьи: SQL и NoSQL. MongoDB относится к NoSQL, а PostgreSQL к SQL. Главная разница в том, в какой форме хранятся данные."
+   ],
+   "b": [
+    "В MongoDB каждая запись — <b>документ в фигурных скобках</b>, документы собираются в <code>collection</code>",
+    "Слева MongoDB. Здесь каждая запись это документ, по-английски document: в фигурных скобках поле и значение, например username, ali. Документы собираются в collection. Посмотрите: в документе vali есть дополнительное поле город, а у ali его нет. Mongo это принимает: документы могут быть разной формы."
+   ],
+   "c": [
+    "В PostgreSQL данные в таблице: <b>сверху колонки, каждая запись — одна строка</b>",
+    "Справа те же данные в PostgreSQL. Здесь данные лежат в таблице, по-английски table. Сверху колонки, то есть column: id и username. Каждая запись это одна строка, то есть row: 1, ali. В каждой строке колонки одинаковые. Мы попробовали записать город: такой колонки в таблице нет, поэтому PostgreSQL выдал ошибку."
+   ],
+   "d": [
+    "SQL — <b>язык запросов к таблицам</b>; NoSQL — «не SQL», работает с документами",
+    "Теперь смысл названий. SQL это язык запросов к таблицам: select, insert, update. На экране такой запрос: спросили username второго пользователя, ответ vali. Поскольку PostgreSQL работает на этом языке, его называют SQL-базой. А NoSQL значит «не SQL»: MongoDB вместо таблиц работает с документами."
+   ],
+   "e": [
+    "Вывод: Mongo — <code>collection</code> и документ, PostgreSQL — <b>таблица, колонка и строка</b>",
+    "Вывод: в MongoDB данные лежат в виде документов, а документы собираются в collection. В PostgreSQL данные в таблице: колонки и строки. Значит, один документ в Mongo соответствует одной строке в PostgreSQL, а поле документа соответствует колонке. Всё остальное в уроке вытекает из этой разницы."
+   ]
+  }
+ },
+ "3": {
+  "kicker": "Этап 1 · сравнение с Mongo",
+  "title": "Блог на Mongo: две модели, один ref, один populate",
+  "seg": {
+   "a": [
+    "Отправная точка — <b>знакомый вам Mongo</b>: две модели, пользователь и его пост",
+    "Разницу в форме мы увидели, теперь раскроем её, начав со знакомого кода. На экране простой блог на Mongoose: две модели. В User только username, в Post автор и текст. Этот код мы запустили в настоящей MongoDB."
+   ],
+   "b": [
+    "<code>author</code> в Post — ObjectId и <b><code>ref: 'User'</code></b>: пост привязан к этому пользователю",
+    "Посмотрите на поле author в модели Post: тип ObjectId, рядом ref, User. То есть в посте хранится не сам пользователь, а только его id, а ref говорит, к какой модели относится этот id."
+   ],
+   "c": [
+    "<code>populate('author')</code> вместо id подставляет в ответ <b>весь документ пользователя</b>",
+    "populate во время запроса находит пользователя по этому id и подставляет его в ответ. Посмотрите на терминал: внутри author теперь не id, а весь документ, username ali."
+   ],
+   "d": [
+    "Вывод: <code>ref</code> — связь, <code>populate</code> — объединение; в PostgreSQL <b>есть и то, и другое</b>",
+    "Вывод: связь в Mongo состоит из двух частей. ref связывает две модели, populate объединяет их в одном ответе. В PostgreSQL есть те же две части, только названия другие. Но сначала посмотрим два случая, которые Mongo пропускает без ошибки."
+   ]
+  }
+ },
+ "4": {
+  "kicker": "Этап 1 · сравнение с Mongo",
+  "title": "Mongo не выдаёт ошибку в двух случаях: несуществующий автор и разные документы",
+  "seg": {
+   "a": [
+    "Кто в Mongo следит за порядком? Проверим <b>двумя опытами</b>",
+    "Связь в Mongo есть. Теперь вопрос: кто её охраняет? Мы провели два опыта. В обоих MongoDB не выдала ошибку, и именно это отсутствие ошибки и есть главное отличие от PostgreSQL."
+   ],
+   "b": [
+    "Пост сохранился с несуществующим автором, а <code>populate</code> вернул <b><code>author: null</code></b>",
+    "Первый опыт: создали пост с id пользователя, которого нет в базе. Mongo его сохранила, ошибки нет. А при populate author оказался null. То есть пост без автора лежит в базе, и никакой ошибки об этом не появилось."
+   ],
+   "c": [
+    "Документ, записанный в обход схемы, попал в ту же коллекцию <b>с другими полями</b>",
+    "Второй опыт: в обход схемы Mongoose записали прямо в коллекцию документ с другими полями: muallif, matn и like. Это как если бы его записал другой скрипт или другой сервис. Коллекция приняла и его: теперь внутри одной posts документы разной формы."
+   ],
+   "d": [
+    "Вывод: в Mongo порядок держит код Mongoose, в PostgreSQL — <b>сама база</b>",
+    "Вывод: в обычном случае, если отдельная проверка не написана, в Mongo порядок держит ваш код, схема Mongoose. Запись в обход кода база принимает. В PostgreSQL правило записано в самой таблице, и обойти его не может никто. Проверим это на третьем этапе."
+   ]
+  }
+ },
+ "5": {
+  "kicker": "Этап 1 · сравнение с Mongo",
+  "title": "Пара в PostgreSQL для каждого знакомого вам слова",
+  "seg": {
+   "a": [
+    "У каждого понятия Mongo в PostgreSQL <b>есть пара</b> — один раз посмотрим словарь",
+    "Мы увидели, где Mongo не выдаёт ошибку. Теперь словарь: пара в PostgreSQL для каждого знакомого вам слова. Этот словарь понадобится и в классе, потому что урок ученика тоже сравнивает таблицу и документ."
+   ],
+   "b": [
+    "Collection — таблица, document — строка, а поле — <b>колонка с заданным типом</b>",
+    "Collection становится таблицей, document это одна строка таблицы. Поле становится колонкой, но с одним отличием: тип колонки задаётся заранее, число или текст. В каждой строке таблицы колонки одинаковые."
+   ],
+   "c": [
+    "Вместо <code>_id</code> — растущий номер, <code>ref</code> — <b>внешний ключ</b>, <code>populate</code> — <b><code>JOIN</code></b>",
+    "Вместо id из Mongo в PostgreSQL обычно растущий сам по себе номер: 1, 2, 3. Пара для ref это внешний ключ, по-английски foreign key: колонка user id в таблице posts указывает на таблицу users. А пара для populate это JOIN."
+   ],
+   "d": [
+    "Схема Mongoose живёт в коде, а <code>CREATE TABLE</code> записывает правила <b>в саму базу</b>",
+    "Самая большая разница в этой строке. Схема Mongoose живёт в вашем коде. А CREATE TABLE записывает таблицу и её правила в саму базу: не пусто, не повторяется, автор существует. А вместо mongosh терминал PostgreSQL, программа называется psql."
+   ],
+   "e": [
+    "Вывод: и понятия, и команды парные — разница в том, <b>где живут правила</b>",
+    "Вывод: большинство понятий вам знакомы, только названия другие. Команды тоже парные: для create это insert into, для find это select, для updateOne это update, для deleteOne это delete. Когда будете их писать, я напомню пару. Главная разница в том, где живут правила: в Mongo в коде, в PostgreSQL в таблице. Если ученик спросит «где populate из Mongo?», ответ: JOIN. Давайте проверим."
+   ]
+  }
+ },
+ "6": {
+  "kicker": "Проверка 1",
+  "eyebrow": "Проверка · 1 / 4",
+  "title": "В Mongo были и ref, и populate. Что в PostgreSQL вместо populate?",
+  "q": "Вы посмотрели словарь, давайте проверим. Первая проверка. В Mongo было две вещи: ref связывает, а populate объединяет во время запроса. Что в PostgreSQL делает работу populate? Выберите вариант.",
+  "ok": "Верно, JOIN. Он во время запроса соединяет две таблицы и даёт один ответ, как populate. А REFERENCES это пара для ref: он только задаёт связь и охраняет её, в ответ ничего не добавляет. Значит, в PostgreSQL связь задаёт REFERENCES, а две таблицы в один ответ объединяет JOIN.",
+  "okShort": "<code>JOIN</code> — соединяет во время запроса (populate). <code>REFERENCES</code> — задаёт и охраняет связь (ref).",
+  "hint": "Ищите команду, которая работает во время запроса и собирает две таблицы в один ответ.",
+  "wrong": {
+   "0": "Это пара для ref: задаёт связь, но результат запроса не объединяет.",
+   "1": "Это пара для _id: номер строки.",
+   "3": "Это пара для Schema: создаёт таблицу и её правила."
+  }
+ },
+ "7": {
+  "kicker": "Этап 2 · установка",
+  "title": "Windows: postgresql.org → установщик → пароль, порт, PATH",
+  "seg": {
+   "a": [
+    "С Mongo сравнили — теперь устанавливаем; путь для Windows начинается <b>с официального сайта</b>",
+    "Понятия готовы, теперь установим PostgreSQL. Сначала Windows, на следующем экране macOS. Посмотрите оба варианта, какой бы ни был у вас: компьютеры в классе могут отличаться. В Windows официальный установщик берётся со страницы download на сайте postgresql org, последняя стабильная версия 18."
+   ],
+   "b": [
+    "Компоненты: Server, pgAdmin и <b>Command Line Tools — нужны</b>, Stack Builder — не нужен",
+    "В окне компонентов четыре пункта. Server, то есть сама база. pgAdmin, графическое окно, по желанию. Command Line Tools: здесь терминал PostgreSQL, он обязательно нужен. Stack Builder для дополнительных программ, нам не нужен."
+   ],
+   "c": [
+    "<b>Запишите пароль</b>: на следующих уроках ученик будет спрашивать именно его",
+    "Затем пароль: это пароль пользователя postgres. Обязательно запишите его, на следующих уроках ученик будет спрашивать именно этот пароль, когда откроет терминал PostgreSQL и в настройках проекта. Порт 5432, не меняйте. Остальные окна пройдите без изменений."
+   ],
+   "d": [
+    "Установщик <b>не добавляет в PATH</b>: добавьте папку <code>bin</code> вручную или откройте SQL Shell",
+    "Важное место: установщик не добавляет команду psql в PATH. Поэтому если в терминале написать psql, Windows её не узнает. Есть два пути: добавить папку bin PostgreSQL в Path и открыть терминал заново, или открыть из меню Пуск SQL Shell, то есть терминал PostgreSQL."
+   ],
+   "e": [
+    "Вывод: в Windows <b>проверьте три вещи</b> — пароль записан, порт 5432, <code>bin</code> в PATH",
+    "Вывод: после установки в Windows проверьте три вещи. Пароль записан, порт 5432, и папка bin в Path. Чаще всего в классе встречается третья проблема: команда psql не распознаётся."
+   ]
+  }
+ },
+ "8": {
+  "kicker": "Этап 2 · установка",
+  "title": "macOS: Postgres.app — Initialize, PATH и postgres без пароля",
+  "seg": {
+   "a": [
+    "На Mac самый простой путь — <b>Postgres.app</b>: программа, сервер и <code>psql</code> в одном файле",
+    "Windows посмотрели, теперь macOS. Для Mac самый простой путь Postgres.app. Это одна программа: внутри и сервер, и терминал PostgreSQL. Скачивается с сайта postgresapp com и переносится в папку Applications."
+   ],
+   "b": [
+    "Открываете программу и нажимаете <b>Initialize</b> — сервер запускается, порт снова 5432",
+    "Открываете программу и нажимаете кнопку Initialize. Сервер запускается, порт снова 5432. Пароль не спрашивается: со своего компьютера вы подключаетесь без пароля. Пользователя postgres Postgres.app тоже создаёт сам."
+   ],
+   "c": [
+    "Чтобы терминал нашёл <code>psql</code> — <b>одна команда для PATH</b>, потом откройте терминал заново",
+    "Чтобы терминал находил команду psql, на официальном сайте есть одна команда, она добавляет папку Postgres.app в PATH. Запускаете её один раз, компьютер спросит ваш пароль. Потом закройте терминал и откройте заново."
+   ],
+   "d": [
+    "При установке через Homebrew <b>роли <code>postgres</code> нет</b> — лечится <code>createuser -s postgres</code>",
+    "Осторожно: некоторые менторы ставят через Homebrew. Тогда сервер пускает в базу под именем вашего пользователя Mac, пользователя postgres не будет. Мы проверили: psql минус U postgres выдаёт ошибку. Исправление одной командой: createuser минус s postgres. После этого подключение работает."
+   ],
+   "e": [
+    "Вывод: на Mac — Postgres.app; если Homebrew — сначала <b>создайте пользователя <code>postgres</code></b>",
+    "Вывод: на Mac установите Postgres.app, нажмите Initialize и запустите команду для PATH. Если стоит Homebrew, выполните createuser минус s postgres. Уроки ученика ожидают команду psql минус U postgres, поэтому этот пользователь должен быть на каждом компьютере."
+   ]
+  }
+ },
+ "9": {
+  "kicker": "Этап 2 · подключение",
+  "title": "psql -U postgres: пароль, приглашение, первый запрос",
+  "seg": {
+   "a": [
+    "Установили — теперь подключаемся: <code>psql</code> — окно команд, <b>как знакомый вам <code>mongosh</code></b>",
+    "PostgreSQL установлен, теперь подключимся к нему. Терминал PostgreSQL, программа psql, как mongosh: вы пишете в терминале команды базе, ответ появляется здесь же. Команда: psql минус U postgres, то есть от имени пользователя postgres."
+   ],
+   "b": [
+    "Windows спрашивает пароль; при вводе на экране <b>ничего не появляется</b> — это нормально",
+    "В Windows спрашивается пароль, тот, что вы записали при установке. Внимание: пока вы его вводите, на экране не появляется никаких символов, даже звёздочек. Это нормально, вводите и нажимайте Enter. На Mac с Postgres.app пароль не спрашивается. После входа появляется приглашение: postgres, решётка. Это значит, вы сейчас в базе postgres."
+   ],
+   "c": [
+    "Каждая команда заканчивается <b>точкой с запятой</b>; если забыть, приглашение станет <code>postgres-#</code> и будет ждать",
+    "Первый запрос: select version. Каждая SQL-команда заканчивается точкой с запятой. Если забыть, терминал PostgreSQL не выдаст ошибку: перед решёткой в приглашении появится дефис, и он будет ждать продолжения. Просто напишите точку с запятой и нажмите Enter. В классе это самый частый вопрос."
+   ],
+   "d": [
+    "<code>\\l</code> — <b>список баз</b>: <code>postgres</code> и два шаблона; <code>\\q</code> — выход из терминала PostgreSQL",
+    "Команды, которые начинаются с бэкслеша, адресованы самому терминалу PostgreSQL, точка с запятой им не нужна. Бэкслеш l показывает список баз: postgres и два template, то есть шаблона. Шаблоны не трогаете. Бэкслеш q выходит из терминала PostgreSQL."
+   ],
+   "e": [
+    "Вывод: приглашение говорит, <b>в какой вы базе</b>; SQL — с точкой с запятой, команды с <code>\\</code> — без",
+    "Вывод: всегда смотрите на приглашение, оно говорит, в какой базе вы находитесь. SQL-команда заканчивается точкой с запятой, а команды с бэкслешем без неё. Теперь установите и подключитесь сами."
+   ]
+  }
+ },
+ "10": {
+  "kicker": "Практика 1 / 4",
+  "eyebrow": "Сейчас у вас · 15–20 минут",
+  "title": "Установите PostgreSQL и подключитесь через psql",
+  "seg": {
+   "a": [
+    "Теперь вы: установите PostgreSQL <b>на свой компьютер</b> и выполните первый запрос",
+    "Теперь ваша очередь: установите PostgreSQL на свой компьютер. Четыре шага, пятнадцать-двадцать минут. Если у вас Windows, путь с седьмого экрана, если Mac, с восьмого."
+   ],
+   "b": [
+    "Шаги 1–2: установка и PATH; <b>не идите дальше, пока не записали пароль</b>",
+    "Первый: установка. В Windows обязательно запишите пароль. Второй: PATH. В Windows добавьте папку bin в Path, на Mac запустите официальную команду, потом откройте терминал заново."
+   ],
+   "c": [
+    "Шаги 3–4: <code>psql -U postgres</code>, <code>SELECT version();</code>; подтверждение — <b>начало строки результата</b>",
+    "Третий: подключитесь через psql минус U postgres. Четвёртый: выполните запрос select version и посмотрите базы через бэкслеш l. В поле подтверждения скопируйте результат version, начиная со слова PostgreSQL."
+   ],
+   "d": [
+    "Если вышло иначе, нажмите <b>«Вышло иначе?»</b> — откроется окно с решениями",
+    "Если что-то вышло иначе, нажмите внизу кнопку «Вышло иначе?»: откроется окно с решениями, на компьютерах класса встречаются именно эти случаи. Пока не отмечены все четыре пункта и нет подтверждения, «Далее» не откроется. Значит, после этой практики PostgreSQL установлен на вашем компьютере, и вы можете подключиться к нему из терминала."
+   ]
+  }
+ },
+ "11": {
+  "kicker": "Этап 3 · таблица и связь",
+  "title": "CREATE DATABASE blog → \\c blog → таблица users",
+  "seg": {
+   "a": [
+    "Подключились — теперь пример из практики ученика: <code>users</code> и <code>posts</code>, <b>две связанные таблицы</b>",
+    "Терминал PostgreSQL работает. Теперь соберём блог из Mongo в PostgreSQL. Пример не случайный: на практике m4-03 ученик на бумаге пишет именно эти две таблицы, users и posts. Вы создадите их в настоящей базе."
+   ],
+   "b": [
+    "В Mongo база появлялась сама, здесь сначала <b><code>CREATE DATABASE</code></b>, потом <code>\\c</code>",
+    "В Mongo база появлялась сама при первой записи. В PostgreSQL вы сначала её создаёте: create database blog. Потом переходите в неё через бэкслеш c blog. Посмотрите на приглашение: теперь не postgres, а blog."
+   ],
+   "c": [
+    "<code>users</code>: <code>id</code> <b>растёт сам</b> и не повторяется, <code>username</code> <b>не пустой</b> и не повторяется",
+    "Первая таблица users. Колонка id это serial primary key: номер растёт сам и никогда не повторяется. username это текст, рядом два правила: not null, то есть не бывает пустым, и unique, то есть у двух пользователей не будет одинакового имени."
+   ],
+   "d": [
+    "При наборе часто бывают две ошибки: <b>таблица уже есть</b> и <b>пропущенная запятая</b>",
+    "При ручном наборе часто бывают две ошибки. Если таблица уже есть, already exists: значит, вы создали её раньше. Если пропущена запятая, syntax error, и терминал PostgreSQL стрелкой показывает, перед каким словом ошибка. Ставите запятую и выполняете команду снова."
+   ],
+   "e": [
+    "Вывод: базу сначала создают; при <code>syntax error</code> смотрите <b>перед словом, на которое указывает стрелка</b>",
+    "Вывод: в PostgreSQL базу сначала создают и переходят в неё через бэкслеш c. Тип колонки и её правила пишутся вместе с таблицей. Если появился syntax error, проверьте место перед словом, на которое указывает стрелка, обычно там нет запятой."
+   ]
+  }
+ },
+ "12": {
+  "kicker": "Этап 3 · таблица и связь",
+  "title": "REFERENCES users(id) — ref из Mongo, но в самой базе",
+  "seg": {
+   "a": [
+    "Таблица <code>users</code> готова. Теперь вторая — <code>posts</code>: каждый пост через <code>user_id</code> <b>связан с автором</b>",
+    "Таблица users готова. Теперь создадим вторую таблицу: posts, где хранятся посты. В каждом посте хранится id автора, как author в Mongo. Разница в конце строки user id: references users id. Это внешний ключ: в колонке user id может стоять только id, который есть в таблице users."
+   ],
+   "b": [
+    "<code>\\d posts</code> — структура таблицы; внизу <b>строка внешнего ключа</b>, имя которой дала сама база",
+    "Бэкслеш dt показывает список таблиц, а бэкслеш d posts структуру таблицы: колонки, их типы, может ли значение быть пустым. В самом низу строка Foreign-key constraints. Имя ей дала сама база: таблица, колонка и fkey. Это имя вы потом увидите в сообщении об ошибке."
+   ],
+   "c": [
+    "Добавили трёх пользователей и три поста: <code>INSERT 0 3</code> — последнее число это <b>количество строк</b>",
+    "Теперь данные. В Mongoose это был User.create, здесь insert into users, values. Три пользователя: ali, vali и sardor. Три поста: два у ali, один у vali. У sardor постов нет, это понадобится на четвёртом этапе. В ответе insert, 0, 3: последнее число это количество добавленных строк."
+   ],
+   "d": [
+    "Если вы в другой базе, таблицы «нет»: смотрите на приглашение и выполните <b><code>\\c blog</code></b>",
+    "Одна из самых частых ошибок в классе. Ученик заново открывает терминал PostgreSQL и сразу делает select: relation posts does not exist. Таблица есть, просто он стоит в базе postgres. Посмотрите на приглашение: postgres. После бэкслеша c blog тот же запрос показывает все три поста. Этот select делает то же, что Post.find в Mongoose."
+   ],
+   "e": [
+    "Вывод: внешний ключ <b>записывает связь в базу</b>; при <code>does not exist</code> — сначала приглашение",
+    "Вывод: references записывает связь в саму базу, в этом отличие от ref в Mongo. Через бэкслеш d вы видите структуру любой таблицы. Если появилось relation does not exist, не спешите создавать таблицу заново: сначала проверьте имя базы в приглашении."
+   ]
+  }
+ },
+ "13": {
+  "kicker": "Этап 3 · таблица и связь",
+  "title": "Где Mongo не выдала ошибку, PostgreSQL выдаёт ERROR",
+  "seg": {
+   "a": [
+    "Повторим два опыта из Mongo в PostgreSQL — сообщение читаем <b>тремя вопросами</b>",
+    "На четвёртом экране Mongo без ошибки сохранила пост с несуществующим автором. Теперь проведём те же опыты в PostgreSQL. Каждое сообщение об ошибке читаем тремя вопросами: какая таблица, какое правило и какое значение. Ошибок четыре, все получены в настоящей базе."
+   ],
+   "b": [
+    "Пустой <code>username</code> и повтор <code>ali</code>: отказали <b><code>NOT NULL</code></b> и <b><code>UNIQUE</code></b>",
+    "Первые две простые. Пустой username: таблица users, правило not null, запись не сохранилась. Снова ali: правило unique, в строке detail точное значение, ali уже есть. В Mongo эти правила были в схеме Mongoose, здесь в самой таблице."
+   ],
+   "c": [
+    "Пост несуществующему автору: Mongo сохранила, PostgreSQL <b>отказал по внешнему ключу</b>",
+    "Теперь главное: пост для девяносто девятого пользователя. Mongo сохранила его без ошибки. PostgreSQL отказал. Читаем: таблица posts, правило posts user id fkey, то есть внешний ключ, а значение в строке detail: user id 99 в таблице users нет."
+   ],
+   "d": [
+    "Защищена и обратная сторона: <b>пользователя с постами</b> удалить нельзя",
+    "Внешний ключ работает и в обратную сторону. Мы попробовали удалить ali: отказано, потому что у него есть посты. Строка detail говорит: на id 1 всё ещё ссылается таблица posts. То есть постов без владельца в базе не остаётся."
+   ],
+   "e": [
+    "Вывод: в сообщении таблица, имя правила и <b>значение в <code>DETAIL</code></b> — причина в этих трёх",
+    "Вывод: если в PostgreSQL нарушено правило, запись не сохраняется, а сообщение само называет причину. Когда ученик покажет ошибку, читайте вместе тремя вопросами: какая таблица, имя правила и значение в строке detail. Ответ почти всегда в строке detail."
+   ]
+  }
+ },
+ "14": {
+  "kicker": "Проверка 2",
+  "eyebrow": "Проверка · 2 / 4",
+  "title": "Ученик написал DELETE FROM users WHERE id = 1; и получил это сообщение. Почему?",
+  "q": "Вы видели, как читать ошибки, теперь прочитайте сами. Вторая проверка. Ученик хотел удалить первого пользователя и получил сообщение на экране. Вспомните три вопроса: какая таблица, какое правило, какое значение. Почему не удалилось? Выберите вариант.",
+  "ok": "Верно. Правило posts user id fkey, внешний ключ. Строка detail говорит: на id 1 всё ещё ссылается таблица posts, то есть у этого пользователя есть посты. База не оставляет постов без владельца. Значит, если нужно удалить пользователя, сначала удаляются его посты, потом он сам.",
+  "okShort": "<code>posts_user_id_fkey</code>: <code>Key (id)=(1)</code> ещё есть в <code>posts</code> — сначала посты, потом пользователь.",
+  "hint": "Прочитайте имя правила и строку DETAIL: какая таблица всё ещё ссылается на этого пользователя?",
+  "opts": [
+   "У пользователя есть посты — posts от него зависит",
+   "Таблицы users нет в базе blog",
+   "Пользователь с id = 1 не найден",
+   "Для DELETE нужен пароль другого пользователя"
+  ],
+  "wrong": {
+   "1": "Если бы таблицы не было, сообщение было бы relation \"users\" does not exist.",
+   "2": "Если не найден, ошибки нет: DELETE 0. Здесь база называет имя правила.",
+   "3": "В сообщении ничего нет про пароль. Прочитайте имя правила."
+  }
+ },
+ "15": {
+  "kicker": "Практика 2 / 4",
+  "eyebrow": "Сейчас у вас · 10–15 минут",
+  "title": "База blog: users, posts и внешний ключ",
+  "seg": {
+   "a": [
+    "Теперь вы: <b>сами создаёте</b> базу <code>blog</code> и две связанные таблицы",
+    "Теперь делаете сами: база blog, таблицы users и posts, затем данные. Пять шагов, десять-пятнадцать минут. Команды можно копировать, но прочитайте каждую и проговорите, что она делает."
+   ],
+   "b": [
+    "Шаги 1–4: база, две таблицы и данные; после каждой команды <b>проверяйте строку ответа</b>",
+    "Первый: база и бэкслеш c. Второй и третий: users, потом posts. Порядок важен: posts ссылается на users, поэтому users первой. Четвёртый: три пользователя и три поста."
+   ],
+   "c": [
+    "Шаг 5: <b>вызовите сами</b> ошибку внешнего ключа; подтверждение — строка ключа из <code>\\d posts</code>",
+    "Пятый: запишите пост для девяносто девятого пользователя, сами вызовите ошибку внешнего ключа и прочитайте строку detail. В поле подтверждения скопируйте строку Foreign-key из результата бэкслеша d posts."
+   ],
+   "d": [
+    "Если вышло иначе, нажмите <b>«Вышло иначе?»</b> — откроется окно с решениями",
+    "Если вышло иначе, нажмите внизу кнопку «Вышло иначе?», откроется окно с решениями. Пока не отмечены все пять пунктов и нет подтверждения, «Далее» не откроется. Значит, после этой практики у вас две связанные таблицы, и вы своими глазами видите, как база сама отклоняет неверную запись."
+   ]
+  }
+ },
+ "16": {
+  "kicker": "Этап 4 · JOIN",
+  "title": "JOIN … ON users.id = posts.user_id — populate в PostgreSQL",
+  "seg": {
+   "a": [
+    "Две таблицы связаны — теперь нужно «каждый пост с автором» <b>в одном ответе</b>",
+    "Две таблицы есть, и они связаны. Теперь нужен результат как populate в Mongo: рядом с каждым постом имя автора. В PostgreSQL это делает один запрос, JOIN."
+   ],
+   "b": [
+    "<code>FROM posts</code> — основная таблица, <code>JOIN users</code> — присоединяемая, <b><code>ON</code></b> — какая колонка какой равна",
+    "Читаем запрос по частям. Select говорит, какие колонки нужны: имя автора и текст. From posts, основная таблица. Join users, таблица, которая к ней присоединяется. А строка on самая важная: id в таблице users должен быть равен user id в posts. Результат три строки, каждый пост со своим автором."
+   ],
+   "c": [
+    "<code>sardor</code> не появился: у него нет постов; <b><code>LEFT JOIN</code></b> выводит и пользователя без пары",
+    "В результате нет sardor, потому что у него нет постов. JOIN выводит только строки, для которых нашлась пара. Если нужны все пользователи, начинаем с users и пишем left join. Теперь четыре строки, текст у sardor пустой."
+   ],
+   "d": [
+    "В уроке ученика JOIN — «связать две таблицы через id»; вы показываете <b>строку <code>ON</code></b>",
+    "В уроке ученика JOIN показан без кода: связать две таблицы через id. Если в классе ученик спросит, покажите именно эту строку on: какая колонка какой таблицы равна какой. Большинство ошибок тоже в этой строке."
+   ],
+   "e": [
+    "Вывод: <code>JOIN</code> — только у кого есть пара, <code>LEFT JOIN</code> — все слева; проверка <b>в строке <code>ON</code></b>",
+    "Вывод: JOIN выводит только тех, у кого есть пара, а left join все строки левой таблицы. В строке on внешний ключ, user id, приравнивается к id другой таблицы. Что будет, если эта строка написана с ошибкой, увидите на следующей проверке."
+   ]
+  }
+ },
+ "17": {
+  "kicker": "Проверка 3",
+  "eyebrow": "Проверка · 3 / 4 — какая строка с ошибкой?",
+  "title": "Запрос выполнился без ошибок, но «Bugun Nest o'rgandim» вышло так, будто написал vali",
+  "q": "Вы видели JOIN, теперь ищем ошибку. Третья проверка. Этот запрос не выдал ошибку, база вернула ответ. Но результат неверный: «Bugun Nest o'rgandim» написал ali, а здесь вышло, что vali. Вспомните правило: строка on приравнивает внешний ключ. Нажмите строку с ошибкой.",
+  "ok": "Верно. В третьей строке users id приравнен к собственному id постов, а не к внешнему ключу. База не выдаёт ошибку, потому что оба числа: она просто соединяет первый пост с первым пользователем, второй со вторым. На экране исправленный вариант: posts user id, и результат верный. Значит, в строке on всегда стоит колонка внешнего ключа, то есть posts user id.",
+  "okShort": "Строка 3: <code>posts.id</code> — номер поста, а не автор. Ошибки нет, но результат неверный. Исправлено: <code>posts.user_id</code>.",
+  "hint": "Строки 1 и 2 говорят, что и откуда брать. Ищите, по каким колонкам соединяются две таблицы.",
+  "task": "Правило: строка <code>ON</code> приравнивает внешний ключ из <code>posts</code> — <code>user_id</code> — к <code>users.id</code>. Этот запрос не выдал ошибку, но результат неверный: второй пост написал ali, а в результате vali. <b>Нажмите строку с ошибкой.</b>"
+ },
+ "18": {
+  "kicker": "Практика 3 / 4",
+  "eyebrow": "Сейчас у вас · 10 минут",
+  "title": "JOIN, неверный ON и LEFT JOIN — в вашей базе",
+  "seg": {
+   "a": [
+    "Теперь вы: в своей базе <code>blog</code> выполните три запроса и <b>сравните результаты</b>",
+    "Теперь в своей базе blog выполните три запроса. Десять минут. Сравнивайте результат каждого с предыдущим: какие строки есть, какой нет и почему."
+   ],
+   "b": [
+    "Шаги 1–2: правильный <code>JOIN</code>, потом <b>намеренно сломайте</b> <code>ON</code> и сравните результат",
+    "Первый: правильный JOIN, три строки. Второй: в строке on вместо user id напишите id. Ошибки не будет, но авторы поменяются местами. Увидьте это своими глазами, в классе вы покажете ученику именно это."
+   ],
+   "c": [
+    "Шаги 3–4: <code>LEFT JOIN</code> и sardor; подтверждение — <b>число строк</b> под результатом",
+    "Третий: left join, начиная с users. sardor должен появиться с пустым текстом. Четвёртый: под результатом в скобках написано число строк. В поле подтверждения напишите число строк из результата left join."
+   ],
+   "d": [
+    "Если вышло иначе, нажмите <b>«Вышло иначе?»</b> — откроется окно с решениями",
+    "Если вышло иначе, нажмите внизу кнопку «Вышло иначе?», откроется окно с решениями. Пока не отмечены все четыре пункта и нет подтверждения, «Далее» не откроется. Значит, правильность результата JOIN решает строка on: неверный on не даёт ошибки, но меняет авторов местами."
+   ]
+  }
+ },
+ "19": {
+  "kicker": "Этап 5 · надёжность",
+  "title": "Один телефон, два покупателя: второй ждёт и получает UPDATE 0",
+  "seg": {
+   "a": [
+    "Самый запоминающийся пример урока ученика: <b>один телефон, два покупателя</b> в один момент",
+    "Теперь самый запоминающийся пример урока ученика. В магазине остался один телефон, два человека в один момент нажали кнопку купить. Урок ученика говорит: SQL продаст его только одному. Мы действительно проверили это в двух окнах терминала PostgreSQL."
+   ],
+   "b": [
+    "Таблица <code>products</code>: <code>stock</code> — остаток, <b><code>CHECK (stock &gt;= 0)</code></b> — отрицательным быть нельзя",
+    "Сначала таблица: products. Название и stock, то есть сколько осталось на складе. Рядом со stock правило check: остаток не меньше нуля. Телефонов один."
+   ],
+   "c": [
+    "Покупатель 1 взял телефон, транзакция ещё открыта; запрос покупателя 2 <b>ждёт</b>",
+    "Первый покупатель: begin, затем update: уменьшить stock на один, только если stock больше нуля. Ответ: остаток ноль, update 1. Транзакция ещё не закрыта. Через секунду второй покупатель отправляет тот же update. Он не получает ответа, он ждёт: первый покупатель занял эту строку."
+   ],
+   "d": [
+    "Покупатель 1 сделал <code>COMMIT</code> — покупатель 2 сразу получает <b><code>UPDATE 0</code></b>: телефон закончился",
+    "На третьей секунде первый покупатель делает commit. В тот же момент запрос второго покупателя продолжается и заново проверяет условие: stock теперь ноль, не больше нуля. Ответ: ноль строк, update 0. Приложение видит этот ноль и говорит «Извините, товар закончился». В итоге stock ноль, телефон продан один раз."
+   ],
+   "e": [
+    "Вывод: телефон спасли <b>условие в запросе и блокировка строки</b>; <code>CHECK</code> — вторая защита",
+    "Вывод: телефон спасли две вещи. Первая условие в запросе, stock больше нуля. Вторая блокировка строки: второй покупатель ждал первого. Если условие не написано, остановит правило check: мы проверили, update, после которого остаток стал бы минус один, был отклонён."
+   ]
+  }
+ },
+ "20": {
+  "kicker": "Этап 5 · надёжность",
+  "title": "Транзакция: заказ и склад записываются вместе — или не записывается ничего",
+  "seg": {
+   "a": [
+    "В настоящем магазине продажа — это <b>два действия</b>: записать заказ и уменьшить склад",
+    "Последний телефон защитил один update. Но в настоящем магазине продажа это два действия: в таблицу orders записывается заказ, а в products уменьшается остаток. Если одно выполнится, а второе нет, в базе появится неправда: заказ есть, а телефон стоит на складе."
+   ],
+   "b": [
+    "Внутри <code>BEGIN</code> заказ записан, а склад <b>отклонён <code>CHECK</code></b> — телефон уже закончился",
+    "Телефон уже продан, stock ноль. Для vali выполняем оба действия в одной транзакции. Begin, заказ записан, insert 1. Затем склад: правило check отклонило, остаток стал бы минус один."
+   ],
+   "c": [
+    "Написали <code>COMMIT</code>, но база сделала <b><code>ROLLBACK</code></b>: <code>orders</code> пуста, половина работы не сохранилась",
+    "Теперь пишем commit. Но посмотрите на ответ: не commit, а rollback. Раз внутри транзакции была ошибка, база отменила всё. Таблица orders пуста: заказ vali тоже не сохранился. Это и значит всё или ничего."
+   ],
+   "d": [
+    "Честное сравнение: последний телефон <b>Mongo тоже продала один раз</b>, разница — в нескольких таблицах",
+    "Теперь честное сравнение. Последний телефон мы проверили и в MongoDB: с условным update она тоже продала его один раз, потому что изменение одного документа в Mongo тоже неделимо. Разница в нескольких документах: на обычно установленном сервере MongoDB транзакция не заработала. А в PostgreSQL несколько таблиц в одной транзакции работают и при обычной установке."
+   ],
+   "e": [
+    "Вывод: если вместе меняются несколько таблиц — <code>BEGIN … COMMIT</code>; при ошибке <b>отменяется всё</b>",
+    "Вывод: если несколько таблиц должны измениться вместе, вы помещаете их между begin и commit. Если внутри хоть одна ошибка, база отменяет всё. Урок ученика называет последний телефон транзакцией, это упрощение: разберём это на двадцать седьмом экране."
+   ]
+  }
+ },
+ "21": {
+  "kicker": "Этап 5 · надёжность",
+  "title": "Колонка jsonb: в каждой строке разные поля — внутри таблицы",
+  "seg": {
+   "a": [
+    "В Mongo каждый документ был разным — в PostgreSQL <b>тоже есть такая колонка</b>",
+    "В уроке ученика называется ещё одно преимущество PostgreSQL: он хранит и JSON. На четвёртом экране мы видели, что в Mongo каждый документ может быть разным. В PostgreSQL тоже есть такое место: колонка типа jsonb."
+   ],
+   "b": [
+    "Через <code>ALTER TABLE</code> добавлена колонка <b><code>extra JSONB</code></b> — у старых строк она пустая",
+    "Через alter table добавляем в таблицу products колонку extra, тип jsonb. Таблица изменилась, у телефона эта колонка пустая."
+   ],
+   "c": [
+    "У футболки цвет и размер, у наушников цвет и bluetooth — <b>в одной таблице</b>",
+    "Добавим два товара. У футболки цвет и размер, у наушников цвет и bluetooth. Поля разные, но оба в одной таблице. А название и остаток в обычных колонках, их правила остаются на месте."
+   ],
+   "d": [
+    "Можно искать <b>по полю внутри JSON</b>: товар чёрного цвета — футболка",
+    "Можно искать и по полю внутри JSON. Стрелкой и двумя угловыми скобками берём текст поля цвет и ищем чёрный. Ответ: футболка."
+   ],
+   "e": [
+    "Вывод: основное поле — колонка с правилом, <b>свободное дополнение</b> — в <code>jsonb</code>",
+    "Вывод: важное поле, которое есть в каждой строке, стоит в обычной колонке, со своим правилом. А дополнение, которое у каждого товара разное, в jsonb. Если ученик спросит про фразу «PostgreSQL хранит и JSON», покажите именно этот пример."
+   ]
+  }
+ },
+ "22": {
+  "kicker": "Проверка 4",
+  "eyebrow": "Проверка · 4 / 4",
+  "title": "BEGIN → заказ записан → ошибка CHECK на складе → COMMIT. Что в таблице orders?",
+  "q": "Вы видели транзакцию, давайте проверим. Четвёртая проверка. Внутри транзакции заказ записан, insert 1, затем склад отклонён правилом check, и написан commit. Что осталось в таблице orders? Выберите вариант.",
+  "ok": "Верно, ничего. Раз внутри транзакции была ошибка, на commit база ответила rollback и отменила всё. insert 1 появился, но ещё не был подтверждён. orders пуста, ноль строк. Значит, если внутри транзакции одна ошибка, все её изменения отменяются.",
+  "okShort": "<code>COMMIT</code> → <code>ROLLBACK</code>: транзакция с ошибкой отменяется целиком. <code>orders</code> — <code>(0 rows)</code>.",
+  "hint": "Вспомните, что отвечает COMMIT в транзакции с ошибкой — шаг 3 на 20-м экране.",
+  "opts": [
+   "Заказ vali, ведь появился INSERT 0 1",
+   "Ничего: база всё отменила, ROLLBACK",
+   "Заказ и stock = -1",
+   "Заказ есть, но COMMIT выдаёт ошибку"
+  ],
+  "wrong": {
+   "0": "INSERT 0 1 был внутри транзакции и не подтверждён. Посмотрите на ответ COMMIT.",
+   "2": "Правило CHECK отклонило -1 — такая строка не записывается.",
+   "3": "COMMIT не выдаёт ошибку, его ответ — другое слово. Что он говорит?"
+  }
+ },
+ "23": {
+  "kicker": "Практика 4 / 4",
+  "eyebrow": "Сейчас у вас · 10–15 минут",
+  "title": "Продайте последний телефон сами в двух окнах терминала",
+  "seg": {
+   "a": [
+    "Теперь вы: откройте <b>два окна терминала</b> рядом и сами продайте последний телефон",
+    "Последняя практика, самая интересная. Откройте два окна терминала рядом, в обоих откройте терминал PostgreSQL и напишите бэкслеш c blog. Одно окно первый покупатель, другое второй. Десять-пятнадцать минут."
+   ],
+   "b": [
+    "Шаги 1–2: <code>products</code> и один телефон; в окне 1 <code>BEGIN</code> и <code>UPDATE</code>, <b>без <code>COMMIT</code></b>",
+    "Первый: таблица products и один телефон. Второй: в первом окне begin, затем update. Остаток станет ноль. Важно: commit пока не пишите, пусть транзакция остаётся открытой."
+   ],
+   "c": [
+    "Шаги 3–4: окно 2 ждёт, в окне 1 <code>COMMIT</code>; подтверждение — <b>последняя строка в окне 2</b>",
+    "Третий: во втором окне отправьте тот же update. Он не отвечает, он ждёт. Четвёртый: в первом окне напишите commit и посмотрите на второе окно. В поле подтверждения напишите последнюю строку, которая появилась во втором окне."
+   ],
+   "d": [
+    "Если вышло иначе, нажмите <b>«Вышло иначе?»</b> — откроется окно с решениями",
+    "Если вышло иначе, нажмите внизу кнопку «Вышло иначе?», откроется окно с решениями. Пятый шаг по желанию, jsonb. Пока не отмечены четыре обязательных пункта и нет подтверждения, «Далее» не откроется. Значит, последний телефон спасают условие и транзакция: второй покупатель ждёт и ничего не получает."
+   ]
+  }
+ },
+ "24": {
+  "kicker": "Этап 6 · как вести урок ученика",
+  "title": "Компьютеры класса: на каждом должен открываться psql -U postgres",
+  "seg": {
+   "a": [
+    "У вас заработало — теперь класс: на компьютеры учеников PostgreSQL <b>устанавливаете вы</b>",
+    "Тему вы прошли руками сами. Теперь класс. В уроках ученика установке PostgreSQL нигде не учат: урок m4-08 ожидает, что команда psql минус U postgres и пароль, заданный при установке, уже готовы. Поэтому на компьютеры класса ставите его вы."
+   ],
+   "b": [
+    "m4-03 без кода — PostgreSQL нужен с m4-06; установите <b>после m4-03 и до m4-06</b>",
+    "Когда: m4-03 урок без кода, база в нём не нужна. На m4-06 ученик начинает писать запросы. Значит, установите между m4-03 и m4-06. На каждый компьютер путём с седьмого и восьмого экранов, не забудьте PATH."
+   ],
+   "c": [
+    "На всех компьютерах <b>один пароль</b>: ученик пишет его в настройки проекта",
+    "Пароль пусть будет одинаковым на всех компьютерах, и ученикам его называют, потому что на следующих уроках он нужен в файле env проекта. Один факт: в файле env example проекта Nest из курса пароль записан как password. Если пароль класса такой же, ученик не меняет файл."
+   ],
+   "d": [
+    "Проверьте каждый компьютер <b>одной командой</b> — и после перезагрузки тоже",
+    "Проверка на каждом компьютере одной командой: psql минус U postgres, минус c и select version. Если появилась версия PostgreSQL, компьютер готов. Перезагрузите компьютер и проверьте ещё раз: сервер должен запускаться сам."
+   ],
+   "e": [
+    "Вывод: до m4-06 <b>на каждом компьютере</b> — установка, PATH, один пароль, команда проверки",
+    "Вывод: до m4-06 на каждом компьютере класса четыре вещи. PostgreSQL установлен, команда psql в PATH, пароль у всех одинаковый, и команда проверки показывает версию и после перезагрузки. Если появится ошибка, поможет таблица из первой практики."
+   ]
+  }
+ },
+ "25": {
+  "kicker": "Этап 6 · как вести урок ученика",
+  "eyebrow": "m4-03 · «SQL vs NoSQL — почему PostgreSQL»",
+  "title": "m4-03: урок без кода — а вы сегодня всё сделали руками",
+  "seg": {
+   "a": [
+    "m4-03 без кода: ученик видит таблицу и документ, но <b>не открывает <code>psql</code></b>",
+    "Теперь урок ученика, m4-03, двадцать один экран. Он без кода: ученик видит таблицу и документ, сравнивает, выбирает, но терминал PostgreSQL не открывает. Вы сегодня всё сделали руками, поэтому в каждом блоке у вас есть одно дополнение."
+   ],
+   "b": [
+    "Вступление и форма: <b>«оба варианта верны»</b>, затем разница таблицы и документа",
+    "Урок начинается с вопроса: это похоже на SQL или на NoSQL? Правильный ответ: оба, зависит от задачи. Затем два вида и форма: ученик раскладывает карточки по колонкам таблицы. Вы добавляете: в таблице тип колонки задаётся заранее, а в документе поле свободное."
+   ],
+   "c": [
+    "Блок сильных сторон — то, что вы видели сегодня: <b>JOIN и последний телефон</b>; а чат — сила NoSQL",
+    "Третий блок вам самый знакомый: JOIN, последний телефон и поток чата. Ученик видит JOIN как связь через id, вы называете строку on. В примере с чатом сила NoSQL: очень много простых сообщений, связей мало. Не отрицайте это, это правда."
+   ],
+   "d": [
+    "Указатель решения <b>состоит из четырёх вопросов</b>; на практике ученик выбирает базу для своего проекта",
+    "В четвёртом и пятом блоках ученик учится принимать решение. Указатель решения состоит из четырёх вопросов: связаны ли данные, жёсткая ли форма, дорого ли обходится ошибка, и нужно ли огромное, простое, быстрое хранение. Затем он видит, почему выбран PostgreSQL, и учится подгонять совет AI под проект. На практике ученик выбирает базу для своего проекта и пишет две таблицы на бумаге: образец это users и posts, которые вы создали сегодня."
+   ],
+   "e": [
+    "Вывод: ученик учится выбирать, а вы можете <b>показать каждое слово в базе</b>",
+    "Вывод: на m4-03 ученик учится выбирать и не пишет код. Время, предложение: девяносто минут. Вступление и форма двадцать, сильные стороны двадцать пять, решение и почему PostgreSQL двадцать, закрепление и практика двадцать, итог пять. Если сильный ученик спросит, откройте свой сегодняшний терминал PostgreSQL и покажите."
+   ]
+  }
+ },
+ "26": {
+  "kicker": "Этап 6 · как вести урок ученика",
+  "title": "Урок ученика объясняет термины бытовыми словами — вы связываете их с терминами",
+  "seg": {
+   "a": [
+    "Урок ученика объясняет термины бытовыми словами, а вы <b>называете оба вместе</b>",
+    "Теперь посмотрим, какие слова используются в уроке ученика. Урок ученика курса AI Startup объясняет термины бытовыми словами: вместо таблицы таблица Excel, вместо документа разные бумаги в папке. Вы знаете и то, и другое и в классе называете вместе: сначала слово из урока ученика, потом настоящий термин."
+   ],
+   "b": [
+    "Таблица — <b>таблица Excel</b>, документ — <b>разные бумаги в папке</b>",
+    "Таблица похожа на таблицу Excel: в каждой строке одни и те же колонки. А документ как разные бумаги в папке: у каждого свои поля, в фигурных скобках. MongoDB и Firebase в уроке ученика это пример документной базы."
+   ],
+   "c": [
+    "В уроке ученика JOIN — «связь через id», а последний телефон называется <b>«контроль SQL»</b>",
+    "В уроке ученика JOIN объясняется как связь двух таблиц через id. А пример с последним телефоном называется контроль SQL, его термин транзакция. Указатель решения в уроке состоит из четырёх вопросов: связаны ли данные, жёсткая ли форма, дорого ли обходится ошибка, и нужно ли огромное, простое, быстрое хранение. Ученик должен помнить эти четыре вопроса."
+   ],
+   "d": [
+    "Вывод: <b>сначала слово ученика, потом термин</b> — «похоже на таблицу Excel, то есть table»",
+    "Вывод: в классе называйте слова парами, например: похоже на таблицу Excel, термин table, каждая строка одна запись. Сравнение объясняет задачу. А разницу показываете вы: Excel правило не проверяет, а PostgreSQL отклоняет и пустое имя, и несуществующего автора."
+   ]
+  }
+ },
+ "27": {
+  "kicker": "Этап 6 · в классе",
+  "title": "Два упрощения и пять вопросов ученика — готовые ответы",
+  "seg": {
+   "a": [
+    "Два места в уроке <b>упрощены</b> — сравним с тем, что вы видели в опыте",
+    "Последняя подготовка. В уроке ученика два места упрощены. Это не ошибка, так сказано для подростка. Но вы должны знать, как на самом деле, потому что сильный ученик обязательно спросит."
+   ],
+   "b": [
+    "Последний телефон: в уроке «транзакция», на деле <b>условие и блокировка</b> — Mongo тоже продала один раз",
+    "Первое: последний телефон. В уроке говорится, что его спасает контроль SQL, транзакция. В опыте вы видели: телефон спасли условие в запросе и блокировка строки, Mongo тоже продала его один раз. Фразы из урока достаточно. Если спросят, скажите: база заново проверяет условие, второй покупатель ждёт."
+   ],
+   "c": [
+    "В NoSQL связь есть, но её охраняет <b>код, а не база</b>",
+    "Второе: в уроке говорится, что в NoSQL документы сложно связывать. На самом деле связь есть, populate вы знаете сами. Разница в другом: Mongo без ошибки сохранила несуществующего автора. В классе скажите так: связать можно, но правильность держит код, а не база."
+   ],
+   "d": [
+    "<b>Пять вопросов</b> ученика: Mongo, MySQL, Excel, Firebase и короткий <code>id</code>",
+    "Внизу готовые ответы на пять вопросов ученика: Mongo плохая, чем отличается от MySQL, разве это не просто Excel, что такое Firebase и почему id короткий. Нажмите карточку и прочитайте. Чаще всего спрашивают про Excel."
+   ],
+   "e": [
+    "Вывод: <b>не ругайте Mongo</b> — выбор по четырём вопросам, разницу показывайте в базе",
+    "Вывод: в классе не ругайте Mongo, вы сами видели, она многое умеет. Выбор всегда обосновывайте четырьмя вопросами указателя решения. Разницу показывайте не словами, а в терминале PostgreSQL: напишите пост несуществующему автору и прочитайте сообщение вместе."
+   ]
+  }
+ },
+ "28": {
+  "kicker": "Самопроверка",
+  "title": "Восемь вопросов. Одна попытка. Шесть верных — вы прошли",
+  "final": [
+   {
+    "q": "Чем в PostgreSQL делается populate() из Mongo?",
+    "e": "JOIN соединяет две таблицы во время запроса; REFERENCES — пара для ref."
+   },
+   {
+    "q": "На Mac psql -U postgres → role \"postgres\" does not exist. Что делаете?",
+    "e": "Установлено через Homebrew: superuser — пользователь Mac, роли postgres нет.",
+    "o": [
+     "Создать роль через createuser -s postgres",
+     "Ввести пароль заново и снова подключиться",
+     "Заново сделать Initialize в Postgres.app",
+     "Выполнить команду CREATE DATABASE postgres;"
+    ]
+   },
+   {
+    "q": "В users нет 99-го пользователя. Что вернёт INSERT INTO posts (user_id, izoh) VALUES (99, '…');?",
+    "e": "posts_user_id_fkey: Key (user_id)=(99) is not present in table \"users\".",
+    "o": [
+     "INSERT 0 1 — пост сохранится без автора",
+     "99-й пользователь сам добавится в users",
+     "Ошибка внешнего ключа, пост не сохранится",
+     "Ошибка NOT NULL — автор пустой"
+    ]
+   },
+   {
+    "q": "Приглашение postgres=#. SELECT * FROM posts; → relation \"posts\" does not exist, хотя таблицу вы создали. Что делаете?",
+    "e": "Таблица в базе blog; приглашение показывает другую базу.",
+    "o": [
+     "Создать таблицу заново и снова написать запрос",
+     "Перезапустить сервер",
+     "Проверить пароль и войти заново",
+     "\\c blog — подключиться к нужной базе"
+    ]
+   },
+   {
+    "q": "В результате должен быть и пользователь без постов. Какой запрос?",
+    "e": "LEFT JOIN выводит все строки левой таблицы; sardor — с пустым текстом.",
+    "o": [
+     null,
+     null,
+     "SELECT * FROM users, posts без JOIN",
+     "Убрать строку ON"
+    ]
+   },
+   {
+    "q": "Покупатель 1 сделал BEGIN + UPDATE … WHERE stock > 0, COMMIT ещё нет. Покупатель 2 отправил тот же UPDATE. Что произойдёт?",
+    "e": "Строка занята — покупатель 2 ждёт, потом заново проверяет условие: stock 0.",
+    "o": [
+     "Сразу UPDATE 1, телефон обоим",
+     "Ждёт, после COMMIT покупателя 1 — UPDATE 0",
+     "Сразу ошибка CHECK — телефон не продаётся никому",
+     "stock станет -1, получат оба"
+    ]
+   },
+   {
+    "q": "Внутри транзакции была ошибка, потом написали COMMIT;. Что ответит psql?",
+    "e": "Транзакция с ошибкой отменяется: COMMIT; → ROLLBACK, orders пуста.",
+    "o": [
+     null,
+     null,
+     "Ничего",
+     null
+    ]
+   },
+   {
+    "q": "Ученик: «NoSQL современнее, для своего интернет-магазина возьму MongoDB». Что скажете?",
+    "e": "Выбирают по задаче, а не по моде; в магазине 3 признака на стороне SQL.",
+    "o": [
+     "Верно, NoSQL новее — берите её везде",
+     "MongoDB медленная, не берите её вообще",
+     "Данные связаны, ошибка дорогая — PostgreSQL",
+     "Разницы нет — пусть ученик берёт что хочет"
+    ]
+   }
+  ]
+ },
+ "29": {
+  "kicker": "Итог",
+  "title": "Теперь вы знаете"
+ }
+};
+// RS(k) — darsga xos ruscha (RU_S.k, ru/<dars>-sahna.js); yo'q bo'lsa null → t() o'zbekchani qoldiradi. wrRu — ovoz → «Matn» (RU_S.SPOKEN, keyin wr).
+function RS(k) { return typeof RU_S !== 'undefined' && RU_S[k] != null ? RU_S[k] : null; }
+function wrRu(s) { return wr((RS('SPOKEN') || []).reduce((a, [x, y]) => a.split(x).join(y), s)); }
+function rsY(key, text) { return { key, text, show: wrRu(text) }; }
+// Yakun segmentlari (ru-umumiy.py: sNNSegments → yakRu): umumiy a/z + RU_S.YAK (id bo'yicha)
+function yakRu(passed, segs) {
+  if (LANG !== 'ru') return segs;
+  const Y = { a_pass: rsY('<b>Отлично!</b> Вы хорошо прошли урок — соберём сегодняшний урок одним взглядом', 'Отлично! Вы хорошо прошли урок. Теперь соберём всё, что узнали сегодня, одним взглядом.'), a_fail: rsY('Вы дошли до конца урока — советую <b>пройти тест заново</b>', 'Вы дошли до конца урока. В итоговом тесте нужно было шесть баллов, перед завершением советую пройти тест заново. А сейчас соберём сегодняшний урок одним взглядом.'), z: rsY('Спасибо! Нажмите кнопку <b>«Завершить урок»</b>', 'Спасибо. Нажмите кнопку «Завершить урок», урок будет отмечен как пройденный.'), ...Object.fromEntries(Object.entries(RS('YAK') || {}).map(([k, [key, text]]) => [k, rsY(key, text)])) };
+  return segs.map((s) => ({ ...s, ...(Y[s.id === 'a' ? (passed ? 'a_pass' : 'a_fail') : s.id] || {}) }));
+}
+(function ruMdtQo() {
+  const segRu = (n) => { const r = RU_MDT[n] && RU_MDT[n].seg; if (!r) return undefined; const o = {}; Object.keys(r).forEach((id) => { const [key, text] = r[id]; o[id] = { ...(key != null ? { key } : {}), ...(text != null ? { text, show: wrRu(text) } : {}) }; }); return o; };
+  const head = (n) => { const r = RU_MDT[n] || {}; const o = {}; ['kicker', 'eyebrow', 'title'].forEach((k) => { if (r[k] != null) o[k] = r[k]; }); const s = segRu(n); if (s) o.segments = s; return o; };
+  const mdt = {}; Object.keys(RU_MDT).forEach((n) => { const r = { ...RU_MDT[n] }; if (r.seg) r.seg = MDT[n].seg.map(([id]) => (r.seg[id] ? [null, r.seg[id][0], r.seg[id][1]] : null)); mdt[n] = r; });
+  ru(MDT, mdt);
+  ru(S1, { ...head(1), ...((typeof RU_S !== 'undefined' && RU_S.S1) || {}) });
+  ru(S2SQL, { ...head(2), ...((typeof RU_S !== 'undefined' && RU_S.S2SQL) || {}) });
+  ru(S2, { ...head(3), ...((typeof RU_S !== 'undefined' && RU_S.S2) || {}) });
+  ru(S3, { ...head(4), ...((typeof RU_S !== 'undefined' && RU_S.S3) || {}) });
+  ru(S4, { ...head(5), ...((typeof RU_S !== 'undefined' && RU_S.S4) || {}) });
+  ru(S6, { ...head(7), ...((typeof RU_S !== 'undefined' && RU_S.S6) || {}) });
+  ru(S7, { ...head(8), ...((typeof RU_S !== 'undefined' && RU_S.S7) || {}) });
+  ru(S8, { ...head(9), ...((typeof RU_S !== 'undefined' && RU_S.S8) || {}) });
+  ru(P1, { ...head(10), ...((typeof RU_S !== 'undefined' && RU_S.P1) || {}) });
+  ru(S10, { ...head(11), ...((typeof RU_S !== 'undefined' && RU_S.S10) || {}) });
+  ru(S11, { ...head(12), ...((typeof RU_S !== 'undefined' && RU_S.S11) || {}) });
+  ru(S12, { ...head(13), ...((typeof RU_S !== 'undefined' && RU_S.S12) || {}) });
+  ru(P2, { ...head(15), ...((typeof RU_S !== 'undefined' && RU_S.P2) || {}) });
+  ru(S15, { ...head(16), ...((typeof RU_S !== 'undefined' && RU_S.S15) || {}) });
+  ru(P3, { ...head(18), ...((typeof RU_S !== 'undefined' && RU_S.P3) || {}) });
+  ru(S18, { ...head(19), ...((typeof RU_S !== 'undefined' && RU_S.S18) || {}) });
+  ru(S19, { ...head(20), ...((typeof RU_S !== 'undefined' && RU_S.S19) || {}) });
+  ru(S20, { ...head(21), ...((typeof RU_S !== 'undefined' && RU_S.S20) || {}) });
+  ru(P4, { ...head(23), ...((typeof RU_S !== 'undefined' && RU_S.P4) || {}) });
+  ru(S23, { ...head(24), ...((typeof RU_S !== 'undefined' && RU_S.S23) || {}) });
+  ru(S24, { ...head(25), ...((typeof RU_S !== 'undefined' && RU_S.S24) || {}) });
+  ru(S25, { ...head(26), ...((typeof RU_S !== 'undefined' && RU_S.S25) || {}) });
+  ru(S26, { ...head(27), ...((typeof RU_S !== 'undefined' && RU_S.S26) || {}) });
+  ru(FINAL, RU_MDT[28].final);
+})();

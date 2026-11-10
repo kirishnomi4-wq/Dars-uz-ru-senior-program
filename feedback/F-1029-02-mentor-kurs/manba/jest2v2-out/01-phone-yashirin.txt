@@ -1,0 +1,5 @@
+# telegram.service.ts ichida:
+12:const PHONE = /^\+?\d{9,13}$/;
+104:        await this.users.setState(user, 'WAITING_PHONE');
+155:    if (user.state === 'WAITING_PHONE') {
+157:      if (!PHONE.test(phone)) return ctx.reply(texts.badPhone);

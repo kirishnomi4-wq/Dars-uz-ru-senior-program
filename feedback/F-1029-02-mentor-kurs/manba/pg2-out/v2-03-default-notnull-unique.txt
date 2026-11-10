@@ -1,0 +1,56 @@
+INSERT INTO products (price, stock) VALUES (30000, 4);
+INSERT 0 1
+SELECT * FROM products WHERE name IS NULL;
+ id | name | price | stock 
+----+------+-------+-------
+  5 |      | 30000 |     4
+(1 row)
+
+ALTER TABLE products ALTER COLUMN name SET NOT NULL;
+ERROR:  column "name" of relation "products" contains null values
+DELETE FROM products WHERE name IS NULL;
+DELETE 1
+ALTER TABLE products ALTER COLUMN name SET NOT NULL;
+ALTER TABLE
+INSERT INTO products (price, stock) VALUES (30000, 4);
+ERROR:  null value in column "name" of relation "products" violates not-null constraint
+DETAIL:  Failing row contains (6, null, 30000, 4).
+ALTER TABLE products ALTER COLUMN stock SET DEFAULT 0;
+ALTER TABLE
+INSERT INTO products (name, price) VALUES ('Planshet', 300000) RETURNING *;
+ id |   name   | price  | stock 
+----+----------+--------+-------
+  7 | Planshet | 300000 |     0
+(1 row)
+
+INSERT 0 1
+ALTER TABLE products ADD CONSTRAINT products_name_unique UNIQUE (name);
+ALTER TABLE
+INSERT INTO products (name, price, stock) VALUES ('Kolonka', 1, 1);
+ERROR:  duplicate key value violates unique constraint "products_name_unique"
+DETAIL:  Key (name)=(Kolonka) already exists.
+                            Table "public.products"
+ Column |  Type   | Collation | Nullable |               Default                
+--------+---------+-----------+----------+--------------------------------------
+ id     | integer |           | not null | nextval('products_id_seq'::regclass)
+ name   | text    |           | not null | 
+ price  | integer |           |          | 
+ stock  | integer |           |          | 0
+Indexes:
+    "products_pkey" PRIMARY KEY, btree (id)
+    "products_name_unique" UNIQUE CONSTRAINT, btree (name)
+Check constraints:
+    "stock_nonneg" CHECK (stock >= 0)
+Referenced by:
+    TABLE "orders" CONSTRAINT "orders_product_id_fkey" FOREIGN KEY (product_id) REFERENCES products(id)
+
+SELECT * FROM products ORDER BY id;
+ id |    name    | price  | stock 
+----+------------+--------+-------
+  1 | Klaviatura |  90000 |     8
+  2 | Sichqoncha |  75000 |    14
+  3 | Quloqchin  |  95000 |     5
+  4 | Kolonka    |  50000 |    10
+  7 | Planshet   | 300000 |     0
+(5 rows)
+

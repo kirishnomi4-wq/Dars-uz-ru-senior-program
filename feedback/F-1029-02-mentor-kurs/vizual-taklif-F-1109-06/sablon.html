@@ -1,0 +1,199 @@
+<title>Mentor kursi vizuali</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: bitta ustun — xulosa, usul, so'ng darslar bo'yicha ekranlar (oldin/keyin + qaror); yuqorida yopishqoq dars navigatsiyasi */
+:root{
+  --bg:#F4F5F7; --panel:#FFFFFF; --ink:#1B2230; --ink2:#556070; --line:#DCE0E6;
+  --accent:#E2451F; --accent-soft:#FDEDE8; --ok:#15803D; --ok-soft:#E3F5E9; --mute-soft:#EEF0F3;
+  --sans:"Noto Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12161C; --panel:#1A2029; --ink:#E7EAEE; --ink2:#A3ACB8; --line:#2C3440;
+  --accent:#FF6A45; --accent-soft:#3A221C; --ok:#4ADE80; --ok-soft:#18301F; --mute-soft:#232A35; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12161C; --panel:#1A2029; --ink:#E7EAEE; --ink2:#A3ACB8; --line:#2C3440;
+  --accent:#FF6A45; --accent-soft:#3A221C; --ok:#4ADE80; --ok-soft:#18301F; --mute-soft:#232A35; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15.5px/1.6 var(--sans);margin:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:1200px;margin:0 auto;padding-block:28px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:32px}
+h1,h2,h3{text-wrap:balance;line-height:1.25;margin:0}
+h1{font-size:clamp(26px,4vw,36px)} h2{font-size:22px} h3{font-size:17.5px}
+p{margin:0;max-width:74ch}
+.eyebrow{font:600 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.muted{color:var(--ink2)}
+.head{display:grid;gap:12px}
+.lead{font-size:17px}
+.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:860px){.grid2{grid-template-columns:1fr}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px;display:grid;gap:12px;min-width:0}
+.tblwrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font-size:14px}
+th,td{text-align:left;padding:5px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-weight:600;color:var(--ink2);font-size:12.5px}
+td.n{text-align:right;font-family:var(--mono)}
+.rules{margin:0;padding-left:20px;display:grid;gap:6px}
+.rules li::marker{color:var(--accent);font-weight:700}
+.pat{display:grid;gap:8px}
+.pat div{display:grid;grid-template-columns:28px 1fr;gap:10px}
+.pat b.k{font:700 13px/26px var(--mono);text-align:center;border-radius:7px;background:var(--accent-soft);color:var(--accent);height:26px}
+.bug{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:10px;padding:12px 14px}
+nav.lessons{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:10px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;border-bottom:1px solid var(--line)}
+nav.lessons a{font:600 13px var(--sans);color:var(--ink);text-decoration:none;border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:4px 12px;white-space:nowrap}
+nav.lessons a.wait{color:var(--ink2);border-style:dashed}
+nav.lessons a span{font:600 11px var(--mono);color:var(--ink2);margin-left:6px}
+nav.lessons a.done span{color:var(--ok)}
+.filt{margin-left:auto;display:flex;gap:6px}
+.filt button{font:600 13px var(--sans);border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:8px;padding:4px 10px;cursor:pointer}
+.filt button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.lesson{display:grid;gap:20px;scroll-margin-top:70px}
+.lesson>h2{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.lesson>h2 small{font:600 13px var(--mono);color:var(--ink2)}
+.item{display:grid;gap:12px;padding:18px;background:var(--panel);border:1px solid var(--line);border-radius:16px;scroll-margin-top:70px}
+.item.keep{background:transparent;border-style:dashed}
+.item-h{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:baseline}
+.tag{font:600 12px var(--mono);padding:2px 8px;border-radius:6px;background:var(--mute-soft);color:var(--ink2)}
+.tag.t{background:var(--ok-soft);color:var(--ok)}
+.shots{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.item.keep .shots{grid-template-columns:minmax(0,560px)}
+@media (max-width:860px){.shots{grid-template-columns:1fr}}
+figure{margin:0;display:grid;gap:6px;min-width:0}
+figcaption{font:600 11.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink2)}
+figure.after figcaption{color:var(--ok)}
+.shot{display:block;width:100%;border-radius:10px;border:1px solid var(--line);cursor:zoom-in;padding:0;background:none}
+.shot img{display:block;width:100%;height:auto;border-radius:10px}
+figure.after .shot{border:2px solid var(--ok)}
+.meta{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:14px}
+@media (max-width:860px){.meta{grid-template-columns:1fr}}
+.meta ul{margin:0;padding-left:18px;display:grid;gap:4px}
+.nums{display:flex;flex-wrap:wrap;gap:8px;align-content:start}
+.num{border:1px solid var(--line);border-radius:10px;padding:6px 12px;display:grid}
+.num small{font-size:12px;color:var(--ink2)}
+.num b{font:600 16px var(--mono)} .num b em{font-style:normal;color:var(--ok)}
+.dec{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.dec label{display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--line);background:var(--panel);border-radius:999px;padding:5px 13px;cursor:pointer;font-weight:600;font-size:14px}
+.dec input{accent-color:var(--accent)}
+.dec label:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.dec label:focus-within{outline:2px solid var(--accent);outline-offset:2px}
+textarea{width:100%;min-height:48px;border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;font:14px var(--sans);background:var(--panel);color:var(--ink);resize:vertical}
+textarea:focus{outline:2px solid var(--accent);outline-offset:1px}
+.wait-box{border:1.5px dashed var(--line);border-radius:14px;padding:14px 16px;color:var(--ink2)}
+.foot{display:grid;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.btn{justify-self:start;background:var(--accent);color:#fff;border:0;border-radius:10px;padding:11px 18px;font:700 15px var(--sans);cursor:pointer}
+.btn:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+pre#out{margin:0;white-space:pre-wrap;font:13px/1.5 var(--mono);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px;max-height:300px;overflow:auto}
+#zoom{position:fixed;inset:0;background:rgba(10,12,16,.88);display:grid;place-items:center;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));z-index:20;cursor:zoom-out}
+#zoom img{max-width:100%;max-height:100%;border-radius:8px}
+</style>
+
+<div class="wrap">
+  <header class="head">
+    <div class="eyebrow">Mentor kursi · vizual · F-1109-06</div>
+    <h1>Gapli kartadan chizmaga: hamma darslar, ekranma-ekran</h1>
+    <p class="lead">12 darsning 331 ta ekrani o'lchandi. Sahnasi zaif ekranlar birma-bir ko'rib chiqildi: har biriga yo «oldin / keyin» taklifi, yo «o'zgartirish shart emas» va sababi. Siz har biriga qaror berasiz, men shu qaror bo'yicha darsga qo'yaman.</p>
+    <p class="muted">«Keyin» suratlari jonli saytda olingan: dars sahifasi ochilib, faqat brauzer nusxasida o'ng sahna almashtirilgan. Dars fayllariga tegilmagan. Chizmalardagi raqam, vaqt, xato matni va satr raqamlari darsning haqiqiy chiqishlaridan.</p>
+  </header>
+
+  <section class="grid2">
+    <div class="panel">
+      <h2>Usul</h2>
+      <ol class="rules">
+        <li><b>Almashtiramiz, qo'shmaymiz.</b> Gapli karta chizmaga aylanadi.</li>
+        <li><b>Chizma mexanizmni ko'rsatadi:</b> oqim, holat, vaqt, «oldin va keyin». Bezak yo'q.</li>
+        <li><b>Faqat haqiqiy ma'lumot</b> — darsning o'z chiqishidan.</li>
+        <li><b>Ovoz bilan qadamma-qadam ochiladi;</b> suratlar oxirgi holatni ko'rsatadi.</li>
+        <li><b>7 soniya testi:</b> tushunarsiz bo'lsa — soddalashtiriladi.</li>
+      </ol>
+      <div class="pat">
+        <div><b class="k">A</b><p><b>Gapli karta</b> — mexanizm so'z bilan aytilgan, sahna bo'sh.</p></div>
+        <div><b class="k">B</b><p><b>Xulosada rasm yo'qoladi</b> — o'rta qadamdagi kod/jadval oxirida yashiriladi.</p></div>
+        <div><b class="k">C</b><p><b>Kichik va xira chizma</b> — asosiy voqea ko'rinmaydi.</p></div>
+      </div>
+    </div>
+    <div class="panel">
+      <h2>O'lchov</h2>
+      <p class="muted">Tushuntirish ekranlari; o'ng sahnaning 30% dan kami to'lganlar.</p>
+      <div class="tblwrap"><table id="stat"><thead><tr><th>Dars</th><th>Ekran</th><th>Zaif</th><th>Holat</th></tr></thead><tbody></tbody></table></div>
+      <p class="bug"><b>Alohida xato:</b> Jest-2, 15-ekran — chap sarlavha kesilgan («…not.toHaveBeenCalle»). Qaroringizdan qat'i nazar tuzatiladi.</p>
+    </div>
+  </section>
+
+  <nav class="lessons" id="nav" aria-label="Darslar"></nav>
+  <div id="list"></div>
+
+  <section class="foot">
+    <h2>Javobingiz</h2>
+    <p class="muted">Tanlovlar shu brauzerda saqlanadi. «Javobni nusxalash» ni bosing va chatga joylang.</p>
+    <textarea id="n-umumiy" placeholder="Umumiy izoh: usul haqida, boshqa ekranlar haqida"></textarea>
+    <button class="btn" id="copy" type="button">Javobni nusxalash</button>
+    <pre id="out" aria-live="polite"></pre>
+  </section>
+</div>
+<div id="zoom" hidden><img alt=""></div>
+
+<script>
+const ITEMS=__ITEMS__, STAT=__STAT__, TAYYOR=__TAYYOR__, TART=__TART__;
+const STATNOM={'PostgreSQL-1':'PG-1','PostgreSQL-2':'PG-2','WebSocket-1':'WS-1','WebSocket-2':'WS-2'};
+const KEY='mk-vizual-f110906';
+let saved={}; try{saved=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const slug=d=>d.toLowerCase().replace(/[^a-z0-9]+/g,'-');
+// o'lchov jadvali
+document.querySelector('#stat tbody').innerHTML=STAT.map(r=>{const d=STATNOM[r[0]]||r[0];const t=TAYYOR.includes(d);return `<tr><td>${esc(r[0])}</td><td class="n">${r[1]}</td><td class="n">${r[2]}</td><td>${t?'<span style="color:var(--ok);font-weight:600">tayyor</span>':'<span class="muted">tayyorlanmoqda</span>'}</td></tr>`}).join('')+
+ `<tr><td><b>Jami</b></td><td class="n"><b>${STAT.reduce((a,r)=>a+r[1],0)}</b></td><td class="n"><b>${STAT.reduce((a,r)=>a+r[2],0)}</b></td><td></td></tr>`;
+// navigatsiya
+const by={}; ITEMS.forEach(r=>(by[r.dars]=by[r.dars]||[]).push(r));
+const nav=document.getElementById('nav');
+nav.innerHTML=TART.map(d=>by[d]?`<a href="#d-${slug(d)}" class="${TAYYOR.includes(d)?'done':'wait'}">${esc(d)}<span>${by[d].filter(r=>r.tur==='taklif').length}/${by[d].length}</span></a>`:(STAT.find(s=>(STATNOM[s[0]]||s[0])===d)?`<a href="#d-${slug(d)}" class="wait">${esc(d)}<span>…</span></a>`:'')).join('')+
+ `<div class="filt" role="group" aria-label="Filtr"><button type="button" data-f="all" aria-pressed="true">Hammasi</button><button type="button" data-f="taklif" aria-pressed="false">Takliflar</button><button type="button" data-f="qoldirish" aria-pressed="false">Qoldirilgan</button></div>`;
+const DEC={taklif:[['qabul','Qabul'],['ozgartirib',"O'zgartirib qabul"],['rad','Rad']],qoldirish:[['rozi','Rozi — qoldiramiz'],['taklif','Taklif tayyorla']]};
+function card(r){
+  const s=saved[r.id]||{};
+  const radios=DEC[r.tur].map(([v,l])=>`<label><input type="radio" name="d-${r.id}" id="d-${r.id}-${v}" value="${v}" ${s.d===v?'checked':''}> ${l}</label>`).join('');
+  const shots=r.tur==='taklif'
+   ?`<figure><figcaption>Oldin · hozirgi dars</figcaption><button class="shot" type="button" aria-label="Oldin suratini kattalashtirish"><img src="${r.img_o}" alt="${esc(r.dars)} ${r.ekran}-ekran, hozir" loading="lazy" width="1440" height="810"></button></figure>
+     <figure class="after"><figcaption>Keyin · taklif</figcaption><button class="shot" type="button" aria-label="Keyin suratini kattalashtirish"><img src="${r.img_k}" alt="${esc(r.dars)} ${r.ekran}-ekran, taklif" loading="lazy" width="1440" height="810"></button></figure>`
+   :`<figure><figcaption>Hozirgi dars</figcaption><button class="shot" type="button" aria-label="Suratni kattalashtirish"><img src="${r.img_o}" alt="${esc(r.dars)} ${r.ekran}-ekran" loading="lazy" width="1440" height="810"></button></figure>`;
+  const meta=r.tur==='taklif'
+   ?`<div class="meta"><div><p class="muted"><b>Hozir:</b> ${esc(r.oldin)}</p><ul>${r.keyin.map(k=>`<li>${esc(k)}</li>`).join('')}</ul></div><div class="nums"><div class="num"><small>Sahna to'lgani</small><b>${r.fill[0]}% → <em>${r.fill[1]}%</em></b></div>${r.blok?`<div class="num"><small>Alohida bloklar</small><b>${r.blok[0]} → <em>${r.blok[1]}</em></b></div>`:''}</div></div>`
+   :`<p class="muted"><b>Nega qoldiriladi:</b> ${esc(r.sabab)}</p>`;
+  return `<article class="item ${r.tur==='qoldirish'?'keep':''}" id="${r.id}" data-tur="${r.tur}">
+    <div class="item-h"><h3>${r.ekran}-ekran — ${esc(r.mavzu)}</h3>${r.naqsh&&r.naqsh!=='-'?`<span class="tag">naqsh ${r.naqsh}</span>`:''}<span class="tag ${r.tur==='taklif'?'t':''}">${r.tur==='taklif'?'taklif':'o\'zgartirish shart emas'}</span></div>
+    <div class="shots">${shots}</div>${meta}
+    <div class="dec" role="radiogroup" aria-label="${r.id} qarori">${radios}</div>
+    <textarea id="n-${r.id}" placeholder="Izoh">${esc(s.n||'')}</textarea>
+  </article>`;
+}
+document.getElementById('list').innerHTML=TART.map(d=>{
+  if(by[d]) return `<section class="lesson" id="d-${slug(d)}"><h2>${esc(d)} <small>${by[d].filter(r=>r.tur==='taklif').length} taklif · ${by[d].filter(r=>r.tur!=='taklif').length} qoldirildi</small></h2>${by[d].map(card).join('')}${TAYYOR.includes(d)?'':'<div class="wait-box">Bu darsning qolgan zaif ekranlari tayyorlanmoqda. Sahifa shu havolada yangilanadi.</div>'}</section>`;
+  const st=STAT.find(s=>(STATNOM[s[0]]||s[0])===d); if(!st) return '';
+  return `<section class="lesson" id="d-${slug(d)}"><h2>${esc(d)}</h2><div class="wait-box">${st[2]?`Tayyorlanmoqda: ${st[2]} ta zaif ekran ko'rib chiqiladi. Sahifa shu havolada yangilanadi.`:'Zaif ekran topilmadi — sahnalar to\'la.'}</div></section>`;
+}).join('');
+// filtr
+nav.addEventListener('click',e=>{const b=e.target.closest('.filt button'); if(!b) return; nav.querySelectorAll('.filt button').forEach(x=>x.setAttribute('aria-pressed',x===b)); const f=b.dataset.f; document.querySelectorAll('.item').forEach(it=>it.hidden=!(f==='all'||it.dataset.tur===f));});
+// javob
+const L={qabul:'Qabul',ozgartirib:"O'zgartirib qabul",rad:'Rad',rozi:'Rozi — qoldiramiz',taklif:'Taklif tayyorla'};
+try{if(saved.__umumiy) document.getElementById('n-umumiy').value=saved.__umumiy}catch(e){}
+function collect(){
+  const st={};
+  ITEMS.forEach(r=>{const x=document.querySelector(`input[name="d-${r.id}"]:checked`);st[r.id]={d:x?x.value:'',n:document.getElementById('n-'+r.id).value.trim()}});
+  st.__umumiy=document.getElementById('n-umumiy').value;
+  try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}
+  const done=ITEMS.filter(r=>st[r.id].d).length;
+  const lines=[`F-1109-06 vizual — javob (${done}/${ITEMS.length} ta qaror)`];
+  let cur='';
+  ITEMS.forEach(r=>{const s=st[r.id]; if(r.dars!==cur){cur=r.dars;lines.push('— '+cur)} lines.push(`${r.id} · ${r.ekran}-ekran: ${s.d?L[s.d]:'tanlanmagan'}${s.n?' · '+s.n:''}`)});
+  if(st.__umumiy.trim()) lines.push('Umumiy: '+st.__umumiy.trim());
+  document.getElementById('out').textContent=lines.join('\n'); return lines.join('\n');
+}
+document.addEventListener('input',collect); document.addEventListener('change',collect); collect();
+document.getElementById('copy').addEventListener('click',()=>{const t=collect(),b=document.getElementById('copy');
+  navigator.clipboard.writeText(t).then(()=>{b.textContent='Nusxalandi';setTimeout(()=>b.textContent='Javobni nusxalash',1800)})
+  .catch(()=>{const r=document.createRange();r.selectNodeContents(document.getElementById('out'));const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Matn belgilandi — Ctrl+C'})});
+const z=document.getElementById('zoom');
+document.addEventListener('click',e=>{const b=e.target.closest('.shot'); if(b){z.querySelector('img').src=b.querySelector('img').src;z.hidden=false;return} if(e.target.closest('#zoom')) z.hidden=true;});
+document.addEventListener('keydown',e=>{if(e.key==='Escape') z.hidden=true});
+</script>

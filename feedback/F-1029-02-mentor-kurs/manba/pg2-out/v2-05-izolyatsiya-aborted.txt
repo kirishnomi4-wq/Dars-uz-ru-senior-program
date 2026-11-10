@@ -1,0 +1,13 @@
+$ node izolyatsiya.js
+Boshida, A seansi: {"name":"Klaviatura","price":90000}
+Boshida, B seansi: {"name":"Klaviatura","price":90000}
+A: BEGIN;
+A: UPDATE products SET price = 1 WHERE id = 1;  (COMMIT hali yo'q)
+A ko'radi: {"name":"Klaviatura","price":1}
+B ko'radi: {"name":"Klaviatura","price":90000}
+A: COMMIT;
+B endi ko'radi: {"name":"Klaviatura","price":1}
+A: BEGIN;
+A: SELECT 1/0;  →  ERROR: division by zero
+A: SELECT name FROM products WHERE id = 1;  →  ERROR: current transaction is aborted, commands ignored until end of transaction block
+A: COMMIT;  →  baza javobi: ROLLBACK

@@ -1,0 +1,25 @@
+$ gh pr view 1
+title:	ci: smoke job (PostgreSQL xizmati) va README badge
+state:	OPEN
+author:	Azizbekcrypto (Azizbek)
+labels:	
+assignees:	
+reviewers:	
+projects:	
+milestone:	
+number:	1
+url:	https://github.com/Azizbekcrypto/OrderBotNest/pull/1
+additions:	29
+deletions:	1
+auto-merge:	disabled
+--
+Lentaga ikkinchi job: `smoke` — `services: postgres:18`, `DATABASE_URL` secret'dan, `npm run smoke`. README'da lenta nishoni (badge). CI/CD-2 mentor darsi uchun (F-1104-21).
+
+$ gh pr checks 1
+smoke	pass	39s	https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41845936594/job/126629568615	
+smoke	pass	35s	https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41846225069/job/126630675440	
+test	pass	24s	https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41845936594/job/126629310338	
+test	pass	20s	https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41846225069/job/126630420521	
+
+## API: pulls/1
+{"base":"main","head":"lenta-smoke","html_url":"https://github.com/Azizbekcrypto/OrderBotNest/pull/1","mergeable":true,"mergeable_state":"clean","number":1,"state":"open","title":"ci: smoke job (PostgreSQL xizmati) va README badge"}

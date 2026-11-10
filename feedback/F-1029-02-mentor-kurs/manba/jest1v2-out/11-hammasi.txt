@@ -1,0 +1,29 @@
+$ npm test -- --verbose
+
+> order-bot-nest@1.0.0 test
+> jest --verbose
+
+PASS src/api/telegram/keyboards.spec.ts
+  orderKeyboard
+    ✓ yangi buyurtma — Tasdiqlash va Bekor (3 ms)
+    ✓ tasdiqlangan — Yetkazildi va Bekor (1 ms)
+    ✓ yetkazilgan va bekor qilingan — tugma yo'q (1 ms)
+  catalogKeyboard
+    ✓ birinchi sahifada ◀ yo'q (14 ms)
+    ✓ o'rtada ikkalasi bor
+    ✓ oxirgi sahifada ▶ yo'q
+    ✓ bitta sahifa — faqat 1/1
+    ✓ tugagan mahsulot bosilmaydi
+
+PASS src/api/telegram/texts.spec.ts
+  som
+    ✓ 120000 ni so'mda yozadi (1 ms)
+    ✓ kichik sonda probel yo'q
+
+Test Suites: 2 passed, 2 total
+Tests:       10 passed, 10 total
+Snapshots:   0 total
+Time:        0.462 s, estimated 1 s
+Ran all test suites.
+[chiqish kodi: 0]
+

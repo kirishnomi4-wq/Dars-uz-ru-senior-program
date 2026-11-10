@@ -41,18 +41,18 @@ function Screen18(p) {
   return <Lesson p={p} S={S18} scene={({ seg, beat }) => <>
     <div className="pg-row"><span>products · id 1 · Telefon</span><span className={`v${beat >= 3 ? ' z' : ''}`}>stock {beat >= 3 ? 0 : 1}</span></div>
     {seg.v === 'intro' && <div className="pg-two">
-      <div className="mk-card"><h5>1-xaridor · Ali</h5><div style={{ fontSize: 15 }}>«Sotib olish» — 0 s</div></div>
-      <div className="mk-card"><h5>2-xaridor · Vali</h5><div style={{ fontSize: 15 }}>«Sotib olish» — 1 s</div></div>
+      <div className="mk-card"><h5>{t('1-xaridor · Ali', 'Покупатель 1 · Ali')}</h5><div style={{ fontSize: 15 }}>{t('«Sotib olish» — 0 s', '«Купить» — 0 с')}</div></div>
+      <div className="mk-card"><h5>{t('2-xaridor · Vali', 'Покупатель 2 · Vali')}</h5><div style={{ fontSize: 15 }}>{t('«Sotib olish» — 1 s', '«Купить» — 1 с')}</div></div>
     </div>}
     {seg.v === 'tab' && <Psql lines={PROD18} focus={['ck']} />}
-    {(seg.v === 'two' || seg.v === 'sum') && <div className="pg-two">
-      <div><div className="pg-lab">1-oyna · 1-xaridor <span className="tm">0 s</span></div><Psql lines={X1_18} beat={beat >= 4 ? 3 : beat} focus={beat === 3 ? ['cm'] : []} /></div>
-      <div><div className="pg-lab">2-oyna · 2-xaridor <span className="tm">1 s</span></div><Psql lines={X2_18} beat={beat >= 4 ? 3 : beat} focus={beat === 3 ? ['z'] : []} />
-        {beat === 2 && <div style={{ marginTop: 8 }}><span className="pg-wait">⏳ kutyapti — qator 1-oynada band</span></div>}
-        {beat >= 3 && <div className="mk-tag" style={{ marginTop: 8 }}>3,08 s da tugadi — 1-oyna COMMIT qilguncha kutdi</div>}
+    {seg.v === 'two' && <div className="pg-two">
+      <div><div className="pg-lab">{t('1-oyna · 1-xaridor', 'Окно 1 · покупатель 1')} <span className="tm">{t('0 s', '0 с')}</span></div><Psql lines={X1_18} beat={beat >= 4 ? 3 : beat} focus={beat === 3 ? ['cm'] : []} /></div>
+      <div><div className="pg-lab">{t('2-oyna · 2-xaridor', 'Окно 2 · покупатель 2')} <span className="tm">{t('1 s', '1 с')}</span></div><Psql lines={X2_18} beat={beat >= 4 ? 3 : beat} focus={beat === 3 ? ['z'] : []} />
+        {beat === 2 && <div style={{ marginTop: 8 }}><span className="pg-wait">{t('⏳ kutyapti — qator 1-oynada band', '⏳ ждёт — строка занята в окне 1')}</span></div>}
+        {beat >= 3 && <div className="mk-tag" style={{ marginTop: 8 }}>{t('3,08 s da tugadi — 1-oyna COMMIT qilguncha kutdi', 'завершилось через 3,08 с — ждало, пока окно 1 сделает COMMIT')}</div>}
       </div>
     </div>}
-    {seg.v === 'sum' && <><Psql er lines={CHECK18} /><div className="mk-rule">Telefonni <b>so'rovdagi shart</b> (<code>stock &gt; 0</code>) va <b>qator qulfi</b> saqladi. Shart yozilmasa — <code>CHECK</code> to'xtatadi.</div></>}
+    {seg.v === 'sum' && <><Psql er lines={CHECK18} /><div className="mk-rule">{t(<>Telefonni <b>so'rovdagi shart</b> (<code>stock &gt; 0</code>) va <b>qator qulfi</b> saqladi. Shart yozilmasa — <code>CHECK</code> to'xtatadi.</>, <>Телефон сохранили <b>условие в запросе</b> (<code>stock &gt; 0</code>) и <b>блокировка строки</b>. Если условие не написано — остановит <code>CHECK</code>.</>)}</div></>}
   </>} />;
 }
 
@@ -83,18 +83,18 @@ const S19 = mkS(20, [{ v: 'ddl' }, { v: 'tx', focus: ['ins', 'er'] }, { v: 'tx',
 function Screen19(p) {
   return <Lesson p={p} S={S19} scene={({ seg, beat }) => <>
     <div className="pg-two">
-      <MiniTable name="orders" cols={['id', 'product_id', 'xaridor']} rows={beat === 1 ? [['1', '1', 'vali  · tasdiqlanmagan']] : []} hlRow={beat === 1 ? [0] : []} />
+      <MiniTable name="orders" cols={['id', 'product_id', 'xaridor']} rows={beat === 1 ? [['1', '1', t('vali  · tasdiqlanmagan', 'vali  · не подтверждено')]] : []} hlRow={beat === 1 ? [0] : []} />
       <MiniTable name="products" cols={['id', 'nomi', 'stock']} rows={[['1', 'Telefon', '0']]} hlCol={beat === 1 ? [2] : []} />
     </div>
     {seg.v === 'ddl' && <Psql lines={ORD19} />}
     {seg.v === 'tx' && <Psql lines={TX19} beat={seg.sum ? 2 : beat} focus={seg.focus} />}
-    {seg.v === 'tx' && beat >= 1 && <div className="mk-tag" style={{ margin: 0 }}>Prompt: <code>blog=*#</code> — tranzaksiya ochiq · <code>blog=!#</code> — tranzaksiyada xato bo'ldi</div>}
+    {seg.v === 'tx' && beat >= 1 && <div className="mk-tag" style={{ margin: 0 }}>{t(<>Prompt: <code>blog=*#</code> — tranzaksiya ochiq · <code>blog=!#</code> — tranzaksiyada xato bo'ldi</>, <>Приглашение: <code>blog=*#</code> — транзакция открыта · <code>blog=!#</code> — в транзакции произошла ошибка</>)}</div>}
     {seg.v === 'mongo' && <div className="pg-cmp">
-      <div className="mk-card"><h5><i style={{ background: PG.mongo }} />MongoDB — oxirgi telefon</h5><Doc>{`updateOne({ stock: { $gt: 0 } }, { $inc: { stock: -1 } })\nxaridor1 → modifiedCount: 0\nxaridor2 → modifiedCount: 1\nstock: 0   ← bittaga sotildi`}</Doc>
-        <Doc er>{`tranzaksiya (oddiy mongod):\nXATO: This MongoDB deployment does not support\nretryable writes.`}</Doc></div>
-      <div className="mk-card" style={{ borderColor: PG.pg }}><h5><i style={{ background: PG.pg }} />PostgreSQL</h5><div style={{ fontSize: 14, lineHeight: 1.5 }}>Bir nechta jadval (<code>orders</code> + <code>products</code>) <b>bitta tranzaksiyada</b> — oddiy o'rnatishda ham. Xato bo'lsa — <code>ROLLBACK</code>, yarim ish qolmaydi.</div></div>
+      <div className="mk-card"><h5><i style={{ background: PG.mongo }} />{t('MongoDB — oxirgi telefon', 'MongoDB — последний телефон')}</h5><Doc>{t(`updateOne({ stock: { $gt: 0 } }, { $inc: { stock: -1 } })\nxaridor1 → modifiedCount: 0\nxaridor2 → modifiedCount: 1\nstock: 0   ← bittaga sotildi`, `updateOne({ stock: { $gt: 0 } }, { $inc: { stock: -1 } })\nxaridor1 → modifiedCount: 0\nxaridor2 → modifiedCount: 1\nstock: 0   ← продан одному`)}</Doc>
+        <Doc er>{t(`tranzaksiya (oddiy mongod):\nXATO: This MongoDB deployment does not support\nretryable writes.`, `транзакция (обычный mongod):\nОШИБКА: This MongoDB deployment does not support\nretryable writes.`)}</Doc></div>
+      <div className="mk-card" style={{ borderColor: PG.pg }}><h5><i style={{ background: PG.pg }} />PostgreSQL</h5><div style={{ fontSize: 14, lineHeight: 1.5 }}>{t(<>Bir nechta jadval (<code>orders</code> + <code>products</code>) <b>bitta tranzaksiyada</b> — oddiy o'rnatishda ham. Xato bo'lsa — <code>ROLLBACK</code>, yarim ish qolmaydi.</>, <>Несколько таблиц (<code>orders</code> + <code>products</code>) <b>в одной транзакции</b> — даже при обычной установке. Если ошибка — <code>ROLLBACK</code>, полдела не остаётся.</>)}</div></div>
     </div>}
-    {seg.sum && <div className="mk-rule">Bir nechta jadval birga o'zgarsa — <code>BEGIN … COMMIT</code>. Ichida xato bo'lsa, <code>COMMIT</code> javobi <b>ROLLBACK</b>: hammasi bekor.</div>}
+    {seg.sum && <div className="mk-rule">{t(<>Bir nechta jadval birga o'zgarsa — <code>BEGIN … COMMIT</code>. Ichida xato bo'lsa, <code>COMMIT</code> javobi <b>ROLLBACK</b>: hammasi bekor.</>, <>Если несколько таблиц меняются вместе — <code>BEGIN … COMMIT</code>. Если внутри ошибка, ответ на <code>COMMIT</code> — <b>ROLLBACK</b>: всё отменено.</>)}</div>}
   </>} />;
 }
 
@@ -125,11 +125,11 @@ blog=# SELECT nomi, extra->>'rang' AS rang FROM products WHERE extra->>'rang' = 
 const S20 = mkS(21, [{ v: 'mongo' }, { v: 'alt' }, { v: 'ins' }, { v: 'q' }, { v: 'q', sum: true }]);
 function Screen20(p) {
   return <Lesson p={p} S={S20} scene={({ seg }) => <>
-    {seg.v === 'mongo' && <div style={{ display: 'grid', gap: 8 }}><div className="pg-lab">4-ekran: Mongo'da har hujjat har xil</div><div className="pg-three"><Doc>{`{ "author": "…", "izoh": "…" }`}</Doc><Doc>{`{ "author": "…", "izoh": "…" }`}</Doc><Doc odd>{`{ "muallif": "vali", "matn": "Salom", "like": 5 }`}</Doc></div></div>}
+    {seg.v === 'mongo' && <div style={{ display: 'grid', gap: 8 }}><div className="pg-lab">{t("4-ekran: Mongo'da har hujjat har xil", '4-й экран: в Mongo каждый документ разный')}</div><div className="pg-three"><Doc>{`{ "author": "…", "izoh": "…" }`}</Doc><Doc>{`{ "author": "…", "izoh": "…" }`}</Doc><Doc odd>{`{ "muallif": "vali", "matn": "Salom", "like": 5 }`}</Doc></div></div>}
     {seg.v !== 'mongo' && <Psql lines={ALT20} />}
     {(seg.v === 'ins' || seg.v === 'q') && <Psql lines={INS20} />}
     {seg.v === 'q' && <Psql lines={Q20} focus={['q']} />}
-    {seg.sum && <div className="mk-rule">Hamma qatorda bor muhim maydon — <b>oddiy ustun</b> (qoidasi bilan) · har xil qo'shimcha — <code>jsonb</code>. «PostgreSQL JSON ham saqlaydi» — mana shu misol.</div>}
+    {seg.sum && <div className="mk-rule">{t(<>Hamma qatorda bor muhim maydon — <b>oddiy ustun</b> (qoidasi bilan) · har xil qo'shimcha — <code>jsonb</code>. «PostgreSQL JSON ham saqlaydi» — mana shu misol.</>, <>Важное поле, которое есть в каждой строке, — <b>обычная колонка</b> (со своим правилом) · разные дополнения — <code>jsonb</code>. «PostgreSQL хранит и JSON» — вот этот пример.</>)}</div>}
   </>} />;
 }
 
@@ -150,7 +150,7 @@ function Screen21(p) {
   return <MCRetry {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} q={m.q} opts={m.opts} correct={m.correct} ok={m.ok} okShort={<span dangerouslySetInnerHTML={html(m.okShort)} />} wrong={m.wrong}
     above={<div style={{ marginBottom: 14 }}><Psql lines={TX21} /></div>}
     after={<div style={{ display: 'grid', gap: 10 }}>
-      <div className="mk-tag" style={{ color: T.green, margin: 0 }}>Haqiqiy natija</div>
+      <div className="mk-tag" style={{ color: T.green, margin: 0 }}>{t('Haqiqiy natija', 'Реальный результат')}</div>
       <Psql lines={psql(String.raw`
 blog=!# COMMIT;
 ROLLBACK

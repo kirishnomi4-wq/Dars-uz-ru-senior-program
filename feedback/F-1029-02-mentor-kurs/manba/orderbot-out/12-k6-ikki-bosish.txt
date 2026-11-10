@@ -1,0 +1,12 @@
+--- avval SELECT, keyin INSERT — UNIQUE yo'q, ikki bosish bir vaqtda
+[{"user_id":1,"product_id":2,"qty":2}]
+--- avval SELECT, keyin INSERT — UNIQUE bor
+ok
+ERROR: duplicate key value violates unique constraint "c2_user_id_product_id_key"
+[{"user_id":1,"product_id":2,"qty":1}]
+--- INSERT … ON CONFLICT (user_id, product_id) DO UPDATE SET qty = c2.qty + 1
+RETURNING qty: 1, 2
+[{"user_id":1,"product_id":2,"qty":2}]
+avval SELECT, keyin INSERT, UNIQUE yo'q — 20 urinish, har biri 2 parallel bosish; har urinishda savatdagi qatorlar soni:
+1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+2 qator chiqqan urinishlar: 19/20

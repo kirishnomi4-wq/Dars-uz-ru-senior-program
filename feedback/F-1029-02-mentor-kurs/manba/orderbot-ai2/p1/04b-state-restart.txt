@@ -1,0 +1,30 @@
+=== state senariysi: 1-jarayon ===
+Telegram bot ulandi
+Bobur: /start
+  bot → Bobur: Salom, Bobur! Bu CoddyCamp do'koni boti.
+      /catalog — mahsulotlar
+      /cart — savat
+      /help — yordam
+Bobur: /start
+  bot → Bobur: Salom, Bobur! Bu CoddyCamp do'koni boti.
+      /catalog — mahsulotlar
+      /cart — savat
+      /help — yordam
+Bobur: [tugma add:2]
+  bot → (popup): Sichqoncha savatga qo'shildi (1 ta).
+Bobur: [tugma checkout]
+  bot → Bobur: Buyurtma uchun telefon raqamingizni yozing (masalan, +998901234567):
+
+=== server QAYTA ishga tushdi ===
+Telegram bot ulandi
+Bobur: +998935554433
+  bot → Bobur: Buyurtma #2 qabul qilindi!
+      • Sichqoncha × 1 = 75 000 so'm
+      
+      Jami: 75 000 so'm
+      Telefon: +998935554433
+      Holati: 🆕 Yangi
+  bot → Jasur(admin): 🆕 Yangi buyurtma #2 — Bobur, 75 000 so'm. /orders
+Bobur: /cart
+  bot → Bobur: Savat bo'sh. /catalog dan mahsulot tanlang.
+harness exit 0

@@ -99,7 +99,7 @@ const S8 = {
 };
 function Screen8(p) {
   return <Lesson p={p} S={S8} scene={({ seg, beat }) => (<>
-    <Ide files={APP_FILES} active="src/app.module.ts"><CodePanel file="src/app.module.ts" lines={MOD_LINES} focus={seg.focus} /></Ide>
+    {beat < 4 && <Ide files={APP_FILES} active="src/app.module.ts"><CodePanel file="src/app.module.ts" lines={MOD_LINES} focus={seg.focus} /></Ide>}
     <Block at={3} beat={beat} dim={beat >= 4}><div className="mk-rule">{t(<><b>Ro'yxatda yo'q = Nest uchun yo'q.</b> Controller → <code>controllers</code>, Service → <code>providers</code>, boshqa modul → <code>imports</code>.</>, <><b>Нет в списке = нет для Nest.</b> Controller → <code>controllers</code>, Service → <code>providers</code>, другой модуль → <code>imports</code>.</>)}</div></Block>
     <Block at={4} beat={beat}><div className="mk-light" style={{ padding: 14 }}>
       <div className="mk-tag">{t('Modullar strukturasi', 'Структура модулей')}</div>
@@ -208,14 +208,14 @@ function Screen11(p) {
     const step = (n) => beat >= n ? (beat === n ? ' hl' : '') : '';
     return (
       <Ide files={APP_FILES} active={file}>
-        {seg.st === 'express'
+        {beat < 5 && (seg.st === 'express'
           ? <CodePanel file="express-api · cars.js, orders.js, users.js" numbers={false} lines={[
               { h: `<span class="cm">// cars.js</span>` },
               { h: `<span class="k">const</span> CarsService = <span class="c">require</span>(<span class="s">'./cars.service'</span>);` },
               { h: `<span class="k">const</span> service = <span class="k">new</span> <span class="c">CarsService</span>();` },
               { h: t('<span class="cm">// orders.js — yana require + new … users.js — yana require + new …</span>', '<span class="cm">// orders.js — снова require + new … users.js — снова require + new …</span>') }]} style={{ fontSize: 13 }} />
-          : <CodePanel key={file} file={`${file} · ${t('parcha', 'фрагмент')}`} lines={(inMod ? MOD_LINES.slice(4, 9) : CTRL_LINES.slice(3, 7)).map((l, k) => ({ ...l, n: (inMod ? 5 : 4) + k }))} focus={inMod ? ['l-providers'] : ['l-ctor']} style={{ fontSize: 13 }} />}
-        <div className="mk-light" style={{ padding: 14 }}>
+          : <CodePanel key={file} file={`${file} · ${t('parcha', 'фрагмент')}`} lines={(inMod ? MOD_LINES.slice(4, 9) : CTRL_LINES.slice(3, 7)).map((l, k) => ({ ...l, n: (inMod ? 5 : 4) + k }))} focus={inMod ? ['l-providers'] : ['l-ctor']} style={{ fontSize: 13 }} />)}
+        {beat < 6 && <div className="mk-light" style={{ padding: 14 }}>
           <div className="mk-tag">{t('Server ishga tushganda Nest nima qiladi', 'Что делает Nest при запуске сервера')}</div>
           <div className="mk-row">
             <div className={`mk-box${step(2)}`} style={{ '--c': PART.mod, opacity: beat >= 2 ? 1 : 0.25 }}><h4>1 · app.module.ts</h4><p><code>providers: [AppService]</code> — {t("o'qidi", 'прочитал')}</p></div>
@@ -224,11 +224,11 @@ function Screen11(p) {
             <div className={`mk-arrow${beat >= 4 ? ' on' : ''}`}>→</div>
             <div className={`mk-box${step(4)}`} style={{ '--c': PART.ctrl, opacity: beat >= 4 ? 1 : 0.25 }}><h4>3 · AppController</h4><p>{t('konstruktor tipi', 'тип в конструкторе')} <code>AppService</code> → {t("instance'ni oldi", 'получил instance')}</p></div>
           </div>
-        </div>
+        </div>}
         <Block at={5} beat={beat}><div className="mk-rule">{t(<><b>Dependency Injection</b> — dependency'ni inject qilish: siz yaratmaysiz, Nest <code>providers</code>'ga qarab yaratadi va konstruktorga beradi.</>, <><b>Dependency Injection</b> — внедрение dependency: вы не создаёте, Nest создаёт по <code>providers</code> и передаёт в конструктор.</>)}</div></Block>
-        <Block at={6} beat={beat}><div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10 }}>
+        {beat === 6 && <Block at={6} beat={beat}><div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10 }}>
           {t([['1 instance', 'butun loyihada bitta'], ['Test oson', 'testda soxta Service beriladi, Controller sezmaydi'], ["Bog'lanmagan", 'Controller Service qayerdan kelganini bilmaydi']], [['1 instance', 'один на весь проект'], ['Тест — легко', 'в тесте подставляют фейковый Service, Controller не замечает'], ['Не связаны', 'Controller не знает, откуда пришёл Service']]).map(([h, d], i) => <div key={h} className="mk-card"><h5>{h}</h5><div style={{ fontSize: 13 }}>{d}</div></div>)}
-        </div></Block>
+        </div></Block>}
         <Block at={7} beat={beat}><div className="mk-card" style={{ borderColor: T.accent }}><h5 style={{ color: T.accent }}>{t('Sizning ishingiz — ikkita', 'Ваша работа — две вещи')}</h5><div style={{ fontSize: 14 }}>{t(<>1) Service'ni modulning <code>providers</code>'iga yozish · 2) kerakli joyda konstruktorda so'rash. Qolganini Nest qiladi.</>, <>1) записать Service в <code>providers</code> модуля · 2) попросить его в конструкторе там, где он нужен. Остальное делает Nest.</>)}</div></div></Block>
       </Ide>
     );

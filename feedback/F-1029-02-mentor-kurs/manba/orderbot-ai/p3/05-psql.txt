@@ -1,0 +1,96 @@
+             List of tables
+ Schema |    Name    | Type  |  Owner   
+--------+------------+-------+----------
+ public | cart_items | table | postgres
+ public | migrations | table | postgres
+ public | products   | table | postgres
+ public | users      | table | postgres
+(4 rows)
+
+                                       Table "public.cart_items"
+   Column    |           Type           | Collation | Nullable |                Default                 
+-------------+--------------------------+-----------+----------+----------------------------------------
+ id          | integer                  |           | not null | nextval('cart_items_id_seq'::regclass)
+ telegram_id | bigint                   |           | not null | 
+ product_id  | integer                  |           | not null | 
+ qty         | integer                  |           | not null | 1
+ created_at  | timestamp with time zone |           | not null | now()
+Indexes:
+    "PK_cart_items_id" PRIMARY KEY, btree (id)
+    "UQ_cart_items_user_product" UNIQUE CONSTRAINT, btree (telegram_id, product_id)
+Check constraints:
+    "CHK_cart_items_qty" CHECK (qty > 0)
+Foreign-key constraints:
+    "FK_cart_items_product" FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+    "FK_cart_items_user" FOREIGN KEY (telegram_id) REFERENCES users(telegram_id) ON DELETE CASCADE
+
+ id | telegram_id | product_id | qty |          created_at           
+----+-------------+------------+-----+-------------------------------
+  8 |  5123456789 |          2 |   1 | 2026-11-04 00:25:09.682074+05
+(1 row)
+
+                                   Table "public.migrations"
+  Column   |       Type        | Collation | Nullable |                Default                 
+-----------+-------------------+-----------+----------+----------------------------------------
+ id        | integer           |           | not null | nextval('migrations_id_seq'::regclass)
+ timestamp | bigint            |           | not null | 
+ name      | character varying |           | not null | 
+Indexes:
+    "PK_8c82d7f526340ab734260ea46be" PRIMARY KEY, btree (id)
+
+ id |   timestamp   |             name             
+----+---------------+------------------------------
+  1 | 1793733128247 | CreateProducts1793733128247
+  2 | 1793733435828 | CreateUsers1793733435828
+  3 | 1793733685607 | CreateCartItems1793733685607
+(3 rows)
+
+                                    Table "public.products"
+ Column |          Type          | Collation | Nullable |               Default                
+--------+------------------------+-----------+----------+--------------------------------------
+ id     | integer                |           | not null | nextval('products_id_seq'::regclass)
+ name   | character varying(100) |           | not null | 
+ price  | integer                |           | not null | 
+ stock  | integer                |           | not null | 0
+Indexes:
+    "PK_products_id" PRIMARY KEY, btree (id)
+    "UQ_products_name" UNIQUE CONSTRAINT, btree (name)
+Check constraints:
+    "CHK_products_stock" CHECK (stock >= 0)
+Referenced by:
+    TABLE "cart_items" CONSTRAINT "FK_cart_items_product" FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+
+ id |    name    | price  | stock 
+----+------------+--------+-------
+  1 | Klaviatura | 120000 |     7
+  2 | Sichqoncha |  75000 |    14
+  3 | Quloqchin  |  95000 |     5
+  4 | Kolonka    |  50000 |     8
+  5 | Planshet   | 300000 |     3
+  6 | O'yinchoq  |  30000 |     4
+(6 rows)
+
+                                     Table "public.users"
+   Column    |           Type           | Collation | Nullable |            Default            
+-------------+--------------------------+-----------+----------+-------------------------------
+ telegram_id | bigint                   |           | not null | 
+ name        | character varying(255)   |           | not null | 
+ phone       | character varying(20)    |           |          | 
+ role        | character varying(20)    |           | not null | 'customer'::character varying
+ state       | character varying(20)    |           | not null | 'IDLE'::character varying
+ created_at  | timestamp with time zone |           | not null | now()
+Indexes:
+    "PK_users_telegram_id" PRIMARY KEY, btree (telegram_id)
+Check constraints:
+    "CHK_users_role" CHECK (role::text = ANY (ARRAY['customer'::character varying, 'admin'::character varying]::text[]))
+    "CHK_users_state" CHECK (state::text = ANY (ARRAY['IDLE'::character varying, 'WAITING_PHONE'::character varying]::text[]))
+Referenced by:
+    TABLE "cart_items" CONSTRAINT "FK_cart_items_user" FOREIGN KEY (telegram_id) REFERENCES users(telegram_id) ON DELETE CASCADE
+
+ telegram_id | name  |     phone     |   role   | state |          created_at           
+-------------+-------+---------------+----------+-------+-------------------------------
+         111 | Jasur |               | admin    | IDLE  | 2026-11-04 00:25:09.595696+05
+  5123456789 | Aziza | +998901234567 | customer | IDLE  | 2026-11-04 00:25:09.605605+05
+  5987654321 | Bobur | +998935554433 | customer | IDLE  | 2026-11-04 00:25:10.311621+05
+(3 rows)
+

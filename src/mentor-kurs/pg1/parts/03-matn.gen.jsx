@@ -150,8 +150,8 @@ const MDT = {
    ],
    [
     "e",
-    "Xulosa: tushunchalar deyarli bir xil — farq <b>qoidalar qayerda turishida</b>",
-    "Xulosa: tushunchalarning ko'pi sizga tanish, faqat nomi boshqa. Asosiy farq qoidalar qayerda turishida: Mongo'da kodda, PostgreSQL'da jadvalda. O'quvchi «Mongo'dagi populate qani?» desa, javob: JOIN. Tekshirib olaylik."
+    "Xulosa: tushunchalar ham, buyruqlar ham juft — farq <b>qoidalar qayerda turishida</b>",
+    "Xulosa: tushunchalarning ko'pi sizga tanish, faqat nomi boshqa. Buyruqlar ham juft: create'ning jufti insert into, find'niki select, updateOne'niki update, deleteOne'niki delete. Ularni yozganingizda yonida eslatib o'taman. Asosiy farq qoidalar qayerda turishida: Mongo'da kodda, PostgreSQL'da jadvalda. O'quvchi «Mongo'dagi populate qani?» desa, javob: JOIN. Tekshirib olaylik."
    ]
   ]
  },
@@ -166,10 +166,10 @@ const MDT = {
   "hint": "So'rov paytida ishlaydigan va ikki jadvalni bitta javobga yig'adigan buyruqni qidiring.",
   "correct": 2,
   "opts": [
-   "REFERENCES users(id)",
+   "… REFERENCES users(id)",
    "SERIAL PRIMARY KEY",
-   "JOIN … ON …",
-   "CREATE TABLE"
+   "SELECT … JOIN … ON …",
+   "CREATE TABLE … (…)"
   ],
   "wrong": {
    "0": "Bu refning jufti: bog'lanishni belgilaydi, lekin so'rov natijasini birlashtirmaydi.",
@@ -264,12 +264,12 @@ const MDT = {
    [
     "d",
     "<code>\\l</code> — <b>bazalar ro'yxati</b>: <code>postgres</code> va ikki shablon; <code>\\q</code> — PostgreSQL terminalidan chiqish",
-    "Teskari chiziqcha bilan boshlanadigan buyruqlar PostgreSQL terminalining o'zi uchun, ularga nuqta-vergul kerak emas. Teskari chiziqcha l bazalar ro'yxatini ko'rsatadi: postgres va ikkita template, ya'ni shablon. Shablonlarga tegmaysiz. Teskari chiziqcha q PostgreSQL terminalidan chiqaradi."
+    "Backslash bilan boshlanadigan buyruqlar PostgreSQL terminalining o'zi uchun, ularga nuqta-vergul kerak emas. Backslash l bazalar ro'yxatini ko'rsatadi: postgres va ikkita template, ya'ni shablon. Shablonlarga tegmaysiz. Backslash q PostgreSQL terminalidan chiqaradi."
    ],
    [
     "e",
     "Xulosa: prompt <b>qaysi bazada turganingizni</b> aytadi; SQL — nuqta-vergul bilan, <code>\\</code> buyruqlari — usiz",
-    "Xulosa: prompt'ga doim qarang, u qaysi bazada turganingizni aytadi. SQL buyrug'i nuqta-vergul bilan tugaydi, teskari chiziqchali buyruqlar esa usiz. Endi o'zingiz o'rnatib, ulanib ko'ring."
+    "Xulosa: prompt'ga doim qarang, u qaysi bazada turganingizni aytadi. SQL buyrug'i nuqta-vergul bilan tugaydi, backslash bilan boshlanadigan buyruqlar esa usiz. Endi o'zingiz o'rnatib, ulanib ko'ring."
    ]
   ]
  },
@@ -292,7 +292,7 @@ const MDT = {
    [
     "c",
     "3–4-qadam: <code>psql -U postgres</code>, <code>SELECT version();</code>; isbot — <b>natija qatorining boshi</b>",
-    "Uchinchi: psql minus U postgres bilan ulaning. To'rtinchi: select version so'rovini yurgizing va teskari chiziqcha l bilan bazalarni ko'ring. Isbot maydoniga version natijasini nusxalang, PostgreSQL so'zidan boshlab."
+    "Uchinchi: psql minus U postgres bilan ulaning. To'rtinchi: select version so'rovini yurgizing va backslash l bilan bazalarni ko'ring. Isbot maydoniga version natijasini nusxalang, PostgreSQL so'zidan boshlab."
    ],
    [
     "d",
@@ -314,7 +314,7 @@ const MDT = {
    [
     "b",
     "Mongo'da baza o'zi paydo bo'lardi, bu yerda avval <b><code>CREATE DATABASE</code></b>, keyin <code>\\c</code>",
-    "Mongo'da baza birinchi yozuvda o'zi paydo bo'lardi. PostgreSQL'da uni avval yaratasiz: create database blog. Keyin teskari chiziqcha c blog bilan unga o'tasiz. Prompt'ga qarang: endi postgres emas, blog."
+    "Mongo'da baza birinchi yozuvda o'zi paydo bo'lardi. PostgreSQL'da uni avval yaratasiz: create database blog. Keyin backslash c blog bilan unga o'tasiz. Prompt'ga qarang: endi postgres emas, blog."
    ],
    [
     "c",
@@ -329,7 +329,7 @@ const MDT = {
    [
     "e",
     "Xulosa: baza avval yaratiladi; <code>syntax error</code> bo'lsa — <b>strelka ko'rsatgan so'zdan oldin</b> qarang",
-    "Xulosa: PostgreSQL'da baza oldin yaratiladi va unga teskari chiziqcha c bilan o'tiladi. Ustunning turi va qoidalari jadval bilan birga yoziladi. Syntax error chiqsa, strelka ko'rsatgan so'zdan oldingi joyni tekshiring, odatda u yerda vergul yo'q."
+    "Xulosa: PostgreSQL'da baza oldin yaratiladi va unga backslash c bilan o'tiladi. Ustunning turi va qoidalari jadval bilan birga yoziladi. Syntax error chiqsa, strelka ko'rsatgan so'zdan oldingi joyni tekshiring, odatda u yerda vergul yo'q."
    ]
   ]
  },
@@ -346,22 +346,22 @@ const MDT = {
    [
     "b",
     "<code>\\d posts</code> — jadval tuzilishi; pastda baza o'zi nom bergan <b>tashqi kalit qatori</b>",
-    "Teskari chiziqcha dt jadvallar ro'yxatini, teskari chiziqcha d posts esa jadval tuzilishini ko'rsatadi: ustunlar, turlari, bo'sh bo'la oladimi. Eng pastda Foreign-key constraints qatori. Nomini baza o'zi berdi: jadval, ustun va fkey. Bu nomni keyin xato xabarida ko'rasiz."
+    "Backslash dt jadvallar ro'yxatini, backslash d posts esa jadval tuzilishini ko'rsatadi: ustunlar, turlari, bo'sh bo'la oladimi. Eng pastda Foreign-key constraints qatori. Nomini baza o'zi berdi: jadval, ustun va fkey. Bu nomni keyin xato xabarida ko'rasiz."
    ],
    [
     "c",
     "Uch foydalanuvchi va uch post qo'shildi: <code>INSERT 0 3</code> — oxirgi raqam <b>qatorlar soni</b>",
-    "Endi ma'lumot. Uch foydalanuvchi: ali, vali va sardor. Uch post: ikkitasi ali'niki, bittasi vali'niki. sardor'ning posti yo'q, bu to'rtinchi bosqichda kerak bo'ladi. Javobdagi insert, nol, uch: oxirgi raqam qo'shilgan qatorlar soni."
+    "Endi ma'lumot. Mongoose'da bu User.create edi, bu yerda insert into users, values. Uch foydalanuvchi: ali, vali va sardor. Uch post: ikkitasi ali'niki, bittasi vali'niki. sardor'ning posti yo'q, bu to'rtinchi bosqichda kerak bo'ladi. Javobdagi insert, nol, uch: oxirgi raqam qo'shilgan qatorlar soni."
    ],
    [
     "d",
     "Boshqa bazada tursangiz jadval «yo'q» bo'ladi: prompt'ga qarang va <b><code>\\c blog</code></b> qiling",
-    "Sinfda eng ko'p chiqadigan xatolardan biri. O'quvchi PostgreSQL terminalini qayta ochadi va darhol select qiladi: relation posts does not exist. Jadval bor, faqat u postgres bazasida turibdi. Prompt'ga qarang: postgres. Teskari chiziqcha c blog qilinsa, o'sha so'rov uchala postni ko'rsatadi."
+    "Sinfda eng ko'p chiqadigan xatolardan biri. O'quvchi PostgreSQL terminalini qayta ochadi va darhol select qiladi: relation posts does not exist. Jadval bor, faqat u postgres bazasida turibdi. Prompt'ga qarang: postgres. Backslash c blog qilinsa, o'sha so'rov uchala postni ko'rsatadi. Bu select Mongoose'dagi Post.find bilan bir xil ish qiladi."
    ],
    [
     "e",
     "Xulosa: tashqi kalit bog'lanishni <b>bazaga yozadi</b>; <code>does not exist</code> bo'lsa — avval prompt",
-    "Xulosa: references bog'lanishni bazaning o'ziga yozadi, Mongo'dagi ref'dan farqi shu. Teskari chiziqcha d bilan istalgan jadval tuzilishini ko'rasiz. Relation does not exist chiqsa, jadvalni qayta yaratishga shoshilmang: avval prompt'dagi baza nomini tekshiring."
+    "Xulosa: references bog'lanishni bazaning o'ziga yozadi, Mongo'dagi ref'dan farqi shu. Backslash d bilan istalgan jadval tuzilishini ko'rasiz. Relation does not exist chiqsa, jadvalni qayta yaratishga shoshilmang: avval prompt'dagi baza nomini tekshiring."
    ]
   ]
  },
@@ -408,7 +408,7 @@ const MDT = {
   "hint": "Xabardagi qoida nomini va DETAIL qatorini o'qing: qaysi jadval hali bu foydalanuvchiga ishora qilyapti?",
   "correct": 0,
   "opts": [
-   "Bu foydalanuvchining postlari bor — posts unga ishora qiladi",
+   "Foydalanuvchining postlari bor — posts unga bog'liq",
    "users jadvali blog bazasida yo'q",
    "id = 1 bo'lgan foydalanuvchi topilmadi",
    "DELETE uchun boshqa foydalanuvchining paroli kerak"
@@ -433,12 +433,12 @@ const MDT = {
    [
     "b",
     "1–4-qadam: baza, ikki jadval va ma'lumot; har buyruqdan keyin <b>javob satrini tekshiring</b>",
-    "Birinchi: baza va teskari chiziqcha c. Ikkinchi va uchinchi: users, keyin posts. Tartib muhim: posts users'ga ishora qiladi, shuning uchun users birinchi. To'rtinchi: uch foydalanuvchi va uch post."
+    "Birinchi: baza va backslash c. Ikkinchi va uchinchi: users, keyin posts. Tartib muhim: posts users'ga ishora qiladi, shuning uchun users birinchi. To'rtinchi: uch foydalanuvchi va uch post."
    ],
    [
     "c",
     "5-qadam: tashqi kalit xatosini <b>o'zingiz chiqaring</b>; isbot — <code>\\d posts</code>dagi kalit qatori",
-    "Beshinchi: to'qson to'qqizinchi foydalanuvchiga post yozib, tashqi kalit xatosini o'zingiz chiqaring va detail qatorini o'qing. Isbot maydoniga teskari chiziqcha d posts natijasidagi Foreign-key qatorini nusxalang."
+    "Beshinchi: to'qson to'qqizinchi foydalanuvchiga post yozib, tashqi kalit xatosini o'zingiz chiqaring va detail qatorini o'qing. Isbot maydoniga backslash d posts natijasidagi Foreign-key qatorini nusxalang."
    ],
    [
     "d",
@@ -645,7 +645,7 @@ const MDT = {
    [
     "a",
     "Endi siz: <b>ikki terminal oynasini</b> yonma-yon ochib, oxirgi telefonni o'zingiz sotasiz",
-    "Oxirgi amaliyot, eng qiziqarlisi. Ikkita terminal oynasini yonma-yon oching, ikkalasida PostgreSQL terminalini ochib, teskari chiziqcha c blog yozing. Biri birinchi xaridor, ikkinchisi ikkinchi xaridor. O'n-o'n besh daqiqa."
+    "Oxirgi amaliyot, eng qiziqarlisi. Ikkita terminal oynasini yonma-yon oching, ikkalasida PostgreSQL terminalini ochib, backslash c blog yozing. Biri birinchi xaridor, ikkinchisi ikkinchi xaridor. O'n-o'n besh daqiqa."
    ],
    [
     "b",
@@ -808,10 +808,10 @@ const MDT = {
    {
     "q": "Mac'da psql -U postgres → role \"postgres\" does not exist. Nima qilasiz?",
     "o": [
-     "createuser -s postgres",
-     "Parolni qayta kiritaman",
+     "createuser -s postgres bilan rol yaratish",
+     "Parolni qayta kiritib, yana ulanish",
      "Postgres.app'ni qayta Initialize qilaman",
-     "CREATE DATABASE postgres;"
+     "CREATE DATABASE postgres; buyrug'ini berish"
     ],
     "c": 0,
     "e": "Homebrew bilan o'rnatilgan: superuser — Mac foydalanuvchisi, postgres roli yo'q.",
@@ -820,10 +820,10 @@ const MDT = {
    {
     "q": "usersda 99-foydalanuvchi yo'q. INSERT INTO posts (user_id, izoh) VALUES (99, '…'); nima qaytaradi?",
     "o": [
-     "INSERT 0 1, muallif bo'sh",
-     "usersga 99 qo'shiladi",
+     "INSERT 0 1 — post muallifsiz saqlanadi",
+     "usersga 99-foydalanuvchi o'zi qo'shiladi",
      "Tashqi kalit xatosi, post saqlanmaydi",
-     "NOT NULL xatosi"
+     "NOT NULL xatosi — muallif bo'sh"
     ],
     "c": 2,
     "e": "posts_user_id_fkey: Key (user_id)=(99) is not present in table \"users\".",
@@ -832,10 +832,10 @@ const MDT = {
    {
     "q": "Prompt postgres=#. SELECT * FROM posts; → relation \"posts\" does not exist, lekin jadvalni yaratgansiz. Nima qilasiz?",
     "o": [
-     "Jadvalni qayta yarataman",
-     "Serverni qayta ishga tushiraman",
-     "Parolni tekshiraman",
-     "\\c blog"
+     "Jadvalni qayta yaratib, yana yozish",
+     "Serverni qayta ishga tushirish",
+     "Parolni tekshirib, qayta kirish",
+     "\\c blog — kerakli bazaga ulanish"
     ],
     "c": 3,
     "e": "Jadval blog bazasida; prompt boshqa bazani ko'rsatyapti.",
@@ -858,8 +858,8 @@ const MDT = {
     "o": [
      "Darhol UPDATE 1, telefon ikkalasiga",
      "Kutadi, 1-xaridor COMMITdan keyin UPDATE 0",
-     "Darhol CHECK xatosi",
-     "stock = -1 bo'ladi"
+     "Darhol CHECK xatosi — telefon hech kimga sotilmaydi",
+     "stock = -1 bo'ladi, ikkalasi ham oladi"
     ],
     "c": 1,
     "e": "Qator band — 2-xaridor kutadi, keyin shartni qayta tekshiradi: stock 0.",
@@ -880,10 +880,10 @@ const MDT = {
    {
     "q": "O'quvchi: «NoSQL zamonaviyroq, onlayn do'konimga MongoDB olaman». Nima deysiz?",
     "o": [
-     "To'g'ri, NoSQL yangiroq",
-     "MongoDB sekin, olmang",
-     "4 savol: buyurtma, mahsulot, to'lov bog'langan, xato qimmat — PostgreSQL",
-     "Farqi yo'q, istaganini oling"
+     "To'g'ri, NoSQL yangiroq — hamma joyda shuni oling",
+     "MongoDB sekin ishlaydi, uni umuman olmang",
+     "Ma'lumot bog'langan, xato qimmat — PostgreSQL",
+     "Farqi yo'q — o'quvchi istaganini olaversin"
     ],
     "c": 2,
     "e": "Tanlov modaga emas, vazifaga qarab; do'konda 3 mezon SQL tomonda.",

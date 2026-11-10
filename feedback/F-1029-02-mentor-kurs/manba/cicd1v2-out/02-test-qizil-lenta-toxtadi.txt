@@ -1,0 +1,26 @@
+# order.service.ts 36: < → <= (chegara buzildi)
+$ npm ci && npx tsc --noEmit && npm test && npm run build
+npm ci ✓
+tsc ✓
+> order-bot-nest@1.0.0 test
+> jest
+FAIL src/api/order/order.service.spec.ts
+  ● OrderService.place › chegara: omborda aynan 2 ta — 2 tasini olsa bo'ladi
+    Kolonka: omborda faqat 2 ta qoldi
+      35 |         if (!p) throw new Error(`Mahsulot topilmadi: ${c.product.name}`);
+      36 |         if (p.stock <= c.qty) {
+    > 37 |           throw new Error(`${p.name}: omborda faqat ${p.stock} ta qoldi`);
+         |                 ^
+      38 |         }
+      39 |         // 2) Ayiramiz. Bazadagi CHECK (stock >= 0) — oxirgi qo'riqchi: kod xato qilsa ham manfiy bo'lmaydi.
+      40 |         //    Diqqat: tranzaksiya ichida xato chiqsa, keyingi so'rovlar ham rad etiladi
+PASS src/api/app.controller.spec.ts
+PASS src/api/telegram/keyboards.spec.ts
+PASS src/api/telegram/texts.spec.ts
+PASS src/api/telegram/phone.spec.ts
+Test Suites: 1 failed, 4 passed, 5 total
+Tests:       1 failed, 24 passed, 25 total
+Snapshots:   0 total
+Time:        1.159 s
+Ran all test suites.
+[chiqish kodi: 1]

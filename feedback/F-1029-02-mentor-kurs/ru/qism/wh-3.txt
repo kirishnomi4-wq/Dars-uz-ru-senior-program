@@ -1,0 +1,9 @@
+8.steps.1.cmd.0 = в .env: PAYMENT_WEBHOOK_SECRET=<длинная случайная строка>
+8.steps.2.cmd.1 = телефон: заказ боту
+8.steps.3.cmd.0 = второй терминал: npm run pay -- <номер заказа>
+11.steps.0.cmd.0 = npm run pay -- <номер> ikki
+11.steps.1.cmd.0 = npm run pay -- <номер> imzosiz
+11.steps.1.cmd.1 = npm run pay -- <номер> soxta
+11.steps.2.cmd.0 = новый заказ с телефона
+11.steps.2.cmd.1 = npm run pay -- <новый номер> rad
+17.steps.2.cmd.0 = названия красных тестов

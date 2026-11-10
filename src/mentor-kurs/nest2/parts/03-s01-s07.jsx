@@ -90,6 +90,7 @@ EN_PHRASES.unshift(
 
 // Nest-2 ga xos qo'shimcha CSS (dvigatel CSS'iga tegilmaydi). Izohda backtick yo'q (CLAUDE.md).
 const CSS2 = `
+.mk-qa.n2-sm>button>p{display:none}
 .mk-explorer{overflow:auto}
 .n2-path{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:0 0 2px}
 .n2-path span{font:600 11px/1 ${MONO};letter-spacing:.06em;text-transform:uppercase;padding:6px 9px;border-radius:999px;border:1.5px solid var(--c);color:var(--c);background:${T.paper};opacity:.45;transition:opacity .3s,background .3s,color .3s}
@@ -255,7 +256,7 @@ const S3 = {
 };
 function Screen3(p) {
   return <Lesson p={p} S={S3} scene={({ seg, beat }) => <>
-    <Browser url="localhost:3000/api/v1" out="Swagger UI" />
+    {beat < 2 && <Browser url="localhost:3000/api/v1" out="Swagger UI" />}
     <Swagger hl={seg.hl} authHl={seg.auth} />
     <Block at={2} beat={beat}><div className="n2-warn"><b>{t('Qulf', 'Замок')}</b> {t("— Swagger hujjatidagi belgi (dasturchi qo'yadi). Haqiqiy tekshiruv — Guard: tokensiz", '— значок в документации Swagger (ставит разработчик). Реальная проверка — Guard: без токена')} <code>POST /api/v1/admin/token</code> → <b>401</b>.</div></Block>
   </>} />;
@@ -348,12 +349,12 @@ export class AllExceptionFilter implements ExceptionFilter {
 function Screen5(p) {
   return <Lesson p={p} S={S5} scene={({ seg, beat }) => <Ide files={tree(BASE, [F.filter, F.okRes])} active={beat === 0 ? F.main : seg.file}>
     {beat === 0 && <CodePanel file={F.main} lines={MAIN_LINES} />}
-    {seg.file === F.filter
+    {beat < 4 && (seg.file === F.filter
       ? <CodePanel file={F.filter} lines={FILTER_LINES} focus={['st', 'log']} />
-      : <CodePanel file={F.appSvc} lines={APPSVC_LINES} focus={seg.focus} />}
-    <Block at={1} beat={beat}><div className="n2-grid2">
+      : <CodePanel file={F.appSvc} lines={APPSVC_LINES} focus={seg.focus} />)}
+    {beat < 2 && <Block at={1} beat={beat}><div className="n2-grid2">
       <Browser url="localhost:3000/admin" out="404" er /><Browser url="localhost:3000/api/v1/admin" out="401" />
-    </div></Block>
+    </div></Block>}
     <Block at={2} beat={beat}><div className="n2-grid2">
       <Json st={200}>{`{"statusCode":200,"message":"success","data":[…]}`}</Json>
       <Json st={404}>{`{"statusCode":404,"error":{"message":"Cannot GET /admin"}}`}</Json>
@@ -417,7 +418,7 @@ const S6 = {
 };
 function Screen6(p) {
   return <Lesson p={p} S={S6} scene={({ seg, beat }) => <Ide files={tree(BASE, [F.cfg, F.env])} active={F.cfg}>
-    <CodePanel file={F.cfg} lines={CFG_LINES} focus={seg.focus} />
+    {beat < 4 && <CodePanel file={F.cfg} lines={CFG_LINES} focus={seg.focus} />}
     {beat === 2 && <Term er lines={NODEENV_TERM} />}
     {beat >= 3 && <Term lines={BLANK_SA} focus={beat === 3 ? ['blank', 'res'] : []} />}
     <Block at={4} beat={beat}><div className="mk-rule"><b>{t('Yechim:', 'Решение:')}</b> <code>psql -U postgres -d nestarxitechture -c "DELETE FROM admins WHERE role='superAdmin';"</code> → <code>npm run start:dev</code> → <code>Super admin created successfully</code> → signin <b>201</b></div></Block>

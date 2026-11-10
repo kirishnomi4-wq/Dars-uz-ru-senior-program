@@ -1,0 +1,15 @@
+# GET /admin/orders — Bobur buyurtma berishidan OLDIN va KEYIN (panel o'zi so'ramasa, yangi buyurtmani bilmaydi)
+$ curl -s http://localhost:3100/admin/orders -H 'Authorization: Bearer panel-sir'   # 1-so'rov
+[]
+
+# … 4 soniya: server logi
+20:19:16 — Bobur botda buyurtma beradi (/start → Klaviatura → Buyurtma → telefon)
+20:19:16 bot → 5987654321: Salom, Bobur! Bu CoddyCamp do'koni boti.
+20:19:16 bot → 5987654321: Buyurtma uchun telefon raqamingizni yozing (masalan, +998901234567):
+20:19:16 bot → 5987654321: Buyurtma #1 qabul qilindi!
+
+$ curl -s http://localhost:3100/admin/orders -H 'Authorization: Bearer panel-sir'   # 2-so'rov
+[{"id":1,"status":"NEW","total":120000,"customer":"Bobur","phone":"+998907654321","items":[{"name":"Klaviatura","qty":1}],"created_at":"2026-11-04T15:19:16.857Z"}]
+
+$ curl -s -o /dev/null -w '%{http_code}' http://localhost:3100/admin/orders   # tokensiz
+401

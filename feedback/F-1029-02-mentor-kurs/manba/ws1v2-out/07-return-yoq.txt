@@ -1,0 +1,10 @@
+# live.gateway.ts: client.disconnect(); dan keyingi return; olib tashlandi (dist'da) — tokensiz klient
+$ npm run live -- ""
+20:20:57 ulanmoqda… http://localhost:3100
+20:20:57 connect · ulangan · transport: polling
+20:20:57 disconnect: io server disconnect · active=false → ulanmagan
+
+# Server logi
+LOG [InstanceLoader] LiveModule dependencies initialized
+20:20:56 Server 3100-portda ishlayapti
+LOG [Live] panel ulandi: MzXa4MMBOWZg86h7AAAA

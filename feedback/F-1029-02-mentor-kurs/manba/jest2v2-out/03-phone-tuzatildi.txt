@@ -1,0 +1,18 @@
+$ npx jest phone --verbose
+PASS src/api/telegram/phone.spec.ts
+  isPhone
+    ✓ +998901234567 — to'g'ri raqam (2 ms)
+    ✓ 998901234567 — to'g'ri raqam (1 ms)
+    ✓ 12345678 — 8 ta raqam — qisqa
+    ✓ +99890123456789 — 14 ta raqam — uzun
+    ✓ abc — harf
+    ✓  — bo'sh (1 ms)
+    ✓ mijoz probel bilan yozadi
+
+Test Suites: 1 passed, 1 total
+Tests:       7 passed, 7 total
+Snapshots:   0 total
+Time:        0.385 s, estimated 1 s
+Ran all test suites matching phone.
+[chiqish kodi: 0]
+

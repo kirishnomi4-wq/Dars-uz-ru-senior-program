@@ -1,0 +1,2648 @@
+[
+{
+"f": "04-yordam.jsx",
+"l": 10,
+"k": "str",
+"x": "CRUD so'rovlar va Express'dan bazaga",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 12,
+"k": "str",
+"x": "avto-ijara-server",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 27,
+"k": "str",
+"x": "teskari chiziqcha d products",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 27,
+"k": "str",
+"x": "teskari chiziqcha d cars",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 28,
+"k": "str",
+"x": "teskari chiziqcha l",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 28,
+"k": "str",
+"x": "teskari chiziqcha d",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 28,
+"k": "str",
+"x": "teskari chiziqcha c",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 31,
+"k": "str",
+"x": "avto ijara server",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 31,
+"k": "str",
+"x": "avto-ijara-server",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 32,
+"k": "str",
+"x": "dollar bir, dollar ikki",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 32,
+"k": "str",
+"x": "dollar bir",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 32,
+"k": "str",
+"x": "dollar ikki",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 32,
+"k": "str",
+"x": "bir or bir teng bir",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 33,
+"k": "str",
+"x": "returning yulduzcha",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 33,
+"k": "str",
+"x": "RETURNING *",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 33,
+"k": "str",
+"x": "select yulduzcha",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 34,
+"k": "str",
+"x": "insert, nol, uch",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 34,
+"k": "str",
+"x": "insert nol bir",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 34,
+"k": "str",
+"x": "update bir",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 34,
+"k": "str",
+"x": "update nol",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 34,
+"k": "str",
+"x": "update uch",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 35,
+"k": "str",
+"x": "delete bir",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 35,
+"k": "str",
+"x": "delete uch",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 35,
+"k": "str",
+"x": "deleted uch",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 38,
+"k": "str",
+"x": "nol vergul olti",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 38,
+"k": "str",
+"x": "nol vergul besh",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 39,
+"k": "str",
+"x": "matchedCount nol",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 39,
+"k": "str",
+"x": "dollar lt",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 39,
+"k": "str",
+"x": "check stock katta yoki teng nol",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 40,
+"k": "str",
+"x": "update nol",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 40,
+"k": "str",
+"x": "insert nol to\\'rt",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 40,
+"k": "str",
+"x": "teng, yulduzcha, panjara",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 40,
+"k": "str",
+"x": "undov belgisi",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 42,
+"k": "str",
+"x": "sakson to'qqiz ming",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 42,
+"k": "str",
+"x": "to'qson to'qqiz ming",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 42,
+"k": "str",
+"x": "yuz ming",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 42,
+"k": "str",
+"x": "ellik ming",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 42,
+"k": "str",
+"x": "o'ttiz ming",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 43,
+"k": "str",
+"x": "to'qson to'qqizinchi",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 43,
+"k": "str",
+"x": "yigirma bir",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 43,
+"k": "str",
+"x": "yigirma beshi",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 43,
+"k": "str",
+"x": "25 tasi",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 43,
+"k": "str",
+"x": "o'n besh-yigirma",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 43,
+"k": "str",
+"x": "besh-o'n",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 44,
+"k": "str",
+"x": "bir, ikki, uch, to\\'rt",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 44,
+"k": "str",
+"x": "id bir",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 44,
+"k": "str",
+"x": "id uch",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 44,
+"k": "str",
+"x": "to'qqiz ekran",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 44,
+"k": "str",
+"x": "9 ekran",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 64,
+"k": "str",
+"x": "<span class=\"s\">${escH(str)}</span>",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 66,
+"k": "str",
+"x": "<span class=\"d\">${num}</span>",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 80,
+"k": "str",
+"x": "<span class=\"s\">${escH(str)}</span>",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 82,
+"k": "str",
+"x": "<span class=\"d\">${num}</span>",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 114,
+"k": "str",
+"x": "pg-win${os === 'mac' ? ' mac' : ''}${hl ? ' hl' : ''}",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 123,
+"k": "str",
+"x": "${hlRow.includes(i) ? 'hl' : ''}${dimRow.includes(i) ? ' dim' : ''}",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 127,
+"k": "str",
+"x": "#61AFFE",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 127,
+"k": "str",
+"x": "#FCA130",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 130,
+"k": "str",
+"x": "pg-pm${hl ? ' hl' : ''}",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 136,
+"k": "str",
+"x": "pg-doc${odd ? ' odd' : ''}${er ? ' er' : ''}",
+"m": false
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 24,
+"k": "str",
+"x": "CRUD terminalida",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 24,
+"k": "str",
+"x": "Tranzaksiya: xavfsiz sinash va atomik ish",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 24,
+"k": "str",
+"x": "Baza qo'riqlaydi",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 24,
+"k": "str",
+"x": "Express'dan bazaga",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 24,
+"k": "str",
+"x": "Buzamiz va tuzatamiz",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 24,
+"k": "str",
+"x": "Sinfga tayyorgarlik",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 47,
+"k": "str",
+"x": "yaratish",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 48,
+"k": "str",
+"x": "o'qish",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 49,
+"k": "str",
+"x": "o'zgartirish",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 50,
+"k": "str",
+"x": "o'chirish",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 57,
+"k": "jsx",
+"x": "ma'nosi",
+"m": false
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 65,
+"k": "str",
+"x": "sql${seg.sql ? '' : ' off'}",
+"m": false
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 66,
+"k": "str",
+"x": "sql${seg.sql ? '' : ' off'}",
+"m": false
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 67,
+"k": "str",
+"x": "mg${seg.mg ? '' : ' off'}",
+"m": false
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 68,
+"k": "str",
+"x": "ex${seg.ex ? '' : ' off'}",
+"m": false
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 69,
+"k": "str",
+"x": "ex${seg.ex ? '' : ' off'}",
+"m": false
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 73,
+"k": "jsx",
+"x": "Bitta amal — bazada",
+"m": false
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 73,
+"k": "jsx",
+"x": ", serverda",
+"m": false
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 88,
+"k": "str",
+"x": "Klaviatura",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 88,
+"k": "str",
+"x": "Sichqoncha",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 89,
+"k": "str",
+"x": "Quloqchin",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 98,
+"k": "str",
+"x": "ddl",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 98,
+"k": "str",
+"x": "sel",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 103,
+"k": "str",
+"x": "ddl",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 103,
+"k": "str",
+"x": "sel",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 103,
+"k": "str",
+"x": "sel",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 103,
+"k": "str",
+"x": "ddl",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 112,
+"k": "str",
+"x": "4 ta hujjat",
+"m": false
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 113,
+"k": "jsx",
+"x": "Bu jadvalda hozircha",
+"m": false
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 122,
+"k": "str",
+"x": "Klaviatura",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 122,
+"k": "str",
+"x": "Sichqoncha",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 122,
+"k": "str",
+"x": "Quloqchin",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 151,
+"k": "str",
+"x": "3 ta hujjat",
+"m": false
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 184,
+"k": "jsx",
+"x": "Javobdagi son:",
+"m": false
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 184,
+"k": "jsx",
+"x": "— kutganingiz ·",
+"m": false
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 184,
+"k": "jsx",
+"x": "kutilmagan katta son",
+"m": false
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 214,
+"k": "str",
+"x": "Klaviatura · 120000 · 8 — birinchi nusxa",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 214,
+"k": "str",
+"x": "Sichqoncha · 75000 · 15",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 214,
+"k": "str",
+"x": "Quloqchin — o'chirilgan (5-ekran)",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 214,
+"k": "str",
+"x": "Klaviatura · 99000 · 8 — narx o\\'zgarganda yozilgan nusxa",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 214,
+"k": "str",
+"x": "Klaviatura · 99000 · 7 — hozirgi qator",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 217,
+"k": "str",
+"x": "slot ${k}${hl.includes(n) ? ' hl' : ''}",
+"m": false
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 269,
+"k": "str",
+"x": "Sichqoncha",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 269,
+"k": "str",
+"x": "Klaviatura",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 269,
+"k": "str",
+"x": "Sichqoncha",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 269,
+"k": "str",
+"x": "Klaviatura",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 275,
+"k": "str",
+"x": "products · tranzaksiya ichida",
+"m": false
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 279,
+"k": "jsx",
+"x": "— shartsiz ham",
+"m": false
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 279,
+"k": "jsx",
+"x": "bitta",
+"m": false
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 279,
+"k": "jsx",
+"x": "hujjat; hammasi uchun alohida",
+"m": false
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 280,
+"k": "jsx",
+"x": "'siz",
+"m": false
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 280,
+"k": "jsx",
+"x": "hammasi",
+"m": false
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 281,
+"k": "jsx",
+"x": "Xavfli UPDATE/DELETE — avval",
+"m": false
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 281,
+"k": "jsx",
+"x": "ichida ·",
+"m": false
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 325,
+"k": "str",
+"x": "oddiy — har buyruq darhol saqlanadi (autocommit)",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 325,
+"k": "str",
+"x": "tranzaksiya ochiq — o'zgarish faqat shu seansda",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 325,
+"k": "str",
+"x": "xato bo\\'ldi (aborted) — faqat ROLLBACK",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 330,
+"k": "jsx",
+"x": "A oynasi",
+"m": false
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 331,
+"k": "jsx",
+"x": "B oynasi",
+"m": false
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 333,
+"k": "str",
+"x": "mk-box${seg.st.includes(i) ? ' hl' : ''}",
+"m": false
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 334,
+"k": "jsx",
+"x": "— saqla ·",
+"m": false
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 334,
+"k": "jsx",
+"x": "— bekor ·",
+"m": false
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 364,
+"k": "str",
+"x": "stock_nonneg",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 372,
+"k": "str",
+"x": "Klaviatura",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 372,
+"k": "str",
+"x": "Sichqoncha",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 372,
+"k": "str",
+"x": "Klaviatura",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 372,
+"k": "str",
+"x": "Sichqoncha",
+"m": true
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 380,
+"k": "str",
+"x": "qty",
+"m": false
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 382,
+"k": "jsx",
+"x": "2-buyurtma",
+"m": false
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 382,
+"k": "jsx",
+"x": "yozilmadi",
+"m": false
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 382,
+"k": "jsx",
+"x": ", Kolonka qoldig'i",
+"m": false
+},
+{
+"f": "05-s01-s13.jsx",
+"l": 383,
+"k": "jsx",
+"x": "Bir ishga tegishli buyruqlar —",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 25,
+"k": "str",
+"x": "Planshet",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 36,
+"k": "str",
+"x": "products_id_seq",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 43,
+"k": "str",
+"x": "stock_nonneg",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 48,
+"k": "str",
+"x": "def",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 48,
+"k": "str",
+"x": "CHECK (stock >= 0) — 11-ekran",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 48,
+"k": "str",
+"x": "chk",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 48,
+"k": "str",
+"x": "product_id REFERENCES products(id) — 11-ekran",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 49,
+"k": "str",
+"x": "chk",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 49,
+"k": "str",
+"x": "chk",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 49,
+"k": "str",
+"x": "chk",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 49,
+"k": "str",
+"x": "def",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 49,
+"k": "str",
+"x": "def",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 49,
+"k": "str",
+"x": "chk",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 49,
+"k": "str",
+"x": "def",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 54,
+"k": "jsx",
+"x": "products — qoidalar",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 55,
+"k": "str",
+"x": "${k ? 'on' : ''}${(seg.neu || []).includes(k) ? ' new' : ''}",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 55,
+"k": "str",
+"x": "nowrap",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 58,
+"k": "jsx",
+"x": "Qoida",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 58,
+"k": "jsx",
+"x": "bazada",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 58,
+"k": "jsx",
+"x": "stock_nonneg",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 78,
+"k": "str",
+"x": "Planshet2",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 80,
+"k": "str",
+"x": "Planshet2",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 82,
+"k": "str",
+"x": "Planshet2",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 105,
+"k": "str",
+"x": "Qaysi jadval?",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 105,
+"k": "str",
+"x": "Qaysi ustun yoki qoida?",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 105,
+"k": "str",
+"x": "Qaysi qiymat?",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 111,
+"k": "jsx",
+"x": "taxmin",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 111,
+"k": "jsx",
+"x": "ni taklif qildi, kerakli ustun esa",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 111,
+"k": "jsx",
+"x": ". Ishonchli manba —",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 112,
+"k": "jsx",
+"x": "Xabardagi nomni",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 112,
+"k": "jsx",
+"x": "'O''yinchoq'",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 119,
+"k": "str",
+"x": "psql — shop · tuzatildi",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 161,
+"k": "str",
+"x": "INSERT INTO cars (model, daily_price, year) VALUES ($1, $2, $3) RETURNING *",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 176,
+"k": "str",
+"x": "UPDATE cars SET daily_price = $1 WHERE id = $2 RETURNING *",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 180,
+"k": "str",
+"x": "Mashina topilmadi",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 195,
+"k": "str",
+"x": "Mashina topilmadi",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 196,
+"k": "str",
+"x": "O'chirildi",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 203,
+"k": "str",
+"x": "Server 3000-portda ishlayapti",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 206,
+"k": "str",
+"x": "getq",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 206,
+"k": "str",
+"x": "getq",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 207,
+"k": "str",
+"x": "postq",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 207,
+"k": "str",
+"x": "sqlp",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 208,
+"k": "str",
+"x": "putq",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 209,
+"k": "str",
+"x": "delq",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 218,
+"k": "jsx",
+"x": "Shartli namuna — Gemini har safar boshqacha yozadi, mazmuni shu",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 220,
+"k": "str",
+"x": "{ \"model\": \"Hyundai Elantra\", \"daily_price\": 450000, \"year\": 2022 }",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 220,
+"k": "str",
+"x": "{\"id\":5,\"model\":\"Hyundai Elantra\",\"daily_price\":450000,\"year\":2022,\"is_rented\":null}",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 230,
+"k": "str",
+"x": "rov 3: baza jarayoni pid 377093 · bazadagi faol ulanishlar 1 · Pool ulanishlari 1`, { 2: { id: ",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 233,
+"k": "str",
+"x": "rovda: password authentication failed for user \"postgres\"`, { 2: { id: ",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 238,
+"k": "jsx",
+"x": "ulanishlar:",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 239,
+"k": "str",
+"x": "hali ulanmagan",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 239,
+"k": "jsx",
+"x": "jarayon pid",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 248,
+"k": "str",
+"x": "terminal — node pool-pid.js (shop bazasida)",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 251,
+"k": "jsx",
+"x": "Bir marta sozlanadi",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 251,
+"k": "jsx",
+"x": ") — kod tepasida",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 252,
+"k": "jsx",
+"x": "Birinchi so'rovda ulanadi",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 253,
+"k": "jsx",
+"x": "«Server ishlayapti»",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 254,
+"k": "jsx",
+"x": "birinchi so'rovda",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 263,
+"k": "str",
+"x": "Klaviatura",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 263,
+"k": "str",
+"x": "Sichqoncha",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 265,
+"k": "str",
+"x": "ulanadi",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 265,
+"k": "str",
+"x": "so'rov bazaga",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 265,
+"k": "str",
+"x": "natija",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 265,
+"k": "str",
+"x": "javob",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 266,
+"k": "str",
+"x": "getq",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 271,
+"k": "str",
+"x": "node — shop bazasida sinov (pool-pid.js)",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 271,
+"k": "jsx",
+"x": "— terminaldagi",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 272,
+"k": "jsx",
+"x": "— so'rov kutiladi, funksiya",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 274,
+"k": "jsx",
+"x": "So'rov serverdan bazaga",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 281,
+"k": "str",
+"x": "topilmasa",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 281,
+"k": "str",
+"x": "xato",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 285,
+"k": "str",
+"x": "sqlp",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 293,
+"k": "str",
+"x": "{\"message\":\"O\\'chirildi\",\"deleted\":1}",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 294,
+"k": "str",
+"x": "{\"error\":\"Mashina topilmadi\"}",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 296,
+"k": "jsx",
+"x": "Baza",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 296,
+"k": "jsx",
+"x": "ni tekshirib",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 298,
+"k": "jsx",
+"x": "— terminaldagi",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 328,
+"k": "jsx",
+"x": "Yopishtirilgan",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 330,
+"k": "str",
+"x": "{\"message\":\"O\\'chirildi\",\"deleted\":3}",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 335,
+"k": "str",
+"x": "psql — car_rental · jadval joyida",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 336,
+"k": "jsx",
+"x": "Foydalanuvchidan kelgan har qiymat —",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 336,
+"k": "jsx",
+"x": "+ massiv. SQL matniga",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 336,
+"k": "jsx",
+"x": "hech qachon",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 352,
+"k": "str",
+"x": "      'INSERT INTO cars (model, price, year) VALUES ($1, $2, $3) RETURNING *',",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 363,
+"k": "str",
+"x": "terminal — node server.js",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 366,
+"k": "str",
+"x": "kod o\\'zgarsa — qayta ishga tushiring",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 367,
+"k": "jsx",
+"x": "Xabar nimani tuzatishni",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 367,
+"k": "jsx",
+"x": ": ustun",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 367,
+"k": "jsx",
+"x": ", jadval",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 380,
+"k": "str",
+"x": "{\"error\":\"Cannot destructure property \\'model\\' of \\'req.body\\' as it is undefined.\"}",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 384,
+"k": "jsx",
+"x": "har so'rovdan oldin",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 392,
+"k": "str",
+"x": "Parol xato",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 392,
+"k": "str",
+"x": "const PASSWORD = 'notogri';",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 392,
+"k": "str",
+"x": "o'rnatishda berilgan parol",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 393,
+"k": "str",
+"x": "Parol bo'sh (process.env o'qilmagan)",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 393,
+"k": "str",
+"x": "{\"error\":\"SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string\"}",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 393,
+"k": "str",
+"x": "parol o'zgaruvchisi bo'sh",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 394,
+"k": "str",
+"x": "Baza nomi xato",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 394,
+"k": "str",
+"x": "const DATABASE = 'carrental';",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 394,
+"k": "str",
+"x": "\\\\l bilan aniq nom: car_rental",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 395,
+"k": "str",
+"x": "PostgreSQL o'chiq",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 395,
+"k": "str",
+"x": "— (server to'xtatilgan)",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 395,
+"k": "str",
+"x": "console.error(err) → ECONNREFUSED → PostgreSQL'ni ishga tushiring",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 409,
+"k": "str",
+"x": "terminal — har to'rt holatda",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 412,
+"k": "jsx",
+"x": "Pool server ishga tushganda ulanmaydi (17-ekran) —",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 412,
+"k": "jsx",
+"x": "birinchi so'rovda",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 412,
+"k": "jsx",
+"x": ". «Ishlayapti» faqat Express haqida.",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 416,
+"k": "jsx",
+"x": "Tuzatish:",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 418,
+"k": "str",
+"x": "terminal — butun xato obyekti",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 438,
+"k": "str",
+"x": "Server 3000-portda ishlayapti",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 438,
+"k": "jsx",
+"x": "console.log('Server 3000-portda ishlayapti'));`,",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 442,
+"k": "jsx",
+"x": "«Kodni tuzatdim,",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 442,
+"k": "jsx",
+"x": "Sabab ko'pincha",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 442,
+"k": "jsx",
+"x": "birinchi server boshqa terminalda hali ishlab turibdi",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 444,
+"k": "str",
+"x": "terminal 1",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 444,
+"k": "jsx",
+"x": "1-oyna · eski server",
+"m": false
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 447,
+"k": "str",
+"x": "q</span></div><Psql title=\"terminal 2\" lines={PORT25} focus={seg.v === ",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 447,
+"k": "jsx",
+"x": "2-oyna · yangi kod",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 447,
+"k": "jsx",
+"x": "xato yo'q",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 449,
+"k": "str",
+"x": "nega — Express manbasi",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 450,
+"k": "jsx",
+"x": "Bitta loyiha —",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 450,
+"k": "jsx",
+"x": "bitta terminal",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 450,
+"k": "jsx",
+"x": ". Qayta ishga tushirishdan oldin",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 450,
+"k": "jsx",
+"x": ". «O'zgarmadi» desa — birinchi savol: boshqa terminalda server ochiq qolmadimi?",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 457,
+"k": "str",
+"x": "      'INSERT INTO cars (model, price, year) VALUES ($1, $2, $3) RETURNING *',",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 459,
+"k": "str",
+"x": "      'INSERT INTO cars (model, daily_price, year) VALUES ($1, $2, $3) RETURNING *',",
+"m": true
+},
+{
+"f": "06-s14-s27.jsx",
+"l": 465,
+"k": "str",
+"x": "POST /api/cars → 201\\n{\"id\":5,\"model\":\"Hyundai Elantra\",\"daily_price\":450000,\"year\":2022,\"is_rented\":null}",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 6,
+"k": "str",
+"x": "21 ekran",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 6,
+"k": "str",
+"x": "PostgreSQL so'rovlar — CRUD + AI bilan",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 6,
+"k": "str",
+"x": "do'kon tugmalar bilan: INSERT · SELECT · WHERE · UPDATE · DELETE",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 6,
+"k": "str",
+"x": "jadval — bugun siz yaratgan products'ning aynan o'zi",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 6,
+"k": "str",
+"x": "amaliyot: haqiqiy PostgreSQL terminali yoki VS Code + AI — o'z do'koni",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 7,
+"k": "str",
+"x": "9 ekran",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 7,
+"k": "str",
+"x": "Praktika: Backend CRUD — AvtoIjara",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 7,
+"k": "str",
+"x": "cars jadvali — terminalda qo'lda",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 7,
+"k": "str",
+"x": "server.js — Gemini'dan, Postman bilan sinov",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 7,
+"k": "str",
+"x": "AI xatosini topish: price → daily_price",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 9,
+"k": "str",
+"x": "javobdagi son (UPDATE 1 / 0)",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 9,
+"k": "str",
+"x": "m4-06 CRUD bloki",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 9,
+"k": "str",
+"x": "WHERE'siz — proyektorda BEGIN … ROLLBACK",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 9,
+"k": "str",
+"x": "ORDER BY — «o'rni o'zgardi» savoli",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 9,
+"k": "str",
+"x": "apostrof '', NOT NULL maslahati",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 9,
+"k": "str",
+"x": "m4-06 amaliyoti (o'z do'koni)",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 9,
+"k": "str",
+"x": "HINT ham adashadi",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 9,
+"k": "str",
+"x": "m4-06 AI xatosi bloki",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 9,
+"k": "str",
+"x": "To'rt farq: xato matni qisqa · Gemini kodi har xil · is_rented: null · port band «ishlayapti»",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 10,
+"k": "str",
+"x": "Har kompyuterda PostgreSQL terminali ochiladi va Postman o'rnatilgan",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 10,
+"k": "str",
+"x": "Sinf paroli hammaga ma'lum",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 10,
+"k": "str",
+"x": "Qoida: bitta loyiha — bitta terminal",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 10,
+"k": "str",
+"x": "Vaqt: m4-06 da 90 daqiqaning 25 tasi amaliyotga · m4-08 da 40 tasi server va Postman'ga",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 17,
+"k": "jsx",
+"x": "Siz qo'shasiz — qayerda",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 18,
+"k": "str",
+"x": "pg-dict",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 27,
+"k": "str",
+"x": "Jadval/ustun nomi",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 27,
+"k": "str",
+"x": "\\\\d jadval bilan solishtirish",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 28,
+"k": "str",
+"x": "Apostrof",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 29,
+"k": "str",
+"x": "WHERE'siz",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 29,
+"k": "str",
+"x": "BEGIN … ROLLBACK; o'chgan bo'lsa — qayta INSERT",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 30,
+"k": "str",
+"x": "Parol/baza",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 30,
+"k": "str",
+"x": "Pool sozlamalari, sinf paroli",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 31,
+"k": "str",
+"x": "Bo'sh xato",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 31,
+"k": "str",
+"x": "console.error(err) → ECONNREFUSED → PostgreSQL'ni ishga tushiring",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 32,
+"k": "str",
+"x": "O'zgarmadi",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 32,
+"k": "str",
+"x": "javob eski",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 32,
+"k": "str",
+"x": "ikkinchi terminal; Ctrl+C",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 35,
+"k": "str",
+"x": "«Nega mahsulot o'rni o'zgardi?»",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 35,
+"k": "str",
+"x": "ORDER BY yo'q — baza yangilangan qatorni yangi joyga yozadi (6-ekran); ORDER BY id.",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 36,
+"k": "str",
+"x": "«$1 nima?»",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 36,
+"k": "str",
+"x": "qiymat alohida beriladi, SQL matniga kirmaydi; 1 OR 1=1 misoli (20-ekran).",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 37,
+"k": "str",
+"x": "«Postman shartmi?»",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 37,
+"k": "str",
+"x": "yo'q, so'rov yuboradigan istalgan dastur; darsda Postman, chunki sinf uchun qulay.",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 38,
+"k": "str",
+"x": "«NestJS'da ham shunday yozamizmi?»",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 38,
+"k": "str",
+"x": "yo'q: Nest'da Repository bu so'rovlarni o'zi yozadi (find, save…). Xavotir olmang: buni kursdagi keyingi mentor darslarida to'liq, kodi bilan o'rganasiz.",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 39,
+"k": "str",
+"x": "«SQL katta harfda yozilishi shartmi?»",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 39,
+"k": "str",
+"x": "yo'q, kalit so'zlar kichik harfda ham ishlaydi (sinab ko'rdik: select name, price from PRODUCTS ishladi); katta harf — o'qish oson bo'lishi uchun odat.",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 48,
+"k": "jsx",
+"x": "Javobni darhol aytmang —",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 48,
+"k": "jsx",
+"x": ": jadval/ustun nomi, status, terminal.",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 68,
+"k": "str",
+"x": "Hammasini ko'rib chiqdingiz, endi o'zingizni tekshiring. Yakuniy sinov, sakkiz savol: CRUD, tranzaksiya, Pool va server xatolari. Har savolda bitta urinish, javobdan keyin to'g'risi va izohi ochiladi. Olti va undan ko'p, dars o'zlashtirilgan. Kam bo'lsa, ko'rsatilgan ekranlarga qaytib, sinovni qayta topshirasiz.",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 70,
+"k": "str",
+"x": "Natijangiz saqlangan: sakkizdan ",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 70,
+"k": "str",
+"x": "nol",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 70,
+"k": "str",
+"x": "bir",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 70,
+"k": "str",
+"x": "ikki",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 70,
+"k": "str",
+"x": "uch",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 70,
+"k": "str",
+"x": "to'rt",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 70,
+"k": "str",
+"x": "besh",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 70,
+"k": "str",
+"x": "olti",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 70,
+"k": "str",
+"x": "yetti",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 70,
+"k": "str",
+"x": "sakkiz",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 70,
+"k": "str",
+"x": ". Dars o'zlashtirilgan, Davom bosing.",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 71,
+"k": "str",
+"x": "Yaxshi, bir xatoyingizni ko'rib chiqdingiz. Qolgan qizil savollarning ekranlariga ham qayting. Tayyor bo'lgach, Sinovni qayta topshirish tugmasini bosing.",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 107,
+"k": "str",
+"x": "mk-btn soft sm",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 111,
+"k": "str",
+"x": "mk-btn ghost",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 120,
+"k": "str",
+"x": "#FFF0EB",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 121,
+"k": "str",
+"x": "mk-btn ready",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 133,
+"k": "str",
+"x": "CRUD = INSERT · SELECT · UPDATE · DELETE; javobdagi son — nechta qator tegildi; RETURNING — qatorning o'zi; ORDER BY siz tartib kafolatlanmaydi (ctid)",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 134,
+"k": "str",
+"x": "Tranzaksiya: autocommit · BEGIN → faqat sizning seansingizda → COMMIT / ROLLBACK; !# — aborted, faqat ROLLBACK; ikki jadval bitta ish — atomik",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 135,
+"k": "str",
+"x": "Baza faqat yozilgan qoidani qo'riqlaydi: NOT NULL, DEFAULT, UNIQUE, CHECK; xabar ichida nom bor — \\\\d bilan solishtiring; apostrof ''",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 135,
+"k": "str",
+"x": "jad",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 136,
+"k": "str",
+"x": "Express: Pool birinchi so\\'rovda ulanadi va ulanishni qayta ishlatadi → pool.query(sql, [$1…]) → rows / rowCount → res.json; 200 · 201 · 404 · 500",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 136,
+"k": "str",
+"x": "srv",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 137,
+"k": "str",
+"x": "brk",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 137,
+"k": "str",
+"x": "$1 — xavfsizlik: yopishtirilgan 1 OR 1=1 jadvalni bo'shatdi; server xatolari: ustun nomi · express.json() · parol/baza birinchi so'rovda · bo'sh xabar → console.error(err) · ikkinchi server «ishlayapti»",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 137,
+"k": "str",
+"x": "srv",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 138,
+"k": "str",
+"x": "Sinf: m4-06 amaliyoti haqiqiy psql'da; m4-08 dan oldin parol, Postman, bitta terminal; olti holat va savollarga javoblar tayyor",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 140,
+"k": "str",
+"x": "srv",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 140,
+"k": "str",
+"x": "Tranzaksiya",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 140,
+"k": "str",
+"x": "jad",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 140,
+"k": "str",
+"x": "Jadval",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 145,
+"k": "str",
+"x": "rovning bazagacha yo",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 145,
+"k": "jsx",
+"x": "Bugungi dars — so'rovning bazagacha yo'li",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 147,
+"k": "str",
+"x": "mk-box${cur && cur.st.includes(k) ? ' hl' : ''}",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 152,
+"k": "str",
+"x": "Jadvallar — schema.sql: products (NOT NULL nom va narx, CHECK (stock >= 0), DEFAULT 0), orders (REFERENCES products(id), CHECK (qty > 0), created_at DEFAULT now())",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 152,
+"k": "str",
+"x": "psql -U postgres -d <baza> -f schema.sql",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 153,
+"k": "str",
+"x": "Server — server.js: GET · POST (201, RETURNING *) · PUT · DELETE (rowCount → 404), hamma qiymat $1 bilan",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 154,
+"k": "str",
+"x": "Sinov — Postman: 4 so'rov + yo'q id → 200 · 201 · 200 · 200 · 404",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 155,
+"k": "str",
+"x": "Tranzaksiya — psql: BEGIN → UPDATE … stock - 1 … RETURNING → INSERT INTO orders → COMMIT; keyin yetmagan qoldiq → CHECK xatosi → ROLLBACK — ikkala chiqish README'ga",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 156,
+"k": "str",
+"x": "Topshirish — GitHub'ga chiqaring va repo linkini platformadagi uyga vazifangizga qo'ying",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 161,
+"k": "str",
+"x": "q · RETURNING — o",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 167,
+"k": "str",
+"x": "riqlamaydi (nomsiz qator saqlanadi). NOT NULL (avval bo",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 171,
+"k": "str",
+"x": "rovda ulanadi, ulanishni qayta ishlatadi (3 so",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 178,
+"k": "str",
+"x": "rt farq — xato matni qisqa · Gemini kodi har xil · is_rented null (DEFAULT yo",
+"m": true
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 183,
+"k": "str",
+"x": "<b>Barakalla!</b> Siz darsni yaxshi o'rgandingiz — bugungi darsni bir qarashda yig'amiz",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 183,
+"k": "str",
+"x": "Barakalla! Siz darsni yaxshi o'rgandingiz. Endi bugun o'rganganlaringizni bir qarashda yig'amiz.",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 184,
+"k": "str",
+"x": "Dars oxiriga yetdingiz — sinovni <b>qayta topshirishni</b> maslahat beraman",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 184,
+"k": "str",
+"x": "Dars oxiriga yetdingiz. Yakuniy sinovdan olti ball kerak edi, yakunlashdan oldin sinovni qayta topshirishni maslahat beraman. Hozir esa bugungi darsni bir qarashda yig'amiz.",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 185,
+"k": "str",
+"x": "CRUD — to'rt buyruq; <b>javobdagi son</b> va RETURNING; ORDER BY siz tartib kafolatlanmaydi",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 185,
+"k": "str",
+"x": "Birinchi: CRUD to'rt buyruq, insert, select, update va delete. Javobdagi son nechta qator tegilganini aytadi, returning esa qatorning o'zini qaytaradi. Order by yozilmasa tartib kafolatlanmaydi: baza yangilangan qatorni yangi joyga yozadi.",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 186,
+"k": "str",
+"x": "Tranzaksiya: <b>BEGIN — faqat sizning seansingizda</b>, COMMIT yoki ROLLBACK; ikki jadval — bitta ish",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 186,
+"k": "str",
+"x": "Ikkinchi: oddiy holatda har buyruq darhol saqlanadi. Begin'dan keyin o'zgarish faqat sizning seansingizda, commit saqlaydi, rollback bekor qiladi. Undov belgisi chiqsa, faqat rollback. Bir ishga tegishli buyruqlar bitta tranzaksiyada: yo hammasi, yo hech biri.",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 187,
+"k": "str",
+"x": "Baza <b>faqat yozilgan qoidani</b> qo'riqlaydi; xabardagi nomni \\\\d bilan solishtiring",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 187,
+"k": "str",
+"x": "Uchinchi: baza faqat yozilgan qoidani qo'riqlaydi: not null, default, unique va check. Har xabar ichida jadval yoki qoida nomi bor, uni teskari chiziqcha d bilan solishtiring. Apostrof ikki marta yoziladi.",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 188,
+"k": "str",
+"x": "Express: <b>Pool birinchi so'rovda ulanadi</b> → pool.query → rows / rowCount → res.json",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 188,
+"k": "str",
+"x": "To'rtinchi: Express'dan bazaga yo'l. Pool bir marta sozlanadi, birinchi so'rovda ulanadi va ulanishni qayta ishlatadi. Pool query so'rov yuboradi, natijadan rows yoki rowcount olinadi, res json javob qaytaradi. Statuslar: ikki yuz, ikki yuz bir, to'rt yuz to'rt, besh yuz.",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 189,
+"k": "str",
+"x": "<b>$1 — xavfsizlik</b>; server xatolari: ustun nomi, express.json, parol, bo'sh xabar, ikkinchi server",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 189,
+"k": "str",
+"x": "Beshinchi: foydalanuvchidan kelgan qiymat doim dollar bir bilan, yopishtirilgan matn butun jadvalni bo'shatdi. Server xatolari: ustun nomi, express json, parol va baza birinchi so'rovda. Xabar bo'sh bo'lsa, console error'ga butun xatoni bering. Ikkinchi server ham ishlayapti deydi.",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 189,
+"k": "str",
+"x": "brk",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 190,
+"k": "str",
+"x": "Sinf: m4-06 amaliyoti <b>haqiqiy psql'da</b>; m4-08 dan oldin parol, Postman, bitta terminal",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 190,
+"k": "str",
+"x": "Oltinchi, sinf uchun: m4-06 amaliyoti haqiqiy PostgreSQL terminalida, har kompyuterda PostgreSQL kerak. m4-08 dan oldin sinf paroli, Postman va bitta terminal qoidasi. Olti holat va o'quvchi savollariga javoblar sizda tayyor.",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 191,
+"k": "str",
+"x": "<b>Uyga vazifa</b>: o'z do'koningiz uchun shop-api — ikki jadval, to'rt endpoint, README",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 191,
+"k": "str",
+"x": "Uyga vazifa: o'z do'koningiz uchun shop api. Schema faylida ikki jadval: mahsulotlar not null va check stock katta yoki teng nol bilan, buyurtmalar tashqi kalit bilan. Server js'da to'rt endpoint, hamma qiymat dollar bir bilan, topilmasa to'rt yuz to'rt. README'da har endpoint uchun bitta so'rov va javobi.",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 192,
+"k": "str",
+"x": "Terminalda <b>bitta sotuv va CHECK xatosi</b> — README'ga; repo linki platformaga",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 192,
+"k": "str",
+"x": "Terminalda bitta sotuvni begin, update, insert va commit bilan qiling, keyin yetmagan qoldiqda check xatosini oling: ikkalasini README'ga yozing. GitHub'ga chiqaring va repo linkini platformadagi uyga vazifangizga qo'ying. Ellik-yetmish daqiqa.",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 193,
+"k": "str",
+"x": "<b>Eslatmani oling</b>: CRUD, tranzaksiya, qoidalar, xatolar va server — bir sahifada",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 193,
+"k": "str",
+"x": "Pastda bir sahifalik eslatma: CRUD va javobdagi son, tranzaksiya holatlari, baza qoidalari, SQL va server xatolari, Express yo'li va sinfga tayyorgarlik. Nusxalab yoki yuklab oling, sinfda yoningizda tursin.",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 194,
+"k": "str",
+"x": "Rahmat! <b>Darsni yakunlash</b> tugmasini bosing",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 194,
+"k": "str",
+"x": "Rahmat. Darsni yakunlash tugmasini bosing, dars tugallangan deb belgilanadi.",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 225,
+"k": "jsx",
+"x": "Tekshiruvchi qaraydi:",
+"m": false
+},
+{
+"f": "07-s28-s31.jsx",
+"l": 299,
+"k": "jsx",
+"x": "onFinish=",
+"m": true
+}
+]

@@ -11,6 +11,28 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 const TTS = (text) => `/tts?text=${encodeURIComponent(text)}`;
 
+// Statik rejim (03.11, Vercel ko'rik sayti): TTS-server yo'q — mp3 `/tts/<sha1>.mp3` dan olinadi.
+// Kesh nomi dev/tts-server.py bilan AYNAN bir xil: sha1(voice + rate + clean(text)).
+const STATIC_TTS = import.meta.env.VITE_TTS_STATIC === '1';
+const TTS_TAG = /\[[^\]]{1,40}\]/g;
+const TTS_SUBS = [['@', ''], ['·', ','], ['→', ''], ['`', ''], ['**', '']];
+function ttsClean(text) {
+  let s = text.replace(TTS_TAG, ' ');
+  for (const [a, b] of TTS_SUBS) s = s.split(a).join(b);
+  return s.replace(/\s+/g, ' ').trim();
+}
+const URL_CACHE = new Map();
+function ttsUrl(text) {
+  if (!STATIC_TTS) return Promise.resolve(TTS(text));
+  if (URL_CACHE.has(text)) return URL_CACHE.get(text);
+  const ru = text.replace(/^\s+/, '').startsWith('[Русское произношение]');
+  const key = (ru ? 'ru-RU-DmitryNeural+0%' : 'uz-UZ-SardorNeural-5%') + ttsClean(text);
+  const pr = crypto.subtle.digest('SHA-1', new TextEncoder().encode(key))
+    .then((b) => `/tts/${[...new Uint8Array(b)].map((x) => x.toString(16).padStart(2, '0')).join('')}.mp3`);
+  URL_CACHE.set(text, pr);
+  return pr;
+}
+
 // Bitta global pleyer: ekran almashganda oldingi ovoz to'xtaydi (runtime ham shunday).
 let PLAYER = null;
 function player() {
@@ -21,7 +43,7 @@ let MUTED = false;
 const muteListeners = new Set();
 
 // Oldindan yuklash: keyingi segmentlar audio'si brauzer keshiga tushsin (dev TTS sekin bo'lishi mumkin)
-function prefetch(text) { try { fetch(TTS(text), { cache: 'force-cache' }).catch(() => {}); } catch (e) {} }
+function prefetch(text) { try { ttsUrl(text).then((u) => fetch(u, { cache: 'force-cache' })).catch(() => {}); } catch (e) {} }
 
 // Dev-tekshiruv (F-1030-38): ovozga berilgan hamma matn window.__ttsTexts ga yoziladi — RU qoldiq-skripti o'qiydi
 const rec = (text) => { try { (window.__ttsTexts = window.__ttsTexts || new Set()).add(text); } catch (e) {} };
@@ -44,11 +66,15 @@ export function useAudio(segments) {
     lastPlayed.current = { text, id };
     setCurrentId(id);
     if (MUTED) { setPlaying(false); const t = setTimeout(() => alive.current && onEnd && onEnd(), 400); return () => clearTimeout(t); }
-    p.src = TTS(text); p.muted = false;
     const done = () => { if (!alive.current) return; setPlaying(false); onEnd && onEnd(); };
-    p.onended = done;
-    p.onerror = () => { console.warn('[lesson-runtime] audio xato:', text.slice(0, 40)); done(); };
-    p.play().then(() => alive.current && setPlaying(true)).catch((e) => { console.warn('[lesson-runtime] autoplay rad:', e && e.message); done(); });
+    const start = (url) => {
+      if (lastPlayed.current && lastPlayed.current.text !== text) return; // kutish orasida boshqa ovoz boshlandi
+      p.src = url; p.muted = false;
+      p.onended = done;
+      p.onerror = () => { console.warn('[lesson-runtime] audio xato:', text.slice(0, 40)); done(); };
+      p.play().then(() => alive.current && setPlaying(true)).catch((e) => { console.warn('[lesson-runtime] autoplay rad:', e && e.message); done(); });
+    };
+    if (STATIC_TTS) ttsUrl(text).then(start, done); else start(TTS(text));
     return undefined;
   }, []);
 

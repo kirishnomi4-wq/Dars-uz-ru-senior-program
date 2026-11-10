@@ -1,0 +1,30 @@
+# 2-tur (05.11, F-1105-01): skaner tuzatilgandan keyin topilgan sahna yorliqlari. Raqam — jest2-rows2.json
+43 ⇒ терминал VS Code · OrderBotNest
+50 ⇒ Поломка
+58 ⇒ терминал VS Code · npm test -- --verbose
+79 ⇒ Азиза написала:
+80 ⇒ терминал VS Code · npm test -- phone
+81 ⇒ терминал VS Code · npm test -- phone
+82 ⇒ терминал VS Code · npm test -- phone
+85 ⇒ терминал VS Code · npm test -- phone
+87 ⇒ терминал VS Code · npm test -- phone
+88 ⇒ функция вызвана
+94 ⇒ ошибка promise
+95 ⇒ · ошибка promise —
+97 ⇒ терминал VS Code · npm test -- order.service
+98 ⇒ Ошибка promise
+99 ⇒ — вызывается сразу, promise ожидается
+105 ⇒ order.service.spec.ts · сломан
+106 ⇒ order.service.spec.ts · сломан
+107 ⇒ терминал VS Code · npm test -- order.service -t telefon
+113 ⇒ — склад не уменьшился
+114 ⇒ order.service.ts · сломан
+115 ⇒ терминал VS Code · npm test -- order.service
+116 ⇒ терминал VS Code · OrderBotNest
+117 ⇒ терминал VS Code · npm test -- app.controller
+118 ⇒ терминал VS Code · npm test -- app.controller
+119 ⇒ · граница
+120 ⇒ Вопрос:
+121 ⇒ 1-й AI · telegram.service.phone.spec.ts · список отказов
+122 ⇒ Сколько тестов покраснело (0 — поломка не замечена) ·
+156 ⇒ Вы добавляете

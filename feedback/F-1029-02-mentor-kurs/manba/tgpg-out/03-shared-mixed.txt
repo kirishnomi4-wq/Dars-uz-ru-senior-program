@@ -1,0 +1,7 @@
+$ node shared.js
+Aziza (5123456789): Pepperoni
+  bot → 5123456789: Pepperoni. O'lcham?
+Jasur (6234567890): Margarita
+  bot → 6234567890: Margarita. O'lcham?
+Aziza (5123456789): Katta
+  bot → 5123456789: Buyurtma: Margarita, katta

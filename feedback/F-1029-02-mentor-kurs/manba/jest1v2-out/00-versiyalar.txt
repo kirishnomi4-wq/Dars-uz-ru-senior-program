@@ -1,0 +1,8 @@
+v24.18.0
+11.16.0
+Wed Nov  4 01:42:57 PM +05 2026
+HEAD f2eca2f tgpg-done: bekor qilishda buyurtma qatori qulfl
+jest 30.5.2
+ts-jest 29.4.15
+typescript 5.9.3
+telegraf 4.16.3

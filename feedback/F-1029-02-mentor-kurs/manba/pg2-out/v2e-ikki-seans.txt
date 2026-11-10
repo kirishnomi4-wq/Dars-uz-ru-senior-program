@@ -1,0 +1,78 @@
+# Ikki haqiqiy psql seansi (A va B), psql 18 · pty · 03.11. Har blok: [A] yoki [B] — qaysi oynada yozildi.
+
+[A] shop=# SELECT name, price FROM products WHERE id = 1;
+[A]     name    | price 
+[A] ------------+-------
+[A]  Klaviatura | 99000
+[A] (1 row)
+[A] 
+[A] shop=#
+
+[B] shop=# SELECT name, price FROM products WHERE id = 1;
+[B]     name    | price 
+[B] ------------+-------
+[B]  Klaviatura | 99000
+[B] (1 row)
+[B] 
+[B] shop=#
+
+[A] shop=# BEGIN;
+[A] BEGIN
+[A] shop=*#
+
+[A] shop=# UPDATE products SET price = 89000 WHERE id = 1;
+[A] UPDATE 1
+[A] shop=*#
+
+[A] shop=# SELECT name, price FROM products WHERE id = 1;
+[A]     name    | price 
+[A] ------------+-------
+[A]  Klaviatura | 89000
+[A] (1 row)
+[A] 
+[A] shop=*#
+
+[B] shop=# SELECT name, price FROM products WHERE id = 1;
+[B]     name    | price 
+[B] ------------+-------
+[B]  Klaviatura | 99000
+[B] (1 row)
+[B] 
+[B] shop=#
+
+[A] shop=# COMMIT;
+[A] COMMIT
+[A] shop=#
+
+[B] shop=# SELECT name, price FROM products WHERE id = 1;
+[B]     name    | price 
+[B] ------------+-------
+[B]  Klaviatura | 89000
+[B] (1 row)
+[B] 
+[B] shop=#
+
+[A] shop=# BEGIN;
+[A] BEGIN
+[A] shop=*#
+
+[A] shop=# SELECT 1/0;
+[A] ERROR:  division by zero
+[A] shop=!#
+
+[A] shop=# SELECT name FROM products WHERE id = 1;
+[A] ERROR:  current transaction is aborted, commands ignored until end of transaction block
+[A] shop=!#
+
+[A] shop=# COMMIT;
+[A] ROLLBACK
+[A] shop=#
+
+[A] shop=# SELECT name, price FROM products WHERE id = 1;
+[A]     name    | price 
+[A] ------------+-------
+[A]  Klaviatura | 89000
+[A] (1 row)
+[A] 
+[A] shop=#
+

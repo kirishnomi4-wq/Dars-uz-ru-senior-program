@@ -1,0 +1,108 @@
+mongosh 2.5.10 · server 6.0.27
+test> show dbs
+[
+  'admin',
+  'config',
+  'local'
+]
+test> use shop
+switched to db shop
+shop> show dbs   // shop hali yo'q
+[
+  'admin',
+  'config',
+  'local'
+]
+shop> db.products.insertMany([...])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': 1,
+    '1': 2,
+    '2': 3,
+    '3': 4
+  }
+}
+shop> show dbs   // birinchi yozuvdan keyin
+[
+  'admin',
+  'config',
+  'local',
+  'shop'
+]
+shop> show collections
+[
+  'products'
+]
+shop> db.products.find({ price: { $lt: 100000 } })
+[
+  {
+    _id: 2,
+    name: 'Sichqoncha',
+    price: 75000,
+    stock: 15
+  },
+  {
+    _id: 3,
+    name: 'Quloqchin',
+    price: 95000,
+    stock: 5
+  },
+  {
+    _id: 4,
+    name: 'Mishka',
+    price: 50000,
+    stock: 10
+  }
+]
+shop> db.products.updateOne({ _id: 1 }, { $set: { price: 99000 } })
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+shop> db.products.deleteOne({ _id: 3 })
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+shop> db.products.updateOne({ _id: 99 }, { $set: { price: 1 } })
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+shop> db.products.insertOne({ nomi: "Planshet" })   // ustun qoidasi yo'q
+{
+  acknowledged: true,
+  insertedId: ObjectId('6ae9c277fff63f374f8de666')
+}
+shop> db.products.find()
+[
+  {
+    _id: 1,
+    name: 'Klaviatura',
+    price: 99000,
+    stock: 8
+  },
+  {
+    _id: 2,
+    name: 'Sichqoncha',
+    price: 75000,
+    stock: 15
+  },
+  {
+    _id: 4,
+    name: 'Mishka',
+    price: 50000,
+    stock: 10
+  },
+  {
+    _id: ObjectId('6ae9c277fff63f374f8de666'),
+    nomi: 'Planshet'
+  }
+]

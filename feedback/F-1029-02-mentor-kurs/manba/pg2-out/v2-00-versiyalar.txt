@@ -1,0 +1,4 @@
+psql (PostgreSQL) 18.4 (Debian 18.4-1+b1)
+postgres (PostgreSQL) 18.4 (Debian 18.4-1+b1)
+node v24.18.0
+Tue Nov  3 12:56:33 PM +05 2026

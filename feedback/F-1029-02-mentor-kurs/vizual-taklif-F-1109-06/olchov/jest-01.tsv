@@ -1,0 +1,25 @@
+jest-01	1	0,0,1280,720	faqat-matn	362	OrderBotNest'ga birinchi testlarni yozamiz: avval o'zingiz, keyin AI yozgan test
+jest-01	2	0,0,1280,720	kod/terminal	875	Smoke butun botni tekshiradi, unit-test — bitta qoidani: biri ikkinchisining o'r
+jest-01	3	0,0,1280,720	kod/terminal	656	Jest sozlamasi package.jsonda tayyor: fayl src/ ichida, nomi .spec.ts bilan tuga
+jest-01	4	0,0,1280,720	kod/terminal+test	590	Test fayli test/texts.spec.ts da — loyiha ildizidagi test papkasida. npm test ni
+jest-01	5	0,0,1280,720	kod/terminal	706	Test — uch qismli kod: qaysi funksiya, qaysi vaziyat va qanday natija kutiladi
+jest-01	6	0,0,1280,720	kod/terminal	843	Test qizil: Expected va Received bir xil ko'rinadi, lekin Jest ularni teng demay
+jest-01	7	0,0,1280,720	kod/terminal	927	toLocaleString minglarni oddiy probel bilan emas, bo'linmas probel bilan ajratad
+jest-01	8	0,0,1280,720	amaliyot	1032	Birinchi testni o'zingiz yozing: avval qizilni ko'ring, keyin sababini topib yas
+jest-01	9	0,0,1280,720	kod/terminal	798	expectsiz test har doim yashil: u funksiyani chaqiradi, lekin hech narsani teksh
+jest-01	10	0,0,1280,720	kod/terminal	558	Etalonni kodning o'zidan yasasangiz, kod buzilganda etalon ham buziladi — test y
+jest-01	11	0,0,1280,720	kod/terminal	939	Bu test som buzilganda ham yashil qoladi. Sababchi satrni toping
+jest-01	12	0,0,1280,720	jadval	395	Buyurtma to'rt statusdan o'tadi — har statusga admin ko'radigan tugmalar uchun b
+jest-01	13	0,0,1280,720	kod/terminal	989	Ikki massiv bir xil ko'rinsa ham toBe FAIL beradi: u ichini emas, aynan bitta ma
+jest-01	14	0,0,1280,720	kod/terminal	841	Bekor qilingan buyurtmaga yana tugma chiqdi — test qaysi qoida buzilganini aniq 
+jest-01	15	0,0,1280,720	faqat-matn	433	Xato ko'pincha chegarada: birinchi, oxirgi va yagona sahifa uchun alohida test
+jest-01	16	0,0,1280,720	kod/terminal+test	781	Faqat ikki test bor: «birinchi sahifa» va «o'rtadagi sahifa». Kodda page <= page
+jest-01	17	0,0,1280,720	amaliyot	1174	Admin tugmalari va katalog uchun testlar yozing, keyin kodni bir marta buzib qiz
+jest-01	18	0,0,1280,720	kod/terminal	1480	Yangi ko'nikma: AI yozgan testni qabul qilish — avval ikki AI tajribasi
+jest-01	19	0,0,1280,720	jadval	662	Test to'plamini kodni buzib tekshiramiz: qizarmasa — o'sha buzilish himoyasiz
+jest-01	20	0,0,1280,720	kod/terminal+test	972	AI testi: expect(STATUS_UZ.CANCELLED).toBeTruthy(). Kimdir matnni «Bekor qilinga
+jest-01	21	0,0,1280,720	amaliyot	1173	O'z AI'ingizga aniq shartli prompt bering, keyin to'rt tekshiruv va uchta buzish
+jest-01	22	0,0,1280,720	faqat-matn	428	O'quvchi darsi: KitobShop sayti, bitta orderTotal funksiyasi va Jestbot — siz bi
+jest-01	23	0,0,1280,720	faqat-matn	1055	Beshta vaziyat va tayyor javoblar — to'rttasini bugun o'zingiz ko'rdingiz
+jest-01	24	0,0,1280,720	test	371	package.json: rootDir: "src", testRegex: ".*\\.spec\\.ts$". Fayl src/order.test.
+jest-01	25	0,0,1280,720	faqat-matn	2526	Endi siz bilasiz

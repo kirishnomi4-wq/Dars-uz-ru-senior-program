@@ -1,0 +1,18 @@
+# wh-done: xizmat javobni olmadi deb bitta xabarni qayta yubordi
+$ npm run pay -- 1 ikki
+→ POST /payments/webhook {"paymentId":"pay_b96e99d4","orderId":1,"status":"paid","amount":120000}
+  X-Signature: e95d82d564f7b419…
+← 200 {"ok":true,"duplicate":false}
+→ xuddi shu xabar yana (xizmat javobni olmagan deb qayta yubordi)
+← 200 {"ok":true,"duplicate":true}
+
+## Server logi
+LOG [Payment] pay_b96e99d4 · #1 · paid · 120000
+LOG [Payment] pay_b96e99d4 · #1 · paid · 120000 — takror, yozilmadi
+
+$ psql: SELECT payment_id, order_id, status FROM payments
+  payment_id  | order_id | status 
+--------------+----------+--------
+ pay_0005d844 |        1 | paid
+ pay_b96e99d4 |        1 | paid
+(2 rows)

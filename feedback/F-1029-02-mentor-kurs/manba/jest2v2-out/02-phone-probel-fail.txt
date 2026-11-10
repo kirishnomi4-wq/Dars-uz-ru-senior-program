@@ -1,0 +1,35 @@
+$ npx jest phone --verbose
+FAIL src/api/telegram/phone.spec.ts
+  isPhone
+    ✓ +998901234567 — to'g'ri raqam (2 ms)
+    ✓ 998901234567 — to'g'ri raqam
+    ✓ 12345678 — 8 ta raqam — qisqa
+    ✓ +99890123456789 — 14 ta raqam — uzun
+    ✓ abc — harf
+    ✓  — bo'sh
+    ✕ mijoz probel bilan yozadi (2 ms)
+
+  ● isPhone › mijoz probel bilan yozadi
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      16 |
+      17 |   it('mijoz probel bilan yozadi', () => {
+    > 18 |     expect(isPhone('+998 90 123 45 67')).toBe(true);
+         |                                          ^
+      19 |   });
+      20 | });
+      21 |
+
+      at Object.<anonymous> (api/telegram/phone.spec.ts:18:42)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 6 passed, 7 total
+Snapshots:   0 total
+Time:        0.408 s, estimated 1 s
+Ran all test suites matching phone.
+[chiqish kodi: 1]
+

@@ -1,0 +1,17 @@
+$ npm run build
+
+> order-bot-nest@1.0.0 build
+> nest build
+
+[chiqish kodi: 0 · 3.3 s]
+
+$ node dist/main
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/acbddc95-9018-4213-96d2-b79eac22166a/scratchpad/cicd1v2-run/dist/infrastructure/database.module.js:15
+    throw new Error('DATABASE_URL topilmadi. .env ga PostgreSQL manzilini yozing: postgresql://postgres:parol@localhost:5432/shop');
+    ^
+
+Error: DATABASE_URL topilmadi. .env ga PostgreSQL manzilini yozing: postgresql://postgres:parol@localhost:5432/shop
+    at Object.<anonymous> (/tmp/claude-1000/-home-kali-Desktop-internetLesson/acbddc95-9018-4213-96d2-b79eac22166a/scratchpad/cicd1v2-run/dist/infrastructure/database.module.js:15:11)
+    at Module._compile (node:internal/modules/cjs/loader:1871:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:2002:10)
+[chiqish kodi: 1]

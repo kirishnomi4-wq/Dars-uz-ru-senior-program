@@ -1,0 +1,1969 @@
+[
+{
+"f": "04-yordam.jsx",
+"l": 8,
+"k": "str",
+"x": "mentor-ws1-01-ulanish-v1",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 9,
+"k": "str",
+"x": "Jonli panel: server o'zi xabar yuboradi",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 11,
+"k": "str",
+"x": "OrderBotNest",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 30,
+"k": "str",
+"x": "src/config/",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 53,
+"k": "str",
+"x": "localhost uch ming admin",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 54,
+"k": "str",
+"x": "AdminController",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 54,
+"k": "str",
+"x": "TelegramModule",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 56,
+"k": "str",
+"x": "@WebSocketServer",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 57,
+"k": "str",
+"x": "placeOrder",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 59,
+"k": "str",
+"x": "ulanish on",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 59,
+"k": "str",
+"x": "ulanish.on",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 60,
+"k": "str",
+"x": "savol belgisi token",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 60,
+"k": "str",
+"x": "ulanish ts",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 60,
+"k": "str",
+"x": "ulanish.ts",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 62,
+"k": "str",
+"x": "uch ming bir yuz",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 62,
+"k": "str",
+"x": "to'rt ming to'rt yuz bir",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 62,
+"k": "str",
+"x": "bir ming sakkiz",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 62,
+"k": "str",
+"x": "sakkiz yuz ellik besh",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 62,
+"k": "str",
+"x": "besh yuz o'n ikki",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 63,
+"k": "str",
+"x": "to'rt yuz to'rt",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 63,
+"k": "str",
+"x": "to'rt yuz bir",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 63,
+"k": "str",
+"x": "yigirma besh soniyada",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 63,
+"k": "str",
+"x": "25 soniyada",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 63,
+"k": "str",
+"x": "yigirma soniya",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 63,
+"k": "str",
+"x": "20 soniya",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 63,
+"k": "str",
+"x": "qirq besh soniya",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 63,
+"k": "str",
+"x": "45 soniya",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 63,
+"k": "str",
+"x": "qirq ikki soniya",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 63,
+"k": "str",
+"x": "42 soniya",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 64,
+"k": "str",
+"x": "o'n besh soniya",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 64,
+"k": "str",
+"x": "15 soniya",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 64,
+"k": "str",
+"x": "beshdan besh",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 64,
+"k": "str",
+"x": "to'qqizdan to'qqiz",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 64,
+"k": "str",
+"x": "oxirgi yigirma",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 64,
+"k": "str",
+"x": "o'n besh daqiqa",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 64,
+"k": "str",
+"x": "15 daqiqa",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 64,
+"k": "str",
+"x": "yigirma daqiqa",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 64,
+"k": "str",
+"x": "20 daqiqa",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 64,
+"k": "str",
+"x": "yigirma ekran",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 64,
+"k": "str",
+"x": "20 ekran",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 65,
+"k": "str",
+"x": "sakkizdan o'n",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 65,
+"k": "str",
+"x": "to'qqizinchi ekran",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 65,
+"k": "str",
+"x": "9-ekran",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 65,
+"k": "str",
+"x": "oltinchi ekran",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 65,
+"k": "str",
+"x": "6-ekran",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 95,
+"k": "str",
+"x": "statusCode",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 101,
+"k": "jsx",
+"x": "reA.test(l)) : 0; if (a",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 101,
+"k": "jsx",
+"x": "a && reB.test(l)) : L.length; if (b",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 105,
+"k": "str",
+"x": "VS Code terminali · OrderBotNest",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 120,
+"k": "str",
+"x": "ai-card${hl ? ' hl' : ''}",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 126,
+"k": "str",
+"x": "mk-box${hl ? ' hl' : ''}",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 128,
+"k": "str",
+"x": "${i < on ? 'on' : ''}${bad === i ? ' bad' : ''}",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 144,
+"k": "str",
+"x": "Mijoz",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 144,
+"k": "str",
+"x": "Telefon",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 144,
+"k": "str",
+"x": "Mahsulotlar",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 144,
+"k": "str",
+"x": "Vaqt",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 148,
+"k": "str",
+"x": "Ulangan",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 148,
+"k": "str",
+"x": "ulangan",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 148,
+"k": "str",
+"x": "Ulanmagan",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 148,
+"k": "str",
+"x": "ulanmagan",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 148,
+"k": "str",
+"x": "ulanmoqda",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 149,
+"k": "str",
+"x": "c1-br${small ? ' sm' : ''}",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 150,
+"k": "jsx",
+"x": "haqiqiy brauzer ·",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 151,
+"k": "jsx",
+"x": "Buyurtmalar — jonli panel",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 154,
+"k": "str",
+"x": "yangi",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 158,
+"k": "str",
+"x": "Bobur «Buyurtma berish»",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 158,
+"k": "str",
+"x": "tranzaksiya · COMMIT",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 158,
+"k": "str",
+"x": "tinglovchi → yukla()",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 158,
+"k": "str",
+"x": "token bilan · bazadan",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 166,
+"k": "str",
+"x": "ulangan",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 166,
+"k": "str",
+"x": "Ulangan",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 166,
+"k": "str",
+"x": "connect · hodisalar keladi",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 166,
+"k": "str",
+"x": "ulanish ochiq",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 166,
+"k": "str",
+"x": "ulanmoqda",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 166,
+"k": "str",
+"x": "Ulanmoqda…",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 166,
+"k": "str",
+"x": "active=true — klient o\\'zi qayta urinadi",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 166,
+"k": "str",
+"x": "ulanmagan",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 166,
+"k": "str",
+"x": "Ulanmagan",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 166,
+"k": "str",
+"x": "active=false — server yopdi (token), klient urinmaydi",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 168,
+"k": "str",
+"x": "c1-state${on === i ? ' hl' : ''}${on >= 0 && on !== i ? ' dim' : ''}",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 5,
+"k": "str",
+"x": "Umumiy tushuncha",
+"m": true
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 5,
+"k": "str",
+"x": "Gateway va token",
+"m": true
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 5,
+"k": "str",
+"x": "Hodisa va panel",
+"m": true
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 5,
+"k": "str",
+"x": "Ulanish holati",
+"m": true
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 5,
+"k": "str",
+"x": "Sinfga tayyorgarlik",
+"m": true
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 26,
+"k": "str",
+"x": "VS Code terminali · curl",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 29,
+"k": "str",
+"x": "Doimiy ulanish",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 31,
+"k": "str",
+"x": "VS Code terminali · tokensiz so'rov",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 45,
+"k": "str",
+"x": "VS Code terminali · npm run live",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 46,
+"k": "str",
+"x": "VS Code terminali · server (npm run start)",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 47,
+"k": "str",
+"x": "VS Code terminali · npm run live",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 48,
+"k": "str",
+"x": "Hodisa nomi",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 48,
+"k": "str",
+"x": "Ichida",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 48,
+"k": "jsx",
+"x": "va",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 77,
+"k": "str",
+"x": "VS Code terminali · npm run live -- &quot;&quot;",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 88,
+"k": "str",
+"x": "client.disconnect() — ulanish yopiladi, lekin funksiyadan chiqilmaydi",
+"m": true
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 88,
+"k": "str",
+"x": "return yo'q — keyingi satrlar baribir bajariladi",
+"m": true
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 88,
+"k": "str",
+"x": "client.data.admin = true va log «panel ulandi» — rad etilgan klient uchun",
+"m": true
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 88,
+"k": "str",
+"x": "Keyin shu yerga xona yoki ruxsat qo'shilsa — rad etilgan klient ularni oladi",
+"m": true
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 91,
+"k": "str",
+"x": "live.gateway.ts · buzilgan",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 94,
+"k": "str",
+"x": "VS Code terminali · npm run live -- &quot;&quot;",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 12,
+"k": "str",
+"x": "telegram.service.ts · status tugmasi",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 13,
+"k": "jsx",
+"x": "Hodisada",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 13,
+"k": "jsx",
+"x": "va",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 27,
+"k": "jsx",
+"x": ", ...kod('HTML',",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 40,
+"k": "str",
+"x": "token kiritildi — ro\\'yxat GET /admin/orders dan",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 40,
+"k": "str",
+"x": "bot buyurtma oldi — sahifa yangilanmadi",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 41,
+"k": "str",
+"x": "admin tasdiqladi",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 41,
+"k": "str",
+"x": "server logi",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 51,
+"k": "str",
+"x": "# brauzer",
+"m": true
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 71,
+"k": "str",
+"x": "ikkinchi oyna — token «notogri»",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 83,
+"k": "str",
+"x": "xtatildi/.test(l)) || ",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 83,
+"k": "str",
+"x": ").slice(0, 8), STARTAT = (L05.find((l) => /qayta ishga/.test(l)) || ",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 87,
+"k": "str",
+"x": "npm run live · ${STOPAT} — server to'xtatildi (Ctrl+C)",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 88,
+"k": "str",
+"x": "npm run live · qayta urinishlar",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 89,
+"k": "str",
+"x": "npm run live · ${STARTAT} — server qayta ishga tushirildi",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 90,
+"k": "str",
+"x": "Savol — WebSocket-2",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 103,
+"k": "jsx",
+"x": "davom — darhol ulandi",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 107,
+"k": "str",
+"x": "ping qoidasi (socket.io standarti)",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 107,
+"k": "jsx",
+"x": "Server har",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 107,
+"k": "jsx",
+"x": "Eng uzog'i —",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 108,
+"k": "jsx",
+"x": "aniqlaydi — 45 s gacha kechikib.",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 117,
+"k": "str",
+"x": "connect · ulangan · transport: polling",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 15,
+"k": "str",
+"x": "1-AI (kuchli model)",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 15,
+"k": "jsx",
+"x": "· xom",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 15,
+"k": "jsx",
+"x": "@nestjs/platform-ws",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 15,
+"k": "jsx",
+"x": "butun buyurtma",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 16,
+"k": "str",
+"x": "2-AI (kuchsizroq model)",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 16,
+"k": "jsx",
+"x": "· xuddi shu yo'l: xom",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 16,
+"k": "jsx",
+"x": "— butun buyurtma ·",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 19,
+"k": "str",
+"x": "aynan",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 19,
+"k": "jsx",
+"x": "yurgizilmadi.»",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 20,
+"k": "str",
+"x": "aynan",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 33,
+"k": "str",
+"x": "Qaysi kutubxona — o'quvchi darsidagi socket.io'mi?",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 33,
+"k": "str",
+"x": "Token qayerda — manzilda (?token=) emasmi?",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 33,
+"k": "str",
+"x": "Hodisada nima bor — va uni kim oladi?",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 33,
+"k": "str",
+"x": "Mavjud fayllardan nima o'zgardi — git diff --stat, testlar",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 37,
+"k": "jsx",
+"x": "tokensiz",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 41,
+"k": "str",
+"x": "lumotida</p><code>{",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 41,
+"k": "jsx",
+"x": "Bizniki",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 41,
+"k": "jsx",
+"x": "manzil toza — token ulanish ma'lumotida",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 42,
+"k": "jsx",
+"x": "har hodisada mijoz telefoni",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 55,
+"k": "str",
+"x": "xom ws klienti · 2-AI",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 55,
+"k": "str",
+"x": "admin.html · bizniki",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 56,
+"k": "str",
+"x": "AI — token manzilda",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 56,
+"k": "str",
+"x": "bizniki — manzil toza",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 64,
+"k": "str",
+"x": "prompt.txt",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 65,
+"k": "str",
+"x": "prompt.txt",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 70,
+"k": "str",
+"x": "1 Kirish",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 70,
+"k": "str",
+"x": "s0 ekran yangilanmaydi · s1 reja",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 70,
+"k": "str",
+"x": "so'rov–javobda server gapirmaydi (2-ekran)",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 70,
+"k": "str",
+"x": "2 Ulanish",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 70,
+"k": "str",
+"x": "s2–s4 yo'l yopiq / ochiq · s5–s6 konvert · s7–s8 token",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 70,
+"k": "str",
+"x": "tokensiz — bir lahza connect (5) · return (6)",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 70,
+"k": "str",
+"x": "3 Tinglovchi",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 70,
+"k": "str",
+"x": "s9 kod oynasi",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 70,
+"k": "str",
+"x": "() => yukla qavssiz (11)",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 70,
+"k": "str",
+"x": "s10–s11 uch belgi, uzilishda hodisa yo'qoladi",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 70,
+"k": "str",
+"x": "5 Sxema va amaliyot",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 70,
+"k": "str",
+"x": "s12–s14 sxema · A1 o'z repo + Render · A2 README",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 70,
+"k": "str",
+"x": "Render uxlashi, telefon — sinfda",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 71,
+"k": "str",
+"x": "blok",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 71,
+"k": "str",
+"x": "teg",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 75,
+"k": "str",
+"x": "oyin-ozgardi { oyinId, sabab }",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 75,
+"k": "jsx",
+"x": "Maydon Jamoa",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 75,
+"k": "jsx",
+"x": "maydon-jamoa",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 76,
+"k": "str",
+"x": "Siz · bugun",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 76,
+"k": "jsx",
+"x": "OrderBotNest panel · gateway ·",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 76,
+"k": "jsx",
+"x": "Qoidalar bir xil:",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 78,
+"k": "str",
+"x": "blok",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 79,
+"k": "str",
+"x": "teg",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 79,
+"k": "jsx",
+"x": "hodisa bor —",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 79,
+"k": "jsx",
+"x": ", ilova",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 79,
+"k": "jsx",
+"x": "GET /oyinlar",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 79,
+"k": "jsx",
+"x": "ni qayta so'raydi",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 86,
+"k": "str",
+"x": "yopiq yo'l / ochiq yo'l",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 86,
+"k": "str",
+"x": "so'rov–javob / doimiy ulanish",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 86,
+"k": "str",
+"x": "konvert",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 86,
+"k": "str",
+"x": "hodisa (oyin-ozgardi · bizda order-changed) — ichida son yo\\'q",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 86,
+"k": "str",
+"x": "ulanish holati (connected, active)",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 86,
+"k": "str",
+"x": "tinglovchi",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 86,
+"k": "str",
+"x": "ulanish.on(…)",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 86,
+"k": "str",
+"x": "qayta so'rash",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 86,
+"k": "str",
+"x": "GET /oyinlar · bizda GET /admin/orders",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 87,
+"k": "str",
+"x": "MJ_ULANISH",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 87,
+"k": "str",
+"x": "MJ_ULANISH",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 92,
+"k": "str",
+"x": "OrderBotNest · README.md · ws1-done",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 93,
+"k": "str",
+"x": "maydon-jamoa · README.md · m12-dars-03-done",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 94,
+"k": "str",
+"x": "maydon-jamoa · mobil/src/ulanish.ts",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 94,
+"k": "str",
+"x": "MJ_ULANISH",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 95,
+"k": "jsx",
+"x": "Tinglovchi",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 95,
+"k": "jsx",
+"x": "ichida",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 102,
+"k": "str",
+"x": "Belgi bir lahza yashil, keyin qizil",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 102,
+"k": "str",
+"x": "token — qayta kirish",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 102,
+"k": "str",
+"x": "Belgi sariq, keyin yashil",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 102,
+"k": "str",
+"x": "server qayta yondi — normal",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 102,
+"k": "str",
+"x": "Uchish rejimida belgi o'zgarmadi",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 102,
+"k": "str",
+"x": "45 s gacha ping timeout",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 102,
+"k": "str",
+"x": "kuting",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 102,
+"k": "str",
+"x": "Son o'zi o'zgarmadi",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 102,
+"k": "str",
+"x": "hodisa yo'q (m12-dars-02)",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 102,
+"k": "str",
+"x": "xato emas — keyingi teg",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 102,
+"k": "str",
+"x": "Birinchi ulanish cho'zildi",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 102,
+"k": "str",
+"x": "Render uxlagan",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 102,
+"k": "str",
+"x": "bir daqiqa kuting",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 102,
+"k": "str",
+"x": "Terminalda «null» / «panel ulandi» rad etilganda",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 102,
+"k": "str",
+"x": "return yo'q",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 102,
+"k": "str",
+"x": "6-ekran",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 104,
+"k": "str",
+"x": "«WebSocket va socket.io bir narsami?»",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 104,
+"k": "str",
+"x": "socket.io — kutubxona: imkon bo'lsa WebSocket orqali, bo'lmasa polling; qayta ulanish va ping tayyor.",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 105,
+"k": "str",
+"x": "«Nega hodisada son yo'q?»",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 105,
+"k": "str",
+"x": "Ikki kishi birdan qo'shilsa adashmasin — son har doim Backend'dan.",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 106,
+"k": "str",
+"x": "«Uzilgan paytdagi hodisa keyin keladimi?»",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 106,
+"k": "str",
+"x": "Yo'q: socket.io eski hodisani saqlamaydi; qayta ulanganda qayta so'rash kerak — keyingi dars.",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 107,
+"k": "str",
+"x": "«Token muddati tugasa?»",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 107,
+"k": "str",
+"x": "Keyingi ulanishda Backend yopadi — «Ulanmagan», qayta kirish.",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 133,
+"k": "str",
+"x": "Hammasini ko'rib chiqdingiz, endi o'zingizni tekshiring. Yakuniy sinov, sakkiz savol: so'rov–javob, token, return, hodisa tarkibi, tinglovchi, uch holat, ping va AI'ning tokeni. Har savolda bitta urinish, javobdan keyin to'g'risi va izohi ochiladi. Olti va undan ko'p, dars o'zlashtirilgan. Kam bo'lsa, ko'rsatilgan ekranlarga qaytib, sinovni qayta topshirasiz.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 135,
+"k": "str",
+"x": "Natijangiz saqlangan: sakkizdan ",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 135,
+"k": "str",
+"x": "nol",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 135,
+"k": "str",
+"x": "ikki",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 135,
+"k": "str",
+"x": "uch",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 135,
+"k": "str",
+"x": "to'rt",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 135,
+"k": "str",
+"x": "besh",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 135,
+"k": "str",
+"x": "olti",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 135,
+"k": "str",
+"x": "yetti",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 135,
+"k": "str",
+"x": "sakkiz",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 135,
+"k": "str",
+"x": ". Dars o'zlashtirilgan, Davom bosing.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 136,
+"k": "str",
+"x": "Yaxshi, bir xatoyingizni ko'rib chiqdingiz. Qolgan qizil savollarning ekranlariga ham qayting. Tayyor bo'lgach, Sinovni qayta topshirish tugmasini bosing.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 172,
+"k": "str",
+"x": "mk-btn soft sm",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 176,
+"k": "str",
+"x": "mk-btn ghost",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 186,
+"k": "str",
+"x": "mk-btn ready",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 198,
+"k": "str",
+"x": "So'rov–javobda server faqat so'ralganda javob beradi; jonli panel uchun doimiy ulanish — socket.io: avval polling, keyin websocket, HTTP bilan bitta portda",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 199,
+"k": "str",
+"x": "Gateway: handleConnection da client.handshake.auth.token — noto'g'ri bo'lsa disconnect() va return (aks holda log yolg'on); token bitta joyda (isAdminToken), bo'sh token ham rad",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 200,
+"k": "str",
+"x": "Hodisa tranzaksiya tugagach: await place(…) → orderChanged(id, 'new'); ichida faqat { orderId, reason } — panel GET /admin/orders ni token bilan qayta so'raydi (konvert)",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 201,
+"k": "str",
+"x": "Panel: io({ auth: { token } }) (token manzilda emas), tinglovchi () => yukla() (qavs bilan), matn esc() bilan",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 202,
+"k": "str",
+"x": "Uch holat: ulangan · ulanmoqda (active=true: transport close, xhr poll error, ping timeout ≤ 45 s) · ulanmagan (active=false: io server disconnect — token). Server yongach klient o'zi ulanadi",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 203,
+"k": "str",
+"x": "AI real vaqt kodiga to'rt savol: kutubxona (socket.io'mi) · token qayerda · hodisada nima, kim oladi · mavjud fayllardan nima o'zgardi; haqiqiy baza bilan tekshiring (npm run smoke -- live)",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 205,
+"k": "str",
+"x": "So'rov vs ulanish",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 205,
+"k": "str",
+"x": "Hodisa · panel",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 205,
+"k": "str",
+"x": "Uch holat",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 212,
+"k": "str",
+"x": "mk-box${cur && cur.st.includes(k) ? ' hl' : ''}",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 217,
+"k": "str",
+"x": "API — admin.controller.ts: @Get('stock') — token → mahsulotlar (nom, qoldiq)",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 218,
+"k": "str",
+"x": "Test — admin.controller.spec.ts: tokensiz 401, token bilan 200 va ro\\'yxat",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 219,
+"k": "str",
+"x": "Panel — admin.html: yukla() ichida ombor ham qayta so'raladi, ro'yxat pastda (yangi hodisa ochilmaydi)",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 220,
+"k": "str",
+"x": "README — «Jonli panel» jadvaliga «ombor qoldig'i» qatori",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 221,
+"k": "str",
+"x": "Topshirish — git push → repo linki platformadagi uyga vazifaga",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 221,
+"k": "str",
+"x": "git add . && git commit -m \"panel: ombor qoldig\\'i\"",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 227,
+"k": "str",
+"x": "ralganda javob beradi (polling — qayta-qayta so",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 234,
+"k": "jsx",
+"x": "· ulanish = io(",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 236,
+"k": "str",
+"x": "chdi), xhr poll error (server yo",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 245,
+"k": "str",
+"x": "zgarmadi: m12-dars-02 · Render uxlagan: 1 daqiqa · «null»: return yo",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 247,
+"k": "str",
+"x": "i — order-changed dan keyin qayta so",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 250,
+"k": "str",
+"x": "<b>Barakalla!</b> Siz darsni yaxshi o'rgandingiz — bugungi darsni bir qarashda yig'amiz",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 250,
+"k": "str",
+"x": "Barakalla! Siz darsni yaxshi o'rgandingiz. Endi bugun o'rganganlaringizni bir qarashda yig'amiz.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 251,
+"k": "str",
+"x": "Dars oxiriga yetdingiz — sinovni <b>qayta topshirishni</b> maslahat beraman",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 251,
+"k": "str",
+"x": "Dars oxiriga yetdingiz. Yakuniy sinovdan olti ball kerak edi, yakunlashdan oldin sinovni qayta topshirishni maslahat beraman. Hozir esa bugungi darsni bir qarashda yig'amiz.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 252,
+"k": "str",
+"x": "So'rov–javobda server <b>o'zi gapirmaydi</b>; socket.io — doimiy ulanish",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 252,
+"k": "str",
+"x": "Birinchi: so'rov–javobda server faqat so'ralganda javob beradi. Jonli panel uchun doimiy ulanish kerak: socket.io, avval polling, keyin websocket, HTTP bilan bitta portda.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 253,
+"k": "str",
+"x": "Gateway: token ulanishda, <b>disconnect va return</b>",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 253,
+"k": "str",
+"x": "Ikkinchi: gateway har ulanishda handshake auth token'ni tekshiradi. Noto'g'ri bo'lsa disconnect va return. Return unutilsa, klient yopiladi, lekin log yolg'on gapiradi.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 254,
+"k": "str",
+"x": "Hodisa <b>tranzaksiyadan keyin</b>, ichida faqat «nima o'zgardi»",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 254,
+"k": "str",
+"x": "Uchinchi: hodisa tranzaksiya tugagach yuboriladi va ichida faqat buyurtma raqami va sabab. Panel yangi ro'yxatni token bilan qayta so'raydi. Ma'lumotning manbai bitta, baza.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 255,
+"k": "str",
+"x": "Panel: <b>auth'da token</b>, tinglovchida <b>qavs</b>, matn esc bilan",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 255,
+"k": "str",
+"x": "To'rtinchi: panel tokenni manzilda emas, auth'da yuboradi. Tinglovchida yukla qavs bilan chaqiriladi, qavssiz ro'yxat yangilanmaydi. Mijoz ismi esc bilan, matn sifatida.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 256,
+"k": "str",
+"x": "<b>Uch holat</b>: ulangan · ulanmoqda · ulanmagan; ping 45 s",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 256,
+"k": "str",
+"x": "Beshinchi: uch holat. Ulanmoqda, active true: server o'chgan, javob bermayapti, ping timeout qirq besh soniyagacha. Ulanmagan, active false: server yopdi, token. Server yongach klient o'zi ulanadi.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 257,
+"k": "str",
+"x": "AI real vaqt kodiga <b>to'rt savol</b> va haqiqiy baza",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 257,
+"k": "str",
+"x": "Oltinchi: AI yozgan real vaqt kodiga to'rt savol: qaysi kutubxona, token qayerda, hodisada nima, mavjud fayllardan nima o'zgardi. Va har doim haqiqiy baza bilan tekshiring: npm run smoke live.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 258,
+"k": "str",
+"x": "<b>Uyga vazifa</b>: panelga ombor qoldig'i — yangi hodisasiz",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 258,
+"k": "str",
+"x": "Uyga vazifa: panelga ikkinchi real vaqt nuqtasi, ombor qoldig'i. Yangi hodisa ochmang: order changed kelganda ombor ham qayta so'ralsin. Buning uchun get admin stock, token bilan, va unga test.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 259,
+"k": "str",
+"x": "README jadvaliga qator; <b>repo linki platformaga</b>",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 259,
+"k": "str",
+"x": "README'dagi jonli panel jadvaliga ombor qatorini qo'shing. Buyurtmani bekor qilib, qoldiq o'zi o'sganini ko'ring. GitHub'ga chiqaring va linkni platformadagi uyga vazifaga qo'ying. Qirq-oltmish daqiqa.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 260,
+"k": "str",
+"x": "<b>Eslatmani oling</b>: gateway va panel qoliplari, uch holat, AI savollari — bir sahifada",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 260,
+"k": "str",
+"x": "Pastda bir sahifalik eslatma: gateway va panel qoliplari, hodisa qoidasi, uch holat va xabarlari, ping, tekshirish buyruqlari, AI'ga to'rt savol, m10-02 lug'ati va sinfdagi holatlar. Nusxalab yoki yuklab oling.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 261,
+"k": "str",
+"x": "Rahmat! <b>Darsni yakunlash</b> tugmasini bosing",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 261,
+"k": "str",
+"x": "Rahmat. Darsni yakunlash tugmasini bosing, dars tugallangan deb belgilanadi.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 289,
+"k": "str",
+"x": "cmd",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 292,
+"k": "jsx",
+"x": "Tekshiruvchi qaraydi:",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 292,
+"k": "jsx",
+"x": "yangi hodisa ochilmagan (",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 292,
+"k": "jsx",
+"x": "yetadi) ·",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 366,
+"k": "jsx",
+"x": "onFinish=",
+"m": true
+}
+]

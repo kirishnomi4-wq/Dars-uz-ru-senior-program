@@ -1,0 +1,59 @@
+$ npx jest order.service -t omborda
+/tmp/claude-1000/-home-kali-Desktop-internetLesson/acbddc95-9018-4213-96d2-b79eac22166a/scratchpad/jest2v2-run/node_modules/expect/build/index.js:2155
+  const innerErr = new JestAssertionError();
+                   ^
+
+JestAssertionError: expect(received).rejects.toThrow(expected)
+
+Expected substring: "Planshet: omborda faqat 9 ta qoldi"
+Received message:   "Kolonka: omborda faqat 1 ta qoldi"
+
+      35 |         if (!p) throw new Error(`Mahsulot topilmadi: ${c.product.name}`);
+      36 |         if (p.stock < c.qty) {
+    > 37 |           throw new Error(`${p.name}: omborda faqat ${p.stock} ta qoldi`);
+         |                 ^
+      38 |         }
+      39 |         // 2) Ayiramiz. Bazadagi CHECK (stock >= 0) — oxirgi qo'riqchi: kod xato qilsa ham manfiy bo'lmaydi.
+      40 |         //    Diqqat: tranzaksiya ichida xato chiqsa, keyingi so'rovlar ham rad etiladi
+
+      at src/api/order/order.service.ts:37:17
+    at Object.toThrow (/tmp/claude-1000/-home-kali-Desktop-internetLesson/acbddc95-9018-4213-96d2-b79eac22166a/scratchpad/jest2v2-run/node_modules/expect/build/index.js:2155:20)
+    at Object.<anonymous> (/tmp/claude-1000/-home-kali-Desktop-internetLesson/acbddc95-9018-4213-96d2-b79eac22166a/scratchpad/jest2v2-run/src/api/order/order.service.spec.ts:51:47)
+    at Promise.finally.completed (/tmp/claude-1000/-home-kali-Desktop-internetLesson/acbddc95-9018-4213-96d2-b79eac22166a/scratchpad/jest2v2-run/node_modules/jest-circus/build/jestAdapterInit.js:1834:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (/tmp/claude-1000/-home-kali-Desktop-internetLesson/acbddc95-9018-4213-96d2-b79eac22166a/scratchpad/jest2v2-run/node_modules/jest-circus/build/jestAdapterInit.js:1774:10)
+    at _callCircusTest (/tmp/claude-1000/-home-kali-Desktop-internetLesson/acbddc95-9018-4213-96d2-b79eac22166a/scratchpad/jest2v2-run/node_modules/jest-circus/build/jestAdapterInit.js:1167:40)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at _runTestInContext (/tmp/claude-1000/-home-kali-Desktop-internetLesson/acbddc95-9018-4213-96d2-b79eac22166a/scratchpad/jest2v2-run/node_modules/jest-circus/build/jestAdapterInit.js:1103:3)
+    at runTestWithContext (/tmp/claude-1000/-home-kali-Desktop-internetLesson/acbddc95-9018-4213-96d2-b79eac22166a/scratchpad/jest2v2-run/node_modules/jest-circus/build/jestAdapterInit.js:996:5)
+    at _runTestsForDescribeBlockOnce (/tmp/claude-1000/-home-kali-Desktop-internetLesson/acbddc95-9018-4213-96d2-b79eac22166a/scratchpad/jest2v2-run/node_modules/jest-circus/build/jestAdapterInit.js:1008:11)
+    at _runTestsForDescribeBlock (/tmp/claude-1000/-home-kali-Desktop-internetLesson/acbddc95-9018-4213-96d2-b79eac22166a/scratchpad/jest2v2-run/node_modules/jest-circus/build/jestAdapterInit.js:824:5)
+    at _runTestsForDescribeBlockOnce (/tmp/claude-1000/-home-kali-Desktop-internetLesson/acbddc95-9018-4213-96d2-b79eac22166a/scratchpad/jest2v2-run/node_modules/jest-circus/build/jestAdapterInit.js:1003:11)
+    at _runTestsForDescribeBlock (/tmp/claude-1000/-home-kali-Desktop-internetLesson/acbddc95-9018-4213-96d2-b79eac22166a/scratchpad/jest2v2-run/node_modules/jest-circus/build/jestAdapterInit.js:824:5)
+    at run (/tmp/claude-1000/-home-kali-Desktop-internetLesson/acbddc95-9018-4213-96d2-b79eac22166a/scratchpad/jest2v2-run/node_modules/jest-circus/build/jestAdapterInit.js:789:3)
+    at runAndTransformResultsToJestFormat (/tmp/claude-1000/-home-kali-Desktop-internetLesson/acbddc95-9018-4213-96d2-b79eac22166a/scratchpad/jest2v2-run/node_modules/jest-circus/build/jestAdapterInit.js:2300:21)
+    at jestAdapter (/tmp/claude-1000/-home-kali-Desktop-internetLesson/acbddc95-9018-4213-96d2-b79eac22166a/scratchpad/jest2v2-run/node_modules/jest-circus/build/runner.js:111:19)
+    at runTestInternal (/tmp/claude-1000/-home-kali-Desktop-internetLesson/acbddc95-9018-4213-96d2-b79eac22166a/scratchpad/jest2v2-run/node_modules/jest-runner/build/index.js:247:16)
+    at runTest (/tmp/claude-1000/-home-kali-Desktop-internetLesson/acbddc95-9018-4213-96d2-b79eac22166a/scratchpad/jest2v2-run/node_modules/jest-runner/build/index.js:315:7) {
+  matcherResult: {
+    message: 'expect(received).rejects.toThrow(expected)\n' +
+      '\n' +
+      'Expected substring: "Planshet: omborda faqat 9 ta qoldi"\n' +
+      'Received message:   "Kolonka: omborda faqat 1 ta qoldi"\n' +
+      '\n' +
+      '      35 |         if (!p) throw new Error(`Mahsulot topilmadi: ${c.product.name}`);\n' +
+      '      36 |         if (p.stock < c.qty) {\n' +
+      '    > 37 |           throw new Error(`${p.name}: omborda faqat ${p.stock} ta qoldi`);\n' +
+      '         |                 ^\n' +
+      '      38 |         }\n' +
+      "      39 |         // 2) Ayiramiz. Bazadagi CHECK (stock >= 0) — oxirgi qo'riqchi: kod xato qilsa ham manfiy bo'lmaydi.\n" +
+      "      40 |         //    Diqqat: tranzaksiya ichida xato chiqsa, keyingi so'rovlar ham rad etiladi\n" +
+      '\n' +
+      '      at src/api/order/order.service.ts:37:17',
+    pass: false
+  }
+}
+
+Node.js v24.18.0
+[chiqish kodi: 1]
+

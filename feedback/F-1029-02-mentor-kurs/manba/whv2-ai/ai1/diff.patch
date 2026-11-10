@@ -1,0 +1,1152 @@
+diff --git a/.env.example b/.env.example
+index 4c1ff1b..46ff42a 100644
+--- a/.env.example
++++ b/.env.example
+@@ -10,6 +10,10 @@ ADMIN_TELEGRAM_IDS=
+ # Bo'sh qolsa panelga hech kim kira olmaydi.
+ ADMIN_PANEL_TOKEN=
+ 
++# To'lov xizmati webhook kaliti (HMAC-SHA256 imzo shu bilan tekshiriladi) — to'lov xizmati kabinetidan oling.
++# Bo'sh qolsa POST /payments/webhook hamma xabarni rad etadi (401).
++PAYMENT_WEBHOOK_SECRET=
++
+ # PostgreSQL (lokal: PG-1 darsida o'rnatilgan). Baza oldindan yaratilgan bo'lsin: CREATE DATABASE shop;
+ DATABASE_URL=postgresql://postgres:parol@localhost:5432/shop
+ 
+diff --git a/README.md b/README.md
+index 3af7578..bc09f31 100644
+--- a/README.md
++++ b/README.md
+@@ -21,6 +21,7 @@ Hammasi bazada: server qayta ishga tushsa ham savat, buyurtmalar, telefonlar qol
+    - `ADMIN_TELEGRAM_IDS=` — o'z Telegram id'ingiz (@userinfobot), vergul bilan bir nechta
+    - `DATABASE_URL=postgresql://postgres:parol@localhost:5432/shop` — o'z parolingiz
+    - `ADMIN_PANEL_TOKEN=` — jonli panel uchun maxfiy so'z (o'zingiz o'ylab topasiz)
++   - `PAYMENT_WEBHOOK_SECRET=` — to'lov xizmati webhook kaliti (xizmat kabinetidan)
+ 5. Katalogni to'ldiring: `npm run seed` (jadvallarni migratsiya o'zi yaratadi, 6 ta mahsulot kiradi)
+ 6. `npm run start:dev` — terminalda «Telegram bot ulandi».
+ 7. Telegramda botga `/start`, keyin `/catalog`.
+@@ -62,6 +63,38 @@ socket.io ulanishni o'zi tiklaydi, lekin **ulanish yo'q paytda yuborilgan `order
+ - Ro'yxat ikki joyda so'raladi: `connect` va `order-changed`. Tinglovchi **bir marta, `connect` dan tashqarida** qo'shiladi — ichida bo'lsa har qayta ulanishda yana bittasi qo'shiladi va bitta hodisaga bir nechta `GET` ketadi.
+ - Qanday buziladi va qanday tekshiriladi — `BUZISH.md`.
+ 
++## Onlayn to'lov (webhook)
++
++To'lov xizmati mijoz to'lagandan keyin natijani serverga yuboradi. Natija panelda **«To'lov»** ustunida ko'rinadi (sahifa o'zi yangilanadi).
++
++```
++POST /payments/webhook
++Content-Type: application/json
++X-Signature: <HMAC-SHA256(PAYMENT_WEBHOOK_SECRET, tana) — hex, 64 belgi; «sha256=» old qo'shimchasi bo'lsa ham bo'ladi>
++
++{ "payment_id": "pay_123", "order_id": 15, "status": "paid", "amount": 120000 }
++```
++
++| Maydon | Nima | Qoida |
++|---|---|---|
++| `payment_id` | to'lov xizmatidagi raqam | matn (yoki butun son); bitta to'lov — bitta qator (`UNIQUE`) |
++| `order_id` | bizdagi buyurtma raqami (`#15`) | musbat butun son |
++| `status` | natija | `paid` (to'landi) yoki `rejected` (rad etildi) |
++| `amount` | summa, **so'mda** | musbat butun son; `orders.total` bilan solishtiriladi |
++
++- Imzo **tananing xom baytlaridan** tekshiriladi (`main.ts`: `NestFactory.create(AppModule, { rawBody: true })`), qayta JSON qilingan obyektdan emas. Imzo noto'g'ri yoki yo'q → `401`, bazaga tegilmaydi. `.env` da kalit bo'sh bo'lsa — hamma xabar `401`.
++- Javoblar: `200` qabul qilindi · `400` tana noto'g'ri · `401` imzo · `404` buyurtma yo'q · `409` `payment_id` boshqa buyurtmaga tegishli · `5xx` bizda xato (xizmat keyin qayta yuboradi).
++- **Takror xabar** (xizmat javob ololmasa qayta yuboradi) — `200`, `result: "duplicate"`, ikkinchi qator ochilmaydi; bir vaqtda kelsa ham (buyurtma qatori `FOR UPDATE`).
++- To'lov `paid` bo'lgach, shu `payment_id` ga keyin kelgan `rejected` uni o'zgartirmaydi (`result: "ignored"`, logda ogohlantirish).
++- Buyurtmaning to'lov holati (`orders.payment_status`) — hamma urinishlardan: **To'landi** (`PAID`, summa jamiga teng) · **Summa mos emas** (`AMOUNT_MISMATCH` — `paid` keldi, summa boshqa: admin qarashi kerak) · **Rad etildi** (`REJECTED`) · **Kutilmoqda** (`UNPAID`).
++- O'zgarish bo'lsa panelga `order-changed` · `reason: 'payment'` ketadi.
++- Telegram'siz tekshirish: `npm run smoke -- payment`. Qo'lda:
++  ```bash
++  B='{"payment_id":"pay_1","order_id":1,"status":"paid","amount":120000}'
++  S=$(printf %s "$B" | openssl dgst -sha256 -hmac "$PAYMENT_WEBHOOK_SECRET" -hex | awk '{print $NF}')
++  curl -X POST localhost:3000/payments/webhook -H 'Content-Type: application/json' -H "X-Signature: $S" -d "$B"
++  ```
++
+ ## Baza
+ 
+ | Jadval | Nima | Muhim ustun / qoida |
+@@ -69,8 +102,9 @@ socket.io ulanishni o'zi tiklaydi, lekin **ulanish yo'q paytda yuborilgan `order
+ | `products` | katalog va ombor | `stock INTEGER`, **`CHECK (stock >= 0)`** — ortiqcha sotib bo'lmaydi |
+ | `users` | kim yozdi | **`telegram_id BIGINT UNIQUE`** (Telegram id 32 bitga sig'maydi), `role`, `phone`, `state` |
+ | `cart_items` | savat | `UNIQUE (user_id, product_id)` — bitta mahsulot bitta qator, `qty` o'sadi |
+-| `orders` | buyurtma | `status`: NEW → CONFIRMED → DELIVERED / CANCELLED, `total`, `phone` |
++| `orders` | buyurtma | `status`: NEW → CONFIRMED → DELIVERED / CANCELLED, `total`, `phone`, `payment_status` |
+ | `order_items` | buyurtma qatorlari | `price` — buyurtma paytidagi narx (keyin o'zgarsa ham qoladi) |
++| `payments` | to'lov urinishlari (webhook) | **`payment_id UNIQUE`** — takror xabar ikkinchi qator ochmaydi; `status` paid/rejected, `amount` |
+ 
+ Buyurtma — bitta **tranzaksiya**: har mahsulot `SELECT … FOR UPDATE` → `UPDATE stock = stock - qty` → `INSERT orders, order_items` → `DELETE cart_items`. Birortasi yiqilsa hammasi qaytadi (ROLLBACK).
+ 
+@@ -82,8 +116,8 @@ Qo'lda: `npm run migration:run` · `npm run migration:revert` · entity o'zgarga
+ ```
+ src/
+   main.ts                           — serverni ko'taradi
+-  config/index.ts                   — .env o'qiladi (BOT_TOKEN, ADMIN_TELEGRAM_IDS, ADMIN_PANEL_TOKEN, DATABASE_URL, DB_LOGGING, PORT)
+-  core/entity/                      — jadvallar: product, user, cart-item, order, order-item
++  config/index.ts                   — .env o'qiladi (BOT_TOKEN, ADMIN_TELEGRAM_IDS, ADMIN_PANEL_TOKEN, PAYMENT_WEBHOOK_SECRET, DATABASE_URL, DB_LOGGING, PORT)
++  core/entity/                      — jadvallar: product, user, cart-item, order, order-item, payment
+   infrastructure/data-source.ts     — bitta ulanish sozlamasi (Nest ham, typeorm CLI ham)
+   infrastructure/database.module.ts — TypeOrmModule.forRoot + migratsiyalar avto
+   infrastructure/migrations/        — SQL migratsiyalar
+@@ -95,6 +129,7 @@ src/
+   api/cart/                         — savat: INSERT … ON CONFLICT DO UPDATE
+   api/order/                        — buyurtma: tranzaksiya, status, bekor → ombor qaytadi
+   api/live/                         — jonli panel: gateway (order-changed), /admin sahifasi va GET /admin/orders
++  api/payment/                      — to'lov webhook'i: imzo (signature.ts), xabar tekshiruvi, payments jadvali
+ public/admin.html                   — panel sahifasi (socket.io klienti)
+ scripts/smoke.js                    — npm run smoke: Telegram'siz tekshiruv
+ scripts/live-client.js              — npm run live: terminaldan panel kabi ulanish
+@@ -110,6 +145,7 @@ npm run smoke            # hammasi
+ npm run smoke -- restart # savat, buyurtma va telefon kutish restartdan o'tadimi
+ npm run smoke -- race    # 1 ta Planshet, 5 mijoz bir vaqtda (3 raund) + ikki marta bir vaqtda «Bekor»
+ npm run smoke -- live    # jonli panel: tokensiz ulanish yopiladimi, buyurtma va holat order-changed bo'lib keladimi
++npm run smoke -- payment # to'lov webhook'i: imzosiz/soxta → 401, to'landi/rad etildi panelga, takror xabar bir marta
+ ```
+ 
+ `tgpg-start` da `restart` 0/3 chiqadi — hammasi xotirada, shu darsning muammosi. `tgpg-done` da 5/5, `ws1-done` da 9/9 (live bilan).
+@@ -146,5 +182,7 @@ Mentor darsi `tgpg-start` dan boshlanadi: `git checkout tgpg-start`. Oxirida o'z
+ | `disconnect: ping timeout` | ~45 s javob yo'q (internet uzildi, server qotdi) | o'zi qayta ulanadi; doimiy bo'lsa — tarmoqni tekshiring |
+ | belgi «Ulangan», lekin yangi buyurtma ro'yxatda yo'q (bazada bor) | qayta ulanishdan oldin yuborilgan hodisa kelmaydi; panel `connect` da qayta so'ramayapti | `ws2-done`: `connect` ichida `yukla()` |
+ | bitta buyurtmaga bir nechta `GET /admin/orders` (F12 → Network), sariq belgi yo'qoladi | `order-changed` tinglovchisi `connect` ichida — har qayta ulanishda yana bittasi | tinglovchini `connect` dan tashqariga, bir marta |
++| `POST /payments/webhook` → 401 `Imzo noto'g'ri` | `X-Signature` yo'q, boshqa kalit, yoki tana imzolangandan keyin o'zgargan (probel ham) | `.env` dagi `PAYMENT_WEBHOOK_SECRET` xizmatdagi kalit bilan bir xilmi; imzo xom tanadan olinadimi |
++| panelda «Summa mos emas» | `paid` keldi, lekin `amount` buyurtma jamiga teng emas (masalan, tiyinda yuborilgan) | to'lov xizmati bilan summa birligini kelishing; buyurtmani qo'lda tekshiring |
+ | `GET /admin/orders` → 401 | `Authorization: Bearer <token>` yo'q yoki noto'g'ri | panel o'zi yuboradi; curl'da sarlavhani qo'shing |
+ | `current transaction is aborted` | tranzaksiya ichida xato chiqdi, keyin yana so'rov yuborildi | xatodan keyin faqat ROLLBACK; tekshiruvni UPDATE'dan oldin qiling |
+\ No newline at end of file
+diff --git a/public/admin.html b/public/admin.html
+index 486a8a1..d2b731d 100644
+--- a/public/admin.html
++++ b/public/admin.html
+@@ -22,6 +22,10 @@
+   th, td { padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
+   th { background: var(--bg); font-size: 13px; color: var(--mute); }
+   tr.yangi td { background: #fff8c5; }
++  .tolov { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 13px; font-weight: 600; background: var(--bg); color: var(--mute); }
++  .tolov.PAID { background: #dafbe1; color: var(--ok); }
++  .tolov.REJECTED { background: #ffebe9; color: var(--bad); }
++  .tolov.AMOUNT_MISMATCH { background: #fff8c5; color: var(--wait); }
+   .izoh { color: var(--mute); font-size: 13px; margin: 10px 0 0; }
+ </style>
+ </head>
+@@ -36,10 +40,10 @@
+     <button>Kirish</button>
+   </form>
+   <table>
+-    <thead><tr><th>#</th><th>Mijoz</th><th>Telefon</th><th>Mahsulotlar</th><th>Jami</th><th>Holat</th><th>Vaqt</th></tr></thead>
+-    <tbody id="royxat"><tr><td colspan="7">Token kiriting</td></tr></tbody>
++    <thead><tr><th>#</th><th>Mijoz</th><th>Telefon</th><th>Mahsulotlar</th><th>Jami</th><th>Holat</th><th>To'lov</th><th>Vaqt</th></tr></thead>
++    <tbody id="royxat"><tr><td colspan="8">Token kiriting</td></tr></tbody>
+   </table>
+-  <p class="izoh">Yangi buyurtma yoki holat o'zgarsa, ro'yxat o'zi yangilanadi — sahifani qayta ochish shart emas.</p>
++  <p class="izoh">Yangi buyurtma, holat yoki to'lov o'zgarsa, ro'yxat o'zi yangilanadi — sahifani qayta ochish shart emas.</p>
+ </main>
+ <!-- socket.io klienti: server o'zi beradi (/socket.io/socket.io.js) -->
+ <script src="/socket.io/socket.io.js"></script>
+@@ -48,6 +52,8 @@
+   // ulanmagan — klient urinmayapti (token noto'g'ri — server ulanishni yopdi)
+   const HOLAT = { ulangan: 'Ulangan', ulanmoqda: 'Ulanmoqda…', ulanmagan: 'Ulanmagan' };
+   const STATUS = { NEW: 'Yangi', CONFIRMED: 'Tasdiqlandi', DELIVERED: 'Yetkazildi', CANCELLED: 'Bekor' };
++  // Onlayn to'lov holati — to'lov xizmati webhook'idan (POST /payments/webhook)
++  const TOLOV = { UNPAID: 'Kutilmoqda', PAID: "To'landi", REJECTED: 'Rad etildi', AMOUNT_MISMATCH: 'Summa mos emas' };
+   const el = (id) => document.getElementById(id);
+   // Telegram'dan kelgan ism va mahsulot nomi — matn sifatida (ichida HTML bo'lsa ham ishlamaydi)
+   const esc = (v) => String(v).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+@@ -65,7 +71,7 @@
+   async function yukla() {
+     const r = await fetch('/admin/orders', { headers: { Authorization: 'Bearer ' + token } });
+     if (r.status === 401) {
+-      el('royxat').innerHTML = "<tr><td colspan='7'>Token noto'g'ri</td></tr>";
++      el('royxat').innerHTML = "<tr><td colspan='8'>Token noto'g'ri</td></tr>";
+       return;
+     }
+     const list = await r.json();
+@@ -74,9 +80,10 @@
+       ? list.map((o) => `<tr class="${o.id > oxirgiId && oxirgiId ? 'yangi' : ''}">
+           <td>${o.id}</td><td>${esc(o.customer)}</td><td>${esc(o.phone)}</td>
+           <td>${o.items.map((i) => `${esc(i.name)} × ${i.qty}`).join('<br>')}</td>
+-          <td>${o.total.toLocaleString('ru-RU')} so'm</td><td>${STATUS[o.status] || o.status}</td>
++          <td>${o.total.toLocaleString('ru-RU')} so'm</td><td>${STATUS[o.status] || esc(o.status)}</td>
++          <td><span class="tolov ${esc(o.payment_status)}">${TOLOV[o.payment_status] || esc(o.payment_status)}</span></td>
+           <td>${new Date(o.created_at).toLocaleTimeString('ru-RU')}</td></tr>`).join('')
+-      : "<tr><td colspan='7'>Hali buyurtma yo'q</td></tr>";
++      : "<tr><td colspan='8'>Hali buyurtma yo'q</td></tr>";
+     oxirgiId = eng;
+   }
+ 
+diff --git a/scripts/smoke.js b/scripts/smoke.js
+index c5768ff..2367ff1 100644
+--- a/scripts/smoke.js
++++ b/scripts/smoke.js
+@@ -1,10 +1,11 @@
+-// npm run smoke [-- restart | race | live]
++// npm run smoke [-- restart | race | live | payment]
+ // Botni Telegram'siz sinaydi: haqiqiy Nest + Telegraf kodi, xabar bot.handleUpdate bilan beriladi,
+ // botning javobi ushlanadi (Telegram'ga hech qanday so'rov ketmaydi).
+ // Bazangiz o'zgarmaydi: smoke vaqtinchalik <baza>_smoke bazasini ochadi va oxirida o'chiradi.
+ //   restart — savat, buyurtma va telefon kutish server qayta ishga tushganda qoladimi
+ //   race    — omborda 1 ta Planshet, ikki mijoz bir vaqtda buyurtma beradi; admin ikki marta bekor qiladi
+ //   live    — jonli panel: tokensiz ulanish yopiladimi, buyurtma va holat o'zgarishi order-changed bo'lib keladimi
++//   payment — to'lov webhook'i: imzosiz/soxta rad etiladimi, to'landi/rad etildi panelga yetadimi, takror xabar ikki marta yozilmaydimi
+ const path = require('path');
+ const { execSync } = require('child_process');
+ 
+@@ -20,6 +21,8 @@ process.env.BOT_TOKEN = '123:SMOKE';
+ process.env.ADMIN_TELEGRAM_IDS = String(ADMIN);
+ const PANEL_TOKEN = 'smoke-panel';
+ process.env.ADMIN_PANEL_TOKEN = PANEL_TOKEN;
++const PAY_SECRET = 'smoke-pay-secret';
++process.env.PAYMENT_WEBHOOK_SECRET = PAY_SECRET;
+ process.env.DB_LOGGING = 'false';
+ 
+ const results = [];
+@@ -112,7 +115,7 @@ async function boot(http = false) {
+   const { AppModule } = dist('api/app.module');
+   const { TelegramService } = dist('api/telegram/telegram.service');
+   const app = http
+-    ? await NestFactory.create(AppModule, { logger: ['error'] })
++    ? await NestFactory.create(AppModule, { logger: ['error'], rawBody: true })
+     : await NestFactory.createApplicationContext(AppModule, {
+         logger: ['error'],
+       });
+@@ -341,6 +344,152 @@ async function liveMode() {
+   await app.close();
+ }
+ 
++// payment: to'lov xizmati o'rnida — imzolangan POST /payments/webhook; panel order-changed oladimi
++async function paymentMode() {
++  console.log(
++    "\n— payment: to'lov webhook'i — imzo, to'landi / rad etildi, takror xabar",
++  );
++  if (!hasDb) {
++    console.log('  (baza ulanmagan — payment faqat PostgreSQL bilan sinaladi)');
++    return;
++  }
++  const { createHmac } = require('crypto');
++  const { io: connectIo } = require('socket.io-client');
++  const { app, say, tap, port } = await boot(true);
++  const url = `http://localhost:${port}`;
++  const send = (body, secret = PAY_SECRET) => {
++    const raw = JSON.stringify(body);
++    const headers = { 'Content-Type': 'application/json' };
++    if (secret)
++      headers['X-Signature'] = createHmac('sha256', secret)
++        .update(raw)
++        .digest('hex');
++    return fetch(`${url}/payments/webhook`, {
++      method: 'POST',
++      headers,
++      body: raw,
++    });
++  };
++  const wait = (c, ev, ms = 3000) =>
++    new Promise((ok) => {
++      const tm = setTimeout(() => ok(null), ms);
++      c.once(ev, (x) => {
++        clearTimeout(tm);
++        ok(x === undefined ? true : x);
++      });
++    });
++  const panel = async () =>
++    (
++      await (
++        await fetch(`${url}/admin/orders`, {
++          headers: { Authorization: `Bearer ${PANEL_TOKEN}` },
++        })
++      ).json()
++    ).reduce((m, o) => ({ ...m, [o.id]: o }), {});
++  const newOrder = async (id, product) => {
++    await say(id, '/start');
++    await tap(id, `add:${product}`);
++    await tap(id, 'checkout');
++    if (/raqamingizni yozing/.test(last(id))) await say(id, '+998907654321');
++    const m = last(id).match(/#(\d+) qabul qilindi/);
++    return m ? Number(m[1]) : null;
++  };
++  const c = connectIo(url, {
++    auth: { token: PANEL_TOKEN },
++    reconnection: false,
++  });
++  await wait(c, 'connect');
++
++  const oid = await newOrder(BOBUR, 1);
++  const total = Number(
++    (await q('SELECT total FROM orders WHERE id = $1', [oid]))[0]?.total,
++  );
++  const body = {
++    payment_id: `pay-${oid}-a`,
++    order_id: oid,
++    status: 'paid',
++    amount: total,
++  };
++
++  const r0 = await send(body, null);
++  const r1 = await send(body, 'boshqa-kalit');
++  const p0 = (await panel())[oid];
++  check(
++    r0.status === 401 && r1.status === 401 && p0?.payment_status === 'UNPAID',
++    `imzosiz → ${r0.status}, boshqa kalit → ${r1.status}; panelda #${oid}: ${p0?.payment_status}`,
++  );
++
++  let ev = wait(c, 'order-changed');
++  const rRej = await send({
++    ...body,
++    payment_id: `pay-${oid}-r`,
++    status: 'rejected',
++  });
++  let e = await ev;
++  check(
++    rRej.status === 200 &&
++      e?.reason === 'payment' &&
++      (await panel())[oid]?.payment_status === 'REJECTED',
++    `rad etildi → ${rRej.status}, order-changed ${JSON.stringify(e)}, panel: ${(await panel())[oid]?.payment_status}`,
++  );
++
++  ev = wait(c, 'order-changed');
++  const rPaid = await send(body);
++  e = await ev;
++  check(
++    rPaid.status === 200 &&
++      e?.reason === 'payment' &&
++      e?.orderId === oid &&
++      (await panel())[oid]?.payment_status === 'PAID',
++    `to'landi (${total}) → ${rPaid.status}, order-changed ${JSON.stringify(e)}, panel: ${(await panel())[oid]?.payment_status}`,
++  );
++
++  // xizmat javobni olmay qolsa qayta yuboradi — bir vaqtda 5 marta
++  ev = wait(c, 'order-changed', 1000);
++  const rs = await Promise.all([1, 2, 3, 4, 5].map(() => send(body)));
++  const js = await Promise.all(rs.map((r) => r.json()));
++  e = await ev;
++  const n = (
++    await q('SELECT count(*)::int AS n FROM payments WHERE payment_id = $1', [
++      body.payment_id,
++    ])
++  )[0].n;
++  check(
++    rs.every((r) => r.status === 200) &&
++      js.every((j) => j.result === 'duplicate') &&
++      n === 1 &&
++      e === null,
++    `takror xabar 5 marta bir vaqtda → ${rs.map((r) => r.status).join(',')} · ${js[0].result} · bazada ${n} qator · hodisa ${e ? 'keldi' : "yo'q"}`,
++  );
++
++  const rLate = await send({ ...body, status: 'rejected' });
++  check(
++    rLate.status === 200 &&
++      (await rLate.json()).result === 'ignored' &&
++      (await panel())[oid]?.payment_status === 'PAID',
++    `to'langan to'lovga keyin «rad etildi» → o'zgarmadi: ${(await panel())[oid]?.payment_status}`,
++  );
++
++  const oid2 = await newOrder(BOBUR, 2);
++  const rMis = await send({
++    payment_id: `pay-${oid2}`,
++    order_id: oid2,
++    status: 'paid',
++    amount: 1,
++  });
++  const rConf = await send({ ...body, order_id: oid2 });
++  const rNo = await send({ ...body, payment_id: 'pay-yoq', order_id: 999999 });
++  check(
++    rMis.status === 200 &&
++      (await panel())[oid2]?.payment_status === 'AMOUNT_MISMATCH' &&
++      rConf.status === 409 &&
++      rNo.status === 404,
++    `summa 1 so'm → ${(await panel())[oid2]?.payment_status} · boshqa buyurtmaning payment_id → ${rConf.status} · yo'q buyurtma → ${rNo.status}`,
++  );
++  c.close();
++  await app.close();
++}
++
+ (async () => {
+   if (process.argv[2] === '__step') {
+     if (process.env.SMOKE_DB_URL) {
+@@ -376,6 +525,7 @@ async function liveMode() {
+     if (MODE === 'all' || MODE === 'restart') await restartMode();
+     if (MODE === 'all' || MODE === 'race') await raceMode();
+     if (MODE === 'all' || MODE === 'live') await liveMode();
++    if (MODE === 'all' || MODE === 'payment') await paymentMode();
+   } finally {
+     if (hasDb) {
+       const db = new URL(smokeUrl).pathname.slice(1);
+diff --git a/src/api/app.module.ts b/src/api/app.module.ts
+index 6c7bc37..886b901 100644
+--- a/src/api/app.module.ts
++++ b/src/api/app.module.ts
+@@ -1,10 +1,11 @@
+ import { Module } from '@nestjs/common';
+ import { DatabaseModule } from '../infrastructure/database.module';
+ import { AppController } from './app.controller';
++import { PaymentModule } from './payment/payment.module';
+ import { TelegramModule } from './telegram/telegram.module';
+ 
+ @Module({
+-  imports: [DatabaseModule, TelegramModule],
++  imports: [DatabaseModule, TelegramModule, PaymentModule],
+   controllers: [AppController],
+ })
+ export class AppModule {}
+diff --git a/src/api/live/admin.controller.spec.ts b/src/api/live/admin.controller.spec.ts
+index 265eeda..5d69671 100644
+--- a/src/api/live/admin.controller.spec.ts
++++ b/src/api/live/admin.controller.spec.ts
+@@ -9,6 +9,7 @@ import { AdminController } from './admin.controller';
+ const order = {
+   id: 12,
+   status: 'NEW',
++  payment_status: 'PAID',
+   total: 100000,
+   phone: '+998901234567',
+   user: { name: 'Aziza' },
+@@ -57,6 +58,7 @@ describe('AdminController', () => {
+       {
+         id: 12,
+         status: 'NEW',
++        payment_status: 'PAID',
+         total: 100000,
+         customer: 'Aziza',
+         phone: '+998901234567',
+diff --git a/src/api/live/admin.controller.ts b/src/api/live/admin.controller.ts
+index a97e616..c897879 100644
+--- a/src/api/live/admin.controller.ts
++++ b/src/api/live/admin.controller.ts
+@@ -32,6 +32,7 @@ export class AdminController {
+     return orders.map((o) => ({
+       id: o.id,
+       status: o.status,
++      payment_status: o.payment_status,
+       total: o.total,
+       customer: o.user?.name ?? '',
+       phone: o.phone,
+diff --git a/src/api/live/live.gateway.ts b/src/api/live/live.gateway.ts
+index 1f10586..645f0a6 100644
+--- a/src/api/live/live.gateway.ts
++++ b/src/api/live/live.gateway.ts
+@@ -12,9 +12,9 @@ import { isAdminToken } from './admin-token';
+ // Panel bir marta ulanadi va ulanayotganda tokenni yuboradi: io(manzil, { auth: { token } }).
+ // Token ulanish ochilayotganda tekshiriladi: yo'q yoki noto'g'ri bo'lsa — server ulanishni yopadi
+ // (server yopgan ulanishga klient o'zi qayta ulanmaydi — panelda «Ulanmagan»).
+-// Hodisa order-changed — { orderId, reason }: qaysi buyurtma va nega o'zgargani.
++// Hodisa order-changed — { orderId, reason }: qaysi buyurtma va nega o'zgargani (new · status · payment).
+ // Yangi holatni panel GET /admin/orders dan qayta so'raydi — hodisa ichida ro'yxat ham, son ham yo'q.
+-export type OrderChangeReason = 'new' | 'status';
++export type OrderChangeReason = 'new' | 'status' | 'payment';
+ 
+ @WebSocketGateway()
+ export class LiveGateway implements OnGatewayConnection, OnGatewayDisconnect {
+diff --git a/src/api/order/order.service.ts b/src/api/order/order.service.ts
+index 45ee96b..3a2153a 100644
+--- a/src/api/order/order.service.ts
++++ b/src/api/order/order.service.ts
+@@ -51,6 +51,7 @@ export class OrderService {
+         user,
+         phone: user.phone!,
+         status: 'NEW',
++        payment_status: 'UNPAID',
+         total: items.reduce((s, i) => s + i.price * i.qty, 0),
+         items,
+       });
+diff --git a/src/api/payment/payment-event.spec.ts b/src/api/payment/payment-event.spec.ts
+new file mode 100644
+index 0000000..db48210
+--- /dev/null
++++ b/src/api/payment/payment-event.spec.ts
+@@ -0,0 +1,59 @@
++import { orderPaymentStatus, parsePaymentEvent } from './payment-event';
++
++const raw = (o: unknown) => Buffer.from(JSON.stringify(o));
++const ok = { payment_id: 'p1', order_id: 7, status: 'paid', amount: 120000 };
++
++describe('parsePaymentEvent', () => {
++  it("to'g'ri xabar", () => {
++    expect(parsePaymentEvent(raw(ok))).toEqual(ok);
++  });
++
++  it('raqamli payment_id va matnli order_id ham qabul qilinadi', () => {
++    expect(
++      parsePaymentEvent(raw({ ...ok, payment_id: 555, order_id: '7' })),
++    ).toEqual({ ...ok, payment_id: '555' });
++  });
++
++  it.each([
++    ['JSON emas', Buffer.from('salom')],
++    ['massiv', raw([ok])],
++    ["payment_id yo'q", raw({ ...ok, payment_id: '' })],
++    ['order_id manfiy', raw({ ...ok, order_id: -1 })],
++    ['order_id INTEGER dan katta', raw({ ...ok, order_id: 3000000000 })],
++    ["status noma'lum", raw({ ...ok, status: 'PAID' })],
++    ['amount kasr', raw({ ...ok, amount: 10.5 })],
++    ['amount matn', raw({ ...ok, amount: '120000' })],
++  ])('%s — 400', (_name, body) => {
++    expect(() => parsePaymentEvent(body)).toThrow();
++  });
++});
++
++describe('orderPaymentStatus', () => {
++  const total = 120000;
++  it("urinish yo'q — UNPAID", () => {
++    expect(orderPaymentStatus([], total)).toBe('UNPAID');
++  });
++  it("rad etildi — REJECTED; keyin to'landi — PAID", () => {
++    const rej = { status: 'rejected' as const, amount: total };
++    expect(orderPaymentStatus([rej], total)).toBe('REJECTED');
++    expect(
++      orderPaymentStatus([rej, { status: 'paid', amount: total }], total),
++    ).toBe('PAID');
++  });
++  it("to'landi, lekin summa boshqa — AMOUNT_MISMATCH", () => {
++    expect(orderPaymentStatus([{ status: 'paid', amount: 1000 }], total)).toBe(
++      'AMOUNT_MISMATCH',
++    );
++  });
++  it("to'langandan keyingi rad etilgan urinish PAID ni o'zgartirmaydi", () => {
++    expect(
++      orderPaymentStatus(
++        [
++          { status: 'paid', amount: total },
++          { status: 'rejected', amount: total },
++        ],
++        total,
++      ),
++    ).toBe('PAID');
++  });
++});
+diff --git a/src/api/payment/payment-event.ts b/src/api/payment/payment-event.ts
+new file mode 100644
+index 0000000..be193a1
+--- /dev/null
++++ b/src/api/payment/payment-event.ts
+@@ -0,0 +1,68 @@
++import { BadRequestException } from '@nestjs/common';
++import type { PaymentResultStatus, PaymentStatus } from '../../core/entity';
++
++// To'lov xizmati yuboradigan xabar (JSON):
++//   { "payment_id": "pay_123", "order_id": 15, "status": "paid" | "rejected", "amount": 120000 }
++// amount — so'mda, butun son (orders.total bilan bir xil birlik).
++export interface PaymentEvent {
++  payment_id: string;
++  order_id: number;
++  status: PaymentResultStatus;
++  amount: number;
++}
++
++const INT4_MAX = 2147483647; // PostgreSQL INTEGER chegarasi
++const isPosInt = (v: unknown): v is number =>
++  typeof v === 'number' && Number.isInteger(v) && v > 0 && v <= INT4_MAX;
++
++export function parsePaymentEvent(raw: Buffer): PaymentEvent {
++  let b: Record<string, unknown>;
++  try {
++    b = JSON.parse(raw.toString('utf8'));
++  } catch {
++    throw new BadRequestException('Tana JSON emas');
++  }
++  if (!b || typeof b !== 'object' || Array.isArray(b))
++    throw new BadRequestException("Tana JSON obyekt bo'lishi kerak");
++
++  const pid =
++    typeof b.payment_id === 'number' && Number.isInteger(b.payment_id)
++      ? String(b.payment_id)
++      : b.payment_id;
++  if (typeof pid !== 'string' || pid.trim() === '' || pid.length > 200)
++    throw new BadRequestException("payment_id noto'g'ri");
++
++  const oid =
++    typeof b.order_id === 'string' && /^\d+$/.test(b.order_id)
++      ? Number(b.order_id)
++      : b.order_id;
++  if (!isPosInt(oid)) throw new BadRequestException("order_id noto'g'ri");
++
++  if (b.status !== 'paid' && b.status !== 'rejected')
++    throw new BadRequestException(
++      "status 'paid' yoki 'rejected' bo'lishi kerak",
++    );
++
++  if (!isPosInt(b.amount))
++    throw new BadRequestException("amount musbat butun son bo'lishi kerak");
++
++  return {
++    payment_id: pid.trim(),
++    order_id: oid,
++    status: b.status,
++    amount: b.amount,
++  };
++}
++
++// Buyurtmaning to'lov holati — uning hamma to'lov urinishlaridan:
++// bitta urinish «to'landi» va summasi jamiga teng bo'lsa — PAID (keyingi rad urinishlar uni bekor qilmaydi).
++export function orderPaymentStatus(
++  payments: { status: PaymentResultStatus; amount: number }[],
++  total: number,
++): PaymentStatus {
++  if (payments.some((p) => p.status === 'paid' && p.amount === total))
++    return 'PAID';
++  if (payments.some((p) => p.status === 'paid')) return 'AMOUNT_MISMATCH';
++  if (payments.some((p) => p.status === 'rejected')) return 'REJECTED';
++  return 'UNPAID';
++}
+diff --git a/src/api/payment/payment.controller.spec.ts b/src/api/payment/payment.controller.spec.ts
+new file mode 100644
+index 0000000..c704448
+--- /dev/null
++++ b/src/api/payment/payment.controller.spec.ts
+@@ -0,0 +1,112 @@
++import { INestApplication } from '@nestjs/common';
++import { Test } from '@nestjs/testing';
++import request from 'supertest';
++import { config } from '../../config';
++import { LiveGateway } from '../live/live.gateway';
++import { PaymentController } from './payment.controller';
++import { PaymentService } from './payment.service';
++import { sign } from './signature';
++
++// Baza o'rniga mock: apply() natijasini o'zimiz beramiz; tekshiramiz — imzo, tana, javob, panelga hodisa
++const apply = jest.fn();
++const orderChanged = jest.fn();
++const SECRET = 'sinov-kalit';
++const body = JSON.stringify({
++  payment_id: 'pay_1',
++  order_id: 12,
++  status: 'paid',
++  amount: 100000,
++});
++
++describe('PaymentController', () => {
++  let app: INestApplication;
++  const post = (raw: string, sig?: string) => {
++    const r = request(app.getHttpServer())
++      .post('/payments/webhook')
++      .set('Content-Type', 'application/json');
++    if (sig !== undefined) r.set('X-Signature', sig);
++    return r.send(raw);
++  };
++
++  beforeAll(async () => {
++    config.PAYMENT_WEBHOOK_SECRET = SECRET;
++    const mod = await Test.createTestingModule({
++      controllers: [PaymentController],
++      providers: [
++        { provide: PaymentService, useValue: { apply } },
++        { provide: LiveGateway, useValue: { orderChanged } },
++      ],
++    }).compile();
++    app = mod.createNestApplication({ rawBody: true, logger: false });
++    await app.init();
++  });
++  beforeEach(() => jest.clearAllMocks());
++  afterAll(() => app.close());
++
++  it('imzosiz — 401, bazaga tegilmaydi', async () => {
++    const res = await post(body);
++    expect(res.status).toBe(401);
++    expect(apply).not.toHaveBeenCalled();
++  });
++
++  it('boshqa kalit bilan imzolangan — 401', async () => {
++    const res = await post(body, sign(body, 'boshqa'));
++    expect(res.status).toBe(401);
++    expect(apply).not.toHaveBeenCalled();
++  });
++
++  it("imzodan keyin tana o'zgartirilgan (summa) — 401", async () => {
++    const sig = sign(body, SECRET);
++    const res = await post(body.replace('100000', '1'), sig);
++    expect(res.status).toBe(401);
++  });
++
++  it("imzo to'g'ri — 200, apply chaqiriladi, panelga order-changed payment", async () => {
++    apply.mockResolvedValue({
++      result: 'applied',
++      orderId: 12,
++      paymentStatus: 'PAID',
++    });
++    const res = await post(body, sign(body, SECRET));
++    expect(res.status).toBe(200);
++    expect(res.body).toEqual({
++      ok: true,
++      result: 'applied',
++      order_id: 12,
++      payment_status: 'PAID',
++    });
++    expect(apply).toHaveBeenCalledWith(JSON.parse(body));
++    expect(orderChanged).toHaveBeenCalledWith(12, 'payment');
++  });
++
++  it('takror xabar — 200, panelga hodisa ketmaydi', async () => {
++    apply.mockResolvedValue({
++      result: 'duplicate',
++      orderId: 12,
++      paymentStatus: 'PAID',
++    });
++    const res = await post(body, sign(body, SECRET));
++    expect(res.status).toBe(200);
++    expect(res.body.result).toBe('duplicate');
++    expect(orderChanged).not.toHaveBeenCalled();
++  });
++
++  it("imzo to'g'ri, lekin tana noto'g'ri — 400", async () => {
++    const bad = JSON.stringify({
++      payment_id: 'x',
++      order_id: 1,
++      status: 'ok',
++      amount: 5,
++    });
++    const res = await post(bad, sign(bad, SECRET));
++    expect(res.status).toBe(400);
++    expect(apply).not.toHaveBeenCalled();
++  });
++
++  it("kalit .env da bo'sh — hammasi 401", async () => {
++    config.PAYMENT_WEBHOOK_SECRET = '';
++    const res = await post(body, sign(body, ''));
++    config.PAYMENT_WEBHOOK_SECRET = SECRET;
++    expect(res.status).toBe(401);
++  });
++});
+diff --git a/src/api/payment/payment.controller.ts b/src/api/payment/payment.controller.ts
+new file mode 100644
+index 0000000..522234f
+--- /dev/null
++++ b/src/api/payment/payment.controller.ts
+@@ -0,0 +1,69 @@
++import {
++  BadRequestException,
++  Controller,
++  Headers,
++  HttpCode,
++  InternalServerErrorException,
++  Logger,
++  Post,
++  Req,
++  UnauthorizedException,
++} from '@nestjs/common';
++import type { RawBodyRequest } from '@nestjs/common';
++import type { Request } from 'express';
++import { config } from '../../config';
++import { LiveGateway } from '../live/live.gateway';
++import { parsePaymentEvent } from './payment-event';
++import { PaymentService } from './payment.service';
++import { isValidSignature } from './signature';
++
++// To'lov xizmati shu manzilga natijani yuboradi: POST /payments/webhook
++//   Content-Type: application/json
++//   X-Signature: <HMAC-SHA256(PAYMENT_WEBHOOK_SECRET, tana) hex>
++//   { "payment_id": "...", "order_id": 15, "status": "paid" | "rejected", "amount": 120000 }
++// Javoblar: 200 — qabul qilindi (takror xabar ham 200: xizmat qayta yubormasin) ·
++// 401 — imzo yo'q/noto'g'ri · 400 — tana noto'g'ri · 404 — buyurtma yo'q ·
++// 409 — payment_id boshqa buyurtmaga tegishli · 5xx — bizda xato (xizmat keyin qayta yuboradi)
++@Controller('payments')
++export class PaymentController {
++  private readonly log = new Logger('Payment');
++
++  constructor(
++    private readonly payments: PaymentService,
++    private readonly live: LiveGateway,
++  ) {}
++
++  @Post('webhook')
++  @HttpCode(200)
++  async webhook(
++    @Req() req: RawBodyRequest<Request>,
++    @Headers('x-signature') signature?: string,
++  ) {
++    const raw = req.rawBody;
++    if (!Buffer.isBuffer(raw)) {
++      if (req.is('application/json'))
++        // server rawBody'siz ko'tarilgan — main.ts: NestFactory.create(AppModule, { rawBody: true })
++        throw new InternalServerErrorException('rawBody yoqilmagan');
++      throw new BadRequestException('Content-Type: application/json kerak');
++    }
++    // Imzo — birinchi: imzosiz xabarning ichiga qaramaymiz ham
++    if (!isValidSignature(raw, signature, config.PAYMENT_WEBHOOK_SECRET)) {
++      this.log.warn(`imzo noto'g'ri yoki yo'q (${req.ip})`);
++      throw new UnauthorizedException("Imzo noto'g'ri");
++    }
++    const event = parsePaymentEvent(raw);
++    const out = await this.payments.apply(event);
++    this.log.log(
++      `${event.payment_id} · #${event.order_id} · ${event.status} ${event.amount} → ${out.result}, ${out.paymentStatus}`,
++    );
++    // tranzaksiya tugadi — ochiq panellar ro'yxatni qayta so'raydi
++    if (out.result === 'applied')
++      this.live.orderChanged(out.orderId, 'payment');
++    return {
++      ok: true,
++      result: out.result,
++      order_id: out.orderId,
++      payment_status: out.paymentStatus,
++    };
++  }
++}
+diff --git a/src/api/payment/payment.module.ts b/src/api/payment/payment.module.ts
+new file mode 100644
+index 0000000..8f2a0c1
+--- /dev/null
++++ b/src/api/payment/payment.module.ts
+@@ -0,0 +1,13 @@
++import { Module } from '@nestjs/common';
++import { LiveModule } from '../live/live.module';
++import { PaymentController } from './payment.controller';
++import { PaymentService } from './payment.service';
++
++// Onlayn to'lov: to'lov xizmati webhook'i (POST /payments/webhook) → payments jadvali,
++// orders.payment_status → jonli panelga order-changed { reason: 'payment' }
++@Module({
++  imports: [LiveModule],
++  controllers: [PaymentController],
++  providers: [PaymentService],
++})
++export class PaymentModule {}
+diff --git a/src/api/payment/payment.service.ts b/src/api/payment/payment.service.ts
+new file mode 100644
+index 0000000..53922c2
+--- /dev/null
++++ b/src/api/payment/payment.service.ts
+@@ -0,0 +1,94 @@
++import {
++  ConflictException,
++  Injectable,
++  Logger,
++  NotFoundException,
++} from '@nestjs/common';
++import { DataSource } from 'typeorm';
++import { Order, Payment, PaymentStatus } from '../../core/entity';
++import { orderPaymentStatus, PaymentEvent } from './payment-event';
++
++// applied — yangi ma'lumot yozildi · duplicate — aynan shu xabar avval kelgan (xizmat qayta yubordi) ·
++// ignored — bu to'lov allaqachon «to'landi», keyingi «rad etildi» uni o'zgartirmaydi
++export type PaymentApplyResult = 'applied' | 'duplicate' | 'ignored';
++
++export interface PaymentApplyOutcome {
++  result: PaymentApplyResult;
++  orderId: number;
++  paymentStatus: PaymentStatus;
++}
++
++@Injectable()
++export class PaymentService {
++  private readonly log = new Logger('Payment');
++
++  constructor(private readonly ds: DataSource) {}
++
++  // Bitta tranzaksiya. Buyurtma qatori qulflanadi (FOR UPDATE): bitta buyurtmaga ikki xabar
++  // bir vaqtda kelsa (xizmat qayta yuborganda bo'ladi) — ikkinchisi birinchisi tugashini kutadi va
++  // yozilgan to'lovni ko'radi, ikkinchi qator ochilmaydi.
++  apply(e: PaymentEvent): Promise<PaymentApplyOutcome> {
++    return this.ds
++      .transaction(async (m) => {
++        const rows: { id: number; total: number }[] = await m.query(
++          'SELECT id, total FROM orders WHERE id = $1 FOR UPDATE',
++          [e.order_id],
++        );
++        if (rows.length === 0)
++          throw new NotFoundException(`Buyurtma topilmadi: #${e.order_id}`);
++        const total = Number(rows[0].total);
++
++        let result: PaymentApplyResult;
++        const old = await m.findOneBy(Payment, { payment_id: e.payment_id });
++        if (!old) {
++          await m.insert(Payment, {
++            payment_id: e.payment_id,
++            order_id: e.order_id,
++            status: e.status,
++            amount: e.amount,
++          });
++          result = 'applied';
++        } else if (old.order_id !== e.order_id) {
++          throw new ConflictException(
++            `payment_id ${e.payment_id} boshqa buyurtmaga (#${old.order_id}) tegishli`,
++          );
++        } else if (old.status === e.status && old.amount === e.amount) {
++          result = 'duplicate';
++        } else if (old.status === 'paid') {
++          this.log.warn(
++            `${e.payment_id}: allaqachon paid/${old.amount}, keldi ${e.status}/${e.amount} — o'zgartirilmadi`,
++          );
++          result = 'ignored';
++        } else {
++          await m.update(
++            Payment,
++            { id: old.id },
++            { status: e.status, amount: e.amount },
++          );
++          result = 'applied';
++        }
++
++        const all = await m.find(Payment, {
++          where: { order_id: e.order_id },
++          select: { status: true, amount: true },
++        });
++        const paymentStatus = orderPaymentStatus(all, total);
++        await m.update(
++          Order,
++          { id: e.order_id },
++          { payment_status: paymentStatus },
++        );
++        if (paymentStatus === 'AMOUNT_MISMATCH')
++          this.log.warn(
++            `#${e.order_id}: to'langan ${e.amount}, buyurtma jami ${total}`,
++          );
++        return { result, orderId: e.order_id, paymentStatus };
++      })
++      .catch((err: { code?: string }) => {
++        // 23505 — UNIQUE buzildi: bir xil payment_id ikki xil buyurtma bilan bir vaqtda keldi
++        if (err?.code === '23505')
++          throw new ConflictException(`payment_id ${e.payment_id} takrorlandi`);
++        throw err;
++      });
++  }
++}
+diff --git a/src/api/payment/signature.spec.ts b/src/api/payment/signature.spec.ts
+new file mode 100644
+index 0000000..4a7b45d
+--- /dev/null
++++ b/src/api/payment/signature.spec.ts
+@@ -0,0 +1,31 @@
++import { isValidSignature, sign } from './signature';
++
++const secret = 'sinov-kalit';
++const body = Buffer.from(
++  '{"payment_id":"p1","order_id":1,"status":"paid","amount":100}',
++);
++
++describe('isValidSignature', () => {
++  it("to'g'ri imzo — o'tadi (hex, katta harf ham, sha256= bilan ham)", () => {
++    const s = sign(body, secret);
++    expect(isValidSignature(body, s, secret)).toBe(true);
++    expect(isValidSignature(body, s.toUpperCase(), secret)).toBe(true);
++    expect(isValidSignature(body, `sha256=${s}`, secret)).toBe(true);
++  });
++
++  it("tanadagi bitta bayt o'zgarsa — o'tmaydi", () => {
++    const s = sign(body, secret);
++    const other = Buffer.from(body.toString().replace('100', '101'));
++    expect(isValidSignature(other, s, secret)).toBe(false);
++  });
++
++  it("boshqa kalit, imzosiz, noto'g'ri uzunlik — o'tmaydi", () => {
++    expect(isValidSignature(body, sign(body, 'boshqa'), secret)).toBe(false);
++    expect(isValidSignature(body, undefined, secret)).toBe(false);
++    expect(isValidSignature(body, 'abc', secret)).toBe(false);
++  });
++
++  it("kalit bo'sh bo'lsa — hech narsa o'tmaydi (bo'sh kalit bilan imzolangan ham)", () => {
++    expect(isValidSignature(body, sign(body, ''), '')).toBe(false);
++  });
++});
+diff --git a/src/api/payment/signature.ts b/src/api/payment/signature.ts
+new file mode 100644
+index 0000000..81267eb
+--- /dev/null
++++ b/src/api/payment/signature.ts
+@@ -0,0 +1,25 @@
++import { createHmac, timingSafeEqual } from 'crypto';
++
++// X-Signature = HMAC-SHA256(kalit, so'rov tanasining AYNAN o'zi), hex ko'rinishda (64 belgi).
++// «sha256=» old qo'shimchasi bo'lsa ham qabul qilinadi. Tana qayta JSON qilinmaydi:
++// probel yoki maydonlar tartibi o'zgarsa imzo boshqa chiqadi — shuning uchun xom baytlar (req.rawBody).
++// Kalit bo'sh bo'lsa — hech qaysi xabar o'tmaydi.
++export function sign(raw: Buffer | string, secret: string): string {
++  return createHmac('sha256', secret).update(raw).digest('hex');
++}
++
++export function isValidSignature(
++  raw: Buffer,
++  header: string | undefined,
++  secret: string,
++): boolean {
++  if (!secret || typeof header !== 'string') return false;
++  const got = header
++    .trim()
++    .replace(/^sha256=/i, '')
++    .toLowerCase();
++  if (!/^[0-9a-f]{64}$/.test(got)) return false;
++  const want = createHmac('sha256', secret).update(raw).digest();
++  // timingSafeEqual — javob vaqti qaysi belgigacha mos kelganini oshkor qilmaydi
++  return timingSafeEqual(Buffer.from(got, 'hex'), want);
++}
+diff --git a/src/config/index.ts b/src/config/index.ts
+index 9600927..a33e64b 100644
+--- a/src/config/index.ts
++++ b/src/config/index.ts
+@@ -10,6 +10,9 @@ export const config = {
+   BOT_TOKEN: String(process.env.BOT_TOKEN || ''),
+   // jonli panel (/admin) va WebSocket ulanishi uchun maxfiy so'z — o'zingiz o'ylab topasiz
+   ADMIN_PANEL_TOKEN: String(process.env.ADMIN_PANEL_TOKEN || ''),
++  // to'lov xizmati webhook'ini imzolaydigan kalit (HMAC-SHA256) — xizmat kabinetidan olinadi.
++  // Bo'sh bo'lsa hech qaysi webhook qabul qilinmaydi.
++  PAYMENT_WEBHOOK_SECRET: String(process.env.PAYMENT_WEBHOOK_SECRET || ''),
+   // "123,456" → [123, 456]
+   ADMIN_TELEGRAM_IDS: String(process.env.ADMIN_TELEGRAM_IDS || '')
+     .split(',')
+diff --git a/src/core/entity/index.ts b/src/core/entity/index.ts
+index df6d2c8..0554ac9 100644
+--- a/src/core/entity/index.ts
++++ b/src/core/entity/index.ts
+@@ -1,7 +1,9 @@
+ export { CartItem } from './cart-item.entity';
+ export { OrderItem } from './order-item.entity';
+ export { Order } from './order.entity';
+-export type { OrderStatus } from './order.entity';
++export type { OrderStatus, PaymentStatus } from './order.entity';
++export { Payment } from './payment.entity';
++export type { PaymentResultStatus } from './payment.entity';
+ export { Product } from './product.entity';
+ export { User } from './user.entity';
+ export type { Role, UserState } from './user.entity';
+diff --git a/src/core/entity/order.entity.ts b/src/core/entity/order.entity.ts
+index ecf23e2..dd84a61 100644
+--- a/src/core/entity/order.entity.ts
++++ b/src/core/entity/order.entity.ts
+@@ -12,6 +12,9 @@ import { User } from './user.entity';
+ 
+ export type OrderStatus = 'NEW' | 'CONFIRMED' | 'DELIVERED' | 'CANCELLED';
+ 
++// Onlayn to'lov holati — to'lov xizmati webhook'i o'zgartiradi (POST /payments/webhook)
++export type PaymentStatus = 'UNPAID' | 'PAID' | 'REJECTED' | 'AMOUNT_MISMATCH';
++
+ @Entity('orders')
+ export class Order {
+   @PrimaryGeneratedColumn()
+@@ -30,6 +33,9 @@ export class Order {
+   @Column({ type: 'varchar', default: 'NEW' })
+   status: OrderStatus;
+ 
++  @Column({ name: 'payment_status', type: 'varchar', default: 'UNPAID' })
++  payment_status: PaymentStatus;
++
+   @OneToMany(() => OrderItem, (i) => i.order, { cascade: true, eager: true })
+   items: OrderItem[];
+ 
+diff --git a/src/core/entity/payment.entity.ts b/src/core/entity/payment.entity.ts
+new file mode 100644
+index 0000000..b30dd31
+--- /dev/null
++++ b/src/core/entity/payment.entity.ts
+@@ -0,0 +1,44 @@
++import {
++  Column,
++  CreateDateColumn,
++  Entity,
++  JoinColumn,
++  ManyToOne,
++  PrimaryGeneratedColumn,
++  UpdateDateColumn,
++} from 'typeorm';
++import { Order } from './order.entity';
++
++// To'lov xizmatidan kelgan natija: to'landi yoki rad etildi
++export type PaymentResultStatus = 'paid' | 'rejected';
++
++// Har to'lov urinishi — bitta qator. payment_id — to'lov xizmatidagi raqam, UNIQUE:
++// xizmat bitta xabarni qayta yuborsa (javob kelmay qolsa shunday qiladi) — ikkinchi qator ochilmaydi.
++@Entity('payments')
++export class Payment {
++  @PrimaryGeneratedColumn()
++  id: number;
++
++  @Column({ name: 'payment_id', type: 'varchar', unique: true })
++  payment_id: string;
++
++  @Column({ name: 'order_id', type: 'integer' })
++  order_id: number;
++
++  @ManyToOne(() => Order, { onDelete: 'CASCADE' })
++  @JoinColumn({ name: 'order_id' })
++  order?: Order;
++
++  @Column({ type: 'varchar' })
++  status: PaymentResultStatus;
++
++  // so'm — orders.total bilan bir xil birlikda
++  @Column({ type: 'integer' })
++  amount: number;
++
++  @CreateDateColumn({ name: 'created_at' })
++  created_at: Date;
++
++  @UpdateDateColumn({ name: 'updated_at' })
++  updated_at: Date;
++}
+diff --git a/src/infrastructure/data-source.ts b/src/infrastructure/data-source.ts
+index 1f90ea5..dbd4827 100644
+--- a/src/infrastructure/data-source.ts
++++ b/src/infrastructure/data-source.ts
+@@ -1,8 +1,16 @@
+ import 'reflect-metadata';
+ import { DataSource } from 'typeorm';
+ import { config } from '../config';
+-import { CartItem, Order, OrderItem, Product, User } from '../core/entity';
++import {
++  CartItem,
++  Order,
++  OrderItem,
++  Payment,
++  Product,
++  User,
++} from '../core/entity';
+ import { Init1762200000000 } from './migrations/1762200000000-init';
++import { Payments1762300000000 } from './migrations/1762300000000-payments';
+ 
+ // Bitta ulanish sozlamasi — ham Nest (DatabaseModule), ham typeorm CLI (migration:run) shuni ishlatadi
+ export const dataSourceOptions = {
+@@ -11,8 +19,8 @@ export const dataSourceOptions = {
+   ssl: config.DATABASE_URL.includes('sslmode=require')
+     ? { rejectUnauthorized: false }
+     : false,
+-  entities: [Product, User, CartItem, Order, OrderItem],
+-  migrations: [Init1762200000000],
++  entities: [Product, User, CartItem, Order, OrderItem, Payment],
++  migrations: [Init1762200000000, Payments1762300000000],
+   synchronize: false, // jadvallar faqat migratsiya bilan o'zgaradi
+   logging: config.DB_LOGGING ? ['query', 'error'] : ['error'],
+ };
+diff --git a/src/infrastructure/migrations/1762300000000-payments.ts b/src/infrastructure/migrations/1762300000000-payments.ts
+new file mode 100644
+index 0000000..5d2e50d
+--- /dev/null
++++ b/src/infrastructure/migrations/1762300000000-payments.ts
+@@ -0,0 +1,31 @@
++import { MigrationInterface, QueryRunner } from 'typeorm';
++
++// Onlayn to'lov: buyurtmaning to'lov holati (panelda ko'rinadi) va to'lov urinishlari jadvali.
++export class Payments1762300000000 implements MigrationInterface {
++  name = 'Payments1762300000000';
++
++  public async up(q: QueryRunner): Promise<void> {
++    // UNPAID — hali xabar kelmagan · PAID — to'landi, summa mos · REJECTED — rad etildi ·
++    // AMOUNT_MISMATCH — «to'landi» keldi, lekin summa buyurtma jamisiga teng emas (admin qarashi kerak)
++    await q.query(
++      `ALTER TABLE "orders" ADD "payment_status" VARCHAR NOT NULL DEFAULT 'UNPAID'`,
++    );
++    await q.query(`CREATE TABLE "payments" (
++      "id" SERIAL PRIMARY KEY,
++      "payment_id" VARCHAR NOT NULL UNIQUE,
++      "order_id" INTEGER NOT NULL REFERENCES "orders"("id") ON DELETE CASCADE,
++      "status" VARCHAR NOT NULL CHECK ("status" IN ('paid', 'rejected')),
++      "amount" INTEGER NOT NULL CHECK ("amount" > 0),
++      "created_at" TIMESTAMP NOT NULL DEFAULT now(),
++      "updated_at" TIMESTAMP NOT NULL DEFAULT now()
++    )`);
++    await q.query(
++      `CREATE INDEX "payments_order_id" ON "payments" ("order_id")`,
++    );
++  }
++
++  public async down(q: QueryRunner): Promise<void> {
++    await q.query(`DROP TABLE "payments"`);
++    await q.query(`ALTER TABLE "orders" DROP COLUMN "payment_status"`);
++  }
++}
+diff --git a/src/main.ts b/src/main.ts
+index 5f561dd..e5cb5f9 100644
+--- a/src/main.ts
++++ b/src/main.ts
+@@ -3,7 +3,8 @@ import { AppModule } from './api/app.module';
+ import { config } from './config';
+ 
+ async function main() {
+-  const app = await NestFactory.create(AppModule);
++  // rawBody — so'rov tanasi baytlari req.rawBody da ham saqlanadi: to'lov webhook'i imzosi aynan shu baytlardan tekshiriladi
++  const app = await NestFactory.create(AppModule, { rawBody: true });
+   await app.listen(config.PORT);
+   console.log(`Server ${config.PORT}-portda ishlayapti`);
+ }

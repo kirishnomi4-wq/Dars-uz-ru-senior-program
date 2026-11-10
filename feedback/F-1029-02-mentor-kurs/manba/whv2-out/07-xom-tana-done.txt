@@ -1,0 +1,15 @@
+# nusxa: done — xizmat JSON'ni bo'sh joy bilan yubordi, imzo shu baytlardan (to'g'ri)
+$ curl -s -X POST http://localhost:3100/payments/webhook -H 'X-Signature: 88e7dfffff6a3624…' -d '{ "paymentId": "pay_bosh_joy", "orderId": 1, "status": "paid", "amount": 120000 }'
+{"ok":true,"duplicate":false}
+← 200
+
+## Server logi
+LOG [InstanceLoader] PaymentModule dependencies initialized
+LOG [RoutesResolver] PaymentController {/payments}:
+LOG [Payment] pay_bosh_joy · #1 · paid · 120000
+
+$ psql: SELECT payment_id, status FROM payments
+  payment_id  | status 
+--------------+--------
+ pay_bosh_joy | paid
+(1 row)

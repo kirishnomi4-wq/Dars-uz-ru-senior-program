@@ -1,0 +1,59 @@
+diff --git a/README.md b/README.md
+index 9946cbe..5753f72 100644
+--- a/README.md
++++ b/README.md
+@@ -52,6 +52,7 @@ Hodisa tranzaksiya tugagandan keyin yuboriladi: panel so'raganda buyurtma bazada
+ 
+ - Ulanish — socket.io (`@nestjs/websockets`, `@nestjs/platform-socket.io`), HTTP bilan bitta portda. Token ulanish ochilayotganda tekshiriladi (`auth: { token }`); noto'g'ri bo'lsa server ulanishni yopadi.
+ - Panel belgisi: **Ulangan** — hodisalar keladi · **Ulanmoqda…** — server javob bermayapti, klient o'zi qayta urinmoqda · **Ulanmagan** — token noto'g'ri, klient urinmaydi.
++- Har ulanishda (uzilishdan keyingi qayta ulanishda ham) panel ro'yxatni `GET /admin/orders` dan qayta so'raydi: ulanish yo'q paytda yuborilgan `order-changed` hech kimga yetmaydi (server uni saqlamaydi), shuning uchun server qayta ishga tushganda yoki internet uzilib qaytganda tushgan buyurtma ham ro'yxatda chiqadi.
+ - Brauzersiz tekshirish: `npm run live` — terminal klienti (`npm run live -- notogri` — noto'g'ri token bilan).
+ - Telegram'siz tekshirish: `npm run smoke -- live`.
+ 
+diff --git a/public/admin.html b/public/admin.html
+index 1101aa4..8ff2b5a 100644
+--- a/public/admin.html
++++ b/public/admin.html
+@@ -61,13 +61,25 @@
+   }
+ 
+   // Ro'yxat — har doim Backend'dan (GET /admin/orders). Hodisa faqat «nimadir o'zgardi» deydi.
++  // Bir vaqtda bir nechta so'rov ketishi mumkin (qayta ulanish + hodisa). Javoblar istalgan tartibda
++  // qaytadi — eskisi yangisining ustiga yozmasligi uchun faqat ENG OXIRGI so'rov javobi chiziladi.
++  let soroqRaqami = 0;
+   async function yukla() {
+-    const r = await fetch('/admin/orders', { headers: { Authorization: 'Bearer ' + token } });
++    const men = ++soroqRaqami;
++    let r, list;
++    try {
++      r = await fetch('/admin/orders', { headers: { Authorization: 'Bearer ' + token } });
++      if (r.ok) list = await r.json();
++    } catch {
++      // tarmoq yo'q — ro'yxat qanday bo'lsa qoladi; ulanish qaytganda «connect» qayta so'raydi
++      return;
++    }
++    if (men !== soroqRaqami) return; // shu orada yangiroq so'rov ketgan — o'sha chizadi
+     if (r.status === 401) {
+       el('royxat').innerHTML = "<tr><td colspan='7'>Token noto'g'ri</td></tr>";
+       return;
+     }
+-    const list = await r.json();
++    if (!list) return;
+     const eng = list.length ? list[0].id : 0;
+     el('royxat').innerHTML = list.length
+       ? list.map((o) => `<tr class="${o.id > oxirgiId && oxirgiId ? 'yangi' : ''}">
+@@ -83,7 +95,13 @@
+     if (ulanish) ulanish.close();
+     ulanish = io({ auth: { token } });
+     holatQoy('ulanmoqda');
+-    ulanish.on('connect', () => holatQoy('ulangan'));
++    // Har ulanishda (birinchi ham, uzilishdan keyingi ham) ro'yxat qayta so'raladi: ulanish yo'q paytda
++    // yuborilgan order-changed hech kimga yetmaydi — server uni saqlamaydi. Faqat hodisaga ishonsak,
++    // server qayta ishga tushganda yoki internet uzilib qaytganda tushgan buyurtma ro'yxatda chiqmay qoladi.
++    ulanish.on('connect', () => {
++      holatQoy('ulangan');
++      yukla();
++    });
+     // uzilish yoki ulanish xatosi: klient o'zi qayta urinayotgan bo'lsa (active) — «ulanmoqda», server yopgan bo'lsa — «ulanmagan»
+     ulanish.on('disconnect', () => holatQoy(ulanish.active ? 'ulanmoqda' : 'ulanmagan'));
+     ulanish.on('connect_error', () => holatQoy(ulanish.active ? 'ulanmoqda' : 'ulanmagan'));

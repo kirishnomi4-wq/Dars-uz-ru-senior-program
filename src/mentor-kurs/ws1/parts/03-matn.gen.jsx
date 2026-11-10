@@ -1,6 +1,6 @@
 
 // ============================================================
-//  WEBSOCKET-1 MATNLARI — AVTO: feedback/F-1029-02-mentor-kurs/dev/ws1-matn.py (manba: 19-WS1-mentor-v1.md)
+//  WebSocket-1 MATNLARI — AVTO: feedback/F-1029-02-mentor-kurs/dev/ws1-matn.py (manba: 19-WS1-mentor-v2.md, M41)
 //  QO'LDA TAHRIRLANMAYDI: matn MD'da o'zgaradi, keyin skript qayta yurgiziladi.
 // ============================================================
 const MDT = {
@@ -8,157 +8,158 @@ const MDT = {
   "type": "Lesson",
   "kicker": "Kirish",
   "eyebrow": "Mentor kursi · WebSocket",
-  "title": "Vali qo'shildi. Ali'ning ekrani buni qachon biladi?",
+  "title": "Do'kon admini kompyuterda panelni ochib qo'yadi: bot buyurtma olsa, yangi qator sahifani yangilamasdan o'zi paydo bo'ladi — bugun shuni qilamiz",
   "seg": [
    [
     "a",
-    "Ekran o'zi yangilanishi uchun <b>Backend o'zi xabar yuborishi</b> kerak — bugun shuni ko'ramiz",
-    "Assalomu alaykum. Maydon Jamoa ilovasida Vali o'yinga qo'shildi. Ali'ning ekrani buni qachon biladi? Bugun Backend o'zi xabar yuboradigan doimiy ulanishni ko'ramiz."
+    "Bot buyurtma oladi — <b>panel sahifani yangilamasdan o'zi ko'rsatadi</b>",
+    "Assalomu alaykum. OrderBotNest'da hozir admin yangi buyurtmani faqat Telegram xabaridan biladi. Bugun do'kon uchun jonli panel qilamiz: kompyuterda ochiq turadigan sahifa. Mijoz botda buyurtma bersa, panelda yangi qator o'zi paydo bo'ladi. Ekranda dars oxiridagi natija, haqiqiy brauzerdan."
    ],
    [
     "b",
-    "Avval <b>so'rov va ulanish farqi</b>, keyin gateway va token",
-    "Avval oddiy so'rov va doimiy ulanish farqi. Keyin Backend'dagi gateway: ulanishni kim qabul qiladi va tokenni qanday tekshiradi."
+    "Avval <b>umumiy tushuncha</b>: so'rov–javob, doimiy ulanish va socket.io",
+    "Avval umumiy tushuncha: oddiy so'rov–javob bilan panel nega o'zi yangilanmaydi, doimiy ulanish nima va socket.io nima qiladi. Keyin serverda gateway yozamiz: ulanishlarni qabul qiladigan klass, token bilan."
    ],
    [
     "c",
-    "Keyin uch holat va hodisa — hammasi o'quvchi loyihasida, <b>haqiqiy yurgizilgan</b>",
-    "Keyin ulanishning uch holati va hodisa. Hammasini o'quvchilar loyihasi maydon jamoa'da haqiqiy yurgizdik, sizda ham shunday bo'ladi."
+    "Keyin <b>hodisa, panel sahifasi va uch ulanish holati</b>; oxirida AI va sinf",
+    "Uchinchi bosqichda hodisani yuboramiz va panel sahifasini o'qiymiz. To'rtinchisida server o'chsa yoki javob bermasa panel nima ko'rsatishini ko'ramiz. Beshinchisida ikki AI yozgan panelni haqiqiy bazada sinaymiz. Oxirida sinfga tayyorgarlik."
    ],
    [
     "d",
-    "Besh bosqich, uch amaliyot. <b>Shoshilmang</b>: ustoz gapirib bo'lgach Davom ochiladi",
-    "Dars besh bosqichdan iborat, uchta amaliyot bor. Shoshilmang: har ekranni boshidan eshitish mumkin. Ustoz gapirib bo'lgach Davom ochiladi. Boshlaymiz."
+    "Olti bosqich, uchta amaliyot; kerak: <b>TgPg darsidagi bot token va Postgres</b>",
+    "Dars olti bosqich, uchta amaliyot. Telegraf darsida yaratgan bot tokeningiz va Postgres bazangiz kerak bo'ladi: panelni o'z telefoningizdan buyurtma berib sinaysiz. Shoshilmang, har ekranni boshidan eshitish mumkin, dars qayerda to'xtaganingizni eslab qoladi. Boshlaymiz."
    ]
   ]
  },
  "2": {
   "type": "Lesson",
-  "kicker": "1-bosqich · ulanish",
-  "title": "Vali qo'shildi (201) — Ali'da son eski, faqat pastga tortsa yangilanadi",
+  "kicker": "1-bosqich · umumiy tushuncha",
+  "title": "Oddiy HTTP'da server faqat so'ralganda javob beradi: panel so'ramasa, Bobur bergan buyurtmani bilmaydi — ekran eski qoladi",
   "seg": [
    [
     "a",
-    "O'quvchilar 11-Modulda qurgan ilova: son <b>faqat so'rov bilan</b> keladi",
-    "Savoldan boshlaymiz: hozir ilova sonni qanday oladi? Maydon Jamoa'ni o'quvchilar o'n birinchi modulda qurgan. Ilova so'raydi, Backend javob beradi. Ali ekranni ochdi: to'qqizdan o'n."
+    "Panel <b><code>GET /admin/orders</code> so'radi — bo'sh</b>; keyin Bobur botda buyurtma berdi",
+    "Bizda oddiy yo'l bor: get admin orders, token bilan. Panel so'radi, javob bo'sh ro'yxat. Shu paytda mijoz Bobur botda buyurtma berdi: bot buyurtma bir qabul qilindi dedi. Panel buni biladimi? Yo'q, u faqat so'raganda javob oladi."
    ],
    [
     "b",
-    "Vali qo'shildi — Backend biladi, lekin Ali'ga <b>yubora olmaydi</b>",
-    "Vali o'yinga qo'shildi, Backend ikki yuz bir qaytardi va bazada son o'zgardi. Lekin Ali so'ramagan, demak unga yo'l yopiq. Ali'ning ekranida to'qqiz qoldi."
+    "Ikkinchi so'rovda <b>buyurtma bor</b> — lekin panel o'zi so'ramaguncha ekran eski edi",
+    "Ikkinchi so'rov: endi ro'yxatda birinchi buyurtma, Bobur, Klaviatura. Ma'lumot bazada birinchi so'rovdan keyin darhol paydo bo'lgan, lekin panel so'ramaguncha ekran eski turdi. So'rov–javobda server o'zi gapira olmaydi."
    ],
    [
     "c",
-    "Ali pastga tortdi — <b>yangi so'rov</b>, yangi son: o'n",
-    "Ali pastga tortdi, ya'ni yangi so'rov yubordi va o'nni oldi. So'ramaguncha yangi son kelmaydi. O'quvchi darsi shu holatdan boshlanadi."
+    "Ikki yo'l: <b>har necha soniyada qayta so'rash (polling)</b> yoki doimiy ulanish",
+    "Ikki yo'l bor. Birinchisi: panel har uch soniyada qayta so'raydi, buni polling deyishadi. Oddiy, lekin ko'pincha javob o'zgarmagan bo'ladi va kechikish qoladi. Ikkinchisi: panel bir marta ulanadi, ulanish ochiq turadi, server o'zgarish bo'lganda o'zi xabar beradi."
    ],
    [
     "d",
-    "Xulosa: so'rov–javobda yo'l <b>faqat ilova so'raganda</b> ochiladi — Backend kutadi",
-    "Xulosa: so'rov va javobda yo'l faqat ilova so'raganda ochiladi. Backend o'zi xabar yubora olmaydi. Buning uchun ochiq turadigan yo'l kerak."
+    "Xulosa: so'rov–javobda <b>server o'zi gapirmaydi</b>; jonli panel uchun doimiy ulanish kerak",
+    "Xulosa: oddiy HTTP'da server faqat so'ralganda javob beradi, tokensiz so'rovga esa to'rt yuz bir. Panel o'zi yangilanishi uchun server o'zi gapira olishi kerak. Buning uchun doimiy ulanish, keyingi ekranda uning kutubxonasi."
    ]
   ]
  },
  "3": {
   "type": "Lesson",
-  "kicker": "1-bosqich · ulanish",
-  "title": "Ilova bir marta ulanadi — yo'l ochiq turadi, ikkala tomon yuboradi",
+  "kicker": "1-bosqich · umumiy tushuncha",
+  "title": "socket.io — doimiy ulanish kutubxonasi: avval oddiy HTTP so'rovlar (polling), keyin WebSocket'ga o'tadi; server va klient istalgan payt hodisa yuboradi",
   "seg": [
    [
     "a",
-    "Doimiy ulanish: ilova bir marta ulanadi va <b>yo'l ochiq qoladi</b>",
-    "Yo'l faqat so'rovda ochilsa, Backend Ali'ga yetolmaydi. Demak ochiq turadigan yo'l kerak. Doimiy ulanishda ilova bir marta ulanadi va yo'l ochiq qoladi, ikkala tomon istagan payt yuboradi."
+    "socket.io klienti ulanadi: <b>avval <code>polling</code>, bir lahzada <code>websocket</code></b>",
+    "OrderBotNest'da buning uchun socket.io ishlatamiz. Terminal klientini ishga tushirdik: npm run live. Avval ulanmoqda, keyin connect, transport polling: oddiy HTTP so'rovlar. Bir lahzadan keyin transport websocket: doimiy ulanishga o'tdi. Agar WebSocket yopiq tarmoq bo'lsa, polling'da qoladi va baribir ishlaydi."
    ],
    [
     "b",
-    "socket.io — kutubxona: imkon bo'lsa <b>WebSocket orqali</b> ulanadi",
-    "O'quvchi loyihasida ulanishni socket io kutubxonasi ochadi. Imkon bo'lsa WebSocket orqali ulanadi. Haqiqiy yurgizishda transport websocket chiqdi."
+    "Bitta port: <b>HTTP yo'llari ham, WebSocket ham <code>3100</code>da</b> — alohida server yo'q",
+    "Server logiga qarang: admin va admin orders yo'llari, va server uch ming bir yuz portida. WebSocket ham shu portda, alohida server kerak emas. Nest'da buni gateway qiladi, ikkinchi bosqichda yozamiz."
    ],
    [
     "c",
-    "Ilovada bitta qator: <code>io(manzil, { auth: { token } })</code> — <b>token ulanishda</b> yuboriladi",
-    "Ilova tomonida asosiy qator bitta: io, Backend manzili va auth ichida token. Token so'rov sarlavhasida emas, ulanish ochilayotganda yuboriladi."
+    "Hodisa — <b>nomi va kichik ma'lumot</b>: <code>order-changed</code>, qaysi buyurtma va nega",
+    "Doimiy ulanishda xabar hodisa deyiladi: nomi va kichik ma'lumot. Bizda bitta hodisa: order changed, ichida buyurtma raqami va sabab: yangi yoki holat. Panel uni tinglaydi va ro'yxatni qayta so'raydi."
    ],
    [
     "d",
-    "Xulosa: doimiy ulanish — ochiq yo'l; Backend xabarni <b>o'zi yubora oladi</b>",
-    "Xulosa: doimiy ulanish ochiq yo'l, Backend xabarni o'zi yubora oladi. Lekin u yo'lni kimga ochadi? Buni gateway hal qiladi."
+    "Xulosa: serverda <b>gateway bo'lmasa, klient cheksiz <code>xhr poll error</code></b> — WebSocket o'zi paydo bo'lmaydi",
+    "Xulosa: socket.io ikki tomon: serverda gateway, klientda kutubxona. Darsning boshlang'ich tegida gateway yo'q: klient cheksiz xhr poll error, admin sahifasi to'rt yuz to'rt. Endi gateway'ni yozamiz."
    ]
   ]
  },
  "4": {
-  "type": "MCRetry",
-  "kicker": "Tekshiruv 1",
-  "eyebrow": "Tekshiruv · 1 / 4",
-  "title": "Ulanish ochiq turibdi. Backend ilovaga qachon xabar yubora oladi?",
-  "q": "Doimiy ulanishni ko'rdingiz, tekshirib olaylik. Birinchi tekshiruv. Ulanish ochiq turibdi. Backend ilovaga qachon xabar yubora oladi? Variantni tanlang.",
-  "ok": "To'g'ri. Ulanish ochiq turganda Backend xabarni istagan paytda yuboradi. So'rov va javobda esa Backend faqat ilova so'raganda javob beradi. Demak, doimiy ulanishning asosiy farqi shu: Backend birinchi bo'lib yoza oladi.",
-  "okShort": "Ochiq ulanishda — istagan payt, so'rovsiz.",
-  "hint": "Ochiq yo'l — kim uchun ochiq?",
-  "correct": 3,
-  "opts": [
-   "Faqat ilova so'raganda",
-   "Faqat ilova ochilganda",
-   "Har daqiqada bir marta",
-   "Istagan payt — so'rovni kutmaydi"
-  ],
-  "wrong": {
-   "0": "Bu so'rov–javob (2-ekran).",
-   "1": "Ochilganda faqat ulanadi; xabar keyin ham keladi.",
-   "2": "Jadval yo'q — o'zgarish bo'lganda."
-  }
- },
- "5": {
   "type": "Lesson",
-  "kicker": "2-bosqich · gateway",
-  "title": "Gateway: token yo'q yoki yaroqsiz — disconnect() va return",
+  "kicker": "2-bosqich · gateway va token",
+  "title": "LiveGateway: har yangi ulanishda handleConnection — tokenni tekshiradi; noto'g'ri bo'lsa disconnect() va return; to'g'ri bo'lsa log yozadi",
   "seg": [
    [
     "a",
-    "Gateway — Backend'da <b>ulanishlarni qabul qiladigan klass</b>, HTTP bilan bitta portda",
-    "Ilova token bilan ulanishni ko'rdik. Endi Backend tomoni: bu ulanishni kim qabul qiladi? Gateway. Bu NestJS klassi, HTTP server bilan bitta portda turadi. O'quvchi loyihasida u oyinlar gateway."
+    "<code>src/api/live/live.gateway.ts</code>: <b><code>@WebSocketGateway()</code> — HTTP bilan bitta portda</b>",
+    "OrderBotNest papkangizda src, api, live papkasini oching, live gateway ts fayli. Klass ustida WebSocket gateway dekoratori: Nest bu klassni ulanishlarni qabul qiladigan joy qiladi, HTTP bilan bitta portda. Ichida WebSocket server maydoni: hamma ulangan panellar shu orqali."
    ],
    [
     "b",
-    "<code>handleConnection</code> — har ulanishda ishlaydi: token <b><code>handshake.auth</code></b> dan olinadi",
-    "Handle connection har yangi ulanishda ishlaydi. Token handshake auth ichidan olinadi, ya'ni ilova io'ga bergan auth."
+    "<code>handleConnection</code>: <b><code>handshake.auth.token</code> noto'g'ri — <code>disconnect()</code> va <code>return</code></b>",
+    "Handle connection har yangi ulanishda chaqiriladi. Birinchi ish: handshake auth token, panel ulanayotganda yuborgan token. Noto'g'ri bo'lsa client disconnect, ya'ni server ulanishni yopadi, va return. To'g'ri bo'lsa client data admin true va log: panel ulandi."
    ],
    [
     "c",
-    "Token yo'q yoki yaroqsiz — <b><code>ulanish.disconnect()</code></b> va <b><code>return</code></b>",
-    "Token JWT kaliti bilan tekshiriladi, yopiq so'rovlardagi kabi. Yo'q yoki yaroqsiz bo'lsa, Backend ulanishni yopadi va funksiyadan chiqadi."
+    "Token qoidasi <b>bitta joyda: <code>isAdminToken</code></b> — <code>.env</code> dagi <code>ADMIN_PANEL_TOKEN</code>, bo'sh ham rad",
+    "Tokenni tekshirish alohida faylda: admin token ts, is admin token funksiyasi. U env'dagi admin panel tokeni bilan solishtiradi, bo'sh tokenni ham rad etadi. Bir qoida ikki joyda ishlaydi: WebSocket ulanishida va get admin orders so'rovida."
    ],
    [
     "d",
-    "Xulosa: token har so'rovda emas — <b>ulanish ochilayotganda</b> bir marta tekshiriladi",
-    "Xulosa: bu yerda token har so'rovda emas, ulanish ochilayotganda bir marta tekshiriladi. Yaroqli bo'lsa, o'yinchi id ulanishga yozib qo'yiladi."
+    "Xulosa: token <b>ulanish ochilayotganda</b> tekshiriladi; <code>orderChanged</code> — hamma ulangan panelga hodisa",
+    "Xulosa: token bir marta, ulanish ochilayotganda tekshiriladi, keyingi hodisalarda qayta emas. Gateway'ning ikkinchi ishi order changed funksiyasi: server emit, hamma ulangan panelga hodisa. Live module'ni telegram module'ga ulaymiz, bot shu funksiyani chaqiradi."
    ]
   ]
  },
+ "5": {
+  "type": "MCRetry",
+  "kicker": "Tekshiruv 1",
+  "eyebrow": "Tekshiruv · 1 / 4",
+  "title": "npm run live -- \"\" — tokensiz ulanamiz. Gateway disconnect() qiladi. Terminal klienti nima yozadi?",
+  "q": "Gateway'ni ko'rdingiz, endi tekshirib olaylik. Birinchi tekshiruv. Terminal klientini tokensiz ishga tushirdik. Gateway tokenni rad etadi va disconnect qiladi. Klient terminalida nima chiqadi? Variantni tanlang.",
+  "ok": "To'g'ri. Ulanish avval ochiladi, chunki token handle connection ichida, ulanish ochilgandan keyin tekshiriladi. Shuning uchun bir lahza connect, keyin io server disconnect, active false: server yopgan ulanishga klient o'zi qayta ulanmaydi. Demak, bu holatda panel belgisi ulanmagan, sabab token.",
+  "okShort": "Bir lahza <code>connect</code> → <code>io server disconnect</code>, <code>active=false</code> — server yopdi, klient urinmaydi.",
+  "hint": "Token qachon tekshiriladi — ulanish ochilishidan oldinmi, keyinmi? Kim yopdi — server yoki tarmoq?",
+  "demak": "<code>io server disconnect</code> — server yopdi (token); klient qayta urinmaydi — «Ulanmagan».",
+  "correct": 1,
+  "opts": [
+   "Faqat connect_error — ulanish umuman ochilmaydi, klient qayta urinaveradi",
+   "Bir lahza connect, keyin io server disconnect — klient qayta urinmaydi",
+   "ulanmoqda — klient har 3 soniyada token bilan qayta ulanishga urinadi",
+   "connect va ulanish ochiq qoladi, faqat hodisalar kelmaydi"
+  ],
+  "wrong": {
+   "0": "Ulanish ochiladi: token ochilgandan keyin handleConnection da tekshiriladi.",
+   "2": "Server yopgan ulanishga socket.io o'zi qayta ulanmaydi — active=false.",
+   "3": "disconnect() ulanishni yopadi — ochiq qolmaydi."
+  }
+ },
  "6": {
   "type": "Lesson",
-  "kicker": "2-bosqich · gateway",
-  "title": "Klient bir lahza «ulangan», keyin io server disconnect — «ulanmagan»",
+  "kicker": "2-bosqich · buzamiz",
+  "title": "disconnect() dan keyin return yo'q: klient baribir yopildi, lekin server logi «panel ulandi» deb yozdi — log endi ishonchsiz",
   "seg": [
    [
     "a",
-    "Token bilan ulandik: Backend terminalida <b>«ulandi: o'yinchi 11»</b> chiqdi",
-    "Gateway kodini o'qidik, endi uni haqiqiy yurgizib sinaymiz. Avval token bilan ulandik. Backend terminalida yozuv chiqdi: ulandi, o'yinchi o'n bir. Bu Ali, u ro'yxatdan o'tgan va kirgan."
+    "Buzamiz: <b><code>client.disconnect();</code> dan keyingi <code>return;</code> ni olib tashlaymiz</b>",
+    "Endi ataylab buzamiz. Live gateway ts faylida client disconnect'dan keyingi return satrini o'chiramiz. Kichik o'zgarish, kod kompilyatsiya bo'ladi. Tokensiz klient bilan sinaymiz: npm run live, ikki qo'shtirnoq."
    ],
    [
     "b",
-    "Tokensiz: klient <b>bir lahza «ulangan»</b> bo'ladi, keyin Backend yopadi",
-    "Endi tokensiz. Qiziq tomoni: klient bir lahza ulangan bo'ladi, chunki ulanish ochilib bo'lgan. Keyin Backend tekshiradi va yopadi: io server disconnect."
+    "Klient: <b>o'sha natija — <code>io server disconnect</code></b>; ulanish baribir yopildi",
+    "Klient terminali o'sha natijani ko'rsatadi: bir lahza connect, keyin io server disconnect, ulanmagan. Disconnect ishladi, ulanish yopildi. Klient tomondan qaraganda hech narsa o'zgarmadi."
    ],
    [
     "c",
-    "<b><code>active=false</code></b> — ilova o'zi qayta urinmaydi: belgi «Ulanmagan»",
-    "Active false: Backend yopgan ulanishga socket io o'zi qayta urinmaydi. Ilovadagi belgi ulanmagan bo'ladi. Soxta token bilan ham aynan shunday."
+    "Server logi: <b><code>panel ulandi</code></b> — rad etilgan klient uchun; to'g'ri kodda bu satr yo'q",
+    "Lekin server logiga qarang: Live, panel ulandi. Rad etilgan, tokensiz klient uchun. To'g'ri kodda, uchinchi tajribada, bu satr umuman yo'q edi. Endi log yolg'on gapiryapti: kim ulangani haqida unga ishonib bo'lmaydi."
    ],
    [
     "d",
-    "Xulosa: tokensiz ulanish bir lahza ochiladi va <b>darhol yopiladi</b> — ilova «Ulanmagan»",
-    "Xulosa: tokensiz yoki soxta token bilan ulanish bir lahza ochiladi va darhol yopiladi. Sinfda belgi bir lahza yashil bo'lib o'chsa, sabab shu."
+    "Demak, sabab: <b><code>disconnect()</code> funksiyadan chiqmaydi</b> — keyingi satrlar baribir bajariladi",
+    "Demak, sabab bitta: disconnect ulanishni yopadi, lekin funksiyadan chiqmaydi. Return bo'lmasa keyingi satrlar baribir bajariladi: admin belgisi qo'yiladi, log yoziladi. Keyinroq shu yerga xona yoki ruxsat qo'shilsa, rad etilgan klient ularni oladi. Return'ni tiklaymiz."
    ]
   ]
  },
@@ -166,462 +167,722 @@ const MDT = {
   "type": "Practice",
   "kicker": "Amaliyot 1 / 3",
   "eyebrow": "Hozir o'zingizda · 15 daqiqa",
-  "title": "maydon-jamoa backend'i lokal: ro'yxat, kirish, token bilan ulanish",
+  "title": "ws1-done tegida serverni ishga tushiring, terminal klienti bilan token, noto'g'ri token va tokensiz ulaning, server logini o'qing",
   "seg": [
    [
     "a",
-    "Endi siz: o'quvchi loyihasining backend'ini <b>o'z kompyuteringizda</b> ishga tushirasiz",
-    "Token bilan va tokensiz ulanishni ko'rdingiz, endi navbat sizga. Maydon jamoa backend'ini o'z kompyuteringizda ishga tushirasiz va Node'dagi kichik klient bilan ulanasiz. O'n besh daqiqa."
+    "Endi siz: <b><code>ws1-done</code> tegi</b>, <code>.env</code> ga panel tokeni, server va klient",
+    "Endi navbat sizga. OrderBotNest papkangizda ws1 done tegiga o'tasiz, env fayliga admin panel tokenini yozasiz, serverni va terminal klientini ishga tushirasiz. Ikkita terminal kerak: biri server, biri klient. O'n besh daqiqa ketadi."
    ],
    [
     "b",
-    "1–2-qadam: clone, <b><code>m12-dars-02-done</code></b>, <code>npm ci</code>; keyin baza, <code>.env</code> va ishga tushirish",
-    "Birinchi: clone, m12 dars ikki done tegi, keyin backend papkasida npm ci. Ikkinchi: lokal PostgreSQL'da maydon jamoa bazasi, env fayli namunadan, keyin npm run start."
+    "1–2-qadam: <b>teg, <code>npm install</code>, <code>.env</code>, <code>npm run start:dev</code></b> — logda <code>/admin</code> yo'llari",
+    "Birinchi qadamda git fetch va checkout, keyin npm install: yangi paketlar bor. Ikkinchisida env'ga admin panel token qatorini qo'shasiz, o'zingiz o'ylagan so'z, va npm run start dev. Logda admin yo'llari va server porti chiqishi kerak."
    ],
    [
     "c",
-    "3–4-qadam: ro'yxat va kirish, keyin klient bilan ulanish; isbot — <b>Backend terminalidagi satr</b>",
-    "Uchinchi: curl bilan ro'yxat va kirish, token olinadi. To'rtinchi: klient bilan ulanish. Isbot maydoniga Backend terminalidagi ulandi satrini nusxalang."
+    "3–4-qadam: <b>ikkinchi terminalda <code>npm run live</code></b> — token, noto'g'ri, tokensiz; isbot — server logidagi satr",
+    "Uchinchi qadamda ikkinchi terminalda npm run live: connect, websocket, server logida panel ulandi. To'rtinchisida noto'g'ri token va tokensiz: io server disconnect. Isbot maydoniga server logidagi panel ulandi satrini nusxalang."
    ],
    [
     "d",
     "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
-    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin o'quvchi loyihasining backend'i sizning kompyuteringizda ishlaydi va siz unga token bilan ulangan bo'lasiz."
+    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin siz serverning doimiy ulanishini terminaldan tekshira olasiz."
+   ]
+  ],
+  "steps": [
+   {
+    "t": "Teg",
+    "cmds": [
+     "git fetch --tags",
+     "git checkout ws1-done",
+     "npm install"
+    ],
+    "exp": "added … packages"
+   },
+   {
+    "t": "Server",
+    "cmds": [
+     ".env ga ADMIN_PANEL_TOKEN=<o'z so'zingiz>",
+     "npm run start:dev"
+    ],
+    "exp": "Mapped {/admin/orders, GET} · Server 3000-portda ishlayapti"
+   },
+   {
+    "t": "Klient",
+    "cmds": [
+     "ikkinchi terminal: npm run live"
+    ],
+    "exp": "connect · ulangan · transport: websocket · serverda [Live] panel ulandi"
+   },
+   {
+    "t": "Rad",
+    "cmds": [
+     "npm run live -- notogri",
+     "npm run live -- \"\""
+    ],
+    "exp": "disconnect: io server disconnect · active=false → ulanmagan"
+   }
+  ],
+  "proof": {
+   "label": "Server logidagi «panel ulandi» satri",
+   "placeholder": "masalan: LOG [Live] panel ulandi: -GKZthhgExVB6fHnAAAA",
+   "re": "panel ulandi",
+   "flags": "i",
+   "wrong": "Server terminalida [Live] panel ulandi: … satrini toping va nusxalang."
+  },
+  "trouble": [
+   [
+    "connect_error: xhr poll error cheksiz",
+    "server ishlamayapti yoki port boshqa — server terminalini tekshiring; boshqa port bo'lsa LIVE_URL=http://localhost:<port> npm run live"
+   ],
+   [
+    "to'g'ri token bilan ham io server disconnect",
+    ".env dagi token bilan klientdagi farq qiladi yoki server .env ni o'qimadi — serverni qayta ishga tushiring"
+   ],
+   [
+    "Cannot find module 'socket.io-client'",
+    "npm install qilinmagan (yangi paketlar)"
+   ],
+   [
+    "BOT_TOKEN topilmadi",
+    ".env da bot tokeni yo'q — Telegraf darsidagi tokenni yozing"
    ]
   ]
  },
  "8": {
-  "type": "LineCheck",
-  "kicker": "Tekshiruv 2",
-  "eyebrow": "Tekshiruv · 2 / 4 — qaysi satr xato?",
-  "title": "Tokensiz ulanishda Backend «ulandi: o'yinchi null» deb yozdi",
-  "q": "Gateway'ni ko'rdingiz, endi o'zingiz toping. Ikkinchi tekshiruv. Tokensiz ulanish yopildi, lekin Backend terminali ulandi, o'yinchi null dedi. Funksiya to'xtashi kerak bo'lgan satrni bosing.",
-  "ok": "To'g'ri. Beshinchi satr: disconnect'dan keyin return yo'q. Ulanish yopildi, lekin funksiya davom etib, yolg'on yozuv qoldirdi. Return qo'shilsa, tokensiz ulanish yozilmaydi. Demak, ulanishni yopgan satrdan keyin funksiya return bilan to'xtashi kerak.",
-  "okShort": "5-satrdan keyin <code>return</code> yo'q — funksiya davom etdi, <code>ulandi: o'yinchi null</code>.",
-  "hint": "Ulanish yopilgandan keyin qaysi satrlar baribir ishladi?",
-  "task": "Qoida: token yaroqsiz bo'lsa, ulanish yopiladi va funksiya <b>shu yerda to'xtaydi</b>. Bu kodda tokensiz ulanish yopildi, lekin Backend terminalida <code>ulandi: o'yinchi null</code> chiqdi. <b>Funksiya to'xtashi kerak bo'lgan satrni bosing.</b>"
- },
- "9": {
   "type": "Lesson",
-  "kicker": "3-bosqich · holat",
-  "title": "Ulangan · Ulanmoqda · Ulanmagan — farq active da",
+  "kicker": "3-bosqich · hodisa va panel",
+  "title": "Bot buyurtmani bazaga yozib bo'lgach orderChanged(order.id, 'new'); admin holatni o'zgartirgach — 'status'. Hodisada ro'yxat yo'q: panel qayta so'raydi",
   "seg": [
    [
     "a",
-    "Doimiy ulanish ham uziladi — ilova <b>uch holatni</b> ko'rsatadi",
-    "Ulanish ochildi va token tekshirildi. Lekin u doim ochiq turadimi? Yo'q: internet yo'qoladi, Backend qayta ishga tushadi. Shuning uchun ilovada belgi bor va u uch holatni ko'rsatadi."
+    "<code>telegram.service.ts</code>: <b><code>await this.orders.place(…)</code> tugagach</b> — <code>orderChanged(order.id, 'new')</code>",
+    "Src, api, telegram papkasidagi telegram service ts faylini oching, place order funksiyasi. Avval await orders place: tranzaksiya, buyurtma bazaga yozildi. Faqat shundan keyin live order changed, buyurtma raqami va new. Await tufayli hodisa bazadagi buyurtmadan oldin ketmaydi."
    ],
    [
     "b",
-    "Ulangan — hodisalar keladi; ulanmoqda — socket.io <b>o'zi qayta urinmoqda</b>",
-    "Ulangan: yo'l ochiq, hodisalar keladi. Ulanmoqda: yo'l yo'q, lekin socket io o'zi qayta urinyapti. O'quvchi kodi buni active qiymatidan biladi."
+    "Admin tugmasi: <b><code>setStatus</code> tugagach — <code>'status'</code></b> — bot kodi o'zgarmadi, bitta satr qo'shildi",
+    "Admin holat tugmasini bosganda ham shu qolip: await orders set status, keyin order changed, status sababi bilan. Bot kodining qolgan qismi o'zgarmadi, ikki joyga bittadan satr qo'shildi. Mijozga Telegram xabari avvalgidek boradi."
    ],
    [
     "c",
-    "Ulanmagan — <b>hech kim urinmayapti</b>: Backend yopgan yoki ilova o'zi yopgan",
-    "Ulanmagan: hech kim urinmayapti. Backend yopgan, masalan token yaroqsiz, yoki ilovaning o'zi yopgan, masalan hisobdan chiqilgan."
+    "Hodisada <b>faqat <code>orderId</code> va <code>reason</code></b> — panel yangi ro'yxatni <code>GET /admin/orders</code> dan so'raydi",
+    "Hodisa ichida nima bor? Faqat buyurtma raqami va sabab, ro'yxat ham, mijoz telefoni ham yo'q. Panel hodisani olgach get admin orders'ni qayta so'raydi, token bilan. Ma'lumotning manbai bitta: baza. O'quvchi darsida bu konvert deyiladi."
    ],
    [
     "d",
-    "Xulosa: «Ulanmoqda» — o'tib ketadi; «Ulanmagan» — <b>kimdir nimadir qilishi kerak</b>",
-    "Xulosa: ulanmoqda o'tib ketadigan holat, kutish kifoya. Ulanmagan esa harakat talab qiladi: qayta kirish yoki tokenni yangilash."
+    "Xulosa: hodisa <b>«nimadir o'zgardi»</b> deydi; ma'lumot — token bilan, so'rovda",
+    "Xulosa: hodisa tranzaksiya tugagach yuboriladi va faqat nimadir o'zgardi deydi. Ma'lumot token bilan himoyalangan so'rovda keladi. Admin controller'da list funksiyasi: token tekshiriladi, oxirgi yigirma buyurtma, faqat kerakli maydonlar. Endi panel sahifasini ochamiz."
+   ]
+  ]
+ },
+ "9": {
+  "type": "Lesson",
+  "kicker": "3-bosqich · hodisa va panel",
+  "title": "public/admin.html: socket.io klienti serverning o'zidan; io({ auth: { token } }) — ulanish; uch holat; order-changed kelsa yukla()",
+  "seg": [
+   [
+    "a",
+    "<code>public/admin.html</code>: <b>socket.io klienti <code>/socket.io/socket.io.js</code> — serverning o'zi beradi</b>",
+    "Public papkasidagi admin html faylini oching. Oddiy HTML sahifa, kutubxona alohida o'rnatilmaydi: socket io js faylini serverning o'zi beradi, shu manzildan. Sahifa get admin, ya'ni admin controller'ning page funksiyasi orqali ochiladi."
+   ],
+   [
+    "b",
+    "<code>ulan()</code>: <b><code>io({ auth: { token } })</code></b> — token manzilda emas, ulanish ma'lumotida",
+    "Ulan funksiyasi: io, auth, token. Token manzil satriga yozilmaydi, ulanish ochilayotgan paytdagi ma'lumotda ketadi: gateway uni handshake auth'dan o'qiydi. Connect bo'lsa belgi ulangan, disconnect bo'lsa active'ga qarab ulanmoqda yoki ulanmagan."
+   ],
+   [
+    "c",
+    "Tinglovchi: <b><code>ulanish.on('order-changed', () =&gt; yukla())</code></b> — hodisadan keyin qayta so'rash",
+    "Eng muhim satr: ulanish on, order changed, yukla. Hodisa kelganda yukla funksiyasi chaqiriladi: get admin orders, yangi ro'yxat. Yangi qator sariq bo'ladi: id oldingi eng kattasidan katta bo'lsa. Ro'yxat har doim bazadan, hodisadan emas."
+   ],
+   [
+    "d",
+    "Xulosa: mijoz ismi Telegram'dan keladi — <b><code>esc()</code> bilan matn sifatida</b> qo'yiladi",
+    "Xulosa: panel uch ish qiladi: ulanadi, tinglaydi, qayta so'raydi. Va bitta xavfsizlik qoidasi: mijoz ismi Telegram'dan keladi, ichida HTML bo'lishi mumkin. Esc funksiyasi uni matnga aylantiradi, sahifada kod bo'lib ishlamaydi. Endi haqiqiy oqimni ko'ramiz."
    ]
   ]
  },
  "10": {
   "type": "Lesson",
-  "kicker": "3-bosqich · holat",
-  "title": "transport close → «Ulanmoqda»: urinish har 5 soniya, Backend yongach o'zi «Ulangan»",
+  "kicker": "3-bosqich · hodisa va panel",
+  "title": "Panel ochiq; Bobur botda buyuradi — yangi qator o'zi chiqadi; admin tasdiqlaydi — holat o'zi o'zgaradi; terminal klienti ham ikkala hodisani ko'radi",
   "seg": [
    [
     "a",
-    "Backend'da Ctrl+C: klientda <b><code>transport close</code></b>, <code>active=true</code> — belgi «Ulanmoqda»",
-    "Uch holatni nazariyada ko'rdik, endi ulanmoqda holatini haqiqiy chaqiramiz. Backend terminalida Ctrl C bosdik. Klient darhol sezdi: transport close, active true. Belgi ulanmoqda."
+    "Panel ochiq, belgi <b>«Ulangan»</b>; ro'yxatda oldingi buyurtmalar",
+    "Endi hammasini birga ko'ramiz. Brauzerda admin sahifasi, token kiritildi, belgi ulangan, ro'yxatda oldingi buyurtmalar. Bu haqiqiy brauzer, haqiqiy server va baza. Telegram o'rniga smoke'dagi usul: bot kodi haqiqiy, xabar ichkaridan beriladi."
    ],
    [
     "b",
-    "socket.io o'zi qayta urinadi: avval tez, keyin <b>har 5 soniyada</b>",
-    "Keyin socket io o'zi qayta urinadi: avval bir-ikki soniyada, keyin har besh soniyada. Har urinishda connect error, lekin belgi ulanmoqda'da qoladi."
+    "Bobur buyurtma berdi — <b>yangi qator sariq, sahifa yangilanmadi</b>",
+    "Bobur botda Klaviatura buyurdi. Panelda eng yuqorida yangi qator, sariq rangda: yangi. Sahifa qayta ochilmadi, hech kim tugma bosmadi. Server hodisa yubordi, panel ro'yxatni qayta so'radi."
    ],
    [
     "c",
-    "Backend yondi — keyingi urinishda o'zi «Ulangan»: <b>5 soniyagacha kechikadi</b>",
-    "Backend qayta yondi, klient esa keyingi urinishda o'zi ulandi. Hech kim hech narsa bosmadi. Faqat kechikish bor: Backend tayyor bo'lgach, besh soniyagacha."
+    "Admin tasdiqladi — <b>holat «Tasdiqlandi»</b>; terminal klienti ham ikki hodisani ko'rdi",
+    "Admin Jasur botda tasdiqlash tugmasini bosdi. Panelda shu qatorning holati tasdiqlandi bo'ldi. O'ngda terminal klienti: ikkita order changed, birinchisi new, ikkinchisi status. Server logida esa bot xabarlari va panel ulandi satri."
    ],
    [
     "d",
-    "Xulosa: Backend qayta yonsa, <b>ilova o'zi qaytadi</b> — bir necha soniya sariq normal",
-    "Xulosa: Backend qayta ishga tushsa, ilova o'zi qaytadi. O'quvchi belgi bir necha soniya sariq turdi desa, bu xato emas: navbatdagi urinishni kutyapti."
+    "Xulosa: bu oqim <b>lentada ham tekshiriladi</b> — smoke <code>live</code>, GitHub'da 9/9",
+    "Xulosa: bot, tranzaksiya, hodisa, panel, qayta so'rash. Shu oqim smoke'ga ham qo'shildi: npm run smoke live. CI/CD darsidagi lentada smoke job Postgres bilan uni har push'da yurgizadi: GitHub'da to'qqizdan to'qqiz. Endi bitta xatoni o'zingiz topasiz."
    ]
   ]
  },
  "11": {
-  "type": "Lesson",
-  "kicker": "3-bosqich · holat",
-  "title": "Javob yo'q, ulanish yopilmagan — socket.io buni 45 soniyada sezdi",
-  "seg": [
-   [
-    "a",
-    "O'quvchi darsida telefonda uchish rejimi yoqiladi — belgi <b>darhol o'zgarmasligi mumkin</b>",
-    "Backend o'chganda klient darhol sezdi. Uchish rejimida esa unday emas. O'quvchi darsi ogohlantiradi: belgi darhol o'zgarmasligi mumkin, bir daqiqagacha. Nega? Sinab ko'rdik."
-   ],
-   [
-    "b",
-    "Ulanish yopilmasa, klient faqat <b>«ping» javobi</b> kelmaganidan biladi",
-    "Backend'ni muzlatdik: ulanish yopilmadi, faqat javob kelmaydi. Uchish rejimida ham shunday. Klient buni faqat ping javobi kelmaganidan biladi."
-   ],
-   [
-    "c",
-    "45 soniyada <b><code>ping timeout</code></b>: 25 soniya oraliq va 20 soniya kutish",
-    "Natija: qirq besh soniyada ping timeout. Socket io standarti: yigirma besh soniya oraliq va yigirma soniya kutish. Backend qaytgach esa darhol ulangan."
-   ],
-   [
-    "d",
-    "Xulosa: «uchish rejimi» belgisi <b>45 soniyagacha</b> kech qoladi — bu normal",
-    "Xulosa: uchish rejimida belgi qirq besh soniyagacha kech qoladi. O'quvchi «belgi o'zgarmadi» desa, bir daqiqa kutishni ayting."
-   ]
-  ]
+  "type": "LineCheck",
+  "kicker": "Tekshiruv 2",
+  "eyebrow": "Tekshiruv · 2 / 4 — qaysi satr xato?",
+  "title": "Bu panelda belgi «Ulangan», terminal klienti order-changed ni oladi, lekin brauzerda yangi qator chiqmaydi. Sababchi satrni toping",
+  "q": "Panel kodini ko'rdingiz, endi o'zingiz toping. Ikkinchi tekshiruv. Bu panelda belgi ulangan, terminal klienti hodisani oladi, lekin brauzerda yangi qator chiqmaydi. Bo'lakda bitta satr funksiyani chaqirmaydi, faqat qaytaradi. O'sha satrni bosing.",
+  "ok": "To'g'ri. Strelka funksiya yukla'ni qaytaradi, lekin chaqirmaydi: qavs yo'q. Hodisa keladi, tinglovchi ishlaydi, get so'rovi ketmaydi, ro'yxat eski qoladi. Brauzerda o'n besh soniya kutdik, ro'yxat o'zgarmadi, terminal klienti esa ikkala hodisani ko'rdi. Demak, hodisa kelsa-yu ekran o'zgarmasa, tinglovchi ichini tekshiring.",
+  "okShort": "<code>() =&gt; yukla</code> — funksiya qaytariladi, chaqirilmaydi. Hodisa keladi, <code>GET</code> ketmaydi.",
+  "hint": "Qaysi satrda funksiya nomidan keyin qavs yo'q?",
+  "task": "Qoida: hodisa kelganda ro'yxatni qayta so'raydigan funksiya <b>chaqirilishi</b> kerak. Bu bo'lakda bitta satr funksiyani chaqirmaydi, faqat qaytaradi. <b>O'sha satrni bosing.</b>"
  },
  "12": {
-  "type": "MCRetry",
-  "kicker": "Tekshiruv 3",
-  "eyebrow": "Tekshiruv · 3 / 4",
-  "title": "Token yaroqsiz, Backend ulanishni yopdi. Belgi qaysi holatda qoladi?",
-  "q": "Uch holatni ko'rdingiz, tekshirib olaylik. Uchinchi tekshiruv. Token yaroqsiz, Backend ulanishni yopdi. Ilovadagi belgi qaysi holatda qoladi? Variantni tanlang.",
-  "ok": "To'g'ri, ulanmagan. Backend o'zi yopgan ulanishga socket io qayta urinmaydi, active qiymati false bo'ladi. O'quvchi qayta kirib, yangi token olishi kerak. Demak, Backend o'zi yopgan ulanish o'z-o'zidan tiklanmaydi.",
-  "okShort": "Ulanmagan — <code>io server disconnect</code>, <code>active=false</code>.",
-  "hint": "Ulanishni kim yopdi — Backend'mi yoki tarmoq?",
-  "correct": 2,
-  "opts": [
-   "Ulangan",
-   "Ulanmoqda — ilova o'zi qayta urinadi",
-   "Ulanmagan — Backend yopgan ulanishga qayta urinilmaydi",
-   "Belgi yo'qoladi"
-  ],
-  "wrong": {
-   "0": "Bir lahza bo'ladi, keyin yopiladi (6-ekran).",
-   "1": "Bu Backend o'chganda (10-ekran).",
-   "3": "Belgi doim bor — uch holatdan biri."
-  }
- },
- "13": {
   "type": "Practice",
   "kicker": "Amaliyot 2 / 3",
-  "eyebrow": "Hozir o'zingizda · 10 daqiqa",
-  "title": "Backend'ni to'xtating va yoqing — klient nima deydi",
+  "eyebrow": "Hozir o'zingizda · 20 daqiqa",
+  "title": "Brauzerda /admin ni oching, telefondan botda buyurtma bering — panel o'zi yangilanadimi; keyin /orders dan tasdiqlang",
   "seg": [
    [
     "a",
-    "Endi siz: Backend'ni <b>o'zingiz to'xtatib</b>, klientning holatlarini kuzatasiz",
-    "Holatlarni ekranda ko'rdingiz, endi ularni o'zingiz chaqirasiz. O'n daqiqa. Bir terminalda Backend, ikkinchisida klient."
+    "Endi siz: <b>brauzerda panel, telefonda bot</b> — haqiqiy Telegram bilan",
+    "Endi navbat sizga. Server ishlab turibdi. Brauzerda admin sahifasini ochasiz, telefoningizda botga buyurtma berasiz va panelning o'zi yangilanishini ko'rasiz. Yigirma daqiqa ketadi."
    ],
    [
     "b",
-    "1–2-qadam: klient ulangan; Backend'ni <b>Ctrl+C</b> bilan to'xtating — «ulanmoqda»",
-    "Birinchi: klientni token bilan yoqing, ulangan. Ikkinchi: Backend terminalida Ctrl C. Klientda ulanmoqda va sababini o'qing."
+    "1–2-qadam: <b><code>localhost:3000/admin</code>, token</b> — belgi «Ulangan»; botda buyurtma — yangi qator",
+    "Birinchi qadamda brauzerda localhost uch ming admin, tokenni kiritasiz: belgi ulangan, ro'yxat chiqadi. Ikkinchisida telefoningizdan botga start, katalog, mahsulot va buyurtma. Panelda yangi qator sariq bo'lib chiqishi kerak."
    ],
    [
     "c",
-    "3–4-qadam: Backend'ni yoqing — o'zi «ulangan»; isbot — <b>uzilish sababi</b>",
-    "Uchinchi: Backend'ni qayta yoqing, klient o'zi ulanadi. To'rtinchi: tokensiz sinab ko'ring, ulanmagan. Isbot maydoniga ikkinchi qadamdagi uzilish sababini yozing."
+    "3–4-qadam: <b><code>/orders</code> dan tasdiqlang</b> — holat o'zgaradi; <code>npm run smoke -- live</code>; isbot — smoke natijasi",
+    "Uchinchi qadamda botda orders va tasdiqlash: paneldagi holat o'zgaradi. To'rtinchisida npm run smoke live: Telegram'siz o'sha oqim, to'rt band. Isbot maydoniga smoke'ning natija satrini nusxalang."
    ],
    [
     "d",
     "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
-    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin siz Backend o'chganda va qayta yonganda klient qanday holatlardan o'tishini o'z ko'zingiz bilan ko'rgan bo'lasiz."
+    "Boshqacha chiqsa, «Boshqacha chiqdimi» tugmasini bosing. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin siz botingizga jonli sayt sahifasini ulagansiz va uni o'zingiz sinagansiz."
+   ]
+  ],
+  "steps": [
+   {
+    "t": "Panel",
+    "cmds": [
+     "brauzer: http://localhost:3000/admin → token → «Kirish»"
+    ],
+    "exp": "belgi «Ulangan», ro'yxat"
+   },
+   {
+    "t": "Buyurtma",
+    "cmds": [
+     "telefon: botga /start → /catalog → mahsulot → /cart → «✅ Buyurtma berish»"
+    ],
+    "exp": "panelda yangi sariq qator"
+   },
+   {
+    "t": "Tasdiq",
+    "cmds": [
+     "botda /orders → «✅ Tasdiqlash» (ADMIN_TELEGRAM_IDS da o'z id'ingiz)"
+    ],
+    "exp": "panelda «Tasdiqlandi»"
+   },
+   {
+    "t": "Smoke",
+    "cmds": [
+     "npm run smoke -- live"
+    ],
+    "exp": "NATIJA: 4/4 ✓"
+   }
+  ],
+  "proof": {
+   "label": "npm run smoke -- live natija satri",
+   "placeholder": "masalan: NATIJA: 4/4 ✓",
+   "re": "NATIJA:\\s*4\\/4",
+   "flags": "",
+   "wrong": "npm run smoke -- live oxiridagi NATIJA: … satrini qo'ying — to'rt band."
+  },
+  "trouble": [
+   [
+    "Panelda «Token noto'g'ri»",
+    "kiritgan so'z .env dagi ADMIN_PANEL_TOKEN bilan bir xil emas"
+   ],
+   [
+    "Belgi «Ulanmoqda…» o'zgarmaydi",
+    "server ishlamayapti yoki boshqa portda — sahifani o'sha portdan oching"
+   ],
+   [
+    "Buyurtma Telegram'da bor, panelda yangi qator yo'q",
+    "sahifa eski (ws1-done dan oldingi) — git checkout ws1-done, server qayta; konsolda xato bormi (F12)"
+   ],
+   [
+    "/orders — «Bu buyruq faqat admin uchun»",
+    ".env dagi ADMIN_TELEGRAM_IDS da o'z Telegram id'ingiz yo'q"
+   ],
+   [
+    "smoke: baza ulanmagan — live faqat PostgreSQL bilan",
+    ".env da DATABASE_URL yo'q"
+   ]
+  ]
+ },
+ "13": {
+  "type": "Lesson",
+  "kicker": "4-bosqich · ulanish holati",
+  "title": "Panel belgisi uch holatda: hodisalar keladi · server javob bermayapti, klient o'zi urinmoqda · server yopdi, klient urinmaydi — farqni active beradi",
+  "seg": [
+   [
+    "a",
+    "«Ulangan» — <b>ulanish ochiq, hodisalar keladi</b>; ro'yxat yangi",
+    "Paneldagi belgining uch holati bor. Birinchisi ulangan: ulanish ochiq, hodisalar keladi, ro'yxat yangi. Admin ekranga qarab ishonsa bo'ladi."
+   ],
+   [
+    "b",
+    "«Ulanmoqda…» — <b><code>active=true</code></b>: server javob bermayapti, klient o'zi qayta urinmoqda",
+    "Ikkinchisi ulanmoqda. Ulanish uzildi, lekin socket.io o'zi qayta urinmoqda: active true. Sabab server o'chgani, internet uzilgani yoki server javob bermayotgani. Ro'yxat ekranda qoladi, lekin eskirgan bo'lishi mumkin."
+   ],
+   [
+    "c",
+    "«Ulanmagan» — <b><code>active=false</code></b>: server ulanishni yopdi (token), klient urinmaydi",
+    "Uchinchisi ulanmagan: active false. Server ulanishni o'zi yopgan, bizda token noto'g'ri bo'lganda. Klient qayta urinmaydi, foydalanuvchi tokenni tuzatishi kerak. Panel buni token noto'g'ri deb ham yozadi."
+   ],
+   [
+    "d",
+    "Xulosa: holatni <b><code>disconnect</code> va <code>active</code></b> beradi; panelda bir satr",
+    "Xulosa: uch holatni ikki narsa ajratadi: uzilish sababi va active. Panelda bu bitta satr: disconnect bo'lsa, active bo'lsa ulanmoqda, bo'lmasa ulanmagan. Endi server o'chib-yonganini haqiqiy terminalda ko'ramiz."
    ]
   ]
  },
  "14": {
   "type": "Lesson",
-  "kicker": "4-bosqich · hodisa",
-  "title": "oyin-ozgardi { oyinId, sabab }: nima o'zgardi — son esa qayta so'raladi",
+  "kicker": "4-bosqich · ulanish holati",
+  "title": "Server to'xtadi: transport close → klient har bir necha soniyada xhr poll error; server yondi — klient o'zi ulandi, hech kim hech narsa bosmadi",
   "seg": [
    [
     "a",
-    "Repo'ning keyingi tegida Backend o'zi hodisa yuboradi: <b><code>oyin-ozgardi</code></b>",
-    "Ulanish tayyor, endi undan nima keladi. O'quvchi repo'sining keyingi tegida Backend hodisa yuboradi: oyin ozgardi. Vali qo'shildi, Ali'ga darhol keldi."
+    "Server to'xtadi: <b><code>transport close</code>, <code>active=true</code></b> — belgi «Ulanmoqda…»",
+    "Klient ulangan turibdi. Server terminalida Ctrl C, server to'xtadi. Klient darhol: disconnect, transport close, active true, ulanmoqda. Ulanishni tarmoq uzdi, server emas, shuning uchun klient taslim bo'lmaydi."
    ],
    [
     "b",
-    "Konvertda faqat <code>oyinId</code> va <code>sabab</code> — <b>yangi son yo'q</b>",
-    "Hodisa ichida faqat ikki narsa: qaysi o'yin va sabab, qo'shildi. Yangi son yo'q. O'quvchi darsi buni konvert deydi: ichida son yo'q."
+    "Qayta urinish: <b>har bir necha soniyada <code>xhr poll error</code></b> — oraliq tobora uzayadi",
+    "Keyin har bir necha soniyada connect error, xhr poll error: klient polling bilan urinadi, server yo'q. Vaqtlarga qarang: oraliq asta uzayadi, klient serverni bombardimon qilmaydi. Panelda shu vaqt ulanmoqda."
    ],
    [
     "c",
-    "Ali hodisani olgach <b>o'zi qayta so'radi</b>: 6 / 10 dan 7 / 10",
-    "Ali hodisani olgach o'zi qayta so'radi va yettini oldi. Qiziq tomoni: hodisa Valining o'z javobidan ham oldin yetib keldi."
+    "Server yondi — <b>klient o'zi ulandi</b>: polling, keyin websocket",
+    "Serverni qayta ishga tushirdik. Bir necha soniyadan keyin klient o'zi connect, ulangan, avval polling, keyin websocket. Hech kim sahifani yangilamadi, hech narsa bosmadi. Bu socket.io'ning tayyor xizmati."
    ],
    [
     "d",
-    "Xulosa: hodisa «nima o'zgardi» deydi — haqiqiy son Backend'dan <b>qayta olinadi</b>",
-    "Xulosa: hodisa faqat nima o'zgarganini aytadi, haqiqiy son Backend'dan qayta olinadi. Shunda ikki kishi birdan qo'shilsa ham son adashmaydi."
+    "Xulosa: <b>qayta ulanish o'zi</b> bo'ladi; lekin uzilish paytidagi hodisa — keyingi darsda",
+    "Xulosa: server o'chib-yonsa, panel o'zi qayta ulanadi. Lekin bir savol qoldi: server o'chiq paytida buyurtma tushsa, panel uni ko'radimi? Bu keyingi WebSocket darsining mavzusi, uzilishda nima yo'qoladi. Endi qiyinroq holat: server javob bermaydi, lekin uzilmaydi."
    ]
   ]
  },
  "15": {
   "type": "Lesson",
-  "kicker": "4-bosqich · hodisa",
-  "title": "O'quvchi darsi bugun faqat ulanish va belgini yozadi — hodisa yuborilmaydi",
+  "kicker": "4-bosqich · ichida",
+  "title": "Server jarayonini muzlatamiz: ulanish uzilmaydi, javob ham yo'q — klient 43 soniya «ulangan» deb turadi, keyin ping timeout; sabab — 25 + 20 soniya qoidasi",
   "seg": [
    [
     "a",
-    "<code>m12-dars-02-done</code> gateway izohi: <b>«hozircha hech qanday hodisa yuborilmaydi»</b>",
-    "Hodisani m12 dars uch tegida ko'rdik. Lekin ehtiyot bo'ling: o'quvchi darsining tayyor holati m12 dars ikki done. U yerda gateway izohi aniq: hozircha hech qanday hodisa yuborilmaydi."
+    "Muzlatamiz: <b>ulanish ochiq, lekin server javob bermaydi</b> — telefon uchish rejimiga o'xshash",
+    "Endi qiyinroq holat. Server jarayonini muzlatamiz: kill minus STOP. Ulanish uzilmaydi, lekin server hech narsaga javob bermaydi. Hayotda bu telefon uchish rejimida, Wi-Fi o'chganda yoki server qotib qolganda bo'ladi."
    ],
    [
     "b",
-    "O'quvchi tinglovchini <b>namuna oynada</b> yozadi — u yerda hodisani tugma yuboradi",
-    "O'quvchi darsida tinglovchi yoziladi: ulanish on, oyin ozgardi. Lekin bu namuna oynada, u yerda hodisani tugma yuboradi, haqiqiy Backend emas."
+    "Klient <b>43 soniya «ulangan»</b> deb turadi — hech narsa bilmaydi",
+    "Klient terminaliga qarang: hech narsa yo'q. Qirq uch soniya davomida u o'zini ulangan deb hisoblaydi. Shu vaqt panel belgisi yashil, lekin hodisalar kelmaydi. Admin ekranga ishonadi, ekran esa eskirgan."
    ],
    [
     "c",
-    "O'quvchi telefonida bugun son o'zi o'zgarmaydi — <b>bu xato emas</b>",
-    "Shuning uchun bugun o'quvchi telefonida son o'zi o'zgarmaydi, faqat belgi. O'quvchi «ekran yangilanmadi» desa, bu xato emas: hodisa repo'ning keyingi tegida qo'shiladi."
+    "Keyin <b><code>ping timeout</code></b> — socket.io har 25 s ping yuboradi, 20 s javob kutadi",
+    "Keyin disconnect, ping timeout, ulanmoqda. Socket.io qoidasi: server har yigirma besh soniyada ping yuboradi va yigirma soniya javob kutadi. Javob kelmasa, ulanish o'lik deb topiladi. Shuning uchun eng uzog'i qirq besh soniya. Server davom etgach, klient darhol ulandi."
    ],
    [
     "d",
-    "Xulosa: bugungi natija — <b>ulanish va belgi</b>; hodisa — m12-03 tegida",
-    "Xulosa: bugungi o'quvchi natijasi ulanish va belgi. Hodisa m12 dars uch tegida. Ikkalasini ham o'zingiz yurgizib ko'rdingiz."
+    "Demak, sabab: <b>javob yo'qligi — uzilish emas</b>; ulanish o'lganini faqat ping aniqlaydi",
+    "Demak, sabab bitta: tarmoq javob bermaganda hech kim ulanish uzilganini aytmaydi. Uni faqat ping aniqlaydi, qirq besh soniyagacha kechikish bilan. Sinfda o'quvchi uchish rejimida belgi o'zgarmadi desa, kuting deng. Endi tekshirib olaylik."
    ]
   ]
  },
  "16": {
   "type": "MCRetry",
-  "kicker": "Tekshiruv 4",
-  "eyebrow": "Tekshiruv · 4 / 4",
-  "title": "Ali'ga oyin-ozgardi {\"oyinId\":2,\"sabab\":\"qoshildi\"} keldi. Ilova keyin nima qiladi?",
-  "q": "Hodisani ko'rdingiz, tekshirib olaylik. To'rtinchi tekshiruv. Ali'ga oyin ozgardi keldi: o'yin ikki, sabab qo'shildi. Ilova keyin nima qiladi? Variantni tanlang.",
-  "ok": "To'g'ri. Hodisada son yo'q, ilova uni Backend'dan qayta so'raydi. O'zi bittaga oshirsa, ikki kishi birdan qo'shilganda son adashadi. Demak, hodisa faqat nima o'zgarganini aytadi, yangi sonni ilova Backend'dan oladi.",
-  "okShort": "Qayta so'raydi: son Backend'dan, hodisadan emas.",
-  "hint": "Konvert ichida son bormi?",
-  "correct": 0,
+  "kicker": "Tekshiruv 3",
+  "eyebrow": "Tekshiruv · 3 / 4",
+  "title": "Admin noutbukida Wi-Fi o'chdi: ulanish uzilmadi, lekin paket ham o'tmaydi. Panel belgisi qachon «Ulanmoqda…» bo'ladi?",
+  "q": "Muzlashni ko'rdingiz, endi tekshirib olaylik. Uchinchi tekshiruv. Admin noutbukida Wi-Fi o'chdi: ulanish uzilmadi, lekin hech narsa o'tmaydi. Panel belgisi qachon ulanmoqda bo'ladi? Variantni tanlang.",
+  "ok": "To'g'ri. Ulanish rasman uzilmagan, shuning uchun hech kim darhol aytmaydi. Server har yigirma besh soniyada ping yuboradi va yigirma soniya kutadi; javob kelmasa ping timeout, belgi ulanmoqda. Eng uzog'i qirq besh soniya. Demak, javob bermaydigan tarmoqni faqat ping aniqlaydi, kechikish bilan.",
+  "okShort": "Javob bermaydigan tarmoq — <code>ping timeout</code>, 45 s gacha (25 + 20). Darhol emas.",
+  "hint": "Ulanish o'lganini kim va qanday aniqlaydi? 15-ekrandagi 25 + 20 ni eslang.",
+  "demak": "Javob bermaydigan tarmoqni faqat ping aniqlaydi: <code>ping timeout</code> — 45 s gacha.",
+  "correct": 2,
   "opts": [
-   "GET /oyinlar bilan sonni qayta so'raydi",
-   "Sonni o'zi bittaga oshiradi",
-   "Butun sahifani qayta yuklaydi",
-   "Keyingi hodisani kutadi"
+   "Darhol — brauzer Wi-Fi o'chganini sezib socket.io'ga aytadi",
+   "Hech qachon — ulanish uzilmagani uchun belgi yashil qoladi",
+   "45 soniyagacha — ping javobsiz qolgach ping timeout",
+   "Keyingi hodisa kelganda — server xato qaytaradi"
   ],
   "wrong": {
-   "1": "Ikki kishi birdan qo'shilsa adashadi.",
-   "2": "Faqat son so'raladi.",
-   "3": "Bu hodisada ham son yo'q."
+   "0": "Brauzer har doim sezmaydi; socket.io pingga tayanadi.",
+   "1": "Ping javobsiz qolsa, socket.io ulanishni o'zi uzadi — 45 s gacha.",
+   "3": "Server hodisani yuboradi, xato qaytmaydi — paket shunchaki yetmaydi."
   }
  },
  "17": {
-  "type": "Practice",
-  "kicker": "Amaliyot 3 / 3",
-  "eyebrow": "Hozir o'zingizda · 10 daqiqa",
-  "title": "m12-dars-03-done: Vali qo'shilsa — Ali'ga hodisa keladi",
+  "type": "Lesson",
+  "kicker": "5-bosqich · AI",
+  "title": "Yangi ko'nikma davomi: ikki AI'ga bitta oddiy prompt — «jonli panel, WebSocket bilan»; ikkalasi ishlaydigan panel yozdi, ikkalasi bir xil yo'lni tanladi",
   "seg": [
    [
     "a",
-    "Endi siz: repo'ning keyingi tegida hodisani <b>o'z ko'zingiz bilan</b> ko'rasiz",
-    "Hodisa kelgach ilova nima qilishini bildingiz. Oxirgi amaliyot: repo'ning keyingi tegida hodisani o'z ko'zingiz bilan ko'rasiz. O'n daqiqa."
+    "Yana AI bosqichi: <b>panel yozdi AI, siz qabul qilasiz</b> — oddiy prompt, ishorasiz",
+    "Avvalgi darslardagi kabi oxirgi bosqich AI bilan. Prompt oddiy: do'kon admini uchun jonli buyurtmalar paneli, bot buyurtma olsa yoki holat o'zgarsa, sahifa o'zi yangilansin, WebSocket bilan. Socket.io, token, hodisa tarkibi, bu so'zlar promptda yo'q."
    ],
    [
     "b",
-    "1–2-qadam: <b><code>m12-dars-03-done</code></b>, <code>npm ci</code> va start; Vali uchun ikkinchi akkaunt",
-    "Birinchi: m12 dars uch done tegiga o'ting, npm ci va start. Ikkinchi: Vali uchun ikkinchi akkaunt, ro'yxat va kirish."
+    "Ikkalasi <b>xom <code>ws</code></b> tanladi — socket.io emas; qayta ulanishni o'zi yozdi",
+    "Ikkala AI ham bir xil yo'lni tanladi: socket.io emas, xom ws kutubxonasi. Brauzerda kutubxonasiz. Ishlaydi, lekin qayta ulanish, ping, polling'ga tushish, bularni o'zi qo'lda yozgan. Shuning uchun birinchisi sakkiz yuz ellik besh satr, ikkinchisi besh yuz o'n ikki."
    ],
    [
     "c",
-    "3–4-qadam: Ali ulanadi, Vali qo'shiladi; isbot — <b>hodisa satri</b>",
-    "Uchinchi: Ali'ni klient bilan ulang. To'rtinchi: Vali bilan bitta o'yinga qo'shiling. Isbot maydoniga Ali'ga kelgan hodisa satrini nusxalang."
+    "Ikkalasi tokenni o'zi qo'shdi — lekin <b>URL'da: <code>?token=</code></b>; hodisada butun buyurtma",
+    "Yaxshi tomoni: promptda yo'q bo'lsa ham, ikkalasi tokenni o'zi qo'shdi, telefon raqamlari bor deb. Lekin token manzilda: savol belgisi token. Va har hodisada butun buyurtma ketadi, mijoz telefoni bilan. Ulanganda esa to'liq ro'yxat keladi."
    ],
    [
     "d",
-    "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
-    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin siz bir o'yinchi qo'shilganda ikkinchisiga hodisa qanday kelishini o'z terminalingizda ko'rgan bo'lasiz."
+    "Xulosa: ikkalasi <b>bazasiz, mock bilan sinagan</b> — haqiqiy bazada biz sinab ko'ramiz",
+    "Xulosa: ikkala javob ham ishonchli ko'rinadi, testlari yashil. Lekin ikkalasi o'zi aytdi: Postgres yo'q edi, haqiqiy bot, baza va panel oqimi sinalmadi. Keyingi ekranda ikkalasini haqiqiy bazada, haqiqiy bot oqimi bilan sinaymiz."
    ]
   ]
  },
  "18": {
   "type": "Lesson",
-  "kicker": "5-bosqich · o'quvchi darsini o'tish",
-  "eyebrow": "m10-02 · «WebSocket: ekran o'zi yangilanadigan ulanish»",
-  "title": "m10-02: yo'l, konvert, belgi va sxema",
+  "kicker": "5-bosqich · ichida",
+  "title": "Haqiqiy PostgreSQL bilan: ikkalasi ishladi — smoke 5/5, tokensiz yopildi, buyurtma va tasdiq keldi; to'rt joyni esa siz qaror qilasiz",
   "seg": [
    [
     "a",
-    "m10-02 — <b>20 ekran</b>: Maydon Jamoa, yo'l, konvert va belgi",
-    "O'zingiz hammasini yurgizdingiz, endi o'quvchi darsi: m10-02, yigirma ekran. Maydon Jamoa misoli: yopiq va ochiq yo'l, konvert, token bilan ulanish, tinglovchi, belgi va real vaqt sxemasi."
+    "Haqiqiy bazada: <b>ikkalasi ishladi</b> — smoke 5/5, tokensiz ulanish yopildi",
+    "Ikkala nusxani haqiqiy Postgres bilan ishga tushirdik. Tsc toza, testlar yashil, smoke beshdan besh. Tokensiz ulanish yopildi: birinchisida to'rt ming to'rt yuz bir kodi, ikkinchisida bir ming sakkiz. Buni tan olamiz: AI yaxshi ishladi."
    ],
    [
     "b",
-    "Darsning <b>og'ir qismi</b> — 9-ekran kod oynasi va A1: Backend, ilova va Render",
-    "O'quvchi darsi o'zi ogohlantiradi: og'ir qism to'qqizinchi ekrandagi kod oynasi va birinchi amaliyot: Backend, ilova va Render. Ikkinchi, to'rtinchi, beshinchi ekranlarga ortiqcha vaqt bermang."
+    "Bot buyurtma oldi: <b>snapshot, created, updated</b> — ichida mijoz ismi va telefoni",
+    "Bot buyurtma oldi, admin tasdiqladi. Xom ws klientida uchta xabar: snapshot, nol ta; created va updated, ichida butun buyurtma: mijoz ismi, telefoni, mahsulotlar. Har ulangan panelga, har o'zgarishda. Ishlaydi, lekin telefon raqam har xabarda ketadi."
    ],
    [
     "c",
-    "A1 da Render uyg'onishi va uchish rejimi kechikadi — <b>oldindan ayting</b>",
-    "Birinchi amaliyotda ikki kechikish bor. Render'ning bepul xizmati uxlagan bo'lsa, birinchi ulanish cho'ziladi. Uchish rejimida belgi qirq besh soniyagacha kech qoladi. Oldindan ayting."
+    "Farq: token <b>manzilda vs ulanish ma'lumotida</b>; hodisada <b>ma'lumot vs konvert</b>",
+    "Yonma-yon qarang. Bizda token auth'da, manzilda ko'rinmaydi; AI'da savol belgisi token, manzil satrida, brauzer tarixida, server va hosting loglarida qoladi. Bizda hodisa konvert, ma'lumot token bilan so'rovda; AI'da hodisaning o'zida. Ikkala yo'l ham ishlaydi, lekin bularni siz tanlaysiz."
    ],
    [
     "d",
-    "Xulosa: vaqt — <b>A1 ga ko'proq</b>; belgi va ulanish ishlasa, dars maqsadi bajarilgan",
-    "Xulosa: vaqtning ko'pini birinchi amaliyotga bering. Belgi ulangan ko'rsatsa va uchish rejimida o'zgarsa, darsning maqsadi bajarilgan."
+    "Xulosa: AI real vaqt kodiga <b>to'rt savol</b>: kutubxona · token qayerda · hodisada nima · mavjud fayllardan nima o'zgardi",
+    "Xulosa, to'rt savol. Qaysi kutubxona, o'quvchi darsidagi socket.io'mi. Token qayerda, manzilda emasmi. Hodisada nima bor va uni kim oladi. Mavjud fayllardan nimasi o'zgardi: ikkalasi order service va uning testini o'zgartirgan, diff'ni o'qing. Endi tekshirib olaylik."
    ]
   ]
  },
  "19": {
-  "type": "Lesson",
-  "kicker": "5-bosqich · o'quvchi darsini o'tish",
-  "title": "README «Real vaqt»: besh ustun — nuqta, kim nima qiladi, hodisa, kim oladi, ekranda",
-  "seg": [
-   [
-    "a",
-    "O'quvchi ikkinchi amaliyotda o'z mahsuloti uchun <b>shu jadvalni</b> yozadi",
-    "Xaritada oxirgi blok sxema edi, uni ochamiz. Ikkinchi amaliyotda o'quvchi o'z mahsuloti uchun shu jadvalni yozadi. Maydon Jamoa'dagi namuna besh qator."
-   ],
-   [
-    "b",
-    "Har qator: qaysi joy, kim nima qiladi, qaysi hodisa, kim oladi, <b>ekranda nima o'zgaradi</b>",
-    "Har qatorda besh ustun: real vaqt nuqtasi, kim nima qiladi, hodisa nomi va sababi, kim oladi va ekranda nima o'zgaradi. Bitta hodisa, besh xil sabab."
-   ],
-   [
-    "c",
-    "Hodisa nomi — kichik harf va chiziqcha, <b>bo'lib o'tgan ish</b>: <code>oyin-ozgardi</code>",
-    "Kurs qoidasi: hodisa nomi kichik harf va chiziqcha bilan, bo'lib o'tgan ish ma'nosida: oyin ozgardi. O'quvchi «o'yinni yangila» deb yozsa, shu qoidani eslating."
-   ],
-   [
-    "d",
-    "Xulosa: sxema — reja; repo m12-03 da hodisalar <b>aynan shu jadvaldagidek</b> yuboriladi",
-    "Xulosa: sxema reja. Repo'ning keyingi tegida Backend aynan shu besh sabab bilan hodisa yuboradi, buni o'n to'rtinchi ekranda ko'rdingiz."
-   ]
-  ]
+  "type": "MCRetry",
+  "kicker": "Tekshiruv 4",
+  "eyebrow": "Tekshiruv · 4 / 4",
+  "title": "AI paneli ws://…/ws/orders?token=panel-sir ga ulanadi. Ishlaydi, server tokenni tekshiradi. Bu yerda nima xavf?",
+  "q": "AI panellarini ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. AI paneli tokenni manzilga qo'shib ulanadi, savol belgisi token. Server uni tekshiradi, hammasi ishlaydi. Bu yerda nima xavf? Variantni tanlang.",
+  "ok": "To'g'ri. Tekshiruv ishlaydi, xavf boshqa joyda: manzil ko'p joyga yoziladi. Brauzer tarixi, server va proxy loglari, hosting monitoringi, ularning hammasida token ochiq qoladi. Socket.io'da token auth bilan, ulanish ma'lumotida ketadi. Demak, maxfiy qiymat manzilga emas, sarlavha yoki ulanish ma'lumotiga yoziladi.",
+  "okShort": "Manzil loglarga va tarixga yoziladi — token u yerda ochiq qoladi. <code>auth</code> / sarlavha — xavfsizroq.",
+  "hint": "Manzil satridagi matn qayerlarga yozilib qoladi?",
+  "demak": "Maxfiy qiymat manzilga yozilmaydi: manzil tarix va loglarga tushadi; token — <code>auth</code> yoki sarlavhada.",
+  "correct": 0,
+  "opts": [
+   "Token manzil bilan birga brauzer tarixi va server, proxy loglarida qoladi",
+   "Hech qanday — server tokenni tekshiryapti, shu yetarli",
+   "WebSocket manzildagi tokenni qabul qilmaydi, ulanish yiqiladi",
+   "Token manzilda bo'lsa, server uni har hodisada qayta tekshiradi va sekinlashadi"
+  ],
+  "wrong": {
+   "1": "Tekshiruv bor, lekin token manzil bilan loglarga yoziladi — kim o'qisa, panelga kiradi.",
+   "2": "Qabul qiladi — ulanish ishladi (ws1v2-ai/ai2/04); muammo xavfsizlikda.",
+   "3": "Token faqat ulanishda tekshiriladi; tezlikka ta'siri yo'q."
+  }
  },
  "20": {
-  "type": "Lesson",
-  "kicker": "5-bosqich · sinfda",
-  "title": "Yo'l, konvert, belgi — va olti holat",
+  "type": "Practice",
+  "kicker": "Amaliyot 3 / 3",
+  "eyebrow": "Hozir o'zingizda · 20 daqiqa",
+  "title": "O'z AI'ingizga panelga yangi hodisa qo'shtiring — bekor qilingan buyurtma qizil bo'lsin; to'rt savol bilan qabul qiling, smoke bilan tekshiring",
   "seg": [
    [
     "a",
-    "O'quvchi darsi yo'l va konvert deydi — siz <b>atamani birga</b> aytasiz",
-    "Xaritani ko'rdingiz. Endi o'quvchi darsida ishlatiladigan so'zlarni ko'ramiz: yopiq va ochiq yo'l, konvert, belgi va tinglovchi. O'quvchi shu so'zni aytganda, siz yonida atamasini ham ayting: ochiq yo'l bu doimiy ulanish, konvert esa hodisa."
+    "Endi siz: AI'ga <b>aniq shartli prompt</b> — bekor qilingan buyurtma panelda qizil",
+    "Endi navbat sizga. O'z AI'ingizga panelga kichik o'zgarish qildirasiz: bekor qilingan buyurtma qatori qizil bo'lsin va panel tepasida bugungi buyurtmalar soni chiqsin. Promptni pastdagi tugma bilan nusxalaysiz. Yigirma daqiqa ketadi."
    ],
    [
     "b",
-    "Uch holat <b>belgidan taniladi</b>: kulrang, sariq-yashil, o'zgarmagan belgi",
-    "Endi sinfda uchraydigan olti holatni ko'ramiz. Birinchi uchtasini ilovadagi belgidan tanish mumkin. Belgi bir lahza yashil bo'lib, keyin kulrang bo'lsa, Backend tokenni qabul qilmagan va o'quvchi qayta kirishi kerak. Belgi sariqdan yashilga o'tsa, Backend qayta yongan, bu normal. Uchish rejimida belgi darrov o'zgarmasa, qirq besh soniyagacha kuting."
+    "1–2-qadam: prompt va <b>to'rt savol</b> — kutubxona, token, hodisa, o'zgargan fayllar",
+    "Birinchi qadamda promptni berasiz. Ikkinchisida natijani to'rt savol bilan o'qiysiz: socket.io qoldimi, token manzilga chiqmadimi, hodisada faqat raqam va sababmi, git diff stat'da qaysi fayllar o'zgardi."
    ],
    [
     "c",
-    "Qolgan uchtasi: son o'zgarmadi, Render cho'zildi, <b>«o'yinchi null»</b>",
-    "To'rtinchi holat: son o'zi o'zgarmadi. Bu xato emas, o'quvchining shu darsida hodisa hali qo'shilmagan. Beshinchi holat: birinchi ulanish uzoq cho'zildi, chunki Render'dagi server uxlab qolgan, bir daqiqa kuting. Oltinchi holat: Backend terminalida o'yinchi null chiqdi, sababi kodda return yo'q, buni sakkizinchi ekranda ko'rgansiz."
+    "3–4-qadam: <b><code>npm test</code>, <code>npm run smoke -- live</code></b>, brauzerda bekor qiling; isbot — smoke natijasi",
+    "Uchinchi qadamda npm test va npm run smoke live. To'rtinchisida brauzerda panelni ochib, botda buyurtmani bekor qilasiz: qator qizil bo'lishi kerak. Isbot maydoniga smoke'ning natija satrini yozing."
    ],
    [
     "d",
-    "Xulosa: avval belgiga, keyin <b>Backend terminaliga</b> qarang — sabab shu ikkisida",
-    "Xulosa va usul: avval belgiga, keyin Backend terminaliga o'quvchi bilan birga qarang. Sabab deyarli doim shu ikkisidan birida ko'rinadi. Pastda o'quvchi savollariga tayyor javoblar bor."
+    "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
+    "Boshqacha chiqsa, «Boshqacha chiqdimi» tugmasini bosing. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin siz AI yozgan real vaqt kodini to'rt savol bilan qabul qilasiz."
+   ]
+  ],
+  "steps": [
+   {
+    "t": "Prompt",
+    "cmds": [
+     "yuqoridagi prompt — o'z AI'ingizga"
+    ],
+    "exp": "o'zgargan fayllar ro'yxati"
+   },
+   {
+    "t": "To'rt savol",
+    "cmds": [
+     "git diff --stat — faqat public/admin.html (va kerak bo'lsa admin.controller.ts)",
+     "grep -n \"io(\" public/admin.html — auth: { token }",
+     "grep -n \"emit\" src/api/live/live.gateway.ts — { orderId, reason }",
+     "grep -n \"esc(\" public/admin.html"
+    ],
+    "exp": "4 ✓"
+   },
+   {
+    "t": "Testlar",
+    "cmds": [
+     "npm test",
+     "npm run smoke -- live"
+    ],
+    "exp": "Tests: 32 passed · NATIJA: 4/4 ✓"
+   },
+   {
+    "t": "Brauzer",
+    "cmds": [
+     "panel ochiq → botda /orders → «❌ Bekor»"
+    ],
+    "exp": "qator qizil, son yangilandi"
+   }
+  ],
+  "proof": {
+   "label": "npm run smoke -- live natija satri",
+   "placeholder": "masalan: NATIJA: 4/4 ✓",
+   "re": "NATIJA:\\s*4\\/4",
+   "flags": "",
+   "wrong": "AI o'zgartirgandan keyin npm run smoke -- live yurgizing va NATIJA: … satrini qo'ying."
+  },
+  "trouble": [
+   [
+    "git diff --stat da order.service.ts yoki telegram.service.ts",
+    "AI tegmasligi kerak bo'lgan faylga tegdi — git checkout -- src/api/order src/api/telegram, shartni takrorlang"
+   ],
+   [
+    "AI ws paketini o'rnatdi",
+    "«socket.io qolsin» bandini takrorlang; git checkout -- package.json package-lock.json"
+   ],
+   [
+    "smoke live ✗ «order-changed null»",
+    "hodisa tarkibi yoki nomi o'zgargan — live.gateway.ts diff'ini o'qing"
+   ],
+   [
+    "Qator qizil emas",
+    "holat CANCELLED mi? panel ro'yxatni qayta so'radimi (F12 → Network)"
    ]
   ]
  },
  "21": {
+  "type": "Lesson",
+  "kicker": "6-bosqich · sinfga tayyorgarlik",
+  "eyebrow": "m10-02 · «WebSocket: ekran o'zi yangilanadigan ulanish»",
+  "title": "O'quvchi darsi: Maydon Jamoa'dagi «8 / 10» — siz bugun panelda qilgan narsaning telefondagi varianti, socket.io bilan",
+  "seg": [
+   [
+    "a",
+    "m10-02 — 20 ekran: <b>Maydon Jamoa, «8 / 10»</b> — ikki telefon, biri eski son ko'rsatadi",
+    "Endi sinfga tayyorgarlik. O'quvchi darsi m10-02, yigirma ekran. Misol Maydon Jamoa: futbol o'yiniga yozilish ilovasi. Ikki telefon: biri qo'shiladi, ikkinchisida eski sakkizdan o'n turadi. Siz bugun panelda ko'rgan muammo, telefonda."
+   ],
+   [
+    "b",
+    "O'quvchi ham <b>socket.io, token, konvert va uch belgi</b> — siz bilgan qoidalar",
+    "O'quvchi darsidagi qoidalar sizniki bilan bir xil: socket.io, token ulanishda, konvert ichida son yo'q, ilova qayta so'raydi, va uch belgi. Faqat o'quvchida ilova telefon, server Render'da. Shuning uchun AI xom ws yozsa, o'quvchi darsi bilan to'qnashadi."
+   ],
+   [
+    "c",
+    "Bloklar: <b>og'ir joy — 9-ekran kod oynasi va birinchi amaliyot</b>",
+    "Bloklar jadvaliga qarang. Og'ir joy to'qqizinchi ekrandagi kod oynasi va birinchi amaliyot: Backend, ilova va Render birga. Ikkinchi, to'rtinchi, beshinchi ekranlarga ortiqcha vaqt bermang. Har blokda siz qo'shadigan narsa o'ng ustunda."
+   ],
+   [
+    "d",
+    "Xulosa: repo <b><code>m12-dars-02</code> da hodisa yo'q, <code>m12-dars-03</code> da bor</b> — o'quvchi farqni ko'rsin",
+    "Xulosa: o'quvchi loyihasida ikki teg muhim. Birinchisida ulanish bor, hodisa yo'q: son o'zi o'zgarmaydi, bu xato emas. Ikkinchisida hodisa bor. Sinfda ikkalasini ko'rsating: ulanish bilan hodisa alohida narsa."
+   ]
+  ]
+ },
+ "22": {
+  "type": "Lesson",
+  "kicker": "6-bosqich · sinfga tayyorgarlik",
+  "title": "Yo'l, konvert, belgi, tinglovchi — atama bilan birga; README «Real vaqt» jadvali: OrderBotNest'da ham, Maydon Jamoa'da ham besh ustun",
+  "seg": [
+   [
+    "a",
+    "O'quvchi so'zlari: <b>ochiq yo'l — doimiy ulanish, konvert — hodisa</b>",
+    "O'quvchi darsidagi so'zlar: yopiq yo'l so'rov–javob, ochiq yo'l doimiy ulanish, konvert hodisa, belgi ulanish holati, tinglovchi ulanish on. O'quvchi so'zni aytganda, siz yonida atamani ayting: konvert, ya'ni hodisa, bizda order changed."
+   ],
+   [
+    "b",
+    "README jadvali: <b>nuqta · kim nima qiladi · hodisa · kim oladi · ekranda nima</b>",
+    "OrderBotNest README'sida jonli panel jadvali: real vaqt nuqtasi, kim nima qiladi, hodisa va sabab, kim oladi, panelda nima o'zgaradi. Ikki qator: yangi buyurtma va holat. O'quvchi o'z loyihasi uchun aynan shunday jadval yozadi."
+   ],
+   [
+    "c",
+    "Maydon Jamoa'da <b>besh sabab, bitta hodisa</b> — <code>oyin-ozgardi</code>",
+    "Maydon Jamoa'da jadval besh qator: qo'shildi, chiqdi, tasdiqladi, navbatga yozildi, e'lon berildi. Hodisa bitta, sabablar besh. Kurs qoidasi: hodisa nomi kichik harf va chiziqcha bilan, bo'lib o'tgan ish: oyin ozgardi, order changed."
+   ],
+   [
+    "d",
+    "Xulosa: o'quvchi kodida <b>tinglovchi <code>connect</code> ichida</b> — bu keyingi darsning birinchi muammosi",
+    "Xulosa va bitta ogohlantirish. O'quvchi loyihasining ulanish ts faylida hodisa tinglovchisi connect ichida qo'shiladi. Har qayta ulanishda yana bittasi qo'shiladi. Hozir ishlaydi, keyingi WebSocket darsida buni buzib ko'ramiz. Sinfda tuzatmang, belgilab qo'ying."
+   ]
+  ]
+ },
+ "23": {
+  "type": "Lesson",
+  "kicker": "6-bosqich · sinfga tayyorgarlik",
+  "title": "Belgidan va server terminalidan sabab topiladi: oltita holat, har biri o'z xabari bilan — va o'quvchi so'raydigan to'rt savol",
+  "seg": [
+   [
+    "a",
+    "Birinchi uchtasi <b>belgidan</b> taniladi: qizil, sariq-yashil, o'zgarmagan",
+    "Sinfda uchraydigan olti holat. Birinchi uchtasi belgidan taniladi. Belgi bir lahza yashil, keyin qizil: token, qayta kirish. Sariqdan yashilga: server qayta yondi, normal. Uchish rejimida belgi o'zgarmadi: qirq besh soniyagacha kuting."
+   ],
+   [
+    "b",
+    "Qolgan uchtasi: <b>son o'zgarmadi, Render cho'zildi, «null»</b> — terminaldan",
+    "To'rtinchisi: son o'zi o'zgarmadi, o'quvchi hali hodisasiz tegda, xato emas. Beshinchisi: birinchi ulanish cho'zildi, Render uxlagan, bir daqiqa. Oltinchisi: server terminalida o'yinchi null, sabab return yo'q, oltinchi ekrandagi buzilish."
+   ],
+   [
+    "c",
+    "O'quvchi savollari: <b>socket.io nima, nega son yo'q, uzilgan hodisa, token muddati</b>",
+    "O'quvchi savollariga tayyor javoblar pastda, bosib oching: WebSocket va socket.io farqi, nega hodisada son yo'q, uzilgan paytdagi hodisa keyin keladimi, token muddati tugasa nima bo'ladi."
+   ],
+   [
+    "d",
+    "Xulosa: <b>avval belgiga, keyin server terminaliga</b> qarang — sabab shu ikkisida",
+    "Xulosa: o'quvchi ekran o'zgarmayapti desa, u bilan birga avval belgiga, keyin server terminaliga qarang. Sabab deyarli doim shu ikkisidan birida. Shu bilan sinfga tayyorsiz. Endi o'zingizni tekshiring."
+   ]
+  ]
+ },
+ "24": {
   "type": "Screen27",
   "kicker": "O'z-sinov",
   "title": "Sakkiz savol. Bitta urinish. Oltitasi — o'tdingiz",
   "final": [
    {
-    "q": "So'rov–javobda Vali qo'shilsa, Ali'ning soni?",
+    "q": "Panel GET /admin/orders ni bir marta so'radi. Keyin bot buyurtma oldi. Oddiy HTTP'da panel nima biladi?",
     "o": [
-     "so'ramaguncha eski",
-     "o'zi yangilanadi",
-     "xato chiqadi",
-     "nol bo'ladi"
+     "Hech narsa — server so'ralmaguncha javob bermaydi",
+     "Server javobni o'zi qayta yuboradi",
+     "Brauzer o'zgarishni o'zi sezib yangilaydi",
+     "HTTP ulanishi ochiq qoladi va server yangisini o'zi yuboradi"
     ],
     "c": 0,
-    "e": "Yo'l faqat so'rovda ochiladi.",
+    "e": "So'rov–javobda server o'zi gapirmaydi.",
     "s": 2
    },
    {
-    "q": "Token qachon tekshiriladi?",
+    "q": "Gateway tokenni qayerdan o'qiydi?",
     "o": [
-     "har hodisada",
-     "ulanish ochilayotganda",
-     "har daqiqada",
-     "hech qachon"
+     "So'rov sarlavhasidagi Authorizationdan",
+     "client.handshake.auth.token — ulanish ma'lumotidan",
+     "Har hodisa bilan kelgan maydondan",
+     ".env dagi ADMIN_PANEL_TOKENdan — klient hech narsa yubormaydi"
     ],
     "c": 1,
-    "e": "handleConnection.",
-    "s": 5
+    "e": "Token ulanish ochilayotganda keladi.",
+    "s": 4
    },
    {
-    "q": "Tokensiz ulanishda klient nima ko'radi?",
+    "q": "disconnect() dan keyin return yo'q. Tokensiz klient bilan nima bo'ladi?",
     "o": [
-     "hech narsa",
-     "faqat ulangan",
-     "bir lahza ulangan, keyin io server disconnect",
-     "ping timeout"
+     "Klient ulangan qoladi va keyingi hodisalarni ham oladi, token tekshirilmaydi",
+     "Server xato beradi va to'xtaydi",
+     "Klient yopiladi, lekin server logi «panel ulandi» yozadi",
+     "Klient qayta-qayta ulanishga urinadi"
     ],
     "c": 2,
-    "e": "Ulanish ochiladi va yopiladi.",
+    "e": "disconnect() funksiyadan chiqmaydi.",
     "s": 6
    },
    {
-    "q": "Backend o'chsa belgi?",
+    "q": "Hodisa order-changed ichida nima bor?",
     "o": [
-     "ulangan",
-     "ulanmagan",
-     "yo'qoladi",
-     "ulanmoqda — o'zi qayta urinadi"
+     "Butun ro'yxat — panel to'g'ridan chizadi",
+     "Mijoz ismi, telefoni va mahsulotlari — panel shundan chizadi",
+     "Yangi buyurtma HTML'i — sahifaga qo'yiladi",
+     "orderId va reason — panel ro'yxatni qayta so'raydi"
     ],
     "c": 3,
-    "e": "transport close, active=true.",
-    "s": 10
+    "e": "Konvert: «nimadir o'zgardi».",
+    "s": 8
    },
    {
-    "q": "«Uchish rejimi»ni socket.io qachon sezadi?",
+    "q": "ulanish.on('order-changed', () => yukla). Hodisa keldi. Nima bo'ladi?",
     "o": [
-     "~45 s (ping)",
-     "darhol",
-     "5 daqiqa",
-     "hech qachon"
+     "Ro'yxat yangilanadi, lekin biroz kechikib",
+     "Tinglovchi ishlaydi, yukla chaqirilmaydi — ro'yxat eski",
+     "Brauzer konsolida xato chiqadi",
+     "Hodisa tinglovchiga umuman yetib kelmaydi — server yubormaydi"
     ],
-    "c": 0,
-    "e": "25 s + 20 s.",
+    "c": 1,
+    "e": "Qavssiz — funksiya qaytariladi.",
     "s": 11
    },
    {
-    "q": "Token yaroqsiz, Backend yopdi — belgi?",
+    "q": "Server to'xtadi. Klient nima ko'radi?",
     "o": [
-     "ulanmoqda",
-     "ulanmagan",
-     "ulangan",
-     "sariq"
-    ],
-    "c": 1,
-    "e": "active=false.",
-    "s": 12
-   },
-   {
-    "q": "oyin-ozgardi ichida nima bor?",
-    "o": [
-     "yangi son",
-     "butun ro'yxat",
-     "oyinId va sabab",
-     "token"
+     "io server disconnect — qayta urinmaydi",
+     "ping timeout — 45 soniya kutadi, keyin o'zi qayta ulanadi",
+     "transport close, active=true — o'zi qayta urinadi",
+     "Hech narsa — ulanish o'zi yopilmaydi"
     ],
     "c": 2,
-    "e": "Son qayta so'raladi.",
+    "e": "Tarmoq uzdi — klient taslim bo'lmaydi.",
     "s": 14
    },
    {
-    "q": "m12-dars-02-done da Vali qo'shilsa Ali'ga?",
+    "q": "Wi-Fi o'chdi, ulanish rasman uzilmadi. Belgi qachon o'zgaradi?",
     "o": [
-     "hodisa",
-     "xato",
-     "yangi son",
-     "hech narsa — hodisa hali yo'q"
+     "Darhol — brauzer socket.io'ga aytadi",
+     "Hech qachon — uzilish bo'lmagani uchun",
+     "Keyingi buyurtmada — server xato qaytaradi",
+     "45 soniyagacha — ping timeout bilan"
     ],
     "c": 3,
-    "e": "Hodisa m12-03 da.",
+    "e": "25 + 20 s qoidasi.",
     "s": 15
+   },
+   {
+    "q": "AI paneli …/ws/orders?token=… ga ulanadi va ishlaydi. Asosiy savol?",
+    "o": [
+     "Token manzilda — tarix va loglarga yoziladi",
+     "Ishlayapti — demak qabul qilsa bo'ladi",
+     "ws sekin — socket.io tezroq ishlaydi",
+     "Manzil uzun — brauzer uni qisqartirib, tokenni kesib yuboradi"
+    ],
+    "c": 0,
+    "e": "Maxfiy qiymat manzilga yozilmaydi.",
+    "s": 19
    }
   ]
  },
- "22": {
+ "25": {
   "type": "Screen28",
   "kicker": "Yakun",
   "title": "Endi siz bilasiz"

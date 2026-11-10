@@ -1,18 +1,17 @@
-
 // ============================================================
-//  MENTOR KURSI · Jest-1 «Birinchi unit-test: o'quvchi reposida»
-//  F-1029-02 · manba-haqiqat: feedback/F-1029-02-mentor-kurs/10-Jest1-mentor-v1.md (MD v1, GATE M kutilmoqda; 01.11 avtopilot)
-//  Haqiqiy chiqishlar: feedback/F-1029-02-mentor-kurs/manba/jest1-out/ (00–20; har npm test toza muhitda)
+//  MENTOR KURSI · Jest-1 «OrderBotNest'ga birinchi testlar: yozamiz, buzamiz, AI testini tekshiramiz» (v2, F-1104-01)
+//  Manba-haqiqat: feedback/F-1029-02-mentor-kurs/10-Jest1-mentor-v2.md (GATE M 04.11)
+//  Loyiha: github.com/Azizbekcrypto/OrderBotNest — teglar jest1-start (= tgpg-done) → jest1-done
+//  Kod va terminal: 03b-kod.gen.jsx (dev/jest1-kod.py — repo teglari va manba/jest1v2-out/ dan aynan, satr raqami bilan)
+//  AI tajribasi: manba/jest1v2-ai/ (1-prompt: ai1 Opus, ai2 Haiku · 2-prompt: p2/)
 //  Yig'ish: cat parts/01-asos.jsx parts/02-dvigatel.jsx jest1/parts/*.jsx > JestUnitMentorLesson.jsx
-//  Yordamchilar PG-2 dan nusxa + Nest-2 dagi TypeScript rang beruvchi
 // ============================================================
-const LESSON_ID = 'mentor-jest-01-birinchi-unit-test-v1';
-const LESSON_TITLE = "Birinchi unit-test: o'quvchi reposida";
-const PG = { mongo: '#13AA52', pg: '#336791', term: '#111827', termEr: '#1F1115', win: '#0067C0', post: '#FF6C37' };
-MKCFG.root = 'IntroNestArxitechture';
-MKCFG.kind = (f) => /\.spec\.ts$/.test(f) ? T.purple : /\.ts$/.test(f) ? T.blue : /\.json$/.test(f) ? T.yellow : null;
-// O'quvchi reposining to'liq Explorer'i (M27): mavzuga aloqasiz papkalar yopiq; test fayllari ekranga qarab qo'shiladi
-const REPO_BASE = ['dist/', 'node_modules/', 'src/api/', 'src/common/', 'src/config/', 'src/core/', 'src/infrastructure/', 'src/main.ts', 'test/', '.env.example', 'nest-cli.json', 'package.json', 'tsconfig.json'];
+const LESSON_ID = 'mentor-jest-01-birinchi-unit-test-v1'; // M44: id o'zgarmaydi — ekranlar soni o'zgargani uchun eski saqlov o'zi bekor bo'ladi
+const LESSON_TITLE = "OrderBotNest'ga birinchi testlar";
+const JC = { term: '#111827', termEr: '#1F1115', ai: '#6D3BE4', jest: '#99425B', pass: '#15803D', fail: '#C2410C' };
+const ESC = String.fromCharCode(92) + 'u00a0'; // bo'linmas probel escape'i matn sifatida (fayl vositasi uni belgiga aylantirmasin — 04.11)
+MKCFG.root = 'OrderBotNest';
+MKCFG.kind = (f) => /\.spec\.ts$/.test(f) ? JC.jest : /\.entity\.ts$/.test(f) ? T.purple : /\.service\.ts$/.test(f) ? T.green : /\.module\.ts$/.test(f) ? T.yellow : /\.(ts|js)$/.test(f) ? T.blue : /\.json$|^\.env/.test(f) ? T.yellow : null;
 const byTree = (a, b) => {
   const A = a.split('/'), B = b.split('/');
   for (let i = 0; i < Math.min(A.length, B.length); i++) {
@@ -24,8 +23,27 @@ const byTree = (a, b) => {
   return A.length - B.length;
 };
 const tree = (...groups) => Array.from(new Set(groups.flat())).sort(byTree);
-const F = { ord: 'src/order.ts', ordSpec: 'src/order.spec.ts', del: 'src/delivery.ts', delSpec: 'src/delivery.spec.ts', pkg: 'package.json' };
-MKCFG.files = tree(REPO_BASE);
+const F = {
+  tg: 'src/api/telegram/telegram.service.ts', kb: 'src/api/telegram/keyboards.ts', tx: 'src/api/telegram/texts.ts',
+  txs: 'src/api/telegram/texts.spec.ts', kbs: 'src/api/telegram/keyboards.spec.ts',
+  cat: 'src/api/catalog/catalog.service.ts', ord: 'src/api/order/order.service.ts', pkg: 'package.json',
+};
+const BASE_FILES = ['node_modules/', 'scripts/smoke.js', 'src/api/app.module.ts', 'src/api/cart/', F.cat, F.ord, 'src/api/user/', F.tg, F.kb, F.tx, 'src/config/', 'src/core/', 'src/infrastructure/', 'src/main.ts', '.env.example', F.pkg, 'README.md'];
+const FILES = (...extra) => tree(BASE_FILES, extra);
+MKCFG.files = FILES();
+// VS Code'dagidek ixcham Explorer: faqat ochiq faylning papka zanjiri ochiq (TgPg dagi compact)
+const dirOf = (f) => (f.endsWith('/') ? f.slice(0, -1) : f).split('/').slice(0, -1).join('/');
+function compact(files, active) {
+  const A = active ? dirOf(active) : '';
+  const out = files.map((f) => {
+    const d = dirOf(f);
+    if (!d || d === A || A.startsWith(d + '/') || f.endsWith('/')) return f;
+    const ps = d.split('/'), as = A ? A.split('/') : [];
+    let k = 0; while (k < ps.length && ps[k] === as[k]) k++;
+    return ps.slice(0, k + 1).join('/') + '/';
+  });
+  return tree(out);
+}
 
 // Segment: MD'dagi ekran matni (03-matn.gen.jsx) + sahna maydonlari (extras — segment tartibida)
 const sg = (id, key, text, extra = {}) => ({ id, key, text, show: wr(text), ...extra });
@@ -36,211 +54,212 @@ const mkS = (n, extras = [], more = {}) => {
 
 // Ovoz → «Matn» (transkript) uchun yozma ko'rinish. Uzun ibora oldin.
 const SPOKEN = [
-  ['order spec ts', 'order.spec.ts'], ['order test ts', 'order.test.ts'], ['order ts', 'order.ts'], ['delivery spec ts', 'delivery.spec.ts'], ['delivery ts', 'delivery.ts'],
-  ['delivery fee', 'deliveryFee'], ['package json', 'package.json'], ['root dir src', 'rootDir: src'], ['root dir', 'rootDir'], ['test regex', 'testRegex'],
-  ['spec ts', '.spec.ts'], ['ts jest config init', 'ts-jest config:init'], ['ts jest', 'ts-jest'], ['types jest', '@types/jest'], ['typescript besh', 'typescript@5'],
-  ['npm i minus D jest ts jest', 'npm i -D jest ts-jest'], ['test: jest', '"test": "jest"'], ['expect, result, to be yigirma ming', 'expect(result).toBe(20000)'],
-  ['no tests found', 'No tests found'], ['console log', 'console.log'], ['test suites', 'Test Suites'], ['must use import to load ES module', 'Must use import to load ES Module'],
-  ['cannot find name describe', "Cannot find name 'describe'"], ['npx jest minus minus verbose', 'npx jest --verbose'], ['jest config', 'jest.config.js'], ['npm ci', 'npm ci'],
+  ['backslash u nol nol a nol', ESC], ['nol nol a nol', '00a0'], ['ikki nol', '0020'],
+  ['texts spec ts', 'texts.spec.ts'], ['keyboards spec ts', 'keyboards.spec.ts'], ['texts ts', 'texts.ts'], ['spec ts', '.spec.ts'], ['test ts', '.test.ts'],
+  ['to strict equal', 'toStrictEqual'], ['to be undefined', 'toBeUndefined'], ['to be truthy', 'toBeTruthy'], ['to equal', 'toEqual'], ['to be', 'toBe'],
+  ['to locale string', 'toLocaleString'], ['Object is', 'Object.is'], ['console log', 'console.log'], ['no tests found', 'No tests found'],
+  ['Root dir src', 'rootDir: src'], ['root dir src', 'rootDir: src'], ['Test regex', 'testRegex'], ['test regex', 'testRegex'], ['transform ts jest', 'transform: ts-jest'], ['ts jest', 'ts-jest'],
+  ['order keyboard', 'orderKeyboard'], ['catalog keyboard', 'catalogKeyboard'], ['Buttons yordamchisi', 'buttons() yordamchisi'], ['Nav yordamchisi', 'nav() yordamchisi'],
+  ['hide false', 'hide: false'], ['git diff stat', 'git diff --stat'], ['jest bir start', 'jest1-start'], ['package json', 'package.json'],
+  ['Describe som', "describe('som')"], ['npm test keyboards', 'npm test -- keyboards'], ['npm test texts', 'npm test -- texts'], ['git checkout', 'git checkout'],
+  ['dollar va qavs', '${…}'], ['delivery fee', 'deliveryFee'], ['order total', 'orderTotal'], ['m4b-01', 'm4b-01'], ['env fayli', '.env fayli'], ['env faylisiz', '.env faylisiz'],
 ];
-DIGITS.unshift(["yuz ellik ming", '150 000'], ["to'qson to'qqiz ming", '99 000'], ["o'n ming ikki", '10002'], ['yigirma ming', '20000'], ["o'n besh ming", '15 000'],
-  ["besh ming", '5000'], ["o'n ming", '10 000'], ['yuz ming', '100 000'], ["o'ttiz yettita", '37 ta'], ['yigirma bir ekran', '21 ekran'], ["o'n sakkizinchi", '18-'],
-  ["olti, yigirma", '6:20'], ["o'n besh", '15']);
+DIGITS.unshift(['bir yuz yigirma ming', '120 000'], ['bir yuz ming', '100 000'], ["o'ttiz olti", '36'], ["o'ttiz uch", '33'], ["o'ttizdan ortiq", '30 dan ortiq'], ["o'ttiz uchinchi", '33-'],
+  ["o'nta", '10 ta'], ["yigirma bir", '21'], ["to'qson daqiqaning yigirma beshi", '90 daqiqaning 25 tasi'], ["o'n besh", '15'], ["o'n daqiqa", '10 daqiqa'], ['besh yuz', '500']);
 const wr = (s) => digits(SPOKEN.reduce((acc, [a, b]) => acc.split(a).join(b), s));
-// Haqiqiy inglizcha iboralar ovozda [English pronunciation] ichida (M21) — uzunlari oldin
-EN_PHRASES.unshift(
-  /No tests found/g, /Must use import to load ES Module/g, /Cannot find name 'describe'/g, /does not expose the JavaScript compiler API/g,
-  /Test Suites/g, /Cannot find module/g, /can only install packages when/g, /Object\.is equality/g, /Jest encountered an unexpected token/g,
-);
+EN_PHRASES.unshift(/No tests found/g, /serializes to the same string/g, /Cannot find module/g, /Object is/g);
 
-// Kod rang beruvchi: JS (Mongo sahnasi) va SQL/psql (qolgan hammasi). Matn — String.raw, HTML'siz.
+// Kod rang beruvchi (TgPg dan). Matn — KOD (03b-kod.gen.jsx), HTML'siz.
 const escH = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-const JS_KW = /^(const|let|await|new|async|return|true|false|null|require)$/;
-function jsLine(src) {
-  const re = /(\/\/.*$)|('(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*")|([A-Za-z_$][\w$]*)|(\d+)/g;
-  let out = '', last = 0, m;
-  while ((m = re.exec(src))) {
-    out += escH(src.slice(last, m.index)); last = re.lastIndex;
-    const [w, cm, str, id, num] = m;
-    if (cm) out += `<span class="cm">${escH(cm)}</span>`;
-    else if (str) out += `<span class="s">${escH(str)}</span>`;
-    else if (id) out += JS_KW.test(id) ? `<span class="k">${id}</span>` : /^[A-Z]/.test(id) ? `<span class="c">${id}</span>` : id;
-    else if (num) out += `<span class="d">${num}</span>`;
-    else out += escH(w);
-  }
-  return out + escH(src.slice(last));
-}
-const js = (src, meta = {}) => src.replace(/^\n/, '').replace(/\n\s*$/, '').split('\n').map((l, i) => ({ h: jsLine(l), ...(meta[i + 1] || {}) }));
-const SQL_KW = /^(SELECT|FROM|WHERE|JOIN|LEFT|ON|AND|AS|INSERT|INTO|VALUES|UPDATE|SET|DELETE|CREATE|TABLE|DATABASE|ALTER|ADD|COLUMN|DROP|PRIMARY|KEY|REFERENCES|NOT|NULL|UNIQUE|CHECK|SERIAL|INT|TEXT|JSONB|BEGIN|COMMIT|ROLLBACK|RETURNING|DEFAULT)$/;
-function sqlLine(src) {
-  const re = /(--.*$)|('(?:[^']|'')*')|([A-Za-z_][\w]*)|(\d+)/g;
-  let out = '', last = 0, m;
-  while ((m = re.exec(src))) {
-    out += escH(src.slice(last, m.index)); last = re.lastIndex;
-    const [w, cm, str, id, num] = m;
-    if (cm) out += `<span class="cm">${escH(cm)}</span>`;
-    else if (str) out += `<span class="s">${escH(str)}</span>`;
-    else if (id) out += SQL_KW.test(id) ? `<span class="k">${id}</span>` : id;
-    else if (num) out += `<span class="d">${num}</span>`;
-    else out += escH(w);
-  }
-  return out + escH(src.slice(last));
-}
-const sql = (src, meta = {}) => src.replace(/^\n/, '').replace(/\n\s*$/, '').split('\n').map((l, i) => ({ h: sqlLine(l), ...(meta[i + 1] || {}) }));
-// psql terminali: prompt (blog=# · postgres-# · $) alohida rangda; xato qizil, DETAIL/LINE sariq, buyruq javobi yashil
-const RESULT_OK = /^(CREATE TABLE|CREATE DATABASE|ALTER TABLE|DROP TABLE|INSERT \d+ \d+|UPDATE [1-9]\d*|DELETE \d+|BEGIN|COMMIT)\s*$/;
-function psqlLine(l) {
-  let m = /^(\w+[=\-(][*!]?# ?)(.*)$/.exec(l); // blog=# · blog-# · blog(# · tranzaksiyada blog=*# · xatoda blog=!# (pg1-out/25)
-  if (m) return `<span class="p">${escH(m[1])}</span>${/^\\/.test(m[2]) ? `<span class="m">${escH(m[2])}</span>` : sqlLine(m[2])}`;
-  m = /^(\$ )(.*)$/.exec(l);
-  if (m) return `<span class="p">$ </span><span class="m">${escH(m[2])}</span>`;
-  if (/ERROR:|FATAL:|psql: error|XATO:|not recognized|command not found/.test(l)) return `<span class="er">${escH(l)}</span>`;
-  if (/^(DETAIL|HINT|LINE \d|WARNING)|^\s+\^\s*$|Is the server running/.test(l)) return `<span class="wn">${escH(l)}</span>`;
-  if (/^(UPDATE 0|ROLLBACK)\s*$/.test(l)) return `<span class="wn">${escH(l)}</span>`;
-  if (RESULT_OK.test(l)) return `<span class="ok">${escH(l)}</span>`;
-  if (/^(Password for user|Type "help"|psql \()/.test(l)) return `<span class="cm">${escH(l)}</span>`;
-  if (/^\s*--/.test(l)) return `<span class="cm">${escH(l)}</span>`;
-  if (/^\s*(SELECT|FROM|JOIN|LEFT|WHERE|INSERT|UPDATE|DELETE|CREATE|ALTER|DROP|BEGIN|COMMIT|\(|\)|id |user_id|izoh|username|nomi|stock|product_id|xaridor|\('|  \(')/.test(l) && !/\|/.test(l)) return sqlLine(l);
-  return escH(l);
-}
-const psql = (src, meta = {}) => src.replace(/^\n/, '').replace(/\n\s*$/, '').split('\n').map((l, i) => ({ h: psqlLine(l), ...(meta[i + 1] || {}) }));
-// Bitta qatorga «at» (qadam) va «id» (yoritish) beruvchi qisqa yozuv: rng(2, 5, {at: 1}) → {2:{at:1}, …, 5:{at:1}}
-const rng = (a, b, v) => { const o = {}; for (let i = a; i <= b; i++) o[i] = { ...v }; return o; };
-const mergeMeta = (...ms) => ms.reduce((acc, m) => { Object.keys(m).forEach((k) => { acc[k] = { ...(acc[k] || {}), ...m[k] }; }); return acc; }, {});
-
-const TS_KW = /^(import|from|export|function|return|const|let|describe|it|expect|number|string|boolean|true|false|null|undefined)$/;
+const TS_KW = /^(import|from|export|class|private|readonly|public|async|await|function|return|const|let|new|if|throw|for|of|true|false|null|undefined|typeof|as|number|string|in|unknown)$/;
 function tsLine(src) {
-  const re = /(\/\/.*$)|('(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*")|([A-Za-z_$][\w$]*)|(\d+(?:\.\d+)?)/g;
+  const re = /(\/\/.*$|\/\*.*?\*\/)|(`(?:[^`\\]|\\.)*`?|'(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*")|(@\w+)|([A-Za-z_$][\w$]*)|(\d+(?:\.\d+)?)/g;
   let out = '', last = 0, m;
   while ((m = re.exec(src))) {
     out += escH(src.slice(last, m.index)); last = re.lastIndex;
-    const [w, cm, str, id, num] = m;
+    const [w, cm, str, dec, id, num] = m;
     if (cm) out += `<span class="cm">${escH(cm)}</span>`;
     else if (str) out += `<span class="s">${escH(str)}</span>`;
-    else if (id) out += TS_KW.test(id) ? `<span class="k">${id}</span>` : /^(toBe|toEqual)$/.test(id) ? `<span class="d">${id}</span>` : id;
+    else if (dec) out += `<span class="d">${escH(dec)}</span>`;
+    else if (id) out += TS_KW.test(id) ? `<span class="k">${id}</span>` : /^[A-Z]/.test(id) ? `<span class="c">${id}</span>` : id;
     else if (num) out += `<span class="d">${num}</span>`;
     else out += escH(w);
   }
   return out + escH(src.slice(last));
 }
-const ts = (src, meta = {}) => src.replace(/^\n/, '').replace(/\n\s*$/, '').split('\n').map((l, i) => ({ h: tsLine(l), ...(meta[i + 1] || {}) }));
-// Jest terminali: PASS/✓ yashil, FAIL/●/✕ qizil, Expected yashil, Received qizil, > satr sariq
+// Jest terminali: PASS yashil, FAIL qizil, ✓ / ✕, ● sarlavha, Expected / Received, > satr
 function jestLine(l) {
-  if (/^\$ /.test(l)) return `<span class="p">$ </span><span class="m">${escH(l.slice(2))}</span>`;
-  if (/^\s*PASS\b|✓|passed, \d+ total$/.test(l) && !/failed/.test(l)) return `<span class="ok">${escH(l)}</span>`;
-  if (/^\s*FAIL\b|●|✕|failed|error|Error|No tests found|not found|Cannot find|Must use|does not expose|unexpected token/.test(l)) return `<span class="er">${escH(l)}</span>`;
-  if (/^\s*Expected:/.test(l)) return `<span class="ok">${escH(l)}</span>`;
-  if (/^\s*Received:/.test(l)) return `<span class="er">${escH(l)}</span>`;
-  if (/^\s*>\s*\d+ \||^\s+\|\s+\^|^\s+~+/.test(l)) return `<span class="wn">${escH(l)}</span>`;
-  if (/^>|^\s*at |^\s*\d+ \||^Snapshots|^Time|^Ran all|^In |files checked|testMatch|testPath|Pattern|Run with|console\.log|^---/.test(l)) return `<span class="cm">${escH(l)}</span>`;
+  const m = /^(\$ )(.*)$/.exec(l);
+  if (m) return `<span class="p">$ </span><span class="m">${escH(m[2])}</span>`;
+  if (/^PASS /.test(l)) return `<span class="jp">PASS</span>${escH(l.slice(4))}`;
+  if (/^FAIL /.test(l)) return `<span class="jf">FAIL</span>${escH(l.slice(4))}`;
+  if (/^\s*✓/.test(l)) return `<span class="ok">${escH(l)}</span>`;
+  if (/^\s*✕|^\s*●/.test(l)) return `<span class="er">${escH(l)}</span>`;
+  if (/^\s*(Expected|- Expected|Expected substring)/.test(l)) return `<span class="ok">${escH(l)}</span>`;
+  if (/^\s*(Received|\+ Received|Received string|\+ )/.test(l)) return `<span class="er">${escH(l)}</span>`;
+  if (/^\s*>\s*\d+ \|/.test(l)) return `<span class="wn">${escH(l)}</span>`;
+  if (/No tests found|error|Error|Cannot find|\[chiqish kodi: 1\]/.test(l)) return `<span class="er">${escH(l)}</span>`;
+  if (/^Tests:.*failed/.test(l)) return `<span class="er">${escH(l)}</span>`;
+  if (/^Tests:|\[chiqish kodi: 0\]/.test(l)) return `<span class="ok">${escH(l)}</span>`;
+  if (/^\s*(#|at |\(|—)/.test(l)) return `<span class="cm">${escH(l)}</span>`;
   return escH(l);
 }
-const jt = (src, meta = {}) => src.replace(/^\n/, '').replace(/\n\s*$/, '').split('\n').map((l, i) => ({ h: jestLine(l), ...(meta[i + 1] || {}) }));
-const Term = ({ lines, title = 'terminal — npm test', er, beat, focus, style }) => <CodePanel file={title} numbers={false} wrap style={{ background: er ? PG.termEr : PG.term, ...(style || {}) }} lines={lines} beat={beat} focus={focus} />;
-const Psql = ({ lines, title = 'psql — blog', er, beat, focus, style }) => <CodePanel file={title} numbers={false} wrap style={{ background: er ? PG.termEr : PG.term, ...(style || {}) }} lines={lines} beat={beat} focus={focus} />;
-// Rasmiy hujjatdan olingan maket (bu kompyuterda sinalmagan) — har oynada belgi (MD Ochiq savol 2)
-function Win({ title, os = 'win', children, hl }) {
-  return <div className={`pg-win${os === 'mac' ? ' mac' : ''}${hl ? ' hl' : ''}`}>
-    <div className="bar">{os === 'mac' ? <><i /><i /><i /></> : <span className="ico">▣</span>}<span className="tt">{title}</span><span className="warn">{t('⚠ rasmiy hujjatdan, sinalmagan', '⚠ по официальной документации, не проверено')}</span></div>
-    <div className="bd">{children}</div>
-  </div>;
-}
-function MiniTable({ name, cols, rows, hlRow = [], hlCol = [], color = PG.pg, dimRow = [] }) {
-  return <div className="pg-mt" style={{ '--c': color }}>
-    <div className="nm">{name}</div>
-    <table><thead><tr>{cols.map((c, i) => <th key={c} className={hlCol.includes(i) ? 'hl' : ''}>{c}</th>)}</tr></thead>
-      <tbody>{rows.map((r, i) => <tr key={i} className={`${hlRow.includes(i) ? 'hl' : ''}${dimRow.includes(i) ? ' dim' : ''}`}>{r.map((c, j) => <td key={j} className={hlCol.includes(j) ? 'hlc' : ''}>{c}</td>)}</tr>)}</tbody></table>
-  </div>;
-}
-// Postman ko'rinishidagi karta (PRD Q2): javob — haqiqiy, curl bilan olingan (pg2-out)
-const METHOD_C = { GET: '#61AFFE', POST: '#49CC90', PUT: '#FCA130', DELETE: '#F93E3E' };
-function PostmanCard({ m, url, body, st, res, hl }) {
-  const c = String(st)[0];
-  return <div className={`pg-pm${hl ? ' hl' : ''}`}>
-    <div className="top"><span className="lg">Postman</span><span className="m" style={{ background: METHOD_C[m] }}>{m}</span><span className="u">{url}</span><span className="tg">haqiqiy javob</span></div>
-    {body && <pre className="b">{body}</pre>}
-    <div className="r"><span className={`st s${c}`}>{st}</span><pre>{res}</pre></div>
-  </div>;
-}
-const Doc = ({ children, odd, er }) => <pre className={`pg-doc${odd ? ' odd' : ''}${er ? ' er' : ''}`}>{children}</pre>;
+// out(k, a, b, meta) — KOD.OUT[k] satrlari a..b (1 dan, bo'sh satrsiz); meta {satr: {id}} — yoritish
+const outLines = (k) => KOD.OUT[k].split('\n').filter((l) => l.trim() !== '');
+const out = (k, a = 1, b, meta = {}) => outLines(k).slice(a - 1, b == null ? undefined : b).map((l, i) => ({ h: jestLine(l), ...(meta[a + i] || {}) }));
+const outFind = (k, re, meta) => { const L = outLines(k); const i = L.findIndex((l) => re.test(l)); return i < 0 ? 1 : i + 1; };
+const upto = (lines, beat) => lines.filter((l) => l.at == null || l.at <= beat);
+const Term = ({ lines, title = t('VS Code terminali · OrderBotNest', "терминал VS Code · OrderBotNest"), er, beat, focus, style }) => <CodePanel file={title} numbers={false} style={{ background: er ? JC.termEr : JC.term, ...(style || {}) }} lines={lines} beat={beat} focus={focus} />;
+// Loyiha kodi (KOD — aynan, satr raqami bilan). ids: {satr: 'id'} — yoritish; from/to — satr chegarasi; edit: {satr: matn} — buzilgan/tuzatilgan satr
+const kod = (k, ids = {}, from, to, edit = {}) => KOD[k].lines.filter((l) => (from == null || l.n >= from) && (to == null || l.n <= to)).flatMap((l) => {
+  const base = { h: tsLine(l.t), n: l.n, ...(ids[l.n] ? { id: ids[l.n] } : {}) };
+  if (edit[l.n] == null) return [base];
+  return [{ ...base, gone: true }, { h: tsLine(edit[l.n]), n: l.n, neu: true, ...(ids[l.n] ? { id: ids[l.n] } : {}) }];
+});
+const Code = ({ k, ids, from, to, edit, focus, beat, files, active, fresh, style, title }) => <Ide files={compact(files || FILES(F.txs, F.kbs), active || KOD[k].file)} active={active || KOD[k].file} fresh={fresh} style={style}>
+  <CodePanel file={title || baseName(KOD[k].file)} lines={kod(k, ids, from, to, edit)} focus={focus} beat={beat} />
+</Ide>;
 
-// PG-1 ga xos qo'shimcha CSS (dvigatel CSS'iga tegilmaydi). Izohda backtick yo'q (CLAUDE.md).
+// AI javobi kartasi — prompt, AI javobidan qisqa parcha, git diff --stat (haqiqiy yurgizish, «namuna» belgisi bilan)
+function AiReply({ who, prompt, said, diff, hl, tag = t('namuna — sizning AI\'ingiz boshqacha yozadi', "образец — ваш AI напишет иначе") }) {
+  return <div className={`ai-card${hl ? ' hl' : ''}`}>
+    <div className="bar"><span className="lg">AI</span><span className="tt">{who}</span><span className="tg">{tag}</span></div>
+    {prompt && <pre className="pr">{prompt}</pre>}
+    {said && <div className="sd">{said}</div>}
+    {diff && <pre className="df">{diff}</pre>}
+  </div>;
+}
+const Card = ({ c = T.accent, h, children, hl, dim, style }) => <div className={`mk-box${hl ? ' hl' : ''}`} style={{ '--c': c, opacity: dim ? 0.4 : 1, transition: 'opacity .3s', ...(style || {}) }}><h4>{h}</h4>{children}</div>;
+
+// v2 qoliplari: amaliyot MD'dan (mkPractice), tekshiruv (MC) — M42: above/after/demak
+const mkPractice = (n, hls, extra = {}) => {
+  const m = MDT[n]; const pr = m.proof;
+  return {
+    S: mkS(n, hls.map((hl) => ({ hl })), { tableAt: 3 }), steps: m.steps, trouble: m.trouble,
+    proof: { label: pr.label, placeholder: pr.placeholder, check: (v) => new RegExp(pr.re, pr.flags).test(v), wrong: pr.wrong }, ...extra,
+  };
+};
+const Demak = (n) => <span dangerouslySetInnerHTML={html(MDT[n].demak)} />;
+function MC(p, n, more) {
+  const m = MDT[n];
+  return <MCRetry {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} q={m.q} opts={m.opts} correct={m.correct} ok={m.ok} okShort={<span dangerouslySetInnerHTML={html(m.okShort)} />} wrong={m.wrong} demak={Demak(n)} {...more} />;
+}
+
+// Buzib tekshirish jadvali (manba/jest1v2-ai/mutatsiya.txt — aynan): qizargan testlar soni; 0 — buzilish sezilmadi
+const MUT = [
+  ['B1', "som: ru-RU → en-US («120,000»)", [1, 8, 1]],
+  ['B2', 'savat qatori: buyurtma narxi o\'rniga hozirgi narx', [0, 1, 1]],
+  ['B3', 'orderKeyboard: CANCELLED da ham tugma', [1, 1, 1]],
+  ['B4', 'catalogKeyboard: oxirgi sahifada ham ▶', [2, 3, 3]],
+  ['B5', 'STATUS_UZ.NEW matni o\'zgardi', [0, 0, 1]],
+];
+const MUT_COLS = [['Men', 10], ['1-AI', 36], ['2-AI', 33]];
+function MutTable({ rows = 5, hlCol, hlRow }) {
+  return <table className="mut"><thead><tr><th>{t("Buzish", "Поломка")}</th>{MUT_COLS.map(([n, c], i) => <th key={n} className={hlCol === i ? 'hl' : ''}>{n}<small>{c} test</small></th>)}</tr></thead>
+    <tbody>{MUT.slice(0, rows).map(([id, d, v], r) => <tr key={id} className={hlRow === r ? 'hl' : ''} style={{ animation: `mk-up .35s ${r * 0.06}s ease both` }}><td><b>{id}</b> {d}</td>{v.map((x, i) => <td key={i} className={`${x === 0 ? 'zero' : 'red'}${hlCol === i ? ' col' : ''}`}>{x}</td>)}</tr>)}</tbody></table>;
+}
+
+// Jest-1 v2 ga xos CSS (dvigatel CSS'iga tegilmaydi). Izohda backtick yo'q (CLAUDE.md).
 const CSS3 = `
+.j1-15 td,.j1-15 th{text-align:center}
+.j1-15 td.l,.j1-15 th.l{text-align:left}
+.j1-15 .kb{display:inline-flex;gap:4px}
+.j1-15 .kb i{font-style:normal;border:1px solid #CBD5E1;border-radius:6px;padding:1px 7px;background:#fff}
+.j1-15 .kb i.x{border-color:#DC2626;background:#FEE2E2;color:#991B1B;font-weight:700}
+.j1-15 .tp{color:#15803D;font-weight:700}.j1-15 .tf{color:#DC2626;font-weight:700}
+.j1-15 .f0{color:#6B7280}.j1-15 .f1{color:#15803D;font-weight:700}.j1-15 .f2{color:#DC2626;font-weight:700}
+.j1-15 tr.edge td{background:#FFF7ED}
 .mk-explorer{overflow:auto}
-/* ogohlantirish qutisi — Nest-2 dagi bilan bir xil (u bo'lak bu darsga kirmaydi) */
 .n2-warn{border-left:4px solid ${T.accent};background:#FFF0EB;border-radius:10px;padding:10px 12px;font-size:14px;line-height:1.5}
 .n2-warn b{color:${T.accent}}
-.pg-win{background:${T.paper};border:1px solid #CBD2DC;border-radius:10px;overflow:hidden;box-shadow:0 10px 30px rgba(15,17,21,.10);transition:box-shadow .3s,border-color .3s}
-.pg-win.hl{border-color:${T.accent};box-shadow:0 0 0 4px rgba(226,69,31,.14),0 10px 30px rgba(15,17,21,.10)}
-.pg-win .bar{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#F3F3F3;border-bottom:1px solid #DADDE3;font:600 12px ${SANS};color:${T.ink2}}
-.pg-win.mac .bar{background:#E8E8EA}
-.pg-win .bar i{width:10px;height:10px;border-radius:50%;display:inline-block;background:#FF5F57}
-.pg-win .bar i:nth-child(2){background:#FEBC2E}.pg-win .bar i:nth-child(3){background:#28C840}
-.pg-win .bar .ico{color:${PG.win};font-size:13px}
-.pg-win .bar .warn{margin-left:auto;font:600 10.5px ${MONO};letter-spacing:.04em;color:${T.yellow};background:#FFF6E2;border:1px solid #F1D38A;border-radius:6px;padding:3px 7px}
-.pg-win .bd{padding:14px 16px;font-size:14px;line-height:1.5}
-.pg-win .bd h4{margin:0 0 10px;font-size:16px}
-.pg-chk{display:grid;gap:6px;margin:4px 0}
-.pg-chk div{display:flex;gap:10px;align-items:center;padding:6px 10px;border:1px solid ${T.line};border-radius:8px;font-size:14px}
-.pg-chk div.off{color:${T.ink3};text-decoration:line-through}
-.pg-chk div b{font-family:${MONO};font-size:13px;min-width:18px}
-.pg-field{display:grid;grid-template-columns:120px 1fr;gap:8px;align-items:center;margin:6px 0;font-size:14px}
-.pg-field span:last-child{font:13px ${MONO};border:1px solid #BFC6D1;border-radius:6px;padding:6px 10px;background:#fff}
-.pg-btn{display:inline-block;margin-top:10px;padding:8px 18px;border-radius:6px;background:${PG.win};color:#fff;font-weight:700;font-size:14px}
-.pg-win.mac .pg-btn{background:#1E6FD9}
-.pg-mt{border:1.5px solid var(--c);border-radius:12px;overflow:hidden;background:${T.paper}}
-.pg-mt .nm{font:700 12px/1 ${MONO};color:#fff;background:var(--c);padding:7px 10px;letter-spacing:.04em}
-.pg-mt table{width:100%;border-collapse:collapse;font:12.5px ${MONO}}
-.pg-mt th,.pg-mt td{padding:5px 10px;border-bottom:1px solid ${T.line};text-align:left;transition:background .3s}
-.pg-mt th{color:${T.ink3};font-weight:600}
-.pg-mt th.hl{color:${T.accent};background:#FFF0EB}
-.pg-mt td.hlc{background:#FFF7F3;color:${T.accent};font-weight:700}
-.pg-mt tr.hl td{background:#FFF0EB}
-.pg-mt tr.dim td{opacity:.4}
-.pg-doc{margin:0;font:12.5px/1.5 ${MONO};white-space:pre-wrap;word-break:break-word;color:#0B5A33;background:#E9F7EF;border:1.5px solid ${PG.mongo};border-radius:10px;padding:10px 12px}
-.pg-doc.odd{color:#7A4B00;background:#FFF6E2;border-color:#E3B341}
-.pg-doc.er{color:#8A1C1C;background:#FDECEC;border-color:#F3A6A6}
-.pg-dict{width:100%;border-collapse:separate;border-spacing:0 6px;font-size:13.5px}
-.pg-dict td{padding:8px 12px;background:${T.paper};border-top:1px solid ${T.line};border-bottom:1px solid ${T.line};transition:opacity .3s,background .3s}
-.pg-dict td:first-child{border-left:4px solid ${PG.mongo};border-radius:10px 0 0 10px}
-.pg-dict td:last-child{border-right:1px solid ${T.line};border-radius:0 10px 10px 0}
-.pg-dict td:nth-child(2){color:${T.ink3};width:28px;text-align:center}
-.pg-dict td:nth-child(3){border-left:0}
-.pg-dict tr.hl td{background:#FFF7F3}
-.pg-dict tr.hl td:first-child{border-left-color:${T.accent}}
-.pg-dict tr.dim td{opacity:.4}
-.pg-dict code{font:12.5px ${MONO};background:#EEF0F4;padding:1px 6px;border-radius:5px}
-.pg-dict th{font:600 11px/1 ${MONO};letter-spacing:.08em;text-transform:uppercase;text-align:left;padding:0 12px 4px}
 .pg-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;align-items:start}
-@media (max-width:1300px){.pg-two{grid-template-columns:1fr}}
+@media (max-width:1000px){.pg-two{grid-template-columns:1fr}}
+.pg-2c{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;align-items:stretch}
 .pg-three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:start}
-@media (max-width:1300px){.pg-three{grid-template-columns:1fr}}
-.pg-lab{font:700 11px/1 ${MONO};letter-spacing:.08em;text-transform:uppercase;color:${T.ink3};margin:0 0 6px;display:flex;gap:8px;align-items:center}
-.pg-lab .tm{color:${T.accent}}
-.pg-wait{display:inline-flex;gap:8px;align-items:center;font:600 13px ${MONO};color:${T.yellow};background:#FFF6E2;border:1px solid #F1D38A;border-radius:8px;padding:6px 10px;animation:mk-pulse 1.6s ease-in-out infinite}
-.pg-row{display:flex;gap:10px;align-items:center;padding:8px 12px;border:1px solid ${T.line};border-radius:10px;background:${T.paper};font:13px ${MONO}}
-.pg-row .v{margin-left:auto;font-weight:800;font-size:18px}
-.pg-row .v.z{color:${T.accent}}
-.pg-cmp{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.pg-cmp .mk-card h5{display:flex;gap:8px;align-items:center}
-.pg-cmp .mk-card h5 i{width:10px;height:10px;border-radius:50%;display:inline-block}
+@media (max-width:1000px){.pg-three{grid-template-columns:1fr 1fr}}
 .pg-qa{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-@media (max-width:1300px){.pg-qa{grid-template-columns:1fr}}
+@media (max-width:1000px){.pg-qa{grid-template-columns:1fr}}
 .pg-qa button{text-align:left;border:1px solid ${T.line};border-radius:12px;background:${T.paper};padding:12px 14px;cursor:pointer;font:inherit;color:${T.ink}}
 .pg-qa b{display:block;font-size:14px}
 .pg-qa p{margin:6px 0 0;font-size:13px;color:${T.ink2};line-height:1.45}
-.pg-pm{background:${T.paper};border:1px solid #D8DDE5;border-radius:12px;overflow:hidden;transition:box-shadow .3s,border-color .3s}
-.pg-pm.hl{border-color:${T.accent};box-shadow:0 0 0 4px rgba(226,69,31,.14)}
-.pg-pm .top{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#F7F8FA;border-bottom:1px solid #E6E9EE;font:12.5px ${MONO}}
-.pg-pm .lg{font:700 11px ${SANS};color:${PG.post};letter-spacing:.04em}
-.pg-pm .m{font:700 11px ${MONO};color:#fff;border-radius:5px;padding:3px 7px}
-.pg-pm .u{color:${T.ink};overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.pg-pm .tg{margin-left:auto;font:600 10px ${MONO};color:${T.ink3};letter-spacing:.06em;text-transform:uppercase}
-.pg-pm .b{margin:0;padding:8px 12px;font:12px/1.45 ${MONO};color:${T.ink2};border-bottom:1px dashed #E6E9EE;white-space:pre-wrap}
-.pg-pm .r{display:flex;gap:10px;align-items:flex-start;padding:8px 12px}
-.pg-pm .r pre{margin:0;font:12px/1.45 ${MONO};white-space:pre-wrap;word-break:break-word;color:${T.ink}}
-.pg-pm .st{font:700 12px ${MONO};border-radius:6px;padding:3px 8px;flex:0 0 auto}
-.pg-pm .st.s2{background:#E3F5EC;color:${T.green}}.pg-pm .st.s4{background:#FFF6E2;color:${T.yellow}}.pg-pm .st.s5{background:#FDECEC;color:#B91C1C}
+.pg-dict{width:100%;border-collapse:separate;border-spacing:0 6px;font-size:13.5px}
+.pg-dict td{padding:8px 12px;background:${T.paper};border-top:1px solid ${T.line};border-bottom:1px solid ${T.line}}
+.pg-dict td:first-child{border-left:4px solid ${T.accent};border-radius:10px 0 0 10px}
+.pg-dict td:last-child{border-right:1px solid ${T.line};border-radius:0 10px 10px 0;color:${T.ink2}}
+.pg-dict code{font:12.5px ${MONO};background:#EEF0F4;padding:1px 6px;border-radius:5px}
+.mk-panel .jp{background:${JC.pass};color:#fff;font-weight:700;padding:0 5px;border-radius:3px}
+.mk-panel .jf{background:${JC.fail};color:#fff;font-weight:700;padding:0 5px;border-radius:3px}
+.ai-card{background:${T.paper};border:1.5px solid #D9CCF7;border-radius:12px;overflow:hidden;transition:box-shadow .3s,border-color .3s}
+.ai-card.hl{border-color:${JC.ai};box-shadow:0 0 0 4px rgba(109,59,228,.14)}
+.ai-card .bar{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#F5F1FE;border-bottom:1px solid #E6DDFB;font:600 12.5px ${SANS};color:${T.ink}}
+.ai-card .lg{font:800 11px ${MONO};color:#fff;background:${JC.ai};border-radius:6px;padding:3px 7px}
+.ai-card .tg{margin-left:auto;font:600 10px ${MONO};color:${T.ink3};letter-spacing:.04em}
+.ai-card .pr{margin:0;padding:8px 12px;font:12px/1.5 ${MONO};color:${T.ink2};background:#FBFAFF;border-bottom:1px dashed #E6DDFB;white-space:pre-wrap}
+.ai-card .sd{padding:8px 12px;font-size:13.5px;line-height:1.45;color:${T.ink}}
+.ai-card .sd b{color:${JC.ai}}
+.ai-card .sd code{font:12px ${MONO};background:#EEF0F4;padding:1px 5px;border-radius:5px}
+.ai-card .df{margin:0;padding:8px 12px;font:12px/1.5 ${MONO};color:${T.codeInk};background:${JC.term};white-space:pre;overflow-x:auto}
+.chars{display:flex;flex-wrap:wrap;gap:4px;font:600 13px ${MONO}}
+.chars span{display:inline-flex;flex-direction:column;align-items:center;min-width:34px;padding:4px 3px;border:1px solid ${T.line};border-radius:8px;background:${T.paper}}
+.chars span i{font-style:normal;font-size:15px;color:${T.ink};min-height:18px}
+.chars span small{font-size:10.5px;color:${T.ink3}}
+.chars span.nb{border:2px solid ${T.accent};background:#FFF0EB}
+.chars span.nb small{color:${T.accent};font-weight:800}
+.chars span.sp{border:2px solid ${T.green};background:#E3F5EC}
+.chars span.sp small{color:${T.green};font-weight:800}
+.st-tab{width:100%;border-collapse:separate;border-spacing:0 6px;font-size:13.5px}
+.st-tab td{padding:8px 12px;background:${T.paper};border-top:1px solid ${T.line};border-bottom:1px solid ${T.line};transition:background .3s}
+.st-tab td:first-child{border-left:4px solid ${JC.jest};border-radius:10px 0 0 10px;font:700 12.5px ${MONO}}
+.st-tab td:last-child{border-right:1px solid ${T.line};border-radius:0 10px 10px 0}
+.st-tab tr.hl td{background:#FFF0EB}
+.st-tab .btn{display:inline-block;font:12px ${SANS};border:1px solid #BFD0E0;border-radius:8px;padding:3px 8px;margin:0 4px 0 0;background:#F4F8FC}
+.pages{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.pages div{border:1.5px solid ${T.line};border-radius:12px;padding:10px;text-align:center;font:700 14px ${MONO};background:${T.paper};transition:all .3s}
+.pages div small{display:block;font:600 11px ${SANS};color:${T.ink3};margin-top:4px}
+.pages div.hl{border-color:${T.accent};background:#FFF0EB}
+.pages div.ok{border-color:${T.green};background:#E3F5EC}
+.cmp-row{display:flex;align-items:stretch;gap:6px;margin:6px 0}
+.cmp-lab{width:92px;display:flex;flex-direction:column;justify-content:center}
+.cmp-lab b{font:700 14px ${MONO};color:${T.ink}}
+.cmp-lab small{font-size:11.5px;color:${T.ink3}}
+.cmp-c{width:46px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 2px;border:1.5px solid ${T.line};border-radius:10px;background:${T.paper};opacity:.15;transform:translateY(6px);transition:all .3s}
+.cmp-c.on{opacity:1;transform:none}
+.cmp-c i{font-style:normal;font:700 24px ${MONO};color:${T.ink};min-height:28px}
+.cmp-c small{font:600 11px ${MONO};color:${T.ink3}}
+.cmp-c.ok{border-color:${T.green};background:#E3F5EC}
+.cmp-c.bad{border-color:${T.accent};background:#FFE4DA}
+.cmp-c.bad small{color:${T.accent};font-weight:800}
+.cmp-c.big{transform:scale(1.15);box-shadow:0 0 0 4px rgba(225,73,38,.18);animation:cmp-pulse 1.2s ease-in-out infinite}
+@keyframes cmp-pulse{50%{box-shadow:0 0 0 8px rgba(225,73,38,.06)}}
+.cmp-note{margin-top:10px;font-size:14px;line-height:1.5;color:${T.ink}}
+.cmp-note code{font:12.5px ${MONO};background:#EEF0F4;padding:1px 6px;border-radius:5px}
+.cmp-note b{color:${T.accent}}
+.fl-grid{display:grid;grid-template-columns:minmax(0,190px) minmax(0,1fr);gap:10px;align-items:center}
+.fl-tests{display:grid;gap:8px}
+.fl-row{display:grid;grid-template-columns:20px minmax(0,1fr) 22px 150px;gap:8px;align-items:center}
+.fl-ar,.fl-eq{font:700 18px ${MONO};color:${T.ink3};text-align:center}
+.fl-box{border:2px solid var(--c);border-radius:12px;padding:8px 10px;background:${T.paper};transition:all .35s}
+.fl-box.hl{background:#FFF0EB}
+.fl-box small{display:block;font:600 11px ${MONO};color:${T.ink3};margin-bottom:3px}
+.fl-box b{font:700 15px ${MONO};color:${T.ink}}
+.fl-v{font:700 13px ${SANS};border-radius:10px;padding:8px 10px;text-align:center;animation:mk-up .4s ease both}
+.fl-v.ok{background:#E3F5EC;color:${T.green}}
+.fl-v.lie{background:#FFF6E2;color:#B45309;border:1.5px dashed #D97706}
+.fl-v.bad{background:#FFE4DA;color:${T.accent}}
+.fl-note{margin-top:10px;font-size:14px;color:${T.ink}}
+.fl-note b{color:${T.accent}}
+.mut{width:100%;border-collapse:separate;border-spacing:0 5px;font-size:13.5px}
+.mut th{font:700 12px ${SANS};color:${T.ink2};text-align:center;padding:4px 8px}
+.mut th:first-child{text-align:left}
+.mut th small{display:block;font-weight:500;color:${T.ink3}}
+.mut th.hl{color:${T.accent}}
+.mut td{padding:8px 10px;background:${T.paper};border-top:1px solid ${T.line};border-bottom:1px solid ${T.line};text-align:center;font:700 14px ${MONO}}
+.mut td:first-child{text-align:left;font:13px ${SANS};border-left:1px solid ${T.line};border-radius:10px 0 0 10px}
+.mut td:last-child{border-right:1px solid ${T.line};border-radius:0 10px 10px 0}
+.mut td.zero{background:#FFE4DA;color:${T.accent}}
+.mut td.red{color:${T.green}}
+.mut td.col{box-shadow:inset 0 0 0 2px ${T.accent}}
+.mut tr.hl td{border-color:${T.accent}}
 `;
 function useCss3() {
   useEffect(() => {

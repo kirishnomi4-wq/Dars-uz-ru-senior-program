@@ -1,0 +1,39 @@
+nest-01	1	0,0,1280,720	faqat-matn	382	Siz Express'ni bilasiz. Endi Nest.
+nest-01	2	0,0,1280,720	kod/terminal	934	Express: tanish manzara va og'riq
+nest-01	3	0,0,1280,720	faqat-matn	572	Nest nima beradi: majburiy tartib
+nest-01	4	0,0,1280,720	kod/terminal	629	TypeScript va decorator: @ belgisi
+nest-01	5	0,0,1280,720	faqat-matn	553	Tirik loyiha: nest new nimani yaratdi
+nest-01	6	0,0,1280,720	amaliyot	713	Nest'ni o'rnating, loyihani boshlab qo'ying
+nest-01	7	0,0,1280,720	jadval	497	Bitta so'rovning yo'li
+nest-01	8	0,0,1280,720	kod/terminal	760	Controller — so'rovni qabul qiladi
+nest-01	9	0,0,1280,720	jadval+kod/terminal	681	Service — ishni bajaradi
+nest-01	10	0,0,1280,720	faqat-matn	465	Module — ro'yxat
+nest-01	11	0,0,1280,720	kod/terminal	894	main.ts va terminaldagi ishga tushish satrlari
+nest-01	12	0,0,1280,720	amaliyot	659	Ishga tushiring va terminalni o'qing
+nest-01	13	0,0,1280,720	test	271	Mashina narxiga chegirma hisoblaydigan kodni qayerga yozasiz?
+nest-01	14	0,0,1280,720	faqat-matn	585	Service Controller'ga qanday keladi
+nest-01	15	0,0,1280,720	kod/terminal	963	CLI bilan cars modulini yaratamiz
+nest-01	16	0,0,1280,720	kod/terminal	1122	CLI yaratgan fayllar bo'sh: path bor, route yo'q
+nest-01	17	0,0,1280,720	kod/terminal	943	Service: ro'yxat va uch metod
+nest-01	18	0,0,1280,720	jadval+kod/terminal	1080	Controller: uch route
+nest-01	19	0,0,1280,720	kod/terminal	924	Bu Controller ishlaydi, lekin bitta satr noto'g'ri faylda turibdi
+nest-01	20	0,0,1280,720	kod/terminal	682	Terminal va javoblar
+nest-01	21	0,0,1280,720	test	367	Kodimiz hozirgi holatda. GET /cars/abc so'rovi kelsa, javob qanday bo'ladi?
+nest-01	22	0,0,1280,720	amaliyot	958	cars modulini quring
+nest-01	23	0,0,1280,720	kod/terminal	946	Buzamiz 1: providers bo'sh
+nest-01	24	0,0,1280,720	kod/terminal	970	Buzamiz 2: imports'da CarsModule yo'q
+nest-01	25	0,0,1280,720	kod/terminal	1038	Buzamiz 3: Controller decorator'i yo'q
+nest-01	26	0,0,1280,720	kod/terminal	1001	Buzamiz 4: Injectable decorator'i yo'q
+nest-01	27	0,0,1280,720	kod/terminal	862	Server yiqiladi: «can't resolve dependencies of the OrdersController»
+nest-01	28	0,0,1280,720	kod/terminal	914	Xatoning ikki turi: Error va HttpException
+nest-01	29	0,0,1280,720	kod/terminal+test	625	Bu o'quvchingizning loyihasi. Qaysi faylni ochasiz va nimani tuzatasiz?
+nest-01	30	0,0,1280,720	amaliyot	838	O'zingiz buzing va tuzating
+nest-01	31	0,0,1280,720	faqat-matn	833	O'quvchi clone qiladigan loyiha
+nest-01	32	0,0,1280,720	jadval	691	O'quvchi darsining tili: restoran
+nest-01	33	0,0,1280,720	faqat-matn	1103	O'quvchi darsining xaritasi: 6 blok, 22 ekran
+nest-01	34	0,0,1280,720	faqat-matn	1315	O'quvchilar xato qiladigan 6 joy
+nest-01	35	0,0,1280,720	jadval	1360	Baza ulanmadi: to'rt xabar, to'rt sabab
+nest-01	36	0,0,1280,720	faqat-matn	796	Vaqt rejasi va uch qoida
+nest-01	37	0,0,1280,720	faqat-matn	382	O'quvchi so'raydigan savollar
+nest-01	38	0,0,1280,720	test	292	Nest ichida so'rovni haqiqatda qaysi kutubxona qabul qiladi?
+nest-01	39	0,0,1280,720	faqat-matn	3134	Endi siz bilasiz

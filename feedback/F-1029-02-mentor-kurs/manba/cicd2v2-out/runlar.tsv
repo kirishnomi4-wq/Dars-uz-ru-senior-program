@@ -1,0 +1,9 @@
+31-matrix-ikkalasi	ci-sinov	a77711f	failure	https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41844193379
+40-ai1	ci-sinov	cbf13e3	success	https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41844500453
+41-ai2	ci-sinov	94937cc	success	https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41844703019
+30-matrix-fail-fast	ci-sinov	09fe858	failure	https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41844079933
+32-smoke-services	ci-sinov	9fc3af1	success	https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41845454983
+33-smoke-secret-xato	ci-sinov	2013fd1	failure	https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41845709717
+35-pr-tarmoq	lenta-smoke	70035b5	success	https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41845936594
+36-pr-checks	lenta-smoke	70035b5	success	https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41846225069
+37-main-merge	main	47d30ec	success	https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41846525635

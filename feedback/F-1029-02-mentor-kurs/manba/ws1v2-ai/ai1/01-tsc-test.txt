@@ -1,0 +1,5 @@
+$ npx tsc --noEmit
+[chiqish kodi: 0]
+
+$ npm test
+Tests:       35 passed, 35 total

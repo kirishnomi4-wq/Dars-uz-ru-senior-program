@@ -1,0 +1,29 @@
+<style>
+.m8{display:grid;grid-template-columns:86px 1fr;gap:6px 10px;align-items:center}
+.m8 .lb{white-space:nowrap;font:600 13px ui-monospace,Menlo,Consolas,monospace;color:#374151}
+.m8 .tr{position:relative;height:30px;background:#F3F4F6;border-radius:6px}
+.m8 .bar{position:absolute;top:0;bottom:0;border-radius:6px;display:flex;align-items:center;padding:0 8px;font:700 12px system-ui,sans-serif;color:#fff;white-space:nowrap}
+.m8 .bad{background:#DC2626}.m8 .ok{background:#15803D}.m8 .can{background:repeating-linear-gradient(135deg,#9CA3AF 0 6px,#B6BCC6 6px 12px);color:#111827}
+.m8 .ax{grid-column:2;display:flex;justify-content:space-between;font:11px ui-monospace,Menlo,Consolas,monospace;color:#9CA3AF}
+</style>
+<div class="z">
+  <div class="z-card">
+    <p class="z-h">fail-fast: true (odatiy) · run 41844079933</p>
+    <div class="m8">
+      <span class="lb">test (22)</span><div class="tr"><div class="bar bad" style="left:0;width:33%">npm ci qizil · 10 s</div></div>
+      <span class="lb">test (24)</span><div class="tr"><div class="bar can" style="left:0;width:73%">cancelled · 22 s — yarmida to'xtatildi</div></div>
+      <div class="ax"><span>0 s</span><span>10</span><span>20</span><span>30 s</span></div>
+    </div>
+    <div class="z-term"><span class="r">X The strategy configuration was canceled because "test._22" failed</span></div>
+  </div>
+  <div class="z-card">
+    <p class="z-h">fail-fast: false · run 41844193379</p>
+    <div class="m8">
+      <span class="lb">test (22)</span><div class="tr"><div class="bar bad" style="left:16%;width:33%">npm ci qizil · 10 s</div></div>
+      <span class="lb">test (24)</span><div class="tr"><div class="bar ok" style="left:0;width:83%">yashil · 25 s · Tests: 25 passed</div></div>
+      <div class="ax"><span>0 s</span><span>10</span><span>20</span><span>30 s</span></div>
+    </div>
+    <span class="z-mut">Run baribir qizil — lekin to'liq javob bor: 24 da hammasi o'tadi, muammo faqat 22 da.</span>
+  </div>
+  <div class="z-rule">matrix mashinani emas, <b>versiyani</b> sinaydi: bitta kod × bir nechta Node, parallel.</div>
+</div>

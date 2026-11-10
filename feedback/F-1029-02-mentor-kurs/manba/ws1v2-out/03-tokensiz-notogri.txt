@@ -1,0 +1,15 @@
+# Tokensiz
+$ npm run live -- ""
+20:19:20 ulanmoqda… http://localhost:3100
+20:19:20 connect · ulangan · transport: websocket
+20:19:20 disconnect: io server disconnect · active=false → ulanmagan
+
+# Noto'g'ri token
+$ npm run live -- notogri
+20:19:20 ulanmoqda… http://localhost:3100
+20:19:20 connect · ulangan · transport: websocket
+20:19:20 disconnect: io server disconnect · active=false → ulanmagan
+
+# Server logi shu paytda ([Live] satri YO'Q — panel ulanmadi)
+LOG [InstanceLoader] LiveModule dependencies initialized
+20:19:19 Server 3100-portda ishlayapti

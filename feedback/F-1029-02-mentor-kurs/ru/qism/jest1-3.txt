@@ -1,0 +1,7 @@
+8.steps.1.cmd.0 = src/api/telegram/texts.spec.ts (код с 5-го экрана)
+21.steps.1.cmd.0 = git diff --stat — только .spec.ts
+21.steps.1.cmd.1 = в каждом it есть expect
+17.steps.1.cmd.0 = первая
+17.steps.1.cmd.1 = последняя
+17.steps.1.cmd.2 = единственная страница (0, 3
+21.steps.3.cmd.1 = повторите 3-й шаг

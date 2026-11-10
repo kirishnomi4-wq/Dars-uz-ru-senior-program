@@ -1,0 +1,67 @@
+21:  if (page <= pages - 1)
+
+$ npx jest keyboards
+FAIL src/api/telegram/keyboards.spec.ts
+  orderKeyboard
+    ✓ yangi buyurtma — Tasdiqlash va Bekor (3 ms)
+    ✓ tasdiqlangan — Yetkazildi va Bekor
+    ✓ yetkazilgan va bekor qilingan — tugma yo'q (1 ms)
+  catalogKeyboard
+    ✓ birinchi sahifada ◀ yo'q (15 ms)
+    ✓ o'rtada ikkalasi bor
+    ✕ oxirgi sahifada ▶ yo'q (3 ms)
+    ✕ bitta sahifa — faqat 1/1 (1 ms)
+    ✓ tugagan mahsulot bosilmaydi (1 ms)
+
+  ● catalogKeyboard › oxirgi sahifada ▶ yo'q
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 1
+
+      Array [
+        "◀",
+        "3/3",
+    +   "▶",
+      ]
+
+      54 |
+      55 |   it("oxirgi sahifada ▶ yo'q", () => {
+    > 56 |     expect(nav(catalogKeyboard([p(5)], 2, 3))).toEqual(['◀', '3/3']);
+         |                                                ^
+      57 |   });
+      58 |
+      59 |   it('bitta sahifa — faqat 1/1', () => {
+
+      at Object.<anonymous> (api/telegram/keyboards.spec.ts:56:48)
+
+  ● catalogKeyboard › bitta sahifa — faqat 1/1
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 1
+
+      Array [
+        "1/1",
+    +   "▶",
+      ]
+
+      58 |
+      59 |   it('bitta sahifa — faqat 1/1', () => {
+    > 60 |     expect(nav(catalogKeyboard([p(1)], 0, 1))).toEqual(['1/1']);
+         |                                                ^
+      61 |   });
+      62 |
+      63 |   it('tugagan mahsulot bosilmaydi', () => {
+
+      at Object.<anonymous> (api/telegram/keyboards.spec.ts:60:48)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 6 passed, 8 total
+Snapshots:   0 total
+Time:        0.453 s, estimated 1 s
+Ran all test suites matching keyboards.
+[chiqish kodi: 1]
+

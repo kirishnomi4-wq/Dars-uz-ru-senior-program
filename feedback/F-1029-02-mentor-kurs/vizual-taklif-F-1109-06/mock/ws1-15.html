@@ -1,0 +1,38 @@
+<div class="z">
+  <div class="z-card">
+    <p class="z-h">npm run live · server muzlatildi (kill -STOP) — haqiqiy vaqtlar</p>
+    <svg class="z-svg" viewBox="0 0 780 250" role="img" aria-label="Muzlash: 43 soniya ulangan deb turadi, keyin ping timeout">
+      <!-- o'q: 20:19:50 → 20:20:55, x = 90 + (s)*10.3 -->
+      <rect x="152" y="26" width="444" height="196" fill="#FEF3C7" opacity=".55"/>
+      <text x="374" y="20" text-anchor="middle" font-size="13" font-weight="700" fill="#92400E">43 s — klient hech narsa bilmaydi</text>
+      <line x1="90" y1="222" x2="760" y2="222" stroke="#9CA3AF"/>
+      <g font-size="12" fill="#6B7280" class="mono">
+        <text x="90" y="240" text-anchor="middle" class="mono">:19:50</text><text x="193" y="240" text-anchor="middle" class="mono">:20:00</text><text x="296" y="240" text-anchor="middle" class="mono">:10</text><text x="399" y="240" text-anchor="middle" class="mono">:20</text><text x="502" y="240" text-anchor="middle" class="mono">:30</text><text x="605" y="240" text-anchor="middle" class="mono">:40</text><text x="708" y="240" text-anchor="middle" class="mono">:50</text>
+      </g>
+      <text x="8" y="66" font-size="13" font-weight="700" fill="#374151">Server</text>
+      <rect x="90" y="52" width="62" height="22" rx="5" fill="#BBF7D0"/>
+      <rect x="152" y="52" width="536" height="22" rx="5" fill="#E5E7EB" stroke="#9CA3AF" stroke-dasharray="5 4"/>
+      <text x="420" y="68" text-anchor="middle" font-size="12.5" fill="#374151">muzlagan: ulanish ochiq, javob yo'q</text>
+      <rect x="688" y="52" width="72" height="22" rx="5" fill="#BBF7D0"/><text x="724" y="68" text-anchor="middle" font-size="12" fill="#166534">davom</text>
+
+      <text x="8" y="126" font-size="13" font-weight="700" fill="#374151">Klient</text>
+      <rect x="131" y="112" width="465" height="22" rx="5" fill="#BBF7D0"/>
+      <text x="350" y="128" text-anchor="middle" font-size="12.5" fill="#166534">«ulangan» — belgi yashil, hodisa kelmaydi</text>
+      <rect x="596" y="112" width="92" height="22" rx="5" fill="#F3F4F6" stroke="#9CA3AF" stroke-dasharray="4 3"/><text x="642" y="128" text-anchor="middle" font-size="12" fill="#4B5563">ulanmoqda…</text>
+      <rect x="688" y="112" width="72" height="22" rx="5" fill="#BBF7D0"/><text x="724" y="128" text-anchor="middle" font-size="12" fill="#166534">ulangan</text>
+
+      <line x1="596" y1="96" x2="596" y2="150" stroke="#DC2626" stroke-width="2.5"/>
+      <text x="596" y="168" text-anchor="middle" font-size="12.5" font-weight="700" fill="#DC2626">20:20:39 ping timeout</text>
+      <text x="152" y="190" text-anchor="middle" font-size="12" fill="#92400E" class="mono">20:19:56 STOP</text>
+      <text x="760" y="190" text-anchor="end" font-size="12" fill="#166534" class="mono">20:20:48 CONT → darhol ulandi</text>
+    </svg>
+  </div>
+  <div class="z-two">
+    <div class="z-card">
+      <p class="z-h">Nega 45 soniyagacha</p>
+      <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap"><span class="z-tag b">pingInterval 25 s</span><b>+</b><span class="z-tag b">pingTimeout 20 s</span><b>=</b><span class="z-tag o">45 s gacha</span></div>
+      <span class="z-mut">socket.io standarti: javob yo'qligini faqat ping aniqlaydi</span>
+    </div>
+    <div class="z-rule">Sinfda: «uchish rejimida belgi o'zgarmadi» — <b>kuting, 45 soniyagacha</b>.</div>
+  </div>
+</div>

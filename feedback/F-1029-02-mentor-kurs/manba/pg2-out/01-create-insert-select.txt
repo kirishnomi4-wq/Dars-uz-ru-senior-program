@@ -4,7 +4,7 @@ CREATE TABLE
 shop=# INSERT INTO products (name, price, stock) VALUES ('Klaviatura', 120000, 8), ('Sichqoncha', 75000, 15), ('Quloqchin', 95000, 5);
 INSERT 0 3
 
-shop=# INSERT INTO products (name, price, stock) VALUES ('Mishka', 50000, 10);
+shop=# INSERT INTO products (name, price, stock) VALUES ('Kolonka', 50000, 10);
 INSERT 0 1
 
 shop=# SELECT * FROM products;
@@ -13,7 +13,7 @@ shop=# SELECT * FROM products;
   1 | Klaviatura | 120000 |     8
   2 | Sichqoncha |  75000 |    15
   3 | Quloqchin  |  95000 |     5
-  4 | Mishka     |  50000 |    10
+  4 | Kolonka    |  50000 |    10
 (4 rows)
 
 
@@ -23,7 +23,7 @@ shop=# SELECT name, price FROM products;
  Klaviatura | 120000
  Sichqoncha |  75000
  Quloqchin  |  95000
- Mishka     |  50000
+ Kolonka    |  50000
 (4 rows)
 
 

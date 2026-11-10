@@ -1,0 +1,17 @@
+36:        if (p.stock <= c.qty) {
+
+$ npx jest order.service
+PASS src/api/order/order.service.spec.ts
+  OrderService.place
+    ✓ telefon yo'q — darhol xato (25 ms)
+    ✓ savat bo'sh — darhol xato (3 ms)
+    ✓ omborda yetmaydi — tranzaksiya ichida xato, UPDATE bo'lmaydi (3 ms)
+    ✓ yetarli — jami narx hisoblanadi (2 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       4 passed, 4 total
+Snapshots:   0 total
+Time:        0.791 s, estimated 1 s
+Ran all test suites matching order.service.
+[chiqish kodi: 0]
+

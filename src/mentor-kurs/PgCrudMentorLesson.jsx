@@ -80,6 +80,9 @@ const CSS = `
 .mk-count{font:700 13px/1 ${MONO};color:${T.ink}}
 .mk-body{flex:1;min-height:0;display:grid;grid-template-columns:minmax(320px,4fr) 8fr;gap:24px;padding:22px 28px}
 @media (min-width:1600px){.mk-panel{font-size:14px}.mk-explorer{font-size:13px}}
+@media (max-width:1599px){.mk-ide{grid-template-columns:150px minmax(0,1fr)}.mk-ide .mk-panel{font-size:12px}.mk-ide .mk-explorer{font-size:11.5px}}
+.pg-two:has(.mk-ide),.pg-two:has(.mk-panel .mk-ln:nth-of-type(n+10)){grid-template-columns:minmax(0,1fr)}
+.mk-pair{font:12.5px/1.4 ${MONO};color:${T.ink3};padding:0 4px}.mk-pair b{font-weight:600}.mk-pair code{font:inherit;color:${T.ink2}}
 @media (max-width:900px){.mk-body{grid-template-columns:1fr;grid-template-rows:auto 1fr;gap:14px;padding:14px}}
 .mk-ide{display:grid;grid-template-columns:218px minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);align-items:stretch;flex:0 1 auto;max-height:100%;min-height:0;background:#E9ECF1;border:1px solid #D5DAE2;border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(15,17,21,.10)}
 .mk-ide-bar{grid-column:1/-1;display:flex;align-items:center;gap:7px;padding:8px 14px;background:#DDE1E8;border-bottom:1px solid #D0D5DD;font:600 11px/1 ${MONO};color:${T.ink2};letter-spacing:.04em}
@@ -184,7 +187,7 @@ const CSS = `
 .mk-ln.gone,.mk-ln.gone *{color:#FCA5A5!important}
 .mk-ln.new{background:rgba(18,128,90,.22);box-shadow:inset 3px 0 0 #86EFAC}
 .mk-ln .n{color:${T.codeDim};min-width:2ch;text-align:right;user-select:none}
-.mk-ln.wrap{white-space:pre-wrap}
+.mk-ln.wrap{white-space:pre}
 .mk-ln.clk{cursor:pointer}
 .mk-ln.clk:hover{background:rgba(232,234,240,.08)}
 .mk-ln.bad{background:rgba(226,69,31,.28);box-shadow:inset 3px 0 0 #FCA5A5}
@@ -192,6 +195,8 @@ const CSS = `
 .k{color:#C792EA}.s{color:#C3E88D}.d{color:#FFCB6B}.c{color:#82AAFF}.m{color:#89DDFF}.cm{color:#6B7280;font-style:italic}
 .p{color:#7DD3FC}.ok{color:#86EFAC}.er{color:#FCA5A5}.wn{color:#FDE68A}
 .mk-light{flex:0 1 auto;max-height:100%;min-height:0;background:${T.paper};border:1px solid ${T.line};border-radius:16px;padding:20px;position:relative;overflow:auto}
+/* 04.11 · past ekran (1280×720, 1366×768): bo'shliqlar ixcham — shrift deyarli o'zgarmaydi, sahna sig'ishi uchun */
+@media (max-height:800px){.mk-body{padding:14px 22px;gap:20px}.mk-scene{gap:10px}.mk-panel{padding:12px 16px;font-size:12.5px;line-height:1.45}.mk-explorer{line-height:1.45;padding:6px 6px 8px}.mk-light{padding:14px}.mk-box{padding:10px 12px}}
 .mk-light.fill{flex:1}
 .mk-tag{font:600 11px/1 ${MONO};letter-spacing:.08em;color:${T.ink3};text-transform:uppercase;margin:0 0 10px}
 .mk-nav{flex:0 0 auto;background:${T.paper};border-top:1px solid ${T.line};padding:12px 28px;display:flex;align-items:center;gap:12px}
@@ -205,12 +210,28 @@ const CSS = `
 .mk-lockhint i{width:7px;height:7px;border-radius:50%;background:${T.accent};display:inline-block;animation:mk-pulse 1.6s ease-in-out infinite}
 .mk-say.mc>:first-child{margin-top:auto}
 .mk-say.mc>:last-child{margin-bottom:auto}
-.mk-say.mc .mk-opt{font-size:16px;padding:13px 16px}
-.mk-body.mc-split{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
+.mk-say.mc .mk-opt{font-size:15px;padding:11px 14px;border-radius:10px;align-items:flex-start}
+.mk-opt .l{margin-top:3px}
+.mk-opt .t{display:grid;gap:4px;min-width:0}
+.mk-opt .why{font-size:13.5px;line-height:1.4;font-weight:500;color:${T.green}}
+.mk-opt.bad .why{color:${T.accent}}
+.mk-opt.ok{color:${T.ink}}
+.mk-opt .why code{font:.92em ${MONO};background:${T.chip};border:1px solid ${T.chipLine};border-radius:5px;padding:0 5px;color:${T.ink}}
+.mk-body.mc-split{grid-template-columns:minmax(340px,4fr) minmax(0,8fr);gap:24px}
+.mc-after{display:flex;flex-direction:column;gap:12px;overflow:auto}
+.mc-after>.mk-panel,.mc-after>.mc-proof{flex:0 0 auto;min-height:0}
+.mc-proof{display:flex;flex-direction:column;gap:10px}
+.mc-proof>div{display:flex!important;flex-direction:column;gap:10px;flex:0 0 auto;min-height:0}
+.mc-proof .mk-panel{flex:0 0 auto;min-height:0;max-height:none}
+.mc-proof .mk-rule,.mc-proof .mk-tag,.mc-after>.mk-tag{flex:0 0 auto}
+.mc-demak{flex:0 0 auto;min-height:52px;display:flex;align-items:center;gap:6px;font-size:15px;line-height:1.45;color:${T.ink};padding:0 4px}
+.mc-demak.on{border-left:3px solid ${T.green};padding-left:12px;animation:mk-up .45s ease both}
+.mc-demak b{color:${T.green}}
+.mc-demak code{font:.92em ${MONO};background:${T.chip};border:1px solid ${T.chipLine};border-radius:5px;padding:0 5px}
 .mk-body.mc-split>.mk-say.mc>:first-child{margin-top:0}
 .mk-title.mc-q{font-size:clamp(19px,1.5vw,22px);font-weight:600;color:${T.ink}}
-.mc-wait{border:1.5px dashed ${T.line};border-radius:12px;padding:16px 18px;color:${T.ink3};font-size:14px;background:${T.paper}}
-@media (max-width:1300px){.mk-body.mc-split{grid-template-columns:1fr;grid-auto-rows:max-content;overflow:auto}.mk-body.mc-split>.mk-say.mc,.mk-body.mc-split>.mc-after{overflow:visible!important}}
+.mc-wait{flex:0 0 auto;border:1.5px dashed ${T.line};border-radius:10px;padding:10px 14px;color:${T.ink3};font-size:13px;background:${T.paper}}
+@media (max-width:1000px){.mk-body.mc-split{grid-template-columns:1fr;grid-auto-rows:max-content;overflow:auto}.mk-body.mc-split>.mk-say.mc,.mk-body.mc-split>.mc-after{overflow:visible!important}}
 .mk-btn.ready{background:${T.accent};border-color:${T.accent};animation:mk-pulse 1.6s ease-in-out infinite}
 .mk-audio{display:flex;align-items:center;gap:6px}
 .mk-audio button{background:transparent;border:1px solid ${T.line};border-radius:8px;padding:5px 8px;cursor:pointer;color:${T.ink2};font:12px/1 ${SANS};display:inline-flex;align-items:center;gap:6px}
@@ -263,7 +284,9 @@ const CSS = `
 .mk-step input{width:18px;height:18px;margin-top:3px;accent-color:${T.green}}
 .mk-step .t{flex:1;min-width:0}
 .mk-step .t b{display:block;font-size:14px;margin-bottom:3px}
-.mk-step .cmd{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:4px 0}
+.mk-step .cmd{display:inline-flex;gap:6px;align-items:center;margin:3px 12px 3px 0;max-width:100%}
+.mk-step .cmd code{overflow-wrap:anywhere}
+@media (max-height:760px){.mk-step{padding:7px 10px}.mk-step .t b{margin-bottom:1px}.mk-step .cmd{margin:2px 10px 2px 0}}
 .mk-step code{font:12.5px ${MONO};background:#EEF0F4;padding:2px 7px;border-radius:6px}
 .mk-step .exp{font-size:12.5px;color:${T.ink3}}
 .mk-copy{border:1px solid ${T.line};background:#fff;border-radius:6px;padding:2px 7px;font:11px ${SANS};cursor:pointer;color:${T.ink2}}
@@ -281,6 +304,8 @@ const CSS = `
 .mk-cover .card{max-width:760px;width:100%;background:${T.paper};border:1px solid ${T.line};border-radius:20px;padding:36px 40px;box-shadow:0 20px 60px rgba(15,17,21,.08)}
 .mk-cover h1{font-size:clamp(24px,2.3vw,30px);line-height:1.15;font-weight:700;margin:8px 0 10px;letter-spacing:-.01em}
 .mk-cover p{color:${T.ink2};font-size:17px;line-height:1.55;margin:0 0 22px}
+.mk-resume{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.mk-cover p.mk-resume-note{flex-basis:100%;margin:6px 0 0;font-size:14px;color:${T.ink2}}
 .mk-cover ul{margin:0 0 26px;padding:0;list-style:none;display:grid;gap:8px;color:${T.ink2};font-size:15px}
 .mk-cover li::before{content:"—";color:${T.accent};margin-right:10px}
 .mk-req{display:grid;gap:8px}
@@ -289,6 +314,57 @@ const CSS = `
 .mk-req .st{font:700 11px ${MONO};padding:2px 7px;border-radius:6px;background:#EEF0F4;color:${T.ink2}}
 .mk-req .st.s2{background:#E3F5EC;color:${T.green}}.mk-req .st.s4{background:#FFF0EB;color:${T.accent}}
 .mk-req pre{margin:6px 0 0;font:12px/1.45 ${MONO};white-space:pre-wrap;color:${T.ink2}}
+/* F-1109-06: mexanizm chizmalari (oqim, yo'lak, vaqt o'qi, jadval) — gapli karta o'rniga */
+.z{--ac:#E2451F;--ac2:#FFF5F2;--pg:#336791;--ok:#15803D;--ok2:#DCFCE7;--bad:#DC2626;--bad2:#FEF2F2;--warn:#C2410C;--warn2:#FFEDD5;--blue:#1D4ED8;--blue2:#DBEAFE;--pur:#6D3BE4;--pur2:#EDE9FE;--ink:#1F2937;--ink2:#4B5563;--mut:#6B7280;--line:#D7DCE3;--soft:#F8FAFC;
+  display:grid;gap:12px;color:var(--ink);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.z *{box-sizing:border-box}
+.z .zm,.z .zm *{font-family:ui-monospace,Menlo,Consolas,monospace}
+.z .zm{font-size:13px;color:var(--ink)}
+.z-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;display:grid;gap:10px;min-width:0;align-content:start}
+.z-h{font:700 13px system-ui,sans-serif;letter-spacing:.01em;color:var(--mut);margin:0}
+.z-flow{display:flex;align-items:stretch;gap:0}
+.z-flow>.z-st{flex:1 1 0;min-width:0}
+.z-ar{flex:0 0 26px;display:flex;align-items:center;justify-content:center;color:#9CA3AF;font-size:20px}
+.z-ar.bad{color:var(--bad)}
+.z-st{border:1.5px solid var(--line);border-radius:10px;padding:10px;display:grid;gap:5px;align-content:start;background:var(--soft)}
+.z-st.ok{border-color:var(--ok);background:#F0FDF4}.z-st.bad{border-color:var(--bad);background:var(--bad2)}.z-st.ac{border-color:var(--ac);background:var(--ac2)}
+.z-st.blue{border-color:var(--pg);background:#EFF6FF}.z-st.off{border-style:dashed;background:#fff;color:var(--mut)}
+.z-st .ln{font:11.5px ui-monospace,Menlo,Consolas,monospace;color:var(--mut)}
+.z-tag{justify-self:start;display:inline-block;font:700 12px system-ui,sans-serif;border-radius:999px;padding:2px 9px;white-space:nowrap}
+.z-tag.r{background:var(--bad);color:#fff}.z-tag.g{background:var(--ok2);color:var(--ok)}.z-tag.b{background:var(--blue2);color:var(--blue)}.z-tag.o{background:var(--warn2);color:var(--warn)}.z-tag.n{background:#F1F3F6;color:var(--ink2)}
+.z-term{background:#111827;color:#E5E7EB;border-radius:10px;padding:10px 12px;font:13px/1.55 ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;word-break:break-word}
+.z-term .r{color:#FCA5A5}.z-term .g{color:#86EFAC}.z-term .y{color:#FDE68A}.z-term .c{color:#93C5FD}.z-term .m{color:#9CA3AF}
+.z-term .hl{background:rgba(226,69,31,.28);border-radius:3px}
+.z-two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.z-three{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.z-rule{border-left:4px solid var(--ac);background:var(--ac2);border-radius:10px;padding:10px 14px;font-size:15px}
+.z-rule b{color:var(--ac)}
+.z-k{display:inline;font:13px ui-monospace,Menlo,Consolas,monospace;background:#F1F3F6;border-radius:5px;padding:1px 6px;color:var(--ink)}
+.z-mut{color:var(--mut);font-size:13px}
+.z-lanes{display:grid;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.z-lanes>div{padding:9px 12px;border-bottom:1px solid #EEF0F3;display:flex;align-items:center;gap:8px;min-height:44px;font-size:14px}
+.z-lanes>.hd{font:700 12px system-ui,sans-serif;letter-spacing:.05em;text-transform:uppercase;background:var(--soft);color:var(--ink2)}
+.z-lanes>.rh{font:600 12px ui-monospace,Menlo,Consolas,monospace;color:var(--mut);background:var(--soft)}
+.z-tbl{border-collapse:collapse;width:100%;font:13px ui-monospace,Menlo,Consolas,monospace}
+.z-tbl th,.z-tbl td{border:1px solid #E5E7EB;padding:5px 9px;text-align:left;color:var(--ink)}
+.z-tbl th{background:var(--soft);font-weight:700}
+.z-tbl tr.hl td{background:var(--blue2)}.z-tbl tr.bad td{background:var(--bad2);color:#991B1B}.z-tbl tr.ok td{background:#F0FDF4}
+.z-svg{display:block;width:100%;height:auto}
+.z-svg text{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.z-svg .mono{font-family:ui-monospace,Menlo,Consolas,monospace}
+.z b,.z strong{color:inherit}
+.z .z-st>b{color:var(--ink)}
+.z .zm{overflow-wrap:anywhere}
+.z code{all:unset;display:inline;font:13px ui-monospace,Menlo,Consolas,monospace;background:#F1F3F6;border-radius:5px;padding:1px 6px;color:var(--ink)}
+.z-h .zk,.z-h code{text-transform:none;letter-spacing:0;font:600 12.5px ui-monospace,Menlo,Consolas,monospace;color:var(--ink2)}
+.z .mk-in{min-width:0}
+.z-st.dim,.z-card.dim{opacity:.45}
+.z-card.hl{border-color:#E2451F;box-shadow:0 0 0 3px rgba(226,69,31,.14)}
+.z-st.hl{box-shadow:0 0 0 3px rgba(226,69,31,.18)}
+.z-st,.z-card,.z-ar,.z-rule,.z-term,.z-tbl tr{transition:opacity .4s,box-shadow .4s,background .4s}
+.z .dim{opacity:.4}
+.z-band{display:grid;gap:8px;font:700 12px system-ui,sans-serif;text-align:center}
+.z-band>div{border-radius:8px;padding:5px 4px}
 @keyframes mk-up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @keyframes mk-fade{from{opacity:0}to{opacity:1}}
 @keyframes mk-glow{0%,100%{box-shadow:0 0 0 0 rgba(226,69,31,0)}50%{box-shadow:0 0 0 5px rgba(226,69,31,.16)}}
@@ -327,10 +403,18 @@ const EN_PHRASES = [
   /Nest application successfully started/g, /successfully started/g, /Validation failed/g, /Internal server error/g,
   /can't resolve dependencies/g, /invalid controller/g, /Dependency Injection/g, /Hello World/g, /Cannot GET/g,
   /Bad Request/g, /Not Found/g, /does not exist/g, /Potential solutions/g, /Car with id [\w' ]+? not found/g,
+  /\b[Bb]ackslash\b/g, // F-1109-01 (M49): `\` belgisi o'z nomi bilan; ko'rik saytida o'zbekcha ovoz uchun tts-server «bekslesh» qiladi
 ];
+// F-1109-02 (M49): o'quvchi darsi kodi (m4-03, m4a-03, m11-03) ovozga so'z bilan ketadi — raqam bo'lib ketsa «0» «o» harfi
+// bo'lib o'qiladi («m4 o uch»). Faqat o'zbekcha ovozda; ekranda va «Matn»da kod o'zgarmaydi.
+const SON_UZ = ['nol', 'bir', 'ikki', 'uch', "to'rt", 'besh', 'olti', 'yetti', 'sakkiz', "to'qqiz"];
+const ON_UZ = ['', "o'n", 'yigirma', "o'ttiz", 'qirq'];
+const sonUz = (n) => (n < 10 ? SON_UZ[n] : ON_UZ[Math.floor(n / 10)] + (n % 10 ? ' ' + SON_UZ[n % 10] : ''));
+const kodOvoz = (t) => t.replace(/\bm(\d{1,2})(a?)-(\d)(\d)\b/g, (_, m, a, d1, d2) =>
+  `em ${sonUz(+m)}${a ? ' a' : ''}, ${d1 === '0' ? 'nol ' + SON_UZ[+d2] : sonUz(+(d1 + d2))}`);
 const voice = (t) => {
   const keep = [];
-  let out = t || '';
+  let out = LANG === 'ru' ? (t || '') : kodOvoz(t || '');
   EN_PHRASES.forEach((re) => { out = out.replace(re, (m) => { keep.push(m); return `\u0000${keep.length - 1}\u0000`; }); });
   return (LANG === 'ru' ? RU_MARK : UZ) + out.replace(/\u0000(\d+)\u0000/g, (_, i) => `[English pronunciation] ${keep[i]} [end]`);
 };
@@ -462,7 +546,9 @@ function Say({ eyebrow, title, segments, beat, audio, stepManual, below, guess, 
 }
 
 // Kod/terminal paneli: satr `at` qadamida kiradi; `focus` id'lari yoritiladi, qolgani xiralashadi; `onLine` — bosiladigan
-function CodePanel({ file, lines, beat = 99, focus = [], numbers = true, wrap = false, style, onLine, marks = {} }) {
+// F-1103-04 (03.11, foydalanuvchi «1 qator kod 3 qator bo'lmasin»): kod HECH QACHON o'ralmaydi — `wrap` prop e'tiborsiz (eski chaqiruvlar buzilmasin).
+// Uzun qator — darsda Prettier (80 belgi) bilan bo'linadi; sig'masa panel ichida gorizontal skroll.
+function CodePanel({ file, lines, beat = 99, focus = [], numbers = true, style, onLine, marks = {} }) {
   const anyFocus = focus.length > 0;
   const ref = useRef(null);
   const focusKey = focus.join('|');
@@ -489,7 +575,7 @@ function CodePanel({ file, lines, beat = 99, focus = [], numbers = true, wrap = 
           const v = vis(l.at, beat);
           const hl = anyFocus && l.id && focus.includes(l.id);
           const mk = marks[i] || '';
-          const cls = `mk-ln${wrap ? ' wrap' : ''}${v ? ' in' : ''}${hl ? ' hl' : (anyFocus && v && !l.keep ? ' dim' : '')}${l.gone ? ' gone' : ''}${l.neu ? ' new' : ''}${onLine ? ' clk' : ''}${mk ? ' ' + mk : ''}`;
+          const cls = `mk-ln${v ? ' in' : ''}${hl ? ' hl' : (anyFocus && v && !l.keep ? ' dim' : '')}${l.gone ? ' gone' : ''}${l.neu ? ' new' : ''}${onLine ? ' clk' : ''}${mk ? ' ' + mk : ''}`;
           return <div key={i} className={cls} data-at={l.at} onClick={onLine ? () => onLine(i, l) : undefined}>{numbers && <span className="n">{l.n != null ? l.n : i + 1}</span>}<span dangerouslySetInnerHTML={html(l.h)} /></div>;
         })}
       </div>
@@ -585,7 +671,9 @@ function Lesson({ p, S, scene, below, ready, sceneTop }) {
 
 // Tekshiruv (tanlov): xato variant yopiladi, to'g'risini topguncha bosadi
 // `after` — to'g'ri javobdan keyin ko'rsatiladigan blok (masalan tuzatilgan fayl, 2-qonun, F-1030 qo'shimcha 1)
-function MCRetry({ idx, total, onBack, onNext, onRestart, stored, onAnswer, review, kicker, eyebrow, title, q, opts, correct, ok, okShort, wrong, above, after }) {
+// F-1103-02 (A varianti): `above` — savoldan oldin ko'rinadigan material (terminal, kod, xabar); `after` — to'g'ri javobdan keyin isbot;
+// `demak` — javobdan keyin o'ng ustun ostidagi bitta «Demak, …» gapi. Karta yo'q: sabab variantning ichida (to'g'risi yashil, xatosi qizil).
+function MCRetry({ idx, total, onBack, onNext, onRestart, stored, onAnswer, review, kicker, eyebrow, title, q, opts, correct, ok, okShort, wrong, above, after, demak }) {
   const segs = useMemo(() => review ? [] : [{ id: 'q', text: voice(q), trigger: 'on_mount', waits_for: { type: 'option_picked' } }], [q, review]);
   const audio = useAudio(segs);
   const sfx = useSfx();
@@ -604,11 +692,10 @@ function MCRetry({ idx, total, onBack, onNext, onRestart, stored, onAnswer, revi
       setTimeout(() => audio.pushOneOff(voice((wrong[i] || t('Unday emas.', 'Не совсем.')) + t(" Yana o'ylab ko'ring.", ' Подумайте ещё раз.'))), 300);
     }
   };
-  const fbOk = solved && last === correct;
   // F-1102-16: tuzatilgan/haqiqiy natija bloki bo'lsa — ekran BOSHIDAN ikki ustun va joyi qimirlamaydi:
   // chapda savol va variantlar, o'ngda xabar (above) va javobdan keyin uning ostida natija (after).
   // Javobdan keyin variantlar o'z joyida qoladi (to'g'risi yashil, qolgani xira) — hech narsa sakramaydi.
-  const split = !!after;
+  const split = !!(after || above);
   return (
     <Stage kicker={kicker} idx={idx} total={total} audio={audio} onBack={onBack} onNext={onNext} onRestart={onRestart} nextReady={solved} nextDisabled={!solved} lockHint={t("To'g'ri javobni toping", 'Найдите верный ответ')}>
       <div className={`mk-body${split ? ' mc-split' : ''}`} style={split ? undefined : { gridTemplateColumns: '1fr', maxWidth: 980, width: '100%', margin: '0 auto' }}>
@@ -622,21 +709,17 @@ function MCRetry({ idx, total, onBack, onNext, onRestart, stored, onAnswer, revi
               let cls = 'mk-opt';
               if (solved) cls += i === correct ? ' ok' : ' off';
               else if (bad.includes(i)) cls += ' bad';
-              return <button key={i} className={cls} disabled={solved || bad.includes(i)} onClick={() => pick(i)}><span className="l">{String.fromCharCode(65 + i)}</span><span>{o}</span></button>;
+              const why = solved && i === correct ? (okShort || digits(ok)) : (bad.includes(i) ? digits(wrong[i] || '') : null);
+              return <button key={i} className={cls} disabled={solved || bad.includes(i)} onClick={() => pick(i)}><span className="l">{String.fromCharCode(65 + i)}</span><span className="t"><span>{o}</span>{why ? <small className="why">{why}</small> : null}</span></button>;
             })}
           </div>
-          {last !== null && (
-            <div className="mk-fb" key={last + (solved ? 'ok' : 'bad')} style={{ '--c': fbOk ? T.green : T.accent, '--bg': fbOk ? '#E3F5EC' : '#FFF0EB' }}>
-              <b>{fbOk ? t("To'g'ri", 'Верно') : t("Unday emas — yana o'ylab ko'ring", 'Не совсем — подумайте ещё раз')}</b>
-              <span>{fbOk ? (okShort || digits(ok)) : digits(wrong[last])}</span>
-            </div>
-          )}
         </div>
-        {split && <div className="mk-scene top mc-after" style={{ overflow: 'auto', display: 'grid', gap: 12, alignContent: 'start' }}>
+        {split && <div className="mk-scene top mc-after">
           {above}
           {solved
-            ? <div style={{ animation: 'mk-up .45s ease both' }}>{after}</div>
-            : <div className="mc-wait">{t("To'g'ri javobni topganingizdan keyin shu yerda haqiqiy natija ochiladi", 'Когда найдёте верный ответ, здесь откроется реальный результат')}</div>}
+            ? (after ? <div className="mc-proof" style={{ animation: 'mk-up .45s ease both' }}>{after}</div> : null)
+            : (above ? null : <div className="mc-wait">{t("Javobdan keyin shu yerda haqiqiy natija", 'После ответа здесь — реальный результат')}</div>)}
+          {demak ? <div className={`mc-demak${solved ? ' on' : ''}`}>{solved ? <><b>{t('Demak,', 'Значит,')}</b><span>{demak}</span></> : null}</div> : null}
         </div>}
       </div>
     </Stage>
@@ -733,10 +816,18 @@ function Practice({ p, S, steps, trouble, code, proof, tree }) {
     <Stage kicker={S.kicker} idx={p.idx} total={p.total} audio={b.audio} onBack={p.onBack} onNext={p.onNext} onRestart={p.onRestart} nextReady={b.done && allDone} nextDisabled={!(b.done && allDone)} lockHint={!allDone ? (proof ? t("Katakchalar va isbotni to'ldiring", 'Отметьте пункты и заполните подтверждение') : t('Katakchalarni belgilang', 'Отметьте пункты')) : t("Ustoz gapirib bo'lgach ochiladi", 'Откроется, когда учитель договорит')}>
       <div className="mk-body">
         <Say eyebrow={S.eyebrow} title={S.title} segments={S.segments} beat={beat} audio={b.audio} stepManual={b.stepManual} guess={b.guess} answerAsk={b.answerAsk} review={p.review}
-          below={<div className="mk-card" style={{ background: allDone ? '#E3F5EC' : T.paper, borderColor: allDone ? T.green : T.line }}><h5>{t('Bajarildi', 'Выполнено')}</h5><div style={{ fontSize: 15, fontWeight: 700 }}>{checked.length} / {steps.length} {t('qadam', 'шагов')}{proof ? (proofOk && proofVal.trim() ? t(' · isbot ✓', ' · подтверждение ✓') : t(' · isbot kutilmoqda', ' · ждём подтверждение')) : ''}{allDone ? (b.done ? t(' — Davom bosing', ' — нажмите «Далее»') : t(' — ovoz tugagach Davom ochiladi', ' — «Далее» откроется после озвучки')) : ''}</div>
+          below={<><div className="mk-card" style={{ background: allDone ? '#E3F5EC' : T.paper, borderColor: allDone ? T.green : T.line }}><h5>{t('Bajarildi', 'Выполнено')}</h5><div style={{ fontSize: 15, fontWeight: 700 }}>{checked.length} / {steps.length} {t('qadam', 'шагов')}{proof ? (proofOk && proofVal.trim() ? t(' · isbot ✓', ' · подтверждение ✓') : t(' · isbot kutilmoqda', ' · ждём подтверждение')) : ''}{allDone ? (b.done ? t(' — Davom bosing', ' — нажмите «Далее»') : t(' — ovoz tugagach Davom ochiladi', ' — «Далее» откроется после озвучки')) : ''}</div>
             {/* F-1102-20: isbot maydoni to'ldirilmaguncha yumshoq yonib-o'chadi — «shu yerga yozing» ko'rinib tursin */}
             {proof && <div style={{ marginTop: 10 }}><div className="exp" style={{ marginBottom: 4, fontWeight: 700, color: proofOk && proofVal.trim() ? T.green : T.ink }}>{t('Isbot', 'Подтверждение')}: {String(proof.label).replace(/^(Isbot|Подтверждение)\s*:\s*/, '')}</div><input className={`mk-input${proofOk && proofVal.trim() ? '' : ' need'}`} value={proofVal} placeholder={proof.placeholder} onChange={(e) => onProof(e.target.value)} />{proofVal.trim() && !proofOk && <div className="exp" style={{ color: T.accent, marginTop: 4 }}>{proof.wrong}</div>}</div>}
-          </div>} />
+          </div>
+          {/* 04.11: «Boshqacha chiqdimi?» chap ustunda — o'ng ustun qadamlarga to'liq qoladi (1280×720 da kesilmasin) */}
+          <Block at={S.tableAt} beat={beat}><div className="mk-light mk-trouble" style={{ padding: 0, marginTop: 10 }}>
+              <button type="button" className={`mk-trbtn${beat === S.tableAt && !tOpen ? ' hot' : ''}`} aria-haspopup="dialog" aria-expanded={tOpen} onClick={() => setTOpen(true)}>
+                <span className="q">{t('Boshqacha chiqdimi?', 'Вышло иначе?')}</span>
+                {rows.length > 1 && <span className="n">{t(`${rows.length - 1} ta holat va yechim`, `ситуации и решения: ${rows.length - 1}`)}</span>}
+                <span className="ar" aria-hidden="true">↗</span>
+              </button>
+            </div></Block></>} />
         <div className="mk-scene top" style={{ overflow: 'auto' }}>
           {cur ? (<>
             {/* F-1031-05: qaytish tugmasi oynadan tashqarida, katta — kod ko'rilgach qadamlarga qaytish ko'rinib tursin */}
@@ -757,19 +848,15 @@ function Practice({ p, S, steps, trouble, code, proof, tree }) {
                   <input type="checkbox" checked={checked.includes(i)} onChange={() => toggle(i)} />
                   <div className="t"><b>{i + 1}. {s.t}</b>
                     {s.cmds.map((cm) => <div key={cm} className="cmd"><code>{cm}</code><CopyBtn text={cm} /></div>)}
-                    {c && <div style={{ margin: '4px 0 6px' }}><button className="mk-btn soft sm" style={{ borderColor: T.ink, color: T.ink }} onClick={() => setOpenFile(c.file)}>{t('Kodni ochish', 'Открыть код')} · {baseName(c.file)}{c.copy === false ? t(' (namuna)', ' (образец)') : ''}</button></div>}
-                    <div className="exp">{t('Kutilgan:', 'Ожидается:')} {s.exp}</div>
+                    {/* 04.11: «Kodni ochish» va «Kutilgan» bitta qatorda (sig'masa o'tadi) — 1280×720 da qadamlar sig'sin */}
+                    <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '4px 12px', margin: c ? '4px 0 2px' : 0 }}>
+                      {c && <button className="mk-btn soft sm" style={{ borderColor: T.ink, color: T.ink }} onClick={() => setOpenFile(c.file)}>{t('Kodni ochish', 'Открыть код')} · {baseName(c.file)}{c.copy === false ? t(' (namuna)', ' (образец)') : ''}</button>}
+                      <div className="exp">{t('Kutilgan:', 'Ожидается:')} {s.exp}</div>
+                    </div>
                   </div>
                 </div>
               ); })}
             </div>
-            <Block at={S.tableAt} beat={beat}><div className="mk-light mk-trouble" style={{ padding: 0, marginTop: 10 }}>
-              <button type="button" className={`mk-trbtn${beat === S.tableAt && !tOpen ? ' hot' : ''}`} aria-haspopup="dialog" aria-expanded={tOpen} onClick={() => setTOpen(true)}>
-                <span className="q">{t('Boshqacha chiqdimi?', 'Вышло иначе?')}</span>
-                {rows.length > 1 && <span className="n">{t(`${rows.length - 1} ta holat va yechim`, `ситуации и решения: ${rows.length - 1}`)}</span>}
-                <span className="ar" aria-hidden="true">↗</span>
-              </button>
-            </div></Block>
             {/* F-1102-12: jadval sahifa ichida emas — ustida oyna (popup). ✕, tashqarisi yoki Esc yopadi; tugma joyida qoladi */}
             {tOpen && <TroubleModal rows={rows} onClose={() => setTOpen(false)} />}
           </>)}
@@ -779,8 +866,46 @@ function Practice({ p, S, steps, trouble, code, proof, tree }) {
   );
 }
 
+// ---------- Progress saqlovi (F-1103-06, 03.11): mentor darsni bo'lib o'tadi ----------
+// O'quvchi darslaridagi ccProgress kabi — brauzer xotirasida: ekran, ko'rilgan ekranlar, javoblar.
+// Ekranlar soni o'zgargan bo'lsa (dars qayta qurilgan) eski yozuv olinmaydi. startAt (dev) bo'lsa saqlov o'qilmaydi.
+// Qaytganda darhol ekranga tushilmaydi: brauzer ovozni faqat bosishdan keyin chaladi — kirish oynasida tugma.
+const SAVE_KEY = (id) => `ccMentor:${id}`;
+function loadSaved(id, total) {
+  try {
+    const v = JSON.parse(localStorage.getItem(SAVE_KEY(id)) || 'null');
+    if (!v || v.v !== 1 || v.total !== total || typeof v.idx !== 'number' || v.idx < 1) return null;
+    return v;
+  } catch (e) { return null; }
+}
+function clearSaved(id) { try { localStorage.removeItem(SAVE_KEY(id)); } catch (e) {} }
+function useMentorSave({ id, total, startAt, started, idx, answers, seen, setIdx, setAnswers, setSeen, setStarted }) {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const saved = useMemo(() => (startAt != null ? null : loadSaved(id, total)), []);
+  useEffect(() => {
+    if (!started) return;
+    try { localStorage.setItem(SAVE_KEY(id), JSON.stringify({ v: 1, total, idx, answers, seen, t: Date.now() })); } catch (e) {}
+  }, [started, idx, answers, seen, id, total]);
+  const start = useCallback((resume) => {
+    if (resume && saved) { setIdx(Math.min(saved.idx, total - 1)); setAnswers(saved.answers || {}); setSeen(saved.seen || {}); }
+    else clearSaved(id);
+    setStarted(true);
+  }, [saved, id, total, setIdx, setAnswers, setSeen, setStarted]);
+  return { resume: saved, start };
+}
+function CoverStart({ onStart, resume }) {
+  if (!resume) return <button className="mk-btn ready" onClick={() => onStart(false)}>{t('Boshlash →', 'Начать →')}</button>;
+  return (
+    <div className="mk-resume">
+      <button className="mk-btn ready" onClick={() => onStart(true)}>{t(`${resume.idx + 1}-ekrandan davom etish →`, `Продолжить с ${resume.idx + 1}-го экрана →`)}</button>
+      <button className="mk-btn soft" onClick={() => onStart(false)}>{t('Boshidan boshlash', 'Начать сначала')}</button>
+      <p className="mk-resume-note">{t(`Oxirgi marta ${resume.idx + 1}-ekrangacha kelgansiz. Javoblaringiz saqlangan.`, `В прошлый раз вы дошли до ${resume.idx + 1}-го экрана. Ответы сохранены.`)}</p>
+    </div>
+  );
+}
+
 // ============================================================
-//  PG-2 MATNLARI — AVTO: feedback/F-1029-02-mentor-kurs/dev/pg2-matn.py (manba: 08-PostgreSQL2-mentor-v1.md)
+//  PG-2 MATNLARI — AVTO: feedback/F-1029-02-mentor-kurs/dev/pg2-matn.py (manba: 08-PostgreSQL2-mentor-v2.md, M41)
 //  QO'LDA TAHRIRLANMAYDI: matn MD'da o'zgaradi, keyin skript qayta yurgiziladi.
 // ============================================================
 const MDT = {
@@ -788,33 +913,33 @@ const MDT = {
   "type": "Lesson",
   "kicker": "Kirish",
   "eyebrow": "Mentor kursi · PostgreSQL",
-  "title": "Jadval tayyor. Endi uni boshqaramiz — PostgreSQL terminalida va Express ichida.",
+  "title": "Jadval tayyor. Endi uni boshqaramiz — PostgreSQL terminalida va Express ichida",
   "seg": [
    [
     "a",
-    "PostgreSQL-1 da jadval yaratdingiz — bugun undagi ma'lumotni <b>to'rt buyruq bilan boshqaramiz</b>",
+    "PostgreSQL-1 da jadval yaratdingiz — bugun undagi ma'lumotni <b>to'rt buyruq bilan boshqarasiz</b>",
     "Assalomu alaykum. Oldingi darsda PostgreSQL'ni o'rnatdingiz, jadval yaratdingiz va bog'ladingiz. Bugun jadvaldagi ma'lumotni boshqaramiz: qo'shish, ko'rish, o'zgartirish va o'chirish. Buni CRUD deyishadi, uning nimaligini keyingi ekranda aniq ko'ramiz."
    ],
    [
     "b",
-    "Avval PostgreSQL terminalida qo'lda: o'quvchi m4-06 dagi <b>do'konning o'zi bilan</b>",
-    "Avval bu buyruqlarni PostgreSQL terminalida qo'lda yozamiz. Misol o'quvchi m4-06 darsidagi do'konning aynan o'zi: klaviatura, sichqoncha, quloqchin. Sinfda o'quvchi ekranda ko'radigan narsani siz bazada ko'rgan bo'lasiz."
+    "Avval buyruqlar terminalda — va har birining <b>ichida nima bo'lishi</b>: son, tartib, tranzaksiya",
+    "Avval buyruqlarni terminalda qo'lda yozamiz va har birining ichida nima bo'lishini ko'ramiz: javobdagi son nimani sanaydi, nega qatorlar tartibi o'zgaradi, tranzaksiya ichida baza nima qiladi. Misolimiz kichik do'kon: klaviatura, sichqoncha, quloqchin, kolonka."
    ],
    [
     "c",
-    "Keyin o'sha so'rovlar <b>Express ichida</b> — o'quvchi m4-08 da AvtoIjara serverini quradi",
-    "Keyin xuddi shu so'rovlarni Express serveri ichiga qo'yamiz. O'quvchi m4-08 darsida AvtoIjara uchun server quradi, kodini Gemini yozadi. Siz bu serverni o'zingiz ishga tushirasiz, ataylab buzasiz va tuzatasiz."
+    "Keyin o'sha so'rovlar Express ichida: <b><code>Pool</code> nima, nega <code>$1</code></b>, server nega 500 beradi",
+    "Keyin xuddi shu so'rovlarni Express serveri ichiga qo'yamiz. Pool nimaligini, nega qiymatlar dollar bir bilan berilishini, server qachon va nega besh yuz qaytarishini o'zingiz sinab ko'rasiz. Serverni ataylab buzamiz va tuzatamiz."
    ],
    [
     "d",
-    "Olti bosqich, to'rt amaliyot. <b>Shoshilmang</b>: ustoz gapirib bo'lgach Davom ochiladi",
-    "Dars olti bosqichdan iborat, orasida to'rtta amaliyot bor. Oxirida ikki o'quvchi darsini qanday o'tishni ko'ramiz. Shoshilmang: har ekranni boshidan eshitish va matnini o'qish mumkin. Ustoz gapirib bo'lgach Davom ochiladi. Boshlaymiz."
+    "Olti bosqich, to'rt amaliyot; oxirida <b>ikki ekran sinfga tayyorgarlik</b>. Shoshilmang",
+    "Dars olti bosqichdan iborat, orasida to'rtta amaliyot bor. Oxirgi ikki ekran sinfga tayyorgarlik: o'quvchi darslari xaritasi va o'quvchilar xato qiladigan joylar. Shoshilmang: har ekranni boshidan eshitish va matnini o'qish mumkin. Ustoz gapirib bo'lgach Davom ochiladi. Boshlaymiz."
    ]
   ]
  },
  "2": {
   "type": "Lesson",
-  "kicker": "1-bosqich · CRUD PostgreSQL terminalida",
+  "kicker": "1-bosqich · CRUD terminalida",
   "title": "CRUD — ma'lumot bilan qilinadigan to'rt amal: bazada buyruq, serverda endpoint",
   "seg": [
    [
@@ -825,50 +950,50 @@ const MDT = {
    [
     "b",
     "PostgreSQL'da har amalning <b>o'z buyrug'i bor</b>: <code>INSERT</code>, <code>SELECT</code>, <code>UPDATE</code>, <code>DELETE</code>",
-    "PostgreSQL'da har amalning o'z buyrug'i bor. Yaratish insert, o'qish select, o'zgartirish update, o'chirish esa delete. Har buyruqdan keyin baza qisqa javob qaytaradi, masalan insert nol bir yoki update bir. Bu javobni o'qishni bugun alohida o'rganamiz."
+    "PostgreSQL'da har amalning o'z buyrug'i bor: insert, select, update va delete. Siz bilgan Mongoose'da bular create, find, updateOne va deleteOne edi. Ma'nosi bir xil, faqat yozilishi boshqa. Har buyruqdan keyin baza qisqa javob qaytaradi, masalan update bir. Mongo'da uning o'rnida matchedCount bir chiqardi."
    ],
    [
     "c",
     "Serverda xuddi shu to'rt amal <b>endpoint bo'ladi</b>: <code>POST</code>, <code>GET</code>, <code>PUT</code>, <code>DELETE</code>",
-    "Serverda xuddi shu to'rt amal endpoint bo'ladi. Yaratish POST, o'qish GET, o'zgartirish PUT, o'chirish DELETE. Har endpoint ichida o'sha SQL buyrug'i turadi. Postman javobida esa status chiqadi: yaratilganda ikki yuz bir, qolganlarida ikki yuz."
+    "Serverda xuddi shu to'rt amal endpoint bo'ladi. Yaratish POST, o'qish GET, o'zgartirish PUT, o'chirish DELETE. Har endpoint ichida o'sha SQL buyrug'i turadi. Javobda status chiqadi: yaratilganda ikki yuz bir, qolganlarida ikki yuz."
    ],
    [
     "d",
-    "Xulosa: har amalning bazada bitta buyrug'i, serverda <b>bitta endpoint'i bor</b>",
-    "Xulosa: CRUD to'rtta amaldan iborat. Har amalning PostgreSQL'da bitta buyrug'i va serverda bitta endpoint'i bor. Demak, bugun avval buyruqlarni PostgreSQL terminalida qo'lda yozamiz, keyin xuddi shularni Express serveri ichiga qo'yamiz."
+    "Xulosa: har amalning bazada <b>bitta buyrug'i</b>, serverda bitta endpoint'i bor",
+    "Xulosa: CRUD to'rtta amal. Har amalning PostgreSQL'da bitta buyrug'i va serverda bitta endpoint'i bor. Bugun avval buyruqlarni terminalda qo'lda yozamiz va ichini ko'ramiz, keyin xuddi shularni Express serveri ichiga qo'yamiz."
    ]
   ]
  },
  "3": {
   "type": "Lesson",
-  "kicker": "1-bosqich · CRUD PostgreSQL terminalida",
-  "title": "products — o'quvchi darsidagi jadval aynan",
+  "kicker": "1-bosqich · CRUD terminalida",
+  "title": "products — to'rt ustun, to'rt mahsulot; id ni baza o'zi beradi",
   "seg": [
    [
     "a",
-    "O'quvchi m4-06 da <b>shu jadvalni ko'radi</b>: id, nom, narx va qoldiq",
-    "Jadvaldan boshlaymiz. O'quvchi m4-06 darsida aynan shu jadvalni ko'radi. Uning nomi products, unda to'rtta ustun bor: id o'zi o'sadi, nomi matn, narxi va qoldig'i esa butun son. Siz shop degan bazada uni PostgreSQL terminalida yaratasiz."
+    "Mongo'da baza va kolleksiya o'zi paydo bo'lardi — bu yerda <b>avval <code>CREATE DATABASE</code>, keyin jadval</b>",
+    "Siz bilgan Mongoose'da connect yetardi: baza ham, kolleksiya ham birinchi create'da o'zi paydo bo'lardi. PostgreSQL'da avval create database bilan baza, keyin create table bilan jadval yaratiladi. Jadval products, to'rt ustun: id o'zi o'sadi, name matn, price va stock butun son. Hozircha ustunlarda qoida yo'q, bu ataylab."
    ],
    [
     "b",
-    "Bitta <code>INSERT</code> bilan uch qator; javobdagi oxirgi raqam — <b>qo'shilgan qatorlar soni</b>",
-    "Bitta insert bilan uchta mahsulot qo'shamiz, xuddi o'quvchi darsidagidek. Baza javobi insert, nol, uch. Oxirgi raqam nechta qator qo'shilganini aytadi. Keyin to'rtinchi mahsulotni qo'shamiz: Mishka, narxi ellik ming so'm."
+    "Bitta <code>INSERT</code> bilan to'rt qator; javob <code>INSERT 0 4</code> — <b>oxirgi raqam qo'shilgan qatorlar soni</b>",
+    "Bitta insert bilan to'rtta mahsulot qo'shamiz. Baza javobi insert, nol, to'rt. Oxirgi raqam nechta qator qo'shilganini aytadi. O'rtadagi nol eski versiyalardan qolgan, u hech narsani bildirmaydi, unga qaramang."
    ],
    [
     "c",
-    "<code>SELECT *</code> — hamma ustun; <code>id</code> larni biz yozmadik, <b>baza o'zi berdi</b>",
-    "Select yulduzcha hamma ustunni ko'rsatadi. id ustunini biz yozmadik, baza o'zi bir, ikki, uch, to'rt deb berdi. O'quvchi «id'ni qayerdan oldik?» desa, javob shu: serial."
+    "<code>SELECT *</code> — hamma ustun; <code>id</code> larni biz yozmadik, <b>baza o'zi berdi</b>: <code>SERIAL</code>",
+    "Select yulduzcha hamma ustunni ko'rsatadi. id ustunini biz yozmadik, baza o'zi bir, ikki, uch, to'rt deb berdi. Buni serial qiladi: ichida alohida hisoblagich bor, har yangi qatorga keyingi sonni beradi. Qator o'chirilsa ham hisoblagich orqaga qaytmaydi."
    ],
    [
     "d",
-    "Xulosa: jadval va ma'lumot o'quvchi darsidagidek — lekin ustunlarda <b><code>NOT NULL</code> yo'q</b>",
-    "Xulosa: bazangizda o'quvchi darsidagi do'konning aynan o'zi bor. Bitta narsani eslab qoling: bu jadvalda not null qoidasi yo'q. Nima bo'lishini uchinchi bosqichda ko'ramiz."
+    "Xulosa: jadval tayyor — <b>hech qanday qoidasiz</b>; baza faqat yozilgan qoidani qo'riqlaydi",
+    "Xulosa: bazangizda to'rt mahsulotli do'kon bor. Bitta narsani eslab qoling: bu jadvalda hozircha not null ham, boshqa qoida ham yo'q. Baza faqat yozilgan qoidani qo'riqlaydi. Nima bo'lishini uchinchi bosqichda o'z ko'zingiz bilan ko'rasiz."
    ]
   ]
  },
  "4": {
   "type": "Lesson",
-  "kicker": "1-bosqich · CRUD PostgreSQL terminalida",
+  "kicker": "1-bosqich · CRUD terminalida",
   "title": "WHERE — minglab qatordan faqat keraklisi",
   "seg": [
    [
@@ -879,7 +1004,7 @@ const MDT = {
    [
     "b",
     "<code>WHERE price &lt; 100000</code> — yuz mingdan arzonlari: <b>uchta mahsulot</b>",
-    "Minglab mahsulotdan faqat keraklisini olish uchun where yoziladi. Narxi yuz mingdan kam bo'lganlarini so'raymiz: sichqoncha, quloqchin va mishka, ya'ni uchta qator. O'quvchi darsida bu filtr tugma bilan, siz esa uni so'rovda yozdingiz."
+    "Minglab mahsulotdan faqat keraklisini olish uchun where yoziladi. Narxi yuz mingdan kam bo'lganlarini so'raymiz: sichqoncha, quloqchin va kolonka, uchta qator. Where har qatorni shartga solishtiradi va faqat to'g'ri chiqqanlarini qaytaradi. Mongoose'da bu find ichidagi dollar lt shart edi."
    ],
    [
     "c",
@@ -888,58 +1013,86 @@ const MDT = {
    ],
    [
     "d",
-    "Xulosa: <code>SELECT</code> faqat o'qiydi; <b><code>WHERE</code> qatorlarni tanlaydi</b>",
-    "Xulosa: select hech narsani o'zgartirmaydi, faqat o'qiydi. Where qaysi qatorlar kerakligini aytadi. Bu ikkisini yaxshi tushungan o'quvchi update va delete'ni ham oson tushunadi, chunki ularda ham aynan shu where ishlaydi."
+    "Xulosa: <code>SELECT</code> faqat o'qiydi; <b><code>WHERE</code> qatorlarni tanlaydi</b> — <code>UPDATE</code> va <code>DELETE</code>da ham aynan shu",
+    "Xulosa: select hech narsani o'zgartirmaydi, faqat o'qiydi. Where qaysi qatorlar kerakligini aytadi. Keyingi ekranda update va delete'ni ko'rasiz: ularda ham aynan shu where ishlaydi, faqat endi u qaysi qatorlar o'zgarishini hal qiladi."
    ]
   ]
  },
  "5": {
   "type": "Lesson",
-  "kicker": "1-bosqich · CRUD PostgreSQL terminalida",
-  "title": "UPDATE 1, DELETE 1 — javobdagi son nechta qator tegilganini aytadi",
+  "kicker": "1-bosqich · CRUD terminalida",
+  "title": "UPDATE 1, DELETE 1, UPDATE 0 — javobdagi son nechta qator tegilganini aytadi",
   "seg": [
    [
     "a",
     "Klaviatura arzonladi: <code>UPDATE … WHERE id = 1</code> — javob <b><code>UPDATE 1</code></b>, bitta qator",
-    "O'quvchi darsidagi voqea: klaviatura narxi to'qson to'qqiz mingga tushdi. Buyruq shunday: update, set price, where id bir. Baza javobi update bir, ya'ni bitta qator o'zgardi. Javobdagi son doim nechta qator tegilganini aytadi."
+    "Klaviatura narxi to'qson to'qqiz mingga tushdi. Buyruq: update products set price, where id bir. Baza javobi update bir: bitta qator o'zgardi. Javobdagi son doim nechta qator tegilganini aytadi, bu update'da ham, delete'da ham shunday."
    ],
    [
     "b",
     "Quloqchin sotuvdan chiqdi: <code>DELETE … WHERE id = 3</code> — <b><code>DELETE 1</code></b>",
-    "Quloqchin sotuvdan chiqdi, uni o'chiramiz: delete from products, where id uch. Baza javobi delete bir. Endi select bilan jadvalni ko'ramiz."
+    "Quloqchin sotuvdan chiqdi, uni o'chiramiz: delete from products, where id uch. Baza javobi delete bir. Qator butunlay ketdi, uning id'si esa qayta ishlatilmaydi."
    ],
    [
     "c",
-    "Diqqat: Klaviatura ro'yxat oxiriga tushdi — <code>ORDER BY</code> bo'lmasa <b>tartib kafolatlanmaydi</b>",
-    "Natijaga qarang: klaviatura birinchi emas, oxirida turibdi. Bu xato emas. Order by yozilmasa, baza qatorlarni istalgan tartibda qaytarishi mumkin. Sinfda o'quvchi «mahsulot o'rni o'zgardi» desa, javob shu. Tartib kerak bo'lsa, oxiriga order by id yoziladi."
+    "Bunday <code>id</code> yo'q bo'lsa — <b>xato emas</b>, <code>UPDATE 0</code> va <code>DELETE 0</code>",
+    "To'qson to'qqizinchi mahsulotni o'zgartirib ko'ramiz. Xato chiqmaydi, javob update nol. Delete ham nol qaytaradi. Baza «bunday qator yo'q» demaydi: where hech qaysi qatorga mos kelmadi, shuning uchun hech narsaga tegmadi. Mongo'dagi matchedCount nol ham xuddi shu. Bu xato emas, bu javob."
    ],
    [
     "d",
-    "Bunday <code>id</code> yo'q bo'lsa — <b>xato emas</b>, <code>UPDATE 0</code> va <code>DELETE 0</code>",
-    "To'qson to'qqizinchi mahsulotni o'zgartirib ko'ramiz. Xato chiqmaydi, javob update nol. Delete ham nol qaytaradi. Baza «bunday qator yo'q» deb aytmaydi, shunchaki hech narsaga tegmaydi. Shuning uchun javobdagi sonni o'qish kerak."
+    "<code>RETURNING</code> — baza o'zgargan <b>qatorning o'zini qaytaradi</b>; mos qator bo'lmasa <code>(0 rows)</code>",
+    "Bitta klaviatura sotildi: qoldiqni bittaga kamaytiramiz. Yangi qoldiq nechta bo'lganini siz hisoblamaysiz, buyruq oxiriga returning yozasiz va baza o'zgargan qatorni qaytaradi: klaviatura, yetti. To'qson to'qqizinchi id bilan returning nol qator beradi. Serverda aynan shu returning ishlatiladi."
    ],
    [
     "e",
     "Xulosa: har <code>UPDATE</code> va <code>DELETE</code>dan keyin <b>javobdagi sonni o'qing</b>",
-    "Xulosa: update va delete'dan keyin javobdagi sonni o'qing. Bir bo'lsa, kutganingiz bo'ldi. Nol bo'lsa, where hech narsaga mos kelmadi. Kutilmagan katta son bo'lsa, where noto'g'ri yoki umuman yozilmagan. Buni keyingi bosqichda ko'ramiz."
+    "Xulosa: update va delete'dan keyin javobdagi sonni o'qing. Bir bo'lsa, kutganingiz bo'ldi. Nol bo'lsa, where hech narsaga mos kelmadi. Kutilmagan katta son bo'lsa, where noto'g'ri yoki umuman yozilmagan. Buni ikkinchi bosqichda xavfsiz ko'ramiz."
    ]
   ]
  },
  "6": {
+  "type": "Lesson",
+  "kicker": "1-bosqich · ichida nima bo'ladi",
+  "title": "UPDATEdan keyin qator joyi o'zgardi — baza yangilangan qatorni yangi joyga yozadi",
+  "seg": [
+   [
+    "a",
+    "<code>SELECT *</code> — Klaviatura <b>ro'yxat oxiriga tushdi</b>. Bu xato emas, lekin sababini bilish kerak",
+    "Oldingi ekrandagi buyruqlardan keyin select qilamiz va natijaga qarang: uchta mahsulot qoldi, klaviatura esa birinchi emas, oxirida turibdi. Bu xato emas. Lekin «tasodif» deb qo'ya qolmaymiz: nega shunday bo'lganini bilish kerak, chunki bu savol albatta beriladi."
+   ],
+   [
+    "b",
+    "Sabab: PostgreSQL yangilangan qatorni <b>joyida o'zgartirmaydi</b> — yangi nusxasini bo'sh joyga yozadi",
+    "Sabab bazaning ichida. PostgreSQL update'da qatorni joyida o'zgartirmaydi: eski nusxani «eskirgan» deb belgilaydi, yangisini fayldagi bo'sh joyga, bu yerda oxiriga yozadi. Eski nusxa keyinroq tozalanadi. Select yulduzcha esa qatorlarni fayldagi tartibda o'qiydi."
+   ],
+   [
+    "c",
+    "Isbot: <code>ctid</code> — qatorning fayldagi manzili; Klaviatura endi <code>(0,6)</code>: <b>ikki o'zgarish — ikki yangi nusxa</b>",
+    "Buni ko'rsa bo'ladi. Har qatorning ctid degan yashirin ustuni bor: bu uning fayldagi manzili, sahifa va o'rin. Select ctid qilsak, klaviatura nol vergul olti, ya'ni oltinchi o'rinda. Klaviatura ikki marta o'zgardi: avval narxi, keyin qoldig'i. Har safar baza yangi nusxa yozdi: beshinchi, keyin oltinchi o'rinda. Shuning uchun u oxirida chiqdi."
+   ],
+   [
+    "d",
+    "Xulosa: tartib kerak bo'lsa — <b><code>ORDER BY id</code></b>; usiz tartib hech qachon kafolatlanmaydi",
+    "Xulosa: order by yozilmasa, baza qatorlarni fayldagi tartibda beradi, bu tartib esa har update'dan keyin o'zgarishi mumkin. Tartib kerak bo'lsa, oxiriga order by id yoziladi, shunda klaviatura yana birinchi. «Mahsulot o'rni o'zgardi» degan savolning javobi shu: order by yo'q edi."
+   ]
+  ]
+ },
+ "7": {
   "type": "MCRetry",
   "kicker": "Tekshiruv 1",
   "eyebrow": "Tekshiruv · 1 / 4",
-  "title": "O'quvchi: «UPDATE products SET price = 1 WHERE id = 99; yozdim — xato chiqmadi, UPDATE 0». Nima bo'ldi?",
-  "q": "Javobdagi sonni ko'rdingiz, tekshirib olaylik. Birinchi tekshiruv. O'quvchi to'qson to'qqizinchi mahsulot narxini o'zgartirmoqchi bo'ldi. Xato yo'q, javob: update nol. Nima bo'ldi? Variantni tanlang.",
-  "ok": "To'g'ri. Where id to'qson to'qqiz hech qanday qatorga mos kelmadi, shuning uchun nol qator o'zgardi. Baza buni xato deb hisoblamaydi. O'quvchiga ayting: avval select bilan bunday id bor-yo'qligini tekshirsin. Demak, update nol xato emas: bu where hech qaysi qatorga mos kelmaganini bildiradi.",
-  "okShort": "<code>UPDATE 0</code> — <code>WHERE</code> hech bir qatorga mos kelmadi. Xato emas: avval <code>SELECT … WHERE id = 99</code> bilan tekshiring.",
+  "title": "Buyruq xatosiz o'tdi, javob UPDATE 0. Bu nimani bildiradi?",
+  "q": "Javobdagi sonni ko'rdingiz, tekshirib olaylik. Birinchi tekshiruv. Ekrandagi terminalda to'qson to'qqizinchi mahsulot narxi o'zgartirilmoqchi bo'ldi. Xato yo'q, javob: update nol. Bu nimani bildiradi? Variantni tanlang.",
+  "ok": "To'g'ri. Where id to'qson to'qqiz hech qanday qatorga mos kelmadi, shuning uchun nol qator o'zgardi. Baza buni xato deb hisoblamaydi. Ishonch hosil qilish uchun select bilan bunday id bor-yo'qligini tekshiring, ekranda shu select turibdi. Demak, update nol xato emas: where hech qaysi qatorga mos kelmaganini bildiradi.",
+  "okShort": "<code>UPDATE 0</code> — <code>WHERE</code> hech bir qatorga mos kelmadi. Xato emas: <code>SELECT … WHERE id = 99</code> ham bo'sh qaytaradi.",
   "hint": "Javobdagi son nimani sanaydi? WHERE qaysi qatorni topishi kerak edi?",
+  "demak": "<code>UPDATE 0</code> xato emas: <code>WHERE</code> hech qaysi qatorga mos kelmaganini bildiradi.",
   "correct": 0,
   "opts": [
-   "id = 99 qator yo'q — WHERE hech narsaga mos kelmadi",
-   "Narxni o'zgartirishga ruxsat yo'q",
-   "Jadval bo'shab qoldi",
-   "Narx o'zgardi, lekin hali saqlanmadi"
+   "id = 99 yo'q — WHERE hech qatorga mos kelmadi",
+   "Narxni o'zgartirishga foydalanuvchida ruxsat yo'q",
+   "Jadval bo'shab qoldi — qator o'chirildi",
+   "Narx o'zgardi, lekin hali COMMIT bo'lmadi"
   ],
   "wrong": {
    "1": "Ruxsat yo'q bo'lsa ERROR:  permission denied for table products chiqardi; bu yerda xato yo'q.",
@@ -947,80 +1100,204 @@ const MDT = {
    "3": "Tranzaksiyasiz UPDATE darhol saqlanadi; son esa nechta qator tegilganini aytadi."
   }
  },
- "7": {
+ "8": {
   "type": "Practice",
   "kicker": "Amaliyot 1 / 4",
   "eyebrow": "Hozir o'zingizda · 10–15 daqiqa",
-  "title": "shop bazasi va CRUD — o'quvchi darsidagi to'rt voqea",
+  "title": "shop bazasi va CRUD — to'rt buyruq, har javobdagi son",
   "seg": [
    [
     "a",
-    "Endi siz: o'quvchi darsidagi to'rt voqeani <b>o'z bazangizda bajarasiz</b>",
-    "Endi navbat sizga. O'quvchi darsidagi to'rt voqeani o'z bazangizda bajarasiz: jadval yaratasiz, mahsulot qo'shasiz, filtrlaysiz, keyin narxni o'zgartirib, bitta mahsulotni o'chirasiz. Bunga o'n-o'n besh daqiqa ketadi."
+    "Endi siz: <b>o'z bazangizda</b> jadval, to'rt mahsulot, ikki filtr, narx va o'chirish",
+    "Endi navbat sizga. O'z bazangizda shu ishlarni qilasiz: jadval yaratasiz, to'rt mahsulot qo'shasiz, ikki filtr yozasiz, keyin narxni o'zgartirib, bitta mahsulotni o'chirasiz. Bunga o'n-o'n besh daqiqa ketadi."
    ],
    [
     "b",
     "1–3-qadam: baza, jadval, mahsulotlar va <b>ikki filtr</b>",
-    "Birinchi qadamda shop bazasi va products jadvalini yaratasiz. Ikkinchisida to'rtta mahsulot qo'shasiz. Uchinchisida ikkita filtr yozasiz: arzonlarini va tugayotganlarini. Har buyruqdan keyin javob satrini o'qing."
+    "Birinchi qadamda shop bazasi va products jadvalini yaratasiz. Ikkinchisida to'rtta mahsulotni bitta insert bilan qo'shasiz va javobdagi to'rtni ko'rasiz. Uchinchisida ikkita filtr yozasiz: arzonlarini va tugayotganlarini. Har buyruqdan keyin javob satrini o'qing."
    ],
    [
     "c",
-    "4-qadam: narx va o'chirish; isbot — oxirgi <code>SELECT</code>dagi <b>qatorlar soni</b>",
-    "To'rtinchi qadamda klaviatura narxini o'zgartiring va quloqchinni o'chiring, keyin select yulduzcha. Isbot maydoniga oxirgi select natijasi ostidagi qatorlar sonini yozing."
+    "4-qadam: narx va o'chirish; isbot — <b>oxirgi <code>SELECT</code>dagi qatorlar soni</b>",
+    "To'rtinchi qadamda klaviatura narxini o'zgartiring, quloqchinni o'chiring va select yulduzcha qiling. Klaviatura qayerda turganiga e'tibor bering. Isbot maydoniga oxirgi select natijasi ostidagi qatorlar sonini yozing."
    ],
    [
     "d",
     "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
     "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin siz CRUD'ning to'rt buyrug'ini o'z bazangizda yozgan va har javobdagi sonni o'qigan bo'lasiz."
    ]
+  ],
+  "steps": [
+   {
+    "t": "Baza va jadval",
+    "cmds": [
+     "psql -U postgres",
+     "CREATE DATABASE shop;",
+     "\\c shop",
+     "CREATE TABLE products (id SERIAL PRIMARY KEY, name TEXT, price INTEGER, stock INTEGER);"
+    ],
+    "exp": "CREATE DATABASE · CREATE TABLE"
+   },
+   {
+    "t": "Mahsulotlar",
+    "cmds": [
+     "INSERT INTO products (name, price, stock) VALUES ('Klaviatura', 120000, 8), ('Sichqoncha', 75000, 15), ('Quloqchin', 95000, 5), ('Kolonka', 50000, 10);"
+    ],
+    "exp": "INSERT 0 4"
+   },
+   {
+    "t": "Filtrlar",
+    "cmds": [
+     "SELECT * FROM products WHERE price < 100000;",
+     "SELECT * FROM products WHERE stock < 6;"
+    ],
+    "exp": "3 qator · 1 qator (Quloqchin)"
+   },
+   {
+    "t": "Narx va o'chirish",
+    "cmds": [
+     "UPDATE products SET price = 99000 WHERE id = 1;",
+     "DELETE FROM products WHERE id = 3;",
+     "SELECT * FROM products;"
+    ],
+    "exp": "UPDATE 1 · DELETE 1 · (3 rows), Klaviatura oxirida"
+   }
+  ],
+  "proof": {
+   "label": "Oxirgi SELECT * natijasidagi qatorlar soni",
+   "placeholder": "natija ostidagi sonni yozing",
+   "re": "^\\s*\\(?\\s*3\\b",
+   "flags": "",
+   "wrong": "To'rt mahsulotdan bittasi o'chirilgach nechta qoladi? Natija ostidagi qavsdagi sonni yozing."
+  },
+  "trouble": [
+   [
+    "ERROR:  database \"shop\" already exists",
+    "baza oldin yaratilgan — \\c shop"
+   ],
+   [
+    "ERROR:  relation \"products\" does not exist",
+    "boshqa bazadasiz (prompt postgres=#) — \\c shop"
+   ],
+   [
+    "INSERT 0 4 ikki marta",
+    "mahsulotlar ikki marta qo'shilgan — id lar 1–8; 4-qadamda idni SELECT bo'yicha tanlang"
+   ],
+   [
+    "UPDATE 0 / DELETE 0",
+    "bunday id yo'q — avval SELECT * bilan idni ko'ring"
+   ],
+   [
+    "Klaviatura oxirida",
+    "xato emas — 6-ekran: ORDER BY id bilan tartiblang"
+   ],
+   [
+    "ERROR:  syntax error at or near \"…\"",
+    "^ ko'rsatgan joydan oldin vergul, qavs yoki tirnoq tushib qolgan"
+   ]
   ]
  },
- "8": {
+ "9": {
   "type": "Lesson",
-  "kicker": "2-bosqich · xavfsiz sinash",
+  "kicker": "2-bosqich · tranzaksiya",
   "title": "WHERE unutilsa — UPDATE 3, DELETE 3. Xavfsiz sinash: BEGIN … ROLLBACK",
   "seg": [
    [
     "a",
-    "O'quvchi darsi ogohlantiradi: <code>WHERE</code>'siz — <b>hamma qator</b>. Buni xavfsiz ko'ramiz",
-    "O'quvchi darsida qizil ogohlantirish bor: update yoki delete'da where unutilsa, hamma qator o'zgaradi. Siz buni o'z ko'zingiz bilan ko'rishingiz kerak, lekin bazani buzmasdan. Usul: avval begin, ya'ni tranzaksiya ochamiz."
+    "<code>WHERE</code>'siz <code>UPDATE</code> yoki <code>DELETE</code> — <b>hamma qator</b>. Buni ko'rish kerak, lekin bazani buzmasdan",
+    "Javobdagi son kutilmagan katta bo'lsa, where yo'q edi, degandim. Buni o'z ko'zingiz bilan ko'rishingiz kerak, lekin bazani buzmasdan. Usul: avval begin, ya'ni tranzaksiya ochamiz. Undan keyingi hamma narsa vaqtincha bo'ladi."
    ],
    [
     "b",
-    "<code>WHERE</code>'siz <code>UPDATE</code> — <b><code>UPDATE 3</code></b>: hamma mahsulot to'qson to'qqiz ming",
-    "Begin'dan keyin where'siz update. Baza javobi update uch. Select qilsak, hamma mahsulot to'qson to'qqiz ming so'm: sichqoncha ham, mishka ham. Mana o'quvchi darsidagi ogohlantirishning o'zi."
+    "<code>WHERE</code>'siz <code>UPDATE</code> — <code>UPDATE 3</code>: <b>hamma mahsulot to'qson to'qqiz ming</b>",
+    "Begin'dan keyin where'siz update. Baza javobi update uch. Select qilsak, hamma mahsulot to'qson to'qqiz ming so'm: sichqoncha ham, kolonka ham. Bitta unutilgan where butun narx ro'yxatini buzdi. Mongo'dan kelganlar aynan shu yerda xato qiladi: u yerda updateOne bitta hujjatga tegardi, bu yerda where yo'q bo'lsa hamma qator o'zgaradi."
    ],
    [
     "c",
     "<code>WHERE</code>'siz <code>DELETE</code> — <code>DELETE 3</code>, <b>jadval bo'sh</b>",
-    "Undan ham yomoni where'siz delete. Baza javobi delete uch, select esa nol qator qaytaradi. Haqiqiy do'konda bu butun katalog yo'qolgani."
+    "Undan ham yomoni where'siz delete. Baza javobi delete uch, select esa nol qator qaytaradi. Haqiqiy do'konda bu butun katalog yo'qolgani. Lekin biz tranzaksiya ichidamiz."
    ],
    [
     "d",
-    "<code>ROLLBACK</code> — <b>hammasi joyida</b>: tranzaksiya ichidagi o'zgarish bekor bo'ldi",
+    "<code>ROLLBACK</code> — hammasi joyida: <b>tranzaksiya ichidagi o'zgarish bekor bo'ldi</b>",
     "Endi rollback yozamiz va select qilamiz: uchala mahsulot joyida, narxlari ham eski. Tranzaksiya ichida qilingan hamma narsa bekor bo'ldi. PostgreSQL-1 da tranzaksiya do'konni himoya qilgan edi, bu yerda u sizning sinov maydoningiz."
    ],
    [
     "e",
     "Xulosa: xavfli <code>UPDATE</code>/<code>DELETE</code>ni avval <b><code>BEGIN</code> ichida sinang</b>, <code>SELECT</code> bilan ko'ring",
-    "Xulosa: xavfli update yoki delete'ni avval begin ichida yurgizing, select bilan natijani ko'ring. To'g'ri bo'lsa commit, noto'g'ri bo'lsa rollback. Sinfda o'quvchiga ham shuni o'rgating: bu bitta qator, lekin butun jadvalni saqlab qoladi."
+    "Xulosa: xavfli update yoki delete'ni avval begin ichida yurgizing, select bilan natijani ko'ring. To'g'ri bo'lsa commit, noto'g'ri bo'lsa rollback. Bu bitta qator, lekin butun jadvalni saqlab qoladi. Keyingi ekranda tranzaksiya ichida baza aslida nima qilishini ko'ramiz."
    ]
   ]
  },
- "9": {
+ "10": {
+  "type": "Lesson",
+  "kicker": "2-bosqich · ichida nima bo'ladi",
+  "title": "Har buyruq o'zi saqlanadi; BEGINdan keyin — faqat sizning seansingizda, COMMITgacha",
+  "seg": [
+   [
+    "a",
+    "Oddiy holatda PostgreSQL <b>autocommit</b>da: har buyruq bajarilishi bilan saqlanadi",
+    "Oddiy holatda PostgreSQL autocommit rejimida ishlaydi: har buyruq bajarilishi bilan darhol saqlanadi, uni qaytarib bo'lmaydi. Birinchi bosqichdagi update va delete'lar aynan shunday saqlandi. Shuning uchun where'siz delete haqiqiy bazada halokat."
+   ],
+   [
+    "b",
+    "<code>BEGIN</code>dan keyin prompt <code>shop=*#</code> — <b>yulduzcha: tranzaksiya ochiq</b>, o'zgarish faqat sizga ko'rinadi",
+    "Begin yozganingizda prompt o'zgaradi: teng, yulduzcha, panjara. Yulduzcha tranzaksiya ochiqligini bildiradi. Endi o'zgarishlar faqat sizning seansingizda ko'rinadi. Sinab ko'rdik: A seansida klaviaturaga chegirma qildik, sakson to'qqiz ming. B seansi hali to'qson to'qqiz mingni ko'radi. Commit'dan keyingina B yangi narxni ko'rdi."
+   ],
+   [
+    "c",
+    "Tranzaksiya ichida xato chiqsa — prompt <code>shop=!#</code>: <b>aborted</b>, keyingi buyruqlar rad etiladi",
+    "Tranzaksiya ichida biror buyruq xato bersa, prompt undov belgisiga o'zgaradi va baza «current transaction is aborted» deydi: keyingi buyruqlar bajarilmaydi, hatto oddiy select ham. Bu holatdan faqat rollback chiqaradi. Commit yozsangiz ham baza rollback qiladi, javobida shunday yozadi."
+   ],
+   [
+    "d",
+    "Xulosa: <code>BEGIN</code> — vaqtincha, <code>COMMIT</code> — saqla, <code>ROLLBACK</code> — bekor; <b><code>!#</code> ko'rsangiz — <code>ROLLBACK</code></b>",
+    "Xulosa: begin'dan keyin hamma narsa vaqtincha va faqat sizga ko'rinadi, commit saqlaydi, rollback bekor qiladi. Promptdagi yulduzcha tranzaksiya ochiqligini, undov belgisi xato bo'lganini aytadi. Undov belgisini ko'rsangiz, boshqa buyruq yozmang: rollback."
+   ]
+  ]
+ },
+ "11": {
+  "type": "Lesson",
+  "kicker": "2-bosqich · ichida nima bo'ladi",
+  "title": "Sotuv — ikki buyruq: qoldiqni kamaytirish va buyurtma yozish. Yo ikkalasi, yo hech biri",
+  "seg": [
+   [
+    "a",
+    "Do'konga qoida va ikkinchi jadval: <b><code>CHECK (stock &gt;= 0)</code></b> va <code>orders</code> — buyurtmalar",
+    "Tranzaksiya faqat sinov uchun emas. Do'konga qoida qo'shamiz: qoldiq manfiy bo'lmasin, check stock katta yoki teng nol. Va ikkinchi jadval: orders, buyurtmalar: qaysi mahsulot, nechta va qachon. Created at ustuniga default now yozdik, vaqtni baza o'zi qo'yadi."
+   ],
+   [
+    "b",
+    "Bitta sotuv — ikki buyruq: <code>UPDATE</code> qoldiqni kamaytiradi, <code>INSERT</code> buyurtma yozadi — <b><code>BEGIN … COMMIT</code> ichida</b>",
+    "Bitta sichqoncha sotildi. Bu ikki buyruq: qoldiqni bittaga kamaytirish va buyurtma yozish. Ikkalasi begin va commit orasida. Returning qoldiq o'n to'rt bo'lganini, buyurtma esa bir raqam va vaqt bilan yozilganini ko'rsatdi. Commit'dan keyin ikkalasi ham saqlandi."
+   ],
+   [
+    "c",
+    "O'n ikki kolonka so'raldi, bor-yo'g'i o'nta: <b><code>CHECK</code> rad etdi</b>, tranzaksiya aborted — <code>ROLLBACK</code>",
+    "Endi o'n ikkita kolonka so'raldi, omborda o'nta. Buyurtma yozildi, keyin update qoldiqni minus ikki qilmoqchi bo'ldi. Check rad etdi: new row violates check constraint stock nonneg. Tranzaksiya aborted. Rollback qilamiz: buyurtma ham yo'qoldi, qoldiq ham o'nta. Yolg'on buyurtma qolmadi."
+   ],
+   [
+    "d",
+    "Xulosa: bir ishga tegishli buyruqlar <b>bitta tranzaksiyada</b>; qoida bazada bo'lsa, yarim ish qolmaydi",
+    "Xulosa: bir ishga tegishli buyruqlar bitta tranzaksiyada bo'ladi: yo hammasi saqlanadi, yo hech biri. Buni atomik deyishadi. Qoida bazaning o'zida bo'lsa, kod xato qilsa ham yarim ish qolmaydi. PostgreSQL-1 dagi «oxirgi telefon» masalasining javobi aynan shu: tranzaksiya va qoida."
+   ]
+  ]
+ },
+ "12": {
   "type": "MCRetry",
   "kicker": "Tekshiruv 2",
   "eyebrow": "Tekshiruv · 2 / 4",
-  "title": "BEGIN; → DELETE FROM products; (DELETE 3) → ROLLBACK; → SELECT * FROM products;. Nima chiqadi?",
-  "q": "Xavfsiz sinashni ko'rdingiz, tekshirib olaylik. Ikkinchi tekshiruv. Begin, where'siz delete, javob delete uch. Keyin rollback va select. Jadvalda nima bor? Variantni tanlang.",
-  "ok": "To'g'ri. Delete tranzaksiya ichida edi, rollback uni bekor qildi. Uchala mahsulot joyida. Commit yozilmaguncha o'zgarish saqlanmaydi. Demak, begin va rollback xavfli buyruqni bazani buzmasdan sinash imkonini beradi.",
+  "title": "BEGIN; → DELETE FROM products; (DELETE 3) → ROLLBACK;. Endi SELECT * FROM products; nima qaytaradi?",
+  "q": "Tranzaksiya ichini ko'rdingiz, tekshirib olaylik. Ikkinchi tekshiruv. Ekranda: begin, where'siz delete, javob delete uch, keyin rollback. Endi select qilsak, jadvalda nima bor? Variantni tanlang.",
+  "ok": "To'g'ri. Delete tranzaksiya ichida edi, rollback uni bekor qildi. Uchala mahsulot joyida, ekranda select shuni ko'rsatdi. Commit yozilmaguncha hech qanday o'zgarish saqlanmaydi. Demak, begin va rollback xavfli buyruqni bazani buzmasdan sinash imkonini beradi.",
   "okShort": "<code>ROLLBACK</code> — tranzaksiya ichidagi hamma o'zgarish bekor: uch qator joyida.",
   "hint": "ROLLBACK tranzaksiya ichidagi o'zgarishlar bilan nima qiladi?",
+  "demak": "<code>COMMIT</code> yozilmaguncha tranzaksiya ichidagi o'zgarish saqlanmaydi; <code>ROLLBACK</code> hammasini bekor qiladi.",
   "correct": 2,
   "opts": [
-   "Nol qator — DELETE 3 bajarilgan edi",
-   "Faqat bitta qator — oxirgisi qaytadi",
-   "Uchala mahsulot — ROLLBACK o'chirishni bekor qildi",
+   "Nol qator — DELETE 3 allaqachon bajarilgan",
+   "Faqat bitta qator — oxirgisi qaytib keladi",
+   "Uchalasi — ROLLBACK o'chirishni bekor qildi",
    "ERROR — o'chirilgan jadvaldan o'qib bo'lmaydi"
   ],
   "wrong": {
@@ -1029,108 +1306,161 @@ const MDT = {
    "3": "DELETE qatorlarni o'chiradi, jadvalni emas; jadval doim joyida."
   }
  },
- "10": {
+ "13": {
   "type": "Practice",
   "kicker": "Amaliyot 2 / 4",
   "eyebrow": "Hozir o'zingizda · 5–10 daqiqa",
-  "title": "WHERE'siz UPDATEni xavfsiz sinang",
+  "title": "WHERE'siz UPDATEni xavfsiz sinang — promptdagi yulduzchani kuzating",
   "seg": [
    [
     "a",
     "Endi siz: <code>WHERE</code>'siz <code>UPDATE</code>ni o'z bazangizda, lekin <b>tranzaksiya ichida</b> qilasiz",
-    "Endi o'zingiz: where'siz update'ni o'z bazangizda qilasiz, lekin tranzaksiya ichida. Bunga besh-o'n daqiqa ketadi. Bu mashqni sinfda o'quvchilarga ham ko'rsatasiz."
+    "Endi o'zingiz: where'siz update'ni o'z bazangizda qilasiz, lekin tranzaksiya ichida. Bunga besh-o'n daqiqa ketadi. Bundan keyin har xavfli buyruqni shu usulda sinaysiz."
    ],
    [
     "b",
-    "1–2-qadam: <code>BEGIN</code>, <code>WHERE</code>'siz <code>UPDATE</code> va <code>SELECT</code> — <b>hamma narx bir xil</b>",
-    "Birinchi qadamda begin yozasiz. Ikkinchisida where'siz update qilib, select bilan hamma narx bir xil bo'lganini ko'rasiz. Commit yozmang."
+    "1–2-qadam: <code>BEGIN</code> (prompt <code>shop=*#</code>), <code>WHERE</code>'siz <code>UPDATE</code> va <code>SELECT</code> — <b>hamma narx bir xil</b>",
+    "Birinchi qadamda begin yozasiz va promptda yulduzcha paydo bo'lganini ko'rasiz. Ikkinchisida where'siz update qilib, select bilan hamma narx bir xil bo'lganini ko'rasiz. Commit yozmang."
    ],
    [
     "c",
     "3–4-qadam: <code>ROLLBACK</code> va <code>SELECT</code>; isbot — <b>klaviaturaning narxi</b>",
-    "Uchinchi qadamda rollback yozasiz, to'rtinchisida yana select qilasiz. Isbot maydoniga klaviaturaning hozirgi narxini yozing, rollback'dan keyingisini."
+    "Uchinchi qadamda rollback yozasiz, prompt oddiy holatga qaytadi. To'rtinchisida yana select qilasiz. Isbot maydoniga klaviaturaning hozirgi narxini yozing, rollback'dan keyingisini."
    ],
    [
     "d",
     "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
     "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, siz where'siz update qanday xavfli ekanini ko'rdingiz va rollback bilan hammasini qaytarishni o'rgandingiz."
    ]
+  ],
+  "steps": [
+   {
+    "t": "Tranzaksiya",
+    "cmds": [
+     "BEGIN;"
+    ],
+    "exp": "BEGIN · prompt shop=*#"
+   },
+   {
+    "t": "WHERE'siz",
+    "cmds": [
+     "UPDATE products SET price = 1;",
+     "SELECT * FROM products;"
+    ],
+    "exp": "UPDATE 3 · hamma narx 1"
+   },
+   {
+    "t": "Bekor",
+    "cmds": [
+     "ROLLBACK;"
+    ],
+    "exp": "ROLLBACK · prompt shop=#"
+   },
+   {
+    "t": "Tekshirish",
+    "cmds": [
+     "SELECT * FROM products;"
+    ],
+    "exp": "narxlar eski"
+   }
+  ],
+  "proof": {
+   "label": "ROLLBACKdan keyingi Klaviatura narxi",
+   "placeholder": "klaviatura narxini yozing",
+   "re": "^\\s*99\\s?000\\s*$",
+   "flags": "",
+   "wrong": "ROLLBACKdan keyin narx 1-amaliyotdagidek bo'ladi. SELECT natijasidan Klaviatura qatorini o'qing."
+  },
+  "trouble": [
+   [
+    "WARNING:  there is no transaction in progress (ROLLBACK'da)",
+    "BEGIN yozilmagan — o'zgarish allaqachon saqlangan; narxlarni 1-amaliyotdagi UPDATElar bilan tiklang"
+   ],
+   [
+    "narx 120000",
+    "1-amaliyotning 4-qadami (99 000) bajarilmagan — 1-amaliyotni tugating"
+   ],
+   [
+    "prompt shop=!#",
+    "tranzaksiya ichida xato bo'ldi — ROLLBACK; yozing (10-ekran)"
+   ]
   ]
  },
- "11": {
+ "14": {
   "type": "Lesson",
-  "kicker": "3-bosqich · xatolar",
-  "title": "Beshta xato — har birini xabarning o'zi aytadi",
+  "kicker": "3-bosqich · baza qo'riqlaydi",
+  "title": "Nomsiz mahsulot xato bermay saqlandi — qoidani o'zimiz qo'shamiz, baza rad eta boshlaydi",
   "seg": [
    [
     "a",
-    "AI xatosi o'quvchi darsida bor: <code>product</code> — <b>bitta <code>s</code> yetmaydi</b>, jadval «yo'q»",
-    "Endi sinfda chiqadigan xatolar. Birinchisi o'quvchi darsida ham bor: AI products o'rniga product deb yozgan. Baza relation product does not exist deb javob beradi. Jadval bor, faqat nomi bitta harfga farq qiladi."
+    "Nomsiz <code>INSERT</code> — <code>INSERT 0 1</code>, <b>xato yo'q</b>: jadvalda <code>NOT NULL</code> yo'q edi",
+    "Uchinchi bosqich: baza qanday qo'riqlaydi. Nomsiz mahsulot qo'shamiz: faqat narx va qoldiq. Xato chiqmadi, insert nol bir. Where name is null bilan qidirsak, beshinchi qator: nomi bo'sh. Baza faqat yozilgan qoidani qo'riqlaydi, biz esa qoida yozmagan edik."
    ],
    [
     "b",
-    "Ustun nomi xato: <code>narx</code> — <code>HINT</code> esa <b>noto'g'ri ustunni taklif qiladi</b>",
-    "Ikkinchisi ustun nomida. O'quvchi narx deb yozdi. Baza column narx does not exist deb javob beradi, ostida esa hint: perhaps you meant name. Diqqat: hint taxmin qiladi va bu yerda adashgan, kerakli ustun price. Hint'ni emas, jadval tuzilishini teskari chiziqcha d bilan tekshiring."
+    "<code>NOT NULL</code> qo'shmoqchimiz — baza rad etdi: <b>ustunda bo'sh qiymat bor</b>. Avval tozalaymiz, keyin qoida",
+    "Endi qoida qo'shamiz: alter table, name set not null. Baza rad etdi: column name contains null values. Mantiqli: bo'sh nom bor ekan, qoidani qo'yib bo'lmaydi. Nomsiz qatorni o'chiramiz va qoidani qayta qo'shamiz. Endi nomsiz insert xato beradi: violates not-null constraint."
    ],
    [
     "c",
-    "Son o'rniga matn va tushib qolgan qiymat — <b><code>invalid input syntax</code></b>, <code>more target columns</code>",
+    "<code>DEFAULT 0</code> — berilmagan qoldiq nol bo'ladi; <b><code>UNIQUE</code></b> — ikkinchi «Kolonka» rad etiladi",
+    "Yana ikki qoida. Default: stock berilmasa nol bo'lsin, planshet nol qoldiq bilan saqlandi. Unique: nom takrorlanmasin. Ikkinchi kolonka qo'shmoqchi bo'lsak, baza duplicate key value deydi va qaysi qiymat takrorlanganini aytadi."
+   ],
+   [
+    "d",
+    "Xulosa: <code>\\d products</code> — hamma qoida bir joyda; <b>qoida bazada bo'lsa</b>, xatoni kod emas, baza ushlaydi",
+    "Xulosa: backslash d products jadvalning hamma qoidasini ko'rsatadi: not null, default, unique, check va tashqi kalit. Qoida bazada bo'lsa, xatoni kod emas, baza ushlaydi, va har xabar ichida qoidaning nomi turadi. Keyingi ekranda shu xabarlarni o'qishni mashq qilamiz."
+   ]
+  ]
+ },
+ "15": {
+  "type": "Lesson",
+  "kicker": "3-bosqich · baza qo'riqlaydi",
+  "title": "Beshta xato — har birida xabarning o'zi nimani tuzatishni aytadi",
+  "seg": [
+   [
+    "a",
+    "<code>relation \"product\" does not exist</code> — jadval nomi: <b>bitta <code>s</code> yetmaydi</b>",
+    "Endi eng ko'p uchraydigan xatolar. Birinchisi jadval nomida: products o'rniga product yozilgan. Baza relation product does not exist deydi. Relation — bazaning jadvalga beradigan nomi. Jadval bor, faqat nomi bitta harfga farq qiladi."
+   ],
+   [
+    "b",
+    "<code>column \"narx\" does not exist</code> — ustun nomi; <code>HINT</code> esa <b>noto'g'ri ustunni taklif qiladi</b>",
+    "Ikkinchisi ustun nomida: narx deb yozilgan. Baza column narx does not exist deydi, ostida hint: perhaps you meant name. Diqqat: hint taxmin qiladi va bu yerda adashgan, kerakli ustun price. Hint'ga emas, backslash d ga ishoning."
+   ],
+   [
+    "c",
+    "Son o'rniga matn va tushib qolgan qiymat — <code>invalid input syntax</code>, <b><code>more target columns</code></b>",
     "Uchinchisi: narx ustuniga arzon degan so'z yozilgan, baza invalid input syntax for type integer deydi. To'rtinchisi: uchta ustun yozilgan, qiymat esa ikkita, baza insert has more target columns than expressions deydi. Ikkalasida ham strelka xato joyni ko'rsatadi."
    ],
    [
     "d",
     "O'zbekcha apostrof satrni yopadi: <code>syntax error at or near \"yinchoq\"</code> — <b>ikki marta yoziladi</b>",
-    "Beshinchisi, o'zbek sinfida eng ko'p uchraydigani: apostrof. O'yinchoq so'zidagi apostrof satrni yopib qo'yadi, baza yinchoq so'zida adashadi. Tuzatish: apostrofni ikki marta yozish. Shunda mahsulot saqlanadi."
+    "Beshinchisi, o'zbekcha matnda eng ko'p uchraydigani: apostrof. O'yinchoq so'zidagi apostrof matnni erta yopib qo'yadi, baza yinchoq so'zida adashadi. Tuzatish: so'z ichidagi apostrof ikki marta yoziladi, saqlanganda bitta bo'ladi."
    ],
    [
     "e",
-    "Xulosa: xabar ichidagi nomni <b>jadval tuzilishi bilan solishtiring</b> — <code>\\d products</code>",
-    "Xulosa: bu xatolarning hammasida xabar ichida nom yoki qiymat turadi. Uni jadval tuzilishi bilan solishtiring, teskari chiziqcha d products. Apostrof uchun bitta qoida: so'z ichidagi apostrof ikki marta yoziladi."
+    "Xulosa: xabar ichidagi nomni <b><code>\\d products</code></b> bilan solishtiring; <code>^</code> xato joyni ko'rsatadi",
+    "Xulosa: bu xatolarning hammasida xabar ichida nom yoki qiymat turadi. Uni jadval tuzilishi bilan solishtiring, backslash d products. Strelka xato joyni ko'rsatadi. Apostrof uchun bitta qoida: so'z ichidagi apostrof ikki marta."
    ]
   ]
  },
- "12": {
-  "type": "Lesson",
-  "kicker": "3-bosqich · xatolar",
-  "title": "Qoida yozilmagan bo'lsa, baza qo'riqlamaydi: nomsiz mahsulot xato bermay saqlandi",
-  "seg": [
-   [
-    "a",
-    "PostgreSQL-1 da baza bo'sh nomni rad etgan edi — bu jadvalda esa <b>xato yo'q</b>",
-    "PostgreSQL-1 da bo'sh username'ni baza rad etgan edi. Bu jadvalda sinab ko'ramiz: nomsiz mahsulot qo'shamiz. Xato chiqmadi, baza javobi insert nol bir."
-   ],
-   [
-    "b",
-    "<code>WHERE name IS NULL</code> — <b>bo'sh nomli qator</b> do'kon katalogida turibdi",
-    "Where name is null bilan qidiramiz. Beshinchi qator chiqdi: nomi bo'sh, narxi o'ttiz ming. Saytda bu nomsiz mahsulot bo'lib chiqadi."
-   ],
-   [
-    "c",
-    "Sabab: o'quvchi darsidagi jadvalda <code>NOT NULL</code> yo'q — baza <b>faqat yozilgan qoidani</b> qo'riqlaydi",
-    "Sabab jadvalning o'zida: o'quvchi darsidagi products'da not null yo'q. Baza faqat yozilgan qoidani qo'riqlaydi. PostgreSQL-1 dagi «baza o'zi tekshiradi» degan gap qoida yozilgandagina to'g'ri."
-   ],
-   [
-    "d",
-    "Xulosa: o'quvchi darsini o'zgartirmaysiz, lekin o'z jadvalida <b><code>NOT NULL</code> yozishni</b> maslahat berasiz",
-    "Xulosa: o'quvchi darsidagi jadvalni o'zgartirmaysiz, u sodda bo'lishi uchun shunday. Lekin amaliyotda o'quvchi o'z do'koni jadvalini yaratadi. O'shanda maslahat bering: nom va narxga not null yozsin."
-   ]
-  ]
- },
- "13": {
+ "16": {
   "type": "MCRetry",
   "kicker": "Tekshiruv 3",
   "eyebrow": "Tekshiruv · 3 / 4",
-  "title": "O'quvchi VALUES ('O'yinchoq', 30000, 4) yozdi va syntax error at or near \"yinchoq\" oldi. Nima deysiz?",
-  "q": "Xatolarni ko'rdingiz, tekshirib olaylik. Uchinchi tekshiruv. O'quvchi o'yinchoq degan mahsulot qo'shmoqchi, baza syntax error, yinchoq so'zida. Unga nima deysiz? Variantni tanlang.",
-  "ok": "To'g'ri. SQL'da matn bir tirnoq ichida, so'z ichidagi apostrof uni erta yopadi. Ikki marta yozilsa, baza uni bitta apostrof deb tushunadi va mahsulot o'yinchoq nomi bilan saqlanadi. Demak, SQL matnidagi har bir apostrof ikki marta yoziladi.",
+  "title": "VALUES ('O'yinchoq', 30000, 4) → syntax error at or near \"yinchoq\". Tuzatish qaysi?",
+  "q": "Xabarlarni o'qidingiz, tekshirib olaylik. Uchinchi tekshiruv. Ekranda o'yinchoq degan mahsulot qo'shilmoqchi, baza syntax error, yinchoq so'zida deydi. Nima bo'ldi va tuzatish qaysi? Variantni tanlang.",
+  "ok": "To'g'ri. SQL'da matn bir tirnoq ichida, so'z ichidagi apostrof uni erta yopadi. Ikki marta yozilsa, baza uni bitta apostrof deb tushunadi. Ekranda tuzatilgan insert: mahsulot o'yinchoq nomi bilan saqlandi. Demak, SQL matnidagi har apostrof ikki marta yoziladi.",
   "okShort": "<code>'O''yinchoq'</code> — so'z ichidagi apostrof ikki marta. Saqlanganda bitta bo'ladi: <code>O'yinchoq</code>.",
   "hint": "Matn qaysi belgi bilan boshlanib, qaysi belgi bilan tugaydi? Apostrof shu belgining o'zi.",
+  "demak": "SQL matnidagi apostrof ikki marta yoziladi: <code>'O''yinchoq'</code>.",
   "correct": 1,
   "opts": [
-   "Mahsulot nomini lotincha emas, kirillda yozing",
-   "So'z ichidagi apostrofni ikki marta yozing: 'O''yinchoq'",
-   "Nomni qo'shtirnoqqa oling: \"O'yinchoq\"",
-   "name ustunining turini VARCHAR qiling"
+   "Nomni kirillda yozish — apostrof kerak emas",
+   "Apostrofni ikki marta yozish: 'O''yinchoq'",
+   "Nomni qo'shtirnoqqa olish: \"O'yinchoq\"",
+   "name ustunini VARCHAR emas, TEXT qilish"
   ],
   "wrong": {
    "0": "Muammo harfda emas, apostrofda: u matnni erta yopyapti.",
@@ -1138,107 +1468,124 @@ const MDT = {
    "3": "Ustun turi bu xatoga aloqasiz: xato matn yozilishida."
   }
  },
- "14": {
+ "17": {
   "type": "Lesson",
-  "kicker": "4-bosqich · Express",
-  "title": "m4-08: cars jadvali o'quvchining o'zi yozadi, server.js ni Gemini",
+  "kicker": "4-bosqich · Express · ichida nima bo'ladi",
+  "title": "Pool — ulanishlar to'plami: yaratilganda ulanmaydi, birinchi so'rovda ulanadi, keyin shu ulanishni qayta ishlatadi",
   "seg": [
    [
     "a",
-    "PostgreSQL terminalidagi CRUD endi <b>server ichida</b>: o'quvchi m4-08 da AvtoIjara uchun quradi",
-    "PostgreSQL terminalida qo'lda qildingiz, endi xuddi shu so'rovlar server ichida. O'quvchi m4-08 darsida avval cars jadvalini PostgreSQL terminalida o'zi yozadi: model, kunlik narx, yil va ijaradami. Keyin server kodini Gemini yozadi."
+    "Express'da bazaga <code>pg</code> paketi orqali boriladi; kod tepasida <b><code>new Pool({ user, password, database, host, port })</code></b>",
+    "Terminalda qilganlaringizni endi server ichiga ko'chiramiz. Node'da PostgreSQL bilan pg paketi gaplashadi. Kodning tepasida pg'dan Pool olinadi va unga foydalanuvchi, parol, baza nomi, host va port beriladi. Pool so'zi «hovuz», ya'ni ulanishlar to'plami degani. Nega to'plam, hozir ko'rasiz."
    ],
    [
     "b",
-    "<code>Pool</code> — bazaga ulanish sozlamalari: foydalanuvchi, parol, baza nomi <b>bir joyda</b>",
-    "Kodning tepasida pg paketidan Pool olinadi. Unga foydalanuvchi, parol, baza nomi, host va port beriladi. Parolni o'quvchi o'zi yozadi, PostgreSQL o'rnatilganda berilgan parol. Shuning uchun sinf paroli hammada bir xil bo'lsa, ishingiz oson."
+    "O'lchab ko'rdik: <code>Pool</code> yaratilganda ulanish <b>nol</b>; birinchi so'rovda ulanadi, keyingi so'rovlar o'sha ulanishda",
+    "Buni o'lchab ko'rdik. Pool yaratilgan zahoti ulanishlar soni nol: u hali bazaga bormagan. Birinchi so'rovda ulanadi. Keyin yana ikki so'rov yubordik: bazadagi jarayon raqami, pid, uchalasida bir xil, faol ulanish bitta. Ya'ni Pool har so'rovga yangi ulanish ochmaydi, borini qayta ishlatadi."
    ],
    [
     "c",
-    "<code>GET /api/cars</code>: <code>pool.query</code> so'rovni bazaga olib boradi, <b><code>rows</code></b> — javobga ketadi",
-    "Endi GET api cars endpoint'i. Pool query select'ni bazaga olib boradi, natijaning rows qismi, ya'ni qatorlar, res json bilan qaytadi. Postman'da ikki yuz va uchta mashina. Bu PostgreSQL terminalidagi select'ning o'zi, faqat javob JSON ko'rinishida."
+    "Nega muhim: ulanish ochish qimmat; va <b>xato faqat birinchi so'rovda</b> — parol xato bo'lsa ham server «ishlayapti» deydi",
+    "Bu ikki narsani tushuntiradi. Birinchisi: bazaga ulanish qimmat ish, shuning uchun uni bir marta ochib, qayta ishlatish to'g'ri. Ikkinchisi: Pool yaratilganda ulanmagani uchun parol xato bo'lsa ham server xatosiz ishga tushadi, xato faqat birinchi so'rovda chiqadi. Sinab ko'rdik: xato parol bilan Pool yaratildi, xato yo'q; birinchi so'rovda password authentication failed."
    ],
    [
     "d",
-    "Xatoda <code>catch</code>: <b>status 500 va xato matni</b> — o'quvchi uni Postman'da ko'radi",
-    "Pastda catch turibdi: xato bo'lsa, server besh yuz status va xato matnini qaytaradi. Bu muhim: sinfdagi xatolarning ko'pini o'quvchi aynan shu javobda ko'radi. Beshinchi bosqichda shu yo'l bilan buzamiz."
-   ],
-   [
-    "e",
-    "Xulosa: <code>Pool</code> → <code>pool.query</code> → <code>rows</code> → <code>res.json</code> — <b>server bazaga shu yo'l bilan ulanadi</b>",
-    "Xulosa: so'rov serverdan bazaga to'rt qadamda boradi. Pool ulanadi, pool query so'rov yuboradi, rows qatorlarni oladi, res json javob qaytaradi. O'quvchi darsidagi test savoli ham shu haqda: serverni bazaga pool query ulaydi."
+    "Xulosa: <code>Pool</code> bir marta sozlanadi, <b>birinchi so'rovda ulanadi</b>, ulanishni qayta ishlatadi; «server ishlayapti» — baza haqida emas",
+    "Xulosa: Pool bir marta sozlanadi, birinchi so'rovda ulanadi va ulanishni qayta ishlatadi. Terminaldagi «server ishlayapti» faqat Express haqida, baza haqida hech narsa demaydi. Buni beshinchi bosqichda, ulanish xatolarida yana ko'rasiz. Endi Pool orqali birinchi so'rovni yuboramiz."
    ]
   ]
  },
- "15": {
+ "18": {
   "type": "Lesson",
   "kicker": "4-bosqich · Express",
-  "title": "To'rt endpoint — to'rt SQL buyruq; javob statusi bilan",
+  "title": "pool.query so'rovni bazaga olib boradi; javobda rows — qatorlar, rowCount — terminaldagi son",
   "seg": [
    [
     "a",
-    "<code>POST</code> — <code>INSERT … RETURNING *</code>: yangi qator javobda, <b>status 201</b>",
-    "GET o'qiydi, qolgan uchtasi yozadi. POST'da insert, oxirida returning yulduzcha: baza yangi qatorni, id bilan, qaytaradi. Status ikki yuz bir, ya'ni yaratildi. Chevrolet Spark to'rtinchi id bilan qo'shildi."
+    "<code>GET /api/cars</code>: <code>pool.query('SELECT * FROM cars')</code> — <b>natijaning <code>rows</code> qismi</b> <code>res.json</code> bilan qaytadi",
+    "GET api cars endpoint'i. Pool query select'ni bazaga olib boradi. Natija obyektida bir nechta narsa bor, bizga ikkitasi kerak: rows, ya'ni qatorlar massivi, va rowCount. Rows res json bilan qaytariladi. Postman'da ikki yuz va uchta mashina. Bu terminaldagi select'ning o'zi, faqat javob JSON ko'rinishida."
    ],
    [
     "b",
-    "<code>is_rented: null</code> — <code>POST</code>da berilmagan ustun bo'sh qoladi, <b><code>DEFAULT</code> yo'q</b>",
-    "Javobga qarang: is rented null. POST'da bu ustun berilmadi, jadvalda esa default qiymat yo'q. Sinfda o'quvchi «nega null?» desa, javob shu. Kerak bo'lsa, jadvalda default false yoziladi."
+    "<code>rowCount</code> — terminaldagi <code>UPDATE 1</code> ning o'zi: o'lchadik, <b><code>WHERE id = 99</code> → <code>rowCount: 0</code></b>, <code>rows: []</code>",
+    "Rowcount nechta qator tegilganini aytadi, bu terminaldagi update bir yoki select'dagi qatorlar sonining o'zi. Sinab ko'rdik: shop bazasida where price kichik yuz ming bilan rowcount uch. Update where id to'qson to'qqiz bilan rowcount nol va rows bo'sh massiv. Birinchi bosqichdagi update nol aynan shu yerga keladi."
    ],
    [
     "c",
-    "<code>PUT</code> — <code>UPDATE … WHERE id = $2</code>, <code>DELETE</code> — <code>WHERE id = $1</code>: <b>200</b>",
-    "PUT ikkinchi mashina narxini yangiladi, ikki yuz va yangilangan qator. DELETE birinchi mashinani o'chirdi, ikki yuz. Ikkalasida ham where bor, faqat id endi URL'dan keladi."
+    "<code>async</code>/<code>await</code> va <code>try</code>/<code>catch</code>: so'rov kutiladi; xato bo'lsa <b>status 500 va xato matni</b>",
+    "Pool query va'da qaytaradi, shuning uchun await bilan kutiladi, funksiya esa async. Hammasi try ichida. Xato bo'lsa catch ishlaydi: server besh yuz status va xato matnini qaytaradi. Beshinchi bosqichda xatolarning hammasini aynan shu catch orqali ko'rasiz."
    ],
    [
     "d",
-    "Yo'q <code>id</code>: kod <code>rowCount</code>ni tekshiradi va 404 qaytaradi — bu namunaning <b>to'g'ri qarori</b>",
-    "To'qson to'qqizinchi mashina: to'rt yuz to'rt, mashina topilmadi. Nega? Baza update nol qaytaradi, xato emas. Bu namunada kod rowCount nolmi deb tekshiradi va to'rt yuz to'rt beradi. To'g'ri qaror: aks holda o'quvchi ikki yuz ko'rib, «o'zgardi» deb o'ylaydi. Gemini buni har doim ham yozmaydi."
-   ],
-   [
-    "e",
-    "Xulosa: GET — 200, POST — 201, PUT/DELETE — 200, <b>topilmasa — 404</b>, xato — 500",
-    "Xulosa: GET ikki yuz, POST ikki yuz bir, PUT va DELETE ikki yuz qaytaradi; qator topilmasa to'rt yuz to'rt, xato bo'lsa besh yuz. Har biri PostgreSQL terminalidagi bitta buyruq. Javobdagi son, ya'ni rowCount, PostgreSQL terminalidagi update bir yoki update nol'ning o'zi."
+    "Xulosa: <b><code>Pool</code> → <code>pool.query</code> → <code>rows</code> / <code>rowCount</code> → <code>res.json</code></b> — so'rov serverdan bazaga shu to'rt qadamda boradi",
+    "Xulosa: so'rov serverdan bazaga to'rt qadamda boradi. Pool ulanadi, pool query so'rov yuboradi, natijadan rows yoki rowcount olinadi, res json javob qaytaradi. Keyingi ekranda qolgan uch endpoint: ularda ham shu to'rt qadam, faqat SQL boshqa."
    ]
   ]
  },
- "16": {
+ "19": {
   "type": "Lesson",
   "kicker": "4-bosqich · Express",
+  "title": "Uch yozuvchi endpoint — uch SQL buyruq; javob statusi va rowCount bilan",
+  "seg": [
+   [
+    "a",
+    "<code>POST</code> — <code>INSERT … RETURNING *</code>: <b>yangi qator javobda</b>, status 201",
+    "GET o'qiydi, qolgan uchtasi yozadi. POST'da insert, oxirida returning yulduzcha, birinchi bosqichda ko'rgansiz: baza yangi qatorni, id bilan, qaytaradi. Shu qator rows nol bo'lib javobga ketadi. Status ikki yuz bir, ya'ni yaratildi. Chevrolet Spark to'rtinchi id bilan qo'shildi."
+   ],
+   [
+    "b",
+    "<code>is_rented: null</code> — <code>POST</code>da berilmagan ustun bo'sh qoldi: <b>jadvalda <code>DEFAULT</code> yo'q</b>",
+    "Javobga qarang: is rented null. POST'da bu ustun berilmadi, jadvalda esa default qiymat yo'q. Uchinchi bosqichni eslang: baza faqat yozilgan qoidani bajaradi. Yechim jadvalda: alter table, is rented set default false. Shunda yangi mashina doim bo'sh deb yoziladi."
+   ],
+   [
+    "c",
+    "<code>PUT</code> — <code>UPDATE … WHERE id = $2</code>, <code>DELETE</code> — <code>WHERE id = $1</code>: 200; <b><code>rowCount</code> nol bo'lsa — 404</b>",
+    "PUT ikkinchi mashina narxini yangiladi, ikki yuz va yangilangan qator. DELETE birinchi mashinani o'chirdi. Ikkalasida where bor, id URL'dan keladi. To'qson to'qqizinchi mashina: baza update nol qaytaradi, xato emas. Bu namunada kod rowcount nolmi deb tekshiradi va to'rt yuz to'rt beradi: mashina topilmadi. Rowcount'siz javob ikki yuz bo'lardi, ya'ni yolg'on «o'zgardi»."
+   ],
+   [
+    "d",
+    "Xulosa: GET — 200, POST — 201, PUT/DELETE — 200, <b>topilmasa — 404</b>, xato — 500; 404 ni <code>rowCount</code> hal qiladi",
+    "Xulosa: GET ikki yuz, POST ikki yuz bir, PUT va DELETE ikki yuz; qator topilmasa to'rt yuz to'rt, xato bo'lsa besh yuz. To'rt yuz to'rtni kim hal qiladi? Rowcount, ya'ni terminaldagi update nol. Endi eng muhim savol: nega qiymatlar dollar bir bilan beriladi."
+   ]
+  ]
+ },
+ "20": {
+  "type": "Lesson",
+  "kicker": "4-bosqich · Express · ichida nima bo'ladi",
   "title": "Yopishtirilgan SQL: 1 OR 1=1 — uchala mashina o'chdi. $1 bilan — 500, jadval joyida",
   "seg": [
    [
     "a",
-    "O'quvchi testida savol bor: «Nega <code>$1</code>?». <b>Sinab ko'rdik</b> — javob ekranda",
-    "O'quvchi darsining testida savol bor: nega dollar bir ishlatamiz? Javob: matn kod bo'lib qolmasin. Bu quruq gap emas, sinab ko'rdik. Delete'da id'ni SQL matniga to'g'ridan-to'g'ri yopishtirdik."
+    "Qiymatni SQL matniga yopishtirish: <code>'… WHERE id = ' + req.params.id</code> — <b>ishlaydi, lekin</b>",
+    "Kodda qiymatni SQL matniga qo'shib yuborish oson: where id teng, plyus, req params id. Oddiy so'rovda bu ishlaydi: delete api cars bir, birinchi mashina o'chadi. Muammo shundaki, URL'dagi matn SQL'ning bir qismiga aylanadi. Sinab ko'rdik."
    ],
    [
     "b",
-    "URL'ga <code>1 OR 1=1</code> yozildi — so'rov «hammasi» bo'lib qoldi: <b><code>deleted: 3</code></b>",
-    "Endi URL'da id o'rniga bir or bir teng bir yuborildi. Yopishtirilgan satr shunday SQL bo'ldi: where id bir, yoki bir teng bir. Bir teng bir doim to'g'ri. Javob ikki yuz, deleted uch, ya'ni jadval bo'sh qoldi. Buni SQL injection deyishadi."
+    "URL'ga <code>1 OR 1=1</code> yozildi — so'rov «hammasi» bo'lib qoldi: <b><code>deleted: 3</code></b>, jadval bo'sh",
+    "URL'da id o'rniga bir or bir teng bir yubordik. Yopishtirilgan satr shunday SQL bo'ldi: where id bir, yoki bir teng bir. Bir teng bir doim to'g'ri. Javob ikki yuz, deleted uch: jadval bo'sh qoldi. Buni SQL injection deyishadi, va buni istalgan foydalanuvchi brauzerdan qila oladi."
    ],
    [
     "c",
-    "<code>$1</code> bilan xuddi shu so'rov: <code>invalid input syntax for type integer</code> — 500, <b>jadval joyida</b>",
-    "Endi dollar bir bilan. Qiymat SQL matniga kirmaydi, alohida beriladi. Baza bir or bir teng bir'ni son sifatida o'qishga urinadi va rad etadi: invalid input syntax for type integer. Besh yuz, lekin jadval joyida, uchala mashina bor."
+    "<code>$1</code> bilan xuddi shu so'rov: qiymat alohida boradi — <b><code>invalid input syntax for type integer</code></b>, 500, jadval joyida",
+    "Endi dollar bir bilan: pool query'ning ikkinchi argumenti massiv, qiymat shu massivda, SQL matniga kirmaydi. Baza bir or bir teng bir'ni son sifatida o'qishga urinadi va rad etadi: invalid input syntax for type integer. Besh yuz, lekin jadval joyida, uchala mashina bor."
    ],
    [
     "d",
-    "Xulosa: qiymat doim <b><code>$1, $2</code> bilan</b> — Gemini promptida ham shunday yozilgan",
-    "Xulosa: foydalanuvchidan kelgan har qiymat dollar bir, dollar ikki bilan beriladi. O'quvchi darsidagi Gemini promptida ham shunday talab bor: qiymatlarni SQL matniga yopishtirma. Gemini boshqacha yozsa, o'quvchi buni tekshirishi kerak, siz esa shu misolni ko'rsatasiz."
+    "Xulosa: foydalanuvchidan kelgan har qiymat <b><code>$1, $2</code> bilan</b>, SQL matniga hech qachon yopishtirilmaydi",
+    "Xulosa: foydalanuvchidan kelgan har qiymat dollar bir, dollar ikki bilan beriladi, SQL matniga hech qachon yopishtirilmaydi. Bu uslub masalasi emas, xavfsizlik masalasi: bitta plyus belgisi butun jadvalni o'chirishga yo'l ochadi. Endi serverni o'zingiz ko'tarasiz."
    ]
   ]
  },
- "17": {
+ "21": {
   "type": "Practice",
   "kicker": "Amaliyot 3 / 4",
   "eyebrow": "Hozir o'zingizda · 15–20 daqiqa",
-  "title": "car_rental va server.js — o'quvchi m4-08 dagi ish",
+  "title": "car_rental va server.js — o'z serveringiz, Postman bilan sinov",
   "seg": [
    [
     "a",
-    "Endi siz: m4-08 dagi ishni <b>o'zingiz qilasiz</b> — jadval qo'lda, server Gemini bilan yoki namunadan",
-    "Endi o'zingiz qilasiz, o'quvchi m4-08 da qiladigan ishni. Jadvalni PostgreSQL terminalida qo'lda yozasiz. Server kodini o'quvchi promptlari bilan Gemini'dan oling yoki namunani o'zingiz yozing. O'n besh-yigirma daqiqa."
+    "Endi siz: jadval qo'lda, server — <b>namunadan yoki Gemini bilan</b>, sinov Postman'da",
+    "Endi o'zingiz server ko'tarasiz. Jadvalni terminalda qo'lda yozasiz. Server kodini namunadan yozing yoki Gemini'dan oling: Express, pg, to'rt endpoint, qiymatlar dollar bir bilan. O'n besh-yigirma daqiqa."
    ],
    [
     "b",
@@ -1253,105 +1600,179 @@ const MDT = {
    [
     "d",
     "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
-    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. Beshinchi bosqichda bu xatolarning hammasini buzib ko'ramiz. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin sizda o'quvchi m4-08 da quradigan server ishlab turadi va siz uni Postman bilan sinagan bo'lasiz."
+    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. Beshinchi bosqichda bu xatolarning hammasini ataylab chiqarib tuzatamiz. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin sizda ishlab turgan server bor va siz uni Postman bilan sinagan bo'lasiz."
+   ]
+  ],
+  "steps": [
+   {
+    "t": "Jadval",
+    "cmds": [
+     "CREATE DATABASE car_rental;",
+     "\\c car_rental",
+     "CREATE TABLE cars (id SERIAL PRIMARY KEY, model TEXT, daily_price INTEGER, year INTEGER, is_rented BOOLEAN);",
+     "INSERT … ('Chevrolet Cobalt', 280000, 2022, false), …"
+    ],
+    "exp": "INSERT 0 3"
+   },
+   {
+    "t": "Loyiha",
+    "cmds": [
+     "mkdir avto-ijara-server",
+     "cd avto-ijara-server",
+     "npm init -y",
+     "npm install express pg"
+    ],
+    "exp": "added … packages"
+   },
+   {
+    "t": "Server — server.js: «Kodni ochish» (namuna) yoki Gemini (Express + pg, to'rt endpoint, $1, topilmasa 404); parolni yozing",
+    "cmds": [
+     "node server.js"
+    ],
+    "exp": "Server 3000-portda ishlayapti"
+   },
+   {
+    "t": "Postman",
+    "cmds": [
+     "GET localhost:3000/api/cars",
+     "POST localhost:3000/api/cars body { \"model\": \"Chevrolet Spark\", \"daily_price\": 190000, \"year\": 2021 }"
+    ],
+    "exp": "200 · 3 mashina · POST — id bilan"
+   }
+  ],
+  "proof": {
+   "label": "POST javobining statusi",
+   "placeholder": "Postman ko'rsatgan statusni yozing",
+   "re": "^\\s*201\\b",
+   "flags": "",
+   "wrong": "Muvaffaqiyatli POST statusi uch xonali son. Postman'da javob ustida yozilgan."
+  },
+  "trouble": [
+   [
+    "500 password authentication failed for user \"postgres\"",
+    "PASSWORD — o'rnatishda berilgan parol (24-ekran)"
+   ],
+   [
+    "500 client password must be a string",
+    "parol bo'sh / process.env o'qilmagan (24-ekran)"
+   ],
+   [
+    "500 database \"…\" does not exist",
+    "DATABASE nomi xato yoki baza yaratilmagan (24-ekran)"
+   ],
+   [
+    "500 {\"error\":\"\"}",
+    "PostgreSQL ishlamayapti — console.error(err) bilan ECONNREFUSED ko'rinadi (24-ekran)"
+   ],
+   [
+    "500 Cannot destructure property 'model' of 'req.body'",
+    "app.use(express.json()) yo'q (23-ekran)"
+   ],
+   [
+    "500 column \"price\" of relation \"cars\" does not exist",
+    "kodda ustun nomi xato (22-ekran)"
+   ],
+   [
+    "kod o'zgardi, javob o'zgarmadi",
+    "eski server ishlab turibdi — 25-ekran"
    ]
   ]
  },
- "18": {
+ "22": {
   "type": "Lesson",
-  "kicker": "5-bosqich · buzamiz",
+  "kicker": "5-bosqich · buzamiz va tuzatamiz",
   "title": "column \"price\" of relation \"cars\" does not exist — kodda price, jadvalda daily_price",
   "seg": [
    [
     "a",
-    "O'quvchi darsidagi AI xatosini o'zimiz takrorlaymiz: <b><code>INSERT</code>da <code>price</code></b>",
-    "Buzishni o'quvchi darsidagi xatodan boshlaymiz. Gemini insert'da daily price o'rniga price yozgan. Serverni ishga tushiramiz: xato yo'q, server ishlayapti deb yozadi. Xato faqat POST yuborilganda chiqadi."
+    "Birinchi buzish — Gemini'ning odatiy xatosi: <code>INSERT</code>da <b>ustun nomini o'zi o'ylab topadi</b>, <code>price</code>",
+    "Buzishni eng ko'p uchraydigan xatodan boshlaymiz. Gemini insert'da daily price o'rniga price yozgan: ustun nomini jadvaldan emas, o'z taxminidan olgan. Serverni ishga tushiramiz: xato yo'q, server ishlayapti deb yozadi. Xato faqat POST yuborilganda chiqadi."
    ],
    [
     "b",
-    "POST → 500, xabarda <b>jadval va ustun</b>: <code>\"price\"</code> · <code>\"cars\"</code>",
-    "POST yuboramiz, javob besh yuz. Xabarni o'qiymiz: column price of relation cars does not exist. Ustun price, jadval esa cars. O'quvchi darsida xabar qisqaroq yozilgan, haqiqiysi shu, relation cars bilan."
+    "POST → 500, xabarda jadval va ustun: <b><code>\"price\"</code> · <code>\"cars\"</code></b>",
+    "POST yuboramiz, javob besh yuz. Xabarni o'qiymiz: column price of relation cars does not exist. Ustun price, jadval esa cars. Relation so'zi uchinchi bosqichdan tanish: bu jadval. Xabar nimani tuzatishni o'zi aytdi."
    ],
    [
     "c",
-    "Tuzatish: kodda <code>daily_price</code> — serverni qayta ishga tushirib, <b>POST → 201</b>",
+    "Tuzatish: kodda <code>daily_price</code> — serverni <b>qayta ishga tushirib</b>, POST → 201",
     "Jadval tuzilishiga qaraymiz: ustun daily price. Kodda tuzatamiz, serverni to'xtatib, qayta ishga tushiramiz. POST yuboramiz: javob ikki yuz bir, yangi mashina id bilan qaytdi."
    ],
    [
     "d",
-    "Xulosa: 500 bo'lsa — <code>error</code> matnidagi nomni <b><code>\\d cars</code> bilan solishtiring</b>",
-    "Xulosa: besh yuz chiqsa, xato matnini o'qing, ichida ustun va jadval nomi bor. Uni PostgreSQL terminalidagi teskari chiziqcha d cars bilan solishtiring. Kod o'zgargandan keyin serverni albatta qayta ishga tushiring."
+    "Xulosa: 500 bo'lsa — <code>error</code> matnidagi nomni <b><code>\\d cars</code></b> bilan solishtiring; kod o'zgarsa server qayta",
+    "Xulosa: besh yuz chiqsa, xato matnini o'qing, ichida ustun va jadval nomi bor. Uni terminaldagi backslash d cars bilan solishtiring. Kod o'zgargandan keyin serverni albatta qayta ishga tushiring, aks holda eski kod ishlayveradi."
    ]
   ]
  },
- "19": {
+ "23": {
   "type": "Lesson",
-  "kicker": "5-bosqich · buzamiz",
+  "kicker": "5-bosqich · buzamiz va tuzatamiz",
   "title": "Cannot destructure property 'model' of 'req.body' — so'rov tanasi o'qilmagan",
   "seg": [
    [
     "a",
     "Bitta satrni olib tashlaymiz: <code>app.use(express.json())</code> — <b>server baribir ishga tushadi</b>",
-    "Endi ikkinchi buzish. Gemini ba'zan bitta satrni unutadi: app use express json. Shu satrni olib tashlaymiz. Server xatosiz ishga tushadi, GET ham ishlaydi. Muammo faqat tanasi bor so'rovlarda."
+    "Ikkinchi buzish. Gemini ba'zan bitta satrni unutadi: app use express json. Shu satrni olib tashlaymiz. Server xatosiz ishga tushadi, GET ham ishlaydi. Muammo faqat tanasi bor so'rovlarda."
    ],
    [
     "b",
     "POST → 500: <code>req.body</code> — <b><code>undefined</code></b>, <code>model</code>ni olib bo'lmaydi",
-    "POST yuboramiz, javob besh yuz. Xabar shunday: cannot destructure property model of req body as it is undefined. Ya'ni req body umuman yo'q: Express so'rov tanasini o'qimagan, chunki json'ni o'qiydigan qism ulanmagan."
+    "POST yuboramiz, javob besh yuz. Xabar shunday: cannot destructure property model of req body as it is undefined. Ya'ni req body umuman yo'q: Express so'rov tanasini o'qimagan, chunki JSON'ni o'qiydigan qism ulanmagan."
    ],
    [
     "c",
-    "Tuzatish: satr qaytariladi, <code>app</code> yaratilgandan keyin — <b>POST → 201</b>",
-    "Tuzatish uchun app use express json satrini app yaratilgandan keyin, endpoint'lardan oldin qaytaramiz. Server qayta ishga tushadi, POST ikki yuz bir."
+    "Tuzatish: satr qaytariladi, <code>app</code> yaratilgandan keyin, <b>endpoint'lardan oldin</b> — POST → 201",
+    "Tuzatish uchun app use express json satrini app yaratilgandan keyin, endpoint'lardan oldin qaytaramiz. Tartib muhim: bu satr har so'rovdan oldin ishlaydi. Server qayta ishga tushadi, POST ikki yuz bir."
    ],
    [
     "d",
     "Xulosa: <code>req.body</code> <code>undefined</code> bo'lsa — birinchi qaraladigan joy <b><code>express.json()</code></b>",
-    "Xulosa: req body undefined degan xato chiqsa, birinchi qaraladigan joy app use express json. GET ishlab, POST va PUT ishlamasa ham shu satr. O'quvchi darsidagi Gemini promptining birinchi bandi aynan shu."
+    "Xulosa: req body undefined degan xato chiqsa, birinchi qaraladigan joy app use express json. GET ishlab, POST va PUT ishlamasa ham shu satr. Bitta satr, lekin usiz tanasi bor hech bir so'rov ishlamaydi."
    ]
   ]
  },
- "20": {
+ "24": {
   "type": "Lesson",
-  "kicker": "5-bosqich · buzamiz",
+  "kicker": "5-bosqich · buzamiz va tuzatamiz",
   "title": "Server «ishlayapti» deydi — parol, baza va PostgreSQL xatosi birinchi so'rovda chiqadi",
   "seg": [
    [
     "a",
-    "<code>Pool</code> darhol ulanmaydi: server ishga tushadi, <b>xato birinchi so'rovda</b>",
-    "Parol xatosini ko'rdik, endi uning g'alati tomoni. Pool server ishga tushganda bazaga ulanmaydi, birinchi so'rovda ulanadi. Shuning uchun parol xato bo'lsa ham terminalda server ishlayapti deb yoziladi. O'quvchi «server ishlayapti, lekin besh yuz» desa, xabarni o'qing."
+    "<code>Pool</code> darhol ulanmaydi (17-ekran): server ishga tushadi, <b>xato birinchi so'rovda</b>",
+    "Pool ekranida ko'rgan edingiz: Pool server ishga tushganda bazaga ulanmaydi, birinchi so'rovda ulanadi. Shuning uchun parol xato bo'lsa ham terminalda server ishlayapti deb yoziladi. «Server ishlayapti, lekin besh yuz» degan holatda xabarni o'qing: to'rt xil bo'ladi."
    ],
    [
     "b",
-    "Parol xato — <b><code>password authentication failed</code></b>; parol bo'sh — <b><code>client password must be a string</code></b>",
+    "Parol xato — <code>password authentication failed</code>; parol bo'sh — <b><code>client password must be a string</code></b>",
     "Parol xato bo'lsa: password authentication failed for user postgres. Parol umuman berilmasa, masalan process env'dan o'qilmagan bo'lsa: client password must be a string. Ikkinchisi g'alati ko'rinadi, lekin ma'nosi oddiy: parol o'zgaruvchisi bo'sh."
    ],
    [
     "c",
     "Baza nomi xato — <code>database \"carrental\" does not exist</code>: <b>pastki chiziq tushib qolgan</b>",
-    "Baza nomida pastki chiziq tushib qolsa: database carrental does not exist. Baza bor, faqat nomi car pastki chiziq rental. PostgreSQL terminalidagi teskari chiziqcha l bilan aniq nomni ko'ring."
+    "Baza nomida pastki chiziq tushib qolsa: database carrental does not exist. Baza bor, faqat nomi car pastki chiziq rental. Terminaldagi backslash l bilan aniq nomni ko'ring."
    ],
    [
     "d",
-    "PostgreSQL o'chiq — xato matni bo'sh; <code>console.error(err)</code> — <b><code>ECONNREFUSED</code> ko'rinadi</b>",
+    "PostgreSQL o'chiq — xato matni bo'sh; <b><code>console.error(err)</code></b> — <code>ECONNREFUSED</code> ko'rinadi",
     "Eng chalkashi: PostgreSQL ishlamasa, javob besh yuz, lekin error bo'sh, terminalda ham bo'sh qator. Sinab ko'rdik: console error'ga err message emas, err'ning o'zini bersak, ECONNREFUSED chiqadi, ya'ni ulanish rad etildi. Yechim: PostgreSQL'ni ishga tushiring."
    ],
    [
     "e",
-    "Xulosa: «ishlayapti» — <b>faqat Express</b>; baza xatosini birinchi so'rov va terminal aytadi",
+    "Xulosa: «ishlayapti» — faqat Express; <b>baza xatosini birinchi so'rov va terminal aytadi</b>",
     "Xulosa: terminaldagi ishlayapti degan satr faqat Express haqida. Bazaga ulanish birinchi so'rovda tekshiriladi. Xabar bo'sh bo'lsa, console error'ga butun xatoni bering. PostgreSQL'ni ishga tushirish: Windows'da Services, Mac'da Postgres.app."
    ]
   ]
  },
- "21": {
+ "25": {
   "type": "Lesson",
-  "kicker": "5-bosqich · buzamiz",
+  "kicker": "5-bosqich · buzamiz va tuzatamiz",
   "title": "Ikkinchi node server.js ham «ishlayapti» deydi — javobni esa eski server beradi",
   "seg": [
    [
     "a",
-    "Sinfdagi eng chalkash holat: «kodni tuzatdim, <b>hech narsa o'zgarmadi</b>»",
-    "Sinfdagi eng chalkash holat: o'quvchi kodni tuzatadi, serverni yana ishga tushiradi, lekin javob o'zgarmaydi. Sabab ko'pincha bitta: birinchi server boshqa terminalda hali ishlab turibdi."
+    "Eng chalkash holat: <b>«kodni tuzatdim, hech narsa o'zgarmadi»</b>",
+    "Eng chalkash holat: kodni tuzatasiz, serverni yana ishga tushirasiz, lekin javob o'zgarmaydi. Sabab ko'pincha bitta: birinchi server boshqa terminalda hali ishlab turibdi."
    ],
    [
     "b",
@@ -1360,28 +1781,28 @@ const MDT = {
    ],
    [
     "c",
-    "Sabab Express 5 da: xato <code>listen</code> callback'iga beriladi, namunadagi <b>callback uni o'qimaydi</b>",
-    "Sabab Express beshinchi versiyasida: listen xatoni callback'ga beradi. Gemini yozgan callback esa xatoni o'qimaydi, faqat ishlayapti deb chiqaradi. Bu namuna kodidagi kamchilik, Express'niki emas, lekin sinfda aynan shunday ko'rinadi."
+    "Sabab Express 5 da: xato <code>listen</code> callback'iga beriladi, <b>namunadagi callback uni o'qimaydi</b>",
+    "Sabab Express beshinchi versiyasida: listen xatoni callback'ga beradi. Gemini yozgan callback esa xatoni o'qimaydi, faqat ishlayapti deb chiqaradi. Callback xatoni o'qisa, address already in use chiqadi va server to'xtaydi. Bu namuna kodidagi kamchilik, Express'niki emas."
    ],
    [
     "d",
-    "Xulosa: bitta loyiha — <b>bitta terminal</b>; qayta ishga tushirishdan oldin <code>Ctrl+C</code>",
-    "Xulosa: sinfda qoida qo'ying, bitta loyiha uchun bitta terminal. Qayta ishga tushirishdan oldin Ctrl C bilan eski serverni to'xtating. O'quvchi «o'zgarmadi» desa, birinchi savol: boshqa terminalda server ochiq qolmadimi?"
+    "Xulosa: <b>bitta loyiha — bitta terminal</b>; qayta ishga tushirishdan oldin <code>Ctrl+C</code>",
+    "Xulosa: bitta loyiha uchun bitta terminal. Qayta ishga tushirishdan oldin Ctrl C bilan eski serverni to'xtating. Javob o'zgarmasa, birinchi savol: boshqa terminalda server ochiq qolmadimi?"
    ]
   ]
  },
- "22": {
+ "26": {
   "type": "LineCheck",
   "kicker": "Tekshiruv 4",
   "eyebrow": "Tekshiruv · 4 / 4 — qaysi satr xato?",
   "title": "POST 500: column \"price\" of relation \"cars\" does not exist. Xato satrni toping",
   "q": "Buzishni ko'rdingiz, endi o'zingiz toping. To'rtinchi tekshiruv. Jadval ustunlarini eslang: id, model, daily price, year, is rented. Bu POST bo'lagida bitta satr jadvalda yo'q ustunni so'rayapti. O'sha satrni bosing.",
-  "ok": "To'g'ri. To'rtinchi satrda insert'da price yozilgan, jadvalda esa daily price. Uchinchi satrdagi daily price faqat JavaScript o'zgaruvchisi, baza uni ko'rmaydi, u SQL matnidagi nomni ko'radi. Ekranda tuzatilgan holat: daily price, POST ikki yuz bir. Demak, besh yuz chiqsa, SQL matnidagi har nomni jadval ustunlari bilan solishtiring.",
-  "okShort": "4-satr: SQL'da <code>price</code> — jadvalda <code>daily_price</code>. 3-satrdagi <code>daily_price</code> — JS o'zgaruvchisi, baza ko'rmaydi.",
+  "ok": "To'g'ri. O'ttiz oltinchi satrda insert'da price yozilgan, jadvalda esa daily price. O'ttiz to'rtinchi satrdagi daily price faqat JavaScript o'zgaruvchisi, baza uni ko'rmaydi, u SQL matnidagi nomni ko'radi. Ekranda tuzatilgan holat: daily price, POST ikki yuz bir. Demak, besh yuz chiqsa, SQL matnidagi har nomni jadval ustunlari bilan solishtiring.",
+  "okShort": "36-satr: SQL'da <code>price</code> — jadvalda <code>daily_price</code>. 34-satrdagi <code>daily_price</code> — JS o'zgaruvchisi, baza ko'rmaydi.",
   "hint": "Baza JavaScript o'zgaruvchilarini ko'rmaydi — faqat qo'shtirnoq ichidagi SQL matnini. O'sha matndagi ustun nomlarini qidiring.",
   "task": "Qoida: SQL'dagi ustun nomlari jadvaldagi bilan aynan bir xil bo'ladi — <code>cars</code>: <code>id, model, daily_price, year, is_rented</code>. Bu POST bo'lagida bitta satr jadvalda yo'q ustunni so'rayapti. <b>O'sha satrni bosing.</b>"
  },
- "23": {
+ "27": {
   "type": "Practice",
   "kicker": "Amaliyot 4 / 4",
   "eyebrow": "Hozir o'zingizda · 10 daqiqa",
@@ -1390,7 +1811,7 @@ const MDT = {
    [
     "a",
     "Endi siz: o'z serveringizda ikkita xatoni <b>ataylab chiqarasiz va tuzatasiz</b>",
-    "Oxirgi amaliyot: o'z serveringizda ikkita xatoni ataylab chiqarasiz va tuzatasiz. O'n daqiqa. Sinfda xuddi shu xatolar chiqqanda, ularni birinchi marta ko'rayotgan bo'lmaysiz."
+    "Oxirgi amaliyot: o'z serveringizda ikkita xatoni ataylab chiqarasiz va tuzatasiz. O'n daqiqa. Bu xatolar haqiqiy loyihada ham chiqadi; ularni bir marta o'zingiz chiqarsangiz, keyin xabardan darhol taniysiz."
    ],
    [
     "b",
@@ -1405,94 +1826,128 @@ const MDT = {
    [
     "d",
     "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
-    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, sinfda bu ikki xato chiqqanda siz ularni birinchi marta ko'rayotgan bo'lmaysiz va xabardan sababini darhol topasiz."
+    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, bu ikki xato chiqqanda siz ularni birinchi marta ko'rayotgan bo'lmaysiz va xabardan sababini darhol topasiz."
+   ]
+  ],
+  "steps": [
+   {
+    "t": "Buzish",
+    "cmds": [
+     "server.js: INSERT INTO cars (model, price, year)",
+     "Ctrl+C",
+     "node server.js",
+     "Postman POST"
+    ],
+    "exp": "500 column \"price\" of relation \"cars\" does not exist"
+   },
+   {
+    "t": "Tuzatish",
+    "cmds": [
+     "price → daily_price",
+     "Ctrl+C",
+     "node server.js",
+     "POST"
+    ],
+    "exp": "201"
+   },
+   {
+    "t": "Ikki server",
+    "cmds": [
+     "1-terminal ishlab turibdi",
+     "2-terminalda node server.js"
+    ],
+    "exp": "ikkinchisi ham «Server 3000-portda ishlayapti»"
+   },
+   {
+    "t": "To'xtatish",
+    "cmds": [
+     "ikkala terminalda Ctrl+C"
+    ],
+    "exp": "Postman: GET — javob yo'q (server yo'q)"
+   }
+  ],
+  "proof": {
+   "label": "1-qadamdagi 500 xabari",
+   "placeholder": "Postman'dagi error matnini qo'ying",
+   "re": "column\\s+\"?price\"?\\s+of relation\\s+\"?cars\"?\\s+does not exist",
+   "flags": "i",
+   "wrong": "Xabar to'liq bo'lsin: qaysi ustun va qaysi jadval (of relation …). Postman'dagi error qiymatini nusxalang."
+  },
+  "trouble": [
+   [
+    "1-qadamda 201",
+    "server qayta ishga tushmagan — eski kod ishlayapti (25-ekran)"
+   ],
+   [
+    "column \"price\" does not exist (of relationsiz)",
+    "SELECT/UPDATEda xato qilingan — INSERTdagi ustunni o'zgartiring"
+   ],
+   [
+    "3-qadamda listen EADDRINUSE: address already in use :::3000",
+    "sizning server.jsingizda callback xatoni o'qiydi (Gemini boshqacha yozgan) — bu yaxshi; ikkala terminalni ham to'xtating"
+   ],
+   [
+    "4-qadamda javob bor",
+    "yana bir terminal ochiq qolgan — hammasini Ctrl+C"
    ]
   ]
  },
- "24": {
+ "28": {
   "type": "Lesson",
-  "kicker": "6-bosqich · o'quvchi darsini o'tish",
-  "eyebrow": "m4-06 · «PostgreSQL so'rovlar — CRUD + AI bilan»",
-  "title": "m4-06: o'quvchi do'konni tugmalar bilan boshqaradi, amaliyotda — haqiqiy PostgreSQL terminalida",
+  "kicker": "6-bosqich · sinfga tayyorgarlik",
+  "eyebrow": "m4-06 · m4-08",
+  "title": "Ikki o'quvchi darsi: nimani ko'radi, siz nimani qo'shasiz, nimaga tayyor turasiz",
   "seg": [
    [
     "a",
-    "m4-06 da o'quvchi do'konni tugmalar bilan boshqaradi — amaliyotda esa <b>haqiqiy PostgreSQL terminali</b>",
-    "Endi o'quvchi darslarini ko'ramiz. Birinchisi m4-06, unda yigirma bir ekran bor. Ko'p qismida o'quvchi do'konni tugmalar bilan boshqaradi: insert, select, where, update, delete. Lekin amaliyotda u haqiqiy PostgreSQL terminali yoki VS Code'da AI bilan o'z do'koni jadvalini yaratadi. Demak bu darsda PostgreSQL har kompyuterda ishlab turishi shart."
+    "m4-06 (21 ekran): do'kon tugmalar bilan, amaliyotda — <b>haqiqiy PostgreSQL terminali</b>; jadval bugungi <code>products</code> ning o'zi",
+    "Endi sinfga tayyorgarlik, ikki ekran. Birinchi o'quvchi darsi m4-06, yigirma bir ekran: o'quvchi do'konni tugmalar bilan boshqaradi, insert, select, where, update, delete. Jadval bugun siz yaratgan products'ning aynan o'zi. Amaliyotda esa u haqiqiy PostgreSQL terminalida yoki VS Code'da AI bilan o'z do'konini yaratadi, shuning uchun PostgreSQL har kompyuterda ishlab turishi shart."
    ],
    [
     "b",
-    "CRUD bloki — siz bugun qo'lda qilgan ish; har <code>UPDATE</code>da <b>javobdagi sonni so'rang</b>",
-    "CRUD bloki siz bugun qo'lda qilgan ishning o'zi. Qo'shimcha gapingiz: javobdagi son va begin, rollback. O'quvchi where'siz update'ni faqat ogohlantirishda ko'radi, siz uni proyektorda xavfsiz ko'rsating."
+    "m4-08 (9 ekran): <code>cars</code> jadvali qo'lda, <code>server.js</code> Gemini'dan, Postman bilan sinov — <b>bugungi serveringizning o'zi</b>",
+    "Ikkinchisi m4-08, AvtoIjara, to'qqiz ekran: o'quvchi cars jadvalini terminalda o'zi yozadi, server kodini Gemini'dan oladi, Postman bilan sinaydi va AI xatosini topadi. Bu bugun siz ko'targan serverning o'zi. Farqi: o'quvchi Pool'ning ichini, tranzaksiyani va injection'ni bilmaydi, siz bilasiz."
    ],
    [
     "c",
-    "AI bloki: o'quvchi AI yozgan SQL'ni tekshiradi — sizning misollaringiz <code>product</code> va <b>noto'g'ri <code>HINT</code></b>",
-    "AI bloki: o'quvchi AI yozgan SQL'ni tekshirishni o'rganadi, o'quvchi darsidagi misol product xatosi. Sizda yana bir misol bor: hint ham adashadi. Xulosa bitta: AI yozadi, o'quvchi tekshiradi."
+    "Siz qo'shasiz: javobdagi son · <code>BEGIN … ROLLBACK</code> · <code>ORDER BY</code> · apostrof · <code>NOT NULL</code> · <b><code>HINT</code> ham adashadi</b>; to'rt farqni oldindan ayting",
+    "Darsga siz qo'shadigan narsalar: har update'dan keyin javobdagi sonni so'rang, where'siz update'ni proyektorda begin ichida ko'rsating, order by va apostrofni ayting, o'z do'konini yaratayotganda not null'ni maslahat bering, hint ham adashishini eslating. To'rt farqni oldindan ayting: darsdagi xato matni qisqa, Gemini har kimga boshqacha kod yozadi, POST'dan keyin is rented null, port band bo'lsa ham «ishlayapti»."
    ],
    [
     "d",
-    "Xulosa: amaliyot oldidan har kompyuterda <b>PostgreSQL terminali ochilishini</b> tekshiring; apostrof va <code>NOT NULL</code>ni ayting",
-    "Xulosa: amaliyot oldidan har kompyuterda PostgreSQL terminali ochilishini tekshiring. O'quvchi o'z do'konini yaratayotganda ikki narsani ayting: so'z ichidagi apostrof ikki marta yoziladi, nom va narxga not null qo'yiladi. Vaqt, taklif: to'qson daqiqaning yigirma beshi amaliyotga."
+    "Xulosa: darsdan oldin — har kompyuterda PostgreSQL va Postman, <b>sinf paroli</b>, bitta loyiha — bitta terminal; vaqt amaliyotga",
+    "Xulosa: darsdan oldin uch narsani tekshiring: har kompyuterda PostgreSQL terminali ochiladi va Postman o'rnatilgan, sinf paroli hammaga ma'lum, qoida: bitta loyiha, bitta terminal. Vaqt bo'yicha taklif: m4-06 da to'qson daqiqaning yigirma beshi amaliyotga, m4-08 da qirqi server va Postman'ga, chunki o'quvchilar eng ko'p xato qiladigan joy shu."
    ]
   ]
  },
- "25": {
+ "29": {
   "type": "Lesson",
-  "kicker": "6-bosqich · o'quvchi darsini o'tish",
-  "eyebrow": "m4-08 · «Praktika: Backend CRUD — AvtoIjara»",
-  "title": "m4-08: jadval qo'lda, server Gemini bilan — darsdagi to'rt farqni oldindan biling",
+  "kicker": "6-bosqich · sinfga tayyorgarlik",
+  "title": "Olti holat va tayyor javoblar — hammasini bugun o'zingiz ko'rdingiz",
   "seg": [
    [
     "a",
-    "m4-08 — <b>to'qqiz ekran</b>: jadvalni o'quvchi yozadi, serverni Gemini, Postman bilan sinaladi",
-    "Ikkinchi dars m4-08, AvtoIjara, unda to'qqiz ekran bor. O'quvchi cars jadvalini PostgreSQL terminalida o'zi yozadi, server kodini Gemini'dan oladi, Postman bilan sinaydi va AI xatosini topadi. Siz bugun xuddi shuni qildingiz."
+    "Darsda albatta chiqadigan olti holat — <b>hammasini bugun o'zingiz ko'rdingiz</b>",
+    "Ikki o'quvchi darsini bilasiz. Endi darsda albatta chiqadigan oltita holatni ko'ramiz. Hammasini bugun o'zingiz ko'rdingiz, shuning uchun qisqa aytaman."
    ],
    [
     "b",
-    "Farq 1: darsdagi xato matni qisqartirilgan; Farq 2: Gemini kodi <b>har kimda boshqacha</b>",
-    "Darsdagi to'rt farqni oldindan biling. Birinchisi: xato matni darsda qisqaroq, haqiqiysida relation cars ham bor. Ikkinchisi: Gemini har o'quvchiga boshqacha kod yozadi. Topilmasa nima qaytishi, bitta yoki ikkita satr har xil bo'ladi. Promptdagi talablar bajarilganini tekshiring, satrma-satr bir xillikni emas."
+    "Nom xatosi va apostrof — <b><code>\\d</code> bilan solishtiring</b>, apostrof ikki marta",
+    "Birinchi holat jadval yoki ustun nomidagi xato: xabar ichidagi nomni backslash d bilan solishtiring, hint'ga ishonmang. Ikkinchisi apostrof: u ikki marta yoziladi."
    ],
    [
     "c",
-    "Farq 3: <code>is_rented</code> — <code>null</code>; Farq 4: <b>port band bo'lsa ham «ishlayapti»</b>",
-    "Uchinchisi: POST'dan keyin is rented null chiqadi, chunki u berilmaydi. To'rtinchisi: ikki terminalda ikki server ochilsa, xato chiqmaydi, eski server javob beradi. Ikkalasini ham o'quvchilarga oldindan ayting."
-   ],
-   [
-    "d",
-    "Xulosa: darsdan oldin — parol, Postman va <b>bitta terminal qoidasi</b>",
-    "Xulosa: m4-08 dan oldin uch narsani tayyorlang. Sinf paroli hammaga ma'lum, Postman o'rnatilgan, va qoida: bitta loyiha, bitta terminal. Vaqt, taklif: to'qson daqiqaning qirqi server va Postman'ga, chunki eng ko'p qoqiladigan joy shu."
-   ]
-  ]
- },
- "26": {
-  "type": "Lesson",
-  "kicker": "6-bosqich · sinfda",
-  "title": "Olti holat va tayyor javoblar",
-  "seg": [
-   [
-    "a",
-    "Sinfda albatta chiqadigan <b>olti holat</b> — hammasini bugun o'zingiz ko'rdingiz",
-    "Ikki o'quvchi darsini bilasiz. Endi sinfda albatta chiqadigan oltita holatni ko'ramiz. Hammasini bugun o'zingiz ko'rdingiz, shuning uchun qisqa aytaman."
-   ],
-   [
-    "b",
-    "Nom xatosi va apostrof — <code>\\d</code> bilan solishtiring, <b>apostrof ikki marta</b>",
-    "Birinchi holat jadval yoki ustun nomidagi xato: xabar ichidagi nomni teskari chiziqcha d bilan solishtiring, hint'ga ishonmang. Ikkinchisi apostrof: u ikki marta yoziladi."
-   ],
-   [
-    "c",
-    "<code>WHERE</code>'siz va ulanish xatolari — <code>BEGIN</code>, parol va <b>bo'sh xabar</b>",
+    "<code>WHERE</code>'siz va ulanish xatolari — <b><code>BEGIN</code>, parol va bo'sh xabar</b>",
     "Uchinchisi where'siz update yoki delete: uning oldi begin bilan olinadi. To'rtinchisi parol yoki baza nomidagi xato: uni Pool sozlamalarida qidiring. Beshinchisi: xabar bo'sh bo'lsa, console error'ga butun xatoni bering va PostgreSQL'ni tekshiring."
    ],
    [
     "d",
-    "Xulosa: o'zgarmasa — ikkinchi terminal; avval <b>xabarni o'quvchi bilan birga o'qing</b>",
+    "Xulosa: o'zgarmasa — ikkinchi terminal; <b>xabarni o'quvchi bilan birga o'qing</b>, javobni darhol aytmang",
     "Oltinchisi: o'quvchi «o'zgarmadi» desa, ikkinchi terminalda eski server qolganini tekshiring. Xulosa va usul bitta: javobni darhol aytmang, xabarni o'quvchi bilan birga o'qing. Pastda o'quvchi savollariga tayyor javoblar bor."
    ]
   ]
  },
- "27": {
+ "30": {
   "type": "Screen27",
   "kicker": "O'z-sinov",
   "title": "Sakkiz savol. Bitta urinish. Oltitasi — o'tdingiz",
@@ -1500,102 +1955,102 @@ const MDT = {
    {
     "q": "UPDATE products SET price = 99000; — WHERE yo'q. Javob?",
     "o": [
-     "UPDATE 1",
-     "ERROR",
-     "UPDATE 3 — hamma qator",
-     "UPDATE 0"
+     "UPDATE 1 — faqat birinchi qator o'zgaradi",
+     "ERROR — WHERE'siz UPDATE taqiqlangan",
+     "UPDATE 3 — hamma qator yangi narxni oldi",
+     "UPDATE 0 — shart yo'q, hech narsa"
     ],
     "c": 2,
     "e": "WHERE'siz — jadvaldagi hamma qator.",
-    "s": 8
+    "s": 9
    },
    {
     "q": "BEGIN; → DELETE FROM products; → ROLLBACK; → SELECT *. Natija?",
     "o": [
-     "Hamma mahsulot joyida",
-     "(0 rows)",
-     "Faqat birinchi qator",
-     "ERROR"
+     "Hamma mahsulot joyida — DELETE bekor bo'ldi",
+     "(0 rows) — DELETE allaqachon diskka yozilgan",
+     "Faqat birinchi qator qaytib keladi, xolos",
+     "ERROR — ROLLBACK'dan keyin jadval yopiq"
     ],
     "c": 0,
     "e": "ROLLBACK tranzaksiyani bekor qiladi.",
-    "s": 8
+    "s": 12
    },
    {
-    "q": "WHERE id = 99 — bunday qator yo'q. UPDATE javobi?",
+    "q": "Tranzaksiya ichida buyruq xato berdi, prompt shop=!#. Endi SELECT 1; yozsangiz?",
     "o": [
-     "ERROR: not found",
-     "UPDATE 0",
-     "UPDATE 1",
-     "DELETE 0"
+     "Oddiy ishlaydi — xato o'tib ketgan",
+     "current transaction is aborted xatosi",
+     "Baza o'zi COMMIT qilib, natija beradi",
+     "Prompt o'zi oddiy holatga qaytadi"
     ],
     "c": 1,
-    "e": "Mos qator yo'q — 0, xato emas.",
-    "s": 5
+    "e": "Aborted holat: ROLLBACKgacha hamma buyruq rad etiladi.",
+    "s": 10
    },
    {
-    "q": "VALUES ('O'yinchoq', 30000, 4) → syntax error. Tuzatish?",
+    "q": "UPDATEdan keyin SELECT * da qator ro'yxat oxiriga tushdi. Sabab?",
     "o": [
-     "\"O'yinchoq\"",
-     "VARCHAR qilish",
-     "Kirillda yozish",
-     "'O''yinchoq'"
+     "Bu xato — qator buzilgan, qayta yozing",
+     "id o'zgardi — UPDATE yangi id berdi",
+     "Tranzaksiya yopilmagan — qator vaqtincha",
+     "ORDER BY yo'q — tartib kafolatlanmaydi"
     ],
     "c": 3,
-    "e": "So'z ichidagi apostrof ikki marta.",
-    "s": 11
+    "e": "ctid o'zgardi; tartib ORDER BY bilan.",
+    "s": 6
    },
    {
-    "q": "Express'da bazaga SQL nima bilan yuboriladi?",
+    "q": "new Pool({…}) yaratildi, parol xato. Server ishga tushganda nima bo'ladi?",
     "o": [
-     "pool.query(sql, [qiymatlar])",
-     "res.json",
-     "app.listen",
-     "console.log"
+     "Darhol xato beradi, server tushadi",
+     "Server yonadi, xato birinchi so'rovda",
+     "Pool to'g'ri parolni o'zi topib oladi",
+     "Hech qachon xato chiqmaydi — parol keshda"
     ],
-    "c": 0,
-    "e": "Pool — server bazaga shu yo'l bilan ulanadi.",
-    "s": 14
+    "c": 1,
+    "e": "Pool birinchi so'rovda ulanadi.",
+    "s": 17
    },
    {
     "q": "Server «ishlayapti», GET ishlaydi, POST — Cannot destructure property 'model' of 'req.body'. Sabab?",
     "o": [
-     "Parol xato",
-     "app.use(express.json()) yo'q",
-     "Jadval yo'q",
-     "Port band"
+     "Parol xato — baza so'rovni rad etdi",
+     "Jadval yo'q — INSERT bajarilmadi",
+     "Port band — POST boshqa serverga ketdi",
+     "express.json() ulanmagan — tana bo'sh"
     ],
-    "c": 1,
+    "c": 3,
     "e": "req.body o'qilmagan.",
-    "s": 19
+    "s": 23
    },
    {
     "q": "POST 500, {\"error\":\"\"}, terminalda bo'sh qator. Birinchi qadam?",
     "o": [
-     "Serverni o'chirish",
-     "Gemini'dan yangi kod",
-     "console.error(err) — butun xatoni ko'rish",
-     "npm install"
+     "Serverni o'chirib, qaytadan yoqib ko'rish",
+     "Gemini'dan butunlay yangi kod so'rash",
+     "console.error(err) bilan xatoni ko'rish",
+     "npm install bilan paketlarni yangilash"
     ],
     "c": 2,
     "e": "Bo'sh xabar — ECONNREFUSED yashiringan.",
-    "s": 20
+    "s": 24
    },
    {
-    "q": "O'quvchi: «Kodni tuzatdim, node server.js qildim — javob o'zgarmadi». Birinchi savolingiz?",
+    "q": "'DELETE … WHERE id = ' + req.params.id va URL 1 OR 1=1. Nima bo'ladi?",
     "o": [
-     "Gemini'dan qayta so'radingmi?",
-     "Bazani o'chirdingmi?",
-     "Postman yangilandimi?",
-     "Boshqa terminalda server ochiq qolmadimi?"
+     "Hamma qator o'chadi va javob 200 qaytadi",
+     "Baza bunday so'rovni rad etadi — 500",
+     "404 — 1 OR 1=1 degan id topilmadi",
+     "Faqat birinchi mashina o'chadi, qolgani qoladi"
     ],
-    "c": 3,
-    "e": "Express 5 da ikkinchi server ham «ishlayapti» deydi.",
-    "s": 21
+    "c": 0,
+    "e": "Yopishtirilgan matn SQL bo'ldi; $1 bilan — 500, jadval joyida.",
+    "s": 20
    }
   ]
  },
- "28": {
+ "31": {
   "type": "Screen28",
   "kicker": "Yakun",
   "title": "Endi siz bilasiz"
@@ -1604,8 +2059,8 @@ const MDT = {
 
 // ============================================================
 //  MENTOR KURSI · PostgreSQL-2 «CRUD so'rovlar va Express'dan bazaga»
-//  F-1029-02 · manba-haqiqat: feedback/F-1029-02-mentor-kurs/08-PostgreSQL2-mentor-v1.md (MD v1, GATE M kutilmoqda; 01.11 avtopilot)
-//  Haqiqiy chiqishlar: feedback/F-1029-02-mentor-kurs/manba/pg2-out/ (00–20)
+//  F-1029-02 · manba-haqiqat: feedback/F-1029-02-mentor-kurs/08-PostgreSQL2-mentor-v2.md (MD v2 — M41 «avval mentor o'rganadi», GATE M 03.11: 1A·2C·3A·4A)
+//  Haqiqiy chiqishlar: feedback/F-1029-02-mentor-kurs/manba/pg2-out/ — v2b (3→11 uzluksiz), v2e (ikki psql seansi), v2f (14–18 uzluksiz), v2d (Mongoose), 10–20 (Express)
 //  Yig'ish: cat parts/01-asos.jsx parts/02-dvigatel.jsx pg2/parts/*.jsx > PgCrudMentorLesson.jsx
 //  Yordamchilar PG-1 dan nusxa (pg1/parts/04-yordam.jsx) — darslar bir-biriga bog'liq emas
 // ============================================================
@@ -1615,6 +2070,8 @@ const PG = { mongo: '#13AA52', pg: '#336791', term: '#111827', termEr: '#1F1115'
 MKCFG.root = 'avto-ijara-server';
 MKCFG.kind = (f) => /\.js$/.test(f) ? T.yellow : /\.sql$/.test(f) ? PG.pg : /\.json$/.test(f) ? T.ink2 : null;
 MKCFG.files = ['node_modules/', 'package.json', 'server.js'];
+// Mongoose jufti — bitta xira qator (M45): dvigatel .mk-pair
+const Pair = ({ code, res }) => <div className="mk-pair"><b style={{ color: PG.mongo }}>{t("Mongoose'da:", "В Mongoose:")}</b> <code>{code}</code>{res ? <> → {res}</> : null}</div>;
 
 // Segment: MD'dagi ekran matni (03-matn.gen.jsx) + sahna maydonlari (extras — segment tartibida)
 const sg = (id, key, text, extra = {}) => ({ id, key, text, show: wr(text), ...extra });
@@ -1625,8 +2082,8 @@ const mkS = (n, extras = [], more = {}) => {
 
 // Ovoz → «Matn» (transkript) uchun yozma ko'rinish. Uzun ibora oldin.
 const SPOKEN = [
-  ['psql minus U postgres', 'psql -U postgres'], ['teskari chiziqcha d products', '\\d products'], ['teskari chiziqcha d cars', '\\d cars'],
-  ['teskari chiziqcha l', '\\l'], ['teskari chiziqcha d', '\\d'], ['teskari chiziqcha c', '\\c'],
+  ['psql minus U postgres', 'psql -U postgres'], ['backslash d products', '\\d products'], ['backslash d cars', '\\d cars'],
+  ['backslash l', '\\l'], ['backslash d', '\\d'], ['backslash c', '\\c'],
   ['app use express json', 'app.use(express.json())'], ['express json', 'express.json()'], ['pool query', 'pool.query'], ['res json', 'res.json'],
   ['req body', 'req.body'], ['node server js', 'node server.js'], ['server js', 'server.js'], ['console error', 'console.error'], ['err message', 'err.message'],
   ['daily price', 'daily_price'], ['is rented', 'is_rented'], ['car rental', 'car_rental'], ['avto ijara server', 'avto-ijara-server'], ['rowCount', 'rowCount'],
@@ -1635,10 +2092,16 @@ const SPOKEN = [
   ['insert, nol, uch', 'INSERT 0 3'], ['insert nol bir', 'INSERT 0 1'], ['update bir', 'UPDATE 1'], ['update nol', 'UPDATE 0'], ['update uch', 'UPDATE 3'],
   ['delete bir', 'DELETE 1'], ['delete uch', 'DELETE 3'], ['deleted uch', 'deleted: 3'], ['not null', 'NOT NULL'], ['default false', 'DEFAULT false'],
   ['where name is null', 'WHERE name IS NULL'], ['process env', 'process.env'], ['Ctrl C', 'Ctrl+C'], ['npm init', 'npm init -y'],
+  // v2 (03.11)
+  ['create database', 'CREATE DATABASE'], ['create table', 'CREATE TABLE'], ['insert into', 'INSERT INTO'], ['nol vergul olti', '(0,6)'], ['nol vergul besh', '(0,5)'],
+  ['matchedCount nol', 'matchedCount: 0'], ['dollar lt', '$lt'], ['check stock katta yoki teng nol', 'CHECK (stock >= 0)'], ['alter table', 'ALTER TABLE'], ['set not null', 'SET NOT NULL'],
+  ['rowcount', 'rowCount'], ['Rowcount', 'rowCount'], ['update nol', 'UPDATE 0'], ['insert nol to\'rt', 'INSERT 0 4'], ['teng, yulduzcha, panjara', '=*#'], ['undov belgisi', '!'],
 ];
-DIGITS.unshift(["to'qson to'qqiz ming", '99 000'], ['yuz ming', '100 000'], ['ellik ming', '50 000'], ["o'ttiz ming", '30 000'],
+DIGITS.unshift(["sakson to'qqiz ming", '89 000'], ["to'qson to'qqiz ming", '99 000'], ['yuz ming', '100 000'], ['ellik ming', '50 000'], ["o'ttiz ming", '30 000'],
   ["to'qson to'qqizinchi", '99-'], ['yigirma bir', '21'], ['yigirma beshi', '25 tasi'], ["o'n besh-yigirma", '15–20'], ["besh-o'n", '5–10'],
   ['bir, ikki, uch, to\'rt', '1, 2, 3, 4'], ['id bir', 'id 1'], ['id uch', 'id 3'], ["to'qqiz ekran", '9 ekran']);
+// F-1109-01: gap boshidagi «Backslash l» ham «Matn»da kod bo'lib ko'rinsin
+SPOKEN.push(...SPOKEN.filter(([a]) => a.startsWith('backslash')).map(([a, b]) => ['B' + a.slice(1), b]));
 const wr = (s) => digits(SPOKEN.reduce((acc, [a, b]) => acc.split(a).join(b), s));
 // Haqiqiy inglizcha iboralar ovozda [English pronunciation] ichida (M21) — uzunlari oldin
 EN_PHRASES.unshift(
@@ -1700,6 +2163,8 @@ function psqlLine(l) {
 }
 const psql = (src, meta = {}) => src.replace(/^\n/, '').replace(/\n\s*$/, '').split('\n').map((l, i) => ({ h: psqlLine(l), ...(meta[i + 1] || {}) }));
 // Bitta qatorga «at» (qadam) va «id» (yoritish) beruvchi qisqa yozuv: rng(2, 5, {at: 1}) → {2:{at:1}, …, 5:{at:1}}
+// Galma-gal terminal: faqat oxirgi kelgan qadam guruhi (at) — eski buyruqlar ekrandan ketadi (memory «ma'lumot galma-gal»)
+const cur = (lines, beat) => { const ats = lines.map((l) => l.at).filter((x) => x != null && x <= beat); const m = ats.length ? Math.max(...ats) : null; return lines.filter((l) => l.at == null || l.at === m); };
 const rng = (a, b, v) => { const o = {}; for (let i = a; i <= b; i++) o[i] = { ...v }; return o; };
 const mergeMeta = (...ms) => ms.reduce((acc, m) => { Object.keys(m).forEach((k) => { acc[k] = { ...(acc[k] || {}), ...m[k] }; }); return acc; }, {});
 
@@ -1723,7 +2188,7 @@ const METHOD_C = { GET: '#61AFFE', POST: '#49CC90', PUT: '#FCA130', DELETE: '#F9
 function PostmanCard({ m, url, body, st, res, hl }) {
   const c = String(st)[0];
   return <div className={`pg-pm${hl ? ' hl' : ''}`}>
-    <div className="top"><span className="lg">Postman</span><span className="m" style={{ background: METHOD_C[m] }}>{m}</span><span className="u">{url}</span><span className="tg">haqiqiy javob</span></div>
+    <div className="top"><span className="lg">Postman</span><span className="m" style={{ background: METHOD_C[m] }}>{m}</span><span className="u">{url}</span><span className="tg">{t("haqiqiy javob", "настоящий ответ")}</span></div>
     {body && <pre className="b">{body}</pre>}
     <div className="r"><span className={`st s${c}`}>{st}</span><pre>{res}</pre></div>
   </div>;
@@ -1732,6 +2197,26 @@ const Doc = ({ children, odd, er }) => <pre className={`pg-doc${odd ? ' odd' : '
 
 // PG-1 ga xos qo'shimcha CSS (dvigatel CSS'iga tegilmaydi). Izohda backtick yo'q (CLAUDE.md).
 const CSS3 = `
+.p2-vs-card{background:#fff;border:1px solid #D7DCE3;border-radius:14px;padding:14px 10px 8px}
+.p2-vs-card svg{display:block;width:100%;height:auto}
+.p2-vs-card .nd{font:700 20px ui-monospace,Menlo,Consolas,monospace}
+.p2-vs-card .in{font:13px system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;fill:#CBD5E1}
+.p2-vs-card .lb{font:700 14px ui-monospace,Menlo,Consolas,monospace}
+.p2-lanes{display:grid;grid-template-columns:92px 1fr 1fr 1fr;background:#fff;border:1px solid #D7DCE3;border-radius:14px;overflow:hidden}
+.p2-lanes>div{padding:10px 12px;border-bottom:1px solid #EEF0F3;font-size:14px;line-height:1.35;display:flex;align-items:center;gap:8px;min-height:46px}
+.p2-lanes .h{font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase;background:#F8FAFC}
+.p2-lanes .tm{font:600 12px ui-monospace,Menlo,Consolas,monospace;color:#6B7280;background:#F8FAFC}
+.p2-lanes code{font:13px ui-monospace,Menlo,Consolas,monospace;background:#F1F3F6;border-radius:5px;padding:1px 6px}
+.p2-cn{display:flex;align-items:center;gap:6px;flex:1}
+.p2-cn i{flex:1;height:0;border-top:2px dashed #C3CAD4}
+.p2-cn.on i{border-top:3px solid #336791}
+.p2-pid{font:700 13px ui-monospace,Menlo,Consolas,monospace;color:#fff;background:#336791;border-radius:6px;padding:2px 8px;white-space:nowrap}
+.p2-bad{border:2px solid #E2451F;border-radius:14px;background:#FFF5F2;padding:12px 14px;display:grid;grid-template-columns:auto 1fr;gap:6px 12px;align-items:center;font-size:14px}
+.p2-bad>b{color:#E2451F}
+.p2-s19 td.st{text-align:center;font-weight:700;width:64px}
+.p2-s19 td.st.s2{color:#15803D}.p2-s19 td.st.s4{color:#B45309}.p2-s19 td.st.s5{color:#B91C1C}
+.p2-s19 tr.k td{background:#FFFBEB}
+.p2-s19 td.ar{color:#9CA3AF;text-align:center;width:22px}
 .mk-explorer{overflow:auto}
 /* ogohlantirish qutisi — Nest-2 dagi bilan bir xil (u bo'lak bu darsga kirmaydi) */
 .n2-warn{border-left:4px solid ${T.accent};background:#FFF0EB;border-radius:10px;padding:10px 12px;font-size:14px;line-height:1.5}
@@ -1778,9 +2263,9 @@ const CSS3 = `
 .pg-dict code{font:12.5px ${MONO};background:#EEF0F4;padding:1px 6px;border-radius:5px}
 .pg-dict th{font:600 11px/1 ${MONO};letter-spacing:.08em;text-transform:uppercase;text-align:left;padding:0 12px 4px}
 .pg-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;align-items:start}
-@media (max-width:1300px){.pg-two{grid-template-columns:1fr}}
+@media (max-width:1000px){.pg-two{grid-template-columns:1fr}}
 .pg-three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:start}
-@media (max-width:1300px){.pg-three{grid-template-columns:1fr}}
+@media (max-width:1000px){.pg-three{grid-template-columns:1fr}}
 .pg-lab{font:700 11px/1 ${MONO};letter-spacing:.08em;text-transform:uppercase;color:${T.ink3};margin:0 0 6px;display:flex;gap:8px;align-items:center}
 .pg-lab .tm{color:${T.accent}}
 .pg-wait{display:inline-flex;gap:8px;align-items:center;font:600 13px ${MONO};color:${T.yellow};background:#FFF6E2;border:1px solid #F1D38A;border-radius:8px;padding:6px 10px;animation:mk-pulse 1.6s ease-in-out infinite}
@@ -1791,7 +2276,7 @@ const CSS3 = `
 .pg-cmp .mk-card h5{display:flex;gap:8px;align-items:center}
 .pg-cmp .mk-card h5 i{width:10px;height:10px;border-radius:50%;display:inline-block}
 .pg-qa{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-@media (max-width:1300px){.pg-qa{grid-template-columns:1fr}}
+@media (max-width:1000px){.pg-qa{grid-template-columns:1fr}}
 .pg-qa button{text-align:left;border:1px solid ${T.line};border-radius:12px;background:${T.paper};padding:12px 14px;cursor:pointer;font:inherit;color:${T.ink}}
 .pg-qa b{display:block;font-size:14px}
 .pg-qa p{margin:6px 0 0;font-size:13px;color:${T.ink2};line-height:1.45}
@@ -1817,6 +2302,28 @@ const CSS3 = `
 .pg-crud td.off>*{opacity:0}
 .pg-crud code{font:13px ${MONO};background:#EEF0F4;padding:2px 7px;border-radius:5px}
 .pg-crud td.sql code{background:#E8F0F8;color:${PG.pg}}.pg-crud td.ex code{background:#E3F5EC;color:${T.green}}
+.pg-crud th.mg{color:${PG.mongo}}.pg-crud td.mg code{background:#E9F7EF;color:#0B5A33}
+/* v2 (03.11): Mongoose bloki, fayl sahifasi (ctid), uch holat, Pool chizmasi, karta qatori */
+.pg-mg{margin:0;font:12px/1.55 ${MONO};color:${T.ink2};background:#F1F8F4;border:1px dashed ${PG.mongo};border-radius:10px;padding:8px 12px;white-space:pre-wrap}
+.pg-mg b{color:${PG.mongo}}
+.pg-page{background:${T.paper};border:1px solid ${T.line};border-radius:12px;padding:12px 14px}
+.pg-page .slots{display:grid;gap:6px}
+.pg-page .slot{display:flex;gap:10px;align-items:center;padding:6px 10px;border:1px solid ${T.line};border-radius:8px;font:13px ${MONO};transition:background .3s,border-color .3s}
+.pg-page .slot b{min-width:44px;color:${T.ink3};font-weight:600}
+.pg-page .slot.old span{text-decoration:line-through;color:${T.ink3}}
+.pg-page .slot.gone{border-style:dashed;color:${T.ink3}}
+.pg-page .slot.now{border-color:${PG.pg};background:#E8F0F8;font-weight:700}
+.pg-page .slot.hl{border-color:${T.accent};background:#FFF0EB}
+.pg-states{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.pg-states .mk-box code{font:700 14px ${MONO};background:transparent;padding:0}
+.pg-pool{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:8px;align-items:center}
+.pg-pool .ar{font:700 18px ${MONO};color:${T.ink3};text-align:center}
+.pg-cards3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:start}
+@media (max-width:1300px){.pg-cards3,.pg-states{grid-template-columns:1fr}}
+.pg-rules{display:grid;gap:6px;font:13px ${MONO}}
+.pg-rules div{display:flex;gap:10px;padding:6px 10px;border:1px solid ${T.line};border-radius:8px;background:${T.paper};transition:background .3s}
+.pg-rules div.on{background:#E3F5EC;border-color:${T.green}}
+.pg-rules div.new{animation:mk-up .4s ease both}
 `;
 function useCss3() {
   useEffect(() => {
@@ -1827,202 +2334,262 @@ function useCss3() {
 }
 
 // ============================================================
+//  v2 yordamchilar: amaliyot MD'dan (mkPractice), tekshiruv (MC) qolipi — M42: above/after/demak
+// ============================================================
+const mkPractice = (n, hls, extra = {}) => {
+  const m = MDT[n]; const pr = m.proof;
+  return {
+    S: mkS(n, hls.map((hl) => ({ hl })), { tableAt: 3 }), steps: m.steps, trouble: m.trouble,
+    proof: { label: pr.label, placeholder: pr.placeholder, check: (v) => new RegExp(pr.re, pr.flags).test(v), wrong: pr.wrong }, ...extra,
+  };
+};
+// Qadam-baqadam terminal: faqat shu qadamgacha kelgan qatorlar (yashirin qatorlar bo'sh qora joy egallamasin — F-1103-08 sinfi)
+const upto = (lines, beat) => lines.filter((l) => l.at == null || l.at <= beat);
+const Demak = (n) => <span dangerouslySetInnerHTML={html(MDT[n].demak)} />;
+function MC(p, n, more) {
+  const m = MDT[n];
+  return <MCRetry {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} q={m.q} opts={m.opts} correct={m.correct} ok={m.ok} okShort={<span dangerouslySetInnerHTML={html(m.okShort)} />} wrong={m.wrong} demak={Demak(n)} {...more} />;
+}
+const PCOLS = ['id', 'name', 'price', 'stock'];
+
+// ============================================================
 //  1 · Kirish
 // ============================================================
-const PLAN1 = ["CRUD PostgreSQL terminalida", 'WHERE va xavfsiz sinash', 'Sinfdagi SQL xatolari', "Express'dan bazaga", 'Buzamiz', "O'quvchi darslarini o'tish"];
-const S1 = mkS(1, [{ hl: [] }, { hl: [0, 1, 2] }, { hl: [3, 4] }, { hl: [5] }], { plan: PLAN1 });
+const PLAN1 = ['CRUD terminalida', 'Tranzaksiya: xavfsiz sinash va atomik ish', "Baza qo'riqlaydi", "Express'dan bazaga", 'Buzamiz va tuzatamiz', 'Sinfga tayyorgarlik'];
+const S1 = mkS(1, [{ hl: [], res: true }, { hl: [0, 1, 2] }, { hl: [3, 4] }, { hl: [5] }], { plan: PLAN1 });
+const INTRO1 = psql(String.raw`
+shop=# UPDATE products SET price = 99000 WHERE id = 1;
+UPDATE 1`);
 function Screen1(p) {
   return <Lesson p={p} S={S1} scene={({ seg }) => <div style={{ display: 'grid', gap: 14 }}>
     <div className="mk-light"><div className="mk-plan">
       {S1.plan.map((x, i) => <div key={i} className={seg.hl.includes(i) ? 'hl' : (seg.hl.length ? 'dim' : '')}><b>0{i + 1}</b><span>{x}</span></div>)}
     </div></div>
-    <div className="mk-tag" style={{ margin: 0 }}>Dars oxirida — sizning serveringizda</div>
-    <PostmanCard m="POST" url="localhost:3000/api/cars" body={'{ "model": "Chevrolet Spark", "daily_price": 190000, "year": 2021 }'} st={201} res={'{"id":4,"model":"Chevrolet Spark","daily_price":190000,"year":2021,"is_rented":null}'} />
+    {seg.res && <><div className="mk-tag" style={{ margin: 0 }}>{t("Dars oxirida — terminalda ham, serverda ham", "В конце урока — и в терминале, и на сервере")}</div>
+    <div className="pg-two">
+      <Psql title="psql — shop" lines={INTRO1} />
+      <PostmanCard m="POST" url="localhost:3000/api/cars" body={'{ "model": "Chevrolet Spark", "daily_price": 190000, "year": 2021 }'} st={201} res={'{"id":4,"model":"Chevrolet Spark","daily_price":190000,"year":2021,"is_rented":null}'} />
+    </div></>}
   </div>} />;
 }
 
 // ============================================================
-//  2 · CRUD: to'rt amal — to'rt SQL buyruq — to'rt endpoint (F-1102-21, M39)
-//  Haqiqiy: pg2-out/01 (INSERT 0 1, 4 rows) · 03 (UPDATE 1, DELETE 1) · 11-crud-sorovlar (POST 201 · GET/PUT/DELETE 200)
+//  2 · CRUD: to'rt amal — to'rt buyruq — to'rt endpoint (M39, galma-gal; M45: siz bilgan Mongoose ustuni)
+//  Haqiqiy: v2b-01 (INSERT 0 4 · 4 rows · UPDATE 1 · DELETE 1) · v2d-mongoose (matchedCount 1 · deletedCount 1) · 11-crud-sorovlar (201/200)
 // ============================================================
 const CRUD = [
-  ['C', 'Create', 'yaratish', 'INSERT', 'INSERT 0 1', 'POST /api/cars', '201'],
-  ['R', 'Read', "o'qish", 'SELECT', '(4 rows)', 'GET /api/cars', '200'],
-  ['U', 'Update', "o'zgartirish", 'UPDATE', 'UPDATE 1', 'PUT /api/cars/2', '200'],
-  ['D', 'Delete', "o'chirish", 'DELETE', 'DELETE 1', 'DELETE /api/cars/1', '200'],
+  ['C', 'Create', 'yaratish', 'INSERT', 'INSERT 0 4', 'Product.create(…)', 'POST /api/cars', '201'],
+  ['R', 'Read', "o'qish", 'SELECT', '(4 rows)', 'Product.find(…)', 'GET /api/cars', '200'],
+  ['U', 'Update', "o'zgartirish", 'UPDATE', 'UPDATE 1', 'Product.updateOne(…) → matchedCount: 1', 'PUT /api/cars/2', '200'],
+  ['D', 'Delete', "o'chirish", 'DELETE', 'DELETE 1', 'Product.deleteOne(…) → deletedCount: 1', 'DELETE /api/cars/1', '200'],
 ];
-const S2CRUD = mkS(2, [{ sql: false, ex: false }, { sql: true, ex: false }, { sql: true, ex: true }, { sql: true, ex: true, rule: true }]);
-function ScreenCrud(p) {
-  return <Lesson p={p} S={S2CRUD} scene={({ seg, beat }) => <div style={{ display: 'grid', gap: 12 }}>
+const S2 = mkS(2, [{ sql: false, mg: false, ex: false }, { sql: true, mg: true, ex: false }, { sql: true, mg: true, ex: true }, { sql: true, mg: true, ex: true, rule: true }]);
+function Screen2(p) {
+  return <Lesson p={p} S={S2} scene={({ seg, beat }) => <div style={{ display: 'grid', gap: 12 }}>
     <div className="mk-light" style={{ padding: '6px 12px' }}>
       <table className="pg-crud"><thead><tr>
-        <th>CRUD</th><th>ma'nosi</th>
-        <th className="sql">PostgreSQL</th><th className="sql">baza javobi</th>
+        <th>CRUD</th><th>{t("ma'nosi", "смысл")}</th>
+        <th className="sql">PostgreSQL</th><th className="sql">{t("baza javobi", "ответ базы")}</th>
+        <th className="mg">{t("siz bilgan Mongoose", "знакомый вам Mongoose")}</th>
         <th className="ex">Express</th><th className="ex">status</th>
       </tr></thead><tbody>
-        {CRUD.map(([l, en, uz, q, ans, ep, st]) => <tr key={l}>
+        {CRUD.map(([l, en, uz, q, ans, mg, ep, st]) => <tr key={l}>
           <td><span style={{ color: T.accent, fontSize: 20 }}>{l}</span><span style={{ fontWeight: 600, color: T.ink2 }}>{en.slice(1)}</span></td>
           <td>{uz}</td>
           <td className={`sql${seg.sql ? '' : ' off'}`}><code>{q}</code></td>
           <td className={`sql${seg.sql ? '' : ' off'}`}><code>{ans}</code></td>
+          <td className={`mg${seg.mg ? '' : ' off'}`} style={{ opacity: seg.mg ? 0.8 : 1 }}><code>{mg}</code></td>
           <td className={`ex${seg.ex ? '' : ' off'}`}><code>{ep}</code></td>
           <td className={`ex${seg.ex ? '' : ' off'}`}><code>{st}</code></td>
         </tr>)}
       </tbody></table>
     </div>
-    <Block at={3} beat={beat}><div className="mk-rule">Bitta amal — bazada <b>bitta SQL buyruq</b>, serverda <b>bitta endpoint</b>. Bugun avval terminalda qo'lda, keyin Express ichida.</div></Block>
+    <Block at={3} beat={beat}><div className="mk-rule">{t("Bitta amal — bazada ", "Одно действие — в базе ")}<b>{t("bitta SQL buyruq", "одна SQL-команда")}</b>{t(", serverda ", ", на сервере ")}<b>{t("bitta endpoint", "один endpoint")}</b>{t(". Avval terminalda qo'lda va ichini ko'ramiz, keyin Express ichida.", ". Сначала вручную в терминале и смотрим внутрь, потом внутри Express.")}</div></Block>
   </div>} />;
 }
 
 // ============================================================
-//  3 · shop bazasi: jadval va INSERT
+//  3 · shop bazasi: CREATE DATABASE → \c → jadval → INSERT (v2c-baza, v2b-01; Mongoose — v2d)
 // ============================================================
-const PRODUCTS0 = [['1', 'Klaviatura', '120000', '8'], ['2', 'Sichqoncha', '75000', '15'], ['3', 'Quloqchin', '95000', '5'], ['4', 'Mishka', '50000', '10']];
-const PCOLS = ['id', 'name', 'price', 'stock'];
-const T2 = psql(String.raw`
+const T3 = psql(String.raw`
+postgres=# CREATE DATABASE shop;
+CREATE DATABASE
+postgres=# \c shop
+You are now connected to database "shop" as user "postgres".
 shop=# CREATE TABLE products (id SERIAL PRIMARY KEY, name TEXT, price INTEGER, stock INTEGER);
 CREATE TABLE
-shop=# INSERT INTO products (name, price, stock) VALUES ('Klaviatura', 120000, 8), ('Sichqoncha', 75000, 15), ('Quloqchin', 95000, 5);
-INSERT 0 3
-shop=# INSERT INTO products (name, price, stock) VALUES ('Mishka', 50000, 10);
-INSERT 0 1
+shop=# INSERT INTO products (name, price, stock) VALUES
+shop-#   ('Klaviatura', 120000, 8), ('Sichqoncha', 75000, 15),
+shop-#   ('Quloqchin', 95000, 5), ('Kolonka', 50000, 10);
+INSERT 0 4
 shop=# SELECT * FROM products;
  id |    name    | price  | stock
 ----+------------+--------+-------
   1 | Klaviatura | 120000 |     8
   2 | Sichqoncha |  75000 |    15
   3 | Quloqchin  |  95000 |     5
-  4 | Mishka     |  50000 |    10
-(4 rows)`, mergeMeta(rng(1, 2, { at: 0 }), rng(3, 6, { at: 1 }), rng(7, 14, { at: 2 }), { 1: { id: 'ddl' }, 4: { id: 'n' }, 6: { id: 'n' }, 7: { id: 'sel' } }));
-const S2 = mkS(3, [{ focus: ['ddl'] }, { focus: ['n'] }, { focus: ['sel'] }, { focus: ['ddl'] }]);
-function Screen2(p) {
-  return <Lesson p={p} S={S2} scene={({ seg, beat }) => <>
-    <Psql title="psql — shop" lines={T2} beat={beat} focus={seg.focus} />
+  4 | Kolonka    |  50000 |    10
+(4 rows)`, mergeMeta(rng(1, 6, { at: 0 }), rng(7, 10, { at: 1 }), rng(11, 18, { at: 2 }), { 1: { id: 'db' }, 3: { id: 'db' }, 5: { id: 'ddl' }, 10: { id: 'n' }, 11: { id: 'sel' } }));
+const MG3 = `await mongoose.connect('mongodb://localhost/shop')
+bazalar: admin · config · local          (shop hali yo'q)
+await Product.create([ …4 ta… ])         → 4 ta hujjat
+bazalar: admin · config · local · shop`;
+const S3 = mkS(3, [{ focus: ['db', 'ddl'], v: 'mg' }, { focus: ['n'], v: 'pair' }, { focus: ['sel'], v: 'sel' }, { focus: ['ddl'], v: 'warn' }]);
+function Screen3(p) {
+  return <Lesson p={p} S={S3} scene={({ seg, beat }) => <>
+    <Psql title="psql" lines={seg.v === 'warn' ? T3.filter((l) => l.at === 1) : upto(T3, beat)} beat={beat} focus={seg.focus} />
     <div className="pg-two">
-      <div className="mk-light" style={{ padding: 12 }}><div className="mk-tag">O'quvchi darsida — jadval «chizmasi»</div><div style={{ fontSize: 13.5, lineHeight: 1.6 }}><code>id</code> SERIAL PRIMARY KEY · <code>name</code> TEXT · <code>price</code> INTEGER · <code>stock</code> INTEGER</div></div>
-      <Block at={3} beat={beat}><div className="n2-warn" style={{ fontSize: 14 }}>Bu jadvalda <b>NOT NULL yo'q</b> — 12-ekranda nima bo'lishini ko'ramiz.</div></Block>
+      <div className="mk-light" style={{ padding: 12 }}><div className="mk-tag">{t("products — ustun va turi", "products — колонки и тип")}</div>
+        <div style={{ fontSize: 13.5, lineHeight: 1.7 }}><code>id</code>{t(" SERIAL PRIMARY KEY — o'zi o'sadi · ", " SERIAL PRIMARY KEY — растёт сам · ")}<code>name</code> TEXT · <code>price</code> INTEGER · <code>stock</code> INTEGER<div style={{ color: T.ink3, fontSize: 12.5 }}>{t("hozircha hech qanday qoida yo'q — ataylab", "пока никаких правил — нарочно")}</div></div></div>
+      <div style={{ display: 'grid', gap: 10, alignContent: 'start' }}>
+        {seg.v === 'mg' && <pre className="pg-mg">{t(<><b>Mongoose'da</b> (siz bilgan):</>, <><b>В Mongoose</b> (знакомое вам):</>)}{'\n'}{t(MG3, RS('MG3'))}</pre>}
+        {seg.v === 'pair' && <Pair code="await Product.create([ …4 ta… ])" res={t("4 ta hujjat", "4 документа")} />}
+        {seg.v === 'warn' && <div className="n2-warn">{t("Bu jadvalda hozircha ", "В этой таблице пока ")}<b>{t("NOT NULL ham, boshqa qoida ham yo'q", "нет ни NOT NULL, ни другого правила")}</b>{t(" — baza faqat yozilgan qoidani qo'riqlaydi. 3-bosqichda ko'rasiz.", " — база охраняет только записанное правило. Увидите на 3-м этапе.")}</div>}
+      </div>
     </div>
   </>} />;
 }
 
 // ============================================================
-//  4 · SELECT va WHERE
+//  4 · SELECT va WHERE (v2b-01)
 // ============================================================
-const T3a = psql(String.raw`
+const PRODUCTS0 = [['1', 'Klaviatura', '120000', '8'], ['2', 'Sichqoncha', '75000', '15'], ['3', 'Quloqchin', '95000', '5'], ['4', 'Kolonka', '50000', '10']];
+const T4a = psql(String.raw`
 shop=# SELECT name, price FROM products;
     name    | price
 ------------+--------
  Klaviatura | 120000
  Sichqoncha |  75000
  Quloqchin  |  95000
- Mishka     |  50000
+ Kolonka    |  50000
 (4 rows)`);
-const T3b = psql(String.raw`
+const T4b = psql(String.raw`
 shop=# SELECT * FROM products WHERE price < 100000;
  id |    name    | price | stock
 ----+------------+-------+-------
   2 | Sichqoncha | 75000 |    15
   3 | Quloqchin  | 95000 |     5
-  4 | Mishka     | 50000 |    10
+  4 | Kolonka    | 50000 |    10
 (3 rows)`, { 1: { id: 'w' } });
-const T3c = psql(String.raw`
+const T4c = psql(String.raw`
 shop=# SELECT * FROM products WHERE stock < 6;
  id |   name    | price | stock
 ----+-----------+-------+-------
   3 | Quloqchin | 95000 |     5
 (1 row)`, { 1: { id: 'w' } });
-const S3 = mkS(4, [{ v: 'a', rows: [] }, { v: 'b', rows: [1, 2, 3] }, { v: 'c', rows: [2] }, { v: 'c', rows: [] }]);
-function Screen3(p) {
-  return <Lesson p={p} S={S3} scene={({ seg, beat }) => <>
+const S4 = mkS(4, [{ v: 'a', rows: [] }, { v: 'b', rows: [1, 2, 3] }, { v: 'c', rows: [2] }, { v: 'c', rows: [] }]);
+function Screen4(p) {
+  return <Lesson p={p} S={S4} scene={({ seg, beat }) => <>
     <MiniTable name="products" cols={PCOLS} rows={PRODUCTS0} hlRow={seg.rows} dimRow={seg.rows.length ? [0, 1, 2, 3].filter((i) => !seg.rows.includes(i)) : []} hlCol={seg.v === 'b' ? [2] : seg.v === 'c' && beat === 2 ? [3] : []} />
-    {seg.v === 'a' && <Psql title="psql — shop" lines={T3a} />}
-    {seg.v === 'b' && <Psql title="psql — shop" lines={T3b} focus={['w']} />}
-    {seg.v === 'c' && <Psql title="psql — shop" lines={T3c} focus={beat === 2 ? ['w'] : []} />}
-    <Block at={3} beat={beat}><div className="mk-rule"><b>SELECT</b> faqat o'qiydi · <b>WHERE</b> qatorlarni tanlaydi — UPDATE va DELETE'da ham aynan shu WHERE ishlaydi</div></Block>
+    {seg.v === 'a' && <Psql title="psql — shop" lines={T4a} />}
+    {seg.v === 'b' && <><Psql title="psql — shop" lines={T4b} focus={['w']} /><Pair code="await Product.find({ price: { $lt: 100000 } })" res={t("3 ta hujjat", "3 документа")} /></>}
+    {seg.v === 'c' && <Psql title="psql — shop" lines={T4c} focus={beat === 2 ? ['w'] : []} />}
+    <Block at={3} beat={beat}><div className="mk-rule"><b>SELECT</b>{t(" faqat o'qiydi · ", " только читает · ")}<b>WHERE</b>{t(" qatorlarni tanlaydi — UPDATE va DELETE'da ham aynan shu WHERE ishlaydi", " выбирает строки — в UPDATE и DELETE работает тот же WHERE")}</div></Block>
   </>} />;
 }
 
 // ============================================================
-//  5 · UPDATE va DELETE
+//  5 · UPDATE, DELETE va javobdagi son; RETURNING (v2b-01, uzluksiz holat)
 // ============================================================
-const T4 = psql(String.raw`
+const T5 = psql(String.raw`
 shop=# UPDATE products SET price = 99000 WHERE id = 1;
 UPDATE 1
 shop=# DELETE FROM products WHERE id = 3;
 DELETE 1
-shop=# SELECT * FROM products;
- id |    name    | price | stock
-----+------------+-------+-------
-  2 | Sichqoncha | 75000 |    15
-  4 | Mishka     | 50000 |    10
-  1 | Klaviatura | 99000 |     8
-(3 rows)
 shop=# UPDATE products SET price = 1 WHERE id = 99;
 UPDATE 0
 shop=# DELETE FROM products WHERE id = 99;
-DELETE 0`, mergeMeta(rng(1, 2, { at: 0 }), rng(3, 4, { at: 1 }), rng(5, 11, { at: 2 }), rng(12, 15, { at: 3 }), { 2: { id: 'u' }, 4: { id: 'd' }, 10: { id: 'kl' }, 13: { id: 'z' }, 15: { id: 'z' } }));
-const S4 = mkS(5, [{ focus: ['u'] }, { focus: ['d'] }, { focus: ['kl'] }, { focus: ['z'] }, { focus: ['u', 'd', 'z'] }]);
-function Screen4(p) {
-  return <Lesson p={p} S={S4} scene={({ seg, beat }) => <>
-    <Psql title="psql — shop" lines={T4} beat={beat} focus={seg.focus} />
-    <Block at={2} beat={beat}><div className="mk-tag" style={{ margin: 0, color: T.accent }}>Klaviatura oxirida — ORDER BY yozilmagan, tartib kafolatlanmaydi · kerak bo'lsa: SELECT * FROM products ORDER BY id;</div></Block>
-    <Block at={4} beat={beat}><div className="mk-rule">Javobdagi son: <b>1</b> — kutganingiz · <b>0</b> — WHERE hech narsaga mos kelmadi · <b>kutilmagan katta son</b> — WHERE noto'g'ri yoki yo'q</div></Block>
+DELETE 0
+shop=# UPDATE products SET stock = stock - 1 WHERE id = 1 RETURNING id, name, stock;
+ id |    name    | stock
+----+------------+-------
+  1 | Klaviatura |     7
+(1 row)
+UPDATE 1`, mergeMeta(rng(1, 2, { at: 0 }), rng(3, 4, { at: 1 }), rng(5, 8, { at: 2 }), rng(9, 14, { at: 3 }), { 2: { id: 'u' }, 4: { id: 'd' }, 6: { id: 'z' }, 8: { id: 'z' }, 9: { id: 'r' }, 12: { id: 'r' } }));
+const S5 = mkS(5, [{ focus: ['u'] }, { focus: ['d'] }, { focus: ['z'] }, { focus: ['r'] }, { focus: ['u', 'd', 'z'] }]);
+function Screen5(p) {
+  return <Lesson p={p} S={S5} scene={({ seg, beat }) => <>
+    <Psql title="psql — shop" lines={upto(T5, beat)} beat={beat} focus={seg.focus} />
+    <div style={{ display: 'grid', gap: 6 }}>
+      <Block at={0} beat={beat}><Pair code="await Product.updateOne({ _id: 1 }, { price: 99000 })" res="matchedCount: 1, modifiedCount: 1" /></Block>
+      <Block at={1} beat={beat}><Pair code="await Product.deleteOne({ _id: 3 })" res="deletedCount: 1" /></Block>
+      <Block at={2} beat={beat}><Pair code="await Product.updateOne({ _id: 99 }, { price: 1 })" res="matchedCount: 0" /></Block>
+    </div>
+    <Block at={4} beat={beat}><div className="mk-rule">{t("Javobdagi son: ", "Число в ответе: ")}<b>1</b>{t(" — kutganingiz · ", " — ожидаемое · ")}<b>0</b>{t(" — WHERE hech narsaga mos kelmadi (xato emas) · ", " — WHERE ни к чему не подошёл (не ошибка) · ")}<b>{t("kutilmagan katta son", "неожиданно большое число")}</b>{t(" — WHERE noto'g'ri yoki yo'q", " — WHERE неверный или его нет")}</div></Block>
   </>} />;
 }
 
 // ============================================================
-//  6 · Tekshiruv 1 — UPDATE 0
+//  6 · Nega Klaviatura oxiriga tushdi — qator tartibi, ctid, ORDER BY (v2b-01: ikki UPDATE → ikki yangi nusxa → (0,6))
 // ============================================================
-function Screen5(p) {
-  const m = MDT[6];
-  return <MCRetry {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} q={m.q} opts={m.opts} correct={m.correct} ok={m.ok} okShort={<span dangerouslySetInnerHTML={html(m.okShort)} />} wrong={m.wrong}
-    after={<div style={{ display: 'grid', gap: 10 }}>
-      <div className="mk-tag" style={{ color: T.green, margin: 0 }}>Avval tekshirish — bunday id bormi</div>
-      <Psql title="psql — shop" lines={psql(String.raw`
-shop=# UPDATE products SET price = 1 WHERE id = 99;
-UPDATE 0
+const T6 = psql(String.raw`
 shop=# SELECT * FROM products;
  id |    name    | price | stock
+----+------------+-------+-------
   2 | Sichqoncha | 75000 |    15
-  4 | Mishka     | 50000 |    10
-  1 | Klaviatura | 99000 |     8
-(3 rows)`)} />
-      <div className="mk-rule">Jadvalda id <b>99</b> yo'q — <code>UPDATE 0</code>. Xato emas: baza hech bir qatorga tegmadi.</div>
-    </div>} />;
+  4 | Kolonka    | 50000 |    10
+  1 | Klaviatura | 99000 |     7
+(3 rows)
+shop=# SELECT ctid, id, name, price FROM products;
+ ctid  | id |    name    | price
+-------+----+------------+-------
+ (0,2) |  2 | Sichqoncha | 75000
+ (0,4) |  4 | Kolonka    | 50000
+ (0,6) |  1 | Klaviatura | 99000
+(3 rows)
+shop=# SELECT * FROM products ORDER BY id;
+ id |    name    | price | stock
+----+------------+-------+-------
+  1 | Klaviatura | 99000 |     7
+  2 | Sichqoncha | 75000 |    15
+  4 | Kolonka    | 50000 |    10
+(3 rows)`, mergeMeta(rng(1, 7, { at: 0 }), rng(8, 14, { at: 2 }), rng(15, 21, { at: 3 }), { 6: { id: 'kl' }, 13: { id: 'ct' }, 15: { id: 'ob' }, 18: { id: 'ob' } }));
+// Fayl sahifasi 0 — qatorlarning joyi (ctid): eski nusxalar chizilgan, o'chirilgan joy bo'sh, hozirgisi ko'k
+const PAGE6 = [['1', 'Klaviatura · 120000 · 8 — birinchi nusxa', 'old'], ['2', 'Sichqoncha · 75000 · 15', ''], ['3', "Quloqchin — o'chirilgan (5-ekran)", 'gone'], ['4', 'Kolonka · 50000 · 10', ''], ['5', 'Klaviatura · 99000 · 8 — narx o\'zgarganda yozilgan nusxa', 'old'], ['6', 'Klaviatura · 99000 · 7 — hozirgi qator', 'now']];
+function FilePage({ hl = [] }) {
+  return <div className="pg-page"><div className="pg-lab">{t("Fayl sahifasi 0 — har qatorning joyi (ctid)", "Страница файла 0 — место каждой строки (ctid)")}</div>
+    <div className="slots">{PAGE6.map(([n, txt, k]) => <div key={n} className={`slot ${k}${hl.includes(n) ? ' hl' : ''}`}><b>(0,{n})</b><span>{txt}</span></div>)}</div></div>;
+}
+const S6 = mkS(6, [{ focus: ['kl'], page: null }, { focus: ['kl'], page: ['1', '5', '6'] }, { focus: ['ct'], page: ['6'] }, { focus: ['ob'], page: null, sum: true }]);
+function Screen6(p) {
+  return <Lesson p={p} S={S6} scene={({ seg, beat }) => <>
+    <Psql title="psql — shop" lines={cur(T6, beat)} beat={beat} focus={seg.focus} />
+    {seg.page && <FilePage hl={seg.page} />}
+    {seg.sum && <div className="mk-rule"><code>ORDER BY</code>{t(" yozilmasa — baza qatorlarni ", " не написан — база отдаёт строки ")}<b>{t("fayldagi tartibda", "в порядке файла")}</b>{t(" beradi, har UPDATE yangi nusxa yozadi (", " , каждый UPDATE пишет новую копию (")}<code>ctid</code>{t("). Tartib kerak bo'lsa — ", "). Если нужен порядок — ")}<code>ORDER BY id</code>.</div>}
+  </>} />;
 }
 
 // ============================================================
-//  7 · Amaliyot 1 — do'konni o'zingiz boshqaring
+//  7 · Tekshiruv 1 — UPDATE 0 (M42: material savoldan oldin, isbot keyin, Demak)
 // ============================================================
-const P1 = mkS(7, [{ hl: [] }, { hl: [0, 1, 2] }, { hl: [3] }, { hl: [] }], { tableAt: 3 });
-const P1_STEPS = [
-  { t: 'Baza va jadval', cmds: ['psql -U postgres', 'CREATE DATABASE shop;', '\\c shop', 'CREATE TABLE products (id SERIAL PRIMARY KEY, name TEXT, price INTEGER, stock INTEGER);'], exp: 'CREATE DATABASE · CREATE TABLE' },
-  { t: 'Mahsulotlar', cmds: ["INSERT INTO products (name, price, stock) VALUES ('Klaviatura', 120000, 8), ('Sichqoncha', 75000, 15), ('Quloqchin', 95000, 5);", "INSERT INTO products (name, price, stock) VALUES ('Mishka', 50000, 10);"], exp: 'INSERT 0 3 · INSERT 0 1' },
-  { t: 'Filtrlar', cmds: ['SELECT * FROM products WHERE price < 100000;', 'SELECT * FROM products WHERE stock < 6;'], exp: '3 qator · 1 qator (Quloqchin)' },
-  { t: "Narx va o'chirish", cmds: ['UPDATE products SET price = 99000 WHERE id = 1;', 'DELETE FROM products WHERE id = 3;', 'SELECT * FROM products;'], exp: 'UPDATE 1 · DELETE 1 · (… rows)' },
-];
-const P1_TROUBLE = [
-  ['ERROR:  database "shop" already exists', 'baza oldin yaratilgan — \\c shop'],
-  ['ERROR:  relation "products" does not exist', 'boshqa bazadasiz (prompt postgres=#) — \\c shop'],
-  ['INSERT 0 3 ikki marta', "mahsulotlar ikki marta qo'shilgan — id lar 1–8; 4-qadamda id ni SELECT bo'yicha tanlang"],
-  ['UPDATE 0 / DELETE 0', "bunday id yo'q — avval SELECT * bilan id ni ko'ring"],
-  ['ERROR:  syntax error at or near "…"', "^ ko'rsatgan joydan oldin vergul, qavs yoki tirnoq tushib qolgan"],
-];
-const P1_PROOF = { label: 'Isbot: oxirgi SELECT * natijasidagi qatorlar soni', placeholder: 'natija ostidagi sonni yozing', check: (v) => /^\s*\(?\s*3\b/.test(v), wrong: "4 ta mahsulotdan bittasi (Quloqchin) o'chirilgach nechta qoladi? Natija ostidagi qavsdagi sonni yozing" };
-function ScreenP1(p) { return <Practice p={p} S={P1} steps={P1_STEPS} trouble={P1_TROUBLE} proof={P1_PROOF} />; }
+const T7_ABOVE = psql(String.raw`
+shop=# UPDATE products SET price = 1 WHERE id = 99;
+UPDATE 0`);
+const T7_AFTER = psql(String.raw`
+shop=# SELECT * FROM products WHERE id = 99;
+ id | name | price | stock
+----+------+-------+-------
+(0 rows)`);
+function Screen7(p) { return MC(p, 7, { above: <Psql title="psql — shop" lines={T7_ABOVE} />, after: <Psql title={t("psql — shop · tekshirib ko'rdik", "psql — shop · проверили")} lines={T7_AFTER} /> }); }
 
 // ============================================================
-//  8 · WHERE'siz — hamma qator (pg2-out/04, bitta seans)
+//  8 · Amaliyot 1 — do'konni o'zingiz boshqaring (qadamlar, isbot, jadval — MD'dan)
 // ============================================================
-const T7 = psql(String.raw`
+const P8 = mkPractice(8, [[], [0, 1, 2], [3], []]);
+function ScreenP8(p) { return <Practice p={p} S={P8.S} steps={P8.steps} trouble={P8.trouble} proof={P8.proof} />; }
+
+// ============================================================
+//  9 · WHERE'siz — hamma qator; BEGIN … ROLLBACK (v2b-02) · Mongo'dan kelganlar tuzog'i (v2d)
+// ============================================================
+const T9 = psql(String.raw`
 shop=# BEGIN;
 BEGIN
 shop=*# UPDATE products SET price = 99000;
 UPDATE 3
 shop=*# SELECT * FROM products;
   2 | Sichqoncha | 99000 |    15
-  4 | Mishka     | 99000 |    10
-  1 | Klaviatura | 99000 |     8
+  4 | Kolonka    | 99000 |    10
+  1 | Klaviatura | 99000 |     7
 shop=*# DELETE FROM products;
 DELETE 3
 shop=*# SELECT * FROM products;
@@ -2031,72 +2598,272 @@ shop=*# ROLLBACK;
 ROLLBACK
 shop=# SELECT * FROM products;
   2 | Sichqoncha | 75000 |    15
-  4 | Mishka     | 50000 |    10
-  1 | Klaviatura | 99000 |     8`, mergeMeta(rng(1, 2, { at: 0 }), rng(3, 8, { at: 1 }), rng(9, 12, { at: 2 }), rng(13, 18, { at: 3 }), { 1: { id: 'b' }, 4: { id: 'u' }, 10: { id: 'd' }, 12: { id: 'd' }, 14: { id: 'r' }, 16: { id: 'r' }, 17: { id: 'r' }, 18: { id: 'r' } }));
-const S7 = mkS(8, [{ focus: ['b'], st: 'ok' }, { focus: ['u'], st: 'up' }, { focus: ['d'], st: 'del' }, { focus: ['r'], st: 'ok' }, { focus: [], st: 'ok' }]);
-const ROWS7 = { ok: [['2', 'Sichqoncha', '75000', '15'], ['4', 'Mishka', '50000', '10'], ['1', 'Klaviatura', '99000', '8']], up: [['2', 'Sichqoncha', '99000', '15'], ['4', 'Mishka', '99000', '10'], ['1', 'Klaviatura', '99000', '8']], del: [] };
-function Screen7(p) {
-  return <Lesson p={p} S={S7} scene={({ seg, beat }) => <div className="pg-two">
-    <Psql title="psql — shop" lines={T7} beat={beat} focus={seg.focus} />
-    <div style={{ display: 'grid', gap: 10 }}>
-      <MiniTable name={seg.st === 'ok' ? 'products' : 'products · tranzaksiya ichida'} cols={PCOLS} rows={ROWS7[seg.st]} hlCol={seg.st === 'up' ? [2] : []} color={seg.st === 'ok' ? PG.pg : T.accent} />
-      {seg.st === 'del' && <div className="n2-warn"><b>(0 rows)</b> — butun katalog yo'q. Tranzaksiya hali ochiq.</div>}
-      <Block at={4} beat={beat}><div className="mk-rule">Xavfli UPDATE/DELETE — avval <code>BEGIN</code> ichida · <code>SELECT</code> bilan ko'ring · to'g'ri bo'lsa <code>COMMIT</code>, noto'g'ri bo'lsa <code>ROLLBACK</code></div></Block>
+  4 | Kolonka    | 50000 |    10
+  1 | Klaviatura | 99000 |     7`, mergeMeta(rng(1, 2, { at: 0 }), rng(3, 8, { at: 1 }), rng(9, 12, { at: 2 }), rng(13, 18, { at: 3 }), { 1: { id: 'b' }, 4: { id: 'u' }, 10: { id: 'd' }, 12: { id: 'd' }, 14: { id: 'r' }, 16: { id: 'r' }, 17: { id: 'r' }, 18: { id: 'r' } }));
+const ROWS9 = { ok: [['2', 'Sichqoncha', '75000', '15'], ['4', 'Kolonka', '50000', '10'], ['1', 'Klaviatura', '99000', '7']], up: [['2', 'Sichqoncha', '99000', '15'], ['4', 'Kolonka', '99000', '10'], ['1', 'Klaviatura', '99000', '7']], del: [] };
+const S9 = mkS(9, [{ focus: ['b'], st: 'ok' }, { focus: ['u'], st: 'up' }, { focus: ['d'], st: 'del' }, { focus: ['r'], st: 'ok' }, { focus: [], st: 'ok' }]);
+function Screen9(p) {
+  return <Lesson p={p} S={S9} scene={({ seg, beat }) => <>
+    <Psql title="psql — shop" lines={cur(T9, beat)} beat={beat} focus={seg.focus} />
+    <div className="pg-two">
+      <MiniTable name={seg.st === 'ok' ? 'products' : t('products · tranzaksiya ichida', "products · внутри транзакции")} cols={PCOLS} rows={ROWS9[seg.st]} hlCol={seg.st === 'up' ? [2] : []} color={seg.st === 'ok' ? PG.pg : T.accent} />
+      <div style={{ display: 'grid', gap: 10, alignContent: 'start' }}>
+        {seg.st === 'del' && <div className="n2-warn"><b>(0 rows)</b>{t(" — butun katalog yo'q. Tranzaksiya hali ochiq.", " — всего каталога нет. Транзакция ещё открыта.")}</div>}
+        <Block at={1} beat={beat}><div className="mk-card" style={{ borderColor: T.accent }}><h5 style={{ color: T.accent }}>{t("Mongo'dan kelganlar aynan shu yerda xato qiladi", "Пришедшие из Mongo ошибаются именно здесь")}</h5>
+          <div style={{ fontSize: 13.5, lineHeight: 1.55 }}><b style={{ color: PG.mongo }}>{t("Mongoose'da:", "В Mongoose:")}</b> <code>await Product.updateOne({'{}'}, {'{ price: 99000 }'})</code> → <b>matchedCount: 1</b>{t(" — shartsiz ham ", " — даже без условия ")}<b>{t("bitta", "один")}</b>{t(" hujjat; hammasi uchun alohida ", " документ; для всех — отдельно ")}<code>updateMany({'{}'}, …)</code> → matchedCount: 3</div>
+          <div style={{ fontSize: 13.5, lineHeight: 1.55, marginTop: 6 }}><b style={{ color: PG.pg }}>{t("PostgreSQL'da:", "В PostgreSQL:")}</b> {t(<><code>WHERE</code>'siz <code>UPDATE</code> — <b>hammasi</b></>, <><code>UPDATE</code> без <code>WHERE</code> — <b>все строки</b></>)}{t(". Alohida «many» yo'q.", ". Отдельного «many» нет.")}</div></div></Block>
+        <Block at={4} beat={beat}><div className="mk-rule">{t(<>Xavfli UPDATE/DELETE — avval <code>BEGIN</code> ichida · <code>SELECT</code> bilan ko'ring · to'g'ri bo'lsa <code>COMMIT</code>, noto'g'ri bo'lsa <code>ROLLBACK</code></>, <>Опасный UPDATE/DELETE — сначала внутри <code>BEGIN</code> · проверьте через <code>SELECT</code> · если верно — <code>COMMIT</code>, если нет — <code>ROLLBACK</code></>)}</div></Block>
+      </div>
     </div>
-  </div>} />;
+  </>} />;
 }
 
 // ============================================================
-//  9 · Tekshiruv 2 — ROLLBACK dan keyin
+//  10 · Tranzaksiya ichida nima bo'ladi — IKKI HAQIQIY psql seansi (v2e-ikki-seans, GATE M 2C), uch holat
 // ============================================================
-function Screen8(p) {
-  const m = MDT[9];
-  return <MCRetry {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} q={m.q} opts={m.opts} correct={m.correct} ok={m.ok} okShort={<span dangerouslySetInnerHTML={html(m.okShort)} />} wrong={m.wrong}
-    after={<div style={{ display: 'grid', gap: 10 }}>
-      <div className="mk-tag" style={{ color: T.green, margin: 0 }}>Haqiqiy natija</div>
-      <Psql title="psql — shop" lines={T7.slice(12)} />
-    </div>} />;
+const A10 = {
+  a: psql(String.raw`
+shop=# SELECT name, price FROM products WHERE id = 1;
+ Klaviatura | 99000`),
+  b: psql(String.raw`
+shop=# BEGIN;
+BEGIN
+shop=*# UPDATE products SET price = 89000 WHERE id = 1;
+UPDATE 1
+shop=*# SELECT name, price FROM products WHERE id = 1;
+ Klaviatura | 89000
+shop=*# COMMIT;
+COMMIT`, { 3: { id: 'u' }, 6: { id: 'u' } }),
+  c: psql(String.raw`
+shop=# BEGIN;
+BEGIN
+shop=*# SELECT 1/0;
+ERROR:  division by zero
+shop=!# SELECT name FROM products WHERE id = 1;
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+shop=!# COMMIT;
+ROLLBACK`, { 5: { id: 'x' }, 7: { id: 'x' }, 8: { id: 'x' } }),
+};
+const B10 = {
+  a: psql(String.raw`
+shop=# SELECT name, price FROM products WHERE id = 1;
+ Klaviatura | 99000`),
+  b: psql(String.raw`
+-- A hali COMMIT qilmagan:
+shop=# SELECT name, price FROM products WHERE id = 1;
+ Klaviatura | 99000
+-- A COMMIT qilgandan keyin:
+shop=# SELECT name, price FROM products WHERE id = 1;
+ Klaviatura | 89000`, { 3: { id: 'o' }, 6: { id: 'n' } }),
+};
+const STATES10 = [['shop=#', 'oddiy — har buyruq darhol saqlanadi (autocommit)'], ['shop=*#', "tranzaksiya ochiq — o'zgarish faqat shu seansda"], ['shop=!#', 'xato bo\'ldi (aborted) — faqat ROLLBACK']];
+// F-1109-06: xulosa — uch alohida prompt kartasi o'rniga bitta holat sxemasi (BEGIN, xato, COMMIT, ROLLBACK strelka bilan)
+function States10() {
+  return <div className="z">
+    <div className="p2-vs-card">
+      <svg viewBox="0 0 780 300" role="img" aria-label="psql prompt: BEGIN, xato, COMMIT, ROLLBACK">
+        <defs>
+          <marker id="p2vsA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#374151" /></marker>
+          <marker id="p2vsR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#E2451F" /></marker>
+          <marker id="p2vsG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#15803D" /></marker>
+        </defs>
+        <rect x="20" y="20" width="200" height="88" rx="10" fill="#111827" stroke="#15803D" strokeWidth="3" />
+        <text x="120" y="58" textAnchor="middle" className="nd" fill="#86EFAC">shop=#</text>
+        <text x="120" y="88" textAnchor="middle" className="in">{t("har buyruq darhol saqlanadi", "каждая команда сразу сохраняется")}</text>
+        <rect x="290" y="20" width="200" height="88" rx="10" fill="#111827" stroke="#336791" strokeWidth="3" />
+        <text x="390" y="58" textAnchor="middle" className="nd" fill="#93C5FD">shop=*#</text>
+        <text x="390" y="88" textAnchor="middle" className="in">{t("o'zgarish faqat shu seansda", "изменение только в этом сеансе")}</text>
+        <rect x="560" y="20" width="200" height="88" rx="10" fill="#111827" stroke="#E2451F" strokeWidth="3" />
+        <text x="660" y="58" textAnchor="middle" className="nd" fill="#FCA5A5">shop=!#</text>
+        <text x="660" y="88" textAnchor="middle" className="in">{t("xato — buyruqlar rad etiladi", "ошибка — команды отклоняются")}</text>
+        <line x1="223" y1="64" x2="285" y2="64" stroke="#374151" strokeWidth="2.5" markerEnd="url(#p2vsA)" />
+        <text x="254" y="52" textAnchor="middle" className="lb" fill="#374151">BEGIN</text>
+        <line x1="493" y1="64" x2="555" y2="64" stroke="#E2451F" strokeWidth="2.5" markerEnd="url(#p2vsR)" />
+        <text x="524" y="52" textAnchor="middle" className="lb" fill="#E2451F">{t("xato", "ошибка")}</text>
+        <path d="M360 110 V160 H150 V114" fill="none" stroke="#15803D" strokeWidth="2.5" markerEnd="url(#p2vsG)" />
+        <rect x="172" y="150" width="167" height="21" rx="4" fill="#fff" /><text x="255" y="165" textAnchor="middle" className="lb" fill="#15803D">{t("COMMIT · saqlanadi", "COMMIT · сохраняется")}</text>
+        <path d="M420 110 V212 H110 V114" fill="none" stroke="#374151" strokeWidth="2.5" strokeDasharray="7 5" markerEnd="url(#p2vsA)" />
+        <rect x="190" y="202" width="150" height="21" rx="4" fill="#fff" /><text x="265" y="217" textAnchor="middle" className="lb" fill="#374151">{t("ROLLBACK · bekor", "ROLLBACK · отмена")}</text>
+        <path d="M660 110 V264 H70 V114" fill="none" stroke="#E2451F" strokeWidth="2.5" strokeDasharray="7 5" markerEnd="url(#p2vsR)" />
+        <rect x="141" y="254" width="448" height="21" rx="4" fill="#fff" /><text x="365" y="269" textAnchor="middle" className="lb" fill="#E2451F">{t("faqat ROLLBACK · COMMIT yozsangiz ham bekor bo'ladi", "только ROLLBACK · даже COMMIT станет отменой")}</text>
+      </svg>
+    </div>
+    <div className="z-rule"><code>!#</code>{t(" ko'rsangiz — ", " видите — ")}<b>{t("boshqa buyruq yozmang, ROLLBACK", "не пишите других команд, ROLLBACK")}</b></div>
+  </div>;
+}
+const S10 = mkS(10, [{ v: 'a', st: [0] }, { v: 'b', st: [1] }, { v: 'c', st: [2] }, { v: 'sum', st: [0, 1, 2] }]);
+function Screen10(p) {
+  return <Lesson p={p} S={S10} scene={({ seg }) => <>
+    {seg.v !== 'sum' && <div className="pg-two">
+      <div><div className="pg-lab">{t("A oynasi", "Окно A")}</div><Psql title="psql — shop · A" lines={A10[seg.v]} focus={seg.v === 'b' ? ['u'] : seg.v === 'c' ? ['x'] : []} /></div>
+      <div><div className="pg-lab">{t("B oynasi", "Окно B")}</div>{B10[seg.v] ? <Psql title="psql — shop · B" lines={B10[seg.v]} focus={seg.v === 'b' ? ['o', 'n'] : []} /> : <div className="mk-card" style={{ color: T.ink3, fontSize: 14 }}>{t("B oynasi bu holatda hech narsa yozmaydi — xato faqat A seansida.", "Окно B в этом состоянии ничего не пишет — ошибка только в сеансе A.")}</div>}</div>
+    </div>}
+    {seg.v !== 'sum' && <div className="pg-states">{STATES10.map(([pr, d], i) => <div key={pr} className={`mk-box${seg.st.includes(i) ? ' hl' : ''}`} style={{ '--c': [T.green, PG.pg, T.accent][i], opacity: seg.st.includes(i) ? 1 : 0.4 }}><h4><code>{pr}</code></h4><p>{d}</p></div>)}</div>}
+    {seg.v === 'sum' && <States10 />}
+  </>} />;
 }
 
 // ============================================================
-//  10 · Amaliyot 2 — BEGIN … ROLLBACK
+//  11 · Ikki jadval, bitta ish: orders, CHECK, atomik (v2b-04)
 // ============================================================
-const P2 = mkS(10, [{ hl: [] }, { hl: [0, 1] }, { hl: [2, 3] }, { hl: [] }], { tableAt: 3 });
-const P2_STEPS = [
-  { t: 'Tranzaksiya', cmds: ['BEGIN;'], exp: 'BEGIN · prompt shop=*#' },
-  { t: "WHERE'siz", cmds: ['UPDATE products SET price = 1;', 'SELECT * FROM products;'], exp: 'UPDATE 3 · hamma narx 1' },
-  { t: 'Bekor', cmds: ['ROLLBACK;'], exp: 'ROLLBACK · prompt shop=#' },
-  { t: 'Tekshirish', cmds: ['SELECT * FROM products;'], exp: 'narxlar eski' },
-];
-const P2_TROUBLE = [
-  ['WARNING:  there is no transaction in progress (ROLLBACK da)', "BEGIN yozilmagan — o'zgarish allaqachon saqlangan; narxlarni 1-amaliyotdagi UPDATE lar bilan tiklang"],
-  ['narx 120000', "1-amaliyotning 4-qadami (99 000) bajarilmagan — 1-amaliyotni tugating"],
-  ['prompt shop=!#', 'tranzaksiya ichida xato bo\'ldi — ROLLBACK; yozing'],
-];
-const P2_PROOF = { label: "Isbot: ROLLBACK dan keyingi Klaviatura narxi", placeholder: 'klaviatura narxini yozing', check: (v) => /^\s*99\s?000\s*$/.test(v), wrong: "ROLLBACK dan keyin narx 1-amaliyotdagidek bo'ladi — SELECT natijasidan Klaviatura qatorini o'qing" };
-function ScreenP2(p) { return <Practice p={p} S={P2} steps={P2_STEPS} trouble={P2_TROUBLE} proof={P2_PROOF} />; }
+const T11 = {
+  a: psql(String.raw`
+shop=# ALTER TABLE products ADD CONSTRAINT stock_nonneg CHECK (stock >= 0);
+ALTER TABLE
+shop=# CREATE TABLE orders (id SERIAL PRIMARY KEY,
+shop(#   product_id INTEGER NOT NULL REFERENCES products(id),
+shop(#   qty INTEGER NOT NULL CHECK (qty > 0),
+shop(#   created_at TIMESTAMP DEFAULT now());
+CREATE TABLE`, { 1: { id: 'c' }, 3: { id: 'o' }, 4: { id: 'o' }, 5: { id: 'o' }, 6: { id: 'o' } }),
+  b: psql(String.raw`
+shop=# BEGIN;
+BEGIN
+shop=*# UPDATE products SET stock = stock - 1 WHERE id = 2 RETURNING name, stock;
+ Sichqoncha |    14
+shop=*# INSERT INTO orders (product_id, qty) VALUES (2, 1) RETURNING *;
+  1 |          2 |   1 | 2026-11-03 14:32:57
+shop=*# COMMIT;
+COMMIT`, { 4: { id: 'r' }, 6: { id: 'r' } }),
+  c: psql(String.raw`
+shop=# BEGIN;
+shop=*# INSERT INTO orders (product_id, qty) VALUES (4, 12) RETURNING id, product_id, qty;
+  2 |          4 |  12
+shop=*# UPDATE products SET stock = stock - 12 WHERE id = 4;
+ERROR:  new row for relation "products" violates check constraint "stock_nonneg"
+DETAIL:  Failing row contains (4, Kolonka, 50000, -2).
+shop=!# ROLLBACK;
+ROLLBACK
+shop=# SELECT * FROM orders;
+  1 |          2 |   1 | 2026-11-03 14:32:57
+(1 row)`, { 5: { id: 'x' }, 6: { id: 'x' }, 10: { id: 'k' } }),
+};
+const PROD11 = { a: [['1', 'Klaviatura', '7'], ['2', 'Sichqoncha', '15'], ['4', 'Kolonka', '10']], b: [['1', 'Klaviatura', '7'], ['2', 'Sichqoncha', '14'], ['4', 'Kolonka', '10']] };
+const ORD11 = [['1', '2', '1', '14:32:57']];
+const S11 = mkS(11, [{ v: 'a' }, { v: 'b' }, { v: 'c' }, { v: 'sum' }]);
+function Screen11(p) {
+  return <Lesson p={p} S={S11} scene={({ seg }) => <>
+    {seg.v !== 'sum' && <Psql title="psql — shop" lines={T11[seg.v]} focus={seg.v === 'a' ? ['c'] : seg.v === 'b' ? ['r'] : ['x', 'k']} />}
+    <div className="pg-two">
+      <MiniTable name="products" cols={['id', 'name', 'stock']} rows={PROD11[seg.v === 'a' ? 'a' : 'b']} hlRow={seg.v === 'b' ? [1] : seg.v === 'c' ? [2] : []} hlCol={[2]} />
+      <MiniTable name="orders" cols={['id', 'product_id', 'qty', 'created_at']} rows={seg.v === 'a' ? [] : ORD11} hlRow={seg.v === 'b' ? [0] : []} color={T.green} />
+    </div>
+    {seg.v === 'c' && <div className="n2-warn">{t("2-buyurtma ", "2-й заказ ")}<b>{t("yozilmadi", "не записан")}</b>{t(", Kolonka qoldig'i ", ", остаток Kolonka ")}<b>10</b>{t(" da qoldi — tranzaksiya butunlay bekor bo'ldi. Yolg'on buyurtma qolmadi.", " осталось — транзакция полностью отменена. Ложного заказа не осталось.")}</div>}
+    {seg.v === 'sum' && <div className="mk-rule">{t("Bir ishga tegishli buyruqlar — ", "Команды одного дела — ")}<b>{t("bitta tranzaksiyada", "в одной транзакции")}</b>{t(": yo hammasi, yo hech biri (atomik). Qoida bazada bo'lsa (", ": либо всё, либо ничего (атомарно). Если правило в базе (")}<code>CHECK</code>{t("), kod xato qilsa ham yarim ish qolmaydi.", "), даже если код ошибётся, полдела не останется.")}</div>}
+  </>} />;
+}
 
 // ============================================================
-//  11 · Sinfdagi SQL xatolari
+//  12 · Tekshiruv 2 — ROLLBACK dan keyin
 // ============================================================
-const E10 = [
-  psql(String.raw`
+const T12_ABOVE = psql(String.raw`
+shop=# BEGIN;
+BEGIN
+shop=*# DELETE FROM products;
+DELETE 3
+shop=*# ROLLBACK;
+ROLLBACK
+shop=#`);
+const T12_AFTER = psql(String.raw`
+shop=# SELECT * FROM products;
+ id |    name    | price | stock
+----+------------+-------+-------
+  2 | Sichqoncha | 75000 |    15
+  4 | Kolonka    | 50000 |    10
+  1 | Klaviatura | 99000 |     7
+(3 rows)`);
+function Screen12(p) { return MC(p, 12, { above: <Psql title="psql — shop" lines={T12_ABOVE} />, after: <Psql title={t("psql — shop · haqiqiy natija", "psql — shop · настоящий результат")} lines={T12_AFTER} /> }); }
+
+// ============================================================
+//  13 · Amaliyot 2 — BEGIN … ROLLBACK
+// ============================================================
+const P13 = mkPractice(13, [[], [0, 1], [2, 3], []]);
+function ScreenP13(p) { return <Practice p={p} S={P13.S} steps={P13.steps} trouble={P13.trouble} proof={P13.proof} />; }
+
+// ============================================================
+//  14 · Qoida yozilmasa — qo'riqlamaydi: NOT NULL, DEFAULT, UNIQUE (v2f-ekran14, uzluksiz holat: nomsiz qator id 5, Planshet id 7)
+// ============================================================
+const T14 = {
+  a: psql(String.raw`
+shop=# INSERT INTO products (price, stock) VALUES (30000, 4);
+INSERT 0 1
+shop=# SELECT * FROM products WHERE name IS NULL;
+ id | name | price | stock
+  5 |      | 30000 |     4
+(1 row)`, { 2: { id: 'x' }, 5: { id: 'x' } }),
+  b: psql(String.raw`
+shop=# ALTER TABLE products ALTER COLUMN name SET NOT NULL;
+ERROR:  column "name" of relation "products" contains null values
+shop=# DELETE FROM products WHERE name IS NULL;
+DELETE 1
+shop=# ALTER TABLE products ALTER COLUMN name SET NOT NULL;
+ALTER TABLE
+shop=# INSERT INTO products (price, stock) VALUES (30000, 4);
+ERROR:  null value in column "name" of relation "products" violates not-null constraint`, { 2: { id: 'x' }, 6: { id: 'ok' }, 8: { id: 'ok' } }),
+  c: psql(String.raw`
+shop=# ALTER TABLE products ALTER COLUMN stock SET DEFAULT 0;
+ALTER TABLE
+shop=# INSERT INTO products (name, price) VALUES ('Planshet', 300000) RETURNING *;
+  7 | Planshet | 300000 |     0
+shop=# ALTER TABLE products ADD CONSTRAINT products_name_unique UNIQUE (name);
+ALTER TABLE
+shop=# INSERT INTO products (name, price, stock) VALUES ('Kolonka', 1, 1);
+ERROR:  duplicate key value violates unique constraint "products_name_unique"
+DETAIL:  Key (name)=(Kolonka) already exists.`, { 4: { id: 'ok' }, 8: { id: 'x' }, 9: { id: 'x' } }),
+  d: psql(String.raw`
+shop=# \d products
+ Column |  Type   | Nullable |               Default
+--------+---------+----------+--------------------------------------
+ id     | integer | not null | nextval('products_id_seq'::regclass)
+ name   | text    | not null |
+ price  | integer |          |
+ stock  | integer |          | 0
+Indexes:
+    "products_name_unique" UNIQUE CONSTRAINT, btree (name)
+Check constraints:
+    "stock_nonneg" CHECK (stock >= 0)
+Referenced by:
+    TABLE "orders" CONSTRAINT "orders_product_id_fkey" FOREIGN KEY (product_id) REFERENCES products(id)`),
+};
+// Qoidalar kartasi — qoshilib boradi (k: '' — doim; boshqasi — seg.on ichida bo'lsa)
+const RULES14 = [['id', 'SERIAL PRIMARY KEY', ''], ['name', 'TEXT', ''], ['name', 'NOT NULL', 'nn'], ['price', 'INTEGER', ''], ['stock', 'INTEGER', ''], ['stock', 'DEFAULT 0', 'def'], ['stock', 'CHECK (stock >= 0) — 11-ekran', 'chk'], ['name', 'UNIQUE', 'uq'], ['orders', 'product_id REFERENCES products(id) — 11-ekran', 'fk']];
+const S14 = mkS(14, [{ e: 'a', on: ['chk', 'fk'] }, { e: 'b', on: ['chk', 'fk', 'nn'], neu: ['nn'] }, { e: 'c', on: ['chk', 'fk', 'nn', 'def', 'uq'], neu: ['def', 'uq'] }, { e: 'd', on: ['chk', 'fk', 'nn', 'def', 'uq'], sum: true }]);
+function Screen14(p) {
+  return <Lesson p={p} S={S14} scene={({ seg }) => <>
+    <div style={{ display: 'grid', gap: 12 }}>
+      {!seg.sum && <Psql title="psql — shop" er={seg.e !== 'd'} lines={T14[seg.e]} focus={seg.e === 'a' ? ['x'] : seg.e === 'b' ? ['ok'] : seg.e === 'c' ? ['ok', 'x'] : []} />}
+      <div className="mk-light" style={{ padding: 12 }}><div className="mk-tag">{t("products — qoidalar", "products — правила")}</div>
+        <div className="pg-rules" style={{ gridTemplateColumns: 'repeat(3, minmax(0,1fr))' }}>{RULES14.filter(([, , k]) => !k || seg.on.includes(k)).map(([c, r, k]) => <div key={c + r} className={`${k ? 'on' : ''}${(seg.neu || []).includes(k) ? ' new' : ''}`}><b style={{ minWidth: 70, whiteSpace: 'nowrap' }}>{c}</b><span>{r}</span></div>)}</div></div>
+    </div>
+    {seg.e === 'a' && <div className="n2-warn">{t("Xato yo'q, nomsiz qator saqlandi — jadvalda ", "Ошибки нет, строка без имени сохранилась — в таблице ")}<b>{t("NOT NULL yo'q", "нет NOT NULL")}</b>{t(" edi. Baza faqat yozilgan qoidani qo'riqlaydi.", " . База охраняет только записанное правило.")}</div>}
+    {seg.sum && <div className="mk-rule">{t("Qoida ", "Правило ")}<b>{t("bazada", "в базе")}</b>{t(" bo'lsa — xatoni kod emas, baza ushlaydi, va har xabar ichida qoidaning nomi turadi (", " есть — ошибку ловит не код, а база, и в каждом сообщении стоит имя правила (")}<code>products_name_unique</code>, <code>stock_nonneg</code>).</div>}
+  </>} />;
+}
+
+// ============================================================
+//  15 · Xabarni o'qish: beshta xato (v2f-ekran15-16; O'yinchoq id 9)
+// ============================================================
+const E15 = {
+  a: psql(String.raw`
 shop=# SELECT * FROM product WHERE price < 100000;
 ERROR:  relation "product" does not exist
 LINE 1: SELECT * FROM product WHERE price < 100000;
                       ^`),
-  psql(String.raw`
+  b: psql(String.raw`
 shop=# SELECT * FROM products WHERE narx < 100000;
 ERROR:  column "narx" does not exist
 LINE 1: SELECT * FROM products WHERE narx < 100000;
                                      ^
 HINT:  Perhaps you meant to reference the column "products.name".`, { 5: { id: 'h' } }),
-  psql(String.raw`
-shop=# INSERT INTO products (name, price, stock) VALUES ('Planshet', 'arzon', 3);
+  c: psql(String.raw`
+shop=# INSERT INTO products (name, price, stock) VALUES ('Planshet2', 'arzon', 3);
 ERROR:  invalid input syntax for type integer: "arzon"
-shop=# INSERT INTO products (name, price, stock) VALUES ('Planshet', 300000);
-ERROR:  INSERT has more target columns than expressions`),
-  psql(String.raw`
+LINE 1: ...roducts (name, price, stock) VALUES ('Planshet2', 'arzon', 3...
+                                                             ^
+shop=# INSERT INTO products (name, price, stock) VALUES ('Planshet2', 300000);
+ERROR:  INSERT has more target columns than expressions
+LINE 1: INSERT INTO products (name, price, stock) VALUES ('Planshet2...
+                                           ^`),
+  d: psql(String.raw`
 shop=# INSERT INTO products (name, price, stock) VALUES ('O'yinchoq', 30000, 4);
 ERROR:  syntax error at or near "yinchoq"
 LINE 1: ...ERT INTO products (name, price, stock) VALUES ('O'yinchoq', ...
@@ -2104,69 +2871,36 @@ LINE 1: ...ERT INTO products (name, price, stock) VALUES ('O'yinchoq', ...
 shop=# INSERT INTO products (name, price, stock) VALUES ('O''yinchoq', 30000, 4) RETURNING *;
  id |   name    | price | stock
 ----+-----------+-------+-------
-  6 | O'yinchoq | 30000 |     4
-(1 row)`, { 5: { neu: true, id: 'f' }, 9: { id: 'f' } }),
-];
-const D10 = psql(String.raw`
+  9 | O'yinchoq | 30000 |     4
+(1 row)`, { 5: { neu: true, id: 'f' }, 8: { id: 'f' } }),
+  e: psql(String.raw`
 shop=# \d products
- Column |  Type   | Nullable
---------+---------+----------
- id     | integer | not null
- name   | text    |
- price  | integer |
- stock  | integer |`);
-const S10 = mkS(11, [{ e: 0 }, { e: 1, focus: ['h'] }, { e: 2 }, { e: 3, focus: ['f'] }, { e: 9 }]);
-function Screen10(p) {
-  return <Lesson p={p} S={S10} scene={({ seg }) => <>
-    {seg.e <= 3 && <Psql title="psql — shop" er={seg.e !== 3} lines={E10[seg.e]} focus={seg.focus || []} />}
-    {seg.e === 1 && <div className="n2-warn">HINT <b>taxmin</b> qiladi: <code>name</code> ni taklif qildi, kerakli ustun esa <code>price</code>. Ishonchli manba — <code>\d products</code>.</div>}
-    {seg.e === 9 && <><div className="mk-tag" style={{ margin: 0 }}>Haqiqiy jadval tuzilishi (o'quvchi darsidagi DDL)</div><Psql title="psql — shop" lines={D10} /><div className="mk-rule">Xabardagi nomni <code>\d products</code> bilan solishtiring · so'z ichidagi apostrof — <b>ikki marta</b>: <code>'O''yinchoq'</code></div></>}
+ Column |  Type   | Nullable | Default
+--------+---------+----------+---------
+ id     | integer | not null |
+ name   | text    | not null |
+ price  | integer |          |
+ stock  | integer |          | 0`),
+};
+const FORMULA15 = [['Qaysi jadval?', 'relation "…"', PG.pg], ['Qaysi ustun yoki qoida?', 'column "…" · constraint "…"', T.accent], ['Qaysi qiymat?', 'DETAIL / LINE … ^', T.yellow]];
+const S15 = mkS(15, [{ e: 'a' }, { e: 'b', focus: ['h'] }, { e: 'c' }, { e: 'd', focus: ['f'] }, { e: 'e', sum: true }]);
+function Screen15(p) {
+  return <Lesson p={p} S={S15} scene={({ seg }) => <>
+    <div className="pg-three">{FORMULA15.map(([h, d, c]) => <div key={h} className="mk-box" style={{ '--c': c }}><h4>{h}</h4><p style={{ fontFamily: MONO, fontSize: 12 }}>{d}</p></div>)}</div>
+    <Psql title="psql — shop" er={seg.e !== 'e'} lines={E15[seg.e]} focus={seg.focus || []} />
+    {seg.e === 'b' && <div className="n2-warn">{t(<>HINT <b>taxmin</b> qiladi: <code>name</code> ni taklif qildi, kerakli ustun esa <code>price</code>. Ishonchli manba — <code>\d products</code>.</>, <>HINT <b>гадает</b>: предложил <code>name</code>, а нужная колонка — <code>price</code>. Надёжный источник — <code>\d products</code>.</>)}</div>}
+    {seg.sum && <div className="mk-rule">{t(<>Xabardagi nomni <code>\d products</code> bilan solishtiring · </>, <>Сравните имя из сообщения с <code>\d products</code> · </>)}<code>^</code>{t(" xato joyni ko'rsatadi · so'z ichidagi apostrof — ", " показывает место ошибки · апостроф внутри слова — ")}<b>{t("ikki marta", "дважды")}</b>: <code>'O''yinchoq'</code></div>}
   </>} />;
 }
 
 // ============================================================
-//  12 · NOT NULL yo'q — nomsiz mahsulot
+//  16 · Tekshiruv 3 — apostrof
 // ============================================================
-const T11 = psql(String.raw`
-shop=# INSERT INTO products (price, stock) VALUES (30000, 4);
-INSERT 0 1
-shop=# SELECT * FROM products WHERE name IS NULL;
- id | name | price | stock
-----+------+-------+-------
-  5 |      | 30000 |     4
-(1 row)`, mergeMeta(rng(1, 2, { at: 0 }), rng(3, 7, { at: 1 }), { 2: { id: 'i' }, 6: { id: 'n' } }));
-const PG1_USERS = psql(String.raw`
-blog=# INSERT INTO users (username) VALUES (NULL);
-ERROR:  null value in column "username" of relation "users" violates not-null constraint`);
-const S11 = mkS(12, [{ focus: ['i'] }, { focus: ['n'] }, { focus: [] }, { focus: [] }]);
-function Screen11(p) {
-  return <Lesson p={p} S={S11} scene={({ seg, beat }) => <>
-    <div className="pg-two">
-      <div><div className="pg-lab">PostgreSQL-1 · users — NOT NULL bor</div><Psql title="psql — blog" er lines={PG1_USERS} /></div>
-      <div><div className="pg-lab">Bugun · products — NOT NULL yo'q <span className="tm">xato yo'q</span></div><Psql title="psql — shop" lines={T11} beat={beat} focus={seg.focus} /></div>
-    </div>
-    <Block at={2} beat={beat}><div className="pg-cmp">
-      <div className="mk-card"><h5>blog · users</h5><code>username TEXT NOT NULL UNIQUE</code></div>
-      <div className="mk-card" style={{ borderColor: T.accent }}><h5>shop · products</h5><code>name TEXT</code> — qoida yo'q</div>
-    </div></Block>
-    <Block at={3} beat={beat}><div className="mk-rule">Baza faqat <b>yozilgan</b> qoidani qo'riqlaydi. O'quvchi o'z do'koni jadvalini yaratganda: <code>name TEXT NOT NULL</code>, <code>price INTEGER NOT NULL</code>.</div></Block>
-  </>} />;
-}
+function Screen16(p) { return MC(p, 16, { above: <Psql title="psql — shop" er lines={E15.d.slice(0, 4)} />, after: <Psql title={t("psql — shop · tuzatildi", "psql — shop · исправлено")} lines={E15.d.slice(4)} focus={['f']} /> }); }
 
 // ============================================================
-//  13 · Tekshiruv 3 — apostrof
-// ============================================================
-function Screen12(p) {
-  const m = MDT[13];
-  return <MCRetry {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} q={m.q} opts={m.opts} correct={m.correct} ok={m.ok} okShort={<span dangerouslySetInnerHTML={html(m.okShort)} />} wrong={m.wrong}
-    after={<div style={{ display: 'grid', gap: 10 }}>
-      <div className="mk-tag" style={{ color: T.green, margin: 0 }}>Tuzatildi — haqiqiy natija</div>
-      <Psql title="psql — shop" lines={E10[3].slice(4)} />
-    </div>} />;
-}
-
-// ============================================================
-//  Server kodi — pg2-out/11-server.js aynan (port 5436 → 5432). Gemini promptiga mos BITTA NAMUNA (shartli)
+//  Server kodi — pg2-out/11-server-80.js (Prettier 80, M43; parol o'rniga 'password'). Satr raqamlari fayldagidek:
+//  Pool 10–16 · app/json 17–18 · GET 21–29 · POST 32–44 (SQL 36) · PUT 47–61 (404: 54–55) · DELETE 64–76 (404: 69–70) · listen 78
 // ============================================================
 const SERVER_SRC = String.raw`
 // server.js — AvtoIjara backend (Express + PostgreSQL)
@@ -2178,7 +2912,13 @@ const USER = 'postgres';
 const PASSWORD = 'password'; // o'z parolingizni yozing
 const DATABASE = 'car_rental';
 
-const pool = new Pool({ user: USER, password: PASSWORD, database: DATABASE, host: 'localhost', port: 5432 });
+const pool = new Pool({
+  user: USER,
+  password: PASSWORD,
+  database: DATABASE,
+  host: 'localhost',
+  port: 5432,
+});
 const app = express();
 app.use(express.json());
 
@@ -2197,7 +2937,10 @@ app.get('/api/cars', async (req, res) => {
 app.post('/api/cars', async (req, res) => {
   try {
     const { model, daily_price, year } = req.body;
-    const result = await pool.query('INSERT INTO cars (model, daily_price, year) VALUES ($1, $2, $3) RETURNING *', [model, daily_price, year]);
+    const result = await pool.query(
+      'INSERT INTO cars (model, daily_price, year) VALUES ($1, $2, $3) RETURNING *',
+      [model, daily_price, year],
+    );
     res.status(201).json(result.rows[0]);
   } catch (err) {
     console.error(err.message);
@@ -2209,8 +2952,12 @@ app.post('/api/cars', async (req, res) => {
 app.put('/api/cars/:id', async (req, res) => {
   try {
     const { daily_price } = req.body;
-    const result = await pool.query('UPDATE cars SET daily_price = $1 WHERE id = $2 RETURNING *', [daily_price, req.params.id]);
-    if (result.rowCount === 0) return res.status(404).json({ error: 'Mashina topilmadi' });
+    const result = await pool.query(
+      'UPDATE cars SET daily_price = $1 WHERE id = $2 RETURNING *',
+      [daily_price, req.params.id],
+    );
+    if (result.rowCount === 0)
+      return res.status(404).json({ error: 'Mashina topilmadi' });
     res.json(result.rows[0]);
   } catch (err) {
     console.error(err.message);
@@ -2221,8 +2968,11 @@ app.put('/api/cars/:id', async (req, res) => {
 // DELETE — mashinani o'chirish
 app.delete('/api/cars/:id', async (req, res) => {
   try {
-    const result = await pool.query('DELETE FROM cars WHERE id = $1', [req.params.id]);
-    if (result.rowCount === 0) return res.status(404).json({ error: 'Mashina topilmadi' });
+    const result = await pool.query('DELETE FROM cars WHERE id = $1', [
+      req.params.id,
+    ]);
+    if (result.rowCount === 0)
+      return res.status(404).json({ error: 'Mashina topilmadi' });
     res.json({ message: "O'chirildi", deleted: result.rowCount });
   } catch (err) {
     console.error(err.message);
@@ -2231,68 +2981,193 @@ app.delete('/api/cars/:id', async (req, res) => {
 });
 
 app.listen(3000, () => console.log('Server 3000-portda ishlayapti'));`;
-// Kod satrlari (1-dan): bo'laklar id bilan — sahna segment bo'yicha yoritadi
 const SRV_META = mergeMeta(
-  rng(2, 3, { id: 'req' }), rng(5, 10, { id: 'pool' }), { 11: { id: 'app' }, 12: { id: 'json' } },
-  rng(14, 23, { id: 'get' }), { 17: { id: 'getq' }, 18: { id: 'getq' } }, rng(19, 22, { id: 'catch' }),
-  rng(25, 35, { id: 'post' }), { 29: { id: 'postq' } }, rng(37, 48, { id: 'put' }), { 42: { id: 'nf' } },
-  rng(50, 60, { id: 'del' }), { 53: { id: 'delq' }, 54: { id: 'nf' } }, { 62: { id: 'listen' } });
+  rng(10, 16, { id: 'pool' }), { 17: { id: 'app' }, 18: { id: 'json' } },
+  rng(21, 29, { id: 'get' }), { 23: { id: 'getq' }, 24: { id: 'getq' } }, rng(25, 28, { id: 'catch' }),
+  rng(32, 44, { id: 'post' }), rng(35, 38, { id: 'postq' }), { 36: { id: 'sqlp' } },
+  rng(47, 61, { id: 'put' }), rng(50, 53, { id: 'putq' }), rng(54, 55, { id: 'nf' }),
+  rng(64, 76, { id: 'del' }), rng(66, 68, { id: 'delq' }), rng(69, 70, { id: 'nf' }), { 78: { id: 'listen' } });
 const SERVER_LINES = js(SERVER_SRC, SRV_META);
 const SRV_FILES = MKCFG.files;
-// Bo'lak ko'rsatilsa ham satr raqami fayldagidek qoladi (n); tor ustunda — wrap
-const SrvIde = ({ focus = [], lines = SERVER_LINES, children, from = 0, to, wrap }) => <Ide files={SRV_FILES} active="server.js">
-  <CodePanel file="server.js" lines={lines.slice(from, to).map((l, i) => (l.n != null ? l : { ...l, n: from + i + 1 }))} focus={focus} wrap={wrap} style={{ fontSize: 12.5 }} />
+// Bo'lak: fayl satrlari a..b (1-asosli), raqamlar fayldagidek (n)
+const srvSlice = (a, b, lines = SERVER_LINES) => lines.slice(a - 1, b).map((l, i) => (l.n != null ? l : { ...l, n: a + i }));
+const SrvIde = ({ focus = [], a, b, lines, children }) => <Ide files={SRV_FILES} active="server.js">
+  <CodePanel file="server.js" lines={lines || srvSlice(a, b)} focus={focus} style={{ fontSize: 12.5 }} />
   {children}
 </Ide>;
-const shamaNote = <div className="mk-tag" style={{ margin: 0 }}>Shartli namuna — Gemini har safar boshqacha yozadi, mazmuni shu (m4-08 promptlari)</div>;
+function ShamaNoteC() { return <div className="mk-tag" style={{ margin: 0 }}>{t("Shartli namuna — Gemini har safar boshqacha yozadi, mazmuni shu", "Условный образец — Gemini каждый раз пишет по-разному, суть такая")}</div>; } // t() render paytida (modul darajasida LANG hali uz)
+const shamaNote = <ShamaNoteC />;
+const PM_POST = { m: 'POST', url: '/api/cars', body: '{ "model": "Chevrolet Spark", "daily_price": 190000, "year": 2021 }', st: 201, res: '{"id":4,"model":"Chevrolet Spark","daily_price":190000,"year":2021,"is_rented":null}' };
+const PM_ELANTRA = (st) => ({ m: 'POST', url: '/api/cars', body: '{ "model": "Hyundai Elantra", "daily_price": 450000, "year": 2022 }', st, res: st === 201 ? '{"id":5,"model":"Hyundai Elantra","daily_price":450000,"year":2022,"is_rented":null}' : '' });
 
 // ============================================================
-//  14 · Express'dan bazaga: Pool va GET
+//  17 · Pool nima va qachon ulanadi — o'lchab ko'rdik (v2f-pool: pid 378069, ulanish 0 → 1)
 // ============================================================
-const CARS13 = psql(String.raw`
-car_rental=# CREATE TABLE cars (id SERIAL PRIMARY KEY, model TEXT, daily_price INTEGER, year INTEGER, is_rented BOOLEAN);
-CREATE TABLE
-car_rental=# SELECT * FROM cars;
- id |      model       | daily_price | year | is_rented
-----+------------------+-------------+------+-----------
-  1 | Chevrolet Cobalt |      280000 | 2022 | f
-  2 | Chevrolet Malibu |      520000 | 2023 | f
-  3 | Kia K5           |      610000 | 2023 | f
-(3 rows)`);
-const GET13 = '[{"id":1,"model":"Chevrolet Cobalt","daily_price":280000,"year":2022,"is_rented":false},\n {"id":2,"model":"Chevrolet Malibu",…}, {"id":3,"model":"Kia K5",…}]';
-const S13 = mkS(14, [{ v: 'tab' }, { v: 'code', focus: ['pool'] }, { v: 'code', focus: ['getq'], pm: true }, { v: 'code', focus: ['catch'] }, { v: 'code', focus: ['pool', 'getq'], sum: true }]);
-function Screen13(p) {
-  return <Lesson p={p} S={S13} scene={({ seg }) => <>
-    {seg.v === 'tab' && <><div className="pg-lab">1-qadam · o'quvchi o'zi, PostgreSQL terminalida</div><Psql title="psql — car_rental" lines={CARS13} /></>}
-    {seg.v === 'code' && <SrvIde focus={seg.focus} to={23}>{shamaNote}</SrvIde>}
-    {seg.pm && <PostmanCard m="GET" url="localhost:3000/api/cars" st={200} res={GET13} />}
-    {seg.sum && <div className="mk-rule"><b>Pool</b> → <code>pool.query(sql)</code> → <code>result.rows</code> → <code>res.json</code> — server bazaga shu yo'l bilan ulanadi</div>}
+const POOL17 = psql(String.raw`
+$ node pool-pid.js
+Pool yaratildi · ulanishlar: 0
+so'rov 1: baza jarayoni pid 378069 · bazadagi faol ulanishlar 1 · Pool ulanishlari 1
+so'rov 2: baza jarayoni pid 378069 · bazadagi faol ulanishlar 1 · Pool ulanishlari 1
+so'rov 3: baza jarayoni pid 378069 · bazadagi faol ulanishlar 1 · Pool ulanishlari 1`, { 2: { id: 'z' }, 3: { id: 'one' }, 4: { id: 'one' }, 5: { id: 'one' } });
+const BAD17 = psql(String.raw`
+xato parol bilan Pool yaratildi — xato yo'q (hali ulanmadi)
+birinchi so'rovda: password authentication failed for user "postgres"`, { 2: { id: 'x' } });
+function PoolDiagram({ conn, pid, note }) {
+  return <div className="mk-light" style={{ padding: 14 }}><div className="mk-tag">Server ↔ Pool ↔ PostgreSQL</div>
+    <div className="pg-pool">
+      <div className="mk-box" style={{ '--c': T.ink }}><h4>Express</h4><p>server.js</p></div><div className="ar">→</div>
+      <div className="mk-box hl" style={{ '--c': T.purple }}><h4>Pool</h4><p>{t("ulanishlar: ", "соединения: ")}<b>{conn}</b></p></div><div className="ar">→</div>
+      <div className="mk-box" style={{ '--c': PG.pg }}><h4>PostgreSQL</h4><p>{pid ? <>{t("jarayon pid ", "процесс pid ")}<b>{pid}</b></> : t('hali ulanmagan', "ещё не подключено")}</p></div>
+    </div>
+    {note && <div className="exp" style={{ marginTop: 8, color: T.ink2 }}>{note}</div>}
+  </div>;
+}
+// F-1109-06: xulosa — uch karta o'rniga Kod · Pool · PostgreSQL yo'laklari (ulanish 0 → birinchi so'rovda ochiladi → o'sha pid) va parol xatosi
+function Lanes17() {
+  const PID = 378069; // shu ekrandagi terminal (POOL17) bilan bir xil
+  const row = (tm, code, pool, on) => <><div className="tm">{tm}</div><div><code>{code}</code></div><div>{pool}</div><div>{on ? <><span className="p2-cn on"><i /></span><span className="p2-pid">pid {PID}</span></> : <><span className="p2-cn"><i /></span><span style={{ color: '#6B7280', whiteSpace: 'nowrap' }}>{t("hali bog'lanmagan", "ещё не связан")}</span></>}</div></>;
+  return <div className="z">
+    <div className="p2-lanes">
+      <div className="h" /><div className="h" style={{ color: '#6D3BE4' }}>{t("Kod · server.js", "Код · server.js")}</div><div className="h" style={{ color: '#336791' }}>Pool</div><div className="h" style={{ color: '#336791' }}>PostgreSQL</div>
+      {row(t("ishga tushdi", "запуск"), 'new Pool({…})', <>{t("yaratildi · ", "создан · ")}<b>{t("ulanish: 0", "соединений: 0")}</b></>, false)}
+      {row(t("so'rov 1", "запрос 1"), 'pool.query(…)', <b>{t("ulanish ochdi", "открыл соединение")}</b>, true)}
+      {row(t("so'rov 2", "запрос 2"), 'pool.query(…)', t("o'sha ulanish", "то же соединение"), true)}
+      {row(t("so'rov 3", "запрос 3"), 'pool.query(…)', t("o'sha ulanish", "то же соединение"), true)}
+    </div>
+    <div className="p2-bad">
+      <b>{t("Parol xato", "Неверный пароль")}</b>
+      <div>{t("Ishga tushganda ", "При запуске ")}<span style={{ color: '#15803D', fontWeight: 700 }}>{t("✓ xato yo'q", "✓ ошибки нет")}</span>{t(" — Pool hali bazaga bormagan", " — Pool ещё не ходил в базу")}</div>
+      <span />
+      <div className="z-term">Server 3000-portda ishlayapti{'\n'}<span className="r">{t("so'rov 1", "запрос 1")} → password authentication failed for user "postgres"</span></div>
+    </div>
+  </div>;
+}
+const S17 = mkS(17, [{ v: 'code' }, { v: 'pid' }, { v: 'bad' }, { v: 'sum' }]);
+function Screen17(p) {
+  return <Lesson p={p} S={S17} scene={({ seg }) => <>
+    {seg.v === 'code' && <SrvIde a={2} b={16} focus={['pool']}>{shamaNote}</SrvIde>}
+    {seg.v === 'pid' && <><Psql title={t("terminal — node pool-pid.js (shop bazasida)", "терминал — node pool-pid.js (в базе shop)")} lines={POOL17} focus={['z', 'one']} /><PoolDiagram conn={1} pid={378069} note={t("Uch so'rov — bitta ulanish, bitta pid: Pool borini qayta ishlatadi.", "Три запроса — одно соединение, один pid: Pool переиспользует имеющееся.")} /></>}
+    {seg.v === 'bad' && <><Psql title={t("terminal — xato parol bilan", "терминал — с неверным паролем")} er lines={BAD17} focus={['x']} /><PoolDiagram conn={0} pid={null} note={t("Pool yaratildi, lekin ulanmadi — xato faqat birinchi so'rovda chiqadi.", "Pool создан, но не подключился — ошибка выходит только на первом запросе.")} /></>}
+    {seg.v === 'sum' && <Lanes17 />}
   </>} />;
 }
 
 // ============================================================
-//  15 · POST, PUT, DELETE
+//  18 · GET: pool.query → rows, rowCount → res.json (11-crud-sorovlar GET 200; rowCount — v2f-pool)
 // ============================================================
-const S14 = mkS(15, [{ focus: ['postq'], from: 24, to: 35, pm: 'post' }, { focus: ['postq'], from: 24, to: 35, pm: 'post', nul: true }, { focus: ['put', 'del'], from: 36, to: 60, pm: 'pd' }, { focus: ['nf'], from: 36, to: 60, pm: 'nf' }, { focus: [], from: 24, to: 60, pm: 'sum' }]);
-function Screen14(p) {
-  return <Lesson p={p} S={S14} scene={({ seg }) => <div className="pg-two">
-    <SrvIde focus={seg.focus} from={seg.from} to={seg.to} wrap />
-    <div style={{ display: 'grid', gap: 10, alignContent: 'start' }}>
-      {(seg.pm === 'post' || seg.pm === 'sum') && <PostmanCard m="POST" url="/api/cars" body={'{ "model": "Chevrolet Spark", "daily_price": 190000, "year": 2021 }'} st={201} res={'{"id":4,"model":"Chevrolet Spark","daily_price":190000,"year":2021,"is_rented":null}'} hl={seg.nul} />}
-      {seg.nul && <div className="n2-warn"><b>is_rented: null</b> — POST'da berilmagan, jadvalda <code>DEFAULT</code> yo'q. Kerak bo'lsa: <code>is_rented BOOLEAN DEFAULT false</code>.</div>}
-      {(seg.pm === 'pd' || seg.pm === 'sum') && <><PostmanCard m="PUT" url="/api/cars/2" body={'{ "daily_price": 480000 }'} st={200} res={'{"id":2,"model":"Chevrolet Malibu","daily_price":480000,"year":2023,"is_rented":false}'} /><PostmanCard m="DELETE" url="/api/cars/1" st={200} res={'{"message":"O\'chirildi","deleted":1}'} /></>}
-      {(seg.pm === 'nf' || seg.pm === 'sum') && <><PostmanCard m="PUT" url="/api/cars/99" body={'{ "daily_price": 1 }'} st={404} res={'{"error":"Mashina topilmadi"}'} hl={seg.pm === 'nf'} />{seg.pm === 'nf' && <div className="mk-rule">Baza <code>UPDATE 0</code> — xato emas. Kod <code>rowCount === 0</code> ni tekshirib <b>404</b> beradi — to'g'ri qaror: aks holda 200 «o'zgardi» deb aldaydi.</div>}</>}
+const GET18 = '[{"id":1,"model":"Chevrolet Cobalt","daily_price":280000,"year":2022,"is_rented":false},\n {"id":2,"model":"Chevrolet Malibu",…}, {"id":3,"model":"Kia K5",…}]';
+const RC18 = psql(String.raw`
+rowCount: 3 · rows: [{"name":"Klaviatura","price":89000},{"name":"Sichqoncha","price":75000},{"name":"Kolonka","price":50000}]
+UPDATE id=99 → rowCount: 0 · rows: []`, { 1: { id: 'r' }, 2: { id: 'z' } });
+const STEPS18 = [['Pool', 'ulanadi', T.purple], ['pool.query(sql)', "so'rov bazaga", PG.pg], ['rows / rowCount', 'natija', T.green], ['res.json', 'javob', T.ink]];
+// F-1109-06: xulosa — to'rt kichik karta o'rniga GET /api/cars yo'li haqiqiy qiymatlar bilan, rowCount jadvali va catch (12-price-xato)
+function Flow18() {
+  return <div className="z">
+    <div className="z-card">
+      <p className="z-h">{t("GET /api/cars — so'rov serverdan bazaga va qaytib", "GET /api/cars — запрос от сервера к базе и обратно")}</p>
+      <div className="z-flow">
+        <div className="z-st" style={{ borderColor: 'var(--pur)', background: 'var(--pur2)' }}><b>1 · Pool</b><span className="zm">new Pool({'{…}'})</span><span className="z-mut">{t("ulanish tayyor", "соединение готово")}</span></div>
+        <div className="z-ar">→</div>
+        <div className="z-st blue"><b>2 · pool.query</b><span className="zm">SELECT * FROM cars</span><span className="z-mut">{t("await — javob kutiladi", "await — ждём ответ")}</span></div>
+        <div className="z-ar">→</div>
+        <div className="z-st ok"><b>{t("3 · natija", "3 · результат")}</b><span className="zm">{t("rows: 3 ta mashina", "rows: 3 машины")}</span><span className="zm">rowCount: 3</span></div>
+        <div className="z-ar">→</div>
+        <div className="z-st"><b>4 · res.json</b><span className="z-tag g">200</span><span className="zm" style={{ fontSize: 12 }}>[{'{'}"id":1,"model":"Chevrolet Cobalt",…{'}'}, …]</span></div>
+      </div>
     </div>
-  </div>} />;
+    <div className="z-two">
+      <div className="z-card">
+        <p className="z-h">{t("rowCount — terminaldagi son", "rowCount — число из терминала")}</p>
+        <table className="z-tbl"><tbody>
+          <tr><th>{t("terminalda", "в терминале")}</th><th>{t("pool.query natijasida", "в результате pool.query")}</th></tr>
+          <tr><td>(3 rows)</td><td>rowCount: 3</td></tr>
+          <tr className="hl"><td>UPDATE 0</td><td>rowCount: 0 · rows: []</td></tr>
+        </tbody></table>
+        <span className="z-mut">{t("UPDATE … WHERE id = 99 — mos qator yo'q, xato emas", "UPDATE … WHERE id = 99 — подходящей строки нет, это не ошибка")}</span>
+      </div>
+      <div className="z-card" style={{ borderColor: 'var(--bad)' }}>
+        <p className="z-h" style={{ color: 'var(--bad)' }}>{t("xato bo'lsa — catch", "при ошибке — catch")}</p>
+        <div className="z-term">res.status(500).json({'{'} error: err.message {'}'}){'\n'}<span className="m">→</span> <span className="r">500</span> {'{'}"error":"column \"price\" of relation \"cars\" does not exist"{'}'}</div>
+        <span className="z-mut">{t("5-bosqichdagi hamma xato shu yo'ldan keladi", "все ошибки 5-го этапа приходят этим путём")}</span>
+      </div>
+    </div>
+  </div>;
+}
+const S18 = mkS(18, [{ v: 'code', focus: ['getq'], pm: true }, { v: 'rc' }, { v: 'code', focus: ['catch'] }, { v: 'sum' }]);
+function Screen18(p) {
+  return <Lesson p={p} S={S18} scene={({ seg }) => <>
+    {seg.v === 'code' && <SrvIde a={21} b={29} focus={seg.focus} />}
+    {seg.pm && <PostmanCard m="GET" url="localhost:3000/api/cars" st={200} res={GET18} />}
+    {seg.v === 'rc' && <><Psql title={t("node — shop bazasida sinov (pool-pid.js)", "node — проверка в базе shop (pool-pid.js)")} lines={RC18} focus={['r', 'z']} /><div className="mk-rule"><code>rowCount</code>{t(" — terminaldagi ", " — из терминала: ")}<code>UPDATE 1</code> / <code>(3 rows)</code>{t(" ning o'zi · ", " — то же самое · ")}<code>rowCount: 0</code>{t(" — 1-bosqichdagi ", " — тот самый ")}<code>UPDATE 0</code>{t(" shu yerga keladi", " с 1-го этапа приходит сюда")}</div></>}
+    {seg.v === 'code' && seg.focus[0] === 'catch' && <div className="n2-warn"><code>await</code>{t(" — so'rov kutiladi, funksiya ", " — запрос ожидается, функция ")}<code>async</code>{t(" · xato bo'lsa ", " · при ошибке ")}<code>catch</code>: status <b>500</b>{t(" va xato matni — 5-bosqichdagi hamma xato shu yerdan chiqadi", " и текст ошибки — все ошибки 5-го этапа выходят отсюда")}</div>}
+    {seg.v === 'sum' && <Flow18 />}
+  </>} />;
 }
 
 // ============================================================
-//  16 · Nega $1 (pg2-out/17)
+//  19 · POST, PUT, DELETE: RETURNING *, statuslar, 404 (11-crud-sorovlar)
 // ============================================================
-const INJ_BAD = js(String.raw`
-const result = await pool.query('DELETE FROM cars WHERE id = ' + req.params.id);  // ← yopishtirilgan`, { 1: { id: 'x' } });
-const INJ_OK = js(String.raw`
-const result = await pool.query('DELETE FROM cars WHERE id = $1', [req.params.id]);`, { 1: { id: 'x', neu: true } });
+const STATUS19 = [['GET', '200', PG.pg], ['POST', '201', T.green], ['PUT · DELETE', '200', T.green], ['topilmasa', '404', T.yellow], ['xato', '500', '#B91C1C']];
+// F-1109-06: xulosa — beshta status qutichasi o'rniga «so'rov · SQL · baza javobi → status» jadvali (11-crud-sorovlar) va server.js dagi 404 satri
+const ROWS19 = [
+  ['GET /api/cars', 'SELECT *', ['3 ta qator', '3 строки'], '200', 's2'],
+  ['POST /api/cars', 'INSERT … RETURNING *', ['yangi qator, id 4', 'новая строка, id 4'], '201', 's2'],
+  ['PUT /api/cars/2', 'UPDATE … WHERE id = $2', ['rowCount: 1', 'rowCount: 1'], '200', 's2'],
+  ['DELETE /api/cars/1', 'DELETE … WHERE id = $1', ['rowCount: 1', 'rowCount: 1'], '200', 's2'],
+];
+function Table19() {
+  return <div className="z">
+    <div className="z-card">
+      <p className="z-h">{t("Kim qaysi statusni beradi — server.js, haqiqiy javoblar", "Кто какой статус даёт — server.js, настоящие ответы")}</p>
+      <table className="z-tbl p2-s19"><tbody>
+        <tr><th>{t("so'rov", "запрос")}</th><th>SQL</th><th>{t("baza javobi", "ответ базы")}</th><th /><th>status</th></tr>
+        {ROWS19.map(([q, sql, [uz, ruT], st, c]) => <tr key={q}><td>{q}</td><td>{sql}</td><td>{t(uz, ruT)}</td><td className="ar">→</td><td className={'st ' + c}>{st}</td></tr>)}
+        <tr className="k"><td>PUT /api/cars/99</td><td>UPDATE … WHERE id = $2</td><td><b>rowCount: 0</b>{t(" — xato emas", " — не ошибка")}</td><td className="ar">→</td><td className="st s4">404</td></tr>
+        <tr><td>{t("har qaysi", "любой")}</td><td colSpan={2}>{t("baza xato berdi → catch", "база вернула ошибку → catch")}</td><td className="ar">→</td><td className="st s5">500</td></tr>
+      </tbody></table>
+    </div>
+    <div className="z-two">
+      <div className="z-card" style={{ borderColor: '#B45309' }}>
+        <p className="z-h" style={{ color: '#B45309' }}>{t("404 ni rowCount hal qiladi", "404 решает rowCount")}</p>
+        <div className="z-term"><span className="c">if</span> (result.rowCount === <span className="y">0</span>){'\n'}  <span className="c">return</span> res.status(<span className="y">404</span>).json({'{'} error: <span className="g">'Mashina topilmadi'</span> {'}'});</div>
+        <span className="z-mut">{t("Bu tekshiruv bo'lmasa javob 200 — yolg'on «o'zgardi»", "Без этой проверки ответ 200 — ложное «изменено»")}</span>
+      </div>
+      <div className="z-card">
+        <p className="z-h">{t("POST javobida", "В ответе POST")}</p>
+        <div className="z-term">{'{'}"id":4,"model":"Chevrolet Spark",…,<span className="hl">"is_rented":null</span>{'}'}</div>
+        <span className="z-mut">{t("ustun berilmadi, jadvalda DEFAULT yo'q → null", "колонку не передали, в таблице нет DEFAULT → null")}</span>
+      </div>
+    </div>
+  </div>;
+}
+const S19 = mkS(19, [{ v: 'post' }, { v: 'post', nul: true }, { v: 'pd' }, { v: 'sum' }]);
+function Screen19(p) {
+  return <Lesson p={p} S={S19} scene={({ seg }) => <>
+    {seg.v === 'post' && <><SrvIde a={32} b={44} focus={['sqlp']} /><PostmanCard {...PM_POST} hl={seg.nul} />
+      {seg.nul && <div className="n2-warn"><b>is_rented: null</b>{t(" — POST'da berilmagan, jadvalda ", " — не передан в POST, а в таблице ")}<code>DEFAULT</code>{t(" yo'q (3-bosqich). Yechim jadvalda: ", " нет (3-й этап). Решение в таблице: ")}<code>ALTER TABLE cars ALTER COLUMN is_rented SET DEFAULT false</code>.</div>}</>}
+    {seg.v === 'pd' && <><Ide files={SRV_FILES} active="server.js">
+        <CodePanel file="server.js · PUT" lines={srvSlice(50, 56)} focus={['nf']} style={{ fontSize: 12.5 }} />
+        <CodePanel file="server.js · DELETE" lines={srvSlice(66, 71)} focus={['nf']} style={{ fontSize: 12.5 }} />
+      </Ide>
+      <div className="pg-cards3">
+        <PostmanCard m="PUT" url="/api/cars/2" body={'{ "daily_price": 480000 }'} st={200} res={'{"id":2,"model":"Chevrolet Malibu","daily_price":480000,"year":2023,"is_rented":false}'} />
+        <PostmanCard m="DELETE" url="/api/cars/1" st={200} res={'{"message":"O\'chirildi","deleted":1}'} />
+        <PostmanCard m="PUT" url="/api/cars/99" body={'{ "daily_price": 1 }'} st={404} res={'{"error":"Mashina topilmadi"}'} hl />
+      </div>
+      <div className="mk-rule">{t("Baza ", "База ")}<code>UPDATE 0</code>{t(" — xato emas. Kod ", " — не ошибка. Код ")}<code>rowCount === 0</code>{t(" ni tekshirib ", " проверяет и ")}<b>404</b>{t(" beradi; usiz javob 200 bo'lardi — yolg'on «o'zgardi».", " даёт; без этого ответ был бы 200 — ложное «изменено».")}</div></>}
+    {seg.v === 'sum' && <Table19 />}
+  </>} />;
+}
+
+// ============================================================
+//  20 · Nega $1 — injection'ni o'zimiz qildik (pg2-out/17)
+// ============================================================
+const INJ_BAD = js(`
+const result = await pool.query('DELETE FROM cars WHERE id = ' + req.params.id); // ← yopishtirilgan`, { 1: { id: 'x' } });
+const INJ_OK = js(`
+const result = await pool.query('DELETE FROM cars WHERE id = $1', [
+  req.params.id,
+]);`, { 1: { id: 'x', neu: true }, 2: { id: 'x', neu: true }, 3: { id: 'x', neu: true } });
 const INJ_AFTER_BAD = psql(String.raw`
 car_rental=# SELECT id, model FROM cars;
  id | model
@@ -2306,97 +3181,111 @@ car_rental=# SELECT id, model FROM cars;
   4 | Chevrolet Spark
   2 | Chevrolet Malibu
 (3 rows)`);
-const S15 = mkS(16, [{ v: 'bad0' }, { v: 'bad' }, { v: 'both' }, { v: 'both', sum: true }]);
-function Screen15(p) {
-  return <Lesson p={p} S={S15} scene={({ seg }) => <div className="pg-two">
+const S20 = mkS(20, [{ v: 'bad0' }, { v: 'bad' }, { v: 'both' }, { v: 'both', sum: true }]);
+function Screen20(p) {
+  return <Lesson p={p} S={S20} scene={({ seg }) => <div className="pg-two">
     <div style={{ display: 'grid', gap: 10, alignContent: 'start' }}>
-      <div className="pg-lab" style={{ color: T.accent }}>Yopishtirilgan</div>
-      <CodePanel file="server.js · DELETE" lines={INJ_BAD} focus={['x']} wrap style={{ fontSize: 12.5 }} />
-      {seg.v !== 'bad0' && <><PostmanCard m="DELETE" url="/api/cars/1 OR 1=1" st={200} res={'{"message":"O\'chirildi","deleted":3}'} hl={seg.v === 'bad'} /><Psql title="psql — car_rental" er lines={INJ_AFTER_BAD} /></>}
+      <div className="pg-lab" style={{ color: T.accent }}>{t("Yopishtirilgan", "Приклеено")}</div>
+      <CodePanel file="server.js · DELETE" lines={INJ_BAD} focus={['x']} style={{ fontSize: 12.5 }} />
+      {seg.v === 'bad' && <><PostmanCard m="DELETE" url="/api/cars/1 OR 1=1" st={200} res={'{"message":"O\'chirildi","deleted":3}'} hl={seg.v === 'bad'} /><Psql title="psql — car_rental" er lines={INJ_AFTER_BAD} /></>}
     </div>
     <div style={{ display: 'grid', gap: 10, alignContent: 'start', opacity: seg.v === 'both' ? 1 : 0.35 }}>
-      <div className="pg-lab" style={{ color: T.green }}>$1 bilan</div>
-      <CodePanel file="server.js · DELETE" lines={INJ_OK} wrap style={{ fontSize: 12.5 }} />
-      {seg.v === 'both' && <><PostmanCard m="DELETE" url="/api/cars/1 OR 1=1" st={500} res={'{"error":"invalid input syntax for type integer: \\"1 OR 1=1\\""}'} hl /><Psql title="psql — car_rental · jadval joyida" lines={INJ_AFTER_OK} /></>}
-      {seg.sum && <div className="mk-rule">Foydalanuvchidan kelgan har qiymat — <code>$1, $2</code> + massiv. m4-08 promptida ham: «qiymatlarni SQL matniga yopishtirma».</div>}
+      <div className="pg-lab" style={{ color: T.green }}>{t("$1 bilan", "с $1")}</div>
+      <CodePanel file="server.js · DELETE" lines={INJ_OK} style={{ fontSize: 12.5 }} />
+      {seg.v === 'both' && <><PostmanCard m="DELETE" url="/api/cars/1 OR 1=1" st={500} res={'{"error":"invalid input syntax for type integer: \\"1 OR 1=1\\""}'} hl /><Psql title={t("psql — car_rental · jadval joyida", "psql — car_rental · таблица на месте")} lines={INJ_AFTER_OK} /></>}
+      {seg.sum && <div className="mk-rule">{t("Foydalanuvchidan kelgan har qiymat — ", "Каждое значение от пользователя — ")}<code>$1, $2</code>{t(" + massiv. SQL matniga ", " + массив. В текст SQL ")}<b>{t("hech qachon", "никогда")}</b>{t(" yopishtirilmaydi: bu uslub emas, xavfsizlik.", " не приклеивается: это не стиль, а безопасность.")}</div>}
     </div>
   </div>} />;
 }
 
 // ============================================================
-//  17 · Amaliyot 3 — AvtoIjara server
+//  21 · Amaliyot 3 — AvtoIjara server (kod: namuna, nusxalash yo'q)
 // ============================================================
-const P3 = mkS(17, [{ hl: [] }, { hl: [0, 1] }, { hl: [2, 3] }, { hl: [] }], { tableAt: 3 });
-const P3_STEPS = [
-  { t: 'Jadval', cmds: ['CREATE DATABASE car_rental;', '\\c car_rental', 'CREATE TABLE cars (id SERIAL PRIMARY KEY, model TEXT, daily_price INTEGER, year INTEGER, is_rented BOOLEAN);', "INSERT INTO cars (model, daily_price, year, is_rented) VALUES ('Chevrolet Cobalt', 280000, 2022, false), ('Chevrolet Malibu', 520000, 2023, false), ('Kia K5', 610000, 2023, false);"], exp: 'INSERT 0 3' },
-  { t: 'Loyiha', cmds: ['mkdir avto-ijara-server', 'cd avto-ijara-server', 'npm init -y', 'npm install express pg'], exp: 'added … packages' },
-  { t: "Server — namuna yoki Gemini (m4-08 promptlari); parolingizni yozing", cmds: ['node server.js'], exp: 'Server 3000-portda ishlayapti' },
-  { t: 'Postman', cmds: ['GET localhost:3000/api/cars', 'POST localhost:3000/api/cars   { "model": "Chevrolet Spark", "daily_price": 190000, "year": 2021 }'], exp: '200 · 3 mashina · POST — id bilan' },
-];
-const P3_CODE = [{ file: 'server.js', step: 2, lines: SERVER_LINES, copy: false }];
-const P3_TROUBLE = [
-  ['500 password authentication failed for user "postgres"', "PASSWORD — o'rnatishda berilgan parol (20-ekran)"],
-  ['500 client password must be a string', "parol bo'sh / process.env o'qilmagan (20-ekran)"],
-  ['500 database "…" does not exist', 'DATABASE nomi xato yoki baza yaratilmagan (20-ekran)'],
-  ['500 {"error":""}', "PostgreSQL ishlamayapti — console.error(err) bilan ECONNREFUSED ko'rinadi (20-ekran)"],
-  ["500 Cannot destructure property 'model' of 'req.body'", "app.use(express.json()) yo'q (19-ekran)"],
-  ['500 column "price" of relation "cars" does not exist', 'kodda ustun nomi xato (18-ekran)'],
-  ["kod o'zgardi, javob o'zgarmadi", 'eski server ishlab turibdi — 21-ekran'],
-];
-const P3_PROOF = { label: 'Isbot: POST javobining statusi', placeholder: "Postman ko'rsatgan statusni yozing", check: (v) => /^\s*201\b/.test(v), wrong: "Muvaffaqiyatli POST statusi uch xonali son — Postman'da javob ustida yozilgan" };
-function ScreenP3(p) { return <Practice p={p} S={P3} steps={P3_STEPS} trouble={P3_TROUBLE} proof={P3_PROOF} code={P3_CODE} tree={MKCFG.files} />; }
+const P21 = mkPractice(21, [[], [0, 1], [2, 3], []], { code: [{ file: 'server.js', step: 2, lines: SERVER_LINES, copy: false }], tree: MKCFG.files });
+function ScreenP21(p) { return <Practice p={p} S={P21.S} steps={P21.steps} trouble={P21.trouble} proof={P21.proof} code={P21.code} tree={P21.tree} />; }
 
 // ============================================================
-//  18 · Buzamiz 1: price ustuni (pg2-out/12, 19)
+//  22 · Buzamiz 1: price ustuni (pg2-out/12, 19) — POST bo'lagi 32–44, xato 36-satr
 // ============================================================
-const POST_LINES = (bad, fixed) => {
-  const src = SERVER_LINES.slice(24, 35).map((l, i) => ({ ...l, n: 25 + i }));
-  return src.map((l, i) => {
-    if (i !== 4) return l;
-    if (bad) return { ...l, h: jsLine("    const result = await pool.query('INSERT INTO cars (model, price, year) VALUES ($1, $2, $3) RETURNING *', [model, daily_price, year]);"), id: 'x' };
-    return { ...l, id: 'x', neu: !!fixed };
-  });
-};
+const POST_LINES = (bad, fixed) => srvSlice(32, 44).map((l, i) => {
+  if (i !== 4) return l;
+  if (bad) return { ...l, h: jsLine("      'INSERT INTO cars (model, price, year) VALUES ($1, $2, $3) RETURNING *',"), id: 'x' };
+  return { ...l, id: 'x', neu: !!fixed };
+});
 const PRICE_TERM = psql(String.raw`
 $ node server.js
 Server 3000-portda ishlayapti
 column "price" of relation "cars" does not exist`, { 3: { id: 'e' } });
-const S17 = mkS(18, [{ st: 'bad' }, { st: 'bad', pm: 500 }, { st: 'fix', pm: 201 }, { st: 'fix', pm: 201, sum: true }]);
-function Screen17(p) {
-  return <Lesson p={p} S={S17} scene={({ seg }) => <div className="pg-two">
-    <SrvIde lines={POST_LINES(seg.st === 'bad', seg.st === 'fix')} focus={['x']} wrap />
-    <div style={{ display: 'grid', gap: 10, alignContent: 'start' }}>
-      {seg.pm === 500 && <><PostmanCard m="POST" url="/api/cars" body={'{ "model": "Hyundai Elantra", "daily_price": 450000, "year": 2022 }'} st={500} res={'{"error":"column \\"price\\" of relation \\"cars\\" does not exist"}'} hl /><Psql title="terminal — node server.js" er lines={PRICE_TERM} focus={['e']} /></>}
-      {seg.pm === 201 && <PostmanCard m="POST" url="/api/cars" body={'{ "model": "Hyundai Elantra", "daily_price": 450000, "year": 2022 }'} st={201} res={'{"id":5,"model":"Hyundai Elantra","daily_price":450000,"year":2022,"is_rented":null}'} hl />}
-      {seg.sum && <div className="mk-rule">500 → <code>error</code> ichidagi nom (<code>"price"</code> · <code>"cars"</code>) → <code>\d cars</code> bilan solishtirish → tuzatish → serverni <b>qayta ishga tushirish</b></div>}
-    </div>
-  </div>} />;
-}
-
-// ============================================================
-//  19 · Buzamiz 2: express.json() yo'q (pg2-out/13)
-// ============================================================
-const JSON_LINES = (gone) => SERVER_LINES.slice(9, 12).map((l, i) => ({ ...l, n: 10 + i, ...(i === 2 ? { id: 'j', gone: gone === 'gone', neu: gone === 'fix' } : {}) }));
-const S18 = mkS(19, [{ st: 'gone' }, { st: 'gone', pm: 500 }, { st: 'fix', pm: 201 }, { st: 'fix', pm: 201, sum: true }]);
-function Screen18(p) {
-  return <Lesson p={p} S={S18} scene={({ seg }) => <>
-    <SrvIde lines={JSON_LINES(seg.st)} focus={['j']}>
-      {seg.pm === 500 && <PostmanCard m="POST" url="/api/cars" body={'{ "model": "Hyundai Elantra", "daily_price": 450000, "year": 2022 }'} st={500} res={'{"error":"Cannot destructure property \'model\' of \'req.body\' as it is undefined."}'} hl />}
-      {seg.pm === 201 && <PostmanCard m="POST" url="/api/cars" body={'{ "model": "Hyundai Elantra", "daily_price": 450000, "year": 2022 }'} st={201} res={'{"id":5,"model":"Hyundai Elantra","daily_price":450000,"year":2022,"is_rented":null}'} />}
-    </SrvIde>
-    {seg.st === 'gone' && !seg.pm && <div className="mk-tag" style={{ margin: 0 }}>Server baribir «Server 3000-portda ishlayapti» · GET ishlaydi — muammo faqat tanasi bor so'rovlarda (POST, PUT)</div>}
-    {seg.sum && <div className="mk-rule"><code>req.body</code> — <b>undefined</b> → birinchi qaraladigan joy <code>app.use(express.json())</code> (app yaratilgandan keyin, endpointlardan oldin)</div>}
+const S22 = mkS(22, [{ st: 'bad' }, { st: 'bad', pm: 500 }, { st: 'fix', pm: 201 }, { sum: true }]);
+function Screen22(p) {
+  return <Lesson p={p} S={S22} scene={({ seg }) => <>
+    {!seg.sum && <SrvIde lines={POST_LINES(seg.st === 'bad', seg.st === 'fix')} focus={['x']} />}
+    {seg.pm === 500 && <div className="pg-two"><PostmanCard {...PM_ELANTRA(500)} res={'{"error":"column \\"price\\" of relation \\"cars\\" does not exist"}'} hl /><Psql title={t("terminal — node server.js", "терминал — node server.js")} er lines={PRICE_TERM} focus={['e']} /></div>}
+    {seg.pm === 201 && <PostmanCard {...PM_ELANTRA(201)} hl />}
+    {seg.sum && <><div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0,1fr))', gap: 10 }}>
+      {[['500', t("error matnini o'qing", "прочитайте текст error"), '#B91C1C'], ['"price" · "cars"', t('ustun va jadval nomi', "имя колонки и таблицы"), T.accent], ['\\d cars', t('jadval bilan solishtiring', "сравните с таблицей"), PG.pg], ['Ctrl+C · node server.js', t('kod o\'zgarsa — qayta ishga tushiring', "если код изменился — перезапустите"), T.green]].map(([h, d, c], i) => <div key={h} className="mk-box" style={{ '--c': c, animation: `mk-up .4s ${i * 0.1}s ease both` }}><h4 style={{ fontFamily: MONO, fontSize: 13 }}>{h}</h4><p>{d}</p></div>)}
+    </div><div className="mk-rule">{t("Xabar nimani tuzatishni ", "Что исправить, сообщение ")}<b>{t("o'zi aytdi", "сказал сам")}</b>{t(": ustun ", ": колонка ")}<code>price</code>{t(", jadval ", ", таблица ")}<code>cars</code>{t(". Kod o'zgargandan keyin serverni albatta qayta ishga tushiring.", ". После изменения кода обязательно перезапустите сервер.")}</div></>}
   </>} />;
 }
 
 // ============================================================
-//  20 · Ulanish xatolari — birinchi so'rovda (pg2-out/14, 15)
+//  23 · Buzamiz 2: express.json() yo'q (pg2-out/13) — 16–18-satrlar
 // ============================================================
-const CONN19 = [
-  { k: 'pw', h: "Parol xato", code: "const PASSWORD = 'notogri';", st: 500, res: '{"error":"password authentication failed for user \\"postgres\\""}', fix: "o'rnatishda berilgan parol" },
-  { k: 'pw', h: "Parol bo'sh (process.env o'qilmagan)", code: 'const PASSWORD = process.env.DB_PASSWORD;', st: 500, res: '{"error":"SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string"}', fix: "parol o'zgaruvchisi bo'sh" },
-  { k: 'db', h: 'Baza nomi xato', code: "const DATABASE = 'carrental';", st: 500, res: '{"error":"database \\"carrental\\" does not exist"}', fix: '\\l bilan aniq nom: car_rental' },
-  { k: 'off', h: "PostgreSQL o'chiq", code: '— (server to\'xtatilgan)', st: 500, res: '{"error":""}', fix: 'console.error(err) → ECONNREFUSED → PostgreSQL\'ni ishga tushiring' },
+const JSON_LINES = (st) => srvSlice(16, 18).map((l, i) => (i === 2 ? { ...l, id: 'j', gone: st === 'gone', neu: st === 'fix' } : l));
+// F-1109-06: xulosa — kod yashirilib uch quti qolardi; endi bitta POST ikki yo'lda (13-express-json-yoq), satr joyi va belgisi
+function Two23() {
+  return <div className="z">
+    <div className="z-card">
+      <p className="z-h">{t("Bitta POST — ikki yo'l", "Один POST — два пути")}</p>
+      <div className="z-term"><span className="m">POST /api/cars</span>  {'{'} "model": "Hyundai Elantra", "daily_price": 450000, "year": 2022 {'}'}</div>
+      <div className="z-flow">
+        <div className="z-st bad"><b>{t("app.use(express.json()) yo'q", "app.use(express.json()) нет")}</b><span className="z-mut">{t("tana o'qilmaydi", "тело не читается")}</span></div>
+        <div className="z-ar bad">→</div>
+        <div className="z-st bad"><b>req.body</b><span className="zm">undefined</span></div>
+        <div className="z-ar bad">→</div>
+        <div className="z-st bad"><b>{t("javob", "ответ")}</b><span className="z-tag r">500</span><span className="zm" style={{ fontSize: 12 }}>Cannot destructure property 'model' of 'req.body' as it is undefined.</span></div>
+      </div>
+      <div className="z-flow">
+        <div className="z-st ok"><b>{t("app.use(express.json()) bor", "app.use(express.json()) есть")}</b><span className="z-mut">{t("JSON tana obyektga aylanadi", "JSON-тело становится объектом")}</span></div>
+        <div className="z-ar">→</div>
+        <div className="z-st ok"><b>req.body</b><span className="zm">{'{'} model, daily_price, year {'}'}</span></div>
+        <div className="z-ar">→</div>
+        <div className="z-st ok"><b>{t("javob", "ответ")}</b><span className="z-tag g">201</span><span className="zm" style={{ fontSize: 12 }}>{'{'}"id":5,"model":"Hyundai Elantra",…{'}'}</span></div>
+      </div>
+    </div>
+    <div className="z-two">
+      <div className="z-card">
+        <p className="z-h">{t("server.js — joyi", "server.js — место")}</p>
+        <div className="z-term"><span className="c">const</span> app = express();{'\n'}<span className="hl">app.use(express.json());</span></div>
+        <span className="z-mut">{t("app yaratilgandan keyin, endpoint'lardan oldin — har so'rovdan oldin ishlaydi", "после создания app, до endpoint — срабатывает перед каждым запросом")}</span>
+      </div>
+      <div className="z-card" style={{ borderColor: 'var(--pg)' }}>
+        <p className="z-h" style={{ color: 'var(--pg)' }}>{t("Belgisi", "Признак")}</p>
+        <div><span className="z-tag g">GET 200</span> <span className="z-tag r">POST 500</span></div>
+        <span className="z-mut">{t("Server «ishlayapti» deydi, GET ishlaydi — tanasi bor so'rov (POST, PUT) yiqiladi. Birinchi qaraladigan joy — shu satr.", "Сервер говорит «работает», GET работает — падает запрос с телом (POST, PUT). Первое, куда смотреть, — эта строка.")}</span>
+      </div>
+    </div>
+  </div>;
+}
+const S23 = mkS(23, [{ st: 'gone' }, { st: 'gone', pm: 500 }, { st: 'fix', pm: 201 }, { sum: true }]);
+function Screen23(p) {
+  return <Lesson p={p} S={S23} scene={({ seg }) => <>
+    {!seg.sum && <SrvIde lines={JSON_LINES(seg.st)} focus={['j']} />}
+    {seg.st === 'gone' && !seg.pm && <div className="mk-tag" style={{ margin: 0 }}>{t("Server baribir «Server 3000-portda ishlayapti» · GET ishlaydi — muammo faqat tanasi bor so'rovlarda (POST, PUT)", "Сервер всё равно «Server 3000-portda ishlayapti» · GET работает — проблема только в запросах с телом (POST, PUT)")}</div>}
+    {seg.pm === 500 && <PostmanCard {...PM_ELANTRA(500)} res={'{"error":"Cannot destructure property \'model\' of \'req.body\' as it is undefined."}'} hl />}
+    {seg.pm === 201 && <PostmanCard {...PM_ELANTRA(201)} hl />}
+    {seg.sum && <Two23 />}
+  </>} />;
+}
+
+// ============================================================
+//  24 · Ulanish xatolari — birinchi so'rovda (pg2-out/14, 15)
+// ============================================================
+const CONN24 = [
+  { h: 'Parol xato', code: "const PASSWORD = 'notogri';", st: 500, res: '{"error":"password authentication failed for user \\"postgres\\""}', fix: "o'rnatishda berilgan parol" },
+  { h: "Parol bo'sh (process.env o'qilmagan)", code: 'const PASSWORD = process.env.DB_PASSWORD;', st: 500, res: '{"error":"SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string"}', fix: "parol o'zgaruvchisi bo'sh" },
+  { h: 'Baza nomi xato', code: "const DATABASE = 'carrental';", st: 500, res: '{"error":"database \\"carrental\\" does not exist"}', fix: '\\l bilan aniq nom: car_rental' },
+  { h: "PostgreSQL o'chiq", code: "— (server to'xtatilgan)", st: 500, res: '{"error":""}', fix: "console.error(err) → ECONNREFUSED → PostgreSQL'ni ishga tushiring" },
 ];
 const ECONN = psql(String.raw`
 $ node server.js     (console.error(err.message) o'rniga console.error(err))
@@ -2407,14 +3296,14 @@ AggregateError [ECONNREFUSED]:
   code: 'ECONNREFUSED',
   [errors]: [
     Error: connect ECONNREFUSED ::1:5432`, { 3: { id: 'e' }, 6: { id: 'e' }, 8: { id: 'e' } });
-const S19 = mkS(20, [{ show: [] , start: true }, { show: [0, 1] }, { show: [2] }, { show: [3], econn: true }, { show: [0, 1, 2, 3] }]);
-function Screen19(p) {
-  return <Lesson p={p} S={S19} scene={({ seg }) => <>
-    <Psql title="terminal — har to'rt holatda" lines={psql(String.raw`
+const S24 = mkS(24, [{ show: [], start: true }, { show: [0, 1] }, { show: [2] }, { show: [3], econn: true }, { show: [0, 1, 2, 3] }]);
+function Screen24(p) {
+  return <Lesson p={p} S={S24} scene={({ seg }) => <>
+    <Psql title={t("terminal — har to'rt holatda", "терминал — во всех четырёх случаях")} lines={psql(String.raw`
 $ node server.js
 Server 3000-portda ishlayapti`)} />
-    {seg.start && <div className="mk-rule">Pool server ishga tushganda ulanmaydi — <b>birinchi so'rovda</b>. «Ishlayapti» faqat Express haqida.</div>}
-    <div className="pg-two">{CONN19.map((c, i) => seg.show.includes(i) && <div key={i} style={{ display: 'grid', gap: 6, animation: 'mk-up .4s ease both' }}>
+    {seg.start && <div className="mk-rule">Pool server ishga tushganda ulanmaydi (17-ekran) — <b>birinchi so'rovda</b>. «Ishlayapti» faqat Express haqida.</div>}
+    <div className="pg-two">{CONN24.map((c, i) => seg.show.includes(i) && <div key={i} style={{ display: 'grid', gap: 6, animation: 'mk-up .4s ease both' }}>
       <div className="pg-lab">{c.h} · <code style={{ textTransform: 'none' }}>{c.code}</code></div>
       <PostmanCard m="GET" url="/api/cars" st={c.st} res={c.res} />
       <div className="exp" style={{ fontSize: 12.5, color: T.green }}>Tuzatish: {c.fix}</div>
@@ -2424,9 +3313,9 @@ Server 3000-portda ishlayapti`)} />
 }
 
 // ============================================================
-//  21 · Port band — «ishlayapti», lekin eski server (pg2-out/16, 20)
+//  25 · Port band — «ishlayapti», lekin eski server (pg2-out/16, 20)
 // ============================================================
-const PORT20 = psql(String.raw`
+const PORT25 = psql(String.raw`
 $ node server.js   (ikkinchi oynada, birinchisi ishlab turibdi)
 Server 3000-portda ishlayapti
 [chiqish kodi: 0]`, { 2: { id: 'x' }, 3: { id: 'x' } });
@@ -2440,109 +3329,67 @@ app.listen = function listen() {
 }
 // server.js — callback xatoni o'qimaydi:
 app.listen(3000, () => console.log('Server 3000-portda ishlayapti'));`, { 5: { id: 'e' }, 9: { id: 'cb' } });
-const S20 = mkS(21, [{ v: 'q' }, { v: 'two' }, { v: 'src' }, { v: 'sum' }]);
-function Screen20(p) {
-  return <Lesson p={p} S={S20} scene={({ seg }) => <>
-    {seg.v === 'q' && <div className="pg-two"><div className="mk-card"><h5>O'quvchi</h5><div style={{ fontSize: 15 }}>«Kodni tuzatdim, <code>node server.js</code> qildim — javob o'zgarmadi»</div></div><div className="mk-card"><h5>Sabab ko'pincha</h5><div style={{ fontSize: 15 }}>birinchi server boshqa terminalda hali ishlab turibdi</div></div></div>}
+const S25 = mkS(25, [{ v: 'q' }, { v: 'two' }, { v: 'src' }, { v: 'sum' }]);
+function Screen25(p) {
+  return <Lesson p={p} S={S25} scene={({ seg }) => <>
+    {seg.v === 'q' && <div className="pg-two"><div className="mk-card"><h5>{t("Mentor yoki o'quvchi", "Ментор или ученик")}</h5><div style={{ fontSize: 15 }}>{t("«Kodni tuzatdim, ", "«Исправил код, ")}<code>node server.js</code>{t(" qildim — javob o'zgarmadi»", " сделал — ответ не изменился»")}</div></div><div className="mk-card"><h5>{t("Sabab ko'pincha", "Причина обычно")}</h5><div style={{ fontSize: 15 }}>{t("birinchi server boshqa terminalda hali ishlab turibdi", "первый сервер ещё работает в другом терминале")}</div></div></div>}
     {seg.v !== 'q' && <div className="pg-two">
-      <div><div className="pg-lab">1-oyna · eski server</div><Psql title="terminal 1" lines={psql(String.raw`
+      <div><div className="pg-lab">{t("1-oyna · eski server", "1-е окно · старый сервер")}</div><Psql title={t("terminal 1", "терминал 1")} lines={psql(String.raw`
 $ node server.js
 Server 3000-portda ishlayapti`)} /></div>
-      <div><div className="pg-lab">2-oyna · yangi kod <span className="tm">xato yo'q</span></div><Psql title="terminal 2" lines={PORT20} focus={seg.v === 'two' ? ['x'] : []} /></div>
+      <div><div className="pg-lab">{t("2-oyna · yangi kod ", "2-е окно · новый код ")}<span className="tm">{t("xato yo'q", "ошибки нет")}</span></div><Psql title={t("terminal 2", "терминал 2")} lines={PORT25} focus={seg.v === 'two' ? ['x'] : []} /></div>
     </div>}
-    {(seg.v === 'src' || seg.v === 'sum') && <CodePanel file="nega — Express manbasi" lines={EXPRESS_SRC} focus={seg.v === 'src' ? ['e', 'cb'] : []} wrap style={{ fontSize: 12.5 }} />}
-    {seg.v === 'sum' && <div className="mk-rule">Bitta loyiha — <b>bitta terminal</b>. Qayta ishga tushirishdan oldin <code>Ctrl+C</code>. «O'zgarmadi» desa — birinchi savol: boshqa terminalda server ochiq qolmadimi?</div>}
+    {(seg.v === 'src' || seg.v === 'sum') && <CodePanel file={t("nega — Express manbasi", "почему — исходник Express")} lines={EXPRESS_SRC} focus={seg.v === 'src' ? ['e', 'cb'] : []} style={{ fontSize: 12.5 }} />}
+    {seg.v === 'sum' && <div className="mk-rule">{t(<>Bitta loyiha — <b>bitta terminal</b>. Qayta ishga tushirishdan oldin <code>Ctrl+C</code>. «O'zgarmadi» desa — birinchi savol: boshqa terminalda server ochiq qolmadimi?</>, <>Один проект — <b>один терминал</b>. Перед перезапуском — <code>Ctrl+C</code>. Если говорят «не изменилось» — первый вопрос: не остался ли сервер открыт в другом терминале?</>)}</div>}
   </>} />;
 }
 
 // ============================================================
-//  22 · Tekshiruv 4 — qaysi satr 500 beradi (LineCheck; target 0 dan — 4-satr = 3)
+//  26 · Tekshiruv 4 — qaysi satr 500 beradi (LineCheck; fayl satrlari 32–43, xato 36 → target 4)
 // ============================================================
-const LC21 = js(String.raw`
-app.post('/api/cars', async (req, res) => {
-  try {
-    const { model, daily_price, year } = req.body;
-    const result = await pool.query('INSERT INTO cars (model, price, year) VALUES ($1, $2, $3) RETURNING *', [model, daily_price, year]);
-    res.status(201).json(result.rows[0]);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }`);
-const LC21_FIXED = LC21.map((l, i) => ({ ...l, n: i + 1, ...(i === 3 ? { gone: true } : {}) })); // n — fayldagi raqam (qo'shilgan satrdan keyin siljimasin)
-LC21_FIXED.splice(4, 0, { h: jsLine("    const result = await pool.query('INSERT INTO cars (model, daily_price, year) VALUES ($1, $2, $3) RETURNING *', [model, daily_price, year]);"), n: 4, neu: true });
-function Screen21(p) {
-  const m = MDT[22];
-  return <LineCheck {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} task={m.task} q={m.q} file="server.js" lines={LC21} target={3}
+const LC26 = srvSlice(32, 43).map((l, i) => (i === 4 ? { ...l, h: jsLine("      'INSERT INTO cars (model, price, year) VALUES ($1, $2, $3) RETURNING *',") } : l)).map((l) => ({ h: l.h, n: l.n }));
+const LC26_FIXED = LC26.map((l, i) => ({ ...l, ...(i === 4 ? { gone: true } : {}) }));
+LC26_FIXED.splice(5, 0, { h: jsLine("      'INSERT INTO cars (model, daily_price, year) VALUES ($1, $2, $3) RETURNING *',"), n: 36, neu: true });
+function plainLinesPm(src) { return src.split('\n').map((l) => ({ h: `<span class="ok">${escH(l)}</span>` })); }
+function Screen26(p) {
+  const m = MDT[26];
+  return <LineCheck {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} task={m.task} q={m.q} file="server.js" lines={LC26} target={4}
     tree={{ root: MKCFG.root, files: MKCFG.files, active: 'server.js' }}
-    fixed={LC21_FIXED} fixedExtra={[{ file: 'Postman — haqiqiy javob', lines: plainLinesPm(`POST /api/cars → 201\n{"id":5,"model":"Hyundai Elantra","daily_price":450000,"year":2022,"is_rented":null}`) }]}
+    fixed={LC26_FIXED} fixedExtra={[{ file: t('Postman — haqiqiy javob', "Postman — настоящий ответ"), lines: plainLinesPm(`POST /api/cars → 201\n{"id":5,"model":"Hyundai Elantra","daily_price":450000,"year":2022,"is_rented":null}`) }]}
     ok={m.ok} okShort={<span dangerouslySetInnerHTML={html(m.okShort)} />} hint={m.hint} />;
 }
-function plainLinesPm(src) { return src.split('\n').map((l) => ({ h: `<span class="ok">${escH(l)}</span>` })); }
 
 // ============================================================
-//  23 · Amaliyot 4 — o'zingiz buzing
+//  27 · Amaliyot 4 — o'zingiz buzing
 // ============================================================
-const P4 = mkS(23, [{ hl: [] }, { hl: [0, 1] }, { hl: [2, 3] }, { hl: [] }], { tableAt: 3 });
-const P4_STEPS = [
-  { t: 'Buzish', cmds: ['INSERT INTO cars (model, price, year) …   ← server.js da', 'node server.js'], exp: '500 column "price" of relation "cars" does not exist' },
-  { t: 'Tuzatish', cmds: ['price → daily_price', 'node server.js'], exp: '201' },
-  { t: 'Ikki server', cmds: ['node server.js   ← 2-terminalda, 1-si ishlab turibdi'], exp: 'ikkinchisi ham «Server 3000-portda ishlayapti»' },
-  { t: "To'xtatish", cmds: ['Ctrl+C   ← ikkala terminalda'], exp: "Postman: GET — javob yo'q (server yo'q)" },
-];
-const P4_TROUBLE = [
-  ['1-qadamda 201', "server qayta ishga tushmagan — eski kod ishlayapti (21-ekran)"],
-  ['column "price" does not exist (of relation siz)', "SELECT/UPDATE da xato qilingan — INSERT dagi ustunni o'zgartiring"],
-  ['3-qadamda listen EADDRINUSE: address already in use :::3000', "sizning server.js ingizda callback xatoni o'qiydi (Gemini boshqacha yozgan) — bu yaxshi; ikkala terminalni ham to'xtating"],
-  ['4-qadamda javob bor', 'yana bir terminal ochiq qolgan — hammasini Ctrl+C'],
-];
-const P4_PROOF = { label: "Isbot: 1-qadamdagi 500 xabari", placeholder: "Postman'dagi error matnini qo'ying", check: (v) => /column\s+\\?"?price\\?"?\s+of relation\s+\\?"?cars\\?"?\s+does not exist/i.test(v), wrong: "Xabar to'liq bo'lsin: qaysi ustun va qaysi jadval (of relation …) — Postman'dagi error qiymatini nusxalang" };
-function ScreenP4(p) { return <Practice p={p} S={P4} steps={P4_STEPS} trouble={P4_TROUBLE} proof={P4_PROOF} />; }
+const P27 = mkPractice(27, [[], [0, 1], [2, 3], []]);
+function ScreenP27(p) { return <Practice p={p} S={P27.S} steps={P27.steps} trouble={P27.trouble} proof={P27.proof} />; }
 
 // ============================================================
-//  24 · m4-06 xaritasi
+//  28 · Sinfga tayyorgarlik: m4-06 va m4-08 xaritasi (M41: faqat shu ikki ekran o'quvchi darsi haqida)
 // ============================================================
-const MAP06 = [
-  { t: 'Kirish', s: 's0–s1', d: "«mahsulotlar qayerda saqlanadi?» → baza · reja (5 qadam)", m: '' },
-  { t: 'CRUD', s: 's2–s9', d: "jadval chizmasi · INSERT · SELECT · WHERE · UPDATE (WHERE'siz ogohlantirish) · DELETE · 3 test", m: "javobdagi son (5-ekran) · BEGIN … ROLLBACK (8-ekran) · ORDER BY" },
-  { t: 'Menejer navbati', s: 's10', d: "to'rt hodisa → to'g'ri buyruq", m: '' },
-  { t: 'AI bilan', s: 's11–s14', d: "vazifa → SQL → tekshir · test · users jadvali · AI xatosi product", m: 'HINT ham adashadi (11-ekran)' },
-  { t: 'Yakun', s: 's15–s16', d: "o'z INSERT'i · amaliyot: VS Code yoki PostgreSQL terminalida AI bilan o'z do'koni jadvali + CRUD · kartochkalar", m: "apostrof (11-ekran) · NOT NULL maslahati (12-ekran)" },
+const CLS28 = [
+  { n: 'm4-06', s: '21 ekran', t: "PostgreSQL so'rovlar — CRUD + AI bilan", d: ["do'kon tugmalar bilan: INSERT · SELECT · WHERE · UPDATE · DELETE", "jadval — bugun siz yaratgan products'ning aynan o'zi", "amaliyot: haqiqiy PostgreSQL terminali yoki VS Code + AI — o'z do'koni"] },
+  { n: 'm4-08', s: '9 ekran', t: 'Praktika: Backend CRUD — AvtoIjara', d: ["cars jadvali — terminalda qo'lda", "server.js — Gemini'dan, Postman bilan sinov", "AI xatosini topish: price → daily_price"] },
 ];
-const S23 = mkS(24, [{ hl: [] }, { hl: [1] }, { hl: [3] }, { hl: [4] }]);
-function Screen23(p) {
-  return <Lesson p={p} S={S23} scene={({ seg }) => <div style={{ display: 'grid', gap: 8 }}>
-    {MAP06.map((b, i) => <div key={i} className={`mk-step${seg.hl.includes(i) ? ' hl' : ''}`} style={{ opacity: seg.hl.length && !seg.hl.includes(i) ? 0.5 : 1 }}>
-      <span style={{ fontFamily: MONO, fontWeight: 700, color: T.accent, minWidth: 22 }}>{i + 1}</span>
-      <div className="t"><b>{b.t} <span style={{ fontFamily: MONO, fontWeight: 500, color: T.ink3, fontSize: 12 }}>{b.s}</span></b><div style={{ fontSize: 13 }}>{b.d}</div>{b.m && (seg.hl.includes(i) || !seg.hl.length) && <div className="exp" style={{ color: T.accent, marginTop: 4 }}>Siz qo'shasiz: {b.m}</div>}</div>
-    </div>)}
-    <div className="n2-warn">Amaliyotda o'quvchi <b>haqiqiy psql</b>'da ishlaydi — har kompyuterda PostgreSQL ishlab turishi shart (PostgreSQL-1, sinf ro'yxati).</div>
-  </div>} />;
-}
-
-// ============================================================
-//  25 · m4-08 xaritasi va farqlar
-// ============================================================
-const MAP08 = ['kirish — kod ichidagi ro\'yxat', 'reja va tayyorgarlik (psql -U postgres, Gemini)', 'Amaliyot 1 · cars jadvali — o\'zingiz, psql', 'Amaliyot 2 · server.js GET — Gemini', 'Amaliyot 3 · POST, PUT, DELETE — Gemini, Postman', 'Amaliyot 4 · AI xatosi: price → daily_price', 'test', 'podium', 'yakun'];
-const DIFF08 = [
-  ["Xato matni qisqartirilgan", 'darsda: column "price" does not exist · haqiqiysi: … of relation "cars" does not exist'],
-  ['Gemini kodi har kimda boshqacha', "promptdagi talablarni tekshiring ($1, 201, express.json), satrma-satr bir xillikni emas"],
-  ['is_rented — null', "POST'da berilmaydi, DEFAULT yo'q"],
-  ['Port band — «ishlayapti»', "Express 5: ikkinchi server xato bermay chiqadi, eski server javob beradi — bitta terminal, Ctrl+C"],
-];
-const S24 = mkS(25, [{ v: 'map', d: [] }, { v: 'diff', d: [0, 1] }, { v: 'diff', d: [2, 3] }, { v: 'diff', d: [0, 1, 2, 3], sum: true }]);
-function Screen24(p) {
-  return <Lesson p={p} S={S24} scene={({ seg }) => <>
-    {seg.v === 'map' && <div className="mk-light" style={{ padding: 14 }}><div className="mk-tag">m4-08 · 9 ekran</div>
-      <div className="mk-plan">{MAP08.map((x, i) => <div key={i} className={i >= 2 && i <= 5 ? 'hl' : ''}><b>{String(i + 1).padStart(2, '0')}</b><span>{x}</span></div>)}</div></div>}
-    {seg.v === 'diff' && <div style={{ display: 'grid', gap: 8 }}>{DIFF08.map(([h, d], i) => <div key={i} className={`mk-step${seg.d.includes(i) ? ' hl' : ''}`} style={{ opacity: seg.d.includes(i) ? 1 : 0.45 }}>
-      <span style={{ fontFamily: MONO, fontWeight: 700, color: T.accent, minWidth: 20 }}>{i + 1}</span><div className="t"><b>{h}</b><div style={{ fontSize: 13 }}>{d}</div></div></div>)}</div>}
-    {seg.sum && <div className="mk-rule">m4-08 dan oldin: <b>sinf paroli</b> hammaga ma'lum · <b>Postman</b> o'rnatilgan · qoida — <b>bitta loyiha, bitta terminal</b></div>}
+const ADD28 = [['javobdagi son (UPDATE 1 / 0)', 'm4-06 CRUD bloki'], ["WHERE'siz — proyektorda BEGIN … ROLLBACK", 'm4-06 UPDATE/DELETE'], ["ORDER BY — «o'rni o'zgardi» savoli", 'm4-06 SELECT'], ["apostrof '', NOT NULL maslahati", "m4-06 amaliyoti (o'z do'koni)"], ['HINT ham adashadi', 'm4-06 AI xatosi bloki'], ["To'rt farq: xato matni qisqa · Gemini kodi har xil · is_rented: null · port band «ishlayapti»", 'm4-08']];
+const PRE28 = ["Har kompyuterda PostgreSQL terminali ochiladi va Postman o'rnatilgan", "Sinf paroli hammaga ma'lum", 'Qoida: bitta loyiha — bitta terminal', "Vaqt: m4-06 da 90 daqiqaning 25 tasi amaliyotga · m4-08 da 40 tasi server va Postman'ga"];
+const S28 = mkS(28, [{ v: 'cards', hl: 0 }, { v: 'cards', hl: 1 }, { v: 'add' }, { v: 'pre' }]);
+function Screen28(p) {
+  return <Lesson p={p} S={S28} scene={({ seg }) => <>
+    {seg.v === 'cards' && <div className="pg-two">{CLS28.map((c, i) => <div key={c.n} className="mk-card" style={{ borderColor: seg.hl === i ? T.accent : T.line, opacity: seg.hl === i ? 1 : 0.5, transition: 'opacity .3s' }}>
+      <h5 style={{ color: T.accent }}>{c.n} · {c.s}</h5><div style={{ fontSize: 15, fontWeight: 700, marginBottom: 6 }}>{c.t}</div>
+      <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13.5, lineHeight: 1.55 }}>{c.d.map((x) => <li key={x}>{x}</li>)}</ul></div>)}</div>}
+    {seg.v === 'add' && <div className="mk-light" style={{ padding: 12 }}><div className="mk-tag">{t("Siz qo'shasiz — qayerda", "Вы добавляете — где")}</div>
+      <table className="pg-dict"><tbody>{ADD28.map(([a, b], i) => <tr key={i} className="hl" style={{ animation: `mk-up .4s ${i * 0.08}s ease both` }}><td style={{ borderLeftColor: T.accent }}>{a}</td><td>→</td><td style={{ color: T.ink2 }}>{b}</td></tr>)}</tbody></table></div>}
+    {seg.v === 'pre' && <div style={{ display: 'grid', gap: 8 }}>{PRE28.map((x, i) => <div key={i} className="mk-step hl" style={{ animation: `mk-up .4s ${i * 0.12}s ease both` }}><span style={{ fontFamily: MONO, fontWeight: 700, color: T.accent, minWidth: 22 }}>{i + 1}</span><div className="t"><b>{x}</b></div></div>)}</div>}
   </>} />;
 }
 
 // ============================================================
-//  26 · Sinfdagi holatlar va o'quvchi savollari
+//  29 · Qoqiladigan olti joy va o'quvchi savollari
 // ============================================================
-const STUMBLE25 = [
+const STUMBLE29 = [
   ['Jadval/ustun nomi', 'relation "product" · column "narx" (+ HINT)', '\\d jadval bilan solishtirish'],
   ['Apostrof', 'syntax error at or near "yinchoq"', "''"],
   ["WHERE'siz", 'UPDATE 3 / DELETE 3', "BEGIN … ROLLBACK; o'chgan bo'lsa — qayta INSERT"],
@@ -2550,38 +3397,41 @@ const STUMBLE25 = [
   ["Bo'sh xato", '{"error":""}', "console.error(err) → ECONNREFUSED → PostgreSQL'ni ishga tushiring"],
   ["O'zgarmadi", 'javob eski', 'ikkinchi terminal; Ctrl+C'],
 ];
-const QA25 = [
-  ["«Nega mahsulot o'rni o'zgardi?»", 'ORDER BY yo\'q — tartib kafolatlanmaydi; ORDER BY id.'],
-  ['«$1 nima?»', "qiymat alohida beriladi, SQL matniga kirmaydi; 1 OR 1=1 misoli (16-ekran)."],
+const QA29 = [
+  ["«Nega mahsulot o'rni o'zgardi?»", "ORDER BY yo'q — baza yangilangan qatorni yangi joyga yozadi (6-ekran); ORDER BY id."],
+  ['«$1 nima?»', "qiymat alohida beriladi, SQL matniga kirmaydi; 1 OR 1=1 misoli (20-ekran)."],
   ['«Postman shartmi?»', "yo'q, so'rov yuboradigan istalgan dastur; darsda Postman, chunki sinf uchun qulay."],
   ["«NestJS'da ham shunday yozamizmi?»", "yo'q: Nest'da Repository bu so'rovlarni o'zi yozadi (find, save…). Xavotir olmang: buni kursdagi keyingi mentor darslarida to'liq, kodi bilan o'rganasiz."],
-  ['«SQL katta harfda yozilishi shartmi?»', "yo'q, kalit so'zlar kichik harfda ham ishlaydi (sinab ko'rdik: select … from PRODUCTS); katta harf — o'qish oson bo'lishi uchun odat."],
+  ['«SQL katta harfda yozilishi shartmi?»', "yo'q, kalit so'zlar kichik harfda ham ishlaydi (sinab ko'rdik: select name, price from PRODUCTS ishladi); katta harf — o'qish oson bo'lishi uchun odat."],
 ];
-const S25 = mkS(26, [{ hl: [] }, { hl: [0, 1] }, { hl: [2, 3, 4] }, { hl: [5], qa: true }]);
-function Screen25(p) {
+const S29 = mkS(29, [{ hl: [] }, { hl: [0, 1] }, { hl: [2, 3, 4] }, { hl: [5], qa: true }]);
+function Screen29(p) {
   const [open, setOpen] = useState([]);
-  return <Lesson p={p} S={S25} scene={({ seg }) => <>
+  return <Lesson p={p} S={S29} scene={({ seg }) => <>
     <div className="mk-qa">
-      {STUMBLE25.map(([h, m, a], i) => <button key={i} className={seg.hl.includes(i) ? 'hl' : (seg.hl.length ? 'dim' : '')} style={{ cursor: 'default' }}><b>{i + 1}. {h}</b><p style={{ fontFamily: MONO, fontSize: 12, color: T.accent, margin: '0 0 4px' }}>{m}</p><p>{a}</p></button>)}
+      {STUMBLE29.map(([h, m, a], i) => <button key={i} className={seg.hl.includes(i) ? 'hl' : (seg.hl.length ? 'dim' : '')} style={{ cursor: 'default' }}><b>{i + 1}. {h}</b>{!seg.qa && <><p style={{ fontFamily: MONO, fontSize: 12, color: T.accent, margin: '0 0 4px' }}>{m}</p><p>{a}</p></>}</button>)}
     </div>
-    {seg.qa && <div className="mk-rule" style={{ animation: 'mk-up .45s ease both' }}>Javobni aytmang — <b>xabarni o'quvchi bilan birga o'qing</b>: jadval/ustun nomi, status, terminal.</div>}
+    {seg.qa && <div className="mk-rule" style={{ animation: 'mk-up .45s ease both' }}>{t("Javobni darhol aytmang — ", "Не говорите ответ сразу — ")}<b>{t("xabarni o'quvchi bilan birga o'qing", "читайте сообщение вместе с учеником")}</b>{t(": jadval/ustun nomi, status, terminal.", ": имя таблицы/колонки, статус, терминал.")}</div>}
     {seg.qa && <div className="mk-light" style={{ padding: 12, animation: 'mk-up .45s ease both' }}>
-      <div className="mk-tag">O'quvchi so'rasa — bosing</div>
-      <div className="pg-qa">{QA25.map(([q, a], i) => <button key={i} onClick={() => setOpen((o) => o.includes(i) ? o.filter((x) => x !== i) : [...o, i])}><b>{q}</b>{open.includes(i) && <p>{a}</p>}</button>)}</div>
+      <div className="mk-tag">{t("O'quvchi so'rasa — bosing", "Если ученик спросит — нажмите")}</div>
+      <div className="pg-qa">{QA29.map(([q, a], i) => <button key={i} onClick={() => setOpen((o) => o.includes(i) ? o.filter((x) => x !== i) : [...o, i])}><b>{q}</b>{open.includes(i) && <p>{a}</p>}</button>)}</div>
     </div>}
   </>} />;
 }
 
 // ============================================================
-//  27 · O'z-sinov — 8 savol (Nest/PG-1 bilan bir xil mexanika; M12)
+//  30 · O'z-sinov — 8 savol (M12; mexanika PG-1 bilan bir xil)
 // ============================================================
-const FINAL = MDT[27].final;
-function Screen26(p) {
+const FINAL = MDT[30].final;
+function Screen30(p) {
   const st = p.stored || {};
   const segs = useMemo(() => {
     const sc = (st.res || []).filter((x) => x && x.correct).length;
-    const text = !st.showResult
-      ? "Hammasini ko'rib chiqdingiz, endi o'zingizni tekshiring. Yakuniy sinov, sakkiz savol, ulardan ikkitasi sinfdagi holatlar bo'yicha. Har savolda bitta urinish, javobdan keyin to'g'risi va izohi ochiladi. Olti va undan ko'p, dars o'zlashtirilgan. Kam bo'lsa, ko'rsatilgan ekranlarga qaytib, sinovni qayta topshirasiz."
+    const text = LANG === 'ru' ? (!st.showResult ? RS('FIN_INTRO')
+      : sc >= 6 ? 'Ваш результат сохранён: ' + sc + ' из восьми. Урок усвоен, нажмите «Далее».'
+        : 'Хорошо, одну ошибку вы разобрали. Вернитесь и к экранам остальных красных вопросов. Когда будете готовы, нажмите кнопку «Пройти тест заново».')
+      : !st.showResult
+      ? "Hammasini ko'rib chiqdingiz, endi o'zingizni tekshiring. Yakuniy sinov, sakkiz savol: CRUD, tranzaksiya, Pool va server xatolari. Har savolda bitta urinish, javobdan keyin to'g'risi va izohi ochiladi. Olti va undan ko'p, dars o'zlashtirilgan. Kam bo'lsa, ko'rsatilgan ekranlarga qaytib, sinovni qayta topshirasiz."
       : sc >= 6
         ? "Natijangiz saqlangan: sakkizdan " + ['nol', 'bir', 'ikki', 'uch', "to'rt", 'besh', 'olti', 'yetti', 'sakkiz'][sc] + ". Dars o'zlashtirilgan, Davom bosing."
         : "Yaxshi, bir xatoyingizni ko'rib chiqdingiz. Qolgan qizil savollarning ekranlariga ham qayting. Tayyor bo'lgach, Sinovni qayta topshirish tugmasini bosing.";
@@ -2605,36 +3455,36 @@ function Screen26(p) {
     const r = [...res]; r[i] = { picked: k, correct: k === q.c }; setRes(r);
     if (k === q.c) sfx.playCorrect(); else sfx.playWrong();
     const sc = r.filter((x) => x && x.correct).length; save({ res: r, score: sc });
-    if (r.filter(Boolean).length === FINAL.length) setTimeout(() => audio.pushOneOff(voice(sc >= 6 ? "Dars o'zlashtirildi. Endi m4-06 va m4-08 dagi xatolar sinfda sizga tanish bo'ladi." : "Hali bir necha joy mustahkam emas. Ko'rsatilgan ekranlarga qayting, keyin sinovni qayta topshiring.")), 400);
+    if (r.filter(Boolean).length === FINAL.length) setTimeout(() => audio.pushOneOff(voice(sc >= 6 ? t("Dars o'zlashtirildi. Endi m4-06 va m4-08 dagi xatolar sinfda sizga tanish bo'ladi.", RS('FIN_PASS')) : t("Hali bir necha joy mustahkam emas. Ko'rsatilgan ekranlarga qayting, keyin sinovni qayta topshiring.", 'Несколько мест пока не закрепились. Вернитесь к указанным экранам, потом пройдите тест заново.'))), 400);
   };
   const next = () => { if (i < FINAL.length - 1) { setI(i + 1); save({ i: i + 1 }); } else { setShowResult(true); save({ showResult: true }); } };
   const retake = () => { setRes([]); setI(0); setShowResult(false); setAttempt(attempt + 1); save({ res: [], i: 0, showResult: false, attempt: attempt + 1, score: 0 }); };
   return (
-    <Stage kicker="O'z-sinov" idx={p.idx} total={p.total} audio={audio} onBack={p.onBack} onNext={p.onNext} onRestart={p.onRestart} nextReady={finished && showResult} nextDisabled={!(finished && showResult)} lockHint={!finished ? 'Savollarga javob bering' : 'Natijani oching'}>
+    <Stage kicker={t("O'z-sinov", 'Самопроверка')} idx={p.idx} total={p.total} audio={audio} onBack={p.onBack} onNext={p.onNext} onRestart={p.onRestart} nextReady={finished && showResult} nextDisabled={!(finished && showResult)} lockHint={!finished ? t('Savollarga javob bering', 'Ответьте на вопросы') : t('Natijani oching', 'Откройте результат')}>
       <div className="mk-body" style={{ gridTemplateColumns: '1fr', maxWidth: 980, width: '100%', margin: '0 auto' }}>
         <div className="mk-say mc" style={{ overflow: 'auto', paddingRight: 4 }}>
           {showResult ? (<>
-            <p className="mk-eyebrow">O'z-sinov · natija{attempt > 1 ? ` · ${attempt}-urinish` : ''}</p>
-            <h2 className="mk-title mc-q" style={{ fontSize: 'clamp(22px,1.9vw,26px)' }}>{score} / {FINAL.length} — {score >= 6 ? "dars o'zlashtirildi" : "yana bir ko'rib chiqing"}</h2>
+            <p className="mk-eyebrow">{t("O'z-sinov · natija", 'Самопроверка · результат')}{attempt > 1 ? t(` · ${attempt}-urinish`, ` · попытка ${attempt}`) : ''}</p>
+            <h2 className="mk-title mc-q" style={{ fontSize: 'clamp(22px,1.9vw,26px)' }}>{score} / {FINAL.length} — {score >= 6 ? t("dars o'zlashtirildi", 'урок усвоен') : t("yana bir ko'rib chiqing", 'посмотрите ещё раз')}</h2>
             <div style={{ display: 'grid', gap: 8 }}>
               {FINAL.map((f, k) => <div key={k} className="mk-card" style={{ display: 'flex', gap: 12, alignItems: 'center', borderColor: res[k] && res[k].correct ? T.green : T.accent }}>
                 <span style={{ fontFamily: MONO, fontWeight: 700, color: res[k] && res[k].correct ? T.green : T.accent, minWidth: 22 }}>{res[k] && res[k].correct ? '✓' : '✗'}</span>
                 <span style={{ flex: 1, fontSize: 14 }}>{f.q}</span>
-                {res[k] && !res[k].correct && p.onGoto && <button className="mk-btn soft sm" onClick={() => p.onGoto(f.s - 1)}>{f.s}-ekran</button>}
+                {res[k] && !res[k].correct && p.onGoto && <button className="mk-btn soft sm" onClick={() => p.onGoto(f.s - 1)}>{t(`${f.s}-ekran`, `экран ${f.s}`)}</button>}
               </div>)}
             </div>
             <div style={{ display: 'flex', gap: 10, alignItems: 'center', marginTop: 14, flexWrap: 'wrap' }}>
-              {score < 6 && <button className="mk-btn ghost" onClick={retake}>Sinovni qayta topshirish</button>}
-              <span style={{ color: T.ink2, fontSize: 14 }}>Ekranga qaytib «Davom» bossangiz, shu natijaga qaytasiz.</span>
+              {score < 6 && <button className="mk-btn ghost" onClick={retake}>{t('Sinovni qayta topshirish', 'Пройти тест заново')}</button>}
+              <span style={{ color: T.ink2, fontSize: 14 }}>{t('Ekranga qaytib «Davom» bossangiz, shu natijaga qaytasiz.', 'Если вернётесь к экрану и нажмёте «Далее», попадёте обратно к этому результату.')}</span>
             </div>
           </>) : (<>
-            <p className="mk-eyebrow">O'z-sinov · {i + 1} / {FINAL.length} · bitta urinish · to'g'ri: {score}</p>
+            <p className="mk-eyebrow">{t("O'z-sinov", 'Самопроверка')} · {i + 1} / {FINAL.length} · {t("bitta urinish · to'g'ri:", 'одна попытка · верно:')} {score}</p>
             <h2 className="mk-title mc-q">{q.q}</h2>
             <div style={{ display: 'grid', gap: 10 }}>
               {q.o.map((o, k) => { let cls = 'mk-opt'; if (picked !== null) { if (k === q.c) cls += ' ok'; else if (k === picked) cls += ' bad'; else cls += ' off'; } return <button key={k} className={cls} disabled={picked !== null} onClick={() => pick(k)}><span className="l">{String.fromCharCode(65 + k)}</span><span>{o}</span></button>; })}
             </div>
-            {picked !== null && <div className="mk-fb" style={{ '--c': picked === q.c ? T.green : T.accent, '--bg': picked === q.c ? '#E3F5EC' : '#FFF0EB' }}><b>{picked === q.c ? "To'g'ri" : "Noto'g'ri — to'g'risi yashil"}</b><span>{q.e}</span></div>}
-            {picked !== null && <div style={{ marginTop: 14 }}><button className="mk-btn ready" onClick={next}>{i < FINAL.length - 1 ? 'Keyingi savol →' : "Natijani ko'rish →"}</button></div>}
+            {picked !== null && <div className="mk-fb" style={{ '--c': picked === q.c ? T.green : T.accent, '--bg': picked === q.c ? '#E3F5EC' : '#FFF0EB' }}><b>{picked === q.c ? t("To'g'ri", 'Верно') : t("Noto'g'ri — to'g'risi yashil", 'Неверно — правильный ответ зелёный')}</b><span>{q.e}</span></div>}
+            {picked !== null && <div style={{ marginTop: 14 }}><button className="mk-btn ready" onClick={next}>{i < FINAL.length - 1 ? t('Keyingi savol →', 'Следующий вопрос →') : t("Natijani ko'rish →", 'Посмотреть результат →')}</button></div>}
           </>)}
         </div>
       </div>
@@ -2643,108 +3493,110 @@ function Screen26(p) {
 }
 
 // ============================================================
-//  28 · Yakun (M13)
+//  31 · Yakun (M13, M14) — xulosa 6 band, uyga vazifa 5 qadam, eslatma
 // ============================================================
-const SUM27 = [
-  { k: 'crud', t: 'CRUD = INSERT · SELECT · UPDATE · DELETE; javobdagi son — nechta qator tegildi; ORDER BY siz tartib kafolatlanmaydi', st: ['psql'] },
-  { k: 'where', t: "WHERE'siz — hamma qator; xavfli so'rov BEGIN … ROLLBACK ichida sinaladi", st: ['psql', 'jad'] },
-  { k: 'err', t: "Xatolar: nom (\\d), apostrof (''), son o'rniga matn; NOT NULL yo'q — baza qo'riqlamaydi", st: ['jad'] },
-  { k: 'exp', t: 'Express: Pool → pool.query(sql, [$1…]) → rows → res.json; 200 · 201 · 404 · 500', st: ['pm', 'srv', 'pool'] },
-  { k: 'brk', t: "Server xatolari: ustun nomi · express.json() · parol/baza birinchi so'rovda · bo'sh xabar → console.error(err) · ikkinchi server «ishlayapti»", st: ['srv', 'pool'] },
-  { k: 'class', t: "Sinf: m4-06 amaliyoti haqiqiy PostgreSQL terminalida; m4-08 dan oldin parol, Postman, bitta terminal", st: ['pm', 'psql'] },
+const SUM31 = [
+  { k: 'crud', t: "CRUD = INSERT · SELECT · UPDATE · DELETE; javobdagi son — nechta qator tegildi; RETURNING — qatorning o'zi; ORDER BY siz tartib kafolatlanmaydi (ctid)", st: ['psql'] },
+  { k: 'tx', t: "Tranzaksiya: autocommit · BEGIN → faqat sizning seansingizda → COMMIT / ROLLBACK; !# — aborted, faqat ROLLBACK; ikki jadval bitta ish — atomik", st: ['psql', 'tx'] },
+  { k: 'rule', t: "Baza faqat yozilgan qoidani qo'riqlaydi: NOT NULL, DEFAULT, UNIQUE, CHECK; xabar ichida nom bor — \\d bilan solishtiring; apostrof ''", st: ['jad'] },
+  { k: 'exp', t: 'Express: Pool birinchi so\'rovda ulanadi va ulanishni qayta ishlatadi → pool.query(sql, [$1…]) → rows / rowCount → res.json; 200 · 201 · 404 · 500', st: ['pm', 'srv', 'pool'] },
+  { k: 'brk', t: "$1 — xavfsizlik: yopishtirilgan 1 OR 1=1 jadvalni bo'shatdi; server xatolari: ustun nomi · express.json() · parol/baza birinchi so'rovda · bo'sh xabar → console.error(err) · ikkinchi server «ishlayapti»", st: ['srv', 'pool'] },
+  { k: 'class', t: "Sinf: m4-06 amaliyoti haqiqiy psql'da; m4-08 dan oldin parol, Postman, bitta terminal; olti holat va savollarga javoblar tayyor", st: ['pm', 'psql'] },
 ];
-const STATIONS27 = [['pm', 'Postman', '#FF6C37'], ['srv', 'Express', T.ink], ['pool', 'Pool · $1', T.purple], ['psql', 'SQL', T.accent], ['jad', 'Jadval', PG.pg]];
-function SummaryMap27({ hl }) {
-  const cur = SUM27.find((x) => x.k === hl);
+const STATIONS31 = [['pm', 'Postman', '#FF6C37'], ['srv', 'Express', T.ink], ['pool', 'Pool · $1', T.purple], ['psql', 'SQL', T.accent], ['tx', 'Tranzaksiya', T.green], ['jad', 'Jadval', PG.pg]];
+function SummaryMap31({ hl }) {
+  const cur = SUM31.find((x) => x.k === hl);
   const on = (k) => hl === 'all' || !cur || cur.st.includes(k);
   return <div className="mk-light" style={{ padding: 16 }}>
-    <div className="mk-tag">Bugungi dars — so'rovning bazagacha yo'li</div>
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, minmax(0,1fr))', gap: 6 }}>
-      {STATIONS27.map(([k, n, c], i) => <div key={k} className={`mk-box${cur && cur.st.includes(k) ? ' hl' : ''}`} style={{ '--c': c, padding: '10px 6px', textAlign: 'center', opacity: on(k) ? 1 : 0.35, animation: `mk-up .4s ${i * 0.06}s ease both` }}><h4 style={{ fontSize: 12.5, margin: 0 }}>{n}</h4></div>)}
+    <div className="mk-tag">{t("Bugungi dars — so'rovning bazagacha yo'li", "Сегодняшний урок — путь запроса до базы")}</div>
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, minmax(0,1fr))', gap: 6 }}>
+      {STATIONS31.map(([k, n, c], i) => <div key={k} className={`mk-box${cur && cur.st.includes(k) ? ' hl' : ''}`} style={{ '--c': c, padding: '10px 6px', textAlign: 'center', opacity: on(k) ? 1 : 0.35, animation: `mk-up .4s ${i * 0.06}s ease both` }}><h4 style={{ fontSize: 12.5, margin: 0 }}>{n}</h4></div>)}
     </div>
   </div>;
 }
-const HOMEWORK27 = [
-  { t: "Jadval: schema.sql — o'z do'koningiz jadvali, NOT NULL (nom, narx)", c: ['psql -U postgres -d <baza> -f schema.sql'] },
-  { t: 'Server: server.js — GET · POST (201, RETURNING *) · PUT · DELETE (rowCount → 404), hamma qiymat $1 bilan', c: ['node server.js'] },
-  { t: "Sinov: Postman'da 4 so'rov + yo'q id — 200 · 201 · 200 · 200 · 404", c: [] },
-  { t: "Xavfsiz sinash: PostgreSQL terminalida BEGIN → WHERE'siz UPDATE → SELECT → ROLLBACK — README'ga UPDATE n va ROLLBACK", c: [] },
-  { t: "GitHub'ga chiqaring va repo linkini platformadagi uyga vazifangizga qo'ying", c: ['git add . && git commit -m "shop-api"', 'git push'] },
+const HOMEWORK31 = [
+  { t: "Jadvallar — schema.sql: products (NOT NULL nom va narx, CHECK (stock >= 0), DEFAULT 0), orders (REFERENCES products(id), CHECK (qty > 0), created_at DEFAULT now())", c: ['psql -U postgres -d <baza> -f schema.sql'] },
+  { t: 'Server — server.js: GET · POST (201, RETURNING *) · PUT · DELETE (rowCount → 404), hamma qiymat $1 bilan', c: ['node server.js'] },
+  { t: "Sinov — Postman: 4 so'rov + yo'q id → 200 · 201 · 200 · 200 · 404", c: [] },
+  { t: "Tranzaksiya — psql: BEGIN → UPDATE … stock - 1 … RETURNING → INSERT INTO orders → COMMIT; keyin yetmagan qoldiq → CHECK xatosi → ROLLBACK — ikkala chiqish README'ga", c: [] },
+  { t: "Topshirish — GitHub'ga chiqaring va repo linkini platformadagi uyga vazifangizga qo'ying", c: ['git add . && git commit -m "shop-api"', 'git push'] },
 ];
-const CHEATSHEET27 = `# PostgreSQL-2 — mentor eslatmasi (CRUD va Express)
-## CRUD (psql)
+const CHEATSHEET31 = `# PostgreSQL-2 — mentor eslatmasi (CRUD, tranzaksiya, Express)
+## CRUD (psql) va javobdagi son
 INSERT INTO products (name, price, stock) VALUES (…) → INSERT 0 n · SELECT * / SELECT name, price · WHERE price < 100000 · UPDATE … SET … WHERE id = 1 → UPDATE 1 · DELETE … WHERE id = 3 → DELETE 1
-Javobdagi son: 1 — kutganingiz · 0 — WHERE hech narsaga mos kelmadi (xato emas) · katta son — WHERE noto'g'ri/yo'q
-ORDER BY yo'q — tartib kafolatlanmaydi (UPDATE dan keyin qator oxiriga tushishi mumkin) → ORDER BY id
-## Xavfsiz sinash
-BEGIN; → xavfli UPDATE/DELETE → SELECT bilan ko'rish → ROLLBACK; (yoki COMMIT;) · prompt: =*# ochiq · =!# xato bo'ldi
-## Sinfdagi SQL xatolari
-relation "product" / column "narx" → \\d jadval bilan solishtirish (HINT ham adashadi) · 'arzon' → invalid input syntax for type integer · apostrof → '' (O''yinchoq) · ustun/qiymat soni → more target columns than expressions · NOT NULL yo'q → nomsiz qator xato bermay saqlanadi
+Son: 1 — kutganingiz · 0 — WHERE hech narsaga mos kelmadi (xato emas) · katta son — WHERE noto'g'ri/yo'q · RETURNING — o'zgargan qatorning o'zi
+ORDER BY yo'q — tartib fayldagidek (UPDATE yangi nusxa yozadi: ctid (0,5) → (0,6)) → ORDER BY id
+## Tranzaksiya
+autocommit: har buyruq darhol · BEGIN → faqat sizning seansingizda (B seansi eski qiymatni ko'radi) → COMMIT saqlaydi / ROLLBACK bekor · prompt: =# oddiy · =*# ochiq · =!# xato (aborted) — faqat ROLLBACK, COMMIT ham ROLLBACK qaytaradi
+Atomik: ikki jadval bitta ish — UPDATE stock + INSERT orders bitta BEGIN … COMMIT ichida; CHECK rad etsa — hech biri saqlanmaydi
+## Baza qo'riqlaydi
+Qoida yozilmasa — qo'riqlamaydi (nomsiz qator saqlanadi). NOT NULL (avval bo'sh qatorlarni tozalang) · DEFAULT 0 · UNIQUE (name) → duplicate key value · CHECK (stock >= 0) · \\d products — hammasi bir joyda
+## SQL xatolari (xabar ichida nom bor)
+relation "product" / column "narx" (HINT ham adashadi) → \\d bilan solishtirish · 'arzon' → invalid input syntax for type integer · ustun/qiymat soni → more target columns than expressions · apostrof → '' (O''yinchoq)
 ## Express → baza
-const { Pool } = require('pg') · new Pool({ user, password, database, host, port }) · pool.query(sql, [qiymatlar]) → result.rows / result.rowCount · res.json · GET 200 · POST 201 (RETURNING *) · PUT/DELETE 200 · rowCount 0 → 404 · catch → 500
-Nega $1: yopishtirilgan '… WHERE id = ' + id + "1 OR 1=1" → hamma qator o'chdi; $1 bilan → 500 invalid input syntax, jadval joyida
+Pool: yaratilganda ulanmaydi, birinchi so'rovda ulanadi, ulanishni qayta ishlatadi (3 so'rov — bitta pid) · pool.query(sql, [qiymatlar]) → result.rows / result.rowCount · res.json · GET 200 · POST 201 (RETURNING *) · PUT/DELETE 200 · rowCount 0 → 404 · catch → 500
+Nega $1: yopishtirilgan '… WHERE id = ' + id va URL "1 OR 1=1" → hamma qator o'chdi (deleted: 3); $1 bilan → 500 invalid input syntax, jadval joyida
 ## Server xatolari
-column "price" of relation "cars" does not exist → kodda ustun nomi · Cannot destructure property 'model' of 'req.body' → app.use(express.json()) · password authentication failed → parol · client password must be a string → parol bo'sh (process.env) · database "…" does not exist → nom · {"error":""} → console.error(err) → ECONNREFUSED → PostgreSQL'ni ishga tushiring
-Pool birinchi so'rovda ulanadi — «Server … ishlayapti» faqat Express haqida
-Port band: Express 5 da ikkinchi server ham «ishlayapti» deb xato bermay chiqadi — eski server javob beradi → bitta terminal, Ctrl+C
-## Sinf
-m4-06: amaliyot haqiqiy PostgreSQL terminalida (AI bilan o'z do'koni) — har kompyuterda PostgreSQL; apostrof va NOT NULL maslahati
-m4-08: sinf paroli, Postman, bitta terminal; darsdagi xato matni qisqa — haqiqiysida "of relation cars"; is_rented null — DEFAULT yo'q; Gemini kodi har xil
-## Sizning uyga vazifangiz
-shop-api: schema.sql (NOT NULL) + server.js (4 endpoint, $1, 404) + README (5 so'rov va javobi, BEGIN … ROLLBACK) → GitHub → repo linki platformadagi uyga vazifaga`;
-const s27Segments = (passed) => [
+column "price" of relation "cars" does not exist → kodda ustun nomi (\\d cars) · Cannot destructure property 'model' of 'req.body' → app.use(express.json()) · password authentication failed → parol · client password must be a string → parol bo'sh (process.env) · database "…" does not exist → nom · {"error":""} → console.error(err) → ECONNREFUSED → PostgreSQL'ni ishga tushiring
+«Server … ishlayapti» faqat Express haqida — baza xatosi birinchi so'rovda · Port band: Express 5 da ikkinchi server ham «ishlayapti» deb xato bermay chiqadi, eski server javob beradi → bitta terminal, Ctrl+C
+## Sinfga tayyorgarlik
+m4-06 (21 ekran): amaliyot haqiqiy PostgreSQL terminalida — har kompyuterda PostgreSQL; siz qo'shasiz: javobdagi son, BEGIN … ROLLBACK proyektorda, ORDER BY, apostrof va NOT NULL maslahati, HINT ham adashadi
+m4-08 (9 ekran): sinf paroli, Postman, bitta terminal; to'rt farq — xato matni qisqa · Gemini kodi har xil · is_rented null (DEFAULT yo'q) · port band «ishlayapti»
+## Sizning uyga vazifangiz (50–70 daqiqa)
+shop-api: schema.sql (products NOT NULL + CHECK, orders FK) + server.js (4 endpoint, $1, 404) + README (5 so'rov va javobi, BEGIN…COMMIT sotuv va CHECK xatosi) → GitHub → repo linki platformadagi uyga vazifaga`;
+const s31Segments = (passed) => yakRu(passed, [
   passed
     ? sg('a', "<b>Barakalla!</b> Siz darsni yaxshi o'rgandingiz — bugungi darsni bir qarashda yig'amiz", "Barakalla! Siz darsni yaxshi o'rgandingiz. Endi bugun o'rganganlaringizni bir qarashda yig'amiz.", { hl: 'all' })
     : sg('a', "Dars oxiriga yetdingiz — sinovni <b>qayta topshirishni</b> maslahat beraman", "Dars oxiriga yetdingiz. Yakuniy sinovdan olti ball kerak edi, yakunlashdan oldin sinovni qayta topshirishni maslahat beraman. Hozir esa bugungi darsni bir qarashda yig'amiz.", { hl: 'all' }),
-  sg('b1', "CRUD — to'rt buyruq; <b>javobdagi son</b> nechta qator tegilganini aytadi", "Birinchi: CRUD to'rt buyruq, insert, select, update va delete. Javobdagi son nechta qator tegilganini aytadi, nol xato emas. Order by yozilmasa, tartib kafolatlanmaydi.", { hl: 'crud' }),
-  sg('b2', "<b>WHERE'siz — hamma qator</b>; xavfli so'rov BEGIN … ROLLBACK ichida", "Ikkinchi: where'siz update yoki delete hamma qatorga tegadi. Xavfli so'rovni avval begin ichida sinang, select bilan ko'ring, keyin rollback yoki commit.", { hl: 'where' }),
-  sg('b3', "SQL xatolarida <b>nomni jadval bilan</b> solishtiring; apostrof ikki marta", "Uchinchi: sinfdagi SQL xatolarida xabar ichidagi nomni teskari chiziqcha d bilan solishtiring, hint'ga ishonmang. Apostrof ikki marta yoziladi. Not null yozilmagan bo'lsa, baza qo'riqlamaydi.", { hl: 'err' }),
-  sg('b4', "Express: <b>Pool → pool.query → rows → res.json</b>, qiymat doim $1 bilan", "To'rtinchi: Express'dan bazaga yo'l, Pool, pool query, rows va res json. Qiymatlar doim dollar bir bilan, yopishtirilgan so'rov butun jadvalni o'chirishi mumkin.", { hl: 'exp' }),
-  sg('b5', "Server xatolarini <b>status, error va terminal</b> aytadi", "Beshinchi: server xatolari. Ustun nomi, express json, parol va baza birinchi so'rovda chiqadi. Xabar bo'sh bo'lsa, console error'ga butun xatoni bering. Ikkinchi server ham ishlayapti deydi, bitta terminal qoidasi.", { hl: 'brk' }),
-  sg('b6', "Sinf: m4-06 amaliyoti <b>haqiqiy PostgreSQL terminalida</b>, m4-08 dan oldin parol va Postman", "Oltinchi, sinf uchun: m4-06 amaliyoti haqiqiy PostgreSQL terminalida, har kompyuterda PostgreSQL kerak. m4-08 dan oldin sinf paroli, Postman va bitta terminal qoidasi.", { hl: 'class' }),
-  sg('hw', "<b>Uyga vazifa</b>: o'z do'koningiz uchun shop-api — jadval, server va README", "Uyga vazifa: o'z do'koningiz uchun shop api. Schema faylida o'z jadvalingiz, not null bilan. Server js'da to'rt endpoint, hamma qiymat dollar bir bilan, topilmasa to'rt yuz to'rt. README'da har endpoint uchun bitta so'rov va javobi.", { hl: 'hw' }),
-  sg('hw2', "Bir marta xavfsiz sinang va <b>repo linkini platformaga</b> qo'ying", "Bir marta where'siz update'ni begin ichida sinab, rollback qiling va natijani README'ga yozing. GitHub'ga chiqaring va repo linkini platformadagi uyga vazifangizga qo'ying, boshqa hech narsa kerak emas. Qirq-oltmish daqiqa.", { hl: 'hw' }),
-  sg('c', "<b>Eslatmani oling</b>: CRUD, xavfsiz sinash, xatolar va server — bir sahifada", "Pastda bir sahifalik eslatma: CRUD, xavfsiz sinash, sinfdagi SQL xatolari, Express yo'li, server xatolari va ikki o'quvchi darsi tayyorgarligi. Nusxalab yoki yuklab oling, sinfda yoningizda tursin.", { hl: 'note' }),
+  sg('b1', "CRUD — to'rt buyruq; <b>javobdagi son</b> va RETURNING; ORDER BY siz tartib kafolatlanmaydi", "Birinchi: CRUD to'rt buyruq, insert, select, update va delete. Javobdagi son nechta qator tegilganini aytadi, returning esa qatorning o'zini qaytaradi. Order by yozilmasa tartib kafolatlanmaydi: baza yangilangan qatorni yangi joyga yozadi.", { hl: 'crud' }),
+  sg('b2', "Tranzaksiya: <b>BEGIN — faqat sizning seansingizda</b>, COMMIT yoki ROLLBACK; ikki jadval — bitta ish", "Ikkinchi: oddiy holatda har buyruq darhol saqlanadi. Begin'dan keyin o'zgarish faqat sizning seansingizda, commit saqlaydi, rollback bekor qiladi. Undov belgisi chiqsa, faqat rollback. Bir ishga tegishli buyruqlar bitta tranzaksiyada: yo hammasi, yo hech biri.", { hl: 'tx' }),
+  sg('b3', "Baza <b>faqat yozilgan qoidani</b> qo'riqlaydi; xabardagi nomni \\d bilan solishtiring", "Uchinchi: baza faqat yozilgan qoidani qo'riqlaydi: not null, default, unique va check. Har xabar ichida jadval yoki qoida nomi bor, uni backslash d bilan solishtiring. Apostrof ikki marta yoziladi.", { hl: 'rule' }),
+  sg('b4', "Express: <b>Pool birinchi so'rovda ulanadi</b> → pool.query → rows / rowCount → res.json", "To'rtinchi: Express'dan bazaga yo'l. Pool bir marta sozlanadi, birinchi so'rovda ulanadi va ulanishni qayta ishlatadi. Pool query so'rov yuboradi, natijadan rows yoki rowcount olinadi, res json javob qaytaradi. Statuslar: ikki yuz, ikki yuz bir, to'rt yuz to'rt, besh yuz.", { hl: 'exp' }),
+  sg('b5', "<b>$1 — xavfsizlik</b>; server xatolari: ustun nomi, express.json, parol, bo'sh xabar, ikkinchi server", "Beshinchi: foydalanuvchidan kelgan qiymat doim dollar bir bilan, yopishtirilgan matn butun jadvalni bo'shatdi. Server xatolari: ustun nomi, express json, parol va baza birinchi so'rovda. Xabar bo'sh bo'lsa, console error'ga butun xatoni bering. Ikkinchi server ham ishlayapti deydi.", { hl: 'brk' }),
+  sg('b6', "Sinf: m4-06 amaliyoti <b>haqiqiy psql'da</b>; m4-08 dan oldin parol, Postman, bitta terminal", "Oltinchi, sinf uchun: m4-06 amaliyoti haqiqiy PostgreSQL terminalida, har kompyuterda PostgreSQL kerak. m4-08 dan oldin sinf paroli, Postman va bitta terminal qoidasi. Olti holat va o'quvchi savollariga javoblar sizda tayyor.", { hl: 'class' }),
+  sg('hw', "<b>Uyga vazifa</b>: o'z do'koningiz uchun shop-api — ikki jadval, to'rt endpoint, README", "Uyga vazifa: o'z do'koningiz uchun shop api. Schema faylida ikki jadval: mahsulotlar not null va check stock katta yoki teng nol bilan, buyurtmalar tashqi kalit bilan. Server js'da to'rt endpoint, hamma qiymat dollar bir bilan, topilmasa to'rt yuz to'rt. README'da har endpoint uchun bitta so'rov va javobi.", { hl: 'hw' }),
+  sg('hw2', "Terminalda <b>bitta sotuv va CHECK xatosi</b> — README'ga; repo linki platformaga", "Terminalda bitta sotuvni begin, update, insert va commit bilan qiling, keyin yetmagan qoldiqda check xatosini oling: ikkalasini README'ga yozing. GitHub'ga chiqaring va repo linkini platformadagi uyga vazifangizga qo'ying. Ellik-yetmish daqiqa.", { hl: 'hw' }),
+  sg('c', "<b>Eslatmani oling</b>: CRUD, tranzaksiya, qoidalar, xatolar va server — bir sahifada", "Pastda bir sahifalik eslatma: CRUD va javobdagi son, tranzaksiya holatlari, baza qoidalari, SQL va server xatolari, Express yo'li va sinfga tayyorgarlik. Nusxalab yoki yuklab oling, sinfda yoningizda tursin.", { hl: 'note' }),
   sg('z', "Rahmat! <b>Darsni yakunlash</b> tugmasini bosing", "Rahmat. Darsni yakunlash tugmasini bosing, dars tugallangan deb belgilanadi.", { hl: 'note' }),
-];
-function Screen27(p) {
+]);
+function Screen31(p) {
   const completeLesson = useNextLessonAccess();
   const once = useRef(false);
   useEffect(() => { if (once.current) return; once.current = true; completeLesson().catch(() => {}); }, [completeLesson]);
-  const sheet = CHEATSHEET27;
-  const download = () => { try { const b = new Blob([sheet], { type: 'text/markdown' }); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'postgresql-2-mentor-eslatma.md'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); } catch (e) {} };
+  const sheet = t(CHEATSHEET31, RS('CHEAT'));
+  const download = () => { try { const b = new Blob([sheet], { type: 'text/markdown' }); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = t('postgresql-2-mentor-eslatma.md', RS('FILE')); a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); } catch (e) {} };
   const passed = (p.testScore || 0) >= 6;
-  const segments = useMemo(() => s27Segments(passed), [passed]);
+  const segments = useMemo(() => s31Segments(passed), [passed]);
   const b = useBeats(segments, p.review);
   const hl = b.seg.hl;
   const phase = hl === 'hw' ? 'hw' : hl === 'note' ? 'note' : 'sum';
   const shown = segments.slice(0, b.beat + 1).filter((s) => /^b\d/.test(s.id)).length;
   return (
-    <Stage kicker="Yakun" idx={p.idx} total={p.total} audio={b.audio} onBack={p.onBack} onNext={p.onFinish} onRestart={p.onRestart} nextReady={b.done} nextDisabled={!b.done} nextLabel="Darsni yakunlash" lockHint="Ustoz gapirib bo'lgach ochiladi">
+    <Stage kicker={t('Yakun', 'Итог')} idx={p.idx} total={p.total} audio={b.audio} onBack={p.onBack} onNext={p.onFinish} onRestart={p.onRestart} nextReady={b.done} nextDisabled={!b.done} nextLabel={t('Darsni yakunlash', 'Завершить урок')} lockHint={t("Ustoz gapirib bo'lgach ochiladi", 'Откроется, когда учитель договорит')}>
       <div className="mk-body">
-        <Say title={passed ? 'Barakalla! Endi siz bilasiz' : 'Endi siz bilasiz'} segments={segments} beat={b.beat} audio={b.audio} stepManual={b.stepManual} guess={b.guess} answerAsk={b.answerAsk} review={p.review} />
+        <Say title={passed ? t('Barakalla! Endi siz bilasiz', 'Отлично! Теперь вы знаете') : t('Endi siz bilasiz', 'Теперь вы знаете')} segments={segments} beat={b.beat} audio={b.audio} stepManual={b.stepManual} guess={b.guess} answerAsk={b.answerAsk} review={p.review} />
         <div className="mk-scene top" style={{ overflow: 'auto' }}>
           {phase === 'sum' && (<>
-            <SummaryMap27 hl={hl} />
-            <div className="mk-plan">{SUM27.slice(0, shown).map((it, i) => <div key={it.k} className={it.k === hl ? 'hl' : ''} style={{ animation: 'mk-up .45s ease both' }}><b>0{i + 1}</b><span>{it.t}</span></div>)}</div>
+            <SummaryMap31 hl={hl} />
+            <div className="mk-plan">{SUM31.slice(0, shown).map((it, i) => <div key={it.k} className={it.k === hl ? 'hl' : ''} style={{ animation: 'mk-up .45s ease both' }}><b>0{i + 1}</b><span>{it.t}</span></div>)}</div>
           </>)}
           {phase === 'hw' && <div className="mk-light" style={{ padding: 16, animation: 'mk-up .45s ease both' }}>
-            <div className="mk-tag" style={{ color: T.accent }}>Uyga vazifa · 40–60 daqiqa</div>
+            <div className="mk-tag" style={{ color: T.accent }}>{t('Uyga vazifa · 50–70 daqiqa', 'Домашнее задание · 50–70 минут')}</div>
             <div style={{ display: 'grid', gap: 8 }}>
-              {HOMEWORK27.map((h, i) => <div key={i} className="mk-step" style={{ animation: `mk-up .4s ${i * 0.12}s ease both` }}>
+              {HOMEWORK31.map((h, i) => <div key={i} className="mk-step" style={{ animation: `mk-up .4s ${i * 0.12}s ease both` }}>
                 <span style={{ fontFamily: MONO, fontWeight: 700, color: T.accent, minWidth: 20 }}>{i + 1}</span>
                 <div className="t"><b style={{ marginBottom: 2 }}>{h.t}</b>{h.c.map((c) => <div key={c} className="cmd"><code>{c}</code><CopyBtn text={c} /></div>)}</div>
               </div>)}
             </div>
-            <div className="mk-rule" style={{ marginTop: 12 }}><b>Tekshiruvchi qaraydi:</b> NOT NULL · $1 (yopishtirish yo'q) · 404 · README'da 5 so'rov va ROLLBACK.</div>
+            <div className="mk-rule" style={{ marginTop: 12 }}><b>{t("Tekshiruvchi qaraydi:", "Проверяющий смотрит:")}</b>{t(" NOT NULL / CHECK · $1 (yopishtirish yo'q) · 404 · README'da 5 so'rov, COMMIT va CHECK xatosi.", " NOT NULL / CHECK · $1 (без склеивания) · 404 · в README 5 запросов, COMMIT и ошибка CHECK.")}</div>
           </div>}
           {phase === 'note' && <div className="mk-light" style={{ padding: 14, animation: 'mk-up .45s ease both' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-              <div className="mk-tag" style={{ margin: 0 }}>Mentor eslatmasi · 1 sahifa</div>
-              <div style={{ display: 'flex', gap: 8 }}><CopyBtn text={sheet} /><button className="mk-copy" onClick={download}>yuklab olish (.md)</button></div>
+              <div className="mk-tag" style={{ margin: 0 }}>{t('Mentor eslatmasi · 1 sahifa', 'Памятка ментора · 1 страница')}</div>
+              <div style={{ display: 'flex', gap: 8 }}><CopyBtn text={sheet} /><button className="mk-copy" onClick={download}>{t('yuklab olish (.md)', 'скачать (.md)')}</button></div>
             </div>
             <pre style={{ margin: '10px 0 0', font: `12px/1.5 ${MONO}`, whiteSpace: 'pre-wrap', color: T.ink2, maxHeight: 300, overflow: 'auto' }}>{sheet}</pre>
-            <div className="mk-card" style={{ marginTop: 10, borderColor: T.accent }}><h5 style={{ color: T.accent }}>Kursdagi keyingi mentor darsi</h5><div style={{ fontSize: 15, fontWeight: 700 }}>NestJS arxitekturasi — Module, Controller, Service</div><div style={{ fontSize: 13.5, color: T.ink2 }}>Express'dagi shu CRUD Nest'da qanday tartib bilan yoziladi</div></div>
+            <div className="mk-card" style={{ marginTop: 10, borderColor: T.accent }}><h5 style={{ color: T.accent }}>{t("Kursdagi keyingi mentor darsi", "Следующий урок курса для менторов")}</h5><div style={{ fontSize: 15, fontWeight: 700 }}>{t("NestJS arxitekturasi — Module, Controller, Service", RS('NEXT_T'))}</div><div style={{ fontSize: 13.5, color: T.ink2 }}>{t("Express'dagi shu CRUD Nest'da qanday tartib bilan yoziladi", RS('NEXT_D'))}</div></div>
           </div>}
         </div>
       </div>
@@ -2755,20 +3607,20 @@ function Screen27(p) {
 // ============================================================
 //  Muqova va ildiz
 // ============================================================
-function Cover({ onStart }) {
+function Cover({ onStart, resume }) {
   return (
     <div className="mk-cover"><div className="card">
-      <p className="mk-eyebrow">Mentor kursi · PostgreSQL</p>
-      <h1>{LESSON_TITLE}</h1>
-      <p>Bu dars ovozli. Ustoz har ekranda gapiradi, ekran u bilan birga o'zgaradi. Quloqchin yoki ovoz balandligini tekshiring.</p>
+      <p className="mk-eyebrow">{t("Mentor kursi · PostgreSQL", "Курс для менторов · PostgreSQL")}</p>
+      <h1>{t(LESSON_TITLE, RS('TITLE'))}</h1>
+      <p>{t("Bu dars ovozli. Ustoz har ekranda gapiradi, ekran u bilan birga o'zgaradi. Quloqchin yoki ovoz balandligini tekshiring.", 'Урок озвучен. На каждом экране говорит учитель, экран меняется вместе с ним. Проверьте наушники или громкость.')}</p>
       <ul>
-        {["Jami taxminan 1 soat 10 daqiqa: ovoz ~23 daqiqa · to'rt amaliyot 40–50 daqiqa · 4 tekshiruv · o'z-sinov 8 savol. 13-ekrandan keyin tanaffus qilsangiz bo'ladi", 'Kerak: PostgreSQL-1 darsi o\'tilgan · PostgreSQL ishlab turgan · Node.js 20+ · VS Code · Postman', "Loyihalar: shop bazasi (o'quvchi m4-06) va AvtoIjara serveri (o'quvchi m4-08)"].map((x) => <li key={x}>{x}</li>)}
+        {t(["Jami taxminan 1 soat 20 daqiqa: ovoz ~27 daqiqa · to'rt amaliyot 45–55 daqiqa · 4 tekshiruv · o'z-sinov 8 savol. 13-ekrandan keyin tanaffus qilsangiz bo'ladi", "Kerak: PostgreSQL-1 darsi o'tilgan · PostgreSQL ishlab turgan · Node.js 20+ · VS Code · Postman", "Loyihalar: shop bazasi (products, orders) va AvtoIjara serveri (car_rental, server.js)"], RS('COVER')).map((x) => <li key={x}>{x}</li>)}
       </ul>
-      <button className="mk-btn ready" onClick={onStart}>Boshlash →</button>
+      <CoverStart onStart={onStart} resume={resume} />
     </div></div>
   );
 }
-const SCREENS = [Screen1, ScreenCrud, Screen2, Screen3, Screen4, Screen5, ScreenP1, Screen7, Screen8, ScreenP2, Screen10, Screen11, Screen12, Screen13, Screen14, Screen15, ScreenP3, Screen17, Screen18, Screen19, Screen20, Screen21, ScreenP4, Screen23, Screen24, Screen25, Screen26, Screen27];
+const SCREENS = [Screen1, Screen2, Screen3, Screen4, Screen5, Screen6, Screen7, ScreenP8, Screen9, Screen10, Screen11, Screen12, ScreenP13, Screen14, Screen15, Screen16, Screen17, Screen18, Screen19, Screen20, ScreenP21, Screen22, Screen23, Screen24, Screen25, Screen26, ScreenP27, Screen28, Screen29, Screen30, Screen31];
 const PRACTICE_COUNT = SCREENS.filter((S) => /^ScreenP\d/.test(S.name)).length;
 export default function PgCrudMentorLesson({ studentName, lang = 'uz', onFinished, startAt }) {
   setLang(lang);
@@ -2782,6 +3634,7 @@ export default function PgCrudMentorLesson({ studentName, lang = 'uz', onFinishe
   const [seen, setSeen] = useState({});
   const [rev, setRev] = useState(0);
   const [mode, setMode] = useState('live');
+  const sv = useMentorSave({ id: LESSON_ID, total, startAt, started, idx, answers, seen, setIdx, setAnswers, setSeen, setStarted });
   const startTime = useRef(Date.now());
   const finished = useRef(false);
   const onAnswer = useCallback((payload) => setAnswers((a) => ({ ...a, [idx]: payload })), [idx]);
@@ -2806,8 +3659,1093 @@ export default function PgCrudMentorLesson({ studentName, lang = 'uz', onFinishe
       answers: Object.entries(answers).map(([i, a]) => ({ screen: Number(i) + 1, ...a })),
     });
   };
-  if (!started) return <Cover onStart={() => setStarted(true)} />;
+  if (!started) return <Cover onStart={sv.start} resume={sv.resume} />;
   const S = SCREENS[idx];
   const fin = Object.values(answers).find((a) => a && a.type === 'final');
   return <S key={`${idx}:${rev}`} idx={idx} total={total} lang={lang} stored={answers[idx]} testScore={fin ? fin.score : 0} seen={!!seen[idx]} review={mode === 'review' && !!seen[idx]} onAnswer={onAnswer} onNext={next} onBack={idx > 0 ? () => { setMode('review'); setIdx((i) => i - 1); } : null} onFinish={finish} onGoto={goto} onRestart={restart} />;
 }
+
+// ============================================================
+//  RU — AVTO: feedback/F-1029-02-mentor-kurs/dev/ru-qur.py (manba: ru/pg2-*.json, ru/pg2-sahna.js). M24: UZ bo'laklarga tegilmaydi.
+//  Uslub: «Вы», dasturlash atamalari inglizcha; kod va haqiqiy chiqishlar — loyihadagidek. QO'LDA TAHRIRLANMAYDI.
+// ============================================================
+
+// --- sahna (ru/pg2-sahna.js) ---
+// PG-2 · sahna ruschasi (M24): modul darajasidagi ro'yxatlar va ekran obyektlariga qo'shimcha. ru() bitta obyektga bir marta.
+var RU_S = {
+  S1: { plan: ['CRUD в терминале', 'Транзакция: безопасная проверка и атомарное дело', 'База охраняет', 'Из Express в базу', 'Ломаем и чиним', 'Подготовка к классу'] },
+};
+ru(CRUD, [[null, null, 'создать', null, null, null, null, null], [null, null, 'прочитать', null, null, null, null, null], [null, null, 'изменить', null, null, null, null, null], [null, null, 'удалить', null, null, null, null, null]]);
+RU_S.MG3 = `await mongoose.connect('mongodb://localhost/shop')
+базы: admin · config · local          (shop ещё нет)
+await Product.create([ …4 шт… ])         → 4 документа
+базы: admin · config · local · shop`;
+ru(PAGE6, [[null, 'Klaviatura · 120000 · 8 — первая копия', null], null, [null, 'Quloqchin — удалена (экран 5)', null], null, [null, 'Klaviatura · 99000 · 8 — копия, записанная при смене цены', null], [null, 'Klaviatura · 99000 · 7 — текущая строка', null]]);
+ru(STATES10, [[null, 'обычное — каждая команда сохраняется сразу (autocommit)'], [null, 'транзакция открыта — изменения видны только в этом сеансе'], [null, 'была ошибка (aborted) — только ROLLBACK']]);
+ru(RULES14, [null, null, null, null, null, null, [null, 'CHECK (stock >= 0) — экран 11', null], null, [null, 'product_id REFERENCES products(id) — экран 11', null]]);
+ru(CONN24, [
+  { h: 'Неверный пароль', fix: 'пароль, заданный при установке' },
+  { h: 'Пароль пустой (process.env не прочитан)', fix: 'переменная пароля пустая' },
+  { h: 'Неверное имя базы', fix: 'точное имя через \\l: car_rental' },
+  { h: 'PostgreSQL выключен', code: '— (сервер остановлен)', fix: 'console.error(err) → ECONNREFUSED → запустите PostgreSQL' },
+]);
+ru(CLS28, [
+  { s: '21 экран', t: 'Запросы PostgreSQL — CRUD + с AI', d: ['магазин кнопками: INSERT · SELECT · WHERE · UPDATE · DELETE', 'таблица — ровно та products, что вы создали сегодня', 'практика: настоящий терминал PostgreSQL или VS Code + AI — свой магазин'] },
+  { s: '9 экранов', t: 'Практика: Backend CRUD — AvtoIjara', d: ['таблица cars — вручную в терминале', 'server.js — от Gemini, проверка в Postman', 'найти ошибку AI: price → daily_price'] },
+]);
+ru(ADD28, [['число в ответе (UPDATE 1 / 0)', 'блок CRUD m4-06'], ['без WHERE — на проекторе BEGIN … ROLLBACK', 'm4-06 UPDATE/DELETE'], ['ORDER BY — вопрос «место изменилось»', 'm4-06 SELECT'], ['апостроф \'\', совет про NOT NULL', 'практика m4-06 (свой магазин)'], ['и HINT ошибается', 'блок ошибки AI в m4-06'], ['Четыре отличия: текст ошибки короткий · код Gemini разный · is_rented: null · порт занят, а «работает»', null]]);
+ru(PRE28, ['На каждом компьютере открывается терминал PostgreSQL и установлен Postman', 'Пароль класса всем известен', 'Правило: один проект — один терминал', 'Время: в m4-06 из 90 минут 25 на практику · в m4-08 40 на сервер и Postman']);
+ru(STUMBLE29, [
+  ['Имя таблицы/колонки', null, 'сравнить с \\d таблица'],
+  ['Апостроф', null, null],
+  ['Без WHERE', null, 'BEGIN … ROLLBACK; если удалено — INSERT заново'],
+  ['Пароль/база', null, 'настройки Pool, пароль класса'],
+  ['Пустая ошибка', null, 'console.error(err) → ECONNREFUSED → запустите PostgreSQL'],
+  ['Не изменилось', 'ответ старый', 'второй терминал; Ctrl+C'],
+]);
+ru(QA29, [
+  ['«Почему место товара изменилось?»', 'Нет ORDER BY — база пишет обновлённую строку на новое место (экран 6); ORDER BY id.'],
+  ['«Что такое $1?»', 'значение передаётся отдельно, в текст SQL не попадает; пример 1 OR 1=1 (экран 20).'],
+  ['«Postman обязателен?»', 'нет, любая программа, которая шлёт запросы; на уроке Postman, потому что удобно для класса.'],
+  ['«В NestJS пишем так же?»', 'нет: в Nest Repository сам пишет эти запросы (find, save…). Не волнуйтесь: это полностью, с кодом, разберёте на следующих уроках курса для менторов.'],
+  ['«SQL обязательно писать заглавными?»', 'нет, ключевые слова работают и строчными (проверили: select name, price from PRODUCTS сработал); заглавные — привычка, чтобы легче читать.'],
+]);
+ru(SUM31, [
+  { t: 'CRUD = INSERT · SELECT · UPDATE · DELETE; число в ответе — сколько строк затронуто; RETURNING — сама строка; без ORDER BY порядок не гарантирован (ctid)' },
+  { t: 'Транзакция: autocommit · BEGIN → только в вашем сеансе → COMMIT / ROLLBACK; !# — aborted, только ROLLBACK; две таблицы — одно дело — атомарно' },
+  { t: 'База охраняет только записанное правило: NOT NULL, DEFAULT, UNIQUE, CHECK; в сообщении есть имя — сравните с \\d; апостроф \'\'' },
+  { t: 'Express: Pool подключается на первом запросе и переиспользует соединение → pool.query(sql, [$1…]) → rows / rowCount → res.json; 200 · 201 · 404 · 500' },
+  { t: '$1 — безопасность: приклеенный 1 OR 1=1 опустошил таблицу; ошибки сервера: имя колонки · express.json() · пароль/база на первом запросе · пустое сообщение → console.error(err) · второй сервер «работает»' },
+  { t: 'Класс: практика m4-06 в настоящем psql; до m4-08 пароль, Postman, один терминал; шесть случаев и ответы на вопросы готовы' },
+]);
+ru(HOMEWORK31, [
+  { t: 'Таблицы — schema.sql: products (NOT NULL имя и цена, CHECK (stock >= 0), DEFAULT 0), orders (REFERENCES products(id), CHECK (qty > 0), created_at DEFAULT now())' },
+  { t: 'Сервер — server.js: GET · POST (201, RETURNING *) · PUT · DELETE (rowCount → 404), все значения через $1' },
+  { t: 'Проверка — Postman: 4 запроса + несуществующий id → 200 · 201 · 200 · 200 · 404' },
+  { t: 'Транзакция — psql: BEGIN → UPDATE … stock - 1 … RETURNING → INSERT INTO orders → COMMIT; потом нехватка остатка → ошибка CHECK → ROLLBACK — оба вывода в README' },
+  { t: 'Сдача — выложите на GitHub и вставьте ссылку на репозиторий в домашнее задание на платформе' },
+]);
+RU_S.SPOKEN = [['бэкслеша ', 'backslash '], ['Бэкслеш ', 'Backslash '], ['бэкслеш ', 'backslash ']];  // F-1109-01: ruscha ovoz → «Matn»da `\d products` kabi kod
+RU_S.TITLE = 'CRUD-запросы и из Express в базу';
+RU_S.COVER = ['Всего около 1 часа 20 минут: озвучка ~27 минут · четыре практики 45–55 минут · 4 проверки · самопроверка 8 вопросов. После экрана 13 можно сделать перерыв', 'Нужно: пройден урок PostgreSQL-1 · работающий PostgreSQL · Node.js 20+ · VS Code · Postman', 'Проекты: база shop (products, orders) и сервер AvtoIjara (car_rental, server.js)'];
+RU_S.FIN_INTRO = 'Вы всё посмотрели, теперь проверьте себя. Итоговый тест, восемь вопросов: CRUD, транзакция, Pool и ошибки сервера. На каждый вопрос одна попытка, после ответа откроются верный ответ и пояснение. Шесть и больше — урок усвоен. Если меньше, вернитесь к указанным экранам и пройдите тест заново.';
+RU_S.FIN_PASS = 'Урок усвоен. Теперь ошибки из m4-06 и m4-08 будут вам в классе знакомы.';
+RU_S.NEXT_T = 'Архитектура NestJS — Module, Controller, Service';
+RU_S.NEXT_D = 'Как этот же CRUD из Express пишется в Nest и в каком порядке';
+RU_S.FILE = 'postgresql-2-pamyatka-mentora.md';
+RU_S.YAK = {
+  b1: ['CRUD — четыре команды; <b>число в ответе</b> и RETURNING; без ORDER BY порядок не гарантирован', 'Первое: CRUD — четыре команды: insert, select, update и delete. Число в ответе говорит, сколько строк затронуто, а returning возвращает саму строку. Если не написан order by, порядок не гарантирован: база пишет обновлённую строку на новое место.'],
+  b2: ['Транзакция: <b>BEGIN — только в вашем сеансе</b>, COMMIT или ROLLBACK; две таблицы — одно дело', 'Второе: обычно каждая команда сохраняется сразу. После begin изменения только в вашем сеансе, commit сохраняет, rollback отменяет. Если вышел восклицательный знак — только rollback. Команды одного дела — в одной транзакции: либо всё, либо ничего.'],
+  b3: ['База охраняет <b>только записанное правило</b>; имя из сообщения сравните с \\d', 'Третье: база охраняет только записанное правило: not null, default, unique и check. В каждом сообщении есть имя таблицы или правила, сравните его с бэкслеш d. Апостроф пишется дважды.'],
+  b4: ['Express: <b>Pool подключается на первом запросе</b> → pool.query → rows / rowCount → res.json', 'Четвёртое: путь из Express в базу. Pool настраивается один раз, подключается на первом запросе и переиспользует соединение. Pool query отправляет запрос, из результата берётся rows или rowcount, res json возвращает ответ. Статусы: двести, двести один, четыреста четыре, пятьсот.'],
+  b5: ['<b>$1 — безопасность</b>; ошибки сервера: имя колонки, express.json, пароль, пустое сообщение, второй сервер', 'Пятое: значение от пользователя — всегда через доллар один, приклеенный текст опустошил всю таблицу. Ошибки сервера: имя колонки, express json, пароль и база — на первом запросе. Если сообщение пустое, дайте console error всю ошибку. Второй сервер тоже говорит «работает».'],
+  b6: ['Класс: практика m4-06 <b>в настоящем psql</b>; до m4-08 пароль, Postman, один терминал', 'Шестое, для класса: практика m4-06 — в настоящем терминале PostgreSQL, PostgreSQL нужен на каждом компьютере. До m4-08 — пароль класса, Postman и правило одного терминала. Шесть случаев и ответы на вопросы учеников у вас готовы.'],
+  hw: ['<b>Домашнее задание</b>: shop-api для своего магазина — две таблицы, четыре endpoint, README', 'Домашнее задание: shop api для своего магазина. В файле schema две таблицы: товары с not null и check stock больше или равно нулю, заказы с внешним ключом. В server js четыре endpoint, все значения через доллар один, если не найдено — четыреста четыре. В README на каждый endpoint один запрос и его ответ.'],
+  hw2: ['В терминале <b>одна продажа и ошибка CHECK</b> — в README; ссылка на репозиторий — на платформу', 'В терминале сделайте одну продажу через begin, update, insert и commit, потом получите ошибку check при нехватке остатка: оба запишите в README. Выложите на GitHub и вставьте ссылку на репозиторий в домашнее задание на платформе. Пятьдесят–семьдесят минут.'],
+  c: ['<b>Возьмите памятку</b>: CRUD, транзакция, правила, ошибки и сервер — на одной странице', 'Внизу памятка на одну страницу: CRUD и число в ответе, состояния транзакции, правила базы, ошибки SQL и сервера, путь Express и подготовка к классу. Скопируйте или скачайте, пусть будет рядом на уроке.'],
+};
+RU_S.CHEAT = `# PostgreSQL-2 — памятка ментора (CRUD, транзакция, Express)
+## CRUD (psql) и число в ответе
+INSERT INTO products (name, price, stock) VALUES (…) → INSERT 0 n · SELECT * / SELECT name, price · WHERE price < 100000 · UPDATE … SET … WHERE id = 1 → UPDATE 1 · DELETE … WHERE id = 3 → DELETE 1
+Число: 1 — как ожидали · 0 — WHERE ни к чему не подошёл (не ошибка) · большое число — WHERE неверный/его нет · RETURNING — сама изменённая строка
+Нет ORDER BY — порядок как в файле (UPDATE пишет новую копию: ctid (0,5) → (0,6)) → ORDER BY id
+## Транзакция
+autocommit: каждая команда сразу · BEGIN → только в вашем сеансе (сеанс B видит старое значение) → COMMIT сохраняет / ROLLBACK отменяет · приглашение: =# обычное · =*# открыта · =!# ошибка (aborted) — только ROLLBACK, и COMMIT вернёт ROLLBACK
+Атомарно: две таблицы — одно дело — UPDATE stock + INSERT orders в одном BEGIN … COMMIT; если CHECK отклонил — не сохранится ничего
+## База охраняет
+Правило не записано — не охраняет (строка без имени сохраняется). NOT NULL (сначала уберите пустые строки) · DEFAULT 0 · UNIQUE (name) → duplicate key value · CHECK (stock >= 0) · \\d products — всё в одном месте
+## Ошибки SQL (в сообщении есть имя)
+relation "product" / column "narx" (и HINT ошибается) → сравнить с \\d · 'arzon' → invalid input syntax for type integer · число колонок/значений → more target columns than expressions · апостроф → '' (O''yinchoq)
+## Express → база
+Pool: при создании не подключается, подключается на первом запросе, переиспользует соединение (3 запроса — один pid) · pool.query(sql, [значения]) → result.rows / result.rowCount · res.json · GET 200 · POST 201 (RETURNING *) · PUT/DELETE 200 · rowCount 0 → 404 · catch → 500
+Зачем $1: приклеенный '… WHERE id = ' + id и URL "1 OR 1=1" → удалены все строки (deleted: 3); с $1 → 500 invalid input syntax, таблица на месте
+## Ошибки сервера
+column "price" of relation "cars" does not exist → имя колонки в коде (\\d cars) · Cannot destructure property 'model' of 'req.body' → app.use(express.json()) · password authentication failed → пароль · client password must be a string → пароль пустой (process.env) · database "…" does not exist → имя · {"error":""} → console.error(err) → ECONNREFUSED → запустите PostgreSQL
+«Server … ishlayapti» — только про Express — ошибка базы на первом запросе · Порт занят: в Express 5 второй сервер тоже пишет «работает» и выходит без ошибки, отвечает старый → один терминал, Ctrl+C
+## Подготовка к классу
+m4-06 (21 экран): практика в настоящем терминале PostgreSQL — PostgreSQL на каждом компьютере; вы добавляете: число в ответе, BEGIN … ROLLBACK на проекторе, ORDER BY, совет про апостроф и NOT NULL, HINT тоже ошибается
+m4-08 (9 экранов): пароль класса, Postman, один терминал; четыре отличия — текст ошибки короткий · код Gemini разный · is_rented null (нет DEFAULT) · порт занят, а «работает»
+## Ваше домашнее задание (50–70 минут)
+shop-api: schema.sql (products NOT NULL + CHECK, orders FK) + server.js (4 endpoint, $1, 404) + README (5 запросов и ответов, продажа BEGIN…COMMIT и ошибка CHECK) → GitHub → ссылка на репозиторий в домашнее задание на платформе`;
+// 2-tur (05.11): skaner tuzatilgandan keyin topilgan modul ro'yxatlari
+ru(FORMULA15, [['Какая таблица?'], ['Какая колонка или правило?'], ['Какое значение?']]);
+ru(STEPS18, [[null, 'подключается'], [null, 'запрос к базе'], [null, 'результат'], [null, 'ответ']]);
+
+const RU_MDT = {
+ "1": {
+  "kicker": "Вступление",
+  "eyebrow": "Курс для менторов · PostgreSQL",
+  "title": "Таблица готова. Теперь управляем ею — в терминале PostgreSQL и внутри Express",
+  "seg": {
+   "a": [
+    "В PostgreSQL-1 вы создали таблицу — сегодня <b>управляете её данными четырьмя командами</b>",
+    "Здравствуйте. На прошлом уроке вы установили PostgreSQL, создали таблицу и связали её. Сегодня управляем данными в таблице: добавить, посмотреть, изменить и удалить. Это называют CRUD, что это такое, точно увидим на следующем экране."
+   ],
+   "b": [
+    "Сначала команды в терминале — и <b>что происходит внутри</b> каждой: число, порядок, транзакция",
+    "Сначала пишем команды вручную в терминале и смотрим, что происходит внутри каждой: что считает число в ответе, почему меняется порядок строк, что база делает внутри транзакции. Наш пример — маленький магазин: клавиатура, мышка, наушники, колонка."
+   ],
+   "c": [
+    "Потом те же запросы внутри Express: <b>что такое <code>Pool</code>, зачем <code>$1</code></b>, почему сервер даёт 500",
+    "Потом ставим те же запросы внутрь сервера Express. Сами проверите, что такое Pool, почему значения передаются через доллар один, когда и почему сервер возвращает пятьсот. Нарочно сломаем сервер и исправим."
+   ],
+   "d": [
+    "Шесть этапов, четыре практики; в конце <b>два экрана подготовки к классу</b>. Не спешите",
+    "Урок состоит из шести этапов, между ними четыре практики. Последние два экрана — подготовка к классу: карта уроков ученика и места, где ученики ошибаются. Не спешите: каждый экран можно прослушать с начала и прочитать текст. «Далее» откроется, когда учитель договорит. Начинаем."
+   ]
+  }
+ },
+ "2": {
+  "kicker": "Этап 1 · CRUD в терминале",
+  "title": "CRUD — четыре действия с данными: в базе команда, на сервере endpoint",
+  "seg": {
+   "a": [
+    "CRUD — <b>первые буквы</b> четырёх английских слов: создать, прочитать, изменить, удалить",
+    "Основа сегодняшнего урока — одно слово: CRUD. Это первые буквы четырёх английских слов: Create, Read, Update и Delete, то есть создать, прочитать, изменить и удалить. Любое приложение делает с данными именно эти четыре дела: и интернет-магазин, и Telegram."
+   ],
+   "b": [
+    "В PostgreSQL у каждого действия <b>своя команда</b>: <code>INSERT</code>, <code>SELECT</code>, <code>UPDATE</code>, <code>DELETE</code>",
+    "В PostgreSQL у каждого действия своя команда: insert, select, update и delete. В знакомом вам Mongoose это были create, find, updateOne и deleteOne. Смысл тот же, только пишется иначе. После каждой команды база возвращает короткий ответ, например update один. В Mongo на его месте выходил matchedCount один."
+   ],
+   "c": [
+    "На сервере те же четыре действия <b>становятся endpoint</b>: <code>POST</code>, <code>GET</code>, <code>PUT</code>, <code>DELETE</code>",
+    "На сервере те же четыре действия становятся endpoint. Создать — POST, прочитать — GET, изменить — PUT, удалить — DELETE. Внутри каждого endpoint стоит та же SQL-команда. В ответе выходит статус: при создании двести один, в остальных двести."
+   ],
+   "d": [
+    "Итог: у каждого действия <b>одна команда</b> в базе и один endpoint на сервере",
+    "Итог: CRUD — четыре действия. У каждого действия одна команда в PostgreSQL и один endpoint на сервере. Сегодня сначала пишем команды вручную в терминале и смотрим внутрь, потом ставим их же внутрь сервера Express."
+   ]
+  }
+ },
+ "3": {
+  "kicker": "Этап 1 · CRUD в терминале",
+  "title": "products — четыре колонки, четыре товара; id база даёт сама",
+  "seg": {
+   "a": [
+    "В Mongo база и коллекция появлялись сами — здесь <b>сначала <code>CREATE DATABASE</code>, потом таблица</b>",
+    "В знакомом вам Mongoose хватало connect: и база, и коллекция появлялись сами при первом create. В PostgreSQL сначала create database создаёт базу, потом create table — таблицу. Таблица products, четыре колонки: id растёт сам, name — текст, price и stock — целые числа. Правил в колонках пока нет, это нарочно."
+   ],
+   "b": [
+    "Одним <code>INSERT</code> четыре строки; ответ <code>INSERT 0 4</code> — <b>последнее число — сколько строк добавлено</b>",
+    "Одним insert добавляем четыре товара. Ответ базы: insert, ноль, четыре. Последнее число говорит, сколько строк добавлено. Ноль в середине остался от старых версий, он ничего не значит, не смотрите на него."
+   ],
+   "c": [
+    "<code>SELECT *</code> — все колонки; <code>id</code> мы не писали, <b>база дала сама</b>: <code>SERIAL</code>",
+    "Select звёздочка показывает все колонки. Колонку id мы не писали, база сама дала один, два, три, четыре. Это делает serial: внутри отдельный счётчик, каждой новой строке он даёт следующее число. Даже если строку удалить, счётчик назад не идёт."
+   ],
+   "d": [
+    "Итог: таблица готова — <b>без всяких правил</b>; база охраняет только записанное правило",
+    "Итог: в вашей базе магазин из четырёх товаров. Запомните одну вещь: в этой таблице пока нет ни not null, ни другого правила. База охраняет только записанное правило. Что будет, увидите своими глазами на третьем этапе."
+   ]
+  }
+ },
+ "4": {
+  "kicker": "Этап 1 · CRUD в терминале",
+  "title": "WHERE — из тысяч строк только нужное",
+  "seg": {
+   "a": [
+    "Если все колонки не нужны — после <code>SELECT</code> пишутся <b>только нужные колонки</b>",
+    "Таблица есть, теперь читаем из неё. Если все колонки не нужны, после select пишете только нужные: имя и цену. Данные не меняются, select только показывает."
+   ],
+   "b": [
+    "<code>WHERE price &lt; 100000</code> — дешевле ста тысяч: <b>три товара</b>",
+    "Чтобы из тысяч товаров взять только нужные, пишется where. Просим тех, у кого цена меньше ста тысяч: мышка, наушники и колонка, три строки. Where сравнивает каждую строку с условием и возвращает только подходящие. В Mongoose это было условие доллар lt внутри find."
+   ],
+   "c": [
+    "<code>WHERE stock &lt; 6</code> — заканчивающийся товар: <b>только наушники</b>",
+    "Второй фильтр находит товары с остатком меньше шести, то есть заканчивающиеся. В результате только наушники, их осталось пять. Менеджер магазина именно этим запросом узнаёт, что заказать."
+   ],
+   "d": [
+    "Итог: <code>SELECT</code> только читает; <b><code>WHERE</code> выбирает строки</b> — в <code>UPDATE</code> и <code>DELETE</code> ровно так же",
+    "Итог: select ничего не меняет, только читает. Where говорит, какие строки нужны. На следующем экране увидите update и delete: в них работает тот же where, только теперь он решает, какие строки изменятся."
+   ]
+  }
+ },
+ "5": {
+  "kicker": "Этап 1 · CRUD в терминале",
+  "title": "UPDATE 1, DELETE 1, UPDATE 0 — число в ответе говорит, сколько строк затронуто",
+  "seg": {
+   "a": [
+    "Клавиатура подешевела: <code>UPDATE … WHERE id = 1</code> — ответ <b><code>UPDATE 1</code></b>, одна строка",
+    "Цена клавиатуры упала до девяноста девяти тысяч. Команда: update products set price, where id один. Ответ базы — update один: изменилась одна строка. Число в ответе всегда говорит, сколько строк затронуто, и в update, и в delete."
+   ],
+   "b": [
+    "Наушники сняты с продажи: <code>DELETE … WHERE id = 3</code> — <b><code>DELETE 1</code></b>",
+    "Наушники сняли с продажи, удаляем их: delete from products, where id три. Ответ базы — delete один. Строка ушла полностью, а её id больше не используется."
+   ],
+   "c": [
+    "Если такого <code>id</code> нет — <b>это не ошибка</b>, <code>UPDATE 0</code> и <code>DELETE 0</code>",
+    "Попробуем изменить девяносто девятый товар. Ошибки нет, ответ — update ноль. Delete тоже возвращает ноль. База не говорит «такой строки нет»: where не подошёл ни к одной строке, поэтому ничего не тронуто. Ноль в matchedCount в Mongo — то же самое. Это не ошибка, это ответ."
+   ],
+   "d": [
+    "<code>RETURNING</code> — база возвращает <b>саму изменённую строку</b>; если строки нет — <code>(0 rows)</code>",
+    "Продана одна клавиатура: уменьшаем остаток на один. Сколько стало, вы не считаете: пишете в конце команды returning, и база возвращает изменённую строку: клавиатура, семь. С девяносто девятым id returning даёт ноль строк. На сервере используется именно этот returning."
+   ],
+   "e": [
+    "Итог: после каждого <code>UPDATE</code> и <code>DELETE</code> <b>читайте число в ответе</b>",
+    "Итог: после update и delete читайте число в ответе. Один — случилось то, что ждали. Ноль — where ни к чему не подошёл. Неожиданно большое число — where неверный или вообще не написан. Это безопасно посмотрим на втором этапе."
+   ]
+  }
+ },
+ "6": {
+  "kicker": "Этап 1 · что происходит внутри",
+  "title": "После UPDATE место строки изменилось — база пишет обновлённую строку на новое место",
+  "seg": {
+   "a": [
+    "<code>SELECT *</code> — клавиатура <b>ушла в конец списка</b>. Это не ошибка, но причину надо знать",
+    "После команд с прошлого экрана делаем select и смотрим на результат: осталось три товара, а клавиатура не первая, а в конце. Это не ошибка. Но не отмахиваемся «случайность»: надо знать, почему так, потому что этот вопрос обязательно зададут."
+   ],
+   "b": [
+    "Причина: PostgreSQL <b>не меняет обновлённую строку на месте</b> — пишет её новую копию на свободное место",
+    "Причина внутри базы. В update PostgreSQL не меняет строку на месте: старую копию помечает как «устаревшую», новую пишет на свободное место в файле, здесь в конец. Старая копия позже очищается. А select звёздочка читает строки в порядке файла."
+   ],
+   "c": [
+    "Доказательство: <code>ctid</code> — адрес строки в файле; клавиатура теперь <code>(0,6)</code>: <b>два изменения — две новые копии</b>",
+    "Это можно увидеть. У каждой строки есть скрытая колонка ctid: её адрес в файле, страница и место. Если сделать select ctid, клавиатура — ноль запятая шесть, то есть на шестом месте. Клавиатура менялась дважды: сначала цена, потом остаток. Каждый раз база писала новую копию: на пятое, потом на шестое место. Поэтому она вышла в конце."
+   ],
+   "d": [
+    "Итог: если нужен порядок — <b><code>ORDER BY id</code></b>; без него порядок никогда не гарантирован",
+    "Итог: если order by не написан, база отдаёт строки в порядке файла, а этот порядок может меняться после каждого update. Если нужен порядок, в конце пишется order by id, и клавиатура снова первая. Ответ на вопрос «почему место товара изменилось» — вот: не было order by."
+   ]
+  }
+ },
+ "7": {
+  "kicker": "Проверка 1",
+  "eyebrow": "Проверка · 1 / 4",
+  "title": "Команда прошла без ошибки, ответ UPDATE 0. Что это значит?",
+  "q": "Вы видели число в ответе, проверим. Первая проверка. В терминале на экране пытались изменить цену девяносто девятого товара. Ошибки нет, ответ: update ноль. Что это значит? Выберите вариант.",
+  "ok": "Верно. Where id девяносто девять не подошёл ни к одной строке, поэтому изменилось ноль строк. База не считает это ошибкой. Чтобы убедиться, проверьте через select, есть ли такой id, на экране стоит этот select. Значит, update ноль — не ошибка: он говорит, что where не подошёл ни к одной строке.",
+  "okShort": "<code>UPDATE 0</code> — <code>WHERE</code> не подошёл ни к одной строке. Не ошибка: <code>SELECT … WHERE id = 99</code> тоже вернёт пусто.",
+  "hint": "Что считает число в ответе? Какую строку должен был найти WHERE?",
+  "demak": "<code>UPDATE 0</code> — не ошибка: значит, <code>WHERE</code> не подошёл ни к одной строке.",
+  "opts": [
+   "id = 99 нет — WHERE не подошёл ни к одной строке",
+   "У пользователя нет права менять цену",
+   "Таблица опустела — строка удалена",
+   "Цена изменилась, но ещё не было COMMIT"
+  ],
+  "wrong": {
+   "1": "Если бы права не было, вышло бы ERROR:  permission denied for table products; здесь ошибки нет.",
+   "2": "Таблица на месте: UPDATE 0 ничего не удаляет.",
+   "3": "UPDATE без транзакции сохраняется сразу; а число говорит, сколько строк затронуто."
+  }
+ },
+ "8": {
+  "kicker": "Практика 1 / 4",
+  "eyebrow": "Сейчас у себя · 10–15 минут",
+  "title": "База shop и CRUD — четыре команды, число в каждом ответе",
+  "seg": {
+   "a": [
+    "Теперь вы: <b>в своей базе</b> таблица, четыре товара, два фильтра, цена и удаление",
+    "Теперь ваша очередь. В своей базе делаете то же: создаёте таблицу, добавляете четыре товара, пишете два фильтра, потом меняете цену и удаляете один товар. Займёт десять–пятнадцать минут."
+   ],
+   "b": [
+    "Шаги 1–3: база, таблица, товары и <b>два фильтра</b>",
+    "На первом шаге создаёте базу shop и таблицу products. На втором добавляете четыре товара одним insert и видите в ответе четыре. На третьем пишете два фильтра: дешёвые и заканчивающиеся. После каждой команды читайте строку ответа."
+   ],
+   "c": [
+    "Шаг 4: цена и удаление; подтверждение — <b>число строк в последнем <code>SELECT</code></b>",
+    "На четвёртом шаге измените цену клавиатуры, удалите наушники и сделайте select звёздочка. Обратите внимание, где стоит клавиатура. В поле подтверждения напишите число строк под результатом последнего select."
+   ],
+   "d": [
+    "Если вышло иначе, нажмите кнопку <b>«Вышло иначе?»</b> — откроется окно с решениями",
+    "Если вышло иначе, нажмите кнопку «Вышло иначе?» внизу, откроется окно с решениями. Пока не отмечены все четыре пункта и нет подтверждения, «Далее» не откроется. Значит, после этой практики вы написали четыре команды CRUD в своей базе и прочитали число в каждом ответе."
+   ]
+  },
+  "steps": [
+   {
+    "t": "База и таблица",
+    "exp": "CREATE DATABASE · CREATE TABLE"
+   },
+   {
+    "t": "Товары",
+    "exp": "INSERT 0 4"
+   },
+   {
+    "t": "Фильтры",
+    "exp": "3 строки · 1 строка (Quloqchin)"
+   },
+   {
+    "t": "Цена и удаление",
+    "exp": "UPDATE 1 · DELETE 1 · (3 rows), Klaviatura в конце"
+   }
+  ],
+  "proof": {
+   "label": "Число строк в результате последнего SELECT *",
+   "placeholder": "напишите число под результатом",
+   "wrong": "Сколько останется из четырёх товаров после удаления одного? Напишите число в скобках под результатом."
+  },
+  "trouble": [
+   [
+    "ERROR:  database \"shop\" already exists",
+    "база уже создана — \\c shop"
+   ],
+   [
+    "ERROR:  relation \"products\" does not exist",
+    "вы в другой базе (приглашение postgres=#) — \\c shop"
+   ],
+   [
+    "INSERT 0 4 дважды",
+    "товары добавлены дважды — id 1–8; на шаге 4 выбирайте id по SELECT"
+   ],
+   [
+    "UPDATE 0 / DELETE 0",
+    "такого id нет — сначала посмотрите id через SELECT *"
+   ],
+   [
+    "Klaviatura в конце",
+    "не ошибка — экран 6: упорядочите через ORDER BY id"
+   ],
+   [
+    "ERROR:  syntax error at or near \"…\"",
+    "перед местом, которое показал ^, пропущены запятая, скобка или кавычка"
+   ]
+  ]
+ },
+ "9": {
+  "kicker": "Этап 2 · транзакция",
+  "title": "Если забыть WHERE — UPDATE 3, DELETE 3. Проверять безопасно: BEGIN … ROLLBACK",
+  "seg": {
+   "a": [
+    "<code>UPDATE</code> или <code>DELETE</code> без <code>WHERE</code> — <b>все строки</b>. Это надо увидеть, но не ломая базу",
+    "Я говорил: если число в ответе неожиданно большое, не было where. Это нужно увидеть своими глазами, но не ломая базу. Способ: сначала begin, то есть открываем транзакцию. Всё, что после неё, будет временным."
+   ],
+   "b": [
+    "<code>UPDATE</code> без <code>WHERE</code> — <code>UPDATE 3</code>: <b>все товары по девяносто девять тысяч</b>",
+    "После begin — update без where. Ответ базы — update три. Делаем select: все товары по девяносто девять тысяч сум, и мышка, и колонка. Один забытый where сломал весь прайс. Пришедшие из Mongo ошибаются именно здесь: там updateOne трогал один документ, а здесь без where меняются все строки."
+   ],
+   "c": [
+    "<code>DELETE</code> без <code>WHERE</code> — <code>DELETE 3</code>, <b>таблица пуста</b>",
+    "Ещё хуже — delete без where. Ответ базы — delete три, а select возвращает ноль строк. В настоящем магазине это значит, что пропал весь каталог. Но мы внутри транзакции."
+   ],
+   "d": [
+    "<code>ROLLBACK</code> — всё на месте: <b>изменения внутри транзакции отменены</b>",
+    "Теперь пишем rollback и делаем select: все три товара на месте, и цены старые. Всё, что сделано внутри транзакции, отменено. В PostgreSQL-1 транзакция защищала магазин, а здесь это ваша площадка для проверки."
+   ],
+   "e": [
+    "Итог: опасный <code>UPDATE</code>/<code>DELETE</code> сначала <b>проверяйте внутри <code>BEGIN</code></b>, смотрите через <code>SELECT</code>",
+    "Итог: опасный update или delete сначала запускайте внутри begin и смотрите результат через select. Если верно — commit, если нет — rollback. Это одна строка, но она спасает всю таблицу. На следующем экране посмотрим, что база на самом деле делает внутри транзакции."
+   ]
+  }
+ },
+ "10": {
+  "kicker": "Этап 2 · что происходит внутри",
+  "title": "Каждая команда сохраняется сама; после BEGIN — только в вашем сеансе, до COMMIT",
+  "seg": {
+   "a": [
+    "Обычно PostgreSQL в <b>autocommit</b>: каждая команда сохраняется сразу, как выполнена",
+    "Обычно PostgreSQL работает в режиме autocommit: каждая команда сохраняется сразу, как только выполнена, вернуть её нельзя. Update и delete с первого этапа сохранились именно так. Поэтому delete без where в настоящей базе — катастрофа."
+   ],
+   "b": [
+    "После <code>BEGIN</code> приглашение <code>shop=*#</code> — <b>звёздочка: транзакция открыта</b>, изменение видите только вы",
+    "Когда пишете begin, приглашение меняется: равно, звёздочка, решётка. Звёздочка значит, что транзакция открыта. Теперь изменения видны только в вашем сеансе. Мы проверили: в сеансе A сделали скидку на клавиатуру, восемьдесят девять тысяч. Сеанс B всё ещё видит девяносто девять. Только после commit B увидел новую цену."
+   ],
+   "c": [
+    "Если внутри транзакции ошибка — приглашение <code>shop=!#</code>: <b>aborted</b>, следующие команды отклоняются",
+    "Если внутри транзакции какая-то команда дала ошибку, приглашение меняется на восклицательный знак, и база говорит «current transaction is aborted»: следующие команды не выполняются, даже простой select. Из этого состояния выводит только rollback. Даже если напишете commit, база сделает rollback, так и напишет в ответе."
+   ],
+   "d": [
+    "Итог: <code>BEGIN</code> — временно, <code>COMMIT</code> — сохранить, <code>ROLLBACK</code> — отменить; <b>видите <code>!#</code> — <code>ROLLBACK</code></b>",
+    "Итог: после begin всё временно и видно только вам, commit сохраняет, rollback отменяет. Звёздочка в приглашении говорит, что транзакция открыта, восклицательный знак — что была ошибка. Видите восклицательный знак — никаких других команд: rollback."
+   ]
+  }
+ },
+ "11": {
+  "kicker": "Этап 2 · что происходит внутри",
+  "title": "Продажа — две команды: уменьшить остаток и записать заказ. Либо обе, либо ни одной",
+  "seg": {
+   "a": [
+    "Правило и вторая таблица для магазина: <b><code>CHECK (stock &gt;= 0)</code></b> и <code>orders</code> — заказы",
+    "Транзакция не только для проверки. Добавляем магазину правило: остаток не может быть отрицательным, check stock больше или равно нулю. И вторую таблицу: orders, заказы: какой товар, сколько и когда. В колонку created at написали default now, время ставит сама база."
+   ],
+   "b": [
+    "Одна продажа — две команды: <code>UPDATE</code> уменьшает остаток, <code>INSERT</code> пишет заказ — <b>внутри <code>BEGIN … COMMIT</code></b>",
+    "Продана одна мышка. Это две команды: уменьшить остаток на один и записать заказ. Обе между begin и commit. Returning показал, что остаток стал четырнадцать, а заказ записан с номером один и временем. После commit сохранились обе."
+   ],
+   "c": [
+    "Попросили двенадцать мишек, а всего десять: <b><code>CHECK</code> отклонил</b>, транзакция aborted — <code>ROLLBACK</code>",
+    "Теперь попросили двенадцать мишек, на складе десять. Заказ записался, потом update хотел сделать остаток минус два. Check отклонил: new row violates check constraint stock nonneg. Транзакция aborted. Делаем rollback: и заказ пропал, и остаток десять. Ложного заказа не осталось."
+   ],
+   "d": [
+    "Итог: команды одного дела — <b>в одной транзакции</b>; если правило в базе, полдела не остаётся",
+    "Итог: команды, относящиеся к одному делу, — в одной транзакции: либо сохраняется всё, либо ничего. Это называют атомарностью. Если правило в самой базе, полдела не останется, даже если код ошибётся. Ответ на задачу «последний телефон» из PostgreSQL-1 — именно это: транзакция и правило."
+   ]
+  }
+ },
+ "12": {
+  "kicker": "Проверка 2",
+  "eyebrow": "Проверка · 2 / 4",
+  "title": "BEGIN; → DELETE FROM products; (DELETE 3) → ROLLBACK;. Что теперь вернёт SELECT * FROM products;?",
+  "q": "Вы видели транзакцию изнутри, проверим. Вторая проверка. На экране: begin, delete без where, ответ delete три, потом rollback. Если теперь сделать select, что будет в таблице? Выберите вариант.",
+  "ok": "Верно. Delete был внутри транзакции, rollback его отменил. Все три товара на месте, select на экране это показал. Пока не написан commit, никакое изменение не сохраняется. Значит, begin и rollback позволяют проверить опасную команду, не ломая базу.",
+  "okShort": "<code>ROLLBACK</code> — все изменения внутри транзакции отменены: три строки на месте.",
+  "hint": "Что ROLLBACK делает с изменениями внутри транзакции?",
+  "demak": "пока не написан <code>COMMIT</code>, изменения внутри транзакции не сохраняются; <code>ROLLBACK</code> отменяет всё.",
+  "opts": [
+   "Ноль строк — DELETE 3 уже выполнен",
+   "Только одна строка — вернётся последняя",
+   "Все три — ROLLBACK отменил удаление",
+   "ERROR — из удалённой таблицы нельзя читать"
+  ],
+  "wrong": {
+   "0": "DELETE 3 был внутри транзакции, и COMMIT не было.",
+   "1": "ROLLBACK отменяет не одну строку, а всю транзакцию.",
+   "3": "DELETE удаляет строки, а не таблицу; таблица всегда на месте."
+  }
+ },
+ "13": {
+  "kicker": "Практика 2 / 4",
+  "eyebrow": "Сейчас у себя · 5–10 минут",
+  "title": "Безопасно проверьте UPDATE без WHERE — следите за звёздочкой в приглашении",
+  "seg": {
+   "a": [
+    "Теперь вы: <code>UPDATE</code> без <code>WHERE</code> в своей базе, но <b>внутри транзакции</b>",
+    "Теперь сами: делаете update без where в своей базе, но внутри транзакции. Займёт пять–десять минут. После этого каждую опасную команду будете проверять так же."
+   ],
+   "b": [
+    "Шаги 1–2: <code>BEGIN</code> (приглашение <code>shop=*#</code>), <code>UPDATE</code> без <code>WHERE</code> и <code>SELECT</code> — <b>все цены одинаковые</b>",
+    "На первом шаге пишете begin и видите, что в приглашении появилась звёздочка. На втором делаете update без where и через select видите, что все цены стали одинаковыми. Commit не пишите."
+   ],
+   "c": [
+    "Шаги 3–4: <code>ROLLBACK</code> и <code>SELECT</code>; подтверждение — <b>цена клавиатуры</b>",
+    "На третьем шаге пишете rollback, приглашение возвращается к обычному. На четвёртом снова делаете select. В поле подтверждения напишите текущую цену клавиатуры, после rollback."
+   ],
+   "d": [
+    "Если вышло иначе, нажмите кнопку <b>«Вышло иначе?»</b> — откроется окно с решениями",
+    "Если вышло иначе, нажмите кнопку «Вышло иначе?» внизу, откроется окно с решениями. Пока не отмечены все четыре пункта и нет подтверждения, «Далее» не откроется. Значит, вы увидели, насколько опасен update без where, и научились всё вернуть через rollback."
+   ]
+  },
+  "steps": [
+   {
+    "t": "Транзакция",
+    "exp": "BEGIN · приглашение shop=*#"
+   },
+   {
+    "t": "Без WHERE",
+    "exp": "UPDATE 3 · все цены 1"
+   },
+   {
+    "t": "Отмена",
+    "exp": "ROLLBACK · приглашение shop=#"
+   },
+   {
+    "t": "Проверка",
+    "exp": "цены старые"
+   }
+  ],
+  "proof": {
+   "label": "Цена Klaviatura после ROLLBACK",
+   "placeholder": "напишите цену клавиатуры",
+   "wrong": "После ROLLBACK цена как в 1-й практике. Прочитайте строку Klaviatura в результате SELECT."
+  },
+  "trouble": [
+   [
+    "WARNING:  there is no transaction in progress (на ROLLBACK)",
+    "BEGIN не написан — изменение уже сохранено; восстановите цены UPDATE из 1-й практики"
+   ],
+   [
+    "цена 120000",
+    "шаг 4 первой практики (99 000) не выполнен — закончите 1-ю практику"
+   ],
+   [
+    "приглашение shop=!#",
+    "внутри транзакции была ошибка — напишите ROLLBACK; (экран 10)"
+   ]
+  ]
+ },
+ "14": {
+  "kicker": "Этап 3 · база охраняет",
+  "title": "Товар без имени сохранился без ошибки — добавляем правило сами, и база начинает отклонять",
+  "seg": {
+   "a": [
+    "<code>INSERT</code> без имени — <code>INSERT 0 1</code>, <b>ошибки нет</b>: в таблице не было <code>NOT NULL</code>",
+    "Третий этап: как база охраняет. Добавляем товар без имени: только цена и остаток. Ошибки нет, insert ноль один. Если искать через where name is null, — пятая строка: имя пустое. База охраняет только записанное правило, а мы правило не писали."
+   ],
+   "b": [
+    "Хотим добавить <code>NOT NULL</code> — база отклонила: <b>в колонке есть пустое значение</b>. Сначала чистим, потом правило",
+    "Теперь добавляем правило: alter table, name set not null. База отклонила: column name contains null values. Логично: раз есть пустое имя, правило поставить нельзя. Удаляем строку без имени и ставим правило снова. Теперь insert без имени даёт ошибку: violates not-null constraint."
+   ],
+   "c": [
+    "<code>DEFAULT 0</code> — не указанный остаток будет нулём; <b><code>UNIQUE</code></b> — второй «Kolonka» отклоняется",
+    "Ещё два правила. Default: если stock не указан, пусть будет ноль, планшет сохранился с нулевым остатком. Unique: имя не повторяется. Если добавить второго колонку, база скажет duplicate key value и назовёт, какое значение повторилось."
+   ],
+   "d": [
+    "Итог: <code>\\d products</code> — все правила в одном месте; <b>если правило в базе</b>, ошибку ловит база, а не код",
+    "Итог: бэкслеш d products показывает все правила таблицы: not null, default, unique, check и внешний ключ. Если правило в базе, ошибку ловит база, а не код, и внутри каждого сообщения стоит имя правила. На следующем экране потренируемся читать эти сообщения."
+   ]
+  }
+ },
+ "15": {
+  "kicker": "Этап 3 · база охраняет",
+  "title": "Пять ошибок — в каждой само сообщение говорит, что исправить",
+  "seg": {
+   "a": [
+    "<code>relation \"product\" does not exist</code> — имя таблицы: <b>не хватает одной <code>s</code></b>",
+    "Теперь самые частые ошибки. Первая — в имени таблицы: вместо products написано product. База говорит relation product does not exist. Relation — название, которое база даёт таблице. Таблица есть, просто имя отличается на одну букву."
+   ],
+   "b": [
+    "<code>column \"narx\" does not exist</code> — имя колонки; а <code>HINT</code> <b>предлагает не ту колонку</b>",
+    "Вторая — в имени колонки: написано narx. База говорит column narx does not exist, ниже hint: perhaps you meant name. Внимание: hint угадывает и здесь ошибся, нужная колонка — price. Верьте не hint, а бэкслеш d."
+   ],
+   "c": [
+    "Текст вместо числа и пропущенное значение — <code>invalid input syntax</code>, <b><code>more target columns</code></b>",
+    "Третья: в колонку цены написали слово arzon, база говорит invalid input syntax for type integer. Четвёртая: колонок написано три, а значений два, база говорит insert has more target columns than expressions. В обоих случаях стрелка показывает место ошибки."
+   ],
+   "d": [
+    "Узбекский апостроф закрывает строку: <code>syntax error at or near \"yinchoq\"</code> — <b>пишется дважды</b>",
+    "Пятая, самая частая в узбекском тексте: апостроф. Апостроф в слове o'yinchoq раньше времени закрывает текст, и база спотыкается на слове yinchoq. Исправление: апостроф внутри слова пишется дважды, при сохранении он станет одним."
+   ],
+   "e": [
+    "Итог: сравните имя из сообщения с <b><code>\\d products</code></b>; <code>^</code> показывает место ошибки",
+    "Итог: во всех этих ошибках внутри сообщения стоит имя или значение. Сравните его со структурой таблицы, бэкслеш d products. Стрелка показывает место ошибки. Для апострофа одно правило: апостроф внутри слова — дважды."
+   ]
+  }
+ },
+ "16": {
+  "kicker": "Проверка 3",
+  "eyebrow": "Проверка · 3 / 4",
+  "title": "VALUES ('O'yinchoq', 30000, 4) → syntax error at or near \"yinchoq\". Какое исправление?",
+  "q": "Вы читали сообщения, проверим. Третья проверка. На экране хотят добавить товар o'yinchoq, база говорит syntax error, на слове yinchoq. Что случилось и какое исправление? Выберите вариант.",
+  "ok": "Верно. В SQL текст — внутри одинарных кавычек, апостроф внутри слова закрывает его раньше времени. Если написать его дважды, база поймёт это как один апостроф. На экране исправленный insert: товар сохранился с именем o'yinchoq. Значит, каждый апостроф в тексте SQL пишется дважды.",
+  "okShort": "<code>'O''yinchoq'</code> — апостроф внутри слова дважды. При сохранении станет одним: <code>O'yinchoq</code>.",
+  "hint": "Каким символом текст начинается и каким заканчивается? Апостроф — этот же символ.",
+  "demak": "апостроф в тексте SQL пишется дважды: <code>'O''yinchoq'</code>.",
+  "opts": [
+   "Написать имя кириллицей — апостроф не нужен",
+   "Написать апостроф дважды: 'O''yinchoq'",
+   "Взять имя в двойные кавычки: \"O'yinchoq\"",
+   "Сделать колонку name не VARCHAR, а TEXT"
+  ],
+  "wrong": {
+   "0": "Проблема не в буквах, а в апострофе: он раньше времени закрывает текст.",
+   "2": "Двойные кавычки в SQL — для имени колонки или таблицы, проверили: column \"O'yinchoq\" does not exist.",
+   "3": "Тип колонки к этой ошибке не относится: ошибка в записи текста."
+  }
+ },
+ "17": {
+  "kicker": "Этап 4 · Express · что происходит внутри",
+  "title": "Pool — набор соединений: при создании не подключается, подключается на первом запросе, потом переиспользует это соединение",
+  "seg": {
+   "a": [
+    "В Express к базе ходят через пакет <code>pg</code>; вверху кода <b><code>new Pool({ user, password, database, host, port })</code></b>",
+    "То, что вы делали в терминале, теперь переносим внутрь сервера. В Node с PostgreSQL общается пакет pg. Вверху кода из pg берётся Pool, ему передаются пользователь, пароль, имя базы, host и порт. Слово pool значит «бассейн», то есть набор соединений. Почему набор — сейчас увидите."
+   ],
+   "b": [
+    "Мы измерили: при создании <code>Pool</code> соединений <b>ноль</b>; на первом запросе подключается, следующие запросы — на том же соединении",
+    "Мы это измерили. Сразу после создания Pool число соединений — ноль: он ещё не ходил в базу. На первом запросе подключается. Потом отправили ещё два запроса: номер процесса в базе, pid, у всех трёх одинаковый, активное соединение одно. То есть Pool не открывает новое соединение на каждый запрос, а переиспользует имеющееся."
+   ],
+   "c": [
+    "Почему важно: открыть соединение дорого; и <b>ошибка только на первом запросе</b> — даже при неверном пароле сервер говорит «работает»",
+    "Это объясняет две вещи. Первая: подключение к базе — дорогое дело, поэтому правильно открыть его один раз и переиспользовать. Вторая: так как Pool при создании не подключается, сервер запускается без ошибки даже при неверном пароле, ошибка выходит только на первом запросе. Проверили: создали Pool с неверным паролем — ошибки нет; на первом запросе password authentication failed."
+   ],
+   "d": [
+    "Итог: <code>Pool</code> настраивается один раз, <b>подключается на первом запросе</b>, переиспользует соединение; «сервер работает» — не о базе",
+    "Итог: Pool настраивается один раз, подключается на первом запросе и переиспользует соединение. «Сервер работает» в терминале — только про Express, о базе это ничего не говорит. Это увидите ещё раз на пятом этапе, в ошибках подключения. Теперь отправим через Pool первый запрос."
+   ]
+  }
+ },
+ "18": {
+  "kicker": "Этап 4 · Express",
+  "title": "pool.query несёт запрос в базу; в ответе rows — строки, rowCount — число из терминала",
+  "seg": {
+   "a": [
+    "<code>GET /api/cars</code>: <code>pool.query('SELECT * FROM cars')</code> — <b>часть <code>rows</code> результата</b> возвращается через <code>res.json</code>",
+    "Endpoint GET api cars. Pool query несёт select в базу. В объекте результата несколько вещей, нам нужны две: rows, то есть массив строк, и rowCount. Rows возвращается через res json. В Postman двести и три машины. Это тот же select из терминала, только ответ в виде JSON."
+   ],
+   "b": [
+    "<code>rowCount</code> — тот самый <code>UPDATE 1</code> из терминала: измерили, <b><code>WHERE id = 99</code> → <code>rowCount: 0</code></b>, <code>rows: []</code>",
+    "Rowcount говорит, сколько строк затронуто, это и есть update один из терминала или число строк в select. Проверили: в базе shop с where price меньше ста тысяч rowcount три. Update where id девяносто девять — rowcount ноль и пустой массив rows. Update ноль с первого этапа приходит именно сюда."
+   ],
+   "c": [
+    "<code>async</code>/<code>await</code> и <code>try</code>/<code>catch</code>: запрос ожидается; при ошибке <b>статус 500 и текст ошибки</b>",
+    "Pool query возвращает promise, поэтому его ждут через await, а функция — async. Всё внутри try. При ошибке срабатывает catch: сервер возвращает статус пятьсот и текст ошибки. На пятом этапе все ошибки увидите именно через этот catch."
+   ],
+   "d": [
+    "Итог: <b><code>Pool</code> → <code>pool.query</code> → <code>rows</code> / <code>rowCount</code> → <code>res.json</code></b> — запрос идёт с сервера в базу за эти четыре шага",
+    "Итог: запрос идёт с сервера в базу за четыре шага. Pool подключается, pool query отправляет запрос, из результата берётся rows или rowcount, res json возвращает ответ. На следующем экране остальные три endpoint: в них те же четыре шага, только SQL другой."
+   ]
+  }
+ },
+ "19": {
+  "kicker": "Этап 4 · Express",
+  "title": "Три пишущих endpoint — три SQL-команды; со статусом ответа и rowCount",
+  "seg": {
+   "a": [
+    "<code>POST</code> — <code>INSERT … RETURNING *</code>: <b>новая строка в ответе</b>, статус 201",
+    "GET читает, остальные три пишут. В POST — insert, в конце returning звёздочка, вы видели на первом этапе: база возвращает новую строку, с id. Эта строка уходит в ответ как rows ноль. Статус двести один, то есть создано. Chevrolet Spark добавлен с четвёртым id."
+   ],
+   "b": [
+    "<code>is_rented: null</code> — колонка, не переданная в <code>POST</code>, осталась пустой: <b>в таблице нет <code>DEFAULT</code></b>",
+    "Посмотрите на ответ: is rented null. В POST эту колонку не передали, а значения по умолчанию в таблице нет. Вспомните третий этап: база выполняет только записанное правило. Решение в таблице: alter table, is rented set default false. Тогда новая машина всегда записывается как свободная."
+   ],
+   "c": [
+    "<code>PUT</code> — <code>UPDATE … WHERE id = $2</code>, <code>DELETE</code> — <code>WHERE id = $1</code>: 200; <b>если <code>rowCount</code> ноль — 404</b>",
+    "PUT обновил цену второй машины, двести и обновлённая строка. DELETE удалил первую машину. В обоих есть where, id приходит из URL. Девяносто девятая машина: база возвращает update ноль, не ошибку. В этом образце код проверяет, ноль ли rowcount, и даёт четыреста четыре: машина не найдена. Без rowcount ответ был бы двести, то есть ложное «изменено»."
+   ],
+   "d": [
+    "Итог: GET — 200, POST — 201, PUT/DELETE — 200, <b>не найдено — 404</b>, ошибка — 500; 404 решает <code>rowCount</code>",
+    "Итог: GET двести, POST двести один, PUT и DELETE двести; строка не найдена — четыреста четыре, ошибка — пятьсот. Кто решает четыреста четыре? Rowcount, то есть update ноль из терминала. Теперь самый важный вопрос: почему значения передаются через доллар один."
+   ]
+  }
+ },
+ "20": {
+  "kicker": "Этап 4 · Express · что происходит внутри",
+  "title": "Склеенный SQL: 1 OR 1=1 — удалились все три машины. С $1 — 500, таблица на месте",
+  "seg": {
+   "a": [
+    "Приклеить значение к тексту SQL: <code>'… WHERE id = ' + req.params.id</code> — <b>работает, но</b>",
+    "В коде легко приклеить значение к тексту SQL: where id равно, плюс, req params id. В обычном запросе это работает: delete api cars один, удаляется первая машина. Проблема в том, что текст из URL становится частью SQL. Мы проверили."
+   ],
+   "b": [
+    "В URL написали <code>1 OR 1=1</code> — запрос стал «всё»: <b><code>deleted: 3</code></b>, таблица пуста",
+    "В URL вместо id отправили один or один равно один. Склеенная строка стала таким SQL: where id один, или один равно один. Один равно один всегда верно. Ответ двести, deleted три: таблица опустела. Это называют SQL injection, и это может сделать любой пользователь из браузера."
+   ],
+   "c": [
+    "Тот же запрос с <code>$1</code>: значение идёт отдельно — <b><code>invalid input syntax for type integer</code></b>, 500, таблица на месте",
+    "Теперь с доллар один: второй аргумент pool query — массив, значение в этом массиве и в текст SQL не попадает. База пытается прочитать один or один равно один как число и отклоняет: invalid input syntax for type integer. Пятьсот, но таблица на месте, все три машины есть."
+   ],
+   "d": [
+    "Итог: каждое значение от пользователя — <b>через <code>$1, $2</code></b>, никогда не приклеивается к тексту SQL",
+    "Итог: каждое значение от пользователя передаётся через доллар один, доллар два и никогда не приклеивается к тексту SQL. Это не вопрос стиля, а вопрос безопасности: один знак плюс открывает дорогу к удалению всей таблицы. Теперь поднимете сервер сами."
+   ]
+  }
+ },
+ "21": {
+  "kicker": "Практика 3 / 4",
+  "eyebrow": "Сейчас у себя · 15–20 минут",
+  "title": "car_rental и server.js — свой сервер, проверка в Postman",
+  "seg": {
+   "a": [
+    "Теперь вы: таблица вручную, сервер — <b>из образца или с Gemini</b>, проверка в Postman",
+    "Теперь сами поднимаете сервер. Таблицу пишете вручную в терминале. Код сервера напишите по образцу или возьмите у Gemini: Express, pg, четыре endpoint, значения через доллар один. Пятнадцать–двадцать минут."
+   ],
+   "b": [
+    "Шаги 1–2: <code>car_rental</code> и <code>cars</code>; папка, <b><code>express</code> и <code>pg</code></b>",
+    "На первом шаге создаёте базу car rental и таблицу cars и добавляете три машины. На втором открываете папку сервера avto ijara, делаете npm init и ставите пакеты express и pg."
+   ],
+   "c": [
+    "Шаги 3–4: <code>server.js</code>, <code>node server.js</code>, Postman; подтверждение — <b>статус ответа <code>POST</code></b>",
+    "На третьем шаге пишете файл server js, ставите в него свой пароль и запускаете через node server js. На четвёртом отправляете в Postman GET и POST. В поле подтверждения напишите статус ответа на POST."
+   ],
+   "d": [
+    "Если вышло иначе, нажмите кнопку <b>«Вышло иначе?»</b> — откроется окно с решениями",
+    "Если вышло иначе, нажмите кнопку «Вышло иначе?» внизу, откроется окно с решениями. На пятом этапе все эти ошибки нарочно вызовем и исправим. Пока не отмечены все четыре пункта и нет подтверждения, «Далее» не откроется. Значит, после этой практики у вас есть работающий сервер, и вы проверили его в Postman."
+   ]
+  },
+  "steps": [
+   {
+    "t": "Таблица",
+    "exp": "INSERT 0 3"
+   },
+   {
+    "t": "Проект",
+    "exp": "added … packages"
+   },
+   {
+    "t": "Сервер — server.js: «Открыть код» (образец) или Gemini (Express + pg, четыре endpoint, $1, не найдено — 404); впишите пароль",
+    "exp": "Server 3000-portda ishlayapti"
+   },
+   {
+    "t": "Postman",
+    "exp": "200 · 3 машины · POST — с id"
+   }
+  ],
+  "proof": {
+   "label": "Статус ответа POST",
+   "placeholder": "напишите статус, который показал Postman",
+   "wrong": "Статус успешного POST — трёхзначное число. В Postman написан над ответом."
+  },
+  "trouble": [
+   [
+    "500 password authentication failed for user \"postgres\"",
+    "PASSWORD — пароль, заданный при установке (экран 24)"
+   ],
+   [
+    "500 client password must be a string",
+    "пароль пустой / process.env не прочитан (экран 24)"
+   ],
+   [
+    "500 database \"…\" does not exist",
+    "неверное имя DATABASE или база не создана (экран 24)"
+   ],
+   [
+    "500 {\"error\":\"\"}",
+    "PostgreSQL не работает — через console.error(err) будет видно ECONNREFUSED (экран 24)"
+   ],
+   [
+    "500 Cannot destructure property 'model' of 'req.body'",
+    "нет app.use(express.json()) (экран 23)"
+   ],
+   [
+    "500 column \"price\" of relation \"cars\" does not exist",
+    "неверное имя колонки в коде (экран 22)"
+   ],
+   [
+    "код изменился, а ответ нет",
+    "работает старый сервер — экран 25"
+   ]
+  ]
+ },
+ "22": {
+  "kicker": "Этап 5 · ломаем и исправляем",
+  "title": "column \"price\" of relation \"cars\" does not exist — в коде price, в таблице daily_price",
+  "seg": {
+   "a": [
+    "Первая поломка — обычная ошибка Gemini: в <code>INSERT</code> он <b>сам выдумывает имя колонки</b>, <code>price</code>",
+    "Ломать начинаем с самой частой ошибки. Gemini в insert написал price вместо daily price: имя колонки взял не из таблицы, а из своей догадки. Запускаем сервер: ошибки нет, он пишет «сервер работает». Ошибка выходит только при отправке POST."
+   ],
+   "b": [
+    "POST → 500, в сообщении таблица и колонка: <b><code>\"price\"</code> · <code>\"cars\"</code></b>",
+    "Отправляем POST, ответ пятьсот. Читаем сообщение: column price of relation cars does not exist. Колонка price, а таблица cars. Слово relation знакомо с третьего этапа: это таблица. Сообщение само сказало, что исправить."
+   ],
+   "c": [
+    "Исправление: в коде <code>daily_price</code> — <b>перезапустив сервер</b>, POST → 201",
+    "Смотрим структуру таблицы: колонка daily price. Исправляем в коде, останавливаем сервер и запускаем заново. Отправляем POST: ответ двести один, новая машина вернулась с id."
+   ],
+   "d": [
+    "Итог: если 500 — сравните имя из текста <code>error</code> с <b><code>\\d cars</code></b>; код изменился — сервер заново",
+    "Итог: если вышло пятьсот, читайте текст ошибки, внутри имя колонки и таблицы. Сравните его с бэкслеш d cars в терминале. После изменения кода обязательно перезапустите сервер, иначе продолжит работать старый код."
+   ]
+  }
+ },
+ "23": {
+  "kicker": "Этап 5 · ломаем и исправляем",
+  "title": "Cannot destructure property 'model' of 'req.body' — тело запроса не прочитано",
+  "seg": {
+   "a": [
+    "Убираем одну строку: <code>app.use(express.json())</code> — <b>сервер всё равно запускается</b>",
+    "Вторая поломка. Gemini иногда забывает одну строку: app use express json. Убираем эту строку. Сервер запускается без ошибки, GET тоже работает. Проблема только в запросах с телом."
+   ],
+   "b": [
+    "POST → 500: <code>req.body</code> — <b><code>undefined</code></b>, взять <code>model</code> нельзя",
+    "Отправляем POST, ответ пятьсот. Сообщение такое: cannot destructure property model of req body as it is undefined. То есть req body нет вообще: Express не прочитал тело запроса, потому что не подключена часть, которая читает JSON."
+   ],
+   "c": [
+    "Исправление: строка возвращается — после создания <code>app</code>, <b>до endpoint</b> — POST → 201",
+    "Для исправления возвращаем строку app use express json — после создания app и до endpoint. Порядок важен: эта строка работает перед каждым запросом. Сервер перезапускается, POST двести один."
+   ],
+   "d": [
+    "Итог: если <code>req.body</code> — <code>undefined</code>, первое место, куда смотреть, — <b><code>express.json()</code></b>",
+    "Итог: если вышла ошибка req body undefined, первое место, куда смотреть, — app use express json. И если GET работает, а POST и PUT нет, — тоже эта строка. Одна строка, но без неё не работает ни один запрос с телом."
+   ]
+  }
+ },
+ "24": {
+  "kicker": "Этап 5 · ломаем и исправляем",
+  "title": "Сервер говорит «работает» — ошибка пароля, базы и PostgreSQL выходит на первом запросе",
+  "seg": {
+   "a": [
+    "<code>Pool</code> подключается не сразу (экран 17): сервер запускается, <b>ошибка на первом запросе</b>",
+    "Вы видели на экране Pool: при запуске сервера Pool не подключается к базе, подключается на первом запросе. Поэтому даже при неверном пароле в терминале пишется «сервер работает». В случае «сервер работает, но пятьсот» читайте сообщение: бывает четыре вида."
+   ],
+   "b": [
+    "Пароль неверный — <code>password authentication failed</code>; пароль пустой — <b><code>client password must be a string</code></b>",
+    "Если пароль неверный: password authentication failed for user postgres. Если пароль вообще не передан, например не прочитан из process env: client password must be a string. Второе выглядит странно, но смысл простой: переменная пароля пустая."
+   ],
+   "c": [
+    "Неверное имя базы — <code>database \"carrental\" does not exist</code>: <b>пропало нижнее подчёркивание</b>",
+    "Если в имени базы пропало нижнее подчёркивание: database carrental does not exist. База есть, просто её имя car подчёркивание rental. Точное имя посмотрите в терминале через бэкслеш l."
+   ],
+   "d": [
+    "PostgreSQL выключен — текст ошибки пустой; <b><code>console.error(err)</code></b> — видно <code>ECONNREFUSED</code>",
+    "Самое запутанное: если PostgreSQL не работает, ответ пятьсот, но error пустой, и в терминале пустая строка. Проверили: если дать console error не err message, а сам err, выйдет ECONNREFUSED, то есть в подключении отказано. Решение: запустите PostgreSQL."
+   ],
+   "e": [
+    "Итог: «работает» — только про Express; <b>об ошибке базы говорят первый запрос и терминал</b>",
+    "Итог: строка «работает» в терминале — только про Express. Подключение к базе проверяется на первом запросе. Если сообщение пустое, дайте console error всю ошибку. Запуск PostgreSQL: в Windows — Services, в Mac — Postgres.app."
+   ]
+  }
+ },
+ "25": {
+  "kicker": "Этап 5 · ломаем и исправляем",
+  "title": "Второй node server.js тоже говорит «работает» — а отвечает старый сервер",
+  "seg": {
+   "a": [
+    "Самый запутанный случай: <b>«исправил код, ничего не изменилось»</b>",
+    "Самый запутанный случай: исправляете код, снова запускаете сервер, а ответ не меняется. Причина чаще всего одна: первый сервер ещё работает в другом терминале."
+   ],
+   "b": [
+    "Проверили: второй сервер тоже написал «работает» и <b>вышел без ошибки</b>",
+    "Мы проверили. Пока первый сервер работал, во втором окне node server js. Ожидали ошибку «порт занят». На деле второй сервер тоже написал «работает» и вышел без ошибки. На запросы отвечает первый, старый сервер."
+   ],
+   "c": [
+    "Причина в Express 5: ошибка передаётся в callback <code>listen</code>, <b>а callback в образце её не читает</b>",
+    "Причина в пятой версии Express: listen передаёт ошибку в callback. А callback, написанный Gemini, ошибку не читает, только выводит «работает». Если callback читает ошибку, выходит address already in use, и сервер останавливается. Это недостаток кода образца, а не Express."
+   ],
+   "d": [
+    "Итог: <b>один проект — один терминал</b>; перед перезапуском <code>Ctrl+C</code>",
+    "Итог: для одного проекта — один терминал. Перед перезапуском остановите старый сервер через Ctrl C. Если ответ не меняется, первый вопрос: не остался ли сервер открытым в другом терминале?"
+   ]
+  }
+ },
+ "26": {
+  "kicker": "Проверка 4",
+  "eyebrow": "Проверка · 4 / 4 — какая строка с ошибкой?",
+  "title": "POST 500: column \"price\" of relation \"cars\" does not exist. Найдите строку с ошибкой",
+  "q": "Вы видели поломку, теперь найдите сами. Четвёртая проверка. Вспомните колонки таблицы: id, model, daily price, year, is rented. В этом фрагменте POST одна строка просит колонку, которой нет в таблице. Нажмите на эту строку.",
+  "ok": "Верно. В тридцать шестой строке в insert написано price, а в таблице daily price. Daily price в тридцать четвёртой строке — только переменная JavaScript, база её не видит, она видит имя в тексте SQL. На экране исправленное: daily price, POST двести один. Значит, если вышло пятьсот, сравните каждое имя в тексте SQL с колонками таблицы.",
+  "okShort": "Строка 36: в SQL <code>price</code> — в таблице <code>daily_price</code>. <code>daily_price</code> в строке 34 — переменная JS, база её не видит.",
+  "hint": "База не видит переменных JavaScript — только текст SQL в кавычках. Ищите имена колонок в этом тексте.",
+  "task": "Правило: имена колонок в SQL точно такие же, как в таблице — <code>cars</code>: <code>id, model, daily_price, year, is_rented</code>. В этом фрагменте POST одна строка просит колонку, которой нет в таблице. <b>Нажмите на эту строку.</b>"
+ },
+ "27": {
+  "kicker": "Практика 4 / 4",
+  "eyebrow": "Сейчас у себя · 10 минут",
+  "title": "Две поломки, два исправления — на своём сервере",
+  "seg": {
+   "a": [
+    "Теперь вы: на своём сервере <b>нарочно вызываете и исправляете</b> две ошибки",
+    "Последняя практика: на своём сервере нарочно вызываете две ошибки и исправляете их. Десять минут. Эти ошибки бывают и в настоящем проекте; если один раз вызовете их сами, потом сразу узнаете по сообщению."
+   ],
+   "b": [
+    "Шаги 1–2: ошибка <code>price</code> — 500, <b>прочитайте сообщение</b>, исправьте, 201",
+    "На первом шаге меняете daily price в insert на price, перезапускаете сервер и отправляете POST. На втором читаете сообщение, исправляете ошибку и перезапускаете: ответ должен быть двести один."
+   ],
+   "c": [
+    "Шаги 3–4: включите новый сервер, не закрыв старый; подтверждение — <b>текст сообщения 500</b>",
+    "На третьем шаге, пока работает первый сервер, во втором терминале снова делаете node server js и видите строку «работает». На четвёртом останавливаете оба через Ctrl C. В поле подтверждения скопируйте сообщение пятьсот с первого шага."
+   ],
+   "d": [
+    "Если вышло иначе, нажмите кнопку <b>«Вышло иначе?»</b> — откроется окно с решениями",
+    "Если вышло иначе, нажмите кнопку «Вышло иначе?» внизу, откроется окно с решениями. Пока не отмечены все четыре пункта и нет подтверждения, «Далее» не откроется. Значит, когда эти две ошибки появятся, вы увидите их не впервые и сразу найдёте причину по сообщению."
+   ]
+  },
+  "steps": [
+   {
+    "t": "Поломка",
+    "exp": "500 column \"price\" of relation \"cars\" does not exist"
+   },
+   {
+    "t": "Исправление",
+    "exp": "201"
+   },
+   {
+    "t": "Два сервера",
+    "exp": "второй тоже «Server 3000-portda ishlayapti»",
+    "cmds": [
+     "1-й терминал работает",
+     "во 2-м терминале: node server.js"
+    ]
+   },
+   {
+    "t": "Остановка",
+    "exp": "Postman: GET — ответа нет (сервера нет)",
+    "cmds": [
+     "в обоих терминалах Ctrl+C"
+    ]
+   }
+  ],
+  "proof": {
+   "label": "Сообщение 500 с шага 1",
+   "placeholder": "вставьте текст error из Postman",
+   "wrong": "Сообщение должно быть полным: какая колонка и какая таблица (of relation …). Скопируйте значение error из Postman."
+  },
+  "trouble": [
+   [
+    "На шаге 1 201",
+    "сервер не перезапущен — работает старый код (экран 25)"
+   ],
+   [
+    "column \"price\" does not exist (без of relation)",
+    "ошибка сделана в SELECT/UPDATE — меняйте колонку в INSERT"
+   ],
+   [
+    "на шаге 3 listen EADDRINUSE: address already in use :::3000",
+    "в вашем server.js callback читает ошибку (Gemini написал иначе) — это хорошо; остановите оба терминала"
+   ],
+   [
+    "на шаге 4 ответ есть",
+    "открыт ещё один терминал — везде Ctrl+C"
+   ]
+  ]
+ },
+ "28": {
+  "kicker": "Этап 6 · подготовка к классу",
+  "eyebrow": "m4-06 · m4-08",
+  "title": "Два урока ученика: что видит ученик, что добавляете вы, к чему быть готовым",
+  "seg": {
+   "a": [
+    "m4-06 (21 экран): магазин кнопками, на практике — <b>настоящий терминал PostgreSQL</b>; таблица — та же <code>products</code>, что сегодня",
+    "Теперь подготовка к классу, два экрана. Первый урок ученика m4-06, двадцать один экран: ученик управляет магазином кнопками, insert, select, where, update, delete. Таблица — ровно та products, что вы создали сегодня. А на практике он создаёт свой магазин в настоящем терминале PostgreSQL или в VS Code с AI, поэтому PostgreSQL обязан работать на каждом компьютере."
+   ],
+   "b": [
+    "m4-08 (9 экранов): таблица <code>cars</code> вручную, <code>server.js</code> от Gemini, проверка в Postman — <b>это ваш сегодняшний сервер</b>",
+    "Второй — m4-08, AvtoIjara, девять экранов: ученик сам пишет в терминале таблицу cars, код сервера берёт у Gemini, проверяет в Postman и находит ошибку AI. Это тот сервер, что вы подняли сегодня. Разница: ученик не знает, что внутри Pool, не знает транзакцию и injection, а вы знаете."
+   ],
+   "c": [
+    "Вы добавляете: число в ответе · <code>BEGIN … ROLLBACK</code> · <code>ORDER BY</code> · апостроф · <code>NOT NULL</code> · <b>и <code>HINT</code> ошибается</b>; четыре отличия скажите заранее",
+    "Что вы добавляете к уроку: после каждого update спрашивайте число в ответе, update без where покажите на проекторе внутри begin, скажите про order by и апостроф, когда ученик создаёт свой магазин, посоветуйте not null, напомните, что hint тоже ошибается. Четыре отличия скажите заранее: текст ошибки в уроке короткий, Gemini каждому пишет разный код, после POST is rented null, даже при занятом порте «работает»."
+   ],
+   "d": [
+    "Итог: до урока — PostgreSQL и Postman на каждом компьютере, <b>пароль класса</b>, один проект — один терминал; время — практике",
+    "Итог: до урока проверьте три вещи: на каждом компьютере открывается терминал PostgreSQL и установлен Postman, пароль класса всем известен, правило: один проект — один терминал. Предложение по времени: в m4-06 из девяноста минут двадцать пять на практику, в m4-08 сорок на сервер и Postman, потому что именно здесь ученики ошибаются больше всего."
+   ]
+  }
+ },
+ "29": {
+  "kicker": "Этап 6 · подготовка к классу",
+  "title": "Шесть случаев и готовые ответы — все вы сегодня видели сами",
+  "seg": {
+   "a": [
+    "Шесть случаев, которые обязательно будут на уроке — <b>все вы сегодня видели сами</b>",
+    "Два урока ученика вы знаете. Теперь посмотрим шесть случаев, которые обязательно будут на уроке. Все вы сегодня видели сами, поэтому скажу коротко."
+   ],
+   "b": [
+    "Ошибка имени и апостроф — <b>сравните с <code>\\d</code></b>, апостроф дважды",
+    "Первый случай — ошибка в имени таблицы или колонки: сравните имя в сообщении с бэкслеш d, hint не верьте. Второй — апостроф: он пишется дважды."
+   ],
+   "c": [
+    "Без <code>WHERE</code> и ошибки подключения — <b><code>BEGIN</code>, пароль и пустое сообщение</b>",
+    "Третий — update или delete без where: его предупреждает begin. Четвёртый — ошибка в пароле или имени базы: ищите её в настройках Pool. Пятый: если сообщение пустое, дайте console error всю ошибку и проверьте PostgreSQL."
+   ],
+   "d": [
+    "Итог: не меняется — второй терминал; <b>читайте сообщение вместе с учеником</b>, ответ сразу не говорите",
+    "Шестой: если ученик говорит «не изменилось», проверьте, не остался ли старый сервер во втором терминале. Итог и способ один: не говорите ответ сразу, читайте сообщение вместе с учеником. Внизу готовые ответы на вопросы учеников."
+   ]
+  }
+ },
+ "30": {
+  "kicker": "Самопроверка",
+  "title": "Восемь вопросов. Одна попытка. Шесть — вы прошли",
+  "final": [
+   {
+    "q": "UPDATE products SET price = 99000; — нет WHERE. Ответ?",
+    "e": "Без WHERE — все строки таблицы.",
+    "o": [
+     "UPDATE 1 — изменится только первая строка",
+     "ERROR — UPDATE без WHERE запрещён",
+     "UPDATE 3 — все строки получили новую цену",
+     "UPDATE 0 — условия нет, ничего"
+    ]
+   },
+   {
+    "q": "BEGIN; → DELETE FROM products; → ROLLBACK; → SELECT *. Результат?",
+    "e": "ROLLBACK отменяет транзакцию.",
+    "o": [
+     "Все товары на месте — DELETE отменён",
+     "(0 rows) — DELETE уже записан на диск",
+     "Вернётся только первая строка, и всё",
+     "ERROR — после ROLLBACK таблица закрыта"
+    ]
+   },
+   {
+    "q": "Внутри транзакции команда дала ошибку, приглашение shop=!#. Если теперь написать SELECT 1;?",
+    "e": "Состояние aborted: до ROLLBACK все команды отклоняются.",
+    "o": [
+     "Сработает как обычно — ошибка прошла",
+     "Ошибка current transaction is aborted",
+     "База сама сделает COMMIT и даст результат",
+     "Приглашение само вернётся к обычному"
+    ]
+   },
+   {
+    "q": "После UPDATE в SELECT * строка ушла в конец списка. Причина?",
+    "e": "ctid изменился; порядок — через ORDER BY.",
+    "o": [
+     "Это ошибка — строка испорчена, перепишите",
+     "Изменился id — UPDATE дал новый id",
+     "Транзакция не закрыта — строка временная",
+     "Нет ORDER BY — порядок не гарантирован"
+    ]
+   },
+   {
+    "q": "Создан new Pool({…}), пароль неверный. Что будет при запуске сервера?",
+    "e": "Pool подключается на первом запросе.",
+    "o": [
+     "Сразу ошибка, сервер падает",
+     "Сервер запустится, ошибка на первом запросе",
+     "Pool сам найдёт правильный пароль",
+     "Ошибки не будет никогда — пароль в кэше"
+    ]
+   },
+   {
+    "q": "Сервер «работает», GET работает, POST — Cannot destructure property 'model' of 'req.body'. Причина?",
+    "e": "req.body не прочитан.",
+    "o": [
+     "Неверный пароль — база отклонила запрос",
+     "Нет таблицы — INSERT не выполнился",
+     "Порт занят — POST ушёл на другой сервер",
+     "Не подключён express.json() — тело пустое"
+    ]
+   },
+   {
+    "q": "POST 500, {\"error\":\"\"}, в терминале пустая строка. Первый шаг?",
+    "e": "Пустое сообщение — скрыт ECONNREFUSED.",
+    "o": [
+     "Выключить сервер и включить заново",
+     "Попросить у Gemini полностью новый код",
+     "Посмотреть ошибку через console.error(err)",
+     "Обновить пакеты через npm install"
+    ]
+   },
+   {
+    "q": "'DELETE … WHERE id = ' + req.params.id и URL 1 OR 1=1. Что будет?",
+    "e": "Приклеенный текст стал SQL; с $1 — 500, таблица на месте.",
+    "o": [
+     "Удалятся все строки, и вернётся ответ 200",
+     "База отклонит такой запрос — 500",
+     "404 — id 1 OR 1=1 не найден",
+     "Удалится только первая машина, остальные останутся"
+    ]
+   }
+  ]
+ },
+ "31": {
+  "kicker": "Итог",
+  "title": "Теперь вы знаете"
+ }
+};
+// RS(k) — darsga xos ruscha (RU_S.k, ru/<dars>-sahna.js); yo'q bo'lsa null → t() o'zbekchani qoldiradi. wrRu — ovoz → «Matn» (RU_S.SPOKEN, keyin wr).
+function RS(k) { return typeof RU_S !== 'undefined' && RU_S[k] != null ? RU_S[k] : null; }
+function wrRu(s) { return wr((RS('SPOKEN') || []).reduce((a, [x, y]) => a.split(x).join(y), s)); }
+function rsY(key, text) { return { key, text, show: wrRu(text) }; }
+// Yakun segmentlari (ru-umumiy.py: sNNSegments → yakRu): umumiy a/z + RU_S.YAK (id bo'yicha)
+function yakRu(passed, segs) {
+  if (LANG !== 'ru') return segs;
+  const Y = { a_pass: rsY('<b>Отлично!</b> Вы хорошо прошли урок — соберём сегодняшний урок одним взглядом', 'Отлично! Вы хорошо прошли урок. Теперь соберём всё, что узнали сегодня, одним взглядом.'), a_fail: rsY('Вы дошли до конца урока — советую <b>пройти тест заново</b>', 'Вы дошли до конца урока. В итоговом тесте нужно было шесть баллов, перед завершением советую пройти тест заново. А сейчас соберём сегодняшний урок одним взглядом.'), z: rsY('Спасибо! Нажмите кнопку <b>«Завершить урок»</b>', 'Спасибо. Нажмите кнопку «Завершить урок», урок будет отмечен как пройденный.'), ...Object.fromEntries(Object.entries(RS('YAK') || {}).map(([k, [key, text]]) => [k, rsY(key, text)])) };
+  return segs.map((s) => ({ ...s, ...(Y[s.id === 'a' ? (passed ? 'a_pass' : 'a_fail') : s.id] || {}) }));
+}
+(function ruMdtQo() {
+  const segRu = (n) => { const r = RU_MDT[n] && RU_MDT[n].seg; if (!r) return undefined; const o = {}; Object.keys(r).forEach((id) => { const [key, text] = r[id]; o[id] = { ...(key != null ? { key } : {}), ...(text != null ? { text, show: wrRu(text) } : {}) }; }); return o; };
+  const head = (n) => { const r = RU_MDT[n] || {}; const o = {}; ['kicker', 'eyebrow', 'title'].forEach((k) => { if (r[k] != null) o[k] = r[k]; }); const s = segRu(n); if (s) o.segments = s; return o; };
+  const mdt = {}; Object.keys(RU_MDT).forEach((n) => { const r = { ...RU_MDT[n] }; if (r.seg) r.seg = MDT[n].seg.map(([id]) => (r.seg[id] ? [null, r.seg[id][0], r.seg[id][1]] : null)); mdt[n] = r; });
+  ru(MDT, mdt);
+  ru(S1, { ...head(1), ...((typeof RU_S !== 'undefined' && RU_S.S1) || {}) });
+  ru(S2, { ...head(2), ...((typeof RU_S !== 'undefined' && RU_S.S2) || {}) });
+  ru(S3, { ...head(3), ...((typeof RU_S !== 'undefined' && RU_S.S3) || {}) });
+  ru(S4, { ...head(4), ...((typeof RU_S !== 'undefined' && RU_S.S4) || {}) });
+  ru(S5, { ...head(5), ...((typeof RU_S !== 'undefined' && RU_S.S5) || {}) });
+  ru(S6, { ...head(6), ...((typeof RU_S !== 'undefined' && RU_S.S6) || {}) });
+  ru(S9, { ...head(9), ...((typeof RU_S !== 'undefined' && RU_S.S9) || {}) });
+  ru(S10, { ...head(10), ...((typeof RU_S !== 'undefined' && RU_S.S10) || {}) });
+  ru(S11, { ...head(11), ...((typeof RU_S !== 'undefined' && RU_S.S11) || {}) });
+  ru(S14, { ...head(14), ...((typeof RU_S !== 'undefined' && RU_S.S14) || {}) });
+  ru(S15, { ...head(15), ...((typeof RU_S !== 'undefined' && RU_S.S15) || {}) });
+  ru(S17, { ...head(17), ...((typeof RU_S !== 'undefined' && RU_S.S17) || {}) });
+  ru(S18, { ...head(18), ...((typeof RU_S !== 'undefined' && RU_S.S18) || {}) });
+  ru(S19, { ...head(19), ...((typeof RU_S !== 'undefined' && RU_S.S19) || {}) });
+  ru(S20, { ...head(20), ...((typeof RU_S !== 'undefined' && RU_S.S20) || {}) });
+  ru(S22, { ...head(22), ...((typeof RU_S !== 'undefined' && RU_S.S22) || {}) });
+  ru(S23, { ...head(23), ...((typeof RU_S !== 'undefined' && RU_S.S23) || {}) });
+  ru(S24, { ...head(24), ...((typeof RU_S !== 'undefined' && RU_S.S24) || {}) });
+  ru(S25, { ...head(25), ...((typeof RU_S !== 'undefined' && RU_S.S25) || {}) });
+  ru(S28, { ...head(28), ...((typeof RU_S !== 'undefined' && RU_S.S28) || {}) });
+  ru(S29, { ...head(29), ...((typeof RU_S !== 'undefined' && RU_S.S29) || {}) });
+  ru(P8.S, { ...head(8), ...((typeof RU_S !== 'undefined' && RU_S.P8_S) || {}) });
+  ru(P8.steps, RU_MDT[8].steps);
+  ru(P8.trouble, RU_MDT[8].trouble);
+  ru(P8.proof, RU_MDT[8].proof);
+  ru(P13.S, { ...head(13), ...((typeof RU_S !== 'undefined' && RU_S.P13_S) || {}) });
+  ru(P13.steps, RU_MDT[13].steps);
+  ru(P13.trouble, RU_MDT[13].trouble);
+  ru(P13.proof, RU_MDT[13].proof);
+  ru(P21.S, { ...head(21), ...((typeof RU_S !== 'undefined' && RU_S.P21_S) || {}) });
+  ru(P21.steps, RU_MDT[21].steps);
+  ru(P21.trouble, RU_MDT[21].trouble);
+  ru(P21.proof, RU_MDT[21].proof);
+  ru(P27.S, { ...head(27), ...((typeof RU_S !== 'undefined' && RU_S.P27_S) || {}) });
+  ru(P27.steps, RU_MDT[27].steps);
+  ru(P27.trouble, RU_MDT[27].trouble);
+  ru(P27.proof, RU_MDT[27].proof);
+  ru(FINAL, RU_MDT[30].final);
+})();

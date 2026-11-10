@@ -1,0 +1,30 @@
+# YAML surilish xatosi — parse xatosi
+# run 41833614367 · branch ci-sinov · commit 7e5e43a · natija: failure · yozildi 2026-11-04 17:56:38 +0500
+# https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41833614367
+
+$ cat .github/workflows/ci.yml
+name: CI
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      - run: npm ci
+      - run: npm test
+
+## gh run view
+
+X ci-sinov CI · 41833614367
+Triggered via push less than a minute ago
+
+X This run likely failed because of a workflow file issue.
+
+For more information, see: https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41833614367
+
+## job → step (API: actions/runs/41833614367/jobs)
+
+## annotatsiyalar (check-runs)
+
+## to'liq log (gh run view --log)
+failed to get run log: log not found

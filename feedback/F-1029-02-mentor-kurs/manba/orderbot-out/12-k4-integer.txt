@@ -1,0 +1,5 @@
+/start (id 111) → bot: Salom, U! Bu CoddyCamp do'koni boti.
+query failed: SELECT "User"."id" AS "User_id", "User"."telegram_id" AS "User_telegram_id", "User"."name" AS "User_name", "User"."phone" AS "User_phone", "User"."role" AS "User_role", "User"."state" AS "User_state", "User"."created_at" AS "User_created_at" FROM "users" "User" WHERE (("User"."telegram_id" = $1)) LIMIT 1 -- PARAMETERS: ["5123456789"]
+error: error: value "5123456789" is out of range for type integer
+terminal: Bot xatosi: value "5123456789" is out of range for type integer
+/start (id 5123456789) → bot: Tushunmadim. /help ni bosing.

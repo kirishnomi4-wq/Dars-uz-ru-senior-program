@@ -1,0 +1,3 @@
+12.steps.1.cmd.0 = телефон: боту /start → /catalog → товар → /cart → «✅ Buyurtma berish»
+20.steps.3.cmd.0 = панель открыта → в боте /orders → «❌ Bekor»
+7.steps.2.cmd.0 = второй терминал: npm run live

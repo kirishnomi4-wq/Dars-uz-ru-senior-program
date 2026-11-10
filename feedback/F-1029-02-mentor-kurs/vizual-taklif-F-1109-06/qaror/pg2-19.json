@@ -1,0 +1,1 @@
+{"id":"pg2-19","dars":"PG-2","ekran":19,"mavzu":"POST, PUT, DELETE: statuslar va 404","naqsh":"A","tur":"taklif","oldin":"Xulosada beshta status qutichasi va qoida.","keyin":["Har endpoint bir qator: SQL, baza javobi va status. PUT /api/cars/99 qatori (rowCount: 0 → 404) ajralib turadi.","server.js dagi haqiqiy 404 satri va POST javobidagi is_rented: null."],"blok":[6,3]}

@@ -1,0 +1,49 @@
+<style>
+.vp{--mg:#15803D;--pg:#336791;--c1:#DCFCE7;--c2:#DBEAFE;--c3:#FFEDD5;--k1:#15803D;--k2:#1D4ED8;--k3:#C2410C;--ink:#1F2937;--mut:#6B7280;display:grid;gap:12px;color:var(--ink)}
+.vp-two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.vp-card{background:#fff;border:1.5px solid #D7DCE3;border-radius:14px;padding:12px;display:grid;gap:8px;align-content:start}
+.vp-card h5{margin:0;display:flex;gap:8px;align-items:center;font:700 13px system-ui,sans-serif;letter-spacing:.05em;text-transform:uppercase;color:#4B5563}
+.vp-card h5 i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.vp .vzm{color:#1F2937;font:13px ui-monospace,Menlo,Consolas,monospace}
+.vp-name{justify-self:start;border-radius:6px;padding:2px 8px;font:700 13px ui-monospace,Menlo,Consolas,monospace}
+.vp-doc{background:#111827;color:#E5E7EB !important;border-radius:8px;padding:8px 10px;white-space:pre;line-height:1.5}
+.vp-doc.h{outline:3px solid var(--k2);outline-offset:2px}
+.f{background:var(--c3);color:#7C2D12;border-radius:4px;padding:0 3px}
+.vp-tbl{border-collapse:collapse;width:100%}
+.vp-tbl th,.vp-tbl td{color:#1F2937;border:1px solid #E5E7EB;padding:6px 10px;text-align:left}
+.vp-tbl th{background:#F8FAFC}
+.vp-tbl th.c{background:var(--c3);color:#7C2D12 !important}
+.vp-tbl tr.r td{background:var(--c2);color:#1E3A8A !important;font-weight:700}
+.vp-err{background:#111827;color:#FCA5A5 !important;border-radius:8px;padding:6px 10px}
+.vp-key{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;background:#fff;border:1px solid #D7DCE3;border-radius:12px;padding:10px 12px;font-size:14px}
+.vp-key span{display:inline-flex;gap:6px;align-items:center}
+.vp-sw{width:14px;height:14px;border-radius:4px;display:inline-block}
+.vp-note{font-size:13px;color:var(--mut)}
+</style>
+<div class="vp">
+  <div class="vp-two">
+    <div class="vp-card" style="border-color:var(--mg)">
+      <h5><i style="background:var(--mg)"></i>MongoDB · NoSQL</h5>
+      <span class="vp-name" style="background:var(--c1);color:var(--k1)">users · collection</span>
+      <div class="vp-doc vzm">{ _id: ObjectId('6ae8…e666'),
+  <span class="f">username</span>: 'ali' }</div>
+      <div class="vp-doc vzm h">{ _id: ObjectId('6ae8…e667'),
+  <span class="f">username</span>: 'vali',
+  shahar: 'Toshkent' }</div>
+      <div class="vp-note">hujjatga yangi maydon qo'shsa bo'ladi</div>
+    </div>
+    <div class="vp-card" style="border-color:var(--pg)">
+      <h5><i style="background:var(--pg)"></i>PostgreSQL · SQL</h5>
+      <span class="vp-name" style="background:var(--c1);color:var(--k1)">users · jadval</span>
+      <table class="vp-tbl vzm"><tr><th>id</th><th class="c">username</th></tr><tr><td>1</td><td>ali</td></tr><tr class="r"><td>2</td><td>vali</td></tr></table>
+      <div class="vp-err vzm">ERROR: column "shahar" of relation "users" does not exist</div>
+      <div class="vp-note">jadvalda yo'q ustunni yozib bo'lmaydi</div>
+    </div>
+  </div>
+  <div class="vp-key">
+    <b>Moslik</b>
+    <span><i class="vp-sw" style="background:var(--c1);outline:1.5px solid var(--k1)"></i>collection ↔ jadval</span>
+    <span><i class="vp-sw" style="background:var(--c2);outline:1.5px solid var(--k2)"></i>hujjat ↔ qator</span>
+    <span><i class="vp-sw" style="background:var(--c3);outline:1.5px solid var(--k3)"></i>maydon ↔ ustun</span>
+  </div>
+</div>

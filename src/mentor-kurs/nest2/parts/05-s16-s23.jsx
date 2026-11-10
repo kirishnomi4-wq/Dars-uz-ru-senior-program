@@ -67,16 +67,16 @@ signin(
 function Screen16(p) {
   return <Lesson p={p} S={S16} scene={({ seg, beat }) => <>
     <GuardFlow stop="auth" label={beat >= 4 ? <><b>401</b> = {t('AuthGuard: token yo\'q yoki yaroqsiz → signin → Authorize', 'AuthGuard: токена нет или он недействителен → signin → Authorize')}</> : null} />
-    <Ide files={tree(BASE, [F.aCtrl, F.authG, F.rolesG])} active={F.authG}>
+    {(beat < 4 || seg.expiry) && <Ide files={tree(BASE, [F.aCtrl, F.authG, F.rolesG])} active={F.authG}>
       <CodePanel file={F.authG} lines={AUTHG_LINES} focus={seg.focus} />
       {beat === 0 && <CodePanel file={F.aCtrl + ' · 31–33'} lines={ts(String.raw`
 @UseGuards(AuthGuard, RolesGuard)
 @Controller('admin')
 export class AdminController {`)} />}
-      {seg.pub && <CodePanel file={F.aCtrl + ' · 46–53'} lines={SIGNIN_PUB} focus={['p']} />}
-      {seg.pub && <div className="mk-rule" style={{ animation: 'mk-up .45s ease both' }}>{t(<><b>'public'</b> — to'g'ri qaror: tokenni shu eshikdan olasiz. Qolgan eshiklar yopiq.</>, <><b>'public'</b> — правильное решение: токен вы получаете через эту дверь. Остальные двери закрыты.</>)}</div>}
+      {seg.pub && !seg.expiry && <CodePanel file={F.aCtrl + ' · 46–53'} lines={SIGNIN_PUB} focus={['p']} />}
+      {seg.pub && !seg.expiry && <div className="mk-rule" style={{ animation: 'mk-up .45s ease both' }}>{t(<><b>'public'</b> — to'g'ri qaror: tokenni shu eshikdan olasiz. Qolgan eshiklar yopiq.</>, <><b>'public'</b> — правильное решение: токен вы получаете через эту дверь. Остальные двери закрыты.</>)}</div>}
       {seg.expiry && <Term lines={EXPIRY} focus={['x']} />}
-    </Ide>
+    </Ide>}
   </>} />;
 }
 
@@ -116,9 +116,9 @@ const S17 = {
 };
 function Screen17(p) {
   return <Lesson p={p} S={S17} scene={({ seg, beat }) => <>
-    <Ide files={tree(BASE, [F.aCtrl, F.authG, F.rolesG, F.rolesD])} active={F.rolesG}>
+    {beat < 4 && <Ide files={tree(BASE, [F.aCtrl, F.authG, F.rolesG, F.rolesD])} active={F.rolesG}>
       <CodePanel file="roles-decorator.ts · roles.guard.ts" lines={ROLESG_LINES} focus={seg.focus} />
-    </Ide>
+    </Ide>}
     <Block at={2} beat={beat}><div className="mk-light" style={{ padding: 12 }}>
       <div className="mk-tag">{t('Haqiqiy javoblar — KitobShop playbook qoidalari bilan sinov', 'Реальные ответы — проверка с правилами playbook KitobShop')}</div>
       <table className="mk-tbl n2-table"><thead><tr><th>{t('eshik', 'дверь')}</th><th>{t('tokensiz', 'без токена')}</th><th>superadmin (superAdmin)</th><th>{t('oddiy admin (admin)', 'обычный админ (admin)')}</th></tr></thead><tbody>
@@ -260,13 +260,44 @@ const ENT_FIX = ts(String.raw`
   @Column()
   @Column({ nullable: true })
   brandId: string;`, { 5: { gone: true }, 6: { neu: true } });
+// F-1109-06: xulosa — ikki karta o'rniga Entity → start:dev → jadval oqimi va ikki haqiqiy tajriba yonma-yon (ustun tushdi · NOT NULL ustun)
+function Sync21() {
+  return <div className="z">
+    <div className="z-card">
+      <p className="z-h">{t("synchronize: true (NODE_ENV=dev) — har ishga tushishda Entity → baza", "synchronize: true (NODE_ENV=dev) — при каждом запуске Entity → база")}</p>
+      <div className="z-flow">
+        <div className="z-st blue"><b>{t("Entity o'zgardi", "Entity изменилась")}</b><span className="z-mut">car.entity.ts</span></div>
+        <div className="z-ar">→</div>
+        <div className="z-st"><b>npm run start:dev</b><span className="z-mut">{t("TypeORM jadvalni moslaydi", "TypeORM подгоняет таблицу")}</span></div>
+        <div className="z-ar">→</div>
+        <div className="z-st"><b>{t("cars jadvali", "таблица cars")}</b><span className="z-mut">{t("ustun qo'shiladi yoki o'chiriladi", "колонка добавляется или удаляется")}</span></div>
+      </div>
+    </div>
+    <div className="z-two">
+      <div className="z-card" style={{ borderColor: 'var(--warn)' }}>
+        <p className="z-h" style={{ color: 'var(--warn)' }}>{t("Ustun tushib qoldi — xato bermay", "Колонка пропала — без ошибки")}</p>
+        <span><span className="z-tag g">{t("server ishga tushdi", "сервер запустился")}</span></span>
+        <div className="z-term"><span className="m">\d cars</span>{'\n'} brand | character varying | not null{'\n'} model | character varying | not null{'\n'}<span className="y">{t("price — yo'q", "price — нет")}</span>{'\n'}<span className="m">POST {'{'}"brand":"Chevrolet","model":"Malibu","price":250{'}'} → 201</span>{'\n'} brand     | model{'\n'} Chevrolet | Malibu</div>
+        <span className="z-mut">{t("price saqlanmadi — ma'lumot xato bermay yo'qoldi", "price не сохранился — данные пропали без ошибки")}</span>
+      </div>
+      <div className="z-card" style={{ borderColor: 'var(--bad)' }}>
+        <p className="z-h" style={{ color: 'var(--bad)' }}>{t("NOT NULL ustun qo'shildi — yiqildi", "Добавлена NOT NULL колонка — упал")}</p>
+        <span><span className="z-tag r">successfully started = 0</span></span>
+        <div className="z-term"><span className="m">{t("cars jadvalida 1 qator bor; brandId NOT NULL", "в таблице cars 1 строка; brandId NOT NULL")}</span>{'\n'}<span className="r">QueryFailedError: column "brandId" of relation "cars" contains null values</span>{'\n'}<span className="m">{t("nullable: true bilan →", "с nullable: true →")}</span> <span className="g">successfully started = 1</span></div>
+        <span className="z-mut">{t("eski qatorga bo'sh qiymat qo'yib bo'lmaydi", "в старую строку нельзя поставить пустое значение")}</span>
+      </div>
+    </div>
+    <div className="z-rule">{t("«Ma'lumot yo'qoldi» yoki ", "«Данные пропали» или ")}<b>contains null values</b>{t(" — birinchi savol: ", " — первый вопрос: ")}<b>{t("«Entity'da nimani o'zgartirdingiz?»", "«Что вы изменили в Entity?»")}</b></div>
+  </div>;
+}
 function Screen21(p) {
   return <Lesson p={p} S={S21} scene={({ seg }) => {
     const v = seg.v;
+    if (v === 'sum') return <Sync21 />;
     return <div style={{ display: 'grid', gap: 10 }}>
-      <Ide files={tree(BASE, CAR_ALL)} active={F.cEnt}>
+      {v !== 'sum' && <Ide files={tree(BASE, CAR_ALL)} active={F.cEnt}>
         {v === 'sync' || v === 'sum' ? <CodePanel file={F.cEnt} lines={CAR_ENT_LINES} /> : <CodePanel file={F.cEnt + ' · ' + t("o'zgargan joy", 'изменённое место')} lines={v === 'drop' ? ENT_DROP : v === 'add' ? ENT_ADD : ENT_FIX} focus={v === 'fix' ? [] : ['x']} />}
-      </Ide>
+      </Ide>}
       <div style={{ display: 'grid', gap: 10, minWidth: 0 }}>
         {(v === 'sync' || v === 'sum') && <div className="mk-light"><div className="mk-tag">synchronize: true (NODE_ENV=dev)</div><div style={{ fontSize: 14 }}>{t("Har ishga tushishda: Entity → baza. Ustun qo'shilsa — qo'shiladi, olib tashlansa — o'chiriladi.", 'При каждом запуске: Entity → база. Колонку добавили — добавится, убрали — удалится.')}</div></div>}
         {v === 'drop' && <><Term title="psql · \d cars" lines={plainLines(String.raw`
@@ -297,7 +328,7 @@ const BOOK_START = term(String.raw`
 [Nest] LOG [RouterExplorer] Mapped {/api/v1/book, GET} route`);
 function Screen22(p) {
   const above = <div style={{ marginBottom: 12, display: 'grid', gap: 6 }}><Term er lines={BOOK_ERR} /><div className="exp" style={{ fontSize: 12.5, color: T.ink3 }}>{t('Xabar shakli haqiqiy (20-ekran), nomlar KitobShop\'ga almashtirilgan.', 'Форма сообщения реальная (экран 20), имена заменены на KitobShop.')}</div></div>;
-  const after = <Ide files={tree(BASE, [F.bMod, F.bCtrl, F.bSvc, F.bEnt])} active={F.bMod}>
+  const after = <div style={{ display: 'grid', gap: 8 }}>
     <CodePanel file={F.bMod} lines={ts(String.raw`
 @Module({
   imports: [],
@@ -306,7 +337,7 @@ function Screen22(p) {
   providers: [BookService],
 })`, { 2: { gone: true }, 3: { neu: true } })} />
     <Term lines={BOOK_START} />
-  </Ide>;
+  </div>;
   return <MCRetry {...p} kicker={t('Tekshiruv 4', 'Проверка 4')} eyebrow={t("Tekshiruv · 4 / 4 — xatoni o'qish", 'Проверка · 4 / 4 — чтение ошибки')} above={above} after={after}
     title={t("O'quvchingizning KitobShop'i yiqildi. Qaysi faylni ochasiz va nimani tuzatasiz?", 'KitobShop вашего ученика упал. Какой файл откроете и что исправите?')}
     q={t("Oxirgi tekshiruv, sinfdagi haqiqiy holat. To'rtinchi tekshiruv. O'quvchi agent yozgan kitob resursini ishga tushirdi, server yiqildi, ekranda xabar. U yordam so'radi. Qaysi faylni ochasiz va nimani tuzatasiz?", 'Последняя проверка, реальный случай из класса. Четвёртая проверка. Ученик запустил ресурс книг, написанный агентом, сервер упал, на экране сообщение. Он просит помощи. Какой файл вы откроете и что исправите?')}

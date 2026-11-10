@@ -1,0 +1,12 @@
+$ node memory.js 1      # 1-ishga tushirish
+Aziza (5123456789): Salom
+  bot → 5123456789: Salom! Qaysi pitsa?
+Aziza (5123456789): Pepperoni
+  bot → 5123456789: Pepperoni — yaxshi tanlov! Qaysi o'lchamda?
+  [xotiradagi state] {"5123456789":"WAITING_SIZE"}
+
+# bot to'xtatildi va qayta ishga tushirildi (yangi jarayon)
+$ node memory.js 2
+Aziza (5123456789): Katta
+  bot → 5123456789: Salom! Qaysi pitsa?
+  [xotiradagi state] {"5123456789":"WAITING_PIZZA"}

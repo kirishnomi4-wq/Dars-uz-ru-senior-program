@@ -1,0 +1,22 @@
+# wh-done: brauzerdagi panel — buyurtma, to'landi, rad (sahifa yangilanmadi)
+22:21:48.215 brauzer: WebSocket ochildi
+22:21:48.217 brauzer: GET /admin/orders (1)
+22:21:48.830 panel ochildi — belgi «Ulangan» · ro'yxat: Hali buyurtma yo'q
+22:21:49.107 brauzer: kadr keldi 42["order-changed",{"orderId":1,"reason":"new"}]
+22:21:49.108 brauzer: GET /admin/orders (2)
+22:21:51.773 SURAT 03-panel-1 (1-buyurtma) — belgi «Ulangan» · ro'yxat: #1
+    1 | Bobur | +998907654321 | Klaviatura × 1 | 120 000 so'm | Yangi | — | 22:21:49
+22:21:52.768 brauzer: kadr keldi 42["order-changed",{"orderId":1,"reason":"payment"}]
+22:21:52.768 brauzer: GET /admin/orders (3)
+22:21:55.022 SURAT 03-panel-2 (2-tolandi) — belgi «Ulangan» · ro'yxat: #1
+    1 | Bobur | +998907654321 | Klaviatura × 1 | 120 000 so'm | Yangi | ✅ To'landi | 22:21:49
+22:21:55.951 brauzer: kadr keldi 42["order-changed",{"orderId":1,"reason":"payment"}]
+22:21:55.951 brauzer: GET /admin/orders (4)
+22:21:58.433 brauzer: kadr keldi 42["order-changed",{"orderId":2,"reason":"new"}]
+22:21:58.433 brauzer: GET /admin/orders (5)
+22:22:01.411 brauzer: kadr keldi 42["order-changed",{"orderId":2,"reason":"payment"}]
+22:22:01.411 brauzer: GET /admin/orders (6)
+22:22:03.631 SURAT 03-panel-3 (3-rad) — belgi «Ulangan» · ro'yxat: #2, #1
+    2 | Bobur | +998907654321 | Klaviatura × 1 | 120 000 so'm | Yangi | ❌ Rad etildi | 22:21:58
+    1 | Bobur | +998907654321 | Klaviatura × 1 | 120 000 so'm | Yangi | ✅ To'landi | 22:21:49
+22:22:04.247 tugadi — belgi «Ulangan» · ro'yxat: #2, #1 · jami GET: 6

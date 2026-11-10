@@ -1,0 +1,10 @@
+41844079948	3	sinov: matrix node 22/24 (fail-fast odatiy)	2026-11-04T14:05:18Z	2026-11-04T14:05:36Z	2026-11-04T14:05:18Z	ci-sinov	success	push
+41844193379	22	sinov: matrix node 22/24, fail-fast: false	2026-11-04T14:06:00Z	2026-11-04T14:06:29Z	2026-11-04T14:06:00Z	ci-sinov	failure	push
+41844500453	23	sinov: AI yozgan workflow — smoke + PostgreSQL xizmati (ai1)	2026-11-04T14:07:53Z	2026-11-04T14:08:42Z	2026-11-04T14:07:53Z	ci-sinov	success	push
+41844703019	24	sinov: AI yozgan workflow — smoke + PostgreSQL xizmati (ai2)	2026-11-04T14:09:08Z	2026-11-04T14:09:54Z	2026-11-04T14:09:08Z	ci-sinov	success	push
+41845454983	25	sinov: smoke job — services: postgres:18, DATABASE_URL env (konteyner)	2026-11-04T14:13:43Z	2026-11-04T14:14:49Z	2026-11-04T14:13:43Z	ci-sinov	success	push
+41845709717	26	sinov: secrets.DATABSE_URL — nomi xato (secret bo'lmasa ham bo'sh)	2026-11-04T14:15:16Z	2026-11-04T14:16:10Z	2026-11-04T14:15:16Z	ci-sinov	failure	push
+41845936594	27	ci: smoke job (services: postgres:18, DATABASE_URL secret) va README …	2026-11-04T14:16:37Z	2026-11-04T14:17:47Z	2026-11-04T14:16:37Z	lenta-smoke	success	push
+41846225069	28	ci: smoke job (PostgreSQL xizmati) va README badge	2026-11-04T14:18:23Z	2026-11-04T14:19:38Z	2026-11-04T14:18:23Z	lenta-smoke	success	pull_request
+41846525635	29	Merge pull request #1 from Azizbekcrypto/lenta-smoke	2026-11-04T14:20:12Z	2026-11-04T14:21:13Z	2026-11-04T14:20:12Z	main	success	push
+41844079933	21	sinov: matrix node 22/24 (fail-fast odatiy)	2026-11-04T14:05:18Z	2026-11-04T14:05:44Z	2026-11-04T14:05:18Z	ci-sinov	failure	push

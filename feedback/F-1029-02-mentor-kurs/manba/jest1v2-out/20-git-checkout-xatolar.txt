@@ -1,0 +1,14 @@
+$ git checkout jest1-start
+error: pathspec 'jest1-start' did not match any file(s) known to git
+[chiqish kodi: 1]
+
+$ git status --short
+ M src/api/order/order.service.ts
+
+$ git checkout tgpg-done
+error: Your local changes to the following files would be overwritten by checkout:
+	src/api/order/order.service.ts
+Please commit your changes or stash them before you switch branches.
+Aborting
+[chiqish kodi: 1]
+

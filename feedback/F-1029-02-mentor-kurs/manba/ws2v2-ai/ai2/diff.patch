@@ -1,0 +1,34 @@
+diff --git a/public/admin.html b/public/admin.html
+index 1101aa4..6e4342d 100644
+--- a/public/admin.html
++++ b/public/admin.html
+@@ -61,13 +61,18 @@
+   }
+ 
+   // Ro'yxat — har doim Backend'dan (GET /admin/orders). Hodisa faqat «nimadir o'zgardi» deydi.
++  // So'rovlar ustma-ust kelsa (uzilish-qayta ulanish), faqat oxirgisi ekranga chiqadi.
++  let sorovSoni = 0;
+   async function yukla() {
++    const bu = ++sorovSoni;
+     const r = await fetch('/admin/orders', { headers: { Authorization: 'Bearer ' + token } });
++    if (bu !== sorovSoni) return;
+     if (r.status === 401) {
+       el('royxat').innerHTML = "<tr><td colspan='7'>Token noto'g'ri</td></tr>";
+       return;
+     }
+     const list = await r.json();
++    if (bu !== sorovSoni) return;
+     const eng = list.length ? list[0].id : 0;
+     el('royxat').innerHTML = list.length
+       ? list.map((o) => `<tr class="${o.id > oxirgiId && oxirgiId ? 'yangi' : ''}">
+@@ -83,7 +88,9 @@
+     if (ulanish) ulanish.close();
+     ulanish = io({ auth: { token } });
+     holatQoy('ulanmoqda');
+-    ulanish.on('connect', () => holatQoy('ulangan'));
++    // Ulanish (birinchi marta yoki qayta ulanish) — ro'yxatni qayta so'raymiz: uzilib turgan paytda kelgan
++    // buyurtma hodisasi qaytmaydi, shuning uchun server «Ulangan» bo'lganda ham ro'yxat eskirgan bo'lishi mumkin.
++    ulanish.on('connect', () => { holatQoy('ulangan'); yukla(); });
+     // uzilish yoki ulanish xatosi: klient o'zi qayta urinayotgan bo'lsa (active) — «ulanmoqda», server yopgan bo'lsa — «ulanmagan»
+     ulanish.on('disconnect', () => holatQoy(ulanish.active ? 'ulanmoqda' : 'ulanmagan'));
+     ulanish.on('connect_error', () => holatQoy(ulanish.active ? 'ulanmoqda' : 'ulanmagan'));

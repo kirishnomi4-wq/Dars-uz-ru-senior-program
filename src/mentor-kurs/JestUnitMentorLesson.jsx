@@ -80,6 +80,9 @@ const CSS = `
 .mk-count{font:700 13px/1 ${MONO};color:${T.ink}}
 .mk-body{flex:1;min-height:0;display:grid;grid-template-columns:minmax(320px,4fr) 8fr;gap:24px;padding:22px 28px}
 @media (min-width:1600px){.mk-panel{font-size:14px}.mk-explorer{font-size:13px}}
+@media (max-width:1599px){.mk-ide{grid-template-columns:150px minmax(0,1fr)}.mk-ide .mk-panel{font-size:12px}.mk-ide .mk-explorer{font-size:11.5px}}
+.pg-two:has(.mk-ide),.pg-two:has(.mk-panel .mk-ln:nth-of-type(n+10)){grid-template-columns:minmax(0,1fr)}
+.mk-pair{font:12.5px/1.4 ${MONO};color:${T.ink3};padding:0 4px}.mk-pair b{font-weight:600}.mk-pair code{font:inherit;color:${T.ink2}}
 @media (max-width:900px){.mk-body{grid-template-columns:1fr;grid-template-rows:auto 1fr;gap:14px;padding:14px}}
 .mk-ide{display:grid;grid-template-columns:218px minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);align-items:stretch;flex:0 1 auto;max-height:100%;min-height:0;background:#E9ECF1;border:1px solid #D5DAE2;border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(15,17,21,.10)}
 .mk-ide-bar{grid-column:1/-1;display:flex;align-items:center;gap:7px;padding:8px 14px;background:#DDE1E8;border-bottom:1px solid #D0D5DD;font:600 11px/1 ${MONO};color:${T.ink2};letter-spacing:.04em}
@@ -184,7 +187,7 @@ const CSS = `
 .mk-ln.gone,.mk-ln.gone *{color:#FCA5A5!important}
 .mk-ln.new{background:rgba(18,128,90,.22);box-shadow:inset 3px 0 0 #86EFAC}
 .mk-ln .n{color:${T.codeDim};min-width:2ch;text-align:right;user-select:none}
-.mk-ln.wrap{white-space:pre-wrap}
+.mk-ln.wrap{white-space:pre}
 .mk-ln.clk{cursor:pointer}
 .mk-ln.clk:hover{background:rgba(232,234,240,.08)}
 .mk-ln.bad{background:rgba(226,69,31,.28);box-shadow:inset 3px 0 0 #FCA5A5}
@@ -192,6 +195,8 @@ const CSS = `
 .k{color:#C792EA}.s{color:#C3E88D}.d{color:#FFCB6B}.c{color:#82AAFF}.m{color:#89DDFF}.cm{color:#6B7280;font-style:italic}
 .p{color:#7DD3FC}.ok{color:#86EFAC}.er{color:#FCA5A5}.wn{color:#FDE68A}
 .mk-light{flex:0 1 auto;max-height:100%;min-height:0;background:${T.paper};border:1px solid ${T.line};border-radius:16px;padding:20px;position:relative;overflow:auto}
+/* 04.11 · past ekran (1280×720, 1366×768): bo'shliqlar ixcham — shrift deyarli o'zgarmaydi, sahna sig'ishi uchun */
+@media (max-height:800px){.mk-body{padding:14px 22px;gap:20px}.mk-scene{gap:10px}.mk-panel{padding:12px 16px;font-size:12.5px;line-height:1.45}.mk-explorer{line-height:1.45;padding:6px 6px 8px}.mk-light{padding:14px}.mk-box{padding:10px 12px}}
 .mk-light.fill{flex:1}
 .mk-tag{font:600 11px/1 ${MONO};letter-spacing:.08em;color:${T.ink3};text-transform:uppercase;margin:0 0 10px}
 .mk-nav{flex:0 0 auto;background:${T.paper};border-top:1px solid ${T.line};padding:12px 28px;display:flex;align-items:center;gap:12px}
@@ -205,12 +210,28 @@ const CSS = `
 .mk-lockhint i{width:7px;height:7px;border-radius:50%;background:${T.accent};display:inline-block;animation:mk-pulse 1.6s ease-in-out infinite}
 .mk-say.mc>:first-child{margin-top:auto}
 .mk-say.mc>:last-child{margin-bottom:auto}
-.mk-say.mc .mk-opt{font-size:16px;padding:13px 16px}
-.mk-body.mc-split{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
+.mk-say.mc .mk-opt{font-size:15px;padding:11px 14px;border-radius:10px;align-items:flex-start}
+.mk-opt .l{margin-top:3px}
+.mk-opt .t{display:grid;gap:4px;min-width:0}
+.mk-opt .why{font-size:13.5px;line-height:1.4;font-weight:500;color:${T.green}}
+.mk-opt.bad .why{color:${T.accent}}
+.mk-opt.ok{color:${T.ink}}
+.mk-opt .why code{font:.92em ${MONO};background:${T.chip};border:1px solid ${T.chipLine};border-radius:5px;padding:0 5px;color:${T.ink}}
+.mk-body.mc-split{grid-template-columns:minmax(340px,4fr) minmax(0,8fr);gap:24px}
+.mc-after{display:flex;flex-direction:column;gap:12px;overflow:auto}
+.mc-after>.mk-panel,.mc-after>.mc-proof{flex:0 0 auto;min-height:0}
+.mc-proof{display:flex;flex-direction:column;gap:10px}
+.mc-proof>div{display:flex!important;flex-direction:column;gap:10px;flex:0 0 auto;min-height:0}
+.mc-proof .mk-panel{flex:0 0 auto;min-height:0;max-height:none}
+.mc-proof .mk-rule,.mc-proof .mk-tag,.mc-after>.mk-tag{flex:0 0 auto}
+.mc-demak{flex:0 0 auto;min-height:52px;display:flex;align-items:center;gap:6px;font-size:15px;line-height:1.45;color:${T.ink};padding:0 4px}
+.mc-demak.on{border-left:3px solid ${T.green};padding-left:12px;animation:mk-up .45s ease both}
+.mc-demak b{color:${T.green}}
+.mc-demak code{font:.92em ${MONO};background:${T.chip};border:1px solid ${T.chipLine};border-radius:5px;padding:0 5px}
 .mk-body.mc-split>.mk-say.mc>:first-child{margin-top:0}
 .mk-title.mc-q{font-size:clamp(19px,1.5vw,22px);font-weight:600;color:${T.ink}}
-.mc-wait{border:1.5px dashed ${T.line};border-radius:12px;padding:16px 18px;color:${T.ink3};font-size:14px;background:${T.paper}}
-@media (max-width:1300px){.mk-body.mc-split{grid-template-columns:1fr;grid-auto-rows:max-content;overflow:auto}.mk-body.mc-split>.mk-say.mc,.mk-body.mc-split>.mc-after{overflow:visible!important}}
+.mc-wait{flex:0 0 auto;border:1.5px dashed ${T.line};border-radius:10px;padding:10px 14px;color:${T.ink3};font-size:13px;background:${T.paper}}
+@media (max-width:1000px){.mk-body.mc-split{grid-template-columns:1fr;grid-auto-rows:max-content;overflow:auto}.mk-body.mc-split>.mk-say.mc,.mk-body.mc-split>.mc-after{overflow:visible!important}}
 .mk-btn.ready{background:${T.accent};border-color:${T.accent};animation:mk-pulse 1.6s ease-in-out infinite}
 .mk-audio{display:flex;align-items:center;gap:6px}
 .mk-audio button{background:transparent;border:1px solid ${T.line};border-radius:8px;padding:5px 8px;cursor:pointer;color:${T.ink2};font:12px/1 ${SANS};display:inline-flex;align-items:center;gap:6px}
@@ -263,7 +284,9 @@ const CSS = `
 .mk-step input{width:18px;height:18px;margin-top:3px;accent-color:${T.green}}
 .mk-step .t{flex:1;min-width:0}
 .mk-step .t b{display:block;font-size:14px;margin-bottom:3px}
-.mk-step .cmd{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:4px 0}
+.mk-step .cmd{display:inline-flex;gap:6px;align-items:center;margin:3px 12px 3px 0;max-width:100%}
+.mk-step .cmd code{overflow-wrap:anywhere}
+@media (max-height:760px){.mk-step{padding:7px 10px}.mk-step .t b{margin-bottom:1px}.mk-step .cmd{margin:2px 10px 2px 0}}
 .mk-step code{font:12.5px ${MONO};background:#EEF0F4;padding:2px 7px;border-radius:6px}
 .mk-step .exp{font-size:12.5px;color:${T.ink3}}
 .mk-copy{border:1px solid ${T.line};background:#fff;border-radius:6px;padding:2px 7px;font:11px ${SANS};cursor:pointer;color:${T.ink2}}
@@ -281,6 +304,8 @@ const CSS = `
 .mk-cover .card{max-width:760px;width:100%;background:${T.paper};border:1px solid ${T.line};border-radius:20px;padding:36px 40px;box-shadow:0 20px 60px rgba(15,17,21,.08)}
 .mk-cover h1{font-size:clamp(24px,2.3vw,30px);line-height:1.15;font-weight:700;margin:8px 0 10px;letter-spacing:-.01em}
 .mk-cover p{color:${T.ink2};font-size:17px;line-height:1.55;margin:0 0 22px}
+.mk-resume{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.mk-cover p.mk-resume-note{flex-basis:100%;margin:6px 0 0;font-size:14px;color:${T.ink2}}
 .mk-cover ul{margin:0 0 26px;padding:0;list-style:none;display:grid;gap:8px;color:${T.ink2};font-size:15px}
 .mk-cover li::before{content:"—";color:${T.accent};margin-right:10px}
 .mk-req{display:grid;gap:8px}
@@ -289,6 +314,57 @@ const CSS = `
 .mk-req .st{font:700 11px ${MONO};padding:2px 7px;border-radius:6px;background:#EEF0F4;color:${T.ink2}}
 .mk-req .st.s2{background:#E3F5EC;color:${T.green}}.mk-req .st.s4{background:#FFF0EB;color:${T.accent}}
 .mk-req pre{margin:6px 0 0;font:12px/1.45 ${MONO};white-space:pre-wrap;color:${T.ink2}}
+/* F-1109-06: mexanizm chizmalari (oqim, yo'lak, vaqt o'qi, jadval) — gapli karta o'rniga */
+.z{--ac:#E2451F;--ac2:#FFF5F2;--pg:#336791;--ok:#15803D;--ok2:#DCFCE7;--bad:#DC2626;--bad2:#FEF2F2;--warn:#C2410C;--warn2:#FFEDD5;--blue:#1D4ED8;--blue2:#DBEAFE;--pur:#6D3BE4;--pur2:#EDE9FE;--ink:#1F2937;--ink2:#4B5563;--mut:#6B7280;--line:#D7DCE3;--soft:#F8FAFC;
+  display:grid;gap:12px;color:var(--ink);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.z *{box-sizing:border-box}
+.z .zm,.z .zm *{font-family:ui-monospace,Menlo,Consolas,monospace}
+.z .zm{font-size:13px;color:var(--ink)}
+.z-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;display:grid;gap:10px;min-width:0;align-content:start}
+.z-h{font:700 13px system-ui,sans-serif;letter-spacing:.01em;color:var(--mut);margin:0}
+.z-flow{display:flex;align-items:stretch;gap:0}
+.z-flow>.z-st{flex:1 1 0;min-width:0}
+.z-ar{flex:0 0 26px;display:flex;align-items:center;justify-content:center;color:#9CA3AF;font-size:20px}
+.z-ar.bad{color:var(--bad)}
+.z-st{border:1.5px solid var(--line);border-radius:10px;padding:10px;display:grid;gap:5px;align-content:start;background:var(--soft)}
+.z-st.ok{border-color:var(--ok);background:#F0FDF4}.z-st.bad{border-color:var(--bad);background:var(--bad2)}.z-st.ac{border-color:var(--ac);background:var(--ac2)}
+.z-st.blue{border-color:var(--pg);background:#EFF6FF}.z-st.off{border-style:dashed;background:#fff;color:var(--mut)}
+.z-st .ln{font:11.5px ui-monospace,Menlo,Consolas,monospace;color:var(--mut)}
+.z-tag{justify-self:start;display:inline-block;font:700 12px system-ui,sans-serif;border-radius:999px;padding:2px 9px;white-space:nowrap}
+.z-tag.r{background:var(--bad);color:#fff}.z-tag.g{background:var(--ok2);color:var(--ok)}.z-tag.b{background:var(--blue2);color:var(--blue)}.z-tag.o{background:var(--warn2);color:var(--warn)}.z-tag.n{background:#F1F3F6;color:var(--ink2)}
+.z-term{background:#111827;color:#E5E7EB;border-radius:10px;padding:10px 12px;font:13px/1.55 ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;word-break:break-word}
+.z-term .r{color:#FCA5A5}.z-term .g{color:#86EFAC}.z-term .y{color:#FDE68A}.z-term .c{color:#93C5FD}.z-term .m{color:#9CA3AF}
+.z-term .hl{background:rgba(226,69,31,.28);border-radius:3px}
+.z-two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.z-three{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.z-rule{border-left:4px solid var(--ac);background:var(--ac2);border-radius:10px;padding:10px 14px;font-size:15px}
+.z-rule b{color:var(--ac)}
+.z-k{display:inline;font:13px ui-monospace,Menlo,Consolas,monospace;background:#F1F3F6;border-radius:5px;padding:1px 6px;color:var(--ink)}
+.z-mut{color:var(--mut);font-size:13px}
+.z-lanes{display:grid;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.z-lanes>div{padding:9px 12px;border-bottom:1px solid #EEF0F3;display:flex;align-items:center;gap:8px;min-height:44px;font-size:14px}
+.z-lanes>.hd{font:700 12px system-ui,sans-serif;letter-spacing:.05em;text-transform:uppercase;background:var(--soft);color:var(--ink2)}
+.z-lanes>.rh{font:600 12px ui-monospace,Menlo,Consolas,monospace;color:var(--mut);background:var(--soft)}
+.z-tbl{border-collapse:collapse;width:100%;font:13px ui-monospace,Menlo,Consolas,monospace}
+.z-tbl th,.z-tbl td{border:1px solid #E5E7EB;padding:5px 9px;text-align:left;color:var(--ink)}
+.z-tbl th{background:var(--soft);font-weight:700}
+.z-tbl tr.hl td{background:var(--blue2)}.z-tbl tr.bad td{background:var(--bad2);color:#991B1B}.z-tbl tr.ok td{background:#F0FDF4}
+.z-svg{display:block;width:100%;height:auto}
+.z-svg text{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.z-svg .mono{font-family:ui-monospace,Menlo,Consolas,monospace}
+.z b,.z strong{color:inherit}
+.z .z-st>b{color:var(--ink)}
+.z .zm{overflow-wrap:anywhere}
+.z code{all:unset;display:inline;font:13px ui-monospace,Menlo,Consolas,monospace;background:#F1F3F6;border-radius:5px;padding:1px 6px;color:var(--ink)}
+.z-h .zk,.z-h code{text-transform:none;letter-spacing:0;font:600 12.5px ui-monospace,Menlo,Consolas,monospace;color:var(--ink2)}
+.z .mk-in{min-width:0}
+.z-st.dim,.z-card.dim{opacity:.45}
+.z-card.hl{border-color:#E2451F;box-shadow:0 0 0 3px rgba(226,69,31,.14)}
+.z-st.hl{box-shadow:0 0 0 3px rgba(226,69,31,.18)}
+.z-st,.z-card,.z-ar,.z-rule,.z-term,.z-tbl tr{transition:opacity .4s,box-shadow .4s,background .4s}
+.z .dim{opacity:.4}
+.z-band{display:grid;gap:8px;font:700 12px system-ui,sans-serif;text-align:center}
+.z-band>div{border-radius:8px;padding:5px 4px}
 @keyframes mk-up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @keyframes mk-fade{from{opacity:0}to{opacity:1}}
 @keyframes mk-glow{0%,100%{box-shadow:0 0 0 0 rgba(226,69,31,0)}50%{box-shadow:0 0 0 5px rgba(226,69,31,.16)}}
@@ -327,10 +403,18 @@ const EN_PHRASES = [
   /Nest application successfully started/g, /successfully started/g, /Validation failed/g, /Internal server error/g,
   /can't resolve dependencies/g, /invalid controller/g, /Dependency Injection/g, /Hello World/g, /Cannot GET/g,
   /Bad Request/g, /Not Found/g, /does not exist/g, /Potential solutions/g, /Car with id [\w' ]+? not found/g,
+  /\b[Bb]ackslash\b/g, // F-1109-01 (M49): `\` belgisi o'z nomi bilan; ko'rik saytida o'zbekcha ovoz uchun tts-server «bekslesh» qiladi
 ];
+// F-1109-02 (M49): o'quvchi darsi kodi (m4-03, m4a-03, m11-03) ovozga so'z bilan ketadi — raqam bo'lib ketsa «0» «o» harfi
+// bo'lib o'qiladi («m4 o uch»). Faqat o'zbekcha ovozda; ekranda va «Matn»da kod o'zgarmaydi.
+const SON_UZ = ['nol', 'bir', 'ikki', 'uch', "to'rt", 'besh', 'olti', 'yetti', 'sakkiz', "to'qqiz"];
+const ON_UZ = ['', "o'n", 'yigirma', "o'ttiz", 'qirq'];
+const sonUz = (n) => (n < 10 ? SON_UZ[n] : ON_UZ[Math.floor(n / 10)] + (n % 10 ? ' ' + SON_UZ[n % 10] : ''));
+const kodOvoz = (t) => t.replace(/\bm(\d{1,2})(a?)-(\d)(\d)\b/g, (_, m, a, d1, d2) =>
+  `em ${sonUz(+m)}${a ? ' a' : ''}, ${d1 === '0' ? 'nol ' + SON_UZ[+d2] : sonUz(+(d1 + d2))}`);
 const voice = (t) => {
   const keep = [];
-  let out = t || '';
+  let out = LANG === 'ru' ? (t || '') : kodOvoz(t || '');
   EN_PHRASES.forEach((re) => { out = out.replace(re, (m) => { keep.push(m); return `\u0000${keep.length - 1}\u0000`; }); });
   return (LANG === 'ru' ? RU_MARK : UZ) + out.replace(/\u0000(\d+)\u0000/g, (_, i) => `[English pronunciation] ${keep[i]} [end]`);
 };
@@ -462,7 +546,9 @@ function Say({ eyebrow, title, segments, beat, audio, stepManual, below, guess, 
 }
 
 // Kod/terminal paneli: satr `at` qadamida kiradi; `focus` id'lari yoritiladi, qolgani xiralashadi; `onLine` — bosiladigan
-function CodePanel({ file, lines, beat = 99, focus = [], numbers = true, wrap = false, style, onLine, marks = {} }) {
+// F-1103-04 (03.11, foydalanuvchi «1 qator kod 3 qator bo'lmasin»): kod HECH QACHON o'ralmaydi — `wrap` prop e'tiborsiz (eski chaqiruvlar buzilmasin).
+// Uzun qator — darsda Prettier (80 belgi) bilan bo'linadi; sig'masa panel ichida gorizontal skroll.
+function CodePanel({ file, lines, beat = 99, focus = [], numbers = true, style, onLine, marks = {} }) {
   const anyFocus = focus.length > 0;
   const ref = useRef(null);
   const focusKey = focus.join('|');
@@ -489,7 +575,7 @@ function CodePanel({ file, lines, beat = 99, focus = [], numbers = true, wrap = 
           const v = vis(l.at, beat);
           const hl = anyFocus && l.id && focus.includes(l.id);
           const mk = marks[i] || '';
-          const cls = `mk-ln${wrap ? ' wrap' : ''}${v ? ' in' : ''}${hl ? ' hl' : (anyFocus && v && !l.keep ? ' dim' : '')}${l.gone ? ' gone' : ''}${l.neu ? ' new' : ''}${onLine ? ' clk' : ''}${mk ? ' ' + mk : ''}`;
+          const cls = `mk-ln${v ? ' in' : ''}${hl ? ' hl' : (anyFocus && v && !l.keep ? ' dim' : '')}${l.gone ? ' gone' : ''}${l.neu ? ' new' : ''}${onLine ? ' clk' : ''}${mk ? ' ' + mk : ''}`;
           return <div key={i} className={cls} data-at={l.at} onClick={onLine ? () => onLine(i, l) : undefined}>{numbers && <span className="n">{l.n != null ? l.n : i + 1}</span>}<span dangerouslySetInnerHTML={html(l.h)} /></div>;
         })}
       </div>
@@ -585,7 +671,9 @@ function Lesson({ p, S, scene, below, ready, sceneTop }) {
 
 // Tekshiruv (tanlov): xato variant yopiladi, to'g'risini topguncha bosadi
 // `after` — to'g'ri javobdan keyin ko'rsatiladigan blok (masalan tuzatilgan fayl, 2-qonun, F-1030 qo'shimcha 1)
-function MCRetry({ idx, total, onBack, onNext, onRestart, stored, onAnswer, review, kicker, eyebrow, title, q, opts, correct, ok, okShort, wrong, above, after }) {
+// F-1103-02 (A varianti): `above` — savoldan oldin ko'rinadigan material (terminal, kod, xabar); `after` — to'g'ri javobdan keyin isbot;
+// `demak` — javobdan keyin o'ng ustun ostidagi bitta «Demak, …» gapi. Karta yo'q: sabab variantning ichida (to'g'risi yashil, xatosi qizil).
+function MCRetry({ idx, total, onBack, onNext, onRestart, stored, onAnswer, review, kicker, eyebrow, title, q, opts, correct, ok, okShort, wrong, above, after, demak }) {
   const segs = useMemo(() => review ? [] : [{ id: 'q', text: voice(q), trigger: 'on_mount', waits_for: { type: 'option_picked' } }], [q, review]);
   const audio = useAudio(segs);
   const sfx = useSfx();
@@ -604,11 +692,10 @@ function MCRetry({ idx, total, onBack, onNext, onRestart, stored, onAnswer, revi
       setTimeout(() => audio.pushOneOff(voice((wrong[i] || t('Unday emas.', 'Не совсем.')) + t(" Yana o'ylab ko'ring.", ' Подумайте ещё раз.'))), 300);
     }
   };
-  const fbOk = solved && last === correct;
   // F-1102-16: tuzatilgan/haqiqiy natija bloki bo'lsa — ekran BOSHIDAN ikki ustun va joyi qimirlamaydi:
   // chapda savol va variantlar, o'ngda xabar (above) va javobdan keyin uning ostida natija (after).
   // Javobdan keyin variantlar o'z joyida qoladi (to'g'risi yashil, qolgani xira) — hech narsa sakramaydi.
-  const split = !!after;
+  const split = !!(after || above);
   return (
     <Stage kicker={kicker} idx={idx} total={total} audio={audio} onBack={onBack} onNext={onNext} onRestart={onRestart} nextReady={solved} nextDisabled={!solved} lockHint={t("To'g'ri javobni toping", 'Найдите верный ответ')}>
       <div className={`mk-body${split ? ' mc-split' : ''}`} style={split ? undefined : { gridTemplateColumns: '1fr', maxWidth: 980, width: '100%', margin: '0 auto' }}>
@@ -622,21 +709,17 @@ function MCRetry({ idx, total, onBack, onNext, onRestart, stored, onAnswer, revi
               let cls = 'mk-opt';
               if (solved) cls += i === correct ? ' ok' : ' off';
               else if (bad.includes(i)) cls += ' bad';
-              return <button key={i} className={cls} disabled={solved || bad.includes(i)} onClick={() => pick(i)}><span className="l">{String.fromCharCode(65 + i)}</span><span>{o}</span></button>;
+              const why = solved && i === correct ? (okShort || digits(ok)) : (bad.includes(i) ? digits(wrong[i] || '') : null);
+              return <button key={i} className={cls} disabled={solved || bad.includes(i)} onClick={() => pick(i)}><span className="l">{String.fromCharCode(65 + i)}</span><span className="t"><span>{o}</span>{why ? <small className="why">{why}</small> : null}</span></button>;
             })}
           </div>
-          {last !== null && (
-            <div className="mk-fb" key={last + (solved ? 'ok' : 'bad')} style={{ '--c': fbOk ? T.green : T.accent, '--bg': fbOk ? '#E3F5EC' : '#FFF0EB' }}>
-              <b>{fbOk ? t("To'g'ri", 'Верно') : t("Unday emas — yana o'ylab ko'ring", 'Не совсем — подумайте ещё раз')}</b>
-              <span>{fbOk ? (okShort || digits(ok)) : digits(wrong[last])}</span>
-            </div>
-          )}
         </div>
-        {split && <div className="mk-scene top mc-after" style={{ overflow: 'auto', display: 'grid', gap: 12, alignContent: 'start' }}>
+        {split && <div className="mk-scene top mc-after">
           {above}
           {solved
-            ? <div style={{ animation: 'mk-up .45s ease both' }}>{after}</div>
-            : <div className="mc-wait">{t("To'g'ri javobni topganingizdan keyin shu yerda haqiqiy natija ochiladi", 'Когда найдёте верный ответ, здесь откроется реальный результат')}</div>}
+            ? (after ? <div className="mc-proof" style={{ animation: 'mk-up .45s ease both' }}>{after}</div> : null)
+            : (above ? null : <div className="mc-wait">{t("Javobdan keyin shu yerda haqiqiy natija", 'После ответа здесь — реальный результат')}</div>)}
+          {demak ? <div className={`mc-demak${solved ? ' on' : ''}`}>{solved ? <><b>{t('Demak,', 'Значит,')}</b><span>{demak}</span></> : null}</div> : null}
         </div>}
       </div>
     </Stage>
@@ -733,10 +816,18 @@ function Practice({ p, S, steps, trouble, code, proof, tree }) {
     <Stage kicker={S.kicker} idx={p.idx} total={p.total} audio={b.audio} onBack={p.onBack} onNext={p.onNext} onRestart={p.onRestart} nextReady={b.done && allDone} nextDisabled={!(b.done && allDone)} lockHint={!allDone ? (proof ? t("Katakchalar va isbotni to'ldiring", 'Отметьте пункты и заполните подтверждение') : t('Katakchalarni belgilang', 'Отметьте пункты')) : t("Ustoz gapirib bo'lgach ochiladi", 'Откроется, когда учитель договорит')}>
       <div className="mk-body">
         <Say eyebrow={S.eyebrow} title={S.title} segments={S.segments} beat={beat} audio={b.audio} stepManual={b.stepManual} guess={b.guess} answerAsk={b.answerAsk} review={p.review}
-          below={<div className="mk-card" style={{ background: allDone ? '#E3F5EC' : T.paper, borderColor: allDone ? T.green : T.line }}><h5>{t('Bajarildi', 'Выполнено')}</h5><div style={{ fontSize: 15, fontWeight: 700 }}>{checked.length} / {steps.length} {t('qadam', 'шагов')}{proof ? (proofOk && proofVal.trim() ? t(' · isbot ✓', ' · подтверждение ✓') : t(' · isbot kutilmoqda', ' · ждём подтверждение')) : ''}{allDone ? (b.done ? t(' — Davom bosing', ' — нажмите «Далее»') : t(' — ovoz tugagach Davom ochiladi', ' — «Далее» откроется после озвучки')) : ''}</div>
+          below={<><div className="mk-card" style={{ background: allDone ? '#E3F5EC' : T.paper, borderColor: allDone ? T.green : T.line }}><h5>{t('Bajarildi', 'Выполнено')}</h5><div style={{ fontSize: 15, fontWeight: 700 }}>{checked.length} / {steps.length} {t('qadam', 'шагов')}{proof ? (proofOk && proofVal.trim() ? t(' · isbot ✓', ' · подтверждение ✓') : t(' · isbot kutilmoqda', ' · ждём подтверждение')) : ''}{allDone ? (b.done ? t(' — Davom bosing', ' — нажмите «Далее»') : t(' — ovoz tugagach Davom ochiladi', ' — «Далее» откроется после озвучки')) : ''}</div>
             {/* F-1102-20: isbot maydoni to'ldirilmaguncha yumshoq yonib-o'chadi — «shu yerga yozing» ko'rinib tursin */}
             {proof && <div style={{ marginTop: 10 }}><div className="exp" style={{ marginBottom: 4, fontWeight: 700, color: proofOk && proofVal.trim() ? T.green : T.ink }}>{t('Isbot', 'Подтверждение')}: {String(proof.label).replace(/^(Isbot|Подтверждение)\s*:\s*/, '')}</div><input className={`mk-input${proofOk && proofVal.trim() ? '' : ' need'}`} value={proofVal} placeholder={proof.placeholder} onChange={(e) => onProof(e.target.value)} />{proofVal.trim() && !proofOk && <div className="exp" style={{ color: T.accent, marginTop: 4 }}>{proof.wrong}</div>}</div>}
-          </div>} />
+          </div>
+          {/* 04.11: «Boshqacha chiqdimi?» chap ustunda — o'ng ustun qadamlarga to'liq qoladi (1280×720 da kesilmasin) */}
+          <Block at={S.tableAt} beat={beat}><div className="mk-light mk-trouble" style={{ padding: 0, marginTop: 10 }}>
+              <button type="button" className={`mk-trbtn${beat === S.tableAt && !tOpen ? ' hot' : ''}`} aria-haspopup="dialog" aria-expanded={tOpen} onClick={() => setTOpen(true)}>
+                <span className="q">{t('Boshqacha chiqdimi?', 'Вышло иначе?')}</span>
+                {rows.length > 1 && <span className="n">{t(`${rows.length - 1} ta holat va yechim`, `ситуации и решения: ${rows.length - 1}`)}</span>}
+                <span className="ar" aria-hidden="true">↗</span>
+              </button>
+            </div></Block></>} />
         <div className="mk-scene top" style={{ overflow: 'auto' }}>
           {cur ? (<>
             {/* F-1031-05: qaytish tugmasi oynadan tashqarida, katta — kod ko'rilgach qadamlarga qaytish ko'rinib tursin */}
@@ -757,19 +848,15 @@ function Practice({ p, S, steps, trouble, code, proof, tree }) {
                   <input type="checkbox" checked={checked.includes(i)} onChange={() => toggle(i)} />
                   <div className="t"><b>{i + 1}. {s.t}</b>
                     {s.cmds.map((cm) => <div key={cm} className="cmd"><code>{cm}</code><CopyBtn text={cm} /></div>)}
-                    {c && <div style={{ margin: '4px 0 6px' }}><button className="mk-btn soft sm" style={{ borderColor: T.ink, color: T.ink }} onClick={() => setOpenFile(c.file)}>{t('Kodni ochish', 'Открыть код')} · {baseName(c.file)}{c.copy === false ? t(' (namuna)', ' (образец)') : ''}</button></div>}
-                    <div className="exp">{t('Kutilgan:', 'Ожидается:')} {s.exp}</div>
+                    {/* 04.11: «Kodni ochish» va «Kutilgan» bitta qatorda (sig'masa o'tadi) — 1280×720 da qadamlar sig'sin */}
+                    <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '4px 12px', margin: c ? '4px 0 2px' : 0 }}>
+                      {c && <button className="mk-btn soft sm" style={{ borderColor: T.ink, color: T.ink }} onClick={() => setOpenFile(c.file)}>{t('Kodni ochish', 'Открыть код')} · {baseName(c.file)}{c.copy === false ? t(' (namuna)', ' (образец)') : ''}</button>}
+                      <div className="exp">{t('Kutilgan:', 'Ожидается:')} {s.exp}</div>
+                    </div>
                   </div>
                 </div>
               ); })}
             </div>
-            <Block at={S.tableAt} beat={beat}><div className="mk-light mk-trouble" style={{ padding: 0, marginTop: 10 }}>
-              <button type="button" className={`mk-trbtn${beat === S.tableAt && !tOpen ? ' hot' : ''}`} aria-haspopup="dialog" aria-expanded={tOpen} onClick={() => setTOpen(true)}>
-                <span className="q">{t('Boshqacha chiqdimi?', 'Вышло иначе?')}</span>
-                {rows.length > 1 && <span className="n">{t(`${rows.length - 1} ta holat va yechim`, `ситуации и решения: ${rows.length - 1}`)}</span>}
-                <span className="ar" aria-hidden="true">↗</span>
-              </button>
-            </div></Block>
             {/* F-1102-12: jadval sahifa ichida emas — ustida oyna (popup). ✕, tashqarisi yoki Esc yopadi; tugma joyida qoladi */}
             {tOpen && <TroubleModal rows={rows} onClose={() => setTOpen(false)} />}
           </>)}
@@ -779,8 +866,1066 @@ function Practice({ p, S, steps, trouble, code, proof, tree }) {
   );
 }
 
+// ---------- Progress saqlovi (F-1103-06, 03.11): mentor darsni bo'lib o'tadi ----------
+// O'quvchi darslaridagi ccProgress kabi — brauzer xotirasida: ekran, ko'rilgan ekranlar, javoblar.
+// Ekranlar soni o'zgargan bo'lsa (dars qayta qurilgan) eski yozuv olinmaydi. startAt (dev) bo'lsa saqlov o'qilmaydi.
+// Qaytganda darhol ekranga tushilmaydi: brauzer ovozni faqat bosishdan keyin chaladi — kirish oynasida tugma.
+const SAVE_KEY = (id) => `ccMentor:${id}`;
+function loadSaved(id, total) {
+  try {
+    const v = JSON.parse(localStorage.getItem(SAVE_KEY(id)) || 'null');
+    if (!v || v.v !== 1 || v.total !== total || typeof v.idx !== 'number' || v.idx < 1) return null;
+    return v;
+  } catch (e) { return null; }
+}
+function clearSaved(id) { try { localStorage.removeItem(SAVE_KEY(id)); } catch (e) {} }
+function useMentorSave({ id, total, startAt, started, idx, answers, seen, setIdx, setAnswers, setSeen, setStarted }) {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const saved = useMemo(() => (startAt != null ? null : loadSaved(id, total)), []);
+  useEffect(() => {
+    if (!started) return;
+    try { localStorage.setItem(SAVE_KEY(id), JSON.stringify({ v: 1, total, idx, answers, seen, t: Date.now() })); } catch (e) {}
+  }, [started, idx, answers, seen, id, total]);
+  const start = useCallback((resume) => {
+    if (resume && saved) { setIdx(Math.min(saved.idx, total - 1)); setAnswers(saved.answers || {}); setSeen(saved.seen || {}); }
+    else clearSaved(id);
+    setStarted(true);
+  }, [saved, id, total, setIdx, setAnswers, setSeen, setStarted]);
+  return { resume: saved, start };
+}
+function CoverStart({ onStart, resume }) {
+  if (!resume) return <button className="mk-btn ready" onClick={() => onStart(false)}>{t('Boshlash →', 'Начать →')}</button>;
+  return (
+    <div className="mk-resume">
+      <button className="mk-btn ready" onClick={() => onStart(true)}>{t(`${resume.idx + 1}-ekrandan davom etish →`, `Продолжить с ${resume.idx + 1}-го экрана →`)}</button>
+      <button className="mk-btn soft" onClick={() => onStart(false)}>{t('Boshidan boshlash', 'Начать сначала')}</button>
+      <p className="mk-resume-note">{t(`Oxirgi marta ${resume.idx + 1}-ekrangacha kelgansiz. Javoblaringiz saqlangan.`, `В прошлый раз вы дошли до ${resume.idx + 1}-го экрана. Ответы сохранены.`)}</p>
+    </div>
+  );
+}
+
+// AVTO: feedback/F-1029-02-mentor-kurs/dev/jest1-kod.py — OrderBotNest teglari va haqiqiy test fayllaridan aynan (qo'lda tahrirlanmaydi)
+const KOD_TX_SOM = {
+ "file": "src/api/telegram/texts.ts",
+ "tag": "jest1-start",
+ "lines": [
+  {
+   "t": "import { CartItem, Order, OrderStatus, Product } from '../../core/entity';",
+   "n": 1
+  },
+  {
+   "t": "",
+   "n": 2
+  },
+  {
+   "t": "// 120000 → \"120 000 so'm\"",
+   "n": 3
+  },
+  {
+   "t": "export const som = (n: number) => `${n.toLocaleString('ru-RU')} so'm`;",
+   "n": 4
+  }
+ ]
+};
+const KOD_TX_STATUS = {
+ "file": "src/api/telegram/texts.ts",
+ "tag": "jest1-start",
+ "lines": [
+  {
+   "t": "export const STATUS_UZ: Record<OrderStatus, string> = {",
+   "n": 6
+  },
+  {
+   "t": "  NEW: '🆕 Yangi',",
+   "n": 7
+  },
+  {
+   "t": "  CONFIRMED: '✅ Tasdiqlangan',",
+   "n": 8
+  },
+  {
+   "t": "  DELIVERED: '🚚 Yetkazilgan',",
+   "n": 9
+  },
+  {
+   "t": "  CANCELLED: '❌ Bekor qilingan',",
+   "n": 10
+  },
+  {
+   "t": "};",
+   "n": 11
+  }
+ ]
+};
+const KOD_KB_NAV = {
+ "file": "src/api/telegram/keyboards.ts",
+ "tag": "jest1-start",
+ "lines": [
+  {
+   "t": "  const nav: ReturnType<typeof Markup.button.callback>[] = [];",
+   "n": 18
+  },
+  {
+   "t": "  if (page > 0) nav.push(Markup.button.callback('◀', `page:${page - 1}`));",
+   "n": 19
+  },
+  {
+   "t": "  nav.push(Markup.button.callback(`${page + 1}/${pages}`, 'noop'));",
+   "n": 20
+  },
+  {
+   "t": "  if (page < pages - 1)",
+   "n": 21
+  },
+  {
+   "t": "    nav.push(Markup.button.callback('▶', `page:${page + 1}`));",
+   "n": 22
+  },
+  {
+   "t": "  rows.push(nav);",
+   "n": 23
+  },
+  {
+   "t": "  rows.push([Markup.button.callback('🛒 Savat', 'cart')]);",
+   "n": 24
+  },
+  {
+   "t": "  return Markup.inlineKeyboard(rows);",
+   "n": 25
+  }
+ ]
+};
+const KOD_KB_ORDER = {
+ "file": "src/api/telegram/keyboards.ts",
+ "tag": "jest1-start",
+ "lines": [
+  {
+   "t": "// Admin: har buyurtma ostida status tugmalari (\"status:<id>:<STATUS>\")",
+   "n": 37
+  },
+  {
+   "t": "export const orderKeyboard = (o: Order) => {",
+   "n": 38
+  },
+  {
+   "t": "  if (o.status === 'DELIVERED' || o.status === 'CANCELLED') return undefined;",
+   "n": 39
+  },
+  {
+   "t": "  const row =",
+   "n": 40
+  },
+  {
+   "t": "    o.status === 'NEW'",
+   "n": 41
+  },
+  {
+   "t": "      ? [",
+   "n": 42
+  },
+  {
+   "t": "          Markup.button.callback('✅ Tasdiqlash', `status:${o.id}:CONFIRMED`),",
+   "n": 43
+  },
+  {
+   "t": "          Markup.button.callback('❌ Bekor', `status:${o.id}:CANCELLED`),",
+   "n": 44
+  },
+  {
+   "t": "        ]",
+   "n": 45
+  },
+  {
+   "t": "      : [",
+   "n": 46
+  },
+  {
+   "t": "          Markup.button.callback('🚚 Yetkazildi', `status:${o.id}:DELIVERED`),",
+   "n": 47
+  },
+  {
+   "t": "          Markup.button.callback('❌ Bekor', `status:${o.id}:CANCELLED`),",
+   "n": 48
+  },
+  {
+   "t": "        ];",
+   "n": 49
+  },
+  {
+   "t": "  return Markup.inlineKeyboard([row]);",
+   "n": 50
+  },
+  {
+   "t": "};",
+   "n": 51
+  }
+ ]
+};
+const KOD_PKG_TEST = {
+ "file": "package.json",
+ "tag": "jest1-start",
+ "lines": [
+  {
+   "t": "    \"test\": \"jest\",",
+   "n": 14
+  }
+ ]
+};
+const KOD_PKG = {
+ "file": "package.json",
+ "tag": "jest1-start",
+ "lines": [
+  {
+   "t": "  \"jest\": {",
+   "n": 45
+  },
+  {
+   "t": "    \"moduleFileExtensions\": [",
+   "n": 46
+  },
+  {
+   "t": "      \"js\",",
+   "n": 47
+  },
+  {
+   "t": "      \"json\",",
+   "n": 48
+  },
+  {
+   "t": "      \"ts\"",
+   "n": 49
+  },
+  {
+   "t": "    ],",
+   "n": 50
+  },
+  {
+   "t": "    \"rootDir\": \"src\",",
+   "n": 51
+  },
+  {
+   "t": "    \"testRegex\": \".*\\\\.spec\\\\.ts$\",",
+   "n": 52
+  },
+  {
+   "t": "    \"transform\": {",
+   "n": 53
+  },
+  {
+   "t": "      \"^.+\\\\.ts$\": \"ts-jest\"",
+   "n": 54
+  },
+  {
+   "t": "    },",
+   "n": 55
+  },
+  {
+   "t": "    \"testEnvironment\": \"node\"",
+   "n": 56
+  },
+  {
+   "t": "  }",
+   "n": 57
+  }
+ ]
+};
+const KOD_SPEC02 = {
+ "file": "src/api/telegram/texts.spec.ts",
+ "tag": "chiqish",
+ "lines": [
+  {
+   "t": "import { som } from './texts';",
+   "n": 1
+  },
+  {
+   "t": "",
+   "n": 2
+  },
+  {
+   "t": "describe('som', () => {",
+   "n": 3
+  },
+  {
+   "t": "  it(\"120000 ni so'mda yozadi\", () => {",
+   "n": 4
+  },
+  {
+   "t": "    expect(som(120000)).toBe(\"120 000 so'm\");",
+   "n": 5
+  },
+  {
+   "t": "  });",
+   "n": 6
+  },
+  {
+   "t": "});",
+   "n": 7
+  }
+ ]
+};
+const KOD_SPEC04 = {
+ "file": "src/api/telegram/texts.spec.ts",
+ "tag": "chiqish",
+ "lines": [
+  {
+   "t": "import { som } from './texts';",
+   "n": 1
+  },
+  {
+   "t": "",
+   "n": 2
+  },
+  {
+   "t": "describe('som', () => {",
+   "n": 3
+  },
+  {
+   "t": "  it(\"120000 ni so'mda yozadi\", () => {",
+   "n": 4
+  },
+  {
+   "t": "    // toLocaleString('ru-RU') minglarni bo'linmas probel (U+00A0) bilan ajratadi",
+   "n": 5
+  },
+  {
+   "t": "    expect(som(120000)).toBe(\"120\\u00a0000 so'm\");",
+   "n": 6
+  },
+  {
+   "t": "  });",
+   "n": 7
+  },
+  {
+   "t": "",
+   "n": 8
+  },
+  {
+   "t": "  it(\"kichik sonda probel yo'q\", () => {",
+   "n": 9
+  },
+  {
+   "t": "    expect(som(500)).toBe(\"500 so'm\");",
+   "n": 10
+  },
+  {
+   "t": "  });",
+   "n": 11
+  },
+  {
+   "t": "});",
+   "n": 12
+  }
+ ]
+};
+const KOD_SPEC05 = {
+ "file": "src/api/telegram/yolgon.spec.ts",
+ "tag": "chiqish",
+ "lines": [
+  {
+   "t": "import { som } from './texts';",
+   "n": 1
+  },
+  {
+   "t": "",
+   "n": 2
+  },
+  {
+   "t": "describe('som', () => {",
+   "n": 3
+  },
+  {
+   "t": "  it(\"120000 ni so'mda yozadi\", () => {",
+   "n": 4
+  },
+  {
+   "t": "    console.log(som(120000));",
+   "n": 5
+  },
+  {
+   "t": "  });",
+   "n": 6
+  },
+  {
+   "t": "});",
+   "n": 7
+  }
+ ]
+};
+const KOD_SPEC06 = {
+ "file": "src/api/telegram/savat.spec.ts",
+ "tag": "chiqish",
+ "lines": [
+  {
+   "t": "import { CartItem } from '../../core/entity';",
+   "n": 1
+  },
+  {
+   "t": "import { som, texts } from './texts';",
+   "n": 2
+  },
+  {
+   "t": "",
+   "n": 3
+  },
+  {
+   "t": "const items = [",
+   "n": 4
+  },
+  {
+   "t": "  { product: { name: 'Kolonka', price: 50000 }, qty: 2 },",
+   "n": 5
+  },
+  {
+   "t": "] as CartItem[];",
+   "n": 6
+  },
+  {
+   "t": "",
+   "n": 7
+  },
+  {
+   "t": "describe('texts.cart', () => {",
+   "n": 8
+  },
+  {
+   "t": "  it('etalon koddan', () => {",
+   "n": 9
+  },
+  {
+   "t": "    const t = texts.cart(items, 100000);",
+   "n": 10
+  },
+  {
+   "t": "    expect(t).toContain(`Jami: ${som(100000)}`);",
+   "n": 11
+  },
+  {
+   "t": "  });",
+   "n": 12
+  },
+  {
+   "t": "",
+   "n": 13
+  },
+  {
+   "t": "  it(\"etalon qo'lda\", () => {",
+   "n": 14
+  },
+  {
+   "t": "    const t = texts.cart(items, 100000);",
+   "n": 15
+  },
+  {
+   "t": "    expect(t).toContain(\"Jami: 100\\u00a0000 so'm\");",
+   "n": 16
+  },
+  {
+   "t": "  });",
+   "n": 17
+  },
+  {
+   "t": "});",
+   "n": 18
+  }
+ ]
+};
+const KOD_SPEC06B = {
+ "file": "src/api/telegram/tobe.spec.ts",
+ "tag": "chiqish",
+ "lines": [
+  {
+   "t": "describe('toBe va toEqual', () => {",
+   "n": 1
+  },
+  {
+   "t": "  it('toBe', () => {",
+   "n": 2
+  },
+  {
+   "t": "    expect([['◀', '2/3', '▶']]).toBe([['◀', '2/3', '▶']]);",
+   "n": 3
+  },
+  {
+   "t": "  });",
+   "n": 4
+  },
+  {
+   "t": "",
+   "n": 5
+  },
+  {
+   "t": "  it('toEqual', () => {",
+   "n": 6
+  },
+  {
+   "t": "    expect([['◀', '2/3', '▶']]).toEqual([['◀', '2/3', '▶']]);",
+   "n": 7
+  },
+  {
+   "t": "  });",
+   "n": 8
+  },
+  {
+   "t": "});",
+   "n": 9
+  }
+ ]
+};
+const KOD_SPEC_KB = {
+ "file": "src/api/telegram/keyboards.spec.ts",
+ "tag": "jest1-done",
+ "lines": [
+  {
+   "t": "import { Order } from '../../core/entity';",
+   "n": 1
+  },
+  {
+   "t": "import { catalogKeyboard, orderKeyboard } from './keyboards';",
+   "n": 2
+  },
+  {
+   "t": "",
+   "n": 3
+  },
+  {
+   "t": "// Faqat tugmalar matni va callback'i — qolgani bizga kerak emas",
+   "n": 4
+  },
+  {
+   "t": "const buttons = (kb: ReturnType<typeof orderKeyboard>) =>",
+   "n": 5
+  },
+  {
+   "t": "  kb?.reply_markup.inline_keyboard.map((row) =>",
+   "n": 6
+  },
+  {
+   "t": "    row.map((b) => [b.text, 'callback_data' in b ? b.callback_data : '']),",
+   "n": 7
+  },
+  {
+   "t": "  );",
+   "n": 8
+  },
+  {
+   "t": "",
+   "n": 9
+  },
+  {
+   "t": "const order = (status: Order['status']) => ({ id: 7, status }) as Order;",
+   "n": 10
+  },
+  {
+   "t": "",
+   "n": 11
+  },
+  {
+   "t": "describe('orderKeyboard', () => {",
+   "n": 12
+  },
+  {
+   "t": "  it('yangi buyurtma — Tasdiqlash va Bekor', () => {",
+   "n": 13
+  },
+  {
+   "t": "    expect(buttons(orderKeyboard(order('NEW')))).toEqual([",
+   "n": 14
+  },
+  {
+   "t": "      [",
+   "n": 15
+  },
+  {
+   "t": "        ['✅ Tasdiqlash', 'status:7:CONFIRMED'],",
+   "n": 16
+  },
+  {
+   "t": "        ['❌ Bekor', 'status:7:CANCELLED'],",
+   "n": 17
+  },
+  {
+   "t": "      ],",
+   "n": 18
+  },
+  {
+   "t": "    ]);",
+   "n": 19
+  },
+  {
+   "t": "  });",
+   "n": 20
+  },
+  {
+   "t": "",
+   "n": 21
+  },
+  {
+   "t": "  it('tasdiqlangan — Yetkazildi va Bekor', () => {",
+   "n": 22
+  },
+  {
+   "t": "    expect(buttons(orderKeyboard(order('CONFIRMED')))).toEqual([",
+   "n": 23
+  },
+  {
+   "t": "      [",
+   "n": 24
+  },
+  {
+   "t": "        ['🚚 Yetkazildi', 'status:7:DELIVERED'],",
+   "n": 25
+  },
+  {
+   "t": "        ['❌ Bekor', 'status:7:CANCELLED'],",
+   "n": 26
+  },
+  {
+   "t": "      ],",
+   "n": 27
+  },
+  {
+   "t": "    ]);",
+   "n": 28
+  },
+  {
+   "t": "  });",
+   "n": 29
+  },
+  {
+   "t": "",
+   "n": 30
+  },
+  {
+   "t": "  it(\"yetkazilgan va bekor qilingan — tugma yo'q\", () => {",
+   "n": 31
+  },
+  {
+   "t": "    expect(orderKeyboard(order('DELIVERED'))).toBeUndefined();",
+   "n": 32
+  },
+  {
+   "t": "    expect(orderKeyboard(order('CANCELLED'))).toBeUndefined();",
+   "n": 33
+  },
+  {
+   "t": "  });",
+   "n": 34
+  },
+  {
+   "t": "});",
+   "n": 35
+  },
+  {
+   "t": "",
+   "n": 36
+  },
+  {
+   "t": "const p = (id: number, stock = 5) =>",
+   "n": 37
+  },
+  {
+   "t": "  ({ id, name: `M${id}`, price: 1000, stock }) as any;",
+   "n": 38
+  },
+  {
+   "t": "",
+   "n": 39
+  },
+  {
+   "t": "// Oxirgidan oldingi qator — sahifalash: ◀ · 2/3 · ▶",
+   "n": 40
+  },
+  {
+   "t": "const nav = (kb: ReturnType<typeof catalogKeyboard>) => {",
+   "n": 41
+  },
+  {
+   "t": "  const rows = kb.reply_markup.inline_keyboard;",
+   "n": 42
+  },
+  {
+   "t": "  return rows[rows.length - 2].map((b) => b.text);",
+   "n": 43
+  },
+  {
+   "t": "};",
+   "n": 44
+  },
+  {
+   "t": "",
+   "n": 45
+  },
+  {
+   "t": "describe('catalogKeyboard', () => {",
+   "n": 46
+  },
+  {
+   "t": "  it(\"birinchi sahifada ◀ yo'q\", () => {",
+   "n": 47
+  },
+  {
+   "t": "    expect(nav(catalogKeyboard([p(1), p(2)], 0, 3))).toEqual(['1/3', '▶']);",
+   "n": 48
+  },
+  {
+   "t": "  });",
+   "n": 49
+  },
+  {
+   "t": "",
+   "n": 50
+  },
+  {
+   "t": "  it(\"o'rtada ikkalasi bor\", () => {",
+   "n": 51
+  },
+  {
+   "t": "    expect(nav(catalogKeyboard([p(3), p(4)], 1, 3))).toEqual(['◀', '2/3', '▶']);",
+   "n": 52
+  },
+  {
+   "t": "  });",
+   "n": 53
+  },
+  {
+   "t": "",
+   "n": 54
+  },
+  {
+   "t": "  it(\"oxirgi sahifada ▶ yo'q\", () => {",
+   "n": 55
+  },
+  {
+   "t": "    expect(nav(catalogKeyboard([p(5)], 2, 3))).toEqual(['◀', '3/3']);",
+   "n": 56
+  },
+  {
+   "t": "  });",
+   "n": 57
+  },
+  {
+   "t": "",
+   "n": 58
+  },
+  {
+   "t": "  it('bitta sahifa — faqat 1/1', () => {",
+   "n": 59
+  },
+  {
+   "t": "    expect(nav(catalogKeyboard([p(1)], 0, 1))).toEqual(['1/1']);",
+   "n": 60
+  },
+  {
+   "t": "  });",
+   "n": 61
+  },
+  {
+   "t": "",
+   "n": 62
+  },
+  {
+   "t": "  it('tugagan mahsulot bosilmaydi', () => {",
+   "n": 63
+  },
+  {
+   "t": "    const row = catalogKeyboard([p(9, 0)], 0, 1).reply_markup",
+   "n": 64
+  },
+  {
+   "t": "      .inline_keyboard[0];",
+   "n": 65
+  },
+  {
+   "t": "    expect(row[0]).toMatchObject({",
+   "n": 66
+  },
+  {
+   "t": "      text: 'M9 · tugagan',",
+   "n": 67
+  },
+  {
+   "t": "      callback_data: 'noop',",
+   "n": 68
+  },
+  {
+   "t": "    });",
+   "n": 69
+  },
+  {
+   "t": "  });",
+   "n": 70
+  },
+  {
+   "t": "});",
+   "n": 71
+  }
+ ]
+};
+const KOD_SPEC_OP = {
+ "file": "src/api/telegram/texts.spec.ts",
+ "tag": "chiqish",
+ "lines": [
+  {
+   "t": "import { Order } from '../../core/entity';",
+   "n": 1
+  },
+  {
+   "t": "import { texts } from './texts';",
+   "n": 2
+  },
+  {
+   "t": "",
+   "n": 3
+  },
+  {
+   "t": "const order = {",
+   "n": 4
+  },
+  {
+   "t": "  id: 42,",
+   "n": 5
+  },
+  {
+   "t": "  phone: '+998901234567',",
+   "n": 6
+  },
+  {
+   "t": "  total: 50000,",
+   "n": 7
+  },
+  {
+   "t": "  status: 'NEW',",
+   "n": 8
+  },
+  {
+   "t": "  items: [{ product: { name: 'Kolonka', price: 50000 }, qty: 1, price: 50000 }],",
+   "n": 9
+  },
+  {
+   "t": "} as unknown as Order;",
+   "n": 10
+  },
+  {
+   "t": "",
+   "n": 11
+  },
+  {
+   "t": "describe('texts.orderPlaced', () => {",
+   "n": 12
+  },
+  {
+   "t": "  it('buyurtma qatori va jami', () => {",
+   "n": 13
+  },
+  {
+   "t": "    const t = texts.orderPlaced(order);",
+   "n": 14
+  },
+  {
+   "t": "    expect(t).toContain('Buyurtma #42 qabul qilindi!');",
+   "n": 15
+  },
+  {
+   "t": "    expect(t).toContain(\"Jami: 50\\u00a0000 so'm\");",
+   "n": 16
+  },
+  {
+   "t": "    expect(t).toContain('Telefon: +998901234567');",
+   "n": 17
+  },
+  {
+   "t": "  });",
+   "n": 18
+  },
+  {
+   "t": "});",
+   "n": 19
+  }
+ ]
+};
+const KOD_AI1_STATUS = {
+ "file": "src/api/telegram/texts.spec.ts",
+ "tag": "chiqish",
+ "lines": [
+  {
+   "t": "describe('STATUS_UZ', () => {",
+   "n": 41
+  },
+  {
+   "t": "  it('har bir status uchun matn bor', () => {",
+   "n": 42
+  },
+  {
+   "t": "    const all: OrderStatus[] = ['NEW', 'CONFIRMED', 'DELIVERED', 'CANCELLED'];",
+   "n": 43
+  },
+  {
+   "t": "    expect(Object.keys(STATUS_UZ).sort()).toEqual([...all].sort());",
+   "n": 44
+  },
+  {
+   "t": "    for (const s of all) expect(STATUS_UZ[s]).toBeTruthy();",
+   "n": 45
+  },
+  {
+   "t": "  });",
+   "n": 46
+  },
+  {
+   "t": "});",
+   "n": 47
+  }
+ ]
+};
+const KOD_AI1_NORM = {
+ "file": "src/api/telegram/texts.spec.ts",
+ "tag": "chiqish",
+ "lines": [
+  {
+   "t": "// toLocaleString('ru-RU') guruhlarni oddiy probel bilan emas, NBSP (U+00A0)",
+   "n": 4
+  },
+  {
+   "t": "// yoki ICU versiyasiga qarab U+202F bilan ajratadi — solishtirishdan oldin",
+   "n": 5
+  },
+  {
+   "t": "// shu ikki belgini oddiy probelga keltiramiz (\\n tegilmaydi).",
+   "n": 6
+  },
+  {
+   "t": "const norm = (s: string) => s.replace(/[\\u00a0\\u202f]/g, ' ');",
+   "n": 7
+  }
+ ]
+};
+const KOD_OUT_00 = "v24.18.0\n11.16.0\nWed Nov  4 01:42:57 PM +05 2026\nHEAD f2eca2f tgpg-done: bekor qilishda buyurtma qatori qulfl\njest 30.5.2\nts-jest 29.4.15\ntypescript 5.9.3\ntelegraf 4.16.3";
+const KOD_OUT_01 = "{\n  \"test\": \"jest\",\n  \"jest\": {\n    \"moduleFileExtensions\": [\n      \"js\",\n      \"json\",\n      \"ts\"\n    ],\n    \"rootDir\": \"src\",\n    \"testRegex\": \".*\\\\.spec\\\\.ts$\",\n    \"transform\": {\n      \"^.+\\\\.ts$\": \"ts-jest\"\n    },\n    \"testEnvironment\": \"node\"\n  }\n}\n\n$ npm test\n\n> order-bot-nest@1.0.0 test\n> jest\n\nNo tests found, exiting with code 1\nRun with `--passWithNoTests` to exit with code 0\nIn …/OrderBotNest/src\n  27 files checked.\n  testMatch:  - 0 matches\n  testPathIgnorePatterns: /node_modules/ - 27 matches\n  testRegex: .*\\.spec\\.ts$ - 0 matches\nPattern:  - 0 matches\n[chiqish kodi: 1]";
+const KOD_OUT_02 = "$ npx jest texts\nFAIL src/api/telegram/texts.spec.ts\n  som\n    ✕ 120000 ni so'mda yozadi (18 ms)\n\n  ● som › 120000 ni so'mda yozadi\n\n    expect(received).toBe(expected) // Object.is equality\n\n    Expected: \"120 000 so'm\"\n    Received: \"120 000 so'm\"\n\n      3 | describe('som', () => {\n      4 |   it(\"120000 ni so'mda yozadi\", () => {\n    > 5 |     expect(som(120000)).toBe(\"120 000 so'm\");\n        |                         ^\n      6 |   });\n      7 | });\n      8 |\n\n      at Object.<anonymous> (api/telegram/texts.spec.ts:5:25)\n\nTest Suites: 1 failed, 1 total\nTests:       1 failed, 1 total\nSnapshots:   0 total\nTime:        0.396 s, estimated 1 s\nRan all test suites matching texts.\n[chiqish kodi: 1]";
+const KOD_OUT_03 = "$ node -e \"…JSON.stringify(som) + belgilar kodi\"\n\"120 000 so'm\"\n0031 0032 0030 00a0 0030 0030 0030 0020 0073 006f 0027 006d\n[chiqish kodi: 0]";
+const KOD_OUT_04 = "$ npx jest texts\nPASS src/api/telegram/texts.spec.ts\n  som\n    ✓ 120000 ni so'mda yozadi (16 ms)\n    ✓ kichik sonda probel yo'q (1 ms)\n\nTest Suites: 1 passed, 1 total\nTests:       2 passed, 2 total\nSnapshots:   0 total\nTime:        0.37 s, estimated 1 s\nRan all test suites matching texts.\n[chiqish kodi: 0]";
+const KOD_OUT_05 = "$ npx jest yolgon\n  console.log\n    120 000 so'm\n\n      at Object.<anonymous> (api/telegram/yolgon.spec.ts:5:13)\n\nPASS src/api/telegram/yolgon.spec.ts\n  som\n    ✓ 120000 ni so'mda yozadi (31 ms)\n\nTest Suites: 1 passed, 1 total\nTests:       1 passed, 1 total\nSnapshots:   0 total\nTime:        0.392 s, estimated 1 s\nRan all test suites matching yolgon.\n[chiqish kodi: 0]";
+const KOD_OUT_06 = "# som() buzildi: ru-RU → en-US\n4:export const som = (n: number) => `${n.toLocaleString('en-US')} so'm`;\n\n$ npx jest savat --verbose\nFAIL src/api/telegram/savat.spec.ts\n  texts.cart\n    ✓ etalon koddan (17 ms)\n    ✕ etalon qo'lda (1 ms)\n\n  ● texts.cart › etalon qo'lda\n\n    expect(received).toContain(expected) // indexOf\n\n    Expected substring: \"Jami: 100 000 so'm\"\n    Received string:    \"Savat:\n    • Kolonka × 2 = 100,000 so'm·\n    Jami: 100,000 so'm\"\n\n      14 |   it(\"etalon qo'lda\", () => {\n      15 |     const t = texts.cart(items, 100000);\n    > 16 |     expect(t).toContain(\"Jami: 100\\u00a0000 so'm\");\n         |               ^\n      17 |   });\n      18 | });\n      19 |\n\n      at Object.<anonymous> (api/telegram/savat.spec.ts:16:15)\n\nTest Suites: 1 failed, 1 total\nTests:       1 failed, 1 passed, 2 total\nSnapshots:   0 total\nTime:        0.388 s, estimated 1 s\nRan all test suites matching savat.\n[chiqish kodi: 1]";
+const KOD_OUT_06A = "$ npx jest savat --verbose\nPASS src/api/telegram/savat.spec.ts\n  texts.cart\n    ✓ etalon koddan (15 ms)\n    ✓ etalon qo'lda (1 ms)\n\nTest Suites: 1 passed, 1 total\nTests:       2 passed, 2 total\nSnapshots:   0 total\nTime:        0.388 s, estimated 1 s\nRan all test suites matching savat.\n[chiqish kodi: 0]";
+const KOD_OUT_06B = "$ npx jest tobe --verbose\nFAIL src/api/telegram/tobe.spec.ts\n  toBe va toEqual\n    ✕ toBe (6 ms)\n    ✓ toEqual (1 ms)\n\n  ● toBe va toEqual › toBe\n\n    expect(received).toBe(expected) // Object.is equality\n\n    If it should pass with deep equality, replace \"toBe\" with \"toStrictEqual\"\n\n    Expected: [[\"◀\", \"2/3\", \"▶\"]]\n    Received: serializes to the same string\n\n      1 | describe('toBe va toEqual', () => {\n      2 |   it('toBe', () => {\n    > 3 |     expect([['◀', '2/3', '▶']]).toBe([['◀', '2/3', '▶']]);\n        |                                 ^\n      4 |   });\n      5 |\n      6 |   it('toEqual', () => {\n\n      at Object.<anonymous> (api/telegram/tobe.spec.ts:3:33)\n\nTest Suites: 1 failed, 1 total\nTests:       1 failed, 1 passed, 2 total\nSnapshots:   0 total\nTime:        0.382 s, estimated 1 s\nRan all test suites matching tobe.\n[chiqish kodi: 1]";
+const KOD_OUT_07 = "$ npx jest keyboards --verbose\nPASS src/api/telegram/keyboards.spec.ts\n  orderKeyboard\n    ✓ yangi buyurtma — Tasdiqlash va Bekor (3 ms)\n    ✓ tasdiqlangan — Yetkazildi va Bekor\n    ✓ yetkazilgan va bekor qilingan — tugma yo'q (1 ms)\n\nTest Suites: 1 passed, 1 total\nTests:       3 passed, 3 total\nSnapshots:   0 total\nTime:        0.417 s, estimated 1 s\nRan all test suites matching keyboards.\n[chiqish kodi: 0]";
+const KOD_OUT_08 = "39:  if (o.status === 'DELIVERED') return undefined;\n\n$ npx jest keyboards\nFAIL src/api/telegram/keyboards.spec.ts\n  orderKeyboard\n    ✓ yangi buyurtma — Tasdiqlash va Bekor (4 ms)\n    ✓ tasdiqlangan — Yetkazildi va Bekor (1 ms)\n    ✕ yetkazilgan va bekor qilingan — tugma yo'q (2 ms)\n\n  ● orderKeyboard › yetkazilgan va bekor qilingan — tugma yo'q\n\n    expect(received).toBeUndefined()\n\n    Received: {\"reply_markup\": {\"inline_keyboard\": [[{\"callback_data\": \"status:7:DELIVERED\", \"hide\": false, \"text\": \"🚚 Yetkazildi\"}, {\"callback_data\": \"status:7:CANCELLED\", \"hide\": false, \"text\": \"❌ Bekor\"}]]}}\n\n      31 |   it(\"yetkazilgan va bekor qilingan — tugma yo'q\", () => {\n      32 |     expect(orderKeyboard(order('DELIVERED'))).toBeUndefined();\n    > 33 |     expect(orderKeyboard(order('CANCELLED'))).toBeUndefined();\n         |                                               ^\n      34 |   });\n      35 | });\n      36 |\n\n      at Object.<anonymous> (api/telegram/keyboards.spec.ts:33:47)\n\nTest Suites: 1 failed, 1 total\nTests:       1 failed, 2 passed, 3 total\nSnapshots:   0 total\nTime:        0.417 s, estimated 1 s\nRan all test suites matching keyboards.\n[chiqish kodi: 1]";
+const KOD_OUT_09 = "$ npx jest keyboards --verbose\nPASS src/api/telegram/keyboards.spec.ts\n  orderKeyboard\n    ✓ yangi buyurtma — Tasdiqlash va Bekor (3 ms)\n    ✓ tasdiqlangan — Yetkazildi va Bekor\n    ✓ yetkazilgan va bekor qilingan — tugma yo'q (1 ms)\n  catalogKeyboard\n    ✓ birinchi sahifada ◀ yo'q (14 ms)\n    ✓ o'rtada ikkalasi bor (1 ms)\n    ✓ oxirgi sahifada ▶ yo'q\n    ✓ bitta sahifa — faqat 1/1\n    ✓ tugagan mahsulot bosilmaydi (1 ms)\n\nTest Suites: 1 passed, 1 total\nTests:       8 passed, 8 total\nSnapshots:   0 total\nTime:        0.422 s, estimated 1 s\nRan all test suites matching keyboards.\n[chiqish kodi: 0]";
+const KOD_OUT_10 = "21:  if (page <= pages - 1)\n\n$ npx jest keyboards\nFAIL src/api/telegram/keyboards.spec.ts\n  orderKeyboard\n    ✓ yangi buyurtma — Tasdiqlash va Bekor (3 ms)\n    ✓ tasdiqlangan — Yetkazildi va Bekor\n    ✓ yetkazilgan va bekor qilingan — tugma yo'q (1 ms)\n  catalogKeyboard\n    ✓ birinchi sahifada ◀ yo'q (15 ms)\n    ✓ o'rtada ikkalasi bor\n    ✕ oxirgi sahifada ▶ yo'q (3 ms)\n    ✕ bitta sahifa — faqat 1/1 (1 ms)\n    ✓ tugagan mahsulot bosilmaydi (1 ms)\n\n  ● catalogKeyboard › oxirgi sahifada ▶ yo'q\n\n    expect(received).toEqual(expected) // deep equality\n\n    - Expected  - 0\n    + Received  + 1\n\n      Array [\n        \"◀\",\n        \"3/3\",\n    +   \"▶\",\n      ]\n\n      54 |\n      55 |   it(\"oxirgi sahifada ▶ yo'q\", () => {\n    > 56 |     expect(nav(catalogKeyboard([p(5)], 2, 3))).toEqual(['◀', '3/3']);\n         |                                                ^\n      57 |   });\n      58 |\n      59 |   it('bitta sahifa — faqat 1/1', () => {\n\n      at Object.<anonymous> (api/telegram/keyboards.spec.ts:56:48)\n\n  ● catalogKeyboard › bitta sahifa — faqat 1/1\n\n    expect(received).toEqual(expected) // deep equality\n\n    - Expected  - 0\n    + Received  + 1\n\n      Array [\n        \"1/1\",\n    +   \"▶\",\n      ]\n\n      58 |\n      59 |   it('bitta sahifa — faqat 1/1', () => {\n    > 60 |     expect(nav(catalogKeyboard([p(1)], 0, 1))).toEqual(['1/1']);\n         |                                                ^\n      61 |   });\n      62 |\n      63 |   it('tugagan mahsulot bosilmaydi', () => {\n\n      at Object.<anonymous> (api/telegram/keyboards.spec.ts:60:48)\n\nTest Suites: 1 failed, 1 total\nTests:       2 failed, 6 passed, 8 total\nSnapshots:   0 total\nTime:        0.453 s, estimated 1 s\nRan all test suites matching keyboards.\n[chiqish kodi: 1]";
+const KOD_OUT_11 = "$ npm test -- --verbose\n\n> order-bot-nest@1.0.0 test\n> jest --verbose\n\nPASS src/api/telegram/keyboards.spec.ts\n  orderKeyboard\n    ✓ yangi buyurtma — Tasdiqlash va Bekor (3 ms)\n    ✓ tasdiqlangan — Yetkazildi va Bekor (1 ms)\n    ✓ yetkazilgan va bekor qilingan — tugma yo'q (1 ms)\n  catalogKeyboard\n    ✓ birinchi sahifada ◀ yo'q (14 ms)\n    ✓ o'rtada ikkalasi bor\n    ✓ oxirgi sahifada ▶ yo'q\n    ✓ bitta sahifa — faqat 1/1\n    ✓ tugagan mahsulot bosilmaydi\n\nPASS src/api/telegram/texts.spec.ts\n  som\n    ✓ 120000 ni so'mda yozadi (1 ms)\n    ✓ kichik sonda probel yo'q\n\nTest Suites: 2 passed, 2 total\nTests:       10 passed, 10 total\nSnapshots:   0 total\nTime:        0.462 s, estimated 1 s\nRan all test suites.\n[chiqish kodi: 0]";
+const KOD_OUT_12 = "$ ls -a | grep env\n.env.example\n\n$ npm test 2>&1 | tail -5\nTest Suites: 2 passed, 2 total\nTests:       10 passed, 10 total\nSnapshots:   0 total\nTime:        0.451 s, estimated 1 s\nRan all test suites.";
+const KOD_OUT_13 = "$ npm test\n\n> order-bot-nest@1.0.0 test\n> jest\n\nNo tests found, exiting with code 1\nRun with `--passWithNoTests` to exit with code 0\nIn …/OrderBotNest/src\n  28 files checked.\n  testMatch:  - 0 matches\n  testPathIgnorePatterns: /node_modules/ - 28 matches\n  testRegex: .*\\.spec\\.ts$ - 0 matches\nPattern:  - 0 matches\n[chiqish kodi: 1]";
+const KOD_OUT_14 = "$ npm test\n\n> order-bot-nest@1.0.0 test\n> jest\n\nNo tests found, exiting with code 1\nRun with `--passWithNoTests` to exit with code 0\nIn …/OrderBotNest/src\n  27 files checked.\n  testMatch:  - 0 matches\n  testPathIgnorePatterns: /node_modules/ - 27 matches\n  testRegex: .*\\.spec\\.ts$ - 0 matches\nPattern:  - 0 matches\n[chiqish kodi: 1]";
+const KOD_OUT_20 = "$ git checkout jest1-start\nerror: pathspec 'jest1-start' did not match any file(s) known to git\n[chiqish kodi: 1]\n\n$ git status --short\n M src/api/order/order.service.ts\n\n$ git checkout tgpg-done\nerror: Your local changes to the following files would be overwritten by checkout:\n\tsrc/api/order/order.service.ts\nPlease commit your changes or stash them before you switch branches.\nAborting\n[chiqish kodi: 1]";
+const KOD_OUT_21 = "# texts.spec.ts boshqa papkada: src/api/ (texts.ts esa src/api/telegram/ da)\n$ npx jest texts\nFAIL src/api/texts.spec.ts\n  ● Test suite failed to run\n\n    Cannot find module './texts' from 'api/texts.spec.ts'\n\n    However, Jest was able to find:\n    \t'./texts.spec.ts'\n\n    You might want to include a file extension in your import, or update your 'moduleFileExtensions', which is currently ['js', 'json', 'ts'].\n\n    See https://jestjs.io/docs/configuration#modulefileextensions-arraystring\n\n    > 1 | import { som } from './texts';\n        | ^\n      2 |\n      3 | describe('som', () => {\n      4 |   it(\"120000 ni so'mda yozadi\", () => {\n\n      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/index.js:1031:11)\n      at Object.<anonymous> (api/texts.spec.ts:1:1)\n\nTest Suites: 1 failed, 1 total\nTests:       0 total\nSnapshots:   0 total\nTime:        0.694 s\nRan all test suites matching texts.\n[chiqish kodi: 1]";
+const KOD_OUT_22 = "# yordamchisiz: b.callback_data to'g'ridan-to'g'ri\n$ npx jest kb\nPASS src/api/telegram/kb.spec.ts\n  orderKeyboard\n    ✓ yangi buyurtma (6 ms)\n\nTest Suites: 1 passed, 1 total\nTests:       1 passed, 1 total\nSnapshots:   0 total\nTime:        0.991 s, estimated 1 s\nRan all test suites matching kb.\n[chiqish kodi: 0]";
+const KOD_OUT_23 = "# LineCheck fayli (satr raqamlari):\n     1\timport { Order } from '../../core/entity';\n     2\timport { som, texts } from './texts';\n     3\t\n     4\tconst order = {\n     5\t  id: 42,\n     6\t  phone: '+998901234567',\n     7\t  total: 50000,\n     8\t  status: 'NEW',\n     9\t  items: [{ product: { name: 'Kolonka', price: 50000 }, qty: 1, price: 50000 }],\n    10\t} as unknown as Order;\n    11\t\n    12\tdescribe('texts.orderPlaced', () => {\n    13\t  it('buyurtma qatori va jami', () => {\n    14\t    const t = texts.orderPlaced(order);\n    15\t    expect(t).toContain('Buyurtma #42 qabul qilindi!');\n    16\t    expect(t).toContain(`Jami: ${som(50000)}`);\n    17\t    expect(t).toContain('Telefon: +998901234567');\n    18\t  });\n    19\t});\n\n$ npx jest texts\nPASS src/api/telegram/texts.spec.ts\n  texts.orderPlaced\n    ✓ buyurtma qatori va jami (25 ms)\n\nTest Suites: 1 passed, 1 total\nTests:       1 passed, 1 total\nSnapshots:   0 total\nTime:        0.791 s, estimated 1 s\nRan all test suites matching texts.\n[chiqish kodi: 0]\n\n# som() buzildi: ru-RU → en-US\n$ npx jest texts\nPASS src/api/telegram/texts.spec.ts\n  texts.orderPlaced\n    ✓ buyurtma qatori va jami (29 ms)\n\nTest Suites: 1 passed, 1 total\nTests:       1 passed, 1 total\nSnapshots:   0 total\nTime:        0.677 s, estimated 1 s\nRan all test suites matching texts.\n[chiqish kodi: 0]";
+const KOD_OUT_24 = "# Tuzatilgan (satr raqamlari):\n     1\timport { Order } from '../../core/entity';\n     2\timport { texts } from './texts';\n     3\t\n     4\tconst order = {\n     5\t  id: 42,\n     6\t  phone: '+998901234567',\n     7\t  total: 50000,\n     8\t  status: 'NEW',\n     9\t  items: [{ product: { name: 'Kolonka', price: 50000 }, qty: 1, price: 50000 }],\n    10\t} as unknown as Order;\n    11\t\n    12\tdescribe('texts.orderPlaced', () => {\n    13\t  it('buyurtma qatori va jami', () => {\n    14\t    const t = texts.orderPlaced(order);\n    15\t    expect(t).toContain('Buyurtma #42 qabul qilindi!');\n    16\t    expect(t).toContain(\"Jami: 50\\u00a0000 so'm\");\n    17\t    expect(t).toContain('Telefon: +998901234567');\n    18\t  });\n    19\t});\n\n$ npx jest texts\nPASS src/api/telegram/texts.spec.ts\n  texts.orderPlaced\n    ✓ buyurtma qatori va jami (30 ms)\n\nTest Suites: 1 passed, 1 total\nTests:       1 passed, 1 total\nSnapshots:   0 total\nTime:        0.709 s, estimated 1 s\nRan all test suites matching texts.\n[chiqish kodi: 0]\n\n# som() buzildi: ru-RU → en-US\n$ npx jest texts\nFAIL src/api/telegram/texts.spec.ts\n  texts.orderPlaced\n    ✕ buyurtma qatori va jami (26 ms)\n\n  ● texts.orderPlaced › buyurtma qatori va jami\n\n    expect(received).toContain(expected) // indexOf\n\n    Expected substring: \"Jami: 50 000 so'm\"\n    Received string:    \"Buyurtma #42 qabul qilindi!\n    • Kolonka × 1 = 50,000 so'm·\n    Jami: 50,000 so'm\n    Telefon: +998901234567\n    Holati: 🆕 Yangi\"\n\n      14 |     const t = texts.orderPlaced(order);\n      15 |     expect(t).toContain('Buyurtma #42 qabul qilindi!');\n    > 16 |     expect(t).toContain(\"Jami: 50\\u00a0000 so'm\");\n         |               ^\n      17 |     expect(t).toContain('Telefon: +998901234567');\n      18 |   });\n      19 | });\n\n      at Object.<anonymous> (api/telegram/texts.spec.ts:16:15)\n\nTest Suites: 1 failed, 1 total\nTests:       1 failed, 1 total\nSnapshots:   0 total\nTime:        0.692 s, estimated 1 s\nRan all test suites matching texts.\n[chiqish kodi: 1]";
+const KOD_OUT_25 = "## ai1 buzilmagan: Tests:       36 passed, 36 total\n10:  CANCELLED: '🆕 Yangi',\n## ai1 CANCELLED → «🆕 Yangi»: Tests:       36 passed, 36 total\n\n## ai2 buzilmagan: Tests:       33 passed, 33 total\n10:  CANCELLED: '🆕 Yangi',\n## ai2 CANCELLED → «🆕 Yangi»: Tests:       1 failed, 32 passed, 33 total\n  ● STATUS_UZ › maps statuses to their Uzbek labels";
+const KOD_SPEC_OP_BUZUQ = {
+ "file": "src/api/telegram/texts.spec.ts",
+ "tag": "chiqish",
+ "lines": [
+  {
+   "t": "import { Order } from '../../core/entity';",
+   "n": 1
+  },
+  {
+   "t": "import { som, texts } from './texts';",
+   "n": 2
+  },
+  {
+   "t": "",
+   "n": 3
+  },
+  {
+   "t": "const order = {",
+   "n": 4
+  },
+  {
+   "t": "  id: 42,",
+   "n": 5
+  },
+  {
+   "t": "  phone: '+998901234567',",
+   "n": 6
+  },
+  {
+   "t": "  total: 50000,",
+   "n": 7
+  },
+  {
+   "t": "  status: 'NEW',",
+   "n": 8
+  },
+  {
+   "t": "  items: [{ product: { name: 'Kolonka', price: 50000 }, qty: 1, price: 50000 }],",
+   "n": 9
+  },
+  {
+   "t": "} as unknown as Order;",
+   "n": 10
+  },
+  {
+   "t": "",
+   "n": 11
+  },
+  {
+   "t": "describe('texts.orderPlaced', () => {",
+   "n": 12
+  },
+  {
+   "t": "  it('buyurtma qatori va jami', () => {",
+   "n": 13
+  },
+  {
+   "t": "    const t = texts.orderPlaced(order);",
+   "n": 14
+  },
+  {
+   "t": "    expect(t).toContain('Buyurtma #42 qabul qilindi!');",
+   "n": 15
+  },
+  {
+   "t": "    expect(t).toContain(`Jami: ${som(50000)}`);",
+   "n": 16
+  },
+  {
+   "t": "    expect(t).toContain('Telefon: +998901234567');",
+   "n": 17
+  },
+  {
+   "t": "  });",
+   "n": 18
+  },
+  {
+   "t": "});",
+   "n": 19
+  }
+ ]
+};
+const KOD_AI_DIFF1 = " src/api/telegram/keyboards.spec.ts | 113 +++++++++++++++++++++++\n src/api/telegram/texts.spec.ts     | 177 +++++++++++++++++++++++++++++++++++++\n 2 files changed, 290 insertions(+)";
+const KOD_AI_DIFF2 = " src/api/telegram/keyboards.spec.ts | 111 +++++++++++++++++++++\n src/api/telegram/texts.spec.ts     | 193 +++++++++++++++++++++++++++++++++++++\n 2 files changed, 304 insertions(+)";
+const KOD_AI2_LINES = {
+ "file": "src/api/telegram/texts.spec.ts",
+ "tag": "ai2",
+ "lines": [
+  {
+   "t": "    expect(som(120000)).toBe(`120 000 so'm`);",
+   "n": 33
+  },
+  {
+   "t": "    expect(t).toContain(`Jami: ${som(50000)}`);",
+   "n": 134
+  }
+ ]
+};
+const KOD_PROMPT1 = "src/api/telegram/texts.ts va keyboards.ts uchun jest testlar yozib ber. npm test yashil bo'lsin.";
+const KOD_PROMPT2 = "Loyiha: OrderBotNest (NestJS + Telegraf), Jest sozlangan, testlar `src/` ichida `*.spec.ts`. Vazifa: `src/api/telegram/texts.ts` dagi `texts.cart`, `texts.orderPlaced`, `texts.orderLine` va `STATUS_UZ` uchun unit-testlar yoz. Shartlar: etalonni qo'lda yoz — `som()`, `STATUS_UZ` yoki boshqa sinalayotgan kodni etalonda ishlatma; bo'linmas probelni `\\u00a0` bilan ochiq yoz; `toBeTruthy` bilan matn tekshirma — aniq qiymat yoz; har `it` da kamida bitta `expect`. Tegma: `src/` dagi `.spec.ts` dan boshqa fayllarga. Javobda: qo'shilgan fayllar ro'yxati va `npm test` natijasi.";
+const KOD = { TX_SOM: KOD_TX_SOM, TX_STATUS: KOD_TX_STATUS, KB_NAV: KOD_KB_NAV, KB_ORDER: KOD_KB_ORDER, PKG_TEST: KOD_PKG_TEST, PKG: KOD_PKG, SPEC02: KOD_SPEC02, SPEC04: KOD_SPEC04, SPEC05: KOD_SPEC05, SPEC06: KOD_SPEC06, SPEC06B: KOD_SPEC06B, SPEC_KB: KOD_SPEC_KB, SPEC_OP: KOD_SPEC_OP, AI1_STATUS: KOD_AI1_STATUS, AI1_NORM: KOD_AI1_NORM, OUT: { '00': KOD_OUT_00, '01': KOD_OUT_01, '02': KOD_OUT_02, '03': KOD_OUT_03, '04': KOD_OUT_04, '05': KOD_OUT_05, '06': KOD_OUT_06, '06a': KOD_OUT_06A, '06b': KOD_OUT_06B, '07': KOD_OUT_07, '08': KOD_OUT_08, '09': KOD_OUT_09, '10': KOD_OUT_10, '11': KOD_OUT_11, '12': KOD_OUT_12, '13': KOD_OUT_13, '14': KOD_OUT_14, '20': KOD_OUT_20, '21': KOD_OUT_21, '22': KOD_OUT_22, '23': KOD_OUT_23, '24': KOD_OUT_24, '25': KOD_OUT_25 }, SPEC_OP_BUZUQ: KOD_SPEC_OP_BUZUQ, AI_DIFF1: KOD_AI_DIFF1, AI_DIFF2: KOD_AI_DIFF2, AI2_LINES: KOD_AI2_LINES, PROMPT1: KOD_PROMPT1, PROMPT2: KOD_PROMPT2 };
+
 // ============================================================
-//  JEST-1 MATNLARI — AVTO: feedback/F-1029-02-mentor-kurs/dev/jest1-matn.py (manba: 10-Jest1-mentor-v1.md)
+//  Jest-1 MATNLARI — AVTO: feedback/F-1029-02-mentor-kurs/dev/jest1-matn.py (manba: 10-Jest1-mentor-v2.md, M41)
 //  QO'LDA TAHRIRLANMAYDI: matn MD'da o'zgaradi, keyin skript qayta yurgiziladi.
 // ============================================================
 const MDT = {
@@ -788,81 +1933,81 @@ const MDT = {
   "type": "Lesson",
   "kicker": "Kirish",
   "eyebrow": "Mentor kursi · Jest",
-  "title": "Kodni o'zgartirdingiz. Hisob hali ham to'g'rimi — buni test aytadi.",
+  "title": "OrderBotNest'ga birinchi testlarni yozamiz: avval o'zingiz, keyin AI yozgan testni tekshirasiz",
   "seg": [
    [
     "a",
-    "Kod o'zgarganda eski hisoblar buzilmaganini har safar <b>qo'lda tekshirib bo'lmaydi</b>",
-    "Assalomu alaykum. Loyihada kod har kuni o'zgaradi. Har o'zgarishdan keyin eski hisoblar buzilmaganini qo'lda tekshirib bo'lmaydi: beshta hisob bo'lsa ham, ellikta bo'lsa ham. Bu ishni kompyuterga topshirish mumkin. Bu unit-test deyiladi, uni Jest ishga tushiradi."
+    "Buyurtma boti ishlaydi — bugun uning <b>qoidalarini test bilan qo'riqlaymiz</b>",
+    "Assalomu alaykum. O'tgan darsda buyurtma botini PostgreSQL'ga ko'chirdingiz. Bugun uning qoidalarini test bilan qo'riqlaymiz: narx qanday yoziladi, admin qaysi tugmani ko'radi, katalogning oxirgi sahifasida nima bo'ladi. Ekranda natija: o'nta test, yarim soniyada."
    ],
    [
     "b",
-    "Bugun o'quvchi reposida <b>birinchi testni yozasiz</b> va natijasini o'qiysiz",
-    "Bugun Nest darslaridagi o'quvchi reposida birinchi testni yozasiz. Misol o'quvchi darsidagi aynan funksiya: KitobShop'dagi buyurtma summasi. Test yashil bo'lganda va qizil bo'lganda terminal nima deyishini o'qishni o'rganasiz."
+    "Avval testni o'zingiz yozasiz, <b>FAIL va PASS'ni o'qishni</b> o'rganasiz",
+    "Avval testni qo'lda yozasiz va Jest javobini o'qishni o'rganasiz. Birinchi testning o'zi kutilmagan narsani ko'rsatadi: kod to'g'ri ishlaydi, test qizil, ikki qator esa bir xil ko'rinadi. Sababini darsda bilib olasiz."
    ],
    [
     "c",
-    "Testni ataylab buzamiz: <b>yolg'on yashil</b> va <b>noto'g'ri qizil</b> — ikkalasini tanib olasiz",
-    "Keyin testni ataylab buzamiz. Ba'zi test hech narsani tekshirmasa ham yashil bo'ladi, ba'zisi kod to'g'ri bo'lsa ham qizil. O'quvchi AI'dan test so'raydi, shuning uchun bu ikkisini tanish sizga albatta kerak."
+    "Keyin testni AI yozadi, siz <b>uni buzib tekshirasiz</b>",
+    "Keyin testni AI yozadi. Biz buni ikki xil AI bilan haqiqatan qilib ko'rdik. Ikkalasi o'ttizdan ortiq test yozdi, hammasi yashil. Lekin kodni ataylab buzganimizda ba'zi buzilishlarni hech bir test sezmadi. Shu tekshiruv usulini o'rganasiz."
    ],
    [
     "d",
-    "Olti bosqich, to'rt amaliyot. <b>Shoshilmang</b>: ustoz gapirib bo'lgach Davom ochiladi",
-    "Oxirida sinfdagi sozlash tuzoqlarini va o'quvchi darsini qanday o'tishni ko'ramiz. Dars olti bosqichdan iborat, to'rtta amaliyot bor. Shoshilmang: har ekranni boshidan eshitish mumkin. Ustoz gapirib bo'lgach Davom ochiladi. Boshlaymiz."
+    "Olti bosqich, uchta amaliyot; oxirida <b>ikki ekran sinfga tayyorgarlik</b>",
+    "Dars olti bosqichdan iborat, uchta amaliyotda o'zingiz ishlaysiz. Oxirgi ikki ekran sinfga tayyorgarlik: o'quvchi darsi xaritasi va o'quvchilar xato qiladigan joylar. Shoshilmang, har ekranni boshidan eshitish mumkin, dars qayerda to'xtaganingizni eslab qoladi. Boshlaymiz."
    ]
   ]
  },
  "2": {
   "type": "Lesson",
-  "kicker": "1-bosqich · unit-test",
-  "title": "Funksiya kirishni oladi, natija qaytaradi — test shu juftni tekshiradi",
+  "kicker": "1-bosqich · nega va qayerda",
+  "title": "Smoke butun botni tekshiradi, unit-test — bitta qoidani: biri ikkinchisining o'rnini bosmaydi",
   "seg": [
    [
     "a",
-    "O'quvchi darsi funksiyani <b>mashina</b> deb tushuntiradi: kirish beriladi, natija chiqadi",
-    "Testga o'tishdan oldin funksiyaga boshqacha qaraymiz. O'quvchi darsi uni mashina deb tushuntiradi: kirish berasiz, u natija qaytaradi. orderTotal'ga narx va soni beriladi, u summani qaytaradi. Masalan, o'n ming va ikkini bersak, natija yigirma ming bo'ladi."
+    "Telegraf+PG darsida <b>smoke butun botni tekshirdi</b>: baza, restart va besh mijoz",
+    "Telegraf va PostgreSQL darsida smoke skriptini yurgizgansiz. U butun botni tekshiradi: alohida baza ochadi, serverni qayta yoqadi, besh mijozni bir vaqtda yuboradi. Javobi bitta: bot ishlayaptimi yoki yo'q."
    ],
    [
     "b",
-    "Unit-test — shu juftni yozib qo'yish: <b>«shu kirishga aynan shu chiqish»</b>",
-    "Unit-test shu juftni yozib qo'yadi: shu kirishga aynan shu chiqish bo'lishi kerak. Bir marta yoziladi va har safar bitta buyruq bilan tekshiriladi. Unit bitta bo'lak degani: test bitta funksiyani bazasiz va serversiz sinaydi."
+    "Unit-test esa <b>bitta funksiyani bitta qoida bilan</b> tekshiradi",
+    "Unit-test boshqacha. U bitta funksiyani chaqiradi va bitta qoidani tekshiradi: masalan, katalogning oxirgi sahifasida o'ng strelka chiqmasin. Smoke buni sezmaydi, chunki bot baribir ishlaydi. Unit-test esa xato qaysi funksiyada va qaysi qatorda ekanini aytadi."
    ],
    [
     "c",
-    "Funksiyaning o'zi uch satr: <b><code>src/order.ts</code></b> — narx ko'paytirish soni",
-    "Funksiyaning o'zi uch satr, o'quvchi reposida src papkasidagi order ts faylida turadi. U narxni soniga ko'paytiradi. Hozir bu oddiy, lekin keyinroq ichiga chegirma yoki soliq qo'shilsa, test eski hisoblar buzilmaganini aytadi."
+    "Testda <b>Telegram ham, baza ham yo'q</b> — u bot yoki sayt ekanini bilmaydi",
+    "Endi loyihaning o'zini oching: Telegraf va PostgreSQL darsidagi OrderBotNest papkasini VS Code'da oching. Ekranda bugun yozadigan test: u src, api, telegram papkasidagi texts ts faylidan faqat som funksiyasini import qiladi. Telegram, baza va env fayli kerak emas, env faylisiz o'nta test yarim soniyada o'tdi. Shuning uchun bot ham, sayt ham bir xil sinaladi."
    ],
    [
     "d",
-    "Xulosa: unit-test — bitta funksiya, bitta kirish, <b>bitta kutilgan natija</b>",
-    "Xulosa: unit-test bitta funksiyani alohida sinaydi. Unda uch narsa bor: kirish, kutilgan natija va ularni solishtiradigan bitta tasdiq. Kutilgan natijani bugun etalon deb ataymiz, o'quvchi darsida u etalon kartochkasi."
+    "Xulosa: smoke — <b>«ishlayaptimi»</b>, unit-test — «shu qoida buzilmadimi»",
+    "Xulosa: smoke ishlayaptimi degan savolga javob beradi, unit-test esa shu qoida buzilmadimi degan savolga. Bugun unit-test yozamiz. Saytning so'rov va javobini sinash Jest ikkinchi darsida bo'ladi."
    ]
   ]
  },
  "3": {
   "type": "Lesson",
-  "kicker": "1-bosqich · unit-test",
-  "title": "package.jsondagi jest bo'limi: src ichida, nomi .spec.ts",
+  "kicker": "1-bosqich · ichida",
+  "title": "Jest sozlamasi package.jsonda tayyor: fayl src/ ichida, nomi .spec.ts bilan tugaydi",
   "seg": [
    [
     "a",
-    "Nest loyihasi Jest bilan birga yaratiladi — o'quvchi reposida u <b>allaqachon sozlangan</b>",
-    "Avval yaxshi xabar: Nest loyihasi Jest bilan birga yaratiladi. O'quvchi reposining package json faylida test buyrug'i ham, jest bo'limi ham tayyor. Hech narsa o'rnatish shart emas, npm install yetarli."
+    "Loyihada <b>test yozish uchun hamma narsa tayyor</b>: Jest, ts-jest va sozlama",
+    "Avval Jest testni qayerdan qidirishini ko'ramiz. VS Code'da OrderBotNest papkasining ildizidagi package json faylini oching. O'n to'rtinchi satrda test buyrug'i: jest. Pastroqda, qirq beshinchi satrdan, jest bo'limi boshlanadi. Nest loyihasida jest va ts jest paketlari allaqachon o'rnatilgan, hech narsa o'rnatmaysiz."
    ],
    [
     "b",
-    "Uch satr muhim: <code>rootDir</code> — <b><code>src</code></b>, <code>testRegex</code> — <b><code>.spec.ts</code></b>, <code>transform</code> — <code>ts-jest</code>",
-    "Jest bo'limida uchta satr muhim. Birinchisi root dir src: Jest faqat src papkasi ichini qaraydi. Ikkinchisi test regex: fayl nomi spec ts bilan tugashi kerak. Uchinchisi transform ts jest: TypeScript faylni Jest tushunadigan ko'rinishga o'tkazadi."
+    "Ikki satr hal qiladi: <b><code>rootDir: src</code> va <code>testRegex</code> — <code>.spec.ts</code></b>",
+    "Jest bo'limida ikki satr hal qiladi: ellik birinchi va ellik ikkinchi. Root dir src: Jest faqat src papkasi ichini ko'radi. Test regex: fayl nomi spec ts bilan tugashi kerak. Ellik to'rtinchi satrdagi transform ts jest esa TypeScript faylni JavaScript'ga aylantirib beradi."
    ],
    [
     "c",
-    "Hozir <code>npm test</code> — <b><code>No tests found</code></b>: repoda hali birorta test yo'q",
-    "Hozir npm test qilsak, Jest no tests found deydi, ya'ni test topilmadi, chiqish kodi esa bir. Jest o'ttiz yettita faylni ko'rdi, lekin ularning hech biri spec ts emas. Bu xato emas: o'quvchi birinchi testini yozmaguncha shunday bo'ladi."
+    "<b>VS Code terminalida <code>npm test</code></b>: hozir test fayli yo'q — <code>No tests found</code>",
+    "Endi VS Code'da Terminal menyusidan yangi terminal oching, u OrderBotNest papkasida ochiladi, va npm test yozing. Loyihada hali bitta ham test fayli yo'q, shuning uchun Jest no tests found deydi va bir kodi bilan chiqadi, ya'ni xato. Pastda: yigirma yetti fayl ko'rildi, test regex'ga nol mos keldi."
    ],
    [
     "d",
-    "Xulosa: test fayli — <b><code>src/</code> ichida</b> va nomi <code>.spec.ts</code> bilan tugaydi",
-    "Xulosa: o'quvchi reposida Jest tayyor, faqat ikki shart bor. Test fayli src papkasi ichida turadi va nomi spec ts bilan tugaydi. Bu ikki shartdan biri buzilsa, Jest testni ko'rmaydi. Sinfdagi eng ko'p savol aynan shu."
+    "Xulosa: <code>No tests found</code> chiqsa — <b>fayl joyi va nomini</b> tekshiring",
+    "Xulosa: no tests found ko'rsangiz, kodni emas, fayl joyi va nomini tekshiring. Sinab ko'rdik: nomi test ts bo'lsa ham, fayl src'dan tashqarida tursa ham, aynan shu xabar chiqadi."
    ]
   ]
  },
@@ -870,194 +2015,243 @@ const MDT = {
   "type": "MCRetry",
   "kicker": "Tekshiruv 1",
   "eyebrow": "Tekshiruv · 1 / 4",
-  "title": "O'quvchi order.spec.ts yozdi va npm test qildi — No tests found. Birinchi nimani tekshirasiz?",
-  "q": "Jest sozlamasini ko'rdingiz, tekshirib olaylik. Birinchi tekshiruv. O'quvchi order spec ts faylini yozdi va npm test qildi, javob esa no tests found bo'ldi. Fayl ichidagi kod to'g'ri. Birinchi nimani tekshirasiz? Variantni tanlang.",
-  "ok": "To'g'ri, birinchi navbatda faylning joyini tekshirasiz. Sinab ko'rdik: xuddi shu fayl loyiha ildizida tursa, Jest uni ko'rmaydi va no tests found deydi, chunki root dir src. Fayl src ichiga ko'chirilsa, test topiladi. Nomi ham muhim: order test ts bo'lsa ham topilmaydi. Demak, no tests found chiqsa, avval test fayli src ichida turganini va nomi spec ts bilan tugashini tekshiring.",
-  "okShort": "<code>rootDir: src</code> — <code>src/</code>dan tashqaridagi fayl ko'rinmaydi. Nomi ham: <code>.test.ts</code> emas, <code>.spec.ts</code>.",
-  "hint": "Xabar «test topilmadi» deyapti, «xato» emas. Jest testni qayerdan va qaysi nom bilan qidiradi?",
+  "title": "Test fayli test/texts.spec.ts da — loyiha ildizidagi test papkasida. npm test nima deydi?",
+  "q": "Jest qayerdan qidirishini ko'rdingiz, endi tekshirib olaylik. Birinchi tekshiruv. Test fayli nomi to'g'ri, spec ts bilan tugaydi. Lekin u src ichida emas, loyiha ildizidagi test papkasida turibdi. Npm test nima deydi? Variantni tanlang.",
+  "ok": "To'g'ri. Root dir src bo'lgani uchun Jest test papkasiga umuman qaramaydi. Sinab ko'rdik: no tests found va bir kodi. Import xatosi chiqishi uchun Jest faylni ochishi kerak edi, u esa faylni ko'rmadi. Demak, test fayli src ichida, sinaladigan faylning yonida turadi.",
+  "okShort": "<code>rootDir: src</code> — <code>test/</code> ko'rinmaydi: <code>No tests found</code>.",
+  "hint": "rootDir qaysi papkani ko'rsatadi? Fayl o'sha papka ichidami?",
+  "demak": "Test fayli <code>src/</code> ichida, sinaladigan faylning yonida turadi.",
   "correct": 2,
   "opts": [
-   "npm install qayta qilinsin",
-   "expect to'g'ri yozilganmi",
-   "Fayl qayerda turibdi — src/ ichidami",
-   "Jest versiyasi"
+   "PASS — fayl nomi .spec.ts bilan tugaydi",
+   "Cannot find module — import yo'li buzildi",
+   "No tests found — fayl src/ dan tashqarida",
+   "PASS — Jest test/ papkasini o'zi qidiradi"
   ],
   "wrong": {
-   "0": "Jest o'rnatilmagan bo'lsa jest: not found chiqardi, No tests found emas.",
-   "1": "expect xato bo'lsa test topilib, FAIL bo'lardi.",
-   "3": "Versiya topish qoidasiga ta'sir qilmaydi — qoida package.jsonda."
+   "0": "Nom to'g'ri, lekin joy rootDir dan tashqarida.",
+   "1": "Import xatosi uchun Jest faylni ochishi kerak — u faylni ko'rmadi.",
+   "3": "Nest'ning e2e testlari uchun alohida sozlama kerak; bu loyihada u yo'q."
   }
  },
  "5": {
   "type": "Lesson",
   "kicker": "2-bosqich · birinchi test",
-  "title": "order.spec.ts — to'rt qism: import, describe, it, expect",
+  "title": "Test — uch qismli kod: qaysi funksiya, qaysi vaziyat va qanday natija kutiladi",
   "seg": [
    [
     "a",
-    "Test fayli <b>funksiya yonida</b>: <code>order.ts</code> — <code>order.spec.ts</code>, ikkalasi <code>src/</code> ichida",
-    "Test fayli funksiyaning yonida turadi: order ts yonida order spec ts. Birinchi qatordagi import funksiyani test fayliga olib kiradi. Jest bu faylni nomidan topadi va ichidagi testlarni ishga tushiradi."
+    "Birinchi test uchun <b><code>som</code> funksiyasini</b> olamiz: u narxni so'mda yozadi",
+    "Birinchi test uchun eng oddiy funksiyani olamiz. VS Code'da src, api, telegram papkasidagi texts ts faylini oching: to'rtinchi satrda som funksiyasi. U sonni oladi va bot matni uchun so'mda yozadi, bir yuz yigirma ming bir yuz yigirma ming so'm bo'ladi. Bot har narxni shu funksiya bilan chiqaradi."
    ],
    [
     "b",
-    "<code>describe</code> — <b>guruh</b>: bitta funksiyaning testlari bir joyda, nomi bilan",
-    "Describe bitta funksiyaning hamma testlarini guruhlaydi. Uning birinchi argumenti guruh nomi: orderTotal. Natijada shu nom ko'rinadi, shuning uchun qaysi funksiya xato berganini darhol bilasiz."
+    "Test fayli <b>yonida turadi</b>: <code>texts.ts</code> uchun — <code>texts.spec.ts</code>",
+    "Test faylini shu telegram papkasining o'zida, texts ts yonida yaratasiz: Explorer'da papkani o'ng tugma bilan bosib, New File, nomi texts spec ts. Nomi spec ts bilan tugashi shart. Birinchi satrda funksiyani import qilamiz. Telegraf ham, baza ham import qilinmaydi."
    ],
    [
     "c",
-    "<code>it</code> — <b>bitta holat</b>, nomi oddiy gap bilan: «2 kitob narxini hisoblaydi»",
-    "It bitta holatni sinaydi. Nomi oddiy gap bilan yoziladi: ikki kitob narxini hisoblaydi. Test qizil bo'lganda aynan shu gap chiqadi, shuning uchun nom tushunarli bo'lishi kerak."
+    "<code>describe</code> — funksiya, <code>it</code> — vaziyat, <b><code>expect … toBe</code> — kutilgan natija</b>",
+    "Keyingi uch qism. Describe som: bu testlar qaysi funksiya haqida. It: bitta vaziyat, nomi oddiy gap bilan yoziladi. Ichida expect: som bir yuz yigirma ming natijasi to be ichidagi etalonga teng bo'lsin. Etalon — kutilgan qiymat, uni qo'lda yozamiz."
    ],
    [
     "d",
-    "<code>expect(result).toBe(20000)</code> — <b>tasdiq</b>: natija etalonga teng bo'lishi shart",
-    "Eng muhim qator shu: expect, result, to be yigirma ming. Bu tasdiq: natija aynan yigirma ming bo'lishi kerak. Tepadagi qator funksiyani chaqiradi, bu qator tekshiradi. Tayyorlash, chaqirish, tekshirish: o'quvchi darsida bu uch qadam deyiladi."
-   ],
-   [
-    "e",
-    "Xulosa: <code>describe</code> — kim sinaladi, <code>it</code> — qaysi holat, <b><code>expect</code> — nima kutiladi</b>",
-    "Xulosa: describe qaysi funksiya sinalayotganini aytadi, it qaysi holatni, expect esa nima kutilayotganini. Testda haqiqatan tekshiradigan yagona qator expect. Uchinchi bosqichda ko'rasiz: expect'ni unutgan test hech narsani tekshirmaydi."
+    "Xulosa: <b>funksiyani chaqirish, etalon bilan solishtirish</b> — har test shu ikki qadam",
+    "Xulosa: har test ikki qadamdan iborat: funksiyani chaqirasiz va natijani qo'lda yozilgan etalon bilan solishtirasiz. Endi testni yurgizamiz: VS Code terminalida npm test, ikki chiziqcha va texts. Fayl nomini qo'shsak, faqat shu test fayli yuradi."
    ]
   ]
  },
  "6": {
   "type": "Lesson",
   "kicker": "2-bosqich · birinchi test",
-  "title": "PASS src/order.spec.ts — fayl, guruh, holat va jami",
+  "title": "Test qizil: Expected va Received bir xil ko'rinadi, lekin Jest ularni teng demayapti",
   "seg": [
    [
     "a",
-    "<code>npm test</code> — <code>package.json</code>dagi <code>jest</code> buyrug'i: <b>fayl topildi va yurdi</b>",
-    "Testni yozdik, endi npm test buyrug'ini beramiz. Bu package json'dagi jest buyrug'ini ishga tushiradi. Birinchi yashil satrda PASS va fayl yo'li turibdi: src order spec ts. Fayl topildi va undagi hamma test o'tdi."
+    "FAIL'ni <b>yuqoridan pastga</b> o'qiymiz: avval qaysi test yiqildi",
+    "Terminalda npm test, ikki chiziqcha va texts yozdik: test qizil. FAIL'ni yuqoridan pastga o'qiymiz. Nuqtali satr qaysi test yiqilganini aytadi: som guruhidagi bir yuz yigirma ming testi. Testlar ko'p bo'lsa, birinchi shu satrni qidirasiz."
    ],
    [
     "b",
-    "Ostida guruh nomi va holat: <code>orderTotal</code> → <b><code>✓ 2 kitob narxini hisoblaydi</code></b>",
-    "Uning ostida describe nomi, orderTotal, yozilgan, undan pastda esa belgi bilan it nomi: ikki kitob narxini hisoblaydi, ikki millisekundda. Nomlar aynan siz yozgan gaplar, shuning uchun ular tushunarli yozilishi kerak."
+    "Keyin ikki satr: <b><code>Expected</code> — etalon, <code>Received</code> — funksiya qaytargani</b>",
+    "Keyingi ikki satr asosiysi. Expected — siz test faylida yozgan matn. Received — som funksiyasi haqiqatda qaytargan matn. Jest sonni emas, shu ikki matnni solishtiradi va ular teng bo'lmasa, test yiqiladi. Lekin qarang: ikkala qator bir xil, bir yuz yigirma ming so'm."
    ],
    [
     "c",
-    "Pastda jami: <code>Test Suites</code> — fayllar, <code>Tests</code> — <b><code>it</code>lar soni</b>",
-    "Eng pastda jami turadi. Test suites fayllar sonini aytadi: bitta fayl, u o'tdi. Tests esa it'lar sonini aytadi: bitta. Testlar ko'paygach, sinfda o'quvchi bilan shu ikki satrga qaraysiz: nechta o'tdi, nechta yiqildi."
+    "Pastda <b>satr raqami</b>: <code>texts.spec.ts:5:25</code> — beshinchi satr, <code>toBe</code> belgisi",
+    "Pastda kod bo'lagi: katta belgisi va strelka xato bo'lgan joyni ko'rsatadi, test faylining beshinchi satri, to be. Eng oxirgi qatorda fayl nomi va satr raqami yana yozilgan. VS Code'da texts spec ts faylining aynan shu satrini ochasiz."
    ],
    [
     "d",
-    "Xulosa: PASS — fayl va holatlar o'tdi; <code>Tests:</code> satri — <b>nechta <code>it</code> tekshirildi</b>",
-    "Xulosa: PASS fayl va undagi hamma holat o'tganini bildiradi. Tests satri nechta it tekshirilganini aytadi. Lekin diqqat: PASS faqat expect'lar to'g'ri bo'lsa ma'noli. Buni uchinchi bosqichda isbotlaymiz."
+    "Demak, sabab bitta joyda: <b>bo'sh joy ikki matnda har xil belgi</b>",
+    "Demak, sabab bitta joyda: bir yuz yigirma va ming orasidagi bo'sh joy. Siz klaviaturada oddiy probel yozdingiz, som esa ko'zga ko'rinmaydigan boshqa belgi qo'ydi. Ekranda ikkalasi bir xil ko'rinadi, Jest uchun esa har xil. Keyingi ekranda ikki matnni belgima-belgi solishtirib, shu belgini o'z ko'zingiz bilan ko'rasiz."
    ]
   ]
  },
  "7": {
-  "type": "Practice",
-  "kicker": "Amaliyot 1 / 4",
-  "eyebrow": "Hozir o'zingizda · 10 daqiqa",
-  "title": "O'quvchi reposida order.ts va order.spec.ts",
+  "type": "Lesson",
+  "kicker": "2-bosqich · ichida",
+  "title": "toLocaleString minglarni oddiy probel bilan emas, bo'linmas probel bilan ajratadi",
   "seg": [
    [
     "a",
-    "Endi siz: o'quvchi reposida birinchi testni yozib, <b>yashil PASS</b>'ni ko'rasiz",
-    "Endi navbat sizga. O'quvchi reposida birinchi testni yozasiz. Nest darsidagi repo sizda bo'lsa, o'shani oching; bo'lmasa clone va npm install qiling. Bunga o'n daqiqa ketadi."
+    "<code>toBe</code> <b>belgi-belgi solishtiradi</b>: bitta belgi farq qilsa — teng emas",
+    "Endi sababini aniqlaymiz. To be ikki matnni belgi-belgi solishtiradi, Jest buni Object is deb yozadi. Ekranda ikki qator: yuqorida Expected, siz yozgan matn, pastda Received, som qaytargan matn. Belgilarni birma-bir taqqoslaymiz: bir, ikki, nol, keyin bo'sh joy."
    ],
    [
     "b",
-    "1–2-qadam: <code>npm test</code> — avval <b><code>No tests found</code></b>, keyin <code>src/order.ts</code>",
-    "Birinchi qadamda hech narsa yozmasdan npm test qiling va no tests found chiqishini ko'ring. Ikkinchisida src papkasida order ts faylini ochib, uch satrli funksiyani yozing."
+    "To'rtinchi belgida farq: <b><code>0020</code> — oddiy probel, <code>00a0</code> — bo'linmas probel</b>",
+    "Mana farq, to'rtinchi belgida. Expected'da oddiy probel, kodi nol nol ikki nol. Received'da nol nol a nol: bo'linmas probel. Ekranda u oddiy probeldek ko'rinadi, lekin boshqa belgi. Uni to locale string qo'ydi, rus tili qoidasi bo'yicha. Qolgan hamma belgi bir xil, ular yashil."
    ],
    [
     "c",
-    "3–4-qadam: <code>src/order.spec.ts</code> va <code>npm test</code>; isbot — <b><code>Tests:</code> satri</b>",
-    "Uchinchi qadamda uning yonida order spec ts faylini oching va kodni nusxalamasdan o'zingiz yozing. To'rtinchisida npm test qiling. Isbot maydoniga natijadagi Tests satrini nusxalang."
+    "Etalonni <b><code>\\u00a0</code> bilan ochiq yozamiz</b> — endi test yashil va o'qiladi",
+    "Kod to'g'ri: bo'linmas probel raqamni Telegram xabarida ikki qatorga bo'lib yubormaydi. Shuning uchun etalonni tuzatamiz va belgini ochiq yozamiz: backslash u, nol nol a nol. Ikkinchi testni kichik son uchun qo'shdik. Ikkalasi yashil."
    ],
    [
     "d",
-    "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
-    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin o'quvchi reposida sizning birinchi testingiz bor va siz PASS natijasini o'qiy olasiz."
+    "Xulosa: birinchi testning o'zi <b>kod haqida bilmagan narsangizni</b> ko'rsatdi",
+    "Xulosa: birinchi testning o'zi siz bilmagan narsani ko'rsatdi. Expected va received bir xil ko'rinsa, ko'rinmas belgini qidiring. Etalonga belgini ochiq yozing, ko'zga ko'rinmaydigan belgining o'zini emas: keyingi odam uni oddiy probel deb o'ylaydi."
    ]
   ]
  },
  "8": {
-  "type": "Lesson",
-  "kicker": "3-bosqich · buzamiz",
-  "title": "* o'rniga + — Expected: 20000, Received: 10002",
+  "type": "Practice",
+  "kicker": "Amaliyot 1 / 3",
+  "eyebrow": "Hozir o'zingizda · 10 daqiqa",
+  "title": "Birinchi testni o'zingiz yozing: avval qizilni ko'ring, keyin sababini topib yashil qiling",
   "seg": [
    [
     "a",
-    "O'quvchi darsidagi tajriba: ko'paytirish o'rniga qo'shish — <b>test buni tutadimi?</b>",
-    "O'quvchi darsidagi tajribani qilamiz: funksiyada ko'paytirish o'rniga xato bilan qo'shish yozildi. Kod ishlaydi, xato bermaydi, lekin natija noto'g'ri. npm test buni tutadimi?"
+    "Endi siz: <b><code>jest1-start</code> tegida</b> birinchi test faylini yozasiz",
+    "Endi navbat sizga. Telegraf va PostgreSQL darsidagi OrderBotNest papkasini ochasiz va jest bir start tegiga o'tasiz. Env fayli va baza kerak emas. O'n daqiqa ketadi."
    ],
    [
     "b",
-    "<code>FAIL</code> va <code>●</code> satri: qaysi fayl, qaysi guruh va <b>qaysi holat yiqildi</b>",
-    "Test buni tutdi: qizil FAIL chiqdi. Undan pastda nuqta bilan boshlangan satr bor: orderTotal, strelka, ikki kitob narxini hisoblaydi. U qaysi guruh va qaysi holat yiqilganini aytadi. Nomlar tushunarli bo'lsa, faylni ochmasdan ham nima buzilganini bilasiz."
+    "1–2-qadam: teg, fayl va <b>oddiy probelli etalon</b> — FAIL'ni o'zingiz ko'ring",
+    "Birinchi qadamda git fetch va checkout bilan tegga o'tasiz, npm test no tests found deydi. Ikkinchisida texts spec ts faylini yozasiz, etalonni klaviaturadagi oddiy probel bilan. Npm test texts: qizil, ikki qator bir xil."
    ],
    [
     "c",
-    "<code>Expected</code> — etalon, <code>Received</code> — funksiya qaytargani: <b>20000 kutildi, 10002 keldi</b>",
-    "Endi eng muhim ikki satr. Expected, ya'ni kutilgan qiymat yigirma ming: bu siz yozgan etalon. Received, ya'ni olingan qiymat o'n ming ikki: buni funksiya qaytardi, chunki o'n mingga ikki qo'shildi. Farqni ko'rib, xato qayerdaligini taxmin qilasiz."
+    "3–4-qadam: <b><code>\\u00a0</code></b> bilan tuzatish va ikkinchi test; isbot — <code>Tests:</code> satri",
+    "Uchinchi qadamda etalonga backslash u nol nol a nol yozasiz. To'rtinchisida besh yuz uchun ikkinchi testni qo'shasiz. Isbot maydoniga oxirgi natijaning tests satrini nusxalang."
    ],
    [
     "d",
-    "<code>&gt;</code> belgisi va <code>order.spec.ts:6:20</code> — testdagi <b>qaysi satr yiqilganini</b> ko'rsatadi",
-    "Pastda test faylining bo'lagi ko'rinadi, strelka oltinchi satrni, ya'ni expect'ni ko'rsatadi. Eng oxirida fayl, satr va ustun yozilgan: order spec ts, olti, yigirma. Diqqat: bu test yiqilgan joy, xato esa funksiyada, order ts'da. Funksiyada yana ko'paytirishni yozamiz va test yashil bo'ladi."
+    "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
+    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin siz test yozasiz, FAIL'ni o'qiysiz va ko'rinmas belgini topasiz."
+   ]
+  ],
+  "steps": [
+   {
+    "t": "Teg",
+    "cmds": [
+     "git fetch --tags",
+     "git checkout jest1-start",
+     "npm test"
+    ],
+    "exp": "No tests found, exiting with code 1"
+   },
+   {
+    "t": "Test — oddiy probel bilan",
+    "cmds": [
+     "src/api/telegram/texts.spec.ts (5-ekrandagi kod)",
+     "npm test -- texts"
+    ],
+    "exp": "FAIL · Expected: \"120 000 so'm\" · Received: \"120 000 so'm\""
+   },
+   {
+    "t": "Tuzatish",
+    "cmds": [
+     "etalon \"120\\u00a0000 so'm\"",
+     "npm test -- texts"
+    ],
+    "exp": "PASS"
+   },
+   {
+    "t": "Ikkinchi test",
+    "cmds": [
+     "it('kichik sonda probel yo\\'q', …) — som(500) → \"500 so'm\""
+    ],
+    "exp": "Tests: 2 passed, 2 total"
+   }
+  ],
+  "proof": {
+   "label": "Oxirgi natijaning Tests: satri",
+   "placeholder": "Tests: … qatorini nusxalang",
+   "re": "Tests:\\s+2 passed,\\s+2 total",
+   "flags": "",
+   "wrong": "Ikkala test yashilmi? npm test -- texts natijasidagi Tests: qatorini qo'ying."
+  },
+  "trouble": [
+   [
+    "error: pathspec 'jest1-start' did not match",
+    "teglar olinmagan — git fetch --tags, keyin checkout"
    ],
    [
-    "e",
-    "Xulosa: <b>FAIL o'qish tartibi</b> — <code>●</code> satr, <code>Expected</code>/<code>Received</code>, keyin funksiyaning o'zi",
-    "Xulosa: FAIL'ni shu tartibda o'qing. Avval nuqtali satrdan qaysi holat yiqilganini o'qing. Keyin expected va received'dan nima kutilgani va nima kelganini ko'ring. Oxirida funksiyani oching. Sinfda o'quvchiga javobni aytmang, shu uch qadamni birga o'qing."
+    "Your local changes … would be overwritten by checkout",
+    "Telegraf+PG darsidagi o'z o'zgarishlaringiz — git stash yoki commit, keyin checkout"
+   ],
+   [
+    "2-qadamda PASS",
+    "etalonni nusxa bilan qo'ydingiz — belgi ham ko'chdi; probelni klaviaturadan qayta yozing"
+   ],
+   [
+    "Cannot find module './texts'",
+    "fayl src/api/telegram/ da emas — texts.ts yoniga ko'chiring"
+   ],
+   [
+    "No tests found",
+    "nomi .spec.ts emas yoki src/ dan tashqarida (3–4-ekran)"
    ]
   ]
  },
  "9": {
   "type": "Lesson",
-  "kicker": "3-bosqich · buzamiz",
-  "title": "toBe(10002) — Expected: 10002, Received: 20000: xato testning o'zida",
+  "kicker": "3-bosqich · yolg'on testlar",
+  "title": "expectsiz test har doim yashil: u funksiyani chaqiradi, lekin hech narsani tekshirmaydi",
   "seg": [
    [
     "a",
-    "Endi aksincha: funksiya to'g'ri, lekin <b>etalon xato yozildi</b> — 10002",
-    "Endi aksincha: funksiya to'g'ri, unda ko'paytirish turibdi. Lekin testda etalon xato yozildi: o'n ming ikki. Bu o'quvchi darsidagi burilish: robot etalonga ishonadi."
+    "Test yozishni bildingiz — endi <b>testning o'zi qanday aldashini</b> ko'ramiz",
+    "Test yozishni bildingiz. Endi testning o'zi qanday aldashini ko'ramiz. Ekranda shu telegram papkasidagi yolgon spec ts fayli. Birinchi tur yolg'on test: unda expect yo'q, faqat console log. Bunday test ko'pincha qo'lda tekshirib ko'rish paytida qoladi."
    ],
    [
     "b",
-    "FAIL: <code>Expected: 10002</code>, <code>Received: 20000</code> — o'rinlari 8-ekrandagiga <b>teskari</b>",
-    "Natija yana qizil. Lekin qarang: expected o'n ming ikki, received yigirma ming. Bu sakkizinchi ekrandagiga teskari. Funksiya to'g'ri hisobladi, test noto'g'ri narsani kutdi."
+    "Jest natijani chop etdi va <b>PASS dedi</b> — hech narsa solishtirilmadi",
+    "Natija: terminalda Jest qiymatni chop etdi va PASS dedi. Lekin hech narsa solishtirilmadi. Jest uchun qoida oddiy: it ichida xato tashlanmasa, test o'tdi. Xatoni faqat expect tashlaydi."
    ],
    [
     "c",
-    "Qizil test har doim <b>kod xato degani emas</b>: avval etalonni qo'lda tekshiring",
-    "Demak qizil test har doim kod xato degani emas. Avval etalonni qo'lda hisoblang: o'n ming ko'paytirish ikki, yigirma ming. Etalon xato bo'lsa, testni tuzatasiz, kodni emas. Aks holda o'quvchi to'g'ri kodni buzib qo'yadi."
-   ],
-   [
-    "d",
-    "Xulosa: FAIL'da — <b>kim xato</b>: funksiyami yoki etalonmi? Etalonni qo'lda hisoblang",
-    "Xulosa: FAIL chiqqanda birinchi savol: kim xato, funksiyami yoki etalonmi. Etalonni qo'lda hisoblang. Etalon to'g'ri bo'lsa, funksiyani tuzating. Noto'g'ri bo'lsa, testni tuzating."
+    "Xulosa: har <code>it</code> ichida <b>kamida bitta <code>expect</code></b> bo'lsin — aks holda u test emas",
+    "Xulosa: har it ichida kamida bitta expect bo'lishi kerak, aks holda u test emas, faqat chaqiruv. Bunday test topish oson: console log bor, expect yo'q. Ikkinchi tur esa ancha yashirin, uni keyingi ekranda ko'ramiz."
    ]
   ]
  },
  "10": {
   "type": "Lesson",
-  "kicker": "3-bosqich · buzamiz",
-  "title": "console.log bor, expect yo'q — test hech narsani tekshirmay yashil bo'ldi",
+  "kicker": "3-bosqich · ichida",
+  "title": "Etalonni kodning o'zidan yasasangiz, kod buzilganda etalon ham buziladi — test yashil qoladi",
   "seg": [
    [
     "a",
-    "Eng xavfli test — <code>expect</code>siz: natija chiqariladi, lekin <b>solishtirilmaydi</b>",
-    "Endi eng xavfli holat. Testda expect o'rniga console log yozildi: natija ekranga chiqadi, lekin hech narsa bilan solishtirilmaydi. AI ham, o'quvchi ham buni ko'p qiladi."
+    "Ikki test savat matnini tekshiradi: <b>biri etalonni <code>som</code>dan oladi, biri qo'lda</b>",
+    "Ikkinchi tur. Telegram papkasidagi savat spec ts faylida ikkita test bor, ikkalasi savat matnidagi jami qatorini qidiradi. Birinchisida etalon som funksiyasining o'zidan yasalgan, ikkinchisida qo'lda yozilgan. Chizmaga qarang: hozir som to'g'ri, ikkala etalon ham yuz ming so'm, ikkalasi yashil."
    ],
    [
     "b",
-    "Natija: <code>console.log 20000</code> va yashil PASS — test <b>hech narsani tekshirmadi</b>",
-    "Natijada terminalga console log orqali yigirma ming chiqdi va yashil PASS turibdi. Ikki kitob narxini hisoblaydi degan holat ham tasdiq belgisi bilan. Lekin bu test hech narsani tekshirmadi. Funksiya bir million qaytarsa ham yashil bo'lardi."
+    "Kodni buzamiz: <b>narx endi «100,000» ko'rinishida</b> — bot noto'g'ri yozadi",
+    "Endi kodni ataylab buzamiz. Texts ts faylining to'rtinchi satrida, som funksiyasida rus tili o'rniga ingliz tili qoidasini qo'yamiz. Endi bot narxni vergul bilan yozadi: yuz ming emas, yuz, vergul, ming. Mijoz uchun bu boshqa son. Testlarni yurgizamiz."
    ],
    [
     "c",
-    "Jest qoidasi: <code>it</code> ichida xato chiqmasa — holat o'tdi; tekshiruvni <b>faqat <code>expect</code></b> qiladi",
-    "Nega yashil? Jest uchun qoida oddiy: it ichida xato chiqmasa, holat o'tdi. Xato chiqaradigan narsa faqat expect: natija etalonga teng bo'lmasa, u FAIL beradi. Expect yo'q bo'lsa, yiqilish ham yo'q."
+    "Koddan olingan etalon <b>buzilgan <code>som</code> bilan birga o'zgardi</b> — test yashil",
+    "Chizmaga qarang. Som endi yuz, vergul, ming deydi. Birinchi testning etaloni ham som'dan yasaladi, ya'ni u ham yuz, vergul, ming bo'ldi: ikki tomon birga buzildi va test yashil qoldi. Qo'lda yozilgan etalon o'zgarmadi, shuning uchun ikkinchi test qizil."
    ],
    [
     "d",
-    "Xulosa: har <code>it</code>da kamida bitta <code>expect</code> — aks holda <b>PASS yolg'on</b>",
-    "Xulosa: har it ichida kamida bitta expect bo'lishi shart. Sinfda yashil natijaga ishonishdan oldin it ichiga qarang: expect bormi? O'quvchi darsida buni yolg'on test deyishadi."
+    "Xulosa: <b>etalon qo'lda yoziladi</b> — sinalayotgan funksiya etalonda ishlatilmaydi",
+    "Xulosa: etalon qo'lda yoziladi. Sinalayotgan funksiya etalonni yasashda ishlatilmaydi. Testda dollar va qavs ichida shu funksiya chaqirilgan bo'lsa, bu ogohlantirish belgisi. Endi buni bitta kod bo'lagida o'zingiz topasiz."
    ]
   ]
  },
@@ -1065,487 +2259,579 @@ const MDT = {
   "type": "LineCheck",
   "kicker": "Tekshiruv 2",
   "eyebrow": "Tekshiruv · 2 / 4 — qaysi satr xato?",
-  "title": "Bu test doim yashil — hech narsani tekshirmaydi",
-  "q": "Yolg'on testni ko'rdingiz, endi o'zingiz toping. Ikkinchi tekshiruv. Qoidani eslang: test natijani etalon bilan solishtirishi kerak. Bu testda solishtirish yo'q, u doim yashil. Tekshiruv o'rnida turgan satrni bosing.",
-  "ok": "To'g'ri. Oltinchi satr console log: natijani faqat chiqaradi. Uning o'rnida expect, result, to be yigirma ming bo'lishi kerak. Ekranda tuzatilgan holat: endi funksiya buzilsa, test qizil bo'ladi. Demak, har it ichida natijani etalon bilan solishtiradigan expect bo'lishi shart.",
-  "okShort": "6-satr: <code>console.log</code> faqat chiqaradi. O'rniga <code>expect(result).toBe(20000)</code>.",
-  "hint": "Import, describe va funksiyani chaqirish — kerakli qismlar. Natija bilan nima qilinayotganiga qarang: solishtiriladimi yoki faqat chiqariladimi?",
-  "task": "Qoida: test natijani etalon bilan solishtirishi kerak — <code>expect(…).toBe(…)</code>. Bu testda solishtirish yo'q, u doim PASS beradi. <b>Tekshiruv o'rnida turgan satrni bosing.</b>"
+  "title": "Bu test som buzilganda ham yashil qoladi. Sababchi satrni toping",
+  "q": "Yolg'on testni ko'rdingiz, endi o'zingiz toping. Ikkinchi tekshiruv. Bu test buyurtma qabul qilingan xabarini tekshiradi. Som buzilganda ham u yashil qoladi. Bitta satr etalonni som funksiyasining o'zidan yasaydi. O'sha satrni bosing.",
+  "ok": "To'g'ri. Shu satrda etalon som'ning o'zidan yasaladi, shuning uchun som buzilsa, etalon ham u bilan birga buziladi. Ekranda tuzatilgan satr: etalon qo'lda, bo'linmas probel bilan. Endi som buzilsa, test qizaradi. Demak, etalonda sinalayotgan funksiya chaqirilgan satrni qidiring.",
+  "okShort": "<code>${som(50000)}</code> — etalon koddan: <code>som</code> buzilsa, ikkala tomon birga buziladi. Qo'lda yozilgan <code>\"Jami: 50\\u00a0000 so'm\"</code> buzilishni ushlaydi.",
+  "hint": "Qaysi satrda etalon qo'lda yozilmagan, funksiya chaqiruvidan yasalgan?",
+  "task": "Qoida: etalon qo'lda yoziladi, sinalayotgan funksiya etalonda chaqirilmaydi. Bu testda bitta satr etalonni <code>som</code> ning o'zidan yasaydi. <b>O'sha satrni bosing.</b>"
  },
  "12": {
-  "type": "Practice",
-  "kicker": "Amaliyot 2 / 4",
-  "eyebrow": "Hozir o'zingizda · 10 daqiqa",
-  "title": "Kodni, etalonni va expectni buzing — natijani o'qing",
+  "type": "Lesson",
+  "kicker": "4-bosqich · statuslar va chegara",
+  "title": "Buyurtma to'rt statusdan o'tadi — har statusga admin ko'radigan tugmalar uchun bitta test",
   "seg": [
    [
     "a",
-    "Endi siz: o'z testingizni <b>uch xil buzasiz</b> va har natijani o'qiysiz",
-    "Endi o'z testingizni uch xil buzasiz. Bunga o'n daqiqa ketadi. Har buzishdan keyin npm test va natijani ovoz chiqarib o'qing, sinfda xuddi shunday qilasiz."
+    "Admin har buyurtma ostida <b>statusiga qarab tugma</b> ko'radi",
+    "Endi admin tugmalarini sinaymiz. Telegraf va PostgreSQL darsidan bilasiz: buyurtma to'rt statusdan o'tadi. Yangi buyurtma ostida tasdiqlash va bekor tugmalari, tasdiqlanganida yetkazildi va bekor. Yetkazilgan yoki bekor qilingan buyurtmada tugma yo'q."
    ],
    [
     "b",
-    "1–2-qadam: funksiyada <code>+</code> — <b>FAIL</b>; tuzatib, etalonni 10002 qiling — FAIL",
-    "Birinchi qadamda order ts'da ko'paytirish o'rniga qo'shish yozing va FAIL'ni ko'ring. Received qiymatini eslab qoling. Ikkinchisida funksiyani tuzatib, testdagi etalonni o'n ming ikki qiling: yana FAIL chiqadi, lekin qiymatlar teskari bo'ladi."
+    "Bu qoida <b>bitta funksiyada</b>: <code>orderKeyboard</code> — buyurtma kiradi, klaviatura chiqadi",
+    "Bu qoida bitta funksiyada yozilgan: src, api, telegram papkasidagi keyboards ts faylida, o'ttiz yettinchi satrdan, order keyboard. Unga buyurtma beriladi, u Telegraf klaviaturasini qaytaradi yoki undefined. Tugma bosilganda bot callback satrini oladi: status, buyurtma raqami va yangi status."
    ],
    [
     "c",
-    "3–4-qadam: <code>expect</code> o'rniga <code>console.log</code> — PASS; tiklang; isbot — 1-qadamdagi <b><code>Received</code></b>",
-    "Uchinchi qadamda expect o'rniga console log yozing: test yashil bo'ladi, lekin yolg'on. To'rtinchisida testni asl holiga qaytaring. Isbot maydoniga birinchi qadamdagi received qiymatini yozing."
+    "Har statusga <b>bitta <code>it</code></b>: ikki tugma, ikki tugma, <code>toBeUndefined</code>",
+    "Test fayli yonida: keyboards spec ts. Har statusga bitta it yozamiz. Beshinchi satrdagi buttons yordamchisi klaviaturadan faqat tugma matni va callback'ni oladi. O'ttiz birinchi satrdagi testda to be undefined: yetkazilgan va bekor qilingan buyurtmada klaviatura yo'q. Terminalda uchala test yashil."
    ],
    [
     "d",
-    "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
-    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, siz FAIL'ning ikki xilini va yolg'on PASS'ni o'z ko'zingiz bilan ko'rdingiz."
+    "Xulosa: <b>har status — bitta vaziyat</b>; bittasi tushib qolsa, o'sha qoida qo'riqlanmaydi",
+    "Xulosa: statuslar jadvali bo'lsa, har qatori bitta test bo'ladi. To'rtta status uchun uchta test yozdik, oxirgisida ikkita expect. Birorta status tushib qolsa, o'sha qoida himoyasiz qoladi. Yordamchida nega to equal ishlatilganini keyingi ekranda bilib olasiz."
    ]
   ]
  },
  "13": {
   "type": "Lesson",
-  "kicker": "4-bosqich · chegara",
-  "title": "Aynan 100 000 — >= va > farqi faqat chegarada ko'rinadi",
+  "kicker": "4-bosqich · ichida",
+  "title": "Ikki massiv bir xil ko'rinsa ham toBe FAIL beradi: u ichini emas, aynan bitta massivmi — shuni tekshiradi",
   "seg": [
    [
     "a",
-    "O'quvchi uyga vazifasi: <b>100 000 dan</b> — yetkazish bepul, kam bo'lsa — 15 000",
-    "Chegara shartini qayerda ko'ramiz? O'quvchining uyga vazifasida, delivery fee funksiyasida. Buyurtma yuz ming va undan ko'p bo'lsa, yetkazish bepul, kam bo'lsa o'n besh ming. Funksiya bir satrdan iborat, unga uchta test yozamiz: yuz ellik ming, aynan yuz ming va to'qson to'qqiz ming uchun."
+    "Bir xil massiv, ikki solishtirish: <b><code>toBe</code> qizil, <code>toEqual</code> yashil</b>",
+    "Bir xil ikki massivni ikki usulda solishtiramiz. To be qizil, to equal yashil. Jest xabari ham shuni aytadi: received bir xil satrga aylanadi, lekin to be uni teng demaydi va to strict equal'ni taklif qiladi."
    ],
    [
     "b",
-    "Uch test va jami 4 o'tdi; ikki fayl bo'lsa nomlar faqat <b><code>--verbose</code></b> bilan chiqadi",
-    "npm test qilamiz: ikki fayl, order va delivery, to'rtta test, hammasi yashil. Diqqat: fayl ikkita bo'lsa, Jest test nomlarini ko'rsatmaydi, faqat PASS va fayl. Nomlarni ko'rish uchun npx jest minus minus verbose."
+    "<code>toBe</code> — <b>aynan bitta obyektmi</b>; <code>toEqual</code> — ichidagi qiymatlar tengmi",
+    "Sababi bunday. Satr va son uchun to be qiymatni solishtiradi. Massiv va obyekt uchun esa u ikkalasi xotirada aynan bitta obyektmi, shuni tekshiradi. Kodda ikki marta yozilgan massiv ikki xil obyekt. To equal esa ichini bittalab solishtiradi."
    ],
    [
     "c",
-    "<code>&gt;=</code> o'rniga <code>&gt;</code> — faqat <b>«aynan 100 000» qizil</b>: <code>Expected: 0</code>, <code>Received: 15000</code>",
-    "Endi kichik xato qilamiz: katta yoki teng o'rniga faqat katta yozamiz. Yuz ellik ming ham, to'qson to'qqiz ming ham o'zgarmadi, ular yashil. Faqat aynan yuz ming qizil bo'ldi: nol kutilgan edi, o'n besh ming keldi. Shu test bo'lmaganda, bu xatoni hech kim sezmasdi."
+    "Telegraf tugmaga <b><code>hide: false</code> qo'shadi</b> — shuning uchun yordamchi kerak bo'ldi",
+    "Klaviaturada yana bir nozik joy bor. Telegraf har tugmaga hide false maydonini o'zi qo'shadi, kodimizda u yozilmagan. Klaviaturani to'liq solishtirsak, etalonga ham shu maydonni yozishga to'g'ri keladi. Shuning uchun yordamchi faqat matn va callback'ni oladi."
    ],
    [
     "d",
-    "Xulosa: shartli funksiyada uch test — chegaradan yuqori, <b>aynan chegara</b>, chegaradan past",
-    "Xulosa: shart bor joyda kamida uchta test. Biri chegaradan yuqori, biri aynan chegarada, biri chegaradan past. Aynan chegara eng muhimi, xato ko'pincha shu yerda yashiringan. O'quvchi vazifasini tekshirganda shu uchta test bormi, shunga qarang."
+    "Xulosa: <b>son va satr — <code>toBe</code>, massiv va obyekt — <code>toEqual</code></b>",
+    "Xulosa: son va satr uchun to be, massiv va obyekt uchun to equal ishlating. Kutubxona qo'shadigan maydonlar testni ortiqcha og'irlashtirsa, solishtirishdan oldin kerakli qismini ajratib oling."
    ]
   ]
  },
  "14": {
   "type": "Lesson",
-  "kicker": "4-bosqich · chegara",
-  "title": "AI'ning testiga ikki savol: expect bormi? Etalon to'g'rimi?",
+  "kicker": "4-bosqich · statuslar va chegara",
+  "title": "Bekor qilingan buyurtmaga yana tugma chiqdi — test qaysi qoida buzilganini aniq aytadi",
   "seg": [
    [
     "a",
-    "O'quvchi darsida AI beshta test yozadi — ulardan <b>faqat ikkitasi haqiqiy</b>",
-    "O'quvchi darsida AI orderTotal uchun beshta test yozadi. O'quvchi ulardan haqiqiylarini tanlaydi. Bugun ko'rgan ikki xatoni endi AI testlarida qidiramiz."
+    "Shartdan <b><code>CANCELLED</code> tushib qoldi</b>: kod ishlaydi, server ham xato bermaydi",
+    "Endi kodni ataylab buzamiz. Keyboards ts faylining o'ttiz to'qqizinchi satridagi shartdan bekor qilingan status tushib qoldi. Bot ishlaydi, server ham xato bermaydi. Lekin admin bekor qilingan buyurtma ostida yana yetkazildi va bekor tugmalarini ko'radi. Testni yurgizamiz."
    ],
    [
     "b",
-    "Birinchi savol: <b><code>expect</code> bormi?</b> Yo'q bo'lsa — test doim yashil",
-    "Birinchi savol: testda expect bormi? Ikkita testda u yo'q: birida funksiya faqat chaqiriladi, birida console log turibdi. Ikkalasi ham doim yashil bo'ladi, o'ninchi ekrandagidek."
+    "Uchtadan bitta test qizil: <b><code>toBeUndefined</code> kutildi, lekin klaviatura keldi</b>",
+    "Uchta testdan bittasi qizil. Nuqtali satr qoidani aytadi: yetkazilgan va bekor qilingan, tugma yo'q. Received qatorida undefined o'rniga klaviatura keldi, ichida yetkazildi va bekor tugmalari. Katta belgisi o'ttiz uchinchi satrda: bekor qilingan status."
    ],
    [
     "c",
-    "Ikkinchi savol: <b>etalon to'g'rimi?</b> Qo'lda hisoblang — 10002 noto'g'ri",
-    "Ikkinchi savol: etalon to'g'rimi? Qo'lda hisoblaymiz: o'n ming ko'paytirish ikki yigirma ming bo'ladi, besh ming ko'paytirish uch esa o'n besh ming. O'n ming ikki degan etalon noto'g'ri, bu test to'g'ri kodni qizil qiladi."
-   ],
-   [
-    "d",
-    "Xulosa: AI test yozadi — o'quvchi har biriga <b>ikki savol</b> beradi",
-    "Xulosa: AI test yozishi mumkin, lekin har testga ikki savol beriladi: expect bormi va etalon qo'lda hisoblaganda to'g'rimi. Sinfda bu qoidani doskaga yozing, o'quvchi uni har AI testida ishlatsin."
+    "Xulosa: <b>test nomi qoidani aytadi</b> — FAIL'dan qaysi qoida buzilgani darhol ko'rinadi",
+    "Xulosa: test nomini qoida sifatida yozing, masalan «bekor qilingan, tugma yo'q». Shunda FAIL'ning birinchi satridan qaysi qoida buzilganini darhol bilasiz. Shartni tiklaymiz, test yana yashil."
    ]
   ]
  },
  "15": {
-  "type": "MCRetry",
-  "kicker": "Tekshiruv 3",
-  "eyebrow": "Tekshiruv · 3 / 4",
-  "title": "FAIL · Expected: 10002 · Received: 20000. orderTotal(10000, 2). Kim xato?",
-  "q": "FAIL o'qishni ko'rdingiz, tekshirib olaylik. Uchinchi tekshiruv. O'quvchi testi qizil: expected o'n ming ikki, received yigirma ming. Funksiyaga o'n ming va ikki berilgan. Kim xato? Variantni tanlang.",
-  "ok": "To'g'ri, xato etalonda. Funksiya yigirma ming qaytardi, bu to'g'ri: o'n ming ko'paytirish ikki. Test o'n ming ikki kutgan, etalon xato. Testni tuzatasiz, kodga tegmaysiz. Demak, FAIL chiqqanda avval etalonni qo'lda hisoblang, keyin kodga qarang.",
-  "okShort": "<code>Received: 20000</code> — to'g'ri hisob. <code>Expected: 10002</code> — etalon xato. Testni tuzating.",
-  "hint": "Received — funksiya qaytargan qiymat. Uni qo'lda hisoblaganingiz bilan solishtiring.",
-  "correct": 1,
-  "opts": [
-   "Funksiya — + yozilgan",
-   "Etalon — 10000 × 2 = 20000, test 10002 kutgan",
-   "Jest — versiya eski",
-   "Hech kim — qayta npm test"
-  ],
-  "wrong": {
-   "0": "+ bo'lsa Received: 10002 bo'lardi — bu yerda Received 20000.",
-   "2": "Jest faqat solishtiradi; versiya natijani o'zgartirmaydi.",
-   "3": "Kod va test o'zgarmasa, natija ham o'zgarmaydi."
-  }
- },
- "16": {
-  "type": "Practice",
-  "kicker": "Amaliyot 3 / 4",
-  "eyebrow": "Hozir o'zingizda · 10 daqiqa",
-  "title": "Uch test va chegara xatosi",
+  "type": "Lesson",
+  "kicker": "4-bosqich · statuslar va chegara",
+  "title": "Xato ko'pincha chegarada: birinchi, oxirgi va yagona sahifa uchun alohida test",
   "seg": [
    [
     "a",
-    "Endi siz: o'quvchi uyga vazifasini o'zingiz qilasiz — uch test va <b>bitta chegara xatosi</b>",
-    "Endi o'quvchi uyga vazifasini o'zingiz qilasiz: delivery fee funksiyasiga uchta test yozasiz, keyin chegarani ataylab buzasiz. Bunga o'n daqiqa ketadi."
+    "Katalog ikkitadan sahifada: <b>◀ birinchi sahifada yo'q, ▶ oxirgisida yo'q</b>",
+    "Katalogga o'tamiz. Mahsulotlar ikkitadan sahifada ko'rsatiladi. Birinchi sahifada chap strelka yo'q, oxirgisida o'ng strelka yo'q, o'rtada ikkalasi bor. Mahsulot ikkitadan kam bo'lsa, sahifa bitta va strelka umuman yo'q."
    ],
    [
     "b",
-    "1–2-qadam: <code>delivery.ts</code> va <code>delivery.spec.ts</code> — uch <code>it</code>, <code>npm test</code> — <b>4 passed</b>",
-    "Birinchi qadamda src papkasida delivery ts faylini yozasiz. Ikkinchisida delivery spec ts faylida uchta it yozasiz: yuz ellik ming, aynan yuz ming va to'qson to'qqiz ming uchun. npm test to'rtta yashil test ko'rsatadi."
+    "To'rt vaziyat — to'rt test: <b>birinchi, o'rta, oxirgi va yagona sahifa</b>",
+    "Shu to'rt vaziyatga to'rtta test yozamiz: birinchi, o'rtadagi, oxirgi va yagona sahifa. Keyboards spec ts faylining qirq birinchi satridagi nav yordamchisi klaviaturadan faqat strelkalar qatorini oladi. Beshinchi test tugagan mahsulotni tekshiradi: uni bosib bo'lmaydi."
    ],
    [
     "c",
-    "3–4-qadam: <code>&gt;=</code> → <code>&gt;</code>, <code>npm test</code>; isbot — <b>qizil testning nomi</b>",
-    "Uchinchi qadamda katta yoki teng o'rniga faqat katta yozib, npm test qilasiz. To'rtinchisida qaysi test qizil bo'lganini nuqtali satrdan o'qib, isbot maydoniga yozasiz. Keyin funksiyani tiklang."
+    "Kichikdan katta o'rniga <b>kichik yoki teng</b>: o'rtadagi sahifa buni sezmaydi",
+    "Kodni buzamiz: keyboards ts faylining yigirma birinchi satrida kichik belgisi o'rniga kichik yoki teng. Endi oxirgi sahifada ham o'ng strelka chiqadi. Natija: ikkita test qizil, oxirgi va yagona sahifa. O'rtadagi sahifa testi yashil qoldi, chunki u chegarada emas. Jest farqni plyus belgisi bilan ko'rsatdi."
+   ],
+   [
+    "d",
+    "Xulosa: <b>har shartga chegara testi</b> — chegarasiz testlar bu xatoni ko'rmaydi",
+    "Xulosa: har shartning chegarasiga alohida test yozing: birinchi, oxirgi va yagona sahifa. Faqat o'rtadagi sahifani sinasangiz, bu xato yashirin qoladi. Kichik va kichik yoki teng farqi faqat chegarada ko'rinadi."
+   ]
+  ]
+ },
+ "16": {
+  "type": "MCRetry",
+  "kicker": "Tekshiruv 3",
+  "eyebrow": "Tekshiruv · 3 / 4",
+  "title": "Faqat ikki test bor: «birinchi sahifa» va «o'rtadagi sahifa». Kodda page <= pages - 1 yozildi. npm test nima deydi?",
+  "q": "Chegarani ko'rdingiz, endi tekshirib olaylik. Uchinchi tekshiruv. Faqat ikki test bor: birinchi sahifa va o'rtadagi sahifa. Kodda kichik yoki teng yozildi, ya'ni oxirgi sahifada ham o'ng strelka chiqadi. Npm test nima deydi? Variantni tanlang.",
+  "ok": "To'g'ri. Birinchi va o'rtadagi sahifada o'ng strelka baribir bor, xato faqat oxirgi sahifada ko'rinadi. Sinab ko'rdik: to'rt test bilan ikkitasi qizardi, oxirgi va yagona sahifa. Bu ikkisi bo'lmasa, test yashil, xato esa kodda. Demak, yashil test faqat sinalgan vaziyatlar haqida gapiradi.",
+  "okShort": "Ikkala test chegarada emas — PASS. Xatoni faqat oxirgi va yagona sahifa testlari ushlaydi.",
+  "hint": "< va <= qaysi page qiymatida har xil natija beradi? O'sha qiymat testlarda bormi?",
+  "demak": "Yashil test faqat sinalgan vaziyatlar haqida gapiradi.",
+  "correct": 0,
+  "opts": [
+   "Ikkalasi PASS — xato faqat oxirgi sahifada",
+   "Ikkalasi FAIL — strelka qoidasi buzildi",
+   "«o'rtadagi sahifa» FAIL — u ▶ ni ikki marta oladi",
+   "TypeScript xato — <= bu yerda ishlamaydi"
+  ],
+  "wrong": {
+   "1": "Birinchi sahifada ▶ to'g'ri chiqadi — xato u yerda ko'rinmaydi.",
+   "2": "O'rtada ▶ baribir bor — < ham, <= ham bir xil natija beradi.",
+   "3": "<= — to'g'ri TypeScript; xato mantiqda."
+  }
+ },
+ "17": {
+  "type": "Practice",
+  "kicker": "Amaliyot 2 / 3",
+  "eyebrow": "Hozir o'zingizda · 15 daqiqa",
+  "title": "Admin tugmalari va katalog uchun testlar yozing, keyin kodni bir marta buzib qizilni ko'ring",
+  "seg": [
+   [
+    "a",
+    "Endi siz: <b><code>keyboards.spec.ts</code></b> — statuslar va katalog chegarasi",
+    "Endi navbat sizga. Keyboards uchun test faylini yozasiz: admin tugmalari va katalog sahifalari. Ekrandagi testlarni nusxalamang, o'zingiz yozing: etalonni har safar o'zingiz o'ylab chiqasiz. O'n besh daqiqa ketadi."
+   ],
+   [
+    "b",
+    "1–2-qadam: <b>har status va to'rt sahifa</b> uchun test; hammasi yashil",
+    "Birinchi qadamda order keyboard uchun har statusga test yozasiz. Ikkinchisida catalog keyboard uchun birinchi, oxirgi va yagona sahifa testlari. Npm test keyboards: hammasi yashil bo'lishi kerak."
+   ],
+   [
+    "c",
+    "3–4-qadam: kodni <b>ataylab buzing</b>, qizilni ko'ring va tiklang; isbot — qizil test nomi",
+    "Uchinchi qadamda keyboards faylida bitta shartni buzing: bekor qilingan status yoki kichik yoki teng. Qaysi test qizarganini ko'ring. To'rtinchisida kodni git checkout bilan tiklang. Isbot maydoniga qizargan test nomini yozing."
    ],
    [
     "d",
     "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
-    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, chegaradagi xatoni faqat aynan chegara uchun yozilgan test tutishini o'zingiz ko'rdingiz."
+    "Boshqacha chiqsa, «Boshqacha chiqdimi» tugmasini bosing. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin siz har status va chegaraga test yozasiz va uning xatoni ushlashini o'zingiz isbotlagansiz."
    ]
-  ]
- },
- "17": {
-  "type": "Lesson",
-  "kicker": "5-bosqich · tuzoqlar",
-  "title": "Uch tuzoq: src/dan tashqari, .test.ts, npm ci",
-  "seg": [
+  ],
+  "steps": [
+   {
+    "t": "orderKeyboard",
+    "cmds": [
+     "src/api/telegram/keyboards.spec.ts — NEW, CONFIRMED, DELIVERED / CANCELLED",
+     "npm test -- keyboards"
+    ],
+    "exp": "3 ta ✓"
+   },
+   {
+    "t": "catalogKeyboard",
+    "cmds": [
+     "birinchi",
+     "oxirgi",
+     "yagona sahifa (0, 3",
+     "2, 3",
+     "0, 1)"
+    ],
+    "exp": "Tests: … passed"
+   },
+   {
+    "t": "Buzish",
+    "cmds": [
+     "keyboards.ts 39-satrdan o.status === 'CANCELLED' shartini o'chiring yoki 21-satrda < → <=",
+     "npm test -- keyboards"
+    ],
+    "exp": "✕ oxirgi sahifada ▶ yo'q yoki ✕ yetkazilgan va bekor qilingan — tugma yo'q"
+   },
+   {
+    "t": "Tiklash",
+    "cmds": [
+     "git checkout -- src/api/telegram/keyboards.ts",
+     "npm test"
+    ],
+    "exp": "hammasi ✓"
+   }
+  ],
+  "proof": {
+   "label": "3-qadamda qizargan (✕) testning nomi — buyruq emas",
+   "placeholder": "masalan: oxirgi sahifada ▶ yo'q",
+   "re": "(bekor|oxirgi|bitta|yagona|cancel)",
+   "flags": "i",
+   "wrong": "Bu yerga buyruqni emas, terminalda ✕ belgisi yonidagi test nomini yozing, masalan: oxirgi sahifada ▶ yo'q."
+  },
+  "trouble": [
    [
-    "a",
-    "Sinfda test yozilgan, lekin ishlamaydi — sabab ko'pincha <b>koddan tashqarida</b>",
-    "Sinfda eng ko'p vaqt test kodiga emas, sozlashga ketadi. Uchta tuzoqni oldindan bilsangiz, ularni bir daqiqada tuzatasiz."
+    "toBe bilan serializes to the same string",
+    "massiv — toEqual (13-ekran)"
    ],
    [
-    "b",
-    "Fayl loyiha ildizida yoki nomi <code>.test.ts</code> — ikkalasida <b><code>No tests found</code></b>",
-    "Birinchi va ikkinchi tuzoq fayl joyi va nomida. Sinab ko'rdik: test fayli loyiha ildizida tursa, Jest no tests found deydi. Nomi order test ts bo'lsa ham shu javob chiqadi. Xabardagi test regex satri shuni aytadi: nol mos fayl."
+    "Etalonda hide: false yo'q — FAIL",
+    "Telegraf qo'shadi: faqat text va callback_datani ajrating yoki toMatchObject"
    ],
    [
-    "c",
-    "<code>npm ci</code> bu repoda yiqiladi — lock fayl sinxron emas; <b><code>npm install</code> ishlaydi</b>",
-    "Uchinchi tuzoq: ba'zi o'quvchi npm ci deb yozadi. Bu repoda u yiqiladi: package json va lock fayl sinxron emas. Npm install ishlaydi. Bu repo muallifining kamchiligi, o'quvchining xatosi emas."
-   ],
-   [
-    "d",
-    "Xulosa: <code>No tests found</code> — <b>joy va nom</b>; <code>npm ci</code> xatosi — <code>npm install</code>",
-    "Xulosa: no tests found ko'rsangiz, fayl joyi va nomini tekshiring, src ichida va spec ts. Npm ci yiqilsa, npm install qiling. Ikkalasi ham kodda emas, sozlamada."
+    "3-qadamda hammasi ✓",
+    "buzgan shartingizga test yo'q — o'sha vaziyatga test qo'shing (16-ekran)"
    ]
   ]
  },
  "18": {
   "type": "Lesson",
-  "kicker": "5-bosqich · tuzoqlar",
-  "title": "Bo'sh loyihada darsdagi ikki buyruq yetmaydi: to'rt xato ketma-ket",
+  "kicker": "5-bosqich · AI testi",
+  "title": "Yangi ko'nikma: AI yozgan testni qabul qilish — avval ikki AI tajribasi",
   "seg": [
    [
     "a",
-    "O'quvchi Nest emas, oddiy loyihada sinasa — <b>darsdagi buyruqlar yetmaydi</b>",
-    "Ba'zi o'quvchi testni Nest emas, oddiy bo'sh loyihada sinaydi. O'quvchi darsida ikki qadam bor: npm i minus D jest ts jest va test: jest. Sinab ko'rdik: bo'sh loyihada bu yetmaydi, to'rtta xato ketma-ket chiqadi."
+    "Yangi bosqich, yangi ko'nikma: <b>testni AI yozadi, siz uni qabul qilasiz</b>",
+    "Endi yangi bosqich boshlanadi va u boshqa ko'nikma. To'rt bosqichda testni o'zingiz yozdingiz va FAIL'ni o'qishni o'rgandingiz. Ishda esa testni ko'pincha AI yozadi. Sizning ishingiz endi yozish emas, qabul qilish: AI yozgan test haqiqatan xatoni ushlaydimi. Buni ikki xil AI bilan haqiqiy tajribada ko'ramiz."
    ],
    [
     "b",
-    "1-xato: <b><code>Must use import to load ES Module</code></b> — Jest TypeScript'ni o'qishni bilmaydi",
-    "Birinchi xato: must use import to load ES module. Jest TypeScript faylni o'qishni bilmaydi, unga sozlama kerak. Yechim: npx ts jest config init, u jest config faylini yaratadi."
+    "Prompt bitta gap: <b>«test yozib ber, yashil bo'lsin»</b> — mentor odatda shunday yozadi",
+    "Tajriba bunday edi. Biz ikki xil AI'ga bir xil oddiy prompt berdik: texts va keyboards uchun jest testlar yozib ber, npm test yashil bo'lsin. Ataylab qisqa, chunki mentor ko'pincha shunday yozadi. Har AI loyihaning alohida nusxasida ishladi."
    ],
    [
     "c",
-    "2-xato: <code>Cannot find name 'describe'</code> — <code>@types/jest</code> kerak; 3-xato: <b>TypeScript 6 yoki 7</b>",
-    "Ikkinchi xato: cannot find name describe, chunki Jest turlari yo'q. Yechim types jest va typescript paketlarini o'rnatish. Lekin shunda uchinchi xato chiqadi: eng yangi TypeScript o'rnatiladi. Alohida o'rnatilsa yettinchi, boshqa paketlar bilan birga oltinchi. Ikkalasida ham ts jest ishlamaydi."
+    "Ikkalasi <b>faqat ikki test fayl qo'shdi</b>, kodga tegmadi: 36 va 33 test, hammasi yashil",
+    "Natija yaxshi ko'rinadi. Ikkalasi faqat ikkita test fayl qo'shdi, kodga tegmadi, git diff stat buni tasdiqlaydi. Birinchisi o'ttiz olti, ikkinchisi o'ttiz uchta test yozdi, hammasi yashil. Ikkalasi bo'linmas probelni ham o'zi sezdi."
    ],
    [
     "d",
-    "Yechim: <b><code>typescript@5</code></b> — bo'sh loyiha ham yashil: <code>PASS ./order.spec.ts</code>",
-    "Yechim: typescript beshinchi versiyasini o'rnatish. Shundan keyin bo'sh loyiha ham yashil. Jami uchta qo'shimcha buyruq kerak bo'ldi: config init, types jest va typescript besh. Nest loyihasida bularning hammasi tayyor."
+    "Lekin probelni <b>ikki xil hal qildi</b>: biri almashtiradi, biri ko'rinmas belgini qo'ydi",
+    "Lekin probelni ikki xil hal qildi. Birinchisi solishtirishdan oldin bo'linmas probelni oddiysiga almashtiradi va yana bir belgi haqida yozdi: Node versiyasiga qarab u boshqa belgi bo'lishi mumkin. Bizdagi Node'da bunday emas, sinab ko'rdik. Ikkinchisining etalonida esa ko'rinmas belgining o'zi turibdi, yettinchi ekrandagi tuzoq."
    ],
    [
     "e",
-    "Xulosa: test — <b>Nest loyihasida</b>; bo'sh loyihada — <code>config:init</code>, <code>@types/jest</code>, <code>typescript@5</code>",
-    "Xulosa: sinfda testni o'quvchi reposida yozdiring, u yerda hammasi tayyor. O'quvchi baribir bo'sh loyihada sinasa, uchta buyruq: ts jest config init, types jest va typescript besh. Oltinchi va yettinchi TypeScript bilan ts jest hozircha ishlamaydi."
+    "Xulosa: <b>«hammasi yashil» — tekshiruv emas</b>; testning o'zini tekshirish kerak",
+    "Xulosa: ikki AI ham va'dasini bajardi, testlar yashil. Lekin yashil test yaxshi test degani emas. AI aytgan gapni ham tekshiramiz. Testning o'zi xatoni ushlaydimi, buni bilishning bitta ishonchli usulini keyingi ekranda ko'rasiz."
    ]
   ]
  },
  "19": {
-  "type": "MCRetry",
-  "kicker": "Tekshiruv 4",
-  "eyebrow": "Tekshiruv · 4 / 4",
-  "title": "Bo'sh loyiha: The TypeScript compiler \"typescript\" (version 7.0.2) does not expose … required by ts-jest. Nima qilasiz?",
-  "q": "Zanjirni ko'rdingiz, tekshirib olaylik. To'rtinchi tekshiruv. O'quvchi bo'sh loyihada TypeScript o'rnatdi va xabar oldi: TypeScript yettinchi versiya ts jest uchun kerakli qismni bermaydi. Nima qilasiz? Variantni tanlang.",
-  "ok": "To'g'ri. Ts jest hozircha TypeScript beshinchi versiyasi bilan ishlaydi. Typescript besh o'rnatilgach, sinab ko'rdik, test yashil. Nest reposida TypeScript besh allaqachon turibdi, shuning uchun u yerda bu xato chiqmaydi. Demak, ts jest bilan TypeScript beshinchi versiyasi ishlatiladi.",
-  "okShort": "<code>typescript@5</code> → <code>PASS</code>. Nest reposida TypeScript 5.9 allaqachon bor.",
-  "hint": "Xabar versiya haqida: qaysi versiya ts-jest bilan ishlaydi?",
-  "correct": 3,
-  "opts": [
-   "ts-jestni o'chirish",
-   "npm ci",
-   "Test faylini .js qilish",
-   "npm i -D typescript@5"
-  ],
-  "wrong": {
-   "0": "ts-jestsiz Jest TypeScript faylni o'qiy olmaydi — birinchi xatoga qaytasiz.",
-   "1": "npm ci lock fayldagi versiyani qayta o'rnatadi, yangisini tanlamaydi — sinab ko'rdik, versiya o'zgarmadi.",
-   "2": ".js nomida Jest TypeScript'ni o'qiy olmaydi — sinab ko'rdik: Jest encountered an unexpected token."
-  }
- },
- "20": {
-  "type": "Practice",
-  "kicker": "Amaliyot 4 / 4",
-  "eyebrow": "Hozir o'zingizda · 5 daqiqa",
-  "title": "Fayl joyi va nomi — ikki tuzoqni qo'l bilan ko'ring",
+  "type": "Lesson",
+  "kicker": "5-bosqich · ichida",
+  "title": "Test to'plamini kodni buzib tekshiramiz: qizarmasa — o'sha buzilish himoyasiz",
   "seg": [
    [
     "a",
-    "Endi siz: sinfdagi eng ko'p savolni o'zingiz chiqarasiz — <b><code>No tests found</code></b>",
-    "Oxirgi amaliyot qisqa, besh daqiqalik. Sinfdagi eng ko'p uchraydigan xabarni, no tests found'ni, o'zingiz chiqarasiz."
+    "Usul oddiy: <b>kodni ataylab buzing</b> va nechta test qizarganini sanang",
+    "Usul oddiy: kodni ataylab buzing va nechta test qizarganini sanang. Bitta ham qizarmasa, o'sha buzilish himoyasiz. Biz beshta buzish oldik: narx formati, savatdagi narx, bekor qilingan buyurtma tugmasi, oxirgi sahifa va status matni. Uchala to'plamni sinadik."
    ],
    [
     "b",
-    "1–2-qadam: <code>order.spec.ts</code>ni <b>loyiha ildiziga</b> ko'chiring — <code>No tests found</code>",
-    "Birinchi qadamda order spec ts'ni src'dan loyiha ildiziga ko'chirib, importni moslang. Ikkinchisida npm test qiling: no tests found chiqadi. Xabardagi testRegex satrini o'qing."
+    "Bizning <b>o'n testimiz ikki buzilishni sezmadi</b>: matnlarni sinamaganmiz",
+    "Avval o'zimiznikini tan olamiz. Bizning o'nta testimiz ikki buzilishni sezmadi: savatdagi narx va status matni. Sababi oddiy: texts faylidan faqat som'ni sinaganmiz. Test yo'q joy himoyasiz."
    ],
    [
     "c",
-    "3–4-qadam: <code>src/</code>ga qaytarib, nomini <b><code>.test.ts</code></b> qiling; isbot — xabarning birinchi satri",
-    "Uchinchi qadamda faylni src'ga qaytaring, lekin nomini order test ts qiling: yana no tests found chiqadi. To'rtinchisida nomini spec ts'ga qaytaring, test yashil bo'ladi. Isbot maydoniga xabarning birinchi satrini nusxalang."
+    "36 test <b>status matni o'zgarganini sezmadi</b>: <code>toBeTruthy</code> faqat «bormi» deydi",
+    "O'ttiz olti testli to'plam ham status matni o'zgarganini sezmadi. Uning testi faqat har status uchun qandaydir matn borligini tekshiradi, to be truthy bilan. Matn o'zgarsa ham test yashil. Ikkinchi to'plamda esa som buzilganda o'ttiz uchdan faqat bittasi qizardi: etaloni koddan olingan testlar."
+   ],
+   [
+    "d",
+    "Xulosa: <b>test soni sifat emas</b> — qaysi buzilishni ushlashi sifat",
+    "Xulosa: test soni sifat emas. O'ttiz olti test ham bitta buzilishni o'tkazib yubordi. Sifat — test qaysi buzilishni ushlashi. AI test yozgandan keyin uch to'rt joyda kodni buzib ko'ring. Qizarmagan joyga test qo'shing."
+   ]
+  ]
+ },
+ "20": {
+  "type": "MCRetry",
+  "kicker": "Tekshiruv 4",
+  "eyebrow": "Tekshiruv · 4 / 4",
+  "title": "AI testi: expect(STATUS_UZ.CANCELLED).toBeTruthy(). Kimdir matnni «Bekor qilingan» dan «Yangi» ga o'zgartirdi. Test nima deydi?",
+  "q": "Buzib tekshirishni ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. AI testi bekor qilingan status matnini to be truthy bilan tekshiradi. Kimdir matnni xato bilan yangi deb o'zgartirdi: mijoz bekor qilingan buyurtmasini yangi deb ko'radi. Test nima deydi? Variantni tanlang.",
+  "ok": "To'g'ri. To be truthy faqat qiymat bo'sh emasligini tekshiradi. Yangi degan matn ham bo'sh emas, shuning uchun test yashil. Mijoz esa noto'g'ri status ko'radi. Etalonni aniq yozsangiz, test qizaradi. Demak, to be truthy qiymat borligini tekshiradi, to'g'riligini emas.",
+  "okShort": "«Yangi» matni ham bo'sh emas — PASS. Statusning to'liq matnini kutgan aniq <code>toBe</code> buni ushlaydi.",
+  "hint": "toBeTruthy qaysi qiymatlarda FAIL beradi? «Yangi» matni shulardan birimi?",
+  "demak": "<code>toBeTruthy</code> qiymat borligini tekshiradi, to'g'riligini emas.",
+  "correct": 1,
+  "opts": [
+   "FAIL — toBeTruthy matn o'zgarganini sezadi",
+   "PASS — toBeTruthy faqat bo'sh emasmi deydi",
+   "TypeScript xato — status matni turi o'zgardi",
+   "FAIL — ikki status endi bir xil matnda"
+  ],
+  "wrong": {
+   "0": "toBeTruthy matnni etalon bilan solishtirmaydi — faqat bo'sh emasmi.",
+   "2": "Ikkalasi ham string — turi o'zgarmadi.",
+   "3": "Fayl joyi va nomi o'zgarmadi."
+  }
+ },
+ "21": {
+  "type": "Practice",
+  "kicker": "Amaliyot 3 / 3",
+  "eyebrow": "Hozir o'zingizda · 20 daqiqa",
+  "title": "O'z AI'ingizga aniq shartli prompt bering, keyin to'rt tekshiruv va uchta buzish",
+  "seg": [
+   [
+    "a",
+    "Endi siz: AI'ga <b>shartlari aniq prompt</b> berasiz — <code>texts.ts</code> dagi buyurtma matnlari uchun",
+    "Endi navbat sizga. O'z AI'ingizga test yozdirasiz, lekin bu safar shartlari aniq prompt bilan. Mavzu: texts faylidagi savat va buyurtma matnlari. Promptni pastdagi tugma bilan nusxalaysiz. Yigirma daqiqa ketadi."
+   ],
+   [
+    "b",
+    "1–2-qadam: prompt va <b>diff — faqat <code>.spec.ts</code></b>, etalonda <code>${…}</code> yo'q",
+    "Birinchi qadamda promptni berasiz. Ikkinchisida natijani tekshirasiz: git diff stat'da faqat spec fayl bo'lsin, har it'da expect bo'lsin, etalonda dollar va qavs ichida funksiya chaqirilmasin."
+   ],
+   [
+    "c",
+    "3–4-qadam: <b>uchta buzish</b> — hammasi qizarsin; isbot — qizarmagan buzish yoki «hammasi»",
+    "Uchinchi qadamda kodni uch joyda navbat bilan buzasiz: narx formati, savatdagi narx va status matni. Har biridan keyin npm test, keyin git checkout. Qizarmagan joy bo'lsa, AI'dan o'sha joyga test so'rang. Isbot maydoniga natijani yozing."
    ],
    [
     "d",
     "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
-    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, sinfda no tests found chiqsa, siz sababini fayl joyi va nomidan darhol topasiz."
+    "Boshqacha chiqsa, «Boshqacha chiqdimi» tugmasini bosing. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin siz AI yozgan testni soniga qarab emas, buzib tekshirib qabul qilasiz."
    ]
-  ]
- },
- "21": {
-  "type": "Lesson",
-  "kicker": "6-bosqich · o'quvchi darsini o'tish",
-  "eyebrow": "m4b-01 · «Unit-test: Jest»",
-  "title": "m4b-01: Jestbot, varaqa va etalon — amaliyot o'quvchi loyihasida",
-  "seg": [
+  ],
+  "steps": [
+   {
+    "t": "Prompt",
+    "cmds": [
+     "yuqoridagi prompt — o'z AI'ingizga",
+     "npm test"
+    ],
+    "exp": "PASS"
+   },
+   {
+    "t": "To'rt tekshiruv",
+    "cmds": [
+     "git diff --stat — faqat .spec.ts",
+     "har itda expect",
+     "etalonda ${som( yoki ${STATUS_UZ yo'q",
+     "grep -c 'u00a0' src/api/telegram/texts.spec.ts — 0 dan katta (escape matni bor)"
+    ],
+    "exp": "4 ✓"
+   },
+   {
+    "t": "Uch buzish",
+    "cmds": [
+     "texts.ts: 'ru-RU' → 'en-US'",
+     "(i.price ?? i.product.price) → i.product.price",
+     "'❌ Bekor qilingan' → '🆕 Yangi' — har biridan keyin npm test va git checkout -- src/api/telegram/texts.ts"
+    ],
+    "exp": "har biri ✕"
+   },
+   {
+    "t": "Qizarmagan joy",
+    "cmds": [
+     "AI'ga: «<buzish> ni hech bir test ushlamadi — shu qoidaga test yoz»",
+     "3-qadamni qaytaring"
+    ],
+    "exp": "uchalasi ✕"
+   }
+  ],
+  "proof": {
+   "label": "Uch buzishning natijasi",
+   "placeholder": "masalan: uchalasi qizardi · yoki: savatdagi narx — avval qizarmadi, test qo'shdim",
+   "re": "(qizar|fail|✕|uchala|hammasi|test qo'sh)",
+   "flags": "i",
+   "wrong": "Har buzishdan keyin npm test natijasini yozing."
+  },
+  "trouble": [
    [
-    "a",
-    "m4b-01 — 21 ekran: ko'p qismida o'quvchi <b>Jestbot</b> bilan o'ynaydi, terminalni amaliyotda ko'radi",
-    "Endi o'quvchi darsini ko'ramiz: m4b-01, unda yigirma bir ekran bor. Ko'p qismida o'quvchi Jestbot degan robot bilan ishlaydi: varaqa yig'adi, etalon qo'yadi, kodni buzadi. Haqiqiy terminalni u faqat amaliyotda, o'z loyihasida ko'radi."
+    "git diff --stat da texts.ts ham bor",
+    "AI kodni o'zgartirdi — git checkout -- src/api/telegram/texts.ts, promptdagi «Tegma» bandini takrorlang"
    ],
    [
-    "b",
-    "Yozish bloki: o'quvchi darsi haqiqiy chiqishni ko'rsatmaydi — siz <b>6-ekrandagini ko'rsatasiz</b>",
-    "Yozish blokida o'quvchi darsi natijani kartochka bilan ko'rsatadi, haqiqiy terminal chiqishini emas. Siz proyektorda oltinchi ekrandagi haqiqiy PASS'ni ko'rsating: fayl, guruh, holat va jami."
+    "Etalonda ${som(…)} qoldi",
+    "AI shartni bajarmadi — o'sha satrlarni qo'lda yozing (10-ekran)"
    ],
    [
-    "c",
-    "Buzish bloki: FAIL o'qish tartibi va <b>«kim xato» savoli</b> — ikkalasi sizdan",
-    "Buzish blokida o'quvchi expected va received'ni ko'radi. Siz o'qish tartibini o'rgatasiz: avval nuqtali satr, keyin expected va received, oxirida funksiya. Va har FAIL'da savol: kim xato, kodmi yoki etalonmi."
+    "AI «\\u00a0 bilan ochiq yozdim» dedi, grep -c 'u00a0' → 0",
+    "faylda ko'rinmas belgining o'zi — ikkala AI'da ham shunday chiqdi (p2/XULOSA); qatorlarni qo'lda \\u00a0 bilan yozing, keyin npm test"
    ],
    [
-    "d",
-    "Xulosa: amaliyot oldidan — repo <code>npm install</code> bilan, test <b><code>src/</code> ichida</b>, nomi <code>.spec.ts</code>",
-    "Xulosa: amaliyot oldidan uch narsani tekshiring. Repo npm install bilan o'rnatilgan, test fayli src ichida, nomi spec ts bilan tugaydi. Vaqt, taklif: to'qson daqiqaning yigirma beshi amaliyotga, chunki sozlashda vaqt ketadi."
+    "Savatdagi narx buzilishida hammasi ✓",
+    "price (buyurtma paytidagi narx) va product.price har xil bo'lgan test yo'q — ikkalasini farqli qilib test so'rang"
+   ],
+   [
+    "sed yoki tahrirdan keyin fayl o'zgarmadi",
+    "qo'lda tahrir qiling va saqlang (VS Code'da nuqta — saqlanmagan)"
    ]
   ]
  },
  "22": {
   "type": "Lesson",
-  "kicker": "6-bosqich · o'quvchi darsini o'tish",
-  "title": "O'quvchi darsidagi so'zlar: Jestbot, robot papkasi, sinov varaqasi, etalon kartochkasi",
+  "kicker": "6-bosqich · sinfga tayyorgarlik",
+  "eyebrow": "m4b-01 · «Unit-test: Jest»",
+  "title": "O'quvchi darsi: KitobShop sayti, bitta orderTotal funksiyasi va Jestbot — siz bilgan yo'lning kichik varianti",
   "seg": [
    [
     "a",
-    "O'quvchi darsi testni <b>robot misolida</b> tushuntiradi — siz har so'zni atamasi bilan birga aytasiz",
-    "Endi o'quvchi darsida qanday so'zlar ishlatilishini ko'ramiz. AI Startup kursidagi o'quvchi darsi testni robot misolida tushuntiradi, robotning ismi Jestbot. Siz har so'zni ham, uning atamasini ham bilasiz va sinfda ikkalasini birga aytasiz."
+    "m4b-01 — 21 ekran: <b>KitobShop sayti</b>, <code>orderTotal</code> — narx ko'paytirish son",
+    "Endi sinfga tayyorgarlik, ikki ekran. O'quvchi darsi m4b-01, yigirma bir ekran. Misol — KitobShop sayti: order total funksiyasi narxni songa ko'paytiradi. Ya'ni bot emas, sayt. Lekin describe, it va expect xuddi bugungidek, chunki test faqat funksiyani chaqiradi."
    ],
    [
     "b",
-    "Papka — <code>describe</code>, varaqa — <code>it</code>, <b>etalon kartochkasi — <code>expect</code></b>",
-    "Robot papkasi bu describe: u qaysi mashina sinalayotganini aytadi. Sinov varaqasi bu it: u nima tekshirilishini aytadi. Etalon kartochkasi bu expect: u qanday natija kutilishini aytadi. Mashina esa funksiyaning o'zi."
+    "O'quvchi darsi <b>Jestbot robot</b> misolida tushuntiradi — siz so'zni atamasi bilan aytasiz",
+    "O'quvchi darsi testni robot misolida tushuntiradi, robotning ismi Jestbot. Robot papkasi bu describe, sinov varaqasi bu it, etalon kartochkasi bu expect. Sinfda ikkalasini birga ayting: etalon kartochkasi, ya'ni expect, va o'sha satrni ko'rsating."
    ],
    [
     "c",
-    "Yolg'on test va uch qadam — o'quvchi bularni so'z bilan ham, <b>kodda ham taniydi</b>",
-    "Yolg'on test deganda etalon kartochkasi yo'q yoki noto'g'ri test tushuniladi. Uch qadam esa tayyorlash, chaqirish va tekshirish. O'quvchi bularni kodda ham tanishi kerak, shuning uchun har so'zni ekrandagi kod satri bilan ko'rsating."
+    "Siz qo'shasiz: <b>haqiqiy FAIL, kim xato, chegara va buzib ko'rish</b>",
+    "Darsga siz qo'shadigan narsalar: o'quvchi darsi natijani kartochkada ko'rsatadi, siz proyektorda haqiqiy FAIL'ni o'qib bering. Har FAIL'da savol bering: kim xato, kodmi yoki etalonmi. Uyga vazifadagi delivery fee'da aynan chegara qiymatini sinattiring. Test yashil bo'lsa, kodni bir marta buzdiring."
    ],
    [
     "d",
-    "Xulosa: «etalon kartochkasi, ya'ni <code>expect</code>» — so'zni <b>kod satri bilan birga</b> ko'rsating",
-    "Xulosa: so'zlarni birga ayting, masalan etalon kartochkasi, ya'ni expect, va o'sha satrni ko'rsating. Metafora testni tushuntiradi, lekin terminaldagi so'zlar inglizcha: PASS, FAIL, expected, received."
+    "Xulosa: amaliyot oldidan — <b>test <code>src/</code> ichida, nomi <code>.spec.ts</code></b>, <code>npm install</code> qilingan",
+    "Xulosa: amaliyot oldidan uch narsani tekshiring. Repo npm install bilan o'rnatilgan, test fayli src ichida, nomi spec ts bilan tugaydi. Vaqt bo'yicha taklif: to'qson daqiqaning yigirma beshi amaliyotga, chunki sozlashda vaqt ketadi."
    ]
   ]
  },
  "23": {
   "type": "Lesson",
-  "kicker": "6-bosqich · o'quvchi darsini o'tish",
-  "title": "Darsdagi o'rnatish qadami Nest reposida keraksiz, lekin zararsiz",
+  "kicker": "6-bosqich · sinfga tayyorgarlik",
+  "title": "Beshta vaziyat va tayyor javoblar — to'rttasini bugun o'zingiz ko'rdingiz",
   "seg": [
    [
     "a",
-    "O'quvchi darsi Jest'ni o'rnatishni buyuradi — Nest reposida u <b>allaqachon bor</b>",
-    "O'quvchi darsining beshinchi ekrani Jest'ni o'rnatishni buyuradi: npm i minus D jest ts jest va test: jest. Nest reposida ikkalasi allaqachon bor. O'quvchi «nega o'rnatyapmiz, bor-ku?» desa, javob tayyor bo'lsin."
+    "Sinfda albatta chiqadigan beshta vaziyat — <b>to'rttasi bugun sizda ham chiqdi</b>",
+    "Endi o'quvchi darsida albatta chiqadigan beshta vaziyatni ko'ramiz. To'rttasini bugun o'zingiz ko'rdingiz, shuning uchun qisqa aytaman. Beshinchisi o'quvchi reposiga xos."
    ],
    [
     "b",
-    "Sinab ko'rdik: faqat versiyalar ko'tarildi, testlar yashil — <b>zarari yo'q</b>",
-    "Sinab ko'rdik: buyruqdan keyin jest va ts jest kichik versiyaga ko'tarildi, testlar yashil qoldi. Zarari yo'q. Ikkinchi qism, test: jest, package json'da allaqachon shunday yozilgan."
+    "Topilmadi va <code>npm ci</code> — <b>joy, nom va <code>npm install</code></b>",
+    "Birinchisi no tests found: fayl joyi va nomini tekshiring. Ikkinchisi o'quvchi reposiga xos: npm ci yiqiladi, chunki package json va lock fayl sinxron emas. Npm install qiling. Bu repo kamchiligi, o'quvchining xatosi emas."
    ],
    [
     "c",
-    "Tavsiya: o'quvchi buyruqni bajarsin, siz <b>«Nest buni oldindan qo'ygan»</b> deb izohlang",
-    "Tavsiya: o'quvchi buyruqni bajaraversin, zarar yo'q. Siz bir gap qo'shing: Nest loyihasi Jest'ni oldindan qo'ygan, bu buyruq uni yangilaydi. O'quvchi bo'sh loyihada qilsa, o'n sakkizinchi ekrandagi zanjir."
+    "Yolg'on yashil va bir xil ko'ringan FAIL — <b><code>expect</code>, qo'lda etalon, <code>toEqual</code></b>",
+    "Uchinchisi: test yashil, lekin expect yo'q yoki etalon koddan olingan. To'rtinchisi: qatorlar bir xil, test qizil: ko'rinmas belgi yoki massivni to be bilan solishtirish. Beshinchisi bo'sh loyiha: eng tez yo'l testni o'quvchi reposida yozdirish."
    ],
    [
     "d",
-    "Xulosa: Nest reposida — zararsiz; bo'sh loyihada — <b>yetarli emas</b>",
-    "Xulosa: darsdagi o'rnatish qadami Nest reposida zararsiz, bo'sh loyihada esa yetarli emas. Shuning uchun sinfda testni o'quvchi reposida yozdiring."
+    "Xulosa: o'quvchi «AI yozdi, yashil» desa — <b>bitta joyni buzdiring</b>",
+    "Xulosa va usul: o'quvchi AI test yozdi, hammasi yashil desa, kodda bitta joyni o'zi buzsin va test qizarishini ko'rsin. Javobni darhol aytmang, terminaldagi xabarni birga o'qing. Pastda o'quvchi savollariga tayyor javoblar bor."
    ]
   ]
  },
  "24": {
-  "type": "Lesson",
-  "kicker": "6-bosqich · sinfda",
-  "title": "Olti holat va tayyor javoblar",
-  "seg": [
-   [
-    "a",
-    "Sinfda albatta chiqadigan <b>olti holat</b> — hammasini bugun o'zingiz ko'rdingiz",
-    "Endi sinfda albatta chiqadigan oltita holatni ko'ramiz. Hammasini bugun o'zingiz ko'rdingiz, shuning uchun qisqa aytaman."
-   ],
-   [
-    "b",
-    "Topilmadi va o'rnatish — joy, nom va <b><code>npm install</code></b>",
-    "Birinchi holat no tests found: fayl joyi va nomini tekshiring. Ikkinchisi: npm ci yiqilsa, npm install qiling."
-   ],
-   [
-    "c",
-    "Yolg'on yashil, qizil to'g'ri kod va chegara — <code>expect</code>, etalon, <b>uch test</b>",
-    "Uchinchisi: test yashil, lekin ichida expect yo'q. To'rtinchisi: test qizil, lekin kod to'g'ri, bunda etalonni qo'lda hisoblang. Beshinchisi: faqat aynan chegaradagi test qizil, shuning uchun har shartga uchta test yoziladi."
-   ],
-   [
-    "d",
-    "Xulosa: bo'sh loyiha — o'quvchi reposiga qaytaring; avval <b>xabarni birga o'qing</b>",
-    "Oltinchisi bo'sh loyihadagi xatolar zanjiri: eng tez yo'l testni o'quvchi reposida yozdirish. Xulosa va usul bitta: javobni darhol aytmang, terminaldagi xabarni o'quvchi bilan birga o'qing. Pastda o'quvchi savollariga tayyor javoblar bor."
-   ]
-  ]
- },
- "25": {
   "type": "Screen27",
   "kicker": "O'z-sinov",
   "title": "Sakkiz savol. Bitta urinish. Oltitasi — o'tdingiz",
   "final": [
    {
-    "q": "O'quvchi reposida Jest test faylini qayerdan qidiradi?",
+    "q": "package.json: rootDir: \"src\", testRegex: \".*\\\\.spec\\\\.ts$\". Fayl src/order.test.ts. npm test?",
     "o": [
-     "butun loyihadan, istalgan nom",
-     "src/ ichidan, nomi .spec.ts",
-     "test/ papkasidan",
-     "faqat package.json yonidan"
+     "No tests found — nomi .spec.ts emas",
+     "PASS — Jest .test.ts ni ham oladi",
+     "Cannot find module — order topilmadi",
+     "PASS — rootDir: src bo'lgani yetadi"
     ],
-    "c": 1,
-    "e": "rootDir: src, testRegex: .*\\.spec\\.ts$.",
+    "c": 0,
+    "e": "Nomi .spec.ts emas.",
     "s": 3
    },
    {
-    "q": "Testda expect yo'q, faqat console.log(result). Natija?",
+    "q": "Expected: \"120 000 so'm\" · Received: \"120 000 so'm\" — test FAIL. Birinchi qadam?",
     "o": [
-     "PASS — hech narsa tekshirilmadi",
-     "FAIL",
-     "No tests found",
-     "SyntaxError"
+     "Jest'ni qayta o'rnatib, yana yurgizish",
+     "Belgilar kodini chiqarib solishtirish",
+     "Testni o'chirib, qo'lda tekshirib ko'rish",
+     "toBe o'rniga toBeTruthy qo'yish"
     ],
-    "c": 0,
-    "e": "it ichida xato tashlanmasa — o'tdi.",
-    "s": 10
+    "c": 1,
+    "e": "toBe belgi-belgi solishtiradi: U+00A0.",
+    "s": 7
    },
    {
-    "q": "Expected: 20000 · Received: 10002. Nima bo'lgan?",
+    "q": "it ichida faqat console.log(som(120000)). Natija?",
     "o": [
-     "Etalon xato",
-     "Jest eskirgan",
-     "Funksiya noto'g'ri hisobladi (+)",
-     "Test topilmadi"
+     "FAIL — expect yo'qligi xato sanaladi",
+     "No tests found — bo'sh it sanalmaydi",
+     "PASS — Jest hech narsani solishtirmadi",
+     "SyntaxError — testda console.log taqiq"
     ],
     "c": 2,
-    "e": "Received — funksiya qaytargan; 10000 + 2.",
-    "s": 8
-   },
-   {
-    "q": "Expected: 10002 · Received: 20000, orderTotal(10000, 2). Nima qilasiz?",
-    "o": [
-     "Funksiyani o'zgartiraman",
-     "npm install",
-     "Testni o'chiraman",
-     "Etalonni 20000 ga tuzataman"
-    ],
-    "c": 3,
-    "e": "Funksiya to'g'ri — etalon xato.",
+    "e": "Xatoni faqat expect tashlaydi.",
     "s": 9
    },
    {
-    "q": "deliveryFee: >= o'rniga > yozildi. Qaysi test qizil?",
+    "q": "Etalon: ` Jami: ${som(100000)} . som` buzildi. Test?",
     "o": [
-     "aynan 100 000",
-     "150 000",
-     "99 000",
-     "hammasi"
+     "FAIL — som buzilgani darhol sezildi",
+     "TypeScript xato — shablon satr noto'g'ri",
+     "Cannot find module — som import bo'lmadi",
+     "PASS — etalon ham u bilan birga buzildi"
+    ],
+    "c": 3,
+    "e": "Etalon qo'lda yoziladi.",
+    "s": 10
+   },
+   {
+    "q": "expect(buttons).toBe([['◀', '1/3']]) — massivlar bir xil, lekin FAIL. Sabab?",
+    "o": [
+     "toBe bitta obyektni kutadi — toEqual kerak",
+     "Massivdagi strelka belgisi boshqa kodda",
+     "Jest eskirgan — massivni solishtira olmaydi",
+     "Emoji'lar massivda boshqacha saqlanadi"
     ],
     "c": 0,
-    "e": "Farq faqat chegarada.",
+    "e": "serializes to the same string.",
     "s": 13
    },
    {
-    "q": "O'quvchi npm ci qildi — in sync xatosi. Nima deysiz?",
+    "q": "Testlar faqat birinchi va o'rtadagi sahifani sinaydi, kodda <= xato. Natija?",
     "o": [
-     "Jest'ni qayta o'rnating",
-     "npm install qiling",
-     "Repoyni o'chiring",
-     "Node'ni yangilang"
+     "Ikkalasi FAIL — <= hamma sahifani buzadi",
+     "Ikkalasi PASS — xato chegarada yashirin",
+     "O'rtadagisi FAIL — u ▶ ni ikki marta oladi",
+     "TypeScript xato — <= sonlar uchun emas"
     ],
     "c": 1,
-    "e": "Lock fayl sinxron emas — npm install.",
-    "s": 17
+    "e": "Yashil test faqat sinalgan vaziyat haqida.",
+    "s": 16
    },
    {
-    "q": "Bo'sh loyiha: TypeScript 7.0.2 — does not expose … required by ts-jest. Yechim?",
+    "q": "AI 36 test yozdi, hammasi yashil. Qabul qilishdan oldin eng ishonchli tekshiruv?",
     "o": [
-     "ts-jestni o'chirish",
-     "npm ci",
-     "npm i -D typescript@5",
-     "faylni .js qilish"
+     "Test sonini sanab, 30 dan ko'pligini ko'rish",
+     "Testlarni qayta yurgizib, yana yashil ko'rish",
+     "Kodni 3 joyda buzib, test qizarishini ko'rish",
+     "AI'dan «hammasini tekshirdingmi» deb so'rash"
     ],
     "c": 2,
-    "e": "ts-jest TypeScript 5 bilan ishlaydi (6 va 7 bilan — yo'q).",
-    "s": 18
+    "e": "Son emas — ushlagan buzilish.",
+    "s": 19
    },
    {
-    "q": "AI 5 ta test yozdi. Har biriga qaysi ikki savol?",
+    "q": "expect(STATUS_UZ.CANCELLED).toBeTruthy(), matn «Yangi» ga o'zgardi. Test?",
     "o": [
-     "Tezmi va qisqami?",
-     "Nomi inglizchami?",
-     "Nechta satr?",
-     "expect bormi va etalon to'g'rimi?"
+     "FAIL — matn «bekor» emas, «yangi» bo'ldi",
+     "No tests found — STATUS_UZ topilmadi",
+     "TypeScript xato — matn turi o'zgardi",
+     "PASS — toBeTruthy faqat bo'sh emasmi"
     ],
     "c": 3,
-    "e": "Yolg'on testning ikki turi.",
-    "s": 14
+    "e": "toBeTruthy — bormi, to'g'rimi emas.",
+    "s": 20
    }
   ]
  },
- "26": {
+ "25": {
   "type": "Screen28",
   "kicker": "Yakun",
   "title": "Endi siz bilasiz"
  }
 };
-
 // ============================================================
-//  MENTOR KURSI · Jest-1 «Birinchi unit-test: o'quvchi reposida»
-//  F-1029-02 · manba-haqiqat: feedback/F-1029-02-mentor-kurs/10-Jest1-mentor-v1.md (MD v1, GATE M kutilmoqda; 01.11 avtopilot)
-//  Haqiqiy chiqishlar: feedback/F-1029-02-mentor-kurs/manba/jest1-out/ (00–20; har npm test toza muhitda)
+//  MENTOR KURSI · Jest-1 «OrderBotNest'ga birinchi testlar: yozamiz, buzamiz, AI testini tekshiramiz» (v2, F-1104-01)
+//  Manba-haqiqat: feedback/F-1029-02-mentor-kurs/10-Jest1-mentor-v2.md (GATE M 04.11)
+//  Loyiha: github.com/Azizbekcrypto/OrderBotNest — teglar jest1-start (= tgpg-done) → jest1-done
+//  Kod va terminal: 03b-kod.gen.jsx (dev/jest1-kod.py — repo teglari va manba/jest1v2-out/ dan aynan, satr raqami bilan)
+//  AI tajribasi: manba/jest1v2-ai/ (1-prompt: ai1 Opus, ai2 Haiku · 2-prompt: p2/)
 //  Yig'ish: cat parts/01-asos.jsx parts/02-dvigatel.jsx jest1/parts/*.jsx > JestUnitMentorLesson.jsx
-//  Yordamchilar PG-2 dan nusxa + Nest-2 dagi TypeScript rang beruvchi
 // ============================================================
-const LESSON_ID = 'mentor-jest-01-birinchi-unit-test-v1';
-const LESSON_TITLE = "Birinchi unit-test: o'quvchi reposida";
-const PG = { mongo: '#13AA52', pg: '#336791', term: '#111827', termEr: '#1F1115', win: '#0067C0', post: '#FF6C37' };
-MKCFG.root = 'IntroNestArxitechture';
-MKCFG.kind = (f) => /\.spec\.ts$/.test(f) ? T.purple : /\.ts$/.test(f) ? T.blue : /\.json$/.test(f) ? T.yellow : null;
-// O'quvchi reposining to'liq Explorer'i (M27): mavzuga aloqasiz papkalar yopiq; test fayllari ekranga qarab qo'shiladi
-const REPO_BASE = ['dist/', 'node_modules/', 'src/api/', 'src/common/', 'src/config/', 'src/core/', 'src/infrastructure/', 'src/main.ts', 'test/', '.env.example', 'nest-cli.json', 'package.json', 'tsconfig.json'];
+const LESSON_ID = 'mentor-jest-01-birinchi-unit-test-v1'; // M44: id o'zgarmaydi — ekranlar soni o'zgargani uchun eski saqlov o'zi bekor bo'ladi
+const LESSON_TITLE = "OrderBotNest'ga birinchi testlar";
+const JC = { term: '#111827', termEr: '#1F1115', ai: '#6D3BE4', jest: '#99425B', pass: '#15803D', fail: '#C2410C' };
+const ESC = String.fromCharCode(92) + 'u00a0'; // bo'linmas probel escape'i matn sifatida (fayl vositasi uni belgiga aylantirmasin — 04.11)
+MKCFG.root = 'OrderBotNest';
+MKCFG.kind = (f) => /\.spec\.ts$/.test(f) ? JC.jest : /\.entity\.ts$/.test(f) ? T.purple : /\.service\.ts$/.test(f) ? T.green : /\.module\.ts$/.test(f) ? T.yellow : /\.(ts|js)$/.test(f) ? T.blue : /\.json$|^\.env/.test(f) ? T.yellow : null;
 const byTree = (a, b) => {
   const A = a.split('/'), B = b.split('/');
   for (let i = 0; i < Math.min(A.length, B.length); i++) {
@@ -1557,8 +2843,27 @@ const byTree = (a, b) => {
   return A.length - B.length;
 };
 const tree = (...groups) => Array.from(new Set(groups.flat())).sort(byTree);
-const F = { ord: 'src/order.ts', ordSpec: 'src/order.spec.ts', del: 'src/delivery.ts', delSpec: 'src/delivery.spec.ts', pkg: 'package.json' };
-MKCFG.files = tree(REPO_BASE);
+const F = {
+  tg: 'src/api/telegram/telegram.service.ts', kb: 'src/api/telegram/keyboards.ts', tx: 'src/api/telegram/texts.ts',
+  txs: 'src/api/telegram/texts.spec.ts', kbs: 'src/api/telegram/keyboards.spec.ts',
+  cat: 'src/api/catalog/catalog.service.ts', ord: 'src/api/order/order.service.ts', pkg: 'package.json',
+};
+const BASE_FILES = ['node_modules/', 'scripts/smoke.js', 'src/api/app.module.ts', 'src/api/cart/', F.cat, F.ord, 'src/api/user/', F.tg, F.kb, F.tx, 'src/config/', 'src/core/', 'src/infrastructure/', 'src/main.ts', '.env.example', F.pkg, 'README.md'];
+const FILES = (...extra) => tree(BASE_FILES, extra);
+MKCFG.files = FILES();
+// VS Code'dagidek ixcham Explorer: faqat ochiq faylning papka zanjiri ochiq (TgPg dagi compact)
+const dirOf = (f) => (f.endsWith('/') ? f.slice(0, -1) : f).split('/').slice(0, -1).join('/');
+function compact(files, active) {
+  const A = active ? dirOf(active) : '';
+  const out = files.map((f) => {
+    const d = dirOf(f);
+    if (!d || d === A || A.startsWith(d + '/') || f.endsWith('/')) return f;
+    const ps = d.split('/'), as = A ? A.split('/') : [];
+    let k = 0; while (k < ps.length && ps[k] === as[k]) k++;
+    return ps.slice(0, k + 1).join('/') + '/';
+  });
+  return tree(out);
+}
 
 // Segment: MD'dagi ekran matni (03-matn.gen.jsx) + sahna maydonlari (extras — segment tartibida)
 const sg = (id, key, text, extra = {}) => ({ id, key, text, show: wr(text), ...extra });
@@ -1569,211 +2874,212 @@ const mkS = (n, extras = [], more = {}) => {
 
 // Ovoz → «Matn» (transkript) uchun yozma ko'rinish. Uzun ibora oldin.
 const SPOKEN = [
-  ['order spec ts', 'order.spec.ts'], ['order test ts', 'order.test.ts'], ['order ts', 'order.ts'], ['delivery spec ts', 'delivery.spec.ts'], ['delivery ts', 'delivery.ts'],
-  ['delivery fee', 'deliveryFee'], ['package json', 'package.json'], ['root dir src', 'rootDir: src'], ['root dir', 'rootDir'], ['test regex', 'testRegex'],
-  ['spec ts', '.spec.ts'], ['ts jest config init', 'ts-jest config:init'], ['ts jest', 'ts-jest'], ['types jest', '@types/jest'], ['typescript besh', 'typescript@5'],
-  ['npm i minus D jest ts jest', 'npm i -D jest ts-jest'], ['test: jest', '"test": "jest"'], ['expect, result, to be yigirma ming', 'expect(result).toBe(20000)'],
-  ['no tests found', 'No tests found'], ['console log', 'console.log'], ['test suites', 'Test Suites'], ['must use import to load ES module', 'Must use import to load ES Module'],
-  ['cannot find name describe', "Cannot find name 'describe'"], ['npx jest minus minus verbose', 'npx jest --verbose'], ['jest config', 'jest.config.js'], ['npm ci', 'npm ci'],
+  ['backslash u nol nol a nol', ESC], ['nol nol a nol', '00a0'], ['ikki nol', '0020'],
+  ['texts spec ts', 'texts.spec.ts'], ['keyboards spec ts', 'keyboards.spec.ts'], ['texts ts', 'texts.ts'], ['spec ts', '.spec.ts'], ['test ts', '.test.ts'],
+  ['to strict equal', 'toStrictEqual'], ['to be undefined', 'toBeUndefined'], ['to be truthy', 'toBeTruthy'], ['to equal', 'toEqual'], ['to be', 'toBe'],
+  ['to locale string', 'toLocaleString'], ['Object is', 'Object.is'], ['console log', 'console.log'], ['no tests found', 'No tests found'],
+  ['Root dir src', 'rootDir: src'], ['root dir src', 'rootDir: src'], ['Test regex', 'testRegex'], ['test regex', 'testRegex'], ['transform ts jest', 'transform: ts-jest'], ['ts jest', 'ts-jest'],
+  ['order keyboard', 'orderKeyboard'], ['catalog keyboard', 'catalogKeyboard'], ['Buttons yordamchisi', 'buttons() yordamchisi'], ['Nav yordamchisi', 'nav() yordamchisi'],
+  ['hide false', 'hide: false'], ['git diff stat', 'git diff --stat'], ['jest bir start', 'jest1-start'], ['package json', 'package.json'],
+  ['Describe som', "describe('som')"], ['npm test keyboards', 'npm test -- keyboards'], ['npm test texts', 'npm test -- texts'], ['git checkout', 'git checkout'],
+  ['dollar va qavs', '${…}'], ['delivery fee', 'deliveryFee'], ['order total', 'orderTotal'], ['m4b-01', 'm4b-01'], ['env fayli', '.env fayli'], ['env faylisiz', '.env faylisiz'],
 ];
-DIGITS.unshift(["yuz ellik ming", '150 000'], ["to'qson to'qqiz ming", '99 000'], ["o'n ming ikki", '10002'], ['yigirma ming', '20000'], ["o'n besh ming", '15 000'],
-  ["besh ming", '5000'], ["o'n ming", '10 000'], ['yuz ming', '100 000'], ["o'ttiz yettita", '37 ta'], ['yigirma bir ekran', '21 ekran'], ["o'n sakkizinchi", '18-'],
-  ["olti, yigirma", '6:20'], ["o'n besh", '15']);
+DIGITS.unshift(['bir yuz yigirma ming', '120 000'], ['bir yuz ming', '100 000'], ["o'ttiz olti", '36'], ["o'ttiz uch", '33'], ["o'ttizdan ortiq", '30 dan ortiq'], ["o'ttiz uchinchi", '33-'],
+  ["o'nta", '10 ta'], ["yigirma bir", '21'], ["to'qson daqiqaning yigirma beshi", '90 daqiqaning 25 tasi'], ["o'n besh", '15'], ["o'n daqiqa", '10 daqiqa'], ['besh yuz', '500']);
 const wr = (s) => digits(SPOKEN.reduce((acc, [a, b]) => acc.split(a).join(b), s));
-// Haqiqiy inglizcha iboralar ovozda [English pronunciation] ichida (M21) — uzunlari oldin
-EN_PHRASES.unshift(
-  /No tests found/g, /Must use import to load ES Module/g, /Cannot find name 'describe'/g, /does not expose the JavaScript compiler API/g,
-  /Test Suites/g, /Cannot find module/g, /can only install packages when/g, /Object\.is equality/g, /Jest encountered an unexpected token/g,
-);
+EN_PHRASES.unshift(/No tests found/g, /serializes to the same string/g, /Cannot find module/g, /Object is/g);
 
-// Kod rang beruvchi: JS (Mongo sahnasi) va SQL/psql (qolgan hammasi). Matn — String.raw, HTML'siz.
+// Kod rang beruvchi (TgPg dan). Matn — KOD (03b-kod.gen.jsx), HTML'siz.
 const escH = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-const JS_KW = /^(const|let|await|new|async|return|true|false|null|require)$/;
-function jsLine(src) {
-  const re = /(\/\/.*$)|('(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*")|([A-Za-z_$][\w$]*)|(\d+)/g;
-  let out = '', last = 0, m;
-  while ((m = re.exec(src))) {
-    out += escH(src.slice(last, m.index)); last = re.lastIndex;
-    const [w, cm, str, id, num] = m;
-    if (cm) out += `<span class="cm">${escH(cm)}</span>`;
-    else if (str) out += `<span class="s">${escH(str)}</span>`;
-    else if (id) out += JS_KW.test(id) ? `<span class="k">${id}</span>` : /^[A-Z]/.test(id) ? `<span class="c">${id}</span>` : id;
-    else if (num) out += `<span class="d">${num}</span>`;
-    else out += escH(w);
-  }
-  return out + escH(src.slice(last));
-}
-const js = (src, meta = {}) => src.replace(/^\n/, '').replace(/\n\s*$/, '').split('\n').map((l, i) => ({ h: jsLine(l), ...(meta[i + 1] || {}) }));
-const SQL_KW = /^(SELECT|FROM|WHERE|JOIN|LEFT|ON|AND|AS|INSERT|INTO|VALUES|UPDATE|SET|DELETE|CREATE|TABLE|DATABASE|ALTER|ADD|COLUMN|DROP|PRIMARY|KEY|REFERENCES|NOT|NULL|UNIQUE|CHECK|SERIAL|INT|TEXT|JSONB|BEGIN|COMMIT|ROLLBACK|RETURNING|DEFAULT)$/;
-function sqlLine(src) {
-  const re = /(--.*$)|('(?:[^']|'')*')|([A-Za-z_][\w]*)|(\d+)/g;
-  let out = '', last = 0, m;
-  while ((m = re.exec(src))) {
-    out += escH(src.slice(last, m.index)); last = re.lastIndex;
-    const [w, cm, str, id, num] = m;
-    if (cm) out += `<span class="cm">${escH(cm)}</span>`;
-    else if (str) out += `<span class="s">${escH(str)}</span>`;
-    else if (id) out += SQL_KW.test(id) ? `<span class="k">${id}</span>` : id;
-    else if (num) out += `<span class="d">${num}</span>`;
-    else out += escH(w);
-  }
-  return out + escH(src.slice(last));
-}
-const sql = (src, meta = {}) => src.replace(/^\n/, '').replace(/\n\s*$/, '').split('\n').map((l, i) => ({ h: sqlLine(l), ...(meta[i + 1] || {}) }));
-// psql terminali: prompt (blog=# · postgres-# · $) alohida rangda; xato qizil, DETAIL/LINE sariq, buyruq javobi yashil
-const RESULT_OK = /^(CREATE TABLE|CREATE DATABASE|ALTER TABLE|DROP TABLE|INSERT \d+ \d+|UPDATE [1-9]\d*|DELETE \d+|BEGIN|COMMIT)\s*$/;
-function psqlLine(l) {
-  let m = /^(\w+[=\-(][*!]?# ?)(.*)$/.exec(l); // blog=# · blog-# · blog(# · tranzaksiyada blog=*# · xatoda blog=!# (pg1-out/25)
-  if (m) return `<span class="p">${escH(m[1])}</span>${/^\\/.test(m[2]) ? `<span class="m">${escH(m[2])}</span>` : sqlLine(m[2])}`;
-  m = /^(\$ )(.*)$/.exec(l);
-  if (m) return `<span class="p">$ </span><span class="m">${escH(m[2])}</span>`;
-  if (/ERROR:|FATAL:|psql: error|XATO:|not recognized|command not found/.test(l)) return `<span class="er">${escH(l)}</span>`;
-  if (/^(DETAIL|HINT|LINE \d|WARNING)|^\s+\^\s*$|Is the server running/.test(l)) return `<span class="wn">${escH(l)}</span>`;
-  if (/^(UPDATE 0|ROLLBACK)\s*$/.test(l)) return `<span class="wn">${escH(l)}</span>`;
-  if (RESULT_OK.test(l)) return `<span class="ok">${escH(l)}</span>`;
-  if (/^(Password for user|Type "help"|psql \()/.test(l)) return `<span class="cm">${escH(l)}</span>`;
-  if (/^\s*--/.test(l)) return `<span class="cm">${escH(l)}</span>`;
-  if (/^\s*(SELECT|FROM|JOIN|LEFT|WHERE|INSERT|UPDATE|DELETE|CREATE|ALTER|DROP|BEGIN|COMMIT|\(|\)|id |user_id|izoh|username|nomi|stock|product_id|xaridor|\('|  \(')/.test(l) && !/\|/.test(l)) return sqlLine(l);
-  return escH(l);
-}
-const psql = (src, meta = {}) => src.replace(/^\n/, '').replace(/\n\s*$/, '').split('\n').map((l, i) => ({ h: psqlLine(l), ...(meta[i + 1] || {}) }));
-// Bitta qatorga «at» (qadam) va «id» (yoritish) beruvchi qisqa yozuv: rng(2, 5, {at: 1}) → {2:{at:1}, …, 5:{at:1}}
-const rng = (a, b, v) => { const o = {}; for (let i = a; i <= b; i++) o[i] = { ...v }; return o; };
-const mergeMeta = (...ms) => ms.reduce((acc, m) => { Object.keys(m).forEach((k) => { acc[k] = { ...(acc[k] || {}), ...m[k] }; }); return acc; }, {});
-
-const TS_KW = /^(import|from|export|function|return|const|let|describe|it|expect|number|string|boolean|true|false|null|undefined)$/;
+const TS_KW = /^(import|from|export|class|private|readonly|public|async|await|function|return|const|let|new|if|throw|for|of|true|false|null|undefined|typeof|as|number|string|in|unknown)$/;
 function tsLine(src) {
-  const re = /(\/\/.*$)|('(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*")|([A-Za-z_$][\w$]*)|(\d+(?:\.\d+)?)/g;
+  const re = /(\/\/.*$|\/\*.*?\*\/)|(`(?:[^`\\]|\\.)*`?|'(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*")|(@\w+)|([A-Za-z_$][\w$]*)|(\d+(?:\.\d+)?)/g;
   let out = '', last = 0, m;
   while ((m = re.exec(src))) {
     out += escH(src.slice(last, m.index)); last = re.lastIndex;
-    const [w, cm, str, id, num] = m;
+    const [w, cm, str, dec, id, num] = m;
     if (cm) out += `<span class="cm">${escH(cm)}</span>`;
     else if (str) out += `<span class="s">${escH(str)}</span>`;
-    else if (id) out += TS_KW.test(id) ? `<span class="k">${id}</span>` : /^(toBe|toEqual)$/.test(id) ? `<span class="d">${id}</span>` : id;
+    else if (dec) out += `<span class="d">${escH(dec)}</span>`;
+    else if (id) out += TS_KW.test(id) ? `<span class="k">${id}</span>` : /^[A-Z]/.test(id) ? `<span class="c">${id}</span>` : id;
     else if (num) out += `<span class="d">${num}</span>`;
     else out += escH(w);
   }
   return out + escH(src.slice(last));
 }
-const ts = (src, meta = {}) => src.replace(/^\n/, '').replace(/\n\s*$/, '').split('\n').map((l, i) => ({ h: tsLine(l), ...(meta[i + 1] || {}) }));
-// Jest terminali: PASS/✓ yashil, FAIL/●/✕ qizil, Expected yashil, Received qizil, > satr sariq
+// Jest terminali: PASS yashil, FAIL qizil, ✓ / ✕, ● sarlavha, Expected / Received, > satr
 function jestLine(l) {
-  if (/^\$ /.test(l)) return `<span class="p">$ </span><span class="m">${escH(l.slice(2))}</span>`;
-  if (/^\s*PASS\b|✓|passed, \d+ total$/.test(l) && !/failed/.test(l)) return `<span class="ok">${escH(l)}</span>`;
-  if (/^\s*FAIL\b|●|✕|failed|error|Error|No tests found|not found|Cannot find|Must use|does not expose|unexpected token/.test(l)) return `<span class="er">${escH(l)}</span>`;
-  if (/^\s*Expected:/.test(l)) return `<span class="ok">${escH(l)}</span>`;
-  if (/^\s*Received:/.test(l)) return `<span class="er">${escH(l)}</span>`;
-  if (/^\s*>\s*\d+ \||^\s+\|\s+\^|^\s+~+/.test(l)) return `<span class="wn">${escH(l)}</span>`;
-  if (/^>|^\s*at |^\s*\d+ \||^Snapshots|^Time|^Ran all|^In |files checked|testMatch|testPath|Pattern|Run with|console\.log|^---/.test(l)) return `<span class="cm">${escH(l)}</span>`;
+  const m = /^(\$ )(.*)$/.exec(l);
+  if (m) return `<span class="p">$ </span><span class="m">${escH(m[2])}</span>`;
+  if (/^PASS /.test(l)) return `<span class="jp">PASS</span>${escH(l.slice(4))}`;
+  if (/^FAIL /.test(l)) return `<span class="jf">FAIL</span>${escH(l.slice(4))}`;
+  if (/^\s*✓/.test(l)) return `<span class="ok">${escH(l)}</span>`;
+  if (/^\s*✕|^\s*●/.test(l)) return `<span class="er">${escH(l)}</span>`;
+  if (/^\s*(Expected|- Expected|Expected substring)/.test(l)) return `<span class="ok">${escH(l)}</span>`;
+  if (/^\s*(Received|\+ Received|Received string|\+ )/.test(l)) return `<span class="er">${escH(l)}</span>`;
+  if (/^\s*>\s*\d+ \|/.test(l)) return `<span class="wn">${escH(l)}</span>`;
+  if (/No tests found|error|Error|Cannot find|\[chiqish kodi: 1\]/.test(l)) return `<span class="er">${escH(l)}</span>`;
+  if (/^Tests:.*failed/.test(l)) return `<span class="er">${escH(l)}</span>`;
+  if (/^Tests:|\[chiqish kodi: 0\]/.test(l)) return `<span class="ok">${escH(l)}</span>`;
+  if (/^\s*(#|at |\(|—)/.test(l)) return `<span class="cm">${escH(l)}</span>`;
   return escH(l);
 }
-const jt = (src, meta = {}) => src.replace(/^\n/, '').replace(/\n\s*$/, '').split('\n').map((l, i) => ({ h: jestLine(l), ...(meta[i + 1] || {}) }));
-const Term = ({ lines, title = 'terminal — npm test', er, beat, focus, style }) => <CodePanel file={title} numbers={false} wrap style={{ background: er ? PG.termEr : PG.term, ...(style || {}) }} lines={lines} beat={beat} focus={focus} />;
-const Psql = ({ lines, title = 'psql — blog', er, beat, focus, style }) => <CodePanel file={title} numbers={false} wrap style={{ background: er ? PG.termEr : PG.term, ...(style || {}) }} lines={lines} beat={beat} focus={focus} />;
-// Rasmiy hujjatdan olingan maket (bu kompyuterda sinalmagan) — har oynada belgi (MD Ochiq savol 2)
-function Win({ title, os = 'win', children, hl }) {
-  return <div className={`pg-win${os === 'mac' ? ' mac' : ''}${hl ? ' hl' : ''}`}>
-    <div className="bar">{os === 'mac' ? <><i /><i /><i /></> : <span className="ico">▣</span>}<span className="tt">{title}</span><span className="warn">{t('⚠ rasmiy hujjatdan, sinalmagan', '⚠ по официальной документации, не проверено')}</span></div>
-    <div className="bd">{children}</div>
-  </div>;
-}
-function MiniTable({ name, cols, rows, hlRow = [], hlCol = [], color = PG.pg, dimRow = [] }) {
-  return <div className="pg-mt" style={{ '--c': color }}>
-    <div className="nm">{name}</div>
-    <table><thead><tr>{cols.map((c, i) => <th key={c} className={hlCol.includes(i) ? 'hl' : ''}>{c}</th>)}</tr></thead>
-      <tbody>{rows.map((r, i) => <tr key={i} className={`${hlRow.includes(i) ? 'hl' : ''}${dimRow.includes(i) ? ' dim' : ''}`}>{r.map((c, j) => <td key={j} className={hlCol.includes(j) ? 'hlc' : ''}>{c}</td>)}</tr>)}</tbody></table>
-  </div>;
-}
-// Postman ko'rinishidagi karta (PRD Q2): javob — haqiqiy, curl bilan olingan (pg2-out)
-const METHOD_C = { GET: '#61AFFE', POST: '#49CC90', PUT: '#FCA130', DELETE: '#F93E3E' };
-function PostmanCard({ m, url, body, st, res, hl }) {
-  const c = String(st)[0];
-  return <div className={`pg-pm${hl ? ' hl' : ''}`}>
-    <div className="top"><span className="lg">Postman</span><span className="m" style={{ background: METHOD_C[m] }}>{m}</span><span className="u">{url}</span><span className="tg">haqiqiy javob</span></div>
-    {body && <pre className="b">{body}</pre>}
-    <div className="r"><span className={`st s${c}`}>{st}</span><pre>{res}</pre></div>
-  </div>;
-}
-const Doc = ({ children, odd, er }) => <pre className={`pg-doc${odd ? ' odd' : ''}${er ? ' er' : ''}`}>{children}</pre>;
+// out(k, a, b, meta) — KOD.OUT[k] satrlari a..b (1 dan, bo'sh satrsiz); meta {satr: {id}} — yoritish
+const outLines = (k) => KOD.OUT[k].split('\n').filter((l) => l.trim() !== '');
+const out = (k, a = 1, b, meta = {}) => outLines(k).slice(a - 1, b == null ? undefined : b).map((l, i) => ({ h: jestLine(l), ...(meta[a + i] || {}) }));
+const outFind = (k, re, meta) => { const L = outLines(k); const i = L.findIndex((l) => re.test(l)); return i < 0 ? 1 : i + 1; };
+const upto = (lines, beat) => lines.filter((l) => l.at == null || l.at <= beat);
+const Term = ({ lines, title = t('VS Code terminali · OrderBotNest', "терминал VS Code · OrderBotNest"), er, beat, focus, style }) => <CodePanel file={title} numbers={false} style={{ background: er ? JC.termEr : JC.term, ...(style || {}) }} lines={lines} beat={beat} focus={focus} />;
+// Loyiha kodi (KOD — aynan, satr raqami bilan). ids: {satr: 'id'} — yoritish; from/to — satr chegarasi; edit: {satr: matn} — buzilgan/tuzatilgan satr
+const kod = (k, ids = {}, from, to, edit = {}) => KOD[k].lines.filter((l) => (from == null || l.n >= from) && (to == null || l.n <= to)).flatMap((l) => {
+  const base = { h: tsLine(l.t), n: l.n, ...(ids[l.n] ? { id: ids[l.n] } : {}) };
+  if (edit[l.n] == null) return [base];
+  return [{ ...base, gone: true }, { h: tsLine(edit[l.n]), n: l.n, neu: true, ...(ids[l.n] ? { id: ids[l.n] } : {}) }];
+});
+const Code = ({ k, ids, from, to, edit, focus, beat, files, active, fresh, style, title }) => <Ide files={compact(files || FILES(F.txs, F.kbs), active || KOD[k].file)} active={active || KOD[k].file} fresh={fresh} style={style}>
+  <CodePanel file={title || baseName(KOD[k].file)} lines={kod(k, ids, from, to, edit)} focus={focus} beat={beat} />
+</Ide>;
 
-// PG-1 ga xos qo'shimcha CSS (dvigatel CSS'iga tegilmaydi). Izohda backtick yo'q (CLAUDE.md).
+// AI javobi kartasi — prompt, AI javobidan qisqa parcha, git diff --stat (haqiqiy yurgizish, «namuna» belgisi bilan)
+function AiReply({ who, prompt, said, diff, hl, tag = t('namuna — sizning AI\'ingiz boshqacha yozadi', "образец — ваш AI напишет иначе") }) {
+  return <div className={`ai-card${hl ? ' hl' : ''}`}>
+    <div className="bar"><span className="lg">AI</span><span className="tt">{who}</span><span className="tg">{tag}</span></div>
+    {prompt && <pre className="pr">{prompt}</pre>}
+    {said && <div className="sd">{said}</div>}
+    {diff && <pre className="df">{diff}</pre>}
+  </div>;
+}
+const Card = ({ c = T.accent, h, children, hl, dim, style }) => <div className={`mk-box${hl ? ' hl' : ''}`} style={{ '--c': c, opacity: dim ? 0.4 : 1, transition: 'opacity .3s', ...(style || {}) }}><h4>{h}</h4>{children}</div>;
+
+// v2 qoliplari: amaliyot MD'dan (mkPractice), tekshiruv (MC) — M42: above/after/demak
+const mkPractice = (n, hls, extra = {}) => {
+  const m = MDT[n]; const pr = m.proof;
+  return {
+    S: mkS(n, hls.map((hl) => ({ hl })), { tableAt: 3 }), steps: m.steps, trouble: m.trouble,
+    proof: { label: pr.label, placeholder: pr.placeholder, check: (v) => new RegExp(pr.re, pr.flags).test(v), wrong: pr.wrong }, ...extra,
+  };
+};
+const Demak = (n) => <span dangerouslySetInnerHTML={html(MDT[n].demak)} />;
+function MC(p, n, more) {
+  const m = MDT[n];
+  return <MCRetry {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} q={m.q} opts={m.opts} correct={m.correct} ok={m.ok} okShort={<span dangerouslySetInnerHTML={html(m.okShort)} />} wrong={m.wrong} demak={Demak(n)} {...more} />;
+}
+
+// Buzib tekshirish jadvali (manba/jest1v2-ai/mutatsiya.txt — aynan): qizargan testlar soni; 0 — buzilish sezilmadi
+const MUT = [
+  ['B1', "som: ru-RU → en-US («120,000»)", [1, 8, 1]],
+  ['B2', 'savat qatori: buyurtma narxi o\'rniga hozirgi narx', [0, 1, 1]],
+  ['B3', 'orderKeyboard: CANCELLED da ham tugma', [1, 1, 1]],
+  ['B4', 'catalogKeyboard: oxirgi sahifada ham ▶', [2, 3, 3]],
+  ['B5', 'STATUS_UZ.NEW matni o\'zgardi', [0, 0, 1]],
+];
+const MUT_COLS = [['Men', 10], ['1-AI', 36], ['2-AI', 33]];
+function MutTable({ rows = 5, hlCol, hlRow }) {
+  return <table className="mut"><thead><tr><th>{t("Buzish", "Поломка")}</th>{MUT_COLS.map(([n, c], i) => <th key={n} className={hlCol === i ? 'hl' : ''}>{n}<small>{c} test</small></th>)}</tr></thead>
+    <tbody>{MUT.slice(0, rows).map(([id, d, v], r) => <tr key={id} className={hlRow === r ? 'hl' : ''} style={{ animation: `mk-up .35s ${r * 0.06}s ease both` }}><td><b>{id}</b> {d}</td>{v.map((x, i) => <td key={i} className={`${x === 0 ? 'zero' : 'red'}${hlCol === i ? ' col' : ''}`}>{x}</td>)}</tr>)}</tbody></table>;
+}
+
+// Jest-1 v2 ga xos CSS (dvigatel CSS'iga tegilmaydi). Izohda backtick yo'q (CLAUDE.md).
 const CSS3 = `
+.j1-15 td,.j1-15 th{text-align:center}
+.j1-15 td.l,.j1-15 th.l{text-align:left}
+.j1-15 .kb{display:inline-flex;gap:4px}
+.j1-15 .kb i{font-style:normal;border:1px solid #CBD5E1;border-radius:6px;padding:1px 7px;background:#fff}
+.j1-15 .kb i.x{border-color:#DC2626;background:#FEE2E2;color:#991B1B;font-weight:700}
+.j1-15 .tp{color:#15803D;font-weight:700}.j1-15 .tf{color:#DC2626;font-weight:700}
+.j1-15 .f0{color:#6B7280}.j1-15 .f1{color:#15803D;font-weight:700}.j1-15 .f2{color:#DC2626;font-weight:700}
+.j1-15 tr.edge td{background:#FFF7ED}
 .mk-explorer{overflow:auto}
-/* ogohlantirish qutisi — Nest-2 dagi bilan bir xil (u bo'lak bu darsga kirmaydi) */
 .n2-warn{border-left:4px solid ${T.accent};background:#FFF0EB;border-radius:10px;padding:10px 12px;font-size:14px;line-height:1.5}
 .n2-warn b{color:${T.accent}}
-.pg-win{background:${T.paper};border:1px solid #CBD2DC;border-radius:10px;overflow:hidden;box-shadow:0 10px 30px rgba(15,17,21,.10);transition:box-shadow .3s,border-color .3s}
-.pg-win.hl{border-color:${T.accent};box-shadow:0 0 0 4px rgba(226,69,31,.14),0 10px 30px rgba(15,17,21,.10)}
-.pg-win .bar{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#F3F3F3;border-bottom:1px solid #DADDE3;font:600 12px ${SANS};color:${T.ink2}}
-.pg-win.mac .bar{background:#E8E8EA}
-.pg-win .bar i{width:10px;height:10px;border-radius:50%;display:inline-block;background:#FF5F57}
-.pg-win .bar i:nth-child(2){background:#FEBC2E}.pg-win .bar i:nth-child(3){background:#28C840}
-.pg-win .bar .ico{color:${PG.win};font-size:13px}
-.pg-win .bar .warn{margin-left:auto;font:600 10.5px ${MONO};letter-spacing:.04em;color:${T.yellow};background:#FFF6E2;border:1px solid #F1D38A;border-radius:6px;padding:3px 7px}
-.pg-win .bd{padding:14px 16px;font-size:14px;line-height:1.5}
-.pg-win .bd h4{margin:0 0 10px;font-size:16px}
-.pg-chk{display:grid;gap:6px;margin:4px 0}
-.pg-chk div{display:flex;gap:10px;align-items:center;padding:6px 10px;border:1px solid ${T.line};border-radius:8px;font-size:14px}
-.pg-chk div.off{color:${T.ink3};text-decoration:line-through}
-.pg-chk div b{font-family:${MONO};font-size:13px;min-width:18px}
-.pg-field{display:grid;grid-template-columns:120px 1fr;gap:8px;align-items:center;margin:6px 0;font-size:14px}
-.pg-field span:last-child{font:13px ${MONO};border:1px solid #BFC6D1;border-radius:6px;padding:6px 10px;background:#fff}
-.pg-btn{display:inline-block;margin-top:10px;padding:8px 18px;border-radius:6px;background:${PG.win};color:#fff;font-weight:700;font-size:14px}
-.pg-win.mac .pg-btn{background:#1E6FD9}
-.pg-mt{border:1.5px solid var(--c);border-radius:12px;overflow:hidden;background:${T.paper}}
-.pg-mt .nm{font:700 12px/1 ${MONO};color:#fff;background:var(--c);padding:7px 10px;letter-spacing:.04em}
-.pg-mt table{width:100%;border-collapse:collapse;font:12.5px ${MONO}}
-.pg-mt th,.pg-mt td{padding:5px 10px;border-bottom:1px solid ${T.line};text-align:left;transition:background .3s}
-.pg-mt th{color:${T.ink3};font-weight:600}
-.pg-mt th.hl{color:${T.accent};background:#FFF0EB}
-.pg-mt td.hlc{background:#FFF7F3;color:${T.accent};font-weight:700}
-.pg-mt tr.hl td{background:#FFF0EB}
-.pg-mt tr.dim td{opacity:.4}
-.pg-doc{margin:0;font:12.5px/1.5 ${MONO};white-space:pre-wrap;word-break:break-word;color:#0B5A33;background:#E9F7EF;border:1.5px solid ${PG.mongo};border-radius:10px;padding:10px 12px}
-.pg-doc.odd{color:#7A4B00;background:#FFF6E2;border-color:#E3B341}
-.pg-doc.er{color:#8A1C1C;background:#FDECEC;border-color:#F3A6A6}
-.pg-dict{width:100%;border-collapse:separate;border-spacing:0 6px;font-size:13.5px}
-.pg-dict td{padding:8px 12px;background:${T.paper};border-top:1px solid ${T.line};border-bottom:1px solid ${T.line};transition:opacity .3s,background .3s}
-.pg-dict td:first-child{border-left:4px solid ${PG.mongo};border-radius:10px 0 0 10px}
-.pg-dict td:last-child{border-right:1px solid ${T.line};border-radius:0 10px 10px 0}
-.pg-dict td:nth-child(2){color:${T.ink3};width:28px;text-align:center}
-.pg-dict td:nth-child(3){border-left:0}
-.pg-dict tr.hl td{background:#FFF7F3}
-.pg-dict tr.hl td:first-child{border-left-color:${T.accent}}
-.pg-dict tr.dim td{opacity:.4}
-.pg-dict code{font:12.5px ${MONO};background:#EEF0F4;padding:1px 6px;border-radius:5px}
-.pg-dict th{font:600 11px/1 ${MONO};letter-spacing:.08em;text-transform:uppercase;text-align:left;padding:0 12px 4px}
 .pg-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;align-items:start}
-@media (max-width:1300px){.pg-two{grid-template-columns:1fr}}
+@media (max-width:1000px){.pg-two{grid-template-columns:1fr}}
+.pg-2c{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;align-items:stretch}
 .pg-three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:start}
-@media (max-width:1300px){.pg-three{grid-template-columns:1fr}}
-.pg-lab{font:700 11px/1 ${MONO};letter-spacing:.08em;text-transform:uppercase;color:${T.ink3};margin:0 0 6px;display:flex;gap:8px;align-items:center}
-.pg-lab .tm{color:${T.accent}}
-.pg-wait{display:inline-flex;gap:8px;align-items:center;font:600 13px ${MONO};color:${T.yellow};background:#FFF6E2;border:1px solid #F1D38A;border-radius:8px;padding:6px 10px;animation:mk-pulse 1.6s ease-in-out infinite}
-.pg-row{display:flex;gap:10px;align-items:center;padding:8px 12px;border:1px solid ${T.line};border-radius:10px;background:${T.paper};font:13px ${MONO}}
-.pg-row .v{margin-left:auto;font-weight:800;font-size:18px}
-.pg-row .v.z{color:${T.accent}}
-.pg-cmp{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.pg-cmp .mk-card h5{display:flex;gap:8px;align-items:center}
-.pg-cmp .mk-card h5 i{width:10px;height:10px;border-radius:50%;display:inline-block}
+@media (max-width:1000px){.pg-three{grid-template-columns:1fr 1fr}}
 .pg-qa{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-@media (max-width:1300px){.pg-qa{grid-template-columns:1fr}}
+@media (max-width:1000px){.pg-qa{grid-template-columns:1fr}}
 .pg-qa button{text-align:left;border:1px solid ${T.line};border-radius:12px;background:${T.paper};padding:12px 14px;cursor:pointer;font:inherit;color:${T.ink}}
 .pg-qa b{display:block;font-size:14px}
 .pg-qa p{margin:6px 0 0;font-size:13px;color:${T.ink2};line-height:1.45}
-.pg-pm{background:${T.paper};border:1px solid #D8DDE5;border-radius:12px;overflow:hidden;transition:box-shadow .3s,border-color .3s}
-.pg-pm.hl{border-color:${T.accent};box-shadow:0 0 0 4px rgba(226,69,31,.14)}
-.pg-pm .top{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#F7F8FA;border-bottom:1px solid #E6E9EE;font:12.5px ${MONO}}
-.pg-pm .lg{font:700 11px ${SANS};color:${PG.post};letter-spacing:.04em}
-.pg-pm .m{font:700 11px ${MONO};color:#fff;border-radius:5px;padding:3px 7px}
-.pg-pm .u{color:${T.ink};overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.pg-pm .tg{margin-left:auto;font:600 10px ${MONO};color:${T.ink3};letter-spacing:.06em;text-transform:uppercase}
-.pg-pm .b{margin:0;padding:8px 12px;font:12px/1.45 ${MONO};color:${T.ink2};border-bottom:1px dashed #E6E9EE;white-space:pre-wrap}
-.pg-pm .r{display:flex;gap:10px;align-items:flex-start;padding:8px 12px}
-.pg-pm .r pre{margin:0;font:12px/1.45 ${MONO};white-space:pre-wrap;word-break:break-word;color:${T.ink}}
-.pg-pm .st{font:700 12px ${MONO};border-radius:6px;padding:3px 8px;flex:0 0 auto}
-.pg-pm .st.s2{background:#E3F5EC;color:${T.green}}.pg-pm .st.s4{background:#FFF6E2;color:${T.yellow}}.pg-pm .st.s5{background:#FDECEC;color:#B91C1C}
+.pg-dict{width:100%;border-collapse:separate;border-spacing:0 6px;font-size:13.5px}
+.pg-dict td{padding:8px 12px;background:${T.paper};border-top:1px solid ${T.line};border-bottom:1px solid ${T.line}}
+.pg-dict td:first-child{border-left:4px solid ${T.accent};border-radius:10px 0 0 10px}
+.pg-dict td:last-child{border-right:1px solid ${T.line};border-radius:0 10px 10px 0;color:${T.ink2}}
+.pg-dict code{font:12.5px ${MONO};background:#EEF0F4;padding:1px 6px;border-radius:5px}
+.mk-panel .jp{background:${JC.pass};color:#fff;font-weight:700;padding:0 5px;border-radius:3px}
+.mk-panel .jf{background:${JC.fail};color:#fff;font-weight:700;padding:0 5px;border-radius:3px}
+.ai-card{background:${T.paper};border:1.5px solid #D9CCF7;border-radius:12px;overflow:hidden;transition:box-shadow .3s,border-color .3s}
+.ai-card.hl{border-color:${JC.ai};box-shadow:0 0 0 4px rgba(109,59,228,.14)}
+.ai-card .bar{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#F5F1FE;border-bottom:1px solid #E6DDFB;font:600 12.5px ${SANS};color:${T.ink}}
+.ai-card .lg{font:800 11px ${MONO};color:#fff;background:${JC.ai};border-radius:6px;padding:3px 7px}
+.ai-card .tg{margin-left:auto;font:600 10px ${MONO};color:${T.ink3};letter-spacing:.04em}
+.ai-card .pr{margin:0;padding:8px 12px;font:12px/1.5 ${MONO};color:${T.ink2};background:#FBFAFF;border-bottom:1px dashed #E6DDFB;white-space:pre-wrap}
+.ai-card .sd{padding:8px 12px;font-size:13.5px;line-height:1.45;color:${T.ink}}
+.ai-card .sd b{color:${JC.ai}}
+.ai-card .sd code{font:12px ${MONO};background:#EEF0F4;padding:1px 5px;border-radius:5px}
+.ai-card .df{margin:0;padding:8px 12px;font:12px/1.5 ${MONO};color:${T.codeInk};background:${JC.term};white-space:pre;overflow-x:auto}
+.chars{display:flex;flex-wrap:wrap;gap:4px;font:600 13px ${MONO}}
+.chars span{display:inline-flex;flex-direction:column;align-items:center;min-width:34px;padding:4px 3px;border:1px solid ${T.line};border-radius:8px;background:${T.paper}}
+.chars span i{font-style:normal;font-size:15px;color:${T.ink};min-height:18px}
+.chars span small{font-size:10.5px;color:${T.ink3}}
+.chars span.nb{border:2px solid ${T.accent};background:#FFF0EB}
+.chars span.nb small{color:${T.accent};font-weight:800}
+.chars span.sp{border:2px solid ${T.green};background:#E3F5EC}
+.chars span.sp small{color:${T.green};font-weight:800}
+.st-tab{width:100%;border-collapse:separate;border-spacing:0 6px;font-size:13.5px}
+.st-tab td{padding:8px 12px;background:${T.paper};border-top:1px solid ${T.line};border-bottom:1px solid ${T.line};transition:background .3s}
+.st-tab td:first-child{border-left:4px solid ${JC.jest};border-radius:10px 0 0 10px;font:700 12.5px ${MONO}}
+.st-tab td:last-child{border-right:1px solid ${T.line};border-radius:0 10px 10px 0}
+.st-tab tr.hl td{background:#FFF0EB}
+.st-tab .btn{display:inline-block;font:12px ${SANS};border:1px solid #BFD0E0;border-radius:8px;padding:3px 8px;margin:0 4px 0 0;background:#F4F8FC}
+.pages{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.pages div{border:1.5px solid ${T.line};border-radius:12px;padding:10px;text-align:center;font:700 14px ${MONO};background:${T.paper};transition:all .3s}
+.pages div small{display:block;font:600 11px ${SANS};color:${T.ink3};margin-top:4px}
+.pages div.hl{border-color:${T.accent};background:#FFF0EB}
+.pages div.ok{border-color:${T.green};background:#E3F5EC}
+.cmp-row{display:flex;align-items:stretch;gap:6px;margin:6px 0}
+.cmp-lab{width:92px;display:flex;flex-direction:column;justify-content:center}
+.cmp-lab b{font:700 14px ${MONO};color:${T.ink}}
+.cmp-lab small{font-size:11.5px;color:${T.ink3}}
+.cmp-c{width:46px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 2px;border:1.5px solid ${T.line};border-radius:10px;background:${T.paper};opacity:.15;transform:translateY(6px);transition:all .3s}
+.cmp-c.on{opacity:1;transform:none}
+.cmp-c i{font-style:normal;font:700 24px ${MONO};color:${T.ink};min-height:28px}
+.cmp-c small{font:600 11px ${MONO};color:${T.ink3}}
+.cmp-c.ok{border-color:${T.green};background:#E3F5EC}
+.cmp-c.bad{border-color:${T.accent};background:#FFE4DA}
+.cmp-c.bad small{color:${T.accent};font-weight:800}
+.cmp-c.big{transform:scale(1.15);box-shadow:0 0 0 4px rgba(225,73,38,.18);animation:cmp-pulse 1.2s ease-in-out infinite}
+@keyframes cmp-pulse{50%{box-shadow:0 0 0 8px rgba(225,73,38,.06)}}
+.cmp-note{margin-top:10px;font-size:14px;line-height:1.5;color:${T.ink}}
+.cmp-note code{font:12.5px ${MONO};background:#EEF0F4;padding:1px 6px;border-radius:5px}
+.cmp-note b{color:${T.accent}}
+.fl-grid{display:grid;grid-template-columns:minmax(0,190px) minmax(0,1fr);gap:10px;align-items:center}
+.fl-tests{display:grid;gap:8px}
+.fl-row{display:grid;grid-template-columns:20px minmax(0,1fr) 22px 150px;gap:8px;align-items:center}
+.fl-ar,.fl-eq{font:700 18px ${MONO};color:${T.ink3};text-align:center}
+.fl-box{border:2px solid var(--c);border-radius:12px;padding:8px 10px;background:${T.paper};transition:all .35s}
+.fl-box.hl{background:#FFF0EB}
+.fl-box small{display:block;font:600 11px ${MONO};color:${T.ink3};margin-bottom:3px}
+.fl-box b{font:700 15px ${MONO};color:${T.ink}}
+.fl-v{font:700 13px ${SANS};border-radius:10px;padding:8px 10px;text-align:center;animation:mk-up .4s ease both}
+.fl-v.ok{background:#E3F5EC;color:${T.green}}
+.fl-v.lie{background:#FFF6E2;color:#B45309;border:1.5px dashed #D97706}
+.fl-v.bad{background:#FFE4DA;color:${T.accent}}
+.fl-note{margin-top:10px;font-size:14px;color:${T.ink}}
+.fl-note b{color:${T.accent}}
+.mut{width:100%;border-collapse:separate;border-spacing:0 5px;font-size:13.5px}
+.mut th{font:700 12px ${SANS};color:${T.ink2};text-align:center;padding:4px 8px}
+.mut th:first-child{text-align:left}
+.mut th small{display:block;font-weight:500;color:${T.ink3}}
+.mut th.hl{color:${T.accent}}
+.mut td{padding:8px 10px;background:${T.paper};border-top:1px solid ${T.line};border-bottom:1px solid ${T.line};text-align:center;font:700 14px ${MONO}}
+.mut td:first-child{text-align:left;font:13px ${SANS};border-left:1px solid ${T.line};border-radius:10px 0 0 10px}
+.mut td:last-child{border-right:1px solid ${T.line};border-radius:0 10px 10px 0}
+.mut td.zero{background:#FFE4DA;color:${T.accent}}
+.mut td.red{color:${T.green}}
+.mut td.col{box-shadow:inset 0 0 0 2px ${T.accent}}
+.mut tr.hl td{border-color:${T.accent}}
 `;
 function useCss3() {
   useEffect(() => {
@@ -1784,599 +3090,450 @@ function useCss3() {
 }
 
 // ============================================================
-//  Umumiy kod va chiqishlar (jest1-out — toza muhit; /tmp yo'llari qisqartirilgan)
+//  1 · Kirish — dars oxiridagi natija: 10 test, yarim soniyada (jest1v2-out/11)
 // ============================================================
-const ORDER_TS = ts(String.raw`
-export function orderTotal(price: number, quantity: number): number {
-  return price * quantity;
-}`, { 2: { id: 'op' } });
-const ORDER_SPEC = ts(String.raw`
-import { orderTotal } from './order';
-
-describe('orderTotal', () => {
-  it('2 kitob narxini hisoblaydi', () => {
-    const result = orderTotal(10000, 2);
-    expect(result).toBe(20000);
-  });
-});`, { 1: { id: 'imp' }, 3: { id: 'desc' }, 8: { id: 'desc' }, 4: { id: 'it' }, 7: { id: 'it' }, 5: { id: 'act' }, 6: { id: 'exp' } });
-const PASS_OUT = jt(String.raw`
-$ npm test
-> IntroNestArxitechture@0.0.1 test
-> jest
-
-PASS src/order.spec.ts
-  orderTotal
-    ✓ 2 kitob narxini hisoblaydi (2 ms)
-
-Test Suites: 1 passed, 1 total
-Tests:       1 passed, 1 total
-Snapshots:   0 total
-Time:        0.389 s, estimated 1 s
-Ran all test suites.`, { 5: { id: 'pass' }, 6: { id: 'name' }, 7: { id: 'name' }, 9: { id: 'tot' }, 10: { id: 'tot' } });
-const FAIL_OUT = jt(String.raw`
-FAIL src/order.spec.ts
-  ● orderTotal › 2 kitob narxini hisoblaydi
-
-    expect(received).toBe(expected) // Object.is equality
-
-    Expected: 20000
-    Received: 10002
-
-      4 |   it('2 kitob narxini hisoblaydi', () => {
-      5 |     const result = orderTotal(10000, 2);
-    > 6 |     expect(result).toBe(20000);
-        |                    ^
-      7 |   });
-
-      at Object.<anonymous> (order.spec.ts:6:20)
-
-Tests:       1 failed, 1 total`, { 1: { id: 'f' }, 2: { id: 'f' }, 6: { id: 'er' }, 7: { id: 'er' }, 11: { id: 'ln' }, 12: { id: 'ln' }, 15: { id: 'ln' } });
-const NOTESTS = jt(String.raw`
-$ npm test
-> jest
-
-No tests found, exiting with code 1
-Run with \`--passWithNoTests\` to exit with code 0
-In …/IntroNestArxitechture/src
-  37 files checked.
-  testMatch:  - 0 matches
-  testPathIgnorePatterns: /node_modules/ - 37 matches
-  testRegex: .*\.spec\.ts$ - 0 matches
-Pattern:  - 0 matches`.replace(/\\`/g, '`'), { 4: { id: 'nt' }, 11: { id: 'rx' } });
-const SPEC_FILES = tree(REPO_BASE, [F.ord, F.ordSpec]);
-
-// ============================================================
-//  1 · Kirish
-// ============================================================
-const PLAN1 = ['Unit-test va Jest', 'Birinchi test', "Buzamiz: FAIL va yolg'on testlar", 'Chegara va AI testi', 'Sinfdagi tuzoqlar', "O'quvchi darsini o'tish"];
-const S1 = mkS(1, [{ hl: [] }, { hl: [0, 1] }, { hl: [2, 3] }, { hl: [4, 5] }], { plan: PLAN1 });
+const PLAN1 = ['Nega va qayerda', 'Birinchi test', "Yolg'on testlar", 'Statuslar va chegara', 'AI testi', 'Sinfga tayyorgarlik'];
+const S1 = mkS(1, [{ hl: [], res: true }, { hl: [0, 1] }, { hl: [2, 3, 4] }, { hl: [5] }], { plan: PLAN1 });
+const T1 = out('11').filter((l, i) => /^(PASS|Tests:|Time:)/.test(outLines('11')[i])); // F-1104-02: kirishda faqat natija
 function Screen1(p) {
   return <Lesson p={p} S={S1} scene={({ seg }) => <div style={{ display: 'grid', gap: 14 }}>
     <div className="mk-light"><div className="mk-plan">
       {S1.plan.map((x, i) => <div key={i} className={seg.hl.includes(i) ? 'hl' : (seg.hl.length ? 'dim' : '')}><b>0{i + 1}</b><span>{x}</span></div>)}
     </div></div>
-    <div className="mk-tag" style={{ margin: 0 }}>Dars oxirida — o'quvchi reposida</div>
-    <Term lines={PASS_OUT.slice(4, 10)} />
+    {seg.res && <><div className="mk-tag" style={{ margin: 0 }}>{t("Dars oxirida — OrderBotNest'da 10 ta test, hammasi yashil", "В конце урока — в OrderBotNest 10 тестов, все зелёные")}</div>
+      <Term title={t("VS Code terminali · npm test -- --verbose", "терминал VS Code · npm test -- --verbose")} lines={T1} /></>}
   </div>} />;
 }
 
 // ============================================================
-//  2 · Unit-test: funksiya — mashina
+//  2 · Smoke bor — nega yana test? (orderbot-out/10 · jest1v2-out/12)
 // ============================================================
-const PAIRS2 = [['orderTotal(10000, 2)', '20000'], ['orderTotal(5000, 3)', '15000'], ['orderTotal(120000, 1)', '120000']];
-const S2 = mkS(2, [{ v: 'm' }, { v: 'pair' }, { v: 'code' }, { v: 'code', sum: true }]);
+const T2_SMOKE = [{ h: jestLine('$ npm run smoke') }, { h: '<span class="cm"># baza shop_smoke · har qadam alohida node jarayonida · restart · 5 mijoz bir vaqtda</span>' }, { h: '<span class="ok">NATIJA: 5/5 ✓</span>' }];
+const T2_UNIT = out('12');
+const S2 = mkS(2, [{ v: 'smoke' }, { v: 'unit' }, { v: 'code' }, { v: 'sum' }]);
 function Screen2(p) {
   return <Lesson p={p} S={S2} scene={({ seg }) => <>
-    <div className="mk-light" style={{ padding: 16 }}>
-      <div className="mk-tag">Funksiya — mashina: kirish → natija</div>
-      <div style={{ display: 'grid', gap: 8 }}>{PAIRS2.map(([a, b], i) => <div key={i} className="pg-row" style={{ opacity: seg.v === 'm' && i > 0 ? 0.35 : 1 }}><span>{a}</span><span style={{ color: T.ink3 }}>→</span><span className="v" style={{ fontSize: 16, color: T.green }}>{b}</span></div>)}</div>
-      {seg.v !== 'm' && <div className="mk-rule" style={{ marginTop: 10 }}>Unit-test — <b>shu juftni yozib qo'yish</b>: «shu kirishga aynan shu chiqish». Bitta funksiya, bazasiz, serversiz.</div>}
-    </div>
-    {seg.v === 'code' && <Ide files={tree(REPO_BASE, [F.ord])} active={F.ord}><CodePanel file={F.ord} lines={ORDER_TS} focus={['op']} /></Ide>}
-  </>} />;
-}
-
-// ============================================================
-//  3 · Jest o'quvchi reposida allaqachon bor
-// ============================================================
-const PKG3 = js(String.raw`
-"scripts": {
-  "test": "jest",
-  …
-},
-"jest": {
-  "moduleFileExtensions": ["js", "json", "ts"],
-  "rootDir": "src",
-  "testRegex": ".*\\.spec\\.ts$",
-  "transform": { "^.+\\.(t|j)s$": "ts-jest" },
-  "testEnvironment": "node"
-}`, { 2: { id: 't' }, 7: { id: 'r' }, 8: { id: 'r' }, 9: { id: 'r' } });
-const S3 = mkS(3, [{ focus: ['t'] }, { focus: ['r'] }, { focus: [], nt: true }, { focus: ['r'], nt: true, sum: true }]);
-function Screen3(p) {
-  return <Lesson p={p} S={S3} scene={({ seg }) => <Ide files={MKCFG.files} active={F.pkg}>
-    <CodePanel file="package.json" lines={PKG3} focus={seg.focus} />
-    {seg.nt && <Term er lines={NOTESTS} focus={seg.sum ? ['nt', 'rx'] : []} />}
-    {seg.sum && <div className="mk-rule">Test fayli — <code>src/</code> ichida va nomi <b>.spec.ts</b> bilan tugaydi. Biri buzilsa — <code>No tests found</code>.</div>}
-  </Ide>} />;
-}
-
-// ============================================================
-//  4 · Tekshiruv 1
-// ============================================================
-function Screen4(p) {
-  const m = MDT[4];
-  return <MCRetry {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} q={m.q} opts={m.opts} correct={m.correct} ok={m.ok} okShort={<span dangerouslySetInnerHTML={html(m.okShort)} />} wrong={m.wrong}
-    after={<div style={{ display: 'grid', gap: 10 }}>
-      <div className="mk-tag" style={{ color: T.green, margin: 0 }}>Haqiqiy: fayl ildizda yoki .test.ts — topilmaydi; src/order.spec.ts — topiladi</div>
-      <Ide files={tree(REPO_BASE, ['order.spec.ts', F.ord, F.ordSpec])} active={F.ordSpec}>
-        <Term lines={PASS_OUT.slice(4, 7)} />
-      </Ide>
-    </div>} />;
-}
-
-// ============================================================
-//  5 · Birinchi test: describe · it · expect
-// ============================================================
-const S5 = mkS(5, [{ focus: ['imp'] }, { focus: ['desc'] }, { focus: ['it'] }, { focus: ['act', 'exp'], aaa: true }, { focus: ['exp'] }]);
-function Screen5(p) {
-  return <Lesson p={p} S={S5} scene={({ seg }) => <Ide files={SPEC_FILES} active={F.ordSpec} fresh={[F.ordSpec]}>
-    <CodePanel file={F.ordSpec} lines={ORDER_SPEC} focus={seg.focus} />
-    {seg.aaa && <div className="pg-three">
-      <div className="mk-box" style={{ '--c': T.blue }}><h4>Tayyorlash</h4><p>10000, 2</p></div>
-      <div className="mk-box" style={{ '--c': T.purple }}><h4>Chaqirish</h4><p><code>orderTotal(10000, 2)</code></p></div>
-      <div className="mk-box" style={{ '--c': T.green }}><h4>Tekshirish</h4><p><code>expect(…).toBe(20000)</code></p></div>
+    {seg.v !== 'code' && <div className="pg-two">
+      <Card c={T.blue} h={t("Smoke — butun bot", "Smoke — весь бот")} hl={seg.v === 'smoke'} dim={seg.v === 'unit'}><p>{t("«Bot ishlayaptimi?» — baza, restart, ko'p mijoz", "«Бот работает?» — база, перезапуск, много клиентов")}</p><Term lines={T2_SMOKE} style={{ marginTop: 8 }} /></Card>
+      {seg.v !== 'smoke' ? <Card c={JC.jest} h={t("Unit-test — bitta qoida", "Unit-тест — одно правило")} hl={seg.v === 'unit'}><p>{t("«Shu qoida buzilmadimi?» — bitta funksiya, bazasiz", "«Не нарушено ли это правило?» — одна функция, без базы")}</p><Term lines={T2_UNIT} style={{ marginTop: 8 }} /></Card> : <div />}
     </div>}
-  </Ide>} />;
-}
-
-// ============================================================
-//  6 · PASS'ni o'qish
-// ============================================================
-const S6 = mkS(6, [{ focus: ['pass'] }, { focus: ['name'] }, { focus: ['tot'] }, { focus: ['pass', 'tot'], sum: true }]);
-function Screen6(p) {
-  return <Lesson p={p} S={S6} scene={({ seg }) => <>
-    <Term lines={PASS_OUT} focus={seg.focus} />
-    {seg.sum && <div className="mk-rule"><b>PASS</b> — fayl va holatlar o'tdi · <code>Tests:</code> — nechta <code>it</code> · lekin PASS faqat <code>expect</code> bo'lsa ma'noli (10-ekran)</div>}
+    {seg.v === 'code' && <Ide files={compact(FILES(F.txs), F.txs)} active={F.txs}>
+      <CodePanel file="texts.spec.ts" lines={kod('SPEC04', { 1: 'i' }, 1, 2)} focus={['i']} />
+      <CodePanel file="texts.ts" lines={kod('TX_SOM', { 4: 's' }, 3, 4)} focus={['s']} style={{ marginTop: 10 }} />
+      <div className="n2-warn" style={{ marginTop: 10 }}>{t("Testda ", "В тесте ")}<b>{t("Telegraf ham, baza ham", "Ни Telegraf, ни база")}</b>{t(" import qilinmaydi — faqat ", " не импортируются — только ")}<code>som</code>{t(" funksiyasi. ", " функция. ")}<code>.env</code>{t(" yo'q, 10 test 0,5 soniyada.", " нет, 10 тестов за 0,5 секунды.")}</div>
+    </Ide>}
+    {seg.v === 'sum' && <div className="mk-rule">Smoke — <b>{t("«ishlayaptimi»", "«работает ли»")}</b>; unit-test — <b>{t("«shu qoida buzilmadimi»", "«не нарушено ли это правило»")}</b>{t(". Saytning so'rov va javobi — Jest ikkinchi darsida.", ". Запрос и ответ сайта — на втором уроке по Jest.")}</div>}
   </>} />;
 }
 
 // ============================================================
-//  7 · Amaliyot 1 — birinchi test
+//  3 · Jest testni qayerdan topadi (package.json jest bo'limi · jest1v2-out/01)
 // ============================================================
-const P1 = mkS(7, [{ hl: [] }, { hl: [0, 1] }, { hl: [2, 3] }, { hl: [] }], { tableAt: 3 });
-const P1_STEPS = [
-  { t: 'Repo va bo\'sh test', cmds: ['git clone https://github.com/Azizbekcrypto/IntroNestArxitechture.git', 'npm install', 'npm test'], exp: 'No tests found, exiting with code 1' },
-  { t: 'Funksiya — src/order.ts', cmds: [], exp: 'fayl saqlandi' },
-  { t: 'Test — src/order.spec.ts (namuna — o\'zingiz yozing)', cmds: [], exp: 'fayl saqlandi' },
-  { t: 'Ishga tushirish', cmds: ['npm test'], exp: 'PASS src/order.spec.ts · ✓ 2 kitob narxini hisoblaydi' },
-];
-const P1_CODE = [{ file: F.ord, step: 1, lines: ORDER_TS, copy: false }, { file: F.ordSpec, step: 2, lines: ORDER_SPEC, copy: false }];
-const P1_TROUBLE = [
-  ['npm ci … can only install packages when your package.json and package-lock.json … are in sync', 'bu repoda lock fayl sinxron emas — npm install'],
-  ['No tests found (fayl yozilgandan keyin)', 'fayl src/ dan tashqarida yoki nomi .test.ts — 4-ekran'],
-  ["Cannot find module './orders' from 'order.spec.ts'", "import'dagi nom fayl nomiga mos emas — ikkalasi src/ ichida, yonma-yon"],
-  ['FAIL · Expected: 20000', "order.ts dagi hisobni tekshiring — 8-ekran"],
-];
-const P1_PROOF = { label: 'Isbot: natijadagi Tests: satri', placeholder: 'natijadagi Tests satrini qo\'ying', check: (v) => /Tests:\s+1 passed,\s+1 total/.test(v), wrong: "Satr «Tests:» bilan boshlanadi va nechta test o'tganini aytadi — terminaldan butun satrni nusxalang" };
-function ScreenP1(p) { return <Practice p={p} S={P1} steps={P1_STEPS} trouble={P1_TROUBLE} proof={P1_PROOF} code={P1_CODE} tree={SPEC_FILES} />; }
-
-// ============================================================
-//  8 · FAIL'ni o'qish: kod buzildi
-// ============================================================
-const ORDER_BAD = [ORDER_TS[0], { ...ORDER_TS[1], gone: true }, { h: tsLine('  return price + quantity;'), neu: false, id: 'bad', n: 2 }, ORDER_TS[2]];
-const S8 = mkS(8, [{ v: 'bad' }, { v: 'fail', focus: ['f'] }, { v: 'fail', focus: ['er'] }, { v: 'fail', focus: ['ln'] }, { v: 'fix' }]);
-function Screen8(p) {
-  return <Lesson p={p} S={S8} scene={({ seg }) => <div className="pg-two">
-    <Ide files={SPEC_FILES} active={F.ord}>
-      <CodePanel file={F.ord} wrap lines={seg.v === 'fix' ? ORDER_TS.map((l, i) => i === 1 ? { ...l, neu: true } : l) : ORDER_BAD} focus={seg.v === 'fix' ? [] : ['bad']} />
-    </Ide>
-    <div style={{ display: 'grid', gap: 10, alignContent: 'start' }}>
-      {seg.v === 'fail' && <Term er lines={FAIL_OUT} focus={seg.focus} />}
-      {seg.v === 'fix' && <><Term lines={PASS_OUT.slice(4, 7)} /><div className="mk-rule">FAIL o'qish: <b>●</b> satr → <b>Expected</b> / <b>Received</b> → funksiya. Javobni aytmang — birga o'qing.</div></>}
-    </div>
-  </div>} />;
+const T3 = out('01', outFind('01', /^\$ npm test/));
+const S3 = mkS(3, [{ v: 'pkg', f: ['t'] }, { v: 'pkg', f: ['r'] }, { v: 'run' }, { v: 'run', f: ['nf'] }]);
+function Screen3(p) {
+  return <Lesson p={p} S={S3} scene={({ seg }) => <>
+    {seg.v === 'pkg' && <Ide files={compact(FILES(), F.pkg)} active={F.pkg}>
+      <CodePanel file="package.json" lines={[...kod('PKG_TEST', { 14: 't' }), { h: '<span class="cm">…</span>', n: '' }, ...kod('PKG', { 45: 'j', 51: 'r', 52: 'r', 53: 'x', 54: 'x', 55: 'x' }, 45, 57)]} focus={seg.f} />
+    </Ide>}
+    {seg.v === 'run' && <CodePanel file="package.json" lines={kod('PKG', {}, 51, 52)} />}
+    {seg.v === 'run' && <Term title={t("VS Code terminali · OrderBotNest", "терминал VS Code · OrderBotNest")} lines={T3} er focus={seg.f || []} />}
+  </>} />;
 }
 
 // ============================================================
-//  9 · Noto'g'ri etalon
+//  4 · Tekshiruv 1 — test/ papkasidagi fayl (jest1v2-out/14)
 // ============================================================
-const SPEC_BADREF = ts(String.raw`
-import { orderTotal } from './order';
-
-describe('orderTotal', () => {
-  it('2 kitob narxini hisoblaydi', () => {
-    expect(orderTotal(10000, 2)).toBe(10002);
+const T4_PKG = kod('PKG', {}, 51, 52);
+const T4_AFTER = out('14', outFind('14', /^No tests found/));
+function Screen4(p) {
+  return MC(p, 4, {
+    above: <div style={{ display: 'grid', gap: 8 }}>
+      <Ide files={tree(['node_modules/', 'src/', 'test/texts.spec.ts', '.env.example', F.pkg, 'README.md'])} active="test/texts.spec.ts">
+        <CodePanel file="package.json" lines={T4_PKG} />
+      </Ide>
+    </div>,
+    after: <Term title={t("VS Code terminali · OrderBotNest", "терминал VS Code · OrderBotNest")} lines={T4_AFTER} er />,
   });
-});`, { 5: { id: 'x' } });
-const FAIL_REF = jt(String.raw`
-FAIL src/order.spec.ts
-  ● orderTotal › 2 kitob narxini hisoblaydi
+}
 
-    Expected: 10002
-    Received: 20000
+// ============================================================
+//  5 · Birinchi test: describe · it · expect (texts.ts 1–4 · kod-02-texts.spec.ts)
+// ============================================================
+const S5 = mkS(5, [{ v: 'src' }, { v: 'spec', f: ['i'] }, { v: 'spec', f: ['d', 't', 'e'] }, { v: 'spec', f: [] }]);
+function Screen5(p) {
+  return <Lesson p={p} S={S5} scene={({ seg }) => <>
+    {seg.v === 'src' && <Code k="TX_SOM" ids={{ 3: 's', 4: 's' }} focus={['s']} files={FILES()} active={F.tx} />}
+    {seg.v === 'spec' && <Code k="SPEC02" ids={{ 1: 'i', 3: 'd', 4: 't', 5: 'e' }} focus={seg.f} files={FILES(F.txs)} active={F.txs} fresh={F.txs} />}
+    {seg.v === 'spec' && seg.f.length === 3 && <div className="pg-three">
+      <Card c={T.blue} h="describe"><p>{t("qaysi funksiya — ", "какая функция — ")}<code>som</code></p></Card>
+      <Card c={T.purple} h="it"><p>{t("bitta vaziyat — oddiy gap bilan", "одна ситуация — обычным предложением")}</p></Card>
+      <Card c={JC.jest} h="expect … toBe"><p>{t("natija = etalon (qo'lda yoziladi)", "результат = эталон (пишется вручную)")}</p></Card>
+    </div>}
+  </>} />;
+}
 
-    > 5 |     expect(orderTotal(10000, 2)).toBe(10002);
-        |                                  ^`, { 4: { id: 'e' }, 5: { id: 'e' } });
-const S9 = mkS(9, [{ v: 'code' }, { v: 'fail' }, { v: 'fail', calc: true }, { v: 'fix', calc: true }]);
+// ============================================================
+//  6 · Bir xil ikki qator — FAIL (jest1v2-out/02 aynan)
+// ============================================================
+const L6 = outLines('02');
+const i6 = (re) => L6.findIndex((l) => re.test(l)) + 1;
+const T6 = out('02', i6(/^FAIL/), undefined, {
+  [i6(/● som/)]: { id: 'd' }, [i6(/Expected:/)]: { id: 'e' }, [i6(/Received:/)]: { id: 'e' }, [i6(/^\s*>/)]: { id: 'g' }, [i6(/^\s*\|\s*\^/)]: { id: 'g' }, [i6(/at Object/)]: { id: 'g' },
+});
+const S6 = mkS(6, [{ f: ['d'] }, { f: ['e'] }, { f: ['g'] }, { f: ['e'] }]);
+function Screen6(p) {
+  return <Lesson p={p} S={S6} scene={({ seg }) => <Term title={t("VS Code terminali · npm test -- texts", "терминал VS Code · npm test -- texts")} lines={T6} er focus={seg.f} />} />;
+}
+
+// ============================================================
+//  7 · Ichida: toBe va bo'linmas probel (jest1v2-out/03, 04)
+// ============================================================
+const L7 = outLines('03');
+const CODES7 = (L7[2] || '').trim().split(/\s+/);
+const CH7 = Array.from("120" + String.fromCharCode(160) + "000 so'm");
+const T7_EQ = out('02', i6(/expect\(received\)/), i6(/Received:/), { [i6(/expect\(received\)/)]: { id: 'o' } });
+const FIX7 = [...kod('SPEC04', {}, 1, 5), { h: tsLine(KOD.SPEC02.lines[4].t), n: 6, gone: true }, ...kod('SPEC04', { 6: 'f' }, 6, 6).map((l) => ({ ...l, neu: true })), ...kod('SPEC04', {}, 7, 8), ...kod('SPEC04', {}, 9, 11).map((l) => ({ ...l, neu: true })), ...kod('SPEC04', {}, 12, 12)];
+const T7_PASS = out('04', outFind('04', /^PASS/));
+// F-1104-07: katta solishtirish — Expected (siz yozgan) va Received (som qaytargan) belgilari yonma-yon, bittalab
+const EXP7 = Array.from("120 000 so'm");
+const REC7 = CH7;
+const code4 = (c) => c.charCodeAt(0).toString(16).padStart(4, '0');
+function Compare7({ mode }) {
+  const [n, setN] = useState(mode === 'diff' ? EXP7.length : 0);
+  useEffect(() => {
+    if (mode === 'diff') { setN(EXP7.length); return undefined; }
+    setN(0); let k = 0;
+    const id = setInterval(() => { k += 1; setN(k); if (k >= EXP7.length) clearInterval(id); }, 380);
+    return () => clearInterval(id);
+  }, [mode]);
+  const row = (arr, other, who, lab) => <div className="cmp-row"><div className="cmp-lab"><b>{who}</b><small>{lab}</small></div>
+    {arr.map((c, i) => { const shown = i < n; const same = code4(c) === code4(other[i]); return <div key={i} className={`cmp-c${shown ? ' on' : ''}${shown ? (same ? ' ok' : ' bad') : ''}${mode === 'diff' && !same ? ' big' : ''}`}><i>{c === ' ' || c.charCodeAt(0) === 160 ? '·' : c}</i><small>{code4(c)}</small></div>; })}</div>;
+  return <div className="mk-light cmp" style={{ padding: 16 }}>
+    <div className="mk-tag">{t("Jest ikki matnni belgima-belgi solishtiradi", "Jest сравнивает два текста посимвольно")}</div>
+    {row(EXP7, REC7, 'Expected', t('siz yozgan', "написали вы"))}
+    {row(REC7, EXP7, 'Received', t('som qaytargan', "вернул som"))}
+    {n >= 4 && <div className="cmp-note">{mode === 'diff' ? <>{t("Farq faqat ", "Разница только ")}<b>{t("4-belgida", "в 4-м символе")}</b>: <code>0020</code>{t(" — oddiy probel (siz yozgan) · ", " — обычный пробел (написали вы) · ")}<code>00a0</code>{t(" — bo'linmas probel (", " — неразрывный пробел (")}<code>toLocaleString('ru-RU')</code>{t(" qo'ygan). Qolgan 11 belgi bir xil.", " ставит). Остальные 11 символов одинаковы.")}</> : <>{t("4-belgida birinchi farq — ", "В 4-м символе первое различие — ")}<b>{t("teng emas", "не равно")}</b>{t(", shuning uchun test qizil.", ", поэтому тест красный.")}</>}</div>}
+  </div>;
+}
+const S7 = mkS(7, [{ v: 'eq' }, { v: 'chars' }, { v: 'fix' }, { v: 'fix', sum: true }]);
+function Screen7(p) {
+  return <Lesson p={p} S={S7} scene={({ seg }) => <>
+    {(seg.v === 'eq' || seg.v === 'chars') && <Term title={t("VS Code terminali · FAIL", "терминал VS Code · FAIL")} lines={T7_EQ} er focus={seg.v === 'eq' ? ['o'] : []} />}
+    {(seg.v === 'eq' || seg.v === 'chars') && <Compare7 mode={seg.v === 'eq' ? 'scan' : 'diff'} />}
+    {seg.v === 'fix' && <><CodePanel file="texts.spec.ts" lines={FIX7} focus={seg.sum ? [] : ['f']} /><Term lines={T7_PASS} /></>}
+  </>} />;
+}
+
+// ============================================================
+//  8 · Amaliyot 1 — texts.spec.ts
+// ============================================================
+const P8 = mkPractice(8, [[], [0, 1], [2, 3], []], {
+  code: [
+    { step: 1, file: F.txs, lines: kod('SPEC02') },
+    { step: 3, file: F.txs, lines: kod('SPEC04') },
+  ],
+});
+function ScreenP8(p) { return <Practice p={p} S={P8.S} steps={P8.steps} trouble={P8.trouble} proof={P8.proof} code={P8.code} tree={FILES(F.txs)} />; }
+
+// ============================================================
+//  9 · Yolg'on PASS: expect yo'q (kod-05-yolgon.spec.ts · jest1v2-out/05)
+// ============================================================
+const T9 = out('05', 2);
+const S9 = mkS(9, [{ v: 'code' }, { v: 'run' }, { v: 'run', sum: true }]);
 function Screen9(p) {
-  return <Lesson p={p} S={S9} scene={({ seg }) => <div className="pg-two">
-    <Ide files={SPEC_FILES} active={F.ordSpec}><CodePanel file={F.ordSpec} wrap lines={seg.v === 'fix' ? SPEC_BADREF.map((l, i) => i === 4 ? { h: tsLine('    expect(orderTotal(10000, 2)).toBe(20000);'), neu: true } : l) : SPEC_BADREF} focus={seg.v === 'fix' ? [] : ['x']} /></Ide>
-    <div style={{ display: 'grid', gap: 10, alignContent: 'start' }}>
-      {seg.v !== 'code' && <Term er={seg.v === 'fail'} lines={seg.v === 'fix' ? PASS_OUT.slice(4, 7) : FAIL_REF} focus={['e']} />}
-      {seg.calc && <div className="pg-row"><span>Qo'lda: 10 000 × 2</span><span className="v" style={{ color: T.green }}>= 20 000</span></div>}
-      {seg.v === 'fix' && <div className="mk-rule">FAIL'da birinchi savol: <b>kim xato</b> — funksiyami yoki etalonmi?</div>}
-    </div>
-  </div>} />;
+  return <Lesson p={p} S={S9} scene={({ seg }) => <>
+    {seg.v === 'code' ? <Code k="SPEC05" ids={{ 5: 'c' }} focus={['c']} files={FILES(F.txs, 'src/api/telegram/yolgon.spec.ts')} active="src/api/telegram/yolgon.spec.ts" /> : <CodePanel file="yolgon.spec.ts" lines={kod('SPEC05', {}, 3, 7)} />}
+    {seg.v === 'run' && <Term title={t("VS Code terminali · npm test -- yolgon", "терминал VS Code · npm test -- yolgon")} lines={T9} />}
+    {seg.sum && <div className="mk-rule">{t("Har ", "В каждом ")}<code>it</code>{t(" ichida kamida bitta ", " — внутри хотя бы один ")}<b>expect</b>{t(". Xatoni faqat ", ". Ошибку бросает только ")}<code>expect</code>{t(" tashlaydi.", " .")}</div>}
+  </>} />;
 }
 
 // ============================================================
-//  10 · Yolg'on PASS: expect yo'q
+//  10 · Etalon koddan olingan — buzilgan kodda ham yashil (kod-06-savat.spec.ts · jest1v2-out/06a, 06)
 // ============================================================
-const SPEC_LOG = ts(String.raw`
-import { orderTotal } from './order';
-
-describe('orderTotal', () => {
-  it('2 kitob narxini hisoblaydi', () => {
-    const result = orderTotal(10000, 2);
-    console.log(result);
-  });
-});`, { 6: { id: 'x' } });
-const LOG_OUT = jt(String.raw`
-  console.log
-    20000
-
-      at Object.<anonymous> (order.spec.ts:6:13)
-
-PASS src/order.spec.ts
-  orderTotal
-    ✓ 2 kitob narxini hisoblaydi (14 ms)
-
-Tests:       1 passed, 1 total`, { 6: { id: 'p' }, 8: { id: 'p' } });
-const S10 = mkS(10, [{ v: 'code' }, { v: 'out' }, { v: 'out', why: true }, { v: 'out', why: true, sum: true }]);
+const T10A = out('06a', 2);
+const T10B = out('06', outFind('06', /^FAIL/), outFind('06', /^\s*Jami: 100,000/));
+// F-1104-09: oqim chizmasi — som() natijasi va ikki etalon qayerdan keladi
+function Flow10({ broken }) {
+  const res = broken ? "100,000 so'm" : "100 000 so'm";
+  const Box = ({ h, v, c, hl }) => <div className={`fl-box${hl ? ' hl' : ''}`} style={{ '--c': c }}><small>{h}</small><b>{v}</b></div>;
+  const verdict = (ok, lie) => <div className={`fl-v ${ok ? (lie ? 'lie' : 'ok') : 'bad'}`}>{ok ? (lie ? t("✓ yashil — lekin yolg'on", "✓ зелёный — но ложный") : t('✓ yashil', "✓ зелёный")) : t('✕ qizil', "✕ красный")}</div>;
+  return <div className="mk-light fl" style={{ padding: 14 }}>
+    <div className="mk-tag">{broken ? t("som buzildi (en-US) — kim nimani ko'radi", "som сломана (en-US) — кто что видит") : t("som to'g'ri — ikkala test", "som правильная — оба теста")}</div>
+    <div className="fl-grid">
+      <Box h={t("som(100000) qaytaradi", "som(100000) возвращает")} v={res} c={broken ? T.accent : T.green} hl={broken} />
+      <div className="fl-tests">
+        <div className="fl-row"><span className="fl-ar">→</span><Box h={t("1-test etaloni: `Jami: ${som(100000)}`", "эталон 1-го теста: `Jami: ${som(100000)}`")} v={'Jami: ' + res} c={broken ? T.accent : T.blue} hl={broken} /><span className="fl-eq">{broken ? '=' : '='}</span>{verdict(true, broken)}</div>
+        <div className="fl-row"><span className="fl-ar">→</span><Box h={t("2-test etaloni: qo'lda yozilgan", "эталон 2-го теста: написан вручную")} v="Jami: 100 000 so'm" c={T.blue} /><span className="fl-eq">{broken ? '≠' : '='}</span>{verdict(!broken)}</div>
+      </div>
+    </div>
+    {broken && <div className="fl-note">{t("1-test etaloni ham ", "Эталон 1-го теста тоже ")}<b>{t("som'dan", "из som")}</b>{t(" yasaladi — som buzilsa, etalon ham u bilan birga buziladi.", " делается — если som сломается, эталон сломается вместе с ней.")}</div>}
+  </div>;
+}
+const S10 = mkS(10, [{ v: 'both' }, { v: 'break' }, { v: 'res' }, { v: 'res', sum: true }]);
 function Screen10(p) {
-  return <Lesson p={p} S={S10} scene={({ seg }) => <div className="pg-two">
-    <Ide files={SPEC_FILES} active={F.ordSpec}><CodePanel file={F.ordSpec} wrap lines={SPEC_LOG} focus={['x']} /></Ide>
-    <div style={{ display: 'grid', gap: 10, alignContent: 'start' }}>
-      {seg.v === 'out' && <Term lines={LOG_OUT} focus={['p']} />}
-      {seg.why && <div className="n2-warn">Jest qoidasi: <code>it</code> ichida xato chiqmasa — holat o'tdi. Xato chiqaradigan yagona narsa — <b>expect</b>.</div>}
-      {seg.sum && <div className="mk-rule">Har <code>it</code>da kamida bitta <code>expect</code> — aks holda PASS <b>yolg'on</b>.</div>}
-    </div>
-  </div>} />;
+  return <Lesson p={p} S={S10} scene={({ seg }) => <>
+    {seg.v === 'both' && <><CodePanel file="savat.spec.ts" lines={kod('SPEC06', { 11: 'a', 16: 'b' }, 9, 17)} focus={['a', 'b']} /><Flow10 /></>}
+    {seg.v === 'break' && <Code k="TX_SOM" ids={{ 4: 'x' }} focus={['x']} edit={{ 4: KOD.TX_SOM.lines[3].t.replace("'ru-RU'", "'en-US'") }} files={FILES('src/api/telegram/savat.spec.ts')} active={F.tx} />}
+    {seg.v === 'res' && !seg.sum && <><Flow10 broken /><Term title={t("VS Code terminali · som buzilgan", "терминал VS Code · som сломан")} lines={T10B} er /></>}
+    {seg.sum && <><CodePanel file="savat.spec.ts" lines={kod('SPEC06', { 11: 'a', 16: 'b' }, 10, 16)} focus={['a']} /><div className="mk-rule">{t(<>Etalon <b>qo'lda</b> yoziladi. Etalonda <code>{'${som(…)}'}</code> — ogohlantirish belgisi.</>, <>Эталон пишется <b>вручную</b>. <code>{'${som(…)}'}</code> в эталоне — тревожный знак.</>)}</div></>}
+  </>} />;
 }
 
 // ============================================================
-//  11 · Tekshiruv 2 — LineCheck (target 0 dan: 6-satr = 5)
+//  11 · Tekshiruv 2 — LineCheck (jest1v2-out/23 buzuq, 24 tuzatilgan; target 16-satr → bo'lakda 5-satr, indeks 4)
 // ============================================================
-const LC11_FIXED = SPEC_LOG.map((l, i) => ({ ...l, n: i + 1, ...(i === 5 ? { gone: true } : {}) })); // n — fayldagi raqam (qo'shilgan satrdan keyin siljimasin)
-LC11_FIXED.splice(6, 0, { h: tsLine('    expect(result).toBe(20000);'), n: 6, neu: true });
+const LC11 = KOD.SPEC_OP_BUZUQ.lines.filter((l) => l.n >= 12 && l.n <= 19).map((l) => ({ h: tsLine(l.t), n: l.n }));
+const LC11_FIXED = KOD.SPEC_OP.lines.filter((l) => l.n >= 12 && l.n <= 19).flatMap((l) => l.n === 16 ? [{ h: tsLine(KOD.SPEC_OP_BUZUQ.lines[15].t), n: 16, gone: true }, { h: tsLine(l.t), n: 16, neu: true }] : [{ h: tsLine(l.t), n: l.n }]);
+const L24 = outLines('24');
+const T11X = out('24', L24.findIndex((l, i) => i > 20 && /^FAIL/.test(l)) + 1, L24.findIndex((l, i) => i > 20 && /Holati/.test(l)) + 1);
 function Screen11(p) {
   const m = MDT[11];
-  return <LineCheck {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} task={m.task} q={m.q} file={F.ordSpec} lines={SPEC_LOG.map((l) => ({ ...l, id: undefined }))} target={5}
-    tree={{ root: MKCFG.root, files: SPEC_FILES, active: F.ordSpec }}
-    fixed={LC11_FIXED} fixedExtra={[{ file: 'terminal — npm test (haqiqiy)', lines: PASS_OUT.slice(4, 7) }]}
+  return <LineCheck {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} task={m.task} q={m.q} file="texts.spec.ts" lines={LC11} target={4}
+    tree={{ root: MKCFG.root, files: compact(FILES(F.txs), F.txs), active: F.txs }}
+    fixed={LC11_FIXED} fixedExtra={[{ file: t('terminal — som en-US bilan buzilgan', "терминал — som сломана через en-US"), lines: T11X }]}
     ok={m.ok} okShort={<span dangerouslySetInnerHTML={html(m.okShort)} />} hint={m.hint} />;
 }
 
 // ============================================================
-//  12 · Amaliyot 2 — uch xil buzish
+//  12 · Admin tugmalari: har statusga bitta test (keyboards.ts 37–51 · keyboards.spec.ts 1–35 · jest1v2-out/07)
 // ============================================================
-const P2 = mkS(12, [{ hl: [] }, { hl: [0, 1] }, { hl: [2, 3] }, { hl: [] }], { tableAt: 3 });
-const P2_STEPS = [
-  { t: 'Kodni buzish — order.ts: price + quantity', cmds: ['npm test'], exp: 'FAIL · Expected: 20000 · Received: …' },
-  { t: "Etalonni buzish — order.ts tiklang, order.spec.ts: toBe(10002)", cmds: ['npm test'], exp: 'FAIL · Expected: 10002 · Received: 20000' },
-  { t: "expect'siz — expect(…) o'rniga console.log(result)", cmds: ['npm test'], exp: 'console.log 20000 · PASS' },
-  { t: 'Tiklash — expect(result).toBe(20000);', cmds: ['npm test'], exp: 'PASS' },
-];
-const P2_TROUBLE = [
-  ['1-qadamda PASS', 'fayl saqlanmagan — Ctrl+S, qayta npm test'],
-  ["error TS1005: ')' expected.", "qavs tushib qolgan — xabardagi satr va ~ belgisi joyni ko'rsatadi"],
-  ['3-qadamda FAIL', 'expect hali qolgan — u satrni butunlay almashtiring'],
-];
-const P2_PROOF = { label: '1-qadamdagi Received qiymati', placeholder: 'Received yonidagi sonni yozing', check: (v) => /^\s*10\s?002\s*$/.test(v), wrong: "Received — funksiya qaytargan qiymat: 10 000 va 2 ni qo'shganda nima chiqadi?" };
-function ScreenP2(p) { return <Practice p={p} S={P2} steps={P2_STEPS} trouble={P2_TROUBLE} proof={P2_PROOF} />; }
-
-// ============================================================
-//  13 · Chegara: deliveryFee va 100 000 (jest1-out/09, 10)
-// ============================================================
-const DEL_TS = (bad) => ts(String.raw`
-export function deliveryFee(total: number): number {
-  return total ${bad ? '>' : '>='} 100000 ? 0 : 15000;
-}`, { 2: { id: 'c', neu: bad === false ? false : undefined } });
-const DEL_SPEC = ts(String.raw`
-import { deliveryFee } from './delivery';
-
-describe('deliveryFee', () => {
-  it('150 000 — yetkazish bepul', () => {
-    expect(deliveryFee(150000)).toBe(0);
-  });
-  it('aynan 100 000 — bepul', () => {
-    expect(deliveryFee(100000)).toBe(0);
-  });
-  it('99 000 — 15 000', () => {
-    expect(deliveryFee(99000)).toBe(15000);
-  });
-});`, { 7: { id: 'a' }, 8: { id: 'a' }, 9: { id: 'a' } });
-const DEL_PASS = jt(String.raw`
-PASS src/delivery.spec.ts
-PASS src/order.spec.ts
-
-Test Suites: 2 passed, 2 total
-Tests:       4 passed, 4 total`);
-const DEL_FAIL = jt(String.raw`
-FAIL src/delivery.spec.ts
-  ● deliveryFee › aynan 100 000 — bepul
-
-    Expected: 0
-    Received: 15000
-
-    >  8 |     expect(deliveryFee(100000)).toBe(0);
-         |                                 ^
-
-Test Suites: 1 failed, 1 passed, 2 total
-Tests:       1 failed, 3 passed, 4 total`, { 2: { id: 'x' }, 4: { id: 'x' }, 5: { id: 'x' } });
-const DEL_FILES = tree(REPO_BASE, [F.ord, F.ordSpec, F.del, F.delSpec]);
-const S13 = mkS(13, [{ v: 'code', file: F.del }, { v: 'pass', file: F.delSpec }, { v: 'fail', file: F.del }, { v: 'fail', file: F.delSpec, sum: true }]);
-function Screen13(p) {
-  return <Lesson p={p} S={S13} scene={({ seg }) => <div className="pg-two">
-    <Ide files={DEL_FILES} active={seg.file} fresh={[F.del, F.delSpec]}>
-      {seg.file === F.del ? <CodePanel file={F.del} wrap lines={DEL_TS(seg.v === 'fail')} focus={seg.v === 'fail' ? ['c'] : []} /> : <CodePanel file={F.delSpec} wrap lines={DEL_SPEC} focus={seg.sum ? ['a'] : []} />}
-    </Ide>
-    <div style={{ display: 'grid', gap: 10, alignContent: 'start' }}>
-      {seg.v === 'pass' && <Term lines={DEL_PASS} />}
-      {seg.v === 'fail' && <Term er lines={DEL_FAIL} focus={['x']} />}
-      {seg.sum && <div className="mk-rule">Shart bor joyda <b>uch test</b>: chegaradan yuqori · <b>aynan chegara</b> · chegaradan past</div>}
-    </div>
-  </div>} />;
+const ST12 = [['NEW', ['✅ Tasdiqlash', '❌ Bekor']], ['CONFIRMED', ['🚚 Yetkazildi', '❌ Bekor']], ['DELIVERED', []], ['CANCELLED', []]];
+function StatusTab({ on = [] }) {
+  return <table className="st-tab"><tbody>{ST12.map(([s, b], i) => <tr key={s} className={on.includes(i) ? 'hl' : ''}><td>{s}</td><td>{b.length ? b.map((x) => <span key={x} className="btn">{x}</span>) : <span style={{ color: T.ink3 }}>{t("tugma yo'q — undefined", "кнопок нет — undefined")}</span>}</td></tr>)}</tbody></table>;
 }
-
-// ============================================================
-//  14 · AI yozgan testni tekshirish (o'quvchi darsi Screen15 — 5 test)
-// ============================================================
-const AI14 = [
-  ["expect(orderTotal(10000, 2)).toBe(20000)", true, '10000 × 2 = 20000 ✓', 'haqiqiy'],
-  ['const r = orderTotal(10000, 2);', false, '—', "yolg'on — doim yashil"],
-  ['expect(orderTotal(10000, 2)).toBe(10002)', true, '✗ 20000 bo\'lishi kerak', "noto'g'ri etalon"],
-  ['console.log(orderTotal(5000, 3))', false, '—', "yolg'on"],
-  ['expect(orderTotal(5000, 3)).toBe(15000)', true, '5000 × 3 = 15000 ✓', 'haqiqiy'],
-];
-const S14 = mkS(14, [{ q: 0 }, { q: 1 }, { q: 2 }, { q: 3 }]);
-function Screen14(p) {
-  return <Lesson p={p} S={S14} scene={({ seg }) => <div className="mk-light" style={{ padding: 14 }}>
-    <div className="mk-tag">AI orderTotal uchun yozgan 5 test (o'quvchi darsidan)</div>
-    <table className="mk-tbl"><thead><tr><th>test</th><th>expect bormi</th><th>etalon</th><th>hukm</th></tr></thead><tbody>
-      {AI14.map(([c, e, r, h], i) => {
-        const bad1 = !e, bad2 = r.startsWith('✗');
-        const show = seg.q === 0 ? false : seg.q === 1 ? bad1 : seg.q === 2 ? bad2 : true;
-        return <tr key={i} className={show && (bad1 || bad2) ? 'hl' : ''}><td><code>{c}</code></td><td style={{ color: seg.q >= 1 ? (e ? T.green : T.accent) : T.ink3 }}>{seg.q >= 1 ? (e ? 'ha' : "yo'q") : '?'}</td><td style={{ color: seg.q >= 2 ? (bad2 ? T.accent : T.ink2) : T.ink3 }}>{seg.q >= 2 ? r : '?'}</td><td style={{ fontWeight: 700, color: seg.q >= 3 ? (h === 'haqiqiy' ? T.green : T.accent) : T.ink3 }}>{seg.q >= 3 ? h : ''}</td></tr>;
-      })}
-    </tbody></table>
-    {seg.q === 3 && <div className="mk-rule" style={{ marginTop: 12 }}>Har AI testiga <b>ikki savol</b>: <code>expect</code> bormi? Etalon qo'lda hisoblaganda to'g'rimi?</div>}
-  </div>} />;
-}
-
-// ============================================================
-//  15 · Tekshiruv 3 — kim xato
-// ============================================================
-function Screen15(p) {
-  const m = MDT[15];
-  return <MCRetry {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} q={m.q} opts={m.opts} correct={m.correct} ok={m.ok} okShort={<span dangerouslySetInnerHTML={html(m.okShort)} />} wrong={m.wrong}
-    above={<div style={{ marginBottom: 14 }}><Term er lines={FAIL_REF.slice(0, 5)} /></div>}
-    after={<div style={{ display: 'grid', gap: 10 }}>
-      <div className="mk-tag" style={{ color: T.green, margin: 0 }}>Tuzatildi — etalon 20000</div>
-      <Ide files={SPEC_FILES} active={F.ordSpec}><CodePanel file={F.ordSpec} lines={ORDER_SPEC} focus={['exp']} /><Term lines={PASS_OUT.slice(4, 7)} /></Ide>
-    </div>} />;
-}
-
-// ============================================================
-//  16 · Amaliyot 3 — deliveryFee
-// ============================================================
-const P3 = mkS(16, [{ hl: [] }, { hl: [0, 1] }, { hl: [2, 3] }, { hl: [] }], { tableAt: 3 });
-const P3_STEPS = [
-  { t: 'Funksiya — src/delivery.ts', cmds: [], exp: 'fayl saqlandi' },
-  { t: 'Testlar — src/delivery.spec.ts, 3 ta it', cmds: ['npm test'], exp: 'Tests: 4 passed, 4 total' },
-  { t: 'Chegarani buzish — total >= 100000 → total > 100000', cmds: ['npm test'], exp: '1 failed, 3 passed' },
-  { t: "O'qish va tiklash — ● satr, >= qaytaring", cmds: ['npm test'], exp: '4 passed' },
-];
-const P3_CODE = [{ file: F.del, step: 0, lines: DEL_TS(false), copy: false }, { file: F.delSpec, step: 1, lines: DEL_SPEC, copy: false }];
-const P3_TROUBLE = [
-  ['3-qadamda hammasi yashil', "aynan 100 000 testi yo'q — vazifadagi uchinchi holatni qo'shing"],
-  ['3-qadamda ikki test qizil', "99 000 testida etalon xato (15 000 bo'lishi kerak)"],
-  ['Tests: 3 passed', "order.spec.ts o'chirilgan — mayli, uchtasi ham yetarli"],
-];
-const P3_PROOF = { label: 'Qizil testning nomi (● satridan)', placeholder: 'qizil it nomini yozing', check: (v) => /100\s?000/.test(v) && /bepul/i.test(v), wrong: "● satridagi › belgisidan keyingi nomni yozing — u qaysi summani sinaydi?" };
-function ScreenP3(p) { return <Practice p={p} S={P3} steps={P3_STEPS} trouble={P3_TROUBLE} proof={P3_PROOF} code={P3_CODE} tree={DEL_FILES} />; }
-
-// ============================================================
-//  17 · Sinfdagi tuzoqlar: joy, nom, npm ci
-// ============================================================
-const CI17 = jt(String.raw`
-$ npm ci
-npm error code EUSAGE
-npm error \`npm ci\` can only install packages when your package.json and package-lock.json or npm-shrinkwrap.json are in sync.
-npm error Missing: @nestjs/jwt@11.0.2 from lock file
-npm error Missing: bcrypt@6.0.0 from lock file
-$ npm install
-…  (o'rnatildi)`.replace(/\\`/g, '`'), { 3: { id: 'c' } });
-const TRAP17 = [
-  ['Fayl loyiha ildizida', 'order.spec.ts (src/ dan tashqarida)', 'No tests found — rootDir: src'],
-  ['Nomi .test.ts', 'src/order.test.ts', 'No tests found — testRegex: .spec.ts'],
-  ['npm ci', 'lock fayl sinxron emas', 'npm install'],
-];
-const S17 = mkS(17, [{ hl: [] }, { hl: [0, 1] }, { hl: [2] }, { hl: [0, 1, 2] }]);
-function Screen17(p) {
-  return <Lesson p={p} S={S17} scene={({ seg }) => <>
-    <div className="pg-three">{TRAP17.map(([h, w, r], i) => <div key={i} className={`mk-box${seg.hl.includes(i) ? ' hl' : ''}`} style={{ '--c': [T.accent, T.yellow, PG.pg][i], opacity: seg.hl.length && !seg.hl.includes(i) ? 0.4 : 1 }}><h4>{h}</h4><p><code>{w}</code></p><p style={{ marginTop: 6 }}>{r}</p></div>)}</div>
-    {(seg.hl.includes(0) && !seg.hl.includes(2)) && <Term er lines={NOTESTS.slice(3)} focus={['nt', 'rx']} />}
-    {seg.hl.includes(2) && seg.hl.length === 1 && <Term er lines={CI17} focus={['c']} />}
-    {seg.hl.length === 3 && <div className="mk-rule"><code>No tests found</code> — joy va nom · <code>npm ci</code> xatosi — <code>npm install</code>. Ikkalasi kodda emas, sozlamada.</div>}
+const T12 = out('07', 2);
+const S12 = mkS(12, [{ v: 'tab' }, { v: 'src' }, { v: 'spec' }, { v: 'tab', all: true }]);
+function Screen12(p) {
+  return <Lesson p={p} S={S12} scene={({ seg }) => <>
+    {seg.v === 'tab' && <StatusTab on={seg.all ? [0, 1, 2, 3] : []} />}
+    {seg.v === 'src' && <Code k="KB_ORDER" ids={{ 39: 'u', 43: 'b', 44: 'b', 47: 'b', 48: 'b' }} focus={['u', 'b']} files={FILES()} active={F.kb} />}
+    {seg.v === 'spec' && <><CodePanel file="keyboards.spec.ts" lines={[...kod('SPEC_KB', { 5: 'h', 6: 'h', 7: 'h', 8: 'h' }, 4, 10), { h: '<span class="cm">…</span>', n: '' }, ...kod('SPEC_KB', { 31: 'u', 32: 'u', 33: 'u' }, 31, 35)]} focus={['h', 'u']} /><Term lines={T12} /></>}
   </>} />;
 }
 
 // ============================================================
-//  18 · Nest bo'lmagan loyiha: to'rt qadamli zanjir (jest1-out/12–15, 20)
+//  13 · toBe massivda ishlamaydi — toEqual (kod-06b-tobe.spec.ts · jest1v2-out/06b, 08)
 // ============================================================
-const CHAIN18 = [
-  { cmd: 'npm i -D jest ts-jest · "test": "jest"', out: 'Must use import to load ES Module', fix: 'npx ts-jest config:init' },
-  { cmd: 'npx ts-jest config:init', out: "TS2593: Cannot find name 'describe'", fix: 'npm i -D @types/jest typescript' },
-  { cmd: 'npm i -D typescript @types/jest', out: 'The TypeScript compiler "typescript" (version 7.0.2) does not expose the JavaScript compiler API required by ts-jest', fix: 'npm i -D typescript@5' },
-  { cmd: 'npm i -D typescript@5', out: 'PASS ./order.spec.ts · ✓ 2 kitob narxini hisoblaydi', fix: '', ok: true },
+const L06B = outLines('06b');
+const T13 = out('06b', 2, L06B.findIndex((l) => /^\s*>/.test(l)) + 1, { [L06B.findIndex((l) => /If it should pass/.test(l)) + 1]: { id: 'w' }, [L06B.findIndex((l) => /serializes/.test(l)) + 1]: { id: 'w' } });
+const L08 = outLines('08');
+const T13_HIDE = [{ h: jestLine(L08.find((l) => /Received: \{/.test(l)).replace(/^\s+/, '    ')), id: 'h' }];
+const S13 = mkS(13, [{ v: 'run', f: ['w'] }, { v: 'run', f: [] }, { v: 'hide' }, { v: 'sum' }]);
+function Screen13(p) {
+  return <Lesson p={p} S={S13} scene={({ seg }) => <>
+    {seg.v !== 'hide' && <><CodePanel file="tobe.spec.ts" lines={kod('SPEC06B', { 3: 'b', 7: 'e' })} focus={['b', 'e']} /><Term lines={T13} er focus={seg.f || []} /></>}
+    {seg.v === 'hide' && <><Term title={t("VS Code terminali · Received (Telegraf klaviaturasi)", "терминал VS Code · Received (клавиатура Telegraf)")} lines={T13_HIDE} er />
+      <div className="n2-warn"><code>"hide": false</code>{t(" — kodda yozilmagan, Telegraf ", " — в коде не написано, Telegraf ")}<b>{t("o'zi qo'shadi", "добавляет сам")}</b>{t(". Yordamchi faqat ", ". Помощник берёт только ")}<code>text</code>{t(" va ", " и ")}<code>callback_data</code>{t(" ni ajratadi.", " .")}</div></>}
+    {seg.v === 'sum' && <div className="mk-rule">{t("Son va satr — ", "Число и строка — ")}<code>toBe</code>{t("; massiv va obyekt — ", "; массив и объект — ")}<code>toEqual</code>.</div>}
+  </>} />;
+}
+
+// ============================================================
+//  14 · Kodni buzamiz: CANCELLED da ham tugma (jest1v2-out/08)
+// ============================================================
+const BREAK14 = { 39: KOD.KB_ORDER.lines[2].t.replace(" || o.status === 'CANCELLED'", '') };
+const T14 = out('08', outFind('08', /^\$ /));
+const T14_OK = out('07', 2);
+const S14 = mkS(14, [{ v: 'break' }, { v: 'run' }, { v: 'fix' }]);
+function Screen14(p) {
+  return <Lesson p={p} S={S14} scene={({ seg }) => <>
+    {seg.v !== 'fix' && <CodePanel file={t("keyboards.ts · buzilgan", "keyboards.ts · сломан")} lines={kod('KB_ORDER', { 39: 'x' }, 38, 41, BREAK14)} focus={['x']} />}
+    {seg.v === 'run' && <Term title={t("VS Code terminali · npm test -- keyboards", "терминал VS Code · npm test -- keyboards")} lines={T14} er />}
+    {seg.v === 'fix' && <><CodePanel file={t("keyboards.ts · tiklandi", "keyboards.ts · восстановлен")} lines={kod('KB_ORDER', { 39: 'x' }, 38, 41)} focus={['x']} /><Term lines={T14_OK} /></>}
+  </>} />;
+}
+
+// ============================================================
+//  15 · Katalog: chegara — oxirgi va bitta sahifa (keyboards.ts 18–25 · jest1v2-out/09, 10)
+// ============================================================
+const PAGES15 = [['1/3 ▶', 'birinchi'], ['◀ 2/3 ▶', "o'rtada"], ['◀ 3/3', 'oxirgi'], ['1/1', 'yagona']];
+const BREAK15 = { 21: KOD.KB_NAV.lines[3].t.replace('page < pages - 1', 'page <= pages - 1') };
+const T15 = [...out('10', outFind('10', /^FAIL/), outFind('10', /^FAIL/)), ...out('10', outFind('10', /^\s*catalogKeyboard$/), outFind('10', /- Expected/) + 6)];
+// F-1109-06: xulosa — sahifa belgilari qatori o'rniga 4 sahifa × ikki shart jadvali va haqiqiy npx jest farqi (jest1v2-out/10)
+const ROWS15 = [
+  ["birinchi", "первая", '0 · 2', 'f1', ['1/3', '▶'], false, false],
+  ["o'rtada", 'в середине', '1 · 2', 'f1', ['◀', '2/3', '▶'], false, false],
+  ['oxirgi', 'последняя', '2 · 2', 'f0', ['◀', '3/3', '▶'], true, true],
+  ['yagona', 'единственная', '0 · 0', 'f0', ['1/1', '▶'], true, true],
 ];
-const S18 = mkS(18, [{ upto: -1 }, { upto: 0 }, { upto: 2 }, { upto: 3 }, { upto: 3, sum: true }]);
-function Screen18(p) {
-  return <Lesson p={p} S={S18} scene={({ seg }) => <div className="pg-two">
-    <Ide root="bosh" files={["node_modules/", "jest.config.js", "order.spec.ts", "order.ts", "package.json"]} active="order.spec.ts"><CodePanel file="order.spec.ts" wrap lines={ORDER_SPEC} /></Ide>
-    <div style={{ display: 'grid', gap: 8, alignContent: 'start' }}>
-      {CHAIN18.map((c, i) => i <= seg.upto && <div key={i} className="mk-step" style={{ animation: 'mk-up .4s ease both', borderColor: c.ok ? T.green : T.accent }}>
-        <span style={{ fontFamily: MONO, fontWeight: 700, color: c.ok ? T.green : T.accent, minWidth: 20 }}>{i + 1}</span>
-        <div className="t"><b><code>{c.cmd}</code></b><div style={{ fontFamily: MONO, fontSize: 12, color: c.ok ? T.green : T.accent, margin: '4px 0' }}>{c.out}</div>{c.fix && <div className="exp">→ keyingi: <code>{c.fix}</code></div>}</div>
-      </div>)}
-      {seg.upto >= 2 && <div className="mk-tag" style={{ margin: 0 }}>To'rt paket bitta buyruqda o'rnatilsa — TypeScript 6.0.3; u ham TS2593 beradi. ts-jest uchun — TypeScript 5.</div>}
-      {seg.sum && <div className="mk-rule">Testni <b>o'quvchi reposida</b> yozdiring — u yerda hammasi tayyor (TypeScript 5.9).</div>}
+function Edge15() {
+  return <div className="z">
+    <div className="z-card">
+      <p className="z-h">{t("keyboards.ts 21-satr · ▶ qachon chiqadi — 4 sahifa, ikki shart", "keyboards.ts строка 21 · когда появляется ▶ — 4 страницы, два условия")}</p>
+      <table className="z-tbl j1-15"><tbody>
+        <tr><th className="l">{t("sahifa", "страница")}</th><th>page · pages − 1</th><th>page &lt; pages − 1</th><th>page &lt;= pages − 1</th><th>{t("buzilgan kod ko'rsatdi", "показал сломанный код")}</th><th>test</th></tr>
+        {ROWS15.map(([uz, ruN, v, f, kb, edge, x]) => <tr key={uz} className={edge ? 'edge' : ''}>
+          <td className="l">{edge ? <b>{t(uz, ruN)}</b> : t(uz, ruN)}</td><td>{edge ? <b>{v}</b> : v}</td>
+          <td className={f}>{f === 'f1' ? 'true ▶' : 'false'}</td><td className={edge ? 'f2' : 'f1'}>true ▶</td>
+          <td><span className="kb">{kb.map((k, j) => <i key={j} className={x && j === kb.length - 1 ? 'x' : ''}>{k}</i>)}</span></td>
+          <td className={x ? 'tf' : 'tp'}>{x ? '✕' : '✓'}</td>
+        </tr>)}
+      </tbody></table>
+      <span className="z-mut">{t("Ikki shart faqat page = pages − 1 bo'lganda farq qiladi — ya'ni chegarada. O'rtadagi sahifa testi farqni ko'rmaydi.", "Два условия различаются только при page = pages − 1 — то есть на границе. Тест средней страницы разницы не видит.")}</span>
     </div>
-  </div>} />;
+    <div className="z-card" style={{ borderColor: 'var(--bad)' }}>
+      <p className="z-h" style={{ color: 'var(--bad)' }}>{t("npx jest keyboards — haqiqiy farq", "npx jest keyboards — настоящая разница")}</p>
+      <div className="z-term"><span className="r">✕ oxirgi sahifada ▶ yo'q</span>      Array [ "◀", "3/3", <span className="r">+ "▶"</span> ]{'\n'}<span className="r">✕ bitta sahifa — faqat 1/1</span>    Array [ "1/1", <span className="r">+ "▶"</span> ]{'\n'}<span className="g">✓ birinchi sahifada ◀ yo'q   ✓ o'rtada ikkalasi bor</span></div>
+    </div>
+  </div>;
+}
+const S15 = mkS(15, [{ v: 'pages' }, { v: 'spec' }, { v: 'break' }, { v: 'pages', bad: true }]);
+function Screen15(p) {
+  return <Lesson p={p} S={S15} scene={({ seg }) => <>
+    {seg.v === 'pages' && !seg.bad && <div className="pages">{PAGES15.map(([x, n], i) => <div key={x} className={seg.bad ? (i >= 2 ? 'hl' : 'ok') : ''}>{x}<small>{n}{t(" sahifa", " стр.")}</small></div>)}</div>}
+    {seg.v === 'pages' && !seg.bad && <Code k="KB_NAV" ids={{ 19: 'c', 21: 'c', 22: 'c' }} focus={['c']} files={FILES()} active={F.kb} />}
+    {seg.v === 'spec' && <Code k="SPEC_KB" ids={Object.fromEntries(Array.from({ length: 15 }, (_, i) => [47 + i, 'n']))} focus={['n']} from={37} to={71} files={FILES(F.txs, F.kbs)} active={F.kbs} />}
+    {seg.v === 'break' && <><CodePanel file={t("keyboards.ts · buzilgan", "keyboards.ts · сломан")} lines={kod('KB_NAV', { 21: 'x' }, 19, 22, BREAK15)} focus={['x']} /><Term title={t("VS Code terminali · npm test -- keyboards", "терминал VS Code · npm test -- keyboards")} lines={T15} er /></>}
+    {seg.bad && <Edge15 />}
+  </>} />;
 }
 
 // ============================================================
-//  19 · Tekshiruv 4 — TypeScript 7
+//  16 · Tekshiruv 3 — page <= pages - 1 (jest1v2-out/10)
 // ============================================================
+const L10 = outLines('10');
+const T16_AFTER = out('10', L10.findIndex((l) => /✓ birinchi/.test(l)) + 1, L10.findIndex((l) => /✓ tugagan/.test(l)) + 1);
+function Screen16(p) {
+  return MC(p, 16, {
+    above: <div style={{ display: 'grid', gap: 8 }}>
+      <CodePanel file={t("keyboards.ts · buzilgan", "keyboards.ts · сломан")} lines={kod('KB_NAV', { 21: 'x' }, 19, 22, BREAK15)} focus={['x']} />
+      <div className="mk-pair">{t("Faqat ikki test: ", "Только два теста: ")}<code>{t("birinchi sahifada ◀ yo'q", "на первой странице нет ◀")}</code> (0, 3) · <code>{t("o'rtada ikkalasi bor", "в середине есть обе")}</code> (1, 3)</div>
+    </div>,
+    after: <Term title={t("VS Code terminali · to'rt sahifa testi bilan", "терминал VS Code · с тестами четырёх страниц")} lines={T16_AFTER} er />,
+  });
+}
+
+// ============================================================
+//  17 · Amaliyot 2 — keyboards.spec.ts va bitta buzish
+// ============================================================
+const P17 = mkPractice(17, [[], [0, 1], [2, 3], []], {
+  code: [
+    { step: 0, file: F.kbs, lines: kod('SPEC_KB', {}, 1, 35), copy: false },
+    { step: 1, file: F.kbs, lines: kod('SPEC_KB', {}, 37, 71), copy: false },
+  ],
+});
+function ScreenP17(p) { return <Practice p={p} S={P17.S} steps={P17.steps} trouble={P17.trouble} proof={P17.proof} code={P17.code} tree={FILES(F.txs, F.kbs)} />; }
+
+// ============================================================
+//  18 · AI ikki to'plam yozdi — ikkalasi yashil (jest1v2-ai/ai1, ai2 — 1-prompt)
+// ============================================================
+const S18 = mkS(18, [{ v: 'intro' }, { v: 'prompt' }, { v: 'two' }, { v: 'two', snip: true }, { v: 'two', snip: true, sum: true }]);
+function Screen18(p) {
+  return <Lesson p={p} S={S18} scene={({ seg }) => <>
+    {seg.v === 'intro' && <div className="pg-two">
+      <Card c={T.ink3} h={t("1–4-bosqich · testni siz yozdingiz", "Этапы 1–4 · тест писали вы")} dim><p><code>describe</code> · <code>it</code> · <code>expect</code>{t(" · FAIL o'qish · yolg'on testlar · chegara", " · чтение FAIL · ложные тесты · граница")}</p></Card>
+      <Card c={JC.ai} h={t("5-bosqich · testni AI yozadi, siz qabul qilasiz", "Этап 5 · тест пишет AI, вы принимаете")} hl><p>{t("Savol endi «qanday yozaman?» emas — ", "Вопрос теперь не «как написать?», а — ")}<b>{t("«bu test xatoni ushlaydimi?»", "«ловит ли этот тест ошибку?»")}</b></p></Card>
+    </div>}
+    {seg.v !== 'intro' && <AiReply who={t("Prompt — ikkala AI'ga bir xil", "Промпт — одинаковый для обоих AI")} prompt={KOD.PROMPT1} tag={t("haqiqiy yurgizish · 04.11", "настоящий запуск · 04.11")} />}
+    {seg.v === 'two' && <div className="pg-two">
+      <AiReply who={t('1-AI (kuchli model)', '1-й AI (сильная модель)')} said={seg.snip ? t(<>«36 test, hammasi o'tdi» · probel: <code>norm()</code> — oddiysiga almashtiradi; «U+202F bo'lishi mumkin» — <b>AI aytdi, lekin tekshirmagan</b></>, <>«36 тестов, все прошли» · пробел: <code>norm()</code> — заменяет обычным; «может быть U+202F» — <b>AI сказал, но не проверил</b></>) : t(<>«36 test, hammasi o'tdi»</>, <>«36 тестов, все прошли»</>)} diff={KOD.AI_DIFF1} hl={seg.snip && !seg.sum} />
+      <AiReply who={t('2-AI (kuchsizroq model)', '2-й AI (модель слабее)')} said={seg.snip ? t(<>«33 test o'tdi» · etalonda <b>ko'rinmas belgining o'zi</b> (U+00A0, 33-satr) · etalon koddan: <code>{'`Jami: ${som(50000)}`'}</code></>, <>«33 теста прошли» · в эталоне <b>сам невидимый символ</b> (U+00A0, строка 33) · эталон из кода: <code>{'`Jami: ${som(50000)}`'}</code></>) : t(<>«33 test o'tdi»</>, <>«33 теста прошли»</>)} diff={KOD.AI_DIFF2} hl={seg.snip && !seg.sum} />
+    </div>}
+    {seg.snip && <CodePanel file="1-AI · texts.spec.ts" lines={kod('AI1_NORM', { 7: 'n' })} focus={['n']} />}
+    {seg.sum && <div className="mk-rule">{t("«Hammasi yashil» — ", "«Всё зелёное» — ")}<b>{t("tekshiruv emas", "не проверка")}</b>{t(". Testning o'zini tekshiramiz.", ". Проверяем сам тест.")}</div>}
+  </>} />;
+}
+
+// ============================================================
+//  19 · Buzib tekshirish: 36 test nimani sezmadi (jest1v2-ai/mutatsiya.txt)
+// ============================================================
+const S19 = mkS(19, [{ rows: 5 }, { rows: 5, col: 0 }, { rows: 5, col: 1, code: true }, { rows: 5, sum: true }]);
 function Screen19(p) {
-  const m = MDT[19];
-  return <MCRetry {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} q={m.q} opts={m.opts} correct={m.correct} ok={m.ok} okShort={<span dangerouslySetInnerHTML={html(m.okShort)} />} wrong={m.wrong}
-    after={<div style={{ display: 'grid', gap: 10 }}>
-      <div className="mk-tag" style={{ color: T.green, margin: 0 }}>Haqiqiy natija — bo'sh loyiha</div>
-      <Term lines={jt(String.raw`
-$ npm i -D typescript@5
-typescript 5.9.3
-$ npm test
-PASS ./order.spec.ts
-  orderTotal
-    ✓ 2 kitob narxini hisoblaydi (2 ms)`)} />
-    </div>} />;
+  return <Lesson p={p} S={S19} scene={({ seg }) => <>
+    <div className="mk-light" style={{ padding: 12 }}><div className="mk-tag">{t("Nechta test qizardi (0 — buzilish sezilmadi) · ", "Сколько тестов покраснело (0 — поломка не замечена) · ")}<code>jest1v2-mutatsiya.sh</code></div><MutTable rows={seg.rows} hlCol={seg.col} /></div>
+    {seg.code && <CodePanel file="1-AI · texts.spec.ts" lines={kod('AI1_STATUS', { 45: 't' })} focus={['t']} />}
+    {seg.sum && <div className="mk-rule">{t("Test soni — sifat emas. Sifat — ", "Число тестов — не качество. Качество — ")}<b>{t("qaysi buzilishni ushlashi", "какую поломку он ловит")}</b>{t(". Qizarmagan joyga test qo'shing.", ". Где не покраснело — добавьте тест.")}</div>}
+  </>} />;
 }
 
 // ============================================================
-//  20 · Amaliyot 4 — No tests found
+//  20 · Tekshiruv 4 — toBeTruthy (jest1v2-out/25)
 // ============================================================
-const P4 = mkS(20, [{ hl: [] }, { hl: [0, 1] }, { hl: [2, 3] }, { hl: [] }], { tableAt: 3 });
-const P4_STEPS = [
-  { t: "Ildizga — order.spec.ts → loyiha ildizi, import './src/order'", cmds: [], exp: "fayl ko'chdi" },
-  { t: 'Sinash', cmds: ['npm test'], exp: 'No tests found, exiting with code 1' },
-  { t: 'Nom — src/order.test.ts', cmds: ['npm test'], exp: 'No tests found' },
-  { t: 'Tiklash — src/order.spec.ts', cmds: ['npm test'], exp: 'PASS' },
-];
-const P4_TROUBLE = [
-  ['2-qadamda PASS', "src/ da eski nusxa qolgan (ikkita fayl) — bittasini o'chiring"],
-  ['delivery.spec.ts ham yurdi', "PASS src/delivery.spec.ts — u joyida, bu normal; order yo'qligiga qarang"],
-];
-const P4_PROOF = { label: 'Xabarning birinchi satri', placeholder: 'npm test natijasining birinchi qatorini qo\'ying', check: (v) => /No tests found/i.test(v), wrong: "Jest testni topmaganda nima deydi? O'sha birinchi qatorni nusxalang" };
-function ScreenP4(p) { return <Practice p={p} S={P4} steps={P4_STEPS} trouble={P4_TROUBLE} proof={P4_PROOF} />; }
-
-// ============================================================
-//  21 · m4b-01 xaritasi
-// ============================================================
-const MAP21 = [
-  { t: 'Kirish', s: 's0–s1', d: 'qo\'lda vs test · reja (4 qadam)', m: '' },
-  { t: 'Tushuncha', s: 's2–s4', d: 'funksiya — mashina · Jestbot poygasi (5 hisob qo\'lda vs bitta buyruq) · test', m: "Jest reposida tayyor (3-ekran)" },
-  { t: 'Yozish', s: 's5–s11', d: "o'rnatish (npm i -D jest ts-jest) · test fayli (4 qism) · expect · varaqa (yolg'on PASS) · npm test · 2 test", m: 'joy va nom (4, 17-ekran) · haqiqiy PASS chiqishi (6-ekran)' },
-  { t: 'Buzish', s: 's12–s15', d: "AAA · FAIL (* → +) · test · AI yolg'on testlari", m: "FAIL o'qish tartibi (8-ekran) · kim xato (9-ekran)" },
-  { t: 'Yakun', s: 's16–s17', d: "etalon kartochkasi + noto'g'ri etalon · amaliyot o'z loyihasida · kartochkalar · uyga vazifa deliveryFee", m: 'chegara (13-ekran)' },
-];
-const S21 = mkS(21, [{ hl: [] }, { hl: [2] }, { hl: [3] }, { hl: [4], sum: true }]);
-function Screen21(p) {
-  return <Lesson p={p} S={S21} scene={({ seg }) => <div style={{ display: 'grid', gap: 8 }}>
-    {MAP21.map((b, i) => <div key={i} className={`mk-step${seg.hl.includes(i) ? ' hl' : ''}`} style={{ opacity: seg.hl.length && !seg.hl.includes(i) ? 0.5 : 1 }}>
-      <span style={{ fontFamily: MONO, fontWeight: 700, color: T.accent, minWidth: 22 }}>{i + 1}</span>
-      <div className="t"><b>{b.t} <span style={{ fontFamily: MONO, fontWeight: 500, color: T.ink3, fontSize: 12 }}>{b.s}</span></b><div style={{ fontSize: 13 }}>{b.d}</div>{b.m && (seg.hl.includes(i) || !seg.hl.length) && <div className="exp" style={{ color: T.accent, marginTop: 4 }}>Siz qo'shasiz: {b.m}</div>}</div>
-    </div>)}
-    {seg.sum && <div className="mk-rule">Amaliyot oldidan: repo <code>npm install</code> bilan · test <code>src/</code> ichida · nomi <code>.spec.ts</code></div>}
-  </div>} />;
+const BREAK20 = { 10: "  CANCELLED: '🆕 Yangi'," };
+const T20 = out('25').filter((l, i) => !/buzilmagan|^\d+:/.test(outLines('25')[i].replace(/^## \w+ /, '').trim()) || /●/.test(outLines('25')[i]));
+function Screen20(p) {
+  return MC(p, 20, {
+    above: <div style={{ display: 'grid', gap: 8 }}>
+      <CodePanel file="1-AI · texts.spec.ts" lines={kod('AI1_STATUS', { 45: 't' })} focus={['t']} />
+      <CodePanel file={t("texts.ts · buzilgan", "texts.ts · сломан")} lines={kod('TX_STATUS', { 10: 'x' }, 6, 11, BREAK20)} focus={['x']} />
+    </div>,
+    after: <Term title={t("VS Code terminali · CANCELLED «🆕 Yangi» bilan", "терминал VS Code · CANCELLED с «🆕 Yangi»")} lines={T20} />,
+  });
 }
 
 // ============================================================
-//  22 · O'quvchi darsidagi so'zlar
+//  21 · Amaliyot 3 — AI test yozadi, siz buzib tekshirasiz (prompt — jest1v2-ai/p2-prompt.txt aynan)
 // ============================================================
-const DICT22 = [
-  ['mashina — kirish → chiqish', 'funksiya'], ['Jestbot — sinovchi robot', 'Jest (npm test)'], ['robot papkasi — qaysi mashina sinaladi', 'describe'],
-  ['sinov varaqasi — nima tekshiriladi', 'it'], ['etalon kartochkasi — qanday chiqish kutiladi', 'expect(…).toBe(…)'], ["yolg'on test", "expect'siz yoki noto'g'ri etalon"],
-  ['Tayyorlash → Chaqirish → Tekshirish', 'AAA'],
-];
-const S22 = mkS(22, [{ rows: [] }, { rows: [0, 2, 3, 4] }, { rows: [5, 6] }, { rows: [4], sum: true }]);
+const PROMPT21 = KOD.PROMPT2.split('. ').map((s, i, a) => ({ h: escH(s + (i < a.length - 1 ? '.' : '')) }));
+const P21 = mkPractice(21, [[], [0, 1], [2, 3], []], {
+  code: [{ step: 0, file: 'prompt.txt', lines: PROMPT21 }],
+});
+function ScreenP21(p) { return <Practice p={p} S={P21.S} steps={P21.steps} trouble={P21.trouble} proof={P21.proof} code={P21.code} tree={['prompt.txt', F.txs]} />; }
+
+// ============================================================
+//  22 · Sinfga tayyorgarlik: m4b-01 (JestUnitTestLesson.jsx — SCREEN_META 21; s13 FAIL · s15 AI testlari · s16 etalon · HW_V2 deliveryFee)
+// ============================================================
+const DICT22 = [['mashina — kirish → chiqish', 'funksiya'], ['Jestbot — sinovchi robot', 'Jest (npm test)'], ['robot papkasi', 'describe'], ['sinov varaqasi', 'it'], ['etalon kartochkasi', 'expect(…).toBe(…)'], ["yolg'on test", 'expect yo\'q yoki noto\'g\'ri etalon']];
+const ADD22 = [['haqiqiy FAIL o\'qish: ● → Expected / Received → > satr', 's13 «FAIL»'], ['«kim xato: kodmi, etalonmi?»', 's13, s16 noto\'g\'ri etalon'], ['etalon qo\'lda — orderTotal etalonda chaqirilmasin', 's15 AI testlari'], ['chegara: aynan 100 000', 'uyga vazifa deliveryFee'], ['yashil bo\'lsa — bir marta buzdirish', 'amaliyot oxiri']];
+const S22 = mkS(22, [{ v: 'cards' }, { v: 'dict' }, { v: 'add' }, { v: 'pre' }]);
 function Screen22(p) {
-  return <Lesson p={p} S={S22} scene={({ seg }) => <div className="mk-light" style={{ padding: 14 }}>
-    <div className="mk-tag">O'quvchi darsidagi so'z → uning atamasi</div>
-    <table className="mk-tbl"><thead><tr><th>o'quvchi darsida</th><th>atama</th></tr></thead><tbody>
-      {DICT22.map(([a, b], i) => <tr key={a} className={seg.rows.includes(i) ? 'hl' : ''} style={{ opacity: seg.rows.length && !seg.rows.includes(i) ? 0.55 : 1 }}><td>{a}</td><td><code>{b}</code></td></tr>)}
-    </tbody></table>
-    {seg.sum && <div style={{ marginTop: 12, display: 'grid', gap: 8 }}><CodePanel file="order.spec.ts" lines={ORDER_SPEC} focus={['exp']} /><div className="mk-rule">«Etalon kartochkasi, <b>ya'ni expect</b>» — va shu satrni ko'rsating. Terminalda so'zlar inglizcha: PASS, FAIL, Expected, Received.</div></div>}
-  </div>} />;
+  return <Lesson p={p} S={S22} scene={({ seg }) => <>
+    {(seg.v === 'cards' || seg.v === 'dict') && <div className="pg-two">
+      <Card c={T.blue} h={t("O'quvchi · m4b-01 (21 ekran)", "Ученик · m4b-01 (21 экран)")} hl={seg.v === 'cards'}><p><b>{t("KitobShop sayti", "сайт KitobShop")}</b> · <code>orderTotal(price, quantity)</code> → <code>src/order.ts</code> + <code>src/order.spec.ts</code>{t(" · Jestbot (robot) · uyga vazifa ", " · Jestbot (робот) · домашнее задание ")}<code>deliveryFee</code></p></Card>
+      <Card c={T.accent} h={t("Siz · bugun", "Вы · сегодня")}><p>OrderBotNest · <code>som</code>, <code>orderKeyboard</code>, <code>catalogKeyboard</code>{t(" · ko'rinmas belgi · yolg'on testlar · AI testi va buzib tekshirish", " · невидимый символ · ложные тесты · тест от AI и проверка поломкой")}</p></Card>
+    </div>}
+    {seg.v === 'dict' && <table className="pg-dict"><tbody>{DICT22.map(([a, b]) => <tr key={a}><td>{a}</td><td><code>{b}</code></td></tr>)}</tbody></table>}
+    {seg.v === 'add' && <><div className="mk-tag" style={{ margin: 0 }}>{t("Siz qo'shasiz", "Вы добавляете")}</div><table className="pg-dict"><tbody>{ADD22.map(([a, b]) => <tr key={a}><td>{a}</td><td>{b}</td></tr>)}</tbody></table></>}
+    {seg.v === 'pre' && <div className="mk-light" style={{ padding: 14 }}><div className="mk-tag">{t("Amaliyot oldidan", "Перед практикой")}</div><div className="mk-plan">
+      {[t("Repo npm install bilan o'rnatilgan", "Репозиторий установлен через npm install"), t('Test fayli src/ ichida', "Тестовый файл внутри src/"), t('Nomi .spec.ts bilan tugaydi', "Имя заканчивается на .spec.ts")].map((x, i) => <div key={x}><b>0{i + 1}</b><span>{x}</span></div>)}
+    </div></div>}
+  </>} />;
 }
 
 // ============================================================
-//  23 · O'quvchi darsidagi npm i -D jest ts-jest (jest1-out/11)
+//  23 · Qoqiladigan joylar (jest1-out/01, 11–15 — o'quvchi reposi; jest1v2-out) + o'quvchi savollari
 // ============================================================
-const INST23 = jt(String.raw`
---- oldin   jest 30.4.2 · ts-jest 29.4.11
-$ npm i -D jest ts-jest
---- keyin   jest 30.5.2 · ts-jest 29.4.15
-$ npm test
-PASS src/delivery.spec.ts
-PASS src/order.spec.ts
-Tests:       4 passed, 4 total`, { 1: { id: 'v' }, 3: { id: 'v' } });
-const S23 = mkS(23, [{ v: 'card' }, { v: 'run' }, { v: 'run', tip: true }, { v: 'run', tip: true, sum: true }]);
+const CARDS23 = [
+  ['Test topilmadi', 'No tests found, exiting with code 1', 'src/ ichida, nomi .spec.ts'],
+  ["O'quvchi reposida npm ci yiqildi", 'npm ci can only install packages when … in sync', 'npm install — lock fayl sinxron emas'],
+  ["Yolg'on yashil", "PASS, lekin expect yo'q yoki etalon koddan", "har it'da expect; etalon qo'lda"],
+  ["Bir xil ko'rinadi, lekin FAIL", 'Expected = Received ko\'rinishda · serializes to the same string', 'ko\'rinmas belgi (' + ESC + ') · massivga toEqual'],
+  ["Nest bo'lmagan bo'sh loyiha", 'Must use import to load ES Module → describe → TypeScript 7', "o'quvchi reposida yozdirish; bo'sh loyihada config:init, @types/jest, typescript@5"],
+];
+const QA23 = [
+  ['«Test kodni tuzatadimi?»', "Yo'q, faqat xabar beradi; tuzatish — sizniki."],
+  ['«Darsda npm i -D jest ts-jest bor — o\'rnatsam buziladimi?»', "Nest reposida jest allaqachon bor; buyruq faqat kichik versiyaga ko'taradi, testlar yashil (sinalgan)."],
+  ['«Jest faqat Nest uchunmi?»', "Yo'q, istalgan JavaScript/TypeScript loyihasi; Nest'da tayyor sozlangan."],
+  ["«AI testni yozsa bo'ladimi?»", "Ha; keyin to'rt tekshiruv va kamida bitta buzish (19-ekran)."],
+  ['«toBe va === farqi?»', "toBe ham Object.is bilan solishtiradi, lekin natijani PASS yoki FAIL qilib xabar beradi."],
+];
+function QA({ items }) {
+  const [open, setOpen] = useState(-1);
+  return <div className="pg-qa">{items.map(([q, a], i) => <button key={q} onClick={() => setOpen(open === i ? -1 : i)}><b>{q}</b>{open === i && <p>{a}</p>}</button>)}</div>;
+}
+const S23 = mkS(23, [{ on: [] }, { on: [0, 1] }, { on: [2, 3, 4] }, { on: [0, 1, 2, 3, 4], qa: true }]);
 function Screen23(p) {
   return <Lesson p={p} S={S23} scene={({ seg }) => <>
-    <div className="pg-two">
-      <div className="mk-card"><h5>O'quvchi darsi · 5-ekran</h5><div style={{ fontSize: 14, lineHeight: 1.6 }}><code>npm i -D jest ts-jest</code> · <code>package.json</code>: <code>"test": "jest"</code></div></div>
-      <div className="mk-card" style={{ borderColor: T.green }}><h5 style={{ color: T.green }}>O'quvchi reposida allaqachon</h5><div style={{ fontSize: 14, lineHeight: 1.6 }}>jest 30 · ts-jest 29 · <code>"test": "jest"</code> · <code>jest</code> bo'limi</div></div>
-    </div>
-    {seg.v === 'run' && <Term lines={INST23} focus={['v']} />}
-    {seg.tip && <div className="mk-rule">O'quvchi buyruqni bajaraversin — zarari yo'q. Siz: «Nest loyihasi Jest'ni oldindan qo'ygan, bu buyruq uni yangilaydi».</div>}
-    {seg.sum && <div className="n2-warn">Bo'sh loyihada bu ikki qadam <b>yetarli emas</b> — 18-ekrandagi zanjir.</div>}
+    <div className="pg-2c">{CARDS23.map(([h, x, y], i) => <Card key={h} c={i < 2 ? T.blue : T.accent} h={`${i + 1} · ${h}`} hl={seg.on.includes(i) && !seg.qa} dim={seg.on.length > 0 && !seg.on.includes(i)}><p><code>{x}</code></p><p style={{ marginTop: 4 }}>→ {y}</p></Card>)}</div>
+    {seg.qa && <><div className="mk-tag" style={{ margin: 0 }}>{t("O'quvchi so'rasa — bosib oching", "Если ученик спросит — нажмите, чтобы открыть")}</div><QA items={QA23} /></>}
   </>} />;
 }
 
 // ============================================================
-//  24 · Sinfdagi holatlar va o'quvchi savollari
+//  24 · O'z-sinov — 8 savol (MD 24, FINAL)
 // ============================================================
-const STUMBLE24 = [
-  ['Test topilmadi', 'No tests found', 'src/ ichida, .spec.ts'],
-  ["O'rnatish", 'npm ci … in sync', 'npm install'],
-  ["Yolg'on yashil", "PASS, lekin expect yo'q", 'har it da expect'],
-  ["Qizil, kod to'g'ri", "Expected noto'g'ri", 'etalonni qo\'lda hisoblash'],
-  ['Chegara', 'faqat aynan qiymat qizil', 'uch test: yuqori · aynan · past'],
-  ["Bo'sh loyiha", "ESM · describe · TypeScript 6/7", "o'quvchi reposida yozish yoki 3 buyruq"],
-];
-const QA24 = [
-  ['«Test kodni tuzatadimi?»', "yo'q, faqat xabar beradi; tuzatish — sizniki."],
-  ['«Har funksiyaga test kerakmi?»', "hisob, shart va pul bor joyga — albatta; oddiy uzatuvchi funksiyaga shart emas."],
-  ['«toBe va === farqi?»', "toBe ham qat'iy solishtiradi (Object.is), lekin natijani Jest'ga xabar qiladi: PASS yoki FAIL; === faqat true/false."],
-  ['«Jest faqat Nest uchunmi?»', "yo'q, istalgan JavaScript/TypeScript loyihasi; Nest'da tayyor sozlangan."],
-  ['«AI test yozsa bo\'ladimi?»', "ha, lekin har testga ikki savol: expect bormi, etalon to'g'rimi."],
-];
-const S24 = mkS(24, [{ hl: [] }, { hl: [0, 1] }, { hl: [2, 3, 4] }, { hl: [5], qa: true }]);
+const FINAL = MDT[24].final;
 function Screen24(p) {
-  const [open, setOpen] = useState([]);
-  return <Lesson p={p} S={S24} scene={({ seg }) => <>
-    <div className="mk-qa">
-      {STUMBLE24.map(([h, m, a], i) => <button key={i} className={seg.hl.includes(i) ? 'hl' : (seg.hl.length ? 'dim' : '')} style={{ cursor: 'default' }}><b>{i + 1}. {h}</b><p style={{ fontFamily: MONO, fontSize: 12, color: T.accent, margin: '0 0 4px' }}>{m}</p><p>{a}</p></button>)}
-    </div>
-    {seg.qa && <div className="mk-rule" style={{ animation: 'mk-up .45s ease both' }}>Javobni aytmang — <b>terminaldagi xabarni o'quvchi bilan birga o'qing</b>.</div>}
-    {seg.qa && <div className="mk-light" style={{ padding: 12, animation: 'mk-up .45s ease both' }}>
-      <div className="mk-tag">O'quvchi so'rasa — bosing</div>
-      <div className="pg-qa">{QA24.map(([q, a], i) => <button key={i} onClick={() => setOpen((o) => o.includes(i) ? o.filter((x) => x !== i) : [...o, i])}><b>{q}</b>{open.includes(i) && <p>{a}</p>}</button>)}</div>
-    </div>}
-  </>} />;
-}
-// ============================================================
-//  25 · O'z-sinov — 8 savol (Nest/PG-1 bilan bir xil mexanika; M12)
-// ============================================================
-const FINAL = MDT[25].final;
-function Screen25(p) {
   const st = p.stored || {};
   const segs = useMemo(() => {
     const sc = (st.res || []).filter((x) => x && x.correct).length;
-    const text = !st.showResult
-      ? "Hammasini ko'rib chiqdingiz, endi o'zingizni tekshiring. Yakuniy sinov, sakkiz savol, ulardan uchtasi sinfdagi tuzoqlar bo'yicha. Har savolda bitta urinish, javobdan keyin to'g'risi va izohi ochiladi. Olti va undan ko'p, dars o'zlashtirilgan. Kam bo'lsa, ko'rsatilgan ekranlarga qaytib, sinovni qayta topshirasiz."
+    const text = LANG === 'ru' ? (!st.showResult ? RS('FIN_INTRO')
+      : sc >= 6 ? 'Ваш результат сохранён: ' + sc + ' из восьми. Урок усвоен, нажмите «Далее».'
+        : 'Хорошо, одну ошибку вы разобрали. Вернитесь и к экранам остальных красных вопросов. Когда будете готовы, нажмите кнопку «Пройти тест заново».')
+      : !st.showResult
+      ? "Hammasini ko'rib chiqdingiz, endi o'zingizni tekshiring. Yakuniy sinov, sakkiz savol: Jest sozlamasi, ko'rinmas belgi, yolg'on testlar, toBe va toEqual, chegara va AI testi. Har savolda bitta urinish, javobdan keyin to'g'risi va izohi ochiladi. Olti va undan ko'p, dars o'zlashtirilgan. Kam bo'lsa, ko'rsatilgan ekranlarga qaytib, sinovni qayta topshirasiz."
       : sc >= 6
         ? "Natijangiz saqlangan: sakkizdan " + ['nol', 'bir', 'ikki', 'uch', "to'rt", 'besh', 'olti', 'yetti', 'sakkiz'][sc] + ". Dars o'zlashtirilgan, Davom bosing."
         : "Yaxshi, bir xatoyingizni ko'rib chiqdingiz. Qolgan qizil savollarning ekranlariga ham qayting. Tayyor bo'lgach, Sinovni qayta topshirish tugmasini bosing.";
@@ -2400,36 +3557,36 @@ function Screen25(p) {
     const r = [...res]; r[i] = { picked: k, correct: k === q.c }; setRes(r);
     if (k === q.c) sfx.playCorrect(); else sfx.playWrong();
     const sc = r.filter((x) => x && x.correct).length; save({ res: r, score: sc });
-    if (r.filter(Boolean).length === FINAL.length) setTimeout(() => audio.pushOneOff(voice(sc >= 6 ? "Dars o'zlashtirildi. Endi m4b-01 dagi testlar va sinfdagi tuzoqlar sizga tanish bo'ladi." : "Hali bir necha joy mustahkam emas. Ko'rsatilgan ekranlarga qayting, keyin sinovni qayta topshiring.")), 400);
+    if (r.filter(Boolean).length === FINAL.length) setTimeout(() => audio.pushOneOff(voice(sc >= 6 ? t("Dars o'zlashtirildi. Endi o'quvchi «AI test yozdi, hammasi yashil» desa, nimani tekshirishni bilasiz.", RS('FIN_PASS')) : t("Hali bir necha joy mustahkam emas. Ko'rsatilgan ekranlarga qayting, keyin sinovni qayta topshiring.", 'Несколько мест пока не закрепились. Вернитесь к указанным экранам, потом пройдите тест заново.'))), 400);
   };
   const next = () => { if (i < FINAL.length - 1) { setI(i + 1); save({ i: i + 1 }); } else { setShowResult(true); save({ showResult: true }); } };
   const retake = () => { setRes([]); setI(0); setShowResult(false); setAttempt(attempt + 1); save({ res: [], i: 0, showResult: false, attempt: attempt + 1, score: 0 }); };
   return (
-    <Stage kicker="O'z-sinov" idx={p.idx} total={p.total} audio={audio} onBack={p.onBack} onNext={p.onNext} onRestart={p.onRestart} nextReady={finished && showResult} nextDisabled={!(finished && showResult)} lockHint={!finished ? 'Savollarga javob bering' : 'Natijani oching'}>
+    <Stage kicker={t("O'z-sinov", 'Самопроверка')} idx={p.idx} total={p.total} audio={audio} onBack={p.onBack} onNext={p.onNext} onRestart={p.onRestart} nextReady={finished && showResult} nextDisabled={!(finished && showResult)} lockHint={!finished ? t('Savollarga javob bering', 'Ответьте на вопросы') : t('Natijani oching', 'Откройте результат')}>
       <div className="mk-body" style={{ gridTemplateColumns: '1fr', maxWidth: 980, width: '100%', margin: '0 auto' }}>
         <div className="mk-say mc" style={{ overflow: 'auto', paddingRight: 4 }}>
           {showResult ? (<>
-            <p className="mk-eyebrow">O'z-sinov · natija{attempt > 1 ? ` · ${attempt}-urinish` : ''}</p>
-            <h2 className="mk-title mc-q" style={{ fontSize: 'clamp(22px,1.9vw,26px)' }}>{score} / {FINAL.length} — {score >= 6 ? "dars o'zlashtirildi" : "yana bir ko'rib chiqing"}</h2>
+            <p className="mk-eyebrow">{t("O'z-sinov · natija", 'Самопроверка · результат')}{attempt > 1 ? t(` · ${attempt}-urinish`, ` · попытка ${attempt}`) : ''}</p>
+            <h2 className="mk-title mc-q" style={{ fontSize: 'clamp(22px,1.9vw,26px)' }}>{score} / {FINAL.length} — {score >= 6 ? t("dars o'zlashtirildi", 'урок усвоен') : t("yana bir ko'rib chiqing", 'посмотрите ещё раз')}</h2>
             <div style={{ display: 'grid', gap: 8 }}>
               {FINAL.map((f, k) => <div key={k} className="mk-card" style={{ display: 'flex', gap: 12, alignItems: 'center', borderColor: res[k] && res[k].correct ? T.green : T.accent }}>
                 <span style={{ fontFamily: MONO, fontWeight: 700, color: res[k] && res[k].correct ? T.green : T.accent, minWidth: 22 }}>{res[k] && res[k].correct ? '✓' : '✗'}</span>
                 <span style={{ flex: 1, fontSize: 14 }}>{f.q}</span>
-                {res[k] && !res[k].correct && p.onGoto && <button className="mk-btn soft sm" onClick={() => p.onGoto(f.s - 1)}>{f.s}-ekran</button>}
+                {res[k] && !res[k].correct && p.onGoto && <button className="mk-btn soft sm" onClick={() => p.onGoto(f.s - 1)}>{t(`${f.s}-ekran`, `экран ${f.s}`)}</button>}
               </div>)}
             </div>
             <div style={{ display: 'flex', gap: 10, alignItems: 'center', marginTop: 14, flexWrap: 'wrap' }}>
-              {score < 6 && <button className="mk-btn ghost" onClick={retake}>Sinovni qayta topshirish</button>}
-              <span style={{ color: T.ink2, fontSize: 14 }}>Ekranga qaytib «Davom» bossangiz, shu natijaga qaytasiz.</span>
+              {score < 6 && <button className="mk-btn ghost" onClick={retake}>{t('Sinovni qayta topshirish', 'Пройти тест заново')}</button>}
+              <span style={{ color: T.ink2, fontSize: 14 }}>{t('Ekranga qaytib «Davom» bossangiz, shu natijaga qaytasiz.', 'Если вернётесь к экрану и нажмёте «Далее», попадёте обратно к этому результату.')}</span>
             </div>
           </>) : (<>
-            <p className="mk-eyebrow">O'z-sinov · {i + 1} / {FINAL.length} · bitta urinish · to'g'ri: {score}</p>
+            <p className="mk-eyebrow">{t("O'z-sinov", 'Самопроверка')} · {i + 1} / {FINAL.length} · {t("bitta urinish · to'g'ri:", 'одна попытка · верно:')} {score}</p>
             <h2 className="mk-title mc-q">{q.q}</h2>
             <div style={{ display: 'grid', gap: 10 }}>
               {q.o.map((o, k) => { let cls = 'mk-opt'; if (picked !== null) { if (k === q.c) cls += ' ok'; else if (k === picked) cls += ' bad'; else cls += ' off'; } return <button key={k} className={cls} disabled={picked !== null} onClick={() => pick(k)}><span className="l">{String.fromCharCode(65 + k)}</span><span>{o}</span></button>; })}
             </div>
-            {picked !== null && <div className="mk-fb" style={{ '--c': picked === q.c ? T.green : T.accent, '--bg': picked === q.c ? '#E3F5EC' : '#FFF0EB' }}><b>{picked === q.c ? "To'g'ri" : "Noto'g'ri — to'g'risi yashil"}</b><span>{q.e}</span></div>}
-            {picked !== null && <div style={{ marginTop: 14 }}><button className="mk-btn ready" onClick={next}>{i < FINAL.length - 1 ? 'Keyingi savol →' : "Natijani ko'rish →"}</button></div>}
+            {picked !== null && <div className="mk-fb" style={{ '--c': picked === q.c ? T.green : T.accent, '--bg': picked === q.c ? '#E3F5EC' : '#FFF0EB' }}><b>{picked === q.c ? t("To'g'ri", 'Верно') : t("Noto'g'ri — to'g'risi yashil", 'Неверно — правильный ответ зелёный')}</b><span>{q.e}</span></div>}
+            {picked !== null && <div style={{ marginTop: 14 }}><button className="mk-btn ready" onClick={next}>{i < FINAL.length - 1 ? t('Keyingi savol →', 'Следующий вопрос →') : t("Natijani ko'rish →", 'Посмотреть результат →')}</button></div>}
           </>)}
         </div>
       </div>
@@ -2438,110 +3595,111 @@ function Screen25(p) {
 }
 
 // ============================================================
-//  26 · Yakun (M13)
+//  25 · Yakun (M13, M14, M30) — xulosa 6 band, uyga vazifa 5 qadam, eslatma
 // ============================================================
-const SUM26 = [
-  { k: 'ut', t: "Unit-test — bitta funksiya, kirish va etalon; Jest o'quvchi reposida tayyor: src/ ichida, .spec.ts", st: ['fn', 'spec'] },
-  { k: 'die', t: "describe — kim, it — qaysi holat, expect(…).toBe(…) — nima kutiladi; yagona tekshiruvchi — expect", st: ['spec'] },
-  { k: 'pass', t: "PASS: fayl · guruh · ✓ holat · Tests: jami", st: ['run', 'res'] },
-  { k: 'fail', t: "FAIL: ● satr → Expected / Received → funksiya; kim xato — kodmi, etalonmi", st: ['res', 'fn'] },
-  { k: 'fake', t: "Yolg'on testlar va chegara: expect'siz yashil · noto'g'ri etalon qizil · shartga uch test; AI testiga ikki savol", st: ['spec', 'res'] },
-  { k: 'trap', t: "Sinf: No tests found — joy va nom · npm ci → npm install · bo'sh loyihada config:init, @types/jest, typescript@5", st: ['run'] },
+const SUM25 = [
+  { k: 'unit', t: "Unit-test — bitta funksiya va bitta qoida; Telegram, baza va .env kerak emas — bot ham, sayt ham bir xil sinaladi. Smoke — «ishlayaptimi», unit-test — «shu qoida buzilmadimi»", st: ['jest'] },
+  { k: 'cfg', t: "Jest: rootDir: src, testRegex: .spec.ts — fayl sinaladigan faylning yonida; No tests found — joy va nom", st: ['jest'] },
+  { k: 'fail', t: "FAIL: ● → Expected / Received → > satr va raqam; bir xil ko'rinsa — ko'rinmas belgi (" + ESC + ") yoki massivni toBe bilan solishtirish (toEqual)", st: ['jest', 'code'] },
+  { k: 'lie', t: "Yolg'on test ikki xil: expect yo'q · etalon koddan olingan; toBeTruthy — bormi, to'g'rimi emas", st: ['code'] },
+  { k: 'edge', t: "Har status — bitta test; har shartga chegara testi: birinchi, oxirgi, yagona", st: ['code'] },
+  { k: 'ai', t: "AI testini qabul qilish: diff faqat .spec.ts · har it'da expect · etalon qo'lda · kodni buzib, test qizarishini ko'rish. Sinf: m4b-01 — haqiqiy FAIL, «kim xato», chegara, bir marta buzdirish", st: ['ai', 'code'] },
 ];
-const STATIONS26 = [['fn', 'order.ts', T.blue], ['spec', 'order.spec.ts', T.purple], ['run', 'npm test', T.ink], ['res', 'PASS / FAIL', T.green]];
-function SummaryMap26({ hl }) {
-  const cur = SUM26.find((x) => x.k === hl);
+const STATIONS25 = [['jest', 'Jest', JC.jest], ['code', 'Test kodi', T.blue], ['ai', 'AI testi', JC.ai]];
+function SummaryMap25({ hl }) {
+  const cur = SUM25.find((x) => x.k === hl);
   const on = (k) => hl === 'all' || !cur || cur.st.includes(k);
   return <div className="mk-light" style={{ padding: 16 }}>
-    <div className="mk-tag">Bugungi dars — test yo'li</div>
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0,1fr))', gap: 6 }}>
-      {STATIONS26.map(([k, n, c], i) => <div key={k} className={`mk-box${cur && cur.st.includes(k) ? ' hl' : ''}`} style={{ '--c': c, padding: '10px 6px', textAlign: 'center', opacity: on(k) ? 1 : 0.35, animation: `mk-up .4s ${i * 0.06}s ease both` }}><h4 style={{ fontSize: 12.5, margin: 0 }}>{n}</h4></div>)}
+    <div className="mk-tag">{t("Bugungi dars — yozamiz, buzamiz, AI testini tekshiramiz", "Сегодняшний урок — пишем, ломаем, проверяем тест от AI")}</div>
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0,1fr))', gap: 6 }}>
+      {STATIONS25.map(([k, n, c], i) => <div key={k} className={`mk-box${cur && cur.st.includes(k) ? ' hl' : ''}`} style={{ '--c': c, padding: '10px 6px', textAlign: 'center', opacity: on(k) ? 1 : 0.35, animation: `mk-up .4s ${i * 0.06}s ease both` }}><h4 style={{ fontSize: 13, margin: 0 }}>{n}</h4></div>)}
     </div>
   </div>;
 }
-const HOMEWORK26 = [
-  { t: "Funksiya: src/discount.ts — o'z shartingiz (masalan 200 000 dan oshsa −10 %)", c: [] },
-  { t: 'Testlar: src/discount.spec.ts — 3 ta it: yuqori · aynan chegara · past', c: ['npm test'] },
-  { t: 'Buzish: shartni buzing → aynan chegara qizil → tuzating', c: ['npm test'] },
-  { t: "Uyga vazifa namunasi: src/delivery.ts + src/delivery.spec.ts (o'quvchi vazifasi)", c: [] },
-  { t: "GitHub'ga chiqaring va repo linkini platformadagi uyga vazifangizga qo'ying", c: ['git add . && git commit -m "unit-testlar"', 'git push'] },
+const HOMEWORK25 = [
+  { t: "O'z nusxangiz — Telegraf+PG darsidagi o'z reposingizda yangi tarmoq (yoki jest1-start dan)", c: ['git checkout -b tests'] },
+  { t: "Testlar — texts.spec.ts ga: texts.orderPlaced, texts.orderLine, texts.statusChanged, texts.customerStatus; narx qoidasi: price va product.price har xil bo'lgan buyurtma", c: ['npm test'] },
+  { t: "To'rt buzish — som formati · i.price ?? i.product.price → i.product.price · STATUS_UZ matni · o'zingiz tanlagan bitta joy; har biridan keyin npm test va git checkout", c: ['git checkout -- src/api/telegram/texts.ts'] },
+  { t: "README «Testlar» bo'limi: buzish → qizargan test nomi (4 qator); AI bilan yozgan bo'lsangiz — AI qaysi shartni bajarmadi va siz qanday ushladingiz", c: [] },
+  { t: 'Topshirish — git push → repo linki platformadagi uyga vazifaga', c: ['git add . && git commit -m "texts testlari"', 'git push'] },
 ];
-const CHEATSHEET26 = `# Jest-1 — mentor eslatmasi (o'quvchi reposida birinchi unit-test)
-## Jest o'quvchi reposida tayyor (package.json)
-"test": "jest" · "rootDir": "src" · "testRegex": ".*\\.spec\\.ts$" · "transform": ts-jest → test fayli src/ ichida, nomi .spec.ts
-O'rnatish: npm install (npm ci bu repoda yiqiladi — lock sinxron emas)
-## Test fayli
-import { orderTotal } from './order'; · describe('orderTotal', () => { it('2 kitob narxini hisoblaydi', () => { expect(orderTotal(10000, 2)).toBe(20000); }); });
-AAA: Tayyorlash → Chaqirish → Tekshirish
-## Natijani o'qish
-PASS src/order.spec.ts → guruh → ✓ holat → Tests: 1 passed, 1 total
-FAIL: ● guruh › holat → Expected (etalon) / Received (funksiya qaytargan) → > satr → order.spec.ts:6:20 (test yiqilgan joy; xato funksiyada bo'lishi mumkin)
+const CHEATSHEET25 = `# Jest — mentor eslatmasi (OrderBotNest, birinchi testlar)
+## Loyiha
+git fetch --tags · git checkout jest1-start (test yo'q) → jest1-done (texts.spec.ts, keyboards.spec.ts) · npm test [-- texts | -- keyboards] · .env va baza kerak emas
+## Jest qayerdan topadi (package.json → jest)
+rootDir: "src" · testRegex: ".*\\\\.spec\\\\.ts$" · transform: ts-jest → fayl src/ ichida, sinaladigan faylning yonida, nomi .spec.ts · aks holda: No tests found, exiting with code 1
+## Test qolipi
+describe('som', () => { it("120000 ni so'mda yozadi", () => { expect(som(120000)).toBe("120${ESC}000 so'm"); }); });
+## FAIL o'qish
+● describe › it → Expected (etalon) / Received (funksiya qaytargani) → > satr va ^ → at … (texts.spec.ts:5:25)
+## Bir xil ko'rinadi, lekin FAIL
+toLocaleString('ru-RU') minglarni U+00A0 (bo'linmas probel) bilan ajratadi → etalonda ${ESC} ochiq yoziladi, belgining o'zi emas
+massiv va obyekt: toBe → «serializes to the same string» → toEqual · Telegraf tugmaga hide: false qo'shadi → kerakli qismini ajrating
 ## Yolg'on testlar
-expect yo'q (console.log) → doim PASS · noto'g'ri etalon (10002) → to'g'ri kod bilan FAIL → «kim xato?» — etalonni qo'lda hisoblang
-AI testiga ikki savol: expect bormi? etalon to'g'rimi?
-## Chegara
-deliveryFee: total >= 100000 ? 0 : 15000 → uch test: 150 000 · aynan 100 000 · 99 000; >= o'rniga > — faqat aynan 100 000 qizil
-## Sinfdagi tuzoqlar
-No tests found — fayl src/ dan tashqarida yoki nomi .test.ts · Cannot find module './orders' — import nomi · TS1005 — qavs
-Bo'sh loyiha (Nest emas): Must use import to load ES Module → npx ts-jest config:init → Cannot find name 'describe' → npm i -D @types/jest → TypeScript 6/7 ts-jest bilan ishlamaydi → npm i -D typescript@5
-O'quvchi darsidagi npm i -D jest ts-jest — Nest reposida zararsiz (versiya ko'tariladi)
-## O'quvchi darsidagi so'zlar
-mashina = funksiya · Jestbot = Jest · robot papkasi = describe · sinov varaqasi = it · etalon kartochkasi = expect · yolg'on test
-## Sizning uyga vazifangiz
-discount.ts + 3 test (chegara bilan) + bir marta qizil → yashil + deliveryFee testlari → GitHub → repo linki platformadagi uyga vazifaga`;
-const s26Segments = (passed) => [
+expect yo'q (console.log) → doim PASS · etalon koddan: \`Jami: \${som(100000)}\` → som buzilsa ham PASS · toBeTruthy → matn o'zgarsa ham PASS
+## Statuslar va chegara
+har status — bitta it · har shartga chegara: birinchi, oxirgi, yagona sahifa · < va <= farqi faqat chegarada
+## AI testini qabul qilish
+git diff --stat — faqat .spec.ts · har it'da expect · etalonda \${som( / \${STATUS_UZ yo'q · grep -c 'u00a0' (escape matni bormi) · kodni 3–4 joyda buzing — har biri qizarsin
+## Sinfga tayyorgarlik (m4b-01, 21 ekran)
+KitobShop sayti · orderTotal · Jestbot = Jest, papka = describe, varaqa = it, etalon kartochkasi = expect · siz qo'shasiz: haqiqiy FAIL, «kim xato», chegara 100 000, bir marta buzdirish
+## Xatolar
+No tests found → joy va nom · npm ci … in sync → npm install · Cannot find module './texts' → fayl joyi · bo'sh loyiha: Must use import → npx ts-jest config:init · Cannot find name 'describe' → @types/jest · TypeScript 7 → typescript@5
+## Sizning uyga vazifangiz (40–60 daqiqa)
+texts.orderPlaced, orderLine, statusChanged, customerStatus testlari + buyurtma paytidagi narx qoidasi + 4 buzish README jadvalida → GitHub → repo linki platformaga`;
+const s25Segments = (passed) => yakRu(passed, [
   passed
     ? sg('a', "<b>Barakalla!</b> Siz darsni yaxshi o'rgandingiz — bugungi darsni bir qarashda yig'amiz", "Barakalla! Siz darsni yaxshi o'rgandingiz. Endi bugun o'rganganlaringizni bir qarashda yig'amiz.", { hl: 'all' })
     : sg('a', "Dars oxiriga yetdingiz — sinovni <b>qayta topshirishni</b> maslahat beraman", "Dars oxiriga yetdingiz. Yakuniy sinovdan olti ball kerak edi, yakunlashdan oldin sinovni qayta topshirishni maslahat beraman. Hozir esa bugungi darsni bir qarashda yig'amiz.", { hl: 'all' }),
-  sg('b1', "Unit-test — bitta funksiya; Jest o'quvchi reposida <b>tayyor</b>", "Birinchi: unit-test bitta funksiyani kirish va etalon bilan sinaydi. Jest o'quvchi reposida tayyor, test fayli src ichida va nomi spec ts bilan.", { hl: 'ut' }),
-  sg('b2', "describe, it va <b>expect</b> — yagona tekshiruvchi expect", "Ikkinchi: describe qaysi funksiya, it qaysi holat, expect nima kutilayotganini aytadi. Haqiqatan tekshiradigan yagona qator expect.", { hl: 'die' }),
-  sg('b3', "PASS: fayl, guruh, <b>holat va jami</b>", "Uchinchi: PASS natijasida fayl, guruh, belgi bilan holat va pastda jami. Tests satri nechta it tekshirilganini aytadi.", { hl: 'pass' }),
-  sg('b4', "FAIL: <b>Expected va Received</b>, keyin «kim xato» savoli", "To'rtinchi: FAIL'ni tartib bilan o'qing. Nuqtali satr, expected va received, keyin funksiya. Har FAIL'da savol: kod xatomi yoki etalon.", { hl: 'fail' }),
-  sg('b5', "Yolg'on testlar va <b>chegara</b> — uch test va ikki savol", "Beshinchi: expect'siz test doim yashil, noto'g'ri etalon to'g'ri kodni qizil qiladi. Shart bor joyda uchta test, aynan chegara bilan. AI testiga ikki savol.", { hl: 'fake' }),
-  sg('b6', "Sinf: <b>joy va nom</b>, npm install, bo'sh loyiha zanjiri", "Oltinchi, sinf uchun: no tests found bo'lsa joy va nom. Npm ci yiqilsa npm install. Bo'sh loyihada uch qo'shimcha buyruq, TypeScript besh bilan.", { hl: 'trap' }),
-  sg('hw', "<b>Uyga vazifa</b>: o'z funksiyangiz va uchta test, chegara bilan", "Uyga vazifa: o'quvchi reposida o'z funksiyangizni yozing, masalan chegirma: summa ikki yuz mingdan oshsa o'n foiz. Shart bor, shuning uchun uchta test: yuqori, aynan chegara va past. Bir marta chegarani ataylab buzib qizilni ko'ring, keyin tuzating.", { hl: 'hw' }),
-  sg('hw2', "Delivery fee testlarini qo'shing va <b>repo linkini platformaga</b> qo'ying", "Delivery fee testlarini ham qo'shing. GitHub'ga chiqaring va repo linkini platformadagi uyga vazifangizga qo'ying, boshqa hech narsa kerak emas. Qirq-oltmish daqiqa.", { hl: 'hw' }),
-  sg('c', "<b>Eslatmani oling</b>: sozlama, test fayli, PASS/FAIL va tuzoqlar — bir sahifada", "Pastda bir sahifalik eslatma: Jest sozlamasi, test fayli namunasi, natijani o'qish, yolg'on testlar, chegara va sinfdagi tuzoqlar. Nusxalab yoki yuklab oling, sinfda yoningizda tursin.", { hl: 'note' }),
+  sg('b1', "Unit-test — <b>bitta funksiya va bitta qoida</b>; bot ham, sayt ham bir xil sinaladi", "Birinchi: unit-test bitta funksiyani va bitta qoidani tekshiradi. Telegram, baza va env fayli kerak emas, shuning uchun bot ham, sayt ham bir xil sinaladi. Smoke ishlayaptimi deydi, unit-test esa shu qoida buzilmadimi deydi.", { hl: 'unit' }),
+  sg('b2', "Jest faylni <b>src ichidan, .spec.ts nomidan</b> topadi", "Ikkinchi: Jest test faylini src papkasi ichidan va spec ts nomidan topadi. No tests found chiqsa, kodni emas, fayl joyi va nomini tekshiring.", { hl: 'cfg' }),
+  sg('b3', "FAIL: <b>Expected, Received, satr raqami</b>; bir xil ko'rinsa — ko'rinmas belgi yoki toEqual", "Uchinchi: FAIL'ni yuqoridan pastga o'qiysiz: nuqtali satr, expected va received, keyin satr raqami. Ikki qator bir xil ko'rinsa, ko'rinmas belgini qidiring. Massiv va obyektni to equal bilan solishtiring.", { hl: 'fail' }),
+  sg('b4', "Yolg'on test ikki xil: <b>expect yo'q yoki etalon koddan</b>", "To'rtinchi: yolg'on test ikki xil bo'ladi. Birida expect yo'q, ikkinchisida etalon kodning o'zidan yasalgan. To be truthy esa qiymat borligini tekshiradi, to'g'riligini emas.", { hl: 'lie' }),
+  sg('b5', "Har status — <b>bitta test</b>; har shartga <b>chegara testi</b>", "Beshinchi: har statusga bitta test yozasiz. Har shartning chegarasiga alohida test: birinchi, oxirgi va yagona sahifa. Kichik va kichik yoki teng farqi faqat chegarada ko'rinadi.", { hl: 'edge' }),
+  sg('b6', "AI testini <b>buzib tekshirib</b> qabul qilasiz; sinfda — bir marta buzdirish", "Oltinchi: AI yozgan testni sonidan emas, buzib tekshirib qabul qilasiz. Diff, expect, qo'lda etalon va kamida uchta buzish. Sinfda o'quvchi testi yashil bo'lsa, kodni bir marta o'zi buzsin.", { hl: 'ai' }),
+  sg('hw', "<b>Uyga vazifa</b>: buyurtma matnlari testlari va buyurtma paytidagi narx qoidasi", "Uyga vazifa: OrderBotNest'ning o'z nusxangizda buyurtma matnlari uchun testlar yozing. Muhim qoida: xabarda buyurtma paytidagi narx chiqadi, mahsulotning hozirgi narxi emas. Bunga alohida test yozing. AI bilan yozsangiz ham bo'ladi.", { hl: 'hw' }),
+  sg('hw2', "<b>To'rt buzish</b> va README jadvali; repo linki platformaga", "Keyin to'rtta buzish qiling va har birida qaysi test qizarganini README'ga jadval qilib yozing. GitHub'ga chiqaring va repo linkini platformadagi uyga vazifangizga qo'ying. Qirq-oltmish daqiqa.", { hl: 'hw' }),
+  sg('c', "<b>Eslatmani oling</b>: sozlama, FAIL o'qish, yolg'on testlar va AI tekshiruvi — bir sahifada", "Pastda bir sahifalik eslatma: Jest sozlamasi, test qolipi, FAIL o'qish, ko'rinmas belgi, yolg'on testlar, AI testini qabul qilish, xatolar va sinfga tayyorgarlik. Nusxalab yoki yuklab oling, sinfda yoningizda tursin.", { hl: 'note' }),
   sg('z', "Rahmat! <b>Darsni yakunlash</b> tugmasini bosing", "Rahmat. Darsni yakunlash tugmasini bosing, dars tugallangan deb belgilanadi.", { hl: 'note' }),
-];
-function Screen26(p) {
+]);
+function Screen25(p) {
   const completeLesson = useNextLessonAccess();
   const once = useRef(false);
   useEffect(() => { if (once.current) return; once.current = true; completeLesson().catch(() => {}); }, [completeLesson]);
-  const sheet = CHEATSHEET26;
-  const download = () => { try { const b = new Blob([sheet], { type: 'text/markdown' }); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'jest-1-mentor-eslatma.md'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); } catch (e) {} };
+  const sheet = t(CHEATSHEET25, RS('CHEAT'));
+  const download = () => { try { const b = new Blob([sheet], { type: 'text/markdown' }); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = t('jest-birinchi-testlar-mentor-eslatma.md', RS('FILE')); a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); } catch (e) {} };
   const passed = (p.testScore || 0) >= 6;
-  const segments = useMemo(() => s26Segments(passed), [passed]);
+  const segments = useMemo(() => s25Segments(passed), [passed]);
   const b = useBeats(segments, p.review);
   const hl = b.seg.hl;
   const phase = hl === 'hw' ? 'hw' : hl === 'note' ? 'note' : 'sum';
   const shown = segments.slice(0, b.beat + 1).filter((s) => /^b\d/.test(s.id)).length;
   return (
-    <Stage kicker="Yakun" idx={p.idx} total={p.total} audio={b.audio} onBack={p.onBack} onNext={p.onFinish} onRestart={p.onRestart} nextReady={b.done} nextDisabled={!b.done} nextLabel="Darsni yakunlash" lockHint="Ustoz gapirib bo'lgach ochiladi">
+    <Stage kicker={t('Yakun', 'Итог')} idx={p.idx} total={p.total} audio={b.audio} onBack={p.onBack} onNext={p.onFinish} onRestart={p.onRestart} nextReady={b.done} nextDisabled={!b.done} nextLabel={t('Darsni yakunlash', 'Завершить урок')} lockHint={t("Ustoz gapirib bo'lgach ochiladi", 'Откроется, когда учитель договорит')}>
       <div className="mk-body">
-        <Say title={passed ? 'Barakalla! Endi siz bilasiz' : 'Endi siz bilasiz'} segments={segments} beat={b.beat} audio={b.audio} stepManual={b.stepManual} guess={b.guess} answerAsk={b.answerAsk} review={p.review} />
+        <Say title={passed ? t('Barakalla! Endi siz bilasiz', 'Отлично! Теперь вы знаете') : t('Endi siz bilasiz', 'Теперь вы знаете')} segments={segments} beat={b.beat} audio={b.audio} stepManual={b.stepManual} guess={b.guess} answerAsk={b.answerAsk} review={p.review} />
         <div className="mk-scene top" style={{ overflow: 'auto' }}>
           {phase === 'sum' && (<>
-            <SummaryMap26 hl={hl} />
-            <div className="mk-plan">{SUM26.slice(0, shown).map((it, i) => <div key={it.k} className={it.k === hl ? 'hl' : ''} style={{ animation: 'mk-up .45s ease both' }}><b>0{i + 1}</b><span>{it.t}</span></div>)}</div>
+            <SummaryMap25 hl={hl} />
+            <div className="mk-plan">{SUM25.slice(0, shown).map((it, i) => <div key={it.k} className={it.k === hl ? 'hl' : ''} style={{ animation: 'mk-up .45s ease both' }}><b>0{i + 1}</b><span>{it.t}</span></div>)}</div>
           </>)}
           {phase === 'hw' && <div className="mk-light" style={{ padding: 16, animation: 'mk-up .45s ease both' }}>
-            <div className="mk-tag" style={{ color: T.accent }}>Uyga vazifa · 40–60 daqiqa</div>
+            <div className="mk-tag" style={{ color: T.accent }}>{t('Uyga vazifa · 40–60 daqiqa', 'Домашнее задание · 40–60 минут')}</div>
             <div style={{ display: 'grid', gap: 8 }}>
-              {HOMEWORK26.map((h, i) => <div key={i} className="mk-step" style={{ animation: `mk-up .4s ${i * 0.12}s ease both` }}>
+              {HOMEWORK25.map((h, i) => <div key={i} className="mk-step" style={{ animation: `mk-up .4s ${i * 0.12}s ease both` }}>
                 <span style={{ fontFamily: MONO, fontWeight: 700, color: T.accent, minWidth: 20 }}>{i + 1}</span>
                 <div className="t"><b style={{ marginBottom: 2 }}>{h.t}</b>{h.c.map((c) => <div key={c} className="cmd"><code>{c}</code><CopyBtn text={c} /></div>)}</div>
               </div>)}
             </div>
-            <div className="mk-rule" style={{ marginTop: 12 }}><b>Tekshiruvchi qaraydi:</b> har it da expect · chegara qiymati sinalgan · etalonlar qo'lda hisoblanganga mos.</div>
+            <div className="mk-rule" style={{ marginTop: 12 }}>{t(<><b>Tekshiruvchi qaraydi:</b> etalonlar qo'lda (<code>{'${som('}</code> yo'q) · narx qoidasi testi bor · README jadvalida 4 buzish va har biri qizargan.</>, <><b>Проверяющий смотрит:</b> эталоны вручную (нет <code>{'${som('}</code>) · есть тест правила цены · в таблице README 4 поломки, и каждая покраснела.</>)}</div>
           </div>}
           {phase === 'note' && <div className="mk-light" style={{ padding: 14, animation: 'mk-up .45s ease both' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-              <div className="mk-tag" style={{ margin: 0 }}>Mentor eslatmasi · 1 sahifa</div>
-              <div style={{ display: 'flex', gap: 8 }}><CopyBtn text={sheet} /><button className="mk-copy" onClick={download}>yuklab olish (.md)</button></div>
+              <div className="mk-tag" style={{ margin: 0 }}>{t('Mentor eslatmasi · 1 sahifa', 'Памятка ментора · 1 страница')}</div>
+              <div style={{ display: 'flex', gap: 8 }}><CopyBtn text={sheet} /><button className="mk-copy" onClick={download}>{t('yuklab olish (.md)', 'скачать (.md)')}</button></div>
             </div>
             <pre style={{ margin: '10px 0 0', font: `12px/1.5 ${MONO}`, whiteSpace: 'pre-wrap', color: T.ink2, maxHeight: 300, overflow: 'auto' }}>{sheet}</pre>
-            <div className="mk-card" style={{ marginTop: 10, borderColor: T.accent }}><h5 style={{ color: T.accent }}>Kursdagi keyingi mentor darsi</h5><div style={{ fontSize: 15, fontWeight: 700 }}>Jest: edge cases va error path</div><div style={{ fontSize: 13.5, color: T.ink2 }}>toThrow — xato holatlarni sinash, o'quvchi m4b-03 uchun</div></div>
+            <div className="mk-card" style={{ marginTop: 10, borderColor: T.accent }}><h5 style={{ color: T.accent }}>{t('Kursdagi keyingi mentor darsi', 'Следующий урок курса для менторов')}</h5><div style={{ fontSize: 15, fontWeight: 700 }}>{t("Jest: edge cases va xato yo'li", RS('NEXT_T'))}</div><div style={{ fontSize: 13.5, color: T.ink2 }}>{t("toThrow, Service'ni mock bilan sinash va saytning API'siga birinchi HTTP test", RS('NEXT_D'))}</div></div>
           </div>}
         </div>
       </div>
@@ -2552,20 +3710,20 @@ function Screen26(p) {
 // ============================================================
 //  Muqova va ildiz
 // ============================================================
-function Cover({ onStart }) {
+function Cover({ onStart, resume }) {
   return (
     <div className="mk-cover"><div className="card">
-      <p className="mk-eyebrow">Mentor kursi · Jest</p>
-      <h1>{LESSON_TITLE}</h1>
-      <p>Bu dars ovozli. Ustoz har ekranda gapiradi, ekran u bilan birga o'zgaradi. Quloqchin yoki ovoz balandligini tekshiring.</p>
+      <p className="mk-eyebrow">{t("Mentor kursi · Jest", "Курс для менторов · Jest")}</p>
+      <h1>{t(LESSON_TITLE, RS('TITLE'))}</h1>
+      <p>{t("Bu dars ovozli. Ustoz har ekranda gapiradi, ekran u bilan birga o'zgaradi. Quloqchin yoki ovoz balandligini tekshiring.", 'Урок озвучен. На каждом экране говорит учитель, экран меняется вместе с ним. Проверьте наушники или громкость.')}</p>
       <ul>
-        {["Jami taxminan 1 soat: ovoz ~21 daqiqa · to'rt amaliyot 35 daqiqa · 4 tekshiruv · o'z-sinov 8 savol. 12-ekrandan keyin tanaffus qilsangiz bo'ladi", "Kerak: Nest darslari o'tilgan · o'quvchi reposi (IntroNestArxitechture) · Node.js 20+ · VS Code", "Loyiha: o'quvchi reposi — testlar src/ ichida, misol o'quvchi m4b-01 dagi orderTotal"].map((x) => <li key={x}>{x}</li>)}
+        {t(["Jami taxminan 1 soat 10–25 daqiqa: ovoz ~24 daqiqa · uchta amaliyot 45–60 daqiqa · 4 tekshiruv · o'z-sinov 8 savol. 11-ekrandan keyin tanaffus qilsangiz bo'ladi", "Kerak: Telegraf + PostgreSQL mentor darsi (OrderBotNest kompyuteringizda) · Node.js 20+ · VS Code · AI yordamchi (Antigravity, Claude Code, Codex yoki Copilot). Baza va bot tokeni kerak emas", 'Loyiha: github.com/Azizbekcrypto/OrderBotNest — jest1-start tegidan boshlaysiz'], RS('COVER')).map((x) => <li key={x}>{x}</li>)}
       </ul>
-      <button className="mk-btn ready" onClick={onStart}>Boshlash →</button>
+      <CoverStart onStart={onStart} resume={resume} />
     </div></div>
   );
 }
-const SCREENS = [Screen1, Screen2, Screen3, Screen4, Screen5, Screen6, ScreenP1, Screen8, Screen9, Screen10, Screen11, ScreenP2, Screen13, Screen14, Screen15, ScreenP3, Screen17, Screen18, Screen19, ScreenP4, Screen21, Screen22, Screen23, Screen24, Screen25, Screen26];
+const SCREENS = [Screen1, Screen2, Screen3, Screen4, Screen5, Screen6, Screen7, ScreenP8, Screen9, Screen10, Screen11, Screen12, Screen13, Screen14, Screen15, Screen16, ScreenP17, Screen18, Screen19, Screen20, ScreenP21, Screen22, Screen23, Screen24, Screen25];
 const PRACTICE_COUNT = SCREENS.filter((S) => /^ScreenP\d/.test(S.name)).length;
 export default function JestUnitMentorLesson({ studentName, lang = 'uz', onFinished, startAt }) {
   setLang(lang);
@@ -2579,6 +3737,7 @@ export default function JestUnitMentorLesson({ studentName, lang = 'uz', onFinis
   const [seen, setSeen] = useState({});
   const [rev, setRev] = useState(0);
   const [mode, setMode] = useState('live');
+  const sv = useMentorSave({ id: LESSON_ID, total, startAt, started, idx, answers, seen, setIdx, setAnswers, setSeen, setStarted });
   const startTime = useRef(Date.now());
   const finished = useRef(false);
   const onAnswer = useCallback((payload) => setAnswers((a) => ({ ...a, [idx]: payload })), [idx]);
@@ -2603,8 +3762,900 @@ export default function JestUnitMentorLesson({ studentName, lang = 'uz', onFinis
       answers: Object.entries(answers).map(([i, a]) => ({ screen: Number(i) + 1, ...a })),
     });
   };
-  if (!started) return <Cover onStart={() => setStarted(true)} />;
+  if (!started) return <Cover onStart={sv.start} resume={sv.resume} />;
   const S = SCREENS[idx];
   const fin = Object.values(answers).find((a) => a && a.type === 'final');
   return <S key={`${idx}:${rev}`} idx={idx} total={total} lang={lang} stored={answers[idx]} testScore={fin ? fin.score : 0} seen={!!seen[idx]} review={mode === 'review' && !!seen[idx]} onAnswer={onAnswer} onNext={next} onBack={idx > 0 ? () => { setMode('review'); setIdx((i) => i - 1); } : null} onFinish={finish} onGoto={goto} onRestart={restart} />;
 }
+
+// ============================================================
+//  RU — AVTO: feedback/F-1029-02-mentor-kurs/dev/ru-qur.py (manba: ru/jest1-*.json, ru/jest1-sahna.js). M24: UZ bo'laklarga tegilmaydi.
+//  Uslub: «Вы», dasturlash atamalari inglizcha; kod va haqiqiy chiqishlar — loyihadagidek. QO'LDA TAHRIRLANMAYDI.
+// ============================================================
+
+// --- sahna (ru/jest1-sahna.js) ---
+// Jest-1 · sahna ruschasi (M24): modul darajasidagi ro'yxatlar va ekran obyektlariga qo'shimcha. ru() bitta obyektga bir marta.
+var RU_S = {
+  S1: { plan: ['Зачем и где', 'Первый тест', 'Ложные тесты', 'Статусы и граница', 'Тест от AI', 'Подготовка к классу'] },
+};
+ru(T2_SMOKE, [null, { h: '<span class="cm"># база shop_smoke · каждый шаг в отдельном процессе node · перезапуск · 5 клиентов одновременно</span>' }, { h: '<span class="ok">ИТОГ: 5/5 ✓</span>' }]);
+ru(PAGES15, [[null, 'первая'], [null, 'в середине'], [null, 'последняя'], [null, 'единственная']]);
+ru(MUT, [[null, 'som: ru-RU → en-US («120,000»)'], [null, 'строка корзины: текущая цена вместо цены заказа'], [null, 'orderKeyboard: кнопки и при CANCELLED'], [null, 'catalogKeyboard: ▶ и на последней странице'], [null, 'изменился текст STATUS_UZ.NEW']]);
+ru(MUT_COLS, [['Мы', null], null, null]);
+ru(DICT22, [['машина — вход → выход', 'функция'], ['Jestbot — робот-проверяльщик', null], ['папка робота', null], ['лист проверки', null], ['карточка эталона', null], ['ложный тест', 'нет expect или неверный эталон']]);
+ru(ADD22, [['чтение настоящего FAIL: ● → Expected / Received → строка >', null], ['«кто ошибся: код или эталон?»', 's13, s16 неверный эталон'], ['эталон вручную — orderTotal в эталоне не вызывается', 's15 тесты от AI'], ['граница: ровно 100 000', 'домашнее задание deliveryFee'], ['если зелёный — пусть один раз сломают', 'конец практики']]);
+ru(CARDS23, [
+  ['Тест не найден', null, 'внутри src/, имя .spec.ts'],
+  ['В репозитории ученика упал npm ci', null, 'npm install — lock-файл не синхронен'],
+  ['Ложный зелёный', 'PASS, но нет expect или эталон из кода', 'в каждом it — expect; эталон вручную'],
+  ['Выглядит одинаково, но FAIL', 'Expected = Received на вид · serializes to the same string', 'невидимый символ (' + ESC + ') · для массива toEqual'],
+  ['Пустой проект не на Nest', null, 'писать в репозитории ученика; в пустом проекте config:init, @types/jest, typescript@5'],
+]);
+ru(QA23, [
+  ['«Тест исправляет код?»', 'Нет, только сообщает; исправлять — вам.'],
+  ['«В уроке есть npm i -D jest ts-jest — если установлю, всё сломается?»', 'В репозитории Nest jest уже есть; команда только поднимает минорную версию, тесты зелёные (проверено).'],
+  ['«Jest только для Nest?»', 'Нет, любой проект на JavaScript/TypeScript; в Nest он уже настроен.'],
+  ['«Можно, чтобы тест написал AI?»', 'Да; потом четыре проверки и хотя бы одна поломка (экран 19).'],
+  ['«Чем toBe отличается от ===?»', 'toBe тоже сравнивает через Object.is, но сообщает результат как PASS или FAIL.'],
+]);
+ru(SUM25, [
+  { t: 'Unit-тест — одна функция и одно правило; Telegram, база и .env не нужны — бот и сайт проверяются одинаково. Smoke — «работает ли», unit-тест — «не нарушено ли это правило»' },
+  { t: 'Jest: rootDir: src, testRegex: .spec.ts — файл рядом с проверяемым файлом; No tests found — место и имя' },
+  { t: 'FAIL: ● → Expected / Received → строка > и номер; выглядит одинаково — невидимый символ (' + ESC + ') или массив сравнили через toBe (toEqual)' },
+  { t: 'Ложный тест бывает двух видов: нет expect · эталон взят из кода; toBeTruthy — есть ли, а не верно ли' },
+  { t: 'Каждый статус — один тест; на каждое условие тест границы: первая, последняя, единственная' },
+  { t: 'Приём теста от AI: diff только .spec.ts · в каждом it — expect · эталон вручную · сломать код и увидеть, как тест краснеет. Класс: m4b-01 — настоящий FAIL, «кто ошибся», граница, один раз сломать' },
+]);
+ru(STATIONS25, [null, [null, 'Код теста', null], [null, 'Тест от AI', null]]);
+ru(HOMEWORK25, [
+  { t: 'Своя копия — новая ветка в своём репозитории с урока Telegraf+PG (или от jest1-start)' },
+  { t: 'Тесты — в texts.spec.ts: texts.orderPlaced, texts.orderLine, texts.statusChanged, texts.customerStatus; правило цены: заказ, где price и product.price разные' },
+  { t: 'Четыре поломки — формат som · i.price ?? i.product.price → i.product.price · текст STATUS_UZ · одно место на ваш выбор; после каждой npm test и git checkout' },
+  { t: 'Раздел README «Тесты»: поломка → имя покрасневшего теста (4 строки); если писали с AI — какое условие AI не выполнил и как вы это поймали' },
+  { t: 'Сдача — git push → ссылка на репозиторий в домашнее задание на платформе' },
+]);
+RU_S.SPOKEN = [['бэкслеш u ноль ноль а ноль', ESC], ['ноль ноль а ноль', '00a0'], ['ноль ноль два ноль', '0020'], ['texts spec ts', 'texts.spec.ts'], ['keyboards spec ts', 'keyboards.spec.ts'], ['texts ts', 'texts.ts'], ['spec ts', '.spec.ts'], ['test ts', '.test.ts'],
+  ['to strict equal', 'toStrictEqual'], ['to be undefined', 'toBeUndefined'], ['to be truthy', 'toBeTruthy'], ['to equal', 'toEqual'], ['to be', 'toBe'], ['to locale string', 'toLocaleString'], ['Object is', 'Object.is'], ['console log', 'console.log'], ['no tests found', 'No tests found'],
+  ['Root dir src', 'rootDir: src'], ['root dir src', 'rootDir: src'], ['Test regex', 'testRegex'], ['test regex', 'testRegex'], ['transform ts jest', 'transform: ts-jest'], ['ts jest', 'ts-jest'], ['order keyboard', 'orderKeyboard'], ['catalog keyboard', 'catalogKeyboard'],
+  ['hide false', 'hide: false'], ['git diff stat', 'git diff --stat'], ['jest один start', 'jest1-start'], ['package json', 'package.json'], ['Describe som', "describe('som')"], ['npm test keyboards', 'npm test -- keyboards'], ['npm test texts', 'npm test -- texts'], ['delivery fee', 'deliveryFee'], ['order total', 'orderTotal']];
+RU_S.TITLE = 'Первые тесты для OrderBotNest';
+RU_S.EYEBROW = 'Курс для менторов · Jest';
+RU_S.COVER = ['Всего около 1 часа 10–25 минут: озвучка ~24 минуты · три практики 45–60 минут · 4 проверки · самопроверка 8 вопросов. После экрана 11 можно сделать перерыв', 'Нужно: урок для менторов Telegraf + PostgreSQL (OrderBotNest на вашем компьютере) · Node.js 20+ · VS Code · AI-помощник (Antigravity, Claude Code, Codex или Copilot). База и токен бота не нужны', 'Проект: github.com/Azizbekcrypto/OrderBotNest — начинаете с тега jest1-start (= tgpg-done); каждый вывод — из настоящего запуска'];
+RU_S.FIN_INTRO = 'Вы всё посмотрели, теперь проверьте себя. Итоговый тест, восемь вопросов: настройка Jest, невидимый символ, ложные тесты, toBe и toEqual, граница и тест от AI. На каждый вопрос одна попытка, после ответа откроются верный ответ и пояснение. Шесть и больше — урок усвоен. Если меньше, вернитесь к экранам красных вопросов и пройдите тест заново.';
+RU_S.FIN_PASS = 'Урок усвоен. Теперь, если ученик скажет «AI написал тест, всё зелёное», вы знаете, что проверить.';
+RU_S.NEXT_T = 'Jest: edge cases и путь ошибки';
+RU_S.NEXT_D = 'toThrow, проверка Service через mock и первый HTTP-тест для API сайта';
+RU_S.FILE = 'jest-pervye-testy-pamyatka-mentora.md';
+RU_S.YAK = {
+  b1: ['Unit-тест — <b>одна функция и одно правило</b>; бот и сайт проверяются одинаково', 'Первое: unit-тест проверяет одну функцию и одно правило. Telegram, база и env-файл не нужны, поэтому бот и сайт проверяются одинаково. Smoke говорит, работает ли, а unit-тест — не нарушено ли это правило.'],
+  b2: ['Jest находит файл <b>внутри src, по имени .spec.ts</b>', 'Второе: Jest находит тестовый файл внутри папки src и по имени spec ts. Если вышло no tests found, проверяйте не код, а место и имя файла.'],
+  b3: ['FAIL: <b>Expected, Received, номер строки</b>; выглядит одинаково — невидимый символ или toEqual', 'Третье: FAIL читаете сверху вниз: строка с точкой, expected и received, потом номер строки. Если две строки выглядят одинаково, ищите невидимый символ. Массив и объект сравнивайте через to equal.'],
+  b4: ['Ложный тест двух видов: <b>нет expect или эталон из кода</b>', 'Четвёртое: ложный тест бывает двух видов. В одном нет expect, в другом эталон сделан из самого кода. А to be truthy проверяет, что значение есть, а не что оно верное.'],
+  b5: ['Каждый статус — <b>один тест</b>; на каждое условие — <b>тест границы</b>', 'Пятое: на каждый статус пишете один тест. На границу каждого условия — отдельный тест: первая, последняя и единственная страница. Разница между «меньше» и «меньше или равно» видна только на границе.'],
+  b6: ['Тест от AI принимаете, <b>проверив поломкой</b>; в классе — один раз сломать', 'Шестое: тест от AI принимаете не по количеству, а проверив поломкой. Diff, expect, эталон вручную и хотя бы три поломки. Если в классе тест ученика зелёный, пусть он сам один раз сломает код.'],
+  hw: ['<b>Домашнее задание</b>: тесты текстов заказа и правило цены на момент заказа', 'Домашнее задание: в своей копии OrderBotNest напишите тесты для текстов заказа. Важное правило: в сообщении выводится цена на момент заказа, а не текущая цена товара. Напишите на это отдельный тест. Можно писать и с AI.'],
+  hw2: ['<b>Четыре поломки</b> и таблица в README; ссылка на репозиторий — на платформу', 'Потом сделайте четыре поломки и для каждой запишите в README таблицей, какой тест покраснел. Выложите на GitHub и вставьте ссылку на репозиторий в своё домашнее задание на платформе. Сорок–шестьдесят минут.'],
+  c: ['<b>Возьмите памятку</b>: настройка, чтение FAIL, ложные тесты и проверка AI — на одной странице', 'Внизу памятка на одну страницу: настройка Jest, шаблон теста, чтение FAIL, невидимый символ, ложные тесты, приём теста от AI, ошибки и подготовка к классу. Скопируйте или скачайте, пусть будет рядом на уроке.'],
+};
+RU_S.CHEAT = `# Jest — памятка ментора (OrderBotNest, первые тесты)
+## Проект
+git fetch --tags · git checkout jest1-start (тестов нет) → jest1-done (texts.spec.ts, keyboards.spec.ts) · npm test [-- texts | -- keyboards] · .env и база не нужны
+## Где Jest ищет (package.json → jest)
+rootDir: "src" · testRegex: ".*\\\\.spec\\\\.ts$" · transform: ts-jest → файл внутри src/, рядом с проверяемым файлом, имя .spec.ts · иначе: No tests found, exiting with code 1
+## Шаблон теста
+describe('som', () => { it("120000 ni so'mda yozadi", () => { expect(som(120000)).toBe("120${ESC}000 so'm"); }); });
+## Чтение FAIL
+● describe › it → Expected (эталон) / Received (что вернула функция) → строка > и ^ → at … (texts.spec.ts:5:25)
+## Выглядит одинаково, но FAIL
+toLocaleString('ru-RU') разделяет тысячи символом U+00A0 (неразрывный пробел) → в эталоне ${ESC} пишется явно, а не сам символ
+массив и объект: toBe → «serializes to the same string» → toEqual · Telegraf добавляет кнопке hide: false → выделите нужную часть
+## Ложные тесты
+нет expect (console.log) → всегда PASS · эталон из кода: \`Jami: \${som(100000)}\` → PASS, даже если som сломана · toBeTruthy → PASS, даже если текст изменился
+## Статусы и граница
+каждый статус — один it · на каждое условие граница: первая, последняя, единственная страница · разница < и <= только на границе
+## Приём теста от AI
+git diff --stat — только .spec.ts · в каждом it — expect · в эталоне нет \${som( / \${STATUS_UZ · grep -c 'u00a0' (есть ли escape-запись) · сломайте код в 3–4 местах — каждое должно покраснеть
+## Подготовка к классу (m4b-01, 21 экран)
+сайт KitobShop · orderTotal · Jestbot = Jest, папка = describe, лист = it, карточка эталона = expect · вы добавляете: настоящий FAIL, «кто ошибся», граница 100 000, один раз сломать
+## Ошибки
+No tests found → место и имя · npm ci … in sync → npm install · Cannot find module './texts' → место файла · пустой проект: Must use import → npx ts-jest config:init · Cannot find name 'describe' → @types/jest · TypeScript 7 → typescript@5
+## Ваше домашнее задание (40–60 минут)
+тесты texts.orderPlaced, orderLine, statusChanged, customerStatus + правило цены на момент заказа + 4 поломки в таблице README → GitHub → ссылка на репозиторий на платформу`;
+
+const RU_MDT = {
+ "1": {
+  "kicker": "Вступление",
+  "eyebrow": "Курс для менторов · Jest",
+  "title": "Пишем первые тесты для OrderBotNest: сначала сами, потом проверяете тест, написанный AI",
+  "seg": {
+   "a": [
+    "Бот заказов работает — сегодня <b>защищаем его правила тестами</b>",
+    "Здравствуйте. На прошлом уроке вы перенесли бот заказов на PostgreSQL. Сегодня защищаем его правила тестами: как записывается цена, какие кнопки видит админ, что происходит на последней странице каталога. На экране результат: десять тестов за полсекунды."
+   ],
+   "b": [
+    "Сначала пишете тест сами и учитесь <b>читать FAIL и PASS</b>",
+    "Сначала вы пишете тест вручную и учитесь читать ответ Jest. Уже первый тест покажет неожиданное: код работает правильно, тест красный, а две строки выглядят одинаково. Причину узнаете на уроке."
+   ],
+   "c": [
+    "Потом тест пишет AI, а вы <b>проверяете его, ломая код</b>",
+    "Потом тест пишет AI. Мы действительно попробовали это с двумя разными AI. Оба написали больше тридцати тестов, все зелёные. Но когда мы нарочно ломали код, некоторые поломки не заметил ни один тест. Вы научитесь этому способу проверки."
+   ],
+   "d": [
+    "Шесть этапов, три практики; в конце <b>два экрана подготовки к классу</b>",
+    "Урок состоит из шести этапов, в трёх практиках вы работаете сами. Последние два экрана — подготовка к классу: карта урока ученика и места, где ученики ошибаются. Не спешите: каждый экран можно прослушать с начала, урок запоминает, где вы остановились. Начинаем."
+   ]
+  }
+ },
+ "2": {
+  "kicker": "Этап 1 · зачем и где",
+  "title": "Smoke проверяет весь бот, unit-тест — одно правило: один не заменяет другой",
+  "seg": {
+   "a": [
+    "На уроке Telegraf+PG <b>smoke проверил весь бот</b>: базу, перезапуск и пять клиентов",
+    "На уроке по Telegraf и PostgreSQL вы запускали smoke-скрипт. Он проверяет весь бот: открывает отдельную базу, перезапускает сервер, отправляет пять клиентов одновременно. Ответ у него один: работает бот или нет."
+   ],
+   "b": [
+    "А unit-тест проверяет <b>одну функцию одним правилом</b>",
+    "Unit-тест устроен иначе. Он вызывает одну функцию и проверяет одно правило: например, на последней странице каталога не должно быть правой стрелки. Smoke этого не заметит, потому что бот всё равно работает. А unit-тест скажет, в какой функции и в какой строке ошибка."
+   ],
+   "c": [
+    "В тесте <b>нет ни Telegram, ни базы</b> — он не знает, бот это или сайт",
+    "Теперь откройте сам проект: папку OrderBotNest с урока по Telegraf и PostgreSQL откройте в VS Code. На экране тест, который напишем сегодня: из файла texts ts в папке src, api, telegram он импортирует только функцию som. Не нужны ни Telegram, ни база, ни env-файл; без env-файла десять тестов прошли за полсекунды. Поэтому и бот, и сайт проверяются одинаково."
+   ],
+   "d": [
+    "Итог: smoke — <b>«работает ли»</b>, unit-тест — «не нарушено ли это правило»",
+    "Итог: smoke отвечает на вопрос, работает ли, а unit-тест — на вопрос, не нарушено ли это правило. Сегодня пишем unit-тесты. Проверка запроса и ответа сайта будет на втором уроке по Jest."
+   ]
+  }
+ },
+ "3": {
+  "kicker": "Этап 1 · внутри",
+  "title": "Настройка Jest уже есть в package.json: файл внутри src/, имя заканчивается на .spec.ts",
+  "seg": {
+   "a": [
+    "В проекте <b>всё готово для тестов</b>: Jest, ts-jest и настройка",
+    "Сначала посмотрим, где Jest ищет тесты. В VS Code откройте файл package json в корне папки OrderBotNest. В четырнадцатой строке команда test: jest. Ниже, с сорок пятой строки, начинается раздел jest. В проекте Nest пакеты jest и ts jest уже установлены, ничего устанавливать не нужно."
+   ],
+   "b": [
+    "Решают две строки: <b><code>rootDir: src</code> и <code>testRegex</code> — <code>.spec.ts</code></b>",
+    "В разделе jest решают две строки: пятьдесят первая и пятьдесят вторая. Root dir src: Jest смотрит только внутрь папки src. Test regex: имя файла должно заканчиваться на spec ts. А transform ts jest в пятьдесят четвёртой строке превращает файл TypeScript в JavaScript."
+   ],
+   "c": [
+    "<b><code>npm test</code> в терминале VS Code</b>: тестового файла пока нет — <code>No tests found</code>",
+    "Теперь в VS Code через меню Terminal откройте новый терминал, он откроется в папке OrderBotNest, и напишите npm test. В проекте пока нет ни одного тестового файла, поэтому Jest пишет no tests found и выходит с кодом один, то есть с ошибкой. Внизу: просмотрено двадцать семь файлов, под test regex подошло ноль."
+   ],
+   "d": [
+    "Итог: если видите <code>No tests found</code> — проверьте <b>место и имя файла</b>",
+    "Итог: если видите no tests found, проверяйте не код, а место и имя файла. Мы проверили: и когда имя test ts, и когда файл лежит вне src, выходит именно это сообщение."
+   ]
+  }
+ },
+ "4": {
+  "kicker": "Проверка 1",
+  "eyebrow": "Проверка · 1 / 4",
+  "title": "Тестовый файл в test/texts.spec.ts — в папке test в корне проекта. Что скажет npm test?",
+  "q": "Вы видели, где Jest ищет тесты, теперь проверим. Первая проверка. Имя тестового файла правильное, заканчивается на spec ts. Но он лежит не внутри src, а в папке test в корне проекта. Что скажет npm test? Выберите вариант.",
+  "ok": "Верно. Так как root dir src, Jest вообще не смотрит в папку test. Мы проверили: no tests found и код один. Чтобы появилась ошибка импорта, Jest должен был открыть файл, а он файла не увидел. Значит, тестовый файл лежит внутри src, рядом с проверяемым файлом.",
+  "okShort": "<code>rootDir: src</code> — <code>test/</code> не виден: <code>No tests found</code>.",
+  "hint": "Какую папку указывает rootDir? Файл внутри этой папки?",
+  "demak": "тестовый файл лежит внутри <code>src/</code>, рядом с проверяемым файлом.",
+  "opts": [
+   "PASS — имя файла заканчивается на .spec.ts",
+   "Cannot find module — сломался путь импорта",
+   "No tests found — файл вне src/",
+   "PASS — Jest сам ищет папку test/"
+  ],
+  "wrong": {
+   "0": "Имя правильное, но место вне rootDir.",
+   "1": "Для ошибки импорта Jest должен открыть файл — а он файла не увидел.",
+   "3": "Для e2e-тестов Nest нужна отдельная настройка; в этом проекте её нет."
+  }
+ },
+ "5": {
+  "kicker": "Этап 2 · первый тест",
+  "title": "Тест — код из трёх частей: какая функция, какая ситуация и какой результат ожидается",
+  "seg": {
+   "a": [
+    "Для первого теста берём <b>функцию <code>som</code></b>: она записывает цену в сумах",
+    "Для первого теста берём самую простую функцию. В VS Code откройте файл texts ts в папке src, api, telegram: в четвёртой строке функция som. Она берёт число и записывает его в сумах для текста бота: сто двадцать тысяч становится «сто двадцать тысяч сум». Каждую цену бот выводит этой функцией."
+   ],
+   "b": [
+    "Тестовый файл <b>лежит рядом</b>: для <code>texts.ts</code> — <code>texts.spec.ts</code>",
+    "Тестовый файл создаёте в этой же папке telegram, рядом с texts ts: в Explorer нажмите на папку правой кнопкой, New File, имя texts spec ts. Имя обязательно должно заканчиваться на spec ts. В первой строке импортируем функцию. Ни Telegraf, ни база не импортируются."
+   ],
+   "c": [
+    "<code>describe</code> — функция, <code>it</code> — ситуация, <b><code>expect … toBe</code> — ожидаемый результат</b>",
+    "Дальше три части. Describe som: о какой функции эти тесты. It: одна ситуация, её имя пишется обычным предложением. Внутри expect: результат som от ста двадцати тысяч должен быть равен эталону внутри to be. Эталон — ожидаемое значение, его пишем вручную."
+   ],
+   "d": [
+    "Итог: <b>вызвать функцию, сравнить с эталоном</b> — каждый тест из этих двух шагов",
+    "Итог: каждый тест состоит из двух шагов: вызываете функцию и сравниваете результат с эталоном, написанным вручную. Теперь запускаем тест: в терминале VS Code npm test, два дефиса и texts. Если добавить имя файла, запустится только этот тестовый файл."
+   ]
+  }
+ },
+ "6": {
+  "kicker": "Этап 2 · первый тест",
+  "title": "Тест красный: Expected и Received выглядят одинаково, но Jest не считает их равными",
+  "seg": {
+   "a": [
+    "FAIL читаем <b>сверху вниз</b>: сначала какой тест упал",
+    "В терминале написали npm test, два дефиса и texts: тест красный. FAIL читаем сверху вниз. Строка с точкой говорит, какой тест упал: тест «сто двадцать тысяч» в группе som. Если тестов много, сначала ищете эту строку."
+   ],
+   "b": [
+    "Дальше две строки: <b><code>Expected</code> — эталон, <code>Received</code> — что вернула функция</b>",
+    "Главное — следующие две строки. Expected — текст, который вы написали в тестовом файле. Received — текст, который функция som вернула на самом деле. Jest сравнивает не число, а эти два текста, и если они не равны, тест падает. Но посмотрите: обе строки одинаковые, сто двадцать тысяч сум."
+   ],
+   "c": [
+    "Внизу <b>номер строки</b>: <code>texts.spec.ts:5:25</code> — пятая строка, знак <code>toBe</code>",
+    "Внизу фрагмент кода: знак «больше» и стрелка показывают место ошибки, пятая строка тестового файла, to be. В самой последней строке снова написаны имя файла и номер строки. В VS Code открываете именно эту строку файла texts spec ts."
+   ],
+   "d": [
+    "Значит, причина в одном месте: <b>пробел в двух текстах — разные символы</b>",
+    "Значит, причина в одном месте: пробел между «сто двадцать» и «тысяч». Вы набрали на клавиатуре обычный пробел, а som поставила другой, невидимый глазу символ. На экране оба выглядят одинаково, а для Jest они разные. На следующем экране вы сравните два текста посимвольно и увидите этот символ своими глазами."
+   ]
+  }
+ },
+ "7": {
+  "kicker": "Этап 2 · внутри",
+  "title": "toLocaleString разделяет тысячи не обычным, а неразрывным пробелом",
+  "seg": {
+   "a": [
+    "<code>toBe</code> <b>сравнивает посимвольно</b>: отличается один символ — не равно",
+    "Теперь выясним причину. To be сравнивает два текста посимвольно, Jest пишет это как Object is. На экране две строки: сверху Expected, текст, который написали вы, снизу Received, текст, который вернула som. Сравниваем символы по одному: один, два, ноль, потом пробел."
+   ],
+   "b": [
+    "Разница в четвёртом символе: <b><code>0020</code> — обычный пробел, <code>00a0</code> — неразрывный пробел</b>",
+    "Вот разница, в четвёртом символе. В Expected обычный пробел, код ноль ноль два ноль. В Received ноль ноль а ноль: неразрывный пробел. На экране он выглядит как обычный пробел, но это другой символ. Его поставил to locale string по правилам русского языка. Все остальные символы одинаковые, они зелёные."
+   ],
+   "c": [
+    "Пишем эталон <b>явно, через <code> </code></b> — теперь тест зелёный и читается",
+    "Код правильный: неразрывный пробел не даёт числу разорваться на две строки в сообщении Telegram. Поэтому исправляем эталон и пишем символ явно: бэкслеш u, ноль ноль а ноль. Второй тест мы добавили для маленького числа. Оба зелёные."
+   ],
+   "d": [
+    "Итог: уже первый тест показал <b>то, чего вы не знали о коде</b>",
+    "Итог: уже первый тест показал то, чего вы не знали. Если expected и received выглядят одинаково, ищите невидимый символ. В эталоне пишите символ явно, а не сам невидимый символ: следующий человек примет его за обычный пробел."
+   ]
+  }
+ },
+ "8": {
+  "kicker": "Практика 1 / 3",
+  "eyebrow": "Сейчас у себя · 10 минут",
+  "title": "Напишите первый тест сами: сначала увидьте красный, потом найдите причину и сделайте зелёным",
+  "seg": {
+   "a": [
+    "Теперь вы: <b>на теге <code>jest1-start</code></b> пишете первый тестовый файл",
+    "Теперь ваша очередь. Открываете папку OrderBotNest с урока по Telegraf и PostgreSQL и переходите на тег jest один start. Env-файл и база не нужны. Займёт десять минут."
+   ],
+   "b": [
+    "Шаги 1–2: тег, файл и <b>эталон с обычным пробелом</b> — увидьте FAIL сами",
+    "На первом шаге переходите на тег через git fetch и checkout, npm test пишет no tests found. На втором пишете файл texts spec ts, эталон — с обычным пробелом с клавиатуры. Npm test texts: красный, две строки одинаковые."
+   ],
+   "c": [
+    "Шаги 3–4: исправление через <b><code> </code></b> и второй тест; подтверждение — строка <code>Tests:</code>",
+    "На третьем шаге пишете в эталоне бэкслеш u ноль ноль а ноль. На четвёртом добавляете второй тест для пятисот. В поле подтверждения скопируйте строку tests из последнего результата."
+   ],
+   "d": [
+    "Если вышло иначе, нажмите кнопку <b>«Вышло иначе?»</b> — откроется окно с решениями",
+    "Если вышло иначе, нажмите кнопку «Вышло иначе?» внизу. Пока не отмечены все четыре пункта и нет подтверждения, «Далее» не откроется. Значит, после этой практики вы пишете тест, читаете FAIL и находите невидимый символ."
+   ]
+  },
+  "steps": [
+   {
+    "t": "Тег",
+    "exp": "No tests found, exiting with code 1"
+   },
+   {
+    "t": "Тест — с обычным пробелом",
+    "exp": "FAIL · Expected: \"120 000 so'm\" · Received: \"120 000 so'm\"",
+    "cmds": [
+     "src/api/telegram/texts.spec.ts (код с 5-го экрана)",
+     null
+    ]
+   },
+   {
+    "t": "Исправление",
+    "exp": "PASS",
+    "cmds": [
+     "эталон \"120 000 so'm\"",
+     null
+    ]
+   },
+   {
+    "t": "Второй тест",
+    "exp": "Tests: 2 passed, 2 total",
+    "cmds": [
+     "it('в маленьком числе нет пробела', …) — som(500) → \"500 so'm\""
+    ]
+   }
+  ],
+  "proof": {
+   "label": "Строка Tests: последнего результата",
+   "placeholder": "Скопируйте строку Tests: …",
+   "wrong": "Оба теста зелёные? Вставьте строку Tests: из результата npm test -- texts."
+  },
+  "trouble": [
+   [
+    "error: pathspec 'jest1-start' did not match",
+    "теги не получены — git fetch --tags, потом checkout"
+   ],
+   [
+    "Your local changes … would be overwritten by checkout",
+    "ваши изменения с урока Telegraf+PG — git stash или commit, потом checkout"
+   ],
+   [
+    "PASS на шаге 2",
+    "эталон вставлен копированием — символ тоже перенёсся; наберите пробел с клавиатуры заново"
+   ],
+   [
+    "Cannot find module './texts'",
+    "файл не в src/api/telegram/ — перенесите рядом с texts.ts"
+   ],
+   [
+    "No tests found",
+    "имя не .spec.ts или файл вне src/ (экраны 3–4)"
+   ]
+  ]
+ },
+ "9": {
+  "kicker": "Этап 3 · ложные тесты",
+  "title": "Тест без expect всегда зелёный: он вызывает функцию, но ничего не проверяет",
+  "seg": {
+   "a": [
+    "Писать тесты вы умеете — теперь посмотрим, <b>как обманывает сам тест</b>",
+    "Писать тесты вы умеете. Теперь посмотрим, как обманывает сам тест. На экране файл yolgon spec ts в той же папке telegram. Первый вид ложного теста: в нём нет expect, только console log. Такой тест часто остаётся после ручной проверки."
+   ],
+   "b": [
+    "Jest вывел результат и <b>сказал PASS</b> — ничего не сравнивалось",
+    "Результат: в терминале Jest вывел значение и сказал PASS. Но ничего не сравнивалось. Для Jest правило простое: если внутри it не брошена ошибка, тест прошёл. Ошибку бросает только expect."
+   ],
+   "c": [
+    "Итог: в каждом <code>it</code> <b>хотя бы один <code>expect</code></b> — иначе это не тест",
+    "Итог: в каждом it должен быть хотя бы один expect, иначе это не тест, а просто вызов. Такой тест найти легко: console log есть, expect нет. Второй вид спрятан гораздо глубже, его посмотрим на следующем экране."
+   ]
+  }
+ },
+ "10": {
+  "kicker": "Этап 3 · внутри",
+  "title": "Если делать эталон из самого кода, при поломке кода ломается и эталон — тест остаётся зелёным",
+  "seg": {
+   "a": [
+    "Два теста проверяют текст корзины: <b>один берёт эталон из <code>som</code>, другой — вручную</b>",
+    "Второй вид. В файле savat spec ts в папке telegram два теста, оба ищут строку «итого» в тексте корзины. В первом эталон сделан из самой функции som, во втором написан вручную. Посмотрите на схему: сейчас som правильная, оба эталона — сто тысяч сум, оба зелёные."
+   ],
+   "b": [
+    "Ломаем код: <b>цена теперь в виде «100,000»</b> — бот пишет неправильно",
+    "Теперь нарочно ломаем код. В четвёртой строке файла texts ts, в функции som, ставим вместо правила русского языка правило английского. Теперь бот пишет цену с запятой: не сто тысяч, а сто, запятая, тысяча. Для клиента это другое число. Запускаем тесты."
+   ],
+   "c": [
+    "Эталон из кода <b>изменился вместе со сломанной <code>som</code></b> — тест зелёный",
+    "Посмотрите на схему. Som теперь пишет сто, запятая, тысяча. Эталон первого теста тоже делается из som, то есть и он стал сто, запятая, тысяча: обе стороны сломались вместе, и тест остался зелёным. Эталон, написанный вручную, не изменился, поэтому второй тест красный."
+   ],
+   "d": [
+    "Итог: <b>эталон пишется вручную</b> — проверяемая функция в эталоне не используется",
+    "Итог: эталон пишется вручную. Проверяемая функция не используется для создания эталона. Если в тесте эта функция вызвана внутри доллара и скобок, это тревожный знак. Теперь найдёте это сами в одном фрагменте кода."
+   ]
+  }
+ },
+ "11": {
+  "kicker": "Проверка 2",
+  "eyebrow": "Проверка · 2 / 4 — какая строка с ошибкой?",
+  "title": "Этот тест остаётся зелёным, даже когда som сломана. Найдите строку-виновника",
+  "q": "Вы видели ложный тест, теперь найдите его сами. Вторая проверка. Этот тест проверяет сообщение о принятом заказе. Он остаётся зелёным, даже когда som сломана. Одна строка делает эталон из самой функции som. Нажмите на эту строку.",
+  "ok": "Верно. В этой строке эталон делается из самой som, поэтому если som сломается, эталон сломается вместе с ней. На экране исправленная строка: эталон вручную, с неразрывным пробелом. Теперь если som сломается, тест покраснеет. Значит, ищите строку, где в эталоне вызвана проверяемая функция.",
+  "okShort": "<code>${som(50000)}</code> — эталон из кода: если <code>som</code> сломается, обе стороны сломаются вместе. Написанный вручную <code>\"Jami: 50 000 so'm\"</code> ловит поломку.",
+  "hint": "В какой строке эталон написан не вручную, а сделан из вызова функции?",
+  "task": "Правило: эталон пишется вручную, проверяемая функция в эталоне не вызывается. В этом тесте одна строка делает эталон из самой <code>som</code>. <b>Нажмите на эту строку.</b>"
+ },
+ "12": {
+  "kicker": "Этап 4 · статусы и граница",
+  "title": "Заказ проходит четыре статуса — по одному тесту на кнопки, которые видит админ при каждом статусе",
+  "seg": {
+   "a": [
+    "Под каждым заказом админ видит <b>кнопки в зависимости от статуса</b>",
+    "Теперь проверим кнопки админа. С урока по Telegraf и PostgreSQL вы знаете: заказ проходит четыре статуса. Под новым заказом кнопки «подтвердить» и «отменить», под подтверждённым — «доставлен» и «отменить». У доставленного или отменённого заказа кнопок нет."
+   ],
+   "b": [
+    "Это правило <b>в одной функции</b>: <code>orderKeyboard</code> — на входе заказ, на выходе клавиатура",
+    "Это правило записано в одной функции: в файле keyboards ts в папке src, api, telegram, с тридцать седьмой строки, order keyboard. Ей передаётся заказ, она возвращает клавиатуру Telegraf или undefined. При нажатии кнопки бот получает строку callback: status, номер заказа и новый статус."
+   ],
+   "c": [
+    "На каждый статус <b>один <code>it</code></b>: две кнопки, две кнопки, <code>toBeUndefined</code>",
+    "Тестовый файл рядом: keyboards spec ts. На каждый статус пишем один it. Помощник buttons в пятой строке берёт из клавиатуры только текст кнопки и callback. В тесте в тридцать первой строке to be undefined: у доставленного и отменённого заказа клавиатуры нет. В терминале все три теста зелёные."
+   ],
+   "d": [
+    "Итог: <b>каждый статус — одна ситуация</b>; пропустите один — это правило не защищено",
+    "Итог: если есть таблица статусов, каждая её строка становится тестом. На четыре статуса мы написали три теста, в последнем два expect. Если пропустить какой-то статус, это правило останется без защиты. Почему в помощнике использован to equal, узнаете на следующем экране."
+   ]
+  }
+ },
+ "13": {
+  "kicker": "Этап 4 · внутри",
+  "title": "Даже если два массива выглядят одинаково, toBe даёт FAIL: он проверяет не содержимое, а тот ли это самый массив",
+  "seg": {
+   "a": [
+    "Один и тот же массив, два сравнения: <b><code>toBe</code> красный, <code>toEqual</code> зелёный</b>",
+    "Сравним два одинаковых массива двумя способами. To be красный, to equal зелёный. Сообщение Jest говорит то же самое: received превращается в одинаковую строку, но to be не считает его равным и предлагает to strict equal."
+   ],
+   "b": [
+    "<code>toBe</code> — <b>тот ли это самый объект</b>; <code>toEqual</code> — равны ли значения внутри",
+    "Причина такая. Для строки и числа to be сравнивает значение. А для массива и объекта он проверяет, один ли это и тот же объект в памяти. Массив, дважды написанный в коде, — это два разных объекта. А to equal сравнивает содержимое по одному элементу."
+   ],
+   "c": [
+    "Telegraf <b>добавляет кнопке <code>hide: false</code></b> — поэтому понадобился помощник",
+    "В клавиатуре есть ещё одна тонкость. Telegraf сам добавляет каждой кнопке поле hide false, в нашем коде его нет. Если сравнивать клавиатуру целиком, это поле пришлось бы писать и в эталоне. Поэтому помощник берёт только текст и callback."
+   ],
+   "d": [
+    "Итог: <b>число и строка — <code>toBe</code>, массив и объект — <code>toEqual</code></b>",
+    "Итог: для числа и строки используйте to be, для массива и объекта — to equal. Если поля, которые добавляет библиотека, лишне утяжеляют тест, перед сравнением выделите нужную часть."
+   ]
+  }
+ },
+ "14": {
+  "kicker": "Этап 4 · статусы и граница",
+  "title": "У отменённого заказа снова появились кнопки — тест точно говорит, какое правило нарушено",
+  "seg": {
+   "a": [
+    "Из условия <b>выпал <code>CANCELLED</code></b>: код работает, сервер тоже не даёт ошибки",
+    "Теперь нарочно ломаем код. Из условия в тридцать девятой строке файла keyboards ts выпал статус «отменён». Бот работает, сервер тоже не даёт ошибки. Но админ снова видит под отменённым заказом кнопки «доставлен» и «отменить». Запускаем тест."
+   ],
+   "b": [
+    "Из трёх тестов один красный: <b>ожидался <code>toBeUndefined</code>, а пришла клавиатура</b>",
+    "Из трёх тестов один красный. Строка с точкой называет правило: доставлен и отменён, кнопок нет. В строке received вместо undefined пришла клавиатура, внутри кнопки «доставлен» и «отменить». Знак «больше» в тридцать третьей строке: статус «отменён»."
+   ],
+   "c": [
+    "Итог: <b>имя теста называет правило</b> — по FAIL сразу видно, какое правило нарушено",
+    "Итог: пишите имя теста как правило, например «отменён, кнопок нет». Тогда по первой строке FAIL вы сразу знаете, какое правило нарушено. Восстанавливаем условие, тест снова зелёный."
+   ]
+  }
+ },
+ "15": {
+  "kicker": "Этап 4 · статусы и граница",
+  "title": "Ошибка чаще всего на границе: отдельный тест для первой, последней и единственной страницы",
+  "seg": {
+   "a": [
+    "Каталог по два на странице: <b>◀ нет на первой, ▶ нет на последней</b>",
+    "Переходим к каталогу. Товары показываются по два на странице. На первой странице нет левой стрелки, на последней нет правой, в середине есть обе. Если товаров меньше двух, страница одна и стрелок нет вообще."
+   ],
+   "b": [
+    "Четыре ситуации — четыре теста: <b>первая, средняя, последняя и единственная страница</b>",
+    "На эти четыре ситуации пишем четыре теста: первая, средняя, последняя и единственная страница. Помощник nav в сорок первой строке файла keyboards spec ts берёт из клавиатуры только строку со стрелками. Пятый тест проверяет закончившийся товар: на него нельзя нажать."
+   ],
+   "c": [
+    "Вместо «меньше» — <b>«меньше или равно»</b>: средняя страница этого не замечает",
+    "Ломаем код: в двадцать первой строке файла keyboards ts вместо знака «меньше» — «меньше или равно». Теперь правая стрелка появляется и на последней странице. Результат: два теста красные, последняя и единственная страница. Тест средней страницы остался зелёным, потому что она не на границе. Jest показал разницу знаком плюс."
+   ],
+   "d": [
+    "Итог: <b>на каждое условие — тест границы</b> — тесты без границы этой ошибки не видят",
+    "Итог: на границу каждого условия пишите отдельный тест: первая, последняя и единственная страница. Если проверять только среднюю страницу, эта ошибка останется скрытой. Разница между «меньше» и «меньше или равно» видна только на границе."
+   ]
+  }
+ },
+ "16": {
+  "kicker": "Проверка 3",
+  "eyebrow": "Проверка · 3 / 4",
+  "title": "Есть только два теста: «первая страница» и «средняя страница». В коде написали page <= pages - 1. Что скажет npm test?",
+  "q": "Вы видели границу, теперь проверим. Третья проверка. Есть только два теста: первая страница и средняя страница. В коде написали «меньше или равно», то есть правая стрелка появляется и на последней странице. Что скажет npm test? Выберите вариант.",
+  "ok": "Верно. На первой и средней странице правая стрелка всё равно есть, ошибка видна только на последней. Мы проверили: с четырьмя тестами покраснели два, последняя и единственная страница. Без этих двух тест зелёный, а ошибка в коде. Значит, зелёный тест говорит только о проверенных ситуациях.",
+  "okShort": "Оба теста не на границе — PASS. Ошибку ловят только тесты последней и единственной страницы.",
+  "hint": "При каком значении page < и <= дают разный результат? Есть ли это значение в тестах?",
+  "demak": "зелёный тест говорит только о проверенных ситуациях.",
+  "opts": [
+   "Оба PASS — ошибка только на последней странице",
+   "Оба FAIL — правило стрелок нарушено",
+   "«средняя страница» FAIL — она получает ▶ дважды",
+   "Ошибка TypeScript — <= здесь не работает"
+  ],
+  "wrong": {
+   "1": "На первой странице ▶ выходит правильно — ошибка там не видна.",
+   "2": "В середине ▶ всё равно есть — и <, и <= дают одинаковый результат.",
+   "3": "<= — правильный TypeScript; ошибка в логике."
+  }
+ },
+ "17": {
+  "kicker": "Практика 2 / 3",
+  "eyebrow": "Сейчас у себя · 15 минут",
+  "title": "Напишите тесты для кнопок админа и каталога, потом один раз сломайте код и увидьте красный",
+  "seg": {
+   "a": [
+    "Теперь вы: <b><code>keyboards.spec.ts</code></b> — статусы и граница каталога",
+    "Теперь ваша очередь. Пишете тестовый файл для keyboards: кнопки админа и страницы каталога. Не копируйте тесты с экрана, пишите сами: эталон каждый раз продумываете сами. Займёт пятнадцать минут."
+   ],
+   "b": [
+    "Шаги 1–2: тесты <b>на каждый статус и четыре страницы</b>; всё зелёное",
+    "На первом шаге пишете для order keyboard тест на каждый статус. На втором — для catalog keyboard тесты первой, последней и единственной страницы. Npm test keyboards: всё должно быть зелёным."
+   ],
+   "c": [
+    "Шаги 3–4: <b>нарочно сломайте</b> код, увидьте красный и восстановите; подтверждение — имя красного теста",
+    "На третьем шаге сломайте одно условие в файле keyboards: статус «отменён» или «меньше или равно». Посмотрите, какой тест покраснел. На четвёртом восстановите код через git checkout. В поле подтверждения напишите имя покрасневшего теста."
+   ],
+   "d": [
+    "Если вышло иначе, нажмите кнопку <b>«Вышло иначе?»</b> — откроется окно с решениями",
+    "Если вышло иначе, нажмите кнопку «Вышло иначе?». Пока не отмечены все четыре пункта и нет подтверждения, «Далее» не откроется. Значит, после этой практики вы пишете тест на каждый статус и границу и сами доказали, что он ловит ошибку."
+   ]
+  },
+  "steps": [
+   {
+    "t": "orderKeyboard",
+    "exp": "3 ✓"
+   },
+   {
+    "t": "catalogKeyboard",
+    "exp": "Tests: … passed",
+    "cmds": [
+     "первая",
+     "последняя",
+     "единственная страница (0, 3",
+     null,
+     null
+    ]
+   },
+   {
+    "t": "Поломка",
+    "exp": "✕ oxirgi sahifada ▶ yo'q или ✕ yetkazilgan va bekor qilingan — tugma yo'q",
+    "cmds": [
+     "удалите условие o.status === 'CANCELLED' в keyboards.ts с 39-й строки или в 21-й строке < → <=",
+     null
+    ]
+   },
+   {
+    "t": "Восстановление",
+    "exp": "всё ✓"
+   }
+  ],
+  "proof": {
+   "label": "Имя теста, покрасневшего (✕) на шаге 3 — не команда",
+   "placeholder": "например: oxirgi sahifada ▶ yo'q",
+   "wrong": "Напишите сюда не команду, а имя теста рядом со знаком ✕ в терминале, например: oxirgi sahifada ▶ yo'q."
+  },
+  "trouble": [
+   [
+    "с toBe: serializes to the same string",
+    "массив — toEqual (экран 13)"
+   ],
+   [
+    "В эталоне нет hide: false — FAIL",
+    "добавляет Telegraf: выделите только text и callback_data или toMatchObject"
+   ],
+   [
+    "На шаге 3 всё ✓",
+    "на сломанное условие нет теста — добавьте тест на эту ситуацию (экран 16)"
+   ]
+  ]
+ },
+ "18": {
+  "kicker": "Этап 5 · тест от AI",
+  "title": "Новый навык: принимать тест, написанный AI — сначала два опыта с AI",
+  "seg": {
+   "a": [
+    "Новый этап, новый навык: <b>тест пишет AI, вы его принимаете</b>",
+    "Теперь начинается новый этап, и это другой навык. За четыре этапа вы писали тесты сами и научились читать FAIL. А на работе тест часто пишет AI. Ваша задача теперь не писать, а принимать: действительно ли тест от AI ловит ошибку. Посмотрим это в реальном опыте с двумя разными AI."
+   ],
+   "b": [
+    "Промпт в одно предложение: <b>«напиши тесты, пусть будут зелёными»</b> — ментор обычно так и пишет",
+    "Опыт был такой. Двум разным AI мы дали одинаковый простой промпт: напиши jest-тесты для texts и keyboards, пусть npm test будет зелёным. Нарочно коротко, потому что ментор часто так и пишет. Каждый AI работал в отдельной копии проекта."
+   ],
+   "c": [
+    "Оба <b>добавили только два тестовых файла</b>, код не трогали: 36 и 33 теста, все зелёные",
+    "Результат выглядит хорошо. Оба добавили только два тестовых файла и не трогали код, git diff stat это подтверждает. Первый написал тридцать шесть тестов, второй тридцать три, все зелёные. Оба сами заметили неразрывный пробел."
+   ],
+   "d": [
+    "Но пробел <b>решили по-разному</b>: один заменяет, другой вставил невидимый символ",
+    "Но пробел они решили по-разному. Первый перед сравнением заменяет неразрывный пробел обычным и написал ещё про один символ: в зависимости от версии Node это может быть другой символ. На нашем Node это не так, мы проверили. А в эталоне второго стоит сам невидимый символ — ловушка с седьмого экрана."
+   ],
+   "e": [
+    "Итог: <b>«всё зелёное» — не проверка</b>; проверять нужно сам тест",
+    "Итог: оба AI выполнили обещание, тесты зелёные. Но зелёный тест не значит хороший тест. Слова AI тоже проверяем. Один надёжный способ узнать, ловит ли тест ошибку, увидите на следующем экране."
+   ]
+  }
+ },
+ "19": {
+  "kicker": "Этап 5 · внутри",
+  "title": "Проверяем набор тестов, ломая код: не покраснел — эта поломка без защиты",
+  "seg": {
+   "a": [
+    "Способ простой: <b>нарочно сломайте код</b> и посчитайте, сколько тестов покраснело",
+    "Способ простой: нарочно сломайте код и посчитайте, сколько тестов покраснело. Если не покраснел ни один, эта поломка без защиты. Мы взяли пять поломок: формат цены, цена в корзине, кнопка отменённого заказа, последняя страница и текст статуса. Проверили все три набора."
+   ],
+   "b": [
+    "Наши <b>десять тестов не заметили двух поломок</b>: тексты мы не проверяли",
+    "Сначала признаем своё. Наши десять тестов не заметили двух поломок: цену в корзине и текст статуса. Причина простая: из файла texts мы проверяли только som. Где нет теста, там нет защиты."
+   ],
+   "c": [
+    "36 тестов <b>не заметили смены текста статуса</b>: <code>toBeTruthy</code> говорит только «есть ли»",
+    "Набор из тридцати шести тестов тоже не заметил, что текст статуса изменился. Его тест проверяет только, что для каждого статуса есть какой-то текст, через to be truthy. Даже если текст изменится, тест зелёный. А во втором наборе, когда сломали som, из тридцати трёх покраснел только один: тесты с эталоном из кода."
+   ],
+   "d": [
+    "Итог: <b>число тестов — не качество</b>, качество — какую поломку он ловит",
+    "Итог: число тестов — не качество. Даже тридцать шесть тестов пропустили одну поломку. Качество — это какую поломку ловит тест. После того как AI написал тесты, сломайте код в трёх-четырёх местах. Туда, где ничего не покраснело, добавьте тест."
+   ]
+  }
+ },
+ "20": {
+  "kicker": "Проверка 4",
+  "eyebrow": "Проверка · 4 / 4",
+  "title": "Тест от AI: expect(STATUS_UZ.CANCELLED).toBeTruthy(). Кто-то поменял текст с «Bekor qilingan» на «Yangi». Что скажет тест?",
+  "q": "Вы видели проверку поломкой, теперь проверим. Четвёртая проверка. Тест от AI проверяет текст статуса «отменён» через to be truthy. Кто-то по ошибке поменял текст на «новый»: клиент видит свой отменённый заказ как новый. Что скажет тест? Выберите вариант.",
+  "ok": "Верно. To be truthy проверяет только, что значение не пустое. Текст «новый» тоже не пустой, поэтому тест зелёный. А клиент видит неверный статус. Если написать эталон точно, тест покраснеет. Значит, to be truthy проверяет, что значение есть, а не что оно верное.",
+  "okShort": "Текст «Yangi» тоже не пустой — PASS. Это ловит точный <code>toBe</code>, ожидающий полный текст статуса.",
+  "hint": "При каких значениях toBeTruthy даёт FAIL? Текст «Yangi» — одно из них?",
+  "demak": "<code>toBeTruthy</code> проверяет, что значение есть, а не что оно верное.",
+  "opts": [
+   "FAIL — toBeTruthy замечает смену текста",
+   "PASS — toBeTruthy говорит только, не пусто ли",
+   "Ошибка TypeScript — изменился тип текста статуса",
+   "FAIL — у двух статусов теперь одинаковый текст"
+  ],
+  "wrong": {
+   "0": "toBeTruthy не сравнивает текст с эталоном — только не пусто ли.",
+   "2": "Оба — string, тип не изменился.",
+   "3": "Место и имя файла не изменились."
+  }
+ },
+ "21": {
+  "kicker": "Практика 3 / 3",
+  "eyebrow": "Сейчас у себя · 20 минут",
+  "title": "Дайте своему AI промпт с точными условиями, потом четыре проверки и три поломки",
+  "seg": {
+   "a": [
+    "Теперь вы: даёте AI <b>промпт с точными условиями</b> — для текстов заказа в <code>texts.ts</code>",
+    "Теперь ваша очередь. Вы поручаете своему AI написать тесты, но на этот раз промптом с точными условиями. Тема: тексты корзины и заказа в файле texts. Промпт копируете кнопкой ниже. Займёт двадцать минут."
+   ],
+   "b": [
+    "Шаги 1–2: промпт и <b>diff — только <code>.spec.ts</code></b>, в эталоне нет <code>${…}</code>",
+    "На первом шаге даёте промпт. На втором проверяете результат: в git diff stat только spec-файл, в каждом it есть expect, в эталоне функция не вызывается внутри доллара и скобок."
+   ],
+   "c": [
+    "Шаги 3–4: <b>три поломки</b> — пусть все покраснеют; подтверждение — непокрасневшая поломка или «все»",
+    "На третьем шаге по очереди ломаете код в трёх местах: формат цены, цена в корзине и текст статуса. После каждой — npm test, потом git checkout. Если какое-то место не покраснело, попросите AI написать тест на него. В поле подтверждения напишите результат."
+   ],
+   "d": [
+    "Если вышло иначе, нажмите кнопку <b>«Вышло иначе?»</b> — откроется окно с решениями",
+    "Если вышло иначе, нажмите кнопку «Вышло иначе?». Пока не отмечены все четыре пункта и нет подтверждения, «Далее» не откроется. Значит, после этой практики вы принимаете тест от AI не по количеству, а проверив его поломкой."
+   ]
+  },
+  "steps": [
+   {
+    "t": "Промпт",
+    "exp": "PASS",
+    "cmds": [
+     "промпт выше — своему AI",
+     null
+    ]
+   },
+   {
+    "t": "Четыре проверки",
+    "exp": "4 ✓",
+    "cmds": [
+     "git diff --stat — только .spec.ts",
+     "в каждом it есть expect",
+     "в эталоне нет ${som( и ${STATUS_UZ",
+     "grep -c 'u00a0' src/api/telegram/texts.spec.ts — больше 0 (есть escape-запись)"
+    ]
+   },
+   {
+    "t": "Три поломки",
+    "exp": "каждая ✕",
+    "cmds": [
+     "texts.ts: 'ru-RU' → 'en-US'",
+     null,
+     "'❌ Bekor qilingan' → '🆕 Yangi' — после каждой npm test и git checkout -- src/api/telegram/texts.ts"
+    ]
+   },
+   {
+    "t": "Непокрасневшее место",
+    "exp": "все три ✕",
+    "cmds": [
+     "AI: «<поломку> не поймал ни один тест — напиши тест на это правило»",
+     "повторите 3-й шаг"
+    ]
+   }
+  ],
+  "proof": {
+   "label": "Результат трёх поломок",
+   "placeholder": "например: покраснели все три · или: цена в корзине — сначала не покраснела, добавил тест",
+   "wrong": "После каждой поломки напишите результат npm test."
+  },
+  "trouble": [
+   [
+    "в git diff --stat есть и texts.ts",
+    "AI изменил код — git checkout -- src/api/telegram/texts.ts, повторите пункт «Не трогай» в промпте"
+   ],
+   [
+    "В эталоне остался ${som(…)}",
+    "AI не выполнил условие — напишите эти строки вручную (экран 10)"
+   ],
+   [
+    "AI сказал «написал явно через  », grep -c 'u00a0' → 0",
+    "в файле сам невидимый символ — так вышло у обоих AI (p2/XULOSA); напишите строки вручную через  , потом npm test"
+   ],
+   [
+    "При поломке цены в корзине всё ✓",
+    "нет теста, где price (цена на момент заказа) и product.price разные — попросите тест, где они отличаются"
+   ],
+   [
+    "После sed или правки файл не изменился",
+    "правьте вручную и сохраните (точка в VS Code — не сохранено)"
+   ]
+  ]
+ },
+ "22": {
+  "kicker": "Этап 6 · подготовка к классу",
+  "eyebrow": "m4b-01 · «Unit-test: Jest»",
+  "title": "Урок ученика: сайт KitobShop, одна функция orderTotal и Jestbot — маленький вариант пути, который вы знаете",
+  "seg": {
+   "a": [
+    "m4b-01 — 21 экран: <b>сайт KitobShop</b>, <code>orderTotal</code> — цена, умноженная на количество",
+    "Теперь подготовка к классу, два экрана. Урок ученика m4b-01, двадцать один экран. Пример — сайт KitobShop: функция order total умножает цену на количество. То есть не бот, а сайт. Но describe, it и expect точно такие же, как сегодня, потому что тест только вызывает функцию."
+   ],
+   "b": [
+    "Урок ученика объясняет на примере <b>робота Jestbot</b> — вы называете слово термином",
+    "Урок ученика объясняет тест на примере робота, робота зовут Jestbot. Папка робота — это describe, лист проверки — это it, карточка эталона — это expect. В классе говорите оба: карточка эталона, то есть expect, и показывайте эту строку."
+   ],
+   "c": [
+    "Вы добавляете: <b>настоящий FAIL, кто ошибся, граница и проверка поломкой</b>",
+    "Что вы добавляете к уроку: урок ученика показывает результат на карточке, а вы прочитайте на проекторе настоящий FAIL. На каждом FAIL спрашивайте: кто ошибся, код или эталон? В домашнем задании пусть проверят delivery fee именно на граничном значении. Если тест зелёный, пусть один раз сломают код."
+   ],
+   "d": [
+    "Итог: перед практикой — <b>тест внутри <code>src/</code>, имя <code>.spec.ts</code></b>, сделан <code>npm install</code>",
+    "Итог: перед практикой проверьте три вещи. Репозиторий установлен через npm install, тестовый файл внутри src, имя заканчивается на spec ts. Предложение по времени: из девяноста минут двадцать пять на практику, потому что на настройку уходит время."
+   ]
+  }
+ },
+ "23": {
+  "kicker": "Этап 6 · подготовка к классу",
+  "title": "Пять ситуаций и готовые ответы — четыре вы сегодня видели сами",
+  "seg": {
+   "a": [
+    "Пять ситуаций, которые обязательно будут в классе — <b>четыре сегодня были и у вас</b>",
+    "Теперь посмотрим пять ситуаций, которые обязательно возникнут на уроке ученика. Четыре вы сегодня видели сами, поэтому скажу коротко. Пятая связана с репозиторием ученика."
+   ],
+   "b": [
+    "Не найдено и <code>npm ci</code> — <b>место, имя и <code>npm install</code></b>",
+    "Первая — no tests found: проверьте место и имя файла. Вторая связана с репозиторием ученика: npm ci падает, потому что package json и lock-файл не синхронны. Сделайте npm install. Это недостаток репозитория, а не ошибка ученика."
+   ],
+   "c": [
+    "Ложный зелёный и одинаковый на вид FAIL — <b><code>expect</code>, эталон вручную, <code>toEqual</code></b>",
+    "Третья: тест зелёный, но expect нет или эталон взят из кода. Четвёртая: строки одинаковые, тест красный: невидимый символ или массив сравнили через to be. Пятая — пустой проект: самый быстрый путь — писать тест в репозитории ученика."
+   ],
+   "d": [
+    "Итог: если ученик говорит «AI написал, зелёное» — <b>пусть сломает одно место</b>",
+    "Итог и способ: если ученик говорит, что AI написал тесты и всё зелёное, пусть сам сломает одно место в коде и увидит, как тест краснеет. Не говорите ответ сразу, прочитайте сообщение в терминале вместе. Внизу готовые ответы на вопросы учеников."
+   ]
+  }
+ },
+ "24": {
+  "kicker": "Самопроверка",
+  "title": "Восемь вопросов. Одна попытка. Шесть — вы прошли",
+  "final": [
+   {
+    "q": "package.json: rootDir: \"src\", testRegex: \".*\\\\.spec\\\\.ts$\". Файл src/order.test.ts. npm test?",
+    "e": "Имя не .spec.ts.",
+    "o": [
+     "No tests found — имя не .spec.ts",
+     "PASS — Jest берёт и .test.ts",
+     "Cannot find module — order не найден",
+     "PASS — достаточно rootDir: src"
+    ]
+   },
+   {
+    "q": "Expected: \"120 000 so'm\" · Received: \"120 000 so'm\" — тест FAIL. Первый шаг?",
+    "e": "toBe сравнивает посимвольно: U+00A0.",
+    "o": [
+     "Переустановить Jest и запустить снова",
+     "Вывести коды символов и сравнить",
+     "Удалить тест и проверить вручную",
+     "Поставить toBeTruthy вместо toBe"
+    ]
+   },
+   {
+    "q": "Внутри it только console.log(som(120000)). Результат?",
+    "e": "Ошибку бросает только expect.",
+    "o": [
+     "FAIL — отсутствие expect считается ошибкой",
+     "No tests found — пустой it не считается",
+     "PASS — Jest ничего не сравнил",
+     "SyntaxError — console.log в тесте запрещён"
+    ]
+   },
+   {
+    "q": "Эталон: ` Jami: ${som(100000)} . som` сломалась. Тест?",
+    "e": "Эталон пишется вручную.",
+    "o": [
+     "FAIL — поломка som сразу замечена",
+     "Ошибка TypeScript — неверная шаблонная строка",
+     "Cannot find module — som не импортировалась",
+     "PASS — эталон сломался вместе с ней"
+    ]
+   },
+   {
+    "q": "expect(buttons).toBe([['◀', '1/3']]) — массивы одинаковые, но FAIL. Причина?",
+    "e": "serializes to the same string.",
+    "o": [
+     "toBe ждёт тот же объект — нужен toEqual",
+     "Знак стрелки в массиве другим кодом",
+     "Jest устарел — не умеет сравнивать массивы",
+     "Эмодзи в массиве хранятся иначе"
+    ]
+   },
+   {
+    "q": "Тесты проверяют только первую и среднюю страницу, в коде ошибка <=. Результат?",
+    "e": "Зелёный тест — только о проверенной ситуации.",
+    "o": [
+     "Оба FAIL — <= ломает все страницы",
+     "Оба PASS — ошибка скрыта на границе",
+     "Средняя FAIL — получает ▶ дважды",
+     "Ошибка TypeScript — <= не для чисел"
+    ]
+   },
+   {
+    "q": "AI написал 36 тестов, все зелёные. Самая надёжная проверка перед приёмом?",
+    "e": "Не число — пойманная поломка.",
+    "o": [
+     "Посчитать тесты и убедиться, что их больше 30",
+     "Перезапустить тесты и снова увидеть зелёный",
+     "Сломать код в 3 местах и увидеть, как тест краснеет",
+     "Спросить AI: «ты всё проверил?»"
+    ]
+   },
+   {
+    "q": "expect(STATUS_UZ.CANCELLED).toBeTruthy(), текст изменился на «Yangi». Тест?",
+    "e": "toBeTruthy — есть ли, а не верно ли.",
+    "o": [
+     "FAIL — текст стал не «отменён», а «новый»",
+     "No tests found — STATUS_UZ не найден",
+     "Ошибка TypeScript — изменился тип текста",
+     "PASS — toBeTruthy только «не пусто ли»"
+    ]
+   }
+  ]
+ },
+ "25": {
+  "kicker": "Итог",
+  "title": "Теперь вы знаете"
+ }
+};
+// RS(k) — darsga xos ruscha (RU_S.k, ru/<dars>-sahna.js); yo'q bo'lsa null → t() o'zbekchani qoldiradi. wrRu — ovoz → «Matn» (RU_S.SPOKEN, keyin wr).
+function RS(k) { return typeof RU_S !== 'undefined' && RU_S[k] != null ? RU_S[k] : null; }
+function wrRu(s) { return wr((RS('SPOKEN') || []).reduce((a, [x, y]) => a.split(x).join(y), s)); }
+function rsY(key, text) { return { key, text, show: wrRu(text) }; }
+// Yakun segmentlari (ru-umumiy.py: sNNSegments → yakRu): umumiy a/z + RU_S.YAK (id bo'yicha)
+function yakRu(passed, segs) {
+  if (LANG !== 'ru') return segs;
+  const Y = { a_pass: rsY('<b>Отлично!</b> Вы хорошо прошли урок — соберём сегодняшний урок одним взглядом', 'Отлично! Вы хорошо прошли урок. Теперь соберём всё, что узнали сегодня, одним взглядом.'), a_fail: rsY('Вы дошли до конца урока — советую <b>пройти тест заново</b>', 'Вы дошли до конца урока. В итоговом тесте нужно было шесть баллов, перед завершением советую пройти тест заново. А сейчас соберём сегодняшний урок одним взглядом.'), z: rsY('Спасибо! Нажмите кнопку <b>«Завершить урок»</b>', 'Спасибо. Нажмите кнопку «Завершить урок», урок будет отмечен как пройденный.'), ...Object.fromEntries(Object.entries(RS('YAK') || {}).map(([k, [key, text]]) => [k, rsY(key, text)])) };
+  return segs.map((s) => ({ ...s, ...(Y[s.id === 'a' ? (passed ? 'a_pass' : 'a_fail') : s.id] || {}) }));
+}
+(function ruMdtQo() {
+  const segRu = (n) => { const r = RU_MDT[n] && RU_MDT[n].seg; if (!r) return undefined; const o = {}; Object.keys(r).forEach((id) => { const [key, text] = r[id]; o[id] = { ...(key != null ? { key } : {}), ...(text != null ? { text, show: wrRu(text) } : {}) }; }); return o; };
+  const head = (n) => { const r = RU_MDT[n] || {}; const o = {}; ['kicker', 'eyebrow', 'title'].forEach((k) => { if (r[k] != null) o[k] = r[k]; }); const s = segRu(n); if (s) o.segments = s; return o; };
+  const mdt = {}; Object.keys(RU_MDT).forEach((n) => { const r = { ...RU_MDT[n] }; if (r.seg) r.seg = MDT[n].seg.map(([id]) => (r.seg[id] ? [null, r.seg[id][0], r.seg[id][1]] : null)); mdt[n] = r; });
+  ru(MDT, mdt);
+  ru(S1, { ...head(1), ...((typeof RU_S !== 'undefined' && RU_S.S1) || {}) });
+  ru(S2, { ...head(2), ...((typeof RU_S !== 'undefined' && RU_S.S2) || {}) });
+  ru(S3, { ...head(3), ...((typeof RU_S !== 'undefined' && RU_S.S3) || {}) });
+  ru(S5, { ...head(5), ...((typeof RU_S !== 'undefined' && RU_S.S5) || {}) });
+  ru(S6, { ...head(6), ...((typeof RU_S !== 'undefined' && RU_S.S6) || {}) });
+  ru(S7, { ...head(7), ...((typeof RU_S !== 'undefined' && RU_S.S7) || {}) });
+  ru(S9, { ...head(9), ...((typeof RU_S !== 'undefined' && RU_S.S9) || {}) });
+  ru(S10, { ...head(10), ...((typeof RU_S !== 'undefined' && RU_S.S10) || {}) });
+  ru(S12, { ...head(12), ...((typeof RU_S !== 'undefined' && RU_S.S12) || {}) });
+  ru(S13, { ...head(13), ...((typeof RU_S !== 'undefined' && RU_S.S13) || {}) });
+  ru(S14, { ...head(14), ...((typeof RU_S !== 'undefined' && RU_S.S14) || {}) });
+  ru(S15, { ...head(15), ...((typeof RU_S !== 'undefined' && RU_S.S15) || {}) });
+  ru(S18, { ...head(18), ...((typeof RU_S !== 'undefined' && RU_S.S18) || {}) });
+  ru(S19, { ...head(19), ...((typeof RU_S !== 'undefined' && RU_S.S19) || {}) });
+  ru(S22, { ...head(22), ...((typeof RU_S !== 'undefined' && RU_S.S22) || {}) });
+  ru(S23, { ...head(23), ...((typeof RU_S !== 'undefined' && RU_S.S23) || {}) });
+  ru(P8.S, { ...head(8), ...((typeof RU_S !== 'undefined' && RU_S.P8_S) || {}) });
+  ru(P8.steps, RU_MDT[8].steps);
+  ru(P8.trouble, RU_MDT[8].trouble);
+  ru(P8.proof, RU_MDT[8].proof);
+  ru(P17.S, { ...head(17), ...((typeof RU_S !== 'undefined' && RU_S.P17_S) || {}) });
+  ru(P17.steps, RU_MDT[17].steps);
+  ru(P17.trouble, RU_MDT[17].trouble);
+  ru(P17.proof, RU_MDT[17].proof);
+  ru(P21.S, { ...head(21), ...((typeof RU_S !== 'undefined' && RU_S.P21_S) || {}) });
+  ru(P21.steps, RU_MDT[21].steps);
+  ru(P21.trouble, RU_MDT[21].trouble);
+  ru(P21.proof, RU_MDT[21].proof);
+  ru(FINAL, RU_MDT[24].final);
+})();

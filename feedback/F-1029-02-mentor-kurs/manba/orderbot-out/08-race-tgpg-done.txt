@@ -1,0 +1,46 @@
+Telegram bot ulandi
+Aziza: /start
+  bot → Aziza: Salom, Aziza! Bu CoddyCamp do'koni boti.
+      /catalog — mahsulotlar
+      /cart — savat
+      /help — yordam
+Bobur: /start
+  bot → Bobur: Salom, Bobur! Bu CoddyCamp do'koni boti.
+      /catalog — mahsulotlar
+      /cart — savat
+      /help — yordam
+Jasur(admin): /start
+  bot → Jasur(admin): Salom, Jasur! Bu CoddyCamp do'koni boti.
+      /catalog — mahsulotlar
+      /cart — savat
+      /help — yordam
+      /orders — buyurtmalar (admin)
+ombor oldin: [{"name":"Planshet","stock":1}]
+Aziza: [tugma add:5]
+  bot → (popup): Planshet savatga qo'shildi (1 ta).
+Bobur: [tugma add:5]
+  bot → (popup): Planshet savatga qo'shildi (1 ta).
+--- ikkalasi bir vaqtda checkout ---
+Aziza: [tugma checkout]
+Bobur: [tugma checkout]
+  bot → Aziza: Buyurtma #1 qabul qilindi!
+      • Planshet × 1 = 300 000 so'm
+      
+      Jami: 300 000 so'm
+      Telefon: +998900000001
+      Holati: 🆕 Yangi
+  bot → Jasur(admin): 🆕 Yangi buyurtma #1 — Aziza, 300 000 so'm. /orders
+  bot → Bobur: Buyurtma berilmadi: Planshet: omborda faqat 0 ta qoldi
+ombor keyin: [{"name":"Planshet","stock":0}]
+orders: [{"id":1,"status":"NEW","total":300000}]
+cart_items: [{"id":2,"user_id":2,"product_id":5,"qty":1}]
+--- admin #1 ni bekor qiladi ---
+Jasur(admin): [tugma status:1:CANCELLED]
+  bot → (popup): #1 → ❌ Bekor qilingan
+  bot → Jasur(admin) (tahrir): #1 · Aziza · 300 000 so'm · ❌ Bekor qilingan
+         Planshet × 1
+  bot → Aziza: Buyurtmangiz #1: ❌ Bekor qilingan
+ombor bekordan keyin: [{"name":"Planshet","stock":1}]
+Jasur(admin): [tugma status:1:CANCELLED]
+  bot → (popup): #1 allaqachon bekor qilingan
+ombor 2-bekordan keyin: [{"name":"Planshet","stock":1}]

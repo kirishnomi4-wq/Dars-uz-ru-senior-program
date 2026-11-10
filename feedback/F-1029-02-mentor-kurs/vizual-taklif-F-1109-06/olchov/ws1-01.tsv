@@ -1,0 +1,25 @@
+ws1-01	1	0,0,1280,720	faqat-matn	413	Do'kon admini kompyuterda panelni ochib qo'yadi: bot buyurtma olsa, yangi qator 
+ws1-01	2	0,0,1280,720	kod/terminal	543	Oddiy HTTP'da server faqat so'ralganda javob beradi: panel so'ramasa, Bobur berg
+ws1-01	3	0,0,1280,720	kod/terminal	749	socket.io — doimiy ulanish kutubxonasi: avval oddiy HTTP so'rovlar (polling), ke
+ws1-01	4	0,0,1280,720	kod/terminal	1245	LiveGateway: har yangi ulanishda handleConnection — tokenni tekshiradi; noto'g'r
+ws1-01	5	0,0,1280,720	kod/terminal+test	704	npm run live -- "" — tokensiz ulanamiz. Gateway disconnect() qiladi. Terminal kl
+ws1-01	6	0,0,1280,720	kod/terminal	757	disconnect() dan keyin return yo'q: klient baribir yopildi, lekin server logi «p
+ws1-01	7	0,0,1280,720	amaliyot	1103	ws1-done tegida serverni ishga tushiring, terminal klienti bilan token, noto'g'r
+ws1-01	8	0,0,1280,720	kod/terminal	1361	Bot buyurtmani bazaga yozib bo'lgach orderChanged(order.id, 'new'); admin holatn
+ws1-01	9	0,0,1280,720	kod/terminal	699	public/admin.html: socket.io klienti serverning o'zidan; io({ auth: { token } })
+ws1-01	10	0,0,1280,720	kod/terminal	752	Panel ochiq; Bobur botda buyuradi — yangi qator o'zi chiqadi; admin tasdiqlaydi 
+ws1-01	11	0,0,1280,720	kod/terminal	981	Bu panelda belgi «Ulangan», terminal klienti order-changed ni oladi, lekin brauz
+ws1-01	12	0,0,1280,720	amaliyot	935	Brauzerda /admin ni oching, telefondan botda buyurtma bering — panel o'zi yangil
+ws1-01	13	0,0,1280,720	kod/terminal	860	Panel belgisi uch holatda: hodisalar keladi · server javob bermayapti, klient o'
+ws1-01	14	0,0,1280,720	jadval	816	Server to'xtadi: transport close → klient har bir necha soniyada xhr poll error;
+ws1-01	15	0,0,1280,720	faqat-matn	586	Server jarayonini muzlatamiz: ulanish uzilmaydi, javob ham yo'q — klient 42 soni
+ws1-01	16	0,0,1280,720	kod/terminal+test	648	Admin noutbukida Wi-Fi o'chdi: ulanish uzilmadi, lekin paket ham o'tmaydi. Panel
+ws1-01	17	0,0,1280,720	faqat-matn	602	Yangi ko'nikma davomi: ikki AI'ga bitta oddiy prompt — «jonli panel, WebSocket b
+ws1-01	18	0,0,1280,720	faqat-matn	586	Haqiqiy PostgreSQL bilan: ikkalasi ishladi — smoke 5/5, tokensiz yopildi, buyurt
+ws1-01	19	0,0,1280,720	kod/terminal+test	660	AI paneli ws://…/ws/orders?token=panel-sir ga ulanadi. Ishlaydi, server tokenni 
+ws1-01	20	0,0,1280,720	amaliyot	1119	O'z AI'ingizga panelga yangi hodisa qo'shtiring — bekor qilingan buyurtma qizil 
+ws1-01	21	0,0,1280,720	faqat-matn	516	O'quvchi darsi: Maydon Jamoa'dagi «8 / 10» — siz bugun panelda qilgan narsaning 
+ws1-01	22	0,0,1280,720	kod/terminal	627	Yo'l, konvert, belgi, tinglovchi — atama bilan birga; README «Real vaqt» jadvali
+ws1-01	23	0,0,1280,720	faqat-matn	462	Belgidan va server terminalidan sabab topiladi: oltita holat, har biri o'z xabar
+ws1-01	24	0,0,1280,720	test	426	Panel GET /admin/orders ni bir marta so'radi. Keyin bot buyurtma oldi. Oddiy HTT
+ws1-01	25	0,0,1280,720	faqat-matn	3084	Endi siz bilasiz

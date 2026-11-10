@@ -1,0 +1,12 @@
+== build ==
+== baza yo'q: hammasi xotirada (tgpg-start) ==
+
+— restart: har qadam alohida jarayonda (server haqiqatan qayta ishga tushadi)
+  ✗ telefon kutish restartdan o'tdi → «Tushunmadim. /help ni bosing.»
+  ✗ savat restartdan o'tdi → «Savat bo'sh. /catalog dan mahsulot tanlang.»
+  ✗ buyurtma restartdan o'tdi → «Hozircha buyurtma yo'q.»
+
+— race: 1 ta Planshet, 5 mijoz bir vaqtda (3 raund); keyin ikki marta bekor
+  (baza ulanmagan — race faqat PostgreSQL bilan sinaladi)
+
+NATIJA: 0/3 ✓

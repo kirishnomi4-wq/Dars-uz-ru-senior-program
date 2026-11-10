@@ -1,0 +1,1157 @@
+[
+{
+"f": "04-yordam.jsx",
+"l": 9,
+"k": "str",
+"x": "Buyurtma boti: AI bilan bazaga ko'chiramiz",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 59,
+"k": "str",
+"x": "update where stock katta yoki teng qty",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 59,
+"k": "str",
+"x": "update stock minus qty where stock katta yoki teng qty",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 60,
+"k": "str",
+"x": "check stock katta yoki teng nol",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 70,
+"k": "str",
+"x": "yigirma ikki fayl",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 70,
+"k": "str",
+"x": "22 fayl",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 70,
+"k": "str",
+"x": "ikki milliard bir yuz qirq yetti milliondan",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 71,
+"k": "str",
+"x": "ellik ikki bitdan",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 71,
+"k": "str",
+"x": "ikki yuz yigirma ming",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 71,
+"k": "str",
+"x": "o'n to'qqiz marta",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 147,
+"k": "jsx",
+"x": "Mongoose'da:",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 153,
+"k": "str",
+"x": "haqiqiy bot javoblari · Telegram'siz sinov",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 162,
+"k": "str",
+"x": "namuna — sizning AI\\'ingiz boshqacha yozadi",
+"m": false
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 5,
+"k": "str",
+"x": "Loyiha va muammo",
+"m": true
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 5,
+"k": "str",
+"x": "Reja va prompt",
+"m": true
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 5,
+"k": "str",
+"x": "Ulanish va katalog",
+"m": true
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 5,
+"k": "str",
+"x": "Buyurtma va tranzaksiya",
+"m": true
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 7,
+"k": "str",
+"x": "Buyurtma #1 qabul qilindi!\\n• Klaviatura × 1 = 120 000 so'm\\n• Kolonka × 2 = 100 000 so'm\\n\\nJami: 220 000 so'm\\nTelefon: +998901234567\\nHolati: 🆕 Yangi",
+"m": true
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 19,
+"k": "jsx",
+"x": "Dars oxirida — bot buyurtmani PostgreSQL'ga yozadi",
+"m": false
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 30,
+"k": "str",
+"x": "mahsulotlar va ombor",
+"m": true
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 32,
+"k": "str",
+"x": "Katalog (1/3-sahifa). Qo\\'shish uchun mahsulotni bosing:",
+"m": true
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 34,
+"k": "str",
+"x": "Buyurtma uchun telefon raqamingizni yozing (masalan, +998901234567):",
+"m": true
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 34,
+"k": "str",
+"x": "Buyurtma #1 qabul qilindi! … Jami: 220 000 so\\'m",
+"m": true
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 53,
+"k": "str",
+"x": "Buyurtma #1 qabul qilindi! … Jami: 220 000 so'm",
+"m": true
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 54,
+"k": "str",
+"x": "Hozircha buyurtma yo'q.",
+"m": true
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 54,
+"k": "str",
+"x": "Tushunmadim. /help ni bosing.",
+"m": true
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 55,
+"k": "str",
+"x": "mahsulot va ombor (stock)",
+"m": true
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 55,
+"k": "str",
+"x": "foydalanuvchi va uning roli",
+"m": true
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 55,
+"k": "str",
+"x": "telefon va state",
+"m": true
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 65,
+"k": "jsx",
+"x": "Map, massiv — jarayon to'xtasa o'chadi",
+"m": false
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 66,
+"k": "jsx",
+"x": "hozir yo'q",
+"m": false
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 83,
+"k": "jsx",
+"x": "1-jarayon: Aziza [Kolonka] ×2 → «Buyurtma #1 qabul qilindi!» → qoldiq 8",
+"m": false
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 84,
+"k": "str",
+"x": "terminal — ikki alohida jarayon",
+"m": false
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 106,
+"k": "str",
+"x": "Katalogni postgresqlga ko'chirib ber, TypeORM ishlat. .env da DATABASE_URL bor.",
+"m": false
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 106,
+"k": "jsx",
+"x": "AI: «katalog va holat xotiradan PostgreSQL'ga ko'chirildi» —",
+"m": false
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 106,
+"k": "jsx",
+"x": "hamma servis",
+"m": false
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 106,
+"k": "jsx",
+"x": "o'zgardi, chetga chiqqani alohida aytilmadi.",
+"m": false
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 107,
+"k": "jsx",
+"x": "bitta bosqich",
+"m": false
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 115,
+"k": "str",
+"x": "Bu NestJS + Telegraf loyihasi (Telegram buyurtma boti). Hozir katalog, savat, foydalanuvchilar va buyurtmalar xotirada (Map va array) — server qayta ishga tushsa hammasi yo'qoladi. Ularni PostgreSQL'ga bosqichma-bosqich ko'chiramiz.\\n\\n",
+"m": true
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 116,
+"k": "str",
+"x": "1-bosqich — faqat bazaga ulanish va katalog:\\n",
+"m": true
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 117,
+"k": "str",
+"x": "- TypeORM ulang (@nestjs/typeorm, pg). Manzil .env dagi DATABASE_URL dan, src/config/index.ts orqali o'qilsin.\\n- synchronize ishlatmang: jadvallar migratsiya bilan yaratilsin, server ko'tarilganda yurmagan migratsiya o'zi yursin.\\n- products jadvali: id, name (takrorlanmas), price, stock; stock manfiy bo'lmasin — bazada CHECK.\\n- Seed skript (npm run seed): hozirgi 6 mahsulotni kiritsin, ikkinchi marta yurganda takror qo'shmasin.\\n- CatalogService bazadan o'qisin, sahifalash qolsin (2 tadan).\\n",
+"m": true
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 119,
+"k": "str",
+"x": "Javobingizda: qaysi fayllar o'zgardi, qanday ishga tushirish va psql'da nimani tekshirish kerak.",
+"m": true
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 121,
+"k": "str",
+"x": "javob",
+"m": true
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 125,
+"k": "jsx",
+"x": "1-prompt — nusxalanadi (12-ekran)",
+"m": false
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 127,
+"k": "jsx",
+"x": "Har shart — keyin",
+"m": false
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 127,
+"k": "jsx",
+"x": "tekshiriladigan bitta band",
+"m": false
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 127,
+"k": "jsx",
+"x": "xato beradi; seed → ikkinchi marta 0 ta.",
+"m": false
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 140,
+"k": "str",
+"x": "«katalog va holat xotiradan PostgreSQL'ga ko'chirildi»",
+"m": false
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 141,
+"k": "str",
+"x": "B · besh qismli prompt (faqat 1-bosqich, «tegmang»)",
+"m": false
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 141,
+"k": "jsx",
+"x": "order va telegram servislarida bir nechta qatorni o'zgartirdim… await qo'shilmasa, kod kompilyatsiyadan o'tmaydi.»",
+"m": false
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 171,
+"k": "str",
+"x": "migratsiya yo'q — shop bazasi birinchi create'da o'zi paydo bo'ldi",
+"m": false
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 172,
+"k": "jsx",
+"x": "— jadvalni faqat migratsiya o'zgartiradi ·",
+"m": false
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 172,
+"k": "jsx",
+"x": "— server ko'tarilganda yurmagani o'zi yuradi",
+"m": false
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 174,
+"k": "jsx",
+"x": "yangi migratsiya fayli",
+"m": false
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 174,
+"k": "jsx",
+"x": "jadvalida u allaqachon bor.",
+"m": false
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 210,
+"k": "str",
+"x": "ying):</b> order va telegram servislarida bir nechta qatorni o",
+"m": false
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 210,
+"k": "jsx",
+"x": "order va telegram servislarida bir nechta qatorni o'zgartirdim. Bazaga so'rov asinxron, shuning uchun CatalogService metodlari endi Promise qaytaradi…»",
+"m": false
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 211,
+"k": "str",
+"x": "terminal — o'zingiz yurgizasiz",
+"m": false
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 229,
+"k": "str",
+"x": "1-bosqichdan keyin",
+"m": true
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 229,
+"k": "str",
+"x": "Buyurtma #1 qabul qilindi! … Jami: 220 000 so'm",
+"m": true
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 230,
+"k": "str",
+"x": "Hozircha buyurtma yo'q.",
+"m": true
+},
+{
+"f": "05-s01-s12.jsx",
+"l": 236,
+"k": "jsx",
+"x": "restart o'chirdi — kim olgani noma'lum",
+"m": false
+},
+{
+"f": "06-s13-s24.jsx",
+"l": 25,
+"k": "jsx",
+"x": "bilan",
+"m": false
+},
+{
+"f": "06-s13-s24.jsx",
+"l": 29,
+"k": "jsx",
+"x": "Diffda ikki joy: migratsiyada",
+"m": false
+},
+{
+"f": "06-s13-s24.jsx",
+"l": 29,
+"k": "jsx",
+"x": "mi · entity'da qaysi tur va qayerda",
+"m": false
+},
+{
+"f": "06-s13-s24.jsx",
+"l": 29,
+"k": "jsx",
+"x": "bilan solishtirilgan.",
+"m": false
+},
+{
+"f": "06-s13-s24.jsx",
+"l": 50,
+"k": "str",
+"x": "terminal — haqiqiy parallel sinov",
+"m": false
+},
+{
+"f": "06-s13-s24.jsx",
+"l": 51,
+"k": "str",
+"x": "unique index'siz bir vaqtda — 2 hujjat · index bilan — 1",
+"m": false
+},
+{
+"f": "06-s13-s24.jsx",
+"l": 52,
+"k": "jsx",
+"x": "«Avval qidirib, keyin qo'shish» ko'rsangiz: jadvalda",
+"m": false
+},
+{
+"f": "06-s13-s24.jsx",
+"l": 52,
+"k": "jsx",
+"x": "bormi va so'rov",
+"m": false
+},
+{
+"f": "06-s13-s24.jsx",
+"l": 59,
+"k": "str",
+"x": "Buyurtma uchun telefon raqamingizni yozing (masalan, +998901234567):",
+"m": true
+},
+{
+"f": "06-s13-s24.jsx",
+"l": 59,
+"k": "str",
+"x": "Buyurtma #1 qabul qilindi!\\n• Sichqoncha × 1 = 75 000 so'm",
+"m": true
+},
+{
+"f": "06-s13-s24.jsx",
+"l": 60,
+"k": "str",
+"x": "2-bosqichdan keyin (savat hali xotirada)",
+"m": true
+},
+{
+"f": "06-s13-s24.jsx",
+"l": 71,
+"k": "str",
+"x": "Bobur — 3-bosqichdan keyin",
+"m": false
+},
+{
+"f": "06-s13-s24.jsx",
+"l": 72,
+"k": "str",
+"x": "2-bosqichdan keyin",
+"m": false
+},
+{
+"f": "06-s13-s24.jsx",
+"l": 72,
+"k": "str",
+"x": "3-bosqichdan keyin",
+"m": false
+},
+{
+"f": "06-s13-s24.jsx",
+"l": 99,
+"k": "str",
+"x": "terminal — haqiqiy natija",
+"m": false
+},
+{
+"f": "06-s13-s24.jsx",
+"l": 134,
+"k": "str",
+"x": "terminal — trigger bilan ataylab xato",
+"m": false
+},
+{
+"f": "06-s13-s24.jsx",
+"l": 141,
+"k": "str",
+"x": "Aziza ← Buyurtma #4 qabul qilindi!",
+"m": true
+},
+{
+"f": "06-s13-s24.jsx",
+"l": 141,
+"k": "str",
+"x": "Bobur ← Buyurtma berilmadi: Planshet: omborda faqat 0 ta qoldi",
+"m": true
+},
+{
+"f": "06-s13-s24.jsx",
+"l": 143,
+"k": "jsx",
+"x": "Bitta qator, ikki tranzaksiya",
+"m": false
+},
+{
+"f": "06-s13-s24.jsx",
+"l": 145,
+"k": "jsx",
+"x": "A: qatorni qulfladi",
+"m": false
+},
+{
+"f": "06-s13-s24.jsx",
+"l": 158,
+"k": "str",
+"x": "ikki mijoz bir vaqtda",
+"m": false
+},
+{
+"f": "06-s13-s24.jsx",
+"l": 180,
+"k": "str",
+"x": "terminal — haqiqiy parallel sinov",
+"m": false
+},
+{
+"f": "06-s13-s24.jsx",
+"l": 181,
+"k": "jsx",
+"x": "uchun 0 ruxsat etilgan: xato xabari yo'q, faqat ortiqcha buyurtmalar.",
+"m": false
+},
+{
+"f": "06-s13-s24.jsx",
+"l": 200,
+"k": "str",
+"x": "zi saqlanadi</p></Card><Card c={T.yellow} h=\"shop=*#\"><p>tranzaksiya ochiq</p></Card><Card c={T.accent} h=\"shop=!#\" hl><p>xato bo",
+"m": false
+},
+{
+"f": "06-s13-s24.jsx",
+"l": 200,
+"k": "jsx",
+"x": "oddiy — har buyruq o'zi saqlanadi",
+"m": false
+},
+{
+"f": "06-s13-s24.jsx",
+"l": 200,
+"k": "jsx",
+"x": "xato bo'ldi — faqat ROLLBACK",
+"m": false
+},
+{
+"f": "06-s13-s24.jsx",
+"l": 201,
+"k": "jsx",
+"x": "bo'lib chiqadi.",
+"m": false
+},
+{
+"f": "06-s13-s24.jsx",
+"l": 234,
+"k": "str",
+"x": "hajm = so\\'ralgan bosqich (1145 qator — yo\\'q)",
+"m": true
+},
+{
+"f": "06-s13-s24.jsx",
+"l": 234,
+"k": "str",
+"x": "smoke race · ikki marta bekor",
+"m": true
+},
+{
+"f": "06-s13-s24.jsx",
+"l": 235,
+"k": "str",
+"x": "so'ralmagan ishni qildi (22 fayl)",
+"m": true
+},
+{
+"f": "06-s13-s24.jsx",
+"l": 235,
+"k": "str",
+"x": "sinovda Telegram'ga bitta so'rov ketdi (401)",
+"m": true
+},
+{
+"f": "06-s13-s24.jsx",
+"l": 235,
+"k": "str",
+"x": "bizning kodda: ikki marta «Bekor» → ombor 2",
+"m": true
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 5,
+"k": "str",
+"x": "amaliyot, AI yozgandan keyin",
+"m": true
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 5,
+"k": "str",
+"x": "/start ikki marta — SELECT count(*)",
+"m": true
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 5,
+"k": "str",
+"x": "Neon qadami",
+"m": true
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 5,
+"k": "str",
+"x": "AI fayllari — git diff --stat",
+"m": true
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 5,
+"k": "str",
+"x": "Antigravity qadami",
+"m": true
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 10,
+"k": "str",
+"x": "O'quvchi · m5-04 (20 ekran)",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 10,
+"k": "jsx",
+"x": "· dars-03-done → dars-04-done · bitta",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 10,
+"k": "jsx",
+"x": ") · Antigravity'ga 3 qatorli prompt ·",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 11,
+"k": "jsx",
+"x": "OrderBotNest · tgpg-start → tgpg-done · 5 jadval · migratsiya · 4 bosqich · besh tekshiruv ·",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 15,
+"k": "str",
+"x": "Har o\\'quvchida Neon akkaunti ochiladi",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 15,
+"k": "str",
+"x": "BotFather'da sinov boti bor (token)",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 24,
+"k": "str",
+"x": "Bot javob bermaydi",
+"m": true
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 25,
+"k": "str",
+"x": "DATABASE_URL topilmadi. .env ga Neon bergan URL ni yozing",
+"m": true
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 26,
+"k": "str",
+"x": "Restartdan keyin ism unutildi",
+"m": true
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 26,
+"k": "str",
+"x": "xato yo\\'q, «Salom! Ismingiz nima?»",
+"m": true
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 27,
+"k": "str",
+"x": "value \"5123456789\" is out of range for type integer · yoki duplicate key",
+"m": true
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 27,
+"k": "str",
+"x": "bigint; avval qidirish yoki ON CONFLICT",
+"m": true
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 30,
+"k": "str",
+"x": "Bitta sinovda ko\\'rinmaydigan xato bor: restart va ikki marta bosish (11, 15-ekran).",
+"m": true
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 31,
+"k": "str",
+"x": "«Nega synchronize: true, ishlab turgan loyihada ham shundaymi?»",
+"m": true
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 31,
+"k": "str",
+"x": "Yo\\'q: u ustunni ogohlantirmasdan o\\'chirishi mumkin; ishlab turgan loyihada migratsiya (9-ekran).",
+"m": true
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 32,
+"k": "str",
+"x": "bigint JavaScript sonidan katta bo\\'lishi mumkin, kutubxona matn beradi (13-ekran).",
+"m": true
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 33,
+"k": "str",
+"x": "Ha, DATABASE_URL ni o\\'zgartirasiz; botni hostingga chiqarganda baza internetda bo\\'lishi kerak.",
+"m": true
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 34,
+"k": "str",
+"x": "Yo\\'q, har qator telegram_id bo\\'yicha alohida.",
+"m": true
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 44,
+"k": "jsx",
+"x": "O'quvchi so'rasa — bosib oching",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 60,
+"k": "str",
+"x": "Hammasini ko'rib chiqdingiz, endi o'zingizni tekshiring. Yakuniy sinov, sakkiz savol: xotira va restart, bosqichlar, migratsiya, big int, on conflict, qulf va tranzaksiya. Har savolda bitta urinish, javobdan keyin to'g'risi va izohi ochiladi. Olti va undan ko'p, dars o'zlashtirilgan. Kam bo'lsa, ko'rsatilgan ekranlarga qaytib, sinovni qayta topshirasiz.",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 62,
+"k": "str",
+"x": "ikki",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 62,
+"k": "str",
+"x": "uch",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 62,
+"k": "str",
+"x": ". Dars o'zlashtirilgan, Davom bosing.",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 63,
+"k": "str",
+"x": "Yaxshi, bir xatoyingizni ko'rib chiqdingiz. Qolgan qizil savollarning ekranlariga ham qayting. Tayyor bo'lgach, Sinovni qayta topshirish tugmasini bosing.",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 125,
+"k": "str",
+"x": "Xotiradagi ma'lumot (Map, massiv) restartda yo'qoladi yoki koddagi boshlang'ich qiymatga qaytadi; saqlanishi kerak bo'lgan har narsa — bazada",
+"m": true
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 126,
+"k": "str",
+"x": "AI bilan ish: bitta prompt — bitta bosqich; prompt besh qismli (kontekst · maqsad · shartlar · chegara · javob); javob uch qismdan o'qiladi (fayllar · chetga chiqish · tekshiruv)",
+"m": true
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 127,
+"k": "str",
+"x": "TypeORM: entity tasvirlaydi, migratsiya yaratadi, migrations jadvali eslaydi; synchronize: false; o'zgarish — yangi migratsiya",
+"m": true
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 128,
+"k": "str",
+"x": "Telegram id — BIGINT, kodga matn bo'lib keladi; takror qator — UNIQUE + ON CONFLICT; state bazada — suhbat o'rtasidagi restartdan o'tadi",
+"m": true
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 129,
+"k": "str",
+"x": "Buyurtma — bitta tranzaksiya; qoldiq qulf bilan o'qiladi yoki bitta UPDATE … WHERE stock >= qty; tranzaksiyada xatodan keyin faqat ROLLBACK",
+"m": true
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 130,
+"k": "str",
+"x": "Besh tekshiruv har bosqichda: diff · build · restart · psql · ko'p mijoz (npm run smoke). Sinf: m5-04 — \\\\d users, ikki marta /start, restart ism so'ralganda",
+"m": true
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 137,
+"k": "jsx",
+"x": "Bugungi dars — botdan bazagacha, AI bilan",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 144,
+"k": "str",
+"x": "O'z nusxangiz — GitHub'da yangi repo, OrderBotNest'ni unga chiqaring (tgpg-done yoki o'z 4-bosqichingiz)",
+"m": true
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 144,
+"k": "str",
+"x": "git remote set-url origin <sizning repo>",
+"m": true
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 145,
+"k": "str",
+"x": "/report — faqat admin: bugungi buyurtmalar soni va summasi (CANCELLED hisobga olinmaydi), order_items bo'yicha top-3 (JOIN, GROUP BY, SUM). O'sha SQL'ni psql'da o'zingiz yozib, natijani bot javobi bilan solishtiring",
+"m": true
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 146,
+"k": "str",
+"x": "Ogohlantirish — COMMIT'dan keyin qoldiq 2 dan kam bo'lgan mahsulot haqida adminga xabar; tranzaksiya ichida Telegram'ga so'rov yuborilmasin",
+"m": true
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 148,
+"k": "str",
+"x": "README «AI bilan ish»: har bosqich prompti, AI chetga chiqqan joylar, tekshiruv topgan xatolar → git push → repo linki platformadagi uyga vazifaga",
+"m": true
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 158,
+"k": "str",
+"x": "yxati = git diff --stat · «chetga chiqdim» qismi va sababi · tekshirish buyruqlarini o",
+"m": true
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 165,
+"k": "str",
+"x": "siz 19/20 urinishda 2 qator → UNIQUE + INSERT … ON CONFLICT DO UPDATE (Mongoose upsert ham unique index",
+"m": true
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 174,
+"k": "str",
+"x": "shasiz: \\\\d users (bigint), ikki marta /start, restart ism so",
+"m": true
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 176,
+"k": "str",
+"x": "siz) + kam qoldiq ogohlantirishi (COMMIT",
+"m": true
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 179,
+"k": "str",
+"x": "<b>Barakalla!</b> Siz darsni yaxshi o'rgandingiz — bugungi darsni bir qarashda yig'amiz",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 179,
+"k": "str",
+"x": "Barakalla! Siz darsni yaxshi o'rgandingiz. Endi bugun o'rganganlaringizni bir qarashda yig'amiz.",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 180,
+"k": "str",
+"x": "Dars oxiriga yetdingiz. Yakuniy sinovdan olti ball kerak edi, yakunlashdan oldin sinovni qayta topshirishni maslahat beraman. Hozir esa bugungi darsni bir qarashda yig'amiz.",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 181,
+"k": "str",
+"x": "Xotiradagi ma'lumot <b>restartda yo'qoladi</b> — saqlanishi kerak bo'lgan har narsa bazada",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 181,
+"k": "str",
+"x": "Birinchi: Map va massiv jarayon xotirasida, restartda yo'qoladi yoki koddagi boshlang'ich qiymatga qaytadi. Saqlanishi kerak bo'lgan har narsa bazada turadi.",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 182,
+"k": "str",
+"x": "AI bilan: <b>bitta prompt — bitta bosqich</b>; prompt besh qismli, javob uch qismdan o'qiladi",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 182,
+"k": "str",
+"x": "Ikkinchi: AI bilan ishda bitta prompt, bitta bosqich. Prompt besh qismli: kontekst, maqsad, shartlar, chegara va javob. AI javobini uch qismdan o'qiysiz: fayllar, chetga chiqish va tekshiruv.",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 183,
+"k": "str",
+"x": "TypeORM: <b>entity, migratsiya, migrations jadvali</b>; o'zgarish — yangi migratsiya",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 183,
+"k": "str",
+"x": "Uchinchi: entity jadvalni tasvirlaydi, migratsiya uni yaratadi, migrations jadvali qaysi fayl yurganini eslaydi. Jadvalni o'zgartirish uchun yangi migratsiya yoziladi.",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 184,
+"k": "str",
+"x": "Telegram id — <b>BIGINT, kodga matn</b>; takror qator — UNIQUE va ON CONFLICT; state bazada",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 184,
+"k": "str",
+"x": "To'rtinchi: Telegram id big int, va u kodga matn bo'lib keladi. Takror qatorga qarshi UNIQUE va on conflict. State bazada bo'lsa, suhbat o'rtasidagi restartdan o'tadi.",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 185,
+"k": "str",
+"x": "Buyurtma — <b>bitta tranzaksiya va qulf</b>; xatodan keyin faqat ROLLBACK",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 185,
+"k": "str",
+"x": "Beshinchi: buyurtma bitta tranzaksiya. Qoldiq qulf bilan o'qiladi yoki bitta update where stock katta yoki teng qty bilan ayiriladi. Tranzaksiyada xatodan keyin faqat rollback qoladi.",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 186,
+"k": "str",
+"x": "<b>Besh tekshiruv</b> har bosqichda; sinfda — <b>\\\\d users</b>, ikki marta /start, restart",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 186,
+"k": "str",
+"x": "Oltinchi: har bosqichda besh tekshiruv: diff, build, restart, PostgreSQL terminali va ko'p mijoz. Sinfda o'quvchi bilan teskari chiziqcha d users, ikki marta start va restartni ism so'ralganda qiling.",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 187,
+"k": "str",
+"x": "<b>Uyga vazifa</b>: o'z nusxangizda admin uchun /report va kam qoldiq ogohlantirishi",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 187,
+"k": "str",
+"x": "Uyga vazifa: OrderBotNest'ning o'z nusxangizga admin uchun ikki imkoniyat qo'shing, AI bilan, ikki bosqichda. Birinchisi report buyrug'i: bugungi buyurtmalar soni, summasi va eng ko'p sotilgan uchta mahsulot. Ikkinchisi: qoldiq ikkitadan kam qolsa, adminga ogohlantirish.",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 188,
+"k": "str",
+"x": "Har bosqichdan keyin <b>besh tekshiruv</b>; README'da AI tahlili; repo linki platformaga",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 188,
+"k": "str",
+"x": "Har bosqichdan keyin besh tekshiruvni qiling. README'ga AI nimani to'g'ri, nimani noto'g'ri qilgani va siz uni qanday ushlaganingizni yozing. GitHub'ga chiqaring va repo linkini platformadagi uyga vazifangizga qo'ying. Oltmish-to'qson daqiqa.",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 189,
+"k": "str",
+"x": "<b>Eslatmani oling</b>: bosqichlar, prompt, tuzoqlar va tekshiruvlar — bir sahifada",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 189,
+"k": "str",
+"x": "Pastda bir sahifalik eslatma: to'rt bosqich, prompt qolipi, AI javobini o'qish, tuzoqlar, besh tekshiruv, xatolar va sinfga tayyorgarlik. Nusxalab yoki yuklab oling, sinfda yoningizda tursin.",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 190,
+"k": "str",
+"x": "Rahmat! <b>Darsni yakunlash</b> tugmasini bosing",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 190,
+"k": "str",
+"x": "Rahmat. Darsni yakunlash tugmasini bosing, dars tugallangan deb belgilanadi.",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 221,
+"k": "jsx",
+"x": "/report raqamlari psql bilan mos · CANCELLED chiqarilgan · ogohlantirish tranzaksiyadan keyin · README'da AI tahlili (kamida bitta topilma).",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 247,
+"k": "str",
+"x": "Jami taxminan 1 soat 40 daqiqa – 2 soat: ovoz ~27 daqiqa · to'rt amaliyot AI bilan 70–90 daqiqa · 4 tekshiruv · o'z-sinov 8 savol. 12-ekrandan keyin tanaffus qilsangiz bo'ladi",
+"m": false
+},
+{
+"f": "07-s25-s28.jsx",
+"l": 247,
+"k": "str",
+"x": "Kerak: Telegraf videodarslari · PostgreSQL-1 va PostgreSQL-2 · NestJS mentor darslari · PostgreSQL ishlab turgan · Node.js 20+ · VS Code · AI yordamchi (Antigravity, Claude Code, Codex yoki Copilot) · BotFather'da sinov boti",
+"m": false
+}
+]

@@ -1,0 +1,29 @@
+# Lokal: npm 11 (Node 24) bilan npm ci YASHIL edi (01). Runner: Node 22 → npm 10. Shu npm 10 bilan lokalda:
+$ node --version && npm --version
+v24.18.0
+11.16.0
+$ npx -p npm@10 npm --version
+10.9.9
+$ npx -p npm@10 npm ci --no-audit --no-fund
+npm error code EUSAGE
+npm error
+npm error `npm ci` can only install packages when your package.json and package-lock.json or npm-shrinkwrap.json are in sync. Please update your lock file with `npm install` before continuing.
+npm error
+npm error Missing: webpack@5.112.2 from lock file
+npm error
+npm error Clean install a project
+npm error
+npm error Usage:
+npm error npm ci
+npm error
+npm error Options:
+[chiqish kodi: 1]  # (zsh: PIPESTATUS bo'sh chiqdi; npm ci EUSAGE = 1 — run 10a/19 annotatsiyasi «exit code 1»)
+
+# npm 10 lock faylni qanday o'zgartirardi (faqat ko'rish, saqlanmaydi):
+$ npx -p npm@10 npm install --package-lock-only --no-audit --no-fund && git diff --stat
+up to date in 676ms
+ package-lock.json | 91 ++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 43 insertions(+), 48 deletions(-)
++      "version": "5.112.2",
++      "peer": true,
++      "peerDependenciesMeta": {

@@ -1,0 +1,46 @@
+# LineCheck fayli (satr raqamlari):
+     1	import { Order } from '../../core/entity';
+     2	import { som, texts } from './texts';
+     3	
+     4	const order = {
+     5	  id: 42,
+     6	  phone: '+998901234567',
+     7	  total: 50000,
+     8	  status: 'NEW',
+     9	  items: [{ product: { name: 'Kolonka', price: 50000 }, qty: 1, price: 50000 }],
+    10	} as unknown as Order;
+    11	
+    12	describe('texts.orderPlaced', () => {
+    13	  it('buyurtma qatori va jami', () => {
+    14	    const t = texts.orderPlaced(order);
+    15	    expect(t).toContain('Buyurtma #42 qabul qilindi!');
+    16	    expect(t).toContain(`Jami: ${som(50000)}`);
+    17	    expect(t).toContain('Telefon: +998901234567');
+    18	  });
+    19	});
+
+$ npx jest texts
+PASS src/api/telegram/texts.spec.ts
+  texts.orderPlaced
+    ✓ buyurtma qatori va jami (25 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        0.791 s, estimated 1 s
+Ran all test suites matching texts.
+[chiqish kodi: 0]
+
+# som() buzildi: ru-RU → en-US
+$ npx jest texts
+PASS src/api/telegram/texts.spec.ts
+  texts.orderPlaced
+    ✓ buyurtma qatori va jami (29 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        0.677 s, estimated 1 s
+Ran all test suites matching texts.
+[chiqish kodi: 0]
+

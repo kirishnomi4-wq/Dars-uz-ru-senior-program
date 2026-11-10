@@ -1,0 +1,32 @@
+$ npx jest tobe --verbose
+FAIL src/api/telegram/tobe.spec.ts
+  toBe va toEqual
+    ✕ toBe (6 ms)
+    ✓ toEqual (1 ms)
+
+  ● toBe va toEqual › toBe
+
+    expect(received).toBe(expected) // Object.is equality
+
+    If it should pass with deep equality, replace "toBe" with "toStrictEqual"
+
+    Expected: [["◀", "2/3", "▶"]]
+    Received: serializes to the same string
+
+      1 | describe('toBe va toEqual', () => {
+      2 |   it('toBe', () => {
+    > 3 |     expect([['◀', '2/3', '▶']]).toBe([['◀', '2/3', '▶']]);
+        |                                 ^
+      4 |   });
+      5 |
+      6 |   it('toEqual', () => {
+
+      at Object.<anonymous> (api/telegram/tobe.spec.ts:3:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 passed, 2 total
+Snapshots:   0 total
+Time:        0.382 s, estimated 1 s
+Ran all test suites matching tobe.
+[chiqish kodi: 1]
+

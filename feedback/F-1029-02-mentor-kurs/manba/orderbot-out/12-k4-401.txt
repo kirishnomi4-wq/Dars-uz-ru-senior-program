@@ -1,0 +1,3 @@
+$ npm run start   # BOT_TOKEN=123:SOXTA (haqiqiy Telegram serveri)
+Server 3021-portda ishlayapti
+Telegram ulanmadi: 401: Unauthorized — README, «Xatolar» jadvali

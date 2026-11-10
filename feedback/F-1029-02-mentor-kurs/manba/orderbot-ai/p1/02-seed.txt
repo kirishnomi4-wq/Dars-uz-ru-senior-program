@@ -1,0 +1,5 @@
+== npm run seed (1) ==
+Seed: 6 ta mahsulot qo'shildi, 0 tasi bazada bor edi.
+exit 0
+== npm run seed (2) ==
+Seed: 0 ta mahsulot qo'shildi, 6 tasi bazada bor edi.

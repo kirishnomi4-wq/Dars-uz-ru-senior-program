@@ -1,0 +1,20 @@
+# To'g'ri token: ws://localhost:3100/admin/ws?token=panel-sir — 2.5 s dan keyin Bobur buyurtma beradi, 2 s dan keyin admin tasdiqlaydi
+20:13:57 ulanmoqda… ws://localhost:3100/admin/ws?token=panel-sir
+20:13:57 open
+20:13:57 xabar snapshot orders: 0 ta
+20:13:59 xabar order/created {"id":1,"customer":"Bobur","phone":"+998907654321","total":120000,"status":"NEW","statusText":"🆕 Yangi","createdAt":"2026-11-04T15:13:59.265Z","items":[{"name":"Klaviatura","qty":1,"price":120000}]}
+20:14:01 xabar order/updated {"id":1,"customer":"Bobur","phone":"+998907654321","total":120000,"status":"CONFIRMED","statusText":"✅ Tasdiqlangan","createdAt":"2026-11-04T15:13:59.265Z","items":[{"name":"Klaviatura","qty":1,"price":120000}]}
+
+# Server logi
+Telegram bot ulandi
+20:13:56 Server 3100-portda ishlayapti
+20:13:59 — Bobur botda buyurtma beradi (/start → Klaviatura → Buyurtma → telefon)
+20:13:59 bot → 5987654321: Salom, Bobur! Bu CoddyCamp do'koni boti.
+20:13:59 bot (tugma javobi): Klaviatura savatga qo'shildi (1 ta).
+20:13:59 bot → 5987654321: Buyurtma uchun telefon raqamingizni yozing (masalan, +998901234567):
+20:13:59 bot → 5987654321: Buyurtma #1 qabul qilindi!
+20:14:01 — admin (Jasur) #1 ni tasdiqlaydi
+20:14:01 bot → 111: Salom, Jasur! Bu CoddyCamp do'koni boti.
+20:14:01 bot (tugma javobi): #1 → ✅ Tasdiqlangan
+20:14:01 bot → 111: #1 · Bobur · 120 000 so'm · ✅ Tasdiqlangan
+20:14:01 bot → 5987654321: Buyurtmangiz #1: ✅ Tasdiqlangan

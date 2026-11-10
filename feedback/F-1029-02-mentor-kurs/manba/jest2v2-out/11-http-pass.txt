@@ -1,0 +1,13 @@
+$ npx jest app.controller --verbose
+PASS src/api/app.controller.spec.ts
+  HTTP: GET /
+    ✓ 200 va { ok: true } (39 ms)
+    ✓ yo'q manzil — 404 (12 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        0.766 s, estimated 1 s
+Ran all test suites matching app.controller.
+[chiqish kodi: 0]
+

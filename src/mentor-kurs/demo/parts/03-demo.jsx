@@ -1,7 +1,7 @@
 
 // ============================================================
 //  DEMO (faqat dev, F-1103-02): tekshiruv ekrani dizayn variantlari A va B — PG-2 6-ekran matni ustida.
-//  Yig'ish: cat parts/01-asos.jsx parts/02-dvigatel.jsx pg2/parts/03-matn.gen.jsx pg2/parts/04-yordam.jsx demo/parts/03-demo.jsx > dev/DemoMcLesson.jsx
+//  Yig'ish: cat parts/01-asos.jsx parts/02-dvigatel.jsx pg2/parts/03-matn.gen.jsx pg2/parts/04-yordam.jsx pg2/parts/05-s01-s12.jsx pg2/parts/06-s13-s22.jsx demo/parts/03-demo.jsx > dev/DemoMcLesson.jsx
 //  Sahifa: /mentor-demo.html?s=0 (A) · ?s=1 (B). Darslarga kirmaydi.
 // ============================================================
 const DEMO_CMD = psql(String.raw`
@@ -11,7 +11,7 @@ const DEMO_PROOF = psql(String.raw`
 shop=# SELECT * FROM products;
  id |    name    | price | stock
   2 | Sichqoncha | 75000 |    15
-  4 | Mishka     | 50000 |    10
+  4 | Kolonka    | 50000 |    10
   1 | Klaviatura | 99000 |     8
 (3 rows)`);
 const DEMO_CSS = `
@@ -35,6 +35,13 @@ const DEMO_CSS = `
 .mk-body.mcv-b .mk-panel{flex:1 1 auto;min-height:0}
 .mcv-low{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:28px;align-items:start}
 .mk-body.mcv-b .mcv-opts{grid-template-columns:1fr 1fr}
+.mcv-kod{display:grid;gap:12px;align-content:start;width:100%}
+.mcv-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:10px}
+.mcv-cards .pg-pm pre{white-space:pre-wrap;margin:0}
+.mcv-sum{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.mcv-sum .c{background:#fff;border:1px solid #E3E6EC;border-radius:12px;padding:14px 16px;display:grid;gap:4px}
+.mcv-sum .c b{font:700 20px/1 ui-monospace,Menlo,Consolas,monospace}
+.mcv-sum .c span{font-size:13px;color:#4B5162}
 @media (max-width:1300px){.mk-body.mcv-a{grid-template-columns:1fr;grid-auto-rows:max-content;overflow:auto}.mcv-low{grid-template-columns:1fr}.mk-body.mcv-b .mcv-opts{grid-template-columns:1fr}}
 `;
 function useDemoCss() { useEffect(() => { const el = document.createElement('style'); el.textContent = DEMO_CSS; document.head.appendChild(el); return () => el.remove(); }, []); }
@@ -70,9 +77,30 @@ function MCDemo({ variant, idx, total, onAnswer, onBack, onNext, onRestart }) {
     </Stage>
   );
 }
+// C — F-1103-04 namunasi: kod bo'lak-bo'lak (faqat hozirgi endpoint, o'ralmaydi), natija kartasi kod TAGIDA; oxirgi segmentda kod emas, xulosa kartalari
+const PM = {
+  post: <PostmanCard m="POST" url="/api/cars" body={'{ "model": "Chevrolet Spark", "daily_price": 190000, "year": 2021 }'} st={201} res={'{"id":4,"model":"Chevrolet Spark","daily_price":190000,"year":2021,"is_rented":null}'} />,
+  put: <PostmanCard m="PUT" url="/api/cars/2" body={'{ "daily_price": 480000 }'} st={200} res={'{"id":2,"model":"Chevrolet Malibu","daily_price":480000,"year":2023,"is_rented":false}'} />,
+  del: <PostmanCard m="DELETE" url="/api/cars/1" st={200} res={'{"message":"O\'chirildi","deleted":1}'} />,
+  nf: <PostmanCard m="PUT" url="/api/cars/99" body={'{ "daily_price": 1 }'} st={404} res={'{"error":"Mashina topilmadi"}'} hl />,
+};
+const SC = mkS(15, [{ from: 26, to: 36, cards: ['post'] }, { from: 26, to: 36, cards: ['post'], nul: true }, { from: 38, to: 49, cards: ['put'] }, { from: 51, to: 60, cards: ['del', 'nf'] }, { sum: true }]);
+function DemoC(p) {
+  return <Lesson p={p} S={SC} sceneTop scene={({ seg }) => <div className="mcv-kod">
+    {seg.from && <SrvIde from={seg.from} to={seg.to} />}
+    {seg.cards && <div className="mcv-cards">{seg.cards.map((k) => <React.Fragment key={k}>{PM[k]}</React.Fragment>)}</div>}
+    {seg.nul && <div className="n2-warn"><b>is_rented: null</b> — POST'da berilmagan, jadvalda <code>DEFAULT</code> yo'q. Kerak bo'lsa: <code>is_rented BOOLEAN DEFAULT false</code>.</div>}
+    {seg.sum && <div className="mcv-sum">
+      <div className="c"><b style={{ color: '#12805A' }}>200</b><span>GET · PUT · DELETE — bajarildi</span></div>
+      <div className="c"><b style={{ color: '#12805A' }}>201</b><span>POST — yaratildi, qator javobda</span></div>
+      <div className="c"><b style={{ color: '#B57A00' }}>404</b><span>topilmadi — <code>rowCount</code> nol</span></div>
+      <div className="c"><b style={{ color: '#E2451F' }}>500</b><span>xato — <code>catch</code>, matni javobda</span></div>
+    </div>}
+  </div>} />;
+}
 function DemoA(p) { return <MCDemo {...p} variant="A" />; }
 function DemoB(p) { return <MCDemo {...p} variant="B" />; }
-const DEMO_SCREENS = [DemoA, DemoB];
+const DEMO_SCREENS = [DemoA, DemoB, DemoC];
 export default function DemoMcLesson({ lang = 'uz', startAt }) {
   setLang(lang); useCss(); useCss3(); useDemoCss();
   const [idx, setIdx] = useState(Math.min(startAt || 0, DEMO_SCREENS.length - 1));

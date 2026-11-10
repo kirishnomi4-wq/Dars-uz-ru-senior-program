@@ -17,7 +17,7 @@ LINE 1: INSERT INTO products (name, price, stock) VALUES ("O'yinchoq...
 shop=# select name, price from PRODUCTS where price < 60000;
    name    | price 
 -----------+-------
- Mishka    | 50000
+ Kolonka   | 50000
            | 30000
  O'yinchoq | 30000
 (3 rows)

@@ -1,0 +1,14 @@
+# wh-done: bir xil xabar bir vaqtda ikki marta (ikki curl parallel)
+$ curl … & curl … &   # body: {"paymentId":"pay_birdan","orderId":1,"status":"paid","amount":120000}
+{"ok":true,"duplicate":true} ← 200
+{"ok":true,"duplicate":false} ← 200
+
+## Server logi
+LOG [Payment] pay_birdan · #1 · paid · 120000
+LOG [Payment] pay_birdan · #1 · paid · 120000 — takror, yozilmadi
+
+$ psql: SELECT payment_id, order_id, status FROM payments
+ payment_id | order_id | status 
+------------+----------+--------
+ pay_birdan |        1 | paid
+(1 row)

@@ -1,0 +1,52 @@
+ALTER TABLE products ADD CONSTRAINT stock_nonneg CHECK (stock >= 0);
+ALTER TABLE
+CREATE TABLE orders (id SERIAL PRIMARY KEY, product_id INTEGER NOT NULL REFERENCES products(id), qty INTEGER NOT NULL CHECK (qty > 0), created_at TIMESTAMP DEFAULT now());
+CREATE TABLE
+BEGIN;
+BEGIN
+UPDATE products SET stock = stock - 1 WHERE id = 2 RETURNING name, stock;
+    name    | stock 
+------------+-------
+ Sichqoncha |    14
+(1 row)
+
+UPDATE 1
+INSERT INTO orders (product_id, qty) VALUES (2, 1) RETURNING *;
+ id | product_id | qty |         created_at         
+----+------------+-----+----------------------------
+  1 |          2 |   1 | 2026-11-03 14:32:57.540888
+(1 row)
+
+INSERT 0 1
+COMMIT;
+COMMIT
+BEGIN;
+BEGIN
+INSERT INTO orders (product_id, qty) VALUES (4, 12) RETURNING id, product_id, qty;
+ id | product_id | qty 
+----+------------+-----
+  2 |          4 |  12
+(1 row)
+
+INSERT 0 1
+UPDATE products SET stock = stock - 12 WHERE id = 4;
+ERROR:  new row for relation "products" violates check constraint "stock_nonneg"
+DETAIL:  Failing row contains (4, Kolonka, 50000, -2).
+SELECT * FROM orders;
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+ROLLBACK;
+ROLLBACK
+SELECT * FROM orders;
+ id | product_id | qty |         created_at         
+----+------------+-----+----------------------------
+  1 |          2 |   1 | 2026-11-03 14:32:57.540888
+(1 row)
+
+SELECT id, name, stock FROM products ORDER BY id;
+ id |    name    | stock 
+----+------------+-------
+  1 | Klaviatura |     7
+  2 | Sichqoncha |    14
+  4 | Kolonka    |    10
+(3 rows)
+

@@ -80,6 +80,9 @@ const CSS = `
 .mk-count{font:700 13px/1 ${MONO};color:${T.ink}}
 .mk-body{flex:1;min-height:0;display:grid;grid-template-columns:minmax(320px,4fr) 8fr;gap:24px;padding:22px 28px}
 @media (min-width:1600px){.mk-panel{font-size:14px}.mk-explorer{font-size:13px}}
+@media (max-width:1599px){.mk-ide{grid-template-columns:150px minmax(0,1fr)}.mk-ide .mk-panel{font-size:12px}.mk-ide .mk-explorer{font-size:11.5px}}
+.pg-two:has(.mk-ide),.pg-two:has(.mk-panel .mk-ln:nth-of-type(n+10)){grid-template-columns:minmax(0,1fr)}
+.mk-pair{font:12.5px/1.4 ${MONO};color:${T.ink3};padding:0 4px}.mk-pair b{font-weight:600}.mk-pair code{font:inherit;color:${T.ink2}}
 @media (max-width:900px){.mk-body{grid-template-columns:1fr;grid-template-rows:auto 1fr;gap:14px;padding:14px}}
 .mk-ide{display:grid;grid-template-columns:218px minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);align-items:stretch;flex:0 1 auto;max-height:100%;min-height:0;background:#E9ECF1;border:1px solid #D5DAE2;border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(15,17,21,.10)}
 .mk-ide-bar{grid-column:1/-1;display:flex;align-items:center;gap:7px;padding:8px 14px;background:#DDE1E8;border-bottom:1px solid #D0D5DD;font:600 11px/1 ${MONO};color:${T.ink2};letter-spacing:.04em}
@@ -184,7 +187,7 @@ const CSS = `
 .mk-ln.gone,.mk-ln.gone *{color:#FCA5A5!important}
 .mk-ln.new{background:rgba(18,128,90,.22);box-shadow:inset 3px 0 0 #86EFAC}
 .mk-ln .n{color:${T.codeDim};min-width:2ch;text-align:right;user-select:none}
-.mk-ln.wrap{white-space:pre-wrap}
+.mk-ln.wrap{white-space:pre}
 .mk-ln.clk{cursor:pointer}
 .mk-ln.clk:hover{background:rgba(232,234,240,.08)}
 .mk-ln.bad{background:rgba(226,69,31,.28);box-shadow:inset 3px 0 0 #FCA5A5}
@@ -192,6 +195,8 @@ const CSS = `
 .k{color:#C792EA}.s{color:#C3E88D}.d{color:#FFCB6B}.c{color:#82AAFF}.m{color:#89DDFF}.cm{color:#6B7280;font-style:italic}
 .p{color:#7DD3FC}.ok{color:#86EFAC}.er{color:#FCA5A5}.wn{color:#FDE68A}
 .mk-light{flex:0 1 auto;max-height:100%;min-height:0;background:${T.paper};border:1px solid ${T.line};border-radius:16px;padding:20px;position:relative;overflow:auto}
+/* 04.11 · past ekran (1280×720, 1366×768): bo'shliqlar ixcham — shrift deyarli o'zgarmaydi, sahna sig'ishi uchun */
+@media (max-height:800px){.mk-body{padding:14px 22px;gap:20px}.mk-scene{gap:10px}.mk-panel{padding:12px 16px;font-size:12.5px;line-height:1.45}.mk-explorer{line-height:1.45;padding:6px 6px 8px}.mk-light{padding:14px}.mk-box{padding:10px 12px}}
 .mk-light.fill{flex:1}
 .mk-tag{font:600 11px/1 ${MONO};letter-spacing:.08em;color:${T.ink3};text-transform:uppercase;margin:0 0 10px}
 .mk-nav{flex:0 0 auto;background:${T.paper};border-top:1px solid ${T.line};padding:12px 28px;display:flex;align-items:center;gap:12px}
@@ -205,12 +210,28 @@ const CSS = `
 .mk-lockhint i{width:7px;height:7px;border-radius:50%;background:${T.accent};display:inline-block;animation:mk-pulse 1.6s ease-in-out infinite}
 .mk-say.mc>:first-child{margin-top:auto}
 .mk-say.mc>:last-child{margin-bottom:auto}
-.mk-say.mc .mk-opt{font-size:16px;padding:13px 16px}
-.mk-body.mc-split{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
+.mk-say.mc .mk-opt{font-size:15px;padding:11px 14px;border-radius:10px;align-items:flex-start}
+.mk-opt .l{margin-top:3px}
+.mk-opt .t{display:grid;gap:4px;min-width:0}
+.mk-opt .why{font-size:13.5px;line-height:1.4;font-weight:500;color:${T.green}}
+.mk-opt.bad .why{color:${T.accent}}
+.mk-opt.ok{color:${T.ink}}
+.mk-opt .why code{font:.92em ${MONO};background:${T.chip};border:1px solid ${T.chipLine};border-radius:5px;padding:0 5px;color:${T.ink}}
+.mk-body.mc-split{grid-template-columns:minmax(340px,4fr) minmax(0,8fr);gap:24px}
+.mc-after{display:flex;flex-direction:column;gap:12px;overflow:auto}
+.mc-after>.mk-panel,.mc-after>.mc-proof{flex:0 0 auto;min-height:0}
+.mc-proof{display:flex;flex-direction:column;gap:10px}
+.mc-proof>div{display:flex!important;flex-direction:column;gap:10px;flex:0 0 auto;min-height:0}
+.mc-proof .mk-panel{flex:0 0 auto;min-height:0;max-height:none}
+.mc-proof .mk-rule,.mc-proof .mk-tag,.mc-after>.mk-tag{flex:0 0 auto}
+.mc-demak{flex:0 0 auto;min-height:52px;display:flex;align-items:center;gap:6px;font-size:15px;line-height:1.45;color:${T.ink};padding:0 4px}
+.mc-demak.on{border-left:3px solid ${T.green};padding-left:12px;animation:mk-up .45s ease both}
+.mc-demak b{color:${T.green}}
+.mc-demak code{font:.92em ${MONO};background:${T.chip};border:1px solid ${T.chipLine};border-radius:5px;padding:0 5px}
 .mk-body.mc-split>.mk-say.mc>:first-child{margin-top:0}
 .mk-title.mc-q{font-size:clamp(19px,1.5vw,22px);font-weight:600;color:${T.ink}}
-.mc-wait{border:1.5px dashed ${T.line};border-radius:12px;padding:16px 18px;color:${T.ink3};font-size:14px;background:${T.paper}}
-@media (max-width:1300px){.mk-body.mc-split{grid-template-columns:1fr;grid-auto-rows:max-content;overflow:auto}.mk-body.mc-split>.mk-say.mc,.mk-body.mc-split>.mc-after{overflow:visible!important}}
+.mc-wait{flex:0 0 auto;border:1.5px dashed ${T.line};border-radius:10px;padding:10px 14px;color:${T.ink3};font-size:13px;background:${T.paper}}
+@media (max-width:1000px){.mk-body.mc-split{grid-template-columns:1fr;grid-auto-rows:max-content;overflow:auto}.mk-body.mc-split>.mk-say.mc,.mk-body.mc-split>.mc-after{overflow:visible!important}}
 .mk-btn.ready{background:${T.accent};border-color:${T.accent};animation:mk-pulse 1.6s ease-in-out infinite}
 .mk-audio{display:flex;align-items:center;gap:6px}
 .mk-audio button{background:transparent;border:1px solid ${T.line};border-radius:8px;padding:5px 8px;cursor:pointer;color:${T.ink2};font:12px/1 ${SANS};display:inline-flex;align-items:center;gap:6px}
@@ -263,7 +284,9 @@ const CSS = `
 .mk-step input{width:18px;height:18px;margin-top:3px;accent-color:${T.green}}
 .mk-step .t{flex:1;min-width:0}
 .mk-step .t b{display:block;font-size:14px;margin-bottom:3px}
-.mk-step .cmd{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:4px 0}
+.mk-step .cmd{display:inline-flex;gap:6px;align-items:center;margin:3px 12px 3px 0;max-width:100%}
+.mk-step .cmd code{overflow-wrap:anywhere}
+@media (max-height:760px){.mk-step{padding:7px 10px}.mk-step .t b{margin-bottom:1px}.mk-step .cmd{margin:2px 10px 2px 0}}
 .mk-step code{font:12.5px ${MONO};background:#EEF0F4;padding:2px 7px;border-radius:6px}
 .mk-step .exp{font-size:12.5px;color:${T.ink3}}
 .mk-copy{border:1px solid ${T.line};background:#fff;border-radius:6px;padding:2px 7px;font:11px ${SANS};cursor:pointer;color:${T.ink2}}
@@ -281,6 +304,8 @@ const CSS = `
 .mk-cover .card{max-width:760px;width:100%;background:${T.paper};border:1px solid ${T.line};border-radius:20px;padding:36px 40px;box-shadow:0 20px 60px rgba(15,17,21,.08)}
 .mk-cover h1{font-size:clamp(24px,2.3vw,30px);line-height:1.15;font-weight:700;margin:8px 0 10px;letter-spacing:-.01em}
 .mk-cover p{color:${T.ink2};font-size:17px;line-height:1.55;margin:0 0 22px}
+.mk-resume{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.mk-cover p.mk-resume-note{flex-basis:100%;margin:6px 0 0;font-size:14px;color:${T.ink2}}
 .mk-cover ul{margin:0 0 26px;padding:0;list-style:none;display:grid;gap:8px;color:${T.ink2};font-size:15px}
 .mk-cover li::before{content:"—";color:${T.accent};margin-right:10px}
 .mk-req{display:grid;gap:8px}
@@ -289,6 +314,57 @@ const CSS = `
 .mk-req .st{font:700 11px ${MONO};padding:2px 7px;border-radius:6px;background:#EEF0F4;color:${T.ink2}}
 .mk-req .st.s2{background:#E3F5EC;color:${T.green}}.mk-req .st.s4{background:#FFF0EB;color:${T.accent}}
 .mk-req pre{margin:6px 0 0;font:12px/1.45 ${MONO};white-space:pre-wrap;color:${T.ink2}}
+/* F-1109-06: mexanizm chizmalari (oqim, yo'lak, vaqt o'qi, jadval) — gapli karta o'rniga */
+.z{--ac:#E2451F;--ac2:#FFF5F2;--pg:#336791;--ok:#15803D;--ok2:#DCFCE7;--bad:#DC2626;--bad2:#FEF2F2;--warn:#C2410C;--warn2:#FFEDD5;--blue:#1D4ED8;--blue2:#DBEAFE;--pur:#6D3BE4;--pur2:#EDE9FE;--ink:#1F2937;--ink2:#4B5563;--mut:#6B7280;--line:#D7DCE3;--soft:#F8FAFC;
+  display:grid;gap:12px;color:var(--ink);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.z *{box-sizing:border-box}
+.z .zm,.z .zm *{font-family:ui-monospace,Menlo,Consolas,monospace}
+.z .zm{font-size:13px;color:var(--ink)}
+.z-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;display:grid;gap:10px;min-width:0;align-content:start}
+.z-h{font:700 13px system-ui,sans-serif;letter-spacing:.01em;color:var(--mut);margin:0}
+.z-flow{display:flex;align-items:stretch;gap:0}
+.z-flow>.z-st{flex:1 1 0;min-width:0}
+.z-ar{flex:0 0 26px;display:flex;align-items:center;justify-content:center;color:#9CA3AF;font-size:20px}
+.z-ar.bad{color:var(--bad)}
+.z-st{border:1.5px solid var(--line);border-radius:10px;padding:10px;display:grid;gap:5px;align-content:start;background:var(--soft)}
+.z-st.ok{border-color:var(--ok);background:#F0FDF4}.z-st.bad{border-color:var(--bad);background:var(--bad2)}.z-st.ac{border-color:var(--ac);background:var(--ac2)}
+.z-st.blue{border-color:var(--pg);background:#EFF6FF}.z-st.off{border-style:dashed;background:#fff;color:var(--mut)}
+.z-st .ln{font:11.5px ui-monospace,Menlo,Consolas,monospace;color:var(--mut)}
+.z-tag{justify-self:start;display:inline-block;font:700 12px system-ui,sans-serif;border-radius:999px;padding:2px 9px;white-space:nowrap}
+.z-tag.r{background:var(--bad);color:#fff}.z-tag.g{background:var(--ok2);color:var(--ok)}.z-tag.b{background:var(--blue2);color:var(--blue)}.z-tag.o{background:var(--warn2);color:var(--warn)}.z-tag.n{background:#F1F3F6;color:var(--ink2)}
+.z-term{background:#111827;color:#E5E7EB;border-radius:10px;padding:10px 12px;font:13px/1.55 ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;word-break:break-word}
+.z-term .r{color:#FCA5A5}.z-term .g{color:#86EFAC}.z-term .y{color:#FDE68A}.z-term .c{color:#93C5FD}.z-term .m{color:#9CA3AF}
+.z-term .hl{background:rgba(226,69,31,.28);border-radius:3px}
+.z-two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.z-three{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.z-rule{border-left:4px solid var(--ac);background:var(--ac2);border-radius:10px;padding:10px 14px;font-size:15px}
+.z-rule b{color:var(--ac)}
+.z-k{display:inline;font:13px ui-monospace,Menlo,Consolas,monospace;background:#F1F3F6;border-radius:5px;padding:1px 6px;color:var(--ink)}
+.z-mut{color:var(--mut);font-size:13px}
+.z-lanes{display:grid;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.z-lanes>div{padding:9px 12px;border-bottom:1px solid #EEF0F3;display:flex;align-items:center;gap:8px;min-height:44px;font-size:14px}
+.z-lanes>.hd{font:700 12px system-ui,sans-serif;letter-spacing:.05em;text-transform:uppercase;background:var(--soft);color:var(--ink2)}
+.z-lanes>.rh{font:600 12px ui-monospace,Menlo,Consolas,monospace;color:var(--mut);background:var(--soft)}
+.z-tbl{border-collapse:collapse;width:100%;font:13px ui-monospace,Menlo,Consolas,monospace}
+.z-tbl th,.z-tbl td{border:1px solid #E5E7EB;padding:5px 9px;text-align:left;color:var(--ink)}
+.z-tbl th{background:var(--soft);font-weight:700}
+.z-tbl tr.hl td{background:var(--blue2)}.z-tbl tr.bad td{background:var(--bad2);color:#991B1B}.z-tbl tr.ok td{background:#F0FDF4}
+.z-svg{display:block;width:100%;height:auto}
+.z-svg text{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.z-svg .mono{font-family:ui-monospace,Menlo,Consolas,monospace}
+.z b,.z strong{color:inherit}
+.z .z-st>b{color:var(--ink)}
+.z .zm{overflow-wrap:anywhere}
+.z code{all:unset;display:inline;font:13px ui-monospace,Menlo,Consolas,monospace;background:#F1F3F6;border-radius:5px;padding:1px 6px;color:var(--ink)}
+.z-h .zk,.z-h code{text-transform:none;letter-spacing:0;font:600 12.5px ui-monospace,Menlo,Consolas,monospace;color:var(--ink2)}
+.z .mk-in{min-width:0}
+.z-st.dim,.z-card.dim{opacity:.45}
+.z-card.hl{border-color:#E2451F;box-shadow:0 0 0 3px rgba(226,69,31,.14)}
+.z-st.hl{box-shadow:0 0 0 3px rgba(226,69,31,.18)}
+.z-st,.z-card,.z-ar,.z-rule,.z-term,.z-tbl tr{transition:opacity .4s,box-shadow .4s,background .4s}
+.z .dim{opacity:.4}
+.z-band{display:grid;gap:8px;font:700 12px system-ui,sans-serif;text-align:center}
+.z-band>div{border-radius:8px;padding:5px 4px}
 @keyframes mk-up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @keyframes mk-fade{from{opacity:0}to{opacity:1}}
 @keyframes mk-glow{0%,100%{box-shadow:0 0 0 0 rgba(226,69,31,0)}50%{box-shadow:0 0 0 5px rgba(226,69,31,.16)}}
@@ -327,10 +403,18 @@ const EN_PHRASES = [
   /Nest application successfully started/g, /successfully started/g, /Validation failed/g, /Internal server error/g,
   /can't resolve dependencies/g, /invalid controller/g, /Dependency Injection/g, /Hello World/g, /Cannot GET/g,
   /Bad Request/g, /Not Found/g, /does not exist/g, /Potential solutions/g, /Car with id [\w' ]+? not found/g,
+  /\b[Bb]ackslash\b/g, // F-1109-01 (M49): `\` belgisi o'z nomi bilan; ko'rik saytida o'zbekcha ovoz uchun tts-server «bekslesh» qiladi
 ];
+// F-1109-02 (M49): o'quvchi darsi kodi (m4-03, m4a-03, m11-03) ovozga so'z bilan ketadi — raqam bo'lib ketsa «0» «o» harfi
+// bo'lib o'qiladi («m4 o uch»). Faqat o'zbekcha ovozda; ekranda va «Matn»da kod o'zgarmaydi.
+const SON_UZ = ['nol', 'bir', 'ikki', 'uch', "to'rt", 'besh', 'olti', 'yetti', 'sakkiz', "to'qqiz"];
+const ON_UZ = ['', "o'n", 'yigirma', "o'ttiz", 'qirq'];
+const sonUz = (n) => (n < 10 ? SON_UZ[n] : ON_UZ[Math.floor(n / 10)] + (n % 10 ? ' ' + SON_UZ[n % 10] : ''));
+const kodOvoz = (t) => t.replace(/\bm(\d{1,2})(a?)-(\d)(\d)\b/g, (_, m, a, d1, d2) =>
+  `em ${sonUz(+m)}${a ? ' a' : ''}, ${d1 === '0' ? 'nol ' + SON_UZ[+d2] : sonUz(+(d1 + d2))}`);
 const voice = (t) => {
   const keep = [];
-  let out = t || '';
+  let out = LANG === 'ru' ? (t || '') : kodOvoz(t || '');
   EN_PHRASES.forEach((re) => { out = out.replace(re, (m) => { keep.push(m); return `\u0000${keep.length - 1}\u0000`; }); });
   return (LANG === 'ru' ? RU_MARK : UZ) + out.replace(/\u0000(\d+)\u0000/g, (_, i) => `[English pronunciation] ${keep[i]} [end]`);
 };
@@ -462,7 +546,9 @@ function Say({ eyebrow, title, segments, beat, audio, stepManual, below, guess, 
 }
 
 // Kod/terminal paneli: satr `at` qadamida kiradi; `focus` id'lari yoritiladi, qolgani xiralashadi; `onLine` — bosiladigan
-function CodePanel({ file, lines, beat = 99, focus = [], numbers = true, wrap = false, style, onLine, marks = {} }) {
+// F-1103-04 (03.11, foydalanuvchi «1 qator kod 3 qator bo'lmasin»): kod HECH QACHON o'ralmaydi — `wrap` prop e'tiborsiz (eski chaqiruvlar buzilmasin).
+// Uzun qator — darsda Prettier (80 belgi) bilan bo'linadi; sig'masa panel ichida gorizontal skroll.
+function CodePanel({ file, lines, beat = 99, focus = [], numbers = true, style, onLine, marks = {} }) {
   const anyFocus = focus.length > 0;
   const ref = useRef(null);
   const focusKey = focus.join('|');
@@ -489,7 +575,7 @@ function CodePanel({ file, lines, beat = 99, focus = [], numbers = true, wrap = 
           const v = vis(l.at, beat);
           const hl = anyFocus && l.id && focus.includes(l.id);
           const mk = marks[i] || '';
-          const cls = `mk-ln${wrap ? ' wrap' : ''}${v ? ' in' : ''}${hl ? ' hl' : (anyFocus && v && !l.keep ? ' dim' : '')}${l.gone ? ' gone' : ''}${l.neu ? ' new' : ''}${onLine ? ' clk' : ''}${mk ? ' ' + mk : ''}`;
+          const cls = `mk-ln${v ? ' in' : ''}${hl ? ' hl' : (anyFocus && v && !l.keep ? ' dim' : '')}${l.gone ? ' gone' : ''}${l.neu ? ' new' : ''}${onLine ? ' clk' : ''}${mk ? ' ' + mk : ''}`;
           return <div key={i} className={cls} data-at={l.at} onClick={onLine ? () => onLine(i, l) : undefined}>{numbers && <span className="n">{l.n != null ? l.n : i + 1}</span>}<span dangerouslySetInnerHTML={html(l.h)} /></div>;
         })}
       </div>
@@ -585,7 +671,9 @@ function Lesson({ p, S, scene, below, ready, sceneTop }) {
 
 // Tekshiruv (tanlov): xato variant yopiladi, to'g'risini topguncha bosadi
 // `after` — to'g'ri javobdan keyin ko'rsatiladigan blok (masalan tuzatilgan fayl, 2-qonun, F-1030 qo'shimcha 1)
-function MCRetry({ idx, total, onBack, onNext, onRestart, stored, onAnswer, review, kicker, eyebrow, title, q, opts, correct, ok, okShort, wrong, above, after }) {
+// F-1103-02 (A varianti): `above` — savoldan oldin ko'rinadigan material (terminal, kod, xabar); `after` — to'g'ri javobdan keyin isbot;
+// `demak` — javobdan keyin o'ng ustun ostidagi bitta «Demak, …» gapi. Karta yo'q: sabab variantning ichida (to'g'risi yashil, xatosi qizil).
+function MCRetry({ idx, total, onBack, onNext, onRestart, stored, onAnswer, review, kicker, eyebrow, title, q, opts, correct, ok, okShort, wrong, above, after, demak }) {
   const segs = useMemo(() => review ? [] : [{ id: 'q', text: voice(q), trigger: 'on_mount', waits_for: { type: 'option_picked' } }], [q, review]);
   const audio = useAudio(segs);
   const sfx = useSfx();
@@ -604,11 +692,10 @@ function MCRetry({ idx, total, onBack, onNext, onRestart, stored, onAnswer, revi
       setTimeout(() => audio.pushOneOff(voice((wrong[i] || t('Unday emas.', 'Не совсем.')) + t(" Yana o'ylab ko'ring.", ' Подумайте ещё раз.'))), 300);
     }
   };
-  const fbOk = solved && last === correct;
   // F-1102-16: tuzatilgan/haqiqiy natija bloki bo'lsa — ekran BOSHIDAN ikki ustun va joyi qimirlamaydi:
   // chapda savol va variantlar, o'ngda xabar (above) va javobdan keyin uning ostida natija (after).
   // Javobdan keyin variantlar o'z joyida qoladi (to'g'risi yashil, qolgani xira) — hech narsa sakramaydi.
-  const split = !!after;
+  const split = !!(after || above);
   return (
     <Stage kicker={kicker} idx={idx} total={total} audio={audio} onBack={onBack} onNext={onNext} onRestart={onRestart} nextReady={solved} nextDisabled={!solved} lockHint={t("To'g'ri javobni toping", 'Найдите верный ответ')}>
       <div className={`mk-body${split ? ' mc-split' : ''}`} style={split ? undefined : { gridTemplateColumns: '1fr', maxWidth: 980, width: '100%', margin: '0 auto' }}>
@@ -622,21 +709,17 @@ function MCRetry({ idx, total, onBack, onNext, onRestart, stored, onAnswer, revi
               let cls = 'mk-opt';
               if (solved) cls += i === correct ? ' ok' : ' off';
               else if (bad.includes(i)) cls += ' bad';
-              return <button key={i} className={cls} disabled={solved || bad.includes(i)} onClick={() => pick(i)}><span className="l">{String.fromCharCode(65 + i)}</span><span>{o}</span></button>;
+              const why = solved && i === correct ? (okShort || digits(ok)) : (bad.includes(i) ? digits(wrong[i] || '') : null);
+              return <button key={i} className={cls} disabled={solved || bad.includes(i)} onClick={() => pick(i)}><span className="l">{String.fromCharCode(65 + i)}</span><span className="t"><span>{o}</span>{why ? <small className="why">{why}</small> : null}</span></button>;
             })}
           </div>
-          {last !== null && (
-            <div className="mk-fb" key={last + (solved ? 'ok' : 'bad')} style={{ '--c': fbOk ? T.green : T.accent, '--bg': fbOk ? '#E3F5EC' : '#FFF0EB' }}>
-              <b>{fbOk ? t("To'g'ri", 'Верно') : t("Unday emas — yana o'ylab ko'ring", 'Не совсем — подумайте ещё раз')}</b>
-              <span>{fbOk ? (okShort || digits(ok)) : digits(wrong[last])}</span>
-            </div>
-          )}
         </div>
-        {split && <div className="mk-scene top mc-after" style={{ overflow: 'auto', display: 'grid', gap: 12, alignContent: 'start' }}>
+        {split && <div className="mk-scene top mc-after">
           {above}
           {solved
-            ? <div style={{ animation: 'mk-up .45s ease both' }}>{after}</div>
-            : <div className="mc-wait">{t("To'g'ri javobni topganingizdan keyin shu yerda haqiqiy natija ochiladi", 'Когда найдёте верный ответ, здесь откроется реальный результат')}</div>}
+            ? (after ? <div className="mc-proof" style={{ animation: 'mk-up .45s ease both' }}>{after}</div> : null)
+            : (above ? null : <div className="mc-wait">{t("Javobdan keyin shu yerda haqiqiy natija", 'После ответа здесь — реальный результат')}</div>)}
+          {demak ? <div className={`mc-demak${solved ? ' on' : ''}`}>{solved ? <><b>{t('Demak,', 'Значит,')}</b><span>{demak}</span></> : null}</div> : null}
         </div>}
       </div>
     </Stage>
@@ -733,10 +816,18 @@ function Practice({ p, S, steps, trouble, code, proof, tree }) {
     <Stage kicker={S.kicker} idx={p.idx} total={p.total} audio={b.audio} onBack={p.onBack} onNext={p.onNext} onRestart={p.onRestart} nextReady={b.done && allDone} nextDisabled={!(b.done && allDone)} lockHint={!allDone ? (proof ? t("Katakchalar va isbotni to'ldiring", 'Отметьте пункты и заполните подтверждение') : t('Katakchalarni belgilang', 'Отметьте пункты')) : t("Ustoz gapirib bo'lgach ochiladi", 'Откроется, когда учитель договорит')}>
       <div className="mk-body">
         <Say eyebrow={S.eyebrow} title={S.title} segments={S.segments} beat={beat} audio={b.audio} stepManual={b.stepManual} guess={b.guess} answerAsk={b.answerAsk} review={p.review}
-          below={<div className="mk-card" style={{ background: allDone ? '#E3F5EC' : T.paper, borderColor: allDone ? T.green : T.line }}><h5>{t('Bajarildi', 'Выполнено')}</h5><div style={{ fontSize: 15, fontWeight: 700 }}>{checked.length} / {steps.length} {t('qadam', 'шагов')}{proof ? (proofOk && proofVal.trim() ? t(' · isbot ✓', ' · подтверждение ✓') : t(' · isbot kutilmoqda', ' · ждём подтверждение')) : ''}{allDone ? (b.done ? t(' — Davom bosing', ' — нажмите «Далее»') : t(' — ovoz tugagach Davom ochiladi', ' — «Далее» откроется после озвучки')) : ''}</div>
+          below={<><div className="mk-card" style={{ background: allDone ? '#E3F5EC' : T.paper, borderColor: allDone ? T.green : T.line }}><h5>{t('Bajarildi', 'Выполнено')}</h5><div style={{ fontSize: 15, fontWeight: 700 }}>{checked.length} / {steps.length} {t('qadam', 'шагов')}{proof ? (proofOk && proofVal.trim() ? t(' · isbot ✓', ' · подтверждение ✓') : t(' · isbot kutilmoqda', ' · ждём подтверждение')) : ''}{allDone ? (b.done ? t(' — Davom bosing', ' — нажмите «Далее»') : t(' — ovoz tugagach Davom ochiladi', ' — «Далее» откроется после озвучки')) : ''}</div>
             {/* F-1102-20: isbot maydoni to'ldirilmaguncha yumshoq yonib-o'chadi — «shu yerga yozing» ko'rinib tursin */}
             {proof && <div style={{ marginTop: 10 }}><div className="exp" style={{ marginBottom: 4, fontWeight: 700, color: proofOk && proofVal.trim() ? T.green : T.ink }}>{t('Isbot', 'Подтверждение')}: {String(proof.label).replace(/^(Isbot|Подтверждение)\s*:\s*/, '')}</div><input className={`mk-input${proofOk && proofVal.trim() ? '' : ' need'}`} value={proofVal} placeholder={proof.placeholder} onChange={(e) => onProof(e.target.value)} />{proofVal.trim() && !proofOk && <div className="exp" style={{ color: T.accent, marginTop: 4 }}>{proof.wrong}</div>}</div>}
-          </div>} />
+          </div>
+          {/* 04.11: «Boshqacha chiqdimi?» chap ustunda — o'ng ustun qadamlarga to'liq qoladi (1280×720 da kesilmasin) */}
+          <Block at={S.tableAt} beat={beat}><div className="mk-light mk-trouble" style={{ padding: 0, marginTop: 10 }}>
+              <button type="button" className={`mk-trbtn${beat === S.tableAt && !tOpen ? ' hot' : ''}`} aria-haspopup="dialog" aria-expanded={tOpen} onClick={() => setTOpen(true)}>
+                <span className="q">{t('Boshqacha chiqdimi?', 'Вышло иначе?')}</span>
+                {rows.length > 1 && <span className="n">{t(`${rows.length - 1} ta holat va yechim`, `ситуации и решения: ${rows.length - 1}`)}</span>}
+                <span className="ar" aria-hidden="true">↗</span>
+              </button>
+            </div></Block></>} />
         <div className="mk-scene top" style={{ overflow: 'auto' }}>
           {cur ? (<>
             {/* F-1031-05: qaytish tugmasi oynadan tashqarida, katta — kod ko'rilgach qadamlarga qaytish ko'rinib tursin */}
@@ -757,25 +848,59 @@ function Practice({ p, S, steps, trouble, code, proof, tree }) {
                   <input type="checkbox" checked={checked.includes(i)} onChange={() => toggle(i)} />
                   <div className="t"><b>{i + 1}. {s.t}</b>
                     {s.cmds.map((cm) => <div key={cm} className="cmd"><code>{cm}</code><CopyBtn text={cm} /></div>)}
-                    {c && <div style={{ margin: '4px 0 6px' }}><button className="mk-btn soft sm" style={{ borderColor: T.ink, color: T.ink }} onClick={() => setOpenFile(c.file)}>{t('Kodni ochish', 'Открыть код')} · {baseName(c.file)}{c.copy === false ? t(' (namuna)', ' (образец)') : ''}</button></div>}
-                    <div className="exp">{t('Kutilgan:', 'Ожидается:')} {s.exp}</div>
+                    {/* 04.11: «Kodni ochish» va «Kutilgan» bitta qatorda (sig'masa o'tadi) — 1280×720 da qadamlar sig'sin */}
+                    <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '4px 12px', margin: c ? '4px 0 2px' : 0 }}>
+                      {c && <button className="mk-btn soft sm" style={{ borderColor: T.ink, color: T.ink }} onClick={() => setOpenFile(c.file)}>{t('Kodni ochish', 'Открыть код')} · {baseName(c.file)}{c.copy === false ? t(' (namuna)', ' (образец)') : ''}</button>}
+                      <div className="exp">{t('Kutilgan:', 'Ожидается:')} {s.exp}</div>
+                    </div>
                   </div>
                 </div>
               ); })}
             </div>
-            <Block at={S.tableAt} beat={beat}><div className="mk-light mk-trouble" style={{ padding: 0, marginTop: 10 }}>
-              <button type="button" className={`mk-trbtn${beat === S.tableAt && !tOpen ? ' hot' : ''}`} aria-haspopup="dialog" aria-expanded={tOpen} onClick={() => setTOpen(true)}>
-                <span className="q">{t('Boshqacha chiqdimi?', 'Вышло иначе?')}</span>
-                {rows.length > 1 && <span className="n">{t(`${rows.length - 1} ta holat va yechim`, `ситуации и решения: ${rows.length - 1}`)}</span>}
-                <span className="ar" aria-hidden="true">↗</span>
-              </button>
-            </div></Block>
             {/* F-1102-12: jadval sahifa ichida emas — ustida oyna (popup). ✕, tashqarisi yoki Esc yopadi; tugma joyida qoladi */}
             {tOpen && <TroubleModal rows={rows} onClose={() => setTOpen(false)} />}
           </>)}
         </div>
       </div>
     </Stage>
+  );
+}
+
+// ---------- Progress saqlovi (F-1103-06, 03.11): mentor darsni bo'lib o'tadi ----------
+// O'quvchi darslaridagi ccProgress kabi — brauzer xotirasida: ekran, ko'rilgan ekranlar, javoblar.
+// Ekranlar soni o'zgargan bo'lsa (dars qayta qurilgan) eski yozuv olinmaydi. startAt (dev) bo'lsa saqlov o'qilmaydi.
+// Qaytganda darhol ekranga tushilmaydi: brauzer ovozni faqat bosishdan keyin chaladi — kirish oynasida tugma.
+const SAVE_KEY = (id) => `ccMentor:${id}`;
+function loadSaved(id, total) {
+  try {
+    const v = JSON.parse(localStorage.getItem(SAVE_KEY(id)) || 'null');
+    if (!v || v.v !== 1 || v.total !== total || typeof v.idx !== 'number' || v.idx < 1) return null;
+    return v;
+  } catch (e) { return null; }
+}
+function clearSaved(id) { try { localStorage.removeItem(SAVE_KEY(id)); } catch (e) {} }
+function useMentorSave({ id, total, startAt, started, idx, answers, seen, setIdx, setAnswers, setSeen, setStarted }) {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const saved = useMemo(() => (startAt != null ? null : loadSaved(id, total)), []);
+  useEffect(() => {
+    if (!started) return;
+    try { localStorage.setItem(SAVE_KEY(id), JSON.stringify({ v: 1, total, idx, answers, seen, t: Date.now() })); } catch (e) {}
+  }, [started, idx, answers, seen, id, total]);
+  const start = useCallback((resume) => {
+    if (resume && saved) { setIdx(Math.min(saved.idx, total - 1)); setAnswers(saved.answers || {}); setSeen(saved.seen || {}); }
+    else clearSaved(id);
+    setStarted(true);
+  }, [saved, id, total, setIdx, setAnswers, setSeen, setStarted]);
+  return { resume: saved, start };
+}
+function CoverStart({ onStart, resume }) {
+  if (!resume) return <button className="mk-btn ready" onClick={() => onStart(false)}>{t('Boshlash →', 'Начать →')}</button>;
+  return (
+    <div className="mk-resume">
+      <button className="mk-btn ready" onClick={() => onStart(true)}>{t(`${resume.idx + 1}-ekrandan davom etish →`, `Продолжить с ${resume.idx + 1}-го экрана →`)}</button>
+      <button className="mk-btn soft" onClick={() => onStart(false)}>{t('Boshidan boshlash', 'Начать сначала')}</button>
+      <p className="mk-resume-note">{t(`Oxirgi marta ${resume.idx + 1}-ekrangacha kelgansiz. Javoblaringiz saqlangan.`, `В прошлый раз вы дошли до ${resume.idx + 1}-го экрана. Ответы сохранены.`)}</p>
+    </div>
   );
 }
 
@@ -870,6 +995,7 @@ EN_PHRASES.unshift(
 
 // Nest-2 ga xos qo'shimcha CSS (dvigatel CSS'iga tegilmaydi). Izohda backtick yo'q (CLAUDE.md).
 const CSS2 = `
+.mk-qa.n2-sm>button>p{display:none}
 .mk-explorer{overflow:auto}
 .n2-path{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:0 0 2px}
 .n2-path span{font:600 11px/1 ${MONO};letter-spacing:.06em;text-transform:uppercase;padding:6px 9px;border-radius:999px;border:1.5px solid var(--c);color:var(--c);background:${T.paper};opacity:.45;transition:opacity .3s,background .3s,color .3s}
@@ -1035,7 +1161,7 @@ const S3 = {
 };
 function Screen3(p) {
   return <Lesson p={p} S={S3} scene={({ seg, beat }) => <>
-    <Browser url="localhost:3000/api/v1" out="Swagger UI" />
+    {beat < 2 && <Browser url="localhost:3000/api/v1" out="Swagger UI" />}
     <Swagger hl={seg.hl} authHl={seg.auth} />
     <Block at={2} beat={beat}><div className="n2-warn"><b>{t('Qulf', 'Замок')}</b> {t("— Swagger hujjatidagi belgi (dasturchi qo'yadi). Haqiqiy tekshiruv — Guard: tokensiz", '— значок в документации Swagger (ставит разработчик). Реальная проверка — Guard: без токена')} <code>POST /api/v1/admin/token</code> → <b>401</b>.</div></Block>
   </>} />;
@@ -1128,12 +1254,12 @@ export class AllExceptionFilter implements ExceptionFilter {
 function Screen5(p) {
   return <Lesson p={p} S={S5} scene={({ seg, beat }) => <Ide files={tree(BASE, [F.filter, F.okRes])} active={beat === 0 ? F.main : seg.file}>
     {beat === 0 && <CodePanel file={F.main} lines={MAIN_LINES} />}
-    {seg.file === F.filter
+    {beat < 4 && (seg.file === F.filter
       ? <CodePanel file={F.filter} lines={FILTER_LINES} focus={['st', 'log']} />
-      : <CodePanel file={F.appSvc} lines={APPSVC_LINES} focus={seg.focus} />}
-    <Block at={1} beat={beat}><div className="n2-grid2">
+      : <CodePanel file={F.appSvc} lines={APPSVC_LINES} focus={seg.focus} />)}
+    {beat < 2 && <Block at={1} beat={beat}><div className="n2-grid2">
       <Browser url="localhost:3000/admin" out="404" er /><Browser url="localhost:3000/api/v1/admin" out="401" />
-    </div></Block>
+    </div></Block>}
     <Block at={2} beat={beat}><div className="n2-grid2">
       <Json st={200}>{`{"statusCode":200,"message":"success","data":[…]}`}</Json>
       <Json st={404}>{`{"statusCode":404,"error":{"message":"Cannot GET /admin"}}`}</Json>
@@ -1197,7 +1323,7 @@ const S6 = {
 };
 function Screen6(p) {
   return <Lesson p={p} S={S6} scene={({ seg, beat }) => <Ide files={tree(BASE, [F.cfg, F.env])} active={F.cfg}>
-    <CodePanel file={F.cfg} lines={CFG_LINES} focus={seg.focus} />
+    {beat < 4 && <CodePanel file={F.cfg} lines={CFG_LINES} focus={seg.focus} />}
     {beat === 2 && <Term er lines={NODEENV_TERM} />}
     {beat >= 3 && <Term lines={BLANK_SA} focus={beat === 3 ? ['blank', 'res'] : []} />}
     <Block at={4} beat={beat}><div className="mk-rule"><b>{t('Yechim:', 'Решение:')}</b> <code>psql -U postgres -d nestarxitechture -c "DELETE FROM admins WHERE role='superAdmin';"</code> → <code>npm run start:dev</code> → <code>Super admin created successfully</code> → signin <b>201</b></div></Block>
@@ -1284,7 +1410,7 @@ export class AdminEntity extends BaseEntity {
   @Column({ type: 'enum', enum: UserRole, default: UserRole.ADMIN })
   role: UserRole;
 }`)} />
-        : <CodePanel file={F.cEnt} lines={CAR_ENT_LINES} focus={seg.focus} />}
+        : beat < 3 ? <CodePanel file={F.cEnt} lines={CAR_ENT_LINES} focus={seg.focus} /> : null}
       {beat === 2 && <CodePanel file={F.baseEnt} lines={BASE_ENT_LINES} />}
       {beat >= 3 && <CodePanel file={F.coreIdx} lines={CORE_IDX_LINES} focus={beat === 3 ? ['exp'] : []} />}
       {beat === 3 && <Term er lines={term(t(String.raw`error TS2305: Module '"src/core"' has no exported member 'CarEntity'.   ← export yozilmasa`, String.raw`error TS2305: Module '"src/core"' has no exported member 'CarEntity'.   ← если не написан export`))} />}
@@ -1353,7 +1479,7 @@ function Screen9(p) {
               <div className="mk-card"><h5>@nestjs/swagger</h5><div style={{ fontSize: 13 }}>{t("Swagger'da UpdateCarDto: brand · model · price · is_available", 'В Swagger UpdateCarDto: brand · model · price · is_available')}</div></div>
               <div className="mk-card" style={{ borderColor: T.accent }}><h5 style={{ color: T.accent }}>@nestjs/mapped-types</h5><div style={{ fontSize: 13 }}>{t("Swagger'da UpdateCarDto: properties: {} — maydonlar yo'q (PATCH baribir 200)", 'В Swagger UpdateCarDto: properties: {} — полей нет (PATCH всё равно 200)')}</div></div>
             </div></>
-          : <CodePanel file={F.cCdto} lines={CDTO_LINES} focus={seg.focus} />}
+          : <CodePanel file={F.cCdto} lines={seg.id === 'e' ? CDTO_LINES.map((l, k) => ({ ...l, n: k + 1 })).filter((l) => String(l.h).trim() !== '') : CDTO_LINES} focus={seg.focus} />}
       {beat === 1 && <div className="mk-light" style={{ padding: 12 }}><div className="mk-tag">Swagger · Example Value</div><pre className="n2-json">{'{ "brand": "Chevrolet", "model": "Malibu", "price": 250, "is_available": true }'}</pre></div>}
     </Ide>
   </>} />;
@@ -1398,14 +1524,14 @@ function Screen10(p) {
     <LayerPath at={2} />
     <Ide files={tree(BASE, [F.cEnt, F.cCdto, F.cUdto, F.baseSvc, F.okRes])} active={F.baseSvc}>
       <CodePanel file={F.baseSvc} lines={BASESVC_LINES} focus={seg.focus} />
-      <Block at={2} beat={beat}><CodePanel file={F.okRes} lines={ts(String.raw`
+      {beat === 2 && <Block at={2} beat={beat}><CodePanel file={F.okRes} lines={ts(String.raw`
 export const successRes = (data: any, statusCode = 200): ISuccessRes => {
   return { statusCode, message: 'success', data };
-};`)} /></Block>
-      <Block at={0} beat={beat}><div className="n2-cmp">
+};`)} /></Block>}
+      {beat < 2 && <Block at={0} beat={beat}><div className="n2-cmp">
         <div className="mk-card"><h5>Nest-1 · cars.service.ts</h5><div style={{ fontSize: 13.5 }}>{t('27 satr: massiv, findAll, findOne, create — har resursda qaytadan', '27 строк: массив, findAll, findOne, create — заново в каждом ресурсе')}</div></div>
         <div className="mk-card" style={{ borderColor: PART.svc }}><h5 style={{ color: PART.svc }}>{t("o'quvchi reposi · car.service.ts", 'репозиторий ученика · car.service.ts')}</h5><div style={{ fontSize: 13.5 }}>{t('ish qismi 8 satr — CRUD BaseService\'dan', 'рабочая часть 8 строк — CRUD из BaseService')}</div></div>
-      </div></Block>
+      </div></Block>}
     </Ide>
   </>} />;
 }
@@ -1661,7 +1787,7 @@ function Screen14(p) {
     q={t("Besh qatlamni ko'rdingiz, endi o'zingiz tekshiring. Ikkinchi tekshiruv. Qoidani eslang: Entity'da har ustun Column bilan, tekshirish qoidalari esa DTO'da. Ekrandagi Entity'da bitta satr DTO'niki. O'sha satrni bosing.", 'Вы видели пять слоёв, теперь проверьте сами. Вторая проверка. Вспомните правило: в Entity каждая колонка с Column, а правила проверки в DTO. В Entity на экране одна строка из DTO. Нажмите на эту строку.')}
     file={F.cEnt} lines={LC2_LINES} target={12}
     tree={{ root: MKCFG.root, files: tree(BASE, CAR_ALL), active: F.cEnt }}
-    fixed={LC2_FIXED}
+    fixed={LC2_FIXED.filter((l) => String(l.h).trim() !== '')}
     fixedExtra={[{ file: t('psql · \\d cars — haqiqiy natija', 'psql · \\d cars — реальный результат'), lines: plainLines(t(String.raw`
 buzuq holatda:   brand · model · is_available   ← price ustuni YO'Q (synchronize o'chirdi)
 POST /api/v1/car {…,"price":250} → 201, javobda va bazada price yo'q
@@ -1786,16 +1912,16 @@ signin(
 function Screen16(p) {
   return <Lesson p={p} S={S16} scene={({ seg, beat }) => <>
     <GuardFlow stop="auth" label={beat >= 4 ? <><b>401</b> = {t('AuthGuard: token yo\'q yoki yaroqsiz → signin → Authorize', 'AuthGuard: токена нет или он недействителен → signin → Authorize')}</> : null} />
-    <Ide files={tree(BASE, [F.aCtrl, F.authG, F.rolesG])} active={F.authG}>
+    {(beat < 4 || seg.expiry) && <Ide files={tree(BASE, [F.aCtrl, F.authG, F.rolesG])} active={F.authG}>
       <CodePanel file={F.authG} lines={AUTHG_LINES} focus={seg.focus} />
       {beat === 0 && <CodePanel file={F.aCtrl + ' · 31–33'} lines={ts(String.raw`
 @UseGuards(AuthGuard, RolesGuard)
 @Controller('admin')
 export class AdminController {`)} />}
-      {seg.pub && <CodePanel file={F.aCtrl + ' · 46–53'} lines={SIGNIN_PUB} focus={['p']} />}
-      {seg.pub && <div className="mk-rule" style={{ animation: 'mk-up .45s ease both' }}>{t(<><b>'public'</b> — to'g'ri qaror: tokenni shu eshikdan olasiz. Qolgan eshiklar yopiq.</>, <><b>'public'</b> — правильное решение: токен вы получаете через эту дверь. Остальные двери закрыты.</>)}</div>}
+      {seg.pub && !seg.expiry && <CodePanel file={F.aCtrl + ' · 46–53'} lines={SIGNIN_PUB} focus={['p']} />}
+      {seg.pub && !seg.expiry && <div className="mk-rule" style={{ animation: 'mk-up .45s ease both' }}>{t(<><b>'public'</b> — to'g'ri qaror: tokenni shu eshikdan olasiz. Qolgan eshiklar yopiq.</>, <><b>'public'</b> — правильное решение: токен вы получаете через эту дверь. Остальные двери закрыты.</>)}</div>}
       {seg.expiry && <Term lines={EXPIRY} focus={['x']} />}
-    </Ide>
+    </Ide>}
   </>} />;
 }
 
@@ -1835,9 +1961,9 @@ const S17 = {
 };
 function Screen17(p) {
   return <Lesson p={p} S={S17} scene={({ seg, beat }) => <>
-    <Ide files={tree(BASE, [F.aCtrl, F.authG, F.rolesG, F.rolesD])} active={F.rolesG}>
+    {beat < 4 && <Ide files={tree(BASE, [F.aCtrl, F.authG, F.rolesG, F.rolesD])} active={F.rolesG}>
       <CodePanel file="roles-decorator.ts · roles.guard.ts" lines={ROLESG_LINES} focus={seg.focus} />
-    </Ide>
+    </Ide>}
     <Block at={2} beat={beat}><div className="mk-light" style={{ padding: 12 }}>
       <div className="mk-tag">{t('Haqiqiy javoblar — KitobShop playbook qoidalari bilan sinov', 'Реальные ответы — проверка с правилами playbook KitobShop')}</div>
       <table className="mk-tbl n2-table"><thead><tr><th>{t('eshik', 'дверь')}</th><th>{t('tokensiz', 'без токена')}</th><th>superadmin (superAdmin)</th><th>{t('oddiy admin (admin)', 'обычный админ (admin)')}</th></tr></thead><tbody>
@@ -1979,13 +2105,44 @@ const ENT_FIX = ts(String.raw`
   @Column()
   @Column({ nullable: true })
   brandId: string;`, { 5: { gone: true }, 6: { neu: true } });
+// F-1109-06: xulosa — ikki karta o'rniga Entity → start:dev → jadval oqimi va ikki haqiqiy tajriba yonma-yon (ustun tushdi · NOT NULL ustun)
+function Sync21() {
+  return <div className="z">
+    <div className="z-card">
+      <p className="z-h">{t("synchronize: true (NODE_ENV=dev) — har ishga tushishda Entity → baza", "synchronize: true (NODE_ENV=dev) — при каждом запуске Entity → база")}</p>
+      <div className="z-flow">
+        <div className="z-st blue"><b>{t("Entity o'zgardi", "Entity изменилась")}</b><span className="z-mut">car.entity.ts</span></div>
+        <div className="z-ar">→</div>
+        <div className="z-st"><b>npm run start:dev</b><span className="z-mut">{t("TypeORM jadvalni moslaydi", "TypeORM подгоняет таблицу")}</span></div>
+        <div className="z-ar">→</div>
+        <div className="z-st"><b>{t("cars jadvali", "таблица cars")}</b><span className="z-mut">{t("ustun qo'shiladi yoki o'chiriladi", "колонка добавляется или удаляется")}</span></div>
+      </div>
+    </div>
+    <div className="z-two">
+      <div className="z-card" style={{ borderColor: 'var(--warn)' }}>
+        <p className="z-h" style={{ color: 'var(--warn)' }}>{t("Ustun tushib qoldi — xato bermay", "Колонка пропала — без ошибки")}</p>
+        <span><span className="z-tag g">{t("server ishga tushdi", "сервер запустился")}</span></span>
+        <div className="z-term"><span className="m">\d cars</span>{'\n'} brand | character varying | not null{'\n'} model | character varying | not null{'\n'}<span className="y">{t("price — yo'q", "price — нет")}</span>{'\n'}<span className="m">POST {'{'}"brand":"Chevrolet","model":"Malibu","price":250{'}'} → 201</span>{'\n'} brand     | model{'\n'} Chevrolet | Malibu</div>
+        <span className="z-mut">{t("price saqlanmadi — ma'lumot xato bermay yo'qoldi", "price не сохранился — данные пропали без ошибки")}</span>
+      </div>
+      <div className="z-card" style={{ borderColor: 'var(--bad)' }}>
+        <p className="z-h" style={{ color: 'var(--bad)' }}>{t("NOT NULL ustun qo'shildi — yiqildi", "Добавлена NOT NULL колонка — упал")}</p>
+        <span><span className="z-tag r">successfully started = 0</span></span>
+        <div className="z-term"><span className="m">{t("cars jadvalida 1 qator bor; brandId NOT NULL", "в таблице cars 1 строка; brandId NOT NULL")}</span>{'\n'}<span className="r">QueryFailedError: column "brandId" of relation "cars" contains null values</span>{'\n'}<span className="m">{t("nullable: true bilan →", "с nullable: true →")}</span> <span className="g">successfully started = 1</span></div>
+        <span className="z-mut">{t("eski qatorga bo'sh qiymat qo'yib bo'lmaydi", "в старую строку нельзя поставить пустое значение")}</span>
+      </div>
+    </div>
+    <div className="z-rule">{t("«Ma'lumot yo'qoldi» yoki ", "«Данные пропали» или ")}<b>contains null values</b>{t(" — birinchi savol: ", " — первый вопрос: ")}<b>{t("«Entity'da nimani o'zgartirdingiz?»", "«Что вы изменили в Entity?»")}</b></div>
+  </div>;
+}
 function Screen21(p) {
   return <Lesson p={p} S={S21} scene={({ seg }) => {
     const v = seg.v;
+    if (v === 'sum') return <Sync21 />;
     return <div style={{ display: 'grid', gap: 10 }}>
-      <Ide files={tree(BASE, CAR_ALL)} active={F.cEnt}>
+      {v !== 'sum' && <Ide files={tree(BASE, CAR_ALL)} active={F.cEnt}>
         {v === 'sync' || v === 'sum' ? <CodePanel file={F.cEnt} lines={CAR_ENT_LINES} /> : <CodePanel file={F.cEnt + ' · ' + t("o'zgargan joy", 'изменённое место')} lines={v === 'drop' ? ENT_DROP : v === 'add' ? ENT_ADD : ENT_FIX} focus={v === 'fix' ? [] : ['x']} />}
-      </Ide>
+      </Ide>}
       <div style={{ display: 'grid', gap: 10, minWidth: 0 }}>
         {(v === 'sync' || v === 'sum') && <div className="mk-light"><div className="mk-tag">synchronize: true (NODE_ENV=dev)</div><div style={{ fontSize: 14 }}>{t("Har ishga tushishda: Entity → baza. Ustun qo'shilsa — qo'shiladi, olib tashlansa — o'chiriladi.", 'При каждом запуске: Entity → база. Колонку добавили — добавится, убрали — удалится.')}</div></div>}
         {v === 'drop' && <><Term title="psql · \d cars" lines={plainLines(String.raw`
@@ -2016,7 +2173,7 @@ const BOOK_START = term(String.raw`
 [Nest] LOG [RouterExplorer] Mapped {/api/v1/book, GET} route`);
 function Screen22(p) {
   const above = <div style={{ marginBottom: 12, display: 'grid', gap: 6 }}><Term er lines={BOOK_ERR} /><div className="exp" style={{ fontSize: 12.5, color: T.ink3 }}>{t('Xabar shakli haqiqiy (20-ekran), nomlar KitobShop\'ga almashtirilgan.', 'Форма сообщения реальная (экран 20), имена заменены на KitobShop.')}</div></div>;
-  const after = <Ide files={tree(BASE, [F.bMod, F.bCtrl, F.bSvc, F.bEnt])} active={F.bMod}>
+  const after = <div style={{ display: 'grid', gap: 8 }}>
     <CodePanel file={F.bMod} lines={ts(String.raw`
 @Module({
   imports: [],
@@ -2025,7 +2182,7 @@ function Screen22(p) {
   providers: [BookService],
 })`, { 2: { gone: true }, 3: { neu: true } })} />
     <Term lines={BOOK_START} />
-  </Ide>;
+  </div>;
   return <MCRetry {...p} kicker={t('Tekshiruv 4', 'Проверка 4')} eyebrow={t("Tekshiruv · 4 / 4 — xatoni o'qish", 'Проверка · 4 / 4 — чтение ошибки')} above={above} after={after}
     title={t("O'quvchingizning KitobShop'i yiqildi. Qaysi faylni ochasiz va nimani tuzatasiz?", 'KitobShop вашего ученика упал. Какой файл откроете и что исправите?')}
     q={t("Oxirgi tekshiruv, sinfdagi haqiqiy holat. To'rtinchi tekshiruv. O'quvchi agent yozgan kitob resursini ishga tushirdi, server yiqildi, ekranda xabar. U yordam so'radi. Qaysi faylni ochasiz va nimani tuzatasiz?", 'Последняя проверка, реальный случай из класса. Четвёртая проверка. Ученик запустил ресурс книг, написанный агентом, сервер упал, на экране сообщение. Он просит помощи. Какой файл вы откроете и что исправите?')}
@@ -2075,7 +2232,7 @@ const S24 = {
     sg('a', "m4a-03 — <b>siz bugun qilgan ish</b>: car resursi, besh bosqich, 22 ekran", "Endi darsning asosiy maqsadi: bu mavzuni o'quvchiga o'tish. Ikkita o'quvchi darsi bor. Birinchisi m4a-03: o'quvchi aynan siz bugun qilgan ishni qiladi, car resursini besh bosqichda qo'shadi. Yigirma ikki ekran.", { hl: [] }),
     sg('b', "Har bosqichda o'quvchi <b>shu faylga tegishli qatorni</b> tanlaydi, keyin test, agent va haqiqiy loyiha", "Har bosqichda o'quvchi qatorlarni tanlaydi, qaysi biri shu faylga tegishli, keyin qisqa test. So'ng agent besh faylni yozadi va o'quvchi agent xatosini topadi. Oxirida amaliyot haqiqiy loyihada. Siz har bosqichda qoidani aytasiz: ustun Entity'da, qoida DTO'da, eshik Controller'da.", { hl: [1, 2] }),
     sg('c', "Diqqat: o'quvchi darsida manzil <b><code>/car</code></b> deb yozilgan — haqiqatda <b>404</b>; <code>/api/v1/car</code> deb tuzating", "Diqqat, birinchi xato. O'quvchi darsida manzil hamma joyda prefikssiz, slesh car deb yozilgan, amaliyot ro'yxatida ham: brauzerda slesh car'ni oching, ikki yuz. Haqiqatda bu to'rt yuz to'rt. Darsdan oldin o'quvchilarga ayting: manzil api v bir slesh car.", { hl: [3], warn: true }),
-    sg('d', "90 daqiqaning <b>20 tasi haqiqiy loyihaga</b> ketadi — o'quvchilar eng ko'p shu yerda qoqiladi", "Vaqt rejasi, taklif: to'qson daqiqa. Kirish va reja o'n besh, besh bosqich qirq, agent va xato topish o'n, haqiqiy loyiha yigirma, yakun besh. Eng ko'p qoqiladigan joy haqiqiy loyiha: hammaning car route'i ishlamaguncha oldinga o'tmang.", { hl: [], time: true }),
+    sg('d', "90 daqiqaning <b>20 tasi haqiqiy loyihaga</b> ketadi — o'quvchilar eng ko'p shu yerda xato qiladi", "Vaqt rejasi, taklif: to'qson daqiqa. Kirish va reja o'n besh, besh bosqich qirq, agent va xato topish o'n, haqiqiy loyiha yigirma, yakun besh. O'quvchilar eng ko'p xato qiladigan joy haqiqiy loyiha: hammaning car route'i ishlamaguncha oldinga o'tmang.", { hl: [], time: true }),
     sg('e', "Xulosa: o'quvchi darsi <b>«5 fayl»</b> deydi — DTO'ni bitta sanaydi; qoqilganga 2-amaliyot jadvali bilan yordam bering", "Xulosa: o'quvchi darsi besh fayl deydi, ikki DTO'ni bitta deb sanaydi, bu xato emas. Haqiqiy loyihada qoqilgan o'quvchiga ikkinchi amaliyotdagi jadvalingiz bilan yordam berasiz: har xabar va uning yechimi o'sha yerda.", { hl: [1, 3] }),
   ],
 };
@@ -2125,7 +2282,7 @@ function Screen25(p) {
   return <Lesson p={p} S={S25} scene={({ seg, beat }) => <div className="mk-light" style={{ padding: 14 }}>
     <div className="mk-tag">{t("O'quvchi darsidagi so'z → uning atamasi", 'Слово из урока ученика → термин')}</div>
     <table className="mk-tbl"><thead><tr><th>{t("o'quvchi darsida", 'в уроке ученика')}</th><th>{t('atama', 'термин')}</th><th>{t('vazifa', 'задача')}</th><th>{t('qayerdan', 'откуда')}</th></tr></thead><tbody>
-      {DICT2.map(([a, b, c, d], i) => <tr key={a} className={seg.rows.includes(i) ? 'hl' : ''} style={{ opacity: seg.rows.length && !seg.rows.includes(i) ? 0.55 : 1 }}><td>{a}</td><td><code>{b}</code></td><td style={{ color: T.ink2 }}>{c}</td><td style={{ color: T.ink3, fontSize: 12 }}>{d}</td></tr>)}
+      {DICT2.map(([a, b, c, d], i) => (beat >= 3 && seg.rows.length && !seg.rows.includes(i)) ? null : <tr key={a} className={seg.rows.includes(i) ? 'hl' : ''} style={{ opacity: seg.rows.length && !seg.rows.includes(i) ? 0.55 : 1 }}><td>{a}</td><td><code>{b}</code></td><td style={{ color: T.ink2 }}>{c}</td><td style={{ color: T.ink3, fontSize: 12 }}>{d}</td></tr>)}
     </tbody></table>
     <Block at={3} beat={beat}><div className="mk-rule" style={{ marginTop: 12 }}>{t(<>Ikkala so'zni birga ayting: <b>«javon chizmasi, ya'ni Entity»</b>. Metafora vazifani tushuntiradi, kodni emas.</>, <>Говорите оба слова вместе: <b>«чертёж стеллажа, то есть Entity»</b>. Метафора объясняет задачу, а не код.</>)}</div></Block>
   </div>} />;
@@ -2214,7 +2371,7 @@ const S27 = {
 function Screen27(p) {
   const [open, setOpen] = useState([]);
   return <Lesson p={p} S={S27} scene={({ seg }) => <>
-    <div className="mk-qa">
+    <div className={`mk-qa${seg.qa ? ' n2-sm' : ''}`}>
       {STUMBLE2.map(([h, m, a], i) => <button key={i} className={seg.hl.includes(i) ? 'hl' : (seg.hl.length ? 'dim' : '')} style={{ cursor: 'default' }}><b>{i + 1}. {h}</b><p style={{ fontFamily: MONO, fontSize: 12, color: T.accent, margin: '0 0 4px' }}>{m}</p><p>{a}</p></button>)}
     </div>
     {seg.qa && <div className="mk-rule" style={{ animation: 'mk-up .45s ease both' }}>{t(<><b>404</b> — manzil yoki modul · <b>400</b> — DTO qoidasi · <b>401 / 403</b> — Guard · <b>500</b> — terminalni o'qing. Javobni aytmang: xabarni o'quvchi bilan birga o'qing.</>, <><b>404</b> — адрес или модуль · <b>400</b> — правило DTO · <b>401 / 403</b> — Guard · <b>500</b> — читайте терминал. Не говорите ответ: читайте сообщение вместе с учеником.</>)}</div>}
@@ -2229,14 +2386,14 @@ function Screen27(p) {
 //  28 · O'z-sinov — 8 savol (Nest-1 Screen27 bilan bir xil mexanika; M12)
 // ============================================================
 const FINAL = [
-  { q: "O'quvchi loyihasida server qaysi faylda ishga tushadi?", o: ['src/main.ts', 'src/api/app.service.ts', 'src/api/app.module.ts', 'src/config/index.ts'], c: 1, e: "main.ts faqat Aplication.main()ni chaqiradi; server app.service.ts'da.", s: 5 },
-  { q: "POST /api/v1/car bo'sh {} bilan yuborildi. Javob?", o: ["201, bo'sh mashina yaratiladi", '404, route topilmadi', '500, server xatosi', "400, buzilgan qoidalar ro'yxati"], c: 3, e: 'Global ValidationPipe DTO qoidalarini tekshiradi.', s: 13 },
-  { q: 'GET /api/v1/car/1 — nima bo\'ladi?', o: ['500, terminalda uuid xatosi', '404, mashina topilmadi', '200, birinchi mashina', '400, DTO qoidasi buzildi'], c: 0, e: "id uuid; «1» bazada xato beradi, filtr uni 500 qiladi.", s: 13 },
+  { q: "O'quvchi loyihasida server qaysi faylda ishga tushadi?", o: ["src/main.ts (bootstrap)", "src/api/app.service.ts", "src/api/app.module.ts", "src/config/index.ts"], c: 1, e: "main.ts faqat Aplication.main()ni chaqiradi; server app.service.ts'da.", s: 5 },
+  { q: "POST /api/v1/car bo'sh {} bilan yuborildi. Javob?", o: ["201, bo'sh mashina yaratiladi", "404, route topilmadi — POST yo'q", "500, server xatosi — baza rad etdi", "400, buzilgan qoidalar ro'yxati"], c: 3, e: 'Global ValidationPipe DTO qoidalarini tekshiradi.', s: 13 },
+  { q: 'GET /api/v1/car/1 — nima bo\'ladi?', o: ["500, terminalda uuid xatosi", "404, bunday mashina topilmadi", "200, birinchi mashina qaytadi", "400, DTO qoidasi buzilgani uchun"], c: 0, e: "id uuid; «1» bazada xato beradi, filtr uni 500 qiladi.", s: 13 },
   { q: 'Tokensiz GET /api/v1/admin yuborildi. Javob?', o: ['403, rol yetmaydi', "404, route yo'q", "401, token yo'q", "200, adminlar ro'yxati"], c: 2, e: "AuthGuard: Authorization yo'q → 401.", s: 16 },
-  { q: "Entity'da price'dan @Column olib tashlandi, server qayta yoqildi. Nima bo'ladi?", o: ['Server yiqiladi, xato chiqadi', "Ustun bazadan xato bermay o'chadi", "Ustun bazada o'zgarmay qoladi", 'Faqat DTO xato beradi'], c: 1, e: "synchronize bazani Entity'ga moslaydi — ustun o'chadi, xabar yo'q.", s: 21 },
-  { q: "O'quvchi m4a-03 bo'yicha localhost:3000/car'ni ochdi — 404, terminalda car uchun 5 ta Mapped bor. Nima deysiz?", o: ["Manzil /api/v1/car bo'lishi kerak", "CarModule'ni AppModule'ga ulang", 'Serverni qayta ishga tushiring', "Authorize'ga token qo'ying"], c: 0, e: "Mapped bor — route bor; o'quvchi darsida prefiks yozilmagan.", s: 24 },
-  { q: "KitobShop: superadmin tokeni bilan POST /book — 403. O'quvchiga nima deysiz?", o: ['Qayta signin qiling, token eskirgan', "Authorize'ga tokenni qayta qo'ying", "BookModule'ni AppModule'ga ulang", 'Oddiy admin yarating va u bilan kiring'], c: 3, e: "@Roles('admin') — superAdmin ro'yxatda yo'q; token yaroqli, shuning uchun 403.", s: 26 },
-  { q: "O'quvchi .env'ni keyin to'ldirdi, lekin kira olmayapti; bazada nomsiz superadmin bor. Nima qilasiz?", o: [".env'ni yana bir marta saqlang", 'Serverni ikki marta qayta yoqing', "Bazadagi o'sha satrni o'chirib, qayta yoqing", "USER_NAME'ni boshqa nomga o'zgartiring"], c: 2, e: "Superadmin bor bo'lsa onModuleInit yangisini yaratmaydi.", s: 6 },
+  { q: "Entity'da price'dan @Column olib tashlandi, server qayta yoqildi. Nima bo'ladi?", o: ["Server yiqiladi, terminalda xato chiqadi", "Ustun bazadan xato bermay o'chadi", "Ustun bazada o'zgarmay qoladi", "Faqat DTO xato beradi, baza o'zgarmaydi"], c: 1, e: "synchronize bazani Entity'ga moslaydi — ustun o'chadi, xabar yo'q.", s: 21 },
+  { q: "O'quvchi m4a-03 bo'yicha localhost:3000/car'ni ochdi — 404, terminalda car uchun 5 ta Mapped bor. Nima deysiz?", o: ["Manzil /api/v1/car bo'lishi kerak", "CarModule'ni AppModule'ga ulang", "Serverni qayta ishga tushiring", "Authorize'ga tokenni qayta qo'ying"], c: 0, e: "Mapped bor — route bor; o'quvchi darsida prefiks yozilmagan.", s: 24 },
+  { q: "KitobShop: superadmin tokeni bilan POST /book — 403. O'quvchiga nima deysiz?", o: ["Qayta signin qiling, token eskirib qolgan", "Authorize'ga tokenni qayta qo'ying", "BookModule'ni AppModule'ga ulab qo'ying", "Oddiy admin yarating va u bilan kiring"], c: 3, e: "@Roles('admin') — superAdmin ro'yxatda yo'q; token yaroqli, shuning uchun 403.", s: 26 },
+  { q: "O'quvchi .env'ni keyin to'ldirdi, lekin kira olmayapti; bazada nomsiz superadmin bor. Nima qilasiz?", o: [".env'ni yana bir marta saqlab, kutib turing", "Serverni ikki marta to'xtatib qayta yoqing", "Bazadagi o'sha satrni o'chirib, qayta yoqing", "USER_NAME'ni boshqa nomga o'zgartiring"], c: 2, e: "Superadmin bor bo'lsa onModuleInit yangisini yaratmaydi.", s: 6 },
 ];
 function Screen28(p) {
   const st = p.stored || {};
@@ -2426,7 +2583,7 @@ function Screen29(p) {
 // ============================================================
 //  Muqova va ildiz
 // ============================================================
-function Cover({ onStart }) {
+function Cover({ onStart, resume }) {
   return (
     <div className="mk-cover"><div className="card">
       <p className="mk-eyebrow">{t('Mentor kursi · NestJS', 'Курс для менторов · NestJS')}</p>
@@ -2435,7 +2592,7 @@ function Cover({ onStart }) {
       <ul>
         {t(["Jami taxminan 1 soat 20 daqiqa: ovoz ~35 daqiqa · to'rt amaliyot 35–45 daqiqa · 4 tekshiruv · o'z-sinov 8 savol. 15-ekrandan keyin tanaffus qilsangiz bo'ladi", "Kerak: Nest-1 darsi o'tilgan · Node.js 20+ · PostgreSQL ishlab turgan · Git · VS Code", "Loyiha: o'quvchi reposi IntroNestArxitechture — darsda uni o'zingizda ishga tushirasiz"], ['Всего около 1 часа 20 минут: озвучка ~35 минут · четыре практики 35–45 минут · 4 проверки · самопроверка 8 вопросов. После экрана 15 можно сделать перерыв', 'Нужно: пройден урок Nest-1 · Node.js 20+ · запущенный PostgreSQL · Git · VS Code', 'Проект: репозиторий ученика IntroNestArxitechture — на уроке вы запустите его у себя']).map((x) => <li key={x}>{x}</li>)}
       </ul>
-      <button className="mk-btn ready" onClick={onStart}>{t('Boshlash →', 'Начать →')}</button>
+      <CoverStart onStart={onStart} resume={resume} />
     </div></div>
   );
 }
@@ -2453,6 +2610,7 @@ export default function NestRepoMentorLesson({ studentName, lang = 'uz', onFinis
   const [seen, setSeen] = useState({});
   const [rev, setRev] = useState(0);
   const [mode, setMode] = useState('live');
+  const sv = useMentorSave({ id: LESSON_ID, total, startAt, started, idx, answers, seen, setIdx, setAnswers, setSeen, setStarted });
   const startTime = useRef(Date.now());
   const finished = useRef(false);
   const onAnswer = useCallback((payload) => setAnswers((a) => ({ ...a, [idx]: payload })), [idx]);
@@ -2477,7 +2635,7 @@ export default function NestRepoMentorLesson({ studentName, lang = 'uz', onFinis
       answers: Object.entries(answers).map(([i, a]) => ({ screen: Number(i) + 1, ...a })),
     });
   };
-  if (!started) return <Cover onStart={() => setStarted(true)} />;
+  if (!started) return <Cover onStart={sv.start} resume={sv.resume} />;
   const S = SCREENS[idx];
   const fin = Object.values(answers).find((a) => a && a.type === 'final');
   return <S key={`${idx}:${rev}`} idx={idx} total={total} lang={lang} stored={answers[idx]} testScore={fin ? fin.score : 0} seen={!!seen[idx]} review={mode === 'review' && !!seen[idx]} onAnswer={onAnswer} onNext={next} onBack={idx > 0 ? () => { setMode('review'); setIdx((i) => i - 1); } : null} onFinish={finish} onGoto={goto} onRestart={restart} />;
@@ -2834,13 +2992,13 @@ ru(S27, {
 });
 ru(FINAL, [
   { q: 'В каком файле проекта ученика запускается сервер?', e: 'main.ts только вызывает Aplication.main(); сервер — в app.service.ts.' },
-  { q: 'POST /api/v1/car отправлен с пустым {}. Ответ?', o: ['201, создаётся пустая машина', '404, route не найден', '500, ошибка сервера', '400, список нарушенных правил'], e: 'Глобальный ValidationPipe проверяет правила DTO.' },
-  { q: 'GET /api/v1/car/1 — что будет?', o: ['500, в терминале ошибка uuid', '404, машина не найдена', '200, первая машина', '400, нарушено правило DTO'], e: '«1» не uuid, база выдаёт ошибку, фильтр превращает её в 500.' },
+  { q: 'POST /api/v1/car отправлен с пустым {}. Ответ?', o: ["201, создаётся пустая машина", "404, route не найден — нет POST", "500, ошибка сервера — база отказала", "400, список нарушенных правил"], e: 'Глобальный ValidationPipe проверяет правила DTO.' },
+  { q: 'GET /api/v1/car/1 — что будет?', o: ["500, в терминале ошибка uuid", "404, такая машина не найдена", "200, вернётся первая машина", "400, потому что нарушено правило DTO"], e: '«1» не uuid, база выдаёт ошибку, фильтр превращает её в 500.' },
   { q: 'Отправлен GET /api/v1/admin без токена. Ответ?', o: ['403, не хватает роли', '404, route нет', '401, нет токена', '200, список админов'], e: 'AuthGuard: нет Authorization → 401.' },
-  { q: 'В Entity у price убрали @Column, сервер перезапустили. Что будет?', o: ['Сервер упадёт с ошибкой', 'Колонка удалится без ошибки из базы', 'Колонка останется в базе как была', 'Ошибку даст только DTO'], e: 'synchronize подгоняет базу под Entity — колонка удаляется, сообщения нет.' },
-  { q: 'Ученик по m4a-03 открыл localhost:3000/car — 404, в терминале 5 строк Mapped для car. Что скажете?', o: ['Адрес должен быть /api/v1/car', 'Подключите CarModule к AppModule', 'Перезапустите сервер', 'Вставьте токен в Authorize'], e: 'Mapped есть — route есть; в уроке ученика не указан префикс.' },
-  { q: 'KitobShop: POST /book с токеном superadmin — 403. Что скажете ученику?', o: ['Сделайте signin заново, токен истёк', 'Вставьте токен в Authorize ещё раз', 'Подключите BookModule к AppModule', 'Создайте обычного админа и войдите под ним'], e: "@Roles('admin') — superAdmin нет в списке; токен действующий, поэтому 403." },
-  { q: 'Ученик заполнил .env потом, но не может войти; в базе superadmin без имени. Что сделаете?', o: ['Ещё раз сохраните .env', 'Перезапустите сервер дважды', 'Удалите эту строку в базе и перезапустите', 'Смените USER_NAME на другое имя'], e: 'Если superadmin уже есть, onModuleInit нового не создаёт.' },
+  { q: 'В Entity у price убрали @Column, сервер перезапустили. Что будет?', o: ["Сервер упадёт, в терминале ошибка", "Колонка удалится без ошибки из базы", "Колонка останется в базе как была", "Ошибку даст только DTO, база не меняется"], e: 'synchronize подгоняет базу под Entity — колонка удаляется, сообщения нет.' },
+  { q: 'Ученик по m4a-03 открыл localhost:3000/car — 404, в терминале 5 строк Mapped для car. Что скажете?', o: ["Адрес должен быть /api/v1/car", "Подключите CarModule к AppModule", "Перезапустите сервер", "Вставьте токен в Authorize ещё раз"], e: 'Mapped есть — route есть; в уроке ученика не указан префикс.' },
+  { q: 'KitobShop: POST /book с токеном superadmin — 403. Что скажете ученику?', o: ["Сделайте signin заново, токен устарел", "Вставьте токен в Authorize ещё раз", "Подключите BookModule к AppModule", "Создайте обычного админа и войдите под ним"], e: "@Roles('admin') — superAdmin нет в списке; токен действующий, поэтому 403." },
+  { q: 'Ученик заполнил .env потом, но не может войти; в базе superadmin без имени. Что сделаете?', o: ["Ещё раз сохраните .env и подождите", "Дважды остановите и запустите сервер", "Удалите эту строку в базе и перезапустите", "Смените USER_NAME на другое имя"], e: 'Если superadmin уже есть, onModuleInit нового не создаёт.' },
 ]);
 ru(SUM2, [
   { t: 'Проект ученика: сервер в app.service.ts, адрес /api/v1, ответ в data, ошибка в error.message, настройки из .env' },

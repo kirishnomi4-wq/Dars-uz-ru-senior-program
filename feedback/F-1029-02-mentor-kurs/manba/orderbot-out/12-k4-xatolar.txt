@@ -1,0 +1,15 @@
+$ npm run start   # .env yo'q
+    throw new Error('DATABASE_URL topilmadi. .env ga PostgreSQL manzilini yozing: postgresql://postgres:parol@localhost:5432/shop');
+Error: DATABASE_URL topilmadi. .env ga PostgreSQL manzilini yozing: postgresql://postgres:parol@localhost:5432/shop
+
+$ npm run start   # DATABASE_URL bor, BOT_TOKEN yo'q
+            throw new Error('BOT_TOKEN topilmadi. .env faylini oching va @BotFather bergan tokenni yozing (README).');
+Error: BOT_TOKEN topilmadi. .env faylini oching va @BotFather bergan tokenni yozing (README).
+
+$ npm run start   # baza yo'q: .../shop_yoq
+[31m[Nest] 274695  - [39m11/04/2026, 1:40:57 AM [31m  ERROR[39m [38;5;3m[TypeOrmModule] [39m[31mUnable to connect to the database. Retrying (1)...[39m
+error: database "shop_yoq" does not exist
+
+$ npm run start   # parol xato
+[31m[Nest] 275154  - [39m11/04/2026, 1:41:21 AM [31m  ERROR[39m [38;5;3m[TypeOrmModule] [39m[31mUnable to connect to the database. Retrying (1)...[39m
+error: password authentication failed for user "postgres"

@@ -1,0 +1,9 @@
+CREATE DATABASE shop;
+CREATE DATABASE
+You are now connected to database "shop" as user "postgres".
+SELECT current_database();
+ current_database 
+------------------
+ shop
+(1 row)
+

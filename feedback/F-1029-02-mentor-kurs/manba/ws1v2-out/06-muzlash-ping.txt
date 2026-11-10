@@ -1,0 +1,10 @@
+# Klient ochiq; server jarayoni 52 s muzlatiladi (telefon «uchish rejimi»da yoki Wi-Fi o'chganda shunga o'xshash)
+20:19:56 — server jarayoni muzlatildi (kill -STOP): ulanish uzilmaydi, lekin javob yo'q
+20:20:48 — server davom ettirildi (kill -CONT)
+$ npm run live
+20:19:54 ulanmoqda… http://localhost:3100
+20:19:54 connect · ulangan · transport: websocket
+20:20:39 disconnect: ping timeout · active=true → ulanmoqda
+20:20:48 connect · ulangan · transport: websocket
+
+# 45 s = socket.io (engine.io) standarti: pingInterval 25000 + pingTimeout 20000

@@ -1,0 +1,28 @@
+tgpg-01	1	0,0,1280,720	faqat-matn	434	Tayyor buyurtma boti bor. Uni AI bilan PostgreSQL'ga ko'chiramiz — bosqichma-bos
+tgpg-01	2	0,0,1280,720	kod/terminal	779	Loyiha besh moduldan iborat: telegram, catalog, user, cart va order
+tgpg-01	3	0,0,1280,720	faqat-matn	376	Map Node jarayonining xotirasida yashaydi: jarayon to'xtasa — u ham yo'qoladi
+tgpg-01	4	0,0,1280,720	kod/terminal+test	877	Katalog kodda yozilgan massiv, ombordagi son ham shu massivda. Restartdan keyin 
+tgpg-01	5	0,0,1280,720	amaliyot	1323	Loyihani o'z kompyuteringizda ishga tushiring va restartda nima yo'qolishini ko'
+tgpg-01	6	0,0,1280,720	faqat-matn	521	Beshta ma'lumot — to'rt bosqich: har bosqichdan keyin tekshiruv va commit
+tgpg-01	7	0,0,1280,720	faqat-matn	1407	Yaxshi prompt beshta qismdan iborat: kontekst, maqsad, shartlar, chegara va javo
+tgpg-01	8	0,0,1280,720	test	897	Ikki AI'ga bir xil vazifa berildi. Qaysi natijani ko'rib chiqib, commit qilish m
+tgpg-01	9	0,0,1280,720	kod/terminal	891	Entity jadvalni tasvirlaydi, migratsiya uni yaratadi, migrations jadvali nima yu
+tgpg-01	10	0,0,1280,720	kod/terminal	555	AI javobini uch qismga ajrating: nima o'zgardi, qayerda chetga chiqdi, qanday te
+tgpg-01	11	0,0,1280,720	faqat-matn	386	Katalog bazada, buyurtma xotirada: restartdan keyin buyurtma yo'qoldi, ombor esa
+tgpg-01	12	0,0,1280,720	amaliyot	1247	Ulanish, migratsiya va katalog — o'z AI'ingiz bilan, keyin o'zingiz tekshirasiz
+tgpg-01	13	0,0,1280,720	kod/terminal	696	Telegram id INTEGERga sig'maydi — BIGINT kerak; lekin BIGINT kodga matn bo'lib k
+tgpg-01	14	0,0,1280,720	kod/terminal	1102	Mijoz tugmani ikki marta tez bosdi: avval qidirib keyin qo'shish ikki qator ochi
+tgpg-01	15	0,0,1280,720	faqat-matn	556	WAITING_PHONE bazada: bot telefon so'radi, server qayta ishga tushdi — raqam kel
+tgpg-01	16	0,0,1280,720	kod/terminal+test	816	Admin tekshiruvi xom so'rov natijasi bilan yozilgan: rows[0].telegram_id !== 111
+tgpg-01	17	0,0,1280,720	amaliyot	1222	Foydalanuvchi, state va savat — ikki prompt, har biridan keyin restart
+tgpg-01	18	0,0,1280,720	kod/terminal	1056	Buyurtma uch ish: ombordan ayirish, buyurtma yozish, savatni tozalash — yo hamma
+tgpg-01	19	0,0,1280,720	kod/terminal	579	Omborda bitta Planshet, ikki mijoz bir vaqtda «Buyurtma berish» bosdi: bittasiga
+tgpg-01	20	0,0,1280,720	kod/terminal	901	Qulfsiz «o'qi, tekshir, yoz»: hamma tranzaksiya qoldiq 1 ni ko'radi — bitta Plan
+tgpg-01	21	0,0,1280,720	kod/terminal	1164	CHECK rad etgandan keyin o'sha tranzaksiyada yana so'rov: «current transaction i
+tgpg-01	22	0,0,1280,720	kod/terminal	1065	Bitta Planshet besh kishiga sotildi. Xato satrni toping
+tgpg-01	23	0,0,1280,720	amaliyot	1167	Buyurtma tranzaksiyada — va besh mijoz oxirgi mahsulotni oladi
+tgpg-01	24	0,0,1280,720	faqat-matn	650	Har bosqichdan keyin beshta tekshiruv: diff, build, restart, psql va ko'p mijoz
+tgpg-01	25	0,0,1280,720	faqat-matn	445	O'quvchi darsi: bitta users jadvali, Neon va uch qatorli prompt — siz bilgan yo'
+tgpg-01	26	0,0,1280,720	faqat-matn	993	To'rtta vaziyat va tayyor javoblar — hammasini bugun o'zingiz ko'rdingiz
+tgpg-01	27	0,0,1280,720	test	385	Bot savat va buyurtmani Mapda saqlaydi. Server qayta ishga tushdi. Nima bo'ladi?
+tgpg-01	28	0,0,1280,720	faqat-matn	3054	Endi siz bilasiz

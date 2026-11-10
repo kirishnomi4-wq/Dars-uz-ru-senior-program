@@ -128,6 +128,13 @@ for k in EMPH:
 for n, sc in screens.items():
   for s in sc.get('seg', []):
     if '<b>' not in s[1]: bad.append(f'qizil yo\'q: {n}{s[0]}')
+# M48 (F-1104-17): to'g'ri javob yagona eng uzun yoki yagona eng qisqa bo'lgan savollar — har biri ≤ 1/4
+_qs = [(f'{n}', sc['opts'], sc['correct']) for n, sc in screens.items() if sc.get('opts')] + [(f'sinov {i + 1}', q['o'], q['c']) for sc in screens.values() for i, q in enumerate(sc.get('final', []))]
+_L = lambda o: [len(x) for x in o]
+_long = [n for n, o, c in _qs if _L(o)[c] == max(_L(o)) and _L(o).count(max(_L(o))) == 1]
+_short = [n for n, o, c in _qs if _L(o)[c] == min(_L(o)) and _L(o).count(min(_L(o))) == 1]
+if len(_long) > len(_qs) // 4: bad.append(f"M48: to'g'risi eng uzun {len(_long)} > {len(_qs) // 4}: {', '.join(_long)}")
+if len(_short) > len(_qs) // 4: bad.append(f"M48: to'g'risi eng qisqa {len(_short)} > {len(_qs) // 4}: {', '.join(_short)}")
 if bad: sys.exit('\n'.join(bad))
 
 OUT.parent.mkdir(parents=True, exist_ok=True)

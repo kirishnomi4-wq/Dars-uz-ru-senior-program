@@ -1,0 +1,69 @@
+# xato nusxa: tinglovchi connect ichida (sodda tuzatish) — 00b-nusxalar-farqi.txt
+
+## Qadamlar
+21:40:46 — 1-buyurtma (birinchi ulanish)
+21:40:50 — server qayta ishga tushirildi (1)
+21:41:00 — 2-buyurtma (1 qayta ulanishdan keyin)
+21:41:03 — server qayta ishga tushirildi (2)
+21:41:13 — 3-buyurtma (2 qayta ulanishdan keyin)
+
+## Brauzer — panel
+21:40:46.232 brauzer: WebSocket ochildi
+21:40:46.234 brauzer: GET /admin/orders (1)
+21:40:46.845 panel ochildi — belgi «Ulangan» · ro'yxat: Hali buyurtma yo'q
+21:40:47.032 brauzer: kadr keldi 42["order-changed",{"orderId":1,"reason":"new"}]
+21:40:47.032 brauzer: GET /admin/orders (2)
+21:40:50.089 SURAT 06-takror-1 (1-birinchi-ulanish) — belgi «Ulangan» · ro'yxat: #1
+    1 | Bobur | +998907654321 | Klaviatura × 1 | 120 000 so'm | Yangi | 21:40:47
+21:40:50.609 brauzer: WebSocket yopildi
+21:40:50.700 belgi: «Ulangan» → «Ulanmoqda…»
+21:40:53.765 brauzer: WebSocket ochildi
+21:40:53.775 brauzer: GET /admin/orders (3)
+21:40:53.908 belgi: «Ulanmoqda…» → «Ulangan»
+21:41:00.271 brauzer: kadr keldi 42["order-changed",{"orderId":2,"reason":"new"}]
+21:41:00.271 brauzer: GET /admin/orders (4)
+21:41:00.271 brauzer: GET /admin/orders (5)
+21:41:03.428 SURAT 06-takror-2 (2-bir-qayta-ulanish) — belgi «Ulangan» · ro'yxat: #2, #1
+    2 | Bobur | +998907654321 | Klaviatura × 1 | 120 000 so'm | Yangi | 21:41:00
+    1 | Bobur | +998907654321 | Klaviatura × 1 | 120 000 so'm | Yangi | 21:40:47
+21:41:03.860 brauzer: WebSocket yopildi
+21:41:03.889 belgi: «Ulangan» → «Ulanmoqda…»
+21:41:11.262 brauzer: WebSocket ochildi
+21:41:11.271 brauzer: GET /admin/orders (6)
+21:41:11.369 belgi: «Ulanmoqda…» → «Ulangan»
+21:41:13.523 brauzer: kadr keldi 42["order-changed",{"orderId":3,"reason":"new"}]
+21:41:13.524 brauzer: GET /admin/orders (7)
+21:41:13.524 brauzer: GET /admin/orders (8)
+21:41:13.524 brauzer: GET /admin/orders (9)
+21:41:16.604 SURAT 06-takror-3 (3-ikki-qayta-ulanish) — belgi «Ulangan» · ro'yxat: #3, #2, #1
+    3 | Bobur | +998907654321 | Klaviatura × 1 | 120 000 so'm | Yangi | 21:41:13
+    2 | Bobur | +998907654321 | Klaviatura × 1 | 120 000 so'm | Yangi | 21:41:00
+    1 | Bobur | +998907654321 | Klaviatura × 1 | 120 000 so'm | Yangi | 21:40:47
+21:41:17.220 tugadi — belgi «Ulangan» · ro'yxat: #3, #2, #1 · jami GET: 9
+
+## Server logi
+LOG [InstanceLoader] LiveModule dependencies initialized
+21:40:45 Server 3100-portda ishlayapti
+LOG [Live] panel ulandi: _akFI5auzjkZmwDNAAAA
+21:40:46 — Bobur botda buyurtma beradi
+21:40:47 bot → 5987654321: Salom, Bobur! Bu CoddyCamp do'koni boti.
+21:40:47 bot → 5987654321: Buyurtma uchun telefon raqamingizni yozing (masalan, +998901234567):
+21:40:47 bot → 5987654321: Buyurtma #1 qabul qilindi!
+21:40:47 — buyurtma #1 bazada
+LOG [Live] panel uzildi: _akFI5auzjkZmwDNAAAA
+LOG [InstanceLoader] LiveModule dependencies initialized
+21:40:53 Server 3100-portda ishlayapti
+LOG [Live] panel ulandi: 9a5dXu0kfb_SE12YAAAA
+21:41:00 — Bobur botda buyurtma beradi
+21:41:00 bot → 5987654321: Salom, Bobur! Bu CoddyCamp do'koni boti.
+21:41:00 bot → 5987654321: Buyurtma #2 qabul qilindi!
+21:41:00 — buyurtma #2 bazada
+LOG [Live] panel uzildi: 9a5dXu0kfb_SE12YAAAA
+LOG [InstanceLoader] LiveModule dependencies initialized
+21:41:06 Server 3100-portda ishlayapti
+LOG [Live] panel ulandi: WK5Rw7L7zjZbSSbRAAAA
+21:41:13 — Bobur botda buyurtma beradi
+21:41:13 bot → 5987654321: Salom, Bobur! Bu CoddyCamp do'koni boti.
+21:41:13 bot → 5987654321: Buyurtma #3 qabul qilindi!
+21:41:13 — buyurtma #3 bazada
+LOG [Live] panel uzildi: WK5Rw7L7zjZbSSbRAAAA

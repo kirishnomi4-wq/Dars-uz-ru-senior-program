@@ -1,0 +1,29 @@
+pg-01	1	0,0,1280,720	faqat-matn	368	Siz Mongo'ni bilasiz. Bugun o'sha blog PostgreSQL'da.
+pg-01	2	0,0,1280,720	faqat-matn	424	SQL va NoSQL: bitta ma'lumot ikki xil shaklda saqlanadi
+pg-01	3	0,0,1280,720	kod/terminal	954	Mongo'dagi blog: ikki model, bitta ref, bitta populate
+pg-01	4	0,0,1280,720	kod/terminal	918	Mongo ikki holatda xato bermaydi: yo'q muallif va har xil hujjat
+pg-01	5	0,0,1280,720	jadval	614	Siz bilgan har so'zning PostgreSQL'dagi jufti
+pg-01	6	0,0,1280,720	test	335	Mongo'da ref ham, populate ham bor edi. PostgreSQL'da populate o'rnida qaysi bir
+pg-01	7	0,0,1280,720	faqat-matn	453	Windows: postgresql.org → o'rnatuvchi → parol, port, PATH
+pg-01	8	0,0,1280,720	faqat-matn	419	macOS: Postgres.app — Initialize, PATH va parolsiz postgres
+pg-01	9	0,0,1280,720	kod/terminal	941	psql -U postgres: parol, prompt, birinchi so'rov
+pg-01	10	0,0,1280,720	amaliyot	1222	PostgreSQL'ni o'rnating va psql bilan ulaning
+pg-01	11	0,0,1280,720	kod/terminal	779	CREATE DATABASE blog → \c blog → users jadvali
+pg-01	12	0,0,1280,720	kod/terminal	694	REFERENCES users(id) — Mongo'dagi ref, lekin bazaning o'zida
+pg-01	13	0,0,1280,720	kod/terminal	736	Mongo xato bermagan joyda PostgreSQL ERROR beradi
+pg-01	14	0,0,1280,720	kod/terminal+test	602	O'quvchi DELETE FROM users WHERE id = 1; yozdi va shu xabarni oldi. Nega?
+pg-01	15	0,0,1280,720	amaliyot	1299	blog bazasi: users, posts va tashqi kalit
+pg-01	16	0,0,1280,720	jadval	562	JOIN … ON users.id = posts.user_id — PostgreSQL'dagi populate
+pg-01	17	0,0,1280,720	kod/terminal	667	So'rov xatosiz ishladi, lekin «Bugun Nest o'rgandim»ni vali yozgandek chiqdi
+pg-01	18	0,0,1280,720	amaliyot	918	JOIN, xato ON va LEFT JOIN — o'z bazangizda
+pg-01	19	0,0,1280,720	kod/terminal	578	Bitta telefon, ikki xaridor: ikkinchisi kutadi va UPDATE 0 oladi
+pg-01	20	0,0,1280,720	jadval+kod/terminal	879	Tranzaksiya: buyurtma va ombor birga yoziladi — yoki birortasi ham yozilmaydi
+pg-01	21	0,0,1280,720	kod/terminal	1002	jsonb ustuni: har qatorda har xil maydon — jadval ichida
+pg-01	22	0,0,1280,720	kod/terminal+test	711	BEGIN → buyurtma yozildi → ombor CHECK xatosi → COMMIT. orders jadvalida nima bo
+pg-01	23	0,0,1280,720	amaliyot	1223	Oxirgi telefonni ikki terminal oynasida o'zingiz soting
+pg-01	24	0,0,1280,720	faqat-matn	514	Sinf kompyuterlari: har birida psql -U postgres ochilsin
+pg-01	25	0,0,1280,720	faqat-matn	482	m4-03: kodsiz dars — siz bugun hammasini qo'l bilan qildingiz
+pg-01	26	0,0,1280,720	jadval	1152	O'quvchi darsi atamalarni kundalik so'zlar bilan tushuntiradi — siz ularni atama
+pg-01	27	0,0,1280,720	faqat-matn	933	Ikki soddalashtirish va o'quvchining besh savoli — tayyor javoblar
+pg-01	28	0,0,1280,720	test	234	Mongo'dagi populate() PostgreSQL'da nima bilan qilinadi?
+pg-01	29	0,0,1280,720	faqat-matn	3431	Endi siz bilasiz

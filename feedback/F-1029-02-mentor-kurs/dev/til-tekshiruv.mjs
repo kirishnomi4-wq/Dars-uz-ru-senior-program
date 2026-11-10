@@ -30,11 +30,11 @@ const report = {};
 const tc = async (h) => { try { await h.click({ timeout: 2000 }); return true; } catch (e) { return false; } };
 const ttsAll = new Set();
 // muqova
-await page.goto(`http://localhost:5333/mentor-kurs.html?dars=${dars}&lang=${lang}`, { waitUntil: 'load' }); await page.waitForSelector('.mk-cover', { timeout: 20000 });
+await page.goto(`${process.env.BASE || "http://localhost:5333"}/mentor-kurs.html?dars=${dars}&lang=${lang}`, { waitUntil: 'load' }); await page.waitForSelector('.mk-cover', { timeout: 20000 });
 dump.cover = await page.evaluate(() => document.body.innerText);
 report.cover = scan(await page.evaluate(() => document.body.innerText));
 for (const i of list) {
-  await page.goto(`http://localhost:5333/mentor-kurs.html?dars=${dars}&s=${i}&lang=${lang}`, { waitUntil: 'load' }); await page.waitForSelector('.mk-stage', { timeout: 20000 });
+  await page.goto(`${process.env.BASE || "http://localhost:5333"}/mentor-kurs.html?dars=${dars}&s=${i}&lang=${lang}`, { waitUntil: 'load' }); await page.waitForSelector('.mk-stage', { timeout: 20000 });
   await page.waitForTimeout(250);
   const mute = await page.$('.mk-audio button'); if (mute) await tc(mute);
   const texts = new Set();

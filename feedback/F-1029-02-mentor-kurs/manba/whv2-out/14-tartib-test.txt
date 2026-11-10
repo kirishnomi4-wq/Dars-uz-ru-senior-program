@@ -1,0 +1,13 @@
+# nusxa: tartib (yozuv imzodan OLDIN) — npm test
+$ npm test -- payment.controller
+FAIL src/api/payment/payment.controller.spec.ts
+    ✕ imzosiz — 401, yozuvga yetmaydi
+    ✕ boshqa kalit bilan — 401
+    ✕ imzodan keyin tana o'zgargan — 401
+    ✓ to'g'ri imzo — 200, servisga aynan shu to'lov
+    ✓ imzo to'g'ri, maydon xato — 400, yozilmaydi
+    ✓ kalit bo'sh — to'g'ri ko'rinadigan imzo ham 401
+  ● PaymentController — POST /payments/webhook › imzosiz — 401, yozuvga yetmaydi
+  ● PaymentController — POST /payments/webhook › boshqa kalit bilan — 401
+  ● PaymentController — POST /payments/webhook › imzodan keyin tana o'zgargan — 401
+Tests:       3 failed, 3 passed, 6 total

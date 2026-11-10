@@ -1,0 +1,199 @@
+<title>Mentor kursi vizuali</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: bitta ustun — xulosa, usul, so'ng darslar bo'yicha ekranlar (oldin/keyin + qaror); yuqorida yopishqoq dars navigatsiyasi */
+:root{
+  --bg:#F4F5F7; --panel:#FFFFFF; --ink:#1B2230; --ink2:#556070; --line:#DCE0E6;
+  --accent:#E2451F; --accent-soft:#FDEDE8; --ok:#15803D; --ok-soft:#E3F5E9; --mute-soft:#EEF0F3;
+  --sans:"Noto Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12161C; --panel:#1A2029; --ink:#E7EAEE; --ink2:#A3ACB8; --line:#2C3440;
+  --accent:#FF6A45; --accent-soft:#3A221C; --ok:#4ADE80; --ok-soft:#18301F; --mute-soft:#232A35; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12161C; --panel:#1A2029; --ink:#E7EAEE; --ink2:#A3ACB8; --line:#2C3440;
+  --accent:#FF6A45; --accent-soft:#3A221C; --ok:#4ADE80; --ok-soft:#18301F; --mute-soft:#232A35; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15.5px/1.6 var(--sans);margin:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:1200px;margin:0 auto;padding-block:28px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:32px}
+h1,h2,h3{text-wrap:balance;line-height:1.25;margin:0}
+h1{font-size:clamp(26px,4vw,36px)} h2{font-size:22px} h3{font-size:17.5px}
+p{margin:0;max-width:74ch}
+.eyebrow{font:600 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.muted{color:var(--ink2)}
+.head{display:grid;gap:12px}
+.lead{font-size:17px}
+.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:860px){.grid2{grid-template-columns:1fr}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px;display:grid;gap:12px;min-width:0}
+.tblwrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font-size:14px}
+th,td{text-align:left;padding:5px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-weight:600;color:var(--ink2);font-size:12.5px}
+td.n{text-align:right;font-family:var(--mono)}
+.rules{margin:0;padding-left:20px;display:grid;gap:6px}
+.rules li::marker{color:var(--accent);font-weight:700}
+.pat{display:grid;gap:8px}
+.pat div{display:grid;grid-template-columns:28px 1fr;gap:10px}
+.pat b.k{font:700 13px/26px var(--mono);text-align:center;border-radius:7px;background:var(--accent-soft);color:var(--accent);height:26px}
+.bug{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:10px;padding:12px 14px}
+nav.lessons{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:10px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;border-bottom:1px solid var(--line)}
+nav.lessons a{font:600 13px var(--sans);color:var(--ink);text-decoration:none;border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:4px 12px;white-space:nowrap}
+nav.lessons a.wait{color:var(--ink2);border-style:dashed}
+nav.lessons a span{font:600 11px var(--mono);color:var(--ink2);margin-left:6px}
+nav.lessons a.done span{color:var(--ok)}
+.filt{margin-left:auto;display:flex;gap:6px}
+.filt button{font:600 13px var(--sans);border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:8px;padding:4px 10px;cursor:pointer}
+.filt button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.lesson{display:grid;gap:20px;scroll-margin-top:70px}
+.lesson>h2{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.lesson>h2 small{font:600 13px var(--mono);color:var(--ink2)}
+.item{display:grid;gap:12px;padding:18px;background:var(--panel);border:1px solid var(--line);border-radius:16px;scroll-margin-top:70px}
+.item.keep{background:transparent;border-style:dashed}
+.item-h{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:baseline}
+.tag{font:600 12px var(--mono);padding:2px 8px;border-radius:6px;background:var(--mute-soft);color:var(--ink2)}
+.tag.t{background:var(--ok-soft);color:var(--ok)}
+.shots{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.item.keep .shots{grid-template-columns:minmax(0,560px)}
+@media (max-width:860px){.shots{grid-template-columns:1fr}}
+figure{margin:0;display:grid;gap:6px;min-width:0}
+figcaption{font:600 11.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink2)}
+figure.after figcaption{color:var(--ok)}
+.shot{display:block;width:100%;border-radius:10px;border:1px solid var(--line);cursor:zoom-in;padding:0;background:none}
+.shot img{display:block;width:100%;height:auto;border-radius:10px}
+figure.after .shot{border:2px solid var(--ok)}
+.meta{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:14px}
+@media (max-width:860px){.meta{grid-template-columns:1fr}}
+.meta ul{margin:0;padding-left:18px;display:grid;gap:4px}
+.nums{display:flex;flex-wrap:wrap;gap:8px;align-content:start}
+.num{border:1px solid var(--line);border-radius:10px;padding:6px 12px;display:grid}
+.num small{font-size:12px;color:var(--ink2)}
+.num b{font:600 16px var(--mono)} .num b em{font-style:normal;color:var(--ok)}
+.dec{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.dec label{display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--line);background:var(--panel);border-radius:999px;padding:5px 13px;cursor:pointer;font-weight:600;font-size:14px}
+.dec input{accent-color:var(--accent)}
+.dec label:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.dec label:focus-within{outline:2px solid var(--accent);outline-offset:2px}
+textarea{width:100%;min-height:48px;border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;font:14px var(--sans);background:var(--panel);color:var(--ink);resize:vertical}
+textarea:focus{outline:2px solid var(--accent);outline-offset:1px}
+.wait-box{border:1.5px dashed var(--line);border-radius:14px;padding:14px 16px;color:var(--ink2)}
+.foot{display:grid;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.btn{justify-self:start;background:var(--accent);color:#fff;border:0;border-radius:10px;padding:11px 18px;font:700 15px var(--sans);cursor:pointer}
+.btn:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+pre#out{margin:0;white-space:pre-wrap;font:13px/1.5 var(--mono);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px;max-height:300px;overflow:auto}
+#zoom{position:fixed;inset:0;background:rgba(10,12,16,.88);display:grid;place-items:center;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));z-index:20;cursor:zoom-out}
+#zoom img{max-width:100%;max-height:100%;border-radius:8px}
+</style>
+
+<div class="wrap">
+  <header class="head">
+    <div class="eyebrow">Mentor kursi · vizual · F-1109-06</div>
+    <h1>Gapli kartadan chizmaga: hamma darslar, ekranma-ekran</h1>
+    <p class="lead">12 darsning 331 ta ekrani o'lchandi. Sahnasi zaif ekranlar birma-bir ko'rib chiqildi: har biriga yo «oldin / keyin» taklifi, yo «o'zgartirish shart emas» va sababi. Siz har biriga qaror berasiz, men shu qaror bo'yicha darsga qo'yaman.</p>
+    <p class="muted">«Keyin» suratlari jonli saytda olingan: dars sahifasi ochilib, faqat brauzer nusxasida o'ng sahna almashtirilgan. Dars fayllariga tegilmagan. Chizmalardagi raqam, vaqt, xato matni va satr raqamlari darsning haqiqiy chiqishlaridan.</p>
+  </header>
+
+  <section class="grid2">
+    <div class="panel">
+      <h2>Usul</h2>
+      <ol class="rules">
+        <li><b>Almashtiramiz, qo'shmaymiz.</b> Gapli karta chizmaga aylanadi.</li>
+        <li><b>Chizma mexanizmni ko'rsatadi:</b> oqim, holat, vaqt, «oldin va keyin». Bezak yo'q.</li>
+        <li><b>Faqat haqiqiy ma'lumot</b> — darsning o'z chiqishidan.</li>
+        <li><b>Ovoz bilan qadamma-qadam ochiladi;</b> suratlar oxirgi holatni ko'rsatadi.</li>
+        <li><b>7 soniya testi:</b> tushunarsiz bo'lsa — soddalashtiriladi.</li>
+      </ol>
+      <div class="pat">
+        <div><b class="k">A</b><p><b>Gapli karta</b> — mexanizm so'z bilan aytilgan, sahna bo'sh.</p></div>
+        <div><b class="k">B</b><p><b>Xulosada rasm yo'qoladi</b> — o'rta qadamdagi kod/jadval oxirida yashiriladi.</p></div>
+        <div><b class="k">C</b><p><b>Kichik va xira chizma</b> — asosiy voqea ko'rinmaydi.</p></div>
+      </div>
+    </div>
+    <div class="panel">
+      <h2>O'lchov</h2>
+      <p class="muted">Tushuntirish ekranlari; o'ng sahnaning 30% dan kami to'lganlar.</p>
+      <div class="tblwrap"><table id="stat"><thead><tr><th>Dars</th><th>Ekran</th><th>Zaif</th><th>Holat</th></tr></thead><tbody></tbody></table></div>
+      <p class="bug"><b>Alohida xato:</b> Jest-2, 15-ekran — chap sarlavha kesilgan («…not.toHaveBeenCalle»). Qaroringizdan qat'i nazar tuzatiladi.</p>
+    </div>
+  </section>
+
+  <nav class="lessons" id="nav" aria-label="Darslar"></nav>
+  <div id="list"></div>
+
+  <section class="foot">
+    <h2>Javobingiz</h2>
+    <p class="muted">Tanlovlar shu brauzerda saqlanadi. «Javobni nusxalash» ni bosing va chatga joylang.</p>
+    <textarea id="n-umumiy" placeholder="Umumiy izoh: usul haqida, boshqa ekranlar haqida"></textarea>
+    <button class="btn" id="copy" type="button">Javobni nusxalash</button>
+    <pre id="out" aria-live="polite"></pre>
+  </section>
+</div>
+<div id="zoom" hidden><img alt=""></div>
+
+<script>
+const ITEMS=[{"id": "pg1-02", "dars": "PG-1", "ekran": 2, "mavzu": "SQL va NoSQL: bitta ma'lumot ikki shaklda", "naqsh": "B", "tur": "taklif", "oldin": "Oxirgi qadamda hujjat ham, jadval ham yashiriladi: ikki bo'sh sarlavha va matnli moslik qoladi.", "keyin": ["Hujjat va jadval xulosada ham ko'rinadi. Moslik rang bilan ularning ustida: collection va jadval yashil, «vali» hujjati va 2-qator ko'k, username maydoni va ustuni to'q sariq.", "Jadvalga shahar yozilmasligi haqiqiy xato bilan ko'rsatilgan."], "blok": [3, 3], "img_o": "img/pg1-02-oldin.jpg", "img_k": "img/pg1-02-keyin.jpg", "fill": [22, 53]}, {"id": "pg1-17", "dars": "PG-1", "ekran": 17, "mavzu": "Tekshiruv 3: JOIN noto'g'ri natija", "naqsh": "-", "tur": "qoldirish", "sabab": "Tekshiruv ekrani: xato satrni topish topshirig'i. Bunday ekranlar ataylab ixcham (M42), to'lganlik o'lchovi ularga tegishli emas.", "img_o": "img/pg1-17-oldin.jpg"}, {"id": "pg2-10", "dars": "PG-2", "ekran": 10, "mavzu": "Tranzaksiya: prompt holatlari", "naqsh": "A", "tur": "taklif", "oldin": "Uchta prompt (shop=#, shop=*#, shop=!#) alohida kartada, o'tishlar so'z bilan.", "keyin": ["Bitta holat sxemasi: BEGIN, xato, COMMIT, ROLLBACK o'tishlari strelka bilan.", "!# holatida COMMIT ham ROLLBACK bo'ladi. Darsning o'z chiqishida baza javobi: ROLLBACK."], "blok": [4, 2], "img_o": "img/pg2-10-oldin.jpg", "img_k": "img/pg2-10-keyin.jpg", "fill": [56, 69]}, {"id": "pg2-17", "dars": "PG-2", "ekran": 17, "mavzu": "Pool — ulanishlar to'plami", "naqsh": "A", "tur": "taklif", "oldin": "Uchta karta va qoida, sahnaning 3/4 qismi bo'sh.", "keyin": ["Kod, Pool va PostgreSQL yo'laklari: yaratilganda ulanish 0, birinchi so'rovda ochiladi, keyingilari o'sha pid 187528 ni ishlatadi.", "Parol xato: ishga tushish xatosiz, xato birinchi so'rovda chiqadi (password authentication failed)."], "blok": [4, 2], "img_o": "img/pg2-17-oldin.jpg", "img_k": "img/pg2-17-keyin.jpg", "fill": [26, 58]}, {"id": "pg2-18", "dars": "PG-2", "ekran": 18, "mavzu": "pool.query → rows, rowCount → res.json", "naqsh": "A", "tur": "taklif", "oldin": "Oraliq qadamlarda kod, Postman va psql bor; xulosada to'rtta kichik karta qoladi.", "keyin": ["GET /api/cars yo'li to'rt qadamda, har qadam ostida haqiqiy qiymat: SELECT * FROM cars, rows: 3, 200.", "rowCount va terminal mosligi jadvali; catch tarmog'i haqiqiy 500 xabari bilan."], "blok": [5, 3], "img_o": "img/pg2-18-oldin.jpg", "img_k": "img/pg2-18-keyin.jpg", "fill": [28, 57]}, {"id": "pg2-19", "dars": "PG-2", "ekran": 19, "mavzu": "POST, PUT, DELETE: statuslar va 404", "naqsh": "A", "tur": "taklif", "oldin": "Xulosada beshta status qutichasi va qoida.", "keyin": ["Har endpoint bir qator: SQL, baza javobi va status. PUT /api/cars/99 qatori (rowCount: 0 → 404) ajralib turadi.", "server.js dagi haqiqiy 404 satri va POST javobidagi is_rented: null."], "blok": [6, 3], "img_o": "img/pg2-19-oldin.jpg", "img_k": "img/pg2-19-keyin.jpg", "fill": [25, 73]}, {"id": "pg2-23", "dars": "PG-2", "ekran": 23, "mavzu": "express.json() yo'q — req.body undefined", "naqsh": "B", "tur": "taklif", "oldin": "Xulosada kod yashiriladi, uchta gapli quti qoladi.", "keyin": ["Bitta POST ikki yo'lda: satr yo'q bo'lsa undefined va 500 (haqiqiy xabar), satr bor bo'lsa 201.", "server.js dagi joyi va belgisi: GET 200, POST 500."], "blok": [4, 3], "img_o": "img/pg2-23-oldin.jpg", "img_k": "img/pg2-23-keyin.jpg", "fill": [25, 85]}, {"id": "jest1-15", "dars": "Jest-1", "ekran": 15, "mavzu": "Chegara testi: oxirgi va yagona sahifa", "naqsh": "A", "tur": "taklif", "oldin": "Xulosada sahifa belgilari qatori va qoida.", "keyin": ["4 sahifa va ikki shart (page < pages − 1 va <=): farq faqat chegarada, 2·2 va 0·0 da chiqadi.", "Haqiqiy npx jest farqi: ikki testda ortiqcha ▶."], "blok": [2, 2], "img_o": "img/jest1-15-oldin.jpg", "img_k": "img/jest1-15-keyin.jpg", "fill": [22, 65]}, {"id": "jest1-18", "dars": "Jest-1", "ekran": 18, "mavzu": "AI yozgan testni qabul qilish", "naqsh": "-", "tur": "qoldirish", "sabab": "Sahna 77% to'la: prompt, ikki AI javobi va kod ko'rinadi. Kod tahlili kirish qismi keyin almashgani uchun belgilagan, xulosa holati to'liq.", "img_o": "img/jest1-18-oldin.jpg"}, {"id": "jest2-05", "dars": "Jest-2", "ekran": 5, "mavzu": "it.each: bitta qoida, yetti kirish", "naqsh": "B", "tur": "taklif", "oldin": "Xulosada FAIL logidan bir parcha va qoida qoladi, spec kodi yashiriladi.", "keyin": ["it.each jadvalining o'zi: 7 kirish, kutilgan, isPhone natijasi va test belgisi; probel qatori qizil.", "Qoida /^\\+?\\d{9,13}$/ raqamlar o'qida: 8 va 14 chegaradan tashqarida, probel qoidada yo'q."], "blok": [2, 2], "img_o": "img/jest2-05-oldin.jpg", "img_k": "img/jest2-05-keyin.jpg", "fill": [33, 82]}, {"id": "jest2-06", "dars": "Jest-2", "ekran": 6, "mavzu": "Tuzatish: replace va «9 ta nol»", "naqsh": "A", "tur": "taklif", "oldin": "Ikki karta: «qoida tor edi» va «qoida keng».", "keyin": ["phone.ts 4-satr diff: trim() o'rniga replace(/[\\s-]/g, '').", "Bir xil kirishlar eski va yangi qoidada: probel qatori tor joy, 000000000 qatori keng joy — sizning qaroringiz."], "blok": [2, 2], "img_o": "img/jest2-06-oldin.jpg", "img_k": "img/jest2-06-keyin.jpg", "fill": [15, 61]}, {"id": "jest2-15", "dars": "Jest-2", "ekran": 15, "mavzu": "Xato yo'li testi ikki qismli", "naqsh": "A", "tur": "taklif", "oldin": "Ikki kartada ikki expect satri, sahnaning 4/5 qismi bo'sh. Chap sarlavha kesilgan.", "keyin": ["place() oqimi: savat, ombor (stock: 1), tekshiruv (throw), UPDATE chaqirilmadi. Har qutida service satri.", "Ikki expect pastda va qaysi qutini tekshirishi yozilgan."], "blok": [2, 3], "img_o": "img/jest2-15-oldin.jpg", "img_k": "img/jest2-15-keyin.jpg", "fill": [18, 45]}, {"id": "jest2-18", "dars": "Jest-2", "ekran": 18, "mavzu": "supertest: sayt ham shunday sinaladi", "naqsh": "A", "tur": "taklif", "oldin": "Ikki karta: «Bot handler'i» va «Sayt route'i» — so'z bilan.", "keyin": ["Ikki parallel oqim bir xil qolipda: kirish → kod → chiqish → expect; haqiqiy qiymatlar (throw matni, 200 { ok: true }, 404 Cannot GET /nope).", "Sayt testi xotirada: port ochilmaydi, baza yo'q."], "blok": [3, 3], "img_o": "img/jest2-18-oldin.jpg", "img_k": "img/jest2-18-keyin.jpg", "fill": [17, 80]}, {"id": "cicd1-02", "dars": "CI/CD-1", "ekran": 2, "mavzu": "CI va CD nima qiladi", "naqsh": "A", "tur": "taklif", "oldin": "Xulosada «Bugun» rejasi to'rtta kartada, sahna bo'sh.", "keyin": ["git push → CI (toza mashina, to'rt qadam, haqiqiy kodlar 0) → CD (node dist/main: DATABASE_URL topilmadi) → server; ustida «bugun to'liq / chegaragacha / keyingi dars» chizig'i.", "Pastda «menda ishlaydi» holati va CD ning ikki turi."], "blok": [4, 3], "img_o": "img/cicd1-02-oldin.jpg", "img_k": "img/cicd1-02-keyin.jpg", "fill": [28, 62]}, {"id": "cicd1-03", "dars": "CI/CD-1", "ekran": 3, "mavzu": "Lenta: chiqish kodi va qizilda to'xtash", "naqsh": "B", "tur": "taklif", "oldin": "O'rta qadamda chiqish kodlari ro'yxati bor, xulosada faqat kichik lenta va qoida qoladi.", "keyin": ["Lenta jadvali: to'rt vaziyat × to'rt qadam, har katakda haqiqiy chiqish kodi (0 · 1 · 2 · 127) va vaqt; yurmagan qadamlar shtrixli.", "Qoida: lenta faqat «nolmi?» deb qaraydi."], "blok": [2, 3], "img_o": "img/cicd1-03-oldin.jpg", "img_k": "img/cicd1-03-keyin.jpg", "fill": [25, 54]}, {"id": "cicd1-14", "dars": "CI/CD-1", "ekran": 14, "mavzu": "npm ci va lock: «in sync» xatosi", "naqsh": "A", "tur": "taklif", "oldin": "Xulosada ikki karta: «npm ci — lentada» va «npm install — lokalda».", "keyin": ["Biz qilgan yo'l: package.json 4.16.0 → npm install yo'q → lock 4.16.3 → npm ci chiqish kodi 1, haqiqiy EUSAGE xabari bilan.", "To'g'ri yo'l: npm install → lock yangilanadi → ikkala fayl commit → lentada npm ci 0."], "blok": [2, 2], "img_o": "img/cicd1-14-oldin.jpg", "img_k": "img/cicd1-14-keyin.jpg", "fill": [18, 85]}, {"id": "cicd2-02", "dars": "CI/CD-2", "ekran": 2, "mavzu": "run → job → step", "naqsh": "A", "tur": "taklif", "oldin": "Uchta karta: run, job, step — ta'rif so'z bilan.", "keyin": ["Haqiqiy run 41845454983 ichma-ich: run ichida ikki job (test, smoke · needs), har job ichida qadamlar va soniyalar.", "GitHub qo'shgan qadamlar kulrang, sizning buyruqlaringiz binafsha; pastda uch atama."], "blok": [3, 4], "img_o": "img/cicd2-02-oldin.jpg", "img_k": "img/cicd2-02-keyin.jpg", "fill": [19, 70]}, {"id": "cicd2-03", "dars": "CI/CD-2", "ekran": 3, "mavzu": "Tayyor qadamlar yashirin emas", "naqsh": "A", "tur": "taklif", "oldin": "Uchta karta: Set up job, checkout, setup-node — log faktlari kichik matnda.", "keyin": ["Bitta job (run 41832879751, 25 s) qadamlari vaqt chizig'ida: GitHub qadamlari ko'k, sizniki kulrang.", "Uch tayyor qadamning haqiqiy log satrlari: ubuntu-26.04 · Contents: read · git init · --depth=1 · node v24.22.1."], "blok": [3, 5], "img_o": "img/cicd2-03-oldin.jpg", "img_k": "img/cicd2-03-keyin.jpg", "fill": [19, 64]}, {"id": "cicd2-08", "dars": "CI/CD-2", "ekran": 8, "mavzu": "matrix va fail-fast", "naqsh": "A", "tur": "taklif", "oldin": "Ikki karta: fail-fast true va false — natija so'z bilan.", "keyin": ["Ikki haqiqiy run vaqt o'qida: true da 22 qizil (10 s), 24 cancelled (22 s); false da 24 yashil (25 s, 25 passed).", "Haqiqiy xabar: The strategy configuration was canceled because \"test._22\" failed."], "blok": [3, 3], "img_o": "img/cicd2-08-oldin.jpg", "img_k": "img/cicd2-08-keyin.jpg", "fill": [26, 65]}, {"id": "cicd2-12", "dars": "CI/CD-2", "ekran": 12, "mavzu": "Unit test bazasiz, smoke — services bilan", "naqsh": "A", "tur": "taklif", "oldin": "Bitta qoida kartasi, sahnaning 85% bo'sh.", "keyin": ["Ikki job yonma-yon: test (manager — mock, baza yo'q, 19 s) va smoke (needs: test, postgres:18 konteyner 13 s da ko'tarildi, 41 s).", "Lentadagi haqiqiy smoke logi: restart va race tekshiruvlari, NATIJA: 5/5 ✓."], "blok": [1, 4], "img_o": "img/cicd2-12-oldin.jpg", "img_k": "img/cicd2-12-keyin.jpg", "fill": [14, 71]}, {"id": "cicd2-22", "dars": "CI/CD-2", "ekran": 22, "mavzu": "O'quvchi darsidagi «Repongiz yo'qmi?» namunasi", "naqsh": "-", "tur": "qoldirish", "sabab": "«Sinfga tayyorgarlik» bo'limi: M41 bo'yicha dars oxirida qisqa. Uchta karta — o'quvchi qoqiladigan uch joy — o'z vazifasini bajaradi.", "img_o": "img/cicd2-22-oldin.jpg"}, {"id": "cicd2-23", "dars": "CI/CD-2", "ekran": 23, "mavzu": "O'quvchi savollariga tayyor javoblar", "naqsh": "-", "tur": "qoldirish", "sabab": "Savollar bosilganda javob ochiladi — oxirgi holatda sahna ataylab ixcham. Sinfga tayyorgarlik bo'limi (M41).", "img_o": "img/cicd2-23-oldin.jpg"}, {"id": "ws1-02", "dars": "WS-1", "ekran": 2, "mavzu": "Oddiy HTTP: panel so'ramaguncha bilmaydi", "naqsh": "A", "tur": "taklif", "oldin": "Kichik terminal (tokensiz 401) va qoida; sahnaning 3/4 qismi bo'sh.", "keyin": ["Ikki ketma-ketlik yonma-yon: HTTP — 1-so'rov [], Bobur buyurtma beradi (20:19:16), ekran eski, 2-so'rovda #1; tokensiz 401.", "Doimiy ulanish — server o'zi yuboradi: order-changed {\"orderId\":2,\"reason\":\"new\"} va \"status\" (haqiqiy vaqtlar bilan)."], "blok": [2, 3], "img_o": "img/ws1-02-oldin.jpg", "img_k": "img/ws1-02-keyin.jpg", "fill": [28, 75]}, {"id": "ws1-09", "dars": "WS-1", "ekran": 9, "mavzu": "public/admin.html: socket.io klienti", "naqsh": "-", "tur": "qoldirish", "sabab": "Kod ekrani: haqiqiy admin.html satrlari va esc() fokusda. Sahna kod bilan to'g'ri tuzilgan (M43); chizma qo'shish kodni siqib qo'yadi.", "img_o": "img/ws1-09-oldin.jpg"}, {"id": "ws1-10", "dars": "WS-1", "ekran": 10, "mavzu": "Lentada live smoke 9/9", "naqsh": "-", "tur": "qoldirish", "sabab": "Haqiqiy GitHub Actions logi to'liq ko'rinadi (smoke live 9/9). Kod tahlili oraliq qadam almashgani uchun belgilagan; xulosa holati to'la.", "img_o": "img/ws1-10-oldin.jpg"}, {"id": "ws1-15", "dars": "WS-1", "ekran": 15, "mavzu": "Server muzlasa: 45 soniyagacha bilinmaydi", "naqsh": "C", "tur": "taklif", "oldin": "To'rtta kichik karta bir qatorda (STOP, +43 s, ping timeout, davom). Topilma: sarlavhada «42 soniya», haqiqiy farq 43 s (20:19:56 → 20:20:39).", "keyin": ["Haqiqiy vaqt o'qi 20:19:50–20:20:55: server muzlagan, klient «ulangan» deb turadi, 20:20:39 ping timeout, 20:20:48 davom — 43 s oraliq ajratilgan.", "pingInterval 25 + pingTimeout 20 = 45 s gacha; sinf uchun bitta qoida."], "blok": [5, 3], "img_o": "img/ws1-15-oldin.jpg", "img_k": "img/ws1-15-keyin.jpg", "fill": [24, 75]}, {"id": "ws1-17", "dars": "WS-1", "ekran": 17, "mavzu": "Ikki AI panel yozdi", "naqsh": "A", "tur": "taklif", "oldin": "Ikki AI javobidan ikki iqtibos kartada.", "keyin": ["Taqqoslash jadvali (AI tajribasi XULOSA dan): hajm, transport (xom ws), token (URL'da), hodisada butun buyurtma, mavjud kod o'zgardi, o'z sinovi mock bilan.", "Har xavf belgisi bilan; xulosa — bazasiz sinagan, keyingi ekranda haqiqiy baza."], "blok": [2, 2], "img_o": "img/ws1-17-oldin.jpg", "img_k": "img/ws1-17-keyin.jpg", "fill": [21, 53]}, {"id": "ws1-21", "dars": "WS-1", "ekran": 21, "mavzu": "O'quvchi darsi: Maydon Jamoa «8 / 10»", "naqsh": "-", "tur": "qoldirish", "sabab": "«Sinfga tayyorgarlik» bo'limi: M41 bo'yicha qisqa. Ikki repo holati kartada aniq.", "img_o": "img/ws1-21-oldin.jpg"}, {"id": "ws1-23", "dars": "WS-1", "ekran": 23, "mavzu": "Olti holat va o'quvchi savollari", "naqsh": "-", "tur": "qoldirish", "sabab": "Savollar bosilganda ochiladi — oxirgi holatda sahna ataylab ixcham (sinfga tayyorgarlik, M41).", "img_o": "img/ws1-23-oldin.jpg"}, {"id": "ws2-02", "dars": "WS-2", "ekran": 2, "mavzu": "Qayta ulanish — yangi ulanish, hodisa o'tib ketgan", "naqsh": "C", "tur": "taklif", "oldin": "Beshta kichik karta bir qatorda, to'rttasi xira; asosiy fikr ko'rinmaydi.", "keyin": ["Katta oqim: ulangan → uzildi → buyurtma #2 (order-changed → 0 panel) → qayta ulandi → ro'yxat eski.", "Pastda yechim aylanasi: connect → GET /admin/orders → ro'yxat to'g'ri."], "blok": [6, 2], "img_o": "img/ws2-02-oldin.jpg", "img_k": "img/ws2-02-keyin.jpg", "fill": [26, 51]}, {"id": "ws2-03", "dars": "WS-2", "ekran": 3, "mavzu": "README da'vosi va BUZISH yozuvi", "naqsh": "A", "tur": "taklif", "oldin": "Ikki karta: «buzildi» va «buzilmadi» ta'rifi.", "keyin": ["BUZISH.md ustunlari jadval bo'lib: usul · nima qildim · nima kutdim · nima bo'ldi · belgi; birinchi qator haqiqiy (server qayta yondi → buzildi), qolgan ikki usul keyingi ekranlarda to'ladi.", "Belgi ma'nosi va «da'vo» qoidasi."], "blok": [2, 4], "img_o": "img/ws2-03-oldin.jpg", "img_k": "img/ws2-03-keyin.jpg", "fill": [15, 78]}, {"id": "ws2-05", "dars": "WS-2", "ekran": 5, "mavzu": "Server qayta yonganda hodisa yo'qoladi", "naqsh": "C", "tur": "taklif", "oldin": "Beshta kichik karta bir qatorda, to'rttasi xira; asosiy voqea ko'rinmaydi.", "keyin": ["Haqiqiy vaqt o'qi :30 dan :45 gacha: #2 bazaga 21:37:37 da, panel 21:37:39 da ulanadi — 2,2 s bo'shliq.", "Natija: bazada 2, panelda faqat #1, ws2-done tuzatishi."], "blok": [6, 4], "img_o": "img/ws2-05-oldin.jpg", "img_k": "img/ws2-05-keyin.jpg", "fill": [26, 68]}, {"id": "ws2-13", "dars": "WS-2", "ekran": 13, "mavzu": "Uch usul — sabab bitta", "naqsh": "A", "tur": "taklif", "oldin": "Uchta karta: «buzildi → takrorlanmadi» va fayl raqamlari.", "keyin": ["Natijalar jadvali: uch usul × ws2-start / ws2-done — har katakda haqiqiy panel ro'yxati va baza.", "Tarmoq uzilishi sxemasi: server Render'da ishlayveradi, do'kon Wi-Fi uzildi, panel do'konda."], "blok": [3, 3], "img_o": "img/ws2-13-oldin.jpg", "img_k": "img/ws2-13-keyin.jpg", "fill": [14, 56]}, {"id": "ws2-14", "dars": "WS-2", "ekran": 14, "mavzu": "connectionStateRecovery — qo'shimcha, qayta so'rash — majburiy", "naqsh": "A", "tur": "taklif", "oldin": "Ikki karta: «Tiklash — qo'shimcha» va «Qayta so'rash — majburiy».", "keyin": ["Uch tajriba × ikki mexanizm: B (recovered=true, #3 keldi), A va C (recovered=false) — klient logidagi haqiqiy satrlar bilan.", "Qayta so'rash uchala holatda ✓."], "blok": [2, 3], "img_o": "img/ws2-14-oldin.jpg", "img_k": "img/ws2-14-keyin.jpg", "fill": [18, 55]}, {"id": "ws2-17", "dars": "WS-2", "ekran": 17, "mavzu": "Ikki AI shikoyatni tuzatdi", "naqsh": "A", "tur": "taklif", "oldin": "Ikki AI javobidan ikki iqtibos kartada.", "keyin": ["Taqqoslash jadvali (AI XULOSA): sabab, tuzatish, o'zgargan fayllar, so'rov raqami, tinglovchi tuzog'i, o'z sinovi (bazasiz).", "Xulosa: himoyani o'zi qo'shdi, lekin haqiqiy bazasiz sinagan."], "blok": [2, 2], "img_o": "img/ws2-17-oldin.jpg", "img_k": "img/ws2-17-keyin.jpg", "fill": [21, 52]}, {"id": "ws2-20", "dars": "WS-2", "ekran": 20, "mavzu": "O'quvchi darsi: «uchala chekka holatni bajardim»", "naqsh": "-", "tur": "qoldirish", "sabab": "«Sinfga tayyorgarlik» bo'limi (M41): ikki repo holati kartada aniq.", "img_o": "img/ws2-20-oldin.jpg"}, {"id": "ws2-21", "dars": "WS-2", "ekran": 21, "mavzu": "Xonaga qaytish — muammolar jadvali", "naqsh": "-", "tur": "qoldirish", "sabab": "Sahnada allaqachon jadval bor (muammo × OrderBotNest × Maydon Jamoa); sinfga tayyorgarlik bo'limi, M41 bo'yicha qisqa.", "img_o": "img/ws2-21-oldin.jpg"}, {"id": "ws2-22", "dars": "WS-2", "ekran": 22, "mavzu": "A1 / A2: uch usul va agentning da'vosi", "naqsh": "-", "tur": "qoldirish", "sabab": "«Sinfga tayyorgarlik» bo'limi (M41): uchta karta — qayerda, nima qilsin, nima buzilmasin — vazifani aniq beradi.", "img_o": "img/ws2-22-oldin.jpg"}, {"id": "ws2-23", "dars": "WS-2", "ekran": 23, "mavzu": "Olti holat va o'quvchi savollari", "naqsh": "-", "tur": "qoldirish", "sabab": "Savollar bosilganda ochiladi — oxirgi holatda sahna ataylab ixcham (M41).", "img_o": "img/ws2-23-oldin.jpg"}, {"id": "wh-02", "dars": "Webhook", "ekran": 2, "mavzu": "To'lov natijasi — webhook", "naqsh": "A", "tur": "taklif", "oldin": "Kichik terminal (xabar tanasi va imzo) va qoida.", "keyin": ["Webhook yo'li: xizmat → POST (haqiqiy tana va X-Signature) → 200 {\"ok\":true} → payments → orders (paid) → panel order-changed «payment».", "«Dalil emas / dalil» juftligi."], "blok": [2, 4], "img_o": "img/wh-02-oldin.jpg", "img_k": "img/wh-02-keyin.jpg", "fill": [25, 57]}, {"id": "wh-03", "dars": "Webhook", "ekran": 3, "mavzu": "wh-start: Cannot POST, 404", "naqsh": "A", "tur": "taklif", "oldin": "Uchta karta: manzil, imzo, bir martalik yozuv.", "keyin": ["Haqiqiy 404 javobi va orders jadvali: #1 NEW qoldi.", "wh-done dagi uch tekshiruv oqim bo'lib."], "blok": [3, 3], "img_o": "img/wh-03-oldin.jpg", "img_k": "img/wh-03-keyin.jpg", "fill": [14, 63]}, {"id": "wh-05", "dars": "Webhook", "ekran": 5, "mavzu": "payment.controller.ts: imzo, maydonlar, yozuv", "naqsh": "A", "tur": "taklif", "oldin": "Uchta karta: «1 · Imzo», «2 · Maydonlar», «3 · Yozuv».", "keyin": ["Tekshiruv zanjiri: xabar → imzo (yiqilsa 401) → maydonlar (yiqilsa 400 «summa mos emas: 1200 ≠ 120000») → yozuv 200.", "rawBody bor/yo'q: bo'sh joyli JSON 200 va to'g'ri imzo ham 401 — haqiqiy natijalar."], "blok": [3, 4], "img_o": "img/wh-05-oldin.jpg", "img_k": "img/wh-05-keyin.jpg", "fill": [17, 62]}, {"id": "wh-09", "dars": "Webhook", "ekran": 9, "mavzu": "Imzosiz va soxta imzo — 401", "naqsh": "A", "tur": "taklif", "oldin": "Ikki karta: «Kalit — butun himoya», «Kalit qayerda».", "keyin": ["Bir xil to'lov, uch xil imzo: javob, payments qatori va server logi — haqiqiy chiqishlar.", "Ikki qoida kartasi saqlanadi."], "blok": [2, 3], "img_o": "img/wh-09-oldin.jpg", "img_k": "img/wh-09-keyin.jpg", "fill": [15, 45]}, {"id": "wh-15", "dars": "Webhook", "ekran": 15, "mavzu": "Kalit .env da bo'sh", "naqsh": "A", "tur": "taklif", "oldin": "Ikki karta: «Kalit — shu yerda» va «hech qachon».", "keyin": ["Haqiqiy ogohlantirish va natija: WARN … bo'sh, har xabar 401, payments: 0.", "Kalit joylari teglar bilan: shu yerda (yashil) va hech qachon (qizil)."], "blok": [2, 3], "img_o": "img/wh-15-oldin.jpg", "img_k": "img/wh-15-keyin.jpg", "fill": [17, 56]}, {"id": "wh-18", "dars": "Webhook", "ekran": 18, "mavzu": "Ikki AI webhook yozdi", "naqsh": "A", "tur": "taklif", "oldin": "Ikki AI javobidan ikki iqtibos.", "keyin": ["Taqqoslash jadvali (AI XULOSA): manzil, imzo, takror to'g'ri; summa farqida 2-AI «siz hal qiling» dedi; o'z sinovi; 1-AI doiradan chiqqanini o'zi aytdi.", "Xulosa: AI o'zi aytgan gapni o'qing."], "blok": [2, 2], "img_o": "img/wh-18-oldin.jpg", "img_k": "img/wh-18-keyin.jpg", "fill": [22, 47]}, {"id": "wh-21", "dars": "Webhook", "ekran": 21, "mavzu": "O'quvchi darsi: Maydon Jamoa Pro obuna", "naqsh": "-", "tur": "qoldirish", "sabab": "«Sinfga tayyorgarlik» bo'limi (M41): repo, manzil va imzo kaliti uch kartada aniq.", "img_o": "img/wh-21-oldin.jpg"}, {"id": "wh-23", "dars": "Webhook", "ekran": 23, "mavzu": "Olti holat va o'quvchi savollari", "naqsh": "-", "tur": "qoldirish", "sabab": "Savollar bosilganda ochiladi — oxirgi holatda sahna ataylab ixcham (M41).", "img_o": "img/wh-23-oldin.jpg"}, {"id": "nest1-05", "dars": "Nest-1", "ekran": 5, "mavzu": "Tirik loyiha: nest new nimani yaratdi", "naqsh": "-", "tur": "qoldirish", "sabab": "Fayl daraxti (M1) uch bo'lakni rang bilan ko'rsatadi: ko'k Controller, yashil Service, sariq Module. Sahna o'z vazifasini bajaradi; o'lchov past chiqishi — daraxt foni sahna rangiga yaqinligidan.", "img_o": "img/nest1-05-oldin.jpg"}, {"id": "nest2-21", "dars": "Nest-2", "ekran": 21, "mavzu": "synchronize: Entity o'zgarsa, baza o'zgaradi", "naqsh": "A", "tur": "taklif", "oldin": "Ikki karta: synchronize ta'rifi va «ma'lumot yo'qoldi / contains null values» qoidasi.", "keyin": ["Entity → start:dev → jadval oqimi; ikki haqiqiy tajriba yonma-yon.", "Ustun tushib qoldi: server ishga tushdi, price saqlanmadi (jim). NOT NULL ustun: QueryFailedError … contains null values, started = 0; nullable: true bilan started = 1."], "blok": [2, 3], "img_o": "img/nest2-21-oldin.jpg", "img_k": "img/nest2-21-keyin.jpg", "fill": [28, 85]}], STAT=[["PostgreSQL-1", 20, 2], ["PostgreSQL-2", 22, 4], ["Jest-1", 17, 1], ["Jest-2", 17, 3], ["CI/CD-1", 17, 3], ["CI/CD-2", 17, 6], ["Telegraf + PG", 19, 0], ["WebSocket-1", 17, 6], ["WebSocket-2", 17, 10], ["Webhook", 17, 8], ["Nest-1", 30, 1], ["Nest-2", 20, 1]], TAYYOR=["PG-1", "PG-2", "Jest-1", "Jest-2", "CI/CD-1", "CI/CD-2", "Telegraf + PG", "WS-1", "WS-2", "Webhook", "Nest-1", "Nest-2"], TART=["PG-1", "PG-2", "Jest-1", "Jest-2", "CI/CD-1", "CI/CD-2", "Telegraf + PG", "WS-1", "WS-2", "Webhook", "Nest-1", "Nest-2"];
+const STATNOM={'PostgreSQL-1':'PG-1','PostgreSQL-2':'PG-2','WebSocket-1':'WS-1','WebSocket-2':'WS-2'};
+const KEY='mk-vizual-f110906';
+let saved={}; try{saved=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const slug=d=>d.toLowerCase().replace(/[^a-z0-9]+/g,'-');
+// o'lchov jadvali
+document.querySelector('#stat tbody').innerHTML=STAT.map(r=>{const d=STATNOM[r[0]]||r[0];const t=TAYYOR.includes(d);return `<tr><td>${esc(r[0])}</td><td class="n">${r[1]}</td><td class="n">${r[2]}</td><td>${t?'<span style="color:var(--ok);font-weight:600">tayyor</span>':'<span class="muted">tayyorlanmoqda</span>'}</td></tr>`}).join('')+
+ `<tr><td><b>Jami</b></td><td class="n"><b>${STAT.reduce((a,r)=>a+r[1],0)}</b></td><td class="n"><b>${STAT.reduce((a,r)=>a+r[2],0)}</b></td><td></td></tr>`;
+// navigatsiya
+const by={}; ITEMS.forEach(r=>(by[r.dars]=by[r.dars]||[]).push(r));
+const nav=document.getElementById('nav');
+nav.innerHTML=TART.map(d=>by[d]?`<a href="#d-${slug(d)}" class="${TAYYOR.includes(d)?'done':'wait'}">${esc(d)}<span>${by[d].filter(r=>r.tur==='taklif').length}/${by[d].length}</span></a>`:(STAT.find(s=>(STATNOM[s[0]]||s[0])===d)?`<a href="#d-${slug(d)}" class="wait">${esc(d)}<span>…</span></a>`:'')).join('')+
+ `<div class="filt" role="group" aria-label="Filtr"><button type="button" data-f="all" aria-pressed="true">Hammasi</button><button type="button" data-f="taklif" aria-pressed="false">Takliflar</button><button type="button" data-f="qoldirish" aria-pressed="false">Qoldirilgan</button></div>`;
+const DEC={taklif:[['qabul','Qabul'],['ozgartirib',"O'zgartirib qabul"],['rad','Rad']],qoldirish:[['rozi','Rozi — qoldiramiz'],['taklif','Taklif tayyorla']]};
+function card(r){
+  const s=saved[r.id]||{};
+  const radios=DEC[r.tur].map(([v,l])=>`<label><input type="radio" name="d-${r.id}" id="d-${r.id}-${v}" value="${v}" ${s.d===v?'checked':''}> ${l}</label>`).join('');
+  const shots=r.tur==='taklif'
+   ?`<figure><figcaption>Oldin · hozirgi dars</figcaption><button class="shot" type="button" aria-label="Oldin suratini kattalashtirish"><img src="${r.img_o}" alt="${esc(r.dars)} ${r.ekran}-ekran, hozir" loading="lazy" width="1440" height="810"></button></figure>
+     <figure class="after"><figcaption>Keyin · taklif</figcaption><button class="shot" type="button" aria-label="Keyin suratini kattalashtirish"><img src="${r.img_k}" alt="${esc(r.dars)} ${r.ekran}-ekran, taklif" loading="lazy" width="1440" height="810"></button></figure>`
+   :`<figure><figcaption>Hozirgi dars</figcaption><button class="shot" type="button" aria-label="Suratni kattalashtirish"><img src="${r.img_o}" alt="${esc(r.dars)} ${r.ekran}-ekran" loading="lazy" width="1440" height="810"></button></figure>`;
+  const meta=r.tur==='taklif'
+   ?`<div class="meta"><div><p class="muted"><b>Hozir:</b> ${esc(r.oldin)}</p><ul>${r.keyin.map(k=>`<li>${esc(k)}</li>`).join('')}</ul></div><div class="nums"><div class="num"><small>Sahna to'lgani</small><b>${r.fill[0]}% → <em>${r.fill[1]}%</em></b></div>${r.blok?`<div class="num"><small>Alohida bloklar</small><b>${r.blok[0]} → <em>${r.blok[1]}</em></b></div>`:''}</div></div>`
+   :`<p class="muted"><b>Nega qoldiriladi:</b> ${esc(r.sabab)}</p>`;
+  return `<article class="item ${r.tur==='qoldirish'?'keep':''}" id="${r.id}" data-tur="${r.tur}">
+    <div class="item-h"><h3>${r.ekran}-ekran — ${esc(r.mavzu)}</h3>${r.naqsh&&r.naqsh!=='-'?`<span class="tag">naqsh ${r.naqsh}</span>`:''}<span class="tag ${r.tur==='taklif'?'t':''}">${r.tur==='taklif'?'taklif':'o\'zgartirish shart emas'}</span></div>
+    <div class="shots">${shots}</div>${meta}
+    <div class="dec" role="radiogroup" aria-label="${r.id} qarori">${radios}</div>
+    <textarea id="n-${r.id}" placeholder="Izoh">${esc(s.n||'')}</textarea>
+  </article>`;
+}
+document.getElementById('list').innerHTML=TART.map(d=>{
+  if(by[d]) return `<section class="lesson" id="d-${slug(d)}"><h2>${esc(d)} <small>${by[d].filter(r=>r.tur==='taklif').length} taklif · ${by[d].filter(r=>r.tur!=='taklif').length} qoldirildi</small></h2>${by[d].map(card).join('')}${TAYYOR.includes(d)?'':'<div class="wait-box">Bu darsning qolgan zaif ekranlari tayyorlanmoqda. Sahifa shu havolada yangilanadi.</div>'}</section>`;
+  const st=STAT.find(s=>(STATNOM[s[0]]||s[0])===d); if(!st) return '';
+  return `<section class="lesson" id="d-${slug(d)}"><h2>${esc(d)}</h2><div class="wait-box">${st[2]?`Tayyorlanmoqda: ${st[2]} ta zaif ekran ko'rib chiqiladi. Sahifa shu havolada yangilanadi.`:'Zaif ekran topilmadi — sahnalar to\'la.'}</div></section>`;
+}).join('');
+// filtr
+nav.addEventListener('click',e=>{const b=e.target.closest('.filt button'); if(!b) return; nav.querySelectorAll('.filt button').forEach(x=>x.setAttribute('aria-pressed',x===b)); const f=b.dataset.f; document.querySelectorAll('.item').forEach(it=>it.hidden=!(f==='all'||it.dataset.tur===f));});
+// javob
+const L={qabul:'Qabul',ozgartirib:"O'zgartirib qabul",rad:'Rad',rozi:'Rozi — qoldiramiz',taklif:'Taklif tayyorla'};
+try{if(saved.__umumiy) document.getElementById('n-umumiy').value=saved.__umumiy}catch(e){}
+function collect(){
+  const st={};
+  ITEMS.forEach(r=>{const x=document.querySelector(`input[name="d-${r.id}"]:checked`);st[r.id]={d:x?x.value:'',n:document.getElementById('n-'+r.id).value.trim()}});
+  st.__umumiy=document.getElementById('n-umumiy').value;
+  try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}
+  const done=ITEMS.filter(r=>st[r.id].d).length;
+  const lines=[`F-1109-06 vizual — javob (${done}/${ITEMS.length} ta qaror)`];
+  let cur='';
+  ITEMS.forEach(r=>{const s=st[r.id]; if(r.dars!==cur){cur=r.dars;lines.push('— '+cur)} lines.push(`${r.id} · ${r.ekran}-ekran: ${s.d?L[s.d]:'tanlanmagan'}${s.n?' · '+s.n:''}`)});
+  if(st.__umumiy.trim()) lines.push('Umumiy: '+st.__umumiy.trim());
+  document.getElementById('out').textContent=lines.join('\n'); return lines.join('\n');
+}
+document.addEventListener('input',collect); document.addEventListener('change',collect); collect();
+document.getElementById('copy').addEventListener('click',()=>{const t=collect(),b=document.getElementById('copy');
+  navigator.clipboard.writeText(t).then(()=>{b.textContent='Nusxalandi';setTimeout(()=>b.textContent='Javobni nusxalash',1800)})
+  .catch(()=>{const r=document.createRange();r.selectNodeContents(document.getElementById('out'));const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Matn belgilandi — Ctrl+C'})});
+const z=document.getElementById('zoom');
+document.addEventListener('click',e=>{const b=e.target.closest('.shot'); if(b){z.querySelector('img').src=b.querySelector('img').src;z.hidden=false;return} if(e.target.closest('#zoom')) z.hidden=true;});
+document.addEventListener('keydown',e=>{if(e.key==='Escape') z.hidden=true});
+</script>

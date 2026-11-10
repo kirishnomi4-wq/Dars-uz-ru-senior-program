@@ -1,0 +1,13 @@
+41832879751	11	ci: lenta — npm ci · tsc · test · build	2026-11-04T12:51:22Z	2026-11-04T12:51:50Z	2026-11-04T12:51:22Z	ci-sinov	success
+42608643059	44	sinov: chegara buzildi (< → <=)	2026-11-09T11:23:19Z	2026-11-09T11:23:38Z	2026-11-09T11:23:19Z	sinov-test-qizil	failure
+41833077624	13	sinov: checkout qadami yo'q	2026-11-04T12:52:46Z	2026-11-04T12:52:58Z	2026-11-04T12:52:46Z	ci-sinov	failure
+41833308519	14	sinov: package.json lock bilan sinxron emas	2026-11-04T12:54:24Z	2026-11-04T12:54:34Z	2026-11-04T12:54:24Z	ci-sinov	failure
+41833373499	15	sinov: tsc qadami yo'q + tur xatosi	2026-11-04T12:54:51Z	2026-11-04T12:55:16Z	2026-11-04T12:54:51Z	ci-sinov	success
+41833479902	16	sinov: tsc qadami bor + tur xatosi	2026-11-04T12:55:35Z	2026-11-04T12:55:56Z	2026-11-04T12:55:35Z	ci-sinov	failure
+41833570010	17	sinov: runs-on yo'q	2026-11-04T12:56:13Z	2026-11-04T12:56:13Z	2026-11-04T12:56:13Z	ci-sinov	failure
+41833614367	18	sinov: YAML surilish xatosi	2026-11-04T12:56:31Z	2026-11-04T12:56:31Z	2026-11-04T12:56:31Z	ci-sinov	failure
+41833650859	19	cicd1-done: node-version 24 — runner'dagi npm 10 lock faylni o'qiy ol…	2026-11-04T12:56:47Z	2026-11-04T12:57:18Z	2026-11-04T12:56:47Z	main	success
+41833774062	1	sinov: AI yozgan workflow (ai1)	2026-11-04T12:57:40Z	2026-11-04T12:57:50Z	2026-11-04T12:57:40Z	ci-sinov	failure
+41833834000	20	sinov: AI yozgan workflow (ai2)	2026-11-04T12:58:06Z	2026-11-04T12:58:15Z	2026-11-04T12:58:06Z	ci-sinov	failure
+41833893142	2	sinov: AI (ai1) workflow, node-version 22 → 24	2026-11-04T12:58:31Z	2026-11-04T12:58:52Z	2026-11-04T12:58:31Z	ci-sinov	success
+41831241596	1	ci: lenta — npm ci · tsc · test · build	2026-11-04T12:40:03Z	2026-11-04T12:40:12Z	2026-11-04T12:40:03Z	ci-sinov	failure

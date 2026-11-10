@@ -1,0 +1,31 @@
+<div class="z">
+  <div class="z-card">
+    <p class="z-h">GET /api/cars — so'rov serverdan bazaga va qaytib</p>
+    <div class="z-flow">
+      <div class="z-st" style="border-color:var(--pur);background:var(--pur2)"><b>1 · Pool</b><span class="zm">new Pool({…})</span><span class="z-mut">ulanish tayyor</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st blue"><b>2 · pool.query</b><span class="zm">SELECT * FROM cars</span><span class="z-mut">await — javob kutiladi</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st ok"><b>3 · natija</b><span class="zm">rows: 3 ta mashina</span><span class="zm">rowCount: 3</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st"><b>4 · res.json</b><span class="z-tag g">200</span><span class="zm" style="font-size:12px">[{"id":1,"model":"Chevrolet Cobalt",…}, …]</span></div>
+    </div>
+  </div>
+  <div class="z-two">
+    <div class="z-card">
+      <p class="z-h">rowCount — terminaldagi son</p>
+      <table class="z-tbl">
+        <tr><th>terminalda</th><th>pool.query natijasida</th></tr>
+        <tr><td>(3 rows)</td><td>rowCount: 3</td></tr>
+        <tr class="hl"><td>UPDATE 0</td><td>rowCount: 0 · rows: []</td></tr>
+      </table>
+      <span class="z-mut">UPDATE … WHERE id = 99 — mos qator yo'q, xato emas</span>
+    </div>
+    <div class="z-card" style="border-color:var(--bad)">
+      <p class="z-h" style="color:var(--bad)">xato bo'lsa — catch</p>
+      <div class="z-term">res.status(500).json({ error: err.message })
+<span class="m">→</span> <span class="r">500</span> {"error":"column \"price\" of relation \"cars\" does not exist"}</div>
+      <span class="z-mut">5-bosqichdagi hamma xato shu yo'ldan keladi</span>
+    </div>
+  </div>
+</div>

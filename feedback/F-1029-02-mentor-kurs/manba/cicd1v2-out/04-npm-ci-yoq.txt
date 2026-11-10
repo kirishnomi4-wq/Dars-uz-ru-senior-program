@@ -1,0 +1,9 @@
+# node_modules yo\x27q (lentada npm ci qadami tushib qolgan)
+$ npm test
+
+> order-bot-nest@1.0.0 test
+> jest
+
+sh: 1: jest: not found
+[chiqish kodi: 127 · 0.2 s]
+

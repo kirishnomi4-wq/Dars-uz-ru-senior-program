@@ -1,0 +1,108 @@
+=== 1-jarayon: server ishga tushdi (baza) ===
+Telegram bot ulandi
+Jasur(admin): /start
+  bot → Jasur(admin): Salom, Jasur! Bu CoddyCamp do'koni boti.
+      /catalog — mahsulotlar
+      /cart — savat
+      /help — yordam
+      /orders — buyurtmalar (admin)
+Aziza: /start
+  bot → Aziza: Salom, Aziza! Bu CoddyCamp do'koni boti.
+      /catalog — mahsulotlar
+      /cart — savat
+      /help — yordam
+Aziza: /catalog
+  bot → Aziza: Katalog (1/3-sahifa). Qo'shish uchun mahsulotni bosing:
+      [Klaviatura · 120 000 so'm → add:1]
+      [Sichqoncha · 75 000 so'm → add:2]
+      [1/3 → noop | ▶ → page:1]
+      [🛒 Savat → cart]
+Aziza: [tugma page:1]
+  bot → Aziza (tahrir): Katalog (2/3-sahifa). Qo'shish uchun mahsulotni bosing:
+      [Quloqchin · 95 000 so'm → add:3]
+      [Kolonka · 50 000 so'm → add:4]
+      [◀ → page:0 | 2/3 → noop | ▶ → page:2]
+      [🛒 Savat → cart]
+Aziza: [tugma add:1]
+  bot → (popup): Klaviatura savatga qo'shildi (1 ta).
+Aziza: [tugma add:4]
+  bot → (popup): Kolonka savatga qo'shildi (1 ta).
+Aziza: [tugma add:4]
+  bot → (popup): Kolonka savatga qo'shildi (2 ta).
+Aziza: /cart
+  bot → Aziza: Savat:
+      • Klaviatura × 1 = 120 000 so'm
+      • Kolonka × 2 = 100 000 so'm
+      
+      Jami: 220 000 so'm
+      [✅ Buyurtma berish → checkout]
+      [🗑 Tozalash → cart:clear | ➕ Yana → page:0]
+Aziza: [tugma checkout]
+  bot → Aziza: Buyurtma uchun telefon raqamingizni yozing (masalan, +998901234567):
+Aziza: salom
+  bot → Aziza: Raqam noto'g'ri. Masalan: +998901234567
+Aziza: +998901234567
+  bot → Aziza: Buyurtma #1 qabul qilindi!
+      • Klaviatura × 1 = 120 000 so'm
+      • Kolonka × 2 = 100 000 so'm
+      
+      Jami: 220 000 so'm
+      Telefon: +998901234567
+      Holati: 🆕 Yangi
+  bot → Jasur(admin): 🆕 Yangi buyurtma #1 — Aziza, 220 000 so'm. /orders
+Jasur(admin): /orders
+  bot → Jasur(admin): #1 · Aziza · 220 000 so'm · 🆕 Yangi
+         Klaviatura × 1
+         Kolonka × 2
+      [✅ Tasdiqlash → status:1:CONFIRMED | ❌ Bekor → status:1:CANCELLED]
+Jasur(admin): [tugma status:1:CONFIRMED]
+  bot → (popup): #1 → ✅ Tasdiqlangan
+  bot → Jasur(admin) (tahrir): #1 · Aziza · 220 000 so'm · ✅ Tasdiqlangan
+         Klaviatura × 1
+         Kolonka × 2
+      [🚚 Yetkazildi → status:1:DELIVERED | ❌ Bekor → status:1:CANCELLED]
+  bot → Aziza: Buyurtmangiz #1: ✅ Tasdiqlangan
+Aziza: /orders
+  bot → Aziza: Bu buyruq faqat admin uchun.
+--- ombordan ko‘p so‘rash: Planshet 3 ta bor, 4 ta so‘raymiz ---
+Aziza: [tugma add:5]
+  bot → (popup): Planshet savatga qo'shildi (1 ta).
+Aziza: [tugma add:5]
+  bot → (popup): Planshet savatga qo'shildi (2 ta).
+Aziza: [tugma add:5]
+  bot → (popup): Planshet savatga qo'shildi (3 ta).
+Aziza: [tugma add:5]
+  bot → (popup): Planshet savatga qo'shildi (4 ta).
+Aziza: [tugma checkout]
+  bot → Aziza: Buyurtma berilmadi: Planshet: omborda faqat 3 ta qoldi
+Aziza: /cart
+  bot → Aziza: Savat:
+      • Planshet × 4 = 1 200 000 so'm
+      
+      Jami: 1 200 000 so'm
+      [✅ Buyurtma berish → checkout]
+      [🗑 Tozalash → cart:clear | ➕ Yana → page:0]
+Aziza: [tugma cart:clear]
+  bot → Aziza: Savat tozalandi.
+Aziza: [tugma add:2]
+  bot → (popup): Sichqoncha savatga qo'shildi (1 ta).
+Aziza: /cart
+  bot → Aziza: Savat:
+      • Sichqoncha × 1 = 75 000 so'm
+      
+      Jami: 75 000 so'm
+      [✅ Buyurtma berish → checkout]
+      [🗑 Tozalash → cart:clear | ➕ Yana → page:0]
+
+=== server QAYTA ishga tushdi (2-jarayon) ===
+Telegram bot ulandi
+Aziza: /start
+  bot → Aziza: Salom, Aziza! Bu CoddyCamp do'koni boti.
+      /catalog — mahsulotlar
+      /cart — savat
+      /help — yordam
+Aziza: /cart
+  bot → Aziza: Savat bo'sh. /catalog dan mahsulot tanlang.
+Jasur(admin): /orders
+  bot → Jasur(admin): Hozircha buyurtma yo'q.
+harness exit 0

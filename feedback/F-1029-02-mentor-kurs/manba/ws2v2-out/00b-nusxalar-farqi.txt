@@ -1,0 +1,119 @@
+# nusxalar farqi
+## start → done
+@@ -61,6 +61,7 @@
+   }
+ 
+   // Ro'yxat — har doim Backend'dan (GET /admin/orders). Hodisa faqat «nimadir o'zgardi» deydi.
++  // Ikki joyda chaqiriladi: connect (birinchi va har qayta ulanish) va order-changed.
+   async function yukla() {
+     const r = await fetch('/admin/orders', { headers: { Authorization: 'Bearer ' + token } });
+     if (r.status === 401) {
+@@ -83,10 +84,15 @@
+     if (ulanish) ulanish.close();
+     ulanish = io({ auth: { token } });
+     holatQoy('ulanmoqda');
+-    ulanish.on('connect', () => holatQoy('ulangan'));
++    // connect — birinchi ulanishda HAM har qayta ulanishda: uzilish paytidagi hodisa kelmaydi, shuning uchun ro'yxat qayta so'raladi
++    ulanish.on('connect', () => {
++      holatQoy('ulangan');
++      yukla();
++    });
+     // uzilish yoki ulanish xatosi: klient o'zi qayta urinayotgan bo'lsa (active) — «ulanmoqda», server yopgan bo'lsa — «ulanmagan»
+     ulanish.on('disconnect', () => holatQoy(ulanish.active ? 'ulanmoqda' : 'ulanmagan'));
+     ulanish.on('connect_error', () => holatQoy(ulanish.active ? 'ulanmoqda' : 'ulanmagan'));
++    // tinglovchi bir marta, connect'dan TASHQARIDA (ichida bo'lsa har qayta ulanishda yana bittasi qo'shiladi)
+     ulanish.on('order-changed', () => yukla());
+   }
+ 
+@@ -94,13 +100,11 @@
+     e.preventDefault();
+     token = el('token').value.trim();
+     localStorage.setItem('adminToken', token);
+-    yukla();
+     ulan();
+   });
+ 
+   if (token) {
+     el('token').value = token;
+-    yukla();
+     ulan();
+   }
+ </script>
+## start → xato
+@@ -61,6 +61,7 @@
+   }
+ 
+   // Ro'yxat — har doim Backend'dan (GET /admin/orders). Hodisa faqat «nimadir o'zgardi» deydi.
++  // Ikki joyda chaqiriladi: connect (birinchi va har qayta ulanish) va order-changed.
+   async function yukla() {
+     const r = await fetch('/admin/orders', { headers: { Authorization: 'Bearer ' + token } });
+     if (r.status === 401) {
+@@ -83,24 +84,26 @@
+     if (ulanish) ulanish.close();
+     ulanish = io({ auth: { token } });
+     holatQoy('ulanmoqda');
+-    ulanish.on('connect', () => holatQoy('ulangan'));
++    // connect — birinchi ulanishda HAM har qayta ulanishda: uzilish paytidagi hodisa kelmaydi, shuning uchun ro'yxat qayta so'raladi
++    ulanish.on('connect', () => {
++      holatQoy('ulangan');
++      yukla();
++      ulanish.on('order-changed', () => yukla());
++    });
+     // uzilish yoki ulanish xatosi: klient o'zi qayta urinayotgan bo'lsa (active) — «ulanmoqda», server yopgan bo'lsa — «ulanmagan»
+     ulanish.on('disconnect', () => holatQoy(ulanish.active ? 'ulanmoqda' : 'ulanmagan'));
+     ulanish.on('connect_error', () => holatQoy(ulanish.active ? 'ulanmoqda' : 'ulanmagan'));
+-    ulanish.on('order-changed', () => yukla());
+   }
+ 
+   el('kirish').addEventListener('submit', (e) => {
+     e.preventDefault();
+     token = el('token').value.trim();
+     localStorage.setItem('adminToken', token);
+-    yukla();
+     ulan();
+   });
+ 
+   if (token) {
+     el('token').value = token;
+-    yukla();
+     ulan();
+   }
+ </script>
+## start → tiklash (live.gateway.ts)
+@@ -16,7 +16,7 @@
+ // Yangi holatni panel GET /admin/orders dan qayta so'raydi — hodisa ichida ro'yxat ham, son ham yo'q.
+ export type OrderChangeReason = 'new' | 'status';
+ 
+-@WebSocketGateway()
++@WebSocketGateway({ connectionStateRecovery: { maxDisconnectionDuration: 2 * 60 * 1000 } })
+ export class LiveGateway implements OnGatewayConnection, OnGatewayDisconnect {
+   private readonly log = new Logger('Live');
+ 
+## start → done (scripts/live-client.js)
+@@ -21,6 +21,18 @@
+ 
+ const s = io(url, { auth: { token } });
+ console.log(`${t()} ulanmoqda… ${url}`);
++// Panel kabi: har connect'da (birinchi va qayta) ro'yxat qayta so'raladi — uzilish paytidagi hodisa kelmaydi
++async function royxat() {
++  const r = await fetch(`${url}/admin/orders`, {
++    headers: { Authorization: `Bearer ${token}` },
++  });
++  if (!r.ok) return console.log(`${t()} GET /admin/orders → ${r.status}`);
++  const list = await r.json();
++  console.log(
++    `${t()} GET /admin/orders → ${list.length} ta` +
++      (list.length ? `, eng yangisi #${list[0].id}` : ''),
++  );
++}
+ s.on('connect', () => {
+   console.log(
+     `${t()} connect · ${holat(s)} · transport: ${s.io.engine.transport.name}`,
+@@ -28,6 +40,7 @@
+   s.io.engine.once('upgrade', (tr) =>
+     console.log(`${t()} transport: ${tr.name}`),
+   );
++  royxat().catch((e) => console.log(`${t()} GET xato: ${e.message}`));
+ });
+ s.on('disconnect', (reason) =>
+   console.log(

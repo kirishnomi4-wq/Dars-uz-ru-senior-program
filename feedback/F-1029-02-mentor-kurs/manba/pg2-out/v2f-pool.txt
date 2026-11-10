@@ -1,0 +1,9 @@
+$ node pool-pid.js
+Pool yaratildi · ulanishlar: 0
+so'rov 1: baza jarayoni pid 378069 · bazadagi faol ulanishlar 1 · Pool ulanishlari 1
+so'rov 2: baza jarayoni pid 378069 · bazadagi faol ulanishlar 1 · Pool ulanishlari 1
+so'rov 3: baza jarayoni pid 378069 · bazadagi faol ulanishlar 1 · Pool ulanishlari 1
+rowCount: 4 · rows: [{"name":"Klaviatura","price":89000},{"name":"Sichqoncha","price":75000},{"name":"Kolonka","price":50000},{"name":"O'yinchoq","price":30000}]
+UPDATE id=99 → rowCount: 0 · rows: []
+xato parol bilan Pool yaratildi — xato yo'q (hali ulanmadi)
+birinchi so'rovda: password authentication failed for user "postgres"

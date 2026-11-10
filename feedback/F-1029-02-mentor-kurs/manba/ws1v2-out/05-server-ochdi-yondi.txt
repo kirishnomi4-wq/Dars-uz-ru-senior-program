@@ -1,0 +1,11 @@
+# Klient ochiq turadi; 3-soniyada server to'xtatiladi, 10-soniyada qayta yoqiladi
+20:19:34 — server to'xtatildi (Ctrl+C)
+20:19:41 — server qayta ishga tushirildi
+$ npm run live
+20:19:31 ulanmoqda… http://localhost:3100
+20:19:31 connect · ulangan · transport: websocket
+20:19:34 disconnect: transport close · active=true → ulanmoqda
+20:19:35 connect_error: xhr poll error · active=true → ulanmoqda
+20:19:37 connect_error: xhr poll error · active=true → ulanmoqda
+20:19:40 connect_error: xhr poll error · active=true → ulanmoqda
+20:19:45 connect · ulangan · transport: websocket

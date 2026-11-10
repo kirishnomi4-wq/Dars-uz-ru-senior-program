@@ -1,0 +1,20 @@
+# wh-done: imzosiz va boshqa kalit bilan (kalitni bilmagan odam) — xabar rad etiladi
+$ npm run pay -- 1 imzosiz
+→ POST /payments/webhook {"paymentId":"pay_d4dd85bf","orderId":1,"status":"paid","amount":120000}
+  X-Signature: (yo'q)
+← 401 {"message":"imzo noto'g'ri","error":"Unauthorized","statusCode":401}
+
+$ npm run pay -- 1 soxta
+→ POST /payments/webhook {"paymentId":"pay_233cc12f","orderId":1,"status":"paid","amount":120000}
+  X-Signature: b42930c1ee36e342…
+← 401 {"message":"imzo noto'g'ri","error":"Unauthorized","statusCode":401}
+
+## Server logi
+WARN [Payment] imzo noto'g'ri — xabar rad etildi
+WARN [Payment] imzo noto'g'ri — xabar rad etildi
+
+$ psql: SELECT count(*) AS payments_qatorlari FROM payments
+ payments_qatorlari 
+--------------------
+                  2
+(1 row)

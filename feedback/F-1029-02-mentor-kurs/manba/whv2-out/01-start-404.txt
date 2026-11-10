@@ -1,0 +1,9 @@
+# wh-start (= ws2-done): to'lov xizmati xabar yubordi — server bunday manzilni bilmaydi
+$ curl -s -X POST http://localhost:3100/payments/webhook -H 'Content-Type: application/json' -d '{"paymentId":"pay_1","orderId":1,"status":"paid","amount":120000}'
+{"message":"Cannot POST /payments/webhook","error":"Not Found","statusCode":404}
+
+$ psql: SELECT id, status, total FROM orders
+ id | status | total  
+----+--------+--------
+  1 | NEW    | 120000
+(1 row)

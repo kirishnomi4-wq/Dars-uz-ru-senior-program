@@ -1,0 +1,12 @@
+10-yashil	ci-sinov	ef9e667	success	https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41832879751
+12-checkout-yoq	ci-sinov	33c3cc8	failure	https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41833077624
+13-npm-ci-lock	ci-sinov	f7e6f8d	failure	https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41833308519
+14-tsc-yoq-yashil	ci-sinov	b79cc7e	success	https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41833373499
+15-tsc-bor-qizil	ci-sinov	9c6b5f2	failure	https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41833479902
+16-runs-on-yoq	ci-sinov	49fa7bb	failure	https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41833570010
+17-surilish-xato	ci-sinov	7e5e43a	failure	https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41833614367
+18-main-yashil	main	d789c0b	success	https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41833650859
+19-ai1	ci-sinov	a18eb0e	failure	https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41833774062
+20-ai2	ci-sinov	d04c083	failure	https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41833834000
+21-ai1-node24	ci-sinov	a0469b6	success	https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41833893142
+11-test-qizil	sinov-test-qizil	fccde96	failure	https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/42608643059

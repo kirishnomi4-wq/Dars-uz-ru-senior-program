@@ -1,0 +1,3 @@
+27.steps.2.cmd.0 = 1-й терминал работает
+27.steps.2.cmd.1 = во 2-м терминале: node server.js
+27.steps.3.cmd.0 = в обоих терминалах Ctrl+C

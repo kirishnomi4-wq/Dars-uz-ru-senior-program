@@ -1,0 +1,1108 @@
+[
+{
+"f": "04-yordam.jsx",
+"l": 9,
+"k": "str",
+"x": "To'lov xabari: imzo, takror va rad",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 59,
+"k": "str",
+"x": "bir ming ikki yuz",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 59,
+"k": "str",
+"x": "o'n ming so'm",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 59,
+"k": "str",
+"x": "ikki yuz",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 60,
+"k": "str",
+"x": "o'n besh daqiqa",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 60,
+"k": "str",
+"x": "15 daqiqa",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 60,
+"k": "str",
+"x": "yigirma ekran",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 60,
+"k": "str",
+"x": "20 ekran",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 60,
+"k": "str",
+"x": "o'ttiz kun",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 60,
+"k": "str",
+"x": "yettinchi ekran",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 60,
+"k": "str",
+"x": "7-ekran",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 119,
+"k": "str",
+"x": "namuna — sizning AI\\'ingiz boshqacha yozadi",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 150,
+"k": "str",
+"x": "haqiqiy brauzer",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 166,
+"k": "str",
+"x": "ekranda: ",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 182,
+"k": "str",
+"x": "${g.rc} qayta ulanishdan keyin",
+"m": false
+},
+{
+"f": "05-s01-s08.jsx",
+"l": 5,
+"k": "str",
+"x": "Takror va rad",
+"m": true
+},
+{
+"f": "05-s01-s08.jsx",
+"l": 12,
+"k": "str",
+"x": "wh-done · haqiqiy brauzer",
+"m": false
+},
+{
+"f": "05-s01-s08.jsx",
+"l": 12,
+"k": "jsx",
+"x": "Dars oxirida — to'lov xizmati xabar yubordi, panel o'zi yangilandi",
+"m": false
+},
+{
+"f": "05-s01-s08.jsx",
+"l": 19,
+"k": "str",
+"x": "kartani xizmatga beradi",
+"m": true
+},
+{
+"f": "05-s01-s08.jsx",
+"l": 26,
+"k": "jsx",
+"x": "dalil emas",
+"m": false
+},
+{
+"f": "05-s01-s08.jsx",
+"l": 27,
+"k": "jsx",
+"x": "pul o'tganini xizmat biladi —",
+"m": false
+},
+{
+"f": "05-s01-s08.jsx",
+"l": 27,
+"k": "jsx",
+"x": "dalil faqat shu",
+"m": false
+},
+{
+"f": "05-s01-s08.jsx",
+"l": 27,
+"k": "jsx",
+"x": ", imzo bilan",
+"m": false
+},
+{
+"f": "05-s01-s08.jsx",
+"l": 30,
+"k": "jsx",
+"x": "server → panel: server o'zi xabar beradi",
+"m": false
+},
+{
+"f": "05-s01-s08.jsx",
+"l": 31,
+"k": "jsx",
+"x": "tashqi xizmat → server: xizmat o'zi yuboradi, server",
+"m": false
+},
+{
+"f": "05-s01-s08.jsx",
+"l": 33,
+"k": "str",
+"x": "xabar — tana va imzo sarlavhasi (03)",
+"m": false
+},
+{
+"f": "05-s01-s08.jsx",
+"l": 47,
+"k": "jsx",
+"x": "to'g'ri xabar yuboradi",
+"m": false
+},
+{
+"f": "05-s01-s08.jsx",
+"l": 47,
+"k": "jsx",
+"x": "xuddi shu manzilga «#1 to'landi» yubora oladi — manzil",
+"m": false
+},
+{
+"f": "05-s01-s08.jsx",
+"l": 48,
+"k": "str",
+"x": "ikki marta kelsa ham — bir qator",
+"m": false
+},
+{
+"f": "05-s01-s08.jsx",
+"l": 60,
+"k": "jsx",
+"x": "da — o'sha kalit",
+"m": false
+},
+{
+"f": "05-s01-s08.jsx",
+"l": 79,
+"k": "str",
+"x": "yo'q / noto'g'ri — 401, hech narsa yozilmaydi",
+"m": false
+},
+{
+"f": "05-s01-s08.jsx",
+"l": 79,
+"k": "str",
+"x": "faqat shundan keyin — payments va orders",
+"m": false
+},
+{
+"f": "05-s01-s08.jsx",
+"l": 107,
+"k": "str",
+"x": "psql · payments va orders (03)",
+"m": false
+},
+{
+"f": "05-s01-s08.jsx",
+"l": 108,
+"k": "str",
+"x": "to'lovdan keyin — sahifa yangilanmadi",
+"m": false
+},
+{
+"f": "06-s09-s17.jsx",
+"l": 12,
+"k": "str",
+"x": "boshqa kalit bilan (soxta)",
+"m": false
+},
+{
+"f": "06-s09-s17.jsx",
+"l": 13,
+"k": "str",
+"x": "psql · payments qatorlari (o'zgarmadi)",
+"m": false
+},
+{
+"f": "06-s09-s17.jsx",
+"l": 14,
+"k": "jsx",
+"x": "to'g'ri imzoni faqat kalitni bilgan yasaydi",
+"m": false
+},
+{
+"f": "06-s09-s17.jsx",
+"l": 14,
+"k": "jsx",
+"x": "va hosting sozlamasi — kodda, git'da, chatda",
+"m": false
+},
+{
+"f": "06-s09-s17.jsx",
+"l": 28,
+"k": "str",
+"x": "VS Code terminali · npm run pay -- 1 ikki (04)",
+"m": false
+},
+{
+"f": "06-s09-s17.jsx",
+"l": 29,
+"k": "str",
+"x": "bir xil xabar bir vaqtda ikki marta (15)",
+"m": false
+},
+{
+"f": "06-s09-s17.jsx",
+"l": 51,
+"k": "str",
+"x": "Xizmat imzoni aniq baytlardan hisoblaydi — bo\\'sh joy ham bayt",
+"m": true
+},
+{
+"f": "06-s09-s17.jsx",
+"l": 51,
+"k": "str",
+"x": "Baytlarni faqat rawBody: true saqlaydi — req.rawBody",
+"m": true
+},
+{
+"f": "06-s09-s17.jsx",
+"l": 55,
+"k": "str",
+"x": "payment.controller.ts · json nusxa (imzo JSON.stringify'dan)",
+"m": false
+},
+{
+"f": "06-s09-s17.jsx",
+"l": 56,
+"k": "str",
+"x": "json nusxa · o'sha xabar",
+"m": false
+},
+{
+"f": "06-s09-s17.jsx",
+"l": 57,
+"k": "str",
+"x": "norawbody · to'g'ri imzoli to'lov (08)",
+"m": false
+},
+{
+"f": "06-s09-s17.jsx",
+"l": 69,
+"k": "str",
+"x": "parsePayment va record — imzodan oldin",
+"m": true
+},
+{
+"f": "06-s09-s17.jsx",
+"l": 69,
+"k": "str",
+"x": "record tranzaksiyasi tugadi: payments da qator, orders.payment_status = paid",
+"m": true
+},
+{
+"f": "06-s09-s17.jsx",
+"l": 69,
+"k": "str",
+"x": "keyin imzo tekshiriladi — 401 qaytadi",
+"m": true
+},
+{
+"f": "06-s09-s17.jsx",
+"l": 69,
+"k": "str",
+"x": "401 faqat javob — bazaga yozilganni qaytarmaydi: admin yetkazadi, pul yo\\'q",
+"m": true
+},
+{
+"f": "06-s09-s17.jsx",
+"l": 75,
+"k": "str",
+"x": "tartib nusxa · imzosiz xabardan keyin",
+"m": false
+},
+{
+"f": "06-s09-s17.jsx",
+"l": 88,
+"k": "str",
+"x": "psql · tartib nusxa, imzosiz xabardan keyin (09) — 401, lekin paid",
+"m": false
+},
+{
+"f": "06-s09-s17.jsx",
+"l": 103,
+"k": "str",
+"x": "imzo to'g'ri, summa va holat xato (11)",
+"m": false
+},
+{
+"f": "06-s09-s17.jsx",
+"l": 105,
+"k": "str",
+"x": "Kalit — shu yerda",
+"m": false
+},
+{
+"f": "06-s09-s17.jsx",
+"l": 106,
+"k": "jsx",
+"x": "kodda · git'da · AI'ga yoki chatga · skrinshotda. Tushib qolsa — darhol almashtiriladi",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 8,
+"k": "jsx",
+"x": "1–4-bosqich · siz",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 9,
+"k": "jsx",
+"x": "5-bosqich · AI yozadi, siz qabul qilasiz",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 9,
+"k": "jsx",
+"x": "qisqa talab → ikki webhook → haqiqiy bazada sinov",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 11,
+"k": "str",
+"x": "Prompt — ikkala AI'ga bir xil",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 11,
+"k": "str",
+"x": "ishorasiz: xom tana, takror, tartib, summa yo'q",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 13,
+"k": "jsx",
+"x": "ham qabul · UNIQUE +",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 13,
+"k": "jsx",
+"x": "«Summa mos emas» holati",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 14,
+"k": "jsx",
+"x": "· takror — qatorni yangilaydi ·",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 14,
+"k": "jsx",
+"x": "summa farq qilsa — 200 va faqat log",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 17,
+"k": "str",
+"x": "2-AI javobidan",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 17,
+"k": "jsx",
+"x": "«Summa buyurtma jamidan farq qilsa, xabar qabul qilinadi (200), faqat log'da ogohlantirish yoziladi. Rad etish yoki boshqacha ish kerakmi — siz hal qiling.»",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 18,
+"k": "str",
+"x": "1-AI javobidan",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 18,
+"k": "jsx",
+"x": "nusxasini xato bilan scratchpad'ning ildiz papkasiga … ko'chirdim … Ikkalasini darhol o'chirdim.»",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 33,
+"k": "str",
+"x": "${codes} · ${rowsOf(S)} qator",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 34,
+"k": "str",
+"x": "${codes} · ${rowsOf(S) === rowsOf(part(n - 1)) ? \"yangi qator yo'q\" : 'qator qo\\'shildi!'}",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 37,
+"k": "str",
+"x": "to'g'ri imzo",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 37,
+"k": "str",
+"x": "bir vaqtda ikki",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 40,
+"k": "str",
+"x": "Takror va bir vaqtdagi xabar — bitta qatormi?",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 40,
+"k": "str",
+"x": "Summa buyurtma jami bilan solishtiriladimi?",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 44,
+"k": "jsx",
+"x": "Sinov (haqiqiy PostgreSQL)",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 46,
+"k": "str",
+"x": "2-AI · o'sha xabar",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 48,
+"k": "jsx",
+"x": "400 «summa mos emas» — yozilmaydi. Pul o'tgan bo'lsa, yozuv",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 49,
+"k": "jsx",
+"x": "«Summa mos emas»",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 49,
+"k": "jsx",
+"x": "— admin farqni ko'radi. Bu yerda bizdan yaxshiroq",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 50,
+"k": "jsx",
+"x": "«To'landi» — admin yetkazib beradi, pul 1 %",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 52,
+"k": "str",
+"x": "ini qabul qilish — to",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 52,
+"k": "jsx",
+"x": "AI webhook'ini qabul qilish — to'rt savol",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 61,
+"k": "str",
+"x": "2-AI · haqiqiy bazada (5-sinov)",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 62,
+"k": "str",
+"x": "1-AI · o'sha xabar",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 69,
+"k": "str",
+"x": "mijozning gapi dalil emas (2)",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 69,
+"k": "str",
+"x": "2 Xabar va imzo",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 69,
+"k": "str",
+"x": "s6 javob yo'qoldi · s7 kod oynasi · s8 test",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 69,
+"k": "str",
+"x": "bir vaqtda ikki xabar (10)",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 69,
+"k": "str",
+"x": "4 Rad va test rejim",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 69,
+"k": "str",
+"x": "5 Sxema va amaliyot",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 69,
+"k": "str",
+"x": "s12–s14 sxema · A1 o'z Backend'i · A2 mashq sahifa",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 74,
+"k": "str",
+"x": "O'quvchi · m11-03 (20 ekran)",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 74,
+"k": "str",
+"x": "lov oqimi sxemasi</p>{seg.way && <p style={{ marginTop: 6 }}><b>Amaliyot:</b> A1 — o",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 74,
+"k": "str",
+"x": "ida <code>POST /tolov/webhook</code> (agent bilan) · A2 — «Mashq to",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 74,
+"k": "jsx",
+"x": "A1 — o'z Backend'ida",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 74,
+"k": "jsx",
+"x": "(agent bilan) · A2 — «Mashq to'lov» sahifasi va uch tekshiruv",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 93,
+"k": "str",
+"x": "maydon-jamoa · tolov.controller.ts — imzo tekshiruvi yozuvdan keyin (tajriba nusxasi)",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 93,
+"k": "str",
+"x": "quvchi loyihasida ham. Agent kodni yozsa, o",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 93,
+"k": "jsx",
+"x": ", lekin",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 93,
+"k": "jsx",
+"x": "jadvalida qator — 13-ekrandagi xato, o'quvchi loyihasida ham. Agent kodni yozsa, o'quvchi javob kodiga emas,",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 100,
+"k": "str",
+"x": "Imzo mos emas",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 100,
+"k": "str",
+"x": "kalit bo'sh yoki Render'dagisi boshqa",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 100,
+"k": "str",
+"x": "Haqiqiy «To'lash» ham 401",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 100,
+"k": "str",
+"x": "Imzo mos emas",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 100,
+"k": "str",
+"x": "401, lekin jadvalda qator",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 100,
+"k": "str",
+"x": "imzo yozuvdan keyin",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 100,
+"k": "str",
+"x": "«Ikki marta» — ikki qator",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 100,
+"k": "str",
+"x": "to'lov raqami noyob emas",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 100,
+"k": "str",
+"x": "javob matnida maydon nomi",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 100,
+"k": "str",
+"x": "maydon yoki summa xato",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 100,
+"k": "str",
+"x": "git ls-files da fayl nomi",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 102,
+"k": "str",
+"x": "AI Startup kursida emas: real ishga tushirish — ota-onaning yozma roziligi va yuridik shaxs yoki YaTT bilan (o'quvchi darsi s1 eslatmasi).",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 103,
+"k": "str",
+"x": "«Nega takrorga ham 200?»",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 104,
+"k": "str",
+"x": "«To\\'lovim qayerda?» savoliga javob.",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 105,
+"k": "str",
+"x": "Kalit kimda bo'lsa, o'sha «to'landi» yasaydi.",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 115,
+"k": "jsx",
+"x": "O'quvchi so'rasa — bosib oching",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 131,
+"k": "str",
+"x": "Hammasini ko'rib chiqdingiz, endi o'zingizni tekshiring. Yakuniy sinov, sakkiz savol: dalil, imzo, raw body, tartib, takror, rad, bo'sh kalit va AI'ning summasi. Har savolda bitta urinish, javobdan keyin to'g'risi va izohi ochiladi. Olti va undan ko'p, dars o'zlashtirilgan. Kam bo'lsa, ko'rsatilgan ekranlarga qaytib, sinovni qayta topshirasiz.",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 133,
+"k": "str",
+"x": "uch",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 133,
+"k": "str",
+"x": ". Dars o'zlashtirilgan, Davom bosing.",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 134,
+"k": "str",
+"x": "Yaxshi, bir xatoyingizni ko'rib chiqdingiz. Qolgan qizil savollarning ekranlariga ham qayting. Tayyor bo'lgach, Sinovni qayta topshirish tugmasini bosing.",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 196,
+"k": "str",
+"x": "To'lov xizmati natijani serverga o'zi yuboradi (webhook); mijoz yoki ilovaning «to'ladim»i dalil emas — dalil faqat imzoli xabar",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 197,
+"k": "str",
+"x": "Imzo — HMAC-SHA256(xom tana, kalit); server qayta hisoblaydi, timingSafeEqual; bo'sh kalit — hamma xabar rad; kalit faqat .env va hostingda",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 198,
+"k": "str",
+"x": "Tartib: imzo → maydonlar → buyurtma va summa → yozuv. Yozuv imzodan oldin bo'lsa — 401, lekin bazada «to'landi»",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 199,
+"k": "str",
+"x": "Imzo baytlardan: rawBody: true va req.rawBody; JSON.stringify(body) dan hisoblash — bo'sh joyli haqiqiy to'lovni rad etadi",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 200,
+"k": "str",
+"x": "Takror — payment_id UNIQUE + ON CONFLICT DO NOTHING (bir vaqtda kelsa ham bitta qator), javob 200; rad ham yoziladi, to'langanini tushirmaydi",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 201,
+"k": "str",
+"x": "AI webhook'iga to'rt savol: baytlarmi · tartib · takror · summa; haqiqiy bazada sinang — bu safar summada AI-1 bizdan yaxshiroq edi",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 208,
+"k": "jsx",
+"x": "Bugungi dars — to'lov xabari: imzo, takror va rad",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 215,
+"k": "str",
+"x": "Servis — payment.service.ts: summa farq qilsa 400 emas, yozish va payment_status = 'amount_mismatch'",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 216,
+"k": "str",
+"x": "Panel — admin.html TOLOV ga amount_mismatch: '⚠️ Summa mos emas'",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 217,
+"k": "str",
+"x": "Test — payment.service.spec.ts dagi «summa mos emas» testini yangilang; smoke'ga bitta band",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 218,
+"k": "str",
+"x": "Sinov — curl bilan summa 1200: 200 va panelda «⚠️ Summa mos emas»",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 219,
+"k": "str",
+"x": "git add . && git commit -m \"to\\'lov: summa mos emas holati\"",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 231,
+"k": "str",
+"x": "sh joyli haqiqiy to",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 237,
+"k": "str",
+"x": "q — haqiqiy to",
+"m": true
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 248,
+"k": "str",
+"x": "<b>Barakalla!</b> Siz darsni yaxshi o'rgandingiz — bugungi darsni bir qarashda yig'amiz",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 248,
+"k": "str",
+"x": "Barakalla! Siz darsni yaxshi o'rgandingiz. Endi bugun o'rganganlaringizni bir qarashda yig'amiz.",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 249,
+"k": "str",
+"x": "Dars oxiriga yetdingiz. Yakuniy sinovdan olti ball kerak edi, yakunlashdan oldin sinovni qayta topshirishni maslahat beraman. Hozir esa bugungi darsni bir qarashda yig'amiz.",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 250,
+"k": "str",
+"x": "To'lov xizmati <b>o'zi yuboradi</b>; dalil — faqat imzoli xabar",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 250,
+"k": "str",
+"x": "Birinchi: to'lov xizmati natijani serverga o'zi yuboradi, bu webhook. Mijozning yoki ilovaning to'ladim degani dalil emas, dalil faqat xizmatning imzoli xabari.",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 251,
+"k": "str",
+"x": "Imzo — <b>xom tana va kalitdan HMAC</b>; bo'sh kalit — rad",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 251,
+"k": "str",
+"x": "Ikkinchi: imzo xom tana va maxfiy kalitdan HMAC. Server o'zi qayta hisoblaydi va timing safe equal bilan solishtiradi. Kalit bo'sh bo'lsa, hamma xabar rad etiladi.",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 252,
+"k": "str",
+"x": "Uchinchi: tartib. Imzo, maydonlar, buyurtma va summa, keyin yozuv. Yozuv imzodan oldin bo'lsa, javob to'rt yuz bir, lekin bazada to'landi qoladi.",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 253,
+"k": "str",
+"x": "To'rtinchi: imzo baytlardan hisoblanadi. Raw body true bo'lmasa yoki imzo JSON stringify'dan hisoblansa, haqiqiy to'lov ham rad etiladi.",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 254,
+"k": "str",
+"x": "Takror — <b>bitta qator</b>, javob 200; rad ham yoziladi",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 254,
+"k": "str",
+"x": "Beshinchi: takror xabar. Payment id noyob, on conflict do nothing: bir vaqtda kelsa ham bitta qator, javob ikki yuz. Rad etilgan to'lov ham yoziladi, to'langani tushmaydi.",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 255,
+"k": "str",
+"x": "AI webhook'iga <b>to'rt savol</b> — summa ham",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 255,
+"k": "str",
+"x": "Oltinchi: AI yozgan webhook'ga to'rt savol: baytlar, tartib, takror va summa. Haqiqiy bazada sinang. Bugun summada birinchi AI bizdan yaxshiroq edi.",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 256,
+"k": "str",
+"x": "<b>Uyga vazifa</b>: summa mos emas — 400 emas, yozib ajratish",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 256,
+"k": "str",
+"x": "Uyga vazifa: summasi mos kelmagan to'lovni to'rt yuz o'rniga yozib, alohida belgilang: payment status amount mismatch, panelda summa mos emas. Pul o'tgan bo'lsa, yozuv yo'qolmasin.",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 257,
+"k": "str",
+"x": "Testni yangilang, smoke'ga band; <b>repo linki platformaga</b>",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 257,
+"k": "str",
+"x": "Servis testini yangi xatti-harakatga moslang, smoke'ga bitta band qo'shing va curl bilan bir ming ikki yuz so'm yuborib, panelni ko'ring. README jadvali, GitHub, link platformaga. Qirq-oltmish daqiqa.",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 258,
+"k": "str",
+"x": "<b>Eslatmani oling</b>: imzo, tartib, xom tana, takror, buzilishlar, AI savollari — bir sahifada",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 258,
+"k": "str",
+"x": "Pastda bir sahifalik eslatma: umumiy tushuncha, imzo va tartib, xom tana, takror va rad, to'rt buzilish va belgisi, AI'ga to'rt savol, m11-03 lug'ati va sinfdagi holatlar. Nusxalab yoki yuklab oling.",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 259,
+"k": "str",
+"x": "Rahmat! <b>Darsni yakunlash</b> tugmasini bosing",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 259,
+"k": "str",
+"x": "Rahmat. Darsni yakunlash tugmasini bosing, dars tugallangan deb belgilanadi.",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 290,
+"k": "jsx",
+"x": "imzo hali ham birinchi · mos kelmagan summa yozilgan va ajratilgan (to'landi emas) · test yangilangan · README.",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 316,
+"k": "str",
+"x": "Jami taxminan 1 soat 15 daqiqa: ovoz ~25 daqiqa · uchta amaliyot ~45 daqiqa · 4 tekshiruv · o'z-sinov 8 savol. 11-ekrandan keyin tanaffus qilsangiz bo'ladi",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 316,
+"k": "str",
+"x": "Kerak: WebSocket-2 mentor darsi (OrderBotNest nusxangiz, jonli panel) · Telegraf darsidagi bot tokeni va PostgreSQL · telefon · AI yordamchi. Haqiqiy to'lov xizmatiga ulanmaymiz, karta yozilmaydi",
+"m": false
+},
+{
+"f": "07-s18-s25.jsx",
+"l": 316,
+"k": "str",
+"x": "Loyiha: github.com/Azizbekcrypto/OrderBotNest — wh-start (= ws2-done) → wh-done; har chiqish haqiqiy server, baza va brauzerdan",
+"m": false
+}
+]

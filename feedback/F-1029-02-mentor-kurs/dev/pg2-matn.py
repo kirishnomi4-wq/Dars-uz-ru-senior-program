@@ -1,42 +1,17 @@
 #!/usr/bin/env python3
-"""PostgreSQL-2 mentor darsi: MD (manba-haqiqat) → src/mentor-kurs/pg2/parts/03-matn.gen.jsx (pg1-matn.py nusxasi)
+"""PostgreSQL-2 mentor darsi v2 (03.11, M41): MD (manba-haqiqat) → src/mentor-kurs/pg2/parts/03-matn.gen.jsx
 Ishlatish (repo ildizidan): python3 feedback/F-1029-02-mentor-kurs/dev/pg2-matn.py
-Chiqadi: har ekran — kicker, eyebrow, title, segmentlar [id, kalit-HTML, ovoz]; tekshiruvlar — savol/ovoz/variant/izoh;
-yakuniy sinov — FINAL. Kalit iboradagi qizil so'zlar (M6) — EMPH lug'atida (MD'da ** ichida ** yozib bo'lmaydi).
+Chiqadi: har ekran — kicker, eyebrow, title, segmentlar [id, kalit-HTML, ovoz]; tekshiruvlar — savol/ovoz/variant/izoh/Demak;
+amaliyotlar — qadamlar/isbot/«Boshqacha chiqdimi?» jadvali; yakuniy sinov — FINAL.
+v2 farqi: kalit iboradagi qizil bo'lak MD'da ==…== bilan (EMPH lug'ati bekor); `- Demak: «…»` → sc.demak; amaliyot jadvallari MD'dan.
 Qo'lda tahrirlanmaydi: matn o'zgarsa — MD tahrirlanadi va skript qayta yurgiziladi.
 """
 import json, re, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
-MD = ROOT / 'feedback/F-1029-02-mentor-kurs/08-PostgreSQL2-mentor-v1.md'
+MD = ROOT / 'feedback/F-1029-02-mentor-kurs/08-PostgreSQL2-mentor-v2.md'
 OUT = ROOT / 'src/mentor-kurs/pg2/parts/03-matn.gen.jsx'
-
-# Kalit iboradagi qizil (<b>) bo'laklar: '<ekran><segment>' → MD matnidagi aynan bo'lak(lar)
-EMPH = {
-  '1a': ["to'rt buyruq bilan boshqaramiz"], '1b': ["do'konning o'zi bilan"], '1c': ['Express ichida'], '1d': ['Shoshilmang'],
-  '2a': ['bosh harfi'], '2b': ['o\'z buyrug\'i bor'], '2c': ['endpoint bo\'ladi'], '2d': ['bitta endpoint\'i bor'],
-  '3a': ['shu jadvalni ko\'radi'], '3b': ['qo\'shilgan qatorlar soni'], '3c': ['baza o\'zi berdi'], '3d': ['`NOT NULL` yo\'q'],
-  '4a': ['faqat kerakli ustunlar'], '4b': ['uchta mahsulot'], '4c': ['faqat quloqchin'], '4d': ['`WHERE` qatorlarni tanlaydi'],
-  '5a': ['`UPDATE 1`'], '5b': ['`DELETE 1`'], '5c': ['tartib kafolatlanmaydi'], '5d': ['xato emas'], '5e': ['javobdagi sonni o\'qing'],
-  '7a': ['o\'z bazangizda bajarasiz'], '7b': ['ikki filtr'], '7c': ['qatorlar soni'], '7d': ['«Boshqacha chiqdimi?»'],
-  '8a': ['hamma qator'], '8b': ['`UPDATE 3`'], '8c': ['jadval bo\'sh'], '8d': ['hammasi joyida'], '8e': ['`BEGIN` ichida sinang'],
-  '10a': ['tranzaksiya ichida'], '10b': ['hamma narx bir xil'], '10c': ['klaviaturaning narxi'], '10d': ['«Boshqacha chiqdimi?»'],
-  '11a': ['bitta `s` yetmaydi'], '11b': ['noto\'g\'ri ustunni taklif qiladi'], '11c': ['`invalid input syntax`'], '11d': ['ikki marta yoziladi'], '11e': ['jadval tuzilishi bilan solishtiring'],
-  '12a': ['xato yo\'q'], '12b': ['bo\'sh nomli qator'], '12c': ['faqat yozilgan qoidani'], '12d': ['`NOT NULL` yozishni'],
-  '14a': ['server ichida'], '14b': ['bir joyda'], '14c': ['`rows`'], '14d': ['status 500 va xato matni'], '14e': ['server bazaga shu yo\'l bilan ulanadi'],
-  '15a': ['status 201'], '15b': ['`DEFAULT` yo\'q'], '15c': ['200'], '15d': ['to\'g\'ri qarori'], '15e': ['topilmasa — 404'],
-  '16a': ['Sinab ko\'rdik'], '16b': ['`deleted: 3`'], '16c': ['jadval joyida'], '16d': ['`$1, $2` bilan'],
-  '17a': ['o\'zingiz qilasiz'], '17b': ['`express` va `pg`'], '17c': ['`POST` javobining statusi'], '17d': ['«Boshqacha chiqdimi?»'],
-  '18a': ['`INSERT`da `price`'], '18b': ['jadval va ustun'], '18c': ['POST → 201'], '18d': ['`\\d cars` bilan solishtiring'],
-  '19a': ['server baribir ishga tushadi'], '19b': ['`undefined`'], '19c': ['POST → 201'], '19d': ['`express.json()`'],
-  '20a': ['xato birinchi so\'rovda'], '20b': ['`password authentication failed`', '`client password must be a string`'], '20c': ['pastki chiziq tushib qolgan'], '20d': ['`ECONNREFUSED` ko\'rinadi'], '20e': ['faqat Express'],
-  '21a': ['hech narsa o\'zgarmadi'], '21b': ['xato bermay chiqib ketdi'], '21c': ['callback uni o\'qimaydi'], '21d': ['bitta terminal'],
-  '23a': ['ataylab chiqarasiz va tuzatasiz'], '23b': ['xabarni o\'qing'], '23c': ['500 xabarining matni'], '23d': ['«Boshqacha chiqdimi?»'],
-  '24a': ['haqiqiy PostgreSQL terminali'], '24b': ['javobdagi sonni so\'rang'], '24c': ['noto\'g\'ri `HINT`'], '24d': ['PostgreSQL terminali ochilishini'],
-  '25a': ['to\'qqiz ekran'], '25b': ['har kimda boshqacha'], '25c': ['port band bo\'lsa ham «ishlayapti»'], '25d': ['bitta terminal qoidasi'],
-  '26a': ['olti holat'], '26b': ['apostrof ikki marta'], '26c': ['bo\'sh xabar'], '26d': ['xabarni o\'quvchi bilan birga o\'qing'],
-}
 
 def code_html(s):
   s = s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
@@ -46,15 +21,25 @@ def plain(s):
   return re.sub(r'`([^`]+)`', r'\1', s)
 
 def key_html(sid, key):
-  parts = EMPH.get(sid, [])
-  for p in parts:
-    if p not in key:
-      sys.exit(f'EMPH topilmadi: {sid} → {p!r} kalitda: {key!r}')
-  # belgilash: bo'lakni vaqtincha \x01…\x02 bilan o'raymiz, keyin HTML
-  for p in parts:
-    key = key.replace(p, '\x01' + p + '\x02', 1)
+  if '==' not in key:
+    sys.exit(f'qizil bo\'lak yo\'q (==…==): {sid} → {key!r}')
+  key = re.sub(r'==(.+?)==', '\x01\\1\x02', key)
   h = code_html(key)
   return h.replace('\x01', '<b>').replace('\x02', '</b>')
+
+def table_rows(block, ncols):
+  """`  | a | b | … |` qatorlari (sarlavha va |---| chizig'isiz)."""
+  rows = []
+  for line in block.split('\n'):
+    m = re.match(r'^\s*\|(.+)\|\s*$', line)
+    if not m:
+      if rows: break
+      continue
+    cells = [c.strip() for c in m.group(1).split('|')]
+    if len(cells) != ncols or all(re.fullmatch(r'-+', c) for c in cells): continue
+    if rows == [] and cells[0] in ('#', 'Chiqdi'): continue
+    rows.append(cells)
+  return rows
 
 src = MD.read_text()
 chunks = re.split(r'\n## (\d+) · ', src)
@@ -77,7 +62,6 @@ for i in range(1, len(chunks), 2):
     sid = f'{n}{"abcde"[int(sm.group(1)) - 1]}'
     segs.append(["abcde"[int(sm.group(1)) - 1], key_html(sid, sm.group(2)), sm.group(3)])
   if segs: sc['seg'] = segs
-  # tekshiruvlar (MCRetry / LineCheck)
   def grab(label, rx=r'«(.+?)»(?=\s*·\s|\s*$)'):  # F-1102-17: ichki «…» da to'xtamasin
     mm = re.search(r'^- ' + label + r'[^:\n]*: ' + rx, body, re.M)
     return mm.group(1) if mm else None
@@ -89,8 +73,9 @@ for i in range(1, len(chunks), 2):
     mh = re.search(r"^- Maslahat[^:\n]*: «(.+?)»(?=\s*·\s|\s*$)", body, re.M)
     if mh: sc['hint'] = plain(mh.group(1))
     mt = re.search(r"^- Shart \(`task`\): «(.+?)»(?=\s*·\s|\s*$)", body, re.M)
-    if mt: sc['task'] = code_html(mt.group(1)).replace('**', '')
     if mt: sc['task'] = re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', code_html(mt.group(1)))
+    md = re.search(r"^- Demak: «(.+?)»\s*$", body, re.M)
+    if md: sc['demak'] = code_html(md.group(1))
     mv = re.search(r"^- Variantlar \(to'g'risi — (\d)\): (.+)$", body, re.M)
     if mv:
       sc['correct'] = int(mv.group(1)) - 1
@@ -98,6 +83,16 @@ for i in range(1, len(chunks), 2):
     mw = re.search(r"^- Xato izohlari: (.+)$", body, re.M)
     if mw:
       sc['wrong'] = {int(a) - 1: plain(b) for a, b in re.findall(r'(\d) — «(.+?)»(?=\s*·\s|\s*$)', mw.group(1))}
+  if typ == 'Practice':
+    mq = re.search(r'^- Qadamlar:\n((?:\s*\|.*\n)+)', body, re.M)
+    if mq:
+      sc['steps'] = [{'t': plain(r[1]), 'cmds': [plain(c).strip() for c in r[2].split(' · ')], 'exp': plain(r[3])} for r in table_rows(mq.group(1), 4)]
+    mp = re.search(r"^- Isbot: «(.+?)» · placeholder: «(.+?)» · KOD: `/(.+)/([a-z]*)`(?: · xato: «(.+?)»)?", body, re.M)
+    if mp:
+      sc['proof'] = {'label': plain(mp.group(1)), 'placeholder': plain(mp.group(2)), 're': mp.group(3), 'flags': mp.group(4), 'wrong': plain(mp.group(5) or '')}
+    mtr = re.search(r'^- «Boshqacha chiqdimi\?»:\n((?:\s*\|.*\n)+)', body, re.M)
+    if mtr:
+      sc['trouble'] = [[plain(r[0]), plain(r[1])] for r in table_rows(mtr.group(1), 2) if not r[0].startswith('Hech biri emas')]
   if typ == 'Screen27':
     fin = []
     for row in re.findall(r'^  \| (\d) \| (.+?) \| (.+?) \| (\d) \| (.+?) \| (\d+) \|$', body, re.M):
@@ -108,33 +103,42 @@ for i in range(1, len(chunks), 2):
 # F-1102-17 himoyasi: ovoz/izoh matnida « ochilib yopilmagan bo'lsa — generator to'xtaydi
 def _q_ok(v):
   return not isinstance(v, str) or v.count('«') == v.count('»')
+def _walk(v):
+  if isinstance(v, dict): return [x for vv in v.values() for x in _walk(vv)]
+  if isinstance(v, list): return [x for vv in v for x in _walk(vv)]
+  return [v]
 for n_, sc_ in screens.items():
   for k_, v_ in sc_.items():
-    vals_ = v_.values() if isinstance(v_, dict) else ([x for s_ in v_ for x in s_] if k_ == 'seg' else [v_])
-    for x_ in vals_:
+    for x_ in _walk(v_):
       if not _q_ok(x_): sys.exit(f'{n_}.{k_}: yopilmagan « — matn kesilgan: {str(x_)[:80]}')
 
-# tekshiruv: har Lesson/Practice'da segment bor, MC'da q/ok/opts
 bad = []
 for n, sc in screens.items():
   if sc['type'] in ('Lesson', 'Practice') and not sc.get('seg'): bad.append(f'{n}: segment yo\'q')
-  if sc['type'] in ('MCRetry',) and not (sc.get('q') and sc.get('ok') and sc.get('opts')): bad.append(f'{n}: MC to\'liq emas')
+  if sc['type'] == 'Practice' and not (sc.get('steps') and sc.get('proof') and sc.get('trouble')): bad.append(f'{n}: amaliyot jadvali to\'liq emas')
+  if sc['type'] == 'Practice' and sc.get('steps') and len(sc['steps']) != 4: bad.append(f'{n}: qadamlar {len(sc["steps"])} (4 kutilgan)')
+  if sc['type'] == 'MCRetry' and not (sc.get('q') and sc.get('ok') and sc.get('opts') and sc.get('demak')): bad.append(f'{n}: MC to\'liq emas (q/ok/opts/demak)')
   if sc['type'] == 'LineCheck' and not (sc.get('q') and sc.get('ok') and sc.get('task') and sc.get('hint')): bad.append(f'{n}: LineCheck to\'liq emas')
   if sc['type'] == 'Screen27' and len(sc.get('final', [])) != 8: bad.append(f'{n}: FINAL {len(sc.get("final", []))}')
-used = {k for n, sc in screens.items() for k in [f'{n}{s[0]}' for s in sc.get('seg', [])]}
-for k in EMPH:
-  if k not in used: bad.append(f'EMPH ortiqcha: {k}')
-for n, sc in screens.items():
   for s in sc.get('seg', []):
-    if '<b>' not in s[1]: bad.append(f'qizil yo\'q: {n}{s[0]}')
+    if len(s[2].split()) > 60: bad.append(f'{n}{s[0]}: ovoz {len(s[2].split())} so\'z (>60)')
+# M48 (F-1104-17): to'g'ri javob yagona eng uzun yoki yagona eng qisqa bo'lgan savollar — har biri ≤ 1/4
+_qs = [(f'{n}', sc['opts'], sc['correct']) for n, sc in screens.items() if sc.get('opts')] + [(f'sinov {i + 1}', q['o'], q['c']) for sc in screens.values() for i, q in enumerate(sc.get('final', []))]
+_L = lambda o: [len(x) for x in o]
+_long = [n for n, o, c in _qs if _L(o)[c] == max(_L(o)) and _L(o).count(max(_L(o))) == 1]
+_short = [n for n, o, c in _qs if _L(o)[c] == min(_L(o)) and _L(o).count(min(_L(o))) == 1]
+if len(_long) > len(_qs) // 4: bad.append(f"M48: to'g'risi eng uzun {len(_long)} > {len(_qs) // 4}: {', '.join(_long)}")
+if len(_short) > len(_qs) // 4: bad.append(f"M48: to'g'risi eng qisqa {len(_short)} > {len(_qs) // 4}: {', '.join(_short)}")
 if bad: sys.exit('\n'.join(bad))
 
 OUT.parent.mkdir(parents=True, exist_ok=True)
 js = json.dumps(screens, ensure_ascii=False, indent=1)
 OUT.write_text(
   '\n// ============================================================\n'
-  '//  PG-2 MATNLARI — AVTO: feedback/F-1029-02-mentor-kurs/dev/pg2-matn.py (manba: 08-PostgreSQL2-mentor-v1.md)\n'
+  '//  PG-2 MATNLARI — AVTO: feedback/F-1029-02-mentor-kurs/dev/pg2-matn.py (manba: 08-PostgreSQL2-mentor-v2.md, M41)\n'
   '//  QO\'LDA TAHRIRLANMAYDI: matn MD\'da o\'zgaradi, keyin skript qayta yurgiziladi.\n'
   '// ============================================================\n'
   f'const MDT = {js};\n')
-print(f'yozildi: {OUT.relative_to(ROOT)} · ekran {len(screens)} · segment {sum(len(s.get("seg", [])) for s in screens.values())}')
+types = {}
+for sc in screens.values(): types[sc['type']] = types.get(sc['type'], 0) + 1
+print(f'yozildi: {OUT.relative_to(ROOT)} · ekran {len(screens)} · segment {sum(len(s.get("seg", [])) for s in screens.values())} · {types}')

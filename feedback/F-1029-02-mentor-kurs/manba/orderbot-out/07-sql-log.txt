@@ -1,0 +1,50 @@
+query: SELECT version()
+query: SELECT * FROM current_schema()
+query: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = $1 AND "table_name" = $2 -- PARAMETERS: ["public","migrations"]
+query: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+Telegram bot ulandi
+Aziza: /start
+query: SELECT "User"."id" AS "User_id", "User"."telegram_id" AS "User_telegram_id", "User"."name" AS "User_name", "User"."phone" AS "User_phone", "User"."role" AS "User_role", "User"."state" AS "User_state", "User"."created_at" AS "User_created_at" FROM "users" "User" WHERE (("User"."telegram_id" = $1)) LIMIT 1 -- PARAMETERS: ["5123456789"]
+  bot → Aziza: Salom, Aziza! Bu CoddyCamp do'koni boti.
+      /catalog — mahsulotlar
+      /cart — savat
+      /help — yordam
+Aziza: [tugma add:1]
+query: SELECT "Product"."id" AS "Product_id", "Product"."name" AS "Product_name", "Product"."price" AS "Product_price", "Product"."stock" AS "Product_stock" FROM "products" "Product" WHERE (("Product"."id" = $1)) LIMIT 1 -- PARAMETERS: [1]
+query: SELECT "User"."id" AS "User_id", "User"."telegram_id" AS "User_telegram_id", "User"."name" AS "User_name", "User"."phone" AS "User_phone", "User"."role" AS "User_role", "User"."state" AS "User_state", "User"."created_at" AS "User_created_at" FROM "users" "User" WHERE (("User"."telegram_id" = $1)) LIMIT 1 -- PARAMETERS: ["5123456789"]
+query: INSERT INTO cart_items (user_id, product_id, qty) VALUES ($1, $2, 1)
+       ON CONFLICT (user_id, product_id) DO UPDATE SET qty = cart_items.qty + 1
+       RETURNING qty -- PARAMETERS: [2,1]
+  bot → (popup): Klaviatura savatga qo'shildi (1 ta).
+Aziza: /cart
+query: SELECT "User"."id" AS "User_id", "User"."telegram_id" AS "User_telegram_id", "User"."name" AS "User_name", "User"."phone" AS "User_phone", "User"."role" AS "User_role", "User"."state" AS "User_state", "User"."created_at" AS "User_created_at" FROM "users" "User" WHERE (("User"."telegram_id" = $1)) LIMIT 1 -- PARAMETERS: ["5123456789"]
+query: SELECT "CartItem"."id" AS "CartItem_id", "CartItem"."qty" AS "CartItem_qty", "CartItem"."user_id" AS "CartItem_user_id", "CartItem"."product_id" AS "CartItem_product_id", "CartItem__product"."id" AS "CartItem__product_id", "CartItem__product"."name" AS "CartItem__product_name", "CartItem__product"."price" AS "CartItem__product_price", "CartItem__product"."stock" AS "CartItem__product_stock" FROM "cart_items" "CartItem" LEFT JOIN "users" "CartItem__CartItem_user" ON "CartItem__CartItem_user"."id"="CartItem"."user_id"  LEFT JOIN "products" "CartItem__product" ON "CartItem__product"."id"="CartItem"."product_id" WHERE (((("CartItem__CartItem_user"."id" = $1)))) ORDER BY "CartItem"."id" ASC -- PARAMETERS: [2]
+  bot → Aziza: Savat:
+      • Sichqoncha × 1 = 75 000 so'm
+      • Klaviatura × 1 = 120 000 so'm
+      
+      Jami: 195 000 so'm
+      [✅ Buyurtma berish → checkout]
+      [🗑 Tozalash → cart:clear | ➕ Yana → page:0]
+Aziza: [tugma checkout]
+query: SELECT "User"."id" AS "User_id", "User"."telegram_id" AS "User_telegram_id", "User"."name" AS "User_name", "User"."phone" AS "User_phone", "User"."role" AS "User_role", "User"."state" AS "User_state", "User"."created_at" AS "User_created_at" FROM "users" "User" WHERE (("User"."telegram_id" = $1)) LIMIT 1 -- PARAMETERS: ["5123456789"]
+query: SELECT "CartItem"."id" AS "CartItem_id", "CartItem"."qty" AS "CartItem_qty", "CartItem"."user_id" AS "CartItem_user_id", "CartItem"."product_id" AS "CartItem_product_id", "CartItem__product"."id" AS "CartItem__product_id", "CartItem__product"."name" AS "CartItem__product_name", "CartItem__product"."price" AS "CartItem__product_price", "CartItem__product"."stock" AS "CartItem__product_stock" FROM "cart_items" "CartItem" LEFT JOIN "users" "CartItem__CartItem_user" ON "CartItem__CartItem_user"."id"="CartItem"."user_id"  LEFT JOIN "products" "CartItem__product" ON "CartItem__product"."id"="CartItem"."product_id" WHERE (((("CartItem__CartItem_user"."id" = $1)))) ORDER BY "CartItem"."id" ASC -- PARAMETERS: [2]
+query: SELECT "CartItem"."id" AS "CartItem_id", "CartItem"."qty" AS "CartItem_qty", "CartItem"."user_id" AS "CartItem_user_id", "CartItem"."product_id" AS "CartItem_product_id", "CartItem__product"."id" AS "CartItem__product_id", "CartItem__product"."name" AS "CartItem__product_name", "CartItem__product"."price" AS "CartItem__product_price", "CartItem__product"."stock" AS "CartItem__product_stock" FROM "cart_items" "CartItem" LEFT JOIN "users" "CartItem__CartItem_user" ON "CartItem__CartItem_user"."id"="CartItem"."user_id"  LEFT JOIN "products" "CartItem__product" ON "CartItem__product"."id"="CartItem"."product_id" WHERE (((("CartItem__CartItem_user"."id" = $1)))) ORDER BY "CartItem"."id" ASC -- PARAMETERS: [2]
+query: START TRANSACTION
+query: SELECT "Product"."id" AS "Product_id", "Product"."name" AS "Product_name", "Product"."price" AS "Product_price", "Product"."stock" AS "Product_stock" FROM "products" "Product" WHERE (("Product"."id" = $1)) LIMIT 1 FOR UPDATE -- PARAMETERS: [2]
+query: UPDATE products SET stock = stock - $1 WHERE id = $2 -- PARAMETERS: [1,2]
+query: SELECT "Product"."id" AS "Product_id", "Product"."name" AS "Product_name", "Product"."price" AS "Product_price", "Product"."stock" AS "Product_stock" FROM "products" "Product" WHERE (("Product"."id" = $1)) LIMIT 1 FOR UPDATE -- PARAMETERS: [1]
+query: UPDATE products SET stock = stock - $1 WHERE id = $2 -- PARAMETERS: [1,1]
+query: INSERT INTO "orders"("phone", "total", "status", "created_at", "user_id") VALUES ($1, $2, $3, DEFAULT, $4) RETURNING "id", "status", "created_at" -- PARAMETERS: ["+998901234567",195000,"NEW",2]
+query: INSERT INTO "order_items"("qty", "price", "order_id", "product_id") VALUES ($1, $2, $3, $4), ($5, $6, $7, $8) RETURNING "id" -- PARAMETERS: [1,75000,2,2,1,120000,2,1]
+query: DELETE FROM "cart_items" WHERE "user_id" = $1 -- PARAMETERS: [2]
+query: COMMIT
+  bot → Aziza: Buyurtma #2 qabul qilindi!
+      • Sichqoncha × 1 = 75 000 so'm
+      • Klaviatura × 1 = 120 000 so'm
+      
+      Jami: 195 000 so'm
+      Telefon: +998901234567
+      Holati: 🆕 Yangi
+query: SELECT "User"."id" AS "User_id", "User"."telegram_id" AS "User_telegram_id", "User"."name" AS "User_name", "User"."phone" AS "User_phone", "User"."role" AS "User_role", "User"."state" AS "User_state", "User"."created_at" AS "User_created_at" FROM "users" "User" WHERE (("User"."role" = $1)) -- PARAMETERS: ["admin"]
+  bot → Jasur(admin): 🆕 Yangi buyurtma #2 — Aziza, 195 000 so'm. /orders

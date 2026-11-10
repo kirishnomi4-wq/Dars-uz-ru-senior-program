@@ -1,0 +1,1 @@
+{ "ep": "/payments/webhook", "table": "payments", "col": "payment_id", "f": { "pid": "payment_id", "oid": "order_id", "st": "status", "am": "amount" }, "st": { "paid": "paid", "failed": "rejected" } }

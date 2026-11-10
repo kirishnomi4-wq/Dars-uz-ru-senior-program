@@ -1,0 +1,327 @@
+diff --git a/README.md b/README.md
+index 49fc962..524a47c 100644
+--- a/README.md
++++ b/README.md
+@@ -37,7 +37,7 @@ src/
+   api/app.module.ts            — modullar yig'iladi
+   api/telegram/                — bot: buyruqlar, tugmalar (keyboards.ts), matnlar (texts.ts)
+   api/catalog/                 — mahsulotlar va ombor (stock), PostgreSQL products jadvali
+-  api/user/                    — foydalanuvchi: rol (admin/customer), telefon, suhbat holati (state)
++  api/user/                    — foydalanuvchi: rol (admin/customer), telefon, suhbat holati (state), PostgreSQL users jadvali
+   api/cart/                    — savat
+   api/order/                   — buyurtma: yaratish, holatini o'zgartirish
+ ```
+diff --git a/src/api/telegram/telegram.service.ts b/src/api/telegram/telegram.service.ts
+index 3a766a7..6ee4262 100644
+--- a/src/api/telegram/telegram.service.ts
++++ b/src/api/telegram/telegram.service.ts
+@@ -55,7 +55,7 @@ export class TelegramService implements OnModuleInit, OnModuleDestroy {
+   // ---------- mijoz ----------
+   private registerCustomer() {
+     this.bot.start(async (ctx) => {
+-      const user = this.users.getOrCreate(ctx.from);
++      const user = await this.users.getOrCreate(ctx.from);
+       await ctx.reply(texts.start(user.name, user.role === 'admin'));
+     });
+ 
+@@ -92,12 +92,12 @@ export class TelegramService implements OnModuleInit, OnModuleDestroy {
+ 
+     this.bot.action('checkout', async (ctx) => {
+       await ctx.answerCbQuery();
+-      const user = this.users.getOrCreate(ctx.from);
++      const user = await this.users.getOrCreate(ctx.from);
+       if (this.cart.list(user.telegramId).length === 0) {
+         return ctx.reply(texts.cartEmpty);
+       }
+       if (!user.phone) {
+-        this.users.setState(user, 'WAITING_PHONE');
++        await this.users.setState(user, 'WAITING_PHONE');
+         return ctx.reply(texts.askPhone);
+       }
+       await this.placeOrder(ctx, user);
+@@ -143,7 +143,7 @@ export class TelegramService implements OnModuleInit, OnModuleDestroy {
+       );
+       this.cart.clear(user.telegramId);
+       await ctx.reply(texts.orderPlaced(order));
+-      for (const admin of this.users.admins()) {
++      for (const admin of await this.users.admins()) {
+         if (admin.telegramId === user.telegramId) continue;
+         await this.bot.telegram
+           .sendMessage(admin.telegramId, texts.adminNewOrder(order, user.name))
+@@ -156,11 +156,11 @@ export class TelegramService implements OnModuleInit, OnModuleDestroy {
+ 
+   // Matn keldi: telefon kutilayotgan bo'lsa — saqlab buyurtma beramiz
+   private async onText(ctx: Context & { message: { text: string } }) {
+-    const user = this.users.getOrCreate(ctx.from!);
++    const user = await this.users.getOrCreate(ctx.from!);
+     if (user.state === 'WAITING_PHONE') {
+       const phone = ctx.message.text.trim();
+       if (!PHONE.test(phone)) return ctx.reply(texts.badPhone);
+-      this.users.setPhone(user, phone);
++      await this.users.setPhone(user, phone);
+       return this.placeOrder(ctx, user);
+     }
+     await ctx.reply(texts.unknown);
+@@ -169,12 +169,12 @@ export class TelegramService implements OnModuleInit, OnModuleDestroy {
+   // ---------- admin ----------
+   private registerAdmin() {
+     this.bot.command('orders', async (ctx) => {
+-      const user = this.users.getOrCreate(ctx.from);
++      const user = await this.users.getOrCreate(ctx.from);
+       if (user.role !== 'admin') return ctx.reply(texts.adminOnly);
+       const list = this.orders.recent(5);
+       if (list.length === 0) return ctx.reply(texts.noOrders);
+       for (const o of list) {
+-        const customer = this.customerName(o.telegramId);
++        const customer = await this.customerName(o.telegramId);
+         await ctx.reply(texts.orderLine(o, customer), orderKeyboard(o));
+       }
+     });
+@@ -182,7 +182,7 @@ export class TelegramService implements OnModuleInit, OnModuleDestroy {
+     this.bot.action(
+       /^status:(\d+):(NEW|CONFIRMED|DELIVERED|CANCELLED)$/,
+       async (ctx) => {
+-        const user = this.users.getOrCreate(ctx.from);
++        const user = await this.users.getOrCreate(ctx.from);
+         if (user.role !== 'admin') return ctx.answerCbQuery(texts.adminOnly);
+         try {
+           const order = await this.orders.setStatus(
+@@ -191,7 +191,7 @@ export class TelegramService implements OnModuleInit, OnModuleDestroy {
+           );
+           await ctx.answerCbQuery(texts.statusChanged(order));
+           await ctx.editMessageText(
+-            texts.orderLine(order, this.customerName(order.telegramId)),
++            texts.orderLine(order, await this.customerName(order.telegramId)),
+             orderKeyboard(order),
+           );
+           await this.bot.telegram
+@@ -204,10 +204,9 @@ export class TelegramService implements OnModuleInit, OnModuleDestroy {
+     );
+   }
+ 
+-  private customerName(telegramId: number): string {
+-    return this.users.getOrCreate({
+-      id: telegramId,
+-      first_name: `id ${telegramId}`,
+-    }).name;
++  // Faqat o'qiydi: admin ro'yxatni ko'rganda bazaga yangi qator yozilmaydi
++  private async customerName(telegramId: number): Promise<string> {
++    const user = await this.users.find(telegramId);
++    return user?.name ?? `id ${telegramId}`;
+   }
+ }
+diff --git a/src/api/user/user.entity.ts b/src/api/user/user.entity.ts
+new file mode 100644
+index 0000000..7042f02
+--- /dev/null
++++ b/src/api/user/user.entity.ts
+@@ -0,0 +1,44 @@
++import {
++  Check,
++  Column,
++  CreateDateColumn,
++  Entity,
++  PrimaryColumn,
++} from 'typeorm';
++import type { Role, User, UserState } from '../../core/types';
++
++// pg BIGINT ni satr ("5123456789") qilib qaytaradi — kodda son bo'lsin.
++// Telegram id 52 bitdan oshmaydi, JS Number uchun xavfsiz.
++const bigintToNumber = {
++  to: (v: number) => v,
++  from: (v: string | null) => (v === null ? v : Number(v)),
++};
++
++// users jadvali. Jadvalni migratsiya yaratadi (src/database/migrations).
++@Entity({ name: 'users' })
++@Check('CHK_users_role', `"role" IN ('customer', 'admin')`)
++@Check('CHK_users_state', `"state" IN ('IDLE', 'WAITING_PHONE')`)
++export class UserEntity implements User {
++  @PrimaryColumn({
++    name: 'telegram_id',
++    type: 'bigint',
++    transformer: bigintToNumber,
++  })
++  telegramId: number;
++
++  @Column({ type: 'varchar', length: 255 })
++  name: string;
++
++  @Column({ type: 'varchar', length: 20, nullable: true })
++  phone: string | null;
++
++  @Column({ type: 'varchar', length: 20, default: 'customer' })
++  role: Role;
++
++  // Suhbat holati bazada: server qayta ishga tushsa ham telefon kutilayotgani esda qoladi
++  @Column({ type: 'varchar', length: 20, default: 'IDLE' })
++  state: UserState;
++
++  @CreateDateColumn({ name: 'created_at', type: 'timestamptz' })
++  createdAt: Date;
++}
+diff --git a/src/api/user/user.module.ts b/src/api/user/user.module.ts
+index 32818d1..2cdf0e0 100644
+--- a/src/api/user/user.module.ts
++++ b/src/api/user/user.module.ts
+@@ -1,7 +1,10 @@
+ import { Module } from '@nestjs/common';
++import { TypeOrmModule } from '@nestjs/typeorm';
++import { UserEntity } from './user.entity';
+ import { UserService } from './user.service';
+ 
+ @Module({
++  imports: [TypeOrmModule.forFeature([UserEntity])],
+   providers: [UserService],
+   exports: [UserService],
+ })
+diff --git a/src/api/user/user.service.ts b/src/api/user/user.service.ts
+index 25211a3..b164109 100644
+--- a/src/api/user/user.service.ts
++++ b/src/api/user/user.service.ts
+@@ -1,38 +1,72 @@
+ import { Injectable } from '@nestjs/common';
++import { InjectRepository } from '@nestjs/typeorm';
++import { Repository } from 'typeorm';
+ import { config } from '../../config';
+-import { User, UserState } from '../../core/types';
++import { Role, User, UserState } from '../../core/types';
++import { UserEntity } from './user.entity';
+ 
+ @Injectable()
+ export class UserService {
+-  // telegramId → foydalanuvchi. Xotirada: server qayta ishga tushsa bo'shaydi.
+-  private readonly users = new Map<number, User>();
+-
+-  getOrCreate(from: { id: number; first_name: string }): User {
+-    const bor = this.users.get(from.id);
+-    if (bor) return bor;
+-    const user: User = {
+-      telegramId: from.id,
+-      name: from.first_name,
+-      phone: null,
+-      role: config.ADMIN_TELEGRAM_IDS.includes(from.id) ? 'admin' : 'customer',
+-      state: 'IDLE',
+-    };
+-    this.users.set(from.id, user);
++  // telegram_id → foydalanuvchi, PostgreSQL users jadvalida
++  constructor(
++    @InjectRepository(UserEntity)
++    private readonly users: Repository<UserEntity>,
++  ) {}
++
++  // Rol har doim .env dagi ADMIN_TELEGRAM_IDS dan
++  private roleOf(telegramId: number): Role {
++    return config.ADMIN_TELEGRAM_IDS.includes(telegramId)
++      ? 'admin'
++      : 'customer';
++  }
++
++  // /start qayta bosilsa yangi qator ochilmaydi — bori qaytadi.
++  // ON CONFLICT DO NOTHING: bir vaqtda ikki xabar kelsa ham qator bitta.
++  async getOrCreate(from: { id: number; first_name: string }): Promise<User> {
++    await this.users
++      .createQueryBuilder()
++      .insert()
++      .into(UserEntity)
++      .values({
++        telegramId: from.id,
++        name: from.first_name,
++        role: this.roleOf(from.id),
++        state: 'IDLE',
++      })
++      .orIgnore()
++      .execute();
++    const user = await this.users.findOneByOrFail({ telegramId: from.id });
++
++    // .env da admin ro'yxati o'zgargan bo'lsa — bazadagi rol ham yangilanadi
++    const role = this.roleOf(user.telegramId);
++    if (user.role !== role) {
++      await this.users.update({ telegramId: user.telegramId }, { role });
++      user.role = role;
++    }
+     return user;
+   }
+ 
+-  setState(user: User, state: UserState): User {
++  async find(telegramId: number): Promise<User | null> {
++    return this.users.findOneBy({ telegramId });
++  }
++
++  async setState(user: User, state: UserState): Promise<User> {
++    await this.users.update({ telegramId: user.telegramId }, { state });
+     user.state = state;
+     return user;
+   }
+ 
+-  setPhone(user: User, phone: string): User {
++  async setPhone(user: User, phone: string): Promise<User> {
++    await this.users.update(
++      { telegramId: user.telegramId },
++      { phone, state: 'IDLE' },
++    );
+     user.phone = phone;
+     user.state = 'IDLE';
+     return user;
+   }
+ 
+-  admins(): User[] {
+-    return [...this.users.values()].filter((u) => u.role === 'admin');
++  admins(): Promise<User[]> {
++    return this.users.findBy({ role: 'admin' });
+   }
+ }
+diff --git a/src/database/migrations/1793733435828-CreateUsers.ts b/src/database/migrations/1793733435828-CreateUsers.ts
+new file mode 100644
+index 0000000..e5fcd15
+--- /dev/null
++++ b/src/database/migrations/1793733435828-CreateUsers.ts
+@@ -0,0 +1,27 @@
++import { MigrationInterface, QueryRunner } from 'typeorm';
++
++export class CreateUsers1793733435828 implements MigrationInterface {
++  name = 'CreateUsers1793733435828';
++
++  public async up(queryRunner: QueryRunner): Promise<void> {
++    // telegram_id BIGINT: Telegram id'lari INTEGER (2 147 483 647) dan oshadi,
++    // masalan 5123456789
++    await queryRunner.query(`
++      CREATE TABLE "users" (
++        "telegram_id" BIGINT       NOT NULL,
++        "name"        VARCHAR(255) NOT NULL,
++        "phone"       VARCHAR(20),
++        "role"        VARCHAR(20)  NOT NULL DEFAULT 'customer',
++        "state"       VARCHAR(20)  NOT NULL DEFAULT 'IDLE',
++        "created_at"  TIMESTAMPTZ  NOT NULL DEFAULT now(),
++        CONSTRAINT "PK_users_telegram_id" PRIMARY KEY ("telegram_id"),
++        CONSTRAINT "CHK_users_role" CHECK ("role" IN ('customer', 'admin')),
++        CONSTRAINT "CHK_users_state" CHECK ("state" IN ('IDLE', 'WAITING_PHONE'))
++      )
++    `);
++  }
++
++  public async down(queryRunner: QueryRunner): Promise<void> {
++    await queryRunner.query(`DROP TABLE "users"`);
++  }
++}
+diff --git a/src/database/typeorm.config.ts b/src/database/typeorm.config.ts
+index c629e83..a0f8dbf 100644
+--- a/src/database/typeorm.config.ts
++++ b/src/database/typeorm.config.ts
+@@ -2,6 +2,7 @@ import { join } from 'path';
+ import { DataSourceOptions } from 'typeorm';
+ import { config } from '../config';
+ import { ProductEntity } from '../api/catalog/product.entity';
++import { UserEntity } from '../api/user/user.entity';
+ 
+ if (!config.DATABASE_URL) {
+   throw new Error(
+@@ -15,7 +16,7 @@ const MIGRATION_EXT = __filename.endsWith('.ts') ? 'ts' : 'js';
+ export const typeormOptions: DataSourceOptions = {
+   type: 'postgres',
+   url: config.DATABASE_URL,
+-  entities: [ProductEntity],
++  entities: [ProductEntity, UserEntity],
+   // ts-node (seed, CLI) — .ts; `nest build` dan keyin dist/ — faqat .js
+   // (*.{ts,js} dist/ dagi .d.ts fayllarni ham ushlab olardi)
+   migrations: [join(__dirname, 'migrations', `*.${MIGRATION_EXT}`)],

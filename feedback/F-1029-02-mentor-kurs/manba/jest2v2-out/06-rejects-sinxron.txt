@@ -1,0 +1,30 @@
+$ npx jest order.service -t telefon
+FAIL src/api/order/order.service.spec.ts
+  OrderService.place
+    ✕ telefon yo'q — darhol xato (11 ms)
+    ○ skipped savat bo'sh — darhol xato
+    ○ skipped omborda yetmaydi — tranzaksiya ichida xato, UPDATE bo'lmaydi
+    ○ skipped yetarli — jami narx hisoblanadi
+
+  ● OrderService.place › telefon yo'q — darhol xato
+
+    Telefon raqami yo'q
+
+      23 |   // CHECK (stock >= 0) rad etadi — ikki mijoz bir vaqtda bossa ham ortiqcha sotilmaydi.
+      24 |   place(user: User, cart: CartItem[]): Promise<Order> {
+    > 25 |     if (!user.phone) throw new Error("Telefon raqami yo'q");
+         |                            ^
+      26 |     if (cart.length === 0) throw new Error("Savat bo'sh");
+      27 |     return this.ds.transaction(async (m) => {
+      28 |       const items: OrderItem[] = [];
+
+      at OrderService.place (api/order/order.service.ts:25:28)
+      at Object.<anonymous> (api/order/order.service.spec.ts:36:15)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 3 skipped, 4 total
+Snapshots:   0 total
+Time:        0.812 s, estimated 1 s
+Ran all test suites matching order.service with tests matching "telefon".
+[chiqish kodi: 1]
+

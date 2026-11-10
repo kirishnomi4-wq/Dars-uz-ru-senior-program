@@ -1,0 +1,17 @@
+$ npm test -- live
+PASS src/api/live/live.gateway.spec.ts
+  LiveGateway
+    ✓ tokensiz — server ulanishni yopadi, klient qayta urinmaydi
+    ✓ noto'g'ri token — xuddi shunday yopiladi
+    ✓ to'g'ri token — ulanadi va order-changed hodisasini oladi
+PASS src/api/live/admin.controller.spec.ts
+  AdminController
+    ✓ GET /admin/orders tokensiz — 401
+    ✓ GET /admin/orders noto'g'ri token — 401
+    ✓ GET /admin/orders token bilan — 200 va ro'yxat
+    ✓ GET /admin — panel sahifasi (socket.io klienti bilan)
+Test Suites: 2 passed, 2 total
+Tests:       7 passed, 7 total
+Snapshots:   0 total
+Time:        1.45 s
+Ran all test suites matching live.

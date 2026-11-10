@@ -1,0 +1,20 @@
+<style>
+.r14 td{vertical-align:top}
+.r14 .y{color:#15803D;font-weight:700}.r14 .n{color:#DC2626;font-weight:700}
+.r14 td.c{text-align:center}
+</style>
+<div class="z">
+  <div class="z-card">
+    <p class="z-h">connectionStateRecovery (2 daqiqa) — uch tajriba, klient logi</p>
+    <table class="z-tbl r14">
+      <tr><th>holat</th><th>klient ko'rdi</th><th class="c">tiklash</th><th class="c">connect da qayta so'rash</th></tr>
+      <tr><td><b>B</b> · hodisa olgan, tarmoq uzildi, shu payt #3</td><td>21:41:47 order-changed {"orderId":3} → connect · <b>recovered=true</b> · id o'sha</td><td class="c y">✓</td><td class="c y">✓</td></tr>
+      <tr><td><b>A</b> · hali hodisa olmagan, tarmoq uzildi</td><td>21:41:29 connect · <b>recovered=false</b> — o'tkazilgan buyurtma kelmadi</td><td class="c n">✕</td><td class="c y">✓</td></tr>
+      <tr><td><b>C</b> · server qayta yondi</td><td>21:41:57 connect · <b>recovered=false</b> — holat server xotirasi bilan yo'qoldi</td><td class="c n">✕</td><td class="c y">✓</td></tr>
+    </table>
+  </div>
+  <div class="z-two">
+    <div class="z-card"><b>Tiklash — qo'shimcha</b><span class="z-mut">qisqa tarmoq uzilishida yordam beradi</span></div>
+    <div class="z-card" style="border-color:var(--ok)"><b style="color:var(--ok)">Qayta so'rash — majburiy</b><span class="z-mut">server qayta yonishi eng ko'p uchraydi: deploy, xato. ws2-done da gateway o'zgarmadi.</span></div>
+  </div>
+</div>

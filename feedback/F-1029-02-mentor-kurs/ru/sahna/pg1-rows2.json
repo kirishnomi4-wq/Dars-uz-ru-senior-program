@@ -1,0 +1,2459 @@
+[
+{
+"f": "04-yordam.jsx",
+"l": 9,
+"k": "str",
+"x": "Siz bilgan Mongo'dan PostgreSQL jadvallariga",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 24,
+"k": "str",
+"x": "psql minus U postgres, minus c va select version",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 26,
+"k": "str",
+"x": "teskari chiziqcha c blog",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 26,
+"k": "str",
+"x": "teskari chiziqcha d posts",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 26,
+"k": "str",
+"x": "teskari chiziqcha dt",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 27,
+"k": "str",
+"x": "teskari chiziqcha l",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 27,
+"k": "str",
+"x": "teskari chiziqcha q",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 27,
+"k": "str",
+"x": "teskari chiziqcha c",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 27,
+"k": "str",
+"x": "teskari chiziqcha d",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 30,
+"k": "str",
+"x": "insert, nol, uch",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 30,
+"k": "str",
+"x": "update nol",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 30,
+"k": "str",
+"x": "update bir",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 30,
+"k": "str",
+"x": "insert bir",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 32,
+"k": "str",
+"x": "postgresapp com",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 32,
+"k": "str",
+"x": "postgresapp.com",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 34,
+"k": "str",
+"x": "besh ming to'rt yuz o'ttiz ikki",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 34,
+"k": "str",
+"x": "to'qson to'qqizinchi",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 34,
+"k": "str",
+"x": "yigirma oltinchi",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 34,
+"k": "str",
+"x": "yigirma bir",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 35,
+"k": "str",
+"x": "yigirma besh",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 35,
+"k": "str",
+"x": "o'n sakkiz",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 35,
+"k": "str",
+"x": "o'n besh-yigirma",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 35,
+"k": "str",
+"x": "bir, ikki, uch",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 35,
+"k": "str",
+"x": "id bir",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 54,
+"k": "str",
+"x": "<span class=\"s\">${escH(str)}</span>",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 56,
+"k": "str",
+"x": "<span class=\"d\">${num}</span>",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 70,
+"k": "str",
+"x": "<span class=\"s\">${escH(str)}</span>",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 72,
+"k": "str",
+"x": "<span class=\"d\">${num}</span>",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 102,
+"k": "str",
+"x": "pg-win${os === 'mac' ? ' mac' : ''}${hl ? ' hl' : ''}",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 111,
+"k": "str",
+"x": "${hlRow.includes(i) ? 'hl' : ''}${dimRow.includes(i) ? ' dim' : ''}",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 114,
+"k": "str",
+"x": "pg-doc${odd ? ' odd' : ''}${er ? ' er' : ''}",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 157,
+"k": "jsx",
+"x": ".pg-dict td",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 5,
+"k": "str",
+"x": "Mongo bilan solishtirish",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 5,
+"k": "str",
+"x": "O'rnatish va ulanish",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 5,
+"k": "str",
+"x": "Jadval va bog'lanish",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 5,
+"k": "str",
+"x": "Ishonchlilik: oxirgi telefon",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 5,
+"k": "str",
+"x": "O'quvchi darsini o'tish",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 32,
+"k": "str",
+"x": "Toshkent",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 33,
+"k": "str",
+"x": "shahar",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 45,
+"k": "jsx",
+"x": "MongoDB · NoSQL",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 48,
+"k": "str",
+"x": "{ _id: ObjectId('6ae8…e666'),\\n  username: 'ali' }",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 49,
+"k": "str",
+"x": "{ _id: ObjectId('6ae8…e667'),\\n  username: 'vali',\\n  shahar: 'Toshkent' }   ← ",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 56,
+"k": "str",
+"x": "vali",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 85,
+"k": "str",
+"x": "Birinchi post",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 91,
+"k": "str",
+"x": "terminal",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 112,
+"k": "str",
+"x": "Muallifi yo'q post",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 119,
+"k": "str",
+"x": "vali",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 119,
+"k": "str",
+"x": "Salom",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 122,
+"k": "str",
+"x": "Birinchi post",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 123,
+"k": "str",
+"x": "Muallifi yo'q post",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 132,
+"k": "str",
+"x": "{ \"author\": \"…a728\",\\n  \"izoh\": \"Birinchi post\" }",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 133,
+"k": "str",
+"x": "{ \"author\": \"…a72a\",\\n  \"izoh\": \"Muallifi yo'q post\" }",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 134,
+"k": "str",
+"x": "{ \"muallif\": \"vali\",\\n  \"matn\": \"Salom\",\\n  \"like\": 5 }",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 137,
+"k": "str",
+"x": "pg-cmp",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 148,
+"k": "str",
+"x": "baza",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 148,
+"k": "str",
+"x": "baza (database) — \\\\l",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 148,
+"k": "str",
+"x": "jadval (table) posts",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 148,
+"k": "str",
+"x": "qator (row)",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 148,
+"k": "str",
+"x": "maydon (field)",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 148,
+"k": "str",
+"x": "ustun (column) — turi bilan: INT, TEXT",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 149,
+"k": "str",
+"x": "REFERENCES users(id) — tashqi kalit",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 150,
+"k": "str",
+"x": "Schema — kodda",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 150,
+"k": "str",
+"x": "CREATE TABLE — bazada",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 160,
+"k": "str",
+"x": "ddl",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 160,
+"k": "str",
+"x": "ddl",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 161,
+"k": "str",
+"x": "ddl",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 165,
+"k": "str",
+"x": "pg-dict",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 192,
+"k": "str",
+"x": "comp",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 197,
+"k": "jsx",
+"x": "Interactive installer by",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 197,
+"k": "jsx",
+"x": "EDB",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 197,
+"k": "jsx",
+"x": "→ Download the installer",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 198,
+"k": "str",
+"x": "pg-chk",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 200,
+"k": "str",
+"x": "comp",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 202,
+"k": "str",
+"x": "pg-chk",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 218,
+"k": "str",
+"x": "pg-chk",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 218,
+"k": "jsx",
+"x": "C:\\Program Files\\nodejs\\",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 244,
+"k": "str",
+"x": "/tmp/.s.PGSQL.5432",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 256,
+"k": "jsx",
+"x": "postgresapp.com → Download",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 257,
+"k": "str",
+"x": "pg-btn",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 257,
+"k": "jsx",
+"x": "Running",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 259,
+"k": "str",
+"x": "terminal",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 261,
+"k": "str",
+"x": "terminal — Homebrew",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 300,
+"k": "str",
+"x": "terminal — psql",
+"m": false
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 311,
+"k": "str",
+"x": "O'rnatish — Windows: postgresql.org → EDB installer 18 (Server · pgAdmin 4 · Command Line Tools; parol; port 5432) · Mac: postgresapp.com → Applications → Initialize",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 311,
+"k": "str",
+"x": "o'rnatuvchi tugadi / Postgres.app'da «Running»",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 312,
+"k": "str",
+"x": "PATH — Windows: C:\\\\Program Files\\\\PostgreSQL\\\\18\\\\bin → Path, yangi terminal · Mac: rasmiy buyruq, yangi terminal",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 312,
+"k": "str",
+"x": "sudo mkdir -p /etc/paths.d && echo /Applications/Postgres.app/Contents/Versions/latest/bin | sudo tee /etc/paths.d/postgresapp",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 313,
+"k": "str",
+"x": "Ulanish",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 313,
+"k": "str",
+"x": "Windows: Password for user postgres: → postgres=# · Mac: darhol postgres=#",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 314,
+"k": "str",
+"x": "Birinchi so'rov",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 314,
+"k": "str",
+"x": "PostgreSQL 18… · 3 baza: postgres, template0, template1",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 317,
+"k": "str",
+"x": "parol noto'g'ri: o'rnatishda yozgan parolingiz; klaviatura tilini (EN/RU) va katta harfni tekshiring",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 318,
+"k": "str",
+"x": "Connection refused · Is the server running on that host and accepting TCP/IP connections?",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 318,
+"k": "str",
+"x": "PostgreSQL ishlamayapti — PostgreSQL'ni ishga tushiring: Windows: Services → postgresql-x64-18 → Start ⚠ · Mac: Postgres.app → Start",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 319,
+"k": "str",
+"x": "connection to server on socket \"/tmp/.s.PGSQL.5432\" failed: No such file or directory",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 319,
+"k": "str",
+"x": "Mac: Postgres.app ochilmagan yoki server to'xtagan — dasturni oching, Start",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 320,
+"k": "str",
+"x": "Homebrew bilan o'rnatilgan — createuser -s postgres (8-ekran)",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 321,
+"k": "str",
+"x": "'psql' is not recognized as an internal or external command ⚠ · zsh: command not found: psql ⚠",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 321,
+"k": "str",
+"x": "PATH: 2-qadam, keyin terminalni yangidan oching; Windows'da vaqtincha Start → SQL Shell (psql)",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 322,
+"k": "str",
+"x": "WARNING: Console code page (866) differs from Windows code page (1251) ⚠",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 322,
+"k": "str",
+"x": "Windows ogohlantirishi: ishga xalaqit bermaydi, davom eting",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 323,
+"k": "str",
+"x": "nuqta-vergul unutilgan — ; yozib Enter",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 325,
+"k": "str",
+"x": "Isbot: SELECT version(); natijasi — PostgreSQL so'zidan boshlab",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 325,
+"k": "str",
+"x": "natija qatorini shu yerga qo'ying",
+"m": true
+},
+{
+"f": "05-s01-s09.jsx",
+"l": 325,
+"k": "str",
+"x": "Natija «PostgreSQL» so'zi va versiya raqami bilan boshlanadi — terminaldan butun qatorni nusxalang",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 30,
+"k": "str",
+"x": "vali",
+"m": false
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 30,
+"k": "str",
+"x": "Birinchi post",
+"m": false
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 30,
+"k": "str",
+"x": "Bugun Nest o'rgandim",
+"m": false
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 30,
+"k": "str",
+"x": "Salom hammaga",
+"m": false
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 59,
+"k": "str",
+"x": "posts_id_seq",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 65,
+"k": "str",
+"x": "vali",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 67,
+"k": "str",
+"x": "Birinchi post",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 67,
+"k": "str",
+"x": "Bugun Nest o",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 67,
+"k": "str",
+"x": "rgandim",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 67,
+"k": "str",
+"x": "Salom hammaga",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 82,
+"k": "str",
+"x": "ddl",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 82,
+"k": "str",
+"x": "rel",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 82,
+"k": "str",
+"x": "rel",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 85,
+"k": "str",
+"x": "ddl",
+"m": false
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 87,
+"k": "jsx",
+"x": "o''rgandim",
+"m": false
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 88,
+"k": "str",
+"x": "await User.create([{ username: 'ali' }, { username: 'vali' }, { username: 'sardor' }])",
+"m": false
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 89,
+"k": "str",
+"x": "vali",
+"m": false
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 89,
+"k": "str",
+"x": "Birinchi post",
+"m": false
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 89,
+"k": "str",
+"x": "Bugun Nest o'rgandim",
+"m": false
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 89,
+"k": "str",
+"x": "Salom hammaga",
+"m": false
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 90,
+"k": "str",
+"x": "rel",
+"m": false
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 91,
+"k": "str",
+"x": "rel",
+"m": false
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 109,
+"k": "str",
+"x": "Muallifi yo",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 120,
+"k": "str",
+"x": "jadval",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 120,
+"k": "str",
+"x": "qoida",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 120,
+"k": "str",
+"x": "qiymat",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 121,
+"k": "str",
+"x": "jadval",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 121,
+"k": "str",
+"x": "qoida",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 121,
+"k": "str",
+"x": "qiymat",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 122,
+"k": "str",
+"x": "jadval",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 122,
+"k": "str",
+"x": "qoida",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 122,
+"k": "str",
+"x": "qiymat",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 132,
+"k": "str",
+"x": "pg-cmp",
+"m": false
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 164,
+"k": "str",
+"x": "Baza",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 166,
+"k": "str",
+"x": "CREATE TABLE · 2 jadval",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 167,
+"k": "str",
+"x": "Ma'lumot",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 167,
+"k": "str",
+"x": "INSERT INTO users (username) VALUES ('ali'), ('vali'), ('sardor');",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 167,
+"k": "str",
+"x": "INSERT INTO posts (user_id, izoh) VALUES (1, 'Birinchi post'), (1, 'Bugun Nest o''rgandim'), (2, 'Salom hammaga');",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 168,
+"k": "str",
+"x": "Xatoni o\\'zingiz chiqaring",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 168,
+"k": "str",
+"x": "INSERT INTO posts (user_id, izoh) VALUES (99, 'Muallifi yo''q post');",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 171,
+"k": "str",
+"x": "jadval oldin yaratilgan — \\\\d users bilan ko'ring, keyingi qadamga o'ting",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 172,
+"k": "str",
+"x": "^ ko'rsatgan so'zdan oldin vergul yoki qavs tushib qolgan",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 173,
+"k": "str",
+"x": "boshqa bazadasiz (prompt postgres=#) — \\\\c blog",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 174,
+"k": "str",
+"x": "baza oldin yaratilgan — \\\\c blog va davom eting",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 175,
+"k": "str",
+"x": "; unutilgan — ; yozib Enter",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 176,
+"k": "str",
+"x": "5-qadamda INSERT 0 1",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 176,
+"k": "str",
+"x": "REFERENCES users(id) yozilmagan — \\\\d posts'da kalit qatori yo'q; DROP TABLE posts; va 3-qadamni qayta",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 178,
+"k": "str",
+"x": "Isbot: \\\\d posts natijasidagi Foreign-key qatori",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 178,
+"k": "str",
+"x": "\\\\d posts chiqishidan kalit qatorini shu yerga qo'ying",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 178,
+"k": "str",
+"x": "Qatorda kalit nomi (posts_user_id_fkey) va REFERENCES users(id) bo'lsin — \\\\d posts natijasining oxirgi qatori",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 204,
+"k": "str",
+"x": "sel",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 205,
+"k": "str",
+"x": "sel",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 209,
+"k": "str",
+"x": "Birinchi post",
+"m": false
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 209,
+"k": "str",
+"x": "Bugun Nest o'rgandim",
+"m": false
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 209,
+"k": "str",
+"x": "Salom hammaga",
+"m": false
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 210,
+"k": "str",
+"x": "vali",
+"m": false
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 230,
+"k": "str",
+"x": "  <span class=\"cm\">-- tashqi kalit</span>",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 237,
+"k": "str",
+"x": "rgandim      ← noto",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 240,
+"k": "str",
+"x": "<pre class=\"pg-doc er\" style=\"margin-top:12px;font-size:12px\">",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 255,
+"k": "str",
+"x": "3 qator: ali · ali · vali",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 256,
+"k": "str",
+"x": "Xato ON",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 256,
+"k": "str",
+"x": "xato yo'q; ali · vali · sardor — mualliflar noto'g'ri",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 257,
+"k": "str",
+"x": "sardor — bo\\'sh izoh bilan",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 258,
+"k": "str",
+"x": "Sanash",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 258,
+"k": "str",
+"x": "3-qadam natijasining oxirgi satri: (… rows)",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 261,
+"k": "str",
+"x": "boshqa bazadasiz — \\\\c blog",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 262,
+"k": "str",
+"x": "INSERT'lar boshqa bazada qilingan yoki qilinmagan — SELECT * FROM posts; bilan tekshiring, Amaliyot 2 ning 4-qadami",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 263,
+"k": "str",
+"x": "^ ko'rsatgan joydan oldin vergul yoki nuqta tushib qolgan",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 264,
+"k": "str",
+"x": "sardor LEFT JOIN'da ham yo'q",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 264,
+"k": "str",
+"x": "FROM posts LEFT JOIN users yozilgan — FROM users dan boshlang",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 266,
+"k": "str",
+"x": "Isbot: LEFT JOIN natijasidagi qatorlar soni",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 266,
+"k": "str",
+"x": "natija ostidagi sonni yozing",
+"m": true
+},
+{
+"f": "06-s10-s17.jsx",
+"l": 266,
+"k": "str",
+"x": "LEFT JOIN natijasi ostida qavs ichida qatorlar soni yozilgan — sardor ham sanaladi",
+"m": true
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 12,
+"k": "str",
+"x": "Telefon",
+"m": true
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 42,
+"k": "jsx",
+"x": "products · id 1 · Telefon",
+"m": false
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 72,
+"k": "str",
+"x": "vali",
+"m": true
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 82,
+"k": "str",
+"x": "ddl",
+"m": true
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 86,
+"k": "str",
+"x": "xaridor",
+"m": false
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 87,
+"k": "str",
+"x": "nomi",
+"m": false
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 87,
+"k": "str",
+"x": "Telefon",
+"m": false
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 89,
+"k": "str",
+"x": "ddl",
+"m": false
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 92,
+"k": "str",
+"x": "pg-cmp",
+"m": false
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 109,
+"k": "str",
+"x": "Futbolka",
+"m": true
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 109,
+"k": "str",
+"x": "{\"rang\": \"qora\", \"olcham\": \"M\"}",
+"m": true
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 110,
+"k": "str",
+"x": "Quloqchin",
+"m": true
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 116,
+"k": "str",
+"x": "qora",
+"m": true
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 116,
+"k": "str",
+"x": "olcham",
+"m": true
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 120,
+"k": "str",
+"x": "qora",
+"m": true
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 128,
+"k": "str",
+"x": "{ \"muallif\": \"vali\", \"matn\": \"Salom\", \"like\": 5 }",
+"m": false
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 142,
+"k": "str",
+"x": "vali",
+"m": true
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 169,
+"k": "str",
+"x": "Jadval",
+"m": true
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 169,
+"k": "str",
+"x": "CREATE TABLE products (id SERIAL PRIMARY KEY, nomi TEXT NOT NULL, stock INT NOT NULL CHECK (stock >= 0));",
+"m": true
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 169,
+"k": "str",
+"x": "INSERT INTO products (nomi, stock) VALUES ('Telefon', 1);",
+"m": true
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 170,
+"k": "str",
+"x": "1-oyna — COMMITsiz",
+"m": true
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 170,
+"k": "str",
+"x": "UPDATE products SET stock = stock - 1 WHERE id = 1 AND stock > 0 RETURNING stock;",
+"m": true
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 170,
+"k": "str",
+"x": "stock 0 · UPDATE 1 · tranzaksiya ochiq qolsin",
+"m": true
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 171,
+"k": "str",
+"x": "2-oyna",
+"m": true
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 171,
+"k": "str",
+"x": "UPDATE products SET stock = stock - 1 WHERE id = 1 AND stock > 0 RETURNING stock;",
+"m": true
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 171,
+"k": "str",
+"x": "javob yo'q — kutyapti",
+"m": true
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 172,
+"k": "str",
+"x": "1-oyna — COMMIT",
+"m": true
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 172,
+"k": "str",
+"x": "1-oyna: COMMIT · 2-oyna: (0 rows) va oxirgi satr",
+"m": true
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 173,
+"k": "str",
+"x": "(ixtiyoriy) jsonb",
+"m": true
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 173,
+"k": "str",
+"x": "21-ekrandagi INSERT va SELECT → Futbolka | qora; bajarmasangiz ham katakchani belgilang",
+"m": true
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 176,
+"k": "str",
+"x": "2-oyna kutmadi, darhol UPDATE 0",
+"m": true
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 176,
+"k": "str",
+"x": "1-oynada COMMIT allaqachon yozilgan (yoki BEGIN yo'q) — telefon oldin sotilgan; UPDATE products SET stock = 1 WHERE id = 1; va 2-qadamdan qayta",
+"m": true
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 177,
+"k": "str",
+"x": "2-oyna kutdi, lekin UPDATE 1",
+"m": true
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 177,
+"k": "str",
+"x": "telefon 1 tadan ko'p (INSERT ikki marta) — SELECT id, nomi, stock FROM products; bilan ko'ring, UPDATE products SET stock = 1 WHERE id = 1; va 2-qadamdan qayta",
+"m": true
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 178,
+"k": "str",
+"x": "WHERE … stock > 0 tushib qolgan — CHECK to'xtatdi (19-ekran, 5-qadam)",
+"m": true
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 179,
+"k": "str",
+"x": "2-oyna boshqa bazada — \\\\c blog",
+"m": true
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 180,
+"k": "str",
+"x": "jadval oldin yaratilgan (masalan 21-ekrandan) — 2-qadamga o'ting",
+"m": true
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 182,
+"k": "str",
+"x": "2-oynadagi oxirgi satr",
+"m": true
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 182,
+"k": "str",
+"x": "ikkinchi oynada chiqqan oxirgi satrni yozing",
+"m": true
+},
+{
+"f": "07-s18-s22.jsx",
+"l": 182,
+"k": "str",
+"x": "2-oyna 1-oyna COMMIT qilgandan keyin javob beradi — eng oxirgi satrni aynan yozing",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 5,
+"k": "str",
+"x": "PostgreSQL 18 o\\'rnatilgan (Windows: EDB · Mac: Postgres.app)",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 5,
+"k": "str",
+"x": "psql PATH\\'da — yangi terminalda psql --version",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 5,
+"k": "str",
+"x": "Sinf paroli — hamma kompyuterda bir xil",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 5,
+"k": "str",
+"x": "psql -U postgres -c \"SELECT version();\" — qayta yoqilgandan keyin ham",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 26,
+"k": "str",
+"x": "mk-step${i < seg.on ? '' : ' '}${(seg.on === 3 && i === 2) || (seg.on === 4 && i === 3) ? ' hl' : ''}",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 38,
+"k": "str",
+"x": "Kirish",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 38,
+"k": "str",
+"x": "«SQL ko'rinishimi, NoSQL ko'rinishimi?» → «Ikkalasi ham to'g'ri — vazifaga bog'liq» · reja (5 qadam)",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 38,
+"k": "str",
+"x": "Mongo bilan ishlagan bo'lsangiz — bir gap bilan ayting (3-ekran)",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 39,
+"k": "str",
+"x": "Ikki tur va shakl",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 39,
+"k": "str",
+"x": "jadval / hujjat · kartalarni jadvalga joylash · test",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 39,
+"k": "str",
+"x": "jadvalda ustun turi oldindan, hujjatda erkin (5-ekran)",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 40,
+"k": "str",
+"x": "Kuchlar",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 40,
+"k": "str",
+"x": "JOIN — id orqali bog\\'lash · test · oxirgi telefon · chat oqimi (NoSQL — hajm)",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 40,
+"k": "str",
+"x": "ON satri (16-ekran) · telefonni nima saqlashi (19-ekran)",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 41,
+"k": "str",
+"x": "Qaror",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 41,
+"k": "str",
+"x": "4 mezon: bog'lanish · shakl · ishonchlilik · hajm · test (bank) · nega PostgreSQL (5 sabab) · AI tavsiyasi · test",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 41,
+"k": "str",
+"x": "«JSON ham saqlaydi» — jsonb misoli (21-ekran)",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 42,
+"k": "str",
+"x": "Mustahkamlash",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 42,
+"k": "str",
+"x": "moslashtirish (bank, chat, do'kon, loglar) · mif-buster · yakuniy · amaliyot · kartochkalar · yakun",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 42,
+"k": "str",
+"x": "amaliyotdagi 2 jadval — siz bugun yaratgan users / posts",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 44,
+"k": "str",
+"x": "kirish, ikki tur va shakl",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 44,
+"k": "str",
+"x": "kuchlar: JOIN, oxirgi telefon, chat",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 44,
+"k": "str",
+"x": "qaror ko\\'rsatkichi, nega PostgreSQL, AI",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 44,
+"k": "str",
+"x": "moslashtirish, mif, yakuniy, amaliyot",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 44,
+"k": "str",
+"x": "yakun",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 49,
+"k": "str",
+"x": "mk-step${x ? ' hl' : ''}",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 51,
+"k": "str",
+"x": "mk-step${seg.hl.includes(i) ? ' hl' : ''}",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 62,
+"k": "str",
+"x": "jadval — «Excel jadvaliga o'xshaydi», har qatorda bir xil ustunlar",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 63,
+"k": "str",
+"x": "hujjat — «papkadagi turli qog'ozlar kabi», { }",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 63,
+"k": "str",
+"x": "s2, kartochkalar",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 64,
+"k": "str",
+"x": "ikki jadvalni id orqali bog'lash",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 64,
+"k": "str",
+"x": "JOIN … ON …, tashqi kalit",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 65,
+"k": "str",
+"x": "oxirgi telefon — «SQL bir lahzada faqat bittasiga sotadi», «SQL nazorati»",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 65,
+"k": "str",
+"x": "shartli UPDATE + qator qulfi; tranzaksiya",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 65,
+"k": "str",
+"x": "s6, kartochkalar",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 66,
+"k": "str",
+"x": "qaror ko'rsatkichi — 4 savoldan iborat: ma'lumot bog'langanmi, shakli qat'iymi, xato qimmatga tushadimi, ulkan-oddiy-tez kerakmi",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 66,
+"k": "str",
+"x": "baza tanlash mezonlari",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 67,
+"k": "str",
+"x": "«NoSQL zamonaviyroq» — mif",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 67,
+"k": "str",
+"x": "tanlov vazifaga bog'liq",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 68,
+"k": "str",
+"x": "«JSON ham saqlaydi»",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 74,
+"k": "str",
+"x": "mk-tbl",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 85,
+"k": "str",
+"x": "Oxirgi telefonni «SQL nazorati — tranzaksiya» saqlaydi",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 85,
+"k": "str",
+"x": "so'rovdagi shart (stock > 0) + qator qulfi; tranzaksiya — bir nechta ishni birga bajarish; Mongo ham bitta hujjatda bittaga sotdi",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 85,
+"k": "str",
+"x": "darsdagi gap yetarli; kuchli o'quvchi so'rasa — «baza shartni qayta tekshiradi, ikkinchi xaridor kutadi»",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 86,
+"k": "str",
+"x": "NoSQL'da «alohida hujjatlarni bog'lash qiyin»",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 86,
+"k": "str",
+"x": "bog'lash bor (populate), lekin baza bog'lanishni qo'riqlamaydi: author: null xato bermay saqlandi",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 86,
+"k": "str",
+"x": "«bog'lash mumkin, lekin to'g'riligini kod saqlaydi, baza emas»",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 89,
+"k": "str",
+"x": "«Mongo yomonmi?»",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 89,
+"k": "str",
+"x": "Yo'q. Chat, loglar kabi juda ko'p oddiy ma'lumotda qulay. Tanlov vazifaga bog'liq: buni qaror ko'rsatkichining 4 savoli bilan tekshiring.",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 90,
+"k": "str",
+"x": "«MySQL'dan farqi nima?»",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 90,
+"k": "str",
+"x": "Ikkalasi ham SQL: jadval, JOIN, qoidalar bir xil g'oya. Kursda PostgreSQL, chunki keyingi darslardagi loyihalar shu bilan ishlaydi.",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 91,
+"k": "str",
+"x": "«Excel'ning o'zi-ku?»",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 91,
+"k": "str",
+"x": "Ko'rinishi o'xshaydi. Lekin baza qoidani o'zi tekshiradi (bo'sh nom, yo'q muallif — rad) va bir vaqtda ko'p odam yozsa ham adashmaydi (oxirgi telefon).",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 92,
+"k": "str",
+"x": "«Firebase nima?»",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 92,
+"k": "str",
+"x": "Google'ning hujjatli bazasi, NoSQL; darsda MongoDB bilan birga misol.",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 93,
+"k": "str",
+"x": "«Nega id 1, 2, 3, Mongo'dagidek uzun emas?»",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 93,
+"k": "str",
+"x": "SERIAL — o'zi o'sadigan raqam; Mongo'da _id ObjectId. Ikkalasi ham noyob.",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 99,
+"k": "str",
+"x": "mk-step${seg.hl.includes(i) ? ' hl' : ''}",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 121,
+"k": "str",
+"x": "Hammasini ko'rib chiqdingiz, endi o'zingizni tekshiring. Yakuniy sinov, sakkiz savol, ulardan ikkitasi sinf va o'quvchi darsi bo'yicha. Har savolda bitta urinish, javobdan keyin to'g'risi va izohi ochiladi. Olti va undan ko'p, dars o'zlashtirilgan. Kam bo'lsa, ko'rsatilgan ekranlarga qaytib, sinovni qayta topshirasiz.",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 123,
+"k": "str",
+"x": "Natijangiz saqlangan: sakkizdan ",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 123,
+"k": "str",
+"x": "nol",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 123,
+"k": "str",
+"x": "bir",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 123,
+"k": "str",
+"x": "ikki",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 123,
+"k": "str",
+"x": "uch",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 123,
+"k": "str",
+"x": "to'rt",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 123,
+"k": "str",
+"x": "besh",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 123,
+"k": "str",
+"x": "olti",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 123,
+"k": "str",
+"x": "yetti",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 123,
+"k": "str",
+"x": "sakkiz",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 123,
+"k": "str",
+"x": ". Dars o'zlashtirilgan, Davom bosing.",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 124,
+"k": "str",
+"x": "Yaxshi, bir xatoyingizni ko'rib chiqdingiz. Qolgan qizil savollarning ekranlariga ham qayting. Tayyor bo'lgach, Sinovni qayta topshirish tugmasini bosing.",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 160,
+"k": "str",
+"x": "mk-btn soft sm",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 164,
+"k": "str",
+"x": "mk-btn ghost",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 173,
+"k": "str",
+"x": "#FFF0EB",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 174,
+"k": "str",
+"x": "mk-btn ready",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 186,
+"k": "str",
+"x": "Mongo ↔ PostgreSQL: collection — jadval, document — qator, ref — REFERENCES, populate — JOIN; qoida Mongo'da kodda, PostgreSQL'da jadvalda",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 186,
+"k": "str",
+"x": "jad",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 187,
+"k": "str",
+"x": "inst",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 187,
+"k": "str",
+"x": "O'rnatish: Windows — EDB o'rnatuvchisi, parol, port 5432, bin PATH'ga; Mac — Postgres.app; Homebrew bo'lsa createuser -s postgres",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 188,
+"k": "str",
+"x": "Baza o'zi tekshiradi: NOT NULL · UNIQUE · tashqi kalit · CHECK; xabar — qaysi jadval · qaysi qoida · qaysi qiymat (DETAIL)",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 189,
+"k": "str",
+"x": "JOIN: ON'da tashqi kalit id'ga tenglanadi; xato ON — xatosiz, lekin noto'g'ri natija; LEFT JOIN — juftsizlar ham",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 190,
+"k": "str",
+"x": "Oxirgi telefon: shart + qator qulfi → UPDATE 0; tranzaksiya — hammasi yoki hech narsa; jsonb — erkin qo'shimcha",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 190,
+"k": "str",
+"x": "jad",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 191,
+"k": "str",
+"x": "Sinf: m4-06 dan oldin har kompyuterda psql -U postgres -c \\\"SELECT version();\\\"; m4-03 kodsiz — har blokda bitta qo'shimcha gapingiz bor",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 193,
+"k": "str",
+"x": "So'rov",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 193,
+"k": "str",
+"x": "Qoidalar",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 193,
+"k": "str",
+"x": "jad",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 193,
+"k": "str",
+"x": "Jadval",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 193,
+"k": "str",
+"x": "Javob",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 200,
+"k": "str",
+"x": "mk-box${cur && cur.st.includes(k) ? ' hl' : ''}",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 205,
+"k": "str",
+"x": "Repo va g'oya: blog-db (yoki o'z nomingiz) · README.md — g'oya bir gapda + qaror ko'rsatkichining 4 savoliga javob (bog'langanmi, shakli qat'iymi, xato qimmatmi, ulkan-oddiy-tez kerakmi) + tanlov va sabab",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 206,
+"k": "str",
+"x": "schema.sql: 2 bog'langan jadval — PRIMARY KEY, kamida bitta NOT NULL, bitta UNIQUE, REFERENCES → \\\\d jadvalda Foreign-key qatori",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 206,
+"k": "str",
+"x": "psql -U postgres -c \"CREATE DATABASE <baza>;\"",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 207,
+"k": "str",
+"x": "data.sql: har jadvalga 3+ qator, bitta qator juftsiz (sardor kabi)",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 207,
+"k": "str",
+"x": "psql -U postgres -d <baza> -f data.sql",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 208,
+"k": "str",
+"x": "queries.sql: JOIN va LEFT JOIN — LEFT JOIN'da qatorlar JOIN'dan bittaga ko'p",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 208,
+"k": "str",
+"x": "psql -U postgres -d <baza> -f queries.sql",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 209,
+"k": "str",
+"x": "Ataylab buzing: yo'q id bilan INSERT → «violates foreign key constraint» → DETAIL satrini README'ga yozing",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 210,
+"k": "str",
+"x": "GitHub'ga chiqaring va repo linkini platformadagi uyga vazifangizga qo'ying",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 216,
+"k": "str",
+"x": "ying · port 5432 · Path",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 220,
+"k": "str",
+"x": "<so'rov>",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 226,
+"k": "str",
+"x": "q, natija noto",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 229,
+"k": "str",
+"x": "lsa COMMIT → ROLLBACK · jsonb: extra->>",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 231,
+"k": "str",
+"x": "ni ishga tushiring (Windows: Services → postgresql-x64-18 → Start · Mac: Postgres.app → Start) · relation … does not exist → prompt",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 236,
+"k": "str",
+"x": "lash bor, baza qo",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 237,
+"k": "str",
+"x": "quvchi darsidagi so",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 238,
+"k": "str",
+"x": "ozlar = document · id orqali bog",
+"m": true
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 243,
+"k": "str",
+"x": "<b>Barakalla!</b> Siz darsni yaxshi o'rgandingiz — bugungi darsni bir qarashda yig'amiz",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 243,
+"k": "str",
+"x": "Barakalla! Siz darsni yaxshi o'rgandingiz. Endi bugun o'rganganlaringizni bir qarashda yig'amiz.",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 244,
+"k": "str",
+"x": "Dars oxiriga yetdingiz — sinovni <b>qayta topshirishni</b> maslahat beraman",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 244,
+"k": "str",
+"x": "Dars oxiriga yetdingiz. Yakuniy sinovdan olti ball kerak edi, yakunlashdan oldin sinovni qayta topshirishni maslahat beraman. Hozir esa bugungi darsni bir qarashda yig'amiz.",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 245,
+"k": "str",
+"x": "Mongo ↔ PostgreSQL: <b>qoida Mongo'da kodda, PostgreSQL'da jadvalda</b>",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 245,
+"k": "str",
+"x": "Birinchi: siz bilgan Mongo tushunchalarining hammasi PostgreSQL'da bor. Collection jadval, document qator, ref tashqi kalit, populate JOIN. Asosiy farq: qoida Mongo'da kodda, PostgreSQL'da jadvalning o'zida.",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 246,
+"k": "str",
+"x": "O'rnatish: Windows'da <b>parol va PATH</b>, Mac'da Postgres.app",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 246,
+"k": "str",
+"x": "Ikkinchi: o'rnatish. Windows'da rasmiy o'rnatuvchi, parolni yozib qo'yish va bin papkasini Path'ga qo'shish. Mac'da Postgres.app. Homebrew bo'lsa, createuser minus s postgres.",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 246,
+"k": "str",
+"x": "inst",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 247,
+"k": "str",
+"x": "Baza o'zi tekshiradi — xabar <b>jadval, qoida va qiymatni</b> aytadi",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 247,
+"k": "str",
+"x": "Uchinchi: qoida buzilsa baza yozuvni saqlamaydi va sababni o'zi aytadi. Xabarni uch savol bilan o'qing: qaysi jadval, qaysi qoida, qaysi qiymat. Javob detail qatorida.",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 248,
+"k": "str",
+"x": "JOIN'da hammasi <b>ON satrida</b>; LEFT JOIN — juftsizlar ham",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 248,
+"k": "str",
+"x": "To'rtinchi: JOIN'da hammasi on satrida, tashqi kalit boshqa jadvalning id'siga tenglanadi. Xato on xato bermaydi, lekin natijani buzadi. Left join juftsiz qatorlarni ham chiqaradi.",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 249,
+"k": "str",
+"x": "Oxirgi telefon: <b>shart va qator qulfi</b>; tranzaksiya — hammasi yoki hech narsa",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 249,
+"k": "str",
+"x": "Beshinchi: oxirgi telefonni so'rovdagi shart va qator qulfi saqlaydi, ikkinchi xaridor update nol oladi. Bir nechta jadval birga o'zgarsa, tranzaksiya: xato bo'lsa hammasi bekor.",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 250,
+"k": "str",
+"x": "Sinf: m4-06 dan oldin <b>har kompyuterda psql</b> ochilsin",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 250,
+"k": "str",
+"x": "Oltinchi, sinf uchun eng muhimi: m4-06 dan oldin har sinf kompyuterida PostgreSQL ishlab tursin, bitta parol bilan. m4-03 kodsiz, lekin har blokda sizning bitta qo'shimcha gapingiz bor.",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 251,
+"k": "str",
+"x": "<b>Uyga vazifa</b>: o'quvchi amaliyotini o'zingiz — haqiqiy bazada",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 251,
+"k": "str",
+"x": "Uyga vazifa: o'quvchining amaliyotini o'zingiz to'liq qiling, lekin haqiqiy bazada. Bitta loyiha g'oyasini oling, masalan onlayn do'kon. README'da to'rt savolga javob yozing va bazani tanlang. Keyin uchta fayl: schema'da ikki bog'langan jadval, data'da ma'lumot, queries'da JOIN va left join. Bir marta tashqi kalit xatosini ataylab chiqaring.",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 252,
+"k": "str",
+"x": "Topshirish: GitHub'dagi repo linkini <b>platformadagi uyga vazifaga</b> qo'ying — boshqa hech narsa kerak emas",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 252,
+"k": "str",
+"x": "Xatoning detail qatorini README'ga yozing. GitHub'ga chiqaring va repo linkini platformadagi uyga vazifangizga qo'ying, boshqa hech narsa kerak emas. Qirq-oltmish daqiqa.",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 253,
+"k": "str",
+"x": "<b>Eslatmani oling</b>: lug'at, o'rnatish, psql, qoidalar, JOIN — bir sahifada",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 253,
+"k": "str",
+"x": "Pastda bir sahifalik eslatma: Mongo lug'ati, o'rnatish yo'llari, psql buyruqlari, qoidalar, JOIN, oxirgi telefon, ulanish xatolari va sinf kompyuterlari ro'yxati. Nusxalab yoki yuklab oling, sinfda yoningizda tursin.",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 254,
+"k": "str",
+"x": "Rahmat! <b>Darsni yakunlash</b> tugmasini bosing",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 254,
+"k": "str",
+"x": "Rahmat. Darsni yakunlash tugmasini bosing, dars tugallangan deb belgilanadi.",
+"m": false
+},
+{
+"f": "08-s23-s28.jsx",
+"l": 359,
+"k": "jsx",
+"x": "onFinish=",
+"m": true
+}
+]

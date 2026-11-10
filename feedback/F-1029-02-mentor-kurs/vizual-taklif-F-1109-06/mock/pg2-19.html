@@ -1,0 +1,32 @@
+<style>
+.s19 td.st{text-align:center;font-weight:700;width:64px}
+.s19 td.st.s2{color:#15803D}.s19 td.st.s4{color:#B45309}.s19 td.st.s5{color:#B91C1C}
+.s19 tr.k td{background:#FFFBEB}
+.s19 td.ar{color:#9CA3AF;text-align:center;width:22px;border-left:0;border-right:0}
+</style>
+<div class="z">
+  <div class="z-card">
+    <p class="z-h">Kim qaysi statusni beradi — server.js, haqiqiy javoblar</p>
+    <table class="z-tbl s19">
+      <tr><th>so'rov</th><th>SQL</th><th>baza javobi</th><th></th><th>status</th></tr>
+      <tr><td>GET /api/cars</td><td>SELECT *</td><td>3 ta qator</td><td class="ar">→</td><td class="st s2">200</td></tr>
+      <tr><td>POST /api/cars</td><td>INSERT … RETURNING *</td><td>yangi qator, id 4</td><td class="ar">→</td><td class="st s2">201</td></tr>
+      <tr><td>PUT /api/cars/2</td><td>UPDATE … WHERE id = $2</td><td>rowCount: 1</td><td class="ar">→</td><td class="st s2">200</td></tr>
+      <tr><td>DELETE /api/cars/1</td><td>DELETE … WHERE id = $1</td><td>rowCount: 1</td><td class="ar">→</td><td class="st s2">200</td></tr>
+      <tr class="k"><td>PUT /api/cars/99</td><td>UPDATE … WHERE id = $2</td><td><b>rowCount: 0</b> — xato emas</td><td class="ar">→</td><td class="st s4">404</td></tr>
+      <tr><td>har qaysi</td><td colspan="2">baza xato berdi → catch</td><td class="ar">→</td><td class="st s5">500</td></tr>
+    </table>
+  </div>
+  <div class="z-two">
+    <div class="z-card" style="border-color:#B45309">
+      <p class="z-h" style="color:#B45309">404 ni rowCount hal qiladi</p>
+      <div class="z-term"><span class="c">if</span> (result.rowCount === <span class="y">0</span>) <span class="c">return</span> res.status(<span class="y">404</span>).json({ error: <span class="g">'Mashina topilmadi'</span> });</div>
+      <span class="z-mut">Bu tekshiruv bo'lmasa javob 200 — yolg'on «o'zgardi»</span>
+    </div>
+    <div class="z-card">
+      <p class="z-h">POST javobida</p>
+      <div class="z-term">{"id":4,"model":"Chevrolet Spark",…,<span class="hl">"is_rented":null</span>}</div>
+      <span class="z-mut">ustun berilmadi, jadvalda DEFAULT yo'q → null</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,1 @@
+{"id":"jest2-06","dars":"Jest-2","ekran":6,"mavzu":"Tuzatish: replace va «9 ta nol»","naqsh":"A","tur":"taklif","oldin":"Ikki karta: «qoida tor edi» va «qoida keng».","keyin":["phone.ts 4-satr diff: trim() o'rniga replace(/[\\s-]/g, '').","Bir xil kirishlar eski va yangi qoidada: probel qatori tor joy, 000000000 qatori keng joy — sizning qaroringiz."],"blok":[2,2]}

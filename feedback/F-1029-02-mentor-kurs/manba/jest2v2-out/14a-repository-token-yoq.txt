@@ -1,0 +1,127 @@
+$ npx jest order.service
+FAIL src/api/order/order.service.spec.ts
+  OrderService.place
+    ✕ telefon yo'q — darhol xato (10 ms)
+    ✕ savat bo'sh — darhol xato (2 ms)
+    ✕ omborda yetmaydi — tranzaksiya ichida xato, UPDATE bo'lmaydi (2 ms)
+    ✕ yetarli — jami narx hisoblanadi (1 ms)
+
+  ● OrderService.place › telefon yo'q — darhol xato
+
+    Nest can't resolve dependencies of the OrderService (?, DataSource). Please make sure that the argument "OrderRepository" at index [0] is available in the RootTestModule module.
+
+    Potential solutions:
+    - Is RootTestModule a valid NestJS module?
+    - If "OrderRepository" is a provider, is it part of the current RootTestModule?
+    - If "OrderRepository" is exported from a separate @Module, is that module imported within RootTestModule?
+      @Module({
+        imports: [ /* the Module containing "OrderRepository" */ ]
+      })
+
+    For more common dependency resolution issues, see: https://docs.nestjs.com/faq/common-errors
+
+      21 | beforeEach(async () => {
+      22 |   jest.clearAllMocks();
+    > 23 |   const mod = await Test.createTestingModule({
+         |               ^
+      24 |     providers: [
+      25 |       OrderService,
+      26 |       { provide: DataSource, useValue: dataSource },
+
+      at TestingInjector.lookupComponentInParentModules (../node_modules/@nestjs/core/injector/injector.js:327:19)
+          at async Promise.all (index 0)
+          at async Promise.all (index 3)
+          at async Promise.all (index 1)
+      at Object.<anonymous> (api/order/order.service.spec.ts:23:15)
+
+  ● OrderService.place › savat bo'sh — darhol xato
+
+    Nest can't resolve dependencies of the OrderService (?, DataSource). Please make sure that the argument "OrderRepository" at index [0] is available in the RootTestModule module.
+
+    Potential solutions:
+    - Is RootTestModule a valid NestJS module?
+    - If "OrderRepository" is a provider, is it part of the current RootTestModule?
+    - If "OrderRepository" is exported from a separate @Module, is that module imported within RootTestModule?
+      @Module({
+        imports: [ /* the Module containing "OrderRepository" */ ]
+      })
+
+    For more common dependency resolution issues, see: https://docs.nestjs.com/faq/common-errors
+
+      21 | beforeEach(async () => {
+      22 |   jest.clearAllMocks();
+    > 23 |   const mod = await Test.createTestingModule({
+         |               ^
+      24 |     providers: [
+      25 |       OrderService,
+      26 |       { provide: DataSource, useValue: dataSource },
+
+      at TestingInjector.lookupComponentInParentModules (../node_modules/@nestjs/core/injector/injector.js:327:19)
+          at async Promise.all (index 0)
+          at async Promise.all (index 3)
+          at async Promise.all (index 1)
+      at Object.<anonymous> (api/order/order.service.spec.ts:23:15)
+
+  ● OrderService.place › omborda yetmaydi — tranzaksiya ichida xato, UPDATE bo'lmaydi
+
+    Nest can't resolve dependencies of the OrderService (?, DataSource). Please make sure that the argument "OrderRepository" at index [0] is available in the RootTestModule module.
+
+    Potential solutions:
+    - Is RootTestModule a valid NestJS module?
+    - If "OrderRepository" is a provider, is it part of the current RootTestModule?
+    - If "OrderRepository" is exported from a separate @Module, is that module imported within RootTestModule?
+      @Module({
+        imports: [ /* the Module containing "OrderRepository" */ ]
+      })
+
+    For more common dependency resolution issues, see: https://docs.nestjs.com/faq/common-errors
+
+      21 | beforeEach(async () => {
+      22 |   jest.clearAllMocks();
+    > 23 |   const mod = await Test.createTestingModule({
+         |               ^
+      24 |     providers: [
+      25 |       OrderService,
+      26 |       { provide: DataSource, useValue: dataSource },
+
+      at TestingInjector.lookupComponentInParentModules (../node_modules/@nestjs/core/injector/injector.js:327:19)
+          at async Promise.all (index 0)
+          at async Promise.all (index 3)
+          at async Promise.all (index 1)
+      at Object.<anonymous> (api/order/order.service.spec.ts:23:15)
+
+  ● OrderService.place › yetarli — jami narx hisoblanadi
+
+    Nest can't resolve dependencies of the OrderService (?, DataSource). Please make sure that the argument "OrderRepository" at index [0] is available in the RootTestModule module.
+
+    Potential solutions:
+    - Is RootTestModule a valid NestJS module?
+    - If "OrderRepository" is a provider, is it part of the current RootTestModule?
+    - If "OrderRepository" is exported from a separate @Module, is that module imported within RootTestModule?
+      @Module({
+        imports: [ /* the Module containing "OrderRepository" */ ]
+      })
+
+    For more common dependency resolution issues, see: https://docs.nestjs.com/faq/common-errors
+
+      21 | beforeEach(async () => {
+      22 |   jest.clearAllMocks();
+    > 23 |   const mod = await Test.createTestingModule({
+         |               ^
+      24 |     providers: [
+      25 |       OrderService,
+      26 |       { provide: DataSource, useValue: dataSource },
+
+      at TestingInjector.lookupComponentInParentModules (../node_modules/@nestjs/core/injector/injector.js:327:19)
+          at async Promise.all (index 0)
+          at async Promise.all (index 3)
+          at async Promise.all (index 1)
+      at Object.<anonymous> (api/order/order.service.spec.ts:23:15)
+
+Test Suites: 1 failed, 1 total
+Tests:       4 failed, 4 total
+Snapshots:   0 total
+Time:        0.74 s, estimated 1 s
+Ran all test suites matching order.service.
+[chiqish kodi: 1]
+

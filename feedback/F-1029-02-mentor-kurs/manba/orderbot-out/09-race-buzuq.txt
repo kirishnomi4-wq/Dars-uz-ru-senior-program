@@ -1,0 +1,7 @@
+# 04.11 — 5 xaridor, 1 ta Planshet, bir vaqtda checkout (/tmp/claude-1000/-home-kali-Desktop-internetLesson/93105f50-e3b6-402e-adf2-378a274a0d3c/scratchpad/race5/race5.cjs), har variant 5 raund
+buzuq (findOneBy → if → p.stock = … → save, qulfsiz) — order.service.ts 31–37:
+  sotildi/ombor: 1/0  5/0  5/0  5/0  5/0   ← 4/5 raundda bitta Planshet 5 kishiga sotildi, CHECK (stock >= 0) xato bermadi (yozilgan qiymat 0)
+tgpg-done (findOne + lock pessimistic_write → UPDATE stock - qty):
+  sotildi/ombor: 1/0  1/0  1/0  1/0  1/0
+
+2 xaridorli smoke race (10-smoke-buzuq.txt) buzuq variantni USHLAMADI: 1 sotildi — tranzaksiya tez tugaydi, 2-chi START 1-chi COMMIT'dan keyin (SQL log). Smoke race 5 xaridor × 3 raundga kuchaytirildi.

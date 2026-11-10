@@ -1,0 +1,20 @@
+PAIRS = [
+ ('05-s01-s13.jsx', r'''<pre className="pg-mg"><b>Mongoose'da</b> (siz bilgan):{'\n'}{MG3}</pre>''',
+  r'''<pre className="pg-mg">{t(<><b>Mongoose'da</b> (siz bilgan):</>, <><b>В Mongoose</b> (знакомое вам):</>)}{'\n'}{t(MG3, RS('MG3'))}</pre>'''), ('05-s01-s13.jsx', r'''<code>WHERE</code>'siz <code>UPDATE</code> — <b>hammasi</b>''', r'''{t(<><code>WHERE</code>'siz <code>UPDATE</code> — <b>hammasi</b></>, <><code>UPDATE</code> без <code>WHERE</code> — <b>все строки</b></>)}'''),
+ ('05-s01-s13.jsx', r'''<div className="mk-rule">Xavfli UPDATE/DELETE — avval <code>BEGIN</code> ichida · <code>SELECT</code>{t(" bilan ko'ring · to'g'ri bo'lsa ", " посмотрите через · если верно ")}<code>COMMIT</code>{t(", noto'g'ri bo'lsa ", ", если нет ")}<code>ROLLBACK</code></div>''',
+  r'''<div className="mk-rule">{t(<>Xavfli UPDATE/DELETE — avval <code>BEGIN</code> ichida · <code>SELECT</code> bilan ko'ring · to'g'ri bo'lsa <code>COMMIT</code>, noto'g'ri bo'lsa <code>ROLLBACK</code></>, <>Опасный UPDATE/DELETE — сначала внутри <code>BEGIN</code> · проверьте через <code>SELECT</code> · если верно — <code>COMMIT</code>, если нет — <code>ROLLBACK</code></>)}</div>'''),
+ ('06-s14-s27.jsx', r'''HINT <b>taxmin</b>{t(" qiladi: ", " делает: ")}<code>name</code> ni taklif qildi, kerakli ustun esa <code>price</code>. Ishonchli manba — <code>\d products</code>.''',
+  r'''{t(<>HINT <b>taxmin</b> qiladi: <code>name</code> ni taklif qildi, kerakli ustun esa <code>price</code>. Ishonchli manba — <code>\d products</code>.</>, <>HINT <b>гадает</b>: предложил <code>name</code>, а нужная колонка — <code>price</code>. Надёжный источник — <code>\d products</code>.</>)}'''),
+ ('06-s14-s27.jsx', r'''Xabardagi nomni <code>\d products</code>{t(" bilan solishtiring · ", " сравните с · ")}''',
+  r'''{t(<>Xabardagi nomni <code>\d products</code> bilan solishtiring · </>, <>Сравните имя из сообщения с <code>\d products</code> · </>)}'''),
+ ('06-s14-s27.jsx', r'''" . На следующем экране остальные три endpoint''', r'''". На следующем экране остальные три endpoint'''),
+ ('06-s14-s27.jsx', r'''{t(". Endi eng muhim savol: nega qiymatlar ", ". Теперь самый важный вопрос: почему значения ")}<code>$1</code>{t(" bilan.", " через.")}''',
+  r'''{t(". Endi eng muhim savol: nega qiymatlar ", ". Теперь самый важный вопрос: почему значения передаются через ")}<code>$1</code>{t(" bilan.", "?")}'''),
+ ('06-s14-s27.jsx', r'''<div className="pg-lab">2-oyna · yangi kod <span className="tm">xato yo'q</span></div><Psql title="terminal 2"''',
+  r'''<div className="pg-lab">{t("2-oyna · yangi kod ", "2-е окно · новый код ")}<span className="tm">{t("xato yo'q", "ошибки нет")}</span></div><Psql title={t("terminal 2", "терминал 2")}'''),
+ ('06-s14-s27.jsx', r'''const shamaNote = <div className="mk-tag" style={{ margin: 0 }}>Shartli namuna — Gemini har safar boshqacha yozadi, mazmuni shu</div>;''', r'''function ShamaNoteC() { return <div className="mk-tag" style={{ margin: 0 }}>{t("Shartli namuna — Gemini har safar boshqacha yozadi, mazmuni shu", "Условный образец — Gemini каждый раз пишет по-разному, суть такая")}</div>; } // t() render paytida (modul darajasida LANG hali uz)
+const shamaNote = <ShamaNoteC />;'''),
+ ('06-s14-s27.jsx', r'''<CodePanel file="nega — Express manbasi"''', r'''<CodePanel file={t("nega — Express manbasi", "почему — исходник Express")}'''),
+ ('06-s14-s27.jsx', r'''<div className="mk-rule">Bitta loyiha — <b>bitta terminal</b>. Qayta ishga tushirishdan oldin <code>Ctrl+C</code>. «O'zgarmadi» desa — birinchi savol: boshqa terminalda server ochiq qolmadimi?</div>''',
+  r'''<div className="mk-rule">{t(<>Bitta loyiha — <b>bitta terminal</b>. Qayta ishga tushirishdan oldin <code>Ctrl+C</code>. «O'zgarmadi» desa — birinchi savol: boshqa terminalda server ochiq qolmadimi?</>, <>Один проект — <b>один терминал</b>. Перед перезапуском — <code>Ctrl+C</code>. Если говорят «не изменилось» — первый вопрос: не остался ли сервер открыт в другом терминале?</>)}</div>'''),
+]

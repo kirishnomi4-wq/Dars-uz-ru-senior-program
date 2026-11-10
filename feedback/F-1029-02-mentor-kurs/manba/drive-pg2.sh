@@ -27,7 +27,7 @@ $B/pg_ctl -D "$R/a" -o "-p $PORT -k /tmp -c listen_addresses=localhost" -l "$R/a
 A -c 'CREATE DATABASE shop;' >/dev/null
 { Q shop "CREATE TABLE products (id SERIAL PRIMARY KEY, name TEXT, price INTEGER, stock INTEGER);" \
     "INSERT INTO products (name, price, stock) VALUES ('Klaviatura', 120000, 8), ('Sichqoncha', 75000, 15), ('Quloqchin', 95000, 5);" \
-    "INSERT INTO products (name, price, stock) VALUES ('Mishka', 50000, 10);" \
+    "INSERT INTO products (name, price, stock) VALUES ('Kolonka', 50000, 10);" \
     "SELECT * FROM products;" "SELECT name, price FROM products;"
 } > "$OUT/01-create-insert-select.txt"
 # 02 WHERE

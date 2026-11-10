@@ -1,0 +1,34 @@
+$ npx jest order.service -t omborda
+FAIL src/api/order/order.service.spec.ts
+  OrderService.place
+    ✕ omborda yetmaydi — tranzaksiya ichida xato, UPDATE bo'lmaydi (28 ms)
+    ○ skipped telefon yo'q — darhol xato
+    ○ skipped savat bo'sh — darhol xato
+    ○ skipped yetarli — jami narx hisoblanadi
+
+  ● OrderService.place › omborda yetmaydi — tranzaksiya ichida xato, UPDATE bo'lmaydi
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected substring: "Planshet: omborda faqat 9 ta qoldi"
+    Received message:   "Kolonka: omborda faqat 1 ta qoldi"
+
+          35 |         if (!p) throw new Error(`Mahsulot topilmadi: ${c.product.name}`);
+          36 |         if (p.stock < c.qty) {
+        > 37 |           throw new Error(`${p.name}: omborda faqat ${p.stock} ta qoldi`);
+             |                 ^
+          38 |         }
+          39 |         // 2) Ayiramiz. Bazadagi CHECK (stock >= 0) — oxirgi qo'riqchi: kod xato qilsa ham manfiy bo'lmaydi.
+          40 |         //    Diqqat: tranzaksiya ichida xato chiqsa, keyingi so'rovlar ham rad etiladi
+
+      at api/order/order.service.ts:37:17
+      at Object.<anonymous> (api/order/order.service.spec.ts:51:5)
+      at Object.<anonymous> (api/order/order.service.spec.ts:51:53)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 3 skipped, 4 total
+Snapshots:   0 total
+Time:        0.733 s, estimated 1 s
+Ran all test suites matching order.service with tests matching "omborda".
+[chiqish kodi: 1]
+

@@ -1,0 +1,32 @@
+# ws1-done push → GitHub Actions (main, run 41856397400) — test va smoke (live bilan)
+# https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41856397400
+
+✓ main CI · 41856397400
+Triggered via push about 1 minute ago
+
+JOBS
+✓ test in 27s (ID 126666088669)
+✓ smoke in 32s (ID 126666387866)
+
+ANNOTATIONS
+
+
+smoke: .github#2
+
+smoke: .github#1
+
+
+For more information about a job, try: gh run view --job=<job-id>
+View this run on GitHub: https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41856397400
+## smoke logi (live)
+  ✓ telefon kutish restartdan o'tdi → «Buyurtma #1 qabul qilindi!»
+  ✓ savat restartdan o'tdi → «Savat:»
+  ✓ buyurtma restartdan o'tdi → «#1 · Aziza · 120 000 so'm · 🆕 Yangi»
+  ✓ ortiqcha sotilmadi (sotildi/ombor): 1/0  1/0  1/0
+  ✓ ikki marta bir vaqtda bekor — ombor bir marta qaytdi: 0 → 1
+— live: jonli panel — tokensiz ulanish, yangi buyurtma va holat o'zgarishi
+  ✓ tokensiz ulanish — server yopdi: io server disconnect
+  ✓ yangi buyurtma → order-changed {"orderId":5,"reason":"new"}
+  ✓ GET /admin/orders 200 — eng yuqorida #5 · Bobur
+  ✓ admin tasdiqladi → order-changed {"orderId":5,"reason":"status"}
+NATIJA: 9/9 ✓

@@ -1,0 +1,2431 @@
+[
+{
+"f": "04-yordam.jsx",
+"l": 9,
+"k": "str",
+"x": "mentor-cicd-01-lenta-v1",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 10,
+"k": "str",
+"x": "Lenta: OrderBotNest'ning testlari har push'da o'zi yuradi",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 11,
+"k": "str",
+"x": "#7C3AED",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 12,
+"k": "str",
+"x": "OrderBotNest",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 31,
+"k": "str",
+"x": "src/config/",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 31,
+"k": "str",
+"x": "README.md",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 56,
+"k": "str",
+"x": "npx tsc no emit",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 56,
+"k": "str",
+"x": "npx tsc --noEmit",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 58,
+"k": "str",
+"x": "git checkout jest ikki done",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 58,
+"k": "str",
+"x": "jest ikki done",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 61,
+"k": "str",
+"x": "TS ikki uch ikki ikki",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 64,
+"k": "str",
+"x": "o'ttiz oltinchi satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 64,
+"k": "str",
+"x": "36-satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 64,
+"k": "str",
+"x": "o'ttiz yettinchi satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 64,
+"k": "str",
+"x": "37-satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 64,
+"k": "str",
+"x": "o'n oltinchi satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 64,
+"k": "str",
+"x": "16-satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 64,
+"k": "str",
+"x": "yigirmanchi satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 64,
+"k": "str",
+"x": "20-satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 64,
+"k": "str",
+"x": "o'ttizinchi satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 64,
+"k": "str",
+"x": "30-satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 65,
+"k": "str",
+"x": "sakkizinchi satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 65,
+"k": "str",
+"x": "8-satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 65,
+"k": "str",
+"x": "yettinchi satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 65,
+"k": "str",
+"x": "7-satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 65,
+"k": "str",
+"x": "uchinchidan beshinchi satrgacha",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 65,
+"k": "str",
+"x": "3–5-satrlar",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 65,
+"k": "str",
+"x": "birinchi ikki satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 65,
+"k": "str",
+"x": "1–2-satrlar",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 65,
+"k": "str",
+"x": "oxirgi to'rt satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 65,
+"k": "str",
+"x": "12–15-satrlar",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 66,
+"k": "str",
+"x": "olti yuz o'ttiz uchta",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 66,
+"k": "str",
+"x": "o'n besh soniya",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 66,
+"k": "str",
+"x": "15 soniya",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 66,
+"k": "str",
+"x": "olti soniya",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 66,
+"k": "str",
+"x": "6 soniya",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 66,
+"k": "str",
+"x": "uch soniya",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 66,
+"k": "str",
+"x": "3 soniya",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 66,
+"k": "str",
+"x": "ikki soniya",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 66,
+"k": "str",
+"x": "2 soniya",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 66,
+"k": "str",
+"x": "to'rt soniya",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 66,
+"k": "str",
+"x": "4 soniya",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 67,
+"k": "str",
+"x": "yuz yigirma yetti",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 67,
+"k": "str",
+"x": "yigirma to'rt",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 67,
+"k": "str",
+"x": "yigirma ikki",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 67,
+"k": "str",
+"x": "to'rt o'n olti nol",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 67,
+"k": "str",
+"x": "to'rt o'n olti uch",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 67,
+"k": "str",
+"x": "o'n besh satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 67,
+"k": "str",
+"x": "15 satr",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 67,
+"k": "str",
+"x": "o'n bir",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 67,
+"k": "str",
+"x": "o'n",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 68,
+"k": "str",
+"x": "yigirma besh",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 68,
+"k": "str",
+"x": "yigirma olti",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 68,
+"k": "str",
+"x": "yigirma daqiqa",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 68,
+"k": "str",
+"x": "20 daqiqa",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 68,
+"k": "str",
+"x": "o'n ikki daqiqa",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 68,
+"k": "str",
+"x": "12 daqiqa",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 68,
+"k": "str",
+"x": "yigirma ekran",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 68,
+"k": "str",
+"x": "20 ekran",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 68,
+"k": "str",
+"x": "besh nuqta",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 68,
+"k": "str",
+"x": "5 nuqta",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 83,
+"k": "str",
+"x": "<span class=\"s\">${escH(str)}</span>",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 86,
+"k": "str",
+"x": "<span class=\"d\">${num}</span>",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 120,
+"k": "str",
+"x": "VS Code terminali · OrderBotNest",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 133,
+"k": "str",
+"x": ".github/workflows/ci.yml${KOD[k].tag && KOD[k].tag !== 'cicd1-done' ? ' · ' + KOD[k].tag : ''}",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 136,
+"k": "str",
+"x": "ai-card${hl ? ' hl' : ''}",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 143,
+"k": "str",
+"x": "mk-box${hl ? ' hl' : ''}",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 145,
+"k": "str",
+"x": "${i < on ? 'on' : ''}${bad === i ? ' bad' : ''}",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 161,
+"k": "str",
+"x": "paketlar o'rnatildimi?",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 161,
+"k": "str",
+"x": "npx tsc --noEmit",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 161,
+"k": "str",
+"x": "turlar to'g'rimi?",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 161,
+"k": "str",
+"x": "testlar yashilmi?",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 161,
+"k": "str",
+"x": "dist yig'ildimi?",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 162,
+"k": "str",
+"x": "✓ yashil",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 162,
+"k": "str",
+"x": "✗ qizil",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 162,
+"k": "str",
+"x": "— yurmadi",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 165,
+"k": "str",
+"x": "${st[k] || ''}${hl.includes(k) ? ' hl' : ''}${dim && !hl.includes(k) ? ' dim' : ''}",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 172,
+"k": "str",
+"x": "c1-mach ${m.st || ''}${hl === side ? ' hl' : ''}",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 191,
+"k": "jsx",
+"x": "OrderBotNest · Actions",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 191,
+"k": "jsx",
+"x": "haqiqiy run · #",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 196,
+"k": "str",
+"x": "jb ${x.st}${i === 0 ? ' on' : ''}",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 198,
+"k": "str",
+"x": "st ${st}${hs.includes(n) || hs.includes(i) ? ' hl' : ''}",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 208,
+"k": "jsx",
+"x": "OrderBotNest · Actions",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 209,
+"k": "str",
+"x": "row ${r.st}${hl.includes(k) ? ' hl' : ''}",
+"m": false
+},
+{
+"f": "04-yordam.jsx",
+"l": 237,
+"k": "jsx",
+"x": ";color:#fff;background:$",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 248,
+"k": "jsx",
+"x": ";color:#fff;background:$",
+"m": true
+},
+{
+"f": "04-yordam.jsx",
+"l": 253,
+"k": "jsx",
+"x": ";color:#fff;background:$",
+"m": true
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 5,
+"k": "str",
+"x": "Umumiy tushuncha",
+"m": true
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 5,
+"k": "str",
+"x": "Lenta qo'lda",
+"m": true
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 5,
+"k": "str",
+"x": "To'rt tuzoq",
+"m": true
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 5,
+"k": "str",
+"x": "Mashina farqi va AI",
+"m": true
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 5,
+"k": "str",
+"x": "CD va sinfga tayyorgarlik",
+"m": true
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 19,
+"k": "str",
+"x": "cicd",
+"m": true
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 24,
+"k": "jsx",
+"x": "→ yashil →",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 25,
+"k": "jsx",
+"x": "Hamkor:",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 25,
+"k": "jsx",
+"x": "qizil",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 26,
+"k": "jsx",
+"x": "Kod bir xil, mashina boshqa:",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 26,
+"k": "jsx",
+"x": "boshqa · Node boshqa ·",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 26,
+"k": "jsx",
+"x": "boshqa",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 29,
+"k": "jsx",
+"x": "toza mashina",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 30,
+"k": "jsx",
+"x": "Javob hammaga bir xil:",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 30,
+"k": "jsx",
+"x": "yashil",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 30,
+"k": "jsx",
+"x": "qizil",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 33,
+"k": "str",
+"x": "cicd",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 34,
+"k": "jsx",
+"x": "tekshirish",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 35,
+"k": "jsx",
+"x": "Tekshirilgan yukni",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 35,
+"k": "jsx",
+"x": "chiqarish",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 35,
+"k": "jsx",
+"x": "— paket tayyor, odam tugmani bosadi.",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 38,
+"k": "jsx",
+"x": "Bugun",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 40,
+"k": "jsx",
+"x": "CI — to'liq",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 42,
+"k": "jsx",
+"x": "CD — chegaragacha",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 43,
+"k": "jsx",
+"x": "keyingi mentor darsi",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 52,
+"k": "str",
+"x": "yashil — buyruq tugadi, xato yo\\'q",
+"m": true
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 52,
+"k": "str",
+"x": "qizil — Jest: test yiqildi",
+"m": true
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 52,
+"k": "str",
+"x": "npm test → FAIL … [chiqish kodi: 1] (02)",
+"m": true
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 52,
+"k": "str",
+"x": "qizil — tsc: tur xatosi",
+"m": true
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 52,
+"k": "str",
+"x": "npx tsc --noEmit → error TS2322 (06)",
+"m": true
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 52,
+"k": "str",
+"x": "qizil — buyruq topilmadi",
+"m": true
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 63,
+"k": "jsx",
+"x": "Birinchi",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 63,
+"k": "jsx",
+"x": "qizil",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 63,
+"k": "jsx",
+"x": "1 berdi →",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 63,
+"k": "jsx",
+"x": "yurmadi",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 63,
+"k": "jsx",
+"x": ". Buzuq kod yig'ilmaydi.",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 78,
+"k": "str",
+"x": "VS Code terminali · OrderBotNest (yangi clone, jest2-done)",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 79,
+"k": "str",
+"x": "VS Code terminali · OrderBotNest",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 80,
+"k": "str",
+"x": "VS Code terminali · OrderBotNest",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 83,
+"k": "str",
+"x": "rt buyruq · jami <b>≈ 15 soniya</b> · to",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 83,
+"k": "jsx",
+"x": "To'rt buyruq · jami",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 83,
+"k": "jsx",
+"x": "· to'rtala chiqish kodi",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 94,
+"k": "str",
+"x": "VS Code terminali · toza clone, npm ci yurmagan",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 97,
+"k": "str",
+"x": "VS Code terminali · npm ci",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 111,
+"k": "str",
+"x": "order.service.ts · buzilgan",
+"m": false
+},
+{
+"f": "05-s01-s07.jsx",
+"l": 112,
+"k": "str",
+"x": "VS Code terminali · npm ci && npx tsc --noEmit && npm test && npm run build",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 6,
+"k": "str",
+"x": "1-qadam · paketlar o'rnatildimi?",
+"m": true
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 6,
+"k": "str",
+"x": "- run: npx tsc --noEmit",
+"m": true
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 6,
+"k": "str",
+"x": "2-qadam · turlar to'g'rimi?",
+"m": true
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 6,
+"k": "str",
+"x": "3-qadam · testlar yashilmi?",
+"m": true
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 6,
+"k": "str",
+"x": "4-qadam · dist yig'ildimi?",
+"m": true
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 26,
+"k": "str",
+"x": "Run npx tsc --noEmit",
+"m": true
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 27,
+"k": "str",
+"x": "Run npx tsc --noEmit",
+"m": true
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 30,
+"k": "str",
+"x": "VS Code terminali · OrderBotNest",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 33,
+"k": "str",
+"x": "dagi haqiqiy run #{KOD.RUNS[",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 33,
+"k": "jsx",
+"x": "push → toza mashina →",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 33,
+"k": "jsx",
+"x": "yashil",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 33,
+"k": "jsx",
+"x": "(GitHub'dagi haqiqiy run #",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 40,
+"k": "str",
+"x": "$ git commit -am \"sinov: chegara buzildi (< → <=)\"\\n$ git push",
+"m": true
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 42,
+"k": "str",
+"x": "npm test chiqish kodi 1 berdi (chegara testi qizil)",
+"m": true
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 42,
+"k": "str",
+"x": "Lenta shu qadamda to'xtadi — npm run build «skipped»",
+"m": true
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 42,
+"k": "str",
+"x": "Buzuq kod yig'ilmadi, hech qayerga chiqmadi",
+"m": true
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 42,
+"k": "str",
+"x": "Satrni tiklab push qilsangiz — run yana yashil",
+"m": true
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 46,
+"k": "str",
+"x": "order.service.ts · buzilgan",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 61,
+"k": "str",
+"x": "VS Code terminali · npx tsc --noEmit",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 63,
+"k": "str",
+"x": "Run npx tsc --noEmit",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 81,
+"k": "str",
+"x": "Sizning mashinangiz",
+"m": true
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 81,
+"k": "str",
+"x": "papka",
+"m": true
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 81,
+"k": "str",
+"x": "OrderBotNest/ — to'la",
+"m": true
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 81,
+"k": "str",
+"x": "bor",
+"m": true
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 82,
+"k": "str",
+"x": "Runner · checkout yo'q",
+"m": true
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 82,
+"k": "str",
+"x": "papka",
+"m": true
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 82,
+"k": "str",
+"x": "/home/runner/work/OrderBotNest/OrderBotNest — bo\\'sh",
+"m": true
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 82,
+"k": "str",
+"x": "yo'q",
+"m": true
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 82,
+"k": "str",
+"x": "Kodni mashinaga actions/checkout olib keladi. U yo'q — papka bo'sh, xabar esa «lock yarating» deydi.",
+"m": true
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 92,
+"k": "jsx",
+"x": "birinchi qadam —",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 100,
+"k": "str",
+"x": "\"telegraf\"",
+"m": true
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 101,
+"k": "str",
+"x": "    \"telegraf\": \"4.16.0\",",
+"m": true
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 104,
+"k": "str",
+"x": "package.json: telegraf 4.16.0 (qo\\'lda), package-lock.json: 4.16.3 (eski)",
+"m": true
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 104,
+"k": "str",
+"x": "npm ci lock fayldan AYNAN o'rnatadi — bir baytini ham o'zgartirmaydi",
+"m": true
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 104,
+"k": "str",
+"x": "Mos kelmasa — taxmin qilmaydi, qizil beradi: «in sync» emas",
+"m": true
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 104,
+"k": "str",
+"x": "Lokalda npm install → lock yangilanadi → lock ham commit'ga",
+"m": true
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 109,
+"k": "str",
+"x": "PKG_TELEGRAF",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 110,
+"k": "str",
+"x": "LOCK_TELEGRAF",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 115,
+"k": "str",
+"x": "npm ci — lentada",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 115,
+"k": "jsx",
+"x": "aynan",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 115,
+"k": "jsx",
+"x": "mos kelmasa —",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 115,
+"k": "jsx",
+"x": "qizil",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 115,
+"k": "jsx",
+"x": ". Hamma mashina bir xil paketlarni oladi.",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 116,
+"k": "str",
+"x": "npm install — lokalda",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 130,
+"k": "str",
+"x": "user.service.ts · buzilgan",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 130,
+"k": "str",
+"x": "VS Code terminali · npx tsc --noEmit · npm test",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 131,
+"k": "str",
+"x": "Yolg'on yashil",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 132,
+"k": "str",
+"x": "Run npx tsc --noEmit",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 135,
+"k": "str",
+"x": "gacha bormay to",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 135,
+"k": "jsx",
+"x": "npx tsc --noEmit",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 135,
+"k": "jsx",
+"x": "dan keyin,",
+"m": false
+},
+{
+"f": "06-s08-s16.jsx",
+"l": 135,
+"k": "jsx",
+"x": "dan oldin: 3 soniya, build'gacha bormay to'xtatadi.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 8,
+"k": "str",
+"x": "Sizning mashinangiz",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 8,
+"k": "str",
+"x": "✓ (4-ekran)",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 9,
+"k": "str",
+"x": "npm 10 lock fayldagi bitta yozuvni (peer paket) boshqacha o'qiydi va «yo'q» deb hisoblaydi.",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 15,
+"k": "str",
+"x": "Birinchi run — 04.11 17:40",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 30,
+"k": "jsx",
+"x": "ci.yml · push · yashil / qizil run · to'rt tuzoq",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 35,
+"k": "str",
+"x": "1-AI (kuchli model)",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 36,
+"k": "str",
+"x": "2-AI (kuchsizroq model)",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 36,
+"k": "jsx",
+"x": ", job nomi «Jest testlar».",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 36,
+"k": "jsx",
+"x": ". YAML ✓.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 40,
+"k": "jsx",
+"x": "(mashinangizni so'ramadi) ·",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 40,
+"k": "jsx",
+"x": "— prompt «testlar yursin» dedi, AI aynan shuni qildi.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 48,
+"k": "str",
+"x": "Kutubxonalarni o'rnatish",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 49,
+"k": "str",
+"x": "Bog'liqliklarni o'rnatish",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 50,
+"k": "str",
+"x": "Testlar",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 52,
+"k": "str",
+"x": "checkout bormi?",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 52,
+"k": "str",
+"x": "node-version — mening `node --version` raqamimmi?",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 52,
+"k": "str",
+"x": "npm ci mi (install emas)?",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 52,
+"k": "str",
+"x": "tsc va build qadamlari bormi?",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 56,
+"k": "str",
+"x": "Kutubxonalarni o'rnatish",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 56,
+"k": "str",
+"x": "Bog'liqliklarni o'rnatish",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 57,
+"k": "str",
+"x": "Testlar",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 57,
+"k": "str",
+"x": "Node.js 22 o'rnatish",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 57,
+"k": "str",
+"x": "Testlar",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 58,
+"k": "jsx",
+"x": ": 15-ekrandagi tur xatosini push qilsangiz — run",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 58,
+"k": "jsx",
+"x": "yashil",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 58,
+"k": "jsx",
+"x": "qoladi.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 70,
+"k": "str",
+"x": "ci.yml · AI yozgan (namuna)",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 91,
+"k": "str",
+"x": "srv",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 91,
+"k": "str",
+"x": "0 0 0 4px color-mix(in srgb, ${c} 18%, transparent)",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 93,
+"k": "str",
+"x": "npm ci · tsc · test · build — yashil",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 94,
+"k": "str",
+"x": "Paket tayyor",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 94,
+"k": "str",
+"x": "dist/ — lekin .env yo\\'q, baza yo\\'q",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 95,
+"k": "str",
+"x": "Delivery — odam «chiqar» tugmasini bosadi · Deployment — lenta o\\'zi",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 96,
+"k": "str",
+"x": "srv",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 96,
+"k": "str",
+"x": "bot yuradigan joy: DATABASE_URL, BOT_TOKEN — Secrets",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 105,
+"k": "str",
+"x": "Maxfiy qiymatlar",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 107,
+"k": "str",
+"x": "Chiqarish buyrug'i",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 109,
+"k": "jsx",
+"x": "Bugun:",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 109,
+"k": "jsx",
+"x": "CI to'liq",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 109,
+"k": "jsx",
+"x": "CD chegarasi",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 116,
+"k": "str",
+"x": "lenta · chamadon",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 116,
+"k": "str",
+"x": "Yig'ish · Skaner · O'rash · Uchirish",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 116,
+"k": "str",
+"x": "O'lcham ramkasi",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 116,
+"k": "str",
+"x": "eslint . — OrderBotNest'da yo'q, o'quvchi reposida bor",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 116,
+"k": "str",
+"x": "start signali · yo'l xaritasi · lenta mashinasi",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 116,
+"k": "str",
+"x": "qizil chiroq — lenta to'xtaydi",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 116,
+"k": "str",
+"x": "chiqish kodi 0 emas — keyingi qadamlar «skipped»",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 116,
+"k": "str",
+"x": "seyf",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 116,
+"k": "str",
+"x": "GitHub Secrets (keyingi dars)",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 117,
+"k": "str",
+"x": "actions/checkout satri — o'quvchi ci.yml'ida yo'q (13-ekran): amaliyotda «bitta qator qo'shing»",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 117,
+"k": "str",
+"x": "amaliyot, ci.yml",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 117,
+"k": "str",
+"x": "npm ci vs npm install — o'quvchi install yozadi; sinfda sabab bir gapda (14-ekran)",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 117,
+"k": "str",
+"x": "haqiqiy Actions run'ini bir marta ekranda ko'rsatish: qizil qadam, skipped",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 117,
+"k": "str",
+"x": "amaliyot oxiri",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 117,
+"k": "str",
+"x": "«lokalda yashil, lentada qizil» — Node versiyasi (17-ekran)",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 117,
+"k": "str",
+"x": "o'quvchi shikoyat qilganda",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 119,
+"k": "str",
+"x": "Actions'da run yo'q",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 119,
+"k": "str",
+"x": "fayl .github/workflows/ da emas yoki push bormagan",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 120,
+"k": "str",
+"x": "npm install / npm test qizil",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 120,
+"k": "str",
+"x": "Could not read package.json … ENOENT",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 120,
+"k": "str",
+"x": "checkout satri yo'q — papka bo'sh",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 121,
+"k": "str",
+"x": "Run qizil, job yo'q",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 121,
+"k": "str",
+"x": "YAML surilish / runs-on yo'q",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 124,
+"k": "str",
+"x": "«Lenta mening kompyuterimda yuradimi?»",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 124,
+"k": "str",
+"x": "Yo'q — GitHub'dagi toza mashinada; shuning uchun checkout va npm install kerak.",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 125,
+"k": "str",
+"x": "«Nega npm install yana? Menda bor-ku»",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 125,
+"k": "str",
+"x": "Toza mashinada node_modules yo'q — har run'da yangidan.",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 126,
+"k": "str",
+"x": "«Qizil bo'lsa sayt buziladimi?»",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 126,
+"k": "str",
+"x": "Yo'q — qizil kod chiqmaydi, lenta to'xtaydi; bu himoya.",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 127,
+"k": "str",
+"x": "«Deploy qayerga?»",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 127,
+"k": "str",
+"x": "Bu CD — keyingi darslarda; hozir lenta tekshiradi, chiqarmaydi.",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 133,
+"k": "str",
+"x": "dict",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 137,
+"k": "jsx",
+"x": "Aeroport lentasi",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 137,
+"k": "jsx",
+"x": "— chamadon (kod) → Yig'ish",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 137,
+"k": "jsx",
+"x": "→ O'lcham ramkasi",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 137,
+"k": "jsx",
+"x": "eslint .",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 137,
+"k": "jsx",
+"x": "→ O'rash",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 137,
+"k": "jsx",
+"x": "→ Uchirish (deploy) ·",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 138,
+"k": "str",
+"x": "Siz · bugun",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 138,
+"k": "jsx",
+"x": "OrderBotNest ·",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 140,
+"k": "str",
+"x": "dict",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 140,
+"k": "str",
+"x": "pg-dict",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 141,
+"k": "str",
+"x": "pg-dict",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 141,
+"k": "jsx",
+"x": "Siz qo'shasiz",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 159,
+"k": "str",
+"x": "Hammasini ko'rib chiqdingiz, endi o'zingizni tekshiring. Yakuniy sinov, sakkiz savol: CI nima qiladi, chiqish kodi, lenta qayerda to'xtaydi, to'rt tuzoq, Node versiyasi va AI workflow'i. Har savolda bitta urinish, javobdan keyin to'g'risi va izohi ochiladi. Olti va undan ko'p, dars o'zlashtirilgan. Kam bo'lsa, ko'rsatilgan ekranlarga qaytib, sinovni qayta topshirasiz.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 161,
+"k": "str",
+"x": "Natijangiz saqlangan: sakkizdan ",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 161,
+"k": "str",
+"x": "nol",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 161,
+"k": "str",
+"x": "bir",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 161,
+"k": "str",
+"x": "ikki",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 161,
+"k": "str",
+"x": "uch",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 161,
+"k": "str",
+"x": "to'rt",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 161,
+"k": "str",
+"x": "besh",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 161,
+"k": "str",
+"x": "olti",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 161,
+"k": "str",
+"x": "yetti",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 161,
+"k": "str",
+"x": "sakkiz",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 161,
+"k": "str",
+"x": ". Dars o'zlashtirilgan, Davom bosing.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 162,
+"k": "str",
+"x": "Yaxshi, bir xatoyingizni ko'rib chiqdingiz. Qolgan qizil savollarning ekranlariga ham qayting. Tayyor bo'lgach, Sinovni qayta topshirish tugmasini bosing.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 198,
+"k": "str",
+"x": "mk-btn soft sm",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 202,
+"k": "str",
+"x": "mk-btn ghost",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 211,
+"k": "str",
+"x": "#FFF0EB",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 212,
+"k": "str",
+"x": "mk-btn ready",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 224,
+"k": "str",
+"x": "CI — har push'da toza mashinada sizning buyruqlaringiz: «menda ishlaydi» o'rniga hammaga bir xil javob. CD — tekshirilgan yukni chiqarish (Delivery: odam tasdiqlaydi · Deployment: lenta o'zi)",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 225,
+"k": "str",
+"x": "Lenta — npm ci → npx tsc --noEmit → npm test → npm run build; har qadam chiqish kodi: 0 — yashil, boshqasi — qizil; birinchi qizildan keyin qolgani «skipped»",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 226,
+"k": "str",
+"x": "ci.yml uch qism: on (push, pull_request) · runs-on: ubuntu-latest · steps (uses: actions/checkout@v4, actions/setup-node@v4 + run: buyruqlar). Push → Actions → run → job → qadamlar → log",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 227,
+"k": "str",
+"x": "tuzoq",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 227,
+"k": "str",
+"x": "To'rt tuzoq: checkout yo'q («lock yo'q» — papka bo'sh) · lock mos emas («in sync» — lentada npm ci, lokalda npm install + lock commit'ga) · tsc qadamisiz yolg'on yashil · YAML surilish / runs-on yo'q (job yo'q)",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 227,
+"k": "str",
+"x": "tuzoq",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 228,
+"k": "str",
+"x": "Lokalda yashil, lentada qizil — avval node-version ↔ node --version: runner'dagi npm lock'ni boshqacha o'qiydi (Missing: webpack… from lock file)",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 228,
+"k": "str",
+"x": "tuzoq",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 229,
+"k": "str",
+"x": "AI workflow'i — boshlanish nuqtasi: to'rt savol (checkout · versiya meniki · npm ci · tsc va build), keyin push va run. CD chegarasi: node dist/main .env'siz yiqiladi — secrets keyingi darsda",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 231,
+"k": "str",
+"x": "tuzoq",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 231,
+"k": "str",
+"x": "To'rt tuzoq",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 238,
+"k": "str",
+"x": "mk-box${cur && cur.st.includes(k) ? ' hl' : ''}",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 244,
+"k": "str",
+"x": "lint job — jobs.lint: checkout · setup-node · npm ci · npx prettier --check \\\"src/**/*.ts\\\" (ikki job: test ✓ · lint ✓)",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 244,
+"k": "str",
+"x": "npx prettier --check \"src/**/*.ts\"",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 245,
+"k": "str",
+"x": "Badge — README birinchi qatoriga lenta nishoni",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 245,
+"k": "str",
+"x": "![CI](https://github.com/<siz>/OrderBotNest/actions/workflows/ci.yml/badge.svg)",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 246,
+"k": "str",
+"x": "Buzish — src/api/app.controller.ts da satrni bir qatorga yig'ib (formatni buzib) push: lint ✗, test ✓ · keyin prettier --write va push: ikkalasi ✓",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 246,
+"k": "str",
+"x": "npx prettier --write src/api/app.controller.ts",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 247,
+"k": "str",
+"x": "Topshirish — repo linki platformadagi uyga vazifaga",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 247,
+"k": "str",
+"x": "git add . && git commit -m \"ci: lint job va badge\"",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 253,
+"k": "str",
+"x": "da toza mashinada sizning buyruqlaringiz (o",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 253,
+"k": "str",
+"x": "rniga hammaga bir xil javob · CD — tekshirilgan yukni chiqarish: Delivery (odam tasdiqlaydi) · Deployment (lenta o",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 260,
+"k": "str",
+"x": "q → npm ci: «can only install with an existing package-lock.json» (papka bo",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 260,
+"k": "str",
+"x": "lda o",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 260,
+"k": "str",
+"x": "ga; lentada npm ci) · tsc qadami yo",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 260,
+"k": "str",
+"x": "tadi (yolg",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 260,
+"k": "str",
+"x": "q → run qizil, job yo",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 263,
+"k": "str",
+"x": "ini qabul qilish — to",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 266,
+"k": "str",
+"x": "q) · kerak: Secrets (DATABASE_URL, BOT_TOKEN) · server · chiqarish buyrug",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 268,
+"k": "str",
+"x": "rash = build · Uchirish = deploy · start signali = on: push · yo",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 268,
+"k": "str",
+"x": "shasiz: checkout satri (o",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 268,
+"k": "str",
+"x": "ida yo",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 270,
+"k": "str",
+"x": "q → fayl yo",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 270,
+"k": "str",
+"x": "q · run qizil, job yo",
+"m": true
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 275,
+"k": "str",
+"x": "<b>Barakalla!</b> Siz darsni yaxshi o'rgandingiz — bugungi darsni bir qarashda yig'amiz",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 275,
+"k": "str",
+"x": "Barakalla! Siz darsni yaxshi o'rgandingiz. Endi bugun o'rganganlaringizni bir qarashda yig'amiz.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 276,
+"k": "str",
+"x": "Dars oxiriga yetdingiz — sinovni <b>qayta topshirishni</b> maslahat beraman",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 276,
+"k": "str",
+"x": "Dars oxiriga yetdingiz. Yakuniy sinovdan olti ball kerak edi, yakunlashdan oldin sinovni qayta topshirishni maslahat beraman. Hozir esa bugungi darsni bir qarashda yig'amiz.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 277,
+"k": "str",
+"x": "CI — <b>toza mashinada sizning buyruqlaringiz</b>; CD — tekshirilgan yukni chiqarish",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 277,
+"k": "str",
+"x": "Birinchi: CI, har push'da toza mashinada sizning buyruqlaringiz yuradi. Menda ishlaydi o'rniga hammaga bir xil javob. CD, tekshirilgan yukni chiqarish: Delivery'da odam tasdiqlaydi, Deployment'da lenta o'zi chiqaradi.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 278,
+"k": "str",
+"x": "Lenta: <b>to'rt qadam, chiqish kodi</b>; birinchi qizildan keyin qolgani «skipped»",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 278,
+"k": "str",
+"x": "Ikkinchi: lenta to'rt qadam: npm si ay, tsc, test, build. Har biri chiqish kodi qaytaradi: nol yashil, boshqasi qizil. Birinchi qizil qadamda lenta to'xtaydi, qolgani skipped, buzuq kod yig'ilmaydi.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 279,
+"k": "str",
+"x": "<b>ci.yml</b> uch qism: on · runs-on · steps; push → run → job → qadam → log",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 279,
+"k": "str",
+"x": "Uchinchi: ci yml uch qism. On, qachon. Runs on, qaysi mashina. Steps, qadamlar: checkout, setup node va sizning run buyruqlaringiz. Push qilasiz, Actions'da run paydo bo'ladi, ichida job, qadamlar va har qadamning logi.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 280,
+"k": "str",
+"x": "<b>To'rt tuzoq</b>: checkout yo'q · lock mos emas · tsc yo'q · YAML xatosi",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 280,
+"k": "str",
+"x": "To'rtinchi: to'rt tuzoq. Checkout yo'q, papka bo'sh. Package json va lock mos emas, in sync xatosi. Tsc qadami yo'q, yolg'on yashil. YAML surilish yoki runs on yo'q, run qizil, lekin job yo'q.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 280,
+"k": "str",
+"x": "tuzoq",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 281,
+"k": "str",
+"x": "Lokalda yashil, lentada qizil — <b>node-version = node --version</b>",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 281,
+"k": "str",
+"x": "Beshinchi: lokalda yashil, lentada qizil bo'lsa, avval Node versiyasini solishtiring. Runner'dagi npm lock faylni boshqacha o'qiydi: missing webpack from lock file. Ci yml'dagi node version mashinangizdagi raqam bo'lsin.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 282,
+"k": "str",
+"x": "AI workflow'i — <b>to'rt savol</b>; CD chegarasi — secrets keyingi darsda",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 282,
+"k": "str",
+"x": "Oltinchi: AI yozgan workflow boshlanish nuqtasi. To'rt savol: checkout bormi, versiya meniki, npm si ay'mi, tsc va build bormi. Keyin push va run. CD chegarasi: dist main env'siz yiqiladi, secrets va server keyingi darsda.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 283,
+"k": "str",
+"x": "<b>Uyga vazifa</b>: pull_request, lint job va README'da lenta nishoni",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 283,
+"k": "str",
+"x": "Uyga vazifa: o'z reponingizdagi lentani kengaytiring. Pull request'da ham yursin. Ikkinchi job lint: prettier check. README'ga lenta nishonini qo'ying: har kim ochganda yashilmi, qizilmi, ko'radi.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 284,
+"k": "str",
+"x": "Bir marta <b>lint qizil</b>, keyin yashil; repo linki platformaga",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 284,
+"k": "str",
+"x": "Keyin bitta faylning formatini ataylab buzib push qiling: lint qizil, test yashil bo'lsin. Tuzatib push, ikkalasi yashil. Repo linkini platformadagi uyga vazifaga qo'ying. Qirq-oltmish daqiqa.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 285,
+"k": "str",
+"x": "<b>Eslatmani oling</b>: lenta, ci.yml, to'rt tuzoq, Node qoidasi va AI savollari — bir sahifada",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 285,
+"k": "str",
+"x": "Pastda bir sahifalik eslatma: CI va CD, lentaning to'rt qadami, ci yml, to'rt tuzoq, Node versiyasi qoidasi, AI workflow'iga to'rt savol, CD chegarasi va xato qiladigan joylar. Nusxalab yoki yuklab oling, sinfda yoningizda tursin.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 286,
+"k": "str",
+"x": "Rahmat! <b>Darsni yakunlash</b> tugmasini bosing",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 286,
+"k": "str",
+"x": "Rahmat. Darsni yakunlash tugmasini bosing, dars tugallangan deb belgilanadi.",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 317,
+"k": "jsx",
+"x": "Tekshiruvchi qaraydi:",
+"m": false
+},
+{
+"f": "07-s17-s25.jsx",
+"l": 391,
+"k": "jsx",
+"x": "onFinish=",
+"m": true
+}
+]

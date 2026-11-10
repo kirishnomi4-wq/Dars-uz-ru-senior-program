@@ -1,0 +1,8 @@
+ README.md                                          |  2 +-
+ src/api/telegram/telegram.service.ts               | 29 +++++----
+ src/api/user/user.entity.ts                        | 44 +++++++++++++
+ src/api/user/user.module.ts                        |  3 +
+ src/api/user/user.service.ts                       | 72 ++++++++++++++++------
+ .../migrations/1793733435828-CreateUsers.ts        | 27 ++++++++
+ src/database/typeorm.config.ts                     |  3 +-
+ 7 files changed, 144 insertions(+), 36 deletions(-)

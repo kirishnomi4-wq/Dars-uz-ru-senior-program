@@ -1,0 +1,29 @@
+nest-02	1	0,0,1280,720	faqat-matn	515	Siz cars-api'ni qurdingiz. Endi o'quvchi reposi.
+nest-02	2	0,0,1280,720	kod/terminal	1352	To'rt papka, to'rt buyruq, bitta fayl
+nest-02	3	0,0,1280,720	faqat-matn	631	Swagger: localhost:3000/api/v1 — loyihaning menyusi
+nest-02	4	0,0,1280,720	amaliyot	1068	O'quvchi reposini o'zingizda ishga tushiring
+nest-02	5	0,0,1280,720	faqat-matn	564	Uch farq: server boshqa faylda, manzil /api/v1 bilan, javob bitta shaklda
+nest-02	6	0,0,1280,720	kod/terminal	930	To'rtinchi farq: hamma sozlama .env'dan — va ikki yashirin tuzoq
+nest-02	7	0,0,1280,720	test	366	O'quvchi: «Brauzerda localhost:3000/admin ochdim — 404». Birinchi nimani tekshir
+nest-02	8	0,0,1280,720	kod/terminal	699	car resursi, 1-qatlam: Entity — jadval shakli
+nest-02	9	0,0,1280,720	kod/terminal	1043	2-qatlam: DTO — kiruvchi ma'lumot qoidalari, 400 shu yerdan
+nest-02	10	0,0,1280,720	kod/terminal	1376	BaseService — CRUD bir marta yozilgan, hamma resurs meros oladi
+nest-02	11	0,0,1280,720	kod/terminal	1116	3-qatlam: Service — meros, Repository va super
+nest-02	12	0,0,1280,720	kod/terminal	1087	Controller, Module va AppModule — resurs tirik
+nest-02	13	0,0,1280,720	faqat-matn	527	So'rovlar: 201 · 200 · 400 — va /car/1 nega 500
+nest-02	14	0,0,1280,720	kod/terminal	1009	Bu Entity'da bitta satr boshqa qatlamniki
+nest-02	15	0,0,1280,720	amaliyot	1206	car resursini o'z loyihangizga qo'shing
+nest-02	16	0,0,1280,720	faqat-matn	428	AuthGuard: token bormi — yo'q bo'lsa 401
+nest-02	17	0,0,1280,720	jadval	686	RolesGuard: token bor, lekin bu eshik sizga ochiqmi — yo'q bo'lsa 403
+nest-02	18	0,0,1280,720	kod/terminal+test	870	O'quvchi: «KitobShop'da superadmin tokeni bilan kitob qo'shdim — 403». Sabab?
+nest-02	19	0,0,1280,720	amaliyot	1087	Superadmin bilan kiring, oddiy admin yarating va farqni ko'ring
+nest-02	20	0,0,1280,720	kod/terminal	1354	forFeature o'chirildi — xabarni uch savol bilan o'qiymiz
+nest-02	21	0,0,1280,720	faqat-matn	519	Entity o'zgarsa, baza o'zi o'zgaradi — xato bermay yoki yiqilib
+nest-02	22	0,0,1280,720	kod/terminal+test	679	O'quvchingizning KitobShop'i yiqildi. Qaysi faylni ochasiz va nimani tuzatasiz?
+nest-02	23	0,0,1280,720	amaliyot	870	O'zingiz buzing, xabarni o'qing, tuzating
+nest-02	24	0,0,1280,720	faqat-matn	1336	m4a-03: o'quvchi siz bugun qilgan ishni qiladi
+nest-02	25	0,0,1280,720	jadval	652	O'quvchi darsidagi so'zlar: javon chizmasi, anketa, retsept kitobi…
+nest-02	26	0,0,1280,720	faqat-matn	700	KitobShop: o'quvchi buyuradi, agent yozadi — sizning tayyorgarligingiz
+nest-02	27	0,0,1280,720	faqat-matn	617	Sinfda albatta chiqadigan 6 holat va tayyor javoblar
+nest-02	28	0,0,1280,720	test	278	O'quvchi loyihasida server qaysi faylda ishga tushadi?
+nest-02	29	0,0,1280,720	faqat-matn	2691	Endi siz bilasiz

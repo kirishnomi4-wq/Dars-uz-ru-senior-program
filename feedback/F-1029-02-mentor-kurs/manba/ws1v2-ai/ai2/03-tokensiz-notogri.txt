@@ -1,0 +1,9 @@
+# Tokensiz: ws://localhost:3100/ws/orders
+20:14:23 ulanmoqda… ws://localhost:3100/ws/orders
+20:14:23 open
+20:14:23 close 1008 token
+
+# Noto'g'ri token
+20:14:26 ulanmoqda… ws://localhost:3100/ws/orders?token=notogri
+20:14:26 open
+20:14:26 close 1008 token

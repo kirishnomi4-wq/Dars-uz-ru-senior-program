@@ -1,0 +1,13 @@
+# GitHub Actions — main 17be79e (wh-done), run 41877680202
+✓ main CI · 41877680202
+✓ test in 22s (ID 126741522165)
+✓ smoke in 36s (ID 126741726686)
+
+## smoke job — payment
+— payment: to'lov webhook'i — imzo, takror, rad va panelga hodisa
+  ✓ imzosiz — 401, payments da qator yo'q
+  ✓ imzoli to'lov — 200 {"ok":true,"duplicate":false} · #6 payment_status=paid
+  ✓ panelga → order-changed {"orderId":6,"reason":"payment"}
+  ✓ takror — 200 {"ok":true,"duplicate":true} · payments da 1 qator
+  ✓ keyingi rad — yozildi, lekin to'langan buyurtma «paid» qoldi (paid)
+NATIJA: 14/14 ✓

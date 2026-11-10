@@ -1,0 +1,35 @@
+<style>
+.j5 td.c,.j5 th.c{text-align:center}
+.j5 .grp td{background:#F8FAFC;font:700 11.5px system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#6B7280}
+.j5 .p{color:#15803D;font-weight:700}.j5 .f{color:#DC2626;font-weight:700}
+.nl{display:grid;grid-template-columns:repeat(8,1fr);gap:4px;text-align:center;font:13px ui-monospace,Menlo,Consolas,monospace}
+.nl div{border-radius:6px;padding:6px 0;background:#DCFCE7;color:#15803D;font-weight:700}
+.nl div.x{background:#FEE2E2;color:#991B1B}
+.nl small{display:block;font:11px system-ui,sans-serif;font-weight:400;color:inherit;opacity:.85}
+</style>
+<div class="z">
+  <div class="z-card">
+    <p class="z-h">phone.spec.ts — bitta qoida, yetti kirish · npm test -- phone</p>
+    <table class="z-tbl j5">
+      <tr><th>kirish</th><th>nomi</th><th class="c">kutilgan</th><th class="c">isPhone</th><th class="c">test</th></tr>
+      <tr class="grp"><td colspan="5">it.each — to'g'ri raqamlar</td></tr>
+      <tr><td>+998901234567</td><td>to'g'ri raqam</td><td class="c">true</td><td class="c">true</td><td class="c p">✓</td></tr>
+      <tr><td>998901234567</td><td>to'g'ri raqam</td><td class="c">true</td><td class="c">true</td><td class="c p">✓</td></tr>
+      <tr class="grp"><td colspan="5">it.each — noto'g'ri kirishlar</td></tr>
+      <tr><td>12345678</td><td>8 ta raqam — qisqa</td><td class="c">false</td><td class="c">false</td><td class="c p">✓</td></tr>
+      <tr><td>+99890123456789</td><td>14 ta raqam — uzun</td><td class="c">false</td><td class="c">false</td><td class="c p">✓</td></tr>
+      <tr><td>abc</td><td>harf</td><td class="c">false</td><td class="c">false</td><td class="c p">✓</td></tr>
+      <tr><td>''</td><td>bo'sh</td><td class="c">false</td><td class="c">false</td><td class="c p">✓</td></tr>
+      <tr class="grp"><td colspan="5">it — mijozning odati</td></tr>
+      <tr class="bad"><td>+998 90 123 45 67</td><td>probel bilan yozadi</td><td class="c">true</td><td class="c"><b>false</b></td><td class="c f">✕</td></tr>
+    </table>
+    <span class="z-mut">Tests: 1 failed, 6 passed, 7 total</span>
+  </div>
+  <div class="z-card">
+    <p class="z-h">Qoida: <span class="zk">/^\+?\d{9,13}$/</span> — raqamlar soni</p>
+    <div class="nl">
+      <div class="x">8<small>qisqa</small></div><div>9</div><div>10</div><div>11</div><div>12</div><div>13</div><div class="x">14<small>uzun</small></div><div class="x">␣<small>probel</small></div>
+    </div>
+    <span class="z-mut">8 va 14 — chegaradan bitta tashqarida. Probel qoidada umuman yo'q: mijoz yozadi, regex bilmaydi.</span>
+  </div>
+</div>

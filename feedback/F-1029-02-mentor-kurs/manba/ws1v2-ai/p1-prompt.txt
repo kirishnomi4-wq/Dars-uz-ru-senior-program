@@ -1,0 +1,1 @@
+OrderBotNest'ga do'kon admini uchun jonli buyurtmalar paneli kerak: bot yangi buyurtma olganda yoki admin buyurtma holatini o'zgartirganda, brauzerdagi panel sahifani yangilamasdan o'zi yangilansin. WebSocket bilan qilib ber.

@@ -23,8 +23,8 @@ const mkS = (n, extras = [], more = {}) => {
 const SPOKEN = [
   ['psql minus U postgres, minus c va select version', 'psql -U postgres -c "SELECT version();"'],
   ['psql minus U postgres', 'psql -U postgres'], ['createuser minus s postgres', 'createuser -s postgres'],
-  ['teskari chiziqcha c blog', '\\c blog'], ['teskari chiziqcha d posts', '\\d posts'], ['teskari chiziqcha dt', '\\dt'],
-  ['teskari chiziqcha l', '\\l'], ['teskari chiziqcha q', '\\q'], ['teskari chiziqcha c', '\\c'], ['teskari chiziqcha d', '\\d'],
+  ['backslash c blog', '\\c blog'], ['backslash d posts', '\\d posts'], ['backslash dt', '\\dt'],
+  ['backslash l', '\\l'], ['backslash q', '\\q'], ['backslash c', '\\c'], ['backslash d', '\\d'],
   ['create database blog', 'CREATE DATABASE blog'], ['serial primary key', 'SERIAL PRIMARY KEY'], ['references users id', 'REFERENCES users(id)'],
   ['posts user id fkey', 'posts_user_id_fkey'], ['user id', 'user_id'], ['users id', 'users.id'],
   ['insert, nol, uch', 'INSERT 0 3'], ['update nol', 'UPDATE 0'], ['update bir', 'UPDATE 1'], ['insert bir', 'INSERT 0 1'],
@@ -33,6 +33,8 @@ const SPOKEN = [
 ];
 DIGITS.unshift(["besh ming to'rt yuz o'ttiz ikki", '5432'], ["to'qson to'qqizinchi", '99-'], ['yigirma oltinchi', '26-'], ['yigirma bir', '21'],
   ['yigirma besh', '25'], ["o'n sakkiz", '18'], ["o'n besh-yigirma", '15–20'], ['bir, ikki, uch', '1, 2, 3'], ['id bir', 'id 1']);
+// F-1109-01: gap boshidagi «Backslash l» ham «Matn»da kod bo'lib ko'rinsin
+SPOKEN.push(...SPOKEN.filter(([a]) => a.startsWith('backslash')).map(([a, b]) => ['B' + a.slice(1), b]));
 const wr = (s) => digits(SPOKEN.reduce((acc, [a, b]) => acc.split(a).join(b), s));
 // Haqiqiy inglizcha iboralar ovozda [English pronunciation] ichida (M21) — uzunlari oldin
 EN_PHRASES.unshift(
@@ -115,6 +117,16 @@ const Doc = ({ children, odd, er }) => <pre className={`pg-doc${odd ? ' odd' : '
 
 // PG-1 ga xos qo'shimcha CSS (dvigatel CSS'iga tegilmaydi). Izohda backtick yo'q (CLAUDE.md).
 const CSS3 = `
+.pg1-ms .pg-lab,.pg1-ms .pg-mt .nm,.pg1-ms .pg-doc,.pg1-ms .pg-mt th,.pg1-ms .pg-mt td,.pg1-ms .f{transition:background .4s,color .4s,outline-color .4s,box-shadow .4s}
+.pg1-ms.on .pg-lab.mc{display:inline-flex;background:#DCFCE7;color:#15803D;border-radius:6px;padding:4px 8px}
+.pg1-ms.on .pg-mt .nm{background:#DCFCE7;color:#15803D}
+.pg1-ms.on .pg-doc.odd{outline:3px solid #1D4ED8;outline-offset:2px}
+.pg1-ms.on .f{background:#FFEDD5;color:#7C2D12;border-radius:4px;padding:0 2px;margin:0 -2px}
+.pg1-ms.on .pg-mt th:nth-child(2){background:#FFEDD5;color:#7C2D12}
+.pg1-ms.on .pg-mt tbody tr:nth-child(2) td{background:#DBEAFE;color:#1E3A8A;font-weight:700}
+.pg1-key{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;background:#fff;border:1px solid #D7DCE3;border-radius:12px;padding:10px 12px;font-size:14px}
+.pg1-key span{display:inline-flex;gap:6px;align-items:center}
+.pg1-key i{width:14px;height:14px;border-radius:4px;display:inline-block}
 .mk-explorer{overflow:auto}
 /* ogohlantirish qutisi — Nest-2 dagi bilan bir xil (u bo'lak bu darsga kirmaydi) */
 .n2-warn{border-left:4px solid ${T.accent};background:#FFF0EB;border-radius:10px;padding:10px 12px;font-size:14px;line-height:1.5}
@@ -154,6 +166,7 @@ const CSS3 = `
 .pg-dict td:first-child{border-left:4px solid ${PG.mongo};border-radius:10px 0 0 10px}
 .pg-dict td:last-child{border-right:1px solid ${T.line};border-radius:0 10px 10px 0}
 .pg-dict td:nth-child(2){color:${T.ink3};width:28px;text-align:center}
+@media (max-width:1599px){.pg-dict{font-size:12.5px;border-spacing:0 4px}.pg-dict td{padding:5px 10px}}
 .pg-dict td:nth-child(3){border-left:0}
 .pg-dict tr.hl td{background:#FFF7F3}
 .pg-dict tr.hl td:first-child{border-left-color:${T.accent}}
@@ -161,9 +174,9 @@ const CSS3 = `
 .pg-dict code{font:12.5px ${MONO};background:#EEF0F4;padding:1px 6px;border-radius:5px}
 .pg-dict th{font:600 11px/1 ${MONO};letter-spacing:.08em;text-transform:uppercase;text-align:left;padding:0 12px 4px}
 .pg-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;align-items:start}
-@media (max-width:1300px){.pg-two{grid-template-columns:1fr}}
+@media (max-width:1000px){.pg-two{grid-template-columns:1fr}}
 .pg-three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:start}
-@media (max-width:1300px){.pg-three{grid-template-columns:1fr}}
+@media (max-width:1000px){.pg-three{grid-template-columns:1fr}}
 .pg-lab{font:700 11px/1 ${MONO};letter-spacing:.08em;text-transform:uppercase;color:${T.ink3};margin:0 0 6px;display:flex;gap:8px;align-items:center}
 .pg-lab .tm{color:${T.accent}}
 .pg-wait{display:inline-flex;gap:8px;align-items:center;font:600 13px ${MONO};color:${T.yellow};background:#FFF6E2;border:1px solid #F1D38A;border-radius:8px;padding:6px 10px;animation:mk-pulse 1.6s ease-in-out infinite}
@@ -174,7 +187,7 @@ const CSS3 = `
 .pg-cmp .mk-card h5{display:flex;gap:8px;align-items:center}
 .pg-cmp .mk-card h5 i{width:10px;height:10px;border-radius:50%;display:inline-block}
 .pg-qa{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-@media (max-width:1300px){.pg-qa{grid-template-columns:1fr}}
+@media (max-width:1000px){.pg-qa{grid-template-columns:1fr}}
 .pg-qa button{text-align:left;border:1px solid ${T.line};border-radius:12px;background:${T.paper};padding:12px 14px;cursor:pointer;font:inherit;color:${T.ink}}
 .pg-qa b{display:block;font-size:14px}
 .pg-qa p{margin:6px 0 0;font-size:13px;color:${T.ink2};line-height:1.45}

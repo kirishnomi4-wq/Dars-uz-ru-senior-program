@@ -1,0 +1,20 @@
+# wh-done: npm run start — main.ts rawBody bilan, yangi yo'l POST /payments/webhook
+22:21:41 main.ts: NestFactory.create(AppModule, {"rawBody":true})
+LOG [RoutesResolver] PaymentController {/payments}:
+LOG [RouterExplorer] Mapped {/payments/webhook, POST} route
+Server 3100-portda ishlayapti
+
+$ psql: \d payments
+                                        Table "public.payments"
+   Column   |            Type             | Collation | Nullable |               Default                
+------------+-----------------------------+-----------+----------+--------------------------------------
+ id         | integer                     |           | not null | nextval('payments_id_seq'::regclass)
+ payment_id | character varying           |           | not null | 
+ order_id   | integer                     |           | not null | 
+ status     | character varying           |           | not null | 
+ amount     | integer                     |           | not null | 
+ created_at | timestamp without time zone |           | not null | now()
+Indexes:
+    "payments_pkey" PRIMARY KEY, btree (id)
+    "payments_payment_id_key" UNIQUE CONSTRAINT, btree (payment_id)
+Check constraints:

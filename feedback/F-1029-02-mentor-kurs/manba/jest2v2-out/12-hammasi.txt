@@ -1,0 +1,53 @@
+$ npm test -- --verbose
+
+> order-bot-nest@1.0.0 test
+> jest --verbose
+
+PASS src/api/order/order.service.spec.ts
+  OrderService.place
+    ✓ telefon yo'q — darhol xato (20 ms)
+    ✓ savat bo'sh — darhol xato (2 ms)
+    ✓ omborda yetmaydi — tranzaksiya ichida xato, UPDATE bo'lmaydi (2 ms)
+    ✓ yetarli — jami narx hisoblanadi (2 ms)
+    ✓ chegara: omborda aynan 2 ta — 2 tasini olsa bo'ladi (2 ms)
+
+PASS src/api/app.controller.spec.ts
+  HTTP: GET /
+    ✓ 200 va { ok: true } (26 ms)
+    ✓ yo'q manzil — 404 (6 ms)
+
+PASS src/api/telegram/keyboards.spec.ts
+  orderKeyboard
+    ✓ yangi buyurtma — Tasdiqlash va Bekor (2 ms)
+    ✓ tasdiqlangan — Yetkazildi va Bekor (1 ms)
+    ✓ yetkazilgan va bekor qilingan — tugma yo'q (1 ms)
+  catalogKeyboard
+    ✓ birinchi sahifada ◀ yo'q (6 ms)
+    ✓ o'rtada ikkalasi bor
+    ✓ oxirgi sahifada ▶ yo'q (1 ms)
+    ✓ bitta sahifa — faqat 1/1
+    ✓ tugagan mahsulot bosilmaydi (1 ms)
+
+PASS src/api/telegram/phone.spec.ts
+  isPhone
+    ✓ +998901234567 — to'g'ri raqam
+    ✓ 998901234567 — to'g'ri raqam
+    ✓ 12345678 — 8 ta raqam — qisqa
+    ✓ +99890123456789 — 14 ta raqam — uzun
+    ✓ abc — harf
+    ✓  — bo'sh
+    ✓ mijoz probel bilan yozadi
+  isPhone — qoida nimani o'tkazib yuboradi
+    ✓ 9 ta nol ham o'tadi
+
+PASS src/api/telegram/texts.spec.ts
+  som
+    ✓ 120000 ni so'mda yozadi (1 ms)
+    ✓ kichik sonda probel yo'q (1 ms)
+
+Test Suites: 5 passed, 5 total
+Tests:       25 passed, 25 total
+Snapshots:   0 total
+Time:        1.286 s
+Ran all test suites.
+[chiqish kodi: 0]

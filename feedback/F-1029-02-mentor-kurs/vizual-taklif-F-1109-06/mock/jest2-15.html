@@ -1,0 +1,34 @@
+<style>
+.vj{--bad:#C2410C;--red:#DC2626;--ok:#15803D;--ink:#1F2937;--mut:#6B7280;display:grid;gap:12px;color:var(--ink)}
+.vj code,.vj .vzm{color:#1F2937;font:13px ui-monospace,Menlo,Consolas,monospace}
+.vj-flow{display:grid;grid-template-columns:1fr 26px 1fr 26px 1fr 26px 1fr;align-items:stretch;background:#fff;border:1px solid #D7DCE3;border-radius:14px;padding:14px}
+.vj-st{border:1.5px solid #D7DCE3;border-radius:10px;padding:10px;display:grid;gap:6px;align-content:start;background:#F8FAFC}
+.vj-st h6{margin:0;font:700 11px system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+.vj-st .ln{font:11.5px ui-monospace,Menlo,Consolas,monospace;color:var(--mut)}
+.vj-ar{display:flex;align-items:center;justify-content:center;color:#9CA3AF;font-size:20px}
+.vj-st.x{border-color:var(--red);background:#FEF2F2}
+.vj-st.off{border-style:dashed;background:#fff;opacity:.9}
+.vj-st.off .vzm{color:#6B7280}
+.vj-tag{justify-self:start;font:700 12px system-ui,sans-serif;border-radius:999px;padding:2px 9px}
+.vj-tag.r{background:var(--red);color:#fff}.vj-tag.g{background:#DCFCE7;color:var(--ok)}
+.vj-as{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.vj-a{border:2px solid var(--bad);border-radius:12px;background:#fff;padding:10px 12px;display:grid;gap:6px}
+.vj-a b{color:var(--bad);font-size:14px}
+.vj-a .vzm{background:#F1F3F6;border-radius:6px;padding:6px 8px;word-break:break-word}
+.vj-a small{color:var(--mut);font-size:12.5px}
+</style>
+<div class="vj">
+  <div class="vj-flow">
+    <div class="vj-st"><h6>Savat</h6><div class="vzm">Kolonka × 2</div><div class="ln">cart · spec 18-satr</div></div>
+    <div class="vj-ar">→</div>
+    <div class="vj-st"><h6>Ombor (mock)</h6><div class="vzm">findOne → stock: <b>1</b></div><div class="ln">service 31-satr</div></div>
+    <div class="vj-ar">→</div>
+    <div class="vj-st x"><h6>Tekshiruv</h6><div class="vzm">1 &lt; 2 → throw</div><span class="vj-tag r">✗ xato chiqdi</span><div class="ln">service 36–37-satr</div></div>
+    <div class="vj-ar">✕</div>
+    <div class="vj-st off"><h6>Omborni kamaytirish</h6><div class="vzm">UPDATE products SET stock = stock - $1</div><span class="vj-tag g">chaqirilmadi · ombor 1 qoldi</span><div class="ln">service 42-satr</div></div>
+  </div>
+  <div class="vj-as">
+    <div class="vj-a"><b>1-qism · xato chiqdi</b><div class="vzm">await expect(service.place(user, cart))<br>.rejects.toThrow('Kolonka: omborda faqat 1 ta qoldi')</div><small>«Tekshiruv» qutisini tekshiradi</small></div>
+    <div class="vj-a"><b>2-qism · keyingi qadam bo'lmadi</b><div class="vzm">expect(manager.query)<br>.not.toHaveBeenCalled()</div><small>«Omborni kamaytirish» qutisini tekshiradi</small></div>
+  </div>
+</div>

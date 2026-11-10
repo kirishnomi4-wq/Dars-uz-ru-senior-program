@@ -1,0 +1,36 @@
+<div class="z">
+  <div class="z-card">
+    <p class="z-h">Bot handler'i — order.service.spec.ts</p>
+    <div class="z-flow">
+      <div class="z-st"><b>kirish</b><span class="zm">place(user, cart)</span><span class="z-mut">Kolonka × 2, omborda 1</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st blue"><b>kod</b><span class="zm">OrderService.place</span><span class="z-mut">manager — mock</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st"><b>chiqish</b><span class="zm">throw 'Kolonka: omborda faqat 1 ta qoldi'</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st ok"><b>expect</b><span class="zm">.rejects.toThrow(…)</span><span class="z-tag g">✓</span></div>
+    </div>
+  </div>
+  <div class="z-card">
+    <p class="z-h">Sayt route'i — app.controller.spec.ts · supertest · Tests: 2 passed</p>
+    <div class="z-flow">
+      <div class="z-st"><b>kirish</b><span class="zm">request(app.getHttpServer()).get('/')</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st blue"><b>kod</b><span class="zm">AppController</span><span class="z-mut">xotirada: port ochilmaydi, baza yo'q</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st"><b>chiqish</b><span class="z-tag g">200</span><span class="zm">{ ok: true, service: 'order-bot' }</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st ok"><b>expect</b><span class="zm">status 200 · toEqual</span><span class="z-tag g">✓</span></div>
+    </div>
+    <div class="z-flow">
+      <div class="z-st"><b>kirish</b><span class="zm">.get('/nope')</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st blue"><b>kod</b><span class="zm">route yo'q</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st"><b>chiqish</b><span class="z-tag o">404</span><span class="zm">Cannot GET /nope</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st ok"><b>expect</b><span class="zm">status 404 · message</span><span class="z-tag g">✓</span></div>
+    </div>
+  </div>
+  <div class="z-rule">Qolip bitta: <b>kirish beriladi, chiqish solishtiriladi</b> — bot handler'i ham, sayt route'i ham.</div>
+</div>

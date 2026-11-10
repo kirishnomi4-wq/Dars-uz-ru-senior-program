@@ -1,6 +1,6 @@
 
 // ============================================================
-//  PG-2 MATNLARI — AVTO: feedback/F-1029-02-mentor-kurs/dev/pg2-matn.py (manba: 08-PostgreSQL2-mentor-v1.md)
+//  PG-2 MATNLARI — AVTO: feedback/F-1029-02-mentor-kurs/dev/pg2-matn.py (manba: 08-PostgreSQL2-mentor-v2.md, M41)
 //  QO'LDA TAHRIRLANMAYDI: matn MD'da o'zgaradi, keyin skript qayta yurgiziladi.
 // ============================================================
 const MDT = {
@@ -8,33 +8,33 @@ const MDT = {
   "type": "Lesson",
   "kicker": "Kirish",
   "eyebrow": "Mentor kursi · PostgreSQL",
-  "title": "Jadval tayyor. Endi uni boshqaramiz — PostgreSQL terminalida va Express ichida.",
+  "title": "Jadval tayyor. Endi uni boshqaramiz — PostgreSQL terminalida va Express ichida",
   "seg": [
    [
     "a",
-    "PostgreSQL-1 da jadval yaratdingiz — bugun undagi ma'lumotni <b>to'rt buyruq bilan boshqaramiz</b>",
+    "PostgreSQL-1 da jadval yaratdingiz — bugun undagi ma'lumotni <b>to'rt buyruq bilan boshqarasiz</b>",
     "Assalomu alaykum. Oldingi darsda PostgreSQL'ni o'rnatdingiz, jadval yaratdingiz va bog'ladingiz. Bugun jadvaldagi ma'lumotni boshqaramiz: qo'shish, ko'rish, o'zgartirish va o'chirish. Buni CRUD deyishadi, uning nimaligini keyingi ekranda aniq ko'ramiz."
    ],
    [
     "b",
-    "Avval PostgreSQL terminalida qo'lda: o'quvchi m4-06 dagi <b>do'konning o'zi bilan</b>",
-    "Avval bu buyruqlarni PostgreSQL terminalida qo'lda yozamiz. Misol o'quvchi m4-06 darsidagi do'konning aynan o'zi: klaviatura, sichqoncha, quloqchin. Sinfda o'quvchi ekranda ko'radigan narsani siz bazada ko'rgan bo'lasiz."
+    "Avval buyruqlar terminalda — va har birining <b>ichida nima bo'lishi</b>: son, tartib, tranzaksiya",
+    "Avval buyruqlarni terminalda qo'lda yozamiz va har birining ichida nima bo'lishini ko'ramiz: javobdagi son nimani sanaydi, nega qatorlar tartibi o'zgaradi, tranzaksiya ichida baza nima qiladi. Misolimiz kichik do'kon: klaviatura, sichqoncha, quloqchin, kolonka."
    ],
    [
     "c",
-    "Keyin o'sha so'rovlar <b>Express ichida</b> — o'quvchi m4-08 da AvtoIjara serverini quradi",
-    "Keyin xuddi shu so'rovlarni Express serveri ichiga qo'yamiz. O'quvchi m4-08 darsida AvtoIjara uchun server quradi, kodini Gemini yozadi. Siz bu serverni o'zingiz ishga tushirasiz, ataylab buzasiz va tuzatasiz."
+    "Keyin o'sha so'rovlar Express ichida: <b><code>Pool</code> nima, nega <code>$1</code></b>, server nega 500 beradi",
+    "Keyin xuddi shu so'rovlarni Express serveri ichiga qo'yamiz. Pool nimaligini, nega qiymatlar dollar bir bilan berilishini, server qachon va nega besh yuz qaytarishini o'zingiz sinab ko'rasiz. Serverni ataylab buzamiz va tuzatamiz."
    ],
    [
     "d",
-    "Olti bosqich, to'rt amaliyot. <b>Shoshilmang</b>: ustoz gapirib bo'lgach Davom ochiladi",
-    "Dars olti bosqichdan iborat, orasida to'rtta amaliyot bor. Oxirida ikki o'quvchi darsini qanday o'tishni ko'ramiz. Shoshilmang: har ekranni boshidan eshitish va matnini o'qish mumkin. Ustoz gapirib bo'lgach Davom ochiladi. Boshlaymiz."
+    "Olti bosqich, to'rt amaliyot; oxirida <b>ikki ekran sinfga tayyorgarlik</b>. Shoshilmang",
+    "Dars olti bosqichdan iborat, orasida to'rtta amaliyot bor. Oxirgi ikki ekran sinfga tayyorgarlik: o'quvchi darslari xaritasi va o'quvchilar xato qiladigan joylar. Shoshilmang: har ekranni boshidan eshitish va matnini o'qish mumkin. Ustoz gapirib bo'lgach Davom ochiladi. Boshlaymiz."
    ]
   ]
  },
  "2": {
   "type": "Lesson",
-  "kicker": "1-bosqich · CRUD PostgreSQL terminalida",
+  "kicker": "1-bosqich · CRUD terminalida",
   "title": "CRUD — ma'lumot bilan qilinadigan to'rt amal: bazada buyruq, serverda endpoint",
   "seg": [
    [
@@ -45,50 +45,50 @@ const MDT = {
    [
     "b",
     "PostgreSQL'da har amalning <b>o'z buyrug'i bor</b>: <code>INSERT</code>, <code>SELECT</code>, <code>UPDATE</code>, <code>DELETE</code>",
-    "PostgreSQL'da har amalning o'z buyrug'i bor. Yaratish insert, o'qish select, o'zgartirish update, o'chirish esa delete. Har buyruqdan keyin baza qisqa javob qaytaradi, masalan insert nol bir yoki update bir. Bu javobni o'qishni bugun alohida o'rganamiz."
+    "PostgreSQL'da har amalning o'z buyrug'i bor: insert, select, update va delete. Siz bilgan Mongoose'da bular create, find, updateOne va deleteOne edi. Ma'nosi bir xil, faqat yozilishi boshqa. Har buyruqdan keyin baza qisqa javob qaytaradi, masalan update bir. Mongo'da uning o'rnida matchedCount bir chiqardi."
    ],
    [
     "c",
     "Serverda xuddi shu to'rt amal <b>endpoint bo'ladi</b>: <code>POST</code>, <code>GET</code>, <code>PUT</code>, <code>DELETE</code>",
-    "Serverda xuddi shu to'rt amal endpoint bo'ladi. Yaratish POST, o'qish GET, o'zgartirish PUT, o'chirish DELETE. Har endpoint ichida o'sha SQL buyrug'i turadi. Postman javobida esa status chiqadi: yaratilganda ikki yuz bir, qolganlarida ikki yuz."
+    "Serverda xuddi shu to'rt amal endpoint bo'ladi. Yaratish POST, o'qish GET, o'zgartirish PUT, o'chirish DELETE. Har endpoint ichida o'sha SQL buyrug'i turadi. Javobda status chiqadi: yaratilganda ikki yuz bir, qolganlarida ikki yuz."
    ],
    [
     "d",
-    "Xulosa: har amalning bazada bitta buyrug'i, serverda <b>bitta endpoint'i bor</b>",
-    "Xulosa: CRUD to'rtta amaldan iborat. Har amalning PostgreSQL'da bitta buyrug'i va serverda bitta endpoint'i bor. Demak, bugun avval buyruqlarni PostgreSQL terminalida qo'lda yozamiz, keyin xuddi shularni Express serveri ichiga qo'yamiz."
+    "Xulosa: har amalning bazada <b>bitta buyrug'i</b>, serverda bitta endpoint'i bor",
+    "Xulosa: CRUD to'rtta amal. Har amalning PostgreSQL'da bitta buyrug'i va serverda bitta endpoint'i bor. Bugun avval buyruqlarni terminalda qo'lda yozamiz va ichini ko'ramiz, keyin xuddi shularni Express serveri ichiga qo'yamiz."
    ]
   ]
  },
  "3": {
   "type": "Lesson",
-  "kicker": "1-bosqich · CRUD PostgreSQL terminalida",
-  "title": "products — o'quvchi darsidagi jadval aynan",
+  "kicker": "1-bosqich · CRUD terminalida",
+  "title": "products — to'rt ustun, to'rt mahsulot; id ni baza o'zi beradi",
   "seg": [
    [
     "a",
-    "O'quvchi m4-06 da <b>shu jadvalni ko'radi</b>: id, nom, narx va qoldiq",
-    "Jadvaldan boshlaymiz. O'quvchi m4-06 darsida aynan shu jadvalni ko'radi. Uning nomi products, unda to'rtta ustun bor: id o'zi o'sadi, nomi matn, narxi va qoldig'i esa butun son. Siz shop degan bazada uni PostgreSQL terminalida yaratasiz."
+    "Mongo'da baza va kolleksiya o'zi paydo bo'lardi — bu yerda <b>avval <code>CREATE DATABASE</code>, keyin jadval</b>",
+    "Siz bilgan Mongoose'da connect yetardi: baza ham, kolleksiya ham birinchi create'da o'zi paydo bo'lardi. PostgreSQL'da avval create database bilan baza, keyin create table bilan jadval yaratiladi. Jadval products, to'rt ustun: id o'zi o'sadi, name matn, price va stock butun son. Hozircha ustunlarda qoida yo'q, bu ataylab."
    ],
    [
     "b",
-    "Bitta <code>INSERT</code> bilan uch qator; javobdagi oxirgi raqam — <b>qo'shilgan qatorlar soni</b>",
-    "Bitta insert bilan uchta mahsulot qo'shamiz, xuddi o'quvchi darsidagidek. Baza javobi insert, nol, uch. Oxirgi raqam nechta qator qo'shilganini aytadi. Keyin to'rtinchi mahsulotni qo'shamiz: Mishka, narxi ellik ming so'm."
+    "Bitta <code>INSERT</code> bilan to'rt qator; javob <code>INSERT 0 4</code> — <b>oxirgi raqam qo'shilgan qatorlar soni</b>",
+    "Bitta insert bilan to'rtta mahsulot qo'shamiz. Baza javobi insert, nol, to'rt. Oxirgi raqam nechta qator qo'shilganini aytadi. O'rtadagi nol eski versiyalardan qolgan, u hech narsani bildirmaydi, unga qaramang."
    ],
    [
     "c",
-    "<code>SELECT *</code> — hamma ustun; <code>id</code> larni biz yozmadik, <b>baza o'zi berdi</b>",
-    "Select yulduzcha hamma ustunni ko'rsatadi. id ustunini biz yozmadik, baza o'zi bir, ikki, uch, to'rt deb berdi. O'quvchi «id'ni qayerdan oldik?» desa, javob shu: serial."
+    "<code>SELECT *</code> — hamma ustun; <code>id</code> larni biz yozmadik, <b>baza o'zi berdi</b>: <code>SERIAL</code>",
+    "Select yulduzcha hamma ustunni ko'rsatadi. id ustunini biz yozmadik, baza o'zi bir, ikki, uch, to'rt deb berdi. Buni serial qiladi: ichida alohida hisoblagich bor, har yangi qatorga keyingi sonni beradi. Qator o'chirilsa ham hisoblagich orqaga qaytmaydi."
    ],
    [
     "d",
-    "Xulosa: jadval va ma'lumot o'quvchi darsidagidek — lekin ustunlarda <b><code>NOT NULL</code> yo'q</b>",
-    "Xulosa: bazangizda o'quvchi darsidagi do'konning aynan o'zi bor. Bitta narsani eslab qoling: bu jadvalda not null qoidasi yo'q. Nima bo'lishini uchinchi bosqichda ko'ramiz."
+    "Xulosa: jadval tayyor — <b>hech qanday qoidasiz</b>; baza faqat yozilgan qoidani qo'riqlaydi",
+    "Xulosa: bazangizda to'rt mahsulotli do'kon bor. Bitta narsani eslab qoling: bu jadvalda hozircha not null ham, boshqa qoida ham yo'q. Baza faqat yozilgan qoidani qo'riqlaydi. Nima bo'lishini uchinchi bosqichda o'z ko'zingiz bilan ko'rasiz."
    ]
   ]
  },
  "4": {
   "type": "Lesson",
-  "kicker": "1-bosqich · CRUD PostgreSQL terminalida",
+  "kicker": "1-bosqich · CRUD terminalida",
   "title": "WHERE — minglab qatordan faqat keraklisi",
   "seg": [
    [
@@ -99,7 +99,7 @@ const MDT = {
    [
     "b",
     "<code>WHERE price &lt; 100000</code> — yuz mingdan arzonlari: <b>uchta mahsulot</b>",
-    "Minglab mahsulotdan faqat keraklisini olish uchun where yoziladi. Narxi yuz mingdan kam bo'lganlarini so'raymiz: sichqoncha, quloqchin va mishka, ya'ni uchta qator. O'quvchi darsida bu filtr tugma bilan, siz esa uni so'rovda yozdingiz."
+    "Minglab mahsulotdan faqat keraklisini olish uchun where yoziladi. Narxi yuz mingdan kam bo'lganlarini so'raymiz: sichqoncha, quloqchin va kolonka, uchta qator. Where har qatorni shartga solishtiradi va faqat to'g'ri chiqqanlarini qaytaradi. Mongoose'da bu find ichidagi dollar lt shart edi."
    ],
    [
     "c",
@@ -108,58 +108,86 @@ const MDT = {
    ],
    [
     "d",
-    "Xulosa: <code>SELECT</code> faqat o'qiydi; <b><code>WHERE</code> qatorlarni tanlaydi</b>",
-    "Xulosa: select hech narsani o'zgartirmaydi, faqat o'qiydi. Where qaysi qatorlar kerakligini aytadi. Bu ikkisini yaxshi tushungan o'quvchi update va delete'ni ham oson tushunadi, chunki ularda ham aynan shu where ishlaydi."
+    "Xulosa: <code>SELECT</code> faqat o'qiydi; <b><code>WHERE</code> qatorlarni tanlaydi</b> — <code>UPDATE</code> va <code>DELETE</code>da ham aynan shu",
+    "Xulosa: select hech narsani o'zgartirmaydi, faqat o'qiydi. Where qaysi qatorlar kerakligini aytadi. Keyingi ekranda update va delete'ni ko'rasiz: ularda ham aynan shu where ishlaydi, faqat endi u qaysi qatorlar o'zgarishini hal qiladi."
    ]
   ]
  },
  "5": {
   "type": "Lesson",
-  "kicker": "1-bosqich · CRUD PostgreSQL terminalida",
-  "title": "UPDATE 1, DELETE 1 — javobdagi son nechta qator tegilganini aytadi",
+  "kicker": "1-bosqich · CRUD terminalida",
+  "title": "UPDATE 1, DELETE 1, UPDATE 0 — javobdagi son nechta qator tegilganini aytadi",
   "seg": [
    [
     "a",
     "Klaviatura arzonladi: <code>UPDATE … WHERE id = 1</code> — javob <b><code>UPDATE 1</code></b>, bitta qator",
-    "O'quvchi darsidagi voqea: klaviatura narxi to'qson to'qqiz mingga tushdi. Buyruq shunday: update, set price, where id bir. Baza javobi update bir, ya'ni bitta qator o'zgardi. Javobdagi son doim nechta qator tegilganini aytadi."
+    "Klaviatura narxi to'qson to'qqiz mingga tushdi. Buyruq: update products set price, where id bir. Baza javobi update bir: bitta qator o'zgardi. Javobdagi son doim nechta qator tegilganini aytadi, bu update'da ham, delete'da ham shunday."
    ],
    [
     "b",
     "Quloqchin sotuvdan chiqdi: <code>DELETE … WHERE id = 3</code> — <b><code>DELETE 1</code></b>",
-    "Quloqchin sotuvdan chiqdi, uni o'chiramiz: delete from products, where id uch. Baza javobi delete bir. Endi select bilan jadvalni ko'ramiz."
+    "Quloqchin sotuvdan chiqdi, uni o'chiramiz: delete from products, where id uch. Baza javobi delete bir. Qator butunlay ketdi, uning id'si esa qayta ishlatilmaydi."
    ],
    [
     "c",
-    "Diqqat: Klaviatura ro'yxat oxiriga tushdi — <code>ORDER BY</code> bo'lmasa <b>tartib kafolatlanmaydi</b>",
-    "Natijaga qarang: klaviatura birinchi emas, oxirida turibdi. Bu xato emas. Order by yozilmasa, baza qatorlarni istalgan tartibda qaytarishi mumkin. Sinfda o'quvchi «mahsulot o'rni o'zgardi» desa, javob shu. Tartib kerak bo'lsa, oxiriga order by id yoziladi."
+    "Bunday <code>id</code> yo'q bo'lsa — <b>xato emas</b>, <code>UPDATE 0</code> va <code>DELETE 0</code>",
+    "To'qson to'qqizinchi mahsulotni o'zgartirib ko'ramiz. Xato chiqmaydi, javob update nol. Delete ham nol qaytaradi. Baza «bunday qator yo'q» demaydi: where hech qaysi qatorga mos kelmadi, shuning uchun hech narsaga tegmadi. Mongo'dagi matchedCount nol ham xuddi shu. Bu xato emas, bu javob."
    ],
    [
     "d",
-    "Bunday <code>id</code> yo'q bo'lsa — <b>xato emas</b>, <code>UPDATE 0</code> va <code>DELETE 0</code>",
-    "To'qson to'qqizinchi mahsulotni o'zgartirib ko'ramiz. Xato chiqmaydi, javob update nol. Delete ham nol qaytaradi. Baza «bunday qator yo'q» deb aytmaydi, shunchaki hech narsaga tegmaydi. Shuning uchun javobdagi sonni o'qish kerak."
+    "<code>RETURNING</code> — baza o'zgargan <b>qatorning o'zini qaytaradi</b>; mos qator bo'lmasa <code>(0 rows)</code>",
+    "Bitta klaviatura sotildi: qoldiqni bittaga kamaytiramiz. Yangi qoldiq nechta bo'lganini siz hisoblamaysiz, buyruq oxiriga returning yozasiz va baza o'zgargan qatorni qaytaradi: klaviatura, yetti. To'qson to'qqizinchi id bilan returning nol qator beradi. Serverda aynan shu returning ishlatiladi."
    ],
    [
     "e",
     "Xulosa: har <code>UPDATE</code> va <code>DELETE</code>dan keyin <b>javobdagi sonni o'qing</b>",
-    "Xulosa: update va delete'dan keyin javobdagi sonni o'qing. Bir bo'lsa, kutganingiz bo'ldi. Nol bo'lsa, where hech narsaga mos kelmadi. Kutilmagan katta son bo'lsa, where noto'g'ri yoki umuman yozilmagan. Buni keyingi bosqichda ko'ramiz."
+    "Xulosa: update va delete'dan keyin javobdagi sonni o'qing. Bir bo'lsa, kutganingiz bo'ldi. Nol bo'lsa, where hech narsaga mos kelmadi. Kutilmagan katta son bo'lsa, where noto'g'ri yoki umuman yozilmagan. Buni ikkinchi bosqichda xavfsiz ko'ramiz."
    ]
   ]
  },
  "6": {
+  "type": "Lesson",
+  "kicker": "1-bosqich · ichida nima bo'ladi",
+  "title": "UPDATEdan keyin qator joyi o'zgardi — baza yangilangan qatorni yangi joyga yozadi",
+  "seg": [
+   [
+    "a",
+    "<code>SELECT *</code> — Klaviatura <b>ro'yxat oxiriga tushdi</b>. Bu xato emas, lekin sababini bilish kerak",
+    "Oldingi ekrandagi buyruqlardan keyin select qilamiz va natijaga qarang: uchta mahsulot qoldi, klaviatura esa birinchi emas, oxirida turibdi. Bu xato emas. Lekin «tasodif» deb qo'ya qolmaymiz: nega shunday bo'lganini bilish kerak, chunki bu savol albatta beriladi."
+   ],
+   [
+    "b",
+    "Sabab: PostgreSQL yangilangan qatorni <b>joyida o'zgartirmaydi</b> — yangi nusxasini bo'sh joyga yozadi",
+    "Sabab bazaning ichida. PostgreSQL update'da qatorni joyida o'zgartirmaydi: eski nusxani «eskirgan» deb belgilaydi, yangisini fayldagi bo'sh joyga, bu yerda oxiriga yozadi. Eski nusxa keyinroq tozalanadi. Select yulduzcha esa qatorlarni fayldagi tartibda o'qiydi."
+   ],
+   [
+    "c",
+    "Isbot: <code>ctid</code> — qatorning fayldagi manzili; Klaviatura endi <code>(0,6)</code>: <b>ikki o'zgarish — ikki yangi nusxa</b>",
+    "Buni ko'rsa bo'ladi. Har qatorning ctid degan yashirin ustuni bor: bu uning fayldagi manzili, sahifa va o'rin. Select ctid qilsak, klaviatura nol vergul olti, ya'ni oltinchi o'rinda. Klaviatura ikki marta o'zgardi: avval narxi, keyin qoldig'i. Har safar baza yangi nusxa yozdi: beshinchi, keyin oltinchi o'rinda. Shuning uchun u oxirida chiqdi."
+   ],
+   [
+    "d",
+    "Xulosa: tartib kerak bo'lsa — <b><code>ORDER BY id</code></b>; usiz tartib hech qachon kafolatlanmaydi",
+    "Xulosa: order by yozilmasa, baza qatorlarni fayldagi tartibda beradi, bu tartib esa har update'dan keyin o'zgarishi mumkin. Tartib kerak bo'lsa, oxiriga order by id yoziladi, shunda klaviatura yana birinchi. «Mahsulot o'rni o'zgardi» degan savolning javobi shu: order by yo'q edi."
+   ]
+  ]
+ },
+ "7": {
   "type": "MCRetry",
   "kicker": "Tekshiruv 1",
   "eyebrow": "Tekshiruv · 1 / 4",
-  "title": "O'quvchi: «UPDATE products SET price = 1 WHERE id = 99; yozdim — xato chiqmadi, UPDATE 0». Nima bo'ldi?",
-  "q": "Javobdagi sonni ko'rdingiz, tekshirib olaylik. Birinchi tekshiruv. O'quvchi to'qson to'qqizinchi mahsulot narxini o'zgartirmoqchi bo'ldi. Xato yo'q, javob: update nol. Nima bo'ldi? Variantni tanlang.",
-  "ok": "To'g'ri. Where id to'qson to'qqiz hech qanday qatorga mos kelmadi, shuning uchun nol qator o'zgardi. Baza buni xato deb hisoblamaydi. O'quvchiga ayting: avval select bilan bunday id bor-yo'qligini tekshirsin. Demak, update nol xato emas: bu where hech qaysi qatorga mos kelmaganini bildiradi.",
-  "okShort": "<code>UPDATE 0</code> — <code>WHERE</code> hech bir qatorga mos kelmadi. Xato emas: avval <code>SELECT … WHERE id = 99</code> bilan tekshiring.",
+  "title": "Buyruq xatosiz o'tdi, javob UPDATE 0. Bu nimani bildiradi?",
+  "q": "Javobdagi sonni ko'rdingiz, tekshirib olaylik. Birinchi tekshiruv. Ekrandagi terminalda to'qson to'qqizinchi mahsulot narxi o'zgartirilmoqchi bo'ldi. Xato yo'q, javob: update nol. Bu nimani bildiradi? Variantni tanlang.",
+  "ok": "To'g'ri. Where id to'qson to'qqiz hech qanday qatorga mos kelmadi, shuning uchun nol qator o'zgardi. Baza buni xato deb hisoblamaydi. Ishonch hosil qilish uchun select bilan bunday id bor-yo'qligini tekshiring, ekranda shu select turibdi. Demak, update nol xato emas: where hech qaysi qatorga mos kelmaganini bildiradi.",
+  "okShort": "<code>UPDATE 0</code> — <code>WHERE</code> hech bir qatorga mos kelmadi. Xato emas: <code>SELECT … WHERE id = 99</code> ham bo'sh qaytaradi.",
   "hint": "Javobdagi son nimani sanaydi? WHERE qaysi qatorni topishi kerak edi?",
+  "demak": "<code>UPDATE 0</code> xato emas: <code>WHERE</code> hech qaysi qatorga mos kelmaganini bildiradi.",
   "correct": 0,
   "opts": [
-   "id = 99 qator yo'q — WHERE hech narsaga mos kelmadi",
-   "Narxni o'zgartirishga ruxsat yo'q",
-   "Jadval bo'shab qoldi",
-   "Narx o'zgardi, lekin hali saqlanmadi"
+   "id = 99 yo'q — WHERE hech qatorga mos kelmadi",
+   "Narxni o'zgartirishga foydalanuvchida ruxsat yo'q",
+   "Jadval bo'shab qoldi — qator o'chirildi",
+   "Narx o'zgardi, lekin hali COMMIT bo'lmadi"
   ],
   "wrong": {
    "1": "Ruxsat yo'q bo'lsa ERROR:  permission denied for table products chiqardi; bu yerda xato yo'q.",
@@ -167,80 +195,204 @@ const MDT = {
    "3": "Tranzaksiyasiz UPDATE darhol saqlanadi; son esa nechta qator tegilganini aytadi."
   }
  },
- "7": {
+ "8": {
   "type": "Practice",
   "kicker": "Amaliyot 1 / 4",
   "eyebrow": "Hozir o'zingizda · 10–15 daqiqa",
-  "title": "shop bazasi va CRUD — o'quvchi darsidagi to'rt voqea",
+  "title": "shop bazasi va CRUD — to'rt buyruq, har javobdagi son",
   "seg": [
    [
     "a",
-    "Endi siz: o'quvchi darsidagi to'rt voqeani <b>o'z bazangizda bajarasiz</b>",
-    "Endi navbat sizga. O'quvchi darsidagi to'rt voqeani o'z bazangizda bajarasiz: jadval yaratasiz, mahsulot qo'shasiz, filtrlaysiz, keyin narxni o'zgartirib, bitta mahsulotni o'chirasiz. Bunga o'n-o'n besh daqiqa ketadi."
+    "Endi siz: <b>o'z bazangizda</b> jadval, to'rt mahsulot, ikki filtr, narx va o'chirish",
+    "Endi navbat sizga. O'z bazangizda shu ishlarni qilasiz: jadval yaratasiz, to'rt mahsulot qo'shasiz, ikki filtr yozasiz, keyin narxni o'zgartirib, bitta mahsulotni o'chirasiz. Bunga o'n-o'n besh daqiqa ketadi."
    ],
    [
     "b",
     "1–3-qadam: baza, jadval, mahsulotlar va <b>ikki filtr</b>",
-    "Birinchi qadamda shop bazasi va products jadvalini yaratasiz. Ikkinchisida to'rtta mahsulot qo'shasiz. Uchinchisida ikkita filtr yozasiz: arzonlarini va tugayotganlarini. Har buyruqdan keyin javob satrini o'qing."
+    "Birinchi qadamda shop bazasi va products jadvalini yaratasiz. Ikkinchisida to'rtta mahsulotni bitta insert bilan qo'shasiz va javobdagi to'rtni ko'rasiz. Uchinchisida ikkita filtr yozasiz: arzonlarini va tugayotganlarini. Har buyruqdan keyin javob satrini o'qing."
    ],
    [
     "c",
-    "4-qadam: narx va o'chirish; isbot — oxirgi <code>SELECT</code>dagi <b>qatorlar soni</b>",
-    "To'rtinchi qadamda klaviatura narxini o'zgartiring va quloqchinni o'chiring, keyin select yulduzcha. Isbot maydoniga oxirgi select natijasi ostidagi qatorlar sonini yozing."
+    "4-qadam: narx va o'chirish; isbot — <b>oxirgi <code>SELECT</code>dagi qatorlar soni</b>",
+    "To'rtinchi qadamda klaviatura narxini o'zgartiring, quloqchinni o'chiring va select yulduzcha qiling. Klaviatura qayerda turganiga e'tibor bering. Isbot maydoniga oxirgi select natijasi ostidagi qatorlar sonini yozing."
    ],
    [
     "d",
     "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
     "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin siz CRUD'ning to'rt buyrug'ini o'z bazangizda yozgan va har javobdagi sonni o'qigan bo'lasiz."
    ]
+  ],
+  "steps": [
+   {
+    "t": "Baza va jadval",
+    "cmds": [
+     "psql -U postgres",
+     "CREATE DATABASE shop;",
+     "\\c shop",
+     "CREATE TABLE products (id SERIAL PRIMARY KEY, name TEXT, price INTEGER, stock INTEGER);"
+    ],
+    "exp": "CREATE DATABASE · CREATE TABLE"
+   },
+   {
+    "t": "Mahsulotlar",
+    "cmds": [
+     "INSERT INTO products (name, price, stock) VALUES ('Klaviatura', 120000, 8), ('Sichqoncha', 75000, 15), ('Quloqchin', 95000, 5), ('Kolonka', 50000, 10);"
+    ],
+    "exp": "INSERT 0 4"
+   },
+   {
+    "t": "Filtrlar",
+    "cmds": [
+     "SELECT * FROM products WHERE price < 100000;",
+     "SELECT * FROM products WHERE stock < 6;"
+    ],
+    "exp": "3 qator · 1 qator (Quloqchin)"
+   },
+   {
+    "t": "Narx va o'chirish",
+    "cmds": [
+     "UPDATE products SET price = 99000 WHERE id = 1;",
+     "DELETE FROM products WHERE id = 3;",
+     "SELECT * FROM products;"
+    ],
+    "exp": "UPDATE 1 · DELETE 1 · (3 rows), Klaviatura oxirida"
+   }
+  ],
+  "proof": {
+   "label": "Oxirgi SELECT * natijasidagi qatorlar soni",
+   "placeholder": "natija ostidagi sonni yozing",
+   "re": "^\\s*\\(?\\s*3\\b",
+   "flags": "",
+   "wrong": "To'rt mahsulotdan bittasi o'chirilgach nechta qoladi? Natija ostidagi qavsdagi sonni yozing."
+  },
+  "trouble": [
+   [
+    "ERROR:  database \"shop\" already exists",
+    "baza oldin yaratilgan — \\c shop"
+   ],
+   [
+    "ERROR:  relation \"products\" does not exist",
+    "boshqa bazadasiz (prompt postgres=#) — \\c shop"
+   ],
+   [
+    "INSERT 0 4 ikki marta",
+    "mahsulotlar ikki marta qo'shilgan — id lar 1–8; 4-qadamda idni SELECT bo'yicha tanlang"
+   ],
+   [
+    "UPDATE 0 / DELETE 0",
+    "bunday id yo'q — avval SELECT * bilan idni ko'ring"
+   ],
+   [
+    "Klaviatura oxirida",
+    "xato emas — 6-ekran: ORDER BY id bilan tartiblang"
+   ],
+   [
+    "ERROR:  syntax error at or near \"…\"",
+    "^ ko'rsatgan joydan oldin vergul, qavs yoki tirnoq tushib qolgan"
+   ]
   ]
  },
- "8": {
+ "9": {
   "type": "Lesson",
-  "kicker": "2-bosqich · xavfsiz sinash",
+  "kicker": "2-bosqich · tranzaksiya",
   "title": "WHERE unutilsa — UPDATE 3, DELETE 3. Xavfsiz sinash: BEGIN … ROLLBACK",
   "seg": [
    [
     "a",
-    "O'quvchi darsi ogohlantiradi: <code>WHERE</code>'siz — <b>hamma qator</b>. Buni xavfsiz ko'ramiz",
-    "O'quvchi darsida qizil ogohlantirish bor: update yoki delete'da where unutilsa, hamma qator o'zgaradi. Siz buni o'z ko'zingiz bilan ko'rishingiz kerak, lekin bazani buzmasdan. Usul: avval begin, ya'ni tranzaksiya ochamiz."
+    "<code>WHERE</code>'siz <code>UPDATE</code> yoki <code>DELETE</code> — <b>hamma qator</b>. Buni ko'rish kerak, lekin bazani buzmasdan",
+    "Javobdagi son kutilmagan katta bo'lsa, where yo'q edi, degandim. Buni o'z ko'zingiz bilan ko'rishingiz kerak, lekin bazani buzmasdan. Usul: avval begin, ya'ni tranzaksiya ochamiz. Undan keyingi hamma narsa vaqtincha bo'ladi."
    ],
    [
     "b",
-    "<code>WHERE</code>'siz <code>UPDATE</code> — <b><code>UPDATE 3</code></b>: hamma mahsulot to'qson to'qqiz ming",
-    "Begin'dan keyin where'siz update. Baza javobi update uch. Select qilsak, hamma mahsulot to'qson to'qqiz ming so'm: sichqoncha ham, mishka ham. Mana o'quvchi darsidagi ogohlantirishning o'zi."
+    "<code>WHERE</code>'siz <code>UPDATE</code> — <code>UPDATE 3</code>: <b>hamma mahsulot to'qson to'qqiz ming</b>",
+    "Begin'dan keyin where'siz update. Baza javobi update uch. Select qilsak, hamma mahsulot to'qson to'qqiz ming so'm: sichqoncha ham, kolonka ham. Bitta unutilgan where butun narx ro'yxatini buzdi. Mongo'dan kelganlar aynan shu yerda xato qiladi: u yerda updateOne bitta hujjatga tegardi, bu yerda where yo'q bo'lsa hamma qator o'zgaradi."
    ],
    [
     "c",
     "<code>WHERE</code>'siz <code>DELETE</code> — <code>DELETE 3</code>, <b>jadval bo'sh</b>",
-    "Undan ham yomoni where'siz delete. Baza javobi delete uch, select esa nol qator qaytaradi. Haqiqiy do'konda bu butun katalog yo'qolgani."
+    "Undan ham yomoni where'siz delete. Baza javobi delete uch, select esa nol qator qaytaradi. Haqiqiy do'konda bu butun katalog yo'qolgani. Lekin biz tranzaksiya ichidamiz."
    ],
    [
     "d",
-    "<code>ROLLBACK</code> — <b>hammasi joyida</b>: tranzaksiya ichidagi o'zgarish bekor bo'ldi",
+    "<code>ROLLBACK</code> — hammasi joyida: <b>tranzaksiya ichidagi o'zgarish bekor bo'ldi</b>",
     "Endi rollback yozamiz va select qilamiz: uchala mahsulot joyida, narxlari ham eski. Tranzaksiya ichida qilingan hamma narsa bekor bo'ldi. PostgreSQL-1 da tranzaksiya do'konni himoya qilgan edi, bu yerda u sizning sinov maydoningiz."
    ],
    [
     "e",
     "Xulosa: xavfli <code>UPDATE</code>/<code>DELETE</code>ni avval <b><code>BEGIN</code> ichida sinang</b>, <code>SELECT</code> bilan ko'ring",
-    "Xulosa: xavfli update yoki delete'ni avval begin ichida yurgizing, select bilan natijani ko'ring. To'g'ri bo'lsa commit, noto'g'ri bo'lsa rollback. Sinfda o'quvchiga ham shuni o'rgating: bu bitta qator, lekin butun jadvalni saqlab qoladi."
+    "Xulosa: xavfli update yoki delete'ni avval begin ichida yurgizing, select bilan natijani ko'ring. To'g'ri bo'lsa commit, noto'g'ri bo'lsa rollback. Bu bitta qator, lekin butun jadvalni saqlab qoladi. Keyingi ekranda tranzaksiya ichida baza aslida nima qilishini ko'ramiz."
    ]
   ]
  },
- "9": {
+ "10": {
+  "type": "Lesson",
+  "kicker": "2-bosqich · ichida nima bo'ladi",
+  "title": "Har buyruq o'zi saqlanadi; BEGINdan keyin — faqat sizning seansingizda, COMMITgacha",
+  "seg": [
+   [
+    "a",
+    "Oddiy holatda PostgreSQL <b>autocommit</b>da: har buyruq bajarilishi bilan saqlanadi",
+    "Oddiy holatda PostgreSQL autocommit rejimida ishlaydi: har buyruq bajarilishi bilan darhol saqlanadi, uni qaytarib bo'lmaydi. Birinchi bosqichdagi update va delete'lar aynan shunday saqlandi. Shuning uchun where'siz delete haqiqiy bazada halokat."
+   ],
+   [
+    "b",
+    "<code>BEGIN</code>dan keyin prompt <code>shop=*#</code> — <b>yulduzcha: tranzaksiya ochiq</b>, o'zgarish faqat sizga ko'rinadi",
+    "Begin yozganingizda prompt o'zgaradi: teng, yulduzcha, panjara. Yulduzcha tranzaksiya ochiqligini bildiradi. Endi o'zgarishlar faqat sizning seansingizda ko'rinadi. Sinab ko'rdik: A seansida klaviaturaga chegirma qildik, sakson to'qqiz ming. B seansi hali to'qson to'qqiz mingni ko'radi. Commit'dan keyingina B yangi narxni ko'rdi."
+   ],
+   [
+    "c",
+    "Tranzaksiya ichida xato chiqsa — prompt <code>shop=!#</code>: <b>aborted</b>, keyingi buyruqlar rad etiladi",
+    "Tranzaksiya ichida biror buyruq xato bersa, prompt undov belgisiga o'zgaradi va baza «current transaction is aborted» deydi: keyingi buyruqlar bajarilmaydi, hatto oddiy select ham. Bu holatdan faqat rollback chiqaradi. Commit yozsangiz ham baza rollback qiladi, javobida shunday yozadi."
+   ],
+   [
+    "d",
+    "Xulosa: <code>BEGIN</code> — vaqtincha, <code>COMMIT</code> — saqla, <code>ROLLBACK</code> — bekor; <b><code>!#</code> ko'rsangiz — <code>ROLLBACK</code></b>",
+    "Xulosa: begin'dan keyin hamma narsa vaqtincha va faqat sizga ko'rinadi, commit saqlaydi, rollback bekor qiladi. Promptdagi yulduzcha tranzaksiya ochiqligini, undov belgisi xato bo'lganini aytadi. Undov belgisini ko'rsangiz, boshqa buyruq yozmang: rollback."
+   ]
+  ]
+ },
+ "11": {
+  "type": "Lesson",
+  "kicker": "2-bosqich · ichida nima bo'ladi",
+  "title": "Sotuv — ikki buyruq: qoldiqni kamaytirish va buyurtma yozish. Yo ikkalasi, yo hech biri",
+  "seg": [
+   [
+    "a",
+    "Do'konga qoida va ikkinchi jadval: <b><code>CHECK (stock &gt;= 0)</code></b> va <code>orders</code> — buyurtmalar",
+    "Tranzaksiya faqat sinov uchun emas. Do'konga qoida qo'shamiz: qoldiq manfiy bo'lmasin, check stock katta yoki teng nol. Va ikkinchi jadval: orders, buyurtmalar: qaysi mahsulot, nechta va qachon. Created at ustuniga default now yozdik, vaqtni baza o'zi qo'yadi."
+   ],
+   [
+    "b",
+    "Bitta sotuv — ikki buyruq: <code>UPDATE</code> qoldiqni kamaytiradi, <code>INSERT</code> buyurtma yozadi — <b><code>BEGIN … COMMIT</code> ichida</b>",
+    "Bitta sichqoncha sotildi. Bu ikki buyruq: qoldiqni bittaga kamaytirish va buyurtma yozish. Ikkalasi begin va commit orasida. Returning qoldiq o'n to'rt bo'lganini, buyurtma esa bir raqam va vaqt bilan yozilganini ko'rsatdi. Commit'dan keyin ikkalasi ham saqlandi."
+   ],
+   [
+    "c",
+    "O'n ikki kolonka so'raldi, bor-yo'g'i o'nta: <b><code>CHECK</code> rad etdi</b>, tranzaksiya aborted — <code>ROLLBACK</code>",
+    "Endi o'n ikkita kolonka so'raldi, omborda o'nta. Buyurtma yozildi, keyin update qoldiqni minus ikki qilmoqchi bo'ldi. Check rad etdi: new row violates check constraint stock nonneg. Tranzaksiya aborted. Rollback qilamiz: buyurtma ham yo'qoldi, qoldiq ham o'nta. Yolg'on buyurtma qolmadi."
+   ],
+   [
+    "d",
+    "Xulosa: bir ishga tegishli buyruqlar <b>bitta tranzaksiyada</b>; qoida bazada bo'lsa, yarim ish qolmaydi",
+    "Xulosa: bir ishga tegishli buyruqlar bitta tranzaksiyada bo'ladi: yo hammasi saqlanadi, yo hech biri. Buni atomik deyishadi. Qoida bazaning o'zida bo'lsa, kod xato qilsa ham yarim ish qolmaydi. PostgreSQL-1 dagi «oxirgi telefon» masalasining javobi aynan shu: tranzaksiya va qoida."
+   ]
+  ]
+ },
+ "12": {
   "type": "MCRetry",
   "kicker": "Tekshiruv 2",
   "eyebrow": "Tekshiruv · 2 / 4",
-  "title": "BEGIN; → DELETE FROM products; (DELETE 3) → ROLLBACK; → SELECT * FROM products;. Nima chiqadi?",
-  "q": "Xavfsiz sinashni ko'rdingiz, tekshirib olaylik. Ikkinchi tekshiruv. Begin, where'siz delete, javob delete uch. Keyin rollback va select. Jadvalda nima bor? Variantni tanlang.",
-  "ok": "To'g'ri. Delete tranzaksiya ichida edi, rollback uni bekor qildi. Uchala mahsulot joyida. Commit yozilmaguncha o'zgarish saqlanmaydi. Demak, begin va rollback xavfli buyruqni bazani buzmasdan sinash imkonini beradi.",
+  "title": "BEGIN; → DELETE FROM products; (DELETE 3) → ROLLBACK;. Endi SELECT * FROM products; nima qaytaradi?",
+  "q": "Tranzaksiya ichini ko'rdingiz, tekshirib olaylik. Ikkinchi tekshiruv. Ekranda: begin, where'siz delete, javob delete uch, keyin rollback. Endi select qilsak, jadvalda nima bor? Variantni tanlang.",
+  "ok": "To'g'ri. Delete tranzaksiya ichida edi, rollback uni bekor qildi. Uchala mahsulot joyida, ekranda select shuni ko'rsatdi. Commit yozilmaguncha hech qanday o'zgarish saqlanmaydi. Demak, begin va rollback xavfli buyruqni bazani buzmasdan sinash imkonini beradi.",
   "okShort": "<code>ROLLBACK</code> — tranzaksiya ichidagi hamma o'zgarish bekor: uch qator joyida.",
   "hint": "ROLLBACK tranzaksiya ichidagi o'zgarishlar bilan nima qiladi?",
+  "demak": "<code>COMMIT</code> yozilmaguncha tranzaksiya ichidagi o'zgarish saqlanmaydi; <code>ROLLBACK</code> hammasini bekor qiladi.",
   "correct": 2,
   "opts": [
-   "Nol qator — DELETE 3 bajarilgan edi",
-   "Faqat bitta qator — oxirgisi qaytadi",
-   "Uchala mahsulot — ROLLBACK o'chirishni bekor qildi",
+   "Nol qator — DELETE 3 allaqachon bajarilgan",
+   "Faqat bitta qator — oxirgisi qaytib keladi",
+   "Uchalasi — ROLLBACK o'chirishni bekor qildi",
    "ERROR — o'chirilgan jadvaldan o'qib bo'lmaydi"
   ],
   "wrong": {
@@ -249,108 +401,161 @@ const MDT = {
    "3": "DELETE qatorlarni o'chiradi, jadvalni emas; jadval doim joyida."
   }
  },
- "10": {
+ "13": {
   "type": "Practice",
   "kicker": "Amaliyot 2 / 4",
   "eyebrow": "Hozir o'zingizda · 5–10 daqiqa",
-  "title": "WHERE'siz UPDATEni xavfsiz sinang",
+  "title": "WHERE'siz UPDATEni xavfsiz sinang — promptdagi yulduzchani kuzating",
   "seg": [
    [
     "a",
     "Endi siz: <code>WHERE</code>'siz <code>UPDATE</code>ni o'z bazangizda, lekin <b>tranzaksiya ichida</b> qilasiz",
-    "Endi o'zingiz: where'siz update'ni o'z bazangizda qilasiz, lekin tranzaksiya ichida. Bunga besh-o'n daqiqa ketadi. Bu mashqni sinfda o'quvchilarga ham ko'rsatasiz."
+    "Endi o'zingiz: where'siz update'ni o'z bazangizda qilasiz, lekin tranzaksiya ichida. Bunga besh-o'n daqiqa ketadi. Bundan keyin har xavfli buyruqni shu usulda sinaysiz."
    ],
    [
     "b",
-    "1–2-qadam: <code>BEGIN</code>, <code>WHERE</code>'siz <code>UPDATE</code> va <code>SELECT</code> — <b>hamma narx bir xil</b>",
-    "Birinchi qadamda begin yozasiz. Ikkinchisida where'siz update qilib, select bilan hamma narx bir xil bo'lganini ko'rasiz. Commit yozmang."
+    "1–2-qadam: <code>BEGIN</code> (prompt <code>shop=*#</code>), <code>WHERE</code>'siz <code>UPDATE</code> va <code>SELECT</code> — <b>hamma narx bir xil</b>",
+    "Birinchi qadamda begin yozasiz va promptda yulduzcha paydo bo'lganini ko'rasiz. Ikkinchisida where'siz update qilib, select bilan hamma narx bir xil bo'lganini ko'rasiz. Commit yozmang."
    ],
    [
     "c",
     "3–4-qadam: <code>ROLLBACK</code> va <code>SELECT</code>; isbot — <b>klaviaturaning narxi</b>",
-    "Uchinchi qadamda rollback yozasiz, to'rtinchisida yana select qilasiz. Isbot maydoniga klaviaturaning hozirgi narxini yozing, rollback'dan keyingisini."
+    "Uchinchi qadamda rollback yozasiz, prompt oddiy holatga qaytadi. To'rtinchisida yana select qilasiz. Isbot maydoniga klaviaturaning hozirgi narxini yozing, rollback'dan keyingisini."
    ],
    [
     "d",
     "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
     "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, siz where'siz update qanday xavfli ekanini ko'rdingiz va rollback bilan hammasini qaytarishni o'rgandingiz."
    ]
+  ],
+  "steps": [
+   {
+    "t": "Tranzaksiya",
+    "cmds": [
+     "BEGIN;"
+    ],
+    "exp": "BEGIN · prompt shop=*#"
+   },
+   {
+    "t": "WHERE'siz",
+    "cmds": [
+     "UPDATE products SET price = 1;",
+     "SELECT * FROM products;"
+    ],
+    "exp": "UPDATE 3 · hamma narx 1"
+   },
+   {
+    "t": "Bekor",
+    "cmds": [
+     "ROLLBACK;"
+    ],
+    "exp": "ROLLBACK · prompt shop=#"
+   },
+   {
+    "t": "Tekshirish",
+    "cmds": [
+     "SELECT * FROM products;"
+    ],
+    "exp": "narxlar eski"
+   }
+  ],
+  "proof": {
+   "label": "ROLLBACKdan keyingi Klaviatura narxi",
+   "placeholder": "klaviatura narxini yozing",
+   "re": "^\\s*99\\s?000\\s*$",
+   "flags": "",
+   "wrong": "ROLLBACKdan keyin narx 1-amaliyotdagidek bo'ladi. SELECT natijasidan Klaviatura qatorini o'qing."
+  },
+  "trouble": [
+   [
+    "WARNING:  there is no transaction in progress (ROLLBACK'da)",
+    "BEGIN yozilmagan — o'zgarish allaqachon saqlangan; narxlarni 1-amaliyotdagi UPDATElar bilan tiklang"
+   ],
+   [
+    "narx 120000",
+    "1-amaliyotning 4-qadami (99 000) bajarilmagan — 1-amaliyotni tugating"
+   ],
+   [
+    "prompt shop=!#",
+    "tranzaksiya ichida xato bo'ldi — ROLLBACK; yozing (10-ekran)"
+   ]
   ]
  },
- "11": {
+ "14": {
   "type": "Lesson",
-  "kicker": "3-bosqich · xatolar",
-  "title": "Beshta xato — har birini xabarning o'zi aytadi",
+  "kicker": "3-bosqich · baza qo'riqlaydi",
+  "title": "Nomsiz mahsulot xato bermay saqlandi — qoidani o'zimiz qo'shamiz, baza rad eta boshlaydi",
   "seg": [
    [
     "a",
-    "AI xatosi o'quvchi darsida bor: <code>product</code> — <b>bitta <code>s</code> yetmaydi</b>, jadval «yo'q»",
-    "Endi sinfda chiqadigan xatolar. Birinchisi o'quvchi darsida ham bor: AI products o'rniga product deb yozgan. Baza relation product does not exist deb javob beradi. Jadval bor, faqat nomi bitta harfga farq qiladi."
+    "Nomsiz <code>INSERT</code> — <code>INSERT 0 1</code>, <b>xato yo'q</b>: jadvalda <code>NOT NULL</code> yo'q edi",
+    "Uchinchi bosqich: baza qanday qo'riqlaydi. Nomsiz mahsulot qo'shamiz: faqat narx va qoldiq. Xato chiqmadi, insert nol bir. Where name is null bilan qidirsak, beshinchi qator: nomi bo'sh. Baza faqat yozilgan qoidani qo'riqlaydi, biz esa qoida yozmagan edik."
    ],
    [
     "b",
-    "Ustun nomi xato: <code>narx</code> — <code>HINT</code> esa <b>noto'g'ri ustunni taklif qiladi</b>",
-    "Ikkinchisi ustun nomida. O'quvchi narx deb yozdi. Baza column narx does not exist deb javob beradi, ostida esa hint: perhaps you meant name. Diqqat: hint taxmin qiladi va bu yerda adashgan, kerakli ustun price. Hint'ni emas, jadval tuzilishini teskari chiziqcha d bilan tekshiring."
+    "<code>NOT NULL</code> qo'shmoqchimiz — baza rad etdi: <b>ustunda bo'sh qiymat bor</b>. Avval tozalaymiz, keyin qoida",
+    "Endi qoida qo'shamiz: alter table, name set not null. Baza rad etdi: column name contains null values. Mantiqli: bo'sh nom bor ekan, qoidani qo'yib bo'lmaydi. Nomsiz qatorni o'chiramiz va qoidani qayta qo'shamiz. Endi nomsiz insert xato beradi: violates not-null constraint."
    ],
    [
     "c",
-    "Son o'rniga matn va tushib qolgan qiymat — <b><code>invalid input syntax</code></b>, <code>more target columns</code>",
+    "<code>DEFAULT 0</code> — berilmagan qoldiq nol bo'ladi; <b><code>UNIQUE</code></b> — ikkinchi «Kolonka» rad etiladi",
+    "Yana ikki qoida. Default: stock berilmasa nol bo'lsin, planshet nol qoldiq bilan saqlandi. Unique: nom takrorlanmasin. Ikkinchi kolonka qo'shmoqchi bo'lsak, baza duplicate key value deydi va qaysi qiymat takrorlanganini aytadi."
+   ],
+   [
+    "d",
+    "Xulosa: <code>\\d products</code> — hamma qoida bir joyda; <b>qoida bazada bo'lsa</b>, xatoni kod emas, baza ushlaydi",
+    "Xulosa: backslash d products jadvalning hamma qoidasini ko'rsatadi: not null, default, unique, check va tashqi kalit. Qoida bazada bo'lsa, xatoni kod emas, baza ushlaydi, va har xabar ichida qoidaning nomi turadi. Keyingi ekranda shu xabarlarni o'qishni mashq qilamiz."
+   ]
+  ]
+ },
+ "15": {
+  "type": "Lesson",
+  "kicker": "3-bosqich · baza qo'riqlaydi",
+  "title": "Beshta xato — har birida xabarning o'zi nimani tuzatishni aytadi",
+  "seg": [
+   [
+    "a",
+    "<code>relation \"product\" does not exist</code> — jadval nomi: <b>bitta <code>s</code> yetmaydi</b>",
+    "Endi eng ko'p uchraydigan xatolar. Birinchisi jadval nomida: products o'rniga product yozilgan. Baza relation product does not exist deydi. Relation — bazaning jadvalga beradigan nomi. Jadval bor, faqat nomi bitta harfga farq qiladi."
+   ],
+   [
+    "b",
+    "<code>column \"narx\" does not exist</code> — ustun nomi; <code>HINT</code> esa <b>noto'g'ri ustunni taklif qiladi</b>",
+    "Ikkinchisi ustun nomida: narx deb yozilgan. Baza column narx does not exist deydi, ostida hint: perhaps you meant name. Diqqat: hint taxmin qiladi va bu yerda adashgan, kerakli ustun price. Hint'ga emas, backslash d ga ishoning."
+   ],
+   [
+    "c",
+    "Son o'rniga matn va tushib qolgan qiymat — <code>invalid input syntax</code>, <b><code>more target columns</code></b>",
     "Uchinchisi: narx ustuniga arzon degan so'z yozilgan, baza invalid input syntax for type integer deydi. To'rtinchisi: uchta ustun yozilgan, qiymat esa ikkita, baza insert has more target columns than expressions deydi. Ikkalasida ham strelka xato joyni ko'rsatadi."
    ],
    [
     "d",
     "O'zbekcha apostrof satrni yopadi: <code>syntax error at or near \"yinchoq\"</code> — <b>ikki marta yoziladi</b>",
-    "Beshinchisi, o'zbek sinfida eng ko'p uchraydigani: apostrof. O'yinchoq so'zidagi apostrof satrni yopib qo'yadi, baza yinchoq so'zida adashadi. Tuzatish: apostrofni ikki marta yozish. Shunda mahsulot saqlanadi."
+    "Beshinchisi, o'zbekcha matnda eng ko'p uchraydigani: apostrof. O'yinchoq so'zidagi apostrof matnni erta yopib qo'yadi, baza yinchoq so'zida adashadi. Tuzatish: so'z ichidagi apostrof ikki marta yoziladi, saqlanganda bitta bo'ladi."
    ],
    [
     "e",
-    "Xulosa: xabar ichidagi nomni <b>jadval tuzilishi bilan solishtiring</b> — <code>\\d products</code>",
-    "Xulosa: bu xatolarning hammasida xabar ichida nom yoki qiymat turadi. Uni jadval tuzilishi bilan solishtiring, teskari chiziqcha d products. Apostrof uchun bitta qoida: so'z ichidagi apostrof ikki marta yoziladi."
+    "Xulosa: xabar ichidagi nomni <b><code>\\d products</code></b> bilan solishtiring; <code>^</code> xato joyni ko'rsatadi",
+    "Xulosa: bu xatolarning hammasida xabar ichida nom yoki qiymat turadi. Uni jadval tuzilishi bilan solishtiring, backslash d products. Strelka xato joyni ko'rsatadi. Apostrof uchun bitta qoida: so'z ichidagi apostrof ikki marta."
    ]
   ]
  },
- "12": {
-  "type": "Lesson",
-  "kicker": "3-bosqich · xatolar",
-  "title": "Qoida yozilmagan bo'lsa, baza qo'riqlamaydi: nomsiz mahsulot xato bermay saqlandi",
-  "seg": [
-   [
-    "a",
-    "PostgreSQL-1 da baza bo'sh nomni rad etgan edi — bu jadvalda esa <b>xato yo'q</b>",
-    "PostgreSQL-1 da bo'sh username'ni baza rad etgan edi. Bu jadvalda sinab ko'ramiz: nomsiz mahsulot qo'shamiz. Xato chiqmadi, baza javobi insert nol bir."
-   ],
-   [
-    "b",
-    "<code>WHERE name IS NULL</code> — <b>bo'sh nomli qator</b> do'kon katalogida turibdi",
-    "Where name is null bilan qidiramiz. Beshinchi qator chiqdi: nomi bo'sh, narxi o'ttiz ming. Saytda bu nomsiz mahsulot bo'lib chiqadi."
-   ],
-   [
-    "c",
-    "Sabab: o'quvchi darsidagi jadvalda <code>NOT NULL</code> yo'q — baza <b>faqat yozilgan qoidani</b> qo'riqlaydi",
-    "Sabab jadvalning o'zida: o'quvchi darsidagi products'da not null yo'q. Baza faqat yozilgan qoidani qo'riqlaydi. PostgreSQL-1 dagi «baza o'zi tekshiradi» degan gap qoida yozilgandagina to'g'ri."
-   ],
-   [
-    "d",
-    "Xulosa: o'quvchi darsini o'zgartirmaysiz, lekin o'z jadvalida <b><code>NOT NULL</code> yozishni</b> maslahat berasiz",
-    "Xulosa: o'quvchi darsidagi jadvalni o'zgartirmaysiz, u sodda bo'lishi uchun shunday. Lekin amaliyotda o'quvchi o'z do'koni jadvalini yaratadi. O'shanda maslahat bering: nom va narxga not null yozsin."
-   ]
-  ]
- },
- "13": {
+ "16": {
   "type": "MCRetry",
   "kicker": "Tekshiruv 3",
   "eyebrow": "Tekshiruv · 3 / 4",
-  "title": "O'quvchi VALUES ('O'yinchoq', 30000, 4) yozdi va syntax error at or near \"yinchoq\" oldi. Nima deysiz?",
-  "q": "Xatolarni ko'rdingiz, tekshirib olaylik. Uchinchi tekshiruv. O'quvchi o'yinchoq degan mahsulot qo'shmoqchi, baza syntax error, yinchoq so'zida. Unga nima deysiz? Variantni tanlang.",
-  "ok": "To'g'ri. SQL'da matn bir tirnoq ichida, so'z ichidagi apostrof uni erta yopadi. Ikki marta yozilsa, baza uni bitta apostrof deb tushunadi va mahsulot o'yinchoq nomi bilan saqlanadi. Demak, SQL matnidagi har bir apostrof ikki marta yoziladi.",
+  "title": "VALUES ('O'yinchoq', 30000, 4) → syntax error at or near \"yinchoq\". Tuzatish qaysi?",
+  "q": "Xabarlarni o'qidingiz, tekshirib olaylik. Uchinchi tekshiruv. Ekranda o'yinchoq degan mahsulot qo'shilmoqchi, baza syntax error, yinchoq so'zida deydi. Nima bo'ldi va tuzatish qaysi? Variantni tanlang.",
+  "ok": "To'g'ri. SQL'da matn bir tirnoq ichida, so'z ichidagi apostrof uni erta yopadi. Ikki marta yozilsa, baza uni bitta apostrof deb tushunadi. Ekranda tuzatilgan insert: mahsulot o'yinchoq nomi bilan saqlandi. Demak, SQL matnidagi har apostrof ikki marta yoziladi.",
   "okShort": "<code>'O''yinchoq'</code> — so'z ichidagi apostrof ikki marta. Saqlanganda bitta bo'ladi: <code>O'yinchoq</code>.",
   "hint": "Matn qaysi belgi bilan boshlanib, qaysi belgi bilan tugaydi? Apostrof shu belgining o'zi.",
+  "demak": "SQL matnidagi apostrof ikki marta yoziladi: <code>'O''yinchoq'</code>.",
   "correct": 1,
   "opts": [
-   "Mahsulot nomini lotincha emas, kirillda yozing",
-   "So'z ichidagi apostrofni ikki marta yozing: 'O''yinchoq'",
-   "Nomni qo'shtirnoqqa oling: \"O'yinchoq\"",
-   "name ustunining turini VARCHAR qiling"
+   "Nomni kirillda yozish — apostrof kerak emas",
+   "Apostrofni ikki marta yozish: 'O''yinchoq'",
+   "Nomni qo'shtirnoqqa olish: \"O'yinchoq\"",
+   "name ustunini VARCHAR emas, TEXT qilish"
   ],
   "wrong": {
    "0": "Muammo harfda emas, apostrofda: u matnni erta yopyapti.",
@@ -358,107 +563,124 @@ const MDT = {
    "3": "Ustun turi bu xatoga aloqasiz: xato matn yozilishida."
   }
  },
- "14": {
+ "17": {
   "type": "Lesson",
-  "kicker": "4-bosqich · Express",
-  "title": "m4-08: cars jadvali o'quvchining o'zi yozadi, server.js ni Gemini",
+  "kicker": "4-bosqich · Express · ichida nima bo'ladi",
+  "title": "Pool — ulanishlar to'plami: yaratilganda ulanmaydi, birinchi so'rovda ulanadi, keyin shu ulanishni qayta ishlatadi",
   "seg": [
    [
     "a",
-    "PostgreSQL terminalidagi CRUD endi <b>server ichida</b>: o'quvchi m4-08 da AvtoIjara uchun quradi",
-    "PostgreSQL terminalida qo'lda qildingiz, endi xuddi shu so'rovlar server ichida. O'quvchi m4-08 darsida avval cars jadvalini PostgreSQL terminalida o'zi yozadi: model, kunlik narx, yil va ijaradami. Keyin server kodini Gemini yozadi."
+    "Express'da bazaga <code>pg</code> paketi orqali boriladi; kod tepasida <b><code>new Pool({ user, password, database, host, port })</code></b>",
+    "Terminalda qilganlaringizni endi server ichiga ko'chiramiz. Node'da PostgreSQL bilan pg paketi gaplashadi. Kodning tepasida pg'dan Pool olinadi va unga foydalanuvchi, parol, baza nomi, host va port beriladi. Pool so'zi «hovuz», ya'ni ulanishlar to'plami degani. Nega to'plam, hozir ko'rasiz."
    ],
    [
     "b",
-    "<code>Pool</code> — bazaga ulanish sozlamalari: foydalanuvchi, parol, baza nomi <b>bir joyda</b>",
-    "Kodning tepasida pg paketidan Pool olinadi. Unga foydalanuvchi, parol, baza nomi, host va port beriladi. Parolni o'quvchi o'zi yozadi, PostgreSQL o'rnatilganda berilgan parol. Shuning uchun sinf paroli hammada bir xil bo'lsa, ishingiz oson."
+    "O'lchab ko'rdik: <code>Pool</code> yaratilganda ulanish <b>nol</b>; birinchi so'rovda ulanadi, keyingi so'rovlar o'sha ulanishda",
+    "Buni o'lchab ko'rdik. Pool yaratilgan zahoti ulanishlar soni nol: u hali bazaga bormagan. Birinchi so'rovda ulanadi. Keyin yana ikki so'rov yubordik: bazadagi jarayon raqami, pid, uchalasida bir xil, faol ulanish bitta. Ya'ni Pool har so'rovga yangi ulanish ochmaydi, borini qayta ishlatadi."
    ],
    [
     "c",
-    "<code>GET /api/cars</code>: <code>pool.query</code> so'rovni bazaga olib boradi, <b><code>rows</code></b> — javobga ketadi",
-    "Endi GET api cars endpoint'i. Pool query select'ni bazaga olib boradi, natijaning rows qismi, ya'ni qatorlar, res json bilan qaytadi. Postman'da ikki yuz va uchta mashina. Bu PostgreSQL terminalidagi select'ning o'zi, faqat javob JSON ko'rinishida."
+    "Nega muhim: ulanish ochish qimmat; va <b>xato faqat birinchi so'rovda</b> — parol xato bo'lsa ham server «ishlayapti» deydi",
+    "Bu ikki narsani tushuntiradi. Birinchisi: bazaga ulanish qimmat ish, shuning uchun uni bir marta ochib, qayta ishlatish to'g'ri. Ikkinchisi: Pool yaratilganda ulanmagani uchun parol xato bo'lsa ham server xatosiz ishga tushadi, xato faqat birinchi so'rovda chiqadi. Sinab ko'rdik: xato parol bilan Pool yaratildi, xato yo'q; birinchi so'rovda password authentication failed."
    ],
    [
     "d",
-    "Xatoda <code>catch</code>: <b>status 500 va xato matni</b> — o'quvchi uni Postman'da ko'radi",
-    "Pastda catch turibdi: xato bo'lsa, server besh yuz status va xato matnini qaytaradi. Bu muhim: sinfdagi xatolarning ko'pini o'quvchi aynan shu javobda ko'radi. Beshinchi bosqichda shu yo'l bilan buzamiz."
-   ],
-   [
-    "e",
-    "Xulosa: <code>Pool</code> → <code>pool.query</code> → <code>rows</code> → <code>res.json</code> — <b>server bazaga shu yo'l bilan ulanadi</b>",
-    "Xulosa: so'rov serverdan bazaga to'rt qadamda boradi. Pool ulanadi, pool query so'rov yuboradi, rows qatorlarni oladi, res json javob qaytaradi. O'quvchi darsidagi test savoli ham shu haqda: serverni bazaga pool query ulaydi."
+    "Xulosa: <code>Pool</code> bir marta sozlanadi, <b>birinchi so'rovda ulanadi</b>, ulanishni qayta ishlatadi; «server ishlayapti» — baza haqida emas",
+    "Xulosa: Pool bir marta sozlanadi, birinchi so'rovda ulanadi va ulanishni qayta ishlatadi. Terminaldagi «server ishlayapti» faqat Express haqida, baza haqida hech narsa demaydi. Buni beshinchi bosqichda, ulanish xatolarida yana ko'rasiz. Endi Pool orqali birinchi so'rovni yuboramiz."
    ]
   ]
  },
- "15": {
+ "18": {
   "type": "Lesson",
   "kicker": "4-bosqich · Express",
-  "title": "To'rt endpoint — to'rt SQL buyruq; javob statusi bilan",
+  "title": "pool.query so'rovni bazaga olib boradi; javobda rows — qatorlar, rowCount — terminaldagi son",
   "seg": [
    [
     "a",
-    "<code>POST</code> — <code>INSERT … RETURNING *</code>: yangi qator javobda, <b>status 201</b>",
-    "GET o'qiydi, qolgan uchtasi yozadi. POST'da insert, oxirida returning yulduzcha: baza yangi qatorni, id bilan, qaytaradi. Status ikki yuz bir, ya'ni yaratildi. Chevrolet Spark to'rtinchi id bilan qo'shildi."
+    "<code>GET /api/cars</code>: <code>pool.query('SELECT * FROM cars')</code> — <b>natijaning <code>rows</code> qismi</b> <code>res.json</code> bilan qaytadi",
+    "GET api cars endpoint'i. Pool query select'ni bazaga olib boradi. Natija obyektida bir nechta narsa bor, bizga ikkitasi kerak: rows, ya'ni qatorlar massivi, va rowCount. Rows res json bilan qaytariladi. Postman'da ikki yuz va uchta mashina. Bu terminaldagi select'ning o'zi, faqat javob JSON ko'rinishida."
    ],
    [
     "b",
-    "<code>is_rented: null</code> — <code>POST</code>da berilmagan ustun bo'sh qoladi, <b><code>DEFAULT</code> yo'q</b>",
-    "Javobga qarang: is rented null. POST'da bu ustun berilmadi, jadvalda esa default qiymat yo'q. Sinfda o'quvchi «nega null?» desa, javob shu. Kerak bo'lsa, jadvalda default false yoziladi."
+    "<code>rowCount</code> — terminaldagi <code>UPDATE 1</code> ning o'zi: o'lchadik, <b><code>WHERE id = 99</code> → <code>rowCount: 0</code></b>, <code>rows: []</code>",
+    "Rowcount nechta qator tegilganini aytadi, bu terminaldagi update bir yoki select'dagi qatorlar sonining o'zi. Sinab ko'rdik: shop bazasida where price kichik yuz ming bilan rowcount uch. Update where id to'qson to'qqiz bilan rowcount nol va rows bo'sh massiv. Birinchi bosqichdagi update nol aynan shu yerga keladi."
    ],
    [
     "c",
-    "<code>PUT</code> — <code>UPDATE … WHERE id = $2</code>, <code>DELETE</code> — <code>WHERE id = $1</code>: <b>200</b>",
-    "PUT ikkinchi mashina narxini yangiladi, ikki yuz va yangilangan qator. DELETE birinchi mashinani o'chirdi, ikki yuz. Ikkalasida ham where bor, faqat id endi URL'dan keladi."
+    "<code>async</code>/<code>await</code> va <code>try</code>/<code>catch</code>: so'rov kutiladi; xato bo'lsa <b>status 500 va xato matni</b>",
+    "Pool query va'da qaytaradi, shuning uchun await bilan kutiladi, funksiya esa async. Hammasi try ichida. Xato bo'lsa catch ishlaydi: server besh yuz status va xato matnini qaytaradi. Beshinchi bosqichda xatolarning hammasini aynan shu catch orqali ko'rasiz."
    ],
    [
     "d",
-    "Yo'q <code>id</code>: kod <code>rowCount</code>ni tekshiradi va 404 qaytaradi — bu namunaning <b>to'g'ri qarori</b>",
-    "To'qson to'qqizinchi mashina: to'rt yuz to'rt, mashina topilmadi. Nega? Baza update nol qaytaradi, xato emas. Bu namunada kod rowCount nolmi deb tekshiradi va to'rt yuz to'rt beradi. To'g'ri qaror: aks holda o'quvchi ikki yuz ko'rib, «o'zgardi» deb o'ylaydi. Gemini buni har doim ham yozmaydi."
-   ],
-   [
-    "e",
-    "Xulosa: GET — 200, POST — 201, PUT/DELETE — 200, <b>topilmasa — 404</b>, xato — 500",
-    "Xulosa: GET ikki yuz, POST ikki yuz bir, PUT va DELETE ikki yuz qaytaradi; qator topilmasa to'rt yuz to'rt, xato bo'lsa besh yuz. Har biri PostgreSQL terminalidagi bitta buyruq. Javobdagi son, ya'ni rowCount, PostgreSQL terminalidagi update bir yoki update nol'ning o'zi."
+    "Xulosa: <b><code>Pool</code> → <code>pool.query</code> → <code>rows</code> / <code>rowCount</code> → <code>res.json</code></b> — so'rov serverdan bazaga shu to'rt qadamda boradi",
+    "Xulosa: so'rov serverdan bazaga to'rt qadamda boradi. Pool ulanadi, pool query so'rov yuboradi, natijadan rows yoki rowcount olinadi, res json javob qaytaradi. Keyingi ekranda qolgan uch endpoint: ularda ham shu to'rt qadam, faqat SQL boshqa."
    ]
   ]
  },
- "16": {
+ "19": {
   "type": "Lesson",
   "kicker": "4-bosqich · Express",
+  "title": "Uch yozuvchi endpoint — uch SQL buyruq; javob statusi va rowCount bilan",
+  "seg": [
+   [
+    "a",
+    "<code>POST</code> — <code>INSERT … RETURNING *</code>: <b>yangi qator javobda</b>, status 201",
+    "GET o'qiydi, qolgan uchtasi yozadi. POST'da insert, oxirida returning yulduzcha, birinchi bosqichda ko'rgansiz: baza yangi qatorni, id bilan, qaytaradi. Shu qator rows nol bo'lib javobga ketadi. Status ikki yuz bir, ya'ni yaratildi. Chevrolet Spark to'rtinchi id bilan qo'shildi."
+   ],
+   [
+    "b",
+    "<code>is_rented: null</code> — <code>POST</code>da berilmagan ustun bo'sh qoldi: <b>jadvalda <code>DEFAULT</code> yo'q</b>",
+    "Javobga qarang: is rented null. POST'da bu ustun berilmadi, jadvalda esa default qiymat yo'q. Uchinchi bosqichni eslang: baza faqat yozilgan qoidani bajaradi. Yechim jadvalda: alter table, is rented set default false. Shunda yangi mashina doim bo'sh deb yoziladi."
+   ],
+   [
+    "c",
+    "<code>PUT</code> — <code>UPDATE … WHERE id = $2</code>, <code>DELETE</code> — <code>WHERE id = $1</code>: 200; <b><code>rowCount</code> nol bo'lsa — 404</b>",
+    "PUT ikkinchi mashina narxini yangiladi, ikki yuz va yangilangan qator. DELETE birinchi mashinani o'chirdi. Ikkalasida where bor, id URL'dan keladi. To'qson to'qqizinchi mashina: baza update nol qaytaradi, xato emas. Bu namunada kod rowcount nolmi deb tekshiradi va to'rt yuz to'rt beradi: mashina topilmadi. Rowcount'siz javob ikki yuz bo'lardi, ya'ni yolg'on «o'zgardi»."
+   ],
+   [
+    "d",
+    "Xulosa: GET — 200, POST — 201, PUT/DELETE — 200, <b>topilmasa — 404</b>, xato — 500; 404 ni <code>rowCount</code> hal qiladi",
+    "Xulosa: GET ikki yuz, POST ikki yuz bir, PUT va DELETE ikki yuz; qator topilmasa to'rt yuz to'rt, xato bo'lsa besh yuz. To'rt yuz to'rtni kim hal qiladi? Rowcount, ya'ni terminaldagi update nol. Endi eng muhim savol: nega qiymatlar dollar bir bilan beriladi."
+   ]
+  ]
+ },
+ "20": {
+  "type": "Lesson",
+  "kicker": "4-bosqich · Express · ichida nima bo'ladi",
   "title": "Yopishtirilgan SQL: 1 OR 1=1 — uchala mashina o'chdi. $1 bilan — 500, jadval joyida",
   "seg": [
    [
     "a",
-    "O'quvchi testida savol bor: «Nega <code>$1</code>?». <b>Sinab ko'rdik</b> — javob ekranda",
-    "O'quvchi darsining testida savol bor: nega dollar bir ishlatamiz? Javob: matn kod bo'lib qolmasin. Bu quruq gap emas, sinab ko'rdik. Delete'da id'ni SQL matniga to'g'ridan-to'g'ri yopishtirdik."
+    "Qiymatni SQL matniga yopishtirish: <code>'… WHERE id = ' + req.params.id</code> — <b>ishlaydi, lekin</b>",
+    "Kodda qiymatni SQL matniga qo'shib yuborish oson: where id teng, plyus, req params id. Oddiy so'rovda bu ishlaydi: delete api cars bir, birinchi mashina o'chadi. Muammo shundaki, URL'dagi matn SQL'ning bir qismiga aylanadi. Sinab ko'rdik."
    ],
    [
     "b",
-    "URL'ga <code>1 OR 1=1</code> yozildi — so'rov «hammasi» bo'lib qoldi: <b><code>deleted: 3</code></b>",
-    "Endi URL'da id o'rniga bir or bir teng bir yuborildi. Yopishtirilgan satr shunday SQL bo'ldi: where id bir, yoki bir teng bir. Bir teng bir doim to'g'ri. Javob ikki yuz, deleted uch, ya'ni jadval bo'sh qoldi. Buni SQL injection deyishadi."
+    "URL'ga <code>1 OR 1=1</code> yozildi — so'rov «hammasi» bo'lib qoldi: <b><code>deleted: 3</code></b>, jadval bo'sh",
+    "URL'da id o'rniga bir or bir teng bir yubordik. Yopishtirilgan satr shunday SQL bo'ldi: where id bir, yoki bir teng bir. Bir teng bir doim to'g'ri. Javob ikki yuz, deleted uch: jadval bo'sh qoldi. Buni SQL injection deyishadi, va buni istalgan foydalanuvchi brauzerdan qila oladi."
    ],
    [
     "c",
-    "<code>$1</code> bilan xuddi shu so'rov: <code>invalid input syntax for type integer</code> — 500, <b>jadval joyida</b>",
-    "Endi dollar bir bilan. Qiymat SQL matniga kirmaydi, alohida beriladi. Baza bir or bir teng bir'ni son sifatida o'qishga urinadi va rad etadi: invalid input syntax for type integer. Besh yuz, lekin jadval joyida, uchala mashina bor."
+    "<code>$1</code> bilan xuddi shu so'rov: qiymat alohida boradi — <b><code>invalid input syntax for type integer</code></b>, 500, jadval joyida",
+    "Endi dollar bir bilan: pool query'ning ikkinchi argumenti massiv, qiymat shu massivda, SQL matniga kirmaydi. Baza bir or bir teng bir'ni son sifatida o'qishga urinadi va rad etadi: invalid input syntax for type integer. Besh yuz, lekin jadval joyida, uchala mashina bor."
    ],
    [
     "d",
-    "Xulosa: qiymat doim <b><code>$1, $2</code> bilan</b> — Gemini promptida ham shunday yozilgan",
-    "Xulosa: foydalanuvchidan kelgan har qiymat dollar bir, dollar ikki bilan beriladi. O'quvchi darsidagi Gemini promptida ham shunday talab bor: qiymatlarni SQL matniga yopishtirma. Gemini boshqacha yozsa, o'quvchi buni tekshirishi kerak, siz esa shu misolni ko'rsatasiz."
+    "Xulosa: foydalanuvchidan kelgan har qiymat <b><code>$1, $2</code> bilan</b>, SQL matniga hech qachon yopishtirilmaydi",
+    "Xulosa: foydalanuvchidan kelgan har qiymat dollar bir, dollar ikki bilan beriladi, SQL matniga hech qachon yopishtirilmaydi. Bu uslub masalasi emas, xavfsizlik masalasi: bitta plyus belgisi butun jadvalni o'chirishga yo'l ochadi. Endi serverni o'zingiz ko'tarasiz."
    ]
   ]
  },
- "17": {
+ "21": {
   "type": "Practice",
   "kicker": "Amaliyot 3 / 4",
   "eyebrow": "Hozir o'zingizda · 15–20 daqiqa",
-  "title": "car_rental va server.js — o'quvchi m4-08 dagi ish",
+  "title": "car_rental va server.js — o'z serveringiz, Postman bilan sinov",
   "seg": [
    [
     "a",
-    "Endi siz: m4-08 dagi ishni <b>o'zingiz qilasiz</b> — jadval qo'lda, server Gemini bilan yoki namunadan",
-    "Endi o'zingiz qilasiz, o'quvchi m4-08 da qiladigan ishni. Jadvalni PostgreSQL terminalida qo'lda yozasiz. Server kodini o'quvchi promptlari bilan Gemini'dan oling yoki namunani o'zingiz yozing. O'n besh-yigirma daqiqa."
+    "Endi siz: jadval qo'lda, server — <b>namunadan yoki Gemini bilan</b>, sinov Postman'da",
+    "Endi o'zingiz server ko'tarasiz. Jadvalni terminalda qo'lda yozasiz. Server kodini namunadan yozing yoki Gemini'dan oling: Express, pg, to'rt endpoint, qiymatlar dollar bir bilan. O'n besh-yigirma daqiqa."
    ],
    [
     "b",
@@ -473,105 +695,179 @@ const MDT = {
    [
     "d",
     "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
-    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. Beshinchi bosqichda bu xatolarning hammasini buzib ko'ramiz. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin sizda o'quvchi m4-08 da quradigan server ishlab turadi va siz uni Postman bilan sinagan bo'lasiz."
+    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. Beshinchi bosqichda bu xatolarning hammasini ataylab chiqarib tuzatamiz. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin sizda ishlab turgan server bor va siz uni Postman bilan sinagan bo'lasiz."
+   ]
+  ],
+  "steps": [
+   {
+    "t": "Jadval",
+    "cmds": [
+     "CREATE DATABASE car_rental;",
+     "\\c car_rental",
+     "CREATE TABLE cars (id SERIAL PRIMARY KEY, model TEXT, daily_price INTEGER, year INTEGER, is_rented BOOLEAN);",
+     "INSERT … ('Chevrolet Cobalt', 280000, 2022, false), …"
+    ],
+    "exp": "INSERT 0 3"
+   },
+   {
+    "t": "Loyiha",
+    "cmds": [
+     "mkdir avto-ijara-server",
+     "cd avto-ijara-server",
+     "npm init -y",
+     "npm install express pg"
+    ],
+    "exp": "added … packages"
+   },
+   {
+    "t": "Server — server.js: «Kodni ochish» (namuna) yoki Gemini (Express + pg, to'rt endpoint, $1, topilmasa 404); parolni yozing",
+    "cmds": [
+     "node server.js"
+    ],
+    "exp": "Server 3000-portda ishlayapti"
+   },
+   {
+    "t": "Postman",
+    "cmds": [
+     "GET localhost:3000/api/cars",
+     "POST localhost:3000/api/cars body { \"model\": \"Chevrolet Spark\", \"daily_price\": 190000, \"year\": 2021 }"
+    ],
+    "exp": "200 · 3 mashina · POST — id bilan"
+   }
+  ],
+  "proof": {
+   "label": "POST javobining statusi",
+   "placeholder": "Postman ko'rsatgan statusni yozing",
+   "re": "^\\s*201\\b",
+   "flags": "",
+   "wrong": "Muvaffaqiyatli POST statusi uch xonali son. Postman'da javob ustida yozilgan."
+  },
+  "trouble": [
+   [
+    "500 password authentication failed for user \"postgres\"",
+    "PASSWORD — o'rnatishda berilgan parol (24-ekran)"
+   ],
+   [
+    "500 client password must be a string",
+    "parol bo'sh / process.env o'qilmagan (24-ekran)"
+   ],
+   [
+    "500 database \"…\" does not exist",
+    "DATABASE nomi xato yoki baza yaratilmagan (24-ekran)"
+   ],
+   [
+    "500 {\"error\":\"\"}",
+    "PostgreSQL ishlamayapti — console.error(err) bilan ECONNREFUSED ko'rinadi (24-ekran)"
+   ],
+   [
+    "500 Cannot destructure property 'model' of 'req.body'",
+    "app.use(express.json()) yo'q (23-ekran)"
+   ],
+   [
+    "500 column \"price\" of relation \"cars\" does not exist",
+    "kodda ustun nomi xato (22-ekran)"
+   ],
+   [
+    "kod o'zgardi, javob o'zgarmadi",
+    "eski server ishlab turibdi — 25-ekran"
    ]
   ]
  },
- "18": {
+ "22": {
   "type": "Lesson",
-  "kicker": "5-bosqich · buzamiz",
+  "kicker": "5-bosqich · buzamiz va tuzatamiz",
   "title": "column \"price\" of relation \"cars\" does not exist — kodda price, jadvalda daily_price",
   "seg": [
    [
     "a",
-    "O'quvchi darsidagi AI xatosini o'zimiz takrorlaymiz: <b><code>INSERT</code>da <code>price</code></b>",
-    "Buzishni o'quvchi darsidagi xatodan boshlaymiz. Gemini insert'da daily price o'rniga price yozgan. Serverni ishga tushiramiz: xato yo'q, server ishlayapti deb yozadi. Xato faqat POST yuborilganda chiqadi."
+    "Birinchi buzish — Gemini'ning odatiy xatosi: <code>INSERT</code>da <b>ustun nomini o'zi o'ylab topadi</b>, <code>price</code>",
+    "Buzishni eng ko'p uchraydigan xatodan boshlaymiz. Gemini insert'da daily price o'rniga price yozgan: ustun nomini jadvaldan emas, o'z taxminidan olgan. Serverni ishga tushiramiz: xato yo'q, server ishlayapti deb yozadi. Xato faqat POST yuborilganda chiqadi."
    ],
    [
     "b",
-    "POST → 500, xabarda <b>jadval va ustun</b>: <code>\"price\"</code> · <code>\"cars\"</code>",
-    "POST yuboramiz, javob besh yuz. Xabarni o'qiymiz: column price of relation cars does not exist. Ustun price, jadval esa cars. O'quvchi darsida xabar qisqaroq yozilgan, haqiqiysi shu, relation cars bilan."
+    "POST → 500, xabarda jadval va ustun: <b><code>\"price\"</code> · <code>\"cars\"</code></b>",
+    "POST yuboramiz, javob besh yuz. Xabarni o'qiymiz: column price of relation cars does not exist. Ustun price, jadval esa cars. Relation so'zi uchinchi bosqichdan tanish: bu jadval. Xabar nimani tuzatishni o'zi aytdi."
    ],
    [
     "c",
-    "Tuzatish: kodda <code>daily_price</code> — serverni qayta ishga tushirib, <b>POST → 201</b>",
+    "Tuzatish: kodda <code>daily_price</code> — serverni <b>qayta ishga tushirib</b>, POST → 201",
     "Jadval tuzilishiga qaraymiz: ustun daily price. Kodda tuzatamiz, serverni to'xtatib, qayta ishga tushiramiz. POST yuboramiz: javob ikki yuz bir, yangi mashina id bilan qaytdi."
    ],
    [
     "d",
-    "Xulosa: 500 bo'lsa — <code>error</code> matnidagi nomni <b><code>\\d cars</code> bilan solishtiring</b>",
-    "Xulosa: besh yuz chiqsa, xato matnini o'qing, ichida ustun va jadval nomi bor. Uni PostgreSQL terminalidagi teskari chiziqcha d cars bilan solishtiring. Kod o'zgargandan keyin serverni albatta qayta ishga tushiring."
+    "Xulosa: 500 bo'lsa — <code>error</code> matnidagi nomni <b><code>\\d cars</code></b> bilan solishtiring; kod o'zgarsa server qayta",
+    "Xulosa: besh yuz chiqsa, xato matnini o'qing, ichida ustun va jadval nomi bor. Uni terminaldagi backslash d cars bilan solishtiring. Kod o'zgargandan keyin serverni albatta qayta ishga tushiring, aks holda eski kod ishlayveradi."
    ]
   ]
  },
- "19": {
+ "23": {
   "type": "Lesson",
-  "kicker": "5-bosqich · buzamiz",
+  "kicker": "5-bosqich · buzamiz va tuzatamiz",
   "title": "Cannot destructure property 'model' of 'req.body' — so'rov tanasi o'qilmagan",
   "seg": [
    [
     "a",
     "Bitta satrni olib tashlaymiz: <code>app.use(express.json())</code> — <b>server baribir ishga tushadi</b>",
-    "Endi ikkinchi buzish. Gemini ba'zan bitta satrni unutadi: app use express json. Shu satrni olib tashlaymiz. Server xatosiz ishga tushadi, GET ham ishlaydi. Muammo faqat tanasi bor so'rovlarda."
+    "Ikkinchi buzish. Gemini ba'zan bitta satrni unutadi: app use express json. Shu satrni olib tashlaymiz. Server xatosiz ishga tushadi, GET ham ishlaydi. Muammo faqat tanasi bor so'rovlarda."
    ],
    [
     "b",
     "POST → 500: <code>req.body</code> — <b><code>undefined</code></b>, <code>model</code>ni olib bo'lmaydi",
-    "POST yuboramiz, javob besh yuz. Xabar shunday: cannot destructure property model of req body as it is undefined. Ya'ni req body umuman yo'q: Express so'rov tanasini o'qimagan, chunki json'ni o'qiydigan qism ulanmagan."
+    "POST yuboramiz, javob besh yuz. Xabar shunday: cannot destructure property model of req body as it is undefined. Ya'ni req body umuman yo'q: Express so'rov tanasini o'qimagan, chunki JSON'ni o'qiydigan qism ulanmagan."
    ],
    [
     "c",
-    "Tuzatish: satr qaytariladi, <code>app</code> yaratilgandan keyin — <b>POST → 201</b>",
-    "Tuzatish uchun app use express json satrini app yaratilgandan keyin, endpoint'lardan oldin qaytaramiz. Server qayta ishga tushadi, POST ikki yuz bir."
+    "Tuzatish: satr qaytariladi, <code>app</code> yaratilgandan keyin, <b>endpoint'lardan oldin</b> — POST → 201",
+    "Tuzatish uchun app use express json satrini app yaratilgandan keyin, endpoint'lardan oldin qaytaramiz. Tartib muhim: bu satr har so'rovdan oldin ishlaydi. Server qayta ishga tushadi, POST ikki yuz bir."
    ],
    [
     "d",
     "Xulosa: <code>req.body</code> <code>undefined</code> bo'lsa — birinchi qaraladigan joy <b><code>express.json()</code></b>",
-    "Xulosa: req body undefined degan xato chiqsa, birinchi qaraladigan joy app use express json. GET ishlab, POST va PUT ishlamasa ham shu satr. O'quvchi darsidagi Gemini promptining birinchi bandi aynan shu."
+    "Xulosa: req body undefined degan xato chiqsa, birinchi qaraladigan joy app use express json. GET ishlab, POST va PUT ishlamasa ham shu satr. Bitta satr, lekin usiz tanasi bor hech bir so'rov ishlamaydi."
    ]
   ]
  },
- "20": {
+ "24": {
   "type": "Lesson",
-  "kicker": "5-bosqich · buzamiz",
+  "kicker": "5-bosqich · buzamiz va tuzatamiz",
   "title": "Server «ishlayapti» deydi — parol, baza va PostgreSQL xatosi birinchi so'rovda chiqadi",
   "seg": [
    [
     "a",
-    "<code>Pool</code> darhol ulanmaydi: server ishga tushadi, <b>xato birinchi so'rovda</b>",
-    "Parol xatosini ko'rdik, endi uning g'alati tomoni. Pool server ishga tushganda bazaga ulanmaydi, birinchi so'rovda ulanadi. Shuning uchun parol xato bo'lsa ham terminalda server ishlayapti deb yoziladi. O'quvchi «server ishlayapti, lekin besh yuz» desa, xabarni o'qing."
+    "<code>Pool</code> darhol ulanmaydi (17-ekran): server ishga tushadi, <b>xato birinchi so'rovda</b>",
+    "Pool ekranida ko'rgan edingiz: Pool server ishga tushganda bazaga ulanmaydi, birinchi so'rovda ulanadi. Shuning uchun parol xato bo'lsa ham terminalda server ishlayapti deb yoziladi. «Server ishlayapti, lekin besh yuz» degan holatda xabarni o'qing: to'rt xil bo'ladi."
    ],
    [
     "b",
-    "Parol xato — <b><code>password authentication failed</code></b>; parol bo'sh — <b><code>client password must be a string</code></b>",
+    "Parol xato — <code>password authentication failed</code>; parol bo'sh — <b><code>client password must be a string</code></b>",
     "Parol xato bo'lsa: password authentication failed for user postgres. Parol umuman berilmasa, masalan process env'dan o'qilmagan bo'lsa: client password must be a string. Ikkinchisi g'alati ko'rinadi, lekin ma'nosi oddiy: parol o'zgaruvchisi bo'sh."
    ],
    [
     "c",
     "Baza nomi xato — <code>database \"carrental\" does not exist</code>: <b>pastki chiziq tushib qolgan</b>",
-    "Baza nomida pastki chiziq tushib qolsa: database carrental does not exist. Baza bor, faqat nomi car pastki chiziq rental. PostgreSQL terminalidagi teskari chiziqcha l bilan aniq nomni ko'ring."
+    "Baza nomida pastki chiziq tushib qolsa: database carrental does not exist. Baza bor, faqat nomi car pastki chiziq rental. Terminaldagi backslash l bilan aniq nomni ko'ring."
    ],
    [
     "d",
-    "PostgreSQL o'chiq — xato matni bo'sh; <code>console.error(err)</code> — <b><code>ECONNREFUSED</code> ko'rinadi</b>",
+    "PostgreSQL o'chiq — xato matni bo'sh; <b><code>console.error(err)</code></b> — <code>ECONNREFUSED</code> ko'rinadi",
     "Eng chalkashi: PostgreSQL ishlamasa, javob besh yuz, lekin error bo'sh, terminalda ham bo'sh qator. Sinab ko'rdik: console error'ga err message emas, err'ning o'zini bersak, ECONNREFUSED chiqadi, ya'ni ulanish rad etildi. Yechim: PostgreSQL'ni ishga tushiring."
    ],
    [
     "e",
-    "Xulosa: «ishlayapti» — <b>faqat Express</b>; baza xatosini birinchi so'rov va terminal aytadi",
+    "Xulosa: «ishlayapti» — faqat Express; <b>baza xatosini birinchi so'rov va terminal aytadi</b>",
     "Xulosa: terminaldagi ishlayapti degan satr faqat Express haqida. Bazaga ulanish birinchi so'rovda tekshiriladi. Xabar bo'sh bo'lsa, console error'ga butun xatoni bering. PostgreSQL'ni ishga tushirish: Windows'da Services, Mac'da Postgres.app."
    ]
   ]
  },
- "21": {
+ "25": {
   "type": "Lesson",
-  "kicker": "5-bosqich · buzamiz",
+  "kicker": "5-bosqich · buzamiz va tuzatamiz",
   "title": "Ikkinchi node server.js ham «ishlayapti» deydi — javobni esa eski server beradi",
   "seg": [
    [
     "a",
-    "Sinfdagi eng chalkash holat: «kodni tuzatdim, <b>hech narsa o'zgarmadi</b>»",
-    "Sinfdagi eng chalkash holat: o'quvchi kodni tuzatadi, serverni yana ishga tushiradi, lekin javob o'zgarmaydi. Sabab ko'pincha bitta: birinchi server boshqa terminalda hali ishlab turibdi."
+    "Eng chalkash holat: <b>«kodni tuzatdim, hech narsa o'zgarmadi»</b>",
+    "Eng chalkash holat: kodni tuzatasiz, serverni yana ishga tushirasiz, lekin javob o'zgarmaydi. Sabab ko'pincha bitta: birinchi server boshqa terminalda hali ishlab turibdi."
    ],
    [
     "b",
@@ -580,28 +876,28 @@ const MDT = {
    ],
    [
     "c",
-    "Sabab Express 5 da: xato <code>listen</code> callback'iga beriladi, namunadagi <b>callback uni o'qimaydi</b>",
-    "Sabab Express beshinchi versiyasida: listen xatoni callback'ga beradi. Gemini yozgan callback esa xatoni o'qimaydi, faqat ishlayapti deb chiqaradi. Bu namuna kodidagi kamchilik, Express'niki emas, lekin sinfda aynan shunday ko'rinadi."
+    "Sabab Express 5 da: xato <code>listen</code> callback'iga beriladi, <b>namunadagi callback uni o'qimaydi</b>",
+    "Sabab Express beshinchi versiyasida: listen xatoni callback'ga beradi. Gemini yozgan callback esa xatoni o'qimaydi, faqat ishlayapti deb chiqaradi. Callback xatoni o'qisa, address already in use chiqadi va server to'xtaydi. Bu namuna kodidagi kamchilik, Express'niki emas."
    ],
    [
     "d",
-    "Xulosa: bitta loyiha — <b>bitta terminal</b>; qayta ishga tushirishdan oldin <code>Ctrl+C</code>",
-    "Xulosa: sinfda qoida qo'ying, bitta loyiha uchun bitta terminal. Qayta ishga tushirishdan oldin Ctrl C bilan eski serverni to'xtating. O'quvchi «o'zgarmadi» desa, birinchi savol: boshqa terminalda server ochiq qolmadimi?"
+    "Xulosa: <b>bitta loyiha — bitta terminal</b>; qayta ishga tushirishdan oldin <code>Ctrl+C</code>",
+    "Xulosa: bitta loyiha uchun bitta terminal. Qayta ishga tushirishdan oldin Ctrl C bilan eski serverni to'xtating. Javob o'zgarmasa, birinchi savol: boshqa terminalda server ochiq qolmadimi?"
    ]
   ]
  },
- "22": {
+ "26": {
   "type": "LineCheck",
   "kicker": "Tekshiruv 4",
   "eyebrow": "Tekshiruv · 4 / 4 — qaysi satr xato?",
   "title": "POST 500: column \"price\" of relation \"cars\" does not exist. Xato satrni toping",
   "q": "Buzishni ko'rdingiz, endi o'zingiz toping. To'rtinchi tekshiruv. Jadval ustunlarini eslang: id, model, daily price, year, is rented. Bu POST bo'lagida bitta satr jadvalda yo'q ustunni so'rayapti. O'sha satrni bosing.",
-  "ok": "To'g'ri. To'rtinchi satrda insert'da price yozilgan, jadvalda esa daily price. Uchinchi satrdagi daily price faqat JavaScript o'zgaruvchisi, baza uni ko'rmaydi, u SQL matnidagi nomni ko'radi. Ekranda tuzatilgan holat: daily price, POST ikki yuz bir. Demak, besh yuz chiqsa, SQL matnidagi har nomni jadval ustunlari bilan solishtiring.",
-  "okShort": "4-satr: SQL'da <code>price</code> — jadvalda <code>daily_price</code>. 3-satrdagi <code>daily_price</code> — JS o'zgaruvchisi, baza ko'rmaydi.",
+  "ok": "To'g'ri. O'ttiz oltinchi satrda insert'da price yozilgan, jadvalda esa daily price. O'ttiz to'rtinchi satrdagi daily price faqat JavaScript o'zgaruvchisi, baza uni ko'rmaydi, u SQL matnidagi nomni ko'radi. Ekranda tuzatilgan holat: daily price, POST ikki yuz bir. Demak, besh yuz chiqsa, SQL matnidagi har nomni jadval ustunlari bilan solishtiring.",
+  "okShort": "36-satr: SQL'da <code>price</code> — jadvalda <code>daily_price</code>. 34-satrdagi <code>daily_price</code> — JS o'zgaruvchisi, baza ko'rmaydi.",
   "hint": "Baza JavaScript o'zgaruvchilarini ko'rmaydi — faqat qo'shtirnoq ichidagi SQL matnini. O'sha matndagi ustun nomlarini qidiring.",
   "task": "Qoida: SQL'dagi ustun nomlari jadvaldagi bilan aynan bir xil bo'ladi — <code>cars</code>: <code>id, model, daily_price, year, is_rented</code>. Bu POST bo'lagida bitta satr jadvalda yo'q ustunni so'rayapti. <b>O'sha satrni bosing.</b>"
  },
- "23": {
+ "27": {
   "type": "Practice",
   "kicker": "Amaliyot 4 / 4",
   "eyebrow": "Hozir o'zingizda · 10 daqiqa",
@@ -610,7 +906,7 @@ const MDT = {
    [
     "a",
     "Endi siz: o'z serveringizda ikkita xatoni <b>ataylab chiqarasiz va tuzatasiz</b>",
-    "Oxirgi amaliyot: o'z serveringizda ikkita xatoni ataylab chiqarasiz va tuzatasiz. O'n daqiqa. Sinfda xuddi shu xatolar chiqqanda, ularni birinchi marta ko'rayotgan bo'lmaysiz."
+    "Oxirgi amaliyot: o'z serveringizda ikkita xatoni ataylab chiqarasiz va tuzatasiz. O'n daqiqa. Bu xatolar haqiqiy loyihada ham chiqadi; ularni bir marta o'zingiz chiqarsangiz, keyin xabardan darhol taniysiz."
    ],
    [
     "b",
@@ -625,94 +921,128 @@ const MDT = {
    [
     "d",
     "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
-    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, sinfda bu ikki xato chiqqanda siz ularni birinchi marta ko'rayotgan bo'lmaysiz va xabardan sababini darhol topasiz."
+    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, bu ikki xato chiqqanda siz ularni birinchi marta ko'rayotgan bo'lmaysiz va xabardan sababini darhol topasiz."
+   ]
+  ],
+  "steps": [
+   {
+    "t": "Buzish",
+    "cmds": [
+     "server.js: INSERT INTO cars (model, price, year)",
+     "Ctrl+C",
+     "node server.js",
+     "Postman POST"
+    ],
+    "exp": "500 column \"price\" of relation \"cars\" does not exist"
+   },
+   {
+    "t": "Tuzatish",
+    "cmds": [
+     "price → daily_price",
+     "Ctrl+C",
+     "node server.js",
+     "POST"
+    ],
+    "exp": "201"
+   },
+   {
+    "t": "Ikki server",
+    "cmds": [
+     "1-terminal ishlab turibdi",
+     "2-terminalda node server.js"
+    ],
+    "exp": "ikkinchisi ham «Server 3000-portda ishlayapti»"
+   },
+   {
+    "t": "To'xtatish",
+    "cmds": [
+     "ikkala terminalda Ctrl+C"
+    ],
+    "exp": "Postman: GET — javob yo'q (server yo'q)"
+   }
+  ],
+  "proof": {
+   "label": "1-qadamdagi 500 xabari",
+   "placeholder": "Postman'dagi error matnini qo'ying",
+   "re": "column\\s+\"?price\"?\\s+of relation\\s+\"?cars\"?\\s+does not exist",
+   "flags": "i",
+   "wrong": "Xabar to'liq bo'lsin: qaysi ustun va qaysi jadval (of relation …). Postman'dagi error qiymatini nusxalang."
+  },
+  "trouble": [
+   [
+    "1-qadamda 201",
+    "server qayta ishga tushmagan — eski kod ishlayapti (25-ekran)"
+   ],
+   [
+    "column \"price\" does not exist (of relationsiz)",
+    "SELECT/UPDATEda xato qilingan — INSERTdagi ustunni o'zgartiring"
+   ],
+   [
+    "3-qadamda listen EADDRINUSE: address already in use :::3000",
+    "sizning server.jsingizda callback xatoni o'qiydi (Gemini boshqacha yozgan) — bu yaxshi; ikkala terminalni ham to'xtating"
+   ],
+   [
+    "4-qadamda javob bor",
+    "yana bir terminal ochiq qolgan — hammasini Ctrl+C"
    ]
   ]
  },
- "24": {
+ "28": {
   "type": "Lesson",
-  "kicker": "6-bosqich · o'quvchi darsini o'tish",
-  "eyebrow": "m4-06 · «PostgreSQL so'rovlar — CRUD + AI bilan»",
-  "title": "m4-06: o'quvchi do'konni tugmalar bilan boshqaradi, amaliyotda — haqiqiy PostgreSQL terminalida",
+  "kicker": "6-bosqich · sinfga tayyorgarlik",
+  "eyebrow": "m4-06 · m4-08",
+  "title": "Ikki o'quvchi darsi: nimani ko'radi, siz nimani qo'shasiz, nimaga tayyor turasiz",
   "seg": [
    [
     "a",
-    "m4-06 da o'quvchi do'konni tugmalar bilan boshqaradi — amaliyotda esa <b>haqiqiy PostgreSQL terminali</b>",
-    "Endi o'quvchi darslarini ko'ramiz. Birinchisi m4-06, unda yigirma bir ekran bor. Ko'p qismida o'quvchi do'konni tugmalar bilan boshqaradi: insert, select, where, update, delete. Lekin amaliyotda u haqiqiy PostgreSQL terminali yoki VS Code'da AI bilan o'z do'koni jadvalini yaratadi. Demak bu darsda PostgreSQL har kompyuterda ishlab turishi shart."
+    "m4-06 (21 ekran): do'kon tugmalar bilan, amaliyotda — <b>haqiqiy PostgreSQL terminali</b>; jadval bugungi <code>products</code> ning o'zi",
+    "Endi sinfga tayyorgarlik, ikki ekran. Birinchi o'quvchi darsi m4-06, yigirma bir ekran: o'quvchi do'konni tugmalar bilan boshqaradi, insert, select, where, update, delete. Jadval bugun siz yaratgan products'ning aynan o'zi. Amaliyotda esa u haqiqiy PostgreSQL terminalida yoki VS Code'da AI bilan o'z do'konini yaratadi, shuning uchun PostgreSQL har kompyuterda ishlab turishi shart."
    ],
    [
     "b",
-    "CRUD bloki — siz bugun qo'lda qilgan ish; har <code>UPDATE</code>da <b>javobdagi sonni so'rang</b>",
-    "CRUD bloki siz bugun qo'lda qilgan ishning o'zi. Qo'shimcha gapingiz: javobdagi son va begin, rollback. O'quvchi where'siz update'ni faqat ogohlantirishda ko'radi, siz uni proyektorda xavfsiz ko'rsating."
+    "m4-08 (9 ekran): <code>cars</code> jadvali qo'lda, <code>server.js</code> Gemini'dan, Postman bilan sinov — <b>bugungi serveringizning o'zi</b>",
+    "Ikkinchisi m4-08, AvtoIjara, to'qqiz ekran: o'quvchi cars jadvalini terminalda o'zi yozadi, server kodini Gemini'dan oladi, Postman bilan sinaydi va AI xatosini topadi. Bu bugun siz ko'targan serverning o'zi. Farqi: o'quvchi Pool'ning ichini, tranzaksiyani va injection'ni bilmaydi, siz bilasiz."
    ],
    [
     "c",
-    "AI bloki: o'quvchi AI yozgan SQL'ni tekshiradi — sizning misollaringiz <code>product</code> va <b>noto'g'ri <code>HINT</code></b>",
-    "AI bloki: o'quvchi AI yozgan SQL'ni tekshirishni o'rganadi, o'quvchi darsidagi misol product xatosi. Sizda yana bir misol bor: hint ham adashadi. Xulosa bitta: AI yozadi, o'quvchi tekshiradi."
+    "Siz qo'shasiz: javobdagi son · <code>BEGIN … ROLLBACK</code> · <code>ORDER BY</code> · apostrof · <code>NOT NULL</code> · <b><code>HINT</code> ham adashadi</b>; to'rt farqni oldindan ayting",
+    "Darsga siz qo'shadigan narsalar: har update'dan keyin javobdagi sonni so'rang, where'siz update'ni proyektorda begin ichida ko'rsating, order by va apostrofni ayting, o'z do'konini yaratayotganda not null'ni maslahat bering, hint ham adashishini eslating. To'rt farqni oldindan ayting: darsdagi xato matni qisqa, Gemini har kimga boshqacha kod yozadi, POST'dan keyin is rented null, port band bo'lsa ham «ishlayapti»."
    ],
    [
     "d",
-    "Xulosa: amaliyot oldidan har kompyuterda <b>PostgreSQL terminali ochilishini</b> tekshiring; apostrof va <code>NOT NULL</code>ni ayting",
-    "Xulosa: amaliyot oldidan har kompyuterda PostgreSQL terminali ochilishini tekshiring. O'quvchi o'z do'konini yaratayotganda ikki narsani ayting: so'z ichidagi apostrof ikki marta yoziladi, nom va narxga not null qo'yiladi. Vaqt, taklif: to'qson daqiqaning yigirma beshi amaliyotga."
+    "Xulosa: darsdan oldin — har kompyuterda PostgreSQL va Postman, <b>sinf paroli</b>, bitta loyiha — bitta terminal; vaqt amaliyotga",
+    "Xulosa: darsdan oldin uch narsani tekshiring: har kompyuterda PostgreSQL terminali ochiladi va Postman o'rnatilgan, sinf paroli hammaga ma'lum, qoida: bitta loyiha, bitta terminal. Vaqt bo'yicha taklif: m4-06 da to'qson daqiqaning yigirma beshi amaliyotga, m4-08 da qirqi server va Postman'ga, chunki o'quvchilar eng ko'p xato qiladigan joy shu."
    ]
   ]
  },
- "25": {
+ "29": {
   "type": "Lesson",
-  "kicker": "6-bosqich · o'quvchi darsini o'tish",
-  "eyebrow": "m4-08 · «Praktika: Backend CRUD — AvtoIjara»",
-  "title": "m4-08: jadval qo'lda, server Gemini bilan — darsdagi to'rt farqni oldindan biling",
+  "kicker": "6-bosqich · sinfga tayyorgarlik",
+  "title": "Olti holat va tayyor javoblar — hammasini bugun o'zingiz ko'rdingiz",
   "seg": [
    [
     "a",
-    "m4-08 — <b>to'qqiz ekran</b>: jadvalni o'quvchi yozadi, serverni Gemini, Postman bilan sinaladi",
-    "Ikkinchi dars m4-08, AvtoIjara, unda to'qqiz ekran bor. O'quvchi cars jadvalini PostgreSQL terminalida o'zi yozadi, server kodini Gemini'dan oladi, Postman bilan sinaydi va AI xatosini topadi. Siz bugun xuddi shuni qildingiz."
+    "Darsda albatta chiqadigan olti holat — <b>hammasini bugun o'zingiz ko'rdingiz</b>",
+    "Ikki o'quvchi darsini bilasiz. Endi darsda albatta chiqadigan oltita holatni ko'ramiz. Hammasini bugun o'zingiz ko'rdingiz, shuning uchun qisqa aytaman."
    ],
    [
     "b",
-    "Farq 1: darsdagi xato matni qisqartirilgan; Farq 2: Gemini kodi <b>har kimda boshqacha</b>",
-    "Darsdagi to'rt farqni oldindan biling. Birinchisi: xato matni darsda qisqaroq, haqiqiysida relation cars ham bor. Ikkinchisi: Gemini har o'quvchiga boshqacha kod yozadi. Topilmasa nima qaytishi, bitta yoki ikkita satr har xil bo'ladi. Promptdagi talablar bajarilganini tekshiring, satrma-satr bir xillikni emas."
+    "Nom xatosi va apostrof — <b><code>\\d</code> bilan solishtiring</b>, apostrof ikki marta",
+    "Birinchi holat jadval yoki ustun nomidagi xato: xabar ichidagi nomni backslash d bilan solishtiring, hint'ga ishonmang. Ikkinchisi apostrof: u ikki marta yoziladi."
    ],
    [
     "c",
-    "Farq 3: <code>is_rented</code> — <code>null</code>; Farq 4: <b>port band bo'lsa ham «ishlayapti»</b>",
-    "Uchinchisi: POST'dan keyin is rented null chiqadi, chunki u berilmaydi. To'rtinchisi: ikki terminalda ikki server ochilsa, xato chiqmaydi, eski server javob beradi. Ikkalasini ham o'quvchilarga oldindan ayting."
-   ],
-   [
-    "d",
-    "Xulosa: darsdan oldin — parol, Postman va <b>bitta terminal qoidasi</b>",
-    "Xulosa: m4-08 dan oldin uch narsani tayyorlang. Sinf paroli hammaga ma'lum, Postman o'rnatilgan, va qoida: bitta loyiha, bitta terminal. Vaqt, taklif: to'qson daqiqaning qirqi server va Postman'ga, chunki eng ko'p qoqiladigan joy shu."
-   ]
-  ]
- },
- "26": {
-  "type": "Lesson",
-  "kicker": "6-bosqich · sinfda",
-  "title": "Olti holat va tayyor javoblar",
-  "seg": [
-   [
-    "a",
-    "Sinfda albatta chiqadigan <b>olti holat</b> — hammasini bugun o'zingiz ko'rdingiz",
-    "Ikki o'quvchi darsini bilasiz. Endi sinfda albatta chiqadigan oltita holatni ko'ramiz. Hammasini bugun o'zingiz ko'rdingiz, shuning uchun qisqa aytaman."
-   ],
-   [
-    "b",
-    "Nom xatosi va apostrof — <code>\\d</code> bilan solishtiring, <b>apostrof ikki marta</b>",
-    "Birinchi holat jadval yoki ustun nomidagi xato: xabar ichidagi nomni teskari chiziqcha d bilan solishtiring, hint'ga ishonmang. Ikkinchisi apostrof: u ikki marta yoziladi."
-   ],
-   [
-    "c",
-    "<code>WHERE</code>'siz va ulanish xatolari — <code>BEGIN</code>, parol va <b>bo'sh xabar</b>",
+    "<code>WHERE</code>'siz va ulanish xatolari — <b><code>BEGIN</code>, parol va bo'sh xabar</b>",
     "Uchinchisi where'siz update yoki delete: uning oldi begin bilan olinadi. To'rtinchisi parol yoki baza nomidagi xato: uni Pool sozlamalarida qidiring. Beshinchisi: xabar bo'sh bo'lsa, console error'ga butun xatoni bering va PostgreSQL'ni tekshiring."
    ],
    [
     "d",
-    "Xulosa: o'zgarmasa — ikkinchi terminal; avval <b>xabarni o'quvchi bilan birga o'qing</b>",
+    "Xulosa: o'zgarmasa — ikkinchi terminal; <b>xabarni o'quvchi bilan birga o'qing</b>, javobni darhol aytmang",
     "Oltinchisi: o'quvchi «o'zgarmadi» desa, ikkinchi terminalda eski server qolganini tekshiring. Xulosa va usul bitta: javobni darhol aytmang, xabarni o'quvchi bilan birga o'qing. Pastda o'quvchi savollariga tayyor javoblar bor."
    ]
   ]
  },
- "27": {
+ "30": {
   "type": "Screen27",
   "kicker": "O'z-sinov",
   "title": "Sakkiz savol. Bitta urinish. Oltitasi — o'tdingiz",
@@ -720,102 +1050,102 @@ const MDT = {
    {
     "q": "UPDATE products SET price = 99000; — WHERE yo'q. Javob?",
     "o": [
-     "UPDATE 1",
-     "ERROR",
-     "UPDATE 3 — hamma qator",
-     "UPDATE 0"
+     "UPDATE 1 — faqat birinchi qator o'zgaradi",
+     "ERROR — WHERE'siz UPDATE taqiqlangan",
+     "UPDATE 3 — hamma qator yangi narxni oldi",
+     "UPDATE 0 — shart yo'q, hech narsa"
     ],
     "c": 2,
     "e": "WHERE'siz — jadvaldagi hamma qator.",
-    "s": 8
+    "s": 9
    },
    {
     "q": "BEGIN; → DELETE FROM products; → ROLLBACK; → SELECT *. Natija?",
     "o": [
-     "Hamma mahsulot joyida",
-     "(0 rows)",
-     "Faqat birinchi qator",
-     "ERROR"
+     "Hamma mahsulot joyida — DELETE bekor bo'ldi",
+     "(0 rows) — DELETE allaqachon diskka yozilgan",
+     "Faqat birinchi qator qaytib keladi, xolos",
+     "ERROR — ROLLBACK'dan keyin jadval yopiq"
     ],
     "c": 0,
     "e": "ROLLBACK tranzaksiyani bekor qiladi.",
-    "s": 8
+    "s": 12
    },
    {
-    "q": "WHERE id = 99 — bunday qator yo'q. UPDATE javobi?",
+    "q": "Tranzaksiya ichida buyruq xato berdi, prompt shop=!#. Endi SELECT 1; yozsangiz?",
     "o": [
-     "ERROR: not found",
-     "UPDATE 0",
-     "UPDATE 1",
-     "DELETE 0"
+     "Oddiy ishlaydi — xato o'tib ketgan",
+     "current transaction is aborted xatosi",
+     "Baza o'zi COMMIT qilib, natija beradi",
+     "Prompt o'zi oddiy holatga qaytadi"
     ],
     "c": 1,
-    "e": "Mos qator yo'q — 0, xato emas.",
-    "s": 5
+    "e": "Aborted holat: ROLLBACKgacha hamma buyruq rad etiladi.",
+    "s": 10
    },
    {
-    "q": "VALUES ('O'yinchoq', 30000, 4) → syntax error. Tuzatish?",
+    "q": "UPDATEdan keyin SELECT * da qator ro'yxat oxiriga tushdi. Sabab?",
     "o": [
-     "\"O'yinchoq\"",
-     "VARCHAR qilish",
-     "Kirillda yozish",
-     "'O''yinchoq'"
+     "Bu xato — qator buzilgan, qayta yozing",
+     "id o'zgardi — UPDATE yangi id berdi",
+     "Tranzaksiya yopilmagan — qator vaqtincha",
+     "ORDER BY yo'q — tartib kafolatlanmaydi"
     ],
     "c": 3,
-    "e": "So'z ichidagi apostrof ikki marta.",
-    "s": 11
+    "e": "ctid o'zgardi; tartib ORDER BY bilan.",
+    "s": 6
    },
    {
-    "q": "Express'da bazaga SQL nima bilan yuboriladi?",
+    "q": "new Pool({…}) yaratildi, parol xato. Server ishga tushganda nima bo'ladi?",
     "o": [
-     "pool.query(sql, [qiymatlar])",
-     "res.json",
-     "app.listen",
-     "console.log"
+     "Darhol xato beradi, server tushadi",
+     "Server yonadi, xato birinchi so'rovda",
+     "Pool to'g'ri parolni o'zi topib oladi",
+     "Hech qachon xato chiqmaydi — parol keshda"
     ],
-    "c": 0,
-    "e": "Pool — server bazaga shu yo'l bilan ulanadi.",
-    "s": 14
+    "c": 1,
+    "e": "Pool birinchi so'rovda ulanadi.",
+    "s": 17
    },
    {
     "q": "Server «ishlayapti», GET ishlaydi, POST — Cannot destructure property 'model' of 'req.body'. Sabab?",
     "o": [
-     "Parol xato",
-     "app.use(express.json()) yo'q",
-     "Jadval yo'q",
-     "Port band"
+     "Parol xato — baza so'rovni rad etdi",
+     "Jadval yo'q — INSERT bajarilmadi",
+     "Port band — POST boshqa serverga ketdi",
+     "express.json() ulanmagan — tana bo'sh"
     ],
-    "c": 1,
+    "c": 3,
     "e": "req.body o'qilmagan.",
-    "s": 19
+    "s": 23
    },
    {
     "q": "POST 500, {\"error\":\"\"}, terminalda bo'sh qator. Birinchi qadam?",
     "o": [
-     "Serverni o'chirish",
-     "Gemini'dan yangi kod",
-     "console.error(err) — butun xatoni ko'rish",
-     "npm install"
+     "Serverni o'chirib, qaytadan yoqib ko'rish",
+     "Gemini'dan butunlay yangi kod so'rash",
+     "console.error(err) bilan xatoni ko'rish",
+     "npm install bilan paketlarni yangilash"
     ],
     "c": 2,
     "e": "Bo'sh xabar — ECONNREFUSED yashiringan.",
-    "s": 20
+    "s": 24
    },
    {
-    "q": "O'quvchi: «Kodni tuzatdim, node server.js qildim — javob o'zgarmadi». Birinchi savolingiz?",
+    "q": "'DELETE … WHERE id = ' + req.params.id va URL 1 OR 1=1. Nima bo'ladi?",
     "o": [
-     "Gemini'dan qayta so'radingmi?",
-     "Bazani o'chirdingmi?",
-     "Postman yangilandimi?",
-     "Boshqa terminalda server ochiq qolmadimi?"
+     "Hamma qator o'chadi va javob 200 qaytadi",
+     "Baza bunday so'rovni rad etadi — 500",
+     "404 — 1 OR 1=1 degan id topilmadi",
+     "Faqat birinchi mashina o'chadi, qolgani qoladi"
     ],
-    "c": 3,
-    "e": "Express 5 da ikkinchi server ham «ishlayapti» deydi.",
-    "s": 21
+    "c": 0,
+    "e": "Yopishtirilgan matn SQL bo'ldi; $1 bilan — 500, jadval joyida.",
+    "s": 20
    }
   ]
  },
- "28": {
+ "31": {
   "type": "Screen28",
   "kicker": "Yakun",
   "title": "Endi siz bilasiz"

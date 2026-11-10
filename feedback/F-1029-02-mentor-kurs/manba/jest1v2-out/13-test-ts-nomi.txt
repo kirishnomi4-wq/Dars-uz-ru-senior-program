@@ -1,0 +1,15 @@
+$ npm test
+
+> order-bot-nest@1.0.0 test
+> jest
+
+No tests found, exiting with code 1
+Run with `--passWithNoTests` to exit with code 0
+In /tmp/claude-1000/-home-kali-Desktop-internetLesson/acbddc95-9018-4213-96d2-b79eac22166a/scratchpad/jest1v2-run/src
+  28 files checked.
+  testMatch:  - 0 matches
+  testPathIgnorePatterns: /node_modules/ - 28 matches
+  testRegex: .*\.spec\.ts$ - 0 matches
+Pattern:  - 0 matches
+[chiqish kodi: 1]
+

@@ -1,0 +1,323 @@
+# package.json telegraf 4.16.0, lock 4.16.3 — npm ci «in sync» xatosi lentada
+# run 41833308519 · branch ci-sinov · commit f7e6f8d · natija: failure · yozildi 2026-11-04 17:54:41 +0500
+# https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41833308519
+
+$ cat .github/workflows/ci.yml
+name: CI
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx tsc --noEmit
+      - run: npm test
+      - run: npm run build
+
+## gh run view
+
+X ci-sinov CI · 41833308519
+Triggered via push less than a minute ago
+
+JOBS
+X test in 8s (ID 126585722226)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/setup-node@v4
+  X Run npm ci
+  - Run npx tsc --noEmit
+  - Run npm test
+  - Run npm run build
+  - Post Run actions/setup-node@v4
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+
+ANNOTATIONS
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+test: .github#2
+
+X Process completed with exit code 1.
+test: .github#103
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+test: .github#1
+
+
+To see what failed, try: gh run view 41833308519 --log-failed
+View this run on GitHub: https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41833308519
+
+## job → step (API: actions/runs/41833308519/jobs)
+JOB test · failure · 2026-11-04T12:54:26Z → 2026-11-04T12:54:34Z · runner: GitHub Actions 1000000011 · ubuntu-latest
+  1. Set up job · success · 2026-11-04T12:54:27Z → 2026-11-04T12:54:27Z
+  2. Run actions/checkout@v4 · success · 2026-11-04T12:54:27Z → 2026-11-04T12:54:28Z
+  3. Run actions/setup-node@v4 · success · 2026-11-04T12:54:28Z → 2026-11-04T12:54:30Z
+  4. Run npm ci · failure · 2026-11-04T12:54:30Z → 2026-11-04T12:54:32Z
+  5. Run npx tsc --noEmit · skipped · 2026-11-04T12:54:32Z → 2026-11-04T12:54:32Z
+  6. Run npm test · skipped · 2026-11-04T12:54:32Z → 2026-11-04T12:54:32Z
+  7. Run npm run build · skipped · 2026-11-04T12:54:32Z → 2026-11-04T12:54:32Z
+  13. Post Run actions/setup-node@v4 · skipped · 2026-11-04T12:54:32Z → 2026-11-04T12:54:32Z
+  14. Post Run actions/checkout@v4 · success · 2026-11-04T12:54:32Z → 2026-11-04T12:54:32Z
+  15. Complete job · success · 2026-11-04T12:54:32Z → 2026-11-04T12:54:32Z
+
+## annotatsiyalar (check-runs)
+  [warning] : Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+  [failure] : Process completed with exit code 1.
+  [notice] : "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+
+## to'liq log (gh run view --log)
+test	Set up job	﻿2026-11-04T12:54:27.1481992Z Current runner version: '2.338.2'
+test	Set up job	2026-11-04T12:54:27.1502555Z ##[group]Runner Image Provisioner
+test	Set up job	2026-11-04T12:54:27.1503344Z Hosted Compute Agent
+test	Set up job	2026-11-04T12:54:27.1503856Z Version: 20261021.618
+test	Set up job	2026-11-04T12:54:27.1504390Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+test	Set up job	2026-11-04T12:54:27.1505013Z Build Date: 2026-10-21T00:45:21Z
+test	Set up job	2026-11-04T12:54:27.1505570Z Worker ID: {92dc3fcc-998e-4ba3-a029-f2e20e431938}
+test	Set up job	2026-11-04T12:54:27.1506217Z Region: centralus
+test	Set up job	2026-11-04T12:54:27.1506764Z Cloud: Azure
+test	Set up job	2026-11-04T12:54:27.1507231Z ##[endgroup]
+test	Set up job	2026-11-04T12:54:27.1508344Z ##[group]Operating System
+test	Set up job	2026-11-04T12:54:27.1508838Z Ubuntu
+test	Set up job	2026-11-04T12:54:27.1509307Z 26.04.1
+test	Set up job	2026-11-04T12:54:27.1509925Z LTS
+test	Set up job	2026-11-04T12:54:27.1510432Z ##[endgroup]
+test	Set up job	2026-11-04T12:54:27.1510949Z ##[group]Runner Image
+test	Set up job	2026-11-04T12:54:27.1511436Z Image: ubuntu-26.04
+test	Set up job	2026-11-04T12:54:27.1511934Z Version: 20261025.179.1
+test	Set up job	2026-11-04T12:54:27.1512828Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261025.179/images/ubuntu/Ubuntu2604-Readme.md
+test	Set up job	2026-11-04T12:54:27.1514251Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261025.179
+test	Set up job	2026-11-04T12:54:27.1515021Z ##[endgroup]
+test	Set up job	2026-11-04T12:54:27.1516012Z ##[group]GITHUB_TOKEN Permissions
+test	Set up job	2026-11-04T12:54:27.1517921Z Contents: read
+test	Set up job	2026-11-04T12:54:27.1518697Z Metadata: read
+test	Set up job	2026-11-04T12:54:27.1519169Z Packages: read
+test	Set up job	2026-11-04T12:54:27.1519619Z ##[endgroup]
+test	Set up job	2026-11-04T12:54:27.1521754Z Secret source: Actions
+test	Set up job	2026-11-04T12:54:27.1522538Z Cache mode: write
+test	Set up job	2026-11-04T12:54:27.1523103Z Prepare workflow directory
+test	Set up job	2026-11-04T12:54:27.1840068Z Prepare all required actions
+test	Set up job	2026-11-04T12:54:27.1880052Z Getting action download info
+test	Set up job	2026-11-04T12:54:27.4354736Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+test	Set up job	2026-11-04T12:54:27.5308494Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+test	Set up job	2026-11-04T12:54:27.6905215Z Complete job name: test
+test	Run actions/checkout@v4	﻿2026-11-04T12:54:27.7561147Z ##[group]Run actions/checkout@v4
+test	Run actions/checkout@v4	2026-11-04T12:54:27.7561909Z with:
+test	Run actions/checkout@v4	2026-11-04T12:54:27.7562370Z   repository: Azizbekcrypto/OrderBotNest
+test	Run actions/checkout@v4	2026-11-04T12:54:27.7565912Z   token: ***
+test	Run actions/checkout@v4	2026-11-04T12:54:27.7566379Z   ssh-strict: true
+test	Run actions/checkout@v4	2026-11-04T12:54:27.7566813Z   ssh-user: git
+test	Run actions/checkout@v4	2026-11-04T12:54:27.7567270Z   persist-credentials: true
+test	Run actions/checkout@v4	2026-11-04T12:54:27.7567736Z   clean: true
+test	Run actions/checkout@v4	2026-11-04T12:54:27.7568165Z   sparse-checkout-cone-mode: true
+test	Run actions/checkout@v4	2026-11-04T12:54:27.7568713Z   fetch-depth: 1
+test	Run actions/checkout@v4	2026-11-04T12:54:27.7569167Z   fetch-tags: false
+test	Run actions/checkout@v4	2026-11-04T12:54:27.7569618Z   show-progress: true
+test	Run actions/checkout@v4	2026-11-04T12:54:27.7570222Z   lfs: false
+test	Run actions/checkout@v4	2026-11-04T12:54:27.7570626Z   submodules: false
+test	Run actions/checkout@v4	2026-11-04T12:54:27.7571117Z   set-safe-directory: true
+test	Run actions/checkout@v4	2026-11-04T12:54:27.7571604Z   allow-unsafe-pr-checkout: false
+test	Run actions/checkout@v4	2026-11-04T12:54:27.7572244Z ##[endgroup]
+test	Run actions/checkout@v4	2026-11-04T12:54:27.9797523Z Syncing repository: Azizbekcrypto/OrderBotNest
+test	Run actions/checkout@v4	2026-11-04T12:54:27.9800396Z ##[group]Getting Git version info
+test	Run actions/checkout@v4	2026-11-04T12:54:27.9801423Z Working directory is '/home/runner/work/OrderBotNest/OrderBotNest'
+test	Run actions/checkout@v4	2026-11-04T12:54:27.9803279Z [command]/usr/bin/git version
+test	Run actions/checkout@v4	2026-11-04T12:54:27.9803796Z git version 2.56.0
+test	Run actions/checkout@v4	2026-11-04T12:54:27.9808004Z ##[endgroup]
+test	Run actions/checkout@v4	2026-11-04T12:54:27.9820949Z Temporarily overriding HOME='/home/runner/work/_temp/d8623342-ba6d-48b6-93f9-33832e659701' before making global git config changes
+test	Run actions/checkout@v4	2026-11-04T12:54:27.9822966Z Adding repository directory to the temporary git global config as a safe directory
+test	Run actions/checkout@v4	2026-11-04T12:54:27.9831328Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/OrderBotNest/OrderBotNest
+test	Run actions/checkout@v4	2026-11-04T12:54:27.9879289Z Deleting the contents of '/home/runner/work/OrderBotNest/OrderBotNest'
+test	Run actions/checkout@v4	2026-11-04T12:54:27.9883362Z ##[group]Initializing the repository
+test	Run actions/checkout@v4	2026-11-04T12:54:27.9887502Z [command]/usr/bin/git init /home/runner/work/OrderBotNest/OrderBotNest
+test	Run actions/checkout@v4	2026-11-04T12:54:27.9969393Z hint: Using 'master' as the name for the initial branch. This default branch name
+test	Run actions/checkout@v4	2026-11-04T12:54:27.9971318Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+test	Run actions/checkout@v4	2026-11-04T12:54:27.9972795Z hint: to use in all of your new repositories, which will suppress this warning,
+test	Run actions/checkout@v4	2026-11-04T12:54:27.9973802Z hint: call:
+test	Run actions/checkout@v4	2026-11-04T12:54:27.9974513Z hint:
+test	Run actions/checkout@v4	2026-11-04T12:54:27.9975162Z hint: 	git config --global init.defaultBranch <name>
+test	Run actions/checkout@v4	2026-11-04T12:54:27.9975993Z hint:
+test	Run actions/checkout@v4	2026-11-04T12:54:27.9976868Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+test	Run actions/checkout@v4	2026-11-04T12:54:27.9978026Z hint: 'development'. The just-created branch can be renamed via this command:
+test	Run actions/checkout@v4	2026-11-04T12:54:27.9979103Z hint:
+test	Run actions/checkout@v4	2026-11-04T12:54:27.9980399Z hint: 	git branch -m <name>
+test	Run actions/checkout@v4	2026-11-04T12:54:27.9981657Z hint:
+test	Run actions/checkout@v4	2026-11-04T12:54:27.9982848Z hint: Disable this message with "git config set advice.defaultBranchName false"
+test	Run actions/checkout@v4	2026-11-04T12:54:27.9984161Z Initialized empty Git repository in /home/runner/work/OrderBotNest/OrderBotNest/.git/
+test	Run actions/checkout@v4	2026-11-04T12:54:27.9992775Z [command]/usr/bin/git remote add origin https://github.com/Azizbekcrypto/OrderBotNest
+test	Run actions/checkout@v4	2026-11-04T12:54:28.0075017Z ##[endgroup]
+test	Run actions/checkout@v4	2026-11-04T12:54:28.0075906Z ##[group]Disabling automatic garbage collection
+test	Run actions/checkout@v4	2026-11-04T12:54:28.0078744Z [command]/usr/bin/git config --local gc.auto 0
+test	Run actions/checkout@v4	2026-11-04T12:54:28.0104014Z ##[endgroup]
+test	Run actions/checkout@v4	2026-11-04T12:54:28.0105113Z ##[group]Setting up auth
+test	Run actions/checkout@v4	2026-11-04T12:54:28.0110249Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+test	Run actions/checkout@v4	2026-11-04T12:54:28.0134168Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+test	Run actions/checkout@v4	2026-11-04T12:54:28.0482066Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+test	Run actions/checkout@v4	2026-11-04T12:54:28.0508493Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+test	Run actions/checkout@v4	2026-11-04T12:54:28.0702355Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+test	Run actions/checkout@v4	2026-11-04T12:54:28.0725959Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+test	Run actions/checkout@v4	2026-11-04T12:54:28.0908869Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+test	Run actions/checkout@v4	2026-11-04T12:54:28.0938766Z ##[endgroup]
+test	Run actions/checkout@v4	2026-11-04T12:54:28.0940244Z ##[group]Fetching the repository
+test	Run actions/checkout@v4	2026-11-04T12:54:28.0946975Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +f7e6f8d36d779212cc8b57177caffff4f1065511:refs/remotes/origin/ci-sinov
+test	Run actions/checkout@v4	2026-11-04T12:54:28.5304244Z From https://github.com/Azizbekcrypto/OrderBotNest
+test	Run actions/checkout@v4	2026-11-04T12:54:28.5305668Z  * [new ref]         f7e6f8d36d779212cc8b57177caffff4f1065511 -> origin/ci-sinov
+test	Run actions/checkout@v4	2026-11-04T12:54:28.5309226Z ##[endgroup]
+test	Run actions/checkout@v4	2026-11-04T12:54:28.5310525Z ##[group]Determining the checkout info
+test	Run actions/checkout@v4	2026-11-04T12:54:28.5311749Z ##[endgroup]
+test	Run actions/checkout@v4	2026-11-04T12:54:28.5317290Z [command]/usr/bin/git sparse-checkout disable
+test	Run actions/checkout@v4	2026-11-04T12:54:28.5359375Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+test	Run actions/checkout@v4	2026-11-04T12:54:28.5385404Z ##[group]Checking out the ref
+test	Run actions/checkout@v4	2026-11-04T12:54:28.5390058Z [command]/usr/bin/git checkout --progress --force -B ci-sinov refs/remotes/origin/ci-sinov
+test	Run actions/checkout@v4	2026-11-04T12:54:28.5459382Z Switched to a new branch 'ci-sinov'
+test	Run actions/checkout@v4	2026-11-04T12:54:28.5462412Z branch 'ci-sinov' set up to track 'origin/ci-sinov'.
+test	Run actions/checkout@v4	2026-11-04T12:54:28.5467282Z ##[endgroup]
+test	Run actions/checkout@v4	2026-11-04T12:54:28.5498911Z [command]/usr/bin/git log -1 --format=%H
+test	Run actions/checkout@v4	2026-11-04T12:54:28.5516761Z f7e6f8d36d779212cc8b57177caffff4f1065511
+test	Run actions/setup-node@v4	﻿2026-11-04T12:54:28.5783305Z ##[group]Run actions/setup-node@v4
+test	Run actions/setup-node@v4	2026-11-04T12:54:28.5783861Z with:
+test	Run actions/setup-node@v4	2026-11-04T12:54:28.5784257Z   node-version: 24
+test	Run actions/setup-node@v4	2026-11-04T12:54:28.5784683Z   cache: npm
+test	Run actions/setup-node@v4	2026-11-04T12:54:28.5785101Z   always-auth: false
+test	Run actions/setup-node@v4	2026-11-04T12:54:28.5785559Z   check-latest: false
+test	Run actions/setup-node@v4	2026-11-04T12:54:28.5789085Z   token: ***
+test	Run actions/setup-node@v4	2026-11-04T12:54:28.5789501Z ##[endgroup]
+test	Run actions/setup-node@v4	2026-11-04T12:54:28.6974614Z (node:2191) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+test	Run actions/setup-node@v4	2026-11-04T12:54:28.6976182Z (Use `node --trace-deprecation ...` to show where the warning was created)
+test	Run actions/setup-node@v4	2026-11-04T12:54:28.6983607Z Found in cache @ /opt/hostedtoolcache/node/24.22.1/x64
+test	Run actions/setup-node@v4	2026-11-04T12:54:29.0432831Z ##[group]Environment details
+test	Run actions/setup-node@v4	2026-11-04T12:54:29.0434541Z node: v24.22.1
+test	Run actions/setup-node@v4	2026-11-04T12:54:29.0435537Z npm: 11.19.1
+test	Run actions/setup-node@v4	2026-11-04T12:54:29.0436591Z yarn: 1.22.22
+test	Run actions/setup-node@v4	2026-11-04T12:54:29.0438882Z ##[endgroup]
+test	Run actions/setup-node@v4	2026-11-04T12:54:29.0490212Z [command]/opt/hostedtoolcache/node/24.22.1/x64/bin/npm config get cache
+test	Run actions/setup-node@v4	2026-11-04T12:54:29.3935106Z /home/runner/.npm
+test	Run actions/setup-node@v4	2026-11-04T12:54:29.5475552Z Cache hit for: node-cache-Linux-x64-npm-ccb2b15dd267c884b0610f9549734f2a266074ea2630c8be582139d289f32d79
+test	Run actions/setup-node@v4	2026-11-04T12:54:29.5566800Z (node:2191) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+test	Run actions/setup-node@v4	2026-11-04T12:54:30.2874987Z Received 36395187 of 36395187 (100.0%), 58.9 MBs/sec
+test	Run actions/setup-node@v4	2026-11-04T12:54:30.2876671Z Cache Size: ~35 MB (36395187 B)
+test	Run actions/setup-node@v4	2026-11-04T12:54:30.2898123Z [command]/usr/bin/tar -xf /home/runner/work/_temp/8e431bb7-56a9-4b93-a5fa-90c5bc766863/cache.tzst -P -C /home/runner/work/OrderBotNest/OrderBotNest --use-compress-program unzstd
+test	Run actions/setup-node@v4	2026-11-04T12:54:30.3671790Z Cache restored successfully
+test	Run actions/setup-node@v4	2026-11-04T12:54:30.3686389Z Cache restored from key: node-cache-Linux-x64-npm-ccb2b15dd267c884b0610f9549734f2a266074ea2630c8be582139d289f32d79
+test	Run npm ci	﻿2026-11-04T12:54:30.3837733Z ##[group]Run npm ci
+test	Run npm ci	2026-11-04T12:54:30.3838303Z ^[[36;1mnpm ci^[[0m
+test	Run npm ci	2026-11-04T12:54:30.3866531Z shell: /usr/bin/bash -e {0}
+test	Run npm ci	2026-11-04T12:54:30.3866998Z ##[endgroup]
+test	Run npm ci	2026-11-04T12:54:32.0563772Z npm error code EUSAGE
+test	Run npm ci	2026-11-04T12:54:32.0603483Z npm error
+test	Run npm ci	2026-11-04T12:54:32.0605284Z npm error `npm ci` can only install packages when your package.json and package-lock.json or npm-shrinkwrap.json are in sync. Please update your lock file with `npm install` before continuing.
+test	Run npm ci	2026-11-04T12:54:32.0606453Z npm error
+test	Run npm ci	2026-11-04T12:54:32.0607131Z npm error Invalid: lock file's telegraf@4.16.3 does not satisfy telegraf@4.16.0
+test	Run npm ci	2026-11-04T12:54:32.0607738Z npm error
+test	Run npm ci	2026-11-04T12:54:32.0608167Z npm error Clean install a project
+test	Run npm ci	2026-11-04T12:54:32.0608593Z npm error
+test	Run npm ci	2026-11-04T12:54:32.0608918Z npm error Usage:
+test	Run npm ci	2026-11-04T12:54:32.0609212Z npm error npm ci
+test	Run npm ci	2026-11-04T12:54:32.0609481Z npm error
+test	Run npm ci	2026-11-04T12:54:32.0610109Z npm error Options:
+test	Run npm ci	2026-11-04T12:54:32.0610645Z npm error [--install-strategy <hoisted|nested|shallow|linked>] [--legacy-bundling]
+test	Run npm ci	2026-11-04T12:54:32.0611393Z npm error [--global-style] [--omit <dev|optional|peer> [--omit <dev|optional|peer> ...]]
+test	Run npm ci	2026-11-04T12:54:32.0612002Z npm error [--include <prod|dev|optional|peer> [--include <prod|dev|optional|peer> ...]]
+test	Run npm ci	2026-11-04T12:54:32.0612628Z npm error [--strict-peer-deps] [--foreground-scripts] [--ignore-scripts]
+test	Run npm ci	2026-11-04T12:54:32.0613162Z npm error [--allow-directory <all|none|root>] [--allow-file <all|none|root>]
+test	Run npm ci	2026-11-04T12:54:32.0614096Z npm error [--allow-git <all|none|root>] [--allow-remote <all|none|root>]
+test	Run npm ci	2026-11-04T12:54:32.0614839Z npm error [--allow-scripts <package-list> [--allow-scripts <package-list> ...]]
+test	Run npm ci	2026-11-04T12:54:32.0615736Z npm error [--strict-allow-scripts] [--dangerously-allow-all-scripts] [--no-audit]
+test	Run npm ci	2026-11-04T12:54:32.0616270Z npm error [--no-bin-links] [--no-fund] [--dry-run]
+test	Run npm ci	2026-11-04T12:54:32.0616803Z npm error [-w|--workspace <workspace-name> [-w|--workspace <workspace-name> ...]]
+test	Run npm ci	2026-11-04T12:54:32.0617368Z npm error [--workspaces] [--include-workspace-root] [--install-links]
+test	Run npm ci	2026-11-04T12:54:32.0617754Z npm error
+test	Run npm ci	2026-11-04T12:54:32.0618071Z npm error   --install-strategy
+test	Run npm ci	2026-11-04T12:54:32.0618509Z npm error     Sets the strategy for installing packages in node_modules.
+test	Run npm ci	2026-11-04T12:54:32.0618901Z npm error
+test	Run npm ci	2026-11-04T12:54:32.0619468Z npm error   --legacy-bundling
+test	Run npm ci	2026-11-04T12:54:32.0620101Z npm error     Instead of hoisting package installs in `node_modules`, install packages
+test	Run npm ci	2026-11-04T12:54:32.0620614Z npm error
+test	Run npm ci	2026-11-04T12:54:32.0620905Z npm error   --global-style
+test	Run npm ci	2026-11-04T12:54:32.0621392Z npm error     Only install direct dependencies in the top level `node_modules`,
+test	Run npm ci	2026-11-04T12:54:32.0621795Z npm error
+test	Run npm ci	2026-11-04T12:54:32.0622052Z npm error   --omit
+test	Run npm ci	2026-11-04T12:54:32.0622477Z npm error     Dependency types to omit from the installation tree on disk.
+test	Run npm ci	2026-11-04T12:54:32.0622856Z npm error
+test	Run npm ci	2026-11-04T12:54:32.0623147Z npm error   --include
+test	Run npm ci	2026-11-04T12:54:32.0623618Z npm error     Option that allows for defining which types of dependencies to install.
+test	Run npm ci	2026-11-04T12:54:32.0624072Z npm error
+test	Run npm ci	2026-11-04T12:54:32.0624363Z npm error   --strict-peer-deps
+test	Run npm ci	2026-11-04T12:54:32.0624813Z npm error     If set to `true`, and `--legacy-peer-deps` is not set, then _any_
+test	Run npm ci	2026-11-04T12:54:32.0625242Z npm error
+test	Run npm ci	2026-11-04T12:54:32.0625583Z npm error   --foreground-scripts
+test	Run npm ci	2026-11-04T12:54:32.0626042Z npm error     Run all build scripts (ie, `preinstall`, `install`, and
+test	Run npm ci	2026-11-04T12:54:32.0626402Z npm error
+test	Run npm ci	2026-11-04T12:54:32.0626736Z npm error   --ignore-scripts
+test	Run npm ci	2026-11-04T12:54:32.0627212Z npm error     If true, npm does not run scripts specified in package.json files.
+test	Run npm ci	2026-11-04T12:54:32.0627590Z npm error
+test	Run npm ci	2026-11-04T12:54:32.0627915Z npm error   --allow-directory
+test	Run npm ci	2026-11-04T12:54:32.0628384Z npm error     Limits the ability for npm to install dependencies from directories.
+test	Run npm ci	2026-11-04T12:54:32.0628798Z npm error
+test	Run npm ci	2026-11-04T12:54:32.0629110Z npm error   --allow-file
+test	Run npm ci	2026-11-04T12:54:32.0629562Z npm error     Limits the ability for npm to install dependencies from tarball files.
+test	Run npm ci	2026-11-04T12:54:32.0630755Z npm error
+test	Run npm ci	2026-11-04T12:54:32.0631256Z npm error   --allow-git
+test	Run npm ci	2026-11-04T12:54:32.0632321Z npm error     Limits the ability for npm to fetch dependencies from git references.
+test	Run npm ci	2026-11-04T12:54:32.0632804Z npm error
+test	Run npm ci	2026-11-04T12:54:32.0633164Z npm error   --allow-remote
+test	Run npm ci	2026-11-04T12:54:32.0633619Z npm error     Limits the ability for npm to fetch dependencies from urls.
+test	Run npm ci	2026-11-04T12:54:32.0634018Z npm error
+test	Run npm ci	2026-11-04T12:54:32.0634309Z npm error   --allow-scripts
+test	Run npm ci	2026-11-04T12:54:32.0634826Z npm error     Comma-separated list of packages whose install-time lifecycle scripts
+test	Run npm ci	2026-11-04T12:54:32.0635241Z npm error
+test	Run npm ci	2026-11-04T12:54:32.0635552Z npm error   --strict-allow-scripts
+test	Run npm ci	2026-11-04T12:54:32.0636074Z npm error     If `true`, turn the install-script policy from a warning into a hard
+test	Run npm ci	2026-11-04T12:54:32.0636511Z npm error
+test	Run npm ci	2026-11-04T12:54:32.0636873Z npm error   --dangerously-allow-all-scripts
+test	Run npm ci	2026-11-04T12:54:32.0637786Z npm error     If `true`, bypass the `allowScripts` policy entirely and run every
+test	Run npm ci	2026-11-04T12:54:32.0638205Z npm error
+test	Run npm ci	2026-11-04T12:54:32.0638519Z npm error   --audit
+test	Run npm ci	2026-11-04T12:54:32.0639013Z npm error     When "true" submit audit reports alongside the current npm command to the
+test	Run npm ci	2026-11-04T12:54:32.0639430Z npm error
+test	Run npm ci	2026-11-04T12:54:32.0639896Z npm error   --bin-links
+test	Run npm ci	2026-11-04T12:54:32.0640424Z npm error     Tells npm to create symlinks (or `.cmd` shims on Windows) for package
+test	Run npm ci	2026-11-04T12:54:32.0640815Z npm error
+test	Run npm ci	2026-11-04T12:54:32.0641119Z npm error   --fund
+test	Run npm ci	2026-11-04T12:54:32.0641545Z npm error     When "true" displays the message at the end of each `npm install`
+test	Run npm ci	2026-11-04T12:54:32.0641974Z npm error
+test	Run npm ci	2026-11-04T12:54:32.0642273Z npm error   --dry-run
+test	Run npm ci	2026-11-04T12:54:32.0642755Z npm error     Indicates that you don't want npm to make any changes and that it should
+test	Run npm ci	2026-11-04T12:54:32.0643152Z npm error
+test	Run npm ci	2026-11-04T12:54:32.0643413Z npm error   -w|--workspace
+test	Run npm ci	2026-11-04T12:54:32.0644005Z npm error     Enable running a command in the context of the configured workspaces of the
+test	Run npm ci	2026-11-04T12:54:32.0644409Z npm error
+test	Run npm ci	2026-11-04T12:54:32.0644690Z npm error   --workspaces
+test	Run npm ci	2026-11-04T12:54:32.0645183Z npm error     Set to true to run the command in the context of **all** configured
+test	Run npm ci	2026-11-04T12:54:32.0645726Z npm error
+test	Run npm ci	2026-11-04T12:54:32.0646069Z npm error   --include-workspace-root
+test	Run npm ci	2026-11-04T12:54:32.0646582Z npm error     Include the workspace root when workspaces are enabled for a command.
+test	Run npm ci	2026-11-04T12:54:32.0647012Z npm error
+test	Run npm ci	2026-11-04T12:54:32.0647297Z npm error   --install-links
+test	Run npm ci	2026-11-04T12:54:32.0647847Z npm error     When set file: protocol dependencies will be packed and installed as
+test	Run npm ci	2026-11-04T12:54:32.0648241Z npm error
+test	Run npm ci	2026-11-04T12:54:32.0648470Z npm error
+test	Run npm ci	2026-11-04T12:54:32.0648929Z npm error aliases: clean-install, ic, install-clean, isntall-clean
+test	Run npm ci	2026-11-04T12:54:32.0649303Z npm error
+test	Run npm ci	2026-11-04T12:54:32.0649773Z npm error Run "npm help ci" for more info
+test	Run npm ci	2026-11-04T12:54:32.0650988Z npm error A complete log of this run can be found in: /home/runner/.npm/_logs/2026-11-04T12_54_30_444Z-debug-0.log
+test	Run npm ci	2026-11-04T12:54:32.0713783Z ##[error]Process completed with exit code 1.
+test	Post Run actions/checkout@v4	﻿2026-11-04T12:54:32.0858635Z Post job cleanup.
+test	Post Run actions/checkout@v4	2026-11-04T12:54:32.1580983Z [command]/usr/bin/git version
+test	Post Run actions/checkout@v4	2026-11-04T12:54:32.1607144Z git version 2.56.0
+test	Post Run actions/checkout@v4	2026-11-04T12:54:32.1636710Z Temporarily overriding HOME='/home/runner/work/_temp/17e387de-7f2b-494c-89da-ff00143dc26d' before making global git config changes
+test	Post Run actions/checkout@v4	2026-11-04T12:54:32.1638258Z Adding repository directory to the temporary git global config as a safe directory
+test	Post Run actions/checkout@v4	2026-11-04T12:54:32.1642381Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/OrderBotNest/OrderBotNest
+test	Post Run actions/checkout@v4	2026-11-04T12:54:32.1670332Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+test	Post Run actions/checkout@v4	2026-11-04T12:54:32.1697289Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+test	Post Run actions/checkout@v4	2026-11-04T12:54:32.1911182Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+test	Post Run actions/checkout@v4	2026-11-04T12:54:32.1926206Z http.https://github.com/.extraheader
+test	Post Run actions/checkout@v4	2026-11-04T12:54:32.1935533Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+test	Post Run actions/checkout@v4	2026-11-04T12:54:32.1962242Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+test	Post Run actions/checkout@v4	2026-11-04T12:54:32.2175493Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+test	Post Run actions/checkout@v4	2026-11-04T12:54:32.2203162Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+test	Complete job	﻿2026-11-04T12:54:32.2505158Z Cleaning up orphan processes
+test	Complete job	2026-11-04T12:54:32.2778434Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

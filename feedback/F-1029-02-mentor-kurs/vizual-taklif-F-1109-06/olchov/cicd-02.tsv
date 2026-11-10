@@ -1,0 +1,25 @@
+cicd-02	1	0,0,1280,720	faqat-matn	410	Lenta bor va yashil. Bugun uning ichiga kiramiz: log, cache, matrix, Postgres bi
+cicd-02	2	0,0,1280,720	faqat-matn	530	Har push — run; faylda jobs: ostidagi har nom — alohida mashinada bitta job; job
+cicd-02	3	0,0,1280,720	faqat-matn	601	Tayyor qadamlar yashirin emas: Set up job mashinani aytadi, checkout bo'sh papka
+cicd-02	4	0,0,1280,720	faqat-matn	486	Run sahifasidagi annotatsiya — xatoning birinchi satri; to'liq sabab qizil qadam
+cicd-02	5	0,0,1280,720	kod/terminal+test	729	Run qizil. Annotatsiyada faqat Process completed with exit code 1. — npm test qa
+cicd-02	6	0,0,1280,720	faqat-matn	850	cache: npm nima qiladi: birinchi run «Cache saved», ikkinchisi «Cache hit» — npm
+cicd-02	7	0,0,1280,720	amaliyot	1020	CI/CD-1 dagi reponingizda ikki run'ni oching: Set up job, checkout, cache «saved
+cicd-02	8	0,0,1280,720	faqat-matn	591	strategy.matrix.node-version: [22, 24] — bitta job ta'rifi, ikki mashina: test (
+cicd-02	9	0,0,1280,720	kod/terminal	674	fail-fast: false — ikkala mashina oxirigacha: test (22) qizil, test (24) yashil;
+cicd-02	10	0,0,1280,720	kod/terminal+test	732	matrix [22, 24], fail-fast yozilmagan. test (22) 10-soniyada yiqildi, test (24) 
+cicd-02	11	0,0,1280,720	amaliyot	1037	ci.ymlga matrix [22, 24] qo'shing, ikki job'ni ko'ring, fail-fast: false bilan t
+cicd-02	12	0,0,1280,720	faqat-matn	432	Jest testlari bazasiz (mock). Smoke esa haqiqiy Postgres'ga yozadi — lentada baz
+cicd-02	13	0,0,1280,720	kod/terminal	956	Ikkinchi job smoke: needs: test, services: postgres:18 healthcheck bilan, npm ru
+cicd-02	14	0,0,1280,720	faqat-matn	934	Konteyner paroli sir emas — env:da ochiq. Haqiqiy baza yoki bot tokeni — Secrets
+cicd-02	15	0,0,1280,720	kod/terminal	943	Bu ci.yml bilan smoke job qizil: «DATABASE_URL topilmadi». Postgres ko'tarildi, 
+cicd-02	16	0,0,1280,720	kod/terminal	886	Yangi ish — alohida tarmoqda; pull request ochilganda lenta yana yuradi va PR sa
+cicd-02	17	0,0,1280,720	kod/terminal	854	Yangi ko'nikma davomi: ikki AI'ga bitta prompt — «smoke'ni ham qo'sh, unga Postg
+cicd-02	18	0,0,1280,720	faqat-matn	616	Nega bu safar yashil: AI faylni noldan yozmadi, sizning ci.ymlni (node 24) o'zga
+cicd-02	19	0,0,1280,720	kod/terminal+test	715	AI services: postgres yozdi va DATABASE_URL: postgresql://postgres:postgres@loca
+cicd-02	20	0,0,1280,720	amaliyot	1254	O'z AI'ingizga smoke job yozdiring, to'rt savol bilan tekshiring, alohida tarmoq
+cicd-02	21	0,0,1280,720	jadval	882	O'quvchi darsi: yo'l xaritasi, nuqta, amal, parallel lentalar, yaqin javon, seyf
+cicd-02	22	0,0,1280,720	faqat-matn	738	O'quvchi darsidagi «Repongiz yo'qmi?» namunasi: lock fayl yo'q — npm ci qizil; "
+cicd-02	23	0,0,1280,720	faqat-matn	427	Darsga siz qo'shadigan to'rt narsa, uch vaziyat va o'quvchi savollariga tayyor j
+cicd-02	24	0,0,1280,720	test	374	ci.ymlda jobs: ostida test: va smoke:. Run'da nechta mashina ochiladi?
+cicd-02	25	0,0,1280,720	faqat-matn	3549	Endi siz bilasiz

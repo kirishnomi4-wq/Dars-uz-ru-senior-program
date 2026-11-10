@@ -1,0 +1,567 @@
+diff --git a/src/api/cart/cart-item.entity.ts b/src/api/cart/cart-item.entity.ts
+index 309d76a..9a9b737 100644
+--- a/src/api/cart/cart-item.entity.ts
++++ b/src/api/cart/cart-item.entity.ts
+@@ -10,12 +10,7 @@ import {
+ } from 'typeorm';
+ import { ProductEntity } from '../catalog/product.entity';
+ import { UserEntity } from '../user/user.entity';
+-
+-// pg BIGINT ni satr qilib qaytaradi — kodda son bo'lsin (user.entity.ts dagi kabi)
+-const bigintToNumber = {
+-  to: (v: number) => v,
+-  from: (v: string | null) => (v === null ? v : Number(v)),
+-};
++import { bigintToNumber } from '../../database/bigint.transformer';
+ 
+ // cart_items jadvali. Jadvalni migratsiya yaratadi (src/database/migrations).
+ @Entity({ name: 'cart_items' })
+diff --git a/src/api/catalog/catalog.service.ts b/src/api/catalog/catalog.service.ts
+index 99ccbb4..3bbd3fd 100644
+--- a/src/api/catalog/catalog.service.ts
++++ b/src/api/catalog/catalog.service.ts
+@@ -1,6 +1,6 @@
+ import { Injectable } from '@nestjs/common';
+ import { InjectRepository } from '@nestjs/typeorm';
+-import { Repository } from 'typeorm';
++import { EntityManager, Repository } from 'typeorm';
+ import { Product } from '../../core/types';
+ import { ProductEntity } from './product.entity';
+ 
+@@ -39,8 +39,14 @@ export class CatalogService {
+   // Ombordan ayiradi; yetmasa xato tashlaydi (buyurtma berilmaydi).
+   // Tekshirish va ayirish bitta UPDATE da: ikki kishi bir vaqtda olsa ham
+   // stock manfiy bo'lmaydi (bazada yana CHECK (stock >= 0) ham bor).
+-  async take(id: number, qty: number): Promise<Product> {
+-    const res = await this.products
++  // manager — tranzaksiya ichidan chaqirilsa (OrderService), shu tranzaksiyada yuradi.
++  async take(
++    id: number,
++    qty: number,
++    manager?: EntityManager,
++  ): Promise<Product> {
++    const repo = this.repo(manager);
++    const res = await repo
+       .createQueryBuilder()
+       .update(ProductEntity)
+       .set({ stock: () => '"stock" - :qty' })
+@@ -50,13 +56,21 @@ export class CatalogService {
+     const rows = res.raw as Product[];
+     if (rows.length > 0) return rows[0];
+ 
+-    const p = await this.find(id);
++    const p = await repo.findOneBy({ id });
+     if (!p) throw new Error(`Mahsulot topilmadi: ${id}`);
+     throw new Error(`${p.name}: omborda faqat ${p.stock} ta qoldi`);
+   }
+ 
+   // Bekor qilingan buyurtma — mahsulot omborga qaytadi
+-  async giveBack(id: number, qty: number): Promise<void> {
+-    await this.products.increment({ id }, 'stock', qty);
++  async giveBack(
++    id: number,
++    qty: number,
++    manager?: EntityManager,
++  ): Promise<void> {
++    await this.repo(manager).increment({ id }, 'stock', qty);
++  }
++
++  private repo(manager?: EntityManager): Repository<ProductEntity> {
++    return manager ? manager.getRepository(ProductEntity) : this.products;
+   }
+ }
+diff --git a/src/api/order/order-item.entity.ts b/src/api/order/order-item.entity.ts
+new file mode 100644
+index 0000000..c1a8a13
+--- /dev/null
++++ b/src/api/order/order-item.entity.ts
+@@ -0,0 +1,47 @@
++import {
++  Check,
++  Column,
++  Entity,
++  JoinColumn,
++  ManyToOne,
++  PrimaryGeneratedColumn,
++  Unique,
++} from 'typeorm';
++import { ProductEntity } from '../catalog/product.entity';
++import { OrderEntity } from './order.entity';
++
++// order_items jadvali: buyurtmadagi har mahsulot, buyurtma paytidagi narx bilan
++@Entity({ name: 'order_items' })
++@Unique('UQ_order_items_order_product', ['orderId', 'productId'])
++@Check('CHK_order_items_qty', '"qty" > 0')
++@Check('CHK_order_items_price', '"price" >= 0')
++export class OrderItemEntity {
++  @PrimaryGeneratedColumn()
++  id: number;
++
++  @Column({ name: 'order_id', type: 'integer' })
++  orderId: number;
++
++  @Column({ name: 'product_id', type: 'integer' })
++  productId: number;
++
++  @Column({ type: 'integer' })
++  qty: number;
++
++  @Column({ type: 'integer' })
++  price: number; // so'm, buyurtma paytidagi narx
++
++  @ManyToOne(() => OrderEntity, (o) => o.items, { onDelete: 'CASCADE' })
++  @JoinColumn({
++    name: 'order_id',
++    foreignKeyConstraintName: 'FK_order_items_order',
++  })
++  order?: OrderEntity;
++
++  @ManyToOne(() => ProductEntity, { onDelete: 'RESTRICT' })
++  @JoinColumn({
++    name: 'product_id',
++    foreignKeyConstraintName: 'FK_order_items_product',
++  })
++  product?: ProductEntity;
++}
+diff --git a/src/api/order/order.entity.ts b/src/api/order/order.entity.ts
+new file mode 100644
+index 0000000..511a199
+--- /dev/null
++++ b/src/api/order/order.entity.ts
+@@ -0,0 +1,54 @@
++import {
++  Check,
++  Column,
++  CreateDateColumn,
++  Entity,
++  Index,
++  JoinColumn,
++  ManyToOne,
++  OneToMany,
++  PrimaryGeneratedColumn,
++} from 'typeorm';
++import type { OrderStatus } from '../../core/types';
++import { bigintToNumber } from '../../database/bigint.transformer';
++import { UserEntity } from '../user/user.entity';
++import { OrderItemEntity } from './order-item.entity';
++
++// orders jadvali. Jadvalni migratsiya yaratadi (src/database/migrations).
++@Entity({ name: 'orders' })
++@Check('CHK_orders_total', '"total" >= 0')
++@Check(
++  'CHK_orders_status',
++  `"status" IN ('NEW', 'CONFIRMED', 'DELIVERED', 'CANCELLED')`,
++)
++export class OrderEntity {
++  @PrimaryGeneratedColumn()
++  id: number;
++
++  @Index('IDX_orders_telegram_id')
++  @Column({ name: 'telegram_id', type: 'bigint', transformer: bigintToNumber })
++  telegramId: number;
++
++  @Column({ type: 'varchar', length: 20 })
++  phone: string;
++
++  @Column({ type: 'integer' })
++  total: number; // so'm
++
++  @Column({ type: 'varchar', length: 20, default: 'NEW' })
++  status: OrderStatus;
++
++  @CreateDateColumn({ name: 'created_at', type: 'timestamptz' })
++  createdAt: Date;
++
++  @ManyToOne(() => UserEntity, { onDelete: 'RESTRICT' })
++  @JoinColumn({
++    name: 'telegram_id',
++    referencedColumnName: 'telegramId',
++    foreignKeyConstraintName: 'FK_orders_user',
++  })
++  user?: UserEntity;
++
++  @OneToMany(() => OrderItemEntity, (i) => i.order)
++  items: OrderItemEntity[];
++}
+diff --git a/src/api/order/order.module.ts b/src/api/order/order.module.ts
+index 335fb01..d015051 100644
+--- a/src/api/order/order.module.ts
++++ b/src/api/order/order.module.ts
+@@ -1,9 +1,15 @@
+ import { Module } from '@nestjs/common';
++import { TypeOrmModule } from '@nestjs/typeorm';
+ import { CatalogModule } from '../catalog/catalog.module';
++import { OrderItemEntity } from './order-item.entity';
++import { OrderEntity } from './order.entity';
+ import { OrderService } from './order.service';
+ 
+ @Module({
+-  imports: [CatalogModule],
++  imports: [
++    CatalogModule,
++    TypeOrmModule.forFeature([OrderEntity, OrderItemEntity]),
++  ],
+   providers: [OrderService],
+   exports: [OrderService],
+ })
+diff --git a/src/api/order/order.service.ts b/src/api/order/order.service.ts
+index d09dab3..988471e 100644
+--- a/src/api/order/order.service.ts
++++ b/src/api/order/order.service.ts
+@@ -1,72 +1,148 @@
+ import { Injectable } from '@nestjs/common';
+-import {
+-  CartItem,
+-  Order,
+-  OrderItem,
+-  OrderStatus,
+-  User,
+-} from '../../core/types';
++import { InjectDataSource, InjectRepository } from '@nestjs/typeorm';
++import { DataSource, EntityManager, Repository } from 'typeorm';
++import { Order, OrderItem, OrderStatus, User } from '../../core/types';
++import { CartItemEntity } from '../cart/cart-item.entity';
+ import { CatalogService } from '../catalog/catalog.service';
++import { UserEntity } from '../user/user.entity';
++import { OrderItemEntity } from './order-item.entity';
++import { OrderEntity } from './order.entity';
+ 
+ @Injectable()
+ export class OrderService {
+-  // Buyurtmalar ro'yxati xotirada; id oddiy hisoblagich
+-  private readonly orders: Order[] = [];
+-  private nextId = 1;
++  // Buyurtmalar PostgreSQL'da: orders + order_items
++  constructor(
++    private readonly catalog: CatalogService,
++    @InjectDataSource() private readonly dataSource: DataSource,
++    @InjectRepository(OrderEntity)
++    private readonly orders: Repository<OrderEntity>,
++  ) {}
+ 
+-  constructor(private readonly catalog: CatalogService) {}
++  // Savatdan buyurtma — BITTA tranzaksiya:
++  //   1) foydalanuvchi qatori qulflanadi (bir mijozning ikki «Buyurtma berish»i navbat bilan yuradi)
++  //   2) savat o'qiladi
++  //   3) har mahsulot ombordan ayiriladi (UPDATE ... WHERE stock >= qty)
++  //   4) orders va order_items yoziladi
++  //   5) savat tozalanadi
++  // Birortasida xato bo'lsa — ROLLBACK: ombor, buyurtma, savat o'zgarmaydi.
++  async place(user: User): Promise<Order> {
++    const id = await this.dataSource.transaction(async (m) => {
++      const u = await m
++        .getRepository(UserEntity)
++        .createQueryBuilder('u')
++        .setLock('pessimistic_write')
++        .where('u.telegram_id = :id', { id: user.telegramId })
++        .getOne();
++      if (!u?.phone) throw new Error('Telefon raqami yo‘q');
+ 
+-  // Savatdan buyurtma: har mahsulot ombordan ayiriladi, keyin buyurtma yoziladi.
+-  // Birortasi yetmasa — oldin ayirilganlar qaytariladi (hammasi yoki hech narsa).
+-  async place(user: User, cart: CartItem[]): Promise<Order> {
+-    if (!user.phone) throw new Error('Telefon raqami yo‘q');
+-    if (cart.length === 0) throw new Error('Savat bo‘sh');
+-    const taken: OrderItem[] = [];
+-    try {
+-      for (const item of cart) {
+-        const p = await this.catalog.take(item.productId, item.qty);
+-        taken.push({
++      // product_id tartibida: ikki buyurtma mahsulot qatorlarini bir xil
++      // tartibda qulflaydi — bir-birini kutib qolish (deadlock) bo'lmaydi
++      const cart = await m.getRepository(CartItemEntity).find({
++        where: { telegramId: u.telegramId },
++        order: { productId: 'ASC' },
++      });
++      if (cart.length === 0) throw new Error('Savat bo‘sh');
++
++      // Ikki mijoz oxirgi mahsulotni bir vaqtda olsa: ikkinchisining UPDATE i
++      // birinchi tranzaksiya tugashini kutadi, keyin stock ni qayta tekshiradi
++      // va yetmasa xato beradi — ortiqcha sotilmaydi
++      const items: OrderItem[] = [];
++      for (const c of cart) {
++        const p = await this.catalog.take(c.productId, c.qty, m);
++        items.push({
+           productId: p.id,
+           name: p.name,
+           price: p.price,
+-          qty: item.qty,
++          qty: c.qty,
+         });
+       }
+-    } catch (e) {
+-      for (const t of taken) await this.catalog.giveBack(t.productId, t.qty);
+-      throw e;
+-    }
+-    const order: Order = {
+-      id: this.nextId++,
+-      telegramId: user.telegramId,
+-      phone: user.phone,
+-      items: taken,
+-      total: taken.reduce((s, i) => s + i.price * i.qty, 0),
+-      status: 'NEW',
+-      createdAt: new Date(),
+-    };
+-    this.orders.push(order);
+-    return order;
++
++      const order = await m.getRepository(OrderEntity).save({
++        telegramId: u.telegramId,
++        phone: u.phone,
++        total: items.reduce((s, i) => s + i.price * i.qty, 0),
++        status: 'NEW' as OrderStatus,
++      });
++      await m.getRepository(OrderItemEntity).insert(
++        items.map((i) => ({
++          orderId: order.id,
++          productId: i.productId,
++          qty: i.qty,
++          price: i.price,
++        })),
++      );
++      await m
++        .getRepository(CartItemEntity)
++        .delete({ telegramId: u.telegramId });
++      return order.id;
++    });
++    return (await this.find(id))!;
+   }
+ 
+-  recent(limit = 5): Order[] {
+-    return [...this.orders].reverse().slice(0, limit);
++  async recent(limit = 5): Promise<Order[]> {
++    const ids = await this.orders.find({
++      select: { id: true },
++      order: { id: 'DESC' },
++      take: limit,
++    });
++    if (ids.length === 0) return [];
++    const rows = await this.load(
++      this.dataSource.manager,
++      ids.map((o) => o.id),
++    );
++    return rows.sort((a, b) => b.id - a.id);
+   }
+ 
+-  find(id: number): Order | undefined {
+-    return this.orders.find((o) => o.id === id);
++  async find(id: number): Promise<Order | undefined> {
++    const [o] = await this.load(this.dataSource.manager, [id]);
++    return o;
+   }
+ 
++  // Holat o'zgarishi — tranzaksiyada. Buyurtma qatori qulflanadi:
++  // admin «Bekor»ni ikki marta tez bossa ham mahsulot omborga bir marta qaytadi.
+   async setStatus(id: number, status: OrderStatus): Promise<Order> {
+-    const order = this.find(id);
+-    if (!order) throw new Error(`Buyurtma topilmadi: #${id}`);
+-    if (order.status === 'CANCELLED')
+-      throw new Error(`#${id} allaqachon bekor qilingan`);
+-    if (status === 'CANCELLED') {
+-      for (const i of order.items)
+-        await this.catalog.giveBack(i.productId, i.qty);
+-    }
+-    order.status = status;
+-    return order;
++    await this.dataSource.transaction(async (m) => {
++      const order = await m
++        .getRepository(OrderEntity)
++        .createQueryBuilder('o')
++        .setLock('pessimistic_write')
++        .where('o.id = :id', { id })
++        .getOne();
++      if (!order) throw new Error(`Buyurtma topilmadi: #${id}`);
++      if (order.status === 'CANCELLED')
++        throw new Error(`#${id} allaqachon bekor qilingan`);
++      if (status === 'CANCELLED') {
++        const items = await m
++          .getRepository(OrderItemEntity)
++          .find({ where: { orderId: id }, order: { productId: 'ASC' } });
++        for (const i of items)
++          await this.catalog.giveBack(i.productId, i.qty, m);
++      }
++      await m.getRepository(OrderEntity).update({ id }, { status });
++    });
++    return (await this.find(id))!;
++  }
++
++  // orders + order_items + mahsulot nomi → Order (bot matnlari shu shaklni kutadi)
++  private async load(m: EntityManager, ids: number[]): Promise<Order[]> {
++    const rows = await m.getRepository(OrderEntity).find({
++      where: ids.map((id) => ({ id })),
++      relations: { items: { product: true } },
++      order: { items: { id: 'ASC' } },
++    });
++    return rows.map((o) => ({
++      id: o.id,
++      telegramId: o.telegramId,
++      phone: o.phone,
++      total: o.total,
++      status: o.status,
++      createdAt: o.createdAt,
++      items: o.items.map((i) => ({
++        productId: i.productId,
++        name: i.product?.name ?? `#${i.productId}`,
++        price: i.price,
++        qty: i.qty,
++      })),
++    }));
+   }
+ }
+diff --git a/src/api/telegram/telegram.service.ts b/src/api/telegram/telegram.service.ts
+index 8a74310..071877c 100644
+--- a/src/api/telegram/telegram.service.ts
++++ b/src/api/telegram/telegram.service.ts
+@@ -138,11 +138,8 @@ export class TelegramService implements OnModuleInit, OnModuleDestroy {
+ 
+   private async placeOrder(ctx: Context, user: User) {
+     try {
+-      const order = await this.orders.place(
+-        user,
+-        await this.cart.list(user.telegramId),
+-      );
+-      await this.cart.clear(user.telegramId);
++      // Ombor, buyurtma va savatni tozalash — OrderService ichida bitta tranzaksiya
++      const order = await this.orders.place(user);
+       await ctx.reply(texts.orderPlaced(order));
+       for (const admin of await this.users.admins()) {
+         if (admin.telegramId === user.telegramId) continue;
+@@ -172,7 +169,7 @@ export class TelegramService implements OnModuleInit, OnModuleDestroy {
+     this.bot.command('orders', async (ctx) => {
+       const user = await this.users.getOrCreate(ctx.from);
+       if (user.role !== 'admin') return ctx.reply(texts.adminOnly);
+-      const list = this.orders.recent(5);
++      const list = await this.orders.recent(5);
+       if (list.length === 0) return ctx.reply(texts.noOrders);
+       for (const o of list) {
+         const customer = await this.customerName(o.telegramId);
+diff --git a/src/api/user/user.entity.ts b/src/api/user/user.entity.ts
+index 7042f02..d0973a5 100644
+--- a/src/api/user/user.entity.ts
++++ b/src/api/user/user.entity.ts
+@@ -6,13 +6,7 @@ import {
+   PrimaryColumn,
+ } from 'typeorm';
+ import type { Role, User, UserState } from '../../core/types';
+-
+-// pg BIGINT ni satr ("5123456789") qilib qaytaradi — kodda son bo'lsin.
+-// Telegram id 52 bitdan oshmaydi, JS Number uchun xavfsiz.
+-const bigintToNumber = {
+-  to: (v: number) => v,
+-  from: (v: string | null) => (v === null ? v : Number(v)),
+-};
++import { bigintToNumber } from '../../database/bigint.transformer';
+ 
+ // users jadvali. Jadvalni migratsiya yaratadi (src/database/migrations).
+ @Entity({ name: 'users' })
+diff --git a/src/core/types.ts b/src/core/types.ts
+index 2407795..8847fea 100644
+--- a/src/core/types.ts
++++ b/src/core/types.ts
+@@ -1,5 +1,5 @@
+-// Loyihaning asosiy tushunchalari. Hozircha hammasi xotirada (Map/array),
+-// server qayta ishga tushsa — yo'qoladi.
++// Loyihaning asosiy tushunchalari. Hammasi PostgreSQL'da saqlanadi
++// (entity'lar: api/*/*.entity.ts, jadvallar: database/migrations).
+ 
+ export type Role = 'customer' | 'admin';
+ 
+diff --git a/src/database/bigint.transformer.ts b/src/database/bigint.transformer.ts
+new file mode 100644
+index 0000000..8cef176
+--- /dev/null
++++ b/src/database/bigint.transformer.ts
+@@ -0,0 +1,8 @@
++import { ValueTransformer } from 'typeorm';
++
++// pg BIGINT ni satr ("5123456789") qilib qaytaradi — kodda son bo'lsin.
++// Telegram id 52 bitdan oshmaydi, JS Number uchun xavfsiz.
++export const bigintToNumber: ValueTransformer = {
++  to: (v: number | null | undefined) => v,
++  from: (v: string | null) => (v === null ? v : Number(v)),
++};
+diff --git a/src/database/migrations/1793733945621-CreateOrders.ts b/src/database/migrations/1793733945621-CreateOrders.ts
+new file mode 100644
+index 0000000..ef91a9c
+--- /dev/null
++++ b/src/database/migrations/1793733945621-CreateOrders.ts
+@@ -0,0 +1,51 @@
++import { MigrationInterface, QueryRunner } from 'typeorm';
++
++export class CreateOrders1793733945621 implements MigrationInterface {
++  name = 'CreateOrders1793733945621';
++
++  public async up(queryRunner: QueryRunner): Promise<void> {
++    await queryRunner.query(`
++      CREATE TABLE "orders" (
++        "id"          SERIAL      NOT NULL,
++        "telegram_id" BIGINT      NOT NULL,
++        "phone"       VARCHAR(20) NOT NULL,
++        "total"       INTEGER     NOT NULL,
++        "status"      VARCHAR(20) NOT NULL DEFAULT 'NEW',
++        "created_at"  TIMESTAMPTZ NOT NULL DEFAULT now(),
++        CONSTRAINT "PK_orders_id" PRIMARY KEY ("id"),
++        CONSTRAINT "CHK_orders_total" CHECK ("total" >= 0),
++        CONSTRAINT "CHK_orders_status"
++          CHECK ("status" IN ('NEW', 'CONFIRMED', 'DELIVERED', 'CANCELLED')),
++        CONSTRAINT "FK_orders_user" FOREIGN KEY ("telegram_id")
++          REFERENCES "users" ("telegram_id") ON DELETE RESTRICT
++      )
++    `);
++    // price — buyurtma paytidagi narx: katalogda narx keyin o'zgarsa ham
++    // eski buyurtma summasi o'zgarmaydi
++    await queryRunner.query(`
++      CREATE TABLE "order_items" (
++        "id"         SERIAL  NOT NULL,
++        "order_id"   INTEGER NOT NULL,
++        "product_id" INTEGER NOT NULL,
++        "qty"        INTEGER NOT NULL,
++        "price"      INTEGER NOT NULL,
++        CONSTRAINT "PK_order_items_id" PRIMARY KEY ("id"),
++        CONSTRAINT "UQ_order_items_order_product" UNIQUE ("order_id", "product_id"),
++        CONSTRAINT "CHK_order_items_qty" CHECK ("qty" > 0),
++        CONSTRAINT "CHK_order_items_price" CHECK ("price" >= 0),
++        CONSTRAINT "FK_order_items_order" FOREIGN KEY ("order_id")
++          REFERENCES "orders" ("id") ON DELETE CASCADE,
++        CONSTRAINT "FK_order_items_product" FOREIGN KEY ("product_id")
++          REFERENCES "products" ("id") ON DELETE RESTRICT
++      )
++    `);
++    await queryRunner.query(
++      `CREATE INDEX "IDX_orders_telegram_id" ON "orders" ("telegram_id")`,
++    );
++  }
++
++  public async down(queryRunner: QueryRunner): Promise<void> {
++    await queryRunner.query(`DROP TABLE "order_items"`);
++    await queryRunner.query(`DROP TABLE "orders"`);
++  }
++}
+diff --git a/src/database/typeorm.config.ts b/src/database/typeorm.config.ts
+index 20e5f0a..d2046d7 100644
+--- a/src/database/typeorm.config.ts
++++ b/src/database/typeorm.config.ts
+@@ -4,6 +4,8 @@ import { config } from '../config';
+ import { ProductEntity } from '../api/catalog/product.entity';
+ import { UserEntity } from '../api/user/user.entity';
+ import { CartItemEntity } from '../api/cart/cart-item.entity';
++import { OrderEntity } from '../api/order/order.entity';
++import { OrderItemEntity } from '../api/order/order-item.entity';
+ 
+ if (!config.DATABASE_URL) {
+   throw new Error(
+@@ -17,7 +19,13 @@ const MIGRATION_EXT = __filename.endsWith('.ts') ? 'ts' : 'js';
+ export const typeormOptions: DataSourceOptions = {
+   type: 'postgres',
+   url: config.DATABASE_URL,
+-  entities: [ProductEntity, UserEntity, CartItemEntity],
++  entities: [
++    ProductEntity,
++    UserEntity,
++    CartItemEntity,
++    OrderEntity,
++    OrderItemEntity,
++  ],
+   // ts-node (seed, CLI) — .ts; `nest build` dan keyin dist/ — faqat .js
+   // (*.{ts,js} dist/ dagi .d.ts fayllarni ham ushlab olardi)
+   migrations: [join(__dirname, 'migrations', `*.${MIGRATION_EXT}`)],

@@ -1,0 +1,19 @@
+<div class="z">
+  <div class="z-card" style="border-color:var(--bad)">
+    <p class="z-h">wh-start: xizmat xabar yubordi — server bilmadi</p>
+    <div class="z-term"><span class="m">$ curl -X POST http://localhost:3100/payments/webhook -d '{"paymentId":"pay_1","orderId":1,"status":"paid","amount":120000}'</span>
+<span class="r">{"message":"Cannot POST /payments/webhook","error":"Not Found","statusCode":404}</span></div>
+    <table class="z-tbl" style="max-width:320px"><tr><th>id</th><th>status</th><th>total</th></tr><tr class="bad"><td>1</td><td>NEW</td><td>120000</td></tr></table>
+    <span class="z-mut">pul o'tgan, buyurtma bazada «NEW» qoldi — admin bilmaydi</span>
+  </div>
+  <div class="z-card">
+    <p class="z-h">wh-done da xabar uch tekshiruvdan o'tadi</p>
+    <div class="z-flow">
+      <div class="z-st ok"><b>1 · Manzil</b><span class="zm">POST /payments/webhook</span><span class="z-mut">404 o'rniga yo'l bor</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st ok"><b>2 · Imzo</b><span class="z-mut">xabar haqiqatan xizmatdanmi</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st ok"><b>3 · Bir martalik yozuv</b><span class="z-mut">ikki marta kelsa ham — bir qator</span></div>
+    </div>
+  </div>
+</div>

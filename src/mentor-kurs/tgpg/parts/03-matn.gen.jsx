@@ -1,191 +1,260 @@
 
 // ============================================================
-//  TELEGRAF+PG MATNLARI — AVTO: feedback/F-1029-02-mentor-kurs/dev/tgpg-matn.py (manba: 17-TgPg-mentor-v1.md)
+//  TgPg MATNLARI — AVTO: feedback/F-1029-02-mentor-kurs/dev/tgpg-matn.py (manba: 17-TgPg-mentor-v2.md, M41)
 //  QO'LDA TAHRIRLANMAYDI: matn MD'da o'zgaradi, keyin skript qayta yurgiziladi.
 // ============================================================
 const MDT = {
  "1": {
   "type": "Lesson",
   "kicker": "Kirish",
-  "eyebrow": "Mentor kursi · Telegraf",
-  "title": "Bot javob beradi. Lekin bir daqiqa oldingi gapni eslaydimi?",
+  "eyebrow": "Mentor kursi · Telegraf + PostgreSQL",
+  "title": "Tayyor buyurtma boti bor. Uni AI bilan PostgreSQL'ga ko'chiramiz — bosqichma-bosqich va har qadamni tekshirib",
   "seg": [
    [
     "a",
-    "Telegraf'ni bilasiz — bugun botga xotira beramiz: <b>holat bazada</b>",
-    "Assalomu alaykum. Telegraf'ni bilasiz: handler, reply, BotFather. Bugun botga xotira beramiz: suhbat qaysi bosqichda ekanini bot eslab qolsin, server qayta ishga tushsa ham."
+    "Telegraf bilan bot yozishni bilasiz — bugun <b>bot ma'lumotini PostgreSQL'da saqlaymiz</b>",
+    "Assalomu alaykum. Telegraf bilan bot yozishni, buyruq va inline tugmalarni videodarslarda ko'rgansiz. Bugun keyingi qadam: bot ma'lumotini PostgreSQL'da saqlaymiz. Shunda server qayta ishga tushsa ham savat, buyurtma va telefon raqami yo'qolmaydi."
    ],
    [
     "b",
-    "Avval holatsiz bot, keyin xotiradagi holat va <b>nega u yo'qoladi</b>",
-    "Avval holatsiz bot qanday adashishini ko'ramiz. Keyin holatni dastur xotirasida saqlaymiz va qayta ishga tushirganda nima bo'lishini ko'ramiz."
+    "Loyiha tayyor: <b>katalog, savat, buyurtma va admin</b> — Nest va Telegraf'da",
+    "Loyiha noldan yozilmaydi. GitHub'da tayyor buyurtma boti bor: katalog, savat, buyurtma va admin paneli, NestJS va Telegraf'da. U to'liq ishlaydi, faqat hamma ma'lumot xotirada turadi. Siz uni clone qilib, kamchiligini o'z ko'zingiz bilan ko'rasiz."
    ],
    [
     "c",
-    "Keyin PostgreSQL'da holat, uni <b>ataylab buzamiz</b> va o'quvchi reposini ishga tushiramiz",
-    "Keyin holatni PostgreSQL'ga ko'chiramiz, uni ataylab buzamiz va o'quvchi reposini o'z kompyuteringizda ishga tushiramiz."
+    "Kodni AI yozadi, siz <b>bosqichlab boshqarasiz va har bosqichni tekshirasiz</b>",
+    "Kodni AI yozadi: Antigravity, Claude Code, Codex yoki Copilot, qaysi biri bo'lsa ham. Sizning ishingiz boshqarish: ishni to'rt bosqichga bo'lasiz, har biriga prompt yozasiz va natijani o'zingiz tekshirasiz. Biz buni ikki xil AI bilan haqiqatan qilib ko'rdik, ekrandagi javoblar o'sha yurgizishlardan."
    ],
    [
     "d",
-    "Olti bosqich, uch amaliyot. <b>Shoshilmang</b>: ustoz gapirib bo'lgach Davom ochiladi",
-    "Dars olti bosqichdan iborat, uchta amaliyot bor. Shoshilmang: har ekranni boshidan eshitish mumkin. Ustoz gapirib bo'lgach Davom ochiladi. Boshlaymiz."
+    "Olti bosqich, to'rt amaliyot; oxirida <b>ikki ekran sinfga tayyorgarlik</b>. Shoshilmang",
+    "Dars olti bosqichdan iborat, to'rtta amaliyotda AI bilan o'zingiz ishlaysiz. Oxirgi ikki ekran sinfga tayyorgarlik: o'quvchi darsi xaritasi va o'quvchilar xato qiladigan joylar. Shoshilmang, har ekranni boshidan eshitish mumkin, dars qayerda to'xtaganingizni eslab qoladi. Boshlaymiz."
    ]
   ]
  },
  "2": {
   "type": "Lesson",
-  "kicker": "1-bosqich · holat",
-  "title": "«Pepperoni» — «Tushunmadim»: bot o'z savolini eslamaydi",
+  "kicker": "1-bosqich · loyiha va muammo",
+  "title": "Loyiha besh moduldan iborat: telegram, catalog, user, cart va order",
   "seg": [
    [
     "a",
-    "O'quvchi darsi shu suhbatdan boshlanadi: bot savol beradi, <b>javobni tushunmaydi</b>",
-    "O'quvchi darsi shu suhbatdan boshlanadi. Aziza pitsa buyurtma qilmoqchi. Bot qaysi pitsa deb so'raydi, Aziza pepperoni deydi, bot esa tushunmadim deydi."
+    "Bot buyruqlari bitta faylda: <b><code>telegram.service.ts</code> — siz bilgan Telegraf handler'lari</b>",
+    "Loyihani Explorer'da ochamiz. Bot buyruqlari bitta faylda: telegram service. Ichida siz bilgan Telegraf handler'lari turadi: bot start, bot command catalog va bot action. Tugmalar keyboards faylida, bot matnlari texts faylida."
    ],
    [
     "b",
-    "Har xabar alohida keladi: handler <b>oldingi xabarni bilmaydi</b>",
-    "Nega? Telegraf'da har xabar alohida keladi va handler faqat shu xabarni ko'radi. Pepperoni so'zi kelganda bot o'zi pitsa so'raganini bilmaydi."
+    "Logika to'rt Service'da: <b>katalog, foydalanuvchi, savat va buyurtma</b> — har biri o'z modulida",
+    "Handler'lar logikani o'zi yozmaydi, Service'ga beradi. Loyihada to'rtta Service bor: catalog mahsulotlar va omborni boshqaradi, user foydalanuvchi va uning state'ini, cart savatni, order buyurtmani. Har biri o'z modulida, Nest ularni telegram service'ga inject qiladi."
    ],
    [
     "c",
-    "Javob matnlari <b>haqiqiy Telegraf</b> handler'idan — Telegram oynasi esa maket",
-    "Ekrandagi javoblar haqiqiy Telegraf handler'idan olingan. Telegram serveriga ulanmadik: xabarni kod bilan berdik va botning javobini ushladik. Chat oynasi esa maket."
+    "Mijoz yo'li: <b>katalog → savat → telefon → buyurtma</b>, keyin admin tasdiqlaydi",
+    "Mijoz yo'lini ko'ramiz. Aziza katalogni ochadi, mahsulotlar ikkitadan sahifada. Tugmani bosib savatga qo'shadi, buyurtma beradi, bot telefon so'raydi. Raqam kelgach buyurtma yaratiladi va adminga xabar ketadi. Admin Jasur buyurtmani tasdiqlaydi, Azizaga xabar boradi."
    ],
    [
     "d",
-    "Xulosa: holatsiz bot har xabarni <b>birinchi xabardek</b> ko'radi — suhbat qayerdaligini bilmaydi",
-    "Xulosa: holatsiz bot har xabarni birinchi xabardek ko'radi. Suhbat qayerda turganini biladigan yozuv kerak. Uni holat deymiz."
+    "Xulosa: bot to'liq ishlaydi, lekin <b>hamma ma'lumot <code>Map</code> va massivda</b> turibdi",
+    "Xulosa: bot to'liq ishlaydi, admin roli ham bor. Lekin Service'larni ochsangiz, foydalanuvchilar Map'da, savatlar Map'da, buyurtmalar oddiy massivda turibdi. Bu ma'lumot qayerda yashashini keyingi ekranda ko'ramiz."
    ]
   ]
  },
  "3": {
   "type": "Lesson",
-  "kicker": "1-bosqich · holat",
-  "title": "holat[chat.id]: bot savolini eslab qoldi — suhbat davom etdi",
+  "kicker": "1-bosqich · ichida",
+  "title": "Map Node jarayonining xotirasida yashaydi: jarayon to'xtasa — u ham yo'qoladi",
   "seg": [
    [
     "a",
-    "Holatsiz botdan keyin eng oddiy yechim: <b>holatni obyektda saqlash</b>",
-    "Eng oddiy yechim: holatni oddiy obyektda saqlash. Kalit chat id, qiymat suhbat bosqichi, masalan pitsa kutyapman."
+    "1-jarayonda hammasi bor: <b>buyurtma #1, savatda Sichqoncha, Azizaning telefoni</b>",
+    "Birinchi jarayonda bot ishlayapti. Aziza buyurtma berdi, raqami bir, jami ikki yuz yigirma ming so'm. Admin uni tasdiqladi. Keyin Aziza savatga yana Sichqoncha qo'shdi. Telefoni ham botda saqlangan."
    ],
    [
     "b",
-    "Har xabarda bot <b>avval holatga qaraydi</b>, keyin javob beradi va holatni o'zgartiradi",
-    "Endi har xabarda bot avval holatga qaraydi. Pitsa kutayotgan bo'lsa, kelgan so'z pitsa nomi. Javob beradi va holatni o'lcham kutyapman qiladi."
+    "Server qayta ishga tushdi: <b>savat bo'sh, buyurtma yo'q</b>, telefon yana so'raladi",
+    "Endi serverni to'xtatib, qayta ishga tushiramiz. Aziza savatni ochadi: savat bo'sh. Admin buyurtmalarni ko'radi: hozircha buyurtma yo'q. Telefon raqami ham yo'qoldi, keyingi buyurtmada bot uni yana so'raydi. Xato xabari chiqmadi, ma'lumot shunchaki yo'q."
    ],
    [
     "c",
-    "Natija: «Pepperoni — yaxshi tanlov!», xotirada esa holat <b><code>OLCHAM_KUTYAPMAN</code></b> bo'ldi",
-    "Natija: pepperoni, yaxshi tanlov, qaysi o'lchamda. Suhbat davom etdi. Xotirada esa Azizaning holati: o'lcham kutyapman."
+    "Sabab: <code>Map</code> — <b>jarayon xotirasidagi obyekt</b>; jarayon bilan birga tug'iladi va o'ladi",
+    "Sababi oddiy. Map Node jarayonining operativ xotirasidagi obyekt. Jarayon ishga tushganda u bo'sh yaratiladi, jarayon to'xtaganda xotira bo'shaydi. Hosting serverni har deploy'da qayta ishga tushiradi, ya'ni haqiqiy botda bu kuniga bir necha marta bo'ladi."
    ],
    [
     "d",
-    "Xulosa: holat bilan bot suhbatni davom ettiradi — lekin bu holat <b>dastur xotirasida</b> turibdi",
-    "Xulosa: holat bilan bot suhbatni davom ettiradi. Lekin bu obyekt dastur xotirasida, RAM'da turibdi. Keyingi ekranda botni qayta ishga tushiramiz."
+    "Xulosa: <b>saqlanishi kerak bo'lgan har narsa bazaga</b> — beshta ma'lumot ro'yxati",
+    "Xulosa: restartdan keyin qolishi kerak bo'lgan har narsa bazada turishi kerak. Botda bunday ma'lumot beshta: mahsulot va ombor, foydalanuvchi va uning roli, telefon va state, savat, buyurtma. Bugun shu beshtasini PostgreSQL'ga ko'chiramiz."
    ]
   ]
  },
  "4": {
-  "type": "Lesson",
-  "kicker": "1-bosqich · holat",
-  "title": "Bot qayta ishga tushdi — «Katta» ga «Salom! Qaysi pitsa?»",
-  "seg": [
-   [
-    "a",
-    "Server vaqti-vaqti bilan <b>qayta ishga tushadi</b>: yangi versiya yoki nosozlikdan keyin",
-    "Bot serveri vaqti-vaqti bilan qayta ishga tushadi: yangi versiya chiqqanda yoki nosozlikdan keyin. Biz ham botni to'xtatib, qayta ishga tushirdik."
-   ],
-   [
-    "b",
-    "Aziza «Katta» deb yozdi — bot uni <b>yangi mijozdek</b> kutib oldi",
-    "Aziza o'lchamni yozdi: katta. Bot esa salom, qaysi pitsa deydi. Obyekt bo'sh boshlandi, Azizaning holati yo'q, bot uni yangi mijoz deb o'yladi."
-   ],
-   [
-    "c",
-    "RAM — dastur yashaganicha; jarayon tugasa, <b>obyekt ham yo'qoladi</b>",
-    "Sabab: obyekt dastur xotirasida, jarayon tugasa u ham yo'qoladi. O'quvchi darsi buni ikki quti bilan ko'rsatadi: dastur xotirasi vaqtinchalik, PostgreSQL doimiy."
-   ],
-   [
-    "d",
-    "Xulosa: qayta ishga tushirishdan keyin faqat <b>bazaga yozilgan holat</b> qoladi",
-    "Xulosa: qayta ishga tushirishdan keyin faqat bazaga yozilgan holat qoladi. Shuning uchun haqiqiy botda holat PostgreSQL'da turadi."
-   ]
-  ]
- },
- "5": {
   "type": "MCRetry",
   "kicker": "Tekshiruv 1",
   "eyebrow": "Tekshiruv · 1 / 4",
-  "title": "Bot qayta ishga tushdi. Qaysi holat saqlanib qoladi?",
-  "q": "Qayta ishga tushirishni ko'rdingiz, tekshirib olaylik. Birinchi tekshiruv. Bot qayta ishga tushdi. Qaysi holat saqlanib qoladi? Variantni tanlang.",
-  "ok": "To'g'ri, PostgreSQL'dagisi. Baza ma'lumotni diskka yozadi, bot qayta ishga tushsa ham u joyida. Obyekt va o'zgaruvchi dastur xotirasida, ular yo'qoladi. Demak, bot qayta ishga tushgandan keyin ham kerak bo'ladigan holat bazaga yoziladi.",
-  "okShort": "PostgreSQL — diskda, qoladi. Obyekt — RAM'da, yo'qoladi.",
-  "hint": "Qaysi biri diskka yoziladi?",
+  "title": "Katalog kodda yozilgan massiv, ombordagi son ham shu massivda. Restartdan keyin Kolonka qoldig'i nechta bo'ladi?",
+  "q": "Xotirani ko'rdingiz, endi tekshirib olaylik. Birinchi tekshiruv. Katalog kodda yozilgan massiv, ombordagi son ham shu massivda turadi. Aziza ikkita Kolonka oldi, qoldiq sakkiz bo'ldi. Server qayta ishga tushsa, Kolonka qoldig'i nechta bo'ladi? Variantni tanlang.",
+  "ok": "To'g'ri. Massiv kodda yozilgan, jarayon ishga tushganda u yana koddagi qiymat bilan yaratiladi: o'n. Ya'ni restart buyurtmani o'chirdi va omborni ham o'n ga qaytardi. Ikkalasi bir-biriga mos, faqat noto'g'ri. Demak, xotiradagi ma'lumot har restartda kod yozilgan boshlang'ich qiymatiga qaytadi.",
+  "okShort": "Massiv koddan qayta yaratiladi — <code>stock: 10</code>. Buyurtma yo'qoldi, ombor ham qaytdi.",
+  "hint": "Massiv qayerda yozilgan — kodda yoki bazada? Jarayon ishga tushganda kod massivga qaysi qiymatni beradi?",
+  "demak": "Xotiradagi ma'lumot har restartda koddagi boshlang'ich qiymatga qaytadi.",
   "correct": 1,
   "opts": [
-   "Koddagi obyektga yozilgan holat",
-   "PostgreSQL'dagi users jadvaliga yozilgan holat",
-   "Handler ichidagi o'zgaruvchi",
-   "Hech qaysi"
+   "8 — server oxirgi qiymatni eslab qoladi",
+   "10 — massiv koddan qaytadan yaratiladi",
+   "0 — RAM bo'shaydi, massiv ham bo'sh qoladi",
+   "Server xato beradi — ombor sinxron emas"
   ],
   "wrong": {
-   "0": "Obyekt RAM'da: qayta ishga tushganda bo'sh boshlanadi (4-ekran).",
-   "2": "Handler o'zgaruvchisi keyingi xabargacha ham yashamaydi.",
-   "3": "Bazaga yozilgani qoladi."
+   "0": "Eslab qolish uchun disk kerak; Map va massiv faqat RAM'da.",
+   "2": "Xotira bo'shaydi, lekin massiv kodda yozilgan — u qayta yaratiladi.",
+   "3": "Restart xato emas: server odatdagidek ko'tariladi."
   }
  },
- "6": {
-  "type": "Lesson",
-  "kicker": "2-bosqich · alohida",
-  "title": "Bitta tanlov o'zgaruvchisi: Aziza Jasurning Margaritasini oldi",
+ "5": {
+  "type": "Practice",
+  "kicker": "Amaliyot 1 / 4",
+  "eyebrow": "Hozir o'zingizda · 15 daqiqa",
+  "title": "Loyihani o'z kompyuteringizda ishga tushiring va restartda nima yo'qolishini ko'ring",
   "seg": [
    [
     "a",
-    "Bitta mijoz bilan ishladi — endi <b>ikki mijoz</b> bir vaqtda yozadi",
-    "Bitta mijoz bilan holat ishladi. Lekin botga bir vaqtda o'nlab odam yozadi. O'quvchi darsidagi holat: Aziza va Jasur."
+    "Endi siz: loyihani clone qilasiz, <b>o'z botingiz tokeni bilan</b> ishga tushirasiz",
+    "Endi navbat sizga. Loyihani clone qilasiz va o'z botingiz bilan ishga tushirasiz. Token uchun BotFather'da yangi sinov boti oching, videodarsdagi kabi. O'n besh daqiqa ketadi."
    ],
    [
     "b",
-    "Holat bitta umumiy o'zgaruvchida: har yangi xabar oldingisining <b>ustiga yozadi</b>",
-    "Bu kodda tanlov bitta umumiy o'zgaruvchida, hamma uchun bitta. Aziza pepperoni yozdi, keyin Jasur margarita yozdi va uning ustiga yozildi."
+    "1–2-qadam: clone, <code>tgpg-start</code> tegi, <code>npm install</code>, <code>.env</code> — <b>token va o'z id'ingiz</b>",
+    "Birinchi qadamda reponi clone qilib, tgpg start tegiga o'tasiz va npm install qilasiz. Ikkinchisida env example'dan env fayl yasaysiz: bot token va admin uchun o'z Telegram id'ingiz. Id'ni userinfobot'dan olasiz."
    ],
    [
     "c",
-    "Aziza «Katta» deydi — bot <b>«Buyurtma: Margarita, katta»</b> javobini beradi",
-    "Aziza katta deb yozdi va javob oldi: buyurtma margarita, katta. Aziza margarita so'ramagan. Xato hech qayerda chiqmadi, buyurtma xato bermay aralashdi."
+    "3–4-qadam: bot oqimi, keyin restart; isbot — <b>restartdan keyin <code>/cart</code> javobi</b>",
+    "Uchinchi qadamda Telegram'da start, catalog, ikki mahsulot va buyurtmani sinaysiz, admin sifatida orders'ni ko'rasiz. To'rtinchisida savatga mahsulot qo'shib, serverni Ctrl C bilan to'xtatib qayta yoqasiz. Isbot maydoniga cart buyrug'iga kelgan javobni yozing."
    ],
    [
     "d",
-    "Xulosa: umumiy o'zgaruvchi — ikki mijozning suhbati <b>xato bermay aralashadi</b>",
-    "Xulosa: umumiy o'zgaruvchida ikki mijozning suhbati xato bermay aralashadi. Har mijozning holati alohida turishi kerak."
+    "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
+    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin loyiha kompyuteringizda ishlaydi va qaysi ma'lumot restartda yo'qolishini o'zingiz ko'rgansiz."
+   ]
+  ],
+  "steps": [
+   {
+    "t": "Clone",
+    "cmds": [
+     "git clone https://github.com/Azizbekcrypto/OrderBotNest.git",
+     "cd OrderBotNest",
+     "git checkout tgpg-start",
+     "npm install"
+    ],
+    "exp": "added … packages"
+   },
+   {
+    "t": ".env — BOT_TOKEN (BotFather) va ADMIN_TELEGRAM_IDS (@userinfobot) yozing, keyin ishga tushiring",
+    "cmds": [
+     "cp .env.example .env",
+     "npm run start:dev"
+    ],
+    "exp": "Server 3000-portda ishlayapti · Telegram bot ulandi"
+   },
+   {
+    "t": "Bot oqimi — Telegram'da: /start → /catalog → ▶ → mahsulot → /cart → «✅ Buyurtma berish» → telefon → /orders",
+    "cmds": [
+     "/start",
+     "/catalog",
+     "/orders"
+    ],
+    "exp": "«Buyurtma #1 qabul qilindi!» · admin tugmalari"
+   },
+   {
+    "t": "Restart — savatga mahsulot qo'shing, serverni to'xtatib qayta yoqing, Telegram'da /cart va /orders",
+    "cmds": [
+     "Ctrl+C",
+     "npm run start:dev",
+     "npm run smoke -- restart"
+    ],
+    "exp": "«Savat bo'sh…» · «Hozircha buyurtma yo'q.» · NATIJA: 0/3"
+   }
+  ],
+  "proof": {
+   "label": "Restartdan keyin /cart ga kelgan javob",
+   "placeholder": "bot javobini nusxalang",
+   "re": "savat\\s+bo.?sh",
+   "flags": "i",
+   "wrong": "Restartdan keyin savat ochilganmi? Server Ctrl+C bilan to'xtab, qayta yoqilganini tekshiring."
+  },
+  "trouble": [
+   [
+    "BOT_TOKEN topilmadi",
+    ".env yo'q yoki bo'sh — cp .env.example .env, token yozing"
+   ],
+   [
+    "Server … ishlayapti va Telegram ulanmadi: 401: Unauthorized",
+    "token noto'g'ri; server ishlaydi, bot javob bermaydi — BotFather'dan qayta oling"
+   ],
+   [
+    "409: Conflict: terminated by other getUpdates request",
+    "shu token bilan ikkinchi nusxa ishlayapti — eski terminalni to'xtating (⚠ Telegram hujjatidan, sinalmagan — haqiqiy token kerak)"
+   ],
+   [
+    "/orders → «faqat admin uchun»",
+    "ADMIN_TELEGRAM_IDS da boshqa id — @userinfobot'dagi raqamni yozing"
+   ],
+   [
+    "EADDRINUSE :::3000",
+    "port band — eski server; Ctrl+C yoki .env da PORT=3001"
+   ]
+  ]
+ },
+ "6": {
+  "type": "Lesson",
+  "kicker": "2-bosqich · reja va prompt",
+  "title": "Beshta ma'lumot — to'rt bosqich: har bosqichdan keyin tekshiruv va commit",
+  "seg": [
+   [
+    "a",
+    "Ishni <b>to'rt bosqichga</b> bo'lamiz: ulanish va katalog, foydalanuvchi, savat, buyurtma",
+    "Beshta ma'lumotni bir yo'la ko'chirmaymiz. Ishni to'rt bosqichga bo'lamiz: avval bazaga ulanish va katalog, keyin foydalanuvchi va uning state'i, keyin savat, oxirida buyurtma va tranzaksiya. Tartib bog'liqlikka qarab: savat foydalanuvchi va mahsulotga, buyurtma hammasiga tayanadi."
+   ],
+   [
+    "b",
+    "Har bosqichdan keyin: <b>build, restart, psql — keyin commit</b>",
+    "Har bosqichdan keyin to'xtaymiz va tekshiramiz: loyiha build bo'ladimi, restartdan keyin nima qoladi, PostgreSQL terminalida jadval qanday. Hammasi to'g'ri bo'lsa, commit qilamiz. Keyingi bosqich xato qilsa, oxirgi ishlagan joyga qaytish oson bo'ladi."
+   ],
+   [
+    "c",
+    "Bir gapli promptda AI <b>1145 qatorni bir yo'la</b> o'zgartirdi — buni ko'rib chiqib bo'lmaydi",
+    "Nega bosqichlab? Biz sinab ko'rdik. AI'ga bir gapli prompt berdik: katalogni PostgreSQL'ga ko'chir. U faqat katalogni emas, hammasini ko'chirdi: yigirma ikki fayl, ming bir yuz qirq besh yangi qator. Kod ishladi, lekin bunday o'zgarishni mentor o'qib chiqa olmaydi, xato bo'lsa qayerdaligini topa olmaydi."
+   ],
+   [
+    "d",
+    "Xulosa: <b>bitta prompt — bitta bosqich</b>, natijani tekshirmaguncha keyingisiga o'tmaymiz",
+    "Xulosa: bitta prompt, bitta bosqich. Bosqich kichik bo'lsa, AI javobini o'qiysiz, diffni ko'rasiz va xatoni darhol topasiz. Tekshirmaguncha keyingi promptni yozmang. Endi promptning o'zini qanday yozishni ko'ramiz."
    ]
   ]
  },
  "7": {
   "type": "Lesson",
-  "kicker": "2-bosqich · alohida",
-  "title": "Har mijozning holati o'z chat.id si ostida: obyekt kaliti yoki jadval qatori",
+  "kicker": "2-bosqich · reja va prompt",
+  "title": "Yaxshi prompt beshta qismdan iborat: kontekst, maqsad, shartlar, chegara va javob",
   "seg": [
    [
     "a",
-    "Har mijozning Telegram raqami bor: shaxsiy chatda u <b><code>ctx.chat.id</code></b>",
-    "Aralashmaslik uchun har mijozni raqami bilan ajratamiz. Telegram'da har mijozning raqami bor, shaxsiy chatda u ctx chat id."
+    "Birinchi qism — <b>kontekst</b>: loyiha nima va hozir qanday ishlaydi",
+    "Promptning birinchi qismi kontekst: loyiha nima va hozir qanday ishlaydi. AI loyihani o'qiy oladi, lekin sizning maqsadingizni bilmaydi. Shuning uchun bitta gap yetadi: bu NestJS va Telegraf'dagi buyurtma boti, hamma ma'lumot xotirada, bosqichma-bosqich PostgreSQL'ga ko'chiramiz."
    ],
    [
     "b",
-    "3-ekrandagi obyekt shunday edi: kalit — <code>chat.id</code>, har mijozga <b>o'z holati</b>",
-    "Uchinchi ekrandagi obyekt aynan shunday edi: kalit chat id, qiymat holat. Azizaning holati Jasurnikiga tegmaydi."
+    "Ikkinchi va uchinchi qism — <b>bitta bosqich maqsadi va qat'iy shartlar</b>",
+    "Ikkinchi qism maqsad: faqat shu bosqich, bizda ulanish va katalog. Uchinchisi qat'iy shartlar: manzil env'dan o'qilsin, synchronize ishlatilmasin, jadval migratsiya bilan yaratilsin, stock manfiy bo'lmasin, seed ikkinchi marta takror qo'shmasin. Har shart keyin tekshiriladigan narsa."
    ],
    [
     "c",
-    "Bazada ham xuddi shu: har mijozga <b>bitta qator</b>, <code>telegram_id</code> ustuni bilan topiladi",
-    "Bazada ham xuddi shunday: users jadvalida har mijozga bitta qator. Bot qatorni telegram id ustuni bilan topadi."
+    "To'rtinchi va beshinchi qism — <b>nimaga tegmaslik va javobda nima bo'lishi</b>",
+    "To'rtinchi qism chegara: user, savat va buyurtma servislariga hali tegma. Beshinchisi javob: qaysi fayllar o'zgardi, qanday ishga tushirish va PostgreSQL terminalida nimani tekshirish. Shu qism AI'ni o'z ishini tushuntirishga majburlaydi, siz esa tekshirish ro'yxatini tayyor olasiz."
    ],
    [
     "d",
-    "Xulosa: sessiya — bitta mijozning alohida holati; kaliti — <b><code>chat.id</code></b>",
-    "Xulosa: bitta mijozning alohida holati sessiya deyiladi, uning kaliti chat id. O'quvchi darsi shu so'zni ishlatadi."
+    "Xulosa: har shart — <b>keyin tekshiriladigan bitta band</b>; tekshirib bo'lmaydigan shart yozilmaydi",
+    "Xulosa: prompt beshta qismdan iborat. Har shartni keyin tekshirish mumkin bo'lsin: stock manfiy bo'lmasin degan shartni PostgreSQL terminalida minus bir yozib tekshirasiz. Chiroyli qilib yoz degan shartni tekshirib bo'lmaydi, uni yozmang."
    ]
   ]
  },
@@ -193,516 +262,797 @@ const MDT = {
   "type": "MCRetry",
   "kicker": "Tekshiruv 2",
   "eyebrow": "Tekshiruv · 2 / 4",
-  "title": "Umumiy tanlov: Aziza «Pepperoni», Jasur «Margarita», Aziza «Katta». Azizaga qanday javob keladi?",
-  "q": "Aralashishni ko'rdingiz, tekshirib olaylik. Ikkinchi tekshiruv. Tanlov bitta umumiy o'zgaruvchida. Aziza pepperoni, Jasur margarita, keyin Aziza katta deb yozdi. Azizaga qanday javob keladi? Variantni tanlang.",
-  "ok": "To'g'ri, margarita. Jasurning xabari umumiy o'zgaruvchining ustiga yozildi. Xato chiqmaydi, shuning uchun bunday xatoni sezish qiyin. Demak, har mijozning holati uning chat id'si bo'yicha alohida saqlanishi kerak.",
-  "okShort": "Margarita — Jasurniki ustiga yozildi, xato chiqmadi.",
-  "hint": "Oxirgi marta tanlov ga kim yozdi?",
+  "title": "Ikki AI'ga bir xil vazifa berildi. Qaysi natijani ko'rib chiqib, commit qilish mumkin?",
+  "q": "Prompt qolipini ko'rdingiz, endi tekshirib olaylik. Ikkinchi tekshiruv. Ikki AI'ga bir xil vazifa berildi: katalogni bazaga ko'chirish. Ekranda ikkala prompt, o'zgarish hajmi va AI javobidan parcha. Qaysi natijani ko'rib chiqib, commit qilish mumkin? Variantni tanlang.",
+  "ok": "To'g'ri. B faqat katalogni ko'chirdi va boshqa servislarga nega tekkanini o'zi aytdi: async bo'lgani uchun await kerak edi. Bu asosli va tekshirish oson. A ham ishladi, lekin so'ralmagan to'rt bosqichni bir yo'la qildi va buni aytmadi. Demak, commit qilinadigan natija hajmi siz so'ragan bosqichga teng bo'ladi.",
+  "okShort": "B — so'ralgan bosqich, chetga chiqish aytilgan. A — 1145 qator, so'ralmagan ish, aytilmagan.",
+  "hint": "Qaysi AI faqat so'ralgan ishni qildi? Qaysi biri qayerda chetga chiqqanini aytdi?",
+  "demak": "Commit qilinadigan o'zgarish hajmi siz so'ragan bosqichga teng bo'ladi.",
   "correct": 2,
   "opts": [
-   "«Buyurtma: Pepperoni, katta»",
-   "Xato chiqadi, bot to'xtaydi",
-   "«Buyurtma: Margarita, katta»",
-   "Bot javob bermaydi"
+   "A — hammasini bir yo'la qilgan, vaqt tejaldi",
+   "Ikkalasi bir xil — ikkalasi ham ishlaydi",
+   "B — faqat so'ralgan bosqich, chetini aytgan",
+   "Hech biri — AI kodini commit qilib bo'lmaydi"
   ],
   "wrong": {
-   "0": "Pepperoni Jasurning xabarida ustidan yozildi.",
-   "1": "Kod to'g'ri ishlaydi — faqat holat umumiy.",
-   "3": "Handler javob beradi, lekin noto'g'ri pitsa bilan."
+   "0": "Ko'p ish — ko'p ko'rib chiqish: 1145 qatorda xatoni topish qiyin.",
+   "1": "Ishlashi yetmaydi: siz har qatorga javob berasiz.",
+   "3": "Commit qilinadi — o'qib, tekshirib bo'lgandan keyin."
   }
  },
  "9": {
   "type": "Lesson",
-  "kicker": "3-bosqich · PostgreSQL",
-  "title": "telegram_id BIGINT NOT NULL UNIQUE: Telegram raqami 32 bitga sig'maydi",
+  "kicker": "3-bosqich · ulanish va katalog · ichida",
+  "title": "Entity jadvalni tasvirlaydi, migratsiya uni yaratadi, migrations jadvali nima yurganini eslaydi",
   "seg": [
    [
     "a",
-    "O'quvchi darsidagi jadval: har mijoz — <b>bitta qator</b>, holati shu qatorda",
-    "Endi holatni PostgreSQL'ga ko'chiramiz. O'quvchi darsidagi jadval: users. Har mijoz bitta qator, uning ismi va holati shu qatorda."
+    "Entity — <b>jadvalning kod ko'rinishi</b>: klass, ustunlar decorator bilan",
+    "Birinchi bosqich ichida nima bo'lishini ko'ramiz. TypeORM'da jadval entity klassi bilan tasvirlanadi: Entity decorator jadval nomini, Column decorator har ustunni beradi. Siz bilgan Mongoose'da bu schema edi."
    ],
    [
     "b",
-    "<code>telegram_id</code> — <code>BIGINT</code>: Telegram hujjati raqam <b>32 bitdan katta</b> bo'lishi mumkin deydi",
-    "Telegram id ustuni big int. Nega oddiy int emas? Telegram Bot API hujjati aytadi: bu raqam o'ttiz ikki bitdan katta bo'lishi mumkin. Oddiy int esa o'ttiz ikki bit."
+    "Migratsiya — <b>jadvalni yaratadigan SQL fayli</b>; <code>synchronize</code> o'chiq",
+    "Jadvalni entity emas, migratsiya yaratadi. Migratsiya oddiy SQL fayli: up metodida create table, down metodida drop table. Synchronize false, ya'ni TypeORM jadvalni o'zi o'zgartirmaydi. Mongoose'da migratsiya yo'q edi, chunki kolleksiyada ustun qoidasi yo'q. PostgreSQL'da qoida bor, uni fayl bilan o'zgartiramiz."
    ],
    [
     "c",
-    "<code>NOT NULL UNIQUE</code> — har mijozga <b>faqat bitta qator</b>, ikkinchisini baza o'zi rad etadi",
-    "Not null unique: raqamsiz qator yo'q va bitta mijozga faqat bitta qator. Ikkinchi qatorni baza o'zi rad etadi, buni o'n beshinchi ekranda ko'ramiz."
+    "<code>migrations</code> jadvali — <b>qaysi fayl yurganini eslaydi</b>; server ko'tarilganda yurmagani o'zi yuradi",
+    "Migratsiya yurgach, TypeORM migrations jadvaliga bitta qator yozadi: fayl nomi va vaqti. Server har ko'tarilganda shu jadvalga qaraydi va faqat yurmagan migratsiyani yurgizadi, bu migrations run true sozlamasi. Ikkinchi ishga tushirishda hech narsa takrorlanmaydi."
    ],
    [
     "d",
-    "Xulosa: jadval tayyor — <code>telegram_id</code> bilan qator topiladi, <code>holat</code> ustunida <b>suhbat bosqichi</b>",
-    "Xulosa: jadval tayyor. Telegram id bilan mijozning qatori topiladi, holat ustunida suhbat bosqichi turadi."
+    "Xulosa: jadvalni o'zgartirish — <b>yangi migratsiya fayli</b>, eskisi tahrirlanmaydi",
+    "Xulosa: entity jadvalni kodda tasvirlaydi, migratsiya uni bazada yaratadi, migrations jadvali qaysi fayl yurganini eslaydi. Keyin ustun qo'shmoqchi bo'lsangiz, yangi migratsiya yozasiz. Yurgan migratsiyani tahrirlash foyda bermaydi: baza uni qayta yurgizmaydi."
    ]
   ]
  },
  "10": {
   "type": "Lesson",
-  "kicker": "3-bosqich · PostgreSQL",
-  "title": "Har xabarda: avval o'qish, yangi mijozga INSERT, keyin yangi holat UPDATE bilan",
+  "kicker": "3-bosqich · ulanish va katalog",
+  "title": "AI javobini uch qismga ajrating: nima o'zgardi, qayerda chetga chiqdi, qanday tekshiriladi",
   "seg": [
    [
     "a",
-    "Har xabarda birinchi ish — <b>SELECT</b>: bu mijozning qatori bormi, holati qanday",
-    "Bazali bot har xabarda birinchi bo'lib o'qiydi: select, telegram id shu raqam bo'lgan qator. Qator bor bo'lsa, holat ma'lum."
+    "Birinchi: <b>o'zgargan fayllar ro'yxatini <code>git diff --stat</code> bilan</b> solishtiring",
+    "AI ishini tugatdi va javob yozdi. Uni uch qismga ajratib o'qing. Birinchisi: qaysi fayllar o'zgardi. AI'ning ro'yxatini git diff stat bilan solishtiring. Bu safar ro'yxat mos keldi: entity, migratsiya, seed, config va catalog service."
    ],
    [
     "b",
-    "Qator yo'q bo'lsa — yangi mijoz: <b>INSERT</b>, holat <code>ISM_KUTYAPMAN</code>, «Ismingiz nima?»",
-    "Qator topilmasa, bu yangi mijoz. Insert bilan qator qo'shamiz, holat ism kutyapman. Javob: ismingiz nima."
+    "Ikkinchi: <b>«chetga chiqdim» qismini</b> toping va sababini baholang",
+    "Ikkinchisi: AI qayerda chetga chiqdi. Biz user, savat va buyurtmaga tegma degan edik. AI order va telegram servislarini o'zgartirgan va buni ochiq yozgan: catalog service endi async, chaqiruvlarga await kerak. Sabab asosli. Agar sabab yozilmagan bo'lsa, diffdan o'zingiz qidirasiz."
    ],
    [
     "c",
-    "Holat <code>ISM_KUTYAPMAN</code> bo'lsa — kelgan matn ism: <b>UPDATE</b>, holat <code>TAYYOR</code>",
-    "Keyingi xabarda holat ism kutyapman bo'lsa, kelgan matn ism. Update bilan ismni yozamiz va holatni tayyor qilamiz."
+    "Uchinchi: tekshirish buyruqlarini <b>o'zingiz yurgizing</b> — AI'ning «sinadim» degan gapi isbot emas",
+    "Uchinchisi: tekshirish. AI o'zim sinadim deydi, lekin bu isbot emas. Buyruqlarni o'zingiz yurgizing. Seed birinchi marta olti mahsulot qo'shdi, ikkinchi marta nol. Backslash d products'da UNIQUE va CHECK bor. Build toza."
    ],
    [
     "d",
-    "Xulosa: SELECT → (yo'q bo'lsa INSERT) → javob → UPDATE; <b>tartibni almashtirib</b> bo'lmaydi",
-    "Xulosa: avval select, yo'q bo'lsa insert, keyin javob va update. O'quvchi darsida bu tartib bo'laklardan yig'iladi: update select'dan oldin bo'lsa, bot holatni bilmay turib yozib yuboradi."
+    "Xulosa: o'qing, solishtiring, yurgizing — <b>shundan keyin commit</b>",
+    "Xulosa: AI javobi uch qismdan o'qiladi: fayllar, chetga chiqish va tekshiruv. Fayllarni diff bilan solishtirasiz, chetga chiqish sababini baholaysiz, tekshiruvni o'zingiz yurgizasiz. Hammasi to'g'ri bo'lsa, commit qilasiz. Lekin bu bosqichda yana bitta yashirin muammo bor, uni keyingi ekranda ko'ramiz."
    ]
   ]
  },
  "11": {
   "type": "Lesson",
-  "kicker": "3-bosqich · PostgreSQL",
-  "title": "Bot qayta ishga tushdi — «Yana salom, Aziza!», Jasur o'z joyidan davom etdi",
+  "kicker": "3-bosqich · ichida",
+  "title": "Katalog bazada, buyurtma xotirada: restartdan keyin buyurtma yo'qoldi, ombor esa kamayib qoldi",
   "seg": [
    [
     "a",
-    "4-ekrandagi sinovni takrorlaymiz: bot to'xtaydi va <b>qayta ishga tushadi</b>",
-    "To'rtinchi ekrandagi sinovni bazali bot bilan takrorlaymiz. Aziza ismini aytdi, Jasur esa endigina start bosdi. Botni to'xtatib, qayta ishga tushiramiz."
+    "1-bosqichdan keyin bot ishlaydi: <b>katalog bazadan, buyurtma esa hali xotirada</b>",
+    "Birinchi bosqich tayyor, testlar toza. Endi bot oqimini restart bilan sinaymiz. Aziza buyurtma berdi: bitta klaviatura va ikkita kolonka. Ombor bazada kamaydi. Buyurtmaning o'zi esa hali xotiradagi massivda, chunki uni to'rtinchi bosqichda ko'chiramiz."
    ],
    [
     "b",
-    "Aziza /start — <b>«Yana salom, Aziza!»</b>: ism bazadan o'qildi",
-    "Aziza start bosdi: yana salom, Aziza. Bot ismni bazadan o'qidi, qayta ishga tushirish hech narsani o'chirmadi."
+    "Restart: <b>buyurtma yo'qoldi, ombor esa 7 va 8 da qoldi</b>",
+    "Serverni qayta ishga tushiramiz. Admin buyurtmalarni ochadi: hozircha buyurtma yo'q. PostgreSQL terminalida esa klaviatura yetti, kolonka sakkiz. Ya'ni mahsulot ombordan ketgan, lekin uni kim olgani haqida hech qanday yozuv yo'q. Bu xato xabari bermaydigan, eng yomon turdagi buzilish."
    ],
    [
     "c",
-    "Jasur ismini yozdi — bot uni ism deb tushundi, chunki <b>holat bazada qolgan</b>",
-    "Jasur qayta ishga tushgandan keyin ismini yozdi. Bot uni ism deb tushundi, chunki uning holati, ism kutyapman, bazada qolgan edi."
+    "Sabab: <b>bir ish ikki joyda yozildi</b> — biri doimiy, biri vaqtinchalik",
+    "Sababi: bitta sotuv ikki joyga yozildi. Ombordan ayirish bazaga, buyurtma esa xotiraga. Restart xotirani o'chirdi, bazaga tegmadi. Tekshiruv buni ko'rsatdi, chunki biz faqat build emas, restart bilan butun oqimni sinadik."
    ],
    [
     "d",
-    "Xulosa: holat bazada — qayta ishga tushirish ham, ikki mijoz ham <b>muammo emas</b>",
-    "Xulosa: holat bazada bo'lsa, qayta ishga tushirish ham, ikki mijoz ham muammo emas. Endi buni o'z botingizda qilasiz."
+    "Xulosa: <b>oraliq bosqichni prodga chiqarmang</b>; har bosqichdan keyin restart bilan sinang",
+    "Xulosa: bosqichma-bosqich ko'chirishda oraliq vaziyat bo'ladi, unda ma'lumot ikki joyda yashaydi. Oraliq bosqichni ishlab turgan botga chiqarmang, avval hamma bosqichni tugating. Har bosqichdan keyin restart bilan to'liq oqimni sinang: buni build ham, AI'ning o'z testlari ham ushlamaydi."
    ]
   ]
  },
  "12": {
   "type": "Practice",
-  "kicker": "Amaliyot 1 / 3",
-  "eyebrow": "Hozir o'zingizda · 15 daqiqa",
-  "title": "O'z botingiz: users jadvali, ism va qayta ishga tushirish",
+  "kicker": "Amaliyot 2 / 4",
+  "eyebrow": "Hozir o'zingizda · 20 daqiqa",
+  "title": "Ulanish, migratsiya va katalog — o'z AI'ingiz bilan, keyin o'zingiz tekshirasiz",
   "seg": [
    [
     "a",
-    "Endi siz: kichik bot yasaysiz, u ismingizni <b>bazada eslab qoladi</b>",
-    "Endi navbat sizga. Kichik bot yasaysiz, u ismingizni bazada eslab qoladi. Baza: PostgreSQL birinchi darsda o'rnatgan PostgreSQL'ingiz. O'n besh daqiqa."
+    "Endi siz: <b>1-promptni o'z AI'ingizga</b> berasiz va natijani tekshirasiz",
+    "Endi navbat sizga. Birinchi promptni o'z AI'ingizga berasiz: Antigravity, Claude Code yoki boshqasi. AI javobi bizdagidan boshqacha bo'ladi, bu normal. Tekshiruv bir xil. Yigirma daqiqa ketadi."
    ],
    [
     "b",
-    "1–2-qadam: jadval va bot fayli — <b>BotFather tokeni</b>, lokal baza",
-    "Birinchi: PostgreSQL terminalida botdb bazasi va users jadvali. Ikkinchi: yangi papka, telegraf va pg paketlari, bot js fayli. Token BotFather'dan, o'zingiz bilasiz."
+    "1–2-qadam: baza, prompt, <b>AI javobini uch qismga ajratib o'qish</b>",
+    "Birinchi qadamda PostgreSQL terminalida shop bazasini yaratasiz va env faylga database url yozasiz. Ikkinchisida promptni nusxalab AI'ga berasiz, javobini o'qiysiz: fayllar, chetga chiqish va tekshirish buyruqlari."
    ],
    [
     "c",
-    "3–4-qadam: /start va ism, keyin <b>Ctrl+C</b> va qayta ishga tushirish; isbot — javob matni",
-    "Uchinchi: botni yoqing, start bosing, ismingizni yozing. To'rtinchi: Ctrl C bilan to'xtating, yana yoqing, start bosing. Isbot maydoniga botning javobini yozing."
+    "3–4-qadam: seed ikki marta va <code>\\d products</code>; isbot — <b>ikkinchi seed'dan keyingi mahsulotlar soni</b>",
+    "Uchinchi qadamda seed'ni ikki marta yurgizasiz va backslash d products bilan CHECK borligini ko'rasiz. To'rtinchisida stock'ni minus bir qilib ko'rasiz: xato chiqishi kerak. Isbot maydoniga select count'dan chiqqan sonni yozing. Hammasi to'g'ri bo'lsa, commit qiling."
    ],
    [
     "d",
     "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
-    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin botingiz ismingizni bazada saqlaydi va qayta ishga tushgandan keyin ham uni eslab qoladi."
+    "Boshqacha chiqsa, «Boshqacha chiqdimi» tugmasini bosing. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin botingiz katalogni PostgreSQL'dan o'qiydi va siz AI ishini o'zingiz tekshirgan bo'lasiz."
+   ]
+  ],
+  "steps": [
+   {
+    "t": "Baza — PostgreSQL terminalida yarating, manzilini .env ga yozing",
+    "cmds": [
+     "psql -U postgres",
+     "CREATE DATABASE shop;",
+     "DATABASE_URL=postgresql://postgres:<parol>@localhost:5432/shop"
+    ],
+    "exp": "CREATE DATABASE"
+   },
+   {
+    "t": "Prompt — 1-promptni AI'ga bering, javobni uch qismga ajratib o'qing: fayllar · chetga chiqish · tekshirish",
+    "cmds": [
+     "git diff --stat"
+    ],
+    "exp": "ro'yxat diff bilan mos"
+   },
+   {
+    "t": "Seed va jadval",
+    "cmds": [
+     "npm run seed ×2",
+     "psql -U postgres -d shop",
+     "\\d products",
+     "SELECT * FROM migrations;"
+    ],
+    "exp": "2-marta 0 qo'shildi · CHECK (stock >= 0) · 1 qator"
+   },
+   {
+    "t": "Qoida va commit",
+    "cmds": [
+     "UPDATE products SET stock = -1 WHERE id = 1;",
+     "SELECT count(*) FROM products;",
+     "git add -A && git commit -m \"1-bosqich: katalog\""
+    ],
+    "exp": "violates check constraint · 6"
+   }
+  ],
+  "proof": {
+   "label": "SELECT count(*) FROM products; natijasi",
+   "placeholder": "natijadagi sonni yozing",
+   "re": "^\\s*6\\s*$",
+   "flags": "",
+   "wrong": "Seed ikki marta yurdi — takror qo'shmaganmi? 12 chiqsa, seed takrorlanmaslik shartini AI bajarmagan: unga shu haqida yozing."
+  },
+  "trouble": [
+   [
+    "count = 12",
+    "seed takror qo'shdi — AI'ga: «seed ikkinchi marta yurganda takror qo'shmasin, ON CONFLICT (name) DO NOTHING»"
+   ],
+   [
+    "UPDATE xatosiz o'tdi",
+    "CHECK yo'q — \\d products; AI'ga: «stock uchun bazada CHECK (stock >= 0) bo'lsin, yangi migratsiya bilan»"
+   ],
+   [
+    "relation \"products\" does not exist",
+    "migratsiya yurmagan — serverni bir marta ishga tushiring yoki npm run migration:run"
+   ],
+   [
+    "Unable to connect to the database. Retrying (1)... va error: database \"shop\" does not exist",
+    "1-qadam: CREATE DATABASE shop;"
+   ],
+   [
+    "Unable to connect to the database. Retrying (1)... va error: password authentication failed for user \"postgres\"",
+    ".env dagi parol — PostgreSQL-1 da qo'ygan parolingiz"
+   ],
+   [
+    "npm error Missing script: \"seed\"",
+    "AI seed'ni boshqa nom bilan yozgan yoki migratsiya ichiga qo'ygan — javobidan qidiring (2-tajribada shunday bo'ldi)"
    ]
   ]
  },
  "13": {
   "type": "Lesson",
-  "kicker": "4-bosqich · buzamiz",
-  "title": "telegram_id INTEGER — ERROR: integer out of range",
+  "kicker": "4-bosqich · foydalanuvchi, state, savat · ichida",
+  "title": "Telegram id INTEGERga sig'maydi — BIGINT kerak; lekin BIGINT kodga matn bo'lib keladi",
   "seg": [
    [
     "a",
-    "Birinchi buzish: o'quvchi <code>BIGINT</code> o'rniga odatdagi <b><code>INTEGER</code></b> yozadi",
-    "Birinchi buzish, sinfda albatta chiqadi. O'quvchi yoki AI telegram id uchun big int emas, odatdagi integer yozadi."
+    "Azizaning id'si 5 123 456 789 — <b><code>INTEGER</code> chegarasidan katta</b>, shuning uchun <code>BIGINT</code>",
+    "Ikkinchi bosqich: foydalanuvchilar. Birinchi tuzoq id'da. Telegram id ikki milliard bir yuz qirq yetti milliondan katta bo'lishi mumkin, bu integer'ning chegarasi. Azizaning id'si besh milliarddan oshadi. Shuning uchun ustun big int bo'ladi. Ikkala AI ham big int tanladi."
    ],
    [
     "b",
-    "Katta raqamli mijoz yozdi — <b><code>integer out of range</code></b>, qator saqlanmadi",
-    "Besh milliard bilan boshlanadigan raqamli mijoz yozdi. Natija: integer out of range. Qator saqlanmadi va bot bu mijozga javob bera olmaydi."
+    "Lekin node-pg va TypeORM <code>BIGINT</code> ustunini kodga <b>matn qilib qaytaradi</b>: <code>\"5123456789\"</code>",
+    "Ikkinchi tuzoq ko'rinmaydi. Big int JavaScript'ning oddiy sonidan katta bo'lishi mumkin, shuning uchun pg kutubxonasi uni matn qilib qaytaradi. TypeORM ham xuddi shunday. Matn bilan son uch tenglik bilan solishtirilsa, false chiqadi. Siz bilgan Mongoose'da bu son edi va true chiqardi."
    ],
    [
     "c",
-    "Kichik raqamli akkaunt bilan sinasa — hammasi ishlaydi, <b>xato keyin chiqadi</b>",
-    "Xavfli tomoni: o'quvchining o'z akkaunti eski bo'lsa, raqami kichik va hammasi ishlaydi. Xato boshqa mijoz kelganda chiqadi. Tuzatish: ustun big int."
+    "Ikki to'g'ri yo'l: <b>ustun turi <code>string</code></b> yoki <b>transformer bilan <code>number</code></b>",
+    "Ikki to'g'ri yo'l bor. Birinchisi: entity'da telegram id'ni string deb yozish va har joyda matn bilan ishlash. Ikkinchisi: transformer bilan bazadan kelganda songa aylantirish. Telegram id ellik ikki bitdan oshmaydi, JavaScript soni uni sig'diradi. Bizdagi tayyor kod birinchi yo'lni, AI ikkinchisini tanladi. Ikkalasi ishlaydi."
    ],
    [
     "d",
-    "Xulosa: <code>telegram_id</code> — <b>doim <code>BIGINT</code></b>; <code>INTEGER</code> bilan xato yangi mijozda chiqadi",
-    "Xulosa: telegram id doim big int. Tuzatilgan jadvalda shu raqam saqlandi, to'qqizinchi ekrandagi jadval aynan shunday."
+    "Xulosa: entity'dagi <b>id turini va solishtirishni</b> diffdan albatta tekshiring",
+    "Xulosa: Telegram id uchun big int, va kodda u matnmi yoki sonmi, buni bilib turing. AI kodini ko'rganda ikki joyga qarang: migratsiyada ustun turi big int'mi, entity'da qaysi tur va qayerda uch tenglik bilan solishtirilgan."
    ]
   ]
  },
  "14": {
   "type": "Lesson",
-  "kicker": "4-bosqich · buzamiz",
-  "title": "node-pg BIGINTni matn qaytaradi: '5123456789' === 5123456789 — false",
+  "kicker": "4-bosqich · ichida",
+  "title": "Mijoz tugmani ikki marta tez bosdi: avval qidirib keyin qo'shish ikki qator ochishi mumkin — ON CONFLICT bitta so'rovda hal qiladi",
   "seg": [
    [
     "a",
-    "Ikkinchi tuzoq: bazadan o'qilgan <code>telegram_id</code> <b>son emas, matn</b>",
-    "Ikkinchi tuzoq yashirinroq. Bazadan o'qilgan telegram id son emas, matn bo'lib keladi. Node pg big int'ni JavaScript soniga aylantirmaydi."
+    "Savatda bitta mahsulot — bitta qator: <b><code>UNIQUE (user_id, product_id)</code></b>",
+    "Uchinchi bosqich: savat. Bitta mijozda bitta mahsulot faqat bitta qator bo'ladi, qayta qo'shilsa qty bittaga oshadi. Bu qoidani kod ham, baza ham ushlaydi: cart items jadvalida user id va product id juftligi UNIQUE."
    ],
    [
     "b",
-    "Natija: <code>===</code> bilan solishtirish <b><code>false</code></b> — masalan admin tekshiruvi ishlamaydi",
-    "Natija: uch tenglik bilan ctx chat id ga solishtirsangiz, false. Masalan, admin raqamini shunday tekshirsa, bot adminni tanimaydi va xato chiqmaydi."
+    "Avval qidirib keyin qo'shish — <b>ikki tez bosishda ikkalasi «yo'q» ko'radi</b>",
+    "Oddiy yo'l: avval select bilan qidirish, yo'q bo'lsa insert. Lekin mijoz tugmani ikki marta tez bossa, ikki so'rov bir vaqtda qidiradi va ikkalasi ham yo'q deb ko'radi. Biz yigirma marta sinadik: o'n to'qqiz marta savatda ikki qator paydo bo'ldi. UNIQUE bo'lsa, ikkinchisi duplicate key xatosini oladi."
    ],
    [
     "c",
-    "O'quvchi reposida entity'da <code>telegram_id: string</code> — <b>muallif buni bilgan</b>",
-    "O'quvchi reposida entity'da telegram id string deb yozilgan, servisda esa raqam string'ga aylantirib qidiriladi. Bu to'g'ri qaror: TypeORM ham big int'ni matn qaytaradi."
+    "<code>ON CONFLICT … DO UPDATE</code> — <b>bitta so'rov</b>: yo'q bo'lsa qo'shadi, bor bo'lsa oshiradi",
+    "Yechim bitta so'rov: insert on conflict do update. Qator yo'q bo'lsa qo'shiladi, bor bo'lsa qty bittaga oshadi. Baza buni o'zi navbatga qo'yadi. Siz bilgan Mongoose'da bu upsert edi, lekin u ham unique index bo'lmasa ikki hujjat ochdi. Ikkala AI ham to'g'ri yo'lni tanladi."
    ],
    [
     "d",
-    "Xulosa: bazadagi <code>telegram_id</code> — matn; solishtirishdan oldin <b><code>Number()</code></b> yoki <b><code>String()</code></b>",
-    "Xulosa: bazadan kelgan telegram id matn. Solishtirishdan oldin ikkalasini bir turga keltiring: Number yoki String. Tuzatilganda natija true."
+    "Xulosa: <b>qidirib qo'shish</b> ko'rsangiz, <code>UNIQUE</code> va <code>ON CONFLICT</code> borligini tekshiring",
+    "Xulosa: avval qidirib keyin qo'shish bir mijozda ishlaydi, lekin tez bosishda buziladi. AI kodida shunday joy ko'rsangiz, ikki narsani tekshiring: jadvalda UNIQUE qoidasi bormi va so'rov on conflict bilanmi. Foydalanuvchida ham xuddi shu qoida: start ikki marta bosilsa ham bitta qator."
    ]
   ]
  },
  "15": {
   "type": "Lesson",
-  "kicker": "4-bosqich · buzamiz",
-  "title": "Ikkinchi /start'da yana INSERT — duplicate key value violates unique constraint",
+  "kicker": "4-bosqich · foydalanuvchi, state, savat",
+  "title": "WAITING_PHONE bazada: bot telefon so'radi, server qayta ishga tushdi — raqam kelganda bot uni taniydi",
   "seg": [
    [
     "a",
-    "Uchinchi buzish: /start har safar INSERT qiladi, <b>SELECT yo'q</b>",
-    "Uchinchi buzish: o'quvchi start handler'ida faqat insert yozadi, avval select qilmaydi. Birinchi start ishlaydi."
+    "State — <b>bot mijoz haqida eslab qolgan bosqich</b>: <code>IDLE</code> yoki <code>WAITING_PHONE</code>",
+    "State'ni ko'ramiz. State bot foydalanuvchi haqida eslab qolgan ma'lumot: qaysi qadamda turgani. Bizning botda ikkita: IDLE, ya'ni oddiy, va WAITING PHONE, ya'ni telefon kutilmoqda. Mijoz buyurtma berishni bosganda state WAITING PHONE bo'ladi."
    ],
    [
     "b",
-    "Ikkinchi /start — <code>duplicate key … already exists</code>: <b>UNIQUE uni to'xtatdi</b>",
-    "Ikkinchi start'da baza rad etadi: duplicate key, already exists. To'qqizinchi ekrandagi unique aynan shu yerda ishladi: bitta mijozga ikkita qator bo'lmaydi."
+    "Restartdan keyin raqam keldi — <b>bot uni telefon deb tanidi</b>, «Tushunmadim» demadi",
+    "Bobur buyurtma berishni bosdi, bot telefon so'radi. Shu payt server qayta ishga tushdi. Bobur raqamini yozdi. State bazada bo'lgani uchun bot raqamni telefon deb tanidi va buyurtmani yaratdi. State xotirada bo'lganda bot tushunmadim degan bo'lardi."
    ],
    [
     "c",
-    "Xabar <b><code>DETAIL</code></b> qatorida: qaysi ustun va qaysi raqam takrorlandi",
-    "Xabarni o'qing: detail qatorida qaysi ustun va qaysi raqam takrorlangani yozilgan. Telegram id, besh milliard bir yuz yigirma uch million. Demak, kodda select yo'q."
+    "Ikkinchi va uchinchi bosqichdan keyin <b>state ham, savat ham</b> restartdan o'tdi",
+    "Bu natija uchinchi bosqichdan keyin chiqdi. Ikkinchi bosqichdan keyin bot telefonni tanigan, lekin savat bo'sh edi, chunki savat hali xotirada edi. Bu yana oraliq vaziyat. Uchinchi bosqichdan keyin savat ham bazada, buyurtma raqami bir bo'lib yaratildi."
    ],
    [
     "d",
-    "Xulosa: tuzatish — <b>avval SELECT</b>, qator topilsa INSERT qilinmaydi",
-    "Xulosa: tuzatish o'ninchi ekrandagi oqim: avval select, topilsa insert qilinmaydi. Tuzatilgan bot ikkinchi start'ga yana salom deydi."
+    "Xulosa: state'ni sinash uchun <b>restartni suhbat o'rtasida</b> qiling",
+    "Xulosa: state'ni oddiy sinov ushlamaydi, chunki bitta jarayonda hamma narsa ishlaydi. Restartni suhbat o'rtasida qiling: bot savol berdi, server qayta yondi, keyin javob yozing. Bot davom etsa, state bazada."
    ]
   ]
  },
  "16": {
-  "type": "LineCheck",
+  "type": "MCRetry",
   "kicker": "Tekshiruv 3",
-  "eyebrow": "Tekshiruv · 3 / 4 — qaysi satr xato?",
-  "title": "Yangi mijoz yozdi — ERROR: integer out of range",
-  "q": "Buzishlarni ko'rdingiz, endi o'zingiz toping. Uchinchi tekshiruv. Yangi mijoz yozdi va baza integer out of range dedi. Sabab bo'lgan satrni bosing.",
-  "ok": "To'g'ri, uchinchi satr. Integer o'ttiz ikki bit, Telegram raqami esa undan katta bo'lishi mumkin. Big int bo'lsa saqlanadi, tuzatilgan jadval ekranda ko'rinib turibdi. Demak, Telegram raqami saqlanadigan ustun doim big int bo'ladi.",
-  "okShort": "3-satr: <code>INTEGER</code> — 32 bit. To'g'risi <code>BIGINT</code>.",
-  "hint": "Xabar raqam turidan: qaysi satr raqamni saqlaydi?",
-  "task": "Qoida: Telegram raqami 32 bitdan katta bo'lishi mumkin. Bu jadvalda yangi mijozning raqami saqlanmadi: <code>integer out of range</code>. <b>Shu xatoga sabab bo'lgan satrni bosing.</b>"
+  "eyebrow": "Tekshiruv · 3 / 4",
+  "title": "Admin tekshiruvi xom so'rov natijasi bilan yozilgan: rows[0].telegram_id !== 111. Jasur (id 111) /orders bosdi. Nima bo'ladi?",
+  "q": "Big int'ni ko'rdingiz, endi tekshirib olaylik. Uchinchi tekshiruv. Admin tekshiruvi xom so'rov bilan yozilgan: bazadan telegram id olinadi va bir yuz o'n birga teng emasmi deb solishtiriladi. TypeScript xato bermadi. Jasurning id'si haqiqatan bir yuz o'n bir. U orders bosdi. Nima bo'ladi? Variantni tanlang.",
+  "ok": "To'g'ri. Bazadan telegram id matn bo'lib keladi, bir yuz o'n bir qo'shtirnoq ichida. Matn bilan son hech qachon teng emas, shuning uchun Jasur admin bo'lmay qoladi. Xato xabari yo'q, bot faqat admin uchun deydi. Demak, big int ustunini solishtirishdan oldin turini bir xil qiling: matn bilan matn yoki son bilan son.",
+  "okShort": "<code>\"111\" !== 111</code> → <code>true</code>: admin tekshiruvi o'tmaydi, xato yo'q.",
+  "hint": "Bazadan telegram_id qaysi turda keladi? === turi har xil qiymatlarga nima deydi?",
+  "demak": "<code>BIGINT</code> ustunini solishtirishdan oldin ikki tomonning turi bir xil bo'lsin.",
+  "correct": 3,
+  "opts": [
+   "Jasur buyurtmalarni ko'radi — id 111 to'g'ri",
+   "Server ishga tushmaydi — tsc turni rad etadi",
+   "Baza xato beradi — id matn bilan so'raldi",
+   "«faqat admin uchun» chiqadi — \"111\" !== 111"
+  ],
+  "wrong": {
+   "0": "Bazadan matn keladi: \"111\" — son emas.",
+   "1": "Server ishlaydi va tsc ham xato bermaydi: raw (ichida ds.query) natijasi any. Entity'dagi string bilan solishtirilganda esa tsc TS2367 beradi — sinadik.",
+   "2": "Baza so'rovni bajardi; solishtirish JavaScript'da."
+  }
  },
  "17": {
   "type": "Practice",
-  "kicker": "Amaliyot 2 / 3",
-  "eyebrow": "Hozir o'zingizda · 10 daqiqa",
-  "title": "INTEGER va takror INSERT — xabarlarni o'z bazangizda o'qing",
+  "kicker": "Amaliyot 3 / 4",
+  "eyebrow": "Hozir o'zingizda · 25 daqiqa",
+  "title": "Foydalanuvchi, state va savat — ikki prompt, har biridan keyin restart",
   "seg": [
    [
     "a",
-    "Endi siz: o'z bazangizda <b>ikki xatoni ataylab</b> chiqarasiz va xabarlarni o'qiysiz",
-    "Endi o'z bazangizda ikki xatoni ataylab chiqarasiz. O'n daqiqa. Har xabarni o'qing, o'quvchi aynan shularni ko'rsatadi."
+    "Endi siz: <b>ikki prompt, ikki commit</b> — foydalanuvchi va state, keyin savat",
+    "Endi ikkita bosqichni o'zingiz qilasiz: foydalanuvchi va state, keyin savat. Har promptdan keyin tekshiruv va commit. Yigirma besh daqiqa ketadi."
    ],
    [
     "b",
-    "1–2-qadam: <code>INTEGER</code> jadval va katta raqam — <b><code>integer out of range</code></b>",
-    "Birinchi: botdb'da integer ustunli sinov jadvali. Ikkinchi: besh milliard bilan boshlanadigan raqamni qo'shing va xabarni o'qing."
+    "1–2-qadam: 2-prompt, javobni o'qish, <b><code>\\d users</code> — id turi <code>bigint</code></b>",
+    "Birinchi qadamda ikkinchi promptni AI'ga berasiz va javobni uch qismga ajratib o'qiysiz. Ikkinchisida backslash d users bilan telegram id turini ko'rasiz: big int bo'lishi kerak. Entity'da tur qanday ekaniga ham qarang."
    ],
    [
     "c",
-    "3–4-qadam: <code>users</code> ga <b>takror INSERT</b>, keyin sinov jadvalini o'chirish; isbot — xabar",
-    "Uchinchi: users jadvalingizga o'z raqamingizni yana bir marta insert qiling, duplicate key chiqadi. To'rtinchi: sinov jadvalini o'chiring. Isbot maydoniga ikkinchi qadamdagi xatoni yozing."
+    "3–4-qadam: 3-prompt, keyin <b>suhbat o'rtasida restart</b>; isbot — <code>state</code> ustuni",
+    "Uchinchi qadamda uchinchi promptni berasiz. To'rtinchisida savatga mahsulot qo'shib, buyurtma berishni bosasiz, bot telefon so'raydi. Shu payt PostgreSQL terminalida users jadvalidan state'ni ko'ring va isbot maydoniga yozing. Keyin restart qilib raqam yuboring: bot buyurtma yaratishi kerak."
    ],
    [
     "d",
     "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
-    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin siz integer out of range va duplicate key xabarlarini o'z bazangizda ko'rgan bo'lasiz va o'quvchida chiqqanda darhol taniysiz."
+    "Boshqacha chiqsa, «Boshqacha chiqdimi» tugmasini bosing. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin botingiz foydalanuvchini, state'ni va savatni bazada saqlaydi va siz buni restart bilan isbotlagansiz."
+   ]
+  ],
+  "steps": [
+   {
+    "t": "2-prompt — AI'ga bering, javobni uch qismga ajratib o'qing",
+    "cmds": [
+     "git diff --stat"
+    ],
+    "exp": "yangi migratsiya, birinchisi o'zgarmagan"
+   },
+   {
+    "t": "users — /start ni ikki marta bosing, tekshiring, commit qiling",
+    "cmds": [
+     "\\d users",
+     "SELECT telegram_id, count(*) FROM users GROUP BY 1;"
+    ],
+    "exp": "bigint · har id 1 marta"
+   },
+   {
+    "t": "3-prompt — AI'ga bering; Telegram'da bitta mahsulotni 3 marta bosing; tekshirib commit qiling",
+    "cmds": [
+     "\\d cart_items",
+     "SELECT * FROM cart_items;"
+    ],
+    "exp": "UNIQUE · bitta qator, qty 3"
+   },
+   {
+    "t": "Restart — «✅ Buyurtma berish» bosing; telefon so'ralganda state'ni ko'ring; serverni qayta yoqib raqam yuboring",
+    "cmds": [
+     "SELECT state FROM users WHERE telegram_id = <id>;",
+     "Ctrl+C",
+     "npm run start:dev"
+    ],
+    "exp": "WAITING_PHONE · «Buyurtma #… qabul qilindi!»"
+   }
+  ],
+  "proof": {
+   "label": "Telefon so'ralgan paytdagi state qiymati",
+   "placeholder": "psql natijasini yozing",
+   "re": "WAITING_PHONE",
+   "flags": "i",
+   "wrong": "Buyurtma berishni bosgandan keyin, raqam yozishdan oldin tekshiring. IDLE chiqsa — state bazaga yozilmagan: AI'ga state'ni bazada saqlash shartini qayta yozing."
+  },
+  "trouble": [
+   [
+    "telegram_id — integer",
+    "AI turni noto'g'ri tanladi — yangi migratsiya: ALTER COLUMN … TYPE BIGINT; katta id'da terminalda value \"5123456789\" is out of range for type integer, bot «Tushunmadim» deydi"
+   ],
+   [
+    "/start ikki marta — ikki qator",
+    "UNIQUE yo'q — AI'ga: «telegram_id takrorlanmasin, bazada ham»"
+   ],
+   [
+    "duplicate key value violates unique constraint",
+    "avval qidirmasdan qo'shilyapti — ON CONFLICT (14-ekran)"
+   ],
+   [
+    "Restartdan keyin «Tushunmadim»",
+    "state bazaga yozilmagan yoki o'qilmayapti — SELECT state …"
+   ],
+   [
+    "Restartdan keyin «Savat bo'sh»",
+    "savat hali xotirada — 3-prompt bajarilganmi"
+   ],
+   [
+    "Admin /orders — «faqat admin uchun»",
+    "\"111\" === 111 (16-ekran) — tur"
    ]
   ]
  },
  "18": {
   "type": "Lesson",
-  "kicker": "5-bosqich · o'quvchi reposi",
-  "title": "TelegramBotNest: entity, topOrYarat va holat — xuddi shu oqim, TypeORM bilan",
+  "kicker": "5-bosqich · buyurtma · ichida",
+  "title": "Buyurtma uch ish: ombordan ayirish, buyurtma yozish, savatni tozalash — yo hammasi, yo hech biri",
   "seg": [
    [
     "a",
-    "O'quvchi amaliyoti TelegramBotNest reposida: AI shu kodni yozadi, tayyor yechim <b><code>dars-04-done</code></b>",
-    "O'quvchi amaliyoti TelegramBotNest reposida. O'quvchi AI'ga prompt beradi, tayyor yechim esa dars to'rt done tegida. Shu kodni ochamiz."
+    "Buyurtma <b>uch jadvalga tegadi</b>: <code>products</code>, <code>orders</code> va <code>cart_items</code>",
+    "To'rtinchi bosqich: buyurtma. Bitta buyurtma uch jadvalga tegadi: products'dan ombor ayiriladi, orders va order items'ga buyurtma yoziladi, cart items'dan savat o'chiriladi. PostgreSQL-2 da ikki jadval bitta ish ekranini ko'rgansiz, bu o'shaning o'zi, faqat kod ichida."
    ],
    [
     "b",
-    "Entity: <code>telegram_id</code> — <b><code>bigint</code></b>, <code>unique</code>; <code>holat</code> — default <code>'yangi'</code>",
-    "Entity'da telegram id big int va unique, ism bo'sh bo'lishi mumkin, holat boshida yangi. Jadvalni TypeORM o'zi yaratadi, synchronize yoqilgan."
+    "TypeORM <code>transaction</code> — <b><code>START TRANSACTION</code> … <code>COMMIT</code></b> — SQL logda ko'rinadi",
+    "Kodda bu dataSource transaction. Ichidagi hamma so'rov bitta tranzaksiyada yuradi. SQL logni yoqsangiz, uning o'zini ko'rasiz: start transaction, ikkita update, ikkita insert, delete va commit. Bu PostgreSQL terminalidagi begin va commit'ning aynan o'zi."
    ],
    [
     "c",
-    "<b><code>topOrYarat</code></b> — SELECT va kerak bo'lsa INSERT; handler holatga qarab javob beradi",
-    "Top yoki yarat: avval qidiradi, topilmasa qator qo'shadi. Handler esa holatga qaraydi: ism kutilmoqda bo'lsa, matnni ism qiladi. O'ninchi ekrandagi oqimning o'zi."
+    "Birortasi yiqilsa — <b><code>ROLLBACK</code></b>: ombor, buyurtma va savat o'zgarmaydi",
+    "Ichida bitta so'rov yiqilsa, TypeORM rollback qiladi. Ombor ham, buyurtma ham, savat ham o'zgarmaydi. Biz buni ataylab sinadik: order items'ga yozishda xato beradigan trigger qo'ydik. Bot buyurtma berilmadi dedi, ombor sakkiz va o'nda, buyurtma nol, savat joyida qoldi."
    ],
    [
     "d",
-    "Xulosa: shu kodni <b>haqiqiy PostgreSQL</b> bilan yurgizdik — qayta ishga tushgach «Yana salom»",
-    "Xulosa: shu repo kodini haqiqiy PostgreSQL bilan yurgizdik. Qayta ishga tushgandan keyin yana salom, Aziza. Ikki mijoz alohida qoldi."
+    "Xulosa: bitta ishning <b>hamma so'rovi bitta tranzaksiyada</b>; SQL log — isbot",
+    "Xulosa: bir nechta jadvalga tegadigan bitta ish bitta tranzaksiyada bo'ladi. AI tranzaksiya qildim desa, SQL logni yoqib ko'ring: start transaction va commit orasida hamma so'rov bormi. Bu tekshiruv bir daqiqa oladi."
    ]
   ]
  },
  "19": {
   "type": "Lesson",
-  "kicker": "5-bosqich · o'quvchi reposi",
-  "title": "«Server ishlayapti», lekin «Telegram ulanmadi: 401» — bot javob bermaydi",
+  "kicker": "5-bosqich · ichida",
+  "title": "Omborda bitta Planshet, ikki mijoz bir vaqtda «Buyurtma berish» bosdi: bittasiga sotiladi, ikkinchisi aniq xabar oladi",
   "seg": [
    [
     "a",
-    "Sinfda eng ko'p chiqadigan holat: o'quvchi <b>«bot javob bermayapti»</b> deydi",
-    "Repo kodini ko'rdik, endi sinfda eng ko'p chiqadigan holat. O'quvchi bot javob bermayapti deydi. Terminalda server ishlayapti yozuvi turibdi."
+    "Sinov: omborda <b>bitta Planshet qoldi, ikki tranzaksiya bir vaqtda</b> boshlanadi",
+    "Endi eng og'ir sinov. Omborda bitta Planshet qoldi. Aziza va Bobur bir vaqtda buyurtma berishni bosadi. Ikki tranzaksiya bir vaqtda boshlanadi va ikkalasi ham Planshet qatoriga yetib boradi."
    ],
    [
     "b",
-    "Ikki satrni o'qing: server ishlaydi, Telegram esa <b><code>401: Unauthorized</code></b>",
-    "Ikki satrni birga o'qing. Server uch ming portda ishlayapti, lekin Telegram ulanmadi, to'rt yuz bir. Token noto'g'ri: server ishlaydi, bot esa javob bermaydi. Biz soxta token bilan sinadik."
+    "Birinchi tranzaksiya qatorni <b>qulflaydi</b>, ikkinchisi u tugashini kutadi",
+    "Birinchi tranzaksiya Planshet qatorini qulflaydi. Bizdagi kodda bu select for update, AI kodida update where stock katta yoki teng qty. Ikkinchi tranzaksiya shu qatorga yetganda kutadi. Birinchisi commit qilgach, ikkinchisi yangi qoldiqni ko'radi: nol."
    ],
    [
     "c",
-    "<code>.env</code> yo'q bo'lsa server umuman yonmaydi: <b><code>DATABASE_URL topilmadi</code></b>",
-    "Env fayli yo'q bo'lsa, server umuman yonmaydi: database url topilmadi. Bu xabarni repo muallifi o'zi yozgan, nima qilishni ham aytadi."
+    "Natija: <b>bitta sotildi, ombor 0</b>, Bobur aniq xabar oldi, savati saqlandi",
+    "Natija: Azizaga sotildi, ombor nol, manfiy emas. Bobur aniq xabar oldi: Planshet, omborda faqat nol ta qoldi. Uning tranzaksiyasi rollback bo'ldi, savati saqlanib qoldi. Biz bu sinovni o'zimizdagi kod va AI kodi bilan yurgizdik, natija bir xil."
    ],
    [
     "d",
-    "Xulosa: «bot javob bermaydi» bo'lsa — avval <b>«Telegram bot ulandi»</b> satri bormi, qarang",
-    "Xulosa: bot javob bermasa, terminalda Telegram bot ulandi satrini qidiring. Yo'q bo'lsa, uning o'rnidagi xato sababni aytadi. Repo README'sida xatolar jadvali ham bor."
+    "Xulosa: «ortiqcha sotilmasin» sharti <b>faqat bir vaqtdagi ko'p mijoz sinovi bilan</b> tekshiriladi",
+    "Xulosa: bitta mijoz bilan bu xato hech qachon ko'rinmaydi, faqat bir vaqtdagi ikki so'rov bilan. Ikki mijoz ham kam: tranzaksiya tez tugaydi va qulfsiz kod ham ko'pincha to'g'ri chiqadi. Shuning uchun smoke beshta mijozni uch raund yurgizadi. Qulf bo'lmasa nima bo'lishini keyingi ekranda ko'ramiz."
    ]
   ]
  },
  "20": {
-  "type": "Practice",
-  "kicker": "Amaliyot 3 / 3",
-  "eyebrow": "Hozir o'zingizda · 15 daqiqa",
-  "title": "dars-04-done ni o'z kompyuteringizda: lokal baza, o'z tokeningiz",
+  "type": "Lesson",
+  "kicker": "5-bosqich · buzamiz",
+  "title": "Qulfsiz «o'qi, tekshir, yoz»: hamma tranzaksiya qoldiq 1 ni ko'radi — bitta Planshet besh kishiga sotiladi, CHECK ham ushlamaydi",
   "seg": [
    [
     "a",
-    "Endi siz: o'quvchi yechimini <b>o'z kompyuteringizda</b> ishga tushirasiz",
-    "Oxirgi amaliyot: o'quvchi yechimini o'z kompyuteringizda ishga tushirasiz. Neon o'rniga lokal PostgreSQL. O'n besh daqiqa."
+    "Buzamiz: qatorni <b>qulfsiz o'qiymiz</b>, qoldiqni kodda hisoblab, yangisini yozamiz",
+    "Endi ataylab buzamiz. Qulfni olib tashlaymiz: mahsulotni oddiy find bilan o'qiymiz, qoldiq yetadimi deb kodda tekshiramiz, yangi qoldiqni hisoblab save qilamiz. AI'lar ko'pincha aynan shunday yozadi, ko'rinishi to'g'ri."
    ],
    [
     "b",
-    "1–2-qadam: clone, <code>dars-04-done</code>, <code>npm ci</code>; <code>.env</code> — <b>token va lokal baza</b>",
-    "Birinchi: clone, dars to'rt done, npm ci. Ikkinchi: env fayli: o'z tokeningiz va lokal bazaning manzili. Bazani avval yarating."
+    "Besh tranzaksiya <b>bir vaqtda «qoldiq 1» ni ko'radi</b> — hammasi tekshiruvdan o'tadi",
+    "Besh mijoz bir vaqtda bosadi. Hamma tranzaksiya qoldiqni o'qiydi: bir. Hammasi yetadi deb hisoblaydi va nolni yozadi. Biz buni besh raund yurgizdik: to'rt raundda bitta Planshet besh kishiga sotildi. Birinchi raundda tasodifan bittaga, shuning uchun bir marta sinash yetmaydi."
    ],
    [
     "c",
-    "3–4-qadam: /start, ism, qayta ishga tushirish; isbot — <b><code>holat</code> ustuni</b>",
-    "Uchinchi: npm run start, Telegram'da start va ismingiz. To'rtinchi: qayta ishga tushiring, yana start. Isbot maydoniga PostgreSQL terminalidagi holat ustuni qiymatini yozing."
+    "<code>CHECK (stock &gt;= 0)</code> <b>ushlamaydi</b>: yozilgan qiymat 0, manfiy emas",
+    "Baza qoidasi ham yordam bermaydi. Check stock katta yoki teng nol faqat manfiy qiymatni rad etadi. Har tranzaksiya nol yozdi, nol esa ruxsat etilgan. Ya'ni bu vaziyatda xato xabari yo'q, faqat bitta ortiqcha buyurtma bor."
    ],
    [
     "d",
-    "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
-    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin o'quvchi yechimi sizning kompyuteringizda ishlaydi va siz uning holatini bazadan o'qiy olasiz."
+    "Tuzatish ikki xil: <b>qulf bilan o'qish</b> yoki <b>bitta <code>UPDATE … WHERE</code></b> — yana 1 sotildi",
+    "Tuzatish ikki xil. Birinchisi: o'qishda qulf, find'ga lock pessimistic write qo'shiladi, ikkinchi tranzaksiya kutadi. Ikkinchisi: hisobni bazaga berish, update stock minus qty where stock katta yoki teng qty. Race qayta yurgizildi: besh raundda ham bitta sotildi, ombor nol. Demak, qoldiqni kodda hisoblab yozish qulfsiz ishlamaydi."
    ]
   ]
  },
  "21": {
-  "type": "MCRetry",
-  "kicker": "Tekshiruv 4",
-  "eyebrow": "Tekshiruv · 4 / 4",
-  "title": "Terminal: «Server 3000-portda ishlayapti» va «Telegram ulanmadi: 401: Unauthorized». Sabab?",
-  "q": "Repo xatolarini ko'rdingiz, tekshirib olaylik. To'rtinchi tekshiruv. Server ishlayapti, lekin Telegram ulanmadi, to'rt yuz bir. Sabab nima? Variantni tanlang.",
-  "ok": "To'g'ri, token. To'rt yuz bir, ruxsat yo'q: Telegram tokenni tanimadi. Server va baza ishlayapti, shuning uchun server ishlayapti yozuvi bor. Tokenni BotFather'dan qayta nusxalang. Demak, server ishga tushgan, lekin bot javob bermasa, birinchi navbatda tokenni tekshiring.",
-  "okShort": "401 — token noto'g'ri; server va baza ishlayapti.",
-  "hint": "401 — kim kimni tanimadi?",
-  "correct": 3,
-  "opts": [
-   "PostgreSQL ishlamayapti",
-   "Port 3000 band",
-   "users jadvali yo'q",
-   "BOT_TOKEN noto'g'ri"
-  ],
-  "wrong": {
-   "0": "Baza ishlamasa server yonmaydi.",
-   "1": "Port band bo'lsa «Server ishlayapti» chiqmaydi.",
-   "2": "TypeORM jadvalni o'zi yaratadi (synchronize)."
-  }
- },
- "22": {
   "type": "Lesson",
-  "kicker": "6-bosqich · o'quvchi darsini o'tish",
-  "eyebrow": "m5-04 · «Bot eslab qoladi»",
-  "title": "m5-04: AvtoPizza, ikki quti va users jadvali",
+  "kicker": "5-bosqich · ichida",
+  "title": "CHECK rad etgandan keyin o'sha tranzaksiyada yana so'rov: «current transaction is aborted» — PG-2 dagi shop=!# kod ichida",
   "seg": [
    [
     "a",
-    "m5-04 — 21 ekran: <b>AvtoPizza bot</b>, ikki quti va <code>users</code> jadvali",
-    "Endi o'quvchi darsi, m5-04, yigirma bir ekran. AvtoPizza bot, Aziza va Jasur, dastur xotirasi va PostgreSQL qutilari, users jadvali."
+    "Bu xatoni <b>biz o'zimiz qildik</b>: loyihani yozayotganda birinchi kod shunday edi",
+    "Bu xatoni AI emas, biz o'zimiz qildik: tayyor loyihani yozayotganda birinchi kod shunday edi. Fikr to'g'ri ko'ringan: avval ayiramiz, check rad etsa, mahsulotni qayta o'qib, mijozga qancha qolganini aytamiz."
    ],
    [
     "b",
-    "O'quvchi amaliyoti Neon'da: <code>DATABASE_URL</code> oxiridagi <b><code>sslmode=require</code></b> o'chirilmasligi kerak",
-    "O'quvchi amaliyoti Neon'da, internetdagi bepul bazada. Ulanish manzili oxiridagi sslmode require qolishi kerak, repo kodi shunga qarab ssl yoqadi. Neon'ni biz sinamadik."
+    "<code>CHECK</code> rad etdi — keyingi <code>SELECT</code> <b>«transaction is aborted»</b> oldi",
+    "Mijoz to'rtta Planshet so'radi, uchta bor edi. Update check'ga urildi. Keyin kod qoldiqni bilish uchun select qildi va xato oldi: current transaction is aborted. Mijozga esa tushunarsiz inglizcha xabar ketdi."
    ],
    [
     "c",
-    "AI kod yozadi: <code>telegram_id</code> turi va <b>SELECT borligini</b> o'quvchi bilan birga tekshiring",
-    "Kodni AI yozadi. Siz ikki narsani o'quvchi bilan birga tekshiring: telegram id big int'mi va start'da avval qidirish bormi. Sinfdagi xatolarning ko'pi shu ikkisidan."
+    "PostgreSQL qoidasi: tranzaksiyada xato chiqqandan keyin <b>faqat <code>ROLLBACK</code> yordam beradi</b>",
+    "Bu PostgreSQL-2 dagi undov belgili prompt'ning o'zi. Tranzaksiya ichida bitta xato bo'lsa, rollback'gacha hamma so'rov rad etiladi. Kodda ham shunday: xatodan keyin shu tranzaksiyada hech narsa so'rab bo'lmaydi."
    ],
    [
     "d",
-    "Xulosa: vaqt — ikki mijoz va qayta ishga tushirishni <b>sinfda jonli</b> ko'rsating",
-    "Xulosa: vaqt, taklif: ikki mijoz va qayta ishga tushirishni sinfda jonli ko'rsating, ikki telefon yoki ikki akkaunt bilan. O'quvchi aralashishni o'z ko'zi bilan ko'rsin."
+    "Tuzatish: <b>avval tekshirish, keyin yozish</b>; <code>CHECK</code> — oxirgi qo'riqchi",
+    "Tuzatish: tekshiruvni update'dan oldinga oldik. Qatorni qulf bilan o'qiymiz, yetmasa xabarni o'sha yerda beramiz. Check esa oxirgi qo'riqchi bo'lib qoladi: kod xato qilsa ham ombor manfiy bo'lmaydi. Demak, tranzaksiya ichida xatoni ushlab, so'rovni davom ettirib bo'lmaydi."
    ]
   ]
  },
+ "22": {
+  "type": "LineCheck",
+  "kicker": "Tekshiruv 4",
+  "eyebrow": "Tekshiruv · 4 / 4 — qaysi satr xato?",
+  "title": "Bitta Planshet besh kishiga sotildi. Xato satrni toping",
+  "q": "Buzishni ko'rdingiz, endi o'zingiz toping. To'rtinchi tekshiruv. Besh mijoz oxirgi Planshetni bir vaqtda oldi va besh buyurtma yaratildi. Bu bo'lakda bitta satr qatorni qulfsiz o'qiydi. O'sha satrni bosing.",
+  "ok": "To'g'ri. Find one by qatorni qulfsiz o'qiydi, shuning uchun hamma tranzaksiya bir xil qoldiqni ko'radi. Tekshiruv va hisob to'g'ri, lekin ular eski qiymat ustida ishlaydi. Ekranda tuzatilgan kod: lock pessimistic write, race'da bitta sotildi. Demak, ikki mijoz xatosida avval qoldiq qayerda o'qilganini qidiring.",
+  "okShort": "<code>findOneBy</code> — qulfsiz o'qish: hamma tranzaksiya qoldiq 1 ni ko'radi. <code>lock: pessimistic_write</code> bilan qolganlari navbat kutadi.",
+  "hint": "Tekshiruv satri to'g'ri hisoblaydi — lekin qaysi qiymat ustida? O'sha qiymat qaysi satrda va qanday o'qilgan?",
+  "task": "Qoida: tranzaksiya ichida o'qilgan qoldiq boshqa tranzaksiya uni o'zgartirmasligi uchun qulflanadi — yoki hisob bitta <code>UPDATE … WHERE</code> ichida bo'ladi. Bu bo'lakda bitta satr qatorni qulfsiz o'qiydi. <b>O'sha satrni bosing.</b>"
+ },
  "23": {
-  "type": "Lesson",
-  "kicker": "6-bosqich · sinfda",
-  "title": "Holat, sessiya, holatli bot — va olti holat",
+  "type": "Practice",
+  "kicker": "Amaliyot 4 / 4",
+  "eyebrow": "Hozir o'zingizda · 25 daqiqa",
+  "title": "Buyurtma tranzaksiyada — va besh mijoz oxirgi mahsulotni oladi",
   "seg": [
    [
     "a",
-    "O'quvchi darsidagi so'zlar: holat, sessiya, holatli bot — siz <b>inglizchasini birga</b> aytasiz",
-    "Xaritani ko'rdingiz. Endi o'quvchi darsida ishlatiladigan so'zlarni ko'ramiz: holat, sessiya va holatli bot. O'quvchi shu so'zni aytganda, siz inglizchasini ham ayting: state va stateful."
+    "Oxirgi bosqich: <b>4-prompt</b>, SQL log va ko'p mijoz sinovi",
+    "Oxirgi bosqich: buyurtmalarni bazaga ko'chirasiz. Keyin uchta tekshiruv: SQL logda tranzaksiya, ko'p mijoz sinovi va bekor qilish. Yigirma besh daqiqa ketadi."
    ],
    [
     "b",
-    "Uch holat xabarsiz yoki xabar bilan: <b>unutish, aralashish</b>, <code>integer out of range</code>",
-    "Endi sinfda uchraydigan olti holatni ko'ramiz. Birinchi ikkisida xato xabari chiqmaydi: bot ismni unutadi yoki ikki mijozning buyurtmasi aralashadi. Uchinchisida baza integer out of range xatosini beradi."
+    "1–2-qadam: 4-prompt, javob, <b>SQL logda <code>START TRANSACTION</code> … <code>COMMIT</code></b>",
+    "Birinchi qadamda to'rtinchi promptni AI'ga berib, javobni uch qismga ajratib o'qiysiz. Ikkinchisida env'da db logging true qilib, bitta buyurtma berasiz va terminalda start transaction va commit orasidagi so'rovlarni ko'rasiz."
    ],
    [
     "c",
-    "Qolgan uchtasi <b>xabardan taniladi</b>: <code>duplicate key</code>, <code>401</code>, <code>DATABASE_URL topilmadi</code>",
-    "To'rtinchi holat: duplicate key xatosi, sababi kodda select yo'q. Beshinchi holat: to'rt yuz bir, ya'ni token noto'g'ri. Oltinchi holat: database url topilmadi, bunda env fayli yo'q yoki o'qilmagan."
+    "3–4-qadam: <b>ko'p mijoz sinovi</b> va bekor qilish; isbot — ikkinchi mijozga kelgan xabar",
+    "Uchinchi qadamda smoke skriptini race rejimida yurgizasiz: besh mijoz bitta Planshetni bir vaqtda oladi. To'rtinchisida admin sifatida buyurtmani ikki marta bekor qilasiz: ombor bir marta qaytishi kerak. Isbot maydoniga ikkinchi mijozga kelgan xabarni yozing. Hammasi to'g'ri bo'lsa, commit."
    ],
    [
     "d",
-    "Xulosa: xato chiqmasa — holat <b>qayerda saqlanayotganiga</b> qarang",
-    "Xulosa va usul: xato chiqmagan holatlar eng qiyin. O'quvchi bilan birga holat qayerda saqlanayotganiga qarang: obyektdami, bazadami. Pastda savollarga tayyor javoblar."
+    "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
+    "Boshqacha chiqsa, «Boshqacha chiqdimi» tugmasini bosing. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin botingizning hamma ma'lumoti PostgreSQL'da va ortiqcha sotilmasligini o'zingiz isbotlagansiz."
+   ]
+  ],
+  "steps": [
+   {
+    "t": "4-prompt — AI'ga bering, javobni o'qing, yangi jadvallarni ko'ring",
+    "cmds": [
+     "git diff --stat",
+     "\\d orders",
+     "\\d order_items"
+    ],
+    "exp": "yangi migratsiya · texts.ts/keyboards.ts o'zgarmagan"
+   },
+   {
+    "t": "SQL log — .env ga qo'shing (AI boshqa nom bergan bo'lsa — javobidan), Telegram'da buyurtma bering",
+    "cmds": [
+     "DB_LOGGING=true"
+    ],
+    "exp": "START TRANSACTION … COMMIT"
+   },
+   {
+    "t": "Besh mijoz",
+    "cmds": [
+     "npm run smoke -- race (vaqtinchalik bazada, sizning bazangiz o'zgarmaydi)"
+    ],
+    "exp": "✓ ortiqcha sotilmadi (sotildi/ombor): 1/0  1/0  1/0"
+   },
+   {
+    "t": "Bekor — admin sifatida /orders da «❌ Bekor» ni ikki marta bosing, qoldiqni ko'ring, commit",
+    "cmds": [
+     "SELECT stock FROM products WHERE name = 'Planshet';"
+    ],
+    "exp": "1-chi «Bekor qilingan», 2-chi «allaqachon bekor qilingan» · 1"
+   }
+  ],
+  "proof": {
+   "label": "Ikkinchi mijozga kelgan xabar",
+   "placeholder": "smoke natijasidan nusxalang",
+   "re": "omborda\\s+faqat\\s+0\\s+ta",
+   "flags": "i",
+   "wrong": "Ikkalasiga ham \"qabul qilindi\" chiqdimi? Unda qulf yo'q — 20-ekran: place ichida qoldiq qanday o'qilganini qarang."
+  },
+  "trouble": [
+   [
+    "✗ ortiqcha sotilmadi (masalan 5/0)",
+    "qulfsiz o'qish (20, 22-ekran) — AI'ga: «qatorni FOR UPDATE bilan qulfla yoki UPDATE … WHERE stock >= qty»"
+   ],
+   [
+    "current transaction is aborted xatosi",
+    "xatodan keyin tranzaksiyada so'rov (21-ekran) — tekshiruv UPDATEdan oldin"
+   ],
+   [
+    "Bekor 2 marta — ombor 2 ga oshdi",
+    "bekor qilishda buyurtma qatori qulflanmagan yoki status tekshirilmagan — AI'ga shu haqida"
+   ],
+   [
+    "SQL logda START TRANSACTION yo'q",
+    "so'rovlar tranzaksiyasiz — dataSource.transaction"
+   ],
+   [
+    "smoke — Missing script",
+    "AI package.json dagi smoke qatorini o'chirgan — git checkout tgpg-start -- scripts/smoke.js va qatorni qaytaring"
    ]
   ]
  },
  "24": {
+  "type": "Lesson",
+  "kicker": "5-bosqich · xulosa",
+  "title": "Har bosqichdan keyin beshta tekshiruv: diff, build, restart, psql va ko'p mijoz",
+  "seg": [
+   [
+    "a",
+    "Birinchi ikki tekshiruv: <b>diff hajmi va build</b> — so'ralgan ish va toza kompilyatsiya",
+    "To'rt bosqichni o'tdingiz. Endi tekshiruvlarni bitta ro'yxatga yig'amiz, chunki ular har bosqichda bir xil. Birinchisi diff: o'zgarish hajmi so'ralgan bosqichga tengmi. Ikkinchisi build: loyiha xatosiz kompilyatsiya bo'ladimi."
+   ],
+   [
+    "b",
+    "Uchinchi va to'rtinchi: <b>restart va PostgreSQL terminali</b> — ma'lumot qayerda yashaydi",
+    "Uchinchisi restart: suhbat o'rtasida serverni qayta yoqing va nima qolganini ko'ring. Oraliq vaziyat va state faqat shu bilan ko'rinadi. To'rtinchisi PostgreSQL terminali: backslash d bilan ustun turlari va qoidalar, select bilan haqiqiy qatorlar."
+   ],
+   [
+    "c",
+    "Beshinchi: <b>bir vaqtdagi ko'p mijoz</b> — smoke bizning kodimizda ham xato topdi",
+    "Beshinchisi bir vaqtdagi ko'p mijoz: buni smoke'ning race rejimi qiladi. U bizning o'z kodimizda ham xato topdi: admin bekorni bir vaqtda ikki marta bossa, ombor ikki marta qaytardi. Buyurtma qatori qulflanmagan edi, tuzatdik. Ikki AI'ning kodi bu sinovdan o'tdi."
+   ],
+   [
+    "d",
+    "Xulosa: AI'ning <b>«sinadim» degan gapi — tekshiruv emas</b>; besh band — sizning qo'lingizda",
+    "Xulosa: ikki tajribada AI kodni ko'pincha to'g'ri yozdi. Lekin so'ralmagan ishni qildi, oraliq vaziyatni sezmadi, bir marta haqiqiy Telegram'ga so'rov yubordi. Buni AI aytmadi, tekshiruv topdi. Besh band har bosqichda sizning qo'lingizda, keyin commit."
+   ]
+  ]
+ },
+ "25": {
+  "type": "Lesson",
+  "kicker": "6-bosqich · sinfga tayyorgarlik",
+  "eyebrow": "m5-04 · «Bot eslab qoladi»",
+  "title": "O'quvchi darsi: bitta users jadvali, Neon va uch qatorli prompt — siz bilgan yo'lning kichik varianti",
+  "seg": [
+   [
+    "a",
+    "m5-04 — 20 ekran: o'quvchi boti <b>ismni eslab qoladi</b>, bitta <code>users</code> jadvali",
+    "Endi sinfga tayyorgarlik, ikki ekran. O'quvchi darsi m5-04, yigirma ekran. O'quvchi boti ismni eslab qolishi kerak: bitta users jadvali, unda telegram id big int, ism va holat ustunlari, ya'ni name va state. Siz bugun beshta jadval bilan ishladingiz, bu uning kichik varianti."
+   ],
+   [
+    "b",
+    "Amaliyot: <b>Neon va Antigravity</b>, <code>synchronize: true</code> — migratsiyasiz",
+    "O'quvchi amaliyotida baza internetdagi Neon'da, ulanish manzili oxirida sslmode require turadi. Kodni Antigravity uch qatorli prompt bilan yozadi. Jadvalni synchronize true o'zi yaratadi, migratsiya yo'q. O'quv loyiha uchun bu yetadi, siz farqini bilasiz."
+   ],
+   [
+    "c",
+    "Siz qo'shasiz: <b><code>\\d users</code> — <code>bigint</code></b>, ikki marta <code>/start</code>, restart suhbat o'rtasida",
+    "Darsga siz qo'shadigan narsalar: AI yozgandan keyin o'quvchi bilan backslash d users'ni ko'ring, telegram id big int bo'lsin. Start'ni ikki marta bosib, qator bitta qolganini ko'rsating. Restartni ism so'ralgan paytda qiling: bot davom etsa, state bazada."
+   ],
+   [
+    "d",
+    "Xulosa: darsdan oldin — <b>Neon akkaunti, BotFather sinov boti</b>, <code>dars-03-done</code> ishga tushgan",
+    "Xulosa: darsdan oldin uch narsani tekshiring: har o'quvchida Neon akkaunti ochiladi, BotFather'da sinov boti bor, va dars uchdagi bot ishlab turibdi. Vaqt bo'yicha taklif: amaliyotga eng ko'p vaqt bering, Neon va token bosqichida ko'pchilik xato qiladi."
+   ]
+  ]
+ },
+ "26": {
+  "type": "Lesson",
+  "kicker": "6-bosqich · sinfga tayyorgarlik",
+  "title": "To'rtta vaziyat va tayyor javoblar — hammasini bugun o'zingiz ko'rdingiz",
+  "seg": [
+   [
+    "a",
+    "Darsda albatta chiqadigan to'rt vaziyat — <b>ikkitasi xabar bilan, ikkitasi xabarsiz</b>",
+    "Endi o'quvchi darsida albatta chiqadigan to'rtta vaziyatni ko'ramiz. Ikkitasi xabar bilan keladi, ikkitasi xabarsiz. Hammasini bugun o'zingiz ko'rdingiz, shuning uchun qisqa aytaman."
+   ],
+   [
+    "b",
+    "401 va <code>DATABASE_URL topilmadi</code> — <b>xabardan darhol taniladi</b>",
+    "Birinchisi: server ishlayapti deydi, lekin bot javob bermaydi, terminalda to'rt yuz bir. Token noto'g'ri. Ikkinchisi: server umuman yonmaydi, database url topilmadi. Env fayli yo'q yoki manzil yozilmagan."
+   ],
+   [
+    "c",
+    "Ism unutildi va katta id — <b>restart va <code>\\d users</code> bilan</b> topiladi",
+    "Uchinchisi xabarsiz: restartdan keyin bot ismni yana so'raydi. State bazaga yozilmayapti, users jadvaliga qarang. To'rtinchisi: terminalda out of range for type integer yoki ikkinchi start'da duplicate key. Ustun turi va avval qidirish bormi, shuni tekshiring."
+   ],
+   [
+    "d",
+    "Xulosa: o'quvchi «AI yozdi, ishlayapti» desa — <b>restart va ikki marta <code>/start</code></b> qildiring",
+    "Xulosa va usul: o'quvchi AI yozdi, ishlayapti desa, ikki narsani o'zi qilsin: restartni suhbat o'rtasida va start'ni ikki marta. Javobni darhol aytmang, natijani birga ko'ring. Pastda o'quvchi savollariga tayyor javoblar bor."
+   ]
+  ]
+ },
+ "27": {
   "type": "Screen27",
   "kicker": "O'z-sinov",
   "title": "Sakkiz savol. Bitta urinish. Oltitasi — o'tdingiz",
   "final": [
    {
-    "q": "Holatsiz bot «Pepperoni» ni nega tushunmadi?",
+    "q": "Bot savat va buyurtmani Mapda saqlaydi. Server qayta ishga tushdi. Nima bo'ladi?",
     "o": [
-     "oldingi xabarni bilmaydi",
-     "internet sekin",
-     "token xato",
-     "Telegram aralashtirdi"
+     "Savat va buyurtma yo'qoladi, xato chiqmaydi",
+     "Server xato beradi — Map ichi buzilgan",
+     "Hammasi joyida qoladi — Map diskka yoziladi",
+     "Faqat buyurtma qoladi — u alohida massivda"
     ],
     "c": 0,
-    "e": "Har xabar alohida keladi.",
-    "s": 2
+    "e": "Map — jarayon xotirasida.",
+    "s": 3
    },
    {
-    "q": "Obyektdagi holat bot qayta ishga tushgach?",
+    "q": "AI'ga bir gapli prompt: «Katalogni ko'chir». U 22 fayl, 1145 qatorni o'zgartirdi, kod ishlaydi. To'g'ri qadam?",
     "o": [
-     "saqlanadi",
-     "yo'qoladi",
-     "bazaga o'tadi",
-     "ikki baravar bo'ladi"
+     "Darhol commit — kod ishlayapti, shu yetadi",
+     "Bekor qilib, bitta bosqichli prompt berish",
+     "AI'ni almashtirib, xuddi shu promptni berish",
+     "Hech narsa — 1145 qator ham oddiy hajm"
     ],
     "c": 1,
-    "e": "RAM — jarayon bilan birga.",
-    "s": 4
-   },
-   {
-    "q": "Umumiy tanlov bilan Aziza nima oladi?",
-    "o": [
-     "o'z buyurtmasini",
-     "xato",
-     "Jasurning pitsasini",
-     "javob yo'q"
-    ],
-    "c": 2,
-    "e": "Ustiga yozildi, xatosiz.",
+    "e": "Commit qilinadigan hajm — so'ralgan bosqich.",
     "s": 6
    },
    {
-    "q": "Holat qaysi kalit bilan ajratiladi?",
+    "q": "Katalog bazada, buyurtma hali xotirada. Buyurtmadan keyin restart. Natija?",
     "o": [
-     "ism",
-     "vaqt",
-     "token",
-     "chat.id"
+     "Hammasi joyida — katalog bazada saqlangan",
+     "Ikkalasi yo'qoladi — restart bazani tozalaydi",
+     "Buyurtma yo'qoladi, ombor esa kamayib qoladi",
+     "Server yonmaydi — baza va xotira mos emas"
+    ],
+    "c": 2,
+    "e": "Oraliq vaziyat: bir ish ikki joyda.",
+    "s": 11
+   },
+   {
+    "q": "Yurgan migratsiyaga ustun qo'shib tahrirladingiz, server qayta yondi. Ustun paydo bo'ladimi?",
+    "o": [
+     "Ha — migratsiya har restartda qayta yuradi",
+     "Ha — synchronize ustunni o'zi qo'shadi",
+     "Server xato beradi — fayl o'zgargani uchun",
+     "Yo'q — u yurgan, yangi migratsiya kerak"
     ],
     "c": 3,
-    "e": "Raqam takrorlanmaydi.",
-    "s": 7
+    "e": "Migratsiya bir marta yuradi.",
+    "s": 9
    },
    {
-    "q": "Har xabarda birinchi SQL?",
+    "q": "Bazadan telegram_id keldi, user.telegram_id === 111 false chiqdi, id esa 111. Sabab?",
     "o": [
-     "SELECT",
-     "INSERT",
-     "UPDATE",
-     "DELETE"
+     "BIGINT bazadan matn bo'lib keladi: \"111\"",
+     "Id noto'g'ri — Telegram boshqa id bergan",
+     "Baza ulanmagan — qiymat undefined keldi",
+     "=== katta sonlarda doim false beradi"
     ],
     "c": 0,
-    "e": "Avval holatni o'qish.",
-    "s": 10
-   },
-   {
-    "q": "telegram_id INTEGER — katta raqamda?",
-    "o": [
-     "saqlanadi",
-     "integer out of range",
-     "matn bo'ladi",
-     "duplicate key"
-    ],
-    "c": 1,
-    "e": "Telegram id 32 bitdan katta bo'lishi mumkin.",
+    "e": "node-pg bigintni matn qaytaradi.",
     "s": 13
    },
    {
-    "q": "node-pg'dan kelgan telegram_id turi?",
+    "q": "Mijoz tugmani ikki marta tez bosdi, savatda ikki bir xil qator paydo bo'ldi. Nima yetishmayapti?",
     "o": [
-     "number",
-     "boolean",
-     "string (matn)",
-     "object"
+     "Tranzaksiya — ikki bosish ketma-ket emas",
+     "UNIQUE (user_id, product_id) + ON CONFLICT",
+     "BIGINT — id sig'magani uchun ikki qator",
+     "Migratsiya — savat jadvali eskirib qolgan"
     ],
-    "c": 2,
-    "e": "=== bilan solishtirish false.",
+    "c": 1,
+    "e": "Avval qidirib qo'shish — ikki so'rov ikkalasi «yo'q» ko'radi.",
     "s": 14
    },
    {
-    "q": "«Server ishlayapti», «Telegram ulanmadi: 401» — sabab?",
+    "q": "Bitta Planshet, besh mijoz bir vaqtda; kod: findOneBy → if (stock < qty) → save. CHECK (stock >= 0) bor. Natija?",
     "o": [
-     "baza",
-     "port",
-     "jadval",
-     "token"
+     "Faqat biriga — CHECK qolganlarini to'xtatadi",
+     "CHECK xato beradi — ombor manfiy bo'ladi",
+     "Bir nechtasiga sotiladi, ombor 0, xato yo'q",
+     "Deadlock — tranzaksiyalar bir-birini kutadi"
+    ],
+    "c": 2,
+    "e": "Har biri 0 yozdi — manfiy emas (sinovda 5 tasiga).",
+    "s": 20
+   },
+   {
+    "q": "Tranzaksiyada CHECK xato berdi, kod shu tranzaksiyada SELECT qildi. Nima chiqadi?",
+    "o": [
+     "Oddiy natija — SELECT alohida ishlaydi",
+     "Baza o'zi COMMIT qiladi va natija beradi",
+     "0 rows — jadval bo'shab qoladi",
+     "current transaction is aborted xatosi"
     ],
     "c": 3,
-    "e": "401 — token tanilmadi.",
-    "s": 19
+    "e": "Xatodan keyin faqat ROLLBACK.",
+    "s": 21
    }
   ]
  },
- "25": {
+ "28": {
   "type": "Screen28",
   "kicker": "Yakun",
   "title": "Endi siz bilasiz"

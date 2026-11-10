@@ -1,0 +1,35 @@
+### pg-01 14:10
+### pg-02 14:17
+### jest-01 14:24
+### jest-02 14:31
+### cicd-01 14:36
+### cicd-02 14:42
+### tgpg-01 14:48
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+elementHandle.click: Element is not attached to the DOM
+Call log:
+[2m  - attempting click action[22m
+[2m    - waiting for" http://localhost:5333/mentor-kurs.html?dars=tgpg-01&s=10" navigation to finish...[22m
+[2m    - navigated to "http://localhost:5333/mentor-kurs.html?dars=tgpg-01&s=10"[22m
+[2m    - waiting for element to be visible, enabled and stable[22m
+
+    at /home/kali/Desktop/internetLesson/feedback/F-1029-02-mentor-kurs/dev/sahna-olchov.mjs:24:109 {
+  log: [
+    '  - attempting click action',
+    '    - waiting for" http://localhost:5333/mentor-kurs.html?dars=tgpg-01&s=10" navigation to finish...',
+    '    - navigated to "http://localhost:5333/mentor-kurs.html?dars=tgpg-01&s=10"',
+    '    - waiting for element to be visible, enabled and stable'
+  ],
+  name: 'Error'
+}
+
+Node.js v24.18.0
+### ws1-01 14:51
+### ws2-01 14:56
+### wh-01 15:01
+### nest-01 15:06
+### nest-02 15:15
+TUGADI 15:22

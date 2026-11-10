@@ -1,0 +1,14 @@
+# ws2-done: token «notogri» — alohida yukla() olib tashlangan, ro'yxat faqat connect va order-changed'da
+
+## Brauzer — panel
+21:42:40.194 brauzer: WebSocket ochildi
+21:42:40.197 brauzer: GET /admin/orders (1)
+21:42:40.198 brauzer: WebSocket yopildi
+21:42:50.793 panel ochildi — belgi «Ulanmagan» · ro'yxat: Token noto'g'ri
+21:42:52.050 SURAT 09-notogri-1 (1-notogri-token) — belgi «Ulanmagan» · ro'yxat: Token noto'g'ri
+    Token noto'g'ri
+21:42:52.514 tugadi — belgi «Ulanmagan» · ro'yxat: Token noto'g'ri · jami GET: 1
+
+## Server logi
+LOG [InstanceLoader] LiveModule dependencies initialized
+21:42:37 Server 3100-portda ishlayapti

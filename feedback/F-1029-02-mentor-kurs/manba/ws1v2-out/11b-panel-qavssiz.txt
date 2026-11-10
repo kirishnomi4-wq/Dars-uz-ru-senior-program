@@ -1,0 +1,16 @@
+# Buzilgan panel: () => yukla (qavssiz) — funksiya chaqirilmaydi, faqat qaytariladi
+$ grep -n "order-changed" public/admin.html
+90:    ulanish.on('order-changed', () => yukla);
+
+# brauzer (headless Chrome)
+20:35:56 panel ochildi · belgi: Ulangan
+OLDIN:
+  1 | Bobur | +998907654321 | Klaviatura × 1 | 120 000 so'm | Tasdiqlandi | 20:35:45
+20:36:14 15 s gacha kutildi — ro'yxat O'ZGARMADI:
+  1 | Bobur | +998907654321 | Klaviatura × 1 | 120 000 so'm | Tasdiqlandi | 20:35:45
+
+# o'sha paytda terminal klienti (npm run live)
+20:35:54 ulanmoqda… http://localhost:3100
+20:35:54 connect · ulangan · transport: websocket
+20:36:02 order-changed {"orderId":2,"reason":"new"}
+20:36:04 order-changed {"orderId":2,"reason":"status"}

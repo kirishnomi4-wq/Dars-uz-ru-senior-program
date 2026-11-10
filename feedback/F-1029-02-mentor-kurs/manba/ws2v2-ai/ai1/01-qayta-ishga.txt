@@ -1,0 +1,65 @@
+# AI nusxasi ai1 (ws2v2-ai/ai1/diff.patch): server qayta ishga tushdi + navbatdagi buyurtma (navbat0)
+# Panel (brauzer) va terminal klienti bir vaqtda ochiq; server to'xtatiladi, 5 s dan keyin qayta yoqiladi
+
+## Qadamlar
+21:44:24 — Bobur 1-buyurtma (server ishlayapti) — panel ko'rdi
+21:44:24 — server to'xtatildi (Ctrl+C)
+21:44:29 — server qayta ishga tushirildi — server o'chiq paytda Bobur botga yozgan edi (Telegram navbati)
+21:44:39 — tekshiruv: bazada nechta buyurtma
+
+## Brauzer — panel
+21:44:18.938 brauzer: GET /admin/orders (1)
+21:44:18.963 brauzer: WebSocket ochildi
+21:44:18.965 brauzer: GET /admin/orders (2)
+21:44:19.576 panel ochildi — belgi «Ulangan» · ro'yxat: Hali buyurtma yo'q
+21:44:20.752 brauzer: kadr keldi 42["order-changed",{"orderId":1,"reason":"new"}]
+21:44:20.752 brauzer: GET /admin/orders (3)
+21:44:23.897 SURAT 10-qayta-ishga-ai1-1 (1-buyurtma-ulangan) — belgi «Ulangan» · ro'yxat: #1
+    1 | Bobur | +998907654321 | Klaviatura × 1 | 120 000 so'm | Yangi | 21:44:20
+21:44:24.323 brauzer: WebSocket yopildi
+21:44:24.357 belgi: «Ulangan» → «Ulanmoqda…»
+21:44:25.462 SURAT 10-qayta-ishga-ai1-2 (2-server-ochiq) — belgi «Ulanmoqda…» · ro'yxat: #1
+    1 | Bobur | +998907654321 | Klaviatura × 1 | 120 000 so'm | Yangi | 21:44:20
+21:44:31.438 brauzer: WebSocket ochildi
+21:44:31.448 brauzer: GET /admin/orders (4)
+21:44:31.576 belgi: «Ulanmoqda…» → «Ulangan»
+21:44:38.885 SURAT 10-qayta-ishga-ai1-3 (3-qayta-ulangan) — belgi «Ulangan» · ro'yxat: #2 [sariq], #1
+    [yangi] 2 | Bobur | +998907654321 | Klaviatura × 1 | 120 000 so'm | Yangi | 21:44:30
+    1 | Bobur | +998907654321 | Klaviatura × 1 | 120 000 so'm | Yangi | 21:44:20
+21:44:39.512 tugadi — belgi «Ulangan» · ro'yxat: #2 [sariq], #1 · jami GET: 4
+
+## Terminal — npm run live
+$ npm run live
+21:44:19 ulanmoqda… http://localhost:3100
+21:44:19 connect · ulangan · transport: websocket
+21:44:20 order-changed {"orderId":1,"reason":"new"}
+21:44:24 disconnect: transport close · active=true → ulanmoqda
+21:44:25 connect_error: xhr poll error · active=true → ulanmoqda
+21:44:27 connect_error: xhr poll error · active=true → ulanmoqda
+21:44:32 connect · ulangan · transport: websocket
+
+## Server logi
+LOG [InstanceLoader] LiveModule dependencies initialized
+21:44:17 Server 3100-portda ishlayapti
+LOG [Live] panel ulandi: GtBPm42auee8yqRvAAAA
+LOG [Live] panel ulandi: 6VPkJdAEWRQUM1zjAAAB
+21:44:20 — Bobur botda buyurtma beradi
+21:44:20 bot → 5987654321: Salom, Bobur! Bu CoddyCamp do'koni boti.
+21:44:20 bot → 5987654321: Buyurtma uchun telefon raqamingizni yozing (masalan, +998901234567):
+21:44:20 bot → 5987654321: Buyurtma #1 qabul qilindi!
+21:44:20 — buyurtma #1 bazada
+LOG [Live] panel uzildi: GtBPm42auee8yqRvAAAA
+LOG [Live] panel uzildi: 6VPkJdAEWRQUM1zjAAAB
+LOG [InstanceLoader] LiveModule dependencies initialized
+21:44:30 — Bobur botda buyurtma beradi (server o'chiq paytda yozgan — Telegram navbatidan, port ochilishidan oldin)
+21:44:30 bot → 5987654321: Salom, Bobur! Bu CoddyCamp do'koni boti.
+21:44:30 bot → 5987654321: Buyurtma #2 qabul qilindi!
+21:44:30 — buyurtma #2 bazada
+21:44:30 Server 3100-portda ishlayapti
+LOG [Live] panel ulandi: 4A3yppa6aOF6ykarAAAA
+LOG [Live] panel ulandi: iNLqARshQbBc0fqRAAAB
+LOG [Live] panel uzildi: 4A3yppa6aOF6ykarAAAA
+LOG [Live] panel uzildi: iNLqARshQbBc0fqRAAAB
+
+## Baza (psql): orders — 2 ta, eng yangisi #2
+## Navbatdagi buyurtma hodisasi (#2) panelga keldimi: YO'Q — panel ulanmasdan oldin yuborilgan

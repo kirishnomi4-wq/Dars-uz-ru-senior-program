@@ -1,34 +1,18 @@
 #!/usr/bin/env python3
-"""Webhook mentor darsi: MD (manba-haqiqat) → src/mentor-kurs/wh/parts/03-matn.gen.jsx (pg1-matn.py nusxasi)
+"""Webhook mentor darsi v2 (04.11, M41, F-1104-24): MD (manba-haqiqat) → src/mentor-kurs/wh/parts/03-matn.gen.jsx (ws2-matn.py dan)
 Ishlatish (repo ildizidan): python3 feedback/F-1029-02-mentor-kurs/dev/wh-matn.py
-Chiqadi: har ekran — kicker, eyebrow, title, segmentlar [id, kalit-HTML, ovoz]; tekshiruvlar — savol/ovoz/variant/izoh;
-yakuniy sinov — FINAL. Kalit iboradagi qizil so'zlar (M6) — EMPH lug'atida (MD'da ** ichida ** yozib bo'lmaydi).
+Chiqadi: har ekran — kicker, eyebrow, title, segmentlar [id, kalit-HTML, ovoz]; tekshiruvlar — savol/ovoz/variant/izoh/Demak;
+amaliyotlar — qadamlar/isbot/«Boshqacha chiqdimi?» jadvali; yakuniy sinov — FINAL.
+v2 farqi: kalit iboradagi qizil bo'lak MD'da ==…== bilan (EMPH lug'ati bekor); `- Demak: «…»` → sc.demak; amaliyot jadvallari MD'dan.
+04.11: Sarlavha regex'i ochko'z (.+) — «***» ichidagi ** sarlavhani kesib qo'ygan edi (CI/CD-2 14-ekran).
 Qo'lda tahrirlanmaydi: matn o'zgarsa — MD tahrirlanadi va skript qayta yurgiziladi.
 """
 import json, re, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
-MD = ROOT / 'feedback/F-1029-02-mentor-kurs/23-WH-mentor-v1.md'
+MD = ROOT / 'feedback/F-1029-02-mentor-kurs/23-WH-mentor-v2.md'
 OUT = ROOT / 'src/mentor-kurs/wh/parts/03-matn.gen.jsx'
-
-# Kalit iboradagi qizil (<b>) bo'laklar: '<ekran><segment>' → MD matnidagi aynan bo'lak(lar)
-EMPH = {
-  '1a': ["to'lov xizmatidan biladi"], '1b': ["soxtasi qanday to'xtatiladi"], '1c': ['haqiqiy yurgizilgan'], '1d': ['Shoshilmang'],
-  '2a': ["to'rt ishtirokchi"], '2b': ['faqat xizmatda'], '2c': ["o'zi yuboradi"], '2d': ['dalil emas'],
-  '3a': ['mashq sahifasi'], '3b': ["To'rt tugma"], '3c': ['`POST /tolov/webhook`'], '3d': ['`200 {"ok":true}`'],
-  '5a': ['begona odam'], '5b': ['HMAC'], '5c': ['`timingSafeEqual`'], '5d': ["hech bir xabar o'tmaydi"],
-  '6a': ['401 «Imzo mos emas»'], '6b': ['Boshqa kalit'], '6c': ["summa 10 000 dan 1 ga o'zgartirilgan"], '6d': ["bitta ham yozuv yo'q"],
-  '7a': ['boshqa matn'], '7b': ['`rawBody: true`'], '7c': ["haqiqiy «To'lash» ham 401"], '7d': ['avval kalit, keyin `rawBody`'],
-  '9a': ["o'z kompyuteringizda"], '9b': ['`TOLOV_KALITI`'], '9c': ['ro\'yxat (login)'], '9d': ['«Boshqacha chiqdimi?»'],
-  '10a': ['ikkinchi marta yozmasin'], '10b': ['`takror`'], '10c': ["noyoblik ikkinchisini to'xtatadi"], '10d': ['ikki himoyasi'],
-  '11a': ['holat `rad`'], '11b': ['javob jadvalda'], '11c': ['Pro hali ochilmaydi'], '11d': ['qabul va yozuv'],
-  '13a': ['takror va imzosiz'], '13b': ['ikkinchi javob'], '13c': ['«Boshqacha chiqdimi?»'],
-  '14a': ['«to\'landi» xabarini yasay oladi'], '14b': ['skrinshotga yozilmaydi'], '14c': ['har xabar 401'], '14d': ['yangisi'],
-  '15a': ["o'zingiz buzib ko'rasiz"], '15b': ['`{ rawBody: true }`'], '15c': ['yana 200'], '15d': ['«Boshqacha chiqdimi?»'],
-  '17a': ['20 ekran'], '17b': ["Og'ir qism"], '17c': ['Pul chegarasi'], '17d': ['kalit gigiyenasi'],
-  '18a': ['koddagi joyini'], '18b': ['401 bilan bog\'liq'], '18c': ['`login`'], '18d': ['xabar matnini o\'qing'],
-}
 
 def code_html(s):
   s = s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
@@ -38,15 +22,25 @@ def plain(s):
   return re.sub(r'`([^`]+)`', r'\1', s)
 
 def key_html(sid, key):
-  parts = EMPH.get(sid, [])
-  for p in parts:
-    if p not in key:
-      sys.exit(f'EMPH topilmadi: {sid} → {p!r} kalitda: {key!r}')
-  # belgilash: bo'lakni vaqtincha \x01…\x02 bilan o'raymiz, keyin HTML
-  for p in parts:
-    key = key.replace(p, '\x01' + p + '\x02', 1)
+  if '==' not in key:
+    sys.exit(f'qizil bo\'lak yo\'q (==…==): {sid} → {key!r}')
+  key = re.sub(r'==(.+?)==', '\x01\\1\x02', key)
   h = code_html(key)
   return h.replace('\x01', '<b>').replace('\x02', '</b>')
+
+def table_rows(block, ncols):
+  """`  | a | b | … |` qatorlari (sarlavha va |---| chizig'isiz)."""
+  rows = []
+  for line in block.split('\n'):
+    m = re.match(r'^\s*\|(.+)\|\s*$', line)
+    if not m:
+      if rows: break
+      continue
+    cells = [c.strip() for c in m.group(1).split('|')]
+    if len(cells) != ncols or all(re.fullmatch(r'-+', c) for c in cells): continue
+    if rows == [] and cells[0] in ('#', 'Chiqdi'): continue
+    rows.append(cells)
+  return rows
 
 src = MD.read_text()
 chunks = re.split(r'\n## (\d+) · ', src)
@@ -56,20 +50,19 @@ for i in range(1, len(chunks), 2):
   head = body.split('\n')[0]
   typ = head.split('←')[1].strip(' `') if '←' in head else ''
   sc = {'type': typ}
-  m = re.search(r'^- Kicker: `([^`]+)`(?: · Eyebrow: `([^`]+)`)?(?: · Sarlavha: \*\*(.+?)\*\*)?', body, re.M)
+  m = re.search(r'^- Kicker: `([^`]+)`(?: · Eyebrow: `([^`]+)`)?(?: · Sarlavha: \*\*(.+)\*\*)?', body, re.M)
   if m:
     sc['kicker'] = m.group(1)
     if m.group(2): sc['eyebrow'] = m.group(2)
     if m.group(3): sc['title'] = plain(m.group(3))
   if 'title' not in sc:
-    m = re.search(r'^- Sarlavha: \*\*(.+?)\*\*', body, re.M)
+    m = re.search(r'^- Sarlavha: \*\*(.+)\*\*', body, re.M)
     if m: sc['title'] = plain(m.group(1))
   segs = []
   for sm in re.finditer(r'^(\d)\. \*\*(.+?)\*\*\s*\n\s+Ovoz: «(.+?)»(?= ·|\s*$)', body, re.M):
     sid = f'{n}{"abcde"[int(sm.group(1)) - 1]}'
     segs.append(["abcde"[int(sm.group(1)) - 1], key_html(sid, sm.group(2)), sm.group(3)])
   if segs: sc['seg'] = segs
-  # tekshiruvlar (MCRetry / LineCheck)
   def grab(label, rx=r'«(.+?)»(?=\s*·\s|\s*$)'):  # F-1102-17: ichki «…» da to'xtamasin
     mm = re.search(r'^- ' + label + r'[^:\n]*: ' + rx, body, re.M)
     return mm.group(1) if mm else None
@@ -81,8 +74,9 @@ for i in range(1, len(chunks), 2):
     mh = re.search(r"^- Maslahat[^:\n]*: «(.+?)»(?=\s*·\s|\s*$)", body, re.M)
     if mh: sc['hint'] = plain(mh.group(1))
     mt = re.search(r"^- Shart \(`task`\): «(.+?)»(?=\s*·\s|\s*$)", body, re.M)
-    if mt: sc['task'] = code_html(mt.group(1)).replace('**', '')
     if mt: sc['task'] = re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', code_html(mt.group(1)))
+    md = re.search(r"^- Demak: «(.+?)»\s*$", body, re.M)
+    if md: sc['demak'] = code_html(md.group(1))
     mv = re.search(r"^- Variantlar \(to'g'risi — (\d)\): (.+)$", body, re.M)
     if mv:
       sc['correct'] = int(mv.group(1)) - 1
@@ -90,6 +84,16 @@ for i in range(1, len(chunks), 2):
     mw = re.search(r"^- Xato izohlari: (.+)$", body, re.M)
     if mw:
       sc['wrong'] = {int(a) - 1: plain(b) for a, b in re.findall(r'(\d) — «(.+?)»(?=\s*·\s|\s*$)', mw.group(1))}
+  if typ == 'Practice':
+    mq = re.search(r'^- Qadamlar:\n((?:\s*\|.*\n)+)', body, re.M)
+    if mq:
+      sc['steps'] = [{'t': plain(r[1]), 'cmds': [plain(c).strip() for c in r[2].split(' · ')], 'exp': plain(r[3])} for r in table_rows(mq.group(1), 4)]
+    mp = re.search(r"^- Isbot: «(.+?)» · placeholder: «(.+?)» · KOD: `/(.+)/([a-z]*)`(?: · xato: «(.+?)»)?", body, re.M)
+    if mp:
+      sc['proof'] = {'label': plain(mp.group(1)), 'placeholder': plain(mp.group(2)), 're': mp.group(3), 'flags': mp.group(4), 'wrong': plain(mp.group(5) or '')}
+    mtr = re.search(r'^- «Boshqacha chiqdimi\?»:\n((?:\s*\|.*\n)+)', body, re.M)
+    if mtr:
+      sc['trouble'] = [[plain(r[0]), plain(r[1])] for r in table_rows(mtr.group(1), 2) if not r[0].startswith('Hech biri emas')]
   if typ == 'Screen27':
     fin = []
     for row in re.findall(r'^  \| (\d) \| (.+?) \| (.+?) \| (\d) \| (.+?) \| (\d+) \|$', body, re.M):
@@ -100,33 +104,42 @@ for i in range(1, len(chunks), 2):
 # F-1102-17 himoyasi: ovoz/izoh matnida « ochilib yopilmagan bo'lsa — generator to'xtaydi
 def _q_ok(v):
   return not isinstance(v, str) or v.count('«') == v.count('»')
+def _walk(v):
+  if isinstance(v, dict): return [x for vv in v.values() for x in _walk(vv)]
+  if isinstance(v, list): return [x for vv in v for x in _walk(vv)]
+  return [v]
 for n_, sc_ in screens.items():
   for k_, v_ in sc_.items():
-    vals_ = v_.values() if isinstance(v_, dict) else ([x for s_ in v_ for x in s_] if k_ == 'seg' else [v_])
-    for x_ in vals_:
+    for x_ in _walk(v_):
       if not _q_ok(x_): sys.exit(f'{n_}.{k_}: yopilmagan « — matn kesilgan: {str(x_)[:80]}')
 
-# tekshiruv: har Lesson/Practice'da segment bor, MC'da q/ok/opts
 bad = []
 for n, sc in screens.items():
   if sc['type'] in ('Lesson', 'Practice') and not sc.get('seg'): bad.append(f'{n}: segment yo\'q')
-  if sc['type'] in ('MCRetry',) and not (sc.get('q') and sc.get('ok') and sc.get('opts')): bad.append(f'{n}: MC to\'liq emas')
+  if sc['type'] == 'Practice' and not (sc.get('steps') and sc.get('proof') and sc.get('trouble')): bad.append(f'{n}: amaliyot jadvali to\'liq emas')
+  if sc['type'] == 'Practice' and sc.get('steps') and len(sc['steps']) != 4: bad.append(f'{n}: qadamlar {len(sc["steps"])} (4 kutilgan)')
+  if sc['type'] == 'MCRetry' and not (sc.get('q') and sc.get('ok') and sc.get('opts') and sc.get('demak')): bad.append(f'{n}: MC to\'liq emas (q/ok/opts/demak)')
   if sc['type'] == 'LineCheck' and not (sc.get('q') and sc.get('ok') and sc.get('task') and sc.get('hint')): bad.append(f'{n}: LineCheck to\'liq emas')
   if sc['type'] == 'Screen27' and len(sc.get('final', [])) != 8: bad.append(f'{n}: FINAL {len(sc.get("final", []))}')
-used = {k for n, sc in screens.items() for k in [f'{n}{s[0]}' for s in sc.get('seg', [])]}
-for k in EMPH:
-  if k not in used: bad.append(f'EMPH ortiqcha: {k}')
-for n, sc in screens.items():
   for s in sc.get('seg', []):
-    if '<b>' not in s[1]: bad.append(f'qizil yo\'q: {n}{s[0]}')
+    if len(s[2].split()) > 60: bad.append(f'{n}{s[0]}: ovoz {len(s[2].split())} so\'z (>60)')
+# M48 (F-1104-17): to'g'ri javob yagona eng uzun yoki yagona eng qisqa bo'lgan savollar — har biri ≤ 1/4
+_qs = [(f'{n}', sc['opts'], sc['correct']) for n, sc in screens.items() if sc.get('opts')] + [(f'sinov {i + 1}', q['o'], q['c']) for sc in screens.values() for i, q in enumerate(sc.get('final', []))]
+_L = lambda o: [len(x) for x in o]
+_long = [n for n, o, c in _qs if _L(o)[c] == max(_L(o)) and _L(o).count(max(_L(o))) == 1]
+_short = [n for n, o, c in _qs if _L(o)[c] == min(_L(o)) and _L(o).count(min(_L(o))) == 1]
+if len(_long) > len(_qs) // 4: bad.append(f"M48: to'g'risi eng uzun {len(_long)} > {len(_qs) // 4}: {', '.join(_long)}")
+if len(_short) > len(_qs) // 4: bad.append(f"M48: to'g'risi eng qisqa {len(_short)} > {len(_qs) // 4}: {', '.join(_short)}")
 if bad: sys.exit('\n'.join(bad))
 
 OUT.parent.mkdir(parents=True, exist_ok=True)
 js = json.dumps(screens, ensure_ascii=False, indent=1)
 OUT.write_text(
   '\n// ============================================================\n'
-  '//  WEBHOOK MATNLARI — AVTO: feedback/F-1029-02-mentor-kurs/dev/wh-matn.py (manba: 23-WH-mentor-v1.md)\n'
+  '//  WebSocket-2 MATNLARI — AVTO: feedback/F-1029-02-mentor-kurs/dev/wh-matn.py (manba: 21-WS2-mentor-v2.md, M41)\n'
   '//  QO\'LDA TAHRIRLANMAYDI: matn MD\'da o\'zgaradi, keyin skript qayta yurgiziladi.\n'
   '// ============================================================\n'
   f'const MDT = {js};\n')
-print(f'yozildi: {OUT.relative_to(ROOT)} · ekran {len(screens)} · segment {sum(len(s.get("seg", [])) for s in screens.values())}')
+types = {}
+for sc in screens.values(): types[sc['type']] = types.get(sc['type'], 0) + 1
+print(f'yozildi: {OUT.relative_to(ROOT)} · ekran {len(screens)} · segment {sum(len(s.get("seg", [])) for s in screens.values())} · {types}')

@@ -1,0 +1,8 @@
+mongoose 9.11.4
+--- new Schema({ telegramId: { type: Number, unique: true }, name: String, state: … }) — jadval/migratsiya yo'q; kolleksiyalar: ["cartitems","users"]
+--- User.create({ telegramId: 5123456789 }) → telegramId = 5123456789 · typeof: number · === 5123456789 → true
+--- User.findOne(…).lean() → typeof: number · === → true
+--- CartItem.findOneAndUpdate({ telegramId, productId: 2 }, { $inc: { qty: 1 } }, { upsert: true, returnDocument: 'after' }) ×2 (ketma-ket) → qty 1, 2 · hujjatlar: 1
+--- xuddi shu, ikki marta BIR VAQTDA (unique index yo'q) → hujjatlar: 2 · [1,1]
+--- unique index { telegramId, productId } bilan, ikki marta BIR VAQTDA → ok · ok · hujjatlar: 1
+db version v6.0.27

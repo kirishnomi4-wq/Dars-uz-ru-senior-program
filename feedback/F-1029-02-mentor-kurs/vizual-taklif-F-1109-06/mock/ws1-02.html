@@ -1,0 +1,42 @@
+<style>
+.sq{display:grid;grid-template-columns:62px 1fr 1fr 1fr;gap:0;background:#fff;border:1px solid #D7DCE3;border-radius:14px;overflow:hidden}
+.sq>div{padding:7px 10px;border-bottom:1px solid #EEF0F3;font-size:13.5px;display:flex;align-items:center;gap:6px;min-height:40px}
+.sq .hd{font:700 12px system-ui,sans-serif;color:#4B5563;background:#F8FAFC}
+.sq .tm{font:600 11.5px ui-monospace,Menlo,Consolas,monospace;color:#6B7280;background:#F8FAFC}
+.sq .msg{grid-column:span 2;justify-content:center;font:12.5px ui-monospace,Menlo,Consolas,monospace}
+.sq .r2l{color:#1D4ED8}.sq .l2r{color:#374151}.sq .push{color:#15803D;font-weight:700}
+.sq .stale{background:#FEF2F2;color:#991B1B;font-weight:600}
+.sq .ok{background:#F0FDF4;color:#166534;font-weight:600}
+</style>
+<div class="z">
+  <div class="z-two">
+    <div class="z-card">
+      <p class="z-h">Oddiy HTTP — panel so'ramaguncha bilmaydi</p>
+      <div class="sq" style="grid-template-columns:74px 1fr 1fr">
+        <div class="hd"></div><div class="hd">Panel</div><div class="hd">Server · bot</div>
+        <div class="tm">1</div><div class="l2r">GET /admin/orders →</div><div class="zm">[]</div>
+        <div class="tm">20:19:16</div><div class="stale">ekran: bo'sh</div><div>Bobur: «Buyurtma #1 qabul qilindi!»</div>
+        <div class="tm">…</div><div class="stale">ekran eski — so'ramadi</div><div class="z-mut">bazada #1 bor</div>
+        <div class="tm">2</div><div class="l2r">GET /admin/orders →</div><div class="zm">[{"id":1,"customer":"Bobur",…}]</div>
+        <div class="tm">token?</div><div class="l2r">tokensiz GET →</div><div><span class="z-tag r">401</span></div>
+      </div>
+    </div>
+    <div class="z-card" style="border-color:#15803D">
+      <p class="z-h" style="color:#15803D">Doimiy ulanish — server o'zi aytadi</p>
+      <div class="sq" style="grid-template-columns:74px 1fr 1fr">
+        <div class="hd"></div><div class="hd">Panel</div><div class="hd">Server · bot</div>
+        <div class="tm">1 marta</div><div class="r2l" style="grid-column:span 2;justify-content:center">ulanish ochiladi va ochiq turadi ⇄</div>
+        <div class="tm">20:19:24</div><div class="ok">yangi qator #2</div><div class="push">← order-changed {"orderId":2,"reason":"new"}</div>
+        <div class="tm">20:19:26</div><div class="ok">holat o'zgardi</div><div class="push">← order-changed {"orderId":2,"reason":"status"}</div>
+      </div>
+      <span class="z-mut">panel so'ramaydi — server o'zgarish bo'lganda o'zi yuboradi</span>
+    </div>
+  </div>
+  <div class="z-card">
+    <p class="z-h">Panelni jonli qilishning ikki yo'li</p>
+    <div class="z-two">
+      <div><b>Polling</b> — har 3 soniyada qayta so'rash. Oddiy, lekin ko'pincha javob o'zgarmagan, kechikish qoladi.</div>
+      <div><b>Doimiy ulanish</b> — bir marta ulanadi, server o'zgarishda o'zi xabar beradi.</div>
+    </div>
+  </div>
+</div>

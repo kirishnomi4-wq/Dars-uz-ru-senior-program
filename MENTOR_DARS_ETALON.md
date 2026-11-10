@@ -316,13 +316,102 @@ Ovoz qoidalari (29.10): kod ovozda o'qilmaydi — nima bo'layotgani aytiladi; «
 **Nega.** Foydalanuvchi PG-2 24-ekranida: «juda katta, qo'pol; gapga mos bo'lsin; testlarda ham, kodli joyda ham, boshida ham». 30px/700 kalit gap va 28px/800 sarlavha o'qish emas, afisha edi; qora chip gapni bo'lib yuborardi. Uch variant haqiqiy renderda ko'rsatildi (8 ekran × hozir/A/B/C), foydalanuvchi A ni tanladi.
 **Texnik.** `parts/01-asos.jsx` (`T.chip`/`T.chipLine`, 8 qoida), `parts/02-dvigatel.jsx` (`lenTag`, `keyHtml`, `data-len`); 12 dars yakuniy sinov bo'lagida savol `mk-title mc-q`, ball `clamp(22px,1.9vw,26px)`. Variantlar va kiritish tartibi: `feedback/F-1029-02-mentor-kurs/dev/f1102-22-variantlar/`. Tekshiruv: haqiqiy build surati A surati bilan 0 px farq (`dev/surat-ekran.mjs`).
 
+### M41 · Avval mentor o'rganadi: dars tanasi — mavzu, «Sinfga tayyorgarlik» — oxirida qisqa (03.11, F-1103-03)
+**Qoida.**
+1. Dars tanasi faqat mavzu, mentorning o'zi uchun: **nima · nega · ichida qanday ishlaydi · qachon buziladi** — haqiqiy yurgizish bilan (M10). «O'quvchiga ayting», «o'quvchi darsida» gaplari tanada bo'lmaydi.
+2. Tekshiruv va amaliyot mentorning **o'z tushunchasini** sinaydi: haqiqiy natijani bashorat qilish, sababini topish, tuzatish. «O'quvchi … yozdi» holati faqat yakuniy blokda.
+3. Misol-ip o'quvchi darsiga bog'lanmaydi: darsning o'z misoli; o'quvchi darsi ma'lumoti faqat yakuniy blokda, taqqoslash uchun.
+4. Yakuniy blok **«Sinfga tayyorgarlik»** 2–3 ekran: o'quvchi darsi xaritasi, uchta qoqiladigan joy, sinf savollari. Butun darsning 10–15 foizidan oshmaydi.
+5. Har mavzu bo'limida kamida bitta «ichida nima bo'ladi» ekrani (PG-2: tranzaksiya ichi, `Pool`, `$1` va SQL injection kabi).
+**Nega.** Foydalanuvchi (03.11): «juda o'quvchi darsiga kirishamiz; mentor bilimsiz qolsin, faqat o'quvchiga o'tsin — emas; mentor o'rgansin, oxirida o'quvchi uchun biroz tayyorlansin; mohiyatni tushunmasdan o'quvchiga shunchaki gapirib bersa — xato». O'lchov PG-2 v1: 28 ekrandan 4 tasi o'quvchi darsi haqida, lekin tekshiruv 3/3 «O'quvchi: … yozdim», «o'quvchi» so'zi 70 dan ortiq, misol-ip m4-06 do'koni, chuqurlik o'quvchi darsi darajasida.
+**Texnik.** Qo'llanish tartibi: PG-2 MD v2 (pilot, foydalanuvchi ko'rigi) → 9 yangi dars → Nest-1/2 tekshiruvi. 3-bo'limdagi «Ko'prik bo'limi» endi yakuniy blok ichida.
+
+### M42 · Tekshiruv ekrani: material savoldan oldin, karta yo'q, sabab variant ichida, bitta «Demak» (03.11, F-1103-02)
+**Qoida.**
+1. Ikki ustun boshidan (M35): chapda savol va ixcham variantlar; o'ngda **material** — terminal, kod yoki xabar (`above`) savoldan oldin; to'g'ri javobdan keyin o'sha joyda **isbot** (`after`), ostida bitta **«Demak, …»** (`demak`). O'ng ustun butun bo'yi bo'ylab, panel cho'ziladi.
+2. «To'g'ri» / «Unday emas» kartasi yo'q: sabab **tanlangan variantning ichida** (to'g'risi yashil, xatosi qizil, 13–14px); to'liq tushuntirish — ovozda.
+3. Bir gap ikki joyda yozilmaydi: ekranda sabab (variant ichida) va «Demak» — qo'shimcha izoh (`mk-rule`) qo'yilmaydi.
+4. Savol mentor tilida (M41): «O'quvchi: … yozdim» emas, «Buyruq xatosiz o'tdi, javob `UPDATE 0`. Bu nimani bildiradi?».
+**Nega.** Foydalanuvchi PG-2 6-ekrani haqida: «gapning ochig'i test page yoqmadi» — anketa ko'rinishi, bir xil gap uch joyda (karta, qizil izoh, ovoz), sahifaning yarmi bo'sh. Ikki variant haqiqiy renderda ko'rsatildi (artifact X5sRDCMScd3dzgk2RdRDLR), foydalanuvchi **A** ni tanladi.
+**Texnik.** Dvigatel `MCRetry`: `above` / `after` / `demak`, `.mk-opt .why`, `.mc-after`, `.mc-proof`, `.mc-demak`; `.mk-fb` faqat LineCheck'da qoldi. Dars tomoni: har tekshiruvda `above` material + `demak`, `after` ichida `mk-rule` yo'q — PG-2 v2 dan boshlab, qolgan darslar M41 qayta yozuvida. Demo: `src/mentor-kurs/demo/`, `mentor-demo.html`.
+
+### M43 · Kod va natija ekranga sig'adi: o'ralmaydi, butun enda, natija kod tagida (03.11, F-1103-04, F-1103-08)
+**Qoida.**
+1. Kod qatori HECH QACHON o'ralmaydi (bir qator — bir qator). Dvigatel `CodePanel` `wrap` ni e'tiborsiz qoldiradi.
+2. Kod yoki terminal paneli bor sahna bitta ustun: VS Code oynasi o'ng ustunning to'liq enida, terminal / Postman / psql — kod tagida (`.pg-two:has(.mk-ide), .pg-two:has(.mk-panel)`).
+3. Darsning o'z demo-kodi Prettier (80 belgi, `singleQuote`) formatida — uzun qator haqiqiy loyihadagidek mantiqiy qatorlarga bo'linadi; belgilar (`id`) shu bayonotning hamma qatoriga o'tadi (`dev/kod-prettier.mjs`). Reponing haqiqiy kodi (haqiqiy satr raqamlari) va terminal chiqishi o'zgartirilmaydi.
+4. 1600 px dan kichik ekranda Explorer 150 px, kod 12 px — 80 belgilik qator butun ko'rinadi; baribir sig'masa — panel ichida gorizontal skroll (sahifa emas).
+5. Tekshiruvdagi material/isbot paneli balandligi mazmuniga teng — bo'sh katta quti yo'q (`.mc-after`, `.mc-proof` `flex:0 0 auto`).
+**Nega.** Foydalanuvchi TgPg ni Vercel'da ko'rib: «1 qator kod 3 qator bo'lgan — mentor ko'rib o'qigisi ham kelmaydi, o'qisa ham tushunmaydi» · «oynaning kattaligini qara» · «terminal kesilgan, undan ko'ra pastiga qo'ysak bo'ladi» · tekshiruvda «katta bo'shliq qorada nima kerak??». Namuna (TgPg 14-ekran, 1920/1280 surat) tasdiqlandi: «Ha, 12 darsga yoy».
+**Texnik.** `parts/01-asos.jsx` (media 1599, `.pg-two:has`, `.mc-*` flex), `parts/02-dvigatel.jsx` (`CodePanel`), `dev/kod-prettier.mjs` (indeks/repo bloklari o'tkaziladi, `FORCE=` bilan qo'lda — so'ng `.slice` chegarasi yangilanadi). Qolgan: haqiqiy fayl satrlari bilan kesiladigan uzun kod (PG-2 15-ekran `server.js` 25–60) — dars qayta qurilganda bo'lak-bo'lak.
+
+### M44 · Progress saqlanadi: mentor darsni bo'lib o'tadi, qaytganda o'z ekranidan davom etadi (03.11, F-1103-06)
+**Qoida.**
+1. Har dars brauzer xotirasiga (`localStorage`, kalit `ccMentor:<LESSON_ID>`) ekran raqami, ko'rilgan ekranlar va javoblarni yozadi — har o'tishda.
+2. Qaytganda dars darhol ekranga tushmaydi: kirish oynasida «N-ekrandan davom etish →» (asosiy) va «Boshidan boshlash» (ikkinchi darajali) + bir qator izoh. Sabab: brauzer ovozni faqat bosishdan keyin chaladi.
+3. Ekranlar soni o'zgargan bo'lsa (dars qayta qurilgan) eski yozuv olinmaydi — dars boshidan. «Boshidan boshlash» yozuvni o'chiradi.
+4. Javoblar ham tiklanadi — `onFinished` hisobi (`passed`, amaliyot isboti) bo'lib o'tilgan darsda ham to'g'ri.
+**Nega.** Dars 1–2 soat; mentor uni bir o'tirishda tugatmaydi. Foydalanuvchi: «yarmigacha ko'rdi, nechadir soatdan keyin kirsa yana 0 bo'lib qoladimi» → «saqlashni qilamiz, o'quvchi darslarda qilganmiz, men ruxsat beraman». Platforma andozasidagi «javoblar faqat useState'da» qoidasidan ongli chekinish — foydalanuvchi qarori (o'quvchi darslaridagi `ccProgress` kabi, F-0730-01).
+**Texnik.** Dvigatel `parts/02-dvigatel.jsx`: `useMentorSave`, `loadSaved`, `clearSaved`, `CoverStart`; CSS `.mk-resume`, `.mk-resume-note`. Dars tomoni: asosiy komponentda `const sv = useMentorSave({...})`, `<Cover onStart={sv.start} resume={sv.resume} />`, Cover tugmasi `<CoverStart …/>`. `startAt` (dev, `?s=`) bo'lsa saqlov o'qilmaydi.
+
+### M45 · Tanish buyruq yonida: mentor bilgan texnologiyadan yangi buyruqqa ko'prik — birinchi chiqqan joyda bitta qator (03.11, F-1103-09)
+**Qoida.**
+1. Mentor allaqachon biladigan texnologiya bo'lsa (PostgreSQL darslarida — Mongoose), yangi buyruq BIRINCHI marta chiqqan joyda uning tanish jufti bitta xira qatorda turadi: `Mongoose'da: await Post.find()` (dvigatel `.mk-pair`, yorliq texnologiya rangida). Haqiqiy natija bilan (`matchedCount: 1`), taxmin emas.
+2. Lug'at ekranida tushunchalar bilan birga BUYRUQLAR ham juft bo'ladi (create ↔ INSERT, find ↔ SELECT, updateOne ↔ UPDATE, deleteOne ↔ DELETE).
+3. Farq bor joyda — tuzoq kartasi, faqat haqiqatan qoqiladigan joyda (Mongo'da `updateOne({})` bitta hujjat, PostgreSQL'da `WHERE`'siz `UPDATE` — hammasi).
+4. Me'yor: bitta qator yoki bitta karta; alohida «Mongo ekrani» yoki har ekranda solishtiruv YO'Q — dars tanasi mavzu (M41), ko'prik faqat eslatma.
+**Nega.** Foydalanuvchi ikkala PostgreSQL darsini ko'rib: «create database yoki insert into lar mongodbda bor, shu uchun postgresql'ga qo'shmaymizmi… insert into'larni mongodb bilan ko'rmadim». PG-1 tushunchalarni solishtirgan (collection, populate), buyruqlarni emas; PG-2 da Mongo 0 marta. Mentor yangi buyruqni tanish buyruq yoniga qo'yib tushunadi, yodlamaydi.
+**Texnik.** PG-1: lug'at 4 qator (`DICT4`), 12-ekran `.mk-pair` ikki qator; PG-2 v2: 2-ekran ustun, 3/4/5-ekran `.mk-pair`, 9-ekran karta. Haqiqiy: `manba/drive-pg2-mongoose.sh` → `pg2-out/v2d-mongoose.txt` (Mongoose 9.11.4 · MongoDB 6.0.27). Mentor Mongoose'ni biladi (PG-1 qarori 31.10) — mongosh shakli ishlatilmaydi.
+
 ---
+
+### M46 · Ovoz mentorni o'z kompyuterida yetaklaydi: qaysi loyiha, qaysi fayl va satr, qaysi terminal (04.11, F-1104-06 · F-1104-11)
+**Qoida.**
+1. Dars loyiha ustida bo'lsa, birinchi kod ko'rsatilgan joyda ovoz loyihani ochishni aytadi: «Telegraf va PostgreSQL darsidagi OrderBotNest papkasini VS Code'da oching.» Amaliyot ekrani (masalan 8-ekran) bunga kutilmaydi.
+2. Kod ko'rsatilganda ovoz **papka → fayl → satr** aytadi: «src, api, telegram papkasidagi keyboards ts faylida, o'ttiz yettinchi satrdan». Funksiya nomining o'zi yetmaydi.
+3. Terminal ko'rsatilganda ovoz **qaysi terminalda va qaysi buyruq** yozilganini aytadi («VS Code terminalida, OrderBotNest papkasida, npm test»); panelda `$ buyruq` qatori ko'rinadi, sarlavhasi «VS Code terminali · …».
+**Nega.** Foydalanuvchi Jest-1 ni tinglab: «loyiha papkalari turibdi — Telegraf darsidagi botingizni oching deb ketaylik» · «file bir nima deyapti, ammo qanday holatda ko'rishimni tushunolmadim» · «gapirayotganda qayerdagi qaysi file — shularigacha aytsa, mentor yanada yaxshiroq tushunar edi». Ekranda Explorer turadi, lekin mentor ovozni eshitadi va o'z VS Code'iga qaraydi.
+**Texnik.** MD ovozida papka/fayl/satr; dars bo'lagida `Term` default sarlavhasi «VS Code terminali · <loyiha>», chiqish `$ ` qatoridan (`out(k, outFind(k, /^\$ /))`). Tekshiruv: kod ekranlari ovozida «faylida» yoki «papkasidagi» (grep), terminal ekranlarida «terminal».
+
+### M47 · Xato chiqqan ekranning o'zida sababi bir gapda aytiladi; chuqur tushuntirish — keyingi ekranda, ko'rinadigan solishtirish bilan (04.11, F-1104-07 · F-1104-09)
+**Qoida.**
+1. FAIL yoki xato ko'rsatilgan ekranning oxirgi segmenti sababni **bir gapda** aytadi («Demak, sabab bitta joyda: bo'sh joy ikki matnda har xil belgi»). Mentor sababni bilmasdan keyingi ekranga o'tmaydi.
+2. Keyingi «ichida» ekrani sababni **ko'rinadigan solishtirish** bilan ochadi: ikki tomon yonma-yon (Expected ↔ Received belgilari, etalon manbasi ↔ funksiya natijasi), bittalab paydo bo'ladi, mos joy yashil, farq katta qizil. Matnli ro'yxat yoki bitta karta emas.
+3. Nima solishtirilayotgani ovozda aniq: «Jest sonni emas, ikki matnni solishtiradi».
+**Nega.** Foydalanuvchi: «120000 bilan 120 000 ni solishtirdimi?» — 6-ekran xatoni ko'rsatib, sababni keyinga qoldirgan edi; 7-ekrandagi belgilar kartasi kichik va Expected bilan yonma-yon emasdi. «Xato chiqqanida darhol nimadan chiqqanini anglab davom etsam, dars tushunarli bo'lardi.» 10-ekran (etalon koddan) — «jarayon yetib kelmadi».
+**Texnik.** Jest-1: `Compare7` (ikki qator, 380 ms qadam, `.cmp-c.big`), `Flow10` (som → etalonlar → hukm, «yashil — lekin yolg'on»). Qolgan darslarda — har qayta yozishda.
+
+### M48 · Variant uzunligi javobni ochmaydi: to'g'ri javob eng uzun ham, eng qisqa ham bo'lib qolmaydi (04.11, F-1104-17)
+**Qoida.**
+1. Har tekshiruv va yakuniy sinov savolida xato variantlar ham to'g'risi kabi to'liq: natija **va o'z sababi** («PASS — Jest `test/` papkasini o'zi qidiradi»). «FAIL», «Emoji», «Jest eskirgan» kabi bir so'zli variant yo'q.
+2. Darsda to'g'ri javob **yagona eng uzun** bo'lgan savollar ≤ ¼, **yagona eng qisqa** bo'lganlar ham ≤ ¼ (11 savol → har biri ≤ 2).
+3. Variantlarni tekislaganda to'g'ri javobning o'rni (1/2/3/4) va «Xato izohlari» raqamlari o'zgarmaydi.
+**Nega.** Foydalanuvchi Jest-1 yakuniy sinovida: «eng katta xato — to'g'ri javob eng uzuni bo'lib qopti». O'lchov (04.11): 12 dars, 132 savol — to'g'risi eng uzun 97 tasida (Jest-1 10/11, PG-2 10/11, TgPg 10/11, Nest-2 8/11…). Mentor javobni bilmasa ham eng uzun variantni tanlab o'tadi — sinov hech narsani o'lchamaydi. Tekislashning birinchi urinishida teskari belgi chiqdi (to'g'risi eng qisqa 5/11) — shuning uchun ikkala chegara.
+**Texnik.** `python3 dev/javob-uzunlik.py src/mentor-kurs/<dars>` (MDT yoki Nest bo'laklari); MD-generatorlarda (`jest1-matn.py` dan boshlab) shu tekshiruv ichida — me'yordan oshsa generator to'xtaydi.
+
+### M49 · Ovozda belgi va kod haqiqiy nomi bilan: `\` — backslash, «m4-03» — «em to'rt, nol uch» (09.11, F-1109-01 · F-1109-02 · F-1109-03)
+**Qoida.**
+1. Kod belgisi ovozda dasturchilar aytadigan nomi bilan: `\` — «backslash» (RU «бэкслеш»). Tarjima-ta'rif («teskari chiziqcha», «обратная косая черта») yozilmaydi. Inglizcha nomga o'zbekcha qo'shimcha qo'shilmaydi: «backslash'li» emas, «backslash bilan boshlanadigan».
+2. O'quvchi darsi kodi (m4-03, m4a-03, m11-03) matnda raqam bilan qoladi; ovozga dvigateldagi `voice()` so'z bilan beradi: «em to'rt, nol uch». Aks holda o'zbekcha ovoz «0» ni «o» harfi deb o'qiydi.
+3. Ekranda va «Matn»da kod o'zgarmaydi: «backslash c blog» → `\c blog` (SPOKEN, gap boshidagi «Backslash» ham).
+**Nega.** Foydalanuvchi PG-1 ni ovoz bilan tinglab: «yotiq bir narsa chiziq dedi… o'zining inglizcha nomi bor, haqiqiyday aytaylik»; «08 ni nol emas o deb o'qigan».
+**Texnik.** `parts/02-dvigatel.jsx`: `EN_PHRASES` ga `/\b[Bb]ackslash\b/` (platformada inglizcha talaffuz), `kodOvoz()` — faqat UZ. Ko'rik saytining edge-tts ovozi uchun `dev/tts-server.py` «backslash» ni «bekslesh» deb o'qitadi (mp3 xeshi o'zgarmaydi).
+
+### M50 · Gapli karta o'rniga mexanizm chizmasi; xulosa qadamida rasm yashirilmaydi (10.11, F-1109-06)
+**Qoida.**
+1. Tushuntirish ekranining o'ng sahnasi mexanizmni chizadi: oqim, yo'lak, vaqt o'qi, holat sxemasi, jadval yoki terminal. Chap paneldagi gapni o'ngda kartaga qayta yozish («gapli karta») yo'q.
+2. Xulosa (oxirgi) segmentida oldingi qadamlardagi hujjat, jadval va chizma yashirilmaydi: ular joyida qoladi, xulosa ularning ustida belgilanadi (kerakli qism yonadi, qolgani xiralashadi). «Orqaga» bilan qaytgan mentor ham bo'sh sahnani ko'rmaydi.
+3. Chizmadagi har raqam, vaqt, pid, xabar va satr raqami `manba/*-out` yoki `*-ai/XULOSA.md` dan olinadi va shu ekrandagi terminal bilan bir xil bo'ladi. Dastur chiqishi qo'lda qayta yozilmaydi (`KOD.OUT` dan olinadi).
+4. Chizma kartaning o'rnini egallaydi, ustiga qo'shilmaydi: blok soni oshmaydi. Ovoz va chap panel o'zgarmasa, yangi mp3 kerak emas.
+5. Istisno: tekshiruv ekrani (M42), «Sinfga tayyorgarlik» (M41), bosib ochiladigan savollar, haqiqiy log yoki kod bilan to'la sahna, fayl daraxti (M1).
+**Nega.** Mentor fidbeki: «vizualni yaxshilasak bo'ladimi». O'lchov (09.11): 12 dars, 331 ekran, tushuntirish ekranlarining 45 tasida sahna 30% dan kam. Uch naqsh topildi: A — gapli karta, B — xulosa qadamida rasm yo'qoladi, C — kichik, xira vaqt chizig'i. 49 ekran oldin/keyin ko'rildi: 34 tasi qabul qilindi, 15 tasi qoldirildi. 34 tasi darsga qo'yildi, foydalanuvchi har birini «Yaxshi» deb baholadi (10.11).
+**Texnik.** Umumiy uslub `.z` — `parts/01-asos.jsx` (z-card, z-st, dim, hl, z-band); darsga xos CSS — `<dars>/parts/04-yordam.jsx`. Yordamchi komponent `const S<n> = mkS(...)` dan oldin yoziladi, xulosa segmenti `seg.v === 'sum'`. Har yozuv `t(uz, ru)`. Sahna ulushini o'lchash: `vizual-taklif-F-1109-06/olch.mjs` + `toldir.py` (o'ng sahna 447,62,811,580 @1280).
 
 ## 3. Oldingi asos-qoidalar (29.10, audit №1–2)
 - Bitta segment = bitta vizual o'zgarish; segment ≤ ~25 s (ElevenLabs).
 - O'ylab ko'ring savoli (`ask`) — javobdan oldin ochilmaydi; natija keyingi segmentda.
 - Har bosqichdan keyin amaliyot (4 ta) — isbot bilan; `passed = sinov ≥ 6 && amaliyotlar isbot bilan`.
-- Ko'prik bo'limi: o'quvchi darsi xaritasi (blok → «siz nima deysiz»), qoqiladigan joylar, sinfdagi eng ko'p xato (baza ulanishi), vaqt rejasi, o'quvchi savollari.
+- Ko'prik bo'limi: o'quvchi darsi xaritasi (blok → «siz nima deysiz»), qoqiladigan joylar, sinfdagi eng ko'p xato (baza ulanishi), vaqt rejasi, o'quvchi savollari. **(03.11, M41: endi faqat yakuniy «Sinfga tayyorgarlik» blokida, 2–3 ekran; dars tanasida emas.)**
 - Yordam kanali — «mentor-kurs Telegram guruhi» (umumiy).
 
 ---
@@ -355,10 +444,28 @@ Ovoz qoidalari (29.10): kod ovozda o'qilmaydi — nima bo'layotgani aytiladi; «
 | 22 | Generator yopilmagan « bilan to'xtamaydi — ovoz to'liq (M38) | `python3 dev/<dars>-matn.py` xatosiz |
 | 23 | Kirishdan keyin poydevor tushuncha ko'zga ko'rsatilgan (M39) | MD 2-ekran, ko'z bilan |
 | 24 | Chap panel: sarlavha xira 22px/600, kalit gap 22px/500 (uzun 19px), chip och va bo'linmaydi; yakuniy sinov savoli oddiy test bilan bir xil (M40) | 1920 surat: 24-ekran, tekshiruv, yakuniy sinov; `grep -E "mk-(title|key)\" style" src/mentor-kurs/*/parts src/mentor-kurs/parts` = 0 |
+| 25 | Dars tanasida «o'quvchi darsida / o'quvchiga ayting» yo'q; tekshiruvlar mentor tushunchasini sinaydi; «Sinfga tayyorgarlik» 2–3 ekran (M41) | MD tana ekranlarida `o'quvchi` ≈ 0 (grep); tekshiruv savollari ko'z bilan |
+| 26 | Har tekshiruvda material savoldan oldin, karta yo'q, bitta «Demak» (M42) | `grep -c "above="` = `grep -c "<MCRetry"` va `grep -c "demak="` dars bo'laklarida; 1920 surat javobdan oldin/keyin |
+| 27 | Qaytganda «N-ekrandan davom etish» va «Boshidan boshlash»; davom — o'sha ekran, javoblar joyida (M44) | `grep -c useMentorSave` asosiy komponentda = 1; headless: 2 ekran o'tish → yangi sahifa → davom → o'sha ekran |
+| 28 | Kod o'ralmaydi, kod/terminal sahnasi bitta ustun, natija kod tagida, demo-kod Prettier 80; tekshiruv paneli mazmuniga teng (M43) | `node dev/kod-prettier.mjs <bo'laklar>` — «uzun N → 0» yoki O'TKAZILDI ro'yxati ko'rilgan; 1920 va 1280 surat: kesilgan qator yo'q |
+| 29 | Yangi buyruq birinchi chiqqan joyda tanish jufti bitta qatorda, haqiqiy natija bilan; lug'atda buyruq juftlari (M45) | `grep -c "mk-pair"` dars bo'laklarida ≥ 1 (tanish texnologiya bo'lsa); MD manbada haqiqiy yurgizish fayli |
 
+| 30 | Birinchi kod ekranida loyihani ochish aytilgan; kod ekranlari ovozida papka · fayl · satr; terminal ekranlarida «qaysi terminal, qaysi buyruq» va `$` qatori (M46) | MD ovozlarida grep «faylida|papkasidagi», «terminal»; 1280 surat |
+| 31 | Xato ekranining oxirgi segmentida sabab bir gapda; «ichida» ekranida yonma-yon ko'rinadigan solishtirish (M47) | MD ko'z bilan; surat |
+| 32 | Ko'rikdan oldin hamma ovoz yasalgan (lokal kesh yoki statik mp3) — birinchi eshitishda kechikish yo'q (F-1104-10) | `node dev/ovoz-matnlar.mjs` + kesh/`ovoz-statik.py`: yangi 0 |
+| 33 | `grep "ichkari\|qoqila\|keyingi ekranda\."` matn faylida = 0 (§MENTOR-JEST1-KORIK) | grep |
+| 34 | To'g'ri javob yagona eng uzun ≤ ¼ va yagona eng qisqa ≤ ¼; xato variantda natija va sabab (M48) | `python3 dev/javob-uzunlik.py src/mentor-kurs/<dars>` — ✓ |
+| 35 | Tushuntirish ekranining o'ng sahnasida mexanizm chizmasi, gapli karta yo'q; xulosa segmentida oldingi chizma yoki jadval ko'rinib turadi; chizmadagi raqamlar manba va shu ekran terminali bilan bir xil (M50) | 1280 surat har segmentda; raqamlar `manba/*-out` bilan grep |
 ---
 
 ## 5. Jurnal (qonun qo'shilishi)
+- **2026-11-10** — F-1109-06 (mentor fidbeki «vizualni yaxshilasak bo'ladimi»): **M50** (gapli karta o'rniga mexanizm chizmasi; xulosa qadamida rasm yashirilmaydi; raqamlar manbadan) + tekshiruv ro'yxati 35. Foydalanuvchi: «m50: Yoz». Sinf-supurish: 12 dars o'lchandi, 49 ekran ko'rildi → 34 almashtirildi (PG-1 1 · PG-2 5 · Jest-1 1 · Jest-2 4 · CI/CD-1 3 · CI/CD-2 4 · WS-1 3 · WS-2 6 · Webhook 6 · Nest-2 1), 15 istisno (5-band).
+- **2026-11-04 (2)** — F-1104-15…18: **M48** (variant uzunligi javobni ochmaydi; `dev/javob-uzunlik.py`, generator ichida), tekshiruv ro'yxati 34; lug'at «da'vo → AI aytgan gap»; 5-bosqich kirishi (yangi ko'nikma — alohida segment).
+- **2026-11-04** — Jest-1 v2 ovozli ko'rigi F-1104-02…14: **M46** (ovoz mentorni yetaklaydi: loyiha · papka/fayl/satr · terminal), **M47** (xato ekranida sabab darhol; ichida — yonma-yon solishtirish); tekshiruv ro'yxati 30–33; lug'at «qoqiladigan joylar → o'quvchilar xato qiladigan joylar» (sinf-supurish 5 dars, 21 joy); korpus §MENTOR-JEST1-KORIK.
+- **2026-11-03 (5)** — M45 (tanish buyruq yonida — F-1103-09; foydalanuvchi: «insert into'larni mongodb bilan ko'rmadim… halol o'ylab nima to'g'ri bo'ladi» → 8 bandli reja tasdiqlandi: «tasdiqlayman, aniq, shoshilmasdan, halol») + tekshiruv 29-band. PG-1 3 joy qurildi, PG-2 v2 matniga 5 joy.
+- **2026-11-03 (4)** — M43 (kod va natija ekranga sig'adi — F-1103-04 + F-1103-08; foydalanuvchi namuna sahifasida «Ha, 12 darsga yoy») + tekshiruv 28-band. Sinf-supurish: dvigatel 12/12; Prettier 7 blok (TgPg 4, PG-1 1, PG-2 1, Jest-2 1), o'tkazilgan — repo/indeks bloklari (Nest-2 hammasi, TGSVC_TS, LC21, ASANY…). Qolgan: PG-2 15-ekran (v2 qurilishida).
+- **2026-11-03 (3)** — M44 (progress saqlovi — F-1103-06; foydalanuvchi: «saqlashni qilamiz, men ruxsat beraman») + tekshiruv 27-band. Sinf-supurish: dvigatel orqali 12/12 dars; headless sinov PG-1, Nest-1 (dev), Webhook (Vercel) — 3-ekrandan davom ✓, «Boshidan» ✓, xato 0. (M43 raqami «sahna ekranga sig'adi» nomzodi uchun band — F-1103-04.)
+- **2026-11-03 (2)** — M41 (avval mentor o'rganadi — F-1103-03; foydalanuvchi: «Ha, PG-2 dan boshla») va M42 (tekshiruv ekrani A varianti — F-1103-02) + tekshiruv 25–26-band. Sinf-supurish: M42 ko'rinishi dvigatel orqali 12 darsga birdan; material (`above`) va «Demak» — har darsning M41 qayta yozuvida.
 - **2026-11-03** — M40 (chap panel matni gapga mos — F-1102-22; foydalanuvchi uch variantdan A ni tanladi) + tekshiruv 24-band. Sinf-supurish: dvigatel 12 darsga birdan; yakuniy sinov bo'lagidagi inline o'lcham 12/12 darsda olib tashlandi (foydalanuvchi tasdig'i bilan).
 - **2026-11-02** — PG-1 ni foydalanuvchi ovozi bilan to'liq ko'rdi (F-1102-10…21): M32 (to'liq gap, taqiq so'zlar, psql), M33 («Demak, …»), M34 (yordam oynasi; M26-1 o'rniga), M35 (tekshiruv boshidan ikki ustun; M29 o'rniga), M36 (eski satr qizil), M37 (isbot yonadi), M38 (ovoz kesilmaydi; generator himoyasi), M39 (poydevor tushuncha boshida) + tekshiruv 19–23-band. Sinf-supurish: qurilgan 12 dars — so'zlar (jim 22 fayl, ko'prik 28 fayl, bu kursda 2, psql 3 dars) va generator (6 joy) hammasida; dvigatel (M34–M37) 12 darsga birdan; M32-1/M33/M39 — PG-1 da, qolgan 11 dars har birining ko'rigida.
 - **2026-10-31 (6)** — M31 (tartib raqami yozilmaydi, mavzu yoziladi; keyingi dars kartasida nom — F-1031-15, F-1031-12) + tekshiruv 18-band. Sinf-supurish: qurilgan darslar 2 ta — Nest-1 (muqova, eyebrow, eslatma sarlavhasi, keyingi dars kartasi UZ+RU), Nest-2 (muqova, eyebrow UZ+RU).

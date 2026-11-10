@@ -1,0 +1,32 @@
+39:  if (o.status === 'DELIVERED') return undefined;
+
+$ npx jest keyboards
+FAIL src/api/telegram/keyboards.spec.ts
+  orderKeyboard
+    ✓ yangi buyurtma — Tasdiqlash va Bekor (4 ms)
+    ✓ tasdiqlangan — Yetkazildi va Bekor (1 ms)
+    ✕ yetkazilgan va bekor qilingan — tugma yo'q (2 ms)
+
+  ● orderKeyboard › yetkazilgan va bekor qilingan — tugma yo'q
+
+    expect(received).toBeUndefined()
+
+    Received: {"reply_markup": {"inline_keyboard": [[{"callback_data": "status:7:DELIVERED", "hide": false, "text": "🚚 Yetkazildi"}, {"callback_data": "status:7:CANCELLED", "hide": false, "text": "❌ Bekor"}]]}}
+
+      31 |   it("yetkazilgan va bekor qilingan — tugma yo'q", () => {
+      32 |     expect(orderKeyboard(order('DELIVERED'))).toBeUndefined();
+    > 33 |     expect(orderKeyboard(order('CANCELLED'))).toBeUndefined();
+         |                                               ^
+      34 |   });
+      35 | });
+      36 |
+
+      at Object.<anonymous> (api/telegram/keyboards.spec.ts:33:47)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 2 passed, 3 total
+Snapshots:   0 total
+Time:        0.417 s, estimated 1 s
+Ran all test suites matching keyboards.
+[chiqish kodi: 1]
+

@@ -1,0 +1,43 @@
+# nusxalar farqi (done → buzilgan)
+## main.ts: done → norawbody
+@@ -4,7 +4,7 @@
+ 
+ async function main() {
+   // rawBody: to'lov webhook'i imzosi xom baytlardan hisoblanadi — JSON qayta yozilsa imzo mos kelmaydi
+-  const app = await NestFactory.create(AppModule, { rawBody: true });
++  const app = await NestFactory.create(AppModule);
+   await app.listen(config.PORT);
+   console.log(`Server ${config.PORT}-portda ishlayapti`);
+ }
+## payment.controller.ts: done → tartib
+@@ -36,14 +36,14 @@
+     @Headers('x-signature') signature: string | undefined,
+     @Body() body: unknown,
+   ) {
++    const p = parsePayment(body);
++    const r = await this.payments.record(p);
+     if (
+       !isValidSignature(req.rawBody, signature, config.PAYMENT_WEBHOOK_SECRET)
+     ) {
+       this.log.warn("imzo noto'g'ri — xabar rad etildi");
+       throw new UnauthorizedException("imzo noto'g'ri");
+     }
+-    const p = parsePayment(body);
+-    const r = await this.payments.record(p);
+     this.log.log(
+       `${p.paymentId} · #${p.orderId} · ${p.status} · ${p.amount}${r.duplicate ? ' — takror, yozilmadi' : ''}`,
+     );
+## payment.controller.ts: done → json
+@@ -37,7 +37,11 @@
+     @Body() body: unknown,
+   ) {
+     if (
+-      !isValidSignature(req.rawBody, signature, config.PAYMENT_WEBHOOK_SECRET)
++      !isValidSignature(
++        Buffer.from(JSON.stringify(body)),
++        signature,
++        config.PAYMENT_WEBHOOK_SECRET,
++      )
+     ) {
+       this.log.warn("imzo noto'g'ri — xabar rad etildi");
+       throw new UnauthorizedException("imzo noto'g'ri");

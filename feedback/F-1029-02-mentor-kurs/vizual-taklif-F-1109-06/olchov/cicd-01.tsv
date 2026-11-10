@@ -1,0 +1,25 @@
+cicd-01	1	0,0,1280,720	faqat-matn	386	Jest-2 da 25 test yozdingiz — bugun ular har push'da GitHub'ning o'zida yuradi, 
+cicd-01	2	0,0,1280,720	faqat-matn	569	CI — har push'da toza mashinada sizning buyruqlaringiz yuradi; CD — tekshirilgan
+cicd-01	3	0,0,1280,720	faqat-matn	505	Lenta — buyruqlar ketma-ketligi: har biri chiqish kodi qaytaradi, 0 — yashil, bo
+cicd-01	4	0,0,1280,720	faqat-matn	560	Lenta mashinasi har safar bo'sh papkadan boshlaydi — biz ham: yangi clone, node_
+cicd-01	5	0,0,1280,720	kod/terminal+test	706	Toza clone'da to'g'ridan npm test yozdik. Terminal: sh: 1: jest: not found, chiq
+cicd-01	6	0,0,1280,720	faqat-matn	553	Kodni buzamiz va to'rt buyruqni && bilan bog'laymiz: npm ci ✓, tsc ✓, test qizil
+cicd-01	7	0,0,1280,720	amaliyot	1095	Toza clone'da to'rt buyruqni && bilan yurgiting, keyin kodni buzib zanjir uzilis
+cicd-01	8	0,0,1280,720	kod/terminal	682	.github/workflows/ci.yml — lentaning yo'l xaritasi: qachon (on), qaysi mashinada
+cicd-01	9	0,0,1280,720	faqat-matn	543	git push — va GitHub'ning Actions bo'limida run paydo bo'ladi: bitta job, oltita
+cicd-01	10	0,0,1280,720	faqat-matn	595	<= bilan push: run qizil — npm test qadami ✗, npm run build «skipped», annotatsi
+cicd-01	11	0,0,1280,720	kod/terminal+test	895	Lentada npx tsc --noEmit qadami chiqish kodi 2 bilan tugadi. npm test va npm run
+cicd-01	12	0,0,1280,720	amaliyot	1301	OrderBotNest nusxangizni GitHub'ga chiqaring, ci.yml yozing, push — Actions'da y
+cicd-01	13	0,0,1280,720	kod/terminal	552	actions/checkout satrini olib tashlasak — mashina bo'sh: npm ci «lock fayl yo'q»
+cicd-01	14	0,0,1280,720	faqat-matn	620	package.jsonni qo'lda o'zgartirdik, lock qolmadi — npm ci lentada ham, lokalda h
+cicd-01	15	0,0,1280,720	kod/terminal	618	user.service.tsda tur xatosi: ts-jest testlarni baribir yashil o'tkazadi — tsc q
+cicd-01	16	0,0,1280,720	kod/terminal	839	Bu ci.yml bilan push qildik — run qizil, lekin ichida bitta qadam ham yo'q: «wor
+cicd-01	17	0,0,1280,720	kod/terminal	764	Haqiqiy topilma: toza clone'da yashil edi, birinchi run'da npm ci qizil — Missin
+cicd-01	18	0,0,1280,720	kod/terminal	680	Yangi ko'nikma davomi: ikki AI'ga bitta oddiy prompt — ikkalasi to'g'ri ko'rinad
+cicd-01	19	0,0,1280,720	faqat-matn	525	Ikkala AI workflow'i lentada qizil — npm ci, o'sha Missing: webpack… from lock f
+cicd-01	20	0,0,1280,720	kod/terminal+test	713	AI yozgan workflow: checkout@v4 · setup-node@v4 (node-version: 22) · npm install
+cicd-01	21	0,0,1280,720	amaliyot	1367	O'z AI'ingizga workflow yozdiring, to'rt savol bilan tuzating, push — yashil; ke
+cicd-01	22	0,0,1280,720	faqat-matn	720	Lenta dist yig'di — lekin node dist/main toza mashinada darhol yiqiladi: DATABAS
+cicd-01	23	0,0,1280,720	faqat-matn	780	O'quvchi darsi: aeroport lentasi — chamadon, Yig'ish, Skaner, O'lcham ramkasi, O
+cicd-01	24	0,0,1280,720	test	406	Sizda npm test yashil, hamkorda qizil. CI buni qanday hal qiladi?
+cicd-01	25	0,0,1280,720	faqat-matn	2967	Endi siz bilasiz

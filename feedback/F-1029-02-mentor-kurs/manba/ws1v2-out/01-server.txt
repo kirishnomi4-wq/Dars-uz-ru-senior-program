@@ -1,0 +1,13 @@
+# OrderBotNest serveri (PORT=3100), Nest logi — ishga tushish
+$ npm run start
+LOG [NestFactory] Starting Nest application...
+LOG [InstanceLoader] LiveModule dependencies initialized
+LOG [InstanceLoader] TelegramModule dependencies initialized
+LOG [RoutesResolver] AppController {/}:
+LOG [RouterExplorer] Mapped {/, GET} route
+LOG [RoutesResolver] AdminController {/admin}:
+LOG [RouterExplorer] Mapped {/admin, GET} route
+LOG [RouterExplorer] Mapped {/admin/orders, GET} route
+Telegram bot ulandi
+LOG [NestApplication] Nest application successfully started
+20:19:12 Server 3100-portda ishlayapti

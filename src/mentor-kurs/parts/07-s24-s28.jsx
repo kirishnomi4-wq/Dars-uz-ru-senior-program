@@ -101,7 +101,7 @@ function ScreenR1(p) {
   </div>} />;
 }
 
-// --- O'tish rejasi 2: o'quvchi qoqiladigan joylar ---
+// --- O'tish rejasi 2: o'quvchilar xato qiladigan joylar ---
 const STUMBLE = [
   { q: 'git clone ishlamaydi', a: "Git o'rnatilmagan yoki internet yo'q. Zaxira: GitHub'dan ZIP yuklab olib ochish. Darsdan oldin o'zingiz bir marta clone qilib ko'ring." },
   { q: 'npm install uzoq yoki xato', a: "Sabr: 2–5 daqiqa normal. Xato bo'lsa Node versiyasini tekshiring (20+), node_modules'ni o'chirib qayta urining." },
@@ -111,7 +111,7 @@ const STUMBLE = [
   { q: '«Nega Express emas?» yoki metafora chalkashdi', a: "Bitta gap: katta loyihada tartib kerak, Nest tartibni majburiy qiladi, ichida o'sha Express. Metafora chalkashsa lug'atga qaytaring: oshpaz, ya'ni Service." },
 ];
 const R2 = {
-  kicker: "7-bosqich · o'tish rejasi", eyebrow: "m4a-01 · darsda nima bo'ladi", title: "O'quvchi qoqiladigan 6 joy",
+  kicker: "7-bosqich · o'tish rejasi", eyebrow: "m4a-01 · darsda nima bo'ladi", title: "O'quvchilar xato qiladigan 6 joy",
   segments: [
     { id: 'a', key: "Sinfda <b>albatta</b> uchraydigan 6 holat — har biriga tayyor javobingiz bo'lsin", text: "Rejani bilasiz. Endi reja buziladigan joylarni ko'raylik: darsda albatta uchraydigan oltita holat. Har biriga tayyor javobingiz bo'lsin.", hl: [] },
     { id: 'b', key: "1 · <code>git clone</code> ishlamaydi → zaxira: GitHub'dan <b>ZIP yuklab olish</b>", text: "Birinchi: git clone ishlamaydi. Git o'rnatilmagan yoki internet yo'q. Zaxira: GitHub'dan ZIP yuklab olib ochish. Darsdan oldin o'zingiz bir marta clone qilib ko'ring.", hl: [0] },
@@ -121,7 +121,7 @@ const R2 = {
     { id: 'f', key: "5 · «can't resolve» → o'quvchi bilan <b>birga o'qing</b>, javobni aytmang", text: "Beshinchi: can't resolve dependencies xatosi. Siz endi o'qiy olasiz: qaysi klass, qaysi dependency, qaysi fayl. O'quvchi bilan birga terminaldagi xabarni o'qing, javobni aytmang, savol bering: qaysi fayl, qaysi ro'yxat.", hl: [4] },
     { id: 'g', key: "6 · «Nega Express emas?» → <b>bitta gap</b>: tartib kerak, ichida o'sha Express", text: "Oltinchi: nega Express emas degan savol yoki metafora chalkashuvi. Bitta gap: katta loyihada tartib kerak, Nest tartibni majburiy qiladi, ichida o'sha Express. Metafora chalkashsa lug'atga qaytaring.", hl: [5] },
     { id: 'h0', key: "Ogohlantirish: o'quvchi loyihasida route'lar <code>/api/v1</code> bilan boshlanadi — prefiks unutilsa <b>404</b>", text: "Yana bitta ogohlantirish: o'quvchi loyihasida hamma route api v1 bilan boshlanadi, admin emas, api v1 admin. Prefiks unutilsa to'rt yuz to'rt chiqadi. Bu loyihani keyingi mentor darsida to'liq, clone qilib ko'rasiz.", show: "Yana bitta ogohlantirish: o'quvchi loyihasida hamma route <code>/api/v1</code> bilan boshlanadi — <code>/admin</code> emas, <code>/api/v1/admin</code>; prefiks unutilsa <b>404</b>. Bu loyihani keyingi mentor darsida to'liq, clone qilib ko'rasiz.", hl: [] },
-    { id: 'h', key: "Xulosa: darsdan oldin loyihani <b>o'zingiz bir marta ko'taring</b> — qoqiladigan joyni oldindan bilasiz", text: "Xulosa: bu holatlarning ko'pi darsning birinchi yigirma daqiqasida chiqadi. Shuning uchun darsdan oldin loyihani o'zingiz bir marta clone qilib, env bilan ishga tushirib ko'ring: qayerda qoqilish mumkinligini o'zingiz his qilasiz.", show: "Xulosa: bu holatlarning ko'pi darsning birinchi 20 daqiqasida chiqadi. Darsdan oldin loyihani o'zingiz bir marta clone qilib, .env bilan ishga tushirib ko'ring: qayerda qoqilish mumkinligini o'zingiz his qilasiz.", hl: [] },
+    { id: 'h', key: "Xulosa: darsdan oldin loyihani <b>o'zingiz bir marta ko'taring</b> — o'quvchilar xato qiladigan joyni oldindan bilasiz", text: "Xulosa: bu holatlarning ko'pi darsning birinchi yigirma daqiqasida chiqadi. Shuning uchun darsdan oldin loyihani o'zingiz bir marta clone qilib, env bilan ishga tushirib ko'ring: qayerda qoqilish mumkinligini o'zingiz his qilasiz.", show: "Xulosa: bu holatlarning ko'pi darsning birinchi 20 daqiqasida chiqadi. Darsdan oldin loyihani o'zingiz bir marta clone qilib, .env bilan ishga tushirib ko'ring: qayerda qoqilish mumkinligini o'zingiz his qilasiz.", hl: [] },
   ],
 };
 function ScreenR2(p) {
@@ -166,7 +166,7 @@ const RDB = {
 };
 function ScreenRdb(p) {
   return <Lesson p={p} S={RDB} scene={({ seg, beat }) => (<>
-    <CodePanel file={t('terminal — haqiqiy chiqishlar (sinovdagi baza nomi: cars_db)', 'terminal — реальный вывод (имя базы в проверке: cars_db)')} numbers={false} wrap style={{ background: '#1F1115' }} beat={beat} lines={DB_ERRS} focus={beat >= 1 && beat <= 4 ? ['db' + beat] : []} />
+    {beat < 5 && <CodePanel file={t('terminal — haqiqiy chiqishlar (sinovdagi baza nomi: cars_db)', 'terminal — реальный вывод (имя базы в проверке: cars_db)')} numbers={false} wrap style={{ background: '#1F1115' }} beat={beat} lines={DB_ERRS.filter((l) => l.at === Math.min(beat, 4) || l.at == null)} focus={beat >= 1 && beat <= 4 ? ['db' + beat] : []} />}
     <Block at={1} beat={beat}><table className="mk-tbl"><thead><tr><th>{t('xabar (2-satr)', 'сообщение (2-я строка)')}</th><th>{t('sabab', 'причина')}</th><th>{t('yechim', 'решение')}</th></tr></thead><tbody>
       {DB_ROWS.filter((r) => r.at <= beat).map((r, i) => <tr key={i} className={r.at === beat ? 'hl' : ''}><td><code>{r.m}</code></td><td>{r.s}</td><td dangerouslySetInnerHTML={html(r.f)} /></tr>)}
     </tbody></table></Block>
@@ -186,7 +186,7 @@ const PLAN90 = [
 const R3 = {
   kicker: "7-bosqich · o'tish rejasi", eyebrow: 'm4a-01 · 90 daqiqa (taklif)', title: "Vaqt rejasi va uch qoida",
   segments: [
-    { id: 'a', key: "Taklif: <b>90 daqiqa, oltita bo'lak</b> — sinfingizga qarab o'zgartirasiz", text: "Qoqiladigan joylarni va ularning yechimini bilasiz. Endi vaqtni rejalaymiz. Taklif qilingan vaqt rejasi: to'qson daqiqa, oltita bo'lak. Bu taklif, sinfingizga qarab o'zgartirasiz.", hl: [] },
+    { id: 'a', key: "Taklif: <b>90 daqiqa, oltita bo'lak</b> — sinfingizga qarab o'zgartirasiz", text: "O'quvchilar xato qiladigan joylarni va ularning yechimini bilasiz. Endi vaqtni rejalaymiz. Taklif qilingan vaqt rejasi: to'qson daqiqa, oltita bo'lak. Bu taklif, sinfingizga qarab o'zgartirasiz.", hl: [] },
     { id: 'b', key: "0–30: kirish va clone — <b>hammada server ishlaguncha</b> oldinga o'tmang", text: "Birinchi o'ttiz daqiqa: kirish va clone. Eng xavfli bo'lak clone va ishga tushirish, shuning uchun unga yigirma daqiqa.", hl: [0, 1] },
     { id: 'c', key: "30–60: Swagger, papkalar xaritasi, <b>buyurtma yo'li</b> va uchta test", text: "O'ttizdan oltmishgacha: Swagger, bino xaritasi, buyurtma yo'li va uchta test.", hl: [2, 3] },
     { id: 'd', key: "60–90: qatlamlar, <b>AI bilan qurish</b>, debugging va arena", text: "Oltmishdan to'qsongacha: qatlamlar, AI bilan qurish, yakuniy debugging va arena.", hl: [4, 5] },
@@ -244,11 +244,11 @@ const FINAL = [
   { q: "Nest ichida so'rovni haqiqatda qaysi kutubxona qabul qiladi?", o: ["Nest'ning o'z HTTP serveri", 'Express (platform-express)', 'Node http moduli bevosita', 'Har doim Fastify'], c: 1, e: "Nest Express ustidagi qatlam; Fastify'ga almashtirish mumkin, lekin standart Express.", s: 3 },
   { q: "@Controller('cars') va @Get(':id') birga qaysi path'ni ochadi?", o: ['/cars?id=5', '/id/cars', '/cars/5', '/:id/cars'], c: 2, e: "Controller prefiksi + metod yo'li.", s: 18 },
   { q: 'POST metodida status yozilmagan. Nest nima qaytaradi?', o: ['200', '201', '204', '202'], c: 1, e: "Nest POST uchun 201 ni o'zi qo'yadi.", s: 20 },
-  { q: "«Nest can't resolve dependencies of the X (?)» — so'roq belgisi nimani bildiradi?", o: ["Noma'lum modul", "Topilmagan argument o'rni", 'Sintaksis xatosi', "Route yo'q"], c: 1, e: 'Qavs ichida konstruktor argumentlari, ? — topilmagani.', s: 23 },
-  { q: "Server «successfully started», /cars 404, terminalda Mapped {/cars…} yo'q. Eng ehtimoliy sabab?", o: ["CarsModule AppModule imports'ida yo'q", "Injectable yo'q", 'Port band', "Service'da xato"], c: 0, e: "Yashirin xato: modul ulanmagan, Nest papkani o'qimagan.", s: 24 },
+  { q: "«Nest can't resolve dependencies of the X (?)» — so'roq belgisi nimani bildiradi?", o: ["Noma'lum modul — import yo'q", "Topilmagan argumentning o'rni", "Sintaksis xatosi — qavs yopilmagan", "Route yo'q — Controller bo'sh"], c: 1, e: 'Qavs ichida konstruktor argumentlari, ? — topilmagani.', s: 23 },
+  { q: "Server «successfully started», /cars 404, terminalda Mapped {/cars…} yo'q. Eng ehtimoliy sabab?", o: ["CarsModule AppModule imports'ida yo'q", "Injectable yo'q — CarsService ulanmagan", "Port band — server boshqa portda", "Service'da xato — u 404 qaytaradi"], c: 0, e: "Yashirin xato: modul ulanmagan, Nest papkani o'qimagan.", s: 24 },
   { q: "Service ichida throw new Error('x'). Mijozga nima boradi?", o: ['404 va «x»', '500 Internal server error', '400', 'Hech narsa, server yiqiladi'], c: 1, e: 'Oddiy Error → 500, xabar yashiriladi.', s: 28 },
-  { q: "Yangi xabar: «Nest can't resolve dependencies of the UsersService (?, JwtService). Please make sure that the argument ConfigService at index [0] is available in the UsersModule module.» Nima qilasiz?", o: ["users.module.ts — providers'ga ConfigService (yoki ConfigModule import)", "users.service.ts — konstruktordan JwtService'ni o'chirish", "app.module.ts — controllers'ga UsersService", "UsersService'ga @Injectable() qo'shish"], c: 0, e: "Klass: UsersService · dependency: ConfigService, index [0] · fayl: users.module.ts (UsersModule). JwtService topilgan (ikkinchi o'rin), muammo unda emas.", s: 23 },
-  { q: "orders.module.ts: controllers: [OrdersController], providers: [] — OrdersController konstruktorida OrdersService so'ralgan. Server nima qiladi?", o: ["Ishga tushadi, /orders → 404", "Yiqiladi: can't resolve dependencies of the OrdersController (?)", "Ishga tushadi, /orders → 500", "Yiqiladi: invalid controller detected"], c: 1, e: "providers bo'sh → Nest OrdersService'ni topa olmaydi → ishga tushishda yiqiladi (1-buzish bilan bir xil).", s: 23 },
+  { q: "Yangi xabar: «Nest can't resolve dependencies of the UsersService (?, JwtService). Please make sure that the argument ConfigService at index [0] is available in the UsersModule module.» Nima qilasiz?", o: ["users.module.ts — providers'ga ConfigService", "users.service.ts — konstruktordan JwtService'ni o'chirish", "app.module.ts — controllers'ga UsersService qo'shish", "UsersService'ga @Injectable() qo'shish"], c: 0, e: "Klass: UsersService · dependency: ConfigService, index [0] · fayl: users.module.ts (UsersModule). JwtService topilgan (ikkinchi o'rin), muammo unda emas.", s: 23 },
+  { q: "orders.module.ts: controllers: [OrdersController], providers: [] — OrdersController konstruktorida OrdersService so'ralgan. Server nima qiladi?", o: ["Ishga tushadi, /orders → 404 qaytadi", "Yiqiladi: can't resolve dependencies (?)", "Ishga tushadi, /orders → 500 qaytadi", "Yiqiladi: invalid controller detected"], c: 1, e: "providers bo'sh → Nest OrdersService'ni topa olmaydi → ishga tushishda yiqiladi (1-buzish bilan bir xil).", s: 23 },
 ];
 function Screen27(p) {
   const st = p.stored || {};
@@ -458,7 +458,7 @@ function Screen28(p) {
 // ============================================================
 //  MUQOVA + ROOT KOMPONENT
 // ============================================================
-function Cover({ onStart }) {
+function Cover({ onStart, resume }) {
   return (
     <div className="mk-cover"><div className="card">
       <p className="mk-eyebrow">{t('Mentor kursi · NestJS', 'Курс для менторов · NestJS')}</p>
@@ -467,7 +467,7 @@ function Cover({ onStart }) {
       <ul>
         {t(["Jami taxminan 1,5–2 soat: ovoz ~50 daqiqa · to'rt amaliyot 25–35 daqiqa · 5 tekshiruv · o'z-sinov 8 savol. 22-ekrandan keyin tanaffus qilsangiz bo'ladi", 'Kerak: Node.js 20+, VS Code, terminal — amaliyot dars ichida, har amaliyotda isbot maydoni', "Har ekranda: «↺ boshidan», ovozni o'chirish, «Matn» tugmasi. Ustoz gapirib bo'lgach Davom ochiladi"], ['Всего примерно 1,5–2 часа: озвучка ~50 минут · четыре практики 25–35 минут · 5 проверок · самопроверка 8 вопросов. После 22-го экрана можно сделать перерыв', 'Нужно: Node.js 20+, VS Code, терминал — практика внутри урока, в каждой практике поле подтверждения', 'На каждом экране: «↺ с начала», выключение звука, кнопка «Текст». «Далее» откроется, когда учитель договорит']).map((x) => <li key={x}>{x}</li>)}
       </ul>
-      <button className="mk-btn ready" onClick={onStart}>{t('Boshlash →', 'Начать →')}</button>
+      <CoverStart onStart={onStart} resume={resume} />
     </div></div>
   );
 }
@@ -483,7 +483,8 @@ export default function NestArchMentorLesson({ studentName, lang = 'uz', onFinis
   const [returnTo, setReturnTo] = useState(null);
   const [seen, setSeen] = useState({});   // to'liq ko'rilgan ekranlar — qaytib kelganda Davom qulfi yo'q (F-1030-01)
   const [rev, setRev] = useState(0);      // ↺ boshidan: key o'zgaradi → ekran qayta o'rnatiladi (F-1030-05)
-  const [mode, setMode] = useState('live'); // A12: Orqaga/Davom bilan ko'rilgan ekranga kelinsa — 'review' (tayyor holat, ovozsiz); ↺ va N-ekranga o'tish — 'live'
+  const [mode, setMode] = useState('live');
+  const sv = useMentorSave({ id: LESSON_ID, total, startAt, started, idx, answers, seen, setIdx, setAnswers, setSeen, setStarted }); // A12: Orqaga/Davom bilan ko'rilgan ekranga kelinsa — 'review' (tayyor holat, ovozsiz); ↺ va N-ekranga o'tish — 'live'
   const startTime = useRef(Date.now());
   const finished = useRef(false);
   const onAnswer = useCallback((payload) => setAnswers((a) => ({ ...a, [idx]: payload })), [idx]);
@@ -508,7 +509,7 @@ export default function NestArchMentorLesson({ studentName, lang = 'uz', onFinis
       answers: Object.entries(answers).map(([i, a]) => ({ screen: Number(i) + 1, ...a })),
     });
   };
-  if (!started) return <Cover onStart={() => setStarted(true)} />;
+  if (!started) return <Cover onStart={sv.start} resume={sv.resume} />;
   const S = SCREENS[idx];
   const fin = Object.values(answers).find((a) => a && a.type === 'final');
   return <S key={`${idx}:${rev}`} idx={idx} total={total} lang={lang} stored={answers[idx]} testScore={fin ? fin.score : 0} seen={!!seen[idx]} review={mode === 'review' && !!seen[idx]} onAnswer={onAnswer} onNext={next} onBack={idx > 0 ? () => { setMode('review'); setIdx((i) => i - 1); } : null} onFinish={finish} onGoto={goto} onRestart={restart} />;

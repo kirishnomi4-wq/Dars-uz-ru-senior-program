@@ -1,0 +1,238 @@
+pg-01	1	0,0,1280,720	faqat-matn	368	Siz Mongo'ni bilasiz. Bugun o'sha blog PostgreSQL'da.
+pg-01	2	0,0,1280,720	faqat-matn	424	SQL va NoSQL: bitta ma'lumot ikki xil shaklda saqlanadi
+pg-01	3	0,0,1280,720	kod/terminal	954	Mongo'dagi blog: ikki model, bitta ref, bitta populate
+pg-01	4	0,0,1280,720	kod/terminal	918	Mongo ikki holatda xato bermaydi: yo'q muallif va har xil hujjat
+pg-01	5	0,0,1280,720	jadval	614	Siz bilgan har so'zning PostgreSQL'dagi jufti
+pg-01	6	0,0,1280,720	test	335	Mongo'da ref ham, populate ham bor edi. PostgreSQL'da populate o'rnida qaysi bir
+pg-01	7	0,0,1280,720	faqat-matn	453	Windows: postgresql.org → o'rnatuvchi → parol, port, PATH
+pg-01	8	0,0,1280,720	faqat-matn	419	macOS: Postgres.app — Initialize, PATH va parolsiz postgres
+pg-01	9	0,0,1280,720	kod/terminal	941	psql -U postgres: parol, prompt, birinchi so'rov
+pg-01	10	0,0,1280,720	amaliyot	1222	PostgreSQL'ni o'rnating va psql bilan ulaning
+pg-01	11	0,0,1280,720	kod/terminal	779	CREATE DATABASE blog → \c blog → users jadvali
+pg-01	12	0,0,1280,720	kod/terminal	694	REFERENCES users(id) — Mongo'dagi ref, lekin bazaning o'zida
+pg-01	13	0,0,1280,720	kod/terminal	736	Mongo xato bermagan joyda PostgreSQL ERROR beradi
+pg-01	14	0,0,1280,720	kod/terminal+test	602	O'quvchi DELETE FROM users WHERE id = 1; yozdi va shu xabarni oldi. Nega?
+pg-01	15	0,0,1280,720	amaliyot	1299	blog bazasi: users, posts va tashqi kalit
+pg-01	16	0,0,1280,720	jadval	562	JOIN … ON users.id = posts.user_id — PostgreSQL'dagi populate
+pg-01	17	0,0,1280,720	kod/terminal	667	So'rov xatosiz ishladi, lekin «Bugun Nest o'rgandim»ni vali yozgandek chiqdi
+pg-01	18	0,0,1280,720	amaliyot	918	JOIN, xato ON va LEFT JOIN — o'z bazangizda
+pg-01	19	0,0,1280,720	kod/terminal	578	Bitta telefon, ikki xaridor: ikkinchisi kutadi va UPDATE 0 oladi
+pg-01	20	0,0,1280,720	jadval+kod/terminal	879	Tranzaksiya: buyurtma va ombor birga yoziladi — yoki birortasi ham yozilmaydi
+pg-01	21	0,0,1280,720	kod/terminal	1002	jsonb ustuni: har qatorda har xil maydon — jadval ichida
+pg-01	22	0,0,1280,720	kod/terminal+test	711	BEGIN → buyurtma yozildi → ombor CHECK xatosi → COMMIT. orders jadvalida nima bo
+pg-01	23	0,0,1280,720	amaliyot	1223	Oxirgi telefonni ikki terminal oynasida o'zingiz soting
+pg-01	24	0,0,1280,720	faqat-matn	514	Sinf kompyuterlari: har birida psql -U postgres ochilsin
+pg-01	25	0,0,1280,720	faqat-matn	482	m4-03: kodsiz dars — siz bugun hammasini qo'l bilan qildingiz
+pg-01	26	0,0,1280,720	jadval	1152	O'quvchi darsi atamalarni kundalik so'zlar bilan tushuntiradi — siz ularni atama
+pg-01	27	0,0,1280,720	faqat-matn	933	Ikki soddalashtirish va o'quvchining besh savoli — tayyor javoblar
+pg-01	28	0,0,1280,720	test	234	Mongo'dagi populate() PostgreSQL'da nima bilan qilinadi?
+pg-01	29	0,0,1280,720	faqat-matn	3431	Endi siz bilasiz
+pg-02	1	0,0,1280,720	faqat-matn	405	Jadval tayyor. Endi uni boshqaramiz — PostgreSQL terminalida va Express ichida
+pg-02	2	0,0,1280,720	jadval	771	CRUD — ma'lumot bilan qilinadigan to'rt amal: bazada buyruq, serverda endpoint
+pg-02	3	0,0,1280,720	kod/terminal	702	products — to'rt ustun, to'rt mahsulot; id ni baza o'zi beradi
+pg-02	4	0,0,1280,720	jadval+kod/terminal	591	WHERE — minglab qatordan faqat keraklisi
+pg-02	5	0,0,1280,720	kod/terminal	1021	UPDATE 1, DELETE 1, UPDATE 0 — javobdagi son nechta qator tegilganini aytadi
+pg-02	6	0,0,1280,720	kod/terminal	603	UPDATEdan keyin qator joyi o'zgardi — baza yangilangan qatorni yangi joyga yozad
+pg-02	7	0,0,1280,720	kod/terminal+test	440	Buyruq xatosiz o'tdi, javob UPDATE 0. Bu nimani bildiradi?
+pg-02	8	0,0,1280,720	amaliyot	1228	shop bazasi va CRUD — to'rt buyruq, har javobdagi son
+pg-02	9	0,0,1280,720	jadval+kod/terminal	872	WHERE unutilsa — UPDATE 3, DELETE 3. Xavfsiz sinash: BEGIN … ROLLBACK
+pg-02	10	0,0,1280,720	faqat-matn	556	Har buyruq o'zi saqlanadi; BEGINdan keyin — faqat sizning seansingizda, COMMITga
+pg-02	11	0,0,1280,720	jadval	557	Sotuv — ikki buyruq: qoldiqni kamaytirish va buyurtma yozish. Yo ikkalasi, yo he
+pg-02	12	0,0,1280,720	kod/terminal+test	511	BEGIN; → DELETE FROM products; (DELETE 3) → ROLLBACK;. Endi SELECT * FROM produc
+pg-02	13	0,0,1280,720	amaliyot	749	WHERE'siz UPDATEni xavfsiz sinang — promptdagi yulduzchani kuzating
+pg-02	14	0,0,1280,720	faqat-matn	626	Nomsiz mahsulot xato bermay saqlandi — qoidani o'zimiz qo'shamiz, baza rad eta b
+pg-02	15	0,0,1280,720	kod/terminal	680	Beshta xato — har birida xabarning o'zi nimani tuzatishni aytadi
+pg-02	16	0,0,1280,720	kod/terminal+test	591	VALUES ('O'yinchoq', 30000, 4) → syntax error at or near "yinchoq". Tuzatish qay
+pg-02	17	0,0,1280,720	faqat-matn	625	Pool — ulanishlar to'plami: yaratilganda ulanmaydi, birinchi so'rovda ulanadi, k
+pg-02	18	0,0,1280,720	faqat-matn	501	pool.query so'rovni bazaga olib boradi; javobda rows — qatorlar, rowCount — term
+pg-02	19	0,0,1280,720	faqat-matn	424	Uch yozuvchi endpoint — uch SQL buyruq; javob statusi va rowCount bilan
+pg-02	20	0,0,1280,720	kod/terminal	958	Yopishtirilgan SQL: 1 OR 1=1 — uchala mashina o'chdi. $1 bilan — 500, jadval joy
+pg-02	21	0,0,1280,720	amaliyot	1272	car_rental va server.js — o'z serveringiz, Postman bilan sinov
+pg-02	22	0,0,1280,720	faqat-matn	564	column "price" of relation "cars" does not exist — kodda price, jadvalda daily_p
+pg-02	23	0,0,1280,720	faqat-matn	551	Cannot destructure property 'model' of 'req.body' — so'rov tanasi o'qilmagan
+pg-02	24	0,0,1280,720	kod/terminal	1118	Server «ishlayapti» deydi — parol, baza va PostgreSQL xatosi birinchi so'rovda c
+pg-02	25	0,0,1280,720	kod/terminal	977	Ikkinchi node server.js ham «ishlayapti» deydi — javobni esa eski server beradi
+pg-02	26	0,0,1280,720	kod/terminal	934	POST 500: column "price" of relation "cars" does not exist. Xato satrni toping
+pg-02	27	0,0,1280,720	amaliyot	945	Ikki buzish, ikki tuzatish — o'z serveringizda
+pg-02	28	0,0,1280,720	faqat-matn	545	Ikki o'quvchi darsi: nimani ko'radi, siz nimani qo'shasiz, nimaga tayyor turasiz
+pg-02	29	0,0,1280,720	faqat-matn	614	Olti holat va tayyor javoblar — hammasini bugun o'zingiz ko'rdingiz
+pg-02	30	0,0,1280,720	test	344	UPDATE products SET price = 99000; — WHERE yo'q. Javob?
+pg-02	31	0,0,1280,720	faqat-matn	3419	Endi siz bilasiz
+jest-01	1	0,0,1280,720	faqat-matn	362	OrderBotNest'ga birinchi testlarni yozamiz: avval o'zingiz, keyin AI yozgan test
+jest-01	2	0,0,1280,720	kod/terminal	875	Smoke butun botni tekshiradi, unit-test — bitta qoidani: biri ikkinchisining o'r
+jest-01	3	0,0,1280,720	kod/terminal	656	Jest sozlamasi package.jsonda tayyor: fayl src/ ichida, nomi .spec.ts bilan tuga
+jest-01	4	0,0,1280,720	kod/terminal+test	590	Test fayli test/texts.spec.ts da — loyiha ildizidagi test papkasida. npm test ni
+jest-01	5	0,0,1280,720	kod/terminal	706	Test — uch qismli kod: qaysi funksiya, qaysi vaziyat va qanday natija kutiladi
+jest-01	6	0,0,1280,720	kod/terminal	843	Test qizil: Expected va Received bir xil ko'rinadi, lekin Jest ularni teng demay
+jest-01	7	0,0,1280,720	kod/terminal	927	toLocaleString minglarni oddiy probel bilan emas, bo'linmas probel bilan ajratad
+jest-01	8	0,0,1280,720	amaliyot	1032	Birinchi testni o'zingiz yozing: avval qizilni ko'ring, keyin sababini topib yas
+jest-01	9	0,0,1280,720	kod/terminal	798	expectsiz test har doim yashil: u funksiyani chaqiradi, lekin hech narsani teksh
+jest-01	10	0,0,1280,720	kod/terminal	558	Etalonni kodning o'zidan yasasangiz, kod buzilganda etalon ham buziladi — test y
+jest-01	11	0,0,1280,720	kod/terminal	939	Bu test som buzilganda ham yashil qoladi. Sababchi satrni toping
+jest-01	12	0,0,1280,720	jadval	395	Buyurtma to'rt statusdan o'tadi — har statusga admin ko'radigan tugmalar uchun b
+jest-01	13	0,0,1280,720	kod/terminal	989	Ikki massiv bir xil ko'rinsa ham toBe FAIL beradi: u ichini emas, aynan bitta ma
+jest-01	14	0,0,1280,720	kod/terminal	841	Bekor qilingan buyurtmaga yana tugma chiqdi — test qaysi qoida buzilganini aniq 
+jest-01	15	0,0,1280,720	faqat-matn	433	Xato ko'pincha chegarada: birinchi, oxirgi va yagona sahifa uchun alohida test
+jest-01	16	0,0,1280,720	kod/terminal+test	781	Faqat ikki test bor: «birinchi sahifa» va «o'rtadagi sahifa». Kodda page <= page
+jest-01	17	0,0,1280,720	amaliyot	1174	Admin tugmalari va katalog uchun testlar yozing, keyin kodni bir marta buzib qiz
+jest-01	18	0,0,1280,720	kod/terminal	1480	Yangi ko'nikma: AI yozgan testni qabul qilish — avval ikki AI tajribasi
+jest-01	19	0,0,1280,720	jadval	662	Test to'plamini kodni buzib tekshiramiz: qizarmasa — o'sha buzilish himoyasiz
+jest-01	20	0,0,1280,720	kod/terminal+test	972	AI testi: expect(STATUS_UZ.CANCELLED).toBeTruthy(). Kimdir matnni «Bekor qilinga
+jest-01	21	0,0,1280,720	amaliyot	1173	O'z AI'ingizga aniq shartli prompt bering, keyin to'rt tekshiruv va uchta buzish
+jest-01	22	0,0,1280,720	faqat-matn	428	O'quvchi darsi: KitobShop sayti, bitta orderTotal funksiyasi va Jestbot — siz bi
+jest-01	23	0,0,1280,720	faqat-matn	1055	Beshta vaziyat va tayyor javoblar — to'rttasini bugun o'zingiz ko'rdingiz
+jest-01	24	0,0,1280,720	test	371	package.json: rootDir: "src", testRegex: ".*\\.spec\\.ts$". Fayl src/order.test.
+jest-01	25	0,0,1280,720	faqat-matn	2526	Endi siz bilasiz
+jest-02	1	0,0,1280,720	faqat-matn	386	Bot to'g'ri kirishda ishlaydi — endi noto'g'ri kirishda to'g'ri buziladimi, shun
+jest-02	2	0,0,1280,720	faqat-matn	755	Har funksiyada uch yo'l bor: kutilgan kirish, chegaradagi kirish va ataylab xato
+jest-02	3	0,0,1280,720	kod/terminal	1100	PHONE qoidasi telegram.service.ts ichida yashirin — testdan chaqirib bo'lmaydi, 
+jest-02	4	0,0,1280,720	kod/terminal+test	600	Mijoz raqamni «+998 90 123 45 67» deb yozdi. isPhone hozirgi regex bilan nima qa
+jest-02	5	0,0,1280,720	kod/terminal	554	Bitta qoidaga yettita kirish: ikkita to'g'ri, to'rtta noto'g'ri va bitta chegara
+jest-02	6	0,0,1280,720	faqat-matn	456	Tuzatish bitta satr: tekshirishdan oldin probel va chiziqchani olib tashlaymiz —
+jest-02	7	0,0,1280,720	amaliyot	1114	Telefon qoidasini alohida faylga chiqaring, chegara testlarini yozing va probel 
+jest-02	8	0,0,1280,720	jadval	727	Buyurtma berishda uchta xato bor: ikkitasi funksiyaning o'zida darhol, uchinchis
+jest-02	9	0,0,1280,720	kod/terminal	882	Unit-test bazasiz: DataSource o'rniga soxta obyekt, findOne biz aytgan mahsulotn
+jest-02	10	0,0,1280,720	kod/terminal	857	Sinxron xato — expect(() => …).toThrow(), promise xatosi — await expect(…).rejec
+jest-02	11	0,0,1280,720	kod/terminal	900	Ombor xatosini toThrow bilan yozsak, Jest qizil bermaydi — jarayonning o'zi qula
+jest-02	12	0,0,1280,720	kod/terminal+test	650	Telefon testini await expect(service.place(…)).rejects.toThrow() bilan yozdik. p
+jest-02	13	0,0,1280,720	kod/terminal	819	rejects to'g'ri, lekin await yo'q va xabar ataylab noto'g'ri: Jest xatoni topdi,
+jest-02	14	0,0,1280,720	kod/terminal	960	Bu test faylida npm test natija bermaydi — jarayon qulaydi. Sababchi satrni topi
+jest-02	15	0,0,1280,720	faqat-matn	489	Xato yo'lida test ikki narsani kutadi: xato chiqdi va ombor o'zgarmadi — expect(
+jest-02	16	0,0,1280,720	kod/terminal	744	Ombor tekshiruvini <= qilsak, aynan 2 ta qolganda 2 tasini sotib bo'lmaydi — to'
+jest-02	17	0,0,1280,720	amaliyot	1329	Mock bilan place ning uch xatosini va chegarasini sinang, keyin kodni buzib qizi
+jest-02	18	0,0,1280,720	faqat-matn	464	Sayt ham shunday sinaladi: supertest server ochmasdan Nest ilovasiga so'rov yubo
+jest-02	19	0,0,1280,720	kod/terminal+test	831	Ilovada faqat GET / route'i bor. Test GET /nope yubordi. res.status va res.body.
+jest-02	20	0,0,1280,720	kod/terminal	1325	Yangi ko'nikma davomi: AI edge va xato testlarini yozdi — ikki to'plam, ikkalasi
+jest-02	21	0,0,1280,720	jadval	817	Beshta buzish — uchala to'plam hammasini ushladi; oltinchi «buzilish»ni esa buzi
+jest-02	22	0,0,1280,720	amaliyot	1296	O'z AI'ingizga aniq shartli prompt bering, keyin to'rt tekshiruv va uchta buzish
+jest-02	23	0,0,1280,720	faqat-matn	807	O'quvchi darsi: KitobShop orderTotal, «shumtaka mijoz» va guard — siz bilgan yo'
+jest-02	24	0,0,1280,720	test	363	Mijoz «+998 90 123 45 67» yozdi, bot «Raqam noto'g'ri» dedi. Bu qaysi yo'l?
+jest-02	25	0,0,1280,720	faqat-matn	3488	Endi siz bilasiz
+cicd-01	1	0,0,1280,720	faqat-matn	386	Jest-2 da 25 test yozdingiz — bugun ular har push'da GitHub'ning o'zida yuradi, 
+cicd-01	2	0,0,1280,720	faqat-matn	569	CI — har push'da toza mashinada sizning buyruqlaringiz yuradi; CD — tekshirilgan
+cicd-01	3	0,0,1280,720	faqat-matn	505	Lenta — buyruqlar ketma-ketligi: har biri chiqish kodi qaytaradi, 0 — yashil, bo
+cicd-01	4	0,0,1280,720	faqat-matn	560	Lenta mashinasi har safar bo'sh papkadan boshlaydi — biz ham: yangi clone, node_
+cicd-01	5	0,0,1280,720	kod/terminal+test	706	Toza clone'da to'g'ridan npm test yozdik. Terminal: sh: 1: jest: not found, chiq
+cicd-01	6	0,0,1280,720	faqat-matn	553	Kodni buzamiz va to'rt buyruqni && bilan bog'laymiz: npm ci ✓, tsc ✓, test qizil
+cicd-01	7	0,0,1280,720	amaliyot	1095	Toza clone'da to'rt buyruqni && bilan yurgiting, keyin kodni buzib zanjir uzilis
+cicd-01	8	0,0,1280,720	kod/terminal	682	.github/workflows/ci.yml — lentaning yo'l xaritasi: qachon (on), qaysi mashinada
+cicd-01	9	0,0,1280,720	faqat-matn	543	git push — va GitHub'ning Actions bo'limida run paydo bo'ladi: bitta job, oltita
+cicd-01	10	0,0,1280,720	faqat-matn	595	<= bilan push: run qizil — npm test qadami ✗, npm run build «skipped», annotatsi
+cicd-01	11	0,0,1280,720	kod/terminal+test	895	Lentada npx tsc --noEmit qadami chiqish kodi 2 bilan tugadi. npm test va npm run
+cicd-01	12	0,0,1280,720	amaliyot	1301	OrderBotNest nusxangizni GitHub'ga chiqaring, ci.yml yozing, push — Actions'da y
+cicd-01	13	0,0,1280,720	kod/terminal	552	actions/checkout satrini olib tashlasak — mashina bo'sh: npm ci «lock fayl yo'q»
+cicd-01	14	0,0,1280,720	faqat-matn	620	package.jsonni qo'lda o'zgartirdik, lock qolmadi — npm ci lentada ham, lokalda h
+cicd-01	15	0,0,1280,720	kod/terminal	618	user.service.tsda tur xatosi: ts-jest testlarni baribir yashil o'tkazadi — tsc q
+cicd-01	16	0,0,1280,720	kod/terminal	839	Bu ci.yml bilan push qildik — run qizil, lekin ichida bitta qadam ham yo'q: «wor
+cicd-01	17	0,0,1280,720	kod/terminal	764	Haqiqiy topilma: toza clone'da yashil edi, birinchi run'da npm ci qizil — Missin
+cicd-01	18	0,0,1280,720	kod/terminal	680	Yangi ko'nikma davomi: ikki AI'ga bitta oddiy prompt — ikkalasi to'g'ri ko'rinad
+cicd-01	19	0,0,1280,720	faqat-matn	525	Ikkala AI workflow'i lentada qizil — npm ci, o'sha Missing: webpack… from lock f
+cicd-01	20	0,0,1280,720	kod/terminal+test	713	AI yozgan workflow: checkout@v4 · setup-node@v4 (node-version: 22) · npm install
+cicd-01	21	0,0,1280,720	amaliyot	1367	O'z AI'ingizga workflow yozdiring, to'rt savol bilan tuzating, push — yashil; ke
+cicd-01	22	0,0,1280,720	faqat-matn	720	Lenta dist yig'di — lekin node dist/main toza mashinada darhol yiqiladi: DATABAS
+cicd-01	23	0,0,1280,720	faqat-matn	780	O'quvchi darsi: aeroport lentasi — chamadon, Yig'ish, Skaner, O'lcham ramkasi, O
+cicd-01	24	0,0,1280,720	test	406	Sizda npm test yashil, hamkorda qizil. CI buni qanday hal qiladi?
+cicd-01	25	0,0,1280,720	faqat-matn	2967	Endi siz bilasiz
+cicd-02	1	0,0,1280,720	faqat-matn	410	Lenta bor va yashil. Bugun uning ichiga kiramiz: log, cache, matrix, Postgres bi
+cicd-02	2	0,0,1280,720	faqat-matn	530	Har push — run; faylda jobs: ostidagi har nom — alohida mashinada bitta job; job
+cicd-02	3	0,0,1280,720	faqat-matn	601	Tayyor qadamlar yashirin emas: Set up job mashinani aytadi, checkout bo'sh papka
+cicd-02	4	0,0,1280,720	faqat-matn	486	Run sahifasidagi annotatsiya — xatoning birinchi satri; to'liq sabab qizil qadam
+cicd-02	5	0,0,1280,720	kod/terminal+test	729	Run qizil. Annotatsiyada faqat Process completed with exit code 1. — npm test qa
+cicd-02	6	0,0,1280,720	faqat-matn	850	cache: npm nima qiladi: birinchi run «Cache saved», ikkinchisi «Cache hit» — npm
+cicd-02	7	0,0,1280,720	amaliyot	1020	CI/CD-1 dagi reponingizda ikki run'ni oching: Set up job, checkout, cache «saved
+cicd-02	8	0,0,1280,720	faqat-matn	591	strategy.matrix.node-version: [22, 24] — bitta job ta'rifi, ikki mashina: test (
+cicd-02	9	0,0,1280,720	kod/terminal	674	fail-fast: false — ikkala mashina oxirigacha: test (22) qizil, test (24) yashil;
+cicd-02	10	0,0,1280,720	kod/terminal+test	732	matrix [22, 24], fail-fast yozilmagan. test (22) 10-soniyada yiqildi, test (24) 
+cicd-02	11	0,0,1280,720	amaliyot	1037	ci.ymlga matrix [22, 24] qo'shing, ikki job'ni ko'ring, fail-fast: false bilan t
+cicd-02	12	0,0,1280,720	faqat-matn	432	Jest testlari bazasiz (mock). Smoke esa haqiqiy Postgres'ga yozadi — lentada baz
+cicd-02	13	0,0,1280,720	kod/terminal	956	Ikkinchi job smoke: needs: test, services: postgres:18 healthcheck bilan, npm ru
+cicd-02	14	0,0,1280,720	faqat-matn	934	Konteyner paroli sir emas — env:da ochiq. Haqiqiy baza yoki bot tokeni — Secrets
+cicd-02	15	0,0,1280,720	kod/terminal	943	Bu ci.yml bilan smoke job qizil: «DATABASE_URL topilmadi». Postgres ko'tarildi, 
+cicd-02	16	0,0,1280,720	kod/terminal	886	Yangi ish — alohida tarmoqda; pull request ochilganda lenta yana yuradi va PR sa
+cicd-02	17	0,0,1280,720	kod/terminal	854	Yangi ko'nikma davomi: ikki AI'ga bitta prompt — «smoke'ni ham qo'sh, unga Postg
+cicd-02	18	0,0,1280,720	faqat-matn	616	Nega bu safar yashil: AI faylni noldan yozmadi, sizning ci.ymlni (node 24) o'zga
+cicd-02	19	0,0,1280,720	kod/terminal+test	715	AI services: postgres yozdi va DATABASE_URL: postgresql://postgres:postgres@loca
+cicd-02	20	0,0,1280,720	amaliyot	1254	O'z AI'ingizga smoke job yozdiring, to'rt savol bilan tekshiring, alohida tarmoq
+cicd-02	21	0,0,1280,720	jadval	882	O'quvchi darsi: yo'l xaritasi, nuqta, amal, parallel lentalar, yaqin javon, seyf
+cicd-02	22	0,0,1280,720	faqat-matn	738	O'quvchi darsidagi «Repongiz yo'qmi?» namunasi: lock fayl yo'q — npm ci qizil; "
+cicd-02	23	0,0,1280,720	faqat-matn	427	Darsga siz qo'shadigan to'rt narsa, uch vaziyat va o'quvchi savollariga tayyor j
+cicd-02	24	0,0,1280,720	test	374	ci.ymlda jobs: ostida test: va smoke:. Run'da nechta mashina ochiladi?
+cicd-02	25	0,0,1280,720	faqat-matn	3549	Endi siz bilasiz
+tgpg-01	1	0,0,1280,720	faqat-matn	434	Tayyor buyurtma boti bor. Uni AI bilan PostgreSQL'ga ko'chiramiz — bosqichma-bos
+tgpg-01	2	0,0,1280,720	kod/terminal	779	Loyiha besh moduldan iborat: telegram, catalog, user, cart va order
+tgpg-01	3	0,0,1280,720	faqat-matn	376	Map Node jarayonining xotirasida yashaydi: jarayon to'xtasa — u ham yo'qoladi
+tgpg-01	4	0,0,1280,720	kod/terminal+test	877	Katalog kodda yozilgan massiv, ombordagi son ham shu massivda. Restartdan keyin 
+tgpg-01	5	0,0,1280,720	amaliyot	1323	Loyihani o'z kompyuteringizda ishga tushiring va restartda nima yo'qolishini ko'
+tgpg-01	6	0,0,1280,720	faqat-matn	521	Beshta ma'lumot — to'rt bosqich: har bosqichdan keyin tekshiruv va commit
+tgpg-01	7	0,0,1280,720	faqat-matn	1407	Yaxshi prompt beshta qismdan iborat: kontekst, maqsad, shartlar, chegara va javo
+tgpg-01	8	0,0,1280,720	test	897	Ikki AI'ga bir xil vazifa berildi. Qaysi natijani ko'rib chiqib, commit qilish m
+tgpg-01	9	0,0,1280,720	kod/terminal	891	Entity jadvalni tasvirlaydi, migratsiya uni yaratadi, migrations jadvali nima yu
+tgpg-01	10	0,0,1280,720	kod/terminal	555	AI javobini uch qismga ajrating: nima o'zgardi, qayerda chetga chiqdi, qanday te
+tgpg-01	11	0,0,1280,720	faqat-matn	386	Katalog bazada, buyurtma xotirada: restartdan keyin buyurtma yo'qoldi, ombor esa
+tgpg-01	12	0,0,1280,720	amaliyot	1247	Ulanish, migratsiya va katalog — o'z AI'ingiz bilan, keyin o'zingiz tekshirasiz
+tgpg-01	13	0,0,1280,720	kod/terminal	696	Telegram id INTEGERga sig'maydi — BIGINT kerak; lekin BIGINT kodga matn bo'lib k
+tgpg-01	14	0,0,1280,720	kod/terminal	1102	Mijoz tugmani ikki marta tez bosdi: avval qidirib keyin qo'shish ikki qator ochi
+tgpg-01	15	0,0,1280,720	faqat-matn	556	WAITING_PHONE bazada: bot telefon so'radi, server qayta ishga tushdi — raqam kel
+tgpg-01	16	0,0,1280,720	kod/terminal+test	816	Admin tekshiruvi xom so'rov natijasi bilan yozilgan: rows[0].telegram_id !== 111
+tgpg-01	17	0,0,1280,720	amaliyot	1222	Foydalanuvchi, state va savat — ikki prompt, har biridan keyin restart
+tgpg-01	18	0,0,1280,720	kod/terminal	1056	Buyurtma uch ish: ombordan ayirish, buyurtma yozish, savatni tozalash — yo hamma
+tgpg-01	19	0,0,1280,720	kod/terminal	579	Omborda bitta Planshet, ikki mijoz bir vaqtda «Buyurtma berish» bosdi: bittasiga
+tgpg-01	20	0,0,1280,720	kod/terminal	901	Qulfsiz «o'qi, tekshir, yoz»: hamma tranzaksiya qoldiq 1 ni ko'radi — bitta Plan
+tgpg-01	21	0,0,1280,720	kod/terminal	1164	CHECK rad etgandan keyin o'sha tranzaksiyada yana so'rov: «current transaction i
+tgpg-01	22	0,0,1280,720	kod/terminal	1065	Bitta Planshet besh kishiga sotildi. Xato satrni toping
+tgpg-01	23	0,0,1280,720	amaliyot	1167	Buyurtma tranzaksiyada — va besh mijoz oxirgi mahsulotni oladi
+tgpg-01	24	0,0,1280,720	faqat-matn	650	Har bosqichdan keyin beshta tekshiruv: diff, build, restart, psql va ko'p mijoz
+tgpg-01	25	0,0,1280,720	faqat-matn	445	O'quvchi darsi: bitta users jadvali, Neon va uch qatorli prompt — siz bilgan yo'
+tgpg-01	26	0,0,1280,720	faqat-matn	993	To'rtta vaziyat va tayyor javoblar — hammasini bugun o'zingiz ko'rdingiz
+tgpg-01	27	0,0,1280,720	test	385	Bot savat va buyurtmani Mapda saqlaydi. Server qayta ishga tushdi. Nima bo'ladi?
+tgpg-01	28	0,0,1280,720	faqat-matn	3054	Endi siz bilasiz
+ws1-01	1	0,0,1280,720	faqat-matn	413	Do'kon admini kompyuterda panelni ochib qo'yadi: bot buyurtma olsa, yangi qator 
+ws1-01	2	0,0,1280,720	kod/terminal	543	Oddiy HTTP'da server faqat so'ralganda javob beradi: panel so'ramasa, Bobur berg
+ws1-01	3	0,0,1280,720	kod/terminal	749	socket.io — doimiy ulanish kutubxonasi: avval oddiy HTTP so'rovlar (polling), ke
+ws1-01	4	0,0,1280,720	kod/terminal	1245	LiveGateway: har yangi ulanishda handleConnection — tokenni tekshiradi; noto'g'r
+ws1-01	5	0,0,1280,720	kod/terminal+test	704	npm run live -- "" — tokensiz ulanamiz. Gateway disconnect() qiladi. Terminal kl
+ws1-01	6	0,0,1280,720	kod/terminal	757	disconnect() dan keyin return yo'q: klient baribir yopildi, lekin server logi «p
+ws1-01	7	0,0,1280,720	amaliyot	1103	ws1-done tegida serverni ishga tushiring, terminal klienti bilan token, noto'g'r
+ws1-01	8	0,0,1280,720	kod/terminal	1361	Bot buyurtmani bazaga yozib bo'lgach orderChanged(order.id, 'new'); admin holatn
+ws1-01	9	0,0,1280,720	kod/terminal	699	public/admin.html: socket.io klienti serverning o'zidan; io({ auth: { token } })
+ws1-01	10	0,0,1280,720	kod/terminal	752	Panel ochiq; Bobur botda buyuradi — yangi qator o'zi chiqadi; admin tasdiqlaydi 
+ws1-01	11	0,0,1280,720	kod/terminal	981	Bu panelda belgi «Ulangan», terminal klienti order-changed ni oladi, lekin brauz
+ws1-01	12	0,0,1280,720	amaliyot	935	Brauzerda /admin ni oching, telefondan botda buyurtma bering — panel o'zi yangil
+ws1-01	13	0,0,1280,720	kod/terminal	860	Panel belgisi uch holatda: hodisalar keladi · server javob bermayapti, klient o'
+ws1-01	14	0,0,1280,720	jadval	816	Server to'xtadi: transport close → klient har bir necha soniyada xhr poll error;
+ws1-01	15	0,0,1280,720	faqat-matn	586	Server jarayonini muzlatamiz: ulanish uzilmaydi, javob ham yo'q — klient 42 soni
+ws1-01	16	0,0,1280,720	kod/terminal+test	648	Admin noutbukida Wi-Fi o'chdi: ulanish uzilmadi, lekin paket ham o'tmaydi. Panel
+ws1-01	17	0,0,1280,720	faqat-matn	602	Yangi ko'nikma davomi: ikki AI'ga bitta oddiy prompt — «jonli panel, WebSocket b
+ws1-01	18	0,0,1280,720	faqat-matn	586	Haqiqiy PostgreSQL bilan: ikkalasi ishladi — smoke 5/5, tokensiz yopildi, buyurt
+ws1-01	19	0,0,1280,720	kod/terminal+test	660	AI paneli ws://…/ws/orders?token=panel-sir ga ulanadi. Ishlaydi, server tokenni 
+ws1-01	20	0,0,1280,720	amaliyot	1119	O'z AI'ingizga panelga yangi hodisa qo'shtiring — bekor qilingan buyurtma qizil 
+ws1-01	21	0,0,1280,720	faqat-matn	516	O'quvchi darsi: Maydon Jamoa'dagi «8 / 10» — siz bugun panelda qilgan narsaning 
+ws1-01	22	0,0,1280,720	kod/terminal	627	Yo'l, konvert, belgi, tinglovchi — atama bilan birga; README «Real vaqt» jadvali
+ws1-01	23	0,0,1280,720	faqat-matn	462	Belgidan va server terminalidan sabab topiladi: oltita holat, har biri o'z xabar
+ws1-01	24	0,0,1280,720	test	426	Panel GET /admin/orders ni bir marta so'radi. Keyin bot buyurtma oldi. Oddiy HTT
+ws1-01	25	0,0,1280,720	faqat-matn	3084	Endi siz bilasiz
+ws2-01	1	0,0,1280,720	faqat-matn	401	Panel «o'zi yangilanadi» deydi. Server qayta yonsa yoki tarmoq uzilsa ham shunda
+ws2-01	2	0,0,1280,720	faqat-matn	620	socket.io ulanishni o'zi tiklaydi — lekin bu yangi ulanish. Uzilish paytida yubo
+ws2-01	3	0,0,1280,720	faqat-matn	423	README: «ro'yxat o'zi yangilanadi». Bu da'vo — tekshirilmagan. Tekshiruv — buzib
+ws2-01	4	0,0,1280,720	jadval	655	Panel va terminal klienti ochiq; server to'xtadi; o'chiq paytda Bobur botga yozg
+ws2-01	5	0,0,1280,720	faqat-matn	640	Server o'chiq paytda Telegram xabarni saqlab turadi; bot ishga tushishi bilan un
+ws2-01	6	0,0,1280,720	jadval+kod/terminal	689	DevTools → Network → Offline: 6 soniyada belgi o'zgarmadi, hodisa Online'da keld
+ws2-01	7	0,0,1280,720	kod/terminal+test	669	Server qayta yondi. Belgi «Ulangan». Bazada #2 bor, panelda yo'q, terminal klien
+ws2-01	8	0,0,1280,720	jadval+kod/terminal	963	ws2-done: connect ichida yukla() — birinchi va har qayta ulanishda ro'yxat bazad
+ws2-01	9	0,0,1280,720	amaliyot	1210	ws2-start da panelni Offline bilan buzing (belgi «Ulanmoqda…» bo'lguncha), telef
+ws2-01	10	0,0,1280,720	jadval	810	Sodda «tuzatish»: hammasini connect ichiga. Birinchi ulanishda ishlaydi; har qay
+ws2-01	11	0,0,1280,720	kod/terminal	837	Bu panelda server ikki marta qayta yongandan keyin bitta buyurtmaga uchta GET /a
+ws2-01	12	0,0,1280,720	amaliyot	1146	Tinglovchini ataylab connect ichiga ko'chiring, serverni ikki marta qayta yoqing
+ws2-01	13	0,0,1280,720	faqat-matn	520	Hayotda server Render'da, panel do'kon kompyuterida: ular orasidagi tarmoq uzila
+ws2-01	14	0,0,1280,720	faqat-matn	579	Gateway'ga connectionStateRecovery — qisqa uzilishdan keyin o'tkazilgan hodisala
+ws2-01	15	0,0,1280,720	kod/terminal+test	699	Gateway'da connectionStateRecovery yoqilgan, panel connect da qayta so'ramaydi. 
+ws2-01	16	0,0,1280,720	amaliyot	1212	ws2-done da terminal klientini oching, serverni qayta yoqing — qayta ulanishdan 
+ws2-01	17	0,0,1280,720	faqat-matn	657	Ikki AI'ga buyurtmachining shikoyati, ishorasiz. Ikkalasi sababni to'g'ri topdi 
+ws2-01	18	0,0,1280,720	faqat-matn	638	Haqiqiy PostgreSQL va brauzerda, buyurtma panel ulanishidan oldin: ikkalasida #2
+ws2-01	19	0,0,1280,720	kod/terminal+test	671	AI: «Sinadim — server qayta yondi, panel #2 ni ko'rsatdi». Panel logida qayta ul
+ws2-01	20	0,0,1280,720	faqat-matn	552	O'quvchi darsi: agent «uchala chekka holatni bajardim» degan — o'quvchi Maydon J
+ws2-01	21	0,0,1280,720	jadval	622	Ilova o'yin ekranini ochganda xonaga kiradi; uzilganda server uni hamma xonadan 
+ws2-01	22	0,0,1280,720	faqat-matn	621	A1: uch usul — uchish rejimi, fonga olish, Render'da qayta chiqarish; o'zgarishn
+ws2-01	23	0,0,1280,720	faqat-matn	476	Olti holat, har biri o'z belgisi bilan — va o'quvchi so'raydigan to'rt savol
+ws2-01	24	0,0,1280,720	test	353	socket.io qayta ulanganda nimani o'zi tiklaydi?
+ws2-01	25	0,0,1280,720	faqat-matn	2915	Endi siz bilasiz

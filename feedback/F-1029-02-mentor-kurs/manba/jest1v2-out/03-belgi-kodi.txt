@@ -1,0 +1,4 @@
+$ node -e "…JSON.stringify(som) + belgilar kodi"
+"120 000 so'm"
+0031 0032 0030 00a0 0030 0030 0030 0020 0073 006f 0027 006d
+[chiqish kodi: 0]

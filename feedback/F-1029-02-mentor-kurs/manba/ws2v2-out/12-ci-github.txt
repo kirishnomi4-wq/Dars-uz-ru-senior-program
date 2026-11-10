@@ -1,0 +1,17 @@
+# GitHub Actions — main e10d0d9 (ws2-done), run 41870843765
+✓ main CI · 41870843765
+Triggered via push about 8 minutes ago
+JOBS
+✓ test in 23s (ID 126717144206)
+✓ smoke in 42s (ID 126717520031)
+ANNOTATIONS
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+test: .github#2
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+test: .github#1
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+smoke: .github#2
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+smoke: .github#1
+For more information about a job, try: gh run view --job=<job-id>
+View this run on GitHub: https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41870843765

@@ -1,0 +1,31 @@
+pg-02	1	0,0,1280,720	faqat-matn	405	Jadval tayyor. Endi uni boshqaramiz — PostgreSQL terminalida va Express ichida
+pg-02	2	0,0,1280,720	jadval	771	CRUD — ma'lumot bilan qilinadigan to'rt amal: bazada buyruq, serverda endpoint
+pg-02	3	0,0,1280,720	kod/terminal	702	products — to'rt ustun, to'rt mahsulot; id ni baza o'zi beradi
+pg-02	4	0,0,1280,720	jadval+kod/terminal	591	WHERE — minglab qatordan faqat keraklisi
+pg-02	5	0,0,1280,720	kod/terminal	1021	UPDATE 1, DELETE 1, UPDATE 0 — javobdagi son nechta qator tegilganini aytadi
+pg-02	6	0,0,1280,720	kod/terminal	603	UPDATEdan keyin qator joyi o'zgardi — baza yangilangan qatorni yangi joyga yozad
+pg-02	7	0,0,1280,720	kod/terminal+test	440	Buyruq xatosiz o'tdi, javob UPDATE 0. Bu nimani bildiradi?
+pg-02	8	0,0,1280,720	amaliyot	1228	shop bazasi va CRUD — to'rt buyruq, har javobdagi son
+pg-02	9	0,0,1280,720	jadval+kod/terminal	872	WHERE unutilsa — UPDATE 3, DELETE 3. Xavfsiz sinash: BEGIN … ROLLBACK
+pg-02	10	0,0,1280,720	faqat-matn	556	Har buyruq o'zi saqlanadi; BEGINdan keyin — faqat sizning seansingizda, COMMITga
+pg-02	11	0,0,1280,720	jadval	557	Sotuv — ikki buyruq: qoldiqni kamaytirish va buyurtma yozish. Yo ikkalasi, yo he
+pg-02	12	0,0,1280,720	kod/terminal+test	511	BEGIN; → DELETE FROM products; (DELETE 3) → ROLLBACK;. Endi SELECT * FROM produc
+pg-02	13	0,0,1280,720	amaliyot	749	WHERE'siz UPDATEni xavfsiz sinang — promptdagi yulduzchani kuzating
+pg-02	14	0,0,1280,720	faqat-matn	626	Nomsiz mahsulot xato bermay saqlandi — qoidani o'zimiz qo'shamiz, baza rad eta b
+pg-02	15	0,0,1280,720	kod/terminal	680	Beshta xato — har birida xabarning o'zi nimani tuzatishni aytadi
+pg-02	16	0,0,1280,720	kod/terminal+test	591	VALUES ('O'yinchoq', 30000, 4) → syntax error at or near "yinchoq". Tuzatish qay
+pg-02	17	0,0,1280,720	faqat-matn	625	Pool — ulanishlar to'plami: yaratilganda ulanmaydi, birinchi so'rovda ulanadi, k
+pg-02	18	0,0,1280,720	faqat-matn	501	pool.query so'rovni bazaga olib boradi; javobda rows — qatorlar, rowCount — term
+pg-02	19	0,0,1280,720	faqat-matn	424	Uch yozuvchi endpoint — uch SQL buyruq; javob statusi va rowCount bilan
+pg-02	20	0,0,1280,720	kod/terminal	958	Yopishtirilgan SQL: 1 OR 1=1 — uchala mashina o'chdi. $1 bilan — 500, jadval joy
+pg-02	21	0,0,1280,720	amaliyot	1272	car_rental va server.js — o'z serveringiz, Postman bilan sinov
+pg-02	22	0,0,1280,720	faqat-matn	564	column "price" of relation "cars" does not exist — kodda price, jadvalda daily_p
+pg-02	23	0,0,1280,720	faqat-matn	551	Cannot destructure property 'model' of 'req.body' — so'rov tanasi o'qilmagan
+pg-02	24	0,0,1280,720	kod/terminal	1118	Server «ishlayapti» deydi — parol, baza va PostgreSQL xatosi birinchi so'rovda c
+pg-02	25	0,0,1280,720	kod/terminal	977	Ikkinchi node server.js ham «ishlayapti» deydi — javobni esa eski server beradi
+pg-02	26	0,0,1280,720	kod/terminal	934	POST 500: column "price" of relation "cars" does not exist. Xato satrni toping
+pg-02	27	0,0,1280,720	amaliyot	945	Ikki buzish, ikki tuzatish — o'z serveringizda
+pg-02	28	0,0,1280,720	faqat-matn	545	Ikki o'quvchi darsi: nimani ko'radi, siz nimani qo'shasiz, nimaga tayyor turasiz
+pg-02	29	0,0,1280,720	faqat-matn	614	Olti holat va tayyor javoblar — hammasini bugun o'zingiz ko'rdingiz
+pg-02	30	0,0,1280,720	test	344	UPDATE products SET price = 99000; — WHERE yo'q. Javob?
+pg-02	31	0,0,1280,720	faqat-matn	3419	Endi siz bilasiz

@@ -1,0 +1,6 @@
+7.steps.2.cmd.0 = src/api/order/order.service.ts, строка 36: < → <=
+7.steps.2.cmd.1 = снова запустите цепочку
+12.steps.0.cmd.1 = git remote add mine https://github.com/<ваш-логин>/OrderBotNest.git
+12.steps.1.cmd.0 = .github/workflows/ci.yml — 15 строк с 8-го экрана (node-version — ваш номер из node --version)
+21.steps.3.cmd.0 = src/api/user/user.service.ts, строка 16: String(from.id) → from.id
+7.steps.3.cmd.1 = цепочка

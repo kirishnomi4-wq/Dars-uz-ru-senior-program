@@ -1,0 +1,30 @@
+20:21:13 10a-panel-ulangan — token kiritildi, Kirish bosildi
+  belgi: Ulangan
+  2 | Bobur | +998907654321 | Klaviatura × 1 | 120 000 so'm | Tasdiqlandi | 20:19:24
+  1 | Bobur | +998907654321 | Klaviatura × 1 | 120 000 so'm | Yangi | 20:19:16
+20:21:15 10b-yangi-buyurtma — bot buyurtma oldi — sahifa yangilanmadi
+  belgi: Ulangan
+  [yangi] 3 | Bobur | +998907654321 | Klaviatura × 1 | 120 000 so'm | Yangi | 20:21:15
+  2 | Bobur | +998907654321 | Klaviatura × 1 | 120 000 so'm | Tasdiqlandi | 20:19:24
+  1 | Bobur | +998907654321 | Klaviatura × 1 | 120 000 so'm | Yangi | 20:19:16
+20:21:17 10c-holat-ozgardi — admin tasdiqladi
+  belgi: Ulangan
+  3 | Bobur | +998907654321 | Klaviatura × 1 | 120 000 so'm | Tasdiqlandi | 20:21:15
+  2 | Bobur | +998907654321 | Klaviatura × 1 | 120 000 so'm | Tasdiqlandi | 20:19:24
+  1 | Bobur | +998907654321 | Klaviatura × 1 | 120 000 so'm | Yangi | 20:19:16
+20:21:19 10e-notogri-token — ikkinchi oyna, token «notogri»
+  belgi: Ulanmagan
+  Token noto'g'ri
+20:21:23 10d-server-ochdi — server to'xtatildi
+  belgi: Ulanmoqda…
+  3 | Bobur | +998907654321 | Klaviatura × 1 | 120 000 so'm | Tasdiqlandi | 20:21:15
+  2 | Bobur | +998907654321 | Klaviatura × 1 | 120 000 so'm | Tasdiqlandi | 20:19:24
+  1 | Bobur | +998907654321 | Klaviatura × 1 | 120 000 so'm | Yangi | 20:19:16
+
+# server logi
+LOG [InstanceLoader] LiveModule dependencies initialized
+LOG [Live] panel ulandi: VD6rUcHF4jJ41ZE-AAAA
+20:21:15 — Bobur botda buyurtma beradi (/start → Klaviatura → Buyurtma → telefon)
+20:21:15 bot → 111: 🆕 Yangi buyurtma #3 — Bobur, 120 000 so'm. /orders
+20:21:17 — admin (Jasur) #3 ni tasdiqlaydi
+LOG [Live] panel uzildi: VD6rUcHF4jJ41ZE-AAAA

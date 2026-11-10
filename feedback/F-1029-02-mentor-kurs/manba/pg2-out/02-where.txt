@@ -3,7 +3,7 @@ shop=# SELECT * FROM products WHERE price < 100000;
 ----+------------+-------+-------
   2 | Sichqoncha | 75000 |    15
   3 | Quloqchin  | 95000 |     5
-  4 | Mishka     | 50000 |    10
+  4 | Kolonka    | 50000 |    10
 (3 rows)
 
 

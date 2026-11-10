@@ -1,0 +1,13 @@
+$ curl -s -X POST http://localhost:3100/payments/webhook -H 'X-Signature: c0effd6168cee3e1…' -d '{"paymentId":"pay_kam","orderId":1,"status":"paid","amount":1200}'
+{"message":"summa mos emas: 1200 ≠ 120000","error":"Bad Request","statusCode":400}
+← 400
+
+$ curl -s -X POST http://localhost:3100/payments/webhook -H 'X-Signature: a29b2134353000bd…' -d '{"paymentId":"pay_st","orderId":1,"status":"ok","amount":120000}'
+{"message":"status: 'paid' yoki 'failed'","error":"Bad Request","statusCode":400}
+← 400
+
+$ psql: SELECT count(*) AS payments_qatorlari FROM payments
+ payments_qatorlari 
+--------------------
+                  0
+(1 row)

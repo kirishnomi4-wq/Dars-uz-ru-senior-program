@@ -1,0 +1,21 @@
+const mongoose = require('mongoose');
+(async () => {
+  console.log('mongoose ' + mongoose.version);
+  await mongoose.connect('mongodb://127.0.0.1:27021/shop'); await mongoose.connection.dropDatabase();
+  const User = mongoose.model('User', new mongoose.Schema({ telegramId: { type: Number, unique: true }, name: String, state: { type: String, default: 'IDLE' } }));
+  const CartItem = mongoose.model('CartItem', new mongoose.Schema({ telegramId: Number, productId: Number, qty: Number }));
+  await User.init();
+  console.log("--- new Schema({ telegramId: { type: Number, unique: true }, name: String, state: … }) — jadval/migratsiya yo'q; kolleksiyalar: " + JSON.stringify((await mongoose.connection.db.listCollections().toArray()).map((c) => c.name)));
+  const u = await User.create({ telegramId: 5123456789, name: 'Aziza' });
+  console.log(`--- User.create({ telegramId: 5123456789 }) → telegramId = ${u.telegramId} · typeof: ${typeof u.telegramId} · === 5123456789 → ${u.telegramId === 5123456789}`);
+  const f = await User.findOne({ telegramId: 5123456789 }).lean();
+  console.log(`--- User.findOne(…).lean() → typeof: ${typeof f.telegramId} · === → ${f.telegramId === 5123456789}`);
+  const up = () => CartItem.findOneAndUpdate({ telegramId: 5123456789, productId: 2 }, { $inc: { qty: 1 } }, { upsert: true, returnDocument: 'after' }).lean();
+  const r1 = await up(); const r2 = await up();
+  console.log(`--- CartItem.findOneAndUpdate({ telegramId, productId: 2 }, { $inc: { qty: 1 } }, { upsert: true, returnDocument: 'after' }) ×2 (ketma-ket) → qty ${r1.qty}, ${r2.qty} · hujjatlar: ${await CartItem.countDocuments()}`);
+  await CartItem.deleteMany({}); await Promise.all([up(), up()]);
+  console.log(`--- xuddi shu, ikki marta BIR VAQTDA (unique index yo'q) → hujjatlar: ${await CartItem.countDocuments()} · ${JSON.stringify((await CartItem.find().lean()).map((d) => d.qty))}`);
+  await CartItem.deleteMany({}); await CartItem.collection.createIndex({ telegramId: 1, productId: 1 }, { unique: true });
+  const rr = await Promise.allSettled([up(), up()]);
+  console.log(`--- unique index { telegramId, productId } bilan, ikki marta BIR VAQTDA → ${rr.map((x) => x.status === 'fulfilled' ? 'ok' : 'ERROR: ' + x.reason.message.split(' collection')[0]).join(' · ')} · hujjatlar: ${await CartItem.countDocuments()}`);
+  await mongoose.disconnect(); })().catch((e) => { console.error('XATO', e.message); process.exit(1); });

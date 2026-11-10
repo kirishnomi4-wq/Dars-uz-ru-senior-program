@@ -343,10 +343,10 @@
 
 ## 21 · Kodimiz hozirgi holatda. GET /cars/abc so'rovi kelsa, javob qanday bo'ladi?  ← `MCRetry` (`Screen17`)
 - Ovoz (savol): «Javoblarni ko'rdik. Endi bir qadam oldinga o'ylaymiz. Uchinchi tekshiruv, o'ylab ko'ring. Kimdir cars path'idan keyin abc deb yubordi. Kodimiz hozirgi holatda. Javob qanday bo'ladi?»
-  A) 200 va bo'sh obyekt
-  B) 500 Internal server error
+  A) 200 va bo'sh obyekt — mashina yo'q
+  B) 500 Internal server error — Service yiqildi
   C) 404 va «Car with id NaN not found»  ✔
-  D) 400 Bad Request
+  D) 400 Bad Request — id son emas
   - A noto'g'ri: find hech narsa topmasa undefined qaytaradi, bizning kod esa bu holatda xato tashlaydi.
   - B noto'g'ri: Besh yuz faqat biz kutmagan xato bo'lganda chiqadi; bu yerda xatoni o'zimiz NotFoundException bilan tashladik.
   - D noto'g'ri: To'rt yuzni hech kim qaytarmaydi, chunki tekshiruv yozilmagan.
@@ -576,7 +576,7 @@
 
 ---
 
-## 34 · O'quvchi qoqiladigan 6 joy  ← `Lesson` (`ScreenR2`)
+## 34 · O'quvchilar xato qiladigan 6 joy  ← `Lesson` (`ScreenR2`)
 - Kicker: `7-bosqich · o'tish rejasi` · Eyebrow: m4a-01 · darsda nima bo'ladi
 1. **Sinfda albatta uchraydigan 6 holat — har biriga tayyor javobingiz bo'lsin**
    Ovoz: «Rejani bilasiz. Endi reja buziladigan joylarni ko'raylik: darsda albatta uchraydigan oltita holat. Har biriga tayyor javobingiz bo'lsin.»
@@ -594,7 +594,7 @@
    Ovoz: «Oltinchi: nega Express emas degan savol yoki metafora chalkashuvi. Bitta gap: katta loyihada tartib kerak, Nest tartibni majburiy qiladi, ichida o'sha Express. Metafora chalkashsa lug'atga qaytaring.»
 8. **Ogohlantirish: o'quvchi loyihasida route'lar `/api/v1` bilan boshlanadi — prefiks unutilsa 404**
    Ovoz: «Yana bitta ogohlantirish: o'quvchi loyihasida hamma route api v1 bilan boshlanadi, admin emas, api v1 admin. Prefiks unutilsa to'rt yuz to'rt chiqadi. Bu loyihani keyingi mentor darsida to'liq, clone qilib ko'rasiz.»
-9. **Xulosa: darsdan oldin loyihani o'zingiz bir marta ko'taring — qoqiladigan joyni oldindan bilasiz**
+9. **Xulosa: darsdan oldin loyihani o'zingiz bir marta ko'taring — o'quvchilar xato qiladigan joyni oldindan bilasiz**
    Ovoz: «Xulosa: bu holatlarning ko'pi darsning birinchi yigirma daqiqasida chiqadi. Shuning uchun darsdan oldin loyihani o'zingiz bir marta clone qilib, env bilan ishga tushirib ko'ring: qayerda qoqilish mumkinligini o'zingiz his qilasiz.»
 
 ---
@@ -619,7 +619,7 @@
 ## 36 · Vaqt rejasi va uch qoida  ← `Lesson` (`ScreenR3`)
 - Kicker: `7-bosqich · o'tish rejasi` · Eyebrow: m4a-01 · 90 daqiqa (taklif)
 1. **Taklif: 90 daqiqa, oltita bo'lak — sinfingizga qarab o'zgartirasiz**
-   Ovoz: «Qoqiladigan joylarni va ularning yechimini bilasiz. Endi vaqtni rejalaymiz. Taklif qilingan vaqt rejasi: to'qson daqiqa, oltita bo'lak. Bu taklif, sinfingizga qarab o'zgartirasiz.»
+   Ovoz: «O'quvchilar xato qiladigan joylarni va ularning yechimini bilasiz. Endi vaqtni rejalaymiz. Taklif qilingan vaqt rejasi: to'qson daqiqa, oltita bo'lak. Bu taklif, sinfingizga qarab o'zgartirasiz.»
 2. **0–30: kirish va clone — hammada server ishlaguncha oldinga o'tmang**
    Ovoz: «Birinchi o'ttiz daqiqa: kirish va clone. Eng xavfli bo'lak clone va ishga tushirish, shuning uchun unga yigirma daqiqa.»
 3. **30–60: Swagger, papkalar xaritasi, buyurtma yo'li va uchta test**
@@ -673,16 +673,16 @@
      D) 202
      Izoh: Nest POST uchun 201 ni o'zi qo'yadi. · ekran 20
   4. «Nest can't resolve dependencies of the X (?)» — so'roq belgisi nimani bildiradi?
-     A) Noma'lum modul
-     B) Topilmagan argument o'rni  ✔
-     C) Sintaksis xatosi
-     D) Route yo'q
+     A) Noma'lum modul — import yo'q
+     B) Topilmagan argumentning o'rni  ✔
+     C) Sintaksis xatosi — qavs yopilmagan
+     D) Route yo'q — Controller bo'sh
      Izoh: Qavs ichida konstruktor argumentlari, ? — topilmagani. · ekran 23
   5. Server «successfully started», /cars 404, terminalda Mapped {/cars…} yo'q. Eng ehtimoliy sabab?
      A) CarsModule AppModule imports'ida yo'q  ✔
-     B) Injectable yo'q
-     C) Port band
-     D) Service'da xato
+     B) Injectable yo'q — CarsService ulanmagan
+     C) Port band — server boshqa portda
+     D) Service'da xato — u 404 qaytaradi
      Izoh: Yashirin xato: modul ulanmagan, Nest papkani o'qimagan. · ekran 24
   6. Service ichida throw new Error('x'). Mijozga nima boradi?
      A) 404 va «x»
@@ -691,15 +691,15 @@
      D) Hech narsa, server yiqiladi
      Izoh: Oddiy Error → 500, xabar yashiriladi. · ekran 28
   7. Yangi xabar: «Nest can't resolve dependencies of the UsersService (?, JwtService). Please make sure that the argument ConfigService at index [0] is available in the UsersModule module.» Nima qilasiz?
-     A) users.module.ts — providers'ga ConfigService (yoki ConfigModule import)  ✔
+     A) users.module.ts — providers'ga ConfigService  ✔
      B) users.service.ts — konstruktordan JwtService'ni o'chirish
-     C) app.module.ts — controllers'ga UsersService
+     C) app.module.ts — controllers'ga UsersService qo'shish
      D) UsersService'ga @Injectable() qo'shish
      Izoh: Klass: UsersService · dependency: ConfigService, index [0] · fayl: users.module.ts (UsersModule). JwtService topilgan (ikkinchi o'rin), muammo unda emas. · ekran 23
   8. orders.module.ts: controllers: [OrdersController], providers: [] — OrdersController konstruktorida OrdersService so'ralgan. Server nima qiladi?
-     A) Ishga tushadi, /orders → 404
-     B) Yiqiladi: can't resolve dependencies of the OrdersController (?)  ✔
-     C) Ishga tushadi, /orders → 500
+     A) Ishga tushadi, /orders → 404 qaytadi
+     B) Yiqiladi: can't resolve dependencies (?)  ✔
+     C) Ishga tushadi, /orders → 500 qaytadi
      D) Yiqiladi: invalid controller detected
      Izoh: providers bo'sh → Nest OrdersService'ni topa olmaydi → ishga tushishda yiqiladi (1-buzish bilan bir xil). · ekran 23
 

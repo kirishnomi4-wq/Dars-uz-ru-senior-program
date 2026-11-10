@@ -1,0 +1,13 @@
+# yordamchisiz: b.callback_data to'g'ridan-to'g'ri
+$ npx jest kb
+PASS src/api/telegram/kb.spec.ts
+  orderKeyboard
+    ✓ yangi buyurtma (6 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        0.991 s, estimated 1 s
+Ran all test suites matching kb.
+[chiqish kodi: 0]
+

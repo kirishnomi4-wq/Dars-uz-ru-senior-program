@@ -1,6 +1,6 @@
 
 // ============================================================
-//  CI/CD-2 MATNLARI — AVTO: feedback/F-1029-02-mentor-kurs/dev/cicd2-matn.py (manba: 24-CICD2-mentor-v1.md)
+//  CI/CD-2 MATNLARI — AVTO: feedback/F-1029-02-mentor-kurs/dev/cicd2-matn.py (manba: 24-CICD2-mentor-v2.md, M41)
 //  QO'LDA TAHRIRLANMAYDI: matn MD'da o'zgaradi, keyin skript qayta yurgiziladi.
 // ============================================================
 const MDT = {
@@ -8,108 +8,108 @@ const MDT = {
   "type": "Lesson",
   "kicker": "Kirish",
   "eyebrow": "Mentor kursi · CI/CD",
-  "title": "Lenta yozildi. Endi uni GitHub'da ochib, qizilini o'qiymiz",
+  "title": "Lenta bor va yashil. Bugun uning ichiga kiramiz: log, cache, matrix, Postgres bilan smoke, secret va pull request — hammasi haqiqiy run'larda",
   "seg": [
    [
     "a",
-    "Oldingi darsdagi lentani GitHub'ga qo'ydik va <b>28 tajriba</b> qildik",
-    "Assalomu alaykum. Oldingi darsda lenta faylini yozdik va terminalda sinadik. Bu safar uni haqiqiy GitHub'ga qo'ydik: o'quvchi reposining nusxasida yigirma sakkiz tajriba, har birining logi bilan."
+    "CI/CD-1 da lenta yozdingiz — bugun <b>Actions'ning ichiga</b> kiramiz, hammasi haqiqiy run'larda",
+    "Assalomu alaykum. Oldingi darsda OrderBotNest'ga lenta yozdingiz: har push'da to'rt qadam. Bugun shu lentaning ichiga kiramiz. Ekranda dars oxiridagi natija: ikkita job, test va smoke, smoke haqiqiy Postgres bilan, ikkalasi yashil."
    ],
    [
     "b",
-    "Avval Actions oynasi: run, job va qadam, keyin <b>qizil run logi</b>",
-    "Avval Actions oynasini o'qishni o'rganamiz: run, job va qadam. Keyin qizil run'ni o'qiymiz: sabab qayerda yozilgan va chiqish kodi nimani bildiradi."
+    "Avval <b>umumiy tushuncha</b>: run, job, step va GitHub o'zi qo'shadigan qadamlar",
+    "Avval umumiy tushuncha: Actions nima qiladi, run, job va step nima, GitHub o'zi qaysi qadamlarni qo'shadi va uses ichida nima bo'ladi. Keyin qizil run'ni to'g'ri o'qishni va cache nima qilishini ko'rasiz."
    ],
    [
     "c",
-    "Keyin fayl xatolari va o'quvchi darsidagi <b>matrix, cache, secrets haqiqati</b>",
-    "Keyin fayl xatolarini ko'ramiz: ba'zida run umuman boshlanmaydi. So'ng o'quvchi darsidagi matrix, cache va secrets namunalarini GitHub'da yurgizib ko'ramiz. Natijalarning ba'zisi kutilmagan."
+    "Keyin <b>matrix, Postgres xizmati bilan smoke, secret va pull request</b>",
+    "Uchinchi bosqichda matrix: bitta fayl, ikki Node. To'rtinchisida bazali tekshiruvni lentaga qo'yamiz: Postgres xizmati va smoke. Secret nima va nomi xato bo'lsa nima bo'ladi. Beshinchisida pull request va AI yozgan workflow'lar. Oxirida sinfga tayyorgarlik."
    ],
    [
     "d",
-    "Xulosa: besh bosqich, <b>uch amaliyot</b>; ustoz gapirib bo'lgach Davom ochiladi",
-    "Dars besh bosqichdan iborat, uchta amaliyot bor, hammasi o'z reposingizda. Shoshilmang: har ekranni boshidan eshitish mumkin. Ustoz gapirib bo'lgach Davom ochiladi. Boshlaymiz."
+    "Olti bosqich, uchta amaliyot — <b>o'z GitHub reponingizda</b>; har run haqiqiy",
+    "Dars olti bosqich, uchta amaliyot, hammasi CI/CD-1 dagi o'z reponingizda. Ekrandagi har run haqiqiy: OrderBotNest'da shu kuni yurgizilgan, qadam va soniyalari o'sha. Shoshilmang, har ekranni boshidan eshitish mumkin. Boshlaymiz."
    ]
   ]
  },
  "2": {
   "type": "Lesson",
-  "kicker": "1-bosqich · Actions oynasi",
-  "title": "Har push — bitta run: ro'yxatda commit xabari, belgi va vaqt",
+  "kicker": "1-bosqich · umumiy tushuncha",
+  "title": "Har push — run; faylda jobs: ostidagi har nom — alohida mashinada bitta job; job ichida qadamlar; uchtasini GitHub o'zi qo'shadi",
   "seg": [
    [
     "a",
-    "Repo sahifasidagi Actions bo'limi: har push'dan keyin <b>yangi qator — run</b>",
-    "Rejani ko'rdingiz, endi oynaning o'zini ochamiz. GitHub'da repo sahifasida Actions bo'limi bor. Har push'dan keyin u yerda yangi qator paydo bo'ladi. Bu qator run deyiladi: lentaning bitta yurishi."
+    "Run — bitta push; <b>job — faylda <code>jobs:</code> ostidagi har nom</b>, har biri alohida mashinada",
+    "Actions'ni boshidan tushunib olaylik. Har push bitta run. Faylda jobs ostida bitta nom bor, test, demak bitta job. Job bu alohida mashina: ikki nom yozsangiz, ikki mashina parallel ochiladi. Shuni matrix va smoke'da ko'rasiz."
    ],
    [
     "b",
-    "Qator nomi — <b>commit xabari</b>; yonida workflow nomi, tarmoq va push",
-    "Qatorning nomi commit xabaringiz. Uning yonida workflow nomi turadi, ya'ni faylning birinchi qatoridagi name: CI. Keyin tarmoq va hodisa, bu yerda push. Shuning uchun commit xabarini tushunarli yozing."
+    "Step — job ichidagi qadam: <b>har <code>uses</code> va <code>run</code> — bitta «Run …» qatori</b>",
+    "Job ichida qadamlar: faylda steps ostida nechta uses va run bo'lsa, run oynasida shuncha Run qatori. Checkout, setup node, to'rtta buyruq. Har qatorning yonida belgi va soniya, bossangiz, log."
    ],
    [
     "c",
-    "Belgi: yashil belgi — hammasi o'tdi, qizil xoch — <b>qaysidir qadam yiqildi</b>",
-    "Chap tomonda belgi turadi: yashil belgi hamma qadam o'tdi degani, qizil xoch qaysidir qadam yiqildi degani. Vaqtga ham qarang: to'qqiz soniyalik qizil run odatda o'rnatishgacha ham yetmagan."
+    "Uchtasini siz yozmadingiz: <b><code>Set up job</code>, <code>Post Run …</code>, <code>Complete job</code></b> — GitHub o'zi qo'shadi",
+    "Lekin ro'yxatda siz yozmagan qatorlar ham bor. Boshida set up job: mashinani tayyorlash. Oxirida post run, ya'ni tozalash, cache saqlash, va complete job. GitHub ularni har job'ga o'zi qo'shadi. Ularning logida foydali narsalar bor, hozir ko'ramiz."
    ],
    [
     "d",
-    "Xulosa: run'lar <b>tarixi saqlanadi</b> — qizil va undan keyingi yashil ketma-ket ko'rinadi",
-    "Xulosa: har push bitta run yaratadi va bu tarix saqlanib qoladi. Ikkinchi run qizil, uchinchisi yashil: xato topildi va tuzatildi. O'quvchi ishini ham shu ro'yxatdan ko'rasiz."
+    "Xulosa: <b>run → job → step</b>; qizil bo'lsa — qaysi job, qaysi qadam, uning logi",
+    "Xulosa: run, job, step. Run yashil yoki qizil. Qizil bo'lsa qaysi job, qaysi qadam, deb pastga tushasiz va o'sha qadamning logini o'qiysiz. Endi GitHub qo'shgan qadamlarning ichiga qaraymiz."
    ]
   ]
  },
  "3": {
   "type": "Lesson",
-  "kicker": "1-bosqich · Actions oynasi",
-  "title": "Run ichida job, job ichida qadamlar; uchtasini GitHub o'zi qo'shadi",
+  "kicker": "1-bosqich · umumiy tushuncha",
+  "title": "Tayyor qadamlar yashirin emas: Set up job mashinani aytadi, checkout bo'sh papkada git init va fetch --depth=1 qiladi, setup-node tayyor Node'ni topadi",
   "seg": [
    [
     "a",
-    "Run ichida job ro'yxati: faylda <code>jobs: test:</code> — <b>bitta job <code>test</code></b>",
-    "Ro'yxatdagi birinchi run'ni ochamiz. Chap tomonda job'lar ro'yxati turadi. Faylda jobs ostida bitta nom bor, test. Shuning uchun job ham bitta: test. Ikkita nom yozilsa, ikkita job bo'lardi."
+    "<code>Set up job</code> logi: <b>runner <code>ubuntu-26.04</code>, token ruxsati <code>Contents: read</code></b>, action'lar yuklab olinadi",
+    "Run'ni oching, set up job qadamini bosing. Mashina: image ubuntu yigirma olti nol to'rt. Ubuntu latest endi shu, oktabrdan o'zgardi. GitHub token ruxsati: contents read, faqat o'qiydi. Keyin download action repository: checkout va setup node tayyor qadamlari yuklab olinadi, SHA bilan."
    ],
    [
     "b",
-    "Job ichida qadamlar: har <code>uses</code> va <code>run</code> — <b><code>Run …</code> nomli qadam</b>",
-    "Job ichida esa qadamlar bor. Faylingizdagi har qator qadamga aylangan, oldiga Run so'zi qo'shilgan: run actions checkout, run npm install, run npm test. Eng uzuni o'rnatish qadami, u o'ttiz to'rt soniya davom etdi."
+    "<code>checkout</code> ichida: <b>papkani tozalaydi, <code>git init</code>, <code>fetch --depth=1</code></b> — faqat oxirgi commit",
+    "Checkout qadamini bosing. Syncing repository, keyin deleting the contents: papka tozalanadi. Git init: bo'sh repo. Git fetch depth bir: faqat oxirgi commit olinadi, butun tarix emas, tez bo'lsin. Mana nega CI/CD-1 da checkout'siz papka bo'sh edi."
    ],
    [
     "c",
-    "<code>Set up job</code>, <code>Post …</code>, <code>Complete job</code> — faylda yo'q, <b>GitHub o'zi qo'shadi</b>",
-    "Faylda yo'q qadamlar ham bor. Set up job mashinani tayyorlaydi, Post qadamlari uses'dan keyin tozalaydi, Complete job yakunlaydi. Ularni GitHub o'zi qo'shadi, siz yozmaysiz."
+    "<code>setup-node</code> ichida: <b>«Found in cache» — runner'da tayyor Node 24.22.1, npm 11.19.1</b>",
+    "Setup node: node version yigirma to'rt, cache npm. Found in cache: runner'da Node yigirma to'rt allaqachon bor, yuklab olinmadi. Node v yigirma to'rt yigirma ikki bir, npm o'n bir o'n to'qqiz. CI/CD-1 dagi tuzoq shu yerda ko'rinadi: versiya raqamini log aytadi."
    ],
    [
     "d",
-    "Xulosa: o'quvchi <b>«nuqta» desa — job</b>, <b>«amal» desa — qadam</b>",
-    "Xulosa: run ichida job, job ichida qadam. O'quvchi darsida nuqta va amal so'zlari ishlatiladi: nuqta bu job, amal bu qadam. Oynada ularni shu nomlar bilan ko'rsating."
+    "Xulosa: <b><code>uses</code> — boshqalar yozgan skript</b>, logi ochiq; mashina, versiya, ruxsat — shu yerda",
+    "Xulosa: uses yashirin narsa emas, boshqalar yozgan skript, logi ochiq. Mashina qaysi, Node qaysi, token nimaga ruxsatli, hammasi shu uch qadamning logida. Xato tushunarsiz bo'lsa, avval shu yerga qarang. Endi qizil run'ni o'qiymiz."
    ]
   ]
  },
  "4": {
   "type": "Lesson",
-  "kicker": "1-bosqich · Actions oynasi",
-  "title": "uses qadamining logi — tayyor qadam ichida nima bo'lganini aytadi",
+  "kicker": "2-bosqich · qizilni o'qish",
+  "title": "Run sahifasidagi annotatsiya — xatoning birinchi satri; to'liq sabab qizil qadamning logida: tsc run'ida uchta annotatsiya, logda sakkiz satr",
   "seg": [
    [
     "a",
-    "<code>uses</code> — boshqalar yozgan <b>tayyor qadam</b>; <code>Set up job</code> uni yuklab oladi",
-    "Qadamlar ichiga kiramiz. Uses qadami boshqalar yozgan tayyor dastur. Set up job logida ko'rinadi: GitHub actions checkout'ni o'z reposidan yuklab oldi. Shu yerda mashina ham yozilgan: Ubuntu yigirma to'rt."
+    "Run sahifasining yuqorisi — <b>annotatsiyalar</b>: <code>##[error]</code> bilan boshlangan satrlar, qisqa",
+    "Qizil run'ni oching, CI/CD-1 dagi tsc run'i. Yuqorida annotations: uchta satr. Process completed with exit code two, no overload matches this call, va tur xatosining birinchi qatori. Bular logdagi error belgisi bilan boshlangan satrlar, GitHub ularni yuqoriga chiqaradi."
    ],
    [
     "b",
-    "checkout: papkani tozalaydi va repodan <b>faqat oxirgi commit'ni</b> oladi",
-    "Checkout logiga qaraymiz: u avval ish papkasini tozalaydi, keyin git init qiladi va repodan faqat oxirgi commit'ni oladi, fetch depth bir. Shuning uchun lentada git tarixi yo'q, faqat joriy kod."
+    "To'liq sabab — <b>qizil qadamning logida</b>: fayl, satr, ustun, ikki xato, nima nimaga mos emas",
+    "Lekin annotatsiya qisqa. Qizil qadamni bosing: npx tsc. Logda hammasi: user service ts, yigirmanchi satr, qirq ikkinchi ustun, TS ikki uch ikki ikki, number string'ga mos emas, va yigirma ikkinchi satrda ikkinchi xato. Sabab shu yerda, annotatsiyada emas."
    ],
    [
     "c",
-    "setup-node: Node 22 <b>mashinada tayyor turibdi</b> — o'rnatish soniyadan kam",
-    "Setup node qadamida node version yigirma ikki so'radik. Mashinada u tayyor turgan ekan: found in cache. Natijada node yigirma ikki va npm o'n o'rnatilgan. Sizning kompyuteringizdagi npm versiyasidan farq qilishi mumkin."
+    "Test qizil run'ida annotatsiya <b>faqat «exit code 1»</b> — Jest xatosi logda: FAIL, qaysi test, qaysi satr",
+    "Test qizil bo'lgan run'da annotatsiya yanada kam: faqat process completed with exit code one. Jest error belgisi bilan yozmaydi. Qaysi test, nima kutilgan, nima keldi, o'ttiz yettinchi satr, hammasi npm test qadamining logida. Annotatsiya sizga faqat qaysi qadam ekanini aytadi."
    ],
    [
     "d",
-    "Xulosa: <code>uses</code> qadami tushunarsiz bo'lsa — <b>logini oching</b>, u nima qilganini aytadi",
-    "Xulosa: uses qadami qora quti emas. Logini ochsangiz, nima qilganini qadamma-qadam aytadi. GitHub yana bir narsani eslatadi: ubuntu latest Ubuntu yigirma oltiga o'tkazilmoqda, versiya o'zgarishi mumkin."
+    "Xulosa: <b>belgi → qizil job → qizil qadam → log</b>; annotatsiya yo'l ko'rsatadi, sabab logda",
+    "Xulosa: qizil run'ni o'qish tartibi: belgi, qizil job, qizil qadam, uning logi. Annotatsiya yo'l ko'rsatkich, sabab logda. O'quvchi lentam qizil, nima qilay desa, shu to'rt qadamni birga bosing. Endi tekshirib olaylik."
    ]
   ]
  },
@@ -117,490 +117,669 @@ const MDT = {
   "type": "MCRetry",
   "kicker": "Tekshiruv 1",
   "eyebrow": "Tekshiruv · 1 / 4",
-  "title": "Run'dagi qaysi qadam ci.ymlda yozilmagan — uni GitHub o'zi qo'shgan?",
-  "q": "Qadamlarni ko'rdingiz, tekshirib olaylik. Birinchi tekshiruv. Run ichidagi qaysi qadam faylingizda yozilmagan, uni GitHub o'zi qo'shgan? Variantni tanlang.",
-  "ok": "To'g'ri. Set up job faylda yo'q: GitHub mashinani tayyorlaydi va uses qadamlarini yuklab oladi. Post qadamlari va Complete job ham GitHub'niki. Demak, run'dagi hamma qadam ham sizning faylingizdan emas: tayyorlash va tozalash qadamlarini GitHub o'zi qo'shadi.",
-  "okShort": "<code>Set up job</code> — GitHub'niki: mashina va <code>uses</code> qadamlarini tayyorlaydi.",
-  "hint": "Faylingizdagi qatorlar oldiga Run qo'shiladi. Qaysi nomda Run yo'q?",
+  "title": "Run qizil. Annotatsiyada faqat Process completed with exit code 1. — npm test qadamida. Sababni qayerdan o'qiysiz?",
+  "q": "Qizil run'ni o'qishni ko'rdingiz, endi tekshirib olaylik. Birinchi tekshiruv. Run qizil, annotatsiyada faqat process completed with exit code one, npm test qadamida. Qaysi test yiqilganini qayerdan o'qiysiz? Variantni tanlang.",
+  "ok": "To'g'ri. Qizil qadamni bosasiz: npm test. Logda Jest'ning to'liq chiqishi: FAIL, qaysi test, kutilgan va kelgan, o'ttiz yettinchi satr. Annotatsiya faqat qadamni ko'rsatdi, chunki Jest error belgisi bilan yozmaydi. Demak, annotatsiya manzil, log esa sabab; lokalda qayta yurgizish shart emas.",
+  "okShort": "Qizil qadam logi — to'liq Jest chiqishi. Annotatsiya — faqat manzil.",
+  "hint": "4-ekrandagi tartib: belgi → job → qadam → ?",
+  "demak": "Annotatsiya — manzil (qaysi qadam); sabab — qizil qadamning logida. Jest xatosi annotatsiyaga chiqmaydi.",
   "correct": 1,
   "opts": [
-   "Run npm install",
-   "Set up job",
-   "Run actions/checkout@v7",
-   "Run npm test"
+   "Annotatsiyani bosib — u to'liq xatoni ochadi",
+   "npm test qadamini bosib — logda FAIL va test nomi",
+   "Set up job logidan — u hamma xatoni yig'adi",
+   "Commit'ni lokalda qayta yurgizib — GitHub logi to'liq emas"
   ],
   "wrong": {
-   "0": "Bu sizning run: npm install qatoringiz.",
-   "2": "Bu sizning uses: actions/checkout@v7 qatoringiz.",
-   "3": "Bu sizning run: npm test qatoringiz."
+   "0": "Annotatsiya qisqa satr, ochilmaydi — Jest uchun faqat «exit code 1».",
+   "2": "Set up job — mashina va ruxsatlar; qadam xatolari u yerda yo'q.",
+   "3": "GitHub logi — terminalingizdagi to'liq matn; lokalda qayta yurgizish shart emas."
   }
  },
  "6": {
-  "type": "Practice",
-  "kicker": "Amaliyot 1 / 3",
-  "eyebrow": "Hozir o'zingizda · 10 daqiqa",
-  "title": "O'z reposingizdagi oxirgi run: job, qadamlar va Node versiyasi",
+  "type": "Lesson",
+  "kicker": "2-bosqich · cache",
+  "title": "cache: npm nima qiladi: birinchi run «Cache saved», ikkinchisi «Cache hit» — npm ci 11 s → 5 s; mainda esa «not found»: cache tarmoqqa bog'liq",
   "seg": [
    [
     "a",
-    "Endi siz: oldingi darsda lenta qo'shgan reposingizdagi <b>run'ni ochasiz</b>",
-    "Endi navbat sizga. Oldingi darsda lenta qo'shgan reposingizni oching. Lenta bo'lmasa, avval tavsiya faylini qo'shib push qiling. Bunga o'n daqiqa ketadi."
+    "<code>setup-node</code> <code>cache: npm</code> — birinchi run'da <b>«npm cache is not found»</b>, oxirida «Cache saved with the key»",
+    "Ci yml'dagi cache npm satri nima qiladi? Birinchi run'ning setup node logida: npm cache is not found, cache yo'q. Oxirida, post run setup node qadamida: cache saved with the key, node cache, Linux, npm va uzun raqam. Npm si ay o'n bir soniya yurdi."
    ],
    [
     "b",
-    "1–2-qadam: Actions → oxirgi run → job <code>test</code> va <b>qadamlar ro'yxati</b>",
-    "Birinchi qadamda Actions bo'limida oxirgi run'ni ochasiz. Ikkinchisida job test'ni bosib, qadamlarni sanaysiz: siz yozganlari qaysi, GitHub qo'shganlari qaysi."
+    "Ikkinchi run: <b>«Cache hit» — <code>npm ci</code> 11 soniyadan 5 ga tushdi</b>; kalit — lock faylning hash'i",
+    "Ikkinchi run, o'sha tarmoq: cache hit for, o'sha kalit. Npm si ay besh soniya: paketlar internetdan emas, saqlangan cache'dan. Kalitdagi uzun raqam package lock json'ning hash'i: lock o'zgarsa, kalit o'zgaradi, cache qaytadan yig'iladi. Shuning uchun lock commit'da bo'lishi kerak."
    ],
    [
     "c",
-    "3–4-qadam: <code>Set up job</code> dagi Ubuntu, <code>setup-node</code> dagi <b><code>node:</code> satri</b> — isbot",
-    "Uchinchi qadamda Set up job'ni ochib, Ubuntu versiyasini topasiz. To'rtinchisida setup node qadamidagi environment details guruhini ochasiz. Undagi node satrini isbot maydoniga qo'ying."
+    "<code>main</code>dagi birinchi run: yana <b>«not found»</b> — cache tarmoqqa bog'liq, <code>ci-sinov</code>niki <code>main</code>ga o'tmaydi",
+    "Endi main tarmog'idagi birinchi run: yana npm cache is not found, npm si ay yana o'n bir soniya. Cache tarmoqqa bog'liq: ci sinov tarmog'ida saqlangani main'ga o'tmaydi. Main'da bir marta yashil bo'lgach, undan keyingi run'lar va tarmoqlar o'sha cache'ni oladi."
    ],
    [
     "d",
-    "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
-    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, siz o'z run'ingizda qaysi qadamni o'zingiz yozganingizni va qaysini GitHub qo'shganini ajrata olasiz."
+    "Xulosa: <b>cache — tezlik, to'g'rilik emas</b>; «not found» xato emas, «hit» — lock o'zgarmagan degani",
+    "Xulosa: cache tezlik uchun, to'g'rilik uchun emas: cache bo'lmasa ham lenta to'g'ri ishlaydi, faqat sekinroq. Logda not found ko'rsangiz, bu xato emas. Hit ko'rsangiz, lock o'zgarmagan. Endi o'z run'ingizni o'qiysiz."
    ]
   ]
  },
  "7": {
-  "type": "Lesson",
-  "kicker": "2-bosqich · qizilni o'qish",
-  "title": "Qizil run'da sabab izohda emas — qizil qadamning logida",
+  "type": "Practice",
+  "kicker": "Amaliyot 1 / 3",
+  "eyebrow": "Hozir o'zingizda · 12 daqiqa",
+  "title": "CI/CD-1 dagi reponingizda ikki run'ni oching: Set up job, checkout, cache «saved» va «hit», npm ci soniyalari",
   "seg": [
    [
     "a",
-    "Oldingi darsdagi buzish <b>endi GitHub'da</b>: ko'paytirish o'rniga qo'shish, push",
-    "Yashil run'ni o'qidik, endi qizil run'ni ko'ramiz. Oldingi darsda terminalda qilgan buzishni GitHub'ga push qildik: ko'paytirish o'rniga qo'shish. Ro'yxatda ikkinchi run qizil xoch bilan chiqdi."
+    "Endi siz: <b>o'z reponingizdagi oxirgi ikki run</b>, uchta log va cache",
+    "Endi navbat sizga. CI/CD-1 dagi reponingizni GitHub'da oching, Actions bo'limi. Oxirgi ikki run'ni o'qiysiz: set up job, checkout, setup node loglari va cache. Push kerak emas, faqat o'qish. O'n ikki daqiqa ketadi."
    ],
    [
     "b",
-    "Qizil qadam — <code>npm test</code>; build va <code>Post setup-node</code> — <b>kulrang, yurmadi</b>",
-    "Run ichida npm test qadami qizil. Undan keyingi build kulrang, skipped, ya'ni yurmadi. Setup node'ning tozalash qadami ham yurmadi. Lenta birinchi qizilda to'xtaydi, terminaldagi kabi."
+    "1–2-qadam: <b><code>Set up job</code>da mashina va ruxsat</b>, <code>checkout</code>da <code>git init</code> va <code>fetch --depth=1</code>",
+    "Birinchi qadamda oxirgi run'ni ochib, set up job logidan image va GITHUB TOKEN ruxsatini topasiz. Ikkinchisida checkout logidan git init va fetch depth bir satrlarini. Uchinchi ekrandagi bilan solishtiring."
    ],
    [
     "c",
-    "Izohda faqat «exit code 1»; sabab — <b>qadam logida</b>: <code>Expected</code> va <code>Received</code>",
-    "Run sahifasi tepasida izoh bor: process completed with exit code bir. Bu sabab emas, faqat kod. Sababni qizil qadam logidan o'qiymiz: expected yigirma ming, received o'n ming ikki."
+    "3–4-qadam: <b>ikki run'da cache: «saved» va «hit»</b>, <code>npm ci</code> soniyalari; isbot — hit satri",
+    "Uchinchi qadamda eski run'ning post run setup node logida cache saved, yangisida setup node logida cache hit satrini topasiz. To'rtinchisida ikkala run'da npm si ay necha soniya yurganini yozib oling. Isbot maydoniga cache hit satrini nusxalang."
    ],
    [
     "d",
-    "Xulosa: <b>qizil qadamni oching</b>, logdagi xabarni o'qing — tuzatgach run yashil",
-    "Xulosa: avval qizil qadamni oching, xabarni logdan o'qing, izohdan emas. Xatoni tuzatib push qildik: uchinchi run yashil, tests bir passed, build ham o'tdi."
+    "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
+    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin siz run'ning har qadamini ochib o'qiy olasiz."
+   ]
+  ],
+  "steps": [
+   {
+    "t": "Set up job",
+    "cmds": [
+     "GitHub → Actions → oxirgi run → job test → Set up job"
+    ],
+    "exp": "Image: ubuntu-… · GITHUB_TOKEN Permissions · Download action repository"
+   },
+   {
+    "t": "checkout",
+    "cmds": [
+     "Run actions/checkout@v4 logi"
+    ],
+    "exp": "Deleting the contents of · git init · fetch … --depth=1"
+   },
+   {
+    "t": "Cache",
+    "cmds": [
+     "eski run → Post Run actions/setup-node@v4",
+     "yangi run → Run actions/setup-node@v4"
+    ],
+    "exp": "Cache saved with the key: node-cache-… · Cache hit for: node-cache-…"
+   },
+   {
+    "t": "Soniyalar",
+    "cmds": [
+     "ikkala run'da Run npm ci yonidagi soniya"
+    ],
+    "exp": "ikkinchisi kamroq"
+   }
+  ],
+  "proof": {
+   "label": "Yangi run'dagi «Cache hit» satri",
+   "placeholder": "masalan: Cache hit for: node-cache-Linux-x64-npm-…",
+   "re": "Cache hit for: node-cache-",
+   "flags": "i",
+   "wrong": "Run actions/setup-node@v4 logidagi Cache hit for: node-cache-… satrini qo'ying."
+  },
+  "trouble": [
+   [
+    "Ikkala run'da npm cache is not found",
+    "ikkinchi run boshqa tarmoqda yoki cache: npm satri yo'q — bir tarmoqda ketma-ket ikki run bo'lsin"
+   ],
+   [
+    "Cache saved yo'q",
+    "run qizil tugagan — Post Run cache'ni faqat npm ci o'tganda saqlaydi; yashil run'ni oching"
+   ],
+   [
+    "Log ochilmaydi (bo'sh)",
+    "run hali yuryapti yoki 90 kundan eski — yangi push qiling"
+   ],
+   [
+    "Image: ubuntu-24.04 chiqdi",
+    "runner surati sanaga qarab farq qiladi — xato emas, raqamni yozing"
    ]
   ]
  },
  "8": {
   "type": "Lesson",
-  "kicker": "2-bosqich · qizilni o'qish",
-  "title": "Izohdagi son xato turini aytadi: 1, 127, 254, 2, 128",
+  "kicker": "3-bosqich · matrix",
+  "title": "strategy.matrix.node-version: [22, 24] — bitta job ta'rifi, ikki mashina: test (22) qizil, test (24) esa… bekor qilindi — fail-fast",
   "seg": [
    [
     "a",
-    "Izohdagi son — qadam qaytargan chiqish kodi; u <b>xato turini</b> taxminan aytadi",
-    "Qizil run'larda izoh doim bir xil: process completed with exit code va son. Bu son qizil qadamning chiqish kodi. Biz yigirma sakkiz tajribada beshta turli kod ko'rdik."
+    "Matrix: <b><code>strategy.matrix</code> — bitta job, bir nechta qiymat</b>; <code>${{ matrix.node-version }}</code> har mashinaga o'z raqami",
+    "Matrix bilan boshlaymiz. Ci yml'da job ostiga strategy, matrix, node version, qavsda yigirma ikki va yigirma to'rt. Setup node'da esa raqam o'rniga matrix node version. Bitta job ta'rifi, GitHub undan ikki mashina ochadi: test yigirma ikki va test yigirma to'rt, parallel."
    ],
    [
     "b",
-    "Kod 1 — buyruq yurdi va <b>«yo'q» dedi</b>: test yiqildi yoki <code>npm ci</code> rad etdi",
-    "Kod bir shuni bildiradi: buyruq ishga tushdi va o'zi yo'q dedi. Masalan test yiqildi yoki npm ci lock fayl mos emas dedi. Eng ko'p uchraydigani shu."
+    "Run: <b><code>test (22)</code> qizil — <code>npm ci</code>, o'sha lock tuzog'i</b>; <code>test (24)</code> «cancelled»",
+    "Push, run. Chapda ikki job. Test yigirma ikki qizil: npm si ay, CI/CD-1 dagi o'sha tuzoq, missing webpack from lock file. Test yigirma to'rt esa yashil ham, qizil ham emas: cancelled, bekor qilindi, yigirma ikkinchi soniyada, tsc yurayotganda."
    ],
    [
     "c",
-    "127 — <b>buyruq topilmadi</b>; 254 — npm fayl topmadi; 2 va 128 — bash va git",
-    "Yuz yigirma yetti bo'lsa, buyruq umuman topilmagan, masalan jest o'rnatilmagan. Ikki yuz ellik to'rt bo'lsa, npm package json'ni topmagan. Ikki bo'lsa, bash qatorni tushunmagan. Yuz yigirma sakkiz esa git xatosi."
+    "Demak, sabab: <b>fail-fast — bittasi yiqilsa qolganini bekor qiladi</b> (odatiy sozlama)",
+    "Demak, sabab annotatsiyada: the strategy configuration was canceled because test yigirma ikki failed. Bu fail fast: matrix'da bitta mashina yiqilsa, GitHub qolganini bekor qiladi, vaqt va mashina tejaydi. Odatiy sozlama shu. Lekin siz yigirma to'rtda nima bo'lganini bilmay qolasiz."
    ],
    [
     "d",
-    "Xulosa: kod — yo'nalish, sabab — <b>logdagi birinchi <code>error</code> satri</b>",
-    "Xulosa: kod yo'nalish beradi, sababni esa logdagi birinchi error satri aytadi. O'quvchi «qizil» desa, avval qaysi qadam va qaysi kod deb so'rang."
+    "Xulosa: <b>matrix mashinani emas, versiyani sinaydi</b>; natija to'liq kerak bo'lsa — <code>fail-fast: false</code>",
+    "Xulosa: matrix bitta kodni bir nechta versiyada sinaydi. Fail fast tez, lekin javobi chala: yigirma to'rt yashilmi, bilmadik. To'liq javob kerak bo'lsa, fail fast false. Keyingi run'da shuni qo'yamiz."
    ]
   ]
  },
  "9": {
   "type": "Lesson",
-  "kicker": "2-bosqich · qizilni o'qish",
-  "title": "npm ci ikki xil yiqiladi: lock eskirgan yoki lock umuman yo'q",
+  "kicker": "3-bosqich · matrix",
+  "title": "fail-fast: false — ikkala mashina oxirigacha: test (22) qizil, test (24) yashil; run qizil, lekin javob to'liq: kod 24 da ishlaydi, 22 da lock o'qilmaydi",
   "seg": [
    [
     "a",
-    "Oldingi darsda terminalda ko'rgan <code>in sync</code> — GitHub'da ham <b>birinchi qadamda qizil</b>",
-    "Kodlarni bildik, endi eng ko'p uchraydigan qizilni ko'ramiz: o'rnatish qadami. Oldingi darsda terminalda ko'rgan in sync xatosi GitHub'da ham chiqdi. Run o'n besh soniyada qizil, test'gacha yetmadi."
+    "<code>fail-fast: false</code> — <b>ikkala mashina oxirigacha yuradi</b>, run baribir qizil (22 yiqildi)",
+    "Strategy ostiga fail fast false qo'shamiz. Push. Endi ikkala job oxirigacha yurdi: test yigirma ikki qizil, test yigirma to'rt yashil, to'rtala qadam. Run umuman qizil, chunki bittasi yiqildi, lekin javob to'liq."
    ],
    [
     "b",
-    "O'quvchi reposi: <b>lock fayl eskirgan</b> — <code>Missing: … from lock file</code>",
-    "O'quvchi reposida lock fayl bor, lekin eskirgan: package json'dagi paketlar unda yo'q. Xabarda missing from lock file qatorlari turadi. npm ci bunday holatda hech narsa o'rnatmaydi."
+    "22 ning logi — <b>CI/CD-1 dagi o'sha xato</b>: npm 10 lock'ni o'qiy olmaydi; 24 — hammasi yashil",
+    "Yigirma ikkining npm si ay logi: missing webpack from lock file, CI/CD-1 o'n yettinchi ekrandagi xato. Yigirma to'rt: npm si ay, tsc, test, build, hammasi yashil. Matrix sizga aniq aytdi: bu loyiha Node yigirma to'rtda ishlaydi, yigirma ikkida lock o'qilmaydi."
    ],
    [
     "c",
-    "«Repongiz yo'qmi?» namunasi: <b>lock umuman yo'q</b> — xabar boshqacha",
-    "O'quvchi darsidagi «Repongiz yo'qmi» namunasida lock fayl umuman yo'q. Xabar ham boshqacha: npm ci faqat mavjud package lock bilan ishlaydi. Ikkalasining kodi bir, sababini xabardan ajratasiz."
+    "Matrix kimga kerak: <b>kutubxona yozsangiz — ha</b>, bot yoki sayt — mashinangizdagi bitta Node yetadi",
+    "Matrix kimga kerak? Kutubxona yozsangiz, uni har xil Node'da ishlatishadi, matrix shart. OrderBotNest kabi bot yoki sayt bitta serverda, bitta Node'da yuradi: mashinangizdagi raqam yetadi. O'quvchi darsida matrix parallel lentalar deb chizilgan, uchta Node."
    ],
    [
     "d",
-    "Xulosa: bu repolarda <b><code>npm install</code> yozing</b> — run yashil, 759 paket",
-    "Xulosa: o'quvchi repolarida npm install yozing. Shu bilan run yashil bo'ldi, yetti yuz ellik to'qqiz paket o'rnatildi. npm ci kerak bo'lsa, avval lock faylni yangilab push qilish kerak."
+    "Xulosa: <b>matrix — bir nechta versiya, parallel</b>; <code>fail-fast</code> tez, <code>false</code> — to'liq javob",
+    "Xulosa: matrix bitta faylni bir nechta versiyada parallel sinaydi. Fail fast tez to'xtatadi, false to'liq javob beradi. Loyihangizga kerak bo'lsa qo'ying, bo'lmasa bitta Node, mashinangizdagi. Endi tekshirib olaylik."
    ]
   ]
  },
  "10": {
-  "type": "Lesson",
-  "kicker": "2-bosqich · qizilni o'qish",
-  "title": "Qadam yo'q yoki joyi xato: Could not read package.json va jest: not found",
-  "seg": [
-   [
-    "a",
-    "Checkout'siz lenta: oldingi darsdagi bo'sh papka <b>GitHub'da ham bo'sh</b>",
-    "O'rnatishdan oldin yana bir qizil bor. Oldingi darsda bo'sh papkada package json topilmagan edi. GitHub'da checkout qadamini olib tashladik: xuddi shu xato, kodi ikki yuz ellik to'rt."
-   ],
-   [
-    "b",
-    "Logdagi yo'l — <b>mashinadagi ish papkasi</b>; u yerda repo kodi yo'q",
-    "Logdagi yo'lga qarang: home runner work va repo nomi. Bu mashinadagi ish papkasi. Checkout bo'lmasa, u bo'sh qoladi va npm package json'ni topmaydi."
-   ],
-   [
-    "c",
-    "Tartib xato: <code>npm test</code> o'rnatishdan oldin — <b><code>jest: not found</code>, kod 127</b>",
-    "Ikkinchi holat: npm test'ni npm install'dan oldinga qo'ydik. Jest hali o'rnatilmagan, shuning uchun jest not found chiqdi, kodi yuz yigirma yetti. Qadam nol soniyada yiqildi."
-   ],
-   [
-    "d",
-    "Xulosa: tartib — <b>checkout, setup-node, <code>npm install</code>, <code>npm test</code>, build</b>; run yashil",
-    "Xulosa: tartib doim bir xil: checkout, setup node, npm install, npm test, build. Tavsiya fayli shu tartibda, run yashil. Endi xato satrni o'zingiz topasiz."
-   ]
-  ]
- },
- "11": {
-  "type": "LineCheck",
+  "type": "MCRetry",
   "kicker": "Tekshiruv 2",
   "eyebrow": "Tekshiruv · 2 / 4",
-  "title": "Logda sh: 1: jest: not found, kod 127. Qaysi satr sabab?",
-  "q": "Tartib xatosini ko'rdingiz, endi o'zingiz toping. Ikkinchi tekshiruv. Run qizil, npm test qadami nol soniyada yiqildi, logda jest not found. Faylning qaysi satri sabab? Shu satrni bosing.",
-  "ok": "To'g'ri. O'n birinchi satr: npm test o'rnatishdan oldin turibdi, jest hali yo'q. Uni npm install'dan keyinga qo'yamiz. Ekranda tuzatilgan tartib va yashil run. Demak, qadam nol soniyada yiqilsa, avval qadamlar tartibini tekshiring.",
-  "okShort": "11-satr: <code>npm test</code> o'rnatishdan oldin — <code>npm install</code>dan keyinga.",
-  "hint": "jest qayerdan keladi? Uni qaysi buyruq o'rnatadi va u qaysi satrda?",
-  "task": "Run qizil: <code>Run npm test</code> qadami 0 soniyada yiqildi, logda <code>jest: not found</code>. <b>Sababchi satrni bosing.</b>"
+  "title": "matrix [22, 24], fail-fast yozilmagan. test (22) 10-soniyada yiqildi, test (24) hali tscda. test (24) bilan nima bo'ladi?",
+  "q": "Matrix'ni ko'rdingiz, endi tekshirib olaylik. Ikkinchi tekshiruv. Matrix yigirma ikki va yigirma to'rt, fail fast yozilmagan. Test yigirma ikki o'ninchi soniyada yiqildi, test yigirma to'rt hali tsc'da. Yigirma to'rt bilan nima bo'ladi? Variantni tanlang.",
+  "ok": "To'g'ri. Fail fast yozilmasa, u true: bitta mashina yiqilishi bilan GitHub qolganini bekor qiladi, cancelled. Yigirma to'rt tsc'da to'xtatildi, natijasi noma'lum. To'liq javob kerak bo'lsa, fail fast false yoziladi. Demak, matrix'da cancelled ko'rsangiz, bu o'sha job'ning xatosi emas, boshqasining yiqilgani.",
+  "okShort": "<code>fail-fast</code> odatiy <code>true</code> — bittasi yiqilsa qolgani «cancelled». To'liq javob — <code>fail-fast: false</code>.",
+  "hint": "8-ekrandagi annotatsiya: «canceled because … failed» — kim kimni to'xtatdi?",
+  "demak": "matrix'da «cancelled» — o'sha job'ning xatosi emas: boshqa job yiqildi, <code>fail-fast</code> to'xtatdi.",
+  "correct": 2,
+  "opts": [
+   "Oxirigacha yuradi — matrix job'lari bir-biriga bog'liq emas",
+   "Oxirigacha yuradi, lekin natijasi run'ga kirmaydi",
+   "Bekor qilinadi — odatiy fail-fast qolganini to'xtatadi",
+   "Qayta boshlanadi — GitHub 22 ning o'rniga 24 ni ishlatadi"
+  ],
+  "wrong": {
+   "0": "matrix job'lari bitta strategy'ga bog'langan — fail-fast ularni birga boshqaradi.",
+   "1": "Yurmaydi: 22-soniyada «cancelled», tsc tugamadi.",
+   "3": "GitHub mashinani almashtirmaydi; har qiymat — o'z mashinasi."
+  }
  },
- "12": {
+ "11": {
   "type": "Practice",
   "kicker": "Amaliyot 2 / 3",
-  "eyebrow": "Hozir o'zingizda · 10 daqiqa",
-  "title": "Tartibni ataylab buzing: qizil qadam, kod va tuzatish",
+  "eyebrow": "Hozir o'zingizda · 15 daqiqa",
+  "title": "ci.ymlga matrix [22, 24] qo'shing, ikki job'ni ko'ring, fail-fast: false bilan to'liq javob oling, keyin bitta Node'ga qaytaring",
   "seg": [
    [
     "a",
-    "Endi siz: qadamlar <b>tartibini buzasiz</b> va izohdagi kodni o'qiysiz",
-    "Endi o'z reposingizda tartibni buzasiz. Oldingi darsda testni buzgandingiz, bu safar faylni buzasiz. Bunga o'n daqiqa ketadi."
+    "Endi siz: <b>o'z reponingizda matrix</b>, ikki mashina, fail-fast ikki holatda",
+    "Endi navbat sizga. O'z reponingizdagi ci yml'ga matrix qo'shasiz, yigirma ikki va yigirma to'rt, push qilib ikki job'ni ko'rasiz. Keyin fail fast false bilan to'liq javob, oxirida bitta Node'ga qaytarasiz. O'n besh daqiqa ketadi."
    ],
    [
     "b",
-    "1–2-qadam: <code>npm test</code> qatorini <b><code>npm install</code>dan oldinga</b> ko'chiring, push",
-    "Birinchi qadamda ci yml'dagi npm test qatorini npm install'dan oldinga ko'chirasiz. Ikkinchisida commit va push qilib, Actions'da yangi run qizil bo'lishini kutasiz."
+    "1–2-qadam: <b>matrix va push</b> — <code>test (22)</code> qizil, <code>test (24)</code> cancelled",
+    "Birinchi qadamda strategy matrix va setup node'da matrix node version yozasiz, sakkizinchi ekrandagi kabi. Ikkinchisida push: Actions'da ikki job, yigirma ikki qizil, yigirma to'rt cancelled bo'lishi kerak."
    ],
    [
     "c",
-    "3–4-qadam: <b>qizil qadamdagi kod</b> — isbot; keyin tartibni tiklang, yashil",
-    "Uchinchi qadamda run sahifasidagi izohdan chiqish kodini o'qib, isbot maydoniga yozasiz. To'rtinchisida tartibni tiklab, push qilasiz va yashil run'ni kutasiz."
+    "3–4-qadam: <b><code>fail-fast: false</code></b> — 24 yashil; keyin matrix'ni olib, <code>node-version: 24</code>; isbot — 24 job'ining holati",
+    "Uchinchi qadamda fail fast false qo'shib push qilasiz: yigirma to'rt yashil, yigirma ikki qizil. To'rtinchisida matrix'ni olib tashlab, node version yigirma to'rtga qaytarasiz, run yashil. Isbot maydoniga uchinchi qadamdagi yigirma to'rt job'ining holatini yozing."
    ],
    [
     "d",
     "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
-    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, qadamlar tartibi buzilganda qaysi kod chiqishini o'z run'ingizda ko'rdingiz."
+    "Boshqacha chiqsa, «Boshqacha chiqdimi» tugmasini bosing. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin siz matrix yozasiz va cancelled nima ekanini bilasiz."
+   ]
+  ],
+  "steps": [
+   {
+    "t": "matrix",
+    "cmds": [
+     "ci.yml: strategy: → matrix: → node-version: [22, 24]",
+     "setup-nodeda node-version: ${{ matrix.node-version }}"
+    ],
+    "exp": "8-ekrandagi 18 satr"
+   },
+   {
+    "t": "Push",
+    "cmds": [
+     "git commit -am \"ci: matrix\" && git push mine HEAD:main"
+    ],
+    "exp": "test (22) ✗ · test (24) cancelled"
+   },
+   {
+    "t": "fail-fast: false",
+    "cmds": [
+     "strategy: ostiga fail-fast: false",
+     "push"
+    ],
+    "exp": "test (22) ✗ · test (24) ✓"
+   },
+   {
+    "t": "Qaytarish",
+    "cmds": [
+     "matrix'ni olib tashlang, node-version: 24",
+     "push"
+    ],
+    "exp": "run ✓ (bitta job)"
+   }
+  ],
+  "proof": {
+   "label": "3-qadamda test (24) job'ining holati",
+   "placeholder": "masalan: success / yashil",
+   "re": "(success|yashil|✓|passed)",
+   "flags": "i",
+   "wrong": "fail-fast: false bilan 24 job'i oxirigacha yurishi kerak — holatini yozing."
+  },
+  "trouble": [
+   [
+    "Bitta job, nomi test",
+    "strategy runs-on bilan bir chuqurlikda emas yoki matrix.node-version ishlatilmagan — 8-ekrandagi yml"
+   ],
+   [
+    "Ikkalasi yashil",
+    "mashinangizda Node 22 va lock npm 10 bilan yig'ilgan — tuzoq yo'q; kutilgan farq faqat lock npm 11 bilan bo'lsa chiqadi (CI/CD-1 17-ekran)"
+   ],
+   [
+    "Ikkalasi qizil npm ci",
+    "lock mos emas (CI/CD-1 14-ekran) — npm install, lock commit'ga"
+   ],
+   [
+    "Invalid workflow file",
+    "YAML surilish — strategy: matrix: ikki probel o'ngda, ro'yxat [22, 24]"
+   ]
+  ]
+ },
+ "12": {
+  "type": "Lesson",
+  "kicker": "4-bosqich · smoke va secret",
+  "title": "Jest testlari bazasiz (mock). Smoke esa haqiqiy Postgres'ga yozadi — lentada baza yo'q. Yechim: job yoniga vaqtinchalik konteyner — services",
+  "seg": [
+   [
+    "a",
+    "Lentada hozir faqat <b>Jest — bazasiz</b>; TgPg darsidagi smoke esa haqiqiy bazaga yozadi",
+    "To'rtinchi bosqich. Lentada hozir faqat Jest testlari: mock, baza yo'q, ikki soniya. Lekin Telegraf darsida smoke yozgansiz: npm run smoke, haqiqiy Nest va Telegraf kodi, haqiqiy Postgres, restart va race. U lentada yo'q, chunki runner'da baza yo'q."
+   ],
+   [
+    "b",
+    "<code>scripts/smoke.js</code>: <b><code>DATABASE_URL</code>dan <code>shop_smoke</code> bazasini o'zi ochadi</b>, oxirida o'chiradi",
+    "OrderBotNest'da scripts papkasidagi smoke js'ni oching. Base url: DATABASE URL muhit o'zgaruvchisidan. Undan shop smoke nomli vaqtinchalik baza ochadi, template zero bilan, oxirida o'chiradi. Demak, smoke'ga faqat bitta narsa kerak: ishlayotgan Postgres va unga manzil."
+   ],
+   [
+    "c",
+    "Yechim: <b><code>services</code> — job mashinasi yonida vaqtinchalik konteyner</b>, <code>postgres:18</code>, <code>localhost:5432</code>",
+    "GitHub'da bu services deyiladi: job'ga ikkinchi konteyner, bu yerda postgres o'n sakkiz. U job bilan birga ochiladi, mashinada localhost besh ming to'rt yuz o'ttiz ikkida turadi, job tugashi bilan o'chadi. Hech qanday server, hech qanday tashqi baza kerak emas."
+   ],
+   [
+    "d",
+    "Xulosa: <b>unit test bazasiz, smoke — services bilan</b>; lentada ikkalasi: tez va to'liq",
+    "Xulosa: unit testlar bazasiz, tez. Smoke bazali, to'liq. Lentada ikkalasi bo'lsin: avval test, keyin smoke, uning yonida Postgres konteyneri. Keyingi ekranda shu job'ni yozamiz va haqiqiy run'da ko'ramiz."
    ]
   ]
  },
  "13": {
   "type": "Lesson",
-  "kicker": "3-bosqich · fayl xatolari",
-  "title": "Fayl o'qilmasa run darhol qizil: job ham, qadam ham, log ham yo'q",
+  "kicker": "4-bosqich · smoke va secret",
+  "title": "Ikkinchi job smoke: needs: test, services: postgres:18 healthcheck bilan, npm run smoke — run'da Initialize containers, keyin NATIJA: 5/5 ✓",
   "seg": [
    [
     "a",
-    "Oldingi darsda tahlilchida ko'rgan uch xato — <b>GitHub'da qanday ko'rinadi</b>",
-    "Qadamdagi xatolarni ko'rdik, endi faylning o'zidagi xato. Oldingi darsda uch YAML xatosini tahlilchida ko'rgan edik. Endi o'shalarni GitHub'ga push qildik."
+    "Ikkinchi job: <b><code>smoke:</code> <code>needs: test</code></b> — test qizil bo'lsa smoke boshlanmaydi, Postgres ko'tarilmaydi",
+    "Ci yml'ga jobs ostiga ikkinchi nom qo'shamiz: smoke. Birinchi satri needs test: avval test job'i yashil bo'lsin, keyin smoke. Test qizil bo'lsa smoke boshlanmaydi, Postgres ham ko'tarilmaydi, vaqt bekor ketmaydi."
    ],
    [
     "b",
-    "Run darhol qizil: nol soniya, ichida <b>job ham, qadam ham, log ham yo'q</b>",
-    "Natijada run ro'yxatda paydo bo'ladi va shu zahoti qizil bo'ladi. Ichida job yo'q, qadam yo'q, log yo'q. Mashina ishga ham tushmagan, chunki GitHub faylni o'qiy olmadi."
+    "<code>services: postgres</code>: <b>image, parol, baza nomi, port va healthcheck</b> — <code>pg_isready</code> tayyor demaguncha kutadi",
+    "Services ostida postgres: image postgres o'n sakkiz. Env: parol va baza nomi shop, smoke shop smoke'ni shundan ochadi. Ports: besh ming to'rt yuz o'ttiz ikki. Options: healthcheck, pg is ready. Baza tayyor demaguncha qadamlar boshlanmaydi, aks holda smoke ulanolmay yiqilardi."
    ],
    [
     "c",
-    "Izohda «Invalid workflow file», <b>qator 4</b> — xato esa <b>8-qatorda</b>",
-    "Run sahifasida izoh bor: invalid workflow file. On once va runs on xatosida matn tahlilchidagi bilan bir xil. Surilishda esa faqat yaml syntax va to'rtinchi qator deyiladi. Xato aslida sakkizinchi qatorda: GitHub blok boshini, test job'ini ko'rsatdi."
+    "Qadamlar: checkout, setup-node, <code>npm ci</code>, <b><code>npm run smoke</code> — <code>env: DATABASE_URL</code> konteynerga</b>; run'da «Initialize containers»",
+    "Qadamlar tanish: checkout, setup node, npm si ay. Keyin npm run smoke, uning env'ida DATABASE URL: postgres, parol postgres, localhost, shop. Push. Run'da ikki job: test yashil, keyin smoke: birinchi qadam initialize containers, Postgres ko'tarildi, o'n ikki soniya."
    ],
    [
     "d",
-    "To'rtinchi xato: <code>echo</code> ichidagi <b>ikki nuqta</b> — qo'shtirnoqsiz qatorda YAML'ni buzadi",
-    "To'rtinchi xato kutilmagan edi: run echo natija ikki nuqta ok qatori. Qatordagi ikki nuqta va bo'sh joy YAML uchun yangi kalit degani. Tahlilchi nested mappings deydi, GitHub'da run darhol qizil."
-   ],
-   [
-    "e",
-    "Xulosa: <b>qadamsiz qizil run — fayl xatosi</b>; aniq qatorni tahlilchida toping, <code>run: |</code> bilan yozing",
-    "Xulosa: qadami yo'q qizil run ko'rsangiz, bu fayl xatosi. GitHub ko'rsatgan qatordan pastroqqa ham qarang, aniq qatorni tahlilchi beradi. Ikki nuqtali buyruqni run va tik chiziqdan keyingi qatorga yozing: shunday run yurdi."
+    "Xulosa: smoke logida <b><code>NATIJA: 5/5 ✓</code></b> — restart va race lentada; <code>Stop containers</code> — baza o'chdi",
+    "Xulosa: npm run smoke qadamining logi: vaqtinchalik baza shop smoke, restart uchta yashil, race ikkita yashil, natija besh besh. Oxirida stop containers: baza o'chdi, iz qolmadi. Endi haqiqiy bot sinovi har push'da. Keyingi ekranda DATABASE URL qayerdan kelishini chuqurroq ko'ramiz."
    ]
   ]
  },
  "14": {
   "type": "Lesson",
-  "kicker": "3-bosqich · fayl xatolari",
-  "title": "Papka nomi xato — run yo'q; runs-on xato — run cheksiz kutadi",
+  "kicker": "4-bosqich · ichida",
+  "title": "Konteyner paroli sir emas — env:da ochiq. Haqiqiy baza yoki bot tokeni — Secrets: logda yulduzcha (maska). Secret nomi xato bo'lsa xato chiqmaydi — qiymat bo'sh, smoke «DATABASE_URL topilmadi»",
   "seg": [
    [
     "a",
-    "Qizildan ham yomoni bor: <b>run umuman yo'q yoki tugamaydi</b>",
-    "Qizil run hech bo'lmasa ko'rinadi. Ikki holatda esa qizil ham yo'q. Birinchisi: papka nomida bitta harf xato, workflow o'rniga workflow, s harfisiz."
+    "Konteyner paroli — <b><code>env:</code>da ochiq, bu to'g'ri</b>: u faqat job ichida yashaydi, job bilan o'ladi",
+    "O'n uchinchi ekranda DATABASE URL'ni yml'ga ochiq yozdik, parol postgres. Bu to'g'ri: konteyner job ichida tug'iladi va o'ladi, unga tashqaridan hech kim ulanolmaydi. Sir emas. Ikkala AI ham shunday qildi, keyin ko'rasiz."
    ],
    [
     "b",
-    "<code>.github/workflow</code> — <b>GitHub faylni ko'rmaydi</b>: Actions'da hech narsa paydo bo'lmaydi",
-    "Push qildik va bir yarim daqiqa kutdik: run soni nol. GitHub faylni faqat workflows papkasidan qidiradi. Xato xabari ham yo'q, shuning uchun o'quvchi uzoq qidiradi."
+    "Haqiqiy baza, bot tokeni — <b>GitHub Secrets</b>: Settings'da yoziladi, yml'da <code>${{ secrets.NOM }}</code>, logda <code>***</code>",
+    "Lekin haqiqiy baza manzili yoki bot tokeni yml'ga yozilmaydi: repo ochiq, tarix abadiy. Ular GitHub'da repo settings, secrets and variables, actions bo'limiga yoziladi. Yml'da faqat nomi: secrets DATABASE URL. Logda qiymati yulduzcha bo'lib chiqadi, maska."
    ],
    [
     "c",
-    "<code>runs-on: my-laptop</code> — bunday mashina yo'q, run <b>uch daqiqadan keyin ham kutmoqda</b>",
-    "Ikkinchi holat o'quvchi darsidagi noto'g'ri variantdan chiqadi: runs on my laptop. Tahlilchi buni xato demaydi. GitHub esa shu nomli mashinani kutadi: uch daqiqadan keyin ham queued. Biz uni qo'lda bekor qildik."
+    "Buzamiz: <b><code>secrets.DATABSE_URL</code> — bitta harf tushib qoldi</b>; xato yo'q, qiymat bo'sh — smoke «DATABASE_URL topilmadi»",
+    "Endi buzamiz: yml'da secrets DATABSE URL, bitta harf tushib qoldi. Push. GitHub xato bermaydi: bunday secret yo'q, demak qiymat bo'sh. Smoke qadami qizil: SMOKE XATO, DATABASE URL topilmadi, chiqish kodi ikki. Logga qarang: xabardagi namuna manzilning paroli yulduzcha, runner URL parolini o'zi yashirdi."
    ],
    [
     "d",
-    "Xulosa: run yo'q — <b>papka nomi</b>; run sariq va kutmoqda — <b><code>runs-on</code> nomi</b>",
-    "Xulosa: run umuman yo'q bo'lsa, papka nomini tekshiring. Run sariq bo'lib kutib tursa, runs on qatorini tekshiring. To'g'ri fayl workflows papkasida va ubuntu latest bilan: run yashil."
+    "Xulosa: <b>env — konteyner, secrets — tashqi</b>; «topilmadi» ko'rsangiz — yml'dagi secret nomini tekshiring",
+    "Xulosa: konteyner uchun env, tashqi resurs uchun secrets. Secret nomi xato bo'lsa GitHub indamaydi, qiymat bo'sh keladi va dastur yiqiladi. Logda topilmadi yoki undefined ko'rsangiz, avval yml'dagi secret nomini Settings'dagi bilan solishtiring. Endi shu satrni o'zingiz topasiz."
    ]
   ]
  },
  "15": {
-  "type": "MCRetry",
+  "type": "LineCheck",
   "kicker": "Tekshiruv 3",
-  "eyebrow": "Tekshiruv · 3 / 4",
-  "title": "O'quvchi: «Push qildim, run o'n daqiqadan beri sariq, kutmoqda». Sabab?",
-  "q": "Kutib turgan run'ni ko'rdingiz, tekshirib olaylik. Uchinchi tekshiruv. O'quvchi push qildi, run o'n daqiqadan beri sariq, kutmoqda. Eng ehtimolli sabab nima? Variantni tanlang.",
-  "ok": "To'g'ri. Runs on'da GitHub'da yo'q nom yozilgan, masalan my laptop. Run shu mashinani kutadi va o'zi tugamaydi. Nomni ubuntu latest qilib, eski run'ni bekor qiling. Demak, run sariq bo'lib tugamasa, sabab ko'pincha runs on'dagi nomda.",
-  "okShort": "Cheksiz kutish — <code>runs-on</code> nomi: <code>ubuntu-latest</code> qiling.",
-  "hint": "Run ishga tushmagan — mashina topilmagan. Mashinani qaysi qator tanlaydi?",
-  "correct": 2,
-  "opts": [
-   "Testlar juda sekin",
-   "Fayl .github/workflow papkasida",
-   "runs-onda GitHub'da yo'q mashina nomi",
-   "Checkout qadami yo'q"
-  ],
-  "wrong": {
-   "0": "Testlar sekin bo'lsa, run sariq emas, «yurmoqda» holatida bo'ladi.",
-   "1": "Papka xato bo'lsa, run umuman paydo bo'lmaydi.",
-   "3": "Checkout'siz run tez qizil bo'ladi, kutib turmaydi."
-  }
+  "eyebrow": "Tekshiruv · 3 / 4 — qaysi satr xato?",
+  "title": "Bu ci.yml bilan smoke job qizil: «DATABASE_URL topilmadi». Postgres ko'tarildi, healthcheck o'tdi. Sababchi satrni toping",
+  "q": "Secret nomini ko'rdingiz, endi o'zingiz toping. Uchinchi tekshiruv. Bu ci yml bilan smoke job qizil: DATABASE URL topilmadi. Postgres ko'tarildi, healthcheck o'tdi. Bo'lakda bitta satr noto'g'ri secret nomiga murojaat qiladi. O'sha satrni bosing.",
+  "ok": "To'g'ri. Secrets DATABSE URL: E harfi tushib qolgan. GitHub bunday secret'ni topmadi, lekin xato bermadi, bo'sh qiymat berdi. Smoke bo'sh manzil bilan ishga tushdi va o'zi to'xtadi: DATABASE URL topilmadi. Ekranda tuzatilgan satr. Demak, secret bilan bog'liq xatoni avval nomdan qidiring.",
+  "okShort": "<code>DATABSE</code> — bitta harf yo'q; GitHub indamaydi, qiymat bo'sh, dastur yiqiladi. Nomni Settings bilan solishtiring.",
+  "hint": "${{ secrets.… }} ichidagi nomni harfma-harf o'qing: DATABASE_URL to'liqmi?",
+  "task": "Qoida: <code>${{ secrets.NOM }}</code> — NOM Settings'dagi bilan harfma-harf bir xil bo'lishi kerak; yo'q nom — bo'sh qiymat, xato yo'q. Bu bo'lakda bitta satr noto'g'ri nomga murojaat qiladi. <b>O'sha satrni bosing.</b>"
  },
  "16": {
   "type": "Lesson",
-  "kicker": "4-bosqich · o'quvchi darsidagi namunalar",
-  "title": "O'quvchi darsidagi matrix: uch job yashil, lekin uchalasida Node 22",
+  "kicker": "5-bosqich · PR va AI",
+  "title": "Yangi ish — alohida tarmoqda; pull request ochilganda lenta yana yuradi va PR sahifasida tekshiruv turadi; yashil — merge; README'da badge lenta holatini ko'rsatadi",
   "seg": [
    [
     "a",
-    "O'quvchi darsida <code>matrix</code>: bir faylda uch Node versiyasi — <b>uch parallel job</b>",
-    "Fayl xatolarini bildik, endi o'quvchi darsidagi qo'shimchalarni ko'ramiz. Birinchisi matrix: unda node o'n sakkiz, yigirma va yigirma ikki yozilgan. GitHub bitta job'dan uchta job yasaydi va ularni parallel yurgizadi."
+    "Yangi ish — <b>alohida tarmoq <code>lenta-smoke</code></b>; push — tarmoqda ham run (<code>on: push</code>)",
+    "Smoke job'ni main'ga to'g'ridan emas, pull request orqali qo'shamiz, jamoada shunday. Terminalda git checkout b lenta smoke, ci yml'ni o'zgartirib commit, git push u origin lenta smoke. Actions'da run: on push har tarmoqqa tegishli."
    ],
    [
     "b",
-    "Natija: <code>test (18)</code>, <code>test (20)</code>, <code>test (22)</code> — <b>uchalasi yashil</b>",
-    "O'quvchi darsidagi faylni aynan shunday push qildik. Run'da uchta job: test o'n sakkiz, test yigirma, test yigirma ikki. Uchalasi yashil. Bir qarashda hammasi joyidadek."
+    "Pull request: <b><code>on: pull_request</code> — yana run</b>; PR sahifasida «checks»: <code>test</code> ✓, <code>smoke</code> ✓",
+    "GitHub'da pull request ochamiz: lenta smoke'dan main'ga. Ci yml'dagi on pull request ishga tushadi: yana bir run, bu safar pull request hodisasi. PR sahifasining pastida checks: test yashil, smoke yashil. Merge tugmasi ochiq. Qizil bo'lsa, bu yerda ko'rinadi, main'ga o'tmaydi."
    ],
    [
     "c",
-    "Lekin logda uchalasi <code>v22.23.4</code>: <b>matrix <code>setup-node</code>ga ulanmagan</b>",
-    "Lekin har job'da node version'ni chiqardik: uchalasida yigirma ikki. Matrix faqat job nomini o'zgartirgan. Setup node'ga qaysi versiya kerakligi aytilmagan, u mashinadagisini qoldirgan."
+    "Merge — <b>main'da merge commit, yana run</b>: ikki job yashil; endi main'da smoke ham bor",
+    "Merge bosamiz. Main'da merge commit paydo bo'ladi, on push, yana run: test va smoke yashil. Endi main'dagi lenta ikki job'li. Tarix ham tushunarli: qaysi PR nimani qo'shgani ko'rinadi, CI/CD-1 dagi to'g'ridan push'dan farqi shu."
    ],
    [
     "d",
-    "Xulosa: <code>node-version: ${{ matrix.node }}</code> qo'shilgach — <b>18, 20 va 22 haqiqatan</b>",
-    "Xulosa: setup node'ga node version qatorini qo'shing va matrix node'ni bering. Shundan keyin logda o'n sakkiz, yigirma va yigirma ikki chiqdi. O'quvchiga yashil belgi emas, logdagi versiyani ko'rsating."
+    "Xulosa: <b>README'ga badge</b> — <code>actions/workflows/ci.yml/badge.svg</code>: ochgan odam lentani ko'radi",
+    "Xulosa: tarmoq, pull request, checks, merge. Va README'ning birinchi satriga badge: workflows ci yml badge svg. Reponi ochgan har kim lenta yashilmi, qizilmi, darhol ko'radi. O'quvchi darsida bu tablo deyiladi. Endi AI'ga o'tamiz."
    ]
   ]
  },
  "17": {
   "type": "Lesson",
-  "kicker": "4-bosqich · o'quvchi darsidagi namunalar",
-  "title": "O'quvchi darsidagi cache qizil: key majburiy. To'g'risi — setup-node cache: npm",
+  "kicker": "5-bosqich · AI",
+  "title": "Yangi ko'nikma davomi: ikki AI'ga bitta prompt — «smoke'ni ham qo'sh, unga PostgreSQL kerak»; ikkalasi services: postgres yozdi va lentada birinchi urinishda yashil",
   "seg": [
    [
     "a",
-    "O'quvchi darsida <code>actions/cache</code> va <code>path: node_modules</code> — <b>«5 baravar tez»</b>",
-    "Ikkinchi qo'shimcha cache. O'quvchi darsida actions cache qadami bor, faqat path yozilgan, va besh baravar tezlashadi deyilgan. Shu faylni o'quvchi reposiga push qildik."
+    "Yana AI bosqichi: <b>prompt — «smoke'ni ham qo'sh, unga PostgreSQL kerak»</b>, services so'zi yo'q",
+    "CI/CD-1 dagi kabi oxirgi bosqich AI bilan. Prompt: OrderBotNest'da npm run smoke bor, unga PostgreSQL kerak, DATABASE URL. Workflow'ga shu smoke'ni ham qo'shib ber. Services, konteyner, healthcheck, secret, bu so'zlar promptda yo'q. Har AI loyihaning alohida nusxasida, mavjud ci yml bilan."
    ],
    [
     "b",
-    "Natija: <b>cache qadami qizil</b> — <code>Input required and not supplied: key</code>",
-    "Natijada cache qadamining o'zi qizil bo'ldi. Izohda key kiritilmagan deyilgan. Bu qadam uchun key majburiy. O'rnatish ham, build ham yurmadi: o'quvchi faylni ko'chirsa, lentasi tezlashmaydi, to'xtaydi."
+    "Ikkalasi <b><code>services: postgres:18</code>, healthcheck, <code>POSTGRES_DB: shop</code></b> yozdi — README'dagi versiyadan",
+    "Ikkalasi ham services postgres o'n sakkiz yozdi, README'dagi versiyadan. Parol, baza nomi shop, port, va healthcheck pg is ready. Smoke qadami build'dan keyin, env'ida DATABASE URL. Birinchisi env'ni faqat smoke qadamiga, ikkinchisi butun job'ga berdi."
    ],
    [
     "c",
-    "To'g'risi — <code>setup-node</code>da <b><code>cache: npm</code></b>: o'rnatish 44 soniyadan 16 soniyaga",
-    "Oddiyroq yo'l bor: setup node'ga cache npm qatorini qo'shish. O'lchab ko'rdik: cache'siz o'rnatish qirq to'rt soniya davom etdi. Birinchi run'da foyda yo'q, kesh endi saqlanadi. Ikkinchi run'da esa o'n olti soniya."
+    "Lentada: <b>ikkalasi birinchi urinishda yashil</b> — <code>Initialize containers</code>, <code>NATIJA: 5/5 ✓</code>",
+    "Ikkalasini ham sinov tarmog'iga push qildik. Ikkalasi yashil: initialize containers, Postgres ko'tarildi, npm run smoke, natija besh besh. CI/CD-1 dagidan farqli, bu safar AI birinchi urinishda to'g'ri qildi. Nega shunday, hozir ko'ramiz."
    ],
    [
     "d",
-    "Xulosa: kesh <b>ikkinchi run'dan ishlaydi</b>, o'rnatish taxminan 2,8 baravar tez — 5 emas",
-    "Xulosa: kesh ikkinchi run'dan boshlab ishlaydi. Bu repoda o'rnatish taxminan ikki yarim, uch baravar tezlashdi, besh emas. O'quvchiga raqamni o'z run'idan ko'rsating."
+    "Xulosa: AI <b>secret ishlatmadi — to'g'ri</b> («konteyner — sir emas»); yashil, lekin tekshiruv hali oldinda",
+    "Xulosa: ikkala AI secret ishlatmadi va birinchisi sababini yozdi: konteyner paroli faqat job ichida, sir emas. To'g'ri fikr. Ikkalasi yashil. Lekin yashil hali qabul emas: keyingi ekranda to'rt savol bilan o'qiymiz."
    ]
   ]
  },
  "18": {
   "type": "Lesson",
-  "kicker": "4-bosqich · o'quvchi darsidagi namunalar",
-  "title": "Secret logda `",
+  "kicker": "5-bosqich · ichida",
+  "title": "Nega bu safar yashil: AI faylni noldan yozmadi, sizning ci.ymlni (node 24) o'zgartirdi — tayanch to'g'ri bo'lsa AI ham to'g'ri; qabul — to'rt savol",
   "seg": [
    [
     "a",
-    "O'quvchi darsi: secret «logda hech qachon ochiq ko'rinmaydi»; <b>tekshirdik</b>",
-    "Uchinchi qo'shimcha secrets. O'quvchi darsida kalit faylda emas, seyfda turadi va logda hech qachon ochiq ko'rinmaydi deyilgan. Sinov kaliti qo'yib, logga chiqarib ko'rdik."
+    "Farq: CI/CD-1 da AI <b>noldan yozdi</b> (node 22 → qizil); bu safar <b>sizning faylingizni o'zgartirdi</b> (24 → yashil)",
+    "CI/CD-1 da AI workflow'ni noldan yozdi va node yigirma ikki qo'ydi, qizil. Bu safar repoda sizning ci yml'ingiz bor edi, node yigirma to'rt bilan. AI uni o'zgartirdi, noldan yozmadi. Tayanch to'g'ri bo'lsa, AI ham to'g'ri davom etadi. Shuning uchun avval o'zingiz yozing, keyin AI'ga bering."
    ],
    [
     "b",
-    "To'g'ridan chiqarilsa — <b><code>***</code></b>; qadam nomida ham yashiriladi",
-    "Kalitni to'g'ridan echo qilsak, logda uchta yulduzcha chiqadi. Qadam nomida ham yulduzcha turadi. GitHub qiymatni aynan shu ko'rinishda qidiradi va yashiradi."
+    "Ikki farq: <b><code>env</code> qayerda</b> — 1-AI faqat smoke qadamida (torroq, yaxshi), 2-AI butun job'ga; smoke alohida job emas",
+    "Ikkalasini solishtiring. Birinchi AI DATABASE URL'ni faqat smoke qadamiga berdi, ikkinchisi butun job'ga: ikkalasi ishlaydi, torrog'i yaxshiroq. Ikkalasi smoke'ni alohida job qilmadi, oxirgi qadam qildi: ishlaydi, lekin test qizil bo'lsa ham Postgres ko'tariladi. Tavsiyada needs test bilan alohida job."
    ],
    [
     "c",
-    "Bo'laklab chiqarilsa — kalit logda <b>to'liq ochiq</b>; yo'q secret esa bo'sh qator",
-    "Lekin kalitni ikki bo'lakka bo'lib chiqardik: logda to'liq ochiq. Aynan qiymat bo'lmagani uchun yashirilmadi. Yana bir narsa: yozilmagan secret xato bermaydi, bo'sh qator qaytaradi, run yashil."
+    "1-AI o'zi sezdi: <b>smoke ichida yana <code>nest build</code> — build ikki marta</b>; AI izohini o'qing",
+    "Birinchi AI yana bir narsani o'zi aytdi: smoke ichida yana nest build bor, build ikki marta yuradi, bir necha soniya ortiqcha. Siz hal qilasiz: npm run build qadamini qoldirasizmi, olasizmi. AI'ning izohlarini o'qing, ko'pincha eng foydali joyi shu."
    ],
    [
     "d",
-    "Xulosa: secret'ni <b>logga umuman chiqarmang</b>; yo'q secret run'ni qizil qilmaydi",
-    "Xulosa: secret'ni logga umuman chiqarmang, yulduzcha faqat aynan qiymatni yashiradi. Kalit nomi xato bo'lsa, run yashil qoladi, xato keyin chiqadi. Kalit nomini sinchiklab tekshiring."
+    "Xulosa: AI smoke workflow'iga <b>to'rt savol</b>: services + healthcheck · <code>DATABASE_URL</code> yetib boradimi · tartib · secret kerakmi",
+    "Xulosa, to'rt savol. Services va healthcheck bormi. DATABASE URL smoke qadamiga yetib boradimi, env qayerda. Tartib: smoke build'dan keyinmi. Secret kerakmi: konteyner uchun yo'q, tashqi baza uchun ha. To'rttasiga javob bo'lsa, push va run. Endi tekshirib olaylik."
    ]
   ]
  },
  "19": {
+  "type": "MCRetry",
+  "kicker": "Tekshiruv 4",
+  "eyebrow": "Tekshiruv · 4 / 4",
+  "title": "AI services: postgres yozdi va DATABASE_URL: postgresql://postgres:postgres@localhost:5432/shop ni yml'da ochiq qoldirdi. Bu xatomi?",
+  "q": "AI workflow'ini ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. AI services postgres yozdi va DATABASE URL'ni, parol postgres bilan, yml'da ochiq qoldirdi. Bu xatomi? Variantni tanlang.",
+  "ok": "To'g'ri. Bu konteyner job bilan ochiladi va job bilan o'chadi, unga tashqaridan hech kim ulanolmaydi, parol hech narsani ochmaydi. Secret tashqi resurs uchun: haqiqiy baza, bot tokeni. Demak, secret kerakmi deb so'raganda, bu qiymat job'dan tashqarida nimani ochadi, deb so'rang.",
+  "okShort": "Konteyner — job ichida, job bilan o'chadi → <code>env</code> yetadi. Tashqi resurs → Secrets.",
+  "hint": "14-ekran: env — konteyner, secrets — tashqi. Bu konteyner job'dan tashqarida bormi?",
+  "demak": "Secret savoli: bu qiymat job'dan tashqarida nimani ochadi? Konteyner — hech narsani → <code>env</code>. Prod baza, token → Secrets.",
+  "correct": 2,
+  "opts": [
+   "Xato — har qanday parol, hatto vaqtinchalik ham, Secrets'da bo'lishi shart",
+   "Xato — GitHub ochiq parolni ko'rsa run'ni to'xtatadi",
+   "Xato emas — konteyner job ichida yashaydi, parol tashqariga chiqmaydi",
+   "Xato emas — localhost manzillari hech qachon sir bo'lmaydi"
+  ],
+  "wrong": {
+   "0": "Secrets tashqi resurs uchun; konteyner paroli job bilan o'ladi.",
+   "1": "GitHub yml'dagi matnni tekshirmaydi — run yashil (40, 41).",
+   "3": "localhost ham sir bo'lishi mumkin (masalan, self-hosted runner'dagi haqiqiy baza) — gap manzilda emas, qiymat nimani ochishida."
+  }
+ },
+ "20": {
   "type": "Practice",
   "kicker": "Amaliyot 3 / 3",
-  "eyebrow": "Hozir o'zingizda · 15 daqiqa",
-  "title": "O'z lentangizga matrix: Node 20 va 22, versiya logda",
+  "eyebrow": "Hozir o'zingizda · 25 daqiqa",
+  "title": "O'z AI'ingizga smoke job yozdiring, to'rt savol bilan tekshiring, alohida tarmoqda PR oching, yashil bo'lgach merge qiling, README'ga badge",
   "seg": [
    [
     "a",
-    "Endi siz: lentangizni ikki Node versiyasida yurgizasiz va <b>logdan tekshirasiz</b>",
-    "Oxirgi amaliyot: lentangizni ikki Node versiyasida yurgizasiz va versiyani yashil belgidan emas, logdan tekshirasiz. Bunga o'n besh daqiqa ketadi."
+    "Endi siz: <b>AI'ga smoke job</b> — tarmoq, PR, merge, badge",
+    "Endi navbat sizga. O'z AI'ingizga smoke job yozdirasiz, promptni pastdagi tugma bilan nusxalaysiz. Alohida tarmoqda push qilib pull request ochasiz, tekshiruv yashil bo'lgach merge, README'ga badge. Yigirma besh daqiqa ketadi."
    ],
    [
     "b",
-    "1–2-qadam: <code>strategy: matrix: node: [20, 22]</code> va <b><code>node-version: ${{ matrix.node }}</code></b>",
-    "Birinchi qadamda job ichiga strategy, matrix va node qatorini yozasiz: yigirma va yigirma ikki. Ikkinchisida setup node'dagi node version qatoriga matrix node'ni berasiz. Ekrandagi fayl namuna."
+    "1–2-qadam: <b>tarmoq va prompt</b>, keyin to'rt savol: services + healthcheck · env · tartib · secret",
+    "Birinchi qadamda yangi tarmoq ochasiz: git checkout b lenta smoke. Ikkinchisida promptni AI'ga berib, faylni to'rt savol bilan o'qiysiz: services va healthcheck bormi, DATABASE URL smoke qadamiga yetadimi, smoke build'dan keyinmi, secret kerak emasligi to'g'rimi."
    ],
    [
     "c",
-    "3–4-qadam: <code>node --version</code> qadami, push; <b><code>test (20)</code> dagi versiya</b> — isbot",
-    "Uchinchi qadamda setup node'dan keyin node version'ni chiqaradigan qadam qo'shib, push qilasiz. To'rtinchisida test yigirma job'ini ochib, chiqqan versiyani isbot maydoniga yozasiz."
+    "3–4-qadam: <b>push, PR, checks yashil, merge</b>, README'ga badge; isbot — PR manzili",
+    "Uchinchi qadamda push va GitHub'da pull request: checks'da test va smoke yashil bo'lgach merge. To'rtinchisida README'ning birinchi satriga badge qo'yib, main'ga push qilasiz: nishon passing. Isbot maydoniga merge qilingan PR manzilini nusxalang."
    ],
    [
     "d",
     "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
-    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, matrix haqiqatan ishlayotganini yashil belgidan emas, logdagi versiyadan bilasiz."
+    "Boshqacha chiqsa, «Boshqacha chiqdimi» tugmasini bosing. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin sizning lentangizda haqiqiy bot sinovi bor va u pull request orqali keldi."
+   ]
+  ],
+  "steps": [
+   {
+    "t": "Tarmoq",
+    "cmds": [
+     "git checkout -b lenta-smoke"
+    ],
+    "exp": "yangi tarmoq"
+   },
+   {
+    "t": "Prompt + to'rt savol",
+    "cmds": [
+     "yuqoridagi prompt — o'z AI'ingizga",
+     "services + pg_isready",
+     "env: DATABASE_URL smoke qadamida",
+     "smoke builddan keyin / needs: test",
+     "secret yo'q (konteyner)"
+    ],
+    "exp": "4 ✓"
+   },
+   {
+    "t": "PR va merge",
+    "cmds": [
+     "git push -u mine lenta-smoke",
+     "GitHub → New pull request (lenta-smoke → main)",
+     "checks ✓ → Merge"
+    ],
+    "exp": "PR merged · main run ✓ (2 job)"
+   },
+   {
+    "t": "Badge",
+    "cmds": [
+     "git pull mine main",
+     "README 1-satr: ![CI](https://github.com/<siz>/OrderBotNest/actions/workflows/ci.yml/badge.svg)",
+     "commit, push"
+    ],
+    "exp": "README'da «CI passing»"
+   }
+  ],
+  "proof": {
+   "label": "Merge qilingan PR manzili",
+   "placeholder": "masalan: https://github.com/siz/OrderBotNest/pull/1",
+   "re": "github\\.com\\/[^\\s\\/]+\\/[^\\s\\/]+\\/pull\\/\\d+",
+   "flags": "",
+   "wrong": "PR sahifasining manzilini qo'ying: …/pull/<raqam>."
+  },
+  "trouble": [
+   [
+    "smoke qizil: DATABASE_URL topilmadi",
+    "env: smoke qadamiga yetmagan (boshqa qadamda yoki job'da yo'q) yoki secret nomi xato (14–15-ekran)"
+   ],
+   [
+    "smoke qizil: ECONNREFUSED 127.0.0.1:5432",
+    "services yo'q yoki ports: 5432:5432 yo'q yoki healthcheck yo'q (baza tayyor bo'lmasdan boshlandi)"
+   ],
+   [
+    "smoke qizil: database \"shop\" does not exist",
+    "POSTGRES_DB: shop yo'q — smoke shop ga ulanib shop_smoke ochadi"
+   ],
+   [
+    "PR'da checks ko'rinmaydi",
+    "on: da pull_request yo'q — on: [push, pull_request]"
+   ],
+   [
+    "Badge «no status»",
+    "manzilda workflow fayl nomi xato — ci.yml aynan; yoki main'da hali run yo'q"
    ]
   ]
  },
- "20": {
-  "type": "MCRetry",
-  "kicker": "Tekshiruv 4",
-  "eyebrow": "Tekshiruv · 4 / 4",
-  "title": "O'quvchi darsidagi actions/cache@v4 + path: node_modules ko'chirildi. Nima bo'ladi?",
-  "q": "Namunalarni ko'rdingiz, tekshirib olaylik. To'rtinchi tekshiruv. O'quvchi darsidagi cache qadamini, faqat path bilan, o'z reposiga ko'chirdi va push qildi. Nima bo'ladi? Variantni tanlang.",
-  "ok": "To'g'ri. Actions cache uchun key majburiy. Qadam qizil, o'rnatish va build yurmaydi. To'g'risi: setup node'da cache npm, ikkinchi run'dan o'rnatish tezlashadi. Demak, o'quvchi darsidan ko'chirilgan faylni ham GitHub'da yurgizib, natijasini tekshirish kerak.",
-  "okShort": "<code>key</code>siz <code>actions/cache</code> — qizil; <code>setup-node</code> <code>cache: npm</code> yozing.",
-  "hint": "Izohdagi so'zni eslang: qaysi kirish yetishmadi?",
-  "correct": 3,
-  "opts": [
-   "Ikkinchi run'dan besh baravar tez",
-   "Yashil, lekin kesh saqlanmaydi",
-   "Fayl xatosi, run qadamsiz qizil",
-   "Cache qadami qizil: Input required and not supplied: key"
-  ],
-  "wrong": {
-   "0": "Run kesh qadamida to'xtaydi, tezlik o'lchanmaydi ham.",
-   "1": "Yashil bo'lmaydi: qadam majburiy kirishsiz ishlamaydi.",
-   "2": "Tahlilchi bu faylni xatosiz deydi: xato faqat qadam yurganda chiqadi."
-  }
- },
  "21": {
   "type": "Lesson",
-  "kicker": "5-bosqich · o'quvchi darsini o'tish",
+  "kicker": "6-bosqich · sinfga tayyorgarlik",
   "eyebrow": "m4c-03 · «GitHub Actions — yo'l xaritasini yozish»",
-  "title": "m4c-03: yo'l xaritasi, nuqta va amal — 23 ekran",
+  "title": "O'quvchi darsi: yo'l xaritasi, nuqta, amal, parallel lentalar, yaqin javon, seyf, tablo — siz bugun haqiqiy run'da ko'rgan narsalarning rasmli nomlari",
   "seg": [
    [
     "a",
-    "m4c-03 — 23 ekran: <b>yo'l xaritasi, nuqta, amal</b> va qo'shimchalar",
-    "Endi o'quvchi darsini ko'ramiz: m4c-03, unda yigirma uch ekran bor. Darsda fayl yo'l xaritasi, job nuqta, qadam esa amal deb ataladi. Dars besh blokdan iborat: kirish, YAML, on va runs on, qo'shimchalar va markaziy ekran."
+    "m4c-03 — 23 ekran: <b>yo'l xaritasi, nuqta, amal</b>; matrix, seyf, tablo — simulyatsiyada",
+    "Endi sinfga tayyorgarlik. O'quvchi darsi m4c-03, yigirma uch ekran. Yo'l xaritasi bu ci yml, nuqta bu job, amal bu step. Parallel lentalar matrix, seyf secrets, tablo badge. Hammasi ekranda chizilgan simulyatsiya: tugma bosiladi, lenta yuradi, hammasi yashil."
    ],
    [
     "b",
-    "O'quvchi darsida <code>@v4</code> — ishlaydi, lekin GitHub <b>har run'da ogohlantiradi</b>",
-    "Birinchi farq versiyada: o'quvchi darsida checkout va setup node'ning to'rtinchi versiyasi yozilgan. Sinadik: run yashil, lekin har safar Node yigirma eskirgan degan ogohlantirish chiqadi. Yettinchisini tavsiya qiling."
+    "Lug'at: <b>o'quvchi so'zi → atama</b>; sinfda ikkalasini birga ayting",
+    "Lug'atga qarang: o'quvchi so'zi chapda, atama o'ngda. Jurnal bu qadam logi, yaqin javon bu cache, seyf bu secrets. Sinfda so'zni atamasi bilan birga ayting: parallel lentalar, ya'ni matrix. O'quvchi keyin GitHub'ni ochganda so'zlar tanish bo'ladi."
    ],
    [
     "c",
-    "Qo'shimchalar blokida <b>uch tuzatish</b>: matrix'ni ulang, <code>cache: npm</code>, secret'ni chiqarmang",
-    "Qo'shimchalar blokida uchta tuzatish aytasiz: matrix'ni setup node'ga ulang, cache uchun setup node'dagi cache npm, secret'ni logga umuman chiqarmang. Dalillari o'n oltinchi, o'n yettinchi va o'n sakkizinchi ekranlarda."
+    "Simulyatsiya ↔ haqiqiy: <b>o'quvchi darsida hammasi yashil</b>, haqiqiy Actions'da 22 qizil, cancelled, <code>***</code>",
+    "Farqni bilib turing. O'quvchi darsida matrix uchala lentada yashil, seyf shunchaki yashirin, jurnalda sabab bitta satr. Haqiqiy Actions'da yigirma ikki qizil, yigirma to'rt cancelled, secret nomi xato bo'lsa indamaydi, sabab logning ichida. Siz buni bugun ko'rdingiz, o'quvchi ko'rmagan."
    ],
    [
     "d",
-    "Xulosa: o'quvchi yozgan har faylni push qildiring — natijani <b>Actions'da birga o'qing</b>",
-    "Xulosa: o'quvchi darsi simulyatsiya, Actions esa haqiqat. Har o'quvchi faylini push qilsin va run'ni siz bilan birga o'qisin. Simulyatsiya qayerda farq qilishini keyingi ekranda ko'ramiz."
+    "Xulosa: <b>simulyatsiya tushuncha beradi, haqiqiy run tajriba</b>; sinfda bittasini ekranda oching",
+    "Xulosa: simulyatsiya tushunchani beradi, haqiqiy run tajribani. Sinfda o'z reponingizdagi bitta run'ni proyektorda oching: job, qadam, log, cache hit. O'quvchi yo'l xaritasi va haqiqiy Actions bir narsa ekanini ko'rsin. Keyingi ekranda sinfdagi tuzoqlar."
    ]
   ]
  },
  "22": {
   "type": "Lesson",
-  "kicker": "5-bosqich · o'quvchi darsini o'tish",
-  "title": "O'quvchi darsidagi to'rt holat GitHub'da boshqacha chiqadi",
+  "kicker": "6-bosqich · sinfga tayyorgarlik",
+  "title": "O'quvchi darsidagi «Repongiz yo'qmi?» namunasi: lock fayl yo'q — npm ci qizil; \"test\": \"echo ok && exit 0\" — hech qachon qizil bo'lmaydi; uyga vazifadagi «testni buzing» shu yerda to'xtab qoladi",
   "seg": [
    [
     "a",
-    "Simulyatsiyada o'tgan begona qatorlar GitHub'da <b>run'ni qizil qiladi</b>",
-    "Xaritani ko'rdingiz, endi farqlarni ko'ramiz. Markaziy ekranda begona qatorlar bor: print test va git push. Simulyatsiya ularni o'tkazadi. GitHub'da ikkalasi qizil: birinchisini bash tushunmaydi, ikkinchisiga ruxsat yo'q."
+    "Namuna: <b><code>npm install</code>, <code>echo ok</code> testi, lock yo'q</b> — o'quvchi shu bilan birinchi lentasini yozadi",
+    "O'quvchi darsida reposi yo'q o'quvchi uchun namuna bor: package json'da test echo ok, lock fayl yo'q, lenta npm install va npm test. U ishlaydi: npm install o'rnatadi, test ok deydi, yashil. Lekin ikki tuzoq bor."
    ],
    [
     "b",
-    "<code>git push</code> — 403: lentadagi token repoga <b>faqat o'qish</b> uchun ruxsat oladi",
-    "Git push nega 403? Set up job logida yozilgan: token ruxsati contents read, ya'ni faqat o'qish. Lenta repoga o'zi yozolmaydi. O'quvchi so'rasa, shu satrni ko'rsating."
+    "Tuzoq 1: o'quvchi GitHub'ning tayyor andozasini bossa — <b><code>npm ci</code>, lock yo'q — qizil</b>",
+    "Birinchi tuzoq: o'quvchi Actions'da GitHub'ning tayyor Node andozasini bossa, u npm si ay yozadi. Lock fayl yo'q, npm si ay yiqiladi: can only install with an existing package lock json. CI/CD-1 o'n uchinchi ekrandagi xabar, boshqa sabab bilan. Yechim: npm install, yoki npm install bir marta lokalda, lock commit'ga."
    ],
    [
     "c",
-    "<b>Testsiz lenta — yashil</b>; «Repongiz yo'qmi?» namunasida test doim yashil",
-    "Yakuniy ekranda test qadami yo'q lenta qizil deyiladi. Haqiqatda run yashil: tekshirmaydigan lenta xato topmaydi. «Repongiz yo'qmi» namunasida test doim yashil, qizil uchun skriptni exit bir qiling."
+    "Tuzoq 2: <b><code>echo ok &amp;&amp; exit 0</code> hech qachon qizil bo'lmaydi</b> — uyga vazifadagi «testni buzing» imkonsiz",
+    "Ikkinchi tuzoq: test echo ok va exit nol, u hech qachon qizil bo'lmaydi. Uyga vazifada testni ataylab buzing deyiladi, namunada buzib bo'lmaydi. Yechim: o'quvchi o'z Jest loyihasida qilsin, yoki skriptni echo xato va exit bir qilib ko'rsating: qizil, keyin qaytaring."
    ],
    [
     "d",
-    "Xulosa: o'quvchiga ayting — yashil belgi <b>faqat yozilgan qadamlar</b> o'tganini bildiradi",
-    "Xulosa: o'quvchiga ayting, yashil belgi faqat yozilgan qadamlar o'tdi degani. Test qadami bo'lmasa, yashil hech narsani kafolatlamaydi. Shuning uchun lentada npm test albatta bo'lsin."
+    "Xulosa: namuna <b>boshlash uchun yaxshi, buzish uchun emas</b>; <code>@v4</code> ishlaydi, ogohlantirish — xato emas",
+    "Xulosa: namuna boshlash uchun yaxshi, buzish uchun emas. Va o'quvchi darsidagi checkout v to'rt hozir ham ishlaydi, logda Node yigirma deprecated ogohlantirishi chiqadi, bu xato emas. Oxirgi ekranda siz qo'shadigan narsalar va o'quvchi savollari."
    ]
   ]
  },
  "23": {
   "type": "Lesson",
-  "kicker": "5-bosqich · sinfda",
-  "title": "O'quvchi darsidagi so'zni Actions oynasida ko'rsating; sinfdagi olti holat",
+  "kicker": "6-bosqich · sinfga tayyorgarlik",
+  "title": "Darsga siz qo'shadigan to'rt narsa, uch vaziyat va o'quvchi savollariga tayyor javoblar",
   "seg": [
    [
     "a",
-    "O'quvchi darsi so'zlarini <b>Actions oynasidagi joy</b> bilan birga ko'rsating",
-    "Farqlarni bildingiz, endi sinfda ishlatiladigan so'zlarni ko'ramiz. O'quvchi yo'l xaritasi, nuqta va amal deydi. Siz har so'z bilan Actions oynasidagi joyni ko'rsating: nuqta, ya'ni job."
+    "Siz qo'shasiz: <b>haqiqiy run proyektorda, matrix'ning haqiqiy natijasi, secret nomi, namuna tuzoqlari</b>",
+    "Darsga siz qo'shadigan to'rt narsa. Jurnaldan sababni topish ekranida haqiqiy run'ni proyektorda oching. Parallel lentalarda ayting: haqiqatda bitta versiya qizil bo'lishi mumkin. Seyfda: nom xato bo'lsa indamaydi. Uyga vazifada namuna tuzoqlarini oldindan ayting."
    ],
    [
     "b",
-    "Uch holat <b>run'ning o'zidan</b> taniladi: run yo'q, sariq kutish, qadamsiz qizil",
-    "Endi sinfda chiqadigan holatlar. Uchtasi run'ning o'zidan taniladi. Run yo'q bo'lsa, papka nomi xato. Run sariq kutib tursa, runs on xato. Qadamsiz qizil bo'lsa, fayl xatosi."
+    "Uch vaziyat: <b>lock yo'q, cancelled, «buzdim, baribir yashil»</b> — xabar va yechim",
+    "Uch vaziyat. Npm si ay qizil, lock yo'q: npm install yoki lock commit'ga. Matrix'da cancelled: xato boshqa job'da, fail fast. Testni buzdim, baribir yashil: echo ok buzilmaydi, exit bir yoki Jest loyihasi. Har birining xabari kartada."
    ],
    [
     "c",
-    "Uch holat <b>kod va logdan</b>: 127, 254 va <code>npm ci</code> dagi kod 1",
-    "Qolgan uchtasi kod va logdan taniladi. Kod yuz yigirma yetti bo'lsa, jest yo'q, install'ni oldinroq qo'ying. Ikki yuz ellik to'rt bo'lsa, checkout yo'q. Kod bir va in sync bo'lsa, npm install yozing."
+    "O'quvchi so'rasa: <b>jurnal qayerda, matrix yashil shartmi, seyfni ko'rsam bo'ladimi, badge qizil</b>",
+    "O'quvchi savollariga tayyor javoblar pastda, bosib oching: jurnal qayerda, matrix'da hammasi yashil bo'lishi shartmi, seyfdagi kalitni ko'rsam bo'ladimi, badge qizil bo'lsa nima. Har biriga bir gap javob bor."
    ],
    [
     "d",
-    "Xulosa: javobni aytmang — o'quvchi bilan qizil qadam, kod va logni <b>birga o'qing</b>",
-    "Xulosa va usul bitta: javobni darhol aytmang. O'quvchi bilan birga o'qing: qaysi qadam qizil, qaysi kod va logdagi birinchi error satri nima deydi. Pastda o'quvchi savollariga tayyor javoblar bor."
+    "Xulosa: o'quvchi «lenta qizil» desa — <b>job → qadam → log</b>; shu bilan sinfga tayyor",
+    "Xulosa: o'quvchi lenta qizil desa, u bilan birga uch qadam: qaysi job, qaysi qadam, uning logi. Shu bilan sinfga tayyorsiz. Endi o'zingizni tekshiring."
    ]
   ]
  },
@@ -610,100 +789,100 @@ const MDT = {
   "title": "Sakkiz savol. Bitta urinish. Oltitasi — o'tdingiz",
   "final": [
    {
-    "q": "Actions'da har push nimani yaratadi?",
+    "q": "ci.ymlda jobs: ostida test: va smoke:. Run'da nechta mashina ochiladi?",
     "o": [
-     "bitta run",
-     "bitta repo",
-     "bitta tarmoq",
-     "bitta secret"
+     "Bitta — job'lar navbat bilan bir mashinada",
+     "Ikkita — har job alohida mashinada",
+     "Qadamlar soni qancha bo'lsa, shuncha",
+     "Uchta — GitHub Set up job uchun alohida mashina oladi"
     ],
-    "c": 0,
-    "e": "Run nomi — commit xabari.",
+    "c": 1,
+    "e": "Har job — o'z mashinasi; needs tartibini beradi.",
     "s": 2
    },
    {
-    "q": "Set up job qadami qayerdan keladi?",
+    "q": "Run actions/checkout@v4 logida git fetch … --depth=1. Bu nima?",
     "o": [
-     "ci.ymldagi birinchi qator",
-     "GitHub o'zi qo'shadi",
-     "checkout ichidan",
-     "npm installdan"
+     "Butun tarixni yuklaydi — tezlik uchun siqilgan",
+     "Faqat oxirgi commit yuklanadi — tarixsiz, tez",
+     "Faqat o'zgargan fayllarni yuklaydi",
+     "Bir daqiqa ichida tugamasa to'xtatadi"
     ],
     "c": 1,
-    "e": "Mashina va uses qadamlarini tayyorlaydi.",
+    "e": "Runner'ga butun tarix kerak emas.",
     "s": 3
    },
    {
-    "q": "Qizil run'da sababni qayerdan o'qiysiz?",
+    "q": "Run qizil, annotatsiya: Process completed with exit code 1. — npm testda. To'liq sabab qayerda?",
     "o": [
-     "izohdagi «exit code»",
-     "run nomidan",
-     "qizil qadam logidan",
-     "davomiyligidan"
+     "Annotatsiyaning o'zida — boshqa joyda yo'q",
+     "Set up job logida — xatolar u yerga yig'iladi",
+     "npm test qadamining logida — FAIL va test nomi",
+     "Commit sahifasida — GitHub xatoni u yerga yozadi"
     ],
     "c": 2,
-    "e": "Izohda faqat kod.",
-    "s": 7
+    "e": "Annotatsiya — manzil, sabab — log.",
+    "s": 4
    },
    {
-    "q": "npm test npm installdan oldin turibdi — logda?",
+    "q": "Ikkinchi run'da setup-node logida Cache hit for: node-cache-…. npm ci nima qiladi?",
     "o": [
-     "in sync",
-     "Could not read package.json",
-     "Received: 10002",
-     "jest: not found, kod 127"
-    ],
-    "c": 3,
-    "e": "Jest hali o'rnatilmagan.",
-    "s": 10
-   },
-   {
-    "q": "runs-on: my-laptop bilan run?",
-    "o": [
-     "sariq holda cheksiz kutadi",
-     "darhol qizil",
-     "yashil",
-     "paydo bo'lmaydi"
-    ],
-    "c": 0,
-    "e": "Bunday mashina yo'q, tahlilchi xato demaydi.",
-    "s": 14
-   },
-   {
-    "q": "Fayl .github/workflow/ci.yml da (s yo'q)?",
-    "o": [
-     "qadamsiz qizil run",
-     "run umuman yo'q",
-     "sariq kutadi",
-     "yashil"
+     "Paketlarni o'rnatmaydi — cache'dan ishlataveradi",
+     "Saqlangan yuklamalardan o'rnatadi — tezroq, natija bir xil",
+     "Lock faylni cache'dagi eski nusxa bilan almashtirib qo'yadi",
+     "Faqat o'zgargan paketlarni yuklaydi"
     ],
     "c": 1,
-    "e": "GitHub faqat workflowsdan qidiradi.",
+    "e": "Cache — tezlik, to'g'rilik emas.",
+    "s": 6
+   },
+   {
+    "q": "matrix [22, 24], fail-fast yozilmagan; 22 yiqildi. 24?",
+    "o": [
+     "Oxirigacha yuradi — natijasi alohida ko'rinadi",
+     "Bekor qilinadi — «cancelled», natijasi noma'lum",
+     "Qayta boshlanadi — 22 ning o'rniga",
+     "Oxirigacha yuradi, lekin run baribir yashil deb belgilanadi"
+    ],
+    "c": 1,
+    "e": "Odatiy fail-fast: true.",
+    "s": 8
+   },
+   {
+    "q": "Smoke'ga Postgres kerak. Lentada baza qayerdan?",
+    "o": [
+     "Runner'da Postgres o'rnatilgan — hech narsa yozilmaydi",
+     "Mentor serveridagi bazaga ulanadi — manzil Secrets'da",
+     "services: postgres — job yonida vaqtinchalik konteyner",
+     "Smoke bazasiz rejimga o'tadi — natija yashil"
+    ],
+    "c": 2,
+    "e": "Konteyner job bilan tug'iladi va o'ladi.",
+    "s": 13
+   },
+   {
+    "q": "yml'da ${{ secrets.DATABSE_URL }} (harf tushgan). Run?",
+    "o": [
+     "Fayl xatosi — run ochilmaydi",
+     "Annotatsiya: «secret not found» — qadam darhol qizil, log bo'sh",
+     "Qiymat bo'sh keladi — dastur o'zi yiqiladi, GitHub indamaydi",
+     "Run yashil — bo'sh qiymat bilan smoke o'tadi"
+    ],
+    "c": 2,
+    "e": "«DATABASE_URL topilmadi» — kod 2.",
     "s": 14
    },
    {
-    "q": "matrix: node: [18, 20, 22], node-version yo'q?",
+    "q": "PR ochildi, checks'da smoke qizil. Nima bo'ladi?",
     "o": [
-     "uch xil versiya",
-     "bitta job",
-     "uch job, uchalasida Node 22",
-     "fayl xatosi"
+     "Merge tugmasi butunlay yo'qoladi — GitHub qizil check bilan merge'ni taqiqlaydi",
+     "PR o'zi yopiladi — qayta ochish kerak",
+     "Qizil ko'rinadi — merge qilmaslik sizning qaroringiz (himoya sozlanmagan)",
+     "main'dagi lenta ham qizil bo'ladi"
     ],
     "c": 2,
-    "e": "Matrix setup-nodega ulanmagan.",
+    "e": "Checks ko'rsatadi; taqiq — branch protection bilan.",
     "s": 16
-   },
-   {
-    "q": "Secret ikki bo'lakka bo'lib chiqarildi — logda?",
-    "o": [
-     "***",
-     "bo'sh qator",
-     "run qizil",
-     "to'liq ochiq"
-    ],
-    "c": 3,
-    "e": "Faqat aynan qiymat yashiriladi.",
-    "s": 18
    }
   ]
  },

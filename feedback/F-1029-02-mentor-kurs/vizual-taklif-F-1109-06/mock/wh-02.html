@@ -1,0 +1,23 @@
+<div class="z">
+  <div class="z-card">
+    <p class="z-h">To'lov natijasini server qayerdan biladi — webhook yo'li (npm run pay -- 1)</p>
+    <div class="z-flow">
+      <div class="z-st"><b>To'lov xizmati</b><span class="z-mut">Payme, Click …</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st blue" style="flex:2 1 0"><b>POST /payments/webhook</b><span class="zm" style="font-size:12px">{"paymentId":"pay_0005d844","orderId":1,"status":"paid","amount":120000}</span><span class="zm" style="font-size:12px">X-Signature: 5c7333467…</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st ok"><b>Server</b><span class="z-tag g">200</span><span class="zm" style="font-size:12px">{"ok":true,"duplicate":false}</span></div>
+    </div>
+    <div class="z-flow">
+      <div class="z-st"><b>payments</b><span class="zm" style="font-size:12px">pay_0005d844 · #1 · paid · 120000</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st"><b>orders</b><span class="zm" style="font-size:12px">#1 · payment_status: paid</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st"><b>Panel</b><span class="zm" style="font-size:12px">order-changed {"orderId":1,"reason":"payment"}</span></div>
+    </div>
+  </div>
+  <div class="z-two">
+    <div class="z-card" style="border-color:var(--bad)"><b style="color:var(--bad)">Dalil emas</b><span class="z-mut">mijoz «to'ladim» desa yoki ilova shunday ko'rsatsa</span></div>
+    <div class="z-card" style="border-color:var(--ok)"><b style="color:var(--ok)">Dalil</b><span class="z-mut">faqat xizmatning imzoli xabari: tanada to'rt maydon, sarlavhada imzo</span></div>
+  </div>
+</div>

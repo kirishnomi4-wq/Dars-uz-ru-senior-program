@@ -1,0 +1,6 @@
+$ npm i -D supertest @types/supertest
+npm warn allow-scripts
+npm warn allow-scripts Run `npm approve-scripts --allow-scripts-pending` to review, or `npm approve-scripts <pkg>` to allow.
+[chiqish kodi: 0]
+supertest 7.3.1
+@types/supertest 7.2.1

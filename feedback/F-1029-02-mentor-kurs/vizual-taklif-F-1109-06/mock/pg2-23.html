@@ -1,0 +1,33 @@
+<div class="z">
+  <div class="z-card">
+    <p class="z-h">Bitta POST — ikki yo'l</p>
+    <div class="z-term"><span class="m">POST /api/cars</span>  { "model": "Hyundai Elantra", "daily_price": 450000, "year": 2022 }</div>
+    <div class="z-flow">
+      <div class="z-st bad"><b>app.use(express.json()) yo'q</b><span class="z-mut">tana o'qilmaydi</span></div>
+      <div class="z-ar bad">→</div>
+      <div class="z-st bad"><b>req.body</b><span class="zm">undefined</span></div>
+      <div class="z-ar bad">→</div>
+      <div class="z-st bad"><b>javob</b><span class="z-tag r">500</span><span class="zm" style="font-size:12px">Cannot destructure property 'model' of 'req.body' as it is undefined.</span></div>
+    </div>
+    <div class="z-flow">
+      <div class="z-st ok"><b>app.use(express.json()) bor</b><span class="z-mut">JSON tana obyektga aylanadi</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st ok"><b>req.body</b><span class="zm">{ model, daily_price, year }</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st ok"><b>javob</b><span class="z-tag g">201</span><span class="zm" style="font-size:12px">{"id":5,"model":"Hyundai Elantra",…}</span></div>
+    </div>
+  </div>
+  <div class="z-two">
+    <div class="z-card">
+      <p class="z-h">server.js — joyi</p>
+      <div class="z-term"><span class="c">const</span> app = express();
+<span class="hl">app.use(express.json());</span></div>
+      <span class="z-mut">app yaratilgandan keyin, endpoint'lardan oldin — har so'rovdan oldin ishlaydi</span>
+    </div>
+    <div class="z-card" style="border-color:var(--pg)">
+      <p class="z-h" style="color:var(--pg)">Belgisi</p>
+      <div><span class="z-tag g">GET 200</span> <span class="z-tag r">POST 500</span></div>
+      <span class="z-mut">Server «ishlayapti» deydi, GET ishlaydi — tanasi bor so'rov (POST, PUT) yiqiladi. Birinchi qaraladigan joy — shu satr.</span>
+    </div>
+  </div>
+</div>

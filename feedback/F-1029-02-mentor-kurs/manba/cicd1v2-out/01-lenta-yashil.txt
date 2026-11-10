@@ -1,0 +1,57 @@
+# Toza clone (node_modules yo\x27q) — CI mashinasidagi kabi
+$ ls
+nest-cli.json
+package.json
+package-lock.json
+README.md
+scripts
+src
+tsconfig.json
+
+$ npm ci --no-audit --no-fund
+npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+
+added 633 packages in 5s
+npm warn allow-scripts 1 package has install scripts not yet covered by allowScripts:
+npm warn allow-scripts   @parcel/watcher@2.6.0 (install: node scripts/build-from-source.js)
+npm warn allow-scripts
+npm warn allow-scripts Run `npm approve-scripts --allow-scripts-pending` to review, or `npm approve-scripts <pkg>` to allow.
+[chiqish kodi: 0 · 5.7 s]
+
+$ npx tsc --noEmit
+[chiqish kodi: 0 · 2.6 s]
+
+$ npm test
+
+> order-bot-nest@1.0.0 test
+> jest
+
+PASS src/api/telegram/phone.spec.ts
+PASS src/api/telegram/texts.spec.ts
+PASS src/api/telegram/keyboards.spec.ts
+PASS src/api/app.controller.spec.ts
+PASS src/api/order/order.service.spec.ts
+
+Test Suites: 5 passed, 5 total
+Tests:       25 passed, 25 total
+Snapshots:   0 total
+Time:        1.423 s
+Ran all test suites.
+[chiqish kodi: 0 · 2.2 s]
+
+$ npm run build
+
+> order-bot-nest@1.0.0 build
+> nest build
+
+[chiqish kodi: 0 · 3.5 s]
+
+$ ls dist | head
+api
+config
+core
+infrastructure
+main.d.ts
+main.js
+main.js.map
+tsconfig.tsbuildinfo

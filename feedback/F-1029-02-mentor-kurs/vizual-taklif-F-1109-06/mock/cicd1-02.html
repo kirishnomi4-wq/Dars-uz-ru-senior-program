@@ -1,0 +1,40 @@
+<style>
+.r2{position:relative;display:grid;gap:8px}
+.r2-band{display:grid;grid-template-columns:1fr 4.2fr 2.6fr 1.6fr;gap:8px;font:700 12px system-ui,sans-serif;text-align:center}
+.r2-band div{border-radius:8px;padding:5px 4px}
+.r2-band .b1{background:#DBEAFE;color:#1D4ED8}.r2-band .b2{background:#FFEDD5;color:#C2410C}.r2-band .b3{background:#F3F4F6;color:#6B7280}
+</style>
+<div class="z">
+  <div class="z-card r2">
+    <p class="z-h">git push dan serverga — CI va CD</p>
+    <div class="z-flow">
+      <div class="z-st"><b>git push</b><span class="z-mut">siz</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st blue" style="flex:4.2 1 0">
+        <b>CI · GitHub'dagi toza mashina</b>
+        <div style="display:flex;gap:6px;flex-wrap:wrap"><span class="z-tag g">npm ci 0</span><span class="z-tag g">tsc 0</span><span class="z-tag g">test 0</span><span class="z-tag g">build 0</span></div>
+        <span class="z-mut">hammaga bir xil javob: yashil yoki qizil</span>
+      </div>
+      <div class="z-ar">→</div>
+      <div class="z-st ac" style="flex:2.6 1 0"><b>CD · yukni chiqarish</b><span class="zm">node dist/main</span><span class="z-tag r">DATABASE_URL topilmadi</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st off" style="flex:1.6 1 0"><b>server</b><span class="z-mut">Secrets · keyingi dars</span></div>
+    </div>
+    <div class="r2-band"><div></div><div class="b1">bugun — to'liq</div><div class="b2">bugun — chegaragacha</div><div class="b3">keyingi dars</div></div>
+  </div>
+  <div class="z-two">
+    <div class="z-card">
+      <p class="z-h">Hozir — «menda ishlaydi»</p>
+      <div class="z-flow">
+        <div class="z-st ok"><b>siz</b><span class="zm">npm test</span><span class="z-tag g">yashil</span></div>
+        <div class="z-ar">→</div>
+        <div class="z-st bad"><b>hamkor</b><span class="zm">npm test</span><span class="z-tag r">qizil</span></div>
+      </div>
+      <span class="z-mut">kod bir xil, mashina boshqa: node_modules, Node, .env</span>
+    </div>
+    <div class="z-card">
+      <p class="z-h">CD — ikki xil</p>
+      <div style="display:grid;gap:6px;font-size:14px"><div><b>Delivery</b> — paket tayyor, odam tugmani bosadi</div><div><b>Deployment</b> — lenta o'zi chiqaradi</div><span class="z-mut">ikkalasi ham CI'dan keyin: qizil yuk chiqmaydi</span></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+## ai1 buzilmagan: Tests:       36 passed, 36 total
+10:  CANCELLED: '🆕 Yangi',
+## ai1 CANCELLED → «🆕 Yangi»: Tests:       36 passed, 36 total
+
+## ai2 buzilmagan: Tests:       33 passed, 33 total
+10:  CANCELLED: '🆕 Yangi',
+## ai2 CANCELLED → «🆕 Yangi»: Tests:       1 failed, 32 passed, 33 total
+  ● STATUS_UZ › maps statuses to their Uzbek labels
+

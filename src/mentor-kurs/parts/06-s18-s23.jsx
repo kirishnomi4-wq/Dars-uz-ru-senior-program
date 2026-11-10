@@ -275,7 +275,7 @@ function Screen23(p) {
   // To'g'ri javobdan keyin — tuzatilgan fayl Explorer bilan (M2: har kod misolida tuzatish ko'rinadi)
   const after = <>
     <div className="mk-tag" style={{ color: T.green, marginBottom: 8 }}>{t('Tuzatildi — yangi satr yashil', 'Исправлено — новая строка зелёная')}</div>
-    <Ide root="shop-api" files={['src/orders/orders.module.ts', 'src/orders/orders.controller.ts', 'src/orders/orders.service.ts', 'src/orders/payment.service.ts']} active="src/orders/orders.module.ts">
+    <div style={{ display: 'grid', gap: 8 }}>
       <CodePanel file="src/orders/orders.module.ts" numbers={false} lines={[
         { h: `<span class="d">@Module</span>({` },
         { h: `  controllers: [<span class="c">OrdersController</span>],` },
@@ -285,7 +285,7 @@ function Screen23(p) {
       <CodePanel file={t('terminal — tuzatildi', 'terminal — исправлено')} numbers={false} wrap style={{ background: '#111827' }} lines={[
         { h: `[Nest] LOG [InstanceLoader] <span class="ok">OrdersModule dependencies initialized</span>` },
         { h: `[Nest] LOG [NestApplication] <span class="ok">Nest application successfully started</span>` }]} />
-    </Ide>
+    </div>
   </>;
   return <MCRetry {...p} kicker={t('Tekshiruv 5', 'Проверка 5')} eyebrow={t("Tekshiruv · 5 / 5 — xatoni o'qish", 'Проверка · 5 / 5 — чтение ошибки')} above={above} after={after}
     title={t("Bu o'quvchingizning loyihasi. Qaysi faylni ochasiz va nimani tuzatasiz?", 'Это проект вашего ученика. Какой файл вы откроете и что исправите?')}

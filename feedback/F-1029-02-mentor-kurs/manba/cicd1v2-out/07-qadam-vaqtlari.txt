@@ -1,0 +1,10 @@
+$ ls
+$ npm ci --no-audit --no-fund
+[chiqish kodi: 0 · 5.7 s]
+$ npx tsc --noEmit
+[chiqish kodi: 0 · 2.6 s]
+$ npm test
+[chiqish kodi: 0 · 2.2 s]
+$ npm run build
+[chiqish kodi: 0 · 3.5 s]
+$ ls dist | head

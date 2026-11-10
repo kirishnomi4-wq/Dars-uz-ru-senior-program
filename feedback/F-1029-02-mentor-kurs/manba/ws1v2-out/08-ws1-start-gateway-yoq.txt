@@ -1,0 +1,9 @@
+# ws1-start (= cicd2-done): serverda gateway yo'q — klient (ws1-done dagi live-client.js)
+$ npm run live
+20:21:02 ulanmoqda… http://localhost:3100
+20:21:02 connect_error: xhr poll error · active=true → ulanmoqda
+20:21:03 connect_error: xhr poll error · active=true → ulanmoqda
+20:21:05 connect_error: xhr poll error · active=true → ulanmoqda
+
+$ curl -s http://localhost:3100/admin
+{"message":"Cannot GET /admin","error":"Not Found","statusCode":404}

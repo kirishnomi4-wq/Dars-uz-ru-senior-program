@@ -1,0 +1,22 @@
+# wh-done: ikkinchi buyurtma (#2) — to'lov RAD etildi (karta rad etdi): xabar keladi va yoziladi
+$ npm run pay -- 2 rad
+→ POST /payments/webhook {"paymentId":"pay_9cef5e2f","orderId":2,"status":"failed","amount":120000}
+  X-Signature: 58869dd5151fbf84…
+← 200 {"ok":true,"duplicate":false}
+
+## Server logi
+LOG [Payment] pay_9cef5e2f · #2 · failed · 120000
+
+$ psql: SELECT payment_id, order_id, status FROM payments
+  payment_id  | order_id | status 
+--------------+----------+--------
+ pay_0005d844 |        1 | paid
+ pay_b96e99d4 |        1 | paid
+ pay_9cef5e2f |        2 | failed
+(3 rows)
+$ psql: SELECT id, payment_status FROM orders ORDER BY id
+ id | payment_status 
+----+----------------
+  1 | paid
+  2 | failed
+(2 rows)

@@ -1,0 +1,282 @@
+# Test qizil — lenta npm test qadamida to'xtaydi, build yurmaydi
+# run 42608643059 · branch sinov-test-qizil · commit fccde96 · natija: failure · yozildi 2026-11-09 16:23:43 +0500
+# https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/42608643059
+
+$ cat .github/workflows/ci.yml
+name: CI
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx tsc --noEmit
+      - run: npm test
+      - run: npm run build
+
+## gh run view
+
+X sinov-test-qizil CI · 42608643059
+Triggered via push less than a minute ago
+
+JOBS
+X test in 17s (ID 129130957971)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/setup-node@v4
+  ✓ Run npm ci
+  ✓ Run npx tsc --noEmit
+  X Run npm test
+  - Run npm run build
+  - Post Run actions/setup-node@v4
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+
+ANNOTATIONS
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+test: .github#2
+
+X Process completed with exit code 1.
+test: .github#34
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+test: .github#1
+
+
+To see what failed, try: gh run view 42608643059 --log-failed
+View this run on GitHub: https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/42608643059
+
+## job → step (API: actions/runs/42608643059/jobs)
+JOB test · failure · 2026-11-09T11:23:21Z → 2026-11-09T11:23:38Z · runner: GitHub Actions 1000000063 · ubuntu-latest
+  1. Set up job · success · 2026-11-09T11:23:22Z → 2026-11-09T11:23:22Z
+  2. Run actions/checkout@v4 · success · 2026-11-09T11:23:22Z → 2026-11-09T11:23:23Z
+  3. Run actions/setup-node@v4 · success · 2026-11-09T11:23:23Z → 2026-11-09T11:23:24Z
+  4. Run npm ci · success · 2026-11-09T11:23:24Z → 2026-11-09T11:23:32Z
+  5. Run npx tsc --noEmit · success · 2026-11-09T11:23:32Z → 2026-11-09T11:23:34Z
+  6. Run npm test · failure · 2026-11-09T11:23:34Z → 2026-11-09T11:23:36Z
+  7. Run npm run build · skipped · 2026-11-09T11:23:36Z → 2026-11-09T11:23:36Z
+  13. Post Run actions/setup-node@v4 · skipped · 2026-11-09T11:23:36Z → 2026-11-09T11:23:36Z
+  14. Post Run actions/checkout@v4 · success · 2026-11-09T11:23:36Z → 2026-11-09T11:23:36Z
+  15. Complete job · success · 2026-11-09T11:23:36Z → 2026-11-09T11:23:36Z
+
+## annotatsiyalar (check-runs)
+  [warning] : Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+  [failure] : Process completed with exit code 1.
+  [notice] : "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+
+## to'liq log (gh run view --log)
+test	Set up job	﻿2026-11-09T11:23:22.0333525Z Current runner version: '2.338.2'
+test	Set up job	2026-11-09T11:23:22.0361163Z ##[group]Runner Image Provisioner
+test	Set up job	2026-11-09T11:23:22.0361999Z Hosted Compute Agent
+test	Set up job	2026-11-09T11:23:22.0362646Z Version: 20261028.624
+test	Set up job	2026-11-09T11:23:22.0363206Z Commit: 54898b74c23fde5556c9b3c3a2290865feef0dfe
+test	Set up job	2026-11-09T11:23:22.0363843Z Build Date: 2026-10-28T21:51:42Z
+test	Set up job	2026-11-09T11:23:22.0364487Z Worker ID: {788364b5-e781-41cd-8c46-a74914b93f7c}
+test	Set up job	2026-11-09T11:23:22.0365114Z Region: eastus3
+test	Set up job	2026-11-09T11:23:22.0365644Z Cloud: Azure
+test	Set up job	2026-11-09T11:23:22.0366229Z ##[endgroup]
+test	Set up job	2026-11-09T11:23:22.0367644Z ##[group]Operating System
+test	Set up job	2026-11-09T11:23:22.0368249Z Ubuntu
+test	Set up job	2026-11-09T11:23:22.0369123Z 26.04.1
+test	Set up job	2026-11-09T11:23:22.0369667Z LTS
+test	Set up job	2026-11-09T11:23:22.0370149Z ##[endgroup]
+test	Set up job	2026-11-09T11:23:22.0370645Z ##[group]Runner Image
+test	Set up job	2026-11-09T11:23:22.0371192Z Image: ubuntu-26.04
+test	Set up job	2026-11-09T11:23:22.0371709Z Version: 20261101.186.1
+test	Set up job	2026-11-09T11:23:22.0372655Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261101.186/images/ubuntu/Ubuntu2604-Readme.md
+test	Set up job	2026-11-09T11:23:22.0374454Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261101.186
+test	Set up job	2026-11-09T11:23:22.0375371Z ##[endgroup]
+test	Set up job	2026-11-09T11:23:22.0376517Z ##[group]GITHUB_TOKEN Permissions
+test	Set up job	2026-11-09T11:23:22.0379274Z Contents: read
+test	Set up job	2026-11-09T11:23:22.0379850Z Metadata: read
+test	Set up job	2026-11-09T11:23:22.0380358Z Packages: read
+test	Set up job	2026-11-09T11:23:22.0380902Z ##[endgroup]
+test	Set up job	2026-11-09T11:23:22.0383172Z Secret source: Actions
+test	Set up job	2026-11-09T11:23:22.0384108Z Cache mode: write
+test	Set up job	2026-11-09T11:23:22.0385110Z Prepare workflow directory
+test	Set up job	2026-11-09T11:23:22.0854617Z Prepare all required actions
+test	Set up job	2026-11-09T11:23:22.0931198Z Getting action download info
+test	Set up job	2026-11-09T11:23:22.3076096Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+test	Set up job	2026-11-09T11:23:22.4310798Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+test	Set up job	2026-11-09T11:23:22.5757681Z Complete job name: test
+test	Run actions/checkout@v4	﻿2026-11-09T11:23:22.6577436Z ##[group]Run actions/checkout@v4
+test	Run actions/checkout@v4	2026-11-09T11:23:22.6578825Z with:
+test	Run actions/checkout@v4	2026-11-09T11:23:22.6579439Z   repository: Azizbekcrypto/OrderBotNest
+test	Run actions/checkout@v4	2026-11-09T11:23:22.6583086Z   token: ***
+test	Run actions/checkout@v4	2026-11-09T11:23:22.6583558Z   ssh-strict: true
+test	Run actions/checkout@v4	2026-11-09T11:23:22.6584017Z   ssh-user: git
+test	Run actions/checkout@v4	2026-11-09T11:23:22.6584516Z   persist-credentials: true
+test	Run actions/checkout@v4	2026-11-09T11:23:22.6585021Z   clean: true
+test	Run actions/checkout@v4	2026-11-09T11:23:22.6585549Z   sparse-checkout-cone-mode: true
+test	Run actions/checkout@v4	2026-11-09T11:23:22.6586101Z   fetch-depth: 1
+test	Run actions/checkout@v4	2026-11-09T11:23:22.6586560Z   fetch-tags: false
+test	Run actions/checkout@v4	2026-11-09T11:23:22.6587057Z   show-progress: true
+test	Run actions/checkout@v4	2026-11-09T11:23:22.6587533Z   lfs: false
+test	Run actions/checkout@v4	2026-11-09T11:23:22.6587983Z   submodules: false
+test	Run actions/checkout@v4	2026-11-09T11:23:22.6588735Z   set-safe-directory: true
+test	Run actions/checkout@v4	2026-11-09T11:23:22.6589272Z   allow-unsafe-pr-checkout: false
+test	Run actions/checkout@v4	2026-11-09T11:23:22.6590254Z ##[endgroup]
+test	Run actions/checkout@v4	2026-11-09T11:23:22.9582206Z Syncing repository: Azizbekcrypto/OrderBotNest
+test	Run actions/checkout@v4	2026-11-09T11:23:22.9586256Z ##[group]Getting Git version info
+test	Run actions/checkout@v4	2026-11-09T11:23:22.9588104Z Working directory is '/home/runner/work/OrderBotNest/OrderBotNest'
+test	Run actions/checkout@v4	2026-11-09T11:23:22.9591062Z [command]/usr/bin/git version
+test	Run actions/checkout@v4	2026-11-09T11:23:22.9592273Z git version 2.56.0
+test	Run actions/checkout@v4	2026-11-09T11:23:22.9602701Z ##[endgroup]
+test	Run actions/checkout@v4	2026-11-09T11:23:22.9619741Z Temporarily overriding HOME='/home/runner/work/_temp/eca73341-8d7e-4e99-8c36-f87f62e3ec82' before making global git config changes
+test	Run actions/checkout@v4	2026-11-09T11:23:22.9622737Z Adding repository directory to the temporary git global config as a safe directory
+test	Run actions/checkout@v4	2026-11-09T11:23:22.9627515Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/OrderBotNest/OrderBotNest
+test	Run actions/checkout@v4	2026-11-09T11:23:22.9706258Z Deleting the contents of '/home/runner/work/OrderBotNest/OrderBotNest'
+test	Run actions/checkout@v4	2026-11-09T11:23:22.9712726Z ##[group]Initializing the repository
+test	Run actions/checkout@v4	2026-11-09T11:23:22.9719134Z [command]/usr/bin/git init /home/runner/work/OrderBotNest/OrderBotNest
+test	Run actions/checkout@v4	2026-11-09T11:23:22.9821006Z hint: Using 'master' as the name for the initial branch. This default branch name
+test	Run actions/checkout@v4	2026-11-09T11:23:22.9822511Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+test	Run actions/checkout@v4	2026-11-09T11:23:22.9824103Z hint: to use in all of your new repositories, which will suppress this warning,
+test	Run actions/checkout@v4	2026-11-09T11:23:22.9825164Z hint: call:
+test	Run actions/checkout@v4	2026-11-09T11:23:22.9825805Z hint:
+test	Run actions/checkout@v4	2026-11-09T11:23:22.9826593Z hint: 	git config --global init.defaultBranch <name>
+test	Run actions/checkout@v4	2026-11-09T11:23:22.9827456Z hint:
+test	Run actions/checkout@v4	2026-11-09T11:23:22.9828500Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+test	Run actions/checkout@v4	2026-11-09T11:23:22.9829720Z hint: 'development'. The just-created branch can be renamed via this command:
+test	Run actions/checkout@v4	2026-11-09T11:23:22.9830688Z hint:
+test	Run actions/checkout@v4	2026-11-09T11:23:22.9831325Z hint: 	git branch -m <name>
+test	Run actions/checkout@v4	2026-11-09T11:23:22.9832017Z hint:
+test	Run actions/checkout@v4	2026-11-09T11:23:22.9832867Z hint: Disable this message with "git config set advice.defaultBranchName false"
+test	Run actions/checkout@v4	2026-11-09T11:23:22.9847307Z Initialized empty Git repository in /home/runner/work/OrderBotNest/OrderBotNest/.git/
+test	Run actions/checkout@v4	2026-11-09T11:23:22.9857551Z [command]/usr/bin/git remote add origin https://github.com/Azizbekcrypto/OrderBotNest
+test	Run actions/checkout@v4	2026-11-09T11:23:22.9911604Z ##[endgroup]
+test	Run actions/checkout@v4	2026-11-09T11:23:22.9930916Z ##[group]Disabling automatic garbage collection
+test	Run actions/checkout@v4	2026-11-09T11:23:22.9941569Z [command]/usr/bin/git config --local gc.auto 0
+test	Run actions/checkout@v4	2026-11-09T11:23:22.9979799Z ##[endgroup]
+test	Run actions/checkout@v4	2026-11-09T11:23:22.9981900Z ##[group]Setting up auth
+test	Run actions/checkout@v4	2026-11-09T11:23:22.9989253Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+test	Run actions/checkout@v4	2026-11-09T11:23:23.0040324Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+test	Run actions/checkout@v4	2026-11-09T11:23:23.0553132Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+test	Run actions/checkout@v4	2026-11-09T11:23:23.0590204Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+test	Run actions/checkout@v4	2026-11-09T11:23:23.0842135Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+test	Run actions/checkout@v4	2026-11-09T11:23:23.0876070Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+test	Run actions/checkout@v4	2026-11-09T11:23:23.1118401Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+test	Run actions/checkout@v4	2026-11-09T11:23:23.1161073Z ##[endgroup]
+test	Run actions/checkout@v4	2026-11-09T11:23:23.1163157Z ##[group]Fetching the repository
+test	Run actions/checkout@v4	2026-11-09T11:23:23.1172789Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +fccde96bd3d76ff533b5d26b057fd49736c3797c:refs/remotes/origin/sinov-test-qizil
+test	Run actions/checkout@v4	2026-11-09T11:23:23.4337464Z From https://github.com/Azizbekcrypto/OrderBotNest
+test	Run actions/checkout@v4	2026-11-09T11:23:23.4339794Z  * [new ref]         fccde96bd3d76ff533b5d26b057fd49736c3797c -> origin/sinov-test-qizil
+test	Run actions/checkout@v4	2026-11-09T11:23:23.4343840Z ##[endgroup]
+test	Run actions/checkout@v4	2026-11-09T11:23:23.4345442Z ##[group]Determining the checkout info
+test	Run actions/checkout@v4	2026-11-09T11:23:23.4346756Z ##[endgroup]
+test	Run actions/checkout@v4	2026-11-09T11:23:23.4349711Z [command]/usr/bin/git sparse-checkout disable
+test	Run actions/checkout@v4	2026-11-09T11:23:23.4399193Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+test	Run actions/checkout@v4	2026-11-09T11:23:23.4426996Z ##[group]Checking out the ref
+test	Run actions/checkout@v4	2026-11-09T11:23:23.4432491Z [command]/usr/bin/git checkout --progress --force -B sinov-test-qizil refs/remotes/origin/sinov-test-qizil
+test	Run actions/checkout@v4	2026-11-09T11:23:23.4525471Z Switched to a new branch 'sinov-test-qizil'
+test	Run actions/checkout@v4	2026-11-09T11:23:23.4530513Z branch 'sinov-test-qizil' set up to track 'origin/sinov-test-qizil'.
+test	Run actions/checkout@v4	2026-11-09T11:23:23.4537724Z ##[endgroup]
+test	Run actions/checkout@v4	2026-11-09T11:23:23.4579747Z [command]/usr/bin/git log -1 --format=%H
+test	Run actions/checkout@v4	2026-11-09T11:23:23.4603508Z fccde96bd3d76ff533b5d26b057fd49736c3797c
+test	Run actions/setup-node@v4	﻿2026-11-09T11:23:23.4950361Z ##[group]Run actions/setup-node@v4
+test	Run actions/setup-node@v4	2026-11-09T11:23:23.4951204Z with:
+test	Run actions/setup-node@v4	2026-11-09T11:23:23.4951705Z   node-version: 24
+test	Run actions/setup-node@v4	2026-11-09T11:23:23.4952268Z   cache: npm
+test	Run actions/setup-node@v4	2026-11-09T11:23:23.4952804Z   always-auth: false
+test	Run actions/setup-node@v4	2026-11-09T11:23:23.4953569Z   check-latest: false
+test	Run actions/setup-node@v4	2026-11-09T11:23:23.4961756Z   token: ***
+test	Run actions/setup-node@v4	2026-11-09T11:23:23.4962290Z ##[endgroup]
+test	Run actions/setup-node@v4	2026-11-09T11:23:23.6451634Z Found in cache @ /opt/hostedtoolcache/node/24.22.2/x64
+test	Run actions/setup-node@v4	2026-11-09T11:23:23.6456703Z (node:2409) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+test	Run actions/setup-node@v4	2026-11-09T11:23:23.6461914Z (Use `node --trace-deprecation ...` to show where the warning was created)
+test	Run actions/setup-node@v4	2026-11-09T11:23:23.6464789Z ##[group]Environment details
+test	Run actions/setup-node@v4	2026-11-09T11:23:24.0912010Z node: v24.22.2
+test	Run actions/setup-node@v4	2026-11-09T11:23:24.0913543Z npm: 11.19.1
+test	Run actions/setup-node@v4	2026-11-09T11:23:24.0914320Z yarn: 1.22.22
+test	Run actions/setup-node@v4	2026-11-09T11:23:24.0915971Z ##[endgroup]
+test	Run actions/setup-node@v4	2026-11-09T11:23:24.0931060Z [command]/opt/hostedtoolcache/node/24.22.2/x64/bin/npm config get cache
+test	Run actions/setup-node@v4	2026-11-09T11:23:24.2034507Z /home/runner/.npm
+test	Run actions/setup-node@v4	2026-11-09T11:23:24.3558642Z Cache hit for: node-cache-Linux-x64-npm-ccb2b15dd267c884b0610f9549734f2a266074ea2630c8be582139d289f32d79
+test	Run actions/setup-node@v4	2026-11-09T11:23:24.3675771Z (node:2409) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+test	Run actions/setup-node@v4	2026-11-09T11:23:24.8165274Z Received 36396297 of 36396297 (100.0%), 89.2 MBs/sec
+test	Run actions/setup-node@v4	2026-11-09T11:23:24.8168085Z Cache Size: ~35 MB (36396297 B)
+test	Run actions/setup-node@v4	2026-11-09T11:23:24.8188534Z [command]/usr/bin/tar -xf /home/runner/work/_temp/a3a0c2e4-0a8c-4a4e-97f5-d8d20a1578da/cache.tzst -P -C /home/runner/work/OrderBotNest/OrderBotNest --use-compress-program unzstd
+test	Run actions/setup-node@v4	2026-11-09T11:23:24.9254020Z Cache restored successfully
+test	Run actions/setup-node@v4	2026-11-09T11:23:24.9270405Z Cache restored from key: node-cache-Linux-x64-npm-ccb2b15dd267c884b0610f9549734f2a266074ea2630c8be582139d289f32d79
+test	Run npm ci	﻿2026-11-09T11:23:24.9463882Z ##[group]Run npm ci
+test	Run npm ci	2026-11-09T11:23:24.9464865Z ^[[36;1mnpm ci^[[0m
+test	Run npm ci	2026-11-09T11:23:24.9512793Z shell: /usr/bin/bash -e {0}
+test	Run npm ci	2026-11-09T11:23:24.9513778Z ##[endgroup]
+test	Run npm ci	2026-11-09T11:23:28.4589086Z npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+test	Run npm ci	2026-11-09T11:23:32.3386222Z 
+test	Run npm ci	2026-11-09T11:23:32.3387094Z added 633 packages, and audited 634 packages in 7s
+test	Run npm ci	2026-11-09T11:23:32.3387705Z 
+test	Run npm ci	2026-11-09T11:23:32.3388057Z 133 packages are looking for funding
+test	Run npm ci	2026-11-09T11:23:32.3388629Z   run `npm fund` for details
+test	Run npm ci	2026-11-09T11:23:32.3723342Z 
+test	Run npm ci	2026-11-09T11:23:32.3724504Z 24 vulnerabilities (5 low, 17 moderate, 2 high)
+test	Run npm ci	2026-11-09T11:23:32.3724929Z 
+test	Run npm ci	2026-11-09T11:23:32.3725274Z To address issues that do not require attention, run:
+test	Run npm ci	2026-11-09T11:23:32.3725850Z   npm audit fix
+test	Run npm ci	2026-11-09T11:23:32.3726153Z 
+test	Run npm ci	2026-11-09T11:23:32.3726517Z To address all issues (including breaking changes), run:
+test	Run npm ci	2026-11-09T11:23:32.3727045Z   npm audit fix --force
+test	Run npm ci	2026-11-09T11:23:32.3727283Z 
+test	Run npm ci	2026-11-09T11:23:32.3727480Z Run `npm audit` for details.
+test	Run npm ci	2026-11-09T11:23:32.3740109Z npm warn install-scripts 1 package has install scripts not yet covered by allowScripts:
+test	Run npm ci	2026-11-09T11:23:32.3741906Z npm warn install-scripts   @parcel/watcher@2.6.0 (install: node scripts/build-from-source.js)
+test	Run npm ci	2026-11-09T11:23:32.3742998Z npm warn install-scripts
+test	Run npm ci	2026-11-09T11:23:32.3744328Z npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+test	Run npx tsc --noEmit	﻿2026-11-09T11:23:32.4220074Z ##[group]Run npx tsc --noEmit
+test	Run npx tsc --noEmit	2026-11-09T11:23:32.4220551Z ^[[36;1mnpx tsc --noEmit^[[0m
+test	Run npx tsc --noEmit	2026-11-09T11:23:32.4255250Z shell: /usr/bin/bash -e {0}
+test	Run npx tsc --noEmit	2026-11-09T11:23:32.4255551Z ##[endgroup]
+test	Run npm test	﻿2026-11-09T11:23:34.7712748Z ##[group]Run npm test
+test	Run npm test	2026-11-09T11:23:34.7713013Z ^[[36;1mnpm test^[[0m
+test	Run npm test	2026-11-09T11:23:34.7743072Z shell: /usr/bin/bash -e {0}
+test	Run npm test	2026-11-09T11:23:34.7743360Z ##[endgroup]
+test	Run npm test	2026-11-09T11:23:34.8757027Z 
+test	Run npm test	2026-11-09T11:23:34.8757800Z > order-bot-nest@1.0.0 test
+test	Run npm test	2026-11-09T11:23:34.8758464Z > jest
+test	Run npm test	2026-11-09T11:23:34.8758625Z 
+test	Run npm test	2026-11-09T11:23:36.1434532Z PASS src/api/telegram/keyboards.spec.ts
+test	Run npm test	2026-11-09T11:23:36.1823054Z PASS src/api/telegram/phone.spec.ts
+test	Run npm test	2026-11-09T11:23:36.2323658Z PASS src/api/telegram/texts.spec.ts
+test	Run npm test	2026-11-09T11:23:36.3455889Z PASS src/api/app.controller.spec.ts
+test	Run npm test	2026-11-09T11:23:36.5201893Z FAIL src/api/order/order.service.spec.ts
+test	Run npm test	2026-11-09T11:23:36.5203260Z   ● OrderService.place › chegara: omborda aynan 2 ta — 2 tasini olsa bo'ladi
+test	Run npm test	2026-11-09T11:23:36.5229360Z 
+test	Run npm test	2026-11-09T11:23:36.5260040Z     Kolonka: omborda faqat 2 ta qoldi
+test	Run npm test	2026-11-09T11:23:36.5289511Z 
+test	Run npm test	2026-11-09T11:23:36.5291870Z     ^[[0m ^[[90m 35 |^[[39m         ^[[36mif^[[39m (^[[33m!^[[39mp) ^[[36mthrow^[[39m ^[[36mnew^[[39m ^[[33mError^[[39m(^[[32m`Mahsulot topilmadi: ${c.product.name}`^[[39m)^[[33m;^[[39m
+test	Run npm test	2026-11-09T11:23:36.5294200Z      ^[[90m 36 |^[[39m         ^[[36mif^[[39m (p^[[33m.^[[39mstock ^[[33m<=^[[39m c^[[33m.^[[39mqty) {
+test	Run npm test	2026-11-09T11:23:36.5296174Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 37 |^[[39m           ^[[36mthrow^[[39m ^[[36mnew^[[39m ^[[33mError^[[39m(^[[32m`${p.name}: omborda faqat ${p.stock} ta qoldi`^[[39m)^[[33m;^[[39m
+test	Run npm test	2026-11-09T11:23:36.5297999Z      ^[[90m    |^[[39m                 ^[[31m^[[1m^^[[22m^[[39m
+test	Run npm test	2026-11-09T11:23:36.5299102Z      ^[[90m 38 |^[[39m         }
+test	Run npm test	2026-11-09T11:23:36.5300722Z      ^[[90m 39 |^[[39m         ^[[90m// 2) Ayiramiz. Bazadagi CHECK (stock >= 0) — oxirgi qo'riqchi: kod xato qilsa ham manfiy bo'lmaydi.^[[39m
+test	Run npm test	2026-11-09T11:23:36.5302791Z      ^[[90m 40 |^[[39m         ^[[90m//    Diqqat: tranzaksiya ichida xato chiqsa, keyingi so'rovlar ham rad etiladi^[[39m^[[0m
+test	Run npm test	2026-11-09T11:23:36.5303740Z 
+test	Run npm test	2026-11-09T11:23:36.5304265Z       at api/order/order.service.ts:37:17
+test	Run npm test	2026-11-09T11:23:36.5305323Z       at Object.<anonymous> (api/order/order.service.spec.ts:76:19)
+test	Run npm test	2026-11-09T11:23:36.5306090Z 
+test	Run npm test	2026-11-09T11:23:36.5460360Z Test Suites: 1 failed, 4 passed, 5 total
+test	Run npm test	2026-11-09T11:23:36.5461248Z Tests:       1 failed, 24 passed, 25 total
+test	Run npm test	2026-11-09T11:23:36.5461581Z Snapshots:   0 total
+test	Run npm test	2026-11-09T11:23:36.5461858Z Time:        1.421 s
+test	Run npm test	2026-11-09T11:23:36.5462089Z Ran all test suites.
+test	Run npm test	2026-11-09T11:23:36.6131886Z ##[error]Process completed with exit code 1.
+test	Post Run actions/checkout@v4	﻿2026-11-09T11:23:36.6281281Z Post job cleanup.
+test	Post Run actions/checkout@v4	2026-11-09T11:23:36.7159359Z [command]/usr/bin/git version
+test	Post Run actions/checkout@v4	2026-11-09T11:23:36.7202879Z git version 2.56.0
+test	Post Run actions/checkout@v4	2026-11-09T11:23:36.7242106Z Temporarily overriding HOME='/home/runner/work/_temp/a26dc3ce-950a-4b6c-bdde-f70496decd53' before making global git config changes
+test	Post Run actions/checkout@v4	2026-11-09T11:23:36.7244200Z Adding repository directory to the temporary git global config as a safe directory
+test	Post Run actions/checkout@v4	2026-11-09T11:23:36.7248728Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/OrderBotNest/OrderBotNest
+test	Post Run actions/checkout@v4	2026-11-09T11:23:36.7288922Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+test	Post Run actions/checkout@v4	2026-11-09T11:23:36.7325194Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+test	Post Run actions/checkout@v4	2026-11-09T11:23:36.7581628Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+test	Post Run actions/checkout@v4	2026-11-09T11:23:36.7605387Z http.https://github.com/.extraheader
+test	Post Run actions/checkout@v4	2026-11-09T11:23:36.7617346Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+test	Post Run actions/checkout@v4	2026-11-09T11:23:36.7663171Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+test	Post Run actions/checkout@v4	2026-11-09T11:23:36.7977509Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+test	Post Run actions/checkout@v4	2026-11-09T11:23:36.8019993Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+test	Complete job	﻿2026-11-09T11:23:36.8435899Z Cleaning up orphan processes
+test	Complete job	2026-11-09T11:23:36.8875838Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

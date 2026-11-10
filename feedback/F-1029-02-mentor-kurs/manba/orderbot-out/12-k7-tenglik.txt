@@ -1,0 +1,12 @@
+$ npx tsc --noEmit   # if (user.telegram_id !== 111) — telegram_id: string
+src/api/telegram/telegram.service.ts(168,11): error TS2367: This comparison appears to be unintentional because the types 'string' and 'number' have no overlap.
+
+$ npx nest build
+
+Found 1 error(s).
+
+dist/main.js
+(dist yaratildi)
+$ npx tsc --noEmit   # rows = await this.ds.query(…) — any; if (rows[0].telegram_id !== 111)
+(tsc: xato yo'q)
+Jasur (id 111, ADMIN_TELEGRAM_IDS=111): /orders → bot: Bu buyruq faqat admin uchun.

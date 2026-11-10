@@ -1,0 +1,1 @@
+OrderBotNest'da `npm run smoke` buyrug'i bor — Telegram'siz tekshiruv, unga PostgreSQL kerak (DATABASE_URL). GitHub Actions workflow'iga shu smoke'ni ham qo'shib ber: har push'da testlar va smoke yursin.

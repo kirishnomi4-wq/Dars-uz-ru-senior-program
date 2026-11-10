@@ -1,0 +1,1 @@
+src/api/order/order.service.ts dagi place funksiyasi va telegram.service.ts dagi telefon raqami tekshiruvi uchun edge case va xato holatlariga jest testlar yozib ber. npm test yashil bo'lsin.

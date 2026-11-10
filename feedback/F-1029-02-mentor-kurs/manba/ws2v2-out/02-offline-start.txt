@@ -1,0 +1,51 @@
+# ws2-start: brauzer DevTools → Network → Offline (Playwright setOffline — o'sha CDP buyrug'i). Server va bot ishlab turibdi
+
+## Qadamlar
+21:38:39 — Offline yoqildi
+21:38:41 — Bobur buyurtma berdi (Offline paytida)
+21:38:45 — Offline o'chirildi
+21:38:50 — Offline yoqildi — 60 s
+21:38:55 — Bobur buyurtma berdi (Offline paytida)
+21:39:51 — Offline o'chirildi
+
+## Brauzer — panel
+21:38:38.933 brauzer: GET /admin/orders (1)
+21:38:38.961 brauzer: WebSocket ochildi
+21:38:39.573 panel ochildi — belgi «Ulangan» · ro'yxat: Hali buyurtma yo'q
+21:38:39.883 — brauzer: Offline yoqildi (DevTools → Network → Offline)
+21:38:45.410 SURAT 02-offline-1 (1-offline-6s) — belgi «Ulangan» · ro'yxat: Hali buyurtma yo'q
+    Hali buyurtma yo'q
+21:38:46.025 brauzer: kadr keldi 42["order-changed",{"orderId":1,"reason":"new"}]
+21:38:46.026 brauzer: GET /admin/orders (2)
+21:38:46.026 — brauzer: Offline o'chirildi
+21:38:50.025 SURAT 02-offline-2 (2-online) — belgi «Ulangan» · ro'yxat: #1
+    1 | Bobur | +998907654321 | Klaviatura × 1 | 120 000 so'm | Yangi | 21:38:41
+21:38:50.641 — brauzer: Offline yoqildi (DevTools → Network → Offline)
+21:39:24.086 belgi: «Ulangan» → «Ulanmoqda…»
+21:39:50.655 SURAT 02-offline-3 (3-offline-60s) — belgi «Ulanmoqda…» · ro'yxat: #1
+    1 | Bobur | +998907654321 | Klaviatura × 1 | 120 000 so'm | Yangi | 21:38:41
+21:39:51.268 brauzer: kadr keldi 42["order-changed",{"orderId":2,"reason":"new"}]
+21:39:51.268 — brauzer: Offline o'chirildi
+21:39:51.268 brauzer: WebSocket yopildi
+21:39:54.219 brauzer: WebSocket ochildi
+21:39:54.322 belgi: «Ulanmoqda…» → «Ulangan»
+21:39:59.240 SURAT 02-offline-4 (4-online) — belgi «Ulangan» · ro'yxat: #1
+    1 | Bobur | +998907654321 | Klaviatura × 1 | 120 000 so'm | Yangi | 21:38:41
+21:39:59.854 tugadi — belgi «Ulangan» · ro'yxat: #1 · jami GET: 2
+
+## Server logi
+LOG [InstanceLoader] LiveModule dependencies initialized
+21:38:36 Server 3100-portda ishlayapti
+LOG [Live] panel ulandi: laiEowve-I2iSZw3AAAA
+21:38:41 — Bobur botda buyurtma beradi
+21:38:41 bot → 5987654321: Salom, Bobur! Bu CoddyCamp do'koni boti.
+21:38:41 bot → 5987654321: Buyurtma uchun telefon raqamingizni yozing (masalan, +998901234567):
+21:38:41 bot → 5987654321: Buyurtma #1 qabul qilindi!
+21:38:41 — buyurtma #1 bazada
+21:38:55 — Bobur botda buyurtma beradi
+21:38:55 bot → 5987654321: Salom, Bobur! Bu CoddyCamp do'koni boti.
+21:38:55 bot → 5987654321: Buyurtma #2 qabul qilindi!
+21:38:55 — buyurtma #2 bazada
+LOG [Live] panel uzildi: laiEowve-I2iSZw3AAAA
+LOG [Live] panel ulandi: -8pdx3IUvuj7Sem3AAAB
+LOG [Live] panel uzildi: -8pdx3IUvuj7Sem3AAAB

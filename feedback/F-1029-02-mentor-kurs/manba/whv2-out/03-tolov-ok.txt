@@ -1,0 +1,21 @@
+# wh-done: Bobur buyurtma berdi (#1) — to'lov xizmati xabar yuboradi
+$ npm run pay -- 1
+→ POST /payments/webhook {"paymentId":"pay_0005d844","orderId":1,"status":"paid","amount":120000}
+  X-Signature: 5c73334670107a1f…
+← 200 {"ok":true,"duplicate":false}
+
+## Server logi
+LOG [InstanceLoader] PaymentModule dependencies initialized
+LOG [RoutesResolver] PaymentController {/payments}:
+LOG [Payment] pay_0005d844 · #1 · paid · 120000
+
+$ psql: SELECT payment_id, order_id, status, amount FROM payments
+  payment_id  | order_id | status | amount 
+--------------+----------+--------+--------
+ pay_0005d844 |        1 | paid   | 120000
+(1 row)
+$ psql: SELECT id, total, payment_status FROM orders
+ id | total  | payment_status 
+----+--------+----------------
+  1 | 120000 | paid
+(1 row)

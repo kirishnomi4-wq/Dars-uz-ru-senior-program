@@ -1,0 +1,13 @@
+ src/api/cart/cart-item.entity.ts                   |   7 +-
+ src/api/catalog/catalog.service.ts                 |  26 ++-
+ src/api/order/order-item.entity.ts                 |  47 ++++++
+ src/api/order/order.entity.ts                      |  54 +++++++
+ src/api/order/order.module.ts                      |   8 +-
+ src/api/order/order.service.ts                     | 178 +++++++++++++++------
+ src/api/telegram/telegram.service.ts               |   9 +-
+ src/api/user/user.entity.ts                        |   8 +-
+ src/core/types.ts                                  |   4 +-
+ src/database/bigint.transformer.ts                 |   8 +
+ .../migrations/1793733945621-CreateOrders.ts       |  51 ++++++
+ src/database/typeorm.config.ts                     |  10 +-
+ 12 files changed, 330 insertions(+), 80 deletions(-)

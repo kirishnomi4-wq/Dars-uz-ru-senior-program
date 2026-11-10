@@ -1,0 +1,29 @@
+<style>
+.l3 th,.l3 td{text-align:center;vertical-align:middle}
+.l3 td.l{text-align:left}
+.l3 .c0{background:#DCFCE7;color:#15803D;font-weight:700}
+.l3 .cx{background:#FEE2E2;color:#B91C1C;font-weight:700}
+.l3 .sk{color:#9CA3AF;background:repeating-linear-gradient(135deg,#fff 0 6px,#F3F4F6 6px 12px)}
+.l3 small{display:block;font:11px system-ui,sans-serif;font-weight:400;color:#6B7280}
+.l3 .r{font:700 12px system-ui,sans-serif;border-radius:999px;padding:2px 8px;white-space:nowrap}
+.l3 .r.g{background:#DCFCE7;color:#15803D}.l3 .r.x{background:#DC2626;color:#fff}
+</style>
+<div class="z">
+  <div class="z-card">
+    <p class="z-h">Lenta — to'rt buyruq, har biri chiqish kodi qaytaradi (lokal yurgizish, toza papka)</p>
+    <table class="z-tbl l3">
+      <tr><th class="l">vaziyat</th><th>npm ci</th><th>npx tsc --noEmit</th><th>npm test</th><th>npm run build</th><th>lenta</th></tr>
+      <tr><td class="l">hammasi to'g'ri</td><td class="c0">0<small>5.7 s</small></td><td class="c0">0<small>2.6 s</small></td><td class="c0">0<small>2.2 s</small></td><td class="c0">0<small>3.5 s</small></td><td><span class="r g">yashil</span></td></tr>
+      <tr><td class="l">test yiqildi</td><td class="c0">0</td><td class="c0">0</td><td class="cx">1<small>FAIL</small></td><td class="sk">yurmadi</td><td><span class="r x">qizil</span></td></tr>
+      <tr><td class="l">tur xatosi</td><td class="c0">0</td><td class="cx">2<small>TS2322</small></td><td class="sk">yurmaydi</td><td class="sk">yurmaydi</td><td><span class="r x">qizil</span></td></tr>
+      <tr><td class="l">npm ci tushib qoldi</td><td class="sk">yo'q</td><td class="sk">—</td><td class="cx">127<small>jest: not found</small></td><td class="sk">yurmaydi</td><td><span class="r x">qizil</span></td></tr>
+    </table>
+  </div>
+  <div class="z-two">
+    <div class="z-card">
+      <p class="z-h">Lenta sonni o'qimaydi — faqat nolmi?</p>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="z-tag g">0 → keyingi qadam</span><span class="z-tag r">1 · 2 · 127 → to'xtaydi</span></div>
+    </div>
+    <div class="z-rule" style="align-self:stretch">Test qizil bo'lsa, <b>build boshlanmaydi</b> — buzuq kod yig'ilmaydi.</div>
+  </div>
+</div>

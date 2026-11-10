@@ -1,0 +1,777 @@
+diff --git a/.env.example b/.env.example
+index f37d900..71c95c9 100644
+--- a/.env.example
++++ b/.env.example
+@@ -14,3 +14,6 @@ DB_LOGGING=true
+ 
+ # Server porti (hosting o'zi beradi, lokalda tegmaysiz)
+ PORT=3000
++
++# Jonli buyurtmalar paneli (/admin/orders) uchun parol. Bo'sh bo'lsa panel ochilmaydi.
++PANEL_TOKEN=
+diff --git a/package-lock.json b/package-lock.json
+index f0007aa..e042830 100644
+--- a/package-lock.json
++++ b/package-lock.json
+@@ -12,13 +12,16 @@
+         "@nestjs/common": "^11.1.0",
+         "@nestjs/core": "^11.1.0",
+         "@nestjs/platform-express": "^11.1.0",
++        "@nestjs/platform-ws": "^11.2.8",
+         "@nestjs/typeorm": "^11.0.3",
++        "@nestjs/websockets": "^11.2.8",
+         "dotenv": "^17.2.3",
+         "pg": "^8.23.1",
+         "reflect-metadata": "^0.2.2",
+         "rxjs": "^7.8.1",
+         "telegraf": "^4.16.3",
+-        "typeorm": "^1.1.2"
++        "typeorm": "^1.1.2",
++        "ws": "^8.22.1"
+       },
+       "devDependencies": {
+         "@nestjs/cli": "^11.0.0",
+@@ -27,6 +30,7 @@
+         "@types/jest": "^30.0.0",
+         "@types/node": "^22.0.0",
+         "@types/supertest": "^7.2.1",
++        "@types/ws": "^8.18.2",
+         "jest": "^30.0.0",
+         "prettier": "^3.5.0",
+         "supertest": "^7.3.1",
+@@ -1890,6 +1894,46 @@
+         "@nestjs/core": "^11.0.0"
+       }
+     },
++    "node_modules/@nestjs/platform-ws": {
++      "version": "11.2.8",
++      "resolved": "https://registry.npmjs.org/@nestjs/platform-ws/-/platform-ws-11.2.8.tgz",
++      "integrity": "sha512-ruL54HKJHXhyWsjBWZ/F+JfzTSaz4dg8VADewFQPBycruLWVZy6OjNGFDN+fnAR4dX2/bq4V+CDFdemy9ISGkw==",
++      "license": "MIT",
++      "dependencies": {
++        "tslib": "2.8.1",
++        "ws": "8.21.2"
++      },
++      "funding": {
++        "type": "opencollective",
++        "url": "https://opencollective.com/nest"
++      },
++      "peerDependencies": {
++        "@nestjs/common": "^11.0.0",
++        "@nestjs/websockets": "^11.0.0",
++        "rxjs": "^7.1.0"
++      }
++    },
++    "node_modules/@nestjs/platform-ws/node_modules/ws": {
++      "version": "8.21.2",
++      "resolved": "https://registry.npmjs.org/ws/-/ws-8.21.2.tgz",
++      "integrity": "sha512-54dMVAo4WIe6SKy3vBgN+9bJZqqQ8IMRevAkOLQALhi49qkkQDQfWdAZ8KQlXiEabw88ARXXdUrlvtbKQX+aKw==",
++      "license": "MIT",
++      "engines": {
++        "node": ">=10.0.0"
++      },
++      "peerDependencies": {
++        "bufferutil": "^4.0.1",
++        "utf-8-validate": ">=5.0.2"
++      },
++      "peerDependenciesMeta": {
++        "bufferutil": {
++          "optional": true
++        },
++        "utf-8-validate": {
++          "optional": true
++        }
++      }
++    },
+     "node_modules/@nestjs/schematics": {
+       "version": "11.1.0",
+       "resolved": "https://registry.npmjs.org/@nestjs/schematics/-/schematics-11.1.0.tgz",
+@@ -2011,6 +2055,29 @@
+         "typeorm": "^0.3.0 || ^1.0.0-dev"
+       }
+     },
++    "node_modules/@nestjs/websockets": {
++      "version": "11.2.8",
++      "resolved": "https://registry.npmjs.org/@nestjs/websockets/-/websockets-11.2.8.tgz",
++      "integrity": "sha512-ZlH0GaV16JOtPaBzZ1y0YfOcaYlFYVXHjOy4W7egTRJe8vSN/2vUDb8Sp5sAN3yhANxHBGYId2k+m0WnujiH+A==",
++      "license": "MIT",
++      "dependencies": {
++        "iterare": "1.2.1",
++        "object-hash": "3.0.0",
++        "tslib": "2.8.1"
++      },
++      "peerDependencies": {
++        "@nestjs/common": "^11.0.0",
++        "@nestjs/core": "^11.0.0",
++        "@nestjs/platform-socket.io": "^11.0.0",
++        "reflect-metadata": "^0.1.12 || ^0.2.0",
++        "rxjs": "^7.1.0"
++      },
++      "peerDependenciesMeta": {
++        "@nestjs/platform-socket.io": {
++          "optional": true
++        }
++      }
++    },
+     "node_modules/@noble/hashes": {
+       "version": "1.8.0",
+       "resolved": "https://registry.npmjs.org/@noble/hashes/-/hashes-1.8.0.tgz",
+@@ -2627,6 +2694,16 @@
+         "@types/superagent": "^8.1.0"
+       }
+     },
++    "node_modules/@types/ws": {
++      "version": "8.18.2",
++      "resolved": "https://registry.npmjs.org/@types/ws/-/ws-8.18.2.tgz",
++      "integrity": "sha512-67MQl+fpWKVTT1NYdnmo3U4sc/xPo/zQBncVnI74qmQa0z/b+1g6iYqNmGCPbxO+zz2aklb08a0oHfegiVd0/w==",
++      "dev": true,
++      "license": "MIT",
++      "dependencies": {
++        "@types/node": "*"
++      }
++    },
+     "node_modules/@types/yargs": {
+       "version": "17.0.35",
+       "resolved": "https://registry.npmjs.org/@types/yargs/-/yargs-17.0.35.tgz",
+@@ -6859,6 +6936,15 @@
+         "node": ">=0.10.0"
+       }
+     },
++    "node_modules/object-hash": {
++      "version": "3.0.0",
++      "resolved": "https://registry.npmjs.org/object-hash/-/object-hash-3.0.0.tgz",
++      "integrity": "sha512-RSn9F68PjH9HqtltsSnqYC1XXoWe9Bju5+213R98cNGttag9q9yAOTzdbsqvIa7aNm5WffBZFpWYr2aWrklWAw==",
++      "license": "MIT",
++      "engines": {
++        "node": ">= 6"
++      }
++    },
+     "node_modules/object-inspect": {
+       "version": "1.13.4",
+       "resolved": "https://registry.npmjs.org/object-inspect/-/object-inspect-1.13.4.tgz",
+@@ -9411,6 +9497,27 @@
+         "node": "^14.17.0 || ^16.13.0 || >=18.0.0"
+       }
+     },
++    "node_modules/ws": {
++      "version": "8.22.1",
++      "resolved": "https://registry.npmjs.org/ws/-/ws-8.22.1.tgz",
++      "integrity": "sha512-oyL6OPYme/CmiFvNuGzeoxCJ4nOrZE2O1FwM9MWM1AsGri6nLXB2pg+lNA8aLeXMSav0J6eIVS1j6vUPzUtK9g==",
++      "license": "MIT",
++      "engines": {
++        "node": ">=10.0.0"
++      },
++      "peerDependencies": {
++        "bufferutil": "^4.0.1",
++        "utf-8-validate": ">=5.0.2"
++      },
++      "peerDependenciesMeta": {
++        "bufferutil": {
++          "optional": true
++        },
++        "utf-8-validate": {
++          "optional": true
++        }
++      }
++    },
+     "node_modules/xtend": {
+       "version": "4.0.2",
+       "resolved": "https://registry.npmjs.org/xtend/-/xtend-4.0.2.tgz",
+diff --git a/package.json b/package.json
+index c802881..5390d40 100644
+--- a/package.json
++++ b/package.json
+@@ -22,13 +22,16 @@
+     "@nestjs/common": "^11.1.0",
+     "@nestjs/core": "^11.1.0",
+     "@nestjs/platform-express": "^11.1.0",
++    "@nestjs/platform-ws": "^11.2.8",
+     "@nestjs/typeorm": "^11.0.3",
++    "@nestjs/websockets": "^11.2.8",
+     "dotenv": "^17.2.3",
+     "pg": "^8.23.1",
+     "reflect-metadata": "^0.2.2",
+     "rxjs": "^7.8.1",
+     "telegraf": "^4.16.3",
+-    "typeorm": "^1.1.2"
++    "typeorm": "^1.1.2",
++    "ws": "^8.22.1"
+   },
+   "devDependencies": {
+     "@nestjs/cli": "^11.0.0",
+@@ -37,6 +40,7 @@
+     "@types/jest": "^30.0.0",
+     "@types/node": "^22.0.0",
+     "@types/supertest": "^7.2.1",
++    "@types/ws": "^8.18.2",
+     "jest": "^30.0.0",
+     "prettier": "^3.5.0",
+     "supertest": "^7.3.1",
+diff --git a/src/api/app.module.ts b/src/api/app.module.ts
+index 6c7bc37..f92d2cf 100644
+--- a/src/api/app.module.ts
++++ b/src/api/app.module.ts
+@@ -1,10 +1,11 @@
+ import { Module } from '@nestjs/common';
+ import { DatabaseModule } from '../infrastructure/database.module';
+ import { AppController } from './app.controller';
++import { LiveModule } from './live/live.module';
+ import { TelegramModule } from './telegram/telegram.module';
+ 
+ @Module({
+-  imports: [DatabaseModule, TelegramModule],
++  imports: [DatabaseModule, TelegramModule, LiveModule],
+   controllers: [AppController],
+ })
+ export class AppModule {}
+diff --git a/src/api/live/live.module.ts b/src/api/live/live.module.ts
+new file mode 100644
+index 0000000..6a36f33
+--- /dev/null
++++ b/src/api/live/live.module.ts
+@@ -0,0 +1,12 @@
++import { Module } from '@nestjs/common';
++import { OrderModule } from '../order/order.module';
++import { OrdersGateway } from './orders.gateway';
++import { OrdersPanelController } from './orders-panel.controller';
++
++// Jonli buyurtmalar paneli: sahifa (/admin/orders) + WebSocket (/ws/orders)
++@Module({
++  imports: [OrderModule],
++  controllers: [OrdersPanelController],
++  providers: [OrdersGateway],
++})
++export class LiveModule {}
+diff --git a/src/api/live/orders-panel.controller.ts b/src/api/live/orders-panel.controller.ts
+new file mode 100644
+index 0000000..fab77ad
+--- /dev/null
++++ b/src/api/live/orders-panel.controller.ts
+@@ -0,0 +1,29 @@
++import {
++  Controller,
++  Get,
++  Header,
++  Query,
++  ServiceUnavailableException,
++  UnauthorizedException,
++} from '@nestjs/common';
++import { config } from '../../config';
++import { panelTokenOk } from './panel-auth';
++import { ORDERS_PANEL_HTML } from './orders-panel';
++
++// Brauzerda: http://localhost:PORT/admin/orders?token=PANEL_TOKEN
++@Controller('admin')
++export class OrdersPanelController {
++  @Get('orders')
++  @Header('Content-Type', 'text/html; charset=utf-8')
++  @Header('Cache-Control', 'no-store')
++  page(@Query('token') token?: string): string {
++    if (!config.PANEL_TOKEN) {
++      throw new ServiceUnavailableException(
++        'PANEL_TOKEN .env da yo’q — panel yopiq',
++      );
++    }
++    if (!panelTokenOk(token))
++      throw new UnauthorizedException('token noto‘g‘ri');
++    return ORDERS_PANEL_HTML;
++  }
++}
+diff --git a/src/api/live/orders-panel.ts b/src/api/live/orders-panel.ts
+new file mode 100644
+index 0000000..ced9c08
+--- /dev/null
++++ b/src/api/live/orders-panel.ts
+@@ -0,0 +1,137 @@
++// Admin paneli sahifasi. Tashqi kutubxona yo'q — brauzerning o'zi WebSocket ochadi.
++// Diqqat: bu yerda backtick va ${ ishlatilmaydi — buyurtma ma'lumoti textContent orqali qo'yiladi (XSS'dan himoya).
++export const ORDERS_PANEL_HTML = `<!doctype html>
++<html lang="uz">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width, initial-scale=1">
++<title>Buyurtmalar — jonli</title>
++<style>
++:root { --bg:#f6f7f9; --card:#ffffff; --text:#1d2330; --muted:#6b7385; --line:#e3e6ec; --ok:#16a34a; --bad:#dc2626; --hi:#facc15; }
++@media (prefers-color-scheme: dark) {
++  :root:not([data-theme="light"]) { --bg:#0f1218; --card:#181c25; --text:#e8ebf1; --muted:#9aa3b5; --line:#2a303d; }
++}
++:root[data-theme="dark"] { --bg:#0f1218; --card:#181c25; --text:#e8ebf1; --muted:#9aa3b5; --line:#2a303d; }
++body { margin:0; background:var(--bg); color:var(--text); font:15px/1.4 system-ui, -apple-system, sans-serif; }
++header { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; padding:16px; }
++h1 { margin:0; font-size:20px; }
++#conn { font-size:13px; color:var(--muted); }
++#conn.on { color:var(--ok); }
++#conn.off { color:var(--bad); }
++#list { display:grid; gap:12px; padding:0 16px 24px; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); }
++.card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px; transition:box-shadow .3s; }
++.card.flash { box-shadow:0 0 0 3px var(--hi); }
++.top { display:flex; justify-content:space-between; align-items:center; gap:8px; }
++.num { font-weight:700; }
++.badge { font-size:12px; padding:2px 8px; border-radius:999px; color:#fff; white-space:nowrap; }
++.meta { color:var(--muted); font-size:13px; margin-top:6px; }
++ul { margin:8px 0 0; padding-left:18px; }
++.total { font-weight:700; margin-top:8px; }
++.empty { color:var(--muted); padding:8px 16px; }
++</style>
++</head>
++<body>
++<header>
++  <h1>Buyurtmalar — jonli</h1>
++  <span id="conn">ulanmoqda…</span>
++</header>
++<main id="list"></main>
++<script>
++(function () {
++  var token = new URLSearchParams(location.search).get('token') || '';
++  var orders = {};
++  var listEl = document.getElementById('list');
++  var connEl = document.getElementById('conn');
++  var retry = 1000;
++  var STATUS = { NEW: 'Yangi', CONFIRMED: 'Tasdiqlangan', DELIVERED: 'Yetkazilgan', CANCELLED: 'Bekor qilingan' };
++  var COLOR = { NEW: '#2563eb', CONFIRMED: '#16a34a', DELIVERED: '#0f766e', CANCELLED: '#dc2626' };
++
++  function som(n) { return Number(n).toLocaleString('ru-RU') + " so'm"; }
++
++  function el(tag, cls, text) {
++    var e = document.createElement(tag);
++    if (cls) e.className = cls;
++    if (text !== undefined) e.textContent = text;
++    return e;
++  }
++
++  function card(o) {
++    var c = el('article', 'card');
++    c.setAttribute('data-id', o.id);
++    var top = el('div', 'top');
++    top.appendChild(el('span', 'num', '#' + o.id));
++    var b = el('span', 'badge', STATUS[o.status] || o.status);
++    b.style.background = COLOR[o.status] || '#6b7385';
++    top.appendChild(b);
++    c.appendChild(top);
++    c.appendChild(el('div', 'meta', (o.customer || 'Mijoz') + ' · ' + (o.phone || '')));
++    c.appendChild(el('div', 'meta', new Date(o.createdAt).toLocaleString('uz-UZ')));
++    var ul = el('ul');
++    (o.items || []).forEach(function (i) {
++      ul.appendChild(el('li', '', i.name + ' × ' + i.qty));
++    });
++    c.appendChild(ul);
++    c.appendChild(el('div', 'total', 'Jami: ' + som(o.total)));
++    return c;
++  }
++
++  function render() {
++    listEl.textContent = '';
++    var ids = Object.keys(orders).map(Number).sort(function (a, b) { return b - a; });
++    if (ids.length === 0) {
++      listEl.appendChild(el('div', 'empty', 'Hozircha buyurtma yo’q.'));
++      return;
++    }
++    ids.forEach(function (id) { listEl.appendChild(card(orders[id])); });
++  }
++
++  function flash(id) {
++    var c = listEl.querySelector('[data-id="' + id + '"]');
++    if (!c) return;
++    c.classList.add('flash');
++    setTimeout(function () { c.classList.remove('flash'); }, 1600);
++  }
++
++  function setConn(on, text) {
++    connEl.className = on ? 'on' : 'off';
++    connEl.textContent = text;
++  }
++
++  function handle(m) {
++    if (m.type === 'snapshot') {
++      orders = {};
++      (m.orders || []).forEach(function (o) { orders[o.id] = o; });
++      render();
++      return;
++    }
++    if ((m.type === 'created' || m.type === 'updated') && m.order) {
++      orders[m.order.id] = m.order;
++      render();
++      flash(m.order.id);
++    }
++  }
++
++  function connect() {
++    var proto = location.protocol === 'https:' ? 'wss://' : 'ws://';
++    var ws = new WebSocket(proto + location.host + '/ws/orders?token=' + encodeURIComponent(token));
++    ws.onopen = function () { retry = 1000; setConn(true, 'jonli · ulangan'); };
++    ws.onmessage = function (e) {
++      var m;
++      try { m = JSON.parse(e.data); } catch (err) { return; }
++      handle(m);
++    };
++    ws.onclose = function (e) {
++      if (e.code === 1008) { setConn(false, 'token noto‘g‘ri yoki panel yopiq'); return; }
++      setConn(false, 'uzildi — qayta ulanmoqda…');
++      setTimeout(connect, retry);
++      retry = Math.min(retry * 2, 15000);
++    };
++  }
++
++  render();
++  connect();
++})();
++</script>
++</body>
++</html>
++`;
+diff --git a/src/api/live/orders.gateway.ts b/src/api/live/orders.gateway.ts
+new file mode 100644
+index 0000000..ff5300a
+--- /dev/null
++++ b/src/api/live/orders.gateway.ts
+@@ -0,0 +1,78 @@
++import { Inject, OnModuleDestroy } from '@nestjs/common';
++import {
++  OnGatewayConnection,
++  WebSocketGateway,
++  WebSocketServer,
++} from '@nestjs/websockets';
++import type { IncomingMessage } from 'http';
++import { Subscription } from 'rxjs';
++import type { Server, WebSocket } from 'ws';
++import { OrderEvents, OrderView, toOrderView } from '../order/order-events';
++import { OrderService } from '../order/order.service';
++import { panelTokenOk } from './panel-auth';
++
++const OPEN = 1; // ws: WebSocket.OPEN
++const SNAPSHOT_SIZE = 50;
++
++// Admin paneli uchun: ulanganda oxirgi buyurtmalar ro'yxati (snapshot),
++// keyin har yangi yoki o'zgargan buyurtma — hammasiga bitta xabar.
++// Xabar turlari: {type:'snapshot', orders:[...]} · {type:'created'|'updated', order:{...}}
++@WebSocketGateway({ path: '/ws/orders' })
++export class OrdersGateway implements OnGatewayConnection, OnModuleDestroy {
++  @WebSocketServer() private server: Server;
++
++  // Snapshot hali yuborilmagan klientlar: shu paytdagi o'zgarishlar navbatda turadi
++  private readonly waiting = new Map<WebSocket, string[]>();
++  private readonly sub: Subscription;
++
++  constructor(
++    @Inject(OrderService) private readonly orders: OrderService,
++    events: OrderEvents,
++  ) {
++    this.sub = events.changes.subscribe((change) => {
++      this.broadcast(JSON.stringify(change));
++    });
++  }
++
++  onModuleDestroy() {
++    this.sub.unsubscribe();
++  }
++
++  async handleConnection(client: WebSocket, req: IncomingMessage) {
++    const token = new URL(req.url ?? '/', 'http://localhost').searchParams.get(
++      'token',
++    );
++    if (!panelTokenOk(token)) {
++      client.close(1008, 'token');
++      return;
++    }
++
++    // Snapshot o'qilayotganda kelgan o'zgarishlar navbatga olinadi, keyin yuboriladi
++    // (aks holda eski snapshot yangi o'zgarishni ustidan yozib qo'yishi mumkin)
++    const queue: string[] = [];
++    this.waiting.set(client, queue);
++    client.on('close', () => this.waiting.delete(client));
++
++    try {
++      const rows = await this.orders.recent(SNAPSHOT_SIZE);
++      const orders: OrderView[] = rows.map(toOrderView);
++      this.waiting.delete(client);
++      if (client.readyState !== OPEN) return;
++      client.send(JSON.stringify({ type: 'snapshot', orders }));
++      for (const msg of queue) client.send(msg);
++    } catch (e) {
++      this.waiting.delete(client);
++      console.error('Panel snapshot xatosi:', (e as Error).message);
++      client.close(1011, 'snapshot');
++    }
++  }
++
++  private broadcast(msg: string) {
++    for (const client of this.server?.clients ?? []) {
++      if (client.readyState !== OPEN) continue;
++      const queue = this.waiting.get(client);
++      if (queue) queue.push(msg);
++      else client.send(msg);
++    }
++  }
++}
+diff --git a/src/api/live/panel-auth.ts b/src/api/live/panel-auth.ts
+new file mode 100644
+index 0000000..b67aaa4
+--- /dev/null
++++ b/src/api/live/panel-auth.ts
+@@ -0,0 +1,11 @@
++import { timingSafeEqual } from 'crypto';
++import { config } from '../../config';
++
++// Panel tokeni .env dagi PANEL_TOKEN bilan mos bo'lsagina o'tadi. PANEL_TOKEN bo'sh bo'lsa hech kim kirmaydi.
++export function panelTokenOk(given: string | null | undefined): boolean {
++  const expected = config.PANEL_TOKEN;
++  if (!expected || !given) return false;
++  const a = Buffer.from(given);
++  const b = Buffer.from(expected);
++  return a.length === b.length && timingSafeEqual(a, b);
++}
+diff --git a/src/api/order/order-events.ts b/src/api/order/order-events.ts
+new file mode 100644
+index 0000000..d35f06b
+--- /dev/null
++++ b/src/api/order/order-events.ts
+@@ -0,0 +1,47 @@
++import { Injectable } from '@nestjs/common';
++import { Subject } from 'rxjs';
++import { Order, OrderStatus } from '../../core/entity';
++
++// Panelga (WebSocket) yuboriladigan buyurtma ko'rinishi — telegram_id va ichki maydonlarsiz
++export interface OrderView {
++  id: number;
++  status: OrderStatus;
++  total: number;
++  phone: string;
++  customer: string;
++  createdAt: string;
++  items: { name: string; qty: number; price: number }[];
++}
++
++// created — bot yangi buyurtma oldi; updated — admin holatini o'zgartirdi
++export interface OrderChange {
++  type: 'created' | 'updated';
++  order: OrderView;
++}
++
++export function toOrderView(o: Order): OrderView {
++  return {
++    id: o.id,
++    status: o.status,
++    total: o.total,
++    phone: o.phone,
++    customer: o.user?.name ?? '',
++    createdAt: (o.created_at ?? new Date()).toISOString(),
++    items: (o.items ?? []).map((i) => ({
++      name: i.product?.name ?? '',
++      qty: i.qty,
++      price: i.price,
++    })),
++  };
++}
++
++// Buyurtma o'zgarishlari oqimi. OrderService faqat TRANZAKSIYA COMMIT bo'lgandan keyin publish qiladi.
++@Injectable()
++export class OrderEvents {
++  private readonly subject = new Subject<OrderChange>();
++  readonly changes = this.subject.asObservable();
++
++  publish(change: OrderChange): void {
++    this.subject.next(change);
++  }
++}
+diff --git a/src/api/order/order.module.ts b/src/api/order/order.module.ts
+index 213848a..832abaa 100644
+--- a/src/api/order/order.module.ts
++++ b/src/api/order/order.module.ts
+@@ -1,11 +1,12 @@
+ import { Module } from '@nestjs/common';
+ import { TypeOrmModule } from '@nestjs/typeorm';
+ import { Order } from '../../core/entity';
++import { OrderEvents } from './order-events';
+ import { OrderService } from './order.service';
+ 
+ @Module({
+   imports: [TypeOrmModule.forFeature([Order])],
+-  providers: [OrderService],
+-  exports: [OrderService],
++  providers: [OrderService, OrderEvents],
++  exports: [OrderService, OrderEvents],
+ })
+ export class OrderModule {}
+diff --git a/src/api/order/order.service.spec.ts b/src/api/order/order.service.spec.ts
+index 5266aee..1d8d93a 100644
+--- a/src/api/order/order.service.spec.ts
++++ b/src/api/order/order.service.spec.ts
+@@ -2,11 +2,13 @@ import { Test } from '@nestjs/testing';
+ import { getRepositoryToken } from '@nestjs/typeorm';
+ import { DataSource } from 'typeorm';
+ import { Order, User } from '../../core/entity';
++import { OrderEvents } from './order-events';
+ import { OrderService } from './order.service';
+ 
+ // Baza o'rniga soxta (mock) EntityManager: findOne mahsulotni qaytaradi, query va save — yozib qoladi
+ const manager = {
+   findOne: jest.fn(),
++  findOneBy: jest.fn(),
+   query: jest.fn(),
+   create: jest.fn((_cls, data) => data),
+   save: jest.fn(async (o) => ({ id: 1, ...o })),
+@@ -17,6 +19,8 @@ const dataSource = { transaction: jest.fn((cb) => cb(manager)) };
+ const user = { id: 1, phone: '+998901234567' } as User;
+ const cart = [{ product: { id: 4, name: 'Kolonka' }, qty: 2 }] as any;
+ 
++const events = { publish: jest.fn() };
++
+ let service: OrderService;
+ beforeEach(async () => {
+   jest.clearAllMocks();
+@@ -25,6 +29,7 @@ beforeEach(async () => {
+       OrderService,
+       { provide: getRepositoryToken(Order), useValue: {} },
+       { provide: DataSource, useValue: dataSource },
++      { provide: OrderEvents, useValue: events },
+     ],
+   }).compile();
+   service = mod.get(OrderService);
+@@ -77,3 +82,57 @@ describe('OrderService.place', () => {
+     expect(order.total).toBe(100000);
+   });
+ });
++
++describe('OrderService — jonli panel xabarlari', () => {
++  it("buyurtma commit bo'lgach created yuboriladi", async () => {
++    manager.findOne.mockResolvedValue({
++      id: 4,
++      name: 'Kolonka',
++      stock: 10,
++      price: 50000,
++    });
++    const order = await service.place(user, cart);
++    expect(events.publish).toHaveBeenCalledTimes(1);
++    expect(events.publish.mock.calls[0][0].type).toBe('created');
++    expect(events.publish.mock.calls[0][0].order.id).toBe(order.id);
++  });
++
++  it('omborda yetmasa — xabar yuborilmaydi', async () => {
++    manager.findOne.mockResolvedValue({
++      id: 4,
++      name: 'Kolonka',
++      stock: 1,
++      price: 50000,
++    });
++    await expect(service.place(user, cart)).rejects.toThrow();
++    expect(events.publish).not.toHaveBeenCalled();
++  });
++
++  it("holat o'zgarsa updated yuboriladi", async () => {
++    const saved = {
++      id: 7,
++      status: 'CONFIRMED',
++      total: 100,
++      phone: '+998901234567',
++      user: { name: 'Aziza' },
++      items: [{ qty: 2, price: 50, product: { id: 4, name: 'Kolonka' } }],
++    };
++    manager.findOneBy.mockResolvedValue({
++      id: 7,
++      status: 'NEW',
++      user: { name: 'Aziza' },
++      items: [],
++    });
++    manager.save = jest.fn(async (o) => ({
++      ...saved,
++      ...o,
++      status: 'CONFIRMED',
++    }));
++    await service.setStatus(7, 'CONFIRMED');
++    expect(events.publish).toHaveBeenCalledTimes(1);
++    const change = events.publish.mock.calls[0][0];
++    expect(change.type).toBe('updated');
++    expect(change.order.status).toBe('CONFIRMED');
++    expect(change.order.customer).toBe('Aziza');
++  });
++});
+diff --git a/src/api/order/order.service.ts b/src/api/order/order.service.ts
+index 45ee96b..4aa4ae1 100644
+--- a/src/api/order/order.service.ts
++++ b/src/api/order/order.service.ts
+@@ -9,12 +9,14 @@ import {
+   Product,
+   User,
+ } from '../../core/entity';
++import { OrderEvents, toOrderView } from './order-events';
+ 
+ @Injectable()
+ export class OrderService {
+   constructor(
+     @InjectRepository(Order) private readonly repo: Repository<Order>,
+     private readonly ds: DataSource,
++    private readonly events: OrderEvents,
+   ) {}
+ 
+   // Buyurtma — bitta tranzaksiya: har mahsulot ombordan ayiriladi (UPDATE),
+@@ -24,7 +26,7 @@ export class OrderService {
+   place(user: User, cart: CartItem[]): Promise<Order> {
+     if (!user.phone) throw new Error("Telefon raqami yo'q");
+     if (cart.length === 0) throw new Error("Savat bo'sh");
+-    return this.ds.transaction(async (m) => {
++    const tx = this.ds.transaction(async (m) => {
+       const items: OrderItem[] = [];
+       for (const c of cart) {
+         // 1) Qatorni qulflab o'qiymiz (SELECT ... FOR UPDATE): ikkinchi mijoz shu qatorni biz tugatguncha kutadi
+@@ -58,6 +60,11 @@ export class OrderService {
+       await m.delete(CartItem, { user: { id: user.id } });
+       return saved;
+     });
++    // Tranzaksiya commit bo'lgach — panelga xabar (rollback bo'lsa hech narsa yuborilmaydi)
++    return tx.then((saved) => {
++      this.events.publish({ type: 'created', order: toOrderView(saved) });
++      return saved;
++    });
+   }
+ 
+   recent(limit = 5): Promise<Order[]> {
+@@ -66,7 +73,7 @@ export class OrderService {
+ 
+   // Status o'zgaradi; bekor qilinsa mahsulotlar omborga qaytadi — yana tranzaksiya
+   setStatus(id: number, status: OrderStatus): Promise<Order> {
+-    return this.ds.transaction(async (m) => {
++    const tx = this.ds.transaction(async (m) => {
+       // Buyurtma qatorini qulflaymiz: «Bekor» ikki marta bir vaqtda bosilsa,
+       // ikkinchisi birinchisi tugashini kutadi va CANCELLED ni ko'radi — ombor bir marta qaytadi
+       await m.query('SELECT id FROM orders WHERE id = $1 FOR UPDATE', [id]);
+@@ -83,5 +90,9 @@ export class OrderService {
+       order.status = status;
+       return m.save(order);
+     });
++    return tx.then((order) => {
++      this.events.publish({ type: 'updated', order: toOrderView(order) });
++      return order;
++    });
+   }
+ }
+diff --git a/src/config/index.ts b/src/config/index.ts
+index a080938..c043051 100644
+--- a/src/config/index.ts
++++ b/src/config/index.ts
+@@ -8,6 +8,8 @@ export const config = {
+   // true bo'lsa TypeORM har SQL so'rovni terminalga yozadi — o'rganish uchun
+   DB_LOGGING: process.env.DB_LOGGING === 'true',
+   BOT_TOKEN: String(process.env.BOT_TOKEN || ''),
++  // Admin paneli (/admin/orders) va uning WebSocket'i uchun parol. Bo'sh bo'lsa panel yopiq.
++  PANEL_TOKEN: String(process.env.PANEL_TOKEN || ''),
+   // "123,456" → [123, 456]
+   ADMIN_TELEGRAM_IDS: String(process.env.ADMIN_TELEGRAM_IDS || '')
+     .split(',')
+diff --git a/src/main.ts b/src/main.ts
+index 5f561dd..cdf9873 100644
+--- a/src/main.ts
++++ b/src/main.ts
+@@ -1,9 +1,12 @@
+ import { NestFactory } from '@nestjs/core';
++import { WsAdapter } from '@nestjs/platform-ws';
+ import { AppModule } from './api/app.module';
+ import { config } from './config';
+ 
+ async function main() {
+   const app = await NestFactory.create(AppModule);
++  // Jonli panel uchun WebSocket (ws) — HTTP serverga ulanadi
++  app.useWebSocketAdapter(new WsAdapter(app));
+   await app.listen(config.PORT);
+   console.log(`Server ${config.PORT}-portda ishlayapti`);
+ }

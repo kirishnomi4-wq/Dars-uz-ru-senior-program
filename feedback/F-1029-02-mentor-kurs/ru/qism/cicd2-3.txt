@@ -1,0 +1,8 @@
+7.steps.2.cmd.1 = новый run → Run actions/setup-node@v4
+20.steps.3.cmd.1 = 1-я строка README: ![CI](https://github.com/<ваш-логин>/OrderBotNest/actions/workflows/ci.yml/badge.svg)
+7.steps.0.cmd.0 = GitHub → Actions → последний run → job test → Set up job
+7.steps.1.cmd.0 = лог Run actions/checkout@v4
+7.steps.2.cmd.0 = старый run → Post Run actions/setup-node@v4
+11.steps.2.cmd.0 = под strategy: fail-fast: false
+20.steps.1.cmd.2 = env: DATABASE_URL в шаге smoke
+11.steps.0.cmd.1 = в setup-node: node-version: ${{ matrix.node-version }}

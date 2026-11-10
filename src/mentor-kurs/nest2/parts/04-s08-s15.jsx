@@ -66,7 +66,7 @@ export class AdminEntity extends BaseEntity {
   @Column({ type: 'enum', enum: UserRole, default: UserRole.ADMIN })
   role: UserRole;
 }`)} />
-        : <CodePanel file={F.cEnt} lines={CAR_ENT_LINES} focus={seg.focus} />}
+        : beat < 3 ? <CodePanel file={F.cEnt} lines={CAR_ENT_LINES} focus={seg.focus} /> : null}
       {beat === 2 && <CodePanel file={F.baseEnt} lines={BASE_ENT_LINES} />}
       {beat >= 3 && <CodePanel file={F.coreIdx} lines={CORE_IDX_LINES} focus={beat === 3 ? ['exp'] : []} />}
       {beat === 3 && <Term er lines={term(t(String.raw`error TS2305: Module '"src/core"' has no exported member 'CarEntity'.   ← export yozilmasa`, String.raw`error TS2305: Module '"src/core"' has no exported member 'CarEntity'.   ← если не написан export`))} />}
@@ -135,7 +135,7 @@ function Screen9(p) {
               <div className="mk-card"><h5>@nestjs/swagger</h5><div style={{ fontSize: 13 }}>{t("Swagger'da UpdateCarDto: brand · model · price · is_available", 'В Swagger UpdateCarDto: brand · model · price · is_available')}</div></div>
               <div className="mk-card" style={{ borderColor: T.accent }}><h5 style={{ color: T.accent }}>@nestjs/mapped-types</h5><div style={{ fontSize: 13 }}>{t("Swagger'da UpdateCarDto: properties: {} — maydonlar yo'q (PATCH baribir 200)", 'В Swagger UpdateCarDto: properties: {} — полей нет (PATCH всё равно 200)')}</div></div>
             </div></>
-          : <CodePanel file={F.cCdto} lines={CDTO_LINES} focus={seg.focus} />}
+          : <CodePanel file={F.cCdto} lines={seg.id === 'e' ? CDTO_LINES.map((l, k) => ({ ...l, n: k + 1 })).filter((l) => String(l.h).trim() !== '') : CDTO_LINES} focus={seg.focus} />}
       {beat === 1 && <div className="mk-light" style={{ padding: 12 }}><div className="mk-tag">Swagger · Example Value</div><pre className="n2-json">{'{ "brand": "Chevrolet", "model": "Malibu", "price": 250, "is_available": true }'}</pre></div>}
     </Ide>
   </>} />;
@@ -180,14 +180,14 @@ function Screen10(p) {
     <LayerPath at={2} />
     <Ide files={tree(BASE, [F.cEnt, F.cCdto, F.cUdto, F.baseSvc, F.okRes])} active={F.baseSvc}>
       <CodePanel file={F.baseSvc} lines={BASESVC_LINES} focus={seg.focus} />
-      <Block at={2} beat={beat}><CodePanel file={F.okRes} lines={ts(String.raw`
+      {beat === 2 && <Block at={2} beat={beat}><CodePanel file={F.okRes} lines={ts(String.raw`
 export const successRes = (data: any, statusCode = 200): ISuccessRes => {
   return { statusCode, message: 'success', data };
-};`)} /></Block>
-      <Block at={0} beat={beat}><div className="n2-cmp">
+};`)} /></Block>}
+      {beat < 2 && <Block at={0} beat={beat}><div className="n2-cmp">
         <div className="mk-card"><h5>Nest-1 · cars.service.ts</h5><div style={{ fontSize: 13.5 }}>{t('27 satr: massiv, findAll, findOne, create — har resursda qaytadan', '27 строк: массив, findAll, findOne, create — заново в каждом ресурсе')}</div></div>
         <div className="mk-card" style={{ borderColor: PART.svc }}><h5 style={{ color: PART.svc }}>{t("o'quvchi reposi · car.service.ts", 'репозиторий ученика · car.service.ts')}</h5><div style={{ fontSize: 13.5 }}>{t('ish qismi 8 satr — CRUD BaseService\'dan', 'рабочая часть 8 строк — CRUD из BaseService')}</div></div>
-      </div></Block>
+      </div></Block>}
     </Ide>
   </>} />;
 }
@@ -443,7 +443,7 @@ function Screen14(p) {
     q={t("Besh qatlamni ko'rdingiz, endi o'zingiz tekshiring. Ikkinchi tekshiruv. Qoidani eslang: Entity'da har ustun Column bilan, tekshirish qoidalari esa DTO'da. Ekrandagi Entity'da bitta satr DTO'niki. O'sha satrni bosing.", 'Вы видели пять слоёв, теперь проверьте сами. Вторая проверка. Вспомните правило: в Entity каждая колонка с Column, а правила проверки в DTO. В Entity на экране одна строка из DTO. Нажмите на эту строку.')}
     file={F.cEnt} lines={LC2_LINES} target={12}
     tree={{ root: MKCFG.root, files: tree(BASE, CAR_ALL), active: F.cEnt }}
-    fixed={LC2_FIXED}
+    fixed={LC2_FIXED.filter((l) => String(l.h).trim() !== '')}
     fixedExtra={[{ file: t('psql · \\d cars — haqiqiy natija', 'psql · \\d cars — реальный результат'), lines: plainLines(t(String.raw`
 buzuq holatda:   brand · model · is_available   ← price ustuni YO'Q (synchronize o'chirdi)
 POST /api/v1/car {…,"price":250} → 201, javobda va bazada price yo'q

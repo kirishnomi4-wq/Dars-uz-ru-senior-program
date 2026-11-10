@@ -1,0 +1,25 @@
+<style>
+.j6 td.c,.j6 th.c{text-align:center}
+.j6 .p{color:#15803D;font-weight:700}.j6 .f{color:#DC2626;font-weight:700}
+.j6 tr.tor td{background:#FFF7ED}.j6 tr.keng td{background:#EFF6FF}
+.j6 .lab{font:700 11px system-ui,sans-serif;letter-spacing:.05em;text-transform:uppercase;border-radius:999px;padding:1px 7px;white-space:nowrap}
+.j6 .lab.o{background:#FFEDD5;color:#C2410C}.j6 .lab.b{background:#DBEAFE;color:#1D4ED8}
+</style>
+<div class="z">
+  <div class="z-card">
+    <p class="z-h">phone.ts 4-satr — bitta o'zgarish</p>
+    <div class="z-term"><span class="r">- export const isPhone = (text: string) =&gt; PHONE.test(text.trim());</span>
+<span class="g">+ export const isPhone = (text: string) =&gt; PHONE.test(text.replace(/[\s-]/g, ''));</span></div>
+  </div>
+  <div class="z-card">
+    <p class="z-h">Bir xil kirishlar — eski va yangi qoida</p>
+    <table class="z-tbl j6">
+      <tr><th>kirish</th><th class="c">trim()</th><th class="c">replace()</th><th></th></tr>
+      <tr><td>+998901234567</td><td class="c p">true</td><td class="c p">true</td><td></td></tr>
+      <tr><td>12345678 · 14 ta · abc · ''</td><td class="c">false</td><td class="c">false</td><td></td></tr>
+      <tr class="tor"><td>+998 90 123 45 67</td><td class="c f">false</td><td class="c p">true</td><td><span class="lab o">qoida tor edi</span></td></tr>
+      <tr class="keng"><td>000000000</td><td class="c p">true</td><td class="c p">true</td><td><span class="lab b">qoida keng — sizning qaroringiz</span></td></tr>
+    </table>
+    <span class="z-mut">npm test -- phone: 7 passed → «9 ta nol ham o'tadi» bilan 8 passed. Test qoidani tekshiradi; qoidaning o'zi to'g'rimi — buni siz hal qilasiz.</span>
+  </div>
+</div>

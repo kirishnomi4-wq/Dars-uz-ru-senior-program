@@ -1,7 +1,7 @@
 # PostgreSQL-2 — haqiqiy chiqishlar (01.11.2026, avtopilot)
 
 Yasash: `S=<scratchpad> bash feedback/F-1029-02-mentor-kurs/manba/drive-pg2.sh` (repo ildizidan). Tizimga tegmaydi: PG18 klaster vaqtinchalik (port **5436**, Windows o'rnatuvchisi kabi — `postgres` + parol), Node loyiha scratchpad'da. Versiyalar `00`: PostgreSQL 18.4 · Node 24.18 · **express 5.3.0 · pg 8.23.1** (o'quvchi `npm install express pg` qilsa — shu avlod).
-Ma'lumotlar o'quvchi darslaridan aynan: m4-06 `products` (Klaviatura 120 000 · Sichqoncha 75 000 · Quloqchin 95 000 · Mishka 50 000; DDL'da NOT NULL yo'q) · m4-08 `cars` (Cobalt 280 000 · Malibu 520 000 · K5 610 000 · Spark 190 000).
+Ma'lumotlar o'quvchi darslaridan aynan: m4-06 `products` (Klaviatura 120 000 · Sichqoncha 75 000 · Quloqchin 95 000 · Kolonka 50 000; DDL'da NOT NULL yo'q) · m4-08 `cars` (Cobalt 280 000 · Malibu 520 000 · K5 610 000 · Spark 190 000).
 
 | Fayl | Nima |
 |---|---|

@@ -1,0 +1,8 @@
+{
+ "17.steps.0.cmd.0": "src/api/order/order.service.spec.ts — manager, dataSource, Test.createTestingModule (9-й экран)",
+ "17.steps.3.cmd.0": "order.service.ts, строка 36: < → <=",
+ "22.steps.1.cmd.0": "git diff --stat — только .spec.ts",
+ "22.steps.1.cmd.3": "каждый тест — «правило» или «код сейчас так работает»? Отметьте вторые",
+ "22.steps.1.cmd.1": "await перед rejects",
+ "22.steps.3.cmd.1": "повторите 3-й шаг"
+}

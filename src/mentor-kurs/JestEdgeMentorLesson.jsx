@@ -80,6 +80,9 @@ const CSS = `
 .mk-count{font:700 13px/1 ${MONO};color:${T.ink}}
 .mk-body{flex:1;min-height:0;display:grid;grid-template-columns:minmax(320px,4fr) 8fr;gap:24px;padding:22px 28px}
 @media (min-width:1600px){.mk-panel{font-size:14px}.mk-explorer{font-size:13px}}
+@media (max-width:1599px){.mk-ide{grid-template-columns:150px minmax(0,1fr)}.mk-ide .mk-panel{font-size:12px}.mk-ide .mk-explorer{font-size:11.5px}}
+.pg-two:has(.mk-ide),.pg-two:has(.mk-panel .mk-ln:nth-of-type(n+10)){grid-template-columns:minmax(0,1fr)}
+.mk-pair{font:12.5px/1.4 ${MONO};color:${T.ink3};padding:0 4px}.mk-pair b{font-weight:600}.mk-pair code{font:inherit;color:${T.ink2}}
 @media (max-width:900px){.mk-body{grid-template-columns:1fr;grid-template-rows:auto 1fr;gap:14px;padding:14px}}
 .mk-ide{display:grid;grid-template-columns:218px minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);align-items:stretch;flex:0 1 auto;max-height:100%;min-height:0;background:#E9ECF1;border:1px solid #D5DAE2;border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(15,17,21,.10)}
 .mk-ide-bar{grid-column:1/-1;display:flex;align-items:center;gap:7px;padding:8px 14px;background:#DDE1E8;border-bottom:1px solid #D0D5DD;font:600 11px/1 ${MONO};color:${T.ink2};letter-spacing:.04em}
@@ -184,7 +187,7 @@ const CSS = `
 .mk-ln.gone,.mk-ln.gone *{color:#FCA5A5!important}
 .mk-ln.new{background:rgba(18,128,90,.22);box-shadow:inset 3px 0 0 #86EFAC}
 .mk-ln .n{color:${T.codeDim};min-width:2ch;text-align:right;user-select:none}
-.mk-ln.wrap{white-space:pre-wrap}
+.mk-ln.wrap{white-space:pre}
 .mk-ln.clk{cursor:pointer}
 .mk-ln.clk:hover{background:rgba(232,234,240,.08)}
 .mk-ln.bad{background:rgba(226,69,31,.28);box-shadow:inset 3px 0 0 #FCA5A5}
@@ -192,6 +195,8 @@ const CSS = `
 .k{color:#C792EA}.s{color:#C3E88D}.d{color:#FFCB6B}.c{color:#82AAFF}.m{color:#89DDFF}.cm{color:#6B7280;font-style:italic}
 .p{color:#7DD3FC}.ok{color:#86EFAC}.er{color:#FCA5A5}.wn{color:#FDE68A}
 .mk-light{flex:0 1 auto;max-height:100%;min-height:0;background:${T.paper};border:1px solid ${T.line};border-radius:16px;padding:20px;position:relative;overflow:auto}
+/* 04.11 · past ekran (1280×720, 1366×768): bo'shliqlar ixcham — shrift deyarli o'zgarmaydi, sahna sig'ishi uchun */
+@media (max-height:800px){.mk-body{padding:14px 22px;gap:20px}.mk-scene{gap:10px}.mk-panel{padding:12px 16px;font-size:12.5px;line-height:1.45}.mk-explorer{line-height:1.45;padding:6px 6px 8px}.mk-light{padding:14px}.mk-box{padding:10px 12px}}
 .mk-light.fill{flex:1}
 .mk-tag{font:600 11px/1 ${MONO};letter-spacing:.08em;color:${T.ink3};text-transform:uppercase;margin:0 0 10px}
 .mk-nav{flex:0 0 auto;background:${T.paper};border-top:1px solid ${T.line};padding:12px 28px;display:flex;align-items:center;gap:12px}
@@ -205,12 +210,28 @@ const CSS = `
 .mk-lockhint i{width:7px;height:7px;border-radius:50%;background:${T.accent};display:inline-block;animation:mk-pulse 1.6s ease-in-out infinite}
 .mk-say.mc>:first-child{margin-top:auto}
 .mk-say.mc>:last-child{margin-bottom:auto}
-.mk-say.mc .mk-opt{font-size:16px;padding:13px 16px}
-.mk-body.mc-split{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
+.mk-say.mc .mk-opt{font-size:15px;padding:11px 14px;border-radius:10px;align-items:flex-start}
+.mk-opt .l{margin-top:3px}
+.mk-opt .t{display:grid;gap:4px;min-width:0}
+.mk-opt .why{font-size:13.5px;line-height:1.4;font-weight:500;color:${T.green}}
+.mk-opt.bad .why{color:${T.accent}}
+.mk-opt.ok{color:${T.ink}}
+.mk-opt .why code{font:.92em ${MONO};background:${T.chip};border:1px solid ${T.chipLine};border-radius:5px;padding:0 5px;color:${T.ink}}
+.mk-body.mc-split{grid-template-columns:minmax(340px,4fr) minmax(0,8fr);gap:24px}
+.mc-after{display:flex;flex-direction:column;gap:12px;overflow:auto}
+.mc-after>.mk-panel,.mc-after>.mc-proof{flex:0 0 auto;min-height:0}
+.mc-proof{display:flex;flex-direction:column;gap:10px}
+.mc-proof>div{display:flex!important;flex-direction:column;gap:10px;flex:0 0 auto;min-height:0}
+.mc-proof .mk-panel{flex:0 0 auto;min-height:0;max-height:none}
+.mc-proof .mk-rule,.mc-proof .mk-tag,.mc-after>.mk-tag{flex:0 0 auto}
+.mc-demak{flex:0 0 auto;min-height:52px;display:flex;align-items:center;gap:6px;font-size:15px;line-height:1.45;color:${T.ink};padding:0 4px}
+.mc-demak.on{border-left:3px solid ${T.green};padding-left:12px;animation:mk-up .45s ease both}
+.mc-demak b{color:${T.green}}
+.mc-demak code{font:.92em ${MONO};background:${T.chip};border:1px solid ${T.chipLine};border-radius:5px;padding:0 5px}
 .mk-body.mc-split>.mk-say.mc>:first-child{margin-top:0}
 .mk-title.mc-q{font-size:clamp(19px,1.5vw,22px);font-weight:600;color:${T.ink}}
-.mc-wait{border:1.5px dashed ${T.line};border-radius:12px;padding:16px 18px;color:${T.ink3};font-size:14px;background:${T.paper}}
-@media (max-width:1300px){.mk-body.mc-split{grid-template-columns:1fr;grid-auto-rows:max-content;overflow:auto}.mk-body.mc-split>.mk-say.mc,.mk-body.mc-split>.mc-after{overflow:visible!important}}
+.mc-wait{flex:0 0 auto;border:1.5px dashed ${T.line};border-radius:10px;padding:10px 14px;color:${T.ink3};font-size:13px;background:${T.paper}}
+@media (max-width:1000px){.mk-body.mc-split{grid-template-columns:1fr;grid-auto-rows:max-content;overflow:auto}.mk-body.mc-split>.mk-say.mc,.mk-body.mc-split>.mc-after{overflow:visible!important}}
 .mk-btn.ready{background:${T.accent};border-color:${T.accent};animation:mk-pulse 1.6s ease-in-out infinite}
 .mk-audio{display:flex;align-items:center;gap:6px}
 .mk-audio button{background:transparent;border:1px solid ${T.line};border-radius:8px;padding:5px 8px;cursor:pointer;color:${T.ink2};font:12px/1 ${SANS};display:inline-flex;align-items:center;gap:6px}
@@ -263,7 +284,9 @@ const CSS = `
 .mk-step input{width:18px;height:18px;margin-top:3px;accent-color:${T.green}}
 .mk-step .t{flex:1;min-width:0}
 .mk-step .t b{display:block;font-size:14px;margin-bottom:3px}
-.mk-step .cmd{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:4px 0}
+.mk-step .cmd{display:inline-flex;gap:6px;align-items:center;margin:3px 12px 3px 0;max-width:100%}
+.mk-step .cmd code{overflow-wrap:anywhere}
+@media (max-height:760px){.mk-step{padding:7px 10px}.mk-step .t b{margin-bottom:1px}.mk-step .cmd{margin:2px 10px 2px 0}}
 .mk-step code{font:12.5px ${MONO};background:#EEF0F4;padding:2px 7px;border-radius:6px}
 .mk-step .exp{font-size:12.5px;color:${T.ink3}}
 .mk-copy{border:1px solid ${T.line};background:#fff;border-radius:6px;padding:2px 7px;font:11px ${SANS};cursor:pointer;color:${T.ink2}}
@@ -281,6 +304,8 @@ const CSS = `
 .mk-cover .card{max-width:760px;width:100%;background:${T.paper};border:1px solid ${T.line};border-radius:20px;padding:36px 40px;box-shadow:0 20px 60px rgba(15,17,21,.08)}
 .mk-cover h1{font-size:clamp(24px,2.3vw,30px);line-height:1.15;font-weight:700;margin:8px 0 10px;letter-spacing:-.01em}
 .mk-cover p{color:${T.ink2};font-size:17px;line-height:1.55;margin:0 0 22px}
+.mk-resume{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.mk-cover p.mk-resume-note{flex-basis:100%;margin:6px 0 0;font-size:14px;color:${T.ink2}}
 .mk-cover ul{margin:0 0 26px;padding:0;list-style:none;display:grid;gap:8px;color:${T.ink2};font-size:15px}
 .mk-cover li::before{content:"—";color:${T.accent};margin-right:10px}
 .mk-req{display:grid;gap:8px}
@@ -289,6 +314,57 @@ const CSS = `
 .mk-req .st{font:700 11px ${MONO};padding:2px 7px;border-radius:6px;background:#EEF0F4;color:${T.ink2}}
 .mk-req .st.s2{background:#E3F5EC;color:${T.green}}.mk-req .st.s4{background:#FFF0EB;color:${T.accent}}
 .mk-req pre{margin:6px 0 0;font:12px/1.45 ${MONO};white-space:pre-wrap;color:${T.ink2}}
+/* F-1109-06: mexanizm chizmalari (oqim, yo'lak, vaqt o'qi, jadval) — gapli karta o'rniga */
+.z{--ac:#E2451F;--ac2:#FFF5F2;--pg:#336791;--ok:#15803D;--ok2:#DCFCE7;--bad:#DC2626;--bad2:#FEF2F2;--warn:#C2410C;--warn2:#FFEDD5;--blue:#1D4ED8;--blue2:#DBEAFE;--pur:#6D3BE4;--pur2:#EDE9FE;--ink:#1F2937;--ink2:#4B5563;--mut:#6B7280;--line:#D7DCE3;--soft:#F8FAFC;
+  display:grid;gap:12px;color:var(--ink);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.z *{box-sizing:border-box}
+.z .zm,.z .zm *{font-family:ui-monospace,Menlo,Consolas,monospace}
+.z .zm{font-size:13px;color:var(--ink)}
+.z-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;display:grid;gap:10px;min-width:0;align-content:start}
+.z-h{font:700 13px system-ui,sans-serif;letter-spacing:.01em;color:var(--mut);margin:0}
+.z-flow{display:flex;align-items:stretch;gap:0}
+.z-flow>.z-st{flex:1 1 0;min-width:0}
+.z-ar{flex:0 0 26px;display:flex;align-items:center;justify-content:center;color:#9CA3AF;font-size:20px}
+.z-ar.bad{color:var(--bad)}
+.z-st{border:1.5px solid var(--line);border-radius:10px;padding:10px;display:grid;gap:5px;align-content:start;background:var(--soft)}
+.z-st.ok{border-color:var(--ok);background:#F0FDF4}.z-st.bad{border-color:var(--bad);background:var(--bad2)}.z-st.ac{border-color:var(--ac);background:var(--ac2)}
+.z-st.blue{border-color:var(--pg);background:#EFF6FF}.z-st.off{border-style:dashed;background:#fff;color:var(--mut)}
+.z-st .ln{font:11.5px ui-monospace,Menlo,Consolas,monospace;color:var(--mut)}
+.z-tag{justify-self:start;display:inline-block;font:700 12px system-ui,sans-serif;border-radius:999px;padding:2px 9px;white-space:nowrap}
+.z-tag.r{background:var(--bad);color:#fff}.z-tag.g{background:var(--ok2);color:var(--ok)}.z-tag.b{background:var(--blue2);color:var(--blue)}.z-tag.o{background:var(--warn2);color:var(--warn)}.z-tag.n{background:#F1F3F6;color:var(--ink2)}
+.z-term{background:#111827;color:#E5E7EB;border-radius:10px;padding:10px 12px;font:13px/1.55 ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;word-break:break-word}
+.z-term .r{color:#FCA5A5}.z-term .g{color:#86EFAC}.z-term .y{color:#FDE68A}.z-term .c{color:#93C5FD}.z-term .m{color:#9CA3AF}
+.z-term .hl{background:rgba(226,69,31,.28);border-radius:3px}
+.z-two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.z-three{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.z-rule{border-left:4px solid var(--ac);background:var(--ac2);border-radius:10px;padding:10px 14px;font-size:15px}
+.z-rule b{color:var(--ac)}
+.z-k{display:inline;font:13px ui-monospace,Menlo,Consolas,monospace;background:#F1F3F6;border-radius:5px;padding:1px 6px;color:var(--ink)}
+.z-mut{color:var(--mut);font-size:13px}
+.z-lanes{display:grid;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.z-lanes>div{padding:9px 12px;border-bottom:1px solid #EEF0F3;display:flex;align-items:center;gap:8px;min-height:44px;font-size:14px}
+.z-lanes>.hd{font:700 12px system-ui,sans-serif;letter-spacing:.05em;text-transform:uppercase;background:var(--soft);color:var(--ink2)}
+.z-lanes>.rh{font:600 12px ui-monospace,Menlo,Consolas,monospace;color:var(--mut);background:var(--soft)}
+.z-tbl{border-collapse:collapse;width:100%;font:13px ui-monospace,Menlo,Consolas,monospace}
+.z-tbl th,.z-tbl td{border:1px solid #E5E7EB;padding:5px 9px;text-align:left;color:var(--ink)}
+.z-tbl th{background:var(--soft);font-weight:700}
+.z-tbl tr.hl td{background:var(--blue2)}.z-tbl tr.bad td{background:var(--bad2);color:#991B1B}.z-tbl tr.ok td{background:#F0FDF4}
+.z-svg{display:block;width:100%;height:auto}
+.z-svg text{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.z-svg .mono{font-family:ui-monospace,Menlo,Consolas,monospace}
+.z b,.z strong{color:inherit}
+.z .z-st>b{color:var(--ink)}
+.z .zm{overflow-wrap:anywhere}
+.z code{all:unset;display:inline;font:13px ui-monospace,Menlo,Consolas,monospace;background:#F1F3F6;border-radius:5px;padding:1px 6px;color:var(--ink)}
+.z-h .zk,.z-h code{text-transform:none;letter-spacing:0;font:600 12.5px ui-monospace,Menlo,Consolas,monospace;color:var(--ink2)}
+.z .mk-in{min-width:0}
+.z-st.dim,.z-card.dim{opacity:.45}
+.z-card.hl{border-color:#E2451F;box-shadow:0 0 0 3px rgba(226,69,31,.14)}
+.z-st.hl{box-shadow:0 0 0 3px rgba(226,69,31,.18)}
+.z-st,.z-card,.z-ar,.z-rule,.z-term,.z-tbl tr{transition:opacity .4s,box-shadow .4s,background .4s}
+.z .dim{opacity:.4}
+.z-band{display:grid;gap:8px;font:700 12px system-ui,sans-serif;text-align:center}
+.z-band>div{border-radius:8px;padding:5px 4px}
 @keyframes mk-up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @keyframes mk-fade{from{opacity:0}to{opacity:1}}
 @keyframes mk-glow{0%,100%{box-shadow:0 0 0 0 rgba(226,69,31,0)}50%{box-shadow:0 0 0 5px rgba(226,69,31,.16)}}
@@ -327,10 +403,18 @@ const EN_PHRASES = [
   /Nest application successfully started/g, /successfully started/g, /Validation failed/g, /Internal server error/g,
   /can't resolve dependencies/g, /invalid controller/g, /Dependency Injection/g, /Hello World/g, /Cannot GET/g,
   /Bad Request/g, /Not Found/g, /does not exist/g, /Potential solutions/g, /Car with id [\w' ]+? not found/g,
+  /\b[Bb]ackslash\b/g, // F-1109-01 (M49): `\` belgisi o'z nomi bilan; ko'rik saytida o'zbekcha ovoz uchun tts-server «bekslesh» qiladi
 ];
+// F-1109-02 (M49): o'quvchi darsi kodi (m4-03, m4a-03, m11-03) ovozga so'z bilan ketadi — raqam bo'lib ketsa «0» «o» harfi
+// bo'lib o'qiladi («m4 o uch»). Faqat o'zbekcha ovozda; ekranda va «Matn»da kod o'zgarmaydi.
+const SON_UZ = ['nol', 'bir', 'ikki', 'uch', "to'rt", 'besh', 'olti', 'yetti', 'sakkiz', "to'qqiz"];
+const ON_UZ = ['', "o'n", 'yigirma', "o'ttiz", 'qirq'];
+const sonUz = (n) => (n < 10 ? SON_UZ[n] : ON_UZ[Math.floor(n / 10)] + (n % 10 ? ' ' + SON_UZ[n % 10] : ''));
+const kodOvoz = (t) => t.replace(/\bm(\d{1,2})(a?)-(\d)(\d)\b/g, (_, m, a, d1, d2) =>
+  `em ${sonUz(+m)}${a ? ' a' : ''}, ${d1 === '0' ? 'nol ' + SON_UZ[+d2] : sonUz(+(d1 + d2))}`);
 const voice = (t) => {
   const keep = [];
-  let out = t || '';
+  let out = LANG === 'ru' ? (t || '') : kodOvoz(t || '');
   EN_PHRASES.forEach((re) => { out = out.replace(re, (m) => { keep.push(m); return `\u0000${keep.length - 1}\u0000`; }); });
   return (LANG === 'ru' ? RU_MARK : UZ) + out.replace(/\u0000(\d+)\u0000/g, (_, i) => `[English pronunciation] ${keep[i]} [end]`);
 };
@@ -462,7 +546,9 @@ function Say({ eyebrow, title, segments, beat, audio, stepManual, below, guess, 
 }
 
 // Kod/terminal paneli: satr `at` qadamida kiradi; `focus` id'lari yoritiladi, qolgani xiralashadi; `onLine` — bosiladigan
-function CodePanel({ file, lines, beat = 99, focus = [], numbers = true, wrap = false, style, onLine, marks = {} }) {
+// F-1103-04 (03.11, foydalanuvchi «1 qator kod 3 qator bo'lmasin»): kod HECH QACHON o'ralmaydi — `wrap` prop e'tiborsiz (eski chaqiruvlar buzilmasin).
+// Uzun qator — darsda Prettier (80 belgi) bilan bo'linadi; sig'masa panel ichida gorizontal skroll.
+function CodePanel({ file, lines, beat = 99, focus = [], numbers = true, style, onLine, marks = {} }) {
   const anyFocus = focus.length > 0;
   const ref = useRef(null);
   const focusKey = focus.join('|');
@@ -489,7 +575,7 @@ function CodePanel({ file, lines, beat = 99, focus = [], numbers = true, wrap = 
           const v = vis(l.at, beat);
           const hl = anyFocus && l.id && focus.includes(l.id);
           const mk = marks[i] || '';
-          const cls = `mk-ln${wrap ? ' wrap' : ''}${v ? ' in' : ''}${hl ? ' hl' : (anyFocus && v && !l.keep ? ' dim' : '')}${l.gone ? ' gone' : ''}${l.neu ? ' new' : ''}${onLine ? ' clk' : ''}${mk ? ' ' + mk : ''}`;
+          const cls = `mk-ln${v ? ' in' : ''}${hl ? ' hl' : (anyFocus && v && !l.keep ? ' dim' : '')}${l.gone ? ' gone' : ''}${l.neu ? ' new' : ''}${onLine ? ' clk' : ''}${mk ? ' ' + mk : ''}`;
           return <div key={i} className={cls} data-at={l.at} onClick={onLine ? () => onLine(i, l) : undefined}>{numbers && <span className="n">{l.n != null ? l.n : i + 1}</span>}<span dangerouslySetInnerHTML={html(l.h)} /></div>;
         })}
       </div>
@@ -585,7 +671,9 @@ function Lesson({ p, S, scene, below, ready, sceneTop }) {
 
 // Tekshiruv (tanlov): xato variant yopiladi, to'g'risini topguncha bosadi
 // `after` — to'g'ri javobdan keyin ko'rsatiladigan blok (masalan tuzatilgan fayl, 2-qonun, F-1030 qo'shimcha 1)
-function MCRetry({ idx, total, onBack, onNext, onRestart, stored, onAnswer, review, kicker, eyebrow, title, q, opts, correct, ok, okShort, wrong, above, after }) {
+// F-1103-02 (A varianti): `above` — savoldan oldin ko'rinadigan material (terminal, kod, xabar); `after` — to'g'ri javobdan keyin isbot;
+// `demak` — javobdan keyin o'ng ustun ostidagi bitta «Demak, …» gapi. Karta yo'q: sabab variantning ichida (to'g'risi yashil, xatosi qizil).
+function MCRetry({ idx, total, onBack, onNext, onRestart, stored, onAnswer, review, kicker, eyebrow, title, q, opts, correct, ok, okShort, wrong, above, after, demak }) {
   const segs = useMemo(() => review ? [] : [{ id: 'q', text: voice(q), trigger: 'on_mount', waits_for: { type: 'option_picked' } }], [q, review]);
   const audio = useAudio(segs);
   const sfx = useSfx();
@@ -604,11 +692,10 @@ function MCRetry({ idx, total, onBack, onNext, onRestart, stored, onAnswer, revi
       setTimeout(() => audio.pushOneOff(voice((wrong[i] || t('Unday emas.', 'Не совсем.')) + t(" Yana o'ylab ko'ring.", ' Подумайте ещё раз.'))), 300);
     }
   };
-  const fbOk = solved && last === correct;
   // F-1102-16: tuzatilgan/haqiqiy natija bloki bo'lsa — ekran BOSHIDAN ikki ustun va joyi qimirlamaydi:
   // chapda savol va variantlar, o'ngda xabar (above) va javobdan keyin uning ostida natija (after).
   // Javobdan keyin variantlar o'z joyida qoladi (to'g'risi yashil, qolgani xira) — hech narsa sakramaydi.
-  const split = !!after;
+  const split = !!(after || above);
   return (
     <Stage kicker={kicker} idx={idx} total={total} audio={audio} onBack={onBack} onNext={onNext} onRestart={onRestart} nextReady={solved} nextDisabled={!solved} lockHint={t("To'g'ri javobni toping", 'Найдите верный ответ')}>
       <div className={`mk-body${split ? ' mc-split' : ''}`} style={split ? undefined : { gridTemplateColumns: '1fr', maxWidth: 980, width: '100%', margin: '0 auto' }}>
@@ -622,21 +709,17 @@ function MCRetry({ idx, total, onBack, onNext, onRestart, stored, onAnswer, revi
               let cls = 'mk-opt';
               if (solved) cls += i === correct ? ' ok' : ' off';
               else if (bad.includes(i)) cls += ' bad';
-              return <button key={i} className={cls} disabled={solved || bad.includes(i)} onClick={() => pick(i)}><span className="l">{String.fromCharCode(65 + i)}</span><span>{o}</span></button>;
+              const why = solved && i === correct ? (okShort || digits(ok)) : (bad.includes(i) ? digits(wrong[i] || '') : null);
+              return <button key={i} className={cls} disabled={solved || bad.includes(i)} onClick={() => pick(i)}><span className="l">{String.fromCharCode(65 + i)}</span><span className="t"><span>{o}</span>{why ? <small className="why">{why}</small> : null}</span></button>;
             })}
           </div>
-          {last !== null && (
-            <div className="mk-fb" key={last + (solved ? 'ok' : 'bad')} style={{ '--c': fbOk ? T.green : T.accent, '--bg': fbOk ? '#E3F5EC' : '#FFF0EB' }}>
-              <b>{fbOk ? t("To'g'ri", 'Верно') : t("Unday emas — yana o'ylab ko'ring", 'Не совсем — подумайте ещё раз')}</b>
-              <span>{fbOk ? (okShort || digits(ok)) : digits(wrong[last])}</span>
-            </div>
-          )}
         </div>
-        {split && <div className="mk-scene top mc-after" style={{ overflow: 'auto', display: 'grid', gap: 12, alignContent: 'start' }}>
+        {split && <div className="mk-scene top mc-after">
           {above}
           {solved
-            ? <div style={{ animation: 'mk-up .45s ease both' }}>{after}</div>
-            : <div className="mc-wait">{t("To'g'ri javobni topganingizdan keyin shu yerda haqiqiy natija ochiladi", 'Когда найдёте верный ответ, здесь откроется реальный результат')}</div>}
+            ? (after ? <div className="mc-proof" style={{ animation: 'mk-up .45s ease both' }}>{after}</div> : null)
+            : (above ? null : <div className="mc-wait">{t("Javobdan keyin shu yerda haqiqiy natija", 'После ответа здесь — реальный результат')}</div>)}
+          {demak ? <div className={`mc-demak${solved ? ' on' : ''}`}>{solved ? <><b>{t('Demak,', 'Значит,')}</b><span>{demak}</span></> : null}</div> : null}
         </div>}
       </div>
     </Stage>
@@ -733,10 +816,18 @@ function Practice({ p, S, steps, trouble, code, proof, tree }) {
     <Stage kicker={S.kicker} idx={p.idx} total={p.total} audio={b.audio} onBack={p.onBack} onNext={p.onNext} onRestart={p.onRestart} nextReady={b.done && allDone} nextDisabled={!(b.done && allDone)} lockHint={!allDone ? (proof ? t("Katakchalar va isbotni to'ldiring", 'Отметьте пункты и заполните подтверждение') : t('Katakchalarni belgilang', 'Отметьте пункты')) : t("Ustoz gapirib bo'lgach ochiladi", 'Откроется, когда учитель договорит')}>
       <div className="mk-body">
         <Say eyebrow={S.eyebrow} title={S.title} segments={S.segments} beat={beat} audio={b.audio} stepManual={b.stepManual} guess={b.guess} answerAsk={b.answerAsk} review={p.review}
-          below={<div className="mk-card" style={{ background: allDone ? '#E3F5EC' : T.paper, borderColor: allDone ? T.green : T.line }}><h5>{t('Bajarildi', 'Выполнено')}</h5><div style={{ fontSize: 15, fontWeight: 700 }}>{checked.length} / {steps.length} {t('qadam', 'шагов')}{proof ? (proofOk && proofVal.trim() ? t(' · isbot ✓', ' · подтверждение ✓') : t(' · isbot kutilmoqda', ' · ждём подтверждение')) : ''}{allDone ? (b.done ? t(' — Davom bosing', ' — нажмите «Далее»') : t(' — ovoz tugagach Davom ochiladi', ' — «Далее» откроется после озвучки')) : ''}</div>
+          below={<><div className="mk-card" style={{ background: allDone ? '#E3F5EC' : T.paper, borderColor: allDone ? T.green : T.line }}><h5>{t('Bajarildi', 'Выполнено')}</h5><div style={{ fontSize: 15, fontWeight: 700 }}>{checked.length} / {steps.length} {t('qadam', 'шагов')}{proof ? (proofOk && proofVal.trim() ? t(' · isbot ✓', ' · подтверждение ✓') : t(' · isbot kutilmoqda', ' · ждём подтверждение')) : ''}{allDone ? (b.done ? t(' — Davom bosing', ' — нажмите «Далее»') : t(' — ovoz tugagach Davom ochiladi', ' — «Далее» откроется после озвучки')) : ''}</div>
             {/* F-1102-20: isbot maydoni to'ldirilmaguncha yumshoq yonib-o'chadi — «shu yerga yozing» ko'rinib tursin */}
             {proof && <div style={{ marginTop: 10 }}><div className="exp" style={{ marginBottom: 4, fontWeight: 700, color: proofOk && proofVal.trim() ? T.green : T.ink }}>{t('Isbot', 'Подтверждение')}: {String(proof.label).replace(/^(Isbot|Подтверждение)\s*:\s*/, '')}</div><input className={`mk-input${proofOk && proofVal.trim() ? '' : ' need'}`} value={proofVal} placeholder={proof.placeholder} onChange={(e) => onProof(e.target.value)} />{proofVal.trim() && !proofOk && <div className="exp" style={{ color: T.accent, marginTop: 4 }}>{proof.wrong}</div>}</div>}
-          </div>} />
+          </div>
+          {/* 04.11: «Boshqacha chiqdimi?» chap ustunda — o'ng ustun qadamlarga to'liq qoladi (1280×720 da kesilmasin) */}
+          <Block at={S.tableAt} beat={beat}><div className="mk-light mk-trouble" style={{ padding: 0, marginTop: 10 }}>
+              <button type="button" className={`mk-trbtn${beat === S.tableAt && !tOpen ? ' hot' : ''}`} aria-haspopup="dialog" aria-expanded={tOpen} onClick={() => setTOpen(true)}>
+                <span className="q">{t('Boshqacha chiqdimi?', 'Вышло иначе?')}</span>
+                {rows.length > 1 && <span className="n">{t(`${rows.length - 1} ta holat va yechim`, `ситуации и решения: ${rows.length - 1}`)}</span>}
+                <span className="ar" aria-hidden="true">↗</span>
+              </button>
+            </div></Block></>} />
         <div className="mk-scene top" style={{ overflow: 'auto' }}>
           {cur ? (<>
             {/* F-1031-05: qaytish tugmasi oynadan tashqarida, katta — kod ko'rilgach qadamlarga qaytish ko'rinib tursin */}
@@ -757,19 +848,15 @@ function Practice({ p, S, steps, trouble, code, proof, tree }) {
                   <input type="checkbox" checked={checked.includes(i)} onChange={() => toggle(i)} />
                   <div className="t"><b>{i + 1}. {s.t}</b>
                     {s.cmds.map((cm) => <div key={cm} className="cmd"><code>{cm}</code><CopyBtn text={cm} /></div>)}
-                    {c && <div style={{ margin: '4px 0 6px' }}><button className="mk-btn soft sm" style={{ borderColor: T.ink, color: T.ink }} onClick={() => setOpenFile(c.file)}>{t('Kodni ochish', 'Открыть код')} · {baseName(c.file)}{c.copy === false ? t(' (namuna)', ' (образец)') : ''}</button></div>}
-                    <div className="exp">{t('Kutilgan:', 'Ожидается:')} {s.exp}</div>
+                    {/* 04.11: «Kodni ochish» va «Kutilgan» bitta qatorda (sig'masa o'tadi) — 1280×720 da qadamlar sig'sin */}
+                    <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '4px 12px', margin: c ? '4px 0 2px' : 0 }}>
+                      {c && <button className="mk-btn soft sm" style={{ borderColor: T.ink, color: T.ink }} onClick={() => setOpenFile(c.file)}>{t('Kodni ochish', 'Открыть код')} · {baseName(c.file)}{c.copy === false ? t(' (namuna)', ' (образец)') : ''}</button>}
+                      <div className="exp">{t('Kutilgan:', 'Ожидается:')} {s.exp}</div>
+                    </div>
                   </div>
                 </div>
               ); })}
             </div>
-            <Block at={S.tableAt} beat={beat}><div className="mk-light mk-trouble" style={{ padding: 0, marginTop: 10 }}>
-              <button type="button" className={`mk-trbtn${beat === S.tableAt && !tOpen ? ' hot' : ''}`} aria-haspopup="dialog" aria-expanded={tOpen} onClick={() => setTOpen(true)}>
-                <span className="q">{t('Boshqacha chiqdimi?', 'Вышло иначе?')}</span>
-                {rows.length > 1 && <span className="n">{t(`${rows.length - 1} ta holat va yechim`, `ситуации и решения: ${rows.length - 1}`)}</span>}
-                <span className="ar" aria-hidden="true">↗</span>
-              </button>
-            </div></Block>
             {/* F-1102-12: jadval sahifa ichida emas — ustida oyna (popup). ✕, tashqarisi yoki Esc yopadi; tugma joyida qoladi */}
             {tOpen && <TroubleModal rows={rows} onClose={() => setTOpen(false)} />}
           </>)}
@@ -779,8 +866,2620 @@ function Practice({ p, S, steps, trouble, code, proof, tree }) {
   );
 }
 
+// ---------- Progress saqlovi (F-1103-06, 03.11): mentor darsni bo'lib o'tadi ----------
+// O'quvchi darslaridagi ccProgress kabi — brauzer xotirasida: ekran, ko'rilgan ekranlar, javoblar.
+// Ekranlar soni o'zgargan bo'lsa (dars qayta qurilgan) eski yozuv olinmaydi. startAt (dev) bo'lsa saqlov o'qilmaydi.
+// Qaytganda darhol ekranga tushilmaydi: brauzer ovozni faqat bosishdan keyin chaladi — kirish oynasida tugma.
+const SAVE_KEY = (id) => `ccMentor:${id}`;
+function loadSaved(id, total) {
+  try {
+    const v = JSON.parse(localStorage.getItem(SAVE_KEY(id)) || 'null');
+    if (!v || v.v !== 1 || v.total !== total || typeof v.idx !== 'number' || v.idx < 1) return null;
+    return v;
+  } catch (e) { return null; }
+}
+function clearSaved(id) { try { localStorage.removeItem(SAVE_KEY(id)); } catch (e) {} }
+function useMentorSave({ id, total, startAt, started, idx, answers, seen, setIdx, setAnswers, setSeen, setStarted }) {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const saved = useMemo(() => (startAt != null ? null : loadSaved(id, total)), []);
+  useEffect(() => {
+    if (!started) return;
+    try { localStorage.setItem(SAVE_KEY(id), JSON.stringify({ v: 1, total, idx, answers, seen, t: Date.now() })); } catch (e) {}
+  }, [started, idx, answers, seen, id, total]);
+  const start = useCallback((resume) => {
+    if (resume && saved) { setIdx(Math.min(saved.idx, total - 1)); setAnswers(saved.answers || {}); setSeen(saved.seen || {}); }
+    else clearSaved(id);
+    setStarted(true);
+  }, [saved, id, total, setIdx, setAnswers, setSeen, setStarted]);
+  return { resume: saved, start };
+}
+function CoverStart({ onStart, resume }) {
+  if (!resume) return <button className="mk-btn ready" onClick={() => onStart(false)}>{t('Boshlash →', 'Начать →')}</button>;
+  return (
+    <div className="mk-resume">
+      <button className="mk-btn ready" onClick={() => onStart(true)}>{t(`${resume.idx + 1}-ekrandan davom etish →`, `Продолжить с ${resume.idx + 1}-го экрана →`)}</button>
+      <button className="mk-btn soft" onClick={() => onStart(false)}>{t('Boshidan boshlash', 'Начать сначала')}</button>
+      <p className="mk-resume-note">{t(`Oxirgi marta ${resume.idx + 1}-ekrangacha kelgansiz. Javoblaringiz saqlangan.`, `В прошлый раз вы дошли до ${resume.idx + 1}-го экрана. Ответы сохранены.`)}</p>
+    </div>
+  );
+}
+
+// AVTO: feedback/F-1029-02-mentor-kurs/dev/jest2-kod.py — OrderBotNest teglari va haqiqiy test fayllaridan aynan (qo'lda tahrirlanmaydi)
+const KOD_TS_PHONE = {
+ "file": "src/api/telegram/telegram.service.ts",
+ "tag": "jest2-start",
+ "lines": [
+  {
+   "t": "const PHONE = /^\\+?\\d{9,13}$/;",
+   "n": 12
+  }
+ ]
+};
+const KOD_TS_ONTEXT = {
+ "file": "src/api/telegram/telegram.service.ts",
+ "tag": "jest2-start",
+ "lines": [
+  {
+   "t": "  // Matn keldi: telefon kutilayotgan bo'lsa — saqlab buyurtma beramiz",
+   "n": 152
+  },
+  {
+   "t": "  private async onText(ctx: Context & { message: { text: string } }) {",
+   "n": 153
+  },
+  {
+   "t": "    const user = await this.users.getOrCreate(ctx.from!);",
+   "n": 154
+  },
+  {
+   "t": "    if (user.state === 'WAITING_PHONE') {",
+   "n": 155
+  },
+  {
+   "t": "      const phone = ctx.message.text.trim();",
+   "n": 156
+  },
+  {
+   "t": "      if (!PHONE.test(phone)) return ctx.reply(texts.badPhone);",
+   "n": 157
+  },
+  {
+   "t": "      await this.users.setPhone(user, phone);",
+   "n": 158
+  },
+  {
+   "t": "      return this.placeOrder(ctx, user);",
+   "n": 159
+  },
+  {
+   "t": "    }",
+   "n": 160
+  }
+ ]
+};
+const KOD_TS_IMPORT_NEW = {
+ "file": "src/api/telegram/telegram.service.ts",
+ "tag": "jest2-done",
+ "lines": [
+  {
+   "t": "import { cartKeyboard, catalogKeyboard, orderKeyboard } from './keyboards';",
+   "n": 9
+  },
+  {
+   "t": "import { isPhone } from './phone';",
+   "n": 10
+  },
+  {
+   "t": "import { texts } from './texts';",
+   "n": 11
+  }
+ ]
+};
+const KOD_TS_ONTEXT_NEW = {
+ "file": "src/api/telegram/telegram.service.ts",
+ "tag": "jest2-done",
+ "lines": [
+  {
+   "t": "  private async onText(ctx: Context & { message: { text: string } }) {",
+   "n": 152
+  },
+  {
+   "t": "    const user = await this.users.getOrCreate(ctx.from!);",
+   "n": 153
+  },
+  {
+   "t": "    if (user.state === 'WAITING_PHONE') {",
+   "n": 154
+  },
+  {
+   "t": "      const phone = ctx.message.text.replace(/[\\s-]/g, '');",
+   "n": 155
+  },
+  {
+   "t": "      if (!isPhone(phone)) return ctx.reply(texts.badPhone);",
+   "n": 156
+  },
+  {
+   "t": "      await this.users.setPhone(user, phone);",
+   "n": 157
+  },
+  {
+   "t": "      return this.placeOrder(ctx, user);",
+   "n": 158
+  },
+  {
+   "t": "    }",
+   "n": 159
+  }
+ ]
+};
+const KOD_PHONE_OLD = {
+ "file": "src/api/telegram/phone.ts",
+ "tag": "chiqish",
+ "lines": [
+  {
+   "t": "// Telefon raqami: + bilan yoki + siz, 9–13 ta raqam",
+   "n": 1
+  },
+  {
+   "t": "export const PHONE = /^\\+?\\d{9,13}$/;",
+   "n": 2
+  },
+  {
+   "t": "",
+   "n": 3
+  },
+  {
+   "t": "export const isPhone = (text: string) => PHONE.test(text.trim());",
+   "n": 4
+  }
+ ]
+};
+const KOD_PHONE_NEW = {
+ "file": "src/api/telegram/phone.ts",
+ "tag": "chiqish",
+ "lines": [
+  {
+   "t": "// Telefon raqami: + bilan yoki + siz, 9–13 ta raqam. Mijoz probel yoki chiziqcha bilan yozishi mumkin",
+   "n": 1
+  },
+  {
+   "t": "export const PHONE = /^\\+?\\d{9,13}$/;",
+   "n": 2
+  },
+  {
+   "t": "",
+   "n": 3
+  },
+  {
+   "t": "export const isPhone = (text: string) => PHONE.test(text.replace(/[\\s-]/g, ''));",
+   "n": 4
+  }
+ ]
+};
+const KOD_SPEC_PHONE_02 = {
+ "file": "src/api/telegram/phone.spec.ts",
+ "tag": "chiqish",
+ "lines": [
+  {
+   "t": "import { isPhone } from './phone';",
+   "n": 1
+  },
+  {
+   "t": "",
+   "n": 2
+  },
+  {
+   "t": "describe('isPhone', () => {",
+   "n": 3
+  },
+  {
+   "t": "  it.each(['+998901234567', '998901234567'])(\"%s — to'g'ri raqam\", (s) => {",
+   "n": 4
+  },
+  {
+   "t": "    expect(isPhone(s)).toBe(true);",
+   "n": 5
+  },
+  {
+   "t": "  });",
+   "n": 6
+  },
+  {
+   "t": "",
+   "n": 7
+  },
+  {
+   "t": "  it.each([",
+   "n": 8
+  },
+  {
+   "t": "    ['12345678', '8 ta raqam — qisqa'],",
+   "n": 9
+  },
+  {
+   "t": "    ['+99890123456789', '14 ta raqam — uzun'],",
+   "n": 10
+  },
+  {
+   "t": "    ['abc', 'harf'],",
+   "n": 11
+  },
+  {
+   "t": "    ['', \"bo'sh\"],",
+   "n": 12
+  },
+  {
+   "t": "  ])('%s — %s', (s) => {",
+   "n": 13
+  },
+  {
+   "t": "    expect(isPhone(s)).toBe(false);",
+   "n": 14
+  },
+  {
+   "t": "  });",
+   "n": 15
+  },
+  {
+   "t": "",
+   "n": 16
+  },
+  {
+   "t": "  it('mijoz probel bilan yozadi', () => {",
+   "n": 17
+  },
+  {
+   "t": "    expect(isPhone('+998 90 123 45 67')).toBe(true);",
+   "n": 18
+  },
+  {
+   "t": "  });",
+   "n": 19
+  },
+  {
+   "t": "});",
+   "n": 20
+  }
+ ]
+};
+const KOD_SPEC_PHONE_04 = {
+ "file": "src/api/telegram/phone.spec.ts",
+ "tag": "chiqish",
+ "lines": [
+  {
+   "t": "import { isPhone } from './phone';",
+   "n": 1
+  },
+  {
+   "t": "",
+   "n": 2
+  },
+  {
+   "t": "describe('isPhone', () => {",
+   "n": 3
+  },
+  {
+   "t": "  it.each(['+998901234567', '998901234567'])(\"%s — to'g'ri raqam\", (s) => {",
+   "n": 4
+  },
+  {
+   "t": "    expect(isPhone(s)).toBe(true);",
+   "n": 5
+  },
+  {
+   "t": "  });",
+   "n": 6
+  },
+  {
+   "t": "",
+   "n": 7
+  },
+  {
+   "t": "  it.each([",
+   "n": 8
+  },
+  {
+   "t": "    ['12345678', '8 ta raqam — qisqa'],",
+   "n": 9
+  },
+  {
+   "t": "    ['+99890123456789', '14 ta raqam — uzun'],",
+   "n": 10
+  },
+  {
+   "t": "    ['abc', 'harf'],",
+   "n": 11
+  },
+  {
+   "t": "    ['', \"bo'sh\"],",
+   "n": 12
+  },
+  {
+   "t": "  ])('%s — %s', (s) => {",
+   "n": 13
+  },
+  {
+   "t": "    expect(isPhone(s)).toBe(false);",
+   "n": 14
+  },
+  {
+   "t": "  });",
+   "n": 15
+  },
+  {
+   "t": "",
+   "n": 16
+  },
+  {
+   "t": "  it('mijoz probel bilan yozadi', () => {",
+   "n": 17
+  },
+  {
+   "t": "    expect(isPhone('+998 90 123 45 67')).toBe(true);",
+   "n": 18
+  },
+  {
+   "t": "  });",
+   "n": 19
+  },
+  {
+   "t": "});",
+   "n": 20
+  },
+  {
+   "t": "",
+   "n": 21
+  },
+  {
+   "t": "describe(\"isPhone — qoida nimani o'tkazib yuboradi\", () => {",
+   "n": 22
+  },
+  {
+   "t": "  it(\"9 ta nol ham o'tadi\", () => {",
+   "n": 23
+  },
+  {
+   "t": "    expect(isPhone('000000000')).toBe(true);",
+   "n": 24
+  },
+  {
+   "t": "  });",
+   "n": 25
+  },
+  {
+   "t": "});",
+   "n": 26
+  }
+ ]
+};
+const KOD_ORDER_PLACE = {
+ "file": "src/api/order/order.service.ts",
+ "tag": "jest2-start",
+ "lines": [
+  {
+   "t": "  place(user: User, cart: CartItem[]): Promise<Order> {",
+   "n": 24
+  },
+  {
+   "t": "    if (!user.phone) throw new Error(\"Telefon raqami yo'q\");",
+   "n": 25
+  },
+  {
+   "t": "    if (cart.length === 0) throw new Error(\"Savat bo'sh\");",
+   "n": 26
+  },
+  {
+   "t": "    return this.ds.transaction(async (m) => {",
+   "n": 27
+  },
+  {
+   "t": "      const items: OrderItem[] = [];",
+   "n": 28
+  },
+  {
+   "t": "      for (const c of cart) {",
+   "n": 29
+  },
+  {
+   "t": "        // 1) Qatorni qulflab o'qiymiz (SELECT ... FOR UPDATE): ikkinchi mijoz shu qatorni biz tugatguncha kutadi",
+   "n": 30
+  },
+  {
+   "t": "        const p = await m.findOne(Product, {",
+   "n": 31
+  },
+  {
+   "t": "          where: { id: c.product.id },",
+   "n": 32
+  },
+  {
+   "t": "          lock: { mode: 'pessimistic_write' },",
+   "n": 33
+  },
+  {
+   "t": "        });",
+   "n": 34
+  },
+  {
+   "t": "        if (!p) throw new Error(`Mahsulot topilmadi: ${c.product.name}`);",
+   "n": 35
+  },
+  {
+   "t": "        if (p.stock < c.qty) {",
+   "n": 36
+  },
+  {
+   "t": "          throw new Error(`${p.name}: omborda faqat ${p.stock} ta qoldi`);",
+   "n": 37
+  },
+  {
+   "t": "        }",
+   "n": 38
+  },
+  {
+   "t": "        // 2) Ayiramiz. Bazadagi CHECK (stock >= 0) — oxirgi qo'riqchi: kod xato qilsa ham manfiy bo'lmaydi.",
+   "n": 39
+  },
+  {
+   "t": "        //    Diqqat: tranzaksiya ichida xato chiqsa, keyingi so'rovlar ham rad etiladi",
+   "n": 40
+  },
+  {
+   "t": "        //    («current transaction is aborted») — faqat ROLLBACK qoladi.",
+   "n": 41
+  },
+  {
+   "t": "        await m.query(`UPDATE products SET stock = stock - $1 WHERE id = $2`, [",
+   "n": 42
+  },
+  {
+   "t": "          c.qty,",
+   "n": 43
+  },
+  {
+   "t": "          p.id,",
+   "n": 44
+  },
+  {
+   "t": "        ]);",
+   "n": 45
+  }
+ ]
+};
+const KOD_ORDER_SETSTATUS = {
+ "file": "src/api/order/order.service.ts",
+ "tag": "jest2-done",
+ "lines": [
+  {
+   "t": "",
+   "n": 66
+  },
+  {
+   "t": "  // Status o'zgaradi; bekor qilinsa mahsulotlar omborga qaytadi — yana tranzaksiya",
+   "n": 67
+  },
+  {
+   "t": "  setStatus(id: number, status: OrderStatus): Promise<Order> {",
+   "n": 68
+  },
+  {
+   "t": "    return this.ds.transaction(async (m) => {",
+   "n": 69
+  },
+  {
+   "t": "      // Buyurtma qatorini qulflaymiz: «Bekor» ikki marta bir vaqtda bosilsa,",
+   "n": 70
+  },
+  {
+   "t": "      // ikkinchisi birinchisi tugashini kutadi va CANCELLED ni ko'radi — ombor bir marta qaytadi",
+   "n": 71
+  },
+  {
+   "t": "      await m.query('SELECT id FROM orders WHERE id = $1 FOR UPDATE', [id]);",
+   "n": 72
+  },
+  {
+   "t": "      const order = await m.findOneBy(Order, { id });",
+   "n": 73
+  },
+  {
+   "t": "      if (!order) throw new Error(`Buyurtma topilmadi: #${id}`);",
+   "n": 74
+  },
+  {
+   "t": "      if (order.status === 'CANCELLED') {",
+   "n": 75
+  },
+  {
+   "t": "        throw new Error(`#${id} allaqachon bekor qilingan`);",
+   "n": 76
+  },
+  {
+   "t": "      }",
+   "n": 77
+  },
+  {
+   "t": "      if (status === 'CANCELLED') {",
+   "n": 78
+  },
+  {
+   "t": "        for (const i of order.items) {",
+   "n": 79
+  },
+  {
+   "t": "          await m.increment(Product, { id: i.product.id }, 'stock', i.qty);",
+   "n": 80
+  },
+  {
+   "t": "        }",
+   "n": 81
+  },
+  {
+   "t": "      }",
+   "n": 82
+  },
+  {
+   "t": "      order.status = status;",
+   "n": 83
+  },
+  {
+   "t": "      return m.save(order);",
+   "n": 84
+  },
+  {
+   "t": "    });",
+   "n": 85
+  },
+  {
+   "t": "  }",
+   "n": 86
+  },
+  {
+   "t": "}",
+   "n": 87
+  }
+ ]
+};
+const KOD_SPEC_ORDER_05 = {
+ "file": "src/api/order/order.service.spec.ts",
+ "tag": "chiqish",
+ "lines": [
+  {
+   "t": "import { Test } from '@nestjs/testing';",
+   "n": 1
+  },
+  {
+   "t": "import { getRepositoryToken } from '@nestjs/typeorm';",
+   "n": 2
+  },
+  {
+   "t": "import { DataSource } from 'typeorm';",
+   "n": 3
+  },
+  {
+   "t": "import { Order, User } from '../../core/entity';",
+   "n": 4
+  },
+  {
+   "t": "import { OrderService } from './order.service';",
+   "n": 5
+  },
+  {
+   "t": "",
+   "n": 6
+  },
+  {
+   "t": "// Baza o'rniga soxta (mock) EntityManager: findOne mahsulotni qaytaradi, query va save — yozib qoladi",
+   "n": 7
+  },
+  {
+   "t": "const manager = {",
+   "n": 8
+  },
+  {
+   "t": "  findOne: jest.fn(),",
+   "n": 9
+  },
+  {
+   "t": "  query: jest.fn(),",
+   "n": 10
+  },
+  {
+   "t": "  create: jest.fn((_cls, data) => data),",
+   "n": 11
+  },
+  {
+   "t": "  save: jest.fn(async (o) => ({ id: 1, ...o })),",
+   "n": 12
+  },
+  {
+   "t": "  delete: jest.fn(),",
+   "n": 13
+  },
+  {
+   "t": "};",
+   "n": 14
+  },
+  {
+   "t": "const dataSource = { transaction: jest.fn((cb) => cb(manager)) };",
+   "n": 15
+  },
+  {
+   "t": "",
+   "n": 16
+  },
+  {
+   "t": "const user = { id: 1, phone: '+998901234567' } as User;",
+   "n": 17
+  },
+  {
+   "t": "const cart = [{ product: { id: 4, name: 'Kolonka' }, qty: 2 }] as any;",
+   "n": 18
+  },
+  {
+   "t": "",
+   "n": 19
+  },
+  {
+   "t": "let service: OrderService;",
+   "n": 20
+  },
+  {
+   "t": "beforeEach(async () => {",
+   "n": 21
+  },
+  {
+   "t": "  jest.clearAllMocks();",
+   "n": 22
+  },
+  {
+   "t": "  const mod = await Test.createTestingModule({",
+   "n": 23
+  },
+  {
+   "t": "    providers: [",
+   "n": 24
+  },
+  {
+   "t": "      OrderService,",
+   "n": 25
+  },
+  {
+   "t": "      { provide: getRepositoryToken(Order), useValue: {} },",
+   "n": 26
+  },
+  {
+   "t": "      { provide: DataSource, useValue: dataSource },",
+   "n": 27
+  },
+  {
+   "t": "    ],",
+   "n": 28
+  },
+  {
+   "t": "  }).compile();",
+   "n": 29
+  },
+  {
+   "t": "  service = mod.get(OrderService);",
+   "n": 30
+  },
+  {
+   "t": "});",
+   "n": 31
+  },
+  {
+   "t": "",
+   "n": 32
+  },
+  {
+   "t": "describe('OrderService.place', () => {",
+   "n": 33
+  },
+  {
+   "t": "  it(\"telefon yo'q — darhol xato\", () => {",
+   "n": 34
+  },
+  {
+   "t": "    expect(() => service.place({ id: 1, phone: null } as User, cart)).toThrow(",
+   "n": 35
+  },
+  {
+   "t": "      \"Telefon raqami yo'q\",",
+   "n": 36
+  },
+  {
+   "t": "    );",
+   "n": 37
+  },
+  {
+   "t": "  });",
+   "n": 38
+  },
+  {
+   "t": "",
+   "n": 39
+  },
+  {
+   "t": "  it(\"savat bo'sh — darhol xato\", () => {",
+   "n": 40
+  },
+  {
+   "t": "    expect(() => service.place(user, [])).toThrow(\"Savat bo'sh\");",
+   "n": 41
+  },
+  {
+   "t": "  });",
+   "n": 42
+  },
+  {
+   "t": "",
+   "n": 43
+  },
+  {
+   "t": "  it(\"omborda yetmaydi — tranzaksiya ichida xato, UPDATE bo'lmaydi\", async () => {",
+   "n": 44
+  },
+  {
+   "t": "    manager.findOne.mockResolvedValue({",
+   "n": 45
+  },
+  {
+   "t": "      id: 4,",
+   "n": 46
+  },
+  {
+   "t": "      name: 'Kolonka',",
+   "n": 47
+  },
+  {
+   "t": "      stock: 1,",
+   "n": 48
+  },
+  {
+   "t": "      price: 50000,",
+   "n": 49
+  },
+  {
+   "t": "    });",
+   "n": 50
+  },
+  {
+   "t": "    await expect(service.place(user, cart)).rejects.toThrow(",
+   "n": 51
+  },
+  {
+   "t": "      'Kolonka: omborda faqat 1 ta qoldi',",
+   "n": 52
+  },
+  {
+   "t": "    );",
+   "n": 53
+  },
+  {
+   "t": "    expect(manager.query).not.toHaveBeenCalled();",
+   "n": 54
+  },
+  {
+   "t": "  });",
+   "n": 55
+  },
+  {
+   "t": "",
+   "n": 56
+  },
+  {
+   "t": "  it('yetarli — jami narx hisoblanadi', async () => {",
+   "n": 57
+  },
+  {
+   "t": "    manager.findOne.mockResolvedValue({",
+   "n": 58
+  },
+  {
+   "t": "      id: 4,",
+   "n": 59
+  },
+  {
+   "t": "      name: 'Kolonka',",
+   "n": 60
+  },
+  {
+   "t": "      stock: 10,",
+   "n": 61
+  },
+  {
+   "t": "      price: 50000,",
+   "n": 62
+  },
+  {
+   "t": "    });",
+   "n": 63
+  },
+  {
+   "t": "    const order = await service.place(user, cart);",
+   "n": 64
+  },
+  {
+   "t": "    expect(order.total).toBe(100000);",
+   "n": 65
+  },
+  {
+   "t": "    expect(manager.query).toHaveBeenCalledTimes(1);",
+   "n": 66
+  },
+  {
+   "t": "  });",
+   "n": 67
+  },
+  {
+   "t": "});",
+   "n": 68
+  }
+ ]
+};
+const KOD_SPEC_ORDER_06 = {
+ "file": "src/api/order/order.service.spec.ts",
+ "tag": "chiqish",
+ "lines": [
+  {
+   "t": "import { Test } from '@nestjs/testing';",
+   "n": 1
+  },
+  {
+   "t": "import { getRepositoryToken } from '@nestjs/typeorm';",
+   "n": 2
+  },
+  {
+   "t": "import { DataSource } from 'typeorm';",
+   "n": 3
+  },
+  {
+   "t": "import { Order, User } from '../../core/entity';",
+   "n": 4
+  },
+  {
+   "t": "import { OrderService } from './order.service';",
+   "n": 5
+  },
+  {
+   "t": "",
+   "n": 6
+  },
+  {
+   "t": "// Baza o'rniga soxta (mock) EntityManager: findOne mahsulotni qaytaradi, query va save — yozib qoladi",
+   "n": 7
+  },
+  {
+   "t": "const manager = {",
+   "n": 8
+  },
+  {
+   "t": "  findOne: jest.fn(),",
+   "n": 9
+  },
+  {
+   "t": "  query: jest.fn(),",
+   "n": 10
+  },
+  {
+   "t": "  create: jest.fn((_cls, data) => data),",
+   "n": 11
+  },
+  {
+   "t": "  save: jest.fn(async (o) => ({ id: 1, ...o })),",
+   "n": 12
+  },
+  {
+   "t": "  delete: jest.fn(),",
+   "n": 13
+  },
+  {
+   "t": "};",
+   "n": 14
+  },
+  {
+   "t": "const dataSource = { transaction: jest.fn((cb) => cb(manager)) };",
+   "n": 15
+  },
+  {
+   "t": "",
+   "n": 16
+  },
+  {
+   "t": "const user = { id: 1, phone: '+998901234567' } as User;",
+   "n": 17
+  },
+  {
+   "t": "const cart = [{ product: { id: 4, name: 'Kolonka' }, qty: 2 }] as any;",
+   "n": 18
+  },
+  {
+   "t": "",
+   "n": 19
+  },
+  {
+   "t": "let service: OrderService;",
+   "n": 20
+  },
+  {
+   "t": "beforeEach(async () => {",
+   "n": 21
+  },
+  {
+   "t": "  jest.clearAllMocks();",
+   "n": 22
+  },
+  {
+   "t": "  const mod = await Test.createTestingModule({",
+   "n": 23
+  },
+  {
+   "t": "    providers: [",
+   "n": 24
+  },
+  {
+   "t": "      OrderService,",
+   "n": 25
+  },
+  {
+   "t": "      { provide: getRepositoryToken(Order), useValue: {} },",
+   "n": 26
+  },
+  {
+   "t": "      { provide: DataSource, useValue: dataSource },",
+   "n": 27
+  },
+  {
+   "t": "    ],",
+   "n": 28
+  },
+  {
+   "t": "  }).compile();",
+   "n": 29
+  },
+  {
+   "t": "  service = mod.get(OrderService);",
+   "n": 30
+  },
+  {
+   "t": "});",
+   "n": 31
+  },
+  {
+   "t": "",
+   "n": 32
+  },
+  {
+   "t": "describe('OrderService.place', () => {",
+   "n": 33
+  },
+  {
+   "t": "  it(\"telefon yo'q — darhol xato\", async () => {",
+   "n": 34
+  },
+  {
+   "t": "    await expect(",
+   "n": 35
+  },
+  {
+   "t": "      service.place({ id: 1, phone: null } as User, cart),",
+   "n": 36
+  },
+  {
+   "t": "    ).rejects.toThrow(\"Telefon raqami yo'q\");",
+   "n": 37
+  },
+  {
+   "t": "  });",
+   "n": 38
+  },
+  {
+   "t": "",
+   "n": 39
+  },
+  {
+   "t": "  it(\"savat bo'sh — darhol xato\", () => {",
+   "n": 40
+  },
+  {
+   "t": "    expect(() => service.place(user, [])).toThrow(\"Savat bo'sh\");",
+   "n": 41
+  },
+  {
+   "t": "  });",
+   "n": 42
+  },
+  {
+   "t": "",
+   "n": 43
+  },
+  {
+   "t": "  it(\"omborda yetmaydi — tranzaksiya ichida xato, UPDATE bo'lmaydi\", async () => {",
+   "n": 44
+  },
+  {
+   "t": "    manager.findOne.mockResolvedValue({",
+   "n": 45
+  },
+  {
+   "t": "      id: 4,",
+   "n": 46
+  },
+  {
+   "t": "      name: 'Kolonka',",
+   "n": 47
+  },
+  {
+   "t": "      stock: 1,",
+   "n": 48
+  },
+  {
+   "t": "      price: 50000,",
+   "n": 49
+  },
+  {
+   "t": "    });",
+   "n": 50
+  },
+  {
+   "t": "    await expect(service.place(user, cart)).rejects.toThrow(",
+   "n": 51
+  },
+  {
+   "t": "      'Kolonka: omborda faqat 1 ta qoldi',",
+   "n": 52
+  },
+  {
+   "t": "    );",
+   "n": 53
+  },
+  {
+   "t": "    expect(manager.query).not.toHaveBeenCalled();",
+   "n": 54
+  },
+  {
+   "t": "  });",
+   "n": 55
+  },
+  {
+   "t": "",
+   "n": 56
+  },
+  {
+   "t": "  it('yetarli — jami narx hisoblanadi', async () => {",
+   "n": 57
+  },
+  {
+   "t": "    manager.findOne.mockResolvedValue({",
+   "n": 58
+  },
+  {
+   "t": "      id: 4,",
+   "n": 59
+  },
+  {
+   "t": "      name: 'Kolonka',",
+   "n": 60
+  },
+  {
+   "t": "      stock: 10,",
+   "n": 61
+  },
+  {
+   "t": "      price: 50000,",
+   "n": 62
+  },
+  {
+   "t": "    });",
+   "n": 63
+  },
+  {
+   "t": "    const order = await service.place(user, cart);",
+   "n": 64
+  },
+  {
+   "t": "    expect(order.total).toBe(100000);",
+   "n": 65
+  },
+  {
+   "t": "    expect(manager.query).toHaveBeenCalledTimes(1);",
+   "n": 66
+  },
+  {
+   "t": "  });",
+   "n": 67
+  },
+  {
+   "t": "});",
+   "n": 68
+  }
+ ]
+};
+const KOD_SPEC_ORDER_07 = {
+ "file": "src/api/order/order.service.spec.ts",
+ "tag": "chiqish",
+ "lines": [
+  {
+   "t": "import { Test } from '@nestjs/testing';",
+   "n": 1
+  },
+  {
+   "t": "import { getRepositoryToken } from '@nestjs/typeorm';",
+   "n": 2
+  },
+  {
+   "t": "import { DataSource } from 'typeorm';",
+   "n": 3
+  },
+  {
+   "t": "import { Order, User } from '../../core/entity';",
+   "n": 4
+  },
+  {
+   "t": "import { OrderService } from './order.service';",
+   "n": 5
+  },
+  {
+   "t": "",
+   "n": 6
+  },
+  {
+   "t": "// Baza o'rniga soxta (mock) EntityManager: findOne mahsulotni qaytaradi, query va save — yozib qoladi",
+   "n": 7
+  },
+  {
+   "t": "const manager = {",
+   "n": 8
+  },
+  {
+   "t": "  findOne: jest.fn(),",
+   "n": 9
+  },
+  {
+   "t": "  query: jest.fn(),",
+   "n": 10
+  },
+  {
+   "t": "  create: jest.fn((_cls, data) => data),",
+   "n": 11
+  },
+  {
+   "t": "  save: jest.fn(async (o) => ({ id: 1, ...o })),",
+   "n": 12
+  },
+  {
+   "t": "  delete: jest.fn(),",
+   "n": 13
+  },
+  {
+   "t": "};",
+   "n": 14
+  },
+  {
+   "t": "const dataSource = { transaction: jest.fn((cb) => cb(manager)) };",
+   "n": 15
+  },
+  {
+   "t": "",
+   "n": 16
+  },
+  {
+   "t": "const user = { id: 1, phone: '+998901234567' } as User;",
+   "n": 17
+  },
+  {
+   "t": "const cart = [{ product: { id: 4, name: 'Kolonka' }, qty: 2 }] as any;",
+   "n": 18
+  },
+  {
+   "t": "",
+   "n": 19
+  },
+  {
+   "t": "let service: OrderService;",
+   "n": 20
+  },
+  {
+   "t": "beforeEach(async () => {",
+   "n": 21
+  },
+  {
+   "t": "  jest.clearAllMocks();",
+   "n": 22
+  },
+  {
+   "t": "  const mod = await Test.createTestingModule({",
+   "n": 23
+  },
+  {
+   "t": "    providers: [",
+   "n": 24
+  },
+  {
+   "t": "      OrderService,",
+   "n": 25
+  },
+  {
+   "t": "      { provide: getRepositoryToken(Order), useValue: {} },",
+   "n": 26
+  },
+  {
+   "t": "      { provide: DataSource, useValue: dataSource },",
+   "n": 27
+  },
+  {
+   "t": "    ],",
+   "n": 28
+  },
+  {
+   "t": "  }).compile();",
+   "n": 29
+  },
+  {
+   "t": "  service = mod.get(OrderService);",
+   "n": 30
+  },
+  {
+   "t": "});",
+   "n": 31
+  },
+  {
+   "t": "",
+   "n": 32
+  },
+  {
+   "t": "describe('OrderService.place', () => {",
+   "n": 33
+  },
+  {
+   "t": "  it(\"telefon yo'q — darhol xato\", () => {",
+   "n": 34
+  },
+  {
+   "t": "    expect(() => service.place({ id: 1, phone: null } as User, cart)).toThrow(",
+   "n": 35
+  },
+  {
+   "t": "      \"Telefon raqami yo'q\",",
+   "n": 36
+  },
+  {
+   "t": "    );",
+   "n": 37
+  },
+  {
+   "t": "  });",
+   "n": 38
+  },
+  {
+   "t": "",
+   "n": 39
+  },
+  {
+   "t": "  it(\"savat bo'sh — darhol xato\", () => {",
+   "n": 40
+  },
+  {
+   "t": "    expect(() => service.place(user, [])).toThrow(\"Savat bo'sh\");",
+   "n": 41
+  },
+  {
+   "t": "  });",
+   "n": 42
+  },
+  {
+   "t": "",
+   "n": 43
+  },
+  {
+   "t": "  it(\"omborda yetmaydi — tranzaksiya ichida xato, UPDATE bo'lmaydi\", async () => {",
+   "n": 44
+  },
+  {
+   "t": "    manager.findOne.mockResolvedValue({",
+   "n": 45
+  },
+  {
+   "t": "      id: 4,",
+   "n": 46
+  },
+  {
+   "t": "      name: 'Kolonka',",
+   "n": 47
+  },
+  {
+   "t": "      stock: 1,",
+   "n": 48
+  },
+  {
+   "t": "      price: 50000,",
+   "n": 49
+  },
+  {
+   "t": "    });",
+   "n": 50
+  },
+  {
+   "t": "    expect(() => service.place(user, cart)).toThrow(",
+   "n": 51
+  },
+  {
+   "t": "      'Kolonka: omborda faqat 1 ta qoldi',",
+   "n": 52
+  },
+  {
+   "t": "    );",
+   "n": 53
+  },
+  {
+   "t": "    expect(manager.query).not.toHaveBeenCalled();",
+   "n": 54
+  },
+  {
+   "t": "  });",
+   "n": 55
+  },
+  {
+   "t": "",
+   "n": 56
+  },
+  {
+   "t": "  it('yetarli — jami narx hisoblanadi', async () => {",
+   "n": 57
+  },
+  {
+   "t": "    manager.findOne.mockResolvedValue({",
+   "n": 58
+  },
+  {
+   "t": "      id: 4,",
+   "n": 59
+  },
+  {
+   "t": "      name: 'Kolonka',",
+   "n": 60
+  },
+  {
+   "t": "      stock: 10,",
+   "n": 61
+  },
+  {
+   "t": "      price: 50000,",
+   "n": 62
+  },
+  {
+   "t": "    });",
+   "n": 63
+  },
+  {
+   "t": "    const order = await service.place(user, cart);",
+   "n": 64
+  },
+  {
+   "t": "    expect(order.total).toBe(100000);",
+   "n": 65
+  },
+  {
+   "t": "    expect(manager.query).toHaveBeenCalledTimes(1);",
+   "n": 66
+  },
+  {
+   "t": "  });",
+   "n": 67
+  },
+  {
+   "t": "});",
+   "n": 68
+  }
+ ]
+};
+const KOD_SPEC_ORDER_08 = {
+ "file": "src/api/order/order.service.spec.ts",
+ "tag": "chiqish",
+ "lines": [
+  {
+   "t": "import { Test } from '@nestjs/testing';",
+   "n": 1
+  },
+  {
+   "t": "import { getRepositoryToken } from '@nestjs/typeorm';",
+   "n": 2
+  },
+  {
+   "t": "import { DataSource } from 'typeorm';",
+   "n": 3
+  },
+  {
+   "t": "import { Order, User } from '../../core/entity';",
+   "n": 4
+  },
+  {
+   "t": "import { OrderService } from './order.service';",
+   "n": 5
+  },
+  {
+   "t": "",
+   "n": 6
+  },
+  {
+   "t": "// Baza o'rniga soxta (mock) EntityManager: findOne mahsulotni qaytaradi, query va save — yozib qoladi",
+   "n": 7
+  },
+  {
+   "t": "const manager = {",
+   "n": 8
+  },
+  {
+   "t": "  findOne: jest.fn(),",
+   "n": 9
+  },
+  {
+   "t": "  query: jest.fn(),",
+   "n": 10
+  },
+  {
+   "t": "  create: jest.fn((_cls, data) => data),",
+   "n": 11
+  },
+  {
+   "t": "  save: jest.fn(async (o) => ({ id: 1, ...o })),",
+   "n": 12
+  },
+  {
+   "t": "  delete: jest.fn(),",
+   "n": 13
+  },
+  {
+   "t": "};",
+   "n": 14
+  },
+  {
+   "t": "const dataSource = { transaction: jest.fn((cb) => cb(manager)) };",
+   "n": 15
+  },
+  {
+   "t": "",
+   "n": 16
+  },
+  {
+   "t": "const user = { id: 1, phone: '+998901234567' } as User;",
+   "n": 17
+  },
+  {
+   "t": "const cart = [{ product: { id: 4, name: 'Kolonka' }, qty: 2 }] as any;",
+   "n": 18
+  },
+  {
+   "t": "",
+   "n": 19
+  },
+  {
+   "t": "let service: OrderService;",
+   "n": 20
+  },
+  {
+   "t": "beforeEach(async () => {",
+   "n": 21
+  },
+  {
+   "t": "  jest.clearAllMocks();",
+   "n": 22
+  },
+  {
+   "t": "  const mod = await Test.createTestingModule({",
+   "n": 23
+  },
+  {
+   "t": "    providers: [",
+   "n": 24
+  },
+  {
+   "t": "      OrderService,",
+   "n": 25
+  },
+  {
+   "t": "      { provide: getRepositoryToken(Order), useValue: {} },",
+   "n": 26
+  },
+  {
+   "t": "      { provide: DataSource, useValue: dataSource },",
+   "n": 27
+  },
+  {
+   "t": "    ],",
+   "n": 28
+  },
+  {
+   "t": "  }).compile();",
+   "n": 29
+  },
+  {
+   "t": "  service = mod.get(OrderService);",
+   "n": 30
+  },
+  {
+   "t": "});",
+   "n": 31
+  },
+  {
+   "t": "",
+   "n": 32
+  },
+  {
+   "t": "describe('OrderService.place', () => {",
+   "n": 33
+  },
+  {
+   "t": "  it(\"telefon yo'q — darhol xato\", () => {",
+   "n": 34
+  },
+  {
+   "t": "    expect(() => service.place({ id: 1, phone: null } as User, cart)).toThrow(",
+   "n": 35
+  },
+  {
+   "t": "      \"Telefon raqami yo'q\",",
+   "n": 36
+  },
+  {
+   "t": "    );",
+   "n": 37
+  },
+  {
+   "t": "  });",
+   "n": 38
+  },
+  {
+   "t": "",
+   "n": 39
+  },
+  {
+   "t": "  it(\"savat bo'sh — darhol xato\", () => {",
+   "n": 40
+  },
+  {
+   "t": "    expect(() => service.place(user, [])).toThrow(\"Savat bo'sh\");",
+   "n": 41
+  },
+  {
+   "t": "  });",
+   "n": 42
+  },
+  {
+   "t": "",
+   "n": 43
+  },
+  {
+   "t": "  it(\"omborda yetmaydi — tranzaksiya ichida xato, UPDATE bo'lmaydi\", async () => {",
+   "n": 44
+  },
+  {
+   "t": "    manager.findOne.mockResolvedValue({",
+   "n": 45
+  },
+  {
+   "t": "      id: 4,",
+   "n": 46
+  },
+  {
+   "t": "      name: 'Kolonka',",
+   "n": 47
+  },
+  {
+   "t": "      stock: 1,",
+   "n": 48
+  },
+  {
+   "t": "      price: 50000,",
+   "n": 49
+  },
+  {
+   "t": "    });",
+   "n": 50
+  },
+  {
+   "t": "    expect(service.place(user, cart)).rejects.toThrow(",
+   "n": 51
+  },
+  {
+   "t": "      'Planshet: omborda faqat 9 ta qoldi',",
+   "n": 52
+  },
+  {
+   "t": "    );",
+   "n": 53
+  },
+  {
+   "t": "  });",
+   "n": 54
+  },
+  {
+   "t": "",
+   "n": 55
+  },
+  {
+   "t": "  it('yetarli — jami narx hisoblanadi', async () => {",
+   "n": 56
+  },
+  {
+   "t": "    manager.findOne.mockResolvedValue({",
+   "n": 57
+  },
+  {
+   "t": "      id: 4,",
+   "n": 58
+  },
+  {
+   "t": "      name: 'Kolonka',",
+   "n": 59
+  },
+  {
+   "t": "      stock: 10,",
+   "n": 60
+  },
+  {
+   "t": "      price: 50000,",
+   "n": 61
+  },
+  {
+   "t": "    });",
+   "n": 62
+  },
+  {
+   "t": "    const order = await service.place(user, cart);",
+   "n": 63
+  },
+  {
+   "t": "    expect(order.total).toBe(100000);",
+   "n": 64
+  },
+  {
+   "t": "    expect(manager.query).toHaveBeenCalledTimes(1);",
+   "n": 65
+  },
+  {
+   "t": "  });",
+   "n": 66
+  },
+  {
+   "t": "});",
+   "n": 67
+  }
+ ]
+};
+const KOD_SPEC_ORDER_08B = {
+ "file": "src/api/order/order.service.spec.ts",
+ "tag": "chiqish",
+ "lines": [
+  {
+   "t": "import { Test } from '@nestjs/testing';",
+   "n": 1
+  },
+  {
+   "t": "import { getRepositoryToken } from '@nestjs/typeorm';",
+   "n": 2
+  },
+  {
+   "t": "import { DataSource } from 'typeorm';",
+   "n": 3
+  },
+  {
+   "t": "import { Order, User } from '../../core/entity';",
+   "n": 4
+  },
+  {
+   "t": "import { OrderService } from './order.service';",
+   "n": 5
+  },
+  {
+   "t": "",
+   "n": 6
+  },
+  {
+   "t": "// Baza o'rniga soxta (mock) EntityManager: findOne mahsulotni qaytaradi, query va save — yozib qoladi",
+   "n": 7
+  },
+  {
+   "t": "const manager = {",
+   "n": 8
+  },
+  {
+   "t": "  findOne: jest.fn(),",
+   "n": 9
+  },
+  {
+   "t": "  query: jest.fn(),",
+   "n": 10
+  },
+  {
+   "t": "  create: jest.fn((_cls, data) => data),",
+   "n": 11
+  },
+  {
+   "t": "  save: jest.fn(async (o) => ({ id: 1, ...o })),",
+   "n": 12
+  },
+  {
+   "t": "  delete: jest.fn(),",
+   "n": 13
+  },
+  {
+   "t": "};",
+   "n": 14
+  },
+  {
+   "t": "const dataSource = { transaction: jest.fn((cb) => cb(manager)) };",
+   "n": 15
+  },
+  {
+   "t": "",
+   "n": 16
+  },
+  {
+   "t": "const user = { id: 1, phone: '+998901234567' } as User;",
+   "n": 17
+  },
+  {
+   "t": "const cart = [{ product: { id: 4, name: 'Kolonka' }, qty: 2 }] as any;",
+   "n": 18
+  },
+  {
+   "t": "",
+   "n": 19
+  },
+  {
+   "t": "let service: OrderService;",
+   "n": 20
+  },
+  {
+   "t": "beforeEach(async () => {",
+   "n": 21
+  },
+  {
+   "t": "  jest.clearAllMocks();",
+   "n": 22
+  },
+  {
+   "t": "  const mod = await Test.createTestingModule({",
+   "n": 23
+  },
+  {
+   "t": "    providers: [",
+   "n": 24
+  },
+  {
+   "t": "      OrderService,",
+   "n": 25
+  },
+  {
+   "t": "      { provide: getRepositoryToken(Order), useValue: {} },",
+   "n": 26
+  },
+  {
+   "t": "      { provide: DataSource, useValue: dataSource },",
+   "n": 27
+  },
+  {
+   "t": "    ],",
+   "n": 28
+  },
+  {
+   "t": "  }).compile();",
+   "n": 29
+  },
+  {
+   "t": "  service = mod.get(OrderService);",
+   "n": 30
+  },
+  {
+   "t": "});",
+   "n": 31
+  },
+  {
+   "t": "",
+   "n": 32
+  },
+  {
+   "t": "describe('OrderService.place', () => {",
+   "n": 33
+  },
+  {
+   "t": "  it(\"telefon yo'q — darhol xato\", () => {",
+   "n": 34
+  },
+  {
+   "t": "    expect(() => service.place({ id: 1, phone: null } as User, cart)).toThrow(",
+   "n": 35
+  },
+  {
+   "t": "      \"Telefon raqami yo'q\",",
+   "n": 36
+  },
+  {
+   "t": "    );",
+   "n": 37
+  },
+  {
+   "t": "  });",
+   "n": 38
+  },
+  {
+   "t": "",
+   "n": 39
+  },
+  {
+   "t": "  it(\"savat bo'sh — darhol xato\", () => {",
+   "n": 40
+  },
+  {
+   "t": "    expect(() => service.place(user, [])).toThrow(\"Savat bo'sh\");",
+   "n": 41
+  },
+  {
+   "t": "  });",
+   "n": 42
+  },
+  {
+   "t": "",
+   "n": 43
+  },
+  {
+   "t": "  it(\"omborda yetmaydi — tranzaksiya ichida xato, UPDATE bo'lmaydi\", async () => {",
+   "n": 44
+  },
+  {
+   "t": "    manager.findOne.mockResolvedValue({",
+   "n": 45
+  },
+  {
+   "t": "      id: 4,",
+   "n": 46
+  },
+  {
+   "t": "      name: 'Kolonka',",
+   "n": 47
+  },
+  {
+   "t": "      stock: 1,",
+   "n": 48
+  },
+  {
+   "t": "      price: 50000,",
+   "n": 49
+  },
+  {
+   "t": "    });",
+   "n": 50
+  },
+  {
+   "t": "    await expect(service.place(user, cart)).rejects.toThrow(",
+   "n": 51
+  },
+  {
+   "t": "      'Planshet: omborda faqat 9 ta qoldi',",
+   "n": 52
+  },
+  {
+   "t": "    );",
+   "n": 53
+  },
+  {
+   "t": "    expect(manager.query).not.toHaveBeenCalled();",
+   "n": 54
+  },
+  {
+   "t": "  });",
+   "n": 55
+  },
+  {
+   "t": "",
+   "n": 56
+  },
+  {
+   "t": "  it('yetarli — jami narx hisoblanadi', async () => {",
+   "n": 57
+  },
+  {
+   "t": "    manager.findOne.mockResolvedValue({",
+   "n": 58
+  },
+  {
+   "t": "      id: 4,",
+   "n": 59
+  },
+  {
+   "t": "      name: 'Kolonka',",
+   "n": 60
+  },
+  {
+   "t": "      stock: 10,",
+   "n": 61
+  },
+  {
+   "t": "      price: 50000,",
+   "n": 62
+  },
+  {
+   "t": "    });",
+   "n": 63
+  },
+  {
+   "t": "    const order = await service.place(user, cart);",
+   "n": 64
+  },
+  {
+   "t": "    expect(order.total).toBe(100000);",
+   "n": 65
+  },
+  {
+   "t": "    expect(manager.query).toHaveBeenCalledTimes(1);",
+   "n": 66
+  },
+  {
+   "t": "  });",
+   "n": 67
+  },
+  {
+   "t": "});",
+   "n": 68
+  }
+ ]
+};
+const KOD_SPEC_ORDER_10 = {
+ "file": "src/api/order/order.service.spec.ts",
+ "tag": "chiqish",
+ "lines": [
+  {
+   "t": "import { Test } from '@nestjs/testing';",
+   "n": 1
+  },
+  {
+   "t": "import { getRepositoryToken } from '@nestjs/typeorm';",
+   "n": 2
+  },
+  {
+   "t": "import { DataSource } from 'typeorm';",
+   "n": 3
+  },
+  {
+   "t": "import { Order, User } from '../../core/entity';",
+   "n": 4
+  },
+  {
+   "t": "import { OrderService } from './order.service';",
+   "n": 5
+  },
+  {
+   "t": "",
+   "n": 6
+  },
+  {
+   "t": "// Baza o'rniga soxta (mock) EntityManager: findOne mahsulotni qaytaradi, query va save — yozib qoladi",
+   "n": 7
+  },
+  {
+   "t": "const manager = {",
+   "n": 8
+  },
+  {
+   "t": "  findOne: jest.fn(),",
+   "n": 9
+  },
+  {
+   "t": "  query: jest.fn(),",
+   "n": 10
+  },
+  {
+   "t": "  create: jest.fn((_cls, data) => data),",
+   "n": 11
+  },
+  {
+   "t": "  save: jest.fn(async (o) => ({ id: 1, ...o })),",
+   "n": 12
+  },
+  {
+   "t": "  delete: jest.fn(),",
+   "n": 13
+  },
+  {
+   "t": "};",
+   "n": 14
+  },
+  {
+   "t": "const dataSource = { transaction: jest.fn((cb) => cb(manager)) };",
+   "n": 15
+  },
+  {
+   "t": "",
+   "n": 16
+  },
+  {
+   "t": "const user = { id: 1, phone: '+998901234567' } as User;",
+   "n": 17
+  },
+  {
+   "t": "const cart = [{ product: { id: 4, name: 'Kolonka' }, qty: 2 }] as any;",
+   "n": 18
+  },
+  {
+   "t": "",
+   "n": 19
+  },
+  {
+   "t": "let service: OrderService;",
+   "n": 20
+  },
+  {
+   "t": "beforeEach(async () => {",
+   "n": 21
+  },
+  {
+   "t": "  jest.clearAllMocks();",
+   "n": 22
+  },
+  {
+   "t": "  const mod = await Test.createTestingModule({",
+   "n": 23
+  },
+  {
+   "t": "    providers: [",
+   "n": 24
+  },
+  {
+   "t": "      OrderService,",
+   "n": 25
+  },
+  {
+   "t": "      { provide: getRepositoryToken(Order), useValue: {} },",
+   "n": 26
+  },
+  {
+   "t": "      { provide: DataSource, useValue: dataSource },",
+   "n": 27
+  },
+  {
+   "t": "    ],",
+   "n": 28
+  },
+  {
+   "t": "  }).compile();",
+   "n": 29
+  },
+  {
+   "t": "  service = mod.get(OrderService);",
+   "n": 30
+  },
+  {
+   "t": "});",
+   "n": 31
+  },
+  {
+   "t": "",
+   "n": 32
+  },
+  {
+   "t": "describe('OrderService.place', () => {",
+   "n": 33
+  },
+  {
+   "t": "  it(\"telefon yo'q — darhol xato\", () => {",
+   "n": 34
+  },
+  {
+   "t": "    expect(() => service.place({ id: 1, phone: null } as User, cart)).toThrow(",
+   "n": 35
+  },
+  {
+   "t": "      \"Telefon raqami yo'q\",",
+   "n": 36
+  },
+  {
+   "t": "    );",
+   "n": 37
+  },
+  {
+   "t": "  });",
+   "n": 38
+  },
+  {
+   "t": "",
+   "n": 39
+  },
+  {
+   "t": "  it(\"savat bo'sh — darhol xato\", () => {",
+   "n": 40
+  },
+  {
+   "t": "    expect(() => service.place(user, [])).toThrow(\"Savat bo'sh\");",
+   "n": 41
+  },
+  {
+   "t": "  });",
+   "n": 42
+  },
+  {
+   "t": "",
+   "n": 43
+  },
+  {
+   "t": "  it(\"omborda yetmaydi — tranzaksiya ichida xato, UPDATE bo'lmaydi\", async () => {",
+   "n": 44
+  },
+  {
+   "t": "    manager.findOne.mockResolvedValue({",
+   "n": 45
+  },
+  {
+   "t": "      id: 4,",
+   "n": 46
+  },
+  {
+   "t": "      name: 'Kolonka',",
+   "n": 47
+  },
+  {
+   "t": "      stock: 1,",
+   "n": 48
+  },
+  {
+   "t": "      price: 50000,",
+   "n": 49
+  },
+  {
+   "t": "    });",
+   "n": 50
+  },
+  {
+   "t": "    await expect(service.place(user, cart)).rejects.toThrow(",
+   "n": 51
+  },
+  {
+   "t": "      'Kolonka: omborda faqat 1 ta qoldi',",
+   "n": 52
+  },
+  {
+   "t": "    );",
+   "n": 53
+  },
+  {
+   "t": "    expect(manager.query).not.toHaveBeenCalled();",
+   "n": 54
+  },
+  {
+   "t": "  });",
+   "n": 55
+  },
+  {
+   "t": "",
+   "n": 56
+  },
+  {
+   "t": "  it('yetarli — jami narx hisoblanadi', async () => {",
+   "n": 57
+  },
+  {
+   "t": "    manager.findOne.mockResolvedValue({",
+   "n": 58
+  },
+  {
+   "t": "      id: 4,",
+   "n": 59
+  },
+  {
+   "t": "      name: 'Kolonka',",
+   "n": 60
+  },
+  {
+   "t": "      stock: 10,",
+   "n": 61
+  },
+  {
+   "t": "      price: 50000,",
+   "n": 62
+  },
+  {
+   "t": "    });",
+   "n": 63
+  },
+  {
+   "t": "    const order = await service.place(user, cart);",
+   "n": 64
+  },
+  {
+   "t": "    expect(order.total).toBe(100000);",
+   "n": 65
+  },
+  {
+   "t": "    expect(manager.query).toHaveBeenCalledTimes(1);",
+   "n": 66
+  },
+  {
+   "t": "  });",
+   "n": 67
+  },
+  {
+   "t": "",
+   "n": 68
+  },
+  {
+   "t": "  it(\"chegara: omborda aynan 2 ta — 2 tasini olsa bo'ladi\", async () => {",
+   "n": 69
+  },
+  {
+   "t": "    manager.findOne.mockResolvedValue({",
+   "n": 70
+  },
+  {
+   "t": "      id: 4,",
+   "n": 71
+  },
+  {
+   "t": "      name: 'Kolonka',",
+   "n": 72
+  },
+  {
+   "t": "      stock: 2,",
+   "n": 73
+  },
+  {
+   "t": "      price: 50000,",
+   "n": 74
+  },
+  {
+   "t": "    });",
+   "n": 75
+  },
+  {
+   "t": "    const order = await service.place(user, cart);",
+   "n": 76
+  },
+  {
+   "t": "    expect(order.total).toBe(100000);",
+   "n": 77
+  },
+  {
+   "t": "  });",
+   "n": 78
+  },
+  {
+   "t": "});",
+   "n": 79
+  }
+ ]
+};
+const KOD_APP_CTRL = {
+ "file": "src/api/app.controller.ts",
+ "tag": "jest2-done",
+ "lines": [
+  {
+   "t": "import { Controller, Get } from '@nestjs/common';",
+   "n": 1
+  },
+  {
+   "t": "",
+   "n": 2
+  },
+  {
+   "t": "@Controller()",
+   "n": 3
+  },
+  {
+   "t": "export class AppController {",
+   "n": 4
+  },
+  {
+   "t": "  // Hosting \"tirikmi?\" deb shu manzilni tekshiradi",
+   "n": 5
+  },
+  {
+   "t": "  @Get()",
+   "n": 6
+  },
+  {
+   "t": "  health() {",
+   "n": 7
+  },
+  {
+   "t": "    return { ok: true, service: 'order-bot' };",
+   "n": 8
+  },
+  {
+   "t": "  }",
+   "n": 9
+  },
+  {
+   "t": "}",
+   "n": 10
+  }
+ ]
+};
+const KOD_SPEC_APP = {
+ "file": "src/api/app.controller.spec.ts",
+ "tag": "chiqish",
+ "lines": [
+  {
+   "t": "import { INestApplication } from '@nestjs/common';",
+   "n": 1
+  },
+  {
+   "t": "import { Test } from '@nestjs/testing';",
+   "n": 2
+  },
+  {
+   "t": "import request from 'supertest';",
+   "n": 3
+  },
+  {
+   "t": "import { AppController } from './app.controller';",
+   "n": 4
+  },
+  {
+   "t": "",
+   "n": 5
+  },
+  {
+   "t": "let app: INestApplication;",
+   "n": 6
+  },
+  {
+   "t": "beforeAll(async () => {",
+   "n": 7
+  },
+  {
+   "t": "  const mod = await Test.createTestingModule({",
+   "n": 8
+  },
+  {
+   "t": "    controllers: [AppController],",
+   "n": 9
+  },
+  {
+   "t": "  }).compile();",
+   "n": 10
+  },
+  {
+   "t": "  app = mod.createNestApplication();",
+   "n": 11
+  },
+  {
+   "t": "  await app.init();",
+   "n": 12
+  },
+  {
+   "t": "});",
+   "n": 13
+  },
+  {
+   "t": "afterAll(() => app.close());",
+   "n": 14
+  },
+  {
+   "t": "",
+   "n": 15
+  },
+  {
+   "t": "describe('HTTP: GET /', () => {",
+   "n": 16
+  },
+  {
+   "t": "  it('200 va { ok: true }', async () => {",
+   "n": 17
+  },
+  {
+   "t": "    const res = await request(app.getHttpServer()).get('/');",
+   "n": 18
+  },
+  {
+   "t": "    expect(res.status).toBe(200);",
+   "n": 19
+  },
+  {
+   "t": "    expect(res.body).toEqual({ ok: true, service: 'order-bot' });",
+   "n": 20
+  },
+  {
+   "t": "  });",
+   "n": 21
+  },
+  {
+   "t": "",
+   "n": 22
+  },
+  {
+   "t": "  it(\"yo'q manzil — 404\", async () => {",
+   "n": 23
+  },
+  {
+   "t": "    const res = await request(app.getHttpServer()).get('/nope');",
+   "n": 24
+  },
+  {
+   "t": "    expect(res.status).toBe(404);",
+   "n": 25
+  },
+  {
+   "t": "    expect(res.body.message).toBe('Cannot GET /nope');",
+   "n": 26
+  },
+  {
+   "t": "  });",
+   "n": 27
+  },
+  {
+   "t": "});",
+   "n": 28
+  }
+ ]
+};
+const KOD_AI1_ORDER = {
+ "file": "src/api/order/order.service.spec.ts",
+ "tag": "chiqish",
+ "lines": [
+  {
+   "t": "    const { service, ds } = setup([product(1, 5)]);",
+   "n": 44
+  },
+  {
+   "t": "    await expect(",
+   "n": 45
+  },
+  {
+   "t": "      run(service, user(phone), [line(product(1, 5), 1)]),",
+   "n": 46
+  },
+  {
+   "t": "    ).rejects.toThrow(\"Telefon raqami yo'q\");",
+   "n": 47
+  },
+  {
+   "t": "    expect(ds.transaction).not.toHaveBeenCalled();",
+   "n": 48
+  }
+ ]
+};
+const KOD_AI1_TEL = {
+ "file": "src/api/telegram/telegram.service.phone.spec.ts",
+ "tag": "chiqish",
+ "lines": [
+  {
+   "t": "    ['faqat probel', '   '],",
+   "n": 84
+  },
+  {
+   "t": "    ['8 raqam (bittasi kam)', '12345678'],",
+   "n": 85
+  },
+  {
+   "t": "    ['14 raqam (bittasi ortiq)', '+12345678901234'],",
+   "n": 86
+  },
+  {
+   "t": "    ['faqat +', '+'],",
+   "n": 87
+  },
+  {
+   "t": "    ['ikkita +', '++998901234567'],",
+   "n": 88
+  },
+  {
+   "t": "    ['+ oxirida', '998901234567+'],",
+   "n": 89
+  },
+  {
+   "t": "    [\"o'rtada probel\", '+998 90 123 45 67'],",
+   "n": 90
+  },
+  {
+   "t": "    ['chiziqcha', '+998-90-123-45-67'],",
+   "n": 91
+  },
+  {
+   "t": "    ['qavs', '+998(90)1234567'],",
+   "n": 92
+  },
+  {
+   "t": "    ['harf', '+99890123456a'],",
+   "n": 93
+  },
+  {
+   "t": "    ['matn', \"raqamim yo'q\"],",
+   "n": 94
+  },
+  {
+   "t": "    [\"o'rtada qator ko'chishi\", '+998901\\n234567'],",
+   "n": 95
+  },
+  {
+   "t": "    ['arabcha raqamlar', '٩٩٨٩٠١٢٣٤٥٦٧'],",
+   "n": 96
+  }
+ ]
+};
+const KOD_AI2_ORDER = {
+ "file": "src/api/order/order.service.spec.ts",
+ "tag": "chiqish",
+ "lines": [
+  {
+   "t": "    const p = product(1, 'Non', 5000, 10);",
+   "n": 33
+  },
+  {
+   "t": "    const { service, ds } = setup({ 1: p });",
+   "n": 34
+  },
+  {
+   "t": "    expect(() => service.place(user({ phone: null }), [cartItem(p, 1)])).toThrow(",
+   "n": 35
+  },
+  {
+   "t": "      \"Telefon raqami yo'q\",",
+   "n": 36
+  },
+  {
+   "t": "    );",
+   "n": 37
+  },
+  {
+   "t": "    expect(ds.transaction).not.toHaveBeenCalled();",
+   "n": 38
+  }
+ ]
+};
+const KOD_AI2_TEL = {
+ "file": "src/api/telegram/telegram.service.spec.ts",
+ "tag": "chiqish",
+ "lines": [
+  {
+   "t": "  const cart = { list: jest.fn(async () => [{ product: { price: 1, id: 1 }, qty: 1 }]) };",
+   "n": 18
+  },
+  {
+   "t": "  const order = { id: 5 } as Order;",
+   "n": 19
+  },
+  {
+   "t": "  const orders = { place: jest.fn(async () => order) };",
+   "n": 20
+  },
+  {
+   "t": "  const service = new TelegramService(users as never, {} as never, cart as never, orders as never);",
+   "n": 21
+  },
+  {
+   "t": "  const bot = { telegram: { sendMessage: jest.fn(async () => ({})) } };",
+   "n": 22
+  }
+ ]
+};
+const KOD_OUT_00 = "v24.18.0\nHEAD 9d6b947 jest1-done: birinchi unit-testlar — som (bo'l\njest 30.5.2\nts-jest 29.4.15\n@nestjs/testing 11.2.8\ntypescript 5.9.3";
+const KOD_OUT_01 = "# telegram.service.ts ichida:\n12:const PHONE = /^\\+?\\d{9,13}$/;\n104:        await this.users.setState(user, 'WAITING_PHONE');\n155:    if (user.state === 'WAITING_PHONE') {\n157:      if (!PHONE.test(phone)) return ctx.reply(texts.badPhone);";
+const KOD_OUT_02 = "$ npx jest phone --verbose\nFAIL src/api/telegram/phone.spec.ts\n  isPhone\n    ✓ +998901234567 — to'g'ri raqam (2 ms)\n    ✓ 998901234567 — to'g'ri raqam\n    ✓ 12345678 — 8 ta raqam — qisqa\n    ✓ +99890123456789 — 14 ta raqam — uzun\n    ✓ abc — harf\n    ✓  — bo'sh\n    ✕ mijoz probel bilan yozadi (2 ms)\n\n  ● isPhone › mijoz probel bilan yozadi\n\n    expect(received).toBe(expected) // Object.is equality\n\n    Expected: true\n    Received: false\n\n      16 |\n      17 |   it('mijoz probel bilan yozadi', () => {\n    > 18 |     expect(isPhone('+998 90 123 45 67')).toBe(true);\n         |                                          ^\n      19 |   });\n      20 | });\n      21 |\n\n      at Object.<anonymous> (api/telegram/phone.spec.ts:18:42)\n\nTest Suites: 1 failed, 1 total\nTests:       1 failed, 6 passed, 7 total\nSnapshots:   0 total\nTime:        0.408 s, estimated 1 s\nRan all test suites matching phone.\n[chiqish kodi: 1]";
+const KOD_OUT_03 = "$ npx jest phone --verbose\nPASS src/api/telegram/phone.spec.ts\n  isPhone\n    ✓ +998901234567 — to'g'ri raqam (2 ms)\n    ✓ 998901234567 — to'g'ri raqam (1 ms)\n    ✓ 12345678 — 8 ta raqam — qisqa\n    ✓ +99890123456789 — 14 ta raqam — uzun\n    ✓ abc — harf\n    ✓  — bo'sh (1 ms)\n    ✓ mijoz probel bilan yozadi\n\nTest Suites: 1 passed, 1 total\nTests:       7 passed, 7 total\nSnapshots:   0 total\nTime:        0.385 s, estimated 1 s\nRan all test suites matching phone.\n[chiqish kodi: 0]";
+const KOD_OUT_04 = "$ npx jest phone --verbose\nPASS src/api/telegram/phone.spec.ts\n  isPhone\n    ✓ +998901234567 — to'g'ri raqam (2 ms)\n    ✓ 998901234567 — to'g'ri raqam (1 ms)\n    ✓ 12345678 — 8 ta raqam — qisqa (1 ms)\n    ✓ +99890123456789 — 14 ta raqam — uzun\n    ✓ abc — harf (1 ms)\n    ✓  — bo'sh\n    ✓ mijoz probel bilan yozadi (1 ms)\n  isPhone — qoida nimani o'tkazib yuboradi\n    ✓ 9 ta nol ham o'tadi\n\nTest Suites: 1 passed, 1 total\nTests:       8 passed, 8 total\nSnapshots:   0 total\nTime:        0.389 s, estimated 1 s\nRan all test suites matching phone.\n[chiqish kodi: 0]";
+const KOD_OUT_05 = "$ npx jest order.service --verbose\nPASS src/api/order/order.service.spec.ts\n  OrderService.place\n    ✓ telefon yo'q — darhol xato (19 ms)\n    ✓ savat bo'sh — darhol xato (3 ms)\n    ✓ omborda yetmaydi — tranzaksiya ichida xato, UPDATE bo'lmaydi (3 ms)\n    ✓ yetarli — jami narx hisoblanadi (3 ms)\n\nTest Suites: 1 passed, 1 total\nTests:       4 passed, 4 total\nSnapshots:   0 total\nTime:        0.791 s, estimated 1 s\nRan all test suites matching order.service.\n[chiqish kodi: 0]";
+const KOD_OUT_06 = "$ npx jest order.service -t telefon\nFAIL src/api/order/order.service.spec.ts\n  OrderService.place\n    ✕ telefon yo'q — darhol xato (11 ms)\n    ○ skipped savat bo'sh — darhol xato\n    ○ skipped omborda yetmaydi — tranzaksiya ichida xato, UPDATE bo'lmaydi\n    ○ skipped yetarli — jami narx hisoblanadi\n\n  ● OrderService.place › telefon yo'q — darhol xato\n\n    Telefon raqami yo'q\n\n      23 |   // CHECK (stock >= 0) rad etadi — ikki mijoz bir vaqtda bossa ham ortiqcha sotilmaydi.\n      24 |   place(user: User, cart: CartItem[]): Promise<Order> {\n    > 25 |     if (!user.phone) throw new Error(\"Telefon raqami yo'q\");\n         |                            ^\n      26 |     if (cart.length === 0) throw new Error(\"Savat bo'sh\");\n      27 |     return this.ds.transaction(async (m) => {\n      28 |       const items: OrderItem[] = [];\n\n      at OrderService.place (api/order/order.service.ts:25:28)\n      at Object.<anonymous> (api/order/order.service.spec.ts:36:15)\n\nTest Suites: 1 failed, 1 total\nTests:       1 failed, 3 skipped, 4 total\nSnapshots:   0 total\nTime:        0.812 s, estimated 1 s\nRan all test suites matching order.service with tests matching \"telefon\".\n[chiqish kodi: 1]";
+const KOD_OUT_07 = "$ npx jest order.service -t omborda\n…/OrderBotNest/src/api/order/order.service.ts:48\n                    throw new Error(`${p.name}: omborda faqat ${p.stock} ta qoldi`);\n                          ^\n\nError: Kolonka: omborda faqat 1 ta qoldi\n    at …/OrderBotNest/src/api/order/order.service.ts:37:17\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n\nNode.js v24.18.0\n[chiqish kodi: 1]";
+const KOD_OUT_08 = "$ npx jest order.service -t omborda\n…/OrderBotNest/node_modules/expect/build/index.js:2155\n  const innerErr = new JestAssertionError();\n                   ^\n\nJestAssertionError: expect(received).rejects.toThrow(expected)\n\nExpected substring: \"Planshet: omborda faqat 9 ta qoldi\"\nReceived message:   \"Kolonka: omborda faqat 1 ta qoldi\"\n\n      35 |         if (!p) throw new Error(`Mahsulot topilmadi: ${c.product.name}`);\n      36 |         if (p.stock < c.qty) {\n    > 37 |           throw new Error(`${p.name}: omborda faqat ${p.stock} ta qoldi`);\n         |                 ^\n      38 |         }\n      39 |         // 2) Ayiramiz. Bazadagi CHECK (stock >= 0) — oxirgi qo'riqchi: kod xato qilsa ham manfiy bo'lmaydi.\n      40 |         //    Diqqat: tranzaksiya ichida xato chiqsa, keyingi so'rovlar ham rad etiladi\n\n      at src/api/order/order.service.ts:37:17\n    at Object.toThrow (…/OrderBotNest/node_modules/expect/build/index.js:2155:20)\n    at Object.<anonymous> (…/OrderBotNest/src/api/order/order.service.spec.ts:51:47)\n    at Promise.finally.completed (…/OrderBotNest/node_modules/jest-circus/build/jestAdapterInit.js:1834:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (…/OrderBotNest/node_modules/jest-circus/build/jestAdapterInit.js:1774:10)\n    at _callCircusTest (…/OrderBotNest/node_modules/jest-circus/build/jestAdapterInit.js:1167:40)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at _runTestInContext (…/OrderBotNest/node_modules/jest-circus/build/jestAdapterInit.js:1103:3)\n    at runTestWithContext (…/OrderBotNest/node_modules/jest-circus/build/jestAdapterInit.js:996:5)\n    at _runTestsForDescribeBlockOnce (…/OrderBotNest/node_modules/jest-circus/build/jestAdapterInit.js:1008:11)\n    at _runTestsForDescribeBlock (…/OrderBotNest/node_modules/jest-circus/build/jestAdapterInit.js:824:5)\n    at _runTestsForDescribeBlockOnce (…/OrderBotNest/node_modules/jest-circus/build/jestAdapterInit.js:1003:11)\n    at _runTestsForDescribeBlock (…/OrderBotNest/node_modules/jest-circus/build/jestAdapterInit.js:824:5)\n    at run (…/OrderBotNest/node_modules/jest-circus/build/jestAdapterInit.js:789:3)\n    at runAndTransformResultsToJestFormat (…/OrderBotNest/node_modules/jest-circus/build/jestAdapterInit.js:2300:21)\n    at jestAdapter (…/OrderBotNest/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (…/OrderBotNest/node_modules/jest-runner/build/index.js:247:16)\n    at runTest (…/OrderBotNest/node_modules/jest-runner/build/index.js:315:7) {\n  matcherResult: {\n    message: 'expect(received).rejects.toThrow(expected)\\n' +\n      '\\n' +\n      'Expected substring: \"Planshet: omborda faqat 9 ta qoldi\"\\n' +\n      'Received message:   \"Kolonka: omborda faqat 1 ta qoldi\"\\n' +\n      '\\n' +\n      '      35 |         if (!p) throw new Error(`Mahsulot topilmadi: ${c.product.name}`);\\n' +\n      '      36 |         if (p.stock < c.qty) {\\n' +\n      '    > 37 |           throw new Error(`${p.name}: omborda faqat ${p.stock} ta qoldi`);\\n' +\n      '         |                 ^\\n' +\n      '      38 |         }\\n' +\n      \"      39 |         // 2) Ayiramiz. Bazadagi CHECK (stock >= 0) — oxirgi qo'riqchi: kod xato qilsa ham manfiy bo'lmaydi.\\n\" +\n      \"      40 |         //    Diqqat: tranzaksiya ichida xato chiqsa, keyingi so'rovlar ham rad etiladi\\n\" +\n      '\\n' +\n      '      at src/api/order/order.service.ts:37:17',\n    pass: false\n  }\n}\n\nNode.js v24.18.0\n[chiqish kodi: 1]";
+const KOD_OUT_08B = "$ npx jest order.service -t omborda\nFAIL src/api/order/order.service.spec.ts\n  OrderService.place\n    ✕ omborda yetmaydi — tranzaksiya ichida xato, UPDATE bo'lmaydi (28 ms)\n    ○ skipped telefon yo'q — darhol xato\n    ○ skipped savat bo'sh — darhol xato\n    ○ skipped yetarli — jami narx hisoblanadi\n\n  ● OrderService.place › omborda yetmaydi — tranzaksiya ichida xato, UPDATE bo'lmaydi\n\n    expect(received).rejects.toThrow(expected)\n\n    Expected substring: \"Planshet: omborda faqat 9 ta qoldi\"\n    Received message:   \"Kolonka: omborda faqat 1 ta qoldi\"\n\n          35 |         if (!p) throw new Error(`Mahsulot topilmadi: ${c.product.name}`);\n          36 |         if (p.stock < c.qty) {\n        > 37 |           throw new Error(`${p.name}: omborda faqat ${p.stock} ta qoldi`);\n             |                 ^\n          38 |         }\n          39 |         // 2) Ayiramiz. Bazadagi CHECK (stock >= 0) — oxirgi qo'riqchi: kod xato qilsa ham manfiy bo'lmaydi.\n          40 |         //    Diqqat: tranzaksiya ichida xato chiqsa, keyingi so'rovlar ham rad etiladi\n\n      at api/order/order.service.ts:37:17\n      at Object.<anonymous> (api/order/order.service.spec.ts:51:5)\n      at Object.<anonymous> (api/order/order.service.spec.ts:51:53)\n\nTest Suites: 1 failed, 1 total\nTests:       1 failed, 3 skipped, 4 total\nSnapshots:   0 total\nTime:        0.733 s, estimated 1 s\nRan all test suites matching order.service with tests matching \"omborda\".\n[chiqish kodi: 1]";
+const KOD_OUT_09 = "36:        if (p.stock <= c.qty) {\n\n$ npx jest order.service\nPASS src/api/order/order.service.spec.ts\n  OrderService.place\n    ✓ telefon yo'q — darhol xato (25 ms)\n    ✓ savat bo'sh — darhol xato (3 ms)\n    ✓ omborda yetmaydi — tranzaksiya ichida xato, UPDATE bo'lmaydi (3 ms)\n    ✓ yetarli — jami narx hisoblanadi (2 ms)\n\nTest Suites: 1 passed, 1 total\nTests:       4 passed, 4 total\nSnapshots:   0 total\nTime:        0.791 s, estimated 1 s\nRan all test suites matching order.service.\n[chiqish kodi: 0]";
+const KOD_OUT_09B = "$ npx jest order.service --verbose\nPASS src/api/order/order.service.spec.ts\n  OrderService.place\n    ✓ telefon yo'q — darhol xato (19 ms)\n    ✓ savat bo'sh — darhol xato (2 ms)\n    ✓ omborda yetmaydi — tranzaksiya ichida xato, UPDATE bo'lmaydi (2 ms)\n    ✓ yetarli — jami narx hisoblanadi (3 ms)\n    ✓ chegara: omborda aynan 2 ta — 2 tasini olsa bo'ladi (2 ms)\n\nTest Suites: 1 passed, 1 total\nTests:       5 passed, 5 total\nSnapshots:   0 total\nTime:        0.796 s, estimated 1 s\nRan all test suites matching order.service.\n[chiqish kodi: 0]";
+const KOD_OUT_09C = "36:        if (p.stock <= c.qty) {\n\n$ npx jest order.service\nFAIL src/api/order/order.service.spec.ts\n  OrderService.place\n    ✓ telefon yo'q — darhol xato (20 ms)\n    ✓ savat bo'sh — darhol xato (2 ms)\n    ✓ omborda yetmaydi — tranzaksiya ichida xato, UPDATE bo'lmaydi (2 ms)\n    ✓ yetarli — jami narx hisoblanadi (2 ms)\n    ✕ chegara: omborda aynan 2 ta — 2 tasini olsa bo'ladi (2 ms)\n\n  ● OrderService.place › chegara: omborda aynan 2 ta — 2 tasini olsa bo'ladi\n\n    Kolonka: omborda faqat 2 ta qoldi\n\n      35 |         if (!p) throw new Error(`Mahsulot topilmadi: ${c.product.name}`);\n      36 |         if (p.stock <= c.qty) {\n    > 37 |           throw new Error(`${p.name}: omborda faqat ${p.stock} ta qoldi`);\n         |                 ^\n      38 |         }\n      39 |         // 2) Ayiramiz. Bazadagi CHECK (stock >= 0) — oxirgi qo'riqchi: kod xato qilsa ham manfiy bo'lmaydi.\n      40 |         //    Diqqat: tranzaksiya ichida xato chiqsa, keyingi so'rovlar ham rad etiladi\n\n      at api/order/order.service.ts:37:17\n      at Object.<anonymous> (api/order/order.service.spec.ts:76:19)\n\nTest Suites: 1 failed, 1 total\nTests:       1 failed, 4 passed, 5 total\nSnapshots:   0 total\nTime:        0.797 s, estimated 1 s\nRan all test suites matching order.service.\n[chiqish kodi: 1]";
+const KOD_OUT_10 = "$ npm i -D supertest @types/supertest\nnpm warn allow-scripts\nnpm warn allow-scripts Run `npm approve-scripts --allow-scripts-pending` to review, or `npm approve-scripts <pkg>` to allow.\n[chiqish kodi: 0]\nsupertest 7.3.1\n@types/supertest 7.2.1";
+const KOD_OUT_11 = "$ npx jest app.controller --verbose\nPASS src/api/app.controller.spec.ts\n  HTTP: GET /\n    ✓ 200 va { ok: true } (39 ms)\n    ✓ yo'q manzil — 404 (12 ms)\n\nTest Suites: 1 passed, 1 total\nTests:       2 passed, 2 total\nSnapshots:   0 total\nTime:        0.766 s, estimated 1 s\nRan all test suites matching app.controller.\n[chiqish kodi: 0]";
+const KOD_OUT_12 = "$ npm test -- --verbose\n\n> order-bot-nest@1.0.0 test\n> jest --verbose\n\nPASS src/api/order/order.service.spec.ts\n  OrderService.place\n    ✓ telefon yo'q — darhol xato (20 ms)\n    ✓ savat bo'sh — darhol xato (2 ms)\n    ✓ omborda yetmaydi — tranzaksiya ichida xato, UPDATE bo'lmaydi (2 ms)\n    ✓ yetarli — jami narx hisoblanadi (2 ms)\n    ✓ chegara: omborda aynan 2 ta — 2 tasini olsa bo'ladi (2 ms)\n\nPASS src/api/app.controller.spec.ts\n  HTTP: GET /\n    ✓ 200 va { ok: true } (26 ms)\n    ✓ yo'q manzil — 404 (6 ms)\n\nPASS src/api/telegram/keyboards.spec.ts\n  orderKeyboard\n    ✓ yangi buyurtma — Tasdiqlash va Bekor (2 ms)\n    ✓ tasdiqlangan — Yetkazildi va Bekor (1 ms)\n    ✓ yetkazilgan va bekor qilingan — tugma yo'q (1 ms)\n  catalogKeyboard\n    ✓ birinchi sahifada ◀ yo'q (6 ms)\n    ✓ o'rtada ikkalasi bor\n    ✓ oxirgi sahifada ▶ yo'q (1 ms)\n    ✓ bitta sahifa — faqat 1/1\n    ✓ tugagan mahsulot bosilmaydi (1 ms)\n\nPASS src/api/telegram/phone.spec.ts\n  isPhone\n    ✓ +998901234567 — to'g'ri raqam\n    ✓ 998901234567 — to'g'ri raqam\n    ✓ 12345678 — 8 ta raqam — qisqa\n    ✓ +99890123456789 — 14 ta raqam — uzun\n    ✓ abc — harf\n    ✓  — bo'sh\n    ✓ mijoz probel bilan yozadi\n  isPhone — qoida nimani o'tkazib yuboradi\n    ✓ 9 ta nol ham o'tadi\n\nPASS src/api/telegram/texts.spec.ts\n  som\n    ✓ 120000 ni so'mda yozadi (1 ms)\n    ✓ kichik sonda probel yo'q (1 ms)\n\nTest Suites: 5 passed, 5 total\nTests:       25 passed, 25 total\nSnapshots:   0 total\nTime:        1.286 s\nRan all test suites.\n[chiqish kodi: 0]";
+const KOD_OUT_13 = " package-lock.json | 277 ++++++++++++++++++++++++++++++++++++++++++++++++++++++\n package.json      |   2 +\n 2 files changed, 279 insertions(+)";
+const KOD_OUT_14A = "$ npx jest order.service\nFAIL src/api/order/order.service.spec.ts\n  OrderService.place\n    ✕ telefon yo'q — darhol xato (10 ms)\n    ✕ savat bo'sh — darhol xato (2 ms)\n    ✕ omborda yetmaydi — tranzaksiya ichida xato, UPDATE bo'lmaydi (2 ms)\n    ✕ yetarli — jami narx hisoblanadi (1 ms)\n\n  ● OrderService.place › telefon yo'q — darhol xato\n\n    Nest can't resolve dependencies of the OrderService (?, DataSource). Please make sure that the argument \"OrderRepository\" at index [0] is available in the RootTestModule module.\n\n    Potential solutions:\n    - Is RootTestModule a valid NestJS module?\n    - If \"OrderRepository\" is a provider, is it part of the current RootTestModule?\n    - If \"OrderRepository\" is exported from a separate @Module, is that module imported within RootTestModule?\n      @Module({\n        imports: [ /* the Module containing \"OrderRepository\" */ ]\n      })\n\n    For more common dependency resolution issues, see: https://docs.nestjs.com/faq/common-errors\n\n      21 | beforeEach(async () => {\n      22 |   jest.clearAllMocks();\n    > 23 |   const mod = await Test.createTestingModule({\n         |               ^\n      24 |     providers: [\n      25 |       OrderService,\n      26 |       { provide: DataSource, useValue: dataSource },\n\n      at TestingInjector.lookupComponentInParentModules (../node_modules/@nestjs/core/injector/injector.js:327:19)\n          at async Promise.all (index 0)\n          at async Promise.all (index 3)\n          at async Promise.all (index 1)\n      at Object.<anonymous> (api/order/order.service.spec.ts:23:15)\n\n  ● OrderService.place › savat bo'sh — darhol xato\n\n    Nest can't resolve dependencies of the OrderService (?, DataSource). Please make sure that the argument \"OrderRepository\" at index [0] is available in the RootTestModule module.\n\n    Potential solutions:\n    - Is RootTestModule a valid NestJS module?\n    - If \"OrderRepository\" is a provider, is it part of the current RootTestModule?\n    - If \"OrderRepository\" is exported from a separate @Module, is that module imported within RootTestModule?\n      @Module({\n        imports: [ /* the Module containing \"OrderRepository\" */ ]\n      })\n\n    For more common dependency resolution issues, see: https://docs.nestjs.com/faq/common-errors\n\n      21 | beforeEach(async () => {\n      22 |   jest.clearAllMocks();\n    > 23 |   const mod = await Test.createTestingModule({\n         |               ^\n      24 |     providers: [\n      25 |       OrderService,\n      26 |       { provide: DataSource, useValue: dataSource },\n\n      at TestingInjector.lookupComponentInParentModules (../node_modules/@nestjs/core/injector/injector.js:327:19)\n          at async Promise.all (index 0)\n          at async Promise.all (index 3)\n          at async Promise.all (index 1)\n      at Object.<anonymous> (api/order/order.service.spec.ts:23:15)\n\n  ● OrderService.place › omborda yetmaydi — tranzaksiya ichida xato, UPDATE bo'lmaydi\n\n    Nest can't resolve dependencies of the OrderService (?, DataSource). Please make sure that the argument \"OrderRepository\" at index [0] is available in the RootTestModule module.\n\n    Potential solutions:\n    - Is RootTestModule a valid NestJS module?\n    - If \"OrderRepository\" is a provider, is it part of the current RootTestModule?\n    - If \"OrderRepository\" is exported from a separate @Module, is that module imported within RootTestModule?\n      @Module({\n        imports: [ /* the Module containing \"OrderRepository\" */ ]\n      })\n\n    For more common dependency resolution issues, see: https://docs.nestjs.com/faq/common-errors\n\n      21 | beforeEach(async () => {\n      22 |   jest.clearAllMocks();\n    > 23 |   const mod = await Test.createTestingModule({\n         |               ^\n      24 |     providers: [\n      25 |       OrderService,\n      26 |       { provide: DataSource, useValue: dataSource },\n\n      at TestingInjector.lookupComponentInParentModules (../node_modules/@nestjs/core/injector/injector.js:327:19)\n          at async Promise.all (index 0)\n          at async Promise.all (index 3)\n          at async Promise.all (index 1)\n      at Object.<anonymous> (api/order/order.service.spec.ts:23:15)\n\n  ● OrderService.place › yetarli — jami narx hisoblanadi\n\n    Nest can't resolve dependencies of the OrderService (?, DataSource). Please make sure that the argument \"OrderRepository\" at index [0] is available in the RootTestModule module.\n\n    Potential solutions:\n    - Is RootTestModule a valid NestJS module?\n    - If \"OrderRepository\" is a provider, is it part of the current RootTestModule?\n    - If \"OrderRepository\" is exported from a separate @Module, is that module imported within RootTestModule?\n      @Module({\n        imports: [ /* the Module containing \"OrderRepository\" */ ]\n      })\n\n    For more common dependency resolution issues, see: https://docs.nestjs.com/faq/common-errors\n\n      21 | beforeEach(async () => {\n      22 |   jest.clearAllMocks();\n    > 23 |   const mod = await Test.createTestingModule({\n         |               ^\n      24 |     providers: [\n      25 |       OrderService,\n      26 |       { provide: DataSource, useValue: dataSource },\n\n      at TestingInjector.lookupComponentInParentModules (../node_modules/@nestjs/core/injector/injector.js:327:19)\n          at async Promise.all (index 0)\n          at async Promise.all (index 3)\n          at async Promise.all (index 1)\n      at Object.<anonymous> (api/order/order.service.spec.ts:23:15)\n\nTest Suites: 1 failed, 1 total\nTests:       4 failed, 4 total\nSnapshots:   0 total\nTime:        0.74 s, estimated 1 s\nRan all test suites matching order.service.\n[chiqish kodi: 1]";
+const KOD_OUT_14B = "$ npx jest order.service -t omborda\nFAIL src/api/order/order.service.spec.ts\n  OrderService.place\n    ✕ omborda yetmaydi — tranzaksiya ichida xato, UPDATE bo'lmaydi (29 ms)\n    ○ skipped telefon yo'q — darhol xato\n    ○ skipped savat bo'sh — darhol xato\n    ○ skipped yetarli — jami narx hisoblanadi\n\n  ● OrderService.place › omborda yetmaydi — tranzaksiya ichida xato, UPDATE bo'lmaydi\n\n    expect(received).rejects.toThrow(expected)\n\n    Expected substring: \"Kolonka: omborda faqat 1 ta qoldi\"\n    Received message:   \"Mahsulot topilmadi: Kolonka\"\n\n          33 |           lock: { mode: 'pessimistic_write' },\n          34 |         });\n        > 35 |         if (!p) throw new Error(`Mahsulot topilmadi: ${c.product.name}`);\n             |                       ^\n          36 |         if (p.stock < c.qty) {\n          37 |           throw new Error(`${p.name}: omborda faqat ${p.stock} ta qoldi`);\n          38 |         }\n\n      at api/order/order.service.ts:35:23\n      at Object.<anonymous> (api/order/order.service.spec.ts:45:5)\n      at Object.<anonymous> (api/order/order.service.spec.ts:45:53)\n\nTest Suites: 1 failed, 1 total\nTests:       1 failed, 3 skipped, 4 total\nSnapshots:   0 total\nTime:        0.807 s, estimated 1 s\nRan all test suites matching order.service with tests matching \"omborda\".\n[chiqish kodi: 1]";
+const KOD_AI_DIFF1 = " src/api/order/order.service.spec.ts             | 203 ++++++++++++++++++++++++\n src/api/telegram/telegram.service.phone.spec.ts | 149 +++++++++++++++++\n 2 files changed, 352 insertions(+)";
+const KOD_AI_DIFF2 = " src/api/order/order.service.spec.ts       | 142 ++++++++++++++++++++++++++++++\n src/api/telegram/telegram.service.spec.ts |  82 +++++++++++++++++\n 2 files changed, 224 insertions(+)";
+const KOD_PROMPT1 = "src/api/order/order.service.ts dagi place funksiyasi va telegram.service.ts dagi telefon raqami tekshiruvi uchun edge case va xato holatlariga jest testlar yozib ber. npm test yashil bo'lsin.";
+const KOD_PROMPT2 = "Loyiha: OrderBotNest (NestJS + Telegraf + TypeORM), Jest sozlangan, testlar src/ ichida *.spec.ts; src/api/order/order.service.spec.ts da place uchun mock namunasi bor. Vazifa: OrderService.setStatus(id, status) uchun unit-testlar yoz (src/api/order/order.service.spec.ts ga qo'sh yoki alohida fayl): buyurtma topilmadi → xato; allaqachon CANCELLED bo'lgan buyurtmani yana bekor qilish → xato va increment chaqirilmaydi; CANCELLED qilinganda har mahsulot uchun increment chaqiriladi; CONFIRMED qilinganda increment chaqirilmaydi. Shartlar: baza o'rniga mock (findOneBy, query, increment, save — jest.fn); promise xatosi await expect(…).rejects.toThrow('…') bilan; xato xabarini qo'lda yoz, koddan olma; har it da kamida bitta expect. Tegma: src/ dagi .spec.ts dan boshqa fayllarga. Javobda: qo'shilgan fayllar ro'yxati va npm test natijasi.";
+const KOD = { TS_PHONE: KOD_TS_PHONE, TS_ONTEXT: KOD_TS_ONTEXT, TS_IMPORT_NEW: KOD_TS_IMPORT_NEW, TS_ONTEXT_NEW: KOD_TS_ONTEXT_NEW, PHONE_OLD: KOD_PHONE_OLD, PHONE_NEW: KOD_PHONE_NEW, SPEC_PHONE_02: KOD_SPEC_PHONE_02, SPEC_PHONE_04: KOD_SPEC_PHONE_04, ORDER_PLACE: KOD_ORDER_PLACE, ORDER_SETSTATUS: KOD_ORDER_SETSTATUS, SPEC_ORDER_05: KOD_SPEC_ORDER_05, SPEC_ORDER_06: KOD_SPEC_ORDER_06, SPEC_ORDER_07: KOD_SPEC_ORDER_07, SPEC_ORDER_08: KOD_SPEC_ORDER_08, SPEC_ORDER_08B: KOD_SPEC_ORDER_08B, SPEC_ORDER_10: KOD_SPEC_ORDER_10, APP_CTRL: KOD_APP_CTRL, SPEC_APP: KOD_SPEC_APP, AI1_ORDER: KOD_AI1_ORDER, AI1_TEL: KOD_AI1_TEL, AI2_ORDER: KOD_AI2_ORDER, AI2_TEL: KOD_AI2_TEL, OUT: { '00': KOD_OUT_00, '01': KOD_OUT_01, '02': KOD_OUT_02, '03': KOD_OUT_03, '04': KOD_OUT_04, '05': KOD_OUT_05, '06': KOD_OUT_06, '07': KOD_OUT_07, '08': KOD_OUT_08, '08b': KOD_OUT_08B, '09': KOD_OUT_09, '09b': KOD_OUT_09B, '09c': KOD_OUT_09C, '10': KOD_OUT_10, '11': KOD_OUT_11, '12': KOD_OUT_12, '13': KOD_OUT_13, '14a': KOD_OUT_14A, '14b': KOD_OUT_14B }, AI_DIFF1: KOD_AI_DIFF1, AI_DIFF2: KOD_AI_DIFF2, PROMPT1: KOD_PROMPT1, PROMPT2: KOD_PROMPT2 };
+
 // ============================================================
-//  JEST-2 MATNLARI — AVTO: feedback/F-1029-02-mentor-kurs/dev/jest2-matn.py (manba: 12-Jest2-mentor-v1.md)
+//  Jest-2 MATNLARI — AVTO: feedback/F-1029-02-mentor-kurs/dev/jest2-matn.py (manba: 12-Jest2-mentor-v2.md, M41)
 //  QO'LDA TAHRIRLANMAYDI: matn MD'da o'zgaradi, keyin skript qayta yurgiziladi.
 // ============================================================
 const MDT = {
@@ -788,81 +3487,81 @@ const MDT = {
   "type": "Lesson",
   "kicker": "Kirish",
   "eyebrow": "Mentor kursi · Jest",
-  "title": "Test to'g'ri kirishni sinadi. Noto'g'ri kirish-chi?",
+  "title": "Bot to'g'ri kirishda ishlaydi — endi noto'g'ri kirishda to'g'ri buziladimi, shuni sinaymiz",
   "seg": [
    [
     "a",
-    "Jest-1 da to'g'ri kirishni sinadingiz — bugun <b>noto'g'ri kirishni sinaymiz</b>",
-    "Assalomu alaykum. Jest birinchi darsida orderTotal'ni oddiy kirish bilan sinadingiz: o'n ming va ikki. Lekin haqiqiy do'konda mijoz nol yozadi, minus yozadi, raqam o'rniga so'z yozadi. Bugun aynan shu noto'g'ri kirishni sinaymiz."
+    "Jest-1 da «ishlaydi»ni sinadingiz — bugun <b>«buzilganda to'g'ri buziladimi»</b>",
+    "Assalomu alaykum. Jest birinchi darsida bot to'g'ri kirishda to'g'ri ishlashini sinadingiz. Bugun teskarisi: mijoz noto'g'ri yozganda, ombor yetmaganda bot to'g'ri buziladimi. Ekranda dars oxiridagi natija: beshta test fayli, yigirma beshta test, hammasi yashil."
    ],
    [
     "b",
-    "Himoyasiz funksiya xato bermaydi, balki <b>noto'g'ri natija qaytaradi</b>",
-    "Avval ko'ramiz: himoyasiz funksiya noto'g'ri kirishda xato bermaydi, balki noto'g'ri natija qaytaradi. Keyin funksiyaga himoya qo'yamiz va bu himoyani test bilan tekshiramiz."
+    "Avval <b>umumiy tushuncha</b>: uch yo'l — happy path, edge case, error path",
+    "Avval umumiy tushunchani olamiz: kodning uch yo'li bor. Happy path, ya'ni kutilgan to'g'ri kirish. Edge case, ya'ni qoidaning chegarasi. Error path, ya'ni kod ataylab xato beradigan yo'l. Bugun uchalasini botning haqiqiy joylarida ko'rasiz."
    ],
    [
     "c",
-    "Xato tashlaydigan funksiyani sinash yo'li boshqacha — uni <b>ataylab buzamiz</b>",
-    "Xato tashlaydigan funksiyani sinash yo'li boshqacha, va o'quvchilar aynan shu yerda adashadi. Uni uch xil buzamiz. Keyin TypeScript tuzog'ini va o'quvchining uyga vazifasini ko'ramiz."
+    "Telefon qoidasi, buyurtmaning uch xatosi, <b>sayt API'siga HTTP test</b>",
+    "Keyin uchta haqiqiy joy: telefon raqami qoidasi, buyurtma berishdagi uchta xato va saytning API manzili. Oxirgisi Jest birinchi darsidagi savolga javob: sayt ham xuddi shunday sinaladi. Yo'lda ikkita yashirin tuzoqni ko'rasiz: ularda Jest qizil ham bermaydi."
    ],
    [
     "d",
-    "Olti bosqich, to'rt amaliyot. <b>Shoshilmang</b>: ustoz gapirib bo'lgach Davom ochiladi",
-    "Dars olti bosqichdan iborat, to'rtta amaliyot bor. Shoshilmang: har ekranni boshidan eshitish mumkin. Ustoz gapirib bo'lgach Davom ochiladi. Boshlaymiz."
+    "Olti bosqich, uchta amaliyot; oxirida <b>ikki ekran sinfga tayyorgarlik</b>",
+    "Dars olti bosqichdan iborat, uchta amaliyotda o'zingiz yozasiz. Oxirgi ikki ekran sinfga tayyorgarlik: o'quvchi darsi xaritasi va o'quvchilar xato qiladigan joylar. Shoshilmang, har ekranni boshidan eshitish mumkin, dars qayerda to'xtaganingizni eslab qoladi. Boshlaymiz."
    ]
   ]
  },
  "2": {
   "type": "Lesson",
-  "kicker": "1-bosqich · edge",
-  "title": "Oddiy yo'l — 2 kitob. Chegaradagi qiymatlar — 0, manfiy, 1",
+  "kicker": "1-bosqich · umumiy tushuncha",
+  "title": "Har funksiyada uch yo'l bor: kutilgan kirish, chegaradagi kirish va ataylab xato — test uchalasini sinaydi",
   "seg": [
    [
     "a",
-    "<b>Happy path</b> — hamma narsa rejadagidek: mijoz to'g'ri ma'lumot kiritadi",
-    "Ikki so'zdan boshlaymiz. Birinchisi happy path, ya'ni oddiy yo'l: hamma narsa rejadagidek, mijoz ikki kitob oladi. Jest birinchi darsida aynan shuni sinadingiz."
+    "Happy path — <b>kutilgan to'g'ri kirish</b>: Jest-1 ning hamma testi shu yo'lda edi",
+    "Birinchi yo'l happy path: mijoz raqamni to'g'ri yozdi, omborda yetarli, buyurtma qabul qilindi. Jest birinchi darsidagi hamma test shu yo'lda edi. Haqiqiy do'konda esa mijozlarning hammasi ham to'g'ri yozmaydi."
    ],
    [
     "b",
-    "<b>Edge case</b> — chegaradagi qiymat: 0, manfiy va eng kichik haqiqiy qiymat 1",
-    "Ikkinchisi edge case, ya'ni chegara holati: oddiy qiymatlarning chetida turgan qiymatlar. Masalan nol dona, minus bir dona va eng kichik haqiqiy buyurtma, ya'ni bir dona. Xatolar ko'pincha aynan shu chetlarda yashiringan."
+    "Edge case — <b>qoidaning chegarasi</b>: kod xato bermaydi, lekin javob to'g'rimi?",
+    "Ikkinchi yo'l edge case, ya'ni chegara. Mijoz raqamni probel bilan yozdi. Yoki raqam aynan to'qqizta, ya'ni eng qisqa ruxsat etilgani. Yoki omborda aynan ikkita bor va ikkitasi olinadi. Kod xato bermaydi, lekin javobi to'g'rimi, buni test aytadi."
    ],
    [
     "c",
-    "<b>Noto'g'ri tur</b> ham edge case: raqam o'rniga so'z yoki bo'sh qiymat",
-    "Chegara holatining yana bir turi noto'g'ri ma'lumot: raqam o'rniga ikki degan so'z yoki umuman bo'sh qiymat, ya'ni null. Formada xato bo'lsa, server aynan shunday ma'lumot olishi mumkin."
+    "Error path — <b>kod ataylab xato beradi</b>: qaysi xabar, keyin nima bo'lmaydi",
+    "Uchinchi yo'l error path: telefon yo'q, savat bo'sh, omborda yetmaydi. Bu yerda kod ataylab xato beradi, bu to'g'ri xulq. Test xatoning o'zini kutadi: xato chiqdimi, qaysi xabar bilan, va xatodan keyin ombor o'zgarmay qoldimi."
    ],
    [
     "d",
-    "Xulosa: har funksiya uchun — bitta oddiy holat va <b>bir nechta chegara holati</b>",
-    "Xulosa: har funksiya uchun bitta oddiy holat va bir nechta chegara holati. O'quvchi darsi shunday deydi: chegara nol bilan bir orasida. Endi himoyasiz funksiya bu holatlarda nima qilishini ko'ramiz."
+    "Xulosa: har funksiyaga <b>uch yo'lning testi</b> — bugun uchalasini yozamiz",
+    "Xulosa: bitta funksiyaga uch yo'lning testi yoziladi: kutilgan kirish, chegara va xato. Bugun telefon qoidasida chegarani, buyurtmada xato yo'lini, saytning API'sida esa so'rov va javobni sinaymiz. Telefon qoidasidan boshlaymiz."
    ]
   ]
  },
  "3": {
   "type": "Lesson",
-  "kicker": "1-bosqich · edge",
-  "title": "Himoyasiz price * quantity: xato yo'q — natija noto'g'ri",
+  "kicker": "2-bosqich · telefon",
+  "title": "PHONE qoidasi telegram.service.ts ichida yashirin — testdan chaqirib bo'lmaydi, shuning uchun alohida faylga chiqaramiz",
   "seg": [
    [
     "a",
-    "Nol dona — 0 so'm: <b>bepul buyurtma</b>, xato yo'q",
-    "Himoyasiz funksiyani chaqiramiz. Nol dona bersak, natija nol so'm bo'ladi: bepul buyurtma, va hech qanday xato yo'q. Funksiya o'z ishini qildi: o'n ming ko'paytirish nol."
+    "Qoida <b><code>telegram.service.ts</code> 12-satrda</b>: <code>+</code> ixtiyoriy, 9 dan 13 tagacha raqam",
+    "OrderBotNest papkangizni VS Code'da oching. Src, api, telegram papkasidagi telegram service ts faylining o'n ikkinchi satrida telefon qoidasi: regex. Plus ixtiyoriy, keyin to'qqizdan o'n uchtagacha raqam, boshqa hech narsa. Bir yuz ellik yettinchi satrda bot shu qoida bilan mijoz xabarini tekshiradi."
    ],
    [
     "b",
-    "Minus bir — minus o'n ming: <b>do'kon mijozga pul to'laydimi?</b>",
-    "Minus bir dona bersak, natija minus o'n ming: ya'ni do'kon mijozga pul to'lashi kerak. Yana xato yo'q. Bir dona esa to'g'ri hisoblanadi, o'n ming. Demak, chegara nol bilan bir orasida."
+    "Muammo: qoida <b><code>const</code>, eksport qilinmagan</b> — test uni chaqira olmaydi",
+    "Muammo shunda: qoida const, fayl ichida yashirin, eksport qilinmagan. Test uni chaqira olmaydi. Butun botni ko'tarib, Telegram xabarini soxtalashtirish esa unit-test emas. Shuning uchun qoidani alohida faylga chiqaramiz."
    ],
    [
     "c",
-    "So'z — NaN, null — 0: eng xavflisi, chunki <b>hech kim sezmaydi</b>",
-    "Ikki degan so'z bersak, natija NaN, ya'ni not a number, son emas. Null esa nolga aylanadi: yana bepul buyurtma. O'quvchi darsi bu haqda «hech kim sezmaydi» deydi. Eng xavflisi shu: dastur ishlayveradi, xato hech qayerda chiqmaydi."
+    "Yangi fayl <code>phone.ts</code>: <b><code>isPhone(text)</code> — bitta funksiya</b>, bot ham, test ham shuni chaqiradi",
+    "Shu telegram papkasida phone ts faylini yaratamiz. Ichida ikki narsa: o'sha regex va is phone funksiyasi, u matnni oladi va true yoki false qaytaradi. Endi bot ham, test ham bitta funksiyani chaqiradi. Qoida bitta joyda yashaydi."
    ],
    [
     "d",
-    "Xulosa: himoyasiz funksiya noto'g'ri kirishda xato bermaydi, balki <b>noto'g'ri ishlaydi</b>",
-    "Xulosa: himoyasiz funksiya noto'g'ri kirishda xato bermaydi, balki noto'g'ri ishlaydi. To'g'ri yo'l: noto'g'ri kirishni darhol rad etish, ya'ni xato tashlash. Buni ikkinchi bosqichda qilamiz."
+    "Xulosa: <b>sinamoqchi bo'lgan qoidani funksiyaga ajrating</b> — bu kodni ham tozalaydi",
+    "Xulosa: sinamoqchi bo'lgan qoida service ichida yashirin bo'lsa, uni alohida funksiyaga ajrating. Telegram service endi is phone'ni import qiladi va chaqiradi. Bu testni mumkin qiladi va kodni ham tozalaydi: qoida bitta joyda. Endi qoidaning o'zini sinaymiz."
    ]
   ]
  },
@@ -870,603 +3569,829 @@ const MDT = {
   "type": "MCRetry",
   "kicker": "Tekshiruv 1",
   "eyebrow": "Tekshiruv · 1 / 4",
-  "title": "Himoyasiz orderTotal(10000, -1) nima qaytaradi?",
-  "q": "Yashirin buzilishni ko'rdingiz, tekshirib olaylik. Birinchi tekshiruv. Funksiyada hech qanday himoya yo'q, faqat narx ko'paytirish soni. Unga minus bir dona berildi. Nima qaytadi? Variantni tanlang.",
-  "ok": "To'g'ri, minus o'n ming. Funksiya shunchaki ko'paytiradi, manfiy son uni to'xtatmaydi. Xato yo'q, natija esa noto'g'ri: do'kon mijozga pul to'laydigan bo'ldi. Demak, himoyasiz funksiya noto'g'ri kirishda xato bermaydi, balki noto'g'ri hisoblaydi, shuning uchun himoya kerak.",
-  "okShort": "−10000 — xato yo'q, lekin natija noto'g'ri. Himoya (guard) kerak.",
-  "hint": "Funksiya faqat ko'paytiradi: 10000 × (−1) = ?",
+  "title": "Mijoz raqamni «+998 90 123 45 67» deb yozdi. isPhone hozirgi regex bilan nima qaytaradi?",
+  "q": "Qoidani ajratdik, endi tekshirib olaylik. Birinchi tekshiruv. Mijoz raqamni probellar bilan yozdi: plus to'qqiz to'qqiz sakkiz, probel, to'qson, probel va hokazo. Is phone hozirgi regex bilan nima qaytaradi? Variantni tanlang.",
+  "ok": "To'g'ri. Regex'da faqat plus va raqamlar bor, probel yo'q, shuning uchun false. Trim faqat boshi va oxiridagi probelni oladi, o'rtadagini emas. Bot bu raqamni rad etadi, mijoz esa raqamni to'g'ri yozganini o'ylaydi. Demak, edge case ko'pincha qoida emas, mijozning odatidan chiqadi.",
+  "okShort": "Regex'da probel yo'q → <code>false</code>. <code>trim()</code> faqat chekkadagi probelni oladi.",
+  "hint": "Regex'da qaysi belgilar ruxsat etilgan? Probel ular ichidami?",
+  "demak": "Edge case ko'pincha qoidadan emas, mijozning odatidan chiqadi.",
   "correct": 1,
   "opts": [
-   "Error — manfiy son taqiqlangan",
-   "−10000 — xato yo'q, lekin natija noto'g'ri",
-   "0",
-   "NaN"
+   "true — raqamlar soni to'g'ri, probel sanalmaydi",
+   "false — regex'da faqat raqam va +, probel yo'q",
+   "true — trim() probellarni olib tashlaydi",
+   "Xato — regex matndagi probelda yiqiladi"
   ],
   "wrong": {
-   "0": "Xato tashlash uchun funksiyada throw bo'lishi kerak — himoyasiz funksiyada yo'q.",
-   "2": "0 ni 0 dona beradi; −1 da natija manfiy.",
-   "3": "NaN — son bo'lmagan kirishda ('ikki'); −1 esa son."
+   "0": "Regex belgima-belgi tekshiradi: probel \\d emas.",
+   "2": "trim() faqat boshidagi va oxiridagi probelni oladi, o'rtadagini emas.",
+   "3": "Regex yiqilmaydi, u false qaytaradi — xato xabari yo'q."
   }
  },
  "5": {
   "type": "Lesson",
-  "kicker": "2-bosqich · guard",
-  "title": "toThrow() kutdi — Received function did not throw",
+  "kicker": "2-bosqich · telefon",
+  "title": "Bitta qoidaga yettita kirish: ikkita to'g'ri, to'rtta noto'g'ri va bitta chegara — it.each ularni bir jadvalda yozadi",
   "seg": [
    [
     "a",
-    "<b>Test avval yoziladi</b>: «0 dona — xato bo'lishi kerak», funksiya hali himoyasiz",
-    "Avval test yozamiz: nol dona va minus bir dona xato bo'lishi kerak. Funksiya hali himoyasiz. Expect ichida yangi narsa bor: to throw, ya'ni xato tashlashi kerak. Uning yozilishini sakkizinchi ekranda batafsil ko'ramiz."
+    "<code>it.each</code> — <b>bir xil test, har xil kirish</b>: ro'yxat beriladi, Jest har biriga alohida test yasaydi",
+    "Phone spec ts faylini telegram papkasida, phone ts yonida yaratamiz. Yangi narsa: it each. Unga kirishlar ro'yxati beriladi, Jest har biriga alohida test yasaydi. Birinchi ro'yxatda ikkita to'g'ri raqam: plus bilan va plussiz."
    ],
    [
     "b",
-    "Natija: <b>ikki edge testi qizil</b>, happy path yashil",
-    "npm test qilamiz: oddiy holat yashil, ikki chegara holati qizil. Fayl bitta bo'lgani uchun test nomlari ko'rinadi: belgi bilan o'tganlari, iks bilan yiqilganlari."
+    "To'rtta noto'g'ri kirish: <b>8 ta raqam, 14 ta raqam, harf, bo'sh</b> — har birining nomi bor",
+    "Ikkinchi ro'yxatda to'rtta noto'g'ri kirish: sakkizta raqam, ya'ni chegaradan bitta kam. O'n to'rtta raqam, chegaradan bitta ko'p. Harflar. Bo'sh matn. Har qatorda kirish va uning nomi: terminalda test nomi tushunarli bo'lsin."
    ],
    [
     "c",
-    "<code>Received function did not throw</code> — <b>funksiya xato tashlamadi</b>",
-    "Xabarni o'qiymiz: received function did not throw. Bu funksiya xato tashlamadi degani, test esa buni kutgan edi. Bu FAIL'da expected va received raqami yo'q, chunki solishtirilgan narsa xato bo'ldi."
+    "Yettinchi test — mijozning odati: <b>probel bilan yozilgan raqam <code>true</code> bo'lishi kerak</b>",
+    "Yettinchi test mijozning odati: probel bilan yozilgan raqam. Biz uni to'g'ri deb kutamiz, chunki bu haqiqiy raqam. VS Code terminalida npm test, ikki chiziqcha, phone. Oltita yashil, bittasi qizil: probel bilan yozilgan raqam."
    ],
    [
     "d",
-    "Xulosa: <code>did not throw</code> — funksiyada <b>himoya yo'q yoki shart noto'g'ri</b>",
-    "Xulosa: did not throw ko'rsangiz, sabab ikkitadan biri. Yo funksiyada himoya umuman yo'q, yo shart bu qiymatni o'tkazib yubordi. Ikkinchisini o'ninchi ekranda ko'ramiz."
+    "Demak, <b>qoida mijozdan tor</b>: probel bilan yozilgan haqiqiy raqamni bot rad etadi",
+    "Demak, sabab bitta joyda: qoida mijozdan tor. Mijoz probel bilan yozadi, regex esa faqat raqamlarni biladi. Test buni kod yozilgan kuniyoq ko'rsatdi, mijoz shikoyat qilguncha emas. Keyingi ekranda qoidani kengaytiramiz va yana bir chegarani ko'ramiz."
    ]
   ]
  },
  "6": {
   "type": "Lesson",
-  "kicker": "2-bosqich · guard",
-  "title": "Funksiya boshida shart: noto'g'ri bo'lsa — xato, to'g'ri bo'lsa — hisob",
+  "kicker": "2-bosqich · ichida",
+  "title": "Tuzatish bitta satr: tekshirishdan oldin probel va chiziqchani olib tashlaymiz — keyin test qoida nimani o'tkazib yuborishini ham ko'rsatadi",
   "seg": [
    [
     "a",
-    "Guard — funksiya boshidagi himoya: <b>avval shart, keyin xato, keyin hisob</b>",
-    "Did not throw, chunki himoya yo'q. Endi uni qo'yamiz. Himoya, inglizchasi guard, funksiyaning boshida turadi. Uning tartibi uch qadamdan iborat: avval shart, keyin xato tashlash, keyin oddiy hisob. O'quvchi darsida bu tartibni bloklardan yig'adi."
+    "Tuzatish: <b><code>replace(/[\\s-]/g, '')</code></b> — probel va chiziqcha olib tashlanadi, keyin tekshiriladi",
+    "Phone ts faylining to'rtinchi satrini o'zgartiramiz: trim o'rniga replace. U probel va chiziqchalarni olib tashlaydi, keyin regex tekshiradi. Mijoz qanday yozsa ham, raqamlar bir xil. Npm test phone: yettala test yashil."
    ],
    [
     "b",
-    "Shart <b>uchta tekshiruv</b>: son emasmi, NaN'mi, nol yoki manfiymi",
-    "Shartda uchta tekshiruv bor: quantity son emasmi, NaN emasmi va nol yoki undan kichikmi. Biri to'g'ri bo'lsa, funksiya to'xtaydi. Matn ham, minus ham, nol ham shu yerda ushlanadi."
+    "Yana bir test: <b>9 ta nol ham <code>true</code></b> — qoida buni to'g'ri raqam deydi",
+    "Endi qiziq test. To'qqizta nol: is phone nima deydi? True. Qoida bo'yicha bu to'g'ri raqam: to'qqizta raqam, boshqa hech narsa. Test yashil, lekin siz o'ylab qolasiz: haqiqatan ham to'qqizta nol telefon raqamimi?"
    ],
    [
     "c",
-    "<code>throw new Error('…')</code> — <b>funksiyani to'xtatadi</b>, xabar sababni aytadi",
-    "Throw new error funksiyani shu joyda to'xtatadi, return'gacha bormaydi. Xabarni tushunarli yozing, masalan: quantity musbat raqam bo'lsin. Keyin testda aynan shu xabarni tekshirish mumkin."
+    "Test <b>qoidani tekshiradi, qoidaning o'zi to'g'rimi</b> — bu sizning qaroringiz",
+    "Mana edge test'ning ikkinchi foydasi. Test qoidani tekshiradi, qoidaning o'zi to'g'rimi, buni test hal qilmaydi. To'qqizta nol o'tishi sizga kelishmasa, qoidani torroq yozasiz va test yana sizni qo'riqlaydi. Hozircha qoldiramiz: bot uchun yetarli."
    ],
    [
     "d",
-    "Natija: <b>beshala test yashil</b> — happy, 1 dona, 0, manfiy va matn",
-    "npm test qilamiz: beshala test yashil. Ikki dona va bir dona hisoblanadi, nol, minus va matn esa xato beradi. Bir dona testi muhim: himoya to'g'ri buyurtmani to'sib qo'ymaganini ko'rsatadi."
-   ],
-   [
-    "e",
-    "Xulosa: guard qo'yilgach — xato holatlari ham, <b>eng kichik to'g'ri holat ham</b> sinaladi",
-    "Xulosa: guard qo'yilgach ikki tomon sinaladi. Noto'g'ri kirish xato beradi, eng kichik to'g'ri kirish hisoblanadi. Faqat birini sinasangiz, himoya juda qattiq yoki juda yumshoq bo'lib qolganini bilmaysiz."
+    "Xulosa: <b>chegaradagi kirishni testga yozing</b> — u qoidani ko'zingiz oldiga olib keladi",
+    "Xulosa: chegaradagi kirishni testga yozing, u qoidani ko'zingiz oldiga olib keladi. Bitta test qoidaning tor joyini topdi, probel. Boshqasi qoidaning keng joyini ko'rsatdi, to'qqizta nol. Endi shu ikkala faylni o'zingiz yozasiz."
    ]
   ]
  },
  "7": {
   "type": "Practice",
-  "kicker": "Amaliyot 1 / 4",
-  "eyebrow": "Hozir o'zingizda · 10–15 daqiqa",
-  "title": "Avval qizil edge testlari, keyin guard va yashil",
+  "kicker": "Amaliyot 1 / 3",
+  "eyebrow": "Hozir o'zingizda · 12 daqiqa",
+  "title": "Telefon qoidasini alohida faylga chiqaring, chegara testlarini yozing va probel bilan qizilni ko'ring",
   "seg": [
    [
     "a",
-    "Endi siz: avval edge testlarini yozasiz va <b>qizilni ko'rasiz</b>, keyin himoya qo'yasiz",
-    "Endi navbat sizga. Jest birinchi darsidagi order fayllarini oching. Avval edge testlarini yozasiz va qizilni ko'rasiz, keyin himoya qo'yasiz. Bunga o'n-o'n besh daqiqa ketadi."
+    "Endi siz: <b><code>jest2-start</code> tegida</b> qoidani ajratasiz va yetti test yozasiz",
+    "Endi navbat sizga. OrderBotNest papkangizda jest ikki start tegiga o'tasiz. Telegram papkasida phone ts va phone spec ts yaratasiz. Baza va token kerak emas. O'n ikki daqiqa ketadi."
    ],
    [
     "b",
-    "1–2-qadam: 0 va manfiy uchun <code>toThrow</code> testlari — <b><code>did not throw</code></b>",
-    "Birinchi qadamda nol va minus bir uchun ikkita test yozasiz: expect ichida o'ralgan funksiya va to throw. Ikkinchisida npm test qilib, did not throw xabarini o'qiysiz."
+    "1–2-qadam: teg va <b><code>phone.ts</code>, <code>it.each</code> bilan yetti test</b> — probel testi qizil",
+    "Birinchi qadamda git fetch va checkout bilan tegga o'tasiz. Ikkinchisida phone ts'ga regex va is phone'ni, phone spec ts'ga it each bilan yetti testni yozasiz. Npm test phone: probel testi qizil bo'lishi kerak."
    ],
    [
     "c",
-    "3–4-qadam: guard va 1 dona testi; isbot — <b><code>Tests:</code> satri</b>",
-    "Uchinchi qadamda funksiya boshiga himoya qo'yasiz. To'rtinchisida bir dona va matn testlarini qo'shib, npm test qilasiz. Isbot maydoniga Tests satrini nusxalang."
+    "3–4-qadam: <b><code>replace</code> bilan tuzatish</b>, «9 ta nol» testi; isbot — <code>Tests:</code> satri",
+    "Uchinchi qadamda is phone'da trim o'rniga replace yozasiz: hammasi yashil. To'rtinchisida to'qqizta nol testini qo'shasiz va natijani ko'rasiz. Isbot maydoniga oxirgi natijaning tests satrini nusxalang."
    ],
    [
     "d",
     "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
-    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, siz test avval qizil, himoyadan keyin yashil bo'lishini o'z kodingizda ko'rdingiz."
+    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin siz qoidani testga ochasiz va chegara testini yozasiz."
+   ]
+  ],
+  "steps": [
+   {
+    "t": "Teg",
+    "cmds": [
+     "git fetch --tags",
+     "git checkout jest2-start",
+     "npm test"
+    ],
+    "exp": "Tests: 10 passed, 10 total"
+   },
+   {
+    "t": "phone.ts + phone.spec.ts (3–5-ekrandagi kod)",
+    "cmds": [
+     "src/api/telegram/phone.ts",
+     "src/api/telegram/phone.spec.ts",
+     "npm test -- phone"
+    ],
+    "exp": "✕ mijoz probel bilan yozadi · Tests: 1 failed, 6 passed"
+   },
+   {
+    "t": "Tuzatish",
+    "cmds": [
+     "isPhone da text.replace(/[\\s-]/g, '')",
+     "npm test -- phone"
+    ],
+    "exp": "Tests: 7 passed, 7 total"
+   },
+   {
+    "t": "Chegara",
+    "cmds": [
+     "it(\"9 ta nol ham o'tadi\") — isPhone('000000000') → true"
+    ],
+    "exp": "Tests: 8 passed, 8 total"
+   }
+  ],
+  "proof": {
+   "label": "Oxirgi natijaning Tests: satri",
+   "placeholder": "masalan: Tests: 8 passed, 8 total",
+   "re": "Tests:\\s+8 passed,\\s+8 total",
+   "flags": "",
+   "wrong": "Sakkizta test yashilmi? npm test -- phone natijasidagi Tests: qatorini qo'ying."
+  },
+  "trouble": [
+   [
+    "error: pathspec 'jest2-start' did not match",
+    "teglar olinmagan — git fetch --tags, keyin checkout"
+   ],
+   [
+    "2-qadamda hammasi ✓",
+    "probel testi yozilmagan yoki replace allaqachon qo'yilgan — 5-ekrandagi yettinchi testni tekshiring"
+   ],
+   [
+    "it.each da %s o'rniga undefined",
+    "ro'yxat elementlari massiv emas — ['12345678', '8 ta raqam'] juftlik bo'lsin"
+   ],
+   [
+    "Cannot find module './phone'",
+    "fayl src/api/telegram/ da emas — telegram.service.ts yoniga ko'chiring"
    ]
   ]
  },
  "8": {
   "type": "Lesson",
-  "kicker": "3-bosqich · buzamiz",
-  "title": "expect(orderTotal(10000, 0)).toThrow() — test xatoning o'zi bilan qulaydi",
+  "kicker": "3-bosqich · error path",
+  "title": "Buyurtma berishda uchta xato bor: ikkitasi funksiyaning o'zida darhol, uchinchisi tranzaksiya ichida — testda bu farq hal qiluvchi",
   "seg": [
    [
     "a",
-    "O'quvchi darsidagi savol: qaysi yozuv to'g'ri — <b>o'ralganmi yoki o'ralmaganmi?</b>",
-    "O'quvchi darsida savol bor: qaysi yozuv to'g'ri? Expect ichida funksiyani to'g'ridan-to'g'ri chaqirishmi yoki strelkali funksiya ichiga o'rashmi? Sinab ko'ramiz: o'rashni olib tashlaymiz."
+    "<code>order.service.ts</code> 24-satr: <b><code>place</code> ikki xatoni darhol otadi</b> — telefon yo'q, savat bo'sh",
+    "Endi buyurtmaga o'tamiz. Src, api, order papkasidagi order service ts faylini oching, yigirma to'rtinchi satr: place funksiyasi. Yigirma besh va yigirma oltinchi satrlarda ikki tekshiruv: telefon yo'q bo'lsa xato, savat bo'sh bo'lsa xato. Ikkalasi darhol, funksiyaning o'zida otiladi."
    ],
    [
     "b",
-    "O'ralmagan: funksiya expect'dan oldin ishlaydi va <b>xato testni qulatadi</b>",
-    "O'ralmagan holatda funksiya expect'ga yetmasdan ishlaydi va xato tashlaydi. Expect uni tutishga ulgurmaydi. Natijada test qizil, lekin xabarda expected va received yo'q, funksiyaning o'z xatosi turibdi: quantity musbat raqam bo'lsin."
+    "Uchinchi xato <b>tranzaksiya ichida, 37-satr</b>: omborda yetmasa — promise'da otiladi",
+    "Uchinchi xato o'ttiz yettinchi satrda: omborda yetmasa. Lekin u transaction ichida, ya'ni async funksiya ichida. Bu xato darhol emas, promise'da otiladi. Ekrandagi chizmaga qarang: ikki xato chapda, funksiyaning o'zida, bittasi o'ngda, promise ichida."
    ],
    [
     "c",
-    "Belgi: FAIL xabarida <code>at orderTotal (order.ts:…)</code> — xato <b>funksiya ichidan uchdi</b>",
-    "Qanday tanib olasiz: FAIL xabarida expect so'zi yo'q, o'rniga sizning xato xabaringiz va at orderTotal, order ts, uchinchi satr. Ya'ni xato test ichida tutilmadi, funksiyadan to'g'ridan-to'g'ri uchib chiqdi."
+    "Farq nega muhim: <b>Jest'da ikkita har xil usul</b> — sinxron uchun biri, promise uchun boshqasi",
+    "Bu farq test uchun hal qiluvchi. Sinxron xatoni expect, qavs ichida funksiya, to throw bilan ushlaymiz. Promise xatosini esa await expect, rejects, to throw bilan. Usulni almashtirib yuborsangiz, Jest qizil ham bermaydi, buni ikki ekrandan keyin ko'rasiz."
    ],
    [
     "d",
-    "Xulosa: xato kutilsa — funksiya <b><code>() =&gt;</code> ichida</b>; aks holda test o'zi qulaydi",
-    "Xulosa: xato kutilayotgan bo'lsa, funksiya doim strelka ichiga o'raladi. Shunda Jest uni o'zi chaqiradi va xatoni tutadi. O'quvchi darsida bu o'rab berish deyiladi."
+    "Xulosa: xatoni sinashdan oldin <b>qayerda otilishini</b> aniqlang — darholmi, promise ichidami",
+    "Xulosa: xatoni sinashdan oldin uning qayerda otilishini aniqlang: funksiyaning o'zida darholmi, yoki promise ichidami. Place'da ikkala tur ham bor. Lekin testdan oldin yana bir muammo: place bazaga yozadi, bizda esa test bazasi yo'q. Keyingi ekranda shuni hal qilamiz."
    ]
   ]
  },
  "9": {
   "type": "Lesson",
-  "kicker": "3-bosqich · buzamiz",
-  "title": "Expected substring va Received message — xato bor, lekin boshqa xato",
+  "kicker": "3-bosqich · ichida",
+  "title": "Unit-test bazasiz: DataSource o'rniga soxta obyekt, findOne biz aytgan mahsulotni qaytaradi — bu mock",
   "seg": [
    [
     "a",
-    "<code>toThrow()</code> faqat «xato bo'ldimi» deydi — <code>toThrow('matn')</code> <b>qaysi xato ekanini</b> tekshiradi",
-    "O'rash bilan xato tutildi. Endi qaysi xato tutilganini tekshiramiz. Bo'sh to throw faqat xato bo'ldimi, shuni tekshiradi. Qavs ichiga matn yozilsa, xabar shu matnni o'z ichiga olishi kerak. Bu muhim: funksiya boshqa sabab bilan yiqilsa ham bo'sh to throw yashil bo'lardi."
+    "<code>place</code> bazaga yozadi, test bazasi yo'q — <b>baza o'rniga mock</b>: soxta <code>manager</code>",
+    "Place funksiyasi transaction ichida bazaga yozadi: find one, update, save. Unit-testda baza yo'q va kerak emas. Shuning uchun baza o'rniga mock, ya'ni soxta obyekt beramiz. Order papkasida order service spec ts faylini yaratamiz, sakkizinchi satrdan manager obyekti."
    ],
    [
     "b",
-    "Xabar mos emas: <code>Expected substring</code> — kutilgani, <b><code>Received message</code></b> — kelgani",
-    "Testda narx xato deb yozdik, funksiya esa quantity musbat raqam bo'lsin deydi. Natija qizil: expected substring, ya'ni kutilgan bo'lak, va received message, ya'ni kelgan xabar. Bu Jest birinchi darsidagi expected va received'ning xato uchun ko'rinishi."
+    "<code>jest.fn()</code> — <b>chaqiruvni yozib qoladigan soxta funksiya</b>; <code>transaction</code> esa mock'ni callback'ka beradi",
+    "Jest fn soxta funksiya: u chaqirilganini va qanday argument bilan chaqirilganini yozib qoladi. Find one, query, save, hammasi shunday. O'n oltinchi satrda data source: uning transaction funksiyasi callback'ni darhol chaqirib, unga bizning manager'ni beradi. Place buni haqiqiy baza deb o'ylaydi."
    ],
    [
     "c",
-    "Xulosa: xabarni tekshiring — u xato <b>qaysi shartdan kelganini</b> aytadi",
-    "Xulosa: xato kutilgan joyda xabarni ham tekshiring. Bir funksiyada bir nechta himoya bo'lsa, xabar qaysi biri ishlaganini aytadi. Sinfda buni o'quvchiga ko'rsating: xabar aniq yozilsa, test ham aniq bo'ladi."
+    "<code>Test.createTestingModule</code>: <b>Nest'ga <code>DataSource</code> o'rniga mock'ni beramiz</b>, <code>OrderService</code> haqiqiy",
+    "Yigirma uchinchi satrdan Nest'ning test moduli. Providers ro'yxatida order service haqiqiy, data source o'rniga esa bizning soxta obyekt. Nest uni inject qiladi, order service farqini bilmaydi. Repository ham kerak, bo'sh obyekt yetadi: place uni ishlatmaydi."
+   ],
+   [
+    "d",
+    "Xulosa: har testda <b><code>mockResolvedValue</code> bilan mahsulotni biz beramiz</b> — omborda 1 ta yoki 10 ta",
+    "Xulosa: endi har testda omborni biz boshqaramiz. Mock resolved value bilan find one'ga nima qaytarishini aytamiz: omborda bitta Kolonka yoki o'nta. Baza yo'q, lekin place aynan haqiqiy kodda ishlaydi. Endi to'rtta testni yozamiz."
    ]
   ]
  },
  "10": {
   "type": "Lesson",
-  "kicker": "3-bosqich · buzamiz",
-  "title": "Shartsiz throw — oddiy holat ham qizil; < 0 — nol o'tib ketadi",
+  "kicker": "3-bosqich · error path",
+  "title": "Sinxron xato — expect(() => …).toThrow(), promise xatosi — await expect(…).rejects.toThrow(): to'rt test, hammasi yashil",
   "seg": [
    [
     "a",
-    "O'quvchi darsidagi tuzoq: <code>throw</code> bor, lekin <b><code>if</code> yo'q</b> — har chaqiriq xato beradi",
-    "O'quvchi darsida bloklarni yig'ishda tuzoq bor: throw qo'yilgan, lekin shart yo'q. Sinab ko'rdik: endi funksiya har chaqiriqda xato beradi."
+    "Sinxron xato: <b><code>expect(() =&gt; …)</code> — funksiyani o'rab beramiz</b>, Jest uni o'zi chaqiradi",
+    "Birinchi ikki test sinxron xato uchun. Qarang: expect ichida funksiyani darhol chaqirmaymiz, qavs, strelka, keyin chaqiruv. Jest o'sha o'ramni o'zi chaqiradi va xatoni ushlaydi. To throw ichida xabar: telefon raqami yo'q. Xabar mos bo'lmasa, test qizil."
    ],
    [
     "b",
-    "Natija: xato testlari yashil, lekin <b>happy va 1 dona — qizil</b>",
-    "Natija avvaliga g'alati ko'rinadi: xato kutgan testlar yashil, lekin ikki dona va bir dona qizil. Shuning uchun oddiy holat testi kerak: u himoya juda qattiq bo'lib qolganini ushlaydi."
+    "Promise xatosi: <b><code>await expect(…).rejects.toThrow()</code></b> — funksiya darhol chaqiriladi, promise kutiladi",
+    "Uchinchi test promise xatosi uchun, shakli boshqa. Expect ichida place darhol chaqiriladi, o'ramsiz, chunki u promise qaytaradi. Keyin rejects: promise xato bilan tugashini kutamiz. Va boshida await: Jest natijani kutsin. Mock'da omborda bitta Kolonka, savatda ikkita."
    ],
    [
     "c",
-    "<code>&lt;= 0</code> o'rniga <code>&lt; 0</code> — faqat <b>«0 dona» testi qizil</b>: <code>did not throw</code>",
-    "Ikkinchi buzish yumshoqroq: kichik yoki teng o'rniga faqat kichik yozamiz. Minus ham, matn ham ushlanadi, lekin nol o'tib ketadi. Faqat nol dona testi qizil, xabari did not throw. Bu Jest birinchi darsidagi chegara xatosining aynan o'zi."
+    "To'rtinchi test — happy path: <b>omborda 10 ta, jami 100 000</b>, <code>query</code> bir marta chaqirildi",
+    "To'rtinchi test happy path: omborda o'nta, buyurtma o'tadi, jami bir yuz ming so'm. Va yana bir tekshiruv: manager query bir marta chaqirildi, ya'ni update ketdi. VS Code terminalida npm test order service: to'rttala test yashil."
    ],
    [
     "d",
-    "Xulosa: happy testi himoyaning <b>qattiqligini</b>, edge testi <b>yumshoqligini</b> ushlaydi",
-    "Xulosa: ikki xil test ikki xil xatoni ushlaydi. Oddiy holat testi himoya juda qattiq bo'lsa qizil bo'ladi. Chegara testi esa himoyada teshik bo'lsa qizil bo'ladi. Ikkalasi ham kerak."
+    "Xulosa: <b>sinxron — o'rab <code>toThrow</code>, promise — <code>rejects</code> va <code>await</code></b>; endi ikkalasini almashtirib ko'ramiz",
+    "Xulosa: sinxron xatoga o'ram va to throw, promise xatosiga rejects va await. Ikkalasi yashil, lekin shakl muhim. Keyingi ikki ekranda ularni ataylab almashtiramiz va Jest nima qilishini ko'rasiz. Natija sizni hayron qoldiradi."
    ]
   ]
  },
  "11": {
-  "type": "LineCheck",
-  "kicker": "Tekshiruv 2",
-  "eyebrow": "Tekshiruv · 2 / 4 — qaysi satr xato?",
-  "title": "0 dona — xato qizil: Received function did not throw",
-  "q": "Buzishlarni ko'rdingiz, endi o'zingiz toping. Ikkinchi tekshiruv. Nol dona testi qizil: did not throw. Qoida: nol dona ham noto'g'ri buyurtma. Nolni o'tkazib yuborgan satrni bosing.",
-  "ok": "To'g'ri. Ikkinchi satrda faqat kichik yozilgan: nol noldan kichik emas, shuning uchun shart o'tkazib yuboradi. Kichik yoki teng bo'lsa, nol ham ushlanadi. Ekranda tuzatilgan holat, beshala test yashil. Demak, chegara shartida kichik yoki teng yoziladi, aks holda nol o'tib ketadi.",
-  "okShort": "2-satr: <code>quantity &lt; 0</code> — 0 o'tadi. To'g'risi <code>quantity &lt;= 0</code>.",
-  "hint": "Xato qaysi qiymatda: 0. Qaysi satr qiymatni tekshiradi va 0 uchun nima qaytaradi?",
-  "task": "Qoida: 0 dona ham noto'g'ri buyurtma — guard uni ushlashi kerak. Bu funksiyada <code>orderTotal(10000, 0)</code> xato tashlamadi. <b>0 ni o'tkazib yuborgan satrni bosing.</b>"
- },
- "12": {
-  "type": "Practice",
-  "kicker": "Amaliyot 2 / 4",
-  "eyebrow": "Hozir o'zingizda · 10 daqiqa",
-  "title": "() =>siz, noto'g'ri xabar va < 0",
+  "type": "Lesson",
+  "kicker": "3-bosqich · buzamiz",
+  "title": "Ombor xatosini toThrow bilan yozsak, Jest qizil bermaydi — jarayonning o'zi quladi, PASS ham, FAIL ham chiqmadi",
   "seg": [
    [
     "a",
-    "Endi siz: o'z testingizni <b>uch xil buzasiz</b> va har xabarni o'qiysiz",
-    "Endi o'z testingizni uch xil buzasiz. Bunga o'n daqiqa ketadi. Har buzishdan keyin npm test qilib, xabarni o'qing."
+    "Ombor testini <b><code>toThrow</code> bilan yozamiz</b> — sinxron shakl, promise xatosi uchun",
+    "Endi ataylab buzamiz. Ombor testini uchinchi testdagidek emas, birinchi testdagi shaklda yozamiz: o'ram va to throw, await yo'q, rejects yo'q. Ko'rinishi to'g'riga o'xshaydi: xabar ham o'sha. Npm test order service."
    ],
    [
     "b",
-    "1–2-qadam: <b><code>() =&gt;</code>ni olib tashlang</b>, keyin <code>toThrow</code>ga boshqa xabar yozing",
-    "Birinchi qadamda nol dona testida strelkani olib tashlang: test funksiyaning o'z xatosi bilan qulaydi. Keyin strelkani qaytaring. Ikkinchisida matn testida to throw ichiga narx xato deb yozing va received message'ni o'qing."
+    "Natija: <b>PASS ham, FAIL ham yo'q</b> — terminalda xato va <code>Node.js v24.18.0</code>, jarayon quladi",
+    "Natijaga qarang. PASS yo'q, FAIL yo'q, tests satri yo'q. Faqat xato: Kolonka, omborda faqat bitta qoldi, va Node versiyasi. Jest jarayonining o'zi quladi. Siz test qizil bo'ladi deb kutgan edingiz, u esa umuman natija bermadi."
    ],
    [
     "c",
-    "3–4-qadam: guardda <code>&lt; 0</code>, keyin tiklang; isbot — <b><code>Received message</code> satri</b>",
-    "Uchinchi qadamda guardda kichik yoki teng o'rniga faqat kichik yozing: did not throw chiqadi. To'rtinchisida hammasini tiklang. Isbot maydoniga ikkinchi qadamdagi received message satrini nusxalang."
+    "Demak, sabab: <b><code>toThrow</code> o'ramni chaqirdi, <code>place</code> promise qaytardi, xato keyin keldi</b> — hech kim ushlamadi",
+    "Demak, sabab bitta joyda. To throw o'ramni chaqirdi, place promise qaytardi, va shu paytda xato yo'q edi. Test o'tdi deb hisoblandi. Xato keyin, promise ichida otildi, uni hech kim ushlamadi, va Node butun jarayonni to'xtatdi. Bu yashirin xato: qizil emas, bo'sh."
    ],
    [
     "d",
-    "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
-    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, xato kutiladigan testdagi uch xil xabarni endi bir qarashda ajrata olasiz."
+    "Xulosa: promise xatosiga <b><code>toThrow</code> emas, <code>rejects</code></b> — aks holda Jest sizga hech narsa aytmaydi",
+    "Xulosa: promise ichidagi xatoga to throw yozilmaydi, rejects yoziladi. Aks holda Jest sizga hech narsa aytmaydi, jarayon qulaydi. Sinfda o'quvchi test natijasi chiqmayapti desa, birinchi shuni so'rang: xato promise ichidami. Endi teskarisini ko'ramiz."
    ]
   ]
  },
+ "12": {
+  "type": "MCRetry",
+  "kicker": "Tekshiruv 2",
+  "eyebrow": "Tekshiruv · 2 / 4",
+  "title": "Telefon testini await expect(service.place(…)).rejects.toThrow() bilan yozdik. place xatoni darhol, funksiya ichida otadi. Natija?",
+  "q": "Promise shaklini sinxron xatoga qo'yib ko'ramiz. Ikkinchi tekshiruv. Telefon testini rejects bilan yozdik, lekin place telefon xatosini darhol, funksiyaning o'zida otadi, promise qaytarmasdan. Npm test nima deydi? Variantni tanlang.",
+  "ok": "To'g'ri. Place chaqirilganda xato darhol otildi, expect hali ishga tushmagan edi. Jest bu xatoni testning o'zi yiqildi deb hisoblaydi va FAIL beradi, xabari: telefon raqami yo'q. Bu safar natija bor, chunki xato sinxron, Jest uni ushladi. Demak, rejects faqat promise'dan keladigan xatoni ushlaydi.",
+  "okShort": "Xato <code>expect</code>gacha otildi — FAIL, Jest ushladi. <code>rejects</code> faqat promise xatosi uchun.",
+  "hint": "service.place(…) qachon chaqiriladi — expect ichida, rejectsdan oldin. Xato qachon otiladi?",
+  "demak": "<code>rejects</code> faqat promise'dan keladigan xatoni ushlaydi; sinxron xato <code>expect</code>gacha otiladi.",
+  "correct": 2,
+  "opts": [
+   "PASS — rejects sinxron xatoni ham ushlaydi",
+   "Jarayon quladi — 11-ekrandagi kabi natija yo'q",
+   "FAIL — xato expect ishga tushguncha otildi",
+   "PASS — await xatoni promise'ga o'raydi"
+  ],
+  "wrong": {
+   "0": "rejects promise kutadi; xato expect ishga tushguncha otildi.",
+   "1": "Bu safar xato sinxron — Jest uni test ichida ushladi, natija bor.",
+   "3": "await xatoni o'ramaydi; place chaqirilgan paytdayoq otildi."
+  }
+ },
  "13": {
   "type": "Lesson",
-  "kicker": "4-bosqich · tuzoqlar",
-  "title": "orderTotal(10000, 'ikki'): npm test yuradi, VS Code esa TS2345",
+  "kicker": "3-bosqich · ichida",
+  "title": "rejects to'g'ri, lekin await yo'q va xabar ataylab noto'g'ri: Jest xatoni topdi, lekin testga bog'lay olmadi — yana natija yo'q",
   "seg": [
    [
     "a",
-    "O'quvchi darsi <code>'ikki'</code> va <code>null</code>ni sinaydi — <b>TypeScript faylda</b> bu nima bo'ladi?",
-    "O'quvchi darsida ikki degan so'z va null bilan sinash bor. Lekin test fayli TypeScript: funksiya son kutadi. Sinab ko'rdik, natija kutilmagan."
+    "Shakl deyarli to'g'ri: <code>rejects</code> bor, <b>faqat <code>await</code> yo'q</b>; xabarni ham ataylab noto'g'ri yozdik",
+    "Yana bir yashirin xato, bu safar ancha nozik. Rejects bor, to throw bor, faqat boshida await yo'q. Va xabarni ataylab noto'g'ri yozdik: Planshet, to'qqizta qoldi, kodda esa Kolonka, bitta. Test qizil bo'lishi kerak. Npm test."
    ],
    [
     "b",
-    "<code>npm test</code> <b>turlarni tekshirmaydi</b>: test yuradi, <code>Received: NaN</code>",
-    "Npm test turlarni tekshirmaydi: o'quvchi reposining sozlamasida isolated modules yoqilgan, shuning uchun ts jest faylni tekshirmasdan o'tkazadi. Test yuradi: matn NaN beradi, null esa nol."
+    "Natija: Jest farqni <b>topdi — <code>Expected</code> Planshet, <code>Received</code> Kolonka</b>, lekin PASS/FAIL yana yo'q",
+    "Natijaga qarang. Jest farqni topdi: expected Planshet, received Kolonka, o'ttiz yettinchi satr. Lekin pastda yana Node versiyasi, PASS yo'q, FAIL yo'q. Jest xatoni ko'rdi, lekin uni testga bog'lay olmadi."
    ],
    [
     "c",
-    "VS Code esa <b>qizil chizadi</b>: <code>TS2345: Argument of type 'string' is not assignable…</code>",
-    "Shu fayl VS Code'da qizil chiziq bilan ko'rinadi. Tsc buyrug'i ham shuni aytadi: string turidagi argument number'ga mos emas, null ham mos emas. O'quvchi qizilni ko'radi, lekin test baribir ishlayveradi va u adashadi."
+    "Demak, sabab: <b><code>await</code>siz test darhol tugadi</b>, promise keyin rad etildi — Jest uni qaysi testga yozishni bilmadi",
+    "Demak, sabab bitta: await yo'q. Test funksiyasi promise'ni kutmasdan darhol tugadi. Promise keyin rad etildi, Jest bu xato qaysi testniki ekanini bilmadi va jarayonni to'xtatdi. Await bo'lsa, bu oddiy qizil test bo'lar edi, xabar bilan."
    ],
    [
     "d",
-    "Xulosa: noto'g'ri turni ataylab sinashda — <b><code>'ikki' as any</code></b>; qizil chiziq yo'qoladi",
-    "Xulosa: noto'g'ri turni ataylab sinamoqchi bo'lsangiz, as any yozing: ikki as any. TypeScript'ga bu ataylab ekanini aytasiz, qizil chiziq yo'qoladi. Sinab ko'rdik, guard bilan bu test yashil."
+    "Xulosa: <b><code>rejects</code> oldida doim <code>await</code></b>; natija umuman chiqmasa — promise va <code>await</code>ni tekshiring",
+    "Xulosa: rejects oldida doim await, test funksiyasi esa async. Jest natija umuman bermasa, bu kodning xatosi emas, testning shakli: promise xatosiga to throw yoki await'siz rejects. Endi shu satrni o'zingiz topasiz."
    ]
   ]
  },
  "14": {
-  "type": "Lesson",
-  "kicker": "4-bosqich · tuzoqlar",
-  "title": "Ikki test fayli bo'lsa — faqat PASS fayl; nomlar --verbose bilan",
-  "seg": [
-   [
-    "a",
-    "Bitta faylda Jest har test nomini ko'rsatadi — ikkinchi fayl qo'shilganda <b>ko'rsatmaydi</b>",
-    "Endi kichik, lekin sinfda albatta chiqadigan holat. Fayl bitta bo'lsa, Jest har test nomini ko'rsatadi. Ikkinchi test fayli qo'shilganda faqat PASS va fayl nomi qoladi. O'quvchi «testlarim qayoqqa ketdi?» deydi."
-   ],
-   [
-    "b",
-    "Testlar joyida — jami soni o'zgarmadi; nomlarni ko'rish uchun <b><code>npx jest --verbose</code></b>",
-    "Testlar joyida: pastdagi jami o'n bir. Nomlarni ko'rish uchun npx jest minus minus verbose qiling. Shunda har fayl ostida nomlar va belgilar chiqadi."
-   ],
-   [
-    "c",
-    "Xulosa: nom ko'rinmasa — <b>xato emas</b>; jami sonni va <code>--verbose</code>ni ko'rsating",
-    "Xulosa: nomlar ko'rinmasa, bu xato emas. Avval jami songa qarang, kerak bo'lsa verbose bilan yurgizing. FAIL bo'lganda esa qizil test nomi baribir chiqadi."
-   ]
-  ]
+  "type": "LineCheck",
+  "kicker": "Tekshiruv 3",
+  "eyebrow": "Tekshiruv · 3 / 4 — qaysi satr xato?",
+  "title": "Bu test faylida npm test natija bermaydi — jarayon qulaydi. Sababchi satrni toping",
+  "q": "Yashirin xatoni ko'rdingiz, endi o'zingiz toping. Uchinchi tekshiruv. Bu test faylida npm test natija bermaydi, jarayon qulaydi. Bo'lakda bitta satr promise'ni kutmaydi. O'sha satrni bosing.",
+  "ok": "To'g'ri. Shu satrda await yo'q: test promise'ni kutmasdan tugaydi, xato keyin keladi va Jest uni testga bog'lay olmaydi. Ekranda tuzatilgan satr: await bilan. Endi noto'g'ri xabar oddiy qizil test beradi, expected va received bilan. Demak, natija chiqmasa, avval rejects oldidagi await'ni qidiring.",
+  "okShort": "<code>await</code> yo'q — test promise'ni kutmadi, jarayon quladi. <code>await</code> bilan — oddiy FAIL, <code>Expected</code>/<code>Received</code> bilan.",
+  "hint": "Qaysi satr promise qaytaradi va uni kutmaydi? rejects oldida nima bo'lishi kerak?",
+  "task": "Qoida: promise xatosi <code>await expect(…).rejects.toThrow()</code> bilan kutiladi. Bu bo'lakda bitta satr promise'ni kutmaydi. <b>O'sha satrni bosing.</b>"
  },
  "15": {
-  "type": "MCRetry",
-  "kicker": "Tekshiruv 3",
-  "eyebrow": "Tekshiruv · 3 / 4",
-  "title": "O'quvchi: «Received function did not throw chiqdi». Bu nima degani?",
-  "q": "Tuzoqlarni ko'rdingiz, tekshirib olaylik. Uchinchi tekshiruv. O'quvchi testi qizil: received function did not throw. Bu nima degani? Variantni tanlang.",
-  "ok": "To'g'ri. Funksiya xato tashlamadi, test esa kutgan edi. Sabab ikkita: guard umuman yo'q yoki shart bu qiymatni o'tkazib yubordi, masalan nol. Funksiyani oching va shu qiymat bilan shartni qo'lda tekshiring. Demak, did not throw — himoya yo'qligi yoki shart teshikligi haqida xabar.",
-  "okShort": "Funksiya xato tashlamadi: guard yo'q yoki shart qiymatni o'tkazdi.",
-  "hint": "«did not throw» — so'zma-so'z: funksiya … qilmadi.",
-  "correct": 0,
-  "opts": [
-   "Funksiya xato tashlamadi — guard yo'q yoki shart bu qiymatni o'tkazdi",
-   "Funksiya xato tashladi, lekin boshqa xabar bilan",
-   "Test fayli topilmadi",
-   "() => yozilmagan"
-  ],
-  "wrong": {
-   "1": "Boshqa xabar bo'lsa Expected substring / Received message chiqadi.",
-   "2": "Fayl topilmasa No tests found bo'ladi.",
-   "3": "() =>siz test funksiyaning o'z xatosi bilan qulaydi — did not throw emas."
-  }
- },
- "16": {
-  "type": "Practice",
-  "kicker": "Amaliyot 3 / 4",
-  "eyebrow": "Hozir o'zingizda · 5–10 daqiqa",
-  "title": "Qizil chiziq, lekin test yuradi — o'zingiz ko'ring",
+  "type": "Lesson",
+  "kicker": "4-bosqich · chegara va «bo'lmasligi kerak»",
+  "title": "Xato yo'lida test ikki narsani kutadi: xato chiqdi va ombor o'zgarmadi — not.toHaveBeenCalled()",
   "seg": [
    [
     "a",
-    "Endi siz: TypeScript tuzog'ini <b>o'z ko'zingiz bilan</b> ko'rasiz — VS Code va terminal",
-    "Endi TypeScript tuzog'ini o'zingiz ko'rasiz. Bunga besh-o'n daqiqa ketadi. VS Code'ni ham, terminalni ham kuzating."
+    "Xato chiqdi — bu yarmi. <b>Xatodan keyin <code>UPDATE</code> ketmaganini</b> ham tekshiramiz",
+    "Ombor testiga qaytamiz. Xato chiqdi, bu yarmi. Muhimroq savol: xatodan keyin ombor o'zgarmay qoldimi? Order service ts'da o'ttiz oltinchi satrdagi tekshiruv update'dan oldin turadi. Agar kimdir tartibni almashtirsa, xato chiqadi, lekin ombor baribir kamayadi."
    ],
    [
     "b",
-    "1–2-qadam: guardni vaqtincha oling, <code>'ikki'</code> testi — VS Code qizil, <b><code>npm test</code> yuradi</b>",
-    "Birinchi qadamda guard satrlarini vaqtincha izohga oling. Ikkinchisida matn testidagi as any'ni olib tashlang. VS Code qizil chizadi, lekin npm test yuradi va received NaN deydi."
+    "<code>expect(manager.query).not.toHaveBeenCalled()</code> — <b>mock chaqiruvni yozib qolgan</b>, biz so'raymiz",
+    "Mock bu yerda yordam beradi. Manager query jest fn, u chaqirilganini eslab qoladi. Biz so'raymiz: not to have been called, ya'ni umuman chaqirilmagan bo'lsin. Xato yo'lida bu eng muhim qator: bot xato berib, baribir omborni kamaytirmasin."
    ],
    [
     "c",
-    "3–4-qadam: <code>as any</code> va guardni qaytaring; isbot — 2-qadamdagi <b><code>Received</code> qiymati</b>",
-    "Uchinchi qadamda as any'ni qaytaring: qizil chiziq yo'qoladi. To'rtinchisida guardni qaytaring: hammasi yashil bo'ladi. Isbot maydoniga ikkinchi qadamdagi received qiymatini yozing."
+    "Happy path'da teskarisi: <b><code>toHaveBeenCalledTimes(1)</code></b> — <code>UPDATE</code> aynan bir marta ketdi",
+    "Happy path testida teskarisi: to have been called times bir. Update aynan bir marta ketdi, ikki marta emas, nol marta emas. Mock bilan siz kod bazaga nima yuborganini sanaysiz: nima ketdi, nima ketmadi."
    ],
    [
     "d",
-    "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
-    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, VS Code'dagi qizil chiziq va terminaldagi natija har xil narsa ekanini o'zingiz ko'rdingiz."
+    "Xulosa: error path testi <b>ikki qismli</b>: xato chiqdi va keyingi qadam bajarilmadi",
+    "Xulosa: xato yo'lining testi ikki qismli. Birinchisi: xato chiqdi, to'g'ri xabar bilan. Ikkinchisi: xatodan keyin bo'lmasligi kerak bo'lgan narsa bo'lmadi. Ikkinchisini ko'pchilik yozmaydi, aynan shu yerda bot pulni yo'qotadi. Endi chegarani buzamiz."
+   ]
+  ]
+ },
+ "16": {
+  "type": "Lesson",
+  "kicker": "4-bosqich · buzamiz",
+  "title": "Ombor tekshiruvini <= qilsak, aynan 2 ta qolganda 2 tasini sotib bo'lmaydi — to'rt test yashil qoladi, chegara testi qizaradi",
+  "seg": [
+   [
+    "a",
+    "Buzamiz: <b><code>&lt;</code> o'rniga <code>&lt;=</code></b> — omborda 2 ta, 2 tasini olsa, bot «faqat 2 ta qoldi» deydi",
+    "Order service ts'ning o'ttiz oltinchi satrida kichik belgisini kichik yoki tengga almashtiramiz. Endi omborda ikkita bo'lsa va mijoz ikkitasini olsa, bot xato beradi: faqat ikkita qoldi. Oxirgi mahsulot hech qachon sotilmaydi. Npm test order service."
+   ],
+   [
+    "b",
+    "To'rt test <b>yashil qoldi</b>: ular 1 ta va 10 ta ni sinaydi, chegarani emas",
+    "To'rttala test yashil. Sababi: ombor testi bitta qolganini sinaydi, happy path o'nta. Ikkalasi chegaradan uzoqda. Kichik va kichik yoki teng farqi faqat ikki son teng bo'lganda ko'rinadi. Jest birinchi darsidagi sahifalash xatosi bilan bir xil."
+   ],
+   [
+    "c",
+    "Beshinchi test — <b>omborda aynan 2 ta, 2 tasi olinadi</b>: endi qizil, «faqat 2 ta qoldi»",
+    "Beshinchi testni qo'shamiz: mock'da omborda aynan ikkita, savatda ikkita. Buyurtma o'tishi kerak, jami bir yuz ming. To'g'ri kod bilan beshtala yashil. Buzilgan kod bilan beshinchisi qizil: omborda faqat ikkita qoldi. Bitta belgi, bitta test uni ushladi."
+   ],
+   [
+    "d",
+    "Xulosa: har <b><code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code> shartiga chegara testi</b> — aynan teng bo'lgan qiymat bilan",
+    "Xulosa: kodda kichik, katta, kichik yoki teng ko'rsangiz, aynan teng bo'lgan qiymat bilan test yozing. Bu test odatda eng qisqa va eng ko'p xatoni ushlaydi. Shartni tiklaymiz, beshtala yashil. Endi order service testlarini o'zingiz yozasiz."
    ]
   ]
  },
  "17": {
-  "type": "Lesson",
-  "kicker": "5-bosqich · uyga vazifa misoli",
-  "title": "0 va 100 — ishlaydi; −1 va 101 — xato: chegaraning ikki tomoni",
-  "seg": [
-   [
-    "a",
-    "O'quvchi uyga vazifasi: kupon — summadan foiz chegirma, <b>0 dan 100 gacha</b>",
-    "Endi o'quvchining uyga vazifasi: apply coupon funksiyasi. U summadan foiz chegirma hisoblaydi. Unda ikki himoya bor: summa son bo'lishi kerak, foiz esa nol bilan yuz orasida. Sinab ko'rdik, beshta emas, oltita test chiqdi."
-   ],
-   [
-    "b",
-    "<b>Olti test</b>: oddiy (10 %), chegaralar 0 va 100, chegaradan tashqari 101 va −1, matn",
-    "Oltita test bor. Oddiy holat: o'n foiz, natija to'qson ming. Chegaraning ichki tomoni, nol foiz va yuz foiz, ishlaydi. Tashqi tomoni, yuz bir va minus bir, xato beradi. Oxirgisi matn summa. Hammasi yashil: ikki fayl bilan o'n bir test."
-   ],
-   [
-    "c",
-    "<code>&gt;</code> o'rniga <code>&gt;=</code> — faqat <b>«chegara 100 %» qizil</b>, o'z xatosi bilan",
-    "Endi chegara xatosini qilamiz: katta o'rniga katta yoki teng yozamiz. Natijada faqat yuz foiz testi qizil, xabari esa funksiyaning o'z xatosi: percent noldan yuzgacha bo'lsin. Yuz foiz endi taqiqlangan bo'lib qoldi."
-   ],
-   [
-    "d",
-    "Xulosa: <b>chegaraning ikki tomoni</b> — ichkarida ishlaydi (0, 100), tashqarida xato (−1, 101)",
-    "Xulosa: chegaraning ikki tomonini sinang. Ichkaridagi qiymatlar, nol va yuz, ishlashi kerak. Tashqaridagilar, minus bir va yuz bir, xato berishi kerak. O'quvchi vazifasini tekshirganda shu to'rt qiymat bormi, shunga qarang."
-   ]
-  ]
- },
- "18": {
-  "type": "MCRetry",
-  "kicker": "Tekshiruv 4",
-  "eyebrow": "Tekshiruv · 4 / 4",
-  "title": "applyCoupon guardida percent > 100 o'rniga percent >= 100. Qaysi test qizil bo'ladi?",
-  "q": "Chegarani ko'rdingiz, tekshirib olaylik. To'rtinchi tekshiruv. Kupon funksiyasida katta o'rniga katta yoki teng yozildi. Oltita testdan qaysi biri qizil bo'ladi? Variantni tanlang.",
-  "ok": "To'g'ri, yuz foiz. Katta yoki teng bo'lsa, yuz ham taqiqlanadi va funksiya xato tashlaydi. Test esa nol natija kutgan edi. Yuz bir baribir xato beradi, u yashil qoladi. Demak, chegarani sinash uchun aynan chegaradagi qiymat testi kerak.",
-  "okShort": "<code>&gt;= 100</code> — 100 ham xato; <code>chegara 100 %</code> qizil, qolgan 5 yashil.",
-  "hint": "Ikki shart faqat bitta qiymatda farq qiladi — qaysi biri?",
-  "correct": 2,
-  "opts": [
-   "101 % — xato",
-   "0 %",
-   "chegara 100 % — 0",
-   "hammasi"
-  ],
-  "wrong": {
-   "0": "101 ikkala shartda ham xato — test yashil qoladi.",
-   "1": "0 ga bu shart tegmaydi.",
-   "3": "Faqat chegaradagi qiymat farq qiladi."
-  }
- },
- "19": {
   "type": "Practice",
-  "kicker": "Amaliyot 4 / 4",
-  "eyebrow": "Hozir o'zingizda · 15 daqiqa",
-  "title": "O'quvchi uyga vazifasi — guard va olti test",
+  "kicker": "Amaliyot 2 / 3",
+  "eyebrow": "Hozir o'zingizda · 20 daqiqa",
+  "title": "Mock bilan place ning uch xatosini va chegarasini sinang, keyin kodni buzib qizilni ko'ring",
   "seg": [
    [
     "a",
-    "Endi siz: o'quvchi uyga vazifasini o'zingiz qilasiz — <b>guard va olti test</b>",
-    "Oxirgi amaliyotda o'quvchi uyga vazifasini o'zingiz qilasiz: kupon funksiyasi, ikki himoya va oltita test. Bunga o'n besh daqiqa ketadi."
+    "Endi siz: <b><code>order.service.spec.ts</code></b> — mock, uch xato, chegara va bitta buzish",
+    "Endi navbat sizga. Order papkasida order service spec ts yozasiz: mock, uchta xato, happy path va chegara. Ekrandagi namuna kodni ochishingiz mumkin, lekin o'zingiz yozing, nusxalamang. Yigirma daqiqa ketadi."
    ],
    [
     "b",
-    "1–2-qadam: <code>coupon.ts</code> va <code>coupon.spec.ts</code>, <code>npm test</code> — <b>hammasi yashil</b>",
-    "Birinchi qadamda coupon ts faylida ikki himoya va hisobni yozasiz. Ikkinchisida coupon spec ts faylida oltita test yozasiz. npm test qilganda hammasi yashil bo'lishi kerak."
+    "1–2-qadam: <b>mock va to'rt test</b> — sinxron <code>toThrow</code>, promise <code>rejects</code>, <code>not.toHaveBeenCalled</code>",
+    "Birinchi qadamda mock manager va test modulini yozasiz. Ikkinchisida to'rtta test: telefon va savat sinxron to throw bilan, ombor await rejects bilan va query chaqirilmaganini tekshirib, happy path jami bilan. Npm test order service: to'rttasi yashil."
    ],
    [
     "c",
-    "3–4-qadam: <code>&gt;</code> → <code>&gt;=</code>, <b>qizil test nomini</b> o'qing; isbot — o'sha nom",
-    "Uchinchi qadamda katta o'rniga katta yoki teng yozib, npm test qilasiz. To'rtinchisida qizil testning nomini nuqtali satrdan o'qib, isbot maydoniga yozasiz va funksiyani tiklaysiz."
+    "3–4-qadam: <b>chegara testi va <code>&lt;=</code> buzish</b>; isbot — qizargan (✕) testning nomi",
+    "Uchinchi qadamda chegara testini qo'shasiz: omborda aynan ikkita. To'rtinchisida order service ts'da kichikni kichik yoki tengga buzib, qaysi test qizarganini ko'rasiz va git checkout bilan tiklaysiz. Isbot maydoniga qizargan test nomini yozing."
    ],
    [
     "d",
     "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
-    "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, siz o'quvchi uyga vazifasini to'liq qildingiz va uning to'rt chegara qiymatini bilasiz."
+    "Boshqacha chiqsa, «Boshqacha chiqdimi» tugmasini bosing. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin siz bazasiz xato yo'lini sinaysiz va chegara testining xatoni ushlashini o'zingiz ko'rgansiz."
+   ]
+  ],
+  "steps": [
+   {
+    "t": "Mock va modul",
+    "cmds": [
+     "src/api/order/order.service.spec.ts — manager, dataSource, Test.createTestingModule (9-ekran)"
+    ],
+    "exp": "fayl tayyor"
+   },
+   {
+    "t": "To'rt test",
+    "cmds": [
+     "telefon",
+     "savat (toThrow)",
+     "ombor (await … rejects.toThrow + not.toHaveBeenCalled)",
+     "yetarli (total 100000)",
+     "npm test -- order.service"
+    ],
+    "exp": "Tests: 4 passed, 4 total"
+   },
+   {
+    "t": "Chegara",
+    "cmds": [
+     "it(\"chegara: omborda aynan 2 ta…\") — stock: 2",
+     "npm test -- order.service"
+    ],
+    "exp": "Tests: 5 passed, 5 total"
+   },
+   {
+    "t": "Buzish va tiklash",
+    "cmds": [
+     "order.service.ts 36-satr < → <=",
+     "npm test -- order.service",
+     "git checkout -- src/api/order/order.service.ts"
+    ],
+    "exp": "✕ chegara: omborda aynan 2 ta — 2 tasini olsa bo'ladi"
+   }
+  ],
+  "proof": {
+   "label": "4-qadamda qizargan (✕) testning nomi — buyruq emas",
+   "placeholder": "masalan: chegara: omborda aynan 2 ta — 2 tasini olsa bo'ladi",
+   "re": "(chegara|aynan 2|2 ta)",
+   "flags": "i",
+   "wrong": "Bu yerga buyruqni emas, terminalda ✕ yonidagi test nomini yozing, masalan: chegara: omborda aynan 2 ta."
+  },
+  "trouble": [
+   [
+    "Natija umuman yo'q, Node.js v24…",
+    "promise xatosiga toThrow yoki rejects oldida await yo'q (11, 13-ekran)"
+   ],
+   [
+    "Nest can't resolve dependencies of the OrderService (?, DataSource)… \"OrderRepository\" at index [0]",
+    "providers da getRepositoryToken(Order) yo'q — bo'sh obyekt bilan qo'shing (9-ekran)"
+   ],
+   [
+    "Received message: \"Mahsulot topilmadi: Kolonka\"",
+    "mockResolvedValue shu testda yozilmagan — findOne undefined qaytardi, kod «topilmadi» dedi"
+   ],
+   [
+    "4-qadamda hammasi ✓",
+    "chegara testi stock: 2 emas — mock'da aynan 2 va savatda 2 bo'lsin"
    ]
   ]
  },
- "20": {
+ "18": {
   "type": "Lesson",
-  "kicker": "6-bosqich · o'quvchi darsini o'tish",
-  "eyebrow": "m4b-03 · «Edge cases va error path»",
-  "title": "m4b-03: shumtaka mijoz, guard va o'rash",
+  "kicker": "5-bosqich · HTTP va AI",
+  "title": "Sayt ham shunday sinaladi: supertest server ochmasdan Nest ilovasiga so'rov yuboradi — GET / 200 va JSON, GET /nope 404",
   "seg": [
    [
     "a",
-    "m4b-03 — 21 ekran: o'quvchi <b>«shumtaka mijoz»</b> kiritgan g'alati buyurtmalarni sinaydi",
-    "Endi o'quvchi darsini ko'ramiz: m4b-03, unda yigirma bir ekran bor. O'quvchi shumtaka mijoz kiritgan g'alati buyurtmalarni ko'radi, himoya yig'adi va xatoni test bilan sinashni o'rganadi."
+    "Jest-1 dagi savol: <b>«saytni test qila olamanmi?»</b> — ha, bitta paket: <code>supertest</code>",
+    "Jest birinchi darsida savol bor edi: botni sinadim, saytni-chi? Javob: xuddi shunday, bitta qo'shimcha paket bilan. VS Code terminalida npm i minus D supertest va types supertest. Supertest server ochmasdan Nest ilovasiga so'rov yuboradi."
    ],
    [
     "b",
-    "Guard bloki: o'quvchi o'rashni tanlaydi — siz <b>o'ralmagan holatning xabarini</b> ko'rsatasiz",
-    "Guard blokida o'quvchi to'g'ri yozuvni tanlaydi: o'ralgan funksiya. Siz proyektorda o'ralmaganini yurgizib ko'rsating: test funksiyaning o'z xatosi bilan qulaydi. Ko'rgan o'quvchi buni unutmaydi."
+    "<code>app.controller.spec.ts</code>: <b>Nest ilovasini xotirada ko'taramiz</b> — <code>createNestApplication</code>, <code>app.init()</code>",
+    "Src, api papkasida app controller spec ts yaratamiz. Before all'da test moduli faqat app controller bilan, keyin create nest application va init. Ilova xotirada ko'tarildi, port ochilmadi, baza yo'q. After all'da yopamiz."
    ],
    [
     "c",
-    "Amaliyot oldidan: <code>'ikki'</code> testida <b><code>as any</code></b> — aks holda VS Code qizil chizadi",
-    "Amaliyot va uyga vazifadan oldin bitta ogohlantirish: matn testida as any yozilsin. Yozilmasa, VS Code qizil chizadi, test esa baribir yuradi va o'quvchi adashadi."
+    "Ikki test: <b><code>GET /</code> → 200 va <code>{ ok: true }</code></b>, <code>GET /nope</code> → 404 «Cannot GET /nope»",
+    "Birinchi test: get, ildiz manzil. Status ikki yuz, tana ok true va service order bot, to equal bilan. Ikkinchisi error path: yo'q manzil. Status to'rt yuz to'rt, xabar cannot get nope. Npm test app controller: ikkalasi yashil."
    ],
    [
     "d",
-    "Xulosa: vaqt — guard va o'rashga ko'proq; uyga vazifada <b>to'rt chegara qiymati</b>",
-    "Xulosa: vaqt, taklif: to'qson daqiqaning yigirma beshi guard va o'rashga, chunki eng ko'p adashish shu yerda. Uyga vazifani tekshirganda to'rt qiymatga qarang: nol, yuz, minus bir va yuz bir."
+    "Xulosa: <b>so'rov → status va tana</b>; bot handler'i ham, sayt route'i ham bir xil sinaladi",
+    "Xulosa: HTTP test so'rov yuboradi va statusni, tanani tekshiradi. Bot handler'i ham, sayt route'i ham bitta usulda sinaladi: kirish beriladi, chiqish solishtiriladi. Kattaroq API'da shu qolip har route uchun takrorlanadi. Endi tekshirib olaylik."
+   ]
+  ]
+ },
+ "19": {
+  "type": "MCRetry",
+  "kicker": "Tekshiruv 4",
+  "eyebrow": "Tekshiruv · 4 / 4",
+  "title": "Ilovada faqat GET / route'i bor. Test GET /nope yubordi. res.status va res.body.message nima bo'ladi?",
+  "q": "HTTP testni ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. Ilovada faqat bitta route bor, ildiz. Test yo'q manzilga, nope'ga so'rov yubordi. Status va xabar nima bo'ladi? Variantni tanlang.",
+  "ok": "To'g'ri. Nest yo'q manzilga o'zi to'rt yuz to'rt qaytaradi, tanasida message: cannot get nope. Bu kodingizdagi xato emas, kutilgan error path, va test uni aynan shunday kutadi. Demak, yo'q manzil beshyuz emas, to'rt yuz to'rt: mijoz xatosi, server xatosi emas.",
+  "okShort": "Yo'q route → Nest'ning o'zi 404 va <code>Cannot GET /nope</code> — bu kutilgan error path.",
+  "hint": "Brauzerda yo'q sahifani ochsangiz qaysi raqam chiqadi? Nest ham shuni qaytaradi.",
+  "demak": "Yo'q manzil — 404, mijoz xatosi; 500 — server xatosi. Test ikkalasini farqlaydi.",
+  "correct": 3,
+  "opts": [
+   "200 va { ok: true } — Nest ildizga yo'naltiradi",
+   "500 — route topilmagani server xatosi",
+   "Test yiqiladi — supertest yo'q manzilni yubormaydi",
+   "404 va Cannot GET /nope — Nest'ning o'z javobi"
+  ],
+  "wrong": {
+   "0": "Nest yo'naltirmaydi: route yo'q bo'lsa — 404.",
+   "1": "500 — kod ichidagi xato; yo'q route oddiy 404.",
+   "2": "supertest istalgan manzilga yuboradi; javob 404 keladi, test yiqilmaydi."
+  }
+ },
+ "20": {
+  "type": "Lesson",
+  "kicker": "5-bosqich · AI",
+  "title": "Yangi ko'nikma davomi: AI edge va xato testlarini yozdi — ikki to'plam, ikkalasi yashil; endi ularni qabul qilamiz",
+  "seg": [
+   [
+    "a",
+    "Yana AI bosqichi: <b>edge va xato testlarini AI yozadi, siz qabul qilasiz</b>",
+    "Jest birinchi darsidagi kabi oxirgi bosqich AI bilan. Farqi: bu safar AI happy path emas, edge va xato testlarini yozadi, ya'ni bugungi mavzuni. Biz ikki xil AI'ga bitta oddiy prompt berdik va natijani olib keldik."
+   ],
+   [
+    "b",
+    "Prompt: <b>«place va telefon tekshiruvi uchun edge case va xato testlar yoz»</b> — ishorasiz",
+    "Prompt oddiy: order service'dagi place funksiyasi va telefon raqami tekshiruvi uchun edge case va xato holatlariga jest testlar yoz, npm test yashil bo'lsin. Rejects, await, chegara, mock, bu so'zlarning hech biri promptda yo'q. Har AI loyihaning alohida nusxasida ishladi."
+   ],
+   [
+    "c",
+    "Natija yaxshi: <b>50 va 42 test, kodga tegmadi</b>, <code>rejects</code> va <code>await</code> to'g'ri, «bo'lmasligi kerak» testlari bor",
+    "Natija yaxshi ko'rinadi. Ikkalasi faqat test fayllarini qo'shdi, kodga tegmadi. Birinchisi ellik, ikkinchisi qirq ikkita test, hammasi yashil. Ikkalasi ham promise xatosiga rejects va await yozdi, jarayon qulamadi. Ikkalasi ham xatodan keyin update ketmaganini tekshirdi."
+   ],
+   [
+    "d",
+    "Lekin: ikkalasi <b>qoidani ajratmadi</b> va <b>probelli raqam rad etilishini «to'g'ri» deb yozdi</b>",
+    "Lekin ikki narsa. Ikkalasi ham telefon qoidasini ajratmadi: uni butun handler orqali, to'rtta servisni soxtalab sinadi, birinchisida bir yuz qirq to'qqiz qator. Va ikkalasi ham probel bilan yozilgan raqam rad etilishini to'g'ri deb test qildi, biz esa buni oltinchi ekranda xato deb topgan edik."
+   ],
+   [
+    "e",
+    "Xulosa: <b>yashil hali tekshiruv emas</b>; buzib ko'ramiz — va yana bir savol: test qoidani sinaydimi, kodni muhrlaydimi",
+    "Xulosa: yashil hali tekshiruv emas, keyingi ekranda beshta buzish bilan tekshiramiz. Va yangi savol tug'ildi: AI yozgan test qoidani sinaydimi, yoki kod hozir qanday ishlasa, shuni muhrlaydimi. Probelli raqam testi ikkinchisi."
    ]
   ]
  },
  "21": {
   "type": "Lesson",
-  "kicker": "6-bosqich · o'quvchi darsini o'tish",
-  "title": "O'quvchi darsidagi so'zlar: shumtaka mijoz, «hech kim sezmaydi», guard bloklari, o'rab berish",
+  "kicker": "5-bosqich · ichida",
+  "title": "Beshta buzish — uchala to'plam hammasini ushladi; oltinchi «buzilish»ni esa buzib bo'lmaydi: AI probelli raqam rad etilishini muhrlab qo'ygan",
   "seg": [
    [
     "a",
-    "O'quvchi darsi «shumtaka mijoz» deydi — siz <b>«edge case»</b> atamasini birga aytasiz",
-    "Xaritani ko'rdingiz, endi o'quvchi darsida ishlatiladigan so'zlarni ko'ramiz. O'quvchi darsi shumtaka mijoz va g'alati buyurtma deydi. Siz uning yonida atamani ham ayting: edge case, ya'ni chegara holati."
+    "Beshta buzish — <b>bugungi beshta qoida</b>: regex chegarasi, <code>&lt;=</code>, tartib, xabar, bo'sh savat",
+    "Beshta buzish oldik, har biri bugungi bitta qoida. Regex'da to'qqizni sakkizga. Kichikni kichik yoki tengga. Update'ni ombor tekshiruvidan oldinga. Xato xabarini o'zgartirish. Bo'sh savat tekshiruvini olib tashlash. Uchala to'plamni sinadik: bizniki va ikki AI."
    ],
    [
     "b",
-    "«Hech kim sezmaydi», kartochkada «jim buzilish» — xatosiz noto'g'ri natija; guard esa uch blok: <b>shart, xato, hisob</b>",
-    "Xato chiqmasdan natija noto'g'ri bo'lgan holat haqida o'quvchi darsi «hech kim sezmaydi» deydi, kartochkasida esa «jim buzilish» deb yozilgan. Siz buni yashirin buzilish deysiz, ikkalasi bitta narsa. Guard o'quvchi darsida uch blokdan iborat: shart, xato tashlash va to'g'ri hisob. Kodda ular aynan if, throw va return."
+    "Natija: <b>uchala to'plam beshalasini ushladi</b> — bu safar AI xato yo'lini yaxshi yozdi",
+    "Natija: uchala to'plam beshala buzilishni ushladi. Bizning yigirma besh testimiz har buzilishda bittadan qizardi. Birinchi AI xabar o'zgarganda uchta, tartib buzilganda ikkita test bilan sezdi. Ikkinchi AI ham hammasini sezdi. Bu safar AI xato yo'lini yaxshi yozdi, buni tan olamiz."
    ],
    [
     "c",
-    "Xulosa: «o'rab berish, ya'ni <code>() =&gt;</code>» — so'zni <b>kod bilan birga</b> ko'rsating",
-    "Xulosa: o'rab berish deganda strelkali funksiya tushuniladi. So'zni aytganda ekranda kodni ham ko'rsating. Terminal so'zlari esa inglizcha qoladi: did not throw, received message."
+    "Oltinchi «buzilish» jadvalda yo'q: <b>AI probelli raqam rad etilishini muhrladi</b> — <code>replace</code> tuzatishi uning testini qizartiradi",
+    "Lekin bitta narsa jadvalga sig'maydi, chunki uni buzib bo'lmaydi: probel. Ikkala AI probelli raqam rad etilishini test qilib muhrladi. Siz oltinchi ekrandagi replace bilan tuzatsangiz, ularning testi qizaradi. Test qoidani emas, hozirgi kodni qo'riqlayapti. Mijoz odati haqida AI bilmaydi."
+   ],
+   [
+    "d",
+    "Xulosa: AI testi <b>xatoni ushlaydi, lekin hozirgi xulqni ham muhrlaydi</b> — har testdan «bu qoidami?» deb so'rang",
+    "Xulosa: AI yozgan test ikki narsa qiladi. Xatoni ushlaydi, bu yaxshi. Va hozirgi xulqni, shu jumladan xatoni ham, muhrlab qo'yadi. Har testni o'qib so'rang: bu qoidami, yoki kod shunchaki hozir shunday ishlaydimi. Endi o'z AI'ingiz bilan sinab ko'rasiz."
    ]
   ]
  },
  "22": {
-  "type": "Lesson",
-  "kicker": "6-bosqich · sinfda",
-  "title": "Olti holat va tayyor javoblar",
+  "type": "Practice",
+  "kicker": "Amaliyot 3 / 3",
+  "eyebrow": "Hozir o'zingizda · 20 daqiqa",
+  "title": "O'z AI'ingizga aniq shartli prompt bering, keyin to'rt tekshiruv va uchta buzish",
   "seg": [
    [
     "a",
-    "Sinfda albatta chiqadigan <b>olti holat</b> — hammasini bugun o'zingiz ko'rdingiz",
-    "Endi sinfda albatta chiqadigan oltita holatni ko'ramiz. Hammasini bugun o'zingiz ko'rdingiz."
+    "Endi siz: AI'ga <b>shartlari aniq prompt</b> — <code>setStatus</code> ning xato yo'li uchun",
+    "Endi navbat sizga. O'z AI'ingizga test yozdirasiz, mavzu: order service'dagi set status funksiyasi, uning xato yo'li. Promptni pastdagi tugma bilan nusxalaysiz. Yigirma daqiqa ketadi."
    ],
    [
     "b",
-    "Uch xabar <b>uch sabab</b>: <code>did not throw</code>, funksiya xatosi, <code>Received message</code>",
-    "Birinchi uchtasi xabardan taniladi. Did not throw chiqsa, himoya yo'q. Funksiyaning o'z xabari chiqsa, strelka yo'q. Received message chiqsa, boshqa xato tutilgan."
+    "1–2-qadam: prompt va <b>to'rt tekshiruv</b> — diff, <code>await</code> + <code>rejects</code>, <code>not.toHaveBeenCalled</code>, «qoidami?»",
+    "Birinchi qadamda promptni berasiz. Ikkinchisida natijani tekshirasiz: git diff stat'da faqat spec fayl, promise xatosida await va rejects, xatodan keyin increment chaqirilmaganini tekshiradigan test bor. Va har testdan so'rang: bu qoidami, yoki kod hozir shunday ishlaydimi."
    ],
    [
     "c",
-    "Happy qizil, <code>'ikki'</code> qizil chiziq, nomlar yo'q — shart, <b><code>as any</code></b>, <code>--verbose</code>",
-    "To'rtinchisi: oddiy holat qizil bo'lsa, himoya juda qattiq. Beshinchisi: matn testida qizil chiziq bo'lsa, as any yozing. Oltinchisi: nomlar ko'rinmasa, sabab ikkita fayl."
+    "3–4-qadam: <b>uchta buzish</b> — hammasi qizarsin; isbot — natija",
+    "Uchinchi qadamda set status'ni uch joyda navbat bilan buzasiz: bekor tekshiruvini olib tashlang, increment'ni tekshiruvdan oldinga ko'chiring, xabarni o'zgartiring. Har biridan keyin npm test va git checkout. Qizarmagan joyga AI'dan test so'rang. Isbot maydoniga natijani yozing."
    ],
    [
     "d",
-    "Xulosa: <b>xabarni o'quvchi bilan birga o'qing</b> — har xabar boshqa sababni aytadi",
-    "Xulosa va usul bitta: javobni darhol aytmang, xabarni o'quvchi bilan birga o'qing. Bu darsda har xabar boshqa sababni aytadi. Pastda o'quvchi savollariga tayyor javoblar bor."
+    "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi",
+    "Boshqacha chiqsa, «Boshqacha chiqdimi» tugmasini bosing. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin siz AI yozgan xato yo'li testini ikki qismi bo'yicha qabul qilasiz: xato chiqdi va keyingi qadam bo'lmadi."
+   ]
+  ],
+  "steps": [
+   {
+    "t": "Prompt",
+    "cmds": [
+     "yuqoridagi prompt — o'z AI'ingizga",
+     "npm test"
+    ],
+    "exp": "PASS"
+   },
+   {
+    "t": "To'rt tekshiruv",
+    "cmds": [
+     "git diff --stat — faqat .spec.ts",
+     "rejects oldida await",
+     "expect(manager.increment).not.toHaveBeenCalled() bor",
+     "har test «qoida»mi yoki «kod hozir shunday»mi — ikkinchisini belgilang"
+    ],
+    "exp": "4 ✓"
+   },
+   {
+    "t": "Uch buzish",
+    "cmds": [
+     "order.service.ts setStatus: if (order.status === 'CANCELLED') tekshiruvini olib tashlang",
+     "increment siklini tekshiruvdan oldinga ko'chiring",
+     "allaqachon bekor qilingan → bekor — har biridan keyin npm test va git checkout -- src/api/order/order.service.ts"
+    ],
+    "exp": "har biri ✕"
+   },
+   {
+    "t": "Qizarmagan joy",
+    "cmds": [
+     "AI'ga: «<buzish> ni hech bir test ushlamadi — shu qoidaga test yoz»",
+     "3-qadamni qaytaring"
+    ],
+    "exp": "uchalasi ✕"
+   }
+  ],
+  "proof": {
+   "label": "Uch buzishning natijasi",
+   "placeholder": "masalan: uchalasi qizardi · yoki: increment tartibi — avval qizarmadi, test qo'shdim",
+   "re": "(qizar|fail|✕|uchala|hammasi|test qo'sh)",
+   "flags": "i",
+   "wrong": "Har buzishdan keyin npm test natijasini yozing."
+  },
+  "trouble": [
+   [
+    "git diff --stat da order.service.ts ham bor",
+    "AI kodni o'zgartirdi — git checkout -- src/api/order/order.service.ts, «Tegma» bandini takrorlang"
+   ],
+   [
+    "Natija umuman yo'q, Node.js v24…",
+    "AI toThrow ni promise'da ishlatgan yoki await yo'q — 11, 13-ekran; satrni qo'lda tuzating"
+   ],
+   [
+    "increment tartibi buzilishida hammasi ✓",
+    "«bo'lmasligi kerak» testi yo'q — not.toHaveBeenCalled so'rang (15-ekran)"
+   ],
+   [
+    "order.items undefined",
+    "mock'dagi buyurtmada items: [] yo'q — mock'ga items bering"
    ]
   ]
  },
  "23": {
+  "type": "Lesson",
+  "kicker": "6-bosqich · sinfga tayyorgarlik",
+  "eyebrow": "m4b-03 · «Edge cases va error path»",
+  "title": "O'quvchi darsi: KitobShop orderTotal, «shumtaka mijoz» va guard — siz bilgan yo'lning kichik, bazasiz varianti",
+  "seg": [
+   [
+    "a",
+    "m4b-03 — 21 ekran: <b><code>orderTotal</code> ga guard</b>, shumtaka mijoz 0 va manfiy beradi",
+    "Endi sinfga tayyorgarlik. O'quvchi darsi m4b-03, yigirma bir ekran. O'quvchi Jest birinchi darsidagi order total funksiyasiga guard qo'shadi: nol, manfiy, matn kelsa xato tashlaydi. Dars buni shumtaka mijoz misolida tushuntiradi: g'alati buyurtma beradigan mijoz. Baza yo'q, promise yo'q, hammasi sinxron."
+   ],
+   [
+    "b",
+    "O'quvchi so'zlari: <b>shumtaka — edge case, guard — <code>if</code> <code>throw</code> <code>return</code></b>, o'rab berish — <code>expect(() =&gt; …)</code>",
+    "O'quvchi darsidagi so'zlar: shumtaka mijoz bu edge case. Guard bu if, throw, return. O'rab berish bu expect ichidagi qavs strelka. Kartochkadagi «jim buzilish» esa yashirin buzilish: xatosiz noto'g'ri natija. Sinfda so'zni atamasi bilan birga ayting."
+   ],
+   [
+    "c",
+    "Siz qo'shasiz: <b>ikki qismli test, <code>() =&gt;</code> siz natija, chegaraning ikki tomoni</b>",
+    "Darsga siz qo'shadigan narsalar. Guard testida ikki qism: xato chiqdi va hisob bajarilmadi. O'rab bermasa nima bo'lishini bir marta haqiqiy terminalda ko'rsating: natija yo'q, bugun o'zingiz ko'rgansiz. Uyga vazifada apply coupon'ning aynan nol va aynan yuz chegaralarini sinattiring."
+   ],
+   [
+    "d",
+    "Xulosa: o'quvchi «test natijasi chiqmayapti» desa — <b><code>() =&gt;</code> yo'q</b>; pastda uch vaziyat va savollar",
+    "Xulosa: o'quvchi test natijasi umuman chiqmayapti desa, birinchi expect ichidagi o'ramga qarang. Did not throw chiqsa, guard yo'q yoki shart qiymatni o'tkazgan. Pastda uch vaziyat va o'quvchi savollariga tayyor javoblar bor."
+   ]
+  ]
+ },
+ "24": {
   "type": "Screen27",
   "kicker": "O'z-sinov",
   "title": "Sakkiz savol. Bitta urinish. Oltitasi — o'tdingiz",
   "final": [
    {
-    "q": "Himoyasiz orderTotal(10000, 0) nima qaytaradi?",
+    "q": "Mijoz «+998 90 123 45 67» yozdi, bot «Raqam noto'g'ri» dedi. Bu qaysi yo'l?",
     "o": [
-     "Error",
-     "0 — xatosiz",
-     "NaN",
-     "10000"
-    ],
-    "c": 1,
-    "e": "Yashirin buzilish: bepul buyurtma.",
-    "s": 3
-   },
-   {
-    "q": "Received function did not throw nimani bildiradi?",
-    "o": [
-     "funksiya xato tashlamadi",
-     "boshqa xabar",
-     "fayl topilmadi",
-     "() => yo'q"
+     "Edge case — qoida mijoz odatidan tor",
+     "Error path — kod ataylab xato berdi, to'g'ri",
+     "Happy path — raqam to'g'ri, bot ham",
+     "Xato emas — mijoz noto'g'ri yozgan"
     ],
     "c": 0,
-    "e": "Guard yo'q yoki shart qiymatni o'tkazdi.",
+    "e": "Haqiqiy raqam, qoida tor.",
     "s": 5
    },
    {
-    "q": "Xato kutilayotgan testning to'g'ri yozuvi?",
+    "q": "const PHONE service ichida, eksport yo'q. Testda nima qilasiz?",
     "o": [
-     "expect(f(0)).toThrow()",
-     "f(0).toThrow()",
-     "expect(() => f(0)).toThrow()",
-     "expect(f(0)).toBe(0)"
+     "Butun botni ko'tarib, Telegram xabarini soxtalaymiz",
+     "Qoidani alohida funksiyaga ajratib, uni sinaymiz",
+     "Regex'ni testga nusxalab, o'sha yerda sinaymiz",
+     "Service'ni any qilib, PHONE ga kiramiz"
+    ],
+    "c": 1,
+    "e": "Bitta joy, bot ham test ham shuni chaqiradi.",
+    "s": 3
+   },
+   {
+    "q": "place ombor xatosini transaction ichida otadi. Qaysi shakl to'g'ri?",
+    "o": [
+     "expect(() => service.place(u, c)).toThrow('…') — o'ram bilan",
+     "expect(service.place(u, c)).toThrow('…')",
+     "await expect(service.place(u, c)).rejects.toThrow('…')",
+     "expect(await service.place(u, c)).toThrow('…') — await ichida"
     ],
     "c": 2,
-    "e": "Jest o'ralgan funksiyani o'zi chaqiradi.",
-    "s": 8
-   },
-   {
-    "q": "() =>siz toThrow — natija?",
-    "o": [
-     "PASS",
-     "did not throw",
-     "No tests found",
-     "test funksiyaning o'z xatosi bilan qulaydi"
-    ],
-    "c": 3,
-    "e": "Funksiya expect'dan oldin ishlaydi.",
-    "s": 8
-   },
-   {
-    "q": "Guardda <= 0 o'rniga < 0. Qaysi test qizil?",
-    "o": [
-     "0 dona — xato",
-     "manfiy — xato",
-     "2 kitob",
-     "matn — xato"
-    ],
-    "c": 0,
-    "e": "Faqat 0 da farq.",
+    "e": "Promise xatosi — rejects va await.",
     "s": 10
    },
    {
-    "q": ".spec.tsda orderTotal(10000, 'ikki') — o'quvchi reposida nima bo'ladi?",
+    "q": "Promise xatosiga toThrow yozildi. npm test nima ko'rsatadi?",
     "o": [
-     "npm test yurmaydi",
-     "VS Code qizil, test yuradi — NaN",
-     "hech narsa",
-     "No tests found"
+     "FAIL — xabar mos kelmadi",
+     "PASS — xato ushlanmadi, test o'tdi",
+     "FAIL — toThrow promise'ni darhol rad etadi",
+     "Natija yo'q — jarayon quladi, Node.js v24"
     ],
-    "c": 1,
-    "e": "isolatedModules — ts-jest turlarni tekshirmaydi.",
+    "c": 3,
+    "e": "Xato promise'da, hech kim ushlamadi.",
+    "s": 11
+   },
+   {
+    "q": "expect(service.place(u, c)).rejects.toThrow('…') — await yo'q, xabar noto'g'ri. Natija?",
+    "o": [
+     "Natija yo'q — Jest xatoni testga bog'lay olmadi",
+     "FAIL — Expected / Received farqi aniq ko'rsatiladi",
+     "PASS — rejects promise'ni o'zi kutib oladi",
+     "TypeScript xato — rejects oldida await shart"
+    ],
+    "c": 0,
+    "e": "Test promise'ni kutmay tugadi.",
     "s": 13
    },
    {
-    "q": "applyCouponda > 100 o'rniga >= 100. Qaysi test qizil?",
+    "q": "Xato yo'li testida «xato chiqdi»dan tashqari nima tekshiriladi?",
     "o": [
-     "101 %",
-     "0 %",
-     "chegara 100 %",
-     "hammasi"
+     "Xato necha millisekundda chiqqani — tezlik",
+     "Xatodan keyin UPDATE chaqirilmagani",
+     "Xato stack'ida qaysi fayl borligi",
+     "Xato obyekti Error turida ekani"
     ],
-    "c": 2,
-    "e": "100 ham taqiqlanadi.",
-    "s": 17
+    "c": 1,
+    "e": "«Nima bo'lmasligi kerak» — not.toHaveBeenCalled.",
+    "s": 15
    },
    {
-    "q": "Kupon uchun chegaraning ikki tomoni — qaysi to'rt qiymat?",
+    "q": "Mock'da omborda 1 ta va 10 ta sinalgan. Kodda < → <= buzildi. Testlar?",
     "o": [
-     "10, 20, 30, 40",
-     "1, 2, 3, 4",
-     "50, 60, 70, 80",
-     "0, 100, −1, 101"
+     "Ikkalasi FAIL — chegara buzilgani uchun",
+     "Ombor testi FAIL, happy PASS",
+     "Ikkalasi PASS — chegara sinalmagan",
+     "Natija yo'q — mock qulaydi"
+    ],
+    "c": 2,
+    "e": "Farq faqat aynan teng bo'lganda.",
+    "s": 16
+   },
+   {
+    "q": "supertest bilan GET /nope yuborildi, route yo'q. Javob?",
+    "o": [
+     "500 — server route topa olmadi",
+     "200 — Nest ildizga yo'naltiradi",
+     "Test yiqiladi — manzil mavjud bo'lmagani uchun",
+     "404 va Cannot GET /nope — Nest javobi"
     ],
     "c": 3,
-    "e": "Ichkari ishlaydi, tashqari xato.",
-    "s": 17
+    "e": "Nest'ning o'z 404 javobi — kutilgan error path.",
+    "s": 19
    }
   ]
  },
- "24": {
+ "25": {
   "type": "Screen28",
   "kicker": "Yakun",
   "title": "Endi siz bilasiz"
  }
 };
-
 // ============================================================
-//  MENTOR KURSI · Jest-2 «Edge cases va error path: noto'g'ri kirishni sinash»
-//  F-1029-02 · manba-haqiqat: feedback/F-1029-02-mentor-kurs/12-Jest2-mentor-v1.md (MD v1, GATE M kutilmoqda; 01.11 avtopilot)
-//  Haqiqiy chiqishlar: feedback/F-1029-02-mentor-kurs/manba/jest2-out/ (00–16; har npm test toza muhitda)
+//  MENTOR KURSI · Jest-2 «Xato yo'li: bot noto'g'ri kirishda to'g'ri buziladimi» (v2, F-1104-19)
+//  Manba-haqiqat: feedback/F-1029-02-mentor-kurs/12-Jest2-mentor-v2.md (04.11, to'g'ridan qurildi — foydalanuvchi ruxsati)
+//  Loyiha: github.com/Azizbekcrypto/OrderBotNest — teglar jest2-start (= jest1-done) → jest2-done
+//  Kod va terminal: 03b-kod.gen.jsx (dev/jest2-kod.py — repo teglari va manba/jest2v2-out/ dan aynan, satr raqami bilan)
+//  AI tajribasi: manba/jest2v2-ai/ (ai1 Opus 50 test · ai2 Haiku 42 test · mutatsiya-men/ai.txt)
 //  Yig'ish: cat parts/01-asos.jsx parts/02-dvigatel.jsx jest2/parts/*.jsx > JestEdgeMentorLesson.jsx
-//  Yordamchilar Jest-1 dan nusxa (SQL/psql/Postman qismlari olib tashlangan — bu darsda kerak emas)
 // ============================================================
-const LESSON_ID = 'mentor-jest-02-edge-cases-v1';
-const LESSON_TITLE = "Edge cases va error path: noto'g'ri kirishni sinash";
-const PG = { term: '#111827', termEr: '#1F1115' };
-MKCFG.root = 'IntroNestArxitechture';
-MKCFG.kind = (f) => /\.spec\.ts$/.test(f) ? T.purple : /\.ts$/.test(f) ? T.blue : /\.json$/.test(f) ? T.yellow : null;
-// O'quvchi reposining to'liq Explorer'i (M27): mavzuga aloqasiz papkalar yopiq; test fayllari ekranga qarab qo'shiladi
-const REPO_BASE = ['dist/', 'node_modules/', 'src/api/', 'src/common/', 'src/config/', 'src/core/', 'src/infrastructure/', 'src/main.ts', 'test/', '.env.example', 'nest-cli.json', 'package.json', 'tsconfig.json'];
+const LESSON_ID = 'mentor-jest-02-edge-cases-v1'; // M44: id o'zgarmaydi — ekranlar soni o'zgargani uchun eski saqlov o'zi bekor bo'ladi
+const LESSON_TITLE = "Xato yo'li: bot noto'g'ri kirishda to'g'ri buziladimi";
+const JC = { term: '#111827', termEr: '#1F1115', ai: '#6D3BE4', jest: '#99425B', pass: '#15803D', fail: '#C2410C', happy: '#1F7A4D', edge: '#B45309', err: '#C2362B' };
+MKCFG.root = 'OrderBotNest';
+MKCFG.kind = (f) => /\.spec\.ts$/.test(f) ? JC.jest : /\.entity\.ts$/.test(f) ? T.purple : /\.service\.ts$/.test(f) ? T.green : /\.module\.ts$/.test(f) ? T.yellow : /\.(ts|js)$/.test(f) ? T.blue : /\.json$|^\.env/.test(f) ? T.yellow : null;
 const byTree = (a, b) => {
   const A = a.split('/'), B = b.split('/');
   for (let i = 0; i < Math.min(A.length, B.length); i++) {
@@ -1478,10 +4403,29 @@ const byTree = (a, b) => {
   return A.length - B.length;
 };
 const tree = (...groups) => Array.from(new Set(groups.flat())).sort(byTree);
-const F = { ord: 'src/order.ts', ordSpec: 'src/order.spec.ts', cup: 'src/coupon.ts', cupSpec: 'src/coupon.spec.ts', ts: 'tsconfig.json' };
-const ORD_FILES = tree(REPO_BASE, [F.ord, F.ordSpec]);
-const CUP_FILES = tree(REPO_BASE, [F.ord, F.ordSpec, F.cup, F.cupSpec]);
-MKCFG.files = ORD_FILES;
+const F = {
+  tg: 'src/api/telegram/telegram.service.ts', kb: 'src/api/telegram/keyboards.ts', tx: 'src/api/telegram/texts.ts',
+  txs: 'src/api/telegram/texts.spec.ts', kbs: 'src/api/telegram/keyboards.spec.ts',
+  ph: 'src/api/telegram/phone.ts', phs: 'src/api/telegram/phone.spec.ts',
+  ord: 'src/api/order/order.service.ts', ors: 'src/api/order/order.service.spec.ts',
+  app: 'src/api/app.controller.ts', apps: 'src/api/app.controller.spec.ts',
+  cat: 'src/api/catalog/catalog.service.ts', pkg: 'package.json',
+};
+const BASE_FILES = ['node_modules/', 'scripts/smoke.js', 'src/api/app.module.ts', F.app, 'src/api/cart/', F.cat, F.ord, 'src/api/user/', F.tg, F.kb, F.tx, F.txs, F.kbs, 'src/config/', 'src/core/', 'src/infrastructure/', 'src/main.ts', '.env.example', F.pkg, 'README.md'];
+const FILES = (...extra) => tree(BASE_FILES, extra);
+MKCFG.files = FILES();
+const dirOf = (f) => (f.endsWith('/') ? f.slice(0, -1) : f).split('/').slice(0, -1).join('/');
+function compact(files, active) {
+  const A = active ? dirOf(active) : '';
+  const out = files.map((f) => {
+    const d = dirOf(f);
+    if (!d || d === A || A.startsWith(d + '/') || f.endsWith('/')) return f;
+    const ps = d.split('/'), as = A ? A.split('/') : [];
+    let k = 0; while (k < ps.length && ps[k] === as[k]) k++;
+    return ps.slice(0, k + 1).join('/') + '/';
+  });
+  return tree(out);
+}
 
 // Segment: MD'dagi ekran matni (03-matn.gen.jsx) + sahna maydonlari (extras — segment tartibida)
 const sg = (id, key, text, extra = {}) => ({ id, key, text, show: wr(text), ...extra });
@@ -1492,110 +4436,204 @@ const mkS = (n, extras = [], more = {}) => {
 
 // Ovoz → «Matn» (transkript) uchun yozma ko'rinish. Uzun ibora oldin.
 const SPOKEN = [
-  ['received function did not throw', 'Received function did not throw'], ['expected substring', 'Expected substring'], ['received message', 'Received message'],
-  ['expected va received', 'Expected va Received'], ['Throw new error', 'throw new Error'], ['throw new error', 'throw new Error'],
-  ['isolated modules', 'isolatedModules'], ['ts jest', 'ts-jest'], ['Npm test', 'npm test'], ['Tsc buyrug', 'tsc buyrug'],
-  ['npx jest minus minus verbose', 'npx jest --verbose'], ['ikki as any', "'ikki' as any"], ['coupon spec ts', 'coupon.spec.ts'], ['coupon ts', 'coupon.ts'],
-  ['apply coupon', 'applyCoupon'], ['order ts', 'order.ts'], ['to throw', 'toThrow'], ['Ikki degan so', "'ikki' degan so"], ['ikki degan so', "'ikki' degan so"],
+  ['rejects to throw', 'rejects.toThrow'], ['to throw', 'toThrow'], ['it each', 'it.each'], ['is phone', 'isPhone'],
+  ['phone spec ts', 'phone.spec.ts'], ['phone ts', 'phone.ts'], ['order service spec ts', 'order.service.spec.ts'], ['order service ts', 'order.service.ts'],
+  ['telegram service ts', 'telegram.service.ts'], ['app controller spec ts', 'app.controller.spec.ts'], ['app controller', 'app.controller'],
+  ['mock resolved value', 'mockResolvedValue'], ['not to have been called', 'not.toHaveBeenCalled'], ['to have been called times', 'toHaveBeenCalledTimes'],
+  ['jest fn', 'jest.fn'], ['data source', 'DataSource'], ['create nest application', 'createNestApplication'], ['before all', 'beforeAll'], ['after all', 'afterAll'],
+  ['git diff stat', 'git diff --stat'], ['npm i minus D supertest', 'npm i -D supertest'], ['types supertest', '@types/supertest'], ['set status', 'setStatus'],
+  ['npm test order service', 'npm test -- order.service'], ['npm test phone', 'npm test -- phone'], ['npm test app controller', 'npm test -- app.controller'],
+  ['jest ikki start', 'jest2-start'], ['Object is', 'Object.is'], ['cannot get nope', 'Cannot GET /nope'], ['did not throw', 'did not throw'],
+  ['plus to\'qqiz to\'qqiz sakkiz', '+998'], ['m4b-03', 'm4b-03'], ['Test module', 'Test.createTestingModule'],
 ];
-DIGITS.unshift(["minus o'n ming", '−10 000'], ["o'n ming ko'paytirish nol", '10 000 × 0'], ["o'n ming va ikki", '10 000 va 2'], ["to'qson ming", '90 000'],
-  ["minus bir dona", '−1 dona'], ['minus bir', '−1'], ['nol dan yuz gacha', '0 dan 100 gacha'], ['nol bilan yuz', '0 bilan 100'], ['nol bilan bir', '0 bilan 1'],
-  ['nol va yuz', '0 va 100'], ['yuz bir', '101'], ['yuz foiz', '100 %'], ["o'n foiz", '10 %'], ['nol foiz', '0 %'], ['nol dona', '0 dona'], ["nol so'm", "0 so'm"],
-  ['bir dona', '1 dona'], ['ikki dona', '2 dona'], ['ikki kitob', '2 kitob'], ["o'n bir", '11'], ['yigirma bir', '21'], ["to'qson daqiqaning yigirma beshi", '90 daqiqaning 25 tasi'],
-  ["besh-o'n daqiqa", '5–10 daqiqa'], ["o'n besh daqiqa", '15 daqiqa'], ["o'n daqiqa", '10 daqiqa'], ["sakkizinchi ekran", '8-ekran'], ["o'ninchi ekran", '10-ekran']);
+DIGITS.unshift(["o'ttiz yettinchi satr", '37-satr'], ["o'ttiz oltinchi satr", '36-satr'], ["yigirma to'rtinchi satr", '24-satr'], ["yigirma besh va yigirma oltinchi satr", '25–26-satr'],
+  ["bir yuz ellik yettinchi satr", '157-satr'], ["o'n ikkinchi satr", '12-satr'], ["o'n oltinchi satr", '16-satr'], ["yigirma uchinchi satr", '23-satr'], ["sakkizinchi satr", '8-satr'], ["to'rtinchi satr", '4-satr'], ["ellik birinchi satr", '51-satr'],
+  ["bir yuz qirq to'qqiz", '149'], ['yigirma besh', '25'], ['ellik', '50'], ['qirq ikki', '42'], ['bir yuz ming', '100 000'], ["to'qqizdan o'n uchtagacha", '9–13'], ["to'qqizni sakkizga", '9 ni 8 ga'],
+  ["o'n ikki daqiqa", '12 daqiqa'], ["o'n to'rtta", '14 ta'], ['sakkizta', '8 ta'], ["to'qqizta", '9 ta'], ['yigirma bir', '21']);
 const wr = (s) => digits(SPOKEN.reduce((acc, [a, b]) => acc.split(a).join(b), s));
-// Haqiqiy inglizcha iboralar ovozda [English pronunciation] ichida (M21) — uzunlari oldin
-EN_PHRASES.unshift(
-  /received function did not throw/gi, /did not throw/gi, /expected substring/gi, /received message/gi, /not a number/gi, /isolated modules/gi,
-  /happy path/gi, /edge case/gi, /throw new error/gi,
-);
+EN_PHRASES.unshift(/Received function did not throw/g, /Cannot GET/g, /Expected substring/g, /Received message/g);
 
+// Kod rang beruvchi (Jest-1 dan). Matn — KOD (03b-kod.gen.jsx), HTML'siz.
 const escH = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-const JS_KW = /^(const|let|await|new|async|return|true|false|null|require)$/;
-function jsLine(src) {
-  const re = /(\/\/.*$)|('(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*")|([A-Za-z_$][\w$]*)|(\d+)/g;
-  let out = '', last = 0, m;
-  while ((m = re.exec(src))) {
-    out += escH(src.slice(last, m.index)); last = re.lastIndex;
-    const [w, cm, str, id, num] = m;
-    if (cm) out += `<span class="cm">${escH(cm)}</span>`;
-    else if (str) out += `<span class="s">${escH(str)}</span>`;
-    else if (id) out += JS_KW.test(id) ? `<span class="k">${id}</span>` : /^[A-Z]/.test(id) ? `<span class="c">${id}</span>` : id;
-    else if (num) out += `<span class="d">${num}</span>`;
-    else out += escH(w);
-  }
-  return out + escH(src.slice(last));
-}
-const js = (src, meta = {}) => src.replace(/^\n/, '').replace(/\n\s*$/, '').split('\n').map((l, i) => ({ h: jsLine(l), ...(meta[i + 1] || {}) }));
-const rng = (a, b, v) => { const o = {}; for (let i = a; i <= b; i++) o[i] = { ...v }; return o; };
-
-const TS_KW = /^(import|from|export|function|return|const|let|describe|it|expect|number|string|boolean|true|false|null|undefined|if|throw|new|typeof|as|any)$/;
+const TS_KW = /^(import|from|export|class|private|readonly|public|async|await|function|return|const|let|new|if|throw|for|of|true|false|null|undefined|typeof|as|number|string|in|unknown)$/;
 function tsLine(src) {
-  const re = /(\/\/.*$)|('(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*")|([A-Za-z_$][\w$]*)|(\d+(?:\.\d+)?)/g;
+  const re = /(\/\/.*$|\/\*.*?\*\/)|(`(?:[^`\\]|\\.)*`?|'(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*")|(@\w+)|([A-Za-z_$][\w$]*)|(\d+(?:\.\d+)?)/g;
   let out = '', last = 0, m;
   while ((m = re.exec(src))) {
     out += escH(src.slice(last, m.index)); last = re.lastIndex;
-    const [w, cm, str, id, num] = m;
+    const [w, cm, str, dec, id, num] = m;
     if (cm) out += `<span class="cm">${escH(cm)}</span>`;
     else if (str) out += `<span class="s">${escH(str)}</span>`;
-    else if (id) out += TS_KW.test(id) ? `<span class="k">${id}</span>` : /^(toBe|toEqual|toThrow)$/.test(id) ? `<span class="d">${id}</span>` : /^(Error|Number)$/.test(id) ? `<span class="c">${id}</span>` : id;
+    else if (dec) out += `<span class="d">${escH(dec)}</span>`;
+    else if (id) out += TS_KW.test(id) ? `<span class="k">${id}</span>` : /^[A-Z]/.test(id) ? `<span class="c">${id}</span>` : id;
     else if (num) out += `<span class="d">${num}</span>`;
     else out += escH(w);
   }
   return out + escH(src.slice(last));
 }
-const ts = (src, meta = {}) => src.replace(/^\n/, '').replace(/\n\s*$/, '').split('\n').map((l, i) => ({ h: tsLine(l), ...(meta[i + 1] || {}) }));
-// VS Code qizil to'lqin chizig'i (maket, 13-ekran): rang beruvchi chiqargan HTML ichida 'ikki' va null ni o'raydi
-const wavy = (line) => ({ ...line, h: line.h.replace(`<span class="s">'ikki'</span>`, `<span class="s j2-wavy">'ikki'</span>`).replace(`<span class="k">null</span>`, `<span class="k j2-wavy">null</span>`) });
-// Jest terminali: kod satrlari (N |) birinchi — ular ichidagi «Error» qizil bo'lmasin; PASS/✓ yashil, FAIL/●/✕ qizil
+// Jest terminali: PASS yashil, FAIL qizil, ✓ / ✕, ● sarlavha, Expected / Received, > satr, Node.js qulashi qizil
 function jestLine(l) {
-  if (/^\$ /.test(l)) return `<span class="p">$ </span><span class="m">${escH(l.slice(2))}</span>`;
-  if (/^\s*>\s*\d+ \|/.test(l) || /^\s+\|\s+\^/.test(l)) return `<span class="wn">${escH(l)}</span>`;
-  if (/^\s*\d+ \|/.test(l)) return `<span class="cm">${escH(l)}</span>`;
-  if (/^\s*at /.test(l)) return `<span class="cm">${escH(l)}</span>`;
-  if (/^\s*PASS\b|✓|passed, \d+ total$/.test(l) && !/failed/.test(l)) return `<span class="ok">${escH(l)}</span>`;
-  if (/^\s*Expected( substring)?:/.test(l)) return `<span class="ok">${escH(l)}</span>`;
-  if (/^\s*Received( message)?:/.test(l)) return `<span class="er">${escH(l)}</span>`;
-  if (/WARN/.test(l)) return `<span class="wn">${escH(l)}</span>`;
-  if (/^\s*FAIL\b|●|✕|failed|error|did not throw|musbat raqam|gacha bo'lsin|suite failed/.test(l)) return `<span class="er">${escH(l)}</span>`;
-  if (/^>|^Snapshots|^Time|^Ran all|^---|^\s*expect\(received\)/.test(l)) return `<span class="cm">${escH(l)}</span>`;
+  const m = /^(\$ )(.*)$/.exec(l);
+  if (m) return `<span class="p">$ </span><span class="m">${escH(m[2])}</span>`;
+  if (/^PASS /.test(l)) return `<span class="jp">PASS</span>${escH(l.slice(4))}`;
+  if (/^FAIL /.test(l)) return `<span class="jf">FAIL</span>${escH(l.slice(4))}`;
+  if (/^\s*✓/.test(l)) return `<span class="ok">${escH(l)}</span>`;
+  if (/^\s*○/.test(l)) return `<span class="cm">${escH(l)}</span>`;
+  if (/^\s*✕|^\s*●/.test(l)) return `<span class="er">${escH(l)}</span>`;
+  if (/^\s*(Expected|- Expected|Expected substring)/.test(l)) return `<span class="ok">${escH(l)}</span>`;
+  if (/^\s*(Received|\+ Received|Received string|Received message|\+ )/.test(l)) return `<span class="er">${escH(l)}</span>`;
+  if (/^\s*>\s*\d+ \|/.test(l)) return `<span class="wn">${escH(l)}</span>`;
+  if (/No tests found|^Error:|Error \[|JestAssertionError|Cannot find|\[chiqish kodi: 1\]|Node\.js v/.test(l)) return `<span class="er">${escH(l)}</span>`;
+  if (/^Tests:.*failed/.test(l)) return `<span class="er">${escH(l)}</span>`;
+  if (/^Tests:|\[chiqish kodi: 0\]/.test(l)) return `<span class="ok">${escH(l)}</span>`;
+  if (/^\s*(#|at |\(|—)/.test(l)) return `<span class="cm">${escH(l)}</span>`;
   return escH(l);
 }
-const jt = (src, meta = {}) => src.replace(/^\n/, '').replace(/\n\s*$/, '').split('\n').map((l, i) => ({ h: jestLine(l), ...(meta[i + 1] || {}) }));
-const Term = ({ lines, title = 'terminal — npm test', er, beat, focus, style }) => <CodePanel file={title} numbers={false} wrap style={{ background: er ? PG.termEr : PG.term, ...(style || {}) }} lines={lines} beat={beat} focus={focus} />;
+const outLines = (k) => KOD.OUT[k].split('\n').filter((l) => l.trim() !== '');
+const out = (k, a = 1, b, meta = {}) => outLines(k).slice(a - 1, b == null ? undefined : b).map((l, i) => ({ h: jestLine(l), ...(meta[a + i] || {}) }));
+const outFind = (k, re) => { const L = outLines(k); const i = L.findIndex((l) => re.test(l)); return i < 0 ? 1 : i + 1; };
+// outPick — faqat kerakli qatorlar (uzun qulash chiqishlari uchun): keep(l) true bo'lganlari
+const outPick = (k, keep, meta = {}) => outLines(k).filter(keep).map((l, i) => ({ h: jestLine(l), ...(meta[i + 1] || {}) }));
+const Term = ({ lines, title = t('VS Code terminali · OrderBotNest', "терминал VS Code · OrderBotNest"), er, beat, focus, style }) => <CodePanel file={title} numbers={false} style={{ background: er ? JC.termEr : JC.term, ...(style || {}) }} lines={lines} beat={beat} focus={focus} />;
+const kod = (k, ids = {}, from, to, edit = {}) => KOD[k].lines.filter((l) => (from == null || l.n >= from) && (to == null || l.n <= to)).flatMap((l) => {
+  const base = { h: tsLine(l.t), n: l.n, ...(ids[l.n] ? { id: ids[l.n] } : {}) };
+  if (edit[l.n] == null) return [base];
+  return [{ ...base, gone: true }, { h: tsLine(edit[l.n]), n: l.n, neu: true, ...(ids[l.n] ? { id: ids[l.n] } : {}) }];
+});
+const rngIds = (a, b, id) => Object.fromEntries(Array.from({ length: b - a + 1 }, (_, i) => [a + i, id]));
+const Code = ({ k, ids, from, to, edit, focus, beat, files, active, fresh, style, title }) => <Ide files={compact(files || FILES(F.ph, F.phs, F.ors, F.apps), active || KOD[k].file)} active={active || KOD[k].file} fresh={fresh} style={style}>
+  <CodePanel file={title || baseName(KOD[k].file)} lines={kod(k, ids, from, to, edit)} focus={focus} beat={beat} />
+</Ide>;
 
-// Jest-2 ga xos qo'shimcha CSS (dvigatel CSS'iga tegilmaydi). Izohda backtick yo'q (CLAUDE.md).
+function AiReply({ who, prompt, said, diff, hl, tag = t('namuna — sizning AI\'ingiz boshqacha yozadi', "образец — ваш AI напишет иначе") }) {
+  return <div className={`ai-card${hl ? ' hl' : ''}`}>
+    <div className="bar"><span className="lg">AI</span><span className="tt">{who}</span><span className="tg">{tag}</span></div>
+    {prompt && <pre className="pr">{prompt}</pre>}
+    {said && <div className="sd">{said}</div>}
+    {diff && <pre className="df">{diff}</pre>}
+  </div>;
+}
+const Card = ({ c = T.accent, h, children, hl, dim, style }) => <div className={`mk-box${hl ? ' hl' : ''}`} style={{ '--c': c, opacity: dim ? 0.4 : 1, transition: 'opacity .3s', ...(style || {}) }}><h4>{h}</h4>{children}</div>;
+
+const mkPractice = (n, hls, extra = {}) => {
+  const m = MDT[n]; const pr = m.proof;
+  return {
+    S: mkS(n, hls.map((hl) => ({ hl })), { tableAt: 3 }), steps: m.steps, trouble: m.trouble,
+    proof: { label: pr.label, placeholder: pr.placeholder, check: (v) => new RegExp(pr.re, pr.flags).test(v), wrong: pr.wrong }, ...extra,
+  };
+};
+const Demak = (n) => <span dangerouslySetInnerHTML={html(MDT[n].demak)} />;
+function MC(p, n, more) {
+  const m = MDT[n];
+  return <MCRetry {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} q={m.q} opts={m.opts} correct={m.correct} ok={m.ok} okShort={<span dangerouslySetInnerHTML={html(m.okShort)} />} wrong={m.wrong} demak={Demak(n)} {...more} />;
+}
+
+// Buzib tekshirish jadvali (manba/jest2v2-ai/mutatsiya-men.txt, mutatsiya-ai.txt — aynan): qizargan testlar soni
+const MUT = [
+  ['B1', "regex 9–13 → 8–13 raqam (8 ta raqam o'tadi)", [1, 1, 2]],
+  ['B2', 'place: stock < qty → stock <= qty', [1, 1, 1]],
+  ['B3', 'place: UPDATE ombor tekshiruvidan OLDIN', [1, 2, 1]],
+  ['B4', "xabar «Telefon raqami yo'q» → «Raqam yo'q»", [1, 3, 3]],
+  ['B5', "place: bo'sh savat tekshiruvi olib tashlandi", [1, 1, 1]],
+];
+const MUT_COLS = [['Men', 25], ['1-AI', 50], ['2-AI', 42]];
+function MutTable({ rows = 5, hlCol, hlRow }) {
+  return <table className="mut"><thead><tr><th>{t("Buzish", "Поломка")}</th>{MUT_COLS.map(([n, c], i) => <th key={n} className={hlCol === i ? 'hl' : ''}>{n}<small>{c} test</small></th>)}</tr></thead>
+    <tbody>{MUT.slice(0, rows).map(([id, d, v], r) => <tr key={id} className={hlRow === r ? 'hl' : ''} style={{ animation: `mk-up .35s ${r * 0.06}s ease both` }}><td><b>{id}</b> {d}</td>{v.map((x, i) => <td key={i} className={`${x === 0 ? 'zero' : 'red'}${hlCol === i ? ' col' : ''}`}>{x}</td>)}</tr>)}</tbody></table>;
+}
+
+// Jest-2 v2 ga xos CSS (dvigatel CSS'iga tegilmaydi). Izohda backtick yo'q (CLAUDE.md).
 const CSS3 = `
+.j2-15 .flow{display:grid;grid-template-columns:1fr 26px 1fr 26px 1fr 26px 1fr;align-items:stretch;background:#fff;border:1px solid #D7DCE3;border-radius:14px;padding:14px}
+.j2-15 .st{border:1.5px solid #D7DCE3;border-radius:10px;padding:10px;display:grid;gap:6px;align-content:start;background:#F8FAFC;min-width:0}
+.j2-15 .st h6{margin:0;font:700 11px system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#6B7280}
+.j2-15 .st .ln{font:11.5px ui-monospace,Menlo,Consolas,monospace;color:#6B7280}
+.j2-15 .ar{display:flex;align-items:center;justify-content:center;color:#9CA3AF;font-size:20px}
+.j2-15 .st.x{border-color:#DC2626;background:#FEF2F2}
+.j2-15 .st.off{border-style:dashed;background:#fff}
+.j2-15 .st.off .zm{color:#6B7280}
+.j2-15 .st .z-tag{white-space:normal}
+.j2-15 .as{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.j2-15 .a{border:2px solid #C2410C;border-radius:12px;background:#fff;padding:10px 12px;display:grid;gap:6px;align-content:start}
+.j2-15 .a>b{color:#C2410C;font-size:14px}
+.j2-15 .a .zm{background:#F1F3F6;border-radius:6px;padding:6px 8px;white-space:pre-wrap}
+.j2-15 .a small{color:#6B7280;font-size:12.5px}
+.j2-5 td.c,.j2-5 th.c,.j2-6 td.c,.j2-6 th.c{text-align:center}
+.j2-5 .grp td{background:#F8FAFC;font:700 11.5px system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#6B7280}
+.j2-5 .p,.j2-6 .p{color:#15803D;font-weight:700}.j2-5 .f,.j2-6 .f{color:#DC2626;font-weight:700}
+.j2-nl{display:grid;grid-template-columns:repeat(8,1fr);gap:4px;text-align:center;font:13px ui-monospace,Menlo,Consolas,monospace}
+.j2-nl div{border-radius:6px;padding:6px 0;background:#DCFCE7;color:#15803D;font-weight:700}
+.j2-nl div.x{background:#FEE2E2;color:#991B1B}
+.j2-nl small{display:block;font:11px system-ui,sans-serif;font-weight:400;color:inherit;opacity:.85}
+.j2-6 tr.tor td{background:#FFF7ED}.j2-6 tr.keng td{background:#EFF6FF}
+.j2-6 .lab{font:700 11px system-ui,sans-serif;letter-spacing:.05em;text-transform:uppercase;border-radius:999px;padding:1px 7px;white-space:nowrap}
+.j2-6 .lab.o{background:#FFEDD5;color:#C2410C}.j2-6 .lab.b{background:#DBEAFE;color:#1D4ED8}
 .mk-explorer{overflow:auto}
-/* ogohlantirish qutisi — Nest-2 dagi bilan bir xil (u bo'lak bu darsga kirmaydi) */
 .n2-warn{border-left:4px solid ${T.accent};background:#FFF0EB;border-radius:10px;padding:10px 12px;font-size:14px;line-height:1.5}
 .n2-warn b{color:${T.accent}}
 .pg-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;align-items:start}
-@media (max-width:1300px){.pg-two{grid-template-columns:1fr}}
-.pg-three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:start}
-@media (max-width:1300px){.pg-three{grid-template-columns:1fr}}
-.pg-row{display:flex;gap:10px;align-items:center;padding:8px 12px;border:1px solid ${T.line};border-radius:10px;background:${T.paper};font:13px ${MONO};transition:opacity .3s,border-color .3s,background .3s}
-.pg-row.hl{border-color:${T.accent};background:#FFF7F3}
-.pg-row .v{margin-left:auto;font-weight:800;font-size:16px}
+@media (max-width:1000px){.pg-two{grid-template-columns:1fr}}
+.pg-2c{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;align-items:stretch}
+.pg-three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:stretch}
+@media (max-width:1000px){.pg-three{grid-template-columns:1fr 1fr}}
 .pg-qa{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-@media (max-width:1300px){.pg-qa{grid-template-columns:1fr}}
+@media (max-width:1000px){.pg-qa{grid-template-columns:1fr}}
 .pg-qa button{text-align:left;border:1px solid ${T.line};border-radius:12px;background:${T.paper};padding:12px 14px;cursor:pointer;font:inherit;color:${T.ink}}
 .pg-qa b{display:block;font-size:14px}
 .pg-qa p{margin:6px 0 0;font-size:13px;color:${T.ink2};line-height:1.45}
-/* Xulosa qadamida tor ekranda (1280) kod oynasi yashiriladi — xulosa ko'rinib tursin */
-@media (max-width:1300px){.j2-wide-only{display:none}}
-/* VS Code qizil to'lqin chiziq maketi — 13-ekran */
-.j2-wavy{text-decoration:underline wavy #F14C4C;text-decoration-thickness:1.5px;text-underline-offset:4px}
-.j2-edge{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
-@media (max-width:1300px){.j2-edge{grid-template-columns:repeat(3,minmax(0,1fr))}}
-.j2-edge div{border:1.5px solid ${T.line};border-radius:10px;background:${T.paper};padding:10px 8px;text-align:center;font:600 14px ${MONO};transition:opacity .3s,border-color .3s}
-.j2-edge div small{display:block;font:500 11.5px ${SANS};color:${T.ink3};margin-top:4px}
-.j2-edge div.on{border-color:${T.accent}}
-.j2-line{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:6px}
-.j2-line div{border-radius:10px;padding:10px 8px;text-align:center;font:700 15px ${MONO};border:1.5px solid}
-.j2-line div small{display:block;font:500 12px ${SANS};margin-top:4px}
-.j2-line .in{color:${T.green};border-color:${T.green};background:#E3F5EC}
-.j2-line .out{color:${T.accent};border-color:${T.accent};background:#FFF0EB}
+.pg-dict{width:100%;border-collapse:separate;border-spacing:0 6px;font-size:13.5px}
+.pg-dict td{padding:8px 12px;background:${T.paper};border-top:1px solid ${T.line};border-bottom:1px solid ${T.line}}
+.pg-dict td:first-child{border-left:4px solid ${T.accent};border-radius:10px 0 0 10px}
+.pg-dict td:last-child{border-right:1px solid ${T.line};border-radius:0 10px 10px 0;color:${T.ink2}}
+.pg-dict code{font:12.5px ${MONO};background:#EEF0F4;padding:1px 6px;border-radius:5px}
+.mk-panel .jp{background:${JC.pass};color:#fff;font-weight:700;padding:0 5px;border-radius:3px}
+.mk-panel .jf{background:${JC.fail};color:#fff;font-weight:700;padding:0 5px;border-radius:3px}
+.ai-card{background:${T.paper};border:1.5px solid #D9CCF7;border-radius:12px;overflow:hidden;transition:box-shadow .3s,border-color .3s}
+.ai-card.hl{border-color:${JC.ai};box-shadow:0 0 0 4px rgba(109,59,228,.14)}
+.ai-card .bar{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#F5F1FE;border-bottom:1px solid #E6DDFB;font:600 12.5px ${SANS};color:${T.ink}}
+.ai-card .lg{font:800 11px ${MONO};color:#fff;background:${JC.ai};border-radius:6px;padding:3px 7px}
+.ai-card .tg{margin-left:auto;font:600 10px ${MONO};color:${T.ink3};letter-spacing:.04em}
+.ai-card .pr{margin:0;padding:8px 12px;font:12px/1.5 ${MONO};color:${T.ink2};background:#FBFAFF;border-bottom:1px dashed #E6DDFB;white-space:pre-wrap}
+.ai-card .sd{padding:8px 12px;font-size:13.5px;line-height:1.45;color:${T.ink}}
+.ai-card .sd b{color:${JC.ai}}
+.ai-card .sd code{font:12px ${MONO};background:#EEF0F4;padding:1px 5px;border-radius:5px}
+.ai-card .df{margin:0;padding:8px 12px;font:12px/1.5 ${MONO};color:${T.codeInk};background:${JC.term};white-space:pre;overflow-x:auto}
+.mut{width:100%;border-collapse:separate;border-spacing:0 5px;font-size:13.5px}
+.mut th{font:700 12px ${SANS};color:${T.ink2};text-align:center;padding:4px 8px}
+.mut th:first-child{text-align:left}
+.mut th small{display:block;font-weight:500;color:${T.ink3}}
+.mut th.hl{color:${T.accent}}
+.mut td{padding:8px 10px;background:${T.paper};border-top:1px solid ${T.line};border-bottom:1px solid ${T.line};text-align:center;font:700 14px ${MONO}}
+.mut td:first-child{text-align:left;font:13px ${SANS};border-left:1px solid ${T.line};border-radius:10px 0 0 10px}
+.mut td:last-child{border-right:1px solid ${T.line};border-radius:0 10px 10px 0}
+.mut td.zero{background:#FFE4DA;color:${T.accent}}
+.mut td.red{color:${T.green}}
+.mut td.col{box-shadow:inset 0 0 0 2px ${T.accent}}
+.mut tr.hl td{border-color:${T.accent}}
+.path{border:2px solid var(--c);border-radius:14px;padding:12px 14px;background:${T.paper};transition:all .35s;display:grid;gap:6px;align-content:start}
+.path.dim{opacity:.35}
+.path.hl{box-shadow:0 0 0 4px color-mix(in srgb,var(--c) 18%,transparent)}
+.path h4{margin:0;font:800 14px ${SANS};color:var(--c)}
+.path .ex{font:13px ${MONO};background:#F4F5F7;border-radius:8px;padding:5px 8px;color:${T.ink}}
+.path .q{font-size:13.5px;color:${T.ink2};line-height:1.45}
+.path .t{font:600 12.5px ${SANS};color:var(--c);border-top:1px dashed ${T.line};padding-top:6px;margin-top:2px}
+.fl-grid{display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr);gap:10px;align-items:center}
+.fl-tests{display:grid;gap:8px}
+.fl-row{display:grid;grid-template-columns:20px minmax(0,1fr) 150px;gap:8px;align-items:center}
+.fl-ar{font:700 18px ${MONO};color:${T.ink3};text-align:center}
+.fl-box{border:2px solid var(--c);border-radius:12px;padding:8px 10px;background:${T.paper};transition:all .35s}
+.fl-box.hl{background:#FFF0EB}
+.fl-box small{display:block;font:600 11px ${MONO};color:${T.ink3};margin-bottom:3px}
+.fl-box b{font:700 13.5px ${MONO};color:${T.ink}}
+.fl-v{font:700 13px ${SANS};border-radius:10px;padding:8px 10px;text-align:center;animation:mk-up .4s ease both}
+.fl-v.ok{background:#E3F5EC;color:${T.green}}
+.fl-v.bad{background:#FFE4DA;color:${T.accent}}
+.cause{display:grid;gap:6px}
+.cause div{display:grid;grid-template-columns:26px minmax(0,1fr);gap:8px;align-items:center;border:1px solid ${T.line};border-radius:10px;padding:8px 10px;background:${T.paper};font-size:13.5px;line-height:1.4;opacity:.3;transform:translateY(4px);transition:all .35s}
+.cause div.on{opacity:1;transform:none}
+.cause div.bad{border-color:${T.accent};background:#FFF0EB}
+.cause i{font-style:normal;font:800 11px ${MONO};color:#fff;background:${T.ink3};border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center}
+.cause div.bad i{background:${T.accent}}
 `;
 function useCss3() {
   useEffect(() => {
@@ -1604,703 +4642,478 @@ function useCss3() {
     if (s.textContent !== CSS3) s.textContent = CSS3;
   }, []);
 }
-// ============================================================
-//  Umumiy kod va chiqishlar (jest2-out — toza muhit)
-// ============================================================
-const ORDER_TS = ts(String.raw`
-export function orderTotal(price: number, quantity: number): number {
-  return price * quantity;
-}`, { 2: { id: 'op' } });
-const GUARD_SRC = (cond) => String.raw`
-export function orderTotal(price: number, quantity: number): number {
-  if (typeof quantity !== 'number' || Number.isNaN(quantity) || ${cond}) {
-    throw new Error("quantity musbat raqam bo'lsin");
-  }
-  return price * quantity;
-}`;
-const ORDER_GUARD = ts(GUARD_SRC('quantity <= 0'), { 2: { id: 'if' }, 3: { id: 'th' }, 4: { id: 'if' }, 5: { id: 'ret' } });
-// Edge testlari — himoyasiz funksiyaga (jest2-out/04)
-const SPEC_EDGE = ts(String.raw`
-import { orderTotal } from './order';
-
-describe('orderTotal', () => {
-  it('2 kitob narxini hisoblaydi', () => {
-    expect(orderTotal(10000, 2)).toBe(20000);
-  });
-  it('0 dona — xato', () => {
-    expect(() => orderTotal(10000, 0)).toThrow();
-  });
-  it('manfiy — xato', () => {
-    expect(() => orderTotal(10000, -1)).toThrow();
-  });
-});`, { 7: { id: 'e' }, 8: { id: 'e' }, 9: { id: 'e' }, 10: { id: 'e' }, 11: { id: 'e' }, 12: { id: 'e' } });
-// To'liq test fayli — guard bilan (jest2-out/05; satr raqamlari 06, 07, 09 dagi bilan bir xil)
-const SPEC_FULL = ts(String.raw`
-import { orderTotal } from './order';
-
-describe('orderTotal', () => {
-  it('2 kitob narxini hisoblaydi', () => {
-    expect(orderTotal(10000, 2)).toBe(20000);
-  });
-  it('1 dona — eng kichik haqiqiy buyurtma', () => {
-    expect(orderTotal(10000, 1)).toBe(10000);
-  });
-  it('0 dona — xato', () => {
-    expect(() => orderTotal(10000, 0)).toThrow();
-  });
-  it('manfiy — xato', () => {
-    expect(() => orderTotal(10000, -1)).toThrow();
-  });
-  it("matn — xato", () => {
-    expect(() => orderTotal(10000, 'ikki' as any)).toThrow("quantity musbat raqam bo'lsin");
-  });
-});`, { 7: { id: 'one' }, 8: { id: 'one' }, 11: { id: 'zero' }, 17: { id: 'txt' } });
-const PASS5 = jt(String.raw`
-$ npm test
-PASS src/order.spec.ts
-  orderTotal
-    ✓ 2 kitob narxini hisoblaydi (2 ms)
-    ✓ 1 dona — eng kichik haqiqiy buyurtma (1 ms)
-    ✓ 0 dona — xato (5 ms)
-    ✓ manfiy — xato (1 ms)
-    ✓ matn — xato (1 ms)
-
-Test Suites: 1 passed, 1 total
-Tests:       5 passed, 5 total`, { 2: { id: 'p' }, 11: { id: 'tot' } });
-const FAIL_EDGE = jt(String.raw`
-$ npm test
-FAIL src/order.spec.ts
-  orderTotal
-    ✓ 2 kitob narxini hisoblaydi (2 ms)
-    ✕ 0 dona — xato (1 ms)
-    ✕ manfiy — xato (1 ms)
-
-  ● orderTotal › 0 dona — xato
-
-    expect(received).toThrow()
-
-    Received function did not throw
-
-    >  8 |     expect(() => orderTotal(10000, 0)).toThrow();
-         |                                        ^
-
-Tests:       2 failed, 1 passed, 3 total`, { 2: { id: 'n' }, 3: { id: 'n' }, 4: { id: 'n' }, 5: { id: 'n' }, 6: { id: 'n' }, 8: { id: 'm' }, 10: { id: 'm' }, 12: { id: 'm' }, 14: { id: 'm' } });
 
 // ============================================================
-//  1 · Kirish
+//  1 · Kirish — dars oxiridagi natija: 5 fayl, 25 test (jest2v2-out/12)
 // ============================================================
-const PLAN1 = ['Edge case va yashirin buzilish', 'Guard', 'Buzamiz: toThrow', "TypeScript tuzog'i", 'Uyga vazifa misoli', "O'quvchi darsini o'tish"];
-const S1 = mkS(1, [{ hl: [] }, { hl: [0, 1] }, { hl: [2, 3, 4] }, { hl: [5] }], { plan: PLAN1 });
+const PLAN1 = ['Umumiy tushuncha', 'Telefon: edge case', 'Buyurtma: error path', "Chegara va «bo'lmasligi kerak»", 'HTTP test va AI', 'Sinfga tayyorgarlik'];
+const S1 = mkS(1, [{ hl: [], res: true }, { hl: [0] }, { hl: [1, 2, 3, 4] }, { hl: [5] }], { plan: PLAN1 });
+const T1 = outPick('12', (l) => /^(PASS|Tests:|Time:)/.test(l));
 function Screen1(p) {
   return <Lesson p={p} S={S1} scene={({ seg }) => <div style={{ display: 'grid', gap: 14 }}>
     <div className="mk-light"><div className="mk-plan">
       {S1.plan.map((x, i) => <div key={i} className={seg.hl.includes(i) ? 'hl' : (seg.hl.length ? 'dim' : '')}><b>0{i + 1}</b><span>{x}</span></div>)}
     </div></div>
-    <div className="mk-tag" style={{ margin: 0 }}>Dars oxirida — o'quvchi reposida: noto'g'ri kirish ham sinalgan</div>
-    <Term lines={PASS5.slice(1, 8)} />
+    {seg.res && <><div className="mk-tag" style={{ margin: 0 }}>{t("Dars oxirida — OrderBotNest'da 5 ta test fayli, 25 test", "В конце урока — в OrderBotNest 5 тестовых файлов, 25 тестов")}</div>
+      <Term title={t("VS Code terminali · npm test -- --verbose", "терминал VS Code · npm test -- --verbose")} lines={T1} /></>}
   </div>} />;
 }
 
 // ============================================================
-//  2 · Happy path va edge case
+//  2 · Uch yo'l: happy path, edge case, error path (umumiy tushuncha — F-1104 foydalanuvchi talabi)
 // ============================================================
-const EDGE2 = [['0', 'nol dona', 'b'], ['-1', 'manfiy', 'b'], ['1', 'eng kichik', 'b'], ["'ikki'", "so'z", 'c'], ['null', "bo'sh", 'c']];
-const S2 = mkS(2, [{ on: '' }, { on: 'b' }, { on: 'bc' }, { on: 'bc', sum: true }]);
+const PATHS2 = [
+  { k: 'happy', c: JC.happy, h: 'Happy path — kutilgan kirish', ex: ['+998901234567', 'omborda 10 ta'], q: "Buyurtma qabul qilindi. Jest-1 ning hamma testi shu yo'lda edi.", t: "test: natija to'g'rimi" },
+  { k: 'edge', c: JC.edge, h: 'Edge case — qoidaning chegarasi', ex: ['+998 90 123 45 67', '9 ta raqam', 'omborda aynan 2 ta'], q: "Kod xato bermaydi — lekin javobi to'g'rimi?", t: "test: chegarada ham to'g'rimi" },
+  { k: 'err', c: JC.err, h: 'Error path — kod ataylab xato beradi', ex: ["telefon yo'q", "savat bo'sh", 'omborda 1 ta, savatda 2'], q: "Xato — to'g'ri xulq. Qaysi xabar? Keyin nima bo'lmaydi?", t: "test: xato chiqdi va keyingi qadam bo'lmadi" },
+];
+const S2 = mkS(2, [{ on: 0 }, { on: 1 }, { on: 2 }, { on: -1, all: true }]);
 function Screen2(p) {
-  return <Lesson p={p} S={S2} scene={({ seg }) => <div style={{ display: 'grid', gap: 12 }}>
-    <div className="mk-light" style={{ padding: 16 }}>
-      <div className="mk-tag" style={{ color: T.green }}>Happy path — oddiy yo'l</div>
-      <div className="pg-row"><span>orderTotal(10000, 2)</span><span style={{ color: T.ink3 }}>→</span><span className="v" style={{ color: T.green }}>20000</span></div>
-    </div>
-    {seg.on && <div className="mk-light" style={{ padding: 16, animation: 'mk-up .4s ease both' }}>
-      <div className="mk-tag" style={{ color: T.accent }}>Edge case — chegara holati: orderTotal(10000, …)</div>
-      <div className="j2-edge">{EDGE2.map(([v, d, g]) => <div key={v} className={seg.on.includes(g) && !seg.sum ? 'on' : ''} style={{ opacity: seg.on.includes(g) ? 1 : 0.25 }}>{v}<small>{d}</small></div>)}</div>
-    </div>}
-    {seg.sum && <div className="mk-rule">Har funksiya uchun: <b>bitta oddiy holat</b> va <b>bir nechta chegara holati</b>. O'quvchi darsi: «chegara 0 bilan 1 orasida».</div>}
+  return <Lesson p={p} S={S2} scene={({ seg }) => <div className="pg-three">
+    {PATHS2.map((x, i) => <div key={x.k} className={`path${seg.on === i ? ' hl' : ''}${seg.on >= 0 && seg.on !== i ? ' dim' : ''}`} style={{ '--c': x.c }}>
+      <h4>{x.h}</h4>{x.ex.map((e) => <div key={e} className="ex">{e}</div>)}<div className="q">{x.q}</div>{seg.all && <div className="t">{x.t}</div>}
+    </div>)}
   </div>} />;
 }
 
 // ============================================================
-//  3 · Yashirin buzilish (jest2-out/01)
+//  3 · Telefon qoidasi yashirin — alohida funksiyaga (jest2-start 12, 155–157 · phone.ts · jest2-done 10, 155–156)
 // ============================================================
-const ROWS3 = [['2', '20000', 0], ['0', '0', 'a'], ['-1', '-10000', 'b'], ['1', '10000', 'b'], ["'ikki'", 'NaN', 'c'], ['null', '0', 'c']];
-const S3 = mkS(3, [{ on: 'a' }, { on: 'ab' }, { on: 'abc' }, { on: 'abc', sum: true }]);
+const S3 = mkS(3, [{ v: 'old', f: ['p', 'u'] }, { v: 'old', f: ['p'] }, { v: 'new' }, { v: 'use' }]);
 function Screen3(p) {
-  return <Lesson p={p} S={S3} scene={({ seg }) => <div style={{ display: 'grid', gap: 12 }}>
-    <Ide files={tree(REPO_BASE, [F.ord])} active={F.ord}><CodePanel file={F.ord} lines={ORDER_TS} focus={['op']} /></Ide>
-    <div className="mk-light" style={{ padding: 14 }}>
-      <div className="mk-tag">Himoyasiz funksiya — haqiqiy natijalar</div>
-      <div style={{ display: 'grid', gap: 6 }}>{ROWS3.map(([a, r, g]) => {
-        const shown = g === 0 || seg.on.includes(g);
-        const bad = g !== 0 && a !== '1';
-        return <div key={a} className={`pg-row${shown && bad && !seg.sum && seg.on.endsWith(g) ? ' hl' : ''}`} style={{ opacity: shown ? 1 : 0.25 }}>
-          <span>orderTotal(10000, {a})</span><span style={{ color: T.ink3 }}>→</span>
-          <span className="v" style={{ color: !shown ? T.ink3 : bad ? T.accent : T.green }}>{shown ? r : '?'}</span>
-          {shown && <span style={{ fontFamily: SANS, fontSize: 12, color: bad ? T.accent : T.green, minWidth: 92, textAlign: 'right' }}>{bad ? 'xato yo\'q' : "to'g'ri"}</span>}
-        </div>;
-      })}</div>
-    </div>
-    {seg.sum && <div className="mk-rule">Himoyasiz funksiya noto'g'ri kirishda <b>xato bermaydi</b>, balki noto'g'ri ishlaydi. To'g'ri yo'l: darhol rad etish.</div>}
-  </div>} />;
+  return <Lesson p={p} S={S3} scene={({ seg }) => <>
+    {seg.v === 'old' && <Ide files={compact(FILES(), F.tg)} active={F.tg}>
+      <CodePanel file="telegram.service.ts" lines={[...kod('TS_PHONE', { 12: 'p' }), { h: '<span class="cm">…</span>', n: '' }, ...kod('TS_ONTEXT', { 155: 'u', 156: 'u', 157: 'u' })]} focus={seg.f} />
+    </Ide>}
+    {seg.v === 'new' && <Code k="PHONE_OLD" files={FILES(F.ph)} active={F.ph} fresh={F.ph} ids={{ 2: 'r', 4: 'i' }} focus={['r', 'i']} />}
+    {seg.v === 'use' && <Ide files={compact(FILES(F.ph), F.tg)} active={F.tg}>
+      <CodePanel file="telegram.service.ts · jest2-done" lines={[...kod('TS_IMPORT_NEW', { 10: 'i' }), { h: '<span class="cm">…</span>', n: '' }, ...kod('TS_ONTEXT_NEW', { 155: 'u', 156: 'u' }, 153, 158)]} focus={['i', 'u']} />
+    </Ide>}
+  </>} />;
 }
 
 // ============================================================
-//  4 · Tekshiruv 1
+//  4 · Tekshiruv 1 — probel bilan yozilgan raqam (jest2v2-out/02)
 // ============================================================
 function Screen4(p) {
-  const m = MDT[4];
-  return <MCRetry {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} q={m.q} opts={m.opts} correct={m.correct} ok={m.ok} okShort={<span dangerouslySetInnerHTML={html(m.okShort)} />} wrong={m.wrong}
-    above={<div style={{ marginBottom: 14 }}><CodePanel file={F.ord} lines={ORDER_TS} focus={['op']} /></div>}
-    after={<div style={{ display: 'grid', gap: 10 }}>
-      <div className="mk-tag" style={{ color: T.green, margin: 0 }}>Haqiqiy natija — himoyasiz funksiya</div>
-      <div className="pg-row hl"><span>orderTotal(10000, -1)</span><span style={{ color: T.ink3 }}>→</span><span className="v" style={{ color: T.accent }}>-10000</span></div>
-      <div className="mk-rule">Xato yo'q, natija noto'g'ri — <b>himoya (guard)</b> kerak.</div>
-    </div>} />;
+  return MC(p, 4, {
+    above: <div style={{ display: 'grid', gap: 8 }}>
+      <CodePanel file="phone.ts" lines={kod('PHONE_OLD', { 2: 'r', 4: 'i' })} focus={['r', 'i']} />
+      <div className="mk-pair">{t("Aziza yozdi: ", "Азиза написала: ")}<code>+998 90 123 45 67</code></div>
+    </div>,
+    after: <Term title={t("VS Code terminali · npm test -- phone", "терминал VS Code · npm test -- phone")} lines={out('02', outFind('02', /✕/), outFind('02', /Received:/))} er />,
+  });
 }
 
 // ============================================================
-//  5 · Edge testlari: did not throw (jest2-out/04)
+//  5 · Edge testlar: it.each (kod-02-phone.spec.ts · jest2v2-out/02)
 // ============================================================
-const S5 = mkS(5, [{ focus: ['e'] }, { out: true, f: ['n'] }, { out: true, f: ['m'] }, { out: true, f: ['m'], sum: true }]);
+const T5 = out('02', outFind('02', /^FAIL/), outFind('02', /^Tests:/));
+// F-1109-06: xulosa — FAIL parchasi o'rniga it.each jadvalining o'zi (jest2v2-out/02) va qoida raqamlar o'qida
+const ROWS5 = [
+  ['g', "it.each — to'g'ri raqamlar", 'it.each — правильные номера'],
+  ['r', '+998901234567', "to'g'ri raqam", 'true', 'true', true],
+  ['r', '998901234567', "to'g'ri raqam", 'true', 'true', true],
+  ['g', "it.each — noto'g'ri kirishlar", 'it.each — неверные вводы'],
+  ['r', '12345678', '8 ta raqam — qisqa', 'false', 'false', true],
+  ['r', '+99890123456789', '14 ta raqam — uzun', 'false', 'false', true],
+  ['r', 'abc', 'harf', 'false', 'false', true],
+  ['r', "''", "bo'sh", 'false', 'false', true],
+  ['g', "it — mijozning odati", 'it — привычка клиента'],
+  ['r', '+998 90 123 45 67', 'mijoz probel bilan yozadi', 'true', 'false', false],
+];
+function Each5() {
+  return <div className="z">
+    <div className="z-card">
+      <p className="z-h">{t("phone.spec.ts — bitta qoida, yetti kirish · npm test -- phone", "phone.spec.ts — одно правило, семь вводов · npm test -- phone")}</p>
+      <table className="z-tbl j2-5"><tbody>
+        <tr><th>{t("kirish", "ввод")}</th><th>{t("test nomi", "имя теста")}</th><th className="c">{t("kutilgan", "ожидалось")}</th><th className="c">isPhone</th><th className="c">test</th></tr>
+        {ROWS5.map((r, i) => r[0] === 'g' ? <tr key={i} className="grp"><td colSpan={5}>{t(r[1], r[2])}</td></tr>
+          : <tr key={i} className={r[5] ? '' : 'bad'}><td>{r[1]}</td><td>{r[2]}</td><td className="c">{r[3]}</td><td className="c">{r[5] ? r[4] : <b>{r[4]}</b>}</td><td className={'c ' + (r[5] ? 'p' : 'f')}>{r[5] ? '✓' : '✕'}</td></tr>)}
+      </tbody></table>
+      <span className="z-mut">Tests: 1 failed, 6 passed, 7 total</span>
+    </div>
+    <div className="z-card">
+      <p className="z-h">{t("Qoida: ", "Правило: ")}<span className="zk">/^\+?\d{'{'}9,13{'}'}$/</span>{t(" — raqamlar soni", " — количество цифр")}</p>
+      <div className="j2-nl">
+        <div className="x">8<small>{t("qisqa", "коротко")}</small></div><div>9</div><div>10</div><div>11</div><div>12</div><div>13</div><div className="x">14<small>{t("uzun", "длинно")}</small></div><div className="x">␣<small>{t("probel", "пробел")}</small></div>
+      </div>
+      <span className="z-mut">{t("8 va 14 — chegaradan bitta tashqarida. Probel qoidada umuman yo'q: mijoz yozadi, regex bilmaydi.", "8 и 14 — на одну за границей. Пробела в правиле нет вовсе: клиент пишет, regex не знает.")}</span>
+    </div>
+  </div>;
+}
+const S5 = mkS(5, [{ f: ['a'] }, { f: ['b'] }, { f: ['c'], run: true }, { f: [], run: true, sum: true }]);
 function Screen5(p) {
-  return <Lesson p={p} S={S5} scene={({ seg }) => <div className="pg-two">
-    <div className={seg.sum ? 'j2-wide-only' : ''}><Ide files={ORD_FILES} active={F.ordSpec}><CodePanel file={F.ordSpec} wrap lines={SPEC_EDGE} focus={seg.out ? [] : seg.focus} /></Ide></div>
-    <div style={{ display: 'grid', gap: 10, alignContent: 'start' }}>
-      {seg.out && <Term er lines={FAIL_EDGE} focus={seg.f} />}
-      {seg.sum && <div className="mk-rule"><b>did not throw</b> — funksiyada himoya yo'q yoki shart bu qiymatni o'tkazib yubordi.</div>}
-    </div>
-  </div>} />;
+  return <Lesson p={p} S={S5} scene={({ seg }) => <>
+    {!seg.run && <Code k="SPEC_PHONE_02" files={FILES(F.ph, F.phs)} active={F.phs} fresh={F.phs} ids={{ ...rngIds(4, 6, 'a'), ...rngIds(8, 15, 'b'), ...rngIds(17, 19, 'c') }} focus={seg.f} />}
+    {seg.run && !seg.sum && <><CodePanel file="phone.spec.ts" lines={kod('SPEC_PHONE_02', rngIds(17, 19, 'c'), 17, 20)} focus={seg.f} /><Term title={t("VS Code terminali · npm test -- phone", "терминал VS Code · npm test -- phone")} lines={T5} er /></>}
+    {seg.sum && <Each5 />}
+  </>} />;
 }
 
 // ============================================================
-//  6 · Guard: if → throw → return (jest2-out/05)
+//  6 · Ichida: tuzatish va «9 ta nol ham o'tadi» (kod-03-phone.ts · jest2v2-out/03, 04)
 // ============================================================
-const S6 = mkS(6, [{ focus: ['if', 'th', 'ret'], steps: true }, { focus: ['if'] }, { focus: ['th'] }, { focus: [], out: true }, { focus: [], out: true, sum: true }]);
+const FIX6 = kod('PHONE_OLD', { 4: 'f' }, 1, 4, { 4: KOD.PHONE_NEW.lines[3].t });
+const T6A = out('03', outFind('03', /^PASS/), outFind('03', /^Tests:/));
+const T6B = out('04', outFind('04', /isPhone — qoida/), outFind('04', /^Tests:/));
+// F-1109-06: xulosa — ikki karta o'rniga phone.ts 4-satr diff (kod manbasidan) va bir xil kirishlar eski/yangi qoidada (jest2v2-out/02–04)
+function Diff6() {
+  return <div className="z">
+    <div className="z-card">
+      <p className="z-h">{t("phone.ts 4-satr — bitta o'zgarish", "phone.ts строка 4 — одно изменение")}</p>
+      <div className="z-term"><span className="r">- {KOD.PHONE_OLD.lines[3].t}</span>{'\n'}<span className="g">+ {KOD.PHONE_NEW.lines[3].t}</span></div>
+    </div>
+    <div className="z-card">
+      <p className="z-h">{t("Bir xil kirishlar — eski va yangi qoida", "Одни и те же вводы — старое и новое правило")}</p>
+      <table className="z-tbl j2-6"><tbody>
+        <tr><th>{t("kirish", "ввод")}</th><th className="c">trim()</th><th className="c">replace()</th><th /></tr>
+        <tr><td>+998901234567</td><td className="c p">true</td><td className="c p">true</td><td /></tr>
+        <tr><td>12345678 · 14 ta · abc · ''</td><td className="c">false</td><td className="c">false</td><td /></tr>
+        <tr className="tor"><td>+998 90 123 45 67</td><td className="c f">false</td><td className="c p">true</td><td><span className="lab o">{t("qoida tor edi", "правило было узким")}</span></td></tr>
+        <tr className="keng"><td>000000000</td><td className="c p">true</td><td className="c p">true</td><td><span className="lab b">{t("qoida keng — sizning qaroringiz", "правило широкое — ваше решение")}</span></td></tr>
+      </tbody></table>
+      <span className="z-mut">{t("npm test -- phone: 7 passed → «9 ta nol ham o'tadi» bilan 8 passed. Test qoidani tekshiradi; qoidaning o'zi to'g'rimi — buni siz hal qilasiz.", "npm test -- phone: 7 passed → с «9 нулей тоже проходит» 8 passed. Тест проверяет правило; верно ли само правило — решаете вы.")}</span>
+    </div>
+  </div>;
+}
+const S6 = mkS(6, [{ v: 'fix' }, { v: 'nol' }, { v: 'nol', rule: true }, { v: 'sum' }]);
 function Screen6(p) {
-  return <Lesson p={p} S={S6} scene={({ seg }) => <div style={{ display: 'grid', gap: 12 }}>
-    <Ide files={ORD_FILES} active={F.ord}><CodePanel file={F.ord} wrap lines={ORDER_GUARD} focus={seg.focus} /></Ide>
-    {seg.steps && <div className="pg-three">
-      <div className="mk-box" style={{ '--c': T.yellow }}><h4>1 · Shart</h4><p><code>if (…)</code></p></div>
-      <div className="mk-box" style={{ '--c': T.accent }}><h4>2 · Xato</h4><p><code>throw new Error(…)</code></p></div>
-      <div className="mk-box" style={{ '--c': T.green }}><h4>3 · Hisob</h4><p><code>return price * quantity</code></p></div>
-    </div>}
-    {seg.out && <Term lines={PASS5} focus={seg.sum ? ['tot'] : []} />}
-    {seg.sum && <div className="mk-rule">Ikki tomon sinaladi: noto'g'ri kirish — <b>xato</b>, eng kichik to'g'ri kirish (1 dona) — <b>hisob</b>.</div>}
-  </div>} />;
+  return <Lesson p={p} S={S6} scene={({ seg }) => <>
+    {seg.v === 'fix' && <><CodePanel file="phone.ts" lines={FIX6} focus={['f']} /><Term title={t("VS Code terminali · npm test -- phone", "терминал VS Code · npm test -- phone")} lines={T6A} /></>}
+    {seg.v === 'nol' && <><CodePanel file="phone.spec.ts" lines={kod('SPEC_PHONE_04', rngIds(22, 25, 'n'), 22, 26)} focus={seg.rule ? [] : ['n']} /><Term title={t("VS Code terminali · npm test -- phone", "терминал VS Code · npm test -- phone")} lines={T6B} /></>}
+    {seg.rule && <div className="n2-warn">{t(<>Test <b>qoidani</b> tekshiradi. Qoidaning o'zi to'g'rimi (9 ta nol — telefonmi?) — bu <b>sizning qaroringiz</b>.</>, <>Тест проверяет <b>правило</b>. Верно ли само правило (9 нулей — телефон?) — это <b>ваше решение</b>.</>)}</div>}
+    {seg.v === 'sum' && <Diff6 />}
+  </>} />;
 }
 
 // ============================================================
-//  7 · Amaliyot 1 — edge testlari va guard
+//  7 · Amaliyot 1 — phone.ts va phone.spec.ts
 // ============================================================
-const P1 = mkS(7, [{ hl: [] }, { hl: [0, 1] }, { hl: [2, 3] }, { hl: [] }], { tableAt: 3 });
-const P1_STEPS = [
-  { t: "Edge testlari — order.spec.ts: 0 va -1 uchun expect(() => …).toThrow()", cmds: [], exp: 'fayl saqlandi' },
-  { t: 'Qizil', cmds: ['npm test'], exp: 'Received function did not throw (2 ta)' },
-  { t: "Guard — order.ts boshiga (namuna — o'zingiz yozing)", cmds: [], exp: 'fayl saqlandi' },
-  { t: "Yashil — 1 dona va 'ikki' as any testlari", cmds: ['npm test'], exp: 'Tests: 5 passed, 5 total' },
-];
-const P1_CODE = [{ file: F.ordSpec, step: 0, lines: SPEC_EDGE, copy: false }, { file: F.ord, step: 2, lines: ORDER_GUARD, copy: false }, { file: F.ordSpec, step: 3, lines: SPEC_FULL, copy: false }];
-const P1_TROUBLE = [
-  ["Tests: 8 passed yoki boshqa son, nomlar yo'q", "Jest-1 dagi delivery/discount testlari ham yurdi — npm test -- order (faqat order testlari)"],
-  ['2-qadamda test xato matni bilan yiqildi', "() => yozilmagan — 8-ekran"],
-  ["4-qadamda «1 dona» qizil, quantity musbat raqam bo'lsin", 'shart quantity <= 1 — 1 ham taqiqlangan; quantity <= 0 bo\'lsin'],
-  ['«matn — xato» qizil, Received: NaN…', "typeof / Number.isNaN tekshiruvi yo'q — guardning 2-satri"],
-];
-const P1_PROOF = { label: 'Isbot: natijadagi Tests: satri', placeholder: "natijadagi Tests satrini qo'ying", check: (v) => /Tests:\s+5 passed,\s+5 total/.test(v), wrong: "Satr «Tests:» bilan boshlanadi; beshala test o'tgan bo'lishi kerak. Boshqa son bo'lsa — «Boshqacha chiqdimi?»" };
-function ScreenP1(p) { return <Practice p={p} S={P1} steps={P1_STEPS} trouble={P1_TROUBLE} proof={P1_PROOF} code={P1_CODE} tree={ORD_FILES} />; }
+const P7 = mkPractice(7, [[], [0, 1], [2, 3], []], {
+  code: [
+    { step: 1, file: F.phs, lines: kod('SPEC_PHONE_02') },
+    { step: 2, file: F.ph, lines: kod('PHONE_NEW') },
+    { step: 3, file: F.phs, lines: kod('SPEC_PHONE_04') },
+  ],
+});
+function ScreenP7(p) { return <Practice p={p} S={P7.S} steps={P7.steps} trouble={P7.trouble} proof={P7.proof} code={P7.code} tree={FILES(F.ph, F.phs)} />; }
 
 // ============================================================
-//  8 · () => nega kerak (jest2-out/06)
+//  8 · place — uch xato, ikki xil joy (order.service.ts 24–45, jest2-start)
 // ============================================================
-const WRAP_BAD = ts(String.raw`
-  it('0 dona — xato', () => {
-    expect(orderTotal(10000, 0)).toThrow();
-  });`, { 2: { id: 'x' } });
-const WRAP_OK = ts(String.raw`
-  it('0 dona — xato', () => {
-    expect(() => orderTotal(10000, 0)).toThrow();
-  });`, { 2: { id: 'x' } });
-const UNWRAP_OUT = jt(String.raw`
-FAIL src/order.spec.ts
-    ✕ 0 dona — xato
-
-  ● orderTotal › 0 dona — xato
-
-    quantity musbat raqam bo'lsin
-
-    > 3 |     throw new Error("quantity musbat raqam bo'lsin");
-        |           ^
-
-      at orderTotal (order.ts:3:11)
-      at Object.<anonymous> (order.spec.ts:11:22)
-
-Tests:       1 failed, 4 passed, 5 total`, { 4: { id: 'm' }, 6: { id: 'm' }, 11: { id: 'at' }, 12: { id: 'at' } });
-const S8 = mkS(8, [{ v: 'both' }, { v: 'bad', f: ['m'] }, { v: 'bad', f: ['at'] }, { v: 'both', sum: true }]);
+function Flow8({ hl }) {
+  return <div className="mk-light" style={{ padding: 14 }}>
+    <div className="mk-tag">{t("place() — xato qayerda otiladi", "place() — где бросается ошибка")}</div>
+    <div className="fl-grid">
+      <div className="fl-box" style={{ '--c': T.blue }}><small>place(user, cart)</small><b>{t("funksiya chaqirildi", "функция вызвана")}</b></div>
+      <div className="fl-tests">
+        <div className="fl-row"><span className="fl-ar">→</span><div className={`fl-box${hl === 'sync' ? ' hl' : ''}`} style={{ '--c': JC.err }}><small>{t("25–26-satr · darhol, funksiyaning o'zida", "строки 25–26 · сразу, в самой функции")}</small><b>throw «Telefon raqami yo'q» · «Savat bo'sh»</b></div><div className="fl-v bad">{t("sinxron xato", "синхронная ошибка")}</div></div>
+        <div className="fl-row"><span className="fl-ar">→</span><div className={`fl-box${hl === 'async' ? ' hl' : ''}`} style={{ '--c': JC.edge }}><small>{t("27-satr: transaction(async …) → 37-satr", "строка 27: transaction(async …) → строка 37")}</small><b>throw «Kolonka: omborda faqat 1 ta qoldi»</b></div><div className="fl-v bad">{t("promise xatosi", "ошибка promise")}</div></div>
+      </div>
+    </div>
+  </div>;
+}
+const S8 = mkS(8, [{ v: 'code', f: ['s'] }, { v: 'code', f: ['a'] }, { v: 'flow', hl: 'sync' }, { v: 'flow', hl: 'async', sum: true }]);
 function Screen8(p) {
-  return <Lesson p={p} S={S8} scene={({ seg }) => <div className="pg-two">
-    <div style={{ display: 'grid', gap: 10, alignContent: 'start' }}>
-      <div className="mk-tag" style={{ color: T.accent, margin: 0 }}>O'ralmagan</div>
-      <CodePanel file={F.ordSpec} wrap lines={WRAP_BAD} focus={['x']} />
-      {seg.v === 'both' && <><div className="mk-tag" style={{ color: T.green, margin: 0 }}>O'ralgan — () =&gt;</div><CodePanel file={F.ordSpec} wrap lines={WRAP_OK} focus={['x']} /></>}
-    </div>
-    <div style={{ display: 'grid', gap: 10, alignContent: 'start' }}>
-      {seg.v === 'bad' && <Term er lines={UNWRAP_OUT} focus={seg.f} />}
-      {seg.v === 'both' && !seg.sum && <div className="mk-card"><h5>Savol</h5><div style={{ fontSize: 14.5, lineHeight: 1.55 }}>Qaysi yozuv to'g'ri? Sinab ko'ramiz: <b>o'rashni olib tashlaymiz</b>.</div></div>}
-      {seg.sum && <><Term lines={PASS5.slice(1, 8)} /><div className="mk-rule">Xato kutilsa — funksiya <b>() =&gt; ichida</b>: Jest uni o'zi chaqiradi va xatoni tutadi.</div></>}
-    </div>
-  </div>} />;
+  return <Lesson p={p} S={S8} scene={({ seg }) => <>
+    {seg.v === 'code' && <Code k="ORDER_PLACE" files={FILES()} active={F.ord} ids={{ 25: 's', 26: 's', 36: 'a', 37: 'a', 38: 'a' }} focus={seg.f} from={24} to={38} />}
+    {seg.v === 'flow' && <Flow8 hl={seg.hl} />}
+    {seg.sum && <div className="mk-rule">{t("Sinxron xato — ", "Синхронная ошибка — ")}<code>expect(() =&gt; …).toThrow()</code>{t(" · promise xatosi — ", " · ошибка promise — ")}<code>await expect(…).rejects.toThrow()</code>{t(". Shakl almashsa, Jest qizil ham bermaydi (11, 13-ekran).", ". Если перепутать форму, Jest даже не даст красного (экраны 11, 13).")}</div>}
+  </>} />;
 }
 
 // ============================================================
-//  9 · toThrow('xabar'): xabar mos emas (jest2-out/07)
+//  9 · Mock: baza o'rniga soxta manager (kod-05-order.service.spec.ts 8–31)
 // ============================================================
-const MSG_SPEC = ts(String.raw`
-  it("matn — xato", () => {
-    expect(() => orderTotal(10000, 'ikki' as any)).toThrow('narx xato');
-  });`, { 2: { id: 'x' } });
-const MSG_OUT = jt(String.raw`
-FAIL src/order.spec.ts
-    ✕ matn — xato (11 ms)
-
-  ● orderTotal › matn — xato
-
-    expect(received).toThrow(expected)
-
-    Expected substring: "narx xato"
-    Received message:   "quantity musbat raqam bo'lsin"
-
-      at orderTotal (order.ts:3:11)
-
-Tests:       1 failed, 4 passed, 5 total`, { 8: { id: 'm' }, 9: { id: 'm' } });
-WRAP_BAD.forEach((l, i) => { l.n = 10 + i; });
-WRAP_OK.forEach((l, i) => { l.n = 10 + i; });
-MSG_SPEC.forEach((l, i) => { l.n = 16 + i; });
-const S9 = mkS(9, [{ v: 'code' }, { v: 'out' }, { v: 'out', sum: true }]);
+const S9 = mkS(9, [{ f: ['m'], to: 16 }, { f: ['d'], to: 16 }, { f: ['t'], to: 31 }, { f: ['r'], from: 44, to: 50 }]);
 function Screen9(p) {
-  return <Lesson p={p} S={S9} scene={({ seg }) => <div className="pg-two">
-    <div style={{ display: 'grid', gap: 10, alignContent: 'start' }}>
-      <Ide files={ORD_FILES} active={F.ordSpec}><CodePanel file={F.ordSpec} wrap lines={MSG_SPEC} focus={['x']} /></Ide>
-      {seg.v === 'code' && <div className="pg-two">
-        <div className="mk-box" style={{ '--c': T.ink3 }}><h4><code>toThrow()</code></h4><p>xato bo'ldimi?</p></div>
-        <div className="mk-box" style={{ '--c': T.green }}><h4><code>toThrow('matn')</code></h4><p>qaysi xato?</p></div>
-      </div>}
-    </div>
-    <div style={{ display: 'grid', gap: 10, alignContent: 'start' }}>
-      {seg.v === 'out' && <Term er lines={MSG_OUT} focus={['m']} />}
-      {seg.sum && <><div className="mk-tag" style={{ color: T.green, margin: 0 }}>Tuzatildi — toThrow("quantity musbat raqam bo'lsin")</div><Term lines={PASS5.slice(7, 8).concat(PASS5.slice(10))} /></>}
-      {seg.sum && <div className="mk-rule">Xato kutilgan joyda <b>xabarni ham</b> tekshiring — u qaysi shartdan kelganini aytadi.</div>}
-    </div>
-  </div>} />;
+  return <Lesson p={p} S={S9} scene={({ seg }) => <>
+    <Code k="SPEC_ORDER_05" files={FILES(F.ph, F.phs, F.ors)} active={F.ors} fresh={F.ors} ids={{ ...rngIds(8, 14, 'm'), 15: 'd', ...rngIds(23, 29, 't'), ...rngIds(45, 50, 'r') }} focus={seg.f} from={seg.from || 1} to={seg.to} />
+    {seg.f[0] === 'r' && <div className="mk-rule"><code>mockResolvedValue</code>{t(" — bu testda ", " — в этом тесте ")}<code>findOne</code>{t(" aynan shu mahsulotni qaytaradi: omborda ", " возвращает именно этот товар: на складе ")}<b>1 ta</b>{t(". Baza yo'q, kod haqiqiy.", ". Базы нет, код настоящий.")}</div>}
+  </>} />;
 }
 
 // ============================================================
-//  10 · Shartsiz throw va < 0 (jest2-out/08, 09)
+//  10 · toThrow va rejects.toThrow — to'rt test yashil (kod-05 33–67 · jest2v2-out/05)
 // ============================================================
-const NOIF_TS = ts(String.raw`
-export function orderTotal(price: number, quantity: number): number {
-  throw new Error("quantity musbat raqam bo'lsin");
-  return price * quantity;
-}`, { 2: { id: 'x' } });
-const LT_TS = ts(GUARD_SRC('quantity < 0'), { 2: { id: 'x' } });
-const NOIF_OUT = jt(String.raw`
-FAIL src/order.spec.ts
-  orderTotal
-    ✕ 2 kitob narxini hisoblaydi (2 ms)
-    ✕ 1 dona — eng kichik haqiqiy buyurtma
-    ✓ 0 dona — xato (2 ms)
-    ✓ manfiy — xato (1 ms)
-    ✓ matn — xato (4 ms)
-
-Tests:       2 failed, 3 passed, 5 total`, { 3: { id: 'x' }, 4: { id: 'x' } });
-const LT_OUT = jt(String.raw`
-FAIL src/order.spec.ts
-  orderTotal
-    ✓ 2 kitob narxini hisoblaydi (2 ms)
-    ✓ 1 dona — eng kichik haqiqiy buyurtma
-    ✕ 0 dona — xato (1 ms)
-    ✓ manfiy — xato (2 ms)
-    ✓ matn — xato (1 ms)
-
-  ● orderTotal › 0 dona — xato
-
-    Received function did not throw
-
-Tests:       1 failed, 4 passed, 5 total`, { 5: { id: 'x' }, 9: { id: 'x' }, 11: { id: 'x' } });
-const S10 = mkS(10, [{ v: 'noif' }, { v: 'noif', out: true }, { v: 'lt', out: true }, { v: 'lt', out: true, sum: true }]);
+const T10 = out('05', outFind('05', /^PASS/), outFind('05', /^Tests:/));
+const S10 = mkS(10, [{ f: ['s'], to: 42 }, { f: ['a'], from: 44, to: 55 }, { f: ['h'], from: 57, to: 67, run: true }, { run: true, sum: true }]);
 function Screen10(p) {
-  return <Lesson p={p} S={S10} scene={({ seg }) => <div className="pg-two">
-    <div style={{ display: 'grid', gap: 10, alignContent: 'start' }}>
-      <div className="mk-tag" style={{ color: T.accent, margin: 0 }}>{seg.v === 'noif' ? "1-buzish: throw bor, if yo'q" : '2-buzish: <= 0 o\'rniga < 0'}</div>
-      {seg.v === 'noif'
-        ? <Ide files={ORD_FILES} active={F.ord}><CodePanel file={F.ord} wrap lines={NOIF_TS} focus={['x']} /></Ide>
-        : <CodePanel file={F.ord} wrap lines={LT_TS.slice(0, 3)} focus={['x']} />}
-    </div>
-    <div style={{ display: 'grid', gap: 10, alignContent: 'start' }}>
-      {seg.out && <Term er lines={seg.v === 'noif' ? NOIF_OUT : LT_OUT} focus={['x']} />}
-      {seg.sum && <div className="pg-row" style={{ borderColor: T.green }}><span>Tiklandi: if bilan, quantity &lt;= 0</span><span className="v" style={{ fontSize: 13, color: T.green }}>Tests: 5 passed, 5 total</span></div>}
-      {seg.sum && <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
-        <div className="mk-box" style={{ '--c': T.green }}><h4>Happy testi</h4><p>himoya <b>juda qattiq</b> bo'lsa qizil</p></div>
-        <div className="mk-box" style={{ '--c': T.accent }}><h4>Edge testi</h4><p>himoya <b>teshik</b> bo'lsa qizil</p></div>
-      </div>}
-    </div>
-  </div>} />;
+  return <Lesson p={p} S={S10} scene={({ seg }) => <>
+    {!seg.sum && <CodePanel file="order.service.spec.ts" lines={kod('SPEC_ORDER_05', { ...rngIds(34, 38, 's'), ...rngIds(40, 42, 's'), ...rngIds(51, 54, 'a'), 65: 'h', 66: 'h' }, seg.from || 33, seg.to)} focus={seg.f} />}
+    {seg.run && <Term title={t("VS Code terminali · npm test -- order.service", "терминал VS Code · npm test -- order.service")} lines={T10} />}
+    {seg.sum && <div className="pg-two">
+      <Card c={JC.err} h={t("Sinxron xato", "Синхронная ошибка")}><p><code>expect(() =&gt; service.place(…)).toThrow('…')</code>{t(" — funksiya o'raladi, Jest o'zi chaqiradi", " — функция обёрнута, Jest вызывает её сам")}</p></Card>
+      <Card c={JC.edge} h={t("Promise xatosi", "Ошибка promise")}><p><code>await expect(service.place(…)).rejects.toThrow('…')</code>{t(" — darhol chaqiriladi, promise kutiladi", " — вызывается сразу, promise ожидается")}</p></Card>
+    </div>}
+  </>} />;
 }
 
 // ============================================================
-//  11 · Tekshiruv 2 — LineCheck (target 0 dan: 2-satr = 1)
+//  11 · Buzamiz: toThrow promise xatosida — natija yo'q (kod-07 · jest2v2-out/07)
 // ============================================================
-const LC11_FIXED = LT_TS.map((l, i) => ({ ...l, id: undefined, n: i + 1, ...(i === 1 ? { gone: true } : {}) }));
-LC11_FIXED.splice(2, 0, { h: tsLine("  if (typeof quantity !== 'number' || Number.isNaN(quantity) || quantity <= 0) {"), n: 2, neu: true });
+const T11 = out('07');
+const CAUSE11 = ["toThrow o'ramni chaqirdi — place() promise qaytardi", "Shu paytda xato yo'q → Jest «test o'tdi» deb hisobladi", "Xato keyin, promise ichida otildi — hech kim ushlamadi", 'Node butun jarayonni to\'xtatdi: PASS ham, FAIL ham yo\'q'];
+function Cause({ items, on, bad }) {
+  return <div className="cause">{items.map((x, i) => <div key={i} className={`${i < on ? 'on' : ''}${bad === i ? ' bad' : ''}`}><i>{i + 1}</i><span>{x}</span></div>)}</div>;
+}
+const S11 = mkS(11, [{ v: 'code' }, { v: 'run' }, { v: 'cause' }, { v: 'cause', sum: true }]);
 function Screen11(p) {
-  const m = MDT[11];
-  return <LineCheck {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} task={m.task} q={m.q} file={F.ord} lines={LT_TS.map((l) => ({ ...l, id: undefined }))} target={1}
-    tree={{ root: MKCFG.root, files: ORD_FILES, active: F.ord }}
-    fixed={LC11_FIXED} fixedExtra={[{ file: "2-satrdagi o'zgarish", lines: [{ h: `${tsLine('quantity < 0')}   →   ${tsLine('quantity <= 0')}` }] }, { file: 'terminal — npm test (haqiqiy)', lines: PASS5.slice(1, 8).concat(PASS5.slice(10)) }]}
+  return <Lesson p={p} S={S11} scene={({ seg }) => <>
+    {seg.v === 'code' && <CodePanel file={t("order.service.spec.ts · buzilgan", "order.service.spec.ts · сломан")} lines={kod('SPEC_ORDER_07', { 51: 'x', 52: 'x', 53: 'x' }, 44, 55)} focus={['x']} />}
+    {seg.v === 'run' && <><CodePanel file={t("order.service.spec.ts · buzilgan", "order.service.spec.ts · сломан")} lines={kod('SPEC_ORDER_07', { 51: 'x' }, 51, 53)} focus={['x']} /><Term title={t("VS Code terminali · natija yo'q", "терминал VS Code · результата нет")} lines={T11} er /></>}
+    {seg.v === 'cause' && <><Term title={t("VS Code terminali · natija yo'q", "терминал VS Code · результата нет")} lines={T11} er /><Cause items={CAUSE11} on={seg.sum ? 4 : 4} bad={3} /></>}
+  </>} />;
+}
+
+// ============================================================
+//  12 · Tekshiruv 2 — rejects sinxron xatoda (kod-06 · jest2v2-out/06)
+// ============================================================
+function Screen12(p) {
+  return MC(p, 12, {
+    above: <div style={{ display: 'grid', gap: 8 }}>
+      <CodePanel file="order.service.spec.ts" lines={kod('SPEC_ORDER_06', { 35: 'x', 36: 'x', 37: 'x' }, 35, 37)} focus={['x']} />
+      <CodePanel file="order.service.ts" lines={kod('ORDER_PLACE', { 25: 't' }, 25, 25)} focus={['t']} />
+    </div>,
+    after: <Term title={t("VS Code terminali · npm test -- order.service -t telefon", "терминал VS Code · npm test -- order.service -t telefon")} lines={out('06', outFind('06', /●/), outFind('06', /^\s*>\s*25/))} er />,
+  });
+}
+
+// ============================================================
+//  13 · await unutildi — xabar noto'g'ri, natija yo'q (kod-08 · jest2v2-out/08)
+// ============================================================
+const T13 = outPick('08', (l) => !/^\s+at |matcherResult|^\s*'|^\s*"|pass: false|^\s*\}|^\s*\{$|innerErr|^\s+\^$/.test(l));
+const CAUSE13 = ['Test funksiyasi promise\'ni kutmasdan darhol tugadi', 'Promise keyin rad etildi — Jest farqni ko\'rdi (Expected / Received)', 'Lekin bu xato qaysi testniki? Jest bog\'lay olmadi', 'Jarayon to\'xtadi: PASS ham, FAIL ham yo\'q'];
+const S13 = mkS(13, [{ v: 'code' }, { v: 'run' }, { v: 'cause' }, { v: 'cause', sum: true }]);
+function Screen13(p) {
+  return <Lesson p={p} S={S13} scene={({ seg }) => <>
+    {seg.v === 'code' && <CodePanel file={t("order.service.spec.ts · await yo'q", "order.service.spec.ts · нет await")} lines={kod('SPEC_ORDER_08', { 51: 'x', 52: 'x' }, 44, 54)} focus={['x']} />}
+    {seg.v === 'run' && <><CodePanel file={t("order.service.spec.ts · await yo'q", "order.service.spec.ts · нет await")} lines={kod('SPEC_ORDER_08', { 51: 'x' }, 51, 53)} focus={['x']} /><Term title={t("VS Code terminali · natija yo'q", "терминал VS Code · результата нет")} lines={T13} er /></>}
+    {seg.v === 'cause' && <><Term title={t("VS Code terminali · natija yo'q", "терминал VS Code · результата нет")} lines={T13.slice(0, 5)} er /><Cause items={CAUSE13} on={4} bad={0} /></>}
+  </>} />;
+}
+
+// ============================================================
+//  14 · Tekshiruv 3 — LineCheck: await yo'q (kod-08 44–54, xato 51-satr → indeks 7; 08b tuzatilgan)
+// ============================================================
+const LC14 = kod('SPEC_ORDER_08', {}, 44, 54);
+const LC14_FIXED = kod('SPEC_ORDER_08', {}, 44, 54).flatMap((l) => l.n === 51 ? [{ ...l, gone: true }, { h: tsLine('    await expect(service.place(user, cart)).rejects.toThrow('), n: 51, neu: true }] : [l]);
+const T14X = out('08b', outFind('08b', /●/), outFind('08b', /Received message/));
+function Screen14(p) {
+  const m = MDT[14];
+  return <LineCheck {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} task={m.task} q={m.q} file="order.service.spec.ts" lines={LC14} target={7}
+    tree={{ root: MKCFG.root, files: compact(FILES(F.ph, F.phs, F.ors), F.ors), active: F.ors }}
+    fixed={LC14_FIXED} fixedExtra={[{ file: t("VS Code terminali · await bilan, xabar noto'g'ri", "терминал VS Code · с await, сообщение неверное"), lines: T14X }]}
     ok={m.ok} okShort={<span dangerouslySetInnerHTML={html(m.okShort)} />} hint={m.hint} />;
 }
 
 // ============================================================
-//  12 · Amaliyot 2 — uch buzish
+//  15 · Xato yo'lida nima bo'lmasligi kerak (kod-05 44–55, 57–67 · order.service.ts 36–45)
 // ============================================================
-const P2 = mkS(12, [{ hl: [] }, { hl: [0, 1] }, { hl: [2, 3] }, { hl: [] }], { tableAt: 3 });
-const P2_STEPS = [
-  { t: "() =>siz — 0 dona testida: expect(orderTotal(10000, 0)).toThrow();", cmds: ['npm test'], exp: "quantity musbat raqam bo'lsin · at orderTotal (order.ts:3:11)" },
-  { t: "Boshqa xabar — () => ni qaytaring; matn testida toThrow('narx xato')", cmds: ['npm test'], exp: 'Expected substring · Received message' },
-  { t: '< 0 — order.ts: quantity <= 0 → quantity < 0', cmds: ['npm test'], exp: '0 dona — xato · did not throw' },
-  { t: 'Tiklash — hammasini qaytaring', cmds: ['npm test'], exp: '5 passed' },
-];
-const P2_TROUBLE = [
-  ['1-qadamda PASS', "o'zgarish boshqa testda qilingan — «0 dona» testidagi () => ni oling"],
-  ['2-qadamda PASS', "toThrow() bo'sh qolgan — qavs ichiga matn yozing"],
-];
-const P2_PROOF = { label: "2-qadamdagi Received message satri", placeholder: "Received message qatorini qo'ying", check: (v) => /Received message:\s*"?quantity musbat raqam/i.test(v), wrong: "Satr «Received message:» bilan boshlanadi va funksiyaning o'z xabarini ko'rsatadi — butun satrni nusxalang" };
-function ScreenP2(p) { return <Practice p={p} S={P2} steps={P2_STEPS} trouble={P2_TROUBLE} proof={P2_PROOF} />; }
-// ============================================================
-//  13 · TypeScript: test yuradi, VS Code qizil (jest2-out/02, 03, 05)
-// ============================================================
-const TS_SPEC = ts(String.raw`
-import { orderTotal } from './order';
-
-describe('orderTotal', () => {
-  it('2 kitob narxini hisoblaydi', () => {
-    expect(orderTotal(10000, 2)).toBe(20000);
-  });
-  it('matn kelsa', () => {
-    expect(orderTotal(10000, 'ikki')).toBe(0);
-  });
-  it('null kelsa', () => {
-    expect(orderTotal(10000, null)).toBe(0);
-  });
-});`, { 8: { id: 'x' }, 11: { id: 'x' } });
-const TS_SPEC_WAVY = TS_SPEC.map((l, i) => (i === 7 || i === 10 ? wavy(l) : l));
-const TS_RUN = jt(String.raw`
-$ npm test
-FAIL src/order.spec.ts
-  orderTotal
-    ✓ 2 kitob narxini hisoblaydi (2 ms)
-    ✕ matn kelsa (2 ms)
-    ✓ null kelsa
-
-  ● orderTotal › matn kelsa
-
-    Expected: 0
-    Received: NaN
-
-Tests:       1 failed, 2 passed, 3 total`, { 5: { id: 'x' }, 6: { id: 'x' }, 11: { id: 'x' } });
-const TSC_OUT = jt(String.raw`
-$ npx tsc --noEmit -p tsconfig.json
-src/order.spec.ts(8,30): error TS2345: Argument of type 'string' is not assignable to parameter of type 'number'.
-src/order.spec.ts(11,30): error TS2345: Argument of type 'null' is not assignable to parameter of type 'number'.`);
-const ASANY = ts(String.raw`
-  it("matn — xato", () => {
-    expect(() => orderTotal(10000, 'ikki' as any)).toThrow("quantity musbat raqam bo'lsin");
-  });`, { 2: { id: 'x' } });
-ASANY.forEach((l, i) => { l.n = 16 + i; });
-const S13 = mkS(13, [{ v: 'code' }, { v: 'run' }, { v: 'tsc', wavy: true }, { v: 'any', sum: true }]);
-function Screen13(p) {
-  return <Lesson p={p} S={S13} scene={({ seg }) => <div className={seg.v === 'any' ? '' : 'pg-two'} style={seg.v === 'any' ? { display: 'grid', gap: 10 } : undefined}>
-    {seg.v !== 'any' && <div style={{ display: 'grid', gap: 10, alignContent: 'start' }}>
-      <Ide files={ORD_FILES} active={F.ordSpec}><CodePanel file={F.ordSpec} wrap lines={seg.wavy ? TS_SPEC_WAVY : TS_SPEC} focus={['x']} /></Ide>
-      {seg.wavy && <div className="mk-tag" style={{ margin: 0 }}>Qizil to'lqin chiziq — VS Code ko'rinishi maketi; xabar matni — haqiqiy tsc chiqishi</div>}
-    </div>}
-    <div style={{ display: 'grid', gap: 10, alignContent: 'start' }}>
-      {seg.v === 'code' && <div className="mk-card"><h5>Funksiya son kutadi</h5><div style={{ fontSize: 14.5, lineHeight: 1.55 }}><code>orderTotal(price: number, quantity: number)</code> — testda esa <code>'ikki'</code> va <code>null</code>.</div></div>}
-      {seg.v === 'run' && <Term er lines={TS_RUN} focus={['x']} />}
-      {seg.v === 'run' && <div className="mk-tag" style={{ margin: 0 }}>tsconfig.json: "isolatedModules": true — ts-jest turlarni tekshirmaydi</div>}
-      {seg.v === 'tsc' && <Term er title="terminal — tsc (VS Code ko'radigani)" lines={TSC_OUT} />}
-      {seg.v === 'any' && <><CodePanel file={F.ordSpec} wrap lines={ASANY} focus={['x']} /><Term lines={PASS5.slice(7, 8)} /><div className="mk-rule">Noto'g'ri turni <b>ataylab</b> sinashda — <code>'ikki' as any</code>: qizil chiziq yo'qoladi, guard bilan test yashil.</div></>}
+// F-1109-06: xulosa — ikki expect kartasi o'rniga place() oqimi (order.service.ts satrlari bilan) va har expect qaysi qutini tekshirishi
+function Flow15() {
+  return <div className="z j2-15">
+    <div className="flow">
+      <div className="st"><h6>{t("Savat", "Корзина")}</h6><div className="zm">Kolonka × 2</div><div className="ln">{t("cart · spec 18-satr", "cart · spec строка 18")}</div></div>
+      <div className="ar">→</div>
+      <div className="st"><h6>{t("Ombor (mock)", "Склад (mock)")}</h6><div className="zm">findOne → stock: <b>1</b></div><div className="ln">{t("service 31-satr", "service строка 31")}</div></div>
+      <div className="ar">→</div>
+      <div className="st x"><h6>{t("Tekshiruv", "Проверка")}</h6><div className="zm">1 &lt; 2 → throw</div><span className="z-tag r">{t("✗ xato chiqdi", "✗ ошибка вышла")}</span><div className="ln">{t("service 36–37-satr", "service строки 36–37")}</div></div>
+      <div className="ar">✕</div>
+      <div className="st off"><h6>{t("Omborni kamaytirish", "Уменьшение склада")}</h6><div className="zm">UPDATE products SET stock = stock - $1</div><span className="z-tag g">{t("chaqirilmadi · ombor 1 qoldi", "не вызван · на складе осталось 1")}</span><div className="ln">{t("service 42-satr", "service строка 42")}</div></div>
     </div>
-  </div>} />;
+    <div className="as">
+      <div className="a"><b>{t("1-qism · xato chiqdi", "Часть 1 · ошибка вышла")}</b><div className="zm">await expect(service.place(user, cart)){'\n'}.rejects.toThrow('Kolonka: omborda faqat 1 ta qoldi')</div><small>{t("«Tekshiruv» qutisini tekshiradi", "проверяет блок «Проверка»")}</small></div>
+      <div className="a"><b>{t("2-qism · keyingi qadam bo'lmadi", "Часть 2 · следующий шаг не случился")}</b><div className="zm">expect(manager.query){'\n'}.not.toHaveBeenCalled()</div><small>{t("«Omborni kamaytirish» qutisini tekshiradi", "проверяет блок «Уменьшение склада»")}</small></div>
+    </div>
+  </div>;
 }
-
-// ============================================================
-//  14 · Ikki fayl — test nomlari ko'rinmaydi (jest2-out/11, 15)
-// ============================================================
-const TWO_OUT = jt(String.raw`
-$ npm test
-PASS src/order.spec.ts
-PASS src/coupon.spec.ts
-
-Test Suites: 2 passed, 2 total
-Tests:       11 passed, 11 total`, { 2: { id: 'f' }, 3: { id: 'f' }, 6: { id: 't' } });
-const VERB_OUT = jt(String.raw`
-$ npx jest --verbose
-PASS src/order.spec.ts
-  orderTotal
-    ✓ 2 kitob narxini hisoblaydi (2 ms)
-    ✓ 1 dona — eng kichik haqiqiy buyurtma (1 ms)
-    ✓ 0 dona — xato (5 ms)
-    ✓ manfiy — xato
-    ✓ matn — xato (1 ms)
-
-PASS src/coupon.spec.ts
-  applyCoupon
-    ✓ 100 000 dan 10 % — 90 000
-    ✓ chegara 0 % — o'zgarmaydi
-    ✓ chegara 100 % — 0
-    ✓ 101 % — xato (2 ms)
-    ✓ -1 % — xato (1 ms)
-    ✓ total matn — xato
-
-Tests:       11 passed, 11 total`, { 1: { id: 'c' }, 19: { id: 't' } });
-const S14 = mkS(14, [{ v: 'two', f: ['f'] }, { v: 'verb', f: ['c', 't'] }, { v: 'verb', f: [], sum: true }]);
-function Screen14(p) {
-  return <Lesson p={p} S={S14} scene={({ seg }) => <div className="pg-two">
-    <div style={{ display: 'grid', gap: 10, alignContent: 'start' }}>
-      <Term lines={TWO_OUT} focus={seg.v === 'two' ? seg.f : ['t']} />
-      {seg.v === 'two' && <div className="mk-card" style={{ borderColor: T.accent }}><h5 style={{ color: T.accent }}>O'quvchi</h5><div style={{ fontSize: 14.5 }}>«Testlarim qayoqqa ketdi?»</div></div>}
-      {seg.sum && <div className="mk-rule">Nom ko'rinmasa — <b>xato emas</b>: avval jami son, keyin <code>--verbose</code>. FAIL'da qizil test nomi baribir chiqadi.</div>}
-    </div>
-    <div style={{ display: 'grid', gap: 10, alignContent: 'start' }}>
-      {seg.v === 'verb' && <Term lines={VERB_OUT} focus={seg.f} />}
-    </div>
-  </div>} />;
-}
-
-// ============================================================
-//  15 · Tekshiruv 3 — did not throw
-// ============================================================
+const S15 = mkS(15, [{ v: 'src' }, { v: 'not' }, { v: 'times' }, { v: 'sum' }]);
 function Screen15(p) {
-  const m = MDT[15];
-  return <MCRetry {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} q={m.q} opts={m.opts} correct={m.correct} ok={m.ok} okShort={<span dangerouslySetInnerHTML={html(m.okShort)} />} wrong={m.wrong}
-    above={<div style={{ marginBottom: 14 }}><Term er lines={FAIL_EDGE.slice(7, 12)} /></div>}
-    after={<div style={{ display: 'grid', gap: 10 }}>
-      <div className="mk-tag" style={{ color: T.green, margin: 0 }}>Uch xabar — uch sabab (haqiqiy)</div>
-      <div className="pg-three">
-        <div className="mk-box hl" style={{ '--c': T.accent }}><h4>did not throw</h4><p>xato tashlanmadi — guard yo'q yoki shart teshik</p></div>
-        <div className="mk-box" style={{ '--c': T.yellow }}><h4>Received message</h4><p>xato bor, lekin boshqa xabar</p></div>
-        <div className="mk-box" style={{ '--c': T.blue }}><h4>funksiya xabari + at orderTotal</h4><p>() =&gt; yozilmagan</p></div>
-      </div>
-      <Ide files={ORD_FILES} active={F.ord}><CodePanel file={F.ord} wrap lines={ORDER_GUARD} focus={['if']} /></Ide>
-    </div>} />;
-}
-
-// ============================================================
-//  16 · Amaliyot 3 — 'ikki' va as any (jest2-out/02, 03, 05, 14)
-// ============================================================
-const P3 = mkS(16, [{ hl: [] }, { hl: [0, 1] }, { hl: [2, 3] }, { hl: [] }], { tableAt: 3 });
-const P3_STEPS = [
-  { t: "Guardni olish — order.ts: if (…) { throw … } satrlarini izohga oling", cmds: [], exp: 'return price * quantity qoldi' },
-  { t: "as any'siz — matn testi: expect(orderTotal(10000, 'ikki')).toBe(0);", cmds: ['npm test'], exp: "VS Code: qizil chiziq · terminal: Received: NaN" },
-  { t: "as any — 'ikki' as any", cmds: [], exp: "qizil chiziq yo'q" },
-  { t: 'Tiklash — guard va toThrow testi', cmds: ['npm test'], exp: '5 passed' },
-];
-const P3_TROUBLE = [
-  ['2-qadamda Received: 0', 'null testini sinadingiz — matn testini oling'],
-  ['2-qadamda Test suite failed to run · TS2345', "tsconfig.json da isolatedModules: false — ts-jest turlarni tekshiradi (o'quvchi reposida true); as any yozing"],
-];
-const P3_PROOF = { label: '2-qadamdagi Received qiymati', placeholder: 'Received yonidagini yozing', check: (v) => /^\s*NaN\s*$/i.test(v), wrong: "Received — funksiya qaytargan qiymat: 10 000 ni so'zga ko'paytirsak, son chiqadimi?" };
-function ScreenP3(p) { return <Practice p={p} S={P3} steps={P3_STEPS} trouble={P3_TROUBLE} proof={P3_PROOF} />; }
-
-// ============================================================
-//  17 · applyCoupon: chegaraning ikki tomoni (jest2-out/11, 12)
-// ============================================================
-const CUP_SRC = (op) => String.raw`
-export function applyCoupon(total: number, percent: number): number {
-  if (typeof total !== 'number' || Number.isNaN(total)) {
-    throw new Error('total son bo\'lsin');
-  }
-  if (percent < 0 || percent ${op} 100) {
-    throw new Error("percent 0 dan 100 gacha bo'lsin");
-  }
-  return total - (total * percent) / 100;
-}`;
-const CUP_TS = ts(CUP_SRC('>'), { 2: { id: 'g1' }, 3: { id: 'g1' }, 5: { id: 'g2' }, 6: { id: 'g2' }, 8: { id: 'r' } });
-const CUP_BAD = ts(CUP_SRC('>='), { 5: { id: 'x' } });
-const CUP_SPEC = ts(String.raw`
-import { applyCoupon } from './coupon';
-
-describe('applyCoupon', () => {
-  it('100 000 dan 10 % — 90 000', () => {
-    expect(applyCoupon(100000, 10)).toBe(90000);
-  });
-  it('chegara 0 % — o\'zgarmaydi', () => {
-    expect(applyCoupon(100000, 0)).toBe(100000);
-  });
-  it('chegara 100 % — 0', () => {
-    expect(applyCoupon(100000, 100)).toBe(0);
-  });
-  it('101 % — xato', () => {
-    expect(() => applyCoupon(100000, 101)).toThrow();
-  });
-  it('-1 % — xato', () => {
-    expect(() => applyCoupon(100000, -1)).toThrow();
-  });
-  it("total matn — xato", () => {
-    expect(() => applyCoupon('ikki' as any, 10)).toThrow();
-  });
-});`, { 7: { id: 'in' }, 8: { id: 'in' }, 10: { id: 'in' }, 11: { id: 'in' }, 13: { id: 'out' }, 14: { id: 'out' }, 16: { id: 'out' }, 17: { id: 'out' } });
-const CUP_FAIL = jt(String.raw`
-$ npm test
-PASS src/order.spec.ts
-FAIL src/coupon.spec.ts
-  ● applyCoupon › chegara 100 % — 0
-
-    percent 0 dan 100 gacha bo'lsin
-
-    > 6 |     throw new Error("percent 0 dan 100 gacha bo'lsin");
-        |           ^
-
-      at applyCoupon (coupon.ts:6:11)
-      at Object.<anonymous> (coupon.spec.ts:11:23)
-
-Test Suites: 1 failed, 1 passed, 2 total
-Tests:       1 failed, 10 passed, 11 total`, { 4: { id: 'x' }, 6: { id: 'x' }, 15: { id: 'x' } });
-const LINE17 = [['0 %', 'ishlaydi', 'in'], ['100 %', 'ishlaydi', 'in'], ['−1 %', 'xato', 'out'], ['101 %', 'xato', 'out']];
-const S17 = mkS(17, [{ v: 'code', file: F.cup }, { v: 'pass', file: F.cupSpec }, { v: 'fail', file: F.cup }, { v: 'line', file: F.cupSpec, sum: true }]);
-function Screen17(p) {
-  return <Lesson p={p} S={S17} scene={({ seg }) => <div className="pg-two">
-    <div className={seg.sum ? 'j2-wide-only' : ''}><Ide files={CUP_FILES} active={seg.file} fresh={[F.cup, F.cupSpec]}>
-      {seg.file === F.cup
-        ? <CodePanel file={F.cup} wrap lines={seg.v === 'fail' ? CUP_BAD : CUP_TS} focus={seg.v === 'fail' ? ['x'] : ['g1', 'g2']} />
-        : <CodePanel file={F.cupSpec} wrap lines={CUP_SPEC} />}
-    </Ide></div>
-    <div style={{ display: 'grid', gap: 10, alignContent: 'start' }}>
-      {seg.v === 'pass' && <Term lines={TWO_OUT} focus={['t']} />}
-      {seg.v === 'fail' && <Term er lines={CUP_FAIL} focus={['x']} />}
-      {seg.v === 'line' && <div className="mk-light" style={{ padding: 14 }}>
-        <div className="mk-tag">Chegaraning ikki tomoni</div>
-        <div className="j2-line">{LINE17.map(([v, d, k]) => <div key={v} className={k}>{v}<small>{d}</small></div>)}</div>
-      </div>}
-      {seg.sum && <div className="mk-rule">O'quvchi vazifasida shu <b>to'rt qiymat</b> bormi — 0, 100, −1, 101.</div>}
-    </div>
-  </div>} />;
-}
-
-// ============================================================
-//  18 · Tekshiruv 4 — >= 100
-// ============================================================
-function Screen18(p) {
-  const m = MDT[18];
-  return <MCRetry {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} q={m.q} opts={m.opts} correct={m.correct} ok={m.ok} okShort={<span dangerouslySetInnerHTML={html(m.okShort)} />} wrong={m.wrong}
-    above={<div style={{ marginBottom: 14 }}><CodePanel file={F.cup} wrap lines={CUP_BAD} focus={['x']} /></div>}
-    after={<div style={{ display: 'grid', gap: 10 }}>
-      <div className="mk-tag" style={{ color: T.green, margin: 0 }}>Haqiqiy natija</div>
-      <Term er lines={CUP_FAIL} focus={['x']} />
-    </div>} />;
-}
-
-// ============================================================
-//  19 · Amaliyot 4 — applyCoupon
-// ============================================================
-const P4 = mkS(19, [{ hl: [] }, { hl: [0, 1] }, { hl: [2, 3] }, { hl: [] }], { tableAt: 3 });
-const P4_STEPS = [
-  { t: "Funksiya — src/coupon.ts (namuna — o'zingiz yozing)", cmds: [], exp: 'fayl saqlandi' },
-  { t: 'Testlar — src/coupon.spec.ts, 6 ta it', cmds: ['npm test'], exp: 'PASS src/coupon.spec.ts' },
-  { t: 'Buzish — percent > 100 → percent >= 100', cmds: ['npm test'], exp: '1 failed' },
-  { t: "O'qish va tiklash — ● satr, > ni qaytaring", cmds: ['npm test'], exp: 'hammasi yashil' },
-];
-const P4_CODE = [{ file: F.cup, step: 0, lines: CUP_TS, copy: false }, { file: F.cupSpec, step: 1, lines: CUP_SPEC, copy: false }];
-const P4_TROUBLE = [
-  ['3-qadamda hammasi yashil', "100 % testi yo'q — chegaraning ichki tomonini qo'shing"],
-  ["90000 kutilgan joyda boshqa son", 'formula: total - (total * percent) / 100'],
-  ["'ikki' qatorida qizil chiziq", "'ikki' as any (13-ekran)"],
-];
-const P4_PROOF = { label: 'Qizil testning nomi (● satridan)', placeholder: '● satrdagi test nomini yozing', check: (v) => /100\s?%/.test(v), wrong: "● satridagi › belgisidan keyingi nomni yozing — u qaysi foizni sinaydi?" };
-function ScreenP4(p) { return <Practice p={p} S={P4} steps={P4_STEPS} trouble={P4_TROUBLE} proof={P4_PROOF} code={P4_CODE} tree={CUP_FILES} />; }
-// ============================================================
-//  20 · m4b-03 xaritasi (EdgeCasesTestLesson.jsx — SCREEN_META 21)
-// ============================================================
-const MAP20 = [
-  { t: 'Kirish', s: 's0–s1', d: "g'alati buyurtmalar · reja (4 qadam)", m: '' },
-  { t: 'Edge', s: 's2–s5', d: "happy path · edge (0, manfiy, 1) · test · noto'g'ri ma'lumot (NaN, null)", m: 'yashirin buzilish natijalari (3-ekran)' },
-  { t: 'Guard', s: 's6–s9', d: "throw · o'rash () => · test · guard yig'ish (if → throw → return)", m: "() =>siz nima bo'ladi (8-ekran) · shartsiz throw (10-ekran)" },
-  { t: 'Mustahkamlash', s: 's10–s15', d: 'testlar va haqiqiy edge testlarini tanlash', m: "toThrow('xabar') (9-ekran) · < 0 (11-ekran)" },
-  { t: 'Yakun', s: 's16–s17', d: 'boundary etalon · amaliyot · kartochkalar · uyga vazifa applyCoupon', m: "TypeScript tuzog'i (13-ekran) · chegaraning ikki tomoni (17-ekran)" },
-];
-const S20 = mkS(20, [{ hl: [] }, { hl: [2] }, { hl: [4] }, { hl: [2, 4], sum: true }]);
-function Screen20(p) {
-  return <Lesson p={p} S={S20} scene={({ seg }) => <div style={{ display: 'grid', gap: 8 }}>
-    {MAP20.map((b, i) => <div key={i} className={`mk-step${seg.hl.includes(i) ? ' hl' : ''}`} style={{ opacity: seg.hl.length && !seg.hl.includes(i) ? 0.5 : 1 }}>
-      <span style={{ fontFamily: MONO, fontWeight: 700, color: T.accent, minWidth: 22 }}>{i + 1}</span>
-      <div className="t"><b>{b.t} <span style={{ fontFamily: MONO, fontWeight: 500, color: T.ink3, fontSize: 12 }}>{b.s}</span></b><div style={{ fontSize: 13 }}>{b.d}</div>{b.m && (seg.hl.includes(i) || !seg.hl.length) && <div className="exp" style={{ color: T.accent, marginTop: 4 }}>Siz qo'shasiz: {b.m}</div>}</div>
-    </div>)}
-    {seg.sum && <div className="mk-rule">Vaqt (taklif): 90 daqiqaning <b>25 tasi</b> — guard va o'rashga. Uyga vazifada to'rt qiymat: <b>0, 100, −1, 101</b>.</div>}
-  </div>} />;
-}
-
-// ============================================================
-//  21 · O'quvchi darsidagi so'zlar
-// ============================================================
-const DICT21 = [
-  ["shumtaka mijoz · g'alati buyurtma", "edge case, noto'g'ri kirish"],
-  ["«hech kim sezmaydi» (NaN kartochkasi)", 'xatosiz noto\'g\'ri natija (0, −10000, NaN)'],
-  ["guard · 🚧 shart · 🧯 xato tashlash · ✅ to'g'ri hisob", 'if → throw new Error → return'],
-  ["o'rab berish", 'expect(() => f()).toThrow()'],
-  ['happy path', 'oddiy, kutilgan kirish'],
-];
-const S21 = mkS(21, [{ rows: [0] }, { rows: [1, 2] }, { rows: [3], sum: true }]);
-function Screen21(p) {
-  return <Lesson p={p} S={S21} scene={({ seg }) => <div className="mk-light" style={{ padding: 14 }}>
-    <div className="mk-tag">O'quvchi darsidagi so'z → uning atamasi</div>
-    <table className="mk-tbl"><thead><tr><th>o'quvchi darsida</th><th>atama / kod</th></tr></thead><tbody>
-      {DICT21.map(([a, b], i) => <tr key={a} className={seg.rows.includes(i) ? 'hl' : ''} style={{ opacity: seg.rows.length && !seg.rows.includes(i) ? 0.55 : 1 }}><td>{a}</td><td><code>{b}</code></td></tr>)}
-    </tbody></table>
-    {seg.sum && <div style={{ marginTop: 12, display: 'grid', gap: 8 }}><CodePanel file={F.ordSpec} wrap lines={WRAP_OK} focus={['x']} /><div className="mk-rule">«O'rab berish, <b>ya'ni () =&gt;</b>» — va shu satrni ko'rsating. Terminal so'zlari inglizcha qoladi: did not throw, Received message.</div></div>}
-  </div>} />;
-}
-
-// ============================================================
-//  22 · Sinfdagi holatlar va o'quvchi savollari
-// ============================================================
-const STUMBLE22 = [
-  ["Himoya yo'q", 'Received function did not throw', 'guard'],
-  ["() => yo'q", 'test funksiya xatosi bilan qulaydi', 'expect(() => …)'],
-  ['Boshqa xabar', 'Expected substring / Received message', 'xabarni moslang'],
-  ['Happy qizil', 'guard shartsiz yoki juda qattiq', 'if sharti'],
-  ["'ikki' qizil chiziq", 'VS Code TS2345, test esa yuradi', 'as any'],
-  ["Nomlar yo'q", 'ikki fayl', 'jami son · --verbose'],
-];
-const QA22 = [
-  ["«Nega xato tashlaymiz, 0 qaytarsa bo'lmaydimi?»", "0 — yashirin buzilish (bepul buyurtma); xato darhol ko'rinadi va keyingi qadamni to'xtatadi."],
-  ["«toThrow() va toThrow('…') farqi?»", "biri «xato bo'ldimi», ikkinchisi «qaysi xato»."],
-  ['«as any yomon emasmi?»', 'kodda — ha; testda ataylab noto\'g\'ri tur berish uchun — joiz.'],
-  ['«Hamma funksiyaga guard kerakmi?»', "foydalanuvchidan yoki tashqaridan ma'lumot oladigan funksiyaga — ha."],
-];
-const S22 = mkS(22, [{ hl: [] }, { hl: [0, 1, 2] }, { hl: [3, 4, 5] }, { hl: [], qa: true }]);
-function Screen22(p) {
-  const [open, setOpen] = useState([]);
-  return <Lesson p={p} S={S22} scene={({ seg }) => <>
-    <div className="mk-qa">
-      {STUMBLE22.map(([h, m, a], i) => <button key={i} className={seg.hl.includes(i) ? 'hl' : (seg.hl.length ? 'dim' : '')} style={{ cursor: 'default' }}><b>{i + 1}. {h}</b><p style={{ fontFamily: MONO, fontSize: 12, color: T.accent, margin: '0 0 4px' }}>{m}</p><p>{a}</p></button>)}
-    </div>
-    {seg.qa && <div className="mk-rule" style={{ animation: 'mk-up .45s ease both' }}>Javobni aytmang — <b>xabarni o'quvchi bilan birga o'qing</b>: har xabar boshqa sababni aytadi.</div>}
-    {seg.qa && <div className="mk-light" style={{ padding: 12, animation: 'mk-up .45s ease both' }}>
-      <div className="mk-tag">O'quvchi so'rasa — bosing</div>
-      <div className="pg-qa">{QA22.map(([q, a], i) => <button key={i} onClick={() => setOpen((o) => o.includes(i) ? o.filter((x) => x !== i) : [...o, i])}><b>{q}</b>{open.includes(i) && <p>{a}</p>}</button>)}</div>
-    </div>}
+  return <Lesson p={p} S={S15} scene={({ seg }) => <>
+    {seg.v === 'src' && <Code k="ORDER_PLACE" files={FILES(F.ors)} active={F.ord} ids={{ 36: 'c', 37: 'c', 38: 'c', 42: 'u', 43: 'u', 44: 'u', 45: 'u' }} focus={['c', 'u']} from={35} to={45} />}
+    {seg.v === 'not' && <CodePanel file="order.service.spec.ts" lines={kod('SPEC_ORDER_05', { 54: 'n' }, 44, 55)} focus={['n']} />}
+    {seg.v === 'times' && <CodePanel file="order.service.spec.ts" lines={kod('SPEC_ORDER_05', { 66: 'n' }, 57, 67)} focus={['n']} />}
+    {seg.v === 'sum' && <Flow15 />}
   </>} />;
 }
+
 // ============================================================
-//  23 · O'z-sinov — 8 savol (Nest/PG-1 bilan bir xil mexanika; M12)
+//  16 · Chegara: < → <= (jest2v2-out/09, 09b, 09c · kod-10 69–78)
 // ============================================================
-const FINAL = MDT[23].final;
+const BREAK16 = { 36: KOD.ORDER_PLACE.lines.find((l) => l.n === 36).t.replace('p.stock < c.qty', 'p.stock <= c.qty') };
+const T16A = out('09', outFind('09', /^PASS/), outFind('09', /^Tests:/));
+const T16B = out('09c', outFind('09c', /^FAIL/), outFind('09c', /^\s*>\s*37/));
+const T16C = out('09b', outFind('09b', /^PASS/), outFind('09b', /^Tests:/));
+const S16 = mkS(16, [{ v: 'break' }, { v: 'four' }, { v: 'five' }, { v: 'ok' }]);
+function Screen16(p) {
+  return <Lesson p={p} S={S16} scene={({ seg }) => <>
+    {(seg.v === 'break' || seg.v === 'four') && <CodePanel file={t("order.service.ts · buzilgan", "order.service.ts · сломан")} lines={kod('ORDER_PLACE', { 36: 'x' }, 35, 38, BREAK16)} focus={['x']} />}
+    {(seg.v === 'break' || seg.v === 'four') && <Term title={t("VS Code terminali · npm test -- order.service", "терминал VS Code · npm test -- order.service")} lines={T16A} />}
+    {seg.v === 'four' && <div className="n2-warn">{t(<>To'rt test yashil: ular <b>1 ta</b> va <b>10 ta</b> ni sinaydi — <code>&lt;</code> va <code>&lt;=</code> farqi faqat <b>aynan teng</b> bo'lganda.</>, <>Четыре теста зелёные: они проверяют <b>1</b> и <b>10</b> — разница между <code>&lt;</code> и <code>&lt;=</code> только при <b>точном равенстве</b>.</>)}</div>}
+    {seg.v === 'five' && <><CodePanel file="order.service.spec.ts" lines={kod('SPEC_ORDER_10', rngIds(69, 78, 'c'), 69, 78)} focus={['c']} /><Term title={t("VS Code terminali · buzilgan kod bilan", "терминал VS Code · со сломанным кодом")} lines={T16B} er /></>}
+    {seg.v === 'ok' && <><Term title={t("VS Code terminali · tiklangan kod bilan", "терминал VS Code · с восстановленным кодом")} lines={T16C} /><div className="mk-rule">{t(<>Har <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code> shartiga — <b>aynan teng</b> qiymat bilan test.</>, <>На каждое условие <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code> — тест со значением <b>ровно на равенстве</b>.</>)}</div></>}
+  </>} />;
+}
+
+// ============================================================
+//  17 · Amaliyot 2 — order.service.spec.ts va chegara
+// ============================================================
+const P17 = mkPractice(17, [[], [0, 1], [2, 3], []], {
+  code: [
+    { step: 0, file: F.ors, lines: kod('SPEC_ORDER_05', {}, 1, 31), copy: false },
+    { step: 1, file: F.ors, lines: kod('SPEC_ORDER_05', {}, 33, 68), copy: false },
+    { step: 2, file: F.ors, lines: kod('SPEC_ORDER_10', {}, 69, 79), copy: false },
+  ],
+});
+function ScreenP17(p) { return <Practice p={p} S={P17.S} steps={P17.steps} trouble={P17.trouble} proof={P17.proof} code={P17.code} tree={FILES(F.ph, F.phs, F.ors)} />; }
+
+// ============================================================
+//  18 · Sayt API'siga HTTP test: supertest (jest2v2-out/10, 11 · kod-11)
+// ============================================================
+const T18A = out('10');
+const T18B = out('11', outFind('11', /^PASS/), outFind('11', /^Tests:/));
+// F-1109-06: xulosa — ikki gapli karta o'rniga ikki parallel oqim bir qolipda: kirish → kod → chiqish → expect (haqiqiy qiymatlar)
+function Two18() {
+  const row = (inp, code, codeNote, outp, exp) => <div className="z-flow">
+    <div className="z-st"><b>{t("kirish", "ввод")}</b>{inp}</div><div className="z-ar">→</div>
+    <div className="z-st blue"><b>{t("kod", "код")}</b><span className="zm">{code}</span>{codeNote && <span className="z-mut">{codeNote}</span>}</div><div className="z-ar">→</div>
+    <div className="z-st"><b>{t("chiqish", "вывод")}</b>{outp}</div><div className="z-ar">→</div>
+    <div className="z-st ok"><b>expect</b><span className="zm">{exp}</span><span className="z-tag g">✓</span></div>
+  </div>;
+  return <div className="z">
+    <div className="z-card">
+      <p className="z-h">{t("Bot handler'i — order.service.spec.ts", "Handler бота — order.service.spec.ts")}</p>
+      {row(<><span className="zm">place(user, cart)</span><span className="z-mut">{t("Kolonka × 2, omborda 1", "Kolonka × 2, на складе 1")}</span></>, 'OrderService.place', t("manager — mock", "manager — mock"), <span className="zm">throw 'Kolonka: omborda faqat 1 ta qoldi'</span>, '.rejects.toThrow(…)')}
+    </div>
+    <div className="z-card">
+      <p className="z-h">{t("Sayt route'i — app.controller.spec.ts · supertest · Tests: 2 passed", "Route сайта — app.controller.spec.ts · supertest · Tests: 2 passed")}</p>
+      {row(<span className="zm">request(app.getHttpServer()).get('/')</span>, 'AppController', t("xotirada: port ochilmaydi, baza yo'q", "в памяти: порт не открывается, базы нет"), <><span className="z-tag g">200</span><span className="zm">{'{'} ok: true, service: 'order-bot' {'}'}</span></>, 'status 200 · toEqual')}
+      {row(<span className="zm">.get('/nope')</span>, t("route yo'q", "route нет"), null, <><span className="z-tag o">404</span><span className="zm">Cannot GET /nope</span></>, 'status 404 · message')}
+    </div>
+    <div className="z-rule">{t("Qolip bitta: ", "Шаблон один: ")}<b>{t("kirish beriladi, chiqish solishtiriladi", "даём ввод, сравниваем вывод")}</b>{t(" — bot handler'i ham, sayt route'i ham.", " — и handler бота, и route сайта.")}</div>
+  </div>;
+}
+const S18 = mkS(18, [{ v: 'install' }, { v: 'setup' }, { v: 'tests' }, { v: 'sum' }]);
+function Screen18(p) {
+  return <Lesson p={p} S={S18} scene={({ seg }) => <>
+    {seg.v === 'install' && <Term title={t("VS Code terminali · OrderBotNest", "терминал VS Code · OrderBotNest")} lines={T18A} />}
+    {seg.v === 'setup' && <Code k="SPEC_APP" files={FILES(F.ph, F.phs, F.ors, F.apps)} active={F.apps} fresh={F.apps} ids={rngIds(7, 14, 's')} focus={['s']} from={1} to={14} />}
+    {seg.v === 'tests' && <><CodePanel file="app.controller.spec.ts" lines={kod('SPEC_APP', { ...rngIds(17, 21, 'a'), ...rngIds(23, 27, 'b') }, 16, 28)} focus={['a', 'b']} /><Term title={t("VS Code terminali · npm test -- app.controller", "терминал VS Code · npm test -- app.controller")} lines={T18B} /></>}
+    {seg.v === 'sum' && <Two18 />}
+  </>} />;
+}
+
+// ============================================================
+//  19 · Tekshiruv 4 — GET /nope (kod-11 23–27 · jest2v2-out/11)
+// ============================================================
+function Screen19(p) {
+  return MC(p, 19, {
+    above: <div style={{ display: 'grid', gap: 8 }}>
+      <CodePanel file="app.controller.ts" lines={kod('APP_CTRL', { 6: 'g' }, 3, 10)} focus={['g']} />
+      <CodePanel file="app.controller.spec.ts" lines={kod('SPEC_APP', { 24: 'r' }, 23, 27)} focus={['r']} />
+    </div>,
+    after: <Term title={t("VS Code terminali · npm test -- app.controller", "терминал VS Code · npm test -- app.controller")} lines={T18B} />,
+  });
+}
+
+// ============================================================
+//  20 · AI edge testlar yozdi — ikki to'plam (jest2v2-ai/ai1, ai2)
+// ============================================================
+const S20 = mkS(20, [{ v: 'intro' }, { v: 'prompt' }, { v: 'two' }, { v: 'snip' }, { v: 'snip', sum: true }]);
+function Screen20(p) {
+  return <Lesson p={p} S={S20} scene={({ seg }) => <>
+    {seg.v === 'intro' && <div className="pg-two">
+      <Card c={T.ink3} h={t("1–4-bosqich · xato yo'lini siz yozdingiz", "Этапы 1–4 · путь ошибки писали вы")} dim><p><code>isPhone</code> · mock · <code>toThrow</code> / <code>rejects</code> · <code>not.toHaveBeenCalled</code>{t(" · chegara", " · граница")}</p></Card>
+      <Card c={JC.ai} h={t("5-bosqich · AI yozadi, siz qabul qilasiz", "Этап 5 · пишет AI, вы принимаете")} hl><p>{t("Savol: ", "Вопрос: ")}<b>{t("bu test xatoni ushlaydimi — va qoidani sinaydimi?", "ловит ли этот тест ошибку — и проверяет ли он правило?")}</b></p></Card>
+    </div>}
+    {(seg.v === 'prompt' || seg.v === 'two') && <AiReply who={t("Prompt — ikkala AI'ga bir xil", "Промпт — одинаковый для обоих AI")} prompt={KOD.PROMPT1} tag={t("haqiqiy yurgizish · 04.11", "настоящий запуск · 04.11")} />}
+    {seg.v === 'two' && <div className="pg-two">
+      <AiReply who={t('1-AI (kuchli model)', '1-й AI (сильная модель)')} said={t(<>«50 test, hammasi o'tdi» · <code>await expect(run(…)).rejects.toThrow(…)</code> · <code>not.toHaveBeenCalled</code> 12 ta</>, <>«50 тестов, все прошли» · <code>await expect(run(…)).rejects.toThrow(…)</code> · <code>not.toHaveBeenCalled</code> — 12</>)} diff={KOD.AI_DIFF1} hl />
+      <AiReply who={t('2-AI (kuchsizroq model)', '2-й AI (модель слабее)')} said={t(<>«42 test o'tdi» · <code>expect(() =&gt; service.place(…)).toThrow(…)</code> · <code>rejects</code> 3 ta</>, <>«42 теста прошли» · <code>expect(() =&gt; service.place(…)).toThrow(…)</code> · <code>rejects</code> — 3</>)} diff={KOD.AI_DIFF2} hl />
+    </div>}
+    {seg.v === 'snip' && <div className="pg-two">
+      <CodePanel file={t("1-AI · telegram.service.phone.spec.ts · rad ro'yxati", "1-й AI · telegram.service.phone.spec.ts · список отказов")} lines={kod('AI1_TEL', { 90: 'p' })} focus={['p']} />
+      <CodePanel file="2-AI · telegram.service.spec.ts" lines={kod('AI2_TEL', { 21: 'm' })} focus={['m']} />
+    </div>}
+    {seg.sum && <div className="mk-rule">{t(<>«Hammasi yashil» — <b>tekshiruv emas</b>. Va yangi savol: test <b>qoidani</b> sinaydimi, <b>kodni muhrlaydimi</b>?</>, <>«Всё зелёное» — <b>не проверка</b>. И новый вопрос: тест проверяет <b>правило</b> или <b>запечатывает код</b>?</>)}</div>}
+  </>} />;
+}
+
+// ============================================================
+//  21 · Buzib tekshirish: AI to'plamlari (mutatsiya-men.txt, mutatsiya-ai.txt)
+// ============================================================
+const S21 = mkS(21, [{ rows: 5 }, { rows: 5, all: true }, { rows: 5, seal: true }, { rows: 5, sum: true }]);
+function Screen21(p) {
+  return <Lesson p={p} S={S21} scene={({ seg }) => <>
+    {!seg.seal && <div className="mk-light" style={{ padding: 12 }}><div className="mk-tag">{t("Nechta test qizardi (0 — buzilish sezilmadi) · ", "Сколько тестов покраснело (0 — поломка не замечена) · ")}<code>jest2v2-mutatsiya.sh</code></div><MutTable rows={seg.rows} /></div>}
+    {seg.seal && <div style={{ display: 'grid', gap: 8 }}>
+      <div className="mk-tag" style={{ margin: 0 }}>{t("Oltinchi «buzilish» — buzib bo'lmaydi: AI hozirgi xulqni muhrlagan", "Шестую «поломку» — не сломать: AI запечатал текущее поведение")}</div>
+      <CodePanel file={t("1-AI · telegram.service.phone.spec.ts · «rad etiladi» ro'yxatida", '1-й AI · telegram.service.phone.spec.ts · в списке «rad etiladi»')} lines={kod('AI1_TEL', { 90: 'p' }, 88, 92)} focus={['p']} />
+      <CodePanel file={t("phone.ts · 6-ekrandagi tuzatish", "phone.ts · исправление с экрана 6")} lines={kod('PHONE_NEW', { 4: 'f' }, 3, 4)} focus={['f']} />
+      <div className="n2-warn">{t(<>Tuzatishdan keyin AI testi <b>qizaradi</b>: u qoidani emas, kod hozir qanday ishlashini qo'riqlayapti. Mijoz odatini AI bilmaydi.</>, <>После исправления тест от AI <b>краснеет</b>: он охраняет не правило, а то, как код работает сейчас. О привычке клиента AI не знает.</>)}</div>
+    </div>}
+    {seg.sum && <div className="mk-rule">{t(<>AI testi <b>xatoni ushlaydi</b> — va <b>hozirgi xulqni muhrlaydi</b>. Har testdan so'rang: bu qoidami, yoki «kod hozir shunday»mi?</>, <>Тест от AI <b>ловит ошибку</b> — и <b>запечатывает текущее поведение</b>. У каждого теста спросите: это правило или «код просто сейчас так»?</>)}</div>}
+  </>} />;
+}
+
+// ============================================================
+//  22 · Amaliyot 3 — AI test yozadi, siz buzib tekshirasiz (prompt — MD 22-ekrandan aynan, setStatus 66–87)
+// ============================================================
+const PROMPT22 = KOD.PROMPT2.split('. ').map((s, i, a) => ({ h: escH(s + (i < a.length - 1 ? '.' : '')) }));
+const P22 = mkPractice(22, [[], [0, 1], [2, 3], []], {
+  code: [{ step: 0, file: 'prompt.txt', lines: PROMPT22 }, { step: 2, file: F.ord, lines: kod('ORDER_SETSTATUS'), copy: false }],
+});
+function ScreenP22(p) { return <Practice p={p} S={P22.S} steps={P22.steps} trouble={P22.trouble} proof={P22.proof} code={P22.code} tree={['prompt.txt', F.ord, F.ors]} />; }
+
+// ============================================================
+//  23 · Sinfga tayyorgarlik: m4b-03 (EdgeCasesTestLesson.jsx — SCREEN_META 21; shumtaka, guard, toThrow, applyCoupon)
+// ============================================================
+const DICT23 = [["shumtaka mijoz · g'alati buyurtma", "edge case, noto'g'ri kirish"], ['«hech kim sezmaydi» · «jim buzilish» (kartochka)', "yashirin buzilish — xatosiz noto'g'ri natija (0, −10000, NaN)"], ['guard · 🚧 shart · 🧯 xato tashlash', 'if → throw new Error → return'], ["o'rab berish", 'expect(() => f()).toThrow() — sinxron xato'], ['happy path', 'kutilgan kirish']];
+const ADD23 = [['«xato chiqdi» + «keyin nima bo\'lmadi» — ikki qismli test', 's6–s8 guard'], ["() => siz nima bo'ladi — haqiqiy chiqish (natija yo'q)", "s7 o'rash"], ['chegaraning ikki tomoni: aynan 0 va aynan 100', 'uyga vazifa applyCoupon'], ['AI yozgan testni bir marta buzdirish', 'amaliyot oxiri']];
+const CARDS23 = [
+  ["Himoya yo'q", 'Received function did not throw', "guard yozilmagan yoki shart qiymatni o'tkazdi"],
+  ["() => yo'q", "natija yo'q yoki test funksiya xatosi bilan yiqildi", 'expect(() => …)'],
+  ['Boshqa xabar', 'Expected substring / Received message', 'xabarni koddagi bilan moslang'],
+];
+const QA23 = [
+  ["«Nega xato tashlaymiz, 0 qaytarsak bo'lmaydimi?»", "0 — yashirin buzilish: bepul buyurtma; xato esa darhol ko'rinadi."],
+  ['«toThrow() ichida xabar shartmi?»', "Shart emas, lekin xabar bilan test aniqroq: qaysi xato ekanini ham tekshiradi."],
+  ["«'ikki' yozsam VS Code qizil chizadi»", "TypeScript turini tekshiradi; test uchun as any — ataylab noto'g'ri tur beryapmiz."],
+  ["«Guard'ni funksiya oxiriga yozsam bo'ladimi?»", "Yo'q: xato hisobdan oldin chiqishi kerak, aks holda hisob baribir bajariladi."],
+];
+function QA({ items }) {
+  const [open, setOpen] = useState(-1);
+  return <div className="pg-qa">{items.map(([q, a], i) => <button key={q} onClick={() => setOpen(open === i ? -1 : i)}><b>{q}</b>{open === i && <p>{a}</p>}</button>)}</div>;
+}
+const S23 = mkS(23, [{ v: 'cards' }, { v: 'dict' }, { v: 'add' }, { v: 'err' }]);
 function Screen23(p) {
+  return <Lesson p={p} S={S23} scene={({ seg }) => <>
+    {seg.v === 'cards' && <div className="pg-two">
+      <Card c={T.blue} h={t("O'quvchi · m4b-03 (21 ekran)", 'Ученик · m4b-03 (21 экран)')} hl><p>{t(<><b>KitobShop sayti</b> · <code>orderTotal(price, quantity)</code>: 0, manfiy, <code>'ikki'</code>, <code>null</code> → guard (<code>if</code> → <code>throw</code> → <code>return</code>) · <code>expect(() =&gt; …).toThrow()</code> · uyga vazifa <code>applyCoupon</code> · baza yo'q, promise yo'q</>, <><b>Сайт KitobShop</b> · <code>orderTotal(price, quantity)</code>: 0, минус, <code>'ikki'</code>, <code>null</code> → guard (<code>if</code> → <code>throw</code> → <code>return</code>) · <code>expect(() =&gt; …).toThrow()</code> · домашнее задание <code>applyCoupon</code> · базы нет, promise нет</>)}</p></Card>
+      <Card c={T.accent} h={t('Siz · bugun', 'Вы · сегодня')}><p>OrderBotNest · <code>isPhone</code> · <code>place</code>: mock, <code>rejects</code>, <code>not.toHaveBeenCalled</code> · {t('chegara · HTTP · AI testi', 'граница · HTTP · тест от AI')}</p></Card>
+    </div>}
+    {seg.v === 'dict' && <table className="pg-dict"><tbody>{DICT23.map(([a, b]) => <tr key={a}><td>{a}</td><td><code>{b}</code></td></tr>)}</tbody></table>}
+    {seg.v === 'add' && <><div className="mk-tag" style={{ margin: 0 }}>{t("Siz qo'shasiz", "Вы добавляете")}</div><table className="pg-dict"><tbody>{ADD23.map(([a, b]) => <tr key={a}><td>{a}</td><td>{b}</td></tr>)}</tbody></table></>}
+    {seg.v === 'err' && <><div className="pg-three">{CARDS23.map(([h, x, y], i) => <Card key={h} c={T.accent} h={`${i + 1} · ${h}`}><p><code>{x}</code></p><p style={{ marginTop: 4 }}>→ {y}</p></Card>)}</div>
+      <div className="mk-tag" style={{ margin: 0 }}>{t("O'quvchi so'rasa — bosib oching", "Если ученик спросит — нажмите, чтобы открыть")}</div><QA items={QA23} /></>}
+  </>} />;
+}
+
+// ============================================================
+//  24 · O'z-sinov — 8 savol (MD 24, FINAL)
+// ============================================================
+const FINAL = MDT[24].final;
+function Screen24(p) {
   const st = p.stored || {};
   const segs = useMemo(() => {
     const sc = (st.res || []).filter((x) => x && x.correct).length;
-    const text = !st.showResult
-      ? "Hammasini ko'rib chiqdingiz, endi o'zingizni tekshiring. Yakuniy sinov, sakkiz savol: yashirin buzilish, guard, o'rash va chegaralar. Har savolda bitta urinish, javobdan keyin to'g'risi va izohi ochiladi. Olti va undan ko'p, dars o'zlashtirilgan. Kam bo'lsa, ko'rsatilgan ekranlarga qaytib, sinovni qayta topshirasiz."
+    const text = LANG === 'ru' ? (!st.showResult ? RS('FIN_INTRO')
+      : sc >= 6 ? 'Ваш результат сохранён: ' + sc + ' из восьми. Урок усвоен, нажмите «Далее».'
+        : 'Хорошо, одну ошибку вы разобрали. Вернитесь и к экранам остальных красных вопросов. Когда будете готовы, нажмите кнопку «Пройти тест заново».')
+      : !st.showResult
+      ? "Hammasini ko'rib chiqdingiz, endi o'zingizni tekshiring. Yakuniy sinov, sakkiz savol: uch yo'l, qoidani ajratish, to throw va rejects, natija yo'q holatlari, bo'lmasligi kerak testi, chegara va HTTP. Har savolda bitta urinish, javobdan keyin to'g'risi va izohi ochiladi. Olti va undan ko'p, dars o'zlashtirilgan. Kam bo'lsa, ko'rsatilgan ekranlarga qaytib, sinovni qayta topshirasiz."
       : sc >= 6
         ? "Natijangiz saqlangan: sakkizdan " + ['nol', 'bir', 'ikki', 'uch', "to'rt", 'besh', 'olti', 'yetti', 'sakkiz'][sc] + ". Dars o'zlashtirilgan, Davom bosing."
         : "Yaxshi, bir xatoyingizni ko'rib chiqdingiz. Qolgan qizil savollarning ekranlariga ham qayting. Tayyor bo'lgach, Sinovni qayta topshirish tugmasini bosing.";
@@ -2324,36 +5137,36 @@ function Screen23(p) {
     const r = [...res]; r[i] = { picked: k, correct: k === q.c }; setRes(r);
     if (k === q.c) sfx.playCorrect(); else sfx.playWrong();
     const sc = r.filter((x) => x && x.correct).length; save({ res: r, score: sc });
-    if (r.filter(Boolean).length === FINAL.length) setTimeout(() => audio.pushOneOff(voice(sc >= 6 ? "Dars o'zlashtirildi. Endi m4b-03 dagi guard, o'rash va sinfdagi tuzoqlar sizga tanish bo'ladi." : "Hali bir necha joy mustahkam emas. Ko'rsatilgan ekranlarga qayting, keyin sinovni qayta topshiring.")), 400);
+    if (r.filter(Boolean).length === FINAL.length) setTimeout(() => audio.pushOneOff(voice(sc >= 6 ? t("Dars o'zlashtirildi. Endi o'quvchi test natija bermayapti desa, qayerga qarashni bilasiz.", RS('FIN_PASS')) : t("Hali bir necha joy mustahkam emas. Ko'rsatilgan ekranlarga qayting, keyin sinovni qayta topshiring.", 'Несколько мест пока не закрепились. Вернитесь к указанным экранам, потом пройдите тест заново.'))), 400);
   };
   const next = () => { if (i < FINAL.length - 1) { setI(i + 1); save({ i: i + 1 }); } else { setShowResult(true); save({ showResult: true }); } };
   const retake = () => { setRes([]); setI(0); setShowResult(false); setAttempt(attempt + 1); save({ res: [], i: 0, showResult: false, attempt: attempt + 1, score: 0 }); };
   return (
-    <Stage kicker="O'z-sinov" idx={p.idx} total={p.total} audio={audio} onBack={p.onBack} onNext={p.onNext} onRestart={p.onRestart} nextReady={finished && showResult} nextDisabled={!(finished && showResult)} lockHint={!finished ? 'Savollarga javob bering' : 'Natijani oching'}>
+    <Stage kicker={t("O'z-sinov", 'Самопроверка')} idx={p.idx} total={p.total} audio={audio} onBack={p.onBack} onNext={p.onNext} onRestart={p.onRestart} nextReady={finished && showResult} nextDisabled={!(finished && showResult)} lockHint={!finished ? t('Savollarga javob bering', 'Ответьте на вопросы') : t('Natijani oching', 'Откройте результат')}>
       <div className="mk-body" style={{ gridTemplateColumns: '1fr', maxWidth: 980, width: '100%', margin: '0 auto' }}>
         <div className="mk-say mc" style={{ overflow: 'auto', paddingRight: 4 }}>
           {showResult ? (<>
-            <p className="mk-eyebrow">O'z-sinov · natija{attempt > 1 ? ` · ${attempt}-urinish` : ''}</p>
-            <h2 className="mk-title mc-q" style={{ fontSize: 'clamp(22px,1.9vw,26px)' }}>{score} / {FINAL.length} — {score >= 6 ? "dars o'zlashtirildi" : "yana bir ko'rib chiqing"}</h2>
+            <p className="mk-eyebrow">{t("O'z-sinov · natija", 'Самопроверка · результат')}{attempt > 1 ? t(` · ${attempt}-urinish`, ` · попытка ${attempt}`) : ''}</p>
+            <h2 className="mk-title mc-q" style={{ fontSize: 'clamp(22px,1.9vw,26px)' }}>{score} / {FINAL.length} — {score >= 6 ? t("dars o'zlashtirildi", 'урок усвоен') : t("yana bir ko'rib chiqing", 'посмотрите ещё раз')}</h2>
             <div style={{ display: 'grid', gap: 8 }}>
               {FINAL.map((f, k) => <div key={k} className="mk-card" style={{ display: 'flex', gap: 12, alignItems: 'center', borderColor: res[k] && res[k].correct ? T.green : T.accent }}>
                 <span style={{ fontFamily: MONO, fontWeight: 700, color: res[k] && res[k].correct ? T.green : T.accent, minWidth: 22 }}>{res[k] && res[k].correct ? '✓' : '✗'}</span>
                 <span style={{ flex: 1, fontSize: 14 }}>{f.q}</span>
-                {res[k] && !res[k].correct && p.onGoto && <button className="mk-btn soft sm" onClick={() => p.onGoto(f.s - 1)}>{f.s}-ekran</button>}
+                {res[k] && !res[k].correct && p.onGoto && <button className="mk-btn soft sm" onClick={() => p.onGoto(f.s - 1)}>{t(`${f.s}-ekran`, `экран ${f.s}`)}</button>}
               </div>)}
             </div>
             <div style={{ display: 'flex', gap: 10, alignItems: 'center', marginTop: 14, flexWrap: 'wrap' }}>
-              {score < 6 && <button className="mk-btn ghost" onClick={retake}>Sinovni qayta topshirish</button>}
-              <span style={{ color: T.ink2, fontSize: 14 }}>Ekranga qaytib «Davom» bossangiz, shu natijaga qaytasiz.</span>
+              {score < 6 && <button className="mk-btn ghost" onClick={retake}>{t('Sinovni qayta topshirish', 'Пройти тест заново')}</button>}
+              <span style={{ color: T.ink2, fontSize: 14 }}>{t('Ekranga qaytib «Davom» bossangiz, shu natijaga qaytasiz.', 'Если вернётесь к экрану и нажмёте «Далее», попадёте обратно к этому результату.')}</span>
             </div>
           </>) : (<>
-            <p className="mk-eyebrow">O'z-sinov · {i + 1} / {FINAL.length} · bitta urinish · to'g'ri: {score}</p>
+            <p className="mk-eyebrow">{t("O'z-sinov", 'Самопроверка')} · {i + 1} / {FINAL.length} · {t("bitta urinish · to'g'ri:", 'одна попытка · верно:')} {score}</p>
             <h2 className="mk-title mc-q">{q.q}</h2>
             <div style={{ display: 'grid', gap: 10 }}>
               {q.o.map((o, k) => { let cls = 'mk-opt'; if (picked !== null) { if (k === q.c) cls += ' ok'; else if (k === picked) cls += ' bad'; else cls += ' off'; } return <button key={k} className={cls} disabled={picked !== null} onClick={() => pick(k)}><span className="l">{String.fromCharCode(65 + k)}</span><span>{o}</span></button>; })}
             </div>
-            {picked !== null && <div className="mk-fb" style={{ '--c': picked === q.c ? T.green : T.accent, '--bg': picked === q.c ? '#E3F5EC' : '#FFF0EB' }}><b>{picked === q.c ? "To'g'ri" : "Noto'g'ri — to'g'risi yashil"}</b><span>{q.e}</span></div>}
-            {picked !== null && <div style={{ marginTop: 14 }}><button className="mk-btn ready" onClick={next}>{i < FINAL.length - 1 ? 'Keyingi savol →' : "Natijani ko'rish →"}</button></div>}
+            {picked !== null && <div className="mk-fb" style={{ '--c': picked === q.c ? T.green : T.accent, '--bg': picked === q.c ? '#E3F5EC' : '#FFF0EB' }}><b>{picked === q.c ? t("To'g'ri", 'Верно') : t("Noto'g'ri — to'g'risi yashil", 'Неверно — правильный ответ зелёный')}</b><span>{q.e}</span></div>}
+            {picked !== null && <div style={{ marginTop: 14 }}><button className="mk-btn ready" onClick={next}>{i < FINAL.length - 1 ? t('Keyingi savol →', 'Следующий вопрос →') : t("Natijani ko'rish →", 'Посмотреть результат →')}</button></div>}
           </>)}
         </div>
       </div>
@@ -2362,112 +5175,118 @@ function Screen23(p) {
 }
 
 // ============================================================
-//  24 · Yakun (M13)
+//  25 · Yakun (M13, M14, M30) — xulosa 6 band, uyga vazifa 5 qadam, eslatma
 // ============================================================
-const SUM24 = [
-  { k: 'edge', t: "Happy path va edge case: 0, manfiy, 1, so'z, null; himoyasiz funksiya — yashirin buzilish (0, −10000, NaN, null → 0)", st: ['fn'] },
-  { k: 'guard', t: "Guard: if → throw new Error → return; 1 dona testi himoya to'g'ri buyurtmani to'smaganini ko'rsatadi", st: ['fn', 'res'] },
-  { k: 'wrap', t: "expect(() => …).toThrow(); () =>siz test funksiya xatosi bilan qulaydi; toThrow('xabar') — qaysi xato", st: ['spec', 'res'] },
-  { k: 'dnt', t: "did not throw — himoya yo'q yoki shart teshik (< 0); shartsiz throw — happy qizil", st: ['fn', 'res'] },
-  { k: 'ts', t: "TypeScript: npm test yuradi, VS Code qizil — 'ikki' as any; ikki fayl — nomlar --verbose bilan", st: ['spec', 'run'] },
-  { k: 'edge2', t: "Chegaraning ikki tomoni: 0 va 100 — ishlaydi, −1 va 101 — xato", st: ['spec', 'res'] },
+const SUM25 = [
+  { k: 'paths', t: "Uch yo'l: happy path (kutilgan kirish), edge case (chegara — kod xato bermaydi, javob to'g'rimi), error path (kod ataylab xato beradi — qaysi xabar, keyin nima bo'lmadi)", st: ['edge', 'err'] },
+  { k: 'rule', t: "Sinamoqchi bo'lgan qoidani alohida funksiyaga ajrating (isPhone); it.each — bir test, ko'p kirish; chegara testi qoidaning tor (probel) va keng (9 ta nol) joyini ko'rsatadi", st: ['edge'] },
+  { k: 'mock', t: 'Baza o\'rniga mock: jest.fn, mockResolvedValue, Test.createTestingModule — unit-test bazasiz, kod haqiqiy', st: ['err'] },
+  { k: 'shape', t: "Sinxron xato — expect(() => …).toThrow(); promise xatosi — await expect(…).rejects.toThrow(). Shakl noto'g'ri bo'lsa Jest natija bermaydi: jarayon qulaydi (toThrow promise'da · await'siz rejects)", st: ['err'] },
+  { k: 'two', t: "Error path testi ikki qismli: xato chiqdi va keyingi qadam bajarilmadi (not.toHaveBeenCalled); har < / <= shartiga aynan teng qiymat bilan chegara testi", st: ['err', 'edge'] },
+  { k: 'http', t: "Sayt API'si supertest bilan: so'rov → status va tana; 404 — mijoz xatosi, 500 — server xatosi. AI testini qabul qilish: diff · await + rejects · «bo'lmasligi kerak» testi · «qoidami yoki kod hozir shunday?» · buzib tekshirish", st: ['http', 'ai'] },
 ];
-const STATIONS24 = [['fn', 'order.ts · guard', T.blue], ['spec', 'order.spec.ts · toThrow', T.purple], ['run', 'npm test', T.ink], ['res', 'PASS / FAIL', T.green]];
-function SummaryMap24({ hl }) {
-  const cur = SUM24.find((x) => x.k === hl);
+const STATIONS25 = [['edge', 'Edge case', JC.edge], ['err', 'Error path', JC.err], ['http', 'HTTP test', T.green], ['ai', 'AI testi', JC.ai]];
+function SummaryMap25({ hl }) {
+  const cur = SUM25.find((x) => x.k === hl);
   const on = (k) => hl === 'all' || !cur || cur.st.includes(k);
   return <div className="mk-light" style={{ padding: 16 }}>
-    <div className="mk-tag">Bugungi dars — noto'g'ri kirish yo'li</div>
+    <div className="mk-tag">{t("Bugungi dars — bot noto'g'ri kirishda to'g'ri buziladimi", "Сегодняшний урок — правильно ли бот ломается на неверном вводе")}</div>
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0,1fr))', gap: 6 }}>
-      {STATIONS24.map(([k, n, c], i) => <div key={k} className={`mk-box${cur && cur.st.includes(k) ? ' hl' : ''}`} style={{ '--c': c, padding: '10px 6px', textAlign: 'center', opacity: on(k) ? 1 : 0.35, animation: `mk-up .4s ${i * 0.06}s ease both` }}><h4 style={{ fontSize: 12.5, margin: 0 }}>{n}</h4></div>)}
+      {STATIONS25.map(([k, n, c], i) => <div key={k} className={`mk-box${cur && cur.st.includes(k) ? ' hl' : ''}`} style={{ '--c': c, padding: '10px 6px', textAlign: 'center', opacity: on(k) ? 1 : 0.35, animation: `mk-up .4s ${i * 0.06}s ease both` }}><h4 style={{ fontSize: 13, margin: 0 }}>{n}</h4></div>)}
     </div>
   </div>;
 }
-const HOMEWORK24 = [
-  { t: "Guard: Jest-1 dagi discount.ts (yoki o'z funksiyangiz) — tur va chegara, aniq xabar", c: [] },
-  { t: "Testlar: ichki va tashqi chegara + toThrow('xabar') + '…' as any", c: ['npm test'] },
-  { t: "Buzish: () => ni olib tashlang → qulash → tiklang", c: ['npm test'] },
-  { t: 'Kupon: src/coupon.ts + src/coupon.spec.ts (6 test)', c: ['npm test'] },
-  { t: "GitHub'ga chiqaring va repo linkini platformadagi uyga vazifangizga qo'ying", c: ['git add . && git commit -m "edge testlar"', 'git push'] },
+const HOMEWORK25 = [
+  { t: "O'z nusxangiz — o'z reposingizda yangi tarmoq (yoki jest2-done dan)", c: ['git checkout -b edge-tests'] },
+  { t: "cart.service.spec.ts — mock repo (query, delete): add — query 1 marta, RETURNING qty → natija; query rad etsa — await … rejects.toThrow, boshqa chaqiruv yo'q", c: ['npm test -- cart.service'] },
+  { t: "user.service.spec.ts — mock repo (findOne, create, save): bor — save 0 · yo'q — save 1 · rol o'zgargan — save 1", c: ['npm test -- user.service'] },
+  { t: "Uch buzish — getOrCreate: if (!user) tekshiruvini olib tashlang · add: rows[0].qty → rows.length · rol tekshiruvi !== → === ; har biridan keyin npm test va git checkout", c: ['git checkout -- src/api/user/user.service.ts src/api/cart/cart.service.ts'] },
+  { t: "README «Testlar» bo'limi: buzish → qizargan test nomi (3 qator) → git push → repo linki platformadagi uyga vazifaga", c: ['git add . && git commit -m "edge va error path testlari"', 'git push'] },
 ];
-const CHEATSHEET24 = `# Jest-2 — mentor eslatmasi (edge cases va error path)
-## Happy path va edge case
-happy: orderTotal(10000, 2) → 20000 · edge: 0, -1, 1 (eng kichik haqiqiy), 'ikki', null
-Himoyasiz price * quantity: 0 → 0 · -1 → -10000 · 'ikki' → NaN · null → 0 — hammasi XATOSIZ (yashirin buzilish)
-## Guard
-if (typeof quantity !== 'number' || Number.isNaN(quantity) || quantity <= 0) { throw new Error("quantity musbat raqam bo'lsin"); }
-return price * quantity;  — tartib: shart → xato → hisob; 1 dona testi ham shart
-## Xatoni sinash
-expect(() => orderTotal(10000, 0)).toThrow();  · xabar bilan: toThrow("quantity musbat raqam bo'lsin")
-() =>siz: expect(orderTotal(10000, 0)).toThrow() → test funksiya xatosi bilan qulaydi (at orderTotal (order.ts:3:11))
-## Xabarlar
-Received function did not throw — guard yo'q yoki shart teshik (< 0 o'rniga <= 0)
-Expected substring / Received message — xato bor, boshqa xabar
-Happy testlar qizil — guard shartsiz (if yo'q) yoki juda qattiq (<= 1)
-## TypeScript tuzog'i (o'quvchi reposi)
-tsconfig: isolatedModules: true → npm test turlarni tekshirmaydi: orderTotal(10000, 'ikki') yuradi → Received: NaN
-VS Code / tsc: TS2345 — qizil chiziq → testda 'ikki' as any
-Ikki test fayli — nomlar chiqmaydi: jami son yoki npx jest --verbose; faqat order: npm test -- order
-## Chegaraning ikki tomoni (applyCoupon)
-if (percent < 0 || percent > 100) throw … · ichkari: 0 %, 100 % ishlaydi · tashqari: -1 %, 101 % xato
-> o'rniga >= → faqat «chegara 100 %» qizil
-## O'quvchi darsidagi so'zlar
-shumtaka mijoz / g'alati buyurtma = edge case · «hech kim sezmaydi» = xatosiz noto'g'ri natija · guard (🚧 shart · 🧯 xato · ✅ hisob) · o'rab berish = () =>
-## Sizning uyga vazifangiz
-o'z funksiyangizga guard + ikki tomonli chegara testlari + toThrow('xabar') + as any + applyCoupon (6 test) → GitHub → repo linki platformadagi uyga vazifaga`;
-const s24Segments = (passed) => [
+const CHEATSHEET25 = `# Jest — mentor eslatmasi (OrderBotNest, xato yo'li va chegara)
+## Loyiha
+git fetch --tags · git checkout jest2-start → jest2-done (phone.ts, phone.spec.ts, order.service.spec.ts, app.controller.spec.ts, supertest) · npm test — 25 test, baza va token kerak emas
+## Uch yo'l
+happy path — kutilgan kirish · edge case — qoidaning chegarasi (kod xato bermaydi, javob to'g'rimi?) · error path — kod ataylab xato beradi (qaysi xabar? keyin nima bo'lmaydi?)
+## Qoidani ajrating
+const PHONE service ichida yashirin → src/api/telegram/phone.ts: export const isPhone = (text) => PHONE.test(text.replace(/[\\s-]/g, '')) · bot ham, test ham shuni chaqiradi
+## it.each
+it.each(['+998901234567', '998901234567'])("%s — to'g'ri raqam", (s) => { expect(isPhone(s)).toBe(true); }) · [['12345678', '8 ta raqam'], …] juftliklar — nom terminalda ko'rinadi
+## Mock qolipi (baza yo'q)
+const manager = { findOne: jest.fn(), query: jest.fn(), create: jest.fn((_c, d) => d), save: jest.fn(async (o) => ({ id: 1, ...o })), delete: jest.fn() }
+const dataSource = { transaction: jest.fn((cb) => cb(manager)) } · Test.createTestingModule({ providers: [OrderService, { provide: getRepositoryToken(Order), useValue: {} }, { provide: DataSource, useValue: dataSource }] })
+manager.findOne.mockResolvedValue({ id: 4, name: 'Kolonka', stock: 1, price: 50000 })
+## Xato shakli
+sinxron throw → expect(() => service.place(u, c)).toThrow("Telefon raqami yo'q")
+promise xatosi → await expect(service.place(u, c)).rejects.toThrow('Kolonka: omborda faqat 1 ta qoldi')
+NATIJA YO'Q (PASS/FAIL yo'q, Node.js v24…): toThrow promise xatosida · await'siz rejects — shaklni tekshiring
+## Error path — ikki qism
+1) xato chiqdi (xabar bilan) · 2) keyingi qadam bo'lmadi: expect(manager.query).not.toHaveBeenCalled() · happy path: toHaveBeenCalledTimes(1)
+## Chegara
+< / <= / > shartiga aynan teng qiymat bilan test (omborda 2 ta, 2 ta olinadi) — 4 test ko'rmadi, 5-si ko'rdi
+## HTTP test
+npm i -D supertest @types/supertest · Test.createTestingModule({ controllers: [AppController] }) → app = mod.createNestApplication(); await app.init() · request(app.getHttpServer()).get('/') → status 200, body · /nope → 404 «Cannot GET /nope»
+## AI testini qabul qilish
+git diff --stat — faqat .spec.ts · rejects oldida await · «bo'lmasligi kerak» testi bormi · har test: qoidami yoki «kod hozir shunday»mi (AI probelli raqam rad etilishini muhrlagan edi) · buzib tekshirish
+## Xato qiladigan joylar
+Received function did not throw → guard yo'q · natija yo'q → () => yoki await yo'q · Expected substring / Received message → xabarni moslang · Nest can't resolve dependencies … (?, DataSource) → providers'da repository token yo'q · Received message: "Mahsulot topilmadi" → mockResolvedValue yozilmagan
+## Sinfga tayyorgarlik (m4b-03, 21 ekran)
+KitobShop orderTotal · shumtaka = edge case · guard = if → throw → return · o'rab berish = expect(() => …) · siz qo'shasiz: ikki qismli test, () => siz natija yo'q, chegaraning ikki tomoni, bir marta buzdirish
+## Sizning uyga vazifangiz (50–70 daqiqa)
+cart.service.spec.ts + user.service.spec.ts (mock, rejects, not.toHaveBeenCalled) · 3 buzish · README jadvali → GitHub → repo linki platformaga`;
+const s25Segments = (passed) => yakRu(passed, [
   passed
     ? sg('a', "<b>Barakalla!</b> Siz darsni yaxshi o'rgandingiz — bugungi darsni bir qarashda yig'amiz", "Barakalla! Siz darsni yaxshi o'rgandingiz. Endi bugun o'rganganlaringizni bir qarashda yig'amiz.", { hl: 'all' })
     : sg('a', "Dars oxiriga yetdingiz — sinovni <b>qayta topshirishni</b> maslahat beraman", "Dars oxiriga yetdingiz. Yakuniy sinovdan olti ball kerak edi, yakunlashdan oldin sinovni qayta topshirishni maslahat beraman. Hozir esa bugungi darsni bir qarashda yig'amiz.", { hl: 'all' }),
-  sg('b1', "Happy path va edge case; himoyasiz funksiya — <b>yashirin buzilish</b>", "Birinchi: bitta oddiy holat va bir nechta chegara holati. Himoyasiz funksiya noto'g'ri kirishda xato bermaydi: nol, minus o'n ming, NaN.", { hl: 'edge' }),
-  sg('b2', "Guard: <b>shart, xato, hisob</b> — va 1 dona testi", "Ikkinchi: guard funksiya boshida. Shart, xato tashlash, keyin hisob. Bir dona testi himoya to'g'ri buyurtmani to'smaganini ko'rsatadi.", { hl: 'guard' }),
-  sg('b3', "Xato kutilsa — funksiya <b>() =&gt; ichida</b>; xabarni ham tekshiring", "Uchinchi: xato kutilsa, funksiya strelka ichiga o'raladi. O'ralmasa, test funksiyaning o'z xatosi bilan qulaydi. Xabar bilan to throw qaysi xato ekanini tekshiradi.", { hl: 'wrap' }),
-  sg('b4', "<b>did not throw</b> — himoya yo'q yoki shart teshik", "To'rtinchi: did not throw, himoya yo'q yoki shart qiymatni o'tkazib yubordi. Oddiy holat qizil bo'lsa, himoya juda qattiq.", { hl: 'dnt' }),
-  sg('b5', "TypeScript: test yuradi, VS Code qizil — <b>as any</b>", "Beshinchi: o'quvchi reposida npm test turlarni tekshirmaydi, VS Code esa qizil chizadi. Ataylab noto'g'ri turda as any. Ikki faylda nomlar uchun verbose.", { hl: 'ts' }),
-  sg('b6', "Chegaraning <b>ikki tomoni</b>: 0 va 100 ishlaydi, −1 va 101 xato", "Oltinchi: chegaraning ikki tomonini sinang. Ichkarisi ishlaydi, nol va yuz. Tashqarisi xato beradi, minus bir va yuz bir.", { hl: 'edge2' }),
-  sg('hw', "<b>Uyga vazifa</b>: o'z funksiyangizga guard va ikki tomonli testlar", "Uyga vazifa: Jest birinchi darsidagi o'z funksiyangizga himoya qo'ying. Noto'g'ri tur va chegaradan tashqari qiymatlar xato bersin, xabar aniq bo'lsin. Har chegara uchun ikki tomonli test. Bir marta strelkani olib tashlab qulashni ko'ring.", { hl: 'hw' }),
-  sg('hw2', "Apply coupon testlarini qo'shing va <b>repo linkini platformaga</b> qo'ying", "Apply coupon testlarini ham qo'shing. GitHub'ga chiqaring va repo linkini platformadagi uyga vazifaga qo'ying, boshqa hech narsa kerak emas. Qirq-oltmish daqiqa.", { hl: 'hw' }),
-  sg('c', "<b>Eslatmani oling</b>: guard, toThrow, xabarlar va tuzoqlar — bir sahifada", "Pastda bir sahifalik eslatma: guard namunasi, xatoni sinash, uch xabar va ularning sababi, TypeScript tuzog'i va chegaralar. Nusxalab yoki yuklab oling, sinfda yoningizda tursin.", { hl: 'note' }),
+  sg('b1', "Uch yo'l: <b>happy path, edge case, error path</b> — test uchalasini sinaydi", "Birinchi: har funksiyada uch yo'l bor. Happy path, kutilgan kirish. Edge case, qoidaning chegarasi, kod xato bermaydi, lekin javob to'g'rimi. Error path, kod ataylab xato beradi: qaysi xabar bilan va keyin nima bo'lmaydi.", { hl: 'paths' }),
+  sg('b2', "Qoidani <b>alohida funksiyaga</b> ajrating; <b>it.each</b> va chegara testi", "Ikkinchi: sinamoqchi bo'lgan qoidani alohida funksiyaga ajrating, is phone kabi. It each bilan bir testga ko'p kirish berasiz. Chegara testi qoidaning tor joyini ham, keng joyini ham ko'rsatadi.", { hl: 'rule' }),
+  sg('b3', "Baza o'rniga <b>mock</b>: jest.fn, mockResolvedValue, Test.createTestingModule", "Uchinchi: baza o'rniga mock. Jest fn chaqiruvni yozib qoladi, mock resolved value nima qaytarishini aytadi, test moduli Nest'ga soxta data source'ni beradi. Unit-test bazasiz, kod esa haqiqiy.", { hl: 'mock' }),
+  sg('b4', "Sinxron — <b>toThrow</b>, promise — <b>await rejects.toThrow</b>; shakl noto'g'ri bo'lsa natija yo'q", "To'rtinchi: sinxron xatoga o'ram va to throw, promise xatosiga await, rejects, to throw. Shakl noto'g'ri bo'lsa Jest qizil bermaydi, jarayon qulaydi. Natija umuman chiqmasa, avval shaklni tekshiring.", { hl: 'shape' }),
+  sg('b5', "Error path testi <b>ikki qismli</b>; har shartga <b>aynan teng</b> qiymat bilan chegara testi", "Beshinchi: xato yo'lining testi ikki qismli: xato chiqdi va keyingi qadam bajarilmadi, not to have been called bilan. Har kichik yoki katta shartiga aynan teng qiymat bilan chegara testi yozing.", { hl: 'two' }),
+  sg('b6', "Sayt API'si — <b>supertest</b>; AI testi: <b>qoidami yoki «kod hozir shunday»mi</b>", "Oltinchi: saytning API'si supertest bilan sinaladi: so'rov, status va tana. AI yozgan testni qabul qilishda diff, await va rejects, bo'lmasligi kerak testi, va har testdan so'rang: bu qoidami yoki kod hozir shunday ishlaydimi. Keyin buzib tekshiring.", { hl: 'http' }),
+  sg('hw', "<b>Uyga vazifa</b>: savat va foydalanuvchi servislariga xato yo'li testlari", "Uyga vazifa: OrderBotNest'ning o'z nusxangizda cart service'ning add va user service'ning get or create funksiyalariga xato yo'li va chegara testlarini yozing, mock bilan. Add'da so'rov bir marta ketadi, rad etilsa boshqa so'rov ketmaydi. Get or create'da save nechta marta chaqirilishini sanang.", { hl: 'hw' }),
+  sg('hw2', "<b>Uch buzish</b> va README jadvali; repo linki platformaga", "Keyin uchta buzish qiling va har birida qaysi test qizarganini README'ga jadval qilib yozing. AI bilan yozsangiz ham bo'ladi, lekin har testda await va bo'lmasligi kerak qismini o'zingiz tekshiring. GitHub'ga chiqaring va linkni platformadagi uyga vazifangizga qo'ying. Ellik-yetmish daqiqa.", { hl: 'hw' }),
+  sg('c', "<b>Eslatmani oling</b>: uch yo'l, mock qolipi, xato shakli va AI tekshiruvi — bir sahifada", "Pastda bir sahifalik eslatma: uch yo'l, qoidani ajratish, mock qolipi, xato shakli, natija yo'q holatlari, chegara, supertest, AI testini qabul qilish va xato qiladigan joylar. Nusxalab yoki yuklab oling, sinfda yoningizda tursin.", { hl: 'note' }),
   sg('z', "Rahmat! <b>Darsni yakunlash</b> tugmasini bosing", "Rahmat. Darsni yakunlash tugmasini bosing, dars tugallangan deb belgilanadi.", { hl: 'note' }),
-];
-function Screen24(p) {
+]);
+function Screen25(p) {
   const completeLesson = useNextLessonAccess();
   const once = useRef(false);
   useEffect(() => { if (once.current) return; once.current = true; completeLesson().catch(() => {}); }, [completeLesson]);
-  const sheet = CHEATSHEET24;
-  const download = () => { try { const b = new Blob([sheet], { type: 'text/markdown' }); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'jest-2-mentor-eslatma.md'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); } catch (e) {} };
+  const sheet = t(CHEATSHEET25, RS('CHEAT'));
+  const download = () => { try { const b = new Blob([sheet], { type: 'text/markdown' }); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = t('jest-xato-yoli-mentor-eslatma.md', RS('FILE')); a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); } catch (e) {} };
   const passed = (p.testScore || 0) >= 6;
-  const segments = useMemo(() => s24Segments(passed), [passed]);
+  const segments = useMemo(() => s25Segments(passed), [passed]);
   const b = useBeats(segments, p.review);
   const hl = b.seg.hl;
   const phase = hl === 'hw' ? 'hw' : hl === 'note' ? 'note' : 'sum';
   const shown = segments.slice(0, b.beat + 1).filter((s) => /^b\d/.test(s.id)).length;
   return (
-    <Stage kicker="Yakun" idx={p.idx} total={p.total} audio={b.audio} onBack={p.onBack} onNext={p.onFinish} onRestart={p.onRestart} nextReady={b.done} nextDisabled={!b.done} nextLabel="Darsni yakunlash" lockHint="Ustoz gapirib bo'lgach ochiladi">
+    <Stage kicker={t('Yakun', 'Итог')} idx={p.idx} total={p.total} audio={b.audio} onBack={p.onBack} onNext={p.onFinish} onRestart={p.onRestart} nextReady={b.done} nextDisabled={!b.done} nextLabel={t('Darsni yakunlash', 'Завершить урок')} lockHint={t("Ustoz gapirib bo'lgach ochiladi", 'Откроется, когда учитель договорит')}>
       <div className="mk-body">
-        <Say title={passed ? 'Barakalla! Endi siz bilasiz' : 'Endi siz bilasiz'} segments={segments} beat={b.beat} audio={b.audio} stepManual={b.stepManual} guess={b.guess} answerAsk={b.answerAsk} review={p.review} />
+        <Say title={passed ? t('Barakalla! Endi siz bilasiz', 'Отлично! Теперь вы знаете') : t('Endi siz bilasiz', 'Теперь вы знаете')} segments={segments} beat={b.beat} audio={b.audio} stepManual={b.stepManual} guess={b.guess} answerAsk={b.answerAsk} review={p.review} />
         <div className="mk-scene top" style={{ overflow: 'auto' }}>
           {phase === 'sum' && (<>
-            <SummaryMap24 hl={hl} />
-            <div className="mk-plan">{SUM24.slice(0, shown).map((it, i) => <div key={it.k} className={it.k === hl ? 'hl' : ''} style={{ animation: 'mk-up .45s ease both' }}><b>0{i + 1}</b><span>{it.t}</span></div>)}</div>
+            <SummaryMap25 hl={hl} />
+            <div className="mk-plan">{SUM25.slice(0, shown).map((it, i) => <div key={it.k} className={it.k === hl ? 'hl' : ''} style={{ animation: 'mk-up .45s ease both' }}><b>0{i + 1}</b><span>{it.t}</span></div>)}</div>
           </>)}
           {phase === 'hw' && <div className="mk-light" style={{ padding: 16, animation: 'mk-up .45s ease both' }}>
-            <div className="mk-tag" style={{ color: T.accent }}>Uyga vazifa · 40–60 daqiqa</div>
+            <div className="mk-tag" style={{ color: T.accent }}>{t('Uyga vazifa · 50–70 daqiqa', 'Домашнее задание · 50–70 минут')}</div>
             <div style={{ display: 'grid', gap: 8 }}>
-              {HOMEWORK24.map((h, i) => <div key={i} className="mk-step" style={{ animation: `mk-up .4s ${i * 0.12}s ease both` }}>
+              {HOMEWORK25.map((h, i) => <div key={i} className="mk-step" style={{ animation: `mk-up .4s ${i * 0.12}s ease both` }}>
                 <span style={{ fontFamily: MONO, fontWeight: 700, color: T.accent, minWidth: 20 }}>{i + 1}</span>
                 <div className="t"><b style={{ marginBottom: 2 }}>{h.t}</b>{h.c.map((c) => <div key={c} className="cmd"><code>{c}</code><CopyBtn text={c} /></div>)}</div>
               </div>)}
             </div>
-            <div className="mk-rule" style={{ marginTop: 12 }}><b>Tekshiruvchi qaraydi:</b> guard funksiya boshida · chegaraning ikki tomoni · () =&gt; bilan toThrow · matn holati as any bilan.</div>
+            <div className="mk-rule" style={{ marginTop: 12 }}>{t(<><b>Tekshiruvchi qaraydi:</b> har promise xatosida <code>await</code> + <code>rejects</code> · <code>not.toHaveBeenCalled</code> kamida ikki testda · README jadvalida 3 buzish, har biri qizargan.</>, <><b>Проверяющий смотрит:</b> на каждой ошибке promise <code>await</code> + <code>rejects</code> · <code>not.toHaveBeenCalled</code> хотя бы в двух тестах · в таблице README 3 поломки, и каждая покраснела.</>)}</div>
           </div>}
           {phase === 'note' && <div className="mk-light" style={{ padding: 14, animation: 'mk-up .45s ease both' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-              <div className="mk-tag" style={{ margin: 0 }}>Mentor eslatmasi · 1 sahifa</div>
-              <div style={{ display: 'flex', gap: 8 }}><CopyBtn text={sheet} /><button className="mk-copy" onClick={download}>yuklab olish (.md)</button></div>
+              <div className="mk-tag" style={{ margin: 0 }}>{t('Mentor eslatmasi · 1 sahifa', 'Памятка ментора · 1 страница')}</div>
+              <div style={{ display: 'flex', gap: 8 }}><CopyBtn text={sheet} /><button className="mk-copy" onClick={download}>{t('yuklab olish (.md)', 'скачать (.md)')}</button></div>
             </div>
             <pre style={{ margin: '10px 0 0', font: `12px/1.5 ${MONO}`, whiteSpace: 'pre-wrap', color: T.ink2, maxHeight: 300, overflow: 'auto' }}>{sheet}</pre>
-            <div className="mk-card" style={{ marginTop: 10, borderColor: T.accent }}><h5 style={{ color: T.accent }}>Kursdagi keyingi mentor darsi</h5><div style={{ fontSize: 15, fontWeight: 700 }}>CI/CD nima va nega</div><div style={{ fontSize: 13.5, color: T.ink2 }}>testlar har push'da o'zi yursin</div></div>
+            <div className="mk-card" style={{ marginTop: 10, borderColor: T.accent }}><h5 style={{ color: T.accent }}>{t('Kursdagi keyingi mentor darsi', 'Следующий урок курса для менторов')}</h5><div style={{ fontSize: 15, fontWeight: 700 }}>{t("CI/CD: testlar lentada", RS('NEXT_T'))}</div><div style={{ fontSize: 13.5, color: T.ink2 }}>{t("Har push'da npm test o'zi yuradi, qizil bo'lsa — to'xtaydi", RS('NEXT_D'))}</div></div>
           </div>}
         </div>
       </div>
@@ -2478,20 +5297,20 @@ function Screen24(p) {
 // ============================================================
 //  Muqova va ildiz
 // ============================================================
-function Cover({ onStart }) {
+function Cover({ onStart, resume }) {
   return (
     <div className="mk-cover"><div className="card">
-      <p className="mk-eyebrow">Mentor kursi · Jest</p>
-      <h1>{LESSON_TITLE}</h1>
-      <p>Bu dars ovozli. Ustoz har ekranda gapiradi, ekran u bilan birga o'zgaradi. Quloqchin yoki ovoz balandligini tekshiring.</p>
+      <p className="mk-eyebrow">{t("Mentor kursi · Jest", "Курс для менторов · Jest")}</p>
+      <h1>{t(LESSON_TITLE, RS('TITLE'))}</h1>
+      <p>{t("Bu dars ovozli. Ustoz har ekranda gapiradi, ekran u bilan birga o'zgaradi. Quloqchin yoki ovoz balandligini tekshiring.", 'Урок озвучен. На каждом экране говорит учитель, экран меняется вместе с ним. Проверьте наушники или громкость.')}</p>
       <ul>
-        {["Jami taxminan 1 soat: ovoz ~19 daqiqa · to'rt amaliyot ~40 daqiqa · 4 tekshiruv · o'z-sinov 8 savol. 12-ekrandan keyin tanaffus qilsangiz bo'ladi", "Kerak: Jest-1 mentor darsi o'tilgan · o'quvchi reposi (IntroNestArxitechture) va Jest-1 dagi order fayllari · Node.js 20+ · VS Code", "Loyiha: o'quvchi reposi — misol o'quvchi m4b-03 dagi orderTotal (0, manfiy, so'z) va uyga vazifa applyCoupon"].map((x) => <li key={x}>{x}</li>)}
+        {t(["Jami taxminan 1 soat 15–30 daqiqa: ovoz ~25 daqiqa · uchta amaliyot 50–65 daqiqa · 4 tekshiruv · o'z-sinov 8 savol. 14-ekrandan keyin tanaffus qilsangiz bo'ladi", "Kerak: Jest-1 mentor darsi (OrderBotNest'da texts.spec.ts, keyboards.spec.ts yozgansiz) · Node.js 20+ · VS Code · AI yordamchi (Antigravity, Claude Code, Codex yoki Copilot). Baza va bot tokeni kerak emas", 'Loyiha: github.com/Azizbekcrypto/OrderBotNest — jest2-start tegidan boshlaysiz'], RS('COVER')).map((x) => <li key={x}>{x}</li>)}
       </ul>
-      <button className="mk-btn ready" onClick={onStart}>Boshlash →</button>
+      <CoverStart onStart={onStart} resume={resume} />
     </div></div>
   );
 }
-const SCREENS = [Screen1, Screen2, Screen3, Screen4, Screen5, Screen6, ScreenP1, Screen8, Screen9, Screen10, Screen11, ScreenP2, Screen13, Screen14, Screen15, ScreenP3, Screen17, Screen18, ScreenP4, Screen20, Screen21, Screen22, Screen23, Screen24];
+const SCREENS = [Screen1, Screen2, Screen3, Screen4, Screen5, Screen6, ScreenP7, Screen8, Screen9, Screen10, Screen11, Screen12, Screen13, Screen14, Screen15, Screen16, ScreenP17, Screen18, Screen19, Screen20, Screen21, ScreenP22, Screen23, Screen24, Screen25];
 const PRACTICE_COUNT = SCREENS.filter((S) => /^ScreenP\d/.test(S.name)).length;
 export default function JestEdgeMentorLesson({ studentName, lang = 'uz', onFinished, startAt }) {
   setLang(lang);
@@ -2505,6 +5324,7 @@ export default function JestEdgeMentorLesson({ studentName, lang = 'uz', onFinis
   const [seen, setSeen] = useState({});
   const [rev, setRev] = useState(0);
   const [mode, setMode] = useState('live');
+  const sv = useMentorSave({ id: LESSON_ID, total, startAt, started, idx, answers, seen, setIdx, setAnswers, setSeen, setStarted });
   const startTime = useRef(Date.now());
   const finished = useRef(false);
   const onAnswer = useCallback((payload) => setAnswers((a) => ({ ...a, [idx]: payload })), [idx]);
@@ -2529,8 +5349,897 @@ export default function JestEdgeMentorLesson({ studentName, lang = 'uz', onFinis
       answers: Object.entries(answers).map(([i, a]) => ({ screen: Number(i) + 1, ...a })),
     });
   };
-  if (!started) return <Cover onStart={() => setStarted(true)} />;
+  if (!started) return <Cover onStart={sv.start} resume={sv.resume} />;
   const S = SCREENS[idx];
   const fin = Object.values(answers).find((a) => a && a.type === 'final');
   return <S key={`${idx}:${rev}`} idx={idx} total={total} lang={lang} stored={answers[idx]} testScore={fin ? fin.score : 0} seen={!!seen[idx]} review={mode === 'review' && !!seen[idx]} onAnswer={onAnswer} onNext={next} onBack={idx > 0 ? () => { setMode('review'); setIdx((i) => i - 1); } : null} onFinish={finish} onGoto={goto} onRestart={restart} />;
 }
+
+// ============================================================
+//  RU — AVTO: feedback/F-1029-02-mentor-kurs/dev/ru-qur.py (manba: ru/jest2-*.json, ru/jest2-sahna.js). M24: UZ bo'laklarga tegilmaydi.
+//  Uslub: «Вы», dasturlash atamalari inglizcha; kod va haqiqiy chiqishlar — loyihadagidek. QO'LDA TAHRIRLANMAYDI.
+// ============================================================
+
+// --- sahna (ru/jest2-sahna.js) ---
+// Jest-2 · sahna ruschasi (M24): modul darajasidagi ro'yxatlar va ekran obyektlariga qo'shimcha. ru() bitta obyektga bir marta.
+var RU_S = {
+  S1: { plan: ['Общее понятие', 'Телефон: edge case', 'Заказ: error path', 'Граница и «не должно быть»', 'HTTP-тест и AI', 'Подготовка к классу'] },
+};
+ru(MUT, [[null, 'regex 9–13 → 8–13 цифр (проходят 8 цифр)'], [null, null], [null, 'place: UPDATE ДО проверки склада'], [null, 'сообщение «Telefon raqami yo\'q» → «Raqam yo\'q»'], [null, 'place: убрана проверка пустой корзины']]);
+ru(MUT_COLS, [['Мы', null], null, null]);
+ru(PATHS2, [
+  { h: 'Happy path — ожидаемый ввод', ex: [null, 'на складе 10'], q: 'Заказ принят. Все тесты Jest-1 были на этом пути.', t: 'тест: верен ли результат' },
+  { h: 'Edge case — граница правила', ex: [null, '9 цифр', 'на складе ровно 2'], q: 'Код не даёт ошибку — но верен ли ответ?', t: 'тест: верно ли и на границе' },
+  { h: 'Error path — код нарочно даёт ошибку', ex: ['нет телефона', 'корзина пуста', 'на складе 1, в корзине 2'], q: 'Ошибка — правильное поведение. Какое сообщение? Чего потом не происходит?', t: 'тест: ошибка вышла, и следующий шаг не случился' },
+]);
+ru(CAUSE11, ['toThrow вызвал обёртку — place() вернул promise', 'В этот момент ошибки нет → Jest посчитал «тест прошёл»', 'Ошибка брошена позже, внутри promise — её никто не поймал', 'Node остановил весь процесс: нет ни PASS, ни FAIL']);
+ru(CAUSE13, ['Тестовая функция закончилась сразу, не дождавшись promise', 'Promise потом отклонился — Jest увидел разницу (Expected / Received)', 'Но чья это ошибка? Jest не смог привязать', 'Процесс остановился: нет ни PASS, ни FAIL']);
+ru(DICT23, [['клиент-хитрец · странный заказ', 'edge case, неверный ввод'], ['«никто не заметит» · «тихая поломка» (карточка)', 'скрытая поломка — неверный результат без ошибки (0, −10000, NaN)'], ['guard · 🚧 условие · 🧯 бросить ошибку', null], ['обернуть', 'expect(() => f()).toThrow() — синхронная ошибка'], [null, 'ожидаемый ввод']]);
+ru(ADD23, [['«ошибка вышла» + «чего потом не случилось» — тест из двух частей', null], ['что будет без () => — настоящий вывод (результата нет)', 's7 обёртка'], ['обе стороны границы: ровно 0 и ровно 100', 'домашнее задание applyCoupon'], ['один раз сломать тест, написанный AI', 'конец практики']]);
+ru(CARDS23, [
+  ['Нет защиты', null, 'guard не написан или условие пропустило значение'],
+  ['Нет () =>', 'результата нет или тест упал с ошибкой функции', null],
+  ['Другое сообщение', null, 'согласуйте сообщение с кодом'],
+]);
+ru(QA23, [
+  ['«Зачем бросать ошибку, нельзя вернуть 0?»', '0 — скрытая поломка: бесплатный заказ; а ошибка видна сразу.'],
+  ['«Обязательно ли сообщение внутри toThrow()?»', 'Не обязательно, но с сообщением тест точнее: проверяет и то, какая это ошибка.'],
+  ['«Если напишу \'ikki\', VS Code подчёркивает красным»', 'TypeScript проверяет тип; для теста as any — нарочно даём неверный тип.'],
+  ['«Можно написать guard в конце функции?»', 'Нет: ошибка должна выйти до подсчёта, иначе подсчёт всё равно выполнится.'],
+]);
+ru(SUM25, [
+  { t: 'Три пути: happy path (ожидаемый ввод), edge case (граница — код не даёт ошибку, верен ли ответ), error path (код нарочно даёт ошибку — какое сообщение, чего потом не случилось)' },
+  { t: 'Правило, которое хотите проверить, вынесите в отдельную функцию (isPhone); it.each — один тест, много вводов; тест границы показывает узкое (пробел) и широкое (9 нулей) место правила' },
+  { t: 'Вместо базы mock: jest.fn, mockResolvedValue, Test.createTestingModule — unit-тест без базы, код настоящий' },
+  { t: 'Синхронная ошибка — expect(() => …).toThrow(); ошибка promise — await expect(…).rejects.toThrow(). При неверной форме Jest не даёт результата: процесс падает (toThrow на promise · rejects без await)' },
+  { t: 'Тест error path из двух частей: ошибка вышла, и следующий шаг не выполнен (not.toHaveBeenCalled); на каждое условие < / <= — тест границы со значением ровно на равенстве' },
+  { t: 'API сайта через supertest: запрос → статус и тело; 404 — ошибка клиента, 500 — ошибка сервера. Приём теста от AI: diff · await + rejects · тест «не должно быть» · «это правило или код просто сейчас так?» · проверка поломкой' },
+]);
+ru(STATIONS25, [null, null, [null, 'HTTP-тест', null], [null, 'Тест от AI', null]]);
+ru(HOMEWORK25, [
+  { t: 'Своя копия — новая ветка в своём репозитории (или от jest2-done)' },
+  { t: 'cart.service.spec.ts — mock repo (query, delete): add — query 1 раз, RETURNING qty → результат; если query отклонён — await … rejects.toThrow, других вызовов нет' },
+  { t: 'user.service.spec.ts — mock repo (findOne, create, save): есть — save 0 · нет — save 1 · роль изменилась — save 1' },
+  { t: 'Три поломки — getOrCreate: уберите проверку if (!user) · add: rows[0].qty → rows.length · проверка роли !== → === ; после каждой npm test и git checkout' },
+  { t: 'Раздел README «Тесты»: поломка → имя покрасневшего теста (3 строки) → git push → ссылка на репозиторий в домашнее задание на платформе' },
+]);
+RU_S.TITLE = 'Путь ошибки: правильно ли бот ломается на неверном вводе';
+RU_S.COVER = ['Всего около 1 часа 15–30 минут: озвучка ~25 минут · три практики 50–65 минут · 4 проверки · самопроверка 8 вопросов. После экрана 14 можно сделать перерыв', 'Нужно: урок для менторов Jest-1 (вы написали в OrderBotNest texts.spec.ts, keyboards.spec.ts) · Node.js 20+ · VS Code · AI-помощник (Antigravity, Claude Code, Codex или Copilot). База и токен бота не нужны', 'Проект: github.com/Azizbekcrypto/OrderBotNest — начинаете с тега jest2-start'];
+RU_S.FIN_INTRO = 'Вы всё посмотрели, теперь проверьте себя. Итоговый тест, восемь вопросов: три пути, вынос правила, to throw и rejects, случаи без результата, тест «не должно быть», граница и HTTP. На каждый вопрос одна попытка, после ответа откроются верный ответ и пояснение. Шесть и больше — урок усвоен. Если меньше, вернитесь к указанным экранам и пройдите тест заново.';
+RU_S.FIN_PASS = 'Урок усвоен. Теперь, если ученик скажет, что тест не даёт результата, вы знаете, куда смотреть.';
+RU_S.NEXT_T = 'CI/CD: тесты в конвейере';
+RU_S.NEXT_D = 'При каждом push npm test запускается сам, если красный — останавливается';
+RU_S.FILE = 'jest-put-oshibki-pamyatka-mentora.md';
+RU_S.YAK = {
+  b1: ['Три пути: <b>happy path, edge case, error path</b> — тест проверяет все три', 'Первое: в каждой функции три пути. Happy path, ожидаемый ввод. Edge case, граница правила: код не даёт ошибку, но верен ли ответ. Error path, код нарочно даёт ошибку: с каким сообщением и чего потом не происходит.'],
+  b2: ['Вынесите правило <b>в отдельную функцию</b>; <b>it.each</b> и тест границы', 'Второе: правило, которое хотите проверить, вынесите в отдельную функцию, как is phone. Через it each даёте одному тесту много вводов. Тест границы показывает и узкое, и широкое место правила.'],
+  b3: ['Вместо базы <b>mock</b>: jest.fn, mockResolvedValue, Test.createTestingModule', 'Третье: вместо базы mock. Jest fn запоминает вызов, mock resolved value говорит, что вернуть, тестовый модуль даёт Nest поддельный data source. Unit-тест без базы, а код настоящий.'],
+  b4: ['Синхронная — <b>toThrow</b>, promise — <b>await rejects.toThrow</b>; неверная форма — результата нет', 'Четвёртое: для синхронной ошибки — обёртка и to throw, для ошибки promise — await, rejects, to throw. При неверной форме Jest не даёт красного, процесс падает. Если результата нет вообще, сначала проверьте форму.'],
+  b5: ['Тест error path <b>из двух частей</b>; на каждое условие — тест границы <b>ровно на равенстве</b>', 'Пятое: тест пути ошибки из двух частей: ошибка вышла, и следующий шаг не выполнен, через not to have been called. На каждое условие «меньше» или «больше» пишите тест границы со значением ровно на равенстве.'],
+  b6: ['API сайта — <b>supertest</b>; тест от AI: <b>это правило или «код просто сейчас так»</b>', 'Шестое: API сайта проверяется через supertest: запрос, статус и тело. Принимая тест от AI: diff, await и rejects, тест «не должно быть», и у каждого теста спросите: это правило или код просто сейчас так работает? Потом проверьте поломкой.'],
+  hw: ['<b>Домашнее задание</b>: тесты пути ошибки для сервисов корзины и пользователя', 'Домашнее задание: в своей копии OrderBotNest напишите тесты пути ошибки и границы для функций add в cart service и get or create в user service, с mock. В add запрос уходит один раз, при отказе другой запрос не уходит. В get or create посчитайте, сколько раз вызывается save.'],
+  hw2: ['<b>Три поломки</b> и таблица в README; ссылка на репозиторий — на платформу', 'Потом сделайте три поломки и для каждой запишите в README таблицей, какой тест покраснел. Можно писать и с AI, но в каждом тесте await и часть «не должно быть» проверьте сами. Выложите на GitHub и вставьте ссылку в своё домашнее задание на платформе. Пятьдесят–семьдесят минут.'],
+  c: ['<b>Возьмите памятку</b>: три пути, шаблон mock, форма ошибки и проверка AI — на одной странице', 'Внизу памятка на одну страницу: три пути, вынос правила, шаблон mock, форма ошибки, случаи без результата, граница, supertest, приём теста от AI и места, где ошибаются. Скопируйте или скачайте, пусть будет рядом на уроке.'],
+};
+RU_S.CHEAT = `# Jest — памятка ментора (OrderBotNest, путь ошибки и граница)
+## Проект
+git fetch --tags · git checkout jest2-start → jest2-done (phone.ts, phone.spec.ts, order.service.spec.ts, app.controller.spec.ts, supertest) · npm test — 25 тестов, база и токен не нужны
+## Три пути
+happy path — ожидаемый ввод · edge case — граница правила (код не даёт ошибку, верен ли ответ?) · error path — код нарочно даёт ошибку (какое сообщение? чего потом не происходит?)
+## Вынесите правило
+const PHONE спрятан внутри service → src/api/telegram/phone.ts: export const isPhone = (text) => PHONE.test(text.replace(/[\\s-]/g, '')) · его вызывают и бот, и тест
+## it.each
+it.each(['+998901234567', '998901234567'])("%s — to'g'ri raqam", (s) => { expect(isPhone(s)).toBe(true); }) · пары [['12345678', '8 ta raqam'], …] — имя видно в терминале
+## Шаблон mock (без базы)
+const manager = { findOne: jest.fn(), query: jest.fn(), create: jest.fn((_c, d) => d), save: jest.fn(async (o) => ({ id: 1, ...o })), delete: jest.fn() }
+const dataSource = { transaction: jest.fn((cb) => cb(manager)) } · Test.createTestingModule({ providers: [OrderService, { provide: getRepositoryToken(Order), useValue: {} }, { provide: DataSource, useValue: dataSource }] })
+manager.findOne.mockResolvedValue({ id: 4, name: 'Kolonka', stock: 1, price: 50000 })
+## Форма ошибки
+синхронный throw → expect(() => service.place(u, c)).toThrow("Telefon raqami yo'q")
+ошибка promise → await expect(service.place(u, c)).rejects.toThrow('Kolonka: omborda faqat 1 ta qoldi')
+РЕЗУЛЬТАТА НЕТ (нет PASS/FAIL, Node.js v24…): toThrow на ошибке promise · rejects без await — проверьте форму
+## Error path — две части
+1) ошибка вышла (с сообщением) · 2) следующий шаг не случился: expect(manager.query).not.toHaveBeenCalled() · happy path: toHaveBeenCalledTimes(1)
+## Граница
+тест со значением ровно на равенстве для < / <= / > (на складе 2, берут 2) — 4 теста не увидели, 5-й увидел
+## HTTP-тест
+npm i -D supertest @types/supertest · Test.createTestingModule({ controllers: [AppController] }) → app = mod.createNestApplication(); await app.init() · request(app.getHttpServer()).get('/') → status 200, body · /nope → 404 «Cannot GET /nope»
+## Приём теста от AI
+git diff --stat — только .spec.ts · await перед rejects · есть ли тест «не должно быть» · каждый тест: правило или «код просто сейчас так» (AI запечатал отказ номеру с пробелами) · проверка поломкой
+## Где ошибаются
+Received function did not throw → нет guard · результата нет → нет () => или await · Expected substring / Received message → согласуйте сообщение · Nest can't resolve dependencies … (?, DataSource) → в providers нет repository token · Received message: "Mahsulot topilmadi" → не написан mockResolvedValue
+## Подготовка к классу (m4b-03, 21 экран)
+KitobShop orderTotal · хитрец = edge case · guard = if → throw → return · обернуть = expect(() => …) · вы добавляете: тест из двух частей, без () => результата нет, обе стороны границы, один раз сломать
+## Ваше домашнее задание (50–70 минут)
+cart.service.spec.ts + user.service.spec.ts (mock, rejects, not.toHaveBeenCalled) · 3 поломки · таблица README → GitHub → ссылка на репозиторий на платформу`;
+
+const RU_MDT = {
+ "1": {
+  "kicker": "Вступление",
+  "eyebrow": "Курс для менторов · Jest",
+  "title": "Бот работает при правильном вводе — теперь проверим, правильно ли он ломается при неправильном",
+  "seg": {
+   "a": [
+    "В Jest-1 вы проверяли «работает» — сегодня <b>«правильно ли ломается»</b>",
+    "Здравствуйте. На первом уроке по Jest вы проверяли, что бот правильно работает при правильном вводе. Сегодня наоборот: правильно ли ломается бот, когда клиент пишет неправильно или на складе не хватает товара. На экране результат в конце урока: пять тестовых файлов, двадцать пять тестов, все зелёные."
+   ],
+   "b": [
+    "Сначала <b>общее понятие</b>: три пути — happy path, edge case, error path",
+    "Сначала общее понятие: у кода три пути. Happy path, то есть ожидаемый правильный ввод. Edge case, то есть граница правила. Error path, то есть путь, на котором код нарочно выдаёт ошибку. Сегодня вы увидите все три в настоящих местах бота."
+   ],
+   "c": [
+    "Правило телефона, три ошибки заказа, <b>HTTP-тест для API сайта</b>",
+    "Дальше три настоящих места: правило номера телефона, три ошибки при оформлении заказа и адрес API сайта. Последнее — ответ на вопрос с первого урока по Jest: сайт проверяется точно так же. По пути увидите две скрытые ловушки: в них Jest даже не даёт красного."
+   ],
+   "d": [
+    "Шесть этапов, три практики; в конце <b>два экрана подготовки к классу</b>",
+    "Урок состоит из шести этапов, в трёх практиках пишете сами. Последние два экрана — подготовка к классу: карта урока ученика и места, где ученики ошибаются. Не спешите: каждый экран можно прослушать с начала, урок запоминает, где вы остановились. Начинаем."
+   ]
+  }
+ },
+ "2": {
+  "kicker": "Этап 1 · общее понятие",
+  "title": "В каждой функции три пути: ожидаемый ввод, ввод на границе и нарочная ошибка — тест проверяет все три",
+  "seg": {
+   "a": [
+    "Happy path — <b>ожидаемый правильный ввод</b>: все тесты Jest-1 были на этом пути",
+    "Первый путь — happy path: клиент правильно написал номер, на складе хватает, заказ принят. Все тесты первого урока по Jest были на этом пути. А в настоящем магазине не все клиенты пишут правильно."
+   ],
+   "b": [
+    "Edge case — <b>граница правила</b>: код не даёт ошибку, но верен ли ответ?",
+    "Второй путь — edge case, то есть граница. Клиент написал номер с пробелами. Или в номере ровно девять цифр, то есть самый короткий допустимый. Или на складе ровно два, и берут оба. Код не даёт ошибку, но верен ли ответ, скажет тест."
+   ],
+   "c": [
+    "Error path — <b>код нарочно бросает ошибку</b>: какое сообщение, и что потом не происходит",
+    "Третий путь — error path: нет телефона, корзина пуста, на складе не хватает. Здесь код нарочно бросает ошибку, и это правильное поведение. Тест ждёт саму ошибку: вышла ли ошибка, с каким сообщением и остался ли склад неизменным после ошибки."
+   ],
+   "d": [
+    "Итог: на каждую функцию — <b>тесты трёх путей</b>; сегодня пишем все три",
+    "Итог: на одну функцию пишутся тесты трёх путей: ожидаемый ввод, граница и ошибка. Сегодня в правиле телефона проверим границу, в заказе — путь ошибки, а в API сайта — запрос и ответ. Начинаем с правила телефона."
+   ]
+  }
+ },
+ "3": {
+  "kicker": "Этап 2 · телефон",
+  "title": "Правило PHONE спрятано внутри telegram.service.ts — из теста его не вызвать, поэтому выносим в отдельный файл",
+  "seg": {
+   "a": [
+    "Правило <b>в <code>telegram.service.ts</code>, 12-я строка</b>: <code>+</code> необязателен, от 9 до 13 цифр",
+    "Откройте свою папку OrderBotNest в VS Code. В двенадцатой строке файла telegram service ts в папке src, api, telegram — правило телефона: regex. Плюс необязателен, дальше от девяти до тринадцати цифр, больше ничего. В сто пятьдесят седьмой строке бот проверяет этим правилом сообщение клиента."
+   ],
+   "b": [
+    "Проблема: правило — <b><code>const</code>, не экспортировано</b> — тест не может его вызвать",
+    "Проблема в том, что правило — const, спрятано внутри файла и не экспортировано. Тест не может его вызвать. А поднимать весь бот и подделывать сообщение Telegram — это уже не unit-тест. Поэтому выносим правило в отдельный файл."
+   ],
+   "c": [
+    "Новый файл <code>phone.ts</code>: <b><code>isPhone(text)</code> — одна функция</b>, её вызывают и бот, и тест",
+    "В этой же папке telegram создаём файл phone ts. В нём две вещи: тот же regex и функция is phone, она берёт текст и возвращает true или false. Теперь и бот, и тест вызывают одну функцию. Правило живёт в одном месте."
+   ],
+   "d": [
+    "Итог: <b>правило, которое хотите проверить, вынесите в функцию</b> — это и код делает чище",
+    "Итог: если правило, которое хотите проверить, спрятано внутри service, вынесите его в отдельную функцию. Telegram service теперь импортирует is phone и вызывает её. Это делает тест возможным и код чище: правило в одном месте. Теперь проверяем само правило."
+   ]
+  }
+ },
+ "4": {
+  "kicker": "Проверка 1",
+  "eyebrow": "Проверка · 1 / 4",
+  "title": "Клиент написал номер как «+998 90 123 45 67». Что вернёт isPhone с текущим regex?",
+  "q": "Правило вынесли, теперь проверим. Первая проверка. Клиент написал номер с пробелами: плюс девять девять восемь, пробел, девяносто, пробел и так далее. Что вернёт is phone с текущим regex? Выберите вариант.",
+  "ok": "Верно. В regex только плюс и цифры, пробела нет, поэтому false. Trim убирает только пробелы в начале и в конце, а не в середине. Бот отклонит этот номер, а клиент думает, что написал его правильно. Значит, edge case часто появляется не из правила, а из привычки клиента.",
+  "okShort": "В regex нет пробела → <code>false</code>. <code>trim()</code> убирает только пробелы по краям.",
+  "hint": "Какие символы разрешены в regex? Есть ли среди них пробел?",
+  "demak": "edge case часто появляется не из правила, а из привычки клиента.",
+  "opts": [
+   "true — количество цифр верное, пробел не считается",
+   "false — в regex только цифры и +, пробела нет",
+   "true — trim() убирает пробелы",
+   "Ошибка — regex падает на пробеле в тексте"
+  ],
+  "wrong": {
+   "0": "Regex проверяет посимвольно: пробел — не \\d.",
+   "2": "trim() убирает только пробелы в начале и в конце, не в середине.",
+   "3": "Regex не падает, он возвращает false — сообщения об ошибке нет."
+  }
+ },
+ "5": {
+  "kicker": "Этап 2 · телефон",
+  "title": "Семь вводов на одно правило: два верных, четыре неверных и одна граница — it.each записывает их в одну таблицу",
+  "seg": {
+   "a": [
+    "<code>it.each</code> — <b>один тест, разный ввод</b>: даётся список, Jest делает для каждого отдельный тест",
+    "Создаём файл phone spec ts в папке telegram, рядом с phone ts. Новое: it each. Ему передаётся список вводов, Jest делает для каждого отдельный тест. В первом списке два верных номера: с плюсом и без."
+   ],
+   "b": [
+    "Четыре неверных ввода: <b>8 цифр, 14 цифр, буквы, пусто</b> — у каждого есть имя",
+    "Во втором списке четыре неверных ввода: восемь цифр, то есть на одну меньше границы. Четырнадцать цифр, на одну больше. Буквы. Пустой текст. В каждой строке ввод и его имя: пусть имя теста в терминале будет понятным."
+   ],
+   "c": [
+    "Седьмой тест — привычка клиента: <b>номер с пробелами должен быть <code>true</code></b>",
+    "Седьмой тест — привычка клиента: номер, написанный с пробелами. Мы ждём, что он верный, потому что это настоящий номер. В терминале VS Code npm test, два дефиса, phone. Шесть зелёных, один красный: номер с пробелами."
+   ],
+   "d": [
+    "Значит, <b>правило уже, чем клиент</b>: настоящий номер с пробелами бот отклоняет",
+    "Значит, причина в одном месте: правило уже, чем клиент. Клиент пишет с пробелами, а regex знает только цифры. Тест показал это в тот же день, когда написан код, а не тогда, когда клиент пожалуется. На следующем экране расширим правило и посмотрим ещё одну границу."
+   ]
+  }
+ },
+ "6": {
+  "kicker": "Этап 2 · внутри",
+  "title": "Исправление — одна строка: перед проверкой убираем пробелы и дефисы — и тест показывает, что правило пропускает лишнее",
+  "seg": {
+   "a": [
+    "Исправление: <b><code>replace(/[\\s-]/g, '')</code></b> — убираем пробелы и дефисы, потом проверяем",
+    "Меняем четвёртую строку файла phone ts: вместо trim — replace. Он убирает пробелы и дефисы, потом проверяет regex. Как бы клиент ни написал, цифры одинаковые. Npm test phone: все семь тестов зелёные."
+   ],
+   "b": [
+    "Ещё один тест: <b>9 нулей тоже <code>true</code></b> — правило считает это верным номером",
+    "Теперь интересный тест. Девять нулей: что скажет is phone? True. По правилу это верный номер: девять цифр, больше ничего. Тест зелёный, но вы задумаетесь: правда ли девять нулей — номер телефона?"
+   ],
+   "c": [
+    "Тест <b>проверяет правило, а верно ли само правило</b> — это ваше решение",
+    "Вот вторая польза edge-теста. Тест проверяет правило, а верно ли само правило, тест не решает. Если вас не устраивает, что девять нулей проходят, пишете правило уже, и тест снова вас защищает. Пока оставляем: для бота достаточно."
+   ],
+   "d": [
+    "Итог: <b>пишите в тест ввод на границе</b> — он ставит правило перед глазами",
+    "Итог: пишите в тест ввод на границе, он ставит правило перед глазами. Один тест нашёл узкое место правила — пробел. Другой показал широкое — девять нулей. Теперь оба файла напишете сами."
+   ]
+  }
+ },
+ "7": {
+  "kicker": "Практика 1 / 3",
+  "eyebrow": "Сейчас у себя · 12 минут",
+  "title": "Вынесите правило телефона в отдельный файл, напишите тесты границы и увидьте красный с пробелами",
+  "seg": {
+   "a": [
+    "Теперь вы: <b>на теге <code>jest2-start</code></b> выносите правило и пишете семь тестов",
+    "Теперь ваша очередь. В своей папке OrderBotNest переходите на тег jest два start. В папке telegram создаёте phone ts и phone spec ts. База и токен не нужны. Займёт двенадцать минут."
+   ],
+   "b": [
+    "Шаги 1–2: тег и <b><code>phone.ts</code>, семь тестов через <code>it.each</code></b> — тест с пробелами красный",
+    "На первом шаге переходите на тег через git fetch и checkout. На втором пишете в phone ts regex и is phone, а в phone spec ts семь тестов через it each. Npm test phone: тест с пробелами должен быть красным."
+   ],
+   "c": [
+    "Шаги 3–4: <b>исправление через <code>replace</code></b>, тест «9 нулей»; подтверждение — строка <code>Tests:</code>",
+    "На третьем шаге пишете в is phone вместо trim replace: всё зелёное. На четвёртом добавляете тест девяти нулей и смотрите результат. В поле подтверждения скопируйте строку tests из последнего результата."
+   ],
+   "d": [
+    "Если вышло иначе, нажмите кнопку <b>«Вышло иначе?»</b> — откроется окно с решениями",
+    "Если вышло иначе, нажмите кнопку «Вышло иначе?» внизу. Пока не отмечены все четыре пункта и нет подтверждения, «Далее» не откроется. Значит, после этой практики вы открываете правило для теста и пишете тест границы."
+   ]
+  },
+  "steps": [
+   {
+    "t": "Тег",
+    "exp": "Tests: 10 passed, 10 total"
+   },
+   {
+    "t": "phone.ts + phone.spec.ts (код с экранов 3–5)",
+    "exp": "✕ mijoz probel bilan yozadi · Tests: 1 failed, 6 passed"
+   },
+   {
+    "t": "Исправление",
+    "exp": "Tests: 7 passed, 7 total"
+   },
+   {
+    "t": "Граница",
+    "exp": "Tests: 8 passed, 8 total",
+    "cmds": [
+     "it(\"9 нулей тоже проходит\") — isPhone('000000000') → true"
+    ]
+   }
+  ],
+  "proof": {
+   "label": "Строка Tests: последнего результата",
+   "placeholder": "например: Tests: 8 passed, 8 total",
+   "wrong": "Восемь тестов зелёные? Вставьте строку Tests: из результата npm test -- phone."
+  },
+  "trouble": [
+   [
+    "error: pathspec 'jest2-start' did not match",
+    "теги не получены — git fetch --tags, потом checkout"
+   ],
+   [
+    "На шаге 2 всё ✓",
+    "тест с пробелами не написан или replace уже поставлен — проверьте седьмой тест с экрана 5"
+   ],
+   [
+    "в it.each вместо %s — undefined",
+    "элементы списка не массивы — нужна пара ['12345678', '8 ta raqam']"
+   ],
+   [
+    "Cannot find module './phone'",
+    "файл не в src/api/telegram/ — перенесите рядом с telegram.service.ts"
+   ]
+  ]
+ },
+ "8": {
+  "kicker": "Этап 3 · error path",
+  "title": "При оформлении заказа три ошибки: две сразу в самой функции, третья внутри транзакции — для теста эта разница решающая",
+  "seg": {
+   "a": [
+    "<code>order.service.ts</code>, 24-я строка: <b><code>place</code> сразу бросает две ошибки</b> — нет телефона, корзина пуста",
+    "Теперь переходим к заказу. Откройте файл order service ts в папке src, api, order, двадцать четвёртая строка: функция place. В двадцать пятой и двадцать шестой строках две проверки: нет телефона — ошибка, корзина пуста — ошибка. Обе бросаются сразу, в самой функции."
+   ],
+   "b": [
+    "Третья ошибка <b>внутри транзакции, 37-я строка</b>: не хватает на складе — бросается в promise",
+    "Третья ошибка в тридцать седьмой строке: если на складе не хватает. Но она внутри transaction, то есть внутри async-функции. Эта ошибка бросается не сразу, а в promise. Посмотрите на схему на экране: две ошибки слева, в самой функции, одна справа, внутри promise."
+   ],
+   "c": [
+    "Почему разница важна: <b>в Jest два разных способа</b> — один для синхронной, другой для promise",
+    "Для теста эта разница решающая. Синхронную ошибку ловим через expect, функцию в скобках, to throw. А ошибку promise — через await expect, rejects, to throw. Если перепутать способы, Jest даже не даст красного, это увидите через два экрана."
+   ],
+   "d": [
+    "Итог: прежде чем проверять ошибку, выясните, <b>где она бросается</b> — сразу или внутри promise",
+    "Итог: прежде чем проверять ошибку, выясните, где она бросается: сразу в самой функции или внутри promise. В place есть оба вида. Но до теста ещё одна проблема: place пишет в базу, а тестовой базы у нас нет. Решим это на следующем экране."
+   ]
+  }
+ },
+ "9": {
+  "kicker": "Этап 3 · внутри",
+  "title": "Unit-тест без базы: вместо DataSource поддельный объект, findOne возвращает товар, который задали мы — это mock",
+  "seg": {
+   "a": [
+    "<code>place</code> пишет в базу, тестовой базы нет — <b>вместо базы mock</b>: поддельный <code>manager</code>",
+    "Функция place пишет в базу внутри transaction: find one, update, save. В unit-тесте базы нет, и она не нужна. Поэтому вместо базы даём mock, то есть поддельный объект. В папке order создаём файл order service spec ts, с восьмой строки объект manager."
+   ],
+   "b": [
+    "<code>jest.fn()</code> — <b>поддельная функция, которая запоминает вызовы</b>; а <code>transaction</code> передаёт mock в callback",
+    "Jest fn — поддельная функция: она запоминает, что её вызвали и с какими аргументами. Find one, query, save — все такие. В шестнадцатой строке data source: его функция transaction сразу вызывает callback и передаёт ему наш manager. Place думает, что это настоящая база."
+   ],
+   "c": [
+    "<code>Test.createTestingModule</code>: <b>даём Nest mock вместо <code>DataSource</code></b>, <code>OrderService</code> настоящий",
+    "С двадцать третьей строки тестовый модуль Nest. В списке providers order service настоящий, а вместо data source — наш поддельный объект. Nest его inject-ит, order service разницы не знает. Repository тоже нужен, хватит пустого объекта: place его не использует."
+   ],
+   "d": [
+    "Итог: в каждом тесте <b>товар задаём мы через <code>mockResolvedValue</code></b> — на складе 1 или 10",
+    "Итог: теперь в каждом тесте складом управляем мы. Через mock resolved value говорим, что вернёт find one: на складе один Колонка или десять. Базы нет, но place работает ровно в настоящем коде. Теперь напишем четыре теста."
+   ]
+  }
+ },
+ "10": {
+  "kicker": "Этап 3 · error path",
+  "title": "Синхронная ошибка — expect(() => …).toThrow(), ошибка promise — await expect(…).rejects.toThrow(): четыре теста, все зелёные",
+  "seg": {
+   "a": [
+    "Синхронная ошибка: <b><code>expect(() =&gt; …)</code> — оборачиваем функцию</b>, Jest вызывает её сам",
+    "Первые два теста — для синхронной ошибки. Смотрите: внутри expect не вызываем функцию сразу: скобки, стрелка, потом вызов. Jest сам вызывает эту обёртку и ловит ошибку. Внутри to throw сообщение: нет номера телефона. Если сообщение не совпадёт, тест красный."
+   ],
+   "b": [
+    "Ошибка promise: <b><code>await expect(…).rejects.toThrow()</code></b> — функция вызывается сразу, promise ждём",
+    "Третий тест — для ошибки promise, форма другая. Внутри expect place вызывается сразу, без обёртки, потому что возвращает promise. Потом rejects: ждём, что promise завершится ошибкой. И в начале await: пусть Jest дождётся результата. В mock на складе один Колонка, в корзине два."
+   ],
+   "c": [
+    "Четвёртый тест — happy path: <b>на складе 10, итого 100 000</b>, <code>query</code> вызван один раз",
+    "Четвёртый тест — happy path: на складе десять, заказ проходит, итого сто тысяч сум. И ещё одна проверка: manager query вызван один раз, то есть update ушёл. В терминале VS Code npm test order service: все четыре теста зелёные."
+   ],
+   "d": [
+    "Итог: <b>синхронная — обёртка и <code>toThrow</code>, promise — <code>rejects</code> и <code>await</code></b>; теперь поменяем их местами",
+    "Итог: для синхронной ошибки — обёртка и to throw, для ошибки promise — rejects и await. Оба зелёные, но форма важна. На следующих двух экранах нарочно поменяем их местами и посмотрим, что сделает Jest. Результат вас удивит."
+   ]
+  }
+ },
+ "11": {
+  "kicker": "Этап 3 · ломаем",
+  "title": "Если ошибку склада написать через toThrow, Jest не даёт красного — падает сам процесс, нет ни PASS, ни FAIL",
+  "seg": {
+   "a": [
+    "Тест склада <b>пишем через <code>toThrow</code></b> — синхронная форма для ошибки promise",
+    "Теперь нарочно ломаем. Тест склада пишем не как третий тест, а в форме первого: обёртка и to throw, без await, без rejects. На вид похоже на правильный: и сообщение то же. Npm test order service."
+   ],
+   "b": [
+    "Результат: <b>нет ни PASS, ни FAIL</b> — в терминале ошибка и <code>Node.js v24.18.0</code>, процесс упал",
+    "Посмотрите на результат. Нет PASS, нет FAIL, нет строки tests. Только ошибка: Колонка, на складе остался только один, и версия Node. Упал сам процесс Jest. Вы ждали, что тест будет красным, а он вообще не дал результата."
+   ],
+   "c": [
+    "Значит, причина: <b><code>toThrow</code> вызвал обёртку, <code>place</code> вернул promise, ошибка пришла позже</b> — её никто не поймал",
+    "Значит, причина в одном месте. To throw вызвал обёртку, place вернул promise, и в этот момент ошибки не было. Тест посчитался пройденным. Ошибка бросилась позже, внутри promise, её никто не поймал, и Node остановил весь процесс. Это скрытая ошибка: не красный, а пусто."
+   ],
+   "d": [
+    "Итог: для ошибки promise — <b>не <code>toThrow</code>, а <code>rejects</code></b> — иначе Jest вам ничего не скажет",
+    "Итог: для ошибки внутри promise пишется не to throw, а rejects. Иначе Jest вам ничего не скажет, процесс упадёт. Если в классе ученик говорит, что результат теста не выходит, первым делом спросите: ошибка внутри promise? Теперь посмотрим обратный случай."
+   ]
+  }
+ },
+ "12": {
+  "kicker": "Проверка 2",
+  "eyebrow": "Проверка · 2 / 4",
+  "title": "Тест телефона написали через await expect(service.place(…)).rejects.toThrow(). place бросает ошибку сразу, внутри функции. Результат?",
+  "q": "Поставим форму для promise на синхронную ошибку. Вторая проверка. Тест телефона написали через rejects, но place бросает ошибку телефона сразу, в самой функции, не возвращая promise. Что скажет npm test? Выберите вариант.",
+  "ok": "Верно. При вызове place ошибка бросилась сразу, expect ещё не запустился. Jest считает, что упал сам тест, и даёт FAIL с сообщением: нет номера телефона. На этот раз результат есть, потому что ошибка синхронная и Jest её поймал. Значит, rejects ловит только ошибку, пришедшую из promise.",
+  "okShort": "Ошибка брошена до <code>expect</code> — FAIL, Jest поймал. <code>rejects</code> — только для ошибки promise.",
+  "hint": "Когда вызывается service.place(…) — внутри expect, до rejects. Когда бросается ошибка?",
+  "demak": "<code>rejects</code> ловит только ошибку, пришедшую из promise; синхронная ошибка бросается до <code>expect</code>.",
+  "opts": [
+   "PASS — rejects ловит и синхронную ошибку",
+   "Процесс упал — результата нет, как на экране 11",
+   "FAIL — ошибка брошена до запуска expect",
+   "PASS — await оборачивает ошибку в promise"
+  ],
+  "wrong": {
+   "0": "rejects ждёт promise; ошибка брошена до запуска expect.",
+   "1": "На этот раз ошибка синхронная — Jest поймал её внутри теста, результат есть.",
+   "3": "await не оборачивает ошибку; она брошена уже в момент вызова place."
+  }
+ },
+ "13": {
+  "kicker": "Этап 3 · внутри",
+  "title": "rejects верный, но нет await и сообщение нарочно неверное: Jest нашёл ошибку, но не смог привязать её к тесту — снова нет результата",
+  "seg": {
+   "a": [
+    "Форма почти верная: <code>rejects</code> есть, <b>только нет <code>await</code></b>; и сообщение мы нарочно написали неверно",
+    "Ещё одна скрытая ошибка, на этот раз гораздо тоньше. Rejects есть, to throw есть, только в начале нет await. И сообщение мы нарочно написали неверно: Планшет, осталось девять, а в коде Колонка, один. Тест должен быть красным. Npm test."
+   ],
+   "b": [
+    "Результат: Jest <b>нашёл разницу — <code>Expected</code> Планшет, <code>Received</code> Колонка</b>, но PASS/FAIL снова нет",
+    "Посмотрите на результат. Jest нашёл разницу: expected Планшет, received Колонка, тридцать седьмая строка. Но внизу снова версия Node, нет PASS, нет FAIL. Jest увидел ошибку, но не смог привязать её к тесту."
+   ],
+   "c": [
+    "Значит, причина: <b>без <code>await</code> тест сразу закончился</b>, promise отклонился позже — Jest не знал, к какому тесту это записать",
+    "Значит, причина одна: нет await. Тестовая функция закончилась сразу, не дождавшись promise. Promise отклонился позже, Jest не знал, чья это ошибка, и остановил процесс. С await это был бы обычный красный тест, с сообщением."
+   ],
+   "d": [
+    "Итог: <b>перед <code>rejects</code> всегда <code>await</code></b>; если результата нет вообще — проверьте promise и <code>await</code>",
+    "Итог: перед rejects всегда await, а тестовая функция — async. Если Jest вообще не даёт результата, это не ошибка кода, а форма теста: to throw на ошибке promise или rejects без await. Теперь найдёте эту строку сами."
+   ]
+  }
+ },
+ "14": {
+  "kicker": "Проверка 3",
+  "eyebrow": "Проверка · 3 / 4 — какая строка с ошибкой?",
+  "title": "В этом тестовом файле npm test не даёт результата — процесс падает. Найдите строку-виновника",
+  "q": "Вы видели скрытую ошибку, теперь найдите её сами. Третья проверка. В этом тестовом файле npm test не даёт результата, процесс падает. Одна строка во фрагменте не ждёт promise. Нажмите на эту строку.",
+  "ok": "Верно. В этой строке нет await: тест заканчивается, не дождавшись promise, ошибка приходит позже, и Jest не может привязать её к тесту. На экране исправленная строка: с await. Теперь неверное сообщение даёт обычный красный тест, с expected и received. Значит, если результата нет, сначала ищите await перед rejects.",
+  "okShort": "Нет <code>await</code> — тест не дождался promise, процесс упал. С <code>await</code> — обычный FAIL, с <code>Expected</code>/<code>Received</code>.",
+  "hint": "Какая строка возвращает promise и не ждёт его? Что должно стоять перед rejects?",
+  "task": "Правило: ошибка promise ожидается через <code>await expect(…).rejects.toThrow()</code>. В этом фрагменте одна строка не ждёт promise. <b>Нажмите на эту строку.</b>"
+ },
+ "15": {
+  "kicker": "Этап 4 · граница и «не должно быть»",
+  "title": "На пути ошибки тест ждёт двух вещей: ошибка вышла и склад не изменился — not.toHaveBeenCalled()",
+  "seg": {
+   "a": [
+    "Ошибка вышла — это половина. Проверяем ещё, что <b>после ошибки <code>UPDATE</code> не ушёл</b>",
+    "Вернёмся к тесту склада. Ошибка вышла — это половина. Вопрос важнее: остался ли склад неизменным после ошибки? В order service ts проверка в тридцать шестой строке стоит до update. Если кто-то поменяет порядок, ошибка выйдет, но склад всё равно уменьшится."
+   ],
+   "b": [
+    "<code>expect(manager.query).not.toHaveBeenCalled()</code> — <b>mock запомнил вызовы</b>, мы спрашиваем",
+    "Здесь помогает mock. Manager query — jest fn, он запоминает, что его вызвали. Мы спрашиваем: not to have been called, то есть не вызывался вообще. На пути ошибки это самая важная строка: пусть бот, выдав ошибку, всё равно не уменьшает склад."
+   ],
+   "c": [
+    "В happy path наоборот: <b><code>toHaveBeenCalledTimes(1)</code></b> — <code>UPDATE</code> ушёл ровно один раз",
+    "В тесте happy path наоборот: to have been called times один. Update ушёл ровно один раз, не два и не ноль. С mock вы считаете, что код отправил в базу: что ушло, а что нет."
+   ],
+   "d": [
+    "Итог: тест error path <b>из двух частей</b>: ошибка вышла, а следующий шаг не выполнен",
+    "Итог: тест пути ошибки состоит из двух частей. Первая: ошибка вышла, с правильным сообщением. Вторая: после ошибки не случилось то, чего не должно быть. Вторую большинство не пишет, и именно здесь бот теряет деньги. Теперь ломаем границу."
+   ]
+  }
+ },
+ "16": {
+  "kicker": "Этап 4 · ломаем",
+  "title": "Если проверку склада сделать <=, при остатке ровно 2 нельзя купить 2 — четыре теста остаются зелёными, краснеет тест границы",
+  "seg": {
+   "a": [
+    "Ломаем: <b><code>&lt;=</code> вместо <code>&lt;</code></b> — на складе 2, берут 2, а бот говорит «осталось только 2»",
+    "В тридцать шестой строке order service ts меняем знак «меньше» на «меньше или равно». Теперь если на складе два и клиент берёт оба, бот выдаёт ошибку: осталось только два. Последний товар никогда не продастся. Npm test order service."
+   ],
+   "b": [
+    "Четыре теста <b>остались зелёными</b>: они проверяют 1 и 10, а не границу",
+    "Все четыре теста зелёные. Причина: тест склада проверяет остаток один, happy path — десять. Оба далеко от границы. Разница между «меньше» и «меньше или равно» видна только тогда, когда два числа равны. Так же, как ошибка пагинации на первом уроке по Jest."
+   ],
+   "c": [
+    "Пятый тест — <b>на складе ровно 2, берут 2</b>: теперь красный, «осталось только 2»",
+    "Добавляем пятый тест: в mock на складе ровно два, в корзине два. Заказ должен пройти, итого сто тысяч. С правильным кодом все пять зелёные. Со сломанным кодом пятый красный: на складе осталось только два. Один знак, и один тест его поймал."
+   ],
+   "d": [
+    "Итог: на каждое условие <b><code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code> — тест границы</b> — со значением ровно на равенстве",
+    "Итог: если видите в коде «меньше», «больше», «меньше или равно», напишите тест со значением ровно на равенстве. Такой тест обычно самый короткий и ловит больше всего ошибок. Восстанавливаем условие, все пять зелёные. Теперь тесты order service напишете сами."
+   ]
+  }
+ },
+ "17": {
+  "kicker": "Практика 2 / 3",
+  "eyebrow": "Сейчас у себя · 20 минут",
+  "title": "Проверьте через mock три ошибки и границу place, потом сломайте код и увидьте красный",
+  "seg": {
+   "a": [
+    "Теперь вы: <b><code>order.service.spec.ts</code></b> — mock, три ошибки, граница и одна поломка",
+    "Теперь ваша очередь. В папке order пишете order service spec ts: mock, три ошибки, happy path и граница. Образец кода на экране можно открыть, но пишите сами, не копируйте. Займёт двадцать минут."
+   ],
+   "b": [
+    "Шаги 1–2: <b>mock и четыре теста</b> — синхронный <code>toThrow</code>, promise <code>rejects</code>, <code>not.toHaveBeenCalled</code>",
+    "На первом шаге пишете mock manager и тестовый модуль. На втором — четыре теста: телефон и корзина синхронно через to throw, склад через await rejects с проверкой, что query не вызывался, happy path с итогом. Npm test order service: все четыре зелёные."
+   ],
+   "c": [
+    "Шаги 3–4: <b>тест границы и поломка <code>&lt;=</code></b>; подтверждение — имя покрасневшего (✕) теста",
+    "На третьем шаге добавляете тест границы: на складе ровно два. На четвёртом ломаете в order service ts «меньше» на «меньше или равно», смотрите, какой тест покраснел, и восстанавливаете через git checkout. В поле подтверждения напишите имя покрасневшего теста."
+   ],
+   "d": [
+    "Если вышло иначе, нажмите кнопку <b>«Вышло иначе?»</b> — откроется окно с решениями",
+    "Если вышло иначе, нажмите кнопку «Вышло иначе?». Пока не отмечены все четыре пункта и нет подтверждения, «Далее» не откроется. Значит, после этой практики вы проверяете путь ошибки без базы и сами видели, что тест границы ловит ошибку."
+   ]
+  },
+  "steps": [
+   {
+    "t": "Mock и модуль",
+    "exp": "файл готов",
+    "cmds": [
+     "src/api/order/order.service.spec.ts — manager, dataSource, Test.createTestingModule (9-й экран)"
+    ]
+   },
+   {
+    "t": "Четыре теста",
+    "exp": "Tests: 4 passed, 4 total"
+   },
+   {
+    "t": "Граница",
+    "exp": "Tests: 5 passed, 5 total"
+   },
+   {
+    "t": "Поломка и восстановление",
+    "exp": "✕ chegara: omborda aynan 2 ta — 2 tasini olsa bo'ladi",
+    "cmds": [
+     "order.service.ts, строка 36: < → <=",
+     null,
+     null
+    ]
+   }
+  ],
+  "proof": {
+   "label": "Имя теста, покрасневшего (✕) на шаге 4 — не команда",
+   "placeholder": "например: chegara: omborda aynan 2 ta — 2 tasini olsa bo'ladi",
+   "wrong": "Напишите сюда не команду, а имя теста рядом со знаком ✕ в терминале, например: chegara: omborda aynan 2 ta."
+  },
+  "trouble": [
+   [
+    "Результата нет вообще, Node.js v24…",
+    "для ошибки promise — toThrow или нет await перед rejects (экраны 11, 13)"
+   ],
+   [
+    "Nest can't resolve dependencies of the OrderService (?, DataSource)… \"OrderRepository\" at index [0]",
+    "в providers нет getRepositoryToken(Order) — добавьте с пустым объектом (экран 9)"
+   ],
+   [
+    "Received message: \"Mahsulot topilmadi: Kolonka\"",
+    "в этом тесте не написан mockResolvedValue — findOne вернул undefined, код сказал «не найден»"
+   ],
+   [
+    "На шаге 4 всё ✓",
+    "в тесте границы не stock: 2 — в mock должно быть ровно 2 и в корзине 2"
+   ]
+  ]
+ },
+ "18": {
+  "kicker": "Этап 5 · HTTP и AI",
+  "title": "Сайт проверяется так же: supertest отправляет запрос в приложение Nest, не открывая сервер — GET / 200 и JSON, GET /nope 404",
+  "seg": {
+   "a": [
+    "Вопрос из Jest-1: <b>«а сайт можно тестировать?»</b> — да, один пакет: <code>supertest</code>",
+    "На первом уроке по Jest был вопрос: бот я проверил, а сайт? Ответ: точно так же, с одним дополнительным пакетом. В терминале VS Code npm i минус D supertest и types supertest. Supertest отправляет запрос в приложение Nest, не открывая сервер."
+   ],
+   "b": [
+    "<code>app.controller.spec.ts</code>: <b>поднимаем приложение Nest в памяти</b> — <code>createNestApplication</code>, <code>app.init()</code>",
+    "В папке src, api создаём app controller spec ts. В before all тестовый модуль только с app controller, потом create nest application и init. Приложение поднято в памяти, порт не открыт, базы нет. В after all закрываем."
+   ],
+   "c": [
+    "Два теста: <b><code>GET /</code> → 200 и <code>{ ok: true }</code></b>, <code>GET /nope</code> → 404 «Cannot GET /nope»",
+    "Первый тест: get, корневой адрес. Статус двести, тело ok true и service order bot, через to equal. Второй — error path: несуществующий адрес. Статус четыреста четыре, сообщение cannot get nope. Npm test app controller: оба зелёные."
+   ],
+   "d": [
+    "Итог: <b>запрос → статус и тело</b>; handler бота и route сайта проверяются одинаково",
+    "Итог: HTTP-тест отправляет запрос и проверяет статус и тело. И handler бота, и route сайта проверяются одним способом: даётся ввод, сравнивается вывод. В API побольше этот шаблон повторяется для каждого route. Теперь проверим."
+   ]
+  }
+ },
+ "19": {
+  "kicker": "Проверка 4",
+  "eyebrow": "Проверка · 4 / 4",
+  "title": "В приложении есть только route GET /. Тест отправил GET /nope. Чему будут равны res.status и res.body.message?",
+  "q": "Вы видели HTTP-тест, теперь проверим. Четвёртая проверка. В приложении только один route, корень. Тест отправил запрос на несуществующий адрес, nope. Какими будут статус и сообщение? Выберите вариант.",
+  "ok": "Верно. На несуществующий адрес Nest сам возвращает четыреста четыре, в теле message: cannot get nope. Это не ошибка в вашем коде, а ожидаемый error path, и тест ждёт именно его. Значит, несуществующий адрес — не пятьсот, а четыреста четыре: ошибка клиента, а не сервера.",
+  "okShort": "Нет route → сам Nest даёт 404 и <code>Cannot GET /nope</code> — это ожидаемый error path.",
+  "hint": "Какой номер выходит, если открыть в браузере несуществующую страницу? Nest возвращает то же.",
+  "demak": "несуществующий адрес — 404, ошибка клиента; 500 — ошибка сервера. Тест различает их.",
+  "opts": [
+   "200 и { ok: true } — Nest перенаправляет на корень",
+   "500 — ненайденный route это ошибка сервера",
+   "Тест падает — supertest не отправляет на несуществующий адрес",
+   "404 и Cannot GET /nope — собственный ответ Nest"
+  ],
+  "wrong": {
+   "0": "Nest не перенаправляет: если route нет — 404.",
+   "1": "500 — ошибка внутри кода; нет route — обычный 404.",
+   "2": "supertest отправляет на любой адрес; приходит ответ 404, тест не падает."
+  }
+ },
+ "20": {
+  "kicker": "Этап 5 · AI",
+  "title": "Продолжение нового навыка: AI написал тесты edge и ошибок — два набора, оба зелёные; теперь принимаем их",
+  "seg": {
+   "a": [
+    "Снова этап AI: <b>тесты edge и ошибок пишет AI, вы их принимаете</b>",
+    "Как и на первом уроке по Jest, последний этап — с AI. Разница: на этот раз AI пишет не happy path, а тесты edge и ошибок, то есть сегодняшнюю тему. Мы дали двум разным AI один простой промпт и принесли результат."
+   ],
+   "b": [
+    "Промпт: <b>«напиши edge case и тесты ошибок для place и проверки телефона»</b> — без подсказок",
+    "Промпт простой: напиши jest-тесты для edge case и ошибочных ситуаций функции place в order service и проверки номера телефона, пусть npm test будет зелёным. Rejects, await, граница, mock — ни одного из этих слов в промпте нет. Каждый AI работал в отдельной копии проекта."
+   ],
+   "c": [
+    "Результат хороший: <b>50 и 42 теста, код не тронут</b>, <code>rejects</code> и <code>await</code> верные, есть тесты «не должно быть»",
+    "Результат выглядит хорошо. Оба добавили только тестовые файлы и не тронули код. Первый написал пятьдесят тестов, второй сорок два, все зелёные. Оба написали для ошибки promise rejects и await, процесс не упал. Оба проверили, что после ошибки update не ушёл."
+   ],
+   "d": [
+    "Но: оба <b>не вынесли правило</b> и <b>записали отказ номеру с пробелами как «правильный»</b>",
+    "Но есть две вещи. Ни один не вынес правило телефона: оба проверяют его через весь handler, подделывая четыре сервиса, у первого сто сорок девять строк. И оба записали в тест, что номер с пробелами правильно отклоняется, а мы на шестом экране нашли, что это ошибка."
+   ],
+   "e": [
+    "Итог: <b>зелёный — ещё не проверка</b>; проверим поломкой — и ещё вопрос: тест проверяет правило или запечатывает код",
+    "Итог: зелёный — ещё не проверка, на следующем экране проверим пятью поломками. И появился новый вопрос: тест от AI проверяет правило или запечатывает то, как код работает сейчас? Тест номера с пробелами — второе."
+   ]
+  }
+ },
+ "21": {
+  "kicker": "Этап 5 · внутри",
+  "title": "Пять поломок — все три набора поймали всё; а шестую «поломку» сломать нельзя: AI запечатал отказ номеру с пробелами",
+  "seg": {
+   "a": [
+    "Пять поломок — <b>пять сегодняшних правил</b>: граница regex, <code>&lt;=</code>, порядок, сообщение, пустая корзина",
+    "Мы взяли пять поломок, каждая — одно сегодняшнее правило. В regex девять на восемь. «Меньше» на «меньше или равно». Update раньше проверки склада. Изменить сообщение ошибки. Убрать проверку пустой корзины. Проверили все три набора: наш и двух AI."
+   ],
+   "b": [
+    "Результат: <b>все три набора поймали все пять</b> — на этот раз AI хорошо написал путь ошибки",
+    "Результат: все три набора поймали все пять поломок. Наши двадцать пять тестов краснели по одному на каждую поломку. Первый AI заметил изменение сообщения тремя тестами, нарушение порядка — двумя. Второй AI тоже заметил всё. На этот раз AI хорошо написал путь ошибки, это признаём."
+   ],
+   "c": [
+    "Шестой «поломки» нет в таблице: <b>AI запечатал отказ номеру с пробелами</b> — исправление <code>replace</code> делает его тест красным",
+    "Но одна вещь в таблицу не помещается, потому что её нельзя сломать: пробел. Оба AI запечатали тестом отказ номеру с пробелами. Если вы исправите через replace с шестого экрана, их тест покраснеет. Тест охраняет не правило, а текущий код. О привычке клиента AI не знает."
+   ],
+   "d": [
+    "Итог: тест от AI <b>ловит ошибку, но и запечатывает текущее поведение</b> — у каждого теста спрашивайте «это правило?»",
+    "Итог: тест от AI делает две вещи. Ловит ошибку — это хорошо. И запечатывает текущее поведение, в том числе ошибку. Читайте каждый тест и спрашивайте: это правило или код просто сейчас так работает? Теперь попробуете со своим AI."
+   ]
+  }
+ },
+ "22": {
+  "kicker": "Практика 3 / 3",
+  "eyebrow": "Сейчас у себя · 20 минут",
+  "title": "Дайте своему AI промпт с точными условиями, потом четыре проверки и три поломки",
+  "seg": {
+   "a": [
+    "Теперь вы: даёте AI <b>промпт с точными условиями</b> — для пути ошибки <code>setStatus</code>",
+    "Теперь ваша очередь. Поручаете своему AI написать тесты, тема: функция set status в order service и её путь ошибки. Промпт копируете кнопкой ниже. Займёт двадцать минут."
+   ],
+   "b": [
+    "Шаги 1–2: промпт и <b>четыре проверки</b> — diff, <code>await</code> + <code>rejects</code>, <code>not.toHaveBeenCalled</code>, «это правило?»",
+    "На первом шаге даёте промпт. На втором проверяете результат: в git diff stat только spec-файл, в ошибке promise есть await и rejects, есть тест, что после ошибки increment не вызывался. И у каждого теста спросите: это правило или код просто сейчас так работает?"
+   ],
+   "c": [
+    "Шаги 3–4: <b>три поломки</b> — пусть все покраснеют; подтверждение — результат",
+    "На третьем шаге по очереди ломаете set status в трёх местах: уберите проверку отмены, перенесите increment раньше проверки, измените сообщение. После каждой — npm test и git checkout. На непокрасневшее место попросите у AI тест. В поле подтверждения напишите результат."
+   ],
+   "d": [
+    "Если вышло иначе, нажмите кнопку <b>«Вышло иначе?»</b> — откроется окно с решениями",
+    "Если вышло иначе, нажмите кнопку «Вышло иначе?». Пока не отмечены все четыре пункта и нет подтверждения, «Далее» не откроется. Значит, после этой практики вы принимаете тест пути ошибки от AI по двум частям: ошибка вышла, и следующий шаг не случился."
+   ]
+  },
+  "steps": [
+   {
+    "t": "Промпт",
+    "exp": "PASS",
+    "cmds": [
+     "промпт выше — своему AI",
+     null
+    ]
+   },
+   {
+    "t": "Четыре проверки",
+    "exp": "4 ✓",
+    "cmds": [
+     "git diff --stat — только .spec.ts",
+     "await перед rejects",
+     "есть expect(manager.increment).not.toHaveBeenCalled()",
+     "каждый тест — «правило» или «код сейчас так работает»? Отметьте вторые"
+    ]
+   },
+   {
+    "t": "Три поломки",
+    "exp": "каждая ✕",
+    "cmds": [
+     "order.service.ts setStatus: уберите проверку if (order.status === 'CANCELLED')",
+     "перенесите цикл increment раньше проверки",
+     "allaqachon bekor qilingan → bekor — после каждой npm test и git checkout -- src/api/order/order.service.ts"
+    ]
+   },
+   {
+    "t": "Непокрасневшее место",
+    "exp": "все три ✕",
+    "cmds": [
+     "AI: «<поломку> не поймал ни один тест — напиши тест на это правило»",
+     "повторите 3-й шаг"
+    ]
+   }
+  ],
+  "proof": {
+   "label": "Результат трёх поломок",
+   "placeholder": "например: покраснели все три · или: порядок increment — сначала не покраснел, добавил тест",
+   "wrong": "После каждой поломки напишите результат npm test."
+  },
+  "trouble": [
+   [
+    "в git diff --stat есть и order.service.ts",
+    "AI изменил код — git checkout -- src/api/order/order.service.ts, повторите пункт «Не трогай»"
+   ],
+   [
+    "Результата нет вообще, Node.js v24…",
+    "AI использовал toThrow на promise или нет await — экраны 11, 13; исправьте строку вручную"
+   ],
+   [
+    "При поломке порядка increment всё ✓",
+    "нет теста «не должно быть» — попросите not.toHaveBeenCalled (экран 15)"
+   ],
+   [
+    "order.items undefined",
+    "в заказе из mock нет items: [] — дайте mock'у items"
+   ]
+  ]
+ },
+ "23": {
+  "kicker": "Этап 6 · подготовка к классу",
+  "eyebrow": "m4b-03 · «Edge cases va error path»",
+  "title": "Урок ученика: KitobShop orderTotal, «клиент-хитрец» и guard — маленький вариант без базы пути, который вы знаете",
+  "seg": {
+   "a": [
+    "m4b-03 — 21 экран: <b>guard для <code>orderTotal</code></b>, клиент-хитрец даёт 0 и минус",
+    "Теперь подготовка к классу. Урок ученика m4b-03, двадцать один экран. Ученик добавляет guard в функцию order total с первого урока по Jest: если пришёл ноль, минус или текст, она бросает ошибку. Урок объясняет это на примере клиента-хитреца: клиента, который делает странный заказ. Базы нет, promise нет, всё синхронно."
+   ],
+   "b": [
+    "Слова урока ученика: <b>хитрец — edge case, guard — <code>if</code> <code>throw</code> <code>return</code></b>, обернуть — <code>expect(() =&gt; …)</code>",
+    "Слова из урока ученика: клиент-хитрец — это edge case. Guard — это if, throw, return. Обернуть — это скобки со стрелкой внутри expect. А «тихая поломка» на карточке — скрытая поломка: неверный результат без ошибки. В классе говорите слово вместе с термином."
+   ],
+   "c": [
+    "Вы добавляете: <b>тест из двух частей, результат без <code>() =&gt;</code>, обе стороны границы</b>",
+    "Что вы добавляете к уроку. В тесте guard две части: ошибка вышла, и подсчёт не выполнен. Один раз покажите в настоящем терминале, что будет без обёртки: результата нет, сегодня вы это видели сами. В домашнем задании пусть проверят apply coupon ровно на границах ноль и сто."
+   ],
+   "d": [
+    "Итог: если ученик говорит «результат теста не выходит» — <b>нет <code>() =&gt;</code></b>; внизу три ситуации и вопросы",
+    "Итог: если ученик говорит, что результат теста вообще не выходит, сначала посмотрите на обёртку внутри expect. Если вышло did not throw, guard нет или условие пропустило значение. Внизу три ситуации и готовые ответы на вопросы учеников."
+   ]
+  }
+ },
+ "24": {
+  "kicker": "Самопроверка",
+  "title": "Восемь вопросов. Одна попытка. Шесть — вы прошли",
+  "final": [
+   {
+    "q": "Клиент написал «+998 90 123 45 67», бот ответил «Raqam noto'g'ri». Какой это путь?",
+    "e": "Настоящий номер, правило узкое.",
+    "o": [
+     "Edge case — правило уже привычки клиента",
+     "Error path — код нарочно дал ошибку, это верно",
+     "Happy path — номер верный, бот тоже",
+     "Не ошибка — клиент написал неверно"
+    ]
+   },
+   {
+    "q": "const PHONE внутри service, экспорта нет. Что делаете в тесте?",
+    "e": "Одно место, его вызывают и бот, и тест.",
+    "o": [
+     "Поднимаем весь бот и подделываем сообщение Telegram",
+     "Выносим правило в отдельную функцию и проверяем её",
+     "Копируем regex в тест и проверяем там",
+     "Делаем service any и лезем в PHONE"
+    ]
+   },
+   {
+    "q": "place бросает ошибку склада внутри transaction. Какая форма верная?",
+    "e": "Ошибка promise — rejects и await.",
+    "o": [
+     "expect(() => service.place(u, c)).toThrow('…') — с обёрткой",
+     "expect(service.place(u, c)).toThrow('…')",
+     "await expect(service.place(u, c)).rejects.toThrow('…')",
+     "expect(await service.place(u, c)).toThrow('…') — await внутри"
+    ]
+   },
+   {
+    "q": "Для ошибки promise написали toThrow. Что покажет npm test?",
+    "e": "Ошибка в promise, её никто не поймал.",
+    "o": [
+     "FAIL — сообщение не совпало",
+     "PASS — ошибка не поймана, тест прошёл",
+     "FAIL — toThrow сразу отклоняет promise",
+     "Результата нет — процесс упал, Node.js v24"
+    ]
+   },
+   {
+    "q": "expect(service.place(u, c)).rejects.toThrow('…') — нет await, сообщение неверное. Результат?",
+    "e": "Тест закончился, не дождавшись promise.",
+    "o": [
+     "Результата нет — Jest не смог привязать ошибку к тесту",
+     "FAIL — разница Expected / Received показана точно",
+     "PASS — rejects сам дождётся promise",
+     "Ошибка TypeScript — перед rejects обязателен await"
+    ]
+   },
+   {
+    "q": "Что проверяется в тесте пути ошибки, кроме «ошибка вышла»?",
+    "e": "«Чего не должно быть» — not.toHaveBeenCalled.",
+    "o": [
+     "За сколько миллисекунд вышла ошибка — скорость",
+     "Что после ошибки UPDATE не вызывался",
+     "Какой файл есть в stack ошибки",
+     "Что объект ошибки типа Error"
+    ]
+   },
+   {
+    "q": "В mock проверены склад 1 и 10. В коде сломали < → <=. Тесты?",
+    "e": "Разница только при точном равенстве.",
+    "o": [
+     "Оба FAIL — потому что граница сломана",
+     "Тест склада FAIL, happy PASS",
+     "Оба PASS — граница не проверена",
+     "Результата нет — mock падает"
+    ]
+   },
+   {
+    "q": "Через supertest отправили GET /nope, route нет. Ответ?",
+    "e": "Собственный ответ Nest 404 — ожидаемый error path.",
+    "o": [
+     "500 — сервер не нашёл route",
+     "200 — Nest перенаправляет на корень",
+     "Тест падает — потому что адреса не существует",
+     "404 и Cannot GET /nope — ответ Nest"
+    ]
+   }
+  ]
+ },
+ "25": {
+  "kicker": "Итог",
+  "title": "Теперь вы знаете"
+ }
+};
+// RS(k) — darsga xos ruscha (RU_S.k, ru/<dars>-sahna.js); yo'q bo'lsa null → t() o'zbekchani qoldiradi. wrRu — ovoz → «Matn» (RU_S.SPOKEN, keyin wr).
+function RS(k) { return typeof RU_S !== 'undefined' && RU_S[k] != null ? RU_S[k] : null; }
+function wrRu(s) { return wr((RS('SPOKEN') || []).reduce((a, [x, y]) => a.split(x).join(y), s)); }
+function rsY(key, text) { return { key, text, show: wrRu(text) }; }
+// Yakun segmentlari (ru-umumiy.py: sNNSegments → yakRu): umumiy a/z + RU_S.YAK (id bo'yicha)
+function yakRu(passed, segs) {
+  if (LANG !== 'ru') return segs;
+  const Y = { a_pass: rsY('<b>Отлично!</b> Вы хорошо прошли урок — соберём сегодняшний урок одним взглядом', 'Отлично! Вы хорошо прошли урок. Теперь соберём всё, что узнали сегодня, одним взглядом.'), a_fail: rsY('Вы дошли до конца урока — советую <b>пройти тест заново</b>', 'Вы дошли до конца урока. В итоговом тесте нужно было шесть баллов, перед завершением советую пройти тест заново. А сейчас соберём сегодняшний урок одним взглядом.'), z: rsY('Спасибо! Нажмите кнопку <b>«Завершить урок»</b>', 'Спасибо. Нажмите кнопку «Завершить урок», урок будет отмечен как пройденный.'), ...Object.fromEntries(Object.entries(RS('YAK') || {}).map(([k, [key, text]]) => [k, rsY(key, text)])) };
+  return segs.map((s) => ({ ...s, ...(Y[s.id === 'a' ? (passed ? 'a_pass' : 'a_fail') : s.id] || {}) }));
+}
+(function ruMdtQo() {
+  const segRu = (n) => { const r = RU_MDT[n] && RU_MDT[n].seg; if (!r) return undefined; const o = {}; Object.keys(r).forEach((id) => { const [key, text] = r[id]; o[id] = { ...(key != null ? { key } : {}), ...(text != null ? { text, show: wrRu(text) } : {}) }; }); return o; };
+  const head = (n) => { const r = RU_MDT[n] || {}; const o = {}; ['kicker', 'eyebrow', 'title'].forEach((k) => { if (r[k] != null) o[k] = r[k]; }); const s = segRu(n); if (s) o.segments = s; return o; };
+  const mdt = {}; Object.keys(RU_MDT).forEach((n) => { const r = { ...RU_MDT[n] }; if (r.seg) r.seg = MDT[n].seg.map(([id]) => (r.seg[id] ? [null, r.seg[id][0], r.seg[id][1]] : null)); mdt[n] = r; });
+  ru(MDT, mdt);
+  ru(S1, { ...head(1), ...((typeof RU_S !== 'undefined' && RU_S.S1) || {}) });
+  ru(S2, { ...head(2), ...((typeof RU_S !== 'undefined' && RU_S.S2) || {}) });
+  ru(S3, { ...head(3), ...((typeof RU_S !== 'undefined' && RU_S.S3) || {}) });
+  ru(S5, { ...head(5), ...((typeof RU_S !== 'undefined' && RU_S.S5) || {}) });
+  ru(S6, { ...head(6), ...((typeof RU_S !== 'undefined' && RU_S.S6) || {}) });
+  ru(S8, { ...head(8), ...((typeof RU_S !== 'undefined' && RU_S.S8) || {}) });
+  ru(S9, { ...head(9), ...((typeof RU_S !== 'undefined' && RU_S.S9) || {}) });
+  ru(S10, { ...head(10), ...((typeof RU_S !== 'undefined' && RU_S.S10) || {}) });
+  ru(S11, { ...head(11), ...((typeof RU_S !== 'undefined' && RU_S.S11) || {}) });
+  ru(S13, { ...head(13), ...((typeof RU_S !== 'undefined' && RU_S.S13) || {}) });
+  ru(S15, { ...head(15), ...((typeof RU_S !== 'undefined' && RU_S.S15) || {}) });
+  ru(S16, { ...head(16), ...((typeof RU_S !== 'undefined' && RU_S.S16) || {}) });
+  ru(S18, { ...head(18), ...((typeof RU_S !== 'undefined' && RU_S.S18) || {}) });
+  ru(S20, { ...head(20), ...((typeof RU_S !== 'undefined' && RU_S.S20) || {}) });
+  ru(S21, { ...head(21), ...((typeof RU_S !== 'undefined' && RU_S.S21) || {}) });
+  ru(S23, { ...head(23), ...((typeof RU_S !== 'undefined' && RU_S.S23) || {}) });
+  ru(P7.S, { ...head(7), ...((typeof RU_S !== 'undefined' && RU_S.P7_S) || {}) });
+  ru(P7.steps, RU_MDT[7].steps);
+  ru(P7.trouble, RU_MDT[7].trouble);
+  ru(P7.proof, RU_MDT[7].proof);
+  ru(P17.S, { ...head(17), ...((typeof RU_S !== 'undefined' && RU_S.P17_S) || {}) });
+  ru(P17.steps, RU_MDT[17].steps);
+  ru(P17.trouble, RU_MDT[17].trouble);
+  ru(P17.proof, RU_MDT[17].proof);
+  ru(P22.S, { ...head(22), ...((typeof RU_S !== 'undefined' && RU_S.P22_S) || {}) });
+  ru(P22.steps, RU_MDT[22].steps);
+  ru(P22.trouble, RU_MDT[22].trouble);
+  ru(P22.proof, RU_MDT[22].proof);
+  ru(FINAL, RU_MDT[24].final);
+})();

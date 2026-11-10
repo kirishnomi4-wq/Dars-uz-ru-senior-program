@@ -1,0 +1,19 @@
+             List of tables
+ Schema |    Name    | Type  |  Owner   
+--------+------------+-------+----------
+ public | cart_items | table | postgres
+ public | migrations | table | postgres
+ public | products   | table | postgres
+ public | users      | table | postgres
+(4 rows)
+
+ id |    name    | price  | stock 
+----+------------+--------+-------
+  1 | Klaviatura | 120000 |     8
+  2 | Sichqoncha |  75000 |    15
+  3 | Quloqchin  |  95000 |     5
+  4 | Kolonka    |  50000 |    10
+  5 | Planshet   | 300000 |     3
+  6 | O'yinchoq  |  30000 |     4
+(6 rows)
+

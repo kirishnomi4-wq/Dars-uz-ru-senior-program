@@ -1,0 +1,8 @@
+## Haiku-p2 (/tmp/claude-1000/-home-kali-Desktop-internetLesson/acbddc95-9018-4213-96d2-b79eac22166a/scratchpad/jest1-p2-ai2-toza)
+buzilmagan: Tests:       12 passed, 12 total
+B1 som: ru-RU → en-US (120,000): Tests:       7 failed, 5 passed, 12 total
+B2 savat qatori: buyurtma narxi o'rniga hozirgi narx: Tests:       1 failed, 11 passed, 12 total
+B3 orderKeyboard: CANCELLED da ham tugma: Tests:       12 passed, 12 total
+B4 catalogKeyboard: oxirgi sahifada ham ▶: Tests:       12 passed, 12 total
+B5 STATUS_UZ.NEW matni o'zgardi: Tests:       3 failed, 9 passed, 12 total
+

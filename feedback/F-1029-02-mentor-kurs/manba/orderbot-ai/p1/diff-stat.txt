@@ -1,0 +1,16 @@
+ .env.example                                       |   3 +
+ README.md                                          |  12 +-
+ package-lock.json                                  | 536 +++++++++++++++++++--
+ package.json                                       |  13 +-
+ src/api/app.module.ts                              |   4 +-
+ src/api/catalog/catalog.module.ts                  |   3 +
+ src/api/catalog/catalog.service.ts                 |  71 +--
+ src/api/catalog/product.entity.ts                  |  20 +
+ src/api/order/order.service.ts                     |  11 +-
+ src/api/telegram/telegram.service.ts               |  25 +-
+ src/config/index.ts                                |   2 +
+ src/database/data-source.ts                        |   6 +
+ .../migrations/1793733128247-CreateProducts.ts     |  23 +
+ src/database/seed.ts                               |  42 ++
+ src/database/typeorm.config.ts                     |  27 ++
+ 15 files changed, 721 insertions(+), 77 deletions(-)

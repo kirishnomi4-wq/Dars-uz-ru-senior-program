@@ -1,0 +1,60 @@
+# tiklash nusxa: @WebSocketGateway({ connectionStateRecovery: { maxDisconnectionDuration: 2 daqiqa } }) — klient socket.recovered ni ko'rsatadi
+
+## Qadamlar
+21:41:23 — A) klient hali hech qanday hodisa olmagan — tarmoq uzildi (proksi)
+21:41:24 — Bobur buyurtma berdi (klient tarmoqsiz)
+21:41:28 — tarmoq qaytdi
+21:41:36 — B) Bobur buyurtma berdi — klient hodisani oladi (oxirgi tartib belgisi bor)
+21:41:39 — B) tarmoq uzildi (proksi)
+21:41:40 — Bobur buyurtma berdi (klient tarmoqsiz)
+21:41:44 — tarmoq qaytdi
+21:41:52 — C) server to'xtatildi
+21:41:55 — server qayta ishga tushirildi (navbat — o'chiq paytda yozilgan buyurtma)
+
+## Klient
+21:41:21 connect · recovered=false · id 0BGx0Q…
+21:41:23 disconnect: transport close
+21:41:23 connect_error: xhr poll error
+21:41:26 connect_error: xhr poll error
+21:41:29 connect · recovered=false · id hIhhHg…
+21:41:36 order-changed {"orderId":2,"reason":"new"}
+21:41:39 disconnect: transport close
+21:41:40 connect_error: xhr poll error
+21:41:42 connect_error: xhr poll error
+21:41:47 order-changed {"orderId":3,"reason":"new"}
+21:41:47 connect · recovered=true · id hIhhHg…
+21:41:52 disconnect: transport close
+21:41:52 connect_error: xhr poll error
+21:41:54 connect_error: xhr poll error
+21:41:57 connect · recovered=false · id RPfAIC…
+
+## Server logi
+LOG [InstanceLoader] LiveModule dependencies initialized
+21:41:20 Server 3100-portda ishlayapti
+LOG [Live] panel ulandi: 0BGx0QzTjkH_PZrPAAAA
+LOG [Live] panel uzildi: 0BGx0QzTjkH_PZrPAAAA
+21:41:24 — Bobur botda buyurtma beradi
+21:41:24 bot → 5987654321: Salom, Bobur! Bu CoddyCamp do'koni boti.
+21:41:24 bot → 5987654321: Buyurtma uchun telefon raqamingizni yozing (masalan, +998901234567):
+21:41:24 bot → 5987654321: Buyurtma #1 qabul qilindi!
+21:41:24 — buyurtma #1 bazada
+LOG [Live] panel ulandi: hIhhHg2kU6QO_lHsAAAC
+21:41:36 — Bobur botda buyurtma beradi
+21:41:36 bot → 5987654321: Salom, Bobur! Bu CoddyCamp do'koni boti.
+21:41:36 bot → 5987654321: Buyurtma #2 qabul qilindi!
+21:41:36 — buyurtma #2 bazada
+LOG [Live] panel uzildi: hIhhHg2kU6QO_lHsAAAC
+21:41:40 — Bobur botda buyurtma beradi
+21:41:40 bot → 5987654321: Salom, Bobur! Bu CoddyCamp do'koni boti.
+21:41:40 bot → 5987654321: Buyurtma #3 qabul qilindi!
+21:41:40 — buyurtma #3 bazada
+LOG [Live] panel ulandi: hIhhHg2kU6QO_lHsAAAC
+LOG [Live] panel uzildi: hIhhHg2kU6QO_lHsAAAC
+LOG [InstanceLoader] LiveModule dependencies initialized
+21:41:55 Server 3100-portda ishlayapti
+21:41:56 — Bobur botda buyurtma beradi (server o'chiq paytda yozgan — Telegram navbatidan)
+21:41:56 bot → 5987654321: Salom, Bobur! Bu CoddyCamp do'koni boti.
+21:41:56 bot → 5987654321: Buyurtma #4 qabul qilindi!
+21:41:56 — buyurtma #4 bazada
+LOG [Live] panel ulandi: RPfAICbTunu2GtS2AAAA
+LOG [Live] panel uzildi: RPfAICbTunu2GtS2AAAA

@@ -1,0 +1,25 @@
+ws2-01	1	0,0,1280,720	faqat-matn	401	Panel «o'zi yangilanadi» deydi. Server qayta yonsa yoki tarmoq uzilsa ham shunda
+ws2-01	2	0,0,1280,720	faqat-matn	620	socket.io ulanishni o'zi tiklaydi — lekin bu yangi ulanish. Uzilish paytida yubo
+ws2-01	3	0,0,1280,720	faqat-matn	423	README: «ro'yxat o'zi yangilanadi». Bu da'vo — tekshirilmagan. Tekshiruv — buzib
+ws2-01	4	0,0,1280,720	jadval	655	Panel va terminal klienti ochiq; server to'xtadi; o'chiq paytda Bobur botga yozg
+ws2-01	5	0,0,1280,720	faqat-matn	640	Server o'chiq paytda Telegram xabarni saqlab turadi; bot ishga tushishi bilan un
+ws2-01	6	0,0,1280,720	jadval+kod/terminal	689	DevTools → Network → Offline: 6 soniyada belgi o'zgarmadi, hodisa Online'da keld
+ws2-01	7	0,0,1280,720	kod/terminal+test	669	Server qayta yondi. Belgi «Ulangan». Bazada #2 bor, panelda yo'q, terminal klien
+ws2-01	8	0,0,1280,720	jadval+kod/terminal	963	ws2-done: connect ichida yukla() — birinchi va har qayta ulanishda ro'yxat bazad
+ws2-01	9	0,0,1280,720	amaliyot	1210	ws2-start da panelni Offline bilan buzing (belgi «Ulanmoqda…» bo'lguncha), telef
+ws2-01	10	0,0,1280,720	jadval	810	Sodda «tuzatish»: hammasini connect ichiga. Birinchi ulanishda ishlaydi; har qay
+ws2-01	11	0,0,1280,720	kod/terminal	837	Bu panelda server ikki marta qayta yongandan keyin bitta buyurtmaga uchta GET /a
+ws2-01	12	0,0,1280,720	amaliyot	1146	Tinglovchini ataylab connect ichiga ko'chiring, serverni ikki marta qayta yoqing
+ws2-01	13	0,0,1280,720	faqat-matn	520	Hayotda server Render'da, panel do'kon kompyuterida: ular orasidagi tarmoq uzila
+ws2-01	14	0,0,1280,720	faqat-matn	579	Gateway'ga connectionStateRecovery — qisqa uzilishdan keyin o'tkazilgan hodisala
+ws2-01	15	0,0,1280,720	kod/terminal+test	699	Gateway'da connectionStateRecovery yoqilgan, panel connect da qayta so'ramaydi. 
+ws2-01	16	0,0,1280,720	amaliyot	1212	ws2-done da terminal klientini oching, serverni qayta yoqing — qayta ulanishdan 
+ws2-01	17	0,0,1280,720	faqat-matn	657	Ikki AI'ga buyurtmachining shikoyati, ishorasiz. Ikkalasi sababni to'g'ri topdi 
+ws2-01	18	0,0,1280,720	faqat-matn	638	Haqiqiy PostgreSQL va brauzerda, buyurtma panel ulanishidan oldin: ikkalasida #2
+ws2-01	19	0,0,1280,720	kod/terminal+test	671	AI: «Sinadim — server qayta yondi, panel #2 ni ko'rsatdi». Panel logida qayta ul
+ws2-01	20	0,0,1280,720	faqat-matn	552	O'quvchi darsi: agent «uchala chekka holatni bajardim» degan — o'quvchi Maydon J
+ws2-01	21	0,0,1280,720	jadval	622	Ilova o'yin ekranini ochganda xonaga kiradi; uzilganda server uni hamma xonadan 
+ws2-01	22	0,0,1280,720	faqat-matn	621	A1: uch usul — uchish rejimi, fonga olish, Render'da qayta chiqarish; o'zgarishn
+ws2-01	23	0,0,1280,720	faqat-matn	476	Olti holat, har biri o'z belgisi bilan — va o'quvchi so'raydigan to'rt savol
+ws2-01	24	0,0,1280,720	test	353	socket.io qayta ulanganda nimani o'zi tiklaydi?
+ws2-01	25	0,0,1280,720	faqat-matn	2915	Endi siz bilasiz

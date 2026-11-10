@@ -80,6 +80,9 @@ const CSS = `
 .mk-count{font:700 13px/1 ${MONO};color:${T.ink}}
 .mk-body{flex:1;min-height:0;display:grid;grid-template-columns:minmax(320px,4fr) 8fr;gap:24px;padding:22px 28px}
 @media (min-width:1600px){.mk-panel{font-size:14px}.mk-explorer{font-size:13px}}
+@media (max-width:1599px){.mk-ide{grid-template-columns:150px minmax(0,1fr)}.mk-ide .mk-panel{font-size:12px}.mk-ide .mk-explorer{font-size:11.5px}}
+.pg-two:has(.mk-ide),.pg-two:has(.mk-panel .mk-ln:nth-of-type(n+10)){grid-template-columns:minmax(0,1fr)}
+.mk-pair{font:12.5px/1.4 ${MONO};color:${T.ink3};padding:0 4px}.mk-pair b{font-weight:600}.mk-pair code{font:inherit;color:${T.ink2}}
 @media (max-width:900px){.mk-body{grid-template-columns:1fr;grid-template-rows:auto 1fr;gap:14px;padding:14px}}
 .mk-ide{display:grid;grid-template-columns:218px minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);align-items:stretch;flex:0 1 auto;max-height:100%;min-height:0;background:#E9ECF1;border:1px solid #D5DAE2;border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(15,17,21,.10)}
 .mk-ide-bar{grid-column:1/-1;display:flex;align-items:center;gap:7px;padding:8px 14px;background:#DDE1E8;border-bottom:1px solid #D0D5DD;font:600 11px/1 ${MONO};color:${T.ink2};letter-spacing:.04em}
@@ -184,7 +187,7 @@ const CSS = `
 .mk-ln.gone,.mk-ln.gone *{color:#FCA5A5!important}
 .mk-ln.new{background:rgba(18,128,90,.22);box-shadow:inset 3px 0 0 #86EFAC}
 .mk-ln .n{color:${T.codeDim};min-width:2ch;text-align:right;user-select:none}
-.mk-ln.wrap{white-space:pre-wrap}
+.mk-ln.wrap{white-space:pre}
 .mk-ln.clk{cursor:pointer}
 .mk-ln.clk:hover{background:rgba(232,234,240,.08)}
 .mk-ln.bad{background:rgba(226,69,31,.28);box-shadow:inset 3px 0 0 #FCA5A5}
@@ -192,6 +195,8 @@ const CSS = `
 .k{color:#C792EA}.s{color:#C3E88D}.d{color:#FFCB6B}.c{color:#82AAFF}.m{color:#89DDFF}.cm{color:#6B7280;font-style:italic}
 .p{color:#7DD3FC}.ok{color:#86EFAC}.er{color:#FCA5A5}.wn{color:#FDE68A}
 .mk-light{flex:0 1 auto;max-height:100%;min-height:0;background:${T.paper};border:1px solid ${T.line};border-radius:16px;padding:20px;position:relative;overflow:auto}
+/* 04.11 · past ekran (1280×720, 1366×768): bo'shliqlar ixcham — shrift deyarli o'zgarmaydi, sahna sig'ishi uchun */
+@media (max-height:800px){.mk-body{padding:14px 22px;gap:20px}.mk-scene{gap:10px}.mk-panel{padding:12px 16px;font-size:12.5px;line-height:1.45}.mk-explorer{line-height:1.45;padding:6px 6px 8px}.mk-light{padding:14px}.mk-box{padding:10px 12px}}
 .mk-light.fill{flex:1}
 .mk-tag{font:600 11px/1 ${MONO};letter-spacing:.08em;color:${T.ink3};text-transform:uppercase;margin:0 0 10px}
 .mk-nav{flex:0 0 auto;background:${T.paper};border-top:1px solid ${T.line};padding:12px 28px;display:flex;align-items:center;gap:12px}
@@ -205,12 +210,28 @@ const CSS = `
 .mk-lockhint i{width:7px;height:7px;border-radius:50%;background:${T.accent};display:inline-block;animation:mk-pulse 1.6s ease-in-out infinite}
 .mk-say.mc>:first-child{margin-top:auto}
 .mk-say.mc>:last-child{margin-bottom:auto}
-.mk-say.mc .mk-opt{font-size:16px;padding:13px 16px}
-.mk-body.mc-split{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
+.mk-say.mc .mk-opt{font-size:15px;padding:11px 14px;border-radius:10px;align-items:flex-start}
+.mk-opt .l{margin-top:3px}
+.mk-opt .t{display:grid;gap:4px;min-width:0}
+.mk-opt .why{font-size:13.5px;line-height:1.4;font-weight:500;color:${T.green}}
+.mk-opt.bad .why{color:${T.accent}}
+.mk-opt.ok{color:${T.ink}}
+.mk-opt .why code{font:.92em ${MONO};background:${T.chip};border:1px solid ${T.chipLine};border-radius:5px;padding:0 5px;color:${T.ink}}
+.mk-body.mc-split{grid-template-columns:minmax(340px,4fr) minmax(0,8fr);gap:24px}
+.mc-after{display:flex;flex-direction:column;gap:12px;overflow:auto}
+.mc-after>.mk-panel,.mc-after>.mc-proof{flex:0 0 auto;min-height:0}
+.mc-proof{display:flex;flex-direction:column;gap:10px}
+.mc-proof>div{display:flex!important;flex-direction:column;gap:10px;flex:0 0 auto;min-height:0}
+.mc-proof .mk-panel{flex:0 0 auto;min-height:0;max-height:none}
+.mc-proof .mk-rule,.mc-proof .mk-tag,.mc-after>.mk-tag{flex:0 0 auto}
+.mc-demak{flex:0 0 auto;min-height:52px;display:flex;align-items:center;gap:6px;font-size:15px;line-height:1.45;color:${T.ink};padding:0 4px}
+.mc-demak.on{border-left:3px solid ${T.green};padding-left:12px;animation:mk-up .45s ease both}
+.mc-demak b{color:${T.green}}
+.mc-demak code{font:.92em ${MONO};background:${T.chip};border:1px solid ${T.chipLine};border-radius:5px;padding:0 5px}
 .mk-body.mc-split>.mk-say.mc>:first-child{margin-top:0}
 .mk-title.mc-q{font-size:clamp(19px,1.5vw,22px);font-weight:600;color:${T.ink}}
-.mc-wait{border:1.5px dashed ${T.line};border-radius:12px;padding:16px 18px;color:${T.ink3};font-size:14px;background:${T.paper}}
-@media (max-width:1300px){.mk-body.mc-split{grid-template-columns:1fr;grid-auto-rows:max-content;overflow:auto}.mk-body.mc-split>.mk-say.mc,.mk-body.mc-split>.mc-after{overflow:visible!important}}
+.mc-wait{flex:0 0 auto;border:1.5px dashed ${T.line};border-radius:10px;padding:10px 14px;color:${T.ink3};font-size:13px;background:${T.paper}}
+@media (max-width:1000px){.mk-body.mc-split{grid-template-columns:1fr;grid-auto-rows:max-content;overflow:auto}.mk-body.mc-split>.mk-say.mc,.mk-body.mc-split>.mc-after{overflow:visible!important}}
 .mk-btn.ready{background:${T.accent};border-color:${T.accent};animation:mk-pulse 1.6s ease-in-out infinite}
 .mk-audio{display:flex;align-items:center;gap:6px}
 .mk-audio button{background:transparent;border:1px solid ${T.line};border-radius:8px;padding:5px 8px;cursor:pointer;color:${T.ink2};font:12px/1 ${SANS};display:inline-flex;align-items:center;gap:6px}
@@ -263,7 +284,9 @@ const CSS = `
 .mk-step input{width:18px;height:18px;margin-top:3px;accent-color:${T.green}}
 .mk-step .t{flex:1;min-width:0}
 .mk-step .t b{display:block;font-size:14px;margin-bottom:3px}
-.mk-step .cmd{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:4px 0}
+.mk-step .cmd{display:inline-flex;gap:6px;align-items:center;margin:3px 12px 3px 0;max-width:100%}
+.mk-step .cmd code{overflow-wrap:anywhere}
+@media (max-height:760px){.mk-step{padding:7px 10px}.mk-step .t b{margin-bottom:1px}.mk-step .cmd{margin:2px 10px 2px 0}}
 .mk-step code{font:12.5px ${MONO};background:#EEF0F4;padding:2px 7px;border-radius:6px}
 .mk-step .exp{font-size:12.5px;color:${T.ink3}}
 .mk-copy{border:1px solid ${T.line};background:#fff;border-radius:6px;padding:2px 7px;font:11px ${SANS};cursor:pointer;color:${T.ink2}}
@@ -281,6 +304,8 @@ const CSS = `
 .mk-cover .card{max-width:760px;width:100%;background:${T.paper};border:1px solid ${T.line};border-radius:20px;padding:36px 40px;box-shadow:0 20px 60px rgba(15,17,21,.08)}
 .mk-cover h1{font-size:clamp(24px,2.3vw,30px);line-height:1.15;font-weight:700;margin:8px 0 10px;letter-spacing:-.01em}
 .mk-cover p{color:${T.ink2};font-size:17px;line-height:1.55;margin:0 0 22px}
+.mk-resume{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.mk-cover p.mk-resume-note{flex-basis:100%;margin:6px 0 0;font-size:14px;color:${T.ink2}}
 .mk-cover ul{margin:0 0 26px;padding:0;list-style:none;display:grid;gap:8px;color:${T.ink2};font-size:15px}
 .mk-cover li::before{content:"—";color:${T.accent};margin-right:10px}
 .mk-req{display:grid;gap:8px}
@@ -289,6 +314,57 @@ const CSS = `
 .mk-req .st{font:700 11px ${MONO};padding:2px 7px;border-radius:6px;background:#EEF0F4;color:${T.ink2}}
 .mk-req .st.s2{background:#E3F5EC;color:${T.green}}.mk-req .st.s4{background:#FFF0EB;color:${T.accent}}
 .mk-req pre{margin:6px 0 0;font:12px/1.45 ${MONO};white-space:pre-wrap;color:${T.ink2}}
+/* F-1109-06: mexanizm chizmalari (oqim, yo'lak, vaqt o'qi, jadval) — gapli karta o'rniga */
+.z{--ac:#E2451F;--ac2:#FFF5F2;--pg:#336791;--ok:#15803D;--ok2:#DCFCE7;--bad:#DC2626;--bad2:#FEF2F2;--warn:#C2410C;--warn2:#FFEDD5;--blue:#1D4ED8;--blue2:#DBEAFE;--pur:#6D3BE4;--pur2:#EDE9FE;--ink:#1F2937;--ink2:#4B5563;--mut:#6B7280;--line:#D7DCE3;--soft:#F8FAFC;
+  display:grid;gap:12px;color:var(--ink);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.z *{box-sizing:border-box}
+.z .zm,.z .zm *{font-family:ui-monospace,Menlo,Consolas,monospace}
+.z .zm{font-size:13px;color:var(--ink)}
+.z-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;display:grid;gap:10px;min-width:0;align-content:start}
+.z-h{font:700 13px system-ui,sans-serif;letter-spacing:.01em;color:var(--mut);margin:0}
+.z-flow{display:flex;align-items:stretch;gap:0}
+.z-flow>.z-st{flex:1 1 0;min-width:0}
+.z-ar{flex:0 0 26px;display:flex;align-items:center;justify-content:center;color:#9CA3AF;font-size:20px}
+.z-ar.bad{color:var(--bad)}
+.z-st{border:1.5px solid var(--line);border-radius:10px;padding:10px;display:grid;gap:5px;align-content:start;background:var(--soft)}
+.z-st.ok{border-color:var(--ok);background:#F0FDF4}.z-st.bad{border-color:var(--bad);background:var(--bad2)}.z-st.ac{border-color:var(--ac);background:var(--ac2)}
+.z-st.blue{border-color:var(--pg);background:#EFF6FF}.z-st.off{border-style:dashed;background:#fff;color:var(--mut)}
+.z-st .ln{font:11.5px ui-monospace,Menlo,Consolas,monospace;color:var(--mut)}
+.z-tag{justify-self:start;display:inline-block;font:700 12px system-ui,sans-serif;border-radius:999px;padding:2px 9px;white-space:nowrap}
+.z-tag.r{background:var(--bad);color:#fff}.z-tag.g{background:var(--ok2);color:var(--ok)}.z-tag.b{background:var(--blue2);color:var(--blue)}.z-tag.o{background:var(--warn2);color:var(--warn)}.z-tag.n{background:#F1F3F6;color:var(--ink2)}
+.z-term{background:#111827;color:#E5E7EB;border-radius:10px;padding:10px 12px;font:13px/1.55 ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;word-break:break-word}
+.z-term .r{color:#FCA5A5}.z-term .g{color:#86EFAC}.z-term .y{color:#FDE68A}.z-term .c{color:#93C5FD}.z-term .m{color:#9CA3AF}
+.z-term .hl{background:rgba(226,69,31,.28);border-radius:3px}
+.z-two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.z-three{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.z-rule{border-left:4px solid var(--ac);background:var(--ac2);border-radius:10px;padding:10px 14px;font-size:15px}
+.z-rule b{color:var(--ac)}
+.z-k{display:inline;font:13px ui-monospace,Menlo,Consolas,monospace;background:#F1F3F6;border-radius:5px;padding:1px 6px;color:var(--ink)}
+.z-mut{color:var(--mut);font-size:13px}
+.z-lanes{display:grid;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.z-lanes>div{padding:9px 12px;border-bottom:1px solid #EEF0F3;display:flex;align-items:center;gap:8px;min-height:44px;font-size:14px}
+.z-lanes>.hd{font:700 12px system-ui,sans-serif;letter-spacing:.05em;text-transform:uppercase;background:var(--soft);color:var(--ink2)}
+.z-lanes>.rh{font:600 12px ui-monospace,Menlo,Consolas,monospace;color:var(--mut);background:var(--soft)}
+.z-tbl{border-collapse:collapse;width:100%;font:13px ui-monospace,Menlo,Consolas,monospace}
+.z-tbl th,.z-tbl td{border:1px solid #E5E7EB;padding:5px 9px;text-align:left;color:var(--ink)}
+.z-tbl th{background:var(--soft);font-weight:700}
+.z-tbl tr.hl td{background:var(--blue2)}.z-tbl tr.bad td{background:var(--bad2);color:#991B1B}.z-tbl tr.ok td{background:#F0FDF4}
+.z-svg{display:block;width:100%;height:auto}
+.z-svg text{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.z-svg .mono{font-family:ui-monospace,Menlo,Consolas,monospace}
+.z b,.z strong{color:inherit}
+.z .z-st>b{color:var(--ink)}
+.z .zm{overflow-wrap:anywhere}
+.z code{all:unset;display:inline;font:13px ui-monospace,Menlo,Consolas,monospace;background:#F1F3F6;border-radius:5px;padding:1px 6px;color:var(--ink)}
+.z-h .zk,.z-h code{text-transform:none;letter-spacing:0;font:600 12.5px ui-monospace,Menlo,Consolas,monospace;color:var(--ink2)}
+.z .mk-in{min-width:0}
+.z-st.dim,.z-card.dim{opacity:.45}
+.z-card.hl{border-color:#E2451F;box-shadow:0 0 0 3px rgba(226,69,31,.14)}
+.z-st.hl{box-shadow:0 0 0 3px rgba(226,69,31,.18)}
+.z-st,.z-card,.z-ar,.z-rule,.z-term,.z-tbl tr{transition:opacity .4s,box-shadow .4s,background .4s}
+.z .dim{opacity:.4}
+.z-band{display:grid;gap:8px;font:700 12px system-ui,sans-serif;text-align:center}
+.z-band>div{border-radius:8px;padding:5px 4px}
 @keyframes mk-up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @keyframes mk-fade{from{opacity:0}to{opacity:1}}
 @keyframes mk-glow{0%,100%{box-shadow:0 0 0 0 rgba(226,69,31,0)}50%{box-shadow:0 0 0 5px rgba(226,69,31,.16)}}
@@ -327,10 +403,18 @@ const EN_PHRASES = [
   /Nest application successfully started/g, /successfully started/g, /Validation failed/g, /Internal server error/g,
   /can't resolve dependencies/g, /invalid controller/g, /Dependency Injection/g, /Hello World/g, /Cannot GET/g,
   /Bad Request/g, /Not Found/g, /does not exist/g, /Potential solutions/g, /Car with id [\w' ]+? not found/g,
+  /\b[Bb]ackslash\b/g, // F-1109-01 (M49): `\` belgisi o'z nomi bilan; ko'rik saytida o'zbekcha ovoz uchun tts-server «bekslesh» qiladi
 ];
+// F-1109-02 (M49): o'quvchi darsi kodi (m4-03, m4a-03, m11-03) ovozga so'z bilan ketadi — raqam bo'lib ketsa «0» «o» harfi
+// bo'lib o'qiladi («m4 o uch»). Faqat o'zbekcha ovozda; ekranda va «Matn»da kod o'zgarmaydi.
+const SON_UZ = ['nol', 'bir', 'ikki', 'uch', "to'rt", 'besh', 'olti', 'yetti', 'sakkiz', "to'qqiz"];
+const ON_UZ = ['', "o'n", 'yigirma', "o'ttiz", 'qirq'];
+const sonUz = (n) => (n < 10 ? SON_UZ[n] : ON_UZ[Math.floor(n / 10)] + (n % 10 ? ' ' + SON_UZ[n % 10] : ''));
+const kodOvoz = (t) => t.replace(/\bm(\d{1,2})(a?)-(\d)(\d)\b/g, (_, m, a, d1, d2) =>
+  `em ${sonUz(+m)}${a ? ' a' : ''}, ${d1 === '0' ? 'nol ' + SON_UZ[+d2] : sonUz(+(d1 + d2))}`);
 const voice = (t) => {
   const keep = [];
-  let out = t || '';
+  let out = LANG === 'ru' ? (t || '') : kodOvoz(t || '');
   EN_PHRASES.forEach((re) => { out = out.replace(re, (m) => { keep.push(m); return `\u0000${keep.length - 1}\u0000`; }); });
   return (LANG === 'ru' ? RU_MARK : UZ) + out.replace(/\u0000(\d+)\u0000/g, (_, i) => `[English pronunciation] ${keep[i]} [end]`);
 };
@@ -462,7 +546,9 @@ function Say({ eyebrow, title, segments, beat, audio, stepManual, below, guess, 
 }
 
 // Kod/terminal paneli: satr `at` qadamida kiradi; `focus` id'lari yoritiladi, qolgani xiralashadi; `onLine` — bosiladigan
-function CodePanel({ file, lines, beat = 99, focus = [], numbers = true, wrap = false, style, onLine, marks = {} }) {
+// F-1103-04 (03.11, foydalanuvchi «1 qator kod 3 qator bo'lmasin»): kod HECH QACHON o'ralmaydi — `wrap` prop e'tiborsiz (eski chaqiruvlar buzilmasin).
+// Uzun qator — darsda Prettier (80 belgi) bilan bo'linadi; sig'masa panel ichida gorizontal skroll.
+function CodePanel({ file, lines, beat = 99, focus = [], numbers = true, style, onLine, marks = {} }) {
   const anyFocus = focus.length > 0;
   const ref = useRef(null);
   const focusKey = focus.join('|');
@@ -489,7 +575,7 @@ function CodePanel({ file, lines, beat = 99, focus = [], numbers = true, wrap = 
           const v = vis(l.at, beat);
           const hl = anyFocus && l.id && focus.includes(l.id);
           const mk = marks[i] || '';
-          const cls = `mk-ln${wrap ? ' wrap' : ''}${v ? ' in' : ''}${hl ? ' hl' : (anyFocus && v && !l.keep ? ' dim' : '')}${l.gone ? ' gone' : ''}${l.neu ? ' new' : ''}${onLine ? ' clk' : ''}${mk ? ' ' + mk : ''}`;
+          const cls = `mk-ln${v ? ' in' : ''}${hl ? ' hl' : (anyFocus && v && !l.keep ? ' dim' : '')}${l.gone ? ' gone' : ''}${l.neu ? ' new' : ''}${onLine ? ' clk' : ''}${mk ? ' ' + mk : ''}`;
           return <div key={i} className={cls} data-at={l.at} onClick={onLine ? () => onLine(i, l) : undefined}>{numbers && <span className="n">{l.n != null ? l.n : i + 1}</span>}<span dangerouslySetInnerHTML={html(l.h)} /></div>;
         })}
       </div>
@@ -585,7 +671,9 @@ function Lesson({ p, S, scene, below, ready, sceneTop }) {
 
 // Tekshiruv (tanlov): xato variant yopiladi, to'g'risini topguncha bosadi
 // `after` — to'g'ri javobdan keyin ko'rsatiladigan blok (masalan tuzatilgan fayl, 2-qonun, F-1030 qo'shimcha 1)
-function MCRetry({ idx, total, onBack, onNext, onRestart, stored, onAnswer, review, kicker, eyebrow, title, q, opts, correct, ok, okShort, wrong, above, after }) {
+// F-1103-02 (A varianti): `above` — savoldan oldin ko'rinadigan material (terminal, kod, xabar); `after` — to'g'ri javobdan keyin isbot;
+// `demak` — javobdan keyin o'ng ustun ostidagi bitta «Demak, …» gapi. Karta yo'q: sabab variantning ichida (to'g'risi yashil, xatosi qizil).
+function MCRetry({ idx, total, onBack, onNext, onRestart, stored, onAnswer, review, kicker, eyebrow, title, q, opts, correct, ok, okShort, wrong, above, after, demak }) {
   const segs = useMemo(() => review ? [] : [{ id: 'q', text: voice(q), trigger: 'on_mount', waits_for: { type: 'option_picked' } }], [q, review]);
   const audio = useAudio(segs);
   const sfx = useSfx();
@@ -604,11 +692,10 @@ function MCRetry({ idx, total, onBack, onNext, onRestart, stored, onAnswer, revi
       setTimeout(() => audio.pushOneOff(voice((wrong[i] || t('Unday emas.', 'Не совсем.')) + t(" Yana o'ylab ko'ring.", ' Подумайте ещё раз.'))), 300);
     }
   };
-  const fbOk = solved && last === correct;
   // F-1102-16: tuzatilgan/haqiqiy natija bloki bo'lsa — ekran BOSHIDAN ikki ustun va joyi qimirlamaydi:
   // chapda savol va variantlar, o'ngda xabar (above) va javobdan keyin uning ostida natija (after).
   // Javobdan keyin variantlar o'z joyida qoladi (to'g'risi yashil, qolgani xira) — hech narsa sakramaydi.
-  const split = !!after;
+  const split = !!(after || above);
   return (
     <Stage kicker={kicker} idx={idx} total={total} audio={audio} onBack={onBack} onNext={onNext} onRestart={onRestart} nextReady={solved} nextDisabled={!solved} lockHint={t("To'g'ri javobni toping", 'Найдите верный ответ')}>
       <div className={`mk-body${split ? ' mc-split' : ''}`} style={split ? undefined : { gridTemplateColumns: '1fr', maxWidth: 980, width: '100%', margin: '0 auto' }}>
@@ -622,21 +709,17 @@ function MCRetry({ idx, total, onBack, onNext, onRestart, stored, onAnswer, revi
               let cls = 'mk-opt';
               if (solved) cls += i === correct ? ' ok' : ' off';
               else if (bad.includes(i)) cls += ' bad';
-              return <button key={i} className={cls} disabled={solved || bad.includes(i)} onClick={() => pick(i)}><span className="l">{String.fromCharCode(65 + i)}</span><span>{o}</span></button>;
+              const why = solved && i === correct ? (okShort || digits(ok)) : (bad.includes(i) ? digits(wrong[i] || '') : null);
+              return <button key={i} className={cls} disabled={solved || bad.includes(i)} onClick={() => pick(i)}><span className="l">{String.fromCharCode(65 + i)}</span><span className="t"><span>{o}</span>{why ? <small className="why">{why}</small> : null}</span></button>;
             })}
           </div>
-          {last !== null && (
-            <div className="mk-fb" key={last + (solved ? 'ok' : 'bad')} style={{ '--c': fbOk ? T.green : T.accent, '--bg': fbOk ? '#E3F5EC' : '#FFF0EB' }}>
-              <b>{fbOk ? t("To'g'ri", 'Верно') : t("Unday emas — yana o'ylab ko'ring", 'Не совсем — подумайте ещё раз')}</b>
-              <span>{fbOk ? (okShort || digits(ok)) : digits(wrong[last])}</span>
-            </div>
-          )}
         </div>
-        {split && <div className="mk-scene top mc-after" style={{ overflow: 'auto', display: 'grid', gap: 12, alignContent: 'start' }}>
+        {split && <div className="mk-scene top mc-after">
           {above}
           {solved
-            ? <div style={{ animation: 'mk-up .45s ease both' }}>{after}</div>
-            : <div className="mc-wait">{t("To'g'ri javobni topganingizdan keyin shu yerda haqiqiy natija ochiladi", 'Когда найдёте верный ответ, здесь откроется реальный результат')}</div>}
+            ? (after ? <div className="mc-proof" style={{ animation: 'mk-up .45s ease both' }}>{after}</div> : null)
+            : (above ? null : <div className="mc-wait">{t("Javobdan keyin shu yerda haqiqiy natija", 'После ответа здесь — реальный результат')}</div>)}
+          {demak ? <div className={`mc-demak${solved ? ' on' : ''}`}>{solved ? <><b>{t('Demak,', 'Значит,')}</b><span>{demak}</span></> : null}</div> : null}
         </div>}
       </div>
     </Stage>
@@ -733,10 +816,18 @@ function Practice({ p, S, steps, trouble, code, proof, tree }) {
     <Stage kicker={S.kicker} idx={p.idx} total={p.total} audio={b.audio} onBack={p.onBack} onNext={p.onNext} onRestart={p.onRestart} nextReady={b.done && allDone} nextDisabled={!(b.done && allDone)} lockHint={!allDone ? (proof ? t("Katakchalar va isbotni to'ldiring", 'Отметьте пункты и заполните подтверждение') : t('Katakchalarni belgilang', 'Отметьте пункты')) : t("Ustoz gapirib bo'lgach ochiladi", 'Откроется, когда учитель договорит')}>
       <div className="mk-body">
         <Say eyebrow={S.eyebrow} title={S.title} segments={S.segments} beat={beat} audio={b.audio} stepManual={b.stepManual} guess={b.guess} answerAsk={b.answerAsk} review={p.review}
-          below={<div className="mk-card" style={{ background: allDone ? '#E3F5EC' : T.paper, borderColor: allDone ? T.green : T.line }}><h5>{t('Bajarildi', 'Выполнено')}</h5><div style={{ fontSize: 15, fontWeight: 700 }}>{checked.length} / {steps.length} {t('qadam', 'шагов')}{proof ? (proofOk && proofVal.trim() ? t(' · isbot ✓', ' · подтверждение ✓') : t(' · isbot kutilmoqda', ' · ждём подтверждение')) : ''}{allDone ? (b.done ? t(' — Davom bosing', ' — нажмите «Далее»') : t(' — ovoz tugagach Davom ochiladi', ' — «Далее» откроется после озвучки')) : ''}</div>
+          below={<><div className="mk-card" style={{ background: allDone ? '#E3F5EC' : T.paper, borderColor: allDone ? T.green : T.line }}><h5>{t('Bajarildi', 'Выполнено')}</h5><div style={{ fontSize: 15, fontWeight: 700 }}>{checked.length} / {steps.length} {t('qadam', 'шагов')}{proof ? (proofOk && proofVal.trim() ? t(' · isbot ✓', ' · подтверждение ✓') : t(' · isbot kutilmoqda', ' · ждём подтверждение')) : ''}{allDone ? (b.done ? t(' — Davom bosing', ' — нажмите «Далее»') : t(' — ovoz tugagach Davom ochiladi', ' — «Далее» откроется после озвучки')) : ''}</div>
             {/* F-1102-20: isbot maydoni to'ldirilmaguncha yumshoq yonib-o'chadi — «shu yerga yozing» ko'rinib tursin */}
             {proof && <div style={{ marginTop: 10 }}><div className="exp" style={{ marginBottom: 4, fontWeight: 700, color: proofOk && proofVal.trim() ? T.green : T.ink }}>{t('Isbot', 'Подтверждение')}: {String(proof.label).replace(/^(Isbot|Подтверждение)\s*:\s*/, '')}</div><input className={`mk-input${proofOk && proofVal.trim() ? '' : ' need'}`} value={proofVal} placeholder={proof.placeholder} onChange={(e) => onProof(e.target.value)} />{proofVal.trim() && !proofOk && <div className="exp" style={{ color: T.accent, marginTop: 4 }}>{proof.wrong}</div>}</div>}
-          </div>} />
+          </div>
+          {/* 04.11: «Boshqacha chiqdimi?» chap ustunda — o'ng ustun qadamlarga to'liq qoladi (1280×720 da kesilmasin) */}
+          <Block at={S.tableAt} beat={beat}><div className="mk-light mk-trouble" style={{ padding: 0, marginTop: 10 }}>
+              <button type="button" className={`mk-trbtn${beat === S.tableAt && !tOpen ? ' hot' : ''}`} aria-haspopup="dialog" aria-expanded={tOpen} onClick={() => setTOpen(true)}>
+                <span className="q">{t('Boshqacha chiqdimi?', 'Вышло иначе?')}</span>
+                {rows.length > 1 && <span className="n">{t(`${rows.length - 1} ta holat va yechim`, `ситуации и решения: ${rows.length - 1}`)}</span>}
+                <span className="ar" aria-hidden="true">↗</span>
+              </button>
+            </div></Block></>} />
         <div className="mk-scene top" style={{ overflow: 'auto' }}>
           {cur ? (<>
             {/* F-1031-05: qaytish tugmasi oynadan tashqarida, katta — kod ko'rilgach qadamlarga qaytish ko'rinib tursin */}
@@ -757,25 +848,59 @@ function Practice({ p, S, steps, trouble, code, proof, tree }) {
                   <input type="checkbox" checked={checked.includes(i)} onChange={() => toggle(i)} />
                   <div className="t"><b>{i + 1}. {s.t}</b>
                     {s.cmds.map((cm) => <div key={cm} className="cmd"><code>{cm}</code><CopyBtn text={cm} /></div>)}
-                    {c && <div style={{ margin: '4px 0 6px' }}><button className="mk-btn soft sm" style={{ borderColor: T.ink, color: T.ink }} onClick={() => setOpenFile(c.file)}>{t('Kodni ochish', 'Открыть код')} · {baseName(c.file)}{c.copy === false ? t(' (namuna)', ' (образец)') : ''}</button></div>}
-                    <div className="exp">{t('Kutilgan:', 'Ожидается:')} {s.exp}</div>
+                    {/* 04.11: «Kodni ochish» va «Kutilgan» bitta qatorda (sig'masa o'tadi) — 1280×720 da qadamlar sig'sin */}
+                    <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '4px 12px', margin: c ? '4px 0 2px' : 0 }}>
+                      {c && <button className="mk-btn soft sm" style={{ borderColor: T.ink, color: T.ink }} onClick={() => setOpenFile(c.file)}>{t('Kodni ochish', 'Открыть код')} · {baseName(c.file)}{c.copy === false ? t(' (namuna)', ' (образец)') : ''}</button>}
+                      <div className="exp">{t('Kutilgan:', 'Ожидается:')} {s.exp}</div>
+                    </div>
                   </div>
                 </div>
               ); })}
             </div>
-            <Block at={S.tableAt} beat={beat}><div className="mk-light mk-trouble" style={{ padding: 0, marginTop: 10 }}>
-              <button type="button" className={`mk-trbtn${beat === S.tableAt && !tOpen ? ' hot' : ''}`} aria-haspopup="dialog" aria-expanded={tOpen} onClick={() => setTOpen(true)}>
-                <span className="q">{t('Boshqacha chiqdimi?', 'Вышло иначе?')}</span>
-                {rows.length > 1 && <span className="n">{t(`${rows.length - 1} ta holat va yechim`, `ситуации и решения: ${rows.length - 1}`)}</span>}
-                <span className="ar" aria-hidden="true">↗</span>
-              </button>
-            </div></Block>
             {/* F-1102-12: jadval sahifa ichida emas — ustida oyna (popup). ✕, tashqarisi yoki Esc yopadi; tugma joyida qoladi */}
             {tOpen && <TroubleModal rows={rows} onClose={() => setTOpen(false)} />}
           </>)}
         </div>
       </div>
     </Stage>
+  );
+}
+
+// ---------- Progress saqlovi (F-1103-06, 03.11): mentor darsni bo'lib o'tadi ----------
+// O'quvchi darslaridagi ccProgress kabi — brauzer xotirasida: ekran, ko'rilgan ekranlar, javoblar.
+// Ekranlar soni o'zgargan bo'lsa (dars qayta qurilgan) eski yozuv olinmaydi. startAt (dev) bo'lsa saqlov o'qilmaydi.
+// Qaytganda darhol ekranga tushilmaydi: brauzer ovozni faqat bosishdan keyin chaladi — kirish oynasida tugma.
+const SAVE_KEY = (id) => `ccMentor:${id}`;
+function loadSaved(id, total) {
+  try {
+    const v = JSON.parse(localStorage.getItem(SAVE_KEY(id)) || 'null');
+    if (!v || v.v !== 1 || v.total !== total || typeof v.idx !== 'number' || v.idx < 1) return null;
+    return v;
+  } catch (e) { return null; }
+}
+function clearSaved(id) { try { localStorage.removeItem(SAVE_KEY(id)); } catch (e) {} }
+function useMentorSave({ id, total, startAt, started, idx, answers, seen, setIdx, setAnswers, setSeen, setStarted }) {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const saved = useMemo(() => (startAt != null ? null : loadSaved(id, total)), []);
+  useEffect(() => {
+    if (!started) return;
+    try { localStorage.setItem(SAVE_KEY(id), JSON.stringify({ v: 1, total, idx, answers, seen, t: Date.now() })); } catch (e) {}
+  }, [started, idx, answers, seen, id, total]);
+  const start = useCallback((resume) => {
+    if (resume && saved) { setIdx(Math.min(saved.idx, total - 1)); setAnswers(saved.answers || {}); setSeen(saved.seen || {}); }
+    else clearSaved(id);
+    setStarted(true);
+  }, [saved, id, total, setIdx, setAnswers, setSeen, setStarted]);
+  return { resume: saved, start };
+}
+function CoverStart({ onStart, resume }) {
+  if (!resume) return <button className="mk-btn ready" onClick={() => onStart(false)}>{t('Boshlash →', 'Начать →')}</button>;
+  return (
+    <div className="mk-resume">
+      <button className="mk-btn ready" onClick={() => onStart(true)}>{t(`${resume.idx + 1}-ekrandan davom etish →`, `Продолжить с ${resume.idx + 1}-го экрана →`)}</button>
+      <button className="mk-btn soft" onClick={() => onStart(false)}>{t('Boshidan boshlash', 'Начать сначала')}</button>
+      <p className="mk-resume-note">{t(`Oxirgi marta ${resume.idx + 1}-ekrangacha kelgansiz. Javoblaringiz saqlangan.`, `В прошлый раз вы дошли до ${resume.idx + 1}-го экрана. Ответы сохранены.`)}</p>
+    </div>
   );
 }
 
@@ -1107,7 +1232,7 @@ const S8 = {
 };
 function Screen8(p) {
   return <Lesson p={p} S={S8} scene={({ seg, beat }) => (<>
-    <Ide files={APP_FILES} active="src/app.module.ts"><CodePanel file="src/app.module.ts" lines={MOD_LINES} focus={seg.focus} /></Ide>
+    {beat < 4 && <Ide files={APP_FILES} active="src/app.module.ts"><CodePanel file="src/app.module.ts" lines={MOD_LINES} focus={seg.focus} /></Ide>}
     <Block at={3} beat={beat} dim={beat >= 4}><div className="mk-rule">{t(<><b>Ro'yxatda yo'q = Nest uchun yo'q.</b> Controller → <code>controllers</code>, Service → <code>providers</code>, boshqa modul → <code>imports</code>.</>, <><b>Нет в списке = нет для Nest.</b> Controller → <code>controllers</code>, Service → <code>providers</code>, другой модуль → <code>imports</code>.</>)}</div></Block>
     <Block at={4} beat={beat}><div className="mk-light" style={{ padding: 14 }}>
       <div className="mk-tag">{t('Modullar strukturasi', 'Структура модулей')}</div>
@@ -1216,14 +1341,14 @@ function Screen11(p) {
     const step = (n) => beat >= n ? (beat === n ? ' hl' : '') : '';
     return (
       <Ide files={APP_FILES} active={file}>
-        {seg.st === 'express'
+        {beat < 5 && (seg.st === 'express'
           ? <CodePanel file="express-api · cars.js, orders.js, users.js" numbers={false} lines={[
               { h: `<span class="cm">// cars.js</span>` },
               { h: `<span class="k">const</span> CarsService = <span class="c">require</span>(<span class="s">'./cars.service'</span>);` },
               { h: `<span class="k">const</span> service = <span class="k">new</span> <span class="c">CarsService</span>();` },
               { h: t('<span class="cm">// orders.js — yana require + new … users.js — yana require + new …</span>', '<span class="cm">// orders.js — снова require + new … users.js — снова require + new …</span>') }]} style={{ fontSize: 13 }} />
-          : <CodePanel key={file} file={`${file} · ${t('parcha', 'фрагмент')}`} lines={(inMod ? MOD_LINES.slice(4, 9) : CTRL_LINES.slice(3, 7)).map((l, k) => ({ ...l, n: (inMod ? 5 : 4) + k }))} focus={inMod ? ['l-providers'] : ['l-ctor']} style={{ fontSize: 13 }} />}
-        <div className="mk-light" style={{ padding: 14 }}>
+          : <CodePanel key={file} file={`${file} · ${t('parcha', 'фрагмент')}`} lines={(inMod ? MOD_LINES.slice(4, 9) : CTRL_LINES.slice(3, 7)).map((l, k) => ({ ...l, n: (inMod ? 5 : 4) + k }))} focus={inMod ? ['l-providers'] : ['l-ctor']} style={{ fontSize: 13 }} />)}
+        {beat < 6 && <div className="mk-light" style={{ padding: 14 }}>
           <div className="mk-tag">{t('Server ishga tushganda Nest nima qiladi', 'Что делает Nest при запуске сервера')}</div>
           <div className="mk-row">
             <div className={`mk-box${step(2)}`} style={{ '--c': PART.mod, opacity: beat >= 2 ? 1 : 0.25 }}><h4>1 · app.module.ts</h4><p><code>providers: [AppService]</code> — {t("o'qidi", 'прочитал')}</p></div>
@@ -1232,11 +1357,11 @@ function Screen11(p) {
             <div className={`mk-arrow${beat >= 4 ? ' on' : ''}`}>→</div>
             <div className={`mk-box${step(4)}`} style={{ '--c': PART.ctrl, opacity: beat >= 4 ? 1 : 0.25 }}><h4>3 · AppController</h4><p>{t('konstruktor tipi', 'тип в конструкторе')} <code>AppService</code> → {t("instance'ni oldi", 'получил instance')}</p></div>
           </div>
-        </div>
+        </div>}
         <Block at={5} beat={beat}><div className="mk-rule">{t(<><b>Dependency Injection</b> — dependency'ni inject qilish: siz yaratmaysiz, Nest <code>providers</code>'ga qarab yaratadi va konstruktorga beradi.</>, <><b>Dependency Injection</b> — внедрение dependency: вы не создаёте, Nest создаёт по <code>providers</code> и передаёт в конструктор.</>)}</div></Block>
-        <Block at={6} beat={beat}><div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10 }}>
+        {beat === 6 && <Block at={6} beat={beat}><div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10 }}>
           {t([['1 instance', 'butun loyihada bitta'], ['Test oson', 'testda soxta Service beriladi, Controller sezmaydi'], ["Bog'lanmagan", 'Controller Service qayerdan kelganini bilmaydi']], [['1 instance', 'один на весь проект'], ['Тест — легко', 'в тесте подставляют фейковый Service, Controller не замечает'], ['Не связаны', 'Controller не знает, откуда пришёл Service']]).map(([h, d], i) => <div key={h} className="mk-card"><h5>{h}</h5><div style={{ fontSize: 13 }}>{d}</div></div>)}
-        </div></Block>
+        </div></Block>}
         <Block at={7} beat={beat}><div className="mk-card" style={{ borderColor: T.accent }}><h5 style={{ color: T.accent }}>{t('Sizning ishingiz — ikkita', 'Ваша работа — две вещи')}</h5><div style={{ fontSize: 14 }}>{t(<>1) Service'ni modulning <code>providers</code>'iga yozish · 2) kerakli joyda konstruktorda so'rash. Qolganini Nest qiladi.</>, <>1) записать Service в <code>providers</code> модуля · 2) попросить его в конструкторе там, где он нужен. Остальное делает Nest.</>)}</div></div></Block>
       </Ide>
     );
@@ -1371,7 +1496,7 @@ const S14 = {
   ],
 };
 function Screen14(p) {
-  return <Lesson p={p} S={S14} scene={({ seg, beat }) => <Ide files={ALL_FILES} active="src/cars/cars.service.ts"><CodePanel file="src/cars/cars.service.ts" lines={CARS_SVC_LINES} beat={beat} focus={seg.focus} /></Ide>} />;
+  return <Lesson p={p} S={S14} scene={({ seg, beat }) => <Ide files={ALL_FILES} active="src/cars/cars.service.ts"><CodePanel file="src/cars/cars.service.ts" lines={beat >= 4 ? CARS_SVC_LINES.slice(6).map((l, k) => ({ ...l, n: 7 + k })) : CARS_SVC_LINES} beat={beat} focus={seg.focus} /></Ide>} />;
 }
 
 // --- S15 Controller kodi ---
@@ -1461,7 +1586,7 @@ function ScreenLC1(p) {
     q={t("Controller'ni yozdik, endi o'zingiz tekshiring. Ikkinchi tekshiruv. Qoidani eslang: Controller faqat so'rovdan oladi, Service'ni chaqiradi va natijani qaytaradi, hisob qilmaydi. Ekrandagi Controller ishlaydi, lekin bitta satr hisob qilyapti. O'sha satrni bosing.", 'Controller мы написали, теперь проверьте сами. Вторая проверка. Вспомните правило: Controller только берёт из запроса, вызывает Service и возвращает результат, он не считает. Controller на экране работает, но одна строка в нём считает. Нажмите на эту строку.')}
     file="src/cars/cars.controller.ts" lines={LC1_LINES} target={10}
     tree={{ files: ALL_FILES, active: 'src/cars/cars.controller.ts' }}
-    fixed={LC1_FIXED} fixedExtra={[{ file: 'src/cars/cars.service.ts · findOne', lines: LC1_SVC_FIXED }]}
+    fixed={LC1_FIXED.filter((l) => String(l.h).trim() !== '')} fixedExtra={[{ file: 'src/cars/cars.service.ts · findOne', lines: LC1_SVC_FIXED }]}
     ok={t("To'g'ri. O'n birinchi satr narxga chegirma hisoblayapti. Ishlaydi, lekin bu biznes logika, u Service'ga tegishli: Controller'da tursa, uni alohida sinab bo'lmaydi va Telegram bot shu chegirmani ololmaydi. Ekranda tuzatilgan holat ko'rinib turibdi: hisob Service'ning findOne metodiga ko'chdi, Controller'da yana bitta satr qoldi. Demak, Controller'da hisob ko'rsangiz, uni Service'ga ko'chirish kerak.", 'Верно. Одиннадцатая строка считает скидку на цену. Это работает, но это бизнес-логика, и она относится к Service: пока она в Controller, её нельзя протестировать отдельно, и Telegram-бот не получит эту скидку. На экране виден исправленный вариант: расчёт перенесён в метод findOne в Service, а в Controller снова одна строка. Значит, если видите расчёт в Controller, его нужно перенести в Service.')}
     okShort={t("11-satr: chegirma hisobi — biznes logika, u Service'ga tegishli. Tuzatildi: hisob cars.service.ts → findOne'ga ko'chdi, Controller'da yana bitta satr.", 'Строка 11: расчёт скидки — бизнес-логика, она относится к Service. Исправлено: расчёт перенесён в cars.service.ts → findOne, в Controller снова одна строка.')}
     hint={t("Bu satr Controller'ning o'z ishi: so'rovdan olish, Service'ni chaqirish yoki qaytarish. Narxni o'zgartirib, hisob qilayotgan satrni qidiring.", 'Эта строка — собственная работа Controller: взять из запроса, вызвать Service или вернуть. Ищите строку, которая меняет цену, то есть считает.')} />;
@@ -1516,7 +1641,7 @@ function Screen17(p) {
   return <MCRetry {...p} kicker={t('Tekshiruv 3', 'Проверка 3')} eyebrow={t("Tekshiruv · 3 / 5 — o'ylab ko'ring", 'Проверка · 3 / 5 — подумайте')}
     title={t("Kodimiz hozirgi holatda. GET /cars/abc so'rovi kelsa, javob qanday bo'ladi?", 'Код в текущем виде. Пришёл запрос GET /cars/abc — каким будет ответ?')}
     q={t("Javoblarni ko'rdik. Endi bir qadam oldinga o'ylaymiz. Uchinchi tekshiruv, o'ylab ko'ring. Kimdir cars path'idan keyin abc deb yubordi. Kodimiz hozirgi holatda. Javob qanday bo'ladi?", 'Ответы мы увидели. Теперь подумаем на шаг вперёд. Третья проверка, подумайте. Кто-то отправил abc после пути cars. Код в текущем виде. Каким будет ответ?')}
-    opts={t(["200 va bo'sh obyekt", '500 Internal server error', '404 va «Car with id NaN not found»', '400 Bad Request'], ['200 и пустой объект', '500 Internal server error', '404 и «Car with id NaN not found»', '400 Bad Request'])} correct={2}
+    opts={t(["200 va bo'sh obyekt — mashina yo'q", "500 Internal server error — Service yiqildi", '404 va «Car with id NaN not found»', '400 Bad Request — id son emas'], ['200 и пустой объект — машины нет', '500 Internal server error — Service упал', '404 и «Car with id NaN not found»', '400 Bad Request — id не число'])} correct={2}
     ok={t("To'g'ri: to'rt yuz to'rt va Car with id NaN not found. Number abc natijasi NaN, bunday id'li mashina yo'q, shuning uchun findOne NotFoundException tashlaydi. Ishlaydi, lekin foydalanuvchi NaN so'zini ko'rmasligi kerak. Id ParseIntPipe bilan olinsa, abc kelganda Nest o'zi to'rt yuz, Bad Request qaytaradi. Demak, Nest kiruvchi ma'lumotni siz pipe bilan aytmaguncha tekshirmaydi.", 'Верно: 404 и Car with id NaN not found. Number от abc даёт NaN, машины с таким id нет, поэтому findOne бросает NotFoundException. Это работает, но пользователь не должен видеть слово NaN. Если брать id через ParseIntPipe, то при abc Nest сам вернёт 400, Bad Request. Значит, Nest не проверяет входящие данные, пока вы не скажете ему это через pipe.')}
     okShort={t("404, «Car with id NaN not found»: Number('abc') = NaN → findOne topmaydi → NotFoundException. Tekshiruv yo'q; @Param('id', ParseIntPipe) yozilsa — 400 «Validation failed (numeric string is expected)» (sinab ko'rilgan).", "404, «Car with id NaN not found»: Number('abc') = NaN → findOne не находит → NotFoundException. Проверки нет; если написать @Param('id', ParseIntPipe) — 400 «Validation failed (numeric string is expected)» (проверено).")}
     wrong={t({ 0: "find hech narsa topmasa undefined qaytaradi, bizning kod esa bu holatda xato tashlaydi.", 1: "Besh yuz faqat biz kutmagan xato bo'lganda chiqadi; bu yerda xatoni o'zimiz NotFoundException bilan tashladik.", 3: "To'rt yuzni hech kim qaytarmaydi, chunki tekshiruv yozilmagan." }, { 0: 'Если find ничего не находит, он возвращает undefined, а наш код в этом случае бросает ошибку.', 1: '500 появляется только при ошибке, которую мы не ожидали; здесь ошибку мы бросили сами через NotFoundException.', 3: '400 никто не возвращает, потому что проверка не написана.' })} />;
@@ -1826,7 +1951,7 @@ function Screen23(p) {
   // To'g'ri javobdan keyin — tuzatilgan fayl Explorer bilan (M2: har kod misolida tuzatish ko'rinadi)
   const after = <>
     <div className="mk-tag" style={{ color: T.green, marginBottom: 8 }}>{t('Tuzatildi — yangi satr yashil', 'Исправлено — новая строка зелёная')}</div>
-    <Ide root="shop-api" files={['src/orders/orders.module.ts', 'src/orders/orders.controller.ts', 'src/orders/orders.service.ts', 'src/orders/payment.service.ts']} active="src/orders/orders.module.ts">
+    <div style={{ display: 'grid', gap: 8 }}>
       <CodePanel file="src/orders/orders.module.ts" numbers={false} lines={[
         { h: `<span class="d">@Module</span>({` },
         { h: `  controllers: [<span class="c">OrdersController</span>],` },
@@ -1836,7 +1961,7 @@ function Screen23(p) {
       <CodePanel file={t('terminal — tuzatildi', 'terminal — исправлено')} numbers={false} wrap style={{ background: '#111827' }} lines={[
         { h: `[Nest] LOG [InstanceLoader] <span class="ok">OrdersModule dependencies initialized</span>` },
         { h: `[Nest] LOG [NestApplication] <span class="ok">Nest application successfully started</span>` }]} />
-    </Ide>
+    </div>
   </>;
   return <MCRetry {...p} kicker={t('Tekshiruv 5', 'Проверка 5')} eyebrow={t("Tekshiruv · 5 / 5 — xatoni o'qish", 'Проверка · 5 / 5 — чтение ошибки')} above={above} after={after}
     title={t("Bu o'quvchingizning loyihasi. Qaysi faylni ochasiz va nimani tuzatasiz?", 'Это проект вашего ученика. Какой файл вы откроете и что исправите?')}
@@ -1972,7 +2097,7 @@ function ScreenR1(p) {
   </div>} />;
 }
 
-// --- O'tish rejasi 2: o'quvchi qoqiladigan joylar ---
+// --- O'tish rejasi 2: o'quvchilar xato qiladigan joylar ---
 const STUMBLE = [
   { q: 'git clone ishlamaydi', a: "Git o'rnatilmagan yoki internet yo'q. Zaxira: GitHub'dan ZIP yuklab olib ochish. Darsdan oldin o'zingiz bir marta clone qilib ko'ring." },
   { q: 'npm install uzoq yoki xato', a: "Sabr: 2–5 daqiqa normal. Xato bo'lsa Node versiyasini tekshiring (20+), node_modules'ni o'chirib qayta urining." },
@@ -1982,7 +2107,7 @@ const STUMBLE = [
   { q: '«Nega Express emas?» yoki metafora chalkashdi', a: "Bitta gap: katta loyihada tartib kerak, Nest tartibni majburiy qiladi, ichida o'sha Express. Metafora chalkashsa lug'atga qaytaring: oshpaz, ya'ni Service." },
 ];
 const R2 = {
-  kicker: "7-bosqich · o'tish rejasi", eyebrow: "m4a-01 · darsda nima bo'ladi", title: "O'quvchi qoqiladigan 6 joy",
+  kicker: "7-bosqich · o'tish rejasi", eyebrow: "m4a-01 · darsda nima bo'ladi", title: "O'quvchilar xato qiladigan 6 joy",
   segments: [
     { id: 'a', key: "Sinfda <b>albatta</b> uchraydigan 6 holat — har biriga tayyor javobingiz bo'lsin", text: "Rejani bilasiz. Endi reja buziladigan joylarni ko'raylik: darsda albatta uchraydigan oltita holat. Har biriga tayyor javobingiz bo'lsin.", hl: [] },
     { id: 'b', key: "1 · <code>git clone</code> ishlamaydi → zaxira: GitHub'dan <b>ZIP yuklab olish</b>", text: "Birinchi: git clone ishlamaydi. Git o'rnatilmagan yoki internet yo'q. Zaxira: GitHub'dan ZIP yuklab olib ochish. Darsdan oldin o'zingiz bir marta clone qilib ko'ring.", hl: [0] },
@@ -1992,7 +2117,7 @@ const R2 = {
     { id: 'f', key: "5 · «can't resolve» → o'quvchi bilan <b>birga o'qing</b>, javobni aytmang", text: "Beshinchi: can't resolve dependencies xatosi. Siz endi o'qiy olasiz: qaysi klass, qaysi dependency, qaysi fayl. O'quvchi bilan birga terminaldagi xabarni o'qing, javobni aytmang, savol bering: qaysi fayl, qaysi ro'yxat.", hl: [4] },
     { id: 'g', key: "6 · «Nega Express emas?» → <b>bitta gap</b>: tartib kerak, ichida o'sha Express", text: "Oltinchi: nega Express emas degan savol yoki metafora chalkashuvi. Bitta gap: katta loyihada tartib kerak, Nest tartibni majburiy qiladi, ichida o'sha Express. Metafora chalkashsa lug'atga qaytaring.", hl: [5] },
     { id: 'h0', key: "Ogohlantirish: o'quvchi loyihasida route'lar <code>/api/v1</code> bilan boshlanadi — prefiks unutilsa <b>404</b>", text: "Yana bitta ogohlantirish: o'quvchi loyihasida hamma route api v1 bilan boshlanadi, admin emas, api v1 admin. Prefiks unutilsa to'rt yuz to'rt chiqadi. Bu loyihani keyingi mentor darsida to'liq, clone qilib ko'rasiz.", show: "Yana bitta ogohlantirish: o'quvchi loyihasida hamma route <code>/api/v1</code> bilan boshlanadi — <code>/admin</code> emas, <code>/api/v1/admin</code>; prefiks unutilsa <b>404</b>. Bu loyihani keyingi mentor darsida to'liq, clone qilib ko'rasiz.", hl: [] },
-    { id: 'h', key: "Xulosa: darsdan oldin loyihani <b>o'zingiz bir marta ko'taring</b> — qoqiladigan joyni oldindan bilasiz", text: "Xulosa: bu holatlarning ko'pi darsning birinchi yigirma daqiqasida chiqadi. Shuning uchun darsdan oldin loyihani o'zingiz bir marta clone qilib, env bilan ishga tushirib ko'ring: qayerda qoqilish mumkinligini o'zingiz his qilasiz.", show: "Xulosa: bu holatlarning ko'pi darsning birinchi 20 daqiqasida chiqadi. Darsdan oldin loyihani o'zingiz bir marta clone qilib, .env bilan ishga tushirib ko'ring: qayerda qoqilish mumkinligini o'zingiz his qilasiz.", hl: [] },
+    { id: 'h', key: "Xulosa: darsdan oldin loyihani <b>o'zingiz bir marta ko'taring</b> — o'quvchilar xato qiladigan joyni oldindan bilasiz", text: "Xulosa: bu holatlarning ko'pi darsning birinchi yigirma daqiqasida chiqadi. Shuning uchun darsdan oldin loyihani o'zingiz bir marta clone qilib, env bilan ishga tushirib ko'ring: qayerda qoqilish mumkinligini o'zingiz his qilasiz.", show: "Xulosa: bu holatlarning ko'pi darsning birinchi 20 daqiqasida chiqadi. Darsdan oldin loyihani o'zingiz bir marta clone qilib, .env bilan ishga tushirib ko'ring: qayerda qoqilish mumkinligini o'zingiz his qilasiz.", hl: [] },
   ],
 };
 function ScreenR2(p) {
@@ -2037,7 +2162,7 @@ const RDB = {
 };
 function ScreenRdb(p) {
   return <Lesson p={p} S={RDB} scene={({ seg, beat }) => (<>
-    <CodePanel file={t('terminal — haqiqiy chiqishlar (sinovdagi baza nomi: cars_db)', 'terminal — реальный вывод (имя базы в проверке: cars_db)')} numbers={false} wrap style={{ background: '#1F1115' }} beat={beat} lines={DB_ERRS} focus={beat >= 1 && beat <= 4 ? ['db' + beat] : []} />
+    {beat < 5 && <CodePanel file={t('terminal — haqiqiy chiqishlar (sinovdagi baza nomi: cars_db)', 'terminal — реальный вывод (имя базы в проверке: cars_db)')} numbers={false} wrap style={{ background: '#1F1115' }} beat={beat} lines={DB_ERRS.filter((l) => l.at === Math.min(beat, 4) || l.at == null)} focus={beat >= 1 && beat <= 4 ? ['db' + beat] : []} />}
     <Block at={1} beat={beat}><table className="mk-tbl"><thead><tr><th>{t('xabar (2-satr)', 'сообщение (2-я строка)')}</th><th>{t('sabab', 'причина')}</th><th>{t('yechim', 'решение')}</th></tr></thead><tbody>
       {DB_ROWS.filter((r) => r.at <= beat).map((r, i) => <tr key={i} className={r.at === beat ? 'hl' : ''}><td><code>{r.m}</code></td><td>{r.s}</td><td dangerouslySetInnerHTML={html(r.f)} /></tr>)}
     </tbody></table></Block>
@@ -2057,7 +2182,7 @@ const PLAN90 = [
 const R3 = {
   kicker: "7-bosqich · o'tish rejasi", eyebrow: 'm4a-01 · 90 daqiqa (taklif)', title: "Vaqt rejasi va uch qoida",
   segments: [
-    { id: 'a', key: "Taklif: <b>90 daqiqa, oltita bo'lak</b> — sinfingizga qarab o'zgartirasiz", text: "Qoqiladigan joylarni va ularning yechimini bilasiz. Endi vaqtni rejalaymiz. Taklif qilingan vaqt rejasi: to'qson daqiqa, oltita bo'lak. Bu taklif, sinfingizga qarab o'zgartirasiz.", hl: [] },
+    { id: 'a', key: "Taklif: <b>90 daqiqa, oltita bo'lak</b> — sinfingizga qarab o'zgartirasiz", text: "O'quvchilar xato qiladigan joylarni va ularning yechimini bilasiz. Endi vaqtni rejalaymiz. Taklif qilingan vaqt rejasi: to'qson daqiqa, oltita bo'lak. Bu taklif, sinfingizga qarab o'zgartirasiz.", hl: [] },
     { id: 'b', key: "0–30: kirish va clone — <b>hammada server ishlaguncha</b> oldinga o'tmang", text: "Birinchi o'ttiz daqiqa: kirish va clone. Eng xavfli bo'lak clone va ishga tushirish, shuning uchun unga yigirma daqiqa.", hl: [0, 1] },
     { id: 'c', key: "30–60: Swagger, papkalar xaritasi, <b>buyurtma yo'li</b> va uchta test", text: "O'ttizdan oltmishgacha: Swagger, bino xaritasi, buyurtma yo'li va uchta test.", hl: [2, 3] },
     { id: 'd', key: "60–90: qatlamlar, <b>AI bilan qurish</b>, debugging va arena", text: "Oltmishdan to'qsongacha: qatlamlar, AI bilan qurish, yakuniy debugging va arena.", hl: [4, 5] },
@@ -2115,11 +2240,11 @@ const FINAL = [
   { q: "Nest ichida so'rovni haqiqatda qaysi kutubxona qabul qiladi?", o: ["Nest'ning o'z HTTP serveri", 'Express (platform-express)', 'Node http moduli bevosita', 'Har doim Fastify'], c: 1, e: "Nest Express ustidagi qatlam; Fastify'ga almashtirish mumkin, lekin standart Express.", s: 3 },
   { q: "@Controller('cars') va @Get(':id') birga qaysi path'ni ochadi?", o: ['/cars?id=5', '/id/cars', '/cars/5', '/:id/cars'], c: 2, e: "Controller prefiksi + metod yo'li.", s: 18 },
   { q: 'POST metodida status yozilmagan. Nest nima qaytaradi?', o: ['200', '201', '204', '202'], c: 1, e: "Nest POST uchun 201 ni o'zi qo'yadi.", s: 20 },
-  { q: "«Nest can't resolve dependencies of the X (?)» — so'roq belgisi nimani bildiradi?", o: ["Noma'lum modul", "Topilmagan argument o'rni", 'Sintaksis xatosi', "Route yo'q"], c: 1, e: 'Qavs ichida konstruktor argumentlari, ? — topilmagani.', s: 23 },
-  { q: "Server «successfully started», /cars 404, terminalda Mapped {/cars…} yo'q. Eng ehtimoliy sabab?", o: ["CarsModule AppModule imports'ida yo'q", "Injectable yo'q", 'Port band', "Service'da xato"], c: 0, e: "Yashirin xato: modul ulanmagan, Nest papkani o'qimagan.", s: 24 },
+  { q: "«Nest can't resolve dependencies of the X (?)» — so'roq belgisi nimani bildiradi?", o: ["Noma'lum modul — import yo'q", "Topilmagan argumentning o'rni", "Sintaksis xatosi — qavs yopilmagan", "Route yo'q — Controller bo'sh"], c: 1, e: 'Qavs ichida konstruktor argumentlari, ? — topilmagani.', s: 23 },
+  { q: "Server «successfully started», /cars 404, terminalda Mapped {/cars…} yo'q. Eng ehtimoliy sabab?", o: ["CarsModule AppModule imports'ida yo'q", "Injectable yo'q — CarsService ulanmagan", "Port band — server boshqa portda", "Service'da xato — u 404 qaytaradi"], c: 0, e: "Yashirin xato: modul ulanmagan, Nest papkani o'qimagan.", s: 24 },
   { q: "Service ichida throw new Error('x'). Mijozga nima boradi?", o: ['404 va «x»', '500 Internal server error', '400', 'Hech narsa, server yiqiladi'], c: 1, e: 'Oddiy Error → 500, xabar yashiriladi.', s: 28 },
-  { q: "Yangi xabar: «Nest can't resolve dependencies of the UsersService (?, JwtService). Please make sure that the argument ConfigService at index [0] is available in the UsersModule module.» Nima qilasiz?", o: ["users.module.ts — providers'ga ConfigService (yoki ConfigModule import)", "users.service.ts — konstruktordan JwtService'ni o'chirish", "app.module.ts — controllers'ga UsersService", "UsersService'ga @Injectable() qo'shish"], c: 0, e: "Klass: UsersService · dependency: ConfigService, index [0] · fayl: users.module.ts (UsersModule). JwtService topilgan (ikkinchi o'rin), muammo unda emas.", s: 23 },
-  { q: "orders.module.ts: controllers: [OrdersController], providers: [] — OrdersController konstruktorida OrdersService so'ralgan. Server nima qiladi?", o: ["Ishga tushadi, /orders → 404", "Yiqiladi: can't resolve dependencies of the OrdersController (?)", "Ishga tushadi, /orders → 500", "Yiqiladi: invalid controller detected"], c: 1, e: "providers bo'sh → Nest OrdersService'ni topa olmaydi → ishga tushishda yiqiladi (1-buzish bilan bir xil).", s: 23 },
+  { q: "Yangi xabar: «Nest can't resolve dependencies of the UsersService (?, JwtService). Please make sure that the argument ConfigService at index [0] is available in the UsersModule module.» Nima qilasiz?", o: ["users.module.ts — providers'ga ConfigService", "users.service.ts — konstruktordan JwtService'ni o'chirish", "app.module.ts — controllers'ga UsersService qo'shish", "UsersService'ga @Injectable() qo'shish"], c: 0, e: "Klass: UsersService · dependency: ConfigService, index [0] · fayl: users.module.ts (UsersModule). JwtService topilgan (ikkinchi o'rin), muammo unda emas.", s: 23 },
+  { q: "orders.module.ts: controllers: [OrdersController], providers: [] — OrdersController konstruktorida OrdersService so'ralgan. Server nima qiladi?", o: ["Ishga tushadi, /orders → 404 qaytadi", "Yiqiladi: can't resolve dependencies (?)", "Ishga tushadi, /orders → 500 qaytadi", "Yiqiladi: invalid controller detected"], c: 1, e: "providers bo'sh → Nest OrdersService'ni topa olmaydi → ishga tushishda yiqiladi (1-buzish bilan bir xil).", s: 23 },
 ];
 function Screen27(p) {
   const st = p.stored || {};
@@ -2329,7 +2454,7 @@ function Screen28(p) {
 // ============================================================
 //  MUQOVA + ROOT KOMPONENT
 // ============================================================
-function Cover({ onStart }) {
+function Cover({ onStart, resume }) {
   return (
     <div className="mk-cover"><div className="card">
       <p className="mk-eyebrow">{t('Mentor kursi · NestJS', 'Курс для менторов · NestJS')}</p>
@@ -2338,7 +2463,7 @@ function Cover({ onStart }) {
       <ul>
         {t(["Jami taxminan 1,5–2 soat: ovoz ~50 daqiqa · to'rt amaliyot 25–35 daqiqa · 5 tekshiruv · o'z-sinov 8 savol. 22-ekrandan keyin tanaffus qilsangiz bo'ladi", 'Kerak: Node.js 20+, VS Code, terminal — amaliyot dars ichida, har amaliyotda isbot maydoni', "Har ekranda: «↺ boshidan», ovozni o'chirish, «Matn» tugmasi. Ustoz gapirib bo'lgach Davom ochiladi"], ['Всего примерно 1,5–2 часа: озвучка ~50 минут · четыре практики 25–35 минут · 5 проверок · самопроверка 8 вопросов. После 22-го экрана можно сделать перерыв', 'Нужно: Node.js 20+, VS Code, терминал — практика внутри урока, в каждой практике поле подтверждения', 'На каждом экране: «↺ с начала», выключение звука, кнопка «Текст». «Далее» откроется, когда учитель договорит']).map((x) => <li key={x}>{x}</li>)}
       </ul>
-      <button className="mk-btn ready" onClick={onStart}>{t('Boshlash →', 'Начать →')}</button>
+      <CoverStart onStart={onStart} resume={resume} />
     </div></div>
   );
 }
@@ -2354,7 +2479,8 @@ export default function NestArchMentorLesson({ studentName, lang = 'uz', onFinis
   const [returnTo, setReturnTo] = useState(null);
   const [seen, setSeen] = useState({});   // to'liq ko'rilgan ekranlar — qaytib kelganda Davom qulfi yo'q (F-1030-01)
   const [rev, setRev] = useState(0);      // ↺ boshidan: key o'zgaradi → ekran qayta o'rnatiladi (F-1030-05)
-  const [mode, setMode] = useState('live'); // A12: Orqaga/Davom bilan ko'rilgan ekranga kelinsa — 'review' (tayyor holat, ovozsiz); ↺ va N-ekranga o'tish — 'live'
+  const [mode, setMode] = useState('live');
+  const sv = useMentorSave({ id: LESSON_ID, total, startAt, started, idx, answers, seen, setIdx, setAnswers, setSeen, setStarted }); // A12: Orqaga/Davom bilan ko'rilgan ekranga kelinsa — 'review' (tayyor holat, ovozsiz); ↺ va N-ekranga o'tish — 'live'
   const startTime = useRef(Date.now());
   const finished = useRef(false);
   const onAnswer = useCallback((payload) => setAnswers((a) => ({ ...a, [idx]: payload })), [idx]);
@@ -2379,7 +2505,7 @@ export default function NestArchMentorLesson({ studentName, lang = 'uz', onFinis
       answers: Object.entries(answers).map(([i, a]) => ({ screen: Number(i) + 1, ...a })),
     });
   };
-  if (!started) return <Cover onStart={() => setStarted(true)} />;
+  if (!started) return <Cover onStart={sv.start} resume={sv.resume} />;
   const S = SCREENS[idx];
   const fin = Object.values(answers).find((a) => a && a.type === 'final');
   return <S key={`${idx}:${rev}`} idx={idx} total={total} lang={lang} stored={answers[idx]} testScore={fin ? fin.score : 0} seen={!!seen[idx]} review={mode === 'review' && !!seen[idx]} onAnswer={onAnswer} onNext={next} onBack={idx > 0 ? () => { setMode('review'); setIdx((i) => i - 1); } : null} onFinish={finish} onGoto={goto} onRestart={restart} />;
@@ -2871,11 +2997,11 @@ ru(FINAL, [
   { q: 'Какая библиотека на самом деле принимает запрос внутри Nest?', o: ['Собственный HTTP-сервер Nest', null, 'Напрямую модуль http из Node', 'Всегда Fastify'], e: 'Nest — слой над Express; его можно заменить на Fastify, но по умолчанию это Express.' },
   { q: 'Какой path открывают вместе @Controller(\'cars\') и @Get(\':id\')?', e: 'Префикс Controller + путь метода.' },
   { q: 'В методе POST статус не указан. Что вернёт Nest?', e: 'Для POST Nest сам ставит 201.' },
-  { q: '«Nest can\'t resolve dependencies of the X (?)» — что означает знак вопроса?', o: ['Неизвестный модуль', 'Место ненайденного аргумента', 'Синтаксическая ошибка', 'Нет route'], e: 'В скобках аргументы конструктора, ? — тот, что не найден.' },
-  { q: 'Сервер «successfully started», /cars 404, в терминале нет Mapped {/cars…}. Самая вероятная причина?', o: ['CarsModule нет в imports AppModule', 'Нет Injectable', 'Порт занят', 'Ошибка в Service'], e: 'Скрытая ошибка: модуль не подключён, Nest не прочитал папку.' },
+  { q: '«Nest can\'t resolve dependencies of the X (?)» — что означает знак вопроса?', o: ["Неизвестный модуль — нет import", "Место ненайденного аргумента", "Синтаксическая ошибка — скобка не закрыта", "Нет route — Controller пустой"], e: 'В скобках аргументы конструктора, ? — тот, что не найден.' },
+  { q: 'Сервер «successfully started», /cars 404, в терминале нет Mapped {/cars…}. Самая вероятная причина?', o: ["CarsModule нет в imports AppModule", "Нет Injectable — CarsService не подключён", "Порт занят — сервер на другом порту", "Ошибка в Service — он возвращает 404"], e: 'Скрытая ошибка: модуль не подключён, Nest не прочитал папку.' },
   { q: 'Внутри Service throw new Error(\'x\'). Что получит клиент?', o: ['404 и «x»', null, null, 'Ничего, сервер упадёт'], e: 'Обычный Error → 500, сообщение скрыто.' },
-  { q: 'Новое сообщение: «Nest can\'t resolve dependencies of the UsersService (?, JwtService). Please make sure that the argument ConfigService at index [0] is available in the UsersModule module.» Что вы сделаете?', o: ['users.module.ts — добавить ConfigService в providers (или import ConfigModule)', 'users.service.ts — удалить JwtService из конструктора', 'app.module.ts — UsersService в controllers', 'Добавить @Injectable() в UsersService'], e: 'Класс: UsersService · dependency: ConfigService, index [0] · файл: users.module.ts (UsersModule). JwtService найден (второе место), проблема не в нём.' },
-  { q: 'orders.module.ts: controllers: [OrdersController], providers: [] — в конструкторе OrdersController запрашивается OrdersService. Что сделает сервер?', o: ['Запустится, /orders → 404', 'Упадёт: can\'t resolve dependencies of the OrdersController (?)', 'Запустится, /orders → 500', 'Упадёт: invalid controller detected'], e: 'providers пустой → Nest не может найти OrdersService → падает при запуске (как в «ломаем 1»).' },
+  { q: 'Новое сообщение: «Nest can\'t resolve dependencies of the UsersService (?, JwtService). Please make sure that the argument ConfigService at index [0] is available in the UsersModule module.» Что вы сделаете?', o: ["users.module.ts — ConfigService в providers", "users.service.ts — удалить JwtService из конструктора", "app.module.ts — добавить UsersService в controllers", "Добавить @Injectable() в UsersService"], e: 'Класс: UsersService · dependency: ConfigService, index [0] · файл: users.module.ts (UsersModule). JwtService найден (второе место), проблема не в нём.' },
+  { q: 'orders.module.ts: controllers: [OrdersController], providers: [] — в конструкторе OrdersController запрашивается OrdersService. Что сделает сервер?', o: ["Запустится, /orders → вернёт 404", "Упадёт: can't resolve dependencies (?)", "Запустится, /orders → вернёт 500", "Упадёт: invalid controller detected"], e: 'providers пустой → Nest не может найти OrdersService → падает при запуске (как в «ломаем 1»).' },
 ]);
 ru(S28_ITEMS, [
   { t: 'Nest — обязательный порядок поверх Express' },

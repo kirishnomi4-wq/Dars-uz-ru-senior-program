@@ -1,0 +1,35 @@
+# som() buzildi: ru-RU → en-US
+4:export const som = (n: number) => `${n.toLocaleString('en-US')} so'm`;
+
+$ npx jest savat --verbose
+FAIL src/api/telegram/savat.spec.ts
+  texts.cart
+    ✓ etalon koddan (17 ms)
+    ✕ etalon qo'lda (1 ms)
+
+  ● texts.cart › etalon qo'lda
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "Jami: 100 000 so'm"
+    Received string:    "Savat:
+    • Kolonka × 2 = 100,000 so'm·
+    Jami: 100,000 so'm"
+
+      14 |   it("etalon qo'lda", () => {
+      15 |     const t = texts.cart(items, 100000);
+    > 16 |     expect(t).toContain("Jami: 100\u00a0000 so'm");
+         |               ^
+      17 |   });
+      18 | });
+      19 |
+
+      at Object.<anonymous> (api/telegram/savat.spec.ts:16:15)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 passed, 2 total
+Snapshots:   0 total
+Time:        0.388 s, estimated 1 s
+Ran all test suites matching savat.
+[chiqish kodi: 1]
+

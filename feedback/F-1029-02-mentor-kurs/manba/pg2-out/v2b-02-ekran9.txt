@@ -1,0 +1,29 @@
+BEGIN;
+BEGIN
+UPDATE products SET price = 99000;
+UPDATE 3
+SELECT * FROM products;
+ id |    name    | price | stock 
+----+------------+-------+-------
+  2 | Sichqoncha | 99000 |    15
+  4 | Kolonka    | 99000 |    10
+  1 | Klaviatura | 99000 |     7
+(3 rows)
+
+DELETE FROM products;
+DELETE 3
+SELECT * FROM products;
+ id | name | price | stock 
+----+------+-------+-------
+(0 rows)
+
+ROLLBACK;
+ROLLBACK
+SELECT * FROM products;
+ id |    name    | price | stock 
+----+------------+-------+-------
+  2 | Sichqoncha | 75000 |    15
+  4 | Kolonka    | 50000 |    10
+  1 | Klaviatura | 99000 |     7
+(3 rows)
+

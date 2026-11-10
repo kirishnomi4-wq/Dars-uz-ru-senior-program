@@ -1,0 +1,21 @@
+# nusxa: tartib — parsePayment va record imzo tekshiruvidan OLDIN
+$ npm run pay -- 1 imzosiz
+→ POST /payments/webhook {"paymentId":"pay_e714112c","orderId":1,"status":"paid","amount":120000}
+  X-Signature: (yo'q)
+← 401 {"message":"imzo noto'g'ri","error":"Unauthorized","statusCode":401}
+
+## Server logi
+LOG [InstanceLoader] PaymentModule dependencies initialized
+LOG [RoutesResolver] PaymentController {/payments}:
+WARN [Payment] imzo noto'g'ri — xabar rad etildi
+
+$ psql: SELECT payment_id, order_id, status FROM payments
+  payment_id  | order_id | status 
+--------------+----------+--------
+ pay_e714112c |        1 | paid
+(1 row)
+$ psql: SELECT id, payment_status FROM orders
+ id | payment_status 
+----+----------------
+  1 | paid
+(1 row)

@@ -1,0 +1,19 @@
+# user.service.ts: telegram_id = from.id (string ustuniga number)
+$ npx tsc --noEmit
+src/api/user/user.service.ts(20,42): error TS2322: Type '{ telegram_id: number; }' is not assignable to type 'FindOptionsWhere<User> | FindOptionsWhere<User>[] | undefined'.
+  Types of property 'telegram_id' are incompatible.
+    Type 'number' is not assignable to type 'string | FindOperator<string> | undefined'.
+src/api/user/user.service.ts(22,33): error TS2769: No overload matches this call.
+  Overload 1 of 3, '(entityLikeArray: DeepPartial<User>[]): User[]', gave the following error.
+    Object literal may only specify known properties, and 'telegram_id' does not exist in type 'DeepPartial<User>[]'.
+  Overload 2 of 3, '(entityLike: DeepPartial<User>): User', gave the following error.
+    Type 'number' is not assignable to type 'string'.
+[chiqish kodi: 2 · 2.1 s]
+
+# test baribir yashilmi? (ts-jest diagnostics)
+Test Suites: 5 passed, 5 total
+Tests:       25 passed, 25 total
+Snapshots:   0 total
+Time:        1.234 s
+[chiqish kodi: 0 · 1.9 s]
+

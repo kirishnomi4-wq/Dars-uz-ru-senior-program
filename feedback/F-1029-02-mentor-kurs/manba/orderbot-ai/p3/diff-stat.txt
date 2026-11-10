@@ -1,0 +1,7 @@
+ src/api/cart/cart-item.entity.ts                   | 54 ++++++++++++++++++++++
+ src/api/cart/cart.module.ts                        |  3 ++
+ src/api/cart/cart.service.ts                       | 43 +++++++++++------
+ src/api/telegram/telegram.service.ts               | 17 +++----
+ .../migrations/1793733685607-CreateCartItems.ts    | 31 +++++++++++++
+ src/database/typeorm.config.ts                     |  3 +-
+ 6 files changed, 129 insertions(+), 22 deletions(-)

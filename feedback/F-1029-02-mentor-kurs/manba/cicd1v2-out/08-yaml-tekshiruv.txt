@@ -1,0 +1,103 @@
+# @actions/workflow-parser 0.3.61 — GitHub'ning rasmiy YAML tahlilchisi (04.11, esbuild bundle)
+--- 1-tavsiya.yml
+name: CI
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx tsc --noEmit
+      - run: npm test
+      - run: npm run build
+  ✓ xato yo'q (schema bo'yicha to'g'ri)
+
+--- 2-checkout-yoq.yml
+name: CI
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npm test
+  ✓ xato yo'q (schema bo'yicha to'g'ri)
+
+--- 3-runs-on-yoq.yml
+name: CI
+on: push
+jobs:
+  test:
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm test
+  XATO: 3-runs-on-yoq.yml (Line: 5, Col: 5): Required property is missing: runs-on
+
+--- 4-surilish-xato.yml
+name: CI
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      - run: npm ci
+      - run: npm test
+  XATO: 4-surilish-xato.yml: A block sequence may not be used as an implicit map key at line 8, column 1:
+
+    - uses: actions/checkout@v4
+      - run: npm ci
+^
+
+  XATO: 4-surilish-xato.yml: Implicit keys need to be on a single line at line 8, column 7:
+
+    - uses: actions/checkout@v4
+      - run: npm ci
+      ^
+
+  XATO: 4-surilish-xato.yml: Implicit map keys need to be followed by map values at line 8, column 7:
+
+    - uses: actions/checkout@v4
+      - run: npm ci
+      ^
+
+
+--- 5-npm-install.yml
+name: CI
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install
+      - run: npm test
+  ✓ xato yo'q (schema bo'yicha to'g'ri)
+
+--- 6-tsc-yoq.yml
+name: CI
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+  ✓ xato yo'q (schema bo'yicha to'g'ri)
+

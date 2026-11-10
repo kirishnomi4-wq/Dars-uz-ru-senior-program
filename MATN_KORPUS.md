@@ -4652,3 +4652,45 @@ Sinf-supurish (19.10): ta'rif-qatori faqat 12-M da topildi (13 qator, 5 dars) �
 - ❌ (tekshiruv, to'g'ri javob) «…Ekranda tuzatilgan holat: posts user id, va natija to'g'ri.»  ✅ «…va natija to'g'ri. **Demak, on satrida doim tashqi kalit ustuni turadi, ya'ni posts user id.**»
 - ❌ (amaliyot oxiri) «To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi.»  ✅ «…Davom ochilmaydi. **Demak, shu amaliyotdan keyin PostgreSQL kompyuteringizda o'rnatilgan va siz unga terminaldan ulana olasiz.**»
 **Qoida (M33):** «Demak, …» — bitta umumiy qoida yoki natija, misolning takrori emas.
+
+## §MENTOR-STATE — «holat» emas, «state»; umumiy ma'noda «vaziyat» (F-1103-07, 03.11; foydalanuvchi TgPg 1-ekranini ko'rib: «holat so'zi umuman tushunarsiz… mentor ko'rsa kuladi, yomon tushunadi, uyat; istasang inglizcha atamasi bilan bo'lsin»)
+
+- ❌ (reja) «Holat · Holat PostgreSQL'da»  ✅ «State · State PostgreSQL'da»
+- ❌ «Avval holatsiz bot, keyin xotiradagi holat va nega u yo'qoladi»  ✅ «Avval state'siz bot, keyin xotiradagi state va nega u yo'qoladi»
+- ❌ «har mijozga o'z holati»  ✅ «har mijozga o'z state'i» — birinchi uchragan joyda bir marta izoh: «state — bot foydalanuvchi haqida eslab qolgan ma'lumot: qaysi qadamda turgani, nimani tanlagani»
+- ❌ (kod) `const holat = {}` · `'ISM_KUTYAPMAN'` · `let tanlov` · ustun `ism`, `holat`  ✅ `const state = {}` · `'WAITING_NAME'` · `let choice` · ustun `name`, `state` (F-1027-01: kod nomlari inglizcha; natijalar qayta yurgizildi)
+- ❌ (umumiy ma'no) «Sinfda eng ko'p chiqadigan holat» · «To'rtinchi holat: duplicate key»  ✅ «…chiqadigan vaziyat» · «To'rtinchi vaziyat: …»
+- ✅ Qoladi: o'quvchi reposining haqiqiy ustuni `holat` (TelegramBotNest — repo qarorisiz tegilmaydi) — matnda «`holat` ustuni (reponing state'i)»; o'quvchi darsi lug'atida «holat · holatli bot → state · stateful bot» (mentor sinfda o'quvchi so'zini bilsin); o'quvchining savoli tirnoqda («Holatni JSON'da saqlasa…»).
+**Qoida:** mentor darsida dasturlash atamasi inglizcha (state, stateful), o'zbekcha qo'shimcha apostrof bilan (state'i, state'ni, state'siz); bitta tirnoqli JS satrida `state\'i`. Umumiy «situation» ma'nosi — «vaziyat».
+🔧 Tekshiruv: `grep -ci "holat" src/mentor-kurs/<dars>/parts/03-matn.gen.jsx` — faqat repo ustuni va lug'at qatorlari qolsin.
+
+
+
+## §MENTOR-JEST1-KORIK — joy, sabab va to'liq gap (F-1104-04 · 05 · 06 · 07 · 08 · 11 · 12, 04.11; foydalanuvchi Jest-1 ni ovoz bilan tinglab)
+
+- ❌ «Sababini ichkaridan ko'ramiz.» · «Ichkariga qaraymiz.» · «Sababi ichkarida.»  ✅ «Sababini darsda bilib olasiz.» · «Endi sababini aniqlaymiz.» · «Sababi bunday.»
+- ❌ «…xaritasi va qoqiladigan joylar» · «ko'pchilik qoqiladi»  ✅ «…xaritasi va o'quvchilar xato qiladigan joylar» · «ko'pchilik xato qiladi»
+- ❌ (kod ko'rsatilganda) «Bu qoida bitta funksiyada yozilgan: order keyboard.»  ✅ «Bu qoida bitta funksiyada yozilgan: src, api, telegram papkasidagi keyboards ts faylida, o'ttiz yettinchi satrdan, order keyboard.»
+- ❌ (terminal ko'rsatilganda) «Npm test qilsak, Jest no tests found deydi.»  ✅ «VS Code'da Terminal menyusidan yangi terminal oching, u OrderBotNest papkasida ochiladi, va npm test yozing.»
+- ❌ (xato ekrani oxiri) «Farq ko'zga ko'rinmaydigan joyda. Keyingi ekranda uni ichkaridan ko'ramiz.»  ✅ «Demak, sabab bitta joyda: bir yuz yigirma va ming orasidagi bo'sh joy. Siz oddiy probel yozdingiz, som esa ko'zga ko'rinmaydigan boshqa belgi qo'ydi. Keyingi ekranda shu belgini o'z ko'zingiz bilan ko'rasiz.»
+- ❌ «Yordamchida nega to equal ishlatildi, keyingi ekranda.»  ✅ «Yordamchida nega to equal ishlatilganini keyingi ekranda bilib olasiz.»
+- ❌ (kalit ibora ovozning 3-gapidan) kalit «Birinchi tur yolg'on test: expect o'rniga console.log», ovoz «Test yozishni bildingiz. Endi testning o'zi qanday aldashini ko'ramiz. Birinchi tur…»  ✅ kalit «Test yozishni bildingiz — endi testning o'zi qanday aldashini ko'ramiz» — ovozning birinchi ma'noli gapi bilan bir.
+**Qoida (MENTOR_DARS_ETALON M46, M47, M32):** mentor ekranga emas, o'z kompyuteriga qaraydi — ovoz qayerni ochishni aytadi; xato chiqqan ekranda sababi darhol; «ichkari» kabi mavhum so'z o'rniga nima qilinishi; «keyingi ekranda» faqat to'liq gap ichida.
+🔧 Tekshiruv: `grep -n "ichkari\|qoqila\|keyingi ekranda\." <dars>/parts/03-matn.gen.jsx` = 0.
+- ❌ «AI'ning da'vosini ham tekshiramiz» · «tekshirilmagan da'vo»  ✅ «AI aytgan gapni ham tekshiramiz» · «AI aytdi, lekin tekshirmagan» (F-1104-16)
+- ❌ (yangi ko'nikma bosqichi) birinchi gap «Endi testni AI yozadi.»  ✅ alohida kirish segmenti: «Endi yangi bosqich boshlanadi va u boshqa ko'nikma. … Sizning ishingiz endi yozish emas, qabul qilish.» (F-1104-15)
+## §MENTOR-OVOZ-BELGI — belgi va dars kodi ovozda haqiqiy nomi bilan (F-1109-01 · 02 · 03, 09.11; foydalanuvchi PG-1 ni ovoz bilan tinglab: «yotiq bir narsa chiziq dedi… o'zining inglizcha nomi bor, o'shanaqa haqiqiyday aytaylik» · «08 ni nol emas o deb o'qigan»)
+
+- ❌ «Teskari chiziqcha c blog bilan unga o'tasiz.» · «…teskari chiziqchali buyruqlar esa usiz»  ✅ «Backslash c blog bilan unga o'tasiz.» · «…backslash bilan boshlanadigan buyruqlar esa usiz» (RU: ❌ «обратная косая черта d» ✅ «бэкслеш d»)
+- ❌ (ovozga raqam bo'lib ketgan kod) «m4-08 darsi psql buyrug'ini…» → ovoz «m to'rt o sakkiz»  ✅ ekranda «m4-08» qoladi, ovozga `voice()` «em to'rt, nol sakkiz» qilib beradi
+- ❌ (belgiga qo'shimcha) «backslash'li buyruqlar»  ✅ «backslash bilan boshlanadigan buyruqlar» — inglizcha so'z ovozda alohida o'qiladi, qo'shimcha uzilib qoladi
+**Qoida (MENTOR_DARS_ETALON M49):** dasturchi belgini o'z nomi bilan aytadi (`\` — backslash, `/` — slash); tarjima-ta'rif («teskari chiziqcha») mentorni kuldiradi. Raqamli kod ovozga so'z bilan ketadi.
+🔧 Tekshiruv: `grep -rn "teskari chiziq" src/mentor-kurs/*/parts feedback/F-1029-02-mentor-kurs/*-v2.md` = 0.
+
+## §BIR-NARSA-BIR-NOM — misol-ma'lumotda bitta narsaga ikki nom bo'lmaydi (F-1109-04 · 05, 09.11; foydalanuvchi PG-2 kirishini va jadvalini ko'rib: «sichqoncha, mishka bo'pti… ba'zi joyda mishka, ba'zi joyda sichqoncha turmasin, hamma joyda sichqoncha»)
+
+- ❌ «Misolimiz kichik do'kon: klaviatura, sichqoncha, quloqchin, mishka.»  ✅ «Misolimiz kichik do'kon: klaviatura, sichqoncha, quloqchin, kolonka.»
+- ❌ jadval `4 | Mishka | 50000 | 10` (ikkinchi qatorda `Sichqoncha`)  ✅ `4 | Kolonka | 50000 | 10`
+- ❌ (izoh bilan «tuzatish») «o'yinchoq mishka»  ✅ narsaning o'zi almashtiriladi — foydalanuvchi: «o'yinchoq mishka kerak emas, bu so'z ham tushunarsiz»
+**Qoida:** misol-do'kon, jadval va test ma'lumotida har narsa bitta o'zbekcha nom bilan; ruscha so'zlashuv (mishka, naushnik kabi) boshqa qatordagi o'zbekcha nom bilan bir narsani bildirsa — bittasi qoladi, ikkinchisi boshqa mahsulotga almashadi. Nom almashsa, haqiqiy chiqishlar (psql, Jest, repo) ham almashadi — matn va natija bir xil bo'lsin.
+🔧 Tekshiruv: `npm run lint:til <fayl>` — `mishka-sichqoncha` qoidasi; `grep -rli mishka src/mentor-kurs/*/parts` = 0.

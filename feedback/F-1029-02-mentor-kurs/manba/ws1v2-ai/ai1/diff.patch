@@ -1,0 +1,1171 @@
+diff --git a/.env.example b/.env.example
+index f37d900..b7dd43f 100644
+--- a/.env.example
++++ b/.env.example
+@@ -6,6 +6,11 @@ BOT_TOKEN=
+ # Admin bo'ladigan Telegram id'lar, vergul bilan (o'zingiznikini @userinfobot dan oling)
+ ADMIN_TELEGRAM_IDS=
+ 
++# Brauzerdagi jonli buyurtmalar paneli (http://localhost:3000/admin) kaliti — uzun tasodifiy satr.
++# Yaratish: node -e "console.log(require('crypto').randomBytes(24).toString('hex'))"
++# Bo'sh qoldirilsa panel yopiq.
++ADMIN_PANEL_TOKEN=
++
+ # PostgreSQL (lokal: PG-1 darsida o'rnatilgan). Baza oldindan yaratilgan bo'lsin: CREATE DATABASE shop;
+ DATABASE_URL=postgresql://postgres:parol@localhost:5432/shop
+ 
+diff --git a/README.md b/README.md
+index d58b25a..8420157 100644
+--- a/README.md
++++ b/README.md
+@@ -19,6 +19,7 @@ Hammasi bazada: server qayta ishga tushsa ham savat, buyurtmalar, telefonlar qol
+    - `BOT_TOKEN=` — @BotFather bergan token
+    - `ADMIN_TELEGRAM_IDS=` — o'z Telegram id'ingiz (@userinfobot), vergul bilan bir nechta
+    - `DATABASE_URL=postgresql://postgres:parol@localhost:5432/shop` — o'z parolingiz
++   - `ADMIN_PANEL_TOKEN=` — brauzerdagi admin panel kaliti (ixtiyoriy, pastda «Jonli buyurtmalar paneli»)
+ 5. Katalogni to'ldiring: `npm run seed` (jadvallarni migratsiya o'zi yaratadi, 6 ta mahsulot kiradi)
+ 6. `npm run start:dev` — terminalda «Telegram bot ulandi».
+ 7. Telegramda botga `/start`, keyin `/catalog`.
+@@ -35,6 +36,32 @@ Hammasi bazada: server qayta ishga tushsa ham savat, buyurtmalar, telefonlar qol
+ | admin | `/orders` | oxirgi 5 buyurtma, har birida «✅ Tasdiqlash / 🚚 Yetkazildi / ❌ Bekor» |
+ | admin | status tugmasi | status o'zgaradi, mijozga xabar boradi; bekor qilinsa mahsulot omborga qaytadi |
+ 
++## Jonli buyurtmalar paneli (WebSocket)
++
++Do'kon admini uchun brauzer sahifasi: bot yangi buyurtma olganda yoki admin Telegram'da statusni
++o'zgartirganda jadval **sahifani yangilamasdan** o'zi yangilanadi.
++
++1. `.env` ga kalit yozing (uzun tasodifiy satr):
++   ```bash
++   node -e "console.log(require('crypto').randomBytes(24).toString('hex'))"
++   ```
++   `ADMIN_PANEL_TOKEN=<shu satr>`. Bo'sh bo'lsa panel yopiq (terminalda ogohlantirish chiqadi).
++2. `npm run start:dev`, brauzerda: `http://localhost:3000/admin` → kalitni kiriting.
++   Yoki to'g'ridan-to'g'ri havola: `http://localhost:3000/admin#token=<kalit>` (kalit manzil satridan darhol o'chiriladi).
++3. Yuqori o'ngda «● jonli» — ulangan. Server qayta ishga tushsa yoki internet uzilsa panel o'zi qayta ulanadi
++   va oxirgi 30 buyurtmani yangidan oladi.
++
++Qanday ishlaydi:
++
++| Qism | Fayl | Nima qiladi |
++|---|---|---|
++| e'lon | `api/order/order-events.ts` | `OrderService` buyurtma yaratilganda (`created`) va status o'zgarganda (`updated`) e'lon qiladi — **COMMIT'dan keyin**; ROLLBACK bo'lsa panel hech narsa ko'rmaydi |
++| WebSocket | `api/admin-panel/admin-panel.gateway.ts` | `ws://<host>/admin/ws?token=…`: kalit noto'g'ri — `4401` bilan yopadi; to'g'ri — avval `snapshot` (oxirgi 30 ta), keyin har o'zgarish `order` |
++| sahifa | `api/admin-panel/panel.html.ts` | `GET /admin`; tashqi kutubxonasiz, mijoz ismi faqat matn sifatida yoziladi (HTML bajarilmaydi) |
++
++Panelga `telegram_id` va boshqa ichki maydonlar chiqmaydi — faqat #, vaqt, mijoz ismi, telefon, mahsulotlar, jami, status.
++Kalitni faqat adminlarga bering: unda mijozlarning telefon raqamlari ko'rinadi. Internetga chiqarilsa — faqat `https` (`wss`).
++
+ ## Baza
+ 
+ | Jadval | Nima | Muhim ustun / qoida |
+@@ -55,7 +82,7 @@ Qo'lda: `npm run migration:run` · `npm run migration:revert` · entity o'zgarga
+ ```
+ src/
+   main.ts                           — serverni ko'taradi
+-  config/index.ts                   — .env o'qiladi (BOT_TOKEN, ADMIN_TELEGRAM_IDS, DATABASE_URL, DB_LOGGING, PORT)
++  config/index.ts                   — .env o'qiladi (BOT_TOKEN, ADMIN_TELEGRAM_IDS, DATABASE_URL, DB_LOGGING, PORT, ADMIN_PANEL_TOKEN)
+   core/entity/                      — jadvallar: product, user, cart-item, order, order-item
+   infrastructure/data-source.ts     — bitta ulanish sozlamasi (Nest ham, typeorm CLI ham)
+   infrastructure/database.module.ts — TypeOrmModule.forRoot + migratsiyalar avto
+@@ -66,7 +93,8 @@ src/
+   api/catalog/                      — mahsulotlar: sahifalash (LIMIT/OFFSET)
+   api/user/                         — foydalanuvchi: SELECT → INSERT, rol, telefon, state
+   api/cart/                         — savat: INSERT … ON CONFLICT DO UPDATE
+-  api/order/                        — buyurtma: tranzaksiya, status, bekor → ombor qaytadi
++  api/order/                        — buyurtma: tranzaksiya, status, bekor → ombor qaytadi; order-events.ts — o'zgarish e'loni
++  api/admin-panel/                  — jonli buyurtmalar paneli: GET /admin + WebSocket /admin/ws
+ scripts/smoke.js                    — npm run smoke: Telegram'siz tekshiruv
+ ```
+ 
+@@ -104,4 +132,6 @@ Mentor darsi `tgpg-start` dan boshlanadi: `git checkout tgpg-start`. Oxirida o'z
+ | `Telegram ulanmadi: 401: Unauthorized` | token noto'g'ri; server ishlayveradi, bot jim | @BotFather dan tokenni qayta oling |
+ | `409: Conflict: terminated by other getUpdates request` | shu token bilan ikkinchi nusxa ishlayapti | eski jarayonni to'xtating |
+ | `violates check constraint "stock_nonneg"` | qoldiqdan ko'p sotilmoqchi | kod avval qoldiqni tekshiradi; bu bazadagi oxirgi qo'riqchi |
++| panelda «Kalit noto'g'ri» | brauzerdagi kalit `.env` dagi `ADMIN_PANEL_TOKEN` bilan bir xil emas | `.env` dan nusxa oling; `.env` o'zgarsa serverni qayta ishga tushiring |
++| panelda «ADMIN_PANEL_TOKEN sozlanmagan» | `.env` da kalit bo'sh | kalit yozing, serverni qayta ishga tushiring |
+ | `current transaction is aborted` | tranzaksiya ichida xato chiqdi, keyin yana so'rov yuborildi | xatodan keyin faqat ROLLBACK; tekshiruvni UPDATE'dan oldin qiling |
+\ No newline at end of file
+diff --git a/package-lock.json b/package-lock.json
+index f0007aa..e042830 100644
+--- a/package-lock.json
++++ b/package-lock.json
+@@ -12,13 +12,16 @@
+         "@nestjs/common": "^11.1.0",
+         "@nestjs/core": "^11.1.0",
+         "@nestjs/platform-express": "^11.1.0",
++        "@nestjs/platform-ws": "^11.2.8",
+         "@nestjs/typeorm": "^11.0.3",
++        "@nestjs/websockets": "^11.2.8",
+         "dotenv": "^17.2.3",
+         "pg": "^8.23.1",
+         "reflect-metadata": "^0.2.2",
+         "rxjs": "^7.8.1",
+         "telegraf": "^4.16.3",
+-        "typeorm": "^1.1.2"
++        "typeorm": "^1.1.2",
++        "ws": "^8.22.1"
+       },
+       "devDependencies": {
+         "@nestjs/cli": "^11.0.0",
+@@ -27,6 +30,7 @@
+         "@types/jest": "^30.0.0",
+         "@types/node": "^22.0.0",
+         "@types/supertest": "^7.2.1",
++        "@types/ws": "^8.18.2",
+         "jest": "^30.0.0",
+         "prettier": "^3.5.0",
+         "supertest": "^7.3.1",
+@@ -1890,6 +1894,46 @@
+         "@nestjs/core": "^11.0.0"
+       }
+     },
++    "node_modules/@nestjs/platform-ws": {
++      "version": "11.2.8",
++      "resolved": "https://registry.npmjs.org/@nestjs/platform-ws/-/platform-ws-11.2.8.tgz",
++      "integrity": "sha512-ruL54HKJHXhyWsjBWZ/F+JfzTSaz4dg8VADewFQPBycruLWVZy6OjNGFDN+fnAR4dX2/bq4V+CDFdemy9ISGkw==",
++      "license": "MIT",
++      "dependencies": {
++        "tslib": "2.8.1",
++        "ws": "8.21.2"
++      },
++      "funding": {
++        "type": "opencollective",
++        "url": "https://opencollective.com/nest"
++      },
++      "peerDependencies": {
++        "@nestjs/common": "^11.0.0",
++        "@nestjs/websockets": "^11.0.0",
++        "rxjs": "^7.1.0"
++      }
++    },
++    "node_modules/@nestjs/platform-ws/node_modules/ws": {
++      "version": "8.21.2",
++      "resolved": "https://registry.npmjs.org/ws/-/ws-8.21.2.tgz",
++      "integrity": "sha512-54dMVAo4WIe6SKy3vBgN+9bJZqqQ8IMRevAkOLQALhi49qkkQDQfWdAZ8KQlXiEabw88ARXXdUrlvtbKQX+aKw==",
++      "license": "MIT",
++      "engines": {
++        "node": ">=10.0.0"
++      },
++      "peerDependencies": {
++        "bufferutil": "^4.0.1",
++        "utf-8-validate": ">=5.0.2"
++      },
++      "peerDependenciesMeta": {
++        "bufferutil": {
++          "optional": true
++        },
++        "utf-8-validate": {
++          "optional": true
++        }
++      }
++    },
+     "node_modules/@nestjs/schematics": {
+       "version": "11.1.0",
+       "resolved": "https://registry.npmjs.org/@nestjs/schematics/-/schematics-11.1.0.tgz",
+@@ -2011,6 +2055,29 @@
+         "typeorm": "^0.3.0 || ^1.0.0-dev"
+       }
+     },
++    "node_modules/@nestjs/websockets": {
++      "version": "11.2.8",
++      "resolved": "https://registry.npmjs.org/@nestjs/websockets/-/websockets-11.2.8.tgz",
++      "integrity": "sha512-ZlH0GaV16JOtPaBzZ1y0YfOcaYlFYVXHjOy4W7egTRJe8vSN/2vUDb8Sp5sAN3yhANxHBGYId2k+m0WnujiH+A==",
++      "license": "MIT",
++      "dependencies": {
++        "iterare": "1.2.1",
++        "object-hash": "3.0.0",
++        "tslib": "2.8.1"
++      },
++      "peerDependencies": {
++        "@nestjs/common": "^11.0.0",
++        "@nestjs/core": "^11.0.0",
++        "@nestjs/platform-socket.io": "^11.0.0",
++        "reflect-metadata": "^0.1.12 || ^0.2.0",
++        "rxjs": "^7.1.0"
++      },
++      "peerDependenciesMeta": {
++        "@nestjs/platform-socket.io": {
++          "optional": true
++        }
++      }
++    },
+     "node_modules/@noble/hashes": {
+       "version": "1.8.0",
+       "resolved": "https://registry.npmjs.org/@noble/hashes/-/hashes-1.8.0.tgz",
+@@ -2627,6 +2694,16 @@
+         "@types/superagent": "^8.1.0"
+       }
+     },
++    "node_modules/@types/ws": {
++      "version": "8.18.2",
++      "resolved": "https://registry.npmjs.org/@types/ws/-/ws-8.18.2.tgz",
++      "integrity": "sha512-67MQl+fpWKVTT1NYdnmo3U4sc/xPo/zQBncVnI74qmQa0z/b+1g6iYqNmGCPbxO+zz2aklb08a0oHfegiVd0/w==",
++      "dev": true,
++      "license": "MIT",
++      "dependencies": {
++        "@types/node": "*"
++      }
++    },
+     "node_modules/@types/yargs": {
+       "version": "17.0.35",
+       "resolved": "https://registry.npmjs.org/@types/yargs/-/yargs-17.0.35.tgz",
+@@ -6859,6 +6936,15 @@
+         "node": ">=0.10.0"
+       }
+     },
++    "node_modules/object-hash": {
++      "version": "3.0.0",
++      "resolved": "https://registry.npmjs.org/object-hash/-/object-hash-3.0.0.tgz",
++      "integrity": "sha512-RSn9F68PjH9HqtltsSnqYC1XXoWe9Bju5+213R98cNGttag9q9yAOTzdbsqvIa7aNm5WffBZFpWYr2aWrklWAw==",
++      "license": "MIT",
++      "engines": {
++        "node": ">= 6"
++      }
++    },
+     "node_modules/object-inspect": {
+       "version": "1.13.4",
+       "resolved": "https://registry.npmjs.org/object-inspect/-/object-inspect-1.13.4.tgz",
+@@ -9411,6 +9497,27 @@
+         "node": "^14.17.0 || ^16.13.0 || >=18.0.0"
+       }
+     },
++    "node_modules/ws": {
++      "version": "8.22.1",
++      "resolved": "https://registry.npmjs.org/ws/-/ws-8.22.1.tgz",
++      "integrity": "sha512-oyL6OPYme/CmiFvNuGzeoxCJ4nOrZE2O1FwM9MWM1AsGri6nLXB2pg+lNA8aLeXMSav0J6eIVS1j6vUPzUtK9g==",
++      "license": "MIT",
++      "engines": {
++        "node": ">=10.0.0"
++      },
++      "peerDependencies": {
++        "bufferutil": "^4.0.1",
++        "utf-8-validate": ">=5.0.2"
++      },
++      "peerDependenciesMeta": {
++        "bufferutil": {
++          "optional": true
++        },
++        "utf-8-validate": {
++          "optional": true
++        }
++      }
++    },
+     "node_modules/xtend": {
+       "version": "4.0.2",
+       "resolved": "https://registry.npmjs.org/xtend/-/xtend-4.0.2.tgz",
+diff --git a/package.json b/package.json
+index c802881..5390d40 100644
+--- a/package.json
++++ b/package.json
+@@ -22,13 +22,16 @@
+     "@nestjs/common": "^11.1.0",
+     "@nestjs/core": "^11.1.0",
+     "@nestjs/platform-express": "^11.1.0",
++    "@nestjs/platform-ws": "^11.2.8",
+     "@nestjs/typeorm": "^11.0.3",
++    "@nestjs/websockets": "^11.2.8",
+     "dotenv": "^17.2.3",
+     "pg": "^8.23.1",
+     "reflect-metadata": "^0.2.2",
+     "rxjs": "^7.8.1",
+     "telegraf": "^4.16.3",
+-    "typeorm": "^1.1.2"
++    "typeorm": "^1.1.2",
++    "ws": "^8.22.1"
+   },
+   "devDependencies": {
+     "@nestjs/cli": "^11.0.0",
+@@ -37,6 +40,7 @@
+     "@types/jest": "^30.0.0",
+     "@types/node": "^22.0.0",
+     "@types/supertest": "^7.2.1",
++    "@types/ws": "^8.18.2",
+     "jest": "^30.0.0",
+     "prettier": "^3.5.0",
+     "supertest": "^7.3.1",
+diff --git a/src/api/admin-panel/admin-panel.controller.ts b/src/api/admin-panel/admin-panel.controller.ts
+new file mode 100644
+index 0000000..653f9c4
+--- /dev/null
++++ b/src/api/admin-panel/admin-panel.controller.ts
+@@ -0,0 +1,14 @@
++import { Controller, Get, Header } from '@nestjs/common';
++import { PANEL_HTML } from './panel.html';
++
++@Controller('admin')
++export class AdminPanelController {
++  // Sahifaning o'zi ochiq (unda ma'lumot yo'q); buyurtmalar faqat kalit bilan WebSocket orqali keladi
++  @Get()
++  @Header('Content-Type', 'text/html; charset=utf-8')
++  @Header('Cache-Control', 'no-store')
++  @Header('X-Frame-Options', 'DENY')
++  page() {
++    return PANEL_HTML;
++  }
++}
+diff --git a/src/api/admin-panel/admin-panel.gateway.spec.ts b/src/api/admin-panel/admin-panel.gateway.spec.ts
+new file mode 100644
+index 0000000..0f200f1
+--- /dev/null
++++ b/src/api/admin-panel/admin-panel.gateway.spec.ts
+@@ -0,0 +1,165 @@
++import { INestApplication } from '@nestjs/common';
++import { WsAdapter } from '@nestjs/platform-ws';
++import { Test } from '@nestjs/testing';
++import request from 'supertest';
++import { WebSocket } from 'ws';
++import { Order } from '../../core/entity';
++import { OrderEvents } from '../order/order-events';
++import { OrderService } from '../order/order.service';
++import { AdminPanelController } from './admin-panel.controller';
++import {
++  ADMIN_PANEL_TOKEN,
++  AdminPanelGateway,
++  CLOSE_BAD_TOKEN,
++  CLOSE_PANEL_OFF,
++} from './admin-panel.gateway';
++
++// Haqiqiy HTTP + WebSocket server (tasodifiy port), baza o'rniga soxta OrderService.recent
++const order = (id: number, status: Order['status'] = 'NEW') =>
++  ({
++    id,
++    phone: '+998901234567',
++    total: 100000,
++    status,
++    created_at: new Date('2026-11-04T10:00:00Z'),
++    user: { name: 'Aziza', telegram_id: '5123456789' },
++    items: [{ qty: 2, price: 50000, product: { name: 'Kolonka' } }],
++  }) as unknown as Order;
++
++const recent = jest.fn();
++
++async function start(token: string) {
++  const mod = await Test.createTestingModule({
++    controllers: [AdminPanelController],
++    providers: [
++      AdminPanelGateway,
++      OrderEvents,
++      { provide: OrderService, useValue: { recent } },
++      { provide: ADMIN_PANEL_TOKEN, useValue: token },
++    ],
++  })
++    .setLogger({ log() {}, error() {}, warn() {} })
++    .compile();
++  const app = mod.createNestApplication();
++  app.useWebSocketAdapter(new WsAdapter(app));
++  await app.listen(0);
++  const port = (app.getHttpServer().address() as { port: number }).port;
++  return { app, port, events: app.get(OrderEvents) };
++}
++
++// Ulanadi va kelgan xabarlarni yig'adi; yopilsa — kodini yozib qo'yadi
++function connect(port: number, token: string) {
++  const ws = new WebSocket(`ws://127.0.0.1:${port}/admin/ws?token=${token}`);
++  const msgs: { event: string; data: any }[] = [];
++  const closed = new Promise<number>((r) => ws.on('close', (code) => r(code)));
++  ws.on('message', (b) => msgs.push(JSON.parse(String(b))));
++  const waitFor = async (n: number) => {
++    for (let i = 0; i < 100 && msgs.length < n; i++)
++      await new Promise((r) => setTimeout(r, 10));
++    return msgs;
++  };
++  return { ws, msgs, closed, waitFor };
++}
++
++describe('Admin panel WebSocket', () => {
++  let app: INestApplication;
++  let port: number;
++  let events: OrderEvents;
++
++  beforeAll(async () => {
++    ({ app, port, events } = await start('sir-kalit'));
++  });
++  afterAll(() => app.close());
++  beforeEach(() => {
++    recent.mockReset();
++    recent.mockResolvedValue([order(2), order(1, 'CONFIRMED')]);
++  });
++
++  it('GET /admin — HTML sahifa', async () => {
++    const res = await request(app.getHttpServer()).get('/admin');
++    expect(res.status).toBe(200);
++    expect(res.headers['content-type']).toMatch(/text\/html/);
++    expect(res.text).toContain('/admin/ws');
++    expect(res.text).not.toContain('sir-kalit'); // kalit sahifaga tushmaydi
++  });
++
++  it("kalit noto'g'ri — 4401 bilan yopiladi, buyurtma ketmaydi", async () => {
++    const c = connect(port, 'boshqa');
++    expect(await c.closed).toBe(CLOSE_BAD_TOKEN);
++    expect(c.msgs).toEqual([]);
++    expect(recent).not.toHaveBeenCalled();
++  });
++
++  it('ulanganda — snapshot (oxirgi buyurtmalar)', async () => {
++    const c = connect(port, 'sir-kalit');
++    const [m] = await c.waitFor(1);
++    expect(m.event).toBe('snapshot');
++    expect(m.data.orders.map((o: any) => o.id)).toEqual([2, 1]);
++    expect(m.data.statuses.DELIVERED).toBe('🚚 Yetkazilgan');
++    expect(m.data.orders[0]).toEqual({
++      id: 2,
++      customer: 'Aziza',
++      phone: '+998901234567',
++      total: 100000,
++      status: 'NEW',
++      statusText: '🆕 Yangi',
++      createdAt: '2026-11-04T10:00:00.000Z',
++      items: [{ name: 'Kolonka', qty: 2, price: 50000 }],
++    });
++    expect(JSON.stringify(m)).not.toContain('5123456789'); // telegram_id panelga chiqmaydi
++    c.ws.close();
++  });
++
++  it("yangi buyurtma va status o'zgarishi — barcha ochiq panellarga darhol", async () => {
++    const a = connect(port, 'sir-kalit');
++    const b = connect(port, 'sir-kalit');
++    await a.waitFor(1);
++    await b.waitFor(1);
++    events.emit('created', order(3));
++    events.emit('updated', order(3, 'DELIVERED'));
++    for (const c of [a, b]) {
++      const msgs = await c.waitFor(3);
++      expect(msgs.slice(1)).toMatchObject([
++        {
++          event: 'order',
++          data: { kind: 'created', order: { id: 3, status: 'NEW' } },
++        },
++        {
++          event: 'order',
++          data: { kind: 'updated', order: { id: 3, status: 'DELIVERED' } },
++        },
++      ]);
++      c.ws.close();
++    }
++  });
++
++  it("snapshot o'qilayotganda kelgan o'zgarish yo'qolmaydi (snapshot'dan keyin keladi)", async () => {
++    let release!: () => void;
++    recent.mockImplementation(
++      () =>
++        new Promise((r) => {
++          release = () => r([order(5)]); // baza "sekin": eski holat — NEW
++        }),
++    );
++    const c = connect(port, 'sir-kalit');
++    await new Promise((r) => c.ws.on('open', r));
++    for (let i = 0; i < 50 && !release; i++)
++      await new Promise((r) => setTimeout(r, 10));
++    events.emit('updated', order(5, 'CONFIRMED')); // snapshot hali yo'lda
++    release();
++    const msgs = await c.waitFor(2);
++    expect(msgs.map((m) => m.event)).toEqual(['snapshot', 'order']);
++    expect(msgs[1].data.order.status).toBe('CONFIRMED');
++    c.ws.close();
++  });
++});
++
++describe("Admin panel: ADMIN_PANEL_TOKEN bo'sh", () => {
++  it('panel yopiq — har qanday ulanish 4403', async () => {
++    const { app, port } = await start('');
++    const c = connect(port, '');
++    expect(await c.closed).toBe(CLOSE_PANEL_OFF);
++    expect(c.msgs).toEqual([]);
++    await app.close();
++  });
++});
+diff --git a/src/api/admin-panel/admin-panel.gateway.ts b/src/api/admin-panel/admin-panel.gateway.ts
+new file mode 100644
+index 0000000..b2dc31c
+--- /dev/null
++++ b/src/api/admin-panel/admin-panel.gateway.ts
+@@ -0,0 +1,142 @@
++import { Inject, Logger, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
++import {
++  OnGatewayConnection,
++  OnGatewayDisconnect,
++  WebSocketGateway,
++} from '@nestjs/websockets';
++import { createHash, timingSafeEqual } from 'crypto';
++import { IncomingMessage } from 'http';
++import { Subscription } from 'rxjs';
++import { WebSocket } from 'ws';
++import { OrderEvents } from '../order/order-events';
++import { OrderService } from '../order/order.service';
++import { STATUS_UZ } from '../telegram/texts';
++import { toOrderView } from './order-view';
++
++export const ADMIN_PANEL_TOKEN = Symbol('ADMIN_PANEL_TOKEN');
++export const SNAPSHOT_LIMIT = 30; // panel ochilganda oxirgi nechta buyurtma ko'rsatiladi
++const PING_MS = 30_000; // uzilib qolgan brauzerlarni topish uchun
++
++// Yopilish kodlari (4000–4999 — ilovaning o'zi uchun ajratilgan oraliq)
++export const CLOSE_BAD_TOKEN = 4401;
++export const CLOSE_PANEL_OFF = 4403;
++
++// pending — snapshot hali yuborilmagan: shu orada kelgan o'zgarishlar navbatda turadi,
++// snapshot'dan KEYIN yuboriladi (aks holda eskirgan snapshot yangi statusni bosib ketardi)
++type PanelSocket = WebSocket & { alive?: boolean; pending?: string[] };
++
++const sha256 = (s: string) => createHash('sha256').update(s).digest();
++// Ikkala satr ham sha256 dan o'tadi — uzunligi teng, solishtirish vaqti kalitni oshkor qilmaydi
++const sameToken = (a: string, b: string) =>
++  timingSafeEqual(sha256(a), sha256(b));
++
++// Jonli buyurtmalar paneli: ws://<host>/admin/ws?token=...
++// Ulanganda — oxirgi buyurtmalar (snapshot), keyin har o'zgarish (order) darhol.
++// Xabarlar: { event: 'snapshot', data: { orders, statuses } } · { event: 'order', data: { kind, order } }
++@WebSocketGateway({ path: '/admin/ws' })
++export class AdminPanelGateway
++  implements
++    OnGatewayConnection,
++    OnGatewayDisconnect,
++    OnModuleInit,
++    OnModuleDestroy
++{
++  private readonly log = new Logger('AdminPanel');
++  // Faqat kalitdan o'tganlar — ulanib, hali tekshirilmaganlarga hech narsa ketmaydi
++  private readonly clients = new Set<PanelSocket>();
++  private sub?: Subscription;
++  private pinger?: NodeJS.Timeout;
++
++  constructor(
++    private readonly orders: OrderService,
++    private readonly events: OrderEvents,
++    @Inject(ADMIN_PANEL_TOKEN) private readonly token: string,
++  ) {}
++
++  onModuleInit() {
++    if (!this.token) {
++      this.log.warn(
++        "ADMIN_PANEL_TOKEN bo'sh — /admin paneli yopiq (.env ga kalit yozing, README)",
++      );
++    }
++    this.sub = this.events.stream.subscribe(({ kind, order }) => {
++      // Panel xatosi buyurtma oqimini (bot javobini) hech qachon buzmasin
++      try {
++        this.broadcast('order', { kind, order: toOrderView(order) });
++      } catch (e) {
++        this.log.error(`Panelga yuborilmadi: ${(e as Error).message}`);
++      }
++    });
++    this.pinger = setInterval(() => this.ping(), PING_MS);
++    this.pinger.unref();
++  }
++
++  onModuleDestroy() {
++    this.sub?.unsubscribe();
++    clearInterval(this.pinger);
++    for (const c of this.clients) c.close(1001, 'server stopped');
++    this.clients.clear();
++  }
++
++  async handleConnection(client: PanelSocket, req: IncomingMessage) {
++    if (!this.token) {
++      return client.close(CLOSE_PANEL_OFF, 'ADMIN_PANEL_TOKEN is not set');
++    }
++    const given =
++      new URL(req.url ?? '', 'http://x').searchParams.get('token') ?? '';
++    if (!sameToken(given, this.token)) {
++      return client.close(CLOSE_BAD_TOKEN, 'bad token');
++    }
++    client.alive = true;
++    client.on('pong', () => (client.alive = true));
++    client.pending = [];
++    this.clients.add(client);
++    try {
++      const list = await this.orders.recent(SNAPSHOT_LIMIT);
++      this.send(client, 'snapshot', {
++        orders: list.map(toOrderView),
++        statuses: STATUS_UZ, // hisoblagich yorliqlari (bot bilan bir xil matn)
++      });
++      const queued = client.pending;
++      client.pending = undefined;
++      for (const msg of queued) this.sendRaw(client, msg);
++    } catch (e) {
++      this.log.error(`Snapshot o'qilmadi: ${(e as Error).message}`);
++      this.clients.delete(client);
++      client.close(1011, 'database error');
++    }
++  }
++
++  handleDisconnect(client: PanelSocket) {
++    this.clients.delete(client);
++  }
++
++  private broadcast(event: string, data: unknown) {
++    const msg = JSON.stringify({ event, data });
++    for (const c of this.clients) {
++      if (c.pending) c.pending.push(msg);
++      else this.sendRaw(c, msg);
++    }
++  }
++
++  private send(client: WebSocket, event: string, data: unknown) {
++    this.sendRaw(client, JSON.stringify({ event, data }));
++  }
++
++  private sendRaw(client: WebSocket, msg: string) {
++    if (client.readyState === WebSocket.OPEN) client.send(msg);
++  }
++
++  // Wi-Fi uzilsa brauzer «yopildi» demaydi — ping'ga javob bermaganini uzamiz
++  private ping() {
++    for (const c of this.clients) {
++      if (!c.alive) {
++        this.clients.delete(c);
++        c.terminate();
++        continue;
++      }
++      c.alive = false;
++      c.ping();
++    }
++  }
++}
+diff --git a/src/api/admin-panel/admin-panel.module.ts b/src/api/admin-panel/admin-panel.module.ts
+new file mode 100644
+index 0000000..585b65e
+--- /dev/null
++++ b/src/api/admin-panel/admin-panel.module.ts
+@@ -0,0 +1,16 @@
++import { Module } from '@nestjs/common';
++import { config } from '../../config';
++import { OrderModule } from '../order/order.module';
++import { AdminPanelController } from './admin-panel.controller';
++import { ADMIN_PANEL_TOKEN, AdminPanelGateway } from './admin-panel.gateway';
++
++// Jonli buyurtmalar paneli: GET /admin (sahifa) + ws /admin/ws (o'zgarishlar)
++@Module({
++  imports: [OrderModule],
++  controllers: [AdminPanelController],
++  providers: [
++    AdminPanelGateway,
++    { provide: ADMIN_PANEL_TOKEN, useValue: config.ADMIN_PANEL_TOKEN },
++  ],
++})
++export class AdminPanelModule {}
+diff --git a/src/api/admin-panel/order-view.ts b/src/api/admin-panel/order-view.ts
+new file mode 100644
+index 0000000..34ff945
+--- /dev/null
++++ b/src/api/admin-panel/order-view.ts
+@@ -0,0 +1,33 @@
++import { Order } from '../../core/entity';
++import { STATUS_UZ } from '../telegram/texts';
++
++// Panelga ketadigan buyurtma ko'rinishi: faqat kerakli maydonlar.
++// Entity'ni o'zini yubormaymiz — unda telegram_id, state kabi ichki maydonlar
++// va order ↔ items aylana bog'lanishi bor (JSON.stringify yiqiladi).
++export interface OrderView {
++  id: number;
++  customer: string;
++  phone: string;
++  total: number;
++  status: Order['status'];
++  statusText: string;
++  createdAt: string | null;
++  items: { name: string; qty: number; price: number }[];
++}
++
++export function toOrderView(o: Order): OrderView {
++  return {
++    id: o.id,
++    customer: o.user?.name ?? '—',
++    phone: o.phone,
++    total: o.total,
++    status: o.status,
++    statusText: STATUS_UZ[o.status] ?? o.status,
++    createdAt: o.created_at ? new Date(o.created_at).toISOString() : null,
++    items: (o.items ?? []).map((i) => ({
++      name: i.product?.name ?? '—',
++      qty: i.qty,
++      price: i.price,
++    })),
++  };
++}
+diff --git a/src/api/admin-panel/panel.html.ts b/src/api/admin-panel/panel.html.ts
+new file mode 100644
+index 0000000..501ea5a
+--- /dev/null
++++ b/src/api/admin-panel/panel.html.ts
+@@ -0,0 +1,240 @@
++// GET /admin — jonli buyurtmalar paneli. Bitta sahifa, tashqi kutubxonasiz (CDN yo'q).
++// Sahifada sir yo'q: kalitni admin o'zi kiritadi (yoki /admin#token=... havolasi),
++// u faqat shu brauzer oynasida (sessionStorage) turadi va WebSocket ulanishida tekshiriladi.
++// Mijoz ismi Telegram'dan keladi — sahifaga faqat textContent bilan yoziladi (innerHTML emas).
++export const PANEL_HTML = /* html */ `<!doctype html>
++<html lang="uz">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width, initial-scale=1">
++<title>Buyurtmalar — OrderBotNest</title>
++<style>
++  :root { --bg:#f5f6f8; --card:#fff; --text:#1d2330; --muted:#6b7385; --line:#e3e6ec;
++          --new:#2563eb; --ok:#16a34a; --done:#7c3aed; --cancel:#dc2626; --flash:#fff7d6; }
++  @media (prefers-color-scheme: dark) {
++    :root { --bg:#12151b; --card:#1b1f27; --text:#e7eaf0; --muted:#98a0b3; --line:#2b313d; --flash:#3a3317; }
++  }
++  * { box-sizing: border-box; }
++  body { margin:0; background:var(--bg); color:var(--text);
++         font:15px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
++  header { display:flex; align-items:center; gap:12px; padding:14px 20px;
++           background:var(--card); border-bottom:1px solid var(--line); position:sticky; top:0; }
++  h1 { font-size:18px; margin:0; flex:1; }
++  .conn { font-size:13px; color:var(--muted); display:flex; align-items:center; gap:6px; }
++  .dot { width:9px; height:9px; border-radius:50%; background:#9ca3af; }
++  .conn.on .dot { background:var(--ok); }
++  .conn.off .dot { background:var(--cancel); }
++  main { max-width:1100px; margin:0 auto; padding:16px; }
++  .counts { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px; font-size:13px; color:var(--muted); }
++  .counts b { color:var(--text); }
++  table { width:100%; border-collapse:collapse; background:var(--card);
++          border:1px solid var(--line); border-radius:10px; overflow:hidden; }
++  th, td { text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top; }
++  th { font-size:12px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); }
++  tr:last-child td { border-bottom:0; }
++  td.num { white-space:nowrap; font-variant-numeric:tabular-nums; }
++  .items { margin:0; padding:0; list-style:none; color:var(--muted); font-size:13px; }
++  .badge { display:inline-block; padding:2px 8px; border-radius:999px; font-size:12px;
++           font-weight:600; color:#fff; white-space:nowrap; }
++  .s-NEW { background:var(--new); } .s-CONFIRMED { background:var(--ok); }
++  .s-DELIVERED { background:var(--done); } .s-CANCELLED { background:var(--cancel); }
++  tr.flash td { animation: flash 2.5s ease-out; }
++  @keyframes flash { from { background:var(--flash); } to { background:transparent; } }
++  @media (prefers-reduced-motion: reduce) { tr.flash td { animation:none; background:var(--flash); } }
++  .empty { padding:32px; text-align:center; color:var(--muted); }
++  .login { max-width:380px; margin:60px auto; background:var(--card); padding:24px;
++           border:1px solid var(--line); border-radius:10px; }
++  .login input { width:100%; padding:10px; font:inherit; margin:8px 0 12px;
++                 border:1px solid var(--line); border-radius:8px; background:var(--bg); color:var(--text); }
++  .login button { padding:10px 16px; font:inherit; border:0; border-radius:8px; background:var(--new); color:#fff; cursor:pointer; }
++  .err { color:var(--cancel); font-size:13px; min-height:1.4em; }
++  .hidden { display:none; }
++  @media (max-width:700px) {
++    thead { display:none; }
++    tr { display:block; border-bottom:1px solid var(--line); padding:8px 0; }
++    td { display:block; border:0; padding:3px 12px; }
++  }
++</style>
++</head>
++<body>
++<header>
++  <h1>Buyurtmalar</h1>
++  <span id="conn" class="conn"><span class="dot"></span><span id="connText">ulanmoqda…</span></span>
++</header>
++
++<form id="login" class="login hidden">
++  <label for="token">Panel kaliti (.env dagi ADMIN_PANEL_TOKEN):</label>
++  <input id="token" type="password" autocomplete="off" required>
++  <div id="loginErr" class="err"></div>
++  <button type="submit">Kirish</button>
++</form>
++
++<main id="panel" class="hidden">
++  <div id="counts" class="counts"></div>
++  <table>
++    <thead><tr><th>#</th><th>Vaqt</th><th>Mijoz</th><th>Telefon</th><th>Mahsulotlar</th><th>Jami</th><th>Status</th></tr></thead>
++    <tbody id="rows"></tbody>
++  </table>
++  <div id="empty" class="empty hidden">Hozircha buyurtma yo'q. Bot yangi buyurtma olishi bilan shu yerda chiqadi.</div>
++</main>
++
++<script>
++(function () {
++  var KEY = 'orderbot.panelToken';
++  var MAX_ROWS = 100;
++  var STATUS_ORDER = ['NEW', 'CONFIRMED', 'DELIVERED', 'CANCELLED'];
++  var orders = new Map();
++  var labels = {};
++  var ws = null, retry = 0, retryTimer = null;
++  var $ = function (id) { return document.getElementById(id); };
++
++  // /admin#token=... — kalit havoladan olinadi va manzil satridan darhol o'chiriladi
++  function tokenFromHash() {
++    var m = location.hash.match(/token=([^&]+)/);
++    if (!m) return false;
++    try { sessionStorage.setItem(KEY, decodeURIComponent(m[1])); } catch (e) {}
++    history.replaceState(null, '', location.pathname);
++    return true;
++  }
++  tokenFromHash();
++  // Ochiq sahifaga yangi havola qo'yilsa brauzer qayta yuklamaydi — o'zimiz qayta ulanamiz
++  window.addEventListener('hashchange', function () {
++    if (!tokenFromHash()) return;
++    if (ws) { ws.onclose = null; ws.close(); ws = null; }
++    connect();
++  });
++  function getToken() { try { return sessionStorage.getItem(KEY) || ''; } catch (e) { return ''; } }
++  function setToken(t) { try { t ? sessionStorage.setItem(KEY, t) : sessionStorage.removeItem(KEY); } catch (e) {} }
++
++  function setConn(state, text) {
++    $('conn').className = 'conn ' + state;
++    $('connText').textContent = text;
++  }
++
++  function showLogin(err) {
++    $('panel').classList.add('hidden');
++    $('login').classList.remove('hidden');
++    $('loginErr').textContent = err || '';
++    setConn('off', 'ulanmagan');
++    $('token').focus();
++  }
++
++  $('login').addEventListener('submit', function (e) {
++    e.preventDefault();
++    setToken($('token').value.trim());
++    $('token').value = '';
++    connect();
++  });
++
++  function som(n) { return Number(n).toLocaleString('ru-RU') + " so'm"; }
++  function time(iso) {
++    if (!iso) return '';
++    var d = new Date(iso);
++    return d.toLocaleDateString('ru-RU') + ' ' + d.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
++  }
++  function td(text, cls) {
++    var c = document.createElement('td');
++    if (cls) c.className = cls;
++    if (text != null) c.textContent = text;
++    return c;
++  }
++
++  function row(o, flash) {
++    var tr = document.createElement('tr');
++    tr.dataset.id = o.id;
++    if (flash) tr.className = 'flash';
++    tr.appendChild(td('#' + o.id, 'num'));
++    tr.appendChild(td(time(o.createdAt), 'num'));
++    tr.appendChild(td(o.customer));
++    tr.appendChild(td(o.phone, 'num'));
++    var cell = td(null), ul = document.createElement('ul');
++    ul.className = 'items';
++    o.items.forEach(function (i) {
++      var li = document.createElement('li');
++      li.textContent = i.name + ' × ' + i.qty;
++      ul.appendChild(li);
++    });
++    cell.appendChild(ul);
++    tr.appendChild(cell);
++    tr.appendChild(td(som(o.total), 'num'));
++    var st = td(null), b = document.createElement('span');
++    b.className = 'badge s-' + o.status;
++    b.textContent = o.statusText;
++    st.appendChild(b);
++    tr.appendChild(st);
++    return tr;
++  }
++
++  function render(flashId) {
++    var list = Array.from(orders.values()).sort(function (a, b) { return b.id - a.id; });
++    var tbody = $('rows');
++    tbody.textContent = '';
++    list.forEach(function (o) { tbody.appendChild(row(o, o.id === flashId)); });
++    $('empty').classList.toggle('hidden', list.length > 0);
++
++    var c = {};
++    list.forEach(function (o) { c[o.status] = (c[o.status] || 0) + 1; });
++    var box = $('counts');
++    box.textContent = '';
++    STATUS_ORDER.forEach(function (s) {
++      var span = document.createElement('span');
++      span.textContent = (labels[s] || s) + ': ';
++      var bold = document.createElement('b');
++      bold.textContent = String(c[s] || 0);
++      span.appendChild(bold);
++      box.appendChild(span);
++    });
++    var fresh = c.NEW || 0;
++    document.title = (fresh ? '(' + fresh + ') ' : '') + 'Buyurtmalar — OrderBotNest';
++  }
++
++  function onMessage(ev) {
++    var msg;
++    try { msg = JSON.parse(ev.data); } catch (e) { return; }
++    if (msg.event === 'snapshot') {
++      labels = msg.data.statuses || {};
++      orders = new Map();
++      msg.data.orders.forEach(function (o) { orders.set(o.id, o); });
++      render();
++    } else if (msg.event === 'order') {
++      var o = msg.data.order;
++      orders.set(o.id, o);
++      if (orders.size > MAX_ROWS) {
++        var oldest = Math.min.apply(null, Array.from(orders.keys()));
++        orders.delete(oldest);
++      }
++      render(o.id);
++    }
++  }
++
++  function connect() {
++    clearTimeout(retryTimer);
++    var token = getToken();
++    if (!token) return showLogin();
++    $('login').classList.add('hidden');
++    $('panel').classList.remove('hidden');
++    setConn('', 'ulanmoqda…');
++    var proto = location.protocol === 'https:' ? 'wss://' : 'ws://';
++    ws = new WebSocket(proto + location.host + '/admin/ws?token=' + encodeURIComponent(token));
++    ws.onopen = function () { retry = 0; setConn('on', 'jonli'); };
++    ws.onmessage = onMessage;
++    ws.onclose = function (ev) {
++      ws = null;
++      if (ev.code === 4401) { setToken(''); return showLogin("Kalit noto'g'ri."); }
++      if (ev.code === 4403) {
++        setConn('off', 'panel yopiq');
++        return showLogin("Serverda ADMIN_PANEL_TOKEN sozlanmagan (.env).");
++      }
++      // Server qayta ishga tushdi yoki internet uzildi — o'zi qayta ulanadi, snapshot yangidan keladi
++      var wait = Math.min(15000, 1000 * Math.pow(2, retry++));
++      setConn('off', 'uzildi — ' + Math.round(wait / 1000) + ' s dan keyin qayta ulanadi');
++      retryTimer = setTimeout(connect, wait);
++    };
++  }
++
++  connect();
++})();
++</script>
++</body>
++</html>
++`;
+diff --git a/src/api/app.module.ts b/src/api/app.module.ts
+index 6c7bc37..1403323 100644
+--- a/src/api/app.module.ts
++++ b/src/api/app.module.ts
+@@ -1,10 +1,11 @@
+ import { Module } from '@nestjs/common';
+ import { DatabaseModule } from '../infrastructure/database.module';
++import { AdminPanelModule } from './admin-panel/admin-panel.module';
+ import { AppController } from './app.controller';
+ import { TelegramModule } from './telegram/telegram.module';
+ 
+ @Module({
+-  imports: [DatabaseModule, TelegramModule],
++  imports: [DatabaseModule, TelegramModule, AdminPanelModule],
+   controllers: [AppController],
+ })
+ export class AppModule {}
+diff --git a/src/api/order/order-events.ts b/src/api/order/order-events.ts
+new file mode 100644
+index 0000000..ab19097
+--- /dev/null
++++ b/src/api/order/order-events.ts
+@@ -0,0 +1,24 @@
++import { Injectable } from '@nestjs/common';
++import { Observable, Subject } from 'rxjs';
++import { Order } from '../../core/entity';
++
++// created — bot yangi buyurtma oldi; updated — status o'zgardi (tasdiq, yetkazildi, bekor)
++export type OrderEventKind = 'created' | 'updated';
++
++export interface OrderEvent {
++  kind: OrderEventKind;
++  order: Order;
++}
++
++// Buyurtma o'zgarishlari shu yerdan tarqaladi. OrderService faqat e'lon qiladi,
++// kim tinglayotganini bilmaydi (hozir — admin panel WebSocket'i).
++@Injectable()
++export class OrderEvents {
++  private readonly subject = new Subject<OrderEvent>();
++
++  readonly stream: Observable<OrderEvent> = this.subject.asObservable();
++
++  emit(kind: OrderEventKind, order: Order) {
++    this.subject.next({ kind, order });
++  }
++}
+diff --git a/src/api/order/order.module.ts b/src/api/order/order.module.ts
+index 213848a..832abaa 100644
+--- a/src/api/order/order.module.ts
++++ b/src/api/order/order.module.ts
+@@ -1,11 +1,12 @@
+ import { Module } from '@nestjs/common';
+ import { TypeOrmModule } from '@nestjs/typeorm';
+ import { Order } from '../../core/entity';
++import { OrderEvents } from './order-events';
+ import { OrderService } from './order.service';
+ 
+ @Module({
+   imports: [TypeOrmModule.forFeature([Order])],
+-  providers: [OrderService],
+-  exports: [OrderService],
++  providers: [OrderService, OrderEvents],
++  exports: [OrderService, OrderEvents],
+ })
+ export class OrderModule {}
+diff --git a/src/api/order/order.service.spec.ts b/src/api/order/order.service.spec.ts
+index 5266aee..9a5f76d 100644
+--- a/src/api/order/order.service.spec.ts
++++ b/src/api/order/order.service.spec.ts
+@@ -2,11 +2,13 @@ import { Test } from '@nestjs/testing';
+ import { getRepositoryToken } from '@nestjs/typeorm';
+ import { DataSource } from 'typeorm';
+ import { Order, User } from '../../core/entity';
++import { OrderEvents } from './order-events';
+ import { OrderService } from './order.service';
+ 
+ // Baza o'rniga soxta (mock) EntityManager: findOne mahsulotni qaytaradi, query va save — yozib qoladi
+ const manager = {
+   findOne: jest.fn(),
++  findOneBy: jest.fn(),
+   query: jest.fn(),
+   create: jest.fn((_cls, data) => data),
+   save: jest.fn(async (o) => ({ id: 1, ...o })),
+@@ -18,6 +20,8 @@ const user = { id: 1, phone: '+998901234567' } as User;
+ const cart = [{ product: { id: 4, name: 'Kolonka' }, qty: 2 }] as any;
+ 
+ let service: OrderService;
++let events: OrderEvents;
++let emitted: { kind: string; id: number }[];
+ beforeEach(async () => {
+   jest.clearAllMocks();
+   const mod = await Test.createTestingModule({
+@@ -25,9 +29,15 @@ beforeEach(async () => {
+       OrderService,
+       { provide: getRepositoryToken(Order), useValue: {} },
+       { provide: DataSource, useValue: dataSource },
++      OrderEvents,
+     ],
+   }).compile();
+   service = mod.get(OrderService);
++  events = mod.get(OrderEvents);
++  emitted = [];
++  events.stream.subscribe((e) =>
++    emitted.push({ kind: e.kind, id: e.order.id }),
++  );
+ });
+ 
+ describe('OrderService.place', () => {
+@@ -77,3 +87,42 @@ describe('OrderService.place', () => {
+     expect(order.total).toBe(100000);
+   });
+ });
++
++describe('OrderService: panelga xabar (OrderEvents)', () => {
++  const stock10 = { id: 4, name: 'Kolonka', stock: 10, price: 50000 };
++
++  it("buyurtma yaratildi — 'created' bir marta", async () => {
++    manager.findOne.mockResolvedValue(stock10);
++    await service.place(user, cart);
++    expect(emitted).toEqual([{ kind: 'created', id: 1 }]);
++  });
++
++  it("tranzaksiya yiqildi (ROLLBACK) — xabar yo'q", async () => {
++    manager.findOne.mockResolvedValue({ ...stock10, stock: 1 });
++    await expect(service.place(user, cart)).rejects.toThrow();
++    expect(emitted).toEqual([]);
++  });
++
++  it("status o'zgardi — 'updated'", async () => {
++    manager.findOneBy.mockResolvedValue({
++      id: 7,
++      status: 'NEW',
++      items: [],
++    });
++    const o = await service.setStatus(7, 'CONFIRMED');
++    expect(o.status).toBe('CONFIRMED');
++    expect(emitted).toEqual([{ kind: 'updated', id: 7 }]);
++  });
++
++  it("allaqachon bekor — xato, xabar yo'q", async () => {
++    manager.findOneBy.mockResolvedValue({
++      id: 7,
++      status: 'CANCELLED',
++      items: [],
++    });
++    await expect(service.setStatus(7, 'CONFIRMED')).rejects.toThrow(
++      'allaqachon bekor',
++    );
++    expect(emitted).toEqual([]);
++  });
++});
+diff --git a/src/api/order/order.service.ts b/src/api/order/order.service.ts
+index 45ee96b..053c405 100644
+--- a/src/api/order/order.service.ts
++++ b/src/api/order/order.service.ts
+@@ -9,12 +9,14 @@ import {
+   Product,
+   User,
+ } from '../../core/entity';
++import { OrderEvents } from './order-events';
+ 
+ @Injectable()
+ export class OrderService {
+   constructor(
+     @InjectRepository(Order) private readonly repo: Repository<Order>,
+     private readonly ds: DataSource,
++    private readonly events: OrderEvents,
+   ) {}
+ 
+   // Buyurtma — bitta tranzaksiya: har mahsulot ombordan ayiriladi (UPDATE),
+@@ -24,7 +26,7 @@ export class OrderService {
+   place(user: User, cart: CartItem[]): Promise<Order> {
+     if (!user.phone) throw new Error("Telefon raqami yo'q");
+     if (cart.length === 0) throw new Error("Savat bo'sh");
+-    return this.ds.transaction(async (m) => {
++    const placed = this.ds.transaction(async (m) => {
+       const items: OrderItem[] = [];
+       for (const c of cart) {
+         // 1) Qatorni qulflab o'qiymiz (SELECT ... FOR UPDATE): ikkinchi mijoz shu qatorni biz tugatguncha kutadi
+@@ -58,6 +60,11 @@ export class OrderService {
+       await m.delete(CartItem, { user: { id: user.id } });
+       return saved;
+     });
++    // Tranzaksiya COMMIT bo'lgandan keyingina e'lon qilamiz: ROLLBACK bo'lsa panel hech narsa ko'rmaydi
++    return placed.then((saved) => {
++      this.events.emit('created', saved);
++      return saved;
++    });
+   }
+ 
+   recent(limit = 5): Promise<Order[]> {
+@@ -65,8 +72,8 @@ export class OrderService {
+   }
+ 
+   // Status o'zgaradi; bekor qilinsa mahsulotlar omborga qaytadi — yana tranzaksiya
+-  setStatus(id: number, status: OrderStatus): Promise<Order> {
+-    return this.ds.transaction(async (m) => {
++  async setStatus(id: number, status: OrderStatus): Promise<Order> {
++    const order = await this.ds.transaction(async (m) => {
+       // Buyurtma qatorini qulflaymiz: «Bekor» ikki marta bir vaqtda bosilsa,
+       // ikkinchisi birinchisi tugashini kutadi va CANCELLED ni ko'radi — ombor bir marta qaytadi
+       await m.query('SELECT id FROM orders WHERE id = $1 FOR UPDATE', [id]);
+@@ -83,5 +90,7 @@ export class OrderService {
+       order.status = status;
+       return m.save(order);
+     });
++    this.events.emit('updated', order); // COMMIT'dan keyin
++    return order;
+   }
+ }
+diff --git a/src/config/index.ts b/src/config/index.ts
+index a080938..275dc11 100644
+--- a/src/config/index.ts
++++ b/src/config/index.ts
+@@ -14,4 +14,6 @@ export const config = {
+     .map((s) => s.trim())
+     .filter(Boolean)
+     .map(Number),
++  // Admin panel (/admin) kaliti. Bo'sh bo'lsa panel yopiq: WebSocket hech kimni ulamaydi.
++  ADMIN_PANEL_TOKEN: String(process.env.ADMIN_PANEL_TOKEN || '').trim(),
+ };
+diff --git a/src/main.ts b/src/main.ts
+index 5f561dd..ff673f4 100644
+--- a/src/main.ts
++++ b/src/main.ts
+@@ -1,9 +1,12 @@
+ import { NestFactory } from '@nestjs/core';
++import { WsAdapter } from '@nestjs/platform-ws';
+ import { AppModule } from './api/app.module';
+ import { config } from './config';
+ 
+ async function main() {
+   const app = await NestFactory.create(AppModule);
++  // Oddiy WebSocket (brauzerdagi new WebSocket) — admin panel /admin/ws shu orqali ishlaydi
++  app.useWebSocketAdapter(new WsAdapter(app));
+   await app.listen(config.PORT);
+   console.log(`Server ${config.PORT}-portda ishlayapti`);
+ }

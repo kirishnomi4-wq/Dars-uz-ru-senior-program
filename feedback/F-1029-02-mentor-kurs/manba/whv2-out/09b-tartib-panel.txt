@@ -1,0 +1,10 @@
+22:22:23.603 brauzer: WebSocket ochildi
+22:22:23.605 brauzer: GET /admin/orders (1)
+22:22:24.217 panel ochildi — belgi «Ulangan» · ro'yxat: Hali buyurtma yo'q
+22:22:24.504 brauzer: kadr keldi 42["order-changed",{"orderId":1,"reason":"new"}]
+22:22:24.504 brauzer: GET /admin/orders (2)
+22:22:27.484 brauzer: kadr keldi 42["order-changed",{"orderId":1,"reason":"payment"}]
+22:22:27.485 brauzer: GET /admin/orders (3)
+22:22:29.776 SURAT 09-panel-1 (1-imzosiz-keyin) — belgi «Ulangan» · ro'yxat: #1
+    1 | Bobur | +998907654321 | Klaviatura × 1 | 120 000 so'm | Yangi | ✅ To'landi | 22:22:24
+22:22:30.543 tugadi — belgi «Ulangan» · ro'yxat: #1 · jami GET: 3

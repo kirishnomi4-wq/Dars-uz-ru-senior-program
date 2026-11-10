@@ -1,0 +1,23 @@
+ .env.example                            |   3 +
+ package-lock.json                       | 744 +++++++++++++++++++++++++++++---
+ package.json                            |  16 +-
+ src/api/app.module.ts                   |   3 +-
+ src/api/cart/cart-item.entity.ts        |  19 +
+ src/api/cart/cart.module.ts             |   3 +
+ src/api/cart/cart.service.ts            |  34 +-
+ src/api/catalog/catalog.module.ts       |   3 +
+ src/api/catalog/catalog.service.ts      |  63 +--
+ src/api/catalog/product.entity.ts       |  19 +
+ src/api/order/order.entity.ts           |  59 +++
+ src/api/order/order.module.ts           |   7 +-
+ src/api/order/order.service.ts          | 130 +++---
+ src/api/telegram/telegram.service.ts    |  60 +--
+ src/api/user/user.entity.ts             |  25 ++
+ src/api/user/user.module.ts             |   3 +
+ src/api/user/user.service.ts            |  53 ++-
+ src/config/index.ts                     |   2 +
+ src/core/types.ts                       |   4 +-
+ src/db/bigint.transformer.ts            |   7 +
+ src/db/database.module.ts               |  29 ++
+ src/db/migrations/1762000000000-Init.ts |  69 +++
+ 22 files changed, 1145 insertions(+), 210 deletions(-)

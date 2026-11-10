@@ -174,7 +174,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M31 · Haqiqiy chiqishlar: `manba/pg1-out/` 
 
 ## 5 · Mongo ↔ PostgreSQL lug'ati  ← `Lesson`
 - Kicker: `1-bosqich · Mongo bilan solishtirish` · Sarlavha: **Siz bilgan har so'zning PostgreSQL'dagi jufti**
-- Sahna: ikki ustunli lug'at (chap yashil — Mongo, o'ng ko'k — PostgreSQL), qatorlar segment bilan yonadi; o'ng tomonda shu qatorga mos `CREATE TABLE posts` bo'lagi yonadi.
+- Sahna: ikki ustunli lug'at (chap yashil — Mongo, o'ng ko'k — PostgreSQL), qatorlar segment bilan yonadi; o'ng tomonda shu qatorga mos `CREATE TABLE posts` bo'lagi yonadi. 5-segmentda to'rt buyruq qatori (create · find · updateOne · deleteOne) yonadi (F-1103-09).
   | MongoDB (Mongoose) | PostgreSQL |
   |---|---|
   | baza | baza (database) — `\l` |
@@ -187,6 +187,10 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M31 · Haqiqiy chiqishlar: `manba/pg1-out/` 
   | `Schema` — kodda | `CREATE TABLE` — bazada |
   | `required: true` · `unique: true` | `NOT NULL` · `UNIQUE` |
   | `mongosh` | `psql` |
+  | `Post.create({ … })` | `INSERT INTO posts (…) VALUES (…)` |
+  | `Post.find({ author: id })` | `SELECT * FROM posts WHERE user_id = 1` |
+  | `Post.updateOne({ _id }, { izoh })` | `UPDATE posts SET izoh = … WHERE id = 1` |
+  | `Post.deleteOne({ _id })` | `DELETE FROM posts WHERE id = 1` |
 1. **Har Mongo tushunchasining PostgreSQL'da jufti bor — lug'atni bir marta ko'rib olamiz**
    Ovoz: «Mongo qayerda xato bermasligini ko'rdik. Endi lug'at: siz bilgan har so'zning PostgreSQL'dagi jufti. Bu lug'at sinfda ham kerak bo'ladi, chunki o'quvchi darsi ham jadval va hujjatni solishtiradi.»
 2. **Collection — jadval, document — qator, maydon esa turi aniq ustun**
@@ -195,15 +199,15 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M31 · Haqiqiy chiqishlar: `manba/pg1-out/` 
    Ovoz: «Mongo'dagi id o'rnida PostgreSQL'da odatda o'zi o'sadigan raqam: bir, ikki, uch. ref'ning jufti tashqi kalit, inglizchasi foreign key: posts jadvalidagi user id ustuni users jadvaliga ishora qiladi. populate'ning jufti esa JOIN.» · 5–7-qator
 4. **Mongoose sxemasi kodda turadi, `CREATE TABLE` esa jadval qoidasini bazaning o'ziga yozadi**
    Ovoz: «Eng katta farq shu qatorda. Mongoose sxemasi sizning kodingizda turadi. CREATE TABLE esa jadvalni va uning qoidalarini bazaning o'ziga yozadi: bo'sh bo'lmasin, takrorlanmasin, muallif mavjud bo'lsin. mongosh o'rnida esa PostgreSQL terminali, uning dastur nomi psql.» · 8–10-qator
-5. **Xulosa: tushunchalar deyarli bir xil — farq qoidalar qayerda turishida**
-   Ovoz: «Xulosa: tushunchalarning ko'pi sizga tanish, faqat nomi boshqa. Asosiy farq qoidalar qayerda turishida: Mongo'da kodda, PostgreSQL'da jadvalda. O'quvchi «Mongo'dagi populate qani?» desa, javob: JOIN. Tekshirib olaylik.»
-- Manba: `pg1-out/06-jadvallar.txt` (`CREATE TABLE posts`, `\d posts`); Mongo tomoni — `drive-pg1.sh` 17-bo'lim.
+5. **Xulosa: tushunchalar ham, buyruqlar ham juft — farq qoidalar qayerda turishida**
+   Ovoz: «Xulosa: tushunchalarning ko'pi sizga tanish, faqat nomi boshqa. Buyruqlar ham juft: create'ning jufti insert into, find'niki select, updateOne'niki update, deleteOne'niki delete. Ularni yozganingizda yonida eslatib o'taman. Asosiy farq qoidalar qayerda turishida: Mongo'da kodda, PostgreSQL'da jadvalda. O'quvchi «Mongo'dagi populate qani?» desa, javob: JOIN. Tekshirib olaylik.»
+- Manba: `pg1-out/06-jadvallar.txt` (`CREATE TABLE posts`, `\d posts`); Mongo tomoni — `drive-pg1.sh` 17-bo'lim; buyruq juftlari — `pg2-out/v2d-mongoose.txt` (03.11, Mongoose 9.11.4 · MongoDB 6.0.27).
 
 ## 6 · Tekshiruv 1 — `populate` ning jufti  ← `MCRetry`
 - Kicker: `Tekshiruv 1` · Eyebrow: `Tekshiruv · 1 / 4`
 - Sarlavha: **Mongo'da `ref` ham, `populate` ham bor edi. PostgreSQL'da `populate` o'rnida qaysi biri?**
 - Ovoz: «Lug'atni ko'rdingiz, tekshirib olaylik. Birinchi tekshiruv. Mongo'da ikki narsa bor edi: ref bog'laydi, populate esa so'rov paytida birlashtiradi. PostgreSQL'da populate'ning ishini qaysi biri qiladi? Variantni tanlang.»
-- Variantlar (to'g'risi — 3): 1 `REFERENCES users(id)` · 2 `SERIAL PRIMARY KEY` · 3 `JOIN … ON …` · 4 `CREATE TABLE`
+- Variantlar (to'g'risi — 3): 1 `… REFERENCES users(id)` · 2 `SERIAL PRIMARY KEY` · 3 `SELECT … JOIN … ON …` · 4 `CREATE TABLE … (…)`
 - To'g'ri (ovoz): «To'g'ri, JOIN. U so'rov paytida ikki jadvalni ulaydi va bitta javob beradi, populate kabi. REFERENCES esa ref'ning jufti: u faqat bog'lanishni belgilaydi va qo'riqlaydi, javobga hech narsa qo'shmaydi. Demak, PostgreSQL'da bog'lanishni REFERENCES belgilaydi, ikki jadvalni bitta javobga esa JOIN birlashtiradi.» · qisqa: «`JOIN` — so'rov paytida ulaydi (populate). `REFERENCES` — bog'lanishni belgilaydi va qo'riqlaydi (ref).»
 - Xato izohlari: 1 — «Bu `ref`ning jufti: bog'lanishni belgilaydi, lekin so'rov natijasini birlashtirmaydi.» · 2 — «Bu `_id`ning jufti: qatorning raqami.» · 4 — «Bu `Schema`ning jufti: jadval va uning qoidalarini yaratadi.»
 - Maslahat (xato bo'lsa): «So'rov paytida ishlaydigan va ikki jadvalni bitta javobga yig'adigan buyruqni qidiring.»
@@ -285,7 +289,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M31 · Haqiqiy chiqishlar: `manba/pg1-out/` 
    ```
    Ekranda izoh: «Bu yerda Linux. Sizda `PostgreSQL 18…` dan keyin Windows yoki macOS yozuvi bo'ladi.»
 4. **`\l` — bazalar ro'yxati: `postgres` va ikki shablon; `\q` — PostgreSQL terminalidan chiqish**
-   Ovoz: «Teskari chiziqcha bilan boshlanadigan buyruqlar PostgreSQL terminalining o'zi uchun, ularga nuqta-vergul kerak emas. Teskari chiziqcha l bazalar ro'yxatini ko'rsatadi: postgres va ikkita template, ya'ni shablon. Shablonlarga tegmaysiz. Teskari chiziqcha q PostgreSQL terminalidan chiqaradi.»
+   Ovoz: «Backslash bilan boshlanadigan buyruqlar PostgreSQL terminalining o'zi uchun, ularga nuqta-vergul kerak emas. Backslash l bazalar ro'yxatini ko'rsatadi: postgres va ikkita template, ya'ni shablon. Shablonlarga tegmaysiz. Backslash q PostgreSQL terminalidan chiqaradi.»
    ```
    postgres=# \l
       Name    |  Owner   | Encoding | …
@@ -296,7 +300,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M31 · Haqiqiy chiqishlar: `manba/pg1-out/` 
    (3 rows)
    ```
 5. **Xulosa: prompt qaysi bazada turganingizni aytadi; SQL — nuqta-vergul bilan, `\` buyruqlari — usiz**
-   Ovoz: «Xulosa: prompt'ga doim qarang, u qaysi bazada turganingizni aytadi. SQL buyrug'i nuqta-vergul bilan tugaydi, teskari chiziqchali buyruqlar esa usiz. Endi o'zingiz o'rnatib, ulanib ko'ring.»
+   Ovoz: «Xulosa: prompt'ga doim qarang, u qaysi bazada turganingizni aytadi. SQL buyrug'i nuqta-vergul bilan tugaydi, backslash bilan boshlanadigan buyruqlar esa usiz. Endi o'zingiz o'rnatib, ulanib ko'ring.»
 - Manba: `pg1-out/21-psql-kirish.txt` (parol so'rovi, salom qatori, `postgres-#`), `02-version.txt`, `03-l.txt`.
 
 ## 10 · Amaliyot 1 — o'rnating va ulaning  ← `Practice`
@@ -306,7 +310,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M31 · Haqiqiy chiqishlar: `manba/pg1-out/` 
 2. **1–2-qadam: o'rnatish va PATH; parolni yozib qo'ymasdan oldinga o'tmang**
    Ovoz: «Birinchi: o'rnatish. Windows'da parolni albatta yozib qo'ying. Ikkinchi: PATH. Windows'da bin papkasini Path'ga qo'shing, Mac'da rasmiy buyruqni yurgizing, keyin terminalni yangidan oching.»
 3. **3–4-qadam: `psql -U postgres`, `SELECT version();`; isbot — natija qatorining boshi**
-   Ovoz: «Uchinchi: psql minus U postgres bilan ulaning. To'rtinchi: select version so'rovini yurgizing va teskari chiziqcha l bilan bazalarni ko'ring. Isbot maydoniga version natijasini nusxalang, PostgreSQL so'zidan boshlab.»
+   Ovoz: «Uchinchi: psql minus U postgres bilan ulaning. To'rtinchi: select version so'rovini yurgizing va backslash l bilan bazalarni ko'ring. Isbot maydoniga version natijasini nusxalang, PostgreSQL so'zidan boshlab.»
 4. **Boshqacha chiqsa, «Boshqacha chiqdimi?» tugmasini bosing — yechimlar oynasi ochiladi**
    Ovoz: «Biror narsa boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing: yechimlar oynasi ochiladi, sinf kompyuterlarida ham aynan shu holatlar chiqadi. To'rtala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin PostgreSQL kompyuteringizda o'rnatilgan va siz unga terminaldan ulana olasiz.»
 - Qadamlar:
@@ -338,7 +342,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M31 · Haqiqiy chiqishlar: `manba/pg1-out/` 
 1. **Ulandik — endi o'quvchi amaliyotidagi namuna: `users` va `posts`, ikki bog'langan jadval**
    Ovoz: «PostgreSQL terminali ishlayapti. Endi Mongo'dagi blogni PostgreSQL'da quramiz. Namuna tasodifiy emas: o'quvchi m4-03 amaliyotida qog'ozda aynan shu ikki jadvalni yozadi, users va posts. Siz ularni haqiqiy bazada yaratasiz.»
 2. **Mongo'da baza o'zi paydo bo'lardi, bu yerda avval `CREATE DATABASE`, keyin `\c`**
-   Ovoz: «Mongo'da baza birinchi yozuvda o'zi paydo bo'lardi. PostgreSQL'da uni avval yaratasiz: create database blog. Keyin teskari chiziqcha c blog bilan unga o'tasiz. Prompt'ga qarang: endi postgres emas, blog.»
+   Ovoz: «Mongo'da baza birinchi yozuvda o'zi paydo bo'lardi. PostgreSQL'da uni avval yaratasiz: create database blog. Keyin backslash c blog bilan unga o'tasiz. Prompt'ga qarang: endi postgres emas, blog.»
    ```
    postgres=# CREATE DATABASE blog;
    CREATE DATABASE
@@ -367,7 +371,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M31 · Haqiqiy chiqishlar: `manba/pg1-out/` 
    ```
    Tuzatish (yashil): `CREATE TABLE tags (id SERIAL PRIMARY KEY, name TEXT);` → `CREATE TABLE`
 5. **Xulosa: baza avval yaratiladi; `syntax error` bo'lsa — strelka ko'rsatgan so'zdan oldin qarang**
-   Ovoz: «Xulosa: PostgreSQL'da baza oldin yaratiladi va unga teskari chiziqcha c bilan o'tiladi. Ustunning turi va qoidalari jadval bilan birga yoziladi. Syntax error chiqsa, strelka ko'rsatgan so'zdan oldingi joyni tekshiring, odatda u yerda vergul yo'q.»
+   Ovoz: «Xulosa: PostgreSQL'da baza oldin yaratiladi va unga backslash c bilan o'tiladi. Ustunning turi va qoidalari jadval bilan birga yoziladi. Syntax error chiqsa, strelka ko'rsatgan so'zdan oldingi joyni tekshiring, odatda u yerda vergul yo'q.»
 - Manba: `pg1-out/06-jadvallar.txt`, `19-amaliyot-xatolari.txt`, `22-tuzatishlar.txt` (tuzatilgan `tags`).
 
 ## 12 · `posts` va tashqi kalit  ← `Lesson`
@@ -384,7 +388,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M31 · Haqiqiy chiqishlar: `manba/pg1-out/` 
    CREATE TABLE
    ```
 2. **`\d posts` — jadval tuzilishi; pastda baza o'zi nom bergan tashqi kalit qatori**
-   Ovoz: «Teskari chiziqcha dt jadvallar ro'yxatini, teskari chiziqcha d posts esa jadval tuzilishini ko'rsatadi: ustunlar, turlari, bo'sh bo'la oladimi. Eng pastda Foreign-key constraints qatori. Nomini baza o'zi berdi: jadval, ustun va fkey. Bu nomni keyin xato xabarida ko'rasiz.»
+   Ovoz: «Backslash dt jadvallar ro'yxatini, backslash d posts esa jadval tuzilishini ko'rsatadi: ustunlar, turlari, bo'sh bo'la oladimi. Eng pastda Foreign-key constraints qatori. Nomini baza o'zi berdi: jadval, ustun va fkey. Bu nomni keyin xato xabarida ko'rasiz.»
    ```
    blog=# \d posts
     Column  |  Type   | Nullable |              Default
@@ -396,16 +400,16 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M31 · Haqiqiy chiqishlar: `manba/pg1-out/` 
        "posts_user_id_fkey" FOREIGN KEY (user_id) REFERENCES users(id)
    ```
 3. **Uch foydalanuvchi va uch post qo'shildi: `INSERT 0 3` — oxirgi raqam qatorlar soni**
-   Ovoz: «Endi ma'lumot. Uch foydalanuvchi: ali, vali va sardor. Uch post: ikkitasi ali'niki, bittasi vali'niki. sardor'ning posti yo'q, bu to'rtinchi bosqichda kerak bo'ladi. Javobdagi insert, nol, uch: oxirgi raqam qo'shilgan qatorlar soni.»
+   Ovoz: «Endi ma'lumot. Mongoose'da bu User.create edi, bu yerda insert into users, values. Uch foydalanuvchi: ali, vali va sardor. Uch post: ikkitasi ali'niki, bittasi vali'niki. sardor'ning posti yo'q, bu to'rtinchi bosqichda kerak bo'ladi. Javobdagi insert, nol, uch: oxirgi raqam qo'shilgan qatorlar soni.»
    ```
    INSERT INTO users (username) VALUES ('ali'), ('vali'), ('sardor');
    INSERT 0 3
    INSERT INTO posts (user_id, izoh) VALUES (1, 'Birinchi post'), (1, 'Bugun Nest o''rgandim'), (2, 'Salom hammaga');
    INSERT 0 3
    ```
-   Ekranda izoh: «SQL matnida apostrof ikki marta yoziladi: `o''rgandim`».
+   Ekranda izoh: «SQL matnida apostrof ikki marta yoziladi: `o''rgandim`». Ostida xira qator (F-1103-09): **Mongoose'da:** `await User.create([{ username: 'ali' }, { username: 'vali' }, { username: 'sardor' }])` — haqiqiy yurgizishda 3 ta hujjat (`v2d-mongoose.txt`).
 4. **Boshqa bazada tursangiz jadval «yo'q» bo'ladi: prompt'ga qarang va `\c blog` qiling**
-   Ovoz: «Sinfda eng ko'p chiqadigan xatolardan biri. O'quvchi PostgreSQL terminalini qayta ochadi va darhol select qiladi: relation posts does not exist. Jadval bor, faqat u postgres bazasida turibdi. Prompt'ga qarang: postgres. Teskari chiziqcha c blog qilinsa, o'sha so'rov uchala postni ko'rsatadi.»
+   Ovoz: «Sinfda eng ko'p chiqadigan xatolardan biri. O'quvchi PostgreSQL terminalini qayta ochadi va darhol select qiladi: relation posts does not exist. Jadval bor, faqat u postgres bazasida turibdi. Prompt'ga qarang: postgres. Backslash c blog qilinsa, o'sha so'rov uchala postni ko'rsatadi. Bu select Mongoose'dagi Post.find bilan bir xil ish qiladi.»
    ```
    postgres=# SELECT * FROM posts;
    ERROR:  relation "posts" does not exist
@@ -420,9 +424,10 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M31 · Haqiqiy chiqishlar: `manba/pg1-out/` 
      3 |       2 | Salom hammaga
    (3 rows)
    ```
+   Natija ostida xira qator (F-1103-09): **Mongoose'da:** `await Post.find()`.
 5. **Xulosa: tashqi kalit bog'lanishni bazaga yozadi; `does not exist` bo'lsa — avval prompt**
-   Ovoz: «Xulosa: references bog'lanishni bazaning o'ziga yozadi, Mongo'dagi ref'dan farqi shu. Teskari chiziqcha d bilan istalgan jadval tuzilishini ko'rasiz. Relation does not exist chiqsa, jadvalni qayta yaratishga shoshilmang: avval prompt'dagi baza nomini tekshiring.»
-- Manba: `pg1-out/06-jadvallar.txt` (`CREATE TABLE posts`, `\dt`, `\d posts`), `07-insert.txt`, `10-relation-yoq.txt` (`postgres` bazasida). `\c blog` dan keyingi `SELECT` — `07-insert.txt` dagi natija.
+   Ovoz: «Xulosa: references bog'lanishni bazaning o'ziga yozadi, Mongo'dagi ref'dan farqi shu. Backslash d bilan istalgan jadval tuzilishini ko'rasiz. Relation does not exist chiqsa, jadvalni qayta yaratishga shoshilmang: avval prompt'dagi baza nomini tekshiring.»
+- Manba: `pg1-out/06-jadvallar.txt` (`CREATE TABLE posts`, `\dt`, `\d posts`), `07-insert.txt`, `10-relation-yoq.txt` (`postgres` bazasida). `\c blog` dan keyingi `SELECT` — `07-insert.txt` dagi natija. Mongoose qatorlari — `pg2-out/v2d-mongoose.txt`.
 
 ## 13 · Baza o'zi tekshiradi  ← `Lesson`
 - Kicker: `3-bosqich · jadval va bog'lanish` · Sarlavha: **Mongo xato bermagan joyda PostgreSQL `ERROR` beradi**
@@ -467,7 +472,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M31 · Haqiqiy chiqishlar: `manba/pg1-out/` 
   DETAIL:  Key (id)=(1) is still referenced from table "posts".
   ```
 - Ovoz: «Xatolarni o'qishni ko'rdingiz, endi o'zingiz o'qing. Ikkinchi tekshiruv. O'quvchi birinchi foydalanuvchini o'chirmoqchi bo'ldi va ekrandagi xabarni oldi. Uch savolni eslang: qaysi jadval, qaysi qoida, qaysi qiymat. Nega o'chmadi? Variantni tanlang.»
-- Variantlar (to'g'risi — 1): 1 Bu foydalanuvchining postlari bor — `posts` unga ishora qiladi · 2 `users` jadvali `blog` bazasida yo'q · 3 `id = 1` bo'lgan foydalanuvchi topilmadi · 4 `DELETE` uchun boshqa foydalanuvchining paroli kerak
+- Variantlar (to'g'risi — 1): 1 Foydalanuvchining postlari bor — `posts` unga bog'liq · 2 `users` jadvali `blog` bazasida yo'q · 3 `id = 1` bo'lgan foydalanuvchi topilmadi · 4 `DELETE` uchun boshqa foydalanuvchining paroli kerak
 - To'g'ri (ovoz): «To'g'ri. Qoida posts user id fkey, tashqi kalit. Detail qatori aytadi: id bir hali ham posts jadvalidan ishora qilinmoqda, ya'ni bu foydalanuvchining postlari bor. Baza egasiz post qoldirmaydi. Demak, foydalanuvchini o'chirish kerak bo'lsa, avval uning postlari, keyin uning o'zi o'chiriladi.» · qisqa: «`posts_user_id_fkey`: `Key (id)=(1)` hali `posts`da bor — avval postlar, keyin foydalanuvchi.»
 - Xato izohlari: 2 — «Jadval yo'q bo'lsa xabar `relation "users" does not exist` bo'lardi.» · 3 — «Topilmasa xato bo'lmaydi: `DELETE 0`. Bu yerda baza qoida nomini aytyapti.» · 4 — «Xabarda parol haqida hech narsa yo'q. Qoida nomini o'qing.»
 - Maslahat: «Xabardagi qoida nomini va `DETAIL` qatorini o'qing: qaysi jadval hali bu foydalanuvchiga ishora qilyapti?»
@@ -479,9 +484,9 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M31 · Haqiqiy chiqishlar: `manba/pg1-out/` 
 1. **Endi siz: `blog` bazasini va ikki bog'langan jadvalni o'zingiz yaratasiz**
    Ovoz: «Endi o'zingiz qilasiz: blog bazasi, users va posts jadvallari, keyin ma'lumot. Besh qadam, o'n-o'n besh daqiqa. Buyruqlarni nusxalash mumkin, lekin har birini o'qib, nima qilishini aytib ko'ring.»
 2. **1–4-qadam: baza, ikki jadval va ma'lumot; har buyruqdan keyin javob satrini tekshiring**
-   Ovoz: «Birinchi: baza va teskari chiziqcha c. Ikkinchi va uchinchi: users, keyin posts. Tartib muhim: posts users'ga ishora qiladi, shuning uchun users birinchi. To'rtinchi: uch foydalanuvchi va uch post.»
+   Ovoz: «Birinchi: baza va backslash c. Ikkinchi va uchinchi: users, keyin posts. Tartib muhim: posts users'ga ishora qiladi, shuning uchun users birinchi. To'rtinchi: uch foydalanuvchi va uch post.»
 3. **5-qadam: tashqi kalit xatosini o'zingiz chiqaring; isbot — `\d posts`dagi kalit qatori**
-   Ovoz: «Beshinchi: to'qson to'qqizinchi foydalanuvchiga post yozib, tashqi kalit xatosini o'zingiz chiqaring va detail qatorini o'qing. Isbot maydoniga teskari chiziqcha d posts natijasidagi Foreign-key qatorini nusxalang.»
+   Ovoz: «Beshinchi: to'qson to'qqizinchi foydalanuvchiga post yozib, tashqi kalit xatosini o'zingiz chiqaring va detail qatorini o'qing. Isbot maydoniga backslash d posts natijasidagi Foreign-key qatorini nusxalang.»
 4. **Boshqacha chiqsa, «Boshqacha chiqdimi?» tugmasini bosing — yechimlar oynasi ochiladi**
    Ovoz: «Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. Beshala katakcha va isbot bo'lmasa, Davom ochilmaydi. Demak, shu amaliyotdan keyin sizda ikki bog'langan jadval bor va baza noto'g'ri yozuvni o'zi rad etishini o'z ko'zingiz bilan ko'rasiz.»
 - Qadamlar:
@@ -738,7 +743,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M31 · Haqiqiy chiqishlar: `manba/pg1-out/` 
 ## 23 · Amaliyot 4 — ikki oyna  ← `Practice`
 - Kicker: `Amaliyot 4 / 4` · Eyebrow: `Hozir o'zingizda · 10–15 daqiqa` · Sarlavha: **Oxirgi telefonni ikki terminal oynasida o'zingiz soting** · `tableAt: 3`
 1. **Endi siz: ikki terminal oynasini yonma-yon ochib, oxirgi telefonni o'zingiz sotasiz**
-   Ovoz: «Oxirgi amaliyot, eng qiziqarlisi. Ikkita terminal oynasini yonma-yon oching, ikkalasida PostgreSQL terminalini ochib, teskari chiziqcha c blog yozing. Biri birinchi xaridor, ikkinchisi ikkinchi xaridor. O'n-o'n besh daqiqa.»
+   Ovoz: «Oxirgi amaliyot, eng qiziqarlisi. Ikkita terminal oynasini yonma-yon oching, ikkalasida PostgreSQL terminalini ochib, backslash c blog yozing. Biri birinchi xaridor, ikkinchisi ikkinchi xaridor. O'n-o'n besh daqiqa.»
 2. **1–2-qadam: `products` va bitta telefon; 1-oynada `BEGIN` va `UPDATE`, `COMMIT`siz**
    Ovoz: «Birinchi: products jadvali va bitta telefon. Ikkinchi: birinchi oynada begin, keyin update. Qoldiq nol bo'ladi. Muhim: commit'ni hali yozmang, tranzaksiya ochiq tursin.»
 3. **3–4-qadam: 2-oyna kutadi, 1-oynada `COMMIT`; isbot — 2-oynadagi oxirgi satr**
@@ -866,13 +871,13 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M31 · Haqiqiy chiqishlar: `manba/pg1-out/` 
   | # | Savol | Variantlar | ✔ | Izoh | s |
   |---|---|---|---|---|---|
   | 1 | Mongo'dagi `populate()` PostgreSQL'da nima bilan qilinadi? | `REFERENCES` · `JOIN … ON …` · `CREATE TABLE` · `SERIAL` | 2 | `JOIN` so'rov paytida ikki jadvalni ulaydi; `REFERENCES` — `ref`ning jufti. | 5 |
-  | 2 | Mac'da `psql -U postgres` → `role "postgres" does not exist`. Nima qilasiz? | `createuser -s postgres` · Parolni qayta kiritaman · Postgres.app'ni qayta Initialize qilaman · `CREATE DATABASE postgres;` | 1 | Homebrew bilan o'rnatilgan: superuser — Mac foydalanuvchisi, `postgres` roli yo'q. | 8 |
-  | 3 | `users`da 99-foydalanuvchi yo'q. `INSERT INTO posts (user_id, izoh) VALUES (99, '…');` nima qaytaradi? | `INSERT 0 1`, muallif bo'sh · `users`ga 99 qo'shiladi · Tashqi kalit xatosi, post saqlanmaydi · `NOT NULL` xatosi | 3 | `posts_user_id_fkey`: `Key (user_id)=(99) is not present in table "users"`. | 13 |
-  | 4 | Prompt `postgres=#`. `SELECT * FROM posts;` → `relation "posts" does not exist`, lekin jadvalni yaratgansiz. Nima qilasiz? | Jadvalni qayta yarataman · Serverni qayta ishga tushiraman · Parolni tekshiraman · `\c blog` | 4 | Jadval `blog` bazasida; prompt boshqa bazani ko'rsatyapti. | 12 |
+  | 2 | Mac'da `psql -U postgres` → `role "postgres" does not exist`. Nima qilasiz? | `createuser -s postgres` bilan rol yaratish · Parolni qayta kiritib, yana ulanish · Postgres.app'ni qayta Initialize qilaman · `CREATE DATABASE postgres;` buyrug'ini berish | 1 | Homebrew bilan o'rnatilgan: superuser — Mac foydalanuvchisi, `postgres` roli yo'q. | 8 |
+  | 3 | `users`da 99-foydalanuvchi yo'q. `INSERT INTO posts (user_id, izoh) VALUES (99, '…');` nima qaytaradi? | `INSERT 0 1` — post muallifsiz saqlanadi · `users`ga 99-foydalanuvchi o'zi qo'shiladi · Tashqi kalit xatosi, post saqlanmaydi · `NOT NULL` xatosi — muallif bo'sh | 3 | `posts_user_id_fkey`: `Key (user_id)=(99) is not present in table "users"`. | 13 |
+  | 4 | Prompt `postgres=#`. `SELECT * FROM posts;` → `relation "posts" does not exist`, lekin jadvalni yaratgansiz. Nima qilasiz? | Jadvalni qayta yaratib, yana yozish · Serverni qayta ishga tushirish · Parolni tekshirib, qayta kirish · `\c blog` — kerakli bazaga ulanish | 4 | Jadval `blog` bazasida; prompt boshqa bazani ko'rsatyapti. | 12 |
   | 5 | Postsiz foydalanuvchi ham natijada chiqishi kerak. Qaysi so'rov? | `FROM users LEFT JOIN posts ON …` · `FROM posts JOIN users ON …` · `JOIN`siz `SELECT * FROM users, posts` · `ON` satrini olib tashlash | 1 | `LEFT JOIN` chapdagi jadvalning hamma qatorini chiqaradi; sardor — bo'sh izoh bilan. | 16 |
-  | 6 | 1-xaridor `BEGIN` + `UPDATE … WHERE stock > 0` qildi, `COMMIT` hali yo'q. 2-xaridor xuddi shu `UPDATE`ni yubordi. Nima bo'ladi? | Darhol `UPDATE 1`, telefon ikkalasiga · Kutadi, 1-xaridor `COMMIT`dan keyin `UPDATE 0` · Darhol `CHECK` xatosi · `stock = -1` bo'ladi | 2 | Qator band — 2-xaridor kutadi, keyin shartni qayta tekshiradi: `stock` 0. | 19 |
+  | 6 | 1-xaridor `BEGIN` + `UPDATE … WHERE stock > 0` qildi, `COMMIT` hali yo'q. 2-xaridor xuddi shu `UPDATE`ni yubordi. Nima bo'ladi? | Darhol `UPDATE 1`, telefon ikkalasiga · Kutadi, 1-xaridor `COMMIT`dan keyin `UPDATE 0` · Darhol `CHECK` xatosi — telefon hech kimga sotilmaydi · `stock = -1` bo'ladi, ikkalasi ham oladi | 2 | Qator band — 2-xaridor kutadi, keyin shartni qayta tekshiradi: `stock` 0. | 19 |
   | 7 | Tranzaksiya ichida xato chiqdi, keyin `COMMIT;` yozildi. psql nima deb javob beradi? | `COMMIT` · `ERROR` · Hech narsa · `ROLLBACK` | 4 | Xatoli tranzaksiya bekor qilinadi: `COMMIT;` → `ROLLBACK`, `orders` bo'sh. | 20 |
-  | 8 | O'quvchi: «NoSQL zamonaviyroq, onlayn do'konimga MongoDB olaman». Nima deysiz? | To'g'ri, NoSQL yangiroq · MongoDB sekin, olmang · 4 savol: buyurtma, mahsulot, to'lov bog'langan, xato qimmat — PostgreSQL · Farqi yo'q, istaganini oling | 3 | Tanlov modaga emas, vazifaga qarab; do'konda 3 mezon SQL tomonda. | 27 |
+  | 8 | O'quvchi: «NoSQL zamonaviyroq, onlayn do'konimga MongoDB olaman». Nima deysiz? | To'g'ri, NoSQL yangiroq — hamma joyda shuni oling · MongoDB sekin ishlaydi, uni umuman olmang · Ma'lumot bog'langan, xato qimmat — PostgreSQL · Farqi yo'q — o'quvchi istaganini olaversin | 3 | Tanlov modaga emas, vazifaga qarab; do'konda 3 mezon SQL tomonda. | 27 |
 - `passed = ball ≥ 6 && 4 amaliyot isbot bilan` (Nest-1 bilan bir xil); `onFinished` maydonlari o'zgarmaydi.
 
 ## 29 · Yakun  ← `Screen28`

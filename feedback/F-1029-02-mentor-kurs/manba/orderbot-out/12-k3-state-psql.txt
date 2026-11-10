@@ -1,0 +1,9 @@
+# tgpg-done: /start → add:1 → «Buyurtma berish» (telefon so'raldi), keyin psql
+Telegram bot ulandi
+bot: {"asked":"Buyurtma uchun telefon raqamingizni yozing (masalan, +998901234567):"}
+$ SELECT telegram_id, name, phone, state FROM users;
+ telegram_id | name  | phone |     state     
+-------------+-------+-------+---------------
+  5123456789 | Aziza |       | WAITING_PHONE
+(1 row)
+

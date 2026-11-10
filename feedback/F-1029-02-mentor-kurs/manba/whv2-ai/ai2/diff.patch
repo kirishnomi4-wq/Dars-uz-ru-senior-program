@@ -1,0 +1,791 @@
+diff --git a/.env.example b/.env.example
+index 4c1ff1b..605572a 100644
+--- a/.env.example
++++ b/.env.example
+@@ -18,3 +18,6 @@ DB_LOGGING=true
+ 
+ # Server porti (hosting o'zi beradi, lokalda tegmaysiz)
+ PORT=3000
++
++# To'lov xizmati webhook'i (POST /webhooks/payment) imzosini tekshirish kaliti. Bo'sh qolsa webhook hamma so'rovni rad etadi.
++PAYMENT_WEBHOOK_SECRET=
+diff --git a/public/admin.html b/public/admin.html
+index 486a8a1..5e3697f 100644
+--- a/public/admin.html
++++ b/public/admin.html
+@@ -36,8 +36,8 @@
+     <button>Kirish</button>
+   </form>
+   <table>
+-    <thead><tr><th>#</th><th>Mijoz</th><th>Telefon</th><th>Mahsulotlar</th><th>Jami</th><th>Holat</th><th>Vaqt</th></tr></thead>
+-    <tbody id="royxat"><tr><td colspan="7">Token kiriting</td></tr></tbody>
++    <thead><tr><th>#</th><th>Mijoz</th><th>Telefon</th><th>Mahsulotlar</th><th>Jami</th><th>Holat</th><th>To'lov</th><th>Vaqt</th></tr></thead>
++    <tbody id="royxat"><tr><td colspan="8">Token kiriting</td></tr></tbody>
+   </table>
+   <p class="izoh">Yangi buyurtma yoki holat o'zgarsa, ro'yxat o'zi yangilanadi — sahifani qayta ochish shart emas.</p>
+ </main>
+@@ -48,6 +48,7 @@
+   // ulanmagan — klient urinmayapti (token noto'g'ri — server ulanishni yopdi)
+   const HOLAT = { ulangan: 'Ulangan', ulanmoqda: 'Ulanmoqda…', ulanmagan: 'Ulanmagan' };
+   const STATUS = { NEW: 'Yangi', CONFIRMED: 'Tasdiqlandi', DELIVERED: 'Yetkazildi', CANCELLED: 'Bekor' };
++  const PAYMENT = { PAID: "To'landi", REJECTED: 'Rad etildi' };
+   const el = (id) => document.getElementById(id);
+   // Telegram'dan kelgan ism va mahsulot nomi — matn sifatida (ichida HTML bo'lsa ham ishlamaydi)
+   const esc = (v) => String(v).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+@@ -65,7 +66,7 @@
+   async function yukla() {
+     const r = await fetch('/admin/orders', { headers: { Authorization: 'Bearer ' + token } });
+     if (r.status === 401) {
+-      el('royxat').innerHTML = "<tr><td colspan='7'>Token noto'g'ri</td></tr>";
++      el('royxat').innerHTML = "<tr><td colspan='8'>Token noto'g'ri</td></tr>";
+       return;
+     }
+     const list = await r.json();
+@@ -75,8 +76,9 @@
+           <td>${o.id}</td><td>${esc(o.customer)}</td><td>${esc(o.phone)}</td>
+           <td>${o.items.map((i) => `${esc(i.name)} × ${i.qty}`).join('<br>')}</td>
+           <td>${o.total.toLocaleString('ru-RU')} so'm</td><td>${STATUS[o.status] || o.status}</td>
++          <td>${o.payment ? `${PAYMENT[o.payment.status] || esc(o.payment.status)} · ${Number(o.payment.amount).toLocaleString('ru-RU')} so'm` : '—'}</td>
+           <td>${new Date(o.created_at).toLocaleTimeString('ru-RU')}</td></tr>`).join('')
+-      : "<tr><td colspan='7'>Hali buyurtma yo'q</td></tr>";
++      : "<tr><td colspan='8'>Hali buyurtma yo'q</td></tr>";
+     oxirgiId = eng;
+   }
+ 
+diff --git a/src/api/app.module.ts b/src/api/app.module.ts
+index 6c7bc37..886b901 100644
+--- a/src/api/app.module.ts
++++ b/src/api/app.module.ts
+@@ -1,10 +1,11 @@
+ import { Module } from '@nestjs/common';
+ import { DatabaseModule } from '../infrastructure/database.module';
+ import { AppController } from './app.controller';
++import { PaymentModule } from './payment/payment.module';
+ import { TelegramModule } from './telegram/telegram.module';
+ 
+ @Module({
+-  imports: [DatabaseModule, TelegramModule],
++  imports: [DatabaseModule, TelegramModule, PaymentModule],
+   controllers: [AppController],
+ })
+ export class AppModule {}
+diff --git a/src/api/live/admin.controller.spec.ts b/src/api/live/admin.controller.spec.ts
+index 265eeda..cc59773 100644
+--- a/src/api/live/admin.controller.spec.ts
++++ b/src/api/live/admin.controller.spec.ts
+@@ -61,11 +61,42 @@ describe('AdminController', () => {
+         customer: 'Aziza',
+         phone: '+998901234567',
+         items: [{ name: 'Kolonka', qty: 2 }],
++        payment: null,
+         created_at: '2026-11-04T10:00:00.000Z',
+       },
+     ]);
+   });
+ 
++  it("GET /admin/orders — to'lov bor bo'lsa eng so'nggisi ko'rinadi", async () => {
++    const paid = {
++      id: 3,
++      status: 'PAID',
++      amount: 50000,
++      external_id: 'P-1',
++      received_at: new Date('2026-11-04T09:00:00Z'),
++    };
++    const rejected = { ...paid, id: 5, status: 'REJECTED', external_id: 'P-2' };
++    const withPayments = {
++      ...order,
++      id: 13,
++      payments: [
++        { ...paid, id: 2, order: undefined },
++        { ...rejected, id: 4, order: undefined },
++      ],
++    };
++    const svc = app.get(OrderService);
++    jest.spyOn(svc, 'recent').mockResolvedValueOnce([withPayments as any]);
++    const res = await request(app.getHttpServer())
++      .get('/admin/orders')
++      .set('Authorization', 'Bearer sinov-token');
++    expect(res.body[0].payment).toEqual({
++      status: 'REJECTED',
++      amount: 50000,
++      external_id: 'P-2',
++      received_at: '2026-11-04T09:00:00.000Z',
++    });
++  });
++
+   it('GET /admin — panel sahifasi (socket.io klienti bilan)', async () => {
+     const res = await request(app.getHttpServer()).get('/admin');
+     expect(res.status).toBe(200);
+diff --git a/src/api/live/admin.controller.ts b/src/api/live/admin.controller.ts
+index a97e616..e9a9474 100644
+--- a/src/api/live/admin.controller.ts
++++ b/src/api/live/admin.controller.ts
+@@ -7,6 +7,7 @@ import {
+ } from '@nestjs/common';
+ import { readFileSync } from 'fs';
+ import { join } from 'path';
++import type { Payment } from '../../core/entity';
+ import { OrderService } from '../order/order.service';
+ import { isAdminToken } from './admin-token';
+ 
+@@ -36,7 +37,20 @@ export class AdminController {
+       customer: o.user?.name ?? '',
+       phone: o.phone,
+       items: o.items.map((i) => ({ name: i.product.name, qty: i.qty })),
++      // Eng so'nggi to'lov natijasi (yo'q bo'lsa null)
++      payment: latestPayment(o.payments),
+       created_at: o.created_at,
+     }));
+   }
+ }
++
++function latestPayment(payments: Payment[] | undefined) {
++  const p = [...(payments ?? [])].sort((a, b) => b.id - a.id)[0];
++  if (!p) return null;
++  return {
++    status: p.status,
++    amount: p.amount,
++    external_id: p.external_id,
++    received_at: p.received_at,
++  };
++}
+diff --git a/src/api/live/live.gateway.ts b/src/api/live/live.gateway.ts
+index 1f10586..91df4a8 100644
+--- a/src/api/live/live.gateway.ts
++++ b/src/api/live/live.gateway.ts
+@@ -14,7 +14,7 @@ import { isAdminToken } from './admin-token';
+ // (server yopgan ulanishga klient o'zi qayta ulanmaydi — panelda «Ulanmagan»).
+ // Hodisa order-changed — { orderId, reason }: qaysi buyurtma va nega o'zgargani.
+ // Yangi holatni panel GET /admin/orders dan qayta so'raydi — hodisa ichida ro'yxat ham, son ham yo'q.
+-export type OrderChangeReason = 'new' | 'status';
++export type OrderChangeReason = 'new' | 'status' | 'payment';
+ 
+ @WebSocketGateway()
+ export class LiveGateway implements OnGatewayConnection, OnGatewayDisconnect {
+diff --git a/src/api/order/order.service.ts b/src/api/order/order.service.ts
+index 45ee96b..37f4fa7 100644
+--- a/src/api/order/order.service.ts
++++ b/src/api/order/order.service.ts
+@@ -61,7 +61,11 @@ export class OrderService {
+   }
+ 
+   recent(limit = 5): Promise<Order[]> {
+-    return this.repo.find({ order: { id: 'DESC' }, take: limit });
++    return this.repo.find({
++      relations: { payments: true },
++      order: { id: 'DESC' },
++      take: limit,
++    });
+   }
+ 
+   // Status o'zgaradi; bekor qilinsa mahsulotlar omborga qaytadi — yana tranzaksiya
+diff --git a/src/api/payment/payment-webhook.spec.ts b/src/api/payment/payment-webhook.spec.ts
+new file mode 100644
+index 0000000..905f414
+--- /dev/null
++++ b/src/api/payment/payment-webhook.spec.ts
+@@ -0,0 +1,86 @@
++import { createHmac } from 'crypto';
++import { parsePaymentEvent, verifySignature } from './payment-webhook';
++
++const SECRET = 'sinov-kalit';
++const body = Buffer.from(
++  JSON.stringify({
++    payment_id: 'P-1',
++    order_id: 1,
++    status: 'paid',
++    amount: 100,
++  }),
++);
++const sign = (b: Buffer, key = SECRET) =>
++  createHmac('sha256', key).update(b).digest('hex');
++
++describe('verifySignature', () => {
++  it("to'g'ri imzo — o'tadi", () => {
++    expect(verifySignature(body, sign(body), SECRET)).toBe(true);
++  });
++
++  it("katta-kichik harf farqi bo'lmaydi (hex)", () => {
++    expect(verifySignature(body, sign(body).toUpperCase(), SECRET)).toBe(true);
++  });
++
++  it("tana o'zgarsa — rad", () => {
++    const tampered = Buffer.from(body.toString().replace('100', '1'));
++    expect(verifySignature(tampered, sign(body), SECRET)).toBe(false);
++  });
++
++  it("noto'g'ri kalit bilan imzo — rad", () => {
++    expect(verifySignature(body, sign(body, 'boshqa'), SECRET)).toBe(false);
++  });
++
++  it("imzo yo'q, bo'sh yoki noto'g'ri uzunlikda — rad", () => {
++    expect(verifySignature(body, undefined, SECRET)).toBe(false);
++    expect(verifySignature(body, '', SECRET)).toBe(false);
++    expect(verifySignature(body, 'abcd', SECRET)).toBe(false);
++    expect(verifySignature(body, 'z'.repeat(64), SECRET)).toBe(false);
++  });
++
++  it("kalit sozlanmagan (bo'sh) — hech narsa o'tmaydi", () => {
++    expect(verifySignature(body, sign(body, ''), '')).toBe(false);
++  });
++
++  it("xom tana yo'q — rad", () => {
++    expect(verifySignature(undefined, sign(body), SECRET)).toBe(false);
++  });
++});
++
++describe('parsePaymentEvent', () => {
++  const ok = {
++    payment_id: 'P-1',
++    order_id: 12,
++    status: 'paid',
++    amount: 100000,
++  };
++
++  it("to'g'ri xabar — ichki shaklga o'tadi", () => {
++    expect(parsePaymentEvent(ok)).toEqual({
++      paymentId: 'P-1',
++      orderId: 12,
++      status: 'PAID',
++      amount: 100000,
++    });
++  });
++
++  it("rejected — REJECTED; payment_id raqam bo'lsa ham qabul qilinadi", () => {
++    expect(
++      parsePaymentEvent({ ...ok, payment_id: 555, status: 'rejected' }),
++    ).toMatchObject({ paymentId: '555', status: 'REJECTED' });
++  });
++
++  it.each([
++    ["payment_id yo'q", { payment_id: undefined }],
++    ['order_id matn', { order_id: 'abc' }],
++    ['order_id kasr', { order_id: 1.5 }],
++    ["status noma'lum", { status: 'pending' }],
++    ['summa manfiy', { amount: -1 }],
++    ['summa kasr', { amount: 10.5 }],
++    ['summa matn', { amount: '100' }],
++  ])('%s — 400', (_name, patch) => {
++    expect(() => parsePaymentEvent({ ...ok, ...patch })).toThrow(
++      expect.objectContaining({ status: 400 }),
++    );
++  });
++});
+diff --git a/src/api/payment/payment-webhook.ts b/src/api/payment/payment-webhook.ts
+new file mode 100644
+index 0000000..e0321dd
+--- /dev/null
++++ b/src/api/payment/payment-webhook.ts
+@@ -0,0 +1,57 @@
++import { BadRequestException } from '@nestjs/common';
++import { createHmac, timingSafeEqual } from 'crypto';
++import type { PaymentStatus } from '../../core/entity';
++
++// To'lov xizmatidan kelgan xabar (JSON tana):
++//   { "payment_id": "P-1001", "order_id": 12, "status": "paid" | "rejected", "amount": 100000 }
++export interface PaymentEvent {
++  paymentId: string;
++  orderId: number;
++  status: PaymentStatus;
++  amount: number;
++}
++
++// X-Signature = HMAC-SHA256(kalit, xom tana) — hex. Tana JSON'ga aylantirilmasdan, baytma-bayt tekshiriladi.
++// Kalit bo'sh bo'lsa hech narsa tasdiqlanmaydi (sirtdan chiqqan xabar ham rad etiladi).
++export function verifySignature(
++  rawBody: Buffer | undefined,
++  signature: string | undefined,
++  secret: string,
++): boolean {
++  if (!rawBody || !secret || !signature) return false;
++  if (!/^[0-9a-fA-F]{64}$/.test(signature)) return false;
++  const expected = createHmac('sha256', secret).update(rawBody).digest();
++  return timingSafeEqual(expected, Buffer.from(signature, 'hex'));
++}
++
++const STATUS: Record<string, PaymentStatus> = {
++  paid: 'PAID',
++  rejected: 'REJECTED',
++};
++
++// Maydonlarni tekshiradi; noto'g'ri bo'lsa 400
++export function parsePaymentEvent(body: unknown): PaymentEvent {
++  const b = (body ?? {}) as Record<string, unknown>;
++  const rawId = b.payment_id;
++  const paymentId =
++    typeof rawId === 'string' || typeof rawId === 'number' ? String(rawId) : '';
++  const orderId = Number(b.order_id);
++  const status = typeof b.status === 'string' ? STATUS[b.status] : undefined;
++  const amount = b.amount;
++
++  if (!paymentId || paymentId.length > 100) {
++    throw new BadRequestException("payment_id noto'g'ri");
++  }
++  if (!Number.isInteger(orderId) || orderId <= 0) {
++    throw new BadRequestException("order_id noto'g'ri");
++  }
++  if (!status) {
++    throw new BadRequestException(
++      "status faqat 'paid' yoki 'rejected' bo'lishi kerak",
++    );
++  }
++  if (typeof amount !== 'number' || !Number.isInteger(amount) || amount < 0) {
++    throw new BadRequestException("amount noto'g'ri (butun son, so'm)");
++  }
++  return { paymentId, orderId, status, amount };
++}
+diff --git a/src/api/payment/payment.controller.spec.ts b/src/api/payment/payment.controller.spec.ts
+new file mode 100644
+index 0000000..bb5ee38
+--- /dev/null
++++ b/src/api/payment/payment.controller.spec.ts
+@@ -0,0 +1,142 @@
++import { INestApplication } from '@nestjs/common';
++import { Test } from '@nestjs/testing';
++import { createHmac } from 'crypto';
++import request from 'supertest';
++import { DataSource } from 'typeorm';
++import { config } from '../../config';
++import { Order, Payment } from '../../core/entity';
++import { LiveGateway } from '../live/live.gateway';
++import { PaymentController } from './payment.controller';
++import { PaymentService } from './payment.service';
++
++// Baza o'rniga soxta tranzaksiya: buyurtma #7 (jami 100000), to'lovlar — xotirada
++const store: { payments: any[] } = { payments: [] };
++let nextId = 1;
++const order = { id: 7, total: 100000 };
++
++const manager = {
++  query: jest.fn(async () => []),
++  findOneBy: jest.fn(async (cls: unknown, where: { id: number }) =>
++    cls === Order && where.id === 7 ? order : null,
++  ),
++  findOne: jest.fn(
++    async (_cls: unknown, opts: any) =>
++      store.payments.find((p) => p.external_id === opts.where.external_id) ??
++      null,
++  ),
++  create: jest.fn((_cls, data) => ({ ...data })),
++  save: jest.fn(async (p: any) => {
++    if (!p.id) {
++      p.id = nextId++;
++      p.received_at = new Date('2026-11-04T10:00:00Z');
++      store.payments.push(p);
++    }
++    return p;
++  }),
++};
++const dataSource = { transaction: jest.fn((cb) => cb(manager)) };
++const live = { orderChanged: jest.fn() };
++
++const SECRET = 'sinov-webhook-kalit';
++const sign = (raw: string) =>
++  createHmac('sha256', SECRET).update(raw).digest('hex');
++
++describe('POST /webhooks/payment', () => {
++  let app: INestApplication;
++
++  beforeAll(async () => {
++    config.PAYMENT_WEBHOOK_SECRET = SECRET;
++    const mod = await Test.createTestingModule({
++      controllers: [PaymentController],
++      providers: [
++        PaymentService,
++        { provide: DataSource, useValue: dataSource },
++        { provide: LiveGateway, useValue: live },
++      ],
++    }).compile();
++    app = mod.createNestApplication({ logger: false, rawBody: true });
++    await app.init();
++  });
++
++  afterAll(() => app.close());
++
++  beforeEach(() => {
++    store.payments = [];
++    jest.clearAllMocks();
++  });
++
++  const post = (raw: string, sig?: string) => {
++    const r = request(app.getHttpServer())
++      .post('/webhooks/payment')
++      .set('Content-Type', 'application/json');
++    if (sig !== undefined) r.set('X-Signature', sig);
++    return r.send(raw);
++  };
++  const body = (over: object = {}) =>
++    JSON.stringify({
++      payment_id: 'P-100',
++      order_id: 7,
++      status: 'paid',
++      amount: 100000,
++      ...over,
++    });
++
++  it("imzo to'g'ri — 200, to'lov yoziladi, panelga xabar ketadi", async () => {
++    const raw = body();
++    const res = await post(raw, sign(raw));
++    expect(res.status).toBe(200);
++    expect(res.body).toEqual({ ok: true, status: 'PAID' });
++    expect(store.payments).toHaveLength(1);
++    expect(store.payments[0]).toMatchObject({
++      external_id: 'P-100',
++      status: 'PAID',
++      amount: 100000,
++    });
++    expect(live.orderChanged).toHaveBeenCalledWith(7, 'payment');
++  });
++
++  it("imzo yo'q — 401, hech narsa yozilmaydi", async () => {
++    const res = await post(body());
++    expect(res.status).toBe(401);
++    expect(dataSource.transaction).not.toHaveBeenCalled();
++    expect(live.orderChanged).not.toHaveBeenCalled();
++  });
++
++  it("tana imzodan keyin o'zgarsa — 401", async () => {
++    const raw = body();
++    const res = await post(body({ amount: 1 }), sign(raw));
++    expect(res.status).toBe(401);
++    expect(store.payments).toHaveLength(0);
++  });
++
++  it("imzo to'g'ri, lekin maydon yo'q — 400", async () => {
++    const raw = body({ status: 'bekor' });
++    const res = await post(raw, sign(raw));
++    expect(res.status).toBe(400);
++  });
++
++  it("mavjud bo'lmagan buyurtma — 404", async () => {
++    const raw = body({ order_id: 999 });
++    const res = await post(raw, sign(raw));
++    expect(res.status).toBe(404);
++    expect(store.payments).toHaveLength(0);
++  });
++
++  it("takror xabar (xuddi shu payment_id) — ikkinchi qator yo'q, holat yangilanadi", async () => {
++    const first = body();
++    await post(first, sign(first));
++    const second = body({ status: 'rejected', amount: 100000 });
++    const res = await post(second, sign(second));
++    expect(res.status).toBe(200);
++    expect(res.body.status).toBe('REJECTED');
++    expect(store.payments).toHaveLength(1);
++    expect(store.payments[0].status).toBe('REJECTED');
++  });
++
++  it('boshqa buyurtmadagi payment_id — 409', async () => {
++    store.payments.push({ id: 50, external_id: 'P-100', order: { id: 3 } });
++    const raw = body();
++    const res = await post(raw, sign(raw));
++    expect(res.status).toBe(409);
++  });
++});
+diff --git a/src/api/payment/payment.controller.ts b/src/api/payment/payment.controller.ts
+new file mode 100644
+index 0000000..926bec4
+--- /dev/null
++++ b/src/api/payment/payment.controller.ts
+@@ -0,0 +1,42 @@
++import {
++  BadRequestException,
++  Body,
++  Controller,
++  Headers,
++  HttpCode,
++  Post,
++  Req,
++  UnauthorizedException,
++} from '@nestjs/common';
++import type { Request } from 'express';
++import { config } from '../../config';
++import { parsePaymentEvent, verifySignature } from './payment-webhook';
++import { PaymentService } from './payment.service';
++
++type RawRequest = Request & { rawBody?: Buffer };
++
++@Controller('webhooks')
++export class PaymentController {
++  constructor(private readonly payments: PaymentService) {}
++
++  // To'lov xizmati shu yerga POST yuboradi. Imzo — X-Signature sarlavhasida (xom tana bo'yicha).
++  // Javob: 200 { ok: true } — xizmat 200 ni ko'rsa, qayta yubormaydi.
++  @Post('payment')
++  @HttpCode(200)
++  async handle(
++    @Req() req: RawRequest,
++    @Headers('x-signature') signature: string | undefined,
++    @Body() body: unknown,
++  ) {
++    if (
++      !verifySignature(req.rawBody, signature, config.PAYMENT_WEBHOOK_SECRET)
++    ) {
++      throw new UnauthorizedException("Imzo noto'g'ri");
++    }
++    if (!body || typeof body !== 'object') {
++      throw new BadRequestException('JSON tana kutilgan');
++    }
++    const payment = await this.payments.record(parsePaymentEvent(body));
++    return { ok: true, status: payment.status };
++  }
++}
+diff --git a/src/api/payment/payment.module.ts b/src/api/payment/payment.module.ts
+new file mode 100644
+index 0000000..2ebaf34
+--- /dev/null
++++ b/src/api/payment/payment.module.ts
+@@ -0,0 +1,12 @@
++import { Module } from '@nestjs/common';
++import { LiveModule } from '../live/live.module';
++import { PaymentController } from './payment.controller';
++import { PaymentService } from './payment.service';
++
++// To'lov webhook'i: POST /webhooks/payment. Natija jonli panelga order-changed bo'lib boradi.
++@Module({
++  imports: [LiveModule],
++  controllers: [PaymentController],
++  providers: [PaymentService],
++})
++export class PaymentModule {}
+diff --git a/src/api/payment/payment.service.ts b/src/api/payment/payment.service.ts
+new file mode 100644
+index 0000000..5be330e
+--- /dev/null
++++ b/src/api/payment/payment.service.ts
+@@ -0,0 +1,70 @@
++import {
++  ConflictException,
++  Injectable,
++  Logger,
++  NotFoundException,
++} from '@nestjs/common';
++import { DataSource } from 'typeorm';
++import { Order, Payment } from '../../core/entity';
++import { LiveGateway } from '../live/live.gateway';
++import type { PaymentEvent } from './payment-webhook';
++
++@Injectable()
++export class PaymentService {
++  private readonly log = new Logger('Payment');
++
++  constructor(
++    private readonly ds: DataSource,
++    private readonly live: LiveGateway,
++  ) {}
++
++  // Bitta tranzaksiya: buyurtma qatori qulflanadi (bir vaqtdagi ikki xabar ketma-ket o'tadi),
++  // shu external_id bor bo'lsa — yangilanadi (takror xabar), yo'q bo'lsa — yoziladi.
++  // Buyurtma holati o'zgarmaydi: to'lov alohida ko'rinadi.
++  async record(ev: PaymentEvent): Promise<Payment> {
++    const { payment, total } = await this.ds.transaction(async (m) => {
++      await m.query('SELECT id FROM orders WHERE id = $1 FOR UPDATE', [
++        ev.orderId,
++      ]);
++      const order = await m.findOneBy(Order, { id: ev.orderId });
++      if (!order)
++        throw new NotFoundException(`Buyurtma topilmadi: #${ev.orderId}`);
++
++      const existing = await m.findOne(Payment, {
++        where: { external_id: ev.paymentId },
++        relations: { order: true },
++      });
++      if (existing && existing.order.id !== order.id) {
++        throw new ConflictException(
++          `To'lov ${ev.paymentId} boshqa buyurtmaga tegishli`,
++        );
++      }
++      let saved: Payment;
++      if (existing) {
++        existing.status = ev.status;
++        existing.amount = ev.amount;
++        saved = await m.save(existing);
++      } else {
++        saved = await m.save(
++          m.create(Payment, {
++            order,
++            external_id: ev.paymentId,
++            status: ev.status,
++            amount: ev.amount,
++          }),
++        );
++      }
++      return { payment: saved, total: order.total };
++    });
++
++    if (ev.status === 'PAID' && ev.amount !== total) {
++      this.log.warn(
++        `#${ev.orderId}: to'lov summasi ${ev.amount}, buyurtma summasi ${total} — tekshiring`,
++      );
++    }
++    this.log.log(`#${ev.orderId}: to'lov ${ev.paymentId} → ${ev.status}`);
++    // Tranzaksiya yopilgach — panelga xabar
++    this.live.orderChanged(ev.orderId, 'payment');
++    return payment;
++  }
++}
+diff --git a/src/config/index.ts b/src/config/index.ts
+index 9600927..0f608f8 100644
+--- a/src/config/index.ts
++++ b/src/config/index.ts
+@@ -10,6 +10,8 @@ export const config = {
+   BOT_TOKEN: String(process.env.BOT_TOKEN || ''),
+   // jonli panel (/admin) va WebSocket ulanishi uchun maxfiy so'z — o'zingiz o'ylab topasiz
+   ADMIN_PANEL_TOKEN: String(process.env.ADMIN_PANEL_TOKEN || ''),
++  // to'lov xizmati webhook'i imzosi (HMAC-SHA256) kaliti — bo'sh bo'lsa webhook hamma so'rovni rad etadi
++  PAYMENT_WEBHOOK_SECRET: String(process.env.PAYMENT_WEBHOOK_SECRET || ''),
+   // "123,456" → [123, 456]
+   ADMIN_TELEGRAM_IDS: String(process.env.ADMIN_TELEGRAM_IDS || '')
+     .split(',')
+diff --git a/src/core/entity/index.ts b/src/core/entity/index.ts
+index df6d2c8..716c2d6 100644
+--- a/src/core/entity/index.ts
++++ b/src/core/entity/index.ts
+@@ -1,5 +1,7 @@
+ export { CartItem } from './cart-item.entity';
+ export { OrderItem } from './order-item.entity';
++export { Payment } from './payment.entity';
++export type { PaymentStatus } from './payment.entity';
+ export { Order } from './order.entity';
+ export type { OrderStatus } from './order.entity';
+ export { Product } from './product.entity';
+diff --git a/src/core/entity/order.entity.ts b/src/core/entity/order.entity.ts
+index ecf23e2..0ade4c6 100644
+--- a/src/core/entity/order.entity.ts
++++ b/src/core/entity/order.entity.ts
+@@ -8,6 +8,7 @@ import {
+   PrimaryGeneratedColumn,
+ } from 'typeorm';
+ import { OrderItem } from './order-item.entity';
++import { Payment } from './payment.entity';
+ import { User } from './user.entity';
+ 
+ export type OrderStatus = 'NEW' | 'CONFIRMED' | 'DELIVERED' | 'CANCELLED';
+@@ -33,6 +34,9 @@ export class Order {
+   @OneToMany(() => OrderItem, (i) => i.order, { cascade: true, eager: true })
+   items: OrderItem[];
+ 
++  @OneToMany(() => Payment, (p) => p.order)
++  payments: Payment[];
++
+   @CreateDateColumn({ name: 'created_at' })
+   created_at: Date;
+ }
+diff --git a/src/core/entity/payment.entity.ts b/src/core/entity/payment.entity.ts
+new file mode 100644
+index 0000000..be7ce3e
+--- /dev/null
++++ b/src/core/entity/payment.entity.ts
+@@ -0,0 +1,35 @@
++import {
++  Column,
++  CreateDateColumn,
++  Entity,
++  JoinColumn,
++  ManyToOne,
++  PrimaryGeneratedColumn,
++} from 'typeorm';
++import { Order } from './order.entity';
++
++// To'lov xizmatidan kelgan natija. PAID — to'landi, REJECTED — rad etildi.
++export type PaymentStatus = 'PAID' | 'REJECTED';
++
++// Har to'lov (to'lov xizmatining raqami bilan) — bitta qator. external_id bo'yicha takror xabar ikki marta yozilmaydi.
++@Entity('payments')
++export class Payment {
++  @PrimaryGeneratedColumn()
++  id: number;
++
++  @ManyToOne(() => Order, (o) => o.payments)
++  @JoinColumn({ name: 'order_id' })
++  order: Order;
++
++  @Column({ name: 'external_id', type: 'varchar', unique: true })
++  external_id: string;
++
++  @Column({ type: 'varchar' })
++  status: PaymentStatus;
++
++  @Column({ type: 'integer' })
++  amount: number;
++
++  @CreateDateColumn({ name: 'received_at' })
++  received_at: Date;
++}
+diff --git a/src/infrastructure/data-source.ts b/src/infrastructure/data-source.ts
+index 1f90ea5..dbd4827 100644
+--- a/src/infrastructure/data-source.ts
++++ b/src/infrastructure/data-source.ts
+@@ -1,8 +1,16 @@
+ import 'reflect-metadata';
+ import { DataSource } from 'typeorm';
+ import { config } from '../config';
+-import { CartItem, Order, OrderItem, Product, User } from '../core/entity';
++import {
++  CartItem,
++  Order,
++  OrderItem,
++  Payment,
++  Product,
++  User,
++} from '../core/entity';
+ import { Init1762200000000 } from './migrations/1762200000000-init';
++import { Payments1762300000000 } from './migrations/1762300000000-payments';
+ 
+ // Bitta ulanish sozlamasi — ham Nest (DatabaseModule), ham typeorm CLI (migration:run) shuni ishlatadi
+ export const dataSourceOptions = {
+@@ -11,8 +19,8 @@ export const dataSourceOptions = {
+   ssl: config.DATABASE_URL.includes('sslmode=require')
+     ? { rejectUnauthorized: false }
+     : false,
+-  entities: [Product, User, CartItem, Order, OrderItem],
+-  migrations: [Init1762200000000],
++  entities: [Product, User, CartItem, Order, OrderItem, Payment],
++  migrations: [Init1762200000000, Payments1762300000000],
+   synchronize: false, // jadvallar faqat migratsiya bilan o'zgaradi
+   logging: config.DB_LOGGING ? ['query', 'error'] : ['error'],
+ };
+diff --git a/src/infrastructure/migrations/1762300000000-payments.ts b/src/infrastructure/migrations/1762300000000-payments.ts
+new file mode 100644
+index 0000000..82a8312
+--- /dev/null
++++ b/src/infrastructure/migrations/1762300000000-payments.ts
+@@ -0,0 +1,25 @@
++import { MigrationInterface, QueryRunner } from 'typeorm';
++
++// To'lov natijalari: to'lov xizmati webhook'i shu jadvalga yozadi
++export class Payments1762300000000 implements MigrationInterface {
++  name = 'Payments1762300000000';
++
++  public async up(q: QueryRunner): Promise<void> {
++    await q.query(`CREATE TABLE "payments" (
++      "id" SERIAL PRIMARY KEY,
++      "order_id" INTEGER NOT NULL REFERENCES "orders"("id"),
++      "external_id" VARCHAR NOT NULL UNIQUE,
++      "status" VARCHAR NOT NULL,
++      "amount" INTEGER NOT NULL,
++      "received_at" TIMESTAMP NOT NULL DEFAULT now(),
++      CONSTRAINT "payment_status_known" CHECK ("status" IN ('PAID', 'REJECTED'))
++    )`);
++    await q.query(
++      `CREATE INDEX "payments_order_id" ON "payments" ("order_id")`,
++    );
++  }
++
++  public async down(q: QueryRunner): Promise<void> {
++    await q.query(`DROP TABLE "payments"`);
++  }
++}
+diff --git a/src/main.ts b/src/main.ts
+index 5f561dd..84225e4 100644
+--- a/src/main.ts
++++ b/src/main.ts
+@@ -3,7 +3,7 @@ import { AppModule } from './api/app.module';
+ import { config } from './config';
+ 
+ async function main() {
+-  const app = await NestFactory.create(AppModule);
++  const app = await NestFactory.create(AppModule, { rawBody: true }); // webhook imzosi uchun xom tana kerak
+   await app.listen(config.PORT);
+   console.log(`Server ${config.PORT}-portda ishlayapti`);
+ }

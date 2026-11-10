@@ -1,0 +1,9 @@
+# Tokensiz: ws://localhost:3100/admin/ws
+20:13:51 ulanmoqda… ws://localhost:3100/admin/ws
+20:13:51 open
+20:13:51 close 4401 bad token
+
+# Noto'g'ri token
+20:13:54 ulanmoqda… ws://localhost:3100/admin/ws?token=notogri
+20:13:54 open
+20:13:54 close 4401 bad token

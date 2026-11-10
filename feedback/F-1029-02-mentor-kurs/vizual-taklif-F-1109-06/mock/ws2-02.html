@@ -1,0 +1,27 @@
+<div class="z">
+  <div class="z-card">
+    <p class="z-h">Uzilish paytida yuborilgan hodisa — kimga yetadi?</p>
+    <div class="z-flow">
+      <div class="z-st ok"><b>Ulangan</b><span class="z-mut">#1 ko'rindi</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st bad"><b>Uzildi</b><span class="z-mut">server o'chdi yoki tarmoq</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st ac"><b>Buyurtma #2</b><span class="zm">order-changed</span><span class="z-tag r">0 panel</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st blue"><b>Qayta ulandi</b><span class="z-mut">yangi ulanish</span></div>
+      <div class="z-ar bad">→</div>
+      <div class="z-st bad"><b>Ro'yxat eski</b><span class="zm">faqat #1</span></div>
+    </div>
+    <span class="z-mut">socket.io ulanishni o'zi tiklaydi — lekin server hodisani faqat <b>hozir ulanganlarga</b> yuboradi.</span>
+  </div>
+  <div class="z-card" style="border-color:var(--ok)">
+    <p class="z-h" style="color:var(--ok)">Yechim — ro'yxat bazada: har connect da qayta so'raymiz</p>
+    <div class="z-flow">
+      <div class="z-st blue"><b>connect</b><span class="z-mut">birinchi ham, qayta ham</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st"><b>GET /admin/orders</b><span class="z-mut">bazadan to'liq ro'yxat</span></div>
+      <div class="z-ar">→</div>
+      <div class="z-st ok"><b>Ro'yxat to'g'ri</b><span class="zm">#2, #1</span><span class="z-mut">uzilishda nima bo'lgani muhim emas</span></div>
+    </div>
+  </div>
+</div>

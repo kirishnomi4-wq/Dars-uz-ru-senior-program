@@ -1,0 +1,11 @@
+## Opus-p2 (/tmp/claude-1000/-home-kali-Desktop-internetLesson/acbddc95-9018-4213-96d2-b79eac22166a/scratchpad/jest1-p2-ai1)
+buzilmagan: Tests:       17 passed, 17 total
+B1 som: ru-RU → en-US (120,000): Tests:       11 failed, 6 passed, 17 total
+B2 savat qatori: buyurtma narxi o'rniga hozirgi narx: Tests:       1 failed, 16 passed, 17 total
+B3 orderKeyboard: CANCELLED da ham tugma: Tests:       17 passed, 17 total
+B4 catalogKeyboard: oxirgi sahifada ham ▶: Tests:       17 passed, 17 total
+B5 STATUS_UZ.NEW matni o'zgardi: Tests:       5 failed, 12 passed, 17 total
+
+## Haiku-p2 — IFLOSLANGAN o'lchov olib tashlandi (CANCELLED sed bexosdan qo'llangan edi); toza o'lchov: mutatsiya-p2-haiku-toza.txt
+ai1 p2 CANCELLED→Yangi: Tests:       3 failed, 14 passed, 17 total
+ai2 p2 CANCELLED→Yangi: Tests:       3 failed, 9 passed, 12 total

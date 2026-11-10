@@ -1,0 +1,176 @@
+mongoose 9.11.4 · mongod db version v6.0.27
+--- PG-1 12-ekran · await User.create([{ username: 'ali' }, { username: 'vali' }, { username: 'sardor' }]) → 3 ta hujjat
+[
+  {
+    "username": "ali",
+    "_id": "6ae9d4a4b2d11e0fc441b724"
+  },
+  {
+    "username": "vali",
+    "_id": "6ae9d4a4b2d11e0fc441b725"
+  },
+  {
+    "username": "sardor",
+    "_id": "6ae9d4a4b2d11e0fc441b726"
+  }
+]
+--- PG-1 12-ekran · await Post.find()
+[
+  {
+    "_id": "6ae9d4a4b2d11e0fc441b728",
+    "author": "6ae9d4a4b2d11e0fc441b724",
+    "izoh": "Bugun Nest o'rgandim"
+  },
+  {
+    "_id": "6ae9d4a4b2d11e0fc441b727",
+    "author": "6ae9d4a4b2d11e0fc441b724",
+    "izoh": "Birinchi post"
+  },
+  {
+    "_id": "6ae9d4a4b2d11e0fc441b729",
+    "author": "6ae9d4a4b2d11e0fc441b725",
+    "izoh": "Salom hammaga"
+  }
+]
+--- PG-2 3-ekran · mongoose.connect('mongodb://localhost/shop') dan keyin bazalar (shop hali yo'q)
+[
+  "admin",
+  "blog",
+  "config",
+  "local"
+]
+--- PG-2 3-ekran · await Product.create([ …4 ta… ]) → 4 ta hujjat
+[
+  {
+    "_id": 1,
+    "name": "Klaviatura",
+    "price": 120000,
+    "stock": 8
+  },
+  {
+    "_id": 2,
+    "name": "Sichqoncha",
+    "price": 75000,
+    "stock": 15
+  },
+  {
+    "_id": 3,
+    "name": "Quloqchin",
+    "price": 95000,
+    "stock": 5
+  },
+  {
+    "_id": 4,
+    "name": "Kolonka",
+    "price": 50000,
+    "stock": 10
+  }
+]
+--- PG-2 3-ekran · birinchi create dan keyin bazalar
+[
+  "admin",
+  "blog",
+  "config",
+  "local",
+  "shop"
+]
+--- PG-2 4-ekran · await Product.find({ price: { $lt: 100000 } })
+[
+  {
+    "_id": 2,
+    "name": "Sichqoncha",
+    "price": 75000,
+    "stock": 15
+  },
+  {
+    "_id": 4,
+    "name": "Kolonka",
+    "price": 50000,
+    "stock": 10
+  },
+  {
+    "_id": 3,
+    "name": "Quloqchin",
+    "price": 95000,
+    "stock": 5
+  }
+]
+--- PG-2 5-ekran · await Product.updateOne({ _id: 1 }, { price: 99000 })
+{
+  "acknowledged": true,
+  "modifiedCount": 1,
+  "upsertedId": null,
+  "upsertedCount": 0,
+  "matchedCount": 1
+}
+--- PG-2 5-ekran · await Product.deleteOne({ _id: 3 })
+{
+  "acknowledged": true,
+  "deletedCount": 1
+}
+--- PG-2 5-ekran · await Product.updateOne({ _id: 99 }, { price: 1 })   // bunday id yo'q
+{
+  "acknowledged": true,
+  "modifiedCount": 0,
+  "upsertedId": null,
+  "upsertedCount": 0,
+  "matchedCount": 0
+}
+--- PG-2 9-ekran · await Product.updateOne({}, { price: 99000 })   // SHARTSIZ — nechta hujjat?
+{
+  "acknowledged": true,
+  "modifiedCount": 0,
+  "upsertedId": null,
+  "upsertedCount": 0,
+  "matchedCount": 1
+}
+--- PG-2 9-ekran · shundan keyin Product.find()
+[
+  {
+    "_id": 1,
+    "name": "Klaviatura",
+    "price": 99000,
+    "stock": 8
+  },
+  {
+    "_id": 2,
+    "name": "Sichqoncha",
+    "price": 75000,
+    "stock": 15
+  },
+  {
+    "_id": 4,
+    "name": "Kolonka",
+    "price": 50000,
+    "stock": 10
+  }
+]
+--- PG-2 9-ekran · await Product.updateMany({}, { price: 99000 })   // hammasi uchun alohida buyruq
+{
+  "acknowledged": true,
+  "modifiedCount": 2,
+  "upsertedId": null,
+  "upsertedCount": 0,
+  "matchedCount": 3
+}
+--- PG-2 9-ekran · shundan keyin Product.find()
+[
+  {
+    "_id": 1,
+    "name": "Klaviatura",
+    "price": 99000,
+    "stock": 8
+  },
+  {
+    "_id": 2,
+    "name": "Sichqoncha",
+    "price": 99000,
+    "stock": 15
+  },
+  {
+    "_id": 4,
+    "name": "Kolonka",
+    "price": 99000,
+    "stock": 10
+  }
+]

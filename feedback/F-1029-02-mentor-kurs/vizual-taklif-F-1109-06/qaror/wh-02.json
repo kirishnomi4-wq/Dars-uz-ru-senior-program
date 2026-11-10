@@ -1,0 +1,1 @@
+{"id":"wh-02","dars":"Webhook","ekran":2,"mavzu":"To'lov natijasi — webhook","naqsh":"A","tur":"taklif","oldin":"Kichik terminal (xabar tanasi va imzo) va qoida.","keyin":["Webhook yo'li: xizmat → POST (haqiqiy tana va X-Signature) → 200 {\"ok\":true} → payments → orders (paid) → panel order-changed «payment».","«Dalil emas / dalil» juftligi."],"blok":[2,4]}

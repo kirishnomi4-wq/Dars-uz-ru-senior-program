@@ -1,8 +1,8 @@
 
 // ============================================================
 //  MENTOR KURSI · PostgreSQL-2 «CRUD so'rovlar va Express'dan bazaga»
-//  F-1029-02 · manba-haqiqat: feedback/F-1029-02-mentor-kurs/08-PostgreSQL2-mentor-v1.md (MD v1, GATE M kutilmoqda; 01.11 avtopilot)
-//  Haqiqiy chiqishlar: feedback/F-1029-02-mentor-kurs/manba/pg2-out/ (00–20)
+//  F-1029-02 · manba-haqiqat: feedback/F-1029-02-mentor-kurs/08-PostgreSQL2-mentor-v2.md (MD v2 — M41 «avval mentor o'rganadi», GATE M 03.11: 1A·2C·3A·4A)
+//  Haqiqiy chiqishlar: feedback/F-1029-02-mentor-kurs/manba/pg2-out/ — v2b (3→11 uzluksiz), v2e (ikki psql seansi), v2f (14–18 uzluksiz), v2d (Mongoose), 10–20 (Express)
 //  Yig'ish: cat parts/01-asos.jsx parts/02-dvigatel.jsx pg2/parts/*.jsx > PgCrudMentorLesson.jsx
 //  Yordamchilar PG-1 dan nusxa (pg1/parts/04-yordam.jsx) — darslar bir-biriga bog'liq emas
 // ============================================================
@@ -12,6 +12,8 @@ const PG = { mongo: '#13AA52', pg: '#336791', term: '#111827', termEr: '#1F1115'
 MKCFG.root = 'avto-ijara-server';
 MKCFG.kind = (f) => /\.js$/.test(f) ? T.yellow : /\.sql$/.test(f) ? PG.pg : /\.json$/.test(f) ? T.ink2 : null;
 MKCFG.files = ['node_modules/', 'package.json', 'server.js'];
+// Mongoose jufti — bitta xira qator (M45): dvigatel .mk-pair
+const Pair = ({ code, res }) => <div className="mk-pair"><b style={{ color: PG.mongo }}>{t("Mongoose'da:", "В Mongoose:")}</b> <code>{code}</code>{res ? <> → {res}</> : null}</div>;
 
 // Segment: MD'dagi ekran matni (03-matn.gen.jsx) + sahna maydonlari (extras — segment tartibida)
 const sg = (id, key, text, extra = {}) => ({ id, key, text, show: wr(text), ...extra });
@@ -22,8 +24,8 @@ const mkS = (n, extras = [], more = {}) => {
 
 // Ovoz → «Matn» (transkript) uchun yozma ko'rinish. Uzun ibora oldin.
 const SPOKEN = [
-  ['psql minus U postgres', 'psql -U postgres'], ['teskari chiziqcha d products', '\\d products'], ['teskari chiziqcha d cars', '\\d cars'],
-  ['teskari chiziqcha l', '\\l'], ['teskari chiziqcha d', '\\d'], ['teskari chiziqcha c', '\\c'],
+  ['psql minus U postgres', 'psql -U postgres'], ['backslash d products', '\\d products'], ['backslash d cars', '\\d cars'],
+  ['backslash l', '\\l'], ['backslash d', '\\d'], ['backslash c', '\\c'],
   ['app use express json', 'app.use(express.json())'], ['express json', 'express.json()'], ['pool query', 'pool.query'], ['res json', 'res.json'],
   ['req body', 'req.body'], ['node server js', 'node server.js'], ['server js', 'server.js'], ['console error', 'console.error'], ['err message', 'err.message'],
   ['daily price', 'daily_price'], ['is rented', 'is_rented'], ['car rental', 'car_rental'], ['avto ijara server', 'avto-ijara-server'], ['rowCount', 'rowCount'],
@@ -32,10 +34,16 @@ const SPOKEN = [
   ['insert, nol, uch', 'INSERT 0 3'], ['insert nol bir', 'INSERT 0 1'], ['update bir', 'UPDATE 1'], ['update nol', 'UPDATE 0'], ['update uch', 'UPDATE 3'],
   ['delete bir', 'DELETE 1'], ['delete uch', 'DELETE 3'], ['deleted uch', 'deleted: 3'], ['not null', 'NOT NULL'], ['default false', 'DEFAULT false'],
   ['where name is null', 'WHERE name IS NULL'], ['process env', 'process.env'], ['Ctrl C', 'Ctrl+C'], ['npm init', 'npm init -y'],
+  // v2 (03.11)
+  ['create database', 'CREATE DATABASE'], ['create table', 'CREATE TABLE'], ['insert into', 'INSERT INTO'], ['nol vergul olti', '(0,6)'], ['nol vergul besh', '(0,5)'],
+  ['matchedCount nol', 'matchedCount: 0'], ['dollar lt', '$lt'], ['check stock katta yoki teng nol', 'CHECK (stock >= 0)'], ['alter table', 'ALTER TABLE'], ['set not null', 'SET NOT NULL'],
+  ['rowcount', 'rowCount'], ['Rowcount', 'rowCount'], ['update nol', 'UPDATE 0'], ['insert nol to\'rt', 'INSERT 0 4'], ['teng, yulduzcha, panjara', '=*#'], ['undov belgisi', '!'],
 ];
-DIGITS.unshift(["to'qson to'qqiz ming", '99 000'], ['yuz ming', '100 000'], ['ellik ming', '50 000'], ["o'ttiz ming", '30 000'],
+DIGITS.unshift(["sakson to'qqiz ming", '89 000'], ["to'qson to'qqiz ming", '99 000'], ['yuz ming', '100 000'], ['ellik ming', '50 000'], ["o'ttiz ming", '30 000'],
   ["to'qson to'qqizinchi", '99-'], ['yigirma bir', '21'], ['yigirma beshi', '25 tasi'], ["o'n besh-yigirma", '15–20'], ["besh-o'n", '5–10'],
   ['bir, ikki, uch, to\'rt', '1, 2, 3, 4'], ['id bir', 'id 1'], ['id uch', 'id 3'], ["to'qqiz ekran", '9 ekran']);
+// F-1109-01: gap boshidagi «Backslash l» ham «Matn»da kod bo'lib ko'rinsin
+SPOKEN.push(...SPOKEN.filter(([a]) => a.startsWith('backslash')).map(([a, b]) => ['B' + a.slice(1), b]));
 const wr = (s) => digits(SPOKEN.reduce((acc, [a, b]) => acc.split(a).join(b), s));
 // Haqiqiy inglizcha iboralar ovozda [English pronunciation] ichida (M21) — uzunlari oldin
 EN_PHRASES.unshift(
@@ -97,6 +105,8 @@ function psqlLine(l) {
 }
 const psql = (src, meta = {}) => src.replace(/^\n/, '').replace(/\n\s*$/, '').split('\n').map((l, i) => ({ h: psqlLine(l), ...(meta[i + 1] || {}) }));
 // Bitta qatorga «at» (qadam) va «id» (yoritish) beruvchi qisqa yozuv: rng(2, 5, {at: 1}) → {2:{at:1}, …, 5:{at:1}}
+// Galma-gal terminal: faqat oxirgi kelgan qadam guruhi (at) — eski buyruqlar ekrandan ketadi (memory «ma'lumot galma-gal»)
+const cur = (lines, beat) => { const ats = lines.map((l) => l.at).filter((x) => x != null && x <= beat); const m = ats.length ? Math.max(...ats) : null; return lines.filter((l) => l.at == null || l.at === m); };
 const rng = (a, b, v) => { const o = {}; for (let i = a; i <= b; i++) o[i] = { ...v }; return o; };
 const mergeMeta = (...ms) => ms.reduce((acc, m) => { Object.keys(m).forEach((k) => { acc[k] = { ...(acc[k] || {}), ...m[k] }; }); return acc; }, {});
 
@@ -120,7 +130,7 @@ const METHOD_C = { GET: '#61AFFE', POST: '#49CC90', PUT: '#FCA130', DELETE: '#F9
 function PostmanCard({ m, url, body, st, res, hl }) {
   const c = String(st)[0];
   return <div className={`pg-pm${hl ? ' hl' : ''}`}>
-    <div className="top"><span className="lg">Postman</span><span className="m" style={{ background: METHOD_C[m] }}>{m}</span><span className="u">{url}</span><span className="tg">haqiqiy javob</span></div>
+    <div className="top"><span className="lg">Postman</span><span className="m" style={{ background: METHOD_C[m] }}>{m}</span><span className="u">{url}</span><span className="tg">{t("haqiqiy javob", "настоящий ответ")}</span></div>
     {body && <pre className="b">{body}</pre>}
     <div className="r"><span className={`st s${c}`}>{st}</span><pre>{res}</pre></div>
   </div>;
@@ -129,6 +139,26 @@ const Doc = ({ children, odd, er }) => <pre className={`pg-doc${odd ? ' odd' : '
 
 // PG-1 ga xos qo'shimcha CSS (dvigatel CSS'iga tegilmaydi). Izohda backtick yo'q (CLAUDE.md).
 const CSS3 = `
+.p2-vs-card{background:#fff;border:1px solid #D7DCE3;border-radius:14px;padding:14px 10px 8px}
+.p2-vs-card svg{display:block;width:100%;height:auto}
+.p2-vs-card .nd{font:700 20px ui-monospace,Menlo,Consolas,monospace}
+.p2-vs-card .in{font:13px system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;fill:#CBD5E1}
+.p2-vs-card .lb{font:700 14px ui-monospace,Menlo,Consolas,monospace}
+.p2-lanes{display:grid;grid-template-columns:92px 1fr 1fr 1fr;background:#fff;border:1px solid #D7DCE3;border-radius:14px;overflow:hidden}
+.p2-lanes>div{padding:10px 12px;border-bottom:1px solid #EEF0F3;font-size:14px;line-height:1.35;display:flex;align-items:center;gap:8px;min-height:46px}
+.p2-lanes .h{font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase;background:#F8FAFC}
+.p2-lanes .tm{font:600 12px ui-monospace,Menlo,Consolas,monospace;color:#6B7280;background:#F8FAFC}
+.p2-lanes code{font:13px ui-monospace,Menlo,Consolas,monospace;background:#F1F3F6;border-radius:5px;padding:1px 6px}
+.p2-cn{display:flex;align-items:center;gap:6px;flex:1}
+.p2-cn i{flex:1;height:0;border-top:2px dashed #C3CAD4}
+.p2-cn.on i{border-top:3px solid #336791}
+.p2-pid{font:700 13px ui-monospace,Menlo,Consolas,monospace;color:#fff;background:#336791;border-radius:6px;padding:2px 8px;white-space:nowrap}
+.p2-bad{border:2px solid #E2451F;border-radius:14px;background:#FFF5F2;padding:12px 14px;display:grid;grid-template-columns:auto 1fr;gap:6px 12px;align-items:center;font-size:14px}
+.p2-bad>b{color:#E2451F}
+.p2-s19 td.st{text-align:center;font-weight:700;width:64px}
+.p2-s19 td.st.s2{color:#15803D}.p2-s19 td.st.s4{color:#B45309}.p2-s19 td.st.s5{color:#B91C1C}
+.p2-s19 tr.k td{background:#FFFBEB}
+.p2-s19 td.ar{color:#9CA3AF;text-align:center;width:22px}
 .mk-explorer{overflow:auto}
 /* ogohlantirish qutisi — Nest-2 dagi bilan bir xil (u bo'lak bu darsga kirmaydi) */
 .n2-warn{border-left:4px solid ${T.accent};background:#FFF0EB;border-radius:10px;padding:10px 12px;font-size:14px;line-height:1.5}
@@ -175,9 +205,9 @@ const CSS3 = `
 .pg-dict code{font:12.5px ${MONO};background:#EEF0F4;padding:1px 6px;border-radius:5px}
 .pg-dict th{font:600 11px/1 ${MONO};letter-spacing:.08em;text-transform:uppercase;text-align:left;padding:0 12px 4px}
 .pg-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;align-items:start}
-@media (max-width:1300px){.pg-two{grid-template-columns:1fr}}
+@media (max-width:1000px){.pg-two{grid-template-columns:1fr}}
 .pg-three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:start}
-@media (max-width:1300px){.pg-three{grid-template-columns:1fr}}
+@media (max-width:1000px){.pg-three{grid-template-columns:1fr}}
 .pg-lab{font:700 11px/1 ${MONO};letter-spacing:.08em;text-transform:uppercase;color:${T.ink3};margin:0 0 6px;display:flex;gap:8px;align-items:center}
 .pg-lab .tm{color:${T.accent}}
 .pg-wait{display:inline-flex;gap:8px;align-items:center;font:600 13px ${MONO};color:${T.yellow};background:#FFF6E2;border:1px solid #F1D38A;border-radius:8px;padding:6px 10px;animation:mk-pulse 1.6s ease-in-out infinite}
@@ -188,7 +218,7 @@ const CSS3 = `
 .pg-cmp .mk-card h5{display:flex;gap:8px;align-items:center}
 .pg-cmp .mk-card h5 i{width:10px;height:10px;border-radius:50%;display:inline-block}
 .pg-qa{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-@media (max-width:1300px){.pg-qa{grid-template-columns:1fr}}
+@media (max-width:1000px){.pg-qa{grid-template-columns:1fr}}
 .pg-qa button{text-align:left;border:1px solid ${T.line};border-radius:12px;background:${T.paper};padding:12px 14px;cursor:pointer;font:inherit;color:${T.ink}}
 .pg-qa b{display:block;font-size:14px}
 .pg-qa p{margin:6px 0 0;font-size:13px;color:${T.ink2};line-height:1.45}
@@ -214,6 +244,28 @@ const CSS3 = `
 .pg-crud td.off>*{opacity:0}
 .pg-crud code{font:13px ${MONO};background:#EEF0F4;padding:2px 7px;border-radius:5px}
 .pg-crud td.sql code{background:#E8F0F8;color:${PG.pg}}.pg-crud td.ex code{background:#E3F5EC;color:${T.green}}
+.pg-crud th.mg{color:${PG.mongo}}.pg-crud td.mg code{background:#E9F7EF;color:#0B5A33}
+/* v2 (03.11): Mongoose bloki, fayl sahifasi (ctid), uch holat, Pool chizmasi, karta qatori */
+.pg-mg{margin:0;font:12px/1.55 ${MONO};color:${T.ink2};background:#F1F8F4;border:1px dashed ${PG.mongo};border-radius:10px;padding:8px 12px;white-space:pre-wrap}
+.pg-mg b{color:${PG.mongo}}
+.pg-page{background:${T.paper};border:1px solid ${T.line};border-radius:12px;padding:12px 14px}
+.pg-page .slots{display:grid;gap:6px}
+.pg-page .slot{display:flex;gap:10px;align-items:center;padding:6px 10px;border:1px solid ${T.line};border-radius:8px;font:13px ${MONO};transition:background .3s,border-color .3s}
+.pg-page .slot b{min-width:44px;color:${T.ink3};font-weight:600}
+.pg-page .slot.old span{text-decoration:line-through;color:${T.ink3}}
+.pg-page .slot.gone{border-style:dashed;color:${T.ink3}}
+.pg-page .slot.now{border-color:${PG.pg};background:#E8F0F8;font-weight:700}
+.pg-page .slot.hl{border-color:${T.accent};background:#FFF0EB}
+.pg-states{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.pg-states .mk-box code{font:700 14px ${MONO};background:transparent;padding:0}
+.pg-pool{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:8px;align-items:center}
+.pg-pool .ar{font:700 18px ${MONO};color:${T.ink3};text-align:center}
+.pg-cards3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:start}
+@media (max-width:1300px){.pg-cards3,.pg-states{grid-template-columns:1fr}}
+.pg-rules{display:grid;gap:6px;font:13px ${MONO}}
+.pg-rules div{display:flex;gap:10px;padding:6px 10px;border:1px solid ${T.line};border-radius:8px;background:${T.paper};transition:background .3s}
+.pg-rules div.on{background:#E3F5EC;border-color:${T.green}}
+.pg-rules div.new{animation:mk-up .4s ease both}
 `;
 function useCss3() {
   useEffect(() => {

@@ -1,0 +1,4 @@
+jarayon 276989: Buyurtma #1 qabul qilindi! · Kolonka stock = 8
+jarayon 277003 (qayta ishga tushdi): Kolonka stock = 10
+
+Eslatma: bitta jarayon ichida Nest'ni ikki marta ko'tarish (harness) modul darajasidagi massivni saqlab qoladi — 1-yurish 12-k3 da stock 8 qoldi; haqiqiy restart — yangi jarayon: 10.
