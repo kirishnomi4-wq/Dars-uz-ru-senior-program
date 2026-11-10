@@ -25,7 +25,17 @@ Siz staging'da bayroqni yoqqaningizda (07:32 UTC) bizning server sentyabrdagi es
 
 Tuzatish (`2cbce86`): v2 hodisalar endi faqat yangi oqim yoqilgan lahzadan keyin boshlangan urinishlar uchun yaratiladi, undan oldingilari faqat v1 da qoladi (25-kontrakt §9). Prod'da yoqilganda eski urinishlar bo'yicha hodisa bormaydi. Qo'shimcha: kirib, birorta ekran o'tmagan o'quvchida `screens.reached` endi kamida 1, `total` — darsning ekranlar soni.
 
-Bu versiya staging'ga yuborildi, lekin hali deploy bo'lmadi (staging hozir `f65573c5`). Pipeline'ni ko'rib bera olasizmi? Deploy bo'lganda staging Dars bir marta qayta ishga tushadi — sinovdan oldin bo'lgani ma'qul.
+Bu versiya staging'ga yuborildi, lekin deploy yiqildi (staging hozir `f65573c5`). Sabab — deploy jurnalida:
+```
+awk: fatal: cannot open file `.env.deploy' for reading: Permission denied
+```
+`RESULT_SCHEMA_V2=on` yozilganda `/srv/dars-api/staging/.env.deploy` qayta yaratilgan bo'lsa kerak — `gitlab-runner` ning o'qish ruxsati (ACL) yo'qolgan. Iltimos, serverda:
+```
+getfacl /srv/dars-api/prod/.env.deploy | sudo setfacl --set-file=- /srv/dars-api/staging/.env.deploy
+```
+(prod faylining ruxsatlari staging fayliga ko'chadi), keyin GitLab'da deploy job'ini **Retry**. Deploy bo'lganda staging Dars bir marta qayta ishga tushadi — sinovdan oldin bo'lgani ma'qul.
+
+Prod'da bayroq yoqilganda ham shu ehtiyot: faylni joyida tahrirlang (`sudo sed -i …`) yoki keyin `getfacl` bilan `gitlab-runner` ruxsati turganini tekshiring — aks holda keyingi prod deploy shu sabab bilan yiqiladi.
 
 ## 3. Bitta savol
 
