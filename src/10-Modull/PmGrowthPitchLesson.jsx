@@ -1397,9 +1397,10 @@ const mentorSonlarimi = (g) => g.length === 3 && g.every((h, i) => h.soni === JA
 // Kod namunasi (o'qish uchun; nusxalanmaydi — PM-082 d): bo'sh joylar ajratilgan
 const KodNamuna = ({ kod }) => {
   const L = kod.split('\n');
-  const i0 = L.findIndex(l => l.startsWith('const sarlavha'));
-  const i1 = L.findIndex(l => l.includes('ustun.style.height'));
-  const qism = [L[i0], '…', ...L.slice(i1 - 2, i1 + 8)];
+  // F-1110-01: kod nomlari inglizcha (F-1027-01) — sarlavha → title, ustun → bar; eski satr qidirilsa topilmay oq ekran berardi
+  const i0 = L.findIndex(l => l.startsWith('const title'));
+  const i1 = L.findIndex(l => l.includes('bar.style.height'));
+  const qism = (i0 < 0 || i1 < 2) ? L : [L[i0], '…', ...L.slice(i1 - 2, i1 + 8)];
   return (
     <pre className="gp-kod" onCopy={(e) => e.preventDefault()} aria-label="app.js">
       {qism.map((l, i) => {
