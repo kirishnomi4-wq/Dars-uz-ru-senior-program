@@ -18,6 +18,7 @@ import {
 import { setProgressChannel } from './progressSync.js';
 import { BUILD_LESSON_VERSION } from './lessonVersion.js';
 import { setDarsApi } from './resultSchema.js';
+import { uzEtalon } from './uzEtalon.js';
 import { PRACTICE_CHECKED } from './practiceMeta.js';
 import { notePreviewProps } from './previewMode.js';
 
@@ -308,6 +309,7 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
   const recordAttempt = useCallback((screenIdx, questionId, picked, elapsedMs, texts) => {
     logAttempt(lessonId, screenIdx, { picked, texts, elapsedMs }); // onFinished detallari uchun — har rejimda (self ham)
     if ((mode !== 'student' && mode !== 'solo') || !pin || !playerRef.current) return;
+    texts = uzEtalon(lessonId, questionId, texts, picked); // F-1109-07: serverga yozuv doim UZ-etalon (RU da lang:'ru' qoladi)
     const lang = texts && texts.lang === 'ru' ? 'ru' : 'uz';
     const cut = (v) => { const x = asText(v, lang); return typeof x === 'string' ? x.slice(0, 300) : undefined; }; // L4: {uz,ru} → matn
     const t = texts && typeof texts === 'object' ? {

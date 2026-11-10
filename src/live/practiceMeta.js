@@ -1,4 +1,4 @@
-// AVTOMATIK — scripts/savol-kalitlari.mjs --yoz (2026-11-09). Qo'lda tahrirlanmaydi.
+// AVTOMATIK — scripts/savol-kalitlari.mjs --yoz. Qo'lda tahrirlanmaydi. (Sanasiz — yig'ma deterministik qoladi.)
 // L3: tekshiriladigan yakuniy amaliyot ekranlari (kalitli, variant-matnsiz) — useLiveSession.submitAnswer record_practice(checked=true) yuboradi.
 // Tekshiruvsiz («Bajardim») ekranlar bu yerda emas — ular INLINE_KEYS dagi -1 dan aniqlanadi.
 export const PRACTICE_CHECKED = {

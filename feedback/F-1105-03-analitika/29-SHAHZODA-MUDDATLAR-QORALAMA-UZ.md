@@ -36,7 +36,7 @@ Yangi ma'lumot `[T]` kundan boshlab yoziladi. Undan oldingi yozuvlarda yangi may
 | 1.4 | `opened_at`, UTC, ISO-8601 | Tayyor | `[T]` |
 | 1.5 | Reestr: dars kodi, uz/ru, Class, Learn, yuklangan sana | Tayyor | `[T]` |
 | 1.6 | CodeStrike: `joined`, `answered`, to'liq o'rin, o'rin olganlar soni | Tayyor | `[T]` |
-| 1.7 | Savol matni va til | Har yozuvda o'zbekcha matn (bitta savolga bitta matn — uz va ru o'quvchilar bitta kalitga qo'shiladi) va `lang` — o'quvchi qaysi tilda o'tgani. Ruscha matn savol kalitlari jadvalida (`text_ru`, ekranda ko'ringan matn). Hozircha 51 darsda rus tilidagi o'quvchi yozuviga ruscha matn (yoki aralash) tushadi — savolni matn bo'yicha emas, kalit bo'yicha bog'lang; bir xil qilish — `[keyingi bosqich]` | `[T]` |
+| 1.7 | Savol matni va til | Har yozuvda o'zbekcha matn (bitta savolga bitta matn — uz va ru o'quvchilar bitta kalitga qo'shiladi) va `lang` — o'quvchi qaysi tilda o'tgani. Ruscha matn savol kalitlari jadvalida (`text_ru`, ekranda ko'ringan matn). 172 darsning hammasida bir xil | `[T]` |
 | 1.8 | Konnektor (A yo'l), faqat o'qish | Bizda tayyor: view'lar va faqat o'qish roli. Tarmoqni Abdulloh ochadi | `[ETA]` |
 | 1.9 | GW 69 | Kerak emas (07.11 qarori) | — |
 | 2.1a | Har qadamning «Bajardim»i alohida | `[keyingi bosqich]` | `[sana]` |

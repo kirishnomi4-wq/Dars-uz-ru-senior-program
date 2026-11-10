@@ -129,13 +129,32 @@ if (YOZ) {
     for (const m of kb.matchAll(/([A-Za-z_][A-Za-z0-9_]*)\s*:\s*(-?\d+)/g)) if (Number(m[2]) === -1) prow.push({ lesson_id: lessonId, crm_modul: d.modul, crm_tartib: d.tartib, screen_id: m[1], tur: 'tekshiruvsiz' });
     for (const x of matn.lessons[lessonId]?.missing || []) { (checked[lessonId] ||= []).push(x.id); prow.push({ lesson_id: lessonId, crm_modul: d.modul, crm_tartib: d.tartib, screen_id: x.id, tur: 'tekshiriladigan' }); }
   }
-  writeFileSync('src/live/practiceMeta.js', `// AVTOMATIK — scripts/savol-kalitlari.mjs --yoz (${new Date().toISOString().slice(0, 10)}). Qo'lda tahrirlanmaydi.\n` +
+  writeFileSync('src/live/practiceMeta.js', `// AVTOMATIK — scripts/savol-kalitlari.mjs --yoz. Qo'lda tahrirlanmaydi. (Sanasiz — yig'ma deterministik qoladi.)\n` +
     `// L3: tekshiriladigan yakuniy amaliyot ekranlari (kalitli, variant-matnsiz) — useLiveSession.submitAnswer record_practice(checked=true) yuboradi.\n` +
     `// Tekshiruvsiz («Bajardim») ekranlar bu yerda emas — ular INLINE_KEYS dagi -1 dan aniqlanadi.\n` +
     `export const PRACTICE_CHECKED = ${JSON.stringify(checked, null, 1)};\n`);
   const pc = ['lesson_id', 'crm_modul', 'crm_tartib', 'screen_id', 'tur'];
   writeFileSync('AMALIYOT_ROYXATI.csv', '\ufeff' + [pc.join(','), ...prow.map((r) => pc.map((c) => csvCell(r[c])).join(','))].join('\n') + '\n');
   console.log(`yozildi: src/live/practiceMeta.js (${Object.keys(checked).length} dars) · AMALIYOT_ROYXATI.csv (${prow.length}: tekshiruvsiz ${prow.filter((r) => r.tur === 'tekshiruvsiz').length}, tekshiriladigan ${prow.filter((r) => r.tur !== 'tekshiruvsiz').length})`);
+  // F-1109-07 (10.11): RU rejimda analitika yozuvini UZ-etalonga keltirish xaritasi — src/live/questionTextUz.js.
+  //   Faqat RU yuki o'zbekchadan farq qiladigan savollar (51 dars: aralash + to'liq ruscha). Qiymat — darsning UZ rejimdagi
+  //   o'z yuki (savol, variantlar — dars tartibida). useLiveSession.recordAttempt (serverga yozuv) ishlatadi; 172 dars fayliga tegilmaydi.
+  const qtUz = {};
+  for (const [lessonId, l] of Object.entries(matn.lessons).sort()) {
+    for (const [qid, sc] of Object.entries(l.screens || {}).sort()) {
+      if (!sc.uz || !sc.ru || !sc.uz.question) continue;
+      // Serverga AYNAN yetadigan matn bilan solishtiriladi: {uz,ru} obyekt (pg-crud) RU rejimda ruscha bo'lib yoziladi (recordAttempt asText)
+      const tx = (v, lg) => (v && typeof v === 'object' && !Array.isArray(v) ? (lg === 'ru' ? (v.ru ?? v.uz) : (v.uz ?? v.ru)) : v);
+      const uzQ = tx(sc.uz.question, 'uz'), uzO = (sc.uz.options || []).map((o) => tx(o, 'uz'));
+      if (same(tx(sc.ru.question, 'ru'), uzQ) && same((sc.ru.options || []).map((o) => tx(o, 'ru')), uzO)) continue; // allaqachon UZ-etalon
+      (qtUz[lessonId] ||= {})[qid] = [uzQ, uzO];
+    }
+  }
+  writeFileSync('src/live/questionTextUz.js', `// AVTOMATIK — scripts/savol-kalitlari.mjs --yoz (SAVOL_MATNLARI.json dan). Qo'lda tahrirlanmaydi.\n` +
+    `// F-1109-07: RU rejimda serverga yoziladigan urinish matnini UZ-etalonga keltirish (RU_I18N_SPEC: analitika doim UZ, til — lang).\n` +
+    `// { lessonId: { questionId: [savol_uz, [variantlar_uz…]] } } — faqat RU yuki o'zbekchadan farq qiladigan savollar.\n` +
+    `export const QT_UZ = ${JSON.stringify(qtUz, null, 1)};\n`);
+  console.log(`yozildi: src/live/questionTextUz.js (${Object.keys(qtUz).length} dars, ${Object.values(qtUz).reduce((n, x) => n + Object.keys(x).length, 0)} savol)`);
   console.log(`yozildi: QUIZ_LEARN.csv (${qrows.length} qator · Learn id topilmagan dars: ${new Set(qrows.filter((r) => !r.learn_id).map((r) => r.lesson_id)).size})`);
 }
 if (SQL) {
