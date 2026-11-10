@@ -39,6 +39,17 @@ Shart: 1–3 ✅, jonli dars 0.
 2. `! curl -s https://dars-api.coddycamp.uz/api/v1/health` → `"result_schema_v2":"on"`.
 3. Shu lahzadan boshlangan urinishlargina v2 oladi (0017 chegara) — eski urinishlar qayta yuborilmaydi.
 
+**4-qadam uchun tayyor buyruq** (serverda, `/srv/dars-api/prod` papkasida; fayl qayta yaratilmaydi — ACL saqlanadi):
+```
+cd /srv/dars-api/prod
+grep -q '^RESULT_SCHEMA_V2=' .env.deploy && sudo sed -i 's/^RESULT_SCHEMA_V2=.*/RESULT_SCHEMA_V2=on/' .env.deploy || echo 'RESULT_SCHEMA_V2=on' | sudo tee -a .env.deploy >/dev/null
+getfacl .env.deploy | grep gitlab-runner          # «user:gitlab-runner:r--» va mask r bo'lishi kerak
+docker compose -f docker-compose.deploy.yml --env-file .env.deploy up -d
+```
+
+**4-qadamdan keyin Abdullohga** (SHA va event ID'lar kuzatuvdan qo'yiladi):
+> Dars API prod: `0.1.0+ab1bfa3…`, migratsiya 17, `RESULT_SCHEMA_V2=on` (HH:MM dan). 172 dars LMS'da (v6/v7…). Birinchi hodisalar: `lr_…`, `ap_…`, `ar_…` — holati: …
+
 ## 5. Birinchi haqiqiy dars — kuzatuv
 
 1. Birinchi jonli darsdan keyin: `! … tools/v2-kuzatuv.mjs https://dars-api.coddycamp.uz` → `lr_` / `ap_` / `ar_` — delivered → applied.
