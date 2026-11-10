@@ -141,8 +141,11 @@ export function buildLessonResult(input) {
   const lastActivityAt = lastActivity ? minDate(lastActivity, occurredAt) : null;
   const elapsedSec = clamp(Math.round((occurredAt.getTime() - openedAt.getTime()) / 1000), 0, live ? LIMITS.liveSec : LIMITS.soloSec);
   const maxView = views.reduce((m, v) => Math.max(m, Number(v.screen_idx) + 1), 0);
-  const reached = Math.max(maxView, Number.isInteger(input.progress?.screen) ? input.progress.screen + 1 : 0, completed && input.progress?.total ? input.progress.total : 0);
-  const screens = { reached: reached || null, total: Number.isInteger(input.progress?.total) ? input.progress.total : null };
+  const screensTotal = Number.isInteger(input.progress?.total) ? input.progress.total : (Number.isInteger(input.lessonTotal) ? input.lessonTotal : null);
+  const reached = Math.max(maxView, Number.isInteger(input.progress?.screen) ? input.progress.screen + 1 : 0, completed && screensTotal ? screensTotal : 0);
+  // 10.11 (staging QA 422 «screens.reached required»): urinish bor = birinchi ekran ochilgan → kamida 1; total — progress yoki
+  // shu dars versiyasining boshqa urinishi (lessonTotal, servisdan). CRM ikkalasini majburiy butun son kutadi.
+  const screens = { reached: screensTotal ? Math.min(Math.max(1, reached), screensTotal) : Math.max(1, reached), total: screensTotal };
 
   const ratio = total > 0 ? stats.correct / total : 0;
   const badges = [];

@@ -76,12 +76,15 @@ export async function loadAttemptSource(pool, attemptId) {
   const live = a.session_mode === 'live';
   const arenaStarted = a.quiz_first_q_at || null;
   const arenaQ = arenaQuestions(keys).size;
+  // 10.11: progress yo'q (kirib, birorta ekran o'tmagan) — ekranlar soni shu darsning boshqa urinishidan (CRM screens.total majburiy)
+  const lessonTotal = progress && Number.isInteger(progress.total) ? progress.total
+    : await pool.query('select sp.total from student_progress sp join attempts x on x.id = sp.attempt_id where x.lesson_id = $1 and sp.total > 0 order by sp.updated_at desc limit 1', [a.lesson_id]).then((r) => r.rows[0]?.total ?? null);
   return {
     attempt: { id: a.id, kind: a.kind, session_id: a.session_id, lesson_id: a.lesson_id, lesson_version: a.lesson_version, version_source: a.version_source, started_at: a.started_at, finished_at: a.finished_at, finish_reason: a.finish_reason, reached_end: a.reached_end, reached_end_at: a.reached_end_at, status: a.status },
     student: { subject_id: a.subject_id, crm_id: a.crm_id },
     session: live ? { id: a.lms_session_id, pin: a.pin, gid: a.gid, teacher_id: a.teacher_id, started_at: a.session_started_at, finished_at: a.session_finished_at, end_reason: a.session_end_reason, status: a.session_status } : null,
     lesson: { lesson_id: a.lesson_id, title: a.title_uz || a.lesson_id },
-    keys, answers, attemptsHist, practice, screenViews, progress, achievements, catalog: Array.isArray(a.catalog) ? a.catalog : [],
+    keys, answers, attemptsHist, practice, screenViews, progress, lessonTotal, achievements, catalog: Array.isArray(a.catalog) ? a.catalog : [],
     attemptNo, playerId: a.player_id, participation: arenaPart ? { ...arenaPart, student_arena_no: studentArenaNo } : null, players,
     arena: live ? {
       started_at: arenaStarted,
@@ -199,7 +202,17 @@ export async function rebuildV2(pool, log, eventId, { dry = true } = {}) {
  * Server tomonidan yopishlar (25 §6) va hodisalarni navbatga qo'yish. Har tick chaqiriladi (RESULT_SCHEMA_V2=on).
  * @returns {Promise<{ sessionLimit: number, liveEnded: number, arenaClosed: number, lessonResults: number, arenaParticipations: number, arenaResults: number }>}
  */
-export async function sweepV2(pool, log, { now = new Date(), limit = 100 } = {}) {
+/** 0017: v2 chegarasi — RESULT_SCHEMA_V2_FROM (bo'lsa) yoki bazadagi birinchi yoqilish lahzasi (bir marta qotadi). */
+export async function ensureV2Cutoff(pool, from = null) {
+  if (from) return new Date(from);
+  await pool.query(`insert into dars_settings (key, value) values ('v2_enabled_at', now()) on conflict (key) do nothing`);
+  const { rows: [r] } = await pool.query(`select value from dars_settings where key = 'v2_enabled_at'`);
+  return new Date(r.value);
+}
+
+export async function sweepV2(pool, log, { now = new Date(), limit = 100, from = null } = {}) {
+  // 25 §9 / 0017: chegaradan oldin boshlangan urinish uchun v2 YARATILMAYDI (backfill yo'q) — ular v1 oqimida qoladi
+  const cutoff = from instanceof Date ? from : await ensureV2Cutoff(pool, from);
   const out = { sessionLimit: 0, liveEnded: 0, arenaClosed: 0, lessonResults: 0, arenaParticipations: 0, arenaResults: 0 };
 
   // 1) Jonli sessiya 2 soatlik mutlaq chegara: lms + live yopiladi, arena session_limit bilan, urinishlar live_ended
@@ -256,19 +269,21 @@ export async function sweepV2(pool, log, { now = new Date(), limit = 100 } = {})
     `select a.id from attempts a
        join lms_participants p on p.attempt_id = a.id and p.role = 'student'
       where (a.reached_end_at is not null or (a.status = 'finished' and a.finish_reason in ('completed', 'live_ended', 'auto_7d', 'version_changed')))
+        and a.started_at >= $2
         and not exists (select 1 from result_events r where r.attempt_id = a.id and r.schema_version = 2 and r.event_type = 'lesson_result')
       order by a.updated_at asc limit $1`,
-    [limit],
+    [limit, cutoff],
   );
   for (const r of lr) { try { if (await emitLessonResult(pool, log, r.id, { now })) out.lessonResults++; } catch (e) { log.error({ err: e, attemptId: r.id }, 'v2 lesson_result xato'); } }
 
   // 4) arena_participation
   const { rows: ap } = await pool.query(
     `select ap.attempt_id from arena_participants ap
+       join attempts a on a.id = ap.attempt_id and a.started_at >= $2
       where ap.attempt_id is not null
         and not exists (select 1 from result_events r where r.attempt_id = ap.attempt_id and r.schema_version = 2 and r.event_type = 'arena_participation')
       order by ap.first_shown_at asc limit $1`,
-    [limit],
+    [limit, cutoff],
   );
   for (const r of ap) { try { if (await emitArenaParticipation(pool, log, r.attempt_id)) out.arenaParticipations++; } catch (e) { log.error({ err: e, attemptId: r.attempt_id }, 'v2 arena_participation xato'); } }
 
@@ -277,11 +292,12 @@ export async function sweepV2(pool, log, { now = new Date(), limit = 100 } = {})
     `select p.attempt_id from lms_participants p
        join lms_sessions s on s.id = p.session_id
        join live_sessions ls on ls.pin = s.pin
+       join attempts a on a.id = p.attempt_id and a.started_at >= $2
       where p.role = 'student' and p.attempt_id is not null and s.mode = 'live' and s.status = 'ended'
         and (ls.quiz_done_at is not null or ls.quiz_first_q_at is null)
         and not exists (select 1 from result_events r where r.attempt_id = p.attempt_id and r.schema_version = 2 and r.event_type = 'arena_result')
       order by s.finished_at asc limit $1`,
-    [limit],
+    [limit, cutoff],
   );
   for (const r of arr) { try { if (await emitArenaResult(pool, log, r.attempt_id, { now })) out.arenaResults++; } catch (e) { log.error({ err: e, attemptId: r.attempt_id }, 'v2 arena_result xato'); } }
 

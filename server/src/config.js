@@ -149,6 +149,8 @@ export function loadConfig(env = process.env) {
     // schema_version 2). off = yaratilmaydi ham, yuborilmaydi ham (prod T kunigacha) · on = sweeper yaratadi, ishchi yuboradi,
     // qo'llash holati (processing) kuzatiladi. v1 oqimi bu bayroqdan mustaqil ishlayveradi (T+8 gacha yonma-yon).
     resultSchemaV2: read('RESULT_SCHEMA_V2', { def: 'off', enums: ['off', 'on'] }),
+    // 0017: v2 faqat shu lahzadan keyin boshlangan urinishlarga. Berilmasa — bazadagi birinchi yoqilish lahzasi (dars_settings).
+    resultSchemaV2From: read('RESULT_SCHEMA_V2_FROM', { def: null, parse: (v) => { const d = new Date(v); if (Number.isNaN(d.getTime())) throw new Error('ISO vaqt kerak (2026-11-10T15:00:00Z)'); return d.toISOString(); } }),
 
     // ---- Natija-navbat ishchisi va kuzatuv
     resultsWorkerEnabled: read('RESULTS_WORKER_ENABLED', { def: true, parse: parseBool }),

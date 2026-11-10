@@ -3,7 +3,7 @@
 // 401/403/409/422/404 → manual_review + Telegram. Loglarda: event_id, HTTP kod, X-Request-ID — payload/token YO'Q.
 // Bitta jarayon; ustma-ust chaqiriqlar BIRLASHTIRILADI (joriy yurish tugagach bitta qo'shimcha yurish); qatorlar `for update skip locked` bilan olinadi.
 import { sweepResults, rebuildEvents } from './result-service.js';
-import { sweepV2, rebuildV2, nextProcessingCheck, PROCESSING_REVIEW_MS, PROCESSING_WARN_MS } from './v2-service.js';
+import { sweepV2, rebuildV2, ensureV2Cutoff, nextProcessingCheck, PROCESSING_REVIEW_MS, PROCESSING_WARN_MS } from './v2-service.js';
 import { nextDelayMs, isRetryable, MAX_SEND_ATTEMPTS } from './retry.js';
 
 /**
@@ -11,7 +11,9 @@ import { nextDelayMs, isRetryable, MAX_SEND_ATTEMPTS } from './retry.js';
  *           notify?: (text: string) => Promise<void>, batch?: number, v2?: boolean }} deps
  *   v2 — F-1105-03 (25-kontrakt): sweepV2 (hodisalar + server yopishlari) va qo'llash kuzatuvi (processing) yoqiladi.
  */
-export function createResultWorker({ pool, log, schoolApi, notify, batch = 10, details = false, liveRepeat = 'skip', v2 = false }) {
+export function createResultWorker({ pool, log, schoolApi, notify, batch = 10, details = false, liveRepeat = 'skip', v2 = false, v2From = null }) {
+  // 0017: v2 chegarasi ishchi yaratilganda qotadi (birinchi sweep'da emas — undan oldingi urinishlar ham chegaradan keyin bo'lsin)
+  let v2Cutoff = v2 ? ensureV2Cutoff(pool, v2From).catch((e) => { log.error({ err: e }, 'v2 chegarasi o\'rnatilmadi'); v2Cutoff = null; return null; }) : null;
   let inflight = null; // joriy yurish (Promise) yoki null
   let rerun = null;    // yurish paytida kelgan chaqiriqlar uchun bitta umumiy keyingi yurish
   const sweepOpts = { details: !!details, liveRepeat };
@@ -162,7 +164,13 @@ export function createResultWorker({ pool, log, schoolApi, notify, batch = 10, d
   async function tick() {
     const out = { swept: null, sent: 0, v2: null, tracked: 0 };
     try { out.swept = await sweepResults(pool, log, sweepOpts); } catch (e) { log.error({ err: e }, 'sweeper xato'); }
-    if (v2) { try { out.v2 = await sweepV2(pool, log); } catch (e) { log.error({ err: e }, 'v2 sweeper xato'); } }
+    if (v2) {
+      try {
+        if (!v2Cutoff) v2Cutoff = ensureV2Cutoff(pool, v2From);
+        const from = await v2Cutoff;
+        if (from) out.v2 = await sweepV2(pool, log, { from }); // chegara noma'lum bo'lsa v2 yaratilmaydi (xavfsiz tomon)
+      } catch (e) { log.error({ err: e }, 'v2 sweeper xato'); }
+    }
     const client = await pool.connect();
     try {
       await client.query('begin');

@@ -223,3 +223,14 @@ test('hajm: 1 MiB dan oshsa tafsilot tashlanadi (omitted/size), asosiy ketadi', 
   // sun'iy katta: achievements bilan oshirib bo'lmaydi (chegara 20) — shuning uchun fitSize alohida: 1 MiB dan katta savol matni validator qirqadi; bu test faqat qoida mavjudligini tekshiradi
   assert.ok(LIMITS.payloadBytes === 1_048_576);
 });
+
+test('10.11 (staging 422 «screens.reached required»): progress yo\'q — reached kamida 1, total shu darsning boshqa urinishidan; total ham yo\'q bo\'lsa reached 1', () => {
+  const base = { attempt: { id: ATT, kind: 'live', lesson_id: lesson.lesson_id, lesson_version: 'v5', version_source: 'attempt', started_at: T0, finished_at: at(600), reached_end: false, reached_end_at: null },
+    answers: [], attemptsHist: [], practice: [], screenViews: [], progress: null, achievements: [], trigger: 'session_closed' };
+  const a = buildLessonResult(liveInput({ ...base, lessonTotal: 22 })).payload.result.screens;
+  assert.deepEqual(a, { reached: 1, total: 22 });
+  const b = buildLessonResult(liveInput({ ...base })).payload.result.screens;
+  assert.equal(b.reached, 1);
+  const c = buildLessonResult(liveInput({ progress: { screen: 30, total: 11, updated_at: at(4295) } })).payload.result.screens;
+  assert.deepEqual(c, { reached: 11, total: 11 }, 'reached total dan oshmaydi');
+});

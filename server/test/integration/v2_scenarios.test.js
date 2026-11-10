@@ -26,7 +26,7 @@ async function fetchStub(url, init) {
   return ctxFetch(url, init);
 }
 before(async () => {
-  t = await makeTestApp({ RESULT_SCHEMA_V2: 'on' }, { lms: true, fetchImpl: fetchStub });
+  t = await makeTestApp({ RESULT_SCHEMA_V2: 'on', RESULT_SCHEMA_V2_FROM: '2026-01-01T00:00:00Z' }, { lms: true, fetchImpl: fetchStub }); // 0017: 7 kunlik ssenariy urinishni orqaga suradi — chegara o'tmishda
   await t.seedCatalog([LESSON]);
 });
 after(async () => { await t?.close(); });

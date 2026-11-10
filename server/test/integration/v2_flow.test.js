@@ -9,7 +9,7 @@ const LESSON = 'internet-01-v18';
 let t;
 const received = [];
 const gets = [];
-const ctxFetch = fakeSchoolApi({ 8001: [881], 8002: [881], 8003: [881] });
+const ctxFetch = fakeSchoolApi({ 8001: [881], 8002: [881], 8003: [881], 8004: [] });
 async function fetchStub(url, init) {
   const u = String(url);
   if (u.endsWith('/integrations/dars-platform/lesson-results') && init?.method === 'POST') {
@@ -164,4 +164,28 @@ test('flag o\'chiq bo\'lsa v2 yaratilmaydi (alohida ilova)', async () => {
     assert.deepEqual([n, v1], [0, 1]);
   } finally { await off.close(); }
   function join_(appT, tok) { return post(appT.app, '/api/v1/lms/join', { lesson_id: LESSON }, bearer(tok)); }
+});
+
+test('0017 chegara: yoqilishdan OLDIN boshlangan urinish uchun v2 yaratilmaydi (backfill yo\'q), keyingisi uchun — yaratiladi; lahza bazada bir marta qotadi', async () => {
+  const cut = await makeTestApp({ RESULT_SCHEMA_V2: 'on', RESULT_SCHEMA_V2_FROM: new Date(Date.now() + 3600_000).toISOString() }, { lms: true, fetchImpl: fetchStub });
+  try {
+    await cut.seedCatalog([LESSON]);
+    const tok = await mintToken({ role: 'student', sub: 8004, name: 'Tort', jti: 'v2f-cut' });
+    const s = (await post(cut.app, '/api/v1/lms/join', { lesson_id: LESSON }, bearer(tok))).json();
+    await cut.app.inject({ method: 'PUT', url: '/api/v1/me/progress', payload: { lesson_id: LESSON, attempt_id: s.attempt.id, screen: 21, total: 22, answers: {}, client_ts: 1 }, headers: { 'content-type': 'application/json', ...bearer(tok) } });
+    await new Promise((r) => setTimeout(r, 300)); await cut.app.results.runOnce(); await cut.app.results.runOnce();
+    const v2 = (await cut.db.query(`select count(*)::int as n from result_events where attempt_id = $1 and schema_version = 2`, [s.attempt.id])).rows[0].n;
+    const v1 = (await cut.db.query(`select count(*)::int as n from result_events where schema_version = 1 and payload::text like $1`, [`%${s.attempt.id.slice(0, 8)}%`])).rows[0].n;
+    assert.equal(v2, 0, 'chegaradan oldingi urinish — v2 yo\'q');
+    // chegara o'tmishda (yoqilgandan keyin boshlangan) — xuddi shu urinish turi uchun v2 bor
+    const { sweepV2 } = await import('../../src/modules/results/v2-service.js');
+    await sweepV2(cut.db, { info() {}, warn() {}, error() {} }, { from: new Date(Date.now() - 3600_000) });
+    const after = (await cut.db.query(`select count(*)::int as n from result_events where attempt_id = $1 and schema_version = 2 and event_type = 'lesson_result'`, [s.attempt.id])).rows[0].n;
+    assert.equal(after, 1);
+    void v1;
+  } finally { await cut.close(); }
+  // RESULT_SCHEMA_V2_FROM berilmasa — dars_settings da bir marta qotadi (qayta chaqiruv surmaydi)
+  const { ensureV2Cutoff } = await import('../../src/modules/results/v2-service.js');
+  const a = await ensureV2Cutoff(t.db); await new Promise((r) => setTimeout(r, 20)); const b = await ensureV2Cutoff(t.db);
+  assert.equal(a.getTime(), b.getTime());
 });
