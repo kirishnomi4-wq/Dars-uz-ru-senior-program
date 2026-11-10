@@ -9,7 +9,7 @@ Abdulloh, salom. 32-hujjat uchun rahmat — hammasi aniq. Jonli sinovga tayyormi
 - Dars: «Internet qanday ishlaydi» (2-Modul, 1-dars), `lesson_id: internet-01-v18`.
 - Fayl: `01-InternetLesson-v6-QA-staging.jsx` (ilova). Bu staging Dars API'ga ulangan yig'ma: yangi natija oqimi (oxirgi ekranda avtomatik `onFinished`, `schema_version: 2`, `dars_api`), versiya `v6`. Prod'dagi fayldan farqi — faqat server manzili.
 - Iltimos, QA CRM'da shu darsning JSX faylini (uz va ru — bir xil fayl) shu fayl bilan almashtiring va sinov guruhidagi QA o'quvchilarga Class/kurs ruxsatini bering.
-- Vaqt: `[vaqt]`. Bizdan: mentor + kuzatuv (admin va `v2-kuzatuv`).
+- Vaqt: **hozir** — staging deploy bo'lishi bilan. Bizdan: mentor + kuzatuv (admin va `v2-kuzatuv`).
 
 **Sinov ssenariysi** (sizning 1–4 bandlaringiz shu ichida):
 1. Mentor darsni ochadi, 3 ta QA o'quvchi kiradi (bittasi kech).
@@ -41,4 +41,13 @@ Prod'da bayroq yoqilganda ham shu ehtiyot: faylni joyida tahrirlang (`sudo sed -
 
 «Elapsed time must use the logical end, excluding worker delay» — 32-hujjatda vaqt validatsiyasini bizga moslashtirganingizni yozdingiz. Shu xato endi chiqmasligini tasdiqlaysizmi? Bizda `elapsed_sec` = mantiqiy yakun (oxirgi ekran / sessiya yopilishi / 7 kun) − ochilish; ishchi kechikishi qo'shilmaydi.
 
-Production — kelishilganidek: QA'dagi jonli qabuldan keyin alohida. Bizda prod'da `RESULT_SCHEMA_V2` o'chiq.
+## 4. Bugun hammasini yakunlaymiz — tartib
+
+1. **Siz:** staging `.env.deploy` ruxsati → deploy **Retry**. Biz staging'ni darhol tekshiramiz.
+2. **Siz:** QA CRM'ga sinov darsi + QA o'quvchilarga ruxsat.
+3. **Birga:** QA'da jonli sinov (1-bo'limdagi ssenariy, 30–40 daqiqa).
+4. **Biz:** Dars API prod'ga yangi versiya (`RESULT_SCHEMA_V2` hali o'chiq) + 172 dars LMS'ga — jonli dars yo'q paytda.
+5. **Siz:** prod qabul qiluvchi (School API, CRM, LMS).
+6. **Birga:** prod'da `RESULT_SCHEMA_V2=on` (faylni joyida tahrirlab) → birinchi darslarni birga kuzatamiz. Muammo bo'lsa — `off`, hammasi eskicha ishlaydi.
+
+Qaysi qadam sizda qachon tayyor bo'lishini yozib qo'ysangiz, biz o'z qadamlarimizni shunga moslaymiz.
