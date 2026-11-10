@@ -17,6 +17,7 @@ Abdulloh, salom. 25-kontrakt bo'yicha Dars API va darslar tomoni tayyor. Bugun p
 - Kuzatish: qabul qilingach `GET …/lesson-results/{event_id}` — 1, 5, 15, 60 daqiqada, keyin har soat, 24 soatgacha. 24 soatda qo'llanmasa — bizda tekshiruvga chiqadi.
 - Qayta yetkazishda ID, vaqtlar va mazmun o'zgarmaydi. `student_arena_no` eski ID'larni ham hisobga olib bizda beriladi.
 - Eski (v1) oqim o'zgarmagan, yangi bilan birga ishlaydi.
+- Savol tafsilotidagi matn (`questions[].question`, variantlar, javob) — doim o'zbekcha, o'quvchi tili `lang` maydonida. Savol kaliti uz va ru o'quvchilar uchun bitta.
 
 **Darslar (172 ta, shu bugun yuklanadi):**
 - Har dars fayliga versiyasi yozilgan, u `join` orqali bizning serverga ketadi.
@@ -27,7 +28,7 @@ Abdulloh, salom. 25-kontrakt bo'yicha Dars API va darslar tomoni tayyor. Bugun p
   Solo'da `session_key: null`. `session_key` server hodisasidagi bilan aynan bir xil, jonli darsdan keyin ko'rish rejimida ham.
 - Oxirgi ekranda `onFinished` avtomatik chaqiriladi, tugmani bosish shart emas; bitta urinishda bir marta. Tugma chiqish va navigatsiya uchun qoladi. Sahifadan avtomatik chiqarmaymiz.
 
-**Sinovlar:** server testlari 85 + 124, darslar 172 × 2 til (avto-yakun va eski oqim), brauzerda uchidan-uchigacha sinov — hammasi o'tdi. Staging'da yangi server ishlayapti.
+**Sinovlar:** server testlari 85 + 124, darslar 172 × 2 til (avto-yakun va eski oqim), brauzerda uchidan-uchigacha sinov — hammasi o'tdi. Dars API prod'da yangi versiyada (`55fd1797`, yangi oqim o'chiq), staging'da ham.
 
 ## 2. Yangi oqim qanday yoqiladi — bitta sozlama
 
@@ -38,8 +39,8 @@ Hammasi Dars API'dagi bitta sozlamaga bog'langan: `RESULT_SCHEMA_V2`.
 
 ## 3. Bugungi tartib
 
-1. Dars API prod'ga (jonli dars yo'q paytda), `RESULT_SCHEMA_V2=off`.
-2. 172 dars LMS'ga (dars vaqtidan tashqari).
+1. ✅ Dars API prod'ga chiqdi (`55fd1797`), `RESULT_SCHEMA_V2=off`.
+2. 172 dars LMS'ga — bugun kechqurun, dars vaqtidan tashqari.
 3. Eski oqim ishlayveradi — o'quvchi va mukofotlar uchun hech narsa o'zgarmaydi.
 4. Siz tayyor bo'lgach: avval staging'da birga sinaymiz, keyin prod'da `on`.
 
