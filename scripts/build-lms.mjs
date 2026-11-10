@@ -138,7 +138,7 @@ async function one(entry, sharedSpec, asPath = null) {
     define: {
       __DARS_API_URL__: JSON.stringify(process.env.DARS_API_URL || ''),
       __LESSON_VERSION__: JSON.stringify(lessonVersionFor(abs)), // F-1105-03 L1: src/live/lessonVersion.js
-      __RESULT_SCHEMA_V2__: JSON.stringify(process.env.RESULT_SCHEMA_V2 === 'on' ? 'on' : ''), // F-1105-03 L2: T kuni RESULT_SCHEMA_V2=on — src/live/resultSchema.js
+      __RESULT_SCHEMA_V2__: JSON.stringify(process.env.RESULT_SCHEMA_V2 === 'off' ? 'off' : ''), // F-1105-03 L2 (10.11): v4 bayrog'i SERVERDAN (join `result_schema: 2`); RESULT_SCHEMA_V2=off — favqulodda o'chirish (src/live/resultSchema.js)
       localStorage: '__ccLocalStorage', sessionStorage: '__ccSessionStorage',
       'window.localStorage': '__ccLocalStorage', 'window.sessionStorage': '__ccSessionStorage',
       'globalThis.localStorage': '__ccLocalStorage', 'globalThis.sessionStorage': '__ccSessionStorage',

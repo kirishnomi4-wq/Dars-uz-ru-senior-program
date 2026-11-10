@@ -188,11 +188,20 @@ const soloPayload = (sess, attempt, progressRow) => ({
   progress: progressPayload(progressRow),
 });
 
-const reviewPayload = (attempt, progressRow) => ({
+const reviewPayload = (attempt, progressRow, sessionKey = null) => ({
   mode: 'review',
+  session_key: sessionKey, // L2 (10.11): jonli urinishni ko'rishda ham brauzer yukidagi kalit server lr_ hodisasidagi bilan bir xil
   attempt: attemptPayload(attempt),
   progress: progressPayload(progressRow),
 });
+
+/** Ko'rish rejimi: urinish jonli sessiyada bo'lgan bo'lsa — o'sha sessiya kaliti (v2-service bilan bir xil manba), solo — null */
+async function reviewOf(c, attempt) {
+  const { rows: [r] } = await c.query(
+    `select s.pin, s.started_at from lms_participants p join lms_sessions s on s.id = p.session_id
+      where p.attempt_id = $1 and p.role = 'student' and s.mode = 'live' limit 1`, [attempt.id]);
+  return reviewPayload(attempt, await getProgress(c, attempt.id), r ? liveEventId(r.pin, r.started_at) : null);
+}
 
 /** Urinishning ishtirokchi + sessiya qatori (o'quvchi) */
 async function participationOf(c, attempt) {
@@ -345,7 +354,7 @@ export async function joinStudent(deps, claims, body) {
 
     // 2) tugagan urinish → ko'rish rejimi (versiya almashib hozir yopilgan bo'lsa — emas: o'quvchi darsni davom ettiryapti)
     const last = versionClosed ? null : await latestFinishedAttempt(c, claims.sub, lessonId);
-    if (last) return reviewPayload(last, await getProgress(c, last.id));
+    if (last) return reviewOf(c, last);
 
     // 3) solo
     return enterSolo(c, deps, claims, lessonId, body.lesson_version ?? null);
@@ -407,7 +416,7 @@ export async function whoAmI(deps, claims, lessonId) {
       }
     }
     const last = await latestFinishedAttempt(c, claims.sub, lessonId);
-    if (last) return reviewPayload(last, await getProgress(c, last.id));
+    if (last) return reviewOf(c, last);
     throw notFound("Ochiq sessiya yo'q.");
   });
 }

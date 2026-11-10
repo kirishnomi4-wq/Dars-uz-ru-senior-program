@@ -361,7 +361,7 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
     if (!p || typeof p !== 'object') return false;
     // L2 (25 §8): brauzer yuki bog'lanishi — urinish, sessiya kaliti (server bilan bir xil), urinish versiyasi
     const att = p.attempt && p.attempt.id ? p.attempt : null;
-    setDarsApi(lessonId, att && p.mode !== 'mentor' ? { attempt_id: att.id, session_key: p.session_key ?? null, lesson_version: att.lesson_version ?? lessonVersion ?? null } : null,
+    setDarsApi(lessonId, att && p.mode !== 'mentor' ? { attempt_id: att.id, session_key: p.session_key ?? null, lesson_version: att.lesson_version ?? lessonVersion ?? null, v2: p.result_schema === 2 } : null,
       { auto: !!att && att.status === 'active' && (p.mode === 'student' || p.mode === 'solo') });
     const prog = p.progress ? { ...p.progress, seq: Date.now() + Math.random() } : null;
     if (p.mode === 'mentor' && p.pin && p.token) {

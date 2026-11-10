@@ -47,8 +47,22 @@ for (const dir of readdirSync('codestrike-savollar', { withFileTypes: true }).fi
   }
 }
 
+// 10.11 (F-1109-07): ruscha matn. Ko'p darslar analitika yukiga RU rejimda ham o'zbekcha matn beradi (RU_I18N_SPEC «UZ-etalon»).
+// Shunda yukdagi «ru» aslida o'zbekcha — u jadvalga ruscha deb yozilmaydi. Tartib: yukdagi ruscha (uz dan farq qilsa) →
+// ekranda ko'ringan ruscha (`savol-matnlari.mjs` shown) → bo'sh (null). Noto'g'ri tildagi matn hech qachon yozilmaydi.
+const same = (a, b) => JSON.stringify(a ?? null) === JSON.stringify(b ?? null);
+export function ruOf(s) {
+  if (!s || !s.ru) return null;
+  const sq = s.ru.shown?.question;
+  const q = !same(s.ru.question, s.uz?.question) ? s.ru.question : (sq && /[а-яё]/i.test(sq) ? sq : null); // kirillsiz «ruscha savol» — noto'g'ri element (kod bloki), olinmaydi
+  const so = s.ru.shown?.options;
+  const o = !same(s.ru.options, s.uz?.options) ? s.ru.options : (Array.isArray(so) && so.length && so.every(Boolean) ? so : null);
+  if (q === null) report.ru_unknown_q++;
+  if (o === null) report.ru_unknown_opts++;
+  return { question: q, options: o };
+}
 const rows = [];
-const report = { lessons: 0, test: 0, test_one_lang: 0, test_missing: 0, arena: 0, no_matn: [] };
+const report = { lessons: 0, test: 0, test_one_lang: 0, test_missing: 0, arena: 0, no_matn: [], ru_unknown_q: 0, ru_unknown_opts: 0 };
 for (const [lessonId, d] of Object.entries(reestr).sort((a, b) => a[1].modul - b[1].modul || a[1].tartib - b[1].tartib)) {
   report.lessons++;
   const version = `v${d.v}`;
@@ -58,8 +72,9 @@ for (const [lessonId, d] of Object.entries(reestr).sort((a, b) => a[1].modul - b
   const tests = Object.entries(m?.screens || {}).sort((a, b) => a[1].screen_idx - b[1].screen_idx);
   tests.forEach(([qid, s], i) => {
     if (!(s.uz && s.ru)) report.test_one_lang++;
-    rows.push({ ...base, question_id: qid, question_key: questionKeyOf(lessonId, qid), revision: revisionOf(s.uz, s.ru), kind: 'test', order_no: i + 1,
-      correct_idx: s.key, text_uz: s.uz?.question ?? null, text_ru: s.ru?.question ?? null, options_uz: s.uz?.options ?? null, options_ru: s.ru?.options ?? null });
+    const ru = ruOf(s);
+    rows.push({ ...base, question_id: qid, question_key: questionKeyOf(lessonId, qid), revision: revisionOf(s.uz, ru), kind: 'test', order_no: i + 1,
+      correct_idx: s.key, text_uz: s.uz?.question ?? null, text_ru: ru?.question ?? null, options_uz: s.uz?.options ?? null, options_ru: ru?.options ?? null });
     report.test++;
   });
   report.test_missing += (m?.missing || []).filter((x) => !x.uz && !x.ru).length;
@@ -74,7 +89,7 @@ for (const [lessonId, d] of Object.entries(reestr).sort((a, b) => a[1].modul - b
 }
 
 const dupe = rows.length - new Set(rows.map((r) => `${r.lesson_id}|${r.question_id}`)).size;
-console.log(`darslar ${report.lessons} · test savollar ${report.test} (bir tilda ${report.test_one_lang}) · topilmagan test ${report.test_missing} · arena ${report.arena} · takror ${dupe}`);
+console.log(`darslar ${report.lessons} · test savollar ${report.test} (bir tilda ${report.test_one_lang}) · topilmagan test ${report.test_missing} · arena ${report.arena} · takror ${dupe} · ruscha matni noma'lum: savol ${report.ru_unknown_q}, variantlar ${report.ru_unknown_opts}`);
 if (report.no_matn.length) console.log(`SAVOL_MATNLARI da yo'q: ${report.no_matn.length} dars (${report.no_matn.slice(0, 8).join(', ')}${report.no_matn.length > 8 ? '…' : ''})`);
 if (dupe) { console.error('XATO: takror kalit'); process.exit(1); }
 if (!YOZ && !SQL && !YUKLA) { console.log('Quruq yurish — yozish uchun: --yoz'); process.exit(0); }

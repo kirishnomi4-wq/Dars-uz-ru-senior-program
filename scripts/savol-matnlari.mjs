@@ -53,6 +53,45 @@ const tap = {
   },
 };
 
+// Brauzer ichida: matni yukdagi matnga teng eng kichik element → .lesson-root dan bola-indekslar yo'li
+function findPaths({ q, opts }) {
+  const norm = (x) => String(x ?? '').replace(/[`*]/g, '').replace(/\s+/g, ' ').trim().toLowerCase();
+  const root = document.querySelector('.lesson-root');
+  if (!root) return null;
+  const pathOf = (el) => { const p = []; while (el && el !== root) { const par = el.parentElement; if (!par) return null; p.unshift([...par.children].indexOf(el)); el = par; } return el === root ? p : null; };
+  const all = [...root.querySelectorAll('*')].filter((e) => e.offsetParent !== null || e.getClientRects().length);
+  const find = (t, pool) => {
+    const n = norm(t); if (!n) return null;
+    const eq = pool.filter((e) => norm(e.innerText) === n);
+    if (!eq.length) return null;
+    eq.sort((a, b) => a.querySelectorAll('*').length - b.querySelectorAll('*').length); // eng ichkisi emas — matnni to'liq o'raydigan eng kichigi
+    return pathOf(eq[0]);
+  };
+  // Savol: ekrandagi matn yukdagidan farq qilishi mumkin (tirnoq, backtik, qo'shimcha so'z) — so'z to'plami o'xshashligi (Dice ≥ 0.6),
+  // uzunligi 0.5–2× ; eng o'xshashi, teng bo'lsa — eng kichik element. Variant tugmalari ichidagilar hisobga olinmaydi.
+  const words = (x) => new Set(norm(x).replace(/['"‘’«»“”()?.,:;!—–-]/g, ' ').split(' ').filter(Boolean));
+  const fuzzy = (t) => {
+    const W = words(t), L = norm(t).length; if (!W.size) return null;
+    let best = null, bs = 0, bn = Infinity;
+    for (const e of all) {
+      if (e.closest('button')) continue;
+      const tx = norm(e.innerText); if (tx.length < L * 0.5 || tx.length > L * 2) continue;
+      const E = words(tx); let k = 0; for (const w of W) if (E.has(w)) k++;
+      const sc = (2 * k) / (W.size + E.size), n = e.querySelectorAll('*').length;
+      if (sc > bs + 1e-9 || (Math.abs(sc - bs) < 1e-9 && n < bn)) { best = e; bs = sc; bn = n; }
+    }
+    return bs >= 0.6 ? pathOf(best) : null;
+  };
+  const qp = find(q, all) || fuzzy(q);
+  const op = opts.map((o) => find(o, [...root.querySelectorAll('button, [role="button"], label, li')]) || find(o, all));
+  return { q: qp, opts: op };
+}
+function readPaths(paths) {
+  const root = document.querySelector('.lesson-root');
+  const at = (p) => { if (!p) return null; let el = root; for (const i of p) { el = el?.children?.[i]; if (!el) return null; } return (el.innerText || '').replace(/\s+/g, ' ').trim() || null; };
+  return { question: at(paths.q), options: (paths.opts || []).map(at) };
+}
+
 const TMP = mkdtempSync(join(tmpdir(), 'savol-'));
 for (const sig of ['SIGINT', 'SIGTERM']) process.on(sig, () => { rmSync(TMP, { recursive: true, force: true }); process.exit(130); });
 const browser = await chromium.launch({ executablePath: process.env.CHROME || '/usr/bin/google-chrome', headless: true });
@@ -103,6 +142,11 @@ for (const file of files) {
         if (got) {
           const r = rec.screens[s.id] || (rec.screens[s.id] = { screen_idx: s.i, key: L.keys[s.id] });
           r[lang] = { question: got.texts.question, options: got.texts.options || [], lang_reported: got.texts.lang || null };
+          // 10.11 (F-1109-07): EKRANDA ko'ringan matn. Ko'p darslar analitikaga doim o'zbekcha matn beradi (RU_I18N_SPEC «UZ-etalon»),
+          // shuning uchun ruscha matn yukdan emas, ekrandan olinadi: uz o'tishda savol/variant turgan element yo'li topiladi,
+          // ru o'tishda AYNAN o'sha yo'ldan o'qiladi (komponent daraxti ikki tilda bir xil).
+          if (lang === 'uz') r._paths = await p.evaluate(findPaths, { q: got.texts.question, opts: got.texts.options || [] });
+          if (r._paths) r[lang].shown = await p.evaluate(readPaths, r._paths);
         }
       } catch { /* quyida missing */ }
     }
@@ -116,5 +160,6 @@ for (const file of files) {
 }
 await browser.close();
 rmSync(TMP, { recursive: true, force: true });
+for (const l of Object.values(out.lessons)) for (const r of Object.values(l.screens || {})) delete r._paths;
 writeFileSync(OUT, JSON.stringify(out, null, 1) + '\n');
 console.log(`\n===== savollar ikki tilda: ${qOk} · yetishmadi: ${qMiss} · ${files.length} dars · ${((Date.now() - t0) / 1000).toFixed(0)} s → ${OUT}`);

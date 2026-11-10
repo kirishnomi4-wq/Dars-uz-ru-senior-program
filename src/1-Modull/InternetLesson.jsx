@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo, createContext, useContext } from 'react';
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz). Inline nusxa 2026-09-03 da ko'chirildi.
-import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, setLiveLang, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, setLiveLang, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers , buildResultDetails, sealPayload, useAutoNext, FinishBtn, AutoFinish, liveToast } from '../live/index.js';
 import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
 // F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Internet qanday ishlaydi» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 2-1). scripts/hw-v2-kartalar.mjs yozadi.
 const HW_V2 = {"id":"2-1","tur":"test","nom":{"uz":"Uyga vazifa: Internet qanday ishlaydi","ru":"Домашнее задание: Как работает интернет"},"matn":null,"n":5};
@@ -2633,6 +2633,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   return (
     <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={() => setShowDone(true)} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: '🎉 Darsni yakunlash', ru: '🎉 Завершить урок' })}</button></>}>
       <div className="screen">
+        <AutoFinish onFinish={onFinish} />{/* 25 §8: yakun tugmasi oynada — oxirgi ekranda avto-yakun shu yerdan (F-1105-03 L2) */}
         {PASSED && <Confetti />}
         <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Kirish darsi tugadi', ru: 'Вводный урок завершён' })}</span><span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>Internet <span className="italic" style={{ color: T.accent }}>qanday ishlashini</span> bilib oldingiz.</>, ru: <>Вы узнали, <span className="italic" style={{ color: T.accent }}>как работает</span> интернет.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
         {/* ⚔️ Mustahkamlash testi — CodeStrike neon-kapsula CTA */}

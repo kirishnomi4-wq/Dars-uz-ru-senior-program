@@ -8,7 +8,7 @@ import { validateV2 } from '../../src/modules/results/v2-builder.js';
 
 const LESSON = 'internet-01-v18';
 let t;
-const ctxFetch = fakeSchoolApi({ 9101: [], 9102: [], 9103: [], 9104: [], 9105: [9301] });
+const ctxFetch = fakeSchoolApi({ 9101: [], 9102: [], 9103: [], 9104: [], 9105: [9301], 9106: [] });
 async function fetchStub(url, init) {
   const u = String(url);
   if (u.endsWith('/integrations/dars-platform/lesson-results') && init?.method === 'POST') {
@@ -45,6 +45,19 @@ test('qoida 1: eski tab o\'z versiyasi bilan qayta kiradi / progress yozadi — 
   assert.equal(old.attempt.id, s.attempt.id);
   assert.equal((await progress(tok, s.attempt.id, {})).statusCode, 200);
   assert.equal((await att(s.attempt.id)).status, 'active');
+});
+
+test('brauzer v4 bayrog\'i serverdan: join / restart / me javobida result_schema 2 (RESULT_SCHEMA_V2=on)', async () => {
+  const tok = await mintToken({ role: 'student', sub: 9106, name: 'Olti', jti: 'vv-rs' });
+  const s = (await join(tok, { lesson_version: 'v5' })).json();
+  assert.equal(s.result_schema, 2, JSON.stringify(s));
+  const me = await t.app.inject({ method: 'GET', url: `/api/v1/lms/me?lesson_id=${LESSON}`, headers: bearer(tok) });
+  assert.equal(me.statusCode, 200, me.body);
+  assert.equal(me.json().result_schema, 2);
+  const tok2 = await mintToken({ role: 'student', sub: 9106, name: 'Olti', jti: 'vv-rs2' }); // restart — yangi sessiya, LMS yangi token beradi
+  const rs = await post(t.app, '/api/v1/lms/restart', { lesson_id: LESSON, lesson_version: 'v5' }, bearer(tok2));
+  assert.equal(rs.statusCode, 200, rs.body);
+  assert.equal(rs.json().result_schema, 2);
 });
 
 test('qoida 2: eski attempt_id bilan boshqa versiyadagi progress → 409 version_changed, yozilmaydi', async () => {

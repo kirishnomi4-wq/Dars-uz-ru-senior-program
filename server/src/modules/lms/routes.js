@@ -54,6 +54,11 @@ export async function lmsRoutes(app, opts = {}) {
     }),
   };
 
+  // F-1105-03 L2 (10.11): brauzer yuki v4 bayrog'i SERVERDAN — dars yig'ilishida emas. `RESULT_SCHEMA_V2=on` bo'lsa join/restart/me
+  // javobida `result_schema: 2` → dars oxirgi ekranda v4 yukni avtomatik yuboradi; off → 1 (eski v3 yuk, tugma eskicha).
+  // Shu bilan 172 dars bir marta yuklanadi, yangi oqim serverdagi bitta sozlama bilan yoqiladi/o'chiriladi.
+  const withSchema = (p) => (p && typeof p === 'object' && !Array.isArray(p) ? { ...p, result_schema: config.resultSchemaV2 === 'on' ? 2 : 1 } : p);
+
   async function requireLiveToken(req) {
     const h = req.headers.authorization;
     if (typeof h !== 'string' || !h.startsWith('Bearer ')) throw unauthorized('Kirish tokeni berilmagan.');
@@ -88,21 +93,21 @@ export async function lmsRoutes(app, opts = {}) {
     },
   }, async (req) => {
     const { claims } = req;
-    if (claims.role === 'mentor') return joinMentor(deps, claims, req.body);
-    return joinStudent(deps, claims, req.body);
+    if (claims.role === 'mentor') return withSchema(await joinMentor(deps, claims, req.body));
+    return withSchema(await joinStudent(deps, claims, req.body));
   });
 
   app.post('/lms/restart', {
     preHandler: requireLiveToken,
     config: JOIN_LIMIT,
     schema: { body: { type: 'object', additionalProperties: false, required: ['lesson_id'], properties: { lesson_id: LESSON_ID, lesson_version: { type: 'string', maxLength: 32 } } } },
-  }, async (req) => restartStudent(deps, req.claims, req.body.lesson_id, req.body.lesson_version ?? null)); // S2: yangi urinish versiyasi
+  }, async (req) => withSchema(await restartStudent(deps, req.claims, req.body.lesson_id, req.body.lesson_version ?? null))); // S2: yangi urinish versiyasi
 
   app.get('/lms/me', {
     preHandler: requireLiveToken,
     config: JOIN_LIMIT,
     schema: { querystring: { type: 'object', additionalProperties: false, required: ['lesson_id'], properties: { lesson_id: LESSON_ID } } },
-  }, async (req) => whoAmI(deps, req.claims, req.query.lesson_id));
+  }, async (req) => withSchema(await whoAmI(deps, req.claims, req.query.lesson_id)));
 
   // ---- Progress (faqat o'quvchi, faqat o'z faol urinishi)
   app.put('/me/progress', {

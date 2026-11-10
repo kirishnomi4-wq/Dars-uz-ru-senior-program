@@ -156,6 +156,7 @@ test('flag o\'chiq bo\'lsa v2 yaratilmaydi (alohida ilova)', async () => {
     await off.seedCatalog([LESSON]);
     const tok = await mintToken({ role: 'student', sub: 8003, name: 'Uch', jti: 'v2f-off' });
     const s = (await join_(off, tok)).json();
+    assert.equal(s.result_schema, 1, 'flag o\'chiq — brauzer v3 yukda qoladi');
     await off.app.inject({ method: 'PUT', url: '/api/v1/me/progress', payload: { lesson_id: LESSON, attempt_id: s.attempt.id, screen: 21, total: 22, answers: {}, client_ts: 1 }, headers: { 'content-type': 'application/json', ...bearer(tok) } });
     await new Promise((r) => setTimeout(r, 300)); await off.app.results.runOnce(); await off.app.results.runOnce();
     const n = (await off.db.query(`select count(*)::int as n from result_events where schema_version = 2`)).rows[0].n;

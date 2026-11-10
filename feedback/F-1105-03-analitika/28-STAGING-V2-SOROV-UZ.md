@@ -1,6 +1,6 @@
 # F-1105-03 — staging'da v2 oqimini yoqish: so'rov matni (09.11.2026, tungi ish)
 
-Bu fayl — tayyor matn. Hech kimga yuborilmagan. Foydalanuvchi ko'rib, o'zi yuboradi.
+Bu fayl — tayyor matn. Hech kimga yuborilmagan. **10.11: o'rnini `30-ABDULLOH-RELIZ-XABAR-UZ.md` egalladi** (Kristina aralashtirilmaydi — foydalanuvchi qarori).
 
 ## 1. Kristinaga (staging serveri sozlamasi)
 
@@ -43,6 +43,6 @@ Bu fayl — tayyor matn. Hech kimga yuborilmagan. Foydalanuvchi ko'rib, o'zi yub
 
 1. **Avval server** (prod ▶, jonli 0 da). Darslar yangi serversiz ishlamaydi: yangi `src/live` `restart` va `progress` so'rovida `lesson_version` yuboradi. Eski server buni rad etadi (400). `screen_open`, `arena_shown`, `record_practice` uchun ham shu shart, lekin ular eski serverda o'zi to'xtaydi.
 2. Savol kalitlari: `node --env-file=server/.env.deploy.prod scripts/savol-kalitlari.mjs --yukla https://dars-api.coddycamp.uz`.
-3. 172 dars: `LESSON_VERSION_BUMP=1 RESULT_SCHEMA_V2=on` bilan yig'iladi (versiya va brauzer yuki v4). Bayroqsiz yig'ilsa — yuk v3 bo'ladi, oqim o'zgarmaydi.
+3. 172 dars: `LESSON_VERSION_BUMP=1` bilan yig'iladi (versiya). **10.11 dan brauzer yuki bayrog'i serverdan** — join javobidagi `result_schema: 2` (server `RESULT_SCHEMA_V2=on`); darslar bayroqsiz yig'iladi, keyin qayta yuklash shart emas. `RESULT_SCHEMA_V2=off` bilan yig'ish — favqulodda o'chirish (server nima desa ham v3).
 4. Prod'da `RESULT_SCHEMA_V2=on` — Kristina, Abdulloh tayyor bo'lgach.
 5. Faqat o'qish roli (Shahzoda konnektori): `server/docs/analitika-rol.sql` — prod DB egasi qo'lda bajaradi.

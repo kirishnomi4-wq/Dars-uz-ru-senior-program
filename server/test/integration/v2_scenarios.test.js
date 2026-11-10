@@ -170,6 +170,8 @@ test('16#11 / 25§12 #2: jonlida tugatmadi → uyda birinchi marta yakunladi: lr
   const home = await tokOf({ role: 'student', sub: 9551, name: 'S9551' });
   const again = (await join(home)).json();
   assert.equal(again.mode, 'review');
+  assert.equal(again.session_key, lr1.payload.session_key, 'ko\'rish rejimida brauzer yuki kaliti = server lr_ kaliti (jonli urinish)');
+  assert.equal(again.result_schema, 2);
   const rr = await post(t.app, '/api/v1/lms/restart', { lesson_id: LESSON, lesson_version: 'v6' }, bearer(home));
   const r = rr.json();
   assert.equal(r.mode, 'solo', rr.body);

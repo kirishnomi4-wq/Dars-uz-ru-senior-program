@@ -326,7 +326,13 @@ try {
     if (tests.length !== mine.length) throw new Error(`test soni ${tests.length} ≠ serverdagi answered ${mine.length}`);
     if (p.totalQuestions !== 5 || p.correctAnswers !== (aliS4.correct ? 1 : 0) || p.lang !== 'uz' || !Array.isArray(p.achievements)) throw new Error(`asosiy maydonlar: total ${p.totalQuestions} correct ${p.correctAnswers} lang ${p.lang}`);
     if (p.questions.some((q, i) => q.order !== i + 1)) throw new Error('order 1..n emas');
-    return `test ${tests.length} (s4 ${s4.correct ? "to'g'ri" : "noto'g'ri"}, 1 urinish) · arena ${arena.length} (quiz-0 ${q0.correct ? "to'g'ri" : "noto'g'ri"}) · yutuq ${p.achievements.length} · ${p.correctAnswers}/${p.totalQuestions}`;
+    // F-1105-03 L2 (10.11): brauzer yuki bayrog'i SERVERDAN — health `result_schema_v2` on → v4 (schema_version 2, dars_api, codestrike yo'q), off → v3
+    const v2on = (await (await fetch(`${API}/api/v1/health`)).json())?.features?.result_schema_v2 === 'on';
+    if (v2on) {
+      if (p.schema_version !== 2 || 'codestrike' in p || !p.dars_api) throw new Error(`v4 kutilgan (server on): schema ${p.schema_version}, codestrike ${'codestrike' in p}, dars_api ${JSON.stringify(p.dars_api)}`);
+      if (p.dars_api.attempt_id !== fin.attempt.id || p.dars_api.lesson_result_event_id !== `lr_${fin.attempt.id}` || !/^sess_/.test(p.dars_api.session_key || '')) throw new Error(`dars_api mos emas: ${JSON.stringify(p.dars_api)} vs attempt ${fin.attempt.id}`);
+    } else if (p.schema_version === 2 || p.dars_api) throw new Error('server off — yuk v3 bo\'lishi kerak');
+    return `yuk ${v2on ? 'v4 (server on)' : 'v3 (server off)'} · test ${tests.length} (s4 ${s4.correct ? "to'g'ri" : "noto'g'ri"}, 1 urinish) · arena ${arena.length} (quiz-0 ${q0.correct ? "to'g'ri" : "noto'g'ri"}) · yutuq ${p.achievements.length} · ${p.correctAnswers}/${p.totalQuestions}`;
   });
 
   await step('NATIJA: jonli sessiya → School API (soxta) 201 — Ali/Vali, group 861; solo → Sobir (rank null)', async () => {
