@@ -221,6 +221,7 @@ export function FinishBtn({ onClick, children, disabled, ...rest }) {
   const autoRef = React.useRef(false);
   const [apiTick, setApiTick] = useState(0); // server bog'lanishi (result_schema) keyin kelsa — qayta tekshiriladi
   useEffect(() => onDarsApiChange(() => setApiTick((n) => n + 1)), []);
+  useEffect(() => () => liveExitHint(false), []); // dars yopilsa / LMS keyingi sahifaga o'tkazsa — yozuv qolmaydi
   const v4 = isV4();
   const fire = (e, { auto = false } = {}) => {
     if (done && !v4) return;
@@ -228,6 +229,7 @@ export function FinishBtn({ onClick, children, disabled, ...rest }) {
     // qizil xabari sinfni xavotirga solgan). finishLesson yiqilsa — faqat konsolga, tugma bosilaveradi (eski xulq), xabar yo'q.
     try { if (typeof onClick === 'function') onClick(e); }
     catch (err) { console.error('[finish]', err); return; }
+    if (v4 && !auto && !isPreview()) liveExitHint(true); // 10.11: LMS hozircha keyingisiga o'tkazmaydi — ✕ ga yo'l ko'rsatiladi
     if (done) return; // L2: v4 da qayta bosish — o'sha muhrlangan yuk (chiqish/navigatsiya uchun), xabar takrorlanmaydi
     setDone(true);
     const toast = () => liveToast(isPreview()
@@ -247,6 +249,36 @@ export function FinishBtn({ onClick, children, disabled, ...rest }) {
     return () => clearTimeout(t);
   }, [disabled, v4, apiTick]); // eslint-disable-line react-hooks/exhaustive-deps
   return <button {...rest} data-live={done ? 'finish-done' : 'finish'} disabled={disabled || (done && !v4)} onClick={(e) => fire(e)}>{done ? tr({ uz: 'Yakunlandi ✓', ru: 'Завершено ✓' }) : children}</button>;
+}
+
+// 10.11 (QA sinovi): yangi oqimda (v4) LMS natija saqlanganda sahifadan chiqarmaydi (25 §8), tugma bosilganda ham hozircha
+// keyingi bosqichga o'tkazmaydi — o'quvchi LMS'ning chap tepadagi ✕ tugmasi bilan chiqadi. LMS tuzatilguncha o'quvchiga yo'l
+// ko'rsatiladi: ✕ tomonga miltillovchi strelka + yozuv. LMS keyingisiga o'tkazsa — dars yopiladi, yozuv ham o'chadi.
+// body'ga qo'shiladi (dars ildizi --lz bilan masshtablanadi — fixed u yerda siljiydi); FinishBtn yopilganda olib tashlanadi.
+let _exitEl = null;
+export function liveExitHint(show = true) {
+  if (typeof document === 'undefined') return;
+  if (!show) { if (_exitEl) { _exitEl.remove(); _exitEl = null; } return; }
+  if (!document.getElementById('cc-exit-kf')) {
+    const st = document.createElement('style');
+    st.id = 'cc-exit-kf';
+    st.textContent = '@keyframes ccExitPulse{0%,100%{transform:translateX(0);opacity:1}50%{transform:translateX(-8px);opacity:.45}}@media (prefers-reduced-motion: reduce){[data-live=exit-hint] b{animation:none!important}}';
+    document.head.appendChild(st);
+  }
+  if (!_exitEl) {
+    _exitEl = document.createElement('div');
+    _exitEl.setAttribute('role', 'status');
+    _exitEl.setAttribute('data-live', 'exit-hint');
+    Object.assign(_exitEl.style, { position: 'fixed', top: '124px', left: '128px', zIndex: '12001', display: 'flex', alignItems: 'center', gap: '10px', maxWidth: 'calc(100vw - 144px)', background: LT.ink, color: '#fff', borderRadius: '14px', padding: '10px 16px', fontFamily: "'Manrope', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif", fontSize: '14px', fontWeight: '600', lineHeight: '1.35', boxShadow: '0 8px 24px rgba(0,0,0,.18)' });
+    document.body.appendChild(_exitEl);
+  }
+  _exitEl.textContent = '';
+  const arrow = document.createElement('b');
+  arrow.textContent = '←';
+  Object.assign(arrow.style, { fontSize: '20px', animation: 'ccExitPulse 1.1s ease-in-out infinite' });
+  const txt = document.createElement('span');
+  txt.textContent = String(tr({ uz: "Dars yakunlandi ✓ Chiqish uchun chap tepadagi ✕ tugmasini bosing.", ru: 'Урок завершён ✓ Чтобы выйти, нажмите ✕ слева вверху.' }));
+  _exitEl.append(arrow, txt);
 }
 
 // L2 (25 §8): yakun tugmasi oxirgi ekranning o'zida EMAS (masalan, «Darsni yakunlash» → oyna → «Tamom») bo'lgan darslar uchun:
