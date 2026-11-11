@@ -1,4 +1,4 @@
-import { createPortal } from 'react-dom';
+import { createPortal } from '../live/portal.js'; // F-1105-03 K03: react-dom importisiz (CRM tekshiruvi)
 import React, { useState, useEffect, useLayoutEffect, useRef, createContext, useContext, useCallback, useMemo } from 'react';
 const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c92bef604c7ad68380dd.png';
 

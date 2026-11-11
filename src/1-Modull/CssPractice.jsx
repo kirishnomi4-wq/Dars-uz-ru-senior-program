@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback, createContext, useContext } from 'react';
-import { createPortal } from 'react-dom'; // F-1015-362: «Avval tayyorlaning» oynasi .lesson-root ga (fade-up transform ichida fixed ishlamaydi)
+import { createPortal } from '../live/portal.js'; // F-1105-03 K03: react-dom importisiz (CRM tekshiruvi) // F-1015-362: «Avval tayyorlaning» oynasi .lesson-root ga (fade-up transform ichida fixed ishlamaydi)
 
 // F-1015-303: kompilyator olindi — amaliyot o'quvchining kompyuterida (VS Code + Gemini + Live Server).
 

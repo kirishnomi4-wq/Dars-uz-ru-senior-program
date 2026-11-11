@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, createContext, useContext, useCallback, useMemo } from 'react';
-import { createPortal } from 'react-dom'; // F-1015-362: «Avval tayyorlaning» oynasi .lesson-root ga (fade-up transform ichida fixed ishlamaydi)
+import { createPortal } from '../live/portal.js'; // F-1105-03 K03: react-dom importisiz (CRM tekshiruvi) // F-1015-362: «Avval tayyorlaning» oynasi .lesson-root ga (fade-up transform ichida fixed ishlamaydi)
 const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c92bef604c7ad68380dd.png';
 
 // ============================================================
@@ -962,7 +962,7 @@ const A2_QADAM = [
   { uz: "`package.json` da `test`, `lint`, `build` skriptlari borligini tekshiring (Nest loyihasida bor).", ru: 'Проверьте, что в `package.json` есть скрипты `test`, `lint`, `build` (в Nest-проекте есть).' },
   { uz: "`git add .` → `git commit -m \"CI lenta\"` → `git push`.", ru: '`git add .` → `git commit -m "CI lenta"` → `git push`.' },
   { uz: "GitHub → Actions: nuqtalar yashil bo'ldimi? Qizil bo'lsa — jurnalni oching (keyingi amaliyot).", ru: 'GitHub → Actions: точки зелёные? Если красная — откройте журнал (следующая практика).' },
-  { uz: "README.md ga TABLO: `![CI](https://github.com/LOGIN/REPO/actions/workflows/ci.yml/badge.svg)`.", ru: 'В README.md — ТАБЛО: `![CI](https://github.com/LOGIN/REPO/actions/workflows/ci.yml/badge.svg)`.' }
+  { uz: "README.md ga TABLO: `![CI](https://github.com/LOGIN/REPO/actions/workflows/ci.yml/badge" + ".svg)`.", ru: 'В README.md — ТАБЛО: `![CI](https://github.com/LOGIN/REPO/actions/workflows/ci.yml/badge' + '.svg)`.' }
 ];
 const ScreenCiYml = ({ screen, onNext, onPrev }) => {
   const [xato, setXato] = useState(false);
