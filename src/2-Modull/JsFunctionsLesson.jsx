@@ -1152,7 +1152,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <Terminal lines={out} empty={{ uz: '// ▶ chaqiring', ru: '// ▶ вызовите' }} />
             <button className="btn" onClick={run} disabled={running} style={{ alignSelf: 'flex-start' }}>{running ? tr({ uz: 'Ishlayapti…', ru: 'Работает…' }) : (ran ? tr({ uz: '↻ Yana urish', ru: '↻ Ударить ещё раз' }) : tr({ uz: '▶ damage(5) ni chaqirish', ru: '▶ Вызвать damage(5)' }))}</button>
             {/* F-0926-06: «ran && !done» holati hech qachon chiqmasdi (showBuild ustunni almashtiradi) + «pastda» joy so'zi — blok olindi */}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ <b>5</b> qiymati <b>power</b> parametriga tushdi, funksiya <span className="mono">return</span> orqali <b>15</b> zararni qaytardi. Mana to'liq mashina!</>, ru: <>✓ Значение <b>5</b> попало в параметр <b>kuch</b>, и функция через <span className="mono">return</span> вернула урон <b>15</b>. Вот и вся машина!</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ <b>5</b> qiymati <b>power</b> parametriga tushdi, funksiya <span className="mono">return</span> orqali <b>15</b> zararni qaytardi. Mana to'liq mashina!</>, ru: <>✓ Значение <b>5</b> попало в параметр <b>power</b>, и функция через <span className="mono">return</span> вернула урон <b>15</b>. Вот и вся машина!</> })}</p></div>}
             </>)}
             {!done && <AchRule screen={screen} />}
           </Col>
@@ -1222,7 +1222,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen5b = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Tekshiruv', ru: 'Проверка' }}
     questionText="function damage(power) { return power * 3 }. damage(3) nimani qaytaradi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "Funksiyani o'qing", ru: 'Прочитайте функцию' })}</p><div className="codebox" style={{ marginTop: 10, marginBottom: 6 }}><div><KW>function</KW> <FN>damage</FN>(power) {'{'} <KW>return</KW> power * <NUM>3</NUM> {'}'}</div></div><h2 className="title h-ask" style={{ marginTop: 6 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>zarar(3)</span> nimani qaytaradi?</>, ru: <>Что вернёт <span className="mono" style={{ color: T.accent }}>zarar(3)</span>?</> })}</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "Funksiyani o'qing", ru: 'Прочитайте функцию' })}</p><div className="codebox" style={{ marginTop: 10, marginBottom: 6 }}><div><KW>function</KW> <FN>damage</FN>(power) {'{'} <KW>return</KW> power * <NUM>3</NUM> {'}'}</div></div><h2 className="title h-ask" style={{ marginTop: 6 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>damage(3)</span> nimani qaytaradi?</>, ru: <>Что вернёт <span className="mono" style={{ color: T.accent }}>damage(3)</span>?</> })}</h2></>}
     options={['6', '9', '3', '33']} correctIdx={1}
     explainCorrect={tr({ uz: "3 qiymati `power` ga tushadi: `power * 3` = 3 * 3.", ru: 'Значение 3 попадает в `power`: `power * 3` = 3 * 3.' })}
     explainWrong={{
@@ -1724,7 +1724,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={{ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? false : !passed} label={passed ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Funksiyani yozing', ru: 'Напишите функцию' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: <span className="mono italic" style={{ color: T.accent }}>damage</span> funksiyasini o'zingiz yozing.</>, ru: <>Последний шаг: напишите функцию <span className="mono italic" style={{ color: T.accent }}>zarar</span> сами.</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: <span className="mono italic" style={{ color: T.accent }}>damage</span> funksiyasini o'zingiz yozing.</>, ru: <>Последний шаг: напишите функцию <span className="mono italic" style={{ color: T.accent }}>damage</span> сами.</> })}</h2></div>
         <Mentor>{tr({ uz: <>Navbat sizga! Endi <b style={{ color: T.ink }}>namuna yo'q</b> — funksiyani o'zingiz yodingizdan yozasiz. <span className="mono">power</span> oladigan va <span className="mono">power * 3</span> ni qaytaradigan <span className="mono">damage</span> funksiyasini tuzing.</>, ru: <>Ваш ход! Теперь <b style={{ color: T.ink }}>образца нет</b> — пишете функцию по памяти. Составьте функцию <span className="mono">damage</span>, которая берёт <span className="mono">power</span> и возвращает <span className="mono">power * 3</span>.</> })}</Mentor>
         <Zoomable off={!valid}>
         <div className="split">

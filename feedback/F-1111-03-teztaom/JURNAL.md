@@ -50,3 +50,11 @@ Commit 4a4f62ac (muhr + kalitlar, pathspec).
 **F-1111-03 LMS qismi yopildi.** Ochiq: nishon tavsifi serverda eski (keyingi server deploy) · bridge nusxasi (foydalanuvchi qarori: tegilmaydi).
 
 **Yangi topilma (tuzatilmadi, tashxis):** shu darsning QUIZ_BANK quiz-1 va quiz-9 variantlari oddiy satr (uz/ru'siz) — ruscha rejimda o'zbekcha: «useState bilan · props bilan · map bilan», «App.jsx'dagi massiv · Gemini prompti · index.css fayli». Learn ru 14 va 22 da ham shunday.
+
+## 11.11 19:40 · F-1111-04 — arena variantlari ruscha rejimda o'zbekcha (foydalanuvchi: «o'sha xatoni to'g'rilaylik»)
+
+- **ReactBuildSiteLesson** QUIZ_BANK: quiz-1 `useState bilan · props bilan · map bilan` → `{uz, ru}` («Через useState · Через props · Через map»); quiz-9 `App.jsx'dagi massiv · Gemini prompti · index.css fayli` → «Массив в App.jsx · Промпт Gemini · Файл index.css». `Router (<Route>)` — oddiy satr qoldi (kod).
+- **Sinf-supurish** (`codestrike-savollar/lms/*/*-ru.json`, 172 dars, kirillsiz + o'zbekcha morfologiya): 3 topildi → 2 haqiqiy: shu ikki savol + **ReactIntroLesson** quiz (ru 17) «HTML va CSS» → «HTML и CSS». `.tugma:hover` (9-M Animation) — kod, tarjima emas; Umami — soxta signal.
+- Darvozalar: ikkala dars 11/13, `tell`/`emoji` HEAD bilan aynan bir xil. `codestrike-savollar --yoz` → faqat 2 dars ru fayli + ROYXAT; `--tekshir` 172 bir xil.
+- **Qonunlashtirish:** `RU_I18N_SPEC.md` §11.
+- **Keyingi:** commit → paket (F-1111-05 bilan) → CRM → muhr → kalitlar (ru variant revision) → prod `!` → Learn ru: 3197 tartib 14 (quiz-1) va 22 (21849, quiz-9) + ReactIntro Learn ru 17 — foydalanuvchi Archive + bulk.

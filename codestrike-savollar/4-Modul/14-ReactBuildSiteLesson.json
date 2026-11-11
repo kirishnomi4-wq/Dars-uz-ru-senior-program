@@ -8,7 +8,7 @@
     "ru": "Практика: Сборка любого сайта — декомпозиция + точный промпт"
   },
   "src": "src/3-Modull/ReactBuildSiteLesson.jsx",
-  "barmoq_izi": "33628b86456c0d5282164f4da8ffc5b6",
+  "barmoq_izi": "ff300bcb2bec24e42a530f028cf242e7",
   "savollar": [
     {
       "n": 1,
@@ -47,10 +47,10 @@
       "ru": {
         "savol": "Как делим сайт на страницы?",
         "variantlar": [
-          "useState bilan",
+          "Через useState",
           "Router (<Route>)",
-          "props bilan",
-          "map bilan"
+          "Через props",
+          "Через map"
         ]
       }
     },
@@ -224,9 +224,9 @@
         "savol": "Где в «TezTaom» хранится список блюд?",
         "variantlar": [
           "Router (<Route>)",
-          "App.jsx'dagi massiv",
-          "Gemini prompti",
-          "index.css fayli"
+          "Массив в App.jsx",
+          "Промпт Gemini",
+          "Файл index.css"
         ]
       }
     },

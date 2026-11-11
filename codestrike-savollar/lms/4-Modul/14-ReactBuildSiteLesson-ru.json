@@ -31,7 +31,7 @@
     "order_number": 14,
     "options": [
       {
-        "value": "useState bilan",
+        "value": "Через useState",
         "hint": "Неверно"
       },
       {
@@ -39,11 +39,11 @@
         "hint": "Верно!"
       },
       {
-        "value": "props bilan",
+        "value": "Через props",
         "hint": "Неверно"
       },
       {
-        "value": "map bilan",
+        "value": "Через map",
         "hint": "Неверно"
       }
     ],
@@ -235,15 +235,15 @@
         "hint": "Неверно"
       },
       {
-        "value": "App.jsx'dagi massiv",
+        "value": "Массив в App.jsx",
         "hint": "Верно!"
       },
       {
-        "value": "Gemini prompti",
+        "value": "Промпт Gemini",
         "hint": "Неверно"
       },
       {
-        "value": "index.css fayli",
+        "value": "Файл index.css",
         "hint": "Неверно"
       }
     ],

@@ -258,3 +258,10 @@ aylantirmang: `{i+1}-kadr` → `tr({uz: <>{i+1}-kadr</>, ru: <>Кадр {i+1}</>
   Boshqa modullar: 1–4c + PM 9 fayl — 04.10 kech (Q1 A) yopildi; 6-Modul 7 fayl — Q3 guruhlarida.
 - **Ataylab o'zbekcha qoladigan joy** (kod/terminal nomi, repo bilan bir xil bot javobi) — darsda `// ru-qoldiq-istisno s<N>: so'zlar` (R-010); ru-walk qolganini ushlaydi.
   Buyruqdagi o'rinbosar (`{sizning login}`) — tarjima qilinadi (`{ваш логин}`).
+
+## 11. Arena variantlari ham ikki tilda (11.11, F-1111-04)
+
+- `QUIZ_BANK` variantida o'zbekcha so'z bo'lsa (`"useState bilan"`, `"App.jsx'dagi massiv"`, `"HTML va CSS"`) — oddiy satr EMAS, `{ uz, ru }` juftlik: `{ uz: "props bilan", ru: 'Через props' }`.
+  Oddiy satr faqat ikki tilda bir xil o'qiladigan variant uchun: kod, atama, raqam (`"Router (<Route>)"`, `"JavaScript"`, `"C++"`). `tr()` ikkalasini ham qabul qiladi.
+- Tuzatilgach `node scripts/codestrike-savollar.mjs --yoz` (Learn manbasi) va `--tekshir` → 0 farq; Learn'dagi ruscha savol — B usuli (Archive + bulk).
+- 🔧 Ovlash: `codestrike-savollar/lms/*/*-ru.json` variantlarida kirillsiz, o'zbekcha morfologiyali matn (11.11: 172 dars → 3 savol, 2 dars).

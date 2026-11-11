@@ -8,7 +8,7 @@
     "ru": "Что такое React и зачем"
   },
   "src": "src/3-Modull/ReactIntroLesson.jsx",
-  "barmoq_izi": "0c0a7e5eed8a5d64dd1568238a6d6cfb",
+  "barmoq_izi": "e6163f8a2af606be873b299a03ce4d53",
   "savollar": [
     {
       "n": 1,
@@ -115,7 +115,7 @@
         "variantlar": [
           "Python",
           "JavaScript",
-          "HTML va CSS",
+          "HTML и CSS",
           "C++"
         ]
       }

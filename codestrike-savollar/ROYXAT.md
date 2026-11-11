@@ -1,6 +1,6 @@
 # CodeStrike savollari — darsma-dars (Learn uchun)
 
-AVTO: `node scripts/codestrike-savollar.mjs --yoz` (2026-11-02). Qo'lda tahrirlanmaydi.
+AVTO: `node scripts/codestrike-savollar.mjs --yoz` (2026-11-11). Qo'lda tahrirlanmaydi.
 Savollar dars faylidagi `QUIZ_BANK` dan olingan — Learn'dagi savollar CodeStrike bilan aynan bir xil.
 Bir xilligini tekshirish: `node scripts/codestrike-savollar.mjs --tekshir`.
 
@@ -35,7 +35,7 @@ CRM darslari: 172 · CodeStrike bor: 172 · yo'q: 0 · xato: 0
 | 3 | 12 | Praktika 3 — Dekompozitsiya (mini-do'kon) | m2-11 | ✓ | `3-Modul/12-PracticeLesson3.json` | 3e0043e3 |
 | 3 | 13 | Praktika 4 — MVP tayyor (deploy) | m2-12 | ✓ | `3-Modul/13-PracticeLesson4.json` | 3da28fb6 |
 | 3 | 14 | Sistemani qanday pitch qilish | m2-13 | ✓ | `3-Modul/14-PmLesson6.json` | 95bd4179 |
-| 4 | 1 | React nima va nima uchun? | m3-01 | ✓ | `4-Modul/01-ReactIntroLesson.json` | 0c0a7e5e |
+| 4 | 1 | React nima va nima uchun? | m3-01 | ✓ | `4-Modul/01-ReactIntroLesson.json` | e6163f8a |
 | 4 | 2 | User Story: kim va nima uchun? | m3-02 | ✓ | `4-Modul/02-PmUserStoryLesson.json` | 1a8de42a |
 | 4 | 4 | Birinchi komponent: Vite, JSX, props | m3-03 | ✓ | `4-Modul/04-ReactFirstComponentLesson.json` | df926013 |
 | 4 | 5 | State va Effect: useState + useEffect | m3-04 | ✓ | `4-Modul/05-ReactStateEffectLesson.json` | 6fbf7749 |
@@ -47,7 +47,7 @@ CRM darslari: 172 · CodeStrike bor: 172 · yo'q: 0 · xato: 0
 | 4 | 11 | Qachon «tayyor» deb ayta olamiz? | m3-10 | ✓ | `4-Modul/11-PmLesson9.json` | 8469c2d4 |
 | 4 | 12 | Praktika: React Router — ko'p sahifali ilova | m3-11 | ✓ | `4-Modul/12-ReactRouterPracticeLesson.json` | 0d38b4d4 |
 | 4 | 13 | Praktika: Loyiha kuni — AvtoIjara | m3-12 | ✓ | `4-Modul/13-ReactProjectDayLesson.json` | d796cd10 |
-| 4 | 14 | Praktika: Istalgan saytni qurish — bo'laklash + aniq prompt | m3-13 | ✓ | `4-Modul/14-ReactBuildSiteLesson.json` | 33628b86 |
+| 4 | 14 | Praktika: Istalgan saytni qurish — bo'laklash + aniq prompt | m3-13 | ✓ | `4-Modul/14-ReactBuildSiteLesson.json` | ff300bcb |
 | 4 | 15 | Ishlayotgan saytingizni qanday ko'rsatasiz? | m3-14 | ✓ | `4-Modul/15-PmLesson10.json` | b215ac44 |
 | 5 | 1 | Ma'lumot va bog'lanishlar: JSON, jadval, sxema | m4-01 | ✓ | `5-Modul/01-DataIntroLesson.json` | 52dddcb8 |
 | 5 | 2 | Ilova nimani eslab qolsin? | m4-02 | ✓ | `5-Modul/02-PmLesson11.json` | f675b008 |
