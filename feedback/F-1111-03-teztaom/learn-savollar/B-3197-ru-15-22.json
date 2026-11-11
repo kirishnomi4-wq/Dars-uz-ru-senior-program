@@ -1,0 +1,52 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Из скольких секций главная «TezTaom»?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "1",
+        "hint": "Неверно"
+      },
+      {
+        "value": "2",
+        "hint": "Неверно"
+      },
+      {
+        "value": "4",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Бесконечно",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Где в «TezTaom» хранится список блюд?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Router (<Route>)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "App.jsx'dagi massiv",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Gemini prompti",
+        "hint": "Неверно"
+      },
+      {
+        "value": "index.css fayli",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  }
+]

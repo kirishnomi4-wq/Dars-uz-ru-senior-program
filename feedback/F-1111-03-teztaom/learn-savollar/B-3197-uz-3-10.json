@@ -1,0 +1,52 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«TezTaom» Bosh sahifasi nechta bo'limdan?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "1 ta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "2 ta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "4 ta",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Cheksiz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«TezTaom»da taomlar ro'yxati qayerda turadi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Router (<Route>)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "App.jsx'dagi massiv",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Gemini prompti",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "index.css fayli",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  }
+]

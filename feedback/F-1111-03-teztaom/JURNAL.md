@@ -30,4 +30,23 @@ Darsda 31 joy (22 tasi o'quvchiga ko'rinadi, uz+ru): logo, footer, oyna nomlari,
 - **Muhr** (`--server` SIZ — ishchi `lesson-catalog.json` bridge bilan qayta yig'ilgan, prod katalogi emas; reestr server yozuvi ab1bfa3 o'zgarmadi): lms-farq → o'zgarmagan **172** · o'zgargan 0.
 - **Savol kalitlari** `--yoz`: 2565 qator; farq faqat shu dars (v7→v8, quiz-2/quiz-9 revision), javob indekslari o'zgarmagan; `src/live/*` o'zgarmadi.
 
-**Qoldi:** prod kalitlari — foydalanuvchi `!` bilan · CRM Learn 3197: 4 savol (uz 3/10, ru 15/22) — foydalanuvchi Archive + bulk (dars yuklangandan keyin, foydalanuvchi «Ha»).
+Commit 4a4f62ac (muhr + kalitlar, pathspec).
+
+## 11.11 18:35 · Learn 3197 «React practice 2 test» — B usuli tayyorlandi (F-1102-01 03.11 bilan bir xil)
+
+- Keshsiz o'qish (`dump/learn-3197-oldin.json`): 24 qator, 24 Active, tartib 1–12 uz + 13–24 ru, Archive 0. «Yetkaz» — aynan 4: **18585** (uz 3) · **18592** (uz 10) · **18597** (ru 15) · **18604** (ru 22).
+- Bulk fayllar (`learn-savollar/`, manba `codestrike-savollar/lms/4-Modul/14-ReactBuildSiteLesson-{uz,ru}.json`): `B-3197-uz-3-10.json` (✔ 2, 1) · `B-3197-ru-15-22.json` (✔ 2, 1) — kalitlar bilan mos.
+- **Kutilmoqda:** foydalanuvchi 4 qatorni Archive qiladi → Claude 2 bulk (kurs 20 · modul 74 · Learn 3197 · uz/ru · «Kurs savollari»; «Tekshirish» Xato 0 + «2 ta» → «Qo'shildi: 2») → keshsiz qayta o'qish.
+- **Prod kalitlari ✅ 11.11 18:37** (foydalanuvchi `!`): «yuklandi: 2565 qator → https://dars-api.coddycamp.uz».
+
+## 11.11 19:34 · LEARN 3197 TUGADI — 4/4 ✅ (B usuli: foydalanuvchi arxivladi, Claude bulk yukladi)
+
+- Foydalanuvchi arxivladi: 18585 · 18592 · 18597 · 18604 (keshsiz tasdiqlandi: 4 Archive, qolgan 20 o'zgarmagan).
+- **Bulk** (Faqat savollar · Kurs savollari · kurs 20 · modul 74 Frontend-React · Learn 3197 «React practice 2 test»; maydon JSON sha256 = fayl; «Tekshirish» Xato 0 + «2 ta savol» → tasdiq «2 ta yozuv saqlanadi» → «Qo'shildi: 2, Xato: 0»):
+  uz → **21846** (3) · **21847** (10); ru → **21848** (15) · **21849** (22). Hammasi Active.
+- ru bulkdan oldin bir nomuvofiqlik: modul maydoni bo'sh qolgan (dars 3197 ko'ringan) — YUKLANMADI; sahifa yangilandi (oraliqda ERR_NETWORK_CHANGED, qayta ochildi), tanlov qaytadan → uchala maydon tekshirildi → yuklandi.
+- **Yakuniy keshsiz tekshiruv** (`F-1105-03-analitika/crm-yuklash-20261110/dump/learn-3197-{oldin,keyin}.json`): 28 qator · Active 24 · tartib 1–24 takrorsiz · 1–12 uz / 13–24 ru · Archive aynan 4 · tegilmagan 20 farq 0 · Active'da «Yetkaz» 0. Tahrir oynasidan (saqlanmasdan): 4 savol — matn, 4 variant, izoh, to'g'ri javob (2 · 1 · 2 · 1) manba bilan mos.
+
+**F-1111-03 LMS qismi yopildi.** Ochiq: nishon tavsifi serverda eski (keyingi server deploy) · bridge nusxasi (foydalanuvchi qarori: tegilmaydi).
+
+**Yangi topilma (tuzatilmadi, tashxis):** shu darsning QUIZ_BANK quiz-1 va quiz-9 variantlari oddiy satr (uz/ru'siz) — ruscha rejimda o'zbekcha: «useState bilan · props bilan · map bilan», «App.jsx'dagi massiv · Gemini prompti · index.css fayli». Learn ru 14 va 22 da ham shunday.
