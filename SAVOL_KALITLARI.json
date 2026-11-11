@@ -1,5 +1,5 @@
 {
- "at": "2026-11-11T10:22:14.792Z",
+ "at": "2026-11-11T13:34:11.794Z",
  "qoida": {
   "question_key": "<dars kodi -vN siz>:<question_id>",
   "revision": "sha256(uz+ru savol va variantlar)[:12]"
@@ -15579,7 +15579,7 @@
   {
    "lesson_id": "react-build-site-final-p4-v18",
    "lesson_key": "react-build-site-final-p4",
-   "lesson_version": "v7",
+   "lesson_version": "v8",
    "crm_modul": 4,
    "crm_tartib": 14,
    "question_id": "quiz-0",
@@ -15606,7 +15606,7 @@
   {
    "lesson_id": "react-build-site-final-p4-v18",
    "lesson_key": "react-build-site-final-p4",
-   "lesson_version": "v7",
+   "lesson_version": "v8",
    "crm_modul": 4,
    "crm_tartib": 14,
    "question_id": "quiz-1",
@@ -15633,17 +15633,17 @@
   {
    "lesson_id": "react-build-site-final-p4-v18",
    "lesson_key": "react-build-site-final-p4",
-   "lesson_version": "v7",
+   "lesson_version": "v8",
    "crm_modul": 4,
    "crm_tartib": 14,
    "question_id": "quiz-2",
    "question_key": "react-build-site-final-p4:quiz-2",
-   "revision": "ee9707fb26f4",
+   "revision": "a4e9b1457a40",
    "kind": "arena",
    "order_no": 3,
    "correct_idx": 2,
-   "text_uz": "«Yetkaz» Bosh sahifasi nechta bo'limdan?",
-   "text_ru": "Из скольких секций главная «Yetkaz»?",
+   "text_uz": "«TezTaom» Bosh sahifasi nechta bo'limdan?",
+   "text_ru": "Из скольких секций главная «TezTaom»?",
    "options_uz": [
     "1 ta",
     "2 ta",
@@ -15660,7 +15660,7 @@
   {
    "lesson_id": "react-build-site-final-p4-v18",
    "lesson_key": "react-build-site-final-p4",
-   "lesson_version": "v7",
+   "lesson_version": "v8",
    "crm_modul": 4,
    "crm_tartib": 14,
    "question_id": "quiz-3",
@@ -15687,7 +15687,7 @@
   {
    "lesson_id": "react-build-site-final-p4-v18",
    "lesson_key": "react-build-site-final-p4",
-   "lesson_version": "v7",
+   "lesson_version": "v8",
    "crm_modul": 4,
    "crm_tartib": 14,
    "question_id": "quiz-4",
@@ -15714,7 +15714,7 @@
   {
    "lesson_id": "react-build-site-final-p4-v18",
    "lesson_key": "react-build-site-final-p4",
-   "lesson_version": "v7",
+   "lesson_version": "v8",
    "crm_modul": 4,
    "crm_tartib": 14,
    "question_id": "quiz-5",
@@ -15741,7 +15741,7 @@
   {
    "lesson_id": "react-build-site-final-p4-v18",
    "lesson_key": "react-build-site-final-p4",
-   "lesson_version": "v7",
+   "lesson_version": "v8",
    "crm_modul": 4,
    "crm_tartib": 14,
    "question_id": "quiz-6",
@@ -15768,7 +15768,7 @@
   {
    "lesson_id": "react-build-site-final-p4-v18",
    "lesson_key": "react-build-site-final-p4",
-   "lesson_version": "v7",
+   "lesson_version": "v8",
    "crm_modul": 4,
    "crm_tartib": 14,
    "question_id": "quiz-7",
@@ -15795,7 +15795,7 @@
   {
    "lesson_id": "react-build-site-final-p4-v18",
    "lesson_key": "react-build-site-final-p4",
-   "lesson_version": "v7",
+   "lesson_version": "v8",
    "crm_modul": 4,
    "crm_tartib": 14,
    "question_id": "quiz-8",
@@ -15822,17 +15822,17 @@
   {
    "lesson_id": "react-build-site-final-p4-v18",
    "lesson_key": "react-build-site-final-p4",
-   "lesson_version": "v7",
+   "lesson_version": "v8",
    "crm_modul": 4,
    "crm_tartib": 14,
    "question_id": "quiz-9",
    "question_key": "react-build-site-final-p4:quiz-9",
-   "revision": "78e8047a23d7",
+   "revision": "bcca2a8d9010",
    "kind": "arena",
    "order_no": 10,
    "correct_idx": 1,
-   "text_uz": "«Yetkaz»da taomlar ro'yxati qayerda turadi?",
-   "text_ru": "Где в «Yetkaz» хранится список блюд?",
+   "text_uz": "«TezTaom»da taomlar ro'yxati qayerda turadi?",
+   "text_ru": "Где в «TezTaom» хранится список блюд?",
    "options_uz": [
     "Router (<Route>)",
     "App.jsx'dagi massiv",
@@ -15849,7 +15849,7 @@
   {
    "lesson_id": "react-build-site-final-p4-v18",
    "lesson_key": "react-build-site-final-p4",
-   "lesson_version": "v7",
+   "lesson_version": "v8",
    "crm_modul": 4,
    "crm_tartib": 14,
    "question_id": "quiz-10",
@@ -15876,7 +15876,7 @@
   {
    "lesson_id": "react-build-site-final-p4-v18",
    "lesson_key": "react-build-site-final-p4",
-   "lesson_version": "v7",
+   "lesson_version": "v8",
    "crm_modul": 4,
    "crm_tartib": 14,
    "question_id": "quiz-11",

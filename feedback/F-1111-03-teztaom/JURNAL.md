@@ -22,4 +22,12 @@ Darsda 31 joy (22 tasi o'quvchiga ko'rinadi, uz+ru): logo, footer, oyna nomlari,
 
 **lms-farq (18:1x):** o'zgarmagan 171 · o'zgargan 1 (m3-13 v7 → v8). Server: «nom/nishon o'zgargan 1» — nishon tavsifi `server/data/lesson-catalog.json` da; keyingi server deploy bilan yangilanadi (darsning o'zida yangi matn). `lesson-catalog.json` ni lms-farq qayta yig'di — ichida boshqa seansning 10 ta bridge-tex darsi ham bor → bu seans uni commit QILMAYDI.
 
-**Qoldi (ruxsat kutilmoqda):** commit (pathspec) → paket → CRM 2 qator (16380 uz / 16381 ru, bo'lim 2460) → muhr → `savol-kalitlari --yoz` → prod kalitlari foydalanuvchi `!` bilan. CRM Learn 3197: 4 savol (uz 3/10, ru 15/22) eski matnda — « » bor, almashtirish = foydalanuvchi Archive + bulk.
+## 11.11 18:34 · LMS'ga chiqarildi (foydalanuvchi: «Ha, to'liq chiqar»)
+
+- **Commit** 0eea4117 (pathspec, 9 fayl; boshqa seansning 41 staged fayli tegilmadi).
+- **Paket** `yuklash-20261111-teztaom/` (`--majbur` — boshqa seans fayllari commit qilinmagan): 1 dars, v8, md5 `3718c8fb…`; smoke-lms ✓ · smoke-preview 1/1 → O'TDI. «Server avval» belgisi: bridge-tex 10 id (boshqa seans) + nishon tavsifi; dars id va nishon id o'zgarmagan → server deploy'siz yuklandi (foydalanuvchi rozi: tavsif keyingi server deploy'da).
+- **CRM** (konveyer v4, `konveyer/royxat-teztaom.json`, 5399 → yangi paket): 16380 uz + 16381 ru — v7 Active → **v8 Active**, 8 s; bayt ✓ (brauzer qayta o'qish) + shell md5 ✓ ikkalasi `3718c8fb…`, ichida «TezTaom» 21.
+- **Muhr** (`--server` SIZ — ishchi `lesson-catalog.json` bridge bilan qayta yig'ilgan, prod katalogi emas; reestr server yozuvi ab1bfa3 o'zgarmadi): lms-farq → o'zgarmagan **172** · o'zgargan 0.
+- **Savol kalitlari** `--yoz`: 2565 qator; farq faqat shu dars (v7→v8, quiz-2/quiz-9 revision), javob indekslari o'zgarmagan; `src/live/*` o'zgarmadi.
+
+**Qoldi:** prod kalitlari — foydalanuvchi `!` bilan · CRM Learn 3197: 4 savol (uz 3/10, ru 15/22) — foydalanuvchi Archive + bulk (dars yuklangandan keyin, foydalanuvchi «Ha»).

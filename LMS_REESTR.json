@@ -2036,12 +2036,12 @@
    "tur": "Proyekt",
    "nom_uz": "Praktika: Istalgan saytni qurish — bo'laklash + aniq prompt",
    "nom_ru": "Практика: Сборка любого сайта — декомпозиция + точный промпт",
-   "fayl": "14-ReactBuildSiteLesson-v7.jsx",
-   "v": 7,
-   "md5": "b2a2ae6978e1fd665b06f83d00c4012c",
-   "commit": "a9823949",
+   "fayl": "14-ReactBuildSiteLesson-v8.jsx",
+   "v": 8,
+   "md5": "3718c8fb9ebad482f016d2d06675f19f",
+   "commit": "0eea4117",
    "yuklandi": "2026-11-11",
-   "kim": "claude-F-1105-03",
+   "kim": "claude-F-1111-03",
    "crm": {
     "uz": "16380",
     "ru": "16381"
