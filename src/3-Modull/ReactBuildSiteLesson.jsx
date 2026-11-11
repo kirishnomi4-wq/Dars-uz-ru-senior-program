@@ -7,14 +7,14 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 // O'RNI: P3 (AvtoIjara loyiha kuni) dan KEYIN — modulning OXIRGI darsi. O'quvchi hamma narsani biladi.
 // MAQSAD: REAL saytni (footer/header abstraksiyasi emas) sahifalarga + komponentlarga bo'lib, har bo'lakka ANIQ PROMPT
 //        yozib, AI bilan qurish va tekshirish. P3 da AvtoIjara'ni qurdik — endi USULNI istalgan saytga ko'chiramiz.
-// O'rgatish namunasi: "Yetkaz" — ovqat yetkazib berish sayti (Navbar+Hero+Categories+TaomList(FoodCard takrorlanadi)+Footer).
+// O'rgatish namunasi: "TezTaom" — ovqat yetkazib berish sayti (Navbar+Hero+Categories+TaomList(FoodCard takrorlanadi)+Footer).
 // YURAK (s7): ANIQ PROMPT yozish — Qaysi bo'limlar + Har bo'lim nima ko'rsatadi + Ma'lumot/uslub (aniqlik o'lchagichi).
 // Vibecoding (s8): AgentBuild — promptni yig'ib, agentga yuborib, kodni tekshirish.
 // Debugging (s10): AI bo'limni to'liq qurdi, lekin narxni unutdi → TUZATUVCHI (follow-up) prompt.
 // Transfer (s11): o'quvchi O'Z saytini tanlab bo'laklaydi + birinchi aniq promptni yozadi.
 // Bog'lanishlar: React Intro (komponent=blok), P3 (prompt: Nima+Qanday+Qayerda, AgentBuild halqasi).
 // AUDIOSIZ. "sehr"/"g'isht" yo'q. Rasmiy "siz". Bu — modulning yakuniy darsi (keyingi dars teaser YO'Q — bitiruv).
-// F-1015-347 (17.10, tungi avtopilot): 20 → 9 ekran. Agent (Qurar-bot / Antigravity) o'rniga Gemini: a1 bo'limlarni topish (eski s3), a2 Yetkaz uchun aniq prompt
+// F-1015-347 (17.10, tungi avtopilot): 20 → 9 ekran. Agent (Qurar-bot / Antigravity) o'rniga Gemini: a1 bo'limlarni topish (eski s3), a2 TezTaom uchun aniq prompt
 //        (aniqlik o'lchagichi + jonli natija), a3 — AI xatosi (narx unutilgan, eski s10), a4 o'z saytingiz (g'oya → bo'laklar → prompt), s14 yakuniy.
 //        Oldingi 20 ekranli: arxiv/F-1015-reactbuildsite-oldin/.
 // PRODUCTION: <style> ichidagi @import OLIB TASHLANADI — shriftlarni LMS yuklaydi.
@@ -88,7 +88,7 @@ const SCREEN_META = [
   { id: 's0',  type: 'hook',        template: 'custom',   scored: false, scope: 'hook' },
   { id: 's1',  type: 'rule',        template: 'custom',   scored: false, scope: null },
   { id: 's3',  type: 'exploration', template: 'custom',   scored: false, scope: null }, // F-1015-347: a1 — bo'limlar (AI'siz)
-  { id: 'a2',  type: 'exploration', template: 'custom',   scored: false, scope: null }, // Yetkaz prompti (Gemini)
+  { id: 'a2',  type: 'exploration', template: 'custom',   scored: false, scope: null }, // TezTaom prompti (Gemini)
   { id: 's10', type: 'case',        template: 'custom',   scored: false, scope: null }, // a3 — AI xatosi (narx)
   { id: 'a4',  type: 'exploration', template: 'custom',   scored: false, scope: null }, // o'z saytingiz
   { id: 's14', type: 'test',        template: 'custom',   scored: true,  scope: 'final' },
@@ -407,7 +407,7 @@ const FoodCard = ({ taom, outline, label, hidePrice, btnInteractive, btnActive, 
 const SiteNavbar = ({ outline }) => (
   <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 12px', borderRadius: 9, background: T.paper, color: T.ink, boxShadow: `inset 0 0 0 1px ${T.line}`, border: outline ? `1.5px dashed ${T.accent}` : 'none' }}>
     {outline && <OutlineLabel>{'<Navbar />'}</OutlineLabel>}
-    <span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 800, fontSize: 13 }}>🛵 Yetkaz</span>
+    <span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 800, fontSize: 13 }}>🛵 TezTaom</span>
     <span style={{ fontSize: 14 }}>🛒</span>
   </div>
 );
@@ -430,7 +430,7 @@ const CategoryRow = ({ outline }) => (
 const SiteFooter = ({ outline }) => (
   <div style={{ position: 'relative', borderRadius: 9, padding: '9px 12px', background: T.bg, color: T.ink2, boxShadow: `inset 0 0 0 1px ${T.line}`, border: outline ? `1.5px dashed ${T.accent}` : 'none' }}>
     {outline && <OutlineLabel>{'<Footer />'}</OutlineLabel>}
-    <span style={{ fontSize: 10.5 }}>{tr({ uz: '© Yetkaz · Aloqa · Ijtimoiy tarmoqlar', ru: '© Yetkaz · Контакты · Соцсети' })}</span>
+    <span style={{ fontSize: 10.5 }}>{tr({ uz: '© TezTaom · Aloqa · Ijtimoiy tarmoqlar', ru: '© TezTaom · Контакты · Соцсети' })}</span>
   </div>
 );
 const TaomGrid = ({ outline, hidePrice }) => (
@@ -686,7 +686,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
 
 // ===== 🏅 ACHIEVEMENTS (nishonlar) — faqat REAL solve bilan (tekin emas) =====
 const ACHIEVEMENTS = {
-  sniper:   { icon: '🎯', name: 'Prompt Sniper!', desc: { uz: "Yetkaz uchun aniq prompt yozdingiz", ru: 'Вы написали точный промпт для Yetkaz' } },
+  sniper:   { icon: '🎯', name: 'Prompt Sniper!', desc: { uz: "TezTaom uchun aniq prompt yozdingiz", ru: 'Вы написали точный промпт для TezTaom' } },
   debugger: { icon: '🐞', name: 'Nice Catch!',    desc: { uz: "AI xatosini aniqlashtiruvchi prompt bilan tuzatdingiz", ru: 'Вы исправили ошибку ИИ уточняющим промптом' } },
   builder:  { icon: '🧱', name: 'Block Builder!', desc: { uz: "FoodCard komponentini o'zingiz e'lon qildingiz", ru: 'Вы сами объявили компонент FoodCard' } },
   graduate: { icon: '🏆', name: 'Site Shipped!',  desc: { uz: "Modulning yakuniy darsini to'liq yakunladingiz", ru: 'Вы полностью прошли финальный урок модуля' } },
@@ -878,7 +878,7 @@ const QUIZ_MS = 15000;
 const QUIZ_BASE_IDX = 100;
 const QUIZ_COLORS = ['#FF5A2C', '#0FA6D6', '#F5A623', '#22A05C'];
 const QUIZ_SHAPES = ['▲', '◆', '●', '■'];
-// Arena foni: suzuvchi tokenlar — «Yetkaz» qurish mavzusidan (React Router + komponent + prompt)
+// Arena foni: suzuvchi tokenlar — «TezTaom» qurish mavzusidan (React Router + komponent + prompt)
 const QZ_BG_SHAPES = [
   { ch: '<Route>',     l: 6,  t: 9,  s: 30, c: 'rgba(203,173,255,0.16)', d: 20, dl: 0 },
   { ch: 'props',       l: 83, t: 7,  s: 30, c: 'rgba(80,200,255,0.16)',  d: 24, dl: 1.5 },
@@ -895,14 +895,14 @@ const QZ_BG_SHAPES = [
 const QUIZ_BANK = [
   { q: { uz: "Katta saytni AI bilan qanday qurasiz?", ru: "Как собрать большой сайт с AI?" }, opts: [{ uz: "Bo'laklab, har biriga prompt", ru: "По частям, на каждую промпт" }, { uz: "Bir jumlada hammasini so'rash", ru: "Попросить всё одной фразой" }, { uz: "Hammasini qo'lda yozish", ru: "Написать всё вручную" }, { uz: "Avval rangni tanlash", ru: "Сначала выбрать цвет" }], correct: 0 },
   { q: { uz: "Saytni sahifalarga qanday bo'lamiz?", ru: "Как делим сайт на страницы?" }, opts: ["useState bilan", "Router (<Route>)", "props bilan", "map bilan"], correct: 1 },
-  { q: { uz: "«Yetkaz» Bosh sahifasi nechta bo'limdan?", ru: 'Из скольких секций главная «Yetkaz»?' }, opts: [{ uz: '1 ta', ru: '1' }, { uz: '2 ta', ru: '2' }, { uz: '4 ta', ru: '4' }, { uz: 'Cheksiz', ru: 'Бесконечно' }], correct: 2 },
+  { q: { uz: "«TezTaom» Bosh sahifasi nechta bo'limdan?", ru: 'Из скольких секций главная «TezTaom»?' }, opts: [{ uz: '1 ta', ru: '1' }, { uz: '2 ta', ru: '2' }, { uz: '4 ta', ru: '4' }, { uz: 'Cheksiz', ru: 'Бесконечно' }], correct: 2 },
   { q: { uz: 'Bir xil karta 8 marta takrorlansa, nima qilasiz?', ru: 'Одинаковая карточка повторяется 8 раз — что делаете?' }, opts: [{ uz: '8 fayl yarataman', ru: 'Создам 8 файлов' }, { uz: "8 marta ko'chiraman", ru: 'Скопирую 8 раз' }, { uz: 'Shundayligicha qoldiraman', ru: 'Оставлю как есть' }, { uz: 'Bitta komponent + props + map', ru: 'Один компонент + props + map' }], correct: 3 },
   { q: { uz: "FoodCard'ga nom va narxni nima orqali beramiz?", ru: 'Через что передаём FoodCard название и цену?' }, opts: ['props', 'state', 'Router', 'API'], correct: 0 },
   { q: { uz: "Qaysi prompt eng aniq?", ru: "Какой промпт самый точный?" }, opts: [{ uz: "Chiroyli ovqat sayti qur", ru: "Сделай красивый сайт еды" }, { uz: "Hero, 8 FoodCard (nom, narx)", ru: "Hero, 8 FoodCard (название, цена)" }, { uz: "Sayt qur, tez bo'lsin", ru: "Сделай сайт, побыстрее" }, { uz: "Menga yaxshi kod yoz", ru: "Напиши мне хороший код" }], correct: 1 },
   { q: { uz: "Aniq prompt nimalardan iborat?", ru: "Из чего состоит точный промпт?" }, opts: [{ uz: "Rang + shrift + logotip", ru: "Цвет + шрифт + логотип" }, { uz: "Faqat bo'limlar nomi", ru: "Только названия секций" }, { uz: "Bo'limlar + mazmun + ma'lumot", ru: "Секции + содержание + данные" }, { uz: "Faqat sayt mavzusi", ru: "Только тема сайта" }], correct: 2 },
   { q: { uz: 'AI narxni unutdi — nima qilasiz?', ru: 'ИИ забыл цену — что делаете?' }, opts: [{ uz: 'Qoldiraman', ru: 'Оставлю' }, { uz: 'Hammasini qayta yozdiraman', ru: 'Заставлю переписать всё' }, { uz: "Rangni o'zgartiraman", ru: 'Поменяю цвет' }, { uz: "Aniq prompt: narxni qo'sh", ru: 'Точный промпт: добавь цену' }], correct: 3 },
   { q: { uz: "AI hamma kodni bitta komponentga yozdi. Nima qilasiz?", ru: "AI написал весь код в один компонент. Что делать?" }, opts: [{ uz: "Bo'limlarga bo'ldiraman", ru: "Попрошу разбить на секции" }, { uz: "Shundayicha qoldiraman", ru: "Оставлю как есть" }, { uz: "Hammasini o'chiraman", ru: "Удалю всё" }, { uz: "Yana kod qo'shtiraman", ru: "Попрошу добавить код" }], correct: 0 },
-  { q: { uz: "«Yetkaz»da taomlar ro'yxati qayerda turadi?", ru: "Где в «Yetkaz» хранится список блюд?" }, opts: ["Router (<Route>)", "App.jsx'dagi massiv", "Gemini prompti", "index.css fayli"], correct: 1 },
+  { q: { uz: "«TezTaom»da taomlar ro'yxati qayerda turadi?", ru: "Где в «TezTaom» хранится список блюд?" }, opts: ["Router (<Route>)", "App.jsx'dagi massiv", "Gemini prompti", "index.css fayli"], correct: 1 },
   { q: { uz: "map() nima qiladi?", ru: "Что делает map()?" }, opts: [{ uz: "Yangi sahifa ochadi", ru: "Открывает новую страницу" }, { uz: "AI uchun prompt yozadi", ru: "Пишет промпт для AI" }, { uz: "Har elementga karta chizadi", ru: "Рисует карточку для каждого элемента" }, { uz: "Kartaga rang beradi", ru: "Красит карточку" }], correct: 2 },
   { q: { uz: 'Qurish formulasi qaysi saytlarga ishlaydi?', ru: 'Для каких сайтов работает формула сборки?' }, opts: [{ uz: 'Faqat ovqat', ru: 'Только еда' }, { uz: "Faqat do'kon", ru: 'Только магазин' }, { uz: "Faqat o'yin", ru: 'Только игры' }, { uz: 'Istalgan saytga', ru: 'Для любого сайта' }], correct: 3 },
 ];
@@ -1327,7 +1327,7 @@ function QuizArena({ live, onClose, startSolo }) {
 
 // ===== SCREEN 0 — HOOK (sayt qurmoqchisiz — AI'ga nima deysiz?) =====
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
-  const audio = useAudio([{ id: 's0', text: `Mana tayyor sayt — «Yetkaz», ovqat yetkazish sayti. Unda ko'p narsa bor: tepa menu, banner, taomlar. AI'ga «shuni qur» desangiz, u qayerdan boshlashni bilmaydi. «Bo'laklarga ajrating» tugmasini bosing — sayt qanday qismlarga bo'linishini ko'rasiz.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's0', text: `Mana tayyor sayt — «TezTaom», ovqat yetkazish sayti. Unda ko'p narsa bor: tepa menu, banner, taomlar. AI'ga «shuni qur» desangiz, u qayerdan boshlashni bilmaydi. «Bo'laklarga ajrating» tugmasini bosing — sayt qanday qismlarga bo'linishini ko'rasiz.`, trigger: 'on_mount', waits_for: null }]);
   const [split, setSplit] = useState(false);
   const [used, setUsed] = useState(!!storedAnswer);
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
@@ -1342,7 +1342,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
     <Stage eyebrow={tr({ uz: 'Kirish · bitiruv', ru: 'Вступление · выпуск' })} screen={screen} audioState={audio} scrollSignal={picked !== null} navContent={<NavNext optionalLive disabled={picked === null} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
       <div className="screen">
         <h1 className="title h-title fade-up">{tr({ uz: <>Endi o'zingiz sayt qurasiz — AI'ga <span className="italic" style={{ color: T.accent }}>nima</span> deysiz?</>, ru: <>Теперь вы строите сайт сами — <span className="italic" style={{ color: T.accent }}>что</span> скажете ИИ?</> })}</h1>
-        <Mentor>{tr({ uz: <>Mana tayyor sayt — "Yetkaz" ovqat yetkazib berish. Ko'p narsa bor: tepa menu, banner, taomlar... AI'dan "shuni qur" desangiz — u qayerdan boshlashni bilmaydi. Yechim bitta: <b style={{ color: T.ink }}>🔍 Bo'laklarga ajrating</b> tugmasini bosing — nima ko'rasiz?</>, ru: <>Вот готовый сайт — доставка еды «Yetkaz». Тут много всего: верхнее меню, баннер, блюда... Скажете ИИ «построй вот это» — он не поймёт, с чего начать. Решение одно: нажмите <b style={{ color: T.ink }}>🔍 Разбить на блоки</b> — что увидите?</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Mana tayyor sayt — "TezTaom" ovqat yetkazib berish. Ko'p narsa bor: tepa menu, banner, taomlar... AI'dan "shuni qur" desangiz — u qayerdan boshlashni bilmaydi. Yechim bitta: <b style={{ color: T.ink }}>🔍 Bo'laklarga ajrating</b> tugmasini bosing — nima ko'rasiz?</>, ru: <>Вот готовый сайт — доставка еды «TezTaom». Тут много всего: верхнее меню, баннер, блюда... Скажете ИИ «построй вот это» — он не поймёт, с чего начать. Решение одно: нажмите <b style={{ color: T.ink }}>🔍 Разбить на блоки</b> — что увидите?</> })}</Mentor>
         <Split>
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -1350,7 +1350,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
               {split && <span className="mono small fade-step" style={{ color: T.accent }}>{tr({ uz: 'oddiy bloklar!', ru: 'простые блоки!' })}</span>}
             </div>
             <Zoomable>{/* F-1015-378: ⛶ faqat saytni o'raydi; sayt to'liq — bo'laklarga ajratilganda hammasi ko'rinsin */}
-            <Win title="Yetkaz — localhost:5173" minH={150}>
+            <Win title="TezTaom — localhost:5173" minH={150}>
               <HomePreview outline={split} />
             </Win>
             </Zoomable>
@@ -1377,7 +1377,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   );
 };
 
-// ===== F-1015-347: 20 → 9 ekran. Yetkaz: bo'laklash (AI'siz) → aniq prompt (Gemini) → AI xatosi → o'z saytingiz (Gemini) =====
+// ===== F-1015-347: 20 → 9 ekran. TezTaom: bo'laklash (AI'siz) → aniq prompt (Gemini) → AI xatosi → o'z saytingiz (Gemini) =====
 const PromptBlok = ({ matn }) => {
   const [ok, setOk] = useState(false);
   const nusxa = async () => { try { await navigator.clipboard.writeText(matn); setOk(true); setTimeout(() => setOk(false), 1600); } catch { /* clipboard yopiq — ustoz ko'rsatadi */ } };
@@ -1419,7 +1419,7 @@ const QadamTugma = ({ b }) => {
   );
 };
 const TAYYOR = [
-  { uz: "Terminalda: `npm create vite@latest yetkaz` (React, JavaScript), keyin `cd yetkaz`, `npm install`, `npm run dev`.", ru: 'В терминале: `npm create vite@latest yetkaz` (React, JavaScript), потом `cd yetkaz`, `npm install`, `npm run dev`.' },
+  { uz: "Terminalda: `npm create vite@latest teztaom` (React, JavaScript), keyin `cd teztaom`, `npm install`, `npm run dev`.", ru: 'В терминале: `npm create vite@latest teztaom` (React, JavaScript), потом `cd teztaom`, `npm install`, `npm run dev`.' },
   { uz: "Papkani VS Code'da oching — `src` ichida `components` papkasini yarating.", ru: 'Откройте папку в VS Code — внутри `src` создайте папку `components`.' },
   { uz: "Boshqa oynada gemini.google.com'ni oching.", ru: 'В другом окне откройте gemini.google.com.' }
 ];
@@ -1458,7 +1458,7 @@ const TayyorTugma = () => {
 };
 const BLOK3 = [
   { t: { uz: "Bo'laklash", ru: 'Декомпозиция' }, tag: { uz: "o'zingiz", ru: 'сами' } },
-  { t: { uz: 'Yetkaz — aniq prompt', ru: 'Yetkaz — точный промпт' }, tag: 'Gemini' },
+  { t: { uz: 'TezTaom — aniq prompt', ru: 'TezTaom — точный промпт' }, tag: 'Gemini' },
   { t: { uz: 'AI xatosini tuzatish', ru: 'Исправление ошибки AI' }, tag: { uz: 'siz', ru: 'Вы' } },
   { t: { uz: "O'z saytingiz", ru: 'Ваш сайт' }, tag: { uz: 'siz + Gemini', ru: 'Вы + Gemini' } }
 ];
@@ -1466,15 +1466,15 @@ const Screen1 = ({ screen, onNext, onPrev }) => (
   <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz', ru: 'Начинаем' })} onClick={onNext} /></>}>
     <div className="screen" style={{ gap: 'clamp(14px,2.4vw,20px)' }}>
       <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Istalgan sayt — <span className="italic" style={{ color: T.accent }}>bir xil yo'l</span> bilan.</>, ru: <>Любой сайт — <span className="italic" style={{ color: T.accent }}>одним путём</span>.</> })}</h2></div>
-      <Mentor>{tr({ uz: <>Bu — modulning oxirgi darsi. Avval «Yetkaz» saytida yo'lni o'rganasiz: <b style={{ color: T.ink }}>bo'laklash → aniq prompt → tekshirish</b>. Keyin xuddi shu yo'l bilan o'z saytingizni boshlaysiz.</>, ru: <>Это последний урок модуля. Сначала на сайте «Yetkaz» осваиваете путь: <b style={{ color: T.ink }}>декомпозиция → точный промпт → проверка</b>. Потом тем же путём начинаете свой сайт.</> })}</Mentor>
+      <Mentor>{tr({ uz: <>Bu — modulning oxirgi darsi. Avval «TezTaom» saytida yo'lni o'rganasiz: <b style={{ color: T.ink }}>bo'laklash → aniq prompt → tekshirish</b>. Keyin xuddi shu yo'l bilan o'z saytingizni boshlaysiz.</>, ru: <>Это последний урок модуля. Сначала на сайте «TezTaom» осваиваете путь: <b style={{ color: T.ink }}>декомпозиция → точный промпт → проверка</b>. Потом тем же путём начинаете свой сайт.</> })}</Mentor>
       <TayyorTugma />
       <Split>
         <Col>
-          <p className="flow-label">{tr({ uz: 'Namuna · Yetkaz', ru: 'Образец · Yetkaz' })}</p>
-          <Win title="Yetkaz — localhost:5173"><HomePreview /></Win>
+          <p className="flow-label">{tr({ uz: 'Namuna · TezTaom', ru: 'Образец · TezTaom' })}</p>
+          <Win title="TezTaom — localhost:5173"><HomePreview /></Win>
         </Col>
         <Col>
-          <p className="flow-label am-yorliq-joy" aria-hidden="true">{tr({ uz: 'Namuna · Yetkaz', ru: 'Образец · Yetkaz' })}</p>
+          <p className="flow-label am-yorliq-joy" aria-hidden="true">{tr({ uz: 'Namuna · TezTaom', ru: 'Образец · TezTaom' })}</p>
           <div className="am-karta am-reja-k fade-up delay-1">
             {/* F-1015-377: «Yo'l — 4 qadam» olindi — «Bugungi 4 blok» bilan takror edi */}
             <p className="flow-label">{tr({ uz: `Bugungi ${BLOK3.length} blok`, ru: `${BLOK3.length} блока сегодня` })}</p>
@@ -1486,15 +1486,15 @@ const Screen1 = ({ screen, onNext, onPrev }) => (
   </Stage>
 );
 
-// ===== a2 — Gemini: Yetkaz bosh sahifasi uchun aniq prompt (aniqlik o'lchagichi + jonli natija) =====
+// ===== a2 — Gemini: TezTaom bosh sahifasi uchun aniq prompt (aniqlik o'lchagichi + jonli natija) =====
 const ANIQ = [
   { id: 'bolim', t: { uz: "① Qaysi bo'limlar", ru: '① Какие секции' } },
   { id: 'mazmun', t: { uz: "② Har bo'lim nima ko'rsatadi", ru: '② Что показывает каждая секция' } },
   { id: 'malumot', t: { uz: "③ Ma'lumot va uslub", ru: '③ Данные и стиль' } }
 ];
-const yetkazPrompt = (on) => {
-  const uz = ["Vite + React loyiham (yetkaz) uchun ovqat yetkazib berish saytining Bosh sahifasini qur."];
-  const ru = ['Сделай главную страницу сайта доставки еды для моего проекта Vite + React (yetkaz).'];
+const teztaomPrompt = (on) => {
+  const uz = ["Vite + React loyiham (teztaom) uchun ovqat yetkazib berish saytining Bosh sahifasini qur."];
+  const ru = ['Сделай главную страницу сайта доставки еды для моего проекта Vite + React (teztaom).'];
   if (on.has('bolim')) { uz.push("Bo'limlar: Navbar, Hero, Kategoriyalar, Taomlar grid, Footer — har biri alohida komponent (src/components)."); ru.push('Секции: Navbar, Hero, Категории, сетка блюд, Footer — каждая отдельным компонентом (src/components).'); }
   if (on.has('mazmun')) { uz.push("Har bo'lim: Navbar — logo va «Savat»; Hero — sarlavha va «Buyurtma berish» tugmasi; Kategoriyalar — 5 ta tugma; Taomlar grid — har taom FoodCard: emoji, nom, narx va «Savatga» tugmasi; Footer — manzil va telefon."); ru.push('Каждая секция: Navbar — логотип и «Корзина»; Hero — заголовок и кнопка «Заказать»; Категории — 5 кнопок; сетка блюд — каждое блюдо в FoodCard: эмодзи, название, цена и кнопка «В корзину»; Footer — адрес и телефон.'); }
   if (on.has('malumot')) { uz.push("Ma'lumot: taomlar App.jsx da massiv ({ id, nom, narx, emoji }), grid ularni map bilan FoodCard'ga props orqali chizsin. Uslub: oq fon, to'q sariq tugmalar, grid kompyuterda 4 ustun, telefonda 2 ustun."); ru.push('Данные: блюда — массив в App.jsx ({ id, nom, narx, emoji }), сетка рисует их через map, передавая в FoodCard через props. Стиль: белый фон, оранжевые кнопки, сетка — 4 колонки на компьютере, 2 на телефоне.'); }
@@ -1507,26 +1507,26 @@ const A2_QADAM = [
   { uz: "Javobdagi komponentlarni `src/components` ga, `App.jsx` ni `src` ga qo'ying, `Ctrl+S`.", ru: 'Компоненты из ответа положите в `src/components`, `App.jsx` — в `src`, `Ctrl+S`.' },
   { uz: "Brauzerda: 5 bo'lim bormi? Har FoodCard'da narx bormi?", ru: 'В браузере: есть 5 секций? В каждой FoodCard есть цена?' }
 ];
-const ScreenYetkaz = ({ screen, onNext, onPrev }) => {
+const ScreenTezTaom = ({ screen, onNext, onPrev }) => {
   const [on, setOn] = useState(() => new Set());
   const almash = (id) => setOn(o => { const n = new Set(o); if (n.has(id)) n.delete(id); else n.add(id); return n; });
   const foiz = Math.round((on.size / ANIQ.length) * 100);
   return (
     <Stage eyebrow={tr({ uz: 'Amaliyot 2 · Gemini', ru: 'Практика 2 · Gemini' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Yetkaz uchun <span className="italic" style={{ color: T.accent }}>aniq prompt</span> yozing.</>, ru: <>Напишите <span className="italic" style={{ color: T.accent }}>точный промпт</span> для Yetkaz.</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>TezTaom uchun <span className="italic" style={{ color: T.accent }}>aniq prompt</span> yozing.</>, ru: <>Напишите <span className="italic" style={{ color: T.accent }}>точный промпт</span> для TezTaom.</> })}</h2></div>
         <Mentor>{tr({ uz: <>«Bosh sahifani qur» — juda kam: AI o'zicha taxmin qiladi. Promptga uch narsani qo'shing va natija qanday aniqlashishini kuzating: <b style={{ color: T.ink }}>bo'limlar, har bo'lim mazmuni, ma'lumot va uslub</b>.</>, ru: <>«Сделай главную» — слишком мало: AI будет угадывать. Добавьте в промпт три вещи и смотрите, как уточняется результат: <b style={{ color: T.ink }}>секции, содержание каждой, данные и стиль</b>.</> })}</Mentor>
         <Split>
           <Col>
             <div className="am-chips">{ANIQ.map(a => <button key={a.id} type="button" className={`am-chip ${on.has(a.id) ? 'on' : ''}`} aria-pressed={on.has(a.id)} onClick={() => almash(a.id)}>{on.has(a.id) ? '✓ ' : '+ '}{tr(a.t)}</button>)}</div>
             <div className="yk-olchov"><span>{tr({ uz: 'Prompt aniqligi', ru: 'Точность промпта' })}</span><div className="yk-bar" role="progressbar" aria-valuenow={foiz} aria-valuemin={0} aria-valuemax={100}><i style={{ width: `${foiz}%` }} /></div><b>{foiz}%</b></div>
-            <Win title="Yetkaz — localhost:5173">
+            <Win title="TezTaom — localhost:5173">
               {!on.has('bolim') ? <div className="yk-taxmin">{tr({ uz: "Bo'limlar aytilmagan — AI o'zicha taxmin qiladi", ru: 'Секции не названы — AI угадывает сам' })}</div>
                 : <HomePreview outline={!on.has('malumot')} hidePrice={!on.has('mazmun')} />}
             </Win>
           </Col>
           <Col>
-            <PromptBlok matn={yetkazPrompt(on)} />
+            <PromptBlok matn={teztaomPrompt(on)} />
             {on.size < ANIQ.length && <p className="ql-xabar info" role="status">{tr({ uz: `Yana ${ANIQ.length - on.size} ta aniqlik qo'shing — AI kamroq taxmin qiladi.`, ru: `Добавьте ещё ${ANIQ.length - on.size} уточнения — AI будет меньше угадывать.` })}</p>}
             <QadamTugma b={A2_QADAM} />
           </Col>
@@ -1560,7 +1560,7 @@ const ScreenOzSayt = ({ screen, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: "Amaliyot 4 · o'z saytingiz", ru: 'Практика 4 · свой сайт' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Endi <span className="italic" style={{ color: T.accent }}>o'z saytingizni</span> boshlang.</>, ru: <>Теперь начните <span className="italic" style={{ color: T.accent }}>свой сайт</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>G'oyani tanlang — u xuddi «Yetkaz» kabi bo'laklanadi va birinchi aniq prompt tayyor bo'ladi. Yo'l o'sha: <b style={{ color: T.ink }}>sahifalar → bo'limlar → takrorlanuvchi karta → prompt</b>.</>, ru: <>Выберите идею — она разобьётся так же, как «Yetkaz», и первый точный промпт будет готов. Путь тот же: <b style={{ color: T.ink }}>страницы → секции → повторяющаяся карточка → промпт</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>G'oyani tanlang — u xuddi «TezTaom» kabi bo'laklanadi va birinchi aniq prompt tayyor bo'ladi. Yo'l o'sha: <b style={{ color: T.ink }}>sahifalar → bo'limlar → takrorlanuvchi karta → prompt</b>.</>, ru: <>Выберите идею — она разобьётся так же, как «TezTaom», и первый точный промпт будет готов. Путь тот же: <b style={{ color: T.ink }}>страницы → секции → повторяющаяся карточка → промпт</b>.</> })}</Mentor>
         {/* F-1015-377: g'oya tanlanmaguncha bitta ustun — bo'sh o'ng ustun yo'q */}
         <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             <p className="flow-label">{tr({ uz: "G'oyani tanlang", ru: 'Выберите идею' })}</p>
@@ -1619,7 +1619,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable>
         <div className="split">
           <Col>
-            <Win title="Yetkaz · Bosh — localhost:5173" minH={150} maxH={400}>{/* F-1015-379: 250 → 400; ⛶ da aylantirishsiz */}
+            <Win title="TezTaom · Bosh — localhost:5173" minH={150} maxH={400}>{/* F-1015-379: 250 → 400; ⛶ da aylantirishsiz */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
                 <SiteNavbar />
                 <div onClick={() => tap('hero')} className={!seen.has('hero') ? 'tap-hint' : undefined} style={{ cursor: 'pointer', borderRadius: 11, outline: outline('hero') }}><Hero /></div>
@@ -1764,7 +1764,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'natija — komponent tayyor', ru: 'результат — компонент готов' })}</p>
-            <Win title="Yetkaz — localhost:5173" minH={130}>
+            <Win title="TezTaom — localhost:5173" minH={130}>
               {valid
                 ? <div className="fade-step"><TaomGrid /><p className="small" style={{ color: T.success, fontWeight: 700, margin: '7px 0 0' }}>{tr({ uz: "✓ Bitta FoodCard — to'rtta taom (props bilan)", ru: '✓ Один FoodCard — четыре блюда (через props)' })}</p></div>
                 : null /* F-0926-06: bo'sh oyna javob kodini aytardi — olindi (S6, P1) */}
@@ -1963,7 +1963,7 @@ export default function ReactBuildSiteLesson({ lang: langProp, onFinished, liveT
     if (typeof onFinished === 'function') onFinished(sealPayload(LESSON_META.lessonId, payload));
   };
 
-  const screens = [Screen0, Screen1, Screen3, ScreenYetkaz, Screen10, ScreenOzSayt, Screen14, ScreenPodium, Screen15];
+  const screens = [Screen0, Screen1, Screen3, ScreenTezTaom, Screen10, ScreenOzSayt, Screen14, ScreenPodium, Screen15];
   const Current = screens[screen];
   return (
     <LangContext.Provider value={lang}>

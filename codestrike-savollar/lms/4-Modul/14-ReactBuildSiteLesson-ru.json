@@ -52,7 +52,7 @@
   {
     "type": "selected-file",
     "lang": "ru",
-    "question": "Из скольких секций главная «Yetkaz»?",
+    "question": "Из скольких секций главная «TezTaom»?",
     "order_number": 15,
     "options": [
       {
@@ -227,7 +227,7 @@
   {
     "type": "selected-file",
     "lang": "ru",
-    "question": "Где в «Yetkaz» хранится список блюд?",
+    "question": "Где в «TezTaom» хранится список блюд?",
     "order_number": 22,
     "options": [
       {

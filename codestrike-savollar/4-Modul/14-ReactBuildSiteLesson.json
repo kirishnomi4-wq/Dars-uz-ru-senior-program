@@ -58,7 +58,7 @@
       "n": 3,
       "togri": 2,
       "uz": {
-        "savol": "«Yetkaz» Bosh sahifasi nechta bo'limdan?",
+        "savol": "«TezTaom» Bosh sahifasi nechta bo'limdan?",
         "variantlar": [
           "1 ta",
           "2 ta",
@@ -67,7 +67,7 @@
         ]
       },
       "ru": {
-        "savol": "Из скольких секций главная «Yetkaz»?",
+        "savol": "Из скольких секций главная «TezTaom»?",
         "variantlar": [
           "1",
           "2",
@@ -212,7 +212,7 @@
       "n": 10,
       "togri": 1,
       "uz": {
-        "savol": "«Yetkaz»da taomlar ro'yxati qayerda turadi?",
+        "savol": "«TezTaom»da taomlar ro'yxati qayerda turadi?",
         "variantlar": [
           "Router (<Route>)",
           "App.jsx'dagi massiv",
@@ -221,7 +221,7 @@
         ]
       },
       "ru": {
-        "savol": "Где в «Yetkaz» хранится список блюд?",
+        "savol": "Где в «TezTaom» хранится список блюд?",
         "variantlar": [
           "Router (<Route>)",
           "App.jsx'dagi massiv",

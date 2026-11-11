@@ -4694,3 +4694,10 @@ Sinf-supurish (19.10): ta'rif-qatori faqat 12-M da topildi (13 qator, 5 dars) �
 - ❌ (izoh bilan «tuzatish») «o'yinchoq mishka»  ✅ narsaning o'zi almashtiriladi — foydalanuvchi: «o'yinchoq mishka kerak emas, bu so'z ham tushunarsiz»
 **Qoida:** misol-do'kon, jadval va test ma'lumotida har narsa bitta o'zbekcha nom bilan; ruscha so'zlashuv (mishka, naushnik kabi) boshqa qatordagi o'zbekcha nom bilan bir narsani bildirsa — bittasi qoladi, ikkinchisi boshqa mahsulotga almashadi. Nom almashsa, haqiqiy chiqishlar (psql, Jest, repo) ham almashadi — matn va natija bir xil bo'lsin.
 🔧 Tekshiruv: `npm run lint:til <fayl>` — `mishka-sichqoncha` qoidasi; `grep -rli mishka src/mentor-kurs/*/parts` = 0.
+
+## §NAMUNA-NOM — namuna-sayt nomi fe'l yoki oddiy so'z bo'lmaydi (F-1111-03, 11.11; mentor fidbeki, 3-M 14 «Istalgan saytni qurish», Amaliyot 2: «yetkaz emas boshqa narsa qo'yish kerak, tarjima g'alati chiqqan»)
+
+- ❌ «Yetkaz uchun aniq prompt yozing.»  ✅ «TezTaom uchun aniq prompt yozing.» (RU: ❌ «для Yetkaz» ✅ «для TezTaom»)
+- ❌ «Vite + React loyiham (yetkaz) uchun ovqat yetkazib berish saytining Bosh sahifasini qur.»  ✅ «Vite + React loyiham (teztaom) uchun ovqat yetkazib berish saytining Bosh sahifasini qur.»
+**Qoida:** o'ylab topilgan sayt yoki loyiha nomi gapda nom ekani darhol bilinsin. Buyruq fe'li («Yetkaz») yoki oddiy so'z bo'lsa, «… uchun», «…da» bilan gap buzilgan tarjimadek o'qiladi, ruschada esa tarjima qilinmagandek ko'rinadi. Qo'shma, bosh harfli nom olinadi (TezTaom, AvtoIjara); nom gapdagi oddiy so'z bilan takrorlanmaydi («yetkaz … yetkazib berish»).
+🔧 Tekshiruv: `grep -rhoP 'npm create vite@latest [a-z0-9-]+' src` va `grep -rhoP 'title="[^"]+ — [^"]*localhost' src` — nomlar orasida fe'l yoki oddiy so'z yo'q (11.11: 35 dars fayli, 5 nom).

@@ -52,7 +52,7 @@
   {
     "type": "selected-file",
     "lang": "uz",
-    "question": "«Yetkaz» Bosh sahifasi nechta bo'limdan?",
+    "question": "«TezTaom» Bosh sahifasi nechta bo'limdan?",
     "order_number": 3,
     "options": [
       {
@@ -227,7 +227,7 @@
   {
     "type": "selected-file",
     "lang": "uz",
-    "question": "«Yetkaz»da taomlar ro'yxati qayerda turadi?",
+    "question": "«TezTaom»da taomlar ro'yxati qayerda turadi?",
     "order_number": 10,
     "options": [
       {
