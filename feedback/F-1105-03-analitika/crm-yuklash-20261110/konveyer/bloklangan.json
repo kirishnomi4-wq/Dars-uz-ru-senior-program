@@ -1,0 +1,308 @@
+[
+ {
+  "m": 2,
+  "fn": "04-Htmllesson2-v6.jsx",
+  "lesson_id": "html-02-v16",
+  "sabab": "R04",
+  "uz": 13559,
+  "ru": 13705,
+  "sid": "2419"
+ },
+ {
+  "m": 2,
+  "fn": "05-HtmlTakrorlashLesson-v6.jsx",
+  "lesson_id": "html-takrorlash-01-05-v2",
+  "sabab": "R04",
+  "uz": 14088,
+  "ru": 14089,
+  "sid": "2541"
+ },
+ {
+  "m": 2,
+  "fn": "10-HtmlPractice-v7.jsx",
+  "lesson_id": "html-practice-portfolio-v2",
+  "sabab": "K03 ",
+  "uz": 13635,
+  "ru": 14096,
+  "sid": "2426"
+ },
+ {
+  "m": 2,
+  "fn": "11-CssPractice-v6.jsx",
+  "lesson_id": "css-practice-portfolio-v3",
+  "sabab": "K03 ",
+  "uz": 14099,
+  "ru": 14098,
+  "sid": "2428"
+ },
+ {
+  "m": 2,
+  "fn": "13-DeployLesson-v6.jsx",
+  "lesson_id": "netlify-deploy-v19",
+  "sabab": "K03 ",
+  "uz": 14085,
+  "ru": 14086,
+  "sid": "2429"
+ },
+ {
+  "m": 3,
+  "fn": "09-PracticeLesson1-v7.jsx",
+  "lesson_id": "practice-01-jonlantirish-v18",
+  "sabab": "K03 ",
+  "uz": 14122,
+  "ru": 14116,
+  "sid": "2438"
+ },
+ {
+  "m": 3,
+  "fn": "10-PracticeLesson2-v6.jsx",
+  "lesson_id": "practice-02-ai-promo-v18",
+  "sabab": "K03 ",
+  "uz": 14124,
+  "ru": 14117,
+  "sid": "2439"
+ },
+ {
+  "m": 3,
+  "fn": "12-PracticeLesson3-v7.jsx",
+  "lesson_id": "practice-03-decompose-v18",
+  "sabab": "K03 ",
+  "uz": 14125,
+  "ru": 14119,
+  "sid": "2442"
+ },
+ {
+  "m": 3,
+  "fn": "13-PracticeLesson4-v7.jsx",
+  "lesson_id": "practice-04-mvp-deploy-v18",
+  "sabab": "K03 ",
+  "uz": 14126,
+  "ru": 14120,
+  "sid": "2443"
+ },
+ {
+  "m": 4,
+  "fn": "08-ReactCrudPracticeLesson-v7.jsx",
+  "lesson_id": "react-crud-practice-p1-v18",
+  "sabab": "K03 ",
+  "uz": 16368,
+  "ru": 16369,
+  "sid": "2451"
+ },
+ {
+  "m": 4,
+  "fn": "12-ReactRouterPracticeLesson-v6.jsx",
+  "lesson_id": "react-router-practice-p2-v18",
+  "sabab": "K03 ",
+  "uz": 16376,
+  "ru": 16377,
+  "sid": "2458"
+ },
+ {
+  "m": 4,
+  "fn": "13-ReactProjectDayLesson-v7.jsx",
+  "lesson_id": "react-project-day-p3-v18",
+  "sabab": "K03 ",
+  "uz": 16378,
+  "ru": 16379,
+  "sid": "2459"
+ },
+ {
+  "m": 4,
+  "fn": "14-ReactBuildSiteLesson-v7.jsx",
+  "lesson_id": "react-build-site-final-p4-v18",
+  "sabab": "K03 ",
+  "uz": 16380,
+  "ru": 16381,
+  "sid": "2460"
+ },
+ {
+  "m": 5,
+  "fn": "08-BackendCrudPracticeLesson-v7.jsx",
+  "lesson_id": "backend-crud-practice-p1-v18",
+  "sabab": "K03 ",
+  "uz": 16399,
+  "ru": 16398,
+  "sid": "2469"
+ },
+ {
+  "m": 5,
+  "fn": "10-FullstackConnectPracticeLesson-v7.jsx",
+  "lesson_id": "fullstack-connect-practice-p2-v18",
+  "sabab": "K03 ",
+  "uz": 16403,
+  "ru": 16402,
+  "sid": "2472"
+ },
+ {
+  "m": 5,
+  "fn": "13-FullstackProjectDayLesson-v7.jsx",
+  "lesson_id": "fullstack-projectday-p3-v18",
+  "sabab": "K03 ",
+  "uz": 16409,
+  "ru": 16408,
+  "sid": "2475"
+ },
+ {
+  "m": 5,
+  "fn": "14-FullstackFeedbackLesson-v7.jsx",
+  "lesson_id": "fullstack-feedback-p4-v18",
+  "sabab": "K03 ",
+  "uz": 16411,
+  "ru": 16410,
+  "sid": "2476"
+ },
+ {
+  "m": 6,
+  "fn": "04-NestArchPracticeLesson-v7.jsx",
+  "lesson_id": "nest-arch-practice-4a-03-v18",
+  "sabab": "K03 ",
+  "uz": 16421,
+  "ru": 16420,
+  "sid": "2764"
+ },
+ {
+  "m": 6,
+  "fn": "11-FullPipelineProjectLesson-v6.jsx",
+  "lesson_id": "cicd-full-pipeline-4c-03-v18",
+  "sabab": "K03 R04",
+  "uz": 16435,
+  "ru": 16434,
+  "sid": "2771"
+ },
+ {
+  "m": 6,
+  "fn": "12-AiPipelineProjectLesson-v6.jsx",
+  "lesson_id": "cicd-ai-pipeline-4c-05-v18",
+  "sabab": "K03 ",
+  "uz": 16436,
+  "ru": 16437,
+  "sid": "2772"
+ },
+ {
+  "m": 6,
+  "fn": "14-FullProPipelineLesson-v6.jsx",
+  "lesson_id": "full-pro-pipeline-4c-04-v18",
+  "sabab": "K03 ",
+  "uz": 16440,
+  "ru": 16439,
+  "sid": "2774"
+ },
+ {
+  "m": 12,
+  "fn": "01-PmLandingLesson-v6.jsx",
+  "lesson_id": "pm-m10d1-v1",
+  "sabab": "K03 ",
+  "uz": 17225,
+  "ru": 17226,
+  "sid": "3023"
+ },
+ {
+  "m": 12,
+  "fn": "03-PmRealtimeSpecLesson-v6.jsx",
+  "lesson_id": "pm-m10d3-v1",
+  "sabab": "K03 ",
+  "uz": 17229,
+  "ru": 17230,
+  "sid": "3025"
+ },
+ {
+  "m": 12,
+  "fn": "06-PmChannelsLesson-v7.jsx",
+  "lesson_id": "pm-m10d6-v1",
+  "sabab": "K03 ",
+  "uz": 17235,
+  "ru": 17236,
+  "sid": "3028"
+ },
+ {
+  "m": 12,
+  "fn": "07-PmFiftyUsersLesson-v6.jsx",
+  "lesson_id": "pm-m10d7-v1",
+  "sabab": "K03 ",
+  "uz": 17237,
+  "ru": 17238,
+  "sid": "3029"
+ },
+ {
+  "m": 12,
+  "fn": "08-PmDropOffLesson-v6.jsx",
+  "lesson_id": "pm-m10d8-v1",
+  "sabab": "K03 ",
+  "uz": 17239,
+  "ru": 17240,
+  "sid": "3030"
+ },
+ {
+  "m": 12,
+  "fn": "10-PmUsersCheckLesson-v6.jsx",
+  "lesson_id": "pm-m10d10-v1",
+  "sabab": "K03 ",
+  "uz": 17243,
+  "ru": 17244,
+  "sid": "3032"
+ },
+ {
+  "m": 12,
+  "fn": "11-PmPitchReviewLesson-v6.jsx",
+  "lesson_id": "pm-m10d11-v2",
+  "sabab": "K03 ",
+  "uz": 17245,
+  "ru": 17246,
+  "sid": "3033"
+ },
+ {
+  "m": 12,
+  "fn": "12-PmGrowthPitchLesson-v7.jsx",
+  "lesson_id": "pm-m10d12-v2",
+  "sabab": "K03 ",
+  "uz": 17247,
+  "ru": 17248,
+  "sid": "3034"
+ },
+ {
+  "m": 13,
+  "fn": "01-PmUnitEconomicsLesson-v7.jsx",
+  "lesson_id": "pm-m11d1-v1",
+  "sabab": "K03 ",
+  "uz": 17249,
+  "ru": 17250,
+  "sid": "3035"
+ },
+ {
+  "m": 13,
+  "fn": "06-PmMoneyTalkLesson-v6.jsx",
+  "lesson_id": "pm-m11d6-v1",
+  "sabab": "K03 ",
+  "uz": 17259,
+  "ru": 17260,
+  "sid": "3040"
+ },
+ {
+  "m": 13,
+  "fn": "09-PmPayCheckLesson-v6.jsx",
+  "lesson_id": "pm-m11d9-v1",
+  "sabab": "K03 ",
+  "uz": 17265,
+  "ru": 17266,
+  "sid": "3043"
+ },
+ {
+  "m": 13,
+  "fn": "11-PmReflectionLesson-v6.jsx",
+  "lesson_id": "pm-m11d11-v1",
+  "sabab": "K03 ",
+  "uz": 17269,
+  "ru": 17270,
+  "sid": "3045"
+ },
+ {
+  "m": 14,
+  "fn": "10-PmFreelanceLesson-v6.jsx",
+  "lesson_id": "pm-m12d10-v1",
+  "sabab": "K03 ",
+  "uz": 17291,
+  "ru": 17292,
+  "sid": "3056"
+ }
+]

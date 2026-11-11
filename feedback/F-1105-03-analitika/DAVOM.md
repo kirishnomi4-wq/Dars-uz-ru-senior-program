@@ -1,6 +1,56 @@
-# DAVOM — analitika (holat: 10.11 19:51 — KECHKI RELIZ: prod ▶ + 172 dars yuklash qoldi)
+# DAVOM — analitika (holat: 11.11 15:09 — 172 DARS CRM'DA YANGI VERSIYADA, 344/344 qator ✓; keyingi: muhrla → kalitlar → 37 → v2 on)
 
-> 🔴🔴🔴 **YANGI SEANS SHU YERDAN (10.11 19:51, foydalanuvchi 21:00 da qaytadi) — KECHKI RELIZ, bizning qism 1–2 qadam qoldi.**
+> 🔴🔴🔴 **YANGI SEANS SHU YERDAN (11.11 15:09).** **172 dars (2–14-Modul) CRM'da yangi versiyada** — 344/344 qator Active + yangi fayl (yakuniy o'qish 15:09),
+> har modulda bayt ✓ (paket `yuklash-20261111-prod`, commit `a9823949`). 6-M 11 ham o'tdi (R04 rad etmadi). Jurnal: `crm-yuklash-20261110/YUKLASH-JURNAL.md` 12:38 → 15:09.
+> Yo'lda: 4-M 14 ru «Failed to fetch» (CRM saqlagan, tekshirildi) · zanjir skript xatosi (kv eski holat, 5-M faqat 15-dars) — tuzatildi, zarar yo'q.
+> **15:24 bajarildi:** shell md5 audit 344/344 ✓ · csv 172/172 · muhr `47590dc2` (lms-farq: o'zgargan 0) · savol kalitlari `686f034c` (faqat versiya +1) · 37-hujjat yangilandi (§6 B07 — foydalanuvchi o'chirishi mumkin).
+> **Qolgan:** prod kalitlar `--yukla` (foydalanuvchi `!`, kutilgan javob «yuklandi: 2565 qator») → 37 Abdullohga (foydalanuvchi) → Abdulloh v2 on → birinchi dars kuzatuvi.
+> **B07 iltimosi** (nishon bayrami / ro'yxat oynasi — tekshiruv kutsin/yopsin) 37-hujjat §6 ga qo'shildi (foydalanuvchi «keyin yozamiz» degan; yuborishdan oldin o'chirishi mumkin). CRM «Браузер» natijalari 5–14-M — soatlab, keyin yig'iladi.
+> Hujjatlar commit'i (DAVOM, JURNAL, 37–43, crm-yuklash asboblari, `dump/` siz) — foydalanuvchi 15:1x «xop maqull» bilan.
+
+
+> 🟡 **Oldingi blok (11.11 14:35).** 2-M 14/14 · 3-M 13/13 · 4-M 14/14 — CRM'da yangi versiyada, Active, bayt ✓ (mustaqil qayta o'qilgan 14:34).
+> Qolgan: **5–14-Modul = 131 dars** eski versiyada (Active). Keyingi modul faqat foydalanuvchi so'zi bilan (bu safar «3 → 4» berilgan edi).
+> 4-M 14 ReactBuildSite ru 16381: saqlash javobi kelmadi («Failed to fetch», ulanish uzilgan), lekin CRM saqlagan — tekshirildi ✓. Konveyer qayta ishga tushirilganda o'tganlarni «allaqachon» deb o'tkazadi.
+> CRM tekshiruvi XATO (bloklamaydi): 2-M 09 B06 · 2-M 11 B07 (nishon bayrami) · 3-M 13 B07 (nishon ro'yxati oynasi; sensorli ekranda yopilmaydi — 183 fayl, KATTA taklifi). 4-M «Браузер» 14:34 da 4/28 — keyin yig'ish.
+
+> 🟡 **Oldingi blok (11.11 13:29).**
+> **Abdulloh 43-javob** (`43-ABDULLOH-JSX-ACTIVE-JAVOB-UZ.md`): CRM tekshiruvi endi saqlash/Active'ni BLOKLAMAYDI; Active qatorga yangi fayl saqlansa
+> qator Active qoladi — **yangi versiya darhol o'quvchida**. Hali bloklaydi: sintaksis xatosi, fayl yo'q, xavfsiz bo'lmagan yuklash, ruxsat, bir vaqtda tahrir.
+> 2-M 09 VsCode va 3-M 05 if/else ni Abdulloh Active qildi (tekshirildi). 🔴 Endi yagona to'siq — bizning paket smoke'i.
+> **Bugun qilindi:** K03/R04 commit `a9823949` (35 fayl) · paket `yuklash-20261111-prod` qayta yig'ildi (smoke-lms ✓, smoke-preview 172/172, O'TDI; eski bilan 172/172 md5 bir xil) ·
+> yangi asboblar `crm-yuklash-20261110/konveyer/` — `yukla-v4.js`, `konveyer-v4.js`, `royxat-v4.py` → `royxat-v4.json` (v3 dagi `__darsSaqla`/`__kut` faqat localStorage'da edi, yo'qolgan) ·
+> **2-Modul yopildi:** 04, 05, 10, 11, 13 yuklandi (13:28, har biri ~6 s, Active qoldi) → 28/28 qator Active + yangi fayl + bayt ✓.
+> **CRM holati:** yangi versiyada — 2-M 14/14 · 3-M 01, 02, 04, 05. Eski versiyada (Active) — 3-M 9 dars (06–14) · 4–14-M hammasi = **154 dars**.
+> **Foydalanuvchi qarori (11.11 13:0x):** 2-Modul tugagach TO'XTASH — 3-Modul va keyingilari faqat buyruq bilan, modulma-modul, har moduldan keyin hisobot.
+> **Davom (buyruqdan keyin):** serverlar — `YAKKA=/home/kali/Desktop/internetLesson/yuklash-20261111-prod/yakka node feedback/F-1105-03-analitika/crm-yuklash-20261110/yordamchi-server.mjs` (5399) + `node …/konveyer-server.mjs` (5398);
+> Chrome CRM sahifasi → `eval` yukla-v4.js + konveyer-v4.js (5398/kv/), `__R4 = royxat-v4.json` → `__konveyer4(__R4.filter(L => L.m === N), {modullar: [N]})` (fon; holat `dump/konveyer-v4-holat.json`);
+> keyin mustaqil qayta o'qish (holat + `__solishtir`) va `__tekshiruvYig`. To'xtatish: `touch crm-yuklash-20261110/konveyer/TOXTAT-V4` (eski `PAUZA` o'chirilmagan, v4 unga qaramaydi).
+> ⚠ 6-M 11 FullPipelineProject — R04 (badge to'liq URL) hali yechilmagan: saqlashda rad bo'lishi mumkin («xavfsiz bo'lmagan yuklash» hali bloklaydi) → yetganda to'xtab aytiladi.
+> **Hammasidan keyin:** md5-audit (royxat-v4 md5 bilan) → `yuklangan.csv` → `muhrla yuklash-20261111-prod/yuklangan.csv --server ab1bfa3` → savol kalitlari → 37-hujjat → v2 on.
+
+> 🟡 **Oldingi blok (11.11 03:02, foydalanuvchi uxladi, kunduzi davom).** Avval so'ra: **Abdulloh 40-hujjatga javob berdimi / CRM tekshiruvi tiklandimi?**
+> **CRM holati (03:02 tekshirilgan):**
+> - ✅ yangi versiyada Active — **11 dars**: 2-M 01, 02, 03, 06, 07, 08, 12, 14 · 3-M 01, 02, 04.
+> - 🔴 **Draft (o'quvchi kira olmaydi)** — 2-M 09 VsCode (14097/14100, bo'lim 2542; Браузер **B06** XATO «P» 919 > 900 px, skroll yo'q — o'zimizda va LMS preview'da takrorlanmadi) · 3-M 05 JsConditions (14110/14109, bo'lim 2434; tekshiruv **boshlanmadi**, `static: null` 02:30 dan; qayta saqlash ham o'sha `validation_id`, qayta boshlamaydi → CRM navbati osilgan).
+> - ⏳ eski versiyada — 2-M 04, 05, 10, 11, 13 (tuzatilgan, tayyor) · 3-M 9 dars · 4–14-M hammasi = **159 dars**.
+> **Abdullohga yuborildi (~03:00, foydalanuvchi):** `40-ABDULLOH-CRM-DRAFT-QOLGAN-DARSLAR-UZ.md` — bugun: navbatni tiklash, 2 darsni Active, B06 ma'lumoti, «tekshiruvdan oldin Draft qilmaslik». (`39-…` yuborilmagan — 40 uning o'rnida.)
+> **🔴 Foydalanuvchi qarorlari (11.11):** CRM tekshiruvi ishlamasa **yuklanmaydi** (Draft = o'quvchi darsga kira olmaydi) · 3-Modul va keyingilar to'xtatilgan (`crm-yuklash-20261110/konveyer/PAUZA` — o'chirilmasin, buyruqsiz) · har modul yopilganda va har xatoda hisobot; xatoni o'zim tuzatmayman — aniqlab aytaman, u «to'g'rila» deydi.
+> **Tuzatilgan, COMMIT QILINMAGAN (buyruq kerak):** `src/live/portal.js` (yangi) + 32 darsda `react-dom` → `../live/portal.js` (K03) · `src/1-Modull/Htmllesson2.jsx`, `HtmlTakrorlashLesson.jsx` — rasm CRM media kutubxonasidan (R04; media'da 2 yangi yozuv, md5 ✓) · `src/4c-Modull/FullPipelineProjectLesson.jsx` badge satri bo'lingan (⚠ yig'mada esbuild qayta qo'shadi — 6-M 11 hali R04 ga tushadi, boshqa yo'l kerak). Gates 11/13 (tell/emoji — eski qarz, HEAD bilan bir xil).
+> **Yangi paket `yuklash-20261111-prod/`** (`--majbur`, commit yo'q): 172 dars, kechagidan aynan 34 farq, 138 bayt-bayt bir xil, react-dom 0. ⚠ Paketning to'liq smoke'i notebook o'chishi bilan TUGAMADI (HISOBOT.md yo'q) — keyingi yuklashdan oldin qayta: `CHROME=/usr/bin/google-chrome node scripts/lms-farq.mjs paket --out yuklash-20261111-prod --majbur` (yoki commit'dan keyin `--majbur` siz). 2-M 5 dars alohida: smoke-lms 5/5, smoke-preview 5/5, portal oynasi (CssPractice) ✓.
+> **Davom tartibi (CRM tekshiruvi tiklangach):**
+> 1. Serverlar: `YAKKA=/home/kali/Desktop/internetLesson/yuklash-20261111-prod/yakka node feedback/F-1105-03-analitika/crm-yuklash-20261110/yordamchi-server.mjs` (5399, fon; **YAKKA shart** — aks holda eski paket beriladi) + `node …/konveyer-server.mjs` (5398, fon).
+> 2. Chrome: yangi tab → `go.coddycamp.uz/account/student_courses/section/2374` → sahifaga `yukla-sahifa-v3.js` (localStorage `__yk3` ga, `__yk3dars` — konveyer.js izohidagi tartib) → `konveyer/konveyer.js`. Avval bitta darsda sinov (tekshiruv ishlayaptimi).
+> 3. 2-M 04, 05, 10, 11, 13 → har biri Active bo'lguncha kuzatish → foydalanuvchiga 2-Modul hisobot. Keyingi modullar — faqat foydalanuvchi aytganda (`PAUZA` ni o'chirib, ro'yxatni yangi paketdan qayta yig'ib).
+> 4. Hammasidan keyin: `konveyer/md5-audit.py` (⚠ hozir eski `yuklash-xarita.json` md5 iga qaraydi — yangi paket csv'siga moslash) → `yuklangan.csv` → `muhrla` (**yangi paket** csv bilan, `--server ab1bfa3`) → savol kalitlari → 37-hujjat → v2 on.
+> **Asboblar:** `crm-yuklash-20261110/` — `yukla-sahifa-v3.js` (kutish 40 daq), `konveyer/` (konveyer.js, royxat.json — eski paket bo'yicha 131 dars, kuzat.py, b06-tekshir.mjs, portal-sinov.mjs, pv-walk.mjs), jurnal `YUKLASH-JURNAL.md`, dump/ (hisobotlar).
+
+> 🟡 **Oldingi blok (11.11 01:44).**
+> **Holat:** prod Dars API `0.1.0+ab1bfa30`, migratsiya 17, `result_schema_v2` off (10.11 21:41 ✅). CRM'ning yangi JSX-tekshiruvli saqlash yo'li ishladi: **13381 (uz) `01-InternetLesson-v6.jsx` Active** (11.11 01:39, faqat ogohlantirishlar). **14091 (ru) hali v5.** Qolgan **343 qator yuklanmagan**, `yuklash-20261110-prod/yuklangan.csv` 0/172 belgilangan. Yuklovchi seans yopilgan (uning jurnali `crm-yuklash-20261110/YUKLASH-JURNAL.md` 23:47 da tugaydi).
+> **CRM oqimi:** saqlash (`_jsx_async=1`) → qator Draft → tekshiruv Исходник + Браузер (~3 daq) → Active (`change_question_status.php`). Tekshiruv tugamasa Active → 422; XATO bo'lsa Active bo'lmaydi; ogohlantirish to'xtatmaydi. Skript `crm-yuklash-20261110/yukla-sahifa-v2.js` — `__qator` saqlagach darhol faollashtiradi, tekshiruvni KUTMAYDI (tuzatish kerak). `YUKLOVCHI-PROMPT-20261110.md` va `YUKLASH_PROTOKOLI.md` eski oqimni yozadi («Active qilinmaydi») — yangilanmagan.
+> **Keyingi:** (1) qolgan 343 qatorni kim/qanday yuklashi — foydalanuvchi qarori; (2) `node scripts/lms-farq.mjs muhrla yuklash-20261110-prod/yuklangan.csv --kim <seans> --server ab1bfa3` → commit; (3) `savol-kalitlari.mjs --yoz` + prod `--yukla` (foydalanuvchi `!`); (4) 37-hujjat Abdullohga → v2 on; (5) birinchi dars kuzatuvi. Ogohlantirishlar (M01/M02/R05/Y01/Y10/B03/B09) — alohida ish, qarorsiz boshlanmaydi.
+
+> 🟡 **Oldingi blok (10.11 19:51, foydalanuvchi 21:00 da qaytadi) — KECHKI RELIZ, bizning qism 1–2 qadam qoldi.**
 > **Holat:**
 > - Dars API **prod `55fd1797`** (migratsiya 16, `RESULT_SCHEMA_V2` off) — eski, chegara (0017) YO'Q. Yangi versiya GitLab `main` da tayyor: pipeline **#3049126359** (`ab1bfa30`, monorepo `4f8e9287`, ichida `131ad6cf` chegara), deploy bosqichi **Blocked — ▶ kutadi**. Server kodi shundan beri o'zgarmagan (keyingi commitlar faqat src/live va hujjat).
 > - Staging `2cbce865` (17/17, v2 on, Abdulloh yoqqan), QA jonli sinov 1-dars ✅ (lr_/ap_/ar_ applied, Class + Learn, 39 coin) — JURNAL.

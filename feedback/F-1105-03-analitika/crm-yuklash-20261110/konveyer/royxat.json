@@ -1,0 +1,1312 @@
+[
+{
+"m": 2,
+"sid": "2427",
+"uz": 13637,
+"ru": 14101,
+"rel": "2-Modul/12-GitLesson-v6.jsx",
+"fn": "12-GitLesson-v6.jsx",
+"eski": "12-GitLesson-v5.jsx",
+"lid": "git-github-v19"
+},
+{
+"m": 2,
+"sid": "2430",
+"uz": 14090,
+"ru": 14102,
+"rel": "2-Modul/14-PmLesson3-v6.jsx",
+"fn": "14-PmLesson3-v6.jsx",
+"eski": "14-PmLesson3-v5.jsx",
+"lid": "pm-pitch-03-v20"
+},
+{
+"m": 3,
+"sid": "2431",
+"uz": 14104,
+"ru": 14103,
+"rel": "3-Modul/01-JsIntroLesson-v6.jsx",
+"fn": "01-JsIntroLesson-v6.jsx",
+"eski": "01-JsIntroLesson-v5.jsx",
+"lid": "js-intro-01-v18"
+},
+{
+"m": 3,
+"sid": "2432",
+"uz": 14106,
+"ru": 14105,
+"rel": "3-Modul/02-PmLesson4-v6.jsx",
+"fn": "02-PmLesson4-v6.jsx",
+"eski": "02-PmLesson4-v5.jsx",
+"lid": "pm-m2d2-v1"
+},
+{
+"m": 3,
+"sid": "2433",
+"uz": 14108,
+"ru": 14107,
+"rel": "3-Modul/04-JsVarsLesson-v7.jsx",
+"fn": "04-JsVarsLesson-v7.jsx",
+"eski": "04-JsVarsLesson-v6.jsx",
+"lid": "js-vars-01-v18"
+},
+{
+"m": 3,
+"sid": "2434",
+"uz": 14110,
+"ru": 14109,
+"rel": "3-Modul/05-JsConditionsLesson-v6.jsx",
+"fn": "05-JsConditionsLesson-v6.jsx",
+"eski": "05-JsConditionsLesson-v5.jsx",
+"lid": "js-cond-01-v18"
+},
+{
+"m": 3,
+"sid": "2435",
+"uz": 14112,
+"ru": 14111,
+"rel": "3-Modul/06-JsLoopsLesson-v7.jsx",
+"fn": "06-JsLoopsLesson-v7.jsx",
+"eski": "06-JsLoopsLesson-v6.jsx",
+"lid": "js-loops-01-v18"
+},
+{
+"m": 3,
+"sid": "2436",
+"uz": 14114,
+"ru": 14113,
+"rel": "3-Modul/07-JsFunctionsLesson-v7.jsx",
+"fn": "07-JsFunctionsLesson-v7.jsx",
+"eski": "07-JsFunctionsLesson-v6.jsx",
+"lid": "js-functions-01-v18"
+},
+{
+"m": 3,
+"sid": "2437",
+"uz": 14123,
+"ru": 14115,
+"rel": "3-Modul/08-PmLesson5-v7.jsx",
+"fn": "08-PmLesson5-v7.jsx",
+"eski": "08-PmLesson5-v6.jsx",
+"lid": "pm-m2d7-v1"
+},
+{
+"m": 3,
+"sid": "2441",
+"uz": 14128,
+"ru": 14118,
+"rel": "3-Modul/11-PeanStackLesson-v7.jsx",
+"fn": "11-PeanStackLesson-v7.jsx",
+"eski": "11-PeanStackLesson-v6.jsx",
+"lid": "pean-stack-01-v18"
+},
+{
+"m": 3,
+"sid": "2444",
+"uz": 14127,
+"ru": 14121,
+"rel": "3-Modul/14-PmLesson6-v6.jsx",
+"fn": "14-PmLesson6-v6.jsx",
+"eski": "14-PmLesson6-v5.jsx",
+"lid": "pm-m2d13-v2"
+},
+{
+"m": 4,
+"sid": "2445",
+"uz": 16356,
+"ru": 16357,
+"rel": "4-Modul/01-ReactIntroLesson-v6.jsx",
+"fn": "01-ReactIntroLesson-v6.jsx",
+"eski": "01-ReactIntroLesson-v5.jsx",
+"lid": "react-intro-01-v18"
+},
+{
+"m": 4,
+"sid": "2446",
+"uz": 16358,
+"ru": 16359,
+"rel": "4-Modul/02-PmUserStoryLesson-v7.jsx",
+"fn": "02-PmUserStoryLesson-v7.jsx",
+"eski": "02-PmUserStoryLesson-v6.jsx",
+"lid": "pm-m3d2-v3"
+},
+{
+"m": 4,
+"sid": "2447",
+"uz": 16360,
+"ru": 16361,
+"rel": "4-Modul/04-ReactFirstComponentLesson-v7.jsx",
+"fn": "04-ReactFirstComponentLesson-v7.jsx",
+"eski": "04-ReactFirstComponentLesson-v6.jsx",
+"lid": "react-first-component-02-v18"
+},
+{
+"m": 4,
+"sid": "2448",
+"uz": 16362,
+"ru": 16363,
+"rel": "4-Modul/05-ReactStateEffectLesson-v7.jsx",
+"fn": "05-ReactStateEffectLesson-v7.jsx",
+"eski": "05-ReactStateEffectLesson-v6.jsx",
+"lid": "react-state-effect-03-v18"
+},
+{
+"m": 4,
+"sid": "2449",
+"uz": 16364,
+"ru": 16365,
+"rel": "4-Modul/06-PmLesson8-v7.jsx",
+"fn": "06-PmLesson8-v7.jsx",
+"eski": "06-PmLesson8-v6.jsx",
+"lid": "pm-m3d5-v1"
+},
+{
+"m": 4,
+"sid": "2450",
+"uz": 16366,
+"ru": 16367,
+"rel": "4-Modul/07-ReactPropsReuseLesson-v7.jsx",
+"fn": "07-ReactPropsReuseLesson-v7.jsx",
+"eski": "07-ReactPropsReuseLesson-v6.jsx",
+"lid": "react-props-reuse-04-v18"
+},
+{
+"m": 4,
+"sid": "2453",
+"uz": 16370,
+"ru": 16371,
+"rel": "4-Modul/09-ReactApiGetLesson-v6.jsx",
+"fn": "09-ReactApiGetLesson-v6.jsx",
+"eski": "09-ReactApiGetLesson-v5.jsx",
+"lid": "react-api-get-05-v18"
+},
+{
+"m": 4,
+"sid": "2455",
+"uz": 16372,
+"ru": 16373,
+"rel": "4-Modul/10-ReactApiPostLesson-v7.jsx",
+"fn": "10-ReactApiPostLesson-v7.jsx",
+"eski": "10-ReactApiPostLesson-v6.jsx",
+"lid": "react-api-post-06-v18"
+},
+{
+"m": 4,
+"sid": "2456",
+"uz": 16374,
+"ru": 16375,
+"rel": "4-Modul/11-PmLesson9-v7.jsx",
+"fn": "11-PmLesson9-v7.jsx",
+"eski": "11-PmLesson9-v6.jsx",
+"lid": "pm-m3d10-v1"
+},
+{
+"m": 4,
+"sid": "2461",
+"uz": 16382,
+"ru": 16383,
+"rel": "4-Modul/15-PmLesson10-v8.jsx",
+"fn": "15-PmLesson10-v8.jsx",
+"eski": "15-PmLesson10-v7.jsx",
+"lid": "pm-m3d14-v1"
+},
+{
+"m": 5,
+"sid": "2462",
+"uz": 16384,
+"ru": 16385,
+"rel": "5-Modul/01-DataIntroLesson-v7.jsx",
+"fn": "01-DataIntroLesson-v7.jsx",
+"eski": "01-DataIntroLesson-v6.jsx",
+"lid": "data-intro-04-01-v18"
+},
+{
+"m": 5,
+"sid": "2463",
+"uz": 16386,
+"ru": 16387,
+"rel": "5-Modul/02-PmLesson11-v7.jsx",
+"fn": "02-PmLesson11-v7.jsx",
+"eski": "02-PmLesson11-v6.jsx",
+"lid": "pm-m4d2-v1"
+},
+{
+"m": 5,
+"sid": "2464",
+"uz": 16388,
+"ru": 16389,
+"rel": "5-Modul/03-DbSqlNosqlLesson-v7.jsx",
+"fn": "03-DbSqlNosqlLesson-v7.jsx",
+"eski": "03-DbSqlNosqlLesson-v6.jsx",
+"lid": "db-sql-nosql-04-02-v18"
+},
+{
+"m": 5,
+"sid": "2465",
+"uz": 16391,
+"ru": 16390,
+"rel": "5-Modul/04-NodeServerLesson-v7.jsx",
+"fn": "04-NodeServerLesson-v7.jsx",
+"eski": "04-NodeServerLesson-v6.jsx",
+"lid": "node-server-04-03-v18"
+},
+{
+"m": 5,
+"sid": "2466",
+"uz": 16393,
+"ru": 16392,
+"rel": "5-Modul/05-RoutingLesson-v9.jsx",
+"fn": "05-RoutingLesson-v9.jsx",
+"eski": "05-RoutingLesson-v8.jsx",
+"lid": "nest-routing-04-04-v18"
+},
+{
+"m": 5,
+"sid": "2467",
+"uz": 16395,
+"ru": 16394,
+"rel": "5-Modul/06-PostgresCrudLesson-v7.jsx",
+"fn": "06-PostgresCrudLesson-v7.jsx",
+"eski": "06-PostgresCrudLesson-v6.jsx",
+"lid": "pg-crud-04-05-v18"
+},
+{
+"m": 5,
+"sid": "2468",
+"uz": 16397,
+"ru": 16396,
+"rel": "5-Modul/07-PmLesson12-v8.jsx",
+"fn": "07-PmLesson12-v8.jsx",
+"eski": "07-PmLesson12-v7.jsx",
+"lid": "pm-m4d7-v1"
+},
+{
+"m": 5,
+"sid": "2471",
+"uz": 16401,
+"ru": 16400,
+"rel": "5-Modul/09-ApiPostmanLesson-v7.jsx",
+"fn": "09-ApiPostmanLesson-v7.jsx",
+"eski": "09-ApiPostmanLesson-v6.jsx",
+"lid": "api-postman-04-06-v18"
+},
+{
+"m": 5,
+"sid": "2473",
+"uz": 16405,
+"ru": 16404,
+"rel": "5-Modul/11-AuthEnvLesson-v6.jsx",
+"fn": "11-AuthEnvLesson-v6.jsx",
+"eski": "11-AuthEnvLesson-v5.jsx",
+"lid": "auth-env-04-07-v18"
+},
+{
+"m": 5,
+"sid": "2474",
+"uz": 16406,
+"ru": 16407,
+"rel": "5-Modul/12-PmLesson13-v8.jsx",
+"fn": "12-PmLesson13-v8.jsx",
+"eski": "12-PmLesson13-v7.jsx",
+"lid": "pm-m4d12-v1"
+},
+{
+"m": 5,
+"sid": "2477",
+"uz": 16413,
+"ru": 16412,
+"rel": "5-Modul/15-PmLesson14-v8.jsx",
+"fn": "15-PmLesson14-v8.jsx",
+"eski": "15-PmLesson14-v7.jsx",
+"lid": "pm-m4d15-v1"
+},
+{
+"m": 6,
+"sid": "2761",
+"uz": 16414,
+"ru": 16415,
+"rel": "6-Modul/01-NestArchAliveLesson-v6.jsx",
+"fn": "01-NestArchAliveLesson-v6.jsx",
+"eski": "01-NestArchAliveLesson-v5.jsx",
+"lid": "nest-arch-alive-4a-01-v18"
+},
+{
+"m": 6,
+"sid": "2762",
+"uz": 16416,
+"ru": 16417,
+"rel": "6-Modul/02-PmLesson15-v7.jsx",
+"fn": "02-PmLesson15-v7.jsx",
+"eski": "02-PmLesson15-v6.jsx",
+"lid": "pm-m4a2-v1"
+},
+{
+"m": 6,
+"sid": "2763",
+"uz": 16419,
+"ru": 16418,
+"rel": "6-Modul/03-NestArchResourceLesson-v7.jsx",
+"fn": "03-NestArchResourceLesson-v7.jsx",
+"eski": "03-NestArchResourceLesson-v6.jsx",
+"lid": "nest-arch-resource-4a-02-v18"
+},
+{
+"m": 6,
+"sid": "2765",
+"uz": 16423,
+"ru": 16422,
+"rel": "6-Modul/05-JestUnitTestLesson-v7.jsx",
+"fn": "05-JestUnitTestLesson-v7.jsx",
+"eski": "05-JestUnitTestLesson-v6.jsx",
+"lid": "jest-unit-04b-01-v18"
+},
+{
+"m": 6,
+"sid": "2766",
+"uz": 16427,
+"ru": 16424,
+"rel": "6-Modul/06-PmLesson16-v8.jsx",
+"fn": "06-PmLesson16-v8.jsx",
+"eski": "06-PmLesson16-v7.jsx",
+"lid": "pm-m4b2-v1"
+},
+{
+"m": 6,
+"sid": "2767",
+"uz": 16426,
+"ru": 16425,
+"rel": "6-Modul/07-EdgeCasesTestLesson-v6.jsx",
+"fn": "07-EdgeCasesTestLesson-v6.jsx",
+"eski": "07-EdgeCasesTestLesson-v5.jsx",
+"lid": "edge-cases-04b-02-v18"
+},
+{
+"m": 6,
+"sid": "2768",
+"uz": 16429,
+"ru": 16428,
+"rel": "6-Modul/08-CiCdIntroLesson-v6.jsx",
+"fn": "08-CiCdIntroLesson-v6.jsx",
+"eski": "08-CiCdIntroLesson-v5.jsx",
+"lid": "cicd-intro-4c-01-v18"
+},
+{
+"m": 6,
+"sid": "2769",
+"uz": 16431,
+"ru": 16430,
+"rel": "6-Modul/09-PmLesson17-v7.jsx",
+"fn": "09-PmLesson17-v7.jsx",
+"eski": "09-PmLesson17-v6.jsx",
+"lid": "pm-m4c2-v1"
+},
+{
+"m": 6,
+"sid": "2770",
+"uz": 16433,
+"ru": 16432,
+"rel": "6-Modul/10-GithubActionsLesson-v6.jsx",
+"fn": "10-GithubActionsLesson-v6.jsx",
+"eski": "10-GithubActionsLesson-v5.jsx",
+"lid": "github-actions-4c-02-v18"
+},
+{
+"m": 6,
+"sid": "2773",
+"uz": 16438,
+"ru": 16441,
+"rel": "6-Modul/13-PmLesson18-v8.jsx",
+"fn": "13-PmLesson18-v8.jsx",
+"eski": "13-PmLesson18-v7.jsx",
+"lid": "pm-m4c6-v1"
+},
+{
+"m": 7,
+"sid": "2493",
+"uz": 17095,
+"ru": 17096,
+"rel": "7-Modul/01-BotIntroLesson-v6.jsx",
+"fn": "01-BotIntroLesson-v6.jsx",
+"eski": "01-BotIntroLesson-v5.jsx",
+"lid": "bot-intro-05-01-v18"
+},
+{
+"m": 7,
+"sid": "2494",
+"uz": 17097,
+"ru": 17098,
+"rel": "7-Modul/02-PmLesson19-v7.jsx",
+"fn": "02-PmLesson19-v7.jsx",
+"eski": "02-PmLesson19-v6.jsx",
+"lid": "pm-m5d2-v1"
+},
+{
+"m": 7,
+"sid": "2495",
+"uz": 17099,
+"ru": 17100,
+"rel": "7-Modul/03-BotApiButtonsLesson-v6.jsx",
+"fn": "03-BotApiButtonsLesson-v6.jsx",
+"eski": "03-BotApiButtonsLesson-v5.jsx",
+"lid": "bot-api-buttons-05-02-v18"
+},
+{
+"m": 7,
+"sid": "2496",
+"uz": 17101,
+"ru": 17102,
+"rel": "7-Modul/04-BotStatefulMemoryLesson-v6.jsx",
+"fn": "04-BotStatefulMemoryLesson-v6.jsx",
+"eski": "04-BotStatefulMemoryLesson-v5.jsx",
+"lid": "bot-stateful-memory-05-03-v18"
+},
+{
+"m": 7,
+"sid": "2498",
+"uz": 17103,
+"ru": 17104,
+"rel": "7-Modul/05-BotAiProjectLesson-v6.jsx",
+"fn": "05-BotAiProjectLesson-v6.jsx",
+"eski": "05-BotAiProjectLesson-v5.jsx",
+"lid": "bot-ai-project-05-05-v18"
+},
+{
+"m": 7,
+"sid": "2499",
+"uz": 17105,
+"ru": 17106,
+"rel": "7-Modul/06-BotAiBrainLesson-v6.jsx",
+"fn": "06-BotAiBrainLesson-v6.jsx",
+"eski": "06-BotAiBrainLesson-v5.jsx",
+"lid": "bot-ai-brain-05-04-v18"
+},
+{
+"m": 7,
+"sid": "2500",
+"uz": 17107,
+"ru": 17108,
+"rel": "7-Modul/07-BotFullProjectLesson-v6.jsx",
+"fn": "07-BotFullProjectLesson-v6.jsx",
+"eski": "07-BotFullProjectLesson-v5.jsx",
+"lid": "bot-full-project-05-07-v18"
+},
+{
+"m": 7,
+"sid": "2501",
+"uz": 17109,
+"ru": 17110,
+"rel": "7-Modul/08-PmLesson20-v7.jsx",
+"fn": "08-PmLesson20-v7.jsx",
+"eski": "08-PmLesson20-v6.jsx",
+"lid": "pm-m5d8-v1"
+},
+{
+"m": 7,
+"sid": "2502",
+"uz": 17111,
+"ru": 17112,
+"rel": "7-Modul/09-BotFeedbackIterationLesson-v6.jsx",
+"fn": "09-BotFeedbackIterationLesson-v6.jsx",
+"eski": "09-BotFeedbackIterationLesson-v5.jsx",
+"lid": "bot-feedback-05-06-v18"
+},
+{
+"m": 7,
+"sid": "2503",
+"uz": 17113,
+"ru": 17114,
+"rel": "7-Modul/10-BotAiAgentLesson-v6.jsx",
+"fn": "10-BotAiAgentLesson-v6.jsx",
+"eski": "10-BotAiAgentLesson-v5.jsx",
+"lid": "bot-ai-agent-05-10-v18"
+},
+{
+"m": 7,
+"sid": "2981",
+"uz": 17115,
+"ru": 17116,
+"rel": "7-Modul/11-PmMetricsLesson-v7.jsx",
+"fn": "11-PmMetricsLesson-v7.jsx",
+"eski": "11-PmMetricsLesson-v6.jsx",
+"lid": "pm-m5d11-metrika-v1"
+},
+{
+"m": 7,
+"sid": "2504",
+"uz": 17117,
+"ru": 17118,
+"rel": "7-Modul/12-PmLesson21-v7.jsx",
+"fn": "12-PmLesson21-v7.jsx",
+"eski": "12-PmLesson21-v6.jsx",
+"lid": "pm-m5d11-v1"
+},
+{
+"m": 8,
+"sid": "2505",
+"uz": 17119,
+"ru": 17120,
+"rel": "8-Modul/01-SystemArchitectureLesson-v6.jsx",
+"fn": "01-SystemArchitectureLesson-v6.jsx",
+"eski": "01-SystemArchitectureLesson-v5.jsx",
+"lid": "sys-arch-06-01-v18"
+},
+{
+"m": 8,
+"sid": "2506",
+"uz": 17121,
+"ru": 17122,
+"rel": "8-Modul/02-PmLesson22-v8.jsx",
+"fn": "02-PmLesson22-v8.jsx",
+"eski": "02-PmLesson22-v7.jsx",
+"lid": "pm-m6d2-v1"
+},
+{
+"m": 8,
+"sid": "2507",
+"uz": 17123,
+"ru": 17124,
+"rel": "8-Modul/03-ArchPatternsLesson-v6.jsx",
+"fn": "03-ArchPatternsLesson-v6.jsx",
+"eski": "03-ArchPatternsLesson-v5.jsx",
+"lid": "arch-patterns-06-03-v18"
+},
+{
+"m": 8,
+"sid": "2508",
+"uz": 17125,
+"ru": 17126,
+"rel": "8-Modul/04-AgentArchitectureLesson-v6.jsx",
+"fn": "04-AgentArchitectureLesson-v6.jsx",
+"eski": "04-AgentArchitectureLesson-v5.jsx",
+"lid": "agent-arch-06-04-v18"
+},
+{
+"m": 8,
+"sid": "2509",
+"uz": 17127,
+"ru": 17128,
+"rel": "8-Modul/05-ClaudeSkillsLesson-v6.jsx",
+"fn": "05-ClaudeSkillsLesson-v6.jsx",
+"eski": "05-ClaudeSkillsLesson-v5.jsx",
+"lid": "claude-skills-06-05-v18"
+},
+{
+"m": 8,
+"sid": "2510",
+"uz": 17129,
+"ru": 17130,
+"rel": "8-Modul/06-PmLesson23-v7.jsx",
+"fn": "06-PmLesson23-v7.jsx",
+"eski": "06-PmLesson23-v6.jsx",
+"lid": "pm-m6d6-v1"
+},
+{
+"m": 8,
+"sid": "2511",
+"uz": 17131,
+"ru": 17132,
+"rel": "8-Modul/07-WriteSkillLesson-v6.jsx",
+"fn": "07-WriteSkillLesson-v6.jsx",
+"eski": "07-WriteSkillLesson-v5.jsx",
+"lid": "write-skill-06-07-v18"
+},
+{
+"m": 8,
+"sid": "2512",
+"uz": 17133,
+"ru": 17134,
+"rel": "8-Modul/08-PipelineProjectLesson-v6.jsx",
+"fn": "08-PipelineProjectLesson-v6.jsx",
+"eski": "08-PipelineProjectLesson-v5.jsx",
+"lid": "pipeline-project-06-08-v18"
+},
+{
+"m": 8,
+"sid": "2513",
+"uz": 17135,
+"ru": 17136,
+"rel": "8-Modul/09-ReactNativeBasicsLesson-v6.jsx",
+"fn": "09-ReactNativeBasicsLesson-v6.jsx",
+"eski": "09-ReactNativeBasicsLesson-v5.jsx",
+"lid": "rn-basics-06-09-v18"
+},
+{
+"m": 8,
+"sid": "2514",
+"uz": 17137,
+"ru": 17138,
+"rel": "8-Modul/10-ReactNativeAppLesson-v6.jsx",
+"fn": "10-ReactNativeAppLesson-v6.jsx",
+"eski": "10-ReactNativeAppLesson-v5.jsx",
+"lid": "rn-app-06-10-v18"
+},
+{
+"m": 8,
+"sid": "2515",
+"uz": 17139,
+"ru": 17140,
+"rel": "8-Modul/11-MobileAppPracticeLesson-v6.jsx",
+"fn": "11-MobileAppPracticeLesson-v6.jsx",
+"eski": "11-MobileAppPracticeLesson-v5.jsx",
+"lid": "mobile-practice-06-11-v18"
+},
+{
+"m": 8,
+"sid": "2516",
+"uz": 17141,
+"ru": 17142,
+"rel": "8-Modul/12-PmLesson24-v7.jsx",
+"fn": "12-PmLesson24-v7.jsx",
+"eski": "12-PmLesson24-v6.jsx",
+"lid": "pm-m6d12-v1"
+},
+{
+"m": 8,
+"sid": "2517",
+"uz": 17143,
+"ru": 17144,
+"rel": "8-Modul/13-FullSystemProjectLesson-v6.jsx",
+"fn": "13-FullSystemProjectLesson-v6.jsx",
+"eski": "13-FullSystemProjectLesson-v5.jsx",
+"lid": "full-system-06-13-v18"
+},
+{
+"m": 8,
+"sid": "2518",
+"uz": 17145,
+"ru": 17146,
+"rel": "8-Modul/14-PmLesson25-v7.jsx",
+"fn": "14-PmLesson25-v7.jsx",
+"eski": "14-PmLesson25-v6.jsx",
+"lid": "pm-m6d14-v1"
+},
+{
+"m": 9,
+"sid": "2983",
+"uz": 17147,
+"ru": 17148,
+"rel": "9-Modul/01-PmProductProblemLesson-v7.jsx",
+"fn": "01-PmProductProblemLesson-v7.jsx",
+"eski": "01-PmProductProblemLesson-v6.jsx",
+"lid": "pm-m7d1-v1"
+},
+{
+"m": 9,
+"sid": "2984",
+"uz": 17149,
+"ru": 17150,
+"rel": "9-Modul/02-PmFiveInterviewsLesson-v7.jsx",
+"fn": "02-PmFiveInterviewsLesson-v7.jsx",
+"eski": "02-PmFiveInterviewsLesson-v6.jsx",
+"lid": "m7-02-v1"
+},
+{
+"m": 9,
+"sid": "2985",
+"uz": 17151,
+"ru": 17152,
+"rel": "9-Modul/03-PmInterviewMvpLesson-v7.jsx",
+"fn": "03-PmInterviewMvpLesson-v7.jsx",
+"eski": "03-PmInterviewMvpLesson-v6.jsx",
+"lid": "pm-m7d3-v1"
+},
+{
+"m": 9,
+"sid": "2986",
+"uz": 17153,
+"ru": 17154,
+"rel": "9-Modul/04-MvpArchitectureLesson-v6.jsx",
+"fn": "04-MvpArchitectureLesson-v6.jsx",
+"eski": "04-MvpArchitectureLesson-v5.jsx",
+"lid": "m7-04-v1"
+},
+{
+"m": 9,
+"sid": "2987",
+"uz": 17155,
+"ru": 17156,
+"rel": "9-Modul/05-AnimationLesson-v6.jsx",
+"fn": "05-AnimationLesson-v6.jsx",
+"eski": "05-AnimationLesson-v5.jsx",
+"lid": "m7-05-v1"
+},
+{
+"m": 9,
+"sid": "2988",
+"uz": 17157,
+"ru": 17158,
+"rel": "9-Modul/06-PmAnalyticsDayOneLesson-v6.jsx",
+"fn": "06-PmAnalyticsDayOneLesson-v6.jsx",
+"eski": "06-PmAnalyticsDayOneLesson-v5.jsx",
+"lid": "m7-06-v1"
+},
+{
+"m": 9,
+"sid": "2989",
+"uz": 17159,
+"ru": 17160,
+"rel": "9-Modul/07-MvpFirstScreenLesson-v6.jsx",
+"fn": "07-MvpFirstScreenLesson-v6.jsx",
+"eski": "07-MvpFirstScreenLesson-v5.jsx",
+"lid": "m7-07-v1"
+},
+{
+"m": 9,
+"sid": "2990",
+"uz": 17161,
+"ru": 17162,
+"rel": "9-Modul/08-PmDesignMotionLesson-v6.jsx",
+"fn": "08-PmDesignMotionLesson-v6.jsx",
+"eski": "08-PmDesignMotionLesson-v5.jsx",
+"lid": "m7-08-v1"
+},
+{
+"m": 9,
+"sid": "2991",
+"uz": 17163,
+"ru": 17164,
+"rel": "9-Modul/09-MvpCompleteLesson-v6.jsx",
+"fn": "09-MvpCompleteLesson-v6.jsx",
+"eski": "09-MvpCompleteLesson-v5.jsx",
+"lid": "m7-09-v1"
+},
+{
+"m": 9,
+"sid": "2992",
+"uz": 17165,
+"ru": 17166,
+"rel": "9-Modul/10-PmUsabilityTestLesson-v7.jsx",
+"fn": "10-PmUsabilityTestLesson-v7.jsx",
+"eski": "10-PmUsabilityTestLesson-v6.jsx",
+"lid": "m7-10-v1"
+},
+{
+"m": 9,
+"sid": "2993",
+"uz": 17167,
+"ru": 17168,
+"rel": "9-Modul/11-MvpIterationLesson-v6.jsx",
+"fn": "11-MvpIterationLesson-v6.jsx",
+"eski": "11-MvpIterationLesson-v5.jsx",
+"lid": "m7-11-v1"
+},
+{
+"m": 9,
+"sid": "2994",
+"uz": 17169,
+"ru": 17170,
+"rel": "9-Modul/12-PmUserStoryPitchLesson-v6.jsx",
+"fn": "12-PmUserStoryPitchLesson-v6.jsx",
+"eski": "12-PmUserStoryPitchLesson-v5.jsx",
+"lid": "m7-12-v2"
+},
+{
+"m": 10,
+"sid": "2995",
+"uz": 17171,
+"ru": 17172,
+"rel": "10-Modul/01-PmOkrLesson-v6.jsx",
+"fn": "01-PmOkrLesson-v6.jsx",
+"eski": "01-PmOkrLesson-v5.jsx",
+"lid": "pm-m8d1-okr-v1"
+},
+{
+"m": 10,
+"sid": "2996",
+"uz": 17173,
+"ru": 17174,
+"rel": "10-Modul/02-EventTrackingLesson-v6.jsx",
+"fn": "02-EventTrackingLesson-v6.jsx",
+"eski": "02-EventTrackingLesson-v5.jsx",
+"lid": "m8-02-event-tracking-v1"
+},
+{
+"m": 10,
+"sid": "2997",
+"uz": 17175,
+"ru": 17176,
+"rel": "10-Modul/03-LiveDashboardLesson-v6.jsx",
+"fn": "03-LiveDashboardLesson-v6.jsx",
+"eski": "03-LiveDashboardLesson-v5.jsx",
+"lid": "m8-03-v1"
+},
+{
+"m": 10,
+"sid": "2998",
+"uz": 17177,
+"ru": 17178,
+"rel": "10-Modul/04-PmAbTestLesson-v6.jsx",
+"fn": "04-PmAbTestLesson-v6.jsx",
+"eski": "04-PmAbTestLesson-v5.jsx",
+"lid": "m8-04-v1"
+},
+{
+"m": 10,
+"sid": "2999",
+"uz": 17179,
+"ru": 17180,
+"rel": "10-Modul/05-SecurityBasicsLesson-v6.jsx",
+"fn": "05-SecurityBasicsLesson-v6.jsx",
+"eski": "05-SecurityBasicsLesson-v5.jsx",
+"lid": "m8-05-security-basics-v1"
+},
+{
+"m": 10,
+"sid": "3000",
+"uz": 17181,
+"ru": 17182,
+"rel": "10-Modul/06-PmTrustAuditLesson-v6.jsx",
+"fn": "06-PmTrustAuditLesson-v6.jsx",
+"eski": "06-PmTrustAuditLesson-v5.jsx",
+"lid": "m8-06-v1"
+},
+{
+"m": 10,
+"sid": "3001",
+"uz": 17183,
+"ru": 17184,
+"rel": "10-Modul/07-ProductionDeployLesson-v6.jsx",
+"fn": "07-ProductionDeployLesson-v6.jsx",
+"eski": "07-ProductionDeployLesson-v5.jsx",
+"lid": "m8-07-production-deploy-v1"
+},
+{
+"m": 10,
+"sid": "3002",
+"uz": 17185,
+"ru": 17186,
+"rel": "10-Modul/08-ProdUpgradeLesson-v6.jsx",
+"fn": "08-ProdUpgradeLesson-v6.jsx",
+"eski": "08-ProdUpgradeLesson-v5.jsx",
+"lid": "m8-08-v1"
+},
+{
+"m": 10,
+"sid": "3003",
+"uz": 17187,
+"ru": 17188,
+"rel": "10-Modul/09-ProdReviewLesson-v6.jsx",
+"fn": "09-ProdReviewLesson-v6.jsx",
+"eski": "09-ProdReviewLesson-v5.jsx",
+"lid": "m8-09-v1"
+},
+{
+"m": 10,
+"sid": "3004",
+"uz": 17189,
+"ru": 17190,
+"rel": "10-Modul/10-PmYearPathLesson-v7.jsx",
+"fn": "10-PmYearPathLesson-v7.jsx",
+"eski": "10-PmYearPathLesson-v6.jsx",
+"lid": "pm-m8d10-yol-v1"
+},
+{
+"m": 10,
+"sid": "3005",
+"uz": 17191,
+"ru": 17192,
+"rel": "10-Modul/11-PmPitchRehearsalLesson-v6.jsx",
+"fn": "11-PmPitchRehearsalLesson-v6.jsx",
+"eski": "11-PmPitchRehearsalLesson-v5.jsx",
+"lid": "pm-m8d11-pitch-v2"
+},
+{
+"m": 11,
+"sid": "3006",
+"uz": 17193,
+"ru": 17194,
+"rel": "11-Modul/01-PmTenIdeasLesson-v7.jsx",
+"fn": "01-PmTenIdeasLesson-v7.jsx",
+"eski": "01-PmTenIdeasLesson-v6.jsx",
+"lid": "pm-m9d1-v1"
+},
+{
+"m": 11,
+"sid": "3007",
+"uz": 17195,
+"ru": 17196,
+"rel": "11-Modul/02-PmIdeaRiceLesson-v7.jsx",
+"fn": "02-PmIdeaRiceLesson-v7.jsx",
+"eski": "02-PmIdeaRiceLesson-v6.jsx",
+"lid": "pm-m9d2-v1"
+},
+{
+"m": 11,
+"sid": "3008",
+"uz": 17197,
+"ru": 17198,
+"rel": "11-Modul/03-PmInterviewsOneLesson-v7.jsx",
+"fn": "03-PmInterviewsOneLesson-v7.jsx",
+"eski": "03-PmInterviewsOneLesson-v6.jsx",
+"lid": "pm-m9d3-v1"
+},
+{
+"m": 11,
+"sid": "3009",
+"uz": 17199,
+"ru": 17200,
+"rel": "11-Modul/04-PmFinalIdeaLesson-v7.jsx",
+"fn": "04-PmFinalIdeaLesson-v7.jsx",
+"eski": "04-PmFinalIdeaLesson-v6.jsx",
+"lid": "pm-m9d4-v1"
+},
+{
+"m": 11,
+"sid": "3010",
+"uz": 17201,
+"ru": 17202,
+"rel": "11-Modul/05-PmPrdLesson-v6.jsx",
+"fn": "05-PmPrdLesson-v6.jsx",
+"eski": "05-PmPrdLesson-v5.jsx",
+"lid": "pm-m9d5-v1"
+},
+{
+"m": 11,
+"sid": "3011",
+"uz": 17203,
+"ru": 17204,
+"rel": "11-Modul/06-PmRoadmapLesson-v7.jsx",
+"fn": "06-PmRoadmapLesson-v7.jsx",
+"eski": "06-PmRoadmapLesson-v6.jsx",
+"lid": "pm-m9d6-v1"
+},
+{
+"m": 11,
+"sid": "3012",
+"uz": 17205,
+"ru": 17206,
+"rel": "11-Modul/07-LivePrototypeLesson-v6.jsx",
+"fn": "07-LivePrototypeLesson-v6.jsx",
+"eski": "07-LivePrototypeLesson-v5.jsx",
+"lid": "m9-07-v1"
+},
+{
+"m": 11,
+"sid": "3013",
+"uz": 17207,
+"ru": 17208,
+"rel": "11-Modul/08-PlatformChoiceLesson-v6.jsx",
+"fn": "08-PlatformChoiceLesson-v6.jsx",
+"eski": "08-PlatformChoiceLesson-v5.jsx",
+"lid": "m9-08-v1"
+},
+{
+"m": 11,
+"sid": "3014",
+"uz": 17209,
+"ru": 17210,
+"rel": "11-Modul/09-ExpoPrototypeLesson-v6.jsx",
+"fn": "09-ExpoPrototypeLesson-v6.jsx",
+"eski": "09-ExpoPrototypeLesson-v5.jsx",
+"lid": "m9-09-v1"
+},
+{
+"m": 11,
+"sid": "3015",
+"uz": 17211,
+"ru": 17212,
+"rel": "11-Modul/10-FoundationDayLesson-v6.jsx",
+"fn": "10-FoundationDayLesson-v6.jsx",
+"eski": "10-FoundationDayLesson-v5.jsx",
+"lid": "m9-10-v1"
+},
+{
+"m": 11,
+"sid": "3016",
+"uz": 17213,
+"ru": 17214,
+"rel": "11-Modul/11-FeatureOneLesson-v6.jsx",
+"fn": "11-FeatureOneLesson-v6.jsx",
+"eski": "11-FeatureOneLesson-v5.jsx",
+"lid": "m9-11-v1"
+},
+{
+"m": 11,
+"sid": "3017",
+"uz": 17215,
+"ru": 17216,
+"rel": "11-Modul/12-FeatureTwoLesson-v6.jsx",
+"fn": "12-FeatureTwoLesson-v6.jsx",
+"eski": "12-FeatureTwoLesson-v5.jsx",
+"lid": "m9-12-v1"
+},
+{
+"m": 11,
+"sid": "3018",
+"uz": 17217,
+"ru": 17218,
+"rel": "11-Modul/13-PmAudienceTestLesson-v6.jsx",
+"fn": "13-PmAudienceTestLesson-v6.jsx",
+"eski": "13-PmAudienceTestLesson-v5.jsx",
+"lid": "pm-m9d13-v1"
+},
+{
+"m": 11,
+"sid": "3019",
+"uz": 17219,
+"ru": 17220,
+"rel": "11-Modul/14-FeatureThreeLesson-v6.jsx",
+"fn": "14-FeatureThreeLesson-v6.jsx",
+"eski": "14-FeatureThreeLesson-v5.jsx",
+"lid": "m9-14-v1"
+},
+{
+"m": 11,
+"sid": "3020",
+"uz": 17221,
+"ru": 17222,
+"rel": "11-Modul/15-PmOneOnOneLesson-v6.jsx",
+"fn": "15-PmOneOnOneLesson-v6.jsx",
+"eski": "15-PmOneOnOneLesson-v5.jsx",
+"lid": "pm-m9d15-v1"
+},
+{
+"m": 11,
+"sid": "3021",
+"uz": 17223,
+"ru": 17224,
+"rel": "11-Modul/16-PmPrototypePitchLesson-v6.jsx",
+"fn": "16-PmPrototypePitchLesson-v6.jsx",
+"eski": "16-PmPrototypePitchLesson-v5.jsx",
+"lid": "pm-m9d16-v2"
+},
+{
+"m": 12,
+"sid": "3024",
+"uz": 17227,
+"ru": 17228,
+"rel": "12-Modul/02-WebSocketBasicsLesson-v6.jsx",
+"fn": "02-WebSocketBasicsLesson-v6.jsx",
+"eski": "02-WebSocketBasicsLesson-v5.jsx",
+"lid": "m10-02-v1"
+},
+{
+"m": 12,
+"sid": "3026",
+"uz": 17231,
+"ru": 17232,
+"rel": "12-Modul/04-LiveNotifyDayLesson-v6.jsx",
+"fn": "04-LiveNotifyDayLesson-v6.jsx",
+"eski": "04-LiveNotifyDayLesson-v5.jsx",
+"lid": "m10-04-v1"
+},
+{
+"m": 12,
+"sid": "3027",
+"uz": 17233,
+"ru": 17234,
+"rel": "12-Modul/05-BreakAndFixLesson-v6.jsx",
+"fn": "05-BreakAndFixLesson-v6.jsx",
+"eski": "05-BreakAndFixLesson-v5.jsx",
+"lid": "m10-05-v1"
+},
+{
+"m": 12,
+"sid": "3031",
+"uz": 17241,
+"ru": 17242,
+"rel": "12-Modul/09-RetentionDayLesson-v6.jsx",
+"fn": "09-RetentionDayLesson-v6.jsx",
+"eski": "09-RetentionDayLesson-v5.jsx",
+"lid": "m10-09-v1"
+},
+{
+"m": 13,
+"sid": "3036",
+"uz": 17251,
+"ru": 17252,
+"rel": "13-Modul/02-PmMonetizationLesson-v6.jsx",
+"fn": "02-PmMonetizationLesson-v6.jsx",
+"eski": "02-PmMonetizationLesson-v5.jsx",
+"lid": "pm-m11d2-v1"
+},
+{
+"m": 13,
+"sid": "3037",
+"uz": 17253,
+"ru": 17254,
+"rel": "13-Modul/03-PaymentWebhookLesson-v6.jsx",
+"fn": "03-PaymentWebhookLesson-v6.jsx",
+"eski": "03-PaymentWebhookLesson-v5.jsx",
+"lid": "m11-03-v1"
+},
+{
+"m": 13,
+"sid": "3038",
+"uz": 17255,
+"ru": 17256,
+"rel": "13-Modul/04-PmPricingLesson-v6.jsx",
+"fn": "04-PmPricingLesson-v6.jsx",
+"eski": "04-PmPricingLesson-v5.jsx",
+"lid": "pm-m11d4-v1"
+},
+{
+"m": 13,
+"sid": "3039",
+"uz": 17257,
+"ru": 17258,
+"rel": "13-Modul/05-PaymentDayLesson-v6.jsx",
+"fn": "05-PaymentDayLesson-v6.jsx",
+"eski": "05-PaymentDayLesson-v5.jsx",
+"lid": "m11-05-v1"
+},
+{
+"m": 13,
+"sid": "3041",
+"uz": 17261,
+"ru": 17262,
+"rel": "13-Modul/07-PmTermsLesson-v6.jsx",
+"fn": "07-PmTermsLesson-v6.jsx",
+"eski": "07-PmTermsLesson-v5.jsx",
+"lid": "pm-m11d7-v1"
+},
+{
+"m": 13,
+"sid": "3042",
+"uz": 17263,
+"ru": 17264,
+"rel": "13-Modul/08-WinBackDayLesson-v6.jsx",
+"fn": "08-WinBackDayLesson-v6.jsx",
+"eski": "08-WinBackDayLesson-v5.jsx",
+"lid": "m11-08-v1"
+},
+{
+"m": 13,
+"sid": "3044",
+"uz": 17267,
+"ru": 17268,
+"rel": "13-Modul/10-ReferralDayLesson-v6.jsx",
+"fn": "10-ReferralDayLesson-v6.jsx",
+"eski": "10-ReferralDayLesson-v5.jsx",
+"lid": "m11-10-v1"
+},
+{
+"m": 13,
+"sid": "3046",
+"uz": 17271,
+"ru": 17272,
+"rel": "13-Modul/12-StabilizeDayLesson-v6.jsx",
+"fn": "12-StabilizeDayLesson-v6.jsx",
+"eski": "12-StabilizeDayLesson-v5.jsx",
+"lid": "m11-12-v1"
+},
+{
+"m": 14,
+"sid": "3047",
+"uz": 17273,
+"ru": 17274,
+"rel": "14-Modul/01-PmInvestorPitchLesson-v6.jsx",
+"fn": "01-PmInvestorPitchLesson-v6.jsx",
+"eski": "01-PmInvestorPitchLesson-v5.jsx",
+"lid": "pm-m12d1-v2"
+},
+{
+"m": 14,
+"sid": "3048",
+"uz": 17275,
+"ru": 17276,
+"rel": "14-Modul/02-PmStoryPitchLesson-v6.jsx",
+"fn": "02-PmStoryPitchLesson-v6.jsx",
+"eski": "02-PmStoryPitchLesson-v5.jsx",
+"lid": "pm-m12d2-v2"
+},
+{
+"m": 14,
+"sid": "3049",
+"uz": 17277,
+"ru": 17278,
+"rel": "14-Modul/03-ProductSpeedLesson-v6.jsx",
+"fn": "03-ProductSpeedLesson-v6.jsx",
+"eski": "03-ProductSpeedLesson-v5.jsx",
+"lid": "m12-03-v1"
+},
+{
+"m": 14,
+"sid": "3050",
+"uz": 17279,
+"ru": 17280,
+"rel": "14-Modul/04-PolishDayLesson-v6.jsx",
+"fn": "04-PolishDayLesson-v6.jsx",
+"eski": "04-PolishDayLesson-v5.jsx",
+"lid": "m12-04-v1"
+},
+{
+"m": 14,
+"sid": "3051",
+"uz": 17281,
+"ru": 17282,
+"rel": "14-Modul/05-PmPitchTrainingLesson-v6.jsx",
+"fn": "05-PmPitchTrainingLesson-v6.jsx",
+"eski": "05-PmPitchTrainingLesson-v5.jsx",
+"lid": "pm-m12d5-v2"
+},
+{
+"m": 14,
+"sid": "3052",
+"uz": 17283,
+"ru": 17284,
+"rel": "14-Modul/06-DemoPrepLesson-v6.jsx",
+"fn": "06-DemoPrepLesson-v6.jsx",
+"eski": "06-DemoPrepLesson-v5.jsx",
+"lid": "m12-06-v1"
+},
+{
+"m": 14,
+"sid": "3053",
+"uz": 17285,
+"ru": 17286,
+"rel": "14-Modul/07-PmDemoTestLesson-v6.jsx",
+"fn": "07-PmDemoTestLesson-v6.jsx",
+"eski": "07-PmDemoTestLesson-v5.jsx",
+"lid": "pm-m12d7-v1"
+},
+{
+"m": 14,
+"sid": "3054",
+"uz": 17287,
+"ru": 17288,
+"rel": "14-Modul/08-PmFinalPitchLesson-v6.jsx",
+"fn": "08-PmFinalPitchLesson-v6.jsx",
+"eski": "08-PmFinalPitchLesson-v5.jsx",
+"lid": "pm-m12d8-v2"
+},
+{
+"m": 14,
+"sid": "3055",
+"uz": 17289,
+"ru": 17290,
+"rel": "14-Modul/09-VideoPortfolioLesson-v6.jsx",
+"fn": "09-VideoPortfolioLesson-v6.jsx",
+"eski": "09-VideoPortfolioLesson-v5.jsx",
+"lid": "m12-09-v1"
+},
+{
+"m": 14,
+"sid": "3057",
+"uz": 17293,
+"ru": 17294,
+"rel": "14-Modul/11-PmProgramsLesson-v6.jsx",
+"fn": "11-PmProgramsLesson-v6.jsx",
+"eski": "11-PmProgramsLesson-v5.jsx",
+"lid": "pm-m12d11-v1"
+},
+{
+"m": 14,
+"sid": "3058",
+"uz": 17295,
+"ru": 17296,
+"rel": "14-Modul/12-PmNextStepsLesson-v6.jsx",
+"fn": "12-PmNextStepsLesson-v6.jsx",
+"eski": "12-PmNextStepsLesson-v5.jsx",
+"lid": "pm-m12d12-v1"
+},
+{
+"m": 14,
+"sid": "3059",
+"uz": 17297,
+"ru": 17298,
+"rel": "14-Modul/13-PmDressRehearsalLesson-v6.jsx",
+"fn": "13-PmDressRehearsalLesson-v6.jsx",
+"eski": "13-PmDressRehearsalLesson-v5.jsx",
+"lid": "pm-m12d13-v1"
+}
+]

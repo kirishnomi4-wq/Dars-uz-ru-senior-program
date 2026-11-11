@@ -1,0 +1,2754 @@
+[
+ {
+  "lesson_id": "internet-01-v18",
+  "m": 2,
+  "yangi": "2-Modul/01-InternetLesson-v6.jsx",
+  "md5_yangi": "64fcdab1dbb35e196e762781f66deee1",
+  "eski": "2-Modul/01-InternetLesson-v5.jsx",
+  "md5_eski": "6d9616281a379c745fbb9d2b581e8c4a",
+  "uz": {
+   "qid": 13381,
+   "sid": "2374"
+  },
+  "ru": {
+   "qid": 14091,
+   "sid": "2374"
+  }
+ },
+ {
+  "lesson_id": "pm-m1d2-v1",
+  "m": 2,
+  "yangi": "2-Modul/02-PmLesson1-v6.jsx",
+  "md5_yangi": "2b65c391086e2b6f5639a507acbca558",
+  "eski": "2-Modul/02-PmLesson1-v5.jsx",
+  "md5_eski": "ece79342d5499d26a284acf5425714a7",
+  "uz": {
+   "qid": 13535,
+   "sid": "2416"
+  },
+  "ru": {
+   "qid": 13640,
+   "sid": "2416"
+  }
+ },
+ {
+  "lesson_id": "html-01-v17",
+  "m": 2,
+  "yangi": "2-Modul/03-Htmllesson1-v6.jsx",
+  "md5_yangi": "3b456f0e842d6bb363fdfa58df423a14",
+  "eski": "2-Modul/03-Htmllesson1-v5.jsx",
+  "md5_eski": "69080df17779bb92a3a5c5ffa28dac91",
+  "uz": {
+   "qid": 13556,
+   "sid": "2417"
+  },
+  "ru": {
+   "qid": 14092,
+   "sid": "2417"
+  }
+ },
+ {
+  "lesson_id": "html-02-v16",
+  "m": 2,
+  "yangi": "2-Modul/04-Htmllesson2-v6.jsx",
+  "md5_yangi": "f1292d904ef3ab97178929785c450dfe",
+  "eski": "2-Modul/04-Htmllesson2-v5.jsx",
+  "md5_eski": "f681ba9f6c010372967ef78f9ae48286",
+  "uz": {
+   "qid": 13559,
+   "sid": "2419"
+  },
+  "ru": {
+   "qid": 13705,
+   "sid": "2419"
+  }
+ },
+ {
+  "lesson_id": "html-takrorlash-01-05-v2",
+  "m": 2,
+  "yangi": "2-Modul/05-HtmlTakrorlashLesson-v6.jsx",
+  "md5_yangi": "8d9e7ef1cf0af06be2c6025f6e157aa2",
+  "eski": "2-Modul/05-HtmlTakrorlashLesson-v5.jsx",
+  "md5_eski": "0d7643ab28adb0793930c70a42f21247",
+  "uz": {
+   "qid": 14088,
+   "sid": "2541"
+  },
+  "ru": {
+   "qid": 14089,
+   "sid": "2541"
+  }
+ },
+ {
+  "lesson_id": "pm-m1d6-v1",
+  "m": 2,
+  "yangi": "2-Modul/06-PmLesson2-v6.jsx",
+  "md5_yangi": "c13f78e7cdac177bcffd82e0f0d5fe54",
+  "eski": "2-Modul/06-PmLesson2-v5.jsx",
+  "md5_eski": "d59bf75bced19d88683be797e9e935fd",
+  "uz": {
+   "qid": 13570,
+   "sid": "2423"
+  },
+  "ru": {
+   "qid": 14093,
+   "sid": "2423"
+  }
+ },
+ {
+  "lesson_id": "css-01-v17",
+  "m": 2,
+  "yangi": "2-Modul/07-CssLesson1-v6.jsx",
+  "md5_yangi": "4e7c32653d0d5f8c339b9d4e525a0073",
+  "eski": "2-Modul/07-CssLesson1-v5.jsx",
+  "md5_eski": "44f0eb0ca4363ddc4491dae5ec8d899e",
+  "uz": {
+   "qid": 13599,
+   "sid": "2424"
+  },
+  "ru": {
+   "qid": 14094,
+   "sid": "2424"
+  }
+ },
+ {
+  "lesson_id": "css-02-v18",
+  "m": 2,
+  "yangi": "2-Modul/08-CssLesson2-v6.jsx",
+  "md5_yangi": "e9a7270b27bd068e7c9bfbcc2c1672e7",
+  "eski": "2-Modul/08-CssLesson2-v5.jsx",
+  "md5_eski": "8cffae2ee99e86a0bcfbb17295df66ba",
+  "uz": {
+   "qid": 13600,
+   "sid": "2425"
+  },
+  "ru": {
+   "qid": 14095,
+   "sid": "2425"
+  }
+ },
+ {
+  "lesson_id": "vscode-start-01-v1",
+  "m": 2,
+  "yangi": "2-Modul/09-VsCodeLesson-v6.jsx",
+  "md5_yangi": "91dd3f4cd9e6a50c42eaf2ea5ce4f99b",
+  "eski": "2-Modul/09-VsCodeLesson-v5.jsx",
+  "md5_eski": "d6d7bfb61bc2ee8c6562139b40ea4b29",
+  "uz": {
+   "qid": 14097,
+   "sid": "2542"
+  },
+  "ru": {
+   "qid": 14100,
+   "sid": "2542"
+  }
+ },
+ {
+  "lesson_id": "html-practice-portfolio-v2",
+  "m": 2,
+  "yangi": "2-Modul/10-HtmlPractice-v7.jsx",
+  "md5_yangi": "628ec90b4e48fe9348e9706a00c8701d",
+  "eski": "2-Modul/10-HtmlPractice-v6.jsx",
+  "md5_eski": "3b48ab00cf21aaa8fad8eb41be3ae197",
+  "uz": {
+   "qid": 13635,
+   "sid": "2426"
+  },
+  "ru": {
+   "qid": 14096,
+   "sid": "2426"
+  }
+ },
+ {
+  "lesson_id": "css-practice-portfolio-v3",
+  "m": 2,
+  "yangi": "2-Modul/11-CssPractice-v6.jsx",
+  "md5_yangi": "67c288a7c1c96a00be189252f8340518",
+  "eski": "2-Modul/11-CssPractice-v5.jsx",
+  "md5_eski": "4869ddcd76a876a30060b60b0da3143b",
+  "uz": {
+   "qid": 14099,
+   "sid": "2428"
+  },
+  "ru": {
+   "qid": 14098,
+   "sid": "2428"
+  }
+ },
+ {
+  "lesson_id": "git-github-v19",
+  "m": 2,
+  "yangi": "2-Modul/12-GitLesson-v6.jsx",
+  "md5_yangi": "67a42e045834251eebd447db76e58d5a",
+  "eski": "2-Modul/12-GitLesson-v5.jsx",
+  "md5_eski": "e64d5b280856a2e36626d4f612bb5ffe",
+  "uz": {
+   "qid": 13637,
+   "sid": "2427"
+  },
+  "ru": {
+   "qid": 14101,
+   "sid": "2427"
+  }
+ },
+ {
+  "lesson_id": "netlify-deploy-v19",
+  "m": 2,
+  "yangi": "2-Modul/13-DeployLesson-v6.jsx",
+  "md5_yangi": "7bbf630d01bb446df893cbef2002b0b8",
+  "eski": "2-Modul/13-DeployLesson-v5.jsx",
+  "md5_eski": "bc2dbdc9cdb677b7b247ea8346c8bd12",
+  "uz": {
+   "qid": 14085,
+   "sid": "2429"
+  },
+  "ru": {
+   "qid": 14086,
+   "sid": "2429"
+  }
+ },
+ {
+  "lesson_id": "pm-pitch-03-v20",
+  "m": 2,
+  "yangi": "2-Modul/14-PmLesson3-v6.jsx",
+  "md5_yangi": "bbd85a96e8a3eed0a7ff2525ef56eba3",
+  "eski": "2-Modul/14-PmLesson3-v5.jsx",
+  "md5_eski": "71f4cd96556316f1b9ea973c9cb63f98",
+  "uz": {
+   "qid": 14090,
+   "sid": "2430"
+  },
+  "ru": {
+   "qid": 14102,
+   "sid": "2430"
+  }
+ },
+ {
+  "lesson_id": "js-intro-01-v18",
+  "m": 3,
+  "yangi": "3-Modul/01-JsIntroLesson-v6.jsx",
+  "md5_yangi": "5f4c17c4c1f28c6dbd01bda511a754d2",
+  "eski": "3-Modul/01-JsIntroLesson-v5.jsx",
+  "md5_eski": "c414a970d16f39fa6a97648b99b38f64",
+  "uz": {
+   "qid": 14104,
+   "sid": "2431"
+  },
+  "ru": {
+   "qid": 14103,
+   "sid": "2431"
+  }
+ },
+ {
+  "lesson_id": "pm-m2d2-v1",
+  "m": 3,
+  "yangi": "3-Modul/02-PmLesson4-v6.jsx",
+  "md5_yangi": "c0281f97729be022f9374911d1c22cc2",
+  "eski": "3-Modul/02-PmLesson4-v5.jsx",
+  "md5_eski": "a2dddee3097a1d3db8722c05ca2bf0b3",
+  "uz": {
+   "qid": 14106,
+   "sid": "2432"
+  },
+  "ru": {
+   "qid": 14105,
+   "sid": "2432"
+  }
+ },
+ {
+  "lesson_id": "js-vars-01-v18",
+  "m": 3,
+  "yangi": "3-Modul/04-JsVarsLesson-v7.jsx",
+  "md5_yangi": "13e2e1b1623a0a1f7df616e2dd6e7f1e",
+  "eski": "3-Modul/04-JsVarsLesson-v6.jsx",
+  "md5_eski": "40d6805a5bc6a8e1483f88ede0220d0c",
+  "uz": {
+   "qid": 14108,
+   "sid": "2433"
+  },
+  "ru": {
+   "qid": 14107,
+   "sid": "2433"
+  }
+ },
+ {
+  "lesson_id": "js-cond-01-v18",
+  "m": 3,
+  "yangi": "3-Modul/05-JsConditionsLesson-v6.jsx",
+  "md5_yangi": "52fdb8251720d39bca0b6d08bf115890",
+  "eski": "3-Modul/05-JsConditionsLesson-v5.jsx",
+  "md5_eski": "edaf44f8f4eec9049cc2dfa0f1009ef4",
+  "uz": {
+   "qid": 14110,
+   "sid": "2434"
+  },
+  "ru": {
+   "qid": 14109,
+   "sid": "2434"
+  }
+ },
+ {
+  "lesson_id": "js-loops-01-v18",
+  "m": 3,
+  "yangi": "3-Modul/06-JsLoopsLesson-v7.jsx",
+  "md5_yangi": "a5776da38e6e5968cf3e2907e749d306",
+  "eski": "3-Modul/06-JsLoopsLesson-v6.jsx",
+  "md5_eski": "49e9fbb179083acfc1cfcb5211539ef4",
+  "uz": {
+   "qid": 14112,
+   "sid": "2435"
+  },
+  "ru": {
+   "qid": 14111,
+   "sid": "2435"
+  }
+ },
+ {
+  "lesson_id": "js-functions-01-v18",
+  "m": 3,
+  "yangi": "3-Modul/07-JsFunctionsLesson-v7.jsx",
+  "md5_yangi": "83f4d8328a2ca3e68f61d591600ad4a2",
+  "eski": "3-Modul/07-JsFunctionsLesson-v6.jsx",
+  "md5_eski": "68cb7df867b8f29eaf2df10aa02fbdf9",
+  "uz": {
+   "qid": 14114,
+   "sid": "2436"
+  },
+  "ru": {
+   "qid": 14113,
+   "sid": "2436"
+  }
+ },
+ {
+  "lesson_id": "pm-m2d7-v1",
+  "m": 3,
+  "yangi": "3-Modul/08-PmLesson5-v7.jsx",
+  "md5_yangi": "6a8e0558ea22d326a2553fcc92a7a17c",
+  "eski": "3-Modul/08-PmLesson5-v6.jsx",
+  "md5_eski": "70400227248dc95e01dc684a6492b9f4",
+  "uz": {
+   "qid": 14123,
+   "sid": "2437"
+  },
+  "ru": {
+   "qid": 14115,
+   "sid": "2437"
+  }
+ },
+ {
+  "lesson_id": "practice-01-jonlantirish-v18",
+  "m": 3,
+  "yangi": "3-Modul/09-PracticeLesson1-v7.jsx",
+  "md5_yangi": "f32f901e0ade406b2fefe569aeecf5c1",
+  "eski": "3-Modul/09-PracticeLesson1-v6.jsx",
+  "md5_eski": "b5334cbbb39b7c2588981056dce20bfb",
+  "uz": {
+   "qid": 14122,
+   "sid": "2438"
+  },
+  "ru": {
+   "qid": 14116,
+   "sid": "2438"
+  }
+ },
+ {
+  "lesson_id": "practice-02-ai-promo-v18",
+  "m": 3,
+  "yangi": "3-Modul/10-PracticeLesson2-v6.jsx",
+  "md5_yangi": "2979c9a5e725db096ec2d229c13e3b8e",
+  "eski": "3-Modul/10-PracticeLesson2-v5.jsx",
+  "md5_eski": "142eff509bdef986b38f9f44836f13a4",
+  "uz": {
+   "qid": 14124,
+   "sid": "2439"
+  },
+  "ru": {
+   "qid": 14117,
+   "sid": "2439"
+  }
+ },
+ {
+  "lesson_id": "pean-stack-01-v18",
+  "m": 3,
+  "yangi": "3-Modul/11-PeanStackLesson-v7.jsx",
+  "md5_yangi": "9a8da79ade176d243b85d58d0f48e1c7",
+  "eski": "3-Modul/11-PeanStackLesson-v6.jsx",
+  "md5_eski": "8e64412a0339a860d081e69b484a1e58",
+  "uz": {
+   "qid": 14128,
+   "sid": "2441"
+  },
+  "ru": {
+   "qid": 14118,
+   "sid": "2441"
+  }
+ },
+ {
+  "lesson_id": "practice-03-decompose-v18",
+  "m": 3,
+  "yangi": "3-Modul/12-PracticeLesson3-v7.jsx",
+  "md5_yangi": "687883bfb3fab954470b24e291bcfc29",
+  "eski": "3-Modul/12-PracticeLesson3-v6.jsx",
+  "md5_eski": "972ccfa33e04032a0f6c96484c9e97ac",
+  "uz": {
+   "qid": 14125,
+   "sid": "2442"
+  },
+  "ru": {
+   "qid": 14119,
+   "sid": "2442"
+  }
+ },
+ {
+  "lesson_id": "practice-04-mvp-deploy-v18",
+  "m": 3,
+  "yangi": "3-Modul/13-PracticeLesson4-v7.jsx",
+  "md5_yangi": "b5a8564f771f2dd14a073766f52f6d80",
+  "eski": "3-Modul/13-PracticeLesson4-v6.jsx",
+  "md5_eski": "4d420c589583dfc64f176a2ecbdd814d",
+  "uz": {
+   "qid": 14126,
+   "sid": "2443"
+  },
+  "ru": {
+   "qid": 14120,
+   "sid": "2443"
+  }
+ },
+ {
+  "lesson_id": "pm-m2d13-v2",
+  "m": 3,
+  "yangi": "3-Modul/14-PmLesson6-v6.jsx",
+  "md5_yangi": "955a89f7f90ef68b934c2168cf0f37de",
+  "eski": "3-Modul/14-PmLesson6-v5.jsx",
+  "md5_eski": "b1c4fe480deebacfe4768a89f1de318e",
+  "uz": {
+   "qid": 14127,
+   "sid": "2444"
+  },
+  "ru": {
+   "qid": 14121,
+   "sid": "2444"
+  }
+ },
+ {
+  "lesson_id": "react-intro-01-v18",
+  "m": 4,
+  "yangi": "4-Modul/01-ReactIntroLesson-v6.jsx",
+  "md5_yangi": "fa74d6e8537348999de7c229daad4885",
+  "eski": "4-Modul/01-ReactIntroLesson-v5.jsx",
+  "md5_eski": "1e834bc61e98a956f3f97dc47ded6c92",
+  "uz": {
+   "qid": 16356,
+   "sid": "2445"
+  },
+  "ru": {
+   "qid": 16357,
+   "sid": "2445"
+  }
+ },
+ {
+  "lesson_id": "pm-m3d2-v3",
+  "m": 4,
+  "yangi": "4-Modul/02-PmUserStoryLesson-v7.jsx",
+  "md5_yangi": "7be94b0f5fc5ec03b51d4f2c366c5207",
+  "eski": "4-Modul/02-PmUserStoryLesson-v6.jsx",
+  "md5_eski": "60f900f2dd3bb844c142807441726e0c",
+  "uz": {
+   "qid": 16358,
+   "sid": "2446"
+  },
+  "ru": {
+   "qid": 16359,
+   "sid": "2446"
+  }
+ },
+ {
+  "lesson_id": "react-first-component-02-v18",
+  "m": 4,
+  "yangi": "4-Modul/04-ReactFirstComponentLesson-v7.jsx",
+  "md5_yangi": "4dbeabd6c7a448654569a914d20b4cc5",
+  "eski": "4-Modul/04-ReactFirstComponentLesson-v6.jsx",
+  "md5_eski": "3aa9ed8c6bca5006f3aa8f301fdbe68e",
+  "uz": {
+   "qid": 16360,
+   "sid": "2447"
+  },
+  "ru": {
+   "qid": 16361,
+   "sid": "2447"
+  }
+ },
+ {
+  "lesson_id": "react-state-effect-03-v18",
+  "m": 4,
+  "yangi": "4-Modul/05-ReactStateEffectLesson-v7.jsx",
+  "md5_yangi": "b2e3e7f747e6ef2452e6b5025beccb33",
+  "eski": "4-Modul/05-ReactStateEffectLesson-v6.jsx",
+  "md5_eski": "d29c6b54e8a379cb1af8a86c4dd6c7fd",
+  "uz": {
+   "qid": 16362,
+   "sid": "2448"
+  },
+  "ru": {
+   "qid": 16363,
+   "sid": "2448"
+  }
+ },
+ {
+  "lesson_id": "pm-m3d5-v1",
+  "m": 4,
+  "yangi": "4-Modul/06-PmLesson8-v7.jsx",
+  "md5_yangi": "ceea1abe265010ee5d52adcdd83611f2",
+  "eski": "4-Modul/06-PmLesson8-v6.jsx",
+  "md5_eski": "db8453fa16e483b9d56c84f924c5448a",
+  "uz": {
+   "qid": 16364,
+   "sid": "2449"
+  },
+  "ru": {
+   "qid": 16365,
+   "sid": "2449"
+  }
+ },
+ {
+  "lesson_id": "react-props-reuse-04-v18",
+  "m": 4,
+  "yangi": "4-Modul/07-ReactPropsReuseLesson-v7.jsx",
+  "md5_yangi": "47559101457ba1c74f0e1c8ff686f94f",
+  "eski": "4-Modul/07-ReactPropsReuseLesson-v6.jsx",
+  "md5_eski": "7978c29f2f515e96678d6c5fff5f2b61",
+  "uz": {
+   "qid": 16366,
+   "sid": "2450"
+  },
+  "ru": {
+   "qid": 16367,
+   "sid": "2450"
+  }
+ },
+ {
+  "lesson_id": "react-crud-practice-p1-v18",
+  "m": 4,
+  "yangi": "4-Modul/08-ReactCrudPracticeLesson-v7.jsx",
+  "md5_yangi": "ca23ddc03e6cec965d3c0e9c8456e620",
+  "eski": "4-Modul/08-ReactCrudPracticeLesson-v6.jsx",
+  "md5_eski": "48a30bb9dcabaa848042388fda0ad37d",
+  "uz": {
+   "qid": 16368,
+   "sid": "2451"
+  },
+  "ru": {
+   "qid": 16369,
+   "sid": "2451"
+  }
+ },
+ {
+  "lesson_id": "react-api-get-05-v18",
+  "m": 4,
+  "yangi": "4-Modul/09-ReactApiGetLesson-v6.jsx",
+  "md5_yangi": "e9570118a422f2c905ce28fafe99ee03",
+  "eski": "4-Modul/09-ReactApiGetLesson-v5.jsx",
+  "md5_eski": "c3e724c4c04ceeaa1f0691bdd9aa6b38",
+  "uz": {
+   "qid": 16370,
+   "sid": "2453"
+  },
+  "ru": {
+   "qid": 16371,
+   "sid": "2453"
+  }
+ },
+ {
+  "lesson_id": "react-api-post-06-v18",
+  "m": 4,
+  "yangi": "4-Modul/10-ReactApiPostLesson-v7.jsx",
+  "md5_yangi": "820e4cddbcce57ec1c2d5cc90a5593a2",
+  "eski": "4-Modul/10-ReactApiPostLesson-v6.jsx",
+  "md5_eski": "b93134083d49eb129f1c6a16ba4ffa5a",
+  "uz": {
+   "qid": 16372,
+   "sid": "2455"
+  },
+  "ru": {
+   "qid": 16373,
+   "sid": "2455"
+  }
+ },
+ {
+  "lesson_id": "pm-m3d10-v1",
+  "m": 4,
+  "yangi": "4-Modul/11-PmLesson9-v7.jsx",
+  "md5_yangi": "f878638c5e844f7235b1089ca6e97d20",
+  "eski": "4-Modul/11-PmLesson9-v6.jsx",
+  "md5_eski": "777708a5b5ac2488f273de98949b7a43",
+  "uz": {
+   "qid": 16374,
+   "sid": "2456"
+  },
+  "ru": {
+   "qid": 16375,
+   "sid": "2456"
+  }
+ },
+ {
+  "lesson_id": "react-router-practice-p2-v18",
+  "m": 4,
+  "yangi": "4-Modul/12-ReactRouterPracticeLesson-v6.jsx",
+  "md5_yangi": "2370db5ccac6a8e65824b42de8b2d24a",
+  "eski": "4-Modul/12-ReactRouterPracticeLesson-v5.jsx",
+  "md5_eski": "86840f8f0a9e8a4ca33e7ec19b25d769",
+  "uz": {
+   "qid": 16376,
+   "sid": "2458"
+  },
+  "ru": {
+   "qid": 16377,
+   "sid": "2458"
+  }
+ },
+ {
+  "lesson_id": "react-project-day-p3-v18",
+  "m": 4,
+  "yangi": "4-Modul/13-ReactProjectDayLesson-v7.jsx",
+  "md5_yangi": "5963b4e61716ee812358e9210fe1c61d",
+  "eski": "4-Modul/13-ReactProjectDayLesson-v6.jsx",
+  "md5_eski": "606632b936d0075e3cd85b5919b54cb3",
+  "uz": {
+   "qid": 16378,
+   "sid": "2459"
+  },
+  "ru": {
+   "qid": 16379,
+   "sid": "2459"
+  }
+ },
+ {
+  "lesson_id": "react-build-site-final-p4-v18",
+  "m": 4,
+  "yangi": "4-Modul/14-ReactBuildSiteLesson-v7.jsx",
+  "md5_yangi": "78ae10d211edeb447adadf1b984f302c",
+  "eski": "4-Modul/14-ReactBuildSiteLesson-v6.jsx",
+  "md5_eski": "240f36838dd2eb6810c6ace9f9bc16cc",
+  "uz": {
+   "qid": 16380,
+   "sid": "2460"
+  },
+  "ru": {
+   "qid": 16381,
+   "sid": "2460"
+  }
+ },
+ {
+  "lesson_id": "pm-m3d14-v1",
+  "m": 4,
+  "yangi": "4-Modul/15-PmLesson10-v8.jsx",
+  "md5_yangi": "b78bc5a54a2b50c4670e259b4fce3371",
+  "eski": "4-Modul/15-PmLesson10-v7.jsx",
+  "md5_eski": "535c5d264106f93b087441c0d21178ca",
+  "uz": {
+   "qid": 16382,
+   "sid": "2461"
+  },
+  "ru": {
+   "qid": 16383,
+   "sid": "2461"
+  }
+ },
+ {
+  "lesson_id": "data-intro-04-01-v18",
+  "m": 5,
+  "yangi": "5-Modul/01-DataIntroLesson-v7.jsx",
+  "md5_yangi": "966e577d1d25786472631aee37d1988d",
+  "eski": "5-Modul/01-DataIntroLesson-v6.jsx",
+  "md5_eski": "24bcd543dab1fb0179193c0515ad4894",
+  "uz": {
+   "qid": 16384,
+   "sid": "2462"
+  },
+  "ru": {
+   "qid": 16385,
+   "sid": "2462"
+  }
+ },
+ {
+  "lesson_id": "pm-m4d2-v1",
+  "m": 5,
+  "yangi": "5-Modul/02-PmLesson11-v7.jsx",
+  "md5_yangi": "e1b294f322c0cbf38c09630dfd4bb447",
+  "eski": "5-Modul/02-PmLesson11-v6.jsx",
+  "md5_eski": "25e277482b1510d96d4f1a727bb08f9b",
+  "uz": {
+   "qid": 16386,
+   "sid": "2463"
+  },
+  "ru": {
+   "qid": 16387,
+   "sid": "2463"
+  }
+ },
+ {
+  "lesson_id": "db-sql-nosql-04-02-v18",
+  "m": 5,
+  "yangi": "5-Modul/03-DbSqlNosqlLesson-v7.jsx",
+  "md5_yangi": "cade96db86dabd8e88298154549bfe17",
+  "eski": "5-Modul/03-DbSqlNosqlLesson-v6.jsx",
+  "md5_eski": "81331478ff4a372d586e2f8ffb134754",
+  "uz": {
+   "qid": 16388,
+   "sid": "2464"
+  },
+  "ru": {
+   "qid": 16389,
+   "sid": "2464"
+  }
+ },
+ {
+  "lesson_id": "node-server-04-03-v18",
+  "m": 5,
+  "yangi": "5-Modul/04-NodeServerLesson-v7.jsx",
+  "md5_yangi": "16a58900d56b7ac930e37d5ad714a5eb",
+  "eski": "5-Modul/04-NodeServerLesson-v6.jsx",
+  "md5_eski": "ec13bbd7e405956651d85f775d54fc1e",
+  "uz": {
+   "qid": 16391,
+   "sid": "2465"
+  },
+  "ru": {
+   "qid": 16390,
+   "sid": "2465"
+  }
+ },
+ {
+  "lesson_id": "nest-routing-04-04-v18",
+  "m": 5,
+  "yangi": "5-Modul/05-RoutingLesson-v9.jsx",
+  "md5_yangi": "411318e12bda603ffad8367405aa2b86",
+  "eski": "5-Modul/05-RoutingLesson-v8.jsx",
+  "md5_eski": "69a018c171aaa9ca14966d8904cdb8a9",
+  "uz": {
+   "qid": 16393,
+   "sid": "2466"
+  },
+  "ru": {
+   "qid": 16392,
+   "sid": "2466"
+  }
+ },
+ {
+  "lesson_id": "pg-crud-04-05-v18",
+  "m": 5,
+  "yangi": "5-Modul/06-PostgresCrudLesson-v7.jsx",
+  "md5_yangi": "a43d057b5eaa720e33c427af16051752",
+  "eski": "5-Modul/06-PostgresCrudLesson-v6.jsx",
+  "md5_eski": "ad0de067140c272bd58283d5d443ed97",
+  "uz": {
+   "qid": 16395,
+   "sid": "2467"
+  },
+  "ru": {
+   "qid": 16394,
+   "sid": "2467"
+  }
+ },
+ {
+  "lesson_id": "pm-m4d7-v1",
+  "m": 5,
+  "yangi": "5-Modul/07-PmLesson12-v8.jsx",
+  "md5_yangi": "9e000b155646e18f9c45e04845a3c3fd",
+  "eski": "5-Modul/07-PmLesson12-v7.jsx",
+  "md5_eski": "a10852dba86aee616055c31773d514c8",
+  "uz": {
+   "qid": 16397,
+   "sid": "2468"
+  },
+  "ru": {
+   "qid": 16396,
+   "sid": "2468"
+  }
+ },
+ {
+  "lesson_id": "backend-crud-practice-p1-v18",
+  "m": 5,
+  "yangi": "5-Modul/08-BackendCrudPracticeLesson-v7.jsx",
+  "md5_yangi": "c7a76e1dbfecbf0a0f9c1c8ebf76e133",
+  "eski": "5-Modul/08-BackendCrudPracticeLesson-v6.jsx",
+  "md5_eski": "a013bbe1044750cb15e4ab8c170a9d1d",
+  "uz": {
+   "qid": 16399,
+   "sid": "2469"
+  },
+  "ru": {
+   "qid": 16398,
+   "sid": "2469"
+  }
+ },
+ {
+  "lesson_id": "api-postman-04-06-v18",
+  "m": 5,
+  "yangi": "5-Modul/09-ApiPostmanLesson-v7.jsx",
+  "md5_yangi": "b7b3ba655ddebe923ed99295e11c5886",
+  "eski": "5-Modul/09-ApiPostmanLesson-v6.jsx",
+  "md5_eski": "c82a40f95d53cbbb6c3a9b8c17144658",
+  "uz": {
+   "qid": 16401,
+   "sid": "2471"
+  },
+  "ru": {
+   "qid": 16400,
+   "sid": "2471"
+  }
+ },
+ {
+  "lesson_id": "fullstack-connect-practice-p2-v18",
+  "m": 5,
+  "yangi": "5-Modul/10-FullstackConnectPracticeLesson-v7.jsx",
+  "md5_yangi": "210fb728b97206897d1df58427a3bf25",
+  "eski": "5-Modul/10-FullstackConnectPracticeLesson-v6.jsx",
+  "md5_eski": "80677c57f122f00dde5a00c2ffadfbf6",
+  "uz": {
+   "qid": 16403,
+   "sid": "2472"
+  },
+  "ru": {
+   "qid": 16402,
+   "sid": "2472"
+  }
+ },
+ {
+  "lesson_id": "auth-env-04-07-v18",
+  "m": 5,
+  "yangi": "5-Modul/11-AuthEnvLesson-v6.jsx",
+  "md5_yangi": "dc66ee5521581e9522e991fbd6e62bed",
+  "eski": "5-Modul/11-AuthEnvLesson-v5.jsx",
+  "md5_eski": "10d7d6761dbcc82f43fd8b79f4d51f4c",
+  "uz": {
+   "qid": 16405,
+   "sid": "2473"
+  },
+  "ru": {
+   "qid": 16404,
+   "sid": "2473"
+  }
+ },
+ {
+  "lesson_id": "pm-m4d12-v1",
+  "m": 5,
+  "yangi": "5-Modul/12-PmLesson13-v8.jsx",
+  "md5_yangi": "c13cd665cda8c31c7a1852a6cc925245",
+  "eski": "5-Modul/12-PmLesson13-v7.jsx",
+  "md5_eski": "e228ad78bc2e2322e13b4bbb39045cf0",
+  "uz": {
+   "qid": 16406,
+   "sid": "2474"
+  },
+  "ru": {
+   "qid": 16407,
+   "sid": "2474"
+  }
+ },
+ {
+  "lesson_id": "fullstack-projectday-p3-v18",
+  "m": 5,
+  "yangi": "5-Modul/13-FullstackProjectDayLesson-v7.jsx",
+  "md5_yangi": "908fc6bc86a1ac3e7f4ba213ad43d610",
+  "eski": "5-Modul/13-FullstackProjectDayLesson-v6.jsx",
+  "md5_eski": "ed35bc84b730074be937cfaaab995977",
+  "uz": {
+   "qid": 16409,
+   "sid": "2475"
+  },
+  "ru": {
+   "qid": 16408,
+   "sid": "2475"
+  }
+ },
+ {
+  "lesson_id": "fullstack-feedback-p4-v18",
+  "m": 5,
+  "yangi": "5-Modul/14-FullstackFeedbackLesson-v7.jsx",
+  "md5_yangi": "e02636deb894095878e28fd59aa75778",
+  "eski": "5-Modul/14-FullstackFeedbackLesson-v6.jsx",
+  "md5_eski": "decaf2bb37beeee41f5623046fc46aab",
+  "uz": {
+   "qid": 16411,
+   "sid": "2476"
+  },
+  "ru": {
+   "qid": 16410,
+   "sid": "2476"
+  }
+ },
+ {
+  "lesson_id": "pm-m4d15-v1",
+  "m": 5,
+  "yangi": "5-Modul/15-PmLesson14-v8.jsx",
+  "md5_yangi": "2c44277abdfb6a4f874e8fbd37e5fe8e",
+  "eski": "5-Modul/15-PmLesson14-v7.jsx",
+  "md5_eski": "172df3cf7c13678e7111189787fb12b7",
+  "uz": {
+   "qid": 16413,
+   "sid": "2477"
+  },
+  "ru": {
+   "qid": 16412,
+   "sid": "2477"
+  }
+ },
+ {
+  "lesson_id": "nest-arch-alive-4a-01-v18",
+  "m": 6,
+  "yangi": "6-Modul/01-NestArchAliveLesson-v6.jsx",
+  "md5_yangi": "57140f57c290ee65ba87384175fecb07",
+  "eski": "6-Modul/01-NestArchAliveLesson-v5.jsx",
+  "md5_eski": "56f91b87b831a5c7ed33aab1e2139c11",
+  "uz": {
+   "qid": 16414,
+   "sid": "2761"
+  },
+  "ru": {
+   "qid": 16415,
+   "sid": "2761"
+  }
+ },
+ {
+  "lesson_id": "pm-m4a2-v1",
+  "m": 6,
+  "yangi": "6-Modul/02-PmLesson15-v7.jsx",
+  "md5_yangi": "3858868f03ca244b3af574cb00be8182",
+  "eski": "6-Modul/02-PmLesson15-v6.jsx",
+  "md5_eski": "53203d0e2deff85d33ab77643db273a0",
+  "uz": {
+   "qid": 16416,
+   "sid": "2762"
+  },
+  "ru": {
+   "qid": 16417,
+   "sid": "2762"
+  }
+ },
+ {
+  "lesson_id": "nest-arch-resource-4a-02-v18",
+  "m": 6,
+  "yangi": "6-Modul/03-NestArchResourceLesson-v7.jsx",
+  "md5_yangi": "ec093b355d2ab307df8a8742bcea4398",
+  "eski": "6-Modul/03-NestArchResourceLesson-v6.jsx",
+  "md5_eski": "bf129549ba6159725cab545cc9571bd7",
+  "uz": {
+   "qid": 16419,
+   "sid": "2763"
+  },
+  "ru": {
+   "qid": 16418,
+   "sid": "2763"
+  }
+ },
+ {
+  "lesson_id": "nest-arch-practice-4a-03-v18",
+  "m": 6,
+  "yangi": "6-Modul/04-NestArchPracticeLesson-v7.jsx",
+  "md5_yangi": "e6695377986a63dc491afe398dbfb014",
+  "eski": "6-Modul/04-NestArchPracticeLesson-v6.jsx",
+  "md5_eski": "152f51ff1c697001f34f325f958345fd",
+  "uz": {
+   "qid": 16421,
+   "sid": "2764"
+  },
+  "ru": {
+   "qid": 16420,
+   "sid": "2764"
+  }
+ },
+ {
+  "lesson_id": "jest-unit-04b-01-v18",
+  "m": 6,
+  "yangi": "6-Modul/05-JestUnitTestLesson-v7.jsx",
+  "md5_yangi": "741a556354ea809865b8cf4ff027f46a",
+  "eski": "6-Modul/05-JestUnitTestLesson-v6.jsx",
+  "md5_eski": "d139fe7f996fae005240b91995102656",
+  "uz": {
+   "qid": 16423,
+   "sid": "2765"
+  },
+  "ru": {
+   "qid": 16422,
+   "sid": "2765"
+  }
+ },
+ {
+  "lesson_id": "pm-m4b2-v1",
+  "m": 6,
+  "yangi": "6-Modul/06-PmLesson16-v8.jsx",
+  "md5_yangi": "79a9069e7995d0d504485a76a5e4b1a5",
+  "eski": "6-Modul/06-PmLesson16-v7.jsx",
+  "md5_eski": "2f43085ae7ab2d3a1b6c7def0e16f098",
+  "uz": {
+   "qid": 16427,
+   "sid": "2766"
+  },
+  "ru": {
+   "qid": 16424,
+   "sid": "2766"
+  }
+ },
+ {
+  "lesson_id": "edge-cases-04b-02-v18",
+  "m": 6,
+  "yangi": "6-Modul/07-EdgeCasesTestLesson-v6.jsx",
+  "md5_yangi": "f312e625bad045573416f8f305cc74be",
+  "eski": "6-Modul/07-EdgeCasesTestLesson-v5.jsx",
+  "md5_eski": "19819b40eebd371d73d83ffa4a35a8a4",
+  "uz": {
+   "qid": 16426,
+   "sid": "2767"
+  },
+  "ru": {
+   "qid": 16425,
+   "sid": "2767"
+  }
+ },
+ {
+  "lesson_id": "cicd-intro-4c-01-v18",
+  "m": 6,
+  "yangi": "6-Modul/08-CiCdIntroLesson-v6.jsx",
+  "md5_yangi": "040d6302d77041f27f9e300a6c88aad5",
+  "eski": "6-Modul/08-CiCdIntroLesson-v5.jsx",
+  "md5_eski": "350e2660fbb47e09c24e00682a6407c5",
+  "uz": {
+   "qid": 16429,
+   "sid": "2768"
+  },
+  "ru": {
+   "qid": 16428,
+   "sid": "2768"
+  }
+ },
+ {
+  "lesson_id": "pm-m4c2-v1",
+  "m": 6,
+  "yangi": "6-Modul/09-PmLesson17-v7.jsx",
+  "md5_yangi": "7dca901dd2ec64d38f1a934bc8a7a589",
+  "eski": "6-Modul/09-PmLesson17-v6.jsx",
+  "md5_eski": "1fd53ca429c04b7516dd07b6af58c9c4",
+  "uz": {
+   "qid": 16431,
+   "sid": "2769"
+  },
+  "ru": {
+   "qid": 16430,
+   "sid": "2769"
+  }
+ },
+ {
+  "lesson_id": "github-actions-4c-02-v18",
+  "m": 6,
+  "yangi": "6-Modul/10-GithubActionsLesson-v6.jsx",
+  "md5_yangi": "219205a3f6625ac181d5546c05c25057",
+  "eski": "6-Modul/10-GithubActionsLesson-v5.jsx",
+  "md5_eski": "527d2e67f969645dc19baa337509b327",
+  "uz": {
+   "qid": 16433,
+   "sid": "2770"
+  },
+  "ru": {
+   "qid": 16432,
+   "sid": "2770"
+  }
+ },
+ {
+  "lesson_id": "cicd-full-pipeline-4c-03-v18",
+  "m": 6,
+  "yangi": "6-Modul/11-FullPipelineProjectLesson-v6.jsx",
+  "md5_yangi": "ff30692618ec8801d746f34ef229a342",
+  "eski": "6-Modul/11-FullPipelineProjectLesson-v5.jsx",
+  "md5_eski": "f2cf6815f25324f5bd6c99449d1b3bfa",
+  "uz": {
+   "qid": 16435,
+   "sid": "2771"
+  },
+  "ru": {
+   "qid": 16434,
+   "sid": "2771"
+  }
+ },
+ {
+  "lesson_id": "cicd-ai-pipeline-4c-05-v18",
+  "m": 6,
+  "yangi": "6-Modul/12-AiPipelineProjectLesson-v6.jsx",
+  "md5_yangi": "60090e29c5e60ed4ce8e571049825981",
+  "eski": "6-Modul/12-AiPipelineProjectLesson-v5.jsx",
+  "md5_eski": "e755a24bd536789d3767d4db2a217fc8",
+  "uz": {
+   "qid": 16436,
+   "sid": "2772"
+  },
+  "ru": {
+   "qid": 16437,
+   "sid": "2772"
+  }
+ },
+ {
+  "lesson_id": "pm-m4c6-v1",
+  "m": 6,
+  "yangi": "6-Modul/13-PmLesson18-v8.jsx",
+  "md5_yangi": "607f74c96769b8c3930468c581864829",
+  "eski": "6-Modul/13-PmLesson18-v7.jsx",
+  "md5_eski": "fff778a03b71bdf25c395d7eb7702e4c",
+  "uz": {
+   "qid": 16438,
+   "sid": "2773"
+  },
+  "ru": {
+   "qid": 16441,
+   "sid": "2773"
+  }
+ },
+ {
+  "lesson_id": "full-pro-pipeline-4c-04-v18",
+  "m": 6,
+  "yangi": "6-Modul/14-FullProPipelineLesson-v6.jsx",
+  "md5_yangi": "5cb664b33d859e32e6ae6bd71a649c8f",
+  "eski": "6-Modul/14-FullProPipelineLesson-v5.jsx",
+  "md5_eski": "442a158d51cb035a65d110679da949ef",
+  "uz": {
+   "qid": 16440,
+   "sid": "2774"
+  },
+  "ru": {
+   "qid": 16439,
+   "sid": "2774"
+  }
+ },
+ {
+  "lesson_id": "bot-intro-05-01-v18",
+  "m": 7,
+  "yangi": "7-Modul/01-BotIntroLesson-v6.jsx",
+  "md5_yangi": "d6f1266edc9327247ffb85fe0637b109",
+  "eski": "7-Modul/01-BotIntroLesson-v5.jsx",
+  "md5_eski": "5d7ea4ecc5a3e9377387a449f2e60980",
+  "uz": {
+   "qid": 17095,
+   "sid": "2493"
+  },
+  "ru": {
+   "qid": 17096,
+   "sid": "2493"
+  }
+ },
+ {
+  "lesson_id": "pm-m5d2-v1",
+  "m": 7,
+  "yangi": "7-Modul/02-PmLesson19-v7.jsx",
+  "md5_yangi": "c2bec77e99cb090b4ba331bd88d07fb7",
+  "eski": "7-Modul/02-PmLesson19-v6.jsx",
+  "md5_eski": "45a3a4ef6f3dc8922aadf836e830429e",
+  "uz": {
+   "qid": 17097,
+   "sid": "2494"
+  },
+  "ru": {
+   "qid": 17098,
+   "sid": "2494"
+  }
+ },
+ {
+  "lesson_id": "bot-api-buttons-05-02-v18",
+  "m": 7,
+  "yangi": "7-Modul/03-BotApiButtonsLesson-v6.jsx",
+  "md5_yangi": "ba374d380551f5c05c8c17063ea9e496",
+  "eski": "7-Modul/03-BotApiButtonsLesson-v5.jsx",
+  "md5_eski": "9efba21599c6130bc0c321d5952e1b35",
+  "uz": {
+   "qid": 17099,
+   "sid": "2495"
+  },
+  "ru": {
+   "qid": 17100,
+   "sid": "2495"
+  }
+ },
+ {
+  "lesson_id": "bot-stateful-memory-05-03-v18",
+  "m": 7,
+  "yangi": "7-Modul/04-BotStatefulMemoryLesson-v6.jsx",
+  "md5_yangi": "c408a0521c09c100923510df25d622c2",
+  "eski": "7-Modul/04-BotStatefulMemoryLesson-v5.jsx",
+  "md5_eski": "e202a62c21b733b3a5ce65e7b8adbd8b",
+  "uz": {
+   "qid": 17101,
+   "sid": "2496"
+  },
+  "ru": {
+   "qid": 17102,
+   "sid": "2496"
+  }
+ },
+ {
+  "lesson_id": "bot-ai-project-05-05-v18",
+  "m": 7,
+  "yangi": "7-Modul/05-BotAiProjectLesson-v6.jsx",
+  "md5_yangi": "1ec886ca0a9ca28cf42d95809cd5e85f",
+  "eski": "7-Modul/05-BotAiProjectLesson-v5.jsx",
+  "md5_eski": "d282c6e501c412387ab60021d9da5de6",
+  "uz": {
+   "qid": 17103,
+   "sid": "2498"
+  },
+  "ru": {
+   "qid": 17104,
+   "sid": "2498"
+  }
+ },
+ {
+  "lesson_id": "bot-ai-brain-05-04-v18",
+  "m": 7,
+  "yangi": "7-Modul/06-BotAiBrainLesson-v6.jsx",
+  "md5_yangi": "9894d5a70ec9a0464e0490c82fa2230c",
+  "eski": "7-Modul/06-BotAiBrainLesson-v5.jsx",
+  "md5_eski": "74ddc843903cee2087e64298b351c1d0",
+  "uz": {
+   "qid": 17105,
+   "sid": "2499"
+  },
+  "ru": {
+   "qid": 17106,
+   "sid": "2499"
+  }
+ },
+ {
+  "lesson_id": "bot-full-project-05-07-v18",
+  "m": 7,
+  "yangi": "7-Modul/07-BotFullProjectLesson-v6.jsx",
+  "md5_yangi": "33e0bf37a4bf11bb5226c3e36ce1d2a1",
+  "eski": "7-Modul/07-BotFullProjectLesson-v5.jsx",
+  "md5_eski": "941a9be598519879185a4542bf528288",
+  "uz": {
+   "qid": 17107,
+   "sid": "2500"
+  },
+  "ru": {
+   "qid": 17108,
+   "sid": "2500"
+  }
+ },
+ {
+  "lesson_id": "pm-m5d8-v1",
+  "m": 7,
+  "yangi": "7-Modul/08-PmLesson20-v7.jsx",
+  "md5_yangi": "972c72992a9c5dda9e9a406dea661d21",
+  "eski": "7-Modul/08-PmLesson20-v6.jsx",
+  "md5_eski": "243944738d7ca534f39a9565dd07c304",
+  "uz": {
+   "qid": 17109,
+   "sid": "2501"
+  },
+  "ru": {
+   "qid": 17110,
+   "sid": "2501"
+  }
+ },
+ {
+  "lesson_id": "bot-feedback-05-06-v18",
+  "m": 7,
+  "yangi": "7-Modul/09-BotFeedbackIterationLesson-v6.jsx",
+  "md5_yangi": "09a2f96079e8ebeb71ca0a5b86c48e5a",
+  "eski": "7-Modul/09-BotFeedbackIterationLesson-v5.jsx",
+  "md5_eski": "511c991f7136850bb8104fc579aef678",
+  "uz": {
+   "qid": 17111,
+   "sid": "2502"
+  },
+  "ru": {
+   "qid": 17112,
+   "sid": "2502"
+  }
+ },
+ {
+  "lesson_id": "bot-ai-agent-05-10-v18",
+  "m": 7,
+  "yangi": "7-Modul/10-BotAiAgentLesson-v6.jsx",
+  "md5_yangi": "a38ba8eba6c536837a6169955b5fe8f0",
+  "eski": "7-Modul/10-BotAiAgentLesson-v5.jsx",
+  "md5_eski": "7f7b4f8b0f81c2d2fe674444c257d01a",
+  "uz": {
+   "qid": 17113,
+   "sid": "2503"
+  },
+  "ru": {
+   "qid": 17114,
+   "sid": "2503"
+  }
+ },
+ {
+  "lesson_id": "pm-m5d11-metrika-v1",
+  "m": 7,
+  "yangi": "7-Modul/11-PmMetricsLesson-v7.jsx",
+  "md5_yangi": "4a759d01b3fac3066aedd5c4ffaac33f",
+  "eski": "7-Modul/11-PmMetricsLesson-v6.jsx",
+  "md5_eski": "f4ca1f4e1de516bb2c4342a0b8011248",
+  "uz": {
+   "qid": 17115,
+   "sid": "2981"
+  },
+  "ru": {
+   "qid": 17116,
+   "sid": "2981"
+  }
+ },
+ {
+  "lesson_id": "pm-m5d11-v1",
+  "m": 7,
+  "yangi": "7-Modul/12-PmLesson21-v7.jsx",
+  "md5_yangi": "230823a3f6f2c9b65e532a0632133863",
+  "eski": "7-Modul/12-PmLesson21-v6.jsx",
+  "md5_eski": "8e1b39ca4bcc99d7f65fd50ee70dafac",
+  "uz": {
+   "qid": 17117,
+   "sid": "2504"
+  },
+  "ru": {
+   "qid": 17118,
+   "sid": "2504"
+  }
+ },
+ {
+  "lesson_id": "sys-arch-06-01-v18",
+  "m": 8,
+  "yangi": "8-Modul/01-SystemArchitectureLesson-v6.jsx",
+  "md5_yangi": "fe2bb44e2a28310bf6419ef31457e0d1",
+  "eski": "8-Modul/01-SystemArchitectureLesson-v5.jsx",
+  "md5_eski": "cc56c70097507dde065d58419b4169df",
+  "uz": {
+   "qid": 17119,
+   "sid": "2505"
+  },
+  "ru": {
+   "qid": 17120,
+   "sid": "2505"
+  }
+ },
+ {
+  "lesson_id": "pm-m6d2-v1",
+  "m": 8,
+  "yangi": "8-Modul/02-PmLesson22-v8.jsx",
+  "md5_yangi": "500e09ddda17e7b85bb8b7da4f524222",
+  "eski": "8-Modul/02-PmLesson22-v7.jsx",
+  "md5_eski": "5d2ca76ea0d3f5c124f65959b49f52eb",
+  "uz": {
+   "qid": 17121,
+   "sid": "2506"
+  },
+  "ru": {
+   "qid": 17122,
+   "sid": "2506"
+  }
+ },
+ {
+  "lesson_id": "arch-patterns-06-03-v18",
+  "m": 8,
+  "yangi": "8-Modul/03-ArchPatternsLesson-v6.jsx",
+  "md5_yangi": "c2e8b0d080ca0814303a30e9a498984a",
+  "eski": "8-Modul/03-ArchPatternsLesson-v5.jsx",
+  "md5_eski": "8982824fdf50b60b4c8d1953a29320c9",
+  "uz": {
+   "qid": 17123,
+   "sid": "2507"
+  },
+  "ru": {
+   "qid": 17124,
+   "sid": "2507"
+  }
+ },
+ {
+  "lesson_id": "agent-arch-06-04-v18",
+  "m": 8,
+  "yangi": "8-Modul/04-AgentArchitectureLesson-v6.jsx",
+  "md5_yangi": "e0746502e8993ef2f4c0d7a3505316da",
+  "eski": "8-Modul/04-AgentArchitectureLesson-v5.jsx",
+  "md5_eski": "75b6337b9d41118b6a291b611af6224b",
+  "uz": {
+   "qid": 17125,
+   "sid": "2508"
+  },
+  "ru": {
+   "qid": 17126,
+   "sid": "2508"
+  }
+ },
+ {
+  "lesson_id": "claude-skills-06-05-v18",
+  "m": 8,
+  "yangi": "8-Modul/05-ClaudeSkillsLesson-v6.jsx",
+  "md5_yangi": "58c4d8ce511c3d27b2c90e9cbee5d8df",
+  "eski": "8-Modul/05-ClaudeSkillsLesson-v5.jsx",
+  "md5_eski": "43c9fa83d634fde34bbf4c6c416963dc",
+  "uz": {
+   "qid": 17127,
+   "sid": "2509"
+  },
+  "ru": {
+   "qid": 17128,
+   "sid": "2509"
+  }
+ },
+ {
+  "lesson_id": "pm-m6d6-v1",
+  "m": 8,
+  "yangi": "8-Modul/06-PmLesson23-v7.jsx",
+  "md5_yangi": "8057fc2b1aa2643ea393bca964494c3d",
+  "eski": "8-Modul/06-PmLesson23-v6.jsx",
+  "md5_eski": "5ee32e48f5518918b4b94a6c00d8d8ca",
+  "uz": {
+   "qid": 17129,
+   "sid": "2510"
+  },
+  "ru": {
+   "qid": 17130,
+   "sid": "2510"
+  }
+ },
+ {
+  "lesson_id": "write-skill-06-07-v18",
+  "m": 8,
+  "yangi": "8-Modul/07-WriteSkillLesson-v6.jsx",
+  "md5_yangi": "df45827d5d706e62bb5fe6830f067aa2",
+  "eski": "8-Modul/07-WriteSkillLesson-v5.jsx",
+  "md5_eski": "3aacde9710ba2343dbb62342a585b7ef",
+  "uz": {
+   "qid": 17131,
+   "sid": "2511"
+  },
+  "ru": {
+   "qid": 17132,
+   "sid": "2511"
+  }
+ },
+ {
+  "lesson_id": "pipeline-project-06-08-v18",
+  "m": 8,
+  "yangi": "8-Modul/08-PipelineProjectLesson-v6.jsx",
+  "md5_yangi": "4971c8636b5ee256639d7dbcf3ba8710",
+  "eski": "8-Modul/08-PipelineProjectLesson-v5.jsx",
+  "md5_eski": "f567acd5ecd94359e6b6f41b5b43c41c",
+  "uz": {
+   "qid": 17133,
+   "sid": "2512"
+  },
+  "ru": {
+   "qid": 17134,
+   "sid": "2512"
+  }
+ },
+ {
+  "lesson_id": "rn-basics-06-09-v18",
+  "m": 8,
+  "yangi": "8-Modul/09-ReactNativeBasicsLesson-v6.jsx",
+  "md5_yangi": "4190a34dbeae8e36ee713fd16f49553e",
+  "eski": "8-Modul/09-ReactNativeBasicsLesson-v5.jsx",
+  "md5_eski": "b2051c3b5da9572ffd3d8977f3c74844",
+  "uz": {
+   "qid": 17135,
+   "sid": "2513"
+  },
+  "ru": {
+   "qid": 17136,
+   "sid": "2513"
+  }
+ },
+ {
+  "lesson_id": "rn-app-06-10-v18",
+  "m": 8,
+  "yangi": "8-Modul/10-ReactNativeAppLesson-v6.jsx",
+  "md5_yangi": "6542c77d2e96086e32245a545139ee29",
+  "eski": "8-Modul/10-ReactNativeAppLesson-v5.jsx",
+  "md5_eski": "4a64d36aea39868e9f01de91c78be99f",
+  "uz": {
+   "qid": 17137,
+   "sid": "2514"
+  },
+  "ru": {
+   "qid": 17138,
+   "sid": "2514"
+  }
+ },
+ {
+  "lesson_id": "mobile-practice-06-11-v18",
+  "m": 8,
+  "yangi": "8-Modul/11-MobileAppPracticeLesson-v6.jsx",
+  "md5_yangi": "38f2e6f275af0b408f7e348f0330eac0",
+  "eski": "8-Modul/11-MobileAppPracticeLesson-v5.jsx",
+  "md5_eski": "5c1e3f8b2f9ed4cbdb00ce606653f0ee",
+  "uz": {
+   "qid": 17139,
+   "sid": "2515"
+  },
+  "ru": {
+   "qid": 17140,
+   "sid": "2515"
+  }
+ },
+ {
+  "lesson_id": "pm-m6d12-v1",
+  "m": 8,
+  "yangi": "8-Modul/12-PmLesson24-v7.jsx",
+  "md5_yangi": "532ef639ba83e25f44f8dbcd07673b9e",
+  "eski": "8-Modul/12-PmLesson24-v6.jsx",
+  "md5_eski": "bfdabf1bd1465f00da0fc09db754a7bc",
+  "uz": {
+   "qid": 17141,
+   "sid": "2516"
+  },
+  "ru": {
+   "qid": 17142,
+   "sid": "2516"
+  }
+ },
+ {
+  "lesson_id": "full-system-06-13-v18",
+  "m": 8,
+  "yangi": "8-Modul/13-FullSystemProjectLesson-v6.jsx",
+  "md5_yangi": "1a48739277fff63eda161c3150f6ffcc",
+  "eski": "8-Modul/13-FullSystemProjectLesson-v5.jsx",
+  "md5_eski": "739a135b58c954f0c9601da2059dd40d",
+  "uz": {
+   "qid": 17143,
+   "sid": "2517"
+  },
+  "ru": {
+   "qid": 17144,
+   "sid": "2517"
+  }
+ },
+ {
+  "lesson_id": "pm-m6d14-v1",
+  "m": 8,
+  "yangi": "8-Modul/14-PmLesson25-v7.jsx",
+  "md5_yangi": "0044210ef3881f29363872e29c4d2059",
+  "eski": "8-Modul/14-PmLesson25-v6.jsx",
+  "md5_eski": "cdc72ddc5d429a0421a2b0eb0db55207",
+  "uz": {
+   "qid": 17145,
+   "sid": "2518"
+  },
+  "ru": {
+   "qid": 17146,
+   "sid": "2518"
+  }
+ },
+ {
+  "lesson_id": "pm-m7d1-v1",
+  "m": 9,
+  "yangi": "9-Modul/01-PmProductProblemLesson-v7.jsx",
+  "md5_yangi": "8df68138156a9e16c73b3cad7a5d2993",
+  "eski": "9-Modul/01-PmProductProblemLesson-v6.jsx",
+  "md5_eski": "6ad888a39177412bec82698bec215429",
+  "uz": {
+   "qid": 17147,
+   "sid": "2983"
+  },
+  "ru": {
+   "qid": 17148,
+   "sid": "2983"
+  }
+ },
+ {
+  "lesson_id": "m7-02-v1",
+  "m": 9,
+  "yangi": "9-Modul/02-PmFiveInterviewsLesson-v7.jsx",
+  "md5_yangi": "5ef8cfd9baa56590eee2b14c3335c516",
+  "eski": "9-Modul/02-PmFiveInterviewsLesson-v6.jsx",
+  "md5_eski": "d04c96cd806c55cb7da616e11d72d10f",
+  "uz": {
+   "qid": 17149,
+   "sid": "2984"
+  },
+  "ru": {
+   "qid": 17150,
+   "sid": "2984"
+  }
+ },
+ {
+  "lesson_id": "pm-m7d3-v1",
+  "m": 9,
+  "yangi": "9-Modul/03-PmInterviewMvpLesson-v7.jsx",
+  "md5_yangi": "3ed5dd524723ace36417af6ba88d426c",
+  "eski": "9-Modul/03-PmInterviewMvpLesson-v6.jsx",
+  "md5_eski": "7721f83e5f19961378d02710dea0179a",
+  "uz": {
+   "qid": 17151,
+   "sid": "2985"
+  },
+  "ru": {
+   "qid": 17152,
+   "sid": "2985"
+  }
+ },
+ {
+  "lesson_id": "m7-04-v1",
+  "m": 9,
+  "yangi": "9-Modul/04-MvpArchitectureLesson-v6.jsx",
+  "md5_yangi": "ec63dcae7e9f25a6a10efd327df2494e",
+  "eski": "9-Modul/04-MvpArchitectureLesson-v5.jsx",
+  "md5_eski": "3d94bd45d2fef03512b91606b75b1a30",
+  "uz": {
+   "qid": 17153,
+   "sid": "2986"
+  },
+  "ru": {
+   "qid": 17154,
+   "sid": "2986"
+  }
+ },
+ {
+  "lesson_id": "m7-05-v1",
+  "m": 9,
+  "yangi": "9-Modul/05-AnimationLesson-v6.jsx",
+  "md5_yangi": "5f11593b5ad1b6e9073b1f8019b617dd",
+  "eski": "9-Modul/05-AnimationLesson-v5.jsx",
+  "md5_eski": "532048c01a7ddd7b4d7c8ec470560ec1",
+  "uz": {
+   "qid": 17155,
+   "sid": "2987"
+  },
+  "ru": {
+   "qid": 17156,
+   "sid": "2987"
+  }
+ },
+ {
+  "lesson_id": "m7-06-v1",
+  "m": 9,
+  "yangi": "9-Modul/06-PmAnalyticsDayOneLesson-v6.jsx",
+  "md5_yangi": "c13d77a3f8a69b8b9a9db036d5343b28",
+  "eski": "9-Modul/06-PmAnalyticsDayOneLesson-v5.jsx",
+  "md5_eski": "40afea62b03e6961e703d9de34ef0802",
+  "uz": {
+   "qid": 17157,
+   "sid": "2988"
+  },
+  "ru": {
+   "qid": 17158,
+   "sid": "2988"
+  }
+ },
+ {
+  "lesson_id": "m7-07-v1",
+  "m": 9,
+  "yangi": "9-Modul/07-MvpFirstScreenLesson-v6.jsx",
+  "md5_yangi": "548bf06af86ea282d77da5f0bd52472a",
+  "eski": "9-Modul/07-MvpFirstScreenLesson-v5.jsx",
+  "md5_eski": "205ea7e038c12c3296b6e0318a2f9ed7",
+  "uz": {
+   "qid": 17159,
+   "sid": "2989"
+  },
+  "ru": {
+   "qid": 17160,
+   "sid": "2989"
+  }
+ },
+ {
+  "lesson_id": "m7-08-v1",
+  "m": 9,
+  "yangi": "9-Modul/08-PmDesignMotionLesson-v6.jsx",
+  "md5_yangi": "29a3eef644df3b6a9ca55ae33a1a23d3",
+  "eski": "9-Modul/08-PmDesignMotionLesson-v5.jsx",
+  "md5_eski": "c114a721c9b17a6462f5f51144cf3d07",
+  "uz": {
+   "qid": 17161,
+   "sid": "2990"
+  },
+  "ru": {
+   "qid": 17162,
+   "sid": "2990"
+  }
+ },
+ {
+  "lesson_id": "m7-09-v1",
+  "m": 9,
+  "yangi": "9-Modul/09-MvpCompleteLesson-v6.jsx",
+  "md5_yangi": "597c0c37db020877904f14651f39b868",
+  "eski": "9-Modul/09-MvpCompleteLesson-v5.jsx",
+  "md5_eski": "ee6f2a93f392ae538bb66bd1571b0d09",
+  "uz": {
+   "qid": 17163,
+   "sid": "2991"
+  },
+  "ru": {
+   "qid": 17164,
+   "sid": "2991"
+  }
+ },
+ {
+  "lesson_id": "m7-10-v1",
+  "m": 9,
+  "yangi": "9-Modul/10-PmUsabilityTestLesson-v7.jsx",
+  "md5_yangi": "67c0d7ca4aae9e71b7a55b9838a02bab",
+  "eski": "9-Modul/10-PmUsabilityTestLesson-v6.jsx",
+  "md5_eski": "169a1513e825cdcd322e33de9e22188d",
+  "uz": {
+   "qid": 17165,
+   "sid": "2992"
+  },
+  "ru": {
+   "qid": 17166,
+   "sid": "2992"
+  }
+ },
+ {
+  "lesson_id": "m7-11-v1",
+  "m": 9,
+  "yangi": "9-Modul/11-MvpIterationLesson-v6.jsx",
+  "md5_yangi": "e1daceba34522bab0e3e895bda00e1a1",
+  "eski": "9-Modul/11-MvpIterationLesson-v5.jsx",
+  "md5_eski": "cfa645e01d7a4a66ab73379a378d9d3f",
+  "uz": {
+   "qid": 17167,
+   "sid": "2993"
+  },
+  "ru": {
+   "qid": 17168,
+   "sid": "2993"
+  }
+ },
+ {
+  "lesson_id": "m7-12-v2",
+  "m": 9,
+  "yangi": "9-Modul/12-PmUserStoryPitchLesson-v6.jsx",
+  "md5_yangi": "eecd8e3c5ade8690ff8c79b068e7181f",
+  "eski": "9-Modul/12-PmUserStoryPitchLesson-v5.jsx",
+  "md5_eski": "4df1451be983aa97b214732da9eb2061",
+  "uz": {
+   "qid": 17169,
+   "sid": "2994"
+  },
+  "ru": {
+   "qid": 17170,
+   "sid": "2994"
+  }
+ },
+ {
+  "lesson_id": "pm-m8d1-okr-v1",
+  "m": 10,
+  "yangi": "10-Modul/01-PmOkrLesson-v6.jsx",
+  "md5_yangi": "1b5e596a6c71a572da3339a1976fee4d",
+  "eski": "10-Modul/01-PmOkrLesson-v5.jsx",
+  "md5_eski": "e346fc2889927d48362a0d8452ecdb65",
+  "uz": {
+   "qid": 17171,
+   "sid": "2995"
+  },
+  "ru": {
+   "qid": 17172,
+   "sid": "2995"
+  }
+ },
+ {
+  "lesson_id": "m8-02-event-tracking-v1",
+  "m": 10,
+  "yangi": "10-Modul/02-EventTrackingLesson-v6.jsx",
+  "md5_yangi": "08a700fdd467fbdc9d041c6d17681a9d",
+  "eski": "10-Modul/02-EventTrackingLesson-v5.jsx",
+  "md5_eski": "ffb831544f304c947a889e420d41d748",
+  "uz": {
+   "qid": 17173,
+   "sid": "2996"
+  },
+  "ru": {
+   "qid": 17174,
+   "sid": "2996"
+  }
+ },
+ {
+  "lesson_id": "m8-03-v1",
+  "m": 10,
+  "yangi": "10-Modul/03-LiveDashboardLesson-v6.jsx",
+  "md5_yangi": "56543a03ca247eeb642849344b0e0330",
+  "eski": "10-Modul/03-LiveDashboardLesson-v5.jsx",
+  "md5_eski": "daef6863f1f3ab4b10907d259bd60080",
+  "uz": {
+   "qid": 17175,
+   "sid": "2997"
+  },
+  "ru": {
+   "qid": 17176,
+   "sid": "2997"
+  }
+ },
+ {
+  "lesson_id": "m8-04-v1",
+  "m": 10,
+  "yangi": "10-Modul/04-PmAbTestLesson-v6.jsx",
+  "md5_yangi": "74a64a9d08a047eff69887412dd3c6e0",
+  "eski": "10-Modul/04-PmAbTestLesson-v5.jsx",
+  "md5_eski": "cd3e43e9624b8565ba1286a77378e8e6",
+  "uz": {
+   "qid": 17177,
+   "sid": "2998"
+  },
+  "ru": {
+   "qid": 17178,
+   "sid": "2998"
+  }
+ },
+ {
+  "lesson_id": "m8-05-security-basics-v1",
+  "m": 10,
+  "yangi": "10-Modul/05-SecurityBasicsLesson-v6.jsx",
+  "md5_yangi": "a7d36525bcae883b8701d28f4a7cd1b1",
+  "eski": "10-Modul/05-SecurityBasicsLesson-v5.jsx",
+  "md5_eski": "1cec2de3305b58aa9593c1b9a631341d",
+  "uz": {
+   "qid": 17179,
+   "sid": "2999"
+  },
+  "ru": {
+   "qid": 17180,
+   "sid": "2999"
+  }
+ },
+ {
+  "lesson_id": "m8-06-v1",
+  "m": 10,
+  "yangi": "10-Modul/06-PmTrustAuditLesson-v6.jsx",
+  "md5_yangi": "d2e201ec6f358dfe7bbe7da32ee41e14",
+  "eski": "10-Modul/06-PmTrustAuditLesson-v5.jsx",
+  "md5_eski": "392d4d5bed683378a7c1e06d4747924f",
+  "uz": {
+   "qid": 17181,
+   "sid": "3000"
+  },
+  "ru": {
+   "qid": 17182,
+   "sid": "3000"
+  }
+ },
+ {
+  "lesson_id": "m8-07-production-deploy-v1",
+  "m": 10,
+  "yangi": "10-Modul/07-ProductionDeployLesson-v6.jsx",
+  "md5_yangi": "2d15f7ae9c6b7541c0e4ac9e1b13e7ff",
+  "eski": "10-Modul/07-ProductionDeployLesson-v5.jsx",
+  "md5_eski": "c0c91e6148cd0c3e861a48464de4ac50",
+  "uz": {
+   "qid": 17183,
+   "sid": "3001"
+  },
+  "ru": {
+   "qid": 17184,
+   "sid": "3001"
+  }
+ },
+ {
+  "lesson_id": "m8-08-v1",
+  "m": 10,
+  "yangi": "10-Modul/08-ProdUpgradeLesson-v6.jsx",
+  "md5_yangi": "0cc26da6d7090b1b3dbb268df2370807",
+  "eski": "10-Modul/08-ProdUpgradeLesson-v5.jsx",
+  "md5_eski": "3e0bb3190694a5016bbfaf554116105e",
+  "uz": {
+   "qid": 17185,
+   "sid": "3002"
+  },
+  "ru": {
+   "qid": 17186,
+   "sid": "3002"
+  }
+ },
+ {
+  "lesson_id": "m8-09-v1",
+  "m": 10,
+  "yangi": "10-Modul/09-ProdReviewLesson-v6.jsx",
+  "md5_yangi": "8184b8d47e739148b0fe510990d4de3f",
+  "eski": "10-Modul/09-ProdReviewLesson-v5.jsx",
+  "md5_eski": "b733b0c175c0282c43b4bf7b60cc43e8",
+  "uz": {
+   "qid": 17187,
+   "sid": "3003"
+  },
+  "ru": {
+   "qid": 17188,
+   "sid": "3003"
+  }
+ },
+ {
+  "lesson_id": "pm-m8d10-yol-v1",
+  "m": 10,
+  "yangi": "10-Modul/10-PmYearPathLesson-v7.jsx",
+  "md5_yangi": "1fa4e543d60309bb00d3359c25f2c82a",
+  "eski": "10-Modul/10-PmYearPathLesson-v6.jsx",
+  "md5_eski": "6812a8727ff0d560d78f365cd9374949",
+  "uz": {
+   "qid": 17189,
+   "sid": "3004"
+  },
+  "ru": {
+   "qid": 17190,
+   "sid": "3004"
+  }
+ },
+ {
+  "lesson_id": "pm-m8d11-pitch-v2",
+  "m": 10,
+  "yangi": "10-Modul/11-PmPitchRehearsalLesson-v6.jsx",
+  "md5_yangi": "2ebbfbd63f737bf052280b4dde74704e",
+  "eski": "10-Modul/11-PmPitchRehearsalLesson-v5.jsx",
+  "md5_eski": "44163822998dceaa12a8a0812ae943be",
+  "uz": {
+   "qid": 17191,
+   "sid": "3005"
+  },
+  "ru": {
+   "qid": 17192,
+   "sid": "3005"
+  }
+ },
+ {
+  "lesson_id": "pm-m9d1-v1",
+  "m": 11,
+  "yangi": "11-Modul/01-PmTenIdeasLesson-v7.jsx",
+  "md5_yangi": "bf0f302f02b051465f72d79be63a1dbc",
+  "eski": "11-Modul/01-PmTenIdeasLesson-v6.jsx",
+  "md5_eski": "57c27c61eac72ac18418af1984d150c6",
+  "uz": {
+   "qid": 17193,
+   "sid": "3006"
+  },
+  "ru": {
+   "qid": 17194,
+   "sid": "3006"
+  }
+ },
+ {
+  "lesson_id": "pm-m9d2-v1",
+  "m": 11,
+  "yangi": "11-Modul/02-PmIdeaRiceLesson-v7.jsx",
+  "md5_yangi": "58e16a779084682b6348a05435fe1128",
+  "eski": "11-Modul/02-PmIdeaRiceLesson-v6.jsx",
+  "md5_eski": "c2b692a7dc568778b078bb8d81660f15",
+  "uz": {
+   "qid": 17195,
+   "sid": "3007"
+  },
+  "ru": {
+   "qid": 17196,
+   "sid": "3007"
+  }
+ },
+ {
+  "lesson_id": "pm-m9d3-v1",
+  "m": 11,
+  "yangi": "11-Modul/03-PmInterviewsOneLesson-v7.jsx",
+  "md5_yangi": "6f827711ec3a3fa476399db988611d99",
+  "eski": "11-Modul/03-PmInterviewsOneLesson-v6.jsx",
+  "md5_eski": "38689cee13e77e4d72b6b6f45ce7d8b0",
+  "uz": {
+   "qid": 17197,
+   "sid": "3008"
+  },
+  "ru": {
+   "qid": 17198,
+   "sid": "3008"
+  }
+ },
+ {
+  "lesson_id": "pm-m9d4-v1",
+  "m": 11,
+  "yangi": "11-Modul/04-PmFinalIdeaLesson-v7.jsx",
+  "md5_yangi": "ef7bc6f1f59c1b7a2b7bc41f2c6f6870",
+  "eski": "11-Modul/04-PmFinalIdeaLesson-v6.jsx",
+  "md5_eski": "8e1ae3f169403f4045b1e31b0a04eedb",
+  "uz": {
+   "qid": 17199,
+   "sid": "3009"
+  },
+  "ru": {
+   "qid": 17200,
+   "sid": "3009"
+  }
+ },
+ {
+  "lesson_id": "pm-m9d5-v1",
+  "m": 11,
+  "yangi": "11-Modul/05-PmPrdLesson-v6.jsx",
+  "md5_yangi": "69040ba2ff7e236462ad8819097784e6",
+  "eski": "11-Modul/05-PmPrdLesson-v5.jsx",
+  "md5_eski": "b6d6b4c2aa0dca5a0135deab1c65e3d1",
+  "uz": {
+   "qid": 17201,
+   "sid": "3010"
+  },
+  "ru": {
+   "qid": 17202,
+   "sid": "3010"
+  }
+ },
+ {
+  "lesson_id": "pm-m9d6-v1",
+  "m": 11,
+  "yangi": "11-Modul/06-PmRoadmapLesson-v7.jsx",
+  "md5_yangi": "fbde10b7fa18a8323b377a0a14df2171",
+  "eski": "11-Modul/06-PmRoadmapLesson-v6.jsx",
+  "md5_eski": "23e52cf206363335d6baf4dba00aacba",
+  "uz": {
+   "qid": 17203,
+   "sid": "3011"
+  },
+  "ru": {
+   "qid": 17204,
+   "sid": "3011"
+  }
+ },
+ {
+  "lesson_id": "m9-07-v1",
+  "m": 11,
+  "yangi": "11-Modul/07-LivePrototypeLesson-v6.jsx",
+  "md5_yangi": "f524da3a06e1db113d4e3932c4197e5f",
+  "eski": "11-Modul/07-LivePrototypeLesson-v5.jsx",
+  "md5_eski": "f8b883c185a0cdf45e405243126c63e0",
+  "uz": {
+   "qid": 17205,
+   "sid": "3012"
+  },
+  "ru": {
+   "qid": 17206,
+   "sid": "3012"
+  }
+ },
+ {
+  "lesson_id": "m9-08-v1",
+  "m": 11,
+  "yangi": "11-Modul/08-PlatformChoiceLesson-v6.jsx",
+  "md5_yangi": "5557d981930e139766f4446b8ec131cf",
+  "eski": "11-Modul/08-PlatformChoiceLesson-v5.jsx",
+  "md5_eski": "151e5f18c91ab1a753cff79d0a56fff7",
+  "uz": {
+   "qid": 17207,
+   "sid": "3013"
+  },
+  "ru": {
+   "qid": 17208,
+   "sid": "3013"
+  }
+ },
+ {
+  "lesson_id": "m9-09-v1",
+  "m": 11,
+  "yangi": "11-Modul/09-ExpoPrototypeLesson-v6.jsx",
+  "md5_yangi": "8c708bccf311c679b0608b1289d5ef7b",
+  "eski": "11-Modul/09-ExpoPrototypeLesson-v5.jsx",
+  "md5_eski": "b1f64db640c0dbfaa5d419f907a61afe",
+  "uz": {
+   "qid": 17209,
+   "sid": "3014"
+  },
+  "ru": {
+   "qid": 17210,
+   "sid": "3014"
+  }
+ },
+ {
+  "lesson_id": "m9-10-v1",
+  "m": 11,
+  "yangi": "11-Modul/10-FoundationDayLesson-v6.jsx",
+  "md5_yangi": "c3fcdc2966e10ad6a8375fe06ff28aa1",
+  "eski": "11-Modul/10-FoundationDayLesson-v5.jsx",
+  "md5_eski": "25f02065f7192441c37b314df7bace41",
+  "uz": {
+   "qid": 17211,
+   "sid": "3015"
+  },
+  "ru": {
+   "qid": 17212,
+   "sid": "3015"
+  }
+ },
+ {
+  "lesson_id": "m9-11-v1",
+  "m": 11,
+  "yangi": "11-Modul/11-FeatureOneLesson-v6.jsx",
+  "md5_yangi": "be9f3d3607f3a5fe0c7ba6c8ec0c21ab",
+  "eski": "11-Modul/11-FeatureOneLesson-v5.jsx",
+  "md5_eski": "77567517be10a4856df854dc1ced18d0",
+  "uz": {
+   "qid": 17213,
+   "sid": "3016"
+  },
+  "ru": {
+   "qid": 17214,
+   "sid": "3016"
+  }
+ },
+ {
+  "lesson_id": "m9-12-v1",
+  "m": 11,
+  "yangi": "11-Modul/12-FeatureTwoLesson-v6.jsx",
+  "md5_yangi": "04ac6254422124554e6ff801b9604d58",
+  "eski": "11-Modul/12-FeatureTwoLesson-v5.jsx",
+  "md5_eski": "85c8a934313c9a93ffc86624c88c4866",
+  "uz": {
+   "qid": 17215,
+   "sid": "3017"
+  },
+  "ru": {
+   "qid": 17216,
+   "sid": "3017"
+  }
+ },
+ {
+  "lesson_id": "pm-m9d13-v1",
+  "m": 11,
+  "yangi": "11-Modul/13-PmAudienceTestLesson-v6.jsx",
+  "md5_yangi": "aa8aaa21266ae535624ffe1a670e8f48",
+  "eski": "11-Modul/13-PmAudienceTestLesson-v5.jsx",
+  "md5_eski": "455f6649f79199563703dff6f94d4302",
+  "uz": {
+   "qid": 17217,
+   "sid": "3018"
+  },
+  "ru": {
+   "qid": 17218,
+   "sid": "3018"
+  }
+ },
+ {
+  "lesson_id": "m9-14-v1",
+  "m": 11,
+  "yangi": "11-Modul/14-FeatureThreeLesson-v6.jsx",
+  "md5_yangi": "a48722f37a08838bb69e61fe0647296c",
+  "eski": "11-Modul/14-FeatureThreeLesson-v5.jsx",
+  "md5_eski": "7b2e9e3a888d65cb9c91c3b0b37d7366",
+  "uz": {
+   "qid": 17219,
+   "sid": "3019"
+  },
+  "ru": {
+   "qid": 17220,
+   "sid": "3019"
+  }
+ },
+ {
+  "lesson_id": "pm-m9d15-v1",
+  "m": 11,
+  "yangi": "11-Modul/15-PmOneOnOneLesson-v6.jsx",
+  "md5_yangi": "f063bd9b08814fe6c625be547e6cacdf",
+  "eski": "11-Modul/15-PmOneOnOneLesson-v5.jsx",
+  "md5_eski": "1e069a75c277826eb941cc4d090fb462",
+  "uz": {
+   "qid": 17221,
+   "sid": "3020"
+  },
+  "ru": {
+   "qid": 17222,
+   "sid": "3020"
+  }
+ },
+ {
+  "lesson_id": "pm-m9d16-v2",
+  "m": 11,
+  "yangi": "11-Modul/16-PmPrototypePitchLesson-v6.jsx",
+  "md5_yangi": "f083b994d41890d886eca8dc3ccd325a",
+  "eski": "11-Modul/16-PmPrototypePitchLesson-v5.jsx",
+  "md5_eski": "ecdbdc2136f0614948851bf30e1cafe5",
+  "uz": {
+   "qid": 17223,
+   "sid": "3021"
+  },
+  "ru": {
+   "qid": 17224,
+   "sid": "3021"
+  }
+ },
+ {
+  "lesson_id": "pm-m10d1-v1",
+  "m": 12,
+  "yangi": "12-Modul/01-PmLandingLesson-v6.jsx",
+  "md5_yangi": "f0b7a4d52354721ecbb1a9b07b2fcc42",
+  "eski": "12-Modul/01-PmLandingLesson-v5.jsx",
+  "md5_eski": "5df49efaafee22d4ae17ad573473f05a",
+  "uz": {
+   "qid": 17225,
+   "sid": "3023"
+  },
+  "ru": {
+   "qid": 17226,
+   "sid": "3023"
+  }
+ },
+ {
+  "lesson_id": "m10-02-v1",
+  "m": 12,
+  "yangi": "12-Modul/02-WebSocketBasicsLesson-v6.jsx",
+  "md5_yangi": "fbfcb7b05768595502a7bc447ca4e2af",
+  "eski": "12-Modul/02-WebSocketBasicsLesson-v5.jsx",
+  "md5_eski": "24942d8565d1758ba8fc52cda2f21c11",
+  "uz": {
+   "qid": 17227,
+   "sid": "3024"
+  },
+  "ru": {
+   "qid": 17228,
+   "sid": "3024"
+  }
+ },
+ {
+  "lesson_id": "pm-m10d3-v1",
+  "m": 12,
+  "yangi": "12-Modul/03-PmRealtimeSpecLesson-v6.jsx",
+  "md5_yangi": "5371fc48621eda999c77f4f198b89564",
+  "eski": "12-Modul/03-PmRealtimeSpecLesson-v5.jsx",
+  "md5_eski": "2e1a91c61f795fdc62a3b25217851f98",
+  "uz": {
+   "qid": 17229,
+   "sid": "3025"
+  },
+  "ru": {
+   "qid": 17230,
+   "sid": "3025"
+  }
+ },
+ {
+  "lesson_id": "m10-04-v1",
+  "m": 12,
+  "yangi": "12-Modul/04-LiveNotifyDayLesson-v6.jsx",
+  "md5_yangi": "3f96242324f2848bf4c88ef04b91e4af",
+  "eski": "12-Modul/04-LiveNotifyDayLesson-v5.jsx",
+  "md5_eski": "6a1ca7cdef5cbded3c641748746bac79",
+  "uz": {
+   "qid": 17231,
+   "sid": "3026"
+  },
+  "ru": {
+   "qid": 17232,
+   "sid": "3026"
+  }
+ },
+ {
+  "lesson_id": "m10-05-v1",
+  "m": 12,
+  "yangi": "12-Modul/05-BreakAndFixLesson-v6.jsx",
+  "md5_yangi": "408339c99c2a3dec2d4f41b86dc3684c",
+  "eski": "12-Modul/05-BreakAndFixLesson-v5.jsx",
+  "md5_eski": "2688ddf15a9366e38bcc6a3b3027c864",
+  "uz": {
+   "qid": 17233,
+   "sid": "3027"
+  },
+  "ru": {
+   "qid": 17234,
+   "sid": "3027"
+  }
+ },
+ {
+  "lesson_id": "pm-m10d6-v1",
+  "m": 12,
+  "yangi": "12-Modul/06-PmChannelsLesson-v7.jsx",
+  "md5_yangi": "d7d318db45ea33ff3080d81fd57508cf",
+  "eski": "12-Modul/06-PmChannelsLesson-v6.jsx",
+  "md5_eski": "51f5b03b593e8a62f818fac01d2d29a6",
+  "uz": {
+   "qid": 17235,
+   "sid": "3028"
+  },
+  "ru": {
+   "qid": 17236,
+   "sid": "3028"
+  }
+ },
+ {
+  "lesson_id": "pm-m10d7-v1",
+  "m": 12,
+  "yangi": "12-Modul/07-PmFiftyUsersLesson-v6.jsx",
+  "md5_yangi": "57e8274e301dc0e2c1d8359ae3ff5eef",
+  "eski": "12-Modul/07-PmFiftyUsersLesson-v5.jsx",
+  "md5_eski": "0759f8057d97dbeced493ef276285378",
+  "uz": {
+   "qid": 17237,
+   "sid": "3029"
+  },
+  "ru": {
+   "qid": 17238,
+   "sid": "3029"
+  }
+ },
+ {
+  "lesson_id": "pm-m10d8-v1",
+  "m": 12,
+  "yangi": "12-Modul/08-PmDropOffLesson-v6.jsx",
+  "md5_yangi": "74ff55598d3cdc348dbcf2ff95705483",
+  "eski": "12-Modul/08-PmDropOffLesson-v5.jsx",
+  "md5_eski": "91a2ffc55426f8eec8785da80e46e436",
+  "uz": {
+   "qid": 17239,
+   "sid": "3030"
+  },
+  "ru": {
+   "qid": 17240,
+   "sid": "3030"
+  }
+ },
+ {
+  "lesson_id": "m10-09-v1",
+  "m": 12,
+  "yangi": "12-Modul/09-RetentionDayLesson-v6.jsx",
+  "md5_yangi": "cebbabb6952269ba5eaa8c61b3ffc4ea",
+  "eski": "12-Modul/09-RetentionDayLesson-v5.jsx",
+  "md5_eski": "220defedc02777c3c71c15607dbce9b2",
+  "uz": {
+   "qid": 17241,
+   "sid": "3031"
+  },
+  "ru": {
+   "qid": 17242,
+   "sid": "3031"
+  }
+ },
+ {
+  "lesson_id": "pm-m10d10-v1",
+  "m": 12,
+  "yangi": "12-Modul/10-PmUsersCheckLesson-v6.jsx",
+  "md5_yangi": "ff9e71381749b66b7f8791ee3b34228c",
+  "eski": "12-Modul/10-PmUsersCheckLesson-v5.jsx",
+  "md5_eski": "1d7c6a109bb109e2c038f59079dc490f",
+  "uz": {
+   "qid": 17243,
+   "sid": "3032"
+  },
+  "ru": {
+   "qid": 17244,
+   "sid": "3032"
+  }
+ },
+ {
+  "lesson_id": "pm-m10d11-v2",
+  "m": 12,
+  "yangi": "12-Modul/11-PmPitchReviewLesson-v6.jsx",
+  "md5_yangi": "fdef9f454b70f8475cd023c30abec0c2",
+  "eski": "12-Modul/11-PmPitchReviewLesson-v5.jsx",
+  "md5_eski": "9ba146ad643341a126f8681f97ab9a56",
+  "uz": {
+   "qid": 17245,
+   "sid": "3033"
+  },
+  "ru": {
+   "qid": 17246,
+   "sid": "3033"
+  }
+ },
+ {
+  "lesson_id": "pm-m10d12-v2",
+  "m": 12,
+  "yangi": "12-Modul/12-PmGrowthPitchLesson-v7.jsx",
+  "md5_yangi": "cf0b6aaad697b3a55913c9c345458168",
+  "eski": "12-Modul/12-PmGrowthPitchLesson-v6.jsx",
+  "md5_eski": "37577b4c865f773133e68b9683765cfb",
+  "uz": {
+   "qid": 17247,
+   "sid": "3034"
+  },
+  "ru": {
+   "qid": 17248,
+   "sid": "3034"
+  }
+ },
+ {
+  "lesson_id": "pm-m11d1-v1",
+  "m": 13,
+  "yangi": "13-Modul/01-PmUnitEconomicsLesson-v7.jsx",
+  "md5_yangi": "ddef7dc07096079f763e7fc25fcb511e",
+  "eski": "13-Modul/01-PmUnitEconomicsLesson-v6.jsx",
+  "md5_eski": "fa8e5b1e7301fc72c04e0ded2da849f4",
+  "uz": {
+   "qid": 17249,
+   "sid": "3035"
+  },
+  "ru": {
+   "qid": 17250,
+   "sid": "3035"
+  }
+ },
+ {
+  "lesson_id": "pm-m11d2-v1",
+  "m": 13,
+  "yangi": "13-Modul/02-PmMonetizationLesson-v6.jsx",
+  "md5_yangi": "aa3f49530f873481ac04c2ea76764dca",
+  "eski": "13-Modul/02-PmMonetizationLesson-v5.jsx",
+  "md5_eski": "8a4d6655946eb61169f92063259a9755",
+  "uz": {
+   "qid": 17251,
+   "sid": "3036"
+  },
+  "ru": {
+   "qid": 17252,
+   "sid": "3036"
+  }
+ },
+ {
+  "lesson_id": "m11-03-v1",
+  "m": 13,
+  "yangi": "13-Modul/03-PaymentWebhookLesson-v6.jsx",
+  "md5_yangi": "0258e50b565aed93af66a636b4e3432e",
+  "eski": "13-Modul/03-PaymentWebhookLesson-v5.jsx",
+  "md5_eski": "b9abc6a7821d1ba1a7c6deb83cbd4fd8",
+  "uz": {
+   "qid": 17253,
+   "sid": "3037"
+  },
+  "ru": {
+   "qid": 17254,
+   "sid": "3037"
+  }
+ },
+ {
+  "lesson_id": "pm-m11d4-v1",
+  "m": 13,
+  "yangi": "13-Modul/04-PmPricingLesson-v6.jsx",
+  "md5_yangi": "6978d8c6d5c328cd4725cdd9a259c72a",
+  "eski": "13-Modul/04-PmPricingLesson-v5.jsx",
+  "md5_eski": "d6bb941a74ac7849bc53c5c7848c5c08",
+  "uz": {
+   "qid": 17255,
+   "sid": "3038"
+  },
+  "ru": {
+   "qid": 17256,
+   "sid": "3038"
+  }
+ },
+ {
+  "lesson_id": "m11-05-v1",
+  "m": 13,
+  "yangi": "13-Modul/05-PaymentDayLesson-v6.jsx",
+  "md5_yangi": "9a9da769c7160fe79e59b05218cc49ff",
+  "eski": "13-Modul/05-PaymentDayLesson-v5.jsx",
+  "md5_eski": "23852249deefc92f466a8df779f985a6",
+  "uz": {
+   "qid": 17257,
+   "sid": "3039"
+  },
+  "ru": {
+   "qid": 17258,
+   "sid": "3039"
+  }
+ },
+ {
+  "lesson_id": "pm-m11d6-v1",
+  "m": 13,
+  "yangi": "13-Modul/06-PmMoneyTalkLesson-v6.jsx",
+  "md5_yangi": "07569f29787e1b854dfabea1ad306007",
+  "eski": "13-Modul/06-PmMoneyTalkLesson-v5.jsx",
+  "md5_eski": "db1519e2179cebfb766fafc6a37181fc",
+  "uz": {
+   "qid": 17259,
+   "sid": "3040"
+  },
+  "ru": {
+   "qid": 17260,
+   "sid": "3040"
+  }
+ },
+ {
+  "lesson_id": "pm-m11d7-v1",
+  "m": 13,
+  "yangi": "13-Modul/07-PmTermsLesson-v6.jsx",
+  "md5_yangi": "cba56c3ebdcb2fd47a4dcc1846127cc0",
+  "eski": "13-Modul/07-PmTermsLesson-v5.jsx",
+  "md5_eski": "95fdb5ad9ffb6a9e48556e62db9e6155",
+  "uz": {
+   "qid": 17261,
+   "sid": "3041"
+  },
+  "ru": {
+   "qid": 17262,
+   "sid": "3041"
+  }
+ },
+ {
+  "lesson_id": "m11-08-v1",
+  "m": 13,
+  "yangi": "13-Modul/08-WinBackDayLesson-v6.jsx",
+  "md5_yangi": "ad0ef57c308ac422adc31785b8a0c4c5",
+  "eski": "13-Modul/08-WinBackDayLesson-v5.jsx",
+  "md5_eski": "010b243197558affb3d136b8fb76c119",
+  "uz": {
+   "qid": 17263,
+   "sid": "3042"
+  },
+  "ru": {
+   "qid": 17264,
+   "sid": "3042"
+  }
+ },
+ {
+  "lesson_id": "pm-m11d9-v1",
+  "m": 13,
+  "yangi": "13-Modul/09-PmPayCheckLesson-v6.jsx",
+  "md5_yangi": "93706500a134cfa664851653b486bfa9",
+  "eski": "13-Modul/09-PmPayCheckLesson-v5.jsx",
+  "md5_eski": "7d7012d4736c357ea35f1d47475c93da",
+  "uz": {
+   "qid": 17265,
+   "sid": "3043"
+  },
+  "ru": {
+   "qid": 17266,
+   "sid": "3043"
+  }
+ },
+ {
+  "lesson_id": "m11-10-v1",
+  "m": 13,
+  "yangi": "13-Modul/10-ReferralDayLesson-v6.jsx",
+  "md5_yangi": "caaab007a319445bc11f847c3a1123e6",
+  "eski": "13-Modul/10-ReferralDayLesson-v5.jsx",
+  "md5_eski": "ae3c031aa0c295db365c20ebbcc84eb2",
+  "uz": {
+   "qid": 17267,
+   "sid": "3044"
+  },
+  "ru": {
+   "qid": 17268,
+   "sid": "3044"
+  }
+ },
+ {
+  "lesson_id": "pm-m11d11-v1",
+  "m": 13,
+  "yangi": "13-Modul/11-PmReflectionLesson-v6.jsx",
+  "md5_yangi": "7294aa0a3b80c237f398bb804269569f",
+  "eski": "13-Modul/11-PmReflectionLesson-v5.jsx",
+  "md5_eski": "5cba3e8c97073d0c13a2bc5bac88976a",
+  "uz": {
+   "qid": 17269,
+   "sid": "3045"
+  },
+  "ru": {
+   "qid": 17270,
+   "sid": "3045"
+  }
+ },
+ {
+  "lesson_id": "m11-12-v1",
+  "m": 13,
+  "yangi": "13-Modul/12-StabilizeDayLesson-v6.jsx",
+  "md5_yangi": "ecc2b77f514274b84475c3bd9f363f84",
+  "eski": "13-Modul/12-StabilizeDayLesson-v5.jsx",
+  "md5_eski": "5cb1eef1d2c890feaf50d85f996cea7c",
+  "uz": {
+   "qid": 17271,
+   "sid": "3046"
+  },
+  "ru": {
+   "qid": 17272,
+   "sid": "3046"
+  }
+ },
+ {
+  "lesson_id": "pm-m12d1-v2",
+  "m": 14,
+  "yangi": "14-Modul/01-PmInvestorPitchLesson-v6.jsx",
+  "md5_yangi": "b3b1a0f8cb1e1db3594f4beb9ff5a3f1",
+  "eski": "14-Modul/01-PmInvestorPitchLesson-v5.jsx",
+  "md5_eski": "5e50e68adbc90fdcfd0fe8da0f7a3d66",
+  "uz": {
+   "qid": 17273,
+   "sid": "3047"
+  },
+  "ru": {
+   "qid": 17274,
+   "sid": "3047"
+  }
+ },
+ {
+  "lesson_id": "pm-m12d2-v2",
+  "m": 14,
+  "yangi": "14-Modul/02-PmStoryPitchLesson-v6.jsx",
+  "md5_yangi": "ec51b86be3d73279d8329e7aa1a47e9c",
+  "eski": "14-Modul/02-PmStoryPitchLesson-v5.jsx",
+  "md5_eski": "24626f5b52587118efc00b7bf09f1b05",
+  "uz": {
+   "qid": 17275,
+   "sid": "3048"
+  },
+  "ru": {
+   "qid": 17276,
+   "sid": "3048"
+  }
+ },
+ {
+  "lesson_id": "m12-03-v1",
+  "m": 14,
+  "yangi": "14-Modul/03-ProductSpeedLesson-v6.jsx",
+  "md5_yangi": "445e15ee5392e8254582032e52ba0a91",
+  "eski": "14-Modul/03-ProductSpeedLesson-v5.jsx",
+  "md5_eski": "b45b523c6b89ca6dc33e336075459afc",
+  "uz": {
+   "qid": 17277,
+   "sid": "3049"
+  },
+  "ru": {
+   "qid": 17278,
+   "sid": "3049"
+  }
+ },
+ {
+  "lesson_id": "m12-04-v1",
+  "m": 14,
+  "yangi": "14-Modul/04-PolishDayLesson-v6.jsx",
+  "md5_yangi": "5941d942147758e075fb61c2d78dfa44",
+  "eski": "14-Modul/04-PolishDayLesson-v5.jsx",
+  "md5_eski": "b73f2657d82b70f6f3b0dd480cb2775e",
+  "uz": {
+   "qid": 17279,
+   "sid": "3050"
+  },
+  "ru": {
+   "qid": 17280,
+   "sid": "3050"
+  }
+ },
+ {
+  "lesson_id": "pm-m12d5-v2",
+  "m": 14,
+  "yangi": "14-Modul/05-PmPitchTrainingLesson-v6.jsx",
+  "md5_yangi": "3fb9c5614e5727f026b555ddfd6de12b",
+  "eski": "14-Modul/05-PmPitchTrainingLesson-v5.jsx",
+  "md5_eski": "70082746b525af20cc50513dcdd4d396",
+  "uz": {
+   "qid": 17281,
+   "sid": "3051"
+  },
+  "ru": {
+   "qid": 17282,
+   "sid": "3051"
+  }
+ },
+ {
+  "lesson_id": "m12-06-v1",
+  "m": 14,
+  "yangi": "14-Modul/06-DemoPrepLesson-v6.jsx",
+  "md5_yangi": "5cd26934f3b129f0fa223cec73a6ef5e",
+  "eski": "14-Modul/06-DemoPrepLesson-v5.jsx",
+  "md5_eski": "9712091c274a09cc8127a25cbeef78ec",
+  "uz": {
+   "qid": 17283,
+   "sid": "3052"
+  },
+  "ru": {
+   "qid": 17284,
+   "sid": "3052"
+  }
+ },
+ {
+  "lesson_id": "pm-m12d7-v1",
+  "m": 14,
+  "yangi": "14-Modul/07-PmDemoTestLesson-v6.jsx",
+  "md5_yangi": "ea220b804876b4924b1af7d0fda9460d",
+  "eski": "14-Modul/07-PmDemoTestLesson-v5.jsx",
+  "md5_eski": "0e5ea52e5058f8cbb38afdfa0b85a262",
+  "uz": {
+   "qid": 17285,
+   "sid": "3053"
+  },
+  "ru": {
+   "qid": 17286,
+   "sid": "3053"
+  }
+ },
+ {
+  "lesson_id": "pm-m12d8-v2",
+  "m": 14,
+  "yangi": "14-Modul/08-PmFinalPitchLesson-v6.jsx",
+  "md5_yangi": "317f730dd20778295a84d085dfbce943",
+  "eski": "14-Modul/08-PmFinalPitchLesson-v5.jsx",
+  "md5_eski": "6324947b4de76f683cc22091b36ee8c5",
+  "uz": {
+   "qid": 17287,
+   "sid": "3054"
+  },
+  "ru": {
+   "qid": 17288,
+   "sid": "3054"
+  }
+ },
+ {
+  "lesson_id": "m12-09-v1",
+  "m": 14,
+  "yangi": "14-Modul/09-VideoPortfolioLesson-v6.jsx",
+  "md5_yangi": "cb178c8d43cb6375bf2765e5e87c803d",
+  "eski": "14-Modul/09-VideoPortfolioLesson-v5.jsx",
+  "md5_eski": "7f4472550ef68b647d6596ebec8b0f63",
+  "uz": {
+   "qid": 17289,
+   "sid": "3055"
+  },
+  "ru": {
+   "qid": 17290,
+   "sid": "3055"
+  }
+ },
+ {
+  "lesson_id": "pm-m12d10-v1",
+  "m": 14,
+  "yangi": "14-Modul/10-PmFreelanceLesson-v6.jsx",
+  "md5_yangi": "6c63c9d3aef7a4ffb0a618790f6dcae7",
+  "eski": "14-Modul/10-PmFreelanceLesson-v5.jsx",
+  "md5_eski": "dce214db5d0d9a7fbd79bfd852e4c8b0",
+  "uz": {
+   "qid": 17291,
+   "sid": "3056"
+  },
+  "ru": {
+   "qid": 17292,
+   "sid": "3056"
+  }
+ },
+ {
+  "lesson_id": "pm-m12d11-v1",
+  "m": 14,
+  "yangi": "14-Modul/11-PmProgramsLesson-v6.jsx",
+  "md5_yangi": "7dfb25288f1a113db10b1a1a6384e134",
+  "eski": "14-Modul/11-PmProgramsLesson-v5.jsx",
+  "md5_eski": "ccf9db8a0bb5c512e05e501b0816b4e9",
+  "uz": {
+   "qid": 17293,
+   "sid": "3057"
+  },
+  "ru": {
+   "qid": 17294,
+   "sid": "3057"
+  }
+ },
+ {
+  "lesson_id": "pm-m12d12-v1",
+  "m": 14,
+  "yangi": "14-Modul/12-PmNextStepsLesson-v6.jsx",
+  "md5_yangi": "4f1d801a2962e4f375603e6e6fc87419",
+  "eski": "14-Modul/12-PmNextStepsLesson-v5.jsx",
+  "md5_eski": "b2cdfe4721cf99c65f00725a92954c13",
+  "uz": {
+   "qid": 17295,
+   "sid": "3058"
+  },
+  "ru": {
+   "qid": 17296,
+   "sid": "3058"
+  }
+ },
+ {
+  "lesson_id": "pm-m12d13-v1",
+  "m": 14,
+  "yangi": "14-Modul/13-PmDressRehearsalLesson-v6.jsx",
+  "md5_yangi": "cf1b2972e04b0d32aab20bb141aec7c0",
+  "eski": "14-Modul/13-PmDressRehearsalLesson-v5.jsx",
+  "md5_eski": "069adfe7acc13fe8db2950ac9bbb228c",
+  "uz": {
+   "qid": 17297,
+   "sid": "3059"
+  },
+  "ru": {
+   "qid": 17298,
+   "sid": "3059"
+  }
+ }
+]
