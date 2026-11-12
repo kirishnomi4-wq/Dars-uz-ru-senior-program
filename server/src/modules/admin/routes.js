@@ -229,6 +229,48 @@ export async function adminRoutes(app) {
     return rows;
   });
 
+  // F-1112-01 (0018): dars × til → LMS qatori, Class, Learn testi (scripts/lms-xarita.mjs to'ldiradi; reestrdan, relizda yangilanadi)
+  //   PUT /admin/api/lesson-map  { rows: [{ lesson_key, lang, lms_question_id, class_id?, learn_id?, lesson_version?, uploaded_on? }] } — upsert
+  //   GET /admin/api/lesson-map?lesson_key=
+  const LM_ROW = { type: 'object', additionalProperties: false, required: ['lesson_key', 'lang', 'lms_question_id'], properties: {
+    lesson_key: { type: 'string', minLength: 1, maxLength: 96, pattern: '^[a-z0-9][a-z0-9-]*$' },
+    lang: { type: 'string', enum: ['uz', 'ru'] },
+    lms_question_id: { type: 'integer', minimum: 1 },
+    class_id: { type: ['integer', 'null'], minimum: 1 },
+    learn_id: { type: ['integer', 'null'], minimum: 1 },
+    lesson_version: { type: ['string', 'null'], maxLength: 32 },
+    uploaded_on: { type: ['string', 'null'], pattern: '^\\d{4}-\\d{2}-\\d{2}$' },
+  } };
+  app.put('/api/lesson-map', {
+    bodyLimit: 1024 * 1024,
+    config: { rateLimit: false },
+    schema: { body: { type: 'object', additionalProperties: false, required: ['rows'], properties: { rows: { type: 'array', minItems: 1, maxItems: 1000, items: LM_ROW } } } },
+  }, async (req) => {
+    const { rows: [{ n }] } = await app.db.query(
+      `with x as (select * from jsonb_to_recordset($1::jsonb) as t(lesson_key text, lang text, lms_question_id bigint, class_id bigint, learn_id bigint, lesson_version text, uploaded_on date)),
+            up as (insert into lesson_lms_map (lesson_key, lang, lms_question_id, class_id, learn_id, lesson_version, uploaded_on)
+                   select lesson_key, lang, lms_question_id, class_id, learn_id, lesson_version, uploaded_on from x
+                   on conflict (lesson_key, lang) do update set lms_question_id = excluded.lms_question_id, class_id = excluded.class_id,
+                     learn_id = excluded.learn_id, lesson_version = excluded.lesson_version, uploaded_on = excluded.uploaded_on, updated_at = now()
+                   returning 1)
+       select count(*)::int as n from up`,
+      [JSON.stringify(req.body.rows)],
+    );
+    req.log.info({ rows: n }, 'admin: dars → LMS xaritasi yuklandi');
+    return { upserted: n };
+  });
+  app.get('/api/lesson-map', {
+    config: { rateLimit: false },
+    schema: { querystring: { type: 'object', additionalProperties: false, properties: { lesson_key: { type: 'string', maxLength: 96 } } } },
+  }, async (req) => {
+    const { rows } = await app.db.query(
+      `select lesson_key, lang, lms_question_id, class_id, learn_id, lesson_version, uploaded_on::text as uploaded_on, updated_at from lesson_lms_map
+        where ($1::text is null or lesson_key = $1) order by lesson_key, lang limit 2000`,
+      [req.query.lesson_key ?? null],
+    );
+    return rows;
+  });
+
   app.get('/', { config: { rateLimit: false } }, async (req, reply) => {
     reply.type('text/html; charset=utf-8');
     return ADMIN_HTML;

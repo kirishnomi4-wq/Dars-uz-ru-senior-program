@@ -1,5 +1,5 @@
 // LMS-ko'prik marshrutlari — prefiks /api/v1 (hammasi Authorization: Bearer <liveToken>)
-//   POST /lms/join      { lesson_id, lesson_version?, answer_key?, session_id? } → mentor | student | solo | review | choose
+//   POST /lms/join      { lesson_id, lesson_version?, answer_key?, session_id?, lang? } → mentor | student | solo | review | choose
 //   POST /lms/restart   { lesson_id }                       → yangi solo urinish (ko'rishdan «Qaytadan boshlash»)
 //   GET  /lms/me?lesson_id=…                                → bor holatni qaytaradi, yaratmaydi
 //   PUT  /me/progress   { lesson_id, attempt_id, screen, total, answers, earned, started_at_ms, client_ts }
@@ -58,6 +58,14 @@ export async function lmsRoutes(app, opts = {}) {
   // javobida `result_schema: 2` → dars oxirgi ekranda v4 yukni avtomatik yuboradi; off → 1 (eski v3 yuk, tugma eskicha).
   // Shu bilan 172 dars bir marta yuklanadi, yangi oqim serverdagi bitta sozlama bilan yoqiladi/o'chiriladi.
   const withSchema = (p) => (p && typeof p === 'object' && !Array.isArray(p) ? { ...p, result_schema: config.resultSchemaV2 === 'on' ? 2 : 1 } : p);
+  // F-1112-01 (0018): dars o'z tilini aytadi (join/restart `lang`) → attempts.lang → analitikada lms_question_id (14085 uz / 14086 ru).
+  // Faqat student/solo (mentor va ko'rish rejimi — yozilmaydi); urinish tili oxirgi ochilgan tilga almashadi (bitta urinishni ikki tilda ochish mumkin).
+  const withLang = async (p, lang) => {
+    const id = lang && p && p.attempt && p.attempt.id;
+    if (id && (p.mode === 'student' || p.mode === 'solo')) await app.db.query('update attempts set lang = $2 where id = $1 and lang is distinct from $2', [id, lang]);
+    return p;
+  };
+  const LANG = { type: 'string', enum: ['uz', 'ru'] };
 
   async function requireLiveToken(req) {
     const h = req.headers.authorization;
@@ -88,20 +96,21 @@ export async function lmsRoutes(app, opts = {}) {
           lesson_version: { type: 'string', maxLength: 32 },
           answer_key: KEYS_SCHEMA,
           session_id: UUID,
+          lang: LANG,
         },
       },
     },
   }, async (req) => {
     const { claims } = req;
     if (claims.role === 'mentor') return withSchema(await joinMentor(deps, claims, req.body));
-    return withSchema(await joinStudent(deps, claims, req.body));
+    return withSchema(await withLang(await joinStudent(deps, claims, req.body), req.body.lang));
   });
 
   app.post('/lms/restart', {
     preHandler: requireLiveToken,
     config: JOIN_LIMIT,
-    schema: { body: { type: 'object', additionalProperties: false, required: ['lesson_id'], properties: { lesson_id: LESSON_ID, lesson_version: { type: 'string', maxLength: 32 } } } },
-  }, async (req) => withSchema(await restartStudent(deps, req.claims, req.body.lesson_id, req.body.lesson_version ?? null))); // S2: yangi urinish versiyasi
+    schema: { body: { type: 'object', additionalProperties: false, required: ['lesson_id'], properties: { lesson_id: LESSON_ID, lesson_version: { type: 'string', maxLength: 32 }, lang: LANG } } },
+  }, async (req) => withSchema(await withLang(await restartStudent(deps, req.claims, req.body.lesson_id, req.body.lesson_version ?? null), req.body.lang))); // S2: yangi urinish versiyasi
 
   app.get('/lms/me', {
     preHandler: requireLiveToken,
