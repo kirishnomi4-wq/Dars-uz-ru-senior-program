@@ -71,7 +71,9 @@ export function logicalEnd({ attempt, session, trigger, now = new Date() }) {
   let end;
   if (trigger === 'reached_end') end = attempt.reached_end_at ? new Date(attempt.reached_end_at) : null;
   else if (trigger === 'solo_expired') end = deadline;
-  else end = attempt.finished_at ? new Date(attempt.finished_at) : (live && session?.finished_at ? new Date(session.finished_at) : now);
+  // F-1112-04 (25 §6: «worker kechikishi qo'shilmaydi»): jonli urinishni xizmat-ishi sessiya yopilgandan KEYIN yopishi mumkin
+  // (finished_at = now()) — mantiqiy yakun ikkalasining ERTASI; ikkalasi ham yo'q bo'lsa — hozir.
+  else end = minDate(attempt.finished_at, live ? session?.finished_at : null) || now;
   if (!end || end < started) end = started;
   const occurredAt = minDate(end, deadline, live && session?.started_at ? new Date(new Date(session.started_at).getTime() + LIMITS.liveSec * 1000) : null) || end;
   return { occurredAt, deadline };
@@ -139,7 +141,8 @@ export function buildLessonResult(input) {
     input.progress?.updated_at, completedAt,
   );
   const lastActivityAt = lastActivity ? minDate(lastActivity, occurredAt) : null;
-  const elapsedSec = clamp(Math.round((occurredAt.getTime() - openedAt.getTime()) / 1000), 0, live ? LIMITS.liveSec : LIMITS.soloSec);
+  // F-1112-04 (prod 422): yukdagi vaqtlar soniyagacha qirqiladi (isoUtc) — elapsed aynan o'sha satrlar ayirmasi (occurred_at − opened_at)
+  const elapsedSec = clamp(Math.floor(occurredAt.getTime() / 1000) - Math.floor(openedAt.getTime() / 1000), 0, live ? LIMITS.liveSec : LIMITS.soloSec);
   const maxView = views.reduce((m, v) => Math.max(m, Number(v.screen_idx) + 1), 0);
   const screensTotal = Number.isInteger(input.progress?.total) ? input.progress.total : (Number.isInteger(input.lessonTotal) ? input.lessonTotal : null);
   const reached = Math.max(maxView, Number.isInteger(input.progress?.screen) ? input.progress.screen + 1 : 0, completed && screensTotal ? screensTotal : 0);

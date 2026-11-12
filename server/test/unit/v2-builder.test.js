@@ -234,3 +234,26 @@ test('10.11 (staging 422 «screens.reached required»): progress yo\'q — reach
   const c = buildLessonResult(liveInput({ progress: { screen: 30, total: 11, updated_at: at(4295) } })).payload.result.screens;
   assert.deepEqual(c, { reached: 11, total: 11 }, 'reached total dan oshmaydi');
 });
+
+// F-1112-04 (12.11, prod 422: «Elapsed time must use the logical end rounded to seconds, excluding worker delay»):
+// yukdagi vaqtlar soniyagacha qirqiladi (isoUtc) — elapsed_sec aynan shu satrlar ayirmasi bo'lishi shart.
+test('F-1112-04: elapsed_sec = occurred_at − opened_at (yukdagi soniyalar), kasr qismi farqi 0,5 dan katta bo\'lsa ham', () => {
+  const t0 = new Date('2026-11-12T08:00:10.900Z');
+  const ses = { ...session, started_at: '2026-11-12T07:59:00Z', finished_at: '2026-11-12T09:00:00Z' };
+  const { payload: p } = buildLessonResult(liveInput({ session: ses, attempt: { ...liveInput().attempt, started_at: t0, reached_end_at: new Date('2026-11-12T08:00:20.100Z') } }));
+  const satr = (Date.parse(p.occurred_at) - Date.parse(p.result.opened_at)) / 1000;
+  assert.equal(p.occurred_at, '2026-11-12T08:00:20Z');
+  assert.equal(p.result.opened_at, '2026-11-12T08:00:10Z');
+  assert.equal(p.result.elapsed_sec, satr);
+  assert.equal(p.result.elapsed_sec, 10);
+});
+
+// Kontrakt §6: «worker kechikishi bu vaqtga qo'shilmaydi» — jonli urinishni xizmat-ishi sessiya yopilgandan KEYIN yopsa ham,
+// mantiqiy yakun — sessiya yopilgan vaqt (erta lahza).
+test('F-1112-04: session_closed — urinish finished_at (worker) sessiya yopilganidan kech bo\'lsa, occurred_at = sessiya yopilgan vaqt', () => {
+  const ses = { ...session, finished_at: '2026-11-10T10:41:00Z' };
+  const att = { ...liveInput().attempt, reached_end: false, reached_end_at: null, finished_at: new Date('2026-11-10T10:55:30Z') };
+  const { payload: p } = buildLessonResult(liveInput({ session: ses, attempt: att, trigger: 'session_closed' }));
+  assert.equal(p.occurred_at, '2026-11-10T10:41:00Z');
+  assert.equal(p.result.elapsed_sec, (Date.parse('2026-11-10T10:41:00Z') - Date.parse(p.result.opened_at)) / 1000);
+});
