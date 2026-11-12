@@ -175,3 +175,16 @@ Dump: `dump/sinov-13381-keyin.json`, `dump/forma-tahlil.json`, `dump/diag-13381-
   test matnlari brauzerda qayta yig'ildi — farq 0. `savol-kalitlari.mjs --yoz`: faqat `lesson_version` +1 (2565 qator), src/live o'zgarmagan. Commit `686f034c`.
   Prod'ga yuklash — foydalanuvchi `!` (kutilmoqda).
 - 37-hujjat yangilandi: sana 11.11, 43 uchun rahmat, 172 dars (344 qator, md5), §6 B07 iltimosi (foydalanuvchi o'chirishi mumkin) + B06 ochiq savol. Yuborish — foydalanuvchi.
+- 2026-11-11 15:27 — foydalanuvchi `!`: `savol-kalitlari.mjs --yukla https://dars-api.coddycamp.uz` → **«yuklandi: 2565 qator»** (kutilgani bilan bir xil). Keyingi: 37-hujjat Abdullohga (foydalanuvchi) → v2 on → birinchi dars kuzatuvi.
+
+## 2026-11-12 17:43 (`date`) · 172 dars v+1 — paket `yuklash-20261112-prod` (commit f3b7495c, F-1112-01/02/03), 2-Moduldan boshlandi
+
+- Oldin: smoke-lms ✓ · smoke-preview 172/172 · onFinished 344/344 · avto-yakun uz/ru 172/172 · esbuild 172/172 · import ro'yxati eski paket bilan bir xil · B06 (13 o'zgargan amaliyot darsi) 13/13 toza (eski paket ham 13/13). Prod server `8a7d42f3` (0018).
+- royxat-v4.json `eski` = LMS_REESTR joriy fayl (F-1111-05 dagi 3 dars: v8/v7/v9). Serverlar 5398/5399 (YAKKA=yuklash-20261112-prod/yakka, md5 ✓).
+- Foydalanuvchi: «tekshiruv toza bo'lsa sraze yuklashni boshlaymiz»; CRM'ga kirishni foydalanuvchi o'zi qildi (sessiya noutbuk o'chganda tugagan).
+- **17:46 — 2-Modul ✅ 14/14** (konveyer-v4, to'xtash 0): mustaqil qayta o'qish 28/28 qator Active + yangi fayl (v7). CRM javobi «Опубликовано / сохранено с замечаниями» (ogohlantirishlar — bloklamaydi, 43-javob). 3-Modul — foydalanuvchi so'zi bilan.
+- **2026-11-12 18:28 — 172 DARS ✅** · 3-M 26/26 · 4-M 28/28 · 5-M 30/30 · 6-M 28/28 · 7-M 24/24 · 8-M 28/28 · 9-M 24/24 · 10-M 22/22 · 11-M 32/32 · 12-M 24/24 · 13-M 24/24 · 14-M 26/26 (har modul mustaqil qayta o'qilgan). Yakuniy audit **344/344** (fayl + Active + bayt paket bilan bir xil).
+  · Yo'ldagi muammo: asosiy tab (CRM bo'lim sahifasi, keyin robots.txt 404 ham) 3 marta o'zi qayta yuklandi — sabab yashirin iframe'dagi CRM sahifasi yuqori oynani qayta yuklashi. Zarar yo'q (chala saqlash yo'q, 12-M 05 «Failed to fetch» — saqlanmagan, v6 qolgan edi). Yechim: iframe `sandbox="allow-scripts allow-same-origin allow-forms"` (yuqori oynani navigatsiya qila olmaydi, alert yo'q) + neytral sahifa (go.coddycamp.uz/robots.txt) — shundan keyin uzilish 0.
+  · **F-1112-05** (mening xatom): paket toza worktree'da yig'ilgan → build-lms `__LESSON_VERSION__` ni worktree'dagi commit qilingan reestrdan oldi (F-1111 seansining muhri commit'siz edi) → 3 dars ichki versiyasi fayl nomidan 1 past (js-functions v9/"v8", react-intro v8/"v7", react-build-site v10/"v9"). Tuzatish: `yuklash-20261112-prod-b` (asosiy reestr nusxasi bilan, 3 dars v10/v9/v11; farq faqat versiya satri) → 6 qator qayta yuklandi, bayt ✓, 344/344 Active qayta tekshirildi.
+  · Muhr: 172 → f3b7495c, server 8a7d42f (katalog toza nusxadan, 183) · 3 → claude-F-1112-05. lms-farq: o'zgarmagan 172. Savol kalitlari `--yoz`: 2565 (faqat versiya + 3 ta F-1111-04 ru variant reviziyasi), practiceMeta o'zgarmagan.
+  · Darslik: keyingi relizda paketni toza worktree'da yig'ishdan oldin asosiy reestrni u yerga nusxalash yoki commit qilish shart.

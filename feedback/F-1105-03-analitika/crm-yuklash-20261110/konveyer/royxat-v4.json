@@ -4,1891 +4,1891 @@
   "sid": "2374",
   "uz": 13381,
   "ru": 14091,
-  "rel": "2-Modul/01-InternetLesson-v6.jsx",
-  "fn": "01-InternetLesson-v6.jsx",
-  "eski": "01-InternetLesson-v5.jsx",
+  "rel": "2-Modul/01-InternetLesson-v7.jsx",
+  "fn": "01-InternetLesson-v7.jsx",
+  "eski": "01-InternetLesson-v6.jsx",
   "lid": "internet-01-v18",
-  "md5": "64fcdab1dbb35e196e762781f66deee1"
+  "md5": "f34431c74360496cbcfffea7be081ae7"
  },
  {
   "m": 2,
   "sid": "2416",
   "uz": 13535,
   "ru": 13640,
-  "rel": "2-Modul/02-PmLesson1-v6.jsx",
-  "fn": "02-PmLesson1-v6.jsx",
-  "eski": "02-PmLesson1-v5.jsx",
+  "rel": "2-Modul/02-PmLesson1-v7.jsx",
+  "fn": "02-PmLesson1-v7.jsx",
+  "eski": "02-PmLesson1-v6.jsx",
   "lid": "pm-m1d2-v1",
-  "md5": "2b65c391086e2b6f5639a507acbca558"
+  "md5": "61a8012fd3e8f8030141174a7201c7b6"
  },
  {
   "m": 2,
   "sid": "2417",
   "uz": 13556,
   "ru": 14092,
-  "rel": "2-Modul/03-Htmllesson1-v6.jsx",
-  "fn": "03-Htmllesson1-v6.jsx",
-  "eski": "03-Htmllesson1-v5.jsx",
+  "rel": "2-Modul/03-Htmllesson1-v7.jsx",
+  "fn": "03-Htmllesson1-v7.jsx",
+  "eski": "03-Htmllesson1-v6.jsx",
   "lid": "html-01-v17",
-  "md5": "3b456f0e842d6bb363fdfa58df423a14"
+  "md5": "48c95356fcbdd6c8bee512561fe320b5"
  },
  {
   "m": 2,
   "sid": "2419",
   "uz": 13559,
   "ru": 13705,
-  "rel": "2-Modul/04-Htmllesson2-v6.jsx",
-  "fn": "04-Htmllesson2-v6.jsx",
-  "eski": "04-Htmllesson2-v5.jsx",
+  "rel": "2-Modul/04-Htmllesson2-v7.jsx",
+  "fn": "04-Htmllesson2-v7.jsx",
+  "eski": "04-Htmllesson2-v6.jsx",
   "lid": "html-02-v16",
-  "md5": "cab47081bc49609a1a406c03521883cc"
+  "md5": "3355b03683ffdc40ab31ac5d0fbf0fde"
  },
  {
   "m": 2,
   "sid": "2541",
   "uz": 14088,
   "ru": 14089,
-  "rel": "2-Modul/05-HtmlTakrorlashLesson-v6.jsx",
-  "fn": "05-HtmlTakrorlashLesson-v6.jsx",
-  "eski": "05-HtmlTakrorlashLesson-v5.jsx",
+  "rel": "2-Modul/05-HtmlTakrorlashLesson-v7.jsx",
+  "fn": "05-HtmlTakrorlashLesson-v7.jsx",
+  "eski": "05-HtmlTakrorlashLesson-v6.jsx",
   "lid": "html-takrorlash-01-05-v2",
-  "md5": "e15c47ea95f0eb0c2edb683a280a9bca"
+  "md5": "1a011f652e73f06b95df2be8151eb92a"
  },
  {
   "m": 2,
   "sid": "2423",
   "uz": 13570,
   "ru": 14093,
-  "rel": "2-Modul/06-PmLesson2-v6.jsx",
-  "fn": "06-PmLesson2-v6.jsx",
-  "eski": "06-PmLesson2-v5.jsx",
+  "rel": "2-Modul/06-PmLesson2-v7.jsx",
+  "fn": "06-PmLesson2-v7.jsx",
+  "eski": "06-PmLesson2-v6.jsx",
   "lid": "pm-m1d6-v1",
-  "md5": "c13f78e7cdac177bcffd82e0f0d5fe54"
+  "md5": "594d3fb43483338686d01df9964a0d3c"
  },
  {
   "m": 2,
   "sid": "2424",
   "uz": 13599,
   "ru": 14094,
-  "rel": "2-Modul/07-CssLesson1-v6.jsx",
-  "fn": "07-CssLesson1-v6.jsx",
-  "eski": "07-CssLesson1-v5.jsx",
+  "rel": "2-Modul/07-CssLesson1-v7.jsx",
+  "fn": "07-CssLesson1-v7.jsx",
+  "eski": "07-CssLesson1-v6.jsx",
   "lid": "css-01-v17",
-  "md5": "4e7c32653d0d5f8c339b9d4e525a0073"
+  "md5": "87b915997426ed2abe3e2d6315e0d129"
  },
  {
   "m": 2,
   "sid": "2425",
   "uz": 13600,
   "ru": 14095,
-  "rel": "2-Modul/08-CssLesson2-v6.jsx",
-  "fn": "08-CssLesson2-v6.jsx",
-  "eski": "08-CssLesson2-v5.jsx",
+  "rel": "2-Modul/08-CssLesson2-v7.jsx",
+  "fn": "08-CssLesson2-v7.jsx",
+  "eski": "08-CssLesson2-v6.jsx",
   "lid": "css-02-v18",
-  "md5": "e9a7270b27bd068e7c9bfbcc2c1672e7"
+  "md5": "2e164a9748e3be147aac9d36e4fb1a44"
  },
  {
   "m": 2,
   "sid": "2542",
   "uz": 14097,
   "ru": 14100,
-  "rel": "2-Modul/09-VsCodeLesson-v6.jsx",
-  "fn": "09-VsCodeLesson-v6.jsx",
-  "eski": "09-VsCodeLesson-v5.jsx",
+  "rel": "2-Modul/09-VsCodeLesson-v7.jsx",
+  "fn": "09-VsCodeLesson-v7.jsx",
+  "eski": "09-VsCodeLesson-v6.jsx",
   "lid": "vscode-start-01-v1",
-  "md5": "91dd3f4cd9e6a50c42eaf2ea5ce4f99b"
+  "md5": "b75e96296a3c0b81d6124b78675e9c76"
  },
  {
   "m": 2,
   "sid": "2426",
   "uz": 13635,
   "ru": 14096,
-  "rel": "2-Modul/10-HtmlPractice-v7.jsx",
-  "fn": "10-HtmlPractice-v7.jsx",
-  "eski": "10-HtmlPractice-v6.jsx",
+  "rel": "2-Modul/10-HtmlPractice-v8.jsx",
+  "fn": "10-HtmlPractice-v8.jsx",
+  "eski": "10-HtmlPractice-v7.jsx",
   "lid": "html-practice-portfolio-v2",
-  "md5": "c746ff9fa6ad4ac4462365cf1a6e57a8"
+  "md5": "79d35b4762212d312c9505a17476fe4d"
  },
  {
   "m": 2,
   "sid": "2428",
   "uz": 14099,
   "ru": 14098,
-  "rel": "2-Modul/11-CssPractice-v6.jsx",
-  "fn": "11-CssPractice-v6.jsx",
-  "eski": "11-CssPractice-v5.jsx",
+  "rel": "2-Modul/11-CssPractice-v7.jsx",
+  "fn": "11-CssPractice-v7.jsx",
+  "eski": "11-CssPractice-v6.jsx",
   "lid": "css-practice-portfolio-v3",
-  "md5": "6ddfdf296ddd209e8ec220d14d1a0118"
+  "md5": "ac37f467fa93bc4fe211d2e619ba2389"
  },
  {
   "m": 2,
   "sid": "2427",
   "uz": 13637,
   "ru": 14101,
-  "rel": "2-Modul/12-GitLesson-v6.jsx",
-  "fn": "12-GitLesson-v6.jsx",
-  "eski": "12-GitLesson-v5.jsx",
+  "rel": "2-Modul/12-GitLesson-v7.jsx",
+  "fn": "12-GitLesson-v7.jsx",
+  "eski": "12-GitLesson-v6.jsx",
   "lid": "git-github-v19",
-  "md5": "67a42e045834251eebd447db76e58d5a"
+  "md5": "dec4479c7ae4ec66d58be9cdaa779c51"
  },
  {
   "m": 2,
   "sid": "2429",
   "uz": 14085,
   "ru": 14086,
-  "rel": "2-Modul/13-DeployLesson-v6.jsx",
-  "fn": "13-DeployLesson-v6.jsx",
-  "eski": "13-DeployLesson-v5.jsx",
+  "rel": "2-Modul/13-DeployLesson-v7.jsx",
+  "fn": "13-DeployLesson-v7.jsx",
+  "eski": "13-DeployLesson-v6.jsx",
   "lid": "netlify-deploy-v19",
-  "md5": "f751c453935e7e07e5ba3f321e750949"
+  "md5": "9d57dac1340c6368682974836eb36a5f"
  },
  {
   "m": 2,
   "sid": "2430",
   "uz": 14090,
   "ru": 14102,
-  "rel": "2-Modul/14-PmLesson3-v6.jsx",
-  "fn": "14-PmLesson3-v6.jsx",
-  "eski": "14-PmLesson3-v5.jsx",
+  "rel": "2-Modul/14-PmLesson3-v7.jsx",
+  "fn": "14-PmLesson3-v7.jsx",
+  "eski": "14-PmLesson3-v6.jsx",
   "lid": "pm-pitch-03-v20",
-  "md5": "bbd85a96e8a3eed0a7ff2525ef56eba3"
+  "md5": "3403e375c9d24b41520e42ea98c3ac1a"
  },
  {
   "m": 3,
   "sid": "2431",
   "uz": 14104,
   "ru": 14103,
-  "rel": "3-Modul/01-JsIntroLesson-v6.jsx",
-  "fn": "01-JsIntroLesson-v6.jsx",
-  "eski": "01-JsIntroLesson-v5.jsx",
+  "rel": "3-Modul/01-JsIntroLesson-v7.jsx",
+  "fn": "01-JsIntroLesson-v7.jsx",
+  "eski": "01-JsIntroLesson-v6.jsx",
   "lid": "js-intro-01-v18",
-  "md5": "5f4c17c4c1f28c6dbd01bda511a754d2"
+  "md5": "04d3b047fab8de529487971da2341403"
  },
  {
   "m": 3,
   "sid": "2432",
   "uz": 14106,
   "ru": 14105,
-  "rel": "3-Modul/02-PmLesson4-v6.jsx",
-  "fn": "02-PmLesson4-v6.jsx",
-  "eski": "02-PmLesson4-v5.jsx",
+  "rel": "3-Modul/02-PmLesson4-v7.jsx",
+  "fn": "02-PmLesson4-v7.jsx",
+  "eski": "02-PmLesson4-v6.jsx",
   "lid": "pm-m2d2-v1",
-  "md5": "c0281f97729be022f9374911d1c22cc2"
+  "md5": "fc9073f6dc8ae9e9284eaca66f7455b7"
  },
  {
   "m": 3,
   "sid": "2433",
   "uz": 14108,
   "ru": 14107,
-  "rel": "3-Modul/04-JsVarsLesson-v7.jsx",
-  "fn": "04-JsVarsLesson-v7.jsx",
-  "eski": "04-JsVarsLesson-v6.jsx",
+  "rel": "3-Modul/04-JsVarsLesson-v8.jsx",
+  "fn": "04-JsVarsLesson-v8.jsx",
+  "eski": "04-JsVarsLesson-v7.jsx",
   "lid": "js-vars-01-v18",
-  "md5": "13e2e1b1623a0a1f7df616e2dd6e7f1e"
+  "md5": "e3ce1b71983ef429a3aacb9110c4adec"
  },
  {
   "m": 3,
   "sid": "2434",
   "uz": 14110,
   "ru": 14109,
-  "rel": "3-Modul/05-JsConditionsLesson-v6.jsx",
-  "fn": "05-JsConditionsLesson-v6.jsx",
-  "eski": "05-JsConditionsLesson-v5.jsx",
+  "rel": "3-Modul/05-JsConditionsLesson-v7.jsx",
+  "fn": "05-JsConditionsLesson-v7.jsx",
+  "eski": "05-JsConditionsLesson-v6.jsx",
   "lid": "js-cond-01-v18",
-  "md5": "52fdb8251720d39bca0b6d08bf115890"
+  "md5": "1ec00b5db72972b68435fd80fffe7a96"
  },
  {
   "m": 3,
   "sid": "2435",
   "uz": 14112,
   "ru": 14111,
-  "rel": "3-Modul/06-JsLoopsLesson-v7.jsx",
-  "fn": "06-JsLoopsLesson-v7.jsx",
-  "eski": "06-JsLoopsLesson-v6.jsx",
+  "rel": "3-Modul/06-JsLoopsLesson-v8.jsx",
+  "fn": "06-JsLoopsLesson-v8.jsx",
+  "eski": "06-JsLoopsLesson-v7.jsx",
   "lid": "js-loops-01-v18",
-  "md5": "a5776da38e6e5968cf3e2907e749d306"
+  "md5": "fb735bd772d009015dbd1fefc5cf8bb1"
  },
  {
   "m": 3,
   "sid": "2436",
   "uz": 14114,
   "ru": 14113,
-  "rel": "3-Modul/07-JsFunctionsLesson-v7.jsx",
-  "fn": "07-JsFunctionsLesson-v7.jsx",
-  "eski": "07-JsFunctionsLesson-v6.jsx",
+  "rel": "3-Modul/07-JsFunctionsLesson-v9.jsx",
+  "fn": "07-JsFunctionsLesson-v9.jsx",
+  "eski": "07-JsFunctionsLesson-v8.jsx",
   "lid": "js-functions-01-v18",
-  "md5": "83f4d8328a2ca3e68f61d591600ad4a2"
+  "md5": "e26d415ff9cb1e99f6339983767f0829"
  },
  {
   "m": 3,
   "sid": "2437",
   "uz": 14123,
   "ru": 14115,
-  "rel": "3-Modul/08-PmLesson5-v7.jsx",
-  "fn": "08-PmLesson5-v7.jsx",
-  "eski": "08-PmLesson5-v6.jsx",
+  "rel": "3-Modul/08-PmLesson5-v8.jsx",
+  "fn": "08-PmLesson5-v8.jsx",
+  "eski": "08-PmLesson5-v7.jsx",
   "lid": "pm-m2d7-v1",
-  "md5": "6a8e0558ea22d326a2553fcc92a7a17c"
+  "md5": "0e5a4a49eaee98062ee5e27895431310"
  },
  {
   "m": 3,
   "sid": "2438",
   "uz": 14122,
   "ru": 14116,
-  "rel": "3-Modul/09-PracticeLesson1-v7.jsx",
-  "fn": "09-PracticeLesson1-v7.jsx",
-  "eski": "09-PracticeLesson1-v6.jsx",
+  "rel": "3-Modul/09-PracticeLesson1-v8.jsx",
+  "fn": "09-PracticeLesson1-v8.jsx",
+  "eski": "09-PracticeLesson1-v7.jsx",
   "lid": "practice-01-jonlantirish-v18",
-  "md5": "f5870aebf93f3893f4f180904c9a02e0"
+  "md5": "e9aaf6c2a850a63bbffb657fe0cc3c43"
  },
  {
   "m": 3,
   "sid": "2439",
   "uz": 14124,
   "ru": 14117,
-  "rel": "3-Modul/10-PracticeLesson2-v6.jsx",
-  "fn": "10-PracticeLesson2-v6.jsx",
-  "eski": "10-PracticeLesson2-v5.jsx",
+  "rel": "3-Modul/10-PracticeLesson2-v7.jsx",
+  "fn": "10-PracticeLesson2-v7.jsx",
+  "eski": "10-PracticeLesson2-v6.jsx",
   "lid": "practice-02-ai-promo-v18",
-  "md5": "47ea3eafa063b4015b1204c59d8423a1"
+  "md5": "68062e8aaead46d346c1b76d103daa43"
  },
  {
   "m": 3,
   "sid": "2441",
   "uz": 14128,
   "ru": 14118,
-  "rel": "3-Modul/11-PeanStackLesson-v7.jsx",
-  "fn": "11-PeanStackLesson-v7.jsx",
-  "eski": "11-PeanStackLesson-v6.jsx",
+  "rel": "3-Modul/11-PeanStackLesson-v8.jsx",
+  "fn": "11-PeanStackLesson-v8.jsx",
+  "eski": "11-PeanStackLesson-v7.jsx",
   "lid": "pean-stack-01-v18",
-  "md5": "9a8da79ade176d243b85d58d0f48e1c7"
+  "md5": "3837cc92d31f7297a9151b1d46e651e6"
  },
  {
   "m": 3,
   "sid": "2442",
   "uz": 14125,
   "ru": 14119,
-  "rel": "3-Modul/12-PracticeLesson3-v7.jsx",
-  "fn": "12-PracticeLesson3-v7.jsx",
-  "eski": "12-PracticeLesson3-v6.jsx",
+  "rel": "3-Modul/12-PracticeLesson3-v8.jsx",
+  "fn": "12-PracticeLesson3-v8.jsx",
+  "eski": "12-PracticeLesson3-v7.jsx",
   "lid": "practice-03-decompose-v18",
-  "md5": "672280e362c2b687c16dc46e8f764e9c"
+  "md5": "19f292414f03c29eb24d7628c0cdb57c"
  },
  {
   "m": 3,
   "sid": "2443",
   "uz": 14126,
   "ru": 14120,
-  "rel": "3-Modul/13-PracticeLesson4-v7.jsx",
-  "fn": "13-PracticeLesson4-v7.jsx",
-  "eski": "13-PracticeLesson4-v6.jsx",
+  "rel": "3-Modul/13-PracticeLesson4-v8.jsx",
+  "fn": "13-PracticeLesson4-v8.jsx",
+  "eski": "13-PracticeLesson4-v7.jsx",
   "lid": "practice-04-mvp-deploy-v18",
-  "md5": "8ba70df65f6a6505800b1c57b6e6511f"
+  "md5": "14bd77a3524d0bddc0e4d8791e8b000a"
  },
  {
   "m": 3,
   "sid": "2444",
   "uz": 14127,
   "ru": 14121,
-  "rel": "3-Modul/14-PmLesson6-v6.jsx",
-  "fn": "14-PmLesson6-v6.jsx",
-  "eski": "14-PmLesson6-v5.jsx",
+  "rel": "3-Modul/14-PmLesson6-v7.jsx",
+  "fn": "14-PmLesson6-v7.jsx",
+  "eski": "14-PmLesson6-v6.jsx",
   "lid": "pm-m2d13-v2",
-  "md5": "955a89f7f90ef68b934c2168cf0f37de"
+  "md5": "851aaf65988d43044ca2a46e40ab7472"
  },
  {
   "m": 4,
   "sid": "2445",
   "uz": 16356,
   "ru": 16357,
-  "rel": "4-Modul/01-ReactIntroLesson-v6.jsx",
-  "fn": "01-ReactIntroLesson-v6.jsx",
-  "eski": "01-ReactIntroLesson-v5.jsx",
+  "rel": "4-Modul/01-ReactIntroLesson-v8.jsx",
+  "fn": "01-ReactIntroLesson-v8.jsx",
+  "eski": "01-ReactIntroLesson-v7.jsx",
   "lid": "react-intro-01-v18",
-  "md5": "fa74d6e8537348999de7c229daad4885"
+  "md5": "8ccd472fe959814ea6be63cd50f6ee77"
  },
  {
   "m": 4,
   "sid": "2446",
   "uz": 16358,
   "ru": 16359,
-  "rel": "4-Modul/02-PmUserStoryLesson-v7.jsx",
-  "fn": "02-PmUserStoryLesson-v7.jsx",
-  "eski": "02-PmUserStoryLesson-v6.jsx",
+  "rel": "4-Modul/02-PmUserStoryLesson-v8.jsx",
+  "fn": "02-PmUserStoryLesson-v8.jsx",
+  "eski": "02-PmUserStoryLesson-v7.jsx",
   "lid": "pm-m3d2-v3",
-  "md5": "7be94b0f5fc5ec03b51d4f2c366c5207"
+  "md5": "e82b76a700152ef3a2126d83a008c5ad"
  },
  {
   "m": 4,
   "sid": "2447",
   "uz": 16360,
   "ru": 16361,
-  "rel": "4-Modul/04-ReactFirstComponentLesson-v7.jsx",
-  "fn": "04-ReactFirstComponentLesson-v7.jsx",
-  "eski": "04-ReactFirstComponentLesson-v6.jsx",
+  "rel": "4-Modul/04-ReactFirstComponentLesson-v8.jsx",
+  "fn": "04-ReactFirstComponentLesson-v8.jsx",
+  "eski": "04-ReactFirstComponentLesson-v7.jsx",
   "lid": "react-first-component-02-v18",
-  "md5": "4dbeabd6c7a448654569a914d20b4cc5"
+  "md5": "5ee35044d7932a80bf4f0177f3e9b97b"
  },
  {
   "m": 4,
   "sid": "2448",
   "uz": 16362,
   "ru": 16363,
-  "rel": "4-Modul/05-ReactStateEffectLesson-v7.jsx",
-  "fn": "05-ReactStateEffectLesson-v7.jsx",
-  "eski": "05-ReactStateEffectLesson-v6.jsx",
+  "rel": "4-Modul/05-ReactStateEffectLesson-v8.jsx",
+  "fn": "05-ReactStateEffectLesson-v8.jsx",
+  "eski": "05-ReactStateEffectLesson-v7.jsx",
   "lid": "react-state-effect-03-v18",
-  "md5": "b2e3e7f747e6ef2452e6b5025beccb33"
+  "md5": "1a8017a5a6cc162c0e625170c619f5e1"
  },
  {
   "m": 4,
   "sid": "2449",
   "uz": 16364,
   "ru": 16365,
-  "rel": "4-Modul/06-PmLesson8-v7.jsx",
-  "fn": "06-PmLesson8-v7.jsx",
-  "eski": "06-PmLesson8-v6.jsx",
+  "rel": "4-Modul/06-PmLesson8-v8.jsx",
+  "fn": "06-PmLesson8-v8.jsx",
+  "eski": "06-PmLesson8-v7.jsx",
   "lid": "pm-m3d5-v1",
-  "md5": "ceea1abe265010ee5d52adcdd83611f2"
+  "md5": "c3900de5f30e0de55dcf00e51dbfd1f4"
  },
  {
   "m": 4,
   "sid": "2450",
   "uz": 16366,
   "ru": 16367,
-  "rel": "4-Modul/07-ReactPropsReuseLesson-v7.jsx",
-  "fn": "07-ReactPropsReuseLesson-v7.jsx",
-  "eski": "07-ReactPropsReuseLesson-v6.jsx",
+  "rel": "4-Modul/07-ReactPropsReuseLesson-v8.jsx",
+  "fn": "07-ReactPropsReuseLesson-v8.jsx",
+  "eski": "07-ReactPropsReuseLesson-v7.jsx",
   "lid": "react-props-reuse-04-v18",
-  "md5": "47559101457ba1c74f0e1c8ff686f94f"
+  "md5": "0f2104f56c4695a2e0b40ef0e3a5c717"
  },
  {
   "m": 4,
   "sid": "2451",
   "uz": 16368,
   "ru": 16369,
-  "rel": "4-Modul/08-ReactCrudPracticeLesson-v7.jsx",
-  "fn": "08-ReactCrudPracticeLesson-v7.jsx",
-  "eski": "08-ReactCrudPracticeLesson-v6.jsx",
+  "rel": "4-Modul/08-ReactCrudPracticeLesson-v8.jsx",
+  "fn": "08-ReactCrudPracticeLesson-v8.jsx",
+  "eski": "08-ReactCrudPracticeLesson-v7.jsx",
   "lid": "react-crud-practice-p1-v18",
-  "md5": "5878172c57644b635a3b8a1d3e76986f"
+  "md5": "b61d987b258e895dae6bfed1c4944b57"
  },
  {
   "m": 4,
   "sid": "2453",
   "uz": 16370,
   "ru": 16371,
-  "rel": "4-Modul/09-ReactApiGetLesson-v6.jsx",
-  "fn": "09-ReactApiGetLesson-v6.jsx",
-  "eski": "09-ReactApiGetLesson-v5.jsx",
+  "rel": "4-Modul/09-ReactApiGetLesson-v7.jsx",
+  "fn": "09-ReactApiGetLesson-v7.jsx",
+  "eski": "09-ReactApiGetLesson-v6.jsx",
   "lid": "react-api-get-05-v18",
-  "md5": "e9570118a422f2c905ce28fafe99ee03"
+  "md5": "5f82df828f5f8753cb7685c66ec6b71d"
  },
  {
   "m": 4,
   "sid": "2455",
   "uz": 16372,
   "ru": 16373,
-  "rel": "4-Modul/10-ReactApiPostLesson-v7.jsx",
-  "fn": "10-ReactApiPostLesson-v7.jsx",
-  "eski": "10-ReactApiPostLesson-v6.jsx",
+  "rel": "4-Modul/10-ReactApiPostLesson-v8.jsx",
+  "fn": "10-ReactApiPostLesson-v8.jsx",
+  "eski": "10-ReactApiPostLesson-v7.jsx",
   "lid": "react-api-post-06-v18",
-  "md5": "820e4cddbcce57ec1c2d5cc90a5593a2"
+  "md5": "1dad2f1f16526914ca5a5ec297b4faf3"
  },
  {
   "m": 4,
   "sid": "2456",
   "uz": 16374,
   "ru": 16375,
-  "rel": "4-Modul/11-PmLesson9-v7.jsx",
-  "fn": "11-PmLesson9-v7.jsx",
-  "eski": "11-PmLesson9-v6.jsx",
+  "rel": "4-Modul/11-PmLesson9-v8.jsx",
+  "fn": "11-PmLesson9-v8.jsx",
+  "eski": "11-PmLesson9-v7.jsx",
   "lid": "pm-m3d10-v1",
-  "md5": "f878638c5e844f7235b1089ca6e97d20"
+  "md5": "b90c32b8a50f866cb203ea74812ab009"
  },
  {
   "m": 4,
   "sid": "2458",
   "uz": 16376,
   "ru": 16377,
-  "rel": "4-Modul/12-ReactRouterPracticeLesson-v6.jsx",
-  "fn": "12-ReactRouterPracticeLesson-v6.jsx",
-  "eski": "12-ReactRouterPracticeLesson-v5.jsx",
+  "rel": "4-Modul/12-ReactRouterPracticeLesson-v7.jsx",
+  "fn": "12-ReactRouterPracticeLesson-v7.jsx",
+  "eski": "12-ReactRouterPracticeLesson-v6.jsx",
   "lid": "react-router-practice-p2-v18",
-  "md5": "e782e19ff9501624cfbd0b1ef1835b29"
+  "md5": "020ae76a0c7906f8d5269585109710ca"
  },
  {
   "m": 4,
   "sid": "2459",
   "uz": 16378,
   "ru": 16379,
-  "rel": "4-Modul/13-ReactProjectDayLesson-v7.jsx",
-  "fn": "13-ReactProjectDayLesson-v7.jsx",
-  "eski": "13-ReactProjectDayLesson-v6.jsx",
+  "rel": "4-Modul/13-ReactProjectDayLesson-v8.jsx",
+  "fn": "13-ReactProjectDayLesson-v8.jsx",
+  "eski": "13-ReactProjectDayLesson-v7.jsx",
   "lid": "react-project-day-p3-v18",
-  "md5": "3800c3f2b8c76703e9ff1f05206acfeb"
+  "md5": "b498de136b2b2f2d7544ff9ba84535ae"
  },
  {
   "m": 4,
   "sid": "2460",
   "uz": 16380,
   "ru": 16381,
-  "rel": "4-Modul/14-ReactBuildSiteLesson-v7.jsx",
-  "fn": "14-ReactBuildSiteLesson-v7.jsx",
-  "eski": "14-ReactBuildSiteLesson-v6.jsx",
+  "rel": "4-Modul/14-ReactBuildSiteLesson-v10.jsx",
+  "fn": "14-ReactBuildSiteLesson-v10.jsx",
+  "eski": "14-ReactBuildSiteLesson-v9.jsx",
   "lid": "react-build-site-final-p4-v18",
-  "md5": "b2a2ae6978e1fd665b06f83d00c4012c"
+  "md5": "7d6124c450b23a50e712b0133b77eaec"
  },
  {
   "m": 4,
   "sid": "2461",
   "uz": 16382,
   "ru": 16383,
-  "rel": "4-Modul/15-PmLesson10-v8.jsx",
-  "fn": "15-PmLesson10-v8.jsx",
-  "eski": "15-PmLesson10-v7.jsx",
+  "rel": "4-Modul/15-PmLesson10-v9.jsx",
+  "fn": "15-PmLesson10-v9.jsx",
+  "eski": "15-PmLesson10-v8.jsx",
   "lid": "pm-m3d14-v1",
-  "md5": "b78bc5a54a2b50c4670e259b4fce3371"
+  "md5": "806133de48437f89bc2a14520935ed3f"
  },
  {
   "m": 5,
   "sid": "2462",
   "uz": 16384,
   "ru": 16385,
-  "rel": "5-Modul/01-DataIntroLesson-v7.jsx",
-  "fn": "01-DataIntroLesson-v7.jsx",
-  "eski": "01-DataIntroLesson-v6.jsx",
+  "rel": "5-Modul/01-DataIntroLesson-v8.jsx",
+  "fn": "01-DataIntroLesson-v8.jsx",
+  "eski": "01-DataIntroLesson-v7.jsx",
   "lid": "data-intro-04-01-v18",
-  "md5": "966e577d1d25786472631aee37d1988d"
+  "md5": "e59330a19ff26412780801753ea4c434"
  },
  {
   "m": 5,
   "sid": "2463",
   "uz": 16386,
   "ru": 16387,
-  "rel": "5-Modul/02-PmLesson11-v7.jsx",
-  "fn": "02-PmLesson11-v7.jsx",
-  "eski": "02-PmLesson11-v6.jsx",
+  "rel": "5-Modul/02-PmLesson11-v8.jsx",
+  "fn": "02-PmLesson11-v8.jsx",
+  "eski": "02-PmLesson11-v7.jsx",
   "lid": "pm-m4d2-v1",
-  "md5": "e1b294f322c0cbf38c09630dfd4bb447"
+  "md5": "758a7cc66714666e5d6888e9048415db"
  },
  {
   "m": 5,
   "sid": "2464",
   "uz": 16388,
   "ru": 16389,
-  "rel": "5-Modul/03-DbSqlNosqlLesson-v7.jsx",
-  "fn": "03-DbSqlNosqlLesson-v7.jsx",
-  "eski": "03-DbSqlNosqlLesson-v6.jsx",
+  "rel": "5-Modul/03-DbSqlNosqlLesson-v8.jsx",
+  "fn": "03-DbSqlNosqlLesson-v8.jsx",
+  "eski": "03-DbSqlNosqlLesson-v7.jsx",
   "lid": "db-sql-nosql-04-02-v18",
-  "md5": "cade96db86dabd8e88298154549bfe17"
+  "md5": "937f69fae58188a8866a0a90c5aaf56b"
  },
  {
   "m": 5,
   "sid": "2465",
   "uz": 16391,
   "ru": 16390,
-  "rel": "5-Modul/04-NodeServerLesson-v7.jsx",
-  "fn": "04-NodeServerLesson-v7.jsx",
-  "eski": "04-NodeServerLesson-v6.jsx",
+  "rel": "5-Modul/04-NodeServerLesson-v8.jsx",
+  "fn": "04-NodeServerLesson-v8.jsx",
+  "eski": "04-NodeServerLesson-v7.jsx",
   "lid": "node-server-04-03-v18",
-  "md5": "16a58900d56b7ac930e37d5ad714a5eb"
+  "md5": "d918dffc46d1eeafe527e7eb5e19ef14"
  },
  {
   "m": 5,
   "sid": "2466",
   "uz": 16393,
   "ru": 16392,
-  "rel": "5-Modul/05-RoutingLesson-v9.jsx",
-  "fn": "05-RoutingLesson-v9.jsx",
-  "eski": "05-RoutingLesson-v8.jsx",
+  "rel": "5-Modul/05-RoutingLesson-v10.jsx",
+  "fn": "05-RoutingLesson-v10.jsx",
+  "eski": "05-RoutingLesson-v9.jsx",
   "lid": "nest-routing-04-04-v18",
-  "md5": "411318e12bda603ffad8367405aa2b86"
+  "md5": "dae4155592c705159da3de4fe357e00b"
  },
  {
   "m": 5,
   "sid": "2467",
   "uz": 16395,
   "ru": 16394,
-  "rel": "5-Modul/06-PostgresCrudLesson-v7.jsx",
-  "fn": "06-PostgresCrudLesson-v7.jsx",
-  "eski": "06-PostgresCrudLesson-v6.jsx",
+  "rel": "5-Modul/06-PostgresCrudLesson-v8.jsx",
+  "fn": "06-PostgresCrudLesson-v8.jsx",
+  "eski": "06-PostgresCrudLesson-v7.jsx",
   "lid": "pg-crud-04-05-v18",
-  "md5": "a43d057b5eaa720e33c427af16051752"
+  "md5": "dd9149edf728b525a4e48f4ca5e98f14"
  },
  {
   "m": 5,
   "sid": "2468",
   "uz": 16397,
   "ru": 16396,
-  "rel": "5-Modul/07-PmLesson12-v8.jsx",
-  "fn": "07-PmLesson12-v8.jsx",
-  "eski": "07-PmLesson12-v7.jsx",
+  "rel": "5-Modul/07-PmLesson12-v9.jsx",
+  "fn": "07-PmLesson12-v9.jsx",
+  "eski": "07-PmLesson12-v8.jsx",
   "lid": "pm-m4d7-v1",
-  "md5": "9e000b155646e18f9c45e04845a3c3fd"
+  "md5": "dc3568649db88e196ad31f796795140b"
  },
  {
   "m": 5,
   "sid": "2469",
   "uz": 16399,
   "ru": 16398,
-  "rel": "5-Modul/08-BackendCrudPracticeLesson-v7.jsx",
-  "fn": "08-BackendCrudPracticeLesson-v7.jsx",
-  "eski": "08-BackendCrudPracticeLesson-v6.jsx",
+  "rel": "5-Modul/08-BackendCrudPracticeLesson-v8.jsx",
+  "fn": "08-BackendCrudPracticeLesson-v8.jsx",
+  "eski": "08-BackendCrudPracticeLesson-v7.jsx",
   "lid": "backend-crud-practice-p1-v18",
-  "md5": "a4eb96f824ef8e5087bf35dacf41c18b"
+  "md5": "82e37cb4c42ec70c52fcdadd7fb4e074"
  },
  {
   "m": 5,
   "sid": "2471",
   "uz": 16401,
   "ru": 16400,
-  "rel": "5-Modul/09-ApiPostmanLesson-v7.jsx",
-  "fn": "09-ApiPostmanLesson-v7.jsx",
-  "eski": "09-ApiPostmanLesson-v6.jsx",
+  "rel": "5-Modul/09-ApiPostmanLesson-v8.jsx",
+  "fn": "09-ApiPostmanLesson-v8.jsx",
+  "eski": "09-ApiPostmanLesson-v7.jsx",
   "lid": "api-postman-04-06-v18",
-  "md5": "b7b3ba655ddebe923ed99295e11c5886"
+  "md5": "ff699a6073578c16cc2272a7c18e5405"
  },
  {
   "m": 5,
   "sid": "2472",
   "uz": 16403,
   "ru": 16402,
-  "rel": "5-Modul/10-FullstackConnectPracticeLesson-v7.jsx",
-  "fn": "10-FullstackConnectPracticeLesson-v7.jsx",
-  "eski": "10-FullstackConnectPracticeLesson-v6.jsx",
+  "rel": "5-Modul/10-FullstackConnectPracticeLesson-v8.jsx",
+  "fn": "10-FullstackConnectPracticeLesson-v8.jsx",
+  "eski": "10-FullstackConnectPracticeLesson-v7.jsx",
   "lid": "fullstack-connect-practice-p2-v18",
-  "md5": "84d8b652a5f3909a7c5e02b39d9c2cf7"
+  "md5": "c0604baddf2a87b620cb0c55f83496d1"
  },
  {
   "m": 5,
   "sid": "2473",
   "uz": 16405,
   "ru": 16404,
-  "rel": "5-Modul/11-AuthEnvLesson-v6.jsx",
-  "fn": "11-AuthEnvLesson-v6.jsx",
-  "eski": "11-AuthEnvLesson-v5.jsx",
+  "rel": "5-Modul/11-AuthEnvLesson-v7.jsx",
+  "fn": "11-AuthEnvLesson-v7.jsx",
+  "eski": "11-AuthEnvLesson-v6.jsx",
   "lid": "auth-env-04-07-v18",
-  "md5": "dc66ee5521581e9522e991fbd6e62bed"
+  "md5": "90bc0ca589a8fabc18d8f2e3f89bc191"
  },
  {
   "m": 5,
   "sid": "2474",
   "uz": 16406,
   "ru": 16407,
-  "rel": "5-Modul/12-PmLesson13-v8.jsx",
-  "fn": "12-PmLesson13-v8.jsx",
-  "eski": "12-PmLesson13-v7.jsx",
+  "rel": "5-Modul/12-PmLesson13-v9.jsx",
+  "fn": "12-PmLesson13-v9.jsx",
+  "eski": "12-PmLesson13-v8.jsx",
   "lid": "pm-m4d12-v1",
-  "md5": "c13cd665cda8c31c7a1852a6cc925245"
+  "md5": "1ee30c3444f0f0f95cee32468880931f"
  },
  {
   "m": 5,
   "sid": "2475",
   "uz": 16409,
   "ru": 16408,
-  "rel": "5-Modul/13-FullstackProjectDayLesson-v7.jsx",
-  "fn": "13-FullstackProjectDayLesson-v7.jsx",
-  "eski": "13-FullstackProjectDayLesson-v6.jsx",
+  "rel": "5-Modul/13-FullstackProjectDayLesson-v8.jsx",
+  "fn": "13-FullstackProjectDayLesson-v8.jsx",
+  "eski": "13-FullstackProjectDayLesson-v7.jsx",
   "lid": "fullstack-projectday-p3-v18",
-  "md5": "9c3f92e0bbfda5582992c8a3837972c8"
+  "md5": "83f837543f8f4ee12ca56874c12f82a0"
  },
  {
   "m": 5,
   "sid": "2476",
   "uz": 16411,
   "ru": 16410,
-  "rel": "5-Modul/14-FullstackFeedbackLesson-v7.jsx",
-  "fn": "14-FullstackFeedbackLesson-v7.jsx",
-  "eski": "14-FullstackFeedbackLesson-v6.jsx",
+  "rel": "5-Modul/14-FullstackFeedbackLesson-v8.jsx",
+  "fn": "14-FullstackFeedbackLesson-v8.jsx",
+  "eski": "14-FullstackFeedbackLesson-v7.jsx",
   "lid": "fullstack-feedback-p4-v18",
-  "md5": "d22dbc210db3d66917e392d5872765c5"
+  "md5": "46e13ca409fc78cadba27bd3c941ea9c"
  },
  {
   "m": 5,
   "sid": "2477",
   "uz": 16413,
   "ru": 16412,
-  "rel": "5-Modul/15-PmLesson14-v8.jsx",
-  "fn": "15-PmLesson14-v8.jsx",
-  "eski": "15-PmLesson14-v7.jsx",
+  "rel": "5-Modul/15-PmLesson14-v9.jsx",
+  "fn": "15-PmLesson14-v9.jsx",
+  "eski": "15-PmLesson14-v8.jsx",
   "lid": "pm-m4d15-v1",
-  "md5": "2c44277abdfb6a4f874e8fbd37e5fe8e"
+  "md5": "06fc72815ba1dad02cd6ff656839d0e5"
  },
  {
   "m": 6,
   "sid": "2761",
   "uz": 16414,
   "ru": 16415,
-  "rel": "6-Modul/01-NestArchAliveLesson-v6.jsx",
-  "fn": "01-NestArchAliveLesson-v6.jsx",
-  "eski": "01-NestArchAliveLesson-v5.jsx",
+  "rel": "6-Modul/01-NestArchAliveLesson-v7.jsx",
+  "fn": "01-NestArchAliveLesson-v7.jsx",
+  "eski": "01-NestArchAliveLesson-v6.jsx",
   "lid": "nest-arch-alive-4a-01-v18",
-  "md5": "57140f57c290ee65ba87384175fecb07"
+  "md5": "33c205896433a8a3cafabd8b8e428916"
  },
  {
   "m": 6,
   "sid": "2762",
   "uz": 16416,
   "ru": 16417,
-  "rel": "6-Modul/02-PmLesson15-v7.jsx",
-  "fn": "02-PmLesson15-v7.jsx",
-  "eski": "02-PmLesson15-v6.jsx",
+  "rel": "6-Modul/02-PmLesson15-v8.jsx",
+  "fn": "02-PmLesson15-v8.jsx",
+  "eski": "02-PmLesson15-v7.jsx",
   "lid": "pm-m4a2-v1",
-  "md5": "3858868f03ca244b3af574cb00be8182"
+  "md5": "a145f8b841b9134d5cc09c952a0f4209"
  },
  {
   "m": 6,
   "sid": "2763",
   "uz": 16419,
   "ru": 16418,
-  "rel": "6-Modul/03-NestArchResourceLesson-v7.jsx",
-  "fn": "03-NestArchResourceLesson-v7.jsx",
-  "eski": "03-NestArchResourceLesson-v6.jsx",
+  "rel": "6-Modul/03-NestArchResourceLesson-v8.jsx",
+  "fn": "03-NestArchResourceLesson-v8.jsx",
+  "eski": "03-NestArchResourceLesson-v7.jsx",
   "lid": "nest-arch-resource-4a-02-v18",
-  "md5": "ec093b355d2ab307df8a8742bcea4398"
+  "md5": "d92b9c05712e01d2f6d4af620f025d36"
  },
  {
   "m": 6,
   "sid": "2764",
   "uz": 16421,
   "ru": 16420,
-  "rel": "6-Modul/04-NestArchPracticeLesson-v7.jsx",
-  "fn": "04-NestArchPracticeLesson-v7.jsx",
-  "eski": "04-NestArchPracticeLesson-v6.jsx",
+  "rel": "6-Modul/04-NestArchPracticeLesson-v8.jsx",
+  "fn": "04-NestArchPracticeLesson-v8.jsx",
+  "eski": "04-NestArchPracticeLesson-v7.jsx",
   "lid": "nest-arch-practice-4a-03-v18",
-  "md5": "68345ce05b9fe77db873423c986a0746"
+  "md5": "4d427f89fc6158f1321735d6dca1937f"
  },
  {
   "m": 6,
   "sid": "2765",
   "uz": 16423,
   "ru": 16422,
-  "rel": "6-Modul/05-JestUnitTestLesson-v7.jsx",
-  "fn": "05-JestUnitTestLesson-v7.jsx",
-  "eski": "05-JestUnitTestLesson-v6.jsx",
+  "rel": "6-Modul/05-JestUnitTestLesson-v8.jsx",
+  "fn": "05-JestUnitTestLesson-v8.jsx",
+  "eski": "05-JestUnitTestLesson-v7.jsx",
   "lid": "jest-unit-04b-01-v18",
-  "md5": "741a556354ea809865b8cf4ff027f46a"
+  "md5": "df0c6bd9158c5874ea050488ba910178"
  },
  {
   "m": 6,
   "sid": "2766",
   "uz": 16427,
   "ru": 16424,
-  "rel": "6-Modul/06-PmLesson16-v8.jsx",
-  "fn": "06-PmLesson16-v8.jsx",
-  "eski": "06-PmLesson16-v7.jsx",
+  "rel": "6-Modul/06-PmLesson16-v9.jsx",
+  "fn": "06-PmLesson16-v9.jsx",
+  "eski": "06-PmLesson16-v8.jsx",
   "lid": "pm-m4b2-v1",
-  "md5": "79a9069e7995d0d504485a76a5e4b1a5"
+  "md5": "d7f927415a94a391703e2b1e7865b64e"
  },
  {
   "m": 6,
   "sid": "2767",
   "uz": 16426,
   "ru": 16425,
-  "rel": "6-Modul/07-EdgeCasesTestLesson-v6.jsx",
-  "fn": "07-EdgeCasesTestLesson-v6.jsx",
-  "eski": "07-EdgeCasesTestLesson-v5.jsx",
+  "rel": "6-Modul/07-EdgeCasesTestLesson-v7.jsx",
+  "fn": "07-EdgeCasesTestLesson-v7.jsx",
+  "eski": "07-EdgeCasesTestLesson-v6.jsx",
   "lid": "edge-cases-04b-02-v18",
-  "md5": "f312e625bad045573416f8f305cc74be"
+  "md5": "5b4ac224c1c01d5093b3585e32b54088"
  },
  {
   "m": 6,
   "sid": "2768",
   "uz": 16429,
   "ru": 16428,
-  "rel": "6-Modul/08-CiCdIntroLesson-v6.jsx",
-  "fn": "08-CiCdIntroLesson-v6.jsx",
-  "eski": "08-CiCdIntroLesson-v5.jsx",
+  "rel": "6-Modul/08-CiCdIntroLesson-v7.jsx",
+  "fn": "08-CiCdIntroLesson-v7.jsx",
+  "eski": "08-CiCdIntroLesson-v6.jsx",
   "lid": "cicd-intro-4c-01-v18",
-  "md5": "040d6302d77041f27f9e300a6c88aad5"
+  "md5": "7a36fecc4a4e15887e9dded50cdc8316"
  },
  {
   "m": 6,
   "sid": "2769",
   "uz": 16431,
   "ru": 16430,
-  "rel": "6-Modul/09-PmLesson17-v7.jsx",
-  "fn": "09-PmLesson17-v7.jsx",
-  "eski": "09-PmLesson17-v6.jsx",
+  "rel": "6-Modul/09-PmLesson17-v8.jsx",
+  "fn": "09-PmLesson17-v8.jsx",
+  "eski": "09-PmLesson17-v7.jsx",
   "lid": "pm-m4c2-v1",
-  "md5": "7dca901dd2ec64d38f1a934bc8a7a589"
+  "md5": "2e624ff58bad6d18357b0f69a030c66b"
  },
  {
   "m": 6,
   "sid": "2770",
   "uz": 16433,
   "ru": 16432,
-  "rel": "6-Modul/10-GithubActionsLesson-v6.jsx",
-  "fn": "10-GithubActionsLesson-v6.jsx",
-  "eski": "10-GithubActionsLesson-v5.jsx",
+  "rel": "6-Modul/10-GithubActionsLesson-v7.jsx",
+  "fn": "10-GithubActionsLesson-v7.jsx",
+  "eski": "10-GithubActionsLesson-v6.jsx",
   "lid": "github-actions-4c-02-v18",
-  "md5": "219205a3f6625ac181d5546c05c25057"
+  "md5": "24769ac42d0c222febff3b7de66abe1e"
  },
  {
   "m": 6,
   "sid": "2771",
   "uz": 16435,
   "ru": 16434,
-  "rel": "6-Modul/11-FullPipelineProjectLesson-v6.jsx",
-  "fn": "11-FullPipelineProjectLesson-v6.jsx",
-  "eski": "11-FullPipelineProjectLesson-v5.jsx",
+  "rel": "6-Modul/11-FullPipelineProjectLesson-v7.jsx",
+  "fn": "11-FullPipelineProjectLesson-v7.jsx",
+  "eski": "11-FullPipelineProjectLesson-v6.jsx",
   "lid": "cicd-full-pipeline-4c-03-v18",
-  "md5": "3110723e0eee0bcc85ccfe28a44ece1c"
+  "md5": "b5c6830ef1d8d046a4d54e6671b7f1f1"
  },
  {
   "m": 6,
   "sid": "2772",
   "uz": 16436,
   "ru": 16437,
-  "rel": "6-Modul/12-AiPipelineProjectLesson-v6.jsx",
-  "fn": "12-AiPipelineProjectLesson-v6.jsx",
-  "eski": "12-AiPipelineProjectLesson-v5.jsx",
+  "rel": "6-Modul/12-AiPipelineProjectLesson-v7.jsx",
+  "fn": "12-AiPipelineProjectLesson-v7.jsx",
+  "eski": "12-AiPipelineProjectLesson-v6.jsx",
   "lid": "cicd-ai-pipeline-4c-05-v18",
-  "md5": "cf4023b1a6bab38d8ba2fc23bbb7e077"
+  "md5": "9e466419b7ed31469089073bc4129ffd"
  },
  {
   "m": 6,
   "sid": "2773",
   "uz": 16438,
   "ru": 16441,
-  "rel": "6-Modul/13-PmLesson18-v8.jsx",
-  "fn": "13-PmLesson18-v8.jsx",
-  "eski": "13-PmLesson18-v7.jsx",
+  "rel": "6-Modul/13-PmLesson18-v9.jsx",
+  "fn": "13-PmLesson18-v9.jsx",
+  "eski": "13-PmLesson18-v8.jsx",
   "lid": "pm-m4c6-v1",
-  "md5": "607f74c96769b8c3930468c581864829"
+  "md5": "aa0205432a9c2fabb361f950adb78b49"
  },
  {
   "m": 6,
   "sid": "2774",
   "uz": 16440,
   "ru": 16439,
-  "rel": "6-Modul/14-FullProPipelineLesson-v6.jsx",
-  "fn": "14-FullProPipelineLesson-v6.jsx",
-  "eski": "14-FullProPipelineLesson-v5.jsx",
+  "rel": "6-Modul/14-FullProPipelineLesson-v7.jsx",
+  "fn": "14-FullProPipelineLesson-v7.jsx",
+  "eski": "14-FullProPipelineLesson-v6.jsx",
   "lid": "full-pro-pipeline-4c-04-v18",
-  "md5": "6cb25013021c78880f4945382a379a27"
+  "md5": "5aa7f7a82dea6567d745543e87603edf"
  },
  {
   "m": 7,
   "sid": "2493",
   "uz": 17095,
   "ru": 17096,
-  "rel": "7-Modul/01-BotIntroLesson-v6.jsx",
-  "fn": "01-BotIntroLesson-v6.jsx",
-  "eski": "01-BotIntroLesson-v5.jsx",
+  "rel": "7-Modul/01-BotIntroLesson-v7.jsx",
+  "fn": "01-BotIntroLesson-v7.jsx",
+  "eski": "01-BotIntroLesson-v6.jsx",
   "lid": "bot-intro-05-01-v18",
-  "md5": "d6f1266edc9327247ffb85fe0637b109"
+  "md5": "91e4bd1ebb7152f1042c8ecf7db56bed"
  },
  {
   "m": 7,
   "sid": "2494",
   "uz": 17097,
   "ru": 17098,
-  "rel": "7-Modul/02-PmLesson19-v7.jsx",
-  "fn": "02-PmLesson19-v7.jsx",
-  "eski": "02-PmLesson19-v6.jsx",
+  "rel": "7-Modul/02-PmLesson19-v8.jsx",
+  "fn": "02-PmLesson19-v8.jsx",
+  "eski": "02-PmLesson19-v7.jsx",
   "lid": "pm-m5d2-v1",
-  "md5": "c2bec77e99cb090b4ba331bd88d07fb7"
+  "md5": "34dfbcae62275e26e8eb4dbb2f2e4c1a"
  },
  {
   "m": 7,
   "sid": "2495",
   "uz": 17099,
   "ru": 17100,
-  "rel": "7-Modul/03-BotApiButtonsLesson-v6.jsx",
-  "fn": "03-BotApiButtonsLesson-v6.jsx",
-  "eski": "03-BotApiButtonsLesson-v5.jsx",
+  "rel": "7-Modul/03-BotApiButtonsLesson-v7.jsx",
+  "fn": "03-BotApiButtonsLesson-v7.jsx",
+  "eski": "03-BotApiButtonsLesson-v6.jsx",
   "lid": "bot-api-buttons-05-02-v18",
-  "md5": "ba374d380551f5c05c8c17063ea9e496"
+  "md5": "df528b2f01095a97d50307e92fdd744a"
  },
  {
   "m": 7,
   "sid": "2496",
   "uz": 17101,
   "ru": 17102,
-  "rel": "7-Modul/04-BotStatefulMemoryLesson-v6.jsx",
-  "fn": "04-BotStatefulMemoryLesson-v6.jsx",
-  "eski": "04-BotStatefulMemoryLesson-v5.jsx",
+  "rel": "7-Modul/04-BotStatefulMemoryLesson-v7.jsx",
+  "fn": "04-BotStatefulMemoryLesson-v7.jsx",
+  "eski": "04-BotStatefulMemoryLesson-v6.jsx",
   "lid": "bot-stateful-memory-05-03-v18",
-  "md5": "c408a0521c09c100923510df25d622c2"
+  "md5": "623cf6074bf93100a83ed8ce85530b6f"
  },
  {
   "m": 7,
   "sid": "2498",
   "uz": 17103,
   "ru": 17104,
-  "rel": "7-Modul/05-BotAiProjectLesson-v6.jsx",
-  "fn": "05-BotAiProjectLesson-v6.jsx",
-  "eski": "05-BotAiProjectLesson-v5.jsx",
+  "rel": "7-Modul/05-BotAiProjectLesson-v7.jsx",
+  "fn": "05-BotAiProjectLesson-v7.jsx",
+  "eski": "05-BotAiProjectLesson-v6.jsx",
   "lid": "bot-ai-project-05-05-v18",
-  "md5": "1ec886ca0a9ca28cf42d95809cd5e85f"
+  "md5": "254a9b6a96d77f1ab03bba070e5d8afa"
  },
  {
   "m": 7,
   "sid": "2499",
   "uz": 17105,
   "ru": 17106,
-  "rel": "7-Modul/06-BotAiBrainLesson-v6.jsx",
-  "fn": "06-BotAiBrainLesson-v6.jsx",
-  "eski": "06-BotAiBrainLesson-v5.jsx",
+  "rel": "7-Modul/06-BotAiBrainLesson-v7.jsx",
+  "fn": "06-BotAiBrainLesson-v7.jsx",
+  "eski": "06-BotAiBrainLesson-v6.jsx",
   "lid": "bot-ai-brain-05-04-v18",
-  "md5": "9894d5a70ec9a0464e0490c82fa2230c"
+  "md5": "7b23910fb704d77644ebe02115f728ae"
  },
  {
   "m": 7,
   "sid": "2500",
   "uz": 17107,
   "ru": 17108,
-  "rel": "7-Modul/07-BotFullProjectLesson-v6.jsx",
-  "fn": "07-BotFullProjectLesson-v6.jsx",
-  "eski": "07-BotFullProjectLesson-v5.jsx",
+  "rel": "7-Modul/07-BotFullProjectLesson-v7.jsx",
+  "fn": "07-BotFullProjectLesson-v7.jsx",
+  "eski": "07-BotFullProjectLesson-v6.jsx",
   "lid": "bot-full-project-05-07-v18",
-  "md5": "33e0bf37a4bf11bb5226c3e36ce1d2a1"
+  "md5": "c6047d3471b43b476dde9e6f7f4ae76a"
  },
  {
   "m": 7,
   "sid": "2501",
   "uz": 17109,
   "ru": 17110,
-  "rel": "7-Modul/08-PmLesson20-v7.jsx",
-  "fn": "08-PmLesson20-v7.jsx",
-  "eski": "08-PmLesson20-v6.jsx",
+  "rel": "7-Modul/08-PmLesson20-v8.jsx",
+  "fn": "08-PmLesson20-v8.jsx",
+  "eski": "08-PmLesson20-v7.jsx",
   "lid": "pm-m5d8-v1",
-  "md5": "972c72992a9c5dda9e9a406dea661d21"
+  "md5": "1f638444378502b837db89499bb4ba07"
  },
  {
   "m": 7,
   "sid": "2502",
   "uz": 17111,
   "ru": 17112,
-  "rel": "7-Modul/09-BotFeedbackIterationLesson-v6.jsx",
-  "fn": "09-BotFeedbackIterationLesson-v6.jsx",
-  "eski": "09-BotFeedbackIterationLesson-v5.jsx",
+  "rel": "7-Modul/09-BotFeedbackIterationLesson-v7.jsx",
+  "fn": "09-BotFeedbackIterationLesson-v7.jsx",
+  "eski": "09-BotFeedbackIterationLesson-v6.jsx",
   "lid": "bot-feedback-05-06-v18",
-  "md5": "09a2f96079e8ebeb71ca0a5b86c48e5a"
+  "md5": "eea7e1b254305b99564ad07d2f3e61db"
  },
  {
   "m": 7,
   "sid": "2503",
   "uz": 17113,
   "ru": 17114,
-  "rel": "7-Modul/10-BotAiAgentLesson-v6.jsx",
-  "fn": "10-BotAiAgentLesson-v6.jsx",
-  "eski": "10-BotAiAgentLesson-v5.jsx",
+  "rel": "7-Modul/10-BotAiAgentLesson-v7.jsx",
+  "fn": "10-BotAiAgentLesson-v7.jsx",
+  "eski": "10-BotAiAgentLesson-v6.jsx",
   "lid": "bot-ai-agent-05-10-v18",
-  "md5": "a38ba8eba6c536837a6169955b5fe8f0"
+  "md5": "0c7674f161467678ad9679094694fed0"
  },
  {
   "m": 7,
   "sid": "2981",
   "uz": 17115,
   "ru": 17116,
-  "rel": "7-Modul/11-PmMetricsLesson-v7.jsx",
-  "fn": "11-PmMetricsLesson-v7.jsx",
-  "eski": "11-PmMetricsLesson-v6.jsx",
+  "rel": "7-Modul/11-PmMetricsLesson-v8.jsx",
+  "fn": "11-PmMetricsLesson-v8.jsx",
+  "eski": "11-PmMetricsLesson-v7.jsx",
   "lid": "pm-m5d11-metrika-v1",
-  "md5": "4a759d01b3fac3066aedd5c4ffaac33f"
+  "md5": "1e2a7dbc40f8f5da5b13bf763d6eb77c"
  },
  {
   "m": 7,
   "sid": "2504",
   "uz": 17117,
   "ru": 17118,
-  "rel": "7-Modul/12-PmLesson21-v7.jsx",
-  "fn": "12-PmLesson21-v7.jsx",
-  "eski": "12-PmLesson21-v6.jsx",
+  "rel": "7-Modul/12-PmLesson21-v8.jsx",
+  "fn": "12-PmLesson21-v8.jsx",
+  "eski": "12-PmLesson21-v7.jsx",
   "lid": "pm-m5d11-v1",
-  "md5": "230823a3f6f2c9b65e532a0632133863"
+  "md5": "f72a813c72497aaca9c771f6fd447bba"
  },
  {
   "m": 8,
   "sid": "2505",
   "uz": 17119,
   "ru": 17120,
-  "rel": "8-Modul/01-SystemArchitectureLesson-v6.jsx",
-  "fn": "01-SystemArchitectureLesson-v6.jsx",
-  "eski": "01-SystemArchitectureLesson-v5.jsx",
+  "rel": "8-Modul/01-SystemArchitectureLesson-v7.jsx",
+  "fn": "01-SystemArchitectureLesson-v7.jsx",
+  "eski": "01-SystemArchitectureLesson-v6.jsx",
   "lid": "sys-arch-06-01-v18",
-  "md5": "fe2bb44e2a28310bf6419ef31457e0d1"
+  "md5": "61cc5b5a9010010d4245d12b5a56c7c1"
  },
  {
   "m": 8,
   "sid": "2506",
   "uz": 17121,
   "ru": 17122,
-  "rel": "8-Modul/02-PmLesson22-v8.jsx",
-  "fn": "02-PmLesson22-v8.jsx",
-  "eski": "02-PmLesson22-v7.jsx",
+  "rel": "8-Modul/02-PmLesson22-v9.jsx",
+  "fn": "02-PmLesson22-v9.jsx",
+  "eski": "02-PmLesson22-v8.jsx",
   "lid": "pm-m6d2-v1",
-  "md5": "500e09ddda17e7b85bb8b7da4f524222"
+  "md5": "1109903c52b4465d7deb0bfdb562d9f7"
  },
  {
   "m": 8,
   "sid": "2507",
   "uz": 17123,
   "ru": 17124,
-  "rel": "8-Modul/03-ArchPatternsLesson-v6.jsx",
-  "fn": "03-ArchPatternsLesson-v6.jsx",
-  "eski": "03-ArchPatternsLesson-v5.jsx",
+  "rel": "8-Modul/03-ArchPatternsLesson-v7.jsx",
+  "fn": "03-ArchPatternsLesson-v7.jsx",
+  "eski": "03-ArchPatternsLesson-v6.jsx",
   "lid": "arch-patterns-06-03-v18",
-  "md5": "c2e8b0d080ca0814303a30e9a498984a"
+  "md5": "8f71391d93821cad4a558f4d296708e8"
  },
  {
   "m": 8,
   "sid": "2508",
   "uz": 17125,
   "ru": 17126,
-  "rel": "8-Modul/04-AgentArchitectureLesson-v6.jsx",
-  "fn": "04-AgentArchitectureLesson-v6.jsx",
-  "eski": "04-AgentArchitectureLesson-v5.jsx",
+  "rel": "8-Modul/04-AgentArchitectureLesson-v7.jsx",
+  "fn": "04-AgentArchitectureLesson-v7.jsx",
+  "eski": "04-AgentArchitectureLesson-v6.jsx",
   "lid": "agent-arch-06-04-v18",
-  "md5": "e0746502e8993ef2f4c0d7a3505316da"
+  "md5": "ae79ce7078cb5152b509361790533890"
  },
  {
   "m": 8,
   "sid": "2509",
   "uz": 17127,
   "ru": 17128,
-  "rel": "8-Modul/05-ClaudeSkillsLesson-v6.jsx",
-  "fn": "05-ClaudeSkillsLesson-v6.jsx",
-  "eski": "05-ClaudeSkillsLesson-v5.jsx",
+  "rel": "8-Modul/05-ClaudeSkillsLesson-v7.jsx",
+  "fn": "05-ClaudeSkillsLesson-v7.jsx",
+  "eski": "05-ClaudeSkillsLesson-v6.jsx",
   "lid": "claude-skills-06-05-v18",
-  "md5": "58c4d8ce511c3d27b2c90e9cbee5d8df"
+  "md5": "8a27c8c78d911550cdf6aea3f1be9212"
  },
  {
   "m": 8,
   "sid": "2510",
   "uz": 17129,
   "ru": 17130,
-  "rel": "8-Modul/06-PmLesson23-v7.jsx",
-  "fn": "06-PmLesson23-v7.jsx",
-  "eski": "06-PmLesson23-v6.jsx",
+  "rel": "8-Modul/06-PmLesson23-v8.jsx",
+  "fn": "06-PmLesson23-v8.jsx",
+  "eski": "06-PmLesson23-v7.jsx",
   "lid": "pm-m6d6-v1",
-  "md5": "8057fc2b1aa2643ea393bca964494c3d"
+  "md5": "b3765c01f801ce13da52ae59302816e1"
  },
  {
   "m": 8,
   "sid": "2511",
   "uz": 17131,
   "ru": 17132,
-  "rel": "8-Modul/07-WriteSkillLesson-v6.jsx",
-  "fn": "07-WriteSkillLesson-v6.jsx",
-  "eski": "07-WriteSkillLesson-v5.jsx",
+  "rel": "8-Modul/07-WriteSkillLesson-v7.jsx",
+  "fn": "07-WriteSkillLesson-v7.jsx",
+  "eski": "07-WriteSkillLesson-v6.jsx",
   "lid": "write-skill-06-07-v18",
-  "md5": "df45827d5d706e62bb5fe6830f067aa2"
+  "md5": "5f5e484a025d2026ce28975e47b1f1b6"
  },
  {
   "m": 8,
   "sid": "2512",
   "uz": 17133,
   "ru": 17134,
-  "rel": "8-Modul/08-PipelineProjectLesson-v6.jsx",
-  "fn": "08-PipelineProjectLesson-v6.jsx",
-  "eski": "08-PipelineProjectLesson-v5.jsx",
+  "rel": "8-Modul/08-PipelineProjectLesson-v7.jsx",
+  "fn": "08-PipelineProjectLesson-v7.jsx",
+  "eski": "08-PipelineProjectLesson-v6.jsx",
   "lid": "pipeline-project-06-08-v18",
-  "md5": "4971c8636b5ee256639d7dbcf3ba8710"
+  "md5": "b085b5606b22aca0095edc73d7d0451a"
  },
  {
   "m": 8,
   "sid": "2513",
   "uz": 17135,
   "ru": 17136,
-  "rel": "8-Modul/09-ReactNativeBasicsLesson-v6.jsx",
-  "fn": "09-ReactNativeBasicsLesson-v6.jsx",
-  "eski": "09-ReactNativeBasicsLesson-v5.jsx",
+  "rel": "8-Modul/09-ReactNativeBasicsLesson-v7.jsx",
+  "fn": "09-ReactNativeBasicsLesson-v7.jsx",
+  "eski": "09-ReactNativeBasicsLesson-v6.jsx",
   "lid": "rn-basics-06-09-v18",
-  "md5": "4190a34dbeae8e36ee713fd16f49553e"
+  "md5": "2e387c04398d2073722364603562f25b"
  },
  {
   "m": 8,
   "sid": "2514",
   "uz": 17137,
   "ru": 17138,
-  "rel": "8-Modul/10-ReactNativeAppLesson-v6.jsx",
-  "fn": "10-ReactNativeAppLesson-v6.jsx",
-  "eski": "10-ReactNativeAppLesson-v5.jsx",
+  "rel": "8-Modul/10-ReactNativeAppLesson-v7.jsx",
+  "fn": "10-ReactNativeAppLesson-v7.jsx",
+  "eski": "10-ReactNativeAppLesson-v6.jsx",
   "lid": "rn-app-06-10-v18",
-  "md5": "6542c77d2e96086e32245a545139ee29"
+  "md5": "520feab407ef78f54b60c50311f903f7"
  },
  {
   "m": 8,
   "sid": "2515",
   "uz": 17139,
   "ru": 17140,
-  "rel": "8-Modul/11-MobileAppPracticeLesson-v6.jsx",
-  "fn": "11-MobileAppPracticeLesson-v6.jsx",
-  "eski": "11-MobileAppPracticeLesson-v5.jsx",
+  "rel": "8-Modul/11-MobileAppPracticeLesson-v7.jsx",
+  "fn": "11-MobileAppPracticeLesson-v7.jsx",
+  "eski": "11-MobileAppPracticeLesson-v6.jsx",
   "lid": "mobile-practice-06-11-v18",
-  "md5": "38f2e6f275af0b408f7e348f0330eac0"
+  "md5": "24116044c72cae685647277bc237b718"
  },
  {
   "m": 8,
   "sid": "2516",
   "uz": 17141,
   "ru": 17142,
-  "rel": "8-Modul/12-PmLesson24-v7.jsx",
-  "fn": "12-PmLesson24-v7.jsx",
-  "eski": "12-PmLesson24-v6.jsx",
+  "rel": "8-Modul/12-PmLesson24-v8.jsx",
+  "fn": "12-PmLesson24-v8.jsx",
+  "eski": "12-PmLesson24-v7.jsx",
   "lid": "pm-m6d12-v1",
-  "md5": "532ef639ba83e25f44f8dbcd07673b9e"
+  "md5": "6def33462e7fc1d41b1d9cc196f190a8"
  },
  {
   "m": 8,
   "sid": "2517",
   "uz": 17143,
   "ru": 17144,
-  "rel": "8-Modul/13-FullSystemProjectLesson-v6.jsx",
-  "fn": "13-FullSystemProjectLesson-v6.jsx",
-  "eski": "13-FullSystemProjectLesson-v5.jsx",
+  "rel": "8-Modul/13-FullSystemProjectLesson-v7.jsx",
+  "fn": "13-FullSystemProjectLesson-v7.jsx",
+  "eski": "13-FullSystemProjectLesson-v6.jsx",
   "lid": "full-system-06-13-v18",
-  "md5": "1a48739277fff63eda161c3150f6ffcc"
+  "md5": "b5cb192899897a829d5ccf156b200a55"
  },
  {
   "m": 8,
   "sid": "2518",
   "uz": 17145,
   "ru": 17146,
-  "rel": "8-Modul/14-PmLesson25-v7.jsx",
-  "fn": "14-PmLesson25-v7.jsx",
-  "eski": "14-PmLesson25-v6.jsx",
+  "rel": "8-Modul/14-PmLesson25-v8.jsx",
+  "fn": "14-PmLesson25-v8.jsx",
+  "eski": "14-PmLesson25-v7.jsx",
   "lid": "pm-m6d14-v1",
-  "md5": "0044210ef3881f29363872e29c4d2059"
+  "md5": "825044045c5d0c2551b803eec31864b4"
  },
  {
   "m": 9,
   "sid": "2983",
   "uz": 17147,
   "ru": 17148,
-  "rel": "9-Modul/01-PmProductProblemLesson-v7.jsx",
-  "fn": "01-PmProductProblemLesson-v7.jsx",
-  "eski": "01-PmProductProblemLesson-v6.jsx",
+  "rel": "9-Modul/01-PmProductProblemLesson-v8.jsx",
+  "fn": "01-PmProductProblemLesson-v8.jsx",
+  "eski": "01-PmProductProblemLesson-v7.jsx",
   "lid": "pm-m7d1-v1",
-  "md5": "8df68138156a9e16c73b3cad7a5d2993"
+  "md5": "42a1d4fd5a9b2448f5bb0deb16b940cc"
  },
  {
   "m": 9,
   "sid": "2984",
   "uz": 17149,
   "ru": 17150,
-  "rel": "9-Modul/02-PmFiveInterviewsLesson-v7.jsx",
-  "fn": "02-PmFiveInterviewsLesson-v7.jsx",
-  "eski": "02-PmFiveInterviewsLesson-v6.jsx",
+  "rel": "9-Modul/02-PmFiveInterviewsLesson-v8.jsx",
+  "fn": "02-PmFiveInterviewsLesson-v8.jsx",
+  "eski": "02-PmFiveInterviewsLesson-v7.jsx",
   "lid": "m7-02-v1",
-  "md5": "5ef8cfd9baa56590eee2b14c3335c516"
+  "md5": "b928138ca7bff82d1ed2473004df8eb0"
  },
  {
   "m": 9,
   "sid": "2985",
   "uz": 17151,
   "ru": 17152,
-  "rel": "9-Modul/03-PmInterviewMvpLesson-v7.jsx",
-  "fn": "03-PmInterviewMvpLesson-v7.jsx",
-  "eski": "03-PmInterviewMvpLesson-v6.jsx",
+  "rel": "9-Modul/03-PmInterviewMvpLesson-v8.jsx",
+  "fn": "03-PmInterviewMvpLesson-v8.jsx",
+  "eski": "03-PmInterviewMvpLesson-v7.jsx",
   "lid": "pm-m7d3-v1",
-  "md5": "3ed5dd524723ace36417af6ba88d426c"
+  "md5": "472191b2c562493e6bb014e1aee9b7a8"
  },
  {
   "m": 9,
   "sid": "2986",
   "uz": 17153,
   "ru": 17154,
-  "rel": "9-Modul/04-MvpArchitectureLesson-v6.jsx",
-  "fn": "04-MvpArchitectureLesson-v6.jsx",
-  "eski": "04-MvpArchitectureLesson-v5.jsx",
+  "rel": "9-Modul/04-MvpArchitectureLesson-v7.jsx",
+  "fn": "04-MvpArchitectureLesson-v7.jsx",
+  "eski": "04-MvpArchitectureLesson-v6.jsx",
   "lid": "m7-04-v1",
-  "md5": "ec63dcae7e9f25a6a10efd327df2494e"
+  "md5": "90326989d15498e1e9169746bb4e3d65"
  },
  {
   "m": 9,
   "sid": "2987",
   "uz": 17155,
   "ru": 17156,
-  "rel": "9-Modul/05-AnimationLesson-v6.jsx",
-  "fn": "05-AnimationLesson-v6.jsx",
-  "eski": "05-AnimationLesson-v5.jsx",
+  "rel": "9-Modul/05-AnimationLesson-v7.jsx",
+  "fn": "05-AnimationLesson-v7.jsx",
+  "eski": "05-AnimationLesson-v6.jsx",
   "lid": "m7-05-v1",
-  "md5": "5f11593b5ad1b6e9073b1f8019b617dd"
+  "md5": "c727acfadf1fda493deb79879069ba34"
  },
  {
   "m": 9,
   "sid": "2988",
   "uz": 17157,
   "ru": 17158,
-  "rel": "9-Modul/06-PmAnalyticsDayOneLesson-v6.jsx",
-  "fn": "06-PmAnalyticsDayOneLesson-v6.jsx",
-  "eski": "06-PmAnalyticsDayOneLesson-v5.jsx",
+  "rel": "9-Modul/06-PmAnalyticsDayOneLesson-v7.jsx",
+  "fn": "06-PmAnalyticsDayOneLesson-v7.jsx",
+  "eski": "06-PmAnalyticsDayOneLesson-v6.jsx",
   "lid": "m7-06-v1",
-  "md5": "c13d77a3f8a69b8b9a9db036d5343b28"
+  "md5": "375f6b0d136b1faffceb54cb485a5e52"
  },
  {
   "m": 9,
   "sid": "2989",
   "uz": 17159,
   "ru": 17160,
-  "rel": "9-Modul/07-MvpFirstScreenLesson-v6.jsx",
-  "fn": "07-MvpFirstScreenLesson-v6.jsx",
-  "eski": "07-MvpFirstScreenLesson-v5.jsx",
+  "rel": "9-Modul/07-MvpFirstScreenLesson-v7.jsx",
+  "fn": "07-MvpFirstScreenLesson-v7.jsx",
+  "eski": "07-MvpFirstScreenLesson-v6.jsx",
   "lid": "m7-07-v1",
-  "md5": "548bf06af86ea282d77da5f0bd52472a"
+  "md5": "b95ec4a4a955ca4f4a1aca20e9ceab82"
  },
  {
   "m": 9,
   "sid": "2990",
   "uz": 17161,
   "ru": 17162,
-  "rel": "9-Modul/08-PmDesignMotionLesson-v6.jsx",
-  "fn": "08-PmDesignMotionLesson-v6.jsx",
-  "eski": "08-PmDesignMotionLesson-v5.jsx",
+  "rel": "9-Modul/08-PmDesignMotionLesson-v7.jsx",
+  "fn": "08-PmDesignMotionLesson-v7.jsx",
+  "eski": "08-PmDesignMotionLesson-v6.jsx",
   "lid": "m7-08-v1",
-  "md5": "29a3eef644df3b6a9ca55ae33a1a23d3"
+  "md5": "67f23e94d0eb8073a8c060467628b90a"
  },
  {
   "m": 9,
   "sid": "2991",
   "uz": 17163,
   "ru": 17164,
-  "rel": "9-Modul/09-MvpCompleteLesson-v6.jsx",
-  "fn": "09-MvpCompleteLesson-v6.jsx",
-  "eski": "09-MvpCompleteLesson-v5.jsx",
+  "rel": "9-Modul/09-MvpCompleteLesson-v7.jsx",
+  "fn": "09-MvpCompleteLesson-v7.jsx",
+  "eski": "09-MvpCompleteLesson-v6.jsx",
   "lid": "m7-09-v1",
-  "md5": "597c0c37db020877904f14651f39b868"
+  "md5": "4d2aaf13fc2a5c60643d8f42b443c94e"
  },
  {
   "m": 9,
   "sid": "2992",
   "uz": 17165,
   "ru": 17166,
-  "rel": "9-Modul/10-PmUsabilityTestLesson-v7.jsx",
-  "fn": "10-PmUsabilityTestLesson-v7.jsx",
-  "eski": "10-PmUsabilityTestLesson-v6.jsx",
+  "rel": "9-Modul/10-PmUsabilityTestLesson-v8.jsx",
+  "fn": "10-PmUsabilityTestLesson-v8.jsx",
+  "eski": "10-PmUsabilityTestLesson-v7.jsx",
   "lid": "m7-10-v1",
-  "md5": "67c0d7ca4aae9e71b7a55b9838a02bab"
+  "md5": "983d194416e379c37b1a5bb81c70e310"
  },
  {
   "m": 9,
   "sid": "2993",
   "uz": 17167,
   "ru": 17168,
-  "rel": "9-Modul/11-MvpIterationLesson-v6.jsx",
-  "fn": "11-MvpIterationLesson-v6.jsx",
-  "eski": "11-MvpIterationLesson-v5.jsx",
+  "rel": "9-Modul/11-MvpIterationLesson-v7.jsx",
+  "fn": "11-MvpIterationLesson-v7.jsx",
+  "eski": "11-MvpIterationLesson-v6.jsx",
   "lid": "m7-11-v1",
-  "md5": "e1daceba34522bab0e3e895bda00e1a1"
+  "md5": "aae343081fac6d94fa017d31d6a17c02"
  },
  {
   "m": 9,
   "sid": "2994",
   "uz": 17169,
   "ru": 17170,
-  "rel": "9-Modul/12-PmUserStoryPitchLesson-v6.jsx",
-  "fn": "12-PmUserStoryPitchLesson-v6.jsx",
-  "eski": "12-PmUserStoryPitchLesson-v5.jsx",
+  "rel": "9-Modul/12-PmUserStoryPitchLesson-v7.jsx",
+  "fn": "12-PmUserStoryPitchLesson-v7.jsx",
+  "eski": "12-PmUserStoryPitchLesson-v6.jsx",
   "lid": "m7-12-v2",
-  "md5": "eecd8e3c5ade8690ff8c79b068e7181f"
+  "md5": "b0cd42f989edaef2b6c5ddccf323fc33"
  },
  {
   "m": 10,
   "sid": "2995",
   "uz": 17171,
   "ru": 17172,
-  "rel": "10-Modul/01-PmOkrLesson-v6.jsx",
-  "fn": "01-PmOkrLesson-v6.jsx",
-  "eski": "01-PmOkrLesson-v5.jsx",
+  "rel": "10-Modul/01-PmOkrLesson-v7.jsx",
+  "fn": "01-PmOkrLesson-v7.jsx",
+  "eski": "01-PmOkrLesson-v6.jsx",
   "lid": "pm-m8d1-okr-v1",
-  "md5": "1b5e596a6c71a572da3339a1976fee4d"
+  "md5": "2937dcd12216c2556f80b14b6ee42bfd"
  },
  {
   "m": 10,
   "sid": "2996",
   "uz": 17173,
   "ru": 17174,
-  "rel": "10-Modul/02-EventTrackingLesson-v6.jsx",
-  "fn": "02-EventTrackingLesson-v6.jsx",
-  "eski": "02-EventTrackingLesson-v5.jsx",
+  "rel": "10-Modul/02-EventTrackingLesson-v7.jsx",
+  "fn": "02-EventTrackingLesson-v7.jsx",
+  "eski": "02-EventTrackingLesson-v6.jsx",
   "lid": "m8-02-event-tracking-v1",
-  "md5": "08a700fdd467fbdc9d041c6d17681a9d"
+  "md5": "47bac20c0acb6d3bbe9da30c53343ec7"
  },
  {
   "m": 10,
   "sid": "2997",
   "uz": 17175,
   "ru": 17176,
-  "rel": "10-Modul/03-LiveDashboardLesson-v6.jsx",
-  "fn": "03-LiveDashboardLesson-v6.jsx",
-  "eski": "03-LiveDashboardLesson-v5.jsx",
+  "rel": "10-Modul/03-LiveDashboardLesson-v7.jsx",
+  "fn": "03-LiveDashboardLesson-v7.jsx",
+  "eski": "03-LiveDashboardLesson-v6.jsx",
   "lid": "m8-03-v1",
-  "md5": "56543a03ca247eeb642849344b0e0330"
+  "md5": "2c7a3296424a7378f47a938de0b9aadc"
  },
  {
   "m": 10,
   "sid": "2998",
   "uz": 17177,
   "ru": 17178,
-  "rel": "10-Modul/04-PmAbTestLesson-v6.jsx",
-  "fn": "04-PmAbTestLesson-v6.jsx",
-  "eski": "04-PmAbTestLesson-v5.jsx",
+  "rel": "10-Modul/04-PmAbTestLesson-v7.jsx",
+  "fn": "04-PmAbTestLesson-v7.jsx",
+  "eski": "04-PmAbTestLesson-v6.jsx",
   "lid": "m8-04-v1",
-  "md5": "74a64a9d08a047eff69887412dd3c6e0"
+  "md5": "eac605605612bda1ef3cf301b78488b8"
  },
  {
   "m": 10,
   "sid": "2999",
   "uz": 17179,
   "ru": 17180,
-  "rel": "10-Modul/05-SecurityBasicsLesson-v6.jsx",
-  "fn": "05-SecurityBasicsLesson-v6.jsx",
-  "eski": "05-SecurityBasicsLesson-v5.jsx",
+  "rel": "10-Modul/05-SecurityBasicsLesson-v7.jsx",
+  "fn": "05-SecurityBasicsLesson-v7.jsx",
+  "eski": "05-SecurityBasicsLesson-v6.jsx",
   "lid": "m8-05-security-basics-v1",
-  "md5": "a7d36525bcae883b8701d28f4a7cd1b1"
+  "md5": "ea1264a3ef62716a9b7ee9c8e0ee27dc"
  },
  {
   "m": 10,
   "sid": "3000",
   "uz": 17181,
   "ru": 17182,
-  "rel": "10-Modul/06-PmTrustAuditLesson-v6.jsx",
-  "fn": "06-PmTrustAuditLesson-v6.jsx",
-  "eski": "06-PmTrustAuditLesson-v5.jsx",
+  "rel": "10-Modul/06-PmTrustAuditLesson-v7.jsx",
+  "fn": "06-PmTrustAuditLesson-v7.jsx",
+  "eski": "06-PmTrustAuditLesson-v6.jsx",
   "lid": "m8-06-v1",
-  "md5": "d2e201ec6f358dfe7bbe7da32ee41e14"
+  "md5": "d6bc5ca571d2ed85c9cda00ed1ec2feb"
  },
  {
   "m": 10,
   "sid": "3001",
   "uz": 17183,
   "ru": 17184,
-  "rel": "10-Modul/07-ProductionDeployLesson-v6.jsx",
-  "fn": "07-ProductionDeployLesson-v6.jsx",
-  "eski": "07-ProductionDeployLesson-v5.jsx",
+  "rel": "10-Modul/07-ProductionDeployLesson-v7.jsx",
+  "fn": "07-ProductionDeployLesson-v7.jsx",
+  "eski": "07-ProductionDeployLesson-v6.jsx",
   "lid": "m8-07-production-deploy-v1",
-  "md5": "2d15f7ae9c6b7541c0e4ac9e1b13e7ff"
+  "md5": "574e7eb7168dee37b123b05580342e1b"
  },
  {
   "m": 10,
   "sid": "3002",
   "uz": 17185,
   "ru": 17186,
-  "rel": "10-Modul/08-ProdUpgradeLesson-v6.jsx",
-  "fn": "08-ProdUpgradeLesson-v6.jsx",
-  "eski": "08-ProdUpgradeLesson-v5.jsx",
+  "rel": "10-Modul/08-ProdUpgradeLesson-v7.jsx",
+  "fn": "08-ProdUpgradeLesson-v7.jsx",
+  "eski": "08-ProdUpgradeLesson-v6.jsx",
   "lid": "m8-08-v1",
-  "md5": "0cc26da6d7090b1b3dbb268df2370807"
+  "md5": "136e0579d6ee526dc1d86a65434098ef"
  },
  {
   "m": 10,
   "sid": "3003",
   "uz": 17187,
   "ru": 17188,
-  "rel": "10-Modul/09-ProdReviewLesson-v6.jsx",
-  "fn": "09-ProdReviewLesson-v6.jsx",
-  "eski": "09-ProdReviewLesson-v5.jsx",
+  "rel": "10-Modul/09-ProdReviewLesson-v7.jsx",
+  "fn": "09-ProdReviewLesson-v7.jsx",
+  "eski": "09-ProdReviewLesson-v6.jsx",
   "lid": "m8-09-v1",
-  "md5": "8184b8d47e739148b0fe510990d4de3f"
+  "md5": "b75ddb9848aa331372ea07c453055ef5"
  },
  {
   "m": 10,
   "sid": "3004",
   "uz": 17189,
   "ru": 17190,
-  "rel": "10-Modul/10-PmYearPathLesson-v7.jsx",
-  "fn": "10-PmYearPathLesson-v7.jsx",
-  "eski": "10-PmYearPathLesson-v6.jsx",
+  "rel": "10-Modul/10-PmYearPathLesson-v8.jsx",
+  "fn": "10-PmYearPathLesson-v8.jsx",
+  "eski": "10-PmYearPathLesson-v7.jsx",
   "lid": "pm-m8d10-yol-v1",
-  "md5": "1fa4e543d60309bb00d3359c25f2c82a"
+  "md5": "7336a904e38eb1fe7caa9025af28ade8"
  },
  {
   "m": 10,
   "sid": "3005",
   "uz": 17191,
   "ru": 17192,
-  "rel": "10-Modul/11-PmPitchRehearsalLesson-v6.jsx",
-  "fn": "11-PmPitchRehearsalLesson-v6.jsx",
-  "eski": "11-PmPitchRehearsalLesson-v5.jsx",
+  "rel": "10-Modul/11-PmPitchRehearsalLesson-v7.jsx",
+  "fn": "11-PmPitchRehearsalLesson-v7.jsx",
+  "eski": "11-PmPitchRehearsalLesson-v6.jsx",
   "lid": "pm-m8d11-pitch-v2",
-  "md5": "2ebbfbd63f737bf052280b4dde74704e"
+  "md5": "2bf1c7ee7032a5f23863f0216e536803"
  },
  {
   "m": 11,
   "sid": "3006",
   "uz": 17193,
   "ru": 17194,
-  "rel": "11-Modul/01-PmTenIdeasLesson-v7.jsx",
-  "fn": "01-PmTenIdeasLesson-v7.jsx",
-  "eski": "01-PmTenIdeasLesson-v6.jsx",
+  "rel": "11-Modul/01-PmTenIdeasLesson-v8.jsx",
+  "fn": "01-PmTenIdeasLesson-v8.jsx",
+  "eski": "01-PmTenIdeasLesson-v7.jsx",
   "lid": "pm-m9d1-v1",
-  "md5": "bf0f302f02b051465f72d79be63a1dbc"
+  "md5": "f5ce508eb772668b145830808a70363b"
  },
  {
   "m": 11,
   "sid": "3007",
   "uz": 17195,
   "ru": 17196,
-  "rel": "11-Modul/02-PmIdeaRiceLesson-v7.jsx",
-  "fn": "02-PmIdeaRiceLesson-v7.jsx",
-  "eski": "02-PmIdeaRiceLesson-v6.jsx",
+  "rel": "11-Modul/02-PmIdeaRiceLesson-v8.jsx",
+  "fn": "02-PmIdeaRiceLesson-v8.jsx",
+  "eski": "02-PmIdeaRiceLesson-v7.jsx",
   "lid": "pm-m9d2-v1",
-  "md5": "58e16a779084682b6348a05435fe1128"
+  "md5": "d9b21c858b65fd4ed98d0fc1da51020d"
  },
  {
   "m": 11,
   "sid": "3008",
   "uz": 17197,
   "ru": 17198,
-  "rel": "11-Modul/03-PmInterviewsOneLesson-v7.jsx",
-  "fn": "03-PmInterviewsOneLesson-v7.jsx",
-  "eski": "03-PmInterviewsOneLesson-v6.jsx",
+  "rel": "11-Modul/03-PmInterviewsOneLesson-v8.jsx",
+  "fn": "03-PmInterviewsOneLesson-v8.jsx",
+  "eski": "03-PmInterviewsOneLesson-v7.jsx",
   "lid": "pm-m9d3-v1",
-  "md5": "6f827711ec3a3fa476399db988611d99"
+  "md5": "a81a17b351d3a46eff5d8fe84a7cf128"
  },
  {
   "m": 11,
   "sid": "3009",
   "uz": 17199,
   "ru": 17200,
-  "rel": "11-Modul/04-PmFinalIdeaLesson-v7.jsx",
-  "fn": "04-PmFinalIdeaLesson-v7.jsx",
-  "eski": "04-PmFinalIdeaLesson-v6.jsx",
+  "rel": "11-Modul/04-PmFinalIdeaLesson-v8.jsx",
+  "fn": "04-PmFinalIdeaLesson-v8.jsx",
+  "eski": "04-PmFinalIdeaLesson-v7.jsx",
   "lid": "pm-m9d4-v1",
-  "md5": "ef7bc6f1f59c1b7a2b7bc41f2c6f6870"
+  "md5": "c4f0ab8a582ecec0c7a3295d43247cbc"
  },
  {
   "m": 11,
   "sid": "3010",
   "uz": 17201,
   "ru": 17202,
-  "rel": "11-Modul/05-PmPrdLesson-v6.jsx",
-  "fn": "05-PmPrdLesson-v6.jsx",
-  "eski": "05-PmPrdLesson-v5.jsx",
+  "rel": "11-Modul/05-PmPrdLesson-v7.jsx",
+  "fn": "05-PmPrdLesson-v7.jsx",
+  "eski": "05-PmPrdLesson-v6.jsx",
   "lid": "pm-m9d5-v1",
-  "md5": "69040ba2ff7e236462ad8819097784e6"
+  "md5": "4460f8bb025e8a6816616d1ccf5ac269"
  },
  {
   "m": 11,
   "sid": "3011",
   "uz": 17203,
   "ru": 17204,
-  "rel": "11-Modul/06-PmRoadmapLesson-v7.jsx",
-  "fn": "06-PmRoadmapLesson-v7.jsx",
-  "eski": "06-PmRoadmapLesson-v6.jsx",
+  "rel": "11-Modul/06-PmRoadmapLesson-v8.jsx",
+  "fn": "06-PmRoadmapLesson-v8.jsx",
+  "eski": "06-PmRoadmapLesson-v7.jsx",
   "lid": "pm-m9d6-v1",
-  "md5": "fbde10b7fa18a8323b377a0a14df2171"
+  "md5": "0c5ad993771197a42d2fbb6d6164b7f8"
  },
  {
   "m": 11,
   "sid": "3012",
   "uz": 17205,
   "ru": 17206,
-  "rel": "11-Modul/07-LivePrototypeLesson-v6.jsx",
-  "fn": "07-LivePrototypeLesson-v6.jsx",
-  "eski": "07-LivePrototypeLesson-v5.jsx",
+  "rel": "11-Modul/07-LivePrototypeLesson-v7.jsx",
+  "fn": "07-LivePrototypeLesson-v7.jsx",
+  "eski": "07-LivePrototypeLesson-v6.jsx",
   "lid": "m9-07-v1",
-  "md5": "f524da3a06e1db113d4e3932c4197e5f"
+  "md5": "8031426735571c2a09a5af3f47b31ac8"
  },
  {
   "m": 11,
   "sid": "3013",
   "uz": 17207,
   "ru": 17208,
-  "rel": "11-Modul/08-PlatformChoiceLesson-v6.jsx",
-  "fn": "08-PlatformChoiceLesson-v6.jsx",
-  "eski": "08-PlatformChoiceLesson-v5.jsx",
+  "rel": "11-Modul/08-PlatformChoiceLesson-v7.jsx",
+  "fn": "08-PlatformChoiceLesson-v7.jsx",
+  "eski": "08-PlatformChoiceLesson-v6.jsx",
   "lid": "m9-08-v1",
-  "md5": "5557d981930e139766f4446b8ec131cf"
+  "md5": "6de558ce04ef3ee5223bc59edcfd2eed"
  },
  {
   "m": 11,
   "sid": "3014",
   "uz": 17209,
   "ru": 17210,
-  "rel": "11-Modul/09-ExpoPrototypeLesson-v6.jsx",
-  "fn": "09-ExpoPrototypeLesson-v6.jsx",
-  "eski": "09-ExpoPrototypeLesson-v5.jsx",
+  "rel": "11-Modul/09-ExpoPrototypeLesson-v7.jsx",
+  "fn": "09-ExpoPrototypeLesson-v7.jsx",
+  "eski": "09-ExpoPrototypeLesson-v6.jsx",
   "lid": "m9-09-v1",
-  "md5": "8c708bccf311c679b0608b1289d5ef7b"
+  "md5": "6e6af5cc5060244c09fb441e2366d87b"
  },
  {
   "m": 11,
   "sid": "3015",
   "uz": 17211,
   "ru": 17212,
-  "rel": "11-Modul/10-FoundationDayLesson-v6.jsx",
-  "fn": "10-FoundationDayLesson-v6.jsx",
-  "eski": "10-FoundationDayLesson-v5.jsx",
+  "rel": "11-Modul/10-FoundationDayLesson-v7.jsx",
+  "fn": "10-FoundationDayLesson-v7.jsx",
+  "eski": "10-FoundationDayLesson-v6.jsx",
   "lid": "m9-10-v1",
-  "md5": "c3fcdc2966e10ad6a8375fe06ff28aa1"
+  "md5": "1d4041b3be919b95f2f0c79631e52d0d"
  },
  {
   "m": 11,
   "sid": "3016",
   "uz": 17213,
   "ru": 17214,
-  "rel": "11-Modul/11-FeatureOneLesson-v6.jsx",
-  "fn": "11-FeatureOneLesson-v6.jsx",
-  "eski": "11-FeatureOneLesson-v5.jsx",
+  "rel": "11-Modul/11-FeatureOneLesson-v7.jsx",
+  "fn": "11-FeatureOneLesson-v7.jsx",
+  "eski": "11-FeatureOneLesson-v6.jsx",
   "lid": "m9-11-v1",
-  "md5": "be9f3d3607f3a5fe0c7ba6c8ec0c21ab"
+  "md5": "cef1cfd3f0556306f4c1cc56a559a9b5"
  },
  {
   "m": 11,
   "sid": "3017",
   "uz": 17215,
   "ru": 17216,
-  "rel": "11-Modul/12-FeatureTwoLesson-v6.jsx",
-  "fn": "12-FeatureTwoLesson-v6.jsx",
-  "eski": "12-FeatureTwoLesson-v5.jsx",
+  "rel": "11-Modul/12-FeatureTwoLesson-v7.jsx",
+  "fn": "12-FeatureTwoLesson-v7.jsx",
+  "eski": "12-FeatureTwoLesson-v6.jsx",
   "lid": "m9-12-v1",
-  "md5": "04ac6254422124554e6ff801b9604d58"
+  "md5": "d7878712de419660d91519741af42cb8"
  },
  {
   "m": 11,
   "sid": "3018",
   "uz": 17217,
   "ru": 17218,
-  "rel": "11-Modul/13-PmAudienceTestLesson-v6.jsx",
-  "fn": "13-PmAudienceTestLesson-v6.jsx",
-  "eski": "13-PmAudienceTestLesson-v5.jsx",
+  "rel": "11-Modul/13-PmAudienceTestLesson-v7.jsx",
+  "fn": "13-PmAudienceTestLesson-v7.jsx",
+  "eski": "13-PmAudienceTestLesson-v6.jsx",
   "lid": "pm-m9d13-v1",
-  "md5": "aa8aaa21266ae535624ffe1a670e8f48"
+  "md5": "48acc4cb85553fb6cb624475690f74d3"
  },
  {
   "m": 11,
   "sid": "3019",
   "uz": 17219,
   "ru": 17220,
-  "rel": "11-Modul/14-FeatureThreeLesson-v6.jsx",
-  "fn": "14-FeatureThreeLesson-v6.jsx",
-  "eski": "14-FeatureThreeLesson-v5.jsx",
+  "rel": "11-Modul/14-FeatureThreeLesson-v7.jsx",
+  "fn": "14-FeatureThreeLesson-v7.jsx",
+  "eski": "14-FeatureThreeLesson-v6.jsx",
   "lid": "m9-14-v1",
-  "md5": "a48722f37a08838bb69e61fe0647296c"
+  "md5": "a3473827c4459f2035f5cdda70b06374"
  },
  {
   "m": 11,
   "sid": "3020",
   "uz": 17221,
   "ru": 17222,
-  "rel": "11-Modul/15-PmOneOnOneLesson-v6.jsx",
-  "fn": "15-PmOneOnOneLesson-v6.jsx",
-  "eski": "15-PmOneOnOneLesson-v5.jsx",
+  "rel": "11-Modul/15-PmOneOnOneLesson-v7.jsx",
+  "fn": "15-PmOneOnOneLesson-v7.jsx",
+  "eski": "15-PmOneOnOneLesson-v6.jsx",
   "lid": "pm-m9d15-v1",
-  "md5": "f063bd9b08814fe6c625be547e6cacdf"
+  "md5": "6132bef6c8df09465975a4f9df733ca1"
  },
  {
   "m": 11,
   "sid": "3021",
   "uz": 17223,
   "ru": 17224,
-  "rel": "11-Modul/16-PmPrototypePitchLesson-v6.jsx",
-  "fn": "16-PmPrototypePitchLesson-v6.jsx",
-  "eski": "16-PmPrototypePitchLesson-v5.jsx",
+  "rel": "11-Modul/16-PmPrototypePitchLesson-v7.jsx",
+  "fn": "16-PmPrototypePitchLesson-v7.jsx",
+  "eski": "16-PmPrototypePitchLesson-v6.jsx",
   "lid": "pm-m9d16-v2",
-  "md5": "f083b994d41890d886eca8dc3ccd325a"
+  "md5": "45bec67cda4ae0d5415e9e4581c7633c"
  },
  {
   "m": 12,
   "sid": "3023",
   "uz": 17225,
   "ru": 17226,
-  "rel": "12-Modul/01-PmLandingLesson-v6.jsx",
-  "fn": "01-PmLandingLesson-v6.jsx",
-  "eski": "01-PmLandingLesson-v5.jsx",
+  "rel": "12-Modul/01-PmLandingLesson-v7.jsx",
+  "fn": "01-PmLandingLesson-v7.jsx",
+  "eski": "01-PmLandingLesson-v6.jsx",
   "lid": "pm-m10d1-v1",
-  "md5": "386a173d17deebc99044e2b39bcfa375"
+  "md5": "d3bfc1b59468be8e21475b8974c9952f"
  },
  {
   "m": 12,
   "sid": "3024",
   "uz": 17227,
   "ru": 17228,
-  "rel": "12-Modul/02-WebSocketBasicsLesson-v6.jsx",
-  "fn": "02-WebSocketBasicsLesson-v6.jsx",
-  "eski": "02-WebSocketBasicsLesson-v5.jsx",
+  "rel": "12-Modul/02-WebSocketBasicsLesson-v7.jsx",
+  "fn": "02-WebSocketBasicsLesson-v7.jsx",
+  "eski": "02-WebSocketBasicsLesson-v6.jsx",
   "lid": "m10-02-v1",
-  "md5": "fbfcb7b05768595502a7bc447ca4e2af"
+  "md5": "32075c79d61db8db249642aae24ef83d"
  },
  {
   "m": 12,
   "sid": "3025",
   "uz": 17229,
   "ru": 17230,
-  "rel": "12-Modul/03-PmRealtimeSpecLesson-v6.jsx",
-  "fn": "03-PmRealtimeSpecLesson-v6.jsx",
-  "eski": "03-PmRealtimeSpecLesson-v5.jsx",
+  "rel": "12-Modul/03-PmRealtimeSpecLesson-v7.jsx",
+  "fn": "03-PmRealtimeSpecLesson-v7.jsx",
+  "eski": "03-PmRealtimeSpecLesson-v6.jsx",
   "lid": "pm-m10d3-v1",
-  "md5": "383221b311e45da3bff94ee40d80fff9"
+  "md5": "cf881bf33bb0e31292a7c92fc1b84963"
  },
  {
   "m": 12,
   "sid": "3026",
   "uz": 17231,
   "ru": 17232,
-  "rel": "12-Modul/04-LiveNotifyDayLesson-v6.jsx",
-  "fn": "04-LiveNotifyDayLesson-v6.jsx",
-  "eski": "04-LiveNotifyDayLesson-v5.jsx",
+  "rel": "12-Modul/04-LiveNotifyDayLesson-v7.jsx",
+  "fn": "04-LiveNotifyDayLesson-v7.jsx",
+  "eski": "04-LiveNotifyDayLesson-v6.jsx",
   "lid": "m10-04-v1",
-  "md5": "3f96242324f2848bf4c88ef04b91e4af"
+  "md5": "0a020bf3a4d0499800566d4307af99ef"
  },
  {
   "m": 12,
   "sid": "3027",
   "uz": 17233,
   "ru": 17234,
-  "rel": "12-Modul/05-BreakAndFixLesson-v6.jsx",
-  "fn": "05-BreakAndFixLesson-v6.jsx",
-  "eski": "05-BreakAndFixLesson-v5.jsx",
+  "rel": "12-Modul/05-BreakAndFixLesson-v7.jsx",
+  "fn": "05-BreakAndFixLesson-v7.jsx",
+  "eski": "05-BreakAndFixLesson-v6.jsx",
   "lid": "m10-05-v1",
-  "md5": "408339c99c2a3dec2d4f41b86dc3684c"
+  "md5": "cdec063d9ed2a30b7bccd1988a76759e"
  },
  {
   "m": 12,
   "sid": "3028",
   "uz": 17235,
   "ru": 17236,
-  "rel": "12-Modul/06-PmChannelsLesson-v7.jsx",
-  "fn": "06-PmChannelsLesson-v7.jsx",
-  "eski": "06-PmChannelsLesson-v6.jsx",
+  "rel": "12-Modul/06-PmChannelsLesson-v8.jsx",
+  "fn": "06-PmChannelsLesson-v8.jsx",
+  "eski": "06-PmChannelsLesson-v7.jsx",
   "lid": "pm-m10d6-v1",
-  "md5": "9fab5290b772b3458961ea0a616644ae"
+  "md5": "fea3581e5717e297e30619e82f1eb0e3"
  },
  {
   "m": 12,
   "sid": "3029",
   "uz": 17237,
   "ru": 17238,
-  "rel": "12-Modul/07-PmFiftyUsersLesson-v6.jsx",
-  "fn": "07-PmFiftyUsersLesson-v6.jsx",
-  "eski": "07-PmFiftyUsersLesson-v5.jsx",
+  "rel": "12-Modul/07-PmFiftyUsersLesson-v7.jsx",
+  "fn": "07-PmFiftyUsersLesson-v7.jsx",
+  "eski": "07-PmFiftyUsersLesson-v6.jsx",
   "lid": "pm-m10d7-v1",
-  "md5": "330825ecd1c02806fc35ec8bb83fb92e"
+  "md5": "5733aaf5fea3fdb79a6c0968daf05ba3"
  },
  {
   "m": 12,
   "sid": "3030",
   "uz": 17239,
   "ru": 17240,
-  "rel": "12-Modul/08-PmDropOffLesson-v6.jsx",
-  "fn": "08-PmDropOffLesson-v6.jsx",
-  "eski": "08-PmDropOffLesson-v5.jsx",
+  "rel": "12-Modul/08-PmDropOffLesson-v7.jsx",
+  "fn": "08-PmDropOffLesson-v7.jsx",
+  "eski": "08-PmDropOffLesson-v6.jsx",
   "lid": "pm-m10d8-v1",
-  "md5": "07c3b9dbfef8cd3476ea59562741fd3a"
+  "md5": "b323c9d1e47325b01ee45cba1e1a27c4"
  },
  {
   "m": 12,
   "sid": "3031",
   "uz": 17241,
   "ru": 17242,
-  "rel": "12-Modul/09-RetentionDayLesson-v6.jsx",
-  "fn": "09-RetentionDayLesson-v6.jsx",
-  "eski": "09-RetentionDayLesson-v5.jsx",
+  "rel": "12-Modul/09-RetentionDayLesson-v7.jsx",
+  "fn": "09-RetentionDayLesson-v7.jsx",
+  "eski": "09-RetentionDayLesson-v6.jsx",
   "lid": "m10-09-v1",
-  "md5": "cebbabb6952269ba5eaa8c61b3ffc4ea"
+  "md5": "9a04bdb30dbcadfaf2a390cda853a84b"
  },
  {
   "m": 12,
   "sid": "3032",
   "uz": 17243,
   "ru": 17244,
-  "rel": "12-Modul/10-PmUsersCheckLesson-v6.jsx",
-  "fn": "10-PmUsersCheckLesson-v6.jsx",
-  "eski": "10-PmUsersCheckLesson-v5.jsx",
+  "rel": "12-Modul/10-PmUsersCheckLesson-v7.jsx",
+  "fn": "10-PmUsersCheckLesson-v7.jsx",
+  "eski": "10-PmUsersCheckLesson-v6.jsx",
   "lid": "pm-m10d10-v1",
-  "md5": "e0c1469a01bd078d61c5cb01dea6171c"
+  "md5": "f65ac6f0662b34dec02be24dd851a762"
  },
  {
   "m": 12,
   "sid": "3033",
   "uz": 17245,
   "ru": 17246,
-  "rel": "12-Modul/11-PmPitchReviewLesson-v6.jsx",
-  "fn": "11-PmPitchReviewLesson-v6.jsx",
-  "eski": "11-PmPitchReviewLesson-v5.jsx",
+  "rel": "12-Modul/11-PmPitchReviewLesson-v7.jsx",
+  "fn": "11-PmPitchReviewLesson-v7.jsx",
+  "eski": "11-PmPitchReviewLesson-v6.jsx",
   "lid": "pm-m10d11-v2",
-  "md5": "47519be63d2fa6ac8cc52c63ca1d4dfd"
+  "md5": "ff45e4c524de0b7e3bf6edd0c21ee9c8"
  },
  {
   "m": 12,
   "sid": "3034",
   "uz": 17247,
   "ru": 17248,
-  "rel": "12-Modul/12-PmGrowthPitchLesson-v7.jsx",
-  "fn": "12-PmGrowthPitchLesson-v7.jsx",
-  "eski": "12-PmGrowthPitchLesson-v6.jsx",
+  "rel": "12-Modul/12-PmGrowthPitchLesson-v8.jsx",
+  "fn": "12-PmGrowthPitchLesson-v8.jsx",
+  "eski": "12-PmGrowthPitchLesson-v7.jsx",
   "lid": "pm-m10d12-v2",
-  "md5": "ee6f306855da316f3906e52ba71e237d"
+  "md5": "c1642329db4f06ca93670a08ee95fc6c"
  },
  {
   "m": 13,
   "sid": "3035",
   "uz": 17249,
   "ru": 17250,
-  "rel": "13-Modul/01-PmUnitEconomicsLesson-v7.jsx",
-  "fn": "01-PmUnitEconomicsLesson-v7.jsx",
-  "eski": "01-PmUnitEconomicsLesson-v6.jsx",
+  "rel": "13-Modul/01-PmUnitEconomicsLesson-v8.jsx",
+  "fn": "01-PmUnitEconomicsLesson-v8.jsx",
+  "eski": "01-PmUnitEconomicsLesson-v7.jsx",
   "lid": "pm-m11d1-v1",
-  "md5": "8c684acc4debd7c4a69ded61856f2db3"
+  "md5": "d75d925fb41f4da294084737340ed03f"
  },
  {
   "m": 13,
   "sid": "3036",
   "uz": 17251,
   "ru": 17252,
-  "rel": "13-Modul/02-PmMonetizationLesson-v6.jsx",
-  "fn": "02-PmMonetizationLesson-v6.jsx",
-  "eski": "02-PmMonetizationLesson-v5.jsx",
+  "rel": "13-Modul/02-PmMonetizationLesson-v7.jsx",
+  "fn": "02-PmMonetizationLesson-v7.jsx",
+  "eski": "02-PmMonetizationLesson-v6.jsx",
   "lid": "pm-m11d2-v1",
-  "md5": "aa3f49530f873481ac04c2ea76764dca"
+  "md5": "21886308e06311d262433855b5708741"
  },
  {
   "m": 13,
   "sid": "3037",
   "uz": 17253,
   "ru": 17254,
-  "rel": "13-Modul/03-PaymentWebhookLesson-v6.jsx",
-  "fn": "03-PaymentWebhookLesson-v6.jsx",
-  "eski": "03-PaymentWebhookLesson-v5.jsx",
+  "rel": "13-Modul/03-PaymentWebhookLesson-v7.jsx",
+  "fn": "03-PaymentWebhookLesson-v7.jsx",
+  "eski": "03-PaymentWebhookLesson-v6.jsx",
   "lid": "m11-03-v1",
-  "md5": "0258e50b565aed93af66a636b4e3432e"
+  "md5": "fdccb96df6336e8a1dbde430f0057bfd"
  },
  {
   "m": 13,
   "sid": "3038",
   "uz": 17255,
   "ru": 17256,
-  "rel": "13-Modul/04-PmPricingLesson-v6.jsx",
-  "fn": "04-PmPricingLesson-v6.jsx",
-  "eski": "04-PmPricingLesson-v5.jsx",
+  "rel": "13-Modul/04-PmPricingLesson-v7.jsx",
+  "fn": "04-PmPricingLesson-v7.jsx",
+  "eski": "04-PmPricingLesson-v6.jsx",
   "lid": "pm-m11d4-v1",
-  "md5": "6978d8c6d5c328cd4725cdd9a259c72a"
+  "md5": "d6f290acae3a501ea9be67cd206bf493"
  },
  {
   "m": 13,
   "sid": "3039",
   "uz": 17257,
   "ru": 17258,
-  "rel": "13-Modul/05-PaymentDayLesson-v6.jsx",
-  "fn": "05-PaymentDayLesson-v6.jsx",
-  "eski": "05-PaymentDayLesson-v5.jsx",
+  "rel": "13-Modul/05-PaymentDayLesson-v7.jsx",
+  "fn": "05-PaymentDayLesson-v7.jsx",
+  "eski": "05-PaymentDayLesson-v6.jsx",
   "lid": "m11-05-v1",
-  "md5": "9a9da769c7160fe79e59b05218cc49ff"
+  "md5": "3183ed0d842d3be45f93bb0abb3faf81"
  },
  {
   "m": 13,
   "sid": "3040",
   "uz": 17259,
   "ru": 17260,
-  "rel": "13-Modul/06-PmMoneyTalkLesson-v6.jsx",
-  "fn": "06-PmMoneyTalkLesson-v6.jsx",
-  "eski": "06-PmMoneyTalkLesson-v5.jsx",
+  "rel": "13-Modul/06-PmMoneyTalkLesson-v7.jsx",
+  "fn": "06-PmMoneyTalkLesson-v7.jsx",
+  "eski": "06-PmMoneyTalkLesson-v6.jsx",
   "lid": "pm-m11d6-v1",
-  "md5": "9ef50ec79e5e1528ad4cb067f4f884e6"
+  "md5": "42138df72c8baeb489e79adf18ef3cff"
  },
  {
   "m": 13,
   "sid": "3041",
   "uz": 17261,
   "ru": 17262,
-  "rel": "13-Modul/07-PmTermsLesson-v6.jsx",
-  "fn": "07-PmTermsLesson-v6.jsx",
-  "eski": "07-PmTermsLesson-v5.jsx",
+  "rel": "13-Modul/07-PmTermsLesson-v7.jsx",
+  "fn": "07-PmTermsLesson-v7.jsx",
+  "eski": "07-PmTermsLesson-v6.jsx",
   "lid": "pm-m11d7-v1",
-  "md5": "cba56c3ebdcb2fd47a4dcc1846127cc0"
+  "md5": "f1acb019c64edca0f8eadcf16408d69b"
  },
  {
   "m": 13,
   "sid": "3042",
   "uz": 17263,
   "ru": 17264,
-  "rel": "13-Modul/08-WinBackDayLesson-v6.jsx",
-  "fn": "08-WinBackDayLesson-v6.jsx",
-  "eski": "08-WinBackDayLesson-v5.jsx",
+  "rel": "13-Modul/08-WinBackDayLesson-v7.jsx",
+  "fn": "08-WinBackDayLesson-v7.jsx",
+  "eski": "08-WinBackDayLesson-v6.jsx",
   "lid": "m11-08-v1",
-  "md5": "ad0ef57c308ac422adc31785b8a0c4c5"
+  "md5": "50259f3ff80513ada145c19ea7fc03e7"
  },
  {
   "m": 13,
   "sid": "3043",
   "uz": 17265,
   "ru": 17266,
-  "rel": "13-Modul/09-PmPayCheckLesson-v6.jsx",
-  "fn": "09-PmPayCheckLesson-v6.jsx",
-  "eski": "09-PmPayCheckLesson-v5.jsx",
+  "rel": "13-Modul/09-PmPayCheckLesson-v7.jsx",
+  "fn": "09-PmPayCheckLesson-v7.jsx",
+  "eski": "09-PmPayCheckLesson-v6.jsx",
   "lid": "pm-m11d9-v1",
-  "md5": "af620c4facf7e5da3f6d818c70a1070b"
+  "md5": "75dec59fa004144ddf0a7276ac600ffa"
  },
  {
   "m": 13,
   "sid": "3044",
   "uz": 17267,
   "ru": 17268,
-  "rel": "13-Modul/10-ReferralDayLesson-v6.jsx",
-  "fn": "10-ReferralDayLesson-v6.jsx",
-  "eski": "10-ReferralDayLesson-v5.jsx",
+  "rel": "13-Modul/10-ReferralDayLesson-v7.jsx",
+  "fn": "10-ReferralDayLesson-v7.jsx",
+  "eski": "10-ReferralDayLesson-v6.jsx",
   "lid": "m11-10-v1",
-  "md5": "caaab007a319445bc11f847c3a1123e6"
+  "md5": "83652f375e0973d2ef66cbe98303a482"
  },
  {
   "m": 13,
   "sid": "3045",
   "uz": 17269,
   "ru": 17270,
-  "rel": "13-Modul/11-PmReflectionLesson-v6.jsx",
-  "fn": "11-PmReflectionLesson-v6.jsx",
-  "eski": "11-PmReflectionLesson-v5.jsx",
+  "rel": "13-Modul/11-PmReflectionLesson-v7.jsx",
+  "fn": "11-PmReflectionLesson-v7.jsx",
+  "eski": "11-PmReflectionLesson-v6.jsx",
   "lid": "pm-m11d11-v1",
-  "md5": "ed0812ae4e314f03cb6986816992fd4e"
+  "md5": "ae3dd161104f48ae10ccd2584a6c7d57"
  },
  {
   "m": 13,
   "sid": "3046",
   "uz": 17271,
   "ru": 17272,
-  "rel": "13-Modul/12-StabilizeDayLesson-v6.jsx",
-  "fn": "12-StabilizeDayLesson-v6.jsx",
-  "eski": "12-StabilizeDayLesson-v5.jsx",
+  "rel": "13-Modul/12-StabilizeDayLesson-v7.jsx",
+  "fn": "12-StabilizeDayLesson-v7.jsx",
+  "eski": "12-StabilizeDayLesson-v6.jsx",
   "lid": "m11-12-v1",
-  "md5": "ecc2b77f514274b84475c3bd9f363f84"
+  "md5": "db206e83cd6735b0b50525980c2c2955"
  },
  {
   "m": 14,
   "sid": "3047",
   "uz": 17273,
   "ru": 17274,
-  "rel": "14-Modul/01-PmInvestorPitchLesson-v6.jsx",
-  "fn": "01-PmInvestorPitchLesson-v6.jsx",
-  "eski": "01-PmInvestorPitchLesson-v5.jsx",
+  "rel": "14-Modul/01-PmInvestorPitchLesson-v7.jsx",
+  "fn": "01-PmInvestorPitchLesson-v7.jsx",
+  "eski": "01-PmInvestorPitchLesson-v6.jsx",
   "lid": "pm-m12d1-v2",
-  "md5": "b3b1a0f8cb1e1db3594f4beb9ff5a3f1"
+  "md5": "1524cc8b9efc1a28957be7fce3625ed5"
  },
  {
   "m": 14,
   "sid": "3048",
   "uz": 17275,
   "ru": 17276,
-  "rel": "14-Modul/02-PmStoryPitchLesson-v6.jsx",
-  "fn": "02-PmStoryPitchLesson-v6.jsx",
-  "eski": "02-PmStoryPitchLesson-v5.jsx",
+  "rel": "14-Modul/02-PmStoryPitchLesson-v7.jsx",
+  "fn": "02-PmStoryPitchLesson-v7.jsx",
+  "eski": "02-PmStoryPitchLesson-v6.jsx",
   "lid": "pm-m12d2-v2",
-  "md5": "ec51b86be3d73279d8329e7aa1a47e9c"
+  "md5": "92e01a5c831b709ff0e41a4c51827183"
  },
  {
   "m": 14,
   "sid": "3049",
   "uz": 17277,
   "ru": 17278,
-  "rel": "14-Modul/03-ProductSpeedLesson-v6.jsx",
-  "fn": "03-ProductSpeedLesson-v6.jsx",
-  "eski": "03-ProductSpeedLesson-v5.jsx",
+  "rel": "14-Modul/03-ProductSpeedLesson-v7.jsx",
+  "fn": "03-ProductSpeedLesson-v7.jsx",
+  "eski": "03-ProductSpeedLesson-v6.jsx",
   "lid": "m12-03-v1",
-  "md5": "445e15ee5392e8254582032e52ba0a91"
+  "md5": "e6448da64904497f0cee977d5f78e1a7"
  },
  {
   "m": 14,
   "sid": "3050",
   "uz": 17279,
   "ru": 17280,
-  "rel": "14-Modul/04-PolishDayLesson-v6.jsx",
-  "fn": "04-PolishDayLesson-v6.jsx",
-  "eski": "04-PolishDayLesson-v5.jsx",
+  "rel": "14-Modul/04-PolishDayLesson-v7.jsx",
+  "fn": "04-PolishDayLesson-v7.jsx",
+  "eski": "04-PolishDayLesson-v6.jsx",
   "lid": "m12-04-v1",
-  "md5": "5941d942147758e075fb61c2d78dfa44"
+  "md5": "79421990e69bfb2aeda1eb684b689080"
  },
  {
   "m": 14,
   "sid": "3051",
   "uz": 17281,
   "ru": 17282,
-  "rel": "14-Modul/05-PmPitchTrainingLesson-v6.jsx",
-  "fn": "05-PmPitchTrainingLesson-v6.jsx",
-  "eski": "05-PmPitchTrainingLesson-v5.jsx",
+  "rel": "14-Modul/05-PmPitchTrainingLesson-v7.jsx",
+  "fn": "05-PmPitchTrainingLesson-v7.jsx",
+  "eski": "05-PmPitchTrainingLesson-v6.jsx",
   "lid": "pm-m12d5-v2",
-  "md5": "3fb9c5614e5727f026b555ddfd6de12b"
+  "md5": "53930820f544ce71020204bec52e4f24"
  },
  {
   "m": 14,
   "sid": "3052",
   "uz": 17283,
   "ru": 17284,
-  "rel": "14-Modul/06-DemoPrepLesson-v6.jsx",
-  "fn": "06-DemoPrepLesson-v6.jsx",
-  "eski": "06-DemoPrepLesson-v5.jsx",
+  "rel": "14-Modul/06-DemoPrepLesson-v7.jsx",
+  "fn": "06-DemoPrepLesson-v7.jsx",
+  "eski": "06-DemoPrepLesson-v6.jsx",
   "lid": "m12-06-v1",
-  "md5": "5cd26934f3b129f0fa223cec73a6ef5e"
+  "md5": "5caff5d890cf438459621a5b7ca30e02"
  },
  {
   "m": 14,
   "sid": "3053",
   "uz": 17285,
   "ru": 17286,
-  "rel": "14-Modul/07-PmDemoTestLesson-v6.jsx",
-  "fn": "07-PmDemoTestLesson-v6.jsx",
-  "eski": "07-PmDemoTestLesson-v5.jsx",
+  "rel": "14-Modul/07-PmDemoTestLesson-v7.jsx",
+  "fn": "07-PmDemoTestLesson-v7.jsx",
+  "eski": "07-PmDemoTestLesson-v6.jsx",
   "lid": "pm-m12d7-v1",
-  "md5": "ea220b804876b4924b1af7d0fda9460d"
+  "md5": "e9462252faedac82a3da9fd960d8d26b"
  },
  {
   "m": 14,
   "sid": "3054",
   "uz": 17287,
   "ru": 17288,
-  "rel": "14-Modul/08-PmFinalPitchLesson-v6.jsx",
-  "fn": "08-PmFinalPitchLesson-v6.jsx",
-  "eski": "08-PmFinalPitchLesson-v5.jsx",
+  "rel": "14-Modul/08-PmFinalPitchLesson-v7.jsx",
+  "fn": "08-PmFinalPitchLesson-v7.jsx",
+  "eski": "08-PmFinalPitchLesson-v6.jsx",
   "lid": "pm-m12d8-v2",
-  "md5": "317f730dd20778295a84d085dfbce943"
+  "md5": "7ee07f6f8a9275216b65c372d230d8ca"
  },
  {
   "m": 14,
   "sid": "3055",
   "uz": 17289,
   "ru": 17290,
-  "rel": "14-Modul/09-VideoPortfolioLesson-v6.jsx",
-  "fn": "09-VideoPortfolioLesson-v6.jsx",
-  "eski": "09-VideoPortfolioLesson-v5.jsx",
+  "rel": "14-Modul/09-VideoPortfolioLesson-v7.jsx",
+  "fn": "09-VideoPortfolioLesson-v7.jsx",
+  "eski": "09-VideoPortfolioLesson-v6.jsx",
   "lid": "m12-09-v1",
-  "md5": "cb178c8d43cb6375bf2765e5e87c803d"
+  "md5": "030aa23bf778d3e64af2af64ffe92265"
  },
  {
   "m": 14,
   "sid": "3056",
   "uz": 17291,
   "ru": 17292,
-  "rel": "14-Modul/10-PmFreelanceLesson-v6.jsx",
-  "fn": "10-PmFreelanceLesson-v6.jsx",
-  "eski": "10-PmFreelanceLesson-v5.jsx",
+  "rel": "14-Modul/10-PmFreelanceLesson-v7.jsx",
+  "fn": "10-PmFreelanceLesson-v7.jsx",
+  "eski": "10-PmFreelanceLesson-v6.jsx",
   "lid": "pm-m12d10-v1",
-  "md5": "9f17b6377f826a8d8feeec8a141b1c02"
+  "md5": "534e3ef3c550084238f05ac5647a24a6"
  },
  {
   "m": 14,
   "sid": "3057",
   "uz": 17293,
   "ru": 17294,
-  "rel": "14-Modul/11-PmProgramsLesson-v6.jsx",
-  "fn": "11-PmProgramsLesson-v6.jsx",
-  "eski": "11-PmProgramsLesson-v5.jsx",
+  "rel": "14-Modul/11-PmProgramsLesson-v7.jsx",
+  "fn": "11-PmProgramsLesson-v7.jsx",
+  "eski": "11-PmProgramsLesson-v6.jsx",
   "lid": "pm-m12d11-v1",
-  "md5": "7dfb25288f1a113db10b1a1a6384e134"
+  "md5": "1ba081b9b49fca7a9fbd941fe5b83b18"
  },
  {
   "m": 14,
   "sid": "3058",
   "uz": 17295,
   "ru": 17296,
-  "rel": "14-Modul/12-PmNextStepsLesson-v6.jsx",
-  "fn": "12-PmNextStepsLesson-v6.jsx",
-  "eski": "12-PmNextStepsLesson-v5.jsx",
+  "rel": "14-Modul/12-PmNextStepsLesson-v7.jsx",
+  "fn": "12-PmNextStepsLesson-v7.jsx",
+  "eski": "12-PmNextStepsLesson-v6.jsx",
   "lid": "pm-m12d12-v1",
-  "md5": "4f1d801a2962e4f375603e6e6fc87419"
+  "md5": "b165b983c90189ed1007586d6a091cea"
  },
  {
   "m": 14,
   "sid": "3059",
   "uz": 17297,
   "ru": 17298,
-  "rel": "14-Modul/13-PmDressRehearsalLesson-v6.jsx",
-  "fn": "13-PmDressRehearsalLesson-v6.jsx",
-  "eski": "13-PmDressRehearsalLesson-v5.jsx",
+  "rel": "14-Modul/13-PmDressRehearsalLesson-v7.jsx",
+  "fn": "13-PmDressRehearsalLesson-v7.jsx",
+  "eski": "13-PmDressRehearsalLesson-v6.jsx",
   "lid": "pm-m12d13-v1",
-  "md5": "cf1b2972e04b0d32aab20bb141aec7c0"
+  "md5": "29a090df4d7574353bdd694ae6b5a07a"
  }
 ]
