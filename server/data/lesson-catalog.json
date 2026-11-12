@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-02T13:22:19.000Z",
+  "generated_at": "2026-11-12T09:57:57.447Z",
   "count": 183,
   "lessons": [
     {
@@ -5513,8 +5513,8 @@
         {
           "id": "sniper",
           "name": "Prompt Sniper!",
-          "title_uz": "Yetkaz uchun aniq prompt yozdingiz",
-          "title_ru": "Вы написали точный промпт для Yetkaz"
+          "title_uz": "TezTaom uchun aniq prompt yozdingiz",
+          "title_ru": "Вы написали точный промпт для TezTaom"
         },
         {
           "id": "debugger",
