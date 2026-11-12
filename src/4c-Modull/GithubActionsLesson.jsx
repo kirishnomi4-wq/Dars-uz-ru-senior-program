@@ -29,7 +29,7 @@ const T = {
 const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', str: '#7DD181', comment: '#6B7585', punct: '#9FB4D8' };
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast, reportCheck, checkOrderText } from '../live/index.js';
 import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
 // F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: GitHub Actions» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 6-10). scripts/hw-v2-kartalar.mjs yozadi.
 const HW_V2 = {"id":"6-10","tur":"text","nom":{"uz":"Uyga vazifa: GitHub Actions","ru":"Домашнее задание: GitHub Actions"},"matn":{"uz":"6-5/6-7 dagi test loyihangizga birinchi haqiqiy lentani (pipeline) yozing.\n\n1. Loyihani GitHub'ga joylang.\n2. .github/workflows/ci.yml: push'da ishga tushsin, checkout, Node o'rnatish, npm install, npm test.\n3. Push qiling — Actions'da yashil run.\n4. Ataylab bitta testni buzing va push qiling — qizil run. Jurnaldan sababni toping.\n5. Tuzating — yana yashil. Repo linki va uchala run linki.\n\nNima tekshiriladi:\n— ci.yml to'g'ri papkada\n— 3 run: yashil → qizil → yashil\n— qizil run jurnalida test nomi\n— steps tartibi to'g'ri.","ru":"Напишите первую настоящую ленту (pipeline) для своего тестового проекта из 6-5/6-7.\n\n1. Выложите проект на GitHub.\n2. .github/workflows/ci.yml: запуск на push, checkout, установка Node, npm install, npm test.\n3. Сделайте push — в Actions зелёный run.\n4. Специально сломайте один тест и сделайте push — красный run. Найдите причину в журнале.\n5. Исправьте — снова зелёный. Ссылка на репозиторий и ссылки на все три run.\n\nЧто проверяется:\n— ci.yml в правильной папке\n— 3 run: зелёный → красный → зелёный\n— в журнале красного run — имя теста\n— порядок steps верный."}};
@@ -676,6 +676,7 @@ function DragDropOrder({ items, hints, onSolved, doneText }) {
   const full = slots.every(s => s !== null);
   const solved = slots.every((s, i) => s === order[i]);
   const wrong = full && !solved;
+  useEffect(() => { if (full) reportCheck({ correct: solved, text: checkOrderText(slots, items) }); }, [slots]); // eslint-disable-line -- F-1112-01: har to'liq joylash = urinish (onSolved'dan oldin)
   useEffect(() => { if (solved) onSolved && onSolved(); }, [solved]); // eslint-disable-line
   const place = (id, from, slotIdx) => setSt(({ pool, slots }) => {
     const ns = slots.slice(); const occ = ns[slotIdx];
@@ -2595,7 +2596,7 @@ export default function GithubActionsLesson({ lang: langProp, onFinished, liveTo
     upd(); window.addEventListener('resize', upd); return () => window.removeEventListener('resize', upd);
   }, []);
   const answerKey = { ...INLINE_KEYS, ...Object.fromEntries(QUIZ_BANK.map((q, i) => [`quiz-${i}`, q.correct])) };
-  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
+  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, screenMeta: SCREEN_META, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
   useServerProgress(live, { setScreen, setAnswers, setEarned, earnedRef, startTimeRef, total: TOTAL_SCREENS }); // server-progress: davom / ko'rish / toza boshlash
   const isStudentLive = live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
   // F-1012-03: eng uzoq yetilgan ekran (qayta boshlashda 0) — undan oldingi ekranlarda «Davom etish» qulflanmaydi

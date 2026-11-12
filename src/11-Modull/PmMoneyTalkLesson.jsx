@@ -28,7 +28,7 @@ const tr = (node) => {
 const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.uz ?? '') : o;
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast, reportCheck } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QKirish, QReja, QTushuncha, QTest, QTestJavob, QChip, QXato, QIzoh, QXulosa, QMustaqil, QKartochka, QYakun, manoliMatn, MANOSIZ_XATO } from '../qolip/index.jsx';
 
@@ -1335,8 +1335,9 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       const x = s6Tekshir(m, v);
       if (!x) continue;
       if (x.yumshoq && xato && xato.yumshoq && xato.k === x.k && xato.maydon === m) continue;
-      setXato({ ...x, maydon: m }); return false;
+      reportCheck({ correct: false, text: maydonlar.map(q => q[1]), sub: maydonlar[0][0] }); setXato({ ...x, maydon: m }); return false;
     }
+    reportCheck({ correct: true, text: maydonlar.map(q => q[1]), sub: maydonlar[0][0] }); // F-1112-01: har bosish = urinish
     return true;
   };
   const saqla = () => {
@@ -2558,7 +2559,7 @@ export default function PmMoneyTalkLesson({ lang: langProp, onFinished, liveToke
   }, []);
   // Javob kaliti: inline testlar + jang savollari (QUIZ_BANK'dan) — mentor ochganda set_quiz_keys bilan serverga yuklanadi
   const answerKey = { ...INLINE_KEYS, ...Object.fromEntries(QUIZ_BANK.map((q, i) => [`quiz-${i}`, q.correct])) };
-  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
+  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, screenMeta: SCREEN_META, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
   useServerProgress(live, { setScreen, setAnswers, setEarned, earnedRef, startTimeRef, total: TOTAL_SCREENS }); // server-progress: davom / ko'rish / toza boshlash
   const isStudentLive = live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
   const locked = isStudentLive && (screen + 1 > live.mentorScreen);

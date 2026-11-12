@@ -97,7 +97,7 @@ export const lmsJoin = (liveToken, body) => lmsFetch('POST', `${LIVE_API_URL}/ap
 /** GET /lms/me — bor sessiyani qaytaradi, yaratmaydi (404 = yo'q) */
 export const lmsMe = (liveToken, lessonId) => lmsFetch('GET', `${LIVE_API_URL}/api/v1/lms/me?lesson_id=${encodeURIComponent(lessonId)}`, liveToken);
 /** POST /lms/restart — ko'rishdan yangi solo urinish */
-export const lmsRestart = (liveToken, lessonId, lessonVersion = null) => lmsFetch('POST', `${LIVE_API_URL}/api/v1/lms/restart`, liveToken, { lesson_id: lessonId, ...(lessonVersion ? { lesson_version: lessonVersion } : {}) });
+export const lmsRestart = (liveToken, lessonId, lessonVersion = null, lang = null) => lmsFetch('POST', `${LIVE_API_URL}/api/v1/lms/restart`, liveToken, { lesson_id: lessonId, ...(lessonVersion ? { lesson_version: lessonVersion } : {}), ...(lang ? { lang } : {}) });
 /** PUT /me/progress — server-progress (progressSync.js chaqiradi). keepalive: sahifa yopilayotganda ham yetib borsin. */
 export async function progressPut(liveToken, body, { keepalive = false, liveRun = false } = {}) {
   const r = await net(`${LIVE_API_URL}/api/v1/me/progress`, {

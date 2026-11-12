@@ -31,7 +31,7 @@ const tr = (node) => {
 const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.uz ?? '') : o;
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast, reportCheck } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QBashorat, QTaxmin, QKirish, QReja, QTushuncha, QTest, QTestJavob, QKartochka, QYakun, QMustaqil, QChip, QXato, QIzoh, QXulosa } from '../qolip/index.jsx';
 
@@ -1195,7 +1195,8 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev, live }) => {
   const keyingiBolak = async () => {
     if (band || k > 5) return;
     const t = tekshirIzoh(qq.belgi, qq.izoh, k === 5 && varaq.every(r => r.belgi === '✓'));
-    if (yoqma(t, k)) { setXato({ ...t, n: Date.now() }); if (!t.blok) setYumshoq({ k, x: t.x }); return; }
+    if (yoqma(t, k)) { reportCheck({ correct: false, text: qq.izoh, sub: k }); setXato({ ...t, n: Date.now() }); if (!t.blok) setYumshoq({ k, x: t.x }); return; }
+    reportCheck({ correct: true, text: qq.izoh, sub: k }); // F-1112-01: har bosish = urinish
     setXato(null); setYumshoq(null); setBand(true);
     await uch(qq.belgi === '✓' ? okRef.current : xRef.current, qRef.current[qq.bolak], qq.belgi, qq.belgi === '✓' ? 'ok' : 'x', 560);
     setYangi(qq.bolak); setTimeout(() => setYangi(null), 1000);
@@ -1205,7 +1206,8 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev, live }) => {
   const saqla = async () => {
     if (band) return;
     const t = tekshirSavol(savol);
-    if (yoqma(t, 'savol')) { setXato({ ...t, n: Date.now() }); if (!t.blok) setYumshoq({ k: 'savol', x: t.x }); return; }
+    if (yoqma(t, 'savol')) { reportCheck({ correct: false, text: savol, sub: 'savol' }); setXato({ ...t, n: Date.now() }); if (!t.blok) setYumshoq({ k: 'savol', x: t.x }); return; }
+    reportCheck({ correct: true, text: savol, sub: 'savol' }); // F-1112-01: har bosish = urinish
     setXato(null); setYumshoq(null); setBand(true);
     await uch(savolRef.current, hkRef.current, savol.trim(), 'savol');
     const d = { tur, varaq: varaq.map(r => ({ bolak: r.bolak, belgi: r.belgi, izoh: String(r.izoh || '').trim().slice(0, 120) })), hakamSavoli: savol.trim().slice(0, 120), tuzatishlar: [], vaqt: toxtadi ? sek : null, savedAt: Date.now() };
@@ -1379,7 +1381,8 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev, live }) => {
     if (band || !karta) return;
     const takror = !!tb && bandlar.some((b, i) => i !== j && b.bolak === tb);
     const t = tekshirTuzatish(tb, matn, takror);
-    if (t && (t.blok || !(yumshoq && yumshoq.j === j && yumshoq.x === t.x))) { setXato({ ...t, n: Date.now() }); if (!t.blok) setYumshoq({ j, x: t.x }); return; }
+    if (t && (t.blok || !(yumshoq && yumshoq.j === j && yumshoq.x === t.x))) { reportCheck({ correct: false, text: matn, sub: `t${j}` }); setXato({ ...t, n: Date.now() }); if (!t.blok) setYumshoq({ j, x: t.x }); return; }
+    reportCheck({ correct: true, text: matn, sub: `t${j}` }); // F-1112-01: har bosish = urinish
     setXato(null); setYumshoq(null); setYordam(false); setBand(true);
     await uch(kRef.current, rRef.current[j], tr(BOLAK_NOM[tb]) + ' · ' + matn.trim(), 'ok');
     const yb = [...bandlar]; yb[j] = { bolak: tb, nima: matn.trim().slice(0, 120), manba: karta.tur };
@@ -2286,7 +2289,7 @@ export default function PmPitchTrainingLesson({ lang: langProp, onFinished, live
   }, []);
   // Javob kaliti: inline testlar + jang savollari (QUIZ_BANK'dan) — mentor ochganda set_quiz_keys bilan serverga yuklanadi
   const answerKey = { ...INLINE_KEYS, ...Object.fromEntries(QUIZ_BANK.map((q, i) => [`quiz-${i}`, q.correct])) };
-  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
+  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, screenMeta: SCREEN_META, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
   useServerProgress(live, { setScreen, setAnswers, setEarned, earnedRef, startTimeRef, total: TOTAL_SCREENS }); // server-progress: davom / ko'rish / toza boshlash
   const isStudentLive = live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
   const locked = isStudentLive && (screen + 1 > live.mentorScreen);

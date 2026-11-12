@@ -32,7 +32,7 @@ const tr = (node) => {
 // UZ-RU: jonli-analytics payload matnlari DOIM UZ-etalonda ketadi (til almashsa ham statistika bir xil)
 const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.uz ?? '') : o;
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast, reportCheck, checkOrderText } from '../live/index.js';
 import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
 // F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Pipeline: React + Node + PostgreSQL + Telegram + AI» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 8-8). scripts/hw-v2-kartalar.mjs yozadi.
 const HW_V2 = {"id":"8-8","tur":"file","nom":{"uz":"Uyga vazifa: Pipeline: React + Node + PostgreSQL + Telegram + AI","ru":"Домашнее задание: Pipeline: React + Node + PostgreSQL + Telegram + AI"},"matn":{"uz":"Admin buyurtmani qabul qilsa, mijoz buni saytda ko'rsin.\n\n1. Adminga kelgan xabar ostida «✅ Qabul qildim» inline tugmasi.\n2. Bosilganda buyurtma holati Database'da qabul qilindi bo'lsin.\n3. Saytda buyurtma holati ko'rinsin (sahifa yangilanganda).\n4. Telegram va sayt skrinshotlari (oldin / keyin), repo linki.\n\nNima tekshiriladi:\n— inline tugma admin xabarida\n— Database'da holat ustuni yangilanadi\n— saytda holat\n— oqim boshidan oxirigacha sinalgan.","ru":"Когда админ принимает заказ, клиент должен увидеть это на сайте.\n\n1. Под сообщением, которое приходит админу, — inline-кнопка «✅ Принял».\n2. При нажатии статус заказа в Database становится qabul qilindi.\n3. Статус заказа виден на сайте (после обновления страницы).\n4. Скриншоты Telegram и сайта (до / после), ссылка на репозиторий.\n\nЧто проверяется:\n— inline-кнопка в сообщении админу\n— столбец статуса в Database обновляется\n— статус на сайте\n— поток проверен от начала до конца."}};
@@ -716,6 +716,7 @@ function DragDropOrder({ items, hints, onSolved, doneText, onChange, onWrong }) 
   const full = slots.every(s => s !== null);
   const solved = slots.every((s, i) => s === order[i]);
   const wrong = full && !solved;
+  useEffect(() => { if (full) reportCheck({ correct: solved, text: checkOrderText(slots, items) }); }, [slots]); // eslint-disable-line -- F-1112-01: har to'liq joylash = urinish (onSolved'dan oldin)
   useEffect(() => { if (solved) onSolved && onSolved(); }, [solved]); // eslint-disable-line
   useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]); // eslint-disable-line
   useEffect(() => { onChange && onChange(slots); }, [slots]); // eslint-disable-line
@@ -2236,7 +2237,7 @@ export default function PipelineProjectLesson({ lang: langProp, onFinished, live
     upd(); window.addEventListener('resize', upd); return () => window.removeEventListener('resize', upd);
   }, []);
   const answerKey = { ...INLINE_KEYS, ...Object.fromEntries(QUIZ_BANK.map((q, i) => [`quiz-${i}`, q.correct])) };
-  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
+  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, screenMeta: SCREEN_META, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
   useServerProgress(live, { setScreen, setAnswers, setEarned, earnedRef, startTimeRef, total: TOTAL_SCREENS }); // server-progress: davom / ko'rish / toza boshlash
   const isStudentLive = live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
   const locked = isStudentLive && (screen + 1 > live.mentorScreen);

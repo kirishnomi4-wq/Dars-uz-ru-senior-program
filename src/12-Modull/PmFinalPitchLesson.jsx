@@ -27,7 +27,7 @@ const tr = (node) => {
 const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.uz ?? '') : o;
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast, reportCheck } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QBashorat, QTaxmin, QKirish, QReja, QTushuncha, QTest, QTestJavob, QKartochka, QYakun, QMustaqil, QChip, QXato, QIzoh, QXulosa } from '../qolip/index.jsx';
 
@@ -1162,7 +1162,8 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev, live }) => {
   const saqla = () => {
     if (!joriy || uchish) return;
     const id = joriy; const m = String(matn[id] || '').trim(); const t = tekshir5(id, m, pitch[id]);
-    if (t && (t.blok || !(yumshoq && yumshoq.id === id && yumshoq.x === t.x && yumshoq.matn === m))) { setXato(t); if (!t.blok) setYumshoq({ id, x: t.x, matn: m }); return; }
+    if (t && (t.blok || !(yumshoq && yumshoq.id === id && yumshoq.x === t.x && yumshoq.matn === m))) { reportCheck({ correct: false, text: m, sub: id }); setXato(t); if (!t.blok) setYumshoq({ id, x: t.x, matn: m }); return; }
+    reportCheck({ correct: true, text: m, sub: id }); // F-1112-01: har bosish = urinish
     const yangiH = { ...holat, [id]: 'qollandi' };
     yozKalit(yangiH, matn);
     if (achMiss && achMiss.earn) achMiss.earn('fixApplied');
@@ -1396,7 +1397,8 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev, live }) => {
     if (!joriy || ish !== 'toxta' || uchmoqda) return;
     const j = javob.trim(); const tk = tek.trim();
     const t = tekshir7(joriy.id, j, tekOchiq, tk);
-    if (t && (t.blok || !(yumshoq && yumshoq.x === t.x && yumshoq.matn === j))) { setXato(t); if (!t.blok) setYumshoq({ x: t.x, matn: j }); return; }
+    if (t && (t.blok || !(yumshoq && yumshoq.x === t.x && yumshoq.matn === j))) { reportCheck({ correct: false, text: j, sub: joriy.id }); setXato(t); if (!t.blok) setYumshoq({ x: t.x, matn: j }); return; }
+    reportCheck({ correct: true, text: j, sub: joriy.id }); // F-1112-01: har bosish = urinish
     const v = sek; const i = cur;
     const yangi = savollar.map((s, k) => (k === i ? { ...s, javob: j, vaqt: v, tekshiradi: tekOchiq ? tk : null } : s));
     if (!isMentor) finalYoz({ savollar: yangi });
@@ -2415,7 +2417,7 @@ export default function PmFinalPitchLesson({ lang: langProp, onFinished, liveTok
   }, []);
   // Javob kaliti: inline testlar + jang savollari (QUIZ_BANK'dan) — mentor ochganda set_quiz_keys bilan serverga yuklanadi
   const answerKey = { ...INLINE_KEYS, ...Object.fromEntries(QUIZ_BANK.map((q, i) => [`quiz-${i}`, q.correct])) };
-  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
+  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, screenMeta: SCREEN_META, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
   useServerProgress(live, { setScreen, setAnswers, setEarned, earnedRef, startTimeRef, total: TOTAL_SCREENS }); // server-progress: davom / ko'rish / toza boshlash
   const isStudentLive = live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
   const locked = isStudentLive && (screen + 1 > live.mentorScreen);

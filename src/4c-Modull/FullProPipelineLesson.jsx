@@ -45,7 +45,7 @@ const tr = (node) => {
 };
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast, reportCheck, checkOrderText } from '../live/index.js';
 import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
 // F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Pre Demo Day: test + lint + deploy (ishonchli lenta)» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 6-14). scripts/hw-v2-kartalar.mjs yozadi.
 const HW_V2 = {"id":"6-14","tur":"text","nom":{"uz":"Uyga vazifa: Pre Demo Day: test + lint + deploy (ishonchli lenta)","ru":"Домашнее задание: Pre Demo Day: test + lint + deploy (надёжная лента)"},"matn":{"uz":"Ishonchli lentani (pipeline) haqiqiy run'da ko'rsating.\n\n1. ci.yml'ga matrix qo'shing: Node 22 va 24 — ikki parallel job.\n2. cache: npm — ikkinchi run tezroq o'tsin (vaqtlarini README'ga yozing).\n3. JWT_SECRET ni GitHub Secrets'ga qo'ying va testda ${{ secrets.JWT_SECRET }} orqali ishlating — jurnalda *** ko'rinsin.\n4. Repo linki va run linki.\n\nNima tekshiriladi:\n— 2 ta parallel job yashil\n— cache ishlagan (2-run tezroq)\n— kalit ci.yml'da ochiq yozilmagan, jurnalda ***\n— README'da vaqtlar.","ru":"Покажите надёжную ленту (pipeline) на настоящем run.\n\n1. Добавьте в ci.yml matrix: Node 22 и 24 — два параллельных job.\n2. cache: npm — второй run проходит быстрее (запишите время в README).\n3. Положите JWT_SECRET в GitHub Secrets и используйте в тесте через ${{ secrets.JWT_SECRET }} — в журнале должно быть ***.\n4. Ссылка на репозиторий и ссылка на run.\n\nЧто проверяется:\n— 2 параллельных job зелёные\n— cache сработал (2-й run быстрее)\n— ключ не записан открыто в ci.yml, в журнале ***\n— время в README."}};
@@ -609,6 +609,7 @@ function DragDropOrder({ items, hints, onSolved, doneText, onChange }) {
   const full = slots.every(s => s !== null);
   const solved = slots.every((s, i) => s === order[i]);
   const wrong = full && !solved;
+  useEffect(() => { if (full) reportCheck({ correct: solved, text: checkOrderText(slots, items) }); }, [slots]); // eslint-disable-line -- F-1112-01: har to'liq joylash = urinish (onSolved'dan oldin)
   useEffect(() => { if (solved) onSolved && onSolved(); }, [solved]); // eslint-disable-line
   useEffect(() => { onChange && onChange(slots); }, [slots]); // eslint-disable-line
   const place = (id, from, slotIdx) => setSt(({ pool, slots }) => {
@@ -2000,7 +2001,7 @@ export default function FullProPipelineLesson({ lang: langProp, onFinished, live
   }, []);
   // Javob kaliti: inline testlar + jang savollari (QUIZ_BANK'dan) — mentor ochganda set_quiz_keys bilan serverga yuklanadi
   const answerKey = { ...INLINE_KEYS, ...Object.fromEntries(QUIZ_BANK.map((q, i) => [`quiz-${i}`, q.correct])) };
-  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
+  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, screenMeta: SCREEN_META, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
   useServerProgress(live, { setScreen, setAnswers, setEarned, earnedRef, startTimeRef, total: TOTAL_SCREENS }); // server-progress: davom / ko'rish / toza boshlash
   const isStudentLive = live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
   // F-1012-03: eng uzoq yetilgan ekran (qayta boshlashda 0) — undan oldingi ekranlarda «Davom etish» qulflanmaydi

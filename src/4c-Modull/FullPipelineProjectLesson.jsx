@@ -36,7 +36,7 @@ const T = {
 const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', str: '#7DD181', comment: '#6B7585', punct: '#9FB4D8' };
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast, reportCheck, checkOrderText } from '../live/index.js';
 import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
 // F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Practice 1: backend + frontend (to'liq lenta)» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 6-11). scripts/hw-v2-kartalar.mjs yozadi.
 const HW_V2 = {"id":"6-11","tur":"text","nom":{"uz":"Uyga vazifa: Practice 1: backend + frontend (to'liq lenta)","ru":"Домашнее задание: Practice 1: backend + frontend (полная лента)"},"matn":{"uz":"Darsda yozgan KitobShop lentasini (pipeline) haqiqatan yurgizing.\n\n1. ci.yml'ni repo'ga push qiling: install → test → lint → build.\n2. Lint qoidasini ataylab buzing (masalan ishlatilmagan o'zgaruvchi) — O'lcham ramkasi qizil, keyingi nuqtalar o'tkazib yuborilgani jurnalda ko'rinsin.\n3. Tuzating — hammasi yashil.\n4. README'ga TABLO (status badge) qo'ying.\n5. Repo linki va qizil + yashil run linklari.\n\nNima tekshiriladi:\n— 4 nuqta to'g'ri tartibda\n— lint qizil run'da build o'tkazilgan\n— yashil run\n— README'da badge.","ru":"Запустите по-настоящему ленту (pipeline) KitobShop, которую вы написали на уроке.\n\n1. Сделайте push ci.yml в репозиторий: install → test → lint → build.\n2. Специально нарушьте правило lint (например, неиспользуемая переменная) — Габарит-рамка красная, и в журнале видно, что следующие точки пропущены.\n3. Исправьте — всё зелёное.\n4. Поставьте в README ТАБЛО (status badge).\n5. Ссылка на репозиторий и ссылки на красный и зелёный run.\n\nЧто проверяется:\n— 4 точки в правильном порядке\n— в красном run на lint build пропущен\n— зелёный run\n— badge в README."}};
@@ -618,6 +618,7 @@ function DragDropOrder({ items, hints, onSolved, doneText, onChange, onWrong }) 
   const solved = slots.every((s, i) => s === order[i]);
   const wrong = full && !solved;
   useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]); // eslint-disable-line
+  useEffect(() => { if (full) reportCheck({ correct: solved, text: checkOrderText(slots, items) }); }, [slots]); // eslint-disable-line -- F-1112-01: har to'liq joylash = urinish (onSolved'dan oldin)
   useEffect(() => { if (solved) onSolved && onSolved(); }, [solved]); // eslint-disable-line
   useEffect(() => { onChange && onChange(slots); }, [slots]); // eslint-disable-line
   const place = (id, from, slotIdx) => setSt(({ pool, slots }) => {
@@ -1943,7 +1944,7 @@ export default function FullPipelineProjectLesson({ lang: langProp, onFinished, 
     if (_m && ACH_TRIGGERS[_m.id] && data && data.correct && !missedRef.current.has(_m.id)) earn(ACH_TRIGGERS[_m.id]);
   };
   const answerKey = { ...INLINE_KEYS, ...Object.fromEntries(QUIZ_BANK.map((q, i) => [`quiz-${i}`, q.correct])) };
-  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
+  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, screenMeta: SCREEN_META, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
   useServerProgress(live, { setScreen, setAnswers, setEarned, earnedRef, startTimeRef, total: TOTAL_SCREENS }); // server-progress: davom / ko'rish / toza boshlash
   const isStudentLive = live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
   // F-1012-03: eng uzoq yetilgan ekran (qayta boshlashda 0) — undan oldingi ekranlarda «Davom etish» qulflanmaydi

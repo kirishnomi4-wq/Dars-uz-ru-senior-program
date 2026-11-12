@@ -7,6 +7,7 @@ import { createRoot } from 'react-dom/client';
 const LESSONS = {
   'm1-01': () => import('../1-Modull/InternetLesson.jsx'),
   'm1-03': () => import('../1-Modull/Htmllesson1.jsx'), // prezentatsiya suratlari (13.10): test + praktika paneli
+  'm6-01': () => import('../6-Modull/SystemArchitectureLesson.jsx'), // F-1112-01: QTartib (s15) tekshiruv urinishlari e2e
 };
 
 function Harness() {

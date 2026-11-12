@@ -36,7 +36,7 @@ const tr = (node) => {
 const ou = (node) => (node && typeof node === 'object' && !React.isValidElement(node)) ? (node.uz ?? node.ru ?? '') : node;
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast, reportCheck, checkOrderText } from '../live/index.js';
 import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
 // F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: AI-agent vs oddiy AI» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 8-4). scripts/hw-v2-kartalar.mjs yozadi.
 const HW_V2 = {"id":"8-4","tur":"file","nom":{"uz":"Uyga vazifa: AI-agent vs oddiy AI","ru":"Домашнее задание: AI-агент vs обычный AI"},"matn":{"uz":"O'z loyihangiz (bot, sayt yoki ilova) uchun agent rejasini AGENT.md ga yozing.\n\n1. Maqsad — bitta gap.\n2. 2–3 ta tool: nomi, nima qiladi, faqat o'qiydimi yoki yozadimi.\n3. 2 ta chegara: agent nimani qilmasin.\n4. Qaysi amaldan oldin odamdan tasdiq so'raladi va nega.\n5. Loyihangizda oddiy AI yetarli bo'ladigan bitta holat — nega u yerda agent kerak emas.\n\nNima tekshiriladi:\n— maqsad aniq\n— tool'lar o'qish/yozish bilan\n— chegaralar aniq amalga bog'langan\n— tasdiq yozadigan amalda\n— oddiy AI misoli asosli.","ru":"Напишите в AGENT.md план агента для своего проекта (бот, сайт или приложение).\n\n1. Цель — одним предложением.\n2. 2–3 tool: название, что делает, только читает или записывает.\n3. 2 ограничения: чего агент делать не должен.\n4. Перед каким действием спрашивается подтверждение человека и почему.\n5. Один случай в вашем проекте, где хватит обычного AI, — почему там агент не нужен.\n\nЧто проверяется:\n— цель понятна\n— у tool указано чтение/запись\n— ограничения привязаны к конкретному действию\n— подтверждение — на действии, которое записывает\n— пример с обычным AI обоснован."}};
@@ -651,6 +651,7 @@ function DragDropOrder({ items, hints, onSolved, doneText, onChange, onWrong }) 
   const full = slots.every(s => s !== null);
   const solved = slots.every((s, i) => s === order[i]);
   const wrong = full && !solved;
+  useEffect(() => { if (full) reportCheck({ correct: solved, text: checkOrderText(slots, items) }); }, [slots]); // eslint-disable-line -- F-1112-01: har to'liq joylash = urinish (onSolved'dan oldin)
   useEffect(() => { if (solved) onSolved && onSolved(); }, [solved]); // eslint-disable-line
   useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]); // eslint-disable-line
   useEffect(() => { onChange && onChange(slots); }, [slots]); // eslint-disable-line
@@ -2258,7 +2259,7 @@ export default function AgentArchitectureLesson({ lang: langProp, onFinished, li
     upd(); window.addEventListener('resize', upd); return () => window.removeEventListener('resize', upd);
   }, []);
   const answerKey = { ...INLINE_KEYS, ...Object.fromEntries(QUIZ_BANK.map((q, i) => [`quiz-${i}`, q.correct])) };
-  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
+  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, screenMeta: SCREEN_META, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
   useServerProgress(live, { setScreen, setAnswers, setEarned, earnedRef, startTimeRef, total: TOTAL_SCREENS }); // server-progress: davom / ko'rish / toza boshlash
   const isStudentLive = live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
   const locked = isStudentLive && (screen + 1 > live.mentorScreen);

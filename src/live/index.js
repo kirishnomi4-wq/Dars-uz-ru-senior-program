@@ -12,6 +12,7 @@ export {
   lmsJoin, lmsMe, lmsRestart,
 } from './liveClient.js';
 export { useLiveSession, LiveGateCtx, useLiveLock } from './useLiveSession.js';
+export { reportCheck, checkOrderText } from './checkReport.js'; // F-1112-01: dars ichidagi tekshiruv urinishi (har tekshirish, matn ≤300)
 export { isPreview, notePreviewProps } from './previewMode.js'; // F-1015: LMS preview (Bilimlar bazasi)
 export { useServerProgress } from './useServerProgress.js';
 export { useAutoNext, AUTO_NEXT_MS } from './useAutoNext.js'; // arena: javob ochilgach keyingi savolga avto o'tish (F-0922-03)

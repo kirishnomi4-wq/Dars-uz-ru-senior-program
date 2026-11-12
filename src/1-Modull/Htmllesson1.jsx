@@ -23,7 +23,7 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast, reportCheck, checkOrderText } from '../live/index.js';
 import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
 // F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: HTML asoslari» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 2-3). scripts/hw-v2-kartalar.mjs yozadi.
 const HW_V2 = {"id":"2-3","tur":"compiler","nom":{"uz":"Uyga vazifa: HTML asoslari","ru":"Домашнее задание: Основы HTML"},"matn":{"uz":"Sevimli o'yiningiz haqida sahifa yasang. Rasmdagi natijaga o'xshasin.\n\n1. To'liq HTML shablonini yozing; title ga o'yin nomini qo'ying.\n2. h1 — o'yin nomi. Ostida ikkita h2: «Nega yoqadi?» va «Qanday o'ynaladi?».\n3. «Nega yoqadi?» ostida ul — 3 ta sabab.\n4. «Qanday o'ynaladi?» ostida ol — 3 ta qadam.\n5. Bitta p yozing: unda bitta so'z strong, bitta so'z em bilan bo'lsin.\n6. Oxirida o'yinning rasmiy saytiga link (a, href da to'liq manzil).","ru":"Сделайте страницу о своей любимой игре. Она должна быть похожа на результат на картинке.\n\n1. Напишите полный HTML-шаблон; в title укажите название игры.\n2. h1 — название игры. Под ним два h2: «Почему нравится?» и «Как играть?».\n3. Под «Почему нравится?» — ul с 3 причинами.\n4. Под «Как играть?» — ol с 3 шагами.\n5. Напишите один p: одно слово в нём — в strong, ещё одно — в em.\n6. В конце — ссылка на официальный сайт игры (a, в href полный адрес)."}};
@@ -1328,6 +1328,7 @@ function DragDropOrder({ items, hints, onSolved, onWrong }) {
   const full = slots.every(s => s !== null);
   const solved = slots.every((s, i) => s === order[i]);
   const wrong = full && !solved;
+  useEffect(() => { if (full) reportCheck({ correct: solved, text: checkOrderText(slots, items) }); }, [slots]); // eslint-disable-line -- F-1112-01: har to'liq joylash = urinish (onSolved'dan oldin)
   useEffect(() => { if (solved) onSolved && onSolved(); }, [solved]); // eslint-disable-line
   useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]); // eslint-disable-line
   const place = (id, from, slotIdx) => setSt(({ pool, slots }) => {
@@ -3260,7 +3261,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
 
   // Javob kaliti: inline testlar + jang savollari (QUIZ_BANK'dan) — mentor ochganda serverga yuklanadi
   const answerKey = { ...INLINE_KEYS, ...Object.fromEntries(QUIZ_BANK.map((q, i) => [`quiz-${i}`, q.correct])) };
-  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
+  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, screenMeta: SCREEN_META, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
   useServerProgress(live, { setScreen, setAnswers, setEarned, earnedRef, startTimeRef, total: TOTAL_SCREENS }); // server-progress: davom / ko'rish / toza boshlash
   const isStudentLive = live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
   // F-1012-03: eng uzoq yetilgan ekran (qayta boshlashda 0) — undan oldingi ekranlarda «Davom etish» qulflanmaydi

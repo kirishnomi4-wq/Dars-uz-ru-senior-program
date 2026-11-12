@@ -1097,7 +1097,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <div key={'k' + i} className="wb-oy-ust fade-step">{oyinchiKarta(joriyO, chiqdi, false)}</div>
           {chiqdi && joriyO.n === 1 && p1Puf(true)}
           {/* F-1015-164: «Tekshirish» bashoratdan keyin chiqadi; tekshiruv animatsiyasi paytida ko'rinmaydi (o'chiq turmaydi) */}
-          {taxmin && !band && <button type="button" className="wb-sahna-btn tg-tekshir wb-halqa fade-step" onClick={tekshir}>{tr({ uz: 'Tekshirish', ru: 'Tekshirish' })}</button>}
+          {taxmin && !band && <button type="button" className="wb-sahna-btn tg-tekshir wb-halqa fade-step" onClick={tekshir}>{tr({ uz: 'Tekshirish', ru: 'Проверить' })}</button>}
         </> : <>
           <div className="wb-oy-ust fade-step">{oyinchiKarta(p1, true, true, !ochirildi && <button type="button" className="wb-sahna-btn tg-ochir wb-halqa" onClick={ochir}>{tr(TG_SAHNA.ochirish)}</button>)}</div>
           {p1Puf(!ochirildi)}
@@ -2405,7 +2405,7 @@ export default function WinBackDayLesson({ lang: langProp, onFinished, liveToken
   }, []);
   // Javob kaliti: inline testlar + jang savollari (QUIZ_BANK'dan) — mentor ochganda set_quiz_keys bilan serverga yuklanadi
   const answerKey = { ...INLINE_KEYS, ...Object.fromEntries(QUIZ_BANK.map((q, i) => [`quiz-${i}`, q.correct])) };
-  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
+  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, screenMeta: SCREEN_META, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
   useServerProgress(live, { setScreen, setAnswers, setEarned, earnedRef, startTimeRef, total: TOTAL_SCREENS }); // server-progress: davom / ko'rish / toza boshlash
   const isStudentLive = live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
   const locked = isStudentLive && (screen + 1 > live.mentorScreen);

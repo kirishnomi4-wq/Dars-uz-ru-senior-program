@@ -51,7 +51,7 @@ const tr = (node) => {
 const ouz = (v) => (v && v.uz) || v;
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast, reportCheck, checkOrderText } from '../live/index.js';
 import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
 // F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Practice 2 (AI bilan lenta)» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 6-12). scripts/hw-v2-kartalar.mjs yozadi.
 const HW_V2 = {"id":"6-12","tur":"text","nom":{"uz":"Uyga vazifa: Practice 2 (AI bilan lenta)","ru":"Домашнее задание: Practice 2 (лента с AI)"},"matn":{"uz":"Qizil lentani (pipeline) Copilot bilan, lekin o'z qaroringiz bilan tuzating.\n\n1. KitobShop'da bitta testni buzing (masalan servisdagi hisobni o'zgartiring), push — qizil.\n2. Jurnaldan fayl, qator va «kutildi/keldi»ni README'ga yozing.\n3. Copilot'ga shu ma'lumot bilan aniq so'rov bering; so'rov matnini README'ga qo'shing.\n4. Taklifni tekshiring: sababga mos kelsa — qabul, mos kelmasa — nega rad etganingizni yozing.\n5. Yashil run. Repo linki va ikki run linki.\n\nNima tekshiriladi:\n— README'da jurnal tahlili\n— aniq so'rov (fayl/qator bilan)\n— qabul/rad sababi\n— qizil → yashil.","ru":"Почините красную ленту (pipeline) с Copilot, но решение принимайте сами.\n\n1. Сломайте в KitobShop один тест (например, измените расчёт в сервисе), push — красный.\n2. Выпишите из журнала в README файл, строку и «ожидалось/получено».\n3. Дайте Copilot точный запрос с этими данными; добавьте текст запроса в README.\n4. Проверьте предложение: если совпадает с причиной — принимаете, если нет — напишите, почему отклонили.\n5. Зелёный run. Ссылка на репозиторий и ссылки на два run.\n\nЧто проверяется:\n— разбор журнала в README\n— точный запрос (с файлом/строкой)\n— причина принятия/отказа\n— красный → зелёный."}};
@@ -626,6 +626,7 @@ function DragDropOrder({ items, hints, onSolved, doneText, onChange }) {
   const full = slots.every(s => s !== null);
   const solved = slots.every((s, i) => s === order[i]);
   const wrong = full && !solved;
+  useEffect(() => { if (full) reportCheck({ correct: solved, text: checkOrderText(slots, items) }); }, [slots]); // eslint-disable-line -- F-1112-01: har to'liq joylash = urinish (onSolved'dan oldin)
   useEffect(() => { if (solved) onSolved && onSolved(); }, [solved]); // eslint-disable-line
   useEffect(() => { onChange && onChange(slots); }, [slots]); // eslint-disable-line
   const place = (id, from, slotIdx) => setSt(({ pool, slots }) => {
@@ -1033,6 +1034,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const askGood = () => { setQueryTried(s => new Set(s).add('good')); setPhase('suggest'); setSc(n => n + 1); };
   const toVerify = () => { setPhase('verify'); setSc(n => n + 1); };
   const verify = (isUstaRight) => {
+    reportCheck({ correct: !isUstaRight, text: isUstaRight ? "Copilot to'g'ri" : 'Copilot adashgan' }); // F-1112-01: xato topish — har tanlov = urinish
     if (isUstaRight) { if (achMiss) achMiss.miss(screen); setVerifyWrongPick(true); verifyWrongEver.current = true; return; } // Copilot bu safar ADASHGAN — "to'g'ri" deb tanlash — tuzoq
     setVerifyWrongPick(false);
     setPhase('fix'); setSc(n => n + 1);
@@ -2108,7 +2110,7 @@ export default function AiPipelineProjectLesson({ lang: langProp, onFinished, li
   }, []);
   // Javob kaliti: inline testlar + jang savollari (QUIZ_BANK'dan) — mentor ochganda set_quiz_keys bilan serverga yuklanadi
   const answerKey = { ...INLINE_KEYS, ...Object.fromEntries(QUIZ_BANK.map((q, i) => [`quiz-${i}`, q.correct])) };
-  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
+  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, screenMeta: SCREEN_META, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
   useServerProgress(live, { setScreen, setAnswers, setEarned, earnedRef, startTimeRef, total: TOTAL_SCREENS }); // server-progress: davom / ko'rish / toza boshlash
   const isStudentLive = live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
   // F-1012-03: eng uzoq yetilgan ekran (qayta boshlashda 0) — undan oldingi ekranlarda «Davom etish» qulflanmaydi

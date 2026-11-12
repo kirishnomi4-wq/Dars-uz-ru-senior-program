@@ -9,7 +9,8 @@
 import { useState, useEffect, useRef, useCallback, createContext, useContext } from 'react';
 import { asText, logAttempt, logArena, resetResultDetails, unsealPayload, arenaStart as rdArenaStart, arenaDone as rdArenaDone, arenaPlace as rdArenaPlace, podiumExpected } from './resultDetails.js';
 import { arenaPlaceOf, finishHold } from './podium.js';
-import { tr } from './i18n.js';
+import { tr, getLiveLang } from './i18n.js';
+import { setCheckReporter } from './checkReport.js';
 import {
   LIVE_ENABLED, LIVE_POLL_MS, LIVE_POLL_MAX_MS, LIVE_HEARTBEAT_MS, LIVE_STALE_MS, LMS_SOLO_RECHECK_MS,
   liveRpc, liveGet, liveRead, liveStore, liveClear, nickStore, livePlayers, liveQuizAnswers,
@@ -28,10 +29,26 @@ export const useLiveLock = () => { const c = useContext(LiveGateCtx); return !!(
 
 const STORED_MODES = ['self', 'student', 'mentor', 'solo', 'review'];
 
+// F-1112-01: dars tili serverga (urinish tili → analitikada lms_question_id: uz/ru LMS qatori). Eski server (0018 gacha)
+// `lang` maydonini bilmaydi va 400 validation_failed qaytaradi — shunda o'sha so'rov langsiz qayta yuboriladi; qayta urinish
+// o'tsa (sabab aynan `lang`) bu sahifada `lang` boshqa yuborilmaydi. Boshqa xatolar o'zgarishsiz qaytariladi.
+let langRejected = false;
+async function withLangRetry(send) {
+  if (langRejected) return send(null);
+  try { return await send(getLiveLang()); }
+  catch (e) {
+    if (!(e && e.status === 400 && e.code === 'validation_failed')) throw e;
+    const res = await send(null);
+    langRejected = true;
+    return res;
+  }
+}
+
 /**
  * @param {string} lessonId
  * @param {Record<string, number>|null} answerKey
- * @param {{ liveToken?: string|null, lessonVersion?: string|null, arena?: { total: number, quizMs: number, baseIdx: number } }} [opts]
+ * @param {{ liveToken?: string|null, lessonVersion?: string|null, screenMeta?: Array<{ id?: string }>, arena?: { total: number, quizMs: number, baseIdx: number } }} [opts]
+ *   screenMeta — darsning SCREEN_META (F-1112-01: ekranning doimiy id'si screen_open va tekshiruv urinishlarida)
  *   arena — darsning QUIZ_BANK.length, QUIZ_MS, QUIZ_BASE_IDX (CodeStrike podium o'rnini hisoblash uchun)
  */
 export function useLiveSession(lessonId, answerKey, opts = {}) {
@@ -42,6 +59,13 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
   const preview = previewRef.current;
   const liveToken = preview ? null : (opts.liveToken || null);
   const lessonVersion = opts.lessonVersion || BUILD_LESSON_VERSION; // L1: yig'ma versiyasi (build-lms define) — join/restart/progress'ga
+  // F-1112-01 (Shahzoda §2): ekranning DOIMIY id'si (SCREEN_META[i].id) — screen_open va tekshiruv urinishlari shu id bilan
+  // yoziladi (ekran raqami versiyada siljiydi, id — yo'q). Dars bermasa — eski `s<raqam>` shakli.
+  const screenMetaRef = useRef(null); screenMetaRef.current = Array.isArray(opts.screenMeta) ? opts.screenMeta : null;
+  const screenIdOf = (idx) => {
+    const m = screenMetaRef.current && screenMetaRef.current[idx];
+    return (m && typeof m.id === 'string' && m.id ? m.id : `s${idx}`).slice(0, 64);
+  };
   const keyRef = useRef(answerKey); keyRef.current = answerKey; // javob kaliti — mentor darsni ochganda serverga avto-yuklanadi (SQL shart emas)
   useEffect(() => { unsealPayload(lessonId); }, [lessonId]); // F-0918-07: dars har ochilganda onFinished muhri toza — eski sessiya yuki yangi urinishga o'tmaydi
   const initRef = useRef(undefined);
@@ -194,13 +218,15 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
   // Har almashishda bitta so'rov (server bir xil ekranni takrorlamaydi). by_student — taxmin: jonli darsda mentor hozir ochgan
   // ekranga tushish «mentor o'tkazdi» (false), boshqasi — o'quvchi o'zi. Server bu RPC ni bilmasa (eski server) — 404 dan keyin to'xtaydi.
   const screenOpenRef = useRef({ off: false, last: null });
+  const curScreenRef = useRef(null); // F-1112-01: o'quvchining joriy ekrani — reportCheck urinishni shu ekranga yozadi
   const reportScreen = useCallback((idx) => {
+    if (Number.isInteger(idx) && idx >= 0) curScreenRef.current = idx;
     if (mode === 'mentor' && pin) { liveRpc('advance_session', { p_pin: pin, p_token: tokenRef.current, p_screen: idx }).catch(() => {}); return; }
     const so = screenOpenRef.current;
     if ((mode !== 'student' && mode !== 'solo') || !pin || !playerRef.current || so.off || !lmsTokenRef.current || !Number.isInteger(idx) || idx < 0 || so.last === `${pin}:${idx}`) return;
     so.last = `${pin}:${idx}`;
     const byStudent = !(mode === 'student' && idx === mentorScreenRef.current);
-    liveRpc('screen_open', { p_pin: pin, p_player_id: playerRef.current.id, p_token: playerRef.current.token, p_screen: idx, p_by_student: byStudent, p_client_ts: Date.now() })
+    liveRpc('screen_open', { p_pin: pin, p_player_id: playerRef.current.id, p_token: playerRef.current.token, p_screen: idx, p_screen_id: screenIdOf(idx), p_by_student: byStudent, p_client_ts: Date.now() })
       .catch((e) => { if (e && (e.status === 404 || e.status === 400)) so.off = true; });
   }, [mode, pin]);
   const endSession = useCallback(() => { if (mode === 'mentor' && pin) { liveRpc('end_session', { p_pin: pin, p_token: tokenRef.current }).catch(() => {}); setEnded(true); } }, [mode, pin]);
@@ -208,6 +234,7 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
   // O'quvchi javobini serverga yozish — birinchi javob qotadi (server unique). Jonli VA solo rejimda.
   // Tarmoq uzilsa 3 martagacha qayta uriniladi (javob yo'qolmasin).
   const practiceOffRef = useRef(false); // L3: eski server record_practice'ni bilmasa — to'xtaydi
+  const checkedScreensRef = useRef(new Set()); // F-1112-01: reportCheck urinish yozgan ekranlar — submitAnswer ularga ortiqcha amaliyot yozuvi qo'shmaydi
   const submitAnswer = useCallback((screenIdx, questionId, picked, correct, elapsedMs) => {
     // Arena (quiz-N) javobi — onFinished detallariga (2026-09-10). F-1023-01: jonli VA solo (uyda, mentorsiz) — birinchi o'yin hisob;
     // solo'da serverga YOZILMAYDI (yolg'iz o'quvchi arena_top_1 nishoni/tanga olib qolmasin), faqat natija-JSON (`codestrike`).
@@ -226,6 +253,7 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
     //   practice-N (LMS kompilyator praktikasi tugadi) va INLINE_KEYS -1 («Bajardim») → checked=false, correct=null;
     //   practiceMeta.js dagi kalitli yakuniy ekran → checked=true, correct. Matn (≤300) markaziy olinmaydi — dars bermaydi.
     if (!lmsTokenRef.current || practiceOffRef.current || isArena) return;
+    if (checkedScreensRef.current.has(`${pin}:${playerRef.current.id}:${screenIdx}`)) return; // F-1112-01: bu urinishda ekranning har tekshiruvi allaqachon yozilgan (reportCheck)
     const qid = String(questionId || '');
     const pm = /^practice-(\d+)$/.exec(qid);
     const key = keyRef.current && Object.prototype.hasOwnProperty.call(keyRef.current, qid) ? keyRef.current[qid] : undefined;
@@ -237,6 +265,20 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
       p_checked: kind === 'checked', p_correct: kind === 'checked' ? !!correct : null })
       .catch((e) => { if (e && (e.status === 404 || e.status === 400)) practiceOffRef.current = true; });
   }, [mode, pin, lessonId]);
+
+  // F-1112-01 (Shahzoda §3б/§3в): dars ichidagi tekshiriladigan topshiriq — HAR tekshirish alohida urinish (server 50 tagacha),
+  // to'g'ri/noto'g'ri va o'quvchi matni (≤300, faqat bizning bazada; konnektorga faqat ≥5 o'quvchidagi bir xil xato chiqadi).
+  // Umumiy komponentlar checkReport.reportCheck orqali chaqiradi (bu hook uni ro'yxatdan o'tkazadi). Faqat LMS urinishi (student/solo).
+  const reportCheck = useCallback(({ correct, text = null, id = null, sub = null } = {}) => {
+    const scr = curScreenRef.current;
+    if ((mode !== 'student' && mode !== 'solo') || !pin || !playerRef.current || !lmsTokenRef.current || practiceOffRef.current) return;
+    if (!Number.isInteger(scr) || scr < 0 || scr > 9999 || typeof correct !== 'boolean') return;
+    checkedScreensRef.current.add(`${pin}:${playerRef.current.id}:${scr}`); // urinish (sessiya + o'yinchi) bo'yicha — qayta boshlash yangi kalit
+    liveRpc('record_practice', { p_pin: pin, p_player_id: playerRef.current.id, p_token: playerRef.current.token, p_screen: scr,
+      p_screen_id: (id || (sub ? `${screenIdOf(scr)}:${sub}` : screenIdOf(scr))).slice(0, 64), p_checked: true, p_correct: correct, p_text: typeof text === 'string' && text ? text.slice(0, 300) : null })
+      .catch((e) => { if (e && (e.status === 404 || e.status === 400)) practiceOffRef.current = true; });
+  }, [mode, pin]);
+  useEffect(() => setCheckReporter(reportCheck), [reportCheck]);
 
   // BUG-01 v2: arena o'yini chegarasi (dars QuizArena'si chaqiradi). Faqat natija yoziladigan rejimlarda (student / solo).
   // L6/S10 (25 §2): arena savoli o'quvchi EKRANIDA ko'rsatildi — dars har yangi savolda arenaStart'ni chaqiradi (172 dars, BUG-01 v2).
@@ -409,7 +451,7 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
       if (lessonVersion) body.lesson_version = lessonVersion;
       if (sessionId) body.session_id = sessionId;
       if (keyRef.current && peekTokenRole(tok) === 'mentor') body.answer_key = keyRef.current; // kalitni faqat mentor yuboradi
-      const res = await lmsJoin(tok, body);
+      const res = await withLangRetry((lang) => lmsJoin(tok, lang ? { ...body, lang } : body)); // F-1112-01: dars tili
       if (res && Array.isArray(res.choose)) { setLms({ state: 'choose', choices: res.choose, message: '' }); return; }
       if (applyServerSession(res, tok)) { setLms({ state: 'joined', choices: null, message: '' }); return; }
       setLms({ state: 'error', choices: null, message: '' });
@@ -426,7 +468,7 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
     if (!tok) return false;
     setBusy(true);
     try {
-      const res = await lmsRestart(tok, lessonId, lessonVersion);
+      const res = await withLangRetry((lang) => lmsRestart(tok, lessonId, lessonVersion, lang)); // F-1112-01: dars tili
       return applyServerSession(res, tok);
     } catch (e) {
       setJoinError(String((e && e.message) || tr({ uz: "Qaytadan boshlab bo'lmadi.", ru: 'Не удалось начать заново.' })));
@@ -457,7 +499,7 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
       try {
         const body = { lesson_id: lessonId };
         if (lessonVersion) body.lesson_version = lessonVersion;
-        const res = await lmsJoin(tok, body);
+        const res = await withLangRetry((lang) => lmsJoin(tok, lang ? { ...body, lang } : body)); // F-1112-01: dars tili
         if (!on || !res || res.mode !== 'student') return;
         resetResultDetails(lessonId, { keepArena: true }); // solo urinishning tarixi jonli urinishga aralashmasin; CodeStrike birinchi o'yini qoladi (BUG-01 v2)
         if (applyServerSession(res, tok)) setLiveJoinedNote(true);

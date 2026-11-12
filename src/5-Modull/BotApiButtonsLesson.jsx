@@ -26,7 +26,7 @@ const T = {
 const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', str: '#7DD181', comment: '#6B7585', punct: '#9FB4D8' };
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast, reportCheck, checkOrderText } from '../live/index.js';
 import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
 // F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Telegram Bot API: menyu va tugmali bot» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 7-3). scripts/hw-v2-kartalar.mjs yozadi.
 const HW_V2 = {"id":"7-3","tur":"file","nom":{"uz":"Uyga vazifa: Telegram Bot API: menyu va tugmali bot","ru":"Домашнее задание: Telegram Bot API: меню и бот с кнопками"},"matn":{"uz":"Botingizga ikkinchi turdagi tugmalarni qo'shing.\n\n1. /start javobi ostida reply klaviatura: «📋 Menyu» va «📞 Aloqa».\n2. «📋 Menyu» bosilsa — 3-darsdagi inline tugmalar chiqsin (bot.hears).\n3. «📞 Aloqa» bosilsa — telefon raqami yoki manzil.\n4. /help — bot nima qila olishini 3 qatorda aytsin.\n5. @BotFather'da /setcommands bilan buyruqlar ro'yxatini kiriting.\n6. Telegram skrinshotlari va bot.js (tokensiz) faylini yuklang.\n\nNima tekshiriladi:\n— tokensiz fayl, process.env.BOT_TOKEN\n— bot.hears ikki tugmaga\n— /help\n— fallback oxirida\n— skrinshotda reply klaviatura va buyruqlar ro'yxati.","ru":"Добавьте боту кнопки второго типа.\n\n1. Под ответом на /start — reply-клавиатура: «📋 Меню» и «📞 Контакты».\n2. При нажатии «📋 Меню» появляются inline-кнопки с 3-го урока (bot.hears).\n3. При нажатии «📞 Контакты» — номер телефона или адрес.\n4. /help — бот в 3 строках рассказывает, что умеет.\n5. В @BotFather через /setcommands введите список команд.\n6. Загрузите скриншоты из Telegram и файл bot.js (без токена).\n\nЧто проверяется:\n— файл без токена, process.env.BOT_TOKEN\n— bot.hears на две кнопки\n— /help\n— fallback в конце\n— на скриншоте reply-клавиатура и список команд."}};
@@ -798,6 +798,7 @@ function DragDropOrder({ items, hints, onSolved, doneText, onChange, accept, flo
   const solved = full && orders.some(o => o.every((id, i) => slots[i] === id));
   const wrong = full && !solved;
   const [flowBox, setFlowBox] = useState(null);
+  useEffect(() => { if (full) reportCheck({ correct: solved, text: checkOrderText(slots, items) }); }, [slots]); // eslint-disable-line -- F-1112-01: har to'liq joylash = urinish (onSolved'dan oldin)
   useEffect(() => { if (solved) onSolved && onSolved(); }, [solved]); // eslint-disable-line
   useEffect(() => { onChange && onChange(slots); }, [slots]); // eslint-disable-line
   useEffect(() => {
@@ -2639,7 +2640,7 @@ export default function BotApiButtonsLesson({ lang: langProp, onFinished, liveTo
     upd(); window.addEventListener('resize', upd); return () => window.removeEventListener('resize', upd);
   }, []);
   const answerKey = { ...INLINE_KEYS, ...Object.fromEntries(QUIZ_BANK.map((q, i) => [`quiz-${i}`, q.correct])) };
-  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
+  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, screenMeta: SCREEN_META, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
   useServerProgress(live, { setScreen, setAnswers, setEarned, earnedRef, startTimeRef, total: TOTAL_SCREENS }); // server-progress: davom / ko'rish / toza boshlash
   const isStudentLive = live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
   const locked = isStudentLive && (screen + 1 > live.mentorScreen);

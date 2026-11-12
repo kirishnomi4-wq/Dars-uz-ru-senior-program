@@ -26,7 +26,7 @@ const T = {
 const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', str: '#7DD181', comment: '#6B7585', punct: '#9FB4D8' };
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast, reportCheck, checkOrderText } from '../live/index.js';
 import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
 // F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: AI-agent: idrok et → qaror qil → harakat qil» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 7-10). scripts/hw-v2-kartalar.mjs yozadi.
 const HW_V2 = {"id":"7-10","tur":"file","nom":{"uz":"Uyga vazifa: AI-agent: idrok et → qaror qil → harakat qil","ru":"Домашнее задание: AI-агент: воспринимает → решает → действует"},"matn":{"uz":"aistudio'dagi agentingizga uchinchi tool va yangi chegara qo'shing.\n\n1. arrangeDelivery tool'ini qo'shing: parametrlar — manzil, vaqt.\n2. Chegara: «Buyurtma bazaga yozilmaguncha yetkazib berish chaqirilmasin» va «Manzil bo'lmasa — avval so'ra».\n3. Ikki suhbat: manzilsiz buyurtma (agent manzil so'raydi) va to'liq buyurtma (checkOrder → saveOrder → arrangeDelivery tartibi).\n4. Har suhbat skrinshoti va tool'lar JSON'i (fayl).\n\nNima tekshiriladi:\n— 3 ta tool JSON'da to'g'ri\n— chegara matni\n— manzilsiz holatda tool chaqirilmagan\n— tartib to'g'ri.","ru":"Добавьте своему агенту в aistudio третий tool и новое ограничение.\n\n1. Добавьте tool arrangeDelivery: параметры — manzil, vaqt.\n2. Ограничение: «Не вызывать доставку, пока заказ не записан в базу» и «Если нет адреса — сначала спроси».\n3. Два диалога: заказ без адреса (агент спрашивает адрес) и полный заказ (порядок checkOrder → saveOrder → arrangeDelivery).\n4. Скриншот каждого диалога и JSON tool'ов (файлом).\n\nЧто проверяется:\n— 3 tool в JSON описаны верно\n— текст ограничения\n— без адреса tool не вызван\n— порядок верный."}};
@@ -748,6 +748,7 @@ function DragDropOrder({ items, hints, onSolved, onChange, onWrong, loopFrom, lo
   const full = slots.every(s => s !== null);
   const solved = slots.every((s, i) => s === order[i]);
   const wrong = full && !solved;
+  useEffect(() => { if (full) reportCheck({ correct: solved, text: checkOrderText(slots, items) }); }, [slots]); // eslint-disable-line -- F-1112-01: har to'liq joylash = urinish (onSolved'dan oldin)
   useEffect(() => { if (solved) onSolved && onSolved(); }, [solved]); // eslint-disable-line
   useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]); // eslint-disable-line
   useEffect(() => { onChange && onChange(slots); }, [slots]); // eslint-disable-line
@@ -2534,7 +2535,7 @@ export default function BotAiAgentLesson({ lang: langProp, onFinished, liveToken
   }, []);
   // Javob kaliti: inline testlar + jang savollari (QUIZ_BANK'dan) — mentor ochganda set_quiz_keys bilan serverga yuklanadi
   const answerKey = { ...INLINE_KEYS, ...Object.fromEntries(QUIZ_BANK.map((q, i) => [`quiz-${i}`, q.correct])) };
-  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
+  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, screenMeta: SCREEN_META, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
   useServerProgress(live, { setScreen, setAnswers, setEarned, earnedRef, startTimeRef, total: TOTAL_SCREENS }); // server-progress: davom / ko'rish / toza boshlash
   const isStudentLive = live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
   const locked = isStudentLive && (screen + 1 > live.mentorScreen);

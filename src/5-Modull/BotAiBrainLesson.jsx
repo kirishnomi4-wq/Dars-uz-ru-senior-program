@@ -36,7 +36,7 @@ const tr = (node) => {
 };
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast, reportCheck, checkOrderText } from '../live/index.js';
 import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
 // F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: AI API botning ichida» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 7-6). scripts/hw-v2-kartalar.mjs yozadi.
 const HW_V2 = {"id":"7-6","tur":"file","nom":{"uz":"Uyga vazifa: AI API botning ichida","ru":"Домашнее задание: AI API внутри бота"},"matn":{"uz":"System prompt'ingizni botga ulang.\n\n1. Darsda yozgan system prompt'ni bot handleriga qo'ying; AI kaliti — .env da.\n2. Botga uch xabar yuboring: mavzuga oid savol, mavzudan tashqari savol, menyudagi narx.\n3. Mavzudan tashqari savolga bot chegarada qolsin; narx menyudagi bilan bir xil bo'lsin — bo'lmasa, system prompt'ni aniqlashtiring.\n4. Uch javob skrinshoti va yakuniy system prompt matni (alohida fayl).\n\nNima tekshiriladi:\n— kalit kodda yo'q\n— system prompt'da kim/qanday/nima haqida\n— mavzudan tashqari savolga rad javob\n— narx to'g'ri.","ru":"Подключите свой system prompt к боту.\n\n1. Вставьте system prompt, написанный на уроке, в обработчик бота; ключ AI — в .env.\n2. Отправьте боту три сообщения: вопрос по теме, вопрос не по теме, цену из меню.\n3. На вопрос не по теме бот должен оставаться в рамках; цена — совпадать с меню. Если нет — уточните system prompt.\n4. Скриншоты трёх ответов и итоговый текст system prompt (отдельным файлом).\n\nЧто проверяется:\n— ключа нет в коде\n— в system prompt есть кто/как/о чём\n— на вопрос не по теме — отказ\n— цена верная."}};
@@ -747,6 +747,7 @@ function DragDropOrder({ items, hints, onSolved, doneText, onChange, onWrong }) 
   const full = slots.every(s => s !== null);
   const solved = slots.every((s, i) => s === order[i]);
   const wrong = full && !solved;
+  useEffect(() => { if (full) reportCheck({ correct: solved, text: checkOrderText(slots, items) }); }, [slots]); // eslint-disable-line -- F-1112-01: har to'liq joylash = urinish (onSolved'dan oldin)
   useEffect(() => { if (solved) onSolved && onSolved(); }, [solved]); // eslint-disable-line
   useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]); // eslint-disable-line
   useEffect(() => { onChange && onChange(slots); }, [slots]); // eslint-disable-line
@@ -2539,7 +2540,7 @@ export default function BotAiBrainLesson({ lang: langProp, onFinished, liveToken
   }, []);
   // Javob kaliti: inline testlar + jang savollari (QUIZ_BANK'dan) — mentor ochganda set_quiz_keys bilan serverga yuklanadi
   const answerKey = { ...INLINE_KEYS, ...Object.fromEntries(QUIZ_BANK.map((q, i) => [`quiz-${i}`, q.correct])) };
-  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
+  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, screenMeta: SCREEN_META, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
   useServerProgress(live, { setScreen, setAnswers, setEarned, earnedRef, startTimeRef, total: TOTAL_SCREENS }); // server-progress: davom / ko'rish / toza boshlash
   const isStudentLive = live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
   const locked = isStudentLive && (screen + 1 > live.mentorScreen);

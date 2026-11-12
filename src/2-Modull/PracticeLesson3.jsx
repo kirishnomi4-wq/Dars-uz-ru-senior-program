@@ -22,7 +22,7 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast, reportCheck, checkOrderText } from '../live/index.js';
 import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
 // F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Practice: AI-Agent 2» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 3-11). scripts/hw-v2-kartalar.mjs yozadi.
 const HW_V2 = {"id":"3-11","tur":"compiler","nom":{"uz":"Uyga vazifa: Practice: AI-Agent 2","ru":"Домашнее задание: Practice: AI-Agent 2"},"matn":{"uz":"Mini-do'kon katalogiga \"Sevimli\" qo'shing. Avval rejani yozing, keyin AI-agentga bitta qadam — bitta so'rov bering.\n\n1. script.js tepasiga izoh qilib reja yozing: qanday qadamlar, qaysi tartibda.\n2. Har kartochkada ♥ tugmasi: bosilsa qizil bo'ladi, yana bosilsa oq bo'ladi.\n3. Tepada «Sevimli: N» soni yangilanib tursin.\n4. «Faqat sevimlilar» tugmasi faqat ♥ bosilgan kartochkalarni ko'rsatsin.","ru":"Добавьте в каталог мини-магазина «Избранное». Сначала напишите план, потом давайте AI-агенту по одному запросу на каждый шаг.\n\n1. Вверху script.js напишите план комментарием: какие шаги и в каком порядке.\n2. На каждой карточке — кнопка ♥: при нажатии становится красной, при повторном — снова белой.\n3. Вверху обновляется счётчик «Избранное: N».\n4. Кнопка «Только избранное» показывает только карточки с нажатым ♥."}};
@@ -1601,6 +1601,7 @@ function DragDropOrder({ items, hints, onSolved, onWrong }) {
   const full = slots.every(s => s !== null);
   const solved = slots.every((s, i) => s === order[i]);
   const wrong = full && !solved;
+  useEffect(() => { if (full) reportCheck({ correct: solved, text: checkOrderText(slots, items) }); }, [slots]); // eslint-disable-line -- F-1112-01: har to'liq joylash = urinish (onSolved'dan oldin)
   useEffect(() => { if (solved) onSolved && onSolved(); }, [solved]); // eslint-disable-line
   useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]); // eslint-disable-line
   const place = (id, from, slotIdx) => setSt(({ pool, slots }) => {
@@ -2363,7 +2364,7 @@ export default function PracticeLesson3({ lang: langProp, onFinished, liveToken 
   }, []);
   // Javob kaliti: inline testlar + jang savollari (QUIZ_BANK'dan) — mentor ochganda serverga yuklanadi
   const answerKey = { ...INLINE_KEYS, ...Object.fromEntries(QUIZ_BANK.map((q, i) => [`quiz-${i}`, q.correct])) };
-  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
+  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, screenMeta: SCREEN_META, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
   const isStudentLive = live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
   // F-1012-03: eng uzoq yetilgan ekran (qayta boshlashda 0) — undan oldingi ekranlarda «Davom etish» qulflanmaydi
   useEffect(() => { setMaxReached(m => (screen === 0 && !Object.keys(answers || {}).length) ? 0 : Math.max(m, screen)); }, [screen, answers]);

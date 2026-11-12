@@ -32,7 +32,7 @@ const tr = (node) => {
 const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.uz ?? '') : o;
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast, reportCheck } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QBashorat, QXulosa, QXato, QKirish, QReja, QTushuncha, QTest, QTestJavob, QVoqea, QMustaqil, QKartochka, QYakun, manoliMatn, MANOSIZ_XATO } from '../qolip/index.jsx';
 
@@ -1394,7 +1394,9 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const keyingiK = (ishlar, dan) => { const i = ishlar.findIndex((x, j) => j >= dan && !x.ok); return i >= 0 ? i : ishlar.findIndex(x => !x.ok); };
   const saqlaIsh = () => {
     if (!joriyIsh) return;
-    if (!tekshir({ holat, sabab }, holat + '|' + sabab)) return;
+    const otdiIsh = tekshir({ holat, sabab }, holat + '|' + sabab);
+    reportCheck({ correct: otdiIsh, text: { holat, sabab }, sub: 'ish' }); // F-1112-01: har bosish = urinish
+    if (!otdiIsh) return;
     const ishlar = st.ishlar.map(x => (x.key === joriyIsh.key ? { ...x, holat, sabab: sabab.trim(), ok: true } : x));
     uch(kartaRef.current, refs.current[joriyIsh.key], tr(HOLATLAR[holat].ch), 0, holat === 'bajarildi' ? 'ok' : 'acc');
     const izohlar = st.izohlar || [];
@@ -1409,7 +1411,9 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     // xato nomdan chiqqan bo'lsa (telefon/akkaunt/7+ raqam, takror) — qizil chegara nom maydonida
     const nn = norm(nom);
     const nomdami = (r) => (r.t === 'tel' ? AKKAUNT_RE.test(nn) || TELEFON_RE.test(nn) : r.t === 'raqam' ? RAQAM7_RE.test(nn) && !RAQAM7_RE.test(norm(sabab)) : r.t === 'takror');
-    if (!tekshir({ yangi: true, yangiNom: nom, sabab, roadmapNomlar: st.ishlar.map(x => x.nom) }, 'y|' + nom + '|' + sabab, nomdami)) return;
+    const otdiYangi = tekshir({ yangi: true, yangiNom: nom, sabab, roadmapNomlar: st.ishlar.map(x => x.nom) }, 'y|' + nom + '|' + sabab, nomdami);
+    reportCheck({ correct: otdiYangi, text: { nom, sabab }, sub: 'yangi' }); // F-1112-01: har bosish = urinish
+    if (!otdiYangi) return;
     const el = { key: st.tahrir || ('y' + Date.now()), nom: nom.trim(), sabab: sabab.trim() };
     const yangi = st.tahrir ? st.yangi.map(x => (x.key === st.tahrir ? el : x)) : [...st.yangi, el];
     uch(kartaRef.current, yangiRef.current, el.nom, 0, 'acc');
@@ -2521,7 +2525,7 @@ export default function PmReflectionLesson({ lang: langProp, onFinished, liveTok
   }, []);
   // Javob kaliti: inline testlar + jang savollari (QUIZ_BANK'dan) — mentor ochganda set_quiz_keys bilan serverga yuklanadi
   const answerKey = { ...INLINE_KEYS, ...Object.fromEntries(QUIZ_BANK.map((q, i) => [`quiz-${i}`, q.correct])) };
-  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
+  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, screenMeta: SCREEN_META, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
   useServerProgress(live, { setScreen, setAnswers, setEarned, earnedRef, startTimeRef, total: TOTAL_SCREENS }); // server-progress: davom / ko'rish / toza boshlash
   const isStudentLive = live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
   const locked = isStudentLive && (screen + 1 > live.mentorScreen);

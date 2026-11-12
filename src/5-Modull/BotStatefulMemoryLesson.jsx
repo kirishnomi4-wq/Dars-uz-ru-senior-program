@@ -28,7 +28,7 @@ const T = {
 const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', str: '#7DD181', comment: '#6B7585', punct: '#9FB4D8' };
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast, reportCheck, checkOrderText } from '../live/index.js';
 import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
 // F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Stateful logika: bot eslab qoladi» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 7-4). scripts/hw-v2-kartalar.mjs yozadi.
 const HW_V2 = {"id":"7-4","tur":"file","nom":{"uz":"Uyga vazifa: Stateful logika: bot eslab qoladi","ru":"Домашнее задание: Stateful-логика: бот запоминает"},"matn":{"uz":"Qog'ozdagi loyihangizni kodga aylantiring — Gemini yoki Copilot yordamida.\n\n1. users jadvali: telegram_id, ism, holat.\n2. /start: yangi foydalanuvchi bo'lsa — INSERT, holat ISM_KUTYAPMAN, «Ismingiz nima?».\n3. Holat ISM_KUTYAPMAN bo'lsa, kelgan matn — ism: UPDATE, «Tanishganimdan xursandman, <ism>!».\n4. Botni to'xtatib qayta ishga tushiring — /start endi «Yana salom, <ism>!» desin.\n5. Telegram skrinshotlari (qayta ishga tushirishdan oldin va keyin), bot.js va jadval SQL'i.\n\nNima tekshiriladi:\n— SELECT → INSERT/UPDATE oqimi\n— holat ustunida\n— qayta ishga tushgandan keyin ism eslab qolingan\n— ikki xil foydalanuvchi aralashmaydi (ikkinchi akkaunt bilan sinalgan bo'lsa — bonus).","ru":"Превратите свой проект с бумаги в код — с помощью Gemini или Copilot.\n\n1. Таблица users: telegram_id, ism, holat.\n2. /start: если пользователь новый — INSERT, состояние ISM_KUTYAPMAN, «Как вас зовут?».\n3. Если состояние ISM_KUTYAPMAN, пришедший текст — это имя: UPDATE, «Рад познакомиться, <имя>!».\n4. Остановите бота и запустите снова — теперь /start должен ответить «Снова привет, <имя>!».\n5. Скриншоты из Telegram (до и после перезапуска), bot.js и SQL таблицы.\n\nЧто проверяется:\n— поток SELECT → INSERT/UPDATE\n— состояние хранится в столбце\n— имя запомнилось после перезапуска\n— два разных пользователя не путаются (если проверено со второго аккаунта — бонус)."}};
@@ -828,6 +828,7 @@ function DragDropOrder({ items, hints, slotLabels, onSolved, onChange }) {
     const y1 = b.offsetTop + b.offsetHeight / 2, y2 = a.offsetTop + a.offsetHeight / 2;
     setLoop({ d: `M0 ${y1} C-22 ${y1} -22 ${y2} -2 ${y2}`, y2 });
   }, [solved]); // eslint-disable-line
+  useEffect(() => { if (full) reportCheck({ correct: solved, text: checkOrderText(slots, items) }); }, [slots]); // eslint-disable-line -- F-1112-01: har to'liq joylash = urinish (onSolved'dan oldin)
   useEffect(() => { if (solved) onSolved && onSolved(); }, [solved]); // eslint-disable-line
   useEffect(() => { onChange && onChange(slots); }, [slots]); // eslint-disable-line
   const place = (id, from, slotIdx) => setSt(({ pool, slots }) => {
@@ -2572,7 +2573,7 @@ export default function BotStatefulMemoryLesson({ lang: langProp, onFinished, li
   }, []);
   // Javob kaliti: inline testlar + jang savollari (QUIZ_BANK'dan) — mentor ochganda set_quiz_keys bilan serverga yuklanadi
   const answerKey = { ...INLINE_KEYS, ...Object.fromEntries(QUIZ_BANK.map((q, i) => [`quiz-${i}`, q.correct])) };
-  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
+  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, screenMeta: SCREEN_META, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
   useServerProgress(live, { setScreen, setAnswers, setEarned, earnedRef, startTimeRef, total: TOTAL_SCREENS }); // server-progress: davom / ko'rish / toza boshlash
   const isStudentLive = live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
   const locked = isStudentLive && (screen + 1 > live.mentorScreen);

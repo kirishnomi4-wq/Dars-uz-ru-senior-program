@@ -43,7 +43,7 @@ const ou = (node) => {
 };
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast, reportCheck, checkOrderText } from '../live/index.js';
 import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
 // F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: O'z Skill'imni yozaman» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 8-7). scripts/hw-v2-kartalar.mjs yozadi.
 const HW_V2 = {"id":"8-7","tur":"file","nom":{"uz":"Uyga vazifa: O'z Skill'imni yozaman","ru":"Домашнее задание: Пишу свой Skill"},"matn":{"uz":"Skill'ingizni boshqa odam sinab ko'rsin.\n\n1. Do'stingiz yoki oila a'zongizga Skill nima qilishini aytmasdan, o'z so'zi bilan 3 ta so'rov yozdiring.\n2. Har so'rov natijasini README jadvaliga yozing: so'rov · Skill ishladimi · natija qoidaga mosmi.\n3. Ishlamagan joy bo'yicha description yoki body'ni aniqlashtiring; body'ga bitta misol qo'shing.\n4. O'sha 3 so'rovni qayta sinang.\n5. SKILL.md (oldin va keyin) va 2 ta skrinshot.\n\nNima tekshiriladi:\n— 3 so'rov boshqa odamdan\n— jadval to'ldirilgan\n— aniq tuzatish (qaysi qator)\n— misol qo'shilgan\n— qayta sinov natijasi.","ru":"Пусть ваш Skill проверит другой человек.\n\n1. Не объясняя, что делает Skill, попросите друга или члена семьи написать своими словами 3 запроса.\n2. Запишите результат каждого запроса в таблицу в README: запрос · сработал ли Skill · соответствует ли результат правилу.\n3. Там, где не сработало, уточните description или body; добавьте в body один пример.\n4. Проверьте те же 3 запроса ещё раз.\n5. SKILL.md (до и после) и 2 скриншота.\n\nЧто проверяется:\n— 3 запроса от другого человека\n— таблица заполнена\n— конкретное исправление (какая строка)\n— пример добавлен\n— результат повторной проверки."}};
@@ -689,6 +689,7 @@ function DragDropOrder({ items, hints, onSolved, doneText, onChange, quiet }) {
   const full = slots.every(s => s !== null);
   const solved = slots.every((s, i) => s === order[i]);
   const wrong = full && !solved;
+  useEffect(() => { if (full) reportCheck({ correct: solved, text: checkOrderText(slots, items) }); }, [slots]); // eslint-disable-line -- F-1112-01: har to'liq joylash = urinish (onSolved'dan oldin)
   useEffect(() => { if (solved) onSolved && onSolved(); }, [solved]); // eslint-disable-line
   useEffect(() => { onChange && onChange(slots); }, [slots]); // eslint-disable-line
   const place = (id, from, slotIdx) => setSt(({ pool, slots }) => {
@@ -2330,7 +2331,7 @@ export default function WriteSkillLesson({ lang: langProp, onFinished, liveToken
   }, []);
   // Javob kaliti: inline testlar + jang savollari (QUIZ_BANK'dan) — mentor ochganda set_quiz_keys bilan serverga yuklanadi
   const answerKey = { ...INLINE_KEYS, ...Object.fromEntries(QUIZ_BANK.map((q, i) => [`quiz-${i}`, q.correct])) };
-  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
+  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, screenMeta: SCREEN_META, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
   useServerProgress(live, { setScreen, setAnswers, setEarned, earnedRef, startTimeRef, total: TOTAL_SCREENS }); // server-progress: davom / ko'rish / toza boshlash
   const isStudentLive = live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
   const locked = isStudentLive && (screen + 1 > live.mentorScreen);

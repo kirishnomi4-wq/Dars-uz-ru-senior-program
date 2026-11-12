@@ -9,6 +9,7 @@
 // Qoida-manbalar: DARS_ETALON 184–195 · QOLIP.md (qo'llanma) · lint-qolip q13–q16 (darvoza).
 // ============================================================================
 import React, { useState, useEffect, useRef, useMemo } from 'react';
+import { reportCheck, checkOrderText } from '../live/checkReport.js';
 
 export { qolipRang, fon, NEYTRAL, MODUL_RANGI, HOLAT, RUXSAT_TOKEN } from './tokens.js';
 export { qolipCss } from './qolipCss.js';
@@ -240,6 +241,12 @@ export function QTartib({ items, hints, onSolved, onWrong, onChange, doneText, x
   const full = slots.every(x => x !== null);
   const solved = slots.every((x, i) => x === order[i]);
   const wrong = full && !solved;
+  // F-1112-01 (Shahzoda §3б): hamma joy to'ldi = bitta tekshirish → urinish (to'g'rimi + tanlangan tartib, ≤300). onSolved'dan OLDIN —
+  // sessiya ekranni «tekshiruvli» deb belgilaydi va darsning yakuniy submitAnswer'i ortiqcha amaliyot yozuvini qo'shmaydi.
+  useEffect(() => {
+    if (!full) return;
+    reportCheck({ correct: solved, text: checkOrderText(slots, items) });
+  }, [slots]); // eslint-disable-line
   useEffect(() => { if (solved) onSolved && onSolved(); }, [solved]); // eslint-disable-line
   useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]); // eslint-disable-line
   useEffect(() => { onChange && onChange(slots); }, [slots]); // eslint-disable-line

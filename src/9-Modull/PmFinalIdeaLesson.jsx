@@ -28,7 +28,7 @@ const tr = (node) => {
 const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.uz ?? '') : o;
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast, reportCheck } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QChip, QBashorat, QQadamlar, QXulosa, QXato, QIzoh, QKirish, QReja, QTushuncha, QTest, QTestJavob, QKod, QVoqea, QMustaqil, QKartochka, QYakun } from '../qolip/index.jsx';
 
@@ -1476,7 +1476,8 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     }
     const t = tekshir9(d, nomKerak(ji));
     const imzo = t && `${t.tur}|${d.qiyin.trim()}|${d.qn}`;
-    if (t && (t.q || !(xato && xato.imzo === imzo))) { setXato({ ...t, imzo, kk: Date.now() }); setOchiqK(t.k); return; }
+    if (t && (t.q || !(xato && xato.imzo === imzo))) { reportCheck({ correct: false, text: d, sub: 'g9' }); setXato({ ...t, imzo, kk: Date.now() }); setOchiqK(t.k); return; }
+    reportCheck({ correct: true, text: d, sub: 'g9' }); // F-1112-01: har bosish = urinish
     setXato(null); setOchiqK(null);
     const yangi = { ...doska, [joriy]: { ...d, nom: d.nom.trim(), qiyin: d.qiyin.trim(), saqlandi: true } };
     setDoska(yangi);
@@ -1613,7 +1614,8 @@ const Screen10 = ({ screen, storedAnswer, answers, onAnswer, onNext, onPrev }) =
     if (kichikroq && !negaShu.trim()) { setXato({ k: 'nega', tur: 'bosh', q: true, kk: Date.now() }); return; }
     const t = tekshir10(bol);
     const imzo = t && `${t.tur}|${normYoz(bol[t.k])}`;
-    if (t && (t.q || !(xato && xato.imzo === imzo))) { setXato({ ...t, imzo, kk: Date.now() }); setOchiqB(t.k); return; }
+    if (t && (t.q || !(xato && xato.imzo === imzo))) { reportCheck({ correct: false, text: bol, sub: 'g10' }); setXato({ ...t, imzo, kk: Date.now() }); setOchiqB(t.k); return; }
+    reportCheck({ correct: true, text: bol, sub: 'g10' }); // F-1112-01: har bosish = urinish
     setXato(null); setOchiqB(null);
     const dal = (k) => ({ takror: dd(k) ? dd(k).n : null, belgi: dd(k) ? dd(k).m : null });
     const qy = (k) => ({ matn: dd(k) ? dd(k).qiyin : '', n: dd(k) ? dd(k).qn : null });
@@ -2672,7 +2674,7 @@ export default function PmFinalIdeaLesson({ lang: langProp, onFinished, liveToke
   }, []);
   // Javob kaliti: inline testlar + jang savollari (QUIZ_BANK'dan) — mentor ochganda set_quiz_keys bilan serverga yuklanadi
   const answerKey = { ...INLINE_KEYS, ...Object.fromEntries(QUIZ_BANK.map((q, i) => [`quiz-${i}`, q.correct])) };
-  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
+  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, screenMeta: SCREEN_META, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
   useServerProgress(live, { setScreen, setAnswers, setEarned, earnedRef, startTimeRef, total: TOTAL_SCREENS }); // server-progress: davom / ko'rish / toza boshlash
   const isStudentLive = live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
   const locked = isStudentLive && (screen + 1 > live.mentorScreen);

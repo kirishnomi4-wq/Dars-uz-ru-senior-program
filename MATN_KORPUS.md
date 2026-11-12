@@ -4701,3 +4701,10 @@ Sinf-supurish (19.10): ta'rif-qatori faqat 12-M da topildi (13 qator, 5 dars) �
 - ❌ «Vite + React loyiham (yetkaz) uchun ovqat yetkazib berish saytining Bosh sahifasini qur.»  ✅ «Vite + React loyiham (teztaom) uchun ovqat yetkazib berish saytining Bosh sahifasini qur.»
 **Qoida:** o'ylab topilgan sayt yoki loyiha nomi gapda nom ekani darhol bilinsin. Buyruq fe'li («Yetkaz») yoki oddiy so'z bo'lsa, «… uchun», «…da» bilan gap buzilgan tarjimadek o'qiladi, ruschada esa tarjima qilinmagandek ko'rinadi. Qo'shma, bosh harfli nom olinadi (TezTaom, AvtoIjara); nom gapdagi oddiy so'z bilan takrorlanmaydi («yetkaz … yetkazib berish»).
 🔧 Tekshiruv: `grep -rhoP 'npm create vite@latest [a-z0-9-]+' src` va `grep -rhoP 'title="[^"]+ — [^"]*localhost' src` — nomlar orasida fe'l yoki oddiy so'z yo'q (11.11: 35 dars fayli, 5 nom).
+
+## §RU-MAYDON — ruscha maydonda o'zbekcha matn qolmaydi (F-1112-01, 12.11; analitika tekshiruvida topildi, m11-08 «WinBackDay», 5-ekran)
+
+- ❌ `tr({ uz: 'Tekshirish', ru: 'Tekshirish' })` — ruscha o'quvchi tugmada o'zbekcha so'zni ko'radi  ✅ `tr({ uz: 'Tekshirish', ru: 'Проверить' })`
+**Qoida:** `ru:` maydoniga o'zbekcha matn nusxalanmaydi — tugma yorlig'i ham (Tekshirish → Проверить, Davom etish → Продолжить, Saqlash → Сохранить). Bir xil bo'lishi mumkin faqat atama va nomlar (DNS, Frontend, TezTaom).
+🔧 Tekshiruv: `ru:` qiymati o'zbekcha tugma so'zi bilan boshlanadigan joylar — 172 darsda 0 bo'lishi shart:
+`node -e 'const r=require("./LMS_REESTR.json").darslar,fs=require("fs");for(const x of Object.values(r))for(const m of fs.readFileSync(x.src,"utf8").matchAll(/ru:\s*([\x27"`])(Tekshir|Davom|Bajardim|Saqlash|Keyingi|Orqaga|Yubor|Boshla|Tayyor|Nusxala|Qayta|Bildim)[^\x27"`]*\1/g))console.log(x.src,m[0])'`

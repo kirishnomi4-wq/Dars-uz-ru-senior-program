@@ -38,7 +38,7 @@ const tr = (node) => {
 };
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast, reportCheck } from '../live/index.js';
 import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
 // F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Ma'lumotlar qayerda saqlanadi?» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 5-1). scripts/hw-v2-kartalar.mjs yozadi.
 const HW_V2 = {"id":"5-1","tur":"test","nom":{"uz":"Uyga vazifa: Ma'lumotlar qayerda saqlanadi?","ru":"Домашнее задание: Где хранятся данные?"},"matn":null,"n":5};
@@ -1008,6 +1008,7 @@ const ScreenColDrag = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const tryPlace = (colKey, table) => {
     const col = CDRAG_COLS.find(c => c.k === colKey);
     if (!col || state.placed[colKey]) return;
+    reportCheck({ correct: col.to === table, text: `${colKey} → ${table}` }); // F-1112-01: har tashlash = urinish
     if (col.to === table) setState(s => ({ placed: { ...s.placed, [colKey]: table }, wrong: null }));
     else { setState(s => ({ ...s, wrong: colKey })); setTimeout(() => setState(s => (s.wrong === colKey ? { ...s, wrong: null } : s)), 500); }
   };
@@ -2667,7 +2668,7 @@ export default function DataIntroLesson({ lang: langProp, onFinished, liveToken 
   }, []);
   // Javob kaliti: inline testlar + jang savollari (QUIZ_BANK'dan) — mentor ochganda set_quiz_keys bilan serverga yuklanadi
   const answerKey = { ...INLINE_KEYS, ...Object.fromEntries(QUIZ_BANK.map((q, i) => [`quiz-${i}`, q.correct])) };
-  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
+  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, screenMeta: SCREEN_META, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
   useServerProgress(live, { setScreen, setAnswers, setEarned, earnedRef, startTimeRef, total: TOTAL_SCREENS }); // server-progress: davom / ko'rish / toza boshlash
   const isStudentLive = live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
   // F-1012-03: eng uzoq yetilgan ekran (qayta boshlashda 0) — undan oldingi ekranlarda «Davom etish» qulflanmaydi

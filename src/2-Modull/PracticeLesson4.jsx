@@ -124,7 +124,7 @@ const fmtCode = (s) => (typeof s === 'string' && s.includes('`'))
 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast, reportCheck, checkOrderText } from '../live/index.js';
 import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
 // F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Practice: MVP tayyor» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 3-12). scripts/hw-v2-kartalar.mjs yozadi.
 const HW_V2 = {"id":"3-12","tur":"compiler","nom":{"uz":"Uyga vazifa: Practice: MVP tayyor","ru":"Домашнее задание: Practice: MVP готов"},"matn":{"uz":"Do'koningizga \"Buyurtma berish\" tugmasini qo'shing.\n\n1. Savat bo'sh bo'lsa, tugma bosilganda «Savat bo'sh» chiqsin.\n2. Savatda mahsulot bo'lsa: «Buyurtma qabul qilindi: N so'm» chiqsin, savat tozalanib, jami 0 bo'lsin.\n3. Jami doim son bo'lib hisoblansin — «03000» kabi xato chiqmasin.\n4. Agar AI xato qilsa, unga nima noto'g'ri va qanday bo'lishi kerakligini yozing; o'sha so'rovni script.js tepasiga izoh qilib qo'ying.","ru":"Добавьте в свой магазин кнопку «Оформить заказ».\n\n1. Если корзина пуста, при нажатии появляется «Корзина пуста».\n2. Если в корзине есть товары: появляется «Заказ принят: N сум», корзина очищается, итог становится 0.\n3. Итог всегда считается как число — ошибок вроде «03000» быть не должно.\n4. Если AI ошибётся — напишите ему, что не так и как должно быть; этот запрос вставьте комментарием вверху script.js."}};
@@ -1512,6 +1512,7 @@ function DragDropOrder({ items, hints, onSolved, onWrong }) {
   const full = slots.every(s => s !== null);
   const solved = slots.every((s, i) => s === order[i]);
   const wrong = full && !solved;
+  useEffect(() => { if (full) reportCheck({ correct: solved, text: checkOrderText(slots, items) }); }, [slots]); // eslint-disable-line -- F-1112-01: har to'liq joylash = urinish (onSolved'dan oldin)
   useEffect(() => { if (solved) onSolved && onSolved(); }, [solved]); // eslint-disable-line
   useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]); // eslint-disable-line
   const place = (id, from, slotIdx) => setSt(({ pool, slots }) => {
@@ -2259,7 +2260,7 @@ export default function PracticeLesson4({ lang: langProp, onFinished, liveToken 
 
   // Javob kaliti: inline testlar + jang savollari (QUIZ_BANK'dan) — mentor ochganda serverga yuklanadi
   const answerKey = { ...INLINE_KEYS, ...Object.fromEntries(QUIZ_BANK.map((q, i) => [`quiz-${i}`, q.correct])) };
-  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
+  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, screenMeta: SCREEN_META, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
   const isStudentLive = live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
   // F-1012-03: eng uzoq yetilgan ekran (qayta boshlashda 0) — undan oldingi ekranlarda «Davom etish» qulflanmaydi
   useEffect(() => { setMaxReached(m => (screen === 0 && !Object.keys(answers || {}).length) ? 0 : Math.max(m, screen)); }, [screen, answers]);
