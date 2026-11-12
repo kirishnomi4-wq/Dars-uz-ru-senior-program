@@ -1,10 +1,17 @@
-# DAVOM — analitika (holat: 11.11 15:09 — 172 DARS CRM'DA YANGI VERSIYADA, 344/344 qator ✓; keyingi: muhrla → kalitlar → 37 → v2 on)
+# DAVOM — analitika (holat: 11.11 15:35 — 172 dars CRM'da, muhr + kalitlar ✓, 37 Abdullohga yuborildi; KUTILMOQDA: Abdulloh v2 on → kuzatuv)
+
+> 🔴🔴🔴 **12.11 12:40 — YANGI SEANS SHU YERDAN: F-1112-01 (Shahzoda «MCP'da chiqmadi»).** Tashxis: prod `result_schema_v2: off` + konnektor ulanmagan (ikkalasi Abdulloh) · bizda qolib ketganlar: `lms_question_id`, matn ≤300, har «Tekshirish» urinishi, skipped, Learn id, to'liq o'rin teng. JURNAL 12.11 11:48 va 12:4x.
+> **Qilindi:** server `0018` (lesson_lms_map, attempts.lang, view'lar + 4 yangi) commit `72d3fd2e` → staging `aa94ec68` (18/18, staging-check 18 ✓), staging'ga xarita 344 + amaliyot kalitlari 286. **Prod ▶ YO'Q** (foydalanuvchi; keyin prod'ga `lms-xarita --yukla` — foydalanuvchi `!`). 44-hujjat Abdullohga yuborildi 12:34 — muddat (v2 on, konnektor) kutilmoqda.
+> **12.11 14:50 holat:** prod v2 **on** (Abdulloh, 12:44). 2-bosqich KOD TAYYOR, commit YO'Q: src/live (lang, screenMeta, reportCheck), QTartib, 172 dars `screenMeta`, DragDropOrder 34 dars, qo'lda 31 tahrir/24 dars (moslash, PM matn), WinBackDay ru. Tekshiruv: darvozalar (yangi topilma 0), e2e 12/12 + 8/8, smoke 344/344, avto-yakun uz/ru 172/172. **Keyingi:** commit (ruxsat) → server 0018 prod ▶ → `lms-xarita --yukla` prod → 172 dars paket + yuklash → muhr + kalitlar. Konnektor — Abdulloh (yangi rol). JURNAL 12.11.
+> **Eslatma:** staging'ga faqat toza worktree'dan (`git worktree add --detach <scratchpad>/wt <sha>`) — ishchi papkada bridge seansining commitsiz `server/data/lesson-catalog.json` (193) bor. 3 darsda SAVOL_KALITLARI eski versiyada (F-1111 seansi).
+
+> 🔴🔴🔴 **11.11 19:50 — AVVAL `feedback/F-1111-05-damage/DAVOM.md` (mentor fidbeklari F-1111-03/04/05).** 03 to'liq yopildi; 04+05 commit `2b45fcf5`, CRM yuklash auto-rejim klassifikatori tufayli to'xtagan — ruxsat kerak, keyin muhr → kalitlar → Learn ru 3 savol.
 
 > 🔴🔴🔴 **YANGI SEANS SHU YERDAN (11.11 15:09).** **172 dars (2–14-Modul) CRM'da yangi versiyada** — 344/344 qator Active + yangi fayl (yakuniy o'qish 15:09),
 > har modulda bayt ✓ (paket `yuklash-20261111-prod`, commit `a9823949`). 6-M 11 ham o'tdi (R04 rad etmadi). Jurnal: `crm-yuklash-20261110/YUKLASH-JURNAL.md` 12:38 → 15:09.
 > Yo'lda: 4-M 14 ru «Failed to fetch» (CRM saqlagan, tekshirildi) · zanjir skript xatosi (kv eski holat, 5-M faqat 15-dars) — tuzatildi, zarar yo'q.
 > **15:24 bajarildi:** shell md5 audit 344/344 ✓ · csv 172/172 · muhr `47590dc2` (lms-farq: o'zgargan 0) · savol kalitlari `686f034c` (faqat versiya +1) · 37-hujjat yangilandi (§6 B07 — foydalanuvchi o'chirishi mumkin).
-> **Qolgan:** prod kalitlar `--yukla` (foydalanuvchi `!`, kutilgan javob «yuklandi: 2565 qator») → 37 Abdullohga (foydalanuvchi) → Abdulloh v2 on → birinchi dars kuzatuvi.
+> ✅ prod kalitlar yuklandi (foydalanuvchi `!`, «yuklandi: 2565 qator»). ✅ 37 Abdullohga yuborildi (foydalanuvchi, 11.11 ~15:35). **Kutilmoqda:** Abdulloh v2 on → health `on` → birinchi dars kuzatuvi (`server/tools/v2-kuzatuv.mjs`, foydalanuvchi `!`).
 > **B07 iltimosi** (nishon bayrami / ro'yxat oynasi — tekshiruv kutsin/yopsin) 37-hujjat §6 ga qo'shildi (foydalanuvchi «keyin yozamiz» degan; yuborishdan oldin o'chirishi mumkin). CRM «Браузер» natijalari 5–14-M — soatlab, keyin yig'iladi.
 > Hujjatlar commit'i (DAVOM, JURNAL, 37–43, crm-yuklash asboblari, `dump/` siz) — foydalanuvchi 15:1x «xop maqull» bilan.
 
