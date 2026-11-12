@@ -231,6 +231,8 @@ const FeedbackBlock = ({ show, isCorrect, neutral, children }) => {
 
 // JONLI JAVOB KALITI — har SCORED ekranning correctIdx'idan (praktika -1 sentinel). Kalit-to'g'riligini ⚡ Jonli tekshiradi.
 const INLINE_KEYS = { s4: 2, s5b: 1, s9: 0, s15: 0, practice: -1 }; // F-1021-07: s12 (404 testi) olindi
+// F-1112-03: podium va natija halqasi — faqat testlar (LMS kabi: -1 amaliyot test emas); testi yo'q darsda — amaliyot ekranlari
+const TEST_IDX = (() => { const t = SCORED_IDX.filter(i => INLINE_KEYS[SCREEN_META[i].id] !== -1); return t.length ? t : SCORED_IDX; })();
 const MSTATS_COLORS = ['#019ACB', '#8B5CF6', '#E8A13A', '#E0559A'];
 const RECAP_NEED_PCT = 60;
 const RECAP_GOOD_PCT = 75;
@@ -2066,9 +2068,9 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
     tick();
     return () => { on = false; clearTimeout(t); };
   }, [isLive, livePin]);
-  const totalQ = SCORED_IDX.length;
+  const totalQ = TEST_IDX.length;
   const board = players.map(p => {
-    const mine = rows.filter(a => a.player_id === p.id && SCORED_IDX.includes(a.screen_idx));
+    const mine = rows.filter(a => a.player_id === p.id && TEST_IDX.includes(a.screen_idx));
     const okCount = mine.filter(a => a.correct).length;
     const time = mine.reduce((s, a) => s + (a.elapsed_ms || 0), 0);
     return { id: p.id, nickname: p.nickname, okCount, time };
@@ -2076,7 +2078,7 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   const fmtT = (ms) => `${(ms / 1000).toFixed(1)}s`;
   const top3 = board.slice(0, 3);
   const myIdx = live && live.playerId ? board.findIndex(b => b.id === live.playerId) : -1;
-  const selfCorrect = SCORED_IDX.filter(i => answers[i]?.correct).length;
+  const selfCorrect = TEST_IDX.filter(i => answers[i]?.correct).length;
   return (
     <Stage eyebrow={tr({ uz: 'Natijalar', ru: 'Результаты' })} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
@@ -2114,7 +2116,7 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
                   <div key={b.id} className={`pod-row ${live.playerId === b.id ? 'me' : ''}`}>
                     <span className="mono pod-rank">{i + 1}</span>
                     <span className="pod-row-name">{b.nickname}</span>
-                    <span className="pod-row-dots">{SCORED_IDX.map(q => { const a = rows.find(r => r.player_id === b.id && r.screen_idx === q); return <span key={q} className={`pod-dot ${a ? (a.correct ? 'ok' : 'bad') : ''}`} title={Q_LABELS[q]} />; })}</span>
+                    <span className="pod-row-dots">{TEST_IDX.map(q => { const a = rows.find(r => r.player_id === b.id && r.screen_idx === q); return <span key={q} className={`pod-dot ${a ? (a.correct ? 'ok' : 'bad') : ''}`} title={Q_LABELS[q]} />; })}</span>
                     <span className="mono pod-row-score">{b.okCount}/{totalQ}</span>
                     <span className="mono pod-row-time">{fmtT(b.time)}</span>
                   </div>

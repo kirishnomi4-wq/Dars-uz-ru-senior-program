@@ -4708,3 +4708,11 @@ Sinf-supurish (19.10): ta'rif-qatori faqat 12-M da topildi (13 qator, 5 dars) �
 **Qoida:** `ru:` maydoniga o'zbekcha matn nusxalanmaydi — tugma yorlig'i ham (Tekshirish → Проверить, Davom etish → Продолжить, Saqlash → Сохранить). Bir xil bo'lishi mumkin faqat atama va nomlar (DNS, Frontend, TezTaom).
 🔧 Tekshiruv: `ru:` qiymati o'zbekcha tugma so'zi bilan boshlanadigan joylar — 172 darsda 0 bo'lishi shart:
 `node -e 'const r=require("./LMS_REESTR.json").darslar,fs=require("fs");for(const x of Object.values(r))for(const m of fs.readFileSync(x.src,"utf8").matchAll(/ru:\s*([\x27"`])(Tekshir|Davom|Bajardim|Saqlash|Keyingi|Orqaga|Yubor|Boshla|Tayyor|Nusxala|Qayta|Bildim)[^\x27"`]*\1/g))console.log(x.src,m[0])'`
+
+## §PROMPT-HIMOYA — AI'ga beriladigan promptda texnologiya va «kod bo'lmasa — so'ra» bor (F-1112-02, 12.11; mentor: m3-07 prompti Antigravity'da CRUD o'rniga yangi TypeScript loyiha qurdi)
+
+- ❌ `React loyihamga (robo-games) ikkita amal qo'sh. … O'zgargan fayllarni to'liq qaytar.\nMana kodim:\n{App.jsx va GameCard.jsx kodini shu yerga qo'ying}` — o'quvchi joy-belgini to'ldirmasa yoki prompt papka bilan ishlaydigan agentga berilsa, AI loyihani o'zi o'ylab topadi (TypeScript, boshqa mavzu)
+- ✅ `… O'zgargan fayllarni to'liq qaytar.\nLoyiha: Vite + React, JavaScript (.jsx) — TypeScript ishlatma, yangi loyiha yaratma.\nKodim pastda bo'lmasa — o'ylab topma, avval kodni so'ra.\nMana kodim:\n{…}` (RU: «Проект: Vite + React, JavaScript (.jsx) — без TypeScript, новый проект не создавай. / Если моего кода ниже нет — не придумывай, сначала попроси код.»)
+**Qoida:** o'quvchi AI'ga yuboradigan har promptda (1) texnologiya aniq: oddiy HTML/CSS(/JS), Vite + React (.jsx) yoki Node.js + Express — «TypeScript ishlatma, yangi loyiha yaratma»; (2) «Kodim pastda bo'lmasa — o'ylab topma, avval kodni so'ra». Prompt Gemini chatida ham, papka bilan ishlaydigan agentda ham bir xil natija bersin.
+🔧 Tekshiruv: «Mana kodim» bor, lekin himoyasiz promptlar — 172 darsda 0:
+`node -e 'const r=require("./LMS_REESTR.json").darslar,fs=require("fs");let n=0;for(const x of Object.values(r)){const s=fs.readFileSync(x.src,"utf8");const a=(s.match(/Mana (hozirgi )?kodim:/g)||[]).length,b=(s.match(/avval kodni so.ra/g)||[]).length;if(a>b){n++;console.log(x.src,a,b)}}console.log("himoyasiz:",n)'`

@@ -38,7 +38,8 @@ export function checkOrderText(slots, items) {
 
 /**
  * Bitta tekshirish = bitta urinish.
- * @param {{ correct: boolean, text?: string|object|null, id?: string, sub?: string }} r
+ * @param {{ correct: boolean, text?: string|object|null, id?: string, sub?: string, screen?: number }} r
+ *   screen — ekran raqami aniq berilsa (masalan ekrandan chiqishda), joriy ekran o'rniga shu ishlatiladi.
  *   id — to'liq topshiriq id'si; berilmasa joriy ekranning SCREEN_META id'si, `sub` bo'lsa unga «:sub» qo'shiladi
  *   (bir ekranda bir nechta maydon — masalan pitch bo'laklari).
  * @returns {boolean} yuborishga uzatildimi (sessiya bor-yo'qligi; tarmoq natijasi emas)
@@ -46,6 +47,7 @@ export function checkOrderText(slots, items) {
 export function reportCheck(r) {
   if (!reporter || !r || typeof r.correct !== 'boolean') return false;
   const sub = typeof r.sub === 'string' || typeof r.sub === 'number' ? String(r.sub).slice(0, 24) : null;
-  try { reporter({ correct: r.correct, text: checkText(r.text), id: typeof r.id === 'string' && r.id ? r.id.slice(0, 64) : null, sub }); return true; }
+  const screen = Number.isInteger(r.screen) && r.screen >= 0 ? r.screen : null;
+  try { reporter({ correct: r.correct, text: checkText(r.text), id: typeof r.id === 'string' && r.id ? r.id.slice(0, 64) : null, sub, screen }); return true; }
   catch { return false; }
 }

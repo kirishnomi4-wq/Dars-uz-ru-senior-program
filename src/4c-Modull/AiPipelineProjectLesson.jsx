@@ -250,6 +250,8 @@ const RcFlow = ({ items, sep = '→' }) => (
 // ⚡ JONLI: javob kaliti (ekran id → to'g'ri variant indeksi). `s15` — final (picked 0/1 sentinel, correct maydoni haqiqiy). `practice: -1` — sentinel (variant yo'q).
 // ⚠️ Variant TARTIBI/qiymatlari 🎓 Metodist + ⚡ Jonli rollari tomonidan qayta balanslanadi — shu map ular bilan sinxron bo'lsin.
 const INLINE_KEYS = { s15: 0, practice: -1 }; // F-1015-355: s4, s8, s10, s14 olindi
+// F-1112-03: podium va natija halqasi — faqat testlar (LMS kabi: -1 amaliyot test emas); testi yo'q darsda — amaliyot ekranlari
+const TEST_IDX = (() => { const t = SCORED_IDX.filter(i => INLINE_KEYS[SCREEN_META[i].id] !== -1); return t.length ? t : SCORED_IDX; })();
 // 📖 RECAPS — har SCORED test uchun 3 karta (kalit = ekran INDEKSI). Matn 🎓 Metodist tomonidan sayqallanadi.
 const RECAPS = {
   4: {
@@ -1739,9 +1741,9 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
     return () => { on = false; clearTimeout(t); };
   }, [isLive, livePin]);
 
-  const totalQ = SCORED_IDX.length;
+  const totalQ = TEST_IDX.length;
   const board = players.map(p => {
-    const mine = rows.filter(a => a.player_id === p.id && SCORED_IDX.includes(a.screen_idx));
+    const mine = rows.filter(a => a.player_id === p.id && TEST_IDX.includes(a.screen_idx));
     const okCount = mine.filter(a => a.correct).length;
     const time = mine.reduce((s, a) => s + (a.elapsed_ms || 0), 0);
     return { id: p.id, nickname: p.nickname, okCount, time };
@@ -1749,7 +1751,7 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   const fmtT = (ms) => `${(ms / 1000).toFixed(1)}s`;
   const top3 = board.slice(0, 3);
   const myIdx = live && live.playerId ? board.findIndex(b => b.id === live.playerId) : -1;
-  const selfCorrect = SCORED_IDX.filter(i => answers[i]?.correct).length;
+  const selfCorrect = TEST_IDX.filter(i => answers[i]?.correct).length;
 
   return (
     <Stage eyebrow={tr({ uz: 'Natijalar', ru: 'Результаты' })} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} /></>}>
@@ -1788,7 +1790,7 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
                   <div key={b.id} className={`pod-row ${live.playerId === b.id ? 'me' : ''}`}>
                     <span className="mono pod-rank">{i + 1}</span>
                     <span className="pod-row-name">{b.nickname}</span>
-                    <span className="pod-row-dots">{SCORED_IDX.map(q => { const a = rows.find(r => r.player_id === b.id && r.screen_idx === q); return <span key={q} className={`pod-dot ${a ? (a.correct ? 'ok' : 'bad') : ''}`} title={tr(Q_LABELS[q])} />; })}</span>
+                    <span className="pod-row-dots">{TEST_IDX.map(q => { const a = rows.find(r => r.player_id === b.id && r.screen_idx === q); return <span key={q} className={`pod-dot ${a ? (a.correct ? 'ok' : 'bad') : ''}`} title={tr(Q_LABELS[q])} />; })}</span>
                     <span className="mono pod-row-score">{b.okCount}/{totalQ}</span>
                     <span className="mono pod-row-time">{fmtT(b.time)}</span>
                   </div>

@@ -269,8 +269,8 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
   // F-1112-01 (Shahzoda §3б/§3в): dars ichidagi tekshiriladigan topshiriq — HAR tekshirish alohida urinish (server 50 tagacha),
   // to'g'ri/noto'g'ri va o'quvchi matni (≤300, faqat bizning bazada; konnektorga faqat ≥5 o'quvchidagi bir xil xato chiqadi).
   // Umumiy komponentlar checkReport.reportCheck orqali chaqiradi (bu hook uni ro'yxatdan o'tkazadi). Faqat LMS urinishi (student/solo).
-  const reportCheck = useCallback(({ correct, text = null, id = null, sub = null } = {}) => {
-    const scr = curScreenRef.current;
+  const reportCheck = useCallback(({ correct, text = null, id = null, sub = null, screen = null } = {}) => {
+    const scr = Number.isInteger(screen) ? screen : curScreenRef.current;
     if ((mode !== 'student' && mode !== 'solo') || !pin || !playerRef.current || !lmsTokenRef.current || practiceOffRef.current) return;
     if (!Number.isInteger(scr) || scr < 0 || scr > 9999 || typeof correct !== 'boolean') return;
     checkedScreensRef.current.add(`${pin}:${playerRef.current.id}:${scr}`); // urinish (sessiya + o'yinchi) bo'yicha — qayta boshlash yangi kalit

@@ -4236,3 +4236,19 @@ Relizda ko'rindi: `lms/html-compiler.jsx` (07.09) qotib qolgan, manba 23 marta o
 3. **To'g'ri javob sezilmaydi:** eng uzun emas (ikkinchisidan 1,3× dan oshmaydi); strelka, tire, qavs, backtick, katta harf, texnik atama faqat to'g'ri variantda turmaydi (`lint-tell`).
 4. **To'g'ri javob o'rinlari 3/3/3/3** — qayta yozishda `correct` indeksi saqlanadi, variantlar joylashtiriladi. Variantlar ru matni bilan ({uz, ru}); faqat kod variantlari oddiy satr.
 **Vosita:** `feedback/F-1019-02-codestrike/vositalar/` — `qz.py`/`qz2.mjs`/`qz3.mjs` (o'lchov), `tekshir.mjs <N>` (me'yor), `qolla.mjs` (bank yozuvini almashtirish). **Holat (19.10):** LMS 2–14 qo'llandi (1609 savol / 2076, gates toza).
+
+## 12-CI. 🏆 224-QONUN: DARS PODIUMI VA NATIJA HALQASI FAQAT TESTLARNI SANAYDI — LMS BILAN BIR XIL (2026-11-12, F-1112-03)
+
+**Nega.** Mentor fidbeki (m4-06 PostgreSQL CRUD, 11.11): o'quvchi 4 testni to'g'ri yechgan, yakuniy amaliyot (`s15`, kaliti `-1`) jonli darsda qabul
+qilinmagan — dars podiumi uni «4/5», kulrang nuqta va 3-o'rin deb ko'rsatdi, LMS esa (09.11 dan amaliyot test emas) «4/4, `all_correct`, `top_1`».
+Bir dars ichida ikki xil hisob — mentor ham, o'quvchi ham noto'g'ri xulosa qiladi.
+
+**Qoida.**
+1. Podium («Kim g'olib?», «To'liq reyting»: `totalQ`, `okCount`, nuqtalar) va natija halqasi (`selfCorrect`) `TEST_IDX` bo'yicha sanaydi:
+   `SCORED_IDX` dan `INLINE_KEYS` qiymati `-1` bo'lgan (amaliyot) ekranlar chiqariladi — LMS/CRM hisobi bilan aynan bir xil.
+2. Dars testsiz bo'lsa (ball ekranlari faqat amaliyot) — `TEST_IDX = SCORED_IDX` (podium bo'sh «0/0» bo'lmasin).
+3. Amaliyot natijasi alohida ko'rinadi (yutuq, amaliyot yozuvi `record_practice`) — test hisobiga aralashmaydi.
+
+**Tekshiruv.** 132 darsda (INLINE_KEYS'da `-1` bor) + namuna-skeletda `TEST_IDX`; reestrdagi qolgan 40 darsda `-1` yo'q (hisob farqi yo'q).
+Reestrdagi `-1` amaliyotli darsda eski andaza (`SCORED_IDX.map(q => { const a = rows.find`) = 0 bo'lishi shart.
+e2e (lokal): m4-06, A — 4 test + amaliyot, B — 4 test → podium ikkalasida 4/4, 4 nuqta.

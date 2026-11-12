@@ -943,8 +943,8 @@ const A2_TEKSHIR = [
   { uz: "Kodda `map` va `filter` bormi, `push` yoki `splice` yo'qmi?", ru: 'В коде есть `map` и `filter`, нет `push` или `splice`?' }
 ];
 const a2Prompt = () => tr({
-  uz: `React loyihamga (robo-games) ikkita amal qo'sh. games ro'yxati App.jsx da useState'da turibdi.\n1. Har kartochkada «🔥 TOP» tugmasi: bosilganda faqat shu o'yinning top qiymati almashsin — games.map bilan: g.id === id ? { ...g, top: !g.top } : g.\n2. Har kartochkada «✕» tugmasi: avval confirm("Rostdan o'chirilsinmi?") bilan so'rasin, keyin games.filter(g => g.id !== id) bilan o'chirsin.\nState'ni to'g'ridan o'zgartirma (push, splice yo'q) — har safar setGames'ga yangi ro'yxat ber. Funksiyalarni GameCard'ga props bilan uzat.\nHar bo'limga qisqa izoh yoz. O'zgargan fayllarni to'liq qaytar.\nMana kodim:\n{App.jsx va GameCard.jsx kodini shu yerga qo'ying}`,
-  ru: `Добавь в мой React-проект (robo-games) два действия. Список games лежит в useState в App.jsx.\n1. На каждой карточке кнопка «🔥 TOP»: по нажатию меняется значение top только у этой игры — через games.map: g.id === id ? { ...g, top: !g.top } : g.\n2. На каждой карточке кнопка «✕»: сначала спрашивает confirm("Точно удалить?"), потом удаляет через games.filter(g => g.id !== id).\nНе меняй state напрямую (без push и splice) — каждый раз передавай в setGames новый список. Функции передай в GameCard через props.\nК каждому разделу — короткий комментарий. Измененные файлы верни целиком.\nВот мой код:\n{вставьте сюда код App.jsx и GameCard.jsx}`
+  uz: `React loyihamga (robo-games) ikkita amal qo'sh. games ro'yxati App.jsx da useState'da turibdi.\n1. Har kartochkada «🔥 TOP» tugmasi: bosilganda faqat shu o'yinning top qiymati almashsin — games.map bilan: g.id === id ? { ...g, top: !g.top } : g.\n2. Har kartochkada «✕» tugmasi: avval confirm("Rostdan o'chirilsinmi?") bilan so'rasin, keyin games.filter(g => g.id !== id) bilan o'chirsin.\nState'ni to'g'ridan o'zgartirma (push, splice yo'q) — har safar setGames'ga yangi ro'yxat ber. Funksiyalarni GameCard'ga props bilan uzat.\nHar bo'limga qisqa izoh yoz. O'zgargan fayllarni to'liq qaytar.\nLoyiha: Vite + React, JavaScript (.jsx) — TypeScript ishlatma, yangi loyiha yaratma.\nKodim pastda bo'lmasa — o'ylab topma, avval kodni so'ra.\nMana kodim:\n{App.jsx va GameCard.jsx kodini shu yerga qo'ying}`,
+  ru: `Добавь в мой React-проект (robo-games) два действия. Список games лежит в useState в App.jsx.\n1. На каждой карточке кнопка «🔥 TOP»: по нажатию меняется значение top только у этой игры — через games.map: g.id === id ? { ...g, top: !g.top } : g.\n2. На каждой карточке кнопка «✕»: сначала спрашивает confirm("Точно удалить?"), потом удаляет через games.filter(g => g.id !== id).\nНе меняй state напрямую (без push и splice) — каждый раз передавай в setGames новый список. Функции передай в GameCard через props.\nК каждому разделу — короткий комментарий. Измененные файлы верни целиком.\nПроект: Vite + React, JavaScript (.jsx) — без TypeScript, новый проект не создавай.\nЕсли моего кода ниже нет — не придумывай, сначала попроси код.\nВот мой код:\n{вставьте сюда код App.jsx и GameCard.jsx}`
 });
 const ScreenTopOchir = ({ screen, onNext, onPrev }) => {
   const [list, setList] = useState(() => GAMES.slice());
@@ -1223,6 +1223,8 @@ const Q_LABELS = { 5: { uz: '1 — Yakuniy', ru: '1 — Финал' } }; // F-10
 // Server-baholash javob kaliti (mentor darsni ochganda avto-yuklanadi). SCORED_IDX=[4,7,12,16,18] ekranlari
 // correctIdx'laridan 1:1 (ekran id kaliti bilan). s14 = -1 (yozma yakuniy), practice = -1 (jonli praktika sentinel).
 const INLINE_KEYS = { s14: -1 }; // F-1015-344: MCQ s4, s5b, s8, s12 olindi
+// F-1112-03: podium va natija halqasi — faqat testlar (LMS kabi: -1 amaliyot test emas); testi yo'q darsda — amaliyot ekranlari
+const TEST_IDX = (() => { const t = SCORED_IDX.filter(i => INLINE_KEYS[SCREEN_META[i].id] !== -1); return t.length ? t : SCORED_IDX; })();
 
 // ===== ⚡ CODE STRIKE — CTA kapsulasi + ARENA =====
 const QUIZ_MS = 15000;
@@ -1696,9 +1698,9 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
     return () => { on = false; clearTimeout(t); };
   }, [isLive, livePin]);
 
-  const totalQ = SCORED_IDX.length;
+  const totalQ = TEST_IDX.length;
   const board = players.map(p => {
-    const mine = rows.filter(a => a.player_id === p.id && SCORED_IDX.includes(a.screen_idx));
+    const mine = rows.filter(a => a.player_id === p.id && TEST_IDX.includes(a.screen_idx));
     const okCount = mine.filter(a => a.correct).length;
     const time = mine.reduce((s, a) => s + (a.elapsed_ms || 0), 0);
     return { id: p.id, nickname: p.nickname, okCount, time };
@@ -1706,7 +1708,7 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   const fmtT = (ms) => `${(ms / 1000).toFixed(1)}s`;
   const top3 = board.slice(0, 3);
   const myIdx = live && live.playerId ? board.findIndex(b => b.id === live.playerId) : -1;
-  const selfCorrect = SCORED_IDX.filter(i => answers[i]?.correct).length;
+  const selfCorrect = TEST_IDX.filter(i => answers[i]?.correct).length;
 
   return (
     <Stage eyebrow={tr({ uz: 'Natijalar', ru: 'Результаты' })} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
@@ -1745,7 +1747,7 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
                   <div key={b.id} className={`pod-row ${live.playerId === b.id ? 'me' : ''}`}>
                     <span className="mono pod-rank">{i + 1}</span>
                     <span className="pod-row-name">{b.nickname}</span>
-                    <span className="pod-row-dots">{SCORED_IDX.map(q => { const a = rows.find(r => r.player_id === b.id && r.screen_idx === q); return <span key={q} className={`pod-dot ${a ? (a.correct ? 'ok' : 'bad') : ''}`} title={tr(Q_LABELS[q])} />; })}</span>
+                    <span className="pod-row-dots">{TEST_IDX.map(q => { const a = rows.find(r => r.player_id === b.id && r.screen_idx === q); return <span key={q} className={`pod-dot ${a ? (a.correct ? 'ok' : 'bad') : ''}`} title={tr(Q_LABELS[q])} />; })}</span>
                     <span className="mono pod-row-score">{b.okCount}/{totalQ}</span>
                     <span className="mono pod-row-time">{fmtT(b.time)}</span>
                   </div>

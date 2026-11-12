@@ -739,8 +739,8 @@ const ScreenKatalog = ({ screen, onNext, onPrev }) => {
 
 // ----- a2 · Mashina sahifasi va kun -----
 const a2Prompt = () => tr({
-  uz: "AvtoIjara saytimga mashina sahifasini qo'sh (kodim pastda):\n1. /car/:id sahifasi: useParams bilan id'ni olsin va cars dan find bilan topib — nomi, narxi, o'rindiqlari va tavsifini ko'rsatsin.\n2. Bosh sahifadagi har kartochka <Link> bilan shu sahifaga olib borsin.\n3. Sahifada kun tanlash: «−» va «+», kamida 1 kun; ostida «Narx: price × kun» darhol yangilansin.\nHar bo'limga qisqa izoh yoz. O'zgargan fayllarni to'liq qaytar.\nMana kodim:\n{App.jsx va sahifalar kodini shu yerga qo'ying}",
-  ru: 'Добавь в мой сайт AvtoIjara страницу машины (код ниже):\n1. Страница /car/:id: берёт id через useParams, находит машину в cars через find и показывает название, цену, число мест и описание.\n2. Каждая карточка на главной ведёт на эту страницу через <Link>.\n3. На странице выбор дней: «−» и «+», минимум 1 день; под ними «Цена: price × дни» обновляется сразу.\nК каждому разделу — короткий комментарий. Изменённые файлы верни целиком.\nВот мой код:\n{вставьте сюда код App.jsx и страниц}'
+  uz: "AvtoIjara saytimga mashina sahifasini qo'sh (kodim pastda):\n1. /car/:id sahifasi: useParams bilan id'ni olsin va cars dan find bilan topib — nomi, narxi, o'rindiqlari va tavsifini ko'rsatsin.\n2. Bosh sahifadagi har kartochka <Link> bilan shu sahifaga olib borsin.\n3. Sahifada kun tanlash: «−» va «+», kamida 1 kun; ostida «Narx: price × kun» darhol yangilansin.\nHar bo'limga qisqa izoh yoz. O'zgargan fayllarni to'liq qaytar.\nLoyiha: Vite + React, JavaScript (.jsx) — TypeScript ishlatma, yangi loyiha yaratma.\nKodim pastda bo'lmasa — o'ylab topma, avval kodni so'ra.\nMana kodim:\n{App.jsx va sahifalar kodini shu yerga qo'ying}",
+  ru: 'Добавь в мой сайт AvtoIjara страницу машины (код ниже):\n1. Страница /car/:id: берёт id через useParams, находит машину в cars через find и показывает название, цену, число мест и описание.\n2. Каждая карточка на главной ведёт на эту страницу через <Link>.\n3. На странице выбор дней: «−» и «+», минимум 1 день; под ними «Цена: price × дни» обновляется сразу.\nК каждому разделу — короткий комментарий. Изменённые файлы верни целиком.\nПроект: Vite + React, JavaScript (.jsx) — без TypeScript, новый проект не создавай.\nЕсли моего кода ниже нет — не придумывай, сначала попроси код.\nВот мой код:\n{вставьте сюда код App.jsx и страниц}'
 });
 const A2_QADAM = [
   { uz: "Chapda kartochkani bosing va kunni o'zgartiring — kod oynasida `useParams` va `price * days` ni ko'ring.", ru: 'Слева нажмите карточку и поменяйте дни — в окне кода видно `useParams` и `price * days`.' },
@@ -785,8 +785,8 @@ const ScreenMashina = ({ screen, onNext, onPrev }) => {
 
 // ----- a3 · Ijaralar va jami -----
 const a3Prompt = () => tr({
-  uz: "AvtoIjara saytimga ijaralarni qo'sh (kodim pastda):\n1. Mashina sahifasidagi «Ijaraga olish» bosilganda ijara bookings ro'yxatiga qo'shilsin: setBookings([...bookings, { id, name, price, days }]). bookings state App.jsx da tursin.\n2. Yangi sahifa «Mening ijaralarim» (/bookings): har ijara — nomi, kun va price * days; pastda jami — for sikli bilan yig'indi. Menuga <Link> qo'sh.\nHar bo'limga qisqa izoh yoz. O'zgargan fayllarni to'liq qaytar.\nMana kodim:\n{App.jsx va sahifalar kodini shu yerga qo'ying}",
-  ru: 'Добавь в мой сайт AvtoIjara аренды (код ниже):\n1. По нажатию «Взять в аренду» на странице машины аренда добавляется в список bookings: setBookings([...bookings, { id, name, price, days }]). State bookings пусть лежит в App.jsx.\n2. Новая страница «Мои аренды» (/bookings): каждая аренда — название, дни и price * days; внизу итог — сумма циклом for. Добавь <Link> в меню.\nК каждому разделу — короткий комментарий. Изменённые файлы верни целиком.\nВот мой код:\n{вставьте сюда код App.jsx и страниц}'
+  uz: "AvtoIjara saytimga ijaralarni qo'sh (kodim pastda):\n1. Mashina sahifasidagi «Ijaraga olish» bosilganda ijara bookings ro'yxatiga qo'shilsin: setBookings([...bookings, { id, name, price, days }]). bookings state App.jsx da tursin.\n2. Yangi sahifa «Mening ijaralarim» (/bookings): har ijara — nomi, kun va price * days; pastda jami — for sikli bilan yig'indi. Menuga <Link> qo'sh.\nHar bo'limga qisqa izoh yoz. O'zgargan fayllarni to'liq qaytar.\nLoyiha: Vite + React, JavaScript (.jsx) — TypeScript ishlatma, yangi loyiha yaratma.\nKodim pastda bo'lmasa — o'ylab topma, avval kodni so'ra.\nMana kodim:\n{App.jsx va sahifalar kodini shu yerga qo'ying}",
+  ru: 'Добавь в мой сайт AvtoIjara аренды (код ниже):\n1. По нажатию «Взять в аренду» на странице машины аренда добавляется в список bookings: setBookings([...bookings, { id, name, price, days }]). State bookings пусть лежит в App.jsx.\n2. Новая страница «Мои аренды» (/bookings): каждая аренда — название, дни и price * days; внизу итог — сумма циклом for. Добавь <Link> в меню.\nК каждому разделу — короткий комментарий. Изменённые файлы верни целиком.\nПроект: Vite + React, JavaScript (.jsx) — без TypeScript, новый проект не создавай.\nЕсли моего кода ниже нет — не придумывай, сначала попроси код.\nВот мой код:\n{вставьте сюда код App.jsx и страниц}'
 });
 const A3_QADAM = [
   { uz: "Chapda ijaraga oling va «Mening ijaralarim»ni oching — kod oynasida `setBookings` va `total` ni ko'ring.", ru: 'Слева возьмите в аренду и откройте «Мои аренды» — в окне кода видно `setBookings` и `total`.' },
@@ -1099,6 +1099,8 @@ const Confetti = () => {
 const Q_LABELS = { 6: { uz: '1 — Yakuniy', ru: '1 — Финал' } }; // F-1015-346: yagona ballik — s14 (F-1015-376: 9 ekranda 6-o'rin)
 // Server-baholash javob kaliti (mentor darsni ochganda avto-yuklanadi). s14 = -1 (yakuniy amaliy).
 const INLINE_KEYS = { s14: -1 }; // F-1015-346: MCQ s4, s5b, s8, s12 olindi
+// F-1112-03: podium va natija halqasi — faqat testlar (LMS kabi: -1 amaliyot test emas); testi yo'q darsda — amaliyot ekranlari
+const TEST_IDX = (() => { const t = SCORED_IDX.filter(i => INLINE_KEYS[SCREEN_META[i].id] !== -1); return t.length ? t : SCORED_IDX; })();
 
 const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
@@ -1122,11 +1124,11 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
     return () => { on = false; clearTimeout(t); };
   }, [isLive, livePin]);
 
-  const totalQ = SCORED_IDX.length;
+  const totalQ = TEST_IDX.length;
   const board = players.map(p => {
     // FAQAT baholanadigan testlar sanaladi — s6 amaliyotning «tugatdi» belgisi (idx 7)
     // reytingga aralashmasin (u faqat MentorWorkStats uchun yoziladi)
-    const mine = rows.filter(a => a.player_id === p.id && SCORED_IDX.includes(a.screen_idx));
+    const mine = rows.filter(a => a.player_id === p.id && TEST_IDX.includes(a.screen_idx));
     const okCount = mine.filter(a => a.correct).length;
     const time = mine.reduce((s, a) => s + (a.elapsed_ms || 0), 0);
     return { id: p.id, nickname: p.nickname, okCount, time };
@@ -1134,7 +1136,7 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   const fmtT = (ms) => `${(ms / 1000).toFixed(1)}s`;
   const top3 = board.slice(0, 3);
   const myIdx = live && live.playerId ? board.findIndex(b => b.id === live.playerId) : -1;
-  const selfCorrect = SCORED_IDX.filter(i => answers[i]?.correct).length;
+  const selfCorrect = TEST_IDX.filter(i => answers[i]?.correct).length;
 
   return (
     <Stage eyebrow={tr({ uz: 'Natijalar', ru: 'Результаты' })} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
@@ -1174,7 +1176,7 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
                   <div key={b.id} className={`pod-row ${live.playerId === b.id ? 'me' : ''}`}>
                     <span className="mono pod-rank">{i + 1}</span>
                     <span className="pod-row-name">{b.nickname}</span>
-                    <span className="pod-row-dots">{SCORED_IDX.map(q => { const a = rows.find(r => r.player_id === b.id && r.screen_idx === q); return <span key={q} className={`pod-dot ${a ? (a.correct ? 'ok' : 'bad') : ''}`} title={tr(Q_LABELS[q])} />; })}</span>
+                    <span className="pod-row-dots">{TEST_IDX.map(q => { const a = rows.find(r => r.player_id === b.id && r.screen_idx === q); return <span key={q} className={`pod-dot ${a ? (a.correct ? 'ok' : 'bad') : ''}`} title={tr(Q_LABELS[q])} />; })}</span>
                     <span className="mono pod-row-score">{b.okCount}/{totalQ}</span>
                     <span className="mono pod-row-time">{fmtT(b.time)}</span>
                   </div>

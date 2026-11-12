@@ -36,7 +36,7 @@ const T = {
 const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', str: '#7DD181', comment: '#6B7585', punct: '#9FB4D8' };
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast, reportCheck } from '../live/index.js';
 import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
 // F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: PostgreSQL so'rovlari» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 5-6). scripts/hw-v2-kartalar.mjs yozadi.
 const HW_V2 = {"id":"5-6","tur":"test","nom":{"uz":"Uyga vazifa: PostgreSQL so'rovlari","ru":"Домашнее задание: Запросы PostgreSQL"},"matn":null,"n":5};
@@ -208,6 +208,8 @@ const FeedbackBlock = ({ show, isCorrect, neutral, children }) => {
 
 // JONLI JAVOB KALITI — har SCORED ekranning correctIdx'idan (yozma/praktika -1 sentinel). Kalitni ⚡ Jonli tekshiradi.
 const INLINE_KEYS = { s4: 0, s5b: 2, s9: 3, s12: 1, s15: -1, practice: -1 };
+// F-1112-03: podium va natija halqasi — faqat testlar (LMS kabi: -1 amaliyot test emas); testi yo'q darsda — amaliyot ekranlari
+const TEST_IDX = (() => { const t = SCORED_IDX.filter(i => INLINE_KEYS[SCREEN_META[i].id] !== -1); return t.length ? t : SCORED_IDX; })();
 const MSTATS_COLORS = ['#019ACB', '#8B5CF6', '#E8A13A', '#E0559A'];
 const RECAP_NEED_PCT = 60;
 const RECAP_GOOD_PCT = 75;
@@ -1320,8 +1322,11 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const valid = hasInsert && hasValues && hasThree;
   const newRow = m ? { id: 4, name: m[1], price: +String(m[2]).replace(/\s/g, ''), stock: +String(m[3]).replace(/\s/g, '') } : null;
   const done = ran;
+  // F-1112-03: urinish yozuvi — qabul qilingan matn (to'g'ri) va qabul qilinmagan matn bilan ekrandan chiqish (xato), ≤300
+  const lastRef = useRef({ value, passed }); lastRef.current = { value, passed };
+  useEffect(() => () => { const l = lastRef.current; if (!l.passed && l.value.trim()) reportCheck({ correct: false, text: l.value, screen }); }, []); // eslint-disable-line
   useEffect(() => {
-    if (valid && !passed) { setPassed(true); onAnswer(screen, { stage: 'final', screenIdx: screen, question: "products jadvaliga INSERT yozing", studentAnswer: value, correct: true, firstAttemptCorrect: true, solved: true, picked: value }); }
+    if (valid && !passed) { setPassed(true); reportCheck({ correct: true, text: value, screen }); onAnswer(screen, { stage: 'final', screenIdx: screen, question: "products jadvaliga INSERT yozing", studentAnswer: value, correct: true, firstAttemptCorrect: true, solved: true, picked: value }); }
   }, [valid]);
   const audio = useAudio([{ id: 's15', text: "Endi bazaga o'z mahsulotingizni qo'shasiz. SQL Editor'iga INSERT INTO products qatorini yozing: nomni qo'shtirnoq ichida, narx va sonini raqam bilan. Yozib bo'lgach Run bosing.", trigger: 'on_mount', waits_for: null }]);
   const navLabel = ran ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (valid ? tr({ uz: '▶ Run bosing', ru: '▶ Нажмите Run' }) : tr({ uz: 'INSERT qatorini yozing', ru: 'Напишите строку INSERT' }));
@@ -2020,9 +2025,9 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
     return () => { on = false; clearTimeout(t); };
   }, [isLive, livePin]);
 
-  const totalQ = SCORED_IDX.length;
+  const totalQ = TEST_IDX.length;
   const board = players.map(p => {
-    const mine = rows.filter(a => a.player_id === p.id && SCORED_IDX.includes(a.screen_idx));
+    const mine = rows.filter(a => a.player_id === p.id && TEST_IDX.includes(a.screen_idx));
     const okCount = mine.filter(a => a.correct).length;
     const time = mine.reduce((s, a) => s + (a.elapsed_ms || 0), 0);
     return { id: p.id, nickname: p.nickname, okCount, time };
@@ -2030,7 +2035,7 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   const fmtT = (ms) => `${(ms / 1000).toFixed(1)}s`;
   const top3 = board.slice(0, 3);
   const myIdx = live && live.playerId ? board.findIndex(b => b.id === live.playerId) : -1;
-  const selfCorrect = SCORED_IDX.filter(i => answers[i]?.correct).length;
+  const selfCorrect = TEST_IDX.filter(i => answers[i]?.correct).length;
 
   return (
     <Stage eyebrow={tr({ uz: 'Natijalar', ru: 'Результаты' })} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
@@ -2069,7 +2074,7 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
                   <div key={b.id} className={`pod-row ${live.playerId === b.id ? 'me' : ''}`}>
                     <span className="mono pod-rank">{i + 1}</span>
                     <span className="pod-row-name">{b.nickname}</span>
-                    <span className="pod-row-dots">{SCORED_IDX.map(q => { const a = rows.find(r => r.player_id === b.id && r.screen_idx === q); return <span key={q} className={`pod-dot ${a ? (a.correct ? 'ok' : 'bad') : ''}`} title={tr(Q_LABELS[q])} />; })}</span>
+                    <span className="pod-row-dots">{TEST_IDX.map(q => { const a = rows.find(r => r.player_id === b.id && r.screen_idx === q); return <span key={q} className={`pod-dot ${a ? (a.correct ? 'ok' : 'bad') : ''}`} title={tr(Q_LABELS[q])} />; })}</span>
                     <span className="mono pod-row-score">{b.okCount}/{totalQ}</span>
                     <span className="mono pod-row-time">{fmtT(b.time)}</span>
                   </div>

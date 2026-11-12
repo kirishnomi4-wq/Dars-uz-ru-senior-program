@@ -273,6 +273,8 @@ const FeedbackBlock = ({ show, isCorrect, neutral, children }) => {
 
 // JONLI JAVOB KALITI — har SCORED ekranning displayed-tartibdagi correctIdx'iga AYNAN teng (s16 yozma → -1 sentinel). Kalitni ⚡ Jonli tekshiradi.
 const INLINE_KEYS = { s16: -1 }; // F-1015-351: MCQ s4, s6, s10, s13 olindi
+// F-1112-03: podium va natija halqasi — faqat testlar (LMS kabi: -1 amaliyot test emas); testi yo'q darsda — amaliyot ekranlari
+const TEST_IDX = (() => { const t = SCORED_IDX.filter(i => INLINE_KEYS[SCREEN_META[i].id] !== -1); return t.length ? t : SCORED_IDX; })();
 const MSTATS_COLORS = ['#019ACB', '#8B5CF6', '#E8A13A', '#E0559A'];
 const RECAP_NEED_PCT = 60;
 const RECAP_GOOD_PCT = 75;
@@ -924,8 +926,8 @@ const ScreenFikr = ({ screen, onNext, onPrev }) => {
 
 // ===== a3 — Gemini: upgrade (tasdiq, dashboard, narx sozlamasi) + sinfdosh fikrlari promptda =====
 const a3Prompt = (fikrlar) => tr({
-  uz: `AvtoStoyanka panelimni (React, avto-stoyanka) sinfdoshlar fikri bo'yicha yaxshila. Faqat shu o'zgarishlarni qil, qolganiga tegma:\n1. Chiqarishdan oldin confirm("Rostdan chiqarilsinmi?") — «Bekor qilish» bosilsa hech narsa o'zgarmasin.\n2. Tepada dashboard: bo'sh spots, band spots va bugungi tushum — yirik raqamlar bilan.\n3. Narx sozlamasi: qorovul narxni o'zgartira olsin. Serverga (avto-stoyanka-server) settings jadvali (price INTEGER) va GET/PUT /api/price qo'sh; chiqishda tolov shu narxdan olinsin.${fikrlar.length ? `\nSinfdoshlarim yana shuni aytdi:\n${fikrlar.map(f => `- ${f}`).join('\n')}` : ''}\nHar o'zgarishga qisqa izoh yoz. O'zgargan fayllarni to'liq qaytar.\nMana kodim:\n{panel fayllari va server.js kodini shu yerga qo'ying}`,
-  ru: `Улучши мою панель AvtoStoyanka (React, avto-stoyanka) по отзывам одноклассников. Делай только эти изменения, остальное не трогай:\n1. Перед выпуском — confirm("Точно выпустить?"); при «Отмена» ничего не меняется.\n2. Вверху дашборд: свободные места, занятые места и выручка за сегодня — крупными цифрами.\n3. Настройка цены: охранник может менять цену. Добавь на сервер (avto-stoyanka-server) таблицу settings (price INTEGER) и GET/PUT /api/price; оплата при выезде берётся из этой цены.${fikrlar.length ? `\nОдноклассники ещё сказали:\n${fikrlar.map(f => `- ${f}`).join('\n')}` : ''}\nК каждому изменению — короткий комментарий. Измененные файлы верни целиком.\nВот мой код:\n{вставьте сюда код файлов панели и server.js}`
+  uz: `AvtoStoyanka panelimni (React, avto-stoyanka) sinfdoshlar fikri bo'yicha yaxshila. Faqat shu o'zgarishlarni qil, qolganiga tegma:\n1. Chiqarishdan oldin confirm("Rostdan chiqarilsinmi?") — «Bekor qilish» bosilsa hech narsa o'zgarmasin.\n2. Tepada dashboard: bo'sh spots, band spots va bugungi tushum — yirik raqamlar bilan.\n3. Narx sozlamasi: qorovul narxni o'zgartira olsin. Serverga (avto-stoyanka-server) settings jadvali (price INTEGER) va GET/PUT /api/price qo'sh; chiqishda tolov shu narxdan olinsin.${fikrlar.length ? `\nSinfdoshlarim yana shuni aytdi:\n${fikrlar.map(f => `- ${f}`).join('\n')}` : ''}\nHar o'zgarishga qisqa izoh yoz. O'zgargan fayllarni to'liq qaytar.\nLoyiha: Vite + React (.jsx) va Node.js server (server.js), JavaScript — TypeScript ishlatma, yangi loyiha yaratma.\nKodim pastda bo'lmasa — o'ylab topma, avval kodni so'ra.\nMana kodim:\n{panel fayllari va server.js kodini shu yerga qo'ying}`,
+  ru: `Улучши мою панель AvtoStoyanka (React, avto-stoyanka) по отзывам одноклассников. Делай только эти изменения, остальное не трогай:\n1. Перед выпуском — confirm("Точно выпустить?"); при «Отмена» ничего не меняется.\n2. Вверху дашборд: свободные места, занятые места и выручка за сегодня — крупными цифрами.\n3. Настройка цены: охранник может менять цену. Добавь на сервер (avto-stoyanka-server) таблицу settings (price INTEGER) и GET/PUT /api/price; оплата при выезде берётся из этой цены.${fikrlar.length ? `\nОдноклассники ещё сказали:\n${fikrlar.map(f => `- ${f}`).join('\n')}` : ''}\nК каждому изменению — короткий комментарий. Измененные файлы верни целиком.\nПроект: Vite + React (.jsx) и сервер Node.js (server.js), JavaScript — без TypeScript, новый проект не создавай.\nЕсли моего кода ниже нет — не придумывай, сначала попроси код.\nВот мой код:\n{вставьте сюда код файлов панели и server.js}`
 });
 const UPG = [
   { id: 'tasdiq', t: { uz: 'Tasdiq', ru: 'Подтверждение' } },
@@ -1772,9 +1774,9 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
     return () => { on = false; clearTimeout(t); };
   }, [isLive, livePin]);
 
-  const totalQ = SCORED_IDX.length;
+  const totalQ = TEST_IDX.length;
   const board = players.map(p => {
-    const mine = rows.filter(a => a.player_id === p.id && SCORED_IDX.includes(a.screen_idx));
+    const mine = rows.filter(a => a.player_id === p.id && TEST_IDX.includes(a.screen_idx));
     const okCount = mine.filter(a => a.correct).length;
     const time = mine.reduce((s, a) => s + (a.elapsed_ms || 0), 0);
     return { id: p.id, nickname: p.nickname, okCount, time };
@@ -1782,7 +1784,7 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   const fmtT = (ms) => `${(ms / 1000).toFixed(1)}s`;
   const top3 = board.slice(0, 3);
   const myIdx = live && live.playerId ? board.findIndex(b => b.id === live.playerId) : -1;
-  const selfCorrect = SCORED_IDX.filter(i => answers[i]?.correct).length;
+  const selfCorrect = TEST_IDX.filter(i => answers[i]?.correct).length;
 
   return (
     <Stage eyebrow={tr({ uz: 'Natijalar', ru: 'Результаты' })} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
@@ -1821,7 +1823,7 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
                   <div key={b.id} className={`pod-row ${live.playerId === b.id ? 'me' : ''}`}>
                     <span className="mono pod-rank">{i + 1}</span>
                     <span className="pod-row-name">{b.nickname}</span>
-                    <span className="pod-row-dots">{SCORED_IDX.map(q => { const a = rows.find(r => r.player_id === b.id && r.screen_idx === q); return <span key={q} className={`pod-dot ${a ? (a.correct ? 'ok' : 'bad') : ''}`} title={tr(Q_LABELS[q])} />; })}</span>
+                    <span className="pod-row-dots">{TEST_IDX.map(q => { const a = rows.find(r => r.player_id === b.id && r.screen_idx === q); return <span key={q} className={`pod-dot ${a ? (a.correct ? 'ok' : 'bad') : ''}`} title={tr(Q_LABELS[q])} />; })}</span>
                     <span className="mono pod-row-score">{b.okCount}/{totalQ}</span>
                     <span className="mono pod-row-time">{fmtT(b.time)}</span>
                   </div>

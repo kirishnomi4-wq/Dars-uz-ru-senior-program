@@ -1047,8 +1047,8 @@ const A2_TEKSHIR = [
   { uz: "Kodda `<a href>` yo'qmi — hammasi `<Link>`mi?", ru: 'В коде нет `<a href>` — везде `<Link>`?' }
 ];
 const a2Prompt = () => tr({
-  uz: "React loyihamda (robo-games) react-router-dom bor, App.jsx da 3 ta Route: /, /game/:id, /add. Ikki sahifani to'ldir:\n1. GamePage: useParams() bilan id'ni olsin va games ro'yxatidan shu o'yinni find bilan topib, nomi va tavsifini ko'rsatsin. Topilmasa «O'yin topilmadi» deb yozsin.\n2. Bosh sahifadagi har kartochka <Link to={`/game/${g.id}`}> bilan o'sha sahifaga olib borsin.\n3. AddPage: o'yin nomi kiritiladigan forma. «Saqlash» bosilganda o'yin setGames([...games, yangi]) bilan qo'shilsin va useNavigate() bilan Bosh sahifaga qaytsin.\ngames state App.jsx da qolsin, sahifalarga props bilan uzatilsin. <a href> ishlatma — faqat <Link>.\nHar bo'limga qisqa izoh yoz. O'zgargan fayllarni to'liq qaytar.\nMana kodim:\n{main.jsx, App.jsx va sahifalar kodini shu yerga qo'ying}",
-  ru: "В моём React-проекте (robo-games) есть react-router-dom, в App.jsx 3 Route: /, /game/:id, /add. Заполни две страницы:\n1. GamePage: берёт id через useParams() и находит эту игру в списке games через find, показывает название и описание. Если не нашлась — пишет «Игра не найдена».\n2. Каждая карточка на Главной ведёт на свою страницу через <Link to={`/game/${g.id}`}>.\n3. AddPage: форма для названия игры. По нажатию «Сохранить» игра добавляется через setGames([...games, yangi]) и через useNavigate() происходит возврат на Главную.\nState games пусть остаётся в App.jsx и передаётся страницам через props. Не используй <a href> — только <Link>.\nК каждому разделу — короткий комментарий. Измененные файлы верни целиком.\nВот мой код:\n{вставьте сюда код main.jsx, App.jsx и страниц}"
+  uz: "React loyihamda (robo-games) react-router-dom bor, App.jsx da 3 ta Route: /, /game/:id, /add. Ikki sahifani to'ldir:\n1. GamePage: useParams() bilan id'ni olsin va games ro'yxatidan shu o'yinni find bilan topib, nomi va tavsifini ko'rsatsin. Topilmasa «O'yin topilmadi» deb yozsin.\n2. Bosh sahifadagi har kartochka <Link to={`/game/${g.id}`}> bilan o'sha sahifaga olib borsin.\n3. AddPage: o'yin nomi kiritiladigan forma. «Saqlash» bosilganda o'yin setGames([...games, yangi]) bilan qo'shilsin va useNavigate() bilan Bosh sahifaga qaytsin.\ngames state App.jsx da qolsin, sahifalarga props bilan uzatilsin. <a href> ishlatma — faqat <Link>.\nHar bo'limga qisqa izoh yoz. O'zgargan fayllarni to'liq qaytar.\nLoyiha: Vite + React, JavaScript (.jsx) — TypeScript ishlatma, yangi loyiha yaratma.\nKodim pastda bo'lmasa — o'ylab topma, avval kodni so'ra.\nMana kodim:\n{main.jsx, App.jsx va sahifalar kodini shu yerga qo'ying}",
+  ru: "В моём React-проекте (robo-games) есть react-router-dom, в App.jsx 3 Route: /, /game/:id, /add. Заполни две страницы:\n1. GamePage: берёт id через useParams() и находит эту игру в списке games через find, показывает название и описание. Если не нашлась — пишет «Игра не найдена».\n2. Каждая карточка на Главной ведёт на свою страницу через <Link to={`/game/${g.id}`}>.\n3. AddPage: форма для названия игры. По нажатию «Сохранить» игра добавляется через setGames([...games, yangi]) и через useNavigate() происходит возврат на Главную.\nState games пусть остаётся в App.jsx и передаётся страницам через props. Не используй <a href> — только <Link>.\nК каждому разделу — короткий комментарий. Измененные файлы верни целиком.\nПроект: Vite + React, JavaScript (.jsx) — без TypeScript, новый проект не создавай.\nЕсли моего кода ниже нет — не придумывай, сначала попроси код.\nВот мой код:\n{вставьте сюда код main.jsx, App.jsx и страниц}"
 });
 const YANGI_BG = 'linear-gradient(135deg,#CFD8B2,#B0BC90)';
 const ScreenSahifalar = ({ screen, onNext, onPrev }) => {
@@ -1367,6 +1367,8 @@ const QUIZ_BANK = [
   { q: { uz: "main.jsx'da ilova nima bilan o'raladi?", ru: "Чем оборачивают приложение в main.jsx?" }, opts: ["<Routes>", "<Link>", "useNavigate()", "<BrowserRouter>"], correct: 3 },
 ];
 const INLINE_KEYS = { s14: -1 }; // scored ekranlar correctIdx'idan 1:1 (s14 final — sentinel -1)
+// F-1112-03: podium va natija halqasi — faqat testlar (LMS kabi: -1 amaliyot test emas); testi yo'q darsda — amaliyot ekranlari
+const TEST_IDX = (() => { const t = SCORED_IDX.filter(i => INLINE_KEYS[SCREEN_META[i].id] !== -1); return t.length ? t : SCORED_IDX; })();
 const CsNeonBolt = ({ flip }) => (
   <span className={`csn-boltwrap ${flip ? 'flip' : ''}`} aria-hidden="true">
     <svg className="csn-bolt" viewBox="0 0 60 100">
@@ -1829,9 +1831,9 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
     return () => { on = false; clearTimeout(t); };
   }, [isLive, livePin]);
 
-  const totalQ = SCORED_IDX.length;
+  const totalQ = TEST_IDX.length;
   const board = players.map(p => {
-    const mine = rows.filter(a => a.player_id === p.id && SCORED_IDX.includes(a.screen_idx));
+    const mine = rows.filter(a => a.player_id === p.id && TEST_IDX.includes(a.screen_idx));
     const okCount = mine.filter(a => a.correct).length;
     const time = mine.reduce((s, a) => s + (a.elapsed_ms || 0), 0);
     return { id: p.id, nickname: p.nickname, okCount, time };
@@ -1839,7 +1841,7 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   const fmtT = (ms) => `${(ms / 1000).toFixed(1)}s`;
   const top3 = board.slice(0, 3);
   const myIdx = live && live.playerId ? board.findIndex(b => b.id === live.playerId) : -1;
-  const selfCorrect = SCORED_IDX.filter(i => answers[i]?.correct).length;
+  const selfCorrect = TEST_IDX.filter(i => answers[i]?.correct).length;
 
   return (
     <Stage eyebrow={tr({ uz: 'Natijalar', ru: 'Результаты' })} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
@@ -1878,7 +1880,7 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
                   <div key={b.id} className={`pod-row ${live.playerId === b.id ? 'me' : ''}`}>
                     <span className="mono pod-rank">{i + 1}</span>
                     <span className="pod-row-name">{b.nickname}</span>
-                    <span className="pod-row-dots">{SCORED_IDX.map(q => { const a = rows.find(r => r.player_id === b.id && r.screen_idx === q); return <span key={q} className={`pod-dot ${a ? (a.correct ? 'ok' : 'bad') : ''}`} title={tr(Q_LABELS[q])} />; })}</span>
+                    <span className="pod-row-dots">{TEST_IDX.map(q => { const a = rows.find(r => r.player_id === b.id && r.screen_idx === q); return <span key={q} className={`pod-dot ${a ? (a.correct ? 'ok' : 'bad') : ''}`} title={tr(Q_LABELS[q])} />; })}</span>
                     <span className="mono pod-row-score">{b.okCount}/{totalQ}</span>
                     <span className="mono pod-row-time">{fmtT(b.time)}</span>
                   </div>
