@@ -9,9 +9,27 @@
 //        S6: v2 id (lr_/ap_/ar_) — o'sha id bilan qayta yig'iladi (suffix qo'llanmaydi), processed_at saqlanadi
 //   GET  /admin/api/sessions?status=live|ended&limit= — LMS sessiyalari (dars, guruh, mentor, o'quvchi soni, ekran, natija) — sinov-dalili
 //   GET  /admin/api/sessions/:id      — bitta sessiya: ishtirokchilar (rol, subject_id, javoblar soni, oxirigacha yetdimi), natija-hodisa
+//   GET  /admin/api/analytics/:view?from=&to=&limit=&offset= — F-1117-01: analitika view'larini o'qish (oq ro'yxat, read only)
 // Shaxsiy ma'lumot: ismlar ko'rsatilmaydi, faqat sonlar va ID'lar.
 import { timingSafeEqual } from 'node:crypto';
 import { notFound } from '../../lib/errors.js';
+
+// F-1117-01: o'qiladigan view'lar — vaqt ustuni (from/to filtri) va barqaror tartib (offset bilan sahifalash uchun).
+// Nomlar faqat shu ro'yxatdan SQL'ga qo'yiladi (so'rovdagi satr enum bilan tekshirilgan).
+const ANALYTICS_VIEWS = {
+  v_lesson_results: { time: 'opened_at', order: 'opened_at, attempt_id' },
+  v_sessions: { time: 'started_at', order: 'started_at, session_id' },
+  v_screen_views: { time: 'opened_at', order: 'opened_at, attempt_id, screen_idx' },
+  v_question_attempts: { time: 'answered_at', order: 'answered_at, attempt_id, question_id, attempt_no' },
+  v_practice: { time: 'at', order: 'at, attempt_id, screen_id, attempt_no' },
+  v_arena: { time: 'arena_started_at', order: 'arena_started_at nulls last, attempt_id' },
+  v_arena_full_place: { time: null, order: 'session_id, full_place nulls last, student_id' },
+  v_skipped: { time: null, order: 'attempt_id, question_id' },
+  v_wrong_answers_top: { time: null, order: 'lesson_key, lesson_version, question_id, kind' },
+  v_practice_wrong_top: { time: null, order: 'lesson_key, lesson_version, screen_id, students desc, wrong_answer' },
+  v_lessons: { time: null, order: 'lesson_key, lang' },
+  v_quiz_learn: { time: null, order: 'lesson_key, lesson_version, lang, learn_order' },
+};
 
 function safeEq(a, b) {
   const x = Buffer.from(String(a)); const y = Buffer.from(String(b));
@@ -269,6 +287,47 @@ export async function adminRoutes(app) {
       [req.query.lesson_key ?? null],
     );
     return rows;
+  });
+
+  // ---- F-1117-01: analitika view'larini O'QISH (Shahzoda konnektorda ko'radigan 12 view — endi o'zimiz ham).
+  //   GET /admin/api/analytics/:view?from=ISO&to=ISO&limit=1..10000&offset=
+  //   Faqat oq ro'yxatdagi view; `from`/`to` — view'ning vaqt ustuni bo'yicha [from, to); read only tranzaksiya, 30 s chegara.
+  //   `truncated: true` — oynada limitdan ko'p qator bor (mijoz oynani bo'ladi yoki offset bilan davom etadi). Ismlar view'larda yo'q.
+  app.get('/api/analytics/:view', {
+    config: { rateLimit: false },
+    schema: {
+      params: { type: 'object', required: ['view'], properties: { view: { type: 'string', enum: Object.keys(ANALYTICS_VIEWS) } } },
+      querystring: { type: 'object', additionalProperties: false, properties: {
+        from: { type: 'string', maxLength: 40 }, to: { type: 'string', maxLength: 40 },
+        limit: { type: 'string', pattern: '^[1-9][0-9]{0,4}$' }, offset: { type: 'string', pattern: '^(0|[1-9][0-9]{0,6})$' } } },
+    },
+  }, async (req, reply) => {
+    const { view } = req.params;
+    const spec = ANALYTICS_VIEWS[view];
+    const { from = null, to = null } = req.query;
+    // ISO sana (2026-11-01 yoki 2026-11-01T00:00:00Z) — ajv'da format tekshiruvi yoqilmagan, shuning uchun shu yerda
+    const isoOk = (x) => x === null || (/^\d{4}-\d{2}-\d{2}([T ][0-9:.]+(Z|[+-]\d{2}:?\d{2})?)?$/.test(x) && !Number.isNaN(Date.parse(x)));
+    if (!isoOk(from) || !isoOk(to)) return reply.code(400).send({ error: 'validation_failed', message: 'from/to — ISO sana bo\'lishi kerak' });
+    if ((from || to) && !spec.time) return reply.code(400).send({ error: 'validation_failed', message: `${view} da vaqt ustuni yo'q — from/to ishlatilmaydi` });
+    const limit = Math.min(10000, Number(req.query.limit) || 1000);
+    const offset = Number(req.query.offset) || 0;
+    const where = spec.time ? `where ($1::timestamptz is null or ${spec.time} >= $1) and ($2::timestamptz is null or ${spec.time} < $2)` : 'where $1::text is null and $2::text is null';
+    const client = await app.db.connect();
+    try {
+      await client.query('begin read only');
+      await client.query("set local statement_timeout = '30s'");
+      const { rows } = await client.query(`select * from ${view} ${where} order by ${spec.order} limit $3 offset $4`, [from, to, limit + 1, offset]);
+      await client.query('commit');
+      const truncated = rows.length > limit;
+      if (truncated) rows.length = limit;
+      req.log.info({ view, from, to, limit, offset, rows: rows.length, truncated }, 'admin: analitika view o\'qildi');
+      return { view, time_column: spec.time, from, to, offset, count: rows.length, truncated, rows };
+    } catch (e) {
+      await client.query('rollback').catch(() => {});
+      throw e;
+    } finally {
+      client.release();
+    }
   });
 
   app.get('/', { config: { rateLimit: false } }, async (req, reply) => {

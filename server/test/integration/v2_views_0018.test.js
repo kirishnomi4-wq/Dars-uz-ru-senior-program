@@ -105,3 +105,42 @@ test('view\'lar 0018: til va lms_question_id, to\'liq o\'rin tengsiz, skipped, a
     assert.ok(!/MAXFIY/.test(dump), `${v} da matn chiqdi`);
   }
 });
+
+// F-1117-01: GET /admin/api/analytics/:view — oq ro'yxat, vaqt oynasi, limit/truncated, offset, read only; parolsiz 401
+test('admin: analitika view\'larini o\'qish (oq ro\'yxat, from/to, limit, offset)', async () => {
+  const get = (url, headers = ADMIN) => t.app.inject({ method: 'GET', url, headers });
+  const lr = await get('/admin/api/analytics/v_lesson_results');
+  assert.equal(lr.statusCode, 200, lr.body);
+  const body = lr.json();
+  assert.equal(body.view, 'v_lesson_results');
+  assert.equal(body.time_column, 'opened_at');
+  assert.equal(body.count, N);
+  assert.equal(body.truncated, false);
+  assert.deepEqual(body.rows.map((r) => Number(r.student_id)).sort(), Array.from({ length: N }, (_, i) => 9701 + i));
+  // limit → truncated, offset → keyingi sahifa (tartib barqaror, takror yo'q)
+  const p1 = (await get('/admin/api/analytics/v_lesson_results?limit=4')).json();
+  const p2 = (await get('/admin/api/analytics/v_lesson_results?limit=4&offset=4')).json();
+  assert.deepEqual([p1.count, p1.truncated, p2.count, p2.truncated], [4, true, N - 4, false]);
+  assert.equal(new Set([...p1.rows, ...p2.rows].map((r) => r.attempt_id)).size, N);
+  // vaqt oynasi [from, to)
+  const future = new Date(Date.now() + 3600e3).toISOString();
+  assert.equal((await get(`/admin/api/analytics/v_lesson_results?from=${future}`)).json().count, 0);
+  assert.equal((await get(`/admin/api/analytics/v_lesson_results?to=${future}`)).json().count, N);
+  assert.equal((await get('/admin/api/analytics/v_sessions')).json().count >= 1, true);
+  assert.equal((await get('/admin/api/analytics/v_practice_wrong_top')).json().rows[0].students, 5);
+  // vaqt ustuni yo'q view'da from → 400; ro'yxatda yo'q view / jadval → 400; yomon sana → 400; parolsiz → 401
+  assert.equal((await get(`/admin/api/analytics/v_lessons?from=${future}`)).statusCode, 400);
+  assert.equal((await get('/admin/api/analytics/attempts')).statusCode, 400);
+  assert.equal((await get('/admin/api/analytics/v_lesson_results;drop')).statusCode, 400);
+  assert.equal((await get('/admin/api/analytics/v_lesson_results?from=kecha')).statusCode, 400);
+  assert.equal((await get('/admin/api/analytics/v_lesson_results?limit=0')).statusCode, 400);
+  assert.equal((await get('/admin/api/analytics/v_lesson_results?limit=99999')).json().count, N); // 10000 bilan cheklanadi
+  assert.equal((await get('/admin/api/analytics/v_lesson_results', {})).statusCode, 401);
+  // 12 view'ning hammasi o'qiladi
+  for (const v of ['v_lesson_results', 'v_question_attempts', 'v_practice', 'v_screen_views', 'v_arena', 'v_arena_full_place', 'v_wrong_answers_top', 'v_sessions',
+    'v_skipped', 'v_practice_wrong_top', 'v_lessons', 'v_quiz_learn']) {
+    const r = await get(`/admin/api/analytics/${v}?limit=10000`);
+    assert.equal(r.statusCode, 200, `${v}: ${r.body}`);
+    assert.ok(!/MAXFIY/.test(r.body), `${v} da matn chiqdi`);
+  }
+});
