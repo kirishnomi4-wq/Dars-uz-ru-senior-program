@@ -21,6 +21,34 @@ async function keysFor(pool, lessonId, lessonVersion) {
   return rows;
 }
 
+/**
+ * F-1112-06 / F-1117-01: kalitli amaliyot ekranlari (question_keys kind=practice — masalan data-intro s15/s15b, kaliti 0, matnsiz)
+ * v2 tests'ga kirmaydi (kontrakt 25 §5: tests — faqat variantli savollar, amaliyot `practice[]` da). Prod'da ular «jami savol»ga
+ * qo'shilib, deyarli doim «noto'g'ri» sanalardi va tafsilotni `omitted:invalid_text` qilardi (45 dars).
+ * Manba — urinish versiyasining kalitlari; versiya noma'lum yoki unga kalit yuklanmagan bo'lsa — darsning barcha versiyalari,
+ * lekin biror versiyada `test` bo'lgan id amaliyot deb olinmaydi (eski urinishdagi haqiqiy test yo'qolmasin).
+ * @param {Array<{question_id: string, lesson_version: string, kind: string}>} rows — shu darsning question_keys qatorlari
+ * @returns {Set<string>}
+ */
+export function practiceIdsFrom(rows, lessonVersion) {
+  const forVersion = lessonVersion ? rows.filter((r) => r.lesson_version === lessonVersion) : [];
+  if (forVersion.length) return new Set(forVersion.filter((r) => r.kind === 'practice').map((r) => r.question_id));
+  const tests = new Set(rows.filter((r) => r.kind === 'test').map((r) => r.question_id));
+  return new Set(rows.filter((r) => r.kind === 'practice' && !tests.has(r.question_id)).map((r) => r.question_id));
+}
+
+/** Kalitlar ichida amaliyot ekranlarini amaliyot (-1) deb belgilaydi — lessonQuestions/questionOrder ularni o'zi chiqaradi */
+export function markPracticeKeys(keys, practiceIds) {
+  if (!practiceIds.size) return keys;
+  return keys.map((k) => (k && practiceIds.has(k.question_id) ? { ...k, correct_idx: -1 } : k));
+}
+
+async function practiceIdsFor(pool, lessonId, lessonVersion) {
+  const lessonKey = String(lessonId).replace(/-v[0-9]+$/, '');
+  const { rows } = await pool.query('select question_id, lesson_version, kind from question_keys where lesson_key = $1', [lessonKey]);
+  return practiceIdsFrom(rows, lessonVersion);
+}
+
 /** Urinishning to'liq manbasi (bitta o'quvchi). PIN bilan kirgan (urinishsiz) o'yinchi bu yerga tushmaydi. */
 export async function loadAttemptSource(pool, attemptId) {
   const { rows: [a] } = await pool.query(
@@ -37,7 +65,7 @@ export async function loadAttemptSource(pool, attemptId) {
     [attemptId],
   );
   if (!a) return null;
-  const keys = await keysFor(pool, a.lesson_id, a.lesson_version);
+  const keys = markPracticeKeys(await keysFor(pool, a.lesson_id, a.lesson_version), await practiceIdsFor(pool, a.lesson_id, a.lesson_version));
   const [answers, attemptsHist, practice, screenViews, progress, achievements, attemptNo, arenaPart, players] = await Promise.all([
     pool.query('select question_id, screen_idx, picked, correct, elapsed_ms, answered_at from live_answers where pin = $1 and player_id = $2 and screen_idx < 500 order by answered_at', [a.pin, a.player_id]).then((r) => r.rows),
     pool.query('select screen_idx, question_id, attempt_no, picked, correct, elapsed_ms, texts, answered_at from answer_attempts where pin = $1 and player_id = $2 and screen_idx < 500 order by screen_idx, attempt_no', [a.pin, a.player_id]).then((r) => r.rows),
