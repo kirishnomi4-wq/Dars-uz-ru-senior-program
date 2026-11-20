@@ -67,6 +67,30 @@ Tekshiruv:
 - Qayta yig'ish natijasi `HISOBOT.md`: 96 dars · lint:jsx ✓ · smoke-lms ✓ · smoke-preview 96/96 · **Hukm: O'TDI ✓**.
   Keyingi: yuklovchi seans (YUKLASH_PROTOKOLI.md) → `yuklangan.csv` → `lms-farq muhrla … --kim <seans>`.
 
+## 4-qadam — ochiq ishlar tayyorlandi (20.11 kech, foydalanuvchi «hammasini tayorlaylik togri ketma ketligida»)
+**Lint (c3, `jsx-lint.mjs`):** yakuniy ball-ekrani qatori doimiy 0/0 yoki vaqtsiz yuborsa — error. Xavfsiz himoyalar
+(`_m.template !== 'MCScreen'`, `!data.selfSubmitted`) va yakuniy ekrani yo'q darslar chetlanadi. Qoida sweep'dan chetda qolgan
+**2 darsni** topdi → tuzatildi (`5cf99e5f`): FullstackFeedbackLesson m4-14 (`0, true, 0` ichki if'da), PipelineProjectLesson m6-08
+(`data.picked ?? 0`). Gates: Pipeline 13/13; FullstackFeedback tell/emoji (611, 665, 1335 — tegilmagan qatorlar, eski).
+Jonli brauzer sinovi bu ikkisiga YO'Q — mexanizm JsVars (maxsus ekran) da tasdiqlangan.
+Paket butun src bo'yicha lint:jsx talab qiladi → bridge (boshqa seans, commitsiz `??`) 5 fayl bloklardi → jsx-lint'ga `warn`
+darajasi, bridge'da c3 vaqtincha 🟡 (`86335ad6`). Eski kod nusxasida qoida 🔴 beradi (tekshirildi).
+
+**Prod ma'lumot-tuzatish (`0020_f1120_javob_tuzatish.sql`, hali `server/migrations/` da EMAS):**
+- Qayta o'lchov 01.09 dan (faqat o'qish): bug **192 urinish** (git-github 81 · 28.09–19.11, 9 guruh; practice-02 111 · 19.10–20.11, 17 guruh),
+  26 sessiya — HAMMASIDA v1 natija LMS'ga `delivered` (+ 21 urinishda v2 lesson_result). Oldingi «151» — faqat 20.10 dan edi.
+- Alohida signallar (bu bug EMAS): react-state-effect-03-v18 bugun 11 urinish — javob YOZILMAGAN (`tests_answered` < urinishlar),
+  ehtimol dars davom etayotgan payt; 4 ta solo 1 tadan (html-practice, pm-m2d7, internet-01, pm-m4d2). Ko'rilmadi.
+- SQL: 1) ball — faqat 2 dars/savol, soxta shakl (0, xato, 0 ms) + 1-urinish boshqa variant → answer_attempts dan picked/elapsed,
+  correct quiz_keys dan; 2) vaqt — barcha darslar test zonasi, vaqt 0 va 1-urinish aynan o'sha variant. Idempotent.
+- Lokal sinov (BEGIN…ROLLBACK): ball 2 qator (Gani/Vali s7 → 1, t, 5900/3847), vaqt 11 qator; ikkinchi yurish 0/0.
+- Raqam 0020 — Junior seansining commitsiz `0019_junior_sinf.sql` bilan to'qnashmasin (migrate takror raqamda yiqiladi).
+**CRM ro'yxati `crm-tuzatish-royxat.csv`:** 192 qator, ismsiz (sana, dars, guruh, student_id, crm_id, session_id, testlar,
+lmsdagi_ball, togri_ball). LMS'dagi natijani biz o'zgartira olmaymiz (o'zgargan payload → 409).
+**Paket qayta (86335ad6):** `yuklash-2026-11-20-prod/` — **98 dars** (96 + m4-14, m6-08) · smoke-lms ✓ · smoke-preview 98/98 · **O'TDI ✓**.
+**Bridge patch `bridge-f1120.patch`:** 5 fayl (AiSayt, Git — MCQ; AvtoIjaraReact, Postgres, SaytQurish — maxsus), codemod
+nusxada, `git apply --check` toza, QO'LLANMAGAN.
+
 ## Ochiq
 2. ~~B-ko'rinish~~ — tuzatildi (yuqorida); LMS yuklash: commit → `lms-farq paket` → yuklovchi → muhrla.
 3. Prod ma'lumotni tiklash (151 qator, answer_attempts'dan) — prod'ga yozish, faqat foydalanuvchi buyrug'i bilan;
