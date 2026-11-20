@@ -36,7 +36,8 @@ Jonli darsda yakuniy test javobi serverga 2 marta ketardi: `recordAnswer` avval 
    - Keyin tekshiruv: `v_lesson_results` (yukla.mjs) — deficit 0 bo'lishi kerak.
 3. **CRM ro'yxati** `crm-tuzatish-royxat.csv` (192 qator, ismsiz) — foydalanuvchi o'zi CRM jamoasiga yuboradi
    (LMS'ga ketgan natijani biz o'zgartira olmaymiz: o'zgargan payload → 409). Xat taklif qilinmaydi.
-4. **Bridge** — `bridge-f1120.patch` (5 fayl: BridgeTexAiSayt, BridgeTexGit, BridgeTexAvtoIjaraReact, BridgeTexPostgres,
+4. ✅ **Bridge patch QO'LLANDI 21.11** (zaxira `bridge-zaxira-oldin/`, c3 istisnosi olindi, lint:jsx toza; emoji — eski). Bridge fayllari commitsiz (boshqa seans), sayt deploy qilinmagan.
+   Eski reja — `bridge-f1120.patch` (5 fayl: BridgeTexAiSayt, BridgeTexGit, BridgeTexAvtoIjaraReact, BridgeTexPostgres,
    BridgeTexSaytQurish). Fayllar boshqa seansda commitsiz (`??`). O'sha seans tugagach: `git apply -p1 …` (yoki codemod qayta) →
    gates → jsx-lint.mjs dagi bridge warn-istisnosini (`c3warn`) olib tashlash.
 

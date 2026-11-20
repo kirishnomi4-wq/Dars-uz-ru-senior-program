@@ -231,9 +231,8 @@ for (const file of files) {
   // qotiradi. Shu qator doimiy variant (0) yoki vaqtsiz (`data.elapsedMs || 0`) yuborsa — MCQ javobi buziladi va
   // yakuniy test vaqti 0 bo'ladi. To'g'ri shakl: haqiqiy `data.picked` + `Number.isFinite(data.elapsedMs) ? … : Date.now() - scrTsRef.current`.
   const hasFinalScored = /scored:\s*true[^\n}]*scope:\s*'final'/.test(src); // yakuniy ball-ekrani yo'q darsda qator hech qachon ishlamaydi
-  // bridge darslari (src/bridge/) — 20.11 da boshqa seans quryapti (commitsiz); tayyor patch: feedback/F-1120-01-test-ball/bridge-f1120.patch.
-  // Shu sabab u yerda vaqtincha OGOHLANTIRISH (bloklamaydi). Patch qo'llangach bu istisno olib tashlanadi.
-  const c3warn = /[\\/]bridge[\\/]/.test(file);
+  // 21.11: bridge istisnosi olib tashlandi — bridge-f1120.patch qo'llandi, qoida hamma joyda xato (bloklaydi).
+  const c3warn = false;
   if (hasFinalScored) src.split('\n').forEach((ln, k) => {
     if (!/_m\.scope === 'final'/.test(ln) || !/live\.submitAnswer\(/.test(ln)) return;
     // xavfsiz himoyalar: MCQ (o'zi yuboradi) chetlangan yoki maxsus ekran o'zi haqiqiy javobni yuborgan

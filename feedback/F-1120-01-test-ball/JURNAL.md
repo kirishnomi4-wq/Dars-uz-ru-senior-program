@@ -139,3 +139,11 @@ nusxada, `git apply --check` toza, QO'LLANMAGAN.
   lms-farq «server KERAK» ogohlantirishi — bridge seansining commitsiz 10 bridge-tex id'si, bizniki emas.
 - 0020 dan keyingi qoldiq: prod'da 20:00Z (01:00) dan keyin urinish 0 → **0021 KERAK EMAS**.
 - Serverlar to'xtatildi, tab yopildi. Commit (LMS_REESTR.json, LMS_DEPLOY_JURNAL.md, yuklangan.csv) — foydalanuvchi buyrug'i bilan.
+
+## 2026-11-21 02:38 (`date`) — commit + bridge patch (foydalanuvchi: «qolgan barcha ishlarga ruxsat»)
+- Commit (pathspec, 4 fayl): LMS_REESTR.json, LMS_DEPLOY_JURNAL.md, JURNAL.md, DAVOM.md — boshqa seanslarning 41 staged fayli tegilmadi. Push yo'q.
+- Bridge: 5 fayl 11.11 16:51 dan beri tegilmagan (`??`, boshqa seansniki) → zaxira `bridge-zaxira-oldin/` → `git apply bridge-f1120.patch` (har faylda 5–7 qator).
+  jsx-lint.mjs: bridge c3 istisnosi olib tashlandi (`c3warn = false`) → lint:jsx 375 fayl TOZA.
+  gates har 5 faylda 12/13 — yiqilgan faqat **emoji** (161-qonun), patchdan OLDIN ham aynan shu son (11/21/5/6/9) → eski, bizniki emas, tegilmadi.
+  Bridge fayllari commit QILINMADI (boshqa seansning commitsiz ishi) · bridge sayti deploy QILINMADI · jonli brauzer sinovi bridge'da YO'Q (mexanizm LMS darslarida e2e bilan tasdiqlangan).
+- CRM ro'yxati `crm-tuzatish-royxat.csv` — yuborish foydalanuvchida (biz CRM'ga natija yozmaymiz).
