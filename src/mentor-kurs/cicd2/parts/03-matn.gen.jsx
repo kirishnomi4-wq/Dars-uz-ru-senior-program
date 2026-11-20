@@ -480,9 +480,15 @@ const MDT = {
     "Lekin haqiqiy baza manzili yoki bot tokeni yml'ga yozilmaydi: repo ochiq, tarix abadiy. Ular GitHub'da repo settings, secrets and variables, actions bo'limiga yoziladi. Yml'da faqat nomi: secrets DATABASE URL. Logda qiymati yulduzcha bo'lib chiqadi, maska."
    ],
    [
+    "x",
+    "Endi <b>o'zingiz buzasiz</b>: <code>ci.yml</code>da yonib turgan secret nomi ustiga bosing",
+    "Endi buzamiz. Buzishni o'zingiz qilasiz: ci yml'ning qirq birinchi satrida secrets DATABASE URL yonib turibdi, ustiga bosing: nomdan bitta harf tushib qoladi.",
+    "<b>ci.yml</b> 41-satridagi <b><code>secrets.DATABASE_URL</code></b> ustiga bosing — nomdan bitta harf tushib qoladi."
+   ],
+   [
     "c",
-    "Buzamiz: <b><code>secrets.DATABSE_URL</code> — bitta harf tushib qoldi</b>; xato yo'q, qiymat bo'sh — smoke «DATABASE_URL topilmadi»",
-    "Endi buzamiz: yml'da secrets DATABSE URL, bitta harf tushib qoldi. Push. GitHub xato bermaydi: bunday secret yo'q, demak qiymat bo'sh. Smoke qadami qizil: SMOKE XATO, DATABASE URL topilmadi, chiqish kodi ikki. Logga qarang: xabardagi namuna manzilning paroli yulduzcha, runner URL parolini o'zi yashirdi."
+    "Buzildi: <b><code>secrets.DATABSE_URL</code> — bitta harf tushib qoldi</b>; xato yo'q, qiymat bo'sh — smoke «DATABASE_URL topilmadi»",
+    "Harf tushib qoldi: secrets DATABSE URL. Push. GitHub xato bermaydi: bunday secret yo'q, demak qiymat bo'sh. Smoke qadami qizil: SMOKE XATO, DATABASE URL topilmadi, chiqish kodi ikki. Logga qarang: xabardagi namuna manzilning paroli yulduzcha, runner URL parolini o'zi yashirdi."
    ],
    [
     "d",

@@ -400,8 +400,12 @@ Loyiha: **OrderBotNest** — lokal `/home/kali/Desktop/order-bot`, teglar `tgpg-
   p.stock = p.stock - c.qty;
   await m.save(p);
   ```
-1. **Buzamiz: qatorni ==qulfsiz o'qiymiz==, qoldiqni kodda hisoblab, yangisini yozamiz**
-   Ovoz: «Endi ataylab buzamiz. Qulfni olib tashlaymiz: mahsulotni oddiy find bilan o'qiymiz, qoldiq yetadimi deb kodda tekshiramiz, yangi qoldiqni hisoblab save qilamiz. AI'lar ko'pincha aynan shunday yozadi, ko'rinishi to'g'ri.» · buzuq kod
+- F-1120-02 (M52): 0-band — mentor tuzatilgan koddagi (`tgpg-done`, 29–38) `lock: { mode: 'pessimistic_write' }` ni o'zi bosadi → kod buzuq holatga o'tadi. Kod ostida kichik rasm (M51): ×5 mijoz → order.service (o'qish) → products · Planshet, javob «?» → 5/0 → 1/0; bo'laklar 1 (31-satr, qulfsiz o'qish) · 2 (36–37, yozish).
+0. **Endi ==o'zingiz buzasiz==: kodda yonib turgan `lock` ustiga bosing**
+   Ovoz: «Buyurtma ishlaydi, race sinovi ham toza. Endi ataylab buzamiz, chunki AI'lar ko'pincha aynan shunday yozadi. Buzishni o'zingiz qilasiz: order service'ning o'ttiz uchinchi satrida lock yonib turibdi, ustiga bosing: qulf olib tashlanadi.»
+   Bosish: «**order.service.ts** 33-satridagi **`lock: { mode: 'pessimistic_write' }`** ustiga bosing — qulf olib tashlanadi, o'qish oddiy `findOneBy` bo'ladi.»
+1. **Qulf yo'q: qatorni ==qulfsiz o'qiymiz==, qoldiqni kodda hisoblab, yangisini yozamiz**
+   Ovoz: «Qulfni olib tashladingiz. Endi mahsulot oddiy find bilan o'qiladi, qoldiq yetadimi deb kodda tekshiriladi, yangi qoldiq hisoblanib save qilinadi. AI'lar ko'pincha aynan shunday yozadi, ko'rinishi to'g'ri.» · buzuq kod
 2. **Besh tranzaksiya ==bir vaqtda «qoldiq 1» ni ko'radi== — hammasi tekshiruvdan o'tadi**
    Ovoz: «Besh mijoz bir vaqtda bosadi. Hamma tranzaksiya qoldiqni o'qiydi: bir. Hammasi yetadi deb hisoblaydi va nolni yozadi. Biz buni besh raund yurgizdik: to'rt raundda bitta Planshet besh kishiga sotildi. Birinchi raundda tasodifan bittaga, shuning uchun bir marta sinash yetmaydi.» · race natijasi
 3. **`CHECK (stock >= 0)` ==ushlamaydi==: yozilgan qiymat 0, manfiy emas**

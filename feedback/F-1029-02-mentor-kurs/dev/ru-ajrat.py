@@ -22,6 +22,7 @@ for n, sc in MDT.items():
     put(f'{n}.{f}', sc.get(f))
   for s in sc.get('seg', []):
     put(f'{n}.seg.{s[0]}.key', s[1]); put(f'{n}.seg.{s[0]}.voice', s[2])
+    if len(s) > 3: put(f'{n}.seg.{s[0]}.act', s[3])  # F-1120-02 (M52): mentor o'zi bosadi — chap paneldagi ko'rsatma
   for i, o in enumerate(sc.get('opts', [])): put(f'{n}.opts.{i}', o)
   for i, w in (sc.get('wrong') or {}).items(): put(f'{n}.wrong.{i}', w)
   for i, st in enumerate(sc.get('steps', [])):

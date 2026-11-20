@@ -94,7 +94,6 @@ node dist/main → DATABASE_URL topilmadi (нет .env) · нужно: Secrets (
 pull_request · job lint (prettier --check) · badge в README · один раз lint красный → зелёный → ссылка на репозиторий на платформу`;
 // 2-tur (05.11): skaner tuzatilgandan keyin topilgan modul ro'yxatlari
 ru(CAUSE10, ['npm test вернул код выхода 1 (тест границы красный)', 'Конвейер остановился на этом шаге — npm run build «skipped»', 'Сломанный код не собран и никуда не ушёл', 'Восстановите строку и запушьте — run снова зелёный']);
-ru(STATIONS25, [[null, 'CI / CD'], [null, 'Конвейер'], [null, 'ci.yml · Actions'], [null, 'Четыре ловушки'], [null, 'AI workflow']]);
 ru(L_ST, { ok: '✓ зелёный', bad: '✗ красный', skip: '— не запускался' });
 
 const RU_MDT = {
@@ -213,8 +212,8 @@ const RU_MDT = {
   "title": "Ломаем код и соединяем четыре команды через &&: npm ci ✓, tsc ✓, тест красный — build не начинается, код выхода 1",
   "seg": {
    "a": [
-    "Ломаем: <code>order.service.ts</code>, 36-я строка <b><code>&lt;</code> → <code>&lt;=</code></b> — это поймает тест границы из Jest-2",
-    "Теперь нарочно ломаем. В тридцать шестой строке файла order service ts в папке src, api, order замените «меньше» на «меньше или равно». Помните со второго урока по Jest: когда осталось ровно два, два продать нельзя, и тест границы это ловит."
+    "Сломано: <code>order.service.ts</code> строка 36 <b><code>&lt;</code> → <code>&lt;=</code></b> — тест границы из Jest-2 это ловит",
+    "Меньше теперь меньше или равно. Помните по второму уроку Jest: когда осталось ровно два, два купить нельзя, тест границы это ловит."
    ],
    "b": [
     "Четыре команды <b>в одной строке через <code>&amp;&amp;</code></b>: если предыдущая дала ноль, запускается следующая",
@@ -227,6 +226,11 @@ const RU_MDT = {
    "d": [
     "Итог: <b>цепочка рвётся на первом красном</b> — конвейер GitHub так же, только пишет «не запускался»",
     "Итог: цепочка рвётся на первом красном шаге, сломанный код не собирается. Конвейер GitHub работает точно так же, только незапущенный шаг показывает как skipped, то есть не запускался. Восстановите строку: git checkout, order service ts. Теперь запустите конвейер вручную сами."
+   ],
+   "x": [
+    "Теперь <b>ломаете вы</b>: нажмите на подсвеченный в коде <code>&lt;</code>",
+    "Четыре команды конвейера вы знаете. Теперь ломаем намеренно. Ломаете вы сами: в файле order service ts в папке src, api, order на тридцать шестой строке подсвечен знак меньше, нажмите на него: он станет меньше или равно.",
+    "Нажмите на <b><code>&lt;</code></b> в 36-й строке <b>order.service.ts</b> — станет <code>&lt;=</code>."
    ]
   }
  },
@@ -351,8 +355,8 @@ const RU_MDT = {
   "title": "Push с <=: run красный — шаг npm test ✗, npm run build «skipped», в аннотации Process completed with exit code 1",
   "seg": {
    "a": [
-    "Снова ломаем 36-ю строку и делаем push — <b>run красный</b>: в списке красный знак с сообщением commit",
-    "Возвращаем поломку с шестого экрана: order service ts, тридцать шестая строка, «меньше или равно». Commit, push. В разделе Actions новый run, на этот раз красный знак. Открываем run."
+    "Commit, push — <b>run красный</b>: в списке красный значок, с сообщением коммита",
+    "Меньше снова меньше или равно. Commit, push. В разделе Actions новый run, на этот раз с красным значком. Открываем run."
    ],
    "b": [
     "Шаги: <b><code>npm test</code> ✗, <code>npm run build</code> — «skipped»</b>; аннотация: код выхода 1",
@@ -365,6 +369,11 @@ const RU_MDT = {
    "d": [
     "Значит, причина: <b>тест дал код выхода 1 — конвейер остановился</b>, build не запускался, сломанный код не собран",
     "Значит, причина в одном месте: npm test дал код выхода один, конвейер остановился на этом шаге, build не запускался. Сломанный код не собрался и никуда не вышел. Если восстановить строку и сделать push, run снова зелёный. Теперь проверим."
+   ],
+   "x": [
+    "Теперь <b>снова ломаете вы</b>: нажмите на <code>&lt;</code> — потом push",
+    "Конвейер на GitHub зелёный. Теперь проверим поломку с шестого экрана на GitHub. Ломаете снова вы сами: в тридцать шестой строке order service ts подсвечен знак меньше, нажмите на него.",
+    "Нажмите на <b><code>&lt;</code></b> в 36-й строке <b>order.service.ts</b> — станет <code>&lt;=</code>, потом commit и push."
    ]
   }
  },
@@ -850,9 +859,9 @@ function yakRu(passed, segs) {
   return segs.map((s) => ({ ...s, ...(Y[s.id === 'a' ? (passed ? 'a_pass' : 'a_fail') : s.id] || {}) }));
 }
 (function ruMdtQo() {
-  const segRu = (n) => { const r = RU_MDT[n] && RU_MDT[n].seg; if (!r) return undefined; const o = {}; Object.keys(r).forEach((id) => { const [key, text] = r[id]; o[id] = { ...(key != null ? { key } : {}), ...(text != null ? { text, show: wrRu(text) } : {}) }; }); return o; };
+  const segRu = (n) => { const r = RU_MDT[n] && RU_MDT[n].seg; if (!r) return undefined; const o = {}; Object.keys(r).forEach((id) => { const [key, text, act] = r[id]; o[id] = { ...(key != null ? { key } : {}), ...(text != null ? { text, show: wrRu(text) } : {}), ...(act != null ? { act } : {}) }; }); return o; };
   const head = (n) => { const r = RU_MDT[n] || {}; const o = {}; ['kicker', 'eyebrow', 'title'].forEach((k) => { if (r[k] != null) o[k] = r[k]; }); const s = segRu(n); if (s) o.segments = s; return o; };
-  const mdt = {}; Object.keys(RU_MDT).forEach((n) => { const r = { ...RU_MDT[n] }; if (r.seg) r.seg = MDT[n].seg.map(([id]) => (r.seg[id] ? [null, r.seg[id][0], r.seg[id][1]] : null)); mdt[n] = r; });
+  const mdt = {}; Object.keys(RU_MDT).forEach((n) => { const r = { ...RU_MDT[n] }; if (r.seg) r.seg = MDT[n].seg.map(([id]) => (r.seg[id] ? [null, r.seg[id][0], r.seg[id][1], r.seg[id][2]] : null)); mdt[n] = r; });
   ru(MDT, mdt);
   ru(S1, { ...head(1), ...((typeof RU_S !== 'undefined' && RU_S.S1) || {}) });
   ru(S2, { ...head(2), ...((typeof RU_S !== 'undefined' && RU_S.S2) || {}) });

@@ -43,6 +43,7 @@ for (const i of list) {
     await page.waitForTimeout(260);
     await grab();
     const ask = await page.$('.mk-ask .row button'); if (ask) { await tc(ask); continue; }
+    const act = await page.$('.n1-acthint') && await page.$('.n1-act'); if (act) { await tc(act); continue; } // F-1120-02: «o'zingiz buzasiz» — kodda yonib turgan so'z
     const man = await page.$('button:has-text("Следующий шаг"), button:has-text("Keyingi qadam")'); if (man) { await tc(man); continue; }
     const opt = await page.$('.mk-opt:not([disabled])'); if (opt && !(await page.$('.mk-opt.ok'))) { await tc(opt); await page.waitForTimeout(350); continue; }
     const ln = await page.$('.mk-ln.clk:not(.bad)'); if (ln) { const tx = await ln.innerText(); if (tx.trim().length > 3) { await tc(ln); await page.waitForTimeout(350); continue; } }

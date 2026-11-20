@@ -423,9 +423,11 @@ const vis = (at, beat) => at == null || at <= beat;
 
 // useAudio(segments) → currentId. Qadam faqat oldinga o'sadi. `ask` segmenti: ovoz savol beradi va
 // tugma bosilguncha kutadi (waits_for button_click/step) — «o'ylab ko'ring».
+// `act` segmenti (F-1120-02): xuddi shunday kutadi, lekin bosiladigan narsa SAHNADA (masalan kodda yonib turgan so'z);
+// sahna bosilganda answerAsk(seg.id, 0) chaqiradi, chap panelda act matni ko'rsatma bo'lib turadi.
 // `review` (Orqaga bilan qaytilgan ekran, A12): ovoz yo'q, ekran yakuniy holatda; ↺ boshidan — ovoz bilan qayta
 function useBeats(segments, review) {
-  const segs = useMemo(() => review ? [] : segments.map((s, i) => ({ id: s.id, text: voice(s.text), trigger: i === 0 ? 'on_mount' : 'after_previous', waits_for: s.ask ? { type: 'button_click', target: 'step' } : s.waits_for })), [segments, review]);
+  const segs = useMemo(() => review ? [] : segments.map((s, i) => ({ id: s.id, text: voice(s.text), trigger: i === 0 ? 'on_mount' : 'after_previous', waits_for: s.ask || s.act ? { type: 'button_click', target: 'step' } : s.waits_for })), [segments, review]);
   const audio = useAudio(segs);
   const [beat, setBeat] = useState(review ? segments.length - 1 : 0);
   const [done, setDone] = useState(!!review);
@@ -439,7 +441,7 @@ function useBeats(segments, review) {
   // qadamni o'sha savolga suramiz, aks holda savol chiqmaydi va ekran qotadi
   useEffect(() => {
     if (!audio.waitingFor || audio.currentId) return;
-    const k = segments.findIndex((s, i) => i >= beat && s.ask);
+    const k = segments.findIndex((s, i) => i >= beat && (s.ask || s.act));
     if (k >= 0) { started.current = true; setBeat((b) => Math.max(b, k)); }
   }, [audio.waitingFor, audio.currentId, beat, segments]);
   // F-1031-16: oxirgi segment ovozi YUKLANAYOTGANDA ham isPlaying=false bo'ladi — Davom erta ochilmasin:
@@ -453,7 +455,9 @@ function useBeats(segments, review) {
   const answerAsk = useCallback((segId, i) => {
     setGuess((g) => ({ ...g, [segId]: i }));
     if (audio.waitingFor) audio.triggerEvent('button_click', 'step');
-    else if (audio.muted || audio.status === 'idle') stepManual();
+    // F-1120-02: ovoz hali YUKLANAYOTGAN bo'lsa (status idle, lekin currentId — shu segment) qo'lda o'tilmaydi:
+    // aks holda qadam oldinga ketadi, runtime esa shu segmentda tugmani kutib qoladi va dars ovozsiz qoladi
+    else if (audio.muted || (audio.status === 'idle' && audio.currentId !== segId)) stepManual();
     else pendingAsk.current = true;
   }, [audio, stepManual]);
   useEffect(() => { if (audio.waitingFor && pendingAsk.current) { pendingAsk.current = false; audio.triggerEvent('button_click', 'step'); } }, [audio.waitingFor, audio]);
@@ -513,7 +517,7 @@ function Say({ eyebrow, title, segments, beat, audio, stepManual, below, guess, 
   const now = segments[beat];
   const keyHtml = now.key || now.show || digits(now.text);
   const [tr, setTr] = useState(false);
-  const showManual = !review && (audio.muted || (!audio.isPlaying && !audio.waitingFor && beat < segments.length - 1 && audio.status === 'idle' && !now.ask));
+  const showManual = !review && (audio.muted || (!audio.isPlaying && !audio.waitingFor && beat < segments.length - 1 && audio.status === 'idle' && !now.ask && !now.act));
   const asking = now.ask && guess && guess[now.id] === undefined;
   const prevAsk = beat > 0 && segments[beat - 1].ask ? segments[beat - 1] : null;
   return (
@@ -530,6 +534,7 @@ function Say({ eyebrow, title, segments, beat, audio, stepManual, below, guess, 
         )}
         <div className="mk-dots">{segments.map((s, i) => <i key={s.id} className={i === beat ? 'on' : (i < beat ? 'done' : '')} />)}</div>
         {review && <p className="mk-review">{t("Takrorlash: ekran tayyor holatda, ovozsiz. Ovoz bilan qayta eshitish — tepadagi «↺ boshidan». To'liq matn — «Matn».", 'Повтор: экран в готовом виде, без звука. Послушать заново со звуком — «↺ с начала» вверху. Полный текст — «Текст».')}</p>}
+        {now.act && guess && guess[now.id] === undefined && !review && <p className="n1-acthint" dangerouslySetInnerHTML={html(now.act)} />}
         {asking && (
           <div className="mk-ask"><p>{now.ask.q}</p><div className="row">{now.ask.opts.map((o, i) => <button key={i} className="mk-btn ghost sm" onClick={() => answerAsk(now.id, i)}>{o}</button>)}</div></div>
         )}
@@ -902,6 +907,369 @@ function CoverStart({ onStart, resume }) {
       <p className="mk-resume-note">{t(`Oxirgi marta ${resume.idx + 1}-ekrangacha kelgansiz. Javoblaringiz saqlangan.`, `В прошлый раз вы дошли до ${resume.idx + 1}-го экрана. Ответы сохранены.`)}</p>
     </div>
   );
+}
+
+// ============================================================
+//  DARS RASMI — UMUMIY QISM (F-1120-02, 20.11; qonun M51, M52). Hamma mentor darsiga yig'iladi (dev/yig.sh).
+//  Bu yerda: rasm uslubi (CSS, useCssN1 — darsning ildiz komponentida chaqiriladi), N1Fit (qat'iy o'lchamli
+//  chizma sahna eniga moslashadi), useLate, useAct (M52: mentor o'zi bosib buzadi), N1Mini, Res.
+//  Darsga xos rasm — o'z bo'lagida: Nest darslari — parts/02c-nest.jsx, boshqa dars — <dars>/parts/02b-*.jsx.
+//  Ranglar dars ranglari (PART, T); yangi rang yo'q. CSS ichida backtick yo'q (CLAUDE.md).
+// ============================================================
+const CSS_N1 = `
+.n1-fit{position:relative;width:100%;flex:0 0 auto}
+.n1-box{position:absolute;top:0;transform-origin:0 0;font:13px/1.4 ${SANS};color:${T.ink}}
+.n1-box *{box-sizing:border-box}
+.n1-abs{position:absolute}
+.n1-tagl{position:absolute;font:600 10.5px/1 ${MONO};letter-spacing:.12em;color:${T.ink3};text-transform:uppercase;white-space:nowrap}
+.n1-st{transition:opacity .45s,box-shadow .45s,filter .45s,border-color .45s,background .45s}
+.n1-st[data-st="g"]{opacity:.3;filter:grayscale(1)}
+.n1-st[data-st="dim"]{opacity:.45}
+.n1-st[data-st="off"]{opacity:0;pointer-events:none}
+.n1-st[data-st="hl"]{box-shadow:0 0 0 4px rgba(226,69,31,.16),0 14px 30px rgba(15,17,21,.12)}
+
+.n1-br{position:absolute;border-radius:12px;border:1.5px solid #C9CED8;background:${T.paper};overflow:hidden}
+.n1-br .top{height:30px;background:#E9ECF1;display:flex;align-items:center;gap:5px;padding:0 9px}
+.n1-br .top i{width:7px;height:7px;border-radius:50%;background:#B9BFCB;flex:none}
+.n1-br .top span{margin-left:4px;flex:1;min-width:0;background:${T.paper};border-radius:9px;font:500 10px/1.6 ${MONO};padding:0 6px;color:${T.ink2};white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.n1-br .bd{position:absolute;left:0;right:0;top:30px;bottom:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:10px}
+.n1-br .wait{font-size:12.5px;color:${T.ink3}}
+.n1-br .out{font:700 18px/1.25 ${SANS};color:${T.ink};animation:mk-up .4s ease both}
+.n1-br .out.code{font:600 11px/1.5 ${MONO};text-align:left;color:${T.green};word-break:break-all;white-space:normal}
+.n1-br .out.er{color:#DC2626}
+.n1-cap{position:absolute;text-align:center;font-size:11.5px;color:${T.ink3};white-space:nowrap}
+
+.n1-app{position:absolute;border-radius:18px;border:1.5px dashed #C9CED8;background:#FAFBFC}
+.n1-mod{position:absolute;border:2px solid ${PART.mod};border-radius:12px;background:#FFFBF0}
+.n1-mod .lg{position:absolute;left:12px;top:-9px;background:${T.paper};padding:0 6px;font:700 13px/16px ${SANS};color:${PART.mod};white-space:nowrap}
+.n1-mod .lab{position:absolute;right:12px;top:-14px}
+.n1-chip{position:absolute;font:500 12px/1.4 ${MONO};background:${T.paper};border:1px solid #E6D6A8;border-radius:7px;padding:4px 8px;white-space:nowrap;color:${T.ink};transition:box-shadow .4s,border-color .4s,opacity .4s}
+.n1-chip.hot{border-color:${T.accent};box-shadow:0 0 0 3px rgba(226,69,31,.18)}
+.n1-link{position:absolute;width:2px;background:${PART.mod};opacity:0;transition:opacity .4s}
+.n1-link.on{opacity:1}
+
+.n1-part{position:absolute;border-radius:14px;background:${T.paper};border:2px solid var(--c);padding:13px 14px}
+.n1-part .nm{font:700 16px/1.2 ${SANS};color:var(--c);display:flex;align-items:center;gap:8px;white-space:nowrap}
+.n1-part .nm i{width:9px;height:9px;border-radius:3px;background:var(--c);flex:none}
+.n1-part .role{font-size:13px;color:${T.ink2};margin-top:5px}
+.n1-part .cd{display:inline-block;margin-top:10px;background:${T.code};color:${T.codeInk};font:500 12px/1.4 ${MONO};padding:6px 10px;border-radius:8px;white-space:nowrap}
+.n1-part .fl{position:absolute;left:14px;bottom:10px;font:500 11px/1 ${MONO};color:${T.ink3};white-space:nowrap}
+.n1-part .lab{position:absolute;right:10px;top:10px}
+.n1-lab{display:inline-block;font:700 11.5px/1 ${SANS};color:${T.ink2};background:#F1F3F6;border:1px solid ${T.line};border-radius:999px;padding:5px 9px;white-space:nowrap;animation:mk-up .4s ease both}
+.n1-sock{position:absolute;height:34px;border-radius:17px;border:1.5px dashed #A8AFBD;display:flex;align-items:center;justify-content:center;font:700 12.5px/1 ${MONO};color:${T.ink3};background:${T.paper};transition:all .4s}
+.n1-sock.er{border:1.5px solid #DC2626;color:#DC2626;background:#FEF2F2}
+
+.n1-exp{position:absolute;border-radius:10px;border:1px solid ${T.line};background:#F0F2F5;display:flex;align-items:center;gap:8px;padding:0 14px;font-size:12.5px;color:${T.ink2};white-space:nowrap;transition:all .45s}
+.n1-exp b{color:${T.ink};font-weight:700}
+.n1-exp[data-st="hl"]{background:#FFF0EB;border-color:${T.accent};box-shadow:0 0 0 4px rgba(226,69,31,.12)}
+.n1-exp[data-st="hl"] b{color:${T.accent}}
+
+.n1-stem{position:absolute;width:0;border-left:2px dotted #C9CED8}
+.n1-lanes{position:absolute;border-radius:14px;background:${T.bg}}
+.n1-ln{position:absolute;height:2px;background:#D5D9E1}
+.n1-lf{position:absolute;height:2px;transition:width .9s cubic-bezier(.4,0,.2,1)}
+.n1-lf.r{background:${T.accent}}.n1-lf.g{background:${T.green}}
+.n1-stn{position:absolute;width:10px;height:10px;border-radius:50%;background:${T.paper};border:2px solid #B9BFCB;transform:translate(-50%,-50%)}
+.n1-lbl{position:absolute;right:14px;font:600 11px/1 ${MONO};color:${T.ink3};white-space:nowrap;transform:translateY(-50%)}
+.n1-pk{position:absolute;transform:translate(-50%,-50%);background:${T.accent};color:#fff;font:600 12px/1 ${MONO};padding:6px 11px;border-radius:14px;white-space:nowrap;box-shadow:0 6px 14px rgba(15,17,21,.22);transition:left .9s cubic-bezier(.4,0,.2,1),top .35s,background .3s,opacity .3s;z-index:3}
+.n1-pk.grn{background:${T.green}}
+.n1-pk.off{opacity:0}
+.n1-pk.loop{transition:none;animation:n1-loop 5.2s linear infinite}
+@keyframes n1-loop{0%{left:var(--xa);top:var(--y1);background:${T.accent}}44%{left:var(--xc);top:var(--y1);background:${T.accent}}50%{left:var(--xc);top:var(--y2);background:${T.green}}94%{left:var(--xa);top:var(--y2);background:${T.green}}100%{left:var(--xa);top:var(--y1);background:${T.accent}}}
+.n1-ro{position:absolute;background:${T.code};border-radius:12px;display:flex;align-items:center;gap:14px;padding:0 16px;transition:opacity .35s;overflow:hidden}
+.n1-ro .rf{font:500 11.5px/1 ${MONO};color:#8A90A2;white-space:nowrap}
+.n1-ro code{font:500 13px/1.3 ${MONO};color:${T.codeInk};white-space:nowrap}
+.n1-ro.off{opacity:0}
+.n1-k{color:#C792EA}.n1-s{color:#9ECE6A}.n1-d{color:#E5C07B}.n1-c{color:#7AA2F7}.n1-ok{color:#86EFAC}.n1-er{color:#FCA5A5}
+
+.n1-tok{position:absolute;height:38px;border-radius:19px;background:#E3F5EC;border:2px solid ${T.green};display:flex;align-items:center;justify-content:center;gap:7px;font:700 13px/1 ${SANS};color:${T.green};transform:translate(-50%,-50%);transition:left .9s cubic-bezier(.4,0,.2,1),top .9s cubic-bezier(.4,0,.2,1),opacity .35s,transform .35s;z-index:3;white-space:nowrap}
+.n1-tok i{width:8px;height:8px;border-radius:50%;background:${T.green};flex:none}
+.n1-tok.off{opacity:0;transform:translate(-50%,-50%) scale(.6)}
+.n1-tok.twin{background:transparent;border-style:dashed;opacity:0;transition:opacity .4s;z-index:2}
+.n1-tok.twin.on{opacity:.55}
+.n1-tok.grey{background:#F3F4F7;border-color:#9AA1B1;color:${T.ink2}}
+.n1-tok.grey i{background:#9AA1B1}
+.n1-tok.yel{background:#FFFBF0;border-color:${PART.mod};color:${PART.mod};border-style:dashed}
+.n1-tok.yel i{background:${PART.mod}}
+.n1-box2{position:absolute;border-radius:14px;border:2px solid #9AA1B1;background:#F3F4F7}
+.n1-box2 .bl{position:absolute;left:14px;top:12px;font:600 10.5px/1 ${MONO};letter-spacing:.12em;color:${T.ink2};white-space:nowrap}
+.n1-box2 .sh{position:absolute;border-radius:19px;border:1.5px dashed #A8AFBD;display:flex;align-items:center;justify-content:center;font:500 11.5px/1 ${MONO};color:${T.ink3};transition:color .3s}
+.n1-box2.has .sh{color:transparent}
+.n1-box2 .nq{position:absolute;left:14px;right:14px;bottom:12px;font-size:11.5px;line-height:1.35;color:${T.ink2};opacity:0;transition:opacity .4s}
+.n1-box2 .nq.on{opacity:1}
+.n1-you{position:absolute;font:700 11.5px/1 ${SANS};color:#fff;background:${T.accent};border-radius:10px;padding:5px 9px;white-space:nowrap;opacity:0;transition:opacity .4s;z-index:4}
+.n1-you.on{opacity:1}
+.n1-ann{position:absolute;font:600 12px/1.3 ${SANS};color:${T.ink2};white-space:nowrap;opacity:0;transition:opacity .4s}
+.n1-ann.on{opacity:1}
+.n1-ann b{color:${T.accent}}
+.n1-tayyor{color:${T.green};transition:opacity .4s}
+.n1-line{position:absolute;height:38px;border-radius:9px;background:${T.code};color:${T.codeInk};font:500 12px/1 ${MONO};display:flex;align-items:center;padding:0 10px;white-space:nowrap}
+.n1-prm{border-radius:4px;padding:1px 0;transition:background .4s,box-shadow .4s}
+.n1-prm.hot{background:rgba(226,69,31,.3);box-shadow:0 0 0 2px rgba(226,69,31,.3)}
+.n1-sock.wait{border-color:${T.accent};color:${T.accent};animation:n1-pulse 1.4s ease-in-out infinite}
+@keyframes n1-pulse{50%{box-shadow:0 0 0 6px rgba(226,69,31,.14)}}
+.n1-svg{position:absolute;left:0;top:0;pointer-events:none;overflow:visible}
+.n1-pth{stroke:#A8AFBD;stroke-width:2;stroke-dasharray:5 5;fill:none;opacity:0;transition:opacity .4s,stroke .4s}
+.n1-pth.dash{opacity:1}
+.n1-pth.solid{opacity:1;stroke:${T.green};stroke-dasharray:none}
+.n1-pth.bad{opacity:1;stroke:#DC2626}
+.n1-row{position:absolute;opacity:0;transition:opacity .45s;pointer-events:none}
+.n1-row.on{opacity:1}
+.n1-row.dim{opacity:.42}
+.n1-srch{border:1px solid ${T.line};border-radius:12px;background:#F3F4F7}
+.n1-fld{position:absolute;height:34px;border-radius:7px;border:1.5px solid ${T.blue};background:${T.paper};display:flex;align-items:center;gap:8px;padding:0 10px;font:500 13px/1 ${MONO}}
+.n1-res{position:absolute;font:700 14px/1.3 ${SANS};color:${T.accent};white-space:nowrap}
+.n1-res span{font-weight:500;color:${T.ink2};margin-left:8px}
+.n1-exf{position:absolute;border-radius:12px;border:1px solid ${T.line};background:${T.paper};overflow:hidden}
+.n1-exf .tb{height:24px;background:#E9ECF1;font:500 10.5px/24px ${MONO};color:${T.ink2};padding:0 10px}
+.n1-exf .cl{position:absolute;left:10px;top:34px;font:500 11.5px/1.3 ${MONO};color:${T.ink};white-space:nowrap}
+.n1-bn{position:absolute;border-radius:12px;border:1px solid ${T.line};background:${T.paper}}
+.n1-bn svg{position:absolute;left:13px;top:12px}
+.n1-bn .bt{position:absolute;left:14px;bottom:12px;font:700 13.5px/1.2 ${SANS};color:${T.ink}}
+
+.n1-plan{position:absolute;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+.n1-plan div{border:1px solid ${T.line};border-radius:10px;background:${T.paper};padding:9px 10px;display:flex;flex-direction:column;gap:6px;transition:border-color .3s,box-shadow .3s,opacity .3s}
+.n1-plan div.hl{border-color:${T.accent};box-shadow:0 0 0 3px rgba(226,69,31,.12)}
+.n1-plan div.dim{opacity:.45}
+.n1-plan b{font:700 11.5px/1 ${MONO};color:${T.accent}}
+.n1-plan span{font-size:11.5px;line-height:1.3;color:${T.ink}}
+
+.n1-team{position:absolute;border:1px solid ${T.line};border-radius:12px;background:${T.paper};padding:10px 12px}
+.n1-team h6{margin:0 0 6px;font:600 10.5px/1 ${MONO};letter-spacing:.12em;color:${T.ink3};text-transform:uppercase}
+.n1-team div{font:500 12px/1.7 ${MONO};color:${T.ink2};white-space:nowrap}
+.n1-team div i{display:inline-block;width:7px;height:7px;border-radius:2px;background:var(--c,${T.ink3});margin-right:7px}
+
+.n1-shelf{position:absolute;border-radius:12px;border:1.5px solid ${T.line};background:${T.paper};transition:border-color .4s,box-shadow .4s,opacity .4s}
+.n1-shelf .sl{position:absolute;left:12px;top:-9px;background:${T.paper};padding:0 6px;font:600 12px/16px ${MONO};color:${T.ink2};white-space:nowrap}
+.n1-shelf.hl{border-color:${T.accent};box-shadow:0 0 0 4px rgba(226,69,31,.12)}
+.n1-shelf.dim{opacity:.45}
+.n1-shelf .emp{position:absolute;left:14px;top:14px;font:500 12px/1 ${MONO};color:${T.ink3}}
+.n1-file{position:absolute;display:flex;align-items:center;gap:7px;font:500 12px/1 ${MONO};color:${T.ink};white-space:nowrap;padding:7px 10px;border-radius:8px;background:${T.paper};border:1px solid ${T.line}}
+.n1-file i{width:8px;height:8px;border-radius:2px;background:var(--c);flex:none}
+.n1-file.new{border-color:${T.accent};animation:mk-up .45s ease both}
+.n1-ghost{position:absolute;display:flex;align-items:center;gap:7px;font:600 12px/1 ${SANS};color:#B91C1C;white-space:nowrap;padding:7px 10px;border-radius:8px;border:1.5px dashed #F2A9A9;background:#FEF2F2;animation:mk-up .45s ease both}
+.n1-tree-ln{position:absolute;background:#C9CED8}
+
+.n1-mini{position:absolute;border-radius:12px;border:1px solid ${T.line};background:#FAFBFC}
+.n1-badge{position:absolute;height:24px;border-radius:7px;display:flex;align-items:center;padding:0 8px;font:600 11.5px/1 ${MONO};white-space:nowrap;transition:all .4s}
+.n1-badge.ok{background:#FFF7E0;color:#8A5A00;border:1px solid #E6D6A8}
+.n1-badge.gone{background:transparent;color:#DC2626;border:1.5px dashed #F2A9A9}
+.n1-say{position:absolute;font:600 12px/1.3 ${SANS};white-space:nowrap;transition:opacity .4s}
+.n1-say.er{color:#DC2626}.n1-say.ok{color:${T.green}}
+.n1-res2{position:absolute;display:flex;flex-direction:column;gap:6px}
+.n1-res2 div{font:500 11.5px/1 ${MONO};white-space:nowrap;padding:6px 9px;border-radius:7px;background:${T.code};color:${T.codeInk};transition:all .4s}
+.n1-res2 b{font-weight:700}
+.n1-arr{position:absolute;height:2px;background:${T.green};transition:background .4s}
+.n1-arr::after{content:"";position:absolute;right:-1px;top:-4px;border-left:7px solid ${T.green};border-top:5px solid transparent;border-bottom:5px solid transparent;transition:border-color .4s}
+.n1-arr.bad{background:repeating-linear-gradient(90deg,#DC2626 0 4px,transparent 4px 8px)}
+.n1-arr.bad::after{border-left-color:#DC2626}
+.n1-arr.off{opacity:.25}
+.n1-pin{position:absolute;display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:${T.accent};color:#fff;font:700 11.5px/1 ${SANS};box-shadow:0 0 0 3px #fff;opacity:0;transition:opacity .35s;z-index:5}
+.n1-pin.on{opacity:1}
+.mk-ln.n1-p1>span:last-child::before,.mk-ln.n1-p2>span:last-child::before,.mk-ln.n1-p3>span:last-child::before{display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;border-radius:50%;background:${T.accent};color:#fff;font:700 10.5px/1 ${SANS};margin-right:7px;vertical-align:1px}
+.mk-ln.n1-p1>span:last-child::before{content:"1"}
+.mk-ln.n1-p2>span:last-child::before{content:"2"}
+.mk-ln.n1-p3>span:last-child::before{content:"3"}
+.n1-act{cursor:pointer;border-radius:5px;padding:1px 3px;outline:2px solid #FF8A65;outline-offset:1px;animation:n1-blink 1.3s ease-in-out infinite}
+.n1-act:hover{background:rgba(255,138,101,.22)}
+@keyframes n1-blink{50%{outline-color:transparent}}
+.n1-acthint{margin-top:16px;padding:12px 14px;border:1.5px solid ${T.accent};border-radius:12px;background:#FFF7F3;font-size:15px;line-height:1.45;color:${T.ink};animation:mk-up .4s ease both}
+.n1-acthint b{color:${T.accent}}
+
+.n1-kit .st{position:absolute;border-radius:12px;background:${T.paper};border:2px solid var(--c);padding:10px 10px 8px;display:flex;flex-direction:column;gap:6px;transition:opacity .4s,box-shadow .4s}
+.n1-kit .st .w{font:700 14px/1.15 ${SANS};color:${T.ink}}
+.n1-kit .st .a{font:600 12px/1 ${MONO};color:var(--c)}
+.n1-kit .st .v{font-size:11.5px;line-height:1.3;color:${T.ink2}}
+.n1-kit .st .f{font:500 10px/1.2 ${MONO};color:${T.ink3};word-break:break-all;opacity:0;transition:opacity .4s}
+.n1-kit .st .f.on{opacity:1}
+.n1-kit .st.hl{box-shadow:0 0 0 4px rgba(226,69,31,.16),0 14px 30px rgba(15,17,21,.12)}
+.n1-kit .st.dim{opacity:.4}
+.n1-kit .ar{position:absolute;height:2px;background:#B9BFCB}
+.n1-kit .ar::after{content:"";position:absolute;right:-1px;top:-4px;border-left:7px solid #B9BFCB;border-top:5px solid transparent;border-bottom:5px solid transparent}
+.n1-kit .no{position:absolute;font:600 11.5px/1.3 ${SANS};color:${T.accent};white-space:nowrap;opacity:0;transition:opacity .4s}
+.n1-kit .no.on{opacity:1}
+
+.mk-cover .card.n1-cv{max-width:1120px;padding:0;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);overflow:hidden}
+.n1-cv .tx{padding:40px 30px 36px 40px;display:flex;flex-direction:column}
+.n1-cv .af{margin:6px 0 10px;font:600 11.5px/1 ${MONO};letter-spacing:.12em;color:${T.ink3};text-transform:uppercase}
+.n1-cv ul.ok{margin:0 0 22px;gap:10px}
+.n1-cv ul.ok li{display:flex;gap:10px;color:${T.ink};font-size:15.5px;line-height:1.4}
+.n1-cv ul.ok li::before{content:"✓";flex:none;width:21px;height:21px;border-radius:50%;background:#E3F5EC;color:${T.green};font:700 12px/21px ${SANS};text-align:center;margin:0}
+.n1-cv .tx>.mk-btn{align-self:flex-start}
+.n1-cv .meta{margin:auto 0 16px;font-size:13px;line-height:1.5;color:${T.ink3}}
+.n1-cv .pic{background:${T.bg};border-left:1px solid ${T.line};display:flex;align-items:center;padding:24px 20px}
+@media (max-width:900px){.mk-cover .card.n1-cv{grid-template-columns:1fr}.n1-cv .pic{border-left:0;border-top:1px solid ${T.line}}}
+@media (prefers-reduced-motion:reduce){.n1-pk.loop,.n1-sock.wait,.n1-act{animation:none}.n1-box *{transition:none!important}}
+`;
+function useCssN1() {
+  useEffect(() => {
+    let s = document.getElementById('mk-css-n1');
+    if (!s) { s = document.createElement('style'); s.id = 'mk-css-n1'; document.head.appendChild(s); }
+    if (s.textContent !== CSS_N1) s.textContent = CSS_N1;
+  }, []);
+}
+
+// Qat'iy o'lchamli chizma (w×h) sahna eniga qarab kattalashadi (max gacha), markazda turadi
+function N1Fit({ w, h, max = 1.25, children, style }) {
+  const ref = useRef(null);
+  const [W, setW] = useState(0);
+  useEffect(() => {
+    const el = ref.current; if (!el) return undefined;
+    const f = () => setW(el.clientWidth);
+    f();
+    if (typeof ResizeObserver === 'undefined') { window.addEventListener('resize', f); return () => window.removeEventListener('resize', f); }
+    const ro = new ResizeObserver(f); ro.observe(el); return () => ro.disconnect();
+  }, []);
+  const k = W > 0 ? Math.min(max, W / w) : 1;
+  return <div ref={ref} className="n1-fit" style={{ height: Math.round(h * k), ...(style || {}) }}>
+    <div className="n1-box" style={{ width: w, height: h, left: Math.max(0, (W - w * k) / 2), transform: `scale(${k})`, visibility: W > 0 ? 'visible' : 'hidden' }}>{children}</div>
+  </div>;
+}
+
+// Bir qadamdan keyin ms o'tdimi (paket ikkinchi yo'lakka o'tishi, brauzerga javob kelishi uchun)
+function useLate(key, ms) {
+  const [late, setLate] = useState(false);
+  useEffect(() => { setLate(false); const id = setTimeout(() => setLate(true), ms); return () => clearTimeout(id); }, [key, ms]);
+  return late;
+}
+
+// ---------- 23–26-ekran: «Buzamiz» — kichik rasm (VS Code oynasi ichida, kod va terminal orasida) ----------
+// Mentor o'zi buzadi: kodda yonib turgan so'z (data-act) bosiladi → act segmenti tugaydi (dvigatel: answerAsk).
+// hit — bosildimi; broken — buzilgan holat ko'rinadimi
+function useAct(b, id = 'x') {
+  const hit = !!(b.guess && b.guess[id] !== undefined);
+  const onClick = (e) => { const el = e.target && e.target.closest ? e.target.closest('[data-act]') : null; if (el && !hit && b.answerAsk) b.answerAsk(id, 0); };
+  return { hit, onClick };
+}
+// Balandlik 122 (ramka 8…118): 1280×720 da VS Code oynasiga kod + rasm + terminal sig'sin; kattalashish 1.1 gacha
+const N1Mini = ({ h = 122, children }) => <div style={{ background: T.paper, border: `1px solid ${T.line}`, borderRadius: 12, padding: '4px 8px', flex: '0 0 auto' }}><N1Fit w={520} h={h} max={1.1}>{children}</N1Fit></div>;
+// code null — natija hali noma'lum (savol berilgan, javob keyingi qadamda): «?»
+const Res = ({ rows, left = 404, top = 34 }) => <div className="n1-res2" style={{ left, top }}>{rows.map(([q, code, txt]) => <div key={q}>{q} → <b className={code == null ? '' : code >= 400 ? 'n1-er' : 'n1-ok'}>{code == null ? '?' : code}</b>{txt ? ' ' + txt : ''}</div>)}</div>;
+
+// ============================================================
+//  «BUYURTMA BOTI» XARITASI (F-1120-02, qonun M51) — OrderBot ipidagi 8 darsga umumiy rasm
+//  (TgPg, Jest-1/2, CI/CD-1/2, WS-1/2, Webhook; dev/yig.sh). Joylashuv, rang va nomlar hamma darsda bir xil —
+//  har dars faqat holatni o'zgartiradi va o'z qismini yoritadi.
+//  Chapda mijoz telefoni (Telegram), o'rtada OrderBotNest serveri (telegram · catalog · user · cart · order),
+//  o'ngda ma'lumot: Xotira (Map / massiv) va PostgreSQL (products · users · cart_items · orders).
+//  Nomlar OrderBotNest kodidan: PRODUCTS[] (catalog.service.ts:7), users Map (user.service.ts:8),
+//  carts Map (cart.service.ts:7), orders[] (order.service.ts:14) — teg tgpg-start.
+//  Ranglar: dars ranglari (T) va OrderBot darslaridagi Telegram/PostgreSQL ranglari; CSS izohida backtick yo'q.
+// ============================================================
+const BM = { tg: '#5B8DB8', tgBg: '#DCE7F0', pg: '#336791', jest: '#99425B' }; // jest — Jest darslaridagi rang (JC.jest)
+// [kalit, xotiradagi nomi, xotira izohi, jadval nomi, jadval izohi]
+const BM_DATA = [
+  ['products', 'PRODUCTS[]', 'catalog.service.ts', 'products', 'stock CHECK ≥ 0'],
+  ['users', 'users Map', 'rol · telefon · state', 'users', 'telegram_id BIGINT'],
+  ['carts', 'carts Map', 'cart.service.ts', 'cart_items', 'UNIQUE · ON CONFLICT'],
+  ['orders', 'orders[]', 'order.service.ts', 'orders', '+ order_items'],
+];
+const BM_MODS = [['catalog', 236, 104], ['user', 348, 104], ['cart', 236, 146], ['order', 348, 146]];
+// loc: { products|users|carts|orders: 'mem' | 'db' } (berilmasa — 'mem') · restart: xotira bo'shadi
+// on: yonib turgan qismlar (modullar 'phone','telegram','catalog','user','cart','order'; ma'lumot 'products','users','carts','orders'; 'mem','db'); berilmasa hammasi oddiy
+// chat: [mijoz, bot, 'ok'|'bad'] · clients: bir vaqtda nechta mijoz · tx: 'open'|'commit'|'rollback' (PostgreSQL ichida)
+// note: { kalit: jadval ostidagi yozuv } · ops: { kalit: 'UPDATE' … } · badge: { kalit: raqam } (masalan bosqich)
+// bad: { at: kalit, why } · ro: [fayl:satr, html] · tag · max
+// jest: { name, cmd, files: [...], steps: [[nom, 'ok'|'bad'|'skip'|'']], res: 'pass'|'fail'|'?', txt, badge (o'z matni) } (name berilmasa — «Jest»; CI darslarida steps — lenta qadamlari) — server ostidagi qator (Jest darslari): test faqat funksiyani chaqiradi
+// tgSub: telegram moduli yonidagi yozuv (berilmasa «Telegraf») · dbLabel: PostgreSQL qutisi nomi (CI'da — services konteyneri)
+function BotMap({ loc = {}, restart, on, chat, clients = 1, tx, note = {}, ops = {}, badge = {}, bad, ro, tag, max, jest, tgSub, dbLabel }) {
+  const W = 760, BOT = tx ? 318 : 300, H = BOT + (ro ? 54 : 4);
+  const lit = (k) => !on || on.includes(k);
+  const st = (k) => (bad && bad.at === k ? 'bad' : lit(k) ? (on ? 'hl' : '') : 'dim');
+  const where = (k) => loc[k] || 'mem';
+  const memItems = BM_DATA.filter((d) => where(d[0]) === 'mem');
+  const dbItems = BM_DATA.filter((d) => where(d[0]) === 'db');
+  const box = (k, x, y, w, h, color, inner, extra = {}) => {
+    const s = st(k);
+    return <div key={k} className="n1-abs n1-st" data-st={s === 'dim' ? 'dim' : undefined} style={{ left: x, top: y, width: w, height: h, borderRadius: 9, border: `2px solid ${s === 'bad' ? '#DC2626' : color}`, background: s === 'bad' ? '#FEF2F2' : T.paper, boxShadow: s === 'hl' ? '0 0 0 3px rgba(226,69,31,.14)' : 'none', padding: '5px 9px', overflow: 'hidden', ...extra }}>{inner}</div>;
+  };
+  const badgeEl = (k) => (badge[k] != null ? <span style={{ position: 'absolute', right: 6, top: 5, width: 18, height: 18, borderRadius: '50%', background: T.accent, color: '#fff', font: `700 11px/18px ${SANS}`, textAlign: 'center' }}>{badge[k]}</span> : null);
+  const memChip = (d, i) => {
+    const x = 506 + (i % 2) * 116, y = 54 + Math.floor(i / 2) * 32;
+    return box(d[0], x, y, 110, 28, restart ? '#F2A9A9' : T.yellow, <>
+      <div style={{ font: `700 11px/1.5 ${MONO}`, color: restart ? '#B91C1C' : T.ink, whiteSpace: 'nowrap', textDecoration: restart ? 'line-through' : 'none' }}>{d[1]}</div>{badgeEl(d[0])}
+    </>, { padding: '2px 8px', borderStyle: restart ? 'dashed' : 'solid' });
+  };
+  // jadval — PostgreSQL ichida to'liq enli qator: nomi, amal (UPDATE/INSERT/DELETE), izoh
+  const dbChip = (d, i) => box(d[0], 506, 152 + i * 35, 222, 32, BM.pg, <div style={{ display: 'flex', alignItems: 'center', gap: 6, height: 20, whiteSpace: 'nowrap' }}>
+    <span style={{ font: `700 11.5px ${MONO}`, color: BM.pg }}>{d[3]}</span>
+    {ops[d[0]] ? <span style={{ font: `700 9.5px/1.4 ${MONO}`, color: '#fff', background: ops[d[0]] === 'DELETE' ? T.yellow : ops[d[0]] === 'INSERT' ? T.green : T.accent, borderRadius: 4, padding: '0 4px' }}>{ops[d[0]]}</span> : null}
+    <span style={{ marginLeft: 'auto', minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', font: `500 10px ${MONO}`, color: T.ink2, paddingRight: badge[d[0]] != null ? 18 : 0 }}>{note[d[0]] || d[4]}</span>{badgeEl(d[0])}
+  </div>, { padding: '4px 8px' });
+  const memLit = memItems.some((d) => lit(d[0])) && memItems.length > 0;
+  const dbLit = dbItems.some((d) => lit(d[0])) && dbItems.length > 0;
+  const txC = tx === 'rollback' ? '#DC2626' : tx === 'commit' ? T.green : T.accent;
+  return <N1Fit w={W} h={H} max={max}>
+    {tag && <span className="n1-tagl" style={{ left: 20, top: 4 }}>{tag}</span>}
+    {/* telefon — Telegram */}
+    {clients > 1 && [2, 1].map((k) => <div key={k} className="n1-abs" style={{ left: 20 + k * 6, top: 40 - k * 6, width: 176, height: 196, borderRadius: 14, border: `1.5px solid ${T.line}`, background: T.paper }} />)}
+    <div className="n1-abs n1-st" data-st={st('phone') === 'dim' ? 'dim' : undefined} style={{ left: 20, top: 40, width: 176, height: 196, borderRadius: 14, border: `2px solid ${st('phone') === 'hl' ? BM.tg : T.line}`, background: BM.tgBg, overflow: 'hidden' }}>
+      <div style={{ height: 30, background: BM.tg, color: '#fff', font: `700 12px/30px ${SANS}`, padding: '0 10px', whiteSpace: 'nowrap' }}>Telegram · OrderBot</div>
+      {chat && <div style={{ padding: 8, display: 'flex', flexDirection: 'column', gap: 6 }}>
+        {chat[0] && <div style={{ alignSelf: 'flex-end', maxWidth: 150, background: '#EFFDDE', borderRadius: '10px 10px 2px 10px', padding: '4px 8px', font: `500 10.5px/1.35 ${SANS}`, color: T.ink, overflowWrap: 'anywhere' }}>{chat[0]}</div>}
+        {chat[1] && <div style={{ alignSelf: 'flex-start', maxWidth: 160, background: T.paper, border: `1.5px solid ${chat[2] === 'bad' ? '#F2A9A9' : chat[2] === 'ok' ? '#BFE3D0' : 'transparent'}`, borderRadius: '10px 10px 10px 2px', padding: '4px 8px', font: `500 10.5px/1.35 ${SANS}`, color: chat[2] === 'bad' ? '#B91C1C' : T.ink, overflowWrap: 'anywhere', display: '-webkit-box', WebkitLineClamp: 6, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{chat[1]}</div>}
+      </div>}
+    </div>
+    {clients > 1 && <span className="n1-abs" style={{ left: 120, top: 18, background: T.accent, color: '#fff', font: `700 11px/1 ${SANS}`, borderRadius: 9, padding: '4px 8px', whiteSpace: 'nowrap' }}>×{clients} {t('mijoz', 'клиентов')}</span>}
+    {/* server */}
+    <div className="n1-app" style={{ left: 222, top: 30, width: 246, height: 206 }} />
+    <span className="n1-tagl" style={{ left: 236, top: 40 }}>OrderBotNest · NestJS</span>
+    {box('telegram', 236, 58, 218, 34, BM.tg, <div style={{ font: `600 11.5px/20px ${MONO}`, color: T.ink, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>telegram <span style={{ color: T.ink3 }}>· {tgSub || 'Telegraf'}</span></div>)}
+    {BM_MODS.map(([k, x, y]) => box(k, x, y, 106, 34, T.green, <div style={{ font: `600 11.5px/20px ${MONO}`, color: T.ink, whiteSpace: 'nowrap' }}>{k}</div>))}
+    <span className="n1-abs" style={{ left: 236, top: 194, font: `500 10.5px/1.35 ${SANS}`, color: T.ink3, width: 218 }}>{t("bot.on / action → servis → ma'lumot", 'bot.on / action → сервис → данные')}</span>
+    {/* xotira */}
+    <div className="n1-abs n1-st" data-st={st('mem') === 'dim' ? 'dim' : undefined} style={{ left: 494, top: 30, width: 246, height: 98, borderRadius: 14, border: `2px ${restart ? 'dashed' : 'solid'} ${restart ? '#F2A9A9' : T.yellow}`, background: restart ? '#FEF2F2' : '#FFFBF0' }} />
+    <span className="n1-abs" style={{ left: 506, top: 21, background: T.paper, padding: '0 6px', font: `700 12px/16px ${SANS}`, color: restart ? '#B91C1C' : T.yellow, whiteSpace: 'nowrap' }}>{restart ? t("Xotira — restart: bo'shadi", 'Память — перезапуск: пусто') : t('Xotira (RAM) · Map, massiv', 'Память (RAM) · Map, массив')}</span>
+    {memItems.map(memChip)}
+    {memItems.length === 0 && <span className="n1-abs" style={{ left: 506, top: 66, font: `500 11px ${SANS}`, color: T.ink3 }}>{t("bo'sh — hammasi bazada", 'пусто — всё в базе')}</span>}
+    {/* PostgreSQL */}
+    <div className="n1-abs n1-st" data-st={st('db') === 'dim' ? 'dim' : undefined} style={{ left: 494, top: 140, width: 246, height: 156, borderRadius: 14, border: `2px solid ${BM.pg}`, background: '#F7FAFC' }} />
+    <span className="n1-abs" style={{ left: 506, top: 131, background: T.paper, padding: '0 6px', font: `700 12px/16px ${SANS}`, color: BM.pg, whiteSpace: 'nowrap' }}>{dbLabel || 'PostgreSQL · shop'}</span>
+    {dbItems.map(dbChip)}
+    {dbItems.length === 0 && <span className="n1-abs" style={{ left: 506, top: 168, font: `500 11px ${SANS}`, color: T.ink3, width: 220 }}>{t("hali jadval yo'q — ma'lumot xotirada", 'таблиц ещё нет — данные в памяти')}</span>}
+    {tx && <>
+      <div className="n1-abs" style={{ left: 500, top: 146, width: 234, height: 146, borderRadius: 10, border: `2px dashed ${txC}` }} />
+      <span className="n1-abs" style={{ left: 506, top: 300, font: `700 10.5px/1 ${MONO}`, color: txC, whiteSpace: 'nowrap' }}>{tx === 'rollback' ? 'START TRANSACTION … ROLLBACK' : tx === 'commit' ? 'START TRANSACTION … COMMIT' : 'START TRANSACTION …'}</span>
+    </>}
+    {jest && <>
+      <div className="n1-abs" style={{ left: 20, top: 250, width: 448, height: 46, borderRadius: 12, border: `2px solid ${BM.jest}`, background: T.paper, display: 'flex', alignItems: 'center', gap: 8, padding: '0 10px', whiteSpace: 'nowrap', overflow: 'hidden' }}>
+        <b style={{ font: `700 13px ${SANS}`, color: BM.jest, flex: 'none' }}>{jest.name || 'Jest'}</b>
+        {!jest.steps && (jest.files || []).length < 2 && <span style={{ font: `500 10.5px ${MONO}`, color: T.ink3, flex: 'none' }}>{jest.cmd || 'npm test'}</span>}
+        {(jest.steps || []).map(([n, st], i) => <span key={'s' + i} style={{ font: `600 10px/1 ${MONO}`, color: st === 'bad' ? '#B91C1C' : st === 'skip' ? T.ink3 : T.ink, background: st === 'bad' ? '#FEF2F2' : st === 'ok' ? '#E3F5EC' : T.paper, border: `1px ${st === 'skip' ? 'dashed' : 'solid'} ${st === 'bad' ? '#F2A9A9' : st === 'ok' ? '#BFE3D0' : T.line}`, borderRadius: 6, padding: '4px 5px', whiteSpace: 'nowrap', flex: 'none' }}>{st === 'ok' ? '✓ ' : st === 'bad' ? '✕ ' : ''}{n}</span>)}
+        {(jest.files || []).map((f) => <span key={f} style={{ font: `600 10px/1 ${MONO}`, color: T.ink, background: '#F6F7F9', border: `1px solid ${T.line}`, borderRadius: 6, padding: '4px 6px', minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis' }}>{f}</span>)}
+        <span style={{ marginLeft: 'auto', flex: 'none', font: `700 11px/1 ${MONO}`, color: '#fff', background: jest.res === 'pass' ? T.green : jest.res === 'fail' ? '#DC2626' : T.ink3, borderRadius: 6, padding: '5px 7px' }}>{jest.badge || ((jest.res === 'pass' ? 'PASS' : jest.res === 'fail' ? 'FAIL' : '?') + (jest.txt ? ' · ' + jest.txt : ''))}</span>
+      </div>
+      <svg className="n1-svg" width={W} height={H} viewBox={`0 0 ${W} ${H}`}><path d="M345 250 L 345 240" fill="none" stroke={BM.jest} strokeWidth="2" strokeDasharray="3 3" /></svg>
+    </>}
+    {bad && bad.why && <span className="n1-abs" style={{ left: 236, top: 246, font: `700 11px/1.3 ${SANS}`, color: '#B91C1C', width: 240 }}>✕ {bad.why}</span>}
+    {/* yo'llar */}
+    <svg className="n1-svg" width={W} height={H} viewBox={`0 0 ${W} ${H}`}>
+      <defs>
+        <marker id="bmr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill={T.accent} /></marker>
+        <marker id="bmk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#B9BFCB" /></marker>
+      </defs>
+      <path d="M196 120 L 218 120" fill="none" stroke={lit('phone') || lit('telegram') ? T.accent : '#B9BFCB'} strokeWidth="2" markerEnd={`url(#${lit('phone') || lit('telegram') ? 'bmr' : 'bmk'})`} />
+      <path d="M468 80 L 490 80" fill="none" stroke={memLit && !restart ? T.yellow : '#D5D9E1'} strokeWidth="2" strokeDasharray={memItems.length ? '0' : '5 4'} />
+      <path d="M468 200 L 490 200" fill="none" stroke={dbLit ? BM.pg : '#D5D9E1'} strokeWidth="2" strokeDasharray={dbItems.length ? '0' : '5 4'} />
+    </svg>
+    {ro && <div className="n1-ro" style={{ left: 20, top: BOT + 8, width: 720, height: 42 }}><span className="rf">{ro[0]}</span><code style={{ fontSize: ro[1].replace(/<[^>]+>/g, '').length > 72 ? 11.5 : 13, background: 'transparent', color: T.codeInk, padding: 0, border: 0 }} dangerouslySetInnerHTML={html(ro[1])} /></div>}
+  </N1Fit>;
+}
+
+// «Buzamiz» kichik rasmi (M52) — umumiy shakl: 3 ta quti strelka bilan va natija satri; OrderBot darslarida N1Mini ichida.
+// boxes: [[nom, izoh, holat ('' | 'bad' | 'ok')], …3] · res: [matn, holat] (matn '?' — natija hali aytilmagan, M52-3) · pins: { qutiIndeksi: raqam }
+function FlowMini({ tag, boxes, res, pins = {} }) {
+  const X = [8, 178, 348], Wd = [154, 154, 164];
+  return <>
+    {tag && <span className="n1-tagl" style={{ left: 8, top: 12 }}>{tag}</span>}
+    {boxes.map(([label, sub, st], i) => <div key={i} className="n1-abs" style={{ left: X[i], top: 34, width: Wd[i], height: 50, borderRadius: 10, border: `2px solid ${st === 'bad' ? '#DC2626' : st === 'ok' ? T.green : T.line}`, background: st === 'bad' ? '#FEF2F2' : T.paper, padding: '6px 9px', transition: 'all .4s', overflow: 'hidden' }}>
+      <div style={{ font: `700 11.5px ${MONO}`, color: st === 'bad' ? '#B91C1C' : T.ink, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{label}</div>
+      <div style={{ font: `500 10.5px ${MONO}`, color: st === 'bad' ? '#B91C1C' : T.ink3, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', marginTop: 3 }}>{sub}</div>
+    </div>)}
+    {[162, 332].map((x) => <div key={x} className="n1-arr" style={{ left: x + 1, top: 58, width: 14 }} />)}
+    {res && <span className="n1-abs" style={{ left: 8, top: 96, font: `700 11.5px ${MONO}`, whiteSpace: 'nowrap', color: res[0] === '?' ? T.ink3 : res[1] === 'bad' ? '#DC2626' : res[1] === 'ok' ? T.green : T.ink2 }}>{res[0]}</span>}
+    {Object.keys(pins).map((i) => <span key={i} className="n1-pin on" style={{ left: X[i] + Wd[i] - 10, top: 26 }}>{pins[i]}</span>)}
+  </>;
 }
 
 // AVTO: feedback/F-1029-02-mentor-kurs/dev/tgpg-kod.py — OrderBotNest teglaridan aynan (qo'lda tahrirlanmaydi)
@@ -2326,9 +2694,15 @@ const MDT = {
   "title": "Qulfsiz «o'qi, tekshir, yoz»: hamma tranzaksiya qoldiq 1 ni ko'radi — bitta Planshet besh kishiga sotiladi, CHECK ham ushlamaydi",
   "seg": [
    [
+    "x",
+    "Endi <b>o'zingiz buzasiz</b>: kodda yonib turgan <code>lock</code> ustiga bosing",
+    "Buyurtma ishlaydi, race sinovi ham toza. Endi ataylab buzamiz, chunki AI'lar ko'pincha aynan shunday yozadi. Buzishni o'zingiz qilasiz: order service'ning o'ttiz uchinchi satrida lock yonib turibdi, ustiga bosing: qulf olib tashlanadi.",
+    "<b>order.service.ts</b> 33-satridagi <b><code>lock: { mode: 'pessimistic_write' }</code></b> ustiga bosing — qulf olib tashlanadi, o'qish oddiy <code>findOneBy</code> bo'ladi."
+   ],
+   [
     "a",
-    "Buzamiz: qatorni <b>qulfsiz o'qiymiz</b>, qoldiqni kodda hisoblab, yangisini yozamiz",
-    "Endi ataylab buzamiz. Qulfni olib tashlaymiz: mahsulotni oddiy find bilan o'qiymiz, qoldiq yetadimi deb kodda tekshiramiz, yangi qoldiqni hisoblab save qilamiz. AI'lar ko'pincha aynan shunday yozadi, ko'rinishi to'g'ri."
+    "Qulf yo'q: qatorni <b>qulfsiz o'qiymiz</b>, qoldiqni kodda hisoblab, yangisini yozamiz",
+    "Qulfni olib tashladingiz. Endi mahsulot oddiy find bilan o'qiladi, qoldiq yetadimi deb kodda tekshiriladi, yangi qoldiq hisoblanib save qilinadi. AI'lar ko'pincha aynan shunday yozadi, ko'rinishi to'g'ri."
    ],
    [
     "b",
@@ -2665,6 +3039,30 @@ const MDT = {
   "title": "Endi siz bilasiz"
  }
 };
+
+// ============================================================
+//  TgPg — «Buzamiz» (20-ekran) uchun kichik rasm (F-1120-02, M51/M52). Darsning katta rasmi — parts/02e-bot.jsx (BotMap).
+//  Qiymatlar: manba/orderbot-out/09, 10-smoke-buzuq (buzuq: 1/0 5/0 5/0 5/0 5/0), tgpg-done: 1/0 × 5. CSS izohida backtick yo'q.
+// ============================================================
+// locked: kodda qulf bormi · known: natija ko'rinadimi (M52-3: ovoz aytguncha «?») · fixed · pins: { a, b }
+function RaceMini({ locked, known, fixed, pins = {} }) {
+  const bad = !locked && !fixed;
+  const res = !known ? '?' : bad ? '5 / 0' : '1 / 0';
+  const box = (x, w, label, sub, state) => <div className="n1-abs" style={{ left: x, top: 34, width: w, height: 50, borderRadius: 10, border: `2px solid ${state === 'bad' ? '#DC2626' : state === 'ok' ? T.green : T.line}`, background: state === 'bad' ? '#FEF2F2' : T.paper, padding: '6px 9px', transition: 'all .4s' }}>
+    <div style={{ font: `700 11.5px ${MONO}`, color: state === 'bad' ? '#B91C1C' : T.ink, whiteSpace: 'nowrap' }}>{label}</div>
+    <div style={{ font: `500 10.5px ${MONO}`, color: state === 'bad' ? '#B91C1C' : T.ink3, whiteSpace: 'nowrap', marginTop: 3 }}>{sub}</div>
+  </div>;
+  return <>
+    <span className="n1-tagl" style={{ left: 8, top: 12 }}>{t("5 mijoz · 1 ta Planshet · bir vaqtda", '5 клиентов · 1 Planshet · одновременно')}</span>
+    {box(8, 104, '×5 mijoz', '✅ Buyurtma', '')}
+    {box(128, 196, locked || fixed ? 'findOne + lock' : 'findOneBy', locked || fixed ? t('qulf: biri kutadi', 'блок: второй ждёт') : t('qulfsiz: hammasi 1 ni ko\'radi', 'без блока: все видят 1'), bad ? 'bad' : fixed ? 'ok' : '')}
+    {box(340, 172, 'products', 'Planshet · stock 1', '')}
+    {[112, 324].map((x) => <div key={x} className="n1-arr" style={{ left: x + 1, top: 58, width: 14 }} />)}
+    <span className="n1-abs" style={{ left: 8, top: 96, font: `700 11.5px ${MONO}`, whiteSpace: 'nowrap', color: res === '?' ? T.ink3 : bad ? '#DC2626' : T.green }}>{t('sotildi / ombor', 'продано / склад')} → {res}{known && bad ? t(' · CHECK ushlamadi', ' · CHECK не поймал') : ''}</span>
+    {pins.a && <span className="n1-pin on" style={{ left: 310, top: 26 }}>{pins.a}</span>}
+    {pins.b && <span className="n1-pin on" style={{ left: 498, top: 26 }}>{pins.b}</span>}
+  </>;
+}
 // ============================================================
 //  MENTOR KURSI · Telegraf + PostgreSQL «Buyurtma boti: AI bilan bazaga ko'chiramiz» (v2, F-1103-10)
 //  Manba-haqiqat: feedback/F-1029-02-mentor-kurs/17-TgPg-mentor-v2.md (GATE M 04.11)
@@ -2716,7 +3114,8 @@ function compact(files, active) {
 const sg = (id, key, text, extra = {}) => ({ id, key, text, show: wr(text), ...extra });
 const mkS = (n, extras = [], more = {}) => {
   const m = MDT[n];
-  return { kicker: m.kicker, eyebrow: m.eyebrow, title: m.title, ...more, segments: m.seg.map(([id, key, text], i) => sg(id, key, text, extras[i] || {})) };
+  // F-1120-02 (M52): 4-element — act (mentor o'zi bosadi, chap paneldagi ko'rsatma)
+  return { kicker: m.kicker, eyebrow: m.eyebrow, title: m.title, ...more, segments: m.seg.map(([id, key, text, act], i) => sg(id, key, text, { ...(act ? { act } : {}), ...(extras[i] || {}) })) };
 };
 
 // Ovoz → «Matn» (transkript) uchun yozma ko'rinish. Uzun ibora oldin.
@@ -2805,7 +3204,7 @@ const rng = (a, b, v) => { const o = {}; for (let i = a; i <= b; i++) o[i] = { .
 const mergeMeta = (...ms) => ms.reduce((acc, m) => { Object.keys(m).forEach((k) => { acc[k] = { ...(acc[k] || {}), ...m[k] }; }); return acc; }, {});
 const upto = (lines, beat) => lines.filter((l) => l.at == null || l.at <= beat);
 
-const Term = ({ lines, title = t('terminal', "терминал"), er, beat, focus, style }) => <CodePanel file={title} numbers={false} style={{ background: er ? PG.termEr : PG.term, ...(style || {}) }} lines={lines} beat={beat} focus={focus} />;
+const Term = ({ lines, title = t('terminal', "терминал"), er, beat, focus, style, marks }) => <CodePanel file={title} numbers={false} style={{ background: er ? PG.termEr : PG.term, ...(style || {}) }} lines={lines} beat={beat} focus={focus} marks={marks} />;
 const Psql = ({ lines, title = 'psql — shop', er, beat, focus, style }) => <CodePanel file={title} numbers={false} style={{ background: er ? PG.termEr : PG.term, ...(style || {}) }} lines={lines} beat={beat} focus={focus} />;
 // Loyiha kodi (KOD — aynan, satr raqami bilan). ids: {satr: 'id'} — yoritish uchun; from/to — satr chegarasi
 const kod = (k, ids = {}, from, to) => KOD[k].lines.filter((l) => (from == null || l.n >= from) && (to == null || l.n <= to)).map((l) => ({ h: tsLine(l.t), n: l.n, ...(ids[l.n] ? { id: ids[l.n] } : {}) }));
@@ -2921,25 +3320,24 @@ function useCss3() {
 //  1 · Kirish — dars oxiridagi natija: bot buyurtmani bazaga yozdi (orderbot-out/04, 05)
 // ============================================================
 const PLAN1 = ['Loyiha va muammo', 'Reja va prompt', 'Ulanish va katalog', 'Foydalanuvchi, state, savat', 'Buyurtma va tranzaksiya', 'Sinfga tayyorgarlik'];
-const S1 = mkS(1, [{ hl: [], res: true }, { hl: [0] }, { hl: [1, 2, 3, 4] }, { hl: [5] }], { plan: PLAN1 });
-const ORDER1 = "Buyurtma #1 qabul qilindi!\n• Klaviatura × 1 = 120 000 so'm\n• Kolonka × 2 = 100 000 so'm\n\nJami: 220 000 so'm\nTelefon: +998901234567\nHolati: 🆕 Yangi";
-const T1 = psql(String.raw`
-shop=# SELECT id, user_id, phone, total, status FROM orders;
- id | user_id |     phone     | total  |  status
-----+---------+---------------+--------+-----------
-  1 |       2 | +998901234567 | 220000 | CONFIRMED
-(1 row)`);
+const S1 = mkS(1, [{ hl: [] }, { hl: [0] }, { hl: [1, 2, 3, 4] }, { hl: [5] }], { plan: PLAN1 });
+// F-1120-02 (M51): darsning rasmi — «Buyurtma boti» xaritasi (BotMap, parts/02e-bot.jsx); reja pastda
+const DB_ALL = { products: 'db', users: 'db', carts: 'db', orders: 'db' };
+const STAGE_NO = { products: 1, users: 2, carts: 3, orders: 4 };
+const CHAT_ORDER = ['+998901234567', "Buyurtma #1 qabul qilindi! Jami: 220 000 so'm", 'ok'];
+const S1M = [
+  { loc: DB_ALL, chat: CHAT_ORDER, note: { orders: '#1 · 220000 · CONFIRMED' }, ro: ['psql · shop', 'SELECT … FROM orders; <span class="n1-ok">→ 1 | 2 | +998901234567 | 220000 | CONFIRMED</span>'] },
+  { loc: {}, chat: ['/catalog', "Katalog (1/3-sahifa). Qo'shish uchun mahsulotni bosing:"], on: ['phone', 'telegram', 'catalog', 'user', 'cart', 'order', 'mem', 'products', 'users', 'carts', 'orders'] },
+  { loc: DB_ALL, chat: CHAT_ORDER, badge: STAGE_NO, on: ['db', 'products', 'users', 'carts', 'orders'] },
+  { loc: DB_ALL, chat: CHAT_ORDER, note: { orders: '#1 · 220000 · CONFIRMED' } },
+];
 function Screen1(p) {
-  return <Lesson p={p} S={S1} scene={({ seg }) => <div style={{ display: 'grid', gap: 14 }}>
-    <div className="mk-light"><div className="mk-plan">
-      {S1.plan.map((x, i) => <div key={i} className={seg.hl.includes(i) ? 'hl' : (seg.hl.length ? 'dim' : '')}><b>0{i + 1}</b><span>{x}</span></div>)}
-    </div></div>
-    {seg.res && <><div className="mk-tag" style={{ margin: 0 }}>{t("Dars oxirida — bot buyurtmani PostgreSQL'ga yozadi", "В конце урока — бот пишет заказ в PostgreSQL")}</div>
-    <div className="pg-two">
-      <TgFlow title="OrderBotNest" items={[['u', '+998901234567'], ['b', ORDER1, 'ok']]} />
-      <Psql lines={T1} />
-    </div></>}
-  </div>} />;
+  return <Lesson p={p} S={S1} scene={({ beat }) => { const m = S1M[Math.min(beat, 3)]; return <div className="mk-light" style={{ padding: 16, display: 'grid', gap: 12 }}>
+    <BotMap {...m} tag={t("Bugungi darsning rasmi — buyurtma boti: telefon, server, ma'lumot", 'Картина урока — бот заказов: телефон, сервер, данные')} />
+    <div className="n1-plan" style={{ position: 'static', gridTemplateColumns: 'repeat(6,minmax(0,1fr))', gap: 6 }}>
+      {S1.plan.map((x, i) => <div key={i} className={S1.segments[Math.min(beat, 3)].hl.includes(i) ? 'hl' : (S1.segments[Math.min(beat, 3)].hl.length ? 'dim' : '')}><b>0{i + 1}</b><span>{x}</span></div>)}
+    </div>
+  </div>; }} />;
 }
 
 // ============================================================
@@ -2970,21 +3368,16 @@ function Screen2(p) {
 // ============================================================
 const FLOW3A = [['sep', '1-jarayon'], ['u', '[Klaviatura] → [Kolonka] ×2 → telefon'], ['b', "Buyurtma #1 qabul qilindi! … Jami: 220 000 so'm", 'ok'], ['u', '/orders (admin) → [✅ Tasdiqlash]'], ['b', 'Buyurtmangiz #1: ✅ Tasdiqlangan'], ['u', '[Sichqoncha]'], ['b', "Sichqoncha savatga qo'shildi (1 ta)."]];
 const FLOW3B = [['sep', 'server qayta ishga tushdi'], ['u', '/cart'], ['b', "Savat bo'sh. /catalog dan mahsulot tanlang.", 'bad'], ['u', '/orders (admin)'], ['b', "Hozircha buyurtma yo'q.", 'bad'], ['sep', 'telefon so\'ralgan paytda restart'], ['u', '+998901234567'], ['b', 'Tushunmadim. /help ni bosing.', 'bad']];
-const LIST3 = ['mahsulot va ombor (stock)', 'foydalanuvchi va uning roli', 'telefon va state', 'savat', 'buyurtma'];
 const S3 = mkS(3, [{ v: 'a' }, { v: 'b' }, { v: 'map' }, { v: 'list' }]);
 function Screen3(p) {
   return <Lesson p={p} S={S3} scene={({ seg }) => <>
-    {(seg.v === 'a' || seg.v === 'b') && <div className="pg-two">
+    {(seg.v === 'a' || seg.v === 'b') && <div className="pg-two" style={{ gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)' }}>
       <TgFlow title={t("1-jarayon", "1-й процесс")} items={FLOW3A} />
       {seg.v === 'b' ? <TgFlow title="Restart" items={FLOW3B} /> : <div />}
     </div>}
-    {seg.v === 'map' && <div className="pg-three">
-      <Card c={T.blue} h={t("Node jarayoni", "Процесс Node")}><p>{t("ishga tushadi → ", "запускается → ")}<code>new Map()</code>{t(" bo'sh", " пустой")}</p></Card>
-      <Card c={T.accent} h="RAM" hl><p>{t("Map, massiv — jarayon to'xtasa o'chadi", "Map, массив — остановился процесс, и они стёрты")}</p></Card>
-      <Card c={PG.pg} h={t("Disk (baza)", "Диск (база)")} dim><p>{t("hozir yo'q", "сейчас нет")}</p></Card>
-    </div>}
-    {seg.v === 'list' && <div className="mk-light" style={{ padding: 14 }}><div className="mk-tag">{t("Bazaga ko'chadigan beshta ma'lumot", "Пять данных, которые переезжают в базу")}</div>
-      <div className="mk-plan">{LIST3.map((x, i) => <div key={x} style={{ animation: `mk-up .4s ${i * 0.08}s ease both` }}><b>0{i + 1}</b><span>{x}</span></div>)}</div></div>}
+    {/* F-1120-02 (M51): Node/RAM/Disk kartalari va ro'yxat o'rniga darsning rasmi */}
+    {seg.v === 'map' && <div className="mk-light" style={{ padding: 14 }}><BotMap restart chat={['/cart', "Savat bo'sh. /catalog dan mahsulot tanlang.", 'bad']} on={['mem', 'products', 'users', 'carts', 'orders', 'telegram']} ro={['user.service.ts:8', 'private readonly users = <span class="n1-k">new</span> Map&lt;number, User&gt;();']} tag={t("Restart — jarayon xotirasi bo'shadi", 'Перезапуск — память процесса очистилась')} /></div>}
+    {seg.v === 'list' && <div className="mk-light" style={{ padding: 14 }}><BotMap on={['mem', 'products', 'users', 'carts', 'orders']} tag={t("Bazaga ko'chadigan ma'lumot — hammasi hozir xotirada", 'Данные, которые переезжают в базу — сейчас всё в памяти')} /></div>}
   </>} />;
 }
 
@@ -3012,15 +3405,15 @@ function ScreenP5(p) { return <Practice p={p} S={P5.S} steps={P5.steps} trouble=
 // ============================================================
 //  6 · Reja: to'rt bosqich (orderbot-ai2 — oddiy prompt, 22 fayl / 1145 qator)
 // ============================================================
-const STAGES6 = [['1', 'Ulanish + katalog', 'TypeORM, migratsiya, products, seed'], ['2', 'Foydalanuvchi + state', 'users, BIGINT, WAITING_PHONE'], ['3', 'Savat', 'cart_items, UNIQUE, ON CONFLICT'], ['4', 'Buyurtma', 'orders, order_items, tranzaksiya']];
 const DIFF6 = ` src/db/database.module.ts               |  29 ++
  src/db/migrations/1762000000000-Init.ts |  69 +++
  22 files changed, 1145 insertions(+), 210 deletions(-)`;
 const S6 = mkS(6, [{ v: 'st', hl: -1 }, { v: 'chk', hl: -1 }, { v: 'haiku' }, { v: 'st', hl: 'all' }]);
+// F-1120-02 (M51): to'rt karta o'rniga rasm — har ma'lumot qaysi bosqichda bazaga ko'chishi (raqam), xulosada hammasi bazada
 function Screen6(p) {
   return <Lesson p={p} S={S6} scene={({ seg }) => <>
-    <div className="pg-four">{STAGES6.map(([n, h, d], i) => <Card key={n} c={T.accent} h={`${n} · ${h}`} style={{ animation: `mk-up .4s ${i * 0.1}s ease both` }}><p>{d}</p>
-      {seg.v === 'chk' && <p style={{ marginTop: 6, color: T.green, fontFamily: MONO }}>✓ build · restart · psql → commit</p>}</Card>)}</div>
+    {seg.v === 'st' && <div className="mk-light" style={{ padding: 14 }}><BotMap loc={seg.hl === 'all' ? DB_ALL : {}} badge={STAGE_NO} on={seg.hl === 'all' ? ['db', 'products', 'users', 'carts', 'orders'] : ['mem', 'products', 'users', 'carts', 'orders']} tag={t("To'rt bosqich: raqam — ma'lumot qaysi bosqichda bazaga ko'chadi", 'Четыре этапа: число — на каком этапе данные переезжают в базу')} /></div>}
+    {seg.v === 'chk' && <div className="mk-light" style={{ padding: 14 }}><BotMap loc={{ products: 'db' }} badge={STAGE_NO} on={['db', 'products']} note={{ products: '✓ build · restart · psql' }} ro={['git', 'git add -A &amp;&amp; git commit -m "1-bosqich: katalog"  <span class="n1-ok">' + t('→ keyin 2-bosqich', '→ потом 2-й этап') + '</span>']} tag={t("1-bosqichdan keyin: build, restart, psql — keyin commit", 'После 1-го этапа: build, restart, psql — потом commit')} /></div>}
     {seg.v === 'haiku' && <AiReply who={t("Oddiy prompt (2-tajriba)", "Обычный промпт (2-й опыт)")} prompt="Katalogni postgresqlga ko'chirib ber, TypeORM ishlat. .env da DATABASE_URL bor." said={<>{t("AI: «katalog va holat xotiradan PostgreSQL'ga ko'chirildi» — ", "AI: «каталог и состояние перенесены из памяти в PostgreSQL» — ")}<b>{t("hamma servis", "все сервисы")}</b>{t(" o'zgardi, chetga chiqqani alohida aytilmadi.", " изменены, выход за рамки отдельно не назван.")}</>} diff={DIFF6} hl />}
     {seg.v === 'st' && seg.hl === 'all' && <div className="mk-rule">{t("Bitta prompt — ", "Один промпт — ")}<b>{t("bitta bosqich", "один этап")}</b>{t(". Tekshirmaguncha keyingisi yozilmaydi.", ". Пока не проверено, следующий не пишется.")}</div>}
   </>} />;
@@ -3151,7 +3544,8 @@ function Screen11(p) {
   return <Lesson p={p} S={S11} scene={({ seg }) => <>
     {seg.v !== 'c' && <div className="pg-two"><TgFlow title={t("buyurtma — xotirada", "заказ — в памяти")} items={FLOW11A} />{seg.v === 'b' && <TgFlow title="restart" items={FLOW11B} />}</div>}
     {seg.v === 'b' && <Psql lines={T11} focus={['k']} />}
-    {seg.v === 'c' && <div className="pg-two"><Card c={PG.pg} h={t("ombor → bazaga yozildi", "склад → записан в базу")}><p>Klaviatura 8 → 7 · Kolonka 10 → 8</p></Card><Card c={T.accent} h={t("buyurtma → xotirada edi", "заказ → был в памяти")} hl><p>{t("restart o'chirdi — kim olgani noma'lum", "стёр перезапуск — кто взял, неизвестно")}</p></Card></div>}
+    {/* F-1120-02 (M51): ikki karta o'rniga rasm — ombor bazada qoldi, buyurtma xotirada edi va restartda o'chdi */}
+    {seg.v === 'c' && <div className="mk-light" style={{ padding: 14 }}><BotMap loc={{ products: 'db' }} restart chat={['/orders (admin)', "Hozircha buyurtma yo'q.", 'bad']} on={['products', 'orders', 'mem', 'db', 'order', 'catalog']} note={{ products: 'Klaviatura 7 · Kolonka 8' }} tag={t("Bitta sotuv — ikki joyda: ombor bazada, buyurtma xotirada", 'Одна продажа — в двух местах: склад в базе, заказ в памяти')} /></div>}
   </>} />;
 }
 
@@ -3290,9 +3684,13 @@ keyin  · products Klaviatura 8, Kolonka 10 · orders 0 · cart_items 2`);
 const S18 = mkS(18, [{ v: 'jad' }, { v: 'log' }, { v: 'rb' }, { v: 'log', f: ['tx'] }]);
 function Screen18(p) {
   return <Lesson p={p} S={S18} scene={({ seg }) => <>
-    {seg.v === 'jad' && <div className="pg-three"><Card c={PG.pg} h="products"><p>{t("ombordan ayirish · ", "списание со склада · ")}<code>UPDATE</code></p></Card><Card c={T.green} h="orders + order_items"><p>{t("buyurtma · ", "заказ · ")}<code>INSERT</code></p></Card><Card c={T.yellow} h="cart_items"><p>{t("savatni tozalash · ", "очистка корзины · ")}<code>DELETE</code></p></Card></div>}
+    {/* F-1120-02 (M51): uch karta o'rniga darsning rasmi — bitta buyurtma uch jadvalga tegadi, hammasi bitta tranzaksiyada */}
+    {seg.v === 'jad' && <div className="mk-light" style={{ padding: 14 }}><BotMap loc={DB_ALL} tx="open" ops={{ products: 'UPDATE', orders: 'INSERT', carts: 'DELETE' }} on={['order', 'db', 'products', 'orders', 'carts']} chat={['[✅ Buyurtma berish]']} tag={t("Bitta buyurtma — uch jadval, bitta tranzaksiya", 'Один заказ — три таблицы, одна транзакция')} /></div>}
     {seg.v === 'jad' && <Code k="DONE_PLACE" from={24} to={29} />}
+    {/* F-1120-02 (M51): xulosada rasm — uch jadval bitta tranzaksiyada, COMMIT; ostida o'sha SQL log */}
+    {seg.f && <div className="mk-light" style={{ padding: 12 }}><BotMap loc={DB_ALL} tx="commit" ops={{ products: 'UPDATE', orders: 'INSERT', carts: 'DELETE' }} on={['order', 'db', 'products', 'orders', 'carts']} max={0.8} /></div>}
     {seg.v === 'log' && <Term title={t("DB_LOGGING=true — SQL log (SELECT ustunlari qisqartirilgan)", "DB_LOGGING=true — SQL-лог (колонки SELECT сокращены)")} lines={T18} focus={seg.f || []} />}
+    {seg.v === 'rb' && <div className="mk-light" style={{ padding: 14 }}><BotMap loc={DB_ALL} tx="rollback" on={['order', 'db', 'products', 'orders', 'carts']} chat={['[✅ Buyurtma berish]', 'Buyurtma berilmadi: SINOV: order_items yozilmadi', 'bad']} note={{ products: 'Klaviatura 8 · Kolonka 10', orders: t("0 ta — o'zgarmadi", '0 — не изменилось'), carts: t('2 ta — saqlandi', '2 — сохранились') }} tag={t("order_items yiqildi — ROLLBACK: uch jadval ham o'zgarmadi", 'order_items упал — ROLLBACK: все три таблицы не изменились')} /></div>}
     {seg.v === 'rb' && <Term title={t("terminal — trigger bilan ataylab xato", "терминал — нарочная ошибка через trigger")} lines={T18B} />}
   </>} />;
 }
@@ -3334,15 +3732,26 @@ const T20_OK = term(String.raw`
 tgpg-done (lock: pessimistic_write):  sotildi/ombor  1/0  1/0  1/0  1/0  1/0
 $ npm run smoke -- race
   ✓ ortiqcha sotilmadi (sotildi/ombor): 1/0  1/0  1/0`);
-const S20 = mkS(20, [{ v: 'code' }, { v: 'race' }, { v: 'race', chk: true }, { v: 'fix' }]);
+// F-1120-02 (M52): 1-segment (x) — mentor tuzatilgan koddagi lock'ni o'zi bosadi (data-act) → kod buzuq holatga o'tadi
+const LOCK20 = kod('DONE_PLACE', { 31: 'r', 32: 'r', 33: 'r', 34: 'r' }, 29, 38).map((l) => (l.n === 33 ? { ...l, h: '<span class="n1-act" data-act="1">' + l.h + '</span>' } : l));
+const S20 = mkS(20, [{ v: 'act' }, { v: 'code' }, { v: 'race' }, { v: 'race', chk: true }, { v: 'fix' }]);
 function Screen20(p) {
-  return <Lesson p={p} S={S20} scene={({ seg }) => <>
-    {seg.v === 'code' && <Code k="BUZUQ" focus={['r', 'w']} ids={{ 31: 'r', 36: 'w', 37: 'w' }} />}
-    {seg.v === 'race' && <CodePanel file="order.service.ts" lines={kod('BUZUQ', { 31: 'r', 36: 'w', 37: 'w' }, 31, 37)} focus={seg.chk ? [] : ['r']} />}
-    {seg.v === 'race' && <Term title={t("terminal — haqiqiy parallel sinov", "терминал — настоящая параллельная проверка")} lines={T20} focus={['b']} />}
+  return <Lesson p={p} S={S20} scene={(b) => <Scene20 b={b} />} />;
+}
+// Qadamlar: 0 bosing · 1 buzuq kod (javob «?») · 2 race → 5/0, bo'laklar 1·2 · 3 CHECK ushlamaydi · 4 tuzatildi → 1/0
+function Scene20({ b }) {
+  const { seg, beat } = b;
+  const act = useAct(b);
+  const v = beat === 0 ? (act.hit ? 'code' : 'act') : seg.v;
+  const mini = <N1Mini><RaceMini locked={v === 'act'} fixed={v === 'fix'} known={beat >= 2} pins={beat === 2 ? { a: 1, b: 2 } : {}} /></N1Mini>;
+  return <>
+    {v === 'act' && <Ide files={compact(DONE_FILES, KOD.DONE_PLACE.file)} active={KOD.DONE_PLACE.file}><div onClick={act.onClick}><CodePanel file="order.service.ts" lines={LOCK20} focus={['r']} /></div>{mini}</Ide>}
+    {v === 'code' && <Ide files={compact(DONE_FILES, KOD.BUZUQ.file)} active={KOD.BUZUQ.file}><CodePanel key="b" file="order.service.ts" lines={kod('BUZUQ', { 31: 'r', 36: 'w', 37: 'w' }, 29, 37)} focus={['r', 'w']} />{mini}</Ide>}
+    {v === 'race' && <Ide files={compact(DONE_FILES, KOD.BUZUQ.file)} active={KOD.BUZUQ.file}><CodePanel file="order.service.ts" lines={kod('BUZUQ', { 31: 'r', 36: 'w', 37: 'w' }, 31, 37)} focus={seg.chk ? [] : ['r', 'w']} marks={beat === 2 ? { 0: 'n1-p1', 5: 'n1-p2' } : {}} />{mini}</Ide>}
+    {v === 'race' && <Term title={t("terminal — haqiqiy parallel sinov", "терминал — настоящая параллельная проверка")} lines={T20} focus={['b']} />}
     {seg.chk && <div className="n2-warn">{t("Har tranzaksiya ", "Каждая транзакция ")}<b>0</b>{t(" yozdi — ", " записала — ")}<code>CHECK (stock &gt;= 0)</code>{t(" uchun 0 ruxsat etilgan: xato xabari yo'q, faqat ortiqcha buyurtmalar.", " 0 разрешён: сообщения об ошибке нет, только лишние заказы.")}</div>}
-    {seg.v === 'fix' && <><CodePanel file="order.service.ts · tgpg-done" lines={kod('DONE_PLACE', { 31: 'l', 32: 'l', 33: 'l', 34: 'l' }, 29, 38)} focus={['l']} /><Term lines={T20_OK} /></>}
-  </>} />;
+    {v === 'fix' && <><Ide files={compact(DONE_FILES, KOD.DONE_PLACE.file)} active={KOD.DONE_PLACE.file}><CodePanel file="order.service.ts · tgpg-done" lines={kod('DONE_PLACE', { 31: 'l', 32: 'l', 33: 'l', 34: 'l' }, 29, 38)} focus={['l']} />{mini}</Ide><Term lines={T20_OK} /></>}
+  </>;
 }
 
 // ============================================================
@@ -3541,15 +3950,19 @@ const SUM28 = [
   { k: 'tx', t: "Buyurtma — bitta tranzaksiya; qoldiq qulf bilan o'qiladi yoki bitta UPDATE … WHERE stock >= qty; tranzaksiyada xatodan keyin faqat ROLLBACK", st: ['orm', 'pg'] },
   { k: 'chk', t: "Besh tekshiruv har bosqichda: diff · build · restart · psql · ko'p mijoz (npm run smoke). Sinf: m5-04 — \\d users, ikki marta /start, restart ism so'ralganda", st: ['ai', 'bot', 'pg'] },
 ];
-const STATIONS28 = [['bot', 'Telegraf bot', PG.tg], ['ai', 'AI + prompt', PG.ai], ['orm', 'TypeORM', T.purple], ['pg', 'PostgreSQL', PG.pg]];
+// F-1120-02 (M51): xulosa — darsning o'sha rasmi (BotMap); har band rasmning o'z qismini yoritadi
+const MAP28 = {
+  mem: { restart: true, on: ['mem', 'products', 'users', 'carts', 'orders'], chat: ['/cart', "Savat bo'sh. /catalog dan mahsulot tanlang.", 'bad'] },
+  ai: { loc: DB_ALL, badge: STAGE_NO, on: ['db', 'products', 'users', 'carts', 'orders'] },
+  orm: { loc: DB_ALL, on: ['db', 'products', 'users', 'carts', 'orders'] },
+  id: { loc: DB_ALL, on: ['user', 'users', 'carts'], note: { users: 'BIGINT · state bazada' } },
+  tx: { loc: DB_ALL, tx: 'commit', ops: { products: 'UPDATE', orders: 'INSERT', carts: 'DELETE' }, on: ['order', 'products', 'orders', 'carts'] },
+  chk: { loc: DB_ALL, clients: 5, on: ['phone', 'order', 'products'], note: { products: 'Planshet · sotildi 1 / 0' } },
+};
 function SummaryMap28({ hl }) {
-  const cur = SUM28.find((x) => x.k === hl);
-  const on = (k) => hl === 'all' || !cur || cur.st.includes(k);
-  return <div className="mk-light" style={{ padding: 16 }}>
-    <div className="mk-tag">{t("Bugungi dars — botdan bazagacha, AI bilan", "Сегодняшний урок — от бота до базы, с AI")}</div>
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0,1fr))', gap: 6 }}>
-      {STATIONS28.map(([k, n, c], i) => <div key={k} className={`mk-box${cur && cur.st.includes(k) ? ' hl' : ''}`} style={{ '--c': c, padding: '10px 6px', textAlign: 'center', opacity: on(k) ? 1 : 0.35, animation: `mk-up .4s ${i * 0.06}s ease both` }}><h4 style={{ fontSize: 13, margin: 0 }}>{n}</h4></div>)}
-    </div>
+  const m = MAP28[hl] || { loc: DB_ALL, chat: CHAT_ORDER };
+  return <div className="mk-light" style={{ padding: 14 }}>
+    <BotMap {...m} max={0.95} tag={t("Bugungi dars — botdan bazagacha, AI bilan", "Сегодняшний урок — от бота до базы, с AI")} />
   </div>;
 }
 const HOMEWORK28 = [
@@ -3575,7 +3988,7 @@ oraliq vaziyat: buyurtma xotirada, ombor bazada → restartdan keyin buyurtma yo
 Telegram id > 2 147 483 647 → BIGINT; node-pg va TypeORM BIGINT'ni matn qaytaradi: "5123456789" === 5123456789 → false (Mongoose'da number)
 INTEGER ustun → value "5123456789" is out of range for type integer, bot «Tushunmadim»
 avval SELECT, keyin INSERT — UNIQUE'siz 19/20 urinishda 2 qator → UNIQUE + INSERT … ON CONFLICT DO UPDATE (Mongoose upsert ham unique index'siz 2 hujjat)
-qulfsiz findOneBy → save: 1 ta Planshet 5 kishiga sotildi, CHECK jim (0 manfiy emas) → lock: pessimistic_write yoki UPDATE … WHERE stock >= qty
+qulfsiz findOneBy → save: 1 ta Planshet 5 kishiga sotildi, CHECK xato bermaydi (0 manfiy emas) → lock: pessimistic_write yoki UPDATE … WHERE stock >= qty
 tranzaksiyada CHECK xatosidan keyin so'rov → current transaction is aborted → tekshiruv UPDATE'dan oldin; CHECK — oxirgi qo'riqchi
 ikki marta bir vaqtda «Bekor» → ombor 2 marta qaytdi → buyurtma qatori FOR UPDATE
 ## Besh tekshiruv
@@ -3620,7 +4033,8 @@ function Screen28(p) {
         <div className="mk-scene top" style={{ overflow: 'auto' }}>
           {phase === 'sum' && (<>
             <SummaryMap28 hl={hl} />
-            <div className="mk-plan">{SUM28.slice(0, shown).map((it, i) => <div key={it.k} className={it.k === hl ? 'hl' : ''} style={{ animation: 'mk-up .45s ease both' }}><b>0{i + 1}</b><span>{it.t}</span></div>)}</div>
+            {/* F-1120-02: bandlar rasm ostida ixcham to'rda — rasm surilib ketmasin (M51-2) */}
+            <div className="n1-plan" style={{ position: 'static', gridTemplateColumns: 'repeat(3,minmax(0,1fr))', gap: 8, marginTop: 10 }}>{SUM28.slice(0, shown).map((it, i) => <div key={it.k} className={it.k === hl ? 'hl' : ''} style={{ animation: 'mk-up .45s ease both' }}><b>0{i + 1}</b><span style={{ fontSize: 12.5 }}>{it.t}</span></div>)}</div>
           </>)}
           {phase === 'hw' && <div className="mk-light" style={{ padding: 16, animation: 'mk-up .45s ease both' }}>
             <div className="mk-tag" style={{ color: T.accent }}>{t('Uyga vazifa · 60–90 daqiqa', 'Домашнее задание · 60–90 минут')}</div>
@@ -3649,16 +4063,21 @@ function Screen28(p) {
 // ============================================================
 //  Muqova va ildiz
 // ============================================================
+// F-1120-02 (M51): muqova — chapda dars nima berishi, o'ngda darsning rasmi; eslatmalar bitta qisqa satrda
 function Cover({ onStart, resume }) {
   return (
-    <div className="mk-cover"><div className="card">
-      <p className="mk-eyebrow">{t("Mentor kursi · Telegraf + PostgreSQL", "Курс для менторов · Telegraf + PostgreSQL")}</p>
-      <h1>{t(LESSON_TITLE, RS('TITLE'))}</h1>
-      <p>{t("Bu dars ovozli. Ustoz har ekranda gapiradi, ekran u bilan birga o'zgaradi. Quloqchin yoki ovoz balandligini tekshiring.", 'Урок озвучен. На каждом экране говорит учитель, экран меняется вместе с ним. Проверьте наушники или громкость.')}</p>
-      <ul>
-        {t(["Jami taxminan 1 soat 40 daqiqa – 2 soat: ovoz ~27 daqiqa · to'rt amaliyot AI bilan 70–90 daqiqa · 4 tekshiruv · o'z-sinov 8 savol. 12-ekrandan keyin tanaffus qilsangiz bo'ladi", "Kerak: Telegraf videodarslari · PostgreSQL-1 va PostgreSQL-2 · NestJS mentor darslari · PostgreSQL ishlab turgan · Node.js 20+ · VS Code · AI yordamchi (Antigravity, Claude Code, Codex yoki Copilot) · BotFather'da sinov boti", 'Loyiha: github.com/Azizbekcrypto/OrderBotNest — tgpg-start dan boshlaysiz'], RS('COVER')).map((x) => <li key={x}>{x}</li>)}
-      </ul>
-      <CoverStart onStart={onStart} resume={resume} />
+    <div className="mk-cover"><div className="card n1-cv">
+      <div className="tx">
+        <p className="mk-eyebrow">{t("Mentor kursi · Telegraf + PostgreSQL", "Курс для менторов · Telegraf + PostgreSQL")}</p>
+        <h1>{t(LESSON_TITLE, RS('TITLE'))}</h1>
+        <p className="af">{t('Bu darsdan keyin siz', 'После этого урока вы')}</p>
+        <ul className="ok">
+          {t(["tayyor botning ma'lumotini AI bilan PostgreSQL'ga to'rt bosqichda ko'chirasiz", "har bosqichni o'zingiz tekshirasiz: diff, build, restart, psql va ko'p mijoz", "buyurtmani tranzaksiyada yozasiz va bitta mahsulot ikki kishiga sotilmasligini isbotlaysiz"], ["перенесёте данные готового бота в PostgreSQL с AI за четыре этапа", 'сами проверите каждый этап: diff, build, restart, psql и много клиентов', 'запишете заказ в транзакции и докажете, что один товар не продаётся двоим']).map((x) => <li key={x}>{x}</li>)}
+        </ul>
+        <p className="meta">{t("Ovozli dars · 1 soat 40 daqiqa – 2 soat, 12-ekrandan keyin tanaffus qilsa bo'ladi · Kerak: PostgreSQL ishlab turgan, Node.js 20+, VS Code, AI yordamchi, BotFather'da sinov boti · Loyiha: github.com/Azizbekcrypto/OrderBotNest (tgpg-start)", "Урок со звуком · 1 ч 40 мин – 2 ч, после 12-го экрана можно сделать перерыв · Нужно: работающий PostgreSQL, Node.js 20+, VS Code, AI-помощник, тестовый бот в BotFather · Проект: github.com/Azizbekcrypto/OrderBotNest (tgpg-start)")}</p>
+        <CoverStart onStart={onStart} resume={resume} />
+      </div>
+      <div className="pic"><BotMap loc={DB_ALL} chat={CHAT_ORDER} note={{ orders: '#1 · 220000 · CONFIRMED' }} max={1} /></div>
     </div></div>
   );
 }
@@ -3668,6 +4087,7 @@ export default function TgPgMentorLesson({ studentName, lang = 'uz', onFinished,
   setLang(lang);
   useCss();
   useCss3();
+  useCssN1(); // F-1120-02: dars rasmi uslubi (parts/02b-rasm.jsx)
   const total = SCREENS.length;
   const [started, setStarted] = useState(startAt != null);
   const [idx, setIdx] = useState(Math.min(Math.max(0, startAt || 0), total - 1));
@@ -3721,7 +4141,6 @@ var RU_S = {
 ru(SVC2, [[null, 'товары и склад', null], [null, 'пользователь, роль, state', null], [null, 'корзина', null], [null, 'заказ, статус админа', null]]);
 ru(FLOW2, [null, null, null, null, null, null, null, null, null, [null, 'админ Жасур'], null, null, null]);
 ru(FLOW3B, [[null, 'сервер перезапустился'], null, null, null, null, [null, 'перезапуск в момент запроса телефона'], null, null]);
-ru(LIST3, ['товар и склад (stock)', 'пользователь и его роль', 'телефон и state', 'корзина', 'заказ']);
 ru(PROMPT1, [
   [null, 'Это проект NestJS + Telegraf (Telegram-бот заказов). Сейчас каталог, корзина, пользователи и заказы в памяти (Map и array) — при перезапуске сервера всё пропадает. Переносим их в PostgreSQL поэтапно.\n\n'],
   [null, 'Этап 1 — только подключение к базе и каталог:\n'],
@@ -3813,8 +4232,6 @@ ru(FLOW3A, [[null, '1-й процесс']]);
 ru(FLOW11A, [[null, 'после 1-го этапа']]);
 ru(FLOW15B, [[null, 'после 2-го этапа (корзина ещё в памяти)']]);
 ru(FLOW19, [[null, 'на складе 1 Planshet'], null, null, null, [null, 'склад 0 · корзина Бобура сохранена']]);
-ru(STAGES6, [[null, 'Подключение + каталог', 'TypeORM, миграция, products, seed'], [null, 'Пользователь + state'], [null, 'Корзина'], [null, 'Заказ', 'orders, order_items, транзакция']]);
-ru(STATIONS28, [[null, 'Бот Telegraf']]);
 
 const RU_MDT = {
  "1": {
@@ -4389,8 +4806,8 @@ const RU_MDT = {
   "title": "«Прочитай, проверь, запиши» без блокировки: все транзакции видят остаток 1 — один планшет продаётся пятерым, и CHECK не ловит",
   "seg": {
    "a": [
-    "Ломаем: читаем строку <b>без блокировки</b>, считаем остаток в коде и пишем новый",
-    "Теперь нарочно ломаем. Убираем блокировку: читаем товар обычным find, в коде проверяем, хватает ли остатка, считаем новый остаток и делаем save. AI часто пишет именно так, выглядит правильно."
+    "Блокировки нет: <b>читаем строку без блокировки</b>, остаток считаем в коде и записываем новый",
+    "Вы убрали блокировку. Теперь товар читается обычным find, в коде проверяется, хватает ли остатка, новый остаток считается и сохраняется через save. AI часто пишет именно так, выглядит правильно."
    ],
    "b": [
     "Пять транзакций <b>одновременно видят «остаток 1»</b> — все проходят проверку",
@@ -4403,6 +4820,11 @@ const RU_MDT = {
    "d": [
     "Исправлений два: <b>чтение с блокировкой</b> или <b>один <code>UPDATE … WHERE</code></b> — снова продан 1",
     "Исправлений два. Первое: блокировка при чтении, в find добавляется lock pessimistic write, вторая транзакция ждёт. Второе: отдать счёт базе, update stock минус qty where stock больше или равно qty. Race прогнали заново: во всех пяти раундах продан один, склад ноль. Значит, считать остаток в коде и записывать без блокировки не работает."
+   ],
+   "x": [
+    "Теперь <b>ломаете вы</b>: нажмите на подсвеченный в коде <code>lock</code>",
+    "Заказ работает, проверка race тоже чистая. Теперь ломаем намеренно, потому что AI часто пишет именно так. Ломаете вы сами: в тридцать третьей строке order service подсвечен lock, нажмите на него: блокировка уберётся.",
+    "Нажмите на <b><code>lock: { mode: 'pessimistic_write' }</code></b> в 33-й строке <b>order.service.ts</b> — блокировка уберётся, чтение станет обычным <code>findOneBy</code>."
    ]
   }
  },
@@ -4678,9 +5100,9 @@ function yakRu(passed, segs) {
   return segs.map((s) => ({ ...s, ...(Y[s.id === 'a' ? (passed ? 'a_pass' : 'a_fail') : s.id] || {}) }));
 }
 (function ruMdtQo() {
-  const segRu = (n) => { const r = RU_MDT[n] && RU_MDT[n].seg; if (!r) return undefined; const o = {}; Object.keys(r).forEach((id) => { const [key, text] = r[id]; o[id] = { ...(key != null ? { key } : {}), ...(text != null ? { text, show: wrRu(text) } : {}) }; }); return o; };
+  const segRu = (n) => { const r = RU_MDT[n] && RU_MDT[n].seg; if (!r) return undefined; const o = {}; Object.keys(r).forEach((id) => { const [key, text, act] = r[id]; o[id] = { ...(key != null ? { key } : {}), ...(text != null ? { text, show: wrRu(text) } : {}), ...(act != null ? { act } : {}) }; }); return o; };
   const head = (n) => { const r = RU_MDT[n] || {}; const o = {}; ['kicker', 'eyebrow', 'title'].forEach((k) => { if (r[k] != null) o[k] = r[k]; }); const s = segRu(n); if (s) o.segments = s; return o; };
-  const mdt = {}; Object.keys(RU_MDT).forEach((n) => { const r = { ...RU_MDT[n] }; if (r.seg) r.seg = MDT[n].seg.map(([id]) => (r.seg[id] ? [null, r.seg[id][0], r.seg[id][1]] : null)); mdt[n] = r; });
+  const mdt = {}; Object.keys(RU_MDT).forEach((n) => { const r = { ...RU_MDT[n] }; if (r.seg) r.seg = MDT[n].seg.map(([id]) => (r.seg[id] ? [null, r.seg[id][0], r.seg[id][1], r.seg[id][2]] : null)); mdt[n] = r; });
   ru(MDT, mdt);
   ru(S1, { ...head(1), ...((typeof RU_S !== 'undefined' && RU_S.S1) || {}) });
   ru(S2, { ...head(2), ...((typeof RU_S !== 'undefined' && RU_S.S2) || {}) });

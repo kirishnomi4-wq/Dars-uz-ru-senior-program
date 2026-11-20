@@ -218,15 +218,21 @@ const SUM25 = [
   { k: 'st', t: "Uch holat: ulangan · ulanmoqda (active=true: transport close, xhr poll error, ping timeout ≤ 45 s) · ulanmagan (active=false: io server disconnect — token). Server yongach klient o'zi ulanadi", st: ['st'] },
   { k: 'ai', t: "AI real vaqt kodiga to'rt savol: kutubxona (socket.io'mi) · token qayerda · hodisada nima, kim oladi · mavjud fayllardan nima o'zgardi; haqiqiy baza bilan tekshiring (npm run smoke -- live)", st: ['ai'] },
 ];
-const STATIONS25 = [['q', "So'rov vs ulanish", T.blue], ['gw', 'Gateway · token', C1.ws], ['ev', 'Hodisa · panel', C1.live], ['st', 'Uch holat', T.green], ['ai', 'AI', C1.ai]];
+// F-1120-02 (M51): xulosa — darsning o'sha rasmi (BotMap + admin paneli); har band rasmning o'z qismini yoritadi.
+// Panel belgilari — admin.html dagi haqiqiy yozuvlar (Ulangan · Ulanmoqda… · Ulanmagan), shuning uchun tarjima qilinmaydi
+const PNL = (steps, res, badge) => ({ get name() { return t('Admin panel', 'Админ-панель'); }, steps, res, badge });
+const MAP25 = {
+  q: { on: ['telegram'], jest: PNL([['GET /admin/orders', ''], ['socket.io', 'ok']], 'pass', 'Ulangan') },
+  gw: { on: ['telegram'], jest: PNL([['token', 'ok'], ['disconnect() · return', 'ok']], 'pass', 'Ulangan') },
+  ev: { on: LIVE_ON, chat: CHAT_LIVE, jest: PNL([['orderChanged', 'ok'], ['order-changed', 'ok']], 'pass', 'Ulangan') },
+  pn: { on: LIVE_ON, chat: CHAT_LIVE, jest: PNL([["io({ auth: { token } })", 'ok']], 'pass', 'Ulangan') },
+  st: { on: ['telegram'], jest: PNL([['transport close', 'bad'], ['xhr poll error', 'bad']], '?', 'Ulanmoqda…') },
+  ai: { on: LIVE_ON, chat: CHAT_LIVE, jest: PNL([['npm run smoke -- live', 'ok']], 'pass', 'Ulangan') },
+};
 function SummaryMap25({ hl }) {
-  const cur = SUM25.find((x) => x.k === hl);
-  const on = (k) => hl === 'all' || !cur || cur.st.includes(k);
-  return <div className="mk-light" style={{ padding: 16 }}>
-    <div className="mk-tag">{t("Bugungi dars — jonli panel: server o'zi xabar yuboradi", "Сегодняшний урок — живая панель: сервер сам присылает сообщение")}</div>
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, minmax(0,1fr))', gap: 6 }}>
-      {STATIONS25.map(([k, n, c], i) => <div key={k} className={`mk-box${cur && cur.st.includes(k) ? ' hl' : ''}`} style={{ '--c': c, padding: '10px 6px', textAlign: 'center', opacity: on(k) ? 1 : 0.35, animation: `mk-up .4s ${i * 0.06}s ease both` }}><h4 style={{ fontSize: 13, margin: 0 }}>{n}</h4></div>)}
-    </div>
+  const m = MAP25[hl] || MAP25.ev;
+  return <div className="mk-light" style={{ padding: 14 }}>
+    <BotMap loc={DB_ALL} {...m} max={1.05} tag={t("Bugungi dars — bot buyurtma oladi, panel o'zi ko'rsatadi", 'Сегодняшний урок — бот получает заказ, панель показывает сама')} />
   </div>;
 }
 const HOMEWORK25 = [
@@ -295,7 +301,8 @@ function Screen25(p) {
         <div className="mk-scene top" style={{ overflow: 'auto' }}>
           {phase === 'sum' && (<>
             <SummaryMap25 hl={hl} />
-            <div className="mk-plan">{SUM25.slice(0, shown).map((it, i) => <div key={it.k} className={it.k === hl ? 'hl' : ''} style={{ animation: 'mk-up .45s ease both' }}><b>0{i + 1}</b><span>{it.t}</span></div>)}</div>
+            {/* F-1120-02: bandlar rasm ostida ixcham to'rda — rasm surilib ketmasin (M51-2) */}
+            <div className="n1-plan" style={{ position: 'static', gridTemplateColumns: 'repeat(3,minmax(0,1fr))', gap: 8, marginTop: 10 }}>{SUM25.slice(0, shown).map((it, i) => <div key={it.k} className={it.k === hl ? 'hl' : ''} style={{ animation: 'mk-up .45s ease both' }}><b>0{i + 1}</b><span style={{ fontSize: 12.5 }}>{it.t}</span></div>)}</div>
           </>)}
           {phase === 'hw' && <div className="mk-light" style={{ padding: 16, animation: 'mk-up .45s ease both' }}>
             <div className="mk-tag" style={{ color: T.accent }}>{t('Uyga vazifa · 40–60 daqiqa', 'Домашнее задание · 40–60 минут')}</div>
@@ -324,16 +331,21 @@ function Screen25(p) {
 // ============================================================
 //  Muqova va ildiz
 // ============================================================
+// F-1120-02 (M51): muqova — chapda dars nima berishi, o'ngda darsning rasmi; eslatmalar bitta qisqa satrda
 function Cover({ onStart, resume }) {
   return (
-    <div className="mk-cover"><div className="card">
-      <p className="mk-eyebrow">{t("Mentor kursi · WebSocket", "Курс для менторов · WebSocket")}</p>
-      <h1>{t(LESSON_TITLE, RS('TITLE'))}</h1>
-      <p>{t("Bu dars ovozli. Ustoz har ekranda gapiradi, ekran u bilan birga o'zgaradi. Quloqchin yoki ovoz balandligini tekshiring.", 'Урок озвучен. На каждом экране говорит учитель, экран меняется вместе с ним. Проверьте наушники или громкость.')}</p>
-      <ul>
-        {t(["Jami taxminan 1 soat 15–30 daqiqa: ovoz ~25 daqiqa · uchta amaliyot 50–65 daqiqa · 4 tekshiruv · o'z-sinov 8 savol. 12-ekrandan keyin tanaffus qilsangiz bo'ladi", "Kerak: CI/CD-2 mentor darsi (OrderBotNest nusxangiz) · Telegraf darsidagi bot tokeni va PostgreSQL · Node.js 20+ · VS Code · brauzer · AI yordamchi", "Loyiha: github.com/Azizbekcrypto/OrderBotNest — ws1-start (= cicd2-done) → ws1-done; har chiqish haqiqiy server, baza va brauzerdan"], RS('COVER')).map((x) => <li key={x}>{x}</li>)}
-      </ul>
-      <CoverStart onStart={onStart} resume={resume} />
+    <div className="mk-cover"><div className="card n1-cv">
+      <div className="tx">
+        <p className="mk-eyebrow">{t("Mentor kursi · WebSocket", "Курс для менторов · WebSocket")}</p>
+        <h1>{t(LESSON_TITLE, RS('TITLE'))}</h1>
+        <p className="af">{t('Bu darsdan keyin siz', 'После этого урока вы')}</p>
+        <ul className="ok">
+          {t(["so'rov–javob va doimiy ulanish farqini ko'rsatasiz: socket.io, gateway, token", "bot buyurtma olganda hodisa yuborasiz — admin paneli sahifani yangilamasdan ko'rsatadi", "panel belgisi va server logidan uzilish sababini topasiz, AI kodini to'rt savol bilan tekshirasiz"], ['покажете разницу запрос–ответ и постоянного соединения: socket.io, gateway, токен', 'отправите событие, когда бот получил заказ, — админ-панель покажет без перезагрузки', 'найдёте по значку панели и логу сервера причину обрыва, проверите код AI четырьмя вопросами']).map((x) => <li key={x}>{x}</li>)}
+        </ul>
+        <p className="meta">{t("Ovozli dars · 1 soat 15–30 daqiqa, 12-ekrandan keyin tanaffus qilsa bo'ladi · Kerak: CI/CD-2 darsi (OrderBotNest nusxangiz), Telegraf darsidagi bot tokeni va PostgreSQL, Node.js 20+, VS Code, brauzer, AI yordamchi · Loyiha: ws1-start tegi", 'Урок со звуком · 1 ч 15–30 мин, после 12-го экрана можно сделать перерыв · Нужно: урок CI/CD-2 (ваша копия OrderBotNest), токен бота и PostgreSQL из урока Telegraf, Node.js 20+, VS Code, браузер, AI-помощник · Проект: тег ws1-start')}</p>
+        <CoverStart onStart={onStart} resume={resume} />
+      </div>
+      <div className="pic"><BotMap loc={DB_ALL} on={LIVE_ON} chat={CHAT_LIVE} jest={PANEL} max={1} /></div>
     </div></div>
   );
 }
@@ -343,6 +355,7 @@ export default function WsBasicsMentorLesson({ studentName, lang = 'uz', onFinis
   setLang(lang);
   useCss();
   useCss3();
+  useCssN1(); // F-1120-02: dars rasmi uslubi (parts/02b-rasm.jsx)
   const total = SCREENS.length;
   const [started, setStarted] = useState(startAt != null);
   const [idx, setIdx] = useState(Math.min(Math.max(0, startAt || 0), total - 1));

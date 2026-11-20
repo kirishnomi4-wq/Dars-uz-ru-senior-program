@@ -19,6 +19,13 @@ const ERR1 = [
   { at: 4, id: 'e-solutions', h: `- If CarsService is a provider, is it part of the current CarsModule?` },
   { at: 4, id: 'e-solutions', h: `- If CarsService is exported from a separate @Module, is that module imported within CarsModule?` },
 ];
+// F-1120-02: buzishdan oldingi butun holat — CarsService bosiladi (data-act)
+const MODULE_OK = [
+  { h: `<span class="d">@Module</span>({` },
+  { h: `  controllers: [<span class="c">CarsController</span>],` },
+  { h: `  providers: [<span class="c n1-act" data-act="1">CarsService</span>]` },
+  { h: `})` },
+];
 // Tuzatilgan holat va muvaffaqiyatli terminal — har «Buzamiz» ekrani tuzatish bilan tugaydi (MENTOR_DARS_ETALON 3-qonun, F-1030-13)
 const MODULE_FIXED = [
   { h: `<span class="d">@Module</span>({` },
@@ -37,7 +44,9 @@ const OK_CARS = [
 const S18 = {
   kicker: '5-bosqich · buzamiz 1', title: "Buzamiz 1: providers bo'sh",
   segments: [
-    { id: 'a', key: "Ataylab buzamiz: <code>cars.module.ts</code>'da <b>providers bo'sh</b> qoldi", text: "Ishlaydigan modulimiz bor. Endi uni ataylab buzamiz, chunki o'quvchilaringiz aynan shu xatolarni qiladi, siz esa ularni o'qiy olishingiz kerak. Birinchi holat: cars module da providers ro'yxatidan CarsService'ni o'chirdik.", focus: [] },
+    // F-1120-02: mentor o'zi buzadi — kodda yonib turgan so'zni bosadi (act); keyingi segment buzilgan holatdan boshlanadi
+    { id: 'x', key: "Endi <b>o'zingiz buzasiz</b>: kodda yonib turgan <code>CarsService</code> ustiga bosing", text: "Ishlaydigan modulimiz bor. Endi uni ataylab buzamiz, chunki o'quvchilaringiz aynan shu xatolarni qiladi, siz esa ularni o'qiy olishingiz kerak. Bu safar buzishni o'zingiz qilasiz: o'ngdagi kodda CarsService so'zi yonib turibdi, ustiga bosing.", act: "O'ngdagi kodda yonib turgan <b>CarsService</b> ustiga bosing — u providers ro'yxatidan o'chadi.", focus: [] },
+    { id: 'a', key: "Ataylab buzamiz: <code>cars.module.ts</code>'da <b>providers bo'sh</b> qoldi", text: "Birinchi holat: cars module da providers ro'yxatidan CarsService'ni o'chirdingiz, ro'yxat bo'sh qoldi.", focus: [] },
     { id: 'b', key: "Server yiqildi. 1-bo'lak — <b>qaysi klass?</b> CarsController; <code>(?)</code> — topilmagan dependency o'rni", text: "Serverni ishga tushiramiz, u yiqiladi. Xabarni uch bo'lakka bo'lib o'qiymiz. Birinchi bo'lak, qaysi klass: Nest CarsController'ning dependency'larini topa olmadi. Qavsdagi so'roq belgisi topilmagan dependency'ning o'rni.", show: "Serverni ishga tushiramiz, u yiqiladi. Xabarni uch bo'lakka bo'lib o'qiymiz. 1 · <b>qaysi klass</b>: <b>Nest can't resolve dependencies of the CarsController</b> — Nest CarsController'ning dependency'larini topa olmadi. Qavsdagi <b>(?)</b> — topilmagan dependency'ning o'rni.", focus: ['e-who'] },
     { id: 'c', key: "2-bo'lak — <b>qaysi dependency yetishmayapti?</b> CarsService, konstruktordagi 0-argument", text: "Ikkinchi bo'lak, qaysi dependency yetishmayapti: nolinchi argument, ya'ni konstruktordagi birinchi parametr, CarsService.", show: "2 · <b>qaysi dependency</b>: <b>argument CarsService at index [0] is available</b> — nolinchi argument, ya'ni konstruktordagi birinchi parametr, CarsService.", focus: ['e-what'] },
     { id: 'd', key: "3-bo'lak — <b>qaysi fayl?</b> CarsModule, ya'ni <code>cars.module.ts</code>", text: "Uchinchi bo'lak, qaysi faylni ochamiz: Nest CarsModule'da qidirdi va topmadi, demak cars module ts fayli. Mana, uch savolga javob bor: qaysi klass, qaysi dependency, qaysi fayl.", show: "3 · <b>qaysi fayl</b>: <b>in the CarsModule module</b> — Nest CarsModule'da qidirdi va topmadi, demak <code>cars.module.ts</code>. Uch savolga javob bor: <b>qaysi klass · qaysi dependency · qaysi fayl</b>.", focus: ['e-where'] },
@@ -47,25 +56,33 @@ const S18 = {
   ],
 };
 function Screen18(p) {
-  return <Lesson p={p} S={S18} sceneTop scene={({ seg, beat }) => {
-    const fixed = beat >= 5;
-    return (
-      <Ide files={ALL_FILES} active="src/cars/cars.module.ts">
-        <CodePanel key={fixed ? 'f' : 'b'} file="src/cars/cars.module.ts" numbers={false} lines={fixed ? MODULE_FIXED : MODULE_BROKEN} style={{ opacity: beat >= 1 && beat <= 4 ? 0.5 : 1, transition: 'opacity .4s' }} />
-        {fixed
-          ? <CodePanel file={t('terminal — tuzatildi, server ishga tushdi', 'terminal — исправлено, сервер запустился')} numbers={false} wrap style={{ background: '#111827' }} lines={OK_CARS} />
-          : <Block at={1} beat={beat}><CodePanel file={t('terminal — server yiqildi', 'terminal — сервер упал')} numbers={false} wrap style={{ background: '#1F1115' }} beat={beat} lines={ERR1} focus={seg.focus} /></Block>}
-        <Block at={6} beat={beat}><div className="mk-rule">{t(<><b>Qaysi klass · qaysi dependency · qaysi fayl.</b> «can't resolve dependencies» ko'rsangiz — modul faylini oching, <code>providers</code>'ni tekshiring.</>, <><b>Какой класс · какой dependency · какой файл.</b> Видите «can't resolve dependencies» — откройте файл модуля, проверьте <code>providers</code>.</>)}</div></Block>
-      </Ide>
-    );
-  }} />;
+  return <Lesson p={p} S={S18} sceneTop scene={(b) => <Scene18 b={b} />} />;
+}
+// Qadamlar (F-1120-02 dan): 0 bosing · 1 buzildi · 2–4 xatoning 3 bo'lagi · 5 yechimlar · 6 tuzatildi · 7 xulosa
+function Scene18({ b }) {
+  const { seg, beat } = b;
+  const act = useAct(b);
+  const broken = act.hit || beat >= 1;
+  const fixed = beat >= 6;
+  const pin = beat === 2 ? 1 : beat === 3 ? 2 : beat === 4 ? 3 : 0;
+  return (
+    <Ide files={ALL_FILES} active="src/cars/cars.module.ts">
+      <div onClick={act.onClick}><CodePanel key={fixed ? 'f' : broken ? 'b' : 'o'} file="src/cars/cars.module.ts" numbers={false} lines={fixed ? MODULE_FIXED : broken ? MODULE_BROKEN : MODULE_OK} style={{ opacity: beat >= 2 && beat <= 5 ? 0.5 : 1, transition: 'opacity .4s' }} /></div>
+      <MiniProviders broken={broken} fixed={fixed} pin={pin} known={!broken || beat >= 2} />
+      {fixed
+        ? <CodePanel file={t('terminal — tuzatildi, server ishga tushdi', 'terminal — исправлено, сервер запустился')} numbers={false} wrap style={{ background: '#111827' }} lines={OK_CARS} />
+        : <Block at={2} beat={beat}><CodePanel file={t('terminal — server yiqildi', 'terminal — сервер упал')} numbers={false} wrap style={{ background: '#1F1115' }} beat={beat - 1} lines={ERR1} focus={seg.focus} marks={{ 0: 'n1-p1', 1: 'n1-p2', 2: 'n1-p3' }} /></Block>}
+      <Block at={7} beat={beat}><div className="mk-rule">{t(<><b>Qaysi klass · qaysi dependency · qaysi fayl.</b> «can't resolve dependencies» ko'rsangiz — modul faylini oching, <code>providers</code>'ni tekshiring.</>, <><b>Какой класс · какой dependency · какой файл.</b> Видите «can't resolve dependencies» — откройте файл модуля, проверьте <code>providers</code>.</>)}</div></Block>
+    </Ide>
+  );
 }
 
 // --- S19 yashirin xato (+ o'ylab ko'ring) ---
 const S19 = {
   kicker: '5-bosqich · buzamiz 2', title: "Buzamiz 2: imports'da CarsModule yo'q",
   segments: [
-    { id: 'a', key: "Ataylab buzamiz: <code>app.module.ts</code>'ning <code>imports</code>'idan CarsModule olindi", text: "Birinchi xatoni o'qidik va tuzatdik. Ikkinchi holat boshqacha: bu safar server yiqilmaydi, va aynan shuning uchun xavfli. app module da imports ro'yxatidan CarsModule'ni olib tashladik." },
+    { id: 'x', key: "Yana <b>o'zingiz buzasiz</b>: <code>imports</code> ro'yxatidagi <code>CarsModule</code> ustiga bosing", text: "Birinchi xatoni o'qidik va tuzatdik. Ikkinchi holat boshqacha: bu safar server yiqilmaydi, va aynan shuning uchun xavfli. Buzishni yana o'zingiz qilasiz: app module faylida imports ro'yxatidagi CarsModule so'zi yonib turibdi, ustiga bosing.", act: "<b>app.module.ts</b>'dagi <b>CarsModule</b> ustiga bosing — u imports ro'yxatidan o'chadi." },
+    { id: 'a', key: "Ataylab buzamiz: <code>app.module.ts</code>'ning <code>imports</code>'idan CarsModule olindi", text: "CarsModule imports ro'yxatidan olib tashlandi, ro'yxat bo'sh qoldi." },
     { id: 'b', key: "O'ylab ko'ring: server <b>xato bilan yiqiladimi</b> yoki ishga tushadimi?", text: "O'ylab ko'ring: serverni ishga tushirsak, xato chiqib yiqiladimi, yoki ishga tushadimi?", ask: { q: 'Server nima qiladi?', opts: ['Xato bilan yiqiladi', 'Ishga tushadi'], answer: 1 } },
     { id: 'c', key: "Server <b>ishga tushdi</b> — «successfully started», xato yo'q", text: "Server ishga tushdi, muvaffaqiyatli deb yozdi, hamma narsa yaxshidek. Xato yo'q." },
     { id: 'd', key: "Lekin <code>/cars</code> → <b>404</b>, root path esa ishlaydi", text: "Lekin cars route'ini so'rasak, to'rt yuz to'rt, Cannot GET cars. Root path esa ishlaydi.", show: "Lekin <code>/cars</code> so'rasak, <b>404, Cannot GET /cars</b>. <code>/</code> esa ishlaydi." },
@@ -76,33 +93,48 @@ const S19 = {
   ],
 };
 function Screen19(p) {
-  return <Lesson p={p} S={S19} sceneTop scene={({ beat }) => beat >= 6 ? (
+  return <Lesson p={p} S={S19} sceneTop scene={(b) => <Scene19 b={b} />} />;
+}
+// Qadamlar (F-1120-02 dan): 0 bosing · 1 buzildi · 2 o'ylab ko'ring · 3 ishga tushdi · 4 404 · 5 nima bo'ldi · 6 topish yo'li · 7 tuzatildi · 8 xulosa
+function Scene19({ b }) {
+  const { beat } = b;
+  const act = useAct(b);
+  const broken = act.hit || beat >= 1;
+  const fixed = beat >= 7;
+  if (fixed) return (
     <Ide files={ALL_FILES} active="src/app.module.ts">
       <CodePanel key="f" file="src/app.module.ts" numbers={false} lines={[{ h: `<span class="d">@Module</span>({` }, { gone: true, h: `  imports: [],` }, { neu: true, h: `  imports: [<span class="c">CarsModule</span>],` }, { h: `  controllers: [<span class="c">AppController</span>],` }, { h: `  providers: [<span class="c">AppService</span>],` }, { h: `})` }]} />
+      <MiniImports broken fixed />
       <CodePanel file={t('terminal — tuzatildi', 'terminal — исправлено')} numbers={false} wrap style={{ background: '#111827' }} lines={[...OK_CARS, { h: `` }, { h: `<span class="p">GET /cars</span> → <span class="ok">200</span>  [{"id":1,"brand":"Chevrolet",…}, …]` }]} />
-      <Block at={7} beat={beat}><div className="mk-rule">{t(<><b>404 + kod to'g'ri ko'rinadi?</b> 1) terminalda <code>Mapped</code> satrini qidiring · 2) bosh modulning <code>imports</code>'ini tekshiring.</>, <><b>404, а код выглядит верным?</b> 1) ищите в терминале строку <code>Mapped</code> · 2) проверьте <code>imports</code> главного модуля.</>)}</div></Block>
+      <Block at={8} beat={beat}><div className="mk-rule">{t(<><b>404 + kod to'g'ri ko'rinadi?</b> 1) terminalda <code>Mapped</code> satrini qidiring · 2) bosh modulning <code>imports</code>'ini tekshiring.</>, <><b>404, а код выглядит верным?</b> 1) ищите в терминале строку <code>Mapped</code> · 2) проверьте <code>imports</code> главного модуля.</>)}</div></Block>
     </Ide>
-  ) : (
+  );
+  const lines = broken
+    ? [{ h: `<span class="d">@Module</span>({` }, { gone: true, h: `  imports: [<span class="c">CarsModule</span>],` }, { neu: true, h: `  imports: [],` }, { h: `  controllers: [<span class="c">AppController</span>],` }, { h: `  providers: [<span class="c">AppService</span>],` }, { h: `})` }]
+    : [{ h: `<span class="d">@Module</span>({` }, { h: `  imports: [<span class="c n1-act" data-act="1">CarsModule</span>],` }, { h: `  controllers: [<span class="c">AppController</span>],` }, { h: `  providers: [<span class="c">AppService</span>],` }, { h: `})` }];
+  return (
     <Ide files={ALL_FILES} active="src/app.module.ts">
-    <Block at={0} beat={beat} dim={beat >= 2 && beat !== 4}><CodePanel file="src/app.module.ts" numbers={false} lines={[{ h: `<span class="d">@Module</span>({` }, { gone: true, h: `  imports: [<span class="c">CarsModule</span>],` }, { neu: true, h: `  imports: [],` }, { h: `  controllers: [<span class="c">AppController</span>],` }, { h: `  providers: [<span class="c">AppService</span>],` }, { h: `})` }]} /></Block>
-    <Block at={2} beat={beat}><CodePanel file={t("terminal — xato YO'Q", 'terminal — ошибки НЕТ')} numbers={false} wrap style={{ background: '#111827' }} beat={beat} lines={[
-      { at: 2, h: `[Nest] LOG [InstanceLoader] AppModule dependencies initialized` },
-      { at: 2, h: `[Nest] LOG [RoutesResolver] AppController {/}:` },
-      { at: 2, h: `[Nest] LOG [RouterExplorer] Mapped {/, GET} route` },
-      { at: 5, id: 'miss', keep: true, h: t("<span class=\"er\">⟵ bu yerda CarsController {/cars} va Mapped {/cars…} bo'lishi kerak edi — yo'q</span>", '<span class="er">⟵ здесь должны были быть CarsController {/cars} и Mapped {/cars…} — их нет</span>') },
-      { at: 2, id: 'ok', h: `[Nest] LOG [NestApplication] <span class="ok">Nest application successfully started</span>` },
-      { at: 3, h: `` },
-      { at: 3, h: `<span class="p">GET /cars</span> → <span class="er">404</span>  {"message":"Cannot GET /cars","error":"Not Found","statusCode":404}` },
-      { at: 3, h: `<span class="p">GET /</span>     → <span class="ok">200</span>  Hello World!` }]} focus={beat === 2 ? ['ok'] : (beat === 5 ? ['miss'] : [])} /></Block>
+      <Block at={0} beat={beat} dim={beat >= 3 && beat !== 5}><div onClick={act.onClick}><CodePanel key={broken ? 'b' : 'o'} file="src/app.module.ts" numbers={false} lines={lines} /></div></Block>
+      <MiniImports broken={broken} fixed={false} known={beat >= 4} unread={beat >= 5} />
+      <Block at={3} beat={beat}><CodePanel file={t("terminal — xato YO'Q", 'terminal — ошибки НЕТ')} numbers={false} wrap style={{ background: '#111827' }} beat={beat - 1} lines={[
+        { at: 2, h: `[Nest] LOG [InstanceLoader] AppModule dependencies initialized` },
+        { at: 2, h: `[Nest] LOG [RoutesResolver] AppController {/}:` },
+        { at: 2, h: `[Nest] LOG [RouterExplorer] Mapped {/, GET} route` },
+        { at: 5, id: 'miss', keep: true, h: t("<span class=\"er\">⟵ bu yerda CarsController {/cars} va Mapped {/cars…} bo'lishi kerak edi — yo'q</span>", '<span class="er">⟵ здесь должны были быть CarsController {/cars} и Mapped {/cars…} — их нет</span>') },
+        { at: 2, id: 'ok', h: `[Nest] LOG [NestApplication] <span class="ok">Nest application successfully started</span>` },
+        { at: 3, h: `` },
+        { at: 3, h: `<span class="p">GET /cars</span> → <span class="er">404</span>  {"message":"Cannot GET /cars","error":"Not Found","statusCode":404}` },
+        { at: 3, h: `<span class="p">GET /</span>     → <span class="ok">200</span>  Hello World!` }]} focus={beat === 3 ? ['ok'] : (beat === 6 ? ['miss'] : [])} /></Block>
     </Ide>
-  )} />;
+  );
 }
 
 // --- S20 Controller decorator'i yo'q ---
 const S20 = {
   kicker: '5-bosqich · buzamiz 3', title: "Buzamiz 3: Controller decorator'i yo'q",
   segments: [
-    { id: 'a', key: "Ataylab buzamiz: <code>@Controller('cars')</code> o'chirildi, klass qoldi — server <b>yiqiladi</b>", text: "Yashirin xatoni ko'rdik. Uchinchi holat decorator haqida: to'rtinchi ekranda aytgan qoidani endi amalda ko'ramiz. cars controller da Controller decorator'ini o'chirdik, klass joyida qoldi. Server yiqiladi." },
+    { id: 'x', key: "Endi <b>o'zingiz buzasiz</b>: kodda yonib turgan <code>@Controller('cars')</code> ustiga bosing", text: "Yashirin xatoni ko'rdik. Uchinchi holat decorator haqida: to'rtinchi ekranda aytgan qoidani endi amalda ko'ramiz. cars controller faylida Controller decorator'i yonib turibdi, ustiga bosib o'chiring.", act: "<b>cars.controller.ts</b>'dagi <b>@Controller('cars')</b> ustiga bosing — decorator o'chadi." },
+    { id: 'a', key: "Ataylab buzamiz: <code>@Controller('cars')</code> o'chirildi, klass qoldi — server <b>yiqiladi</b>", text: "Decorator o'chdi, klass joyida qoldi. Server yiqiladi." },
     { id: 'b', key: "Xabar: «<b>invalid controller</b>» — belgi yo'q, lekin controllers ro'yxatida turibdi", text: "Xabar: noto'g'ri controller aniqlandi. CarsController'da Controller decorator'i yo'q, lekin u qaysidir modulning controllers ro'yxatida turibdi.", show: "<b>An invalid controller has been detected.</b> CarsController does not have the @Controller() decorator, but it is being listed in the controllers array of some module." },
     { id: 'c', key: "4-ekrandagi qoida ishladi: belgi bo'lmasa, <b>Nest klassni tanimaydi</b>", text: "Nest aniq aytyapti: siz uni ro'yxatga yozgansiz, lekin klassda belgi yo'q. Decorator'lar ekranida aytganimni eslang: belgi bo'lmasa, Nest klassni tanimaydi." },
     { id: 'd', key: "Tuzatamiz: decorator qaytdi — server <b>ishga tushdi</b>, Mapped satrlari joyida", text: "Tuzatish bitta satr: decorator'ni qaytaramiz. Server qayta yuklanadi, terminalda Mapped satrlari va successfully started." },
@@ -110,33 +142,43 @@ const S20 = {
   ],
 };
 function Screen20(p) {
-  return <Lesson p={p} S={S20} sceneTop scene={({ beat }) => {
-    const fixed = beat >= 3;
-    return (<Ide files={ALL_FILES} active="src/cars/cars.controller.ts">
-      <CodePanel key={fixed ? 'f' : 'b'} file="src/cars/cars.controller.ts" lines={[
-        { h: `<span class="k">import</span> { Body, Controller, Get, Param, Post } <span class="k">from</span> <span class="s">'@nestjs/common'</span>;` },
-        { h: `` },
-        fixed ? { neu: true, h: `<span class="d">@Controller</span>(<span class="s">'cars'</span>)` } : { gone: true, h: `<span class="d">@Controller</span>(<span class="s">'cars'</span>)   <span class="cm">${t("← o'chirildi", '← удалено')}</span>` },
-        { h: `<span class="k">export class</span> <span class="c">CarsController</span> {` },
-        { h: `  <span class="k">constructor</span>(<span class="k">private readonly</span> carsService: <span class="c">CarsService</span>) {}` },
-        { h: `  <span class="cm">// …</span>` },
-        { h: `}` }]} />
-      {fixed
-        ? <CodePanel file={t('terminal — tuzatildi, server ishga tushdi', 'terminal — исправлено, сервер запустился')} numbers={false} wrap style={{ background: '#111827' }} lines={OK_CARS} />
-        : <Block at={1} beat={beat}><CodePanel file={t('terminal — server yiqildi', 'terminal — сервер упал')} numbers={false} wrap style={{ background: '#1F1115' }} lines={[
-            { h: `UnknownRequestMappingException [Error]: <span class="er">An invalid controller has been detected.</span>` },
-            { h: `"CarsController" <span class="er">does not have the @Controller() decorator</span>` },
-            { h: `but it is being listed in the "controllers" array of some module.` }]} /></Block>}
-      <Block at={4} beat={beat}><div className="mk-rule">{t(<><b>«invalid controller»</b> → xabardagi klass ustiga qarang: decorator tushib qolgan. Bitta satr bilan tuzatiladi.</>, <><b>«invalid controller»</b> → посмотрите над классом из сообщения: пропал decorator. Исправляется одной строкой.</>)}</div></Block>
-    </Ide>);
-  }} />;
+  return <Lesson p={p} S={S20} sceneTop scene={(b) => <Scene20 b={b} />} />;
+}
+// Qadamlar (F-1120-02 dan): 0 bosing · 1 buzildi · 2 xabar · 3 qoida · 4 tuzatildi · 5 xulosa
+function Scene20({ b }) {
+  const { beat } = b;
+  const act = useAct(b);
+  const broken = act.hit || beat >= 1;
+  const fixed = beat >= 4;
+  const deco = fixed ? { neu: true, h: `<span class="d">@Controller</span>(<span class="s">'cars'</span>)` }
+    : broken ? { gone: true, h: `<span class="d">@Controller</span>(<span class="s">'cars'</span>)   <span class="cm">${t("← o'chirildi", '← удалено')}</span>` }
+    : { h: `<span class="n1-act" data-act="1"><span class="d">@Controller</span>(<span class="s">'cars'</span>)</span>` };
+  return (<Ide files={ALL_FILES} active="src/cars/cars.controller.ts">
+    <div onClick={act.onClick}><CodePanel key={fixed ? 'f' : broken ? 'b' : 'o'} file="src/cars/cars.controller.ts" lines={[
+      { h: `<span class="k">import</span> { Body, Controller, Get, Param, Post } <span class="k">from</span> <span class="s">'@nestjs/common'</span>;` },
+      { h: `` },
+      deco,
+      { h: `<span class="k">export class</span> <span class="c">CarsController</span> {` },
+      { h: `  <span class="k">constructor</span>(<span class="k">private readonly</span> carsService: <span class="c">CarsService</span>) {}` },
+      { h: `  <span class="cm">// …</span>` },
+      { h: `}` }]} /></div>
+    <MiniCtrlDeco broken={broken} fixed={fixed} />
+    {fixed
+      ? <CodePanel file={t('terminal — tuzatildi, server ishga tushdi', 'terminal — исправлено, сервер запустился')} numbers={false} wrap style={{ background: '#111827' }} lines={OK_CARS} />
+      : <Block at={2} beat={beat}><CodePanel file={t('terminal — server yiqildi', 'terminal — сервер упал')} numbers={false} wrap style={{ background: '#1F1115' }} lines={[
+          { h: `UnknownRequestMappingException [Error]: <span class="er">An invalid controller has been detected.</span>` },
+          { h: `"CarsController" <span class="er">does not have the @Controller() decorator</span>` },
+          { h: `but it is being listed in the "controllers" array of some module.` }]} /></Block>}
+    <Block at={5} beat={beat}><div className="mk-rule">{t(<><b>«invalid controller»</b> → xabardagi klass ustiga qarang: decorator tushib qolgan. Bitta satr bilan tuzatiladi.</>, <><b>«invalid controller»</b> → посмотрите над классом из сообщения: пропал decorator. Исправляется одной строкой.</>)}</div></Block>
+  </Ide>);
 }
 
 // --- S21 Injectable yo'q (+ o'ylab ko'ring) — haqiqiy chiqishlar: manba/nest-out/12 (500) va 14 (nazorat, 200) ---
 const S21 = {
   kicker: '5-bosqich · buzamiz 4', title: "Buzamiz 4: Injectable decorator'i yo'q",
   segments: [
-    { id: 'a', key: "Ataylab buzamiz: <code>cars.service.ts</code>'dan <code>@Injectable()</code> o'chirildi", text: "Controller decorator'siz Nest klassni tanimadi. Service'da ham shundaymi? To'rtinchi holat: cars service dan Injectable decorator'ini o'chirdik. Service'ning o'zida konstruktor yo'q, u hech kimga bog'liq emas." },
+    { id: 'x', key: "Endi <b>o'zingiz buzasiz</b>: kodda yonib turgan <code>@Injectable()</code> ustiga bosing", text: "Controller decorator'siz Nest klassni tanimadi. Service'da ham shundaymi? To'rtinchi holat: cars service faylida Injectable decorator'i yonib turibdi, ustiga bosib o'chiring.", act: "<b>cars.service.ts</b>'dagi <b>@Injectable()</b> ustiga bosing — decorator o'chadi." },
+    { id: 'a', key: "Ataylab buzamiz: <code>cars.service.ts</code>'dan <code>@Injectable()</code> o'chirildi", text: "Injectable o'chdi. Service'ning o'zida konstruktor yo'q, u hech kimga bog'liq emas." },
     { id: 'b', key: "O'ylab ko'ring: <code>@Injectable()</code>'siz <code>/cars</code> <b>ishlaydimi?</b>", text: "O'ylab ko'ring: serverni ishga tushirsak, cars route'i ishlaydimi?", ask: { q: "Injectable decorator'siz /cars ishlaydimi?", opts: ['Ha, ishlaydi', "Yo'q, xato chiqadi"], answer: 0 } },
     { id: 'c', key: "<b>Ishlayapti!</b> CarsService hech kimga bog'liq emas — Nest uni oddiy yaratdi", text: "Kutilmagan natija: hammasi ishlayapti, cars route'i ikki yuz qaytaryapti. Nega? CarsService'ning o'zining konstruktorida hech qanday dependency yo'q. Nest uni dependency'siz yaratib qo'ya oldi." },
     { id: 'd', key: "<code>@Injectable()</code> Nest'ga aytadi: <b>konstruktorga qarab, nima kerakligini aniqla</b>", text: "Injectable aslida Nest'ga shuni aytadi: bu klassning konstruktoriga qarab, unga nima kerakligini aniqlang. Belgi bo'lmasa, Nest konstruktorga qaramaydi." },
@@ -146,42 +188,49 @@ const S21 = {
   ],
 };
 function Screen21(p) {
-  // Kod qadamga qarab: 0–3 Injectable'siz, dependency'siz · 4 Injectable'siz + PricingService dependency'si · 5+ tuzatildi
-  const svcLines = (beat) => {
-    const withDep = beat >= 4;
-    const fixed = beat >= 5;
-    return [
-      fixed ? { neu: true, h: `<span class="d">@Injectable</span>()   <span class="cm">${t('← qaytdi', '← вернули')}</span>` } : { gone: true, h: `<span class="d">@Injectable</span>()   <span class="cm">${t("← o'chirildi", '← удалено')}</span>` },
-      { h: `<span class="k">export class</span> <span class="c">CarsService</span> {` },
-      withDep
-        ? { id: 'ctor', neu: !fixed, h: `  <span class="k">constructor</span>(<span class="k">private readonly</span> pricing: <span class="c">PricingService</span>) {}` }
-        : { id: 'ctor', h: `  <span class="cm">${t("// konstruktor yo'q — hech kimga bog'liq emas", '// конструктора нет — ни от кого не зависит')}</span>` },
-      { h: `  <span class="k">private</span> cars: <span class="c">Car</span>[] = [ <span class="cm">…</span> ];` },
-      withDep
-        ? { h: `  <span class="c">findAll</span>() { <span class="k">return this</span>.cars.<span class="c">map</span>((c) => ({ ...c, price: <span class="k">this</span>.pricing.<span class="c">withDiscount</span>(c.price) })); }` }
-        : { h: `  <span class="c">findAll</span>() { <span class="k">return this</span>.cars; }` },
-      { h: `}` }];
-  };
-  return <Lesson p={p} S={S21} sceneTop scene={({ beat }) => (
+  return <Lesson p={p} S={S21} sceneTop scene={(b) => <Scene21 b={b} />} />;
+}
+// Qadamlar (F-1120-02 dan): 0 bosing · 1 buzildi · 2 o'ylab ko'ring · 3 ishlayapti · 4 nega · 5 dependency → 500 · 6 tuzatildi · 7 xulosa
+function Scene21({ b }) {
+  const { beat } = b;
+  const act = useAct(b);
+  const broken = act.hit || beat >= 1;
+  const withDep = beat >= 5;
+  const fixed = beat >= 6;
+  const svcLines = [
+    fixed ? { neu: true, h: `<span class="d">@Injectable</span>()   <span class="cm">${t('← qaytdi', '← вернули')}</span>` }
+      : broken ? { gone: true, h: `<span class="d">@Injectable</span>()   <span class="cm">${t("← o'chirildi", '← удалено')}</span>` }
+      : { h: `<span class="n1-act" data-act="1"><span class="d">@Injectable</span>()</span>` },
+    { h: `<span class="k">export class</span> <span class="c">CarsService</span> {` },
+    withDep
+      ? { id: 'ctor', neu: !fixed, h: `  <span class="k">constructor</span>(<span class="k">private readonly</span> pricing: <span class="c">PricingService</span>) {}` }
+      : { id: 'ctor', h: `  <span class="cm">${t("// konstruktor yo'q — hech kimga bog'liq emas", '// конструктора нет — ни от кого не зависит')}</span>` },
+    { h: `  <span class="k">private</span> cars: <span class="c">Car</span>[] = [ <span class="cm">…</span> ];` },
+    withDep
+      ? { h: `  <span class="c">findAll</span>() { <span class="k">return this</span>.cars.<span class="c">map</span>((c) => ({ ...c, price: <span class="k">this</span>.pricing.<span class="c">withDiscount</span>(c.price) })); }` }
+      : { h: `  <span class="c">findAll</span>() { <span class="k">return this</span>.cars; }` },
+    { h: `}` }];
+  return (
     <Ide files={[...ALL_FILES, 'src/cars/pricing.service.ts']} active="src/cars/cars.service.ts">
-      <CodePanel key={beat >= 5 ? 'f' : beat >= 4 ? 'd' : 'b'} file="src/cars/cars.service.ts" lines={svcLines(beat)} focus={beat === 0 || beat === 2 || beat === 4 ? ['ctor'] : []} />
-      {beat >= 5
+      <div onClick={act.onClick}><CodePanel key={fixed ? 'f' : withDep ? 'd' : broken ? 'b' : 'o'} file="src/cars/cars.service.ts" lines={svcLines} focus={beat === 1 || beat === 3 || beat === 5 ? ['ctor'] : []} /></div>
+      <MiniInjectable broken={broken} dep={withDep} fixed={fixed} known={!broken || beat >= 3} />
+      {fixed
         ? <CodePanel file={t('terminal — tuzatildi (haqiqiy chiqish)', 'terminal — исправлено (реальный вывод)')} numbers={false} wrap style={{ background: '#111827' }} lines={[
             { h: `[Nest] LOG [NestApplication] <span class="ok">Nest application successfully started</span>` },
             { h: `<span class="p">GET /cars</span> → <span class="ok">200</span>  [{"id":1,"brand":"Chevrolet",…}, {"id":2,"brand":"Kia",…}]` }]} />
-        : beat >= 4
+        : withDep
           ? <CodePanel file={t("terminal — Injectable'siz + dependency (haqiqiy chiqish)", 'terminal — без Injectable + dependency (реальный вывод)')} numbers={false} wrap style={{ background: '#1F1115' }} lines={[
               { h: `[Nest] LOG [NestApplication] <span class="ok">Nest application successfully started</span>` },
               { h: `<span class="p">GET /cars</span> → <span class="er">500</span>  {"statusCode":500,"message":"Internal server error"}` },
               { h: `[Nest] ERROR [ExceptionsHandler] <span class="er">TypeError: Cannot read properties of undefined (reading 'withDiscount')</span>` },
               { h: `    at CarsService.findAll (src/cars/cars.service.ts:21:22)` }]} />
-          : <Block at={2} beat={beat}><CodePanel file="terminal" numbers={false} wrap style={{ background: '#111827' }} lines={[
+          : <Block at={3} beat={beat}><CodePanel file="terminal" numbers={false} wrap style={{ background: '#111827' }} lines={[
               { h: `[Nest] LOG [RouterExplorer] <span class="ok">Mapped {/cars, GET} route</span>` },
               { h: `[Nest] LOG [NestApplication] <span class="ok">Nest application successfully started</span>` },
               { h: `<span class="p">GET /cars</span> → <span class="ok">200</span>  [{"id":1,"brand":"Chevrolet",…}, {"id":2,"brand":"Kia",…}]` }]} /></Block>}
-      <Block at={6} beat={beat}><div className="mk-rule">{t(<><b>Qoida:</b> <code>@Injectable()</code> har Service'ga yoziladi, dependency'si bo'lmasa ham. Bo'lmasa — dependency paydo bo'lganda <b>yashirin xato</b>: server ishga tushadi, so'rovda 500.</>, <><b>Правило:</b> <code>@Injectable()</code> пишут на каждый Service, даже без dependency. Иначе, когда dependency появится, — <b>скрытая ошибка</b>: сервер запускается, а на запросе 500.</>)}</div></Block>
+      <Block at={7} beat={beat}><div className="mk-rule">{t(<><b>Qoida:</b> <code>@Injectable()</code> har Service'ga yoziladi, dependency'si bo'lmasa ham. Bo'lmasa — dependency paydo bo'lganda <b>yashirin xato</b>: server ishga tushadi, so'rovda 500.</>, <><b>Правило:</b> <code>@Injectable()</code> пишут на каждый Service, даже без dependency. Иначе, когда dependency появится, — <b>скрытая ошибка</b>: сервер запускается, а на запросе 500.</>)}</div></Block>
     </Ide>
-  )} />;
+  );
 }
 
 // --- Tekshiruv 4: qaysi satr xato (modul) ---

@@ -67,14 +67,31 @@ const T12B = splitCurl('07json');
 const MNR = lineN('MAIN_NORAW', /NestFactory\.create\(AppModule/);
 const T12C = [...outPick('08', (l) => /main\.ts:/.test(l)), ...outRange('08', /^\$ npm run pay/, /^## Server/), ...outRange('08', /^\$ psql/, null)];
 const CAUSE12 = ['Xizmat imzoni aniq baytlardan hisoblaydi — bo\'sh joy ham bayt', "Nest tanani obyektga aylantiradi, baytlarni tashlaydi", "JSON.stringify(body) — boshqa baytlar: bo'sh joy yo'qoladi, imzo mos kelmaydi", "Baytlarni faqat rawBody: true saqlaydi — req.rawBody"];
-const S12 = mkS(12, [{ v: 'code' }, { v: 'two' }, { v: 'raw' }, { v: 'cause' }]);
+// F-1120-02 (M52): 1-segment (x) — mentor wh-done controller'idagi req.rawBody ni o'zi bosadi → imzo JSON.stringify(body) dan
+const RB = lineN('CTRL', /isValidSignature\(req\.rawBody/);
+const ACT12 = () => kod('CTRL', { [RB]: 'x' }, RB - 2, RB + 3).map((l) => (l.n === RB ? { ...l, h: l.h.replace('req.rawBody', '<span class="n1-act" data-act="1">req.rawBody</span>') } : l));
+const SigMini = ({ src, known, res, pins }) => <N1Mini><FlowMini tag={t("to'lov xizmati → imzo → javob", 'платёжный сервис → подпись → ответ')}
+  boxes={[[t("to'lov xizmati", 'платёжный сервис'), t("bo'sh joyli JSON", 'JSON с пробелами'), ''], [t('imzo manbasi', 'источник подписи'), src, src === 'req.rawBody' ? '' : 'bad'], [t('javob', 'ответ'), known ? res : '?', known && res !== '200' ? 'bad' : '']]}
+  res={src !== 'req.rawBody' ? [known ? t("401 — haqiqiy to'lov ham rad", '401 — отклонён и настоящий платёж') : '?', 'bad'] : null} pins={pins} /></N1Mini>;
+const S12 = mkS(12, [{ v: 'act' }, { v: 'code' }, { v: 'two' }, { v: 'raw' }, { v: 'cause' }]);
 function Screen12(p) {
-  return <Lesson p={p} S={S12} scene={({ seg }) => <>
-    {seg.v === 'code' && <CodePanel file={t("payment.controller.ts · json nusxa (imzo JSON.stringify'dan)", "payment.controller.ts · копия json (подпись из JSON.stringify)")} lines={kod('CTRL_JSON', rngIds(JS.a - 1, JS.a + 3, 'x'), JS.a - 3, JS.a + 5)} focus={['x']} />}
-    {seg.v === 'two' && <div style={{ display: 'grid', gap: 8 }}><Term title={t("wh-done (xom tana) · bo'sh joyli JSON", "wh-done (сырое тело) · JSON с пробелами")} lines={T12A} /><Term title={t("json nusxa · o'sha xabar", "копия json · то же сообщение")} lines={T12B} er /></div>}
-    {seg.v === 'raw' && <div style={{ display: 'grid', gap: 8 }}><CodePanel file={t("src/main.ts · norawbody nusxa", "src/main.ts · копия norawbody")} lines={kod('MAIN_NORAW', { [MNR]: 'x' }, MNR - 1, MNR + 1)} focus={['x']} /><Term title={t("norawbody · to'g'ri imzoli to'lov (08)", "norawbody · оплата с верной подписью (08)")} lines={T12C} er /></div>}
-    {seg.v === 'cause' && <Cause items={CAUSE12} on={4} bad={2} />}
-  </>} />;
+  return <Lesson p={p} S={S12} scene={(b) => <Scene12 b={b} />} />;
+}
+// Qadamlar: 0 bosing · 1 json nusxa (javob «?») · 2 bo'sh joyli JSON: 200 vs 401, bo'laklar 1·2 · 3 rawBody yo'q · 4 sabab
+function Scene12({ b }) {
+  const { seg, beat } = b;
+  const act = useAct(b);
+  const v = beat === 0 ? (act.hit ? 'code' : 'act') : seg.v;
+  const src = v === 'act' ? 'req.rawBody' : v === 'raw' ? t("req.rawBody — yo'q", 'req.rawBody — нет') : 'JSON.stringify(body)';
+  const mini = <SigMini src={src} known={beat >= 2} res="401" pins={beat === 2 ? { 1: 1, 2: 2 } : {}} />;
+  return <>
+    {v === 'act' && <><div onClick={act.onClick}><CodePanel file="payment.controller.ts · wh-done" lines={ACT12()} focus={['x']} /></div>{mini}</>}
+    {v === 'code' && <CodePanel file={t("payment.controller.ts · json nusxa (imzo JSON.stringify'dan)", "payment.controller.ts · копия json (подпись из JSON.stringify)")} lines={kod('CTRL_JSON', rngIds(JS.a - 1, JS.a + 3, 'x'), JS.a - 3, JS.a + 5)} focus={['x']} />}
+    {(v === 'code' || v === 'two' || v === 'raw') && mini}
+    {v === 'two' && <div style={{ display: 'grid', gap: 8 }}><Term title={t("wh-done (xom tana) · bo'sh joyli JSON", "wh-done (сырое тело) · JSON с пробелами")} lines={T12A} /><Term title={t("json nusxa · o'sha xabar", "копия json · то же сообщение")} lines={T12B} er /></div>}
+    {v === 'raw' && <div style={{ display: 'grid', gap: 8 }}><CodePanel file={t("src/main.ts · norawbody nusxa", "src/main.ts · копия norawbody")} lines={kod('MAIN_NORAW', { [MNR]: 'x' }, MNR - 1, MNR + 1)} focus={['x']} /><Term title={t("norawbody · to'g'ri imzoli to'lov (08)", "norawbody · оплата с верной подписью (08)")} lines={T12C} er /></div>}
+    {v === 'cause' && <Cause items={CAUSE12} on={4} bad={2} />}
+  </>;
 }
 
 // ============================================================
@@ -85,14 +102,30 @@ TR.thr = lineN('CTRL_TARTIB', /throw new UnauthorizedException/, TR.rec);
 const T13A = outRange('09', /^\$ npm run pay/, /^## Server/);
 const T13DB = outRange('09', /^\$ psql/, null);
 const CAUSE13 = ['parsePayment va record — imzodan oldin', 'record tranzaksiyasi tugadi: payments da qator, orders.payment_status = paid', "keyin imzo tekshiriladi — 401 qaytadi", '401 faqat javob — bazaga yozilganni qaytarmaydi: admin yetkazadi, pul yo\'q'];
-const S13 = mkS(13, [{ v: 'code' }, { v: 'run' }, { v: 'db' }, { v: 'cause' }]);
+// F-1120-02 (M52): 1-segment (x) — mentor wh-done controller'idagi this.payments.record satrini o'zi bosadi → yozuv imzodan oldinga ko'chadi
+const RC = lineN('CTRL', /this\.payments\.record/);
+const ACT13 = () => kod('CTRL', { [RC]: 'x' }, RB - 1, RC + 1).map((l) => (l.n === RC ? { ...l, h: '<span class="n1-act" data-act="1">' + l.h + '</span>' } : l));
+const OrderMini = ({ moved, ans, db, pins }) => <N1Mini><FlowMini tag={t('imzosiz xabar → controller → javob va baza', 'сообщение без подписи → controller → ответ и база')}
+  boxes={[[t('imzosiz xabar', 'сообщение без подписи'), 'npm run pay -- 1 imzosiz', ''], ['controller', moved ? t('record → imzo', 'record → подпись') : t('imzo → record', 'подпись → record'), moved ? 'bad' : ''], [t('javob · baza', 'ответ · база'), (ans ? '401' : '?') + ' · ' + (db ? 'paid' : '?'), db ? 'bad' : '']]}
+  res={moved ? [db ? t("401, lekin buyurtma «To'landi» — pul yo'q", "401, но заказ «To'landi» — денег нет") : '?', 'bad'] : null} pins={pins} /></N1Mini>;
+const S13 = mkS(13, [{ v: 'act' }, { v: 'code' }, { v: 'run' }, { v: 'db' }, { v: 'cause' }]);
 function Screen13(p) {
-  return <Lesson p={p} S={S13} scene={({ seg }) => <>
-    {seg.v === 'code' && <CodePanel file={t("payment.controller.ts · tartib nusxa", "payment.controller.ts · копия tartib")} lines={kod('CTRL_TARTIB', { [TR.parse]: 'x', [TR.rec]: 'x' }, TR.parse, TR.thr + 1)} focus={['x']} />}
-    {seg.v === 'run' && <Term title={t("VS Code terminali · npm run pay -- 1 imzosiz (09)", "терминал VS Code · npm run pay -- 1 imzosiz (09)")} lines={T13A} />}
-    {seg.v === 'db' && <div style={{ display: 'grid', gap: 8 }}><Term title="psql (09)" lines={T13DB} er /><PanelView k="09b-1" small label={t("tartib nusxa · imzosiz xabardan keyin", "копия с порядком · после сообщения без подписи")} /></div>}
-    {seg.v === 'cause' && <Cause items={CAUSE13} on={4} bad={3} />}
-  </>} />;
+  return <Lesson p={p} S={S13} scene={(b) => <Scene13 b={b} />} />;
+}
+// Qadamlar: 0 bosing · 1 tartib nusxa · 2 javob 401 · 3 bazada paid, bo'laklar 1·2 · 4 sabab
+function Scene13({ b }) {
+  const { seg, beat } = b;
+  const act = useAct(b);
+  const v = beat === 0 ? (act.hit ? 'code' : 'act') : seg.v;
+  const mini = <OrderMini moved={v !== 'act'} ans={beat >= 2} db={beat >= 3} pins={beat === 3 ? { 1: 1, 2: 2 } : {}} />;
+  return <>
+    {v === 'act' && <><div onClick={act.onClick}><CodePanel file="payment.controller.ts · wh-done" lines={ACT13()} focus={['x']} /></div>{mini}</>}
+    {v === 'code' && <CodePanel file={t("payment.controller.ts · tartib nusxa", "payment.controller.ts · копия tartib")} lines={kod('CTRL_TARTIB', { [TR.parse]: 'x', [TR.rec]: 'x' }, TR.parse, TR.thr + 1)} focus={['x']} />}
+    {(v === 'code' || v === 'run' || v === 'db') && mini}
+    {v === 'run' && <Term title={t("VS Code terminali · npm run pay -- 1 imzosiz (09)", "терминал VS Code · npm run pay -- 1 imzosiz (09)")} lines={T13A} />}
+    {v === 'db' && <div style={{ display: 'grid', gap: 8 }}><Term title="psql (09)" lines={T13DB} er /><PanelView k="09b-1" small label={t("tartib nusxa · imzosiz xabardan keyin", "копия с порядком · после сообщения без подписи")} /></div>}
+    {v === 'cause' && <Cause items={CAUSE13} on={4} bad={3} />}
+  </>;
 }
 
 // ============================================================

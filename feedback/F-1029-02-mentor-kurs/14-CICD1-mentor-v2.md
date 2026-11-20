@@ -151,8 +151,12 @@ Loyiha: **OrderBotNest** — teglar `cicd1-start` (= `jest2-done` e15a44c) · `c
 ## 6 · Test qizil — zanjir shu yerda to'xtaydi  ← `Lesson`
 - Kicker: `2-bosqich · buzamiz` · Sarlavha: **Kodni buzamiz va to'rt buyruqni `&&` bilan bog'laymiz: `npm ci` ✓, `tsc` ✓, test qizil — `build` boshlanmaydi, chiqish kodi 1**
 - Sahna: VS Code — `order.service.ts` 36-satr `if (p.stock < c.qty) {` → `if (p.stock <= c.qty) {` (M36); terminal `02`: `$ npm ci && npx tsc --noEmit && npm test && npm run build` · `npm ci ✓` · `tsc ✓` · `FAIL src/api/order/order.service.spec.ts` · `● OrderService.place › chegara: omborda aynan 2 ta — 2 tasini olsa bo'ladi` · `Kolonka: omborda faqat 2 ta qoldi` · `> 37 |` · `Tests: 1 failed, 24 passed, 25 total` · `[chiqish kodi: 1]` — `build` satri yo'q; 4-segmentda lenta chizig'i: ✓ ✓ ✗ «yurmadi».
-1. **Buzamiz: `order.service.ts` 36-satr ==`<` → `<=`== — Jest-2 dagi chegara testi buni ushlaydi**
-   Ovoz: «Endi ataylab buzamiz. Src, api, order papkasidagi order service ts faylining o'ttiz oltinchi satrida kichikni kichik yoki tengga almashtiring. Jest ikkinchi darsidan eslaysiz: aynan ikkita qolganda ikkitasini sotib bo'lmaydi, chegara testi buni ushlaydi.» · 36-satr
+- F-1120-02 (M52): 0-band — mentor 36-satrdagi `<` ni o'zi bosadi → `<=`. Kod ostida kichik rasm (M51): `npm ci && tsc` ✓ → `npm test` «?» → ✕ → `npm run build` boshlanmadi; bo'laklar 1 (test FAIL) · 2 (build yo'q, chiqish kodi 1).
+0. **Endi ==o'zingiz buzasiz==: kodda yonib turgan `<` ustiga bosing**
+   Ovoz: «Lentaning to'rt buyrug'ini bilasiz. Endi ataylab buzamiz. Buzishni o'zingiz qilasiz: src, api, order papkasidagi order service ts faylining o'ttiz oltinchi satrida kichik belgisi yonib turibdi, ustiga bosing: u kichik yoki tengga aylanadi.»
+   Bosish: «**order.service.ts** 36-satridagi **`<`** ustiga bosing — `<=` bo'ladi.»
+1. **Buzildi: `order.service.ts` 36-satr ==`<` → `<=`== — Jest-2 dagi chegara testi buni ushlaydi**
+   Ovoz: «Kichik endi kichik yoki teng. Jest ikkinchi darsidan eslaysiz: aynan ikkita qolganda ikkitasini sotib bo'lmaydi, chegara testi buni ushlaydi.» · 36-satr
 2. **To'rt buyruq ==`&&` bilan bitta qatorda==: oldingisi nol bersa, keyingisi yuradi**
    Ovoz: «Bu safar to'rt buyruqni bitta qatorda yozamiz, oralarida ikki ampersand. Ma'nosi: oldingisi nol bersa, keyingisi yuradi, nol bermasa, to'xtaydi. Terminalda: npm si ay, ampersand, npx tsc, ampersand, npm test, ampersand, npm run build.» · `&&`
 3. **Natija: ==`npm ci` ✓, `tsc` ✓, test FAIL — `build` satri umuman yo'q==, chiqish kodi 1**
@@ -220,8 +224,12 @@ Loyiha: **OrderBotNest** — teglar `cicd1-start` (= `jest2-done` e15a44c) · `c
 ## 10 · Buzamiz: test qizil — lentada qaysi qadam, qaysi yurmadi  ← `Lesson`
 - Kicker: `3-bosqich · buzamiz` · Sarlavha: **`<=` bilan push: run qizil — `npm test` qadami ✗, `npm run build` «skipped», annotatsiyada `Process completed with exit code 1`**
 - Sahna: VS Code `order.service.ts` 36 (`<=`) + terminal `$ git commit -am "sinov: chegara" && git push`; GitHub run oynasi (run `11`): `checkout` ✓ · `setup-node` ✓ · `npm ci` ✓ · `tsc` ✓ · **`npm test` ✗** · `npm run build` ⊘ skipped; annotatsiya: `Process completed with exit code 1.`; 3-segmentda `npm test` logi: `FAIL src/api/order/order.service.spec.ts` · `● OrderService.place › chegara…` · `Kolonka: omborda faqat 2 ta qoldi` · `Tests: 1 failed, 24 passed, 25 total` · `##[error]Process completed with exit code 1.`; 4-segmentda sabab qatori.
-1. **36-satrni yana buzamiz va push — ==run qizil==: ro'yxatda qizil belgi, commit xabari bilan**
-   Ovoz: «Oltinchi ekrandagi buzishni qaytaramiz: order service ts, o'ttiz oltinchi satr, kichik yoki teng. Commit, push. Actions bo'limida yangi run, bu safar qizil belgi. Run'ni ochamiz.» · push → run ✗
+- F-1120-02 (M52): 0-band — mentor 36-satrdagi `<` ni yana o'zi bosadi → `<=`, keyin commit va push. Kod ostida kichik rasm (M51): push → GitHub run «?» → `npm test` ✕ → `npm run build` skipped; bo'laklar 1 (npm test ✕) · 2 (build skipped).
+0. **Endi ==yana o'zingiz buzasiz==: `<` ustiga bosing — keyin push**
+   Ovoz: «Lenta GitHub'da yashil. Endi oltinchi ekrandagi buzishni GitHub'da sinaymiz. Buzishni yana o'zingiz qilasiz: order service ts'ning o'ttiz oltinchi satrida kichik belgisi yonib turibdi, ustiga bosing.»
+   Bosish: «**order.service.ts** 36-satridagi **`<`** ustiga bosing — `<=` bo'ladi, keyin commit va push.»
+1. **Commit, push — ==run qizil==: ro'yxatda qizil belgi, commit xabari bilan**
+   Ovoz: «Kichik yana kichik yoki teng. Commit, push. Actions bo'limida yangi run, bu safar qizil belgi. Run'ni ochamiz.» · push → run ✗
 2. **Qadamlar: ==`npm test` ✗, `npm run build` — «skipped»==; annotatsiya: chiqish kodi 1**
    Ovoz: «Qadamlarga qarang: checkout, setup node, npm si ay, tsc, hammasi yashil. Npm test qizil. Npm run build: skipped, yurmadi. Yuqorida annotatsiya: process completed with exit code one. Oltinchi ekrandagi ampersand zanjiri bilan bir xil, faqat GitHub buni ko'rsatib beradi.» · qadamlar
 3. **Logda ==o'sha FAIL==: chegara testi, `Kolonka: omborda faqat 2 ta qoldi`, 37-satr**

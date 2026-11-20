@@ -61,14 +61,21 @@ const S25 = {
     sg('d', "Xulosa: KitobShop'da qo'riqchi va yorliq; <b>ikkala so'zni birga</b> ayting — «javon chizmasi, ya'ni Entity»", "KitobShop'da yana ikki so'z: qo'riqchi, bu Guard; yorliq, bu kitobni kategoriyaga bog'lash. Xulosa: ikkala so'zni birga ayting, masalan javon chizmasi, ya'ni Entity. Metafora vazifani tushuntiradi, kodni emas.", { rows: [7, 8] }),
   ],
 };
+// F-1120-02 (M51): jadval o'rniga darsning rasmi — har bekatda o'quvchi darsidagi so'z (DICT2 dan, ruschasi ham o'sha yerdan)
 function Screen25(p) {
-  return <Lesson p={p} S={S25} scene={({ seg, beat }) => <div className="mk-light" style={{ padding: 14 }}>
-    <div className="mk-tag">{t("O'quvchi darsidagi so'z → uning atamasi", 'Слово из урока ученика → термин')}</div>
-    <table className="mk-tbl"><thead><tr><th>{t("o'quvchi darsida", 'в уроке ученика')}</th><th>{t('atama', 'термин')}</th><th>{t('vazifa', 'задача')}</th><th>{t('qayerdan', 'откуда')}</th></tr></thead><tbody>
-      {DICT2.map(([a, b, c, d], i) => (beat >= 3 && seg.rows.length && !seg.rows.includes(i)) ? null : <tr key={a} className={seg.rows.includes(i) ? 'hl' : ''} style={{ opacity: seg.rows.length && !seg.rows.includes(i) ? 0.55 : 1 }}><td>{a}</td><td><code>{b}</code></td><td style={{ color: T.ink2 }}>{c}</td><td style={{ color: T.ink3, fontSize: 12 }}>{d}</td></tr>)}
-    </tbody></table>
-    <Block at={3} beat={beat}><div className="mk-rule" style={{ marginTop: 12 }}>{t(<>Ikkala so'zni birga ayting: <b>«javon chizmasi, ya'ni Entity»</b>. Metafora vazifani tushuntiradi, kodni emas.</>, <>Говорите оба слова вместе: <b>«чертёж стеллажа, то есть Entity»</b>. Метафора объясняет задачу, а не код.</>)}</div></Block>
-  </div>} />;
+  return <Lesson p={p} S={S25} scene={({ seg, beat }) => {
+    const w = (i, cut) => (cut ? DICT2[i][0].split(cut)[0] : DICT2[i][0]);
+    const lab = {};
+    if (beat >= 1) { lab.db = w(0); lab.pipe = w(1, ' · ') + '; ' + DICT2[2][0].split(' ')[0] + ' → 400'; }
+    if (beat >= 2) { lab.svc = w(3, ' · '); lab.repo = w(4); lab.ctrl = w(5); lab.mod = w(6, ' — '); }
+    if (beat >= 3) lab.guard = w(7, ' · ');
+    const hl = beat === 1 ? ['db', 'pipe'] : beat === 2 ? ['svc', 'repo', 'ctrl', 'mod'] : beat === 3 ? ['guard'] : [];
+    return <div className="mk-light" style={{ padding: 14 }}>
+      <RepoMachine compact lab={lab} hl={hl} url="POST /api/v1/car" ok={{ code: 201 }} tag={t("O'quvchi darsidagi so'z — rasmdagi o'z joyida", 'Слово из урока ученика — на своём месте в картине')} />
+      {beat >= 3 && <div className="n1-lab" style={{ marginTop: 8 }}>{DICT2[8][0]} → <code>{DICT2[8][1]}</code> — {DICT2[8][2]}</div>}
+      <Block at={3} beat={beat}><div className="mk-rule" style={{ marginTop: 12 }}>{t(<>Ikkala so'zni birga ayting: <b>«javon chizmasi, ya'ni Entity»</b>. Metafora vazifani tushuntiradi, kodni emas.</>, <>Говорите оба слова вместе: <b>«чертёж стеллажа, то есть Entity»</b>. Метафора объясняет задачу, а не код.</>)}</div></Block>
+    </div>;
+  }} />;
 }
 
 // ============================================================
@@ -260,16 +267,13 @@ const SUM2 = [
   { k: 'sync', t: "Entity o'zgarsa baza o'zgaradi: ustun xato bermay o'chadi, majburiy ustun serverni yiqitadi", st: ['db'] },
   { k: 'bridge', t: "O'quvchi darslarida 3 xato: /car → /api/v1/car · token va Authorize'ni siz ko'rsatasiz · KitobShop'dan oldin oddiy admin", st: ['br'] },
 ];
-const STATIONS = [['br', t2('Brauzer', 'Браузер'), T.ink2], ['pre', '/api/v1', T.ink2], ['guard', 'Guard', N2.guard], ['pipe', 'ValidationPipe', N2.dto], ['ctrl', 'Controller', PART.ctrl], ['svc', 'Service', PART.svc], ['repo', 'Repository', N2.entity], ['db', t2('jadval', 'таблица'), N2.entity]];
-function t2(uz, ruTxt) { return { uz, ru: ruTxt }; }
+// F-1120-02 (M51): xulosa — darsning o'sha rasmi; har band rasmning o'z bekatlarini yoritadi (SUM2[].st)
 function SummaryMap2({ hl }) {
   const cur = SUM2.find((x) => x.k === hl);
-  const on = (k) => hl === 'all' || !cur || cur.st.includes(k);
+  const marks = hl === 'err' ? [{ k: 'pipe', code: 400 }, { k: 'db', code: 500 }] : hl === 'guard' ? [{ k: 'guard', code: '401 · 403' }] : [];
   return <div className="mk-light" style={{ padding: 16 }}>
-    <div className="mk-tag">{t("Bugungi dars — bitta so'rovning to'liq yo'li", 'Сегодняшний урок — полный путь одного запроса')}</div>
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(8, minmax(0,1fr))', gap: 6 }}>
-      {STATIONS.map(([k, n, c], i) => <div key={k} className={`mk-box${cur && cur.st.includes(k) ? ' hl' : ''}`} style={{ '--c': c, padding: '10px 6px', textAlign: 'center', opacity: on(k) ? 1 : 0.35, animation: `mk-up .4s ${i * 0.06}s ease both` }}><h4 style={{ fontSize: 12.5, margin: 0 }}>{typeof n === 'string' ? n : t(n.uz, n.ru)}</h4></div>)}
-    </div>
+    <RepoMachine hl={cur ? cur.st : []} marks={marks} ok={marks.length ? null : { code: 200 }} resp={hl === 'farq' ? 'both' : hl === 'err' ? 'err' : 'ok'}
+      tag={t("Bugungi dars — bitta so'rovning to'liq yo'li", 'Сегодняшний урок — полный путь одного запроса')} />
   </div>;
 }
 const HOMEWORK2 = [
@@ -366,16 +370,21 @@ function Screen29(p) {
 // ============================================================
 //  Muqova va ildiz
 // ============================================================
+// F-1120-02 (M51): muqova — chapda dars nima berishi, o'ngda darsning rasmi; eslatmalar bitta qisqa satrda
 function Cover({ onStart, resume }) {
   return (
-    <div className="mk-cover"><div className="card">
-      <p className="mk-eyebrow">{t('Mentor kursi · NestJS', 'Курс для менторов · NestJS')}</p>
-      <h1>{t(LESSON_TITLE, 'Репозиторий ученика: один ресурс, Guard и ошибки в классе')}</h1>
-      <p>{t("Bu dars ovozli. Ustoz har ekranda gapiradi, ekran u bilan birga o'zgaradi. Quloqchin yoki ovoz balandligini tekshiring.", 'Урок озвучен. На каждом экране говорит учитель, экран меняется вместе с ним. Проверьте наушники или громкость.')}</p>
-      <ul>
-        {t(["Jami taxminan 1 soat 20 daqiqa: ovoz ~35 daqiqa · to'rt amaliyot 35–45 daqiqa · 4 tekshiruv · o'z-sinov 8 savol. 15-ekrandan keyin tanaffus qilsangiz bo'ladi", "Kerak: Nest-1 darsi o'tilgan · Node.js 20+ · PostgreSQL ishlab turgan · Git · VS Code", "Loyiha: o'quvchi reposi IntroNestArxitechture — darsda uni o'zingizda ishga tushirasiz"], ['Всего около 1 часа 20 минут: озвучка ~35 минут · четыре практики 35–45 минут · 4 проверки · самопроверка 8 вопросов. После экрана 15 можно сделать перерыв', 'Нужно: пройден урок Nest-1 · Node.js 20+ · запущенный PostgreSQL · Git · VS Code', 'Проект: репозиторий ученика IntroNestArxitechture — на уроке вы запустите его у себя']).map((x) => <li key={x}>{x}</li>)}
-      </ul>
-      <CoverStart onStart={onStart} resume={resume} />
+    <div className="mk-cover"><div className="card n1-cv">
+      <div className="tx">
+        <p className="mk-eyebrow">{t('Mentor kursi · NestJS', 'Курс для менторов · NestJS')}</p>
+        <h1>{t(LESSON_TITLE, 'Репозиторий ученика: один ресурс, Guard и ошибки в классе')}</h1>
+        <p className="af">{t('Bu darsdan keyin siz', 'После этого урока вы')}</p>
+        <ul className="ok">
+          {t(["o'quvchi reposini o'z kompyuteringizda ishga tushirasiz va unga car resursini qo'shasiz", '401 va 403 nima uchun chiqishini ajratasiz', "o'quvchi darslaridagi uchta xatoni oldindan bilasiz"], ['запустите репозиторий ученика у себя и добавите в него ресурс car', 'будете различать, почему возникают 401 и 403', 'заранее будете знать три ошибки из уроков ученика']).map((x) => <li key={x}>{x}</li>)}
+        </ul>
+        <p className="meta">{t("Ovozli dars · 1 soat 20 daqiqa, 15-ekrandan keyin tanaffus qilsa bo'ladi · Kerak: Nest-1 o'tilgan, Node.js 20+, PostgreSQL, Git, VS Code", 'Урок со звуком · 1 час 20 минут, после 15-го экрана можно сделать перерыв · Нужно: пройден Nest-1, Node.js 20+, PostgreSQL, Git, VS Code')}</p>
+        <CoverStart onStart={onStart} resume={resume} />
+      </div>
+      <div className="pic"><RepoMachine ok={{ code: 200 }} resp="ok" max={1} /></div>
     </div></div>
   );
 }
@@ -385,6 +394,7 @@ export default function NestRepoMentorLesson({ studentName, lang = 'uz', onFinis
   setLang(lang);
   useCss();
   useCss2();
+  useCssN1(); // F-1120-02: dars rasmi uslubi (parts/02b-rasm.jsx)
   const total = SCREENS.length;
   const [started, setStarted] = useState(startAt != null);
   const [idx, setIdx] = useState(Math.min(Math.max(0, startAt || 0), total - 1));

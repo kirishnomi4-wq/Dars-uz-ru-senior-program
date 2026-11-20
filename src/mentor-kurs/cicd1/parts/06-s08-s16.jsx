@@ -40,14 +40,27 @@ function Screen9(p) {
 const PUSH10 = jt('$ git commit -am "sinov: chegara buzildi (< → <=)"\n$ git push');
 const L10 = runLog('11', 'Run npm test', (l) => /^\$|^FAIL|●|Kolonka|> 37|^Tests:|##\[error\]/.test(l));
 const CAUSE10 = ["npm test chiqish kodi 1 berdi (chegara testi qizil)", "Lenta shu qadamda to'xtadi — npm run build «skipped»", "Buzuq kod yig'ilmadi, hech qayerga chiqmadi", 'Satrni tiklab push qilsangiz — run yana yashil'];
-const S10 = mkS(10, [{ v: 'push' }, { v: 'steps', hl: ['Run npm test', 'Run npm run build'] }, { v: 'log' }, { v: 'cause' }]);
+// F-1120-02 (M52): 1-segment (x) — mentor 36-satrdagi «<» ni yana o'zi bosadi → «<=», keyin push (run 11 — haqiqiy)
+const RunMini = ({ broken, known, pins }) => <N1Mini><FlowMini tag={t("push → GitHub'dagi toza mashina", 'push → чистая машина GitHub')}
+  boxes={[['npm ci · tsc', '✓ ✓', 'ok'], ['npm test', !broken ? '✓' : known ? '✕' : '?', broken && known ? 'bad' : ''], ['npm run build', !broken ? '✓' : known ? 'skipped' : '?', '']]}
+  res={broken ? [known ? 'Process completed with exit code 1.' : '?', 'bad'] : null} pins={pins} /></N1Mini>;
+const S10 = mkS(10, [{ v: 'act' }, { v: 'push' }, { v: 'steps', hl: ['Run npm test', 'Run npm run build'] }, { v: 'log' }, { v: 'cause' }]);
 function Screen10(p) {
-  return <Lesson p={p} S={S10} scene={({ seg }) => <>
-    {seg.v === 'push' && <div style={{ display: 'grid', gap: 10 }}><CodePanel file={t("order.service.ts · buzilgan", "order.service.ts · сломан")} lines={kod('ORDER_36', { 36: 'x' }, 35, 38, EDIT36)} focus={['x']} /><Term lines={PUSH10} /><RunRows keys={['10', '11']} hl={['11']} /></div>}
-    {seg.v === 'steps' && <RunView k="11" hlStep={seg.hl} />}
-    {seg.v === 'log' && <RunView k="11" open="Run npm test" lines={L10} hlStep="Run npm test" ann={null} />}
-    {seg.v === 'cause' && <div style={{ display: 'grid', gap: 10 }}><Lenta4 st={{ ci: 'ok', tsc: 'ok', test: 'bad', build: 'skip' }} hl={['test']} /><Cause items={CAUSE10} on={4} bad={1} /></div>}
-  </>} />;
+  return <Lesson p={p} S={S10} scene={(b) => <Scene10 b={b} />} />;
+}
+// Qadamlar: 0 bosing · 1 push (natija «?») · 2 qadamlar, bo'laklar 1·2 · 3 log · 4 sabab
+function Scene10({ b }) {
+  const { seg, beat } = b;
+  const act = useAct(b);
+  const v = beat === 0 ? (act.hit ? 'push' : 'act') : seg.v;
+  const mini = <RunMini broken={v !== 'act'} known={beat >= 2} pins={beat === 2 ? { 1: 1, 2: 2 } : {}} />;
+  return <>
+    {v === 'act' && <Ide files={compact(FILES(), F.ord)} active={F.ord}><div onClick={act.onClick}><CodePanel file="order.service.ts" lines={ACT36()} focus={['x']} /></div>{mini}</Ide>}
+    {v === 'push' && <div style={{ display: 'grid', gap: 10 }}><CodePanel file={t("order.service.ts · buzilgan", "order.service.ts · сломан")} lines={kod('ORDER_36', { 36: 'x' }, 35, 38, EDIT36)} focus={['x']} /><Term lines={PUSH10} />{mini}<RunRows keys={['10', '11']} hl={['11']} /></div>}
+    {v === 'steps' && <><RunView k="11" hlStep={seg.hl} />{mini}</>}
+    {v === 'log' && <RunView k="11" open="Run npm test" lines={L10} hlStep="Run npm test" ann={null} />}
+    {v === 'cause' && <div style={{ display: 'grid', gap: 10 }}><Lenta4 st={{ ci: 'ok', tsc: 'ok', test: 'bad', build: 'skip' }} hl={['test']} /><Cause items={CAUSE10} on={4} bad={1} /></div>}
+  </>;
 }
 
 // ============================================================

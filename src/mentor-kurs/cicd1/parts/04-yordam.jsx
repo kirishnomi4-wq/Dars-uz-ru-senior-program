@@ -48,7 +48,7 @@ function compact(files, active) {
 const sg = (id, key, text, extra = {}) => ({ id, key, text, show: wr(text), ...extra });
 const mkS = (n, extras = [], more = {}) => {
   const m = MDT[n];
-  return { kicker: m.kicker, eyebrow: m.eyebrow, title: m.title, ...more, segments: m.seg.map(([id, key, text], i) => sg(id, key, text, extras[i] || {})) };
+  return { kicker: m.kicker, eyebrow: m.eyebrow, title: m.title, ...more, segments: m.seg.map(([id, key, text, act], i) => sg(id, key, text, { ...(act ? { act } : {}), ...(extras[i] || {}) })) /* F-1120-02 (M52): act */ };
 };
 
 // Ovoz → «Matn» (transkript) uchun yozma ko'rinish. Uzun ibora oldin.
@@ -117,7 +117,7 @@ const outPick = (k, keep, meta = {}) => outLines(k).filter(keep).map((l, i) => (
 // reA dan (shu qator bilan) reB gacha (shu qator bilan; null — oxirigacha), keep — filtr
 const outRange = (k, reA, reB, keep = () => true) => { const L = outLines(k); let a = L.findIndex((l) => reA.test(l)); if (a < 0) a = 0; let b = reB ? L.findIndex((l, i) => i >= a && reB.test(l)) : L.length - 1; if (b < 0) b = L.length - 1; return L.slice(a, b + 1).filter(keep).map((l) => ({ h: jestLine(l) })); };
 const jt = (src) => src.replace(/^\n/, '').replace(/\n\s*$/, '').split('\n').map((l) => ({ h: jestLine(l) }));
-const Term = ({ lines, title = t('VS Code terminali · OrderBotNest', "терминал VS Code · OrderBotNest"), er, beat, focus, style }) => <CodePanel file={title} numbers={false} style={{ background: er ? C1.termEr : C1.term, ...(style || {}) }} lines={lines} beat={beat} focus={focus} />;
+const Term = ({ lines, title = t('VS Code terminali · OrderBotNest', "терминал VS Code · OrderBotNest"), er, beat, focus, style, marks }) => <CodePanel file={title} numbers={false} style={{ background: er ? C1.termEr : C1.term, ...(style || {}) }} lines={lines} beat={beat} focus={focus} marks={marks} />;
 // Kod bo'laklari — KOD[k] (repo teglari / yml fayllari), satr raqami bilan; fayl turiga qarab rang
 const hlOf = (f) => (/\.ya?ml$/.test(f) ? yamlLine : tsLine);
 const kod = (k, ids = {}, from, to, edit = {}) => { const hl = hlOf(KOD[k].file); return KOD[k].lines.filter((l) => (from == null || l.n >= from) && (to == null || l.n <= to)).flatMap((l) => {

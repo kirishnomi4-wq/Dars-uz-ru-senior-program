@@ -60,12 +60,10 @@ const S25b = {
     { id: 'c', key: "Xulosa: metafora <b>vazifani</b> tushuntiradi, kodni emas — ikkala so'zni birga ayting", text: "Xulosa va bitta ogohlantirish: metafora vazifani tushuntiradi, kodni emas. O'quvchi ofitsiant oshxonaga kirmaydi deganda, Controller Service'ni chaqiradi, lekin ichida hisob qilmaydi degan ma'noni tushunsin. Shu chegarani siz ushlab turasiz.", n: 8 },
   ],
 };
+// F-1120-02: jadval o'rniga — o'quvchi loyihasining yo'li, har bekatda restoran so'zi va atama (KitchenMap, DICT dan)
 function Screen25b(p) {
-  return <Lesson p={p} S={S25b} scene={({ beat }) => <div className="mk-light" style={{ padding: 14 }}>
-    <div className="mk-tag">{t("O'quvchi eshitadi → atama → vazifa", 'Ученик слышит → термин → задача')}</div>
-    <table className="mk-tbl"><thead><tr><th>{t("o'quvchi darsida", 'в уроке ученика')}</th><th>{t('atama', 'термин')}</th><th>{t('vazifa', 'задача')}</th></tr></thead><tbody>
-      {DICT.map(([a, b, c], i) => <tr key={a} style={{ animation: `mk-up .35s ${i * 0.08}s ease both` }}><td>{a}</td><td><code>{b}</code></td><td style={{ color: T.ink2 }}>{c}</td></tr>)}
-    </tbody></table>
+  return <Lesson p={p} S={S25b} scene={({ beat }) => <div className="mk-light" style={{ padding: 16 }}>
+    <KitchenMap beat={beat} dict={DICT} />
     <Block at={2} beat={beat}><div className="mk-rule" style={{ marginTop: 12 }}>{t(<>Ikkala so'zni birga ayting: <b>«oshpaz, ya'ni Service»</b>. Metafora vazifani tushuntiradi, kodni emas.</>, <>Говорите оба слова вместе: <b>«повар, то есть Service»</b>. Метафора объясняет задачу, а не код.</>)}</div></Block>
   </div>} />;
 }
@@ -389,25 +387,23 @@ const s28Segments = (passed) => s28Ru(passed, [
 ]);
 // UZ-RU: ruscha segmentlar parts/08-ru.jsx dagi S28_RU dan (id bo'yicha; 'a' — o'tgan/o'tmagan ikki varianti)
 const s28Ru = (passed, segs) => (LANG === 'ru' ? segs.map((s) => ({ ...s, ...(S28_RU[s.id === 'a' ? (passed ? 'a_pass' : 'a_fail') : s.id] || {}) })) : segs);
+// F-1120-02: xulosa — darsning o'sha rasmi (Nest mashinasi); har band rasmning o'z qismini yoritadi
 function SummaryMap({ hl }) {
-  const on = (k) => hl === 'all' || hl === k || (hl === 'di' && (k === 'svc' || k === 'ctrl' || k === 'mod'));
-  const box = (k, c, h, d) => <div className={`mk-box${hl === k ? ' hl' : ''}`} style={{ '--c': c, opacity: on(k) ? 1 : 0.35 }}><h4>{h}</h4><p>{d}</p></div>;
+  const one = (k) => (hl === k ? 'hl' : 'dim');
+  const st = hl === 'ctrl' ? { ctrl: 'hl', svc: 'dim', mod: 'dim', br: 'dim' }
+    : hl === 'svc' ? { svc: 'hl', ctrl: 'dim', mod: 'dim', br: 'dim' }
+    : hl === 'mod' ? { mod: one('mod'), ctrl: '', svc: '', br: 'dim' }
+    : hl === 'di' ? { mod: 'hl', ctrl: 'hl', svc: '', br: 'dim' }
+    : hl === 'err' ? { ctrl: 'hl', svc: 'dim', br: 'dim' } : {};
+  const read = hl === 'di' ? ['src/cars/cars.controller.ts', '<span class="n1-k">constructor</span>(<span class="n1-k">private readonly</span> carsService: <span class="n1-c">CarsService</span>) {}']
+    : hl === 'err' ? ['terminal', "ERROR [ExceptionHandler] Nest can't resolve dependencies of the <span class=\"n1-er\">CarsController (?)</span>."]
+    : hl === 'svc' ? ['src/cars/cars.service.ts', 'findAll() { <span class="n1-k">return this</span>.cars; }']
+    : hl === 'ctrl' ? ['src/cars/cars.controller.ts', '<span class="n1-d">@Get</span>() findAll() { <span class="n1-k">return this</span>.carsService.findAll(); }'] : null;
   return <div className="mk-light" style={{ padding: 16 }}>
-    <div className="mk-tag">{t('Bugungi dars — bir qarashda', 'Сегодняшний урок — одним взглядом')}</div>
-    <div className="mk-flow" style={{ paddingTop: 22 }}>
-      <div className="mk-dot in" style={{ left: 'calc((100% - 88px) / 6)', animation: 'mk-route 4.5s ease-in-out infinite' }} />
-      <div className="mk-row">
-        {box('req', T.ink2, t("So'rov", 'Запрос'), 'GET /cars')}
-        <div className="mk-arrow on">→</div>
-        {box('ctrl', PART.ctrl, 'Controller', t('oladi · chaqiradi · qaytaradi', 'принимает · вызывает · возвращает'))}
-        <div className={`mk-arrow${hl === 'di' ? ' back' : ' on'}`}>{hl === 'di' ? '←' : '→'}</div>
-        {box('svc', PART.svc, 'Service', t('ish · hisob · qoida', 'работа · расчёты · правила'))}
-      </div>
-      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 16 }}>
-        <div className={`mk-box${hl === 'mod' || hl === 'di' ? ' hl' : ''}`} style={{ '--c': PART.mod, minWidth: '62%', opacity: on('mod') ? 1 : 0.35 }}><h4>Module</h4><p><code>controllers: [CarsController]</code> · <code>providers: [CarsService]</code>{hl === 'di' ? t(' — Nest shu ro\'yxatdan yaratib, konstruktorga beradi', ' — Nest создаёт по этому списку и передаёт в конструктор') : ''}</p></div>
-      </div>
-    </div>
-    <div className="mk-rule" style={{ marginTop: 14, opacity: hl === 'err' || hl === 'all' ? 1 : 0.35, transition: 'opacity .4s' }}>{t(<><b>Xato chiqsa:</b> qaysi klass · qaysi dependency · qaysi fayl → modul faylini oching. <b>Unable to connect</b> → kodga tegmang: .env va PostgreSQL.</>, <><b>Если ошибка:</b> какой класс · какой dependency · какой файл → откройте файл модуля. <b>Unable to connect</b> → код не трогайте: .env и PostgreSQL.</>)}</div>
+    <NestMachine cfg={N1_CARS} url="localhost:3000/cars" out={hl === 'err' ? null : '[{"id":1,"brand":"Chevrolet",…}, …]'} outKind="code" st={st}
+      exp={hl === 'all' ? 'hl' : ''} links={hl === 'mod' || hl === 'di'} modHot={hl === 'mod' || hl === 'di'}
+      sock={hl === 'err' ? { ctrl: { t: '(?)', er: true } } : null} readRow read={read}
+      tag={t('Bugungi dars — bir qarashda', 'Сегодняшний урок — одним взглядом')} />
   </div>;
 }
 function Screen28(p) {
@@ -429,7 +425,7 @@ function Screen28(p) {
         <div className="mk-scene top" style={{ overflow: 'auto' }}>
           {phase === 'sum' && (<>
             <SummaryMap hl={hl} />
-            <div className="mk-plan">{S28_ITEMS.slice(0, shown).map((it, i) => <div key={it.k} className={it.k === hl ? 'hl' : ''} style={{ animation: 'mk-up .45s ease both' }}><b>0{i + 1}</b><span>{it.t}</span></div>)}</div>
+            <div className="mk-plan" style={{ gridTemplateColumns: 'repeat(auto-fill,minmax(220px,1fr))', gap: 8 }}>{S28_ITEMS.slice(0, shown).map((it, i) => <div key={it.k} className={it.k === hl ? 'hl' : ''} style={{ animation: 'mk-up .45s ease both', padding: '9px 12px' }}><b>0{i + 1}</b><span>{it.t}</span></div>)}</div>
           </>)}
           {phase === 'hw' && <div className="mk-light" style={{ padding: 16, animation: 'mk-up .45s ease both' }}>
             <div className="mk-tag" style={{ color: T.accent }}>{t('Uyga vazifa · 40–60 daqiqa', 'Домашнее задание · 40–60 минут')}</div>
@@ -458,16 +454,21 @@ function Screen28(p) {
 // ============================================================
 //  MUQOVA + ROOT KOMPONENT
 // ============================================================
+// F-1120-02: muqova — chapda dars nima berishi, o'ngda darsning rasmi (so'rov aylanib turadi); eslatmalar bitta qisqa satrda
 function Cover({ onStart, resume }) {
   return (
-    <div className="mk-cover"><div className="card">
-      <p className="mk-eyebrow">{t('Mentor kursi · NestJS', 'Курс для менторов · NestJS')}</p>
-      <h1>{t('NestJS arxitekturasi: Module, Controller, Service', 'Архитектура NestJS: Module, Controller, Service')}</h1>
-      <p>{t("Bu dars ovozli. Ustoz har ekranda gapiradi, ekran u bilan birga o'zgaradi. Quloqchin yoki ovoz balandligini tekshiring.", 'Урок озвучен. На каждом экране говорит учитель, и экран меняется вместе с ним. Проверьте наушники или громкость.')}</p>
-      <ul>
-        {t(["Jami taxminan 1,5–2 soat: ovoz ~50 daqiqa · to'rt amaliyot 25–35 daqiqa · 5 tekshiruv · o'z-sinov 8 savol. 22-ekrandan keyin tanaffus qilsangiz bo'ladi", 'Kerak: Node.js 20+, VS Code, terminal — amaliyot dars ichida, har amaliyotda isbot maydoni', "Har ekranda: «↺ boshidan», ovozni o'chirish, «Matn» tugmasi. Ustoz gapirib bo'lgach Davom ochiladi"], ['Всего примерно 1,5–2 часа: озвучка ~50 минут · четыре практики 25–35 минут · 5 проверок · самопроверка 8 вопросов. После 22-го экрана можно сделать перерыв', 'Нужно: Node.js 20+, VS Code, терминал — практика внутри урока, в каждой практике поле подтверждения', 'На каждом экране: «↺ с начала», выключение звука, кнопка «Текст». «Далее» откроется, когда учитель договорит']).map((x) => <li key={x}>{x}</li>)}
-      </ul>
-      <CoverStart onStart={onStart} resume={resume} />
+    <div className="mk-cover"><div className="card n1-cv">
+      <div className="tx">
+        <p className="mk-eyebrow">{t('Mentor kursi · NestJS', 'Курс для менторов · NestJS')}</p>
+        <h1>{t('NestJS arxitekturasi: Module, Controller, Service', 'Архитектура NestJS: Module, Controller, Service')}</h1>
+        <p className="af">{t('Bu darsdan keyin siz', 'После этого урока вы')}</p>
+        <ul className="ok">
+          {t(["so'rov Nest ichida qaysi fayldan qaysi faylga o'tishini chizib bera olasiz", "cars modulini o'z kompyuteringizda qurasiz", "o'quvchilar qiladigan 4 ta xatoni terminal xabaridan taniysiz"], ['сможете нарисовать, из какого файла в какой файл проходит запрос внутри Nest', 'соберёте модуль cars на своём компьютере', 'узнаете 4 ошибки учеников по сообщению в терминале']).map((x) => <li key={x}>{x}</li>)}
+        </ul>
+        <p className="meta">{t("Ovozli dars: quloqchin yoki ovozni tekshiring · 1,5–2 soat, 22-ekrandan keyin tanaffus qilsa bo'ladi · Kerak: Node.js 20+, VS Code, terminal", 'Урок со звуком: проверьте наушники или громкость · 1,5–2 часа, после 22-го экрана можно сделать перерыв · Нужно: Node.js 20+, VS Code, терминал')}</p>
+        <CoverStart onStart={onStart} resume={resume} />
+      </div>
+      <div className="pic"><NestMachine cfg={N1_APP} out="Hello World!" lanes pkt={{ loop: true, label: t("so'rov", 'запрос') }} fill={[501, 501]} max={1} /></div>
     </div></div>
   );
 }
@@ -476,6 +477,7 @@ const PRACTICE_COUNT = SCREENS.filter((S) => /^ScreenP\d/.test(S.name)).length;
 export default function NestArchMentorLesson({ studentName, lang = 'uz', onFinished, startAt }) {
   setLang(lang); // UZ-RU (F-1030-38): render'dan oldin — ma'lumot va t() shu tilda
   useCss();
+  useCssN1(); // F-1120-02: Nest mashinasi uslubi (02b-mashina.jsx)
   const total = SCREENS.length;
   const [started, setStarted] = useState(startAt != null);
   const [idx, setIdx] = useState(Math.min(Math.max(0, startAt || 0), total - 1));

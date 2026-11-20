@@ -407,6 +407,25 @@ Ovoz qoidalari (29.10): kod ovozda o'qilmaydi — nima bo'layotgani aytiladi; «
 **Nega.** Mentor fidbeki: «vizualni yaxshilasak bo'ladimi». O'lchov (09.11): 12 dars, 331 ekran, tushuntirish ekranlarining 45 tasida sahna 30% dan kam. Uch naqsh topildi: A — gapli karta, B — xulosa qadamida rasm yo'qoladi, C — kichik, xira vaqt chizig'i. 49 ekran oldin/keyin ko'rildi: 34 tasi qabul qilindi, 15 tasi qoldirildi. 34 tasi darsga qo'yildi, foydalanuvchi har birini «Yaxshi» deb baholadi (10.11).
 **Texnik.** Umumiy uslub `.z` — `parts/01-asos.jsx` (z-card, z-st, dim, hl, z-band); darsga xos CSS — `<dars>/parts/04-yordam.jsx`. Yordamchi komponent `const S<n> = mkS(...)` dan oldin yoziladi, xulosa segmenti `seg.v === 'sum'`. Har yozuv `t(uz, ru)`. Sahna ulushini o'lchash: `vizual-taklif-F-1109-06/olch.mjs` + `toldir.py` (o'ng sahna 447,62,811,580 @1280).
 
+### M51 · Har darsga bitta rasm — dars davomida shu rasmga qaytiladi (20.11, F-1120-02)
+**Qoida.**
+1. Har darsning bitta asosiy rasmi bor: o'sha mavzuning mexanizmi (Nest-1 — Nest mashinasi: brauzer → Controller → Service, Module ro'yxati, Nest konteyneri). Muqovada, kirishda, tushuncha ekranlarida, «Buzamiz»da va yakunda aynan shu rasm ishlatiladi: joylashuv, rang va nomlar o'zgarmaydi, faqat holat o'zgaradi (yonadi, xiralashadi, buziladi).
+2. Rasm ovoz bilan birga yuradi: har segment rasmning bitta qismini o'zgartiradi (so'rov yo'lakda siljiydi, bo'lak yonadi, rozetka bo'shaydi). Xulosa segmentida rasm yashirilmaydi (M50-2).
+3. Rasm ostidagi qora satrda shu paytda bajarilayotgan kod satri turadi: `fayl:satr` + satrning o'zi; raqam shu darsdagi kod panelining raqami bilan bir xil (M10).
+4. Muqova: chapda «Bu darsdan keyin siz» — 3 ta aniq natija, eslatmalar (ovoz, vaqt, kerakli dasturlar) bitta qisqa satrda; o'ngda darsning rasmi.
+5. Bezak yo'q: dars ranglari (`T`, `PART`) va mavjud shakllar; yangi rang, gradient, emoji qo'shilmaydi. Rasm qat'iy o'lchamli qutida chiziladi va sahna eniga moslashadi (`N1Fit`), 1280×720 va 1920×1080 da tekshiriladi (M15).
+**Nega.** Mentor fidbeki (20.11): «darslar vizualga qaramagan, qiziqarsiz». O'lchov: Nest-1 tushuncha ekranlarida sahna balandlikning 26–47 %i, DI ekrani ikki matnli karta bilan tugagan. Foydalanuvchi taklifni tasdiqladi («akkuratne, alvasti bo'lmasin») va natijani qabul qildi.
+**Texnik.** Nest-1: `parts/02b-mashina.jsx` (NestMachine, N1Fit, DiMachine, Shelves, KitchenMap; CSS `useCssN1`). Boshqa darsda — o'z bo'lagida (`<dars>/parts/02b-…`), dvigatelga darsga xos rasm yozilmaydi. Ko'rik: artifact RGUTPShyxrRmmnVcNFviX9.
+
+### M52 · «Buzamiz» ekranida mentor o'zi buzadi (20.11, F-1120-02)
+**Qoida.**
+1. «Buzamiz» ekranining 1-segmenti `act`: kodda o'chiriladigan so'z yonib turadi (`n1-act`, `data-act`), chap panelda ko'rsatma («… ustiga bosing — u … ro'yxatidan o'chadi»), ovoz nimani bosishni aytadi (M38). Bosilmaguncha keyingi segment boshlanmaydi.
+2. Bosilgach kod, rasm va terminal birga buziladi; keyingi segment ovozi «o'chirdingiz / o'chdi» deydi (mentor o'zi qilgan ish).
+3. Savol (`ask`) javobini oldindan ochmaydigan qilib: natija («404», «200», «yiqildi») rasmda ovoz aytgan qadamdan oldin ko'rinmaydi — o'rnida «?» yoki «…».
+4. Xatoning har bo'lagi (qaysi klass · qaysi dependency · qaysi fayl, M18) raqam bilan terminal satriga va rasmdagi joyiga bog'lanadi (`marks` → `n1-p1…3`).
+**Nega.** Taklif sahifasida foydalanuvchi tanlovi: «Mentor o'zi bosib buzsin» — mentor tinglovchi emas, ishtirokchi bo'ladi.
+**Texnik.** Dvigatel: segment `act` → `waits_for` (button_click/step), `answerAsk(seg.id, 0)` sahnadan chaqiriladi (`useAct`). Ovoz hali yuklanayotganda bosilsa — javob eslab qolinadi, qo'lda o'tishga tushmaydi (20.11 tuzatish). Sinov vositalari (`ovoz-matnlar.mjs`, `til-tekshiruv.mjs`) `.n1-act` ni o'zi bosadi.
+
 ## 3. Oldingi asos-qoidalar (29.10, audit №1–2)
 - Bitta segment = bitta vizual o'zgarish; segment ≤ ~25 s (ElevenLabs).
 - O'ylab ko'ring savoli (`ask`) — javobdan oldin ochilmaydi; natija keyingi segmentda.
@@ -456,9 +475,11 @@ Ovoz qoidalari (29.10): kod ovozda o'qilmaydi — nima bo'layotgani aytiladi; «
 | 33 | `grep "ichkari\|qoqila\|keyingi ekranda\."` matn faylida = 0 (§MENTOR-JEST1-KORIK) | grep |
 | 34 | To'g'ri javob yagona eng uzun ≤ ¼ va yagona eng qisqa ≤ ¼; xato variantda natija va sabab (M48) | `python3 dev/javob-uzunlik.py src/mentor-kurs/<dars>` — ✓ |
 | 35 | Tushuntirish ekranining o'ng sahnasida mexanizm chizmasi, gapli karta yo'q; xulosa segmentida oldingi chizma yoki jadval ko'rinib turadi; chizmadagi raqamlar manba va shu ekran terminali bilan bir xil (M50) | 1280 surat har segmentda; raqamlar `manba/*-out` bilan grep |
+| 36 | Darsning bitta rasmi muqova, kirish, tushuncha, «Buzamiz» va yakunda bir xil; bezak yo'q (M51) · «Buzamiz» 1-segmenti `act`, savol javobi oldindan ochilmaydi, xato bo'laklari raqamlangan (M52) | 1600 surat har segmentda; `grep -c "act:"` = «Buzamiz» ekranlari soni |
 ---
 
 ## 5. Jurnal (qonun qo'shilishi)
+- **2026-11-20** — M51 (har darsga bitta rasm, muqova, bezaksiz) + M52 («Buzamiz»da mentor o'zi bosadi, `act`) + tekshiruv ro'yxati 36-band (F-1120-02). Sinf-supurish: qurilgan 12 dars — Nest-1 da bajarildi; qolgan 11 dars navbat bilan (DAVOM.md).
 - **2026-11-10** — F-1109-06 (mentor fidbeki «vizualni yaxshilasak bo'ladimi»): **M50** (gapli karta o'rniga mexanizm chizmasi; xulosa qadamida rasm yashirilmaydi; raqamlar manbadan) + tekshiruv ro'yxati 35. Foydalanuvchi: «m50: Yoz». Sinf-supurish: 12 dars o'lchandi, 49 ekran ko'rildi → 34 almashtirildi (PG-1 1 · PG-2 5 · Jest-1 1 · Jest-2 4 · CI/CD-1 3 · CI/CD-2 4 · WS-1 3 · WS-2 6 · Webhook 6 · Nest-2 1), 15 istisno (5-band).
 - **2026-11-04 (2)** — F-1104-15…18: **M48** (variant uzunligi javobni ochmaydi; `dev/javob-uzunlik.py`, generator ichida), tekshiruv ro'yxati 34; lug'at «da'vo → AI aytgan gap»; 5-bosqich kirishi (yangi ko'nikma — alohida segment).
 - **2026-11-04** — Jest-1 v2 ovozli ko'rigi F-1104-02…14: **M46** (ovoz mentorni yetaklaydi: loyiha · papka/fayl/satr · terminal), **M47** (xato ekranida sabab darhol; ichida — yonma-yon solishtirish); tekshiruv ro'yxati 30–33; lug'at «qoqiladigan joylar → o'quvchilar xato qiladigan joylar» (sinf-supurish 5 dars, 21 joy); korpus §MENTOR-JEST1-KORIK.

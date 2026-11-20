@@ -6,7 +6,6 @@ var RU_S = {
 ru(SVC2, [[null, 'товары и склад', null], [null, 'пользователь, роль, state', null], [null, 'корзина', null], [null, 'заказ, статус админа', null]]);
 ru(FLOW2, [null, null, null, null, null, null, null, null, null, [null, 'админ Жасур'], null, null, null]);
 ru(FLOW3B, [[null, 'сервер перезапустился'], null, null, null, null, [null, 'перезапуск в момент запроса телефона'], null, null]);
-ru(LIST3, ['товар и склад (stock)', 'пользователь и его роль', 'телефон и state', 'корзина', 'заказ']);
 ru(PROMPT1, [
   [null, 'Это проект NestJS + Telegraf (Telegram-бот заказов). Сейчас каталог, корзина, пользователи и заказы в памяти (Map и array) — при перезапуске сервера всё пропадает. Переносим их в PostgreSQL поэтапно.\n\n'],
   [null, 'Этап 1 — только подключение к базе и каталог:\n'],
@@ -98,5 +97,3 @@ ru(FLOW3A, [[null, '1-й процесс']]);
 ru(FLOW11A, [[null, 'после 1-го этапа']]);
 ru(FLOW15B, [[null, 'после 2-го этапа (корзина ещё в памяти)']]);
 ru(FLOW19, [[null, 'на складе 1 Planshet'], null, null, null, [null, 'склад 0 · корзина Бобура сохранена']]);
-ru(STAGES6, [[null, 'Подключение + каталог', 'TypeORM, миграция, products, seed'], [null, 'Пользователь + state'], [null, 'Корзина'], [null, 'Заказ', 'orders, order_items, транзакция']]);
-ru(STATIONS28, [[null, 'Бот Telegraf']]);

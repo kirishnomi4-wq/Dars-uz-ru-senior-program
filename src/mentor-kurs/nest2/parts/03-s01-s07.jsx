@@ -131,7 +131,7 @@ const LAYERS = [['Entity', N2.entity], ['DTO', N2.dto], ['Service', PART.svc], [
 function LayerPath({ at }) {
   return <div className="n2-path">{LAYERS.map(([n, c], i) => <React.Fragment key={n}>{i > 0 && <i>→</i>}<span className={i === at ? 'on' : (i < at ? 'done' : '')} style={{ '--c': c }}>{i < at ? '✓ ' : ''}{n}</span></React.Fragment>)}</div>;
 }
-const Term = ({ lines, title, er, beat, focus }) => <CodePanel file={title || 'terminal'} numbers={false} wrap style={{ background: er ? N2.termEr : N2.term }} lines={lines} beat={beat} focus={focus} />;
+const Term = ({ lines, title, er, beat, focus, marks }) => <CodePanel file={title || 'terminal'} numbers={false} wrap style={{ background: er ? N2.termEr : N2.term }} lines={lines} beat={beat} focus={focus} marks={marks} />;
 const Json = ({ st, children }) => <div style={{ display: 'grid', gap: 4 }}>{st && <span className={`n2-st s${String(st)[0]}`}>{st}</span>}<pre className="n2-json">{children}</pre></div>;
 const METHOD_C = { GET: '#61AFFE', POST: '#49CC90', PATCH: '#50E3C2', DELETE: '#F93E3E' };
 
@@ -149,15 +149,15 @@ const S1 = {
     sg('e', "Olti bosqich, to'rt amaliyot. <b>Shoshilmang</b>: ustoz gapirib bo'lgach Davom ochiladi", "Dars olti bosqichdan iborat, orasida to'rtta amaliyot bor, ularni o'z kompyuteringizda qilasiz. Shoshilmang: har ekranni boshidan eshitish va matnini o'qish mumkin. Ustoz gapirib bo'lgach Davom ochiladi. Boshlaymiz.", { hl: [] }),
   ],
 };
+// F-1120-02 (M51): darsning rasmi — o'quvchi loyihasida bitta so'rovning to'liq yo'li (RepoMachine, parts/02c-nest.jsx) + reja
 function Screen1(p) {
-  return <Lesson p={p} S={S1} scene={({ seg }) => <div style={{ display: 'grid', gap: 14 }}>
-    <div className="mk-light"><div className="mk-plan">
+  return <Lesson p={p} S={S1} scene={({ seg, beat }) => <div className="mk-light" style={{ padding: 16, display: 'grid', gap: 14 }}>
+    <RepoMachine tag={t("Bugungi darsning rasmi — o'quvchi loyihasida bitta so'rov", 'Картина урока — один запрос в проекте ученика')}
+      hl={beat === 1 ? ['mod', 'pipe', 'ctrl', 'svc', 'repo', 'db'] : beat === 2 ? ['guard'] : []}
+      ok={beat === 2 ? null : { code: 200 }} stop={beat === 2 ? { k: 'guard', code: '401 · 403' } : null}
+      resp={beat === 2 ? 'err' : 'ok'} url={beat === 2 ? 'GET /api/v1/admin' : 'GET /api/v1/car'} />
+    <div className="n1-plan" style={{ position: 'static', gridTemplateColumns: 'repeat(6,minmax(0,1fr))', gap: 6 }}>
       {S1.plan.map((x, i) => <div key={i} className={seg.hl.includes(i) ? 'hl' : (seg.hl.length ? 'dim' : '')}><b>0{i + 1}</b><span>{x}</span></div>)}
-    </div></div>
-    <div className="mk-light" style={{ padding: 14 }}>
-      <div className="mk-tag">{t('Dars oxirida — sizning loyihangizda', 'В конце урока — в вашем проекте')}</div>
-      <div className="n2-swg"><div className="r hl"><span className="m" style={{ background: METHOD_C.GET }}>GET</span><span>/api/v1/car</span></div></div>
-      <Json st={200}>{`{"statusCode":200,"message":"success","data":[{"brand":"Chevrolet","model":"Malibu","price":250,"is_available":true,…}]}`}</Json>
     </div>
   </div>} />;
 }
@@ -352,12 +352,13 @@ function Screen5(p) {
     {beat < 4 && (seg.file === F.filter
       ? <CodePanel file={F.filter} lines={FILTER_LINES} focus={['st', 'log']} />
       : <CodePanel file={F.appSvc} lines={APPSVC_LINES} focus={seg.focus} />)}
-    {beat < 2 && <Block at={1} beat={beat}><div className="n2-grid2">
-      <Browser url="localhost:3000/admin" out="404" er /><Browser url="localhost:3000/api/v1/admin" out="401" />
-    </div></Block>}
-    <Block at={2} beat={beat}><div className="n2-grid2">
-      <Json st={200}>{`{"statusCode":200,"message":"success","data":[…]}`}</Json>
-      <Json st={404}>{`{"statusCode":404,"error":{"message":"Cannot GET /admin"}}`}</Json>
+    {/* F-1120-02: brauzer va JSON kartalari o'rniga — so'rov yo'li rasmi: /admin prefiksda 404, /api/v1/admin Guard'da 401; javobning ikki shakli */}
+    <Block at={1} beat={beat}><div className="mk-light" style={{ padding: 12, flex: '0 0 auto' }}>
+      <RepoMachine url={beat === 1 ? 'GET /admin' : 'GET /api/v1/car'}
+        marks={beat === 1 ? [{ k: 'pre', code: 404 }, { k: 'guard', code: 401 }] : beat === 3 ? [{ k: 'svc', code: 500 }] : beat >= 4 ? [{ k: 'pre', code: 404 }, { k: 'svc', code: 500 }] : []}
+        hl={beat === 1 ? ['pre', 'guard'] : beat === 3 ? ['svc'] : []} ok={beat === 2 ? { code: 200 } : null}
+        resp={beat === 1 ? 'err' : beat === 2 || beat >= 4 ? 'both' : beat === 3 ? 'err' : null}
+        tag={t("O'quvchi loyihasida so'rov yo'li", 'Путь запроса в проекте ученика')} />
     </div></Block>
   </Ide>} />;
 }

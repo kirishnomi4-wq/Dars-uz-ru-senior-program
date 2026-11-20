@@ -665,7 +665,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M24 · Haqiqiy chiqishlar: `manba/nest2-out/
 
 ## 20 · Buzamiz 1: `forFeature` yo'q  ← `Lesson`
 - Kicker: `5-bosqich · buzamiz 1` · Sarlavha: **`forFeature` o'chirildi — xabarni uch savol bilan o'qiymiz**
-- Sahna: `Ide`: `src/api/car/car.module.ts` — buzilgan holat (`forFeature` satri chizilgan, `imports: []` yashil); terminal — qizil xabar, bo'laklab yoritiladi (`e-who` · `e-what` · `e-where`); 4-segmentda tuzatilgan kod va yashil terminal (M3).
+- Sahna (F-1120-02): `Ide`: `src/api/car/car.module.ts` — avval butun holat, `forFeature` yonib turadi va mentor uni bosadi; keyin buzilgan holat (`forFeature` satri chizilgan, `imports: []` yashil); kod ostida kichik rasm (CarModule: Nest konteyneri bo'sh, CarService konstruktorida `(?)`, xato bo'laklari 1·2·3); terminal — qizil xabar, bo'laklab yoritiladi (`e-who` · `e-what` · `e-where`); 4-segmentda tuzatilgan kod va yashil terminal (M3).
 - Terminal (haqiqiy):
   ```
   [Nest] ERROR [ExceptionHandler] UnknownDependenciesException [Error]: Nest can't resolve dependencies of the CarService (?).
@@ -676,8 +676,10 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M24 · Haqiqiy chiqishlar: `manba/nest2-out/
   - If "CarEntityRepository" is a provider, is it part of the current CarModule?
   - If "CarEntityRepository" is exported from a separate @Module, is that module imported within CarModule?
   ```
+0. **Endi o'zingiz buzasiz: kodda yonib turgan `forFeature` ustiga bosing** · `act` (M52, F-1120-02 — mentor bosmaguncha keyingi segment boshlanmaydi)
+   Ovoz: «Resurs ishlaydi, himoyani bilasiz. Endi ataylab buzamiz, chunki o'quvchi va uning agenti aynan shu xatolarni qiladi. Buzishni o'zingiz qilasiz: car module faylida forFeature satri yonib turibdi, ustiga bosing.»
 1. **Ataylab buzamiz: `car.module.ts`dan `forFeature` olib tashlandi — server yiqildi**
-   Ovoz: «Resurs ishlaydi, himoyani bilasiz. Endi ataylab buzamiz, chunki o'quvchi va uning agenti aynan shu xatolarni qiladi. Car module'dan forFeature satrini olib tashladik. Server yiqildi, xabarni Nest birinchi darsidagi uch savol bilan o'qiymiz.»
+   Ovoz: «forFeature satri o'chdi. Server yiqildi, xabarni Nest birinchi darsidagi uch savol bilan o'qiymiz.»
 2. **Qaysi klass — `CarService (?)`: bu safar Service'ning dependency'si topilmadi**
    Ovoz: «Qaysi klass: Car service. Nest birinchi darsida bu yerda Controller edi, bu safar Service. Qavsdagi so'roq belgisi topilmagan dependency o'rni.» · `e-who`
 3. **Qaysi dependency — `CarEntityRepository`; qaysi fayl — `CarModule`, ya'ni `car.module.ts`**

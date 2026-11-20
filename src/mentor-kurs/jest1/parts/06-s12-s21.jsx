@@ -39,13 +39,31 @@ function Screen13(p) {
 const BREAK14 = { 39: KOD.KB_ORDER.lines[2].t.replace(" || o.status === 'CANCELLED'", '') };
 const T14 = out('08', outFind('08', /^\$ /));
 const T14_OK = out('07', 2);
-const S14 = mkS(14, [{ v: 'break' }, { v: 'run' }, { v: 'fix' }]);
+// F-1120-02 (M52): 1-segment (x) — mentor 39-satrdagi «|| o.status === 'CANCELLED'» ni o'zi bosadi (data-act)
+const L39 = KOD.KB_ORDER.lines.find((l) => l.n === 39).t;
+const ACT14 = kod('KB_ORDER', { 39: 'x' }, 38, 41).map((l) => (l.n === 39 ? { ...l, h: tsLine(L39.split(" || o.status === 'CANCELLED'")[0]) + '<span class="n1-act" data-act="1">' + tsLine(" || o.status === 'CANCELLED'") + '</span>' + tsLine(L39.split(" || o.status === 'CANCELLED'")[1]) } : l));
+// 1280×720 da kod ko'rinib tursin: terminaldan «> 33» va «^» satrlarigacha, keyin faqat «Tests:» satri (jest1v2-out/08)
+const T14S = (() => { const i = T14.findIndex((l) => /\^/.test((l.h || '').replace(/<[^>]+>/g, '')) && !/expect/.test(l.h || '')); const k = T14.findIndex((l) => /Tests:/.test(l.h || '')); return [...T14.slice(0, i + 1), ...(k > i ? [T14[k]] : [])]; })();
+const S14 = mkS(14, [{ v: 'act' }, { v: 'break' }, { v: 'run' }, { v: 'fix' }]);
 function Screen14(p) {
-  return <Lesson p={p} S={S14} scene={({ seg }) => <>
-    {seg.v !== 'fix' && <CodePanel file={t("keyboards.ts · buzilgan", "keyboards.ts · сломан")} lines={kod('KB_ORDER', { 39: 'x' }, 38, 41, BREAK14)} focus={['x']} />}
-    {seg.v === 'run' && <Term title={t("VS Code terminali · npm test -- keyboards", "терминал VS Code · npm test -- keyboards")} lines={T14} er />}
-    {seg.v === 'fix' && <><CodePanel file={t("keyboards.ts · tiklandi", "keyboards.ts · восстановлен")} lines={kod('KB_ORDER', { 39: 'x' }, 38, 41)} focus={['x']} /><Term lines={T14_OK} /></>}
-  </>} />;
+  return <Lesson p={p} S={S14} scene={(b) => <Scene14 b={b} />} />;
+}
+// Qadamlar: 0 bosing · 1 buzildi (javob «?») · 2 test → 1 failed, bo'laklar 1·2 · 3 xulosa: tiklandi → 3 passed
+function Scene14({ b }) {
+  const { seg, beat } = b;
+  const act = useAct(b);
+  const v = beat === 0 ? (act.hit ? 'break' : 'act') : seg.v;
+  const mini = <N1Mini><KbMini broken={v !== 'act'} fixed={v === 'fix'} known={beat >= 2} pins={beat === 2 ? { a: 1, b: 2 } : {}} /></N1Mini>;
+  return <>
+    <Ide files={compact(FILES(F.txs, F.kbs), F.kb)} active={F.kb}>
+      {v === 'act' && <div onClick={act.onClick}><CodePanel file="keyboards.ts" lines={ACT14} focus={['x']} /></div>}
+      {(v === 'break' || v === 'run') && <CodePanel key="b" file={t("keyboards.ts · buzilgan", "keyboards.ts · сломан")} lines={kod('KB_ORDER', { 39: 'x' }, 38, 41, BREAK14)} focus={['x']} />}
+      {v === 'fix' && <CodePanel key="f" file={t("keyboards.ts · tiklandi", "keyboards.ts · восстановлен")} lines={kod('KB_ORDER', { 39: 'x' }, 38, 41)} focus={['x']} />}
+      {mini}
+    </Ide>
+    {v === 'run' && <Term title={t("VS Code terminali · npm test -- keyboards", "терминал VS Code · npm test -- keyboards")} lines={T14S} er marks={{ [T14S.findIndex((l) => /● orderKeyboard ›/.test(l.h || ''))]: 'n1-p1', [T14S.findIndex((l) => /Received:/.test(l.h || ''))]: 'n1-p2' }} />}
+    {v === 'fix' && <Term lines={T14_OK} />}
+  </>;
 }
 
 // ============================================================

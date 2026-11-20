@@ -149,8 +149,12 @@ Loyiha: **OrderBotNest** — teglar `ws1-start` (= `cicd2-done` 87a5bb1) · `ws1
 ## 6 · Buzamiz: `return` unutildi — log yolg'on gapiradi  ← `Lesson`
 - Kicker: `2-bosqich · buzamiz` · Sarlavha: **`disconnect()` dan keyin `return` yo'q: klient baribir yopildi, lekin server logi «panel ulandi» deb yozdi — log endi ishonchsiz**
 - Sahna: yonma-yon (M47): chapda `live.gateway.ts` 26–33 `return;` satri o'chirilgan (qizil, M36) + terminal `07` klient: `connect` · `io server disconnect · active=false → ulanmagan`; o'ngda server logi `07`: `LOG [Live] panel ulandi: …` (qizil belgi); 3-segmentda to'g'ri holat (03): server logida `[Live]` satri yo'q; 4-segmentda sabab kartasi: `disconnect()` funksiyadan chiqmaydi → keyingi satrlar bajariladi → `client.data.admin = true`, log.
-1. **Buzamiz: ==`client.disconnect();` dan keyingi `return;` ni olib tashlaymiz==**
-   Ovoz: «Endi ataylab buzamiz. Live gateway ts faylida client disconnect'dan keyingi return satrini o'chiramiz. Kichik o'zgarish, kod kompilyatsiya bo'ladi. Tokensiz klient bilan sinaymiz: npm run live, ikki qo'shtirnoq.» · 26–33
+- F-1120-02 (M52): 0-band — mentor `client.disconnect();` dan keyingi `return;` ni o'zi bosadi → satr o'chadi. Kod ostida kichik rasm (M51): tokensiz klient → handleConnection → server logi «?» → «panel ulandi» (yolg'on); bo'laklar 1 (klient: io server disconnect) · 2 (server logi).
+0. **Endi ==o'zingiz buzasiz==: kodda yonib turgan `return;` ustiga bosing**
+   Ovoz: «Gateway to'g'ri ishlaydi: tokensiz klient yopiladi, logda hech narsa yo'q. Endi ataylab buzamiz. Buzishni o'zingiz qilasiz: live gateway ts faylida client disconnect'dan keyingi return satri yonib turibdi, ustiga bosing: satr o'chadi.»
+   Bosish: «**live.gateway.ts**dagi **`return;`** ustiga bosing — `client.disconnect();` dan keyingi satr o'chadi.»
+1. **Buzildi: ==`client.disconnect();` dan keyingi `return;` yo'q==**
+   Ovoz: «Return satrini o'chirdingiz. Kichik o'zgarish, kod kompilyatsiya bo'ladi. Tokensiz klient bilan sinaymiz: npm run live, ikki qo'shtirnoq.» · 26–33
 2. **Klient: ==o'sha natija — `io server disconnect`==; ulanish baribir yopildi**
    Ovoz: «Klient terminali o'sha natijani ko'rsatadi: bir lahza connect, keyin io server disconnect, ulanmagan. Disconnect ishladi, ulanish yopildi. Klient tomondan qaraganda hech narsa o'zgarmadi.» · klient
 3. **Server logi: ==`panel ulandi`== — rad etilgan klient uchun; to'g'ri kodda bu satr yo'q**

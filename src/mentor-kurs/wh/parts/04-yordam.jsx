@@ -44,7 +44,7 @@ function compact(files, active) {
 const sg = (id, key, text, extra = {}) => ({ id, key, text, show: wr(text), ...extra });
 const mkS = (n, extras = [], more = {}) => {
   const m = MDT[n];
-  return { kicker: m.kicker, eyebrow: m.eyebrow, title: m.title, ...more, segments: m.seg.map(([id, key, text], i) => sg(id, key, text, extras[i] || {})) };
+  return { kicker: m.kicker, eyebrow: m.eyebrow, title: m.title, ...more, segments: m.seg.map(([id, key, text, act], i) => sg(id, key, text, { ...(act ? { act } : {}), ...(extras[i] || {}) })) /* F-1120-02 (M52): act */ };
 };
 const SPOKEN = [
   ['npm run pay', 'npm run pay'], ['npm run start dev', 'npm run start:dev'], ['npm run smoke', 'npm run smoke'], ['npm test', 'npm test'], ['wh done', 'wh-done'], ['wh start', 'wh-start'],
@@ -102,7 +102,7 @@ const outRange = (k, reA, reB, keep = () => true) => { const L = outLines(k); le
 const outPick = (k, keep) => outLines(k).filter(keep).map((l) => ({ h: liveLine(l) }));
 const jt = (src) => src.replace(/^\n/, '').replace(/\n\s*$/, '').split('\n').map((l) => ({ h: liveLine(l) }));
 const txtLines = (s) => s.split('\n').filter((l) => l.trim() !== '').map((l) => ({ h: liveLine(l) }));
-const Term = ({ lines, title = t('VS Code terminali · OrderBotNest', "терминал VS Code · OrderBotNest"), er, beat, focus, style }) => <CodePanel file={title} numbers={false} style={{ background: er ? C1.termEr : C1.term, ...(style || {}) }} lines={lines} beat={beat} focus={focus} />;
+const Term = ({ lines, title = t('VS Code terminali · OrderBotNest', "терминал VS Code · OrderBotNest"), er, beat, focus, style, marks }) => <CodePanel file={title} numbers={false} style={{ background: er ? C1.termEr : C1.term, ...(style || {}) }} lines={lines} beat={beat} focus={focus} marks={marks} />;
 const hlOf = (f) => (/\.md$/.test(f) ? mdLine : tsLine);
 const lineN = (k, re, from = 1) => { const l = KOD[k].lines.find((x) => x.n >= from && re.test(x.t)); return l ? l.n : 1; };
 const kod = (k, ids = {}, from, to, edit = {}) => { const hl = hlOf(KOD[k].file); return KOD[k].lines.filter((l) => (from == null || l.n >= from) && (to == null || l.n <= to)).flatMap((l) => {

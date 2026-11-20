@@ -82,7 +82,6 @@ Maydon Jamoa «8 / 10» · закрытая/открытая дорога = за
 ## Ваше домашнее задание (40–60 минут)
 GET /admin/stock (токен, тест) · остаток склада в панели — заново запрашивается после order-changed · таблица README · ссылка на репозиторий на платформу`;
 // 2-tur (05.11): skaner tuzatilgandan keyin topilgan modul ro'yxati
-ru(STATIONS25, [[null, 'Запрос vs соединение'], [null, 'Gateway · токен'], [null, 'Событие · панель'], [null, 'Три состояния']]);
 
 const RU_MDT = {
  "1": {
@@ -200,8 +199,8 @@ const RU_MDT = {
   "title": "После disconnect() нет return: клиент всё равно закрыт, но лог сервера написал «panel ulandi» — логу больше нельзя верить",
   "seg": {
    "a": [
-    "Ломаем: <b>убираем <code>return;</code> после <code>client.disconnect();</code></b>",
-    "Теперь нарочно ломаем. В файле live gateway ts удаляем строку return после client disconnect. Маленькое изменение, код компилируется. Проверяем клиентом без токена: npm run live, две кавычки."
+    "Сломано: <b>после <code>client.disconnect();</code> нет <code>return;</code></b>",
+    "Вы удалили строку return. Изменение маленькое, код компилируется. Проверяем клиентом без токена: npm run live, две кавычки."
    ],
    "b": [
     "Клиент: <b>тот же результат — <code>io server disconnect</code></b>; соединение всё равно закрыто",
@@ -214,6 +213,11 @@ const RU_MDT = {
    "d": [
     "Значит, причина: <b><code>disconnect()</code> не выходит из функции</b> — следующие строки всё равно выполняются",
     "Значит, причина одна: disconnect закрывает соединение, но не выходит из функции. Без return следующие строки всё равно выполняются: ставится знак admin, пишется лог. Если позже сюда добавят комнату или право, отклонённый клиент их получит. Восстанавливаем return."
+   ],
+   "x": [
+    "Теперь <b>ломаете вы</b>: нажмите на подсвеченный в коде <code>return;</code>",
+    "Gateway работает правильно: клиент без токена закрывается, в логе ничего нет. Теперь ломаем намеренно. Ломаете вы сами: в файле live gateway ts подсвечена строка return после client disconnect, нажмите на неё: строка удалится.",
+    "Нажмите на <b><code>return;</code></b> в <b>live.gateway.ts</b> — строка после <code>client.disconnect();</code> удалится."
    ]
   }
  },
@@ -835,9 +839,9 @@ function yakRu(passed, segs) {
   return segs.map((s) => ({ ...s, ...(Y[s.id === 'a' ? (passed ? 'a_pass' : 'a_fail') : s.id] || {}) }));
 }
 (function ruMdtQo() {
-  const segRu = (n) => { const r = RU_MDT[n] && RU_MDT[n].seg; if (!r) return undefined; const o = {}; Object.keys(r).forEach((id) => { const [key, text] = r[id]; o[id] = { ...(key != null ? { key } : {}), ...(text != null ? { text, show: wrRu(text) } : {}) }; }); return o; };
+  const segRu = (n) => { const r = RU_MDT[n] && RU_MDT[n].seg; if (!r) return undefined; const o = {}; Object.keys(r).forEach((id) => { const [key, text, act] = r[id]; o[id] = { ...(key != null ? { key } : {}), ...(text != null ? { text, show: wrRu(text) } : {}), ...(act != null ? { act } : {}) }; }); return o; };
   const head = (n) => { const r = RU_MDT[n] || {}; const o = {}; ['kicker', 'eyebrow', 'title'].forEach((k) => { if (r[k] != null) o[k] = r[k]; }); const s = segRu(n); if (s) o.segments = s; return o; };
-  const mdt = {}; Object.keys(RU_MDT).forEach((n) => { const r = { ...RU_MDT[n] }; if (r.seg) r.seg = MDT[n].seg.map(([id]) => (r.seg[id] ? [null, r.seg[id][0], r.seg[id][1]] : null)); mdt[n] = r; });
+  const mdt = {}; Object.keys(RU_MDT).forEach((n) => { const r = { ...RU_MDT[n] }; if (r.seg) r.seg = MDT[n].seg.map(([id]) => (r.seg[id] ? [null, r.seg[id][0], r.seg[id][1], r.seg[id][2]] : null)); mdt[n] = r; });
   ru(MDT, mdt);
   ru(S1, { ...head(1), ...((typeof RU_S !== 'undefined' && RU_S.S1) || {}) });
   ru(S2, { ...head(2), ...((typeof RU_S !== 'undefined' && RU_S.S2) || {}) });

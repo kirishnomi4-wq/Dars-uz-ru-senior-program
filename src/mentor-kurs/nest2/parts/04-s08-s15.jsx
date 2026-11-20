@@ -391,7 +391,10 @@ function Screen13(p) {
   const [clicked, setClicked] = useState([]);
   return <Lesson p={p} S={S13} ready={() => clicked.length >= REQS13.length} scene={({ seg }) => {
     const cur = REQS13.find((r) => r.k === (open || seg.open));
+    // F-1120-02: tanlangan so'rov rasmda qayerda to'xtaydi — 400 DTO'da, 500 bazada (uuid), ParseUUIDPipe bilan 400 DTO'da
+    const pos = !cur ? null : cur.st === 400 || (cur.k === 'r6' && seg.uuid) ? { stop: { k: 'pipe', code: 400 } } : cur.st === 500 ? { stop: { k: 'db', code: 500 } } : { ok: { code: cur.st } };
     return (<>
+      <div className="mk-light" style={{ padding: 12 }}><RepoMachine compact url={cur ? `${cur.m} ${cur.u.split(' ')[0].replace(/efa80745-…/, ':id')}` : ''} {...(pos || {})} /></div>
       <div className="mk-light" style={{ padding: 14 }}>
         <div className="mk-tag">{t("Swagger'dan so'rov — bosing", 'Запрос из Swagger — нажмите')}</div>
         <div className="mk-req">

@@ -129,15 +129,19 @@ const SUM28 = [
   { k: 'tx', t: "Buyurtma — bitta tranzaksiya; qoldiq qulf bilan o'qiladi yoki bitta UPDATE … WHERE stock >= qty; tranzaksiyada xatodan keyin faqat ROLLBACK", st: ['orm', 'pg'] },
   { k: 'chk', t: "Besh tekshiruv har bosqichda: diff · build · restart · psql · ko'p mijoz (npm run smoke). Sinf: m5-04 — \\d users, ikki marta /start, restart ism so'ralganda", st: ['ai', 'bot', 'pg'] },
 ];
-const STATIONS28 = [['bot', 'Telegraf bot', PG.tg], ['ai', 'AI + prompt', PG.ai], ['orm', 'TypeORM', T.purple], ['pg', 'PostgreSQL', PG.pg]];
+// F-1120-02 (M51): xulosa — darsning o'sha rasmi (BotMap); har band rasmning o'z qismini yoritadi
+const MAP28 = {
+  mem: { restart: true, on: ['mem', 'products', 'users', 'carts', 'orders'], chat: ['/cart', "Savat bo'sh. /catalog dan mahsulot tanlang.", 'bad'] },
+  ai: { loc: DB_ALL, badge: STAGE_NO, on: ['db', 'products', 'users', 'carts', 'orders'] },
+  orm: { loc: DB_ALL, on: ['db', 'products', 'users', 'carts', 'orders'] },
+  id: { loc: DB_ALL, on: ['user', 'users', 'carts'], note: { users: 'BIGINT · state bazada' } },
+  tx: { loc: DB_ALL, tx: 'commit', ops: { products: 'UPDATE', orders: 'INSERT', carts: 'DELETE' }, on: ['order', 'products', 'orders', 'carts'] },
+  chk: { loc: DB_ALL, clients: 5, on: ['phone', 'order', 'products'], note: { products: 'Planshet · sotildi 1 / 0' } },
+};
 function SummaryMap28({ hl }) {
-  const cur = SUM28.find((x) => x.k === hl);
-  const on = (k) => hl === 'all' || !cur || cur.st.includes(k);
-  return <div className="mk-light" style={{ padding: 16 }}>
-    <div className="mk-tag">{t("Bugungi dars — botdan bazagacha, AI bilan", "Сегодняшний урок — от бота до базы, с AI")}</div>
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0,1fr))', gap: 6 }}>
-      {STATIONS28.map(([k, n, c], i) => <div key={k} className={`mk-box${cur && cur.st.includes(k) ? ' hl' : ''}`} style={{ '--c': c, padding: '10px 6px', textAlign: 'center', opacity: on(k) ? 1 : 0.35, animation: `mk-up .4s ${i * 0.06}s ease both` }}><h4 style={{ fontSize: 13, margin: 0 }}>{n}</h4></div>)}
-    </div>
+  const m = MAP28[hl] || { loc: DB_ALL, chat: CHAT_ORDER };
+  return <div className="mk-light" style={{ padding: 14 }}>
+    <BotMap {...m} max={0.95} tag={t("Bugungi dars — botdan bazagacha, AI bilan", "Сегодняшний урок — от бота до базы, с AI")} />
   </div>;
 }
 const HOMEWORK28 = [
@@ -163,7 +167,7 @@ oraliq vaziyat: buyurtma xotirada, ombor bazada → restartdan keyin buyurtma yo
 Telegram id > 2 147 483 647 → BIGINT; node-pg va TypeORM BIGINT'ni matn qaytaradi: "5123456789" === 5123456789 → false (Mongoose'da number)
 INTEGER ustun → value "5123456789" is out of range for type integer, bot «Tushunmadim»
 avval SELECT, keyin INSERT — UNIQUE'siz 19/20 urinishda 2 qator → UNIQUE + INSERT … ON CONFLICT DO UPDATE (Mongoose upsert ham unique index'siz 2 hujjat)
-qulfsiz findOneBy → save: 1 ta Planshet 5 kishiga sotildi, CHECK jim (0 manfiy emas) → lock: pessimistic_write yoki UPDATE … WHERE stock >= qty
+qulfsiz findOneBy → save: 1 ta Planshet 5 kishiga sotildi, CHECK xato bermaydi (0 manfiy emas) → lock: pessimistic_write yoki UPDATE … WHERE stock >= qty
 tranzaksiyada CHECK xatosidan keyin so'rov → current transaction is aborted → tekshiruv UPDATE'dan oldin; CHECK — oxirgi qo'riqchi
 ikki marta bir vaqtda «Bekor» → ombor 2 marta qaytdi → buyurtma qatori FOR UPDATE
 ## Besh tekshiruv
@@ -208,7 +212,8 @@ function Screen28(p) {
         <div className="mk-scene top" style={{ overflow: 'auto' }}>
           {phase === 'sum' && (<>
             <SummaryMap28 hl={hl} />
-            <div className="mk-plan">{SUM28.slice(0, shown).map((it, i) => <div key={it.k} className={it.k === hl ? 'hl' : ''} style={{ animation: 'mk-up .45s ease both' }}><b>0{i + 1}</b><span>{it.t}</span></div>)}</div>
+            {/* F-1120-02: bandlar rasm ostida ixcham to'rda — rasm surilib ketmasin (M51-2) */}
+            <div className="n1-plan" style={{ position: 'static', gridTemplateColumns: 'repeat(3,minmax(0,1fr))', gap: 8, marginTop: 10 }}>{SUM28.slice(0, shown).map((it, i) => <div key={it.k} className={it.k === hl ? 'hl' : ''} style={{ animation: 'mk-up .45s ease both' }}><b>0{i + 1}</b><span style={{ fontSize: 12.5 }}>{it.t}</span></div>)}</div>
           </>)}
           {phase === 'hw' && <div className="mk-light" style={{ padding: 16, animation: 'mk-up .45s ease both' }}>
             <div className="mk-tag" style={{ color: T.accent }}>{t('Uyga vazifa · 60–90 daqiqa', 'Домашнее задание · 60–90 минут')}</div>
@@ -237,16 +242,21 @@ function Screen28(p) {
 // ============================================================
 //  Muqova va ildiz
 // ============================================================
+// F-1120-02 (M51): muqova — chapda dars nima berishi, o'ngda darsning rasmi; eslatmalar bitta qisqa satrda
 function Cover({ onStart, resume }) {
   return (
-    <div className="mk-cover"><div className="card">
-      <p className="mk-eyebrow">{t("Mentor kursi · Telegraf + PostgreSQL", "Курс для менторов · Telegraf + PostgreSQL")}</p>
-      <h1>{t(LESSON_TITLE, RS('TITLE'))}</h1>
-      <p>{t("Bu dars ovozli. Ustoz har ekranda gapiradi, ekran u bilan birga o'zgaradi. Quloqchin yoki ovoz balandligini tekshiring.", 'Урок озвучен. На каждом экране говорит учитель, экран меняется вместе с ним. Проверьте наушники или громкость.')}</p>
-      <ul>
-        {t(["Jami taxminan 1 soat 40 daqiqa – 2 soat: ovoz ~27 daqiqa · to'rt amaliyot AI bilan 70–90 daqiqa · 4 tekshiruv · o'z-sinov 8 savol. 12-ekrandan keyin tanaffus qilsangiz bo'ladi", "Kerak: Telegraf videodarslari · PostgreSQL-1 va PostgreSQL-2 · NestJS mentor darslari · PostgreSQL ishlab turgan · Node.js 20+ · VS Code · AI yordamchi (Antigravity, Claude Code, Codex yoki Copilot) · BotFather'da sinov boti", 'Loyiha: github.com/Azizbekcrypto/OrderBotNest — tgpg-start dan boshlaysiz'], RS('COVER')).map((x) => <li key={x}>{x}</li>)}
-      </ul>
-      <CoverStart onStart={onStart} resume={resume} />
+    <div className="mk-cover"><div className="card n1-cv">
+      <div className="tx">
+        <p className="mk-eyebrow">{t("Mentor kursi · Telegraf + PostgreSQL", "Курс для менторов · Telegraf + PostgreSQL")}</p>
+        <h1>{t(LESSON_TITLE, RS('TITLE'))}</h1>
+        <p className="af">{t('Bu darsdan keyin siz', 'После этого урока вы')}</p>
+        <ul className="ok">
+          {t(["tayyor botning ma'lumotini AI bilan PostgreSQL'ga to'rt bosqichda ko'chirasiz", "har bosqichni o'zingiz tekshirasiz: diff, build, restart, psql va ko'p mijoz", "buyurtmani tranzaksiyada yozasiz va bitta mahsulot ikki kishiga sotilmasligini isbotlaysiz"], ["перенесёте данные готового бота в PostgreSQL с AI за четыре этапа", 'сами проверите каждый этап: diff, build, restart, psql и много клиентов', 'запишете заказ в транзакции и докажете, что один товар не продаётся двоим']).map((x) => <li key={x}>{x}</li>)}
+        </ul>
+        <p className="meta">{t("Ovozli dars · 1 soat 40 daqiqa – 2 soat, 12-ekrandan keyin tanaffus qilsa bo'ladi · Kerak: PostgreSQL ishlab turgan, Node.js 20+, VS Code, AI yordamchi, BotFather'da sinov boti · Loyiha: github.com/Azizbekcrypto/OrderBotNest (tgpg-start)", "Урок со звуком · 1 ч 40 мин – 2 ч, после 12-го экрана можно сделать перерыв · Нужно: работающий PostgreSQL, Node.js 20+, VS Code, AI-помощник, тестовый бот в BotFather · Проект: github.com/Azizbekcrypto/OrderBotNest (tgpg-start)")}</p>
+        <CoverStart onStart={onStart} resume={resume} />
+      </div>
+      <div className="pic"><BotMap loc={DB_ALL} chat={CHAT_ORDER} note={{ orders: '#1 · 220000 · CONFIRMED' }} max={1} /></div>
     </div></div>
   );
 }
@@ -256,6 +266,7 @@ export default function TgPgMentorLesson({ studentName, lang = 'uz', onFinished,
   setLang(lang);
   useCss();
   useCss3();
+  useCssN1(); // F-1120-02: dars rasmi uslubi (parts/02b-rasm.jsx)
   const total = SCREENS.length;
   const [started, setStarted] = useState(startAt != null);
   const [idx, setIdx] = useState(Math.min(Math.max(0, startAt || 0), total - 1));

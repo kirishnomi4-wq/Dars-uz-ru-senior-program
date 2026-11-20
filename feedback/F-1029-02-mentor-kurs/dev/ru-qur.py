@@ -48,7 +48,7 @@ for n, r in R.items():
   m = MDT[n]; o = {}
   for f in ('kicker', 'eyebrow', 'title', 'q', 'ok', 'okShort', 'hint', 'task', 'demak'):
     if f in r: o[f] = r[f]
-  if 'seg' in r: o['seg'] = {i: [s.get('key'), s.get('voice')] for i, s in r['seg'].items()}
+  if 'seg' in r: o['seg'] = {i: [s.get('key'), s.get('voice')] + ([s['act']] if s.get('act') else []) for i, s in r['seg'].items()}  # F-1120-02: act (M52)
   if 'opts' in r: o['opts'] = arr(r['opts'], len(m['opts']))
   if 'wrong' in r: o['wrong'] = r['wrong']
   if 'steps' in r:
@@ -81,9 +81,9 @@ js = [
   "  return segs.map((s) => ({ ...s, ...(Y[s.id === 'a' ? (passed ? 'a_pass' : 'a_fail') : s.id] || {}) }));",
   "}",
   "(function ruMdtQo() {",
-  "  const segRu = (n) => { const r = RU_MDT[n] && RU_MDT[n].seg; if (!r) return undefined; const o = {}; Object.keys(r).forEach((id) => { const [key, text] = r[id]; o[id] = { ...(key != null ? { key } : {}), ...(text != null ? { text, show: wrRu(text) } : {}) }; }); return o; };",
+  "  const segRu = (n) => { const r = RU_MDT[n] && RU_MDT[n].seg; if (!r) return undefined; const o = {}; Object.keys(r).forEach((id) => { const [key, text, act] = r[id]; o[id] = { ...(key != null ? { key } : {}), ...(text != null ? { text, show: wrRu(text) } : {}), ...(act != null ? { act } : {}) }; }); return o; };",
   "  const head = (n) => { const r = RU_MDT[n] || {}; const o = {}; ['kicker', 'eyebrow', 'title'].forEach((k) => { if (r[k] != null) o[k] = r[k]; }); const s = segRu(n); if (s) o.segments = s; return o; };",
-  "  const mdt = {}; Object.keys(RU_MDT).forEach((n) => { const r = { ...RU_MDT[n] }; if (r.seg) r.seg = MDT[n].seg.map(([id]) => (r.seg[id] ? [null, r.seg[id][0], r.seg[id][1]] : null)); mdt[n] = r; });",
+  "  const mdt = {}; Object.keys(RU_MDT).forEach((n) => { const r = { ...RU_MDT[n] }; if (r.seg) r.seg = MDT[n].seg.map(([id]) => (r.seg[id] ? [null, r.seg[id][0], r.seg[id][1], r.seg[id][2]] : null)); mdt[n] = r; });",
   "  ru(MDT, mdt);",
 ]
 X = lambda name: f"((typeof RU_S !== 'undefined' && RU_S.{name}) || {{}})"

@@ -30,7 +30,6 @@ ru(SUM25, [
   { t: 'Каждый статус — один тест; на каждое условие тест границы: первая, последняя, единственная' },
   { t: 'Приём теста от AI: diff только .spec.ts · в каждом it — expect · эталон вручную · сломать код и увидеть, как тест краснеет. Класс: m4b-01 — настоящий FAIL, «кто ошибся», граница, один раз сломать' },
 ]);
-ru(STATIONS25, [null, [null, 'Код теста', null], [null, 'Тест от AI', null]]);
 ru(HOMEWORK25, [
   { t: 'Своя копия — новая ветка в своём репозитории с урока Telegraf+PG (или от jest1-start)' },
   { t: 'Тесты — в texts.spec.ts: texts.orderPlaced, texts.orderLine, texts.statusChanged, texts.customerStatus; правило цены: заказ, где price и product.price разные' },

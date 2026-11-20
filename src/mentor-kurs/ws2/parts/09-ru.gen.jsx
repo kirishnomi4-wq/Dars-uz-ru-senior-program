@@ -35,7 +35,6 @@ ru(SUM25, [
   { t: 'connectionStateRecovery помогает при коротком обрыве сети; при перезапуске сервера и у клиента без событий — нет. Повторный запрос обязателен, восстановление — дополнение' },
   { t: 'Четыре вопроса к исправлению от AI: где запрашивает · сколько слушателей · упал ли старый код в проверке · что добавлено лишнего; попытка, где событие пришло, — не доказательство' },
 ]);
-ru(STATIONS25, [[null, 'Переподключение', null], [null, 'Утверждение · поломка', null], [null, 'Запрос в connect', null], [null, 'Восстановление', null], null]);
 ru(HOMEWORK25, [
   { t: 'Статус — Offline (до «Ulanmoqda…») → админ подтверждает в боте через /orders → Online: видно ли «Tasdiqlandi»' },
   { t: 'Запись — новая строка в BUZISH.md: способ · что сделал · ожидал · было · отметка' },
@@ -848,9 +847,9 @@ function yakRu(passed, segs) {
   return segs.map((s) => ({ ...s, ...(Y[s.id === 'a' ? (passed ? 'a_pass' : 'a_fail') : s.id] || {}) }));
 }
 (function ruMdtQo() {
-  const segRu = (n) => { const r = RU_MDT[n] && RU_MDT[n].seg; if (!r) return undefined; const o = {}; Object.keys(r).forEach((id) => { const [key, text] = r[id]; o[id] = { ...(key != null ? { key } : {}), ...(text != null ? { text, show: wrRu(text) } : {}) }; }); return o; };
+  const segRu = (n) => { const r = RU_MDT[n] && RU_MDT[n].seg; if (!r) return undefined; const o = {}; Object.keys(r).forEach((id) => { const [key, text, act] = r[id]; o[id] = { ...(key != null ? { key } : {}), ...(text != null ? { text, show: wrRu(text) } : {}), ...(act != null ? { act } : {}) }; }); return o; };
   const head = (n) => { const r = RU_MDT[n] || {}; const o = {}; ['kicker', 'eyebrow', 'title'].forEach((k) => { if (r[k] != null) o[k] = r[k]; }); const s = segRu(n); if (s) o.segments = s; return o; };
-  const mdt = {}; Object.keys(RU_MDT).forEach((n) => { const r = { ...RU_MDT[n] }; if (r.seg) r.seg = MDT[n].seg.map(([id]) => (r.seg[id] ? [null, r.seg[id][0], r.seg[id][1]] : null)); mdt[n] = r; });
+  const mdt = {}; Object.keys(RU_MDT).forEach((n) => { const r = { ...RU_MDT[n] }; if (r.seg) r.seg = MDT[n].seg.map(([id]) => (r.seg[id] ? [null, r.seg[id][0], r.seg[id][1], r.seg[id][2]] : null)); mdt[n] = r; });
   ru(MDT, mdt);
   ru(S1, { ...head(1), ...((typeof RU_S !== 'undefined' && RU_S.S1) || {}) });
   ru(S2, { ...head(2), ...((typeof RU_S !== 'undefined' && RU_S.S2) || {}) });

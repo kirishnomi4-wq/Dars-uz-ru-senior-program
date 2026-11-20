@@ -3,14 +3,25 @@
 //  1 · Kirish — dars oxiridagi natija: server qayta yongach #2 sariq (ws2v2-out/04, 3-surat)
 // ============================================================
 const PLAN1 = ['Umumiy tushuncha', "Yo'qolgan buyurtma", 'Takror tinglovchi', 'Tarmoq va tiklash', 'AI', 'Sinfga tayyorgarlik'];
-const S1 = mkS(1, [{ hl: [], res: true }, { hl: [0, 1] }, { hl: [2, 3, 4, 5] }, { hl: [5] }], { plan: PLAN1 });
+const S1 = mkS(1, [{ hl: [] }, { hl: [0, 1] }, { hl: [2, 3, 4, 5] }, { hl: [5] }], { plan: PLAN1 });
+// F-1120-02 (M51): darsning rasmi — «Buyurtma boti» xaritasi + admin paneli; bugungi savol — server qayta yonganda yoki tarmoq uzilganda
+// o'chiq paytdagi buyurtma panelga yetadimi. Panel belgisi — admin.html dagi haqiqiy yozuv (tarjima qilinmaydi)
+const DB_ALL = { products: 'db', users: 'db', carts: 'db', orders: 'db' };
+const LIVE_ON = ['phone', 'telegram', 'order', 'db', 'orders'];
+const PNL = (steps, res, badge) => ({ get name() { return t('Admin panel', 'Админ-панель'); }, get steps() { return typeof steps === 'function' ? steps() : steps; }, res, badge }); // steps — funksiya bo'lsa render paytida (tarjima)
+const S1M = [
+  { on: LIVE_ON, note: { get orders() { return t("#2 — server o'chiq paytda", '#2 — пока сервер выключен'); } }, jest: PNL([['connect → yukla()', 'ok'], ['order-changed', 'ok']], 'pass', 'Ulangan') },
+  { on: ['telegram', 'orders', 'db'], note: { get orders() { return t("#2 bazada, panelda yo'q", '#2 в базе, в панели нет'); } }, jest: PNL(() => [['transport close', 'bad'], [t('qayta ulandi', 'переподключился'), 'ok']], 'fail', 'Ulangan') },
+  { on: LIVE_ON, jest: PNL(() => [['connect → yukla()', 'ok'], [t('tinglovchi bitta', 'один слушатель'), 'ok']], 'pass', 'Ulangan') },
+  { on: LIVE_ON, jest: PNL([['connect → yukla()', 'ok'], ['order-changed', 'ok']], 'pass', 'Ulangan') },
+];
 function Screen1(p) {
-  return <Lesson p={p} S={S1} scene={({ seg }) => <div style={{ display: 'grid', gap: 14 }}>
-    <div className="mk-light"><div className="mk-plan" style={seg.res ? { gridTemplateColumns: '1fr 1fr' } : undefined}>
+  return <Lesson p={p} S={S1} scene={({ seg, beat }) => { const m = S1M[Math.min(beat, 3)]; return <div className="mk-light" style={{ padding: 16, display: 'grid', gap: 12 }}>
+    <BotMap loc={DB_ALL} {...m} tag={t("Bugungi darsning rasmi — uzilishdan keyin panel buyurtmani yo'qotmaydimi", 'Картина урока — не теряет ли панель заказ после обрыва')} />
+    <div className="n1-plan" style={{ position: 'static', gridTemplateColumns: 'repeat(6,minmax(0,1fr))', gap: 6 }}>
       {S1.plan.map((x, i) => <div key={i} className={seg.hl.includes(i) ? 'hl' : (seg.hl.length ? 'dim' : '')}><b>0{i + 1}</b><span>{x}</span></div>)}
-    </div></div>
-    {seg.res && <><div className="mk-tag" style={{ margin: 0 }}>{t("Dars oxirida — server qayta yondi, o'chiq paytda berilgan buyurtma ham panelda (sariq)", "В конце урока — сервер перезапустился, заказ, сделанный пока он был выключен, тоже в панели (жёлтый)")}</div><PanelView k="04-3" small label={t("ws2-done · haqiqiy brauzer", "ws2-done · настоящий браузер")} /></>}
-  </div>} />;
+    </div>
+  </div>; }} />;
 }
 
 // ============================================================

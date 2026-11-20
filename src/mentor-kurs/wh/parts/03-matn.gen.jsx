@@ -422,9 +422,15 @@ const MDT = {
   "title": "Imzo baytlardan: xizmat JSON'ni bo'sh joy bilan yuborsa, xom tanadan hisoblagan kod qabul qiladi, JSON.stringify(body) dan hisoblagani rad etadi. rawBody o'chsa — haqiqiy to'lov ham 401",
   "seg": [
    [
+    "x",
+    "Endi <b>o'zingiz buzasiz</b>: kodda yonib turgan <code>req.rawBody</code> ustiga bosing",
+    "Endi to'rtta xatoni ataylab yasaymiz, birinchisini o'zingiz qilasiz. Payment controller ts'da imzo req raw body'dan hisoblanyapti, raw body yonib turibdi, ustiga bosing: imzo JSON stringify body'dan hisoblanadi.",
+    "<b>payment.controller.ts</b>dagi <b><code>req.rawBody</code></b> ustiga bosing — imzo <code>JSON.stringify(body)</code> dan hisoblanadi."
+   ],
+   [
     "a",
     "Sodda xato: imzoni <b><code>JSON.stringify(body)</code> dan</b> hisoblash — «baribir o'sha ma'lumot-ku»",
-    "Endi to'rtta xatoni ataylab yasaymiz. Birinchisi juda keng tarqalgan: imzoni xom tanadan emas, JSON stringify body'dan hisoblash. Ma'lumot baribir o'sha, deb o'ylaysiz. Bizning skript bo'sh joysiz yuboradi, shuning uchun bu kod u bilan ishlaydi."
+    "Imzo endi xom tanadan emas, JSON stringify body'dan hisoblanadi. Bu juda keng tarqalgan xato. Ma'lumot baribir o'sha, deb o'ylaysiz. Bizning skript bo'sh joysiz yuboradi, shuning uchun bu kod u bilan ishlaydi."
    ],
    [
     "b",
@@ -449,9 +455,15 @@ const MDT = {
   "title": "Yozuvni imzodan oldin qo'ysak: imzosiz xabar 401 oladi — lekin payments da qator bor va panelda «To'landi». Javob to'g'ri, bazada esa yolg'on",
   "seg": [
    [
+    "x",
+    "Uchinchi xato eng xavflisi — <b>uni ham o'zingiz qilasiz</b>: <code>record</code> satri ustiga bosing",
+    "Uchinchi xato eng xavflisi, uni ham o'zingiz qilasiz. Controller'da yozuv satri yonib turibdi, ustiga bosing: u imzo tekshiruvidan oldinga ko'chadi.",
+    "<b>payment.controller.ts</b>dagi <b><code>this.payments.record</code></b> ustiga bosing — yozuv imzo tekshiruvidan oldinga ko'chadi."
+   ],
+   [
     "a",
     "Uchinchi xato: <b><code>record</code> imzo tekshiruvidan oldin</b> — «avval yozib olay, keyin tekshiraman»",
-    "Uchinchi xato eng xavflisi. Controller'da tartibni almashtiramiz: avval parse va record, keyin imzo. Kod ishlaydi, testlarsiz ko'rinmaydi. Imzosiz xabar yuboramiz."
+    "Tartib almashdi: avval parse va record, keyin imzo. Kod ishlaydi, testlarsiz ko'rinmaydi. Imzosiz xabar yuboramiz."
    ],
    [
     "b",

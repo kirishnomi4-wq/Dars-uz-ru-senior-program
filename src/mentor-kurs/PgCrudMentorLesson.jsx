@@ -423,9 +423,11 @@ const vis = (at, beat) => at == null || at <= beat;
 
 // useAudio(segments) → currentId. Qadam faqat oldinga o'sadi. `ask` segmenti: ovoz savol beradi va
 // tugma bosilguncha kutadi (waits_for button_click/step) — «o'ylab ko'ring».
+// `act` segmenti (F-1120-02): xuddi shunday kutadi, lekin bosiladigan narsa SAHNADA (masalan kodda yonib turgan so'z);
+// sahna bosilganda answerAsk(seg.id, 0) chaqiradi, chap panelda act matni ko'rsatma bo'lib turadi.
 // `review` (Orqaga bilan qaytilgan ekran, A12): ovoz yo'q, ekran yakuniy holatda; ↺ boshidan — ovoz bilan qayta
 function useBeats(segments, review) {
-  const segs = useMemo(() => review ? [] : segments.map((s, i) => ({ id: s.id, text: voice(s.text), trigger: i === 0 ? 'on_mount' : 'after_previous', waits_for: s.ask ? { type: 'button_click', target: 'step' } : s.waits_for })), [segments, review]);
+  const segs = useMemo(() => review ? [] : segments.map((s, i) => ({ id: s.id, text: voice(s.text), trigger: i === 0 ? 'on_mount' : 'after_previous', waits_for: s.ask || s.act ? { type: 'button_click', target: 'step' } : s.waits_for })), [segments, review]);
   const audio = useAudio(segs);
   const [beat, setBeat] = useState(review ? segments.length - 1 : 0);
   const [done, setDone] = useState(!!review);
@@ -439,7 +441,7 @@ function useBeats(segments, review) {
   // qadamni o'sha savolga suramiz, aks holda savol chiqmaydi va ekran qotadi
   useEffect(() => {
     if (!audio.waitingFor || audio.currentId) return;
-    const k = segments.findIndex((s, i) => i >= beat && s.ask);
+    const k = segments.findIndex((s, i) => i >= beat && (s.ask || s.act));
     if (k >= 0) { started.current = true; setBeat((b) => Math.max(b, k)); }
   }, [audio.waitingFor, audio.currentId, beat, segments]);
   // F-1031-16: oxirgi segment ovozi YUKLANAYOTGANDA ham isPlaying=false bo'ladi — Davom erta ochilmasin:
@@ -453,7 +455,9 @@ function useBeats(segments, review) {
   const answerAsk = useCallback((segId, i) => {
     setGuess((g) => ({ ...g, [segId]: i }));
     if (audio.waitingFor) audio.triggerEvent('button_click', 'step');
-    else if (audio.muted || audio.status === 'idle') stepManual();
+    // F-1120-02: ovoz hali YUKLANAYOTGAN bo'lsa (status idle, lekin currentId — shu segment) qo'lda o'tilmaydi:
+    // aks holda qadam oldinga ketadi, runtime esa shu segmentda tugmani kutib qoladi va dars ovozsiz qoladi
+    else if (audio.muted || (audio.status === 'idle' && audio.currentId !== segId)) stepManual();
     else pendingAsk.current = true;
   }, [audio, stepManual]);
   useEffect(() => { if (audio.waitingFor && pendingAsk.current) { pendingAsk.current = false; audio.triggerEvent('button_click', 'step'); } }, [audio.waitingFor, audio]);
@@ -513,7 +517,7 @@ function Say({ eyebrow, title, segments, beat, audio, stepManual, below, guess, 
   const now = segments[beat];
   const keyHtml = now.key || now.show || digits(now.text);
   const [tr, setTr] = useState(false);
-  const showManual = !review && (audio.muted || (!audio.isPlaying && !audio.waitingFor && beat < segments.length - 1 && audio.status === 'idle' && !now.ask));
+  const showManual = !review && (audio.muted || (!audio.isPlaying && !audio.waitingFor && beat < segments.length - 1 && audio.status === 'idle' && !now.ask && !now.act));
   const asking = now.ask && guess && guess[now.id] === undefined;
   const prevAsk = beat > 0 && segments[beat - 1].ask ? segments[beat - 1] : null;
   return (
@@ -530,6 +534,7 @@ function Say({ eyebrow, title, segments, beat, audio, stepManual, below, guess, 
         )}
         <div className="mk-dots">{segments.map((s, i) => <i key={s.id} className={i === beat ? 'on' : (i < beat ? 'done' : '')} />)}</div>
         {review && <p className="mk-review">{t("Takrorlash: ekran tayyor holatda, ovozsiz. Ovoz bilan qayta eshitish — tepadagi «↺ boshidan». To'liq matn — «Matn».", 'Повтор: экран в готовом виде, без звука. Послушать заново со звуком — «↺ с начала» вверху. Полный текст — «Текст».')}</p>}
+        {now.act && guess && guess[now.id] === undefined && !review && <p className="n1-acthint" dangerouslySetInnerHTML={html(now.act)} />}
         {asking && (
           <div className="mk-ask"><p>{now.ask.q}</p><div className="row">{now.ask.opts.map((o, i) => <button key={i} className="mk-btn ghost sm" onClick={() => answerAsk(now.id, i)}>{o}</button>)}</div></div>
         )}
@@ -902,6 +907,299 @@ function CoverStart({ onStart, resume }) {
       <p className="mk-resume-note">{t(`Oxirgi marta ${resume.idx + 1}-ekrangacha kelgansiz. Javoblaringiz saqlangan.`, `В прошлый раз вы дошли до ${resume.idx + 1}-го экрана. Ответы сохранены.`)}</p>
     </div>
   );
+}
+
+// ============================================================
+//  DARS RASMI — UMUMIY QISM (F-1120-02, 20.11; qonun M51, M52). Hamma mentor darsiga yig'iladi (dev/yig.sh).
+//  Bu yerda: rasm uslubi (CSS, useCssN1 — darsning ildiz komponentida chaqiriladi), N1Fit (qat'iy o'lchamli
+//  chizma sahna eniga moslashadi), useLate, useAct (M52: mentor o'zi bosib buzadi), N1Mini, Res.
+//  Darsga xos rasm — o'z bo'lagida: Nest darslari — parts/02c-nest.jsx, boshqa dars — <dars>/parts/02b-*.jsx.
+//  Ranglar dars ranglari (PART, T); yangi rang yo'q. CSS ichida backtick yo'q (CLAUDE.md).
+// ============================================================
+const CSS_N1 = `
+.n1-fit{position:relative;width:100%;flex:0 0 auto}
+.n1-box{position:absolute;top:0;transform-origin:0 0;font:13px/1.4 ${SANS};color:${T.ink}}
+.n1-box *{box-sizing:border-box}
+.n1-abs{position:absolute}
+.n1-tagl{position:absolute;font:600 10.5px/1 ${MONO};letter-spacing:.12em;color:${T.ink3};text-transform:uppercase;white-space:nowrap}
+.n1-st{transition:opacity .45s,box-shadow .45s,filter .45s,border-color .45s,background .45s}
+.n1-st[data-st="g"]{opacity:.3;filter:grayscale(1)}
+.n1-st[data-st="dim"]{opacity:.45}
+.n1-st[data-st="off"]{opacity:0;pointer-events:none}
+.n1-st[data-st="hl"]{box-shadow:0 0 0 4px rgba(226,69,31,.16),0 14px 30px rgba(15,17,21,.12)}
+
+.n1-br{position:absolute;border-radius:12px;border:1.5px solid #C9CED8;background:${T.paper};overflow:hidden}
+.n1-br .top{height:30px;background:#E9ECF1;display:flex;align-items:center;gap:5px;padding:0 9px}
+.n1-br .top i{width:7px;height:7px;border-radius:50%;background:#B9BFCB;flex:none}
+.n1-br .top span{margin-left:4px;flex:1;min-width:0;background:${T.paper};border-radius:9px;font:500 10px/1.6 ${MONO};padding:0 6px;color:${T.ink2};white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.n1-br .bd{position:absolute;left:0;right:0;top:30px;bottom:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:10px}
+.n1-br .wait{font-size:12.5px;color:${T.ink3}}
+.n1-br .out{font:700 18px/1.25 ${SANS};color:${T.ink};animation:mk-up .4s ease both}
+.n1-br .out.code{font:600 11px/1.5 ${MONO};text-align:left;color:${T.green};word-break:break-all;white-space:normal}
+.n1-br .out.er{color:#DC2626}
+.n1-cap{position:absolute;text-align:center;font-size:11.5px;color:${T.ink3};white-space:nowrap}
+
+.n1-app{position:absolute;border-radius:18px;border:1.5px dashed #C9CED8;background:#FAFBFC}
+.n1-mod{position:absolute;border:2px solid ${PART.mod};border-radius:12px;background:#FFFBF0}
+.n1-mod .lg{position:absolute;left:12px;top:-9px;background:${T.paper};padding:0 6px;font:700 13px/16px ${SANS};color:${PART.mod};white-space:nowrap}
+.n1-mod .lab{position:absolute;right:12px;top:-14px}
+.n1-chip{position:absolute;font:500 12px/1.4 ${MONO};background:${T.paper};border:1px solid #E6D6A8;border-radius:7px;padding:4px 8px;white-space:nowrap;color:${T.ink};transition:box-shadow .4s,border-color .4s,opacity .4s}
+.n1-chip.hot{border-color:${T.accent};box-shadow:0 0 0 3px rgba(226,69,31,.18)}
+.n1-link{position:absolute;width:2px;background:${PART.mod};opacity:0;transition:opacity .4s}
+.n1-link.on{opacity:1}
+
+.n1-part{position:absolute;border-radius:14px;background:${T.paper};border:2px solid var(--c);padding:13px 14px}
+.n1-part .nm{font:700 16px/1.2 ${SANS};color:var(--c);display:flex;align-items:center;gap:8px;white-space:nowrap}
+.n1-part .nm i{width:9px;height:9px;border-radius:3px;background:var(--c);flex:none}
+.n1-part .role{font-size:13px;color:${T.ink2};margin-top:5px}
+.n1-part .cd{display:inline-block;margin-top:10px;background:${T.code};color:${T.codeInk};font:500 12px/1.4 ${MONO};padding:6px 10px;border-radius:8px;white-space:nowrap}
+.n1-part .fl{position:absolute;left:14px;bottom:10px;font:500 11px/1 ${MONO};color:${T.ink3};white-space:nowrap}
+.n1-part .lab{position:absolute;right:10px;top:10px}
+.n1-lab{display:inline-block;font:700 11.5px/1 ${SANS};color:${T.ink2};background:#F1F3F6;border:1px solid ${T.line};border-radius:999px;padding:5px 9px;white-space:nowrap;animation:mk-up .4s ease both}
+.n1-sock{position:absolute;height:34px;border-radius:17px;border:1.5px dashed #A8AFBD;display:flex;align-items:center;justify-content:center;font:700 12.5px/1 ${MONO};color:${T.ink3};background:${T.paper};transition:all .4s}
+.n1-sock.er{border:1.5px solid #DC2626;color:#DC2626;background:#FEF2F2}
+
+.n1-exp{position:absolute;border-radius:10px;border:1px solid ${T.line};background:#F0F2F5;display:flex;align-items:center;gap:8px;padding:0 14px;font-size:12.5px;color:${T.ink2};white-space:nowrap;transition:all .45s}
+.n1-exp b{color:${T.ink};font-weight:700}
+.n1-exp[data-st="hl"]{background:#FFF0EB;border-color:${T.accent};box-shadow:0 0 0 4px rgba(226,69,31,.12)}
+.n1-exp[data-st="hl"] b{color:${T.accent}}
+
+.n1-stem{position:absolute;width:0;border-left:2px dotted #C9CED8}
+.n1-lanes{position:absolute;border-radius:14px;background:${T.bg}}
+.n1-ln{position:absolute;height:2px;background:#D5D9E1}
+.n1-lf{position:absolute;height:2px;transition:width .9s cubic-bezier(.4,0,.2,1)}
+.n1-lf.r{background:${T.accent}}.n1-lf.g{background:${T.green}}
+.n1-stn{position:absolute;width:10px;height:10px;border-radius:50%;background:${T.paper};border:2px solid #B9BFCB;transform:translate(-50%,-50%)}
+.n1-lbl{position:absolute;right:14px;font:600 11px/1 ${MONO};color:${T.ink3};white-space:nowrap;transform:translateY(-50%)}
+.n1-pk{position:absolute;transform:translate(-50%,-50%);background:${T.accent};color:#fff;font:600 12px/1 ${MONO};padding:6px 11px;border-radius:14px;white-space:nowrap;box-shadow:0 6px 14px rgba(15,17,21,.22);transition:left .9s cubic-bezier(.4,0,.2,1),top .35s,background .3s,opacity .3s;z-index:3}
+.n1-pk.grn{background:${T.green}}
+.n1-pk.off{opacity:0}
+.n1-pk.loop{transition:none;animation:n1-loop 5.2s linear infinite}
+@keyframes n1-loop{0%{left:var(--xa);top:var(--y1);background:${T.accent}}44%{left:var(--xc);top:var(--y1);background:${T.accent}}50%{left:var(--xc);top:var(--y2);background:${T.green}}94%{left:var(--xa);top:var(--y2);background:${T.green}}100%{left:var(--xa);top:var(--y1);background:${T.accent}}}
+.n1-ro{position:absolute;background:${T.code};border-radius:12px;display:flex;align-items:center;gap:14px;padding:0 16px;transition:opacity .35s;overflow:hidden}
+.n1-ro .rf{font:500 11.5px/1 ${MONO};color:#8A90A2;white-space:nowrap}
+.n1-ro code{font:500 13px/1.3 ${MONO};color:${T.codeInk};white-space:nowrap}
+.n1-ro.off{opacity:0}
+.n1-k{color:#C792EA}.n1-s{color:#9ECE6A}.n1-d{color:#E5C07B}.n1-c{color:#7AA2F7}.n1-ok{color:#86EFAC}.n1-er{color:#FCA5A5}
+
+.n1-tok{position:absolute;height:38px;border-radius:19px;background:#E3F5EC;border:2px solid ${T.green};display:flex;align-items:center;justify-content:center;gap:7px;font:700 13px/1 ${SANS};color:${T.green};transform:translate(-50%,-50%);transition:left .9s cubic-bezier(.4,0,.2,1),top .9s cubic-bezier(.4,0,.2,1),opacity .35s,transform .35s;z-index:3;white-space:nowrap}
+.n1-tok i{width:8px;height:8px;border-radius:50%;background:${T.green};flex:none}
+.n1-tok.off{opacity:0;transform:translate(-50%,-50%) scale(.6)}
+.n1-tok.twin{background:transparent;border-style:dashed;opacity:0;transition:opacity .4s;z-index:2}
+.n1-tok.twin.on{opacity:.55}
+.n1-tok.grey{background:#F3F4F7;border-color:#9AA1B1;color:${T.ink2}}
+.n1-tok.grey i{background:#9AA1B1}
+.n1-tok.yel{background:#FFFBF0;border-color:${PART.mod};color:${PART.mod};border-style:dashed}
+.n1-tok.yel i{background:${PART.mod}}
+.n1-box2{position:absolute;border-radius:14px;border:2px solid #9AA1B1;background:#F3F4F7}
+.n1-box2 .bl{position:absolute;left:14px;top:12px;font:600 10.5px/1 ${MONO};letter-spacing:.12em;color:${T.ink2};white-space:nowrap}
+.n1-box2 .sh{position:absolute;border-radius:19px;border:1.5px dashed #A8AFBD;display:flex;align-items:center;justify-content:center;font:500 11.5px/1 ${MONO};color:${T.ink3};transition:color .3s}
+.n1-box2.has .sh{color:transparent}
+.n1-box2 .nq{position:absolute;left:14px;right:14px;bottom:12px;font-size:11.5px;line-height:1.35;color:${T.ink2};opacity:0;transition:opacity .4s}
+.n1-box2 .nq.on{opacity:1}
+.n1-you{position:absolute;font:700 11.5px/1 ${SANS};color:#fff;background:${T.accent};border-radius:10px;padding:5px 9px;white-space:nowrap;opacity:0;transition:opacity .4s;z-index:4}
+.n1-you.on{opacity:1}
+.n1-ann{position:absolute;font:600 12px/1.3 ${SANS};color:${T.ink2};white-space:nowrap;opacity:0;transition:opacity .4s}
+.n1-ann.on{opacity:1}
+.n1-ann b{color:${T.accent}}
+.n1-tayyor{color:${T.green};transition:opacity .4s}
+.n1-line{position:absolute;height:38px;border-radius:9px;background:${T.code};color:${T.codeInk};font:500 12px/1 ${MONO};display:flex;align-items:center;padding:0 10px;white-space:nowrap}
+.n1-prm{border-radius:4px;padding:1px 0;transition:background .4s,box-shadow .4s}
+.n1-prm.hot{background:rgba(226,69,31,.3);box-shadow:0 0 0 2px rgba(226,69,31,.3)}
+.n1-sock.wait{border-color:${T.accent};color:${T.accent};animation:n1-pulse 1.4s ease-in-out infinite}
+@keyframes n1-pulse{50%{box-shadow:0 0 0 6px rgba(226,69,31,.14)}}
+.n1-svg{position:absolute;left:0;top:0;pointer-events:none;overflow:visible}
+.n1-pth{stroke:#A8AFBD;stroke-width:2;stroke-dasharray:5 5;fill:none;opacity:0;transition:opacity .4s,stroke .4s}
+.n1-pth.dash{opacity:1}
+.n1-pth.solid{opacity:1;stroke:${T.green};stroke-dasharray:none}
+.n1-pth.bad{opacity:1;stroke:#DC2626}
+.n1-row{position:absolute;opacity:0;transition:opacity .45s;pointer-events:none}
+.n1-row.on{opacity:1}
+.n1-row.dim{opacity:.42}
+.n1-srch{border:1px solid ${T.line};border-radius:12px;background:#F3F4F7}
+.n1-fld{position:absolute;height:34px;border-radius:7px;border:1.5px solid ${T.blue};background:${T.paper};display:flex;align-items:center;gap:8px;padding:0 10px;font:500 13px/1 ${MONO}}
+.n1-res{position:absolute;font:700 14px/1.3 ${SANS};color:${T.accent};white-space:nowrap}
+.n1-res span{font-weight:500;color:${T.ink2};margin-left:8px}
+.n1-exf{position:absolute;border-radius:12px;border:1px solid ${T.line};background:${T.paper};overflow:hidden}
+.n1-exf .tb{height:24px;background:#E9ECF1;font:500 10.5px/24px ${MONO};color:${T.ink2};padding:0 10px}
+.n1-exf .cl{position:absolute;left:10px;top:34px;font:500 11.5px/1.3 ${MONO};color:${T.ink};white-space:nowrap}
+.n1-bn{position:absolute;border-radius:12px;border:1px solid ${T.line};background:${T.paper}}
+.n1-bn svg{position:absolute;left:13px;top:12px}
+.n1-bn .bt{position:absolute;left:14px;bottom:12px;font:700 13.5px/1.2 ${SANS};color:${T.ink}}
+
+.n1-plan{position:absolute;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+.n1-plan div{border:1px solid ${T.line};border-radius:10px;background:${T.paper};padding:9px 10px;display:flex;flex-direction:column;gap:6px;transition:border-color .3s,box-shadow .3s,opacity .3s}
+.n1-plan div.hl{border-color:${T.accent};box-shadow:0 0 0 3px rgba(226,69,31,.12)}
+.n1-plan div.dim{opacity:.45}
+.n1-plan b{font:700 11.5px/1 ${MONO};color:${T.accent}}
+.n1-plan span{font-size:11.5px;line-height:1.3;color:${T.ink}}
+
+.n1-team{position:absolute;border:1px solid ${T.line};border-radius:12px;background:${T.paper};padding:10px 12px}
+.n1-team h6{margin:0 0 6px;font:600 10.5px/1 ${MONO};letter-spacing:.12em;color:${T.ink3};text-transform:uppercase}
+.n1-team div{font:500 12px/1.7 ${MONO};color:${T.ink2};white-space:nowrap}
+.n1-team div i{display:inline-block;width:7px;height:7px;border-radius:2px;background:var(--c,${T.ink3});margin-right:7px}
+
+.n1-shelf{position:absolute;border-radius:12px;border:1.5px solid ${T.line};background:${T.paper};transition:border-color .4s,box-shadow .4s,opacity .4s}
+.n1-shelf .sl{position:absolute;left:12px;top:-9px;background:${T.paper};padding:0 6px;font:600 12px/16px ${MONO};color:${T.ink2};white-space:nowrap}
+.n1-shelf.hl{border-color:${T.accent};box-shadow:0 0 0 4px rgba(226,69,31,.12)}
+.n1-shelf.dim{opacity:.45}
+.n1-shelf .emp{position:absolute;left:14px;top:14px;font:500 12px/1 ${MONO};color:${T.ink3}}
+.n1-file{position:absolute;display:flex;align-items:center;gap:7px;font:500 12px/1 ${MONO};color:${T.ink};white-space:nowrap;padding:7px 10px;border-radius:8px;background:${T.paper};border:1px solid ${T.line}}
+.n1-file i{width:8px;height:8px;border-radius:2px;background:var(--c);flex:none}
+.n1-file.new{border-color:${T.accent};animation:mk-up .45s ease both}
+.n1-ghost{position:absolute;display:flex;align-items:center;gap:7px;font:600 12px/1 ${SANS};color:#B91C1C;white-space:nowrap;padding:7px 10px;border-radius:8px;border:1.5px dashed #F2A9A9;background:#FEF2F2;animation:mk-up .45s ease both}
+.n1-tree-ln{position:absolute;background:#C9CED8}
+
+.n1-mini{position:absolute;border-radius:12px;border:1px solid ${T.line};background:#FAFBFC}
+.n1-badge{position:absolute;height:24px;border-radius:7px;display:flex;align-items:center;padding:0 8px;font:600 11.5px/1 ${MONO};white-space:nowrap;transition:all .4s}
+.n1-badge.ok{background:#FFF7E0;color:#8A5A00;border:1px solid #E6D6A8}
+.n1-badge.gone{background:transparent;color:#DC2626;border:1.5px dashed #F2A9A9}
+.n1-say{position:absolute;font:600 12px/1.3 ${SANS};white-space:nowrap;transition:opacity .4s}
+.n1-say.er{color:#DC2626}.n1-say.ok{color:${T.green}}
+.n1-res2{position:absolute;display:flex;flex-direction:column;gap:6px}
+.n1-res2 div{font:500 11.5px/1 ${MONO};white-space:nowrap;padding:6px 9px;border-radius:7px;background:${T.code};color:${T.codeInk};transition:all .4s}
+.n1-res2 b{font-weight:700}
+.n1-arr{position:absolute;height:2px;background:${T.green};transition:background .4s}
+.n1-arr::after{content:"";position:absolute;right:-1px;top:-4px;border-left:7px solid ${T.green};border-top:5px solid transparent;border-bottom:5px solid transparent;transition:border-color .4s}
+.n1-arr.bad{background:repeating-linear-gradient(90deg,#DC2626 0 4px,transparent 4px 8px)}
+.n1-arr.bad::after{border-left-color:#DC2626}
+.n1-arr.off{opacity:.25}
+.n1-pin{position:absolute;display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:${T.accent};color:#fff;font:700 11.5px/1 ${SANS};box-shadow:0 0 0 3px #fff;opacity:0;transition:opacity .35s;z-index:5}
+.n1-pin.on{opacity:1}
+.mk-ln.n1-p1>span:last-child::before,.mk-ln.n1-p2>span:last-child::before,.mk-ln.n1-p3>span:last-child::before{display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;border-radius:50%;background:${T.accent};color:#fff;font:700 10.5px/1 ${SANS};margin-right:7px;vertical-align:1px}
+.mk-ln.n1-p1>span:last-child::before{content:"1"}
+.mk-ln.n1-p2>span:last-child::before{content:"2"}
+.mk-ln.n1-p3>span:last-child::before{content:"3"}
+.n1-act{cursor:pointer;border-radius:5px;padding:1px 3px;outline:2px solid #FF8A65;outline-offset:1px;animation:n1-blink 1.3s ease-in-out infinite}
+.n1-act:hover{background:rgba(255,138,101,.22)}
+@keyframes n1-blink{50%{outline-color:transparent}}
+.n1-acthint{margin-top:16px;padding:12px 14px;border:1.5px solid ${T.accent};border-radius:12px;background:#FFF7F3;font-size:15px;line-height:1.45;color:${T.ink};animation:mk-up .4s ease both}
+.n1-acthint b{color:${T.accent}}
+
+.n1-kit .st{position:absolute;border-radius:12px;background:${T.paper};border:2px solid var(--c);padding:10px 10px 8px;display:flex;flex-direction:column;gap:6px;transition:opacity .4s,box-shadow .4s}
+.n1-kit .st .w{font:700 14px/1.15 ${SANS};color:${T.ink}}
+.n1-kit .st .a{font:600 12px/1 ${MONO};color:var(--c)}
+.n1-kit .st .v{font-size:11.5px;line-height:1.3;color:${T.ink2}}
+.n1-kit .st .f{font:500 10px/1.2 ${MONO};color:${T.ink3};word-break:break-all;opacity:0;transition:opacity .4s}
+.n1-kit .st .f.on{opacity:1}
+.n1-kit .st.hl{box-shadow:0 0 0 4px rgba(226,69,31,.16),0 14px 30px rgba(15,17,21,.12)}
+.n1-kit .st.dim{opacity:.4}
+.n1-kit .ar{position:absolute;height:2px;background:#B9BFCB}
+.n1-kit .ar::after{content:"";position:absolute;right:-1px;top:-4px;border-left:7px solid #B9BFCB;border-top:5px solid transparent;border-bottom:5px solid transparent}
+.n1-kit .no{position:absolute;font:600 11.5px/1.3 ${SANS};color:${T.accent};white-space:nowrap;opacity:0;transition:opacity .4s}
+.n1-kit .no.on{opacity:1}
+
+.mk-cover .card.n1-cv{max-width:1120px;padding:0;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);overflow:hidden}
+.n1-cv .tx{padding:40px 30px 36px 40px;display:flex;flex-direction:column}
+.n1-cv .af{margin:6px 0 10px;font:600 11.5px/1 ${MONO};letter-spacing:.12em;color:${T.ink3};text-transform:uppercase}
+.n1-cv ul.ok{margin:0 0 22px;gap:10px}
+.n1-cv ul.ok li{display:flex;gap:10px;color:${T.ink};font-size:15.5px;line-height:1.4}
+.n1-cv ul.ok li::before{content:"✓";flex:none;width:21px;height:21px;border-radius:50%;background:#E3F5EC;color:${T.green};font:700 12px/21px ${SANS};text-align:center;margin:0}
+.n1-cv .tx>.mk-btn{align-self:flex-start}
+.n1-cv .meta{margin:auto 0 16px;font-size:13px;line-height:1.5;color:${T.ink3}}
+.n1-cv .pic{background:${T.bg};border-left:1px solid ${T.line};display:flex;align-items:center;padding:24px 20px}
+@media (max-width:900px){.mk-cover .card.n1-cv{grid-template-columns:1fr}.n1-cv .pic{border-left:0;border-top:1px solid ${T.line}}}
+@media (prefers-reduced-motion:reduce){.n1-pk.loop,.n1-sock.wait,.n1-act{animation:none}.n1-box *{transition:none!important}}
+`;
+function useCssN1() {
+  useEffect(() => {
+    let s = document.getElementById('mk-css-n1');
+    if (!s) { s = document.createElement('style'); s.id = 'mk-css-n1'; document.head.appendChild(s); }
+    if (s.textContent !== CSS_N1) s.textContent = CSS_N1;
+  }, []);
+}
+
+// Qat'iy o'lchamli chizma (w×h) sahna eniga qarab kattalashadi (max gacha), markazda turadi
+function N1Fit({ w, h, max = 1.25, children, style }) {
+  const ref = useRef(null);
+  const [W, setW] = useState(0);
+  useEffect(() => {
+    const el = ref.current; if (!el) return undefined;
+    const f = () => setW(el.clientWidth);
+    f();
+    if (typeof ResizeObserver === 'undefined') { window.addEventListener('resize', f); return () => window.removeEventListener('resize', f); }
+    const ro = new ResizeObserver(f); ro.observe(el); return () => ro.disconnect();
+  }, []);
+  const k = W > 0 ? Math.min(max, W / w) : 1;
+  return <div ref={ref} className="n1-fit" style={{ height: Math.round(h * k), ...(style || {}) }}>
+    <div className="n1-box" style={{ width: w, height: h, left: Math.max(0, (W - w * k) / 2), transform: `scale(${k})`, visibility: W > 0 ? 'visible' : 'hidden' }}>{children}</div>
+  </div>;
+}
+
+// Bir qadamdan keyin ms o'tdimi (paket ikkinchi yo'lakka o'tishi, brauzerga javob kelishi uchun)
+function useLate(key, ms) {
+  const [late, setLate] = useState(false);
+  useEffect(() => { setLate(false); const id = setTimeout(() => setLate(true), ms); return () => clearTimeout(id); }, [key, ms]);
+  return late;
+}
+
+// ---------- 23–26-ekran: «Buzamiz» — kichik rasm (VS Code oynasi ichida, kod va terminal orasida) ----------
+// Mentor o'zi buzadi: kodda yonib turgan so'z (data-act) bosiladi → act segmenti tugaydi (dvigatel: answerAsk).
+// hit — bosildimi; broken — buzilgan holat ko'rinadimi
+function useAct(b, id = 'x') {
+  const hit = !!(b.guess && b.guess[id] !== undefined);
+  const onClick = (e) => { const el = e.target && e.target.closest ? e.target.closest('[data-act]') : null; if (el && !hit && b.answerAsk) b.answerAsk(id, 0); };
+  return { hit, onClick };
+}
+// Balandlik 122 (ramka 8…118): 1280×720 da VS Code oynasiga kod + rasm + terminal sig'sin; kattalashish 1.1 gacha
+const N1Mini = ({ h = 122, children }) => <div style={{ background: T.paper, border: `1px solid ${T.line}`, borderRadius: 12, padding: '4px 8px', flex: '0 0 auto' }}><N1Fit w={520} h={h} max={1.1}>{children}</N1Fit></div>;
+// code null — natija hali noma'lum (savol berilgan, javob keyingi qadamda): «?»
+const Res = ({ rows, left = 404, top = 34 }) => <div className="n1-res2" style={{ left, top }}>{rows.map(([q, code, txt]) => <div key={q}>{q} → <b className={code == null ? '' : code >= 400 ? 'n1-er' : 'n1-ok'}>{code == null ? '?' : code}</b>{txt ? ' ' + txt : ''}</div>)}</div>;
+
+// ============================================================
+//  PostgreSQL DARSLARI RASMI (F-1120-02, qonun M51) — PG-1 va PG-2 ga yig'iladi (dev/yig.sh).
+//  Blog bazasi: users va posts jadvallari, tashqi kalit (posts.user_id → users.id), qoida belgilari,
+//  JOIN chiziqlari, rad etilgan yozuv (✕) va pastda psql satri. Ma'lumot — manba/pg1-out dagi haqiqiy blog.
+// ============================================================
+const BLOG_USERS = [['1', 'ali'], ['2', 'vali'], ['3', 'sardor']];
+const BLOG_POSTS = [['1', '1', 'Birinchi post'], ['2', '1', "Bugun Nest o'rgandim"], ['3', '2', 'Salom hammaga']];
+// join: 'inner' | 'left' · fk: tashqi kalit chizig'i yonadi · rules: qoida belgilari yonadi · hl: { users: [ustun], posts: [ustun] }
+// bad: { t: 'posts'|'users', row: [...], why } — jadvalga kirmagan yozuv · del: users qatori (o'chirish rad etildi)
+// empty: jadvallar faqat tuzilish (qatorsiz) · read: [prompt, html] · out: html (natija yoki ERROR) · outEr
+function BlogDb({ join, fk, rules, hl = {}, bad, del, empty, read, out, outEr, tag, compact, max, users = BLOG_USERS, posts = BLOG_POSTS }) {
+  const RH = 26, TY = 44, HY = TY + 30, BY = HY + 26; // jadval: sarlavha · ustun nomlari · qatorlar
+  const U = { x: 20, w: 250, cols: [['id', 60], ['username', 190]] };
+  const P = { x: 410, w: 330, cols: [['id', 50], ['user_id', 90], ['izoh', 190]] };
+  const rowsU = empty ? [] : users, rowsP = empty ? [] : posts;
+  const tblH = 30 + 26 + Math.max(rowsU.length, rowsP.length, 1) * RH + (bad ? RH + 8 : 0);
+  const rdY = TY + tblH + 18;
+  const H = compact ? rdY : rdY + (read ? 50 : 0) + (out ? 36 : 0) + 6;
+  const colX = (tb, i) => tb.x + tb.cols.slice(0, i).reduce((a, c) => a + c[1], 0);
+  const matched = (uid) => rowsP.some((r) => r[1] === uid);
+  const uState = (i, r) => (del === r[0] ? 'del' : join === 'inner' && !matched(r[0]) ? 'dim' : join === 'left' && !matched(r[0]) ? 'left' : '');
+  const cell = (tb, ci, ri, txt, extra = {}) => <div key={ci + '-' + ri} className="n1-abs" style={{ left: colX(tb, ci), top: BY + ri * RH, width: tb.cols[ci][1], height: RH, padding: '0 10px', display: 'flex', alignItems: 'center', font: `500 12.5px ${MONO}`, color: T.ink, borderTop: `1px solid ${T.line}`, whiteSpace: 'nowrap', overflow: 'hidden', ...extra }}>{txt}</div>;
+  const head = (tb, name, color) => <>
+    <div className="n1-abs" style={{ left: tb.x, top: TY, width: tb.w, height: tblH, border: `2px solid ${color}`, borderRadius: 12, background: T.paper }} />
+    <div className="n1-abs" style={{ left: tb.x + 12, top: TY + 7, font: `700 14px ${MONO}`, color }}>{name}</div>
+    {tb.cols.map(([c], i) => { const on = (hl[name] || []).includes(i); return <div key={c} className="n1-abs" style={{ left: colX(tb, i), top: HY, width: tb.cols[i][1], height: 26, padding: '0 10px', display: 'flex', alignItems: 'center', font: `700 11.5px ${MONO}`, color: on ? T.accent : T.ink2, background: on ? '#FFF0EB' : '#F6F7F9', borderTop: `1px solid ${T.line}`, transition: 'all .4s' }}>{c}</div>; })}
+  </>;
+  // tashqi kalit: ikki jadval orasida, ustun nomlari satrida — posts → users
+  const jy = (ri) => BY + ri * RH + RH / 2;
+  return <N1Fit w={760} h={H} max={max}>
+    {tag && <span className="n1-tagl" style={{ left: 20, top: 4 }}>{tag}</span>}
+    {head(U, 'users', '#336791')}
+    {head(P, 'posts', '#336791')}
+    {rules && <>
+      <span className="n1-badge ok" style={{ left: U.x + 76, top: TY + 5, height: 20, fontSize: 10.5 }}>PK · NOT NULL · UNIQUE</span>
+      <span className="n1-badge ok" style={{ left: P.x + 70, top: TY + 5, height: 20, fontSize: 10.5 }}>user_id REFERENCES users(id)</span>
+    </>}
+    {rowsU.map((r, i) => { const s = uState(i, r); return <React.Fragment key={'u' + i}>{r.map((c, ci) => cell(U, ci, i, c, { opacity: s === 'dim' ? 0.35 : 1, background: s === 'del' ? '#FEF2F2' : s === 'left' ? '#F5F3FF' : undefined, color: s === 'del' ? '#B91C1C' : T.ink }))}</React.Fragment>; })}
+    {join === 'left' && rowsU.filter((r) => !matched(r[0])).map((r) => <span key={'n' + r[0]} className="n1-abs" style={{ left: U.x + U.w + 8, top: jy(rowsU.indexOf(r)) - 9, font: `600 11px ${MONO}`, color: T.purple }}>izoh: NULL</span>)}
+    {del && <span className="n1-say er" style={{ left: U.x + U.w - 92, top: jy(rowsU.findIndex((r) => r[0] === del)) - 8 }}>✕ DELETE</span>}
+    {rowsP.map((r, i) => <React.Fragment key={'p' + i}>{r.map((c, ci) => cell(P, ci, i, c, { color: ci === 1 && (fk || join) ? T.accent : T.ink, fontWeight: ci === 1 && (fk || join) ? 700 : 500 }))}</React.Fragment>)}
+    {bad && <>
+      {bad.row.map((c, ci) => cell(bad.t === 'users' ? U : P, ci, (bad.t === 'users' ? rowsU : rowsP).length, c, { top: BY + (bad.t === 'users' ? rowsU : rowsP).length * RH + 6, color: '#B91C1C', textDecoration: 'line-through', background: '#FEF2F2', borderTop: '1.5px dashed #F2A9A9' }))}
+      <span className="n1-say er" style={{ left: (bad.t === 'users' ? U.x + U.w : P.x + P.w) - 150, top: TY + tblH + 2, fontSize: 11.5, background: T.paper, padding: '0 4px' }}>✕ {bad.why}</span>
+    </>}
+    <svg className="n1-svg" width="760" height={H} viewBox={`0 0 760 ${H}`}>
+      {(fk || join) && <path d={`M${P.x - 2} ${HY + 13} L ${U.x + U.w + 4} ${HY + 13}`} fill="none" stroke={T.accent} strokeWidth="2" strokeDasharray={fk && !join ? '0' : '5 4'} markerEnd="url(#pgah)" />}
+      <defs><marker id="pgah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill={T.accent} /></marker></defs>
+      {join && rowsP.map((r, i) => { const ui = rowsU.findIndex((u) => u[0] === r[1]); if (ui < 0) return null; return <path key={i} d={`M${P.x} ${jy(i)} C ${P.x - 60} ${jy(i)}, ${U.x + U.w + 60} ${jy(ui)}, ${U.x + U.w} ${jy(ui)}`} fill="none" stroke={T.purple} strokeWidth="1.6" opacity=".75" />; })}
+    </svg>
+    {(fk || join) && <span className="n1-abs" style={{ left: (U.x + U.w + P.x) / 2, top: TY - 13, transform: 'translate(-50%,-50%)', font: `600 11px ${MONO}`, color: T.accent, whiteSpace: 'nowrap', background: T.paper, padding: '0 4px' }}>{join ? 'ON users.id = posts.user_id' : 'posts.user_id → users.id'}</span>}
+    {!compact && read && <div className="n1-ro" style={{ left: 20, top: rdY, width: 720, height: 44 }}><span className="rf">{read[0]}</span><code style={{ fontSize: read[1].replace(/<[^>]+>/g, '').length > 75 ? 11.5 : undefined }} dangerouslySetInnerHTML={html(read[1])} /></div>}
+    {!compact && out && <div className="n1-abs" style={{ left: 20, top: rdY + (read ? 50 : 0), width: 720, height: 30, borderRadius: 8, padding: '0 14px', display: 'flex', alignItems: 'center', font: `600 12px ${MONO}`, whiteSpace: 'nowrap', overflow: 'hidden', background: outEr ? '#FEF2F2' : '#E3F5EC', color: outEr ? '#B91C1C' : T.green }} dangerouslySetInnerHTML={html(out)} />}
+  </N1Fit>;
 }
 
 // ============================================================
@@ -1684,9 +1982,15 @@ const MDT = {
   "title": "column \"price\" of relation \"cars\" does not exist — kodda price, jadvalda daily_price",
   "seg": [
    [
+    "x",
+    "Endi <b>o'zingiz buzasiz</b>: kodda yonib turgan <code>daily_price</code> ustiga bosing",
+    "Server ishlaydi, to'rt so'rov ham ishlaydi. Endi ataylab buzamiz, chunki o'quvchining Gemini'si aynan shu xatolarni qiladi. Buzishni o'zingiz qilasiz: server js'ning o'ttiz oltinchi satrida daily price yonib turibdi, ustiga bosing.",
+    "<b>server.js</b> 36-satridagi <b><code>daily_price</code></b> ustiga bosing — Gemini yozgandek <b><code>price</code></b> bo'ladi."
+   ],
+   [
     "a",
     "Birinchi buzish — Gemini'ning odatiy xatosi: <code>INSERT</code>da <b>ustun nomini o'zi o'ylab topadi</b>, <code>price</code>",
-    "Buzishni eng ko'p uchraydigan xatodan boshlaymiz. Gemini insert'da daily price o'rniga price yozgan: ustun nomini jadvaldan emas, o'z taxminidan olgan. Serverni ishga tushiramiz: xato yo'q, server ishlayapti deb yozadi. Xato faqat POST yuborilganda chiqadi."
+    "Daily price o'rniga price bo'ldi. Bu Gemini'ning eng ko'p uchraydigan xatosi: insert'da ustun nomini jadvaldan emas, o'z taxminidan oladi. Serverni ishga tushiramiz: xato yo'q, server ishlayapti deb yozadi. Xato faqat POST yuborilganda chiqadi."
    ],
    [
     "b",
@@ -1711,9 +2015,15 @@ const MDT = {
   "title": "Cannot destructure property 'model' of 'req.body' — so'rov tanasi o'qilmagan",
   "seg": [
    [
+    "x",
+    "Ikkinchi buzish ham <b>sizda</b>: kodda yonib turgan <code>app.use(express.json())</code> ustiga bosing",
+    "Ikkinchi buzish ham sizda. Gemini ba'zan bitta satrni unutadi. Server js'ning o'n sakkizinchi satrida app use express json yonib turibdi, ustiga bosing: satr o'chadi.",
+    "<b>server.js</b> 18-satridagi <b><code>app.use(express.json())</code></b> ustiga bosing — satr o'chadi."
+   ],
+   [
     "a",
-    "Bitta satrni olib tashlaymiz: <code>app.use(express.json())</code> — <b>server baribir ishga tushadi</b>",
-    "Ikkinchi buzish. Gemini ba'zan bitta satrni unutadi: app use express json. Shu satrni olib tashlaymiz. Server xatosiz ishga tushadi, GET ham ishlaydi. Muammo faqat tanasi bor so'rovlarda."
+    "Satr o'chdi: <code>app.use(express.json())</code> yo'q — <b>server baribir ishga tushadi</b>",
+    "Satrni o'chirdingiz. Server xatosiz ishga tushadi, GET ham ishlaydi. Muammo faqat tanasi bor so'rovlarda."
    ],
    [
     "b",
@@ -2058,6 +2368,120 @@ const MDT = {
 };
 
 // ============================================================
+//  PG-2 DARSINING RASMI (F-1120-02, qonun M51) — «So'rov bazagacha va qaytib».
+//  Chapda ikki mijoz: Postman (Express orqali) va psql (to'g'ridan-to'g'ri SQL). O'rtada Express (server.js):
+//  express.json → route → pool.query. O'ngda PostgreSQL: car_rental · cars va shop · products. Pastda — bajarilayotgan satr.
+//  Qiymatlar — manba/pg2-out (11-crud-sorovlar, 12-price-xato, 13-express-json-yoq, v2b-01). Satr raqamlari server.js dagidek
+//  (06-s14-s27.jsx: Pool 10–16 · json 18 · GET 21–29 · POST 32–44, SQL 36). Modul darajasida PG/T ishlatilmaydi (yig'ish tartibi).
+//  Ranglar: dars ranglari (T, PG). CSS izohida backtick yo'q.
+// ============================================================
+const CARS0 = [['1', 'Chevrolet Cobalt', '280000'], ['2', 'Chevrolet Malibu', '520000'], ['3', 'Kia K5', '610000']];
+const PRODS0 = [['1', 'Klaviatura', '120000'], ['2', 'Sichqoncha', '75000']];
+// on: yonib turgan bekatlar ('pm','json','route','pool','cars','psql','shop'); berilmasa — hammasi oddiy
+// path: 'api' | 'psql' | 'both' — qaysi yo'l rangli · back: javob yo'li (yashil) · st: status (null — yo'q, '?' — hali noma'lum)
+// bad: { at: 'json'|'route'|'pool'|'cars'|'pg', why } · pins: { json|route|pool|cars|col|pm: raqam } (M52-4)
+// cars/prods: jadval qatorlari · newRow: cars'da yangi qator (yashil) · col: cars ustunlari satri · psqlLine: [buyruq, natija]
+// route/sql: Express ichidagi satrlar · rc: natija chipi · ro: [fayl:satr, html] · tag · max
+function CrudMachine({ on, path = 'api', back, st = null, res, bad, pins = {}, cars = CARS0, newRow, col, prods = PRODS0, psqlLine, req, route, sql, rc, ro, tag, max, json = true }) {
+  const W = 760, BOT = 300;
+  const H = BOT + (ro ? 54 : 4);
+  const lit = (k) => !on || on.includes(k);
+  const ds = (k) => (bad && bad.at === k ? 'bad' : lit(k) ? (on ? 'hl' : '') : 'dim');
+  const apiOn = path === 'api' || path === 'both', psqlOn = path === 'psql' || path === 'both';
+  const stC = st == null || st === '?' ? T.ink3 : st >= 400 ? '#DC2626' : T.green;
+  const station = (k, y, txt, ref, c) => {
+    const s = ds(k);
+    return <div key={k} className="n1-abs n1-st" data-st={s === 'dim' ? 'dim' : undefined} style={{ left: 244, top: y, width: 244, height: 34, borderRadius: 9, border: `2px solid ${s === 'bad' ? '#DC2626' : c}`, background: s === 'bad' ? '#FEF2F2' : T.paper, display: 'flex', alignItems: 'center', gap: 8, padding: '0 10px', font: `500 ${((n) => (n > 30 ? 10 : n > 26 ? 10.5 : 11.5))(txt.replace(/<[^>]+>/g, '').length)}px ${MONO}`, color: s === 'bad' ? '#B91C1C' : T.ink, whiteSpace: 'nowrap', overflow: 'hidden', boxShadow: s === 'hl' ? '0 0 0 3px rgba(226,69,31,.14)' : 'none', textDecoration: s === 'bad' && k === 'json' ? 'line-through' : 'none' }}>
+      <span style={{ flex: 1, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis' }} dangerouslySetInnerHTML={html(txt)} /><span style={{ color: T.ink3, fontSize: 10.5 }}>{ref}</span>
+    </div>;
+  };
+  const pin = (k, x, y) => (pins[k] ? <span key={'p' + k} className="n1-pin on" style={{ left: x, top: y }}>{pins[k]}</span> : null);
+  const tbl = (k, name, cols, rows, y, hlRow, colsHtml) => {
+    const s = ds(k);
+    return <div className="n1-abs n1-st" data-st={s === 'dim' ? 'dim' : undefined} style={{ left: 530, top: y, width: 202, borderRadius: 10, border: `1.5px solid ${s === 'bad' ? '#DC2626' : s === 'hl' ? PG.pg : T.line}`, background: T.paper, overflow: 'hidden', boxShadow: s === 'hl' ? '0 0 0 3px rgba(51,103,145,.14)' : 'none' }}>
+      <div style={{ padding: '5px 9px', font: `700 11.5px ${MONO}`, color: PG.pg, background: '#F1F5F9' }}>{name}</div>
+      <div style={{ padding: '3px 9px', font: `600 10.5px ${MONO}`, color: s === 'bad' ? '#B91C1C' : T.ink2, borderTop: `1px solid ${T.line}`, whiteSpace: 'nowrap' }} dangerouslySetInnerHTML={html(colsHtml || cols)} />
+      {rows.map((r, i) => <div key={i} style={{ padding: '2px 8px', font: `500 10px/1.55 ${MONO}`, color: i === hlRow ? T.green : T.ink, background: i === hlRow ? '#E3F5EC' : undefined, fontWeight: i === hlRow ? 700 : 500, borderTop: `1px solid ${T.line}`, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{r.join(' · ')}</div>)}
+    </div>;
+  };
+  const rq = req || { m: 'POST', url: '/api/cars', body: '{ "model": "Chevrolet Spark", … }' };
+  const pl = psqlLine || ['shop=#', 'UPDATE products SET price = 99000 WHERE id = 1;', 'UPDATE 1'];
+  return <N1Fit w={W} h={H} max={max}>
+    {tag && <span className="n1-tagl" style={{ left: 20, top: 4 }}>{tag}</span>}
+    {/* Postman — Express orqali */}
+    <div className="n1-abs n1-st" data-st={ds('pm') === 'dim' ? 'dim' : undefined} style={{ left: 20, top: 30, width: 196, height: 138, borderRadius: 12, border: `2px solid ${ds('pm') === 'hl' ? PG.post : T.line}`, background: T.paper, overflow: 'hidden' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '7px 10px', borderBottom: `1px solid ${T.line}`, whiteSpace: 'nowrap' }}><b style={{ font: `700 12px ${SANS}`, color: PG.post }}>Postman</b><span style={{ font: `700 10px ${MONO}`, color: '#fff', background: rq.m === 'GET' ? PG.pg : T.green, borderRadius: 5, padding: '2px 5px' }}>{rq.m}</span><span style={{ font: `500 11px ${MONO}`, color: T.ink2, overflow: 'hidden', textOverflow: 'ellipsis' }}>{rq.url}</span></div>
+      <div style={{ padding: '5px 10px', font: `500 10px/1.5 ${MONO}`, color: T.ink2, height: 56, overflow: 'hidden', overflowWrap: 'anywhere' }}>{rq.body || t("tanasiz so'rov", 'запрос без тела')}</div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 7, padding: '6px 10px', borderTop: `1px solid ${T.line}` }}>
+        <span style={{ font: `700 12px ${MONO}`, color: '#fff', background: stC, borderRadius: 6, padding: '3px 7px', minWidth: 34, textAlign: 'center', transition: 'background .4s' }}>{st == null ? '…' : st}</span>
+        <span style={{ font: `500 10px/1.35 ${MONO}`, color: st >= 400 ? '#B91C1C' : T.ink2, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflowWrap: 'anywhere' }}>{res || ''}</span>
+      </div>
+    </div>
+    {pin('pm', 206, 22)}
+    {/* psql — to'g'ridan-to'g'ri SQL */}
+    <div className="n1-abs n1-st" data-st={ds('psql') === 'dim' ? 'dim' : undefined} style={{ left: 20, top: 222, width: 196, height: 74, borderRadius: 12, background: T.code, padding: '8px 10px', font: `500 10.5px/1.45 ${MONO}`, color: T.codeInk, overflow: 'hidden', boxShadow: ds('psql') === 'hl' ? '0 0 0 3px rgba(226,69,31,.18)' : 'none' }}>
+      <div style={{ color: '#8A90A2', whiteSpace: 'nowrap' }}>psql</div>
+      <div style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}><span style={{ color: '#8A90A2' }}>{pl[0]}</span> {pl[1]}</div>
+      <div className={/ERROR/.test(pl[2]) ? 'n1-er' : 'n1-ok'} style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{pl[2]}</div>
+    </div>
+    {/* Express — server.js */}
+    <div className="n1-app" style={{ left: 232, top: 30, width: 268, height: 160 }} />
+    <span className="n1-tagl" style={{ left: 246, top: 40 }}>Express · server.js</span>
+    {json ? station('json', 58, 'app.use(<span class="n1-c">express.json</span>())', '18', T.yellow) : <div className="n1-abs" style={{ left: 244, top: 58, width: 244, height: 34, borderRadius: 9, border: '1.5px dashed #F2A9A9', background: '#FEF2F2', display: 'flex', alignItems: 'center', padding: '0 10px', font: `600 11.5px ${MONO}`, color: '#B91C1C', whiteSpace: 'nowrap' }}>{t("18-satr yo'q — req.body: undefined", 'строки 18 нет — req.body: undefined')}</div>}
+    {station('route', 100, route || "app.<span class=\"n1-k\">post</span>(<span class=\"n1-s\">'/api/cars'</span>)", route && /get/.test(route) ? '21' : '32', T.ink2)}
+    {station('pool', 142, sql || 'pool.query(sql, [$1, $2, $3])', route && /get/.test(route) ? '23' : '36', T.purple)}
+    {pin('json', 478, 50)}{pin('route', 478, 92)}{pin('pool', 478, 134)}
+    {/* PostgreSQL */}
+    <div className="n1-abs" style={{ left: 520, top: 30, width: 220, height: 266, borderRadius: 14, border: `2px solid ${ds('pg') === 'bad' ? '#DC2626' : PG.pg}`, background: ds('pg') === 'bad' ? '#FEF2F2' : '#F7FAFC' }} />
+    <span className="n1-abs" style={{ left: 532, top: 21, background: T.paper, padding: '0 6px', font: `700 12.5px/16px ${SANS}`, color: PG.pg, whiteSpace: 'nowrap' }}>PostgreSQL :5432</span>
+    {tbl('cars', 'car_rental · cars', 'id · model · daily_price', cars, 48, newRow, col)}
+    {tbl('shop', 'shop · products', 'id · name · price', prods, 210, -1)}
+    {pin('cars', 716, 40)}{pin('col', 716, 66)}
+    {/* yo'llar */}
+    <svg className="n1-svg" width={W} height={H} viewBox={`0 0 ${W} ${H}`}>
+      <defs>
+        <marker id="pg2r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill={T.accent} /></marker>
+        <marker id="pg2g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill={T.green} /></marker>
+        <marker id="pg2k" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#B9BFCB" /></marker>
+      </defs>
+      <path d="M216 75 L 240 75" fill="none" stroke={apiOn ? T.accent : '#B9BFCB'} strokeWidth="2" markerEnd={`url(#${apiOn ? 'pg2r' : 'pg2k'})`} />
+      <path d="M366 92 L 366 98 M366 134 L 366 140" fill="none" stroke={apiOn ? T.accent : '#B9BFCB'} strokeWidth="2" />
+      <path d="M488 159 L 526 159" fill="none" stroke={apiOn ? T.accent : '#B9BFCB'} strokeWidth="2" markerEnd={`url(#${apiOn ? 'pg2r' : 'pg2k'})`} strokeDasharray={bad && (bad.at === 'json' || bad.at === 'route') ? '4 4' : '0'} />
+      {back && <path d="M520 206 L 228 206 L 228 150 L 220 150" fill="none" stroke={bad ? '#DC2626' : T.green} strokeWidth="2" markerEnd={`url(#${bad ? 'pg2r' : 'pg2g'})`} strokeDasharray={bad ? '5 4' : '0'} />}
+      <path d="M216 259 L 530 259" fill="none" stroke={psqlOn ? T.accent : '#D5D9E1'} strokeWidth="2" markerEnd={`url(#${psqlOn ? 'pg2r' : 'pg2k'})`} strokeDasharray={psqlOn ? '0' : '5 5'} />
+    </svg>
+    {back && <span className="n1-abs" style={{ left: 374, top: 206, transform: 'translate(-50%,-50%)', background: T.paper, padding: '1px 7px', borderRadius: 6, font: `600 11px ${MONO}`, color: bad ? '#B91C1C' : T.green, whiteSpace: 'nowrap', border: `1px solid ${bad ? '#F2A9A9' : '#BFE3D0'}` }}>{back}</span>}
+    <span className="n1-abs" style={{ left: 374, top: 259, transform: 'translate(-50%,-50%)', background: T.paper, padding: '1px 7px', font: `600 10.5px ${MONO}`, color: psqlOn ? T.accent : T.ink3, whiteSpace: 'nowrap' }}>{t("psql — SQL to'g'ridan-to'g'ri", 'psql — SQL напрямую')}</span>
+    {rc && <span className="n1-abs" style={{ left: 534, top: 182, font: `600 10.5px ${MONO}`, color: T.green, whiteSpace: 'nowrap', background: '#E3F5EC', borderRadius: 6, padding: '3px 7px' }}>{rc}</span>}
+    {bad && bad.why && <span className="n1-abs" style={{ left: bad.at === 'cars' || bad.at === 'pg' ? 534 : 244, top: bad.at === 'cars' || bad.at === 'pg' ? 182 : 196, font: `700 11px ${SANS}`, color: '#B91C1C', whiteSpace: 'nowrap', background: T.paper, padding: '1px 4px' }}>✕ {bad.why}</span>}
+    {ro && <div className="n1-ro" style={{ left: 20, top: BOT + 8, width: 720, height: 42 }}><span className="rf">{ro[0]}</span><code style={{ fontSize: ro[1].replace(/<[^>]+>/g, '').length > 72 ? 11.5 : 13, background: 'transparent', color: T.codeInk, padding: 0, border: 0 }} dangerouslySetInnerHTML={html(ro[1])} /></div>}
+  </N1Fit>;
+}
+
+// «Buzamiz» (22, 23) — VS Code oynasi ichidagi kichik rasm (M52): Postman → express.json → INSERT → cars → javob
+// broken: 'col' (price) | 'json' · known: natija ko'rinadimi (M52-3: ovoz aytguncha «?») · fixed · pins: { a: 1, b: 2 }
+function CrudMini({ broken, known, fixed, pins = {} }) {
+  const bad = broken && !fixed;
+  const st = !broken && !fixed ? null : !known ? '?' : bad ? 500 : 201;
+  const box = (x, w, label, sub, state) => <div className="n1-abs" style={{ left: x, top: 34, width: w, height: 50, borderRadius: 10, border: `2px solid ${state === 'bad' ? '#DC2626' : state === 'ok' ? T.green : T.line}`, background: state === 'bad' ? '#FEF2F2' : T.paper, padding: '6px 9px', transition: 'all .4s' }}>
+    <div style={{ font: `700 11.5px ${MONO}`, color: state === 'bad' ? '#B91C1C' : T.ink, whiteSpace: 'nowrap', textDecoration: state === 'bad' && sub === 'gone' ? 'line-through' : 'none' }} dangerouslySetInnerHTML={html(label)} />
+    <div style={{ font: `500 10.5px ${MONO}`, color: state === 'bad' ? '#B91C1C' : T.ink3, whiteSpace: 'nowrap', marginTop: 3 }}>{sub === 'gone' ? t("o'chirilgan", 'удалена') : sub}</div>
+  </div>;
+  const colBad = bad && broken === 'col', jsonBad = bad && broken === 'json';
+  return <>
+    <span className="n1-tagl" style={{ left: 8, top: 12 }}>{t("POST /api/cars — so'rovning yo'li", 'POST /api/cars — путь запроса')}</span>
+    {box(8, 92, 'Postman', 'POST', '')}
+    {box(116, 128, 'express.json()', jsonBad ? 'gone' : 'req.body ✓', jsonBad ? 'bad' : fixed && broken === 'json' ? 'ok' : '')}
+    {box(260, 156, 'INSERT INTO cars', colBad ? '(model, price, …)' : '(model, daily_price…)', colBad ? 'bad' : fixed && broken === 'col' ? 'ok' : '')}
+    {box(430, 90, 'cars', 'daily_price', '')}
+    {[100, 244, 416].map((x) => <div key={x} className={`n1-arr${bad && x > (jsonBad ? 100 : 244) ? ' off' : ''}`} style={{ left: x + 1, top: 58, width: 14 }} />)}
+    <span className="n1-abs" style={{ left: 8, top: 96, font: `700 11.5px ${MONO}`, whiteSpace: 'nowrap', color: st == null || st === '?' ? T.ink3 : st >= 400 ? '#DC2626' : T.green }}>{st == null ? '' : `${t('javob', 'ответ')} → ${st}`}{st === 500 && jsonBad ? " · req.body: undefined" : st === 500 ? t(" · cars'da price ustuni yo'q", ' · в cars нет колонки price') : ''}</span>
+    {pins.a && <span className="n1-pin on" style={{ left: jsonBad ? 230 : 402, top: 26 }}>{pins.a}</span>}
+    {pins.b && <span className="n1-pin on" style={{ left: jsonBad ? 230 : 502, top: jsonBad ? 72 : 26 }}>{pins.b}</span>}
+  </>;
+}
+
+// ============================================================
 //  MENTOR KURSI · PostgreSQL-2 «CRUD so'rovlar va Express'dan bazaga»
 //  F-1029-02 · manba-haqiqat: feedback/F-1029-02-mentor-kurs/08-PostgreSQL2-mentor-v2.md (MD v2 — M41 «avval mentor o'rganadi», GATE M 03.11: 1A·2C·3A·4A)
 //  Haqiqiy chiqishlar: feedback/F-1029-02-mentor-kurs/manba/pg2-out/ — v2b (3→11 uzluksiz), v2e (ikki psql seansi), v2f (14–18 uzluksiz), v2d (Mongoose), 10–20 (Express)
@@ -2077,7 +2501,8 @@ const Pair = ({ code, res }) => <div className="mk-pair"><b style={{ color: PG.m
 const sg = (id, key, text, extra = {}) => ({ id, key, text, show: wr(text), ...extra });
 const mkS = (n, extras = [], more = {}) => {
   const m = MDT[n];
-  return { kicker: m.kicker, eyebrow: m.eyebrow, title: m.title, ...more, segments: m.seg.map(([id, key, text], i) => sg(id, key, text, extras[i] || {})) };
+  // F-1120-02 (M52): 4-element — act (mentor o'zi bosadi, chap paneldagi ko'rsatma)
+  return { kicker: m.kicker, eyebrow: m.eyebrow, title: m.title, ...more, segments: m.seg.map(([id, key, text, act], i) => sg(id, key, text, { ...(act ? { act } : {}), ...(extras[i] || {}) })) };
 };
 
 // Ovoz → «Matn» (transkript) uchun yozma ko'rinish. Uzun ibora oldin.
@@ -2168,7 +2593,7 @@ const cur = (lines, beat) => { const ats = lines.map((l) => l.at).filter((x) => 
 const rng = (a, b, v) => { const o = {}; for (let i = a; i <= b; i++) o[i] = { ...v }; return o; };
 const mergeMeta = (...ms) => ms.reduce((acc, m) => { Object.keys(m).forEach((k) => { acc[k] = { ...(acc[k] || {}), ...m[k] }; }); return acc; }, {});
 
-const Psql = ({ lines, title = 'psql — blog', er, beat, focus, style }) => <CodePanel file={title} numbers={false} wrap style={{ background: er ? PG.termEr : PG.term, ...(style || {}) }} lines={lines} beat={beat} focus={focus} />;
+const Psql = ({ lines, title = 'psql — blog', er, beat, focus, style, marks }) => <CodePanel file={title} numbers={false} wrap style={{ background: er ? PG.termEr : PG.term, ...(style || {}) }} lines={lines} beat={beat} focus={focus} marks={marks} />;
 // Rasmiy hujjatdan olingan maket (bu kompyuterda sinalmagan) — har oynada belgi (MD Ochiq savol 2)
 function Win({ title, os = 'win', children, hl }) {
   return <div className={`pg-win${os === 'mac' ? ' mac' : ''}${hl ? ' hl' : ''}`}>
@@ -2356,21 +2781,24 @@ const PCOLS = ['id', 'name', 'price', 'stock'];
 //  1 · Kirish
 // ============================================================
 const PLAN1 = ['CRUD terminalida', 'Tranzaksiya: xavfsiz sinash va atomik ish', "Baza qo'riqlaydi", "Express'dan bazaga", 'Buzamiz va tuzatamiz', 'Sinfga tayyorgarlik'];
-const S1 = mkS(1, [{ hl: [], res: true }, { hl: [0, 1, 2] }, { hl: [3, 4] }, { hl: [5] }], { plan: PLAN1 });
-const INTRO1 = psql(String.raw`
-shop=# UPDATE products SET price = 99000 WHERE id = 1;
-UPDATE 1`);
+const S1 = mkS(1, [{ hl: [] }, { hl: [0, 1, 2] }, { hl: [3, 4] }, { hl: [5] }], { plan: PLAN1 });
+// F-1120-02 (M51): darsning rasmi — so'rov bazagacha va qaytib (CrudMachine, 04b-mashina.jsx); reja pastda
+const S1M = [
+  { path: 'both', back: 'rows[0] → res.status(201).json', st: 201, newRow: 3, ro: ['server.js:36', "<span class=\"n1-s\">'INSERT INTO cars (model, daily_price, year) VALUES ($1, $2, $3) RETURNING *'</span>,"] },
+  { path: 'psql', on: ['psql', 'shop'], ro: ['psql · shop', 'UPDATE products SET price = 99000 WHERE id = 1; <span class="n1-ok">→ UPDATE 1</span>'] },
+  { path: 'api', on: ['pm', 'json', 'route', 'pool', 'cars'], back: 'rows[0] → res.status(201).json', st: 201, newRow: 3, ro: ['server.js:36', "<span class=\"n1-s\">'INSERT INTO cars (model, daily_price, year) VALUES ($1, $2, $3) RETURNING *'</span>,"] },
+  { path: 'both', back: 'rows[0] → res.status(201).json', st: 201, newRow: 3 },
+];
+const CARS1 = [...CARS0, ['4', 'Chevrolet Spark', '190000']];
+const PRODS1 = [['1', 'Klaviatura', '99000'], ['2', 'Sichqoncha', '75000']];
 function Screen1(p) {
-  return <Lesson p={p} S={S1} scene={({ seg }) => <div style={{ display: 'grid', gap: 14 }}>
-    <div className="mk-light"><div className="mk-plan">
+  return <Lesson p={p} S={S1} scene={({ seg, beat }) => { const m = S1M[Math.min(beat, 3)]; return <div className="mk-light" style={{ padding: 16, display: 'grid', gap: 12 }}>
+    <CrudMachine {...m} cars={CARS1} prods={PRODS1} res='{"id":4,"model":"Chevrolet Spark",…}' req={{ m: 'POST', url: '/api/cars', body: '{ "model": "Chevrolet Spark", "daily_price": 190000, "year": 2021 }' }}
+      tag={t("Bugungi darsning rasmi — bitta baza, ikki yo'l: terminal va Express", 'Картина урока — одна база, два пути: терминал и Express')} />
+    <div className="n1-plan" style={{ position: 'static', gridTemplateColumns: 'repeat(6,minmax(0,1fr))', gap: 6 }}>
       {S1.plan.map((x, i) => <div key={i} className={seg.hl.includes(i) ? 'hl' : (seg.hl.length ? 'dim' : '')}><b>0{i + 1}</b><span>{x}</span></div>)}
-    </div></div>
-    {seg.res && <><div className="mk-tag" style={{ margin: 0 }}>{t("Dars oxirida — terminalda ham, serverda ham", "В конце урока — и в терминале, и на сервере")}</div>
-    <div className="pg-two">
-      <Psql title="psql — shop" lines={INTRO1} />
-      <PostmanCard m="POST" url="localhost:3000/api/cars" body={'{ "model": "Chevrolet Spark", "daily_price": 190000, "year": 2021 }'} st={201} res={'{"id":4,"model":"Chevrolet Spark","daily_price":190000,"year":2021,"is_rented":null}'} />
-    </div></>}
-  </div>} />;
+    </div>
+  </div>; }} />;
 }
 
 // ============================================================
@@ -3061,19 +3489,13 @@ rowCount: 3 · rows: [{"name":"Klaviatura","price":89000},{"name":"Sichqoncha","
 UPDATE id=99 → rowCount: 0 · rows: []`, { 1: { id: 'r' }, 2: { id: 'z' } });
 const STEPS18 = [['Pool', 'ulanadi', T.purple], ['pool.query(sql)', "so'rov bazaga", PG.pg], ['rows / rowCount', 'natija', T.green], ['res.json', 'javob', T.ink]];
 // F-1109-06: xulosa — to'rt kichik karta o'rniga GET /api/cars yo'li haqiqiy qiymatlar bilan, rowCount jadvali va catch (12-price-xato)
+// F-1120-02 (M51): yuqoridagi oqim kartasi o'rniga darsning rasmi — o'sha GET yo'li (CrudMachine)
 function Flow18() {
   return <div className="z">
-    <div className="z-card">
-      <p className="z-h">{t("GET /api/cars — so'rov serverdan bazaga va qaytib", "GET /api/cars — запрос от сервера к базе и обратно")}</p>
-      <div className="z-flow">
-        <div className="z-st" style={{ borderColor: 'var(--pur)', background: 'var(--pur2)' }}><b>1 · Pool</b><span className="zm">new Pool({'{…}'})</span><span className="z-mut">{t("ulanish tayyor", "соединение готово")}</span></div>
-        <div className="z-ar">→</div>
-        <div className="z-st blue"><b>2 · pool.query</b><span className="zm">SELECT * FROM cars</span><span className="z-mut">{t("await — javob kutiladi", "await — ждём ответ")}</span></div>
-        <div className="z-ar">→</div>
-        <div className="z-st ok"><b>{t("3 · natija", "3 · результат")}</b><span className="zm">{t("rows: 3 ta mashina", "rows: 3 машины")}</span><span className="zm">rowCount: 3</span></div>
-        <div className="z-ar">→</div>
-        <div className="z-st"><b>4 · res.json</b><span className="z-tag g">200</span><span className="zm" style={{ fontSize: 12 }}>[{'{'}"id":1,"model":"Chevrolet Cobalt",…{'}'}, …]</span></div>
-      </div>
+    <div className="z-card" style={{ padding: 12 }}>
+      <CrudMachine path="api" on={['pm', 'route', 'pool', 'cars']} req={{ m: 'GET', url: '/api/cars', body: null }} st={200} res={'[{"id":1,"model":"Chevrolet Cobalt",…}, …]'}
+        route={"app.<span class=\"n1-k\">get</span>(<span class=\"n1-s\">'/api/cars'</span>)"} sql={"pool.query(<span class=\"n1-s\">'SELECT * FROM cars'</span>)"} rc="rows: 3 · rowCount: 3" back="result.rows → res.json → 200"
+        ro={['server.js:24', 'res.json(result.rows);']} tag={t("GET /api/cars — so'rov serverdan bazaga va qaytib", 'GET /api/cars — запрос от сервера к базе и обратно')} />
     </div>
     <div className="z-two">
       <div className="z-card">
@@ -3207,31 +3629,52 @@ function ScreenP21(p) { return <Practice p={p} S={P21.S} steps={P21.steps} troub
 // ============================================================
 //  22 · Buzamiz 1: price ustuni (pg2-out/12, 19) — POST bo'lagi 32–44, xato 36-satr
 // ============================================================
-const POST_LINES = (bad, fixed) => srvSlice(32, 44).map((l, i) => {
+// F-1120-02 (M52): 1-segment (x) — mentor 36-satrdagi daily_price ni o'zi bosadi; 'ok' holatida so'z yonib turadi (data-act)
+const POST_LINES = (st) => srvSlice(32, 44).map((l, i) => {
   if (i !== 4) return l;
-  if (bad) return { ...l, h: jsLine("      'INSERT INTO cars (model, price, year) VALUES ($1, $2, $3) RETURNING *',"), id: 'x' };
-  return { ...l, id: 'x', neu: !!fixed };
+  if (st === 'bad') return { ...l, h: jsLine("      'INSERT INTO cars (model, price, year) VALUES ($1, $2, $3) RETURNING *',"), id: 'x' };
+  if (st === 'ok') return { ...l, id: 'x', h: l.h.replace('daily_price', '<span class="n1-act" data-act="1">daily_price</span>') };
+  return { ...l, id: 'x', neu: st === 'fix' };
 });
 const PRICE_TERM = psql(String.raw`
 $ node server.js
 Server 3000-portda ishlayapti
 column "price" of relation "cars" does not exist`, { 3: { id: 'e' } });
-const S22 = mkS(22, [{ st: 'bad' }, { st: 'bad', pm: 500 }, { st: 'fix', pm: 201 }, { sum: true }]);
+const S22 = mkS(22, [{ st: 'ok' }, { st: 'bad' }, { st: 'bad', pm: 500 }, { st: 'fix', pm: 201 }, { sum: true }]);
 function Screen22(p) {
-  return <Lesson p={p} S={S22} scene={({ seg }) => <>
-    {!seg.sum && <SrvIde lines={POST_LINES(seg.st === 'bad', seg.st === 'fix')} focus={['x']} />}
-    {seg.pm === 500 && <div className="pg-two"><PostmanCard {...PM_ELANTRA(500)} res={'{"error":"column \\"price\\" of relation \\"cars\\" does not exist"}'} hl /><Psql title={t("terminal — node server.js", "терминал — node server.js")} er lines={PRICE_TERM} focus={['e']} /></div>}
+  return <Lesson p={p} S={S22} scene={(b) => <Scene22 b={b} />} />;
+}
+// Qadamlar: 0 bosing · 1 buzildi (javob «?») · 2 POST → 500, bo'laklar 1·2 · 3 tuzatildi → 201 · 4 xulosa — darsning rasmi
+// Postman chiqqan qadamlarda kod 35–42-satr (1280×720 da kichik rasm va javob ko'rinib tursin)
+function Scene22({ b }) {
+  const { seg, beat } = b;
+  const act = useAct(b);
+  const st = beat === 0 ? (act.hit ? 'bad' : 'ok') : seg.st;
+  if (seg.sum) return <>
+    <div className="mk-light" style={{ padding: 14 }}>
+      <CrudMachine path="api" on={['pm', 'json', 'route', 'pool', 'cars']} st={500} res={'{"error":"column \\"price\\" of relation \\"cars\\" does not exist"}'}
+        req={{ m: 'POST', url: '/api/cars', body: '{ "model": "Hyundai Elantra", "daily_price": 450000, "year": 2022 }' }}
+        sql={"INSERT … (model, <b style=\"color:#DC2626\">price</b>, …)"} col={'id · model · <b style="color:#12805A">daily_price</b>'} bad={{ at: 'cars', why: t("cars'da price ustuni yo'q", 'в cars нет колонки price') }}
+        back="catch → res.status(500)" ro={['\\d cars', 'Column: id · model · <span class="n1-ok">daily_price</span> · year · is_rented']}
+        tag={t("Xabardagi nom — jadvaldagi nom bilan solishtiring", 'Имя из сообщения — сравните с именем в таблице')} />
+    </div>
+    <div className="mk-rule">{t("Xabar nimani tuzatishni ", "Что исправить, сообщение ")}<b>{t("o'zi aytdi", "сказал сам")}</b>{t(": ustun ", ": колонка ")}<code>price</code>{t(", jadval ", ", таблица ")}<code>cars</code>{t(". Kod o'zgargandan keyin serverni albatta qayta ishga tushiring.", ". После изменения кода обязательно перезапустите сервер.")}</div>
+  </>;
+  return <>
+    <Ide files={SRV_FILES} active="server.js">
+      <div onClick={act.onClick}><CodePanel key={st + (seg.pm ? 'p' : '')} file="server.js" lines={seg.pm ? POST_LINES(st).slice(3, 11) : POST_LINES(st)} focus={['x']} style={{ fontSize: 12.5 }} /></div>
+      <N1Mini><CrudMini broken={st === 'ok' ? null : 'col'} known={beat >= 2} fixed={st === 'fix'} pins={beat === 2 ? { a: 1, b: 2 } : {}} /></N1Mini>
+    </Ide>
+    {seg.pm === 500 && <div className="pg-two"><PostmanCard {...PM_ELANTRA(500)} res={'{"error":"column \\"price\\" of relation \\"cars\\" does not exist"}'} hl /><Psql title={t("terminal — node server.js", "терминал — node server.js")} er lines={PRICE_TERM} focus={['e']} marks={{ 2: 'n1-p1' }} /></div>}
     {seg.pm === 201 && <PostmanCard {...PM_ELANTRA(201)} hl />}
-    {seg.sum && <><div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0,1fr))', gap: 10 }}>
-      {[['500', t("error matnini o'qing", "прочитайте текст error"), '#B91C1C'], ['"price" · "cars"', t('ustun va jadval nomi', "имя колонки и таблицы"), T.accent], ['\\d cars', t('jadval bilan solishtiring', "сравните с таблицей"), PG.pg], ['Ctrl+C · node server.js', t('kod o\'zgarsa — qayta ishga tushiring', "если код изменился — перезапустите"), T.green]].map(([h, d, c], i) => <div key={h} className="mk-box" style={{ '--c': c, animation: `mk-up .4s ${i * 0.1}s ease both` }}><h4 style={{ fontFamily: MONO, fontSize: 13 }}>{h}</h4><p>{d}</p></div>)}
-    </div><div className="mk-rule">{t("Xabar nimani tuzatishni ", "Что исправить, сообщение ")}<b>{t("o'zi aytdi", "сказал сам")}</b>{t(": ustun ", ": колонка ")}<code>price</code>{t(", jadval ", ", таблица ")}<code>cars</code>{t(". Kod o'zgargandan keyin serverni albatta qayta ishga tushiring.", ". После изменения кода обязательно перезапустите сервер.")}</div></>}
-  </>} />;
+  </>;
 }
 
 // ============================================================
 //  23 · Buzamiz 2: express.json() yo'q (pg2-out/13) — 16–18-satrlar
 // ============================================================
-const JSON_LINES = (st) => srvSlice(16, 18).map((l, i) => (i === 2 ? { ...l, id: 'j', gone: st === 'gone', neu: st === 'fix' } : l));
+// F-1120-02 (M52): 'ok' — 18-satr yonib turadi (data-act), mentor bosgach 'gone'
+const JSON_LINES = (st) => srvSlice(16, 18).map((l, i) => (i === 2 ? { ...l, id: 'j', gone: st === 'gone', neu: st === 'fix', ...(st === 'ok' ? { h: '<span class="n1-act" data-act="1">' + l.h + '</span>' } : {}) } : l));
 // F-1109-06: xulosa — kod yashirilib uch quti qolardi; endi bitta POST ikki yo'lda (13-express-json-yoq), satr joyi va belgisi
 function Two23() {
   return <div className="z">
@@ -3267,15 +3710,25 @@ function Two23() {
     </div>
   </div>;
 }
-const S23 = mkS(23, [{ st: 'gone' }, { st: 'gone', pm: 500 }, { st: 'fix', pm: 201 }, { sum: true }]);
+const S23 = mkS(23, [{ st: 'ok' }, { st: 'gone' }, { st: 'gone', pm: 500 }, { st: 'fix', pm: 201 }, { sum: true }]);
 function Screen23(p) {
-  return <Lesson p={p} S={S23} scene={({ seg }) => <>
-    {!seg.sum && <SrvIde lines={JSON_LINES(seg.st)} focus={['j']} />}
-    {seg.st === 'gone' && !seg.pm && <div className="mk-tag" style={{ margin: 0 }}>{t("Server baribir «Server 3000-portda ishlayapti» · GET ishlaydi — muammo faqat tanasi bor so'rovlarda (POST, PUT)", "Сервер всё равно «Server 3000-portda ishlayapti» · GET работает — проблема только в запросах с телом (POST, PUT)")}</div>}
+  return <Lesson p={p} S={S23} scene={(b) => <Scene23 b={b} />} />;
+}
+// Qadamlar: 0 bosing · 1 o'chdi (GET ishlaydi, POST «?») · 2 POST → 500, bo'lak 1 · 3 qaytdi → 201 · 4 xulosa (Two23)
+function Scene23({ b }) {
+  const { seg, beat } = b;
+  const act = useAct(b);
+  const st = beat === 0 ? (act.hit ? 'gone' : 'ok') : seg.st;
+  if (seg.sum) return <Two23 />;
+  return <>
+    <Ide files={SRV_FILES} active="server.js">
+      <div onClick={act.onClick}><CodePanel key={st} file="server.js" lines={JSON_LINES(st)} focus={['j']} style={{ fontSize: 12.5 }} /></div>
+      <N1Mini><CrudMini broken={st === 'ok' ? null : 'json'} known={beat >= 2} fixed={st === 'fix'} pins={beat === 2 ? { a: 1 } : {}} /></N1Mini>
+    </Ide>
+    {st === 'gone' && !seg.pm && <div className="mk-tag" style={{ margin: 0 }}>{t("Server baribir «Server 3000-portda ishlayapti» · GET ishlaydi — muammo faqat tanasi bor so'rovlarda (POST, PUT)", "Сервер всё равно «Server 3000-portda ishlayapti» · GET работает — проблема только в запросах с телом (POST, PUT)")}</div>}
     {seg.pm === 500 && <PostmanCard {...PM_ELANTRA(500)} res={'{"error":"Cannot destructure property \'model\' of \'req.body\' as it is undefined."}'} hl />}
     {seg.pm === 201 && <PostmanCard {...PM_ELANTRA(201)} hl />}
-    {seg.sum && <Two23 />}
-  </>} />;
+  </>;
 }
 
 // ============================================================
@@ -3503,15 +3956,22 @@ const SUM31 = [
   { k: 'brk', t: "$1 — xavfsizlik: yopishtirilgan 1 OR 1=1 jadvalni bo'shatdi; server xatolari: ustun nomi · express.json() · parol/baza birinchi so'rovda · bo'sh xabar → console.error(err) · ikkinchi server «ishlayapti»", st: ['srv', 'pool'] },
   { k: 'class', t: "Sinf: m4-06 amaliyoti haqiqiy psql'da; m4-08 dan oldin parol, Postman, bitta terminal; olti holat va savollarga javoblar tayyor", st: ['pm', 'psql'] },
 ];
-const STATIONS31 = [['pm', 'Postman', '#FF6C37'], ['srv', 'Express', T.ink], ['pool', 'Pool · $1', T.purple], ['psql', 'SQL', T.accent], ['tx', 'Tranzaksiya', T.green], ['jad', 'Jadval', PG.pg]];
+// F-1120-02 (M51): xulosa — darsning o'sha rasmi (CrudMachine); har band rasmning o'z yo'lini yoritadi
+const PS31 = { psql: ['psql', 'shop'], api: ['pm', 'json', 'route', 'pool', 'cars'] };
+const MAP31 = {
+  crud: { path: 'psql', on: PS31.psql, psqlLine: ['shop=#', 'UPDATE products SET price = 99000 WHERE id = 1;', 'UPDATE 1'] },
+  tx: { path: 'psql', on: PS31.psql, psqlLine: ['shop=!#', 'ROLLBACK;', 'ROLLBACK'] },
+  rule: { path: 'psql', on: PS31.psql, psqlLine: ['shop=*#', 'UPDATE products SET stock = stock - 7 WHERE id = 3;', 'ERROR: … violates check constraint "stock_nonneg"'] },
+  exp: { path: 'api', on: PS31.api, st: 201, back: 'rows[0] → res.status(201).json' },
+  brk: { path: 'api', on: PS31.api, st: 500, back: 'catch → res.status(500)' },
+  class: { path: 'both', on: ['pm', 'psql'], st: 201, back: 'rows[0] → res.status(201).json' },
+};
 function SummaryMap31({ hl }) {
-  const cur = SUM31.find((x) => x.k === hl);
-  const on = (k) => hl === 'all' || !cur || cur.st.includes(k);
-  return <div className="mk-light" style={{ padding: 16 }}>
-    <div className="mk-tag">{t("Bugungi dars — so'rovning bazagacha yo'li", "Сегодняшний урок — путь запроса до базы")}</div>
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, minmax(0,1fr))', gap: 6 }}>
-      {STATIONS31.map(([k, n, c], i) => <div key={k} className={`mk-box${cur && cur.st.includes(k) ? ' hl' : ''}`} style={{ '--c': c, padding: '10px 6px', textAlign: 'center', opacity: on(k) ? 1 : 0.35, animation: `mk-up .4s ${i * 0.06}s ease both` }}><h4 style={{ fontSize: 12.5, margin: 0 }}>{n}</h4></div>)}
-    </div>
+  const m = MAP31[hl] || { path: 'both', st: 201, back: 'rows[0] → res.status(201).json' };
+  return <div className="mk-light" style={{ padding: 14 }}>
+    <CrudMachine {...m} res={m.st === 500 ? '{"error":"column \\"price\\" of relation \\"cars\\" does not exist"}' : '{"id":4,"model":"Chevrolet Spark",…}'}
+      req={{ m: 'POST', url: '/api/cars', body: '{ "model": "Chevrolet Spark", "daily_price": 190000, "year": 2021 }' }}
+      tag={t("Bugungi dars — so'rovning bazagacha yo'li", 'Сегодняшний урок — путь запроса до базы')} max={0.95} />
   </div>;
 }
 const HOMEWORK31 = [
@@ -3578,7 +4038,8 @@ function Screen31(p) {
         <div className="mk-scene top" style={{ overflow: 'auto' }}>
           {phase === 'sum' && (<>
             <SummaryMap31 hl={hl} />
-            <div className="mk-plan">{SUM31.slice(0, shown).map((it, i) => <div key={it.k} className={it.k === hl ? 'hl' : ''} style={{ animation: 'mk-up .45s ease both' }}><b>0{i + 1}</b><span>{it.t}</span></div>)}</div>
+            {/* F-1120-02: bandlar rasm ostida ixcham to'rda (1-ekrandagi reja kabi) — rasm surilib ketmasin (M51-2) */}
+            <div className="n1-plan" style={{ position: 'static', gridTemplateColumns: 'repeat(3,minmax(0,1fr))', gap: 8, marginTop: 10 }}>{SUM31.slice(0, shown).map((it, i) => <div key={it.k} className={it.k === hl ? 'hl' : ''} style={{ animation: 'mk-up .45s ease both' }}><b>0{i + 1}</b><span style={{ fontSize: 12.5 }}>{it.t}</span></div>)}</div>
           </>)}
           {phase === 'hw' && <div className="mk-light" style={{ padding: 16, animation: 'mk-up .45s ease both' }}>
             <div className="mk-tag" style={{ color: T.accent }}>{t('Uyga vazifa · 50–70 daqiqa', 'Домашнее задание · 50–70 минут')}</div>
@@ -3607,16 +4068,21 @@ function Screen31(p) {
 // ============================================================
 //  Muqova va ildiz
 // ============================================================
+// F-1120-02 (M51): muqova — chapda dars nima berishi, o'ngda darsning rasmi; eslatmalar bitta qisqa satrda
 function Cover({ onStart, resume }) {
   return (
-    <div className="mk-cover"><div className="card">
-      <p className="mk-eyebrow">{t("Mentor kursi · PostgreSQL", "Курс для менторов · PostgreSQL")}</p>
-      <h1>{t(LESSON_TITLE, RS('TITLE'))}</h1>
-      <p>{t("Bu dars ovozli. Ustoz har ekranda gapiradi, ekran u bilan birga o'zgaradi. Quloqchin yoki ovoz balandligini tekshiring.", 'Урок озвучен. На каждом экране говорит учитель, экран меняется вместе с ним. Проверьте наушники или громкость.')}</p>
-      <ul>
-        {t(["Jami taxminan 1 soat 20 daqiqa: ovoz ~27 daqiqa · to'rt amaliyot 45–55 daqiqa · 4 tekshiruv · o'z-sinov 8 savol. 13-ekrandan keyin tanaffus qilsangiz bo'ladi", "Kerak: PostgreSQL-1 darsi o'tilgan · PostgreSQL ishlab turgan · Node.js 20+ · VS Code · Postman", "Loyihalar: shop bazasi (products, orders) va AvtoIjara serveri (car_rental, server.js)"], RS('COVER')).map((x) => <li key={x}>{x}</li>)}
-      </ul>
-      <CoverStart onStart={onStart} resume={resume} />
+    <div className="mk-cover"><div className="card n1-cv">
+      <div className="tx">
+        <p className="mk-eyebrow">{t("Mentor kursi · PostgreSQL", "Курс для менторов · PostgreSQL")}</p>
+        <h1>{t(LESSON_TITLE, RS('TITLE'))}</h1>
+        <p className="af">{t('Bu darsdan keyin siz', 'После этого урока вы')}</p>
+        <ul className="ok">
+          {t(["psql'da CRUD va tranzaksiyani javobdagi son bilan tekshirasiz", "Express'dan bazaga so'rov yuborasiz: Pool, $1, rows va statuslar", "server 500 berganda xabardan sababini topasiz va sinfga tayyor bo'lasiz"], ['проверите CRUD и транзакции в psql по числу в ответе', 'отправите запрос из Express в базу: Pool, $1, rows и статусы', 'найдёте по сообщению причину 500 на сервере и будете готовы к классу']).map((x) => <li key={x}>{x}</li>)}
+        </ul>
+        <p className="meta">{t("Ovozli dars · 1 soat 20 daqiqa, 13-ekrandan keyin tanaffus qilsa bo'ladi · Kerak: PostgreSQL-1 o'tilgan, PostgreSQL ishlab turgan, Node.js 20+, VS Code, Postman", 'Урок со звуком · 1 час 20 минут, после 13-го экрана можно сделать перерыв · Нужно: пройден PostgreSQL-1, работающий PostgreSQL, Node.js 20+, VS Code, Postman')}</p>
+        <CoverStart onStart={onStart} resume={resume} />
+      </div>
+      <div className="pic"><CrudMachine path="both" st={201} back="rows[0] → res.status(201).json" newRow={3} cars={CARS1} prods={PRODS1} res='{"id":4,"model":"Chevrolet Spark",…}' req={{ m: 'POST', url: '/api/cars', body: '{ "model": "Chevrolet Spark", "daily_price": 190000, "year": 2021 }' }} max={1} /></div>
     </div></div>
   );
 }
@@ -3626,6 +4092,7 @@ export default function PgCrudMentorLesson({ studentName, lang = 'uz', onFinishe
   setLang(lang);
   useCss();
   useCss3();
+  useCssN1(); // F-1120-02: dars rasmi uslubi (parts/02b-rasm.jsx)
   const total = SCREENS.length;
   const [started, setStarted] = useState(startAt != null);
   const [idx, setIdx] = useState(Math.min(Math.max(0, startAt || 0), total - 1));
@@ -4392,7 +4859,7 @@ const RU_MDT = {
   "seg": {
    "a": [
     "Первая поломка — обычная ошибка Gemini: в <code>INSERT</code> он <b>сам выдумывает имя колонки</b>, <code>price</code>",
-    "Ломать начинаем с самой частой ошибки. Gemini в insert написал price вместо daily price: имя колонки взял не из таблицы, а из своей догадки. Запускаем сервер: ошибки нет, он пишет «сервер работает». Ошибка выходит только при отправке POST."
+    "Вместо daily price стало price. Это самая частая ошибка Gemini: в insert имя колонки он берёт не из таблицы, а из своей догадки. Запускаем сервер: ошибки нет, он пишет «сервер работает». Ошибка выходит только при отправке POST."
    ],
    "b": [
     "POST → 500, в сообщении таблица и колонка: <b><code>\"price\"</code> · <code>\"cars\"</code></b>",
@@ -4405,6 +4872,11 @@ const RU_MDT = {
    "d": [
     "Итог: если 500 — сравните имя из текста <code>error</code> с <b><code>\\d cars</code></b>; код изменился — сервер заново",
     "Итог: если вышло пятьсот, читайте текст ошибки, внутри имя колонки и таблицы. Сравните его с бэкслеш d cars в терминале. После изменения кода обязательно перезапустите сервер, иначе продолжит работать старый код."
+   ],
+   "x": [
+    "Теперь <b>ломаете вы</b>: нажмите на подсвеченный в коде <code>daily_price</code>",
+    "Сервер работает, все четыре запроса тоже. Теперь ломаем намеренно, потому что Gemini ученика делает именно эти ошибки. Ломаете вы сами: в тридцать шестой строке server js подсвечен daily price, нажмите на него.",
+    "Нажмите на <b><code>daily_price</code></b> в 36-й строке <b>server.js</b> — станет <b><code>price</code></b>, как пишет Gemini."
    ]
   }
  },
@@ -4413,8 +4885,8 @@ const RU_MDT = {
   "title": "Cannot destructure property 'model' of 'req.body' — тело запроса не прочитано",
   "seg": {
    "a": [
-    "Убираем одну строку: <code>app.use(express.json())</code> — <b>сервер всё равно запускается</b>",
-    "Вторая поломка. Gemini иногда забывает одну строку: app use express json. Убираем эту строку. Сервер запускается без ошибки, GET тоже работает. Проблема только в запросах с телом."
+    "Строка удалена: <code>app.use(express.json())</code> нет — <b>сервер всё равно запускается</b>",
+    "Вы удалили строку. Сервер запускается без ошибки, GET тоже работает. Проблема только в запросах с телом."
    ],
    "b": [
     "POST → 500: <code>req.body</code> — <b><code>undefined</code></b>, взять <code>model</code> нельзя",
@@ -4427,6 +4899,11 @@ const RU_MDT = {
    "d": [
     "Итог: если <code>req.body</code> — <code>undefined</code>, первое место, куда смотреть, — <b><code>express.json()</code></b>",
     "Итог: если вышла ошибка req body undefined, первое место, куда смотреть, — app use express json. И если GET работает, а POST и PUT нет, — тоже эта строка. Одна строка, но без неё не работает ни один запрос с телом."
+   ],
+   "x": [
+    "Вторая поломка тоже <b>ваша</b>: нажмите на подсвеченный в коде <code>app.use(express.json())</code>",
+    "Вторая поломка тоже ваша. Gemini иногда забывает одну строку. В восемнадцатой строке server js подсвечен app use express json, нажмите на него: строка удалится.",
+    "Нажмите на <b><code>app.use(express.json())</code></b> в 18-й строке <b>server.js</b> — строка удалится."
    ]
   }
  },
@@ -4706,9 +5183,9 @@ function yakRu(passed, segs) {
   return segs.map((s) => ({ ...s, ...(Y[s.id === 'a' ? (passed ? 'a_pass' : 'a_fail') : s.id] || {}) }));
 }
 (function ruMdtQo() {
-  const segRu = (n) => { const r = RU_MDT[n] && RU_MDT[n].seg; if (!r) return undefined; const o = {}; Object.keys(r).forEach((id) => { const [key, text] = r[id]; o[id] = { ...(key != null ? { key } : {}), ...(text != null ? { text, show: wrRu(text) } : {}) }; }); return o; };
+  const segRu = (n) => { const r = RU_MDT[n] && RU_MDT[n].seg; if (!r) return undefined; const o = {}; Object.keys(r).forEach((id) => { const [key, text, act] = r[id]; o[id] = { ...(key != null ? { key } : {}), ...(text != null ? { text, show: wrRu(text) } : {}), ...(act != null ? { act } : {}) }; }); return o; };
   const head = (n) => { const r = RU_MDT[n] || {}; const o = {}; ['kicker', 'eyebrow', 'title'].forEach((k) => { if (r[k] != null) o[k] = r[k]; }); const s = segRu(n); if (s) o.segments = s; return o; };
-  const mdt = {}; Object.keys(RU_MDT).forEach((n) => { const r = { ...RU_MDT[n] }; if (r.seg) r.seg = MDT[n].seg.map(([id]) => (r.seg[id] ? [null, r.seg[id][0], r.seg[id][1]] : null)); mdt[n] = r; });
+  const mdt = {}; Object.keys(RU_MDT).forEach((n) => { const r = { ...RU_MDT[n] }; if (r.seg) r.seg = MDT[n].seg.map(([id]) => (r.seg[id] ? [null, r.seg[id][0], r.seg[id][1], r.seg[id][2]] : null)); mdt[n] = r; });
   ru(MDT, mdt);
   ru(S1, { ...head(1), ...((typeof RU_S !== 'undefined' && RU_S.S1) || {}) });
   ru(S2, { ...head(2), ...((typeof RU_S !== 'undefined' && RU_S.S2) || {}) });

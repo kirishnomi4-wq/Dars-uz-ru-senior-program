@@ -58,9 +58,14 @@ for i in range(1, len(chunks), 2):
     m = re.search(r'^- Sarlavha: \*\*(.+?)\*\*', body, re.M)
     if m: sc['title'] = plain(m.group(1))
   segs = []
+  # F-1120-02 (M52): «0.» — mentor o'zi bosadigan segment (id 'x'), keyingi satr «Bosish: «…»» — chap paneldagi ko'rsatma
   for sm in re.finditer(r'^(\d)\. \*\*(.+?)\*\*\s*\n\s+Ovoz: «(.+?)»(?= ·|\s*$)', body, re.M):
-    sid = f'{n}{"abcde"[int(sm.group(1)) - 1]}'
-    segs.append(["abcde"[int(sm.group(1)) - 1], key_html(sid, sm.group(2)), sm.group(3)])
+    k = int(sm.group(1)); sl = 'x' if k == 0 else "abcde"[k - 1]
+    seg = [sl, key_html(f'{n}{sl}', sm.group(2)), sm.group(3)]
+    ma = re.match(r'\n\s+Bosish: «(.+?)»\s*$', body[sm.end():], re.M)
+    if ma: seg.append(re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', code_html(ma.group(1))))
+    elif k == 0: sys.exit(f'{n}x: «Bosish: «…»» satri yo\'q')
+    segs.append(seg)
   if segs: sc['seg'] = segs
   def grab(label, rx=r'«(.+?)»(?=\s*·\s|\s*$)'):  # F-1102-17: ichki «…» da to'xtamasin
     mm = re.search(r'^- ' + label + r'[^:\n]*: ' + rx, body, re.M)

@@ -49,7 +49,8 @@ function compact(files, active) {
 const sg = (id, key, text, extra = {}) => ({ id, key, text, show: wr(text), ...extra });
 const mkS = (n, extras = [], more = {}) => {
   const m = MDT[n];
-  return { kicker: m.kicker, eyebrow: m.eyebrow, title: m.title, ...more, segments: m.seg.map(([id, key, text], i) => sg(id, key, text, extras[i] || {})) };
+  // F-1120-02 (M52): 4-element — act (mentor o'zi bosadi, chap paneldagi ko'rsatma)
+  return { kicker: m.kicker, eyebrow: m.eyebrow, title: m.title, ...more, segments: m.seg.map(([id, key, text, act], i) => sg(id, key, text, { ...(act ? { act } : {}), ...(extras[i] || {}) })) };
 };
 
 // Ovoz → «Matn» (transkript) uchun yozma ko'rinish. Uzun ibora oldin.
@@ -138,7 +139,7 @@ const rng = (a, b, v) => { const o = {}; for (let i = a; i <= b; i++) o[i] = { .
 const mergeMeta = (...ms) => ms.reduce((acc, m) => { Object.keys(m).forEach((k) => { acc[k] = { ...(acc[k] || {}), ...m[k] }; }); return acc; }, {});
 const upto = (lines, beat) => lines.filter((l) => l.at == null || l.at <= beat);
 
-const Term = ({ lines, title = t('terminal', "терминал"), er, beat, focus, style }) => <CodePanel file={title} numbers={false} style={{ background: er ? PG.termEr : PG.term, ...(style || {}) }} lines={lines} beat={beat} focus={focus} />;
+const Term = ({ lines, title = t('terminal', "терминал"), er, beat, focus, style, marks }) => <CodePanel file={title} numbers={false} style={{ background: er ? PG.termEr : PG.term, ...(style || {}) }} lines={lines} beat={beat} focus={focus} marks={marks} />;
 const Psql = ({ lines, title = 'psql — shop', er, beat, focus, style }) => <CodePanel file={title} numbers={false} style={{ background: er ? PG.termEr : PG.term, ...(style || {}) }} lines={lines} beat={beat} focus={focus} />;
 // Loyiha kodi (KOD — aynan, satr raqami bilan). ids: {satr: 'id'} — yoritish uchun; from/to — satr chegarasi
 const kod = (k, ids = {}, from, to) => KOD[k].lines.filter((l) => (from == null || l.n >= from) && (to == null || l.n <= to)).map((l) => ({ h: tsLine(l.t), n: l.n, ...(ids[l.n] ? { id: ids[l.n] } : {}) }));

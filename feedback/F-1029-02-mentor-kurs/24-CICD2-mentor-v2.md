@@ -293,10 +293,14 @@ Loyiha: **OrderBotNest** — teglar `cicd2-start` (= `cicd1-done` b842475) · `c
    Ovoz: «O'n uchinchi ekranda DATABASE URL'ni yml'ga ochiq yozdik, parol postgres. Bu to'g'ri: konteyner job ichida tug'iladi va o'ladi, unga tashqaridan hech kim ulanolmaydi. Sir emas. Ikkala AI ham shunday qildi, keyin ko'rasiz.» · env kartasi
 2. **Haqiqiy baza, bot tokeni — ==GitHub Secrets==: Settings'da yoziladi, yml'da `${{ secrets.NOM }}`, logda `***`**
    Ovoz: «Lekin haqiqiy baza manzili yoki bot tokeni yml'ga yozilmaydi: repo ochiq, tarix abadiy. Ular GitHub'da repo settings, secrets and variables, actions bo'limiga yoziladi. Yml'da faqat nomi: secrets DATABASE URL. Logda qiymati yulduzcha bo'lib chiqadi, maska.» · secrets kartasi
-3. **Buzamiz: ==`secrets.DATABSE_URL` — bitta harf tushib qoldi==; xato yo'q, qiymat bo'sh — smoke «DATABASE_URL topilmadi»**
-   Ovoz: «Endi buzamiz: yml'da secrets DATABSE URL, bitta harf tushib qoldi. Push. GitHub xato bermaydi: bunday secret yo'q, demak qiymat bo'sh. Smoke qadami qizil: SMOKE XATO, DATABASE URL topilmadi, chiqish kodi ikki. Logga qarang: xabardagi namuna manzilning paroli yulduzcha, runner URL parolini o'zi yashirdi.» · run 33
+0. **Endi ==o'zingiz buzasiz==: `ci.yml`da yonib turgan secret nomi ustiga bosing**
+   Ovoz: «Endi buzamiz. Buzishni o'zingiz qilasiz: ci yml'ning qirq birinchi satrida secrets DATABASE URL yonib turibdi, ustiga bosing: nomdan bitta harf tushib qoladi.»
+   Bosish: «**ci.yml** 41-satridagi **`secrets.DATABASE_URL`** ustiga bosing — nomdan bitta harf tushib qoladi.»
+3. **Buzildi: ==`secrets.DATABSE_URL` — bitta harf tushib qoldi==; xato yo'q, qiymat bo'sh — smoke «DATABASE_URL topilmadi»**
+   Ovoz: «Harf tushib qoldi: secrets DATABSE URL. Push. GitHub xato bermaydi: bunday secret yo'q, demak qiymat bo'sh. Smoke qadami qizil: SMOKE XATO, DATABASE URL topilmadi, chiqish kodi ikki. Logga qarang: xabardagi namuna manzilning paroli yulduzcha, runner URL parolini o'zi yashirdi.» · run 33
 4. **Xulosa: ==env — konteyner, secrets — tashqi==; «topilmadi» ko'rsangiz — yml'dagi secret nomini tekshiring**
    Ovoz: «Xulosa: konteyner uchun env, tashqi resurs uchun secrets. Secret nomi xato bo'lsa GitHub indamaydi, qiymat bo'sh keladi va dastur yiqiladi. Logda topilmadi yoki undefined ko'rsangiz, avval yml'dagi secret nomini Settings'dagi bilan solishtiring. Endi shu satrni o'zingiz topasiz.»
+- F-1120-02 (M52): 3-banddan oldin «0.» — mentor 41-satrdagi `secrets.DATABASE_URL` ni o'zi bosadi → `DATABSE_URL` (to'g'ri satr — 2-banddagi `${{ secrets.DATABASE_URL }}`). Kichik rasm: secret nomi → qiymat «?» → bo'sh → smoke ✕ «DATABASE_URL topilmadi», chiqish kodi 2; bo'laklar 1 (41-satr nomi) · 2 (SMOKE XATO satri).
 - Manba: `cicd2v2-out/33-smoke-secret-xato.txt` (aynan), `34-secret-echo.txt` (secret bo'lsa), `cicd2v2-yml/4-smoke-secret-xato.yml`, `5-secret-echo.yml`; lokal `DATABASE_URL=` smoke → kod 2 (`cicd1v2-run`, 04.11).
 
 ## 15 · Tekshiruv 3 — qaysi satr smoke'ni bazasiz qoldiradi  ← `LineCheck`

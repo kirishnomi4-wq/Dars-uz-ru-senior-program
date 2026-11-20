@@ -128,9 +128,13 @@ keyin  · products Klaviatura 8, Kolonka 10 · orders 0 · cart_items 2`);
 const S18 = mkS(18, [{ v: 'jad' }, { v: 'log' }, { v: 'rb' }, { v: 'log', f: ['tx'] }]);
 function Screen18(p) {
   return <Lesson p={p} S={S18} scene={({ seg }) => <>
-    {seg.v === 'jad' && <div className="pg-three"><Card c={PG.pg} h="products"><p>{t("ombordan ayirish · ", "списание со склада · ")}<code>UPDATE</code></p></Card><Card c={T.green} h="orders + order_items"><p>{t("buyurtma · ", "заказ · ")}<code>INSERT</code></p></Card><Card c={T.yellow} h="cart_items"><p>{t("savatni tozalash · ", "очистка корзины · ")}<code>DELETE</code></p></Card></div>}
+    {/* F-1120-02 (M51): uch karta o'rniga darsning rasmi — bitta buyurtma uch jadvalga tegadi, hammasi bitta tranzaksiyada */}
+    {seg.v === 'jad' && <div className="mk-light" style={{ padding: 14 }}><BotMap loc={DB_ALL} tx="open" ops={{ products: 'UPDATE', orders: 'INSERT', carts: 'DELETE' }} on={['order', 'db', 'products', 'orders', 'carts']} chat={['[✅ Buyurtma berish]']} tag={t("Bitta buyurtma — uch jadval, bitta tranzaksiya", 'Один заказ — три таблицы, одна транзакция')} /></div>}
     {seg.v === 'jad' && <Code k="DONE_PLACE" from={24} to={29} />}
+    {/* F-1120-02 (M51): xulosada rasm — uch jadval bitta tranzaksiyada, COMMIT; ostida o'sha SQL log */}
+    {seg.f && <div className="mk-light" style={{ padding: 12 }}><BotMap loc={DB_ALL} tx="commit" ops={{ products: 'UPDATE', orders: 'INSERT', carts: 'DELETE' }} on={['order', 'db', 'products', 'orders', 'carts']} max={0.8} /></div>}
     {seg.v === 'log' && <Term title={t("DB_LOGGING=true — SQL log (SELECT ustunlari qisqartirilgan)", "DB_LOGGING=true — SQL-лог (колонки SELECT сокращены)")} lines={T18} focus={seg.f || []} />}
+    {seg.v === 'rb' && <div className="mk-light" style={{ padding: 14 }}><BotMap loc={DB_ALL} tx="rollback" on={['order', 'db', 'products', 'orders', 'carts']} chat={['[✅ Buyurtma berish]', 'Buyurtma berilmadi: SINOV: order_items yozilmadi', 'bad']} note={{ products: 'Klaviatura 8 · Kolonka 10', orders: t("0 ta — o'zgarmadi", '0 — не изменилось'), carts: t('2 ta — saqlandi', '2 — сохранились') }} tag={t("order_items yiqildi — ROLLBACK: uch jadval ham o'zgarmadi", 'order_items упал — ROLLBACK: все три таблицы не изменились')} /></div>}
     {seg.v === 'rb' && <Term title={t("terminal — trigger bilan ataylab xato", "терминал — нарочная ошибка через trigger")} lines={T18B} />}
   </>} />;
 }
@@ -172,15 +176,26 @@ const T20_OK = term(String.raw`
 tgpg-done (lock: pessimistic_write):  sotildi/ombor  1/0  1/0  1/0  1/0  1/0
 $ npm run smoke -- race
   ✓ ortiqcha sotilmadi (sotildi/ombor): 1/0  1/0  1/0`);
-const S20 = mkS(20, [{ v: 'code' }, { v: 'race' }, { v: 'race', chk: true }, { v: 'fix' }]);
+// F-1120-02 (M52): 1-segment (x) — mentor tuzatilgan koddagi lock'ni o'zi bosadi (data-act) → kod buzuq holatga o'tadi
+const LOCK20 = kod('DONE_PLACE', { 31: 'r', 32: 'r', 33: 'r', 34: 'r' }, 29, 38).map((l) => (l.n === 33 ? { ...l, h: '<span class="n1-act" data-act="1">' + l.h + '</span>' } : l));
+const S20 = mkS(20, [{ v: 'act' }, { v: 'code' }, { v: 'race' }, { v: 'race', chk: true }, { v: 'fix' }]);
 function Screen20(p) {
-  return <Lesson p={p} S={S20} scene={({ seg }) => <>
-    {seg.v === 'code' && <Code k="BUZUQ" focus={['r', 'w']} ids={{ 31: 'r', 36: 'w', 37: 'w' }} />}
-    {seg.v === 'race' && <CodePanel file="order.service.ts" lines={kod('BUZUQ', { 31: 'r', 36: 'w', 37: 'w' }, 31, 37)} focus={seg.chk ? [] : ['r']} />}
-    {seg.v === 'race' && <Term title={t("terminal — haqiqiy parallel sinov", "терминал — настоящая параллельная проверка")} lines={T20} focus={['b']} />}
+  return <Lesson p={p} S={S20} scene={(b) => <Scene20 b={b} />} />;
+}
+// Qadamlar: 0 bosing · 1 buzuq kod (javob «?») · 2 race → 5/0, bo'laklar 1·2 · 3 CHECK ushlamaydi · 4 tuzatildi → 1/0
+function Scene20({ b }) {
+  const { seg, beat } = b;
+  const act = useAct(b);
+  const v = beat === 0 ? (act.hit ? 'code' : 'act') : seg.v;
+  const mini = <N1Mini><RaceMini locked={v === 'act'} fixed={v === 'fix'} known={beat >= 2} pins={beat === 2 ? { a: 1, b: 2 } : {}} /></N1Mini>;
+  return <>
+    {v === 'act' && <Ide files={compact(DONE_FILES, KOD.DONE_PLACE.file)} active={KOD.DONE_PLACE.file}><div onClick={act.onClick}><CodePanel file="order.service.ts" lines={LOCK20} focus={['r']} /></div>{mini}</Ide>}
+    {v === 'code' && <Ide files={compact(DONE_FILES, KOD.BUZUQ.file)} active={KOD.BUZUQ.file}><CodePanel key="b" file="order.service.ts" lines={kod('BUZUQ', { 31: 'r', 36: 'w', 37: 'w' }, 29, 37)} focus={['r', 'w']} />{mini}</Ide>}
+    {v === 'race' && <Ide files={compact(DONE_FILES, KOD.BUZUQ.file)} active={KOD.BUZUQ.file}><CodePanel file="order.service.ts" lines={kod('BUZUQ', { 31: 'r', 36: 'w', 37: 'w' }, 31, 37)} focus={seg.chk ? [] : ['r', 'w']} marks={beat === 2 ? { 0: 'n1-p1', 5: 'n1-p2' } : {}} />{mini}</Ide>}
+    {v === 'race' && <Term title={t("terminal — haqiqiy parallel sinov", "терминал — настоящая параллельная проверка")} lines={T20} focus={['b']} />}
     {seg.chk && <div className="n2-warn">{t("Har tranzaksiya ", "Каждая транзакция ")}<b>0</b>{t(" yozdi — ", " записала — ")}<code>CHECK (stock &gt;= 0)</code>{t(" uchun 0 ruxsat etilgan: xato xabari yo'q, faqat ortiqcha buyurtmalar.", " 0 разрешён: сообщения об ошибке нет, только лишние заказы.")}</div>}
-    {seg.v === 'fix' && <><CodePanel file="order.service.ts · tgpg-done" lines={kod('DONE_PLACE', { 31: 'l', 32: 'l', 33: 'l', 34: 'l' }, 29, 38)} focus={['l']} /><Term lines={T20_OK} /></>}
-  </>} />;
+    {v === 'fix' && <><Ide files={compact(DONE_FILES, KOD.DONE_PLACE.file)} active={KOD.DONE_PLACE.file}><CodePanel file="order.service.ts · tgpg-done" lines={kod('DONE_PLACE', { 31: 'l', 32: 'l', 33: 'l', 34: 'l' }, 29, 38)} focus={['l']} />{mini}</Ide><Term lines={T20_OK} /></>}
+  </>;
 }
 
 // ============================================================

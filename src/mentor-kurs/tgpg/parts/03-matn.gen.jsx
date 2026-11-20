@@ -719,9 +719,15 @@ const MDT = {
   "title": "Qulfsiz «o'qi, tekshir, yoz»: hamma tranzaksiya qoldiq 1 ni ko'radi — bitta Planshet besh kishiga sotiladi, CHECK ham ushlamaydi",
   "seg": [
    [
+    "x",
+    "Endi <b>o'zingiz buzasiz</b>: kodda yonib turgan <code>lock</code> ustiga bosing",
+    "Buyurtma ishlaydi, race sinovi ham toza. Endi ataylab buzamiz, chunki AI'lar ko'pincha aynan shunday yozadi. Buzishni o'zingiz qilasiz: order service'ning o'ttiz uchinchi satrida lock yonib turibdi, ustiga bosing: qulf olib tashlanadi.",
+    "<b>order.service.ts</b> 33-satridagi <b><code>lock: { mode: 'pessimistic_write' }</code></b> ustiga bosing — qulf olib tashlanadi, o'qish oddiy <code>findOneBy</code> bo'ladi."
+   ],
+   [
     "a",
-    "Buzamiz: qatorni <b>qulfsiz o'qiymiz</b>, qoldiqni kodda hisoblab, yangisini yozamiz",
-    "Endi ataylab buzamiz. Qulfni olib tashlaymiz: mahsulotni oddiy find bilan o'qiymiz, qoldiq yetadimi deb kodda tekshiramiz, yangi qoldiqni hisoblab save qilamiz. AI'lar ko'pincha aynan shunday yozadi, ko'rinishi to'g'ri."
+    "Qulf yo'q: qatorni <b>qulfsiz o'qiymiz</b>, qoldiqni kodda hisoblab, yangisini yozamiz",
+    "Qulfni olib tashladingiz. Endi mahsulot oddiy find bilan o'qiladi, qoldiq yetadimi deb kodda tekshiriladi, yangi qoldiq hisoblanib save qilinadi. AI'lar ko'pincha aynan shunday yozadi, ko'rinishi to'g'ri."
    ],
    [
     "b",

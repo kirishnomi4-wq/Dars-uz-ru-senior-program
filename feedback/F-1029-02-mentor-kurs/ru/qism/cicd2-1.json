@@ -188,5 +188,8 @@
  "14.seg.a.voice": "На тринадцатом экране мы написали DATABASE URL в yml открыто, пароль postgres. Это правильно: контейнер рождается и умирает внутри job, снаружи к нему никто не подключится. Это не секрет. Оба AI сделали так же, увидите позже.",
  "14.seg.b.key": "Настоящая база, токен бота — <b>GitHub Secrets</b>: пишутся в Settings, в yml <code>${{ secrets.NOM }}</code>, в логе <code>***</code>",
  "14.seg.b.voice": "Но адрес настоящей базы или токен бота в yml не пишутся: репозиторий открыт, история вечна. Их пишут на GitHub в разделе settings репозитория, secrets and variables, actions. В yml только имя: secrets DATABASE URL. В логе значение выходит звёздочками, маской.",
- "14.seg.c.key": "Ломаем: <b><code>secrets.DATABSE_URL</code> — пропала одна буква</b>; ошибки нет, значение пустое — smoke «DATABASE_URL topilmadi»"
+ "14.seg.c.key": "Сломано: <b><code>secrets.DATABSE_URL</code> — пропала одна буква</b>; ошибки нет, значение пустое — smoke «DATABASE_URL topilmadi»",
+ "14.seg.x.key": "Теперь <b>ломаете вы</b>: нажмите на подсвеченное в <code>ci.yml</code> имя secret",
+ "14.seg.x.voice": "Теперь ломаем. Ломаете вы сами: в сорок первой строке ci yml подсвечен secrets DATABASE URL, нажмите на него: из имени выпадет одна буква.",
+ "14.seg.x.act": "Нажмите на <b><code>secrets.DATABASE_URL</code></b> в 41-й строке <b>ci.yml</b> — из имени выпадет одна буква."
 }

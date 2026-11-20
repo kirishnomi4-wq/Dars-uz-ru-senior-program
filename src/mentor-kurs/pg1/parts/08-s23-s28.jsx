@@ -190,15 +190,13 @@ const SUM28 = [
   { k: 'tx', t: "Oxirgi telefon: shart + qator qulfi → UPDATE 0; tranzaksiya — hammasi yoki hech narsa; jsonb — erkin qo'shimcha", st: ['jad', 'rule'] },
   { k: 'class', t: "Sinf: m4-06 dan oldin har kompyuterda psql -U postgres -c \"SELECT version();\"; m4-03 kodsiz — har blokda bitta qo'shimcha gapingiz bor", st: ['req', 'res'] },
 ];
-const STATIONS28 = [['req', "So'rov", T.ink2], ['psql', 'psql', T.ink], ['rule', 'Qoidalar', T.accent], ['jad', 'Jadval', PG.pg], ['join', 'JOIN', T.purple], ['res', 'Javob', T.green]];
+// F-1120-02 (M51): xulosa — darsning o'sha rasmi (blog bazasi); har band rasmning o'z qismini ko'rsatadi
 function SummaryMap28({ hl }) {
-  const cur = SUM28.find((x) => x.k === hl);
-  const on = (k) => hl === 'all' || !cur || cur.st.includes(k);
+  const read = hl === 'inst' || hl === 'class' ? ['$', 'psql -U postgres -c "SELECT version();"'] : hl === 'join' || hl === 'all' ? ['blog=#', 'SELECT users.username, posts.izoh FROM posts <span class="n1-k">JOIN</span> users ON users.id = posts.user_id;'] : null;
   return <div className="mk-light" style={{ padding: 16 }}>
-    <div className="mk-tag">{t("Bugungi dars — ma'lumotning yo'li", 'Сегодняшний урок — путь данных')}</div>
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, minmax(0,1fr))', gap: 6 }}>
-      {STATIONS28.map(([k, n, c], i) => <div key={k} className={`mk-box${cur && cur.st.includes(k) ? ' hl' : ''}`} style={{ '--c': c, padding: '10px 6px', textAlign: 'center', opacity: on(k) ? 1 : 0.35, animation: `mk-up .4s ${i * 0.06}s ease both` }}><h4 style={{ fontSize: 12.5, margin: 0 }}>{n}</h4></div>)}
-    </div>
+    <BlogDb rules={hl === 'mongo' || hl === 'rule' || hl === 'tx' || hl === 'all'} fk={hl === 'mongo' || hl === 'rule'} join={hl === 'join' || hl === 'all' ? 'inner' : null}
+      bad={hl === 'rule' ? { t: 'posts', row: ['4', '99', "Muallifi yo'q post"], why: t("users'da id 99 yo'q", 'в users нет id 99') } : null}
+      read={read} tag={t("Bugungi dars — blog bazasi bir qarashda", 'Сегодняшний урок — база blog одним взглядом')} />
   </div>;
 }
 const HOMEWORK28 = [
@@ -301,16 +299,21 @@ function Screen28(p) {
 // ============================================================
 //  Muqova va ildiz
 // ============================================================
+// F-1120-02 (M51): muqova — chapda dars nima berishi, o'ngda darsning rasmi; eslatmalar bitta qisqa satrda
 function Cover({ onStart, resume }) {
   return (
-    <div className="mk-cover"><div className="card">
-      <p className="mk-eyebrow">{t("Mentor kursi · PostgreSQL", "Курс для менторов · PostgreSQL")}</p>
-      <h1>{t(LESSON_TITLE, RS('TITLE'))}</h1>
-      <p>{t("Bu dars ovozli. Ustoz har ekranda gapiradi, ekran u bilan birga o'zgaradi. Quloqchin yoki ovoz balandligini tekshiring.", 'Урок озвучен. На каждом экране говорит учитель, экран меняется вместе с ним. Проверьте наушники или громкость.')}</p>
-      <ul>
-        {t(["Jami taxminan 1 soat 10 daqiqa: ovoz ~30 daqiqa · to'rt amaliyot 35–45 daqiqa · 4 tekshiruv · o'z-sinov 8 savol. 15-ekrandan keyin tanaffus qilsangiz bo'ladi", "Kerak: kompyuterda internet (PostgreSQL'ni yuklab olish uchun) · Windows yoki macOS · terminal", "Loyiha: blog bazasi — users va posts, o'quvchi m4-03 amaliyotidagi namuna"], RS('COVER')).map((x) => <li key={x}>{x}</li>)}
-      </ul>
-      <CoverStart onStart={onStart} resume={resume} />
+    <div className="mk-cover"><div className="card n1-cv">
+      <div className="tx">
+        <p className="mk-eyebrow">{t("Mentor kursi · PostgreSQL", "Курс для менторов · PostgreSQL")}</p>
+        <h1>{t(LESSON_TITLE, RS('TITLE'))}</h1>
+        <p className="af">{t('Bu darsdan keyin siz', 'После этого урока вы')}</p>
+        <ul className="ok">
+          {t(["PostgreSQL'ni o'rnatib, psql bilan blog bazasini qurasiz", "bazaning xatosini o'qiysiz: qaysi jadval, qaysi qoida, qaysi qiymat", "JOIN bilan ikki jadvalni bog'laysiz va sinfdagi o'rnatish muammolariga tayyor bo'lasiz"], ['установите PostgreSQL и соберёте базу blog в psql', 'будете читать ошибку базы: какая таблица, какое правило, какое значение', 'свяжете две таблицы через JOIN и будете готовы к проблемам установки в классе']).map((x) => <li key={x}>{x}</li>)}
+        </ul>
+        <p className="meta">{t("Ovozli dars · 1 soat 10 daqiqa, 15-ekrandan keyin tanaffus qilsa bo'ladi · Kerak: internet, Windows yoki macOS, terminal", 'Урок со звуком · 1 час 10 минут, после 15-го экрана можно сделать перерыв · Нужно: интернет, Windows или macOS, терминал')}</p>
+        <CoverStart onStart={onStart} resume={resume} />
+      </div>
+      <div className="pic"><BlogDb join="inner" rules hl={{ users: [0], posts: [1] }} max={1} /></div>
     </div></div>
   );
 }
@@ -320,6 +323,7 @@ export default function PgIntroMentorLesson({ studentName, lang = 'uz', onFinish
   setLang(lang);
   useCss();
   useCss3();
+  useCssN1(); // F-1120-02: dars rasmi uslubi (parts/02b-rasm.jsx)
   const total = SCREENS.length;
   const [started, setStarted] = useState(startAt != null);
   const [idx, setIdx] = useState(Math.min(Math.max(0, startAt || 0), total - 1));

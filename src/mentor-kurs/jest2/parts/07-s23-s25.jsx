@@ -117,15 +117,19 @@ const SUM25 = [
   { k: 'two', t: "Error path testi ikki qismli: xato chiqdi va keyingi qadam bajarilmadi (not.toHaveBeenCalled); har < / <= shartiga aynan teng qiymat bilan chegara testi", st: ['err', 'edge'] },
   { k: 'http', t: "Sayt API'si supertest bilan: so'rov → status va tana; 404 — mijoz xatosi, 500 — server xatosi. AI testini qabul qilish: diff · await + rejects · «bo'lmasligi kerak» testi · «qoidami yoki kod hozir shunday?» · buzib tekshirish", st: ['http', 'ai'] },
 ];
-const STATIONS25 = [['edge', 'Edge case', JC.edge], ['err', 'Error path', JC.err], ['http', 'HTTP test', T.green], ['ai', 'AI testi', JC.ai]];
+// F-1120-02 (M51): xulosa — darsning o'sha rasmi (BotMap + Jest qatori); har band rasmning o'z qismini yoritadi
+const MAP25 = {
+  paths: { on: ['telegram', 'order'], jest: { files: J2_FILES, res: 'pass', txt: '25 passed' } },
+  rule: { on: ['telegram'], tgSub: 'phone.ts', jest: { cmd: 'npm test -- phone', files: ['phone.spec.ts · it.each'], res: 'pass', txt: '8 passed' } },
+  mock: { on: ['order'], note: { products: 'mock: findOne → Kolonka, stock 1' }, jest: { cmd: 'npm test -- order.service', files: ['order.service.spec.ts'], res: 'pass' } },
+  shape: { on: ['order'], jest: { cmd: 'toThrow · rejects', files: ['order.service.spec.ts'], res: 'fail', get txt() { return t("natija yo'q", 'нет результата'); } } },
+  two: { on: ['order'], jest: { cmd: 'npm test -- order.service', files: ['order.service.spec.ts'], res: 'pass', txt: '5 passed' } },
+  http: { on: ['telegram', 'order'], jest: { cmd: 'supertest', files: ['app.controller.spec.ts · GET / · /nope'], res: 'pass', txt: '2 passed' } },
+};
 function SummaryMap25({ hl }) {
-  const cur = SUM25.find((x) => x.k === hl);
-  const on = (k) => hl === 'all' || !cur || cur.st.includes(k);
-  return <div className="mk-light" style={{ padding: 16 }}>
-    <div className="mk-tag">{t("Bugungi dars — bot noto'g'ri kirishda to'g'ri buziladimi", "Сегодняшний урок — правильно ли бот ломается на неверном вводе")}</div>
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0,1fr))', gap: 6 }}>
-      {STATIONS25.map(([k, n, c], i) => <div key={k} className={`mk-box${cur && cur.st.includes(k) ? ' hl' : ''}`} style={{ '--c': c, padding: '10px 6px', textAlign: 'center', opacity: on(k) ? 1 : 0.35, animation: `mk-up .4s ${i * 0.06}s ease both` }}><h4 style={{ fontSize: 13, margin: 0 }}>{n}</h4></div>)}
-    </div>
+  const m = MAP25[hl] || MAP25.paths;
+  return <div className="mk-light" style={{ padding: 14 }}>
+    <BotMap loc={DB_ALL} tgSub="phone.ts" {...m} max={1.05} tag={t("Bugungi dars — bot noto'g'ri kirishda to'g'ri buziladimi", 'Сегодняшний урок — правильно ли ломается бот на неверном вводе')} />
   </div>;
 }
 const HOMEWORK25 = [
@@ -200,7 +204,8 @@ function Screen25(p) {
         <div className="mk-scene top" style={{ overflow: 'auto' }}>
           {phase === 'sum' && (<>
             <SummaryMap25 hl={hl} />
-            <div className="mk-plan">{SUM25.slice(0, shown).map((it, i) => <div key={it.k} className={it.k === hl ? 'hl' : ''} style={{ animation: 'mk-up .45s ease both' }}><b>0{i + 1}</b><span>{it.t}</span></div>)}</div>
+            {/* F-1120-02: bandlar rasm ostida ixcham to'rda — rasm surilib ketmasin (M51-2) */}
+            <div className="n1-plan" style={{ position: 'static', gridTemplateColumns: 'repeat(3,minmax(0,1fr))', gap: 8, marginTop: 10 }}>{SUM25.slice(0, shown).map((it, i) => <div key={it.k} className={it.k === hl ? 'hl' : ''} style={{ animation: 'mk-up .45s ease both' }}><b>0{i + 1}</b><span style={{ fontSize: 12.5 }}>{it.t}</span></div>)}</div>
           </>)}
           {phase === 'hw' && <div className="mk-light" style={{ padding: 16, animation: 'mk-up .45s ease both' }}>
             <div className="mk-tag" style={{ color: T.accent }}>{t('Uyga vazifa · 50–70 daqiqa', 'Домашнее задание · 50–70 минут')}</div>
@@ -229,16 +234,21 @@ function Screen25(p) {
 // ============================================================
 //  Muqova va ildiz
 // ============================================================
+// F-1120-02 (M51): muqova — chapda dars nima berishi, o'ngda darsning rasmi; eslatmalar bitta qisqa satrda
 function Cover({ onStart, resume }) {
   return (
-    <div className="mk-cover"><div className="card">
-      <p className="mk-eyebrow">{t("Mentor kursi · Jest", "Курс для менторов · Jest")}</p>
-      <h1>{t(LESSON_TITLE, RS('TITLE'))}</h1>
-      <p>{t("Bu dars ovozli. Ustoz har ekranda gapiradi, ekran u bilan birga o'zgaradi. Quloqchin yoki ovoz balandligini tekshiring.", 'Урок озвучен. На каждом экране говорит учитель, экран меняется вместе с ним. Проверьте наушники или громкость.')}</p>
-      <ul>
-        {t(["Jami taxminan 1 soat 15–30 daqiqa: ovoz ~25 daqiqa · uchta amaliyot 50–65 daqiqa · 4 tekshiruv · o'z-sinov 8 savol. 14-ekrandan keyin tanaffus qilsangiz bo'ladi", "Kerak: Jest-1 mentor darsi (OrderBotNest'da texts.spec.ts, keyboards.spec.ts yozgansiz) · Node.js 20+ · VS Code · AI yordamchi (Antigravity, Claude Code, Codex yoki Copilot). Baza va bot tokeni kerak emas", 'Loyiha: github.com/Azizbekcrypto/OrderBotNest — jest2-start tegidan boshlaysiz'], RS('COVER')).map((x) => <li key={x}>{x}</li>)}
-      </ul>
-      <CoverStart onStart={onStart} resume={resume} />
+    <div className="mk-cover"><div className="card n1-cv">
+      <div className="tx">
+        <p className="mk-eyebrow">{t("Mentor kursi · Jest", "Курс для менторов · Jest")}</p>
+        <h1>{t(LESSON_TITLE, RS('TITLE'))}</h1>
+        <p className="af">{t('Bu darsdan keyin siz', 'После этого урока вы')}</p>
+        <ul className="ok">
+          {t(["botning xato yo'lini sinaysiz: telefon qoidasi, buyurtmaning uch xatosi va chegarasi", "baza o'rniga mock qo'yasiz va promise xatosini rejects bilan to'g'ri ushlaysiz", "sayt API'sini supertest bilan sinaysiz va AI yozgan testni kodni buzib tekshirasiz"], ['проверите путь ошибки бота: правило телефона, три ошибки заказа и границу', 'подставите mock вместо базы и правильно поймаете ошибку promise через rejects', 'проверите API сайта через supertest и тест от AI — ломая код']).map((x) => <li key={x}>{x}</li>)}
+        </ul>
+        <p className="meta">{t("Ovozli dars · 1 soat 15–30 daqiqa, 14-ekrandan keyin tanaffus qilsa bo'ladi · Kerak: Jest-1 darsi (texts.spec.ts, keyboards.spec.ts), Node.js 20+, VS Code, AI yordamchi; baza va bot tokeni kerak emas · Loyiha: jest2-start tegi", 'Урок со звуком · 1 ч 15–30 мин, после 14-го экрана можно сделать перерыв · Нужно: урок Jest-1 (texts.spec.ts, keyboards.spec.ts), Node.js 20+, VS Code, AI-помощник; база и токен бота не нужны · Проект: тег jest2-start')}</p>
+        <CoverStart onStart={onStart} resume={resume} />
+      </div>
+      <div className="pic"><BotMap loc={DB_ALL} tgSub="phone.ts" on={['telegram', 'order']} jest={{ files: J2_FILES, res: 'pass', txt: '25 passed' }} max={1} /></div>
     </div></div>
   );
 }
@@ -248,6 +258,7 @@ export default function JestEdgeMentorLesson({ studentName, lang = 'uz', onFinis
   setLang(lang);
   useCss();
   useCss3();
+  useCssN1(); // F-1120-02: dars rasmi uslubi (parts/02b-rasm.jsx)
   const total = SCREENS.length;
   const [started, setStarted] = useState(startAt != null);
   const [idx, setIdx] = useState(Math.min(Math.max(0, startAt || 0), total - 1));

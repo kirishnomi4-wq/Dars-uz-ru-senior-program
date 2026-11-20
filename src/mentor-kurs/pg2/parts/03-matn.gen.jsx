@@ -779,9 +779,15 @@ const MDT = {
   "title": "column \"price\" of relation \"cars\" does not exist — kodda price, jadvalda daily_price",
   "seg": [
    [
+    "x",
+    "Endi <b>o'zingiz buzasiz</b>: kodda yonib turgan <code>daily_price</code> ustiga bosing",
+    "Server ishlaydi, to'rt so'rov ham ishlaydi. Endi ataylab buzamiz, chunki o'quvchining Gemini'si aynan shu xatolarni qiladi. Buzishni o'zingiz qilasiz: server js'ning o'ttiz oltinchi satrida daily price yonib turibdi, ustiga bosing.",
+    "<b>server.js</b> 36-satridagi <b><code>daily_price</code></b> ustiga bosing — Gemini yozgandek <b><code>price</code></b> bo'ladi."
+   ],
+   [
     "a",
     "Birinchi buzish — Gemini'ning odatiy xatosi: <code>INSERT</code>da <b>ustun nomini o'zi o'ylab topadi</b>, <code>price</code>",
-    "Buzishni eng ko'p uchraydigan xatodan boshlaymiz. Gemini insert'da daily price o'rniga price yozgan: ustun nomini jadvaldan emas, o'z taxminidan olgan. Serverni ishga tushiramiz: xato yo'q, server ishlayapti deb yozadi. Xato faqat POST yuborilganda chiqadi."
+    "Daily price o'rniga price bo'ldi. Bu Gemini'ning eng ko'p uchraydigan xatosi: insert'da ustun nomini jadvaldan emas, o'z taxminidan oladi. Serverni ishga tushiramiz: xato yo'q, server ishlayapti deb yozadi. Xato faqat POST yuborilganda chiqadi."
    ],
    [
     "b",
@@ -806,9 +812,15 @@ const MDT = {
   "title": "Cannot destructure property 'model' of 'req.body' — so'rov tanasi o'qilmagan",
   "seg": [
    [
+    "x",
+    "Ikkinchi buzish ham <b>sizda</b>: kodda yonib turgan <code>app.use(express.json())</code> ustiga bosing",
+    "Ikkinchi buzish ham sizda. Gemini ba'zan bitta satrni unutadi. Server js'ning o'n sakkizinchi satrida app use express json yonib turibdi, ustiga bosing: satr o'chadi.",
+    "<b>server.js</b> 18-satridagi <b><code>app.use(express.json())</code></b> ustiga bosing — satr o'chadi."
+   ],
+   [
     "a",
-    "Bitta satrni olib tashlaymiz: <code>app.use(express.json())</code> — <b>server baribir ishga tushadi</b>",
-    "Ikkinchi buzish. Gemini ba'zan bitta satrni unutadi: app use express json. Shu satrni olib tashlaymiz. Server xatosiz ishga tushadi, GET ham ishlaydi. Muammo faqat tanasi bor so'rovlarda."
+    "Satr o'chdi: <code>app.use(express.json())</code> yo'q — <b>server baribir ishga tushadi</b>",
+    "Satrni o'chirdingiz. Server xatosiz ishga tushadi, GET ham ishlaydi. Muammo faqat tanasi bor so'rovlarda."
    ],
    [
     "b",

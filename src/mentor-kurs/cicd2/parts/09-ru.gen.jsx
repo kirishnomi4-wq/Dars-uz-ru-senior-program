@@ -32,7 +32,6 @@ ru(SUM25, [
   { t: 'env — контейнер (не секрет); Secrets — внешний ресурс (Settings → Secrets, ${{ secrets.NOM }}, в логе ***). Неверное имя — ошибки нет, значение пустое, программа падает («topilmadi»)' },
   { t: 'Pull request: ветка → PR → run pull_request → checks → merge → run в main; badge в README. Workflow smoke от AI: если опора (ci.yml) верна, AI тоже верен; четыре вопроса: services + healthcheck · доходит ли env · порядок · нужен ли secret' },
 ]);
-ru(STATIONS25, [[null, 'Внутри run · cache', null], null, null, null, null]);
 RU_S.TITLE = 'Внутри GitHub Actions: от красного run до PR';
 RU_S.COVER = ['Всего около 1 часа 15–30 минут: озвучка ~25 минут · три практики 50–65 минут · 4 проверки · самопроверка 8 вопросов. После экрана 11 можно сделать перерыв', 'Нужно: урок для менторов CI/CD-1 (в вашем репозитории на GitHub ci.yml и зелёный run) · Node.js 20+ · VS Code · AI-помощник. База и токен бота не нужны — Postgres поднимается в конвейере контейнером', 'Проект: github.com/Azizbekcrypto/OrderBotNest — начинаете с тега cicd2-start (= cicd1-done); каждый run — из настоящего GitHub Actions'];
 RU_S.FIN_INTRO = 'Вы всё посмотрели, теперь проверьте себя. Итоговый тест, восемь вопросов: job и машина, checkout, чтение красного, cache, fail fast, services, имя secret и pull request. На каждый вопрос одна попытка, после ответа откроются верный ответ и пояснение. Шесть и больше — урок усвоен. Если меньше, вернитесь к указанным экранам и пройдите тест заново.';
@@ -496,8 +495,13 @@ const RU_MDT = {
     "Но адрес настоящей базы или токен бота в yml не пишутся: репозиторий открыт, история вечна. Их пишут на GitHub в разделе settings репозитория, secrets and variables, actions. В yml только имя: secrets DATABASE URL. В логе значение выходит звёздочками, маской."
    ],
    "c": [
-    "Ломаем: <b><code>secrets.DATABSE_URL</code> — пропала одна буква</b>; ошибки нет, значение пустое — smoke «DATABASE_URL topilmadi»",
-    "Теперь ломаем: в yml secrets DATABSE URL, пропала одна буква. Push. GitHub ошибку не даёт: такого secret нет, значит значение пустое. Шаг smoke красный: SMOKE ОШИБКА, DATABASE URL не найден, код выхода два. Посмотрите в лог: пароль в адресе-примере из сообщения — звёздочки, runner сам скрыл пароль URL."
+    "Сломано: <b><code>secrets.DATABSE_URL</code> — пропала одна буква</b>; ошибки нет, значение пустое — smoke «DATABASE_URL topilmadi»",
+    "Буква выпала: secrets DATABSE URL. Push. GitHub ошибку не даёт: такого secret нет, значит значение пустое. Шаг smoke красный: SMOKE ОШИБКА, DATABASE URL не найден, код выхода два. Посмотрите в лог: пароль в адресе-примере из сообщения — звёздочки, runner сам скрыл пароль URL."
+   ],
+   "x": [
+    "Теперь <b>ломаете вы</b>: нажмите на подсвеченное в <code>ci.yml</code> имя secret",
+    "Теперь ломаем. Ломаете вы сами: в сорок первой строке ci yml подсвечен secrets DATABASE URL, нажмите на него: из имени выпадет одна буква.",
+    "Нажмите на <b><code>secrets.DATABASE_URL</code></b> в 41-й строке <b>ci.yml</b> — из имени выпадет одна буква."
    ],
    "d": [
     "Итог: <b>env — контейнер, secrets — внешнее</b>; видите «topilmadi» — проверьте имя secret в yml",
@@ -851,9 +855,9 @@ function yakRu(passed, segs) {
   return segs.map((s) => ({ ...s, ...(Y[s.id === 'a' ? (passed ? 'a_pass' : 'a_fail') : s.id] || {}) }));
 }
 (function ruMdtQo() {
-  const segRu = (n) => { const r = RU_MDT[n] && RU_MDT[n].seg; if (!r) return undefined; const o = {}; Object.keys(r).forEach((id) => { const [key, text] = r[id]; o[id] = { ...(key != null ? { key } : {}), ...(text != null ? { text, show: wrRu(text) } : {}) }; }); return o; };
+  const segRu = (n) => { const r = RU_MDT[n] && RU_MDT[n].seg; if (!r) return undefined; const o = {}; Object.keys(r).forEach((id) => { const [key, text, act] = r[id]; o[id] = { ...(key != null ? { key } : {}), ...(text != null ? { text, show: wrRu(text) } : {}), ...(act != null ? { act } : {}) }; }); return o; };
   const head = (n) => { const r = RU_MDT[n] || {}; const o = {}; ['kicker', 'eyebrow', 'title'].forEach((k) => { if (r[k] != null) o[k] = r[k]; }); const s = segRu(n); if (s) o.segments = s; return o; };
-  const mdt = {}; Object.keys(RU_MDT).forEach((n) => { const r = { ...RU_MDT[n] }; if (r.seg) r.seg = MDT[n].seg.map(([id]) => (r.seg[id] ? [null, r.seg[id][0], r.seg[id][1]] : null)); mdt[n] = r; });
+  const mdt = {}; Object.keys(RU_MDT).forEach((n) => { const r = { ...RU_MDT[n] }; if (r.seg) r.seg = MDT[n].seg.map(([id]) => (r.seg[id] ? [null, r.seg[id][0], r.seg[id][1], r.seg[id][2]] : null)); mdt[n] = r; });
   ru(MDT, mdt);
   ru(S1, { ...head(1), ...((typeof RU_S !== 'undefined' && RU_S.S1) || {}) });
   ru(S2, { ...head(2), ...((typeof RU_S !== 'undefined' && RU_S.S2) || {}) });

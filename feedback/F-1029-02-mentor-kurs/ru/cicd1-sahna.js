@@ -87,5 +87,4 @@ node dist/main → DATABASE_URL topilmadi (нет .env) · нужно: Secrets (
 pull_request · job lint (prettier --check) · badge в README · один раз lint красный → зелёный → ссылка на репозиторий на платформу`;
 // 2-tur (05.11): skaner tuzatilgandan keyin topilgan modul ro'yxatlari
 ru(CAUSE10, ['npm test вернул код выхода 1 (тест границы красный)', 'Конвейер остановился на этом шаге — npm run build «skipped»', 'Сломанный код не собран и никуда не ушёл', 'Восстановите строку и запушьте — run снова зелёный']);
-ru(STATIONS25, [[null, 'CI / CD'], [null, 'Конвейер'], [null, 'ci.yml · Actions'], [null, 'Четыре ловушки'], [null, 'AI workflow']]);
 ru(L_ST, { ok: '✓ зелёный', bad: '✗ красный', skip: '— не запускался' });

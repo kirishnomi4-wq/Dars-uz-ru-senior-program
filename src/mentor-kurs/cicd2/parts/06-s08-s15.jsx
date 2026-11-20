@@ -146,18 +146,33 @@ function Screen13(p) {
 //  14 · DATABASE_URL qayerdan: env (konteyner) va secrets (tashqi); nomi xato → bo'sh (run 33)
 // ============================================================
 const L14 = runLog('33', 'Run npm run smoke', (l) => /^\$|^env:|DATABASE_URL:|SMOKE XATO: DATABASE_URL|##\[error\]/.test(l), 'smoke');
-const S14 = mkS(14, [{ v: 'env' }, { v: 'secrets' }, { v: 'run' }, { v: 'sum' }]);
+// F-1120-02 (M52): 3-segment (x) — mentor 41-satrdagi secrets.DATABASE_URL ni o'zi bosadi → DATABSE_URL (run 33 — haqiqiy)
+const OK41 = kod('YML_4_SMOKE_SECRET_XATO', { 41: 'x' }, 38, 41).map((l) => (l.n === 41 ? { ...l, h: l.h.replace('DATABSE_URL', '<span class="n1-act" data-act="1">DATABASE_URL</span>') } : l));
+const SecretMini = ({ broken, known, pins }) => <N1Mini><FlowMini tag={t("secret nomi → qiymat → smoke", 'имя secret → значение → smoke')}
+  boxes={[[broken ? 'secrets.DATABSE_URL' : 'secrets.DATABASE_URL', t('ci.yml · 41-satr', 'ci.yml · строка 41'), broken ? 'bad' : ''], [t('qiymat', 'значение'), !broken ? '***' : known ? t("bo'sh — xato yo'q", 'пусто — ошибки нет') : '?', ''], ['npm run smoke', !broken ? '✓' : known ? '✕' : '?', broken && known ? 'bad' : '']]}
+  res={broken ? [known ? 'SMOKE XATO: DATABASE_URL topilmadi · exit code 2' : '?', 'bad'] : null} pins={pins} /></N1Mini>;
+const S14 = mkS(14, [{ v: 'env' }, { v: 'secrets' }, { v: 'act' }, { v: 'run' }, { v: 'sum' }]);
 function Screen14(p) {
   const cards = (hl) => <div className="pg-two">
     <div className={`c1-mach ok${hl === 'env' ? ' hl' : ''}`}><h4>{t("env: — konteyner", "env: — контейнер")}</h4><div className="r"><span>{t("ci.yml, smoke qadami", "ci.yml, шаг smoke")}</span><code>env:</code></div><p><code>DATABASE_URL: postgresql://postgres:postgres@localhost:5432/shop</code></p><p>{t("yml'da ochiq — to'g'ri: konteyner job ichida tug'iladi va o'ladi, tashqaridan ulanib bo'lmaydi", "открыто в yml — правильно: контейнер рождается и умирает внутри job, снаружи не подключиться")}</p></div>
     <div className={`c1-mach${hl === 'secrets' ? ' hl' : ''}`}><h4>{t("secrets — tashqi resurs", "secrets — внешний ресурс")}</h4><div className="r"><span>GitHub</span><code>Settings → Secrets → Actions</code></div><div className="r"><span>log</span><code>***</code></div><p><code>{'DATABASE_URL: ${{ secrets.DATABASE_URL }}'}</code></p><p>{t("haqiqiy baza, bot tokeni — yml'ga yozilmaydi: repo ochiq, tarix abadiy", "настоящая база, токен бота — в yml не пишутся: репозиторий открыт, история вечна")}</p></div>
   </div>;
-  return <Lesson p={p} S={S14} scene={({ seg }) => <>
+  return <Lesson p={p} S={S14} scene={(b) => <Scene14 b={b} cards={cards} />} />;
+}
+// Qadamlar: 0 env · 1 secrets · 2 bosing (act) · 3 run qizil, bo'laklar 1·2 · 4 xulosa
+function Scene14({ b, cards }) {
+  const { seg, beat } = b;
+  const act = useAct(b);
+  const v = beat === 2 ? (act.hit ? 'broke' : 'act') : seg.v;
+  const mini = <SecretMini broken={v !== 'act'} known={beat >= 3} pins={beat === 3 ? { 0: 1, 2: 2 } : {}} />;
+  return <>
     {seg.v === 'env' && cards('env')}
     {seg.v === 'secrets' && cards('secrets')}
-    {seg.v === 'run' && <div style={{ display: 'grid', gap: 8 }} className="c1-small"><CodePanel file={t("ci.yml · 41-satr — harf tushib qolgan", "ci.yml · строка 41 — пропала буква")} lines={kod('YML_4_SMOKE_SECRET_XATO', { 41: 'x' }, 38, 41)} focus={['x']} /><RunView k="33" job="smoke" ann={null} only={/npm run smoke/} open="Run npm run smoke" lines={L14} /></div>}
+    {v === 'act' && <div style={{ display: 'grid', gap: 8 }}><div onClick={act.onClick}><CodePanel file="ci.yml" lines={OK41} focus={['x']} /></div>{mini}</div>}
+    {v === 'broke' && <div style={{ display: 'grid', gap: 8 }}><CodePanel file={t("ci.yml · 41-satr — harf tushib qoldi", "ci.yml · строка 41 — пропала буква")} lines={kod('YML_4_SMOKE_SECRET_XATO', { 41: 'x' }, 38, 41)} focus={['x']} />{mini}</div>}
+    {v === 'run' && <div style={{ display: 'grid', gap: 8 }} className="c1-small"><CodePanel file={t("ci.yml · 41-satr — harf tushib qolgan", "ci.yml · строка 41 — пропала буква")} lines={kod('YML_4_SMOKE_SECRET_XATO', { 41: 'x' }, 38, 41)} focus={['x']} />{mini}<RunView k="33" job="smoke" ann={null} only={/npm run smoke/} open="Run npm run smoke" lines={L14} /></div>}
     {seg.v === 'sum' && <div style={{ display: 'grid', gap: 10 }}>{cards(null)}<div className="n2-warn">{t("Secret nomi xato — GitHub ", "Неверное имя secret — GitHub ")}<b>{t("indamaydi", "молчит")}</b>{t(", qiymat bo'sh, dastur yiqiladi («topilmadi»). Logda ", ", значение пустое, программа падает («topilmadi»). В логе ")}<code>***</code>{t(" — runner URL ichidagi ", " — runner внутри URL ")}<code>user:parol@</code>{t(" ni o'zi yashiradi (run 33, secret'siz ham).", " скрывает сам (run 33, и без secret).")}</div></div>}
-  </>} />;
+  </>;
 }
 
 // ============================================================

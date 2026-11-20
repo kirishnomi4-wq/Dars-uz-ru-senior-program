@@ -78,15 +78,35 @@ const BREAK16 = { 36: KOD.ORDER_PLACE.lines.find((l) => l.n === 36).t.replace('p
 const T16A = out('09', outFind('09', /^PASS/), outFind('09', /^Tests:/));
 const T16B = out('09c', outFind('09c', /^FAIL/), outFind('09c', /^\s*>\s*37/));
 const T16C = out('09b', outFind('09b', /^PASS/), outFind('09b', /^Tests:/));
-const S16 = mkS(16, [{ v: 'break' }, { v: 'four' }, { v: 'five' }, { v: 'ok' }]);
+// F-1120-02 (M52): 1-segment (x) — mentor 36-satrdagi «<» ni o'zi bosadi (data-act) → «<=»
+const L36 = KOD.ORDER_PLACE.lines.find((l) => l.n === 36).t;
+const ACT16 = kod('ORDER_PLACE', { 36: 'x' }, 35, 38).map((l) => (l.n === 36 ? { ...l, h: tsLine(L36.split('p.stock < c.qty')[0] + 'p.stock ') + '<span class="n1-act" data-act="1">' + tsLine('<') + '</span>' + tsLine(' c.qty' + L36.split('p.stock < c.qty')[1]) } : l));
+// 1280×720 da kichik rasm bilan sig'sin: 5-testdan nomi, stock: 2 va kutilgan jami (oraliq satrlar «…»)
+const SPEC16 = (() => { const L = kod('SPEC_ORDER_10', { 69: 'c', 73: 'c', 77: 'c' }, 69, 78); const keep = [69, 73, 76, 77, 78]; const out = []; L.forEach((l) => { if (!keep.includes(l.n)) { if (out.length && out[out.length - 1].n !== '') out.push({ h: '<span class="cm">…</span>', n: '' }); return; } out.push(l); }); return out; })();
+const S16 = mkS(16, [{ v: 'act' }, { v: 'break' }, { v: 'four' }, { v: 'five' }, { v: 'ok' }]);
 function Screen16(p) {
-  return <Lesson p={p} S={S16} scene={({ seg }) => <>
-    {(seg.v === 'break' || seg.v === 'four') && <CodePanel file={t("order.service.ts · buzilgan", "order.service.ts · сломан")} lines={kod('ORDER_PLACE', { 36: 'x' }, 35, 38, BREAK16)} focus={['x']} />}
-    {(seg.v === 'break' || seg.v === 'four') && <Term title={t("VS Code terminali · npm test -- order.service", "терминал VS Code · npm test -- order.service")} lines={T16A} />}
-    {seg.v === 'four' && <div className="n2-warn">{t(<>To'rt test yashil: ular <b>1 ta</b> va <b>10 ta</b> ni sinaydi — <code>&lt;</code> va <code>&lt;=</code> farqi faqat <b>aynan teng</b> bo'lganda.</>, <>Четыре теста зелёные: они проверяют <b>1</b> и <b>10</b> — разница между <code>&lt;</code> и <code>&lt;=</code> только при <b>точном равенстве</b>.</>)}</div>}
-    {seg.v === 'five' && <><CodePanel file="order.service.spec.ts" lines={kod('SPEC_ORDER_10', rngIds(69, 78, 'c'), 69, 78)} focus={['c']} /><Term title={t("VS Code terminali · buzilgan kod bilan", "терминал VS Code · со сломанным кодом")} lines={T16B} er /></>}
-    {seg.v === 'ok' && <><Term title={t("VS Code terminali · tiklangan kod bilan", "терминал VS Code · с восстановленным кодом")} lines={T16C} /><div className="mk-rule">{t(<>Har <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code> shartiga — <b>aynan teng</b> qiymat bilan test.</>, <>На каждое условие <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code> — тест со значением <b>ровно на равенстве</b>.</>)}</div></>}
-  </>} />;
+  return <Lesson p={p} S={S16} scene={(b) => <Scene16 b={b} />} />;
+}
+// Qadamlar: 0 bosing · 1 buzildi (natija «?») · 2 to'rt test yashil · 3 5-test qizil, bo'laklar 1·2 · 4 tiklandi → 5 passed
+function Scene16({ b }) {
+  const { seg, beat } = b;
+  const act = useAct(b);
+  const v = beat === 0 ? (act.hit ? 'break' : 'act') : seg.v;
+  const broken = v !== 'act' && v !== 'ok';
+  const res = v === 'act' || v === 'break' ? (v === 'break' ? ['?', ''] : null) : v === 'four' ? ['npm test -- order.service → 4 passed ' + t('(sezilmadi)', '(не заметили)'), 'ok'] : v === 'five' ? ['5-test → 1 failed: Kolonka: omborda faqat 2 ta qoldi', 'bad'] : ['5 passed', 'ok'];
+  const mini = <N1Mini><FlowMini tag={t("Chegara: omborda 2 ta, savatda 2 ta", 'Граница: на складе 2, в корзине 2')}
+    boxes={[[t('mock: stock 2', 'mock: stock 2'), t('savatda: 2 ta', 'в корзине: 2'), ''], [broken ? 'p.stock <= c.qty' : 'p.stock < c.qty', t('36-satr', 'строка 36'), broken ? 'bad' : v === 'ok' ? 'ok' : ''], [t('buyurtma', 'заказ'), v === 'five' ? t("rad: «faqat 2 ta qoldi»", 'отказ: «осталось только 2»') : v === 'act' || v === 'ok' ? t('qabul · 100 000', 'принят · 100 000') : '?', v === 'five' ? 'bad' : '']]}
+    res={res} pins={beat === 3 ? { 1: 1, 2: 2 } : {}} /></N1Mini>;
+  return <>
+    {v !== 'five' && v !== 'ok' && <Ide files={compact(FILES(F.ors), F.ord)} active={F.ord}>
+      {v === 'act' ? <div onClick={act.onClick}><CodePanel file="order.service.ts" lines={ACT16} focus={['x']} /></div> : <CodePanel key="b" file={t("order.service.ts · buzilgan", "order.service.ts · сломан")} lines={kod('ORDER_PLACE', { 36: 'x' }, 35, 38, BREAK16)} focus={['x']} />}
+      {mini}
+    </Ide>}
+    {(v === 'break' || v === 'four') && <Term title={t("VS Code terminali · npm test -- order.service", "терминал VS Code · npm test -- order.service")} lines={T16A} />}
+    {v === 'four' && <div className="n2-warn">{t(<>To'rt test yashil: ular <b>1 ta</b> va <b>10 ta</b> ni sinaydi — <code>&lt;</code> va <code>&lt;=</code> farqi faqat <b>aynan teng</b> bo'lganda.</>, <>Четыре теста зелёные: они проверяют <b>1</b> и <b>10</b> — разница между <code>&lt;</code> и <code>&lt;=</code> только при <b>точном равенстве</b>.</>)}</div>}
+    {v === 'five' && <><Ide files={compact(FILES(F.ors), F.ors)} active={F.ors}><CodePanel file="order.service.spec.ts" lines={SPEC16} focus={['c']} />{mini}</Ide><Term title={t("VS Code terminali · buzilgan kod bilan", "терминал VS Code · со сломанным кодом")} lines={T16B} er /></>}
+    {v === 'ok' && <><Term title={t("VS Code terminali · tiklangan kod bilan", "терминал VS Code · с восстановленным кодом")} lines={T16C} />{mini}<div className="mk-rule">{t(<>Har <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code> shartiga — <b>aynan teng</b> qiymat bilan test.</>, <>На каждое условие <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code> — тест со значением <b>ровно на равенстве</b>.</>)}</div></>}
+  </>;
 }
 
 // ============================================================

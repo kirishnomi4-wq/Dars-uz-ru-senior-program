@@ -22,21 +22,24 @@ const PCOLS = ['id', 'name', 'price', 'stock'];
 //  1 · Kirish
 // ============================================================
 const PLAN1 = ['CRUD terminalida', 'Tranzaksiya: xavfsiz sinash va atomik ish', "Baza qo'riqlaydi", "Express'dan bazaga", 'Buzamiz va tuzatamiz', 'Sinfga tayyorgarlik'];
-const S1 = mkS(1, [{ hl: [], res: true }, { hl: [0, 1, 2] }, { hl: [3, 4] }, { hl: [5] }], { plan: PLAN1 });
-const INTRO1 = psql(String.raw`
-shop=# UPDATE products SET price = 99000 WHERE id = 1;
-UPDATE 1`);
+const S1 = mkS(1, [{ hl: [] }, { hl: [0, 1, 2] }, { hl: [3, 4] }, { hl: [5] }], { plan: PLAN1 });
+// F-1120-02 (M51): darsning rasmi — so'rov bazagacha va qaytib (CrudMachine, 04b-mashina.jsx); reja pastda
+const S1M = [
+  { path: 'both', back: 'rows[0] → res.status(201).json', st: 201, newRow: 3, ro: ['server.js:36', "<span class=\"n1-s\">'INSERT INTO cars (model, daily_price, year) VALUES ($1, $2, $3) RETURNING *'</span>,"] },
+  { path: 'psql', on: ['psql', 'shop'], ro: ['psql · shop', 'UPDATE products SET price = 99000 WHERE id = 1; <span class="n1-ok">→ UPDATE 1</span>'] },
+  { path: 'api', on: ['pm', 'json', 'route', 'pool', 'cars'], back: 'rows[0] → res.status(201).json', st: 201, newRow: 3, ro: ['server.js:36', "<span class=\"n1-s\">'INSERT INTO cars (model, daily_price, year) VALUES ($1, $2, $3) RETURNING *'</span>,"] },
+  { path: 'both', back: 'rows[0] → res.status(201).json', st: 201, newRow: 3 },
+];
+const CARS1 = [...CARS0, ['4', 'Chevrolet Spark', '190000']];
+const PRODS1 = [['1', 'Klaviatura', '99000'], ['2', 'Sichqoncha', '75000']];
 function Screen1(p) {
-  return <Lesson p={p} S={S1} scene={({ seg }) => <div style={{ display: 'grid', gap: 14 }}>
-    <div className="mk-light"><div className="mk-plan">
+  return <Lesson p={p} S={S1} scene={({ seg, beat }) => { const m = S1M[Math.min(beat, 3)]; return <div className="mk-light" style={{ padding: 16, display: 'grid', gap: 12 }}>
+    <CrudMachine {...m} cars={CARS1} prods={PRODS1} res='{"id":4,"model":"Chevrolet Spark",…}' req={{ m: 'POST', url: '/api/cars', body: '{ "model": "Chevrolet Spark", "daily_price": 190000, "year": 2021 }' }}
+      tag={t("Bugungi darsning rasmi — bitta baza, ikki yo'l: terminal va Express", 'Картина урока — одна база, два пути: терминал и Express')} />
+    <div className="n1-plan" style={{ position: 'static', gridTemplateColumns: 'repeat(6,minmax(0,1fr))', gap: 6 }}>
       {S1.plan.map((x, i) => <div key={i} className={seg.hl.includes(i) ? 'hl' : (seg.hl.length ? 'dim' : '')}><b>0{i + 1}</b><span>{x}</span></div>)}
-    </div></div>
-    {seg.res && <><div className="mk-tag" style={{ margin: 0 }}>{t("Dars oxirida — terminalda ham, serverda ham", "В конце урока — и в терминале, и на сервере")}</div>
-    <div className="pg-two">
-      <Psql title="psql — shop" lines={INTRO1} />
-      <PostmanCard m="POST" url="localhost:3000/api/cars" body={'{ "model": "Chevrolet Spark", "daily_price": 190000, "year": 2021 }'} st={201} res={'{"id":4,"model":"Chevrolet Spark","daily_price":190000,"year":2021,"is_rented":null}'} />
-    </div></>}
-  </div>} />;
+    </div>
+  </div>; }} />;
 }
 
 // ============================================================

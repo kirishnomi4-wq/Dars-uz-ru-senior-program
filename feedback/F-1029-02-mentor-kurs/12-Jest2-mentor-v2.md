@@ -233,8 +233,12 @@ Loyiha: **OrderBotNest** — teglar `jest2-start` (= `jest1-done` 9d6b947) · `j
 ## 11 · Buzamiz: `toThrow` promise xatosida — natija yo'q  ← `Lesson`
 - Kicker: `3-bosqich · buzamiz` · Sarlavha: **Ombor xatosini `toThrow` bilan yozsak, Jest qizil bermaydi — jarayonning o'zi quladi, PASS ham, FAIL ham chiqmadi**
 - Sahna: `order.service.spec.ts` ombor testi (`kod-07-order-tothrow.spec.ts`): `expect(() => service.place(user, cart)).toThrow('Kolonka: omborda faqat 1 ta qoldi');` (qizil belgi); terminal `07` (`…/OrderBotNest/src/api/order/order.service.ts:48` · `throw new Error(…)` · `Error: Kolonka: omborda faqat 1 ta qoldi` · `Node.js v24.18.0` · `[chiqish kodi: 1]`) — PASS/FAIL satri yo'q; 3-segmentda sabab kartasi: `toThrow` o'ramni chaqirdi → `place` promise qaytardi (xato yo'q!) → xato keyin, promise ichida → hech kim ushlamadi → jarayon quladi.
-1. **Ombor testini ==`toThrow` bilan yozamiz== — sinxron shakl, promise xatosi uchun**
-   Ovoz: «Endi ataylab buzamiz. Ombor testini uchinchi testdagidek emas, birinchi testdagi shaklda yozamiz: o'ram va to throw, await yo'q, rejects yo'q. Ko'rinishi to'g'riga o'xshaydi: xabar ham o'sha. Npm test order service.»
+- F-1120-02 (M52): 0-band — mentor to'g'ri testdagi (51-satr) `await … .rejects` ni o'zi bosadi → test sinxron `toThrow` shakliga o'tadi. Kod ostida kichik rasm (M51): spec → place() → Jest natijasi «?» → «PASS ham, FAIL ham yo'q — jarayon quladi»; bo'laklar 1 (51-satr o'ram) · 2 (`Node.js v24.18.0`).
+0. **Endi ==o'zingiz buzasiz==: testda yonib turgan `rejects` ustiga bosing**
+   Ovoz: «Ombor testi to'g'ri yozilgan: await va rejects bor. Endi ataylab buzamiz. Buzishni o'zingiz qilasiz: order service spec faylining ellik birinchi satri yonib turibdi, ustiga bosing: test birinchi testdagi sinxron shaklga o'tadi.»
+   Bosish: «**order.service.spec.ts** 51-satridagi **`await expect(…).rejects`** ustiga bosing — test `expect(() => …).toThrow` shakliga o'tadi.»
+1. **Ombor testi endi ==`toThrow` bilan== — sinxron shakl, promise xatosi uchun**
+   Ovoz: «Test endi o'ram va to throw bilan, await yo'q, rejects yo'q. Ko'rinishi to'g'riga o'xshaydi: xabar ham o'sha. Npm test order service.»
 2. **Natija: ==PASS ham, FAIL ham yo'q== — terminalda xato va `Node.js v24.18.0`, jarayon quladi**
    Ovoz: «Natijaga qarang. PASS yo'q, FAIL yo'q, tests satri yo'q. Faqat xato: Kolonka, omborda faqat bitta qoldi, va Node versiyasi. Jest jarayonining o'zi quladi. Siz test qizil bo'ladi deb kutgan edingiz, u esa umuman natija bermadi.» · terminal
 3. **Demak, sabab: ==`toThrow` o'ramni chaqirdi, `place` promise qaytardi, xato keyin keldi== — hech kim ushlamadi**
@@ -298,8 +302,12 @@ Loyiha: **OrderBotNest** — teglar `jest2-start` (= `jest1-done` 9d6b947) · `j
 ## 16 · Chegara: `<` → `<=` — to'rt test ko'rmaydi, beshinchisi ko'radi  ← `Lesson`
 - Kicker: `4-bosqich · buzamiz` · Sarlavha: **Ombor tekshiruvini `<=` qilsak, aynan 2 ta qolganda 2 tasini sotib bo'lmaydi — to'rt test yashil qoladi, chegara testi qizaradi**
 - Sahna: `order.service.ts` 36-satr `if (p.stock < c.qty) {` → buzilgan `if (p.stock <= c.qty) {` (M36); terminal `09` (4 ✓ — buzilish sezilmadi); 3-segmentda qo'shilgan test (`kod-10-order-chegara.spec.ts`): `it("chegara: omborda aynan 2 ta — 2 tasini olsa bo'ladi")` · `mockResolvedValue({ stock: 2 })` · `expect(order.total).toBe(100000)`; terminal `09b` (5 ✓) → `09c`: `✕ chegara…` · `Kolonka: omborda faqat 2 ta qoldi` · `> 37 |`.
-1. **Buzamiz: ==`<` o'rniga `<=`== — omborda 2 ta, 2 tasini olsa, bot «faqat 2 ta qoldi» deydi**
-   Ovoz: «Order service ts'ning o'ttiz oltinchi satrida kichik belgisini kichik yoki tengga almashtiramiz. Endi omborda ikkita bo'lsa va mijoz ikkitasini olsa, bot xato beradi: faqat ikkita qoldi. Oxirgi mahsulot hech qachon sotilmaydi. Npm test order service.» · 36
+- F-1120-02 (M52): 0-band — mentor 36-satrdagi `<` ni o'zi bosadi → `<=`. Kod ostida kichik rasm (M51): «omborda 2, savatda 2» → `p.stock < c.qty` → natija «?» → 4 passed (sezilmadi) → 5-test bilan 1 failed → 5 passed; bo'laklar 1 (36-satr shart) · 2 (5-test — aynan 2 ta).
+0. **Endi ==o'zingiz buzasiz==: shartda yonib turgan `<` ustiga bosing**
+   Ovoz: «Ombor tekshiruvi to'g'ri ishlaydi. Endi chegarani buzamiz. Buzishni o'zingiz qilasiz: order service ts'ning o'ttiz oltinchi satrida kichik belgisi yonib turibdi, ustiga bosing: u kichik yoki tengga aylanadi.»
+   Bosish: «**order.service.ts** 36-satridagi **`<`** ustiga bosing — `<=` bo'ladi.»
+1. **Buzildi: ==`<` o'rniga `<=`== — omborda 2 ta, 2 tasini olsa, bot «faqat 2 ta qoldi» deydi**
+   Ovoz: «Kichik endi kichik yoki teng. Omborda ikkita bo'lsa va mijoz ikkitasini olsa, bot xato beradi: faqat ikkita qoldi. Oxirgi mahsulot hech qachon sotilmaydi. Npm test order service.» · 36
 2. **To'rt test ==yashil qoldi==: ular 1 ta va 10 ta ni sinaydi, chegarani emas**
    Ovoz: «To'rttala test yashil. Sababi: ombor testi bitta qolganini sinaydi, happy path o'nta. Ikkalasi chegaradan uzoqda. Kichik va kichik yoki teng farqi faqat ikki son teng bo'lganda ko'rinadi. Jest birinchi darsidagi sahifalash xatosi bilan bir xil.» · `09`
 3. **Beshinchi test — ==omborda aynan 2 ta, 2 tasi olinadi==: endi qizil, «faqat 2 ta qoldi»**

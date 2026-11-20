@@ -22,6 +22,7 @@ async function walk(d) {
     for (let t = 0; t < 25; t++) {
       await page.waitForTimeout(250);
       const ask = await page.$('.mk-ask .row button'); if (ask) { await ask.click(); continue; }
+      const act = await page.$('.n1-acthint') && await page.$('.n1-act'); if (act) { await act.click(); continue; } // F-1120-02
       const man = await page.$('button:text-matches("^(Keyingi qadam|Следующий шаг)")'); if (man) { await man.click(); continue; }
       const st = await page.evaluate(() => { const b = [...document.querySelectorAll('.mk-nav .mk-btn')].pop(); const dd = [...document.querySelectorAll('.mk-dots i')]; return { ready: b && !b.disabled, on: dd.findIndex((x) => x.classList.contains('on')), n: dd.length }; });
       if (st.ready || (st.n > 0 && st.on === st.n - 1 && t > 3)) break;

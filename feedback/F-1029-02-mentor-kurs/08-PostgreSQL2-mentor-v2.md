@@ -90,6 +90,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M42 · Haqiqiy chiqishlar: `manba/pg2-out/` 
 ## 1 · Kirish  ← `Lesson`
 - Kicker: `Kirish` · Eyebrow: `Mentor kursi · PostgreSQL` · Sarlavha: **Jadval tayyor. Endi uni boshqaramiz — PostgreSQL terminalida va Express ichida**
 - Sahna: chapda reja (6 bosqich); o'ngda ikki natija: terminal `UPDATE 1` va Postman kartasi `POST /api/cars` → `201`.
+  - F-1120-02 (M51): o'ngda darsning rasmi — «bitta baza, ikki yo'l»: Postman → Express (express.json 18 · route 32 · pool.query 36) → PostgreSQL (`car_rental · cars`, yangi qator id 4 Chevrolet Spark) va psql → `shop · products` (`UPDATE 1`); ostida bajarilayotgan satr, pastda reja. Har segmentda bitta yo'l yonadi (a — ikkalasi, b — psql, c — Express, d — ikkalasi). Muqova, 18-, 22-ekran xulosasi va yakun — shu rasm.
 - Reja: 01 CRUD terminalida · 02 Tranzaksiya: xavfsiz sinash va atomik ish · 03 Baza qo'riqlaydi · 04 Express'dan bazaga · 05 Buzamiz va tuzatamiz · 06 Sinfga tayyorgarlik
 1. **PostgreSQL-1 da jadval yaratdingiz — bugun undagi ma'lumotni ==to'rt buyruq bilan boshqarasiz==**
    Ovoz: «Assalomu alaykum. Oldingi darsda PostgreSQL'ni o'rnatdingiz, jadval yaratdingiz va bog'ladingiz. Bugun jadvaldagi ma'lumotni boshqaramiz: qo'shish, ko'rish, o'zgartirish va o'chirish. Buni CRUD deyishadi, uning nimaligini keyingi ekranda aniq ko'ramiz.»
@@ -698,9 +699,12 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M42 · Haqiqiy chiqishlar: `manba/pg2-out/` 
 
 ## 22 · Buzamiz 1: `price` ustuni  ← `Lesson`
 - Kicker: `5-bosqich · buzamiz va tuzatamiz` · Sarlavha: **`column "price" of relation "cars" does not exist` — kodda `price`, jadvalda `daily_price`**
-- Sahna: `server.js` POST satri (`price` qizil) → Postman 500 → terminal → tuzatish (`daily_price` yashil) → Postman 201.
+- Sahna: `server.js` POST satri — mentor 36-satrdagi `daily_price` ni bosadi (M52) → `price` qizil → Postman 500 → terminal → tuzatish (`daily_price` yashil) → Postman 201. Kod ostida kichik rasm (M51): Postman → express.json → INSERT → cars, javob «?» → 500 → 201; xato bo'laklari 1 (ustun `price`) · 2 (jadval `cars`). Xulosa — darsning rasmi: `cars`da `price` yo'q, javob catch → 500.
+0. **Endi ==o'zingiz buzasiz==: kodda yonib turgan `daily_price` ustiga bosing**
+   Ovoz: «Server ishlaydi, to'rt so'rov ham ishlaydi. Endi ataylab buzamiz, chunki o'quvchining Gemini'si aynan shu xatolarni qiladi. Buzishni o'zingiz qilasiz: server js'ning o'ttiz oltinchi satrida daily price yonib turibdi, ustiga bosing.»
+   Bosish: «**server.js** 36-satridagi **`daily_price`** ustiga bosing — Gemini yozgandek **`price`** bo'ladi.»
 1. **Birinchi buzish — Gemini'ning odatiy xatosi: `INSERT`da ==ustun nomini o'zi o'ylab topadi==, `price`**
-   Ovoz: «Buzishni eng ko'p uchraydigan xatodan boshlaymiz. Gemini insert'da daily price o'rniga price yozgan: ustun nomini jadvaldan emas, o'z taxminidan olgan. Serverni ishga tushiramiz: xato yo'q, server ishlayapti deb yozadi. Xato faqat POST yuborilganda chiqadi.»
+   Ovoz: «Daily price o'rniga price bo'ldi. Bu Gemini'ning eng ko'p uchraydigan xatosi: insert'da ustun nomini jadvaldan emas, o'z taxminidan oladi. Serverni ishga tushiramiz: xato yo'q, server ishlayapti deb yozadi. Xato faqat POST yuborilganda chiqadi.»
 2. **POST → 500, xabarda jadval va ustun: ==`"price"` · `"cars"`==**
    Ovoz: «POST yuboramiz, javob besh yuz. Xabarni o'qiymiz: column price of relation cars does not exist. Ustun price, jadval esa cars. Relation so'zi uchinchi bosqichdan tanish: bu jadval. Xabar nimani tuzatishni o'zi aytdi.»
    Postman: **500** `{"error":"column \"price\" of relation \"cars\" does not exist"}` · terminal: `column "price" of relation "cars" does not exist`
@@ -713,9 +717,12 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M42 · Haqiqiy chiqishlar: `manba/pg2-out/` 
 
 ## 23 · Buzamiz 2: `express.json()` yo'q  ← `Lesson`
 - Kicker: `5-bosqich · buzamiz va tuzatamiz` · Sarlavha: **`Cannot destructure property 'model' of 'req.body'` — so'rov tanasi o'qilmagan**
-- Sahna: `server.js` — `app.use(express.json())` satri chizilgan → Postman 500 → satr qaytariladi (yashil) → 201.
-1. **Bitta satrni olib tashlaymiz: `app.use(express.json())` — ==server baribir ishga tushadi==**
-   Ovoz: «Ikkinchi buzish. Gemini ba'zan bitta satrni unutadi: app use express json. Shu satrni olib tashlaymiz. Server xatosiz ishga tushadi, GET ham ishlaydi. Muammo faqat tanasi bor so'rovlarda.»
+- Sahna: `server.js` — mentor 18-satrdagi `app.use(express.json())` ni bosadi (M52) → satr chizilgan → Postman 500 → satr qaytariladi (yashil) → 201. Kod ostida kichik rasm (M51): express.json o'chirilgan, javob «?» → 500 → 201; xato bo'laklari 1 (`model`) · 2 (`req.body` — undefined).
+0. **Ikkinchi buzish ham ==sizda==: kodda yonib turgan `app.use(express.json())` ustiga bosing**
+   Ovoz: «Ikkinchi buzish ham sizda. Gemini ba'zan bitta satrni unutadi. Server js'ning o'n sakkizinchi satrida app use express json yonib turibdi, ustiga bosing: satr o'chadi.»
+   Bosish: «**server.js** 18-satridagi **`app.use(express.json())`** ustiga bosing — satr o'chadi.»
+1. **Satr o'chdi: `app.use(express.json())` yo'q — ==server baribir ishga tushadi==**
+   Ovoz: «Satrni o'chirdingiz. Server xatosiz ishga tushadi, GET ham ishlaydi. Muammo faqat tanasi bor so'rovlarda.»
 2. **POST → 500: `req.body` — ==`undefined`==, `model`ni olib bo'lmaydi**
    Ovoz: «POST yuboramiz, javob besh yuz. Xabar shunday: cannot destructure property model of req body as it is undefined. Ya'ni req body umuman yo'q: Express so'rov tanasini o'qimagan, chunki JSON'ni o'qiydigan qism ulanmagan.»
    Postman: **500** `{"error":"Cannot destructure property 'model' of 'req.body' as it is undefined."}`

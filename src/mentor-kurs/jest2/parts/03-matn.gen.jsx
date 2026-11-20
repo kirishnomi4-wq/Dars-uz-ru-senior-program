@@ -338,9 +338,15 @@ const MDT = {
   "title": "Ombor xatosini toThrow bilan yozsak, Jest qizil bermaydi — jarayonning o'zi quladi, PASS ham, FAIL ham chiqmadi",
   "seg": [
    [
+    "x",
+    "Endi <b>o'zingiz buzasiz</b>: testda yonib turgan <code>rejects</code> ustiga bosing",
+    "Ombor testi to'g'ri yozilgan: await va rejects bor. Endi ataylab buzamiz. Buzishni o'zingiz qilasiz: order service spec faylining ellik birinchi satri yonib turibdi, ustiga bosing: test birinchi testdagi sinxron shaklga o'tadi.",
+    "<b>order.service.spec.ts</b> 51-satridagi <b><code>await expect(…).rejects</code></b> ustiga bosing — test <code>expect(() =&gt; …).toThrow</code> shakliga o'tadi."
+   ],
+   [
     "a",
-    "Ombor testini <b><code>toThrow</code> bilan yozamiz</b> — sinxron shakl, promise xatosi uchun",
-    "Endi ataylab buzamiz. Ombor testini uchinchi testdagidek emas, birinchi testdagi shaklda yozamiz: o'ram va to throw, await yo'q, rejects yo'q. Ko'rinishi to'g'riga o'xshaydi: xabar ham o'sha. Npm test order service."
+    "Ombor testi endi <b><code>toThrow</code> bilan</b> — sinxron shakl, promise xatosi uchun",
+    "Test endi o'ram va to throw bilan, await yo'q, rejects yo'q. Ko'rinishi to'g'riga o'xshaydi: xabar ham o'sha. Npm test order service."
    ],
    [
     "b",
@@ -453,9 +459,15 @@ const MDT = {
   "title": "Ombor tekshiruvini <= qilsak, aynan 2 ta qolganda 2 tasini sotib bo'lmaydi — to'rt test yashil qoladi, chegara testi qizaradi",
   "seg": [
    [
+    "x",
+    "Endi <b>o'zingiz buzasiz</b>: shartda yonib turgan <code>&lt;</code> ustiga bosing",
+    "Ombor tekshiruvi to'g'ri ishlaydi. Endi chegarani buzamiz. Buzishni o'zingiz qilasiz: order service ts'ning o'ttiz oltinchi satrida kichik belgisi yonib turibdi, ustiga bosing: u kichik yoki tengga aylanadi.",
+    "<b>order.service.ts</b> 36-satridagi <b><code>&lt;</code></b> ustiga bosing — <code>&lt;=</code> bo'ladi."
+   ],
+   [
     "a",
-    "Buzamiz: <b><code>&lt;</code> o'rniga <code>&lt;=</code></b> — omborda 2 ta, 2 tasini olsa, bot «faqat 2 ta qoldi» deydi",
-    "Order service ts'ning o'ttiz oltinchi satrida kichik belgisini kichik yoki tengga almashtiramiz. Endi omborda ikkita bo'lsa va mijoz ikkitasini olsa, bot xato beradi: faqat ikkita qoldi. Oxirgi mahsulot hech qachon sotilmaydi. Npm test order service."
+    "Buzildi: <b><code>&lt;</code> o'rniga <code>&lt;=</code></b> — omborda 2 ta, 2 tasini olsa, bot «faqat 2 ta qoldi» deydi",
+    "Kichik endi kichik yoki teng. Omborda ikkita bo'lsa va mijoz ikkitasini olsa, bot xato beradi: faqat ikkita qoldi. Oxirgi mahsulot hech qachon sotilmaydi. Npm test order service."
    ],
    [
     "b",

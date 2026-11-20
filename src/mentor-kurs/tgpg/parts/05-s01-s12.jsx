@@ -3,25 +3,24 @@
 //  1 · Kirish — dars oxiridagi natija: bot buyurtmani bazaga yozdi (orderbot-out/04, 05)
 // ============================================================
 const PLAN1 = ['Loyiha va muammo', 'Reja va prompt', 'Ulanish va katalog', 'Foydalanuvchi, state, savat', 'Buyurtma va tranzaksiya', 'Sinfga tayyorgarlik'];
-const S1 = mkS(1, [{ hl: [], res: true }, { hl: [0] }, { hl: [1, 2, 3, 4] }, { hl: [5] }], { plan: PLAN1 });
-const ORDER1 = "Buyurtma #1 qabul qilindi!\n• Klaviatura × 1 = 120 000 so'm\n• Kolonka × 2 = 100 000 so'm\n\nJami: 220 000 so'm\nTelefon: +998901234567\nHolati: 🆕 Yangi";
-const T1 = psql(String.raw`
-shop=# SELECT id, user_id, phone, total, status FROM orders;
- id | user_id |     phone     | total  |  status
-----+---------+---------------+--------+-----------
-  1 |       2 | +998901234567 | 220000 | CONFIRMED
-(1 row)`);
+const S1 = mkS(1, [{ hl: [] }, { hl: [0] }, { hl: [1, 2, 3, 4] }, { hl: [5] }], { plan: PLAN1 });
+// F-1120-02 (M51): darsning rasmi — «Buyurtma boti» xaritasi (BotMap, parts/02e-bot.jsx); reja pastda
+const DB_ALL = { products: 'db', users: 'db', carts: 'db', orders: 'db' };
+const STAGE_NO = { products: 1, users: 2, carts: 3, orders: 4 };
+const CHAT_ORDER = ['+998901234567', "Buyurtma #1 qabul qilindi! Jami: 220 000 so'm", 'ok'];
+const S1M = [
+  { loc: DB_ALL, chat: CHAT_ORDER, note: { orders: '#1 · 220000 · CONFIRMED' }, ro: ['psql · shop', 'SELECT … FROM orders; <span class="n1-ok">→ 1 | 2 | +998901234567 | 220000 | CONFIRMED</span>'] },
+  { loc: {}, chat: ['/catalog', "Katalog (1/3-sahifa). Qo'shish uchun mahsulotni bosing:"], on: ['phone', 'telegram', 'catalog', 'user', 'cart', 'order', 'mem', 'products', 'users', 'carts', 'orders'] },
+  { loc: DB_ALL, chat: CHAT_ORDER, badge: STAGE_NO, on: ['db', 'products', 'users', 'carts', 'orders'] },
+  { loc: DB_ALL, chat: CHAT_ORDER, note: { orders: '#1 · 220000 · CONFIRMED' } },
+];
 function Screen1(p) {
-  return <Lesson p={p} S={S1} scene={({ seg }) => <div style={{ display: 'grid', gap: 14 }}>
-    <div className="mk-light"><div className="mk-plan">
-      {S1.plan.map((x, i) => <div key={i} className={seg.hl.includes(i) ? 'hl' : (seg.hl.length ? 'dim' : '')}><b>0{i + 1}</b><span>{x}</span></div>)}
-    </div></div>
-    {seg.res && <><div className="mk-tag" style={{ margin: 0 }}>{t("Dars oxirida — bot buyurtmani PostgreSQL'ga yozadi", "В конце урока — бот пишет заказ в PostgreSQL")}</div>
-    <div className="pg-two">
-      <TgFlow title="OrderBotNest" items={[['u', '+998901234567'], ['b', ORDER1, 'ok']]} />
-      <Psql lines={T1} />
-    </div></>}
-  </div>} />;
+  return <Lesson p={p} S={S1} scene={({ beat }) => { const m = S1M[Math.min(beat, 3)]; return <div className="mk-light" style={{ padding: 16, display: 'grid', gap: 12 }}>
+    <BotMap {...m} tag={t("Bugungi darsning rasmi — buyurtma boti: telefon, server, ma'lumot", 'Картина урока — бот заказов: телефон, сервер, данные')} />
+    <div className="n1-plan" style={{ position: 'static', gridTemplateColumns: 'repeat(6,minmax(0,1fr))', gap: 6 }}>
+      {S1.plan.map((x, i) => <div key={i} className={S1.segments[Math.min(beat, 3)].hl.includes(i) ? 'hl' : (S1.segments[Math.min(beat, 3)].hl.length ? 'dim' : '')}><b>0{i + 1}</b><span>{x}</span></div>)}
+    </div>
+  </div>; }} />;
 }
 
 // ============================================================
@@ -52,21 +51,16 @@ function Screen2(p) {
 // ============================================================
 const FLOW3A = [['sep', '1-jarayon'], ['u', '[Klaviatura] → [Kolonka] ×2 → telefon'], ['b', "Buyurtma #1 qabul qilindi! … Jami: 220 000 so'm", 'ok'], ['u', '/orders (admin) → [✅ Tasdiqlash]'], ['b', 'Buyurtmangiz #1: ✅ Tasdiqlangan'], ['u', '[Sichqoncha]'], ['b', "Sichqoncha savatga qo'shildi (1 ta)."]];
 const FLOW3B = [['sep', 'server qayta ishga tushdi'], ['u', '/cart'], ['b', "Savat bo'sh. /catalog dan mahsulot tanlang.", 'bad'], ['u', '/orders (admin)'], ['b', "Hozircha buyurtma yo'q.", 'bad'], ['sep', 'telefon so\'ralgan paytda restart'], ['u', '+998901234567'], ['b', 'Tushunmadim. /help ni bosing.', 'bad']];
-const LIST3 = ['mahsulot va ombor (stock)', 'foydalanuvchi va uning roli', 'telefon va state', 'savat', 'buyurtma'];
 const S3 = mkS(3, [{ v: 'a' }, { v: 'b' }, { v: 'map' }, { v: 'list' }]);
 function Screen3(p) {
   return <Lesson p={p} S={S3} scene={({ seg }) => <>
-    {(seg.v === 'a' || seg.v === 'b') && <div className="pg-two">
+    {(seg.v === 'a' || seg.v === 'b') && <div className="pg-two" style={{ gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)' }}>
       <TgFlow title={t("1-jarayon", "1-й процесс")} items={FLOW3A} />
       {seg.v === 'b' ? <TgFlow title="Restart" items={FLOW3B} /> : <div />}
     </div>}
-    {seg.v === 'map' && <div className="pg-three">
-      <Card c={T.blue} h={t("Node jarayoni", "Процесс Node")}><p>{t("ishga tushadi → ", "запускается → ")}<code>new Map()</code>{t(" bo'sh", " пустой")}</p></Card>
-      <Card c={T.accent} h="RAM" hl><p>{t("Map, massiv — jarayon to'xtasa o'chadi", "Map, массив — остановился процесс, и они стёрты")}</p></Card>
-      <Card c={PG.pg} h={t("Disk (baza)", "Диск (база)")} dim><p>{t("hozir yo'q", "сейчас нет")}</p></Card>
-    </div>}
-    {seg.v === 'list' && <div className="mk-light" style={{ padding: 14 }}><div className="mk-tag">{t("Bazaga ko'chadigan beshta ma'lumot", "Пять данных, которые переезжают в базу")}</div>
-      <div className="mk-plan">{LIST3.map((x, i) => <div key={x} style={{ animation: `mk-up .4s ${i * 0.08}s ease both` }}><b>0{i + 1}</b><span>{x}</span></div>)}</div></div>}
+    {/* F-1120-02 (M51): Node/RAM/Disk kartalari va ro'yxat o'rniga darsning rasmi */}
+    {seg.v === 'map' && <div className="mk-light" style={{ padding: 14 }}><BotMap restart chat={['/cart', "Savat bo'sh. /catalog dan mahsulot tanlang.", 'bad']} on={['mem', 'products', 'users', 'carts', 'orders', 'telegram']} ro={['user.service.ts:8', 'private readonly users = <span class="n1-k">new</span> Map&lt;number, User&gt;();']} tag={t("Restart — jarayon xotirasi bo'shadi", 'Перезапуск — память процесса очистилась')} /></div>}
+    {seg.v === 'list' && <div className="mk-light" style={{ padding: 14 }}><BotMap on={['mem', 'products', 'users', 'carts', 'orders']} tag={t("Bazaga ko'chadigan ma'lumot — hammasi hozir xotirada", 'Данные, которые переезжают в базу — сейчас всё в памяти')} /></div>}
   </>} />;
 }
 
@@ -94,15 +88,15 @@ function ScreenP5(p) { return <Practice p={p} S={P5.S} steps={P5.steps} trouble=
 // ============================================================
 //  6 · Reja: to'rt bosqich (orderbot-ai2 — oddiy prompt, 22 fayl / 1145 qator)
 // ============================================================
-const STAGES6 = [['1', 'Ulanish + katalog', 'TypeORM, migratsiya, products, seed'], ['2', 'Foydalanuvchi + state', 'users, BIGINT, WAITING_PHONE'], ['3', 'Savat', 'cart_items, UNIQUE, ON CONFLICT'], ['4', 'Buyurtma', 'orders, order_items, tranzaksiya']];
 const DIFF6 = ` src/db/database.module.ts               |  29 ++
  src/db/migrations/1762000000000-Init.ts |  69 +++
  22 files changed, 1145 insertions(+), 210 deletions(-)`;
 const S6 = mkS(6, [{ v: 'st', hl: -1 }, { v: 'chk', hl: -1 }, { v: 'haiku' }, { v: 'st', hl: 'all' }]);
+// F-1120-02 (M51): to'rt karta o'rniga rasm — har ma'lumot qaysi bosqichda bazaga ko'chishi (raqam), xulosada hammasi bazada
 function Screen6(p) {
   return <Lesson p={p} S={S6} scene={({ seg }) => <>
-    <div className="pg-four">{STAGES6.map(([n, h, d], i) => <Card key={n} c={T.accent} h={`${n} · ${h}`} style={{ animation: `mk-up .4s ${i * 0.1}s ease both` }}><p>{d}</p>
-      {seg.v === 'chk' && <p style={{ marginTop: 6, color: T.green, fontFamily: MONO }}>✓ build · restart · psql → commit</p>}</Card>)}</div>
+    {seg.v === 'st' && <div className="mk-light" style={{ padding: 14 }}><BotMap loc={seg.hl === 'all' ? DB_ALL : {}} badge={STAGE_NO} on={seg.hl === 'all' ? ['db', 'products', 'users', 'carts', 'orders'] : ['mem', 'products', 'users', 'carts', 'orders']} tag={t("To'rt bosqich: raqam — ma'lumot qaysi bosqichda bazaga ko'chadi", 'Четыре этапа: число — на каком этапе данные переезжают в базу')} /></div>}
+    {seg.v === 'chk' && <div className="mk-light" style={{ padding: 14 }}><BotMap loc={{ products: 'db' }} badge={STAGE_NO} on={['db', 'products']} note={{ products: '✓ build · restart · psql' }} ro={['git', 'git add -A &amp;&amp; git commit -m "1-bosqich: katalog"  <span class="n1-ok">' + t('→ keyin 2-bosqich', '→ потом 2-й этап') + '</span>']} tag={t("1-bosqichdan keyin: build, restart, psql — keyin commit", 'После 1-го этапа: build, restart, psql — потом commit')} /></div>}
     {seg.v === 'haiku' && <AiReply who={t("Oddiy prompt (2-tajriba)", "Обычный промпт (2-й опыт)")} prompt="Katalogni postgresqlga ko'chirib ber, TypeORM ishlat. .env da DATABASE_URL bor." said={<>{t("AI: «katalog va holat xotiradan PostgreSQL'ga ko'chirildi» — ", "AI: «каталог и состояние перенесены из памяти в PostgreSQL» — ")}<b>{t("hamma servis", "все сервисы")}</b>{t(" o'zgardi, chetga chiqqani alohida aytilmadi.", " изменены, выход за рамки отдельно не назван.")}</>} diff={DIFF6} hl />}
     {seg.v === 'st' && seg.hl === 'all' && <div className="mk-rule">{t("Bitta prompt — ", "Один промпт — ")}<b>{t("bitta bosqich", "один этап")}</b>{t(". Tekshirmaguncha keyingisi yozilmaydi.", ". Пока не проверено, следующий не пишется.")}</div>}
   </>} />;
@@ -233,7 +227,8 @@ function Screen11(p) {
   return <Lesson p={p} S={S11} scene={({ seg }) => <>
     {seg.v !== 'c' && <div className="pg-two"><TgFlow title={t("buyurtma — xotirada", "заказ — в памяти")} items={FLOW11A} />{seg.v === 'b' && <TgFlow title="restart" items={FLOW11B} />}</div>}
     {seg.v === 'b' && <Psql lines={T11} focus={['k']} />}
-    {seg.v === 'c' && <div className="pg-two"><Card c={PG.pg} h={t("ombor → bazaga yozildi", "склад → записан в базу")}><p>Klaviatura 8 → 7 · Kolonka 10 → 8</p></Card><Card c={T.accent} h={t("buyurtma → xotirada edi", "заказ → был в памяти")} hl><p>{t("restart o'chirdi — kim olgani noma'lum", "стёр перезапуск — кто взял, неизвестно")}</p></Card></div>}
+    {/* F-1120-02 (M51): ikki karta o'rniga rasm — ombor bazada qoldi, buyurtma xotirada edi va restartda o'chdi */}
+    {seg.v === 'c' && <div className="mk-light" style={{ padding: 14 }}><BotMap loc={{ products: 'db' }} restart chat={['/orders (admin)', "Hozircha buyurtma yo'q.", 'bad']} on={['products', 'orders', 'mem', 'db', 'order', 'catalog']} note={{ products: 'Klaviatura 7 · Kolonka 8' }} tag={t("Bitta sotuv — ikki joyda: ombor bazada, buyurtma xotirada", 'Одна продажа — в двух местах: склад в базе, заказ в памяти')} /></div>}
   </>} />;
 }
 

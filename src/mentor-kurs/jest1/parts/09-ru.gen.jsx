@@ -37,7 +37,6 @@ ru(SUM25, [
   { t: 'Каждый статус — один тест; на каждое условие тест границы: первая, последняя, единственная' },
   { t: 'Приём теста от AI: diff только .spec.ts · в каждом it — expect · эталон вручную · сломать код и увидеть, как тест краснеет. Класс: m4b-01 — настоящий FAIL, «кто ошибся», граница, один раз сломать' },
 ]);
-ru(STATIONS25, [null, [null, 'Код теста', null], [null, 'Тест от AI', null]]);
 ru(HOMEWORK25, [
   { t: 'Своя копия — новая ветка в своём репозитории с урока Telegraf+PG (или от jest1-start)' },
   { t: 'Тесты — в texts.spec.ts: texts.orderPlaced, texts.orderLine, texts.statusChanged, texts.customerStatus; правило цены: заказ, где price и product.price разные' },
@@ -427,7 +426,7 @@ const RU_MDT = {
   "seg": {
    "a": [
     "Из условия <b>выпал <code>CANCELLED</code></b>: код работает, сервер тоже не даёт ошибки",
-    "Теперь нарочно ломаем код. Из условия в тридцать девятой строке файла keyboards ts выпал статус «отменён». Бот работает, сервер тоже не даёт ошибки. Но админ снова видит под отменённым заказом кнопки «доставлен» и «отменить». Запускаем тест."
+    "Отменённый статус выпал из условия. Бот работает, сервер тоже не даёт ошибки. Но под отменённым заказом админ снова видит кнопки «доставлен» и «отмена». Запускаем тест."
    ],
    "b": [
     "Из трёх тестов один красный: <b>ожидался <code>toBeUndefined</code>, а пришла клавиатура</b>",
@@ -436,6 +435,11 @@ const RU_MDT = {
    "c": [
     "Итог: <b>имя теста называет правило</b> — по FAIL сразу видно, какое правило нарушено",
     "Итог: пишите имя теста как правило, например «отменён, кнопок нет». Тогда по первой строке FAIL вы сразу знаете, какое правило нарушено. Восстанавливаем условие, тест снова зелёный."
+   ],
+   "x": [
+    "Теперь <b>ломаете вы</b>: нажмите на подсвеченное в коде условие <code>CANCELLED</code>",
+    "Тесты зелёные. Теперь ломаем код намеренно, потому что выпасть из условия одному статусу очень легко. Ломаете вы сами: в тридцать девятой строке файла keyboards ts подсвечено условие отменённого статуса, нажмите на него.",
+    "Нажмите на <b><code>|| o.status === 'CANCELLED'</code></b> в 39-й строке <b>keyboards.ts</b> — этот кусок исчезнет из условия."
    ]
   }
  },
@@ -856,9 +860,9 @@ function yakRu(passed, segs) {
   return segs.map((s) => ({ ...s, ...(Y[s.id === 'a' ? (passed ? 'a_pass' : 'a_fail') : s.id] || {}) }));
 }
 (function ruMdtQo() {
-  const segRu = (n) => { const r = RU_MDT[n] && RU_MDT[n].seg; if (!r) return undefined; const o = {}; Object.keys(r).forEach((id) => { const [key, text] = r[id]; o[id] = { ...(key != null ? { key } : {}), ...(text != null ? { text, show: wrRu(text) } : {}) }; }); return o; };
+  const segRu = (n) => { const r = RU_MDT[n] && RU_MDT[n].seg; if (!r) return undefined; const o = {}; Object.keys(r).forEach((id) => { const [key, text, act] = r[id]; o[id] = { ...(key != null ? { key } : {}), ...(text != null ? { text, show: wrRu(text) } : {}), ...(act != null ? { act } : {}) }; }); return o; };
   const head = (n) => { const r = RU_MDT[n] || {}; const o = {}; ['kicker', 'eyebrow', 'title'].forEach((k) => { if (r[k] != null) o[k] = r[k]; }); const s = segRu(n); if (s) o.segments = s; return o; };
-  const mdt = {}; Object.keys(RU_MDT).forEach((n) => { const r = { ...RU_MDT[n] }; if (r.seg) r.seg = MDT[n].seg.map(([id]) => (r.seg[id] ? [null, r.seg[id][0], r.seg[id][1]] : null)); mdt[n] = r; });
+  const mdt = {}; Object.keys(RU_MDT).forEach((n) => { const r = { ...RU_MDT[n] }; if (r.seg) r.seg = MDT[n].seg.map(([id]) => (r.seg[id] ? [null, r.seg[id][0], r.seg[id][1], r.seg[id][2]] : null)); mdt[n] = r; });
   ru(MDT, mdt);
   ru(S1, { ...head(1), ...((typeof RU_S !== 'undefined' && RU_S.S1) || {}) });
   ru(S2, { ...head(2), ...((typeof RU_S !== 'undefined' && RU_S.S2) || {}) });

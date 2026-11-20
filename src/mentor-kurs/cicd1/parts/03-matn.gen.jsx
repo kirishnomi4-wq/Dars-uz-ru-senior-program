@@ -142,9 +142,15 @@ const MDT = {
   "title": "Kodni buzamiz va to'rt buyruqni && bilan bog'laymiz: npm ci ✓, tsc ✓, test qizil — build boshlanmaydi, chiqish kodi 1",
   "seg": [
    [
+    "x",
+    "Endi <b>o'zingiz buzasiz</b>: kodda yonib turgan <code>&lt;</code> ustiga bosing",
+    "Lentaning to'rt buyrug'ini bilasiz. Endi ataylab buzamiz. Buzishni o'zingiz qilasiz: src, api, order papkasidagi order service ts faylining o'ttiz oltinchi satrida kichik belgisi yonib turibdi, ustiga bosing: u kichik yoki tengga aylanadi.",
+    "<b>order.service.ts</b> 36-satridagi <b><code>&lt;</code></b> ustiga bosing — <code>&lt;=</code> bo'ladi."
+   ],
+   [
     "a",
-    "Buzamiz: <code>order.service.ts</code> 36-satr <b><code>&lt;</code> → <code>&lt;=</code></b> — Jest-2 dagi chegara testi buni ushlaydi",
-    "Endi ataylab buzamiz. Src, api, order papkasidagi order service ts faylining o'ttiz oltinchi satrida kichikni kichik yoki tengga almashtiring. Jest ikkinchi darsidan eslaysiz: aynan ikkita qolganda ikkitasini sotib bo'lmaydi, chegara testi buni ushlaydi."
+    "Buzildi: <code>order.service.ts</code> 36-satr <b><code>&lt;</code> → <code>&lt;=</code></b> — Jest-2 dagi chegara testi buni ushlaydi",
+    "Kichik endi kichik yoki teng. Jest ikkinchi darsidan eslaysiz: aynan ikkita qolganda ikkitasini sotib bo'lmaydi, chegara testi buni ushlaydi."
    ],
    [
     "b",
@@ -312,9 +318,15 @@ const MDT = {
   "title": "<= bilan push: run qizil — npm test qadami ✗, npm run build «skipped», annotatsiyada Process completed with exit code 1",
   "seg": [
    [
+    "x",
+    "Endi <b>yana o'zingiz buzasiz</b>: <code>&lt;</code> ustiga bosing — keyin push",
+    "Lenta GitHub'da yashil. Endi oltinchi ekrandagi buzishni GitHub'da sinaymiz. Buzishni yana o'zingiz qilasiz: order service ts'ning o'ttiz oltinchi satrida kichik belgisi yonib turibdi, ustiga bosing.",
+    "<b>order.service.ts</b> 36-satridagi <b><code>&lt;</code></b> ustiga bosing — <code>&lt;=</code> bo'ladi, keyin commit va push."
+   ],
+   [
     "a",
-    "36-satrni yana buzamiz va push — <b>run qizil</b>: ro'yxatda qizil belgi, commit xabari bilan",
-    "Oltinchi ekrandagi buzishni qaytaramiz: order service ts, o'ttiz oltinchi satr, kichik yoki teng. Commit, push. Actions bo'limida yangi run, bu safar qizil belgi. Run'ni ochamiz."
+    "Commit, push — <b>run qizil</b>: ro'yxatda qizil belgi, commit xabari bilan",
+    "Kichik yana kichik yoki teng. Commit, push. Actions bo'limida yangi run, bu safar qizil belgi. Run'ni ochamiz."
    ],
    [
     "b",

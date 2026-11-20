@@ -75,4 +75,3 @@ Maydon Jamoa «8 / 10» · закрытая/открытая дорога = за
 ## Ваше домашнее задание (40–60 минут)
 GET /admin/stock (токен, тест) · остаток склада в панели — заново запрашивается после order-changed · таблица README · ссылка на репозиторий на платформу`;
 // 2-tur (05.11): skaner tuzatilgandan keyin topilgan modul ro'yxati
-ru(STATIONS25, [[null, 'Запрос vs соединение'], [null, 'Gateway · токен'], [null, 'Событие · панель'], [null, 'Три состояния']]);

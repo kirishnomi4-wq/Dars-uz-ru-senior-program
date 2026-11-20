@@ -13,7 +13,6 @@ var RU_S = {
 ru(SVC2, [[null, 'товары и склад', null], [null, 'пользователь, роль, state', null], [null, 'корзина', null], [null, 'заказ, статус админа', null]]);
 ru(FLOW2, [null, null, null, null, null, null, null, null, null, [null, 'админ Жасур'], null, null, null]);
 ru(FLOW3B, [[null, 'сервер перезапустился'], null, null, null, null, [null, 'перезапуск в момент запроса телефона'], null, null]);
-ru(LIST3, ['товар и склад (stock)', 'пользователь и его роль', 'телефон и state', 'корзина', 'заказ']);
 ru(PROMPT1, [
   [null, 'Это проект NestJS + Telegraf (Telegram-бот заказов). Сейчас каталог, корзина, пользователи и заказы в памяти (Map и array) — при перезапуске сервера всё пропадает. Переносим их в PostgreSQL поэтапно.\n\n'],
   [null, 'Этап 1 — только подключение к базе и каталог:\n'],
@@ -105,8 +104,6 @@ ru(FLOW3A, [[null, '1-й процесс']]);
 ru(FLOW11A, [[null, 'после 1-го этапа']]);
 ru(FLOW15B, [[null, 'после 2-го этапа (корзина ещё в памяти)']]);
 ru(FLOW19, [[null, 'на складе 1 Planshet'], null, null, null, [null, 'склад 0 · корзина Бобура сохранена']]);
-ru(STAGES6, [[null, 'Подключение + каталог', 'TypeORM, миграция, products, seed'], [null, 'Пользователь + state'], [null, 'Корзина'], [null, 'Заказ', 'orders, order_items, транзакция']]);
-ru(STATIONS28, [[null, 'Бот Telegraf']]);
 
 const RU_MDT = {
  "1": {
@@ -681,8 +678,8 @@ const RU_MDT = {
   "title": "«Прочитай, проверь, запиши» без блокировки: все транзакции видят остаток 1 — один планшет продаётся пятерым, и CHECK не ловит",
   "seg": {
    "a": [
-    "Ломаем: читаем строку <b>без блокировки</b>, считаем остаток в коде и пишем новый",
-    "Теперь нарочно ломаем. Убираем блокировку: читаем товар обычным find, в коде проверяем, хватает ли остатка, считаем новый остаток и делаем save. AI часто пишет именно так, выглядит правильно."
+    "Блокировки нет: <b>читаем строку без блокировки</b>, остаток считаем в коде и записываем новый",
+    "Вы убрали блокировку. Теперь товар читается обычным find, в коде проверяется, хватает ли остатка, новый остаток считается и сохраняется через save. AI часто пишет именно так, выглядит правильно."
    ],
    "b": [
     "Пять транзакций <b>одновременно видят «остаток 1»</b> — все проходят проверку",
@@ -695,6 +692,11 @@ const RU_MDT = {
    "d": [
     "Исправлений два: <b>чтение с блокировкой</b> или <b>один <code>UPDATE … WHERE</code></b> — снова продан 1",
     "Исправлений два. Первое: блокировка при чтении, в find добавляется lock pessimistic write, вторая транзакция ждёт. Второе: отдать счёт базе, update stock минус qty where stock больше или равно qty. Race прогнали заново: во всех пяти раундах продан один, склад ноль. Значит, считать остаток в коде и записывать без блокировки не работает."
+   ],
+   "x": [
+    "Теперь <b>ломаете вы</b>: нажмите на подсвеченный в коде <code>lock</code>",
+    "Заказ работает, проверка race тоже чистая. Теперь ломаем намеренно, потому что AI часто пишет именно так. Ломаете вы сами: в тридцать третьей строке order service подсвечен lock, нажмите на него: блокировка уберётся.",
+    "Нажмите на <b><code>lock: { mode: 'pessimistic_write' }</code></b> в 33-й строке <b>order.service.ts</b> — блокировка уберётся, чтение станет обычным <code>findOneBy</code>."
    ]
   }
  },
@@ -970,9 +972,9 @@ function yakRu(passed, segs) {
   return segs.map((s) => ({ ...s, ...(Y[s.id === 'a' ? (passed ? 'a_pass' : 'a_fail') : s.id] || {}) }));
 }
 (function ruMdtQo() {
-  const segRu = (n) => { const r = RU_MDT[n] && RU_MDT[n].seg; if (!r) return undefined; const o = {}; Object.keys(r).forEach((id) => { const [key, text] = r[id]; o[id] = { ...(key != null ? { key } : {}), ...(text != null ? { text, show: wrRu(text) } : {}) }; }); return o; };
+  const segRu = (n) => { const r = RU_MDT[n] && RU_MDT[n].seg; if (!r) return undefined; const o = {}; Object.keys(r).forEach((id) => { const [key, text, act] = r[id]; o[id] = { ...(key != null ? { key } : {}), ...(text != null ? { text, show: wrRu(text) } : {}), ...(act != null ? { act } : {}) }; }); return o; };
   const head = (n) => { const r = RU_MDT[n] || {}; const o = {}; ['kicker', 'eyebrow', 'title'].forEach((k) => { if (r[k] != null) o[k] = r[k]; }); const s = segRu(n); if (s) o.segments = s; return o; };
-  const mdt = {}; Object.keys(RU_MDT).forEach((n) => { const r = { ...RU_MDT[n] }; if (r.seg) r.seg = MDT[n].seg.map(([id]) => (r.seg[id] ? [null, r.seg[id][0], r.seg[id][1]] : null)); mdt[n] = r; });
+  const mdt = {}; Object.keys(RU_MDT).forEach((n) => { const r = { ...RU_MDT[n] }; if (r.seg) r.seg = MDT[n].seg.map(([id]) => (r.seg[id] ? [null, r.seg[id][0], r.seg[id][1], r.seg[id][2]] : null)); mdt[n] = r; });
   ru(MDT, mdt);
   ru(S1, { ...head(1), ...((typeof RU_S !== 'undefined' && RU_S.S1) || {}) });
   ru(S2, { ...head(2), ...((typeof RU_S !== 'undefined' && RU_S.S2) || {}) });

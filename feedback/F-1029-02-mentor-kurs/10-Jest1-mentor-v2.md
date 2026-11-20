@@ -270,8 +270,12 @@ Loyiha: **OrderBotNest** — Telegraf+PG darsidagi aynan shu repo. Teglar (lokal
 ## 14 · Kodni buzamiz: `CANCELLED` da ham tugma  ← `Lesson`
 - Kicker: `4-bosqich · statuslar va chegara` · Sarlavha: **Bekor qilingan buyurtmaga yana tugma chiqdi — test qaysi qoida buzilganini aniq aytadi**
 - Sahna: kod `keyboards.ts` 39-satr — `if (o.status === 'DELIVERED' || o.status === 'CANCELLED') return undefined;` → buzilgan `if (o.status === 'DELIVERED') return undefined;` (M36: eski qizil); terminal `08`: `✓ ✓ ✕` · `● orderKeyboard › yetkazilgan va bekor qilingan — tugma yo'q` · `expect(received).toBeUndefined()` · `Received: {…"🚚 Yetkazildi"…"❌ Bekor"…}` · `> 33 |`; 4-segmentda tuzatilgan satr yashil, terminal `PASS`.
+- F-1120-02 (M52): 0-band — mentor 39-satrdagi `|| o.status === 'CANCELLED'` ni o'zi bosadi → shart buziladi. Kod ostida kichik rasm (M51): keyboards.spec.ts → orderKeyboard(CANCELLED) → javob «?» → klaviatura keldi (1 failed) → tiklandi (3 passed); bo'laklar 1 (test nomi — qoida) · 2 (Received — klaviatura).
+0. **Endi ==o'zingiz buzasiz==: kodda yonib turgan `CANCELLED` sharti ustiga bosing**
+   Ovoz: «Testlar yashil. Endi kodni ataylab buzamiz, chunki shartdan bitta status tushib qolishi juda oson. Buzishni o'zingiz qilasiz: keyboards ts faylining o'ttiz to'qqizinchi satrida bekor qilingan status sharti yonib turibdi, ustiga bosing.»
+   Bosish: «**keyboards.ts** 39-satridagi **`|| o.status === 'CANCELLED'`** ustiga bosing — bu bo'lak shartdan o'chadi.»
 1. **Shartdan ==`CANCELLED` tushib qoldi==: kod ishlaydi, server ham xato bermaydi**
-   Ovoz: «Endi kodni ataylab buzamiz. Keyboards ts faylining o'ttiz to'qqizinchi satridagi shartdan bekor qilingan status tushib qoldi. Bot ishlaydi, server ham xato bermaydi. Lekin admin bekor qilingan buyurtma ostida yana yetkazildi va bekor tugmalarini ko'radi. Testni yurgizamiz.» · kod
+   Ovoz: «Bekor qilingan status shartdan tushib qoldi. Bot ishlaydi, server ham xato bermaydi. Lekin admin bekor qilingan buyurtma ostida yana yetkazildi va bekor tugmalarini ko'radi. Testni yurgizamiz.» · kod
 2. **Uchtadan bitta test qizil: ==`toBeUndefined` kutildi, lekin klaviatura keldi==**
    Ovoz: «Uchta testdan bittasi qizil. Nuqtali satr qoidani aytadi: yetkazilgan va bekor qilingan, tugma yo'q. Received qatorida undefined o'rniga klaviatura keldi, ichida yetkazildi va bekor tugmalari. Katta belgisi o'ttiz uchinchi satrda: bekor qilingan status.» · terminal
 3. **Xulosa: ==test nomi qoidani aytadi== — FAIL'dan qaysi qoida buzilgani darhol ko'rinadi**

@@ -42,9 +42,11 @@ const vis = (at, beat) => at == null || at <= beat;
 
 // useAudio(segments) → currentId. Qadam faqat oldinga o'sadi. `ask` segmenti: ovoz savol beradi va
 // tugma bosilguncha kutadi (waits_for button_click/step) — «o'ylab ko'ring».
+// `act` segmenti (F-1120-02): xuddi shunday kutadi, lekin bosiladigan narsa SAHNADA (masalan kodda yonib turgan so'z);
+// sahna bosilganda answerAsk(seg.id, 0) chaqiradi, chap panelda act matni ko'rsatma bo'lib turadi.
 // `review` (Orqaga bilan qaytilgan ekran, A12): ovoz yo'q, ekran yakuniy holatda; ↺ boshidan — ovoz bilan qayta
 function useBeats(segments, review) {
-  const segs = useMemo(() => review ? [] : segments.map((s, i) => ({ id: s.id, text: voice(s.text), trigger: i === 0 ? 'on_mount' : 'after_previous', waits_for: s.ask ? { type: 'button_click', target: 'step' } : s.waits_for })), [segments, review]);
+  const segs = useMemo(() => review ? [] : segments.map((s, i) => ({ id: s.id, text: voice(s.text), trigger: i === 0 ? 'on_mount' : 'after_previous', waits_for: s.ask || s.act ? { type: 'button_click', target: 'step' } : s.waits_for })), [segments, review]);
   const audio = useAudio(segs);
   const [beat, setBeat] = useState(review ? segments.length - 1 : 0);
   const [done, setDone] = useState(!!review);
@@ -58,7 +60,7 @@ function useBeats(segments, review) {
   // qadamni o'sha savolga suramiz, aks holda savol chiqmaydi va ekran qotadi
   useEffect(() => {
     if (!audio.waitingFor || audio.currentId) return;
-    const k = segments.findIndex((s, i) => i >= beat && s.ask);
+    const k = segments.findIndex((s, i) => i >= beat && (s.ask || s.act));
     if (k >= 0) { started.current = true; setBeat((b) => Math.max(b, k)); }
   }, [audio.waitingFor, audio.currentId, beat, segments]);
   // F-1031-16: oxirgi segment ovozi YUKLANAYOTGANDA ham isPlaying=false bo'ladi — Davom erta ochilmasin:
@@ -72,7 +74,9 @@ function useBeats(segments, review) {
   const answerAsk = useCallback((segId, i) => {
     setGuess((g) => ({ ...g, [segId]: i }));
     if (audio.waitingFor) audio.triggerEvent('button_click', 'step');
-    else if (audio.muted || audio.status === 'idle') stepManual();
+    // F-1120-02: ovoz hali YUKLANAYOTGAN bo'lsa (status idle, lekin currentId — shu segment) qo'lda o'tilmaydi:
+    // aks holda qadam oldinga ketadi, runtime esa shu segmentda tugmani kutib qoladi va dars ovozsiz qoladi
+    else if (audio.muted || (audio.status === 'idle' && audio.currentId !== segId)) stepManual();
     else pendingAsk.current = true;
   }, [audio, stepManual]);
   useEffect(() => { if (audio.waitingFor && pendingAsk.current) { pendingAsk.current = false; audio.triggerEvent('button_click', 'step'); } }, [audio.waitingFor, audio]);
@@ -132,7 +136,7 @@ function Say({ eyebrow, title, segments, beat, audio, stepManual, below, guess, 
   const now = segments[beat];
   const keyHtml = now.key || now.show || digits(now.text);
   const [tr, setTr] = useState(false);
-  const showManual = !review && (audio.muted || (!audio.isPlaying && !audio.waitingFor && beat < segments.length - 1 && audio.status === 'idle' && !now.ask));
+  const showManual = !review && (audio.muted || (!audio.isPlaying && !audio.waitingFor && beat < segments.length - 1 && audio.status === 'idle' && !now.ask && !now.act));
   const asking = now.ask && guess && guess[now.id] === undefined;
   const prevAsk = beat > 0 && segments[beat - 1].ask ? segments[beat - 1] : null;
   return (
@@ -149,6 +153,7 @@ function Say({ eyebrow, title, segments, beat, audio, stepManual, below, guess, 
         )}
         <div className="mk-dots">{segments.map((s, i) => <i key={s.id} className={i === beat ? 'on' : (i < beat ? 'done' : '')} />)}</div>
         {review && <p className="mk-review">{t("Takrorlash: ekran tayyor holatda, ovozsiz. Ovoz bilan qayta eshitish — tepadagi «↺ boshidan». To'liq matn — «Matn».", 'Повтор: экран в готовом виде, без звука. Послушать заново со звуком — «↺ с начала» вверху. Полный текст — «Текст».')}</p>}
+        {now.act && guess && guess[now.id] === undefined && !review && <p className="n1-acthint" dangerouslySetInnerHTML={html(now.act)} />}
         {asking && (
           <div className="mk-ask"><p>{now.ask.q}</p><div className="row">{now.ask.opts.map((o, i) => <button key={i} className="mk-btn ghost sm" onClick={() => answerAsk(now.id, i)}>{o}</button>)}</div></div>
         )}

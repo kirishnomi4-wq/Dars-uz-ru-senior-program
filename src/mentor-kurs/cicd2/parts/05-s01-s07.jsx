@@ -3,14 +3,25 @@
 //  1 · Kirish — dars oxiridagi natija: main'dagi PR merge run'i (37): test + smoke
 // ============================================================
 const PLAN1 = ['Umumiy tushuncha', "Qizilni o'qish va cache", 'matrix', 'Smoke va secret', 'PR va AI', 'Sinfga tayyorgarlik'];
-const S1 = mkS(1, [{ hl: [], res: true }, { hl: [0, 1] }, { hl: [2, 3, 4, 5] }, { hl: [5] }], { plan: PLAN1 });
+const S1 = mkS(1, [{ hl: [] }, { hl: [0, 1] }, { hl: [2, 3, 4, 5] }, { hl: [5] }], { plan: PLAN1 });
+// F-1120-02 (M51): darsning rasmi — «Buyurtma boti» xaritasi + Actions: ikki job — test (bazasiz) va smoke (services: postgres:18) (BotMap)
+const DB_ALL = { products: 'db', users: 'db', carts: 'db', orders: 'db' };
+const CI_ON = ['telegram', 'catalog', 'user', 'cart', 'order'];
+const CI2_OK = { name: 'Actions', steps: [['test', 'ok'], ['smoke', 'ok']], res: 'pass', get badge() { return t('ikki job — yashil', 'две job — зелёные'); } };
+const DB_SVC = 'services: postgres:18';
+const S1M = [
+  { on: [...CI_ON, 'db', 'products', 'users', 'carts', 'orders'], dbLabel: DB_SVC, jest: CI2_OK },
+  { on: CI_ON, jest: { name: 'Actions', steps: [['Set up job', 'ok'], ['checkout', 'ok'], ['npm ci', 'ok'], ['npm test', 'ok']], res: 'pass', badge: 'run · job · step' } },
+  { on: [...CI_ON, 'db', 'products', 'users', 'carts', 'orders'], dbLabel: DB_SVC, jest: { name: 'Actions', steps: [['test (22)', 'ok'], ['test (24)', 'ok'], ['smoke', 'ok']], res: 'pass', badge: 'matrix · services' } },
+  { on: [...CI_ON, 'db', 'products', 'users', 'carts', 'orders'], dbLabel: DB_SVC, jest: CI2_OK },
+];
 function Screen1(p) {
-  return <Lesson p={p} S={S1} scene={({ seg }) => <div style={{ display: 'grid', gap: 14 }}>
-    <div className="mk-light"><div className="mk-plan">
+  return <Lesson p={p} S={S1} scene={({ seg, beat }) => { const m = S1M[Math.min(beat, 3)]; return <div className="mk-light" style={{ padding: 16, display: 'grid', gap: 12 }}>
+    <BotMap loc={DB_ALL} {...m} tag={t("Bugungi darsning rasmi — lenta ichida: job'lar, matrix va Postgres konteyneri", 'Картина урока — внутри конвейера: job, matrix и контейнер Postgres')} />
+    <div className="n1-plan" style={{ position: 'static', gridTemplateColumns: 'repeat(6,minmax(0,1fr))', gap: 6 }}>
       {S1.plan.map((x, i) => <div key={i} className={seg.hl.includes(i) ? 'hl' : (seg.hl.length ? 'dim' : '')}><b>0{i + 1}</b><span>{x}</span></div>)}
-    </div></div>
-    {seg.res && <><div className="mk-tag" style={{ margin: 0 }}>{t("Dars oxirida — main'da ikki job: test va smoke (Postgres bilan)", "В конце урока — в main две job: test и smoke (с Postgres)")}</div><RunView k="37" job="smoke" only={/Initialize|npm ci|npm run smoke|Stop/} /></>}
-  </div>} />;
+    </div>
+  </div>; }} />;
 }
 
 // ============================================================

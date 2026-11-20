@@ -3,16 +3,24 @@
 //  1 · Kirish — dars oxiridagi natija: 5 fayl, 25 test (jest2v2-out/12)
 // ============================================================
 const PLAN1 = ['Umumiy tushuncha', 'Telefon: edge case', 'Buyurtma: error path', "Chegara va «bo'lmasligi kerak»", 'HTTP test va AI', 'Sinfga tayyorgarlik'];
-const S1 = mkS(1, [{ hl: [], res: true }, { hl: [0] }, { hl: [1, 2, 3, 4] }, { hl: [5] }], { plan: PLAN1 });
-const T1 = outPick('12', (l) => /^(PASS|Tests:|Time:)/.test(l));
+const S1 = mkS(1, [{ hl: [] }, { hl: [0] }, { hl: [1, 2, 3, 4] }, { hl: [5] }], { plan: PLAN1 });
+// F-1120-02 (M51): darsning rasmi — «Buyurtma boti» xaritasi + Jest qatori (BotMap, parts/02e-bot.jsx); reja pastda.
+// Bugungi uch joy: telefon qoidasi (telegram · phone.ts), buyurtma xatolari (order · baza o'rniga mock), sayt API (supertest)
+const DB_ALL = { products: 'db', users: 'db', carts: 'db', orders: 'db' };
+const J2_FILES = ['spec: phone · order.service · app.controller'];
+const S1M = [
+  { on: ['telegram', 'order'], jest: { files: J2_FILES, res: 'pass', txt: '25 passed' } },
+  { on: ['telegram', 'order'], jest: { files: J2_FILES, res: 'pass', txt: '25 passed' } },
+  { on: ['telegram', 'order'], jest: { files: J2_FILES, res: 'pass', txt: '25 passed' }, note: { products: 'mock: findOne → Kolonka, stock 1' } },
+  { on: ['telegram', 'order'], jest: { files: J2_FILES, res: 'pass', txt: '25 passed' } },
+];
 function Screen1(p) {
-  return <Lesson p={p} S={S1} scene={({ seg }) => <div style={{ display: 'grid', gap: 14 }}>
-    <div className="mk-light"><div className="mk-plan">
+  return <Lesson p={p} S={S1} scene={({ seg, beat }) => { const m = S1M[Math.min(beat, 3)]; return <div className="mk-light" style={{ padding: 16, display: 'grid', gap: 12 }}>
+    <BotMap loc={DB_ALL} tgSub="phone.ts" {...m} tag={t("Bugungi darsning rasmi — bot noto'g'ri kirishda to'g'ri buziladimi", 'Картина урока — правильно ли ломается бот на неверном вводе')} />
+    <div className="n1-plan" style={{ position: 'static', gridTemplateColumns: 'repeat(6,minmax(0,1fr))', gap: 6 }}>
       {S1.plan.map((x, i) => <div key={i} className={seg.hl.includes(i) ? 'hl' : (seg.hl.length ? 'dim' : '')}><b>0{i + 1}</b><span>{x}</span></div>)}
-    </div></div>
-    {seg.res && <><div className="mk-tag" style={{ margin: 0 }}>{t("Dars oxirida — OrderBotNest'da 5 ta test fayli, 25 test", "В конце урока — в OrderBotNest 5 тестовых файлов, 25 тестов")}</div>
-      <Term title={t("VS Code terminali · npm test -- --verbose", "терминал VS Code · npm test -- --verbose")} lines={T1} /></>}
-  </div>} />;
+    </div>
+  </div>; }} />;
 }
 
 // ============================================================
@@ -214,11 +222,29 @@ const CAUSE11 = ["toThrow o'ramni chaqirdi — place() promise qaytardi", "Shu p
 function Cause({ items, on, bad }) {
   return <div className="cause">{items.map((x, i) => <div key={i} className={`${i < on ? 'on' : ''}${bad === i ? ' bad' : ''}`}><i>{i + 1}</i><span>{x}</span></div>)}</div>;
 }
-const S11 = mkS(11, [{ v: 'code' }, { v: 'run' }, { v: 'cause' }, { v: 'cause', sum: true }]);
+// F-1120-02 (M52): 1-segment (x) — mentor to'g'ri testdagi 51-satrni (await … .rejects) o'zi bosadi → test sinxron toThrow shakliga o'tadi
+const ACT11 = kod('SPEC_ORDER_10', { 51: 'x', 52: 'x', 53: 'x' }, 44, 55).map((l) => (l.n === 51 ? { ...l, h: '<span class="n1-act" data-act="1">' + l.h + '</span>' } : l));
+const S11 = mkS(11, [{ v: 'act' }, { v: 'code' }, { v: 'run' }, { v: 'cause' }, { v: 'cause', sum: true }]);
 function Screen11(p) {
-  return <Lesson p={p} S={S11} scene={({ seg }) => <>
-    {seg.v === 'code' && <CodePanel file={t("order.service.spec.ts · buzilgan", "order.service.spec.ts · сломан")} lines={kod('SPEC_ORDER_07', { 51: 'x', 52: 'x', 53: 'x' }, 44, 55)} focus={['x']} />}
-    {seg.v === 'run' && <><CodePanel file={t("order.service.spec.ts · buzilgan", "order.service.spec.ts · сломан")} lines={kod('SPEC_ORDER_07', { 51: 'x' }, 51, 53)} focus={['x']} /><Term title={t("VS Code terminali · natija yo'q", "терминал VS Code · результата нет")} lines={T11} er /></>}
-    {seg.v === 'cause' && <><Term title={t("VS Code terminali · natija yo'q", "терминал VS Code · результата нет")} lines={T11} er /><Cause items={CAUSE11} on={seg.sum ? 4 : 4} bad={3} /></>}
-  </>} />;
+  return <Lesson p={p} S={S11} scene={(b) => <Scene11 b={b} />} />;
+}
+// Qadamlar: 0 bosing · 1 toThrow shakli (natija «?») · 2 jarayon quladi, bo'laklar 1·2 · 3 sabab · 4 xulosa
+function Scene11({ b }) {
+  const { seg, beat } = b;
+  const act = useAct(b);
+  const v = beat === 0 ? (act.hit ? 'code' : 'act') : seg.v;
+  const broken = v !== 'act';
+  const mini = <N1Mini><FlowMini tag={t("Test place() ni chaqiradi — xato promise ichida", 'Тест вызывает place() — ошибка внутри promise')}
+    boxes={[[t('test · 51-satr', 'тест · строка 51'), broken ? '() => … .toThrow' : 'await … .rejects', broken ? 'bad' : ''], ['place(user, cart)', t('Promise qaytaradi', 'возвращает Promise'), ''], [t('Jest natijasi', 'Результат Jest'), beat >= 2 ? t("PASS/FAIL yo'q", 'нет PASS/FAIL') : '?', beat >= 2 ? 'bad' : '']]}
+    res={broken ? [beat >= 2 ? t('Node.js v24.18.0 — jarayon quladi', 'Node.js v24.18.0 — процесс упал') : '?', 'bad'] : null} pins={beat === 2 ? { 0: 1, 2: 2 } : {}} /></N1Mini>;
+  return <>
+    {v !== 'cause' && <Ide files={compact(FILES(F.ph, F.phs, F.ors), F.ors)} active={F.ors}>
+      {v === 'act' && <div onClick={act.onClick}><CodePanel file="order.service.spec.ts" lines={ACT11} focus={['x']} /></div>}
+      {v === 'code' && <CodePanel key="c" file={t("order.service.spec.ts · buzilgan", "order.service.spec.ts · сломан")} lines={kod('SPEC_ORDER_07', { 51: 'x', 52: 'x', 53: 'x' }, 44, 55)} focus={['x']} />}
+      {v === 'run' && <CodePanel key="r" file={t("order.service.spec.ts · buzilgan", "order.service.spec.ts · сломан")} lines={kod('SPEC_ORDER_07', { 51: 'x' }, 51, 53)} focus={['x']} marks={beat === 2 ? { 0: 'n1-p1' } : {}} />}
+      {mini}
+    </Ide>}
+    {v === 'run' && <Term title={t("VS Code terminali · natija yo'q", "терминал VS Code · результата нет")} lines={T11} er marks={{ [T11.findIndex((l) => /Node\.js v/.test(l.h || ''))]: 'n1-p2' }} />}
+    {v === 'cause' && <><Term title={t("VS Code terminali · natija yo'q", "терминал VS Code · результата нет")} lines={T11} er /><Cause items={CAUSE11} on={4} bad={3} /></>}
+  </>;
 }

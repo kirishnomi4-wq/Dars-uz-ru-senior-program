@@ -137,15 +137,22 @@ const SUM31 = [
   { k: 'brk', t: "$1 — xavfsizlik: yopishtirilgan 1 OR 1=1 jadvalni bo'shatdi; server xatolari: ustun nomi · express.json() · parol/baza birinchi so'rovda · bo'sh xabar → console.error(err) · ikkinchi server «ishlayapti»", st: ['srv', 'pool'] },
   { k: 'class', t: "Sinf: m4-06 amaliyoti haqiqiy psql'da; m4-08 dan oldin parol, Postman, bitta terminal; olti holat va savollarga javoblar tayyor", st: ['pm', 'psql'] },
 ];
-const STATIONS31 = [['pm', 'Postman', '#FF6C37'], ['srv', 'Express', T.ink], ['pool', 'Pool · $1', T.purple], ['psql', 'SQL', T.accent], ['tx', 'Tranzaksiya', T.green], ['jad', 'Jadval', PG.pg]];
+// F-1120-02 (M51): xulosa — darsning o'sha rasmi (CrudMachine); har band rasmning o'z yo'lini yoritadi
+const PS31 = { psql: ['psql', 'shop'], api: ['pm', 'json', 'route', 'pool', 'cars'] };
+const MAP31 = {
+  crud: { path: 'psql', on: PS31.psql, psqlLine: ['shop=#', 'UPDATE products SET price = 99000 WHERE id = 1;', 'UPDATE 1'] },
+  tx: { path: 'psql', on: PS31.psql, psqlLine: ['shop=!#', 'ROLLBACK;', 'ROLLBACK'] },
+  rule: { path: 'psql', on: PS31.psql, psqlLine: ['shop=*#', 'UPDATE products SET stock = stock - 7 WHERE id = 3;', 'ERROR: … violates check constraint "stock_nonneg"'] },
+  exp: { path: 'api', on: PS31.api, st: 201, back: 'rows[0] → res.status(201).json' },
+  brk: { path: 'api', on: PS31.api, st: 500, back: 'catch → res.status(500)' },
+  class: { path: 'both', on: ['pm', 'psql'], st: 201, back: 'rows[0] → res.status(201).json' },
+};
 function SummaryMap31({ hl }) {
-  const cur = SUM31.find((x) => x.k === hl);
-  const on = (k) => hl === 'all' || !cur || cur.st.includes(k);
-  return <div className="mk-light" style={{ padding: 16 }}>
-    <div className="mk-tag">{t("Bugungi dars — so'rovning bazagacha yo'li", "Сегодняшний урок — путь запроса до базы")}</div>
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, minmax(0,1fr))', gap: 6 }}>
-      {STATIONS31.map(([k, n, c], i) => <div key={k} className={`mk-box${cur && cur.st.includes(k) ? ' hl' : ''}`} style={{ '--c': c, padding: '10px 6px', textAlign: 'center', opacity: on(k) ? 1 : 0.35, animation: `mk-up .4s ${i * 0.06}s ease both` }}><h4 style={{ fontSize: 12.5, margin: 0 }}>{n}</h4></div>)}
-    </div>
+  const m = MAP31[hl] || { path: 'both', st: 201, back: 'rows[0] → res.status(201).json' };
+  return <div className="mk-light" style={{ padding: 14 }}>
+    <CrudMachine {...m} res={m.st === 500 ? '{"error":"column \\"price\\" of relation \\"cars\\" does not exist"}' : '{"id":4,"model":"Chevrolet Spark",…}'}
+      req={{ m: 'POST', url: '/api/cars', body: '{ "model": "Chevrolet Spark", "daily_price": 190000, "year": 2021 }' }}
+      tag={t("Bugungi dars — so'rovning bazagacha yo'li", 'Сегодняшний урок — путь запроса до базы')} max={0.95} />
   </div>;
 }
 const HOMEWORK31 = [
@@ -212,7 +219,8 @@ function Screen31(p) {
         <div className="mk-scene top" style={{ overflow: 'auto' }}>
           {phase === 'sum' && (<>
             <SummaryMap31 hl={hl} />
-            <div className="mk-plan">{SUM31.slice(0, shown).map((it, i) => <div key={it.k} className={it.k === hl ? 'hl' : ''} style={{ animation: 'mk-up .45s ease both' }}><b>0{i + 1}</b><span>{it.t}</span></div>)}</div>
+            {/* F-1120-02: bandlar rasm ostida ixcham to'rda (1-ekrandagi reja kabi) — rasm surilib ketmasin (M51-2) */}
+            <div className="n1-plan" style={{ position: 'static', gridTemplateColumns: 'repeat(3,minmax(0,1fr))', gap: 8, marginTop: 10 }}>{SUM31.slice(0, shown).map((it, i) => <div key={it.k} className={it.k === hl ? 'hl' : ''} style={{ animation: 'mk-up .45s ease both' }}><b>0{i + 1}</b><span style={{ fontSize: 12.5 }}>{it.t}</span></div>)}</div>
           </>)}
           {phase === 'hw' && <div className="mk-light" style={{ padding: 16, animation: 'mk-up .45s ease both' }}>
             <div className="mk-tag" style={{ color: T.accent }}>{t('Uyga vazifa · 50–70 daqiqa', 'Домашнее задание · 50–70 минут')}</div>
@@ -241,16 +249,21 @@ function Screen31(p) {
 // ============================================================
 //  Muqova va ildiz
 // ============================================================
+// F-1120-02 (M51): muqova — chapda dars nima berishi, o'ngda darsning rasmi; eslatmalar bitta qisqa satrda
 function Cover({ onStart, resume }) {
   return (
-    <div className="mk-cover"><div className="card">
-      <p className="mk-eyebrow">{t("Mentor kursi · PostgreSQL", "Курс для менторов · PostgreSQL")}</p>
-      <h1>{t(LESSON_TITLE, RS('TITLE'))}</h1>
-      <p>{t("Bu dars ovozli. Ustoz har ekranda gapiradi, ekran u bilan birga o'zgaradi. Quloqchin yoki ovoz balandligini tekshiring.", 'Урок озвучен. На каждом экране говорит учитель, экран меняется вместе с ним. Проверьте наушники или громкость.')}</p>
-      <ul>
-        {t(["Jami taxminan 1 soat 20 daqiqa: ovoz ~27 daqiqa · to'rt amaliyot 45–55 daqiqa · 4 tekshiruv · o'z-sinov 8 savol. 13-ekrandan keyin tanaffus qilsangiz bo'ladi", "Kerak: PostgreSQL-1 darsi o'tilgan · PostgreSQL ishlab turgan · Node.js 20+ · VS Code · Postman", "Loyihalar: shop bazasi (products, orders) va AvtoIjara serveri (car_rental, server.js)"], RS('COVER')).map((x) => <li key={x}>{x}</li>)}
-      </ul>
-      <CoverStart onStart={onStart} resume={resume} />
+    <div className="mk-cover"><div className="card n1-cv">
+      <div className="tx">
+        <p className="mk-eyebrow">{t("Mentor kursi · PostgreSQL", "Курс для менторов · PostgreSQL")}</p>
+        <h1>{t(LESSON_TITLE, RS('TITLE'))}</h1>
+        <p className="af">{t('Bu darsdan keyin siz', 'После этого урока вы')}</p>
+        <ul className="ok">
+          {t(["psql'da CRUD va tranzaksiyani javobdagi son bilan tekshirasiz", "Express'dan bazaga so'rov yuborasiz: Pool, $1, rows va statuslar", "server 500 berganda xabardan sababini topasiz va sinfga tayyor bo'lasiz"], ['проверите CRUD и транзакции в psql по числу в ответе', 'отправите запрос из Express в базу: Pool, $1, rows и статусы', 'найдёте по сообщению причину 500 на сервере и будете готовы к классу']).map((x) => <li key={x}>{x}</li>)}
+        </ul>
+        <p className="meta">{t("Ovozli dars · 1 soat 20 daqiqa, 13-ekrandan keyin tanaffus qilsa bo'ladi · Kerak: PostgreSQL-1 o'tilgan, PostgreSQL ishlab turgan, Node.js 20+, VS Code, Postman", 'Урок со звуком · 1 час 20 минут, после 13-го экрана можно сделать перерыв · Нужно: пройден PostgreSQL-1, работающий PostgreSQL, Node.js 20+, VS Code, Postman')}</p>
+        <CoverStart onStart={onStart} resume={resume} />
+      </div>
+      <div className="pic"><CrudMachine path="both" st={201} back="rows[0] → res.status(201).json" newRow={3} cars={CARS1} prods={PRODS1} res='{"id":4,"model":"Chevrolet Spark",…}' req={{ m: 'POST', url: '/api/cars', body: '{ "model": "Chevrolet Spark", "daily_price": 190000, "year": 2021 }' }} max={1} /></div>
     </div></div>
   );
 }
@@ -260,6 +273,7 @@ export default function PgCrudMentorLesson({ studentName, lang = 'uz', onFinishe
   setLang(lang);
   useCss();
   useCss3();
+  useCssN1(); // F-1120-02: dars rasmi uslubi (parts/02b-rasm.jsx)
   const total = SCREENS.length;
   const [started, setStarted] = useState(startAt != null);
   const [idx, setIdx] = useState(Math.min(Math.max(0, startAt || 0), total - 1));

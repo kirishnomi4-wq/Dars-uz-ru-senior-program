@@ -21,7 +21,8 @@ body = src.replace('export default function NestArchMentorLesson', 'function Nes
 open(entry, 'w', encoding='utf-8').write(body + '\nexport const __D = {' + ', '.join(names) + '};\n')
 out = os.path.join(ROOT, '_nest1_md_tmp.mjs')
 subprocess.run(['npx', 'esbuild', entry, '--bundle', '--format=esm', '--platform=node', '--jsx=automatic', '--external:react',
-                '--alias:@lesson/runtime=./src/mentor-kurs/dev/lesson-runtime.jsx', '--outfile=' + out, '--log-level=error'], cwd=ROOT, check=True)
+                '--alias:@lesson/runtime=./src/mentor-kurs/dev/lesson-runtime.jsx', '--define:import.meta.env={}',  # F-1120-02: dev shim import.meta.env o'qiydi (node'da yo'q)
+                '--outfile=' + out, '--log-level=error'], cwd=ROOT, check=True)
 dump = os.path.join(tmp, 'd.mjs')
 open(dump, 'w').write("""const { __D } = await import(%s);
 const strip = (x) => Array.isArray(x) ? x.map(strip) : (x && typeof x === 'object' && !x.$$typeof) ? Object.fromEntries(Object.entries(x).map(([k, v]) => [k, strip(v)])) : (x && x.$$typeof ? null : x);

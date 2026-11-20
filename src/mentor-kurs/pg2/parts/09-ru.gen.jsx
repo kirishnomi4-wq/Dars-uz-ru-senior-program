@@ -726,7 +726,7 @@ const RU_MDT = {
   "seg": {
    "a": [
     "Первая поломка — обычная ошибка Gemini: в <code>INSERT</code> он <b>сам выдумывает имя колонки</b>, <code>price</code>",
-    "Ломать начинаем с самой частой ошибки. Gemini в insert написал price вместо daily price: имя колонки взял не из таблицы, а из своей догадки. Запускаем сервер: ошибки нет, он пишет «сервер работает». Ошибка выходит только при отправке POST."
+    "Вместо daily price стало price. Это самая частая ошибка Gemini: в insert имя колонки он берёт не из таблицы, а из своей догадки. Запускаем сервер: ошибки нет, он пишет «сервер работает». Ошибка выходит только при отправке POST."
    ],
    "b": [
     "POST → 500, в сообщении таблица и колонка: <b><code>\"price\"</code> · <code>\"cars\"</code></b>",
@@ -739,6 +739,11 @@ const RU_MDT = {
    "d": [
     "Итог: если 500 — сравните имя из текста <code>error</code> с <b><code>\\d cars</code></b>; код изменился — сервер заново",
     "Итог: если вышло пятьсот, читайте текст ошибки, внутри имя колонки и таблицы. Сравните его с бэкслеш d cars в терминале. После изменения кода обязательно перезапустите сервер, иначе продолжит работать старый код."
+   ],
+   "x": [
+    "Теперь <b>ломаете вы</b>: нажмите на подсвеченный в коде <code>daily_price</code>",
+    "Сервер работает, все четыре запроса тоже. Теперь ломаем намеренно, потому что Gemini ученика делает именно эти ошибки. Ломаете вы сами: в тридцать шестой строке server js подсвечен daily price, нажмите на него.",
+    "Нажмите на <b><code>daily_price</code></b> в 36-й строке <b>server.js</b> — станет <b><code>price</code></b>, как пишет Gemini."
    ]
   }
  },
@@ -747,8 +752,8 @@ const RU_MDT = {
   "title": "Cannot destructure property 'model' of 'req.body' — тело запроса не прочитано",
   "seg": {
    "a": [
-    "Убираем одну строку: <code>app.use(express.json())</code> — <b>сервер всё равно запускается</b>",
-    "Вторая поломка. Gemini иногда забывает одну строку: app use express json. Убираем эту строку. Сервер запускается без ошибки, GET тоже работает. Проблема только в запросах с телом."
+    "Строка удалена: <code>app.use(express.json())</code> нет — <b>сервер всё равно запускается</b>",
+    "Вы удалили строку. Сервер запускается без ошибки, GET тоже работает. Проблема только в запросах с телом."
    ],
    "b": [
     "POST → 500: <code>req.body</code> — <b><code>undefined</code></b>, взять <code>model</code> нельзя",
@@ -761,6 +766,11 @@ const RU_MDT = {
    "d": [
     "Итог: если <code>req.body</code> — <code>undefined</code>, первое место, куда смотреть, — <b><code>express.json()</code></b>",
     "Итог: если вышла ошибка req body undefined, первое место, куда смотреть, — app use express json. И если GET работает, а POST и PUT нет, — тоже эта строка. Одна строка, но без неё не работает ни один запрос с телом."
+   ],
+   "x": [
+    "Вторая поломка тоже <b>ваша</b>: нажмите на подсвеченный в коде <code>app.use(express.json())</code>",
+    "Вторая поломка тоже ваша. Gemini иногда забывает одну строку. В восемнадцатой строке server js подсвечен app use express json, нажмите на него: строка удалится.",
+    "Нажмите на <b><code>app.use(express.json())</code></b> в 18-й строке <b>server.js</b> — строка удалится."
    ]
   }
  },
@@ -1040,9 +1050,9 @@ function yakRu(passed, segs) {
   return segs.map((s) => ({ ...s, ...(Y[s.id === 'a' ? (passed ? 'a_pass' : 'a_fail') : s.id] || {}) }));
 }
 (function ruMdtQo() {
-  const segRu = (n) => { const r = RU_MDT[n] && RU_MDT[n].seg; if (!r) return undefined; const o = {}; Object.keys(r).forEach((id) => { const [key, text] = r[id]; o[id] = { ...(key != null ? { key } : {}), ...(text != null ? { text, show: wrRu(text) } : {}) }; }); return o; };
+  const segRu = (n) => { const r = RU_MDT[n] && RU_MDT[n].seg; if (!r) return undefined; const o = {}; Object.keys(r).forEach((id) => { const [key, text, act] = r[id]; o[id] = { ...(key != null ? { key } : {}), ...(text != null ? { text, show: wrRu(text) } : {}), ...(act != null ? { act } : {}) }; }); return o; };
   const head = (n) => { const r = RU_MDT[n] || {}; const o = {}; ['kicker', 'eyebrow', 'title'].forEach((k) => { if (r[k] != null) o[k] = r[k]; }); const s = segRu(n); if (s) o.segments = s; return o; };
-  const mdt = {}; Object.keys(RU_MDT).forEach((n) => { const r = { ...RU_MDT[n] }; if (r.seg) r.seg = MDT[n].seg.map(([id]) => (r.seg[id] ? [null, r.seg[id][0], r.seg[id][1]] : null)); mdt[n] = r; });
+  const mdt = {}; Object.keys(RU_MDT).forEach((n) => { const r = { ...RU_MDT[n] }; if (r.seg) r.seg = MDT[n].seg.map(([id]) => (r.seg[id] ? [null, r.seg[id][0], r.seg[id][1], r.seg[id][2]] : null)); mdt[n] = r; });
   ru(MDT, mdt);
   ru(S1, { ...head(1), ...((typeof RU_S !== 'undefined' && RU_S.S1) || {}) });
   ru(S2, { ...head(2), ...((typeof RU_S !== 'undefined' && RU_S.S2) || {}) });

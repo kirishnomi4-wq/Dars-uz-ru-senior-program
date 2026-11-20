@@ -385,76 +385,84 @@
 
 ## 23 · Buzamiz 1: providers bo'sh  ← `Lesson` (`Screen18`)
 - Kicker: `5-bosqich · buzamiz 1`
-1. **Ataylab buzamiz: `cars.module.ts`'da providers bo'sh qoldi**
-   Ovoz: «Ishlaydigan modulimiz bor. Endi uni ataylab buzamiz, chunki o'quvchilaringiz aynan shu xatolarni qiladi, siz esa ularni o'qiy olishingiz kerak. Birinchi holat: cars module da providers ro'yxatidan CarsService'ni o'chirdik.»
-2. **Server yiqildi. 1-bo'lak — qaysi klass? CarsController; `(?)` — topilmagan dependency o'rni**
+1. **Endi o'zingiz buzasiz: kodda yonib turgan `CarsService` ustiga bosing**
+   Ovoz: «Ishlaydigan modulimiz bor. Endi uni ataylab buzamiz, chunki o'quvchilaringiz aynan shu xatolarni qiladi, siz esa ularni o'qiy olishingiz kerak. Bu safar buzishni o'zingiz qilasiz: o'ngdagi kodda CarsService so'zi yonib turibdi, ustiga bosing.»
+2. **Ataylab buzamiz: `cars.module.ts`'da providers bo'sh qoldi**
+   Ovoz: «Birinchi holat: cars module da providers ro'yxatidan CarsService'ni o'chirdingiz, ro'yxat bo'sh qoldi.»
+3. **Server yiqildi. 1-bo'lak — qaysi klass? CarsController; `(?)` — topilmagan dependency o'rni**
    Ovoz: «Serverni ishga tushiramiz, u yiqiladi. Xabarni uch bo'lakka bo'lib o'qiymiz. Birinchi bo'lak, qaysi klass: Nest CarsController'ning dependency'larini topa olmadi. Qavsdagi so'roq belgisi topilmagan dependency'ning o'rni.»
-3. **2-bo'lak — qaysi dependency yetishmayapti? CarsService, konstruktordagi 0-argument**
+4. **2-bo'lak — qaysi dependency yetishmayapti? CarsService, konstruktordagi 0-argument**
    Ovoz: «Ikkinchi bo'lak, qaysi dependency yetishmayapti: nolinchi argument, ya'ni konstruktordagi birinchi parametr, CarsService.»
-4. **3-bo'lak — qaysi fayl? CarsModule, ya'ni `cars.module.ts`**
+5. **3-bo'lak — qaysi fayl? CarsModule, ya'ni `cars.module.ts`**
    Ovoz: «Uchinchi bo'lak, qaysi faylni ochamiz: Nest CarsModule'da qidirdi va topmadi, demak cars module ts fayli. Mana, uch savolga javob bor: qaysi klass, qaysi dependency, qaysi fayl.»
-5. **Pastda Nest yechimni o'zi taklif qiladi: CarsService shu modulda bormi?**
+6. **Pastda Nest yechimni o'zi taklif qiladi: CarsService shu modulda bormi?**
    Ovoz: «Pastda Nest o'zi yechimlarni sanaydi. Ikkinchisi bizning holat: CarsService provider bo'lsa, u shu modulda bormi? Yo'q, biz uni o'chirganmiz.»
-6. **Tuzatamiz: `providers: [CarsService]` qaytdi — server ishga tushdi**
+7. **Tuzatamiz: `providers: [CarsService]` qaytdi — server ishga tushdi**
    Ovoz: «Tuzatamiz: cars module ts faylini ochib, providers ro'yxatiga CarsService'ni qaytaramiz va saqlaymiz. start dev serverni o'zi qayta yuklaydi: terminalda Mapped satrlari va successfully started.»
-7. **Xulosa: «can't resolve dependencies» ko'rsangiz — modul faylini oching, providers'ni tekshiring**
+8. **Xulosa: «can't resolve dependencies» ko'rsangiz — modul faylini oching, providers'ni tekshiring**
    Ovoz: «Xulosa: bu Nest'dagi eng ko'p uchraydigan xato. Xabarni uch savol bilan o'qiysiz: qaysi klass, qaysi dependency, qaysi fayl. Javob esa doim modul faylida: yetishmayotgan Service providers ro'yxatiga yoziladi.»
 
 ---
 
 ## 24 · Buzamiz 2: imports'da CarsModule yo'q  ← `Lesson` (`Screen19`)
 - Kicker: `5-bosqich · buzamiz 2`
-1. **Ataylab buzamiz: `app.module.ts`'ning `imports`'idan CarsModule olindi**
-   Ovoz: «Birinchi xatoni o'qidik va tuzatdik. Ikkinchi holat boshqacha: bu safar server yiqilmaydi, va aynan shuning uchun xavfli. app module da imports ro'yxatidan CarsModule'ni olib tashladik.»
-2. **O'ylab ko'ring: server xato bilan yiqiladimi yoki ishga tushadimi?**
+1. **Yana o'zingiz buzasiz: `imports` ro'yxatidagi `CarsModule` ustiga bosing**
+   Ovoz: «Birinchi xatoni o'qidik va tuzatdik. Ikkinchi holat boshqacha: bu safar server yiqilmaydi, va aynan shuning uchun xavfli. Buzishni yana o'zingiz qilasiz: app module faylida imports ro'yxatidagi CarsModule so'zi yonib turibdi, ustiga bosing.»
+2. **Ataylab buzamiz: `app.module.ts`'ning `imports`'idan CarsModule olindi**
+   Ovoz: «CarsModule imports ro'yxatidan olib tashlandi, ro'yxat bo'sh qoldi.»
+3. **O'ylab ko'ring: server xato bilan yiqiladimi yoki ishga tushadimi?**
    Ovoz: «O'ylab ko'ring: serverni ishga tushirsak, xato chiqib yiqiladimi, yoki ishga tushadimi?»
    O'ylab ko'ring: Server nima qiladi? — Xato bilan yiqiladi / Ishga tushadi (to'g'ri: Ishga tushadi)
-3. **Server ishga tushdi — «successfully started», xato yo'q**
+4. **Server ishga tushdi — «successfully started», xato yo'q**
    Ovoz: «Server ishga tushdi, muvaffaqiyatli deb yozdi, hamma narsa yaxshidek. Xato yo'q.»
-4. **Lekin `/cars` → 404, root path esa ishlaydi**
+5. **Lekin `/cars` → 404, root path esa ishlaydi**
    Ovoz: «Lekin cars route'ini so'rasak, to'rt yuz to'rt, Cannot GET cars. Root path esa ishlaydi.»
-5. **AppModule CarsModule'ni ulamadi — Nest cars papkasini umuman o'qimadi. Bu yashirin xato**
+6. **AppModule CarsModule'ni ulamadi — Nest cars papkasini umuman o'qimadi. Bu yashirin xato**
    Ovoz: «Nima bo'ldi? AppModule CarsModule'ni ulamadi, shuning uchun Nest cars papkasini umuman o'qimadi. Xato yo'q, chunki Nest uchun u modul shunchaki yo'q. Bu yashirin xato, eng xavflisi.»
-6. **Topish yo'li: terminalda CarsController satri ham, Mapped ham yo'q**
+7. **Topish yo'li: terminalda CarsController satri ham, Mapped ham yo'q**
    Ovoz: «Buni qanday topasiz? Terminalga qarang: CarsController satri yo'q, cars uchun Mapped satri yo'q. Terminaldagi satrlarni o'qishni odat qiling degan edim, sabab mana shu.»
-7. **Tuzatamiz: `imports: [CarsModule]` qaytdi — Mapped satrlari qaytib keldi**
+8. **Tuzatamiz: `imports: [CarsModule]` qaytdi — Mapped satrlari qaytib keldi**
    Ovoz: «Tuzatamiz: app module ts faylida imports ro'yxatiga CarsModule'ni qaytaramiz. Server qayta yuklanadi va terminalda CarsController hamda uchta Mapped satri qaytib keladi. cars route'i yana ishlaydi.»
-8. **Xulosa: 404 bo'lsa-yu kod to'g'ri ko'rinsa — avval terminaldagi Mapped, keyin imports**
+9. **Xulosa: 404 bo'lsa-yu kod to'g'ri ko'rinsa — avval terminaldagi Mapped, keyin imports**
    Ovoz: «Xulosa: route to'rt yuz to'rt bersa va kodingiz to'g'ri ko'rinsa, avval terminalda Mapped satrini qidiring, keyin bosh modulning imports ro'yxatini tekshiring.»
 
 ---
 
 ## 25 · Buzamiz 3: Controller decorator'i yo'q  ← `Lesson` (`Screen20`)
 - Kicker: `5-bosqich · buzamiz 3`
-1. **Ataylab buzamiz: `@Controller('cars')` o'chirildi, klass qoldi — server yiqiladi**
-   Ovoz: «Yashirin xatoni ko'rdik. Uchinchi holat decorator haqida: to'rtinchi ekranda aytgan qoidani endi amalda ko'ramiz. cars controller da Controller decorator'ini o'chirdik, klass joyida qoldi. Server yiqiladi.»
-2. **Xabar: «invalid controller» — belgi yo'q, lekin controllers ro'yxatida turibdi**
+1. **Endi o'zingiz buzasiz: kodda yonib turgan `@Controller('cars')` ustiga bosing**
+   Ovoz: «Yashirin xatoni ko'rdik. Uchinchi holat decorator haqida: to'rtinchi ekranda aytgan qoidani endi amalda ko'ramiz. cars controller faylida Controller decorator'i yonib turibdi, ustiga bosib o'chiring.»
+2. **Ataylab buzamiz: `@Controller('cars')` o'chirildi, klass qoldi — server yiqiladi**
+   Ovoz: «Decorator o'chdi, klass joyida qoldi. Server yiqiladi.»
+3. **Xabar: «invalid controller» — belgi yo'q, lekin controllers ro'yxatida turibdi**
    Ovoz: «Xabar: noto'g'ri controller aniqlandi. CarsController'da Controller decorator'i yo'q, lekin u qaysidir modulning controllers ro'yxatida turibdi.»
-3. **4-ekrandagi qoida ishladi: belgi bo'lmasa, Nest klassni tanimaydi**
+4. **4-ekrandagi qoida ishladi: belgi bo'lmasa, Nest klassni tanimaydi**
    Ovoz: «Nest aniq aytyapti: siz uni ro'yxatga yozgansiz, lekin klassda belgi yo'q. Decorator'lar ekranida aytganimni eslang: belgi bo'lmasa, Nest klassni tanimaydi.»
-4. **Tuzatamiz: decorator qaytdi — server ishga tushdi, Mapped satrlari joyida**
+5. **Tuzatamiz: decorator qaytdi — server ishga tushdi, Mapped satrlari joyida**
    Ovoz: «Tuzatish bitta satr: decorator'ni qaytaramiz. Server qayta yuklanadi, terminalda Mapped satrlari va successfully started.»
-5. **Xulosa: «invalid controller» — birinchi satr tushib qolgan, decorator'ni qaytaring**
+6. **Xulosa: «invalid controller» — birinchi satr tushib qolgan, decorator'ni qaytaring**
    Ovoz: «Xulosa: invalid controller xabarini ko'rsangiz, xabarda aytilgan klassning ustiga qarang. O'quvchilar buni ko'pincha kodni qo'lda ko'chirganda, birinchi satrni tushirib qoldirganda qiladi.»
 
 ---
 
 ## 26 · Buzamiz 4: Injectable decorator'i yo'q  ← `Lesson` (`Screen21`)
 - Kicker: `5-bosqich · buzamiz 4`
-1. **Ataylab buzamiz: `cars.service.ts`'dan `@Injectable()` o'chirildi**
-   Ovoz: «Controller decorator'siz Nest klassni tanimadi. Service'da ham shundaymi? To'rtinchi holat: cars service dan Injectable decorator'ini o'chirdik. Service'ning o'zida konstruktor yo'q, u hech kimga bog'liq emas.»
-2. **O'ylab ko'ring: `@Injectable()`'siz `/cars` ishlaydimi?**
+1. **Endi o'zingiz buzasiz: kodda yonib turgan `@Injectable()` ustiga bosing**
+   Ovoz: «Controller decorator'siz Nest klassni tanimadi. Service'da ham shundaymi? To'rtinchi holat: cars service faylida Injectable decorator'i yonib turibdi, ustiga bosib o'chiring.»
+2. **Ataylab buzamiz: `cars.service.ts`'dan `@Injectable()` o'chirildi**
+   Ovoz: «Injectable o'chdi. Service'ning o'zida konstruktor yo'q, u hech kimga bog'liq emas.»
+3. **O'ylab ko'ring: `@Injectable()`'siz `/cars` ishlaydimi?**
    Ovoz: «O'ylab ko'ring: serverni ishga tushirsak, cars route'i ishlaydimi?»
    O'ylab ko'ring: Injectable decorator'siz /cars ishlaydimi? — Ha, ishlaydi / Yo'q, xato chiqadi (to'g'ri: Ha, ishlaydi)
-3. **Ishlayapti! CarsService hech kimga bog'liq emas — Nest uni oddiy yaratdi**
+4. **Ishlayapti! CarsService hech kimga bog'liq emas — Nest uni oddiy yaratdi**
    Ovoz: «Kutilmagan natija: hammasi ishlayapti, cars route'i ikki yuz qaytaryapti. Nega? CarsService'ning o'zining konstruktorida hech qanday dependency yo'q. Nest uni dependency'siz yaratib qo'ya oldi.»
-4. **`@Injectable()` Nest'ga aytadi: konstruktorga qarab, nima kerakligini aniqla**
+5. **`@Injectable()` Nest'ga aytadi: konstruktorga qarab, nima kerakligini aniqla**
    Ovoz: «Injectable aslida Nest'ga shuni aytadi: bu klassning konstruktoriga qarab, unga nima kerakligini aniqlang. Belgi bo'lmasa, Nest konstruktorga qaramaydi.»
-5. **Dependency qo'shsak: server ishga tushadi, lekin so'rovda 500 — bu yashirin xato**
+6. **Dependency qo'shsak: server ishga tushadi, lekin so'rovda 500 — bu yashirin xato**
    Ovoz: «Endi sinab ko'ramiz: shu Injectable'siz Service'ga dependency qo'shamiz, konstruktorida PricingService so'raladi. Natija kutilmagan: server xatosiz ishga tushadi, Mapped satrlari joyida. Lekin cars so'rovi besh yuz qaytaradi, terminalda TypeError: undefined ning withDiscount xossasini o'qib bo'lmaydi. Nest dependency'ni inject qilmadi va xato ham bermadi, maydon bo'sh qoldi. Bu yashirin xato: ishga tushishda emas, birinchi so'rovda chiqadi.»
-6. **Tuzatamiz: `@Injectable()` qaytdi — PricingService inject qilindi, `/cars` → 200**
+7. **Tuzatamiz: `@Injectable()` qaytdi — PricingService inject qilindi, `/cars` → 200**
    Ovoz: «Tuzatamiz: Injectable decorator'ini qaytaramiz. PricingService modulning providers ro'yxatida turibdi. Endi Nest konstruktorga qaraydi, PricingService'ni inject qiladi va cars so'rovi yana ikki yuz qaytaradi.»
-7. **Xulosa: `@Injectable()` har Service'ga yoziladi, hozir kerak bo'lmasa ham**
+8. **Xulosa: `@Injectable()` har Service'ga yoziladi, hozir kerak bo'lmasa ham**
    Ovoz: «Xulosa va qoida: Injectable har Service'ga yoziladi, hozir kerak bo'lmasa ham. O'quvchi men o'chirdim, ishlayapti, demak kerak emas desa, siz nega kerakligini tushuntira olasiz: dependency paydo bo'lganda xato ishga tushishda emas, so'rov paytida chiqadi, uni topish qiyin.»
 
 ---

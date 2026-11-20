@@ -3,16 +3,24 @@
 //  1 · Kirish — dars oxiridagi natija: 10 test, yarim soniyada (jest1v2-out/11)
 // ============================================================
 const PLAN1 = ['Nega va qayerda', 'Birinchi test', "Yolg'on testlar", 'Statuslar va chegara', 'AI testi', 'Sinfga tayyorgarlik'];
-const S1 = mkS(1, [{ hl: [], res: true }, { hl: [0, 1] }, { hl: [2, 3, 4] }, { hl: [5] }], { plan: PLAN1 });
-const T1 = out('11').filter((l, i) => /^(PASS|Tests:|Time:)/.test(outLines('11')[i])); // F-1104-02: kirishda faqat natija
+const S1 = mkS(1, [{ hl: [] }, { hl: [0, 1] }, { hl: [2, 3, 4] }, { hl: [5] }], { plan: PLAN1 });
+// F-1120-02 (M51): darsning rasmi — «Buyurtma boti» xaritasi + Jest qatori (BotMap, parts/02e-bot.jsx); reja pastda.
+// Testda Telegram ham, baza ham yo'q: faqat telegram modulidagi funksiya chaqiriladi (texts.ts, keyboards.ts)
+const DB_ALL = { products: 'db', users: 'db', carts: 'db', orders: 'db' };
+const UNIT_ON = ['telegram'];
+const S1M = [
+  { loc: DB_ALL, on: UNIT_ON, tgSub: 'texts · keyboards', jest: { cmd: 'npm test', files: ['texts.spec.ts', 'keyboards.spec.ts'], res: 'pass', txt: '10 passed' } },
+  { loc: DB_ALL, on: UNIT_ON, tgSub: 'texts.ts', jest: { cmd: 'npx jest texts', files: ['texts.spec.ts'], res: 'fail', txt: '1 failed' } },
+  { loc: DB_ALL, on: UNIT_ON, tgSub: 'texts · keyboards', jest: { cmd: 'AI', files: ['texts.spec.ts', 'keyboards.spec.ts'], res: 'pass', txt: '36 passed' } },
+  { loc: DB_ALL, on: UNIT_ON, tgSub: 'texts · keyboards', jest: { cmd: 'npm test', files: ['texts.spec.ts', 'keyboards.spec.ts'], res: 'pass', txt: '10 passed' } },
+];
 function Screen1(p) {
-  return <Lesson p={p} S={S1} scene={({ seg }) => <div style={{ display: 'grid', gap: 14 }}>
-    <div className="mk-light"><div className="mk-plan">
+  return <Lesson p={p} S={S1} scene={({ seg, beat }) => { const m = S1M[Math.min(beat, 3)]; return <div className="mk-light" style={{ padding: 16, display: 'grid', gap: 12 }}>
+    <BotMap {...m} tag={t("Bugungi darsning rasmi — buyurtma botining qoidasi test bilan qo'riqlanadi", 'Картина урока — правило бота заказов охраняет тест')} />
+    <div className="n1-plan" style={{ position: 'static', gridTemplateColumns: 'repeat(6,minmax(0,1fr))', gap: 6 }}>
       {S1.plan.map((x, i) => <div key={i} className={seg.hl.includes(i) ? 'hl' : (seg.hl.length ? 'dim' : '')}><b>0{i + 1}</b><span>{x}</span></div>)}
-    </div></div>
-    {seg.res && <><div className="mk-tag" style={{ margin: 0 }}>{t("Dars oxirida — OrderBotNest'da 10 ta test, hammasi yashil", "В конце урока — в OrderBotNest 10 тестов, все зелёные")}</div>
-      <Term title={t("VS Code terminali · npm test -- --verbose", "терминал VS Code · npm test -- --verbose")} lines={T1} /></>}
-  </div>} />;
+    </div>
+  </div>; }} />;
 }
 
 // ============================================================
@@ -23,10 +31,11 @@ const T2_UNIT = out('12');
 const S2 = mkS(2, [{ v: 'smoke' }, { v: 'unit' }, { v: 'code' }, { v: 'sum' }]);
 function Screen2(p) {
   return <Lesson p={p} S={S2} scene={({ seg }) => <>
-    {seg.v !== 'code' && <div className="pg-two">
-      <Card c={T.blue} h={t("Smoke — butun bot", "Smoke — весь бот")} hl={seg.v === 'smoke'} dim={seg.v === 'unit'}><p>{t("«Bot ishlayaptimi?» — baza, restart, ko'p mijoz", "«Бот работает?» — база, перезапуск, много клиентов")}</p><Term lines={T2_SMOKE} style={{ marginTop: 8 }} /></Card>
-      {seg.v !== 'smoke' ? <Card c={JC.jest} h={t("Unit-test — bitta qoida", "Unit-тест — одно правило")} hl={seg.v === 'unit'}><p>{t("«Shu qoida buzilmadimi?» — bitta funksiya, bazasiz", "«Не нарушено ли это правило?» — одна функция, без базы")}</p><Term lines={T2_UNIT} style={{ marginTop: 8 }} /></Card> : <div />}
-    </div>}
+    {/* F-1120-02 (M51): ikki karta o'rniga darsning rasmi — smoke butun botni, unit-test bitta funksiyani tekshiradi */}
+    {seg.v === 'smoke' && <div className="mk-light" style={{ padding: 14 }}><BotMap loc={DB_ALL} clients={5} chat={['[✅ Buyurtma berish]', "Buyurtma #1 qabul qilindi! Jami: 220 000 so'm", 'ok']} jest={{ name: 'Smoke', cmd: 'npm run smoke', files: [t('shop_smoke · restart · 5 mijoz', 'shop_smoke · рестарт · 5 клиентов')], res: 'pass', txt: '5/5' }} tag={t("Smoke — butun bot: telefon, server, baza", 'Smoke — весь бот: телефон, сервер, база')} /></div>}
+    {seg.v === 'smoke' && <Term lines={T2_SMOKE} />}
+    {(seg.v === 'unit' || seg.v === 'sum') && <div className="mk-light" style={{ padding: 14 }}><BotMap loc={DB_ALL} on={UNIT_ON} tgSub="texts · keyboards" jest={{ cmd: 'npm test', files: ['texts.spec.ts', 'keyboards.spec.ts'], res: 'pass', txt: '10 passed' }} tag={t("Unit-test — bitta funksiya: Telegram ham, baza ham, .env ham kerak emas", 'Unit-тест — одна функция: не нужны ни Telegram, ни база, ни .env')} /></div>}
+    {seg.v === 'unit' && <Term lines={T2_UNIT} />}
     {seg.v === 'code' && <Ide files={compact(FILES(F.txs), F.txs)} active={F.txs}>
       <CodePanel file="texts.spec.ts" lines={kod('SPEC04', { 1: 'i' }, 1, 2)} focus={['i']} />
       <CodePanel file="texts.ts" lines={kod('TX_SOM', { 4: 's' }, 3, 4)} focus={['s']} style={{ marginTop: 10 }} />
@@ -174,8 +183,8 @@ function Flow10({ broken }) {
     <div className="fl-grid">
       <Box h={t("som(100000) qaytaradi", "som(100000) возвращает")} v={res} c={broken ? T.accent : T.green} hl={broken} />
       <div className="fl-tests">
-        <div className="fl-row"><span className="fl-ar">→</span><Box h={t("1-test etaloni: `Jami: ${som(100000)}`", "эталон 1-го теста: `Jami: ${som(100000)}`")} v={'Jami: ' + res} c={broken ? T.accent : T.blue} hl={broken} /><span className="fl-eq">{broken ? '=' : '='}</span>{verdict(true, broken)}</div>
-        <div className="fl-row"><span className="fl-ar">→</span><Box h={t("2-test etaloni: qo'lda yozilgan", "эталон 2-го теста: написан вручную")} v="Jami: 100 000 so'm" c={T.blue} /><span className="fl-eq">{broken ? '≠' : '='}</span>{verdict(!broken)}</div>
+        <div className="fl-row"><span className="fl-ar">→</span><Box h={t("1-test etaloni: `Jami: ${som(100000)}`", "эталон 1-го теста: `Jami: ${som(100000)}`")} v={'Jami: ' + res} c={broken ? T.accent : T.blue} hl={broken} /><span className="fl-eq">{t('teng', 'равно')}</span>{verdict(true, broken)}</div>
+        <div className="fl-row"><span className="fl-ar">→</span><Box h={t("2-test etaloni: qo'lda yozilgan", "эталон 2-го теста: написан вручную")} v="Jami: 100 000 so'm" c={T.blue} /><span className="fl-eq">{broken ? t('teng emas', 'не равно') : t('teng', 'равно')}</span>{verdict(!broken)}</div>
       </div>
     </div>
     {broken && <div className="fl-note">{t("1-test etaloni ham ", "Эталон 1-го теста тоже ")}<b>{t("som'dan", "из som")}</b>{t(" yasaladi — som buzilsa, etalon ham u bilan birga buziladi.", " делается — если som сломается, эталон сломается вместе с ней.")}</div>}

@@ -83,7 +83,6 @@ Maydon Jamoa — Pro, 30 дней · 10 000 сум, тестовый режим 
 // 2-tur (05.11): skaner tuzatilgandan keyin topilgan modul ro'yxatlari
 ru(FLOW2, [[null, 'Клиент', 'отдаёт карту сервису'], [null, 'Платёжный сервис', 'например Payme, Click'], [null, null, 'тело + X-Signature'], [null, 'Сервер', 'подпись → запись'], [null, 'Панель']]);
 ru(DICT22, [['сообщение об оплате · POST /tolov/webhook'], ['подпись · X-Imzo · TOLOV_KALITI'], ['повторное сообщение · { takror: true }'], ['статус: tolandi / rad'], ['тестовая страница оплаты']]);
-ru(STATIONS25, [[null, 'Сообщение — доказательство'], [null, 'Подпись · байты'], [null, 'Порядок'], [null, 'Повтор · отказ']]);
 
 const RU_MDT = {
  "1": {
@@ -440,7 +439,7 @@ const RU_MDT = {
   "seg": {
    "a": [
     "Простая ошибка: считать подпись <b>по <code>JSON.stringify(body)</code></b> — «это же те же данные»",
-    "Теперь нарочно сделаем четыре ошибки. Первая очень распространённая: считать подпись не по сырому телу, а по JSON stringify body. Вы думаете: данные-то те же. Наш скрипт шлёт без пробелов, поэтому с ним этот код работает."
+    "Подпись теперь считается не из сырого тела, а из JSON stringify body. Это очень распространённая ошибка. Вы думаете: данные-то те же. Наш скрипт шлёт без пробелов, поэтому с ним этот код работает."
    ],
    "b": [
     "Сервис прислал <b>с пробелами</b>: правильный код 200, ошибочный 401",
@@ -453,6 +452,11 @@ const RU_MDT = {
    "d": [
     "Значит, причина: подпись <b>по байтам</b>; сырое тело сохраняет только <code>rawBody: true</code>",
     "Значит, причина одна: подпись считается не по смыслу текста, а по точным байтам. Nest читает тело, превращает в объект и выбрасывает байты. Сохраняет их только raw body true. У обеих ошибок одинаковый признак: настоящая оплата с верной подписью получает четыреста один."
+   ],
+   "x": [
+    "Теперь <b>ломаете вы</b>: нажмите на подсвеченный в коде <code>req.rawBody</code>",
+    "Теперь намеренно сделаем четыре ошибки, первую делаете вы. В payment controller ts подпись считается из req raw body, raw body подсвечен, нажмите на него: подпись будет считаться из JSON stringify body.",
+    "Нажмите на <b><code>req.rawBody</code></b> в <b>payment.controller.ts</b> — подпись будет считаться из <code>JSON.stringify(body)</code>."
    ]
   }
  },
@@ -462,7 +466,7 @@ const RU_MDT = {
   "seg": {
    "a": [
     "Третья ошибка: <b><code>record</code> до проверки подписи</b> — «сначала запишу, потом проверю»",
-    "Третья ошибка самая опасная. В controller меняем порядок: сначала parse и record, потом подпись. Код работает, без тестов не заметно. Отправляем сообщение без подписи."
+    "Порядок поменялся: сначала parse и record, потом подпись. Код работает, без тестов не заметно. Отправляем сообщение без подписи."
    ],
    "b": [
     "Ответ <b>401</b>: снаружи всё правильно",
@@ -475,6 +479,11 @@ const RU_MDT = {
    "d": [
     "Значит, причина: <b>401 не отменяет записанное</b>; подпись — самый первый шаг",
     "Значит, причина: четыреста один — только ответ, он не отменяет то, что уже записано в базу. Поэтому подпись — самый первый шаг, до любой записи. Такую ошибку трудно найти глазами, её ловит тест, увидите в третьей практике."
+   ],
+   "x": [
+    "Третья ошибка самая опасная — <b>её тоже делаете вы</b>: нажмите на строку <code>record</code>",
+    "Третья ошибка самая опасная, её тоже делаете вы. В controller подсвечена строка записи, нажмите на неё: она переедет до проверки подписи.",
+    "Нажмите на <b><code>this.payments.record</code></b> в <b>payment.controller.ts</b> — запись переедет до проверки подписи."
    ]
   }
  },
@@ -835,9 +844,9 @@ function yakRu(passed, segs) {
   return segs.map((s) => ({ ...s, ...(Y[s.id === 'a' ? (passed ? 'a_pass' : 'a_fail') : s.id] || {}) }));
 }
 (function ruMdtQo() {
-  const segRu = (n) => { const r = RU_MDT[n] && RU_MDT[n].seg; if (!r) return undefined; const o = {}; Object.keys(r).forEach((id) => { const [key, text] = r[id]; o[id] = { ...(key != null ? { key } : {}), ...(text != null ? { text, show: wrRu(text) } : {}) }; }); return o; };
+  const segRu = (n) => { const r = RU_MDT[n] && RU_MDT[n].seg; if (!r) return undefined; const o = {}; Object.keys(r).forEach((id) => { const [key, text, act] = r[id]; o[id] = { ...(key != null ? { key } : {}), ...(text != null ? { text, show: wrRu(text) } : {}), ...(act != null ? { act } : {}) }; }); return o; };
   const head = (n) => { const r = RU_MDT[n] || {}; const o = {}; ['kicker', 'eyebrow', 'title'].forEach((k) => { if (r[k] != null) o[k] = r[k]; }); const s = segRu(n); if (s) o.segments = s; return o; };
-  const mdt = {}; Object.keys(RU_MDT).forEach((n) => { const r = { ...RU_MDT[n] }; if (r.seg) r.seg = MDT[n].seg.map(([id]) => (r.seg[id] ? [null, r.seg[id][0], r.seg[id][1]] : null)); mdt[n] = r; });
+  const mdt = {}; Object.keys(RU_MDT).forEach((n) => { const r = { ...RU_MDT[n] }; if (r.seg) r.seg = MDT[n].seg.map(([id]) => (r.seg[id] ? [null, r.seg[id][0], r.seg[id][1], r.seg[id][2]] : null)); mdt[n] = r; });
   ru(MDT, mdt);
   ru(S1, { ...head(1), ...((typeof RU_S !== 'undefined' && RU_S.S1) || {}) });
   ru(S2, { ...head(2), ...((typeof RU_S !== 'undefined' && RU_S.S2) || {}) });

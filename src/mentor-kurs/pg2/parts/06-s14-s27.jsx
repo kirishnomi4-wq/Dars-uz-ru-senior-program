@@ -281,19 +281,13 @@ rowCount: 3 · rows: [{"name":"Klaviatura","price":89000},{"name":"Sichqoncha","
 UPDATE id=99 → rowCount: 0 · rows: []`, { 1: { id: 'r' }, 2: { id: 'z' } });
 const STEPS18 = [['Pool', 'ulanadi', T.purple], ['pool.query(sql)', "so'rov bazaga", PG.pg], ['rows / rowCount', 'natija', T.green], ['res.json', 'javob', T.ink]];
 // F-1109-06: xulosa — to'rt kichik karta o'rniga GET /api/cars yo'li haqiqiy qiymatlar bilan, rowCount jadvali va catch (12-price-xato)
+// F-1120-02 (M51): yuqoridagi oqim kartasi o'rniga darsning rasmi — o'sha GET yo'li (CrudMachine)
 function Flow18() {
   return <div className="z">
-    <div className="z-card">
-      <p className="z-h">{t("GET /api/cars — so'rov serverdan bazaga va qaytib", "GET /api/cars — запрос от сервера к базе и обратно")}</p>
-      <div className="z-flow">
-        <div className="z-st" style={{ borderColor: 'var(--pur)', background: 'var(--pur2)' }}><b>1 · Pool</b><span className="zm">new Pool({'{…}'})</span><span className="z-mut">{t("ulanish tayyor", "соединение готово")}</span></div>
-        <div className="z-ar">→</div>
-        <div className="z-st blue"><b>2 · pool.query</b><span className="zm">SELECT * FROM cars</span><span className="z-mut">{t("await — javob kutiladi", "await — ждём ответ")}</span></div>
-        <div className="z-ar">→</div>
-        <div className="z-st ok"><b>{t("3 · natija", "3 · результат")}</b><span className="zm">{t("rows: 3 ta mashina", "rows: 3 машины")}</span><span className="zm">rowCount: 3</span></div>
-        <div className="z-ar">→</div>
-        <div className="z-st"><b>4 · res.json</b><span className="z-tag g">200</span><span className="zm" style={{ fontSize: 12 }}>[{'{'}"id":1,"model":"Chevrolet Cobalt",…{'}'}, …]</span></div>
-      </div>
+    <div className="z-card" style={{ padding: 12 }}>
+      <CrudMachine path="api" on={['pm', 'route', 'pool', 'cars']} req={{ m: 'GET', url: '/api/cars', body: null }} st={200} res={'[{"id":1,"model":"Chevrolet Cobalt",…}, …]'}
+        route={"app.<span class=\"n1-k\">get</span>(<span class=\"n1-s\">'/api/cars'</span>)"} sql={"pool.query(<span class=\"n1-s\">'SELECT * FROM cars'</span>)"} rc="rows: 3 · rowCount: 3" back="result.rows → res.json → 200"
+        ro={['server.js:24', 'res.json(result.rows);']} tag={t("GET /api/cars — so'rov serverdan bazaga va qaytib", 'GET /api/cars — запрос от сервера к базе и обратно')} />
     </div>
     <div className="z-two">
       <div className="z-card">
@@ -427,31 +421,52 @@ function ScreenP21(p) { return <Practice p={p} S={P21.S} steps={P21.steps} troub
 // ============================================================
 //  22 · Buzamiz 1: price ustuni (pg2-out/12, 19) — POST bo'lagi 32–44, xato 36-satr
 // ============================================================
-const POST_LINES = (bad, fixed) => srvSlice(32, 44).map((l, i) => {
+// F-1120-02 (M52): 1-segment (x) — mentor 36-satrdagi daily_price ni o'zi bosadi; 'ok' holatida so'z yonib turadi (data-act)
+const POST_LINES = (st) => srvSlice(32, 44).map((l, i) => {
   if (i !== 4) return l;
-  if (bad) return { ...l, h: jsLine("      'INSERT INTO cars (model, price, year) VALUES ($1, $2, $3) RETURNING *',"), id: 'x' };
-  return { ...l, id: 'x', neu: !!fixed };
+  if (st === 'bad') return { ...l, h: jsLine("      'INSERT INTO cars (model, price, year) VALUES ($1, $2, $3) RETURNING *',"), id: 'x' };
+  if (st === 'ok') return { ...l, id: 'x', h: l.h.replace('daily_price', '<span class="n1-act" data-act="1">daily_price</span>') };
+  return { ...l, id: 'x', neu: st === 'fix' };
 });
 const PRICE_TERM = psql(String.raw`
 $ node server.js
 Server 3000-portda ishlayapti
 column "price" of relation "cars" does not exist`, { 3: { id: 'e' } });
-const S22 = mkS(22, [{ st: 'bad' }, { st: 'bad', pm: 500 }, { st: 'fix', pm: 201 }, { sum: true }]);
+const S22 = mkS(22, [{ st: 'ok' }, { st: 'bad' }, { st: 'bad', pm: 500 }, { st: 'fix', pm: 201 }, { sum: true }]);
 function Screen22(p) {
-  return <Lesson p={p} S={S22} scene={({ seg }) => <>
-    {!seg.sum && <SrvIde lines={POST_LINES(seg.st === 'bad', seg.st === 'fix')} focus={['x']} />}
-    {seg.pm === 500 && <div className="pg-two"><PostmanCard {...PM_ELANTRA(500)} res={'{"error":"column \\"price\\" of relation \\"cars\\" does not exist"}'} hl /><Psql title={t("terminal — node server.js", "терминал — node server.js")} er lines={PRICE_TERM} focus={['e']} /></div>}
+  return <Lesson p={p} S={S22} scene={(b) => <Scene22 b={b} />} />;
+}
+// Qadamlar: 0 bosing · 1 buzildi (javob «?») · 2 POST → 500, bo'laklar 1·2 · 3 tuzatildi → 201 · 4 xulosa — darsning rasmi
+// Postman chiqqan qadamlarda kod 35–42-satr (1280×720 da kichik rasm va javob ko'rinib tursin)
+function Scene22({ b }) {
+  const { seg, beat } = b;
+  const act = useAct(b);
+  const st = beat === 0 ? (act.hit ? 'bad' : 'ok') : seg.st;
+  if (seg.sum) return <>
+    <div className="mk-light" style={{ padding: 14 }}>
+      <CrudMachine path="api" on={['pm', 'json', 'route', 'pool', 'cars']} st={500} res={'{"error":"column \\"price\\" of relation \\"cars\\" does not exist"}'}
+        req={{ m: 'POST', url: '/api/cars', body: '{ "model": "Hyundai Elantra", "daily_price": 450000, "year": 2022 }' }}
+        sql={"INSERT … (model, <b style=\"color:#DC2626\">price</b>, …)"} col={'id · model · <b style="color:#12805A">daily_price</b>'} bad={{ at: 'cars', why: t("cars'da price ustuni yo'q", 'в cars нет колонки price') }}
+        back="catch → res.status(500)" ro={['\\d cars', 'Column: id · model · <span class="n1-ok">daily_price</span> · year · is_rented']}
+        tag={t("Xabardagi nom — jadvaldagi nom bilan solishtiring", 'Имя из сообщения — сравните с именем в таблице')} />
+    </div>
+    <div className="mk-rule">{t("Xabar nimani tuzatishni ", "Что исправить, сообщение ")}<b>{t("o'zi aytdi", "сказал сам")}</b>{t(": ustun ", ": колонка ")}<code>price</code>{t(", jadval ", ", таблица ")}<code>cars</code>{t(". Kod o'zgargandan keyin serverni albatta qayta ishga tushiring.", ". После изменения кода обязательно перезапустите сервер.")}</div>
+  </>;
+  return <>
+    <Ide files={SRV_FILES} active="server.js">
+      <div onClick={act.onClick}><CodePanel key={st + (seg.pm ? 'p' : '')} file="server.js" lines={seg.pm ? POST_LINES(st).slice(3, 11) : POST_LINES(st)} focus={['x']} style={{ fontSize: 12.5 }} /></div>
+      <N1Mini><CrudMini broken={st === 'ok' ? null : 'col'} known={beat >= 2} fixed={st === 'fix'} pins={beat === 2 ? { a: 1, b: 2 } : {}} /></N1Mini>
+    </Ide>
+    {seg.pm === 500 && <div className="pg-two"><PostmanCard {...PM_ELANTRA(500)} res={'{"error":"column \\"price\\" of relation \\"cars\\" does not exist"}'} hl /><Psql title={t("terminal — node server.js", "терминал — node server.js")} er lines={PRICE_TERM} focus={['e']} marks={{ 2: 'n1-p1' }} /></div>}
     {seg.pm === 201 && <PostmanCard {...PM_ELANTRA(201)} hl />}
-    {seg.sum && <><div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0,1fr))', gap: 10 }}>
-      {[['500', t("error matnini o'qing", "прочитайте текст error"), '#B91C1C'], ['"price" · "cars"', t('ustun va jadval nomi', "имя колонки и таблицы"), T.accent], ['\\d cars', t('jadval bilan solishtiring', "сравните с таблицей"), PG.pg], ['Ctrl+C · node server.js', t('kod o\'zgarsa — qayta ishga tushiring', "если код изменился — перезапустите"), T.green]].map(([h, d, c], i) => <div key={h} className="mk-box" style={{ '--c': c, animation: `mk-up .4s ${i * 0.1}s ease both` }}><h4 style={{ fontFamily: MONO, fontSize: 13 }}>{h}</h4><p>{d}</p></div>)}
-    </div><div className="mk-rule">{t("Xabar nimani tuzatishni ", "Что исправить, сообщение ")}<b>{t("o'zi aytdi", "сказал сам")}</b>{t(": ustun ", ": колонка ")}<code>price</code>{t(", jadval ", ", таблица ")}<code>cars</code>{t(". Kod o'zgargandan keyin serverni albatta qayta ishga tushiring.", ". После изменения кода обязательно перезапустите сервер.")}</div></>}
-  </>} />;
+  </>;
 }
 
 // ============================================================
 //  23 · Buzamiz 2: express.json() yo'q (pg2-out/13) — 16–18-satrlar
 // ============================================================
-const JSON_LINES = (st) => srvSlice(16, 18).map((l, i) => (i === 2 ? { ...l, id: 'j', gone: st === 'gone', neu: st === 'fix' } : l));
+// F-1120-02 (M52): 'ok' — 18-satr yonib turadi (data-act), mentor bosgach 'gone'
+const JSON_LINES = (st) => srvSlice(16, 18).map((l, i) => (i === 2 ? { ...l, id: 'j', gone: st === 'gone', neu: st === 'fix', ...(st === 'ok' ? { h: '<span class="n1-act" data-act="1">' + l.h + '</span>' } : {}) } : l));
 // F-1109-06: xulosa — kod yashirilib uch quti qolardi; endi bitta POST ikki yo'lda (13-express-json-yoq), satr joyi va belgisi
 function Two23() {
   return <div className="z">
@@ -487,15 +502,25 @@ function Two23() {
     </div>
   </div>;
 }
-const S23 = mkS(23, [{ st: 'gone' }, { st: 'gone', pm: 500 }, { st: 'fix', pm: 201 }, { sum: true }]);
+const S23 = mkS(23, [{ st: 'ok' }, { st: 'gone' }, { st: 'gone', pm: 500 }, { st: 'fix', pm: 201 }, { sum: true }]);
 function Screen23(p) {
-  return <Lesson p={p} S={S23} scene={({ seg }) => <>
-    {!seg.sum && <SrvIde lines={JSON_LINES(seg.st)} focus={['j']} />}
-    {seg.st === 'gone' && !seg.pm && <div className="mk-tag" style={{ margin: 0 }}>{t("Server baribir «Server 3000-portda ishlayapti» · GET ishlaydi — muammo faqat tanasi bor so'rovlarda (POST, PUT)", "Сервер всё равно «Server 3000-portda ishlayapti» · GET работает — проблема только в запросах с телом (POST, PUT)")}</div>}
+  return <Lesson p={p} S={S23} scene={(b) => <Scene23 b={b} />} />;
+}
+// Qadamlar: 0 bosing · 1 o'chdi (GET ishlaydi, POST «?») · 2 POST → 500, bo'lak 1 · 3 qaytdi → 201 · 4 xulosa (Two23)
+function Scene23({ b }) {
+  const { seg, beat } = b;
+  const act = useAct(b);
+  const st = beat === 0 ? (act.hit ? 'gone' : 'ok') : seg.st;
+  if (seg.sum) return <Two23 />;
+  return <>
+    <Ide files={SRV_FILES} active="server.js">
+      <div onClick={act.onClick}><CodePanel key={st} file="server.js" lines={JSON_LINES(st)} focus={['j']} style={{ fontSize: 12.5 }} /></div>
+      <N1Mini><CrudMini broken={st === 'ok' ? null : 'json'} known={beat >= 2} fixed={st === 'fix'} pins={beat === 2 ? { a: 1 } : {}} /></N1Mini>
+    </Ide>
+    {st === 'gone' && !seg.pm && <div className="mk-tag" style={{ margin: 0 }}>{t("Server baribir «Server 3000-portda ishlayapti» · GET ishlaydi — muammo faqat tanasi bor so'rovlarda (POST, PUT)", "Сервер всё равно «Server 3000-portda ishlayapti» · GET работает — проблема только в запросах с телом (POST, PUT)")}</div>}
     {seg.pm === 500 && <PostmanCard {...PM_ELANTRA(500)} res={'{"error":"Cannot destructure property \'model\' of \'req.body\' as it is undefined."}'} hl />}
     {seg.pm === 201 && <PostmanCard {...PM_ELANTRA(201)} hl />}
-    {seg.sum && <Two23 />}
-  </>} />;
+  </>;
 }
 
 // ============================================================

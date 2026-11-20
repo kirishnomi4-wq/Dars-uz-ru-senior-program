@@ -24,10 +24,25 @@ const S1 = {
     { id: 'e', key: "Yetti bosqich. <b>Shoshilmang</b>: ustoz gapirib bo'lgach Davom ochiladi", text: "Dars yetti bosqichdan iborat. Shoshilmang: har ekranda ovozni o'chirish, ekranni boshidan eshitish va to'liq matnini o'qish mumkin. Ustoz gapirib bo'lgach, Davom tugmasi ochiladi. Bosing, boshlaymiz.", hl: [] },
   ],
 };
+// F-1120-02: sahna — darsning rasmi (Nest mashinasi) + yetti bosqich. Har gapda rasmning o'sha qismi o'zgaradi:
+// a Express ustida Nest · b ishlaydigan server (GET /cars) · c xato o'qiladi (?) · d o'quvchi darsi so'zlari · e reja
 function Screen1(p) {
-  return <Lesson p={p} S={S1} scene={({ seg }) => <div className="mk-light"><div className="mk-plan">
-    {S1.plan.map((x, i) => <div key={i} className={seg.hl.includes(i) ? 'hl' : (seg.hl.length ? 'dim' : '')}><b>0{i + 1}</b><span>{x}</span></div>)}
-  </div></div>} />;
+  return <Lesson p={p} S={S1} scene={({ seg, beat }) => <Scene1 seg={seg} beat={beat} />} />;
+}
+function Scene1({ seg, beat }) {
+  const out = beat === 1 ? '[{"id":1,"brand":"Chevrolet",…}, {"id":2,"brand":"Kia",…}]' : null;
+  const err = beat === 2;
+  const st = beat === 1 ? { br: 'hl' } : beat === 2 ? { ctrl: 'hl' } : beat === 3 ? { ctrl: 'hl', svc: 'hl', mod: 'hl' } : {};
+  return <div className="mk-light" style={{ padding: 16, display: 'grid', gap: 14 }}>
+    <NestMachine cfg={N1_CARS} url="localhost:3000/cars" out={out} outKind="code" st={st} exp={beat === 0 ? 'hl' : ''} links={beat >= 3}
+      sock={err ? { ctrl: { t: '(?)', er: true } } : null}
+      lab={beat >= 3 ? { ctrl: t('ofitsiant', 'официант'), svc: t('oshpaz', 'повар'), mod: t('shtat jadvali', 'штатное расписание') } : null}
+      readRow read={err ? ['terminal', "ERROR [ExceptionHandler] Nest can't resolve dependencies of the <span class=\"n1-er\">CarsController (?)</span>."] : beat === 1 ? ['terminal', '<span class="n1-c">GET /cars</span> → <span class="n1-ok">200</span>'] : null}
+      tag={t("Bugungi darsning rasmi — dars davomida shu rasmga qaytamiz", 'Картина сегодняшнего урока — к ней мы будем возвращаться')} />
+    <div className="n1-plan" style={{ position: 'static', gridTemplateColumns: 'repeat(7,minmax(0,1fr))', gap: 6 }}>
+      {S1.plan.map((x, i) => <div key={i} className={seg.hl.includes(i) ? 'hl' : (seg.hl.length ? 'dim' : '')}><b>0{i + 1}</b><span>{x}</span></div>)}
+    </div>
+  </div>;
 }
 
 // --- S2 Express: 20 qator → o'sgan loyiha (misol) ---
@@ -92,27 +107,16 @@ const S3 = {
     { id: 'd', key: "Xulosa: Nest ichida <b>o'sha Express</b> ishlaydi — bilganingiz bekor bo'lmaydi, ustiga tartib qo'shiladi", text: "Xulosa va muhim fakt: Nest ichida o'sha Express ishlaydi. So'rovni haqiqatda Express qabul qiladi, Nest esa uni to'g'ri bo'lakka yo'naltiradi. Demak siz bilgan hech narsa bekor bo'lmaydi." },
   ],
 };
+// F-1120-02: sahna — a Express: har jamoa o'zicha · b Nest: uch bo'lak (mashina) · c har loyihada bir xil joy va nom · d ichida Express
 function Screen3(p) {
-  const teams = [['routes/', 'controllers/', 'services/'], ['api/', 'handlers/', 'logic/'], ['src/', 'lib/', 'utils/']];
-  return <Lesson p={p} S={S3} scene={({ beat }) => (<>
-    <Block at={0} beat={beat} dim={beat >= 1}><div className="mk-light" style={{ padding: 14 }}>
-      <div className="mk-tag">{t("Express · har jamoa o'zicha", 'Express · каждая команда по-своему')}</div>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10 }}>
-        {teams.map((tm, i) => <div key={i} className="mk-card"><h5>{t(`${i + 1}-jamoa`, `Команда ${i + 1}`)}</h5>{tm.map((f) => <div key={f} className="mk-file" style={{ padding: '2px 0' }}><i style={{ background: T.ink3 }} />{f}</div>)}</div>)}
-      </div>
-    </div></Block>
-    <Block at={1} beat={beat}><div className="mk-light" style={{ padding: 16, border: `2px solid ${beat >= 3 ? T.line : T.accent}`, transition: 'border-color .4s' }}>
-      <div className="mk-tag" style={{ color: T.accent }}>{t('NestJS · tartib va nomlar — hamma loyihada bir xil', 'NestJS · порядок и имена — одинаковы в любом проекте')}</div>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12 }}>
-        {[['Controller', PART.ctrl, t("so'rovni qabul qiladi", 'принимает запрос')], ['Service', PART.svc, t('ishni bajaradi', 'выполняет работу')], ['Module', PART.mod, t("ro'yxat: nima bor", 'список: что есть')]].map(([n, c, d], i) => (
-          <div key={n} className="mk-box" style={{ '--c': c, animation: beat >= 1 ? `mk-up .45s ${i * 0.18}s ease both` : 'none' }}><h4>{n}</h4><p>{d}</p></div>
-        ))}
-      </div>
-      <div style={{ marginTop: 14, padding: '10px 14px', borderRadius: 10, background: beat >= 3 ? '#FFF0EB' : '#F0F2F5', border: `1px solid ${beat >= 3 ? T.accent : T.line}`, transition: 'all .4s', fontSize: 14 }}>
-        <b style={{ color: beat >= 3 ? T.accent : T.ink2 }}>{t('Ichida: Express (platform-express)', 'Внутри: Express (platform-express)')}</b>{beat >= 3 && <span style={{ color: T.ink2 }}>{t(" — so'rovni haqiqatda Express qabul qiladi, Nest yo'naltiradi.", ' — запрос на самом деле принимает Express, Nest его направляет.')}</span>}
-      </div>
-    </div></Block>
-  </>)} />;
+  return <Lesson p={p} S={S3} scene={({ beat }) => <div className="mk-light" style={{ padding: 16, display: 'grid', gap: 10 }}>
+    <TeamsStrip st={beat >= 1 ? 'dim' : ''} />
+    <div style={{ opacity: beat >= 1 ? 1 : 0.12, transition: 'opacity .5s' }}>
+      <NestMachine cfg={N1_CARS} st={beat === 1 ? { ctrl: 'hl', svc: 'hl', mod: 'hl' } : {}} exp={beat >= 3 ? 'hl' : ''} links={beat >= 1}
+        readRow read={beat === 2 ? [t('har Nest loyihasida', 'в каждом проекте Nest'), 'src/cars/cars.controller.ts · cars.service.ts · cars.module.ts'] : null}
+        tag={t('NestJS · tartib va nomlar — hamma loyihada bir xil', 'NestJS · порядок и имена — одинаковы в любом проекте')} />
+    </div>
+  </div>} />;
 }
 
 // --- S4 TypeScript va decorator ---
@@ -176,31 +180,41 @@ const S5b = {
     { id: 'f', key: "Xulosa: yo'l doim shu — <b>so'rov → Controller → Service → javob</b>", text: "Xulosa: har so'rov bir xil yo'l bosadi. So'rov, Controller, Service, javob. Module esa bu bo'laklarni ro'yxatda ushlaydi. Bu yo'lni dars davomida ko'p marta ko'rasiz. Keyingi uch ekranda har faylni ochib, satrma-satr o'qiymiz.", dot: null, boxes: ['browser', 'ctrl', 'svc', 'mod'], file: null },
   ],
 };
-const DOT_LEFT = { browser: 'calc((100% - 88px) / 6)', ctrl: '50%', svc: 'calc(100% - (100% - 88px) / 6)' };
+// F-1120-02: sahna — Nest mashinasi (02b-mashina.jsx). So'rov qizil yo'lakda boradi, javob yashil yo'lakda qaytadi;
+// pastki qora satrda shu paytda bajarilayotgan satr (fayl:satr — CTRL_LINES, SVC_LINES, MOD_LINES bilan bir xil raqam)
 function Screen5b(p) {
-  return <Lesson p={p} S={S5b} scene={({ seg }) => {
-    const boxes = seg.boxes;
-    const boxStyle = (k, c) => ({ '--c': c, opacity: boxes.includes(k) ? (seg.box && seg.box !== k ? 0.4 : 1) : 0, transform: boxes.includes(k) ? 'none' : 'translateY(10px)' });
-    const cls = (k) => `mk-box${seg.box === k ? ' hl' : ''}`;
-    // F-1030-24: Explorer yonida brauzer ham «fayllar ichida»dek ko'rinardi — endi fayl nomi qutining o'zida
-    const fileTag = (f) => <div style={{ font: `600 11.5px ${MONO}`, color: T.ink3, marginTop: 6 }}>{f}</div>;
-    return <div className="mk-light" style={{ padding: 20 }}>
-      <div className="mk-tag">{t("So'rov yo'li — brauzerdan fayllarga va qaytib", 'Путь запроса — из браузера к файлам и обратно')}</div>
-      <div className="mk-flow">
-        <div className={`mk-dot${seg.dot ? ' in' : ''}${seg.reply ? ' back' : ''}`} style={{ left: DOT_LEFT[seg.dot || 'browser'] }} />
-        <div className="mk-row">
-          <div className={cls('browser')} style={boxStyle('browser', T.ink2)}><h4 style={{ color: T.ink }}>{t('Brauzer', 'Браузер')}</h4><p>GET localhost:3000</p><div style={{ font: `600 11.5px ${SANS}`, color: T.ink3, marginTop: 6 }}>{t('loyihadan tashqarida', 'вне проекта')}</div></div>
-          <div className={`mk-arrow${seg.dot === 'ctrl' || seg.dot === 'svc' ? ' on' : ''}${seg.reply ? ' back' : ''}`}>{seg.reply ? '←' : '→'}</div>
-          <div className={cls('ctrl')} style={boxStyle('ctrl', PART.ctrl)}><h4>AppController</h4><p>{t("so'rovni qabul qiladi, Service'ni chaqiradi", 'принимает запрос, вызывает Service')}</p>{fileTag('src/app.controller.ts')}</div>
-          <div className={`mk-arrow${seg.dot === 'svc' ? ' on' : ''}${seg.reply ? ' back' : ''}`}>{seg.reply ? '←' : '→'}</div>
-          <div className={cls('svc')} style={boxStyle('svc', PART.svc)}><h4>AppService</h4><p>{t("ishni bajaradi → 'Hello World!'", "выполняет работу → 'Hello World!'")}</p>{fileTag('src/app.service.ts')}</div>
-        </div>
-        <div style={{ display: 'flex', justifyContent: 'center', marginTop: 22 }}>
-          <div className={cls('mod')} style={{ ...boxStyle('mod', PART.mod), minWidth: '62%' }}><h4>AppModule</h4><p><code>controllers: [AppController]</code> · <code>providers: [AppService]</code></p>{fileTag('src/app.module.ts')}</div>
-        </div>
-      </div>
-    </div>;
-  }} />;
+  return <Lesson p={p} S={S5b} scene={({ beat }) => <Scene5b beat={beat} />} />;
+}
+function Scene5b({ beat }) {
+  const late = useLate(beat, 950);
+  const st = [
+    { br: 'hl', ctrl: 'g', svc: 'g', mod: 'g' },
+    { br: '', ctrl: 'hl', svc: 'g', mod: 'g' },
+    { br: '', ctrl: '', svc: 'hl', mod: 'g' },
+    { br: 'hl', ctrl: '', svc: '', mod: 'g' },
+    { br: '', ctrl: '', svc: '', mod: 'hl' },
+    {},
+  ][Math.min(beat, 5)];
+  const back = beat === 2 && late;
+  const pkt = beat >= 5 ? { loop: true, label: t("so'rov", 'запрос') }
+    : beat === 4 ? { off: true, x: 'b', lane: 2, label: '' }
+    : beat === 3 ? { x: 'b', lane: 2, grn: true, label: "'Hello World!'" }
+    : back ? { x: 's', lane: 2, grn: true, label: "'Hello World!'" }
+    : { x: ['b', 'c', 's'][beat], lane: 1, label: 'GET /' };
+  const fill = [[0, 0], [243, 0], [501, 0], [501, 501], [501, 501], [501, 501]][Math.min(beat, 5)];
+  const read = [
+    [t('brauzer', 'браузер'), 'GET http://localhost:3000/'],
+    ['src/app.controller.ts:8', '<span class="n1-d">@Get</span>()'],
+    ['src/app.service.ts:6', "<span class=\"n1-k\">return</span> <span class=\"n1-s\">'Hello World!'</span>;"],
+    ['src/app.controller.ts:10', '<span class="n1-k">return this</span>.appService.getHello();'],
+    ['src/app.module.ts:7–8', 'controllers: [<span class="n1-c">AppController</span>],  providers: [<span class="n1-c">AppService</span>],'],
+    [t('natija', 'результат'), 'GET /  →  <span class="n1-ok">200</span>  Hello World!'],
+  ][Math.min(beat, 5)];
+  const out = beat >= 4 || (beat === 3 && late) ? 'Hello World!' : null;
+  return <div className="mk-light" style={{ padding: 16 }}>
+    <NestMachine cfg={N1_APP} st={st} out={out} links={beat >= 4} modHot={beat === 4} lanes pkt={pkt} fill={fill} readRow read={read}
+      tag={t("So'rov yo'li — brauzerdan fayllarga va qaytib", 'Путь запроса — из браузера к файлам и обратно')} />
+  </div>;
 }
 
 // --- Amaliyot 1/4: Nest'ni o'rnating, nest new ni boshlab qo'ying (o'rnatilguncha dars davom etadi) ---

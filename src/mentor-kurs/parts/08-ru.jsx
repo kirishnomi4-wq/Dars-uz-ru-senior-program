@@ -270,7 +270,8 @@ ru(P2_TROUBLE, [
 ru(S18, {
   kicker: 'Этап 5 · ломаем 1', title: 'Ломаем 1: providers пустой',
   segments: {
-    a: { key: 'Ломаем специально: в <code>cars.module.ts</code> <b>providers остался пустым</b>', text: 'У нас есть работающий модуль. Теперь специально его сломаем, потому что ваши ученики делают именно эти ошибки, а вы должны уметь их читать. Первый случай: в cars module мы удалили CarsService из списка providers.' },
+    x: { key: 'Теперь <b>ломаете вы</b>: нажмите на подсвеченный в коде <code>CarsService</code>', text: 'У нас есть работающий модуль. Теперь специально его сломаем, потому что ваши ученики делают именно эти ошибки, а вы должны уметь их читать. На этот раз ломаете вы сами: в коде справа подсвечено слово CarsService, нажмите на него.', act: 'Нажмите на подсвеченный справа в коде <b>CarsService</b> — он удалится из списка providers.' },
+    a: { key: 'Ломаем специально: в <code>cars.module.ts</code> <b>providers остался пустым</b>', text: 'Первый случай: в cars module вы удалили CarsService из списка providers, список остался пустым.' },
     b: { key: 'Сервер упал. Часть 1 — <b>какой класс?</b> CarsController; <code>(?)</code> — место ненайденного dependency', text: 'Запускаем сервер, он падает. Читаем сообщение, разделив его на три части. Первая часть, какой класс: Nest не смог найти dependency для CarsController. Знак вопроса в скобках — место ненайденного dependency.', show: 'Запускаем сервер, он падает. Читаем сообщение, разделив его на три части. 1 · <b>какой класс</b>: <b>Nest can\'t resolve dependencies of the CarsController</b> — Nest не смог найти dependency для CarsController. <b>(?)</b> в скобках — место ненайденного dependency.' },
     c: { key: 'Часть 2 — <b>какого dependency не хватает?</b> CarsService, 0-й аргумент конструктора', text: 'Вторая часть, какого dependency не хватает: нулевой аргумент, то есть первый параметр конструктора, CarsService.', show: '2 · <b>какой dependency</b>: <b>argument CarsService at index [0] is available</b> — нулевой аргумент, то есть первый параметр конструктора, CarsService.' },
     d: { key: 'Часть 3 — <b>какой файл?</b> CarsModule, то есть <code>cars.module.ts</code>', text: 'Третья часть, какой файл открываем: Nest искал в CarsModule и не нашёл, значит, это файл cars module ts. Вот ответы на три вопроса: какой класс, какой dependency, какой файл.', show: '3 · <b>какой файл</b>: <b>in the CarsModule module</b> — Nest искал в CarsModule и не нашёл, значит, <code>cars.module.ts</code>. Есть ответы на три вопроса: <b>какой класс · какой dependency · какой файл</b>.' },
@@ -282,7 +283,8 @@ ru(S18, {
 ru(S19, {
   kicker: 'Этап 5 · ломаем 2', title: 'Ломаем 2: в imports нет CarsModule',
   segments: {
-    a: { key: 'Ломаем специально: из <code>imports</code> в <code>app.module.ts</code> убрали CarsModule', text: 'Первую ошибку мы прочитали и исправили. Второй случай другой: на этот раз сервер не падает, и именно поэтому это опасно. В app module мы убрали CarsModule из списка imports.' },
+    x: { key: 'Снова <b>ломаете вы</b>: нажмите на <code>CarsModule</code> в списке <code>imports</code>', text: 'Первую ошибку мы прочитали и исправили. Второй случай другой: на этот раз сервер не падает, и именно поэтому это опасно. Ломаете снова вы: в файле app module в списке imports подсвечено слово CarsModule, нажмите на него.', act: 'Нажмите на <b>CarsModule</b> в <b>app.module.ts</b> — он удалится из списка imports.' },
+    a: { key: 'Ломаем специально: из <code>imports</code> в <code>app.module.ts</code> убрали CarsModule', text: 'CarsModule убран из списка imports, список остался пустым.' },
     b: { key: 'Подумайте: сервер <b>упадёт с ошибкой</b> или запустится?', text: 'Подумайте: если запустить сервер, он упадёт с ошибкой или запустится?', ask: { q: 'Что сделает сервер?', opts: ['Упадёт с ошибкой', 'Запустится'] } },
     c: { key: 'Сервер <b>запустился</b> — «successfully started», ошибки нет', text: 'Сервер запустился, написал, что всё успешно, вроде бы всё хорошо. Ошибки нет.' },
     d: { key: 'Но <code>/cars</code> → <b>404</b>, а root path работает', text: 'Но если запросить route cars, получим 404, Cannot GET cars. А root path работает.', show: 'Но если запросить <code>/cars</code>, получим <b>404, Cannot GET /cars</b>. А <code>/</code> работает.' },
@@ -295,7 +297,8 @@ ru(S19, {
 ru(S20, {
   kicker: 'Этап 5 · ломаем 3', title: 'Ломаем 3: нет decorator Controller',
   segments: {
-    a: { key: 'Ломаем специально: <code>@Controller(\'cars\')</code> удалили, класс остался — сервер <b>падает</b>', text: 'Скрытую ошибку мы увидели. Третий случай про decorator: правило с четвёртого экрана теперь увидим на практике. В cars controller мы удалили decorator Controller, класс остался на месте. Сервер падает.' },
+    x: { key: 'Теперь <b>ломаете вы</b>: нажмите на подсвеченный в коде <code>@Controller(\'cars\')</code>', text: 'Скрытую ошибку мы увидели. Третий случай про decorator: правило с четвёртого экрана теперь увидим на практике. В файле cars controller подсвечен decorator Controller, нажмите на него, чтобы удалить.', act: 'Нажмите на <b>@Controller(\'cars\')</b> в <b>cars.controller.ts</b> — decorator удалится.' },
+    a: { key: 'Ломаем специально: <code>@Controller(\'cars\')</code> удалили, класс остался — сервер <b>падает</b>', text: 'Decorator удалён, класс остался на месте. Сервер падает.' },
     b: { key: 'Сообщение: «<b>invalid controller</b>» — метки нет, но класс стоит в списке controllers', text: 'Сообщение: обнаружен неверный controller. У CarsController нет decorator Controller, но он стоит в списке controllers какого-то модуля.' },
     c: { key: 'Сработало правило с 4-го экрана: нет метки — <b>Nest не узнаёт класс</b>', text: 'Nest говорит прямо: вы записали его в список, но у класса нет метки. Вспомните, что я говорил на экране про decorator: нет метки — Nest не узнаёт класс.' },
     d: { key: 'Исправляем: decorator вернули — сервер <b>запустился</b>, строки Mapped на месте', text: 'Исправление — одна строка: возвращаем decorator. Сервер перезапускается, в терминале строки Mapped и successfully started.' },
@@ -305,7 +308,8 @@ ru(S20, {
 ru(S21, {
   kicker: 'Этап 5 · ломаем 4', title: 'Ломаем 4: нет decorator Injectable',
   segments: {
-    a: { key: 'Ломаем специально: из <code>cars.service.ts</code> удалили <code>@Injectable()</code>', text: 'Без decorator Nest не узнал класс Controller. А с Service так же? Четвёртый случай: из cars service мы удалили decorator Injectable. У самого Service нет конструктора, он ни от кого не зависит.' },
+    x: { key: 'Теперь <b>ломаете вы</b>: нажмите на подсвеченный в коде <code>@Injectable()</code>', text: 'Без decorator Nest не узнал класс Controller. А с Service так же? Четвёртый случай: в файле cars service подсвечен decorator Injectable, нажмите на него, чтобы удалить.', act: 'Нажмите на <b>@Injectable()</b> в <b>cars.service.ts</b> — decorator удалится.' },
+    a: { key: 'Ломаем специально: из <code>cars.service.ts</code> удалили <code>@Injectable()</code>', text: 'Injectable удалён. У самого Service нет конструктора, он ни от кого не зависит.' },
     b: { key: 'Подумайте: без <code>@Injectable()</code> <code>/cars</code> <b>будет работать?</b>', text: 'Подумайте: если запустить сервер, route cars будет работать?', ask: { q: 'Без decorator Injectable /cars будет работать?', opts: ['Да, будет', 'Нет, будет ошибка'] } },
     c: { key: '<b>Работает!</b> CarsService ни от кого не зависит — Nest создал его как обычно', text: 'Неожиданный результат: всё работает, route cars возвращает 200. Почему? В конструкторе самого CarsService нет никаких dependency. Nest смог создать его без dependency.' },
     d: { key: '<code>@Injectable()</code> говорит Nest: <b>посмотри на конструктор и определи, что нужно</b>', text: 'На самом деле Injectable говорит Nest вот что: посмотрите на конструктор этого класса и определите, что ему нужно. Нет метки — Nest на конструктор не смотрит.' },

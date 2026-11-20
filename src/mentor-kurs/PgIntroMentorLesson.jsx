@@ -423,9 +423,11 @@ const vis = (at, beat) => at == null || at <= beat;
 
 // useAudio(segments) → currentId. Qadam faqat oldinga o'sadi. `ask` segmenti: ovoz savol beradi va
 // tugma bosilguncha kutadi (waits_for button_click/step) — «o'ylab ko'ring».
+// `act` segmenti (F-1120-02): xuddi shunday kutadi, lekin bosiladigan narsa SAHNADA (masalan kodda yonib turgan so'z);
+// sahna bosilganda answerAsk(seg.id, 0) chaqiradi, chap panelda act matni ko'rsatma bo'lib turadi.
 // `review` (Orqaga bilan qaytilgan ekran, A12): ovoz yo'q, ekran yakuniy holatda; ↺ boshidan — ovoz bilan qayta
 function useBeats(segments, review) {
-  const segs = useMemo(() => review ? [] : segments.map((s, i) => ({ id: s.id, text: voice(s.text), trigger: i === 0 ? 'on_mount' : 'after_previous', waits_for: s.ask ? { type: 'button_click', target: 'step' } : s.waits_for })), [segments, review]);
+  const segs = useMemo(() => review ? [] : segments.map((s, i) => ({ id: s.id, text: voice(s.text), trigger: i === 0 ? 'on_mount' : 'after_previous', waits_for: s.ask || s.act ? { type: 'button_click', target: 'step' } : s.waits_for })), [segments, review]);
   const audio = useAudio(segs);
   const [beat, setBeat] = useState(review ? segments.length - 1 : 0);
   const [done, setDone] = useState(!!review);
@@ -439,7 +441,7 @@ function useBeats(segments, review) {
   // qadamni o'sha savolga suramiz, aks holda savol chiqmaydi va ekran qotadi
   useEffect(() => {
     if (!audio.waitingFor || audio.currentId) return;
-    const k = segments.findIndex((s, i) => i >= beat && s.ask);
+    const k = segments.findIndex((s, i) => i >= beat && (s.ask || s.act));
     if (k >= 0) { started.current = true; setBeat((b) => Math.max(b, k)); }
   }, [audio.waitingFor, audio.currentId, beat, segments]);
   // F-1031-16: oxirgi segment ovozi YUKLANAYOTGANDA ham isPlaying=false bo'ladi — Davom erta ochilmasin:
@@ -453,7 +455,9 @@ function useBeats(segments, review) {
   const answerAsk = useCallback((segId, i) => {
     setGuess((g) => ({ ...g, [segId]: i }));
     if (audio.waitingFor) audio.triggerEvent('button_click', 'step');
-    else if (audio.muted || audio.status === 'idle') stepManual();
+    // F-1120-02: ovoz hali YUKLANAYOTGAN bo'lsa (status idle, lekin currentId — shu segment) qo'lda o'tilmaydi:
+    // aks holda qadam oldinga ketadi, runtime esa shu segmentda tugmani kutib qoladi va dars ovozsiz qoladi
+    else if (audio.muted || (audio.status === 'idle' && audio.currentId !== segId)) stepManual();
     else pendingAsk.current = true;
   }, [audio, stepManual]);
   useEffect(() => { if (audio.waitingFor && pendingAsk.current) { pendingAsk.current = false; audio.triggerEvent('button_click', 'step'); } }, [audio.waitingFor, audio]);
@@ -513,7 +517,7 @@ function Say({ eyebrow, title, segments, beat, audio, stepManual, below, guess, 
   const now = segments[beat];
   const keyHtml = now.key || now.show || digits(now.text);
   const [tr, setTr] = useState(false);
-  const showManual = !review && (audio.muted || (!audio.isPlaying && !audio.waitingFor && beat < segments.length - 1 && audio.status === 'idle' && !now.ask));
+  const showManual = !review && (audio.muted || (!audio.isPlaying && !audio.waitingFor && beat < segments.length - 1 && audio.status === 'idle' && !now.ask && !now.act));
   const asking = now.ask && guess && guess[now.id] === undefined;
   const prevAsk = beat > 0 && segments[beat - 1].ask ? segments[beat - 1] : null;
   return (
@@ -530,6 +534,7 @@ function Say({ eyebrow, title, segments, beat, audio, stepManual, below, guess, 
         )}
         <div className="mk-dots">{segments.map((s, i) => <i key={s.id} className={i === beat ? 'on' : (i < beat ? 'done' : '')} />)}</div>
         {review && <p className="mk-review">{t("Takrorlash: ekran tayyor holatda, ovozsiz. Ovoz bilan qayta eshitish — tepadagi «↺ boshidan». To'liq matn — «Matn».", 'Повтор: экран в готовом виде, без звука. Послушать заново со звуком — «↺ с начала» вверху. Полный текст — «Текст».')}</p>}
+        {now.act && guess && guess[now.id] === undefined && !review && <p className="n1-acthint" dangerouslySetInnerHTML={html(now.act)} />}
         {asking && (
           <div className="mk-ask"><p>{now.ask.q}</p><div className="row">{now.ask.opts.map((o, i) => <button key={i} className="mk-btn ghost sm" onClick={() => answerAsk(now.id, i)}>{o}</button>)}</div></div>
         )}
@@ -902,6 +907,299 @@ function CoverStart({ onStart, resume }) {
       <p className="mk-resume-note">{t(`Oxirgi marta ${resume.idx + 1}-ekrangacha kelgansiz. Javoblaringiz saqlangan.`, `В прошлый раз вы дошли до ${resume.idx + 1}-го экрана. Ответы сохранены.`)}</p>
     </div>
   );
+}
+
+// ============================================================
+//  DARS RASMI — UMUMIY QISM (F-1120-02, 20.11; qonun M51, M52). Hamma mentor darsiga yig'iladi (dev/yig.sh).
+//  Bu yerda: rasm uslubi (CSS, useCssN1 — darsning ildiz komponentida chaqiriladi), N1Fit (qat'iy o'lchamli
+//  chizma sahna eniga moslashadi), useLate, useAct (M52: mentor o'zi bosib buzadi), N1Mini, Res.
+//  Darsga xos rasm — o'z bo'lagida: Nest darslari — parts/02c-nest.jsx, boshqa dars — <dars>/parts/02b-*.jsx.
+//  Ranglar dars ranglari (PART, T); yangi rang yo'q. CSS ichida backtick yo'q (CLAUDE.md).
+// ============================================================
+const CSS_N1 = `
+.n1-fit{position:relative;width:100%;flex:0 0 auto}
+.n1-box{position:absolute;top:0;transform-origin:0 0;font:13px/1.4 ${SANS};color:${T.ink}}
+.n1-box *{box-sizing:border-box}
+.n1-abs{position:absolute}
+.n1-tagl{position:absolute;font:600 10.5px/1 ${MONO};letter-spacing:.12em;color:${T.ink3};text-transform:uppercase;white-space:nowrap}
+.n1-st{transition:opacity .45s,box-shadow .45s,filter .45s,border-color .45s,background .45s}
+.n1-st[data-st="g"]{opacity:.3;filter:grayscale(1)}
+.n1-st[data-st="dim"]{opacity:.45}
+.n1-st[data-st="off"]{opacity:0;pointer-events:none}
+.n1-st[data-st="hl"]{box-shadow:0 0 0 4px rgba(226,69,31,.16),0 14px 30px rgba(15,17,21,.12)}
+
+.n1-br{position:absolute;border-radius:12px;border:1.5px solid #C9CED8;background:${T.paper};overflow:hidden}
+.n1-br .top{height:30px;background:#E9ECF1;display:flex;align-items:center;gap:5px;padding:0 9px}
+.n1-br .top i{width:7px;height:7px;border-radius:50%;background:#B9BFCB;flex:none}
+.n1-br .top span{margin-left:4px;flex:1;min-width:0;background:${T.paper};border-radius:9px;font:500 10px/1.6 ${MONO};padding:0 6px;color:${T.ink2};white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.n1-br .bd{position:absolute;left:0;right:0;top:30px;bottom:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:10px}
+.n1-br .wait{font-size:12.5px;color:${T.ink3}}
+.n1-br .out{font:700 18px/1.25 ${SANS};color:${T.ink};animation:mk-up .4s ease both}
+.n1-br .out.code{font:600 11px/1.5 ${MONO};text-align:left;color:${T.green};word-break:break-all;white-space:normal}
+.n1-br .out.er{color:#DC2626}
+.n1-cap{position:absolute;text-align:center;font-size:11.5px;color:${T.ink3};white-space:nowrap}
+
+.n1-app{position:absolute;border-radius:18px;border:1.5px dashed #C9CED8;background:#FAFBFC}
+.n1-mod{position:absolute;border:2px solid ${PART.mod};border-radius:12px;background:#FFFBF0}
+.n1-mod .lg{position:absolute;left:12px;top:-9px;background:${T.paper};padding:0 6px;font:700 13px/16px ${SANS};color:${PART.mod};white-space:nowrap}
+.n1-mod .lab{position:absolute;right:12px;top:-14px}
+.n1-chip{position:absolute;font:500 12px/1.4 ${MONO};background:${T.paper};border:1px solid #E6D6A8;border-radius:7px;padding:4px 8px;white-space:nowrap;color:${T.ink};transition:box-shadow .4s,border-color .4s,opacity .4s}
+.n1-chip.hot{border-color:${T.accent};box-shadow:0 0 0 3px rgba(226,69,31,.18)}
+.n1-link{position:absolute;width:2px;background:${PART.mod};opacity:0;transition:opacity .4s}
+.n1-link.on{opacity:1}
+
+.n1-part{position:absolute;border-radius:14px;background:${T.paper};border:2px solid var(--c);padding:13px 14px}
+.n1-part .nm{font:700 16px/1.2 ${SANS};color:var(--c);display:flex;align-items:center;gap:8px;white-space:nowrap}
+.n1-part .nm i{width:9px;height:9px;border-radius:3px;background:var(--c);flex:none}
+.n1-part .role{font-size:13px;color:${T.ink2};margin-top:5px}
+.n1-part .cd{display:inline-block;margin-top:10px;background:${T.code};color:${T.codeInk};font:500 12px/1.4 ${MONO};padding:6px 10px;border-radius:8px;white-space:nowrap}
+.n1-part .fl{position:absolute;left:14px;bottom:10px;font:500 11px/1 ${MONO};color:${T.ink3};white-space:nowrap}
+.n1-part .lab{position:absolute;right:10px;top:10px}
+.n1-lab{display:inline-block;font:700 11.5px/1 ${SANS};color:${T.ink2};background:#F1F3F6;border:1px solid ${T.line};border-radius:999px;padding:5px 9px;white-space:nowrap;animation:mk-up .4s ease both}
+.n1-sock{position:absolute;height:34px;border-radius:17px;border:1.5px dashed #A8AFBD;display:flex;align-items:center;justify-content:center;font:700 12.5px/1 ${MONO};color:${T.ink3};background:${T.paper};transition:all .4s}
+.n1-sock.er{border:1.5px solid #DC2626;color:#DC2626;background:#FEF2F2}
+
+.n1-exp{position:absolute;border-radius:10px;border:1px solid ${T.line};background:#F0F2F5;display:flex;align-items:center;gap:8px;padding:0 14px;font-size:12.5px;color:${T.ink2};white-space:nowrap;transition:all .45s}
+.n1-exp b{color:${T.ink};font-weight:700}
+.n1-exp[data-st="hl"]{background:#FFF0EB;border-color:${T.accent};box-shadow:0 0 0 4px rgba(226,69,31,.12)}
+.n1-exp[data-st="hl"] b{color:${T.accent}}
+
+.n1-stem{position:absolute;width:0;border-left:2px dotted #C9CED8}
+.n1-lanes{position:absolute;border-radius:14px;background:${T.bg}}
+.n1-ln{position:absolute;height:2px;background:#D5D9E1}
+.n1-lf{position:absolute;height:2px;transition:width .9s cubic-bezier(.4,0,.2,1)}
+.n1-lf.r{background:${T.accent}}.n1-lf.g{background:${T.green}}
+.n1-stn{position:absolute;width:10px;height:10px;border-radius:50%;background:${T.paper};border:2px solid #B9BFCB;transform:translate(-50%,-50%)}
+.n1-lbl{position:absolute;right:14px;font:600 11px/1 ${MONO};color:${T.ink3};white-space:nowrap;transform:translateY(-50%)}
+.n1-pk{position:absolute;transform:translate(-50%,-50%);background:${T.accent};color:#fff;font:600 12px/1 ${MONO};padding:6px 11px;border-radius:14px;white-space:nowrap;box-shadow:0 6px 14px rgba(15,17,21,.22);transition:left .9s cubic-bezier(.4,0,.2,1),top .35s,background .3s,opacity .3s;z-index:3}
+.n1-pk.grn{background:${T.green}}
+.n1-pk.off{opacity:0}
+.n1-pk.loop{transition:none;animation:n1-loop 5.2s linear infinite}
+@keyframes n1-loop{0%{left:var(--xa);top:var(--y1);background:${T.accent}}44%{left:var(--xc);top:var(--y1);background:${T.accent}}50%{left:var(--xc);top:var(--y2);background:${T.green}}94%{left:var(--xa);top:var(--y2);background:${T.green}}100%{left:var(--xa);top:var(--y1);background:${T.accent}}}
+.n1-ro{position:absolute;background:${T.code};border-radius:12px;display:flex;align-items:center;gap:14px;padding:0 16px;transition:opacity .35s;overflow:hidden}
+.n1-ro .rf{font:500 11.5px/1 ${MONO};color:#8A90A2;white-space:nowrap}
+.n1-ro code{font:500 13px/1.3 ${MONO};color:${T.codeInk};white-space:nowrap}
+.n1-ro.off{opacity:0}
+.n1-k{color:#C792EA}.n1-s{color:#9ECE6A}.n1-d{color:#E5C07B}.n1-c{color:#7AA2F7}.n1-ok{color:#86EFAC}.n1-er{color:#FCA5A5}
+
+.n1-tok{position:absolute;height:38px;border-radius:19px;background:#E3F5EC;border:2px solid ${T.green};display:flex;align-items:center;justify-content:center;gap:7px;font:700 13px/1 ${SANS};color:${T.green};transform:translate(-50%,-50%);transition:left .9s cubic-bezier(.4,0,.2,1),top .9s cubic-bezier(.4,0,.2,1),opacity .35s,transform .35s;z-index:3;white-space:nowrap}
+.n1-tok i{width:8px;height:8px;border-radius:50%;background:${T.green};flex:none}
+.n1-tok.off{opacity:0;transform:translate(-50%,-50%) scale(.6)}
+.n1-tok.twin{background:transparent;border-style:dashed;opacity:0;transition:opacity .4s;z-index:2}
+.n1-tok.twin.on{opacity:.55}
+.n1-tok.grey{background:#F3F4F7;border-color:#9AA1B1;color:${T.ink2}}
+.n1-tok.grey i{background:#9AA1B1}
+.n1-tok.yel{background:#FFFBF0;border-color:${PART.mod};color:${PART.mod};border-style:dashed}
+.n1-tok.yel i{background:${PART.mod}}
+.n1-box2{position:absolute;border-radius:14px;border:2px solid #9AA1B1;background:#F3F4F7}
+.n1-box2 .bl{position:absolute;left:14px;top:12px;font:600 10.5px/1 ${MONO};letter-spacing:.12em;color:${T.ink2};white-space:nowrap}
+.n1-box2 .sh{position:absolute;border-radius:19px;border:1.5px dashed #A8AFBD;display:flex;align-items:center;justify-content:center;font:500 11.5px/1 ${MONO};color:${T.ink3};transition:color .3s}
+.n1-box2.has .sh{color:transparent}
+.n1-box2 .nq{position:absolute;left:14px;right:14px;bottom:12px;font-size:11.5px;line-height:1.35;color:${T.ink2};opacity:0;transition:opacity .4s}
+.n1-box2 .nq.on{opacity:1}
+.n1-you{position:absolute;font:700 11.5px/1 ${SANS};color:#fff;background:${T.accent};border-radius:10px;padding:5px 9px;white-space:nowrap;opacity:0;transition:opacity .4s;z-index:4}
+.n1-you.on{opacity:1}
+.n1-ann{position:absolute;font:600 12px/1.3 ${SANS};color:${T.ink2};white-space:nowrap;opacity:0;transition:opacity .4s}
+.n1-ann.on{opacity:1}
+.n1-ann b{color:${T.accent}}
+.n1-tayyor{color:${T.green};transition:opacity .4s}
+.n1-line{position:absolute;height:38px;border-radius:9px;background:${T.code};color:${T.codeInk};font:500 12px/1 ${MONO};display:flex;align-items:center;padding:0 10px;white-space:nowrap}
+.n1-prm{border-radius:4px;padding:1px 0;transition:background .4s,box-shadow .4s}
+.n1-prm.hot{background:rgba(226,69,31,.3);box-shadow:0 0 0 2px rgba(226,69,31,.3)}
+.n1-sock.wait{border-color:${T.accent};color:${T.accent};animation:n1-pulse 1.4s ease-in-out infinite}
+@keyframes n1-pulse{50%{box-shadow:0 0 0 6px rgba(226,69,31,.14)}}
+.n1-svg{position:absolute;left:0;top:0;pointer-events:none;overflow:visible}
+.n1-pth{stroke:#A8AFBD;stroke-width:2;stroke-dasharray:5 5;fill:none;opacity:0;transition:opacity .4s,stroke .4s}
+.n1-pth.dash{opacity:1}
+.n1-pth.solid{opacity:1;stroke:${T.green};stroke-dasharray:none}
+.n1-pth.bad{opacity:1;stroke:#DC2626}
+.n1-row{position:absolute;opacity:0;transition:opacity .45s;pointer-events:none}
+.n1-row.on{opacity:1}
+.n1-row.dim{opacity:.42}
+.n1-srch{border:1px solid ${T.line};border-radius:12px;background:#F3F4F7}
+.n1-fld{position:absolute;height:34px;border-radius:7px;border:1.5px solid ${T.blue};background:${T.paper};display:flex;align-items:center;gap:8px;padding:0 10px;font:500 13px/1 ${MONO}}
+.n1-res{position:absolute;font:700 14px/1.3 ${SANS};color:${T.accent};white-space:nowrap}
+.n1-res span{font-weight:500;color:${T.ink2};margin-left:8px}
+.n1-exf{position:absolute;border-radius:12px;border:1px solid ${T.line};background:${T.paper};overflow:hidden}
+.n1-exf .tb{height:24px;background:#E9ECF1;font:500 10.5px/24px ${MONO};color:${T.ink2};padding:0 10px}
+.n1-exf .cl{position:absolute;left:10px;top:34px;font:500 11.5px/1.3 ${MONO};color:${T.ink};white-space:nowrap}
+.n1-bn{position:absolute;border-radius:12px;border:1px solid ${T.line};background:${T.paper}}
+.n1-bn svg{position:absolute;left:13px;top:12px}
+.n1-bn .bt{position:absolute;left:14px;bottom:12px;font:700 13.5px/1.2 ${SANS};color:${T.ink}}
+
+.n1-plan{position:absolute;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+.n1-plan div{border:1px solid ${T.line};border-radius:10px;background:${T.paper};padding:9px 10px;display:flex;flex-direction:column;gap:6px;transition:border-color .3s,box-shadow .3s,opacity .3s}
+.n1-plan div.hl{border-color:${T.accent};box-shadow:0 0 0 3px rgba(226,69,31,.12)}
+.n1-plan div.dim{opacity:.45}
+.n1-plan b{font:700 11.5px/1 ${MONO};color:${T.accent}}
+.n1-plan span{font-size:11.5px;line-height:1.3;color:${T.ink}}
+
+.n1-team{position:absolute;border:1px solid ${T.line};border-radius:12px;background:${T.paper};padding:10px 12px}
+.n1-team h6{margin:0 0 6px;font:600 10.5px/1 ${MONO};letter-spacing:.12em;color:${T.ink3};text-transform:uppercase}
+.n1-team div{font:500 12px/1.7 ${MONO};color:${T.ink2};white-space:nowrap}
+.n1-team div i{display:inline-block;width:7px;height:7px;border-radius:2px;background:var(--c,${T.ink3});margin-right:7px}
+
+.n1-shelf{position:absolute;border-radius:12px;border:1.5px solid ${T.line};background:${T.paper};transition:border-color .4s,box-shadow .4s,opacity .4s}
+.n1-shelf .sl{position:absolute;left:12px;top:-9px;background:${T.paper};padding:0 6px;font:600 12px/16px ${MONO};color:${T.ink2};white-space:nowrap}
+.n1-shelf.hl{border-color:${T.accent};box-shadow:0 0 0 4px rgba(226,69,31,.12)}
+.n1-shelf.dim{opacity:.45}
+.n1-shelf .emp{position:absolute;left:14px;top:14px;font:500 12px/1 ${MONO};color:${T.ink3}}
+.n1-file{position:absolute;display:flex;align-items:center;gap:7px;font:500 12px/1 ${MONO};color:${T.ink};white-space:nowrap;padding:7px 10px;border-radius:8px;background:${T.paper};border:1px solid ${T.line}}
+.n1-file i{width:8px;height:8px;border-radius:2px;background:var(--c);flex:none}
+.n1-file.new{border-color:${T.accent};animation:mk-up .45s ease both}
+.n1-ghost{position:absolute;display:flex;align-items:center;gap:7px;font:600 12px/1 ${SANS};color:#B91C1C;white-space:nowrap;padding:7px 10px;border-radius:8px;border:1.5px dashed #F2A9A9;background:#FEF2F2;animation:mk-up .45s ease both}
+.n1-tree-ln{position:absolute;background:#C9CED8}
+
+.n1-mini{position:absolute;border-radius:12px;border:1px solid ${T.line};background:#FAFBFC}
+.n1-badge{position:absolute;height:24px;border-radius:7px;display:flex;align-items:center;padding:0 8px;font:600 11.5px/1 ${MONO};white-space:nowrap;transition:all .4s}
+.n1-badge.ok{background:#FFF7E0;color:#8A5A00;border:1px solid #E6D6A8}
+.n1-badge.gone{background:transparent;color:#DC2626;border:1.5px dashed #F2A9A9}
+.n1-say{position:absolute;font:600 12px/1.3 ${SANS};white-space:nowrap;transition:opacity .4s}
+.n1-say.er{color:#DC2626}.n1-say.ok{color:${T.green}}
+.n1-res2{position:absolute;display:flex;flex-direction:column;gap:6px}
+.n1-res2 div{font:500 11.5px/1 ${MONO};white-space:nowrap;padding:6px 9px;border-radius:7px;background:${T.code};color:${T.codeInk};transition:all .4s}
+.n1-res2 b{font-weight:700}
+.n1-arr{position:absolute;height:2px;background:${T.green};transition:background .4s}
+.n1-arr::after{content:"";position:absolute;right:-1px;top:-4px;border-left:7px solid ${T.green};border-top:5px solid transparent;border-bottom:5px solid transparent;transition:border-color .4s}
+.n1-arr.bad{background:repeating-linear-gradient(90deg,#DC2626 0 4px,transparent 4px 8px)}
+.n1-arr.bad::after{border-left-color:#DC2626}
+.n1-arr.off{opacity:.25}
+.n1-pin{position:absolute;display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:${T.accent};color:#fff;font:700 11.5px/1 ${SANS};box-shadow:0 0 0 3px #fff;opacity:0;transition:opacity .35s;z-index:5}
+.n1-pin.on{opacity:1}
+.mk-ln.n1-p1>span:last-child::before,.mk-ln.n1-p2>span:last-child::before,.mk-ln.n1-p3>span:last-child::before{display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;border-radius:50%;background:${T.accent};color:#fff;font:700 10.5px/1 ${SANS};margin-right:7px;vertical-align:1px}
+.mk-ln.n1-p1>span:last-child::before{content:"1"}
+.mk-ln.n1-p2>span:last-child::before{content:"2"}
+.mk-ln.n1-p3>span:last-child::before{content:"3"}
+.n1-act{cursor:pointer;border-radius:5px;padding:1px 3px;outline:2px solid #FF8A65;outline-offset:1px;animation:n1-blink 1.3s ease-in-out infinite}
+.n1-act:hover{background:rgba(255,138,101,.22)}
+@keyframes n1-blink{50%{outline-color:transparent}}
+.n1-acthint{margin-top:16px;padding:12px 14px;border:1.5px solid ${T.accent};border-radius:12px;background:#FFF7F3;font-size:15px;line-height:1.45;color:${T.ink};animation:mk-up .4s ease both}
+.n1-acthint b{color:${T.accent}}
+
+.n1-kit .st{position:absolute;border-radius:12px;background:${T.paper};border:2px solid var(--c);padding:10px 10px 8px;display:flex;flex-direction:column;gap:6px;transition:opacity .4s,box-shadow .4s}
+.n1-kit .st .w{font:700 14px/1.15 ${SANS};color:${T.ink}}
+.n1-kit .st .a{font:600 12px/1 ${MONO};color:var(--c)}
+.n1-kit .st .v{font-size:11.5px;line-height:1.3;color:${T.ink2}}
+.n1-kit .st .f{font:500 10px/1.2 ${MONO};color:${T.ink3};word-break:break-all;opacity:0;transition:opacity .4s}
+.n1-kit .st .f.on{opacity:1}
+.n1-kit .st.hl{box-shadow:0 0 0 4px rgba(226,69,31,.16),0 14px 30px rgba(15,17,21,.12)}
+.n1-kit .st.dim{opacity:.4}
+.n1-kit .ar{position:absolute;height:2px;background:#B9BFCB}
+.n1-kit .ar::after{content:"";position:absolute;right:-1px;top:-4px;border-left:7px solid #B9BFCB;border-top:5px solid transparent;border-bottom:5px solid transparent}
+.n1-kit .no{position:absolute;font:600 11.5px/1.3 ${SANS};color:${T.accent};white-space:nowrap;opacity:0;transition:opacity .4s}
+.n1-kit .no.on{opacity:1}
+
+.mk-cover .card.n1-cv{max-width:1120px;padding:0;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);overflow:hidden}
+.n1-cv .tx{padding:40px 30px 36px 40px;display:flex;flex-direction:column}
+.n1-cv .af{margin:6px 0 10px;font:600 11.5px/1 ${MONO};letter-spacing:.12em;color:${T.ink3};text-transform:uppercase}
+.n1-cv ul.ok{margin:0 0 22px;gap:10px}
+.n1-cv ul.ok li{display:flex;gap:10px;color:${T.ink};font-size:15.5px;line-height:1.4}
+.n1-cv ul.ok li::before{content:"✓";flex:none;width:21px;height:21px;border-radius:50%;background:#E3F5EC;color:${T.green};font:700 12px/21px ${SANS};text-align:center;margin:0}
+.n1-cv .tx>.mk-btn{align-self:flex-start}
+.n1-cv .meta{margin:auto 0 16px;font-size:13px;line-height:1.5;color:${T.ink3}}
+.n1-cv .pic{background:${T.bg};border-left:1px solid ${T.line};display:flex;align-items:center;padding:24px 20px}
+@media (max-width:900px){.mk-cover .card.n1-cv{grid-template-columns:1fr}.n1-cv .pic{border-left:0;border-top:1px solid ${T.line}}}
+@media (prefers-reduced-motion:reduce){.n1-pk.loop,.n1-sock.wait,.n1-act{animation:none}.n1-box *{transition:none!important}}
+`;
+function useCssN1() {
+  useEffect(() => {
+    let s = document.getElementById('mk-css-n1');
+    if (!s) { s = document.createElement('style'); s.id = 'mk-css-n1'; document.head.appendChild(s); }
+    if (s.textContent !== CSS_N1) s.textContent = CSS_N1;
+  }, []);
+}
+
+// Qat'iy o'lchamli chizma (w×h) sahna eniga qarab kattalashadi (max gacha), markazda turadi
+function N1Fit({ w, h, max = 1.25, children, style }) {
+  const ref = useRef(null);
+  const [W, setW] = useState(0);
+  useEffect(() => {
+    const el = ref.current; if (!el) return undefined;
+    const f = () => setW(el.clientWidth);
+    f();
+    if (typeof ResizeObserver === 'undefined') { window.addEventListener('resize', f); return () => window.removeEventListener('resize', f); }
+    const ro = new ResizeObserver(f); ro.observe(el); return () => ro.disconnect();
+  }, []);
+  const k = W > 0 ? Math.min(max, W / w) : 1;
+  return <div ref={ref} className="n1-fit" style={{ height: Math.round(h * k), ...(style || {}) }}>
+    <div className="n1-box" style={{ width: w, height: h, left: Math.max(0, (W - w * k) / 2), transform: `scale(${k})`, visibility: W > 0 ? 'visible' : 'hidden' }}>{children}</div>
+  </div>;
+}
+
+// Bir qadamdan keyin ms o'tdimi (paket ikkinchi yo'lakka o'tishi, brauzerga javob kelishi uchun)
+function useLate(key, ms) {
+  const [late, setLate] = useState(false);
+  useEffect(() => { setLate(false); const id = setTimeout(() => setLate(true), ms); return () => clearTimeout(id); }, [key, ms]);
+  return late;
+}
+
+// ---------- 23–26-ekran: «Buzamiz» — kichik rasm (VS Code oynasi ichida, kod va terminal orasida) ----------
+// Mentor o'zi buzadi: kodda yonib turgan so'z (data-act) bosiladi → act segmenti tugaydi (dvigatel: answerAsk).
+// hit — bosildimi; broken — buzilgan holat ko'rinadimi
+function useAct(b, id = 'x') {
+  const hit = !!(b.guess && b.guess[id] !== undefined);
+  const onClick = (e) => { const el = e.target && e.target.closest ? e.target.closest('[data-act]') : null; if (el && !hit && b.answerAsk) b.answerAsk(id, 0); };
+  return { hit, onClick };
+}
+// Balandlik 122 (ramka 8…118): 1280×720 da VS Code oynasiga kod + rasm + terminal sig'sin; kattalashish 1.1 gacha
+const N1Mini = ({ h = 122, children }) => <div style={{ background: T.paper, border: `1px solid ${T.line}`, borderRadius: 12, padding: '4px 8px', flex: '0 0 auto' }}><N1Fit w={520} h={h} max={1.1}>{children}</N1Fit></div>;
+// code null — natija hali noma'lum (savol berilgan, javob keyingi qadamda): «?»
+const Res = ({ rows, left = 404, top = 34 }) => <div className="n1-res2" style={{ left, top }}>{rows.map(([q, code, txt]) => <div key={q}>{q} → <b className={code == null ? '' : code >= 400 ? 'n1-er' : 'n1-ok'}>{code == null ? '?' : code}</b>{txt ? ' ' + txt : ''}</div>)}</div>;
+
+// ============================================================
+//  PostgreSQL DARSLARI RASMI (F-1120-02, qonun M51) — PG-1 va PG-2 ga yig'iladi (dev/yig.sh).
+//  Blog bazasi: users va posts jadvallari, tashqi kalit (posts.user_id → users.id), qoida belgilari,
+//  JOIN chiziqlari, rad etilgan yozuv (✕) va pastda psql satri. Ma'lumot — manba/pg1-out dagi haqiqiy blog.
+// ============================================================
+const BLOG_USERS = [['1', 'ali'], ['2', 'vali'], ['3', 'sardor']];
+const BLOG_POSTS = [['1', '1', 'Birinchi post'], ['2', '1', "Bugun Nest o'rgandim"], ['3', '2', 'Salom hammaga']];
+// join: 'inner' | 'left' · fk: tashqi kalit chizig'i yonadi · rules: qoida belgilari yonadi · hl: { users: [ustun], posts: [ustun] }
+// bad: { t: 'posts'|'users', row: [...], why } — jadvalga kirmagan yozuv · del: users qatori (o'chirish rad etildi)
+// empty: jadvallar faqat tuzilish (qatorsiz) · read: [prompt, html] · out: html (natija yoki ERROR) · outEr
+function BlogDb({ join, fk, rules, hl = {}, bad, del, empty, read, out, outEr, tag, compact, max, users = BLOG_USERS, posts = BLOG_POSTS }) {
+  const RH = 26, TY = 44, HY = TY + 30, BY = HY + 26; // jadval: sarlavha · ustun nomlari · qatorlar
+  const U = { x: 20, w: 250, cols: [['id', 60], ['username', 190]] };
+  const P = { x: 410, w: 330, cols: [['id', 50], ['user_id', 90], ['izoh', 190]] };
+  const rowsU = empty ? [] : users, rowsP = empty ? [] : posts;
+  const tblH = 30 + 26 + Math.max(rowsU.length, rowsP.length, 1) * RH + (bad ? RH + 8 : 0);
+  const rdY = TY + tblH + 18;
+  const H = compact ? rdY : rdY + (read ? 50 : 0) + (out ? 36 : 0) + 6;
+  const colX = (tb, i) => tb.x + tb.cols.slice(0, i).reduce((a, c) => a + c[1], 0);
+  const matched = (uid) => rowsP.some((r) => r[1] === uid);
+  const uState = (i, r) => (del === r[0] ? 'del' : join === 'inner' && !matched(r[0]) ? 'dim' : join === 'left' && !matched(r[0]) ? 'left' : '');
+  const cell = (tb, ci, ri, txt, extra = {}) => <div key={ci + '-' + ri} className="n1-abs" style={{ left: colX(tb, ci), top: BY + ri * RH, width: tb.cols[ci][1], height: RH, padding: '0 10px', display: 'flex', alignItems: 'center', font: `500 12.5px ${MONO}`, color: T.ink, borderTop: `1px solid ${T.line}`, whiteSpace: 'nowrap', overflow: 'hidden', ...extra }}>{txt}</div>;
+  const head = (tb, name, color) => <>
+    <div className="n1-abs" style={{ left: tb.x, top: TY, width: tb.w, height: tblH, border: `2px solid ${color}`, borderRadius: 12, background: T.paper }} />
+    <div className="n1-abs" style={{ left: tb.x + 12, top: TY + 7, font: `700 14px ${MONO}`, color }}>{name}</div>
+    {tb.cols.map(([c], i) => { const on = (hl[name] || []).includes(i); return <div key={c} className="n1-abs" style={{ left: colX(tb, i), top: HY, width: tb.cols[i][1], height: 26, padding: '0 10px', display: 'flex', alignItems: 'center', font: `700 11.5px ${MONO}`, color: on ? T.accent : T.ink2, background: on ? '#FFF0EB' : '#F6F7F9', borderTop: `1px solid ${T.line}`, transition: 'all .4s' }}>{c}</div>; })}
+  </>;
+  // tashqi kalit: ikki jadval orasida, ustun nomlari satrida — posts → users
+  const jy = (ri) => BY + ri * RH + RH / 2;
+  return <N1Fit w={760} h={H} max={max}>
+    {tag && <span className="n1-tagl" style={{ left: 20, top: 4 }}>{tag}</span>}
+    {head(U, 'users', '#336791')}
+    {head(P, 'posts', '#336791')}
+    {rules && <>
+      <span className="n1-badge ok" style={{ left: U.x + 76, top: TY + 5, height: 20, fontSize: 10.5 }}>PK · NOT NULL · UNIQUE</span>
+      <span className="n1-badge ok" style={{ left: P.x + 70, top: TY + 5, height: 20, fontSize: 10.5 }}>user_id REFERENCES users(id)</span>
+    </>}
+    {rowsU.map((r, i) => { const s = uState(i, r); return <React.Fragment key={'u' + i}>{r.map((c, ci) => cell(U, ci, i, c, { opacity: s === 'dim' ? 0.35 : 1, background: s === 'del' ? '#FEF2F2' : s === 'left' ? '#F5F3FF' : undefined, color: s === 'del' ? '#B91C1C' : T.ink }))}</React.Fragment>; })}
+    {join === 'left' && rowsU.filter((r) => !matched(r[0])).map((r) => <span key={'n' + r[0]} className="n1-abs" style={{ left: U.x + U.w + 8, top: jy(rowsU.indexOf(r)) - 9, font: `600 11px ${MONO}`, color: T.purple }}>izoh: NULL</span>)}
+    {del && <span className="n1-say er" style={{ left: U.x + U.w - 92, top: jy(rowsU.findIndex((r) => r[0] === del)) - 8 }}>✕ DELETE</span>}
+    {rowsP.map((r, i) => <React.Fragment key={'p' + i}>{r.map((c, ci) => cell(P, ci, i, c, { color: ci === 1 && (fk || join) ? T.accent : T.ink, fontWeight: ci === 1 && (fk || join) ? 700 : 500 }))}</React.Fragment>)}
+    {bad && <>
+      {bad.row.map((c, ci) => cell(bad.t === 'users' ? U : P, ci, (bad.t === 'users' ? rowsU : rowsP).length, c, { top: BY + (bad.t === 'users' ? rowsU : rowsP).length * RH + 6, color: '#B91C1C', textDecoration: 'line-through', background: '#FEF2F2', borderTop: '1.5px dashed #F2A9A9' }))}
+      <span className="n1-say er" style={{ left: (bad.t === 'users' ? U.x + U.w : P.x + P.w) - 150, top: TY + tblH + 2, fontSize: 11.5, background: T.paper, padding: '0 4px' }}>✕ {bad.why}</span>
+    </>}
+    <svg className="n1-svg" width="760" height={H} viewBox={`0 0 760 ${H}`}>
+      {(fk || join) && <path d={`M${P.x - 2} ${HY + 13} L ${U.x + U.w + 4} ${HY + 13}`} fill="none" stroke={T.accent} strokeWidth="2" strokeDasharray={fk && !join ? '0' : '5 4'} markerEnd="url(#pgah)" />}
+      <defs><marker id="pgah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill={T.accent} /></marker></defs>
+      {join && rowsP.map((r, i) => { const ui = rowsU.findIndex((u) => u[0] === r[1]); if (ui < 0) return null; return <path key={i} d={`M${P.x} ${jy(i)} C ${P.x - 60} ${jy(i)}, ${U.x + U.w + 60} ${jy(ui)}, ${U.x + U.w} ${jy(ui)}`} fill="none" stroke={T.purple} strokeWidth="1.6" opacity=".75" />; })}
+    </svg>
+    {(fk || join) && <span className="n1-abs" style={{ left: (U.x + U.w + P.x) / 2, top: TY - 13, transform: 'translate(-50%,-50%)', font: `600 11px ${MONO}`, color: T.accent, whiteSpace: 'nowrap', background: T.paper, padding: '0 4px' }}>{join ? 'ON users.id = posts.user_id' : 'posts.user_id → users.id'}</span>}
+    {!compact && read && <div className="n1-ro" style={{ left: 20, top: rdY, width: 720, height: 44 }}><span className="rf">{read[0]}</span><code style={{ fontSize: read[1].replace(/<[^>]+>/g, '').length > 75 ? 11.5 : undefined }} dangerouslySetInnerHTML={html(read[1])} /></div>}
+    {!compact && out && <div className="n1-abs" style={{ left: 20, top: rdY + (read ? 50 : 0), width: 720, height: 30, borderRadius: 8, padding: '0 14px', display: 'flex', alignItems: 'center', font: `600 12px ${MONO}`, whiteSpace: 'nowrap', overflow: 'hidden', background: outEr ? '#FEF2F2' : '#E3F5EC', color: outEr ? '#B91C1C' : T.green }} dangerouslySetInnerHTML={html(out)} />}
+  </N1Fit>;
 }
 
 // ============================================================
@@ -2019,13 +2317,14 @@ blog-# JOIN users ON users.id = posts.user_id;
  vali     | Salom hammaga
 (3 rows)`);
 const S1 = mkS(1, [{ hl: [], res: true }, { hl: [0, 1, 2, 3] }, { hl: [4] }, { hl: [5] }, { hl: [] }], { plan: PLAN1 });
+// F-1120-02 (M51): darsning rasmi — blog bazasi (BlogDb, parts/02d-pg.jsx): users ← posts, JOIN natijasi + reja
 function Screen1(p) {
-  return <Lesson p={p} S={S1} scene={({ seg }) => <div style={{ display: 'grid', gap: 14 }}>
-    <div className="mk-light"><div className="mk-plan">
+  return <Lesson p={p} S={S1} scene={({ seg }) => <div className="mk-light" style={{ padding: 16, display: 'grid', gap: 14 }}>
+    <BlogDb join="inner" rules hl={{ users: [0], posts: [1] }} tag={t("Bugungi darsning rasmi — blog bazasi sizning kompyuteringizda", 'Картина урока — база blog на вашем компьютере')}
+      read={['blog=#', 'SELECT users.username, posts.izoh FROM posts <span class="n1-k">JOIN</span> users ON users.id = posts.user_id;']} out={t('ali — Birinchi post · ali — Bugun Nest o\'rgandim · vali — Salom hammaga · (3 rows)', 'ali — Birinchi post · ali — Bugun Nest o\'rgandim · vali — Salom hammaga · (3 rows)')} />
+    <div className="n1-plan" style={{ position: 'static', gridTemplateColumns: 'repeat(6,minmax(0,1fr))', gap: 6 }}>
       {S1.plan.map((x, i) => <div key={i} className={seg.hl.includes(i) ? 'hl' : (seg.hl.length ? 'dim' : '')}><b>0{i + 1}</b><span>{x}</span></div>)}
-    </div></div>
-    {seg.res && <><div className="mk-tag" style={{ margin: 0 }}>{t('Dars oxirida — sizning kompyuteringizda', 'В конце урока — на вашем компьютере')}</div>
-    <Psql lines={JOIN_OK} /></>}
+    </div>
   </div>} />;
 }
 
@@ -2421,9 +2720,11 @@ function Screen11(p) {
   return <Lesson p={p} S={S11} scene={({ seg, beat }) => <>
     {seg.v === 'ddl' && <Psql lines={POSTS11} focus={seg.focus} />}
     {seg.v === 'd' && <Psql lines={D11} focus={seg.focus} />}
+    {/* F-1120-02 (M51): darsning rasmi — tashqi kalit bazaning o'zida: posts.user_id → users.id */}
+    {(seg.v === 'ddl' || seg.v === 'd') && <div className="mk-light" style={{ padding: 12, flex: '0 0 auto' }}><BlogDb compact empty fk rules hl={{ posts: [1], users: [0] }} /></div>}
     {seg.v === 'ins' && <><Psql lines={INS11} focus={seg.focus} /><div className="mk-tag" style={{ margin: 0 }}>{t('SQL matnida apostrof ikki marta yoziladi:', 'В тексте SQL апостроф пишется дважды:')} <code>o''rgandim</code></div>
       <div className="mk-pair"><b style={{ color: PG.mongo }}>{t("Mongoose'da:", 'В Mongoose:')}</b> <code>{"await User.create([{ username: 'ali' }, { username: 'vali' }, { username: 'sardor' }])"}</code></div>
-      <div className="pg-two"><MiniTable name="users" cols={['id', 'username']} rows={[['1', 'ali'], ['2', 'vali'], ['3', 'sardor']]} hlRow={[2]} /><MiniTable name="posts" cols={['id', 'user_id', 'izoh']} rows={[['1', '1', 'Birinchi post'], ['2', '1', "Bugun Nest o'rgandim"], ['3', '2', 'Salom hammaga']]} hlCol={[1]} /></div></>}
+      <div className="mk-light" style={{ padding: 12, flex: '0 0 auto' }}><BlogDb compact fk hl={{ posts: [1] }} /></div></>}
     {seg.v === 'rel' && <Psql title={t('psql — qayta ochildi', 'psql — открыт заново')} lines={REL11} focus={seg.focus} />}
     {seg.v === 'rel' && <div className="mk-pair"><b style={{ color: PG.mongo }}>{t("Mongoose'da:", 'В Mongoose:')}</b> <code>await Post.find()</code></div>}
     <Block at={4} beat={beat}><div className="mk-rule">{t(<><code>REFERENCES</code> bog'lanishni <b>bazaga</b> yozadi · <code>\d jadval</code> — tuzilish · <code>does not exist</code> — avval <b>prompt</b>dagi baza nomi</>, <><code>REFERENCES</code> записывает связь <b>в базу</b> · <code>\d таблица</code> — структура · <code>does not exist</code> — сначала имя базы в <b>приглашении</b></>)}</div></Block>
@@ -2465,6 +2766,10 @@ function Screen12(p) {
       <div className="mk-tag">{t("Xabarni o'qish — uch savol", 'Чтение сообщения — три вопроса')}</div>
       <div className="pg-three">{(READ12[seg.e === 9 ? 2 : beat] || t([['qaysi jadval', 'jadval'], ['qaysi qoida', 'qoida'], ['qaysi qiymat (DETAIL)', 'qiymat']], [['какая таблица', 'jadval'], ['какое правило', 'qoida'], ['какое значение (DETAIL)', 'qiymat']])).map(([v, k], i) => <div key={i} className="mk-box" style={{ '--c': [PG.pg, T.accent, T.yellow][i] }}><h4>{t(['Qaysi jadval', 'Qaysi qoida', 'Qaysi qiymat'], ['Какая таблица', 'Какое правило', 'Какое значение'])[i]}</h4><p><code>{v}</code></p></div>)}</div>
     </div>
+    {/* F-1120-02 (M51): o'sha rasm — qoida buzgan yozuv jadvalga kirmaydi (✕) */}
+    <div className="mk-light" style={{ padding: 10, flex: '0 0 auto' }}><BlogDb compact rules fk={seg.e === 1 || seg.e === 9 || seg.e === 2}
+      bad={seg.e === 0 ? { t: 'users', row: ['4', 'NULL'], why: 'NOT NULL' } : seg.e === 1 || seg.e === 9 ? { t: 'posts', row: ['4', '99', "Muallifi yo'q post"], why: t("users'da id 99 yo'q", 'в users нет id 99') } : null}
+      del={seg.e === 2 ? '1' : null} /></div>
     {seg.e >= 0 && seg.e <= 2 && <Psql er lines={E12[seg.e]} />}
     {seg.e === 1 && <div className="pg-cmp">
       <div className="mk-card"><h5><i style={{ background: PG.mongo }} />{t('MongoDB — 4-ekran', 'MongoDB — 4-й экран')}</h5><Doc>{t(`{ "author": null, "izoh": "Muallifi yo'q post" }   ← saqlandi`, `{ "author": null, "izoh": "Muallifi yo'q post" }   ← сохранено`)}</Doc></div>
@@ -2542,11 +2847,8 @@ blog-# JOIN users ON users.id = posts.user_id;
 const S15 = mkS(16, [{ v: 'tab', on: false }, { v: 'join', on: true, focus: ['sel', 'from', 'on'] }, { v: 'left', on: true, focus: ['lj', 'sa'] }, { v: 'join', on: true, focus: ['on'] }, { v: 'join', on: true, focus: [] }]);
 function Screen15(p) {
   return <Lesson p={p} S={S15} scene={({ seg, beat }) => <>
-    <div className="pg-two">
-      <MiniTable name="posts" cols={['id', 'user_id', 'izoh']} rows={[['1', '1', 'Birinchi post'], ['2', '1', "Bugun Nest o'rgandim"], ['3', '2', 'Salom hammaga']]} hlCol={seg.on ? [1] : []} />
-      <MiniTable name="users" cols={['id', 'username']} rows={[['1', 'ali'], ['2', 'vali'], ['3', 'sardor']]} hlCol={seg.on ? [0] : []} hlRow={seg.v === 'left' ? [2] : []} />
-    </div>
-    {seg.on && <div className="mk-tag" style={{ margin: 0, color: T.accent }}>{t("ON: users.id = posts.user_id — users'dagi id posts'dagi user_id'ga teng", 'ON: users.id = posts.user_id — id из users равен user_id из posts')}</div>}
+    {/* F-1120-02 (M51): ikki MiniTable o'rniga darsning rasmi — JOIN chiziqlari: posts.user_id → users.id; LEFT JOIN'da sardor NULL bilan */}
+    <div className="mk-light" style={{ padding: 12, flex: '0 0 auto' }}><BlogDb compact join={seg.v === 'left' ? 'left' : seg.on ? 'inner' : null} hl={seg.on ? { users: [0], posts: [1] } : {}} /></div>
     {seg.v === 'join' && beat < 4 && <Psql lines={JOIN15} focus={seg.focus} />}
     {seg.v === 'left' && <Psql lines={LEFT15} focus={seg.focus} />}
     <Block at={4} beat={beat}><div className="mk-rule">{t(<><b>JOIN</b> — faqat jufti borlar · <b>LEFT JOIN</b> — chapdagi jadvalning hammasi · <code>ON</code>da tashqi kalit (<code>user_id</code>) boshqa jadvalning <code>id</code>'siga tenglanadi</>, <><b>JOIN</b> — только строки, у которых есть пара · <b>LEFT JOIN</b> — вся левая таблица · в <code>ON</code> внешний ключ (<code>user_id</code>) приравнивается к <code>id</code> другой таблицы</>)}</div></Block>
@@ -2977,15 +3279,13 @@ const SUM28 = [
   { k: 'tx', t: "Oxirgi telefon: shart + qator qulfi → UPDATE 0; tranzaksiya — hammasi yoki hech narsa; jsonb — erkin qo'shimcha", st: ['jad', 'rule'] },
   { k: 'class', t: "Sinf: m4-06 dan oldin har kompyuterda psql -U postgres -c \"SELECT version();\"; m4-03 kodsiz — har blokda bitta qo'shimcha gapingiz bor", st: ['req', 'res'] },
 ];
-const STATIONS28 = [['req', "So'rov", T.ink2], ['psql', 'psql', T.ink], ['rule', 'Qoidalar', T.accent], ['jad', 'Jadval', PG.pg], ['join', 'JOIN', T.purple], ['res', 'Javob', T.green]];
+// F-1120-02 (M51): xulosa — darsning o'sha rasmi (blog bazasi); har band rasmning o'z qismini ko'rsatadi
 function SummaryMap28({ hl }) {
-  const cur = SUM28.find((x) => x.k === hl);
-  const on = (k) => hl === 'all' || !cur || cur.st.includes(k);
+  const read = hl === 'inst' || hl === 'class' ? ['$', 'psql -U postgres -c "SELECT version();"'] : hl === 'join' || hl === 'all' ? ['blog=#', 'SELECT users.username, posts.izoh FROM posts <span class="n1-k">JOIN</span> users ON users.id = posts.user_id;'] : null;
   return <div className="mk-light" style={{ padding: 16 }}>
-    <div className="mk-tag">{t("Bugungi dars — ma'lumotning yo'li", 'Сегодняшний урок — путь данных')}</div>
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, minmax(0,1fr))', gap: 6 }}>
-      {STATIONS28.map(([k, n, c], i) => <div key={k} className={`mk-box${cur && cur.st.includes(k) ? ' hl' : ''}`} style={{ '--c': c, padding: '10px 6px', textAlign: 'center', opacity: on(k) ? 1 : 0.35, animation: `mk-up .4s ${i * 0.06}s ease both` }}><h4 style={{ fontSize: 12.5, margin: 0 }}>{n}</h4></div>)}
-    </div>
+    <BlogDb rules={hl === 'mongo' || hl === 'rule' || hl === 'tx' || hl === 'all'} fk={hl === 'mongo' || hl === 'rule'} join={hl === 'join' || hl === 'all' ? 'inner' : null}
+      bad={hl === 'rule' ? { t: 'posts', row: ['4', '99', "Muallifi yo'q post"], why: t("users'da id 99 yo'q", 'в users нет id 99') } : null}
+      read={read} tag={t("Bugungi dars — blog bazasi bir qarashda", 'Сегодняшний урок — база blog одним взглядом')} />
   </div>;
 }
 const HOMEWORK28 = [
@@ -3088,16 +3388,21 @@ function Screen28(p) {
 // ============================================================
 //  Muqova va ildiz
 // ============================================================
+// F-1120-02 (M51): muqova — chapda dars nima berishi, o'ngda darsning rasmi; eslatmalar bitta qisqa satrda
 function Cover({ onStart, resume }) {
   return (
-    <div className="mk-cover"><div className="card">
-      <p className="mk-eyebrow">{t("Mentor kursi · PostgreSQL", "Курс для менторов · PostgreSQL")}</p>
-      <h1>{t(LESSON_TITLE, RS('TITLE'))}</h1>
-      <p>{t("Bu dars ovozli. Ustoz har ekranda gapiradi, ekran u bilan birga o'zgaradi. Quloqchin yoki ovoz balandligini tekshiring.", 'Урок озвучен. На каждом экране говорит учитель, экран меняется вместе с ним. Проверьте наушники или громкость.')}</p>
-      <ul>
-        {t(["Jami taxminan 1 soat 10 daqiqa: ovoz ~30 daqiqa · to'rt amaliyot 35–45 daqiqa · 4 tekshiruv · o'z-sinov 8 savol. 15-ekrandan keyin tanaffus qilsangiz bo'ladi", "Kerak: kompyuterda internet (PostgreSQL'ni yuklab olish uchun) · Windows yoki macOS · terminal", "Loyiha: blog bazasi — users va posts, o'quvchi m4-03 amaliyotidagi namuna"], RS('COVER')).map((x) => <li key={x}>{x}</li>)}
-      </ul>
-      <CoverStart onStart={onStart} resume={resume} />
+    <div className="mk-cover"><div className="card n1-cv">
+      <div className="tx">
+        <p className="mk-eyebrow">{t("Mentor kursi · PostgreSQL", "Курс для менторов · PostgreSQL")}</p>
+        <h1>{t(LESSON_TITLE, RS('TITLE'))}</h1>
+        <p className="af">{t('Bu darsdan keyin siz', 'После этого урока вы')}</p>
+        <ul className="ok">
+          {t(["PostgreSQL'ni o'rnatib, psql bilan blog bazasini qurasiz", "bazaning xatosini o'qiysiz: qaysi jadval, qaysi qoida, qaysi qiymat", "JOIN bilan ikki jadvalni bog'laysiz va sinfdagi o'rnatish muammolariga tayyor bo'lasiz"], ['установите PostgreSQL и соберёте базу blog в psql', 'будете читать ошибку базы: какая таблица, какое правило, какое значение', 'свяжете две таблицы через JOIN и будете готовы к проблемам установки в классе']).map((x) => <li key={x}>{x}</li>)}
+        </ul>
+        <p className="meta">{t("Ovozli dars · 1 soat 10 daqiqa, 15-ekrandan keyin tanaffus qilsa bo'ladi · Kerak: internet, Windows yoki macOS, terminal", 'Урок со звуком · 1 час 10 минут, после 15-го экрана можно сделать перерыв · Нужно: интернет, Windows или macOS, терминал')}</p>
+        <CoverStart onStart={onStart} resume={resume} />
+      </div>
+      <div className="pic"><BlogDb join="inner" rules hl={{ users: [0], posts: [1] }} max={1} /></div>
     </div></div>
   );
 }
@@ -3107,6 +3412,7 @@ export default function PgIntroMentorLesson({ studentName, lang = 'uz', onFinish
   setLang(lang);
   useCss();
   useCss3();
+  useCssN1(); // F-1120-02: dars rasmi uslubi (parts/02b-rasm.jsx)
   const total = SCREENS.length;
   const [started, setStarted] = useState(startAt != null);
   const [idx, setIdx] = useState(Math.min(Math.max(0, startAt || 0), total - 1));
@@ -3260,7 +3566,6 @@ ru(SUM28, [
   { t: 'Последний телефон: условие + блокировка строки → UPDATE 0; транзакция — всё или ничего; jsonb — свободные дополнения' },
   { t: 'Класс: до m4-06 на каждом компьютере psql -U postgres -c "SELECT version();"; m4-03 без кода — в каждом блоке у вас одна добавка' },
 ]);
-ru(STATIONS28, [[null, 'Запрос'], null, [null, 'Правила'], [null, 'Таблица'], null, [null, 'Ответ']]);
 ru(HOMEWORK28, [
   { t: 'Репозиторий и идея: blog-db (или своё название) · README.md — идея одной фразой + ответы на 4 вопроса указателя решения (связаны ли, строгая ли форма, дорога ли ошибка, нужно ли огромно-просто-быстро) + выбор и причина' },
   { t: 'schema.sql: 2 связанные таблицы — PRIMARY KEY, хотя бы один NOT NULL, один UNIQUE, REFERENCES → в \\d таблица строка Foreign-key', c: [null, 'psql -U postgres -d <baza> -f schema.sql'] },

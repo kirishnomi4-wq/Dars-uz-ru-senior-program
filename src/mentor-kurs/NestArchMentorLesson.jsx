@@ -381,6 +381,619 @@ function useCss() {
 }
 
 // ============================================================
+//  DARS RASMI — UMUMIY QISM (F-1120-02, 20.11; qonun M51, M52). Hamma mentor darsiga yig'iladi (dev/yig.sh).
+//  Bu yerda: rasm uslubi (CSS, useCssN1 — darsning ildiz komponentida chaqiriladi), N1Fit (qat'iy o'lchamli
+//  chizma sahna eniga moslashadi), useLate, useAct (M52: mentor o'zi bosib buzadi), N1Mini, Res.
+//  Darsga xos rasm — o'z bo'lagida: Nest darslari — parts/02c-nest.jsx, boshqa dars — <dars>/parts/02b-*.jsx.
+//  Ranglar dars ranglari (PART, T); yangi rang yo'q. CSS ichida backtick yo'q (CLAUDE.md).
+// ============================================================
+const CSS_N1 = `
+.n1-fit{position:relative;width:100%;flex:0 0 auto}
+.n1-box{position:absolute;top:0;transform-origin:0 0;font:13px/1.4 ${SANS};color:${T.ink}}
+.n1-box *{box-sizing:border-box}
+.n1-abs{position:absolute}
+.n1-tagl{position:absolute;font:600 10.5px/1 ${MONO};letter-spacing:.12em;color:${T.ink3};text-transform:uppercase;white-space:nowrap}
+.n1-st{transition:opacity .45s,box-shadow .45s,filter .45s,border-color .45s,background .45s}
+.n1-st[data-st="g"]{opacity:.3;filter:grayscale(1)}
+.n1-st[data-st="dim"]{opacity:.45}
+.n1-st[data-st="off"]{opacity:0;pointer-events:none}
+.n1-st[data-st="hl"]{box-shadow:0 0 0 4px rgba(226,69,31,.16),0 14px 30px rgba(15,17,21,.12)}
+
+.n1-br{position:absolute;border-radius:12px;border:1.5px solid #C9CED8;background:${T.paper};overflow:hidden}
+.n1-br .top{height:30px;background:#E9ECF1;display:flex;align-items:center;gap:5px;padding:0 9px}
+.n1-br .top i{width:7px;height:7px;border-radius:50%;background:#B9BFCB;flex:none}
+.n1-br .top span{margin-left:4px;flex:1;min-width:0;background:${T.paper};border-radius:9px;font:500 10px/1.6 ${MONO};padding:0 6px;color:${T.ink2};white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.n1-br .bd{position:absolute;left:0;right:0;top:30px;bottom:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:10px}
+.n1-br .wait{font-size:12.5px;color:${T.ink3}}
+.n1-br .out{font:700 18px/1.25 ${SANS};color:${T.ink};animation:mk-up .4s ease both}
+.n1-br .out.code{font:600 11px/1.5 ${MONO};text-align:left;color:${T.green};word-break:break-all;white-space:normal}
+.n1-br .out.er{color:#DC2626}
+.n1-cap{position:absolute;text-align:center;font-size:11.5px;color:${T.ink3};white-space:nowrap}
+
+.n1-app{position:absolute;border-radius:18px;border:1.5px dashed #C9CED8;background:#FAFBFC}
+.n1-mod{position:absolute;border:2px solid ${PART.mod};border-radius:12px;background:#FFFBF0}
+.n1-mod .lg{position:absolute;left:12px;top:-9px;background:${T.paper};padding:0 6px;font:700 13px/16px ${SANS};color:${PART.mod};white-space:nowrap}
+.n1-mod .lab{position:absolute;right:12px;top:-14px}
+.n1-chip{position:absolute;font:500 12px/1.4 ${MONO};background:${T.paper};border:1px solid #E6D6A8;border-radius:7px;padding:4px 8px;white-space:nowrap;color:${T.ink};transition:box-shadow .4s,border-color .4s,opacity .4s}
+.n1-chip.hot{border-color:${T.accent};box-shadow:0 0 0 3px rgba(226,69,31,.18)}
+.n1-link{position:absolute;width:2px;background:${PART.mod};opacity:0;transition:opacity .4s}
+.n1-link.on{opacity:1}
+
+.n1-part{position:absolute;border-radius:14px;background:${T.paper};border:2px solid var(--c);padding:13px 14px}
+.n1-part .nm{font:700 16px/1.2 ${SANS};color:var(--c);display:flex;align-items:center;gap:8px;white-space:nowrap}
+.n1-part .nm i{width:9px;height:9px;border-radius:3px;background:var(--c);flex:none}
+.n1-part .role{font-size:13px;color:${T.ink2};margin-top:5px}
+.n1-part .cd{display:inline-block;margin-top:10px;background:${T.code};color:${T.codeInk};font:500 12px/1.4 ${MONO};padding:6px 10px;border-radius:8px;white-space:nowrap}
+.n1-part .fl{position:absolute;left:14px;bottom:10px;font:500 11px/1 ${MONO};color:${T.ink3};white-space:nowrap}
+.n1-part .lab{position:absolute;right:10px;top:10px}
+.n1-lab{display:inline-block;font:700 11.5px/1 ${SANS};color:${T.ink2};background:#F1F3F6;border:1px solid ${T.line};border-radius:999px;padding:5px 9px;white-space:nowrap;animation:mk-up .4s ease both}
+.n1-sock{position:absolute;height:34px;border-radius:17px;border:1.5px dashed #A8AFBD;display:flex;align-items:center;justify-content:center;font:700 12.5px/1 ${MONO};color:${T.ink3};background:${T.paper};transition:all .4s}
+.n1-sock.er{border:1.5px solid #DC2626;color:#DC2626;background:#FEF2F2}
+
+.n1-exp{position:absolute;border-radius:10px;border:1px solid ${T.line};background:#F0F2F5;display:flex;align-items:center;gap:8px;padding:0 14px;font-size:12.5px;color:${T.ink2};white-space:nowrap;transition:all .45s}
+.n1-exp b{color:${T.ink};font-weight:700}
+.n1-exp[data-st="hl"]{background:#FFF0EB;border-color:${T.accent};box-shadow:0 0 0 4px rgba(226,69,31,.12)}
+.n1-exp[data-st="hl"] b{color:${T.accent}}
+
+.n1-stem{position:absolute;width:0;border-left:2px dotted #C9CED8}
+.n1-lanes{position:absolute;border-radius:14px;background:${T.bg}}
+.n1-ln{position:absolute;height:2px;background:#D5D9E1}
+.n1-lf{position:absolute;height:2px;transition:width .9s cubic-bezier(.4,0,.2,1)}
+.n1-lf.r{background:${T.accent}}.n1-lf.g{background:${T.green}}
+.n1-stn{position:absolute;width:10px;height:10px;border-radius:50%;background:${T.paper};border:2px solid #B9BFCB;transform:translate(-50%,-50%)}
+.n1-lbl{position:absolute;right:14px;font:600 11px/1 ${MONO};color:${T.ink3};white-space:nowrap;transform:translateY(-50%)}
+.n1-pk{position:absolute;transform:translate(-50%,-50%);background:${T.accent};color:#fff;font:600 12px/1 ${MONO};padding:6px 11px;border-radius:14px;white-space:nowrap;box-shadow:0 6px 14px rgba(15,17,21,.22);transition:left .9s cubic-bezier(.4,0,.2,1),top .35s,background .3s,opacity .3s;z-index:3}
+.n1-pk.grn{background:${T.green}}
+.n1-pk.off{opacity:0}
+.n1-pk.loop{transition:none;animation:n1-loop 5.2s linear infinite}
+@keyframes n1-loop{0%{left:var(--xa);top:var(--y1);background:${T.accent}}44%{left:var(--xc);top:var(--y1);background:${T.accent}}50%{left:var(--xc);top:var(--y2);background:${T.green}}94%{left:var(--xa);top:var(--y2);background:${T.green}}100%{left:var(--xa);top:var(--y1);background:${T.accent}}}
+.n1-ro{position:absolute;background:${T.code};border-radius:12px;display:flex;align-items:center;gap:14px;padding:0 16px;transition:opacity .35s;overflow:hidden}
+.n1-ro .rf{font:500 11.5px/1 ${MONO};color:#8A90A2;white-space:nowrap}
+.n1-ro code{font:500 13px/1.3 ${MONO};color:${T.codeInk};white-space:nowrap}
+.n1-ro.off{opacity:0}
+.n1-k{color:#C792EA}.n1-s{color:#9ECE6A}.n1-d{color:#E5C07B}.n1-c{color:#7AA2F7}.n1-ok{color:#86EFAC}.n1-er{color:#FCA5A5}
+
+.n1-tok{position:absolute;height:38px;border-radius:19px;background:#E3F5EC;border:2px solid ${T.green};display:flex;align-items:center;justify-content:center;gap:7px;font:700 13px/1 ${SANS};color:${T.green};transform:translate(-50%,-50%);transition:left .9s cubic-bezier(.4,0,.2,1),top .9s cubic-bezier(.4,0,.2,1),opacity .35s,transform .35s;z-index:3;white-space:nowrap}
+.n1-tok i{width:8px;height:8px;border-radius:50%;background:${T.green};flex:none}
+.n1-tok.off{opacity:0;transform:translate(-50%,-50%) scale(.6)}
+.n1-tok.twin{background:transparent;border-style:dashed;opacity:0;transition:opacity .4s;z-index:2}
+.n1-tok.twin.on{opacity:.55}
+.n1-tok.grey{background:#F3F4F7;border-color:#9AA1B1;color:${T.ink2}}
+.n1-tok.grey i{background:#9AA1B1}
+.n1-tok.yel{background:#FFFBF0;border-color:${PART.mod};color:${PART.mod};border-style:dashed}
+.n1-tok.yel i{background:${PART.mod}}
+.n1-box2{position:absolute;border-radius:14px;border:2px solid #9AA1B1;background:#F3F4F7}
+.n1-box2 .bl{position:absolute;left:14px;top:12px;font:600 10.5px/1 ${MONO};letter-spacing:.12em;color:${T.ink2};white-space:nowrap}
+.n1-box2 .sh{position:absolute;border-radius:19px;border:1.5px dashed #A8AFBD;display:flex;align-items:center;justify-content:center;font:500 11.5px/1 ${MONO};color:${T.ink3};transition:color .3s}
+.n1-box2.has .sh{color:transparent}
+.n1-box2 .nq{position:absolute;left:14px;right:14px;bottom:12px;font-size:11.5px;line-height:1.35;color:${T.ink2};opacity:0;transition:opacity .4s}
+.n1-box2 .nq.on{opacity:1}
+.n1-you{position:absolute;font:700 11.5px/1 ${SANS};color:#fff;background:${T.accent};border-radius:10px;padding:5px 9px;white-space:nowrap;opacity:0;transition:opacity .4s;z-index:4}
+.n1-you.on{opacity:1}
+.n1-ann{position:absolute;font:600 12px/1.3 ${SANS};color:${T.ink2};white-space:nowrap;opacity:0;transition:opacity .4s}
+.n1-ann.on{opacity:1}
+.n1-ann b{color:${T.accent}}
+.n1-tayyor{color:${T.green};transition:opacity .4s}
+.n1-line{position:absolute;height:38px;border-radius:9px;background:${T.code};color:${T.codeInk};font:500 12px/1 ${MONO};display:flex;align-items:center;padding:0 10px;white-space:nowrap}
+.n1-prm{border-radius:4px;padding:1px 0;transition:background .4s,box-shadow .4s}
+.n1-prm.hot{background:rgba(226,69,31,.3);box-shadow:0 0 0 2px rgba(226,69,31,.3)}
+.n1-sock.wait{border-color:${T.accent};color:${T.accent};animation:n1-pulse 1.4s ease-in-out infinite}
+@keyframes n1-pulse{50%{box-shadow:0 0 0 6px rgba(226,69,31,.14)}}
+.n1-svg{position:absolute;left:0;top:0;pointer-events:none;overflow:visible}
+.n1-pth{stroke:#A8AFBD;stroke-width:2;stroke-dasharray:5 5;fill:none;opacity:0;transition:opacity .4s,stroke .4s}
+.n1-pth.dash{opacity:1}
+.n1-pth.solid{opacity:1;stroke:${T.green};stroke-dasharray:none}
+.n1-pth.bad{opacity:1;stroke:#DC2626}
+.n1-row{position:absolute;opacity:0;transition:opacity .45s;pointer-events:none}
+.n1-row.on{opacity:1}
+.n1-row.dim{opacity:.42}
+.n1-srch{border:1px solid ${T.line};border-radius:12px;background:#F3F4F7}
+.n1-fld{position:absolute;height:34px;border-radius:7px;border:1.5px solid ${T.blue};background:${T.paper};display:flex;align-items:center;gap:8px;padding:0 10px;font:500 13px/1 ${MONO}}
+.n1-res{position:absolute;font:700 14px/1.3 ${SANS};color:${T.accent};white-space:nowrap}
+.n1-res span{font-weight:500;color:${T.ink2};margin-left:8px}
+.n1-exf{position:absolute;border-radius:12px;border:1px solid ${T.line};background:${T.paper};overflow:hidden}
+.n1-exf .tb{height:24px;background:#E9ECF1;font:500 10.5px/24px ${MONO};color:${T.ink2};padding:0 10px}
+.n1-exf .cl{position:absolute;left:10px;top:34px;font:500 11.5px/1.3 ${MONO};color:${T.ink};white-space:nowrap}
+.n1-bn{position:absolute;border-radius:12px;border:1px solid ${T.line};background:${T.paper}}
+.n1-bn svg{position:absolute;left:13px;top:12px}
+.n1-bn .bt{position:absolute;left:14px;bottom:12px;font:700 13.5px/1.2 ${SANS};color:${T.ink}}
+
+.n1-plan{position:absolute;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+.n1-plan div{border:1px solid ${T.line};border-radius:10px;background:${T.paper};padding:9px 10px;display:flex;flex-direction:column;gap:6px;transition:border-color .3s,box-shadow .3s,opacity .3s}
+.n1-plan div.hl{border-color:${T.accent};box-shadow:0 0 0 3px rgba(226,69,31,.12)}
+.n1-plan div.dim{opacity:.45}
+.n1-plan b{font:700 11.5px/1 ${MONO};color:${T.accent}}
+.n1-plan span{font-size:11.5px;line-height:1.3;color:${T.ink}}
+
+.n1-team{position:absolute;border:1px solid ${T.line};border-radius:12px;background:${T.paper};padding:10px 12px}
+.n1-team h6{margin:0 0 6px;font:600 10.5px/1 ${MONO};letter-spacing:.12em;color:${T.ink3};text-transform:uppercase}
+.n1-team div{font:500 12px/1.7 ${MONO};color:${T.ink2};white-space:nowrap}
+.n1-team div i{display:inline-block;width:7px;height:7px;border-radius:2px;background:var(--c,${T.ink3});margin-right:7px}
+
+.n1-shelf{position:absolute;border-radius:12px;border:1.5px solid ${T.line};background:${T.paper};transition:border-color .4s,box-shadow .4s,opacity .4s}
+.n1-shelf .sl{position:absolute;left:12px;top:-9px;background:${T.paper};padding:0 6px;font:600 12px/16px ${MONO};color:${T.ink2};white-space:nowrap}
+.n1-shelf.hl{border-color:${T.accent};box-shadow:0 0 0 4px rgba(226,69,31,.12)}
+.n1-shelf.dim{opacity:.45}
+.n1-shelf .emp{position:absolute;left:14px;top:14px;font:500 12px/1 ${MONO};color:${T.ink3}}
+.n1-file{position:absolute;display:flex;align-items:center;gap:7px;font:500 12px/1 ${MONO};color:${T.ink};white-space:nowrap;padding:7px 10px;border-radius:8px;background:${T.paper};border:1px solid ${T.line}}
+.n1-file i{width:8px;height:8px;border-radius:2px;background:var(--c);flex:none}
+.n1-file.new{border-color:${T.accent};animation:mk-up .45s ease both}
+.n1-ghost{position:absolute;display:flex;align-items:center;gap:7px;font:600 12px/1 ${SANS};color:#B91C1C;white-space:nowrap;padding:7px 10px;border-radius:8px;border:1.5px dashed #F2A9A9;background:#FEF2F2;animation:mk-up .45s ease both}
+.n1-tree-ln{position:absolute;background:#C9CED8}
+
+.n1-mini{position:absolute;border-radius:12px;border:1px solid ${T.line};background:#FAFBFC}
+.n1-badge{position:absolute;height:24px;border-radius:7px;display:flex;align-items:center;padding:0 8px;font:600 11.5px/1 ${MONO};white-space:nowrap;transition:all .4s}
+.n1-badge.ok{background:#FFF7E0;color:#8A5A00;border:1px solid #E6D6A8}
+.n1-badge.gone{background:transparent;color:#DC2626;border:1.5px dashed #F2A9A9}
+.n1-say{position:absolute;font:600 12px/1.3 ${SANS};white-space:nowrap;transition:opacity .4s}
+.n1-say.er{color:#DC2626}.n1-say.ok{color:${T.green}}
+.n1-res2{position:absolute;display:flex;flex-direction:column;gap:6px}
+.n1-res2 div{font:500 11.5px/1 ${MONO};white-space:nowrap;padding:6px 9px;border-radius:7px;background:${T.code};color:${T.codeInk};transition:all .4s}
+.n1-res2 b{font-weight:700}
+.n1-arr{position:absolute;height:2px;background:${T.green};transition:background .4s}
+.n1-arr::after{content:"";position:absolute;right:-1px;top:-4px;border-left:7px solid ${T.green};border-top:5px solid transparent;border-bottom:5px solid transparent;transition:border-color .4s}
+.n1-arr.bad{background:repeating-linear-gradient(90deg,#DC2626 0 4px,transparent 4px 8px)}
+.n1-arr.bad::after{border-left-color:#DC2626}
+.n1-arr.off{opacity:.25}
+.n1-pin{position:absolute;display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:${T.accent};color:#fff;font:700 11.5px/1 ${SANS};box-shadow:0 0 0 3px #fff;opacity:0;transition:opacity .35s;z-index:5}
+.n1-pin.on{opacity:1}
+.mk-ln.n1-p1>span:last-child::before,.mk-ln.n1-p2>span:last-child::before,.mk-ln.n1-p3>span:last-child::before{display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;border-radius:50%;background:${T.accent};color:#fff;font:700 10.5px/1 ${SANS};margin-right:7px;vertical-align:1px}
+.mk-ln.n1-p1>span:last-child::before{content:"1"}
+.mk-ln.n1-p2>span:last-child::before{content:"2"}
+.mk-ln.n1-p3>span:last-child::before{content:"3"}
+.n1-act{cursor:pointer;border-radius:5px;padding:1px 3px;outline:2px solid #FF8A65;outline-offset:1px;animation:n1-blink 1.3s ease-in-out infinite}
+.n1-act:hover{background:rgba(255,138,101,.22)}
+@keyframes n1-blink{50%{outline-color:transparent}}
+.n1-acthint{margin-top:16px;padding:12px 14px;border:1.5px solid ${T.accent};border-radius:12px;background:#FFF7F3;font-size:15px;line-height:1.45;color:${T.ink};animation:mk-up .4s ease both}
+.n1-acthint b{color:${T.accent}}
+
+.n1-kit .st{position:absolute;border-radius:12px;background:${T.paper};border:2px solid var(--c);padding:10px 10px 8px;display:flex;flex-direction:column;gap:6px;transition:opacity .4s,box-shadow .4s}
+.n1-kit .st .w{font:700 14px/1.15 ${SANS};color:${T.ink}}
+.n1-kit .st .a{font:600 12px/1 ${MONO};color:var(--c)}
+.n1-kit .st .v{font-size:11.5px;line-height:1.3;color:${T.ink2}}
+.n1-kit .st .f{font:500 10px/1.2 ${MONO};color:${T.ink3};word-break:break-all;opacity:0;transition:opacity .4s}
+.n1-kit .st .f.on{opacity:1}
+.n1-kit .st.hl{box-shadow:0 0 0 4px rgba(226,69,31,.16),0 14px 30px rgba(15,17,21,.12)}
+.n1-kit .st.dim{opacity:.4}
+.n1-kit .ar{position:absolute;height:2px;background:#B9BFCB}
+.n1-kit .ar::after{content:"";position:absolute;right:-1px;top:-4px;border-left:7px solid #B9BFCB;border-top:5px solid transparent;border-bottom:5px solid transparent}
+.n1-kit .no{position:absolute;font:600 11.5px/1.3 ${SANS};color:${T.accent};white-space:nowrap;opacity:0;transition:opacity .4s}
+.n1-kit .no.on{opacity:1}
+
+.mk-cover .card.n1-cv{max-width:1120px;padding:0;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);overflow:hidden}
+.n1-cv .tx{padding:40px 30px 36px 40px;display:flex;flex-direction:column}
+.n1-cv .af{margin:6px 0 10px;font:600 11.5px/1 ${MONO};letter-spacing:.12em;color:${T.ink3};text-transform:uppercase}
+.n1-cv ul.ok{margin:0 0 22px;gap:10px}
+.n1-cv ul.ok li{display:flex;gap:10px;color:${T.ink};font-size:15.5px;line-height:1.4}
+.n1-cv ul.ok li::before{content:"✓";flex:none;width:21px;height:21px;border-radius:50%;background:#E3F5EC;color:${T.green};font:700 12px/21px ${SANS};text-align:center;margin:0}
+.n1-cv .tx>.mk-btn{align-self:flex-start}
+.n1-cv .meta{margin:auto 0 16px;font-size:13px;line-height:1.5;color:${T.ink3}}
+.n1-cv .pic{background:${T.bg};border-left:1px solid ${T.line};display:flex;align-items:center;padding:24px 20px}
+@media (max-width:900px){.mk-cover .card.n1-cv{grid-template-columns:1fr}.n1-cv .pic{border-left:0;border-top:1px solid ${T.line}}}
+@media (prefers-reduced-motion:reduce){.n1-pk.loop,.n1-sock.wait,.n1-act{animation:none}.n1-box *{transition:none!important}}
+`;
+function useCssN1() {
+  useEffect(() => {
+    let s = document.getElementById('mk-css-n1');
+    if (!s) { s = document.createElement('style'); s.id = 'mk-css-n1'; document.head.appendChild(s); }
+    if (s.textContent !== CSS_N1) s.textContent = CSS_N1;
+  }, []);
+}
+
+// Qat'iy o'lchamli chizma (w×h) sahna eniga qarab kattalashadi (max gacha), markazda turadi
+function N1Fit({ w, h, max = 1.25, children, style }) {
+  const ref = useRef(null);
+  const [W, setW] = useState(0);
+  useEffect(() => {
+    const el = ref.current; if (!el) return undefined;
+    const f = () => setW(el.clientWidth);
+    f();
+    if (typeof ResizeObserver === 'undefined') { window.addEventListener('resize', f); return () => window.removeEventListener('resize', f); }
+    const ro = new ResizeObserver(f); ro.observe(el); return () => ro.disconnect();
+  }, []);
+  const k = W > 0 ? Math.min(max, W / w) : 1;
+  return <div ref={ref} className="n1-fit" style={{ height: Math.round(h * k), ...(style || {}) }}>
+    <div className="n1-box" style={{ width: w, height: h, left: Math.max(0, (W - w * k) / 2), transform: `scale(${k})`, visibility: W > 0 ? 'visible' : 'hidden' }}>{children}</div>
+  </div>;
+}
+
+// Bir qadamdan keyin ms o'tdimi (paket ikkinchi yo'lakka o'tishi, brauzerga javob kelishi uchun)
+function useLate(key, ms) {
+  const [late, setLate] = useState(false);
+  useEffect(() => { setLate(false); const id = setTimeout(() => setLate(true), ms); return () => clearTimeout(id); }, [key, ms]);
+  return late;
+}
+
+// ---------- 23–26-ekran: «Buzamiz» — kichik rasm (VS Code oynasi ichida, kod va terminal orasida) ----------
+// Mentor o'zi buzadi: kodda yonib turgan so'z (data-act) bosiladi → act segmenti tugaydi (dvigatel: answerAsk).
+// hit — bosildimi; broken — buzilgan holat ko'rinadimi
+function useAct(b, id = 'x') {
+  const hit = !!(b.guess && b.guess[id] !== undefined);
+  const onClick = (e) => { const el = e.target && e.target.closest ? e.target.closest('[data-act]') : null; if (el && !hit && b.answerAsk) b.answerAsk(id, 0); };
+  return { hit, onClick };
+}
+// Balandlik 122 (ramka 8…118): 1280×720 da VS Code oynasiga kod + rasm + terminal sig'sin; kattalashish 1.1 gacha
+const N1Mini = ({ h = 122, children }) => <div style={{ background: T.paper, border: `1px solid ${T.line}`, borderRadius: 12, padding: '4px 8px', flex: '0 0 auto' }}><N1Fit w={520} h={h} max={1.1}>{children}</N1Fit></div>;
+// code null — natija hali noma'lum (savol berilgan, javob keyingi qadamda): «?»
+const Res = ({ rows, left = 404, top = 34 }) => <div className="n1-res2" style={{ left, top }}>{rows.map(([q, code, txt]) => <div key={q}>{q} → <b className={code == null ? '' : code >= 400 ? 'n1-er' : 'n1-ok'}>{code == null ? '?' : code}</b>{txt ? ' ' + txt : ''}</div>)}</div>;
+
+// ============================================================
+//  NEST DARSLARI RASMI (F-1120-02) — Nest-1 (parts/*) va Nest-2 (yig.sh) ga yig'iladi.
+//  Nest mashinasi: brauzer → Controller → Service, Module ro'yxati, Nest konteyneri; DI, «Buzamiz» kichik rasmlari,
+//  Module ro'yxatlari, o'quvchi loyihasi yo'li (KitchenMap). Umumiy qism — parts/02b-rasm.jsx.
+// ============================================================
+// ---------- Katta mashina: brauzer + Nest ilovasi (Module, Controller, Service) + yo'laklar ----------
+// st: br · mod · ctrl · svc — '' | 'hl' | 'g' | 'dim' | 'off'
+// pkt: { x: 'b'|'c'|'s', lane: 1|2, label, grn, off, loop } · fill: [so'rov yo'lagi, javob yo'lagi] px (0…501)
+const NM_X = { b: 105, c: 348, s: 606 };
+const N1_APP = {
+  names: { ctrl: 'AppController', svc: 'AppService', mod: 'AppModule' },
+  files: { ctrl: 'src/app.controller.ts', svc: 'src/app.service.ts' },
+  codes: { ctrl: '<span class="n1-d">@Get</span>() getHello()', svc: "<span class=\"n1-k\">return</span> <span class=\"n1-s\">'Hello World!'</span>" },
+  chips: ['controllers: [AppController]', 'providers: [AppService]'],
+};
+const N1_CARS = {
+  names: { ctrl: 'CarsController', svc: 'CarsService', mod: 'CarsModule' },
+  files: { ctrl: 'src/cars/cars.controller.ts', svc: 'src/cars/cars.service.ts' },
+  codes: { ctrl: '<span class="n1-d">@Get</span>() findAll()', svc: '<span class="n1-k">return this</span>.cars' },
+  chips: ['controllers: [CarsController]', 'providers: [CarsService]'],
+};
+function NestMachine({ cfg = N1_APP, st = {}, url = 'localhost:3000', out, outKind, roles, lab, sock, exp, links, modHot, lanes, pkt, fill = [0, 0], readRow, read, tag, max, extra }) {
+  const frameBottom = exp != null ? 330 : 292;
+  const lanesTop = frameBottom + 30;
+  const readTop = lanes ? lanesTop + 108 : frameBottom + 18;
+  const H = readRow ? readTop + 48 : (lanes ? lanesTop + 94 : frameBottom + 6);
+  const y1 = lanesTop + 30, y2 = lanesTop + 66;
+  const R = roles || { ctrl: t("so'rovni qabul qiladi", 'принимает запрос'), svc: t('ishni bajaradi', 'выполняет работу') };
+  const part = (k, x) => (
+    <div className="n1-part n1-st" data-st={st[k] || ''} style={{ '--c': k === 'ctrl' ? PART.ctrl : PART.svc, left: x, top: 124, width: 236, height: 152 }}>
+      <div className="nm"><i />{cfg.names[k]}</div>
+      <div className="role">{R[k]}</div>
+      {!(sock && sock[k]) && <span className="cd" dangerouslySetInnerHTML={html(cfg.codes[k])} />}
+      {sock && sock[k] && <span className={`n1-sock${sock[k].er ? ' er' : ''}`} style={{ left: 14, top: 72, width: 150 }}>{sock[k].t}</span>}
+      {lab && lab[k] && <span className="lab"><span className="n1-lab">{lab[k]}</span></span>}
+      <span className="fl">{cfg.files[k]}</span>
+    </div>
+  );
+  return <N1Fit w={760} h={H} max={max}>
+    {tag && <span className="n1-tagl" style={{ left: 20, top: 8 }}>{tag}</span>}
+    <div className="n1-br n1-st" data-st={st.br || ''} style={{ left: 20, top: 58, width: 170, height: 170 }}>
+      <div className="top"><i /><i /><i /><span>{url}</span></div>
+      <div className="bd">{out == null ? <span className="wait">{t('javob kutilmoqda…', 'ждём ответ…')}</span> : <span key={String(out)} className={`out${outKind ? ' ' + outKind : ''}`}>{out}</span>}</div>
+    </div>
+    <span className="n1-cap" style={{ left: 20, top: 236, width: 170 }}>{t('Brauzer · loyihadan tashqarida', 'Браузер · вне проекта')}</span>
+    <div className="n1-app" style={{ left: 214, top: 34, width: 526, height: frameBottom - 34 }} />
+    <span className="n1-tagl" style={{ left: 230, top: 44 }}>{t('Nest ilovasi · cars-api', 'Приложение Nest · cars-api')}</span>
+    <div className="n1-mod n1-st" data-st={st.mod || ''} style={{ left: 230, top: 66, width: 494, height: 44 }}>
+      <span className="lg">{cfg.names.mod} · {t("ro'yxat", 'список')}</span>
+      {lab && lab.mod && <span className="lab"><span className="n1-lab">{lab.mod}</span></span>}
+    </div>
+    <span className={`n1-chip${modHot ? ' hot' : ''}`} style={{ left: 348, top: 76, transform: 'translateX(-50%)' }}>{cfg.chips[0]}</span>
+    <span className={`n1-chip${modHot ? ' hot' : ''}`} style={{ left: 606, top: 76, transform: 'translateX(-50%)' }}>{cfg.chips[1]}</span>
+    <i className={`n1-link${links ? ' on' : ''}`} style={{ left: 347, top: 110, height: 14 }} />
+    <i className={`n1-link${links ? ' on' : ''}`} style={{ left: 605, top: 110, height: 14 }} />
+    {part('ctrl', 230)}
+    {part('svc', 488)}
+    {exp != null && <div className="n1-exp n1-st" data-st={exp} style={{ left: 230, top: 288, width: 494, height: 30 }}><b>{t('Ichida: Express', 'Внутри: Express')}</b><span>(platform-express) — {t("so'rovni haqiqatda shu qabul qiladi", 'запрос на самом деле принимает он')}</span></div>}
+    {lanes && <>
+      <i className="n1-stem" style={{ left: 104, top: 252, height: lanesTop - 252 }} />
+      <i className="n1-stem" style={{ left: 347, top: 276, height: lanesTop - 276 }} />
+      <i className="n1-stem" style={{ left: 605, top: 276, height: lanesTop - 276 }} />
+      <div className="n1-lanes" style={{ left: 20, top: lanesTop, width: 720, height: 94 }}>
+        <i className="n1-ln" style={{ left: 85, width: 501, top: 30 }} />
+        <i className="n1-ln" style={{ left: 85, width: 501, top: 66 }} />
+        <i className="n1-lf r" style={{ left: 85, top: 30, width: fill[0] }} />
+        <i className="n1-lf g" style={{ right: 720 - 586, top: 66, width: fill[1] }} />
+        {[85, 328, 586].map((x) => <React.Fragment key={x}><i className="n1-stn" style={{ left: x, top: 31 }} /><i className="n1-stn" style={{ left: x, top: 67 }} /></React.Fragment>)}
+        <span className="n1-lbl" style={{ top: 31 }}>{t("so'rov →", 'запрос →')}</span>
+        <span className="n1-lbl" style={{ top: 67 }}>{t('← javob', '← ответ')}</span>
+      </div>
+      {pkt && <span className={`n1-pk${pkt.grn ? ' grn' : ''}${pkt.off ? ' off' : ''}${pkt.loop ? ' loop' : ''}`} style={pkt.loop ? { '--xa': NM_X.b + 'px', '--xc': NM_X.s + 'px', '--y1': y1 + 'px', '--y2': y2 + 'px', left: NM_X.b, top: y1 } : { left: NM_X[pkt.x || 'b'], top: pkt.lane === 2 ? y2 : y1 }}>{pkt.label}</span>}
+    </>}
+    {readRow && <div className={`n1-ro${read ? '' : ' off'}`} style={{ left: 20, top: readTop, width: 720, height: 46 }}>{read && <><span className="rf">{read[0]}</span><code dangerouslySetInnerHTML={html(read[1])} /></>}</div>}
+    {extra}
+  </N1Fit>;
+}
+
+// ---------- 14-ekran: Dependency Injection — Nest konteyneri instance'ni konstruktorga olib boradi ----------
+// st qadamlari (S11 segmentlari bilan bir xil tartib): a savol · b Express · c providers · d instance · e konstruktorga · f nom · g foyda · h xulosa
+function DiMachine({ beat }) {
+  const T8 = [
+    // mod, box, ctrl, prov, prm, sock, tok, pth, row, rowDim, ro
+    ['g', 'g', 'hl', 0, 1, 'wait', 'off', '', 1, 0, null],
+    ['g', 'g', 'dim', 0, 0, 'empty', 'off', '', 2, 0, null],
+    ['hl', '', 'dim', 1, 0, 'empty', 'off', 'dash', 2, 1, ['src/app.module.ts:8', 'providers: [<span class="n1-c">AppService</span>],']],
+    ['', 'hl', 'dim', 0, 0, 'empty', 'box', 'dash', 2, 1, ['terminal', '[Nest] LOG [InstanceLoader] <span class="n1-ok">AppModule dependencies initialized</span>']],
+    ['', '', 'hl', 0, 1, 'full', 'slot', 'solid', 2, 1, ['terminal', '[Nest] LOG [InstanceLoader] <span class="n1-ok">AppModule dependencies initialized</span>']],
+    ['', '', '', 0, 0, 'full', 'slot', 'solid', 2, 1, ['terminal', '[Nest] LOG [InstanceLoader] <span class="n1-ok">AppModule dependencies initialized</span>']],
+    ['', '', '', 0, 0, 'full', 'slot', 'solid', 3, 0, null],
+    ['', '', '', 1, 1, 'full', 'slot', 'solid', 3, 1, null],
+  ][Math.min(beat, 7)];
+  const [mod, box, ctrl, prov, prm, sock, tok, pth, row, rowDim, ro] = T8;
+  const slot = tok === 'slot';
+  const rowCls = (r) => `n1-row${row === r ? ' on' : ''}${row === r && rowDim ? ' dim' : ''}`;
+  const files = [['cars.js', 1], ['orders.js', 2], ['users.js', 3]];
+  return <N1Fit w={760} h={510}>
+    <span className="n1-tagl" style={{ left: 26, top: 8 }}>{t("Nest ishga tushganda — birinchi so'rovdan oldin", 'Когда Nest запускается — до первого запроса')}</span>
+    <div className="n1-mod n1-st" data-st={mod} style={{ left: 26, top: 40, width: 708, height: 46, display: 'flex', alignItems: 'center', gap: 10, padding: '0 14px' }}>
+      <span className="lg">AppModule</span>
+      <span className="n1-chip" style={{ position: 'static' }}>controllers: [AppController]</span>
+      <span className={`n1-chip${prov ? ' hot' : ''}`} style={{ position: 'static' }}>providers: [AppService]</span>
+      <span className={`n1-you${beat >= 7 ? ' on' : ''}`} style={{ position: 'static' }}>{t('1 · siz yozasiz', '1 · пишете вы')}</span>
+      <span style={{ marginLeft: 'auto', font: `500 11px ${MONO}`, color: T.ink3 }}>src/app.module.ts</span>
+    </div>
+    <svg className="n1-svg" width="760" height="510" viewBox="0 0 760 510"><defs><marker id="n1ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill={pth === 'solid' ? T.green : '#A8AFBD'} /></marker></defs><path className={`n1-pth${pth ? ' ' + pth : ''}`} d="M208 186 C242 186 250 222 296 222" markerEnd="url(#n1ah)" /></svg>
+    <div className={`n1-box2 n1-st${tok !== 'off' ? ' has' : ''}`} data-st={box} style={{ left: 26, top: 106, width: 180, height: 186 }}>
+      <span className="bl">{t('NEST KONTEYNERI', 'КОНТЕЙНЕР NEST')}</span>
+      <span className="sh" style={{ left: 15, top: 60, width: 150, height: 40 }}>{t("bo'sh", 'пусто')}</span>
+      <span className={`nq${beat >= 7 ? ' on' : ''}`}>{t("Yaratish va berish — Nest'ning ishi", 'Создать и передать — работа Nest')}</span>
+    </div>
+    <div className="n1-part n1-st" data-st={ctrl} style={{ '--c': PART.ctrl, left: 286, top: 106, width: 448, height: 186 }}>
+      <div className="nm"><i />AppController</div>
+      <span className="fl" style={{ left: 'auto', right: 14, top: 16, bottom: 'auto' }}>src/app.controller.ts:6</span>
+      <div className="n1-line" style={{ left: 14, top: 46, width: 420 }}><span><span className="n1-k">constructor</span>(<span className="n1-k">private readonly</span> <span className={`n1-prm${prm ? ' hot' : ''}`}>appService: <span className="n1-c">AppService</span></span>) {'{}'}</span></div>
+      <span className={`n1-sock${sock === 'wait' ? ' wait' : ''}`} style={{ left: 14, top: 98, width: 150, borderStyle: slot ? 'solid' : 'dashed', borderColor: slot ? 'transparent' : undefined }}>{sock === 'full' ? '' : '?'}</span>
+      <span className="n1-abs" style={{ left: 178, top: 107, font: `500 12.5px ${MONO}`, color: T.ink2, whiteSpace: 'nowrap' }}>→ this.appService <b className="n1-tayyor" style={{ opacity: slot ? 1 : 0 }}>✓ {t('tayyor', 'готово')}</b></span>
+      <span className={`n1-you${beat >= 7 ? ' on' : ''}`} style={{ left: 300, top: 147 }}>{t("2 · siz so'raysiz", '2 · просите вы')}</span>
+    </div>
+    <span className={`n1-tok twin${slot ? ' on' : ''}`} style={{ left: 116, top: 186, width: 150 }}><i />AppService</span>
+    <span className={`n1-tok${tok === 'off' ? ' off' : ''}`} style={{ left: slot ? 375 : 116, top: slot ? 222 : 186, width: 150 }}><i />AppService</span>
+    <span className={`n1-ann${beat >= 5 ? ' on' : ''}`} style={{ left: 214, top: 150 }}><b>inject</b></span>
+    <span className={`n1-ann${beat === 5 || beat === 6 ? ' on' : ''}`} style={{ left: 300, top: 252 }}><b>dependency</b> — {t('Controller usiz ishlamaydi', 'Controller без него не работает')}</span>
+    <div className={`${rowCls(1)} n1-srch`} style={{ left: 26, top: 312, width: 708, height: 128 }}>
+      <span className="n1-tagl" style={{ left: 14, top: 12 }}>{t('Search · butun loyiha', 'Search · весь проект')}</span>
+      <div className="n1-fld" style={{ left: 14, top: 36, width: 420 }}><span style={{ color: T.ink3 }}>⌕</span><span>new AppService</span></div>
+      <div className="n1-res" style={{ left: 14, top: 86 }}>{t('0 ta natija', '0 результатов')}<span>{t("hech kim uni new bilan yaratmagan", 'никто не создавал его через new')}</span></div>
+    </div>
+    <div className={rowCls(2)} style={{ left: 26, top: 312, width: 708, height: 128 }}>
+      <span className="n1-tagl" style={{ left: 0, top: 0 }}>{t('Express · shartli misol — uch fayl, uch marta new', 'Express · условный пример — три файла, три раза new')}</span>
+      {files.map(([f, n], i) => <div key={f} className="n1-exf" style={{ left: i * 241, top: 24, width: 226, height: 104 }}>
+        <div className="tb">{f}</div>
+        <span className="cl"><span style={{ color: T.ink3 }}>const</span> s = <b style={{ color: T.accent }}>new</b> CarsService();</span>
+        <span className="n1-tok grey" style={{ left: 66, top: 78, width: 112, height: 28, fontSize: 11.5 }}><i />instance {n}</span>
+      </div>)}
+    </div>
+    <div className={rowCls(3)} style={{ left: 26, top: 312, width: 708, height: 128 }}>
+      <div className="n1-bn" style={{ left: 0, top: 0, width: 226, height: 128 }}>
+        <svg width="200" height="72" viewBox="0 0 200 72"><rect x="4" y="6" width="74" height="24" rx="6" fill="#fff" stroke={PART.ctrl} strokeWidth="2" /><rect x="4" y="42" width="74" height="24" rx="6" fill="#fff" stroke={PART.ctrl} strokeWidth="2" /><path d="M78 18 C104 18 104 36 122 36 M78 54 C104 54 104 36 122 36" stroke={T.green} strokeWidth="2" fill="none" /><rect x="122" y="22" width="74" height="28" rx="14" fill="#E3F5EC" stroke={T.green} strokeWidth="2" /><circle cx="136" cy="36" r="4" fill={T.green} /></svg>
+        <span className="bt">{t('Bitta instance', 'Один instance')}</span>
+      </div>
+      <div className="n1-bn" style={{ left: 241, top: 0, width: 226, height: 128 }}>
+        <svg width="200" height="72" viewBox="0 0 200 72"><rect x="4" y="18" width="80" height="36" rx="8" fill="#fff" stroke={PART.ctrl} strokeWidth="2" /><rect x="14" y="27" width="60" height="18" rx="9" fill="#fff" stroke="#A8AFBD" strokeWidth="1.5" strokeDasharray="4 3" /><path d="M118 36 H90" stroke={PART.mod} strokeWidth="2" fill="none" /><path d="M96 31 L88 36 L96 41" stroke={PART.mod} strokeWidth="2" fill="none" /><rect x="118" y="22" width="78" height="28" rx="14" fill="#FFFBF0" stroke={PART.mod} strokeWidth="2" strokeDasharray="5 3" /><text x="157" y="40" textAnchor="middle" fontFamily={SANS} fontSize="11" fontWeight="700" fill={PART.mod}>{t('soxta', 'фейк')}</text></svg>
+        <span className="bt">{t('Testda soxtasi beriladi', 'В тесте дают фейк')}</span>
+      </div>
+      <div className="n1-bn" style={{ left: 482, top: 0, width: 226, height: 128 }}>
+        <svg width="200" height="72" viewBox="0 0 200 72"><rect x="110" y="18" width="86" height="36" rx="8" fill="#fff" stroke={PART.ctrl} strokeWidth="2" /><rect x="120" y="27" width="66" height="18" rx="9" fill="#E3F5EC" stroke={T.green} strokeWidth="1.5" /><path d="M64 36 H102" stroke={T.green} strokeWidth="2" fill="none" /><path d="M96 31 L104 36 L96 41" stroke={T.green} strokeWidth="2" fill="none" /><rect x="4" y="16" width="58" height="40" rx="10" fill="#F3F4F7" stroke="#9AA1B1" strokeWidth="2" strokeDasharray="5 3" /><text x="33" y="42" textAnchor="middle" fontFamily={SANS} fontSize="16" fontWeight="700" fill={T.ink3}>?</text></svg>
+        <span className="bt">{t('Controller manbani bilmaydi', 'Controller не знает источника')}</span>
+      </div>
+    </div>
+    <div className={`n1-ro${ro ? '' : ' off'}`} style={{ left: 26, top: 456, width: 708, height: 46 }}>{ro && <><span className="rf">{ro[0]}</span><code dangerouslySetInnerHTML={html(ro[1])} /></>}</div>
+  </N1Fit>;
+}
+
+// 23 · providers bo'sh: Nest konteyneri bo'sh, CarsController konstruktori (?) — xatoning 3 bo'lagi raqam bilan
+// who — dependency so'ragan klass · dep — yetishmagan dependency · mod — modul yorlig'i (Nest-2 20-ekran ham shu rasm)
+function MiniProviders({ broken, fixed, pin, known = true, who = 'CarsController', dep = 'CarsService', mod = 'CarsModule · cars.module.ts' }) {
+  const bad = broken && !fixed;
+  const pins = [].concat(pin || []);
+  const fs = dep.length > 14 ? 10.5 : 12.5;
+  return <N1Mini>
+    <div className="n1-mod" style={{ left: 6, top: 8, width: 380, height: 112 }}><span className="lg">{mod}</span></div>
+    <span className={`n1-pin${pins.includes(3) ? ' on' : ''}`} style={{ left: 214, top: 4 }}>3</span>
+    <div className={`n1-box2${bad ? '' : ' has'}`} style={{ left: 20, top: 28, width: 150, height: 80 }}><span className="bl" style={{ fontSize: 9.5, left: 10, top: 9 }}>{t('NEST KONTEYNERI', 'КОНТЕЙНЕР NEST')}</span><span className="sh" style={{ left: 9, top: 28, width: 128, height: 34 }}>{t("bo'sh", 'пусто')}</span></div>
+    <span className={`n1-tok${bad ? ' off' : ''}`} style={{ left: 95, top: 79, width: 128, height: 34, fontSize: fs }}><i />{dep}</span>
+    <i className={`n1-arr${bad ? ' bad' : ''}`} style={{ left: 176, top: 67, width: 30 }} />
+    <div className="n1-part" style={{ '--c': PART.ctrl, left: 212, top: 28, width: 166, height: 80, padding: '8px 10px' }}>
+      <div className="nm" style={{ fontSize: 13.5 }}><i />{who}</div>
+      <span className={`n1-sock${bad ? ' er' : ''}`} style={{ left: 9, top: 28, width: 144, height: 34 }}>{bad ? '(?)' : ''}</span>
+    </div>
+    <span className={`n1-tok${bad ? ' off' : ''}`} style={{ left: 295, top: 79, width: 140, height: 34, fontSize: fs }}><i />{dep}</span>
+    <span className={`n1-pin${pins.includes(1) ? ' on' : ''}`} style={{ left: 366, top: 20 }}>1</span>
+    <span className={`n1-pin${pins.includes(2) ? ' on' : ''}`} style={{ left: 366, top: 70 }}>2</span>
+    <span className="n1-tagl" style={{ left: 404, top: 12 }}>{t('Server', 'Сервер')}</span>
+    <span className={`n1-say ${bad ? 'er' : 'ok'}`} style={{ left: 404, top: 34, color: known ? undefined : T.ink3 }}>{!known ? '…' : bad ? t('✕ yiqildi', '✕ упал') : t('✓ ishlayapti', '✓ работает')}</span>
+    <span className={`n1-ann${pins.includes(2) ? ' on' : ''}`} style={{ left: 404, top: 64, fontSize: 11.5, whiteSpace: 'normal', width: 112 }}>{t('index [0] — birinchi parametr', 'index [0] — первый параметр')}</span>
+  </N1Mini>;
+}
+// 24 · imports'da CarsModule yo'q: AppModule CarsModule'ni ulamadi — Nest cars papkasini o'qimadi, /cars → 404
+function MiniImports({ broken, fixed, known = true, unread = true }) {
+  const bad = broken && !fixed;
+  const dim = bad && unread ? 'g' : '';
+  return <N1Mini>
+    <div className="n1-mod" style={{ left: 4, top: 8, width: 194, height: 104 }}><span className="lg">AppModule</span></div>
+    <span className="n1-chip" style={{ left: 14, top: 28, fontSize: 11.5 }}>{bad ? 'imports: []' : 'imports: [CarsModule]'}</span>
+    <span className="n1-chip" style={{ left: 14, top: 64, fontSize: 11.5, opacity: .6 }}>AppController</span>
+    <i className={`n1-arr${bad ? ' bad' : ''}`} style={{ left: 204, top: 60, width: 30 }} />
+    {bad && <span className="n1-say er" style={{ left: 210, top: 34, fontSize: 14 }}>✕</span>}
+    <div className="n1-mod n1-st" data-st={dim} style={{ left: 240, top: 8, width: 152, height: 104 }}><span className="lg">CarsModule</span></div>
+    <span className="n1-chip n1-st" data-st={dim} style={{ left: 250, top: 28, fontSize: 11.5, borderColor: '#BFD9EA' }}>CarsController</span>
+    <span className="n1-chip n1-st" data-st={dim} style={{ left: 250, top: 64, fontSize: 11.5, borderColor: '#BFE3D2' }}>CarsService</span>
+    {bad && unread && <span className="n1-say er" style={{ left: 250, top: 94, fontSize: 11.5, background: T.paper, padding: '0 4px' }}>{t("Nest o'qimadi", 'Nest не прочитал')}</span>}
+    <Res left={404} top={26} rows={bad ? [['GET /cars', known ? 404 : null], ['GET /', known ? 200 : null]] : [['GET /cars', 200], ['GET /', 200]]} />
+  </N1Mini>;
+}
+// 25 · @Controller('cars') yo'q: klass controllers ro'yxatida, lekin belgisi yo'q — Nest tanimaydi
+function MiniCtrlDeco({ broken, fixed }) {
+  const bad = broken && !fixed;
+  return <N1Mini>
+    <div className="n1-part" style={{ '--c': PART.ctrl, left: 6, top: 8, width: 230, height: 104, padding: '40px 12px 10px' }}>
+      <div className="nm" style={{ fontSize: 14 }}><i />CarsController</div>
+      <div className="role" style={{ fontSize: 12 }}>controllers: [CarsController]</div>
+    </div>
+    <span className={`n1-badge ${bad ? 'gone' : 'ok'}`} style={{ left: 18, top: 18 }}>{bad ? t("@Controller — yo'q", '@Controller — нет') : "@Controller('cars')"}</span>
+    <i className={`n1-arr${bad ? ' bad' : ''}`} style={{ left: 244, top: 60, width: 30 }} />
+    <div className="n1-box2" style={{ left: 282, top: 8, width: 232, height: 104 }}>
+      <span className="bl" style={{ fontSize: 9.5 }}>NEST</span>
+      <span className={`n1-say ${bad ? 'er' : 'ok'}`} style={{ left: 14, top: 30, whiteSpace: 'normal', width: 206 }}>{bad ? t('belgi yo\'q → «invalid controller», server yiqildi', 'нет метки → «invalid controller», сервер упал') : t("Controller deb tanidi → Mapped {/cars, GET}", 'узнал как Controller → Mapped {/cars, GET}')}</span>
+    </div>
+  </N1Mini>;
+}
+// 26 · @Injectable() yo'q: dependency'siz ishlaydi; PricingService qo'shilsa — konstruktorga hech narsa kelmaydi, so'rovda 500
+function MiniInjectable({ broken, dep, fixed, known = true }) {
+  const bad = broken && !fixed;
+  const res = !known ? null : !dep ? 200 : bad ? 500 : 200;
+  return <N1Mini>
+    <div className="n1-part" style={{ '--c': PART.svc, left: 4, top: 8, width: 280, height: 104, padding: '8px 12px' }}>
+      <div className="nm" style={{ fontSize: 14, marginTop: 4 }}><i />CarsService</div>
+    </div>
+    <span className={`n1-badge ${bad ? 'gone' : 'ok'}`} style={{ left: 128, top: 18 }}>{bad ? t("@Injectable — yo'q", '@Injectable — нет') : '@Injectable()'}</span>
+    {!dep && <span className="n1-say" style={{ left: 18, top: 66, color: T.ink2, fontWeight: 500, fontFamily: MONO, fontSize: 11.5 }}>{t("konstruktor yo'q", 'конструктора нет')}</span>}
+    {dep && <span className="n1-abs" style={{ left: 18, top: 66, font: `500 11.5px ${MONO}`, color: T.ink2 }}>pricing:</span>}
+    {dep && <span className={`n1-sock${bad ? ' er' : ''}`} style={{ left: 82, top: 56, width: 176, height: 32 }}>{bad ? 'undefined' : ''}</span>}
+    {dep && <span className={`n1-tok${bad ? ' off' : ''}`} style={{ left: 170, top: 72, width: 168, height: 32, fontSize: 12 }}><i />PricingService</span>}
+    <div className="n1-box2 has" style={{ left: 292, top: 8, width: 100, height: 104 }}><span className="bl" style={{ fontSize: 9.5, left: 10 }}>{t('KONTEYNER', 'КОНТЕЙНЕР')}</span></div>
+    {dep && bad && <span className="n1-tok" style={{ left: 342, top: 66, width: 88, height: 30, fontSize: 10.5 }}><i />Pricing</span>}
+    {dep && bad && <span className="n1-say er" style={{ left: 300, top: 90, fontSize: 10.5 }}>{t('berilmadi', 'не передан')}</span>}
+    <Res left={404} top={36} rows={[['GET /cars', res]]} />
+  </N1Mini>;
+}
+
+// ---------- 3-ekran: Express'da har jamoa papkalarni o'zicha bo'ladi ----------
+function TeamsStrip({ st }) {
+  const teams = [['routes/', 'controllers/', 'services/'], ['api/', 'handlers/', 'logic/'], ['src/', 'lib/', 'utils/']];
+  return <N1Fit w={760} h={128}>
+    <span className="n1-tagl" style={{ left: 20, top: 4 }}>{t("Express · har jamoa o'zicha", 'Express · каждая команда по-своему')}</span>
+    {teams.map((tm, i) => <div key={i} className="n1-team n1-st" data-st={st} style={{ left: 20 + i * 244, top: 24, width: 232, height: 100 }}>
+      <h6>{t(`${i + 1}-jamoa`, `Команда ${i + 1}`)}</h6>{tm.map((f) => <div key={f}><i />{f}</div>)}
+    </div>)}
+  </N1Fit>;
+}
+
+// ---------- 10-ekran: Module — Nest ko'radigan uch ro'yxat; faylda bor, ro'yxatda yo'q — Nest uchun yo'q ----------
+function Shelves({ beat }) {
+  const sh = (k) => (beat === 1 ? (k === 'imports' ? 'dim' : 'hl') : beat === 2 ? (k === 'imports' ? 'hl' : 'dim') : beat >= 3 ? 'dim' : '');
+  const box = (k, x, chips) => <div className={`n1-shelf ${sh(k)}`} style={{ left: x, top: 34, width: 232, height: 62 }}>
+    <span className="sl">{k}: [ ]</span>
+    {chips.length ? chips.map(([c, col], i) => <span key={c} className="n1-file" style={{ '--c': col, left: 12 + i * 120, top: 16 }}><i />{c}</span>) : <span className="emp">{t("bo'sh — boshqa modul yo'q", 'пусто — других модулей нет')}</span>}
+  </div>;
+  return <N1Fit w={760} h={beat >= 3 ? 168 : 104}>
+    <span className="n1-tagl" style={{ left: 20, top: 4 }}>{t("Nest ko'radigan narsa — faqat shu uch ro'yxat", 'Nest видит только эти три списка')}</span>
+    {box('imports', 20, [])}
+    {box('controllers', 264, [['AppController', PART.ctrl]])}
+    {box('providers', 508, [['AppService', PART.svc]])}
+    {beat >= 3 && <>
+      <span className="n1-tagl" style={{ left: 20, top: 112 }}>{t("Faylda bor, ro'yxatda yo'q", 'В файле есть, в списке нет')}</span>
+      <div className="n1-abs" style={{ left: 20, top: 128, width: 720, display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'nowrap' }}>
+        <span className="n1-file new" style={{ '--c': PART.ctrl, position: 'static' }}><i />users.controller.ts</span>
+        <span className="n1-ghost" style={{ position: 'static' }}>✕ {t("controllers'da yo'q", 'нет в controllers')}</span>
+        <span style={{ width: 10 }} />
+        <span className="n1-file new" style={{ '--c': PART.svc, position: 'static' }}><i />users.service.ts</span>
+        <span className="n1-ghost" style={{ position: 'static' }}>✕ {t("providers'da yo'q", 'нет в providers')}</span>
+      </div>
+    </>}
+  </N1Fit>;
+}
+function ModTree() {
+  const kids = ['CarsModule', 'UsersModule', 'OrdersModule'];
+  return <N1Fit w={760} h={196}>
+    <span className="n1-tagl" style={{ left: 20, top: 4 }}>{t('Modullar strukturasi', 'Структура модулей')}</span>
+    <div className="n1-mod" style={{ left: 200, top: 30, width: 360, height: 46, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><span className="lg">AppModule</span><span style={{ font: `500 12px ${MONO}` }}>imports: [CarsModule, UsersModule, OrdersModule]</span></div>
+    <i className="n1-tree-ln" style={{ left: 379, top: 76, width: 2, height: 22 }} />
+    <i className="n1-tree-ln" style={{ left: 135, top: 98, width: 492, height: 2 }} />
+    {kids.map((m, i) => <React.Fragment key={m}>
+      <i className="n1-tree-ln" style={{ left: 135 + i * 246, top: 98, width: 2, height: 22 }} />
+      <div className="n1-mod" style={{ left: 18 + i * 246, top: 120, width: 236, height: 66, animation: `mk-up .4s ${0.15 + i * 0.15}s ease both` }}>
+        <span className="lg">{m}</span>
+        <span className="n1-file" style={{ '--c': PART.ctrl, left: 10, top: 18, padding: '5px 8px', fontSize: 11 }}><i />controllers</span>
+        <span className="n1-file" style={{ '--c': PART.svc, left: 126, top: 18, padding: '5px 8px', fontSize: 11 }}><i />providers</span>
+      </div>
+    </React.Fragment>)}
+  </N1Fit>;
+}
+
+// ---------- 32-ekran: o'quvchi loyihasi restoran tilida — har bekatda ikki so'z ----------
+// DICT (07-bo'lak) ma'lumoti: [restoran so'zi, atama, vazifa] — RU tarjimasi ham o'sha yerdan
+function KitchenMap({ beat, dict }) {
+  const by = {}; dict.forEach(([w, a, v]) => { by[a] = { w, a, v }; });
+  const ST = [
+    { k: 'Guard', x: 120, c: T.purple },
+    { k: 'Controller', x: 252, c: PART.ctrl },
+    { k: 'Service', x: 384, c: PART.svc },
+    { k: 'Repository', x: 516, c: T.ink2 },
+    { k: 'Entity', x: 648, c: T.ink2 },
+  ];
+  const cls = (k) => (beat === 1 ? (k === 'Service' ? ' hl' : ' dim') : beat === 2 ? (k === 'Controller' || k === 'Service' ? ' hl' : ' dim') : '');
+  return <N1Fit w={760} h={300}>
+    <div className="n1-kit">
+      <span className="n1-tagl" style={{ left: 8, top: 0 }}>{t("O'quvchi loyihasi · IntroNestArxitechture · bitta buyurtma", 'Проект ученика · IntroNestArxitechture · один заказ')}</span>
+      <div className="n1-mod" style={{ left: 252, top: 26, width: 236, height: 36, opacity: beat === 1 || beat === 2 ? 0.4 : 1, transition: 'opacity .4s' }}>
+        <span className="lg">{by.Module.a} · {by.Module.w}</span>
+        <span className="n1-abs" style={{ left: 14, top: 12, font: `500 11px ${MONO}`, color: T.ink2 }}>{by.Module.v}: Controller · Service</span>
+      </div>
+      <div className={`st${beat === 1 || beat === 2 ? ' dim' : ''}`} style={{ '--c': '#C9CED8', left: 8, top: 84, width: 84, height: 120, borderWidth: 1.5 }}>
+        <span className="w">{t('mijoz', 'клиент')}</span><span className="a">{t('brauzer', 'браузер')}</span><span className="v">{t("so'rov yuboradi", 'отправляет запрос')}</span>
+      </div>
+      {ST.map((x, i) => {
+        const d = by[x.k];
+        return <div key={x.k} className={`st${cls(x.k)}`} style={{ '--c': x.c, left: x.x, top: 84, width: 104, height: 120, animation: `mk-up .4s ${i * 0.1}s ease both` }}>
+          <span className="w">{d.w}</span><span className="a">{d.a}</span><span className="v">{d.v}</span>
+          {x.k === 'Service' && <span className={`f${beat === 1 ? ' on' : ''}`}>src/api/car/car.service.ts</span>}
+        </div>;
+      })}
+      {[92, 224, 356, 488, 620].map((x) => <i key={x} className="ar" style={{ left: x + 4, top: 143, width: 20 }} />)}
+      <span className="n1-abs" style={{ left: 8, top: 216, font: `600 11px ${MONO}`, color: T.ink3 }}>{t("so'rov bilan keladi", 'приходит с запросом')}</span>
+      <span className={`n1-lab n1-st`} data-st={beat === 1 || beat === 2 ? 'dim' : ''} style={{ position: 'absolute', left: 8, top: 234 }}>{by.DTO.a} · {by.DTO.w} — {by.DTO.v}</span>
+      <span className="n1-abs" style={{ left: 400, top: 216, font: `600 11px ${MONO}`, color: T.ink3 }}>{t('javob shu shaklda qaytadi', 'ответ возвращается в этой форме')}</span>
+      <span className={`n1-lab n1-st`} data-st={beat === 1 || beat === 2 ? 'dim' : ''} style={{ position: 'absolute', left: 400, top: 234 }}>{by.successRes.a} · {by.successRes.w} — {by.successRes.v}</span>
+      <span className={`no${beat === 2 ? ' on' : ''}`} style={{ left: 236, top: 270 }}>{t("ofitsiant oshxonaga kirmaydi: Controller Service'ni chaqiradi, hisobni o'zi qilmaydi", 'официант не заходит на кухню: Controller вызывает Service, сам не считает')}</span>
+    </div>
+  </N1Fit>;
+}
+
+// ---------- Nest-2 rasmi: o'quvchi loyihasida bitta so'rovning to'liq yo'li (8 bekat) ----------
+// Bekat kalitlari Nest-2 SUM2 bilan bir xil: br · pre · guard · pipe · ctrl · svc · repo · db
+// hl — yoritiladigan bekatlar (qolgani xira) · stop {k, code} — so'rov shu bekatda to'xtadi · ok {code} — so'rov bazagacha yetdi
+// marks [{k, code}] — paketsiz belgilar · resp 'ok'|'err'|'both' — javob shakli · mod 'broken' — forFeature yo'q · lab {k: so'z} · pins {k: raqam}
+const RM_X = { br: 8, pre: 101, guard: 194, pipe: 287, ctrl: 380, svc: 473, repo: 566, db: 659 };
+const RM_W = 84;
+function RepoMachine({ hl = [], stop, ok, marks = [], resp, mod, lab, pins = {}, url = 'GET /api/v1/car', tag, compact, max, extra }) {
+  const ST = [
+    ['br', t('Brauzer', 'Браузер'), 'Swagger', T.ink2],
+    ['pre', '/api/v1', t('prefiks', 'префикс'), T.ink2],
+    ['guard', 'Guard', t('token · rol', 'токен · роль'), '#B91C1C'],
+    ['pipe', 'DTO', 'Validation', '#C2410C'],
+    ['ctrl', 'Controller', 'route', PART.ctrl],
+    ['svc', 'Service', 'BaseService', PART.svc],
+    ['repo', 'Repository', 'TypeORM', T.purple],
+    ['db', 'PostgreSQL', 'cars', T.purple],
+  ];
+  const bad = mod === 'broken';
+  const st = (k) => (bad && k === 'repo' ? 'g' : hl.length ? (hl.includes(k) ? 'hl' : 'dim') : '');
+  const SH = lab ? 132 : 74; // bekat balandligi — so'z (lab) bo'lsa baland
+  const LY = 70 + SH + 24;    // yo'lak
+  const H = compact ? LY + 28 : LY + 84;
+  const cx = (k) => RM_X[k] + RM_W / 2;
+  const code = (c) => (/^2/.test(String(c)) ? 'ok' : 'er');
+  const pk = stop ? { k: stop.k, c: stop.code, ok: false } : ok ? { k: 'db', c: ok.code, ok: true } : null;
+  const right = pk && (pk.k === 'db' || pk.k === 'repo'); // o'ng chetda — yozuv chapga suriladi, kesilmaydi
+  return <N1Fit w={760} h={H} max={max}>
+    {tag && <span className="n1-tagl" style={{ left: 8, top: 0 }}>{tag}</span>}
+    <div className={`n1-mod n1-st`} data-st={hl.length && !hl.includes('mod') && !bad ? 'dim' : hl.includes('mod') ? 'hl' : ''} style={{ left: RM_X.ctrl - 6, top: 26, width: RM_X.repo + RM_W - RM_X.ctrl + 12, height: 30, borderColor: bad ? '#DC2626' : undefined, background: bad ? '#FEF2F2' : undefined }}>
+      <span className="lg" style={{ color: bad ? '#DC2626' : undefined }}>CarModule</span>
+      <span className="n1-abs" style={{ right: 10, top: 8, font: `500 11px ${MONO}`, color: bad ? '#DC2626' : T.ink2, whiteSpace: 'nowrap' }}>{bad ? 'imports: [ ]' : 'imports: forFeature([CarEntity])'}</span>
+      {lab && lab.mod && <span className="lab"><span className="n1-lab">{lab.mod}</span></span>}
+    </div>
+    {ST.map(([k, n, s, c]) => <div key={k} className="n1-part n1-st" data-st={st(k)} style={{ '--c': c, left: RM_X[k], top: 70, width: RM_W, height: SH, padding: '9px 8px', borderWidth: k === 'br' || k === 'pre' ? 1.5 : 2 }}>
+      <div className="nm" style={{ fontSize: 11.5 }}>{n}</div>
+      <div className="role" style={{ fontSize: 10, fontFamily: MONO, marginTop: 4, lineHeight: 1.25, whiteSpace: 'nowrap' }}>{s}</div>
+      {lab && lab[k] && <div style={{ marginTop: 6, font: `700 11px/1.25 ${SANS}`, color: T.ink }}>{lab[k]}</div>}
+    </div>)}
+    {Object.keys(pins).map((k) => <span key={k} className="n1-pin on" style={{ left: k === 'mod' ? RM_X.ctrl + 64 : RM_X[k] + RM_W - 12, top: k === 'mod' ? 16 : 62 }}>{pins[k]}</span>)}
+    {[...Array(7)].map((_, i) => <i key={i} className={`n1-arr${bad && i === 5 ? ' bad' : ''}`} style={{ left: RM_X[ST[i][0]] + RM_W + 1, top: 70 + SH / 2, width: 7, height: 2 }} />)}
+    <i className="n1-ln" style={{ left: cx('br'), width: cx('db') - cx('br'), top: LY }} />
+    {ST.map(([k]) => <i key={k} className="n1-stn" style={{ left: cx(k), top: LY + 1 }} />)}
+    {pk && <span className={`n1-pk${pk.ok ? ' grn' : ''}`} style={{ left: Math.max(cx(pk.k), 60), top: LY + 1, transform: right ? 'translate(-88%,-50%)' : undefined }}>{url}</span>}
+    {pk && <span className={`n1-res2`} style={{ left: Math.min(cx(pk.k) - 26, 700), top: LY + 16 }}><div><b className={pk.ok ? 'n1-ok' : 'n1-er'}>{pk.c}</b></div></span>}
+    {marks.map((m) => <span key={m.k + m.code} className="n1-res2" style={{ left: cx(m.k) - 22, top: LY - 12 }}><div><b className={code(m.code) === 'ok' ? 'n1-ok' : 'n1-er'}>{m.code}</b></div></span>)}
+    {!compact && <>
+      <div className={`n1-chip`} style={{ left: 8, top: LY + 48, opacity: resp === 'ok' || resp === 'both' ? 1 : 0.35, borderColor: '#BFE3D2', fontSize: 11.5 }}><b style={{ color: T.green }}>successRes</b> {'{ statusCode, message, data }'}</div>
+      <div className={`n1-chip`} style={{ left: 330, top: LY + 48, opacity: resp === 'err' || resp === 'both' ? 1 : 0.35, borderColor: '#F2A9A9', fontSize: 11.5 }}><b style={{ color: '#B91C1C' }}>AllExceptionFilter</b> {'{ statusCode, error: { message } }'}</div>
+    </>}
+    {extra}
+  </N1Fit>;
+}
+
+// ============================================================
 //  DVIGATEL — segment-qadam, sahna qobig'i, umumiy komponentlar
 // ============================================================
 const html = (s) => ({ __html: s });
@@ -423,9 +1036,11 @@ const vis = (at, beat) => at == null || at <= beat;
 
 // useAudio(segments) → currentId. Qadam faqat oldinga o'sadi. `ask` segmenti: ovoz savol beradi va
 // tugma bosilguncha kutadi (waits_for button_click/step) — «o'ylab ko'ring».
+// `act` segmenti (F-1120-02): xuddi shunday kutadi, lekin bosiladigan narsa SAHNADA (masalan kodda yonib turgan so'z);
+// sahna bosilganda answerAsk(seg.id, 0) chaqiradi, chap panelda act matni ko'rsatma bo'lib turadi.
 // `review` (Orqaga bilan qaytilgan ekran, A12): ovoz yo'q, ekran yakuniy holatda; ↺ boshidan — ovoz bilan qayta
 function useBeats(segments, review) {
-  const segs = useMemo(() => review ? [] : segments.map((s, i) => ({ id: s.id, text: voice(s.text), trigger: i === 0 ? 'on_mount' : 'after_previous', waits_for: s.ask ? { type: 'button_click', target: 'step' } : s.waits_for })), [segments, review]);
+  const segs = useMemo(() => review ? [] : segments.map((s, i) => ({ id: s.id, text: voice(s.text), trigger: i === 0 ? 'on_mount' : 'after_previous', waits_for: s.ask || s.act ? { type: 'button_click', target: 'step' } : s.waits_for })), [segments, review]);
   const audio = useAudio(segs);
   const [beat, setBeat] = useState(review ? segments.length - 1 : 0);
   const [done, setDone] = useState(!!review);
@@ -439,7 +1054,7 @@ function useBeats(segments, review) {
   // qadamni o'sha savolga suramiz, aks holda savol chiqmaydi va ekran qotadi
   useEffect(() => {
     if (!audio.waitingFor || audio.currentId) return;
-    const k = segments.findIndex((s, i) => i >= beat && s.ask);
+    const k = segments.findIndex((s, i) => i >= beat && (s.ask || s.act));
     if (k >= 0) { started.current = true; setBeat((b) => Math.max(b, k)); }
   }, [audio.waitingFor, audio.currentId, beat, segments]);
   // F-1031-16: oxirgi segment ovozi YUKLANAYOTGANDA ham isPlaying=false bo'ladi — Davom erta ochilmasin:
@@ -453,7 +1068,9 @@ function useBeats(segments, review) {
   const answerAsk = useCallback((segId, i) => {
     setGuess((g) => ({ ...g, [segId]: i }));
     if (audio.waitingFor) audio.triggerEvent('button_click', 'step');
-    else if (audio.muted || audio.status === 'idle') stepManual();
+    // F-1120-02: ovoz hali YUKLANAYOTGAN bo'lsa (status idle, lekin currentId — shu segment) qo'lda o'tilmaydi:
+    // aks holda qadam oldinga ketadi, runtime esa shu segmentda tugmani kutib qoladi va dars ovozsiz qoladi
+    else if (audio.muted || (audio.status === 'idle' && audio.currentId !== segId)) stepManual();
     else pendingAsk.current = true;
   }, [audio, stepManual]);
   useEffect(() => { if (audio.waitingFor && pendingAsk.current) { pendingAsk.current = false; audio.triggerEvent('button_click', 'step'); } }, [audio.waitingFor, audio]);
@@ -513,7 +1130,7 @@ function Say({ eyebrow, title, segments, beat, audio, stepManual, below, guess, 
   const now = segments[beat];
   const keyHtml = now.key || now.show || digits(now.text);
   const [tr, setTr] = useState(false);
-  const showManual = !review && (audio.muted || (!audio.isPlaying && !audio.waitingFor && beat < segments.length - 1 && audio.status === 'idle' && !now.ask));
+  const showManual = !review && (audio.muted || (!audio.isPlaying && !audio.waitingFor && beat < segments.length - 1 && audio.status === 'idle' && !now.ask && !now.act));
   const asking = now.ask && guess && guess[now.id] === undefined;
   const prevAsk = beat > 0 && segments[beat - 1].ask ? segments[beat - 1] : null;
   return (
@@ -530,6 +1147,7 @@ function Say({ eyebrow, title, segments, beat, audio, stepManual, below, guess, 
         )}
         <div className="mk-dots">{segments.map((s, i) => <i key={s.id} className={i === beat ? 'on' : (i < beat ? 'done' : '')} />)}</div>
         {review && <p className="mk-review">{t("Takrorlash: ekran tayyor holatda, ovozsiz. Ovoz bilan qayta eshitish — tepadagi «↺ boshidan». To'liq matn — «Matn».", 'Повтор: экран в готовом виде, без звука. Послушать заново со звуком — «↺ с начала» вверху. Полный текст — «Текст».')}</p>}
+        {now.act && guess && guess[now.id] === undefined && !review && <p className="n1-acthint" dangerouslySetInnerHTML={html(now.act)} />}
         {asking && (
           <div className="mk-ask"><p>{now.ask.q}</p><div className="row">{now.ask.opts.map((o, i) => <button key={i} className="mk-btn ghost sm" onClick={() => answerAsk(now.id, i)}>{o}</button>)}</div></div>
         )}
@@ -929,10 +1547,25 @@ const S1 = {
     { id: 'e', key: "Yetti bosqich. <b>Shoshilmang</b>: ustoz gapirib bo'lgach Davom ochiladi", text: "Dars yetti bosqichdan iborat. Shoshilmang: har ekranda ovozni o'chirish, ekranni boshidan eshitish va to'liq matnini o'qish mumkin. Ustoz gapirib bo'lgach, Davom tugmasi ochiladi. Bosing, boshlaymiz.", hl: [] },
   ],
 };
+// F-1120-02: sahna — darsning rasmi (Nest mashinasi) + yetti bosqich. Har gapda rasmning o'sha qismi o'zgaradi:
+// a Express ustida Nest · b ishlaydigan server (GET /cars) · c xato o'qiladi (?) · d o'quvchi darsi so'zlari · e reja
 function Screen1(p) {
-  return <Lesson p={p} S={S1} scene={({ seg }) => <div className="mk-light"><div className="mk-plan">
-    {S1.plan.map((x, i) => <div key={i} className={seg.hl.includes(i) ? 'hl' : (seg.hl.length ? 'dim' : '')}><b>0{i + 1}</b><span>{x}</span></div>)}
-  </div></div>} />;
+  return <Lesson p={p} S={S1} scene={({ seg, beat }) => <Scene1 seg={seg} beat={beat} />} />;
+}
+function Scene1({ seg, beat }) {
+  const out = beat === 1 ? '[{"id":1,"brand":"Chevrolet",…}, {"id":2,"brand":"Kia",…}]' : null;
+  const err = beat === 2;
+  const st = beat === 1 ? { br: 'hl' } : beat === 2 ? { ctrl: 'hl' } : beat === 3 ? { ctrl: 'hl', svc: 'hl', mod: 'hl' } : {};
+  return <div className="mk-light" style={{ padding: 16, display: 'grid', gap: 14 }}>
+    <NestMachine cfg={N1_CARS} url="localhost:3000/cars" out={out} outKind="code" st={st} exp={beat === 0 ? 'hl' : ''} links={beat >= 3}
+      sock={err ? { ctrl: { t: '(?)', er: true } } : null}
+      lab={beat >= 3 ? { ctrl: t('ofitsiant', 'официант'), svc: t('oshpaz', 'повар'), mod: t('shtat jadvali', 'штатное расписание') } : null}
+      readRow read={err ? ['terminal', "ERROR [ExceptionHandler] Nest can't resolve dependencies of the <span class=\"n1-er\">CarsController (?)</span>."] : beat === 1 ? ['terminal', '<span class="n1-c">GET /cars</span> → <span class="n1-ok">200</span>'] : null}
+      tag={t("Bugungi darsning rasmi — dars davomida shu rasmga qaytamiz", 'Картина сегодняшнего урока — к ней мы будем возвращаться')} />
+    <div className="n1-plan" style={{ position: 'static', gridTemplateColumns: 'repeat(7,minmax(0,1fr))', gap: 6 }}>
+      {S1.plan.map((x, i) => <div key={i} className={seg.hl.includes(i) ? 'hl' : (seg.hl.length ? 'dim' : '')}><b>0{i + 1}</b><span>{x}</span></div>)}
+    </div>
+  </div>;
 }
 
 // --- S2 Express: 20 qator → o'sgan loyiha (misol) ---
@@ -997,27 +1630,16 @@ const S3 = {
     { id: 'd', key: "Xulosa: Nest ichida <b>o'sha Express</b> ishlaydi — bilganingiz bekor bo'lmaydi, ustiga tartib qo'shiladi", text: "Xulosa va muhim fakt: Nest ichida o'sha Express ishlaydi. So'rovni haqiqatda Express qabul qiladi, Nest esa uni to'g'ri bo'lakka yo'naltiradi. Demak siz bilgan hech narsa bekor bo'lmaydi." },
   ],
 };
+// F-1120-02: sahna — a Express: har jamoa o'zicha · b Nest: uch bo'lak (mashina) · c har loyihada bir xil joy va nom · d ichida Express
 function Screen3(p) {
-  const teams = [['routes/', 'controllers/', 'services/'], ['api/', 'handlers/', 'logic/'], ['src/', 'lib/', 'utils/']];
-  return <Lesson p={p} S={S3} scene={({ beat }) => (<>
-    <Block at={0} beat={beat} dim={beat >= 1}><div className="mk-light" style={{ padding: 14 }}>
-      <div className="mk-tag">{t("Express · har jamoa o'zicha", 'Express · каждая команда по-своему')}</div>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10 }}>
-        {teams.map((tm, i) => <div key={i} className="mk-card"><h5>{t(`${i + 1}-jamoa`, `Команда ${i + 1}`)}</h5>{tm.map((f) => <div key={f} className="mk-file" style={{ padding: '2px 0' }}><i style={{ background: T.ink3 }} />{f}</div>)}</div>)}
-      </div>
-    </div></Block>
-    <Block at={1} beat={beat}><div className="mk-light" style={{ padding: 16, border: `2px solid ${beat >= 3 ? T.line : T.accent}`, transition: 'border-color .4s' }}>
-      <div className="mk-tag" style={{ color: T.accent }}>{t('NestJS · tartib va nomlar — hamma loyihada bir xil', 'NestJS · порядок и имена — одинаковы в любом проекте')}</div>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12 }}>
-        {[['Controller', PART.ctrl, t("so'rovni qabul qiladi", 'принимает запрос')], ['Service', PART.svc, t('ishni bajaradi', 'выполняет работу')], ['Module', PART.mod, t("ro'yxat: nima bor", 'список: что есть')]].map(([n, c, d], i) => (
-          <div key={n} className="mk-box" style={{ '--c': c, animation: beat >= 1 ? `mk-up .45s ${i * 0.18}s ease both` : 'none' }}><h4>{n}</h4><p>{d}</p></div>
-        ))}
-      </div>
-      <div style={{ marginTop: 14, padding: '10px 14px', borderRadius: 10, background: beat >= 3 ? '#FFF0EB' : '#F0F2F5', border: `1px solid ${beat >= 3 ? T.accent : T.line}`, transition: 'all .4s', fontSize: 14 }}>
-        <b style={{ color: beat >= 3 ? T.accent : T.ink2 }}>{t('Ichida: Express (platform-express)', 'Внутри: Express (platform-express)')}</b>{beat >= 3 && <span style={{ color: T.ink2 }}>{t(" — so'rovni haqiqatda Express qabul qiladi, Nest yo'naltiradi.", ' — запрос на самом деле принимает Express, Nest его направляет.')}</span>}
-      </div>
-    </div></Block>
-  </>)} />;
+  return <Lesson p={p} S={S3} scene={({ beat }) => <div className="mk-light" style={{ padding: 16, display: 'grid', gap: 10 }}>
+    <TeamsStrip st={beat >= 1 ? 'dim' : ''} />
+    <div style={{ opacity: beat >= 1 ? 1 : 0.12, transition: 'opacity .5s' }}>
+      <NestMachine cfg={N1_CARS} st={beat === 1 ? { ctrl: 'hl', svc: 'hl', mod: 'hl' } : {}} exp={beat >= 3 ? 'hl' : ''} links={beat >= 1}
+        readRow read={beat === 2 ? [t('har Nest loyihasida', 'в каждом проекте Nest'), 'src/cars/cars.controller.ts · cars.service.ts · cars.module.ts'] : null}
+        tag={t('NestJS · tartib va nomlar — hamma loyihada bir xil', 'NestJS · порядок и имена — одинаковы в любом проекте')} />
+    </div>
+  </div>} />;
 }
 
 // --- S4 TypeScript va decorator ---
@@ -1081,31 +1703,41 @@ const S5b = {
     { id: 'f', key: "Xulosa: yo'l doim shu — <b>so'rov → Controller → Service → javob</b>", text: "Xulosa: har so'rov bir xil yo'l bosadi. So'rov, Controller, Service, javob. Module esa bu bo'laklarni ro'yxatda ushlaydi. Bu yo'lni dars davomida ko'p marta ko'rasiz. Keyingi uch ekranda har faylni ochib, satrma-satr o'qiymiz.", dot: null, boxes: ['browser', 'ctrl', 'svc', 'mod'], file: null },
   ],
 };
-const DOT_LEFT = { browser: 'calc((100% - 88px) / 6)', ctrl: '50%', svc: 'calc(100% - (100% - 88px) / 6)' };
+// F-1120-02: sahna — Nest mashinasi (02b-mashina.jsx). So'rov qizil yo'lakda boradi, javob yashil yo'lakda qaytadi;
+// pastki qora satrda shu paytda bajarilayotgan satr (fayl:satr — CTRL_LINES, SVC_LINES, MOD_LINES bilan bir xil raqam)
 function Screen5b(p) {
-  return <Lesson p={p} S={S5b} scene={({ seg }) => {
-    const boxes = seg.boxes;
-    const boxStyle = (k, c) => ({ '--c': c, opacity: boxes.includes(k) ? (seg.box && seg.box !== k ? 0.4 : 1) : 0, transform: boxes.includes(k) ? 'none' : 'translateY(10px)' });
-    const cls = (k) => `mk-box${seg.box === k ? ' hl' : ''}`;
-    // F-1030-24: Explorer yonida brauzer ham «fayllar ichida»dek ko'rinardi — endi fayl nomi qutining o'zida
-    const fileTag = (f) => <div style={{ font: `600 11.5px ${MONO}`, color: T.ink3, marginTop: 6 }}>{f}</div>;
-    return <div className="mk-light" style={{ padding: 20 }}>
-      <div className="mk-tag">{t("So'rov yo'li — brauzerdan fayllarga va qaytib", 'Путь запроса — из браузера к файлам и обратно')}</div>
-      <div className="mk-flow">
-        <div className={`mk-dot${seg.dot ? ' in' : ''}${seg.reply ? ' back' : ''}`} style={{ left: DOT_LEFT[seg.dot || 'browser'] }} />
-        <div className="mk-row">
-          <div className={cls('browser')} style={boxStyle('browser', T.ink2)}><h4 style={{ color: T.ink }}>{t('Brauzer', 'Браузер')}</h4><p>GET localhost:3000</p><div style={{ font: `600 11.5px ${SANS}`, color: T.ink3, marginTop: 6 }}>{t('loyihadan tashqarida', 'вне проекта')}</div></div>
-          <div className={`mk-arrow${seg.dot === 'ctrl' || seg.dot === 'svc' ? ' on' : ''}${seg.reply ? ' back' : ''}`}>{seg.reply ? '←' : '→'}</div>
-          <div className={cls('ctrl')} style={boxStyle('ctrl', PART.ctrl)}><h4>AppController</h4><p>{t("so'rovni qabul qiladi, Service'ni chaqiradi", 'принимает запрос, вызывает Service')}</p>{fileTag('src/app.controller.ts')}</div>
-          <div className={`mk-arrow${seg.dot === 'svc' ? ' on' : ''}${seg.reply ? ' back' : ''}`}>{seg.reply ? '←' : '→'}</div>
-          <div className={cls('svc')} style={boxStyle('svc', PART.svc)}><h4>AppService</h4><p>{t("ishni bajaradi → 'Hello World!'", "выполняет работу → 'Hello World!'")}</p>{fileTag('src/app.service.ts')}</div>
-        </div>
-        <div style={{ display: 'flex', justifyContent: 'center', marginTop: 22 }}>
-          <div className={cls('mod')} style={{ ...boxStyle('mod', PART.mod), minWidth: '62%' }}><h4>AppModule</h4><p><code>controllers: [AppController]</code> · <code>providers: [AppService]</code></p>{fileTag('src/app.module.ts')}</div>
-        </div>
-      </div>
-    </div>;
-  }} />;
+  return <Lesson p={p} S={S5b} scene={({ beat }) => <Scene5b beat={beat} />} />;
+}
+function Scene5b({ beat }) {
+  const late = useLate(beat, 950);
+  const st = [
+    { br: 'hl', ctrl: 'g', svc: 'g', mod: 'g' },
+    { br: '', ctrl: 'hl', svc: 'g', mod: 'g' },
+    { br: '', ctrl: '', svc: 'hl', mod: 'g' },
+    { br: 'hl', ctrl: '', svc: '', mod: 'g' },
+    { br: '', ctrl: '', svc: '', mod: 'hl' },
+    {},
+  ][Math.min(beat, 5)];
+  const back = beat === 2 && late;
+  const pkt = beat >= 5 ? { loop: true, label: t("so'rov", 'запрос') }
+    : beat === 4 ? { off: true, x: 'b', lane: 2, label: '' }
+    : beat === 3 ? { x: 'b', lane: 2, grn: true, label: "'Hello World!'" }
+    : back ? { x: 's', lane: 2, grn: true, label: "'Hello World!'" }
+    : { x: ['b', 'c', 's'][beat], lane: 1, label: 'GET /' };
+  const fill = [[0, 0], [243, 0], [501, 0], [501, 501], [501, 501], [501, 501]][Math.min(beat, 5)];
+  const read = [
+    [t('brauzer', 'браузер'), 'GET http://localhost:3000/'],
+    ['src/app.controller.ts:8', '<span class="n1-d">@Get</span>()'],
+    ['src/app.service.ts:6', "<span class=\"n1-k\">return</span> <span class=\"n1-s\">'Hello World!'</span>;"],
+    ['src/app.controller.ts:10', '<span class="n1-k">return this</span>.appService.getHello();'],
+    ['src/app.module.ts:7–8', 'controllers: [<span class="n1-c">AppController</span>],  providers: [<span class="n1-c">AppService</span>],'],
+    [t('natija', 'результат'), 'GET /  →  <span class="n1-ok">200</span>  Hello World!'],
+  ][Math.min(beat, 5)];
+  const out = beat >= 4 || (beat === 3 && late) ? 'Hello World!' : null;
+  return <div className="mk-light" style={{ padding: 16 }}>
+    <NestMachine cfg={N1_APP} st={st} out={out} links={beat >= 4} modHot={beat === 4} lanes pkt={pkt} fill={fill} readRow read={read}
+      tag={t("So'rov yo'li — brauzerdan fayllarga va qaytib", 'Путь запроса — из браузера к файлам и обратно')} />
+  </div>;
 }
 
 // --- Amaliyot 1/4: Nest'ni o'rnating, nest new ni boshlab qo'ying (o'rnatilguncha dars davom etadi) ---
@@ -1230,17 +1862,13 @@ const S8 = {
     { id: 'e', key: "Xulosa: <b>AppModule</b> tepada, qolgan modullar unga <code>imports</code> orqali ulanadi", text: "Loyihada bir nechta modul bo'ladi: cars uchun, users uchun, orders uchun. Hammasining tepasida AppModule turadi va qolganlarini imports orqali o'ziga ulaydi. Xulosa: Module ish qilmaydi, lekin u ro'yxat bo'lgani uchun xatolarning ko'pi aynan shu faylda tuzatiladi.", focus: ['l-imports'] },
   ],
 };
+// F-1120-02: kod ostida — Nest ko'radigan uch ro'yxat (Shelves); oxirida modullar strukturasi chiziqlar bilan (ModTree)
 function Screen8(p) {
   return <Lesson p={p} S={S8} scene={({ seg, beat }) => (<>
     {beat < 4 && <Ide files={APP_FILES} active="src/app.module.ts"><CodePanel file="src/app.module.ts" lines={MOD_LINES} focus={seg.focus} /></Ide>}
+    <div className="mk-light" style={{ padding: 14 }}><Shelves beat={Math.min(beat, 3)} /></div>
     <Block at={3} beat={beat} dim={beat >= 4}><div className="mk-rule">{t(<><b>Ro'yxatda yo'q = Nest uchun yo'q.</b> Controller → <code>controllers</code>, Service → <code>providers</code>, boshqa modul → <code>imports</code>.</>, <><b>Нет в списке = нет для Nest.</b> Controller → <code>controllers</code>, Service → <code>providers</code>, другой модуль → <code>imports</code>.</>)}</div></Block>
-    <Block at={4} beat={beat}><div className="mk-light" style={{ padding: 14 }}>
-      <div className="mk-tag">{t('Modullar strukturasi', 'Структура модулей')}</div>
-      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 10 }}><div className="mk-box hl" style={{ '--c': PART.mod, minWidth: 220 }}><h4>AppModule</h4><p><code>imports: [CarsModule, UsersModule, OrdersModule]</code></p></div></div>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10 }}>
-        {['CarsModule', 'UsersModule', 'OrdersModule'].map((m, i) => <div key={m} className="mk-box" style={{ '--c': PART.mod, animation: `mk-up .4s ${0.15 + i * 0.15}s ease both` }}><h4>{m}</h4><p>controllers · providers</p></div>)}
-      </div>
-    </div></Block>
+    {beat >= 4 && <div className="mk-light" style={{ padding: 14 }}><ModTree /></div>}
   </>)} />;
 }
 
@@ -1334,38 +1962,10 @@ const S11 = {
     { id: 'h', key: "Xulosa: siz ikki ish qilasiz — <b>providers'ga yozasiz, konstruktorda so'raysiz</b>", text: "Xulosa. Sizning ishingiz ikkita: Service'ni modulning providers ro'yxatiga yozish va kerakli joyda konstruktorda so'rash. Yaratish va inject qilishni Nest qiladi. Ikkalasidan biri unutilsa nima bo'lishini beshinchi bosqichda ataylab buzib ko'ramiz.", st: 'give' },
   ],
 };
+// F-1120-02: sahna — Nest konteyneri AppService instance'ini konstruktorga olib boradi (DiMachine, 02b-mashina.jsx).
+// Ikki matnli karta o'rniga: 1-qatorda loyiha qidiruvi (new AppService — 0), 2-qatorda Express'dagi uch marta new, oxirida uch foyda chizmasi
 function Screen11(p) {
-  return <Lesson p={p} S={S11} sceneTop scene={({ seg, beat }) => {
-    const inMod = seg.st === 'mod' || seg.st === 'make';
-    const file = inMod ? 'src/app.module.ts' : 'src/app.controller.ts';
-    const step = (n) => beat >= n ? (beat === n ? ' hl' : '') : '';
-    return (
-      <Ide files={APP_FILES} active={file}>
-        {beat < 5 && (seg.st === 'express'
-          ? <CodePanel file="express-api · cars.js, orders.js, users.js" numbers={false} lines={[
-              { h: `<span class="cm">// cars.js</span>` },
-              { h: `<span class="k">const</span> CarsService = <span class="c">require</span>(<span class="s">'./cars.service'</span>);` },
-              { h: `<span class="k">const</span> service = <span class="k">new</span> <span class="c">CarsService</span>();` },
-              { h: t('<span class="cm">// orders.js — yana require + new … users.js — yana require + new …</span>', '<span class="cm">// orders.js — снова require + new … users.js — снова require + new …</span>') }]} style={{ fontSize: 13 }} />
-          : <CodePanel key={file} file={`${file} · ${t('parcha', 'фрагмент')}`} lines={(inMod ? MOD_LINES.slice(4, 9) : CTRL_LINES.slice(3, 7)).map((l, k) => ({ ...l, n: (inMod ? 5 : 4) + k }))} focus={inMod ? ['l-providers'] : ['l-ctor']} style={{ fontSize: 13 }} />)}
-        {beat < 6 && <div className="mk-light" style={{ padding: 14 }}>
-          <div className="mk-tag">{t('Server ishga tushganda Nest nima qiladi', 'Что делает Nest при запуске сервера')}</div>
-          <div className="mk-row">
-            <div className={`mk-box${step(2)}`} style={{ '--c': PART.mod, opacity: beat >= 2 ? 1 : 0.25 }}><h4>1 · app.module.ts</h4><p><code>providers: [AppService]</code> — {t("o'qidi", 'прочитал')}</p></div>
-            <div className={`mk-arrow${beat >= 3 ? ' on' : ''}`}>→</div>
-            <div className={`mk-box${step(3)}`} style={{ '--c': PART.svc, opacity: beat >= 3 ? 1 : 0.25 }}><h4>{t('2 · Nest konteyneri', '2 · Контейнер Nest')}</h4><p><b>AppService</b> — {t('1 instance yaratdi', 'создал 1 instance')}</p></div>
-            <div className={`mk-arrow${beat >= 4 ? ' on' : ''}`}>→</div>
-            <div className={`mk-box${step(4)}`} style={{ '--c': PART.ctrl, opacity: beat >= 4 ? 1 : 0.25 }}><h4>3 · AppController</h4><p>{t('konstruktor tipi', 'тип в конструкторе')} <code>AppService</code> → {t("instance'ni oldi", 'получил instance')}</p></div>
-          </div>
-        </div>}
-        <Block at={5} beat={beat}><div className="mk-rule">{t(<><b>Dependency Injection</b> — dependency'ni inject qilish: siz yaratmaysiz, Nest <code>providers</code>'ga qarab yaratadi va konstruktorga beradi.</>, <><b>Dependency Injection</b> — внедрение dependency: вы не создаёте, Nest создаёт по <code>providers</code> и передаёт в конструктор.</>)}</div></Block>
-        {beat === 6 && <Block at={6} beat={beat}><div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10 }}>
-          {t([['1 instance', 'butun loyihada bitta'], ['Test oson', 'testda soxta Service beriladi, Controller sezmaydi'], ["Bog'lanmagan", 'Controller Service qayerdan kelganini bilmaydi']], [['1 instance', 'один на весь проект'], ['Тест — легко', 'в тесте подставляют фейковый Service, Controller не замечает'], ['Не связаны', 'Controller не знает, откуда пришёл Service']]).map(([h, d], i) => <div key={h} className="mk-card"><h5>{h}</h5><div style={{ fontSize: 13 }}>{d}</div></div>)}
-        </div></Block>}
-        <Block at={7} beat={beat}><div className="mk-card" style={{ borderColor: T.accent }}><h5 style={{ color: T.accent }}>{t('Sizning ishingiz — ikkita', 'Ваша работа — две вещи')}</h5><div style={{ fontSize: 14 }}>{t(<>1) Service'ni modulning <code>providers</code>'iga yozish · 2) kerakli joyda konstruktorda so'rash. Qolganini Nest qiladi.</>, <>1) записать Service в <code>providers</code> модуля · 2) попросить его в конструкторе там, где он нужен. Остальное делает Nest.</>)}</div></div></Block>
-      </Ide>
-    );
-  }} />;
+  return <Lesson p={p} S={S11} scene={({ beat }) => <div className="mk-light" style={{ padding: 16 }}><DiMachine beat={beat} /></div>} />;
 }
 
 // ============================================================
@@ -1695,6 +2295,13 @@ const ERR1 = [
   { at: 4, id: 'e-solutions', h: `- If CarsService is a provider, is it part of the current CarsModule?` },
   { at: 4, id: 'e-solutions', h: `- If CarsService is exported from a separate @Module, is that module imported within CarsModule?` },
 ];
+// F-1120-02: buzishdan oldingi butun holat — CarsService bosiladi (data-act)
+const MODULE_OK = [
+  { h: `<span class="d">@Module</span>({` },
+  { h: `  controllers: [<span class="c">CarsController</span>],` },
+  { h: `  providers: [<span class="c n1-act" data-act="1">CarsService</span>]` },
+  { h: `})` },
+];
 // Tuzatilgan holat va muvaffaqiyatli terminal — har «Buzamiz» ekrani tuzatish bilan tugaydi (MENTOR_DARS_ETALON 3-qonun, F-1030-13)
 const MODULE_FIXED = [
   { h: `<span class="d">@Module</span>({` },
@@ -1713,7 +2320,9 @@ const OK_CARS = [
 const S18 = {
   kicker: '5-bosqich · buzamiz 1', title: "Buzamiz 1: providers bo'sh",
   segments: [
-    { id: 'a', key: "Ataylab buzamiz: <code>cars.module.ts</code>'da <b>providers bo'sh</b> qoldi", text: "Ishlaydigan modulimiz bor. Endi uni ataylab buzamiz, chunki o'quvchilaringiz aynan shu xatolarni qiladi, siz esa ularni o'qiy olishingiz kerak. Birinchi holat: cars module da providers ro'yxatidan CarsService'ni o'chirdik.", focus: [] },
+    // F-1120-02: mentor o'zi buzadi — kodda yonib turgan so'zni bosadi (act); keyingi segment buzilgan holatdan boshlanadi
+    { id: 'x', key: "Endi <b>o'zingiz buzasiz</b>: kodda yonib turgan <code>CarsService</code> ustiga bosing", text: "Ishlaydigan modulimiz bor. Endi uni ataylab buzamiz, chunki o'quvchilaringiz aynan shu xatolarni qiladi, siz esa ularni o'qiy olishingiz kerak. Bu safar buzishni o'zingiz qilasiz: o'ngdagi kodda CarsService so'zi yonib turibdi, ustiga bosing.", act: "O'ngdagi kodda yonib turgan <b>CarsService</b> ustiga bosing — u providers ro'yxatidan o'chadi.", focus: [] },
+    { id: 'a', key: "Ataylab buzamiz: <code>cars.module.ts</code>'da <b>providers bo'sh</b> qoldi", text: "Birinchi holat: cars module da providers ro'yxatidan CarsService'ni o'chirdingiz, ro'yxat bo'sh qoldi.", focus: [] },
     { id: 'b', key: "Server yiqildi. 1-bo'lak — <b>qaysi klass?</b> CarsController; <code>(?)</code> — topilmagan dependency o'rni", text: "Serverni ishga tushiramiz, u yiqiladi. Xabarni uch bo'lakka bo'lib o'qiymiz. Birinchi bo'lak, qaysi klass: Nest CarsController'ning dependency'larini topa olmadi. Qavsdagi so'roq belgisi topilmagan dependency'ning o'rni.", show: "Serverni ishga tushiramiz, u yiqiladi. Xabarni uch bo'lakka bo'lib o'qiymiz. 1 · <b>qaysi klass</b>: <b>Nest can't resolve dependencies of the CarsController</b> — Nest CarsController'ning dependency'larini topa olmadi. Qavsdagi <b>(?)</b> — topilmagan dependency'ning o'rni.", focus: ['e-who'] },
     { id: 'c', key: "2-bo'lak — <b>qaysi dependency yetishmayapti?</b> CarsService, konstruktordagi 0-argument", text: "Ikkinchi bo'lak, qaysi dependency yetishmayapti: nolinchi argument, ya'ni konstruktordagi birinchi parametr, CarsService.", show: "2 · <b>qaysi dependency</b>: <b>argument CarsService at index [0] is available</b> — nolinchi argument, ya'ni konstruktordagi birinchi parametr, CarsService.", focus: ['e-what'] },
     { id: 'd', key: "3-bo'lak — <b>qaysi fayl?</b> CarsModule, ya'ni <code>cars.module.ts</code>", text: "Uchinchi bo'lak, qaysi faylni ochamiz: Nest CarsModule'da qidirdi va topmadi, demak cars module ts fayli. Mana, uch savolga javob bor: qaysi klass, qaysi dependency, qaysi fayl.", show: "3 · <b>qaysi fayl</b>: <b>in the CarsModule module</b> — Nest CarsModule'da qidirdi va topmadi, demak <code>cars.module.ts</code>. Uch savolga javob bor: <b>qaysi klass · qaysi dependency · qaysi fayl</b>.", focus: ['e-where'] },
@@ -1723,25 +2332,33 @@ const S18 = {
   ],
 };
 function Screen18(p) {
-  return <Lesson p={p} S={S18} sceneTop scene={({ seg, beat }) => {
-    const fixed = beat >= 5;
-    return (
-      <Ide files={ALL_FILES} active="src/cars/cars.module.ts">
-        <CodePanel key={fixed ? 'f' : 'b'} file="src/cars/cars.module.ts" numbers={false} lines={fixed ? MODULE_FIXED : MODULE_BROKEN} style={{ opacity: beat >= 1 && beat <= 4 ? 0.5 : 1, transition: 'opacity .4s' }} />
-        {fixed
-          ? <CodePanel file={t('terminal — tuzatildi, server ishga tushdi', 'terminal — исправлено, сервер запустился')} numbers={false} wrap style={{ background: '#111827' }} lines={OK_CARS} />
-          : <Block at={1} beat={beat}><CodePanel file={t('terminal — server yiqildi', 'terminal — сервер упал')} numbers={false} wrap style={{ background: '#1F1115' }} beat={beat} lines={ERR1} focus={seg.focus} /></Block>}
-        <Block at={6} beat={beat}><div className="mk-rule">{t(<><b>Qaysi klass · qaysi dependency · qaysi fayl.</b> «can't resolve dependencies» ko'rsangiz — modul faylini oching, <code>providers</code>'ni tekshiring.</>, <><b>Какой класс · какой dependency · какой файл.</b> Видите «can't resolve dependencies» — откройте файл модуля, проверьте <code>providers</code>.</>)}</div></Block>
-      </Ide>
-    );
-  }} />;
+  return <Lesson p={p} S={S18} sceneTop scene={(b) => <Scene18 b={b} />} />;
+}
+// Qadamlar (F-1120-02 dan): 0 bosing · 1 buzildi · 2–4 xatoning 3 bo'lagi · 5 yechimlar · 6 tuzatildi · 7 xulosa
+function Scene18({ b }) {
+  const { seg, beat } = b;
+  const act = useAct(b);
+  const broken = act.hit || beat >= 1;
+  const fixed = beat >= 6;
+  const pin = beat === 2 ? 1 : beat === 3 ? 2 : beat === 4 ? 3 : 0;
+  return (
+    <Ide files={ALL_FILES} active="src/cars/cars.module.ts">
+      <div onClick={act.onClick}><CodePanel key={fixed ? 'f' : broken ? 'b' : 'o'} file="src/cars/cars.module.ts" numbers={false} lines={fixed ? MODULE_FIXED : broken ? MODULE_BROKEN : MODULE_OK} style={{ opacity: beat >= 2 && beat <= 5 ? 0.5 : 1, transition: 'opacity .4s' }} /></div>
+      <MiniProviders broken={broken} fixed={fixed} pin={pin} known={!broken || beat >= 2} />
+      {fixed
+        ? <CodePanel file={t('terminal — tuzatildi, server ishga tushdi', 'terminal — исправлено, сервер запустился')} numbers={false} wrap style={{ background: '#111827' }} lines={OK_CARS} />
+        : <Block at={2} beat={beat}><CodePanel file={t('terminal — server yiqildi', 'terminal — сервер упал')} numbers={false} wrap style={{ background: '#1F1115' }} beat={beat - 1} lines={ERR1} focus={seg.focus} marks={{ 0: 'n1-p1', 1: 'n1-p2', 2: 'n1-p3' }} /></Block>}
+      <Block at={7} beat={beat}><div className="mk-rule">{t(<><b>Qaysi klass · qaysi dependency · qaysi fayl.</b> «can't resolve dependencies» ko'rsangiz — modul faylini oching, <code>providers</code>'ni tekshiring.</>, <><b>Какой класс · какой dependency · какой файл.</b> Видите «can't resolve dependencies» — откройте файл модуля, проверьте <code>providers</code>.</>)}</div></Block>
+    </Ide>
+  );
 }
 
 // --- S19 yashirin xato (+ o'ylab ko'ring) ---
 const S19 = {
   kicker: '5-bosqich · buzamiz 2', title: "Buzamiz 2: imports'da CarsModule yo'q",
   segments: [
-    { id: 'a', key: "Ataylab buzamiz: <code>app.module.ts</code>'ning <code>imports</code>'idan CarsModule olindi", text: "Birinchi xatoni o'qidik va tuzatdik. Ikkinchi holat boshqacha: bu safar server yiqilmaydi, va aynan shuning uchun xavfli. app module da imports ro'yxatidan CarsModule'ni olib tashladik." },
+    { id: 'x', key: "Yana <b>o'zingiz buzasiz</b>: <code>imports</code> ro'yxatidagi <code>CarsModule</code> ustiga bosing", text: "Birinchi xatoni o'qidik va tuzatdik. Ikkinchi holat boshqacha: bu safar server yiqilmaydi, va aynan shuning uchun xavfli. Buzishni yana o'zingiz qilasiz: app module faylida imports ro'yxatidagi CarsModule so'zi yonib turibdi, ustiga bosing.", act: "<b>app.module.ts</b>'dagi <b>CarsModule</b> ustiga bosing — u imports ro'yxatidan o'chadi." },
+    { id: 'a', key: "Ataylab buzamiz: <code>app.module.ts</code>'ning <code>imports</code>'idan CarsModule olindi", text: "CarsModule imports ro'yxatidan olib tashlandi, ro'yxat bo'sh qoldi." },
     { id: 'b', key: "O'ylab ko'ring: server <b>xato bilan yiqiladimi</b> yoki ishga tushadimi?", text: "O'ylab ko'ring: serverni ishga tushirsak, xato chiqib yiqiladimi, yoki ishga tushadimi?", ask: { q: 'Server nima qiladi?', opts: ['Xato bilan yiqiladi', 'Ishga tushadi'], answer: 1 } },
     { id: 'c', key: "Server <b>ishga tushdi</b> — «successfully started», xato yo'q", text: "Server ishga tushdi, muvaffaqiyatli deb yozdi, hamma narsa yaxshidek. Xato yo'q." },
     { id: 'd', key: "Lekin <code>/cars</code> → <b>404</b>, root path esa ishlaydi", text: "Lekin cars route'ini so'rasak, to'rt yuz to'rt, Cannot GET cars. Root path esa ishlaydi.", show: "Lekin <code>/cars</code> so'rasak, <b>404, Cannot GET /cars</b>. <code>/</code> esa ishlaydi." },
@@ -1752,33 +2369,48 @@ const S19 = {
   ],
 };
 function Screen19(p) {
-  return <Lesson p={p} S={S19} sceneTop scene={({ beat }) => beat >= 6 ? (
+  return <Lesson p={p} S={S19} sceneTop scene={(b) => <Scene19 b={b} />} />;
+}
+// Qadamlar (F-1120-02 dan): 0 bosing · 1 buzildi · 2 o'ylab ko'ring · 3 ishga tushdi · 4 404 · 5 nima bo'ldi · 6 topish yo'li · 7 tuzatildi · 8 xulosa
+function Scene19({ b }) {
+  const { beat } = b;
+  const act = useAct(b);
+  const broken = act.hit || beat >= 1;
+  const fixed = beat >= 7;
+  if (fixed) return (
     <Ide files={ALL_FILES} active="src/app.module.ts">
       <CodePanel key="f" file="src/app.module.ts" numbers={false} lines={[{ h: `<span class="d">@Module</span>({` }, { gone: true, h: `  imports: [],` }, { neu: true, h: `  imports: [<span class="c">CarsModule</span>],` }, { h: `  controllers: [<span class="c">AppController</span>],` }, { h: `  providers: [<span class="c">AppService</span>],` }, { h: `})` }]} />
+      <MiniImports broken fixed />
       <CodePanel file={t('terminal — tuzatildi', 'terminal — исправлено')} numbers={false} wrap style={{ background: '#111827' }} lines={[...OK_CARS, { h: `` }, { h: `<span class="p">GET /cars</span> → <span class="ok">200</span>  [{"id":1,"brand":"Chevrolet",…}, …]` }]} />
-      <Block at={7} beat={beat}><div className="mk-rule">{t(<><b>404 + kod to'g'ri ko'rinadi?</b> 1) terminalda <code>Mapped</code> satrini qidiring · 2) bosh modulning <code>imports</code>'ini tekshiring.</>, <><b>404, а код выглядит верным?</b> 1) ищите в терминале строку <code>Mapped</code> · 2) проверьте <code>imports</code> главного модуля.</>)}</div></Block>
+      <Block at={8} beat={beat}><div className="mk-rule">{t(<><b>404 + kod to'g'ri ko'rinadi?</b> 1) terminalda <code>Mapped</code> satrini qidiring · 2) bosh modulning <code>imports</code>'ini tekshiring.</>, <><b>404, а код выглядит верным?</b> 1) ищите в терминале строку <code>Mapped</code> · 2) проверьте <code>imports</code> главного модуля.</>)}</div></Block>
     </Ide>
-  ) : (
+  );
+  const lines = broken
+    ? [{ h: `<span class="d">@Module</span>({` }, { gone: true, h: `  imports: [<span class="c">CarsModule</span>],` }, { neu: true, h: `  imports: [],` }, { h: `  controllers: [<span class="c">AppController</span>],` }, { h: `  providers: [<span class="c">AppService</span>],` }, { h: `})` }]
+    : [{ h: `<span class="d">@Module</span>({` }, { h: `  imports: [<span class="c n1-act" data-act="1">CarsModule</span>],` }, { h: `  controllers: [<span class="c">AppController</span>],` }, { h: `  providers: [<span class="c">AppService</span>],` }, { h: `})` }];
+  return (
     <Ide files={ALL_FILES} active="src/app.module.ts">
-    <Block at={0} beat={beat} dim={beat >= 2 && beat !== 4}><CodePanel file="src/app.module.ts" numbers={false} lines={[{ h: `<span class="d">@Module</span>({` }, { gone: true, h: `  imports: [<span class="c">CarsModule</span>],` }, { neu: true, h: `  imports: [],` }, { h: `  controllers: [<span class="c">AppController</span>],` }, { h: `  providers: [<span class="c">AppService</span>],` }, { h: `})` }]} /></Block>
-    <Block at={2} beat={beat}><CodePanel file={t("terminal — xato YO'Q", 'terminal — ошибки НЕТ')} numbers={false} wrap style={{ background: '#111827' }} beat={beat} lines={[
-      { at: 2, h: `[Nest] LOG [InstanceLoader] AppModule dependencies initialized` },
-      { at: 2, h: `[Nest] LOG [RoutesResolver] AppController {/}:` },
-      { at: 2, h: `[Nest] LOG [RouterExplorer] Mapped {/, GET} route` },
-      { at: 5, id: 'miss', keep: true, h: t("<span class=\"er\">⟵ bu yerda CarsController {/cars} va Mapped {/cars…} bo'lishi kerak edi — yo'q</span>", '<span class="er">⟵ здесь должны были быть CarsController {/cars} и Mapped {/cars…} — их нет</span>') },
-      { at: 2, id: 'ok', h: `[Nest] LOG [NestApplication] <span class="ok">Nest application successfully started</span>` },
-      { at: 3, h: `` },
-      { at: 3, h: `<span class="p">GET /cars</span> → <span class="er">404</span>  {"message":"Cannot GET /cars","error":"Not Found","statusCode":404}` },
-      { at: 3, h: `<span class="p">GET /</span>     → <span class="ok">200</span>  Hello World!` }]} focus={beat === 2 ? ['ok'] : (beat === 5 ? ['miss'] : [])} /></Block>
+      <Block at={0} beat={beat} dim={beat >= 3 && beat !== 5}><div onClick={act.onClick}><CodePanel key={broken ? 'b' : 'o'} file="src/app.module.ts" numbers={false} lines={lines} /></div></Block>
+      <MiniImports broken={broken} fixed={false} known={beat >= 4} unread={beat >= 5} />
+      <Block at={3} beat={beat}><CodePanel file={t("terminal — xato YO'Q", 'terminal — ошибки НЕТ')} numbers={false} wrap style={{ background: '#111827' }} beat={beat - 1} lines={[
+        { at: 2, h: `[Nest] LOG [InstanceLoader] AppModule dependencies initialized` },
+        { at: 2, h: `[Nest] LOG [RoutesResolver] AppController {/}:` },
+        { at: 2, h: `[Nest] LOG [RouterExplorer] Mapped {/, GET} route` },
+        { at: 5, id: 'miss', keep: true, h: t("<span class=\"er\">⟵ bu yerda CarsController {/cars} va Mapped {/cars…} bo'lishi kerak edi — yo'q</span>", '<span class="er">⟵ здесь должны были быть CarsController {/cars} и Mapped {/cars…} — их нет</span>') },
+        { at: 2, id: 'ok', h: `[Nest] LOG [NestApplication] <span class="ok">Nest application successfully started</span>` },
+        { at: 3, h: `` },
+        { at: 3, h: `<span class="p">GET /cars</span> → <span class="er">404</span>  {"message":"Cannot GET /cars","error":"Not Found","statusCode":404}` },
+        { at: 3, h: `<span class="p">GET /</span>     → <span class="ok">200</span>  Hello World!` }]} focus={beat === 3 ? ['ok'] : (beat === 6 ? ['miss'] : [])} /></Block>
     </Ide>
-  )} />;
+  );
 }
 
 // --- S20 Controller decorator'i yo'q ---
 const S20 = {
   kicker: '5-bosqich · buzamiz 3', title: "Buzamiz 3: Controller decorator'i yo'q",
   segments: [
-    { id: 'a', key: "Ataylab buzamiz: <code>@Controller('cars')</code> o'chirildi, klass qoldi — server <b>yiqiladi</b>", text: "Yashirin xatoni ko'rdik. Uchinchi holat decorator haqida: to'rtinchi ekranda aytgan qoidani endi amalda ko'ramiz. cars controller da Controller decorator'ini o'chirdik, klass joyida qoldi. Server yiqiladi." },
+    { id: 'x', key: "Endi <b>o'zingiz buzasiz</b>: kodda yonib turgan <code>@Controller('cars')</code> ustiga bosing", text: "Yashirin xatoni ko'rdik. Uchinchi holat decorator haqida: to'rtinchi ekranda aytgan qoidani endi amalda ko'ramiz. cars controller faylida Controller decorator'i yonib turibdi, ustiga bosib o'chiring.", act: "<b>cars.controller.ts</b>'dagi <b>@Controller('cars')</b> ustiga bosing — decorator o'chadi." },
+    { id: 'a', key: "Ataylab buzamiz: <code>@Controller('cars')</code> o'chirildi, klass qoldi — server <b>yiqiladi</b>", text: "Decorator o'chdi, klass joyida qoldi. Server yiqiladi." },
     { id: 'b', key: "Xabar: «<b>invalid controller</b>» — belgi yo'q, lekin controllers ro'yxatida turibdi", text: "Xabar: noto'g'ri controller aniqlandi. CarsController'da Controller decorator'i yo'q, lekin u qaysidir modulning controllers ro'yxatida turibdi.", show: "<b>An invalid controller has been detected.</b> CarsController does not have the @Controller() decorator, but it is being listed in the controllers array of some module." },
     { id: 'c', key: "4-ekrandagi qoida ishladi: belgi bo'lmasa, <b>Nest klassni tanimaydi</b>", text: "Nest aniq aytyapti: siz uni ro'yxatga yozgansiz, lekin klassda belgi yo'q. Decorator'lar ekranida aytganimni eslang: belgi bo'lmasa, Nest klassni tanimaydi." },
     { id: 'd', key: "Tuzatamiz: decorator qaytdi — server <b>ishga tushdi</b>, Mapped satrlari joyida", text: "Tuzatish bitta satr: decorator'ni qaytaramiz. Server qayta yuklanadi, terminalda Mapped satrlari va successfully started." },
@@ -1786,33 +2418,43 @@ const S20 = {
   ],
 };
 function Screen20(p) {
-  return <Lesson p={p} S={S20} sceneTop scene={({ beat }) => {
-    const fixed = beat >= 3;
-    return (<Ide files={ALL_FILES} active="src/cars/cars.controller.ts">
-      <CodePanel key={fixed ? 'f' : 'b'} file="src/cars/cars.controller.ts" lines={[
-        { h: `<span class="k">import</span> { Body, Controller, Get, Param, Post } <span class="k">from</span> <span class="s">'@nestjs/common'</span>;` },
-        { h: `` },
-        fixed ? { neu: true, h: `<span class="d">@Controller</span>(<span class="s">'cars'</span>)` } : { gone: true, h: `<span class="d">@Controller</span>(<span class="s">'cars'</span>)   <span class="cm">${t("← o'chirildi", '← удалено')}</span>` },
-        { h: `<span class="k">export class</span> <span class="c">CarsController</span> {` },
-        { h: `  <span class="k">constructor</span>(<span class="k">private readonly</span> carsService: <span class="c">CarsService</span>) {}` },
-        { h: `  <span class="cm">// …</span>` },
-        { h: `}` }]} />
-      {fixed
-        ? <CodePanel file={t('terminal — tuzatildi, server ishga tushdi', 'terminal — исправлено, сервер запустился')} numbers={false} wrap style={{ background: '#111827' }} lines={OK_CARS} />
-        : <Block at={1} beat={beat}><CodePanel file={t('terminal — server yiqildi', 'terminal — сервер упал')} numbers={false} wrap style={{ background: '#1F1115' }} lines={[
-            { h: `UnknownRequestMappingException [Error]: <span class="er">An invalid controller has been detected.</span>` },
-            { h: `"CarsController" <span class="er">does not have the @Controller() decorator</span>` },
-            { h: `but it is being listed in the "controllers" array of some module.` }]} /></Block>}
-      <Block at={4} beat={beat}><div className="mk-rule">{t(<><b>«invalid controller»</b> → xabardagi klass ustiga qarang: decorator tushib qolgan. Bitta satr bilan tuzatiladi.</>, <><b>«invalid controller»</b> → посмотрите над классом из сообщения: пропал decorator. Исправляется одной строкой.</>)}</div></Block>
-    </Ide>);
-  }} />;
+  return <Lesson p={p} S={S20} sceneTop scene={(b) => <Scene20 b={b} />} />;
+}
+// Qadamlar (F-1120-02 dan): 0 bosing · 1 buzildi · 2 xabar · 3 qoida · 4 tuzatildi · 5 xulosa
+function Scene20({ b }) {
+  const { beat } = b;
+  const act = useAct(b);
+  const broken = act.hit || beat >= 1;
+  const fixed = beat >= 4;
+  const deco = fixed ? { neu: true, h: `<span class="d">@Controller</span>(<span class="s">'cars'</span>)` }
+    : broken ? { gone: true, h: `<span class="d">@Controller</span>(<span class="s">'cars'</span>)   <span class="cm">${t("← o'chirildi", '← удалено')}</span>` }
+    : { h: `<span class="n1-act" data-act="1"><span class="d">@Controller</span>(<span class="s">'cars'</span>)</span>` };
+  return (<Ide files={ALL_FILES} active="src/cars/cars.controller.ts">
+    <div onClick={act.onClick}><CodePanel key={fixed ? 'f' : broken ? 'b' : 'o'} file="src/cars/cars.controller.ts" lines={[
+      { h: `<span class="k">import</span> { Body, Controller, Get, Param, Post } <span class="k">from</span> <span class="s">'@nestjs/common'</span>;` },
+      { h: `` },
+      deco,
+      { h: `<span class="k">export class</span> <span class="c">CarsController</span> {` },
+      { h: `  <span class="k">constructor</span>(<span class="k">private readonly</span> carsService: <span class="c">CarsService</span>) {}` },
+      { h: `  <span class="cm">// …</span>` },
+      { h: `}` }]} /></div>
+    <MiniCtrlDeco broken={broken} fixed={fixed} />
+    {fixed
+      ? <CodePanel file={t('terminal — tuzatildi, server ishga tushdi', 'terminal — исправлено, сервер запустился')} numbers={false} wrap style={{ background: '#111827' }} lines={OK_CARS} />
+      : <Block at={2} beat={beat}><CodePanel file={t('terminal — server yiqildi', 'terminal — сервер упал')} numbers={false} wrap style={{ background: '#1F1115' }} lines={[
+          { h: `UnknownRequestMappingException [Error]: <span class="er">An invalid controller has been detected.</span>` },
+          { h: `"CarsController" <span class="er">does not have the @Controller() decorator</span>` },
+          { h: `but it is being listed in the "controllers" array of some module.` }]} /></Block>}
+    <Block at={5} beat={beat}><div className="mk-rule">{t(<><b>«invalid controller»</b> → xabardagi klass ustiga qarang: decorator tushib qolgan. Bitta satr bilan tuzatiladi.</>, <><b>«invalid controller»</b> → посмотрите над классом из сообщения: пропал decorator. Исправляется одной строкой.</>)}</div></Block>
+  </Ide>);
 }
 
 // --- S21 Injectable yo'q (+ o'ylab ko'ring) — haqiqiy chiqishlar: manba/nest-out/12 (500) va 14 (nazorat, 200) ---
 const S21 = {
   kicker: '5-bosqich · buzamiz 4', title: "Buzamiz 4: Injectable decorator'i yo'q",
   segments: [
-    { id: 'a', key: "Ataylab buzamiz: <code>cars.service.ts</code>'dan <code>@Injectable()</code> o'chirildi", text: "Controller decorator'siz Nest klassni tanimadi. Service'da ham shundaymi? To'rtinchi holat: cars service dan Injectable decorator'ini o'chirdik. Service'ning o'zida konstruktor yo'q, u hech kimga bog'liq emas." },
+    { id: 'x', key: "Endi <b>o'zingiz buzasiz</b>: kodda yonib turgan <code>@Injectable()</code> ustiga bosing", text: "Controller decorator'siz Nest klassni tanimadi. Service'da ham shundaymi? To'rtinchi holat: cars service faylida Injectable decorator'i yonib turibdi, ustiga bosib o'chiring.", act: "<b>cars.service.ts</b>'dagi <b>@Injectable()</b> ustiga bosing — decorator o'chadi." },
+    { id: 'a', key: "Ataylab buzamiz: <code>cars.service.ts</code>'dan <code>@Injectable()</code> o'chirildi", text: "Injectable o'chdi. Service'ning o'zida konstruktor yo'q, u hech kimga bog'liq emas." },
     { id: 'b', key: "O'ylab ko'ring: <code>@Injectable()</code>'siz <code>/cars</code> <b>ishlaydimi?</b>", text: "O'ylab ko'ring: serverni ishga tushirsak, cars route'i ishlaydimi?", ask: { q: "Injectable decorator'siz /cars ishlaydimi?", opts: ['Ha, ishlaydi', "Yo'q, xato chiqadi"], answer: 0 } },
     { id: 'c', key: "<b>Ishlayapti!</b> CarsService hech kimga bog'liq emas — Nest uni oddiy yaratdi", text: "Kutilmagan natija: hammasi ishlayapti, cars route'i ikki yuz qaytaryapti. Nega? CarsService'ning o'zining konstruktorida hech qanday dependency yo'q. Nest uni dependency'siz yaratib qo'ya oldi." },
     { id: 'd', key: "<code>@Injectable()</code> Nest'ga aytadi: <b>konstruktorga qarab, nima kerakligini aniqla</b>", text: "Injectable aslida Nest'ga shuni aytadi: bu klassning konstruktoriga qarab, unga nima kerakligini aniqlang. Belgi bo'lmasa, Nest konstruktorga qaramaydi." },
@@ -1822,42 +2464,49 @@ const S21 = {
   ],
 };
 function Screen21(p) {
-  // Kod qadamga qarab: 0–3 Injectable'siz, dependency'siz · 4 Injectable'siz + PricingService dependency'si · 5+ tuzatildi
-  const svcLines = (beat) => {
-    const withDep = beat >= 4;
-    const fixed = beat >= 5;
-    return [
-      fixed ? { neu: true, h: `<span class="d">@Injectable</span>()   <span class="cm">${t('← qaytdi', '← вернули')}</span>` } : { gone: true, h: `<span class="d">@Injectable</span>()   <span class="cm">${t("← o'chirildi", '← удалено')}</span>` },
-      { h: `<span class="k">export class</span> <span class="c">CarsService</span> {` },
-      withDep
-        ? { id: 'ctor', neu: !fixed, h: `  <span class="k">constructor</span>(<span class="k">private readonly</span> pricing: <span class="c">PricingService</span>) {}` }
-        : { id: 'ctor', h: `  <span class="cm">${t("// konstruktor yo'q — hech kimga bog'liq emas", '// конструктора нет — ни от кого не зависит')}</span>` },
-      { h: `  <span class="k">private</span> cars: <span class="c">Car</span>[] = [ <span class="cm">…</span> ];` },
-      withDep
-        ? { h: `  <span class="c">findAll</span>() { <span class="k">return this</span>.cars.<span class="c">map</span>((c) => ({ ...c, price: <span class="k">this</span>.pricing.<span class="c">withDiscount</span>(c.price) })); }` }
-        : { h: `  <span class="c">findAll</span>() { <span class="k">return this</span>.cars; }` },
-      { h: `}` }];
-  };
-  return <Lesson p={p} S={S21} sceneTop scene={({ beat }) => (
+  return <Lesson p={p} S={S21} sceneTop scene={(b) => <Scene21 b={b} />} />;
+}
+// Qadamlar (F-1120-02 dan): 0 bosing · 1 buzildi · 2 o'ylab ko'ring · 3 ishlayapti · 4 nega · 5 dependency → 500 · 6 tuzatildi · 7 xulosa
+function Scene21({ b }) {
+  const { beat } = b;
+  const act = useAct(b);
+  const broken = act.hit || beat >= 1;
+  const withDep = beat >= 5;
+  const fixed = beat >= 6;
+  const svcLines = [
+    fixed ? { neu: true, h: `<span class="d">@Injectable</span>()   <span class="cm">${t('← qaytdi', '← вернули')}</span>` }
+      : broken ? { gone: true, h: `<span class="d">@Injectable</span>()   <span class="cm">${t("← o'chirildi", '← удалено')}</span>` }
+      : { h: `<span class="n1-act" data-act="1"><span class="d">@Injectable</span>()</span>` },
+    { h: `<span class="k">export class</span> <span class="c">CarsService</span> {` },
+    withDep
+      ? { id: 'ctor', neu: !fixed, h: `  <span class="k">constructor</span>(<span class="k">private readonly</span> pricing: <span class="c">PricingService</span>) {}` }
+      : { id: 'ctor', h: `  <span class="cm">${t("// konstruktor yo'q — hech kimga bog'liq emas", '// конструктора нет — ни от кого не зависит')}</span>` },
+    { h: `  <span class="k">private</span> cars: <span class="c">Car</span>[] = [ <span class="cm">…</span> ];` },
+    withDep
+      ? { h: `  <span class="c">findAll</span>() { <span class="k">return this</span>.cars.<span class="c">map</span>((c) => ({ ...c, price: <span class="k">this</span>.pricing.<span class="c">withDiscount</span>(c.price) })); }` }
+      : { h: `  <span class="c">findAll</span>() { <span class="k">return this</span>.cars; }` },
+    { h: `}` }];
+  return (
     <Ide files={[...ALL_FILES, 'src/cars/pricing.service.ts']} active="src/cars/cars.service.ts">
-      <CodePanel key={beat >= 5 ? 'f' : beat >= 4 ? 'd' : 'b'} file="src/cars/cars.service.ts" lines={svcLines(beat)} focus={beat === 0 || beat === 2 || beat === 4 ? ['ctor'] : []} />
-      {beat >= 5
+      <div onClick={act.onClick}><CodePanel key={fixed ? 'f' : withDep ? 'd' : broken ? 'b' : 'o'} file="src/cars/cars.service.ts" lines={svcLines} focus={beat === 1 || beat === 3 || beat === 5 ? ['ctor'] : []} /></div>
+      <MiniInjectable broken={broken} dep={withDep} fixed={fixed} known={!broken || beat >= 3} />
+      {fixed
         ? <CodePanel file={t('terminal — tuzatildi (haqiqiy chiqish)', 'terminal — исправлено (реальный вывод)')} numbers={false} wrap style={{ background: '#111827' }} lines={[
             { h: `[Nest] LOG [NestApplication] <span class="ok">Nest application successfully started</span>` },
             { h: `<span class="p">GET /cars</span> → <span class="ok">200</span>  [{"id":1,"brand":"Chevrolet",…}, {"id":2,"brand":"Kia",…}]` }]} />
-        : beat >= 4
+        : withDep
           ? <CodePanel file={t("terminal — Injectable'siz + dependency (haqiqiy chiqish)", 'terminal — без Injectable + dependency (реальный вывод)')} numbers={false} wrap style={{ background: '#1F1115' }} lines={[
               { h: `[Nest] LOG [NestApplication] <span class="ok">Nest application successfully started</span>` },
               { h: `<span class="p">GET /cars</span> → <span class="er">500</span>  {"statusCode":500,"message":"Internal server error"}` },
               { h: `[Nest] ERROR [ExceptionsHandler] <span class="er">TypeError: Cannot read properties of undefined (reading 'withDiscount')</span>` },
               { h: `    at CarsService.findAll (src/cars/cars.service.ts:21:22)` }]} />
-          : <Block at={2} beat={beat}><CodePanel file="terminal" numbers={false} wrap style={{ background: '#111827' }} lines={[
+          : <Block at={3} beat={beat}><CodePanel file="terminal" numbers={false} wrap style={{ background: '#111827' }} lines={[
               { h: `[Nest] LOG [RouterExplorer] <span class="ok">Mapped {/cars, GET} route</span>` },
               { h: `[Nest] LOG [NestApplication] <span class="ok">Nest application successfully started</span>` },
               { h: `<span class="p">GET /cars</span> → <span class="ok">200</span>  [{"id":1,"brand":"Chevrolet",…}, {"id":2,"brand":"Kia",…}]` }]} /></Block>}
-      <Block at={6} beat={beat}><div className="mk-rule">{t(<><b>Qoida:</b> <code>@Injectable()</code> har Service'ga yoziladi, dependency'si bo'lmasa ham. Bo'lmasa — dependency paydo bo'lganda <b>yashirin xato</b>: server ishga tushadi, so'rovda 500.</>, <><b>Правило:</b> <code>@Injectable()</code> пишут на каждый Service, даже без dependency. Иначе, когда dependency появится, — <b>скрытая ошибка</b>: сервер запускается, а на запросе 500.</>)}</div></Block>
+      <Block at={7} beat={beat}><div className="mk-rule">{t(<><b>Qoida:</b> <code>@Injectable()</code> har Service'ga yoziladi, dependency'si bo'lmasa ham. Bo'lmasa — dependency paydo bo'lganda <b>yashirin xato</b>: server ishga tushadi, so'rovda 500.</>, <><b>Правило:</b> <code>@Injectable()</code> пишут на каждый Service, даже без dependency. Иначе, когда dependency появится, — <b>скрытая ошибка</b>: сервер запускается, а на запросе 500.</>)}</div></Block>
     </Ide>
-  )} />;
+  );
 }
 
 // --- Tekshiruv 4: qaysi satr xato (modul) ---
@@ -2056,12 +2705,10 @@ const S25b = {
     { id: 'c', key: "Xulosa: metafora <b>vazifani</b> tushuntiradi, kodni emas — ikkala so'zni birga ayting", text: "Xulosa va bitta ogohlantirish: metafora vazifani tushuntiradi, kodni emas. O'quvchi ofitsiant oshxonaga kirmaydi deganda, Controller Service'ni chaqiradi, lekin ichida hisob qilmaydi degan ma'noni tushunsin. Shu chegarani siz ushlab turasiz.", n: 8 },
   ],
 };
+// F-1120-02: jadval o'rniga — o'quvchi loyihasining yo'li, har bekatda restoran so'zi va atama (KitchenMap, DICT dan)
 function Screen25b(p) {
-  return <Lesson p={p} S={S25b} scene={({ beat }) => <div className="mk-light" style={{ padding: 14 }}>
-    <div className="mk-tag">{t("O'quvchi eshitadi → atama → vazifa", 'Ученик слышит → термин → задача')}</div>
-    <table className="mk-tbl"><thead><tr><th>{t("o'quvchi darsida", 'в уроке ученика')}</th><th>{t('atama', 'термин')}</th><th>{t('vazifa', 'задача')}</th></tr></thead><tbody>
-      {DICT.map(([a, b, c], i) => <tr key={a} style={{ animation: `mk-up .35s ${i * 0.08}s ease both` }}><td>{a}</td><td><code>{b}</code></td><td style={{ color: T.ink2 }}>{c}</td></tr>)}
-    </tbody></table>
+  return <Lesson p={p} S={S25b} scene={({ beat }) => <div className="mk-light" style={{ padding: 16 }}>
+    <KitchenMap beat={beat} dict={DICT} />
     <Block at={2} beat={beat}><div className="mk-rule" style={{ marginTop: 12 }}>{t(<>Ikkala so'zni birga ayting: <b>«oshpaz, ya'ni Service»</b>. Metafora vazifani tushuntiradi, kodni emas.</>, <>Говорите оба слова вместе: <b>«повар, то есть Service»</b>. Метафора объясняет задачу, а не код.</>)}</div></Block>
   </div>} />;
 }
@@ -2385,25 +3032,23 @@ const s28Segments = (passed) => s28Ru(passed, [
 ]);
 // UZ-RU: ruscha segmentlar parts/08-ru.jsx dagi S28_RU dan (id bo'yicha; 'a' — o'tgan/o'tmagan ikki varianti)
 const s28Ru = (passed, segs) => (LANG === 'ru' ? segs.map((s) => ({ ...s, ...(S28_RU[s.id === 'a' ? (passed ? 'a_pass' : 'a_fail') : s.id] || {}) })) : segs);
+// F-1120-02: xulosa — darsning o'sha rasmi (Nest mashinasi); har band rasmning o'z qismini yoritadi
 function SummaryMap({ hl }) {
-  const on = (k) => hl === 'all' || hl === k || (hl === 'di' && (k === 'svc' || k === 'ctrl' || k === 'mod'));
-  const box = (k, c, h, d) => <div className={`mk-box${hl === k ? ' hl' : ''}`} style={{ '--c': c, opacity: on(k) ? 1 : 0.35 }}><h4>{h}</h4><p>{d}</p></div>;
+  const one = (k) => (hl === k ? 'hl' : 'dim');
+  const st = hl === 'ctrl' ? { ctrl: 'hl', svc: 'dim', mod: 'dim', br: 'dim' }
+    : hl === 'svc' ? { svc: 'hl', ctrl: 'dim', mod: 'dim', br: 'dim' }
+    : hl === 'mod' ? { mod: one('mod'), ctrl: '', svc: '', br: 'dim' }
+    : hl === 'di' ? { mod: 'hl', ctrl: 'hl', svc: '', br: 'dim' }
+    : hl === 'err' ? { ctrl: 'hl', svc: 'dim', br: 'dim' } : {};
+  const read = hl === 'di' ? ['src/cars/cars.controller.ts', '<span class="n1-k">constructor</span>(<span class="n1-k">private readonly</span> carsService: <span class="n1-c">CarsService</span>) {}']
+    : hl === 'err' ? ['terminal', "ERROR [ExceptionHandler] Nest can't resolve dependencies of the <span class=\"n1-er\">CarsController (?)</span>."]
+    : hl === 'svc' ? ['src/cars/cars.service.ts', 'findAll() { <span class="n1-k">return this</span>.cars; }']
+    : hl === 'ctrl' ? ['src/cars/cars.controller.ts', '<span class="n1-d">@Get</span>() findAll() { <span class="n1-k">return this</span>.carsService.findAll(); }'] : null;
   return <div className="mk-light" style={{ padding: 16 }}>
-    <div className="mk-tag">{t('Bugungi dars — bir qarashda', 'Сегодняшний урок — одним взглядом')}</div>
-    <div className="mk-flow" style={{ paddingTop: 22 }}>
-      <div className="mk-dot in" style={{ left: 'calc((100% - 88px) / 6)', animation: 'mk-route 4.5s ease-in-out infinite' }} />
-      <div className="mk-row">
-        {box('req', T.ink2, t("So'rov", 'Запрос'), 'GET /cars')}
-        <div className="mk-arrow on">→</div>
-        {box('ctrl', PART.ctrl, 'Controller', t('oladi · chaqiradi · qaytaradi', 'принимает · вызывает · возвращает'))}
-        <div className={`mk-arrow${hl === 'di' ? ' back' : ' on'}`}>{hl === 'di' ? '←' : '→'}</div>
-        {box('svc', PART.svc, 'Service', t('ish · hisob · qoida', 'работа · расчёты · правила'))}
-      </div>
-      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 16 }}>
-        <div className={`mk-box${hl === 'mod' || hl === 'di' ? ' hl' : ''}`} style={{ '--c': PART.mod, minWidth: '62%', opacity: on('mod') ? 1 : 0.35 }}><h4>Module</h4><p><code>controllers: [CarsController]</code> · <code>providers: [CarsService]</code>{hl === 'di' ? t(' — Nest shu ro\'yxatdan yaratib, konstruktorga beradi', ' — Nest создаёт по этому списку и передаёт в конструктор') : ''}</p></div>
-      </div>
-    </div>
-    <div className="mk-rule" style={{ marginTop: 14, opacity: hl === 'err' || hl === 'all' ? 1 : 0.35, transition: 'opacity .4s' }}>{t(<><b>Xato chiqsa:</b> qaysi klass · qaysi dependency · qaysi fayl → modul faylini oching. <b>Unable to connect</b> → kodga tegmang: .env va PostgreSQL.</>, <><b>Если ошибка:</b> какой класс · какой dependency · какой файл → откройте файл модуля. <b>Unable to connect</b> → код не трогайте: .env и PostgreSQL.</>)}</div>
+    <NestMachine cfg={N1_CARS} url="localhost:3000/cars" out={hl === 'err' ? null : '[{"id":1,"brand":"Chevrolet",…}, …]'} outKind="code" st={st}
+      exp={hl === 'all' ? 'hl' : ''} links={hl === 'mod' || hl === 'di'} modHot={hl === 'mod' || hl === 'di'}
+      sock={hl === 'err' ? { ctrl: { t: '(?)', er: true } } : null} readRow read={read}
+      tag={t('Bugungi dars — bir qarashda', 'Сегодняшний урок — одним взглядом')} />
   </div>;
 }
 function Screen28(p) {
@@ -2425,7 +3070,7 @@ function Screen28(p) {
         <div className="mk-scene top" style={{ overflow: 'auto' }}>
           {phase === 'sum' && (<>
             <SummaryMap hl={hl} />
-            <div className="mk-plan">{S28_ITEMS.slice(0, shown).map((it, i) => <div key={it.k} className={it.k === hl ? 'hl' : ''} style={{ animation: 'mk-up .45s ease both' }}><b>0{i + 1}</b><span>{it.t}</span></div>)}</div>
+            <div className="mk-plan" style={{ gridTemplateColumns: 'repeat(auto-fill,minmax(220px,1fr))', gap: 8 }}>{S28_ITEMS.slice(0, shown).map((it, i) => <div key={it.k} className={it.k === hl ? 'hl' : ''} style={{ animation: 'mk-up .45s ease both', padding: '9px 12px' }}><b>0{i + 1}</b><span>{it.t}</span></div>)}</div>
           </>)}
           {phase === 'hw' && <div className="mk-light" style={{ padding: 16, animation: 'mk-up .45s ease both' }}>
             <div className="mk-tag" style={{ color: T.accent }}>{t('Uyga vazifa · 40–60 daqiqa', 'Домашнее задание · 40–60 минут')}</div>
@@ -2454,16 +3099,21 @@ function Screen28(p) {
 // ============================================================
 //  MUQOVA + ROOT KOMPONENT
 // ============================================================
+// F-1120-02: muqova — chapda dars nima berishi, o'ngda darsning rasmi (so'rov aylanib turadi); eslatmalar bitta qisqa satrda
 function Cover({ onStart, resume }) {
   return (
-    <div className="mk-cover"><div className="card">
-      <p className="mk-eyebrow">{t('Mentor kursi · NestJS', 'Курс для менторов · NestJS')}</p>
-      <h1>{t('NestJS arxitekturasi: Module, Controller, Service', 'Архитектура NestJS: Module, Controller, Service')}</h1>
-      <p>{t("Bu dars ovozli. Ustoz har ekranda gapiradi, ekran u bilan birga o'zgaradi. Quloqchin yoki ovoz balandligini tekshiring.", 'Урок озвучен. На каждом экране говорит учитель, и экран меняется вместе с ним. Проверьте наушники или громкость.')}</p>
-      <ul>
-        {t(["Jami taxminan 1,5–2 soat: ovoz ~50 daqiqa · to'rt amaliyot 25–35 daqiqa · 5 tekshiruv · o'z-sinov 8 savol. 22-ekrandan keyin tanaffus qilsangiz bo'ladi", 'Kerak: Node.js 20+, VS Code, terminal — amaliyot dars ichida, har amaliyotda isbot maydoni', "Har ekranda: «↺ boshidan», ovozni o'chirish, «Matn» tugmasi. Ustoz gapirib bo'lgach Davom ochiladi"], ['Всего примерно 1,5–2 часа: озвучка ~50 минут · четыре практики 25–35 минут · 5 проверок · самопроверка 8 вопросов. После 22-го экрана можно сделать перерыв', 'Нужно: Node.js 20+, VS Code, терминал — практика внутри урока, в каждой практике поле подтверждения', 'На каждом экране: «↺ с начала», выключение звука, кнопка «Текст». «Далее» откроется, когда учитель договорит']).map((x) => <li key={x}>{x}</li>)}
-      </ul>
-      <CoverStart onStart={onStart} resume={resume} />
+    <div className="mk-cover"><div className="card n1-cv">
+      <div className="tx">
+        <p className="mk-eyebrow">{t('Mentor kursi · NestJS', 'Курс для менторов · NestJS')}</p>
+        <h1>{t('NestJS arxitekturasi: Module, Controller, Service', 'Архитектура NestJS: Module, Controller, Service')}</h1>
+        <p className="af">{t('Bu darsdan keyin siz', 'После этого урока вы')}</p>
+        <ul className="ok">
+          {t(["so'rov Nest ichida qaysi fayldan qaysi faylga o'tishini chizib bera olasiz", "cars modulini o'z kompyuteringizda qurasiz", "o'quvchilar qiladigan 4 ta xatoni terminal xabaridan taniysiz"], ['сможете нарисовать, из какого файла в какой файл проходит запрос внутри Nest', 'соберёте модуль cars на своём компьютере', 'узнаете 4 ошибки учеников по сообщению в терминале']).map((x) => <li key={x}>{x}</li>)}
+        </ul>
+        <p className="meta">{t("Ovozli dars: quloqchin yoki ovozni tekshiring · 1,5–2 soat, 22-ekrandan keyin tanaffus qilsa bo'ladi · Kerak: Node.js 20+, VS Code, terminal", 'Урок со звуком: проверьте наушники или громкость · 1,5–2 часа, после 22-го экрана можно сделать перерыв · Нужно: Node.js 20+, VS Code, терминал')}</p>
+        <CoverStart onStart={onStart} resume={resume} />
+      </div>
+      <div className="pic"><NestMachine cfg={N1_APP} out="Hello World!" lanes pkt={{ loop: true, label: t("so'rov", 'запрос') }} fill={[501, 501]} max={1} /></div>
     </div></div>
   );
 }
@@ -2472,6 +3122,7 @@ const PRACTICE_COUNT = SCREENS.filter((S) => /^ScreenP\d/.test(S.name)).length;
 export default function NestArchMentorLesson({ studentName, lang = 'uz', onFinished, startAt }) {
   setLang(lang); // UZ-RU (F-1030-38): render'dan oldin — ma'lumot va t() shu tilda
   useCss();
+  useCssN1(); // F-1120-02: Nest mashinasi uslubi (02b-mashina.jsx)
   const total = SCREENS.length;
   const [started, setStarted] = useState(startAt != null);
   const [idx, setIdx] = useState(Math.min(Math.max(0, startAt || 0), total - 1));
@@ -2782,7 +3433,8 @@ ru(P2_TROUBLE, [
 ru(S18, {
   kicker: 'Этап 5 · ломаем 1', title: 'Ломаем 1: providers пустой',
   segments: {
-    a: { key: 'Ломаем специально: в <code>cars.module.ts</code> <b>providers остался пустым</b>', text: 'У нас есть работающий модуль. Теперь специально его сломаем, потому что ваши ученики делают именно эти ошибки, а вы должны уметь их читать. Первый случай: в cars module мы удалили CarsService из списка providers.' },
+    x: { key: 'Теперь <b>ломаете вы</b>: нажмите на подсвеченный в коде <code>CarsService</code>', text: 'У нас есть работающий модуль. Теперь специально его сломаем, потому что ваши ученики делают именно эти ошибки, а вы должны уметь их читать. На этот раз ломаете вы сами: в коде справа подсвечено слово CarsService, нажмите на него.', act: 'Нажмите на подсвеченный справа в коде <b>CarsService</b> — он удалится из списка providers.' },
+    a: { key: 'Ломаем специально: в <code>cars.module.ts</code> <b>providers остался пустым</b>', text: 'Первый случай: в cars module вы удалили CarsService из списка providers, список остался пустым.' },
     b: { key: 'Сервер упал. Часть 1 — <b>какой класс?</b> CarsController; <code>(?)</code> — место ненайденного dependency', text: 'Запускаем сервер, он падает. Читаем сообщение, разделив его на три части. Первая часть, какой класс: Nest не смог найти dependency для CarsController. Знак вопроса в скобках — место ненайденного dependency.', show: 'Запускаем сервер, он падает. Читаем сообщение, разделив его на три части. 1 · <b>какой класс</b>: <b>Nest can\'t resolve dependencies of the CarsController</b> — Nest не смог найти dependency для CarsController. <b>(?)</b> в скобках — место ненайденного dependency.' },
     c: { key: 'Часть 2 — <b>какого dependency не хватает?</b> CarsService, 0-й аргумент конструктора', text: 'Вторая часть, какого dependency не хватает: нулевой аргумент, то есть первый параметр конструктора, CarsService.', show: '2 · <b>какой dependency</b>: <b>argument CarsService at index [0] is available</b> — нулевой аргумент, то есть первый параметр конструктора, CarsService.' },
     d: { key: 'Часть 3 — <b>какой файл?</b> CarsModule, то есть <code>cars.module.ts</code>', text: 'Третья часть, какой файл открываем: Nest искал в CarsModule и не нашёл, значит, это файл cars module ts. Вот ответы на три вопроса: какой класс, какой dependency, какой файл.', show: '3 · <b>какой файл</b>: <b>in the CarsModule module</b> — Nest искал в CarsModule и не нашёл, значит, <code>cars.module.ts</code>. Есть ответы на три вопроса: <b>какой класс · какой dependency · какой файл</b>.' },
@@ -2794,7 +3446,8 @@ ru(S18, {
 ru(S19, {
   kicker: 'Этап 5 · ломаем 2', title: 'Ломаем 2: в imports нет CarsModule',
   segments: {
-    a: { key: 'Ломаем специально: из <code>imports</code> в <code>app.module.ts</code> убрали CarsModule', text: 'Первую ошибку мы прочитали и исправили. Второй случай другой: на этот раз сервер не падает, и именно поэтому это опасно. В app module мы убрали CarsModule из списка imports.' },
+    x: { key: 'Снова <b>ломаете вы</b>: нажмите на <code>CarsModule</code> в списке <code>imports</code>', text: 'Первую ошибку мы прочитали и исправили. Второй случай другой: на этот раз сервер не падает, и именно поэтому это опасно. Ломаете снова вы: в файле app module в списке imports подсвечено слово CarsModule, нажмите на него.', act: 'Нажмите на <b>CarsModule</b> в <b>app.module.ts</b> — он удалится из списка imports.' },
+    a: { key: 'Ломаем специально: из <code>imports</code> в <code>app.module.ts</code> убрали CarsModule', text: 'CarsModule убран из списка imports, список остался пустым.' },
     b: { key: 'Подумайте: сервер <b>упадёт с ошибкой</b> или запустится?', text: 'Подумайте: если запустить сервер, он упадёт с ошибкой или запустится?', ask: { q: 'Что сделает сервер?', opts: ['Упадёт с ошибкой', 'Запустится'] } },
     c: { key: 'Сервер <b>запустился</b> — «successfully started», ошибки нет', text: 'Сервер запустился, написал, что всё успешно, вроде бы всё хорошо. Ошибки нет.' },
     d: { key: 'Но <code>/cars</code> → <b>404</b>, а root path работает', text: 'Но если запросить route cars, получим 404, Cannot GET cars. А root path работает.', show: 'Но если запросить <code>/cars</code>, получим <b>404, Cannot GET /cars</b>. А <code>/</code> работает.' },
@@ -2807,7 +3460,8 @@ ru(S19, {
 ru(S20, {
   kicker: 'Этап 5 · ломаем 3', title: 'Ломаем 3: нет decorator Controller',
   segments: {
-    a: { key: 'Ломаем специально: <code>@Controller(\'cars\')</code> удалили, класс остался — сервер <b>падает</b>', text: 'Скрытую ошибку мы увидели. Третий случай про decorator: правило с четвёртого экрана теперь увидим на практике. В cars controller мы удалили decorator Controller, класс остался на месте. Сервер падает.' },
+    x: { key: 'Теперь <b>ломаете вы</b>: нажмите на подсвеченный в коде <code>@Controller(\'cars\')</code>', text: 'Скрытую ошибку мы увидели. Третий случай про decorator: правило с четвёртого экрана теперь увидим на практике. В файле cars controller подсвечен decorator Controller, нажмите на него, чтобы удалить.', act: 'Нажмите на <b>@Controller(\'cars\')</b> в <b>cars.controller.ts</b> — decorator удалится.' },
+    a: { key: 'Ломаем специально: <code>@Controller(\'cars\')</code> удалили, класс остался — сервер <b>падает</b>', text: 'Decorator удалён, класс остался на месте. Сервер падает.' },
     b: { key: 'Сообщение: «<b>invalid controller</b>» — метки нет, но класс стоит в списке controllers', text: 'Сообщение: обнаружен неверный controller. У CarsController нет decorator Controller, но он стоит в списке controllers какого-то модуля.' },
     c: { key: 'Сработало правило с 4-го экрана: нет метки — <b>Nest не узнаёт класс</b>', text: 'Nest говорит прямо: вы записали его в список, но у класса нет метки. Вспомните, что я говорил на экране про decorator: нет метки — Nest не узнаёт класс.' },
     d: { key: 'Исправляем: decorator вернули — сервер <b>запустился</b>, строки Mapped на месте', text: 'Исправление — одна строка: возвращаем decorator. Сервер перезапускается, в терминале строки Mapped и successfully started.' },
@@ -2817,7 +3471,8 @@ ru(S20, {
 ru(S21, {
   kicker: 'Этап 5 · ломаем 4', title: 'Ломаем 4: нет decorator Injectable',
   segments: {
-    a: { key: 'Ломаем специально: из <code>cars.service.ts</code> удалили <code>@Injectable()</code>', text: 'Без decorator Nest не узнал класс Controller. А с Service так же? Четвёртый случай: из cars service мы удалили decorator Injectable. У самого Service нет конструктора, он ни от кого не зависит.' },
+    x: { key: 'Теперь <b>ломаете вы</b>: нажмите на подсвеченный в коде <code>@Injectable()</code>', text: 'Без decorator Nest не узнал класс Controller. А с Service так же? Четвёртый случай: в файле cars service подсвечен decorator Injectable, нажмите на него, чтобы удалить.', act: 'Нажмите на <b>@Injectable()</b> в <b>cars.service.ts</b> — decorator удалится.' },
+    a: { key: 'Ломаем специально: из <code>cars.service.ts</code> удалили <code>@Injectable()</code>', text: 'Injectable удалён. У самого Service нет конструктора, он ни от кого не зависит.' },
     b: { key: 'Подумайте: без <code>@Injectable()</code> <code>/cars</code> <b>будет работать?</b>', text: 'Подумайте: если запустить сервер, route cars будет работать?', ask: { q: 'Без decorator Injectable /cars будет работать?', opts: ['Да, будет', 'Нет, будет ошибка'] } },
     c: { key: '<b>Работает!</b> CarsService ни от кого не зависит — Nest создал его как обычно', text: 'Неожиданный результат: всё работает, route cars возвращает 200. Почему? В конструкторе самого CarsService нет никаких dependency. Nest смог создать его без dependency.' },
     d: { key: '<code>@Injectable()</code> говорит Nest: <b>посмотри на конструктор и определи, что нужно</b>', text: 'На самом деле Injectable говорит Nest вот что: посмотрите на конструктор этого класса и определите, что ему нужно. Нет метки — Nest на конструктор не смотрит.' },

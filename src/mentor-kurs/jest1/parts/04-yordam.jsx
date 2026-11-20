@@ -49,7 +49,7 @@ function compact(files, active) {
 const sg = (id, key, text, extra = {}) => ({ id, key, text, show: wr(text), ...extra });
 const mkS = (n, extras = [], more = {}) => {
   const m = MDT[n];
-  return { kicker: m.kicker, eyebrow: m.eyebrow, title: m.title, ...more, segments: m.seg.map(([id, key, text], i) => sg(id, key, text, extras[i] || {})) };
+  return { kicker: m.kicker, eyebrow: m.eyebrow, title: m.title, ...more, segments: m.seg.map(([id, key, text, act], i) => sg(id, key, text, { ...(act ? { act } : {}), ...(extras[i] || {}) })) /* F-1120-02 (M52): act */ };
 };
 
 // Ovoz → «Matn» (transkript) uchun yozma ko'rinish. Uzun ibora oldin.
@@ -109,7 +109,7 @@ const outLines = (k) => KOD.OUT[k].split('\n').filter((l) => l.trim() !== '');
 const out = (k, a = 1, b, meta = {}) => outLines(k).slice(a - 1, b == null ? undefined : b).map((l, i) => ({ h: jestLine(l), ...(meta[a + i] || {}) }));
 const outFind = (k, re, meta) => { const L = outLines(k); const i = L.findIndex((l) => re.test(l)); return i < 0 ? 1 : i + 1; };
 const upto = (lines, beat) => lines.filter((l) => l.at == null || l.at <= beat);
-const Term = ({ lines, title = t('VS Code terminali · OrderBotNest', "терминал VS Code · OrderBotNest"), er, beat, focus, style }) => <CodePanel file={title} numbers={false} style={{ background: er ? JC.termEr : JC.term, ...(style || {}) }} lines={lines} beat={beat} focus={focus} />;
+const Term = ({ lines, title = t('VS Code terminali · OrderBotNest', "терминал VS Code · OrderBotNest"), er, beat, focus, style, marks }) => <CodePanel file={title} numbers={false} style={{ background: er ? JC.termEr : JC.term, ...(style || {}) }} lines={lines} beat={beat} focus={focus} marks={marks} />;
 // Loyiha kodi (KOD — aynan, satr raqami bilan). ids: {satr: 'id'} — yoritish; from/to — satr chegarasi; edit: {satr: matn} — buzilgan/tuzatilgan satr
 const kod = (k, ids = {}, from, to, edit = {}) => KOD[k].lines.filter((l) => (from == null || l.n >= from) && (to == null || l.n <= to)).flatMap((l) => {
   const base = { h: tsLine(l.t), n: l.n, ...(ids[l.n] ? { id: ids[l.n] } : {}) };
@@ -236,8 +236,9 @@ const CSS3 = `
 .cmp-note b{color:${T.accent}}
 .fl-grid{display:grid;grid-template-columns:minmax(0,190px) minmax(0,1fr);gap:10px;align-items:center}
 .fl-tests{display:grid;gap:8px}
-.fl-row{display:grid;grid-template-columns:20px minmax(0,1fr) 22px 150px;gap:8px;align-items:center}
+.fl-row{display:grid;grid-template-columns:20px minmax(0,1fr) 58px 150px;gap:8px;align-items:center}
 .fl-ar,.fl-eq{font:700 18px ${MONO};color:${T.ink3};text-align:center}
+.fl-eq{font:700 12px/1.15 ${SANS};white-space:normal}
 .fl-box{border:2px solid var(--c);border-radius:12px;padding:8px 10px;background:${T.paper};transition:all .35s}
 .fl-box.hl{background:#FFF0EB}
 .fl-box small{display:block;font:600 11px ${MONO};color:${T.ink3};margin-bottom:3px}

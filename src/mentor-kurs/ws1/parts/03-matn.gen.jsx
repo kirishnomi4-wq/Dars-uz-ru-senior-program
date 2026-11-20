@@ -142,9 +142,15 @@ const MDT = {
   "title": "disconnect() dan keyin return yo'q: klient baribir yopildi, lekin server logi «panel ulandi» deb yozdi — log endi ishonchsiz",
   "seg": [
    [
+    "x",
+    "Endi <b>o'zingiz buzasiz</b>: kodda yonib turgan <code>return;</code> ustiga bosing",
+    "Gateway to'g'ri ishlaydi: tokensiz klient yopiladi, logda hech narsa yo'q. Endi ataylab buzamiz. Buzishni o'zingiz qilasiz: live gateway ts faylida client disconnect'dan keyingi return satri yonib turibdi, ustiga bosing: satr o'chadi.",
+    "<b>live.gateway.ts</b>dagi <b><code>return;</code></b> ustiga bosing — <code>client.disconnect();</code> dan keyingi satr o'chadi."
+   ],
+   [
     "a",
-    "Buzamiz: <b><code>client.disconnect();</code> dan keyingi <code>return;</code> ni olib tashlaymiz</b>",
-    "Endi ataylab buzamiz. Live gateway ts faylida client disconnect'dan keyingi return satrini o'chiramiz. Kichik o'zgarish, kod kompilyatsiya bo'ladi. Tokensiz klient bilan sinaymiz: npm run live, ikki qo'shtirnoq."
+    "Buzildi: <b><code>client.disconnect();</code> dan keyingi <code>return;</code> yo'q</b>",
+    "Return satrini o'chirdingiz. Kichik o'zgarish, kod kompilyatsiya bo'ladi. Tokensiz klient bilan sinaymiz: npm run live, ikki qo'shtirnoq."
    ],
    [
     "b",

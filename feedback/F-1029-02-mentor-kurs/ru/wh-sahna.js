@@ -76,4 +76,3 @@ Maydon Jamoa — Pro, 30 дней · 10 000 сум, тестовый режим 
 // 2-tur (05.11): skaner tuzatilgandan keyin topilgan modul ro'yxatlari
 ru(FLOW2, [[null, 'Клиент', 'отдаёт карту сервису'], [null, 'Платёжный сервис', 'например Payme, Click'], [null, null, 'тело + X-Signature'], [null, 'Сервер', 'подпись → запись'], [null, 'Панель']]);
 ru(DICT22, [['сообщение об оплате · POST /tolov/webhook'], ['подпись · X-Imzo · TOLOV_KALITI'], ['повторное сообщение · { takror: true }'], ['статус: tolandi / rad'], ['тестовая страница оплаты']]);
-ru(STATIONS25, [[null, 'Сообщение — доказательство'], [null, 'Подпись · байты'], [null, 'Порядок'], [null, 'Повтор · отказ']]);

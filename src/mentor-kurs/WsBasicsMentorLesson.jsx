@@ -423,9 +423,11 @@ const vis = (at, beat) => at == null || at <= beat;
 
 // useAudio(segments) → currentId. Qadam faqat oldinga o'sadi. `ask` segmenti: ovoz savol beradi va
 // tugma bosilguncha kutadi (waits_for button_click/step) — «o'ylab ko'ring».
+// `act` segmenti (F-1120-02): xuddi shunday kutadi, lekin bosiladigan narsa SAHNADA (masalan kodda yonib turgan so'z);
+// sahna bosilganda answerAsk(seg.id, 0) chaqiradi, chap panelda act matni ko'rsatma bo'lib turadi.
 // `review` (Orqaga bilan qaytilgan ekran, A12): ovoz yo'q, ekran yakuniy holatda; ↺ boshidan — ovoz bilan qayta
 function useBeats(segments, review) {
-  const segs = useMemo(() => review ? [] : segments.map((s, i) => ({ id: s.id, text: voice(s.text), trigger: i === 0 ? 'on_mount' : 'after_previous', waits_for: s.ask ? { type: 'button_click', target: 'step' } : s.waits_for })), [segments, review]);
+  const segs = useMemo(() => review ? [] : segments.map((s, i) => ({ id: s.id, text: voice(s.text), trigger: i === 0 ? 'on_mount' : 'after_previous', waits_for: s.ask || s.act ? { type: 'button_click', target: 'step' } : s.waits_for })), [segments, review]);
   const audio = useAudio(segs);
   const [beat, setBeat] = useState(review ? segments.length - 1 : 0);
   const [done, setDone] = useState(!!review);
@@ -439,7 +441,7 @@ function useBeats(segments, review) {
   // qadamni o'sha savolga suramiz, aks holda savol chiqmaydi va ekran qotadi
   useEffect(() => {
     if (!audio.waitingFor || audio.currentId) return;
-    const k = segments.findIndex((s, i) => i >= beat && s.ask);
+    const k = segments.findIndex((s, i) => i >= beat && (s.ask || s.act));
     if (k >= 0) { started.current = true; setBeat((b) => Math.max(b, k)); }
   }, [audio.waitingFor, audio.currentId, beat, segments]);
   // F-1031-16: oxirgi segment ovozi YUKLANAYOTGANDA ham isPlaying=false bo'ladi — Davom erta ochilmasin:
@@ -453,7 +455,9 @@ function useBeats(segments, review) {
   const answerAsk = useCallback((segId, i) => {
     setGuess((g) => ({ ...g, [segId]: i }));
     if (audio.waitingFor) audio.triggerEvent('button_click', 'step');
-    else if (audio.muted || audio.status === 'idle') stepManual();
+    // F-1120-02: ovoz hali YUKLANAYOTGAN bo'lsa (status idle, lekin currentId — shu segment) qo'lda o'tilmaydi:
+    // aks holda qadam oldinga ketadi, runtime esa shu segmentda tugmani kutib qoladi va dars ovozsiz qoladi
+    else if (audio.muted || (audio.status === 'idle' && audio.currentId !== segId)) stepManual();
     else pendingAsk.current = true;
   }, [audio, stepManual]);
   useEffect(() => { if (audio.waitingFor && pendingAsk.current) { pendingAsk.current = false; audio.triggerEvent('button_click', 'step'); } }, [audio.waitingFor, audio]);
@@ -513,7 +517,7 @@ function Say({ eyebrow, title, segments, beat, audio, stepManual, below, guess, 
   const now = segments[beat];
   const keyHtml = now.key || now.show || digits(now.text);
   const [tr, setTr] = useState(false);
-  const showManual = !review && (audio.muted || (!audio.isPlaying && !audio.waitingFor && beat < segments.length - 1 && audio.status === 'idle' && !now.ask));
+  const showManual = !review && (audio.muted || (!audio.isPlaying && !audio.waitingFor && beat < segments.length - 1 && audio.status === 'idle' && !now.ask && !now.act));
   const asking = now.ask && guess && guess[now.id] === undefined;
   const prevAsk = beat > 0 && segments[beat - 1].ask ? segments[beat - 1] : null;
   return (
@@ -530,6 +534,7 @@ function Say({ eyebrow, title, segments, beat, audio, stepManual, below, guess, 
         )}
         <div className="mk-dots">{segments.map((s, i) => <i key={s.id} className={i === beat ? 'on' : (i < beat ? 'done' : '')} />)}</div>
         {review && <p className="mk-review">{t("Takrorlash: ekran tayyor holatda, ovozsiz. Ovoz bilan qayta eshitish — tepadagi «↺ boshidan». To'liq matn — «Matn».", 'Повтор: экран в готовом виде, без звука. Послушать заново со звуком — «↺ с начала» вверху. Полный текст — «Текст».')}</p>}
+        {now.act && guess && guess[now.id] === undefined && !review && <p className="n1-acthint" dangerouslySetInnerHTML={html(now.act)} />}
         {asking && (
           <div className="mk-ask"><p>{now.ask.q}</p><div className="row">{now.ask.opts.map((o, i) => <button key={i} className="mk-btn ghost sm" onClick={() => answerAsk(now.id, i)}>{o}</button>)}</div></div>
         )}
@@ -902,6 +907,369 @@ function CoverStart({ onStart, resume }) {
       <p className="mk-resume-note">{t(`Oxirgi marta ${resume.idx + 1}-ekrangacha kelgansiz. Javoblaringiz saqlangan.`, `В прошлый раз вы дошли до ${resume.idx + 1}-го экрана. Ответы сохранены.`)}</p>
     </div>
   );
+}
+
+// ============================================================
+//  DARS RASMI — UMUMIY QISM (F-1120-02, 20.11; qonun M51, M52). Hamma mentor darsiga yig'iladi (dev/yig.sh).
+//  Bu yerda: rasm uslubi (CSS, useCssN1 — darsning ildiz komponentida chaqiriladi), N1Fit (qat'iy o'lchamli
+//  chizma sahna eniga moslashadi), useLate, useAct (M52: mentor o'zi bosib buzadi), N1Mini, Res.
+//  Darsga xos rasm — o'z bo'lagida: Nest darslari — parts/02c-nest.jsx, boshqa dars — <dars>/parts/02b-*.jsx.
+//  Ranglar dars ranglari (PART, T); yangi rang yo'q. CSS ichida backtick yo'q (CLAUDE.md).
+// ============================================================
+const CSS_N1 = `
+.n1-fit{position:relative;width:100%;flex:0 0 auto}
+.n1-box{position:absolute;top:0;transform-origin:0 0;font:13px/1.4 ${SANS};color:${T.ink}}
+.n1-box *{box-sizing:border-box}
+.n1-abs{position:absolute}
+.n1-tagl{position:absolute;font:600 10.5px/1 ${MONO};letter-spacing:.12em;color:${T.ink3};text-transform:uppercase;white-space:nowrap}
+.n1-st{transition:opacity .45s,box-shadow .45s,filter .45s,border-color .45s,background .45s}
+.n1-st[data-st="g"]{opacity:.3;filter:grayscale(1)}
+.n1-st[data-st="dim"]{opacity:.45}
+.n1-st[data-st="off"]{opacity:0;pointer-events:none}
+.n1-st[data-st="hl"]{box-shadow:0 0 0 4px rgba(226,69,31,.16),0 14px 30px rgba(15,17,21,.12)}
+
+.n1-br{position:absolute;border-radius:12px;border:1.5px solid #C9CED8;background:${T.paper};overflow:hidden}
+.n1-br .top{height:30px;background:#E9ECF1;display:flex;align-items:center;gap:5px;padding:0 9px}
+.n1-br .top i{width:7px;height:7px;border-radius:50%;background:#B9BFCB;flex:none}
+.n1-br .top span{margin-left:4px;flex:1;min-width:0;background:${T.paper};border-radius:9px;font:500 10px/1.6 ${MONO};padding:0 6px;color:${T.ink2};white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.n1-br .bd{position:absolute;left:0;right:0;top:30px;bottom:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:10px}
+.n1-br .wait{font-size:12.5px;color:${T.ink3}}
+.n1-br .out{font:700 18px/1.25 ${SANS};color:${T.ink};animation:mk-up .4s ease both}
+.n1-br .out.code{font:600 11px/1.5 ${MONO};text-align:left;color:${T.green};word-break:break-all;white-space:normal}
+.n1-br .out.er{color:#DC2626}
+.n1-cap{position:absolute;text-align:center;font-size:11.5px;color:${T.ink3};white-space:nowrap}
+
+.n1-app{position:absolute;border-radius:18px;border:1.5px dashed #C9CED8;background:#FAFBFC}
+.n1-mod{position:absolute;border:2px solid ${PART.mod};border-radius:12px;background:#FFFBF0}
+.n1-mod .lg{position:absolute;left:12px;top:-9px;background:${T.paper};padding:0 6px;font:700 13px/16px ${SANS};color:${PART.mod};white-space:nowrap}
+.n1-mod .lab{position:absolute;right:12px;top:-14px}
+.n1-chip{position:absolute;font:500 12px/1.4 ${MONO};background:${T.paper};border:1px solid #E6D6A8;border-radius:7px;padding:4px 8px;white-space:nowrap;color:${T.ink};transition:box-shadow .4s,border-color .4s,opacity .4s}
+.n1-chip.hot{border-color:${T.accent};box-shadow:0 0 0 3px rgba(226,69,31,.18)}
+.n1-link{position:absolute;width:2px;background:${PART.mod};opacity:0;transition:opacity .4s}
+.n1-link.on{opacity:1}
+
+.n1-part{position:absolute;border-radius:14px;background:${T.paper};border:2px solid var(--c);padding:13px 14px}
+.n1-part .nm{font:700 16px/1.2 ${SANS};color:var(--c);display:flex;align-items:center;gap:8px;white-space:nowrap}
+.n1-part .nm i{width:9px;height:9px;border-radius:3px;background:var(--c);flex:none}
+.n1-part .role{font-size:13px;color:${T.ink2};margin-top:5px}
+.n1-part .cd{display:inline-block;margin-top:10px;background:${T.code};color:${T.codeInk};font:500 12px/1.4 ${MONO};padding:6px 10px;border-radius:8px;white-space:nowrap}
+.n1-part .fl{position:absolute;left:14px;bottom:10px;font:500 11px/1 ${MONO};color:${T.ink3};white-space:nowrap}
+.n1-part .lab{position:absolute;right:10px;top:10px}
+.n1-lab{display:inline-block;font:700 11.5px/1 ${SANS};color:${T.ink2};background:#F1F3F6;border:1px solid ${T.line};border-radius:999px;padding:5px 9px;white-space:nowrap;animation:mk-up .4s ease both}
+.n1-sock{position:absolute;height:34px;border-radius:17px;border:1.5px dashed #A8AFBD;display:flex;align-items:center;justify-content:center;font:700 12.5px/1 ${MONO};color:${T.ink3};background:${T.paper};transition:all .4s}
+.n1-sock.er{border:1.5px solid #DC2626;color:#DC2626;background:#FEF2F2}
+
+.n1-exp{position:absolute;border-radius:10px;border:1px solid ${T.line};background:#F0F2F5;display:flex;align-items:center;gap:8px;padding:0 14px;font-size:12.5px;color:${T.ink2};white-space:nowrap;transition:all .45s}
+.n1-exp b{color:${T.ink};font-weight:700}
+.n1-exp[data-st="hl"]{background:#FFF0EB;border-color:${T.accent};box-shadow:0 0 0 4px rgba(226,69,31,.12)}
+.n1-exp[data-st="hl"] b{color:${T.accent}}
+
+.n1-stem{position:absolute;width:0;border-left:2px dotted #C9CED8}
+.n1-lanes{position:absolute;border-radius:14px;background:${T.bg}}
+.n1-ln{position:absolute;height:2px;background:#D5D9E1}
+.n1-lf{position:absolute;height:2px;transition:width .9s cubic-bezier(.4,0,.2,1)}
+.n1-lf.r{background:${T.accent}}.n1-lf.g{background:${T.green}}
+.n1-stn{position:absolute;width:10px;height:10px;border-radius:50%;background:${T.paper};border:2px solid #B9BFCB;transform:translate(-50%,-50%)}
+.n1-lbl{position:absolute;right:14px;font:600 11px/1 ${MONO};color:${T.ink3};white-space:nowrap;transform:translateY(-50%)}
+.n1-pk{position:absolute;transform:translate(-50%,-50%);background:${T.accent};color:#fff;font:600 12px/1 ${MONO};padding:6px 11px;border-radius:14px;white-space:nowrap;box-shadow:0 6px 14px rgba(15,17,21,.22);transition:left .9s cubic-bezier(.4,0,.2,1),top .35s,background .3s,opacity .3s;z-index:3}
+.n1-pk.grn{background:${T.green}}
+.n1-pk.off{opacity:0}
+.n1-pk.loop{transition:none;animation:n1-loop 5.2s linear infinite}
+@keyframes n1-loop{0%{left:var(--xa);top:var(--y1);background:${T.accent}}44%{left:var(--xc);top:var(--y1);background:${T.accent}}50%{left:var(--xc);top:var(--y2);background:${T.green}}94%{left:var(--xa);top:var(--y2);background:${T.green}}100%{left:var(--xa);top:var(--y1);background:${T.accent}}}
+.n1-ro{position:absolute;background:${T.code};border-radius:12px;display:flex;align-items:center;gap:14px;padding:0 16px;transition:opacity .35s;overflow:hidden}
+.n1-ro .rf{font:500 11.5px/1 ${MONO};color:#8A90A2;white-space:nowrap}
+.n1-ro code{font:500 13px/1.3 ${MONO};color:${T.codeInk};white-space:nowrap}
+.n1-ro.off{opacity:0}
+.n1-k{color:#C792EA}.n1-s{color:#9ECE6A}.n1-d{color:#E5C07B}.n1-c{color:#7AA2F7}.n1-ok{color:#86EFAC}.n1-er{color:#FCA5A5}
+
+.n1-tok{position:absolute;height:38px;border-radius:19px;background:#E3F5EC;border:2px solid ${T.green};display:flex;align-items:center;justify-content:center;gap:7px;font:700 13px/1 ${SANS};color:${T.green};transform:translate(-50%,-50%);transition:left .9s cubic-bezier(.4,0,.2,1),top .9s cubic-bezier(.4,0,.2,1),opacity .35s,transform .35s;z-index:3;white-space:nowrap}
+.n1-tok i{width:8px;height:8px;border-radius:50%;background:${T.green};flex:none}
+.n1-tok.off{opacity:0;transform:translate(-50%,-50%) scale(.6)}
+.n1-tok.twin{background:transparent;border-style:dashed;opacity:0;transition:opacity .4s;z-index:2}
+.n1-tok.twin.on{opacity:.55}
+.n1-tok.grey{background:#F3F4F7;border-color:#9AA1B1;color:${T.ink2}}
+.n1-tok.grey i{background:#9AA1B1}
+.n1-tok.yel{background:#FFFBF0;border-color:${PART.mod};color:${PART.mod};border-style:dashed}
+.n1-tok.yel i{background:${PART.mod}}
+.n1-box2{position:absolute;border-radius:14px;border:2px solid #9AA1B1;background:#F3F4F7}
+.n1-box2 .bl{position:absolute;left:14px;top:12px;font:600 10.5px/1 ${MONO};letter-spacing:.12em;color:${T.ink2};white-space:nowrap}
+.n1-box2 .sh{position:absolute;border-radius:19px;border:1.5px dashed #A8AFBD;display:flex;align-items:center;justify-content:center;font:500 11.5px/1 ${MONO};color:${T.ink3};transition:color .3s}
+.n1-box2.has .sh{color:transparent}
+.n1-box2 .nq{position:absolute;left:14px;right:14px;bottom:12px;font-size:11.5px;line-height:1.35;color:${T.ink2};opacity:0;transition:opacity .4s}
+.n1-box2 .nq.on{opacity:1}
+.n1-you{position:absolute;font:700 11.5px/1 ${SANS};color:#fff;background:${T.accent};border-radius:10px;padding:5px 9px;white-space:nowrap;opacity:0;transition:opacity .4s;z-index:4}
+.n1-you.on{opacity:1}
+.n1-ann{position:absolute;font:600 12px/1.3 ${SANS};color:${T.ink2};white-space:nowrap;opacity:0;transition:opacity .4s}
+.n1-ann.on{opacity:1}
+.n1-ann b{color:${T.accent}}
+.n1-tayyor{color:${T.green};transition:opacity .4s}
+.n1-line{position:absolute;height:38px;border-radius:9px;background:${T.code};color:${T.codeInk};font:500 12px/1 ${MONO};display:flex;align-items:center;padding:0 10px;white-space:nowrap}
+.n1-prm{border-radius:4px;padding:1px 0;transition:background .4s,box-shadow .4s}
+.n1-prm.hot{background:rgba(226,69,31,.3);box-shadow:0 0 0 2px rgba(226,69,31,.3)}
+.n1-sock.wait{border-color:${T.accent};color:${T.accent};animation:n1-pulse 1.4s ease-in-out infinite}
+@keyframes n1-pulse{50%{box-shadow:0 0 0 6px rgba(226,69,31,.14)}}
+.n1-svg{position:absolute;left:0;top:0;pointer-events:none;overflow:visible}
+.n1-pth{stroke:#A8AFBD;stroke-width:2;stroke-dasharray:5 5;fill:none;opacity:0;transition:opacity .4s,stroke .4s}
+.n1-pth.dash{opacity:1}
+.n1-pth.solid{opacity:1;stroke:${T.green};stroke-dasharray:none}
+.n1-pth.bad{opacity:1;stroke:#DC2626}
+.n1-row{position:absolute;opacity:0;transition:opacity .45s;pointer-events:none}
+.n1-row.on{opacity:1}
+.n1-row.dim{opacity:.42}
+.n1-srch{border:1px solid ${T.line};border-radius:12px;background:#F3F4F7}
+.n1-fld{position:absolute;height:34px;border-radius:7px;border:1.5px solid ${T.blue};background:${T.paper};display:flex;align-items:center;gap:8px;padding:0 10px;font:500 13px/1 ${MONO}}
+.n1-res{position:absolute;font:700 14px/1.3 ${SANS};color:${T.accent};white-space:nowrap}
+.n1-res span{font-weight:500;color:${T.ink2};margin-left:8px}
+.n1-exf{position:absolute;border-radius:12px;border:1px solid ${T.line};background:${T.paper};overflow:hidden}
+.n1-exf .tb{height:24px;background:#E9ECF1;font:500 10.5px/24px ${MONO};color:${T.ink2};padding:0 10px}
+.n1-exf .cl{position:absolute;left:10px;top:34px;font:500 11.5px/1.3 ${MONO};color:${T.ink};white-space:nowrap}
+.n1-bn{position:absolute;border-radius:12px;border:1px solid ${T.line};background:${T.paper}}
+.n1-bn svg{position:absolute;left:13px;top:12px}
+.n1-bn .bt{position:absolute;left:14px;bottom:12px;font:700 13.5px/1.2 ${SANS};color:${T.ink}}
+
+.n1-plan{position:absolute;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+.n1-plan div{border:1px solid ${T.line};border-radius:10px;background:${T.paper};padding:9px 10px;display:flex;flex-direction:column;gap:6px;transition:border-color .3s,box-shadow .3s,opacity .3s}
+.n1-plan div.hl{border-color:${T.accent};box-shadow:0 0 0 3px rgba(226,69,31,.12)}
+.n1-plan div.dim{opacity:.45}
+.n1-plan b{font:700 11.5px/1 ${MONO};color:${T.accent}}
+.n1-plan span{font-size:11.5px;line-height:1.3;color:${T.ink}}
+
+.n1-team{position:absolute;border:1px solid ${T.line};border-radius:12px;background:${T.paper};padding:10px 12px}
+.n1-team h6{margin:0 0 6px;font:600 10.5px/1 ${MONO};letter-spacing:.12em;color:${T.ink3};text-transform:uppercase}
+.n1-team div{font:500 12px/1.7 ${MONO};color:${T.ink2};white-space:nowrap}
+.n1-team div i{display:inline-block;width:7px;height:7px;border-radius:2px;background:var(--c,${T.ink3});margin-right:7px}
+
+.n1-shelf{position:absolute;border-radius:12px;border:1.5px solid ${T.line};background:${T.paper};transition:border-color .4s,box-shadow .4s,opacity .4s}
+.n1-shelf .sl{position:absolute;left:12px;top:-9px;background:${T.paper};padding:0 6px;font:600 12px/16px ${MONO};color:${T.ink2};white-space:nowrap}
+.n1-shelf.hl{border-color:${T.accent};box-shadow:0 0 0 4px rgba(226,69,31,.12)}
+.n1-shelf.dim{opacity:.45}
+.n1-shelf .emp{position:absolute;left:14px;top:14px;font:500 12px/1 ${MONO};color:${T.ink3}}
+.n1-file{position:absolute;display:flex;align-items:center;gap:7px;font:500 12px/1 ${MONO};color:${T.ink};white-space:nowrap;padding:7px 10px;border-radius:8px;background:${T.paper};border:1px solid ${T.line}}
+.n1-file i{width:8px;height:8px;border-radius:2px;background:var(--c);flex:none}
+.n1-file.new{border-color:${T.accent};animation:mk-up .45s ease both}
+.n1-ghost{position:absolute;display:flex;align-items:center;gap:7px;font:600 12px/1 ${SANS};color:#B91C1C;white-space:nowrap;padding:7px 10px;border-radius:8px;border:1.5px dashed #F2A9A9;background:#FEF2F2;animation:mk-up .45s ease both}
+.n1-tree-ln{position:absolute;background:#C9CED8}
+
+.n1-mini{position:absolute;border-radius:12px;border:1px solid ${T.line};background:#FAFBFC}
+.n1-badge{position:absolute;height:24px;border-radius:7px;display:flex;align-items:center;padding:0 8px;font:600 11.5px/1 ${MONO};white-space:nowrap;transition:all .4s}
+.n1-badge.ok{background:#FFF7E0;color:#8A5A00;border:1px solid #E6D6A8}
+.n1-badge.gone{background:transparent;color:#DC2626;border:1.5px dashed #F2A9A9}
+.n1-say{position:absolute;font:600 12px/1.3 ${SANS};white-space:nowrap;transition:opacity .4s}
+.n1-say.er{color:#DC2626}.n1-say.ok{color:${T.green}}
+.n1-res2{position:absolute;display:flex;flex-direction:column;gap:6px}
+.n1-res2 div{font:500 11.5px/1 ${MONO};white-space:nowrap;padding:6px 9px;border-radius:7px;background:${T.code};color:${T.codeInk};transition:all .4s}
+.n1-res2 b{font-weight:700}
+.n1-arr{position:absolute;height:2px;background:${T.green};transition:background .4s}
+.n1-arr::after{content:"";position:absolute;right:-1px;top:-4px;border-left:7px solid ${T.green};border-top:5px solid transparent;border-bottom:5px solid transparent;transition:border-color .4s}
+.n1-arr.bad{background:repeating-linear-gradient(90deg,#DC2626 0 4px,transparent 4px 8px)}
+.n1-arr.bad::after{border-left-color:#DC2626}
+.n1-arr.off{opacity:.25}
+.n1-pin{position:absolute;display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:${T.accent};color:#fff;font:700 11.5px/1 ${SANS};box-shadow:0 0 0 3px #fff;opacity:0;transition:opacity .35s;z-index:5}
+.n1-pin.on{opacity:1}
+.mk-ln.n1-p1>span:last-child::before,.mk-ln.n1-p2>span:last-child::before,.mk-ln.n1-p3>span:last-child::before{display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;border-radius:50%;background:${T.accent};color:#fff;font:700 10.5px/1 ${SANS};margin-right:7px;vertical-align:1px}
+.mk-ln.n1-p1>span:last-child::before{content:"1"}
+.mk-ln.n1-p2>span:last-child::before{content:"2"}
+.mk-ln.n1-p3>span:last-child::before{content:"3"}
+.n1-act{cursor:pointer;border-radius:5px;padding:1px 3px;outline:2px solid #FF8A65;outline-offset:1px;animation:n1-blink 1.3s ease-in-out infinite}
+.n1-act:hover{background:rgba(255,138,101,.22)}
+@keyframes n1-blink{50%{outline-color:transparent}}
+.n1-acthint{margin-top:16px;padding:12px 14px;border:1.5px solid ${T.accent};border-radius:12px;background:#FFF7F3;font-size:15px;line-height:1.45;color:${T.ink};animation:mk-up .4s ease both}
+.n1-acthint b{color:${T.accent}}
+
+.n1-kit .st{position:absolute;border-radius:12px;background:${T.paper};border:2px solid var(--c);padding:10px 10px 8px;display:flex;flex-direction:column;gap:6px;transition:opacity .4s,box-shadow .4s}
+.n1-kit .st .w{font:700 14px/1.15 ${SANS};color:${T.ink}}
+.n1-kit .st .a{font:600 12px/1 ${MONO};color:var(--c)}
+.n1-kit .st .v{font-size:11.5px;line-height:1.3;color:${T.ink2}}
+.n1-kit .st .f{font:500 10px/1.2 ${MONO};color:${T.ink3};word-break:break-all;opacity:0;transition:opacity .4s}
+.n1-kit .st .f.on{opacity:1}
+.n1-kit .st.hl{box-shadow:0 0 0 4px rgba(226,69,31,.16),0 14px 30px rgba(15,17,21,.12)}
+.n1-kit .st.dim{opacity:.4}
+.n1-kit .ar{position:absolute;height:2px;background:#B9BFCB}
+.n1-kit .ar::after{content:"";position:absolute;right:-1px;top:-4px;border-left:7px solid #B9BFCB;border-top:5px solid transparent;border-bottom:5px solid transparent}
+.n1-kit .no{position:absolute;font:600 11.5px/1.3 ${SANS};color:${T.accent};white-space:nowrap;opacity:0;transition:opacity .4s}
+.n1-kit .no.on{opacity:1}
+
+.mk-cover .card.n1-cv{max-width:1120px;padding:0;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);overflow:hidden}
+.n1-cv .tx{padding:40px 30px 36px 40px;display:flex;flex-direction:column}
+.n1-cv .af{margin:6px 0 10px;font:600 11.5px/1 ${MONO};letter-spacing:.12em;color:${T.ink3};text-transform:uppercase}
+.n1-cv ul.ok{margin:0 0 22px;gap:10px}
+.n1-cv ul.ok li{display:flex;gap:10px;color:${T.ink};font-size:15.5px;line-height:1.4}
+.n1-cv ul.ok li::before{content:"✓";flex:none;width:21px;height:21px;border-radius:50%;background:#E3F5EC;color:${T.green};font:700 12px/21px ${SANS};text-align:center;margin:0}
+.n1-cv .tx>.mk-btn{align-self:flex-start}
+.n1-cv .meta{margin:auto 0 16px;font-size:13px;line-height:1.5;color:${T.ink3}}
+.n1-cv .pic{background:${T.bg};border-left:1px solid ${T.line};display:flex;align-items:center;padding:24px 20px}
+@media (max-width:900px){.mk-cover .card.n1-cv{grid-template-columns:1fr}.n1-cv .pic{border-left:0;border-top:1px solid ${T.line}}}
+@media (prefers-reduced-motion:reduce){.n1-pk.loop,.n1-sock.wait,.n1-act{animation:none}.n1-box *{transition:none!important}}
+`;
+function useCssN1() {
+  useEffect(() => {
+    let s = document.getElementById('mk-css-n1');
+    if (!s) { s = document.createElement('style'); s.id = 'mk-css-n1'; document.head.appendChild(s); }
+    if (s.textContent !== CSS_N1) s.textContent = CSS_N1;
+  }, []);
+}
+
+// Qat'iy o'lchamli chizma (w×h) sahna eniga qarab kattalashadi (max gacha), markazda turadi
+function N1Fit({ w, h, max = 1.25, children, style }) {
+  const ref = useRef(null);
+  const [W, setW] = useState(0);
+  useEffect(() => {
+    const el = ref.current; if (!el) return undefined;
+    const f = () => setW(el.clientWidth);
+    f();
+    if (typeof ResizeObserver === 'undefined') { window.addEventListener('resize', f); return () => window.removeEventListener('resize', f); }
+    const ro = new ResizeObserver(f); ro.observe(el); return () => ro.disconnect();
+  }, []);
+  const k = W > 0 ? Math.min(max, W / w) : 1;
+  return <div ref={ref} className="n1-fit" style={{ height: Math.round(h * k), ...(style || {}) }}>
+    <div className="n1-box" style={{ width: w, height: h, left: Math.max(0, (W - w * k) / 2), transform: `scale(${k})`, visibility: W > 0 ? 'visible' : 'hidden' }}>{children}</div>
+  </div>;
+}
+
+// Bir qadamdan keyin ms o'tdimi (paket ikkinchi yo'lakka o'tishi, brauzerga javob kelishi uchun)
+function useLate(key, ms) {
+  const [late, setLate] = useState(false);
+  useEffect(() => { setLate(false); const id = setTimeout(() => setLate(true), ms); return () => clearTimeout(id); }, [key, ms]);
+  return late;
+}
+
+// ---------- 23–26-ekran: «Buzamiz» — kichik rasm (VS Code oynasi ichida, kod va terminal orasida) ----------
+// Mentor o'zi buzadi: kodda yonib turgan so'z (data-act) bosiladi → act segmenti tugaydi (dvigatel: answerAsk).
+// hit — bosildimi; broken — buzilgan holat ko'rinadimi
+function useAct(b, id = 'x') {
+  const hit = !!(b.guess && b.guess[id] !== undefined);
+  const onClick = (e) => { const el = e.target && e.target.closest ? e.target.closest('[data-act]') : null; if (el && !hit && b.answerAsk) b.answerAsk(id, 0); };
+  return { hit, onClick };
+}
+// Balandlik 122 (ramka 8…118): 1280×720 da VS Code oynasiga kod + rasm + terminal sig'sin; kattalashish 1.1 gacha
+const N1Mini = ({ h = 122, children }) => <div style={{ background: T.paper, border: `1px solid ${T.line}`, borderRadius: 12, padding: '4px 8px', flex: '0 0 auto' }}><N1Fit w={520} h={h} max={1.1}>{children}</N1Fit></div>;
+// code null — natija hali noma'lum (savol berilgan, javob keyingi qadamda): «?»
+const Res = ({ rows, left = 404, top = 34 }) => <div className="n1-res2" style={{ left, top }}>{rows.map(([q, code, txt]) => <div key={q}>{q} → <b className={code == null ? '' : code >= 400 ? 'n1-er' : 'n1-ok'}>{code == null ? '?' : code}</b>{txt ? ' ' + txt : ''}</div>)}</div>;
+
+// ============================================================
+//  «BUYURTMA BOTI» XARITASI (F-1120-02, qonun M51) — OrderBot ipidagi 8 darsga umumiy rasm
+//  (TgPg, Jest-1/2, CI/CD-1/2, WS-1/2, Webhook; dev/yig.sh). Joylashuv, rang va nomlar hamma darsda bir xil —
+//  har dars faqat holatni o'zgartiradi va o'z qismini yoritadi.
+//  Chapda mijoz telefoni (Telegram), o'rtada OrderBotNest serveri (telegram · catalog · user · cart · order),
+//  o'ngda ma'lumot: Xotira (Map / massiv) va PostgreSQL (products · users · cart_items · orders).
+//  Nomlar OrderBotNest kodidan: PRODUCTS[] (catalog.service.ts:7), users Map (user.service.ts:8),
+//  carts Map (cart.service.ts:7), orders[] (order.service.ts:14) — teg tgpg-start.
+//  Ranglar: dars ranglari (T) va OrderBot darslaridagi Telegram/PostgreSQL ranglari; CSS izohida backtick yo'q.
+// ============================================================
+const BM = { tg: '#5B8DB8', tgBg: '#DCE7F0', pg: '#336791', jest: '#99425B' }; // jest — Jest darslaridagi rang (JC.jest)
+// [kalit, xotiradagi nomi, xotira izohi, jadval nomi, jadval izohi]
+const BM_DATA = [
+  ['products', 'PRODUCTS[]', 'catalog.service.ts', 'products', 'stock CHECK ≥ 0'],
+  ['users', 'users Map', 'rol · telefon · state', 'users', 'telegram_id BIGINT'],
+  ['carts', 'carts Map', 'cart.service.ts', 'cart_items', 'UNIQUE · ON CONFLICT'],
+  ['orders', 'orders[]', 'order.service.ts', 'orders', '+ order_items'],
+];
+const BM_MODS = [['catalog', 236, 104], ['user', 348, 104], ['cart', 236, 146], ['order', 348, 146]];
+// loc: { products|users|carts|orders: 'mem' | 'db' } (berilmasa — 'mem') · restart: xotira bo'shadi
+// on: yonib turgan qismlar (modullar 'phone','telegram','catalog','user','cart','order'; ma'lumot 'products','users','carts','orders'; 'mem','db'); berilmasa hammasi oddiy
+// chat: [mijoz, bot, 'ok'|'bad'] · clients: bir vaqtda nechta mijoz · tx: 'open'|'commit'|'rollback' (PostgreSQL ichida)
+// note: { kalit: jadval ostidagi yozuv } · ops: { kalit: 'UPDATE' … } · badge: { kalit: raqam } (masalan bosqich)
+// bad: { at: kalit, why } · ro: [fayl:satr, html] · tag · max
+// jest: { name, cmd, files: [...], steps: [[nom, 'ok'|'bad'|'skip'|'']], res: 'pass'|'fail'|'?', txt, badge (o'z matni) } (name berilmasa — «Jest»; CI darslarida steps — lenta qadamlari) — server ostidagi qator (Jest darslari): test faqat funksiyani chaqiradi
+// tgSub: telegram moduli yonidagi yozuv (berilmasa «Telegraf») · dbLabel: PostgreSQL qutisi nomi (CI'da — services konteyneri)
+function BotMap({ loc = {}, restart, on, chat, clients = 1, tx, note = {}, ops = {}, badge = {}, bad, ro, tag, max, jest, tgSub, dbLabel }) {
+  const W = 760, BOT = tx ? 318 : 300, H = BOT + (ro ? 54 : 4);
+  const lit = (k) => !on || on.includes(k);
+  const st = (k) => (bad && bad.at === k ? 'bad' : lit(k) ? (on ? 'hl' : '') : 'dim');
+  const where = (k) => loc[k] || 'mem';
+  const memItems = BM_DATA.filter((d) => where(d[0]) === 'mem');
+  const dbItems = BM_DATA.filter((d) => where(d[0]) === 'db');
+  const box = (k, x, y, w, h, color, inner, extra = {}) => {
+    const s = st(k);
+    return <div key={k} className="n1-abs n1-st" data-st={s === 'dim' ? 'dim' : undefined} style={{ left: x, top: y, width: w, height: h, borderRadius: 9, border: `2px solid ${s === 'bad' ? '#DC2626' : color}`, background: s === 'bad' ? '#FEF2F2' : T.paper, boxShadow: s === 'hl' ? '0 0 0 3px rgba(226,69,31,.14)' : 'none', padding: '5px 9px', overflow: 'hidden', ...extra }}>{inner}</div>;
+  };
+  const badgeEl = (k) => (badge[k] != null ? <span style={{ position: 'absolute', right: 6, top: 5, width: 18, height: 18, borderRadius: '50%', background: T.accent, color: '#fff', font: `700 11px/18px ${SANS}`, textAlign: 'center' }}>{badge[k]}</span> : null);
+  const memChip = (d, i) => {
+    const x = 506 + (i % 2) * 116, y = 54 + Math.floor(i / 2) * 32;
+    return box(d[0], x, y, 110, 28, restart ? '#F2A9A9' : T.yellow, <>
+      <div style={{ font: `700 11px/1.5 ${MONO}`, color: restart ? '#B91C1C' : T.ink, whiteSpace: 'nowrap', textDecoration: restart ? 'line-through' : 'none' }}>{d[1]}</div>{badgeEl(d[0])}
+    </>, { padding: '2px 8px', borderStyle: restart ? 'dashed' : 'solid' });
+  };
+  // jadval — PostgreSQL ichida to'liq enli qator: nomi, amal (UPDATE/INSERT/DELETE), izoh
+  const dbChip = (d, i) => box(d[0], 506, 152 + i * 35, 222, 32, BM.pg, <div style={{ display: 'flex', alignItems: 'center', gap: 6, height: 20, whiteSpace: 'nowrap' }}>
+    <span style={{ font: `700 11.5px ${MONO}`, color: BM.pg }}>{d[3]}</span>
+    {ops[d[0]] ? <span style={{ font: `700 9.5px/1.4 ${MONO}`, color: '#fff', background: ops[d[0]] === 'DELETE' ? T.yellow : ops[d[0]] === 'INSERT' ? T.green : T.accent, borderRadius: 4, padding: '0 4px' }}>{ops[d[0]]}</span> : null}
+    <span style={{ marginLeft: 'auto', minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', font: `500 10px ${MONO}`, color: T.ink2, paddingRight: badge[d[0]] != null ? 18 : 0 }}>{note[d[0]] || d[4]}</span>{badgeEl(d[0])}
+  </div>, { padding: '4px 8px' });
+  const memLit = memItems.some((d) => lit(d[0])) && memItems.length > 0;
+  const dbLit = dbItems.some((d) => lit(d[0])) && dbItems.length > 0;
+  const txC = tx === 'rollback' ? '#DC2626' : tx === 'commit' ? T.green : T.accent;
+  return <N1Fit w={W} h={H} max={max}>
+    {tag && <span className="n1-tagl" style={{ left: 20, top: 4 }}>{tag}</span>}
+    {/* telefon — Telegram */}
+    {clients > 1 && [2, 1].map((k) => <div key={k} className="n1-abs" style={{ left: 20 + k * 6, top: 40 - k * 6, width: 176, height: 196, borderRadius: 14, border: `1.5px solid ${T.line}`, background: T.paper }} />)}
+    <div className="n1-abs n1-st" data-st={st('phone') === 'dim' ? 'dim' : undefined} style={{ left: 20, top: 40, width: 176, height: 196, borderRadius: 14, border: `2px solid ${st('phone') === 'hl' ? BM.tg : T.line}`, background: BM.tgBg, overflow: 'hidden' }}>
+      <div style={{ height: 30, background: BM.tg, color: '#fff', font: `700 12px/30px ${SANS}`, padding: '0 10px', whiteSpace: 'nowrap' }}>Telegram · OrderBot</div>
+      {chat && <div style={{ padding: 8, display: 'flex', flexDirection: 'column', gap: 6 }}>
+        {chat[0] && <div style={{ alignSelf: 'flex-end', maxWidth: 150, background: '#EFFDDE', borderRadius: '10px 10px 2px 10px', padding: '4px 8px', font: `500 10.5px/1.35 ${SANS}`, color: T.ink, overflowWrap: 'anywhere' }}>{chat[0]}</div>}
+        {chat[1] && <div style={{ alignSelf: 'flex-start', maxWidth: 160, background: T.paper, border: `1.5px solid ${chat[2] === 'bad' ? '#F2A9A9' : chat[2] === 'ok' ? '#BFE3D0' : 'transparent'}`, borderRadius: '10px 10px 10px 2px', padding: '4px 8px', font: `500 10.5px/1.35 ${SANS}`, color: chat[2] === 'bad' ? '#B91C1C' : T.ink, overflowWrap: 'anywhere', display: '-webkit-box', WebkitLineClamp: 6, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{chat[1]}</div>}
+      </div>}
+    </div>
+    {clients > 1 && <span className="n1-abs" style={{ left: 120, top: 18, background: T.accent, color: '#fff', font: `700 11px/1 ${SANS}`, borderRadius: 9, padding: '4px 8px', whiteSpace: 'nowrap' }}>×{clients} {t('mijoz', 'клиентов')}</span>}
+    {/* server */}
+    <div className="n1-app" style={{ left: 222, top: 30, width: 246, height: 206 }} />
+    <span className="n1-tagl" style={{ left: 236, top: 40 }}>OrderBotNest · NestJS</span>
+    {box('telegram', 236, 58, 218, 34, BM.tg, <div style={{ font: `600 11.5px/20px ${MONO}`, color: T.ink, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>telegram <span style={{ color: T.ink3 }}>· {tgSub || 'Telegraf'}</span></div>)}
+    {BM_MODS.map(([k, x, y]) => box(k, x, y, 106, 34, T.green, <div style={{ font: `600 11.5px/20px ${MONO}`, color: T.ink, whiteSpace: 'nowrap' }}>{k}</div>))}
+    <span className="n1-abs" style={{ left: 236, top: 194, font: `500 10.5px/1.35 ${SANS}`, color: T.ink3, width: 218 }}>{t("bot.on / action → servis → ma'lumot", 'bot.on / action → сервис → данные')}</span>
+    {/* xotira */}
+    <div className="n1-abs n1-st" data-st={st('mem') === 'dim' ? 'dim' : undefined} style={{ left: 494, top: 30, width: 246, height: 98, borderRadius: 14, border: `2px ${restart ? 'dashed' : 'solid'} ${restart ? '#F2A9A9' : T.yellow}`, background: restart ? '#FEF2F2' : '#FFFBF0' }} />
+    <span className="n1-abs" style={{ left: 506, top: 21, background: T.paper, padding: '0 6px', font: `700 12px/16px ${SANS}`, color: restart ? '#B91C1C' : T.yellow, whiteSpace: 'nowrap' }}>{restart ? t("Xotira — restart: bo'shadi", 'Память — перезапуск: пусто') : t('Xotira (RAM) · Map, massiv', 'Память (RAM) · Map, массив')}</span>
+    {memItems.map(memChip)}
+    {memItems.length === 0 && <span className="n1-abs" style={{ left: 506, top: 66, font: `500 11px ${SANS}`, color: T.ink3 }}>{t("bo'sh — hammasi bazada", 'пусто — всё в базе')}</span>}
+    {/* PostgreSQL */}
+    <div className="n1-abs n1-st" data-st={st('db') === 'dim' ? 'dim' : undefined} style={{ left: 494, top: 140, width: 246, height: 156, borderRadius: 14, border: `2px solid ${BM.pg}`, background: '#F7FAFC' }} />
+    <span className="n1-abs" style={{ left: 506, top: 131, background: T.paper, padding: '0 6px', font: `700 12px/16px ${SANS}`, color: BM.pg, whiteSpace: 'nowrap' }}>{dbLabel || 'PostgreSQL · shop'}</span>
+    {dbItems.map(dbChip)}
+    {dbItems.length === 0 && <span className="n1-abs" style={{ left: 506, top: 168, font: `500 11px ${SANS}`, color: T.ink3, width: 220 }}>{t("hali jadval yo'q — ma'lumot xotirada", 'таблиц ещё нет — данные в памяти')}</span>}
+    {tx && <>
+      <div className="n1-abs" style={{ left: 500, top: 146, width: 234, height: 146, borderRadius: 10, border: `2px dashed ${txC}` }} />
+      <span className="n1-abs" style={{ left: 506, top: 300, font: `700 10.5px/1 ${MONO}`, color: txC, whiteSpace: 'nowrap' }}>{tx === 'rollback' ? 'START TRANSACTION … ROLLBACK' : tx === 'commit' ? 'START TRANSACTION … COMMIT' : 'START TRANSACTION …'}</span>
+    </>}
+    {jest && <>
+      <div className="n1-abs" style={{ left: 20, top: 250, width: 448, height: 46, borderRadius: 12, border: `2px solid ${BM.jest}`, background: T.paper, display: 'flex', alignItems: 'center', gap: 8, padding: '0 10px', whiteSpace: 'nowrap', overflow: 'hidden' }}>
+        <b style={{ font: `700 13px ${SANS}`, color: BM.jest, flex: 'none' }}>{jest.name || 'Jest'}</b>
+        {!jest.steps && (jest.files || []).length < 2 && <span style={{ font: `500 10.5px ${MONO}`, color: T.ink3, flex: 'none' }}>{jest.cmd || 'npm test'}</span>}
+        {(jest.steps || []).map(([n, st], i) => <span key={'s' + i} style={{ font: `600 10px/1 ${MONO}`, color: st === 'bad' ? '#B91C1C' : st === 'skip' ? T.ink3 : T.ink, background: st === 'bad' ? '#FEF2F2' : st === 'ok' ? '#E3F5EC' : T.paper, border: `1px ${st === 'skip' ? 'dashed' : 'solid'} ${st === 'bad' ? '#F2A9A9' : st === 'ok' ? '#BFE3D0' : T.line}`, borderRadius: 6, padding: '4px 5px', whiteSpace: 'nowrap', flex: 'none' }}>{st === 'ok' ? '✓ ' : st === 'bad' ? '✕ ' : ''}{n}</span>)}
+        {(jest.files || []).map((f) => <span key={f} style={{ font: `600 10px/1 ${MONO}`, color: T.ink, background: '#F6F7F9', border: `1px solid ${T.line}`, borderRadius: 6, padding: '4px 6px', minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis' }}>{f}</span>)}
+        <span style={{ marginLeft: 'auto', flex: 'none', font: `700 11px/1 ${MONO}`, color: '#fff', background: jest.res === 'pass' ? T.green : jest.res === 'fail' ? '#DC2626' : T.ink3, borderRadius: 6, padding: '5px 7px' }}>{jest.badge || ((jest.res === 'pass' ? 'PASS' : jest.res === 'fail' ? 'FAIL' : '?') + (jest.txt ? ' · ' + jest.txt : ''))}</span>
+      </div>
+      <svg className="n1-svg" width={W} height={H} viewBox={`0 0 ${W} ${H}`}><path d="M345 250 L 345 240" fill="none" stroke={BM.jest} strokeWidth="2" strokeDasharray="3 3" /></svg>
+    </>}
+    {bad && bad.why && <span className="n1-abs" style={{ left: 236, top: 246, font: `700 11px/1.3 ${SANS}`, color: '#B91C1C', width: 240 }}>✕ {bad.why}</span>}
+    {/* yo'llar */}
+    <svg className="n1-svg" width={W} height={H} viewBox={`0 0 ${W} ${H}`}>
+      <defs>
+        <marker id="bmr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill={T.accent} /></marker>
+        <marker id="bmk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#B9BFCB" /></marker>
+      </defs>
+      <path d="M196 120 L 218 120" fill="none" stroke={lit('phone') || lit('telegram') ? T.accent : '#B9BFCB'} strokeWidth="2" markerEnd={`url(#${lit('phone') || lit('telegram') ? 'bmr' : 'bmk'})`} />
+      <path d="M468 80 L 490 80" fill="none" stroke={memLit && !restart ? T.yellow : '#D5D9E1'} strokeWidth="2" strokeDasharray={memItems.length ? '0' : '5 4'} />
+      <path d="M468 200 L 490 200" fill="none" stroke={dbLit ? BM.pg : '#D5D9E1'} strokeWidth="2" strokeDasharray={dbItems.length ? '0' : '5 4'} />
+    </svg>
+    {ro && <div className="n1-ro" style={{ left: 20, top: BOT + 8, width: 720, height: 42 }}><span className="rf">{ro[0]}</span><code style={{ fontSize: ro[1].replace(/<[^>]+>/g, '').length > 72 ? 11.5 : 13, background: 'transparent', color: T.codeInk, padding: 0, border: 0 }} dangerouslySetInnerHTML={html(ro[1])} /></div>}
+  </N1Fit>;
+}
+
+// «Buzamiz» kichik rasmi (M52) — umumiy shakl: 3 ta quti strelka bilan va natija satri; OrderBot darslarida N1Mini ichida.
+// boxes: [[nom, izoh, holat ('' | 'bad' | 'ok')], …3] · res: [matn, holat] (matn '?' — natija hali aytilmagan, M52-3) · pins: { qutiIndeksi: raqam }
+function FlowMini({ tag, boxes, res, pins = {} }) {
+  const X = [8, 178, 348], Wd = [154, 154, 164];
+  return <>
+    {tag && <span className="n1-tagl" style={{ left: 8, top: 12 }}>{tag}</span>}
+    {boxes.map(([label, sub, st], i) => <div key={i} className="n1-abs" style={{ left: X[i], top: 34, width: Wd[i], height: 50, borderRadius: 10, border: `2px solid ${st === 'bad' ? '#DC2626' : st === 'ok' ? T.green : T.line}`, background: st === 'bad' ? '#FEF2F2' : T.paper, padding: '6px 9px', transition: 'all .4s', overflow: 'hidden' }}>
+      <div style={{ font: `700 11.5px ${MONO}`, color: st === 'bad' ? '#B91C1C' : T.ink, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{label}</div>
+      <div style={{ font: `500 10.5px ${MONO}`, color: st === 'bad' ? '#B91C1C' : T.ink3, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', marginTop: 3 }}>{sub}</div>
+    </div>)}
+    {[162, 332].map((x) => <div key={x} className="n1-arr" style={{ left: x + 1, top: 58, width: 14 }} />)}
+    {res && <span className="n1-abs" style={{ left: 8, top: 96, font: `700 11.5px ${MONO}`, whiteSpace: 'nowrap', color: res[0] === '?' ? T.ink3 : res[1] === 'bad' ? '#DC2626' : res[1] === 'ok' ? T.green : T.ink2 }}>{res[0]}</span>}
+    {Object.keys(pins).map((i) => <span key={i} className="n1-pin on" style={{ left: X[i] + Wd[i] - 10, top: 26 }}>{pins[i]}</span>)}
+  </>;
 }
 
 // AVTO: feedback/F-1029-02-mentor-kurs/dev/ws1-kod.py — OrderBotNest ws1-done, maydon-jamoa m12-dars-03-done, haqiqiy chiqishlar (qo'lda tahrirlanmaydi)
@@ -3773,9 +4141,15 @@ const MDT = {
   "title": "disconnect() dan keyin return yo'q: klient baribir yopildi, lekin server logi «panel ulandi» deb yozdi — log endi ishonchsiz",
   "seg": [
    [
+    "x",
+    "Endi <b>o'zingiz buzasiz</b>: kodda yonib turgan <code>return;</code> ustiga bosing",
+    "Gateway to'g'ri ishlaydi: tokensiz klient yopiladi, logda hech narsa yo'q. Endi ataylab buzamiz. Buzishni o'zingiz qilasiz: live gateway ts faylida client disconnect'dan keyingi return satri yonib turibdi, ustiga bosing: satr o'chadi.",
+    "<b>live.gateway.ts</b>dagi <b><code>return;</code></b> ustiga bosing — <code>client.disconnect();</code> dan keyingi satr o'chadi."
+   ],
+   [
     "a",
-    "Buzamiz: <b><code>client.disconnect();</code> dan keyingi <code>return;</code> ni olib tashlaymiz</b>",
-    "Endi ataylab buzamiz. Live gateway ts faylida client disconnect'dan keyingi return satrini o'chiramiz. Kichik o'zgarish, kod kompilyatsiya bo'ladi. Tokensiz klient bilan sinaymiz: npm run live, ikki qo'shtirnoq."
+    "Buzildi: <b><code>client.disconnect();</code> dan keyingi <code>return;</code> yo'q</b>",
+    "Return satrini o'chirdingiz. Kichik o'zgarish, kod kompilyatsiya bo'ladi. Tokensiz klient bilan sinaymiz: npm run live, ikki qo'shtirnoq."
    ],
    [
     "b",
@@ -4567,7 +4941,7 @@ function compact(files, active) {
 const sg = (id, key, text, extra = {}) => ({ id, key, text, show: wr(text), ...extra });
 const mkS = (n, extras = [], more = {}) => {
   const m = MDT[n];
-  return { kicker: m.kicker, eyebrow: m.eyebrow, title: m.title, ...more, segments: m.seg.map(([id, key, text], i) => sg(id, key, text, extras[i] || {})) };
+  return { kicker: m.kicker, eyebrow: m.eyebrow, title: m.title, ...more, segments: m.seg.map(([id, key, text, act], i) => sg(id, key, text, { ...(act ? { act } : {}), ...(extras[i] || {}) })) /* F-1120-02 (M52): act */ };
 };
 const SPOKEN = [
   ['npm run live', 'npm run live'], ['npm run smoke live', 'npm run smoke -- live'], ['npm run start dev', 'npm run start:dev'], ['ws1 done', 'ws1-done'],
@@ -4623,7 +4997,7 @@ const outRange = (k, reA, reB, keep = () => true) => { const L = outLines(k); le
 const outPick = (k, keep) => outLines(k).filter(keep).map((l) => ({ h: liveLine(l) }));
 const jt = (src) => src.replace(/^\n/, '').replace(/\n\s*$/, '').split('\n').map((l) => ({ h: liveLine(l) }));
 const txtLines = (s) => s.split('\n').filter((l) => l.trim() !== '').map((l) => ({ h: liveLine(l) }));
-const Term = ({ lines, title = t('VS Code terminali · OrderBotNest', "терминал VS Code · OrderBotNest"), er, beat, focus, style }) => <CodePanel file={title} numbers={false} style={{ background: er ? C1.termEr : C1.term, ...(style || {}) }} lines={lines} beat={beat} focus={focus} />;
+const Term = ({ lines, title = t('VS Code terminali · OrderBotNest', "терминал VS Code · OrderBotNest"), er, beat, focus, style, marks }) => <CodePanel file={title} numbers={false} style={{ background: er ? C1.termEr : C1.term, ...(style || {}) }} lines={lines} beat={beat} focus={focus} marks={marks} />;
 const hlOf = (f) => (/\.md$/.test(f) ? mdLine : tsLine);
 const lineN = (k, re, from = 1) => { const l = KOD[k].lines.find((x) => x.n >= from && re.test(x.t)); return l ? l.n : 1; };
 const kod = (k, ids = {}, from, to, edit = {}) => { const hl = hlOf(KOD[k].file); return KOD[k].lines.filter((l) => (from == null || l.n >= from) && (to == null || l.n <= to)).flatMap((l) => {
@@ -4797,14 +5171,25 @@ function useCss3() {
 //  1 · Kirish — dars oxiridagi natija: haqiqiy brauzerdagi panel (10b)
 // ============================================================
 const PLAN1 = ['Umumiy tushuncha', 'Gateway va token', 'Hodisa va panel', 'Ulanish holati', 'AI', 'Sinfga tayyorgarlik'];
-const S1 = mkS(1, [{ hl: [], res: true }, { hl: [0, 1] }, { hl: [2, 3, 4, 5] }, { hl: [5] }], { plan: PLAN1 });
+const S1 = mkS(1, [{ hl: [] }, { hl: [0, 1] }, { hl: [2, 3, 4, 5] }, { hl: [5] }], { plan: PLAN1 });
+// F-1120-02 (M51): darsning rasmi — «Buyurtma boti» xaritasi; pastki qatorda admin paneli: brauzerdagi /admin serverga doimiy ulanish (socket.io) bilan bog'langan
+const DB_ALL = { products: 'db', users: 'db', carts: 'db', orders: 'db' };
+const PANEL = { get name() { return t('Admin panel', 'Админ-панель'); }, steps: [['LiveGateway', 'ok'], ['order-changed', 'ok']], res: 'pass', badge: 'Ulangan' };
+const LIVE_ON = ['phone', 'telegram', 'order', 'db', 'orders'];
+const CHAT_LIVE = ['[✅ Buyurtma berish]', 'Buyurtma #… qabul qilindi!', 'ok'];
+const S1M = [
+  { on: LIVE_ON, chat: CHAT_LIVE, jest: PANEL },
+  { on: ['telegram'], jest: { get name() { return t('Admin panel', 'Админ-панель'); }, steps: [['socket.io', 'ok'], ['token', 'ok']], res: 'pass', badge: 'Ulangan' } },
+  { on: LIVE_ON, chat: CHAT_LIVE, jest: PANEL },
+  { on: LIVE_ON, chat: CHAT_LIVE, jest: PANEL },
+];
 function Screen1(p) {
-  return <Lesson p={p} S={S1} scene={({ seg }) => <div style={{ display: 'grid', gap: 14 }}>
-    <div className="mk-light"><div className="mk-plan">
+  return <Lesson p={p} S={S1} scene={({ seg, beat }) => { const m = S1M[Math.min(beat, 3)]; return <div className="mk-light" style={{ padding: 16, display: 'grid', gap: 12 }}>
+    <BotMap loc={DB_ALL} {...m} tag={t("Bugungi darsning rasmi — bot buyurtma oladi, admin paneli o'zi ko'rsatadi", 'Картина урока — бот получает заказ, админ-панель показывает его сама')} />
+    <div className="n1-plan" style={{ position: 'static', gridTemplateColumns: 'repeat(6,minmax(0,1fr))', gap: 6 }}>
       {S1.plan.map((x, i) => <div key={i} className={seg.hl.includes(i) ? 'hl' : (seg.hl.length ? 'dim' : '')}><b>0{i + 1}</b><span>{x}</span></div>)}
-    </div></div>
-    {seg.res && <><div className="mk-tag" style={{ margin: 0 }}>{t("Dars oxirida — bot buyurtma oldi, panel sahifani yangilamasdan ko'rsatdi", "В конце урока — бот получил заказ, панель показала его без обновления страницы")}</div><PanelView k="10b" small /></>}
-  </div>} />;
+    </div>
+  </div>; }} />;
 }
 
 // ============================================================
@@ -4911,15 +5296,30 @@ const T6CLI = outRange('07', /^\$ npm run live/, /# Server logi/);
 const T6SRV = outRange('07', /# Server logi/, null);
 const T6OK = outRange('03', /# Server logi/, null);
 const CAUSE6 = ['client.disconnect() — ulanish yopiladi, lekin funksiyadan chiqilmaydi', "return yo'q — keyingi satrlar baribir bajariladi", "client.data.admin = true va log «panel ulandi» — rad etilgan klient uchun", "Keyin shu yerga xona yoki ruxsat qo'shilsa — rad etilgan klient ularni oladi"];
-const S6 = mkS(6, [{ v: 'code' }, { v: 'cli' }, { v: 'log' }, { v: 'cause' }]);
+// F-1120-02 (M52): 1-segment (x) — mentor client.disconnect() dan keyingi return; ni o'zi bosadi → satr o'chadi
+const ACT6 = () => kod('GATEWAY', { [RET]: 'x' }, GW.con, GW.con + 7).map((l) => (l.n === RET ? { ...l, h: '<span class="n1-act" data-act="1">' + l.h + '</span>' } : l));
+const RetMini = ({ broken, cli, log, pins }) => <N1Mini><FlowMini tag={t('tokensiz klient → gateway → server logi', 'клиент без токена → gateway → лог сервера')}
+  boxes={[[t('tokensiz klient', 'клиент без токена'), cli ? 'io server disconnect' : 'npm run live -- ""', ''], ['handleConnection', broken ? t("return yo'q", 'нет return') : 'disconnect() · return', broken ? 'bad' : ''], [t('server logi', 'лог сервера'), !broken ? t("bo'sh — to'g'ri", 'пусто — верно') : log ? '[Live] panel ulandi' : '?', broken && log ? 'bad' : '']]}
+  res={broken ? [log ? t("log yolg'on: rad etilgan klient «ulandi»", 'лог врёт: отклонённый клиент «подключён»') : '?', 'bad'] : null} pins={pins} /></N1Mini>;
+const S6 = mkS(6, [{ v: 'act' }, { v: 'code' }, { v: 'cli' }, { v: 'log' }, { v: 'cause' }]);
 function Screen6(p) {
+  return <Lesson p={p} S={S6} scene={(b) => <Scene6 b={b} />} />;
+}
+// Qadamlar: 0 bosing · 1 buzildi · 2 klient — o'sha natija · 3 server logi yolg'on, bo'laklar 1·2 · 4 sabab
+function Scene6({ b }) {
+  const { seg, beat } = b;
+  const act = useAct(b);
+  const v = beat === 0 ? (act.hit ? 'code' : 'act') : seg.v;
   const code = <CodePanel file={t("live.gateway.ts · buzilgan", "live.gateway.ts · сломанная копия")} lines={kod('GATEWAY', { [RET]: 'x' }, GW.con, GW.con + 7, { [RET]: false })} focus={['x']} />;
-  return <Lesson p={p} S={S6} scene={({ seg }) => <>
-    {seg.v === 'code' && <Ide files={compact(FILES(), F.gw)} active={F.gw}>{code}</Ide>}
-    {seg.v === 'cli' && <div style={{ display: 'grid', gap: 8 }}>{code}<Term title={t('VS Code terminali · npm run live -- ""', 'терминал VS Code · npm run live -- ""')} lines={T6CLI} /></div>}
-    {seg.v === 'log' && <div className="pg-two"><Term title={t("server logi · return yo'q", "лог сервера · нет return")} lines={T6SRV} er /><Term title={t("server logi · to'g'ri kod (03)", "лог сервера · правильный код (03)")} lines={T6OK} /></div>}
-    {seg.v === 'cause' && <div style={{ display: 'grid', gap: 10 }}><Term title={t("server logi · return yo'q", "лог сервера · нет return")} lines={T6SRV} er /><Cause items={CAUSE6} on={4} bad={2} /></div>}
-  </>} />;
+  const mini = <RetMini broken={v !== 'act'} cli={beat >= 2} log={beat >= 3} pins={beat === 3 ? { 0: 1, 2: 2 } : {}} />;
+  return <>
+    {v === 'act' && <Ide files={compact(FILES(), F.gw)} active={F.gw}><div onClick={act.onClick}><CodePanel file="live.gateway.ts" lines={ACT6()} focus={['x']} /></div>{mini}</Ide>}
+    {v === 'code' && <Ide files={compact(FILES(), F.gw)} active={F.gw}>{code}{mini}</Ide>}
+    {v === 'cli' && <div style={{ display: 'grid', gap: 8 }}>{code}{mini}<Term title={t('VS Code terminali · npm run live -- ""', 'терминал VS Code · npm run live -- ""')} lines={T6CLI} /></div>}
+    {v === 'log' && mini}
+    {v === 'log' && <div className="pg-two"><Term title={t("server logi · return yo'q", "лог сервера · нет return")} lines={T6SRV} er marks={{ [T6SRV.findIndex((l) => /panel ulandi/.test(l.h || ''))]: 'n1-p2' }} /><Term title={t("server logi · to'g'ri kod (03)", "лог сервера · правильный код (03)")} lines={T6OK} /></div>}
+    {v === 'cause' && <div style={{ display: 'grid', gap: 10 }}><Term title={t("server logi · return yo'q", "лог сервера · нет return")} lines={T6SRV} er /><Cause items={CAUSE6} on={4} bad={2} /></div>}
+  </>;
 }
 
 // ============================================================
@@ -5308,15 +5708,21 @@ const SUM25 = [
   { k: 'st', t: "Uch holat: ulangan · ulanmoqda (active=true: transport close, xhr poll error, ping timeout ≤ 45 s) · ulanmagan (active=false: io server disconnect — token). Server yongach klient o'zi ulanadi", st: ['st'] },
   { k: 'ai', t: "AI real vaqt kodiga to'rt savol: kutubxona (socket.io'mi) · token qayerda · hodisada nima, kim oladi · mavjud fayllardan nima o'zgardi; haqiqiy baza bilan tekshiring (npm run smoke -- live)", st: ['ai'] },
 ];
-const STATIONS25 = [['q', "So'rov vs ulanish", T.blue], ['gw', 'Gateway · token', C1.ws], ['ev', 'Hodisa · panel', C1.live], ['st', 'Uch holat', T.green], ['ai', 'AI', C1.ai]];
+// F-1120-02 (M51): xulosa — darsning o'sha rasmi (BotMap + admin paneli); har band rasmning o'z qismini yoritadi.
+// Panel belgilari — admin.html dagi haqiqiy yozuvlar (Ulangan · Ulanmoqda… · Ulanmagan), shuning uchun tarjima qilinmaydi
+const PNL = (steps, res, badge) => ({ get name() { return t('Admin panel', 'Админ-панель'); }, steps, res, badge });
+const MAP25 = {
+  q: { on: ['telegram'], jest: PNL([['GET /admin/orders', ''], ['socket.io', 'ok']], 'pass', 'Ulangan') },
+  gw: { on: ['telegram'], jest: PNL([['token', 'ok'], ['disconnect() · return', 'ok']], 'pass', 'Ulangan') },
+  ev: { on: LIVE_ON, chat: CHAT_LIVE, jest: PNL([['orderChanged', 'ok'], ['order-changed', 'ok']], 'pass', 'Ulangan') },
+  pn: { on: LIVE_ON, chat: CHAT_LIVE, jest: PNL([["io({ auth: { token } })", 'ok']], 'pass', 'Ulangan') },
+  st: { on: ['telegram'], jest: PNL([['transport close', 'bad'], ['xhr poll error', 'bad']], '?', 'Ulanmoqda…') },
+  ai: { on: LIVE_ON, chat: CHAT_LIVE, jest: PNL([['npm run smoke -- live', 'ok']], 'pass', 'Ulangan') },
+};
 function SummaryMap25({ hl }) {
-  const cur = SUM25.find((x) => x.k === hl);
-  const on = (k) => hl === 'all' || !cur || cur.st.includes(k);
-  return <div className="mk-light" style={{ padding: 16 }}>
-    <div className="mk-tag">{t("Bugungi dars — jonli panel: server o'zi xabar yuboradi", "Сегодняшний урок — живая панель: сервер сам присылает сообщение")}</div>
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, minmax(0,1fr))', gap: 6 }}>
-      {STATIONS25.map(([k, n, c], i) => <div key={k} className={`mk-box${cur && cur.st.includes(k) ? ' hl' : ''}`} style={{ '--c': c, padding: '10px 6px', textAlign: 'center', opacity: on(k) ? 1 : 0.35, animation: `mk-up .4s ${i * 0.06}s ease both` }}><h4 style={{ fontSize: 13, margin: 0 }}>{n}</h4></div>)}
-    </div>
+  const m = MAP25[hl] || MAP25.ev;
+  return <div className="mk-light" style={{ padding: 14 }}>
+    <BotMap loc={DB_ALL} {...m} max={1.05} tag={t("Bugungi dars — bot buyurtma oladi, panel o'zi ko'rsatadi", 'Сегодняшний урок — бот получает заказ, панель показывает сама')} />
   </div>;
 }
 const HOMEWORK25 = [
@@ -5385,7 +5791,8 @@ function Screen25(p) {
         <div className="mk-scene top" style={{ overflow: 'auto' }}>
           {phase === 'sum' && (<>
             <SummaryMap25 hl={hl} />
-            <div className="mk-plan">{SUM25.slice(0, shown).map((it, i) => <div key={it.k} className={it.k === hl ? 'hl' : ''} style={{ animation: 'mk-up .45s ease both' }}><b>0{i + 1}</b><span>{it.t}</span></div>)}</div>
+            {/* F-1120-02: bandlar rasm ostida ixcham to'rda — rasm surilib ketmasin (M51-2) */}
+            <div className="n1-plan" style={{ position: 'static', gridTemplateColumns: 'repeat(3,minmax(0,1fr))', gap: 8, marginTop: 10 }}>{SUM25.slice(0, shown).map((it, i) => <div key={it.k} className={it.k === hl ? 'hl' : ''} style={{ animation: 'mk-up .45s ease both' }}><b>0{i + 1}</b><span style={{ fontSize: 12.5 }}>{it.t}</span></div>)}</div>
           </>)}
           {phase === 'hw' && <div className="mk-light" style={{ padding: 16, animation: 'mk-up .45s ease both' }}>
             <div className="mk-tag" style={{ color: T.accent }}>{t('Uyga vazifa · 40–60 daqiqa', 'Домашнее задание · 40–60 минут')}</div>
@@ -5414,16 +5821,21 @@ function Screen25(p) {
 // ============================================================
 //  Muqova va ildiz
 // ============================================================
+// F-1120-02 (M51): muqova — chapda dars nima berishi, o'ngda darsning rasmi; eslatmalar bitta qisqa satrda
 function Cover({ onStart, resume }) {
   return (
-    <div className="mk-cover"><div className="card">
-      <p className="mk-eyebrow">{t("Mentor kursi · WebSocket", "Курс для менторов · WebSocket")}</p>
-      <h1>{t(LESSON_TITLE, RS('TITLE'))}</h1>
-      <p>{t("Bu dars ovozli. Ustoz har ekranda gapiradi, ekran u bilan birga o'zgaradi. Quloqchin yoki ovoz balandligini tekshiring.", 'Урок озвучен. На каждом экране говорит учитель, экран меняется вместе с ним. Проверьте наушники или громкость.')}</p>
-      <ul>
-        {t(["Jami taxminan 1 soat 15–30 daqiqa: ovoz ~25 daqiqa · uchta amaliyot 50–65 daqiqa · 4 tekshiruv · o'z-sinov 8 savol. 12-ekrandan keyin tanaffus qilsangiz bo'ladi", "Kerak: CI/CD-2 mentor darsi (OrderBotNest nusxangiz) · Telegraf darsidagi bot tokeni va PostgreSQL · Node.js 20+ · VS Code · brauzer · AI yordamchi", "Loyiha: github.com/Azizbekcrypto/OrderBotNest — ws1-start (= cicd2-done) → ws1-done; har chiqish haqiqiy server, baza va brauzerdan"], RS('COVER')).map((x) => <li key={x}>{x}</li>)}
-      </ul>
-      <CoverStart onStart={onStart} resume={resume} />
+    <div className="mk-cover"><div className="card n1-cv">
+      <div className="tx">
+        <p className="mk-eyebrow">{t("Mentor kursi · WebSocket", "Курс для менторов · WebSocket")}</p>
+        <h1>{t(LESSON_TITLE, RS('TITLE'))}</h1>
+        <p className="af">{t('Bu darsdan keyin siz', 'После этого урока вы')}</p>
+        <ul className="ok">
+          {t(["so'rov–javob va doimiy ulanish farqini ko'rsatasiz: socket.io, gateway, token", "bot buyurtma olganda hodisa yuborasiz — admin paneli sahifani yangilamasdan ko'rsatadi", "panel belgisi va server logidan uzilish sababini topasiz, AI kodini to'rt savol bilan tekshirasiz"], ['покажете разницу запрос–ответ и постоянного соединения: socket.io, gateway, токен', 'отправите событие, когда бот получил заказ, — админ-панель покажет без перезагрузки', 'найдёте по значку панели и логу сервера причину обрыва, проверите код AI четырьмя вопросами']).map((x) => <li key={x}>{x}</li>)}
+        </ul>
+        <p className="meta">{t("Ovozli dars · 1 soat 15–30 daqiqa, 12-ekrandan keyin tanaffus qilsa bo'ladi · Kerak: CI/CD-2 darsi (OrderBotNest nusxangiz), Telegraf darsidagi bot tokeni va PostgreSQL, Node.js 20+, VS Code, brauzer, AI yordamchi · Loyiha: ws1-start tegi", 'Урок со звуком · 1 ч 15–30 мин, после 12-го экрана можно сделать перерыв · Нужно: урок CI/CD-2 (ваша копия OrderBotNest), токен бота и PostgreSQL из урока Telegraf, Node.js 20+, VS Code, браузер, AI-помощник · Проект: тег ws1-start')}</p>
+        <CoverStart onStart={onStart} resume={resume} />
+      </div>
+      <div className="pic"><BotMap loc={DB_ALL} on={LIVE_ON} chat={CHAT_LIVE} jest={PANEL} max={1} /></div>
     </div></div>
   );
 }
@@ -5433,6 +5845,7 @@ export default function WsBasicsMentorLesson({ studentName, lang = 'uz', onFinis
   setLang(lang);
   useCss();
   useCss3();
+  useCssN1(); // F-1120-02: dars rasmi uslubi (parts/02b-rasm.jsx)
   const total = SCREENS.length;
   const [started, setStarted] = useState(startAt != null);
   const [idx, setIdx] = useState(Math.min(Math.max(0, startAt || 0), total - 1));
@@ -5555,7 +5968,6 @@ Maydon Jamoa «8 / 10» · закрытая/открытая дорога = за
 ## Ваше домашнее задание (40–60 минут)
 GET /admin/stock (токен, тест) · остаток склада в панели — заново запрашивается после order-changed · таблица README · ссылка на репозиторий на платформу`;
 // 2-tur (05.11): skaner tuzatilgandan keyin topilgan modul ro'yxati
-ru(STATIONS25, [[null, 'Запрос vs соединение'], [null, 'Gateway · токен'], [null, 'Событие · панель'], [null, 'Три состояния']]);
 
 const RU_MDT = {
  "1": {
@@ -5673,8 +6085,8 @@ const RU_MDT = {
   "title": "После disconnect() нет return: клиент всё равно закрыт, но лог сервера написал «panel ulandi» — логу больше нельзя верить",
   "seg": {
    "a": [
-    "Ломаем: <b>убираем <code>return;</code> после <code>client.disconnect();</code></b>",
-    "Теперь нарочно ломаем. В файле live gateway ts удаляем строку return после client disconnect. Маленькое изменение, код компилируется. Проверяем клиентом без токена: npm run live, две кавычки."
+    "Сломано: <b>после <code>client.disconnect();</code> нет <code>return;</code></b>",
+    "Вы удалили строку return. Изменение маленькое, код компилируется. Проверяем клиентом без токена: npm run live, две кавычки."
    ],
    "b": [
     "Клиент: <b>тот же результат — <code>io server disconnect</code></b>; соединение всё равно закрыто",
@@ -5687,6 +6099,11 @@ const RU_MDT = {
    "d": [
     "Значит, причина: <b><code>disconnect()</code> не выходит из функции</b> — следующие строки всё равно выполняются",
     "Значит, причина одна: disconnect закрывает соединение, но не выходит из функции. Без return следующие строки всё равно выполняются: ставится знак admin, пишется лог. Если позже сюда добавят комнату или право, отклонённый клиент их получит. Восстанавливаем return."
+   ],
+   "x": [
+    "Теперь <b>ломаете вы</b>: нажмите на подсвеченный в коде <code>return;</code>",
+    "Gateway работает правильно: клиент без токена закрывается, в логе ничего нет. Теперь ломаем намеренно. Ломаете вы сами: в файле live gateway ts подсвечена строка return после client disconnect, нажмите на неё: строка удалится.",
+    "Нажмите на <b><code>return;</code></b> в <b>live.gateway.ts</b> — строка после <code>client.disconnect();</code> удалится."
    ]
   }
  },
@@ -6308,9 +6725,9 @@ function yakRu(passed, segs) {
   return segs.map((s) => ({ ...s, ...(Y[s.id === 'a' ? (passed ? 'a_pass' : 'a_fail') : s.id] || {}) }));
 }
 (function ruMdtQo() {
-  const segRu = (n) => { const r = RU_MDT[n] && RU_MDT[n].seg; if (!r) return undefined; const o = {}; Object.keys(r).forEach((id) => { const [key, text] = r[id]; o[id] = { ...(key != null ? { key } : {}), ...(text != null ? { text, show: wrRu(text) } : {}) }; }); return o; };
+  const segRu = (n) => { const r = RU_MDT[n] && RU_MDT[n].seg; if (!r) return undefined; const o = {}; Object.keys(r).forEach((id) => { const [key, text, act] = r[id]; o[id] = { ...(key != null ? { key } : {}), ...(text != null ? { text, show: wrRu(text) } : {}), ...(act != null ? { act } : {}) }; }); return o; };
   const head = (n) => { const r = RU_MDT[n] || {}; const o = {}; ['kicker', 'eyebrow', 'title'].forEach((k) => { if (r[k] != null) o[k] = r[k]; }); const s = segRu(n); if (s) o.segments = s; return o; };
-  const mdt = {}; Object.keys(RU_MDT).forEach((n) => { const r = { ...RU_MDT[n] }; if (r.seg) r.seg = MDT[n].seg.map(([id]) => (r.seg[id] ? [null, r.seg[id][0], r.seg[id][1]] : null)); mdt[n] = r; });
+  const mdt = {}; Object.keys(RU_MDT).forEach((n) => { const r = { ...RU_MDT[n] }; if (r.seg) r.seg = MDT[n].seg.map(([id]) => (r.seg[id] ? [null, r.seg[id][0], r.seg[id][1], r.seg[id][2]] : null)); mdt[n] = r; });
   ru(MDT, mdt);
   ru(S1, { ...head(1), ...((typeof RU_S !== 'undefined' && RU_S.S1) || {}) });
   ru(S2, { ...head(2), ...((typeof RU_S !== 'undefined' && RU_S.S2) || {}) });

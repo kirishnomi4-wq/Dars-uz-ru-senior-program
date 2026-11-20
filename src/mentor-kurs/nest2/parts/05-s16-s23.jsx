@@ -21,21 +21,6 @@ canActivate(ctx: ExecutionContext): boolean {
     throw new UnauthorizedException();
   }
 }`, { 2: { id: 'pub' }, 3: { id: 'pub' }, 4: { id: 'pub' }, 6: { id: 'hdr' }, 7: { id: 'hdr' }, 8: { id: 'hdr' }, 10: { id: 'jwt' }, 12: { id: 'jwt' }, 13: { id: 'jwt' }, 16: { id: 'jwt' } });
-// So'rov yo'li sxemasi (Explorer'siz — M19 istisno): nuqta Guard'da to'xtaydi
-function GuardFlow({ stop, label }) {
-  const box = (k, c, h, d) => <div className={`mk-box${stop === k ? ' hl' : ''}`} style={{ '--c': c }}><h4>{h}</h4><p>{d}</p></div>;
-  // flex: 0 0 auto — tor ekranda (1280×720) panel siqilmaydi, qatori kesilmaydi; VS Code oynasi o'zi ichida aylanadi
-  return <div className="mk-light" style={{ padding: 16, flex: '0 0 auto', maxHeight: 'none' }}>
-    <div className="mk-tag">{t("So'rov yo'li — Controller'dan oldin ikki qo'riqchi", 'Путь запроса — два охранника перед Controller')}</div>
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 28px 1fr 28px 1fr 28px 1fr', alignItems: 'stretch' }}>
-      {box('br', T.ink2, t('Brauzer', 'Браузер'), 'GET /api/v1/admin')}<div className="mk-arrow on">→</div>
-      {box('auth', N2.guard, 'AuthGuard', t('token bormi?', 'есть токен?'))}<div className={`mk-arrow${stop === 'auth' ? '' : ' on'}`}>→</div>
-      {box('roles', N2.guard, 'RolesGuard', t('rol ro\'yxatdami?', 'роль в списке?'))}<div className={`mk-arrow${stop ? '' : ' on'}`}>→</div>
-      {box('ctrl', PART.ctrl, 'Controller', t('ishlaydi', 'работает'))}
-    </div>
-    {label && <div className="mk-rule" style={{ marginTop: 12 }}>{label}</div>}
-  </div>;
-}
 const S16 = {
   kicker: '4-bosqich · Guard', title: "AuthGuard: token bormi — yo'q bo'lsa 401",
   segments: [
@@ -66,7 +51,9 @@ signin(
 }`, { 1: { id: 'p' } });
 function Screen16(p) {
   return <Lesson p={p} S={S16} scene={({ seg, beat }) => <>
-    <GuardFlow stop="auth" label={beat >= 4 ? <><b>401</b> = {t('AuthGuard: token yo\'q yoki yaroqsiz → signin → Authorize', 'AuthGuard: токена нет или он недействителен → signin → Authorize')}</> : null} />
+    {/* F-1120-02: GuardFlow o'rniga darsning rasmi — so'rov Guard'da 401 bilan to'xtaydi */}
+    <div className="mk-light" style={{ padding: 12, flex: '0 0 auto' }}><RepoMachine compact max={0.85} url="GET /api/v1/admin" hl={['guard']} stop={{ k: 'guard', code: 401 }} tag={t("AuthGuard: token yo'q yoki yaroqsiz — so'rov Controller'gacha yetmaydi", 'AuthGuard: токена нет или он недействителен — запрос не доходит до Controller')} /></div>
+    {beat >= 4 && <div className="mk-rule"><b>401</b> = {t("AuthGuard: token yo'q yoki yaroqsiz → signin → Authorize", 'AuthGuard: токена нет или он недействителен → signin → Authorize')}</div>}
     {(beat < 4 || seg.expiry) && <Ide files={tree(BASE, [F.aCtrl, F.authG, F.rolesG])} active={F.authG}>
       <CodePanel file={F.authG} lines={AUTHG_LINES} focus={seg.focus} />
       {beat === 0 && <CodePanel file={F.aCtrl + ' · 31–33'} lines={ts(String.raw`
@@ -116,6 +103,8 @@ const S17 = {
 };
 function Screen17(p) {
   return <Lesson p={p} S={S17} scene={({ seg, beat }) => <>
+    {/* F-1120-02: o'sha rasm — token bor, lekin rol ro'yxatda yo'q: RolesGuard 403 */}
+    {(beat === 0 || beat >= 4) && <div className="mk-light" style={{ padding: 12, flex: '0 0 auto' }}><RepoMachine compact max={0.85} url="@Roles('admin')" hl={['guard']} stop={{ k: 'guard', code: 403 }} tag={t("RolesGuard: token bor, rol @Roles ro'yxatida yo'q — 403", 'RolesGuard: токен есть, роли нет в списке @Roles — 403')} /></div>}
     {beat < 4 && <Ide files={tree(BASE, [F.aCtrl, F.authG, F.rolesG, F.rolesD])} active={F.rolesG}>
       <CodePanel file="roles-decorator.ts · roles.guard.ts" lines={ROLESG_LINES} focus={seg.focus} />
     </Ide>}
@@ -211,19 +200,39 @@ Potential solutions:
 const S20 = {
   kicker: '5-bosqich · buzamiz 1', title: "forFeature o'chirildi — xabarni uch savol bilan o'qiymiz",
   segments: [
-    sg('a', "Ataylab buzamiz: <code>car.module.ts</code>dan <b><code>forFeature</code> olib tashlandi</b> — server yiqildi", "Resurs ishlaydi, himoyani bilasiz. Endi ataylab buzamiz, chunki o'quvchi va uning agenti aynan shu xatolarni qiladi. Car module'dan forFeature satrini olib tashladik. Server yiqildi, xabarni Nest birinchi darsidagi uch savol bilan o'qiymiz.", { focus: [] }),
+    // F-1120-02 (M52): mentor o'zi buzadi — kodda yonib turgan forFeature bosiladi
+    sg('x', "Endi <b>o'zingiz buzasiz</b>: kodda yonib turgan <code>forFeature</code> ustiga bosing", "Resurs ishlaydi, himoyani bilasiz. Endi ataylab buzamiz, chunki o'quvchi va uning agenti aynan shu xatolarni qiladi. Buzishni o'zingiz qilasiz: car module faylida forFeature satri yonib turibdi, ustiga bosing.", { focus: [], act: "<b>car.module.ts</b>'dagi <b>forFeature</b> ustiga bosing — satr imports'dan o'chadi." }),
+    sg('a', "Ataylab buzamiz: <code>car.module.ts</code>dan <b><code>forFeature</code> olib tashlandi</b> — server yiqildi", "forFeature satri o'chdi. Server yiqildi, xabarni Nest birinchi darsidagi uch savol bilan o'qiymiz.", { focus: [] }),
     sg('b', "Qaysi klass — <b><code>CarService (?)</code></b>: bu safar Service'ning dependency'si topilmadi", "Qaysi klass: Car service. Nest birinchi darsida bu yerda Controller edi, bu safar Service. Qavsdagi so'roq belgisi topilmagan dependency o'rni.", { focus: ['who'] }),
     sg('c', "Qaysi dependency — <b><code>CarEntityRepository</code></b>; qaysi fayl — <b><code>CarModule</code></b>, ya'ni <code>car.module.ts</code>", "Qaysi dependency: Car entity Repository, konstruktordagi birinchi parametr. Qaysi fayl: Car module, ya'ni car module ts. Repository so'zini ko'rdingizmi, demak javob providers'da emas, imports'da: Repository'ni forFeature beradi.", { focus: ['what', 'sol'] }),
     sg('d', "Tuzatamiz: <code>forFeature</code> qaytdi — <b>beshta Mapped</b> va successfully started", "Tuzatamiz: forFeature satrini qaytaramiz va saqlaymiz. Terminal: Car module tayyor, Car controller, beshta Mapped va successfully started.", { focus: [], fixed: true }),
     sg('e', "Xulosa: xabarda <b><code>…Repository</code></b> bo'lsa — modul faylining <code>imports</code>ida <code>forFeature</code> bormi", "Xulosa: can't resolve dependencies xabarida Repository so'zi bo'lsa, modul faylini oching va imports'da shu Entity bilan forFeature bor-yo'qligini tekshiring. Formula o'zgarmaydi: qaysi klass, qaysi dependency, qaysi fayl.", { focus: [], fixed: true }),
   ],
 };
+// F-1120-02: buzishdan oldingi butun holat — forFeature bosiladi (data-act)
+const FF_OK = ts(String.raw`
+@Module({
+  imports: [TypeOrmModule.forFeature([CarEntity])],
+  controllers: [CarController],
+  providers: [CarService],
+})
+export class CarModule {}`).map((l, i) => (i === 1 ? { ...l, h: l.h.replace('forFeature', '<span class="n1-act" data-act="1">forFeature</span>') } : l));
 function Screen20(p) {
-  return <Lesson p={p} S={S20} scene={({ seg, beat }) => <Ide files={tree(BASE, CAR_ALL)} active={F.cMod}>
-    <CodePanel key={seg.fixed ? 'f' : 'b'} file={F.cMod} lines={seg.fixed ? FF_FIXED : FF_BROKEN} />
-    {seg.fixed ? <Term title={t('terminal — tuzatildi', 'terminal — исправлено')} lines={CAR_START} /> : <Term er title={t('terminal — server yiqildi', 'terminal — сервер упал')} lines={FF_ERR} focus={seg.focus} />}
-    <Block at={4} beat={beat}><div className="mk-rule">{t(<>Xabarda <code>…Service (?)</code> va <code>…EntityRepository</code> bo'lsa — o'sha resursning <code>module.ts</code> faylida <code>imports: [TypeOrmModule.forFeature([…Entity])]</code> bormi, tekshiring.</>, <>Если в сообщении <code>…Service (?)</code> и <code>…EntityRepository</code> — проверьте, есть ли в <code>module.ts</code> этого ресурса <code>imports: [TypeOrmModule.forFeature([…Entity])]</code>.</>)}</div></Block>
-  </Ide>} />;
+  return <Lesson p={p} S={S20} scene={(b) => <Scene20 b={b} />} />;
+}
+// Qadamlar (F-1120-02 dan): 0 bosing · 1 buzildi · 2 qaysi klass · 3 qaysi dependency va fayl · 4 tuzatildi · 5 xulosa
+function Scene20({ b }) {
+  const { seg, beat } = b;
+  const act = useAct(b);
+  const broken = act.hit || beat >= 1;
+  const fixed = !!seg.fixed;
+  const pins = beat === 2 ? [1] : beat === 3 ? [2, 3] : [];
+  return <Ide files={tree(BASE, CAR_ALL)} active={F.cMod}>
+    <div onClick={act.onClick}><CodePanel key={fixed ? 'f' : broken ? 'b' : 'o'} file={F.cMod} lines={fixed ? FF_FIXED : broken ? FF_BROKEN : FF_OK} /></div>
+    <MiniProviders who="CarService" dep="CarEntityRepository" mod="CarModule · car.module.ts" broken={broken} fixed={fixed} pin={pins} known={!broken || beat >= 1} />
+    {(!broken || fixed) ? (broken ? <Term title={t('terminal — tuzatildi', 'terminal — исправлено')} lines={CAR_START} /> : null) : <Block at={1} beat={beat}><Term er title={t('terminal — server yiqildi', 'terminal — сервер упал')} lines={FF_ERR} focus={seg.focus} marks={{ 0: 'n1-p1', 1: 'n1-p2' }} /></Block>}
+    <Block at={5} beat={beat}><div className="mk-rule">{t(<>Xabarda <code>…Service (?)</code> va <code>…EntityRepository</code> bo'lsa — o'sha resursning <code>module.ts</code> faylida <code>imports: [TypeOrmModule.forFeature([…Entity])]</code> bormi, tekshiring.</>, <>Если в сообщении <code>…Service (?)</code> и <code>…EntityRepository</code> — проверьте, есть ли в <code>module.ts</code> этого ресурса <code>imports: [TypeOrmModule.forFeature([…Entity])]</code>.</>)}</div></Block>
+  </Ide>;
 }
 
 // ============================================================

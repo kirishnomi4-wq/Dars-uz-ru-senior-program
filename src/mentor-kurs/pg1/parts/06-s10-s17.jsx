@@ -84,9 +84,11 @@ function Screen11(p) {
   return <Lesson p={p} S={S11} scene={({ seg, beat }) => <>
     {seg.v === 'ddl' && <Psql lines={POSTS11} focus={seg.focus} />}
     {seg.v === 'd' && <Psql lines={D11} focus={seg.focus} />}
+    {/* F-1120-02 (M51): darsning rasmi — tashqi kalit bazaning o'zida: posts.user_id → users.id */}
+    {(seg.v === 'ddl' || seg.v === 'd') && <div className="mk-light" style={{ padding: 12, flex: '0 0 auto' }}><BlogDb compact empty fk rules hl={{ posts: [1], users: [0] }} /></div>}
     {seg.v === 'ins' && <><Psql lines={INS11} focus={seg.focus} /><div className="mk-tag" style={{ margin: 0 }}>{t('SQL matnida apostrof ikki marta yoziladi:', 'В тексте SQL апостроф пишется дважды:')} <code>o''rgandim</code></div>
       <div className="mk-pair"><b style={{ color: PG.mongo }}>{t("Mongoose'da:", 'В Mongoose:')}</b> <code>{"await User.create([{ username: 'ali' }, { username: 'vali' }, { username: 'sardor' }])"}</code></div>
-      <div className="pg-two"><MiniTable name="users" cols={['id', 'username']} rows={[['1', 'ali'], ['2', 'vali'], ['3', 'sardor']]} hlRow={[2]} /><MiniTable name="posts" cols={['id', 'user_id', 'izoh']} rows={[['1', '1', 'Birinchi post'], ['2', '1', "Bugun Nest o'rgandim"], ['3', '2', 'Salom hammaga']]} hlCol={[1]} /></div></>}
+      <div className="mk-light" style={{ padding: 12, flex: '0 0 auto' }}><BlogDb compact fk hl={{ posts: [1] }} /></div></>}
     {seg.v === 'rel' && <Psql title={t('psql — qayta ochildi', 'psql — открыт заново')} lines={REL11} focus={seg.focus} />}
     {seg.v === 'rel' && <div className="mk-pair"><b style={{ color: PG.mongo }}>{t("Mongoose'da:", 'В Mongoose:')}</b> <code>await Post.find()</code></div>}
     <Block at={4} beat={beat}><div className="mk-rule">{t(<><code>REFERENCES</code> bog'lanishni <b>bazaga</b> yozadi · <code>\d jadval</code> — tuzilish · <code>does not exist</code> — avval <b>prompt</b>dagi baza nomi</>, <><code>REFERENCES</code> записывает связь <b>в базу</b> · <code>\d таблица</code> — структура · <code>does not exist</code> — сначала имя базы в <b>приглашении</b></>)}</div></Block>
@@ -128,6 +130,10 @@ function Screen12(p) {
       <div className="mk-tag">{t("Xabarni o'qish — uch savol", 'Чтение сообщения — три вопроса')}</div>
       <div className="pg-three">{(READ12[seg.e === 9 ? 2 : beat] || t([['qaysi jadval', 'jadval'], ['qaysi qoida', 'qoida'], ['qaysi qiymat (DETAIL)', 'qiymat']], [['какая таблица', 'jadval'], ['какое правило', 'qoida'], ['какое значение (DETAIL)', 'qiymat']])).map(([v, k], i) => <div key={i} className="mk-box" style={{ '--c': [PG.pg, T.accent, T.yellow][i] }}><h4>{t(['Qaysi jadval', 'Qaysi qoida', 'Qaysi qiymat'], ['Какая таблица', 'Какое правило', 'Какое значение'])[i]}</h4><p><code>{v}</code></p></div>)}</div>
     </div>
+    {/* F-1120-02 (M51): o'sha rasm — qoida buzgan yozuv jadvalga kirmaydi (✕) */}
+    <div className="mk-light" style={{ padding: 10, flex: '0 0 auto' }}><BlogDb compact rules fk={seg.e === 1 || seg.e === 9 || seg.e === 2}
+      bad={seg.e === 0 ? { t: 'users', row: ['4', 'NULL'], why: 'NOT NULL' } : seg.e === 1 || seg.e === 9 ? { t: 'posts', row: ['4', '99', "Muallifi yo'q post"], why: t("users'da id 99 yo'q", 'в users нет id 99') } : null}
+      del={seg.e === 2 ? '1' : null} /></div>
     {seg.e >= 0 && seg.e <= 2 && <Psql er lines={E12[seg.e]} />}
     {seg.e === 1 && <div className="pg-cmp">
       <div className="mk-card"><h5><i style={{ background: PG.mongo }} />{t('MongoDB — 4-ekran', 'MongoDB — 4-й экран')}</h5><Doc>{t(`{ "author": null, "izoh": "Muallifi yo'q post" }   ← saqlandi`, `{ "author": null, "izoh": "Muallifi yo'q post" }   ← сохранено`)}</Doc></div>
@@ -205,11 +211,8 @@ blog-# JOIN users ON users.id = posts.user_id;
 const S15 = mkS(16, [{ v: 'tab', on: false }, { v: 'join', on: true, focus: ['sel', 'from', 'on'] }, { v: 'left', on: true, focus: ['lj', 'sa'] }, { v: 'join', on: true, focus: ['on'] }, { v: 'join', on: true, focus: [] }]);
 function Screen15(p) {
   return <Lesson p={p} S={S15} scene={({ seg, beat }) => <>
-    <div className="pg-two">
-      <MiniTable name="posts" cols={['id', 'user_id', 'izoh']} rows={[['1', '1', 'Birinchi post'], ['2', '1', "Bugun Nest o'rgandim"], ['3', '2', 'Salom hammaga']]} hlCol={seg.on ? [1] : []} />
-      <MiniTable name="users" cols={['id', 'username']} rows={[['1', 'ali'], ['2', 'vali'], ['3', 'sardor']]} hlCol={seg.on ? [0] : []} hlRow={seg.v === 'left' ? [2] : []} />
-    </div>
-    {seg.on && <div className="mk-tag" style={{ margin: 0, color: T.accent }}>{t("ON: users.id = posts.user_id — users'dagi id posts'dagi user_id'ga teng", 'ON: users.id = posts.user_id — id из users равен user_id из posts')}</div>}
+    {/* F-1120-02 (M51): ikki MiniTable o'rniga darsning rasmi — JOIN chiziqlari: posts.user_id → users.id; LEFT JOIN'da sardor NULL bilan */}
+    <div className="mk-light" style={{ padding: 12, flex: '0 0 auto' }}><BlogDb compact join={seg.v === 'left' ? 'left' : seg.on ? 'inner' : null} hl={seg.on ? { users: [0], posts: [1] } : {}} /></div>
     {seg.v === 'join' && beat < 4 && <Psql lines={JOIN15} focus={seg.focus} />}
     {seg.v === 'left' && <Psql lines={LEFT15} focus={seg.focus} />}
     <Block at={4} beat={beat}><div className="mk-rule">{t(<><b>JOIN</b> — faqat jufti borlar · <b>LEFT JOIN</b> — chapdagi jadvalning hammasi · <code>ON</code>da tashqi kalit (<code>user_id</code>) boshqa jadvalning <code>id</code>'siga tenglanadi</>, <><b>JOIN</b> — только строки, у которых есть пара · <b>LEFT JOIN</b> — вся левая таблица · в <code>ON</code> внешний ключ (<code>user_id</code>) приравнивается к <code>id</code> другой таблицы</>)}</div></Block>

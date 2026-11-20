@@ -258,8 +258,12 @@ Loyiha: **OrderBotNest** — teglar `wh-start` (= `ws2-done` 71c72a4) · `wh-don
 ## 12 · Buzamiz: xom tana va `rawBody`  ← `Lesson`
 - Kicker: `4-bosqich · buzamiz` · Sarlavha: **Imzo baytlardan: xizmat JSON'ni bo'sh joy bilan yuborsa, xom tanadan hisoblagan kod qabul qiladi, `JSON.stringify(body)` dan hisoblagani rad etadi. `rawBody` o'chsa — haqiqiy to'lov ham 401**
 - Sahna: 1-segmentda xato nusxa `payment.controller.ts` (`00b` json): `isValidSignature(Buffer.from(JSON.stringify(body)), …)` (qizil, M36); 2-segmentda yonma-yon (M47): `07` done — `{ "paymentId": "pay_bosh_joy", … }` → `← 200` ↔ `07` json — o'sha xabar → `← 401`; 3-segmentda `00b` norawbody: `main.ts` `NestFactory.create(AppModule)` (rawBody yo'q) + `08`: server logi `main.ts: NestFactory.create(AppModule)` · `npm run pay -- 1` → `← 401`, `payments_qatorlari 0`; 4-segmentda sabab kartasi.
+- F-1120-02 (M52): 0-band — mentor wh-done controller'idagi `req.rawBody` ni o'zi bosadi → imzo `JSON.stringify(body)` dan. Kod ostida kichik rasm (M51): to'lov xizmati → imzo manbasi → javob «?» → 401; bo'laklar 1 (imzo manbasi) · 2 (401).
+0. **Endi ==o'zingiz buzasiz==: kodda yonib turgan `req.rawBody` ustiga bosing**
+   Ovoz: «Endi to'rtta xatoni ataylab yasaymiz, birinchisini o'zingiz qilasiz. Payment controller ts'da imzo req raw body'dan hisoblanyapti, raw body yonib turibdi, ustiga bosing: imzo JSON stringify body'dan hisoblanadi.»
+   Bosish: «**payment.controller.ts**dagi **`req.rawBody`** ustiga bosing — imzo `JSON.stringify(body)` dan hisoblanadi.»
 1. **Sodda xato: imzoni ==`JSON.stringify(body)` dan== hisoblash — «baribir o'sha ma'lumot-ku»**
-   Ovoz: «Endi to'rtta xatoni ataylab yasaymiz. Birinchisi juda keng tarqalgan: imzoni xom tanadan emas, JSON stringify body'dan hisoblash. Ma'lumot baribir o'sha, deb o'ylaysiz. Bizning skript bo'sh joysiz yuboradi, shuning uchun bu kod u bilan ishlaydi.» · kod
+   Ovoz: «Imzo endi xom tanadan emas, JSON stringify body'dan hisoblanadi. Bu juda keng tarqalgan xato. Ma'lumot baribir o'sha, deb o'ylaysiz. Bizning skript bo'sh joysiz yuboradi, shuning uchun bu kod u bilan ishlaydi.» · kod
 2. **Xizmat ==bo'sh joy bilan== yubordi: to'g'ri kod 200, xato kod 401**
    Ovoz: «Lekin xizmat JSON'ni bo'sh joylar bilan yuborsa-chi? Imzo aynan shu baytlardan. To'g'ri kod qabul qildi, ikki yuz. Stringify qilgan kod esa obyektni qayta yozdi, bo'sh joylar yo'qoldi, imzo mos kelmadi, to'rt yuz bir. Haqiqiy to'lov rad etildi.» · yonma-yon
 3. **`main.ts` da ==`rawBody` yo'q==: `req.rawBody` bo'sh — haqiqiy to'lov ham 401**
@@ -271,8 +275,12 @@ Loyiha: **OrderBotNest** — teglar `wh-start` (= `ws2-done` 71c72a4) · `wh-don
 ## 13 · Buzamiz: tartib — 401, lekin «To'landi»  ← `Lesson`
 - Kicker: `4-bosqich · buzamiz` · Sarlavha: **Yozuvni imzodan oldin qo'ysak: imzosiz xabar 401 oladi — lekin `payments` da qator bor va panelda «To'landi». Javob to'g'ri, bazada esa yolg'on**
 - Sahna: 1-segmentda xato nusxa `payment.controller.ts` (`00b` tartib): `const p = parsePayment(body);` · `const r = await this.payments.record(p);` (qizil) · keyin `if (!isValidSignature(…))`; 2-segmentda terminal `09`: `$ npm run pay -- 1 imzosiz` → `X-Signature: (yo'q)` · `← 401 {"message":"imzo noto'g'ri",…}`; 3-segmentda psql `09` (`pay_… | 1 | paid`, `orders #1 paid`) + panel `09b` («To'landi»); 4-segmentda sabab kartasi.
+- F-1120-02 (M52): 0-band — mentor wh-done controller'idagi `this.payments.record` satrini o'zi bosadi → yozuv imzodan oldinga ko'chadi. Kichik rasm: imzosiz xabar → record → imzo → javob «?» → 401, baza «?» → paid; bo'laklar 1 (record imzodan oldin) · 2 (paid).
+0. **Uchinchi xato eng xavflisi — ==uni ham o'zingiz qilasiz==: `record` satri ustiga bosing**
+   Ovoz: «Uchinchi xato eng xavflisi, uni ham o'zingiz qilasiz. Controller'da yozuv satri yonib turibdi, ustiga bosing: u imzo tekshiruvidan oldinga ko'chadi.»
+   Bosish: «**payment.controller.ts**dagi **`this.payments.record`** ustiga bosing — yozuv imzo tekshiruvidan oldinga ko'chadi.»
 1. **Uchinchi xato: ==`record` imzo tekshiruvidan oldin== — «avval yozib olay, keyin tekshiraman»**
-   Ovoz: «Uchinchi xato eng xavflisi. Controller'da tartibni almashtiramiz: avval parse va record, keyin imzo. Kod ishlaydi, testlarsiz ko'rinmaydi. Imzosiz xabar yuboramiz.» · kod
+   Ovoz: «Tartib almashdi: avval parse va record, keyin imzo. Kod ishlaydi, testlarsiz ko'rinmaydi. Imzosiz xabar yuboramiz.» · kod
 2. **Javob ==401==: tashqaridan qaraganda hammasi to'g'ri**
    Ovoz: «Javob to'rt yuz bir, imzo noto'g'ri. Xabar yuborgan odam rad etildim deb o'ylaydi, server logida ham ogohlantirish. Tashqaridan qaraganda himoya ishlayapti.» · terminal
 3. **Bazada ==`paid`==, panelda ==«To'landi»== — imzosiz xabar ishini qildi**

@@ -3,14 +3,21 @@
 //  1 · Kirish — dars oxiridagi natija: main'dagi yashil run (cicd1-done, run 18)
 // ============================================================
 const PLAN1 = ['Umumiy tushuncha', "Lenta qo'lda", 'GitHub Actions', "To'rt tuzoq", 'Mashina farqi va AI', 'CD va sinfga tayyorgarlik'];
-const S1 = mkS(1, [{ hl: [], res: true }, { hl: [0, 1, 2, 3] }, { hl: [4, 5] }, { hl: [5] }], { plan: PLAN1 });
+const S1 = mkS(1, [{ hl: [] }, { hl: [0, 1, 2, 3] }, { hl: [4, 5] }, { hl: [5] }], { plan: PLAN1 });
+// F-1120-02 (M51): darsning rasmi — «Buyurtma boti» xaritasi + GitHub Actions lentasi (BotMap, parts/02e-bot.jsx); reja pastda.
+// Lenta botning kodini (hamma modul) toza mashinada yig'adi va sinaydi; telefon va baza kerak emas. Qadamlar — haqiqiy run'lar (KOD.RUNS: '18' yashil, '11' qizil)
+const DB_ALL = { products: 'db', users: 'db', carts: 'db', orders: 'db' };
+const CI_ON = ['telegram', 'catalog', 'user', 'cart', 'order'];
+const CI_OK = { name: 'Actions', steps: [['npm ci', 'ok'], ['tsc', 'ok'], ['npm test', 'ok'], ['build', 'ok']], res: 'pass', get badge() { return t('yashil', 'зелёный'); } };
+const CI_BAD = { name: 'Actions', steps: [['npm ci', 'ok'], ['tsc', 'ok'], ['npm test', 'bad'], ['build', 'skip']], res: 'fail', badge: 'exit code 1' };
+const S1M = [{ jest: CI_OK }, { jest: CI_OK }, { jest: CI_BAD }, { jest: CI_OK }];
 function Screen1(p) {
-  return <Lesson p={p} S={S1} scene={({ seg }) => <div style={{ display: 'grid', gap: 14 }}>
-    <div className="mk-light"><div className="mk-plan">
+  return <Lesson p={p} S={S1} scene={({ seg, beat }) => { const m = S1M[Math.min(beat, 3)]; return <div className="mk-light" style={{ padding: 16, display: 'grid', gap: 12 }}>
+    <BotMap loc={DB_ALL} on={CI_ON} {...m} tag={t("Bugungi darsning rasmi — har push'da botning kodi toza mashinada sinaladi", 'Картина урока — при каждом push код бота проверяется на чистой машине')} />
+    <div className="n1-plan" style={{ position: 'static', gridTemplateColumns: 'repeat(6,minmax(0,1fr))', gap: 6 }}>
       {S1.plan.map((x, i) => <div key={i} className={seg.hl.includes(i) ? 'hl' : (seg.hl.length ? 'dim' : '')}><b>0{i + 1}</b><span>{x}</span></div>)}
-    </div></div>
-    {seg.res && <><div className="mk-tag" style={{ margin: 0 }}>{t("Dars oxirida — OrderBotNest main'ida har push'da shu run", "В конце урока — в main OrderBotNest при каждом push такой run")}</div><RunView k="18" only={/^Run /} /></>}
-  </div>} />;
+    </div>
+  </div>; }} />;
 }
 
 // ============================================================
@@ -135,17 +142,33 @@ function Screen5(p) {
 const EDIT36 = { 36: '        if (p.stock <= c.qty) {' };
 const T6A = outRange('02', /^\$ npm ci/, /^tsc ✓/);
 const T6B = outPick('02', (l) => /^\$|✓|^FAIL|●|Kolonka|36 \||> 37|^Tests:|chiqish kodi/.test(l));
-const S6 = mkS(6, [{ v: 'code' }, { v: 'chain' }, { v: 'run' }, { v: 'lenta' }]);
+// F-1120-02 (M52): 1-segment (x) — mentor 36-satrdagi «<» ni o'zi bosadi (data-act) → «<=»
+const L36 = KOD.ORDER_36.lines.find((l) => l.n === 36).t;
+const ACT36 = () => kod('ORDER_36', { 36: 'x' }, 35, 38).map((l) => (l.n === 36 ? { ...l, h: hlOf(KOD.ORDER_36.file)(L36.split('p.stock < c.qty')[0] + 'p.stock ') + '<span class="n1-act" data-act="1">&lt;</span>' + hlOf(KOD.ORDER_36.file)(' c.qty' + L36.split('p.stock < c.qty')[1]) } : l));
+// Kichik rasm: «&&» zanjiri — npm ci && tsc ✓ → npm test → npm run build
+const ChainMini = ({ broken, known, pins }) => <N1Mini><FlowMini tag={t("npm ci && npx tsc && npm test && npm run build", 'npm ci && npx tsc && npm test && npm run build')}
+  boxes={[['npm ci && tsc', '✓ ✓', 'ok'], ['npm test', !broken ? '✓' : known ? '✕ FAIL' : '?', broken && known ? 'bad' : ''], ['npm run build', !broken ? '✓' : known ? t('boshlanmadi', 'не начался') : '?', '']]}
+  res={broken ? [known ? t('chiqish kodi 1 — zanjir uzildi', 'код выхода 1 — цепочка оборвалась') : '?', 'bad'] : null} pins={pins} /></N1Mini>;
+const S6 = mkS(6, [{ v: 'act' }, { v: 'code' }, { v: 'chain' }, { v: 'run' }, { v: 'lenta' }]);
 function Screen6(p) {
-  return <Lesson p={p} S={S6} scene={({ seg }) => <>
-    {seg.v === 'code' && <Code k="ORDER_36" files={FILES()} active={F.ord} ids={{ 36: 'x' }} edit={EDIT36} focus={['x']} />}
-    {seg.v === 'chain' && <><CodePanel file={t("order.service.ts · buzilgan", "order.service.ts · сломан")} lines={kod('ORDER_36', { 36: 'x' }, 35, 38, EDIT36)} focus={['x']} /><Term lines={T6A} /></>}
-    {seg.v === 'run' && <Term title={t("VS Code terminali · npm ci && npx tsc --noEmit && npm test && npm run build", "терминал VS Code · npm ci && npx tsc --noEmit && npm test && npm run build")} lines={T6B} er />}
-    {seg.v === 'lenta' && <div style={{ display: 'grid', gap: 10 }}>
+  return <Lesson p={p} S={S6} scene={(b) => <Scene6 b={b} />} />;
+}
+// Qadamlar: 0 bosing · 1 buzildi · 2 && zanjiri (natija «?») · 3 natija, bo'laklar 1·2 · 4 xulosa (lenta)
+function Scene6({ b }) {
+  const { seg, beat } = b;
+  const act = useAct(b);
+  const v = beat === 0 ? (act.hit ? 'code' : 'act') : seg.v;
+  const mini = <ChainMini broken={v !== 'act'} known={beat >= 3} pins={beat === 3 ? { 1: 1, 2: 2 } : {}} />;
+  return <>
+    {v === 'act' && <Ide files={compact(FILES(), F.ord)} active={F.ord}><div onClick={act.onClick}><CodePanel file="order.service.ts" lines={ACT36()} focus={['x']} /></div>{mini}</Ide>}
+    {v === 'code' && <Ide files={compact(FILES(), F.ord)} active={F.ord}><CodePanel key="c" file="order.service.ts" lines={kod('ORDER_36', { 36: 'x' }, 35, 38, EDIT36)} focus={['x']} />{mini}</Ide>}
+    {v === 'chain' && <><CodePanel file={t("order.service.ts · buzilgan", "order.service.ts · сломан")} lines={kod('ORDER_36', { 36: 'x' }, 35, 38, EDIT36)} focus={['x']} />{mini}<Term lines={T6A} /></>}
+    {v === 'run' && <>{mini}<Term title={t("VS Code terminali · npm ci && npx tsc --noEmit && npm test && npm run build", "терминал VS Code · npm ci && npx tsc --noEmit && npm test && npm run build")} lines={T6B} er marks={{ [T6B.findIndex((l) => /^FAIL|FAIL/.test((l.h || '').replace(/<[^>]+>/g, '')))]: 'n1-p1', [T6B.findIndex((l) => /chiqish kodi/.test(l.h || ''))]: 'n1-p2' }} /></>}
+    {v === 'lenta' && <div style={{ display: 'grid', gap: 10 }}>
       <Lenta4 st={{ ci: 'ok', tsc: 'ok', test: 'bad', build: 'skip' }} hl={['test']} />
       <div className="mk-rule"><code>&amp;&amp;</code>{t(" zanjiri birinchi qizilda uziladi — GitHub lentasi ham: yurmagan qadamni ", " цепочка рвётся на первом красном — конвейер GitHub тоже: незапущенный шаг он показывает как ")}<b>skipped</b>{t(" deb ko'rsatadi. Tiklash: ", " . Восстановление: ")}<code>git checkout -- src/api/order/order.service.ts</code></div>
     </div>}
-  </>} />;
+  </>;
 }
 
 // ============================================================

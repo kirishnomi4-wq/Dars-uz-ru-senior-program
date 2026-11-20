@@ -3,14 +3,25 @@
 //  1 · Kirish — dars oxiridagi natija: panelda «To'landi» va «Rad etildi» (whv2-out/12, 3-surat)
 // ============================================================
 const PLAN1 = ['Umumiy tushuncha', 'Imzo', 'Takror va rad', 'Buzamiz', 'AI', 'Sinfga tayyorgarlik'];
-const S1 = mkS(1, [{ hl: [], res: true }, { hl: [0, 1] }, { hl: [2, 3, 4, 5] }, { hl: [5] }], { plan: PLAN1 });
+const S1 = mkS(1, [{ hl: [] }, { hl: [0, 1] }, { hl: [2, 3, 4, 5] }, { hl: [5] }], { plan: PLAN1 });
+// F-1120-02 (M51): darsning rasmi — «Buyurtma boti» xaritasi; pastki qatorda to'lov xizmati: natijani serverga o'zi yuboradi (webhook, X-Signature)
+const DB_ALL = { products: 'db', users: 'db', carts: 'db', orders: 'db' };
+const PAY_ON = ['order', 'db', 'orders'];
+const PAY = (steps, res, badge) => ({ get name() { return t("To'lov xizmati", 'Платёжный сервис'); }, get steps() { return typeof steps === 'function' ? steps() : steps; }, res, badge });
+const PAID = { orders: 'payment_status: paid' };
+const S1M = [
+  { on: PAY_ON, note: PAID, jest: PAY([['X-Signature', 'ok'], ['POST /payments/webhook', 'ok']], 'pass', '200') },
+  { on: PAY_ON, note: PAID, jest: PAY([['POST /payments/webhook', 'ok']], 'pass', '200') },
+  { on: PAY_ON, jest: PAY(() => [[t('imzosiz', 'без подписи'), 'bad'], [t('takror', 'повтор'), 'ok']], 'fail', '401 · 200') },
+  { on: PAY_ON, note: PAID, jest: PAY([['X-Signature', 'ok'], ['POST /payments/webhook', 'ok']], 'pass', '200') },
+];
 function Screen1(p) {
-  return <Lesson p={p} S={S1} scene={({ seg }) => <div style={{ display: 'grid', gap: 14 }}>
-    <div className="mk-light"><div className="mk-plan" style={seg.res ? { gridTemplateColumns: '1fr 1fr' } : undefined}>
+  return <Lesson p={p} S={S1} scene={({ seg, beat }) => { const m = S1M[Math.min(beat, 3)]; return <div className="mk-light" style={{ padding: 16, display: 'grid', gap: 12 }}>
+    <BotMap loc={DB_ALL} {...m} tag={t("Bugungi darsning rasmi — to'lov xabari imzo bilan keladi, server tekshirib yozadi", 'Картина урока — сообщение об оплате приходит с подписью, сервер проверяет и записывает')} />
+    <div className="n1-plan" style={{ position: 'static', gridTemplateColumns: 'repeat(6,minmax(0,1fr))', gap: 6 }}>
       {S1.plan.map((x, i) => <div key={i} className={seg.hl.includes(i) ? 'hl' : (seg.hl.length ? 'dim' : '')}><b>0{i + 1}</b><span>{x}</span></div>)}
-    </div></div>
-    {seg.res && <><div className="mk-tag" style={{ margin: 0 }}>{t("Dars oxirida — to'lov xizmati xabar yubordi, panel o'zi yangilandi", "В конце урока — платёжный сервис прислал сообщение, панель обновилась сама")}</div><PanelView k="12-3" small label={t("wh-done · haqiqiy brauzer", "wh-done · настоящий браузер")} /></>}
-  </div>} />;
+    </div>
+  </div>; }} />;
 }
 
 // ============================================================

@@ -3,14 +3,25 @@
 //  1 · Kirish — dars oxiridagi natija: haqiqiy brauzerdagi panel (10b)
 // ============================================================
 const PLAN1 = ['Umumiy tushuncha', 'Gateway va token', 'Hodisa va panel', 'Ulanish holati', 'AI', 'Sinfga tayyorgarlik'];
-const S1 = mkS(1, [{ hl: [], res: true }, { hl: [0, 1] }, { hl: [2, 3, 4, 5] }, { hl: [5] }], { plan: PLAN1 });
+const S1 = mkS(1, [{ hl: [] }, { hl: [0, 1] }, { hl: [2, 3, 4, 5] }, { hl: [5] }], { plan: PLAN1 });
+// F-1120-02 (M51): darsning rasmi — «Buyurtma boti» xaritasi; pastki qatorda admin paneli: brauzerdagi /admin serverga doimiy ulanish (socket.io) bilan bog'langan
+const DB_ALL = { products: 'db', users: 'db', carts: 'db', orders: 'db' };
+const PANEL = { get name() { return t('Admin panel', 'Админ-панель'); }, steps: [['LiveGateway', 'ok'], ['order-changed', 'ok']], res: 'pass', badge: 'Ulangan' };
+const LIVE_ON = ['phone', 'telegram', 'order', 'db', 'orders'];
+const CHAT_LIVE = ['[✅ Buyurtma berish]', 'Buyurtma #… qabul qilindi!', 'ok'];
+const S1M = [
+  { on: LIVE_ON, chat: CHAT_LIVE, jest: PANEL },
+  { on: ['telegram'], jest: { get name() { return t('Admin panel', 'Админ-панель'); }, steps: [['socket.io', 'ok'], ['token', 'ok']], res: 'pass', badge: 'Ulangan' } },
+  { on: LIVE_ON, chat: CHAT_LIVE, jest: PANEL },
+  { on: LIVE_ON, chat: CHAT_LIVE, jest: PANEL },
+];
 function Screen1(p) {
-  return <Lesson p={p} S={S1} scene={({ seg }) => <div style={{ display: 'grid', gap: 14 }}>
-    <div className="mk-light"><div className="mk-plan">
+  return <Lesson p={p} S={S1} scene={({ seg, beat }) => { const m = S1M[Math.min(beat, 3)]; return <div className="mk-light" style={{ padding: 16, display: 'grid', gap: 12 }}>
+    <BotMap loc={DB_ALL} {...m} tag={t("Bugungi darsning rasmi — bot buyurtma oladi, admin paneli o'zi ko'rsatadi", 'Картина урока — бот получает заказ, админ-панель показывает его сама')} />
+    <div className="n1-plan" style={{ position: 'static', gridTemplateColumns: 'repeat(6,minmax(0,1fr))', gap: 6 }}>
       {S1.plan.map((x, i) => <div key={i} className={seg.hl.includes(i) ? 'hl' : (seg.hl.length ? 'dim' : '')}><b>0{i + 1}</b><span>{x}</span></div>)}
-    </div></div>
-    {seg.res && <><div className="mk-tag" style={{ margin: 0 }}>{t("Dars oxirida — bot buyurtma oldi, panel sahifani yangilamasdan ko'rsatdi", "В конце урока — бот получил заказ, панель показала его без обновления страницы")}</div><PanelView k="10b" small /></>}
-  </div>} />;
+    </div>
+  </div>; }} />;
 }
 
 // ============================================================
@@ -117,15 +128,30 @@ const T6CLI = outRange('07', /^\$ npm run live/, /# Server logi/);
 const T6SRV = outRange('07', /# Server logi/, null);
 const T6OK = outRange('03', /# Server logi/, null);
 const CAUSE6 = ['client.disconnect() — ulanish yopiladi, lekin funksiyadan chiqilmaydi', "return yo'q — keyingi satrlar baribir bajariladi", "client.data.admin = true va log «panel ulandi» — rad etilgan klient uchun", "Keyin shu yerga xona yoki ruxsat qo'shilsa — rad etilgan klient ularni oladi"];
-const S6 = mkS(6, [{ v: 'code' }, { v: 'cli' }, { v: 'log' }, { v: 'cause' }]);
+// F-1120-02 (M52): 1-segment (x) — mentor client.disconnect() dan keyingi return; ni o'zi bosadi → satr o'chadi
+const ACT6 = () => kod('GATEWAY', { [RET]: 'x' }, GW.con, GW.con + 7).map((l) => (l.n === RET ? { ...l, h: '<span class="n1-act" data-act="1">' + l.h + '</span>' } : l));
+const RetMini = ({ broken, cli, log, pins }) => <N1Mini><FlowMini tag={t('tokensiz klient → gateway → server logi', 'клиент без токена → gateway → лог сервера')}
+  boxes={[[t('tokensiz klient', 'клиент без токена'), cli ? 'io server disconnect' : 'npm run live -- ""', ''], ['handleConnection', broken ? t("return yo'q", 'нет return') : 'disconnect() · return', broken ? 'bad' : ''], [t('server logi', 'лог сервера'), !broken ? t("bo'sh — to'g'ri", 'пусто — верно') : log ? '[Live] panel ulandi' : '?', broken && log ? 'bad' : '']]}
+  res={broken ? [log ? t("log yolg'on: rad etilgan klient «ulandi»", 'лог врёт: отклонённый клиент «подключён»') : '?', 'bad'] : null} pins={pins} /></N1Mini>;
+const S6 = mkS(6, [{ v: 'act' }, { v: 'code' }, { v: 'cli' }, { v: 'log' }, { v: 'cause' }]);
 function Screen6(p) {
+  return <Lesson p={p} S={S6} scene={(b) => <Scene6 b={b} />} />;
+}
+// Qadamlar: 0 bosing · 1 buzildi · 2 klient — o'sha natija · 3 server logi yolg'on, bo'laklar 1·2 · 4 sabab
+function Scene6({ b }) {
+  const { seg, beat } = b;
+  const act = useAct(b);
+  const v = beat === 0 ? (act.hit ? 'code' : 'act') : seg.v;
   const code = <CodePanel file={t("live.gateway.ts · buzilgan", "live.gateway.ts · сломанная копия")} lines={kod('GATEWAY', { [RET]: 'x' }, GW.con, GW.con + 7, { [RET]: false })} focus={['x']} />;
-  return <Lesson p={p} S={S6} scene={({ seg }) => <>
-    {seg.v === 'code' && <Ide files={compact(FILES(), F.gw)} active={F.gw}>{code}</Ide>}
-    {seg.v === 'cli' && <div style={{ display: 'grid', gap: 8 }}>{code}<Term title={t('VS Code terminali · npm run live -- ""', 'терминал VS Code · npm run live -- ""')} lines={T6CLI} /></div>}
-    {seg.v === 'log' && <div className="pg-two"><Term title={t("server logi · return yo'q", "лог сервера · нет return")} lines={T6SRV} er /><Term title={t("server logi · to'g'ri kod (03)", "лог сервера · правильный код (03)")} lines={T6OK} /></div>}
-    {seg.v === 'cause' && <div style={{ display: 'grid', gap: 10 }}><Term title={t("server logi · return yo'q", "лог сервера · нет return")} lines={T6SRV} er /><Cause items={CAUSE6} on={4} bad={2} /></div>}
-  </>} />;
+  const mini = <RetMini broken={v !== 'act'} cli={beat >= 2} log={beat >= 3} pins={beat === 3 ? { 0: 1, 2: 2 } : {}} />;
+  return <>
+    {v === 'act' && <Ide files={compact(FILES(), F.gw)} active={F.gw}><div onClick={act.onClick}><CodePanel file="live.gateway.ts" lines={ACT6()} focus={['x']} /></div>{mini}</Ide>}
+    {v === 'code' && <Ide files={compact(FILES(), F.gw)} active={F.gw}>{code}{mini}</Ide>}
+    {v === 'cli' && <div style={{ display: 'grid', gap: 8 }}>{code}{mini}<Term title={t('VS Code terminali · npm run live -- ""', 'терминал VS Code · npm run live -- ""')} lines={T6CLI} /></div>}
+    {v === 'log' && mini}
+    {v === 'log' && <div className="pg-two"><Term title={t("server logi · return yo'q", "лог сервера · нет return")} lines={T6SRV} er marks={{ [T6SRV.findIndex((l) => /panel ulandi/.test(l.h || ''))]: 'n1-p2' }} /><Term title={t("server logi · to'g'ri kod (03)", "лог сервера · правильный код (03)")} lines={T6OK} /></div>}
+    {v === 'cause' && <div style={{ display: 'grid', gap: 10 }}><Term title={t("server logi · return yo'q", "лог сервера · нет return")} lines={T6SRV} er /><Cause items={CAUSE6} on={4} bad={2} /></div>}
+  </>;
 }
 
 // ============================================================

@@ -401,9 +401,15 @@ const MDT = {
   "title": "Bekor qilingan buyurtmaga yana tugma chiqdi — test qaysi qoida buzilganini aniq aytadi",
   "seg": [
    [
+    "x",
+    "Endi <b>o'zingiz buzasiz</b>: kodda yonib turgan <code>CANCELLED</code> sharti ustiga bosing",
+    "Testlar yashil. Endi kodni ataylab buzamiz, chunki shartdan bitta status tushib qolishi juda oson. Buzishni o'zingiz qilasiz: keyboards ts faylining o'ttiz to'qqizinchi satrida bekor qilingan status sharti yonib turibdi, ustiga bosing.",
+    "<b>keyboards.ts</b> 39-satridagi <b><code>|| o.status === 'CANCELLED'</code></b> ustiga bosing — bu bo'lak shartdan o'chadi."
+   ],
+   [
     "a",
     "Shartdan <b><code>CANCELLED</code> tushib qoldi</b>: kod ishlaydi, server ham xato bermaydi",
-    "Endi kodni ataylab buzamiz. Keyboards ts faylining o'ttiz to'qqizinchi satridagi shartdan bekor qilingan status tushib qoldi. Bot ishlaydi, server ham xato bermaydi. Lekin admin bekor qilingan buyurtma ostida yana yetkazildi va bekor tugmalarini ko'radi. Testni yurgizamiz."
+    "Bekor qilingan status shartdan tushib qoldi. Bot ishlaydi, server ham xato bermaydi. Lekin admin bekor qilingan buyurtma ostida yana yetkazildi va bekor tugmalarini ko'radi. Testni yurgizamiz."
    ],
    [
     "b",
