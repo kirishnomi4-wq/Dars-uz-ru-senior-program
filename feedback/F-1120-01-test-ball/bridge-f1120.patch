@@ -1,0 +1,146 @@
+diff --color -ru a/src/bridge/lessons/BridgeTexAiSayt.jsx b/src/bridge/lessons/BridgeTexAiSayt.jsx
+--- a/src/bridge/lessons/BridgeTexAiSayt.jsx	2026-11-20 19:00:10.546465858 +0500
++++ b/src/bridge/lessons/BridgeTexAiSayt.jsx	2026-11-20 19:00:10.638466993 +0500
+@@ -493,7 +493,7 @@
+     if (oneShot) {
+       // Jonli dars: javob darhol qotadi (to'g'ri ham, xato ham) va serverga yoziladi
+       setSolved(true);
+-      onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options, correctIndex: correctIdx, correctAnswer: options[correctIdx], picked: i, studentAnswerIndex: i, studentAnswer: options[i], correct: isCorrect, firstAttemptCorrect: isCorrect, solved: true, lastPicked: i });
++      onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options, correctIndex: correctIdx, correctAnswer: options[correctIdx], picked: i, studentAnswerIndex: i, studentAnswer: options[i], correct: isCorrect, firstAttemptCorrect: isCorrect, solved: true, lastPicked: i, elapsedMs: Date.now() - mountTs.current });
+       if (!fpPractice) live.submitAnswer(screen, SCREEN_META[screen]?.id || `s${screen}`, i, isCorrect, Date.now() - mountTs.current);
+     } else {
+       if (isCorrect) setSolved(true);
+@@ -2264,7 +2264,8 @@
+       const key = INLINE_KEYS[_m.id];
+       if (Number.isInteger(key)) { soloSentRef.current.add(idx); live.submitAnswer(idx, _m.id, key < 0 ? 0 : (data.correct ? key : (key === 0 ? 1 : 0)), !!data.correct, data.elapsedMs || 0); }
+     }
+-    if (_m && _m.scored && _m.scope === 'final' && data && data.correct && live.mode === 'student') live.submitAnswer(idx, _m.id, 0, true, 0);
++    // F-1120-01: yakuniy ball-ekrani — haqiqiy variant va vaqt (oldin 0/0 ketardi: server birinchisini olib, to'g'ri javob «A, xato, 0 s» bo'lardi)
++    if (_m && _m.scored && _m.scope === 'final' && data && data.correct && live.mode === 'student' && !firstPassRef.current) live.submitAnswer(idx, _m.id, Number.isInteger(data.picked) ? data.picked : 0, true, Number.isFinite(data.elapsedMs) ? data.elapsedMs : Date.now() - scrTsRef.current);
+     // 🏅 nishon — FAQAT scored test ekranida, to'g'ri javob bo'lsa (tekin nishon yo'q)
+     if (_m && _m.scored && ACH_TRIGGERS[_m.id] && data && data.correct && !missedRef.current.has(_m.id)) earn(ACH_TRIGGERS[_m.id]);
+   };
+@@ -2282,6 +2283,8 @@
+   // F-1012-03: eng uzoq yetilgan ekran (qayta boshlashda 0) — undan oldingi ekranlarda «Davom etish» qulflanmaydi
+   useEffect(() => { setMaxReached(m => (screen === 0 && !Object.keys(answers || {}).length) ? 0 : Math.max(m, screen)); }, [screen, answers]);
+   const locked = isStudentLive && (screen + 1 > live.mentorScreen);
++  const scrTsRef = useRef(Date.now()); // F-1120-01: joriy ekranga kirgan vaqt — yakuniy javob vaqti shundan
++  useEffect(() => { scrTsRef.current = Date.now(); }, [screen]);
+   useEffect(() => { live.reportScreen(screen); }, [screen, live.mode, live.pin]); // eslint-disable-line
+   // MENTOR jonli: praktika ekraniga yetganda «kim tugatdi» panelini ochadi (overlay)
+   useEffect(() => {
+diff --color -ru a/src/bridge/lessons/BridgeTexAvtoIjaraReact.jsx b/src/bridge/lessons/BridgeTexAvtoIjaraReact.jsx
+--- a/src/bridge/lessons/BridgeTexAvtoIjaraReact.jsx	2026-11-20 19:00:10.552407061 +0500
++++ b/src/bridge/lessons/BridgeTexAvtoIjaraReact.jsx	2026-11-20 19:00:10.642467041 +0500
+@@ -1747,7 +1747,8 @@
+       if (Number.isInteger(key)) { soloSentRef.current.add(idx); live.submitAnswer(idx, _m.id, key < 0 ? 0 : (data.correct ? key : (key === 0 ? 1 : 0)), !!data.correct, data.elapsedMs || 0); }
+     }
+     if (_m && ACH_TRIGGERS[_m.id] && data && data.correct && !missedRef.current.has(_m.id)) earn(ACH_TRIGGERS[_m.id]); // 🏅 nishon (faqat REAL solve)
+-    if (_m && _m.scored && _m.scope === 'final' && data && data.correct && live.mode === 'student') live.submitAnswer(idx, _m.id, 0, true, 0);
++    // F-1120-01: yakuniy ball-ekrani — haqiqiy variant va vaqt (oldin 0/0 ketardi: server birinchisini olib, to'g'ri javob «A, xato, 0 s» bo'lardi)
++    if (_m && _m.scored && _m.scope === 'final' && data && data.correct && live.mode === 'student' && !firstPassRef.current) live.submitAnswer(idx, _m.id, Number.isInteger(data.picked) ? data.picked : 0, true, Number.isFinite(data.elapsedMs) ? data.elapsedMs : Date.now() - scrTsRef.current);
+   };
+   // Javob kaliti: inline testlar + praktika + jang savollari — mentor ochganda serverga yuklanadi
+   const answerKey = { ...INLINE_KEYS, practice: -1, ...Object.fromEntries(QUIZ_BANK.map((q, i) => [`quiz-${i}`, q.correct])) };
+@@ -1757,6 +1758,8 @@
+   // F-1012-03: eng uzoq yetilgan ekran (qayta boshlashda 0) — undan oldingi ekranlarda «Davom etish» qulflanmaydi
+   useEffect(() => { setMaxReached(m => (screen === 0 && !Object.keys(answers || {}).length) ? 0 : Math.max(m, screen)); }, [screen, answers]);
+   const locked = isStudentLive && (screen + 1 > live.mentorScreen);
++  const scrTsRef = useRef(Date.now()); // F-1120-01: joriy ekranga kirgan vaqt — yakuniy javob vaqti shundan
++  useEffect(() => { scrTsRef.current = Date.now(); }, [screen]);
+   useEffect(() => { live.reportScreen(screen); }, [screen, live.mode, live.pin]); // eslint-disable-line
+   const reset = () => { if (!firstPassRef.current) { firstPassRef.current = { answers, durationSec: Math.floor((Date.now() - startTimeRef.current) / 1000) }; setFpPractice(true); } progClear(LESSON_META.lessonId); setAnswers({}); setScreen(0); startTimeRef.current = Date.now(); };
+   // F-0730-01: har o'zgarishda progress saqlanadi (screen + javoblar + nishonlar + boshlangan vaqt)
+diff --color -ru a/src/bridge/lessons/BridgeTexGit.jsx b/src/bridge/lessons/BridgeTexGit.jsx
+--- a/src/bridge/lessons/BridgeTexGit.jsx	2026-11-20 19:00:10.556403003 +0500
++++ b/src/bridge/lessons/BridgeTexGit.jsx	2026-11-20 19:00:10.642467041 +0500
+@@ -561,7 +561,7 @@
+     if (oneShot) {
+       // Jonli dars: javob darhol qotadi (to'g'ri ham, xato ham) va serverga yoziladi
+       setSolved(true);
+-      onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options: optTexts, correctIndex: correctIdx, correctAnswer: optTexts[correctIdx], picked: i, studentAnswerIndex: i, studentAnswer: optTexts[i], correct: isCorrect, firstAttemptCorrect: isCorrect, solved: true, lastPicked: i });
++      onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options: optTexts, correctIndex: correctIdx, correctAnswer: optTexts[correctIdx], picked: i, studentAnswerIndex: i, studentAnswer: optTexts[i], correct: isCorrect, firstAttemptCorrect: isCorrect, solved: true, lastPicked: i, elapsedMs: Date.now() - mountTs.current });
+       if (!fpPractice) live.submitAnswer(screen, SCREEN_META[screen]?.id || `s${screen}`, i, isCorrect, Date.now() - mountTs.current);
+     } else {
+       if (isCorrect) setSolved(true);
+@@ -2146,7 +2146,8 @@
+       const key = INLINE_KEYS[_m.id];
+       if (Number.isInteger(key)) { soloSentRef.current.add(idx); live.submitAnswer(idx, _m.id, key < 0 ? 0 : (data.correct ? key : (key === 0 ? 1 : 0)), !!data.correct, data.elapsedMs || 0); }
+     }
+-    if (_m && _m.scored && _m.scope === 'final' && data && data.correct && live.mode === 'student') live.submitAnswer(idx, _m.id, 0, true, 0);
++    // F-1120-01: yakuniy ball-ekrani — haqiqiy variant va vaqt (oldin 0/0 ketardi: server birinchisini olib, to'g'ri javob «A, xato, 0 s» bo'lardi)
++    if (_m && _m.scored && _m.scope === 'final' && data && data.correct && live.mode === 'student' && !firstPassRef.current) live.submitAnswer(idx, _m.id, Number.isInteger(data.picked) ? data.picked : 0, true, Number.isFinite(data.elapsedMs) ? data.elapsedMs : Date.now() - scrTsRef.current);
+     if (_m && ACH_TRIGGERS[_m.id] && data && data.correct && !missedRef.current.has(_m.id)) earn(ACH_TRIGGERS[_m.id]); // 🏅 nishon
+   };
+   const reset = () => { if (!firstPassRef.current) { firstPassRef.current = { answers, durationSec: Math.floor((Date.now() - startTimeRef.current) / 1000) }; setFpPractice(true); } progClear(LESSON_META.lessonId); setAnswers({}); setScreen(0); startTimeRef.current = Date.now(); };
+@@ -2163,6 +2164,8 @@
+   // F-1012-03: eng uzoq yetilgan ekran (qayta boshlashda 0) — undan oldingi ekranlarda «Davom etish» qulflanmaydi
+   useEffect(() => { setMaxReached(m => (screen === 0 && !Object.keys(answers || {}).length) ? 0 : Math.max(m, screen)); }, [screen, answers]);
+   const locked = isStudentLive && (screen + 1 > live.mentorScreen);
++  const scrTsRef = useRef(Date.now()); // F-1120-01: joriy ekranga kirgan vaqt — yakuniy javob vaqti shundan
++  useEffect(() => { scrTsRef.current = Date.now(); }, [screen]);
+   useEffect(() => { live.reportScreen(screen); }, [screen, live.mode, live.pin]); // eslint-disable-line
+   // 🏅 Yakuniy ekranga yetganda: bitiruvchi nishoni
+   useEffect(() => {
+diff --color -ru a/src/bridge/lessons/BridgeTexPostgres.jsx b/src/bridge/lessons/BridgeTexPostgres.jsx
+--- a/src/bridge/lessons/BridgeTexPostgres.jsx	2026-11-20 19:00:10.560397732 +0500
++++ b/src/bridge/lessons/BridgeTexPostgres.jsx	2026-11-20 19:00:10.646467091 +0500
+@@ -404,7 +404,7 @@
+     if (oneShot) {
+       // Jonli dars: javob darhol qotadi (to'g'ri ham, xato ham) va serverga yoziladi
+       setSolved(true);
+-      onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options, correctIndex: correctIdx, correctAnswer: options[correctIdx], picked: i, studentAnswerIndex: i, studentAnswer: options[i], correct: isCorrect, firstAttemptCorrect: isCorrect, solved: true, lastPicked: i });
++      onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options, correctIndex: correctIdx, correctAnswer: options[correctIdx], picked: i, studentAnswerIndex: i, studentAnswer: options[i], correct: isCorrect, firstAttemptCorrect: isCorrect, solved: true, lastPicked: i, elapsedMs: Date.now() - mountTs.current });
+       if (!fpPractice) live.submitAnswer(screen, SCREEN_META[screen]?.id || `s${screen}`, i, isCorrect, Date.now() - mountTs.current);
+     } else {
+       if (isCorrect) setSolved(true);
+@@ -2324,6 +2324,8 @@
+   // F-1012-03: eng uzoq yetilgan ekran (qayta boshlashda 0) — undan oldingi ekranlarda «Davom etish» qulflanmaydi
+   useEffect(() => { setMaxReached(m => (screen === 0 && !Object.keys(answers || {}).length) ? 0 : Math.max(m, screen)); }, [screen, answers]);
+   const locked = isStudentLive && (screen + 1 > live.mentorScreen);
++  const scrTsRef = useRef(Date.now()); // F-1120-01: joriy ekranga kirgan vaqt — yakuniy javob vaqti shundan
++  useEffect(() => { scrTsRef.current = Date.now(); }, [screen]);
+   useEffect(() => { live.reportScreen(screen); }, [screen, live.mode, live.pin]); // eslint-disable-line
+   // 🃏 Flashcard ekrani jonli darsda (mentor boshqaruvida) o'quvchida ko'rsatilmaydi
+   const FLASH_IDX = SCREEN_META.findIndex(m => m.id === 'sflash');
+@@ -2341,7 +2343,8 @@
+       if (Number.isInteger(key)) { soloSentRef.current.add(idx); live.submitAnswer(idx, _m.id, key < 0 ? 0 : (data.correct ? key : (key === 0 ? 1 : 0)), !!data.correct, data.elapsedMs || 0); }
+     }
+     if (_m && ACH_TRIGGERS[_m.id] && data && data.correct && !missedRef.current.has(_m.id)) earn(ACH_TRIGGERS[_m.id]); // 🏅 nishon (faqat REAL solve)
+-    if (_m && _m.scored && _m.scope === 'final' && data && data.correct && live.mode === 'student') live.submitAnswer(idx, _m.id, 0, true, 0); // final custom (s15) — serverga yozadi (QuestionScreen'siz)
++    // F-1120-01: yakuniy ball-ekrani — haqiqiy variant va vaqt (oldin 0/0 ketardi: server birinchisini olib, to'g'ri javob «A, xato, 0 s» bo'lardi)
++    if (_m && _m.scored && _m.scope === 'final' && data && data.correct && live.mode === 'student' && !firstPassRef.current) live.submitAnswer(idx, _m.id, Number.isInteger(data.picked) ? data.picked : 0, true, Number.isFinite(data.elapsedMs) ? data.elapsedMs : Date.now() - scrTsRef.current); // final custom (s15) — serverga yozadi (QuestionScreen'siz)
+   };
+   const reset = () => { if (!firstPassRef.current) { firstPassRef.current = { answers, durationSec: Math.floor((Date.now() - startTimeRef.current) / 1000) }; setFpPractice(true); } progClear(LESSON_META.lessonId); setAnswers({}); setScreen(0); startTimeRef.current = Date.now(); };
+   // F-0730-01: har o'zgarishda progress saqlanadi (screen + javoblar + nishonlar + boshlangan vaqt)
+diff --color -ru a/src/bridge/lessons/BridgeTexSaytQurish.jsx b/src/bridge/lessons/BridgeTexSaytQurish.jsx
+--- a/src/bridge/lessons/BridgeTexSaytQurish.jsx	2026-11-20 19:00:10.564189669 +0500
++++ b/src/bridge/lessons/BridgeTexSaytQurish.jsx	2026-11-20 19:00:10.650467140 +0500
+@@ -254,7 +254,7 @@
+     if (firstCorrectRef.current === null) firstCorrectRef.current = isCorrect;
+     if (oneShot) {
+       setSolved(true);
+-      onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options, correctIndex: correctIdx, correctAnswer: options[correctIdx], picked: i, studentAnswerIndex: i, studentAnswer: options[i], correct: isCorrect, firstAttemptCorrect: isCorrect, solved: true, lastPicked: i });
++      onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options, correctIndex: correctIdx, correctAnswer: options[correctIdx], picked: i, studentAnswerIndex: i, studentAnswer: options[i], correct: isCorrect, firstAttemptCorrect: isCorrect, solved: true, lastPicked: i, elapsedMs: Date.now() - mountTs.current });
+       if (!fpPractice) live.submitAnswer(screen, SCREEN_META[screen]?.id || `s${screen}`, i, isCorrect, Date.now() - mountTs.current);
+     } else {
+       if (isCorrect) setSolved(true);
+@@ -1900,7 +1900,8 @@
+       if (Number.isInteger(key)) { soloSentRef.current.add(idx); live.submitAnswer(idx, _m.id, key < 0 ? 0 : (data.correct ? key : (key === 0 ? 1 : 0)), !!data.correct, data.elapsedMs || 0); }
+     }
+     if (_m && ACH_TRIGGERS[_m.id] && data && data.correct && !missedRef.current.has(_m.id)) earn(ACH_TRIGGERS[_m.id]); // 🏅 nishon (faqat REAL solve)
+-    if (_m && _m.scored && _m.scope === 'final' && data && data.correct && live.mode === 'student') live.submitAnswer(idx, _m.id, 0, true, 0);
++    // F-1120-01: yakuniy ball-ekrani — haqiqiy variant va vaqt (oldin 0/0 ketardi: server birinchisini olib, to'g'ri javob «A, xato, 0 s» bo'lardi)
++    if (_m && _m.scored && _m.scope === 'final' && data && data.correct && live.mode === 'student' && !firstPassRef.current) live.submitAnswer(idx, _m.id, Number.isInteger(data.picked) ? data.picked : 0, true, Number.isFinite(data.elapsedMs) ? data.elapsedMs : Date.now() - scrTsRef.current);
+   };
+   // Javob kaliti: inline testlar + praktika + jang savollari (mentor ochganda serverga yuklanadi)
+   const answerKey = { ...INLINE_KEYS, practice: -1, ...Object.fromEntries(QUIZ_BANK.map((q, i) => [`quiz-${i}`, q.correct])) };
+@@ -1910,6 +1911,8 @@
+   // F-1012-03: eng uzoq yetilgan ekran (qayta boshlashda 0) — undan oldingi ekranlarda «Davom etish» qulflanmaydi
+   useEffect(() => { setMaxReached(m => (screen === 0 && !Object.keys(answers || {}).length) ? 0 : Math.max(m, screen)); }, [screen, answers]);
+   const locked = isStudentLive && (screen + 1 > live.mentorScreen);
++  const scrTsRef = useRef(Date.now()); // F-1120-01: joriy ekranga kirgan vaqt — yakuniy javob vaqti shundan
++  useEffect(() => { scrTsRef.current = Date.now(); }, [screen]);
+   useEffect(() => { live.reportScreen(screen); }, [screen, live.mode, live.pin]); // eslint-disable-line
+   useEffect(() => { if (screen === TOTAL_SCREENS - 1) earn('graduate'); }, [screen, earn]); // 🏅 yakuniy nishon
+   const reset = () => { if (!firstPassRef.current) { firstPassRef.current = { answers, durationSec: Math.floor((Date.now() - startTimeRef.current) / 1000) }; setFpPractice(true); } progClear(LESSON_META.lessonId); setAnswers({}); setScreen(0); startTimeRef.current = Date.now(); };
