@@ -1067,3 +1067,9 @@ Oldingi seans 17:59 dan keyin ham ishlagan, jurnal yozilmagan (seans uzildi). Fa
 - TgPg 3-ekran 1–2-segment: 1280 da ikki chat ustma-ust tushib sahna 59 px toshardi → har doim yonma-yon (`gridTemplateColumns: minmax(0,1fr) minmax(0,1fr)`); toshish 0.
 - WS-2 yakun: rasm atrofidagi bo'shliq 14 → 8 px (yuqori/past); 1280 da toshish 0.
 - gates TgPg, WS-2 12/13 (esbuild — ma'lum) · lint:jsx toza. Deploy/commit yo'q.
+
+## 21.11 01:58 — F-1120-02: commit va deploy (foydalanuvchi: «Commit + deploy»)
+- Commit **f9da8f26** — faqat `src/mentor-kurs`, `feedback/F-1029-02-mentor-kurs`, `MENTOR_DARS_ETALON.md` (pathspec bilan; boshqa seansning staged fayllari — tekshiruv sayti, uyga vazifa, bridge — tegilmadi). Natija sahifasi suratlari (8 MB) commit qilinmadi — artifact va zaxirada.
+- Ovoz: 12 dars matni yig'ildi (uz 1429, ru 1431) → `ovoz-statik.py` — 2860 mp3, xato 0.
+- Sayt `coddycamp-mentor-kurs` **qayta yoqildi** (`vercel project resume`, paused: false) → `dev/vercel-deploy.sh` → prod **g1yvugq60** (Ready). / va ?dars=cicd-01 → 200; mp3 → 200.
+- Jonli saytda tekshirildi: PG-2 22 (act bosildi, kichik rasm, Postman 201), TgPg 1 (xarita), Webhook 13 (act), Nest-1 23 — xato 0, toshish 0; TgPg 1 va PG-2 22 da mp3 so'rovlari 200/206.

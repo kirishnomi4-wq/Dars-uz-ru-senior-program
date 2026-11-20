@@ -1,8 +1,8 @@
 # F-1029-02 · Mentor kursi — DAVOM (01.11.2026 avtopilot — PG-1, PG-2, Jest-1, Jest-2, CI/CD-1, Telegraf+PG, WebSocket-1, WebSocket-2, Webhook qurildi; ertalab ko'rik)
 
-> **🟢🟢🟢 21.11 — F-1120-02 «Jonli sahna» 12 DARSDA TAYYOR (lokal, commit/deploy YO'Q). YANGI SEANS SHU YERDAN.**
+> **🟢🟢🟢 21.11 — F-1120-02 «Jonli sahna» 12 DARSDA TAYYOR — saytda (g1yvugq60). YANGI SEANS SHU YERDAN.**
 > **Natija:** https://claude.ai/artifact/RGUTPShyxrRmmnVcNFviX9 (v13 — har dars bo'limi suratlar bilan). Har dars yozuvi JURNAL.md da (20.11 21:58 … 21.11).
-> **Kutilayotgan (foydalanuvchi buyrug'i bilan):** ko'rik → tuzatishlar · commit · Vercel deploy (sayt `coddycamp-mentor-kurs` PAUSE, `npx vercel project resume`) · ovozlar `ovoz-statik.py` bilan sayt papkasiga.
+> **21.11 — COMMIT f9da8f26 · DEPLOY g1yvugq60 (sayt qayta yoqildi, 2860 mp3).** Keyingi: mentor/foydalanuvchi ko'rigi → fidbek (B retsepti). LMS'ga chiqmaydi (mentor kursi — alohida sayt).
 > **Kod:** umumiy rasm — `parts/02b-rasm.jsx` (N1Fit, useAct, N1Mini) · Nest — `02c-nest.jsx` · PG — `02d-pg.jsx` + `pg2/parts/04b-mashina.jsx` · OrderBot 8 darsi — `parts/02e-bot.jsx` (BotMap: xarita + `jest` pastki qator — Jest / Actions / Admin panel / To'lov xizmati; FlowMini — «Buzamiz» kichik rasmi), darsga xos — `<dars>/parts/04b-mashina.jsx`. Act: MD'da `0.` band + `Bosish:`; `dev/act-patch.py` (generator + mkS), `ru-ajrat/ru-qur` act'ni biladi. Modul darajasidagi tarjima — faqat getter (`get badge() { return t(…) }`).
 > **Ochiq (kichik):** 1280 dagi ikki joy 21.11 da tuzatildi; faqat Nest-1 «dark» 17 (oldindan, HEAD bilan bir xil). Sinov vositasi: `jonli-sahna-F-1120-02/vosita/n1-surat-sekin.mjs` (ovoz 3×, oraliq qadamlar suratga tushadi).
 
