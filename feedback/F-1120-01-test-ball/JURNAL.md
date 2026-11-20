@@ -97,3 +97,45 @@ nusxada, `git apply --check` toza, QO'LLANMAGAN.
    LMS'ga ketgan natija o'zgargan payload bilan qayta yuborilsa 409 — CRM jamoasi bilan kelishuv kerak.
 4. Bridge 2 dars — qaror.
 5. Sinf muhri (qayerga — tekshiruvchi rol-fayli yoki darvoza) — qaror.
+
+## 2026-11-20 22:19 (`date`) — prod tiklash: 1–2-qadam (tayyorgarlik), deploy CRM yuklashdan KEYIN
+- Foydalanuvchi prod tiklashga ruxsat berdi; vaqt bo'yicha tavsiya qabul qilindi: migratsiya bir marta yuradi →
+  CRM'ga yangi darslar yuklanmaguncha eski kod yangi soxta qatorlar yozadi → deploy yuklashdan KEYIN (bitta yurishda hammasi).
+- TOPILMA (xavf): `sync-dars-api.sh` ishchi daraxtni (`server/.`) ko'chiradi — unda Junior seansining commitsiz
+  `modules/junior` + `0019_junior_sinf.sql` + app.js/index.js ulanishi va bridge seansining katalog o'zgarishi (+328) bor.
+  Asosiy papkadan sync = Junior chala ishi prod'ga. Yechim: deploy FAQAT toza worktree'dan.
+- Fakt: HEAD:server (241a156f) = GitLab main ac5742f (diff bo'sh) — prod = commit qilingan server.
+- 1) Commit `96e54ec9` — faqat `server/migrations/0020_f1120_javob_tuzatish.sql` (pathspec-commit; boshqa seanslarning staged fayllari tegilmadi).
+- 2) Worktree `/home/kali/Desktop/il-f1120-wt` (detached 96e54ec9): server = GitLab main + faqat 0020; modules: admin health live lms results (junior YO'Q);
+  migratsiya ro'yxati 19 fayl, 0019 yo'q (yurgizgich tartibdan tashqari qo'llashga ruxsat beradi — keyin 0019 ham yuradi);
+  `sync-dars-api.sh staging|main --check` — ikkalasi darvoza OK (push yo'q).
+- Navbat (yuklash tugagach): worktree'dan `bash scripts/sync-dars-api.sh staging` → staging-check + Dozzle NOTICE →
+  `sync main` → GitLab ▶ (foydalanuvchi) → Dozzle NOTICE + yukla.mjs (faqat o'qish) → worktree o'chiriladi.
+
+## 2026-11-21 01:18 (`date`) — PROD TIKLANDI ✅ (0020, ▶ foydalanuvchi)
+- Foydalanuvchi «go qilamz xozir»: tiklash CRM yuklashdan OLDIN (yuklash 0/98) — yuklashgacha yozilgan yangi soxta qatorlar uchun keyin 0021 kerak bo'ladi.
+- Staging: worktree'dan sync → a6e7690 (diff = faqat 0020) → migrate «qo'llanildi 1 ta (jami 19)» → staging-check (worktree'dan) 19 ✓ 0 ✗ 1 ⚠ (v2 eski sinov-ma'lumot).
+  Eslatma: asosiy server/ dan staging-check «lokal 20 / katalog 193» deb ✗ beradi — Junior 0019 + bridge katalogi sabab; tekshiruv ham toza daraxtdan.
+- Prod: sync main → 6f9d1be (faqat 0020) → ▶ foydalanuvchi → 0.1.0+6f9d1be5, migrate «qo'llanildi 1 ta (jami 19)» (Dozzle). NOTICE logga chiqmaydi (yurgizgich pg notice'ni yozmaydi) —
+  shuning uchun oldin/keyin o'lchov (v_lesson_results, faqat o'qish):
+  - tests_correct: git-github-v19 533 → 614 (+81) · practice-02-ai-promo-v18 504 → 615 (+111) — kutilgan +81/+111 ga AYNAN teng;
+  - o'zgargan urinish 192 = crm-tuzatish-royxat.csv 192 (192/192 mos, togri_ball ga teng 192/192); boshqa darslarda +0, kamaygan 0, yangi urinish 0.
+  - Vaqt tiklanishi view'da ko'rinmaydi (live_answers.elapsed_ms chiqmaydi) — lokal sinovda tasdiqlangan.
+- Prod staging-check --read-only: 17 ✓ 0 ✗ 1 ⚠ (RESULT_SCHEMA_V2 lokal env-faylda off — eski, bizniki emas).
+- Worktree o'chirildi. Monorepo HEAD 96e54ec9 (push yo'q).
+- QOLDI: CRM yuklash (0/98) → muhrla; yuklashgacha bo'lgan yangi soxta qatorlar → 0021 (shu SQL, yangi raqam) + CRM ro'yxatga qo'shimcha; CRM csv (foydalanuvchi); bridge patch.
+
+## 2026-11-21 02:20 (`date`) — CRM YUKLASH ✅ 98 dars (196 qator), muhrlandi
+- Foydalanuvchi «paketni to'liq tayyorla … o'zing ehtiyotkorlikda yuklaysan» → CRM'ga kirishni o'zi qildi.
+- Tayyorlov: `konveyer/royxat-1120.json` (F-1105-03 konveyer papkasida) — 98 dars, crm qatorlari reestr = eski royxat-v4 = csv, md5, versiya +1, eski fayl = reestr;
+  98 lesson_id prod katalogida (HEAD, 183) → server deploy KERAK EMAS. Serverlar 5398/5399 (YAKKA=yuklash-2026-11-20-prod/yakka). Eski dump holatlari `*-20261112-zaxira.json`.
+- Oldin-o'qish: 196/196 qator eski faylda, Active, lesson-runner, til mos (`dump/oldin-1120.json`).
+- Sinov: 2-M CssLesson1 v8 (13599/14094) → Active, meta o'zgarmagan, terminal md5 2/2 ✓.
+- Zanjir 01:59–02:2x (`__zanjir4`, sandbox iframe, neytral robots.txt tab): 2-M 8/8 · 3-M 10/10 · 4-M 16/16 · 5-M 8/8 · 6-M 12/12 · 7-M 10/10 · 8-M 20/20 ·
+  9-M 16/16 · 10-M 16/16 · 11-M 24/24 · 12-M 20/20 · 13-M 16/16 · 14-M 20/20 — to'xtash 0, muammo 0.
+- Mustaqil terminal audit: **196/196 qator ✓ · 98/98 dars ✓** (md5 + nom + til + Active; `dump/audit-1120-natija.json`).
+- `yuklangan.csv` 98/98 yuklandi=2026-11-21 → `lms-farq muhrla … --kim claude-F-1120-01 --server 6f9d1be` → reestr; qayta `lms-farq`: o'zgarmagan 172 · o'zgargan 0.
+  Eslatma: jurnal «Commit» ustunida 342bf09d (muhr paytidagi HEAD — mentor seansining faqat-docs commit'i); dars fayllari 86335ad6 bilan bayt-bayt bir xil.
+  lms-farq «server KERAK» ogohlantirishi — bridge seansining commitsiz 10 bridge-tex id'si, bizniki emas.
+- 0020 dan keyingi qoldiq: prod'da 20:00Z (01:00) dan keyin urinish 0 → **0021 KERAK EMAS**.
+- Serverlar to'xtatildi, tab yopildi. Commit (LMS_REESTR.json, LMS_DEPLOY_JURNAL.md, yuklangan.csv) — foydalanuvchi buyrug'i bilan.
