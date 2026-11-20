@@ -147,3 +147,6 @@ nusxada, `git apply --check` toza, QO'LLANMAGAN.
   gates har 5 faylda 12/13 — yiqilgan faqat **emoji** (161-qonun), patchdan OLDIN ham aynan shu son (11/21/5/6/9) → eski, bizniki emas, tegilmadi.
   Bridge fayllari commit QILINMADI (boshqa seansning commitsiz ishi) · bridge sayti deploy QILINMADI · jonli brauzer sinovi bridge'da YO'Q (mexanizm LMS darslarida e2e bilan tasdiqlangan).
 - CRM ro'yxati `crm-tuzatish-royxat.csv` — yuborish foydalanuvchida (biz CRM'ga natija yozmaymiz).
+
+## 2026-11-21 02:48 (`date`) — F-1120-01 YOPILDI ✅
+- Foydalanuvchi: crm-tuzatish-royxat.csv CRM jamoasiga YUBORILDI. Barcha navbat bandlari bajarildi. Ochiq qolgani: push (buyruq bilan), bridge fayllarini commit — bridge seansi.

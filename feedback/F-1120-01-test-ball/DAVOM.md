@@ -1,6 +1,6 @@
 # F-1120-01 — DAVOM (yangi seans shu yerdan boshlaydi)
 
-**Holat sanasi:** 21.11.2026 02:20 (prod TIKLANDI ✅ · CRM 98/98 YUKLANDI ✅ · muhrlandi; commit kutilmoqda) · to'liq tarix: `JURNAL.md` (shu papka)
+**Holat sanasi:** 21.11.2026 — ✅ YOPILDI (prod tiklandi · CRM 98/98 · bridge patch · CRM csv yuborildi) · CRM 98/98 YUKLANDI ✅ · muhrlandi; commit kutilmoqda) · to'liq tarix: `JURNAL.md` (shu papka)
 **Doira:** faqat AI Startup (LMS 2–14-Modul darslari). New Junior'ga TEGILMAYDI. Bridge fayllari — boshqa seansniki.
 
 ## Muammo (qisqa)
@@ -34,7 +34,7 @@ Jonli darsda yakuniy test javobi serverga 2 marta ketardi: `recordAnswer` avval 
      `ls server/migrations` — 0020 band bo'lsa raqamni o'zgartir.
    - Lokal sinov (rollback bilan) o'tgan: ball 2, vaqt 11, takror 0.
    - Keyin tekshiruv: `v_lesson_results` (yukla.mjs) — deficit 0 bo'lishi kerak.
-3. **CRM ro'yxati** `crm-tuzatish-royxat.csv` (192 qator, ismsiz) — foydalanuvchi o'zi CRM jamoasiga yuboradi
+3. ✅ **CRM ro'yxati — foydalanuvchi YUBORDI 21.11.**  `crm-tuzatish-royxat.csv` (192 qator, ismsiz) — foydalanuvchi o'zi CRM jamoasiga yuboradi
    (LMS'ga ketgan natijani biz o'zgartira olmaymiz: o'zgargan payload → 409). Xat taklif qilinmaydi.
 4. ✅ **Bridge patch QO'LLANDI 21.11** (zaxira `bridge-zaxira-oldin/`, c3 istisnosi olindi, lint:jsx toza; emoji — eski). Bridge fayllari commitsiz (boshqa seans), sayt deploy qilinmagan.
    Eski reja — `bridge-f1120.patch` (5 fayl: BridgeTexAiSayt, BridgeTexGit, BridgeTexAvtoIjaraReact, BridgeTexPostgres,
