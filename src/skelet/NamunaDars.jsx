@@ -437,7 +437,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
     if (oneShot) {
       // Jonli dars: javob darhol qotadi (to'g'ri ham, xato ham) va serverga yoziladi
       setSolved(true);
-      onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options: options.map(ou), correctIndex: correctIdx, correctAnswer: ou(options[correctIdx]), picked: i, studentAnswerIndex: i, studentAnswer: ou(options[i]), correct: isCorrect, firstAttemptCorrect: isCorrect, solved: true, lastPicked: i });
+      onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options: options.map(ou), correctIndex: correctIdx, correctAnswer: ou(options[correctIdx]), picked: i, studentAnswerIndex: i, studentAnswer: ou(options[i]), correct: isCorrect, firstAttemptCorrect: isCorrect, solved: true, lastPicked: i, elapsedMs: Date.now() - mountTs.current });
       if (!fpPractice) live.submitAnswer(screen, SCREEN_META[screen]?.id || `s${screen}`, i, isCorrect, Date.now() - mountTs.current);
     } else {
       if (isCorrect) setSolved(true);
@@ -1516,6 +1516,8 @@ export default function NamunaDars({ lang: langProp, onFinished, liveToken }) {
   useServerProgress(live, { setScreen, setAnswers, setEarned, earnedRef, startTimeRef, total: TOTAL_SCREENS }); // server-progress: davom / ko'rish / toza boshlash
   const isStudentLive = live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
   const locked = isStudentLive && (screen + 1 > live.mentorScreen);
+  const scrTsRef = useRef(Date.now()); // F-1120-01: joriy ekranga kirgan vaqt — yakuniy javob vaqti shundan
+  useEffect(() => { scrTsRef.current = Date.now(); }, [screen]);
   useEffect(() => { live.reportScreen(screen); }, [screen, live.mode, live.pin]); // eslint-disable-line
   // 🃏 Flashcard ekrani jonli darsda (mentor boshqaruvida) o'quvchida ko'rsatilmaydi
   const FLASH_IDX = SCREEN_META.findIndex(m => m.id === 'sflash');
@@ -1534,7 +1536,8 @@ export default function NamunaDars({ lang: langProp, onFinished, liveToken }) {
     }
     if (_m && ACH_TRIGGERS[_m.id] && data && data.correct && !missedRef.current.has(_m.id)) earn(ACH_TRIGGERS[_m.id]); //  nishon (faqat SCORED test — REAL solve)
     // Yakuniy gate (s15) — XATO javob ham serverga ketadi (aks holda xato qilgan o'quvchi podiumda umuman ko'rinmaydi).
-    if (_m && _m.scored && _m.scope === 'final' && data && data.solved && live.mode === 'student') live.submitAnswer(idx, _m.id, data.picked ?? 1, !!data.correct, data.elapsedMs || 0);
+    // F-1120-01: yakuniy ball-ekrani — haqiqiy variant va vaqt (oldin 0/0 ketardi: server birinchisini olib, to'g'ri javob «A, xato, 0 s» bo'lardi)
+    if (_m && _m.scored && _m.scope === 'final' && data && data.solved && live.mode === 'student' && !firstPassRef.current) live.submitAnswer(idx, _m.id, data.picked ?? 1, !!data.correct, Number.isFinite(data.elapsedMs) ? data.elapsedMs : Date.now() - scrTsRef.current);
   };
   const reset = () => { if (!firstPassRef.current) { firstPassRef.current = { answers, durationSec: Math.floor((Date.now() - startTimeRef.current) / 1000) }; setFpPractice(true); } progClear(LESSON_META.lessonId); setAnswers({}); setScreen(0); startTimeRef.current = Date.now(); };
   // F-0730-01: har o'zgarishda progress saqlanadi (screen + javoblar + nishonlar + boshlangan vaqt)

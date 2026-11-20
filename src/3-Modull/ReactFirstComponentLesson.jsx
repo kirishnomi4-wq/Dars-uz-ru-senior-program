@@ -410,7 +410,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
     if (oneShot) {
       // Jonli dars: javob darhol qotadi (to'g'ri ham, xato ham) va serverga yoziladi
       setSolved(true);
-      onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options, correctIndex: correctIdx, correctAnswer: options[correctIdx], picked: i, studentAnswerIndex: i, studentAnswer: options[i], correct: isCorrect, firstAttemptCorrect: isCorrect, solved: true, lastPicked: i });
+      onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options, correctIndex: correctIdx, correctAnswer: options[correctIdx], picked: i, studentAnswerIndex: i, studentAnswer: options[i], correct: isCorrect, firstAttemptCorrect: isCorrect, solved: true, lastPicked: i, elapsedMs: Date.now() - mountTs.current });
       if (!fpPractice) live.submitAnswer(screen, SCREEN_META[screen]?.id || `s${screen}`, i, isCorrect, Date.now() - mountTs.current);
     } else {
       if (isCorrect) setSolved(true);
@@ -2409,7 +2409,8 @@ export default function ReactFirstComponentLesson({ lang: langProp, onFinished, 
     }
     if (_m && ACH_TRIGGERS[_m.id] && data && data.correct && !missedRef.current.has(_m.id)) earn(ACH_TRIGGERS[_m.id]); // 🏅 nishon (faqat REAL solve)
     // Yakuniy amaliy (s15, yozma) — jonli darsda serverga ball sifatida yoziladi (podium hisobiga kiradi)
-    if (_m && _m.scored && _m.scope === 'final' && data && data.correct && live.mode === 'student') live.submitAnswer(idx, _m.id, 0, true, 0);
+    // F-1120-01: yakuniy ball-ekrani — haqiqiy variant va vaqt (oldin 0/0 ketardi: server birinchisini olib, to'g'ri javob «A, xato, 0 s» bo'lardi)
+    if (_m && _m.scored && _m.scope === 'final' && data && data.correct && live.mode === 'student' && !firstPassRef.current) live.submitAnswer(idx, _m.id, Number.isInteger(data.picked) ? data.picked : 0, true, Number.isFinite(data.elapsedMs) ? data.elapsedMs : Date.now() - scrTsRef.current);
   };
   // Javob kaliti: inline testlar + praktika (ishtirok) + jang savollari — mentor ochganda serverga yuklanadi
   const answerKey = { ...INLINE_KEYS, practice: -1, ...Object.fromEntries(QUIZ_BANK.map((q, i) => [`quiz-${i}`, q.correct])) };
@@ -2419,6 +2420,8 @@ export default function ReactFirstComponentLesson({ lang: langProp, onFinished, 
   // F-1012-03: eng uzoq yetilgan ekran (qayta boshlashda 0) — undan oldingi ekranlarda «Davom etish» qulflanmaydi
   useEffect(() => { setMaxReached(m => (screen === 0 && !Object.keys(answers || {}).length) ? 0 : Math.max(m, screen)); }, [screen, answers]);
   const locked = isStudentLive && (screen + 1 > live.mentorScreen);
+  const scrTsRef = useRef(Date.now()); // F-1120-01: joriy ekranga kirgan vaqt — yakuniy javob vaqti shundan
+  useEffect(() => { scrTsRef.current = Date.now(); }, [screen]);
   useEffect(() => { live.reportScreen(screen); }, [screen, live.mode, live.pin]); // eslint-disable-line
   useEffect(() => { if (screen === TOTAL_SCREENS - 1) earn('graduate'); }, [screen, earn]); // 🏅 yakuniy nishon
   const reset = () => { if (!firstPassRef.current) { firstPassRef.current = { answers, durationSec: Math.floor((Date.now() - startTimeRef.current) / 1000) }; setFpPractice(true); } progClear(LESSON_META.lessonId); setAnswers({}); setScreen(0); startTimeRef.current = Date.now(); };

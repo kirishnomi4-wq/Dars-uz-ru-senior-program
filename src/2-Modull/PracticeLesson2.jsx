@@ -497,7 +497,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
     if (oneShot) {
       // Jonli dars: javob darhol qotadi (to'g'ri ham, xato ham) va serverga yoziladi
       setSolved(true);
-      onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options, correctIndex: correctIdx, correctAnswer: options[correctIdx], picked: i, studentAnswerIndex: i, studentAnswer: options[i], correct: isCorrect, firstAttemptCorrect: isCorrect, solved: true, lastPicked: i });
+      onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options, correctIndex: correctIdx, correctAnswer: options[correctIdx], picked: i, studentAnswerIndex: i, studentAnswer: options[i], correct: isCorrect, firstAttemptCorrect: isCorrect, solved: true, lastPicked: i, elapsedMs: Date.now() - mountTs.current });
       if (!fpPractice) live.submitAnswer(screen, SCREEN_META[screen]?.id || `s${screen}`, i, isCorrect, Date.now() - mountTs.current);
     } else {
       if (isCorrect) setSolved(true);
@@ -2283,7 +2283,8 @@ export default function PracticeLesson2({ lang: langProp, onFinished, liveToken 
       const key = INLINE_KEYS[_m.id];
       if (Number.isInteger(key)) { soloSentRef.current.add(idx); live.submitAnswer(idx, _m.id, key < 0 ? 0 : (data.correct ? key : (key === 0 ? 1 : 0)), !!data.correct, data.elapsedMs || 0); }
     }
-    if (_m && _m.scored && _m.scope === 'final' && data && data.correct && live.mode === 'student') live.submitAnswer(idx, _m.id, 0, true, 0);
+    // F-1120-01: yakuniy TEST ekrani (MCQ) — haqiqiy variant + vaqt yuboriladi (oldin doim 0/0 → server birinchisini olib, to'g'ri javob «A, xato, 0 s» bo'lardi)
+    if (_m && _m.scored && _m.scope === 'final' && data && data.correct && live.mode === 'student' && !firstPassRef.current) live.submitAnswer(idx, _m.id, Number.isInteger(data.picked) ? data.picked : 0, true, data.elapsedMs || 0);
     // 🏅 nishon — FAQAT scored test ekranida, to'g'ri javob bo'lsa (tekin nishon yo'q)
     if (_m && _m.scored && ACH_TRIGGERS[_m.id] && data && data.correct && !missedRef.current.has(_m.id)) earn(ACH_TRIGGERS[_m.id]);
   };
