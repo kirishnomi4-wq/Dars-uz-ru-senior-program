@@ -2243,6 +2243,8 @@ export default function PipelineProjectLesson({ lang: langProp, onFinished, live
   useServerProgress(live, { setScreen, setAnswers, setEarned, earnedRef, startTimeRef, total: TOTAL_SCREENS }); // server-progress: davom / ko'rish / toza boshlash
   const isStudentLive = live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
   const locked = isStudentLive && (screen + 1 > live.mentorScreen);
+  const scrTsRef = useRef(Date.now()); // F-1120-01: joriy ekranga kirgan vaqt — yakuniy javob vaqti shundan
+  useEffect(() => { scrTsRef.current = Date.now(); }, [screen]);
   useEffect(() => { live.reportScreen(screen); }, [screen, live.mode, live.pin]); // eslint-disable-line
   const FLASH_IDX = SCREEN_META.findIndex(m => m.id === 'sflash');
   const flashHidden = () => live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
@@ -2259,7 +2261,7 @@ export default function PipelineProjectLesson({ lang: langProp, onFinished, live
       if (Number.isInteger(key)) { soloSentRef.current.add(idx); live.submitAnswer(idx, _m.id, key < 0 ? 0 : (data.correct ? key : (key === 0 ? 1 : 0)), !!data.correct, data.elapsedMs || 0); }
     }
     if (_m && ACH_TRIGGERS[_m.id] && data && data.correct && !missedRef.current.has(_m.id)) earn(ACH_TRIGGERS[_m.id]);
-    if (_m && _m.scored && _m.scope === 'final' && data && data.solved && live.mode === 'student') live.submitAnswer(idx, _m.id, data.picked ?? 0, !!data.correct, data.elapsedMs || 0);
+    if (_m && _m.scored && _m.scope === 'final' && data && data.solved && live.mode === 'student' && !firstPassRef.current) live.submitAnswer(idx, _m.id, data.picked ?? 0, !!data.correct, Number.isFinite(data.elapsedMs) ? data.elapsedMs : Date.now() - scrTsRef.current);
   };
   const reset = () => { if (!firstPassRef.current) { firstPassRef.current = { answers, durationSec: Math.floor((Date.now() - startTimeRef.current) / 1000) }; setFpPractice(true); } progClear(LESSON_META.lessonId); setAnswers({}); setScreen(0); startTimeRef.current = Date.now(); };
   // F-0730-01: har o'zgarishda progress saqlanadi (screen + javoblar + nishonlar + boshlangan vaqt)

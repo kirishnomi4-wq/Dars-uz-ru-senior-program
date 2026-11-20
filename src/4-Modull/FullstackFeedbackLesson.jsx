@@ -1901,6 +1901,8 @@ export default function FullstackFeedbackLesson({ lang: langProp, onFinished, li
   // F-1012-03: eng uzoq yetilgan ekran (qayta boshlashda 0) — undan oldingi ekranlarda «Davom etish» qulflanmaydi
   useEffect(() => { setMaxReached(m => (screen === 0 && !Object.keys(answers || {}).length) ? 0 : Math.max(m, screen)); }, [screen, answers]);
   const locked = isStudentLive && (screen + 1 > live.mentorScreen);
+  const scrTsRef = useRef(Date.now()); // F-1120-01: joriy ekranga kirgan vaqt — yakuniy javob vaqti shundan
+  useEffect(() => { scrTsRef.current = Date.now(); }, [screen]);
   useEffect(() => { live.reportScreen(screen); }, [screen, live.mode, live.pin]); // eslint-disable-line
   // 🃏 Flashcard ekrani jonli darsda (mentor boshqaruvida) o'quvchida ko'rsatilmaydi
   const FLASH_IDX = SCREEN_META.findIndex(m => m.id === 'sflash');
@@ -1926,7 +1928,8 @@ export default function FullstackFeedbackLesson({ lang: langProp, onFinished, li
       if (TRK_MAP[_m.id]) { TRK_MAP[_m.id].forEach(fid => trkRef.current.add(fid)); setResolved(new Set(trkRef.current)); }
       // JONLI: yakuniy yozma test (s16, scope 'final' — QuestionScreen EMAS, custom ekran) serverga yoziladi,
       // aks holda podiumda 5-nuqta (tasdiq) o'quvchida bo'sh qoladi. QuestionScreen testlari o'zi pick()'da yuboradi.
-      if (_m.scored && _m.scope === 'final' && live.mode === 'student') live.submitAnswer(idx, _m.id, 0, true, 0);
+      // F-1120-01: yakuniy ball-ekrani — haqiqiy variant va vaqt (oldin 0/0 ketardi: vaqt doim 0 s edi)
+      if (_m.scored && _m.scope === 'final' && live.mode === 'student' && !firstPassRef.current) live.submitAnswer(idx, _m.id, Number.isInteger(data.picked) ? data.picked : 0, true, Number.isFinite(data.elapsedMs) ? data.elapsedMs : Date.now() - scrTsRef.current);
     }
   };
   const reset = () => { if (!firstPassRef.current) { firstPassRef.current = { answers, durationSec: Math.floor((Date.now() - startTimeRef.current) / 1000) }; setFpPractice(true); } progClear(LESSON_META.lessonId); setAnswers({}); setScreen(0); startTimeRef.current = Date.now(); trkRef.current = new Set(); setResolved(new Set()); };

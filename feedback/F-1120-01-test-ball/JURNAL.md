@@ -57,6 +57,16 @@ Tekshiruv:
 - `lms-farq`: o'zgargan 96 — tuzatilgan darslar ro'yxati bilan AYNAN mos (boshqa o'zgarish yo'q). Paket commit'dan keyin.
   Ogohlantirish (bizniki emas): `server/data/lesson-catalog.json` da 10 ta bridge-tex id (boshqa seans, commitsiz) — bu yuklashga kirmaydi.
 
+## 3-qadam — commit + paket (20.11, foydalanuvchi «xa qil … ikala bagni general togrilaver»)
+- Commit `b4320a99` — faqat 97 dars + shu papka (pathspec bilan; boshqa seansning 41 staged fayli tegilmadi).
+- `lms-farq paket --majbur` → `yuklash-2026-11-20-prod/` (96 dars, versiya +1). `--majbur` sababi: 14 commitsiz fayl boshqa
+  seanslarniki (bridge, tekshiruv sayti) — farq bizning 96 dars bilan aynan mos, ular paketga kirmaydi.
+- 1-urinish `timeout 1500` bilan smoke-lms o'rtasida uzildi (HISOBOT yo'q) → papka o'chirildi, vaqt chegarasiz qayta yig'ildi.
+- README «server AVVAL SHART» — sababi boshqa seansning commitsiz 10 bridge-tex katalog id'si; bizning 96 dars uchun server deploy kerak emas
+  (yangi/o'zgargan lesson_id yo'q).
+- Qayta yig'ish natijasi `HISOBOT.md`: 96 dars · lint:jsx ✓ · smoke-lms ✓ · smoke-preview 96/96 · **Hukm: O'TDI ✓**.
+  Keyingi: yuklovchi seans (YUKLASH_PROTOKOLI.md) → `yuklangan.csv` → `lms-farq muhrla … --kim <seans>`.
+
 ## Ochiq
 2. ~~B-ko'rinish~~ — tuzatildi (yuqorida); LMS yuklash: commit → `lms-farq paket` → yuklovchi → muhrla.
 3. Prod ma'lumotni tiklash (151 qator, answer_attempts'dan) — prod'ga yozish, faqat foydalanuvchi buyrug'i bilan;

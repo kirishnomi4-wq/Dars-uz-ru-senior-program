@@ -225,6 +225,20 @@ for (const file of files) {
     hits.push({ line: src.slice(0, m.index).split('\n').length, msg: 'tr() ishlatilgan, lekin faylda aniqlanmagan/import qilinmagan — brauzerda «tr is not defined» (oq ekran)' });
   }
 
+  // 🔴 (c3) YAKUNIY BALL-EKRANI SOXTA JAVOB YUBORADI (F-1120-01, prod: 151 to'g'ri javob «A, xato, 0 s»).
+  // recordAnswer'dagi `_m.scope === 'final'` qatori QuestionScreen'dan OLDIN serverga ketadi, server birinchisini
+  // qotiradi. Shu qator doimiy variant (0) yoki vaqtsiz (`data.elapsedMs || 0`) yuborsa — MCQ javobi buziladi va
+  // yakuniy test vaqti 0 bo'ladi. To'g'ri shakl: haqiqiy `data.picked` + `Number.isFinite(data.elapsedMs) ? … : Date.now() - scrTsRef.current`.
+  const hasFinalScored = /scored:\s*true[^\n}]*scope:\s*'final'/.test(src); // yakuniy ball-ekrani yo'q darsda qator hech qachon ishlamaydi
+  if (hasFinalScored) src.split('\n').forEach((ln, k) => {
+    if (!/_m\.scope === 'final'/.test(ln) || !/live\.submitAnswer\(/.test(ln)) return;
+    // xavfsiz himoyalar: MCQ (o'zi yuboradi) chetlangan yoki maxsus ekran o'zi haqiqiy javobni yuborgan
+    if (/_m\.template !== 'MCScreen'/.test(ln) || /!data\.selfSubmitted/.test(ln)) return;
+    const call = ln.slice(ln.indexOf('live.submitAnswer('));
+    if (/submitAnswer\([^,]+,[^,]+,\s*0\s*,\s*true\s*,\s*0\s*\)/.test(call)) hits.push({ line: k + 1, msg: "yakuniy ekran javobi doim variant 0 va vaqt 0 yuboradi — server birinchisini qotiradi: to'g'ri MCQ javobi «A, xato, 0 s» (F-1120-01)" });
+    else if (/data\.elapsedMs \|\| 0\s*\)/.test(call) && !/Number\.isInteger\(data\.picked\)/.test(call)) hits.push({ line: k + 1, msg: "yakuniy ekran javobi vaqtsiz (`data.elapsedMs || 0`) — maxsus ekranda vaqt 0 yoziladi; scrTsRef zaxirasi kerak (F-1120-01)" });
+  });
+
   // (d) YAKUN TARTIBI (PmLesson2 etaloni, F-0803-08): «Endi siz bilasiz» va uy-vazifa
   // yonma-yon `split` da TURMAYDI — recap to'liq enli, undan keyin kapsula-tugma.
   const hwCard = /<div className="card hw fade-up d4">/.exec(src);
