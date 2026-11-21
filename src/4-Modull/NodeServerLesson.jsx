@@ -43,7 +43,7 @@ const MentorCtx = createContext(null); // mobil: yig'iladigan Mentor
 import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
 // F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Server yaratish» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 5-4). scripts/hw-v2-kartalar.mjs yozadi.
-const HW_V2 = {"id":"5-4","tur":"file","nom":{"uz":"Uyga vazifa: Server yaratish","ru":"Домашнее задание: Создание сервера"},"matn":{"uz":"Birinchi serveringizni uyda yozing.\n\n1. Yangi papkada npm init -y va npm install express.\n2. server.js da uchta endpoint: /salom → «Salom, dunyo!», /men → ismingiz, /sevimli → sevimli o'yiningiz nomi.\n3. app.listen(3000) va node server.js.\n4. Brauzerda uchala manzilni oching — har birining skrinshoti.\n5. Serverni to'xtatib (Ctrl + C) /salom ni yana oching — chiqqan xatoning skrinshoti. server.js va package.json ni yuklang.\n\nNima tekshiriladi:\n— package.json da express\n— 3 ta app.get\n— app.listen(3000)\n— 3 skrinshot javoblari bilan\n— o'chiq server xatosi.","ru":"Напишите свой первый сервер дома.\n\n1. В новой папке — npm init -y и npm install express.\n2. В server.js три endpoint: /salom → «Привет, мир!», /men → ваше имя, /sevimli → название любимой игры.\n3. app.listen(3000) и node server.js.\n4. Откройте все три адреса в браузере — скриншот каждого.\n5. Остановите сервер (Ctrl + C) и снова откройте /salom — скриншот ошибки. Загрузите server.js и package.json.\n\nЧто проверяется:\n— express в package.json\n— 3 app.get\n— app.listen(3000)\n— 3 скриншота с ответами\n— ошибка выключенного сервера."}};
+const HW_V2 = {"id":"5-4","tur":"file","nom":{"uz":"Uyga vazifa: Server yaratish","ru":"Домашнее задание: Создание сервера"},"matn":{"uz":"Birinchi serveringizni uyda yozing.\n\n1. Yangi papkada npm init -y, npm pkg set type=module va npm install express.\n2. server.js da uchta endpoint: /salom → «Salom, dunyo!», /men → ismingiz, /sevimli → sevimli o'yiningiz nomi.\n3. app.listen(3000) va node server.js.\n4. Brauzerda uchala manzilni oching — har birining skrinshoti.\n5. Serverni to'xtatib (Ctrl + C) /salom ni yana oching — chiqqan xatoning skrinshoti. server.js va package.json ni yuklang.\n\nNima tekshiriladi:\n— package.json da express va \"type\": \"module\"\n— 3 ta app.get\n— app.listen(3000)\n— 3 skrinshot javoblari bilan\n— o'chiq server xatosi.","ru":"Напишите свой первый сервер дома.\n\n1. В новой папке — npm init -y, npm pkg set type=module и npm install express.\n2. В server.js три endpoint: /salom → «Привет, мир!», /men → ваше имя, /sevimli → название любимой игры.\n3. app.listen(3000) и node server.js.\n4. Откройте все три адреса в браузере — скриншот каждого.\n5. Остановите сервер (Ctrl + C) и снова откройте /salom — скриншот ошибки. Загрузите server.js и package.json.\n\nЧто проверяется:\n— express и \"type\": \"module\" в package.json\n— 3 app.get\n— app.listen(3000)\n— 3 скриншота с ответами\n— ошибка выключенного сервера."}};
 
 
 
@@ -843,7 +843,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: "package.json — o'rnatilgan paketlar", ru: 'package.json — установленные пакеты' })}</p>
-            <pre className="code-box">{'{'}{'\n'}{'  '}<At>"dependencies"</At>{': {'}{'\n'}{'    '}{done ? <St>"express": "^4.18.0"</St> : <span style={{ color: CODE.comment }}>{tr({ uz: "// hali bo'sh", ru: '// пока пусто' })}</span>}{'\n'}{'  }'}{'\n'}{'}'}</pre>
+            <pre className="code-box">{'{'}{'\n'}{'  '}<At>"type"</At>{': '}<St>"module"</St>{','}{'\n'}{'  '}<At>"dependencies"</At>{': {'}{'\n'}{'    '}{done ? <St>"express": "^4.18.0"</St> : <span style={{ color: CODE.comment }}>{tr({ uz: "// hali bo'sh", ru: '// пока пусто' })}</span>}{'\n'}{'  }'}{'\n'}{'}'}</pre>
             {/* F-0926-06 (I3): natija-quti olindi — terminal va package.json o'zi ko'rsatadi */}
           </Col>
         </div>
@@ -872,7 +872,7 @@ const Screen5b = (props) => (
 // ===== SCREEN 6 — EXPRESS (mashhur 5 qatorli server) =====
 const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const PARTS = {
-    req: { word: "require('express')", info: { uz: <>O'rnatgan Express paketini kodga <b>chaqirib olamiz</b>. Endi undan foydalansa bo'ladi.</>, ru: <>Установленный пакет Express <b>подключаем в код</b>. Теперь им можно пользоваться.</> } },
+    req: { word: "import express from 'express'", info: { uz: <>O'rnatgan Express paketini kodga <b>chaqirib olamiz</b>. Endi undan foydalansa bo'ladi. <span className="mono">import</span> ishlashi uchun package.json'da <span className="mono">"type": "module"</span> turadi.</>, ru: <>Установленный пакет Express <b>подключаем в код</b>. Теперь им можно пользоваться. Чтобы <span className="mono">import</span> работал, в package.json стоит <span className="mono">"type": "module"</span>.</> } },
     app: { word: 'const app = express()', info: { uz: <>Serverimizning <b>o'zini yaratamiz</b> — nomi <span className="mono">app</span>. Hamma narsa shu <span className="mono">app</span> orqali bo'ladi.</>, ru: <>Создаём <b>сам сервер</b> — его зовут <span className="mono">app</span>. Всё будет происходить через этот <span className="mono">app</span>.</> } },
     get: { word: "app.get('/hello', ...)", info: { uz: <>Bitta <b>endpoint</b> (eshik) ochamiz: kimdir <span className="mono">/hello</span> manziliga so'rov yuborsa — javob beramiz.</>, ru: <>Открываем один <b>endpoint</b> (дверь): если кто-то пошлёт запрос на адрес <span className="mono">/hello</span> — ответим.</> } },
     send: { word: 'res.send(...)', info: { uz: <>So'rovga <b>javob qaytarish</b>: <span className="mono">res.send('Salom, dunyo!')</span> — mijozga shu matn boradi.</>, ru: <><b>Возврат ответа</b> на запрос: <span className="mono">res.send('Salom, dunyo!')</span> — клиенту уйдёт этот текст.</> } },
@@ -894,7 +894,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="split">
           <Col>
             <pre className="code-box fade-up delay-1" style={{ lineHeight: 2 }}>
-              <Jx>{'const'}</Jx>{' '}<At>express</At>{' = '}<span style={hl('req')} onClick={() => tap('req')}><Jx>{'require'}</Jx>{'('}<St>{"'express'"}</St>{')'}</span>{'\n'}
+              <span style={hl('req')} onClick={() => tap('req')}><Jx>{'import'}</Jx>{' '}<At>express</At>{' '}<Jx>{'from'}</Jx>{' '}<St>{"'express'"}</St></span>{'\n'}
               <span style={hl('app')} onClick={() => tap('app')}><Jx>{'const'}</Jx>{' '}<At>app</At>{' = '}<At>express</At>{'()'}</span>{'\n\n'}
               <span style={hl('get')} onClick={() => tap('get')}><At>app</At>{'.'}<Jx>{'get'}</Jx>{'('}<St>{"'/hello'"}</St>{', ('}<At>req</At>{', '}<At>res</At>{') => {'}</span>{'\n'}
               {'  '}<span style={hl('send')} onClick={() => tap('send')}><At>res</At>{'.'}<Jx>{'send'}</Jx>{'('}<St>{"'Salom, dunyo!'"}</St>{')'}</span>{'\n'}
@@ -1119,7 +1119,7 @@ const Screen12 = (props) => (
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const achMiss = useContext(AchMissCtx);
   const ORDER = [
-    { id: 'req', label: "require('express')", hint: { uz: 'paketni chaqir', ru: 'подключи пакет' } },
+    { id: 'req', label: "import express from 'express'", hint: { uz: 'paketni chaqir', ru: 'подключи пакет' } },
     { id: 'app', label: 'const app = express()', hint: { uz: 'serverni yarat', ru: 'создай сервер' } },
     { id: 'get', label: "app.get('/hello', ...)", hint: { uz: 'endpoint och', ru: 'открой endpoint' } },
     { id: 'listen', label: 'app.listen(3000)', hint: { uz: 'serverni yoq', ru: 'включи сервер' } }
@@ -1205,7 +1205,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="ai-card fade-up delay-1">
               <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr({ uz: 'Serveringiz:', ru: 'Ваш сервер:' })}</span></div>
               <pre className="code-box" style={{ fontSize: 12.5, boxShadow: 'none' }}>
-                <Jx>{'const'}</Jx>{' '}<At>express</At>{' = '}<Jx>{'require'}</Jx>{'('}<St>{"'express'"}</St>{')'}{'\n'}
+                <Jx>{'import'}</Jx>{' '}<At>express</At>{' '}<Jx>{'from'}</Jx>{' '}<St>{"'express'"}</St>{'\n'}
                 <Jx>{'const'}</Jx>{' '}<At>app</At>{' = '}<At>express</At>{'()'}{'\n\n'}
                 <At>app</At>{'.'}<Jx>{'get'}</Jx>{'('}<St>{"'/hello'"}</St>{', ('}<At>req</At>{', '}<At>res</At>{') => {'}{'\n'}{'  '}<At>res</At>{'.'}<Jx>{'send'}</Jx>{'('}<St>{"'Salom, dunyo!'"}</St>{')'}{'\n'}{'})'}
                 {fixed && <div className="el-in" style={{ marginTop: 8 }}><At>app</At>{'.'}<Jx>{'listen'}</Jx>{'('}<St>3000</St>{')   '}<span style={{ color: CODE.str }}>{tr({ uz: "// ✓ qo'shildi", ru: '// ✓ добавлено' })}</span></div>}
@@ -1266,7 +1266,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="vsc fade-up delay-1">
               <div className="vsc-bar"><span className="vsc-tab on"><span style={{ color: '#8CC84B' }}>⬢</span> server.js <span style={{ color: '#6E7681', marginLeft: 4 }}>×</span></span></div>
               <div className="vsc-body">
-                <Ln n={1}><span style={{ color: '#C586C0' }}>const</span> express = <span style={{ color: '#DCDCAA' }}>require</span>(<span style={{ color: '#CE9178' }}>'express'</span>)</Ln>
+                <Ln n={1}><span style={{ color: '#C586C0' }}>import</span> express <span style={{ color: '#C586C0' }}>from</span> <span style={{ color: '#CE9178' }}>'express'</span></Ln>
                 <Ln n={2}><span style={{ color: '#C586C0' }}>const</span> app = <span style={{ color: '#DCDCAA' }}>express</span>()</Ln>
                 <Ln n={3}>{' '}</Ln>
                 <div className="vsc-line"><span className="vsc-ln">4</span><input className={`vsc-input ${valid ? 'ok' : ''}`} value={value} onChange={e => { setValue(e.target.value); setRan(false); }} placeholder="…" /* F-0926-06 (S6): baholanadigan testda placeholder javob kodini aytmaydi */ spellCheck={false} autoCapitalize="off" autoCorrect="off" /></div>
@@ -1487,7 +1487,8 @@ const ScreenNodePractice = (props) => (
     task={{ uz: "O'z kompyuteringizda, VS Code'da birinchi Express serveringizni ishga tushiring — do'koningizni oching va mijozga javob bering.", ru: 'На своём компьютере, в VS Code, запустите первый Express-сервер — откройте свой магазин и ответьте клиенту.' }}
     checklist={[
       { uz: "Terminalda `npm install express` — express paketini loyihaga qo'shing", ru: 'В терминале `npm install express` — добавьте пакет express в проект' },
-      { uz: "server.js: `const express = require('express')` va `const app = express()`", ru: "server.js: `const express = require('express')` и `const app = express()`" },
+      { uz: "Terminalda `npm pkg set type=module` — package.json'ga `\"type\": \"module\"` yoziladi, `import` shunda ishlaydi", ru: "В терминале `npm pkg set type=module` — в package.json запишется `\"type\": \"module\"`, тогда `import` заработает" },
+      { uz: "server.js: `import express from 'express'` va `const app = express()`", ru: "server.js: `import express from 'express'` и `const app = express()`" },
       { uz: "`app.get('/hello', (req, res) => res.send('Salom, dunyo!'))` — eshik oching", ru: "`app.get('/hello', (req, res) => res.send('Salom, dunyo!'))` — откройте дверь" },
       { uz: "`app.listen(3000)` — OCHIQ tablosini yoqing", ru: '`app.listen(3000)` — включите табло ОТКРЫТО' },
       { uz: "Terminalda `node server.js` — \"ishlayapti\" xabarini ko'ring", ru: 'В терминале `node server.js` — увидьте сообщение «работает»' },
@@ -1689,7 +1690,7 @@ const QZ_BG_SHAPES = [
   { ch: 'endpoint',       l: 64, t: 26, s: 26, d: 17, dl: 0.4 },
   { ch: 'localhost:3000', l: 24, t: 34, s: 22, d: 20, dl: 1.9 },
   { ch: 'ECONNREFUSED',   l: 52, t: 4,  s: 22, d: 22, dl: 0.6 },
-  { ch: 'require',        l: 90, t: 42, s: 26, d: 24, dl: 1.3 },
+  { ch: 'import',         l: 90, t: 42, s: 26, d: 24, dl: 1.3 },
   { ch: 'package.json',   l: 2,  t: 48, s: 22, d: 26, dl: 2.6 },
   { ch: 'node server.js', l: 34, t: 58, s: 20, d: 18, dl: 1.0 },
 ];
@@ -1809,7 +1810,7 @@ function QzFX() {
     let W = 1, H = 1, raf = 0;
     const size = () => { W = cv.width = Math.max(1, cv.offsetWidth * DPR); H = cv.height = Math.max(1, cv.offsetHeight * DPR); };
     size(); window.addEventListener('resize', size);
-    const TOK = ['app.get', 'res.send', 'app.listen', 'npm install', 'express', 'endpoint', 'localhost', 'ECONNREFUSED', 'require', '🏪'];
+    const TOK = ['app.get', 'res.send', 'app.listen', 'npm install', 'express', 'endpoint', 'localhost', 'ECONNREFUSED', 'import', '🏪'];
     const em = [], toks = [];
     for (let i = 0; i < 26; i++) em.push({ x: Math.random() * W, y: Math.random() * H, z: .3 + Math.random() * .7, ph: Math.random() * 6.28, sw: .3 + Math.random() * .6 });
     for (let i = 0; i < 9; i++) toks.push({ x: Math.random() * W, y: Math.random() * H, z: .4 + Math.random() * .9, vx: (Math.random() - .5) * .16, t: TOK[i % TOK.length], r: (Math.random() - .5) * .5 });
