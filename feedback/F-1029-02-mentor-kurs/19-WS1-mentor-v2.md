@@ -230,6 +230,7 @@ Loyiha: **OrderBotNest** — teglar `ws1-start` (= `cicd2-done` 87a5bb1) · `ws1
    Ovoz: «Admin Jasur botda tasdiqlash tugmasini bosdi. Panelda shu qatorning holati tasdiqlandi bo'ldi. O'ngda terminal klienti: ikkita order changed, birinchisi new, ikkinchisi status. Server logida esa bot xabarlari va panel ulandi satri.» · 10c + 04
 4. **Xulosa: bu oqim ==lentada ham tekshiriladi== — smoke `live`, GitHub'da 9/9**
    Ovoz: «Xulosa: bot, tranzaksiya, hodisa, panel, qayta so'rash. Shu oqim smoke'ga ham qo'shildi: npm run smoke live. CI/CD darsidagi lentada smoke job Postgres bilan uni har push'da yurgizadi: GitHub'da to'qqizdan to'qqiz. Endi bitta xatoni o'zingiz topasiz.» · CI
+- Rasm (F-1120-02, M51, 21.11): xulosada lenta logi ostida darsning rasmi — bot → server → panel (Admin panel: LiveGateway ✓ · order-changed ✓, «Ulangan»), yakundagi rasm bilan bir xil.
 - Manba: `ws1v2-out/10-panel.txt`, `10a/b/c-*.png`, `04-token-hodisa.txt`, `12-ci-github.txt` (aynan).
 
 ## 11 · Tekshiruv 2 — qaysi satr ro'yxatni yangilamaydi  ← `LineCheck`

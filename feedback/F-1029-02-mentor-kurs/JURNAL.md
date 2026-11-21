@@ -1117,3 +1117,20 @@ Oldingi seans 17:59 dan keyin ham ishlagan, jurnal yozilmagan (seans uzildi). Fa
 - MD `08-PostgreSQL2-mentor-v2.md`: 3- va 6-ekranga «Rasm» qatori. Matn va ovoz o'zgarmadi.
 - Tekshiruv: n1-surat 1600 (3, 6, 14), 1280 (3, 6), RU (3, 6) — xato 0, toshish 0; ko'z bilan: jadval ramka ichida, strelka (y 259) jadvalga tushadi. Regressiya: 14-ekran va (3-ekran tuzatishidan keyin) 6-ekranning 2 qatorli holati natija sahifasi suratlari bilan piksel farqi 0. gates 12/13 (esbuild — @lesson/runtime, ma'lum).
 - Qonun taklifi (yozilmadi, foydalanuvchi qarori): rasmdagi son/qator ekran sarlavhasi va terminal natijasi bilan bir xil bo'lsin (MENTOR_DARS_ETALON yangi M-raqam + tekshiruv bandi).
+- 12:28 — commit **5d8bd5d3** (6 fayl, faqat ikki papka; boshqa seansning 41 staged fayli tegilmadi; push yo'q) → deploy **b8hog80fw** Ready, Production; `/` 200; mp3 6/6 (2860, ovoz o'zgarmagan). Jonli PG-2 3, 6, 14 (1600) — lokal surat bilan piksel farqi 0; 3-ekran ko'z bilan ko'rildi.
+
+## 21.11 13:58 — F-1120-02 yakuniy o'lchov: 12 dars, 331 ekran (jonli sayt b8hog80fw)
+- Vosita: `vizual-taklif-F-1109-06/olch.mjs` nusxasi + act bosish (`jonli-sahna-F-1120-02/olchov-2111/olch-act.mjs`) → `toldir.py`; natija `olchov-2111/natija21.tsv`, kuchsizlar `qolgan92.tsv`. 1280×720, xato 0.
+- Sahnasi 50% dan kam ekranlar: **156 → 92**; o'rtacha to'lganlik **50% → 59%** (09.11 bazasi `natija.tsv` bilan). Darslar bo'yicha <50%: PG-1 13→10 · PG-2 14→5 · Jest-1 7→5 · Jest-2 10→5 · CI/CD-1 17→7 · CI/CD-2 15→8 · TgPg 11→5 · WS-1 16→10 · WS-2 16→9 · Webhook 15→11 · Nest-1 11→10 · Nest-2 11→7.
+- 92 tasidan ~70 tasi qonun bo'yicha istisno: tekshiruv (MCRetry 29, LineCheck 4, Nest-1 4), O'z-sinov 12, amaliyot 5, sinfga tayyorgarlik/xarita 21 (M41/M42/M50-5). PG-1 7, 8, 9, 19 — 2-bosqichda sabab bilan qoldirilgan. ws1 9, 10 va nest1 5 — 09.11 da foydalanuvchi «Rozi — qoldiramiz».
+- **Chala (ko'z bilan tasdiqlandi):** 5 tushuntirish ekranida dars rasmi yo'q, gapli karta (M50-A) — **Webhook 12, 13** (raqamlangan matn qatorlari, 33%), **CI/CD-2 14** (env/secrets ikki matnli karta, 40%), **Jest-1 10** (kod + matn kartasi, 42%), **CI/CD-1 6** (lenta + matn kartasi, 31%). 09.11 da ham <50% edi, F-1109-06 qaror ro'yxatida ham, 2-bosqich 33 nomzodida ham yo'q — tushib qolish sababi yozilmagan (tanlovdagi xato).
+- Chegarada (ko'rildi, yaxshi): Jest-2 15 (oqim sxemasi, 48%), Nest-2 16 (Guard yo'lagi, 44%), TgPg 3 (sxema, 48%), Webhook 9/18 (jadval, 46–48%) — o'lchov past, rasm bor.
+
+## 21.11 14:22 — F-1120-02 3-bosqich: o'lchovda chala chiqqan 5 ekran + WS-1 10 (foydalanuvchi: «xa qil, me'yordan oshiq bachkana bo'lmasin»)
+- Usul: yangi rasm o'ylab topilmadi — darsning o'z rasmi (BotMap) yoki shu ekranning o'z chizmasi; matnli karta o'rniga qo'yildi (M50-4, blok soni oshmadi), bezak yo'q (M51-5). Ovoz va chap panel o'zgarmadi.
+  - **CI/CD-1 6** xulosa: `mk-rule` → BotMap (13-ekrandagi namuna): Actions npm ci ✓ · tsc ✓ · npm test ✕ · build skip, «chiqish kodi 1» (cicd1v2-out/02 «[chiqish kodi: 1]»); ro `order.service.ts:36` + tiklash buyrug'i (ovoz aytadi).
+  - **CI/CD-2 14** xulosa: `n2-warn` → ikki karta ostida BotMap (`services: postgres:18`, test ✓ · smoke ✕, «exit code 2» — run 33 logi); ro `ci.yml:41` secrets.DATABSE_URL → «DATABASE_URL topilmadi». «user:parol@» izohi olib tashlandi (ovozda yo'q; *** sarlavhada va kartada bor).
+  - **Jest-1 10** xulosa: `mk-rule` → shu ekranning Flow10 chizmasi «som buzildi» holatida (M50-2: xulosada chizma yashirilmaydi).
+  - **Webhook 12, 13** «sabab» qadami: SigMini / OrderMini endi ro'yxat ustida qoladi (avval yo'qolardi — M50-2).
+  - **WS-1 10** xulosa: lenta logi ostida BotMap — bot → server → panel, yakundagi rasm bilan bir xil (09.11 «Rozi» — o'shanda BotMap yo'q edi; foydalanuvchi bugun «ha»).
+- Tekshiruv: n1-surat 1600/1280/RU — xato 0, toshish 0; 1280 da CI/CD-1 6 va CI/CD-2 14 ro qatori kesilardi → qisqartirildi, uz va RU to'liq sig'adi (ko'z bilan). `yig.sh` — faqat 5 dars fayli o'zgardi; `02e-bot.jsx` ga tegilmadi. gates 12/13 × 5 (esbuild — faqat @lesson/runtime). MD: 5 faylga «Rasm» qatori.

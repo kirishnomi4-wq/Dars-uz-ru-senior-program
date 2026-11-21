@@ -39,7 +39,8 @@ function Screen10(p) {
   return <Lesson p={p} S={S10} scene={({ seg }) => <>
     {!seg.ci && !seg.cli && <PanelView k={seg.k} note={seg.k === '10a' ? t('token kiritildi — ro\'yxat GET /admin/orders dan', "токен введён — список из GET /admin/orders") : t('bot buyurtma oldi — sahifa yangilanmadi', "бот получил заказ — страница не обновилась")} />}
     {seg.cli && <div style={{ display: 'grid', gap: 8 }} className="c1-small"><PanelView k="10c" small note={t("admin tasdiqladi", "админ подтвердил")} /><div className="pg-two"><Term title="npm run live" lines={T10CLI} /><Term title={t("server logi", "лог сервера")} lines={T10SRV} /></div></div>}
-    {seg.ci && <Term title="GitHub Actions · main · ws1-done (run 41856397400)" lines={T10CI} />}
+    {/* F-1120-02 (M51): xulosa — lenta logi ostida darsning rasmi: o'sha oqim (bot → server → panel), yakundagi bilan bir xil */}
+    {seg.ci && <div style={{ display: 'grid', gap: 10 }}><Term title="GitHub Actions · main · ws1-done (run 41856397400)" lines={T10CI} /><div className="mk-light" style={{ padding: 12 }}><BotMap loc={DB_ALL} on={LIVE_ON} chat={CHAT_LIVE} jest={PANEL} max={0.8} tag={t("Bot → server → panel — lentada ham shu oqim tekshiriladi (smoke live)", 'Бот → сервер → панель — в конвейере проверяется тот же поток (smoke live)')} /></div></div>}
   </>} />;
 }
 

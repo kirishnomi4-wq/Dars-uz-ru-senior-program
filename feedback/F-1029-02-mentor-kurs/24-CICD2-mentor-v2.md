@@ -301,6 +301,7 @@ Loyiha: **OrderBotNest** — teglar `cicd2-start` (= `cicd1-done` b842475) · `c
 4. **Xulosa: ==env — konteyner, secrets — tashqi==; «topilmadi» ko'rsangiz — yml'dagi secret nomini tekshiring**
    Ovoz: «Xulosa: konteyner uchun env, tashqi resurs uchun secrets. Secret nomi xato bo'lsa GitHub indamaydi, qiymat bo'sh keladi va dastur yiqiladi. Logda topilmadi yoki undefined ko'rsangiz, avval yml'dagi secret nomini Settings'dagi bilan solishtiring. Endi shu satrni o'zingiz topasiz.»
 - F-1120-02 (M52): 3-banddan oldin «0.» — mentor 41-satrdagi `secrets.DATABASE_URL` ni o'zi bosadi → `DATABSE_URL` (to'g'ri satr — 2-banddagi `${{ secrets.DATABASE_URL }}`). Kichik rasm: secret nomi → qiymat «?» → bo'sh → smoke ✕ «DATABASE_URL topilmadi», chiqish kodi 2; bo'laklar 1 (41-satr nomi) · 2 (SMOKE XATO satri).
+- Rasm (F-1120-02, M51, 21.11): xulosada ogohlantirish matni o'rniga, ikki karta ostida darsning rasmi — `services: postgres:18`, Actions: test ✓ · smoke ✕, «exit code 2»; ostida `ci.yml:41` `secrets.DATABSE_URL` — GitHub indamaydi, qiymat bo'sh → «DATABASE_URL topilmadi» (run 33).
 - Manba: `cicd2v2-out/33-smoke-secret-xato.txt` (aynan), `34-secret-echo.txt` (secret bo'lsa), `cicd2v2-yml/4-smoke-secret-xato.yml`, `5-secret-echo.yml`; lokal `DATABASE_URL=` smoke → kod 2 (`cicd1v2-run`, 04.11).
 
 ## 15 · Tekshiruv 3 — qaysi satr smoke'ni bazasiz qoldiradi  ← `LineCheck`

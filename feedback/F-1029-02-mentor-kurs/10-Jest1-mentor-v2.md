@@ -226,6 +226,7 @@ Loyiha: **OrderBotNest** — Telegraf+PG darsidagi aynan shu repo. Teglar (lokal
    Ovoz: «Chizmaga qarang. Som endi yuz, vergul, ming deydi. Birinchi testning etaloni ham som'dan yasaladi, ya'ni u ham yuz, vergul, ming bo'ldi: ikki tomon birga buzildi va test yashil qoldi. Qo'lda yozilgan etalon o'zgarmadi, shuning uchun ikkinchi test qizil.» · oqim + `06`
 4. **Xulosa: ==etalon qo'lda yoziladi== — sinalayotgan funksiya etalonda ishlatilmaydi**
    Ovoz: «Xulosa: etalon qo'lda yoziladi. Sinalayotgan funksiya etalonni yasashda ishlatilmaydi. Testda dollar va qavs ichida shu funksiya chaqirilgan bo'lsa, bu ogohlantirish belgisi. Endi buni bitta kod bo'lagida o'zingiz topasiz.»
+- Rasm (F-1120-02, M50-2, 21.11): xulosada matnli qoida o'rniga shu ekranning oqim chizmasi «som buzildi» holatida qoladi (1-test ✓ yashil — lekin yolg'on, 2-test ✕ qizil).
 - Manba: `jest1v2-out/06a-etalon-ikkalasi-pass.txt`, `06-etalon-nusxa.txt`, `savat.spec.ts`; naqsh — `jest1v2-ai/ai2/texts.spec.ts` (104, 114, 134, 160-satr).
 
 ## 11 · Tekshiruv 2 — qaysi satr testni yolg'on qiladi  ← `LineCheck`

@@ -196,7 +196,8 @@ function Screen10(p) {
     {seg.v === 'both' && <><CodePanel file="savat.spec.ts" lines={kod('SPEC06', { 11: 'a', 16: 'b' }, 9, 17)} focus={['a', 'b']} /><Flow10 /></>}
     {seg.v === 'break' && <Code k="TX_SOM" ids={{ 4: 'x' }} focus={['x']} edit={{ 4: KOD.TX_SOM.lines[3].t.replace("'ru-RU'", "'en-US'") }} files={FILES('src/api/telegram/savat.spec.ts')} active={F.tx} />}
     {seg.v === 'res' && !seg.sum && <><Flow10 broken /><Term title={t("VS Code terminali · som buzilgan", "терминал VS Code · som сломан")} lines={T10B} er /></>}
-    {seg.sum && <><CodePanel file="savat.spec.ts" lines={kod('SPEC06', { 11: 'a', 16: 'b' }, 10, 16)} focus={['a']} /><div className="mk-rule">{t(<>Etalon <b>qo'lda</b> yoziladi. Etalonda <code>{'${som(…)}'}</code> — ogohlantirish belgisi.</>, <>Эталон пишется <b>вручную</b>. <code>{'${som(…)}'}</code> в эталоне — тревожный знак.</>)}</div></>}
+    {/* F-1120-02 (M50-2): xulosada matnli qoida o'rniga shu ekranning oqim chizmasi (som buzilgan holat) qoladi — ${som(…)} nega xavfli */}
+    {seg.sum && <><CodePanel file="savat.spec.ts" lines={kod('SPEC06', { 11: 'a', 16: 'b' }, 10, 16)} focus={['a']} /><Flow10 broken /></>}
   </>} />;
 }
 

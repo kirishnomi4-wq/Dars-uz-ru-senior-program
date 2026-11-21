@@ -270,6 +270,7 @@ Loyiha: **OrderBotNest** — teglar `wh-start` (= `ws2-done` 71c72a4) · `wh-don
    Ovoz: «Ikkinchi xato: main ts'dan raw body true olib tashlandi. Server logida create, ikkinchi argumentsiz. Npm run pay to'g'ri kalit bilan yuboradi, javob baribir to'rt yuz bir, bazada nol qator. Req raw body umuman yo'q, imzoni solishtiradigan narsa yo'q.» · norawbody
 4. **Demak, sabab: imzo ==baytlardan==; xom tanani faqat `rawBody: true` saqlaydi**
    Ovoz: «Demak, sabab bitta: imzo matn ma'nosidan emas, aniq baytlardan hisoblanadi. Nest tanani o'qib, obyektga aylantiradi va baytlarni tashlaydi. Ularni faqat raw body true saqlaydi. Har ikki xatoda belgi bir xil: haqiqiy, to'g'ri imzoli to'lov to'rt yuz bir oladi.» · sabab
+- Rasm (F-1120-02, M50-2, 21.11): «sabab» qadamida kichik rasm (to'lov xizmati → imzo manbasi JSON.stringify(body) → 401) ro'yxat ustida qoladi.
 - Manba: `whv2-out/07-xom-tana-done.txt`, `07-xom-tana-json.txt`, `08-rawbody-yoq.txt`, `00b-nusxalar-farqi.txt` (aynan).
 
 ## 13 · Buzamiz: tartib — 401, lekin «To'landi»  ← `Lesson`
@@ -287,6 +288,7 @@ Loyiha: **OrderBotNest** — teglar `wh-start` (= `ws2-done` 71c72a4) · `wh-don
    Ovoz: «Lekin bazaga qarang: payments'da qator, buyurtma paid. Panelda ham to'landi, sahifa o'zi yangilandi. Yozuv tranzaksiyasi to'rt yuz birdan oldin tugagan. Admin buyurtmani yetkazib beradi, pul esa yo'q.» · psql + panel
 4. **Demak, sabab: ==401 yozilganni qaytarmaydi==; imzo — eng birinchi qadam**
    Ovoz: «Demak, sabab: to'rt yuz bir faqat javob, u bazaga yozilganni qaytarmaydi. Shuning uchun imzo eng birinchi qadam, hech qanday yozuvdan oldin. Bunday xatoni ko'z bilan topish qiyin, uni test ushlaydi, uchinchi amaliyotda ko'rasiz.» · sabab
+- Rasm (F-1120-02, M50-2, 21.11): «sabab» qadamida kichik rasm (imzosiz xabar → controller record → imzo → 401 · paid) ro'yxat ustida qoladi.
 - Manba: `whv2-out/09-tartib.txt`, `09b-tartib-panel.txt`, `00b-nusxalar-farqi.txt` (aynan).
 
 ## 14 · Tekshiruv 2 — qaysi satr joyida emas  ← `LineCheck`

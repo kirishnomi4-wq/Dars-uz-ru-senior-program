@@ -167,7 +167,8 @@ function Scene6({ b }) {
     {v === 'run' && <>{mini}<Term title={t("VS Code terminali · npm ci && npx tsc --noEmit && npm test && npm run build", "терминал VS Code · npm ci && npx tsc --noEmit && npm test && npm run build")} lines={T6B} er marks={{ [T6B.findIndex((l) => /^FAIL|FAIL/.test((l.h || '').replace(/<[^>]+>/g, '')))]: 'n1-p1', [T6B.findIndex((l) => /chiqish kodi/.test(l.h || ''))]: 'n1-p2' }} /></>}
     {v === 'lenta' && <div style={{ display: 'grid', gap: 10 }}>
       <Lenta4 st={{ ci: 'ok', tsc: 'ok', test: 'bad', build: 'skip' }} hl={['test']} />
-      <div className="mk-rule"><code>&amp;&amp;</code>{t(" zanjiri birinchi qizilda uziladi — GitHub lentasi ham: yurmagan qadamni ", " цепочка рвётся на первом красном — конвейер GitHub тоже: незапущенный шаг он показывает как ")}<b>skipped</b>{t(" deb ko'rsatadi. Tiklash: ", " . Восстановление: ")}<code>git checkout -- src/api/order/order.service.ts</code></div>
+      {/* F-1120-02 (M51): xulosada matnli qoida o'rniga darsning rasmi — test qadami qizil, build yurmadi (haqiqiy yurgizish: cicd1v2-out/02, order.service.ts 36) */}
+      <div className="mk-light" style={{ padding: 12 }}><BotMap loc={DB_ALL} on={CI_ON} bad={{ at: 'order' }} jest={{ name: 'Actions', steps: [['npm ci', 'ok'], ['tsc', 'ok'], ['npm test', 'bad'], ['build', 'skip']], res: 'fail', badge: t('chiqish kodi 1', 'код выхода 1') }} ro={['order.service.ts:36', t('<span class="n1-er">p.stock &lt;= c.qty</span> · tiklash: <code>git checkout -- src/api/order/order.service.ts</code>', '<span class="n1-er">p.stock &lt;= c.qty</span> · вернуть: <code>git checkout -- src/api/order/order.service.ts</code>')]} max={1} tag={t("&& zanjiri birinchi qizilda uziladi — lentada ham yurmagan qadam skipped", '&& цепочка рвётся на первом красном — в конвейере незапущенный шаг тоже skipped')} /></div>
     </div>}
   </>;
 }

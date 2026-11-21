@@ -163,6 +163,7 @@ Loyiha: **OrderBotNest** — teglar `cicd1-start` (= `jest2-done` e15a44c) · `c
    Ovoz: «Natijaga qarang. Npm si ay yashil, tsc yashil. Npm test: FAIL, chegara testi, Kolonka, omborda faqat ikkita qoldi, o'ttiz yettinchi satr. Va pastda build satri umuman yo'q: nest build boshlanmadi. Butun qatorning chiqish kodi bir.» · terminal
 4. **Xulosa: ==zanjir birinchi qizilda uziladi== — GitHub lentasi ham aynan shunday, faqat «yurmadi» deb yozadi**
    Ovoz: «Xulosa: zanjir birinchi qizil qadamda uziladi, buzuq kod yig'ilmaydi. GitHub lentasi aynan shunday ishlaydi, faqat yurmagan qadamni skipped, ya'ni yurmadi deb ko'rsatadi. Satrni tiklang: git checkout, order service ts. Endi lentani o'zingiz qo'lda yurgizasiz.» · lenta ✗
+- Rasm (F-1120-02, M51, 21.11): xulosada matnli qoida o'rniga darsning rasmi — Actions qatori npm ci ✓ · tsc ✓ · npm test ✕ · build (yurmadi), «chiqish kodi 1»; ostida `order.service.ts:36` `p.stock <= c.qty` · tiklash `git checkout -- src/api/order/order.service.ts` (cicd1v2-out/02).
 - Manba: `cicd1v2-out/02-test-qizil-lenta-toxtadi.txt` (aynan); `order.service.ts` 36 (`jest2-done`).
 
 ## 7 · Amaliyot 1 — lentani qo'lda yurgizish  ← `Practice`

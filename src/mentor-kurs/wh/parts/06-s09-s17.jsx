@@ -90,7 +90,8 @@ function Scene12({ b }) {
     {(v === 'code' || v === 'two' || v === 'raw') && mini}
     {v === 'two' && <div style={{ display: 'grid', gap: 8 }}><Term title={t("wh-done (xom tana) · bo'sh joyli JSON", "wh-done (сырое тело) · JSON с пробелами")} lines={T12A} /><Term title={t("json nusxa · o'sha xabar", "копия json · то же сообщение")} lines={T12B} er /></div>}
     {v === 'raw' && <div style={{ display: 'grid', gap: 8 }}><CodePanel file={t("src/main.ts · norawbody nusxa", "src/main.ts · копия norawbody")} lines={kod('MAIN_NORAW', { [MNR]: 'x' }, MNR - 1, MNR + 1)} focus={['x']} /><Term title={t("norawbody · to'g'ri imzoli to'lov (08)", "norawbody · оплата с верной подписью (08)")} lines={T12C} er /></div>}
-    {v === 'cause' && <Cause items={CAUSE12} on={4} bad={2} />}
+    {/* F-1120-02 (M50-2): sabab qadamida kichik rasm yashirilmaydi — ro'yxat uning ostida */}
+    {v === 'cause' && <div style={{ display: 'grid', gap: 10 }}>{mini}<Cause items={CAUSE12} on={4} bad={2} /></div>}
   </>;
 }
 
@@ -124,7 +125,8 @@ function Scene13({ b }) {
     {(v === 'code' || v === 'run' || v === 'db') && mini}
     {v === 'run' && <Term title={t("VS Code terminali · npm run pay -- 1 imzosiz (09)", "терминал VS Code · npm run pay -- 1 imzosiz (09)")} lines={T13A} />}
     {v === 'db' && <div style={{ display: 'grid', gap: 8 }}><Term title="psql (09)" lines={T13DB} er /><PanelView k="09b-1" small label={t("tartib nusxa · imzosiz xabardan keyin", "копия с порядком · после сообщения без подписи")} /></div>}
-    {v === 'cause' && <Cause items={CAUSE13} on={4} bad={3} />}
+    {/* F-1120-02 (M50-2): sabab qadamida kichik rasm yashirilmaydi — ro'yxat uning ostida */}
+    {v === 'cause' && <div style={{ display: 'grid', gap: 10 }}>{mini}<Cause items={CAUSE13} on={4} bad={3} /></div>}
   </>;
 }
 

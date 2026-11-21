@@ -1,0 +1,92 @@
+pg-01	6	8	MCRetry	test	Tekshiruv 1 — `populate` ning jufti
+pg-01	7	43	Lesson	faqat-matn	Windows: rasmiy o'rnatuvchi
+pg-01	8	39	Lesson	faqat-matn	macOS: Postgres.app va Homebrew tuzog'i
+pg-01	9	38	Lesson	kod/terminal	Birinchi ulanish: `psql`
+pg-01	14	19	MCRetry	kod/terminal+test	Tekshiruv 2 — `DELETE` rad etildi
+pg-01	17	19	LineCheck	kod/terminal	Tekshiruv 3 — xatosiz, lekin noto'g'ri natija
+pg-01	19	36	Lesson	kod/terminal	Oxirgi telefon
+pg-01	22	39	MCRetry	kod/terminal+test	Tekshiruv 4 — buyurtma qayerda?
+pg-01	24	42	Lesson	faqat-matn	Sinf kompyuterlari: m4-06 dan oldin
+pg-01	28	35	Screen27	test	O'z-sinov — 8 savol
+pg-02	7	17	MCRetry	kod/terminal+test	Tekshiruv 1 — `UPDATE 0`
+pg-02	12	36	MCRetry	kod/terminal+test	Tekshiruv 2 — `ROLLBACK`dan keyin
+pg-02	16	25	MCRetry	kod/terminal+test	Tekshiruv 3 — apostrof
+pg-02	28	33	Lesson	faqat-matn	Sinfga tayyorgarlik: m4-06 va m4-08 xaritasi
+pg-02	30	35	Screen27	test	O'z-sinov — 8 savol
+jest-01	4	30	MCRetry	kod/terminal+test	Tekshiruv 1 — `test/` papkasidagi fayl
+jest-01	10	42	Lesson	kod/terminal	Etalon koddan olingan — buzilgan kodda ham yashil
+jest-01	16	28	MCRetry	kod/terminal+test	Tekshiruv 3 — `page <= pages - 1`
+jest-01	22	39	Lesson	faqat-matn	Sinfga tayyorgarlik: m4b-01 xaritasi
+jest-01	24	37	Screen27	test	O'z-sinov — 8 savol
+jest-02	4	25	MCRetry	kod/terminal+test	Tekshiruv 1 — probel bilan yozilgan raqam
+jest-02	12	31	MCRetry	kod/terminal+test	Tekshiruv 2 — `rejects` sinxron xatoda
+jest-02	15	48	Lesson	faqat-matn	Xato yo'lida nima bo'lmasligi kerak
+jest-02	23	42	Lesson	faqat-matn	Sinfga tayyorgarlik: m4b-03 xaritasi va xato qiladigan joylar
+jest-02	24	36	Screen27	test	O'z-sinov — 8 savol
+cicd-01	5	31	MCRetry	kod/terminal+test	Tekshiruv 1 — `jest: not found`
+cicd-01	6	31	Lesson	faqat-matn	Test qizil — zanjir shu yerda to'xtaydi
+cicd-01	10	47	Lesson	faqat-matn	Buzamiz: test qizil — lentada qaysi qadam, qaysi yurmadi
+cicd-01	11	44	MCRetry	kod/terminal+test	Tekshiruv 2 — qizil qadamdan keyin
+cicd-01	20	44	MCRetry	kod/terminal+test	Tekshiruv 4 — AI workflow'ni qabul qilish
+cicd-01	23	42	Lesson	faqat-matn	Sinfga tayyorgarlik: m4c-01 xaritasi va xato qiladigan joylar
+cicd-01	24	35	Screen27	test	O'z-sinov — 8 savol
+cicd-02	5	46	MCRetry	kod/terminal+test	Tekshiruv 1 — annotatsiya «exit code 1»
+cicd-02	10	46	MCRetry	kod/terminal+test	Tekshiruv 2 — fail-fast
+cicd-02	14	40	Lesson	faqat-matn	DATABASE_URL qayerdan: env (konteyner) va secrets (tashqi); nomi xato 
+cicd-02	19	21	MCRetry	kod/terminal+test	Tekshiruv 4 — konteyner uchun secret kerakmi
+cicd-02	21	49	Lesson	jadval	m4c-03 xaritasi: o'quvchi so'zlari
+cicd-02	22	22	Lesson	faqat-matn	«Repongiz yo'qmi?» namunasi va simulyatsiya — sinfdagi tuzoqlar
+cicd-02	23	20	Lesson	faqat-matn	Siz qo'shasiz, xato qiladigan joylar, o'quvchi so'rasa
+cicd-02	24	36	Screen27	test	O'z-sinov — 8 savol
+tgpg-01	3	48	Lesson	sxema	Restart — savat, buyurtma, telefon yo'qoldi
+tgpg-01	4	39	MCRetry	kod/terminal+test	Tekshiruv 1 — restartdan keyin nima qoladi
+tgpg-01	8	44	MCRetry	test	Tekshiruv 2 — qaysi prompt
+tgpg-01	25	39	Lesson	faqat-matn	Sinfga tayyorgarlik: m5-04 xaritasi
+tgpg-01	27	37	Screen27	test	O'z-sinov — 8 savol
+ws1-01	5	39	MCRetry	kod/terminal+test	Tekshiruv 1 — tokensiz klient nima ko'radi
+ws1-01	9	28	Lesson	kod/terminal	Panel sahifasi: ulanish, tinglovchi, qayta so'rash
+ws1-01	10	39	Lesson	kod/terminal	Haqiqiy oqim: bot → server → panel
+ws1-01	11	42	LineCheck	kod/terminal	Tekshiruv 2 — qaysi satr ro'yxatni yangilamaydi
+ws1-01	16	17	MCRetry	kod/terminal+test	Tekshiruv 3 — server javob bermasa
+ws1-01	19	25	MCRetry	kod/terminal+test	Tekshiruv 4 — token URL'da
+ws1-01	21	15	Lesson	faqat-matn	m10-02 xaritasi: Maydon Jamoa
+ws1-01	22	36	Lesson	kod/terminal	O'quvchi so'zlari va real vaqt sxemasi
+ws1-01	23	20	Lesson	faqat-matn	Sinfdagi holatlar va o'quvchi savollari
+ws1-01	24	37	Screen27	test	O'z-sinov — 8 savol
+ws2-01	7	19	MCRetry	kod/terminal+test	Tekshiruv 1 — belgi «Ulangan», buyurtma yo'q
+ws2-01	11	44	LineCheck	kod/terminal	Tekshiruv 2 — qaysi satr takror `GET` beradi
+ws2-01	15	25	MCRetry	kod/terminal+test	Tekshiruv 3 — tiklash va server qayta yonishi
+ws2-01	19	19	MCRetry	kod/terminal+test	Tekshiruv 4 — «sinadim, o'tdi»
+ws2-01	20	17	Lesson	faqat-matn	m10-05 xaritasi: Maydon Jamoa
+ws2-01	21	25	Lesson	jadval	Maydon Jamoa'dagi uchinchi muammo — xona
+ws2-01	22	25	Lesson	faqat-matn	A1 va A2 — o'quvchi o'z ilovasini buzadi
+ws2-01	23	26	Lesson	faqat-matn	Sinfdagi holatlar va o'quvchi savollari
+ws2-01	24	34	Screen27	test	O'z-sinov — 8 savol
+wh-01	6	39	MCRetry	kod/terminal+test	Tekshiruv 1 — imzosiz xabar
+wh-01	9	46	Lesson	jadval	Imzosiz va boshqa kalit — 401
+wh-01	12	33	Lesson	faqat-matn	Buzamiz: xom tana va `rawBody`
+wh-01	13	33	Lesson	faqat-matn	Buzamiz: tartib — 401, lekin «To'landi»
+wh-01	14	39	LineCheck	kod/terminal	Tekshiruv 2 — qaysi satr joyida emas
+wh-01	16	31	MCRetry	kod/terminal+test	Tekshiruv 3 — kalit bo'sh bo'lsa
+wh-01	18	48	Lesson	jadval	AI webhook yozdi — ikki javob
+wh-01	20	25	MCRetry	kod/terminal+test	Tekshiruv 4 — summa mos emas
+wh-01	21	14	Lesson	faqat-matn	m11-03 xaritasi: Maydon Jamoa
+wh-01	23	20	Lesson	faqat-matn	Sinfdagi holatlar va o'quvchi savollari
+wh-01	24	34	Screen27	test	O'z-sinov — 8 savol
+nest-01	3	46	?	faqat-matn	Nest nima beradi: majburiy tartib  ← `Lesson` (`Screen3`)
+nest-01	5	19	?	faqat-matn	Tirik loyiha: nest new nimani yaratdi  ← `Lesson` (`Screen5a`)
+nest-01	6	47	?	amaliyot	Nest'ni o'rnating, loyihani boshlab qo'ying  ← `Practice` (`ScreenP0`)
+nest-01	12	39	?	amaliyot	Ishga tushiring va terminalni o'qing  ← `Practice` (`ScreenP1`)
+nest-01	13	35	?	test	Mashina narxiga chegirma hisoblaydigan kodni qayerga yozasiz?  ← `MCRe
+nest-01	21	37	?	test	Kodimiz hozirgi holatda. GET /cars/abc so'rovi kelsa, javob qanday bo'
+nest-01	29	19	?	kod/terminal+test	Bu o'quvchingizning loyihasi. Qaysi faylni ochasiz va nimani tuzatasiz
+nest-01	30	29	?	amaliyot	O'zingiz buzing va tuzating  ← `Practice` (`ScreenP3`)
+nest-01	37	33	?	faqat-matn	O'quvchi so'raydigan savollar  ← `Lesson` (`Screen26`)
+nest-01	38	35	?	test	O'z-sinov — 8 savol  ← `Maxsus` (`Screen27`)
+nest-02	7	37	MCRetry	test	Tekshiruv 1 — «`/admin` ochdim, 404»
+nest-02	16	44	Lesson	faqat-matn	AuthGuard va token
+nest-02	19	48	Practice	amaliyot	Amaliyot 3 — signin, Authorize, oddiy admin
+nest-02	22	17	MCRetry	kod/terminal+test	Tekshiruv 4 — o'quvchi KitobShop'idagi xato
+nest-02	23	30	Practice	amaliyot	Amaliyot 4 — o'zingiz buzing
+nest-02	26	47	Lesson	faqat-matn	m4a-04 KitobShop va tayyorgarlik
+nest-02	28	35	Screen27	test	O'z-sinov — 8 savol
