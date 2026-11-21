@@ -426,6 +426,15 @@ Ovoz qoidalari (29.10): kod ovozda o'qilmaydi — nima bo'layotgani aytiladi; «
 **Nega.** Taklif sahifasida foydalanuvchi tanlovi: «Mentor o'zi bosib buzsin» — mentor tinglovchi emas, ishtirokchi bo'ladi.
 **Texnik.** Dvigatel: segment `act` → `waits_for` (button_click/step), `answerAsk(seg.id, 0)` sahnadan chaqiriladi (`useAct`). Ovoz hali yuklanayotganda bosilsa — javob eslab qolinadi, qo'lda o'tishga tushmaydi (20.11 tuzatish). Sinov vositalari (`ovoz-matnlar.mjs`, `til-tekshiruv.mjs`) `.n1-act` ni o'zi bosadi.
 
+### M53 · Rasmdagi son va qatorlar ekran sarlavhasi va terminal natijasi bilan bir xil (21.11, F-1120-02)
+**Qoida.**
+1. Ekran sarlavhasi, ovoz yoki terminal son aytsa («to'rt ustun, to'rt mahsulot», «(4 rows)», «3 passed»), rasm ham aynan shu sonni ko'rsatadi: jadvalda shuncha ustun va qator, ro'yxatda shuncha bo'lak bor.
+2. Rasmdagi qator qiymatlari shu ekran terminalidagi natijadan olinadi: tartibi, qiymati va ustunlari bir xil (M50-3).
+3. Rasm jadvalning bir qismini ko'rsatsa (namuna), ekranda son da'vosi bo'lmaydi; da'vo bo'lsa — rasm to'liq ko'rsatadi. Qisqartirish faqat son aytilmagan ekranda mumkin (masalan, ROLLBACK yoki ERROR ekrani).
+4. Qator ko'paysa, rasm ramkadan chiqmaydi: jadval joyi shu ekran uchun suriladi, boshqa ekranlardagi rasm o'zgarmaydi (piksel farqi 0 bilan tekshiriladi).
+**Nega.** 21.11 jonli ko'rik: PG-2 3-ekran sarlavhasi «to'rt ustun, to'rt mahsulot», psql «(4 rows)», rasmda esa 3 ustun va 2 qator edi. Sinf-supurishda PG-2 6-ekran ham chiqdi: `ORDER BY id` «(3 rows)», rasmda 2 qator. Ikkalasi tuzatildi (commit 5d8bd5d3), foydalanuvchi qonunni tasdiqladi («ha»).
+**Texnik.** PG-2: `CrudMachine` — `prods` (qatorlar) va `pcols` (ustun satri); 2 dan ko'p qatorda `shop · products` har qator uchun 20 px yuqoriga suriladi (`pg2/parts/04b-mashina.jsx`). Supurish: `grep -rnE "\([0-9]+ rows?\)'"` natijasini rasmga berilgan qatorlar soni bilan solishtirish.
+
 ## 3. Oldingi asos-qoidalar (29.10, audit №1–2)
 - Bitta segment = bitta vizual o'zgarish; segment ≤ ~25 s (ElevenLabs).
 - O'ylab ko'ring savoli (`ask`) — javobdan oldin ochilmaydi; natija keyingi segmentda.
@@ -476,9 +485,11 @@ Ovoz qoidalari (29.10): kod ovozda o'qilmaydi — nima bo'layotgani aytiladi; «
 | 34 | To'g'ri javob yagona eng uzun ≤ ¼ va yagona eng qisqa ≤ ¼; xato variantda natija va sabab (M48) | `python3 dev/javob-uzunlik.py src/mentor-kurs/<dars>` — ✓ |
 | 35 | Tushuntirish ekranining o'ng sahnasida mexanizm chizmasi, gapli karta yo'q; xulosa segmentida oldingi chizma yoki jadval ko'rinib turadi; chizmadagi raqamlar manba va shu ekran terminali bilan bir xil (M50) | 1280 surat har segmentda; raqamlar `manba/*-out` bilan grep |
 | 36 | Darsning bitta rasmi muqova, kirish, tushuncha, «Buzamiz» va yakunda bir xil; bezak yo'q (M51) · «Buzamiz» 1-segmenti `act`, savol javobi oldindan ochilmaydi, xato bo'laklari raqamlangan (M52) | 1600 surat har segmentda; `grep -c "act:"` = «Buzamiz» ekranlari soni |
+| 37 | Sarlavha, ovoz yoki terminal aytgan son rasmda ham bir xil: jadval ustunlari va qatorlari, qiymatlari terminaldagidek; qator qo'shilganda boshqa ekranlardagi rasm o'zgarmaydi (M53) | `(N rows)` / `N passed` grep ↔ rasm qatorlari; 1600 va 1280 surat; o'zgarmagan ekranlarda piksel farqi 0 |
 ---
 
 ## 5. Jurnal (qonun qo'shilishi)
+- **2026-11-21** — **M53** (rasmdagi son va qatorlar sarlavha va terminal bilan bir xil) + tekshiruv ro'yxati 37-band (F-1120-02). Foydalanuvchi: «ha». Sinf-supurish (12 dars rasmlari: CrudMachine, BlogDb, BotMap, FlowMini, NestMachine): son aytilgan 6 joy — PG-2 3 va 6 nomuvofiq edi, tuzatildi; Jest-1 2, 12, 25 («10 passed», «3 passed» — rasmda 3 status) va Jest-2 25 («25 passed») — `manba/jest1v2-out`, `jest2v2-out` bilan mos.
 - **2026-11-20** — M51 (har darsga bitta rasm, muqova, bezaksiz) + M52 («Buzamiz»da mentor o'zi bosadi, `act`) + tekshiruv ro'yxati 36-band (F-1120-02). Sinf-supurish: qurilgan 12 dars — Nest-1 da bajarildi; qolgan 11 dars navbat bilan (DAVOM.md).
 - **2026-11-10** — F-1109-06 (mentor fidbeki «vizualni yaxshilasak bo'ladimi»): **M50** (gapli karta o'rniga mexanizm chizmasi; xulosa qadamida rasm yashirilmaydi; raqamlar manbadan) + tekshiruv ro'yxati 35. Foydalanuvchi: «m50: Yoz». Sinf-supurish: 12 dars o'lchandi, 49 ekran ko'rildi → 34 almashtirildi (PG-1 1 · PG-2 5 · Jest-1 1 · Jest-2 4 · CI/CD-1 3 · CI/CD-2 4 · WS-1 3 · WS-2 6 · Webhook 6 · Nest-2 1), 15 istisno (5-band).
 - **2026-11-04 (2)** — F-1104-15…18: **M48** (variant uzunligi javobni ochmaydi; `dev/javob-uzunlik.py`, generator ichida), tekshiruv ro'yxati 34; lug'at «da'vo → AI aytgan gap»; 5-bosqich kirishi (yangi ko'nikma — alohida segment).
