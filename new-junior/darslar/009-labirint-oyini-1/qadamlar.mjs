@@ -1,0 +1,43 @@
+// 9-dars «Labirint o‘yini 1» qadamlari (QADAM) va ustoz varag'i (VARAQ) — 20.11. Manba: new-junior/manba/009-labirint-oyini-1.md, 18 qadam.
+// 16-qadam bola ro'yxati 'oxirgi' (A·1) — bola noutbukida oxirgi yechgan pog'onasi o'z dasturi bilan.
+const QADAM = [
+  ['Kirish', 'P1', ['B0', 'BK']],
+  ['Savol', 'P2', ['P2N', 'BK']],
+  ['Uch sinov', 'P2S', ['BK'], 'Ustoz o‘yinlarni sinayapti — kuzating'],
+  ['Javob: yo‘l bo‘lsa — yuradi', 'P2C', ['BK']],
+  ['Yangi so‘z: qoida', 'P3', ['BK'], 'Yangi so‘z: qoida'],
+  ['Reja', 'P4', ['BK'], 'Bugun: uchta bekat'],
+  ['Ko‘ramiz: labirintda strelkalar', 'P6', ['BK'], 'Ustoz boshqaruvni ko‘rsatyapti — kuzating'],
+  ['Boshqaruv', 'P5', ['B1A', 'B1B', 'B1C', 'B1Y', 'BK']],
+  ['2-bekat', 'P4B', ['BK'], '2-bekat: qoida'],
+  ['Ko‘ramiz: qoida', 'P7', ['BK'], 'Ustoz qoida qo‘shyapti — kuzating'],
+  ['Qoida', 'P5G', ['B2A', 'B2B', 'B2C', 'B2Y', 'BK']],
+  ['Xulosa: qoida', 'P9', ['BK'], 'Xulosa: qoida'],
+  ['3-bekat', 'P4C', ['BK'], '3-bekat: kalit va yulduz'],
+  ['Ko‘ramiz: kalit va eshik', 'P8', ['BK'], 'Ustoz kalitni ko‘rsatyapti — kuzating'],
+  ['Labirint o‘yini', 'P5B', ['B3A', 'B3B', 'B3Y', 'BK']],
+  ['Qoidangizni o‘qib bering', 'P11', 'oxirgi'],
+  ['Yakun', 'P12', ['B5']],
+  ['Sinfimiz bugun', 'P14', ['B5']],
+]
+// ustoz varag'i: [Ekranda · Siz (manbadagi tayanch gaplar, aynan) · Bola o'rganadi]
+const VARAQ = [
+  ['«9-dars · Labirint o‘yini» — «Bugun labirint o‘yini yasaymiz!» Labirint, Coddy startda; pastda «O‘tgan darsda» — shart.', '«Bugun bloklardan o‘yin yasaymiz: labirint o‘yini.» «Hamma narsa tanish: strelkalar, devor, kalit va shart.» «Noutbukda «Tayyorman» tugmasini bosing.»', 'Bugun o‘yin yasaydi.'],
+  ['Savol: «Adashsangiz ham o‘yin to‘xtamasin. Qanday qilamiz?» «O‘ynab ko‘rsat» — dastur 11 strelkani o‘zi bosadi, 7-bosishda Coddy urildi. Uchta karta: A «Devorlarni kamaytiramiz», B «Adashgan tugmani olib tashlaymiz», C «Yurishdan oldin tekshirsin».', '«Bitta adashib bosdim — o‘yin to‘xtadi. Endi hammasi boshidan.» «O‘yinchi adashsa ham o‘yin to‘xtamasin. Qanday qilamiz? Har kim bitta kartani tanlasin.»', 'Taxmin qiladi — bu huk.'],
+  ['Uch sinov — o‘sha 11 bosish. A o‘zi boshlanadi: devorlar kamroq — 10-bosishda chetga urildi. «Keyingi» — B: ↑ dasturchasi yo‘q — 3-bosishda urildi. «Keyingi» — C: har bosishda tekshiradi — 7-bosishda «yo‘q», Coddy turdi, yutdi.', '«Devorlarni kamaytirsak — boshqa joyda urildi. Tugmani olib tashlasak — kerak joyda yurmadi.» «Uchinchisi har bosishda tekshirdi: yo‘l bormi? Devor bo‘lsa — turdi.»', 'Yurishdan oldin tekshirish kerak.'],
+  ['Javob: «Yo‘l bo‘lsa — yuradi». A va B xira, C oltin. «▶ Boshlash» — startda ataylab ↑, keyin → ↑ → → ↑ → → ↑ ↑ →.', '«Har strelka yurishdan oldin tekshiradi: yo‘l bo‘lsa — yuradi, devor bo‘lsa — turadi.» «Adashsangiz ham o‘yin davom etadi.»', 'Shart o‘yinda ham ishlaydi.'],
+  ['Yangi so‘z: «Qoida nima?» «Keyingi» — birma-bir: → bosilsa: yo‘l bormi?, yo‘l bor — yuradi, devor — turadi.', '«Qoida — o‘yinda nima bo‘lishini aytadigan shart.» «Qoidani if bloki bilan yozamiz: agar yo‘l bo‘lsa — unda yur.»', 'Yangi so‘z: qoida.'],
+  ['Reja: tepalik — boshqaruv → qoida → kalit va yulduz; cho‘qqida «o‘z labirint o‘yiningiz».', '«Bugun uchta bekat: boshqaruv, qoida, kalit va yulduz.» «Uchalasi — bitta o‘yin. Har bekatda o‘yiningizga yangi narsa qo‘shasiz.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: «Labirintda strelkalar». Javonda to‘rt oila; W→[→], W↑[↑]; startda ↑ — urildi, o‘yin to‘xtadi; qayta — yutdi.', '«4-darsdagi o‘yin — endi labirintda: har strelkaga o‘z dasturchasi.» «Devorga urilsa — o‘yin to‘xtaydi, 2-darsdagidek. Ehtiyot bo‘lib bosing.» «Endi o‘zingiz.»', 'Labirintda o‘yin boshqaruvi.'],
+  ['Mashq: «Boshqaruvni tuzing!» — zinapoya: 1 to‘g‘ri yo‘l · 2 tepaga · 3 pastga ham · ★ orqaga.', '«Avval yo‘lni ko‘z bilan kuzating: qaysi tomonga yuriladi?» «Dasturingiz keyingi pog‘onaga o‘tadi. Yangi labirintga yangi strelka kerak bo‘lsa — qo‘shasiz.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'Boshqaruvni o‘zi tuzadi.'],
+  ['Tepalik: 1-bekat ✓ — «Qoida».', '«Boshqaruv tayyor. Endi o‘yinga qoida qo‘shamiz.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: «Yurishdan oldin tekshiradi». Tayyor W→[→] W↑[↑]: → ↑ ↑ → — urildi. Ikkala dasturchaga if: hodisa blokini bosing, javondan if, keyin move; ↑ da tomonni ↑ qiling.', '«Yurishdan oldin tekshiramiz: agar o‘ngda yo‘l bo‘lsa — unda o‘ngga yur.» «Har strelkaga o‘z sharti, o‘sha tomon bilan: ↑ dasturchasida — if path ↑.» «Endi o‘zingiz: to‘rtala strelkangizga qoida qo‘shing.» Shart oilasini eslating: «Shart oilasi — kulrang-ko‘k. Bu blok avval tekshiradi, keyin bajaradi.»', 'if ni dasturchaga qo‘yish.'],
+  ['Mashq: «Qoida qo‘shing!» — zinapoya: 1 qoida · 2 ilon yo‘l · 3 boshi berk yo‘llar · ★ qadam tovushi.', '«Avval qoida, keyin o‘yin. Qoidani sinash uchun ataylab devor tomonga bosing.» «Qahramon turdimi? Demak, qoida ishladi.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'Har strelkaga qoida qo‘yadi.'],
+  ['Xulosa: «Qoida». Ikki karta: qoida — o‘yinda nima bo‘lishini aytadigan shart; har strelkaga — o‘z sharti.', '«Qoida — o‘yinda nima bo‘lishini aytadigan shart.» «Qoida har bosishda tekshiriladi: yo‘l bo‘lsa — yuradi, devor bo‘lsa — turadi.»', 'Qoida nima ekanini aytadi.'],
+  ['Tepalik: 1, 2 ✓ — «Kalit va yulduz».', '«Ikki bekatdan o‘tdik. Oxirgisi — o‘yiningizni tugatamiz.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: «Avval kalit, keyin eshik». KN, to‘rt strelka qoida bilan; ro‘yxat «O‘yiningizda:». → → ↑ ↑ ↑ → — eshik yopiq, «yo‘q»; ← — kalit; → → → → → — yutdi.', '«Kalitsiz eshik — devor kabi: shart «yo‘q» deydi.» «Avval kalit, keyin eshik — 2-darsdagi tartib.» «Ro‘yxatdagi to‘rt band ✓ bo‘lsa — o‘yiningiz tayyor.»', 'Kalit va eshik o‘yinda.'],
+  ['Mashq: «O‘yiningizni tugating!» — zinapoya: 1 kalit va eshik · 2 labirint o‘yini · ★ startga qaytish.', '«O‘yiningizni tugating: ro‘yxatdagi to‘rt band ✓ bo‘lsin.» «Kalit uzoqda bo‘lsa — borib, orqaga qaytasiz.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'O‘yinini tugatadi.'],
+  ['«Qoidangizni o‘qib bering». D1, Coddy’ning to‘rt dasturchasi shartsiz. Proyektorda ism yo‘q; bola noutbukida — oxirgi yechgan pog‘onasi.', '«Kim qoidasini o‘qib beradi? Avval tugma, keyin shart tomoni, keyin ichidagi blok.» «Sinf, qaysi strelkani bosay?»', 'O‘z qoidasini o‘qib beradi.'],
+  ['Yakun: «Siz labirint o‘yini yasadingiz!» Bugungi so‘z — qoida; keyingi dars — 10 · Labirint o‘yini 2.', '«Uchala bekatdan o‘tdik: boshqaruv, qoida, kalit va yulduz.» «Bugungi so‘z — qoida: o‘yinda nima bo‘lishini aytadigan shart.» «Keyingi darsda o‘yiningizga ikkinchi labirint qo‘shasiz — uni o‘zingiz yasaysiz.»', 'O‘z natijasini ko‘radi.'],
+  ['Sinfimiz bugun: nechta tugma bosildi, necha marta devor oldida to‘xtadi, nechta labirint yutildi (haqiqiy son, ismsiz).', '«Hammangiz zo‘r ishladingiz!» (keyin raqamlarni o‘qiydi) «Har bir o‘yinda shunday qoidalar bor — endi ularni o‘zingiz yozasiz.»', 'Sinf bilan birga natijani ko‘radi.'],
+]

@@ -1,0 +1,972 @@
+{
+ "u-01-P1": {
+  "id": "P1",
+  "matn": "13-DARS · TASODIFIY SON\nBugun o‘yin har safar boshqacha!\n\nCoddy\nSalom! Bugun dastur sonni o‘zi tanlaydi.\n\nO‘TGAN DARSDA\nchange\njon\nby\n−1\nJon\nTugasa, o‘yin tugaydi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKirdi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "3999caacd8d8",
+  "uzun": 34506
+ },
+ "u-02-P2": {
+  "id": "P2",
+  "matn": "13-DARS · TASODIFIY SON\nSAVOL\nOlma har safar boshqa joyga qanday tushadi?\n\nCoddy\nQimirlamay yutdim. Olma doim shu yerga tushadi.\n\nA\nBoshqa son qo‘yamiz\ngo to\nx:\n5\ny:\n0\nB\nNavbat bilan uch joy\ngo to\nx:\n1\ny:\n0\ngo to\nx:\n5\ny:\n0\ngo to\nx:\n3\ny:\n0\n1-olma · 2-olma · 3-olma\nC\nDastur o‘zi tanlasin\ngo to\nx:\nrandom\n0\nto\n6\ny:\n0\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nOlma: 3 / 3\nHar o‘yin boshqacha bo‘lsin\n‹ Orqaga\nJavob berdi: 0 / 0\nSinab ko‘ramiz ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "6a11f4b323fa",
+  "uzun": 37919
+ },
+ "u-03-P2S": {
+  "id": "P2S",
+  "matn": "SAVOL\nOlma har safar boshqa joyga qanday tushadi?\n\nCoddy\nQimirlamay yutdim. Olma doim shu yerga tushadi.\n\nA\nBoshqa son qo‘yamiz\ngo to\nx:\n5\ny:\n0\nB\nNavbat bilan uch joy\ngo to\nx:\n1\ny:\n0\ngo to\nx:\n5\ny:\n0\ngo to\nx:\n3\ny:\n0\n1-olma · 2-olma · 3-olma\nC\nDastur o‘zi tanlasin\ngo to\nx:\nrandom\n0\nto\n6\ny:\n0\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "1a025edc1ad0",
+  "uzun": 38502
+ },
+ "u-04-P2C": {
+  "id": "P2C",
+  "matn": "JAVOB\nDastur o‘zi tanlaydi\n\nCoddy\nEndi olma qayerga tushishini men ham bilmayman.\n\nA\nBoshqa son qo‘yamiz\n✕ ikki o‘yin bir xil\ngo to\nx:\n5\ny:\n0\n1-o‘yin: 5 · 5 · 5\n2-o‘yin: 5 · 5 · 5\nB\nNavbat bilan uch joy\n✕ yana bir xil\ngo to\nx:\n1\ny:\n0\ngo to\nx:\n5\ny:\n0\ngo to\nx:\n3\ny:\n0\n1-olma · 2-olma · 3-olma\n1-o‘yin: 1 · 5 · 3\n2-o‘yin: 1 · 5 · 3\nC\nDastur o‘zi tanlasin\n✓ har o‘yin boshqacha\ngo to\nx:\nrandom\n0\nto\n6\ny:\n0\n1-o‘yin: 4 · 1 · 6\n2-o‘yin: 2 · 5 · 0\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "319349c3ee12",
+  "uzun": 41513
+ },
+ "u-05-P3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nTasodifiy son nima?\n\nCoddy\nTasodifiy son — dastur o‘zi tanlaydigan son.\n\n1 dan 6 gacha — zar kabi\n\n4\nBu safar — 4\n\n2\nHar safar boshqa son\n\nrandom\n1\nto\n6\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "9ac0f184cd1e",
+  "uzun": 23487
+ },
+ "u-06-P4": {
+  "id": "P4",
+  "matn": "REJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Birinchisidan boshlaymiz.\n\nDars oxirida · o‘z o‘yiningiz · Dasturini o‘qib berasiz\nO‘z o‘yiningiz\n1\nBitta son\n2\nIkki son\n3\nO‘yin\n‹ Orqaga\nBoshladik ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "16f1e5f67f3b",
+  "uzun": 42637
+ },
+ "u-07-P6": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nrandom — tasodifiy son\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nBlokni shu yerga ulang\n0 / 2 ta blok\nSinov: 0 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 2)\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "371b12ec1ae7",
+  "uzun": 28017
+ },
+ "u-08-P5": {
+  "id": "P5",
+  "matn": "MASHQ\nEndi o‘zingiz!\n\nCoddy\nSavatlarni o‘qing va random sonlarini tanlang.\n\nUch pog‘onani tugatdi\n0 / 0\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nButun qator\n2\n0\nUchta savat\n3\n0\nUstun\n★\n0\nIkki olma\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "6a09c1a5a1c4",
+  "uzun": 38754
+ },
+ "u-09-P4B": {
+  "id": "P4B",
+  "matn": "REJA · 2-BEKAT\n2 · Ikki son\n\nCoddy\nEndi X ham, Y ham tasodifiy.\n\nDars oxirida · o‘z o‘yiningiz · Dasturini o‘qib berasiz\nO‘z o‘yiningiz\n✓\nBitta son\n2\nIkki son\n3\nO‘yin\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "9812206f228d",
+  "uzun": 42266
+ },
+ "u-10-P7": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nIkki son — ikki random\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\ngo to x:\ny:\nrandom\n3\nto\n5\n1\n2 / 3 ta blok\nSinov: 0 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "y:go to x:y:random3to51",
+   "m:random3to5"
+  ],
+  "html": "2d5c4f5862c5",
+  "uzun": 28519
+ },
+ "u-11-P5G": {
+  "id": "P5G",
+  "matn": "MASHQ\nIkkala son tasodifiy!\n\nCoddy\nSavatlarning chetlarini toping — X va Y uchun.\n\nUch pog‘onani tugatdi\n0 / 0\n1\n0\nKichik kvadrat\n2\n0\nTo‘rtburchak\n3\n0\nKatta to‘rtburchak\n★\n0\nOlma yomg‘iri\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "517ecb372427",
+  "uzun": 39457
+ },
+ "u-12-P9": {
+  "id": "P9",
+  "matn": "XULOSA\nTasodifiy son\n\nCoddy\nDastur sonni o‘zi tanladi — har safar boshqa.\n\nrandom\n1\nto\n6\n4\nTasodifiy son\nDastur o‘zi tanlaydigan son\nrandom\n2\nto\n4\nrandom 2 to 4\n2, 3 yoki 4\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "3c607cf76b9c",
+  "uzun": 40566
+ },
+ "u-13-P4C": {
+  "id": "P4C",
+  "matn": "REJA · 3-BEKAT\n3 · O‘yin\n\nCoddy\nOxirgi bekat: o‘yin har safar boshqacha.\n\nDars oxirida · o‘z o‘yiningiz · Dasturini o‘qib berasiz\nO‘z o‘yiningiz\n✓\nBitta son\n✓\nIkki son\n3\nO‘yin\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "c5663604de16",
+  "uzun": 42333
+ },
+ "u-14-P8": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nO‘yin: olma terish\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nQahramon:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 / 2 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "c09b76e2b16f",
+  "uzun": 31895
+ },
+ "u-15-P5B": {
+  "id": "P5B",
+  "matn": "MASHQ\nO‘yiningizni tuzing!\n\nCoddy\nOlma dasturini tuzing, keyin o‘ynang.\n\nUch o‘yinni yutdi\n0 / 0\n1\n0\nBog‘ o‘rtasi\n2\n0\nTepa qator\n3\n0\nChap ustun\n★\n0\nO‘z o‘yiningiz\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "e3a18fabda8f",
+  "uzun": 38404
+ },
+ "u-16-P11": {
+  "id": "P11",
+  "matn": "KO‘RSATISH\nOlma dasturingizni o‘qib bering\nSiz o‘qiysiz — men teraman.\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nQahramon:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 / 3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "9cdb9d578f18",
+  "uzun": 28387
+ },
+ "u-17-P12": {
+  "id": "P12",
+  "matn": "YAKUN\nO‘yiningiz har safar boshqacha!\nBUGUNGI SO‘Z\nTasodifiy son\nDastur o‘zi tanlaydigan son\nKeyingi dars\n14 · Xatoni topish\n✓\nBitta son\n✓\nIkki son\n✓\nO‘yin\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "691f3863fba7",
+  "uzun": 30218
+ },
+ "u-18-P14": {
+  "id": "P14",
+  "matn": "SINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nta random qo‘ydi\n0\nta olma tushirdi\n0\nta olma terdi\n‹ Orqaga\nDarsni yakunlash\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "de9395066137",
+  "uzun": 40106
+ },
+ "u-x-P2S-A": {
+  "id": "P2S",
+  "matn": "SAVOL\nOlma har safar boshqa joyga qanday tushadi?\n\nCoddy\nQimirlamay yutdim. Olma doim shu yerga tushadi.\n\nA\nBoshqa son qo‘yamiz\n✕ ikki o‘yin bir xil\ngo to\nx:\n5\ny:\n0\n1-o‘yin: 5 · 5 · 5\n2-o‘yin: 5 · 5 · 5\nB\nNavbat bilan uch joy\ngo to\nx:\n1\ny:\n0\ngo to\nx:\n5\ny:\n0\ngo to\nx:\n3\ny:\n0\n1-olma · 2-olma · 3-olma\nC\nDastur o‘zi tanlasin\ngo to\nx:\nrandom\n0\nto\n6\ny:\n0\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "07d540079808",
+  "uzun": 39766
+ },
+ "u-x-P2S-B": {
+  "id": "P2S",
+  "matn": "SAVOL\nOlma har safar boshqa joyga qanday tushadi?\n\nCoddy\nQimirlamay yutdim. Olma doim shu yerga tushadi.\n\nA\nBoshqa son qo‘yamiz\n✕ ikki o‘yin bir xil\ngo to\nx:\n5\ny:\n0\n1-o‘yin: 5 · 5 · 5\n2-o‘yin: 5 · 5 · 5\nB\nNavbat bilan uch joy\n✕ yana bir xil\ngo to\nx:\n1\ny:\n0\ngo to\nx:\n5\ny:\n0\ngo to\nx:\n3\ny:\n0\n1-olma · 2-olma · 3-olma\n1-o‘yin: 1 · 5 · 3\n2-o‘yin: 1 · 5 · 3\nC\nDastur o‘zi tanlasin\ngo to\nx:\nrandom\n0\nto\n6\ny:\n0\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "b5bb7505665f",
+  "uzun": 39888
+ },
+ "u-x-P2S-C": {
+  "id": "P2S",
+  "matn": "SAVOL\nOlma har safar boshqa joyga qanday tushadi?\n\nCoddy\nQimirlamay yutdim. Olma doim shu yerga tushadi.\n\nA\nBoshqa son qo‘yamiz\n✕ ikki o‘yin bir xil\ngo to\nx:\n5\ny:\n0\n1-o‘yin: 5 · 5 · 5\n2-o‘yin: 5 · 5 · 5\nB\nNavbat bilan uch joy\n✕ yana bir xil\ngo to\nx:\n1\ny:\n0\ngo to\nx:\n5\ny:\n0\ngo to\nx:\n3\ny:\n0\n1-olma · 2-olma · 3-olma\n1-o‘yin: 1 · 5 · 3\n2-o‘yin: 1 · 5 · 3\nC\nDastur o‘zi tanlasin\n✓ har o‘yin boshqacha\ngo to\nx:\nrandom\n0\nto\n6\ny:\n0\n1-o‘yin: 4 · 1 · 6\n2-o‘yin: 2 · 5 · 0\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "d70265f44e50",
+  "uzun": 40866
+ },
+ "u-x-P3-1": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nTasodifiy son nima?\n\nCoddy\nTasodifiy son — dastur o‘zi tanlaydigan son.\n\n1 dan 6 gacha — zar kabi\n\n4\nBu safar — 4\n\n2\nHar safar boshqa son\n\nrandom\n1\nto\n6\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "7e64d586bdaa",
+  "uzun": 23501
+ },
+ "u-x-P3-2": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nTasodifiy son nima?\n\nCoddy\nTasodifiy son — dastur o‘zi tanlaydigan son.\n\n1 dan 6 gacha — zar kabi\n\n4\nBu safar — 4\n\n2\nHar safar boshqa son\n\nrandom\n1\nto\n6\n4\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "94039e955c39",
+  "uzun": 23518
+ },
+ "u-x-P3-3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nTasodifiy son nima?\n\nCoddy\nTasodifiy son — dastur o‘zi tanlaydigan son.\n\n1 dan 6 gacha — zar kabi\n\n4\nBu safar — 4\n\n2\nHar safar boshqa son\n\nrandom\n1\nto\n6\n2\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "28f6da0d2024",
+  "uzun": 23535
+ },
+ "u-x-P6-royxat": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nrandom — tasodifiy son\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\ngo to x:\ny:\n0\n0\n0\n1\n2\n3\n4\n5\n6\nrandom\n1 / 2 ta blok\nSinov: 0 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 2)\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "y:go to x:y:00"
+  ],
+  "html": "5981a6212ded",
+  "uzun": 28008
+ },
+ "u-x-P6-random": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nrandom — tasodifiy son\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\ngo to x:\ny:\n0\nrandom\n1\nto\n10\n2 / 2 ta blok\nSinov: 0 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 2)\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "y:go to x:y:0random1to10",
+   "m:random1to10"
+  ],
+  "html": "756137cbcdb2",
+  "uzun": 28008
+ },
+ "u-x-P6-chet": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nrandom — tasodifiy son\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\ngo to x:\ny:\n0\nrandom\n1\nto\n10\n2 / 2 ta blok\nSinov: 0 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 2)\nMaydon tugadi!\n‹ Orqaga\nrandom 8 ni tanladi. Maydonda X — 0 dan 6 gacha\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "y:go to x:y:0random1to10",
+   "m:random1to10"
+  ],
+  "html": "2a59ed785b95",
+  "uzun": 34201
+ },
+ "u-x-P6-1": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nrandom — tasodifiy son\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\ngo to x:\ny:\n0\nrandom\n1\nto\n5\n2 / 2 ta blok\nSinov: 1 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 2)\n‹ Orqaga\nYana ishga tushiring — olma qayerga tushadi?\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "y:go to x:y:0random1to5",
+   "m:random1to5"
+  ],
+  "html": "7a4d5285b3df",
+  "uzun": 28652
+ },
+ "u-x-P6-tayyor": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nrandom — tasodifiy son\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\ngo to x:\ny:\n0\nrandom\n1\nto\n5\n2 / 2 ta blok\nSinov: 3 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 2)\n‹ Orqaga\nHar safar boshqa joy!\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "y:go to x:y:0random1to5",
+   "m:random1to5"
+  ],
+  "html": "a478ef59884a",
+  "uzun": 30658
+ },
+ "u-x-P7-bosh": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nIkki son — ikki random\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\ngo to x:\ny:\nrandom\n3\nto\n5\n1\n2 / 3 ta blok\nSinov: 0 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\nBu savat bo‘sh qoladi!\n‹ Orqaga\n(3, 2) dagi savatga olma tushmaydi. random sonlarini tekshiring\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "y:go to x:y:random3to51",
+   "m:random3to5"
+  ],
+  "html": "dfbdb9b27f3a",
+  "uzun": 34736
+ },
+ "u-x-P8-boshla": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nO‘yin: olma terish\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nQahramon:\n→\n←\n↑\n↓\n▾\ngo to x:\ny:\nrandom\n0\nto\n6\n0\n2 / 2 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\nO‘yin: strelkalarni bosing · Olma: 0 / 5\n‹ Orqaga\n■ To‘xtatish\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "y:go to x:y:random0to60",
+   "m:random0to6"
+  ],
+  "html": "fe7c51a4bbe3",
+  "uzun": 32573
+ },
+ "u-x-P8-olindi": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nO‘yin: olma terish\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nQahramon:\n→\n←\n↑\n↓\n▾\ngo to x:\ny:\nrandom\n0\nto\n6\n0\n2 / 2 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nO‘yin: strelkalarni bosing · Olma: 1 / 5\n‹ Orqaga\n■ To‘xtatish\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "y:go to x:y:random0to60",
+   "m:random0to6"
+  ],
+  "html": "c8e72c1e5b8b",
+  "uzun": 32843
+ },
+ "u-x-yakunlandi": {
+  "id": "P14",
+  "matn": "SINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nta random qo‘ydi\n0\nta olma tushirdi\n0\nta olma terdi\nDars tugadi!\nKo‘rishguncha — keyingi darsda xatolarni topamiz!\n‹ Orqaga\nDarsni yakunlash\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "915d486e9e47",
+  "uzun": 40248
+ },
+ "bq-01-0-B0": {
+  "id": "B0",
+  "matn": "13-DARS · TASODIFIY SON\nSalom, Aziz!\nTayyor bo‘lsangiz — tugmani bosing\nTayyorman",
+  "bloklar": [],
+  "html": "a2251e6b233c",
+  "uzun": 24483
+ },
+ "bq-01-1-BK": {
+  "id": "BK",
+  "matn": "13-DARS · TASODIFIY SON\n↑\nUstoz ekraniga qarang\nDars hozir boshlanadi",
+  "bloklar": [],
+  "html": "cc32a9966b86",
+  "uzun": 16095
+ },
+ "bq-02-0-P2N": {
+  "id": "P2N",
+  "matn": "13-DARS · TASODIFIY SON\nSAVOL\nOlma har safar boshqa joyga qanday tushadi?\n\nCoddy\nQaysi yo‘l bilan har o‘yin boshqacha bo‘ladi?\n\nA\nBoshqa son qo‘yamiz\ngo to\nx:\n5\ny:\n0\nB\nNavbat bilan uch joy\ngo to\nx:\n1\ny:\n0\ngo to\nx:\n5\ny:\n0\ngo to\nx:\n3\ny:\n0\n1-olma · 2-olma · 3-olma\nC\nDastur o‘zi tanlasin\ngo to\nx:\nrandom\n0\nto\n6\ny:\n0\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nHar o‘yin boshqacha bo‘lsin\nBirini tanlang",
+  "bloklar": [],
+  "html": "834c61f6dded",
+  "uzun": 35644
+ },
+ "bq-02-1-BK": {
+  "id": "BK",
+  "matn": "13-DARS · TASODIFIY SON\n↑\nUstoz ekraniga qarang\nJavobingiz qabul qilindi",
+  "bloklar": [],
+  "html": "6c44a45540ed",
+  "uzun": 16098
+ },
+ "bq-03-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz yo‘llarni sinayapti — kuzating",
+  "bloklar": [],
+  "html": "11dea5f71757",
+  "uzun": 16110
+ },
+ "bq-04-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstozni tinglang",
+  "bloklar": [],
+  "html": "b4460d0046c6",
+  "uzun": 16090
+ },
+ "bq-05-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nYangi so‘z: tasodifiy son",
+  "bloklar": [],
+  "html": "550d2797edc3",
+  "uzun": 16099
+ },
+ "bq-06-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nBugun: uchta bekat",
+  "bloklar": [],
+  "html": "1b35df944bae",
+  "uzun": 16092
+ },
+ "bq-07-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz random blokini ko‘rsatyapti — kuzating",
+  "bloklar": [],
+  "html": "204bc7077670",
+  "uzun": 16118
+ },
+ "bq-08-0-B1A": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nButun qator\nOlma istalgan savatga tushsin.\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nBlokni shu yerga ulang\n0 / 2 ta blok\nSinov: 0 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nMaslahat\nSavatlarning X va Y sini o‘qing\nIshga tushir",
+  "bloklar": [],
+  "html": "a06c59f50def",
+  "uzun": 21009
+ },
+ "bq-08-1-B1B": {
+  "id": "B1B",
+  "matn": "MASHQ · 2-POG‘ONA\nUchta savat\nOlma faqat savatlarga tushsin.\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nBlokni shu yerga ulang\n0 / 2 ta blok\nSinov: 0 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 2)\nMaslahat\nSavatlarning X va Y sini o‘qing\nIshga tushir",
+  "bloklar": [],
+  "html": "aff272c91b63",
+  "uzun": 18965
+ },
+ "bq-08-2-B1C": {
+  "id": "B1C",
+  "matn": "MASHQ · 3-POG‘ONA\nUstun\nSavatlar ustma-ust.\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nBlokni shu yerga ulang\n0 / 2 ta blok\nSinov: 0 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 2)\nMaslahat\nSavatlarning X va Y sini o‘qing\nIshga tushir",
+  "bloklar": [],
+  "html": "441dbdf5b5b0",
+  "uzun": 19970
+ },
+ "bq-08-3-B1Y": {
+  "id": "B1Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nIkki olma\n1-olma «1» savatlarga, 2-olma «2» savatlarga.\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nBlokni shu yerga ulang\n0 / 4 ta blok\nSinov: 0 / 3\n1\n1\n1\n2\n2\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\nMaslahat\nSavatlarning X va Y sini o‘qing\nIshga tushir",
+  "bloklar": [],
+  "html": "980bbc99acf2",
+  "uzun": 20476
+ },
+ "bq-08-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "80830d1235eb",
+  "uzun": 16105
+ },
+ "bq-09-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\n2-bekat: ikki son",
+  "bloklar": [],
+  "html": "5488f46ed3ec",
+  "uzun": 16091
+ },
+ "bq-10-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz ikkinchi random qo‘yyapti — kuzating",
+  "bloklar": [],
+  "html": "1ddbc90f1b21",
+  "uzun": 16116
+ },
+ "bq-11-0-B2A": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nKichik kvadrat\nTo‘rtta savat.\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nBlokni shu yerga ulang\n0 / 3 ta blok\nSinov: 0 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\nMaslahat\nX ga ham, Y ga ham random\nIshga tushir",
+  "bloklar": [],
+  "html": "9bd3558b5d61",
+  "uzun": 19456
+ },
+ "bq-11-1-B2B": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nTo‘rtburchak\nOlti savat.\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nBlokni shu yerga ulang\n0 / 3 ta blok\nSinov: 0 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 2)\nMaslahat\nX ga ham, Y ga ham random\nIshga tushir",
+  "bloklar": [],
+  "html": "fba0bf973414",
+  "uzun": 20474
+ },
+ "bq-11-2-B2C": {
+  "id": "B2C",
+  "matn": "MASHQ · 3-POG‘ONA\nKatta to‘rtburchak\nO‘n ikki savat.\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nBlokni shu yerga ulang\n0 / 3 ta blok\nSinov: 0 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nX ga ham, Y ga ham random\nIshga tushir",
+  "bloklar": [],
+  "html": "2529a6d879bd",
+  "uzun": 23550
+ },
+ "bq-11-3-B2Y": {
+  "id": "B2Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nOlma yomg‘iri\nBir ishga tushirishda uchta olma.\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nBlokni shu yerga ulang\n0 / 4 ta blok\nSinov: 0 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 2)\nMaslahat\nX ga ham, Y ga ham random\nIshga tushir",
+  "bloklar": [],
+  "html": "d60e5c3e1ec5",
+  "uzun": 20501
+ },
+ "bq-11-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "80830d1235eb",
+  "uzun": 16105
+ },
+ "bq-12-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nXulosa: tasodifiy son",
+  "bloklar": [],
+  "html": "788bc6cc7da6",
+  "uzun": 16095
+ },
+ "bq-13-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\n3-bekat: o‘yin",
+  "bloklar": [],
+  "html": "47fdc3a8aeb9",
+  "uzun": 16088
+ },
+ "bq-14-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz o‘ynayapti — kuzating",
+  "bloklar": [],
+  "html": "2db3d412bc4c",
+  "uzun": 16101
+ },
+ "bq-15-0-B3A": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nBog‘ o‘rtasi\nOlma dasturida random yo‘q.\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nQahramon:\n→\n←\n↑\n↓\n▾\ngo to x:\ny:\n4\n1\n1 / 3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 4)\nMaslahat\nOlma dasturini tuzing, keyin ▶ Boshlash\nBoshlash",
+  "bloklar": [
+   "y:go to x:y:41"
+  ],
+  "html": "c8771175ea68",
+  "uzun": 25047
+ },
+ "bq-15-1-B3B": {
+  "id": "B3B",
+  "matn": "MASHQ · 2-POG‘ONA\nTepa qator\nSavatlar eng tepada.\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nQahramon:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 / 2 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\nMaslahat\nOlma dasturini tuzing, keyin ▶ Boshlash\nBoshlash",
+  "bloklar": [],
+  "html": "bc17ec27ca90",
+  "uzun": 22488
+ },
+ "bq-15-2-B3C": {
+  "id": "B3C",
+  "matn": "MASHQ · 3-POG‘ONA\nChap ustun\nSavatlar chap chetda.\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nQahramon:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 / 2 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nMaslahat\nOlma dasturini tuzing, keyin ▶ Boshlash\nBoshlash",
+  "bloklar": [],
+  "html": "4945433d5e5a",
+  "uzun": 22489
+ },
+ "bq-15-3-B3Y": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z o‘yiningiz\nOlmalar qayerga tushishini o‘zingiz tanlang.\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nQahramon:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 / 3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\nMaslahat\nOlma dasturini tuzing, keyin ▶ Boshlash\nBoshlash",
+  "bloklar": [],
+  "html": "a664c2aaefe2",
+  "uzun": 20479
+ },
+ "bq-15-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "80830d1235eb",
+  "uzun": 16105
+ },
+ "bq-17-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nO‘yiningiz har safar boshqacha!\n\nBulut\nOlmalarni dastur o‘zi tanlagan joylarga tushirdingiz.\n\nSiz bugun\n0\nta random qo‘ydi\n0\nta olma tushirdi\n0\nta olma terdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 4)\nBulut\nKeyingi darsda xatolarni topamiz — ko‘rishguncha!\nDars tugadi",
+  "bloklar": [],
+  "html": "6b58feb444a5",
+  "uzun": 26508
+ },
+ "bq-18-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nO‘yiningiz har safar boshqacha!\n\nBulut\nOlmalarni dastur o‘zi tanlagan joylarga tushirdingiz.\n\nSiz bugun\n0\nta random qo‘ydi\n0\nta olma tushirdi\n0\nta olma terdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 4)\nBulut\nKeyingi darsda xatolarni topamiz — ko‘rishguncha!\nDars tugadi",
+  "bloklar": [],
+  "html": "6b58feb444a5",
+  "uzun": 26508
+ },
+ "bx-B1A-bosh": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nButun qator\nOlma istalgan savatga tushsin.\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nBlokni shu yerga ulang\n0 / 2 ta blok\nSinov: 0 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nMaslahat\nSavatlarning X va Y sini o‘qing\nIshga tushir",
+  "bloklar": [],
+  "html": "a06c59f50def",
+  "uzun": 21009
+ },
+ "bx-B1A-boshvoy": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nButun qator\nOlma istalgan savatga tushsin.\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nBlokni shu yerga ulang\n0 / 2 ta blok\nSinov: 0 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nBu yerda hech narsa yo‘q-ku…\nMaslahat\nAvval blokni bosing — u dasturga qo‘shiladi\nIshga tushir",
+  "bloklar": [],
+  "html": "553e266cedcf",
+  "uzun": 26292
+ },
+ "bx-B1A-boshsavat": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nButun qator\nOlma istalgan savatga tushsin.\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\ngo to x:\ny:\nrandom\n1\nto\n6\n2\n2 / 2 ta blok\nSinov: 0 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nBu savat bo‘sh qoladi!\nMaslahat\n(0, 2) dagi savatga olma tushmaydi. random sonlarini tekshiring\nIshga tushir",
+  "bloklar": [
+   "y:go to x:y:random1to62",
+   "m:random1to6"
+  ],
+  "html": "d3b3cec1cbea",
+  "uzun": 27172
+ },
+ "bx-B1A-randomyoq": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nButun qator\nOlma istalgan savatga tushsin.\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\ngo to x:\ny:\n3\n2\n1 / 2 ta blok\nSinov: 0 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nYana o‘sha joy!\nMaslahat\nSon doim bir xil. Son o‘rniga random qo‘ying\nIshga tushir",
+  "bloklar": [
+   "y:go to x:y:32"
+  ],
+  "html": "d86af182b09e",
+  "uzun": 27727
+ },
+ "bx-B1A-tayyor": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nButun qator\nOlma istalgan savatga tushsin.\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\ngo to x:\ny:\nrandom\n0\nto\n6\n2\n2 / 2 ta blok\nSinov: 3 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nMaslahat\nHar safar boshqa joy!\nIshga tushir",
+  "bloklar": [
+   "y:go to x:y:random0to62",
+   "m:random0to6"
+  ],
+  "html": "35ff6d7b5a98",
+  "uzun": 24768
+ },
+ "bx-B1Y-guruh": {
+  "id": "B1Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nIkki olma\n1-olma «1» savatlarga, 2-olma «2» savatlarga.\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\ngo to x:\ny:\nrandom\n5\nto\n6\n0\ngo to x:\ny:\nrandom\n1\nto\n3\n4\n4 / 4 ta blok\nSinov: 0 / 3\n1\n1\n1\n2\n2\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\nSavat yo‘q-ku!\nMaslahat\n1-olma «1» savatlarga tushsin. Birinchi go to — 1-olma\nIshga tushir",
+  "bloklar": [
+   "y:go to x:y:random5to60go to x:y:random1to34",
+   "m:random5to6",
+   "y:go to x:y:random1to34",
+   "m:random1to3"
+  ],
+  "html": "737b5623c660",
+  "uzun": 27048
+ },
+ "bx-B2Y-uch": {
+  "id": "B2Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nOlma yomg‘iri\nBir ishga tushirishda uchta olma.\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nrepeat\n3\ngo to x:\ny:\nrandom\n3\nto\n5\nrandom\n0\nto\n1\n4 / 4 ta blok\nSinov: 1 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 2)\nMaslahat\nYana ishga tushiring — olma qayerga tushadi?\nIshga tushir",
+  "bloklar": [
+   "p:repeat3go to x:y:random3to5random0to1",
+   "y:go to x:y:random3to5random0to1",
+   "m:random3to5",
+   "m:random0to1"
+  ],
+  "html": "913df76e7fc1",
+  "uzun": 22275
+ },
+ "bx-B3A-tayyor": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nBog‘ o‘rtasi\nOlma dasturida random yo‘q.\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nQahramon:\n→\n←\n↑\n↓\n▾\ngo to x:\ny:\n4\n1\n1 / 3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 4)\nMaslahat\nOlma dasturini tuzing, keyin ▶ Boshlash\nBoshlash",
+  "bloklar": [
+   "y:go to x:y:41"
+  ],
+  "html": "c8771175ea68",
+  "uzun": 25047
+ },
+ "bx-B3A-randomyoq": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nBog‘ o‘rtasi\nOlma dasturida random yo‘q.\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nQahramon:\n→\n←\n↑\n↓\n▾\ngo to x:\ny:\n4\n1\n1 / 3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 4)\nYana o‘sha joy!\nMaslahat\nSon doim bir xil. Son o‘rniga random qo‘ying\nBoshlash",
+  "bloklar": [
+   "y:go to x:y:41"
+  ],
+  "html": "1c7964316597",
+  "uzun": 30605
+ },
+ "bx-B3Y-gul": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z o‘yiningiz\nOlmalar qayerga tushishini o‘zingiz tanlang.\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nQahramon:\n→\n←\n↑\n↓\n▾\ngo to x:\ny:\nrandom\n0\nto\n6\nrandom\n0\nto\n4\n3 / 3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\nGulga tushadi!\nMaslahat\nrandom (0, 4) ni ham tanlashi mumkin — u yerda gul\nBoshlash",
+  "bloklar": [
+   "y:go to x:y:random0to6random0to4",
+   "m:random0to6",
+   "m:random0to4"
+  ],
+  "html": "fb66a1e87339",
+  "uzun": 26033
+ },
+ "bx-B5-natija": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nO‘yiningiz har safar boshqacha!\n\nBulut\nOlmalarni dastur o‘zi tanlagan joylarga tushirdingiz.\n\nSiz bugun\n1\nta random qo‘ydi\n3\nta olma tushirdi\n0\nta olma terdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 4)\nBulut\nKeyingi darsda xatolarni topamiz — ko‘rishguncha!\nDars tugadi",
+  "bloklar": [],
+  "html": "32e8746bec7c",
+  "uzun": 26508
+ },
+ "bx-P2N-tanladi": {
+  "id": "P2N",
+  "matn": "13-DARS · TASODIFIY SON\nSAVOL\nOlma har safar boshqa joyga qanday tushadi?\n\nCoddy\nQaysi yo‘l bilan har o‘yin boshqacha bo‘ladi?\n\nA\nBoshqa son qo‘yamiz\ngo to\nx:\n5\ny:\n0\nB\nNavbat bilan uch joy\ngo to\nx:\n1\ny:\n0\ngo to\nx:\n5\ny:\n0\ngo to\nx:\n3\ny:\n0\n1-olma · 2-olma · 3-olma\nC\nDastur o‘zi tanlasin\ngo to\nx:\nrandom\n0\nto\n6\ny:\n0\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nHar o‘yin boshqacha bo‘lsin\nBirini tanlang",
+  "bloklar": [],
+  "html": "03f25b9c5337",
+  "uzun": 35653
+ },
+ "bx-BQ": {
+  "id": "BQ",
+  "matn": "13-DARS · TASODIFIY SON\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang",
+  "bloklar": [],
+  "html": "5555af60343c",
+  "uzun": 52609
+ },
+ "bx-BQ-tanladi": {
+  "id": "BK",
+  "matn": "13-DARS · TASODIFIY SON\n↑\nUstoz ekraniga qarang\nJavobingiz qabul qilindi",
+  "bloklar": [],
+  "html": "e7e9ffc5c691",
+  "uzun": 15160
+ },
+ "sq-01-0-B0": {
+  "id": "B0",
+  "matn": "13-DARS · TASODIFIY SON\nSalom, Aziz!\nTayyor bo‘lsangiz — tugmani bosing\nTayyorman",
+  "bloklar": [],
+  "html": "a2251e6b233c",
+  "uzun": 24483
+ },
+ "sq-01-1-P1": {
+  "id": "P1",
+  "matn": "13-DARS · TASODIFIY SON\nBugun o‘yin har safar boshqacha!\n\nCoddy\nSalom! Bugun dastur sonni o‘zi tanlaydi.\n\nO‘TGAN DARSDA\nchange\njon\nby\n−1\nJon\nTugasa, o‘yin tugaydi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "6c51313f1494",
+  "uzun": 33191
+ },
+ "sq-02-0-P2N": {
+  "id": "P2N",
+  "matn": "13-DARS · TASODIFIY SON\nSAVOL\nOlma har safar boshqa joyga qanday tushadi?\n\nCoddy\nQaysi yo‘l bilan har o‘yin boshqacha bo‘ladi?\n\nA\nBoshqa son qo‘yamiz\ngo to\nx:\n5\ny:\n0\nB\nNavbat bilan uch joy\ngo to\nx:\n1\ny:\n0\ngo to\nx:\n5\ny:\n0\ngo to\nx:\n3\ny:\n0\n1-olma · 2-olma · 3-olma\nC\nDastur o‘zi tanlasin\ngo to\nx:\nrandom\n0\nto\n6\ny:\n0\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nHar o‘yin boshqacha bo‘lsin\nBirini tanlang",
+  "bloklar": [],
+  "html": "834c61f6dded",
+  "uzun": 35644
+ },
+ "sq-03-0-P2S": {
+  "id": "P2S",
+  "matn": "SAVOL\nOlma har safar boshqa joyga qanday tushadi?\n\nCoddy\nQimirlamay yutdim. Olma doim shu yerga tushadi.\n\nA\nBoshqa son qo‘yamiz\n▶ Sinab ko‘rish\ngo to\nx:\n5\ny:\n0\nB\nNavbat bilan uch joy\n▶ Sinab ko‘rish\ngo to\nx:\n1\ny:\n0\ngo to\nx:\n5\ny:\n0\ngo to\nx:\n3\ny:\n0\n1-olma · 2-olma · 3-olma\nC\nDastur o‘zi tanlasin\n▶ Sinab ko‘rish\ngo to\nx:\nrandom\n0\nto\n6\ny:\n0\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "a5087b38b9ed",
+  "uzun": 36768
+ },
+ "sq-04-0-P2C": {
+  "id": "P2C",
+  "matn": "JAVOB\nDastur o‘zi tanlaydi\n\nCoddy\nEndi olma qayerga tushishini men ham bilmayman.\n\nA\nBoshqa son qo‘yamiz\n✕ ikki o‘yin bir xil\ngo to\nx:\n5\ny:\n0\n1-o‘yin: 5 · 5 · 5\n2-o‘yin: 5 · 5 · 5\nB\nNavbat bilan uch joy\n✕ yana bir xil\ngo to\nx:\n1\ny:\n0\ngo to\nx:\n5\ny:\n0\ngo to\nx:\n3\ny:\n0\n1-olma · 2-olma · 3-olma\n1-o‘yin: 1 · 5 · 3\n2-o‘yin: 1 · 5 · 3\nC\nDastur o‘zi tanlasin\n✓ har o‘yin boshqacha\ngo to\nx:\nrandom\n0\nto\n6\ny:\n0\n1-o‘yin: 4 · 1 · 6\n2-o‘yin: 2 · 5 · 0\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "4a2056eba344",
+  "uzun": 40206
+ },
+ "sq-05-0-P3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nTasodifiy son nima?\n\nCoddy\nTasodifiy son — dastur o‘zi tanlaydigan son.\n\n1 dan 6 gacha — zar kabi\n\n4\nBu safar — 4\n\n2\nHar safar boshqa son\n\nrandom\n1\nto\n6\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "43b6b2b3064d",
+  "uzun": 22180
+ },
+ "sq-06-0-P4": {
+  "id": "P4",
+  "matn": "REJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Birinchisidan boshlaymiz.\n\nDars oxirida · o‘z o‘yiningiz · Dasturini o‘qib berasiz\nO‘z o‘yiningiz\n1\nBitta son\n2\nIkki son\n3\nO‘yin\n‹ Orqaga\nBoshladik ›",
+  "bloklar": [],
+  "html": "0dad549310df",
+  "uzun": 41330
+ },
+ "sq-07-0-P6": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nrandom — tasodifiy son\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\ngo to x:\ny:\nrandom\n1\nto\n10\n0\n2 / 2 ta blok\nSinov: 0 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 2)\n‹ Orqaga\nrandom sonlarini 1 va 5 ga o‘zgartiring\n▶ Ishga tushir\nKeyingi ›",
+  "bloklar": [
+   "y:go to x:y:random1to100",
+   "m:random1to10"
+  ],
+  "html": "4d4b449c7f23",
+  "uzun": 26740
+ },
+ "sq-08-0-B1A": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nButun qator\nOlma istalgan savatga tushsin.\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nBlokni shu yerga ulang\n0 / 2 ta blok\nSinov: 0 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nMaslahat\nSavatlarning X va Y sini o‘qing\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "7bb52c1327ec",
+  "uzun": 21056
+ },
+ "sq-08-1-B1B": {
+  "id": "B1B",
+  "matn": "MASHQ · 2-POG‘ONA\nUchta savat\nOlma faqat savatlarga tushsin.\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nBlokni shu yerga ulang\n0 / 2 ta blok\nSinov: 0 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 2)\nMaslahat\nSavatlarning X va Y sini o‘qing\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "ca2982007197",
+  "uzun": 19012
+ },
+ "sq-08-2-B1C": {
+  "id": "B1C",
+  "matn": "MASHQ · 3-POG‘ONA\nUstun\nSavatlar ustma-ust.\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nBlokni shu yerga ulang\n0 / 2 ta blok\nSinov: 0 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 2)\nMaslahat\nSavatlarning X va Y sini o‘qing\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "dcf9374b7fb8",
+  "uzun": 20017
+ },
+ "sq-08-3-B1Y": {
+  "id": "B1Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nIkki olma\n1-olma «1» savatlarga, 2-olma «2» savatlarga.\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nBlokni shu yerga ulang\n0 / 4 ta blok\nSinov: 0 / 3\n1\n1\n1\n2\n2\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\nMaslahat\nSavatlarning X va Y sini o‘qing\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "ffd9808cdb94",
+  "uzun": 20523
+ },
+ "sq-09-0-P4B": {
+  "id": "P4B",
+  "matn": "REJA · 2-BEKAT\n2 · Ikki son\n\nCoddy\nEndi X ham, Y ham tasodifiy.\n\nDars oxirida · o‘z o‘yiningiz · Dasturini o‘qib berasiz\nO‘z o‘yiningiz\n✓\nBitta son\n2\nIkki son\n3\nO‘yin\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "9e278934a20b",
+  "uzun": 40959
+ },
+ "sq-10-0-P7": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nIkki son — ikki random\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\ngo to x:\ny:\nrandom\n3\nto\n5\n1\n2 / 3 ta blok\nSinov: 0 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\n‹ Orqaga\nY ga ham random qo‘ying\n▶ Ishga tushir\nKeyingi ›",
+  "bloklar": [
+   "y:go to x:y:random3to51",
+   "m:random3to5"
+  ],
+  "html": "6f94aed976f4",
+  "uzun": 27235
+ },
+ "sq-11-0-B2A": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nKichik kvadrat\nTo‘rtta savat.\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nBlokni shu yerga ulang\n0 / 3 ta blok\nSinov: 0 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\nMaslahat\nX ga ham, Y ga ham random\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "87f6d06ecfe3",
+  "uzun": 19503
+ },
+ "sq-11-1-B2B": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nTo‘rtburchak\nOlti savat.\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nBlokni shu yerga ulang\n0 / 3 ta blok\nSinov: 0 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 2)\nMaslahat\nX ga ham, Y ga ham random\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "9643388b4505",
+  "uzun": 20521
+ },
+ "sq-11-2-B2C": {
+  "id": "B2C",
+  "matn": "MASHQ · 3-POG‘ONA\nKatta to‘rtburchak\nO‘n ikki savat.\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nBlokni shu yerga ulang\n0 / 3 ta blok\nSinov: 0 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nX ga ham, Y ga ham random\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "8eb2e0efde5c",
+  "uzun": 23597
+ },
+ "sq-11-3-B2Y": {
+  "id": "B2Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nOlma yomg‘iri\nBir ishga tushirishda uchta olma.\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nBlokni shu yerga ulang\n0 / 4 ta blok\nSinov: 0 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 2)\nMaslahat\nX ga ham, Y ga ham random\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "050ed5550065",
+  "uzun": 20548
+ },
+ "sq-12-0-P9": {
+  "id": "P9",
+  "matn": "XULOSA\nTasodifiy son\n\nCoddy\nDastur sonni o‘zi tanladi — har safar boshqa.\n\nrandom\n1\nto\n6\n4\nTasodifiy son\nDastur o‘zi tanlaydigan son\nrandom\n2\nto\n4\nrandom 2 to 4\n2, 3 yoki 4\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "6ed900b1dd27",
+  "uzun": 39259
+ },
+ "sq-13-0-P4C": {
+  "id": "P4C",
+  "matn": "REJA · 3-BEKAT\n3 · O‘yin\n\nCoddy\nOxirgi bekat: o‘yin har safar boshqacha.\n\nDars oxirida · o‘z o‘yiningiz · Dasturini o‘qib berasiz\nO‘z o‘yiningiz\n✓\nBitta son\n✓\nIkki son\n3\nO‘yin\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "9e81fc398455",
+  "uzun": 41026
+ },
+ "sq-14-0-P8": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nO‘yin: olma terish\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nQahramon:\n→\n←\n↑\n↓\n▾\ngo to x:\ny:\nrandom\n0\nto\n6\n0\n2 / 2 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\n‹ Orqaga\n▶ Boshlash\nKeyingi ›",
+  "bloklar": [
+   "y:go to x:y:random0to60",
+   "m:random0to6"
+  ],
+  "html": "cce4e9afee98",
+  "uzun": 30579
+ },
+ "sq-15-0-B3A": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nBog‘ o‘rtasi\nOlma dasturida random yo‘q.\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nQahramon:\n→\n←\n↑\n↓\n▾\ngo to x:\ny:\n4\n1\n1 / 3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 4)\nMaslahat\nOlma dasturini tuzing, keyin ▶ Boshlash\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "y:go to x:y:41"
+  ],
+  "html": "95714e8dea64",
+  "uzun": 25094
+ },
+ "sq-15-1-B3B": {
+  "id": "B3B",
+  "matn": "MASHQ · 2-POG‘ONA\nTepa qator\nSavatlar eng tepada.\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nQahramon:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 / 2 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\nMaslahat\nOlma dasturini tuzing, keyin ▶ Boshlash\nBoshlash\nKeyingi ›",
+  "bloklar": [],
+  "html": "a66c4bc1fc52",
+  "uzun": 22535
+ },
+ "sq-15-2-B3C": {
+  "id": "B3C",
+  "matn": "MASHQ · 3-POG‘ONA\nChap ustun\nSavatlar chap chetda.\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nQahramon:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 / 2 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nMaslahat\nOlma dasturini tuzing, keyin ▶ Boshlash\nBoshlash\nKeyingi ›",
+  "bloklar": [],
+  "html": "61b6c3f9ce28",
+  "uzun": 22536
+ },
+ "sq-15-3-B3Y": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z o‘yiningiz\nOlmalar qayerga tushishini o‘zingiz tanlang.\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nQahramon:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 / 3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\nMaslahat\nOlma dasturini tuzing, keyin ▶ Boshlash\nBoshlash\nKeyingi ›",
+  "bloklar": [],
+  "html": "a5abeb4582a9",
+  "uzun": 20526
+ },
+ "sq-17-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nO‘yiningiz har safar boshqacha!\n\nBulut\nOlmalarni dastur o‘zi tanlagan joylarga tushirdingiz.\n\nSiz bugun\n0\nta random qo‘ydi\n0\nta olma tushirdi\n0\nta olma terdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 4)\nBulut\nKeyingi darsda xatolarni topamiz — ko‘rishguncha!\nDars tugadi",
+  "bloklar": [],
+  "html": "6b58feb444a5",
+  "uzun": 26508
+ },
+ "sx-P2S-C": {
+  "id": "P2S",
+  "matn": "SAVOL\nOlma har safar boshqa joyga qanday tushadi?\n\nCoddy\nQimirlamay yutdim. Olma doim shu yerga tushadi.\n\nA\nBoshqa son qo‘yamiz\n▶ Sinab ko‘rish\ngo to\nx:\n5\ny:\n0\nB\nNavbat bilan uch joy\n▶ Sinab ko‘rish\ngo to\nx:\n1\ny:\n0\ngo to\nx:\n5\ny:\n0\ngo to\nx:\n3\ny:\n0\n1-olma · 2-olma · 3-olma\nC\nDastur o‘zi tanlasin\n✓ har o‘yin boshqacha\ngo to\nx:\nrandom\n0\nto\n6\ny:\n0\n1-o‘yin: 4 · 1 · 6\n2-o‘yin: 2 · 5 · 0\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "b823f692b61e",
+  "uzun": 39486
+ },
+ "sx-P6-tayyor": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nrandom — tasodifiy son\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\ngo to x:\ny:\nrandom\n1\nto\n10\n0\n2 / 2 ta blok\nSinov: 0 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 2)\n‹ Orqaga\nrandom sonlarini 1 va 5 ga o‘zgartiring\n▶ Ishga tushir\nKeyingi ›",
+  "bloklar": [
+   "y:go to x:y:random1to100",
+   "m:random1to10"
+  ],
+  "html": "4d4b449c7f23",
+  "uzun": 26740
+ },
+ "sx-P8-tayyor": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nO‘yin: olma terish\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nQahramon:\n→\n←\n↑\n↓\n▾\ngo to x:\ny:\nrandom\n0\nto\n6\n0\n2 / 2 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\n‹ Orqaga\n▶ Boshlash\nKeyingi ›",
+  "bloklar": [
+   "y:go to x:y:random0to60",
+   "m:random0to6"
+  ],
+  "html": "cce4e9afee98",
+  "uzun": 30579
+ },
+ "y-01": {
+  "id": "P1",
+  "matn": "USTOZ · PROYEKTOR\n13-DARS · TASODIFIY SON\nBugun o‘yin har safar boshqacha!\n\nCoddy\nSalom! Bugun dastur sonni o‘zi tanlaydi.\n\nO‘TGAN DARSDA\nchange\njon\nby\n−1\nJon\nTugasa, o‘yin tugaydi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKirdi: 1\nKeyingi ›\nO‘QUVCHI · NOUTBUK\n13-DARS · TASODIFIY SON\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "ce216fc91402",
+  "uzun": 87259
+ },
+ "y-02": {
+  "id": "P2",
+  "matn": "USTOZ · PROYEKTOR\n13-DARS · TASODIFIY SON\nSAVOL\nOlma har safar boshqa joyga qanday tushadi?\n\nCoddy\nQimirlamay yutdim. Olma doim shu yerga tushadi.\n\nA\nBoshqa son qo‘yamiz\ngo to\nx:\n5\ny:\n0\nB\nNavbat bilan uch joy\ngo to\nx:\n1\ny:\n0\ngo to\nx:\n5\ny:\n0\ngo to\nx:\n3\ny:\n0\n1-olma · 2-olma · 3-olma\nC\nDastur o‘zi tanlasin\ngo to\nx:\nrandom\n0\nto\n6\ny:\n0\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nOlma: 3 / 3\nHar o‘yin boshqacha bo‘lsin\n‹ Orqaga\nJavob berdi: 0 / 1\nSinab ko‘ramiz ›\nO‘QUVCHI · NOUTBUK\n13-DARS · TASODIFIY SON\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "c364f097d635",
+  "uzun": 90672
+ },
+ "y-03": {
+  "id": "P2S",
+  "matn": "USTOZ · PROYEKTOR\nSAVOL\nOlma har safar boshqa joyga qanday tushadi?\n\nCoddy\nQimirlamay yutdim. Olma doim shu yerga tushadi.\n\nA\nBoshqa son qo‘yamiz\ngo to\nx:\n5\ny:\n0\nB\nNavbat bilan uch joy\ngo to\nx:\n1\ny:\n0\ngo to\nx:\n5\ny:\n0\ngo to\nx:\n3\ny:\n0\n1-olma · 2-olma · 3-olma\nC\nDastur o‘zi tanlasin\ngo to\nx:\nrandom\n0\nto\n6\ny:\n0\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "81b67abac9e9",
+  "uzun": 91255
+ },
+ "y-04": {
+  "id": "P2C",
+  "matn": "USTOZ · PROYEKTOR\nJAVOB\nDastur o‘zi tanlaydi\n\nCoddy\nEndi olma qayerga tushishini men ham bilmayman.\n\nA\nBoshqa son qo‘yamiz\n✕ ikki o‘yin bir xil\ngo to\nx:\n5\ny:\n0\n1-o‘yin: 5 · 5 · 5\n2-o‘yin: 5 · 5 · 5\nB\nNavbat bilan uch joy\n✕ yana bir xil\ngo to\nx:\n1\ny:\n0\ngo to\nx:\n5\ny:\n0\ngo to\nx:\n3\ny:\n0\n1-olma · 2-olma · 3-olma\n1-o‘yin: 1 · 5 · 3\n2-o‘yin: 1 · 5 · 3\nC\nDastur o‘zi tanlasin\n✓ har o‘yin boshqacha\ngo to\nx:\nrandom\n0\nto\n6\ny:\n0\n1-o‘yin: 4 · 1 · 6\n2-o‘yin: 2 · 5 · 0\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "e4a54d1e0fcf",
+  "uzun": 94266
+ },
+ "y-05": {
+  "id": "P3",
+  "matn": "USTOZ · PROYEKTOR\nYANGI SO‘Z\nTasodifiy son nima?\n\nCoddy\nTasodifiy son — dastur o‘zi tanlaydigan son.\n\n1 dan 6 gacha — zar kabi\n\n4\nBu safar — 4\n\n2\nHar safar boshqa son\n\nrandom\n1\nto\n6\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "792cdf1635a0",
+  "uzun": 76240
+ },
+ "y-06": {
+  "id": "P4",
+  "matn": "USTOZ · PROYEKTOR\nREJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Birinchisidan boshlaymiz.\n\nDars oxirida · o‘z o‘yiningiz · Dasturini o‘qib berasiz\nO‘z o‘yiningiz\n1\nBitta son\n2\nIkki son\n3\nO‘yin\n‹ Orqaga\nBoshladik ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "d58977f7efd4",
+  "uzun": 95390
+ },
+ "y-07": {
+  "id": "P6",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nrandom — tasodifiy son\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nBlokni shu yerga ulang\n0 / 2 ta blok\nSinov: 0 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 2)\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "9b1579179594",
+  "uzun": 80770
+ },
+ "y-08": {
+  "id": "P5",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nEndi o‘zingiz!\n\nCoddy\nSavatlarni o‘qing va random sonlarini tanlang.\n\nUch pog‘onani tugatdi\n0 / 1\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nButun qator\n2\n0\nUchta savat\n3\n0\nUstun\n★\n0\nIkki olma\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "28cb9f095da8",
+  "uzun": 91507
+ },
+ "y-09": {
+  "id": "P4B",
+  "matn": "USTOZ · PROYEKTOR\nREJA · 2-BEKAT\n2 · Ikki son\n\nCoddy\nEndi X ham, Y ham tasodifiy.\n\nDars oxirida · o‘z o‘yiningiz · Dasturini o‘qib berasiz\nO‘z o‘yiningiz\n✓\nBitta son\n2\nIkki son\n3\nO‘yin\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "7b4c27a5c165",
+  "uzun": 95019
+ },
+ "y-10": {
+  "id": "P7",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nIkki son — ikki random\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\ngo to x:\ny:\nrandom\n3\nto\n5\n1\n2 / 3 ta blok\nSinov: 0 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "y:go to x:y:random3to51",
+   "m:random3to5"
+  ],
+  "html": "2662f8449813",
+  "uzun": 81272
+ },
+ "y-11": {
+  "id": "P5G",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nIkkala son tasodifiy!\n\nCoddy\nSavatlarning chetlarini toping — X va Y uchun.\n\nUch pog‘onani tugatdi\n0 / 1\n1\n0\nKichik kvadrat\n2\n0\nTo‘rtburchak\n3\n0\nKatta to‘rtburchak\n★\n0\nOlma yomg‘iri\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "2e6610b06d75",
+  "uzun": 92210
+ },
+ "y-12": {
+  "id": "P9",
+  "matn": "USTOZ · PROYEKTOR\nXULOSA\nTasodifiy son\n\nCoddy\nDastur sonni o‘zi tanladi — har safar boshqa.\n\nrandom\n1\nto\n6\n4\nTasodifiy son\nDastur o‘zi tanlaydigan son\nrandom\n2\nto\n4\nrandom 2 to 4\n2, 3 yoki 4\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "db37bfb10a8e",
+  "uzun": 93319
+ },
+ "y-13": {
+  "id": "P4C",
+  "matn": "USTOZ · PROYEKTOR\nREJA · 3-BEKAT\n3 · O‘yin\n\nCoddy\nOxirgi bekat: o‘yin har safar boshqacha.\n\nDars oxirida · o‘z o‘yiningiz · Dasturini o‘qib berasiz\nO‘z o‘yiningiz\n✓\nBitta son\n✓\nIkki son\n3\nO‘yin\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "d59ab90b2324",
+  "uzun": 95086
+ },
+ "y-14": {
+  "id": "P8",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nO‘yin: olma terish\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nQahramon:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 / 2 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "ccc1d4df97fd",
+  "uzun": 84648
+ },
+ "y-15": {
+  "id": "P5B",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nO‘yiningizni tuzing!\n\nCoddy\nOlma dasturini tuzing, keyin o‘ynang.\n\nUch o‘yinni yutdi\n0 / 1\n1\n0\nBog‘ o‘rtasi\n2\n0\nTepa qator\n3\n0\nChap ustun\n★\n0\nO‘z o‘yiningiz\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "c55e4319ad61",
+  "uzun": 91157
+ },
+ "y-16": {
+  "id": "P11",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RSATISH\nOlma dasturingizni o‘qib bering\nSiz o‘qiysiz — men teraman.\nHarakat\nO‘zgaruvchi\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\nQahramon:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 / 3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "c4d5167a2543",
+  "uzun": 81140
+ },
+ "y-17": {
+  "id": "P12",
+  "matn": "USTOZ · PROYEKTOR\nYAKUN\nO‘yiningiz har safar boshqacha!\nBUGUNGI SO‘Z\nTasodifiy son\nDastur o‘zi tanlaydigan son\nKeyingi dars\n14 · Xatoni topish\n✓\nBitta son\n✓\nIkki son\n✓\nO‘yin\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "b4832a811f8f",
+  "uzun": 82971
+ },
+ "y-18": {
+  "id": "P14",
+  "matn": "USTOZ · PROYEKTOR\nSINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nta random qo‘ydi\n0\nta olma tushirdi\n0\nta olma terdi\n‹ Orqaga\nDarsni yakunlash\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: olma har safar boshqa joyga qanday tushadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi tanlaydi\n5 / 18 · Yangi so‘z: tasodifiy son\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: random bloki\n8 / 18 · Bitta son: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki son\n11 / 18 · Ikki son: pog‘onalar\n12 / 18 · Xulosa: tasodifiy son\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: o‘yin\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Olma dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "afba873326f8",
+  "uzun": 92859
+ },
+ "varaq": {
+  "id": "",
+  "matn": "13-dars · Tasodifiy son — ustoz varag‘i\n\nAsosiy fikr: son har doim dasturga yozib qo‘yilmaydi — random uni har safar o‘zi tanlaydi; «dan … gacha» sonlarini savatlarga qarab o‘ylab tanlaymiz; tasodifiy dasturni bir necha marta ishga tushirib tekshiramiz.\n\nYo‘l: huk (olma har safar boshqa joyga — uch sinov) → yangi so‘z «tasodifiy son» → reja → 1-bekat «Bitta son» → 2-bekat «Ikki son» → 3-bekat «O‘yin» → o‘qib berish → yakun.\n\nYangi blok: random 1 to 10 — tasodifiy son (oval, O‘zgaruvchi oilasida — jigarrang). O‘zi yurmaydi — go to ning sonida turadi. Qo‘yish: go to dagi sonni bosing — ro‘yxat oxirida «random»; yoki javondan random ni bosing — go to ning bo‘sh soniga tushadi. Ustoz bir marta aytadi: «random — tasodifiy».\n\nOlma dasturi: 1–2-bekatda dastur olmaniki — har go to bitta olmani tushiradi, qahramon kuzatadi. Dvigatel random ning hamma sonini o‘zi sanab tekshiradi; bola uch marta ishga tushiradi («Sinov: N / 3») — olma kamida 2 xil joyga tushsa, «Har safar boshqa joy!». 3-bekatda o‘yin: qahramon strelkalar bilan (boshqaruv tayyor), olma olinsa — olma dasturi yana ishlaydi; 5 ta olma — yutdi.\n\nTasma va muammocha namunalari: «2 / 2 ta blok», «3 / 3 ta blok»; «Sinov: 1 / 3» — «Yana ishga tushiring — olma qayerga tushadi?»; «Sinov: 3 / 3» — «Har safar boshqa joy!». Ortiqvoy: «random 5 ni ham tanlashi mumkin — olma (5, 0) ga tushadi. random sonlarini tekshiring», «random 7 ni ham tanlashi mumkin — maydonda X 0 dan 6 gacha». Huk: olma doim (3, 0) ga — «Olma: 1 / 3», «2 / 3», «3 / 3». 14-qadamda ikkinchi o‘yin: «Bu safar boshqa joy». Olma tushganda — yengil «tup».\n\nBelgilar (pog‘onalar javobi): «go(R0-6, 2)» — go to x: (random 0 to 6) y: 2; «R3[…]» — repeat 3; «3 ta sinovda 2 xil» — uch ishga tushirishda kamida 2 xil joy. 1-bekat: go(R0-6, 2) · go(R2-4, 0) · go(3, R0-4) · go(R1-3, 4) go(R5-6, 0). 2-bekat: go(R0-1, R2-3) · go(R2-4, R0-1) · go(R2-5, R0-2) · R3[go(R3-5, R0-1)]. 3-bekat: go(R3-5, R0-2) · go(R1-4, 4) · go(0, R0-3).\n\nKo‘rish ekranlarida (huk, 7, 10, 14-qadam) tanlov oldindan berilgan: 7-qadamda «8» albatta chiqadi (maydondan tashqari), keyin 4, 2, 5. Bola pog‘onalarida tasodif — haqiqiy. 16-qadamda proyektorga ism chiqmaydi.\n\nBoshqaruv: → yoki «Keyingi» — oldinga, ← — orqaga, F — to‘liq ekran. O‘ng tepada (sichqoncha olib borilsa) — qadam ro‘yxati va «aloqa» belgisi (yashil — ulangan).\n\n1\nKirish\n\nEKRANDA\n«13-dars · Tasodifiy son» — «Bugun o‘yin har safar boshqacha!» Maydon, Coddy (3, 0); pastda «O‘tgan darsda» — jon.\n\nSIZ\n«O‘tgan darsda o‘yinga jon qo‘shdik.» «Bugun olma har safar boshqa joyga tushadi.» «Noutbukda «Tayyorman» tugmasini bosing.»\n\nBOLA O‘RGANADI\nBugun olma har safar boshqa joyga tushadi.\n\n2\nSavol: olma har safar boshqa joyga qanday tushadi?\n\nEKRANDA\nSavol: «Olma har safar boshqa joyga qanday tushadi?» Olma doim (3, 0) ga — Coddy qimirlamay yutdi. Uchta karta: A «Boshqa son qo‘yamiz» · B «Navbat bilan uch joy» · C «Dastur o‘zi tanlasin».\n\nSIZ\n«Olma doim bir joyga tushadi — o‘ynash qiziq emas. Har o‘yin boshqacha bo‘lsin.» «Har kim noutbukida bitta kartani tanlasin: qanday qilamiz?»\n\nBOLA O‘RGANADI\nTaxmin qiladi — bu huk.\n\n3\nUch sinov\n\nEKRANDA\nUch sinov: har kartada ikki o‘yin × uch olma. A — «1-o‘yin: 5 · 5 · 5», «2-o‘yin: 5 · 5 · 5» — ✕. «Keyingi» — B: 1 · 5 · 3 ikki marta — ✕. «Keyingi» — C: 4 · 1 · 6 va 2 · 5 · 0 — ✓.\n\nSIZ\n«Boshqa son ham, navbat ham — ikkinchi o‘yinda o‘sha-o‘sha. Yodlab olsa bo‘ladi.» «Uchinchisida sonni dastur o‘zi tanladi — har o‘yin boshqacha.»\n\nBOLA O‘RGANADI\nDastur sonni o‘zi tanlay oladi.\n\n4\nJavob: dastur o‘zi tanlaydi\n\nEKRANDA\nJavob: «Dastur o‘zi tanlaydi». A va B xira, C oltin; maydonda olti tushgan joy.\n\nSIZ\n«Sonni o‘zimiz yozmaymiz — dastur har safar o‘zi tanlaydi. Shuning uchun har o‘yin boshqacha.»\n\nBOLA O‘RGANADI\nDastur o‘zi tanlaydi.\n\n5\nYangi so‘z: tasodifiy son\n\nEKRANDA\nYangi so‘z: «Tasodifiy son nima?» «Keyingi» — birma-bir: zar va random 1 to 6 → «4» → «2».\n\nSIZ\n«Tasodifiy son — dastur o‘zi tanlaydigan son. Qaysi biri — oldindan bilmaymiz.» «random 1 to 6 — 1 dan 6 gacha istalgan son. Lekin 7 hech qachon chiqmaydi.»\n\nBOLA O‘RGANADI\nYangi so‘z: tasodifiy son.\n\n6\nReja\n\nEKRANDA\nReja: tepalik — bitta son → ikki son → o‘yin; cho‘qqida «o‘z o‘yiningiz · Dasturini o‘qib berasiz».\n\nSIZ\n«Bugun uchta bekat: bitta son, ikki son, o‘yin.» «Dars oxirida olmalari har safar boshqa joyga tushadigan o‘z o‘yiningizni tuzasiz.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n7\nKo‘ramiz: random bloki\n\nEKRANDA\nKo‘ramiz: «random — tasodifiy son». Javondan go to x: 0 y: 0; X dagi sonni bosing — «random»: go to x: (random 1 to 10) y: 0. «▶ Ishga tushir»: «8» — olma maydondan chiqdi, Kamvoy «Maydon tugadi!» («random 8 ni tanladi. Maydonda X — 0 dan 6 gacha»). Sonlarni 1 va 5 ga — uch marta: 4, 2, 5 — «Har safar boshqa joy!».\n\nSIZ\n«random — tasodifiy. Dastur shu sonlar orasidan birini o‘zi tanlaydi.» «Sonlarni savatlarga qarab tanlaymiz: 1 dan 5 gacha.» «Endi o‘zingiz.»\n\nBOLA O‘RGANADI\nrandom bloki.\n\n8\nBitta son: pog‘onalar\n\nEKRANDA\nMashq: «Endi o‘zingiz!» — zinapoya: 1 butun qator · 2 uchta savat · 3 ustun · ★ ikki olma.\n\nSIZ\n«Avval savatlarni o‘qing: X i qaysi sondan qaysi songacha? Y i-chi?» «Uch marta ishga tushiring — har safar savatga tushyaptimi?» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nBitta sonni tasodifiy qiladi.\n\n9\n2-bekat\n\nEKRANDA\nTepalik: 1-bekat ✓ — «Ikki son».\n\nSIZ\n«Bitta tasodifiy sonni bildik. Endi ikkalasi tasodifiy bo‘ladi.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n10\nKo‘ramiz: ikki son\n\nEKRANDA\nKo‘ramiz: «Ikki son — ikki random». Tayyor go to x: (random 3 to 5) y: 1 — «4»: Kamvoy «Bu savat bo‘sh qoladi!» («(3, 2) dagi savatga olma tushmaydi. random sonlarini tekshiring»). Y ga random 1 to 2 — (5, 2), (3, 1), (4, 2).\n\nSIZ\n«Bitta random — bitta son. Savatlar ikki qatorda bo‘lsa, Y ham tasodifiy bo‘lsin.» «X ning o‘z random i, Y ning o‘z random i. Har biri o‘z sonlari bilan.» «Endi o‘zingiz.»\n\nBOLA O‘RGANADI\nIkkala sonni tasodifiy qiladi.\n\n11\nIkki son: pog‘onalar\n\nEKRANDA\nMashq: «Ikkala son tasodifiy!» — zinapoya: 1 kichik kvadrat · 2 to‘rtburchak · 3 katta to‘rtburchak · ★ olma yomg‘iri.\n\nSIZ\n«Chap pastki savat va o‘ng yuqori savat — ularning X va Y si sizga kerak.» «Daraxt va gulga tushmasin — sonlarni ortiqcha olmang.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nX ga ham, Y ga ham random.\n\n12\nXulosa: tasodifiy son\n\nEKRANDA\nXulosa: «Tasodifiy son». Ikki karta: dastur o‘zi tanlaydigan son; random 2 to 4 — 2, 3 yoki 4.\n\nSIZ\n«Tasodifiy son — dastur o‘zi tanlaydigan son.» «random 2 to 4 — 2, 3 yoki 4. Qaysi biri — bilmaymiz, lekin shu sonlardan biri.»\n\nBOLA O‘RGANADI\nTasodifiy son nima ekanini aytadi.\n\n13\n3-bekat\n\nEKRANDA\nTepalik: 1, 2 ✓ — «O‘yin».\n\nSIZ\n«Ikki bekatdan o‘tdik. Oxirgisi — olma terish o‘yini.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n14\nKo‘ramiz: o‘yin\n\nEKRANDA\nKo‘ramiz: «O‘yin: olma terish». «Qahramon» tayyor; olma dasturiga go to x: (random 0 to 6) y: 0. «▶ Boshlash»: «O‘yin: strelkalarni bosing · Olma: 0 / 5»; olma (5, 0) ga; ↓ ↓ → → — oldi, «Olma: 1 / 5»; yangi olma (1, 0) ga. «■ To‘xtatish», yana «▶ Boshlash» — birinchi olma endi (2, 0) ga.\n\nSIZ\n«Qahramonni strelkalar bilan yurgizamiz. Olmani esa dastur tushiradi.» «Olma olindi — olma dasturi yana ishlaydi, random yana son tanlaydi.» «Endi o‘zingiz: olma dasturini tuzing va o‘ynang.»\n\nBOLA O‘RGANADI\nTasodifiy o‘yin.\n\n15\nO‘yin: pog‘onalar\n\nEKRANDA\nMashq: «O‘yiningizni tuzing!» — zinapoya: 1 bog‘ o‘rtasi · 2 tepa qator · 3 chap ustun · ★ o‘z o‘yiningiz.\n\nSIZ\n«Avval olma dasturi: random sonlari savatlarga qarab. Keyin «▶ Boshlash».» «Beshta olmani terganingizda — yutdingiz.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nO‘z o‘yinini tuzadi.\n\n16\nOlma dasturingizni o‘qib bering\n\nEKRANDA\n«Olma dasturingizni o‘qib bering». Maydon savatsiz, olma dasturi bo‘sh. Proyektorda ism yo‘q; bola noutbukida — oxirgi yechgan pog‘onasi.\n\nSIZ\n«Kim olma dasturini o‘qib beradi? Avval X, keyin Y: qaysi sondan qaysi songacha.» «Kuzating: olmalar qayerlarga tushyapti?»\n\nBOLA O‘RGANADI\nOlma dasturini o‘qib beradi.\n\n17\nYakun\n\nEKRANDA\nYakun: «O‘yiningiz har safar boshqacha!» Bugungi so‘z — tasodifiy son; keyingi dars — 14 · Xatoni topish.\n\nSIZ\n«Uchala bekatdan o‘tdik: bitta son, ikki son, o‘yin.» «Bugungi so‘z — tasodifiy son: dastur o‘zi tanlaydigan son.» «Keyingi darsda dasturlardagi xatolarni topib tuzatamiz.»\n\nBOLA O‘RGANADI\nO‘z natijasini ko‘radi.\n\n18\nSinfimiz bugun\n\nEKRANDA\nSinfimiz bugun: nechta random qo‘yildi, nechta olma tushirildi va terildi (haqiqiy son, ismsiz).\n\nSIZ\n«Hammangiz zo‘r ishladingiz!» (keyin raqamlarni o‘qiydi) «Kompyuter o‘yinlarida ham shunday: sovg‘a va to‘siq har safar boshqa joyda chiqadi.»\n\nBOLA O‘RGANADI\nSinf bilan birga natijani ko‘radi.",
+  "bloklar": [],
+  "html": "18e6c45e324b",
+  "uzun": 10370
+ },
+ "eshik": {
+  "id": "",
+  "matn": "13-dars · Tasodifiy son\n\nQaysi oynani ochamiz?\n\nO‘quvchi oynasi\nUstoz oynasi (proyektor)\nO‘quvchi — o‘zi (ustozsiz)\nIkkalasi yonma-yon (ko‘rik)\nUstoz varag‘i",
+  "bloklar": [],
+  "html": "72caa13a24e4",
+  "uzun": 769
+ },
+ "kirish-ismsiz": {
+  "id": "",
+  "matn": "Darsga kirish\n\nIsmingizni yozing\n\nKirish",
+  "bloklar": [],
+  "html": "bb43a0750caa",
+  "uzun": 213
+ }
+}

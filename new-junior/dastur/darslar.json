@@ -1,0 +1,1776 @@
+{
+ "modullar": [
+  {
+   "n": 1,
+   "nom": "Blok studiya: o'yin yasash",
+   "bosqich": "1-bosqich · START",
+   "meta": "23 dars · 1–23-darslar · ≈ 8 hafta · 1–2-oy · natija: Shaxsiy o'yin · Demo Day №1",
+   "turlar": "yangi mavzu 12 · amaliyot 2 · loyiha 5 · test 1 · xakaton 1 · PM 1 · Demo Day 1",
+   "tavsif": "O'quvchi o'z blok studiyamizda bloklarni ulab o'yin yasaydi va dasturlashning asosiy tushunchalarini o'rganadi: ketma-ketlik, takrorlash, shart, o'zgaruvchi, hodisa. «Kodini ko'rsat» tugmasi bilan har blok ortida JavaScript turganini ko'radi. Modul oxirida shaxsiy o'yinini ota-onasiga ko'rsatadi.",
+   "bola_qila_oladi": "Ketma-ketlik, takrorlash, shart, o'zgaruvchi va hodisali o'yin yasaydi; xatoni topib tuzatadi; blok va JavaScript qatorini moslaydi.",
+   "lms_kerak": "Blok studiya: sahna, bloklar, topshiriq va erkin rejim — 2, katta hajm (Blockly — ochiq kutubxona, litsenziyani tekshirish); avtomatik tekshiruv — 2; «Kodini ko'rsat» tugmasi — 2."
+  },
+  {
+   "n": 2,
+   "nom": "AI: ijod va xavfsizlik",
+   "bosqich": "2-bosqich · AI VA BIRINCHI SAHIFA",
+   "meta": "11 dars · 24–34-darslar · ≈ 4 hafta · 2–3-oy · natija: Qahramon va AI video",
+   "turlar": "yangi mavzu 9 · amaliyot 1 · xakaton 1",
+   "tavsif": "O'quvchi AI nima ekanini, xavfsizlik qoidalarini, to'g'ri so'rov yozish va AI javobini tekshirishni o'rganadi. O'z qahramonini, uning fonini, logotipini, hikoyasini va qisqa videosini yaratadi. Qahramon kurs oxirigacha sahifa, o'yin va botda yashaydi.",
+   "bola_qila_oladi": "AI'ga aniq so'rov yozadi, javobini tekshiradi, shaxsiy ma'lumotni himoya qiladi; AI bilan rasm, hikoya va qisqa video yaratadi.",
+   "lms_kerak": "AI rasm, video va musiqa servislari — 3 (akkauntlar maktab yoki mentor nomiga, bepul limit sinfda sinaladi); LMSdagi AI yordamchi — 1 (CRMda uning jurnali bor, darsda ishlatish tekshiriladi); kameraga ruxsat — 2; kuchsiz noutbukda kamera — 4."
+  },
+  {
+   "n": 3,
+   "nom": "Birinchi sahifa: HTML, CSS va JavaScript",
+   "bosqich": "2-bosqich · AI VA BIRINCHI SAHIFA",
+   "meta": "18 dars · 35–52-darslar · ≈ 6 hafta · 3–5-oy · natija: Interaktiv qahramon sahifasi · Demo Day №2",
+   "turlar": "yangi mavzu 10 · amaliyot 2 · loyiha 2 · test 2 · pre-demo 1 · Demo Day 1",
+   "tavsif": "O'quvchi qahramoni haqida birinchi veb-sahifasini o'zi yozadi: HTML bilan tuzilish, CSS bilan rang va fon, JavaScript bilan tugma. Hamma kod LMS ichidagi muharrirda yoziladi. Modul oxirida ota-onalar AI videosini va bolaning interaktiv sahifasini ko'radi.",
+   "bola_qila_oladi": "Sarlavha, matn, ro'yxat, rasm, havola va bo'limlar yozadi; rang, shrift va fon beradi; JavaScript'da o'zgaruvchi yozadi, sahifadagi matnni o'zgartiradi va tugma bosilishiga javob beradi.",
+   "lms_kerak": "HTML/CSS/JS kompilyatori — 1 (bor); media kutubxona — 2; sahifa holatini avtomatik tekshirish — 2; sahifani havola bilan ulashish — 4."
+  },
+  {
+   "n": 4,
+   "nom": "Interaktiv hikoya: shartlar va funksiyalar",
+   "bosqich": "3-bosqich · DASTURLASH",
+   "meta": "20 dars · 53–72-darslar · ≈ 7 hafta · 5–6-oy · natija: Hikoya-o'yin",
+   "turlar": "yangi mavzu 10 · amaliyot 3 · loyiha 5 · test 1 · PM 1",
+   "tavsif": "2-modulda AI bilan yozilgan hikoya tanlovli o'yinga aylanadi. O'quvchi sonlar, taqqoslash, shartlar va funksiyalarni o'rganadi, CSS'da quti modeli bilan sahnalarni bezaydi. 3-moduldan boshlab har dars 5 daqiqalik algoritm masalasi bilan boshlanadi.",
+   "bola_qila_oladi": "Sonlar va matnlar bilan ishlaydi, if / else va mantiqiy amallar yozadi, oddiy funksiya yaratadi, maydondan qiymat oladi, blokni ko'rsatib-yashiradi, padding, margin va border bilan quti yasaydi, konsol xabaridan xatoni topadi.",
+   "lms_kerak": "JavaScript avtotestlari — 2; konsol xabarlarini darslikda ko'rsatish — 1."
+  },
+  {
+   "n": 5,
+   "nom": "Viktorina: Flex, massivlar va takrorlash",
+   "bosqich": "3-bosqich · DASTURLASH",
+   "meta": "24 dars · 73–96-darslar · ≈ 8 hafta · 6–8-oy · natija: Viktorina · Demo Day №3",
+   "turlar": "yangi mavzu 13 · amaliyot 2 · loyiha 4 · test 1 · xakaton 1 · PM 1 · pre-demo 1 · Demo Day 1",
+   "tavsif": "O'quvchi o'z mavzusidagi viktorinani yasaydi. Flex bilan sahifani joylashtiradi, massiv, takrorlash, natija qaytaradigan funksiya va obyektni o'rganadi. v4ning «Algoritm» modulidagi masalalar shu yerda JavaScript'da yechiladi.",
+   "bola_qila_oladi": "Flex bilan kartochkalar qatorini yasaydi; massiv yaratadi, unga qo'shadi, aylanib chiqadi va sahifaga chiqaradi; for va while yozadi; return qiladigan funksiya va oddiy obyekt yaratadi; eng katta son, yig'indi va sanash masalalarini yechadi.",
+   "lms_kerak": "Avtotestlar — 2; loyihani saqlash — 1 (o'quvchi loyihalari jadvali bor)."
+  },
+  {
+   "n": 6,
+   "nom": "Sayt: dizayn, CSS va AI bilan kod",
+   "bosqich": "4-bosqich · SAYT VA O'YINLAR",
+   "meta": "26 dars · 97–122-darslar · ≈ 9 hafta · 8–10-oy · natija: Ikki sayt internetda",
+   "turlar": "yangi mavzu 13 · amaliyot 2 · loyiha 5 · test 2 · xakaton 1 · PM 3",
+   "tavsif": "O'quvchi sayt kim uchun kerakligidan boshlaydi, CSS'ni yakunlaydi (tuzilish, joylashuv, animatsiya, telefonga moslash), Stitch'da maket chizdiradi va AI yordamchi bilan ikki sayt yig'adi: o'z sayti va do'st yoki oila uchun sayt. Avval qo'lda, keyin AI bilan.",
+   "bola_qila_oladi": "Ko'p sahifali sayt tuzilishini yozadi; position, shrift va ikonka, keyframes, media query ishlatadi; formani JavaScript bilan tekshiradi; maketni so'rov bilan chizdiradi; AI'dan tushuntirish, xatoni topish va bo'lim yozishni so'raydi va natijani tekshiradi; saytni internetga joylaydi.",
+   "lms_kerak": "Stitch — 3 yoki zaxira maket — 2; VS Code — bepul o'rnatish; hosting — 3 yoki LMS havolasi — 2; AI yordamchi — 1 yoki 3."
+  },
+  {
+   "n": 7,
+   "nom": "O'yinlar: obyektlar, taymer va klaviatura",
+   "bosqich": "4-bosqich · SAYT VA O'YINLAR",
+   "meta": "26 dars · 123–148-darslar · ≈ 9 hafta · 11–13-oy · natija: Shaxsiy o'yin JavaScript'da · Demo Day №4",
+   "turlar": "yangi mavzu 10 · amaliyot 4 · loyiha 6 · test 1 · xakaton 1 · PM 2 · pre-demo 1 · Demo Day 1",
+   "tavsif": "JavaScript endi to'liq o'yinlar uchun ishlaydi: obyektlar ro'yxati, taymer, klaviatura, koordinatalar, to'qnashuv. O'quvchi kliker va «Tutib ol» o'yinlarini yasaydi, oxirida shaxsiy o'yinini saytiga qo'shadi.",
+   "bola_qila_oladi": "Obyektlar ro'yxatidan sahifa yasaydi, qidiradi va filtrlaydi; matn bilan ishlaydi; taymer, klaviatura, koordinatalar, o'yin sikli va to'qnashuvni yozadi; natijani saqlaydi; shaxsiy o'yinini rejadan himoyagacha yetkazadi.",
+   "lms_kerak": "LMS ichida localStorage — 4; o'yin yordamchilari (to'qnashuv funksiyasi) — 1; ovoz fayllari — 2; noutbuk tezligi — 4."
+  },
+  {
+   "n": 8,
+   "nom": "Telegram bot (kodda)",
+   "bosqich": "5-bosqich · FINAL",
+   "meta": "8 dars · 149–156-darslar · ≈ 3 hafta · 13-oy · natija: O'z boti",
+   "turlar": "yangi mavzu 5 · loyiha 2 · PM 1",
+   "tavsif": "O'quvchi Telegram botni JavaScript'da o'zi yozadi. Mantiq LMS ichidagi bot simulyatorida mashq qilinadi, haqiqiy bot maktab serverida ishga tushadi — shunda noutbuk yopilsa ham bot ishlayveradi.",
+   "bola_qila_oladi": "Botga buyruq, xabarga qarab javob, tugmalar, viktorina va har foydalanuvchi uchun ball yozadi; token xavfsizligini biladi.",
+   "lms_kerak": "Bot simulyatori — 2; maktab serveri — 2; Telegram akkaunti va bolalar uchun shartlar — 3, tekshirilmagan."
+  },
+  {
+   "n": 9,
+   "nom": "Final: AI bilan sayt",
+   "bosqich": "5-bosqich · FINAL",
+   "meta": "12 dars · 157–168-darslar · ≈ 4 hafta · 13–14-oy · natija: Yakuniy sayt · Yakuniy Demo Day",
+   "turlar": "amaliyot 2 · loyiha 4 · test 1 · PM 3 · pre-demo 1 · Demo Day 1",
+   "tavsif": "O'quvchi g'oyadan internetdagi tayyor saytgacha yo'lni o'zi bosib o'tadi: kim uchunligini aniqlaydi, Stitch'da dizayn qiladi, AI bilan yig'adi, o'zi JavaScript qo'shadi, kodini tushuntiradi, sinaydi va joylaydi.",
+   "bola_qila_oladi": "Loyihani mustaqil rejalashtiradi, AI bilan yig'adi va tekshiradi, o'zi JavaScript yozadi, sinov o'tkazadi, saytni joylaydi va butun kurs ishlarini taqdim etadi.",
+   "lms_kerak": "6-moduldagidek: Stitch yoki zaxira maket, hosting yoki LMS havolasi, AI yordamchi."
+  }
+ ],
+ "darslar": [
+  {
+   "n": 1,
+   "modul": 1,
+   "tur": "yangi mavzu",
+   "mavzu": "Tanishuv: kompyuter, dasturlash va Blok studiya",
+   "natija": "Personaj ekranda yuradi va gapiradi",
+   "organadi": "Dastur nima ekanini tushunadi, bloklarni ulab personajga buyruq beradi",
+   "nega": "Bola birinchi darsdayoq o'z natijasini ko'rishi kerak; bu sinov darsi ham",
+   "tekshiruv": "Avto: personaj buyruqni bajardi"
+  },
+  {
+   "n": 2,
+   "modul": 1,
+   "tur": "yangi mavzu",
+   "mavzu": "Buyruqlar ketma-ketligi",
+   "natija": "Personaj labirintdan chiqadi",
+   "organadi": "Kompyuter buyruqlarni yozilgan tartibda bajarishini tushunadi",
+   "nega": "Dasturlashning birinchi qoidasi; hamma mavzu shunga tayanadi",
+   "tekshiruv": "Avto: yo'l to'g'ri"
+  },
+  {
+   "n": 3,
+   "modul": 1,
+   "tur": "yangi mavzu",
+   "mavzu": "Koordinatalar: X va Y",
+   "natija": "Personaj aytilgan nuqtalarga boradi",
+   "organadi": "Ekrandagi har nuqtaning X va Y manzili borligini o'rganadi",
+   "nega": "O'yinda, keyin CSS va JavaScript'da ham kerak",
+   "tekshiruv": "Natijani oldindan aytish (avto)"
+  },
+  {
+   "n": 4,
+   "modul": 1,
+   "tur": "yangi mavzu",
+   "mavzu": "Hodisalar: tugma bosilganda",
+   "natija": "Personaj strelkalar bilan yuradi",
+   "organadi": "Dastur hodisani kutib, unga javob berishini o'rganadi",
+   "nega": "JavaScript'dagi «click» ham shu g'oya",
+   "tekshiruv": "Avto"
+  },
+  {
+   "n": 5,
+   "modul": 1,
+   "tur": "yangi mavzu",
+   "mavzu": "Takrorlash (sikl)",
+   "natija": "Personaj kvadrat va yulduz chizadi",
+   "organadi": "Buyruqni qayta yozmasdan «takrorla» bloki bilan bajaradi",
+   "nega": "Uchta asosiy tushunchadan biri",
+   "tekshiruv": "Dasturni qisqartirish (avto)"
+  },
+  {
+   "n": 6,
+   "modul": 1,
+   "tur": "amaliyot",
+   "mavzu": "Amaliyot: harakat va takrorlash",
+   "natija": "3 ta topshiriq mustaqil bajariladi",
+   "organadi": "Bloklarni yordamsiz, o'zi tanlab ishlatadi",
+   "nega": "Kim nimani tushunmaganini ko'rish uchun",
+   "tekshiruv": "Avto + mentor"
+  },
+  {
+   "n": 7,
+   "modul": 1,
+   "tur": "yangi mavzu",
+   "mavzu": "Kostyum, animatsiya va tovush",
+   "natija": "Yuradigan va ovozli personaj",
+   "organadi": "Rasmlarni almashtirib harakat hosil qiladi, hodisaga tovush bog'laydi",
+   "nega": "O'yin jonli bo'ladi; v4ning 7 va 13-darslari birlashdi",
+   "tekshiruv": "Avto"
+  },
+  {
+   "n": 8,
+   "modul": 1,
+   "tur": "yangi mavzu",
+   "mavzu": "Shart: agar … unda",
+   "natija": "Devorga tegsa to'xtaydigan personaj",
+   "organadi": "Vaziyatga qarab har xil ish qilishni o'rganadi",
+   "nega": "Shartsiz o'yinda qoida bo'lmaydi",
+   "tekshiruv": "Xatoni topish (avto)"
+  },
+  {
+   "n": 9,
+   "modul": 1,
+   "tur": "loyiha",
+   "mavzu": "Labirint o'yini 1",
+   "natija": "Labirintning 1-darajasi ishlaydi",
+   "organadi": "Harakat, shart va hodisani bitta o'yinda birlashtiradi",
+   "nega": "Bloklar birinchi marta to'liq o'yinga aylanadi",
+   "tekshiruv": "Chek-list"
+  },
+  {
+   "n": 10,
+   "modul": 1,
+   "tur": "loyiha",
+   "mavzu": "Labirint o'yini 2",
+   "natija": "2 darajali tayyor o'yin",
+   "organadi": "Tayyor ishini kengaytirishni o'rganadi",
+   "nega": "Ishni keyingi darsda davom ettirish ko'nikmasi",
+   "tekshiruv": "Chek-list"
+  },
+  {
+   "n": 11,
+   "modul": 1,
+   "tur": "yangi mavzu",
+   "mavzu": "O'zgaruvchi: ball sanash",
+   "natija": "Olma terish o'yini, ball sanaladi",
+   "organadi": "Kompyuter sonni eslab qolishi va o'zgartirishini tushunadi",
+   "nega": "Ball, jon va vaqt shusiz bo'lmaydi",
+   "tekshiruv": "Qiymatni oldindan aytish (avto)"
+  },
+  {
+   "n": 12,
+   "modul": 1,
+   "tur": "yangi mavzu",
+   "mavzu": "O'zgaruvchi: jon va vaqt",
+   "natija": "Jon tugasa «O'yin tugadi» chiqadi",
+   "organadi": "Bir nechta o'zgaruvchini shart bilan ishlatadi",
+   "nega": "O'zgaruvchi va shart birga ishlashini ko'rish",
+   "tekshiruv": "Avto"
+  },
+  {
+   "n": 13,
+   "modul": 1,
+   "tur": "yangi mavzu",
+   "mavzu": "Tasodifiy son",
+   "natija": "Olmalar har safar boshqa joydan tushadi",
+   "organadi": "Dastur har safar boshqa son tanlay olishini o'rganadi",
+   "nega": "O'yin har safar bir xil bo'lmasligi uchun",
+   "tekshiruv": "Avto"
+  },
+  {
+   "n": 14,
+   "modul": 1,
+   "tur": "amaliyot",
+   "mavzu": "Xatoni topish va tuzatish",
+   "natija": "Xato ishlayotgan 5 ta dastur tuzatiladi",
+   "organadi": "Dasturni qadam-baqadam tekshirib, xato joyini topadi",
+   "nega": "Bola xatodan qo'rqmasligi kerak",
+   "tekshiruv": "Xatoni topish (avto)"
+  },
+  {
+   "n": 15,
+   "modul": 1,
+   "tur": "xakaton",
+   "mavzu": "Xakaton №1",
+   "natija": "Juftlikda 60 daqiqada kichik o'yin",
+   "organadi": "Ishni bo'lishish va vaqtida tugatishni mashq qiladi",
+   "nega": "O'rganganini erkin sharoitda va jamoada qo'llash",
+   "tekshiruv": "Jamoalar baholashi + mentor"
+  },
+  {
+   "n": 16,
+   "modul": 1,
+   "tur": "yangi mavzu",
+   "mavzu": "Klonlar: bitta personajdan ko'p nusxa",
+   "natija": "Osmondan ko'p dushman tushadi",
+   "organadi": "Dastur ishlab turganda nusxa yaratadi",
+   "nega": "Ko'p dushmanli o'yinlar shusiz yasalmaydi",
+   "tekshiruv": "Avto"
+  },
+  {
+   "n": 17,
+   "modul": 1,
+   "tur": "loyiha",
+   "mavzu": "Kosmik o'yin 1: raketa va o'q",
+   "natija": "Raketa uchadi va o'q otadi",
+   "organadi": "Katta o'yinni qismlarga bo'lib yasaydi",
+   "nega": "Katta ishni bo'laklash ko'nikmasi",
+   "tekshiruv": "Chek-list"
+  },
+  {
+   "n": 18,
+   "modul": 1,
+   "tur": "loyiha",
+   "mavzu": "Kosmik o'yin 2: dushman, ball va jon",
+   "natija": "To'liq ishlaydigan kosmik o'yin",
+   "organadi": "Klon, shart va o'zgaruvchini birlashtiradi",
+   "nega": "Modul mavzulari bitta ishda uchrashadi",
+   "tekshiruv": "Chek-list"
+  },
+  {
+   "n": 19,
+   "modul": 1,
+   "tur": "yangi mavzu",
+   "mavzu": "Bloklar ortidagi kod: «Kodini ko'rsat»",
+   "natija": "O'z o'yinining JavaScript kodini ko'radi va kodda 2 ta sonni o'zgartiradi",
+   "organadi": "Har blok bitta JavaScript qatoriga mos kelishini ko'radi",
+   "nega": "3-modulda JavaScript notanish til emas, tanish bloklar yozuvi bo'lib boshlanadi",
+   "tekshiruv": "Blok ↔ kod moslash (avto)"
+  },
+  {
+   "n": 20,
+   "modul": 1,
+   "tur": "test",
+   "mavzu": "Takrorlash va test",
+   "natija": "Test natijasi; qiyin mavzular qayta ko'rilgan",
+   "organadi": "O'zi nimani bilishini va nimani takrorlashni ko'radi",
+   "nega": "Mentor bo'shliqlarni shaxsiy o'yindan oldin yopadi",
+   "tekshiruv": "Avto + mentor"
+  },
+  {
+   "n": 21,
+   "modul": 1,
+   "tur": "PM",
+   "mavzu": "Shaxsiy o'yin 1: loyiha kartasi va boshlash",
+   "natija": "Loyiha kartasi va birinchi sahna",
+   "organadi": "Yasashdan oldin reja tuzadi: kim o'ynaydi, qoidasi qanday",
+   "nega": "Mustaqil loyiha haqiqiy natijani ko'rsatadi",
+   "tekshiruv": "Mentor"
+  },
+  {
+   "n": 22,
+   "modul": 1,
+   "tur": "loyiha",
+   "mavzu": "Shaxsiy o'yin 2 va Pre-Demo",
+   "natija": "O'yin tayyor, taqdimot mashq qilingan",
+   "organadi": "Ishini sinab, tuzatib, gapirib berishni mashq qiladi",
+   "nega": "Demo Day'da o'ziga ishonchi bo'lishi uchun",
+   "tekshiruv": "Chek-list + repetitsiya"
+  },
+  {
+   "n": 23,
+   "modul": 1,
+   "tur": "Demo Day",
+   "mavzu": "Demo Day №1",
+   "natija": "Ota-onalar o'yinni o'ynab ko'radi; uyda Scratch'da davom ettirish yo'riqnomasi beriladi",
+   "organadi": "Ishini boshqalar oldida ko'rsatadi va tushuntiradi",
+   "nega": "Ota-ona natijani ko'radi, bola mehnati qadrlanadi",
+   "tekshiruv": "Himoya"
+  },
+  {
+   "n": 24,
+   "modul": 2,
+   "tur": "yangi mavzu",
+   "mavzu": "Sun'iy intellekt (AI) nima",
+   "natija": "AI yordamchiga 5 ta savol beriladi, javoblar muhokama qilinadi",
+   "organadi": "AI nima qila olishi va nima qila olmasligini, u odam emasligini tushunadi",
+   "nega": "Bolalar AI'dan baribir foydalanadi; to'g'ri tushuncha bilan boshlash kerak",
+   "tekshiruv": "Ha / yo'q savollar (avto)"
+  },
+  {
+   "n": 25,
+   "modul": 2,
+   "tur": "yangi mavzu",
+   "mavzu": "Internetda va AI bilan xavfsizlik",
+   "natija": "«Nimani aytish mumkin emas» qoidalari ro'yxati",
+   "organadi": "Parol, manzil, rasm kabi shaxsiy ma'lumotni bermaslikni o'rganadi",
+   "nega": "Keyingi darslarda onlayn vositalar ishlatiladi; avval xavfsizlik",
+   "tekshiruv": "Vaziyatli savollar (avto)"
+  },
+  {
+   "n": 26,
+   "modul": 2,
+   "tur": "yangi mavzu",
+   "mavzu": "AI'ga to'g'ri so'rov (prompt) yozish",
+   "natija": "Yomon so'rov yaxshi so'rovga aylantiriladi",
+   "organadi": "So'rovda nima, kim uchun va qanday kerakligini aniq yozadi",
+   "nega": "Natija sifati so'rovga bog'liq; kurs oxirigacha kerak",
+   "tekshiruv": "So'rovni tuzatish (mentor)"
+  },
+  {
+   "n": 27,
+   "modul": 2,
+   "tur": "yangi mavzu",
+   "mavzu": "AI xato qiladi: javobni tekshirish",
+   "natija": "AI javoblaridan 5 ta xato topiladi",
+   "organadi": "AI ishonch bilan noto'g'ri javob berishini va tekshirish usullarini o'rganadi",
+   "nega": "AI'ga ko'r-ko'rona ishonmaslik eng muhim odat",
+   "tekshiruv": "Xatoni topish (avto)"
+  },
+  {
+   "n": 28,
+   "modul": 2,
+   "tur": "yangi mavzu",
+   "mavzu": "AI bilan rasm 1: qahramon",
+   "natija": "O'quvchi o'ylab topgan qahramon rasmi",
+   "organadi": "So'rovni o'zgartirib natijani yaxshilaydi",
+   "nega": "Qahramon sahifa, hikoya, o'yin va botda ishlatiladi",
+   "tekshiruv": "Mentor"
+  },
+  {
+   "n": 29,
+   "modul": 2,
+   "tur": "yangi mavzu",
+   "mavzu": "AI bilan rasm 2: fon va logotip",
+   "natija": "Qahramon uchun fon va logotip",
+   "organadi": "Bir uslubda bir nechta rasm oladi, logotip nima ekanini biladi",
+   "nega": "Renderforest'dagi logotip darsi o'rniga; rasmlar saytda ishlatiladi",
+   "tekshiruv": "Mentor"
+  },
+  {
+   "n": 30,
+   "modul": 2,
+   "tur": "yangi mavzu",
+   "mavzu": "AI bilan hikoya",
+   "natija": "Qahramon haqida 3 qismli hikoya",
+   "organadi": "G'oyani o'zi beradi, matnni AI yozadi, o'zi tahrirlaydi",
+   "nega": "4-modulda bu hikoya tanlovli o'yinga aylanadi",
+   "tekshiruv": "Mentor"
+  },
+  {
+   "n": 31,
+   "modul": 2,
+   "tur": "yangi mavzu",
+   "mavzu": "AI bilan video: sahnalar va musiqa",
+   "natija": "3 ta qisqa sahna va musiqa",
+   "organadi": "Rasmni videoga aylantiradi, kayfiyatni so'z bilan tasvirlaydi",
+   "nega": "v4ning 32–33-darslari bitta darsda",
+   "tekshiruv": "Mentor"
+  },
+  {
+   "n": 32,
+   "modul": 2,
+   "tur": "amaliyot",
+   "mavzu": "Videoni yig'ish va tugatish",
+   "natija": "Tayyor video (30–60 soniya)",
+   "organadi": "Sahnalarni tartiblaydi, kesadi, musiqa qo'yadi",
+   "nega": "Demo Day №2 uchun",
+   "tekshiruv": "Chek-list"
+  },
+  {
+   "n": 33,
+   "modul": 2,
+   "tur": "yangi mavzu",
+   "mavzu": "Kamera bilan o'yin va AI qanday o'rganadi",
+   "natija": "Qo'l harakati bilan sharlar yoriladi; AI misollardan o'rganishi ko'rsatiladi",
+   "organadi": "Kompyuter kamera orqali harakatni sezishini, AI ma'lumotdan o'rganishini tushunadi",
+   "nega": "PictoBloxning eng qiziq qismi saqlanadi; v4ning 36–38-darslari bitta darsda",
+   "tekshiruv": "Avto (kamera bo'lsa); kuchsiz noutbukda mentor ko'rsatadi"
+  },
+  {
+   "n": 34,
+   "modul": 2,
+   "tur": "xakaton",
+   "mavzu": "Xakaton №2",
+   "natija": "Jamoa bo'lib AI yordamida afisha yoki komiks",
+   "organadi": "Vazifalarni bo'lib, bir nechta AI vositani birga ishlatadi",
+   "nega": "Modul vositalarini erkin qo'llash va jamoada ishlash",
+   "tekshiruv": "Jamoalar baholashi"
+  },
+  {
+   "n": 35,
+   "modul": 3,
+   "tur": "yangi mavzu",
+   "mavzu": "Sayt qanday ishlaydi. Birinchi HTML sahifa",
+   "natija": "Brauzerda «Salom» yozuvi",
+   "organadi": "Sayt brauzer o'qiydigan matnli fayl ekanini tushunadi, birinchi tegni yozadi",
+   "nega": "Bola endi sayt qanday yasalishini o'zi ko'radi",
+   "tekshiruv": "Teglarni topish (avto)"
+  },
+  {
+   "n": 36,
+   "modul": 3,
+   "tur": "yangi mavzu",
+   "mavzu": "Sarlavha, matn va ro'yxat (h1, p, ul, li)",
+   "natija": "Qahramon haqida matnli sahifa",
+   "organadi": "Teglar bilan sarlavha, matn va ro'yxat yasaydi",
+   "nega": "Har sahifaning asosi matn; «teg» tushunchasi o'rnashadi",
+   "tekshiruv": "Namunaga qarab yig'ish (avto)"
+  },
+  {
+   "n": 37,
+   "modul": 3,
+   "tur": "yangi mavzu",
+   "mavzu": "Rasm (img) va havola (a)",
+   "natija": "Qahramon rasmi va havolalar",
+   "organadi": "Fayl manzili, alt va href nima ekanini o'rganadi",
+   "nega": "AI modulidagi rasmlar endi saytda",
+   "tekshiruv": "Avto: rasm va havola bor"
+  },
+  {
+   "n": 38,
+   "modul": 3,
+   "tur": "yangi mavzu",
+   "mavzu": "Sahifa tuzilishi: div, header, main, footer",
+   "natija": "Bo'limlarga ajratilgan sahifa",
+   "organadi": "Sahifani mantiqiy bo'laklarga ajratadi",
+   "nega": "CSS aynan shu bo'laklar ustida ishlaydi",
+   "tekshiruv": "Avto: tuzilish to'g'ri"
+  },
+  {
+   "n": 39,
+   "modul": 3,
+   "tur": "amaliyot",
+   "mavzu": "Amaliyot: «Qahramonim» sahifasi",
+   "natija": "Sarlavha, matn, rasm va ro'yxatli sahifa",
+   "organadi": "To'rt darsdagi teglarni yordamsiz ishlatadi",
+   "nega": "CSS'dan oldin teglar mustahkamlanishi kerak",
+   "tekshiruv": "Avto + mentor"
+  },
+  {
+   "n": 40,
+   "modul": 3,
+   "tur": "yangi mavzu",
+   "mavzu": "CSS'ni ulash: rang va matn o'lchami",
+   "natija": "Rangli sahifa",
+   "organadi": "HTML tuzilish, CSS esa ko'rinish berishini tushunadi",
+   "nega": "Bola sahifasini o'zi bezay boshlaydi",
+   "tekshiruv": "Natijani oldindan aytish"
+  },
+  {
+   "n": 41,
+   "modul": 3,
+   "tur": "yangi mavzu",
+   "mavzu": "Klass, shrift va tekislash",
+   "natija": "Bezatilgan sarlavhalar va matn",
+   "organadi": ".klass, font-family, text-align, line-height",
+   "nega": "Bitta klass bilan ko'p elementni bezash",
+   "tekshiruv": "Rasmga qarab takrorlash"
+  },
+  {
+   "n": 42,
+   "modul": 3,
+   "tur": "yangi mavzu",
+   "mavzu": "Fon: rang va rasm",
+   "natija": "Butun ekranni egallagan fon rasmi",
+   "organadi": "background-image, cover, position",
+   "nega": "Saytning yuqori qismi fon bilan yasaladi",
+   "tekshiruv": "Rasmga qarab takrorlash"
+  },
+  {
+   "n": 43,
+   "modul": 3,
+   "tur": "test",
+   "mavzu": "Takrorlash: HTML va CSS",
+   "natija": "«Buzilgan» sahifa tuzatiladi",
+   "organadi": "Teg va stillardagi ko'p uchraydigan xatolarni topadi",
+   "nega": "JavaScript'dan oldin asos mustahkam bo'lishi kerak",
+   "tekshiruv": "5 ta xatoni topish (avto)"
+  },
+  {
+   "n": 44,
+   "modul": 3,
+   "tur": "yangi mavzu",
+   "mavzu": "JavaScript bilan tanishuv: konsol va o'zgaruvchi",
+   "natija": "Konsolga ism va yosh chiqadi",
+   "organadi": "console.log, let, const, matnlarni birlashtirish",
+   "nega": "19-darsda ko'rilgan kod endi o'zi yoziladi",
+   "tekshiruv": "Natijani oldindan aytish (avto)"
+  },
+  {
+   "n": 45,
+   "modul": 3,
+   "tur": "yangi mavzu",
+   "mavzu": "JavaScript sahifani o'zgartiradi",
+   "natija": "Kod sahifadagi sarlavhani o'zgartiradi",
+   "organadi": "querySelector va textContent bilan elementni topib o'zgartiradi",
+   "nega": "Kod birinchi kunlardanoq sahifani boshqaradi",
+   "tekshiruv": "Avto: matn o'zgardi"
+  },
+  {
+   "n": 46,
+   "modul": 3,
+   "tur": "yangi mavzu",
+   "mavzu": "Tugma bosilganda harakat (click)",
+   "natija": "Tugma bosilsa yozuv va rasm almashadi",
+   "organadi": "addEventListener va javob funksiyasi",
+   "nega": "Blok studiyadagi hodisaning sahifadagi ko'rinishi",
+   "tekshiruv": "Avtotest"
+  },
+  {
+   "n": 47,
+   "modul": 3,
+   "tur": "amaliyot",
+   "mavzu": "Amaliyot: layk hisoblagichi",
+   "natija": "Har bosganda son oshadi",
+   "organadi": "O'zgaruvchi, hodisa va sahifani yangilashni birlashtiradi",
+   "nega": "Sahifadagi birinchi kichik o'yin",
+   "tekshiruv": "Avtotest"
+  },
+  {
+   "n": 48,
+   "modul": 3,
+   "tur": "test",
+   "mavzu": "Takrorlash va test",
+   "natija": "Test natijasi; qiyin mavzular qayta ko'rilgan",
+   "organadi": "HTML, CSS va birinchi JavaScript'ni tekshiradi",
+   "nega": "Mentor bo'shliqlarni loyihadan oldin yopadi",
+   "tekshiruv": "Avto + mentor"
+  },
+  {
+   "n": 49,
+   "modul": 3,
+   "tur": "loyiha",
+   "mavzu": "Qahramon sahifasi 1: yig'ish",
+   "natija": "Tuzilishi va bezagi tayyor sahifa",
+   "organadi": "Modul bilimlarini bitta sahifada ishlatadi",
+   "nega": "Demo Day uchun asosiy ish",
+   "tekshiruv": "Chek-list"
+  },
+  {
+   "n": 50,
+   "modul": 3,
+   "tur": "loyiha",
+   "mavzu": "Qahramon sahifasi 2: sir tugmasi",
+   "natija": "Tugma qahramon haqidagi sirni ochadi",
+   "organadi": "O'zi JavaScript bilan interaktiv qism qo'shadi",
+   "nega": "Ota-ona birinchi kodni «jonli» ko'radi",
+   "tekshiruv": "Avtotest + chek-list"
+  },
+  {
+   "n": 51,
+   "modul": 3,
+   "tur": "pre-demo",
+   "mavzu": "Pre-Demo",
+   "natija": "Video va sahifa tayyor, taqdimot mashq qilingan",
+   "organadi": "Ishini sinab, gapirib berishni mashq qiladi",
+   "nega": "Demo Day'da o'ziga ishonchi bo'lishi uchun",
+   "tekshiruv": "Repetitsiya"
+  },
+  {
+   "n": 52,
+   "modul": 3,
+   "tur": "Demo Day",
+   "mavzu": "Demo Day №2",
+   "natija": "Ota-onalar AI videosi va interaktiv sahifani ko'radi",
+   "organadi": "Ishini ko'rsatadi va savollarga javob beradi",
+   "nega": "Ota-ona bolasi yozgan birinchi kodni ko'radi",
+   "tekshiruv": "Himoya"
+  },
+  {
+   "n": 53,
+   "modul": 4,
+   "tur": "yangi mavzu",
+   "mavzu": "Sonlar bilan amallar. Qoldiq (%)",
+   "natija": "Son juft yoki toqligini aytadigan dastur",
+   "organadi": "Qo'shish, ayirish, ko'paytirish, bo'lish va qoldiq",
+   "nega": "Ball, narx va vaqt hisoblari shular bilan",
+   "tekshiruv": "Natijani oldindan aytish (avto)"
+  },
+  {
+   "n": 54,
+   "modul": 4,
+   "tur": "yangi mavzu",
+   "mavzu": "Ma'lumot turlari va kiritish maydoni",
+   "natija": "Ism yozilsa sahifa salom beradi",
+   "organadi": "Matn, son, ha / yo'q; input.value va Number()",
+   "nega": "Dastur har kimga har xil javob beradi",
+   "tekshiruv": "Avtotest"
+  },
+  {
+   "n": 55,
+   "modul": 4,
+   "tur": "yangi mavzu",
+   "mavzu": "Taqqoslash: katta, kichik, teng",
+   "natija": "Ikki sondan kattasini aytadigan sahifa",
+   "organadi": "Taqqoslash natijasi «ha» yoki «yo'q» bo'lishini o'rganadi",
+   "nega": "Shartdan oldin taqqoslashni bilish kerak",
+   "tekshiruv": "Natijani oldindan aytish (avto)"
+  },
+  {
+   "n": 56,
+   "modul": 4,
+   "tur": "yangi mavzu",
+   "mavzu": "Shart 1: if / else",
+   "natija": "Parolni tekshiradigan sahifa",
+   "organadi": "Shartga qarab ikki yo'ldan birini tanlaydi",
+   "nega": "Bloklardagi «agar … unda»ning kodi",
+   "tekshiruv": "Avtotest"
+  },
+  {
+   "n": 57,
+   "modul": 4,
+   "tur": "yangi mavzu",
+   "mavzu": "Shart 2: else if",
+   "natija": "Yoshga qarab chipta narxini aytadigan sahifa",
+   "organadi": "Ikkitadan ortiq variantni tekshiradi",
+   "nega": "Hayotda variantlar ko'p bo'ladi",
+   "tekshiruv": "Qaysi tarmoq ishlashini aytish (avto)"
+  },
+  {
+   "n": 58,
+   "modul": 4,
+   "tur": "yangi mavzu",
+   "mavzu": "Mantiqiy amallar: va, yoki, emas",
+   "natija": "Ikki shartli qoida",
+   "organadi": "&&, ||, ! bilan shartlarni birlashtiradi",
+   "nega": "Murakkab qoidalarni qisqa yozish uchun",
+   "tekshiruv": "Xatoni topish (avto)"
+  },
+  {
+   "n": 59,
+   "modul": 4,
+   "tur": "amaliyot",
+   "mavzu": "Amaliyot: shartlar",
+   "natija": "5 ta masala mustaqil yechiladi",
+   "organadi": "Shartli masalalarni mustaqil yechadi",
+   "nega": "Shart keyingi hamma mavzuda ishlatiladi",
+   "tekshiruv": "Avtotest"
+  },
+  {
+   "n": 60,
+   "modul": 4,
+   "tur": "yangi mavzu",
+   "mavzu": "Quti modeli 1: padding va border",
+   "natija": "Ramkali blok",
+   "organadi": "Har element quti ekanini, ichki bo'shliq va ramkani o'rganadi",
+   "nega": "«Quti»siz CSS'da hech narsa joyiga tushmaydi",
+   "tekshiruv": "Rasmga qarab takrorlash"
+  },
+  {
+   "n": 61,
+   "modul": 4,
+   "tur": "yangi mavzu",
+   "mavzu": "Quti modeli 2: margin, width, height",
+   "natija": "Bloklar orasida to'g'ri masofa",
+   "organadi": "Qutilar orasidagi masofa va o'lchamni boshqaradi",
+   "nega": "Bolalar eng ko'p adashadigan joy",
+   "tekshiruv": "Ortiqcha bo'shliqni topish"
+  },
+  {
+   "n": 62,
+   "modul": 4,
+   "tur": "yangi mavzu",
+   "mavzu": "Ko'rsatish va yashirish",
+   "natija": "Tugma blokni ochib-yopadi",
+   "organadi": "display va classList.toggle",
+   "nega": "Hikoya sahnalari shunday almashadi",
+   "tekshiruv": "Avtotest"
+  },
+  {
+   "n": 63,
+   "modul": 4,
+   "tur": "yangi mavzu",
+   "mavzu": "Funksiya 1: o'z buyrug'ini yozish",
+   "natija": "«sahnaniKorsat» funksiyasi",
+   "organadi": "Buyruqlar to'plamiga nom berib, kerakli joyda chaqiradi",
+   "nega": "Blok studiyadagi «o'z bloki»ning kodi; sahifa kodi funksiyalardan iborat",
+   "tekshiruv": "Avtotest"
+  },
+  {
+   "n": 64,
+   "modul": 4,
+   "tur": "amaliyot",
+   "mavzu": "Amaliyot: kartochka va funksiyalar",
+   "natija": "Funksiya bilan almashadigan kartochka",
+   "organadi": "Quti modeli va funksiyani birga ishlatadi",
+   "nega": "Ikki texnologiya bitta ishda",
+   "tekshiruv": "Avtotest"
+  },
+  {
+   "n": 65,
+   "modul": 4,
+   "tur": "amaliyot",
+   "mavzu": "Xatoni topish: konsol xabarlari",
+   "natija": "Xato ishlayotgan 5 ta dastur tuzatiladi",
+   "organadi": "Xato xabarini o'qiydi, console.log bilan tekshiradi",
+   "nega": "Mentorni kutmasdan oldinga yurish uchun",
+   "tekshiruv": "Xatoni topish (avto)"
+  },
+  {
+   "n": 66,
+   "modul": 4,
+   "tur": "test",
+   "mavzu": "Takrorlash va test",
+   "natija": "Test natijasi; qiyin mavzular qayta ko'rilgan",
+   "organadi": "Shart, funksiya va quti modelini tekshiradi",
+   "nega": "Loyihadan oldin bo'shliqlar yopiladi",
+   "tekshiruv": "Avto + mentor"
+  },
+  {
+   "n": 67,
+   "modul": 4,
+   "tur": "loyiha",
+   "mavzu": "Hikoya 1: sahnalar",
+   "natija": "2-moduldagi AI hikoyasi sahnalarga bo'lingan",
+   "organadi": "Hikoyani HTML bo'limlari va funksiyalarga ajratadi",
+   "nega": "2-moduldagi ish davom etadi",
+   "tekshiruv": "Chek-list"
+  },
+  {
+   "n": 68,
+   "modul": 4,
+   "tur": "loyiha",
+   "mavzu": "Hikoya 2: tanlov va o'tishlar",
+   "natija": "Tugmalar sahnalarni almashtiradi",
+   "organadi": "Hodisa va funksiyalarni loyihada ishlatadi",
+   "nega": "Interaktivlik asosi",
+   "tekshiruv": "Avtotest"
+  },
+  {
+   "n": 69,
+   "modul": 4,
+   "tur": "loyiha",
+   "mavzu": "Hikoya 3: ball va yakunlar",
+   "natija": "Ballga qarab 2–3 ta yakun",
+   "organadi": "Shart va o'zgaruvchini loyihada ishlatadi",
+   "nega": "Tanlov natijaga ta'sir qiladi",
+   "tekshiruv": "Avtotest"
+  },
+  {
+   "n": 70,
+   "modul": 4,
+   "tur": "loyiha",
+   "mavzu": "Hikoya 4: bezash",
+   "natija": "Quti modeli bilan chiroyli sahnalar",
+   "organadi": "CSS'ni loyihada qo'llaydi",
+   "nega": "Tayyor mahsulot ko'rinishi",
+   "tekshiruv": "Chek-list"
+  },
+  {
+   "n": 71,
+   "modul": 4,
+   "tur": "PM",
+   "mavzu": "Sinfdosh sinab ko'radi",
+   "natija": "3 ta muammo topiladi, kamida bittasi tuzatiladi",
+   "organadi": "Boshqa odam o'yinni qanday ishlatishini kuzatadi",
+   "nega": "Yasagan odam o'z xatosini ko'rmaydi",
+   "tekshiruv": "O'zaro tekshiruv"
+  },
+  {
+   "n": 72,
+   "modul": 4,
+   "tur": "loyiha",
+   "mavzu": "Guruhda ko'rsatish",
+   "natija": "Hikoya-o'yin guruhga taqdim etiladi",
+   "organadi": "Ishini qisqa tushuntiradi",
+   "nega": "Demo Day №3 uchun tayyorgarlik",
+   "tekshiruv": "Guruhda himoya"
+  },
+  {
+   "n": 73,
+   "modul": 5,
+   "tur": "yangi mavzu",
+   "mavzu": "Flex 1: bir qatorga terish",
+   "natija": "3 ta kartochka bir qatorda",
+   "organadi": "display: flex va yo'nalish",
+   "nega": "Hozirgi saytlarda joylashuv Flex bilan qilinadi",
+   "tekshiruv": "Natijani oldindan aytish"
+  },
+  {
+   "n": 74,
+   "modul": 5,
+   "tur": "yangi mavzu",
+   "mavzu": "Flex 2: tekislash va oraliq",
+   "natija": "Kartochkalar markazda, orasi teng",
+   "organadi": "justify-content, align-items, gap",
+   "nega": "Flex'ning eng ko'p ishlatiladigan xossalari",
+   "tekshiruv": "Mos xossani tanlash (avto)"
+  },
+  {
+   "n": 75,
+   "modul": 5,
+   "tur": "yangi mavzu",
+   "mavzu": "Flex 3: keyingi qatorga o'tkazish",
+   "natija": "Ko'p kartochka bir necha qatorda",
+   "organadi": "flex-wrap",
+   "nega": "Ko'p kartochkada va telefonda kerak",
+   "tekshiruv": "Tayyor sahifani o'zgartirish"
+  },
+  {
+   "n": 76,
+   "modul": 5,
+   "tur": "yangi mavzu",
+   "mavzu": "Hover va silliq o'zgarish (transition)",
+   "natija": "Sichqoncha borganda silliq o'zgaradigan tugma",
+   "organadi": ":hover va transition",
+   "nega": "Kichik animatsiya saytni jonli qiladi",
+   "tekshiruv": "Rasmga qarab takrorlash"
+  },
+  {
+   "n": 77,
+   "modul": 5,
+   "tur": "amaliyot",
+   "mavzu": "Amaliyot: kartochkalar qatori",
+   "natija": "6 ta kartochkali sahifa",
+   "organadi": "Flex'ni bitta sahifada qo'llaydi",
+   "nega": "Flex eng qiyin va eng kerakli mavzu",
+   "tekshiruv": "Rasmga qarab (mentor)"
+  },
+  {
+   "n": 78,
+   "modul": 5,
+   "tur": "yangi mavzu",
+   "mavzu": "Massiv 1: ro'yxat yaratish va elementni olish",
+   "natija": "Narsalar ro'yxati, kerakli element chiqadi",
+   "organadi": "[ ], tartib raqami, length",
+   "nega": "Ko'p qiymatni bitta joyda saqlash",
+   "tekshiruv": "Natijani oldindan aytish (avto)"
+  },
+  {
+   "n": 79,
+   "modul": 5,
+   "tur": "yangi mavzu",
+   "mavzu": "Massiv 2: qo'shish va olib tashlash",
+   "natija": "Ro'yxatga narsa qo'shiladi va olinadi",
+   "organadi": "push, pop",
+   "nega": "Ro'yxat dastur ishlaganda o'zgaradi",
+   "tekshiruv": "Avtotest"
+  },
+  {
+   "n": 80,
+   "modul": 5,
+   "tur": "yangi mavzu",
+   "mavzu": "Takrorlash: for",
+   "natija": "1 dan 100 gacha sanash, ko'paytirish jadvali",
+   "organadi": "Buyruqni ma'lum marta takrorlaydi",
+   "nega": "Bloklardagi «takrorla»ning kodi",
+   "tekshiruv": "Natijani oldindan aytish (avto)"
+  },
+  {
+   "n": 81,
+   "modul": 5,
+   "tur": "yangi mavzu",
+   "mavzu": "Ro'yxatni sahifaga chiqarish",
+   "natija": "Ro'yxatdagi hamma narsa sahifada",
+   "organadi": "for…of, createElement, append",
+   "nega": "Massiv va takrorlash eng ko'p birga ishlatiladi",
+   "tekshiruv": "Avtotest"
+  },
+  {
+   "n": 82,
+   "modul": 5,
+   "tur": "amaliyot",
+   "mavzu": "Amaliyot: massiv va takrorlash",
+   "natija": "5 ta masala mustaqil yechiladi",
+   "organadi": "Massivli masalalarni mustaqil yechadi",
+   "nega": "Viktorinadan oldin asos",
+   "tekshiruv": "Avtotest"
+  },
+  {
+   "n": 83,
+   "modul": 5,
+   "tur": "yangi mavzu",
+   "mavzu": "Funksiya 2: qiymat berish va natija qaytarish",
+   "natija": "Javobni tekshirib «to'g'ri / noto'g'ri» qaytaradigan funksiya",
+   "organadi": "Parametr va return",
+   "nega": "Viktorina mantiqi shu funksiyada",
+   "tekshiruv": "Avtotest"
+  },
+  {
+   "n": 84,
+   "modul": 5,
+   "tur": "yangi mavzu",
+   "mavzu": "Obyekt: savolni bitta joyda saqlash",
+   "natija": "Savol, variantlar va javob bitta obyektda",
+   "organadi": "Obyekt va nuqta orqali qiymat olish",
+   "nega": "Viktorina savollari shunday saqlanadi",
+   "tekshiruv": "Natijani oldindan aytish (avto)"
+  },
+  {
+   "n": 85,
+   "modul": 5,
+   "tur": "yangi mavzu",
+   "mavzu": "Tasodifiy son va aralashtirish",
+   "natija": "Savollar har safar boshqa tartibda",
+   "organadi": "Math.random, Math.floor",
+   "nega": "O'yin har safar boshqacha bo'lishi uchun",
+   "tekshiruv": "Avtotest"
+  },
+  {
+   "n": 86,
+   "modul": 5,
+   "tur": "yangi mavzu",
+   "mavzu": "while va «Sonni top» o'yini",
+   "natija": "Kompyuter o'ylagan sonni topish o'yini sahifada",
+   "organadi": "Shart bajarilguncha takrorlash",
+   "nega": "Necha marta takrorlash noma'lum bo'lgan holatlar uchun",
+   "tekshiruv": "Avtotest"
+  },
+  {
+   "n": 87,
+   "modul": 5,
+   "tur": "yangi mavzu",
+   "mavzu": "Algoritm masalalari: saralash, eng katta, yig'indi",
+   "natija": "Avval kartalar bilan saralash o'yini, keyin 3 turdagi masala kodda",
+   "organadi": "Ro'yxatdan eng kattasini topish, yig'indi va sanash",
+   "nega": "v4ning «Algoritm» darslari endi JavaScript'da",
+   "tekshiruv": "Avtotest"
+  },
+  {
+   "n": 88,
+   "modul": 5,
+   "tur": "xakaton",
+   "mavzu": "Xakaton №3: algoritm masalalari musobaqasi",
+   "natija": "Jamoaviy masalalar musobaqasi",
+   "organadi": "Masalani muhokama qilib birga yechadi",
+   "nega": "Kim nimani o'zlashtirganini o'yin shaklida ko'rish",
+   "tekshiruv": "Avto + jamoalar"
+  },
+  {
+   "n": 89,
+   "modul": 5,
+   "tur": "test",
+   "mavzu": "Takrorlash va test",
+   "natija": "Test natijasi; qiyin mavzular qayta ko'rilgan",
+   "organadi": "Flex, massiv, takrorlash va funksiyani tekshiradi",
+   "nega": "Loyihadan oldin bo'shliqlar yopiladi",
+   "tekshiruv": "Avto + mentor"
+  },
+  {
+   "n": 90,
+   "modul": 5,
+   "tur": "loyiha",
+   "mavzu": "Viktorina 1: savollar",
+   "natija": "O'z mavzusidagi savollar obyektlar ro'yxatida",
+   "organadi": "Ma'lumotni loyiha uchun tayyorlaydi",
+   "nega": "Massiv va obyekt nima uchun kerakligi ko'rinadi",
+   "tekshiruv": "Chek-list"
+  },
+  {
+   "n": 91,
+   "modul": 5,
+   "tur": "loyiha",
+   "mavzu": "Viktorina 2: savolni ko'rsatish",
+   "natija": "Savol va variant tugmalari ekranda",
+   "organadi": "Funksiya va sahifani birlashtiradi",
+   "nega": "Ekran ma'lumotdan yasaladi",
+   "tekshiruv": "Avtotest"
+  },
+  {
+   "n": 92,
+   "modul": 5,
+   "tur": "loyiha",
+   "mavzu": "Viktorina 3: javob va ball",
+   "natija": "Javob tekshiriladi, ball sanaladi",
+   "organadi": "Shart, funksiya va o'zgaruvchini birlashtiradi",
+   "nega": "Viktorinaning asosiy mantiqi",
+   "tekshiruv": "Avtotest"
+  },
+  {
+   "n": 93,
+   "modul": 5,
+   "tur": "loyiha",
+   "mavzu": "Viktorina 4: natija ekrani va bezash",
+   "natija": "Natija ekrani, qayta boshlash, Flex bilan bezak",
+   "organadi": "Yakuniy ekran va CSS'ni qo'shadi",
+   "nega": "Tayyor mahsulot",
+   "tekshiruv": "Chek-list"
+  },
+  {
+   "n": 94,
+   "modul": 5,
+   "tur": "PM",
+   "mavzu": "Sinfdosh sinab ko'radi va tuzatish",
+   "natija": "Topilgan muammolar tuzatilgan",
+   "organadi": "Sinov o'tkazib, muhim xatolarni tanlab tuzatadi",
+   "nega": "Mahsulot sinovsiz chiqmaydi",
+   "tekshiruv": "O'zaro tekshiruv"
+  },
+  {
+   "n": 95,
+   "modul": 5,
+   "tur": "pre-demo",
+   "mavzu": "Pre-Demo",
+   "natija": "Hikoya va viktorina tayyor, taqdimot mashq qilingan",
+   "organadi": "Ishini gapirib berishni mashq qiladi",
+   "nega": "Demo Day'da o'ziga ishonchi bo'lishi uchun",
+   "tekshiruv": "Repetitsiya"
+  },
+  {
+   "n": 96,
+   "modul": 5,
+   "tur": "Demo Day",
+   "mavzu": "Demo Day №3",
+   "natija": "Ota-onalar hikoya-o'yin va viktorinani o'ynab ko'radi",
+   "organadi": "Ishini ko'rsatadi va kodining bir qismini tushuntiradi",
+   "nega": "Ota-ona bolasi yozgan dasturni o'zi sinaydi",
+   "tekshiruv": "Himoya"
+  },
+  {
+   "n": 97,
+   "modul": 6,
+   "tur": "PM",
+   "mavzu": "Sayt nima uchun kerak va kim uchun",
+   "natija": "3 ta haqiqiy sayt tahlili; «saytim kim uchun» degan bitta gap",
+   "organadi": "Har sayt kimningdir muammosini yechishini tushunadi",
+   "nega": "Sayt yasashdan oldin maqsadni bilish kerak",
+   "tekshiruv": "Mentor"
+  },
+  {
+   "n": 98,
+   "modul": 6,
+   "tur": "yangi mavzu",
+   "mavzu": "Sayt tuzilishi va bir nechta sahifa",
+   "natija": "header, nav, section, footer; bog'langan 3 sahifa",
+   "organadi": "Semantik teglar va sahifalar orasidagi havolalar",
+   "nega": "Sayt bitta sahifa emas",
+   "tekshiruv": "Avto: havolalar ishlaydi"
+  },
+  {
+   "n": 99,
+   "modul": 6,
+   "tur": "yangi mavzu",
+   "mavzu": "Menyu va joylashuv (position)",
+   "natija": "Rasm ustida yozuv, doim ko'rinadigan menyu",
+   "organadi": "position: relative, absolute, fixed, sticky",
+   "nega": "Har saytda menyu bor",
+   "tekshiruv": "Natijani oldindan aytish"
+  },
+  {
+   "n": 100,
+   "modul": 6,
+   "tur": "yangi mavzu",
+   "mavzu": "Shrift va ikonkalar",
+   "natija": "Yangi shrift va ikonkali sahifa",
+   "organadi": "Media kutubxonadan shrift va ikonka ulash",
+   "nega": "Sayt maketdagidek ko'rinishi uchun",
+   "tekshiruv": "Avto"
+  },
+  {
+   "n": 101,
+   "modul": 6,
+   "tur": "yangi mavzu",
+   "mavzu": "Forma va uni JavaScript bilan tekshirish",
+   "natija": "Bo'sh yoki noto'g'ri forma yuborilmaydi",
+   "organadi": "input turlari, label, checkbox, select; qiymatni shart bilan tekshirish",
+   "nega": "Formalar hamma saytda bor; endi ular ishlaydi",
+   "tekshiruv": "Avtotest"
+  },
+  {
+   "n": 102,
+   "modul": 6,
+   "tur": "yangi mavzu",
+   "mavzu": "Animatsiya: keyframes",
+   "natija": "Ekranda harakatlanadigan qahramon",
+   "organadi": "@keyframes va animation",
+   "nega": "Qahramon saytda jonlanadi",
+   "tekshiruv": "Rasmga qarab takrorlash"
+  },
+  {
+   "n": 103,
+   "modul": 6,
+   "tur": "yangi mavzu",
+   "mavzu": "Telefonga moslash (media query)",
+   "natija": "Sayt o'quvchining telefonida tekshiriladi",
+   "organadi": "max-width, foizlar, @media",
+   "nega": "Ota-ona saytni telefonda ochadi",
+   "tekshiruv": "Ikki ekran kengligida tekshirish"
+  },
+  {
+   "n": 104,
+   "modul": 6,
+   "tur": "amaliyot",
+   "mavzu": "Amaliyot: rasmga qarab to'liq sahifa",
+   "natija": "Berilgan rasmdagi sahifa to'liq yasaladi",
+   "organadi": "Modul bilimini ishlatib, sahifani o'zi yasaydi",
+   "nega": "AI'dan oldin CSS'ni o'zi yoza olishi kerak",
+   "tekshiruv": "Mustaqil ish (mentor)"
+  },
+  {
+   "n": 105,
+   "modul": 6,
+   "tur": "xakaton",
+   "mavzu": "Xakaton №4: rasmga qarab sahifa",
+   "natija": "Kim aniqroq yasaydi — musobaqa",
+   "organadi": "Belgilangan vaqtda aniq nusxa yasaydi",
+   "nega": "Maketga qarab yasash asosiy ko'nikma",
+   "tekshiruv": "Jamoalar + mentor"
+  },
+  {
+   "n": 106,
+   "modul": 6,
+   "tur": "test",
+   "mavzu": "CSS: takrorlash va test",
+   "natija": "Test natijasi; qiyin mavzular qayta ko'rilgan",
+   "organadi": "Butun CSS'ni tekshiradi",
+   "nega": "AI bilan ishlashdan oldin bo'shliqlar yopiladi",
+   "tekshiruv": "Avto + mentor"
+  },
+  {
+   "n": 107,
+   "modul": 6,
+   "tur": "yangi mavzu",
+   "mavzu": "Ranglar, shriftlar va Stitch'da maket",
+   "natija": "3 rang, 2 shrift va bosh sahifa maketi",
+   "organadi": "Mos rang va shrift tanlaydi, sahifani so'z bilan tasvirlab chizdiradi",
+   "nega": "Figma o'rniga; Stitch ishlamasa — qog'oz yoki LMSdagi maket",
+   "tekshiruv": "Mentor"
+  },
+  {
+   "n": 108,
+   "modul": 6,
+   "tur": "yangi mavzu",
+   "mavzu": "Stitch: maketni tuzatish va qolgan sahifalar",
+   "natija": "3 sahifali to'liq maket",
+   "organadi": "Aniq o'zgartirish so'raydi, uslubni saqlaydi",
+   "nega": "AI bilan ishlash bir necha qadamli suhbat",
+   "tekshiruv": "Chek-list"
+  },
+  {
+   "n": 109,
+   "modul": 6,
+   "tur": "yangi mavzu",
+   "mavzu": "VS Code: papka va fayllar",
+   "natija": "Loyiha o'z kompyuterida ochiladi",
+   "organadi": "Fayl ochish, saqlash va brauzerda ko'rish",
+   "nega": "Katta loyihalar uchun; uy vazifasi LMSda qoladi",
+   "tekshiruv": "Mentor"
+  },
+  {
+   "n": 110,
+   "modul": 6,
+   "tur": "yangi mavzu",
+   "mavzu": "AI'dan kodni tushuntirishni so'rash",
+   "natija": "Notanish kod qatorma-qator tushuniladi",
+   "organadi": "AI'ni tayyor javob beruvchi emas, tushuntiruvchi sifatida ishlatadi",
+   "nega": "AI yordamida o'rganish ko'nikmasi",
+   "tekshiruv": "Mentor"
+  },
+  {
+   "n": 111,
+   "modul": 6,
+   "tur": "yangi mavzu",
+   "mavzu": "AI yordamida xatoni topish",
+   "natija": "Xato ishlayotgan sahifa tuzatiladi",
+   "organadi": "Xatoni to'g'ri tasvirlaydi va tuzatishni tekshiradi",
+   "nega": "Mentorni kutmasdan oldinga yurish",
+   "tekshiruv": "Avto: sahifa ishlaydi"
+  },
+  {
+   "n": 112,
+   "modul": 6,
+   "tur": "yangi mavzu",
+   "mavzu": "AI'ga bo'lim yozdirish va tekshirish",
+   "natija": "AI yozgan bo'lim tekshirilib saytga qo'shiladi",
+   "organadi": "Reja → so'rov → tekshiruv",
+   "nega": "AI bilan ishlashning asosi",
+   "tekshiruv": "Chek-list"
+  },
+  {
+   "n": 113,
+   "modul": 6,
+   "tur": "loyiha",
+   "mavzu": "Maket bo'yicha sayt 1: bosh sahifa",
+   "natija": "Stitch'dagi bosh sahifa kodda tayyor",
+   "organadi": "Maketni bo'limlarga bo'lib, AI bilan navbatma-navbat yig'adi",
+   "nega": "Maket haqiqiy saytga aylanadi",
+   "tekshiruv": "Chek-list"
+  },
+  {
+   "n": 114,
+   "modul": 6,
+   "tur": "loyiha",
+   "mavzu": "Maket bo'yicha sayt 2: qolgan sahifalar",
+   "natija": "Qolgan sahifalar tayyor",
+   "organadi": "Sahifalarda bir xil uslubni saqlaydi",
+   "nega": "Sayt to'liq bo'lishi uchun",
+   "tekshiruv": "Chek-list"
+  },
+  {
+   "n": 115,
+   "modul": 6,
+   "tur": "amaliyot",
+   "mavzu": "AI kodini o'zgartirish",
+   "natija": "AI kodiga o'quvchi 3 ta o'zgartirish kiritadi",
+   "organadi": "AI yozgan kodda kerakli joyni topib, o'zi o'zgartiradi",
+   "nega": "Bola AI kodining tomoshabini emas, egasi bo'lishi kerak",
+   "tekshiruv": "Mentor"
+  },
+  {
+   "n": 116,
+   "modul": 6,
+   "tur": "PM",
+   "mavzu": "Saytni sinash: sinfdosh ishlatib ko'radi",
+   "natija": "3 ta muammo, kamida bittasi tuzatiladi",
+   "organadi": "Foydalanuvchini kuzatib muammo topadi",
+   "nega": "Yasagan odam o'z xatosini ko'rmaydi",
+   "tekshiruv": "O'zaro tekshiruv"
+  },
+  {
+   "n": 117,
+   "modul": 6,
+   "tur": "yangi mavzu",
+   "mavzu": "Saytni internetga joylash",
+   "natija": "Havola ota-onaga yuboriladi",
+   "organadi": "Saytni joylab havola oladi",
+   "nega": "Bola ishini istalgan odamga yubora oladi",
+   "tekshiruv": "Havola ishlaydi"
+  },
+  {
+   "n": 118,
+   "modul": 6,
+   "tur": "PM",
+   "mavzu": "Ikkinchi sayt 1: do'st yoki oila uchun reja",
+   "natija": "Loyiha kartasi va sahifalar rejasi",
+   "organadi": "Boshqa odamdan nima kerakligini so'raydi",
+   "nega": "Birinchi marta boshqa odam uchun yasaydi",
+   "tekshiruv": "Mentor"
+  },
+  {
+   "n": 119,
+   "modul": 6,
+   "tur": "loyiha",
+   "mavzu": "Ikkinchi sayt 2: AI bilan yig'ish",
+   "natija": "Asosiy sahifa tayyor",
+   "organadi": "Butun jarayonni mentor yordamisiz takrorlaydi",
+   "nega": "Ikkinchi marta mustaqil qilish ko'nikmaga aylantiradi",
+   "tekshiruv": "Chek-list"
+  },
+  {
+   "n": 120,
+   "modul": 6,
+   "tur": "loyiha",
+   "mavzu": "Ikkinchi sayt 3: telefon, tuzatish va joylash",
+   "natija": "Havola egasiga yuboriladi, fikri so'raladi",
+   "organadi": "Telefonda tekshiradi, tuzatadi va joylaydi",
+   "nega": "Haqiqiy foydalanuvchi fikrini eshitish",
+   "tekshiruv": "Egasining fikri"
+  },
+  {
+   "n": 121,
+   "modul": 6,
+   "tur": "test",
+   "mavzu": "Takrorlash va test: AI bilan ishlash",
+   "natija": "Test natijasi; AI kodini o'qish mashqi",
+   "organadi": "Kod o'qish va AI bilan ishlash qoidalarini tekshiradi",
+   "nega": "AI kodi ustidan nazorat",
+   "tekshiruv": "Avto + mentor"
+  },
+  {
+   "n": 122,
+   "modul": 6,
+   "tur": "loyiha",
+   "mavzu": "Guruhda ko'rsatish",
+   "natija": "Ikkala sayt havola orqali ko'rsatiladi",
+   "organadi": "Qanday yasaganini tushuntiradi",
+   "nega": "Saytlar Demo Day №4 da ham ko'rsatiladi",
+   "tekshiruv": "Guruhda himoya"
+  },
+  {
+   "n": 123,
+   "modul": 7,
+   "tur": "yangi mavzu",
+   "mavzu": "Obyektlar ro'yxati sahifada",
+   "natija": "Qahramonlar ro'yxati kartochka bo'lib chiqadi",
+   "organadi": "Obyektlar massivini aylanib chiqib sahifa yasaydi",
+   "nega": "O'yin va do'kon ma'lumoti shunday saqlanadi",
+   "tekshiruv": "Avtotest"
+  },
+  {
+   "n": 124,
+   "modul": 7,
+   "tur": "yangi mavzu",
+   "mavzu": "Qidirish va filtr",
+   "natija": "Qidiruv maydoni ro'yxatni filtrlaydi",
+   "organadi": "filter, includes, toLowerCase",
+   "nega": "Ro'yxatli saytlar va bot uchun",
+   "tekshiruv": "Avtotest"
+  },
+  {
+   "n": 125,
+   "modul": 7,
+   "tur": "yangi mavzu",
+   "mavzu": "Matn bilan ishlash",
+   "natija": "Matnni teskari yozadi va harflarini sanaydi",
+   "organadi": "length, harf olish, katta-kichik harf",
+   "nega": "Botda foydalanuvchi yozgan matn tekshiriladi",
+   "tekshiruv": "Avtotest"
+  },
+  {
+   "n": 126,
+   "modul": 7,
+   "tur": "amaliyot",
+   "mavzu": "Amaliyot: obyektlar va matnlar",
+   "natija": "5 ta masala mustaqil yechiladi",
+   "organadi": "Obyekt va matnli masalalarni mustaqil yechadi",
+   "nega": "O'yinlarda darhol kerak",
+   "tekshiruv": "Avtotest"
+  },
+  {
+   "n": 127,
+   "modul": 7,
+   "tur": "yangi mavzu",
+   "mavzu": "Taymer",
+   "natija": "Reaksiya tezligini o'lchaydigan o'yin",
+   "organadi": "setTimeout, setInterval, clearInterval",
+   "nega": "Vaqtga bog'liq o'yinlar uchun",
+   "tekshiruv": "Natijani oldindan aytish"
+  },
+  {
+   "n": 128,
+   "modul": 7,
+   "tur": "loyiha",
+   "mavzu": "Kliker 1",
+   "natija": "Har bosganda ball oshadi",
+   "organadi": "O'zgaruvchi, hodisa va sahifani birlashtiradi",
+   "nega": "Sahifadagi to'liq o'yin",
+   "tekshiruv": "Avtotest"
+  },
+  {
+   "n": 129,
+   "modul": 7,
+   "tur": "loyiha",
+   "mavzu": "Kliker 2: yaxshilanishlar va daraja",
+   "natija": "Ball ko'payganda daraja oshadi, avtodaromad bor",
+   "organadi": "Obyekt holati, shart va taymer",
+   "nega": "Tayyor o'yinni kengaytirish",
+   "tekshiruv": "Avtotest"
+  },
+  {
+   "n": 130,
+   "modul": 7,
+   "tur": "yangi mavzu",
+   "mavzu": "Natijani saqlab qolish",
+   "natija": "Rekord sahifa yopilgandan keyin ham saqlanadi",
+   "organadi": "Brauzer xotirasi (localStorage)",
+   "nega": "O'yin rekordi yo'qolmasligi uchun",
+   "tekshiruv": "Avtotest (LMS ruxsat bersa)"
+  },
+  {
+   "n": 131,
+   "modul": 7,
+   "tur": "yangi mavzu",
+   "mavzu": "Klaviatura bilan boshqarish",
+   "natija": "Rasm strelkalar bilan yuradi",
+   "organadi": "keydown va event.key",
+   "nega": "Blok studiyadagi boshqaruv endi kodda",
+   "tekshiruv": "Avtotest"
+  },
+  {
+   "n": 132,
+   "modul": 7,
+   "tur": "yangi mavzu",
+   "mavzu": "Koordinatalar va chegara",
+   "natija": "Qahramon ekrandan chiqib ketmaydi",
+   "organadi": "left / top va chegara sharti",
+   "nega": "3-darsdagi X va Y endi kodda",
+   "tekshiruv": "Xatoni topish (avto)"
+  },
+  {
+   "n": 133,
+   "modul": 7,
+   "tur": "yangi mavzu",
+   "mavzu": "O'yin sikli va harakat",
+   "natija": "Yuqoridan tushayotgan narsa",
+   "organadi": "Har kadrda yangilash va tezlik",
+   "nega": "Har bir o'yinning yuragi",
+   "tekshiruv": "Avtotest"
+  },
+  {
+   "n": 134,
+   "modul": 7,
+   "tur": "yangi mavzu",
+   "mavzu": "To'qnashuv",
+   "natija": "Narsani tutib olish",
+   "organadi": "To'rtburchaklar kesishishini tekshiradigan funksiya",
+   "nega": "Tutish, urilish va yutish shunga tayanadi",
+   "tekshiruv": "Funksiya avtotesti"
+  },
+  {
+   "n": 135,
+   "modul": 7,
+   "tur": "yangi mavzu",
+   "mavzu": "Takrorlash ichida takrorlash",
+   "natija": "To'r va daraja xaritasi chiziladi",
+   "organadi": "Ichma-ich for",
+   "nega": "v4 «Algoritm» darsi; jadval va xaritalar shunday yasaladi",
+   "tekshiruv": "Natijani oldindan aytish"
+  },
+  {
+   "n": 136,
+   "modul": 7,
+   "tur": "amaliyot",
+   "mavzu": "Amaliyot: «Tutib ol» o'yini",
+   "natija": "Ball, jon va «O'yin tugadi» bor o'yin",
+   "organadi": "Modul mavzularini bitta o'yinda birlashtiradi",
+   "nega": "Shaxsiy o'yindan oldin to'liq mashq",
+   "tekshiruv": "Avtotest + chek-list"
+  },
+  {
+   "n": 137,
+   "modul": 7,
+   "tur": "test",
+   "mavzu": "Takrorlash va test",
+   "natija": "Test natijasi; qiyin mavzular qayta ko'rilgan",
+   "organadi": "Obyekt, taymer va to'qnashuvni tekshiradi",
+   "nega": "Shaxsiy loyihadan oldin bo'shliqlar yopiladi",
+   "tekshiruv": "Avto + mentor"
+  },
+  {
+   "n": 138,
+   "modul": 7,
+   "tur": "xakaton",
+   "mavzu": "Xakaton №5: jamoaviy mini-o'yin",
+   "natija": "Jamoa 60 daqiqada mini-o'yin yasaydi",
+   "organadi": "Jamoada kodni bo'lishadi",
+   "nega": "Eng uzun bosqichni o'yin shaklida yakunlash",
+   "tekshiruv": "Jamoalar + mentor"
+  },
+  {
+   "n": 139,
+   "modul": 7,
+   "tur": "PM",
+   "mavzu": "Shaxsiy o'yin 1: loyiha kartasi va reja",
+   "natija": "Loyiha kartasi, o'yin qoidalari va eskiz",
+   "organadi": "O'yin kim uchun va qanday sinalishini rejalashtiradi",
+   "nega": "Mustaqil loyiha haqiqiy natijani ko'rsatadi",
+   "tekshiruv": "Mentor"
+  },
+  {
+   "n": 140,
+   "modul": 7,
+   "tur": "loyiha",
+   "mavzu": "Shaxsiy o'yin 2: o'yinchi va boshqaruv",
+   "natija": "O'yinchi harakatlanadi",
+   "organadi": "Rejaning birinchi qismini bajaradi",
+   "nega": "Katta ishni bo'laklash",
+   "tekshiruv": "Chek-list"
+  },
+  {
+   "n": 141,
+   "modul": 7,
+   "tur": "loyiha",
+   "mavzu": "Shaxsiy o'yin 3: narsalar va to'qnashuv",
+   "natija": "Narsalar paydo bo'ladi va tutiladi",
+   "organadi": "Obyektlar ro'yxati va to'qnashuvni ishlatadi",
+   "nega": "O'yinning asosiy mexanikasi",
+   "tekshiruv": "Avtotest"
+  },
+  {
+   "n": 142,
+   "modul": 7,
+   "tur": "loyiha",
+   "mavzu": "Shaxsiy o'yin 4: ball, jon va daraja",
+   "natija": "O'yin tugaydi va qayta boshlanadi",
+   "organadi": "O'yin holatini boshqaradi",
+   "nega": "To'liq o'yin",
+   "tekshiruv": "Chek-list"
+  },
+  {
+   "n": 143,
+   "modul": 7,
+   "tur": "loyiha",
+   "mavzu": "Shaxsiy o'yin 5: ovoz, bezak va rekord",
+   "natija": "Bezatilgan o'yin, rekord saqlanadi",
+   "organadi": "Ovoz, CSS va saqlashni qo'shadi",
+   "nega": "O'yin tayyor ko'rinishi",
+   "tekshiruv": "Chek-list"
+  },
+  {
+   "n": 144,
+   "modul": 7,
+   "tur": "PM",
+   "mavzu": "Sinfdosh sinab ko'radi",
+   "natija": "Xatolar ro'yxati",
+   "organadi": "Sinov o'tkazadi, muhim xatolarni tanlaydi",
+   "nega": "Mahsulot sinovsiz chiqmaydi",
+   "tekshiruv": "O'zaro tekshiruv"
+  },
+  {
+   "n": 145,
+   "modul": 7,
+   "tur": "amaliyot",
+   "mavzu": "Tuzatish va o'yinni saytga qo'shish",
+   "natija": "O'yin 6-moduldagi saytda ochiladi",
+   "organadi": "Xatolarni tuzatadi, o'yinni saytga bog'laydi",
+   "nega": "Hamma ishi bitta saytda",
+   "tekshiruv": "Havola ishlaydi"
+  },
+  {
+   "n": 146,
+   "modul": 7,
+   "tur": "amaliyot",
+   "mavzu": "Kod sharhi: o'yinim qanday ishlaydi",
+   "natija": "O'z kodining bir qismini mentorga tushuntiradi",
+   "organadi": "O'z kodini o'qib izohlaydi",
+   "nega": "Demo Day'da kodni tushuntirish uchun",
+   "tekshiruv": "Mentor"
+  },
+  {
+   "n": 147,
+   "modul": 7,
+   "tur": "pre-demo",
+   "mavzu": "Pre-Demo",
+   "natija": "O'yin va saytlar tayyor, taqdimot mashq qilingan",
+   "organadi": "Taqdimotni vaqtga sig'diradi",
+   "nega": "Demo Day'da o'ziga ishonchi bo'lishi uchun",
+   "tekshiruv": "Repetitsiya"
+  },
+  {
+   "n": 148,
+   "modul": 7,
+   "tur": "Demo Day",
+   "mavzu": "Demo Day №4",
+   "natija": "Ota-onalar o'yinni o'ynab, saytlarni telefonida ochib ko'radi",
+   "organadi": "O'yinini ko'rsatadi va kodining bir qismini tushuntiradi",
+   "nega": "Ota-ona bolasi yozgan o'yinni o'zi o'ynaydi",
+   "tekshiruv": "Himoya"
+  },
+  {
+   "n": 149,
+   "modul": 8,
+   "tur": "yangi mavzu",
+   "mavzu": "Telegram bot nima. Bot simulyatori",
+   "natija": "Simulyatordagi bot «Salom» deydi",
+   "organadi": "Bot xabarga javob beradigan dastur ekanini tushunadi",
+   "nega": "Bolalar Telegramni har kuni ishlatadi; o'z boti kuchli motivatsiya",
+   "tekshiruv": "Avtotest"
+  },
+  {
+   "n": 150,
+   "modul": 8,
+   "tur": "yangi mavzu",
+   "mavzu": "Buyruqlar: /start va /help",
+   "natija": "Bot o'zini tanishtiradi",
+   "organadi": "Botga buyruq qo'shadi",
+   "nega": "Har bot /start bilan boshlanadi",
+   "tekshiruv": "Avtotest"
+  },
+  {
+   "n": 151,
+   "modul": 8,
+   "tur": "yangi mavzu",
+   "mavzu": "Xabarga qarab javob berish",
+   "natija": "Savolga qarab har xil javob beradigan bot",
+   "organadi": "Matn va shart bilan javob tanlaydi",
+   "nega": "JavaScript shartlari haqiqiy ishda",
+   "tekshiruv": "Avtotest"
+  },
+  {
+   "n": 152,
+   "modul": 8,
+   "tur": "yangi mavzu",
+   "mavzu": "Tugmalar",
+   "natija": "Menyu tugmalari bor bot",
+   "organadi": "Tugma qo'yadi va bosilganini tutadi",
+   "nega": "Foydalanuvchiga tugma bosish qulay",
+   "tekshiruv": "Avtotest"
+  },
+  {
+   "n": 153,
+   "modul": 8,
+   "tur": "loyiha",
+   "mavzu": "Viktorina bot",
+   "natija": "Bot savol beradi, har foydalanuvchi uchun ball sanaydi",
+   "organadi": "Massiv, obyekt va foydalanuvchi bo'yicha ball",
+   "nega": "5-moduldagi viktorina botga ko'chadi",
+   "tekshiruv": "Avtotest"
+  },
+  {
+   "n": 154,
+   "modul": 8,
+   "tur": "yangi mavzu",
+   "mavzu": "Haqiqiy bot: BotFather, token va maktab serveri",
+   "natija": "Bot Telegram'da javob beradi",
+   "organadi": "Botni ro'yxatdan o'tkazadi; tokenni hech kimga bermaydi",
+   "nega": "Xavfsizlik qoidasi shu yerda",
+   "tekshiruv": "Mentor"
+  },
+  {
+   "n": 155,
+   "modul": 8,
+   "tur": "loyiha",
+   "mavzu": "Bot loyihasi: rasm, stiker va o'z boti",
+   "natija": "Loyiha kartasi bo'yicha tayyor bot",
+   "organadi": "Qahramon rasmi bilan o'z botini yasaydi",
+   "nega": "Mustaqil loyiha",
+   "tekshiruv": "Chek-list"
+  },
+  {
+   "n": 156,
+   "modul": 8,
+   "tur": "PM",
+   "mavzu": "Botni sinash va ulashish",
+   "natija": "Do'stlar botni sinab ko'radi",
+   "organadi": "Fikr yig'adi va tuzatadi",
+   "nega": "Haqiqiy foydalanuvchilar fikri",
+   "tekshiruv": "O'zaro tekshiruv"
+  },
+  {
+   "n": 157,
+   "modul": 9,
+   "tur": "PM",
+   "mavzu": "Loyiha tanlash: sayt kim uchun",
+   "natija": "Ota-ona yoki do'stdan so'rab to'ldirilgan loyiha kartasi",
+   "organadi": "Haqiqiy odamdan nima kerakligini so'raydi",
+   "nega": "Yakuniy loyiha kimgadir kerak bo'lishi shart",
+   "tekshiruv": "Mentor"
+  },
+  {
+   "n": 158,
+   "modul": 9,
+   "tur": "PM",
+   "mavzu": "Reja va Stitch'da maket",
+   "natija": "Sahifalar rejasi va to'liq maket",
+   "organadi": "Rejaga qarab maket chizdiradi va tuzatadi",
+   "nega": "6-modul ko'nikmasi endi mustaqil",
+   "tekshiruv": "Chek-list"
+  },
+  {
+   "n": 159,
+   "modul": 9,
+   "tur": "loyiha",
+   "mavzu": "AI bilan yig'ish 1: bosh sahifa",
+   "natija": "Bosh sahifa kodda tayyor",
+   "organadi": "Maketni AI bilan kodga aylantiradi va tekshiradi",
+   "nega": "Mustaqil qo'llash",
+   "tekshiruv": "Chek-list"
+  },
+  {
+   "n": 160,
+   "modul": 9,
+   "tur": "loyiha",
+   "mavzu": "AI bilan yig'ish 2: qolgan sahifalar",
+   "natija": "Sahifalar bir-biriga bog'langan",
+   "organadi": "Uslubni saqlab yig'adi",
+   "nega": "Sayt to'liq bo'lishi uchun",
+   "tekshiruv": "Chek-list"
+  },
+  {
+   "n": 161,
+   "modul": 9,
+   "tur": "loyiha",
+   "mavzu": "O'zim yozgan JavaScript",
+   "natija": "Saytda o'zi yozgan interaktiv qism: forma, viktorina yoki o'yin",
+   "organadi": "AIsiz o'zi JavaScript yozadi",
+   "nega": "3–7-modul ko'nikmasi yakuniy loyihada",
+   "tekshiruv": "Avtotest + mentor"
+  },
+  {
+   "n": 162,
+   "modul": 9,
+   "tur": "amaliyot",
+   "mavzu": "Kodni tushuntirib berish",
+   "natija": "Saytidagi istalgan qismini mentorga tushuntiradi",
+   "organadi": "AI va o'zi yozgan kodni o'qib izohlaydi",
+   "nega": "Bola kodning egasi ekanini ko'rsatadi",
+   "tekshiruv": "Mentor"
+  },
+  {
+   "n": 163,
+   "modul": 9,
+   "tur": "PM",
+   "mavzu": "Telefonga moslash va sinfdosh sinovi",
+   "natija": "Topilgan xatolar ro'yxati, asosiylari tuzatilgan",
+   "organadi": "Telefonda tekshiradi, sinov o'tkazadi",
+   "nega": "Mahsulot sinovsiz chiqmaydi",
+   "tekshiruv": "O'zaro tekshiruv"
+  },
+  {
+   "n": 164,
+   "modul": 9,
+   "tur": "amaliyot",
+   "mavzu": "Saytni internetga joylash",
+   "natija": "Saytning havolasi bor",
+   "organadi": "Saytni mustaqil joylaydi",
+   "nega": "Yakuniy loyiha havola orqali ochiladi",
+   "tekshiruv": "Havola ishlaydi"
+  },
+  {
+   "n": 165,
+   "modul": 9,
+   "tur": "loyiha",
+   "mavzu": "Taqdimot: «Kurs davomida nimalar yasadim»",
+   "natija": "O'yin, video, sahifa, hikoya, viktorina, sayt, bot va yakuniy loyiha bitta taqdimotda",
+   "organadi": "Butun kurs ishlarini yig'adi",
+   "nega": "Bola o'zi bosib o'tgan yo'lni ko'radi",
+   "tekshiruv": "Mentor"
+  },
+  {
+   "n": 166,
+   "modul": 9,
+   "tur": "test",
+   "mavzu": "Yakuniy test",
+   "natija": "Kurs bo'yicha ko'nikmalar natijasi",
+   "organadi": "Butun kursni tekshiradi",
+   "nega": "Bitiruvchi darajasini ko'rish uchun",
+   "tekshiruv": "Avto + mentor"
+  },
+  {
+   "n": 167,
+   "modul": 9,
+   "tur": "pre-demo",
+   "mavzu": "Pre-Demo",
+   "natija": "Yakuniy mashq",
+   "organadi": "Taqdimotni vaqtga sig'diradi",
+   "nega": "Demo Day'da o'ziga ishonchi bo'lishi uchun",
+   "tekshiruv": "Repetitsiya"
+  },
+  {
+   "n": 168,
+   "modul": 9,
+   "tur": "Demo Day",
+   "mavzu": "Yakuniy Demo Day",
+   "natija": "Bitiruv: hamma ishlar va yakuniy loyiha ko'rsatiladi",
+   "organadi": "Yakuniy loyihasini ko'rsatadi, savollarga javob beradi",
+   "nega": "Ota-ona bolasi nimalar o'rganganini bir joyda ko'radi",
+   "tekshiruv": "Himoya"
+  }
+ ]
+}

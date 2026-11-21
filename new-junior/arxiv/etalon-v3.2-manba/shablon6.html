@@ -1,0 +1,669 @@
+<title>Junior etalon v3.2</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;500;600;700;800&family=Onest:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap">
+<style>
+/* Sahifa: Junior etalon darsi (v3.2 — shrift tanlandi: Geologica sarlavha, Onest matn, JetBrains Mono kod) — darsning butun yo'li 5 lahzada (proyektor + bola noutbuki), ekran qonunlari, qarorlar yozuvi.
+   Sahifa ranglari tokenlarda; maket ichidagi ranglar darsniki va ikkala mavzuda bir xil (bu — ekran surati). */
+:root{
+  --bg:#F6F4EF; --surface:#ffffff; --surface2:#FBFAF7; --ink:#0D2137; --muted:#5A5A60; --line:#E4E0D6;
+  --accent:#E2431F; --ok:#1F7A4D; --ok-bg:#E3F0E8; --gold:#8A6A0C;
+  --f-sar:"Geologica",system-ui,sans-serif; --f-matn:"Onest",system-ui,-apple-system,"Segoe UI",sans-serif; --f-kod:"JetBrains Mono",ui-monospace,monospace; --k:1; --sar-w:700;
+  --serif:var(--f-sar); --body:var(--f-matn);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11161f;--surface:#18202c;--surface2:#1d2633;--ink:#ECEFF4;--muted:#A4ACB9;--line:#2A3442;--accent:#FF7A59;--ok:#59C98F;--ok-bg:#163024;--gold:#E7CA66;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#11161f;--surface:#18202c;--surface2:#1d2633;--ink:#ECEFF4;--muted:#A4ACB9;--line:#2A3442;--accent:#FF7A59;--ok:#59C98F;--ok-bg:#163024;--gold:#E7CA66;color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 80px}
+.wrap{max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:30px}
+h1,h2,h3{font-family:var(--serif);text-wrap:balance;margin:0;letter-spacing:-.01em}
+h1 em,h2 em{font-style:normal;color:var(--accent)}
+p{margin:0}
+.tepa{padding-top:36px;display:flex;flex-direction:column;gap:14px}
+.tepa h1{font-size:clamp(32px,4.8vw,54px);font-weight:600;line-height:1.05}
+.tepa p{max-width:78ch;color:var(--muted);font-size:16px}
+.yorliq{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.blok{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:18px}
+.blok > h2{font-size:26px;font-weight:600}
+.blok > p{max-width:82ch;color:var(--muted)}
+.uch{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:860px){.uch{grid-template-columns:1fr}}
+.uch > div{background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.uch h3{font-size:18px;font-weight:600}
+.uch ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px;font-size:14px}
+/* lahzalar */
+.lahza{display:flex;flex-direction:column;gap:16px;padding-top:6px;border-top:1px solid var(--line)}
+.l-bosh{display:flex;gap:16px;align-items:flex-start}
+.l-n{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font:600 20px var(--serif);background:var(--ink);color:var(--bg)}
+.l-bosh h3{font-size:28px;font-weight:600;line-height:1.1}
+.l-bosh p{color:var(--muted);margin-top:4px}
+.l-ekranlar{display:grid;grid-template-columns:1fr 1fr;gap:22px 20px}
+@media (max-width:900px){.l-ekranlar{grid-template-columns:1fr}}
+.l-ekranlar figure{margin:0;display:flex;flex-direction:column;gap:10px;min-width:0}
+.l-ekranlar figcaption{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;font-size:13.5px;color:var(--muted)}
+.l-ekranlar figcaption .eid{grid-row:1/3;align-self:start;font-weight:800;font-size:12px;padding:3px 8px;border-radius:6px;background:var(--surface);border:1px solid var(--line);color:var(--ink)}
+.l-ekranlar figure.bo .eid{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.l-ekranlar figcaption b{color:var(--ink);font-weight:700}
+/* qonunlar, qarorlar */
+.qonunlar{display:grid;grid-template-columns:1fr 1fr;gap:12px 26px;margin:0;padding:0;list-style:none;counter-reset:q}
+@media (max-width:860px){.qonunlar{grid-template-columns:1fr}}
+.qonunlar li{counter-increment:q;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line)}
+.qonunlar li::before{content:"Q" counter(q);grid-row:1/3;font-weight:800;font-size:12px;color:var(--accent);min-width:28px}
+.qonunlar b{font-family:var(--serif);font-size:18px;font-weight:600}
+.qonunlar span{font-size:14px;color:var(--muted)}
+.qaror{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:900px){.qaror{grid-template-columns:1fr}}
+.qaror > div{border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:8px;border:1px solid var(--line);background:var(--surface2);min-width:0}
+.qaror h3{font-size:13px;font-family:var(--body);font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.qaror .ha h3{color:var(--ok)}.qaror .yoq h3{color:var(--accent)}.qaror .och h3{color:var(--gold)}
+.qaror ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:5px;font-size:14px}
+.javob{display:flex;gap:10px;flex-wrap:wrap}
+.javob span{font-weight:700;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:var(--surface2)}
+/* kattalashtirish */
+.ekran{cursor:zoom-in}
+.ekran:focus-visible{outline:3px solid #3FA2FF;outline-offset:3px}
+.katta-fon{position:fixed;inset:0;z-index:50;background:rgba(6,12,22,.86);display:grid;place-items:center;padding:16px;cursor:zoom-out}
+.katta-fon .ekran{width:min(100%,calc((100vh - 40px) * 16 / 9));cursor:zoom-out}
+.katta-fon .yop{position:absolute;top:max(12px,env(safe-area-inset-top,0px));right:max(12px,env(safe-area-inset-right,0px));font:600 14px var(--body);color:#fff;background:rgba(255,255,255,.14);border:0;border-radius:8px;padding:8px 12px;cursor:pointer}
+
+{{HARAKAT}}
+
+{{MAKET}}
+
+/* ===== Etalon: shablonlar ===== */
+.cg .av{width:4.2cqw;height:4.2cqw;border-radius:50%;overflow:hidden;background:#E3EAF4;margin-top:0;box-shadow:inset 0 0 0 .15cqw #fff}
+.cg .av svg{width:100%;height:100%;display:block}
+/* t1 — ikki ustun */
+.t1 .hm{display:grid;grid-template-columns:38% 1fr;gap:2.4cqw;padding-block:.9cqw 1cqw}
+.t1 .chap{display:flex;flex-direction:column;gap:1.3cqw;min-width:0}
+.t1 .sar{font-size:4.4cqw}
+.t1 .chap .daf{margin-top:auto}
+.t1 .chap .jav{background:#fff;border-radius:1.2cqw;width:auto;box-shadow:0 .2cqw .9cqw rgba(58,53,48,.1);align-items:flex-start}
+.t1 .chap > .jv,.t1 .chap > .tm,.t1 .chap > .rj{margin-top:auto}
+/* t2 — sahna */
+.t2 .hm{left:1.6cqw;right:1.6cqw}
+.t2 .oyna.to{position:absolute;inset:.5cqw 0 .9cqw}
+.t2 .pan{left:1.6cqw;top:1.6cqw;width:44%;padding:2cqw 2.2cqw;display:flex;flex-direction:column;gap:1.1cqw}
+.t2 .pan .cg p{background:rgba(255,255,255,.84);box-shadow:none}
+.t2 .sar{font-size:3.8cqw}
+.t2 .gl.a-r{right:1.6cqw;top:1.6cqw;bottom:1.6cqw;width:31%;padding:1.4cqw;display:flex;flex-direction:column;justify-content:center}
+.t2 .gl.a-r .jk{background:rgba(255,255,255,.9);box-shadow:none}
+/* yo'llar */
+.p1{left:8%;right:35%;bottom:7%}
+.p3{left:47%;right:4%;bottom:7%}
+.b1{left:30%;right:30%;bottom:6%}
+.b1 .n{opacity:0}
+.b1 .q.kichik > svg{width:170%}
+.t1 .chap > .rj{margin-top:1.4cqw}
+.t1 .chap > .rj li{padding:1.4cqw 1.5cqw}
+.t1 .chap .oyna.mini{flex:1;margin-top:.4cqw}
+.oyna.mini .dq .blk{font-size:.85cqw;padding:.45cqw .6cqw}
+.oyna.mini .dq .blk svg{width:1cqw;height:1cqw}
+.oyna.mini .yol .n{width:2.2cqw;height:2.2cqw;font-size:1cqw}
+.oyna.mini .yol .yul{width:3.4cqw}
+.b2{left:5%;right:6%;bottom:7%}
+.p5{left:3%;right:3%;bottom:7%}
+.p5 .q > svg{width:125%}
+.p1 .q > svg{width:130%}
+.yol .q.at2{grid-column:3}.yol .q.at3{grid-column:4}.yol .q.at4{grid-column:5}
+.gl.yrl{padding:.65cqw 1.2cqw;font-size:1.2cqw;font-weight:700;border-radius:999px}
+.y-p3{right:1.6cqw;top:1.6cqw}
+/* footer holatlari */
+.hn.jim{justify-content:center}
+.hn.jim .hint{flex:none;color:#7A7A80}
+.hn .mas.yon{border-color:#E7CA66;box-shadow:0 0 0 .35cqw rgba(231,202,102,.45);background:#FFF9E6}
+.hn .mas svg{flex:none}
+/* reja */
+.rj{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.8cqw}
+.rj li{display:flex;align-items:center;gap:1.2cqw;background:#fff;border-radius:1.1cqw;padding:1cqw 1.3cqw;box-shadow:0 .2cqw .9cqw rgba(58,53,48,.08)}
+.rj i{font-style:normal;width:3cqw;height:3cqw;border-radius:50%;display:grid;place-items:center;font:600 1.5cqw "Source Serif 4",serif;background:#EEEAE0;color:#5A5A60;flex:none}
+.rj li.hozir{box-shadow:0 0 0 .2cqw #FF4F28}
+.rj li.hozir i{background:#FF4F28;color:#fff}
+.rj b{display:block;font-size:1.6cqw;font-weight:800;color:#0D2137}
+.rj span{font-size:1.2cqw;color:#5A5A60}
+/* doska */
+.taymer{margin-top:auto;align-self:flex-start;font:600 4.6cqw/1 "Source Serif 4",serif;color:#0D2137;font-variant-numeric:tabular-nums}
+.taymer small{font:600 1.3cqw "Manrope",sans-serif;color:#5A5A60;margin-left:.4cqw}
+.doska{left:50%;top:50%;transform:translate(-50%,-50%);width:74%;padding:2cqw 2.4cqw;display:flex;flex-direction:column;gap:1cqw}
+.doska small{font-size:1.05cqw;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#5A5A60}
+.doska .katta{font:600 6cqw/1 "Source Serif 4",serif;color:#0D2137}
+.doska .katta i{font-style:normal;font-size:3cqw;color:#7A7A80}
+.yulduzlar{display:flex;gap:.45cqw;flex-wrap:wrap}
+.yulduzlar i{width:2.1cqw;height:2.1cqw}.yulduzlar svg{width:100%;height:100%;fill:#E4E0D6}
+.yulduzlar i.on svg{fill:#F5B82E}
+.pg{list-style:none;margin:.4cqw 0 0;padding:0;display:flex;flex-direction:column;gap:.55cqw}
+.pg li{display:flex;align-items:center;gap:1cqw;font-size:1.35cqw;font-weight:600;background:rgba(255,255,255,.75);border-radius:.9cqw;padding:.65cqw 1cqw}
+.pg li span{width:2.2cqw;height:2.2cqw;border-radius:.6cqw;display:grid;place-items:center;background:#0D2137;color:#fff;font-size:1.1cqw;flex:none}
+.pg li b{margin-left:auto;font:600 1.8cqw "Source Serif 4",serif}
+/* kutish */
+.oyna.kech .parda{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(13,33,55,.55),rgba(13,33,55,.25) 60%,rgba(13,33,55,.4))}
+.qarang{left:50%;top:9%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.7cqw;padding:2cqw 3cqw;text-align:center;width:46%}
+.qarang .uq{font-size:3.4cqw;line-height:1;color:#FF4F28;font-weight:800}
+.qarang > b{font:600 3cqw/1.1 "Source Serif 4",serif}
+.qarang > span{font-size:1.35cqw;color:#5A5A60}
+.qarang .daf{margin-top:.6cqw;background:#FBF3D9;padding:.8cqw 1.2cqw}
+/* xato */
+.muam{position:absolute;z-index:3;left:24%;top:36%;display:flex;align-items:flex-start;gap:1cqw}
+.muam .mk{width:11cqw;transform:rotate(-8deg)}.muam .mk svg{width:100%}
+.pufak{position:relative;max-width:22cqw;padding:1.1cqw 1.4cqw;font-size:1.35cqw;line-height:1.35;border-radius:1.4cqw}
+.pufak b{display:block;font:600 2cqw "Source Serif 4",serif;color:#C7381A;margin-bottom:.2cqw}
+/* muvaffaqiyat */
+.tabrik{margin-top:auto;background:#E6F4EC;border-radius:1.2cqw;padding:1.4cqw 1.6cqw;font-size:1.45cqw;color:#1F5A3C;display:flex;flex-direction:column;gap:.3cqw;box-shadow:inset 0 0 0 .15cqw #9FD3B4}
+.tabrik b{font:600 2.6cqw "Source Serif 4",serif;color:#145A35}
+.konfeti{position:absolute;inset:0;z-index:2;pointer-events:none}
+.konfeti i{position:absolute;left:var(--x);top:-4%;width:1cqw;height:.55cqw;border-radius:.15cqw;transform:rotate(var(--r));animation:tush 2.6s ease-in var(--d) infinite}
+.konfeti .k0{background:#FF4F28}.konfeti .k1{background:#E7CA66}.konfeti .k2{background:#3FA2FF}.konfeti .k3{background:#9A7BFF}
+@keyframes tush{0%{transform:translateY(0) rotate(var(--r));opacity:1}80%{opacity:1}100%{transform:translateY(34cqw) rotate(calc(var(--r) + 300deg));opacity:0}}
+@media (prefers-reduced-motion:reduce){.konfeti i{animation:none;top:calc(var(--x) / 4)}}
+/* test kartalari */
+.jk .jt{flex:1;display:flex;align-items:baseline}
+.jk .belgi{font-size:1.1cqw;font-weight:800;color:#1F7A4D;background:#E3F0E8;border-radius:999px;padding:.4cqw .9cqw}
+.katta-k{display:flex;flex-direction:column;gap:1.3cqw;justify-content:center}
+.katta-k .jk{padding:2cqw 2.2cqw;font-size:2.1cqw;border-radius:1.6cqw}
+.katta-k .jk .sh{width:3.4cqw;height:3.4cqw}
+.katta-k .jk:not(.tanlandi){opacity:.55}
+.jk.tanlandi{border-color:#0D2137;box-shadow:0 0 0 .25cqw #0D2137}
+.natijali .jk{flex-wrap:wrap;row-gap:.6cqw}
+.natijali .son{font:600 1.9cqw "Source Serif 4",serif;color:#0D2137}
+.natijali .bar{flex-basis:100%;height:.7cqw;border-radius:1cqw;background:#EEEAE0;overflow:hidden}
+.natijali .bar i{display:block;height:100%;border-radius:1cqw;background:#A7A6A2}
+.natijali .togri{border-color:#1F7A4D;background:#F1FAF4}
+.natijali .togri .bar i{background:#1F7A4D}
+.natijali .togri .jt::after{content:"✓ to‘g‘ri";margin-left:.9cqw;font-size:1.05cqw;font-weight:800;color:#1F7A4D;background:#E3F0E8;border-radius:999px;padding:.3cqw .8cqw;align-self:center}
+.natijali .jk:not(.togri){opacity:.75}
+.blk.bajarildi{background:#5AA8F5;box-shadow:inset 0 .18cqw 0 rgba(255,255,255,.25),0 .3cqw 0 #3D84CF}
+/* ===== v2: o'z tipografikasi (proyektordan o'qiladigan o'lchamlar) ===== */
+.hy{font-family:var(--f-matn)}
+.sar{font-family:var(--f-sar);font-weight:var(--sar-w);letter-spacing:-.03em;line-height:1.05}
+.t1 .sar{font-size:calc(4cqw * var(--k))}
+.t2 .sar{font-size:calc(3.8cqw * var(--k))}
+.sar em{font-style:normal;font-weight:inherit;color:#E2431F;background:linear-gradient(180deg,transparent 62%,rgba(255,79,40,.16) 62%,rgba(255,79,40,.16) 94%,transparent 94%);padding:0 .08em;margin:0 -.04em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.tag{display:inline-flex;align-self:flex-start;width:max-content;font:700 1.25cqw/1 var(--f-kod);letter-spacing:.04em;color:#C7381A;background:#FFE9E2;border-radius:.5cqw;padding:.55cqw .8cqw}
+.hl{font:700 1.2cqw/1 var(--f-kod);letter-spacing:.06em}
+.seg li{font-size:1.25cqw;font-weight:600}
+.cg .av{width:4.8cqw;height:4.8cqw}
+.cg p{font-size:1.6cqw;font-weight:500;line-height:1.35}
+.cg small{font:700 1.1cqw/1 var(--f-kod);letter-spacing:.04em}
+.blk{font-family:var(--f-kod);font-weight:700;font-size:1.3cqw;letter-spacing:-.01em}
+.dq .blk{font-size:1.05cqw}
+.mis > div{font-size:1.5cqw}
+.daf{font-size:1.4cqw}
+.hn{font-size:1.4cqw;color:#4A4A50}
+.hn .asos{font:800 1.6cqw/1 var(--f-matn)}
+.hn .soat,.hn .sanoq{font-family:var(--f-kod);font-weight:700;color:#8A8A90}
+.jk{font-size:1.65cqw;font-weight:600}
+.jk b{font-family:var(--f-kod)}
+.t2 .gl.a-r{gap:1cqw}
+.t2 .gl.a-r .jk{font-size:1.85cqw;padding:1.5cqw 1.5cqw}
+.jav small,.dq small,.doska small,.nt small{font:700 1.15cqw/1 var(--f-kod);letter-spacing:.06em}
+.jav p{font-size:1.25cqw}
+.yol .n{font-family:var(--f-kod);font-size:1.3cqw}
+.gl.yrl{font-size:1.35cqw}
+.rj i{font:700 1.5cqw var(--f-kod)}
+.rj b{font:var(--sar-w) 1.75cqw/1.15 var(--f-sar);letter-spacing:-.015em}
+.rj span{font-size:1.3cqw}
+.taymer{font:700 5cqw/1 var(--f-kod);letter-spacing:-.04em}
+.taymer small{font:600 1.6cqw var(--f-matn);color:#4A4A50;margin-left:.6cqw;letter-spacing:0}
+.doska .katta{font:800 6.4cqw/1 var(--f-kod);letter-spacing:-.05em}
+.doska .katta i{font-size:2.8cqw}
+.pg li{font-size:1.45cqw}
+.pg li b{font:800 1.8cqw var(--f-kod)}
+.pg li span{font-family:var(--f-kod)}
+.qarang > b{font:var(--sar-w) calc(3cqw * var(--k))/1.1 var(--f-sar);letter-spacing:-.02em}
+.qarang > span{font-size:1.45cqw}
+.pufak{font-size:1.45cqw}
+.pufak b{font:var(--sar-w) 2cqw var(--f-sar)}
+.tabrik{font-size:1.55cqw}
+.tabrik b{font:var(--sar-w) calc(2.6cqw * var(--k)) var(--f-sar);letter-spacing:-.02em}
+.jk .belgi,.natijali .togri .jt::after{font-size:1.15cqw}
+.natijali .son{font:800 2cqw var(--f-kod)}
+.tr b{font:var(--sar-w) 1.7cqw/1.1 var(--f-sar)}
+.tr > span:last-child{font-size:1.3cqw}
+.ns b{font:800 3cqw/1 var(--f-kod);letter-spacing:-.04em}
+.ns span{font-size:1.2cqw}
+.kd b{font:var(--sar-w) 1.9cqw var(--f-sar)}
+/* shrift almashtirgich */
+.shrift{position:sticky;top:0;z-index:20;display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;padding:10px 0;background:var(--bg);border-bottom:1px solid var(--line)}
+.shrift > span{font-weight:700;font-size:14px;margin-right:4px}
+.shrift button{font:600 14px var(--f-matn);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 12px;cursor:pointer;min-height:40px}
+.shrift button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.shrift button:focus-visible{outline:3px solid #3FA2FF;outline-offset:2px}
+.namuna{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:820px){.namuna{grid-template-columns:1fr}}
+.namuna > div{background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:8px;min-width:0;cursor:pointer}
+.namuna > div.tanlangan{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent)}
+.namuna small{font:700 12px var(--f-kod);letter-spacing:.06em;color:var(--muted)}
+.namuna .n-sar{font-size:30px;line-height:1.05;letter-spacing:-.03em;overflow-wrap:anywhere}
+.namuna .n-sar em{font-style:normal;color:var(--accent)}
+.namuna .n-ru{font-size:17px}
+.namuna .n-kod{font:700 15px var(--f-kod)}
+.namuna .n-iz{font-size:13.5px;color:var(--muted)}
+/* ===== v3: studiya (Scratch tartibi) va mozaika bloklar ===== */
+.mb{--c:#2F8FF0;--d:#1B62B5;position:relative;display:flex;align-items:center;gap:.6cqw;width:max-content;min-width:11.5cqw;padding:.95cqw 1.2cqw 1.35cqw;color:#fff;font:700 1.3cqw/1 var(--f-kod);letter-spacing:-.01em;background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,0) 45%),var(--c);clip-path:polygon(0 .5cqw,.35cqw 0,1.3cqw 0,1.8cqw .5cqw,3.4cqw .5cqw,3.9cqw 0,calc(100% - .35cqw) 0,100% .5cqw,100% calc(100% - .5cqw),calc(100% - .35cqw) calc(100% - .45cqw),3.9cqw calc(100% - .45cqw),3.4cqw 100%,1.8cqw 100%,1.3cqw calc(100% - .45cqw),.35cqw calc(100% - .45cqw),0 calc(100% - .8cqw))}
+.mb svg{width:1.45cqw;height:1.45cqw;flex:none}
+.mb.f-g{--c:#8B5CF6;--d:#6D3FD6}
+.mb .inp{font:600 1.2cqw/1 var(--f-matn);color:#3B2470;background:#fff;border-radius:999px;padding:.4cqw .8cqw;white-space:nowrap}
+.mbw{display:flex;flex-direction:column;filter:drop-shadow(0 .2cqw 0 rgba(13,33,55,.28))}
+.mbw .mb + .mb{margin-top:-.45cqw}
+.mb.yon{--c:#64B4FF}.mb.f-g.yon{--c:#A98BFF}
+.mb.hozir{outline:none;box-shadow:none}
+.mbw .mb.hozir{--c:#FFB020}
+.mb.yangi{animation:mb-ulan 2.4s ease-in-out infinite}
+@keyframes mb-ulan{0%,20%{transform:translate(1.4cqw,-1.2cqw) rotate(-3deg)}45%,100%{transform:none}}
+.mb.tushadi{animation:mb-tush 2.4s ease-in-out infinite}
+@keyframes mb-tush{0%,40%{transform:translateY(-3cqw);opacity:0}70%,100%{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.mb.yangi,.mb.tushadi{animation:none}}
+.t3 .hm{display:grid;grid-template-columns:6.6cqw 15cqw 17.5cqw minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);gap:1.1cqw 1.2cqw;padding-block:.7cqw 1cqw}
+.ust{grid-column:1/-1;display:flex;align-items:center;gap:1.2cqw;min-width:0}
+.ust .tag{flex:none}
+.t3 .ust .sar{font-size:calc(2.6cqw * var(--k));white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ust .iz{margin-left:auto;font-size:1.35cqw;color:#4A4A50;text-align:right;max-width:30cqw;line-height:1.3}
+.rg{display:flex;flex-direction:column;align-items:center;gap:1.4cqw;background:#fff;border-radius:1.2cqw;padding:1.2cqw .4cqw;box-shadow:0 .2cqw .9cqw rgba(58,53,48,.1)}
+.rd{--c:#2F8FF0;display:flex;flex-direction:column;align-items:center;gap:.45cqw;position:relative}
+.rd.f-g{--c:#8B5CF6}
+.rd i{width:3.8cqw;height:3.8cqw;border-radius:50%;background:var(--c);display:grid;place-items:center;box-shadow:inset 0 .25cqw 0 rgba(255,255,255,.25)}
+.rd i svg{width:1.9cqw;height:1.9cqw}
+.rd small{font:700 1.05cqw/1 var(--f-matn);color:#4A4A50}
+.rd.on i{box-shadow:0 0 0 .3cqw #fff,0 0 0 .6cqw var(--c)}
+.rd.on small{color:#0D2137}
+.rd.ok::after{content:"✓";position:absolute;right:-.3cqw;top:-.3cqw;width:1.7cqw;height:1.7cqw;border-radius:50%;background:#1F7A4D;color:#fff;font:800 1cqw/1.7cqw var(--f-matn);text-align:center}
+.rd.puls i{animation:puls 1.4s ease-in-out infinite}
+@keyframes puls{0%,100%{box-shadow:0 0 0 0 rgba(139,92,246,.6)}50%{box-shadow:0 0 0 .9cqw rgba(139,92,246,0)}}
+@media (prefers-reduced-motion:reduce){.rd.puls i{animation:none;box-shadow:0 0 0 .5cqw rgba(139,92,246,.4)}}
+.pl{display:flex;flex-direction:column;gap:1cqw;background:#fff;border-radius:1.2cqw;padding:1.2cqw;box-shadow:0 .2cqw .9cqw rgba(58,53,48,.1);min-width:0}
+.pl > small{font:700 1.15cqw/1 var(--f-kod);letter-spacing:.04em;color:#2F8FF0}
+.pl > small.f-g{color:#8B5CF6}
+.pl .mb{min-width:0;width:100%;padding-inline:1cqw}
+.mb{white-space:nowrap}
+.pl{padding:1.1cqw .9cqw}
+.pl .mbw.yopiq{opacity:.32;filter:grayscale(1)}
+.dst .mb{min-width:0;max-width:100%}.dst .mb .inp{overflow:hidden;text-overflow:ellipsis;max-width:11cqw;font-size:1.05cqw;padding:.35cqw .6cqw}.dst .mb{padding-inline:.9cqw;gap:.5cqw}.dst{padding:1.1cqw .9cqw !important}
+.dst{display:flex;flex-direction:column;gap:.9cqw;border-radius:1.2cqw;padding:1.2cqw;background-color:#EEF1F6;background-image:radial-gradient(circle,#D5DBE6 .12cqw,transparent .14cqw);background-size:1.4cqw 1.4cqw;min-width:0;position:relative}
+.dsb{display:flex;align-items:center;gap:.7cqw;font:700 1.15cqw/1 var(--f-kod);color:#4A4A50}
+.dyz{width:2.8cqw;height:2.8cqw;border-radius:50%;overflow:hidden;background:#fff;flex:none;display:grid;place-items:center}
+.dyz svg{width:100%;height:100%}
+.dst .bosh{border:.15cqw dashed #A9B3C4;border-radius:.8cqw;padding:1.2cqw;font-size:1.2cqw;color:#5A6474;text-align:center}
+.dsn{margin-top:auto;font:700 1.15cqw/1 var(--f-kod);color:#5A6474}
+.t3 .oyna{min-height:0}
+.t3 .yol .q > svg{width:120%}
+.xira{position:absolute;left:8.2cqw;right:0;top:4.4cqw;bottom:0;z-index:4;background:rgba(246,244,239,.72);border-radius:1.2cqw}
+.ishora{position:absolute;z-index:5;left:9.4cqw;top:13.2cqw;display:flex;align-items:center;gap:.8cqw;background:#0D2137;color:#fff;font-size:1.6cqw;font-weight:700;border-radius:1cqw;padding:1cqw 1.4cqw}
+.ishora .O{font-size:2cqw}
+.e-B1 .rg{position:relative;z-index:5}
+.y-tox{left:42%;top:30%;font-size:1.4cqw}
+.cdy2{position:absolute;z-index:2;left:6%;bottom:5%;width:26%}.cdy2 svg{width:100%}
+.gap-p{left:26%;top:22%;font:700 1.8cqw var(--f-matn);padding:1cqw 1.4cqw;border-radius:1.4cqw}
+.p3c{left:4%;right:40%;bottom:7%}.p3c .n{opacity:0}
+.p3b{left:6%;right:6%;bottom:7%}
+.tush{left:50%;top:10%;transform:translateX(-50%);padding:1.2cqw;border-radius:1.2cqw}
+/* P1 kurs */
+.cdy{position:absolute;z-index:2;right:3%;bottom:4%;width:20%}.cdy svg{width:100%}
+.kurs{position:absolute;z-index:3;left:1.6cqw;bottom:1.6cqw;display:grid;grid-template-columns:repeat(3,16cqw);gap:1.2cqw}
+.kr{position:relative;padding:1cqw;display:flex;flex-direction:column;gap:.5cqw;border-radius:1.4cqw}
+.kr b{font:var(--sar-w) 1.7cqw/1.1 var(--f-sar)}
+.kr small{font:700 1cqw/1 var(--f-kod);color:#5A5A60}
+.kr-r{position:relative;height:9cqw;border-radius:.9cqw;overflow:hidden}
+.kr-r.o > svg{position:absolute;inset:0;width:100%;height:100%}
+.kr-q{position:absolute;left:18%;bottom:6%;width:34%}.kr-q svg{width:100%}
+.tos{position:absolute;left:62%;bottom:10%;width:1.6cqw;height:2.4cqw;background:#FF4F28;border-radius:.3cqw}.tos.t2{left:80%;height:3.4cqw}
+.kr-r.s{background:#fff;border:.12cqw solid #E4E0D6;display:grid;grid-template-columns:40% 1fr;grid-template-rows:1.4cqw 1fr;gap:.5cqw;padding:0 .6cqw .6cqw 0}
+.br{grid-column:1/-1;display:flex;gap:.3cqw;align-items:center;padding:0 .6cqw;background:#EEF1F6}.br i{width:.55cqw;height:.55cqw;border-radius:50%;background:#C8CFDB}
+.sq{padding-left:.4cqw;align-self:center}.sq svg{width:100%}
+.sl{display:flex;flex-direction:column;gap:.5cqw;justify-content:center}.sl i{height:.6cqw;border-radius:1cqw;background:#D9DEE7}.sl i.q{width:60%;height:1.4cqw;background:#FF4F28}
+.kr-r.b{background:#DCEBFA;display:flex;flex-direction:column;gap:.45cqw;padding:.7cqw;justify-content:center}
+.ch{align-self:flex-end;background:#fff;border-radius:.8cqw;padding:.35cqw .7cqw;font-size:1cqw;font-weight:600;display:flex;align-items:center;gap:.4cqw}
+.ch.c2{align-self:flex-start;background:#0D2137;color:#fff}.ch.k{opacity:.8}
+.ba{width:1.8cqw;height:1.8cqw;border-radius:50%;overflow:hidden;background:#fff}.ba svg{width:100%;height:100%}
+.t2 .pan.p1x{width:40%}
+/* P3 */
+.ikki{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:1cqw}
+.ikki small{display:block;font:700 1.05cqw/1 var(--f-kod);color:#5A5A60;margin-bottom:.7cqw;letter-spacing:.04em}
+.kod{background:#0D2137;border-radius:1cqw;padding:1.1cqw}
+.kod small{color:#E7CA66}
+.kod code{font:600 1.15cqw/1.6 var(--f-kod);color:#9FD3FF;white-space:nowrap}
+.ar2{font:800 2.4cqw var(--f-kod);color:#FF4F28}
+.biz{background:#fff;border-radius:1cqw;padding:1.1cqw;box-shadow:0 .2cqw .9cqw rgba(58,53,48,.1)}
+.biz .mb{min-width:0}
+.izq{margin-top:auto;font-size:1.4cqw;color:#4A4A50}
+/* P5 */
+.t1 .chap > .pg{margin-top:auto}
+.e-P5 .doska{width:70%}.e-P5 .yulduzlar{gap:.3cqw}.e-P5 .yulduzlar i{width:1.85cqw;height:1.85cqw}
+/* P8, B5 */
+.oila{display:flex;gap:2.4cqw;padding:.4cqw .6cqw}
+.oila .rd{flex-direction:row;gap:.7cqw}.oila .rd i{width:2.8cqw;height:2.8cqw}.oila .rd i svg{width:1.4cqw;height:1.4cqw}.oila .rd small{font-size:1.3cqw}
+.ti.b{background:#2F8FF0}.ti.b svg{width:1.8cqw;height:1.8cqw}
+.kd2{padding:1.2cqw 1.6cqw;display:flex;flex-direction:column;gap:.4cqw}
+.kd2 small{font:700 1.1cqw/1 var(--f-kod);color:#5A5A60;letter-spacing:.06em}
+.kd2 b{font:var(--sar-w) 2cqw/1.1 var(--f-sar)}
+.gl.a-tr{right:1.6cqw;top:1.6cqw}
+.stat{display:flex;flex-direction:column;gap:.9cqw;margin-top:.6cqw}
+.stat > div{display:flex;align-items:center;gap:1.2cqw}
+.stat b{font:800 2.2cqw/1 var(--f-kod);color:#0D2137}
+.stat .mb{min-width:13cqw}
+.sahna-ok{margin-top:auto;align-self:flex-start;background:#E6F4EC;color:#145A35;font-weight:700;font-size:1.5cqw;border-radius:1cqw;padding:1cqw 1.4cqw}
+.e-B5 .qq .m2{width:34%}
+/* mozaika yig'ma */
+.mz-ramka{max-width:900px}
+.sudra{position:absolute;z-index:6;left:26.5cqw;top:20.2cqw;transform:rotate(-4deg)}
+.e-MZ .dst .mbw::after{content:"";display:block;width:10cqw;height:.55cqw;margin-top:.7cqw;border-radius:1cqw;background:#FFB020}
+.sudra .mb{opacity:.95;box-shadow:none}
+.sudra .mb.qol{--c:#2F8FF0}
+/* sahifa: javob */
+.fid{font:700 11px var(--f-kod);color:var(--accent);margin-left:6px;white-space:nowrap}
+figure .ov,.tanlov{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+.ov button,.tanlov button{font:600 14px var(--f-matn);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 12px;min-height:40px;cursor:pointer}
+.ov button[aria-pressed="true"][data-v="qabul"],.tanlov button[aria-pressed="true"]{background:var(--ok);border-color:var(--ok);color:#fff}
+.ov button[aria-pressed="true"][data-v="boshqa"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.ov input,.tanlov input{flex:1 1 200px;min-width:0;font:400 14px var(--f-matn);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:9px 12px;min-height:40px}
+.ov button:focus-visible,.tanlov button:focus-visible,.ov input:focus-visible,.tanlov input:focus-visible,.nusxa:focus-visible{outline:3px solid #3FA2FF;outline-offset:2px}
+.fj{width:100%;border-collapse:collapse;font-size:14px}
+.fj th,.fj td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+.fj th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.fj td:last-child{white-space:nowrap;color:var(--muted)}
+.blok{overflow-x:auto}
+@media (max-width:700px){.fj thead{display:none}.fj tr{display:block;padding:8px 0;border-bottom:1px solid var(--line)}.fj td{display:block;border:0;padding:3px 0}.fj td:last-child{white-space:normal}}
+code{font-family:var(--f-kod);font-size:.92em}
+.ikki-yol .tavs{border-color:var(--ok);box-shadow:0 0 0 1px var(--ok)}
+.qonunlar b.y::after,.qonunlar .y{color:var(--accent)}
+.och-r{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px;font-size:14.5px}
+.javob-m{white-space:pre-wrap;font:500 13.5px/1.5 var(--f-kod);background:var(--surface2);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:0;min-height:60px}
+.nusxa{align-self:flex-start;font:700 15px var(--f-matn);color:#fff;background:var(--accent);border:0;border-radius:10px;padding:11px 18px;min-height:44px;cursor:pointer}
+/* ===== v3.1: qat'iy setka (F-1115-11) va yo'l zonachalari (F-1115-10) ===== */
+/* Har sahna (oyna): tepa 60% — matn va panellar; pastki 40% — YO'L QATLAMI: faqat qahramon, zonachalar, yoylar */
+.oyna{--yq:12.5cqw}
+.t3 .oyna{--yq:11.5cqw}
+.oyna .yol{left:5%;right:5%;bottom:5%;top:auto}
+.yol{grid-template-rows:auto auto;align-items:end}
+.yol.c4{grid-template-columns:repeat(4,1fr)}.yol.c5{grid-template-columns:repeat(5,1fr)}
+.yol .q{grid-row:1;grid-column:1;align-self:end;margin-bottom:-1.9cqw;z-index:3;width:100%;display:flex;justify-content:center}
+.yol .q > svg,.t3 .yol .q > svg,.p1 .q > svg,.p5 .q > svg,.b1 .q.kichik > svg{width:auto;height:var(--yq);max-width:none;flex:none;margin:0}
+.yol .q.kichik > svg{height:calc(var(--yq) * .95)}
+.yol .q.at1{grid-column:2}
+.z.z0{grid-column:1}.z.z1{grid-column:2}.z.z2{grid-column:3}.z.z3{grid-column:4}.z.z4{grid-column:5}
+.yoy{position:absolute;left:0;right:0;bottom:1.15cqw;width:100%;height:3.6cqw;overflow:visible;pointer-events:none;z-index:1}
+.yoy path{fill:none;stroke:#fff;stroke-width:3;stroke-dasharray:2 7;stroke-linecap:round;vector-effect:non-scaling-stroke;opacity:.95}
+.yoy path.otdi{stroke:#FFC93C;stroke-dasharray:none;stroke-width:3.5}
+.z{grid-row:2;justify-self:center;position:relative;width:min(78%,7.4cqw);height:2.3cqw;border-radius:50%;background:radial-gradient(ellipse at 50% 38%,#FFFDF7 0 42%,#ECE3CE 72%);box-shadow:0 .35cqw 0 #C8B892,0 .7cqw .9cqw rgba(60,40,10,.22);display:grid;place-items:center;z-index:2}
+.z b{font:800 1.3cqw/1 var(--f-kod);color:#0D2137}
+.z.s{background:radial-gradient(ellipse at 50% 38%,#F4F9FF 0 42%,#CFE0F6 72%);box-shadow:0 .35cqw 0 #9DB7DA,0 .7cqw .9cqw rgba(20,40,80,.2)}
+.z.y{background:radial-gradient(ellipse at 50% 38%,#FFF7D6 0 40%,#F3D36E 74%);box-shadow:0 .35cqw 0 #C79F33,0 0 0 .25cqw rgba(255,201,60,.55),0 .7cqw .9cqw rgba(120,80,0,.25)}
+.z .yul{position:absolute;left:50%;bottom:55%;width:4.6cqw;transform:translateX(-50%);filter:drop-shadow(0 .3cqw .4cqw rgba(120,70,0,.35));z-index:1}
+/* bir qadam — yoy bo'ylab sakrash */
+@keyframes bir-qadam{0%{transform:translate(0,0);opacity:0}5%,30%{transform:translate(0,0);opacity:1}40%{transform:translate(50%,-38%)}50%,88%{transform:translate(100%,0);opacity:1}96%,100%{transform:translate(100%,0);opacity:0}}
+/* Sahna shablonida javob kartalari tepa qatlamdan chiqmaydi */
+.t2 .gl.a-r{top:1.6cqw;bottom:calc(40% + .8cqw)}
+.t2 .gl.a-r{width:34%;justify-content:space-between;padding:1.1cqw}
+.t2 .gl.a-r .jk{padding:1cqw 1.3cqw;font-size:1.7cqw;white-space:nowrap}
+.t2 .gl.a-r .jv,.t2 .jv.a-r{gap:.8cqw}
+.t2 .pan{max-height:calc(60% - 2.4cqw);overflow:hidden}
+/* tepa qatlamdagi narsalar */
+.muam{top:27%;left:16%}
+.e-P5 .doska{top:1.6cqw;transform:translateX(-50%)}
+.t1 .chap .kurs{position:static;margin-top:auto;grid-template-columns:repeat(3,minmax(0,1fr));gap:.9cqw}
+.t1 .chap .kr{background:#fff;box-shadow:0 .2cqw .9cqw rgba(58,53,48,.1);-webkit-backdrop-filter:none;backdrop-filter:none;border:0}
+.t1 .chap .kr-r{height:7.4cqw}
+.t1 .chap .kr b{font-size:1.5cqw}
+/* setka ko'rinishi */
+.chap,.ust,.rg,.pl{position:relative}
+html[data-setka] .ekran [data-z]{outline:.18cqw dashed #2F8FF0;outline-offset:-.18cqw}
+html[data-setka] .ekran [data-z]::before{content:attr(data-z);position:absolute;z-index:30;left:.3cqw;top:.3cqw;font:700 .95cqw/1 var(--f-kod);color:#fff;background:#2F8FF0;padding:.28cqw .5cqw;border-radius:.3cqw;pointer-events:none;letter-spacing:.02em}
+html[data-setka] .ekran .oyna::after{content:"yo‘l qatlami — faqat qahramon va zonachalar";position:absolute;z-index:29;left:0;right:0;bottom:0;height:40%;border-top:.22cqw dashed #FF4F28;background:rgba(255,79,40,.12);font:700 .95cqw/1 var(--f-kod);color:#fff;padding:.4cqw .6cqw;pointer-events:none;text-shadow:0 0 .3cqw #C7381A}
+html[data-setka] .ekran .hb,html[data-setka] .ekran .hn{outline:.18cqw dashed #1F7A4D;outline-offset:-.18cqw}
+html[data-setka] .ekran .hb::after{content:"qayerdaman";position:absolute;right:0;bottom:-.2cqw;font:700 .95cqw/1 var(--f-kod);color:#fff;background:#1F7A4D;padding:.28cqw .5cqw;border-radius:.3cqw}
+html[data-setka] .ekran .hn::after{content:"tugmalar";position:absolute;left:50%;top:.3cqw;transform:translateX(-50%);font:700 .95cqw/1 var(--f-kod);color:#fff;background:#1F7A4D;padding:.28cqw .5cqw;border-radius:.3cqw}
+.setka-b{margin-left:auto}
+.setka-b[aria-pressed="true"]{background:#2F8FF0 !important;border-color:#2F8FF0 !important;color:#fff !important}
+.sh-jadval td:first-child{white-space:nowrap;font-weight:700}
+.sh-jadval td:last-child{white-space:normal}
+/* ===== v3.2 (F-1116): bir qatorli sarlavha, blok o'yinlari, P2 ikki yo'l, pog'ona zinapoyasi, kichik muammocha pufagi ===== */
+/* Sarlavha: ikki ustun va studiyada doim bir qator; faqat huk savoli (sahna shabloni) ikki qatorgacha */
+.t1 .sar{font-size:2.8cqw;white-space:nowrap}
+.t2 .sar{font-size:3.4cqw}
+.t1 .chap{gap:1.2cqw}
+/* tepada faqat dars nomi (38-qaror) */
+.hb{justify-content:flex-start}
+/* P1: Blok studiyada yasaladigan o'yinlar */
+.kr-r > svg.world,.kr-r > svg.lbs{position:absolute;inset:0;width:100%;height:100%}
+.kr-r.lb{background:#F4FBEF}
+.lb-d{fill:none;stroke:#2E7D4F;stroke-width:6;stroke-linecap:round}
+.lb-iz{fill:none;stroke:#E8A90C;stroke-width:2.6;stroke-dasharray:.1 6;stroke-linecap:round}
+.lb-q{animation:lb-yur 7s ease-in-out infinite}
+@keyframes lb-yur{0%,6%{transform:translate(20px,80px)}18%{transform:translate(20px,16px)}30%{transform:translate(60px,16px)}44%{transform:translate(60px,80px)}56%{transform:translate(100px,80px)}70%,92%{transform:translate(100px,22px)}100%{transform:translate(20px,80px)}}
+.olma{position:absolute;top:-1.8cqw;width:1.5cqw;animation:olma-tush 2.6s linear infinite}
+.olma svg,.dush svg,.raketa svg,.savat svg{width:100%;display:block}
+.olma.o1{left:16%}.olma.o2{left:47%;animation-delay:-.9s}.olma.o3{left:76%;animation-delay:-1.7s}
+@keyframes olma-tush{0%{transform:translateY(0) rotate(0)}100%{transform:translateY(9.4cqw) rotate(40deg)}}
+.savat{position:absolute;bottom:2%;width:3.4cqw;animation:savat 2.6s ease-in-out infinite alternate}
+@keyframes savat{0%{left:8%}100%{left:62%}}
+.ball{position:absolute;right:.45cqw;top:.45cqw;display:flex;align-items:center;gap:.25cqw;font:800 1cqw/1 var(--f-kod);color:#0D2137;background:#fff;border-radius:999px;padding:.28cqw .55cqw .28cqw .35cqw}
+.ball svg{width:1.05cqw;height:1.05cqw}
+.dush{position:absolute;top:9%;width:2.1cqw;animation:dush 1.8s ease-in-out infinite alternate}
+.dush.d1{left:12%}.dush.d2{left:44%;animation-delay:-.6s}.dush.d3{left:74%;animation-delay:-1.2s}
+@keyframes dush{0%{transform:translate(0,0)}100%{transform:translate(.6cqw,.5cqw)}}
+.raketa{position:absolute;bottom:5%;width:2cqw;animation:raketa 3.2s ease-in-out infinite alternate}
+@keyframes raketa{0%{left:14%}100%{left:72%}}
+.oq{position:absolute;left:50%;bottom:100%;width:.26cqw;height:1cqw;margin-left:-.13cqw;border-radius:1cqw;background:#FFE27A;box-shadow:0 0 .4cqw #FFC93C;animation:oq 1.1s linear infinite}
+.oq.o2{animation-delay:-.55s}
+@keyframes oq{0%{transform:translateY(0);opacity:1}85%{opacity:1}100%{transform:translateY(-5.2cqw);opacity:0}}
+@media (prefers-reduced-motion:reduce){.lb-q,.olma,.savat,.dush,.raketa,.oq{animation:none}.lb-q{transform:translate(60px,16px)}.olma.o2{transform:translateY(4cqw)}.savat{left:40%}.raketa{left:44%}.oq.o2{transform:translateY(-2.6cqw)}}
+/* P2: B yo'l — javob noutbukda */
+.a-nb{right:1.6cqw;top:1.6cqw;display:flex;align-items:center;gap:.7cqw;font-size:1.5cqw;padding:.8cqw 1.4cqw}
+.a-nb svg{width:2cqw;height:2cqw}
+.p2-tanlov{display:flex;flex-direction:column;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.p2-tanlov .tanlov{margin-top:4px}
+/* P5: pog'ona zinapoyasi — kartalar tepa 60% da, zonachalar yo'l qatlamida; har pog'ona 5,5% yuqoriroq */
+.tugatdi{margin-top:auto;display:flex;flex-direction:column;gap:.7cqw;background:#fff;border-radius:1.2cqw;padding:1.3cqw 1.5cqw;box-shadow:0 .2cqw .9cqw rgba(58,53,48,.1)}
+.tugatdi small{font:700 1.15cqw/1 var(--f-kod);letter-spacing:.06em;color:#5A5A60}
+.tugatdi > b{font:800 4cqw/1 var(--f-kod);letter-spacing:-.05em;color:#0D2137}
+.tugatdi > b i{font-style:normal;font-size:2.2cqw;color:#7A7A80}
+.tugatdi .yulduzlar{gap:.3cqw}.tugatdi .yulduzlar i{width:1.75cqw;height:1.75cqw}
+.pg-k{left:calc(5% + var(--i) * 22.5%);width:22%;bottom:calc(43% + var(--i) * 5.5%);padding:.8cqw .8cqw 1cqw;display:flex;flex-direction:column;gap:.5cqw;background:rgba(255,255,255,.88)}
+.pg-k.yd{background:rgba(255,249,224,.94);border-color:#F3D36E}
+.pg-t{display:flex;align-items:center;justify-content:space-between}
+.pg-n{width:2.5cqw;height:2.5cqw;border-radius:50%;display:grid;place-items:center;background:#0D2137;color:#fff;font:800 1.35cqw/1 var(--f-kod)}
+.pg-k.yd .pg-n{background:#F5B82E;color:#5A3D00}
+.pg-s{display:flex;align-items:center;gap:.3cqw;color:#5A5A60}
+.pg-s svg{width:1.3cqw;height:1.3cqw}
+.pg-s b{font:800 1.5cqw/1 var(--f-kod);color:#0D2137}
+.pg-k .mini{width:100%;height:auto;display:block;background:#EAF6E1;border-radius:.6cqw}
+.pg-m{font:700 1.2cqw/1.15 var(--f-matn);letter-spacing:-.01em;color:#0D2137;white-space:nowrap;text-align:center}
+.mbk{font:700 1.05cqw/1 var(--f-kod);color:#fff;background:#2F8FF0;border-radius:.4cqw;padding:.25cqw .45cqw;margin-right:.2cqw}
+.pg-z{position:absolute;left:calc(5% + var(--i) * 22.5% + 11%);bottom:calc(6% + var(--i) * 5.5%);transform:translateX(-50%);width:7.4cqw}
+.zina-yoy{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.zina-yoy path{fill:none;stroke:#fff;stroke-width:3;stroke-dasharray:2 7;stroke-linecap:round;vector-effect:non-scaling-stroke;opacity:.95}
+/* B3: muammocha pufagi — faqat bitta gap, kichik, uchi qahramonga qaragan */
+.e-B3 .muam{align-items:center}
+.e-B3 .pufak{background:#fff;padding:.6cqw 1.15cqw .7cqw;border-radius:1cqw;-webkit-backdrop-filter:none;backdrop-filter:none}
+.e-B3 .pufak b{font-size:1.6cqw;margin:0;white-space:nowrap}
+.e-B3 .pufak::before{content:"";position:absolute;left:-.55cqw;top:50%;width:1.1cqw;height:1.1cqw;background:#fff;transform:translateY(-50%) rotate(45deg);border-radius:.15cqw}
+/* v3.2 tuzatish: bir qatorli sarlavhadan bo'shagan joy — ichidagi narsa kattaroq */
+.t1 .chap .kr-r{height:10.2cqw}
+.t1 .chap .kr{padding:.8cqw;gap:.45cqw}
+.t1 .chap .kr b{font-size:1.3cqw;white-space:nowrap}
+.e-P4 .chap > .rj{margin-top:auto;gap:1cqw}
+.e-P4 .rj li{padding:1.7cqw 1.7cqw;gap:1.4cqw}
+.e-P4 .rj i{width:3.8cqw;height:3.8cqw;font-size:1.8cqw}
+.e-P4 .rj b{font-size:2.2cqw}
+.e-P4 .rj span{font-size:1.45cqw}
+.tugatdi{gap:.9cqw;padding:1.6cqw 1.7cqw}
+.tugatdi > b{font-size:5cqw}
+.tugatdi .yulduzlar i{width:2cqw;height:2cqw}
+.e-P2N .t2 .gl.a-r .jk,.e-P2N .gl.a-r .jk{padding:1.45cqw 1.3cqw}
+.e-P2N .jk .sh{width:2.8cqw;height:2.8cqw}
+</style>
+
+<div class="wrap">
+  <nav class="shrift" aria-label="Ko‘rinish"><span>Etalon v3.2</span><button type="button" class="setka-b" aria-pressed="false">Setkani ko‘rsat</button></nav>
+
+  <header class="tepa">
+    <span class="yorliq">Junior · 1-dars «Tanishuv» · etalon v3.2</span>
+    <h1>Etalon v3.2: ikkinchi ko‘rik <em>bo‘yicha</em></h1>
+    <p>16.11 dagi javobingiz (P1, P2, P4, P5, B3 — «boshqa g‘oya»; qolganlari qabul) dars matniga (v10.2) kiritildi. Shrift — Geologica, studiya — Blockly (avval sinov). Tepadagi bekat chizig‘i olib tashlandi, sarlavhalar bir qatorda. <b>P2 uchun ikki yo‘l</b> yasaldi — 2-lahzada bittasini tanlang. Qabul qilingan ekranlarni qayta belgilash shart emas; o‘zgarganlarini ko‘rib, <b>Qabul</b> yoki <b>Boshqa g‘oya</b> ni bosing. Ekranni bossangiz, kattalashadi.</p>
+  </header>
+
+  <section class="blok" aria-label="v3.2 da nima o‘zgardi">
+    <h2>v3.2: javobingizdan nima o‘zgardi</h2>
+    <table class="fj">
+      <thead><tr><th>Javobingiz</th><th>Darsda endi</th><th>Ekran</th></tr></thead>
+      <tbody>
+        <tr><td><b>F-1116-01</b> «Bu kursda siz yasaysiz» bir qatorda bo‘lsin; Coddy gapi hech narsa demaydi; butun kurs emas — blokli dasturlashda nima o‘rganamiz</td><td>Sarlavha «Bloklardan o‘yin yasaymiz» — bir qatorda. Kartalarda Blok studiya modulining o‘yinlari: labirint (2-dars), olma terish (11-dars), kosmik o‘yin (17-dars) — har biri o‘zi o‘ynaydi. Coddy: «Salom! Men Coddy. Bugun meni yurgizishni o‘rganasiz.»</td><td>P1</td></tr>
+        <tr><td><b>F-1116-02</b> Savol va javoblari biroz noto‘g‘ri; mentor panelda</td><td>To‘g‘ri javob «Unga buyruq <b>beramiz</b>» — «yozamiz» keyingi ekrandagi «biz buyruqni yozmaymiz» bilan zid edi. «Mentor panelda» uchun ikki yo‘l: A — kartalar katta ekranda ham; B — kartalar faqat noutbukda, kim nima tanlagani ustoz panelida</td><td>P2 · P2B · P2N</td></tr>
+        <tr><td><b>F-1116-03</b> Sarlavha savolcha va bir qatorda</td><td>«Bugun nima qilamiz?». Butun dars bo‘yicha: sarlavha doim bir qator (faqat huk savoli ikki qatorgacha); P1, P5, P8, B5 ham tuzatildi. Setka tekshiruvi buni o‘lchaydi</td><td>P4 va hamma ekran</td></tr>
+        <tr><td><b>F-1116-04</b> 1-2-3 pog‘onalar yaxshiroq dizaynda — bolalar shuni qiladi</td><td>Pog‘onalar — zinapoya: 1 → 2 → 3 → ★ tepaga ko‘tariladi, zonachalar yoyi bilan ulangan. Har pog‘onada kichik rasm, bir qator topshiriq va nechta bola. Avval tushib qolgan 3-pog‘ona qaytdi</td><td>P5</td></tr>
+        <tr><td><b>F-1116-05</b> Personaj gapi katta — meyorida bo‘lsin</td><td>Pufakda faqat «Oz qoldi!», kichik, uchi Kamvoy’ga qaragan. Maslahat matni — «Maslahat» tugmasida</td><td>B3</td></tr>
+        <tr><td><b>F-1116-06</b> Qarorlar</td><td>Studiya — Blockly (avval bir kunlik sinov) · shrift — Geologica · tepadagi bekat chizig‘i yo‘q (38-qaror) · bolaga «qadam» deymiz: «Qadamlarni sanang», «Yulduzgacha necha qadam?»</td><td>hamma ekran</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="blok" aria-label="Nima o‘zgardi">
+    <h2>Avvalgi raund (v3, v3.1): fidbekdan nima o‘zgardi</h2>
+    <table class="fj">
+      <thead><tr><th>Fidbek</th><th>Darsda endi</th><th>Ekran</th></tr></thead>
+      <tbody>
+        <tr><td><b>01</b> Kirish yo‘q edi — darhol blok</td><td>Kursning birinchi darsi ekani va kursda nima yasalishi (o‘yin, sayt, bot); hukdan keyin «Dasturlash nima?» — dasturlash va blokli dasturlash</td><td>P1, P3</td></tr>
+        <tr><td><b>02</b> Blok rangini aytish; rang belgilarini hamma bossin</td><td>Rang — oila: ko‘k Harakat, binafsha Gap. Studiyada rang doirachalari, tanishuvda har bola o‘zi bosadi</td><td>B1, P7, P8</td></tr>
+        <tr><td><b>03</b> Avval tushuntirish; dars ichida savol yo‘q</td><td>Savol faqat hukda. v2 dagi uch test ekrani (taxmin, javob, natija) olib tashlandi — o‘rniga ustoz ko‘rsatadi</td><td>P2, P6, P7</td></tr>
+        <tr><td><b>04</b> «de» kerak emas</td><td><code>say "Salom!"</code></td><td>P7</td></tr>
+        <tr><td><b>05</b> Bloklar mozaika</td><td>Boshqotirma bo‘lagidek ustma-ust ulanadi; sudrash ham, bosish ham. Studiya Scratch tartibida</td><td>B2, pastda yig‘ma</td></tr>
+        <tr><td><b>06</b> Ustozga «nima deyish»</td><td>Keyingi ish (birga qilish shart emas) — hozircha pastki paneldagi «Ustozga: …» qatori</td><td>—</td></tr>
+        <tr><td><b>07</b> Blok nomlari inglizcha</td><td><code>move right</code> · <code>move left</code> · <code>jump</code> · <code>say</code>; qolgan hammasi o‘zbekcha</td><td>hamma studiya</td></tr>
+        <tr><td><b>08</b> Ma’lumot faqat bola oynasida</td><td>Bola noutbukida «move right × 14» kabi; proyektorda sinf jami ham yo‘q</td><td>B5, P8</td></tr>
+        <tr><td><b>09</b> Vaqt kerak emas</td><td>Taymer, «Vaqt tugadi», paneldagi soat — hammasi olib tashlandi</td><td>P5 va hamma panel</td></tr>
+        <tr><td><b>10</b> Yo‘lda sakrash ko‘rinsin</td><td>Har qadam — yerdagi zonacha (start — ko‘kish, yulduzniki — oltin), orasida sakrash yoylari; o‘tilgan yoy oltin bo‘ladi; qahramon zonachada turadi</td><td>hamma sahna</td></tr>
+        <tr><td><b>11</b> Qat’iy layout</td><td>To‘rt shablon, har birida nomlangan zonalar. Sahnaning pastki 40% i — yo‘l qatlami: unga panel tushmaydi. Tepadagi «Setkani ko‘rsat» tugmasi zonalarni chizib beradi</td><td>hamma ekran</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  {{LAHZALAR}}
+
+
+  <section class="blok" aria-label="Qat’iy layout">
+    <h2>Qat’iy layout: to‘rt shablon</h2>
+    <p>Har ekran shu to‘rttasidan biri. Zonalar o‘zgarmaydi — faqat ichidagi narsa almashadi. Tepadagi «Setkani ko‘rsat» tugmasi har ekranda zonalarni chizib beradi: ko‘k — zona nomi, qizil — yo‘l qatlami, yashil — tepadagi va pastki tasma.</p>
+    <table class="fj sh-jadval">
+      <thead><tr><th>Shablon</th><th>Zonalar (ekran kengligining ulushi)</th><th>Qachon</th></tr></thead>
+      <tbody>
+        <tr><td>Hammasida</td><td>Tepada «qayerdaman» tasmasi (faqat dars nomi; bekatlarni reja xaritasi har bekat boshida ko‘rsatadi) · sarlavha bir qatorda · pastda «tugmalar» tasmasi (chapda ikkinchi darajali, o‘rtada izoh, o‘ngda bitta asosiy) · yon chetlar 3%</td><td>—</td></tr>
+        <tr><td>Ikki ustun</td><td>Chapda «matn» 38% (yorliq → sarlavha → Coddy gapi → pastda ro‘yxat yoki kartalar) · o‘ngda «sahna»</td><td>Kirish, reja, sinf doskasi, yakun</td></tr>
+        <tr><td>Sahna</td><td>Butun ekran — hovli. Tepa 60% da: chapda «sarlavha paneli» (≤ 44%, savol ikki qatorgacha), o‘ngda javob kartalari (≤ 34%). Pastki 40% — yo‘l qatlami</td><td>Huk savoli, katta yangi so‘z</td></tr>
+        <tr><td>Studiya</td><td>Tepada «sarlavha» qatori (yorliq · topshiriq · izoh) · ostida to‘rt ustun: ranglar 6,6% · bloklar 15% · dastur 17,5% · sahna qolgani</td><td>Blok bilan har ish (ustoz ham, bola ham)</td></tr>
+        <tr><td>Kutish</td><td>Kechki hovli; tepada o‘rtada bitta yozuv; qahramon yo‘l qatlamida tepaga qarab turadi. Tugma yo‘q</td><td>Bola noutbuki: «Katta ekranga qarang»</td></tr>
+        <tr><td>Yo‘l qatlami</td><td>Har sahnaning pastki 40% i: faqat qahramon, zonachalar va sakrash yoylari. Panel, karta, yozuv bu yerga tushmaydi; qahramon tepa qatlamga chiqmaydi</td><td>Hamma sahna</td></tr>
+      </tbody>
+    </table>
+    <p>Tekshiruv mashinada: har ekranda panel qahramonni yopmaganini, yo‘l qatlamiga tushmaganini, zonasidan chiqmaganini, sarlavha bir qatorda turganini (huk savoli — ikki qatorgacha) va Coddy gapi 12 so‘zdan oshmaganini o‘lchaydigan skript bor. v3.2 ning 16 ekrani — toza. Shu skript eski v2 da siz rasmda ko‘rsatgan nuqsonni topgan (P1 da panel Coddy’ning 21% ini yopgan), v3.1 da esa beshta ko‘p qatorli sarlavhani topdi.</p>
+  </section>
+
+  <section class="blok" aria-label="Qabul qilingan qarorlar">
+    <h2>Qabul qilingan qarorlar</h2>
+    <div class="uch ikki-yol">
+      <div class="tavs"><h3>Studiya · Blockly</h3><ul>
+        <li>Avval bir kunlik sinov: Blockly’da shu 4 blok (<code>move right</code>, <code>move left</code>, <code>jump</code>, <code>say</code>), bizning ranglar va shrift bilan</li>
+        <li>O‘lchaymiz: ko‘rinish pastdagi namunadek chiqadimi, sinf noutbukida tezligi, «bosib qo‘shish»</li>
+        <li>Sinov yomon chiqsa — o‘zimiz quramiz, vaqt yo‘qotilmaydi</li>
+      </ul></div>
+      <div class="tavs"><h3>Shrift · Geologica</h3><ul>
+        <li>Sarlavha — Geologica</li>
+        <li>Matn — Onest</li>
+        <li>Kod qatlami (blok nomi, raqam, yorliq) — JetBrains Mono</li>
+      </ul></div>
+      <div class="tavs"><h3>Ekran · bekatsiz, «qadam»</h3><ul>
+        <li>Tepada faqat dars nomi; qaysi bekatdaligimizni reja xaritasi har bekat boshida ko‘rsatadi (38-qaror)</li>
+        <li>Bolaga «qadam» deymiz: bitta blok — bitta qadam — bitta zonacha. «Nuqta» so‘zi ishlatilmaydi</li>
+      </ul></div>
+    </div>
+    <p>Blockly sinovi shu ko‘rinishni chiqarishi kerak:</p>
+    <div class="mz-ramka">{{MOZAIKA}}</div>
+  </section>
+
+  <section class="blok" aria-label="Ekran qonunlari">
+    <h2>Ekran qonunlari (v3.2)</h2>
+    <p>168 darsning hammasi shu qonunlar bilan quriladi. v3.2 da yangilangan yoki qo‘shilganlari belgilangan.</p>
+    <ol class="qonunlar">
+      <li><b class="y">Uch qavat</b><span>Tepada — faqat dars nomi (bekat chizig‘i yo‘q). O‘rtada — ish. Pastda — tugmalar. Hamma ekranda bir xil joyda.</span></li>
+      <li><b>To‘rtta shablon</b><span>«Ikki ustun», «Sahna» (huk savoli), «Studiya» (Scratch tartibi), «Kutish». Boshqa tuzilish yo‘q (yuqoridagi jadval).</span></li>
+      <li><b class="y">Sarlavha — bir qator</b><span>Faqat huk savoli ikki qatorgacha. Sig‘masa — so‘z qisqaradi, shrift emas. Bitta kalit so‘z coral rangda va marker ostida.</span></li>
+      <li><b class="y">Coddy — bitta ma’noli gap</b><span>12 so‘zgacha; bola nima qilishini yoki nimani ko‘rishini aytadi. Huk javobini oldindan aytmaydi. Uzun tushuntirishni ustoz aytadi.</span></li>
+      <li><b>Bitta asosiy tugma</b><span>Doim pastda o‘ngda. Bosiladigan narsa bo‘lmasa, tugma ham yo‘q.</span></li>
+      <li><b>Savol — faqat hukda</b><span>Qolgan joyda ustoz ko‘rsatadi, bola keyin o‘zi bajaradi. Tekshiruvni amaliy topshiriq qiladi.</span></li>
+      <li><b class="y">Bir ma’no — bir so‘z, butun dars bo‘yi</b><span>«Buyruq beramiz», «dastur tuzamiz», «bloklarni ulaymiz» — «yozamiz» emas (yozish — dasturchining kodi). Bolaga «qadam»: bitta blok — bitta qadam.</span></li>
+      <li><b>Hovli doim ko‘rinadi</b><span>Tekis fonli ekran yo‘q.</span></li>
+      <li><b>Rang — oila</b><span>Ko‘k — harakat, binafsha — gap (keyin: sariq — hodisa…). Coral — asosiy tugma va kalit so‘z. Oltin — yulduz. Yashil — to‘g‘ri. Bezak uchun rang yo‘q.</span></li>
+      <li><b>Blok nomi inglizcha, qolgani o‘zbekcha</b><span>Birinchi chiqqanda ustoz o‘zbekcha ma’nosini bir marta aytadi.</span></li>
+      <li><b>Blok — mozaika bo‘lagi</b><span>Ustma-ust ulanadi; sudrash va bosish ikkalasi ishlaydi.</span></li>
+      <li><b class="y">Xato — maslahat bilan, pufak kichik</b><span>Muammocha chiqadi, pufagida faqat uning bitta gapi («Oz qoldi!»). Maslahat matni — «Maslahat» tugmasida. «Xato!» yozuvi yo‘q.</span></li>
+      <li><b>Bayram — qisqa</b><span>Hech narsani yopmaydi. Ekran o‘zi o‘tib ketmaydi.</span></li>
+      <li><b>Ekranda vaqt yo‘q</b><span>Sahnani ustoz tugatadi.</span></li>
+      <li><b>Shaxsiy ma’lumot — faqat o‘z noutbukida</b><span>Proyektorda ism ham, shaxsiy son ham yo‘q; sinf doskasida faqat umumiy son.</span></li>
+      <li><b class="y">Uch shrift, uch vazifa</b><span>Geologica — sarlavha · Onest — matn · JetBrains Mono — kod (blok, raqam, yorliq).</span></li>
+      <li><b>Qat’iy setka</b><span>To‘rt shablon, har birida nomlangan zonalar; narsa o‘z zonasidan chiqmaydi.</span></li>
+      <li><b>Yo‘l qatlami</b><span>Sahnaning pastki 40% i — faqat qahramon, zonachalar va sakrash yoylari. Har qadam — bitta zonacha va bitta yoy; o‘tilgan yoy oltin.</span></li>
+      <li><b class="y">Pog‘ona — zinapoya</b><span>Bolalar o‘zi bajaradigan pog‘onalar sinf doskasida zinapoyadek ko‘tariladi: raqam, kichik rasm, bir qator topshiriq, nechta bola.</span></li>
+    </ol>
+  </section>
+
+  <section class="blok" aria-label="Ochiq">
+    <h2>Halol: hali ochiq</h2>
+    <ul class="och-r">
+      <li><b>P2 — A yoki B yo‘l.</b> Sizning tanlovingiz (2-lahzada). B tanlansa, dars matnidagi «sinf javoblari minorasi» ham katta ekrandan ustoz paneliga ko‘chadi.</li>
+      <li><b>Bola birinchi dasturini 16-daqiqada boshlaydi</b> (v9 da 13-daqiqa) — kirish va «Dasturlash nima?» uchun to‘langan narx.</li>
+      <li><b>Inglizcha blok nomlari</b> 9 yoshli, ingliz tilini bilmaydigan bolaga qanchalik oson — bolalarda sinalmagan.</li>
+      <li><b>Pog‘ona rasmlari kichik</b> — proyektorda sinf oxiridan (5–6 metr) o‘qiladimi, tekshirilmagan. O‘qilmasa, raqam va son qoladi, rasm kattalashadi.</li>
+      <li><b>P1 dagi o‘yin rasmlari</b> — etalonda sxematik; haqiqiy darsda o‘sha darslarning o‘z sahnasidan olinadi.</li>
+      <li><b>Ustoz panelidagi «Ayting»</b> (F-1115-06) — keyingi ish.</li>
+    </ul>
+  </section>
+
+  <section class="blok javob-b" aria-label="Javob">
+    <h2>Javobni yuborish</h2>
+    <p>Belgilaganlaringiz shu yerda yig‘iladi. «Javobni nusxalash» ni bosing va chatga qo‘ying.</p>
+    <pre class="javob-m" aria-live="polite"></pre>
+    <button type="button" class="nusxa">Javobni nusxalash</button>
+  </section>
+</div>
+
+<script>
+(() => {
+  let fon = null, oldingi = null
+  const yop = () => { if (!fon) return; fon.remove(); fon = null; if (oldingi) oldingi.focus() }
+  const och = (e) => {
+    oldingi = e
+    fon = document.createElement('div'); fon.className = 'katta-fon'; fon.setAttribute('role', 'dialog'); fon.setAttribute('aria-label', e.getAttribute('aria-label') || 'Ekran')
+    const n = e.cloneNode(true); n.removeAttribute('tabindex')
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'yop'; b.textContent = 'Yopish ✕'
+    fon.append(n, b); document.body.append(fon); b.focus()
+    fon.addEventListener('click', yop)
+  }
+  document.querySelectorAll('.wrap .ekran').forEach((e) => {
+    e.addEventListener('click', () => och(e))
+    e.addEventListener('keydown', (k) => { if (k.key === 'Enter' || k.key === ' ') { k.preventDefault(); och(e) } })
+  })
+  document.addEventListener('keydown', (k) => { if (k.key === 'Escape') yop() })
+
+  const KALIT = 'junior-etalon-v32-javob'
+  let jv = {}; try { jv = JSON.parse(localStorage.getItem(KALIT) || '{}') } catch (e) { jv = {} }
+  const saqla = () => { try { localStorage.setItem(KALIT, JSON.stringify(jv)) } catch (e) {} ; chiz() }
+  const guruhlar = [...document.querySelectorAll('figure[data-id]')].map((f) => ({ id: f.dataset.id, el: f.querySelector('.ov') })).filter((g) => g.el).concat([...document.querySelectorAll('.tanlov')].map((t) => ({ id: t.dataset.q, el: t })))
+  guruhlar.forEach(({ id, el }) => {
+    const btn = el.querySelectorAll('button'), inp = el.querySelector('input')
+    const yangila = () => btn.forEach((b) => b.setAttribute('aria-pressed', String((jv[id] || {}).v === b.dataset.v)))
+    btn.forEach((b) => b.addEventListener('click', () => { jv[id] = { ...(jv[id] || {}), v: (jv[id] || {}).v === b.dataset.v ? '' : b.dataset.v }; yangila(); saqla() }))
+    if (inp) { inp.value = (jv[id] || {}).i || ''; inp.addEventListener('input', () => { jv[id] = { ...(jv[id] || {}), i: inp.value }; saqla() }) }
+    yangila()
+  })
+  const chiz = () => {
+    const q = guruhlar.map(({ id }) => { const x = jv[id] || {}; if (!x.v && !x.i) return ''; const v = x.v === 'qabul' ? 'Qabul' : x.v === 'boshqa' ? 'Boshqa g‘oya' : (x.v || '—'); return `${id}: ${v}${x.i ? ' — ' + x.i : ''}` }).filter(Boolean)
+    const m = document.querySelector('.javob-m'); if (m) m.textContent = q.length ? 'Etalon v3.2 javobi\n' + q.join('\n') : 'Hali hech narsa belgilanmagan.'
+  }
+  chiz()
+  const nb = document.querySelector('.nusxa')
+  if (nb) nb.addEventListener('click', async () => { const t = document.querySelector('.javob-m').textContent; try { await navigator.clipboard.writeText(t); nb.textContent = 'Nusxalandi ✓' } catch (e) { const r = document.createRange(); r.selectNodeContents(document.querySelector('.javob-m')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); nb.textContent = 'Belgilandi — Ctrl+C bosing' } setTimeout(() => { nb.textContent = 'Javobni nusxalash' }, 2500) })
+
+  const sb = document.querySelector('.setka-b')
+  if (sb) sb.addEventListener('click', () => { const on = !document.documentElement.hasAttribute('data-setka'); if (on) document.documentElement.setAttribute('data-setka', ''); else document.documentElement.removeAttribute('data-setka'); sb.setAttribute('aria-pressed', String(on)) })
+})()
+</script>

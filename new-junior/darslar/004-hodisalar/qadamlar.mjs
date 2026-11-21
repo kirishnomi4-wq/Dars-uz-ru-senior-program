@@ -1,0 +1,43 @@
+// 4-dars «Hodisalar» qadamlari (QADAM) va ustoz varag'i (VARAQ) — 20.11. Manba: new-junior/manba/004-hodisalar.md, 18 qadam.
+// 16-qadam bola ro'yxati 'oxirgi' (A·1, 20.11) — bola noutbukida oxirgi yechgan pog'onasi o'z dasturi bilan (o'qib berish uchun); hech narsa yechmagan bo'lsa — «Ustoz ekraniga qarang».
+const QADAM = [
+  ['Kirish', 'P1', ['B0', 'BK']],
+  ['Savol', 'P2', ['P2N', 'BK']],
+  ['Uch sinov', 'P2S', ['BK'], 'Ustoz yo‘llarni sinayapti — kuzating'],
+  ['Javob: dastur kutadi', 'P2C', ['BK']],
+  ['Yangi so‘z: hodisa', 'P3', ['BK'], 'Yangi so‘z: hodisa'],
+  ['Reja', 'P4', ['BK'], 'Bugun: uchta bekat'],
+  ['Ko‘ramiz: when → key pressed', 'P6', ['BK'], 'Ustoz hodisa blokini ko‘rsatyapti — kuzating'],
+  ['Bitta tugma', 'P5', ['B1A', 'B1B', 'B1C', 'B1Y', 'BK']],
+  ['2-bekat', 'P4B', ['BK'], '2-bekat: to‘rt tugma'],
+  ['Ko‘ramiz: to‘rt tugma', 'P7', ['BK'], 'Ustoz to‘rt tugmani ko‘rsatyapti — kuzating'],
+  ['To‘rt tugma', 'P5G', ['B2A', 'B2B', 'B2C', 'B2Y', 'BK']],
+  ['Xulosa: hodisa', 'P9', ['BK'], 'Xulosa: hodisa'],
+  ['3-bekat', 'P4C', ['BK'], '3-bekat: o‘yin'],
+  ['Ko‘ramiz: olma terish', 'P8', ['BK'], 'Ustoz o‘yinni ko‘rsatyapti — kuzating'],
+  ['O‘yin', 'P5B', ['B3A', 'B3B', 'B3Y', 'BK']],
+  ['Dasturchalaringizni o‘qib bering', 'P11', 'oxirgi'],
+  ['Yakun', 'P12', ['B5']],
+  ['Sinfimiz bugun', 'P14', ['B5']],
+]
+// ustoz varag'i: [Ekranda · Siz (manbadagi tayanch gaplar, aynan) · Bola o'rganadi]
+const VARAQ = [
+  ['«4-dars · Hodisalar» — «Bugun qahramonni boshqaramiz!» Maydon, Coddy (0, 0) da; pastda «O‘tgan darsda»: go to x: 4 y: 2 — koordinata.', '«O‘tgan darsda qahramonni manzilga dastur bilan olib bordik.» «Bugun dastur tugmani kutadi — qahramonni o‘zingiz boshqarasiz.» «Noutbukda «Tayyorman» tugmasini bosing.»', 'O‘tgan darsni eslaydi: koordinata.'],
+  ['Savol: «Yulduz qochsa, qanday yetamiz?» Uchta karta: A «Tayyor dastur», B «Ishga tushirni qayta bosamiz», C «Strelka bosilganda yursin». Kartada — nechta bola tanlagani.', '«Bu — o‘yin: yulduz qochib yuradi.» «Har kim noutbukida bitta kartani tanlasin: qahramonni yulduzga qanday olib boramiz?»', 'Taxmin qiladi — bu huk.'],
+  ['Uch sinov — har birida yulduz (4, 2) da turadi va Coddy yurayotganda qochadi. A o‘zi boshlanadi: Coddy tayyor dastur bilan yuradi, yulduz (2, 3) ga qochadi, Coddy baribir (4, 2) ga boradi («✕ yulduz boshqa joyda»). «Keyingi» — B: o‘sha dastur yana; yulduz (5, 1) ga qochadi («✕ yana o‘sha yo‘l»). «Keyingi» — C: sahnada «O‘yin: strelkalarni bosing».', 'C da klaviaturada → → bosasiz — yulduz (1, 4) ga qochadi; keyin ← ↑ ↑ ↑ ↑ — Coddy ortidan borib yetadi («✓ yetib bordi»). «Tayyor dastur har safar bir xil yo‘ldan yuradi — yulduz esa qochadi.» «Strelka bosilganda yursa — qahramonni o‘zimiz boshqaramiz.»', 'Oldindan yozilgan dastur o‘yinda yetmaydi.'],
+  ['Javob: «Dastur tugmani kutadi». A va B xira, C oltin; Coddy yulduzda.', '«Tayyor dastur oldindan hammasini aytadi. O‘yinda esa dastur kutadi: tugma bosilsa — yuradi.»', 'Dastur tugmani kutishi mumkin.'],
+  ['Yangi so‘z: «Hodisa — biror narsa sodir bo‘lishi: tugma bosildi». «Keyingi» — birma-bir: tugma bosildi, dasturcha ishladi, qahramon yurdi.', '«Keyingi»ni bosasiz (uch marta). «Hodisa — biror narsa sodir bo‘lishi. Bugun hodisa — tugma bosildi.» «Dastur hodisani kutadi va unga javob beradi.» Misol: eshik qo‘ng‘irog‘i — tugma bosilsa, jiringlaydi.', 'Yangi so‘z: hodisa.'],
+  ['Reja: tepalik — bitta tugma → to‘rt tugma → o‘yin; cho‘qqida «Olma terish» o‘yini.', '«Bugun uchta bekat: bitta tugma, to‘rt tugma, o‘yin.» «Dars oxirida o‘z o‘yiningizni o‘ynaysiz.»', 'Dars qayerga borishini biladi.'],
+  ['Ko‘ramiz: «Tugma bosilganda». Javonda yangi oila — Hodisa (to‘q sariq), unda when → key pressed; yulduz (3, 0), dastur bo‘sh.', 'Hodisa blokini bosasiz (yangi dasturcha), Harakat oilasiga o‘tib move right ni bosasiz — u dasturchaga ulanadi. «▶ Boshlash», keyin → ni uch marta bosasiz. Keyin «■ To‘xtatish», yana hodisa blokini qo‘shasiz va undagi → ni bosasiz — ro‘yxatdan ← ni tanlaysiz, ostiga move left; sekin, ikki marta ko‘rsating (8-qadamning 2-pog‘onasi shuni talab qiladi). «when → key pressed — → tugmasi bosilganda. Ostidagi bloklar shu payt bajariladi.» «Hodisa bloki doim tepada turadi — dasturcha shundan boshlanadi.» «Endi o‘zingiz.»', 'Hodisa bloki va dasturcha.'],
+  ['Mashq: «Endi o‘zingiz!» — zinapoya: 1 o‘ngga · 2 chapga · 3 ikki tugma · ★ ikki katak.', '«Avval dasturcha tuzing, keyin «Boshlash» — va strelkani bosing.» «Har tugmaga — o‘z dasturchasi.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.» So‘rang: «Qaysi tugmani bosyapsiz? Uning dasturchasi bormi?»', 'Bitta-ikkita tugmaga dasturcha tuzadi va o‘ynaydi.'],
+  ['Tepalik: 1-bekat ✓ — «To‘rt tugma».', '«Bitta tugmani bildik. Endi to‘rtta — to‘liq boshqaruv.»', 'Darsda qayerda turganini ko‘radi.'],
+  ['Ko‘ramiz: «To‘rt tugma — to‘rt dasturcha». Dasturda tayyor to‘rtta dasturcha; yulduz (5, 3).', '«▶ Boshlash», keyin ↑ ↑ ↑ va → ni besh marta bosasiz. «To‘rt tugma — to‘rt dasturcha. Har biri o‘z tugmasini kutadi.» «Endi o‘zingiz.»', 'To‘rt strelka — to‘rt dasturcha.'],
+  ['Mashq: «To‘rt tugma!» — zinapoya: 1 to‘rt strelka · 2 olma, keyin yulduz · 3 ikki olma · ★ boshiga qayt.', '«To‘rtta dasturcha — to‘rt strelka. Keyin «Boshlash» va o‘ynang.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.» 2-pog‘onadan dastur oldingi pog‘onadagi dasturchalar bilan ochiladi.', 'To‘rt tugma bilan qahramonni boshqaradi.'],
+  ['Xulosa: «Hodisa». Ikki karta: «Hodisa — Biror narsa sodir bo‘lishi: tugma bosildi» va «when → key pressed — Tugma bosilganda».', '«Hodisa — biror narsa sodir bo‘lishi. Dastur hodisani kutadi va javob beradi.» «Har tugmaga o‘z dasturchasi.» So‘rang: «Telefoningizda qanday hodisalar bor?»', 'Hodisa va dasturcha.'],
+  ['Tepalik: 1, 2 ✓ — «O‘yin».', '«Ikki bekatdan o‘tdik. Oxirgisi — o‘yin.»', 'Darsda qayerda turganini ko‘radi.'],
+  ['Ko‘ramiz: «O‘yin: olma terish». 3 olma; yulduz yashirin — hamma olma olingach ochiladi va uch bosishdan keyin boshqa katakka qochadi (4·11 A); sahnada «Olma: 0 / 3».', '«▶ Boshlash» va strelkalar bilan olmalarni terasiz, keyin yulduzga — u qochsa, ortidan borasiz. «O‘yin qoidasi: hamma olmani tering — keyin yulduz chiqadi. Yulduz qochadi — tutib oling.» «Dasturchalar o‘sha-o‘sha. O‘yin — siz bosgan tugmalardan.»', 'O‘yin qoidasi: olmalar, keyin qochgan yulduzni tutish.'],
+  ['Mashq: «O‘ynang!» — o‘yinni yutganlar soni va zinapoya: 1 uch olma · 2 besh olma · ★ o‘z o‘yiningiz.', '«Dasturchalar tayyor — endi o‘ynang: hamma olmani tering, keyin yulduzni tuting.» «★ da space bosilganda qahramoningiz o‘z gapini aytsin.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'O‘yinni o‘ynaydi; ★ da o‘z gapini qo‘shadi.'],
+  ['«Dasturchalaringizni o‘qib bering». Dastur bo‘sh, 3 olma. Proyektorda ism yo‘q; bolalar noutbukida — o‘z ekrani.', 'Bola o‘z dasturchalarini o‘qiydi («→ bosilganda — move right…»), siz tuzasiz, «▶ Boshlash» — sinf qaysi strelkani bosishni aytadi. «Kim dasturchalarini o‘qib beradi? Qaysi tugma — nima qiladi?» «Sinf, qaysi strelkani bosay?»', 'Dasturchalarini o‘qiydi.'],
+  ['Yakun: «Siz o‘yin tuzdingiz!» Bugungi so‘z — hodisa; uchala bekat ✓; keyingi dars — 5 · Takrorlash.', '«Uchala bekatdan o‘tdik: bitta tugma, to‘rt tugma, o‘yin.» «Bugungi so‘z — hodisa: biror narsa sodir bo‘lishi, tugma bosildi.» «Keyingi darsda qahramon bir blok bilan ko‘p marta yuradi — takrorlash.»', 'Bugungi so‘zni eslaydi.'],
+  ['Sinfimiz bugun: butun sinf necha marta tugma bosdi, nechta olma terdi va necha marta yutdi (haqiqiy son, ismsiz).', '«Hammangiz zo‘r ishladingiz!» Raqamlarni o‘qing. «Har bir o‘yin shunday ishlaydi: dastur tugmani kutadi.» «Darsni yakunlash»ni bossangiz — hammada «Dars tugadi» chiqadi.', 'Jamoa bo‘lib nimaga erishganini ko‘radi.'],
+]

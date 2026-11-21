@@ -1,0 +1,51 @@
+✓ 1 · Aziz: B0; Lola: avval BQ
+✓ 1 · ustoz: «Kirdi: 2»; «Bugun o‘yin har safar boshqacha!»; «O‘tgan darsda» — jon
+✓ 2 · «Javob berdi: 2 / 2»; «Olma: 3 / 3»
+✓ 3 · A: «1-o‘yin: 5 · 5 · 5», «2-o‘yin: 5 · 5 · 5»
+✓ 3 · B: 1 · 5 · 3 ikki marta
+✓ 3 · C: 4 · 1 · 6 va 2 · 5 · 0, «✓ har o‘yin boshqacha»
+✓ 4 · javob «Dastur o‘zi tanlaydi»: A, B xira; olti xira belgi
+✓ 5 · «Tasodifiy son nima?» — uch bo‘lak yondi, zar «2»
+✓ 6 · reja
+✓ 7 · P6: «0 / 2 ta blok», «Sinov: 0 / 3»; bolada «Ustoz random blokini ko‘rsatyapti»
+✓ 7 · go to x: (random 1 to 10) y: 0 — «2 / 2 ta blok»
+✓ 7 · «8» — Kamvoy «Maydon tugadi!»
+✓ 7 · 1 to 5 — 4, 2, 5: «Sinov: 3 / 3», «Har safar boshqa joy!»
+✓ 8 · R1-6 — Kamvoy «Bu savat bo‘sh qoladi!»
+✓ 8 · «Maslahat» — manbadagi gap
+✓ 8 · Aziz 1-pog‘ona: go(R0-6, 2) → B1B
+✓ 8 · 2-pog‘ona → B1C
+✓ 8 · 3-pog‘ona → B1Y
+✓ 8 · ★ ikki olma → BK
+✓ 8 · Lola 1-pog‘ona
+✓ 8 · doska: «1 / 2»; zinapoya 2 · 1 · 1 · 1
+✓ 10 · tayyor go(R3-5, 1) — Kamvoy «Bu savat bo‘sh qoladi!»
+✓ 10 · Y ga random 1 to 2 — «Har safar boshqa joy!»
+✓ 11 · Aziz 1-pog‘ona → B2B
+✓ 11 · 2-pog‘ona → B2C
+✓ 11 · 3-pog‘ona → B2Y
+✓ 11 · ★ olma yomg‘iri → BK
+✓ 11 · Lola 1-pog‘ona
+✓ 11 · doska: «1 / 2»; zinapoya 2 · 1 · 1 · 1
+✓ 12 · xulosa «Tasodifiy son»
+✓ 14 · «▶ Boshlash» — «Olma: 0 / 5», olma (5, 0) ga
+✓ 14 · ↓ ↓ → → — «Olma: 1 / 5»
+✓ 14 · beshta olma — «Siz yutdingiz!»
+✓ 15 · Aziz B3A: tayyor go(4, 1) — Kamvoy «Yana o‘sha joy!»
+✓ 15 · 1-pog‘ona: 5 olma → B3B
+✓ 15 · 2-pog‘ona → B3C
+✓ 15 · 3-pog‘ona → B3Y
+✓ 15 · ★ «O‘yiningiz tayyor!» → BK
+✓ 15 · Lola 1-pog‘ona
+✓ 15 · doska: «Uch o‘yinni yutdi 1 / 2»; zinapoya 2 · 1 · 1 · 1
+✓ 16 · ustoz P11: olma dasturi bo‘sh
+✓ 16 · Aziz: oxirgi yechgan pog‘onasi — B3Y
+✓ 17 · Aziz: 19 ta random, 20 ta olma terdi
+✓ 17 · Lola: 5, 5
+✓ 17 · yakun: «O‘yiningiz har safar boshqacha!», keyingi dars «14 · Xatoni topish»
+✓ 18 · Sinfimiz bugun: 24 ta random, 25 ta olma terdi
+✓ 18 · «Darsni yakunlash» — hammada «Dars tugadi»
+✓ konsolda xato yo‘q
+
+NATIJA: 48 / 48
+XATO: yo‘q

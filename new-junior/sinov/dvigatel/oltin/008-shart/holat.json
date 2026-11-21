@@ -1,0 +1,1009 @@
+{
+ "u-01-P1": {
+  "id": "P1",
+  "matn": "8-DARS · SHART\nBugun qahramon devorga urilmaydi!\n\nCoddy\nSalom! Bugun yurishdan oldin yo‘lni tekshiraman.\n\nO‘TGAN DARSDA\nAnimatsiya\nKostyumlar navbat bilan almashadi\n‹ Orqaga\nKirdi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "35738d2d5953",
+  "uzun": 43439
+ },
+ "u-02-P2": {
+  "id": "P2",
+  "matn": "8-DARS · SHART\nSAVOL\nBitta dastur bilan qanday yetamiz?\n\nCoddy\nIkkala yulduz devor oldida. Lekin uzoqligi har xil.\n\nA\nSanab yuramiz\n3\nB\nKo‘p yuramiz\n6\nC\nYo‘l bo‘lsa yuramiz\n6\n→\n1\n2\nDastur bitta — ikkala labirintda ishlasin\n‹ Orqaga\nJavob berdi: 0 / 0\nSinab ko‘ramiz ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "1062cfed6b3b",
+  "uzun": 66799
+ },
+ "u-03-P2S": {
+  "id": "P2S",
+  "matn": "SAVOL\nBitta dastur bilan qanday yetamiz?\n\nCoddy\nIkkala yulduz devor oldida. Lekin uzoqligi har xil.\n\nA\nSanab yuramiz\n3\nB\nKo‘p yuramiz\n6\nC\nYo‘l bo‘lsa yuramiz\n6\n→\n1\n2\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "714655585aa7",
+  "uzun": 66818
+ },
+ "u-04-P2C": {
+  "id": "P2C",
+  "matn": "JAVOB\nYo‘l bo‘lsa — yuradi\n\nCoddy\nYo‘l bo‘lsa yuraman, devor bo‘lsa turaman.\n\nA\nSanab yuramiz\n✕ 2-labirintda yetmadi\n3\nB\nKo‘p yuramiz\n✕ devorga urildi\n6\nC\nYo‘l bo‘lsa yuramiz\n✓ ikkalasida yetdi\n6\n→\n1\n2\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "7cc53ba90c15",
+  "uzun": 66832
+ },
+ "u-05-P3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nShart nima?\n\nCoddy\nShart — tekshiriladigan narsa: yo‘l bormi?\n\n→\n✓ ha\nYo‘l bor — ichidagi blok bajariladi\n→\n✕ yo‘q\nDevor — ichidagi blok bajarilmaydi\n6\n→\nHar safar qaytadan tekshiradi\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "6118ce5ebc82",
+  "uzun": 40327
+ },
+ "u-06-P4": {
+  "id": "P4",
+  "matn": "REJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Birinchisidan boshlaymiz.\n\nDars oxirida · o‘z sayringiz\nDasturini o‘qib berasiz\n1\nDevorgacha\n2\nIkki shart\n3\nXatoni topamiz\n‹ Orqaga\nBoshladik ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "fc648e655e52",
+  "uzun": 41344
+ },
+ "u-07-P6": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nif — agar … unda\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nBlokni shu yerga ulang\n0 / 3 ta blok\n1\n2\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "350ea172465b",
+  "uzun": 63855
+ },
+ "u-08-P5": {
+  "id": "P5",
+  "matn": "MASHQ\nEndi o‘zingiz!\n\nCoddy\nHar qadamdan oldin tekshiring — ikkala labirintda ham.\n\nUch pog‘onani tugatdi\n0 / 0\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nPastga\n2\n0\nTepaga\n3\n0\nBurchak\n★\n0\nUch tomon\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "62a3e6b7e62b",
+  "uzun": 41985
+ },
+ "u-09-P4B": {
+  "id": "P4B",
+  "matn": "REJA · 2-BEKAT\n2 · Ikki shart\n\nCoddy\nEndi bitta repeat ichida ikki shart.\n\nDars oxirida · o‘z sayringiz\nDasturini o‘qib berasiz\n✓\nDevorgacha\n2\nIkki shart\n3\nXatoni topamiz\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "2905c7da01a5",
+  "uzun": 41025
+ },
+ "u-10-P7": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nIkki shart — zinapoya\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nrepeat\n6\nif path\n→\nthen\nmove right\n3 / 5 ta blok\n1\n2\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "p:repeat6if path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right"
+  ],
+  "html": "75dce0ddd419",
+  "uzun": 68150
+ },
+ "u-11-P5G": {
+  "id": "P5G",
+  "matn": "MASHQ\nZinapoyadan o‘ting!\n\nCoddy\nHar safar ikki tomonni tekshiring.\n\nUch pog‘onani tugatdi\n0 / 0\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nPastga zinapoya\n2\n0\nChapga zinapoya\n3\n0\nChapga va pastga\n★\n0\nTog‘\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "2cff375b6cda",
+  "uzun": 42146
+ },
+ "u-12-P9": {
+  "id": "P9",
+  "matn": "XULOSA\nShart\n\nCoddy\nAvval tekshiraman, keyin yuraman.\n\n✓ ha\n✕ yo‘q\nShart\nHa bo‘lsa, ichidagisi bajariladi\nif path\n→\nthen\nmove right\nif path → then\nAgar o‘ngda yo‘l bo‘lsa\n1\n2\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "0074f9a8e5ba",
+  "uzun": 67617
+ },
+ "u-13-P4C": {
+  "id": "P4C",
+  "matn": "REJA · 3-BEKAT\n3 · Xatoni topamiz\n\nCoddy\nOxirgi bekat: dasturdagi xatoni topamiz.\n\nDars oxirida · o‘z sayringiz\nDasturini o‘qib berasiz\n✓\nDevorgacha\n✓\nIkki shart\n3\nXatoni topamiz\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "7ef4c384a030",
+  "uzun": 41127
+ },
+ "u-14-P8": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nXato qayerda?\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nrepeat\n2\nif path\n←\nthen\nmove left\n3 ta blok\n1\n2\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "p:repeat2if path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left"
+  ],
+  "html": "7812c3f2ffc3",
+  "uzun": 61089
+ },
+ "u-15-P5B": {
+  "id": "P5B",
+  "matn": "MASHQ\nXatoni tuzating!\n\nCoddy\nAvval ishga tushiring — qayerda to‘xtaganiga qarang.\n\nUch xatoni tuzatdi\n0 / 0\n1\n0\nQimirlamaydi\n2\n0\nYulduzdan keyin\n3\n0\nDarrov urildi\n★\n0\nO‘z sayringiz\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "c121bf18c262",
+  "uzun": 39604
+ },
+ "u-16-P11": {
+  "id": "P11",
+  "matn": "KO‘RSATISH\nDasturingizni o‘qib bering\nSiz o‘qiysiz — men bog‘da yuraman.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nBlokni shu yerga ulang\n0 / 12 ta blok\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "ba43c5502846",
+  "uzun": 42550
+ },
+ "u-17-P12": {
+  "id": "P12",
+  "matn": "YAKUN\nQahramon devor oldida to‘xtaydi!\nBUGUNGI SO‘Z\nShart\nHa bo‘lsa, ichidagisi bajariladi\nKeyingi dars\n9 · Labirint o‘yini\n✓\nDevorgacha\n✓\nIkki shart\n✓\nXatoni topamiz\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "21418c61ffed",
+  "uzun": 31248
+ },
+ "u-18-P14": {
+  "id": "P14",
+  "matn": "SINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nta shart qo‘ydi\n0\nta labirintdan o‘tdi\n0\nta xato tuzatdi\n‹ Orqaga\nDarsni yakunlash\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "6344edc28716",
+  "uzun": 40223
+ },
+ "u-x-P2S-A": {
+  "id": "P2S",
+  "matn": "SAVOL\nBitta dastur bilan qanday yetamiz?\n\nCoddy\nIkkala yulduz devor oldida. Lekin uzoqligi har xil.\n\nA\nSanab yuramiz\n✕ 2-labirintda yetmadi\n3\nB\nKo‘p yuramiz\n6\nC\nYo‘l bo‘lsa yuramiz\n6\n→\n2\n1\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "5ea311ecb329",
+  "uzun": 67191
+ },
+ "u-x-P2S-B": {
+  "id": "P2S",
+  "matn": "SAVOL\nBitta dastur bilan qanday yetamiz?\n\nCoddy\nIkkala yulduz devor oldida. Lekin uzoqligi har xil.\n\nA\nSanab yuramiz\n✕ 2-labirintda yetmadi\n3\nB\nKo‘p yuramiz\n✕ devorga urildi\n6\nC\nYo‘l bo‘lsa yuramiz\n6\n→\n1\n2\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "31c5e661abd9",
+  "uzun": 67236
+ },
+ "u-x-P2S-C": {
+  "id": "P2S",
+  "matn": "SAVOL\nBitta dastur bilan qanday yetamiz?\n\nCoddy\nIkkala yulduz devor oldida. Lekin uzoqligi har xil.\n\nA\nSanab yuramiz\n✕ 2-labirintda yetmadi\n3\nB\nKo‘p yuramiz\n✕ devorga urildi\n6\nC\nYo‘l bo‘lsa yuramiz\n✓ ikkalasida yetdi\n6\n→\n2\n1\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "003e8e7969a7",
+  "uzun": 68270
+ },
+ "u-x-P3-1": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nShart nima?\n\nCoddy\nShart — tekshiriladigan narsa: yo‘l bormi?\n\n→\n✓ ha\nYo‘l bor — ichidagi blok bajariladi\n→\n✕ yo‘q\nDevor — ichidagi blok bajarilmaydi\n6\n→\nHar safar qaytadan tekshiradi\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "e36cb6c868af",
+  "uzun": 40330
+ },
+ "u-x-P3-2": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nShart nima?\n\nCoddy\nShart — tekshiriladigan narsa: yo‘l bormi?\n\n→\n✓ ha\nYo‘l bor — ichidagi blok bajariladi\n→\n✕ yo‘q\nDevor — ichidagi blok bajarilmaydi\n6\n→\nHar safar qaytadan tekshiradi\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "5369b44f4c30",
+  "uzun": 40333
+ },
+ "u-x-P3-3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nShart nima?\n\nCoddy\nShart — tekshiriladigan narsa: yo‘l bormi?\n\n→\n✓ ha\nYo‘l bor — ichidagi blok bajariladi\n→\n✕ yo‘q\nDevor — ichidagi blok bajarilmaydi\n6\n→\nHar safar qaytadan tekshiradi\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "7fbfcb3e8108",
+  "uzun": 40336
+ },
+ "u-x-P6-yetdi": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nif — agar … unda\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nrepeat\n6\nif path\n←\nthen\nmove left\n6\n✓ ha\n3 / 3 ta blok\n2\n1\n‹ Orqaga\nIkkalasida yetdi!\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "p:repeat6if path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left"
+  ],
+  "html": "0631e6b35f75",
+  "uzun": 65498
+ },
+ "u-x-P7-yetmadi": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nIkki shart — zinapoya\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nrepeat\n6\nif path\n→\nthen\nmove right\n6\n✕ yo‘q\n3 / 5 ta blok\n1\n2\nOz qoldi!\n‹ Orqaga\n1-labirintda yulduzgacha yetmadi. repeat soni va shart tomonini tekshiring\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "p:repeat6if path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right"
+  ],
+  "html": "142070d400ca",
+  "uzun": 74029
+ },
+ "u-x-P7-yetdi": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nIkki shart — zinapoya\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nrepeat\n6\nif path\n→\nthen\nmove right\nif path\n↑\nthen\nmove up\n✓ ha\n6\n✓ ha\n5 / 5 ta blok\n2\n1\n‹ Orqaga\nIkkalasida yetdi!\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "p:repeat6if path→thenmove rightif path↑thenmove up",
+   "a:if path→thenmove rightif path↑thenmove up",
+   "r:move right",
+   "a:if path↑thenmove up",
+   "u:move up"
+  ],
+  "html": "6a673feae0c3",
+  "uzun": 70421
+ },
+ "u-x-P8-yetmadi": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nXato qayerda?\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nrepeat\n2\nif path\n←\nthen\nmove left\n2\n✓ ha\n3 ta blok\n2\n1\nOz qoldi!\n‹ Orqaga\n2-labirintda yulduzgacha yetmadi. repeat soni va shart tomonini tekshiring\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "p:repeat2if path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left"
+  ],
+  "html": "ad78697e8186",
+  "uzun": 67164
+ },
+ "u-x-P8-tuzatildi": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nXato qayerda?\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nrepeat\n5\nif path\n←\nthen\nmove left\n5\n✓ ha\n3 ta blok\n2\n1\n‹ Orqaga\nXatoni tuzatdingiz!\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "p:repeat5if path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left"
+  ],
+  "html": "214e3fe5fb36",
+  "uzun": 62611
+ },
+ "u-x-yakunlandi": {
+  "id": "P14",
+  "matn": "SINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nta shart qo‘ydi\n0\nta labirintdan o‘tdi\n0\nta xato tuzatdi\nDars tugadi!\nKo‘rishguncha — keyingi darsda labirint o‘yini bilan!\n‹ Orqaga\nDarsni yakunlash\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "52582407a81e",
+  "uzun": 40369
+ },
+ "bq-01-0-B0": {
+  "id": "B0",
+  "matn": "8-DARS · SHART\nSalom, Aziz!\nTayyor bo‘lsangiz — tugmani bosing\nTayyorman",
+  "bloklar": [],
+  "html": "c49f0be12b3f",
+  "uzun": 24474
+ },
+ "bq-01-1-BK": {
+  "id": "BK",
+  "matn": "8-DARS · SHART\n↑\nUstoz ekraniga qarang\nDars hozir boshlanadi",
+  "bloklar": [],
+  "html": "35bfccdeadf7",
+  "uzun": 16409
+ },
+ "bq-02-0-P2N": {
+  "id": "P2N",
+  "matn": "8-DARS · SHART\nSAVOL\nBitta dastur bilan qanday yetamiz?\n\nCoddy\nQaysi yo‘l bilan ikkala yulduzga yetamiz?\n\nA\nSanab yuramiz\n3\nB\nKo‘p yuramiz\n6\nC\nYo‘l bo‘lsa yuramiz\n6\n→\n1\n2\nDastur bitta — ikkala labirintda ishlasin\nBirini tanlang",
+  "bloklar": [],
+  "html": "0cd9fc90973f",
+  "uzun": 64670
+ },
+ "bq-02-1-BK": {
+  "id": "BK",
+  "matn": "8-DARS · SHART\n↑\nUstoz ekraniga qarang\nJavobingiz qabul qilindi",
+  "bloklar": [],
+  "html": "0c37f3b7eb45",
+  "uzun": 16412
+ },
+ "bq-03-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz yo‘llarni sinayapti — kuzating",
+  "bloklar": [],
+  "html": "eca2b1c333fd",
+  "uzun": 16424
+ },
+ "bq-04-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstozni tinglang",
+  "bloklar": [],
+  "html": "f60f7d14be57",
+  "uzun": 16404
+ },
+ "bq-05-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nYangi so‘z: shart",
+  "bloklar": [],
+  "html": "826391eac416",
+  "uzun": 16405
+ },
+ "bq-06-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nBugun: uchta bekat",
+  "bloklar": [],
+  "html": "17ef5e779690",
+  "uzun": 16406
+ },
+ "bq-07-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz if blokini ko‘rsatyapti — kuzating",
+  "bloklar": [],
+  "html": "3ff3bc22f8b3",
+  "uzun": 16428
+ },
+ "bq-08-0-B1A": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nPastga\nIkkala yulduz pastda.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nBlokni shu yerga ulang\n0 / 3 ta blok\n1\n2\nMaslahat\nIkkala labirintda ham yetsin — dastur bitta\nIshga tushir",
+  "bloklar": [],
+  "html": "3166475777cc",
+  "uzun": 40506
+ },
+ "bq-08-1-B1B": {
+  "id": "B1B",
+  "matn": "MASHQ · 2-POG‘ONA\nTepaga\nIkki yo‘l — uzunligi har xil.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nBlokni shu yerga ulang\n0 / 3 ta blok\n1\n2\nMaslahat\nIkkala labirintda ham yetsin — dastur bitta\nIshga tushir",
+  "bloklar": [],
+  "html": "5144b1a0ca09",
+  "uzun": 40345
+ },
+ "bq-08-2-B1C": {
+  "id": "B1C",
+  "matn": "MASHQ · 3-POG‘ONA\nBurchak\nAvval o‘ngga, keyin tepaga.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nBlokni shu yerga ulang\n0 / 6 ta blok\n1\n2\nMaslahat\nIkkala labirintda ham yetsin — dastur bitta\nIshga tushir",
+  "bloklar": [],
+  "html": "c6d40e32531d",
+  "uzun": 50473
+ },
+ "bq-08-3-B1Y": {
+  "id": "B1Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nUch tomon\nPastga, o‘ngga, tepaga.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nBlokni shu yerga ulang\n0 / 9 ta blok\n1\n2\nMaslahat\nIkkala labirintda ham yetsin — dastur bitta\nIshga tushir",
+  "bloklar": [],
+  "html": "380c9805515f",
+  "uzun": 49077
+ },
+ "bq-08-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "1894896fc0ae",
+  "uzun": 16419
+ },
+ "bq-09-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\n2-bekat: ikki shart",
+  "bloklar": [],
+  "html": "8eef67e4eff6",
+  "uzun": 16407
+ },
+ "bq-10-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz ikki shart qo‘yyapti — kuzating",
+  "bloklar": [],
+  "html": "328460be3b66",
+  "uzun": 16425
+ },
+ "bq-11-0-B2A": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nPastga zinapoya\nO‘ngga va pastga.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nBlokni shu yerga ulang\n0 / 5 ta blok\n1\n2\nMaslahat\nBitta repeat — ichida ikki shart\nIshga tushir",
+  "bloklar": [],
+  "html": "b65323de4277",
+  "uzun": 45295
+ },
+ "bq-11-1-B2B": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nChapga zinapoya\nQahramon o‘ng chetda.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nBlokni shu yerga ulang\n0 / 5 ta blok\n1\n2\nMaslahat\nBitta repeat — ichida ikki shart\nIshga tushir",
+  "bloklar": [],
+  "html": "49ea0a2d254a",
+  "uzun": 41689
+ },
+ "bq-11-2-B2C": {
+  "id": "B2C",
+  "matn": "MASHQ · 3-POG‘ONA\nChapga va pastga\n2-labirint uzunroq.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nBlokni shu yerga ulang\n0 / 5 ta blok\n1\n2\nMaslahat\nBitta repeat — ichida ikki shart\nIshga tushir",
+  "bloklar": [],
+  "html": "2e7ac292affe",
+  "uzun": 41693
+ },
+ "bq-11-3-B2Y": {
+  "id": "B2Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nTog‘\nChiqamiz, keyin tushamiz.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nBlokni shu yerga ulang\n0 / 10 ta blok\n1\n2\nMaslahat\nBitta repeat — ichida ikki shart\nIshga tushir",
+  "bloklar": [],
+  "html": "83b3d72fa1f1",
+  "uzun": 48226
+ },
+ "bq-11-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "1894896fc0ae",
+  "uzun": 16419
+ },
+ "bq-12-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nXulosa: shart",
+  "bloklar": [],
+  "html": "febcfcfe87e2",
+  "uzun": 16401
+ },
+ "bq-13-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\n3-bekat: xatoni topamiz",
+  "bloklar": [],
+  "html": "64f4c061238c",
+  "uzun": 16411
+ },
+ "bq-14-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz xatoni topyapti — kuzating",
+  "bloklar": [],
+  "html": "0d2a5c896bc3",
+  "uzun": 16420
+ },
+ "bq-15-0-B3A": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nQimirlamaydi\nBitta xatoni toping.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nrepeat\n7\nif path\n↑\nthen\nmove right\n3 / 3 ta blok\n1\n2\nMaslahat\nIshga tushiring — qayerda to‘xtaydi?\nIshga tushir",
+  "bloklar": [
+   "p:repeat7if path↑thenmove right",
+   "a:if path↑thenmove right",
+   "r:move right"
+  ],
+  "html": "709c40cc27f5",
+  "uzun": 43060
+ },
+ "bq-15-1-B3B": {
+  "id": "B3B",
+  "matn": "MASHQ · 2-POG‘ONA\nYulduzdan keyin\nBitta xatoni toping.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nrepeat\n8\nif path\n→\nthen\nmove right\nmove up\n4 / 5 ta blok\n1\n2\nMaslahat\nIshga tushiring — qayerda to‘xtaydi?\nIshga tushir",
+  "bloklar": [
+   "p:repeat8if path→thenmove rightmove up",
+   "a:if path→thenmove rightmove up",
+   "r:move right",
+   "u:move up"
+  ],
+  "html": "47ec58fb5855",
+  "uzun": 43580
+ },
+ "bq-15-2-B3C": {
+  "id": "B3C",
+  "matn": "MASHQ · 3-POG‘ONA\nDarrov urildi\nBitta xatoni toping.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nrepeat\n8\nif path\n↓\nthen\nmove down\nif path\n→\nthen\nmove down\n5 / 5 ta blok\n1\n2\nMaslahat\nIshga tushiring — qayerda to‘xtaydi?\nIshga tushir",
+  "bloklar": [
+   "p:repeat8if path↓thenmove downif path→thenmove down",
+   "a:if path↓thenmove downif path→thenmove down",
+   "d:move down",
+   "a:if path→thenmove down",
+   "d:move down"
+  ],
+  "html": "95dc63831664",
+  "uzun": 41680
+ },
+ "bq-15-3-B3Y": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z sayringiz\nShart bilan bog‘da sayr qiling.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nBlokni shu yerga ulang\n0 / 12 ta blok\nMaslahat\nIshga tushiring — qayerda to‘xtaydi?\nIshga tushir",
+  "bloklar": [],
+  "html": "53c7f9e8010a",
+  "uzun": 28626
+ },
+ "bq-15-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "1894896fc0ae",
+  "uzun": 16419
+ },
+ "bq-17-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nQahramon devor oldida to‘xtaydi!\n\nBulut\nHar qadamdan oldin yo‘lni tekshirdingiz.\n\nSiz bugun\n0\nta shart qo‘ydi\n0\nta labirintdan o‘tdi\n0\nta xato tuzatdi\nBulut\nKeyingi darsda labirint o‘yinida ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "68676404e712",
+  "uzun": 27634
+ },
+ "bq-18-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nQahramon devor oldida to‘xtaydi!\n\nBulut\nHar qadamdan oldin yo‘lni tekshirdingiz.\n\nSiz bugun\n0\nta shart qo‘ydi\n0\nta labirintdan o‘tdi\n0\nta xato tuzatdi\nBulut\nKeyingi darsda labirint o‘yinida ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "68676404e712",
+  "uzun": 27634
+ },
+ "bx-B1A-2yetmadi": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nPastga\nIkkala yulduz pastda.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nrepeat\n2\nmove down\n2\n2 / 3 ta blok\n2\n1\nOz qoldi!\nMaslahat\n2-labirintda yulduzgacha yetmadi. repeat soni va shart tomonini tekshiring\nIshga tushir",
+  "bloklar": [
+   "p:repeat2move down",
+   "d:move down"
+  ],
+  "html": "5189d4636a98",
+  "uzun": 46442
+ },
+ "bx-B1A-shartsiz": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nPastga\nIkkala yulduz pastda.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nrepeat\n5\nmove down\n3\n2 / 3 ta blok\n1\n2\nDevor!\nMaslahat\n1-labirint: bu blok yo‘lni tekshirmay yurdi. Yurishdan oldin tekshiring\nIshga tushir",
+  "bloklar": [
+   "p:repeat5move down",
+   "d:move down"
+  ],
+  "html": "4f867376e313",
+  "uzun": 46462
+ },
+ "bx-B1A-yetdi": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nPastga\nIkkala yulduz pastda.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nrepeat\n5\nif path\n↓\nthen\nmove down\n5\n✓ ha\n3 / 3 ta blok\n2\n1\nMaslahat\nIkkalasida yetdi!\nIshga tushir",
+  "bloklar": [
+   "p:repeat5if path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "eb5c532795df",
+  "uzun": 41973
+ },
+ "bx-B2A-yetdi": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nPastga zinapoya\nO‘ngga va pastga.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nrepeat\n6\nif path\n→\nthen\nmove right\nif path\n↓\nthen\nmove down\n✕ yo‘q\n6\n✓ ha\n5 / 5 ta blok\n2\n1\nMaslahat\nIkkalasida yetdi!\nIshga tushir",
+  "bloklar": [
+   "p:repeat6if path→thenmove rightif path↓thenmove down",
+   "a:if path→thenmove rightif path↓thenmove down",
+   "r:move right",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "39b715813224",
+  "uzun": 47393
+ },
+ "bx-B3C-tayyor-dastur": {
+  "id": "B3C",
+  "matn": "MASHQ · 3-POG‘ONA\nDarrov urildi\nBitta xatoni toping.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nrepeat\n8\nif path\n↓\nthen\nmove down\nif path\n→\nthen\nmove down\n5 / 5 ta blok\n1\n2\nMaslahat\nIshga tushiring — qayerda to‘xtaydi?\nIshga tushir",
+  "bloklar": [
+   "p:repeat8if path↓thenmove downif path→thenmove down",
+   "a:if path↓thenmove downif path→thenmove down",
+   "d:move down",
+   "a:if path→thenmove down",
+   "d:move down"
+  ],
+  "html": "95dc63831664",
+  "uzun": 41680
+ },
+ "bx-B3C-boshqatomon": {
+  "id": "B3C",
+  "matn": "MASHQ · 3-POG‘ONA\nDarrov urildi\nBitta xatoni toping.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nrepeat\n8\nif path\n↓\nthen\nmove down\nif path\n→\nthen\nmove down\n1\n✓ ha\n✓ ha\n5 / 5 ta blok\n1\n2\nDevor!\nMaslahat\n1-labirint: shart bir tomonni tekshirdi, blok boshqa tomonga yurdi\nIshga tushir",
+  "bloklar": [
+   "p:repeat8if path↓thenmove downif path→thenmove down",
+   "a:if path↓thenmove downif path→thenmove down",
+   "d:move down",
+   "a:if path→thenmove down",
+   "d:move down"
+  ],
+  "html": "a97d2d0af7d5",
+  "uzun": 47615
+ },
+ "bx-B3C-tuzatildi": {
+  "id": "B3C",
+  "matn": "MASHQ · 3-POG‘ONA\nDarrov urildi\nBitta xatoni toping.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nrepeat\n8\nif path\n↓\nthen\nmove down\nif path\n→\nthen\nmove right\n✕ yo‘q\n8\n✕ yo‘q\n5 / 5 ta blok\n2\n1\nMaslahat\nXatoni tuzatdingiz!\nIshga tushir",
+  "bloklar": [
+   "p:repeat8if path↓thenmove downif path→thenmove right",
+   "a:if path↓thenmove downif path→thenmove right",
+   "d:move down",
+   "a:if path→thenmove right",
+   "r:move right"
+  ],
+  "html": "9b4dc6c011f0",
+  "uzun": 43790
+ },
+ "bx-B3Y-kamshart": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z sayringiz\nShart bilan bog‘da sayr qiling.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nrepeat\n5\nif path\n→\nthen\nmove right\n5\n✕ yo‘q\n3 / 12 ta blok\nOz qoldi!\nMaslahat\nIkki if qo‘ying — har xil tomonga\nIshga tushir",
+  "bloklar": [
+   "p:repeat5if path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right"
+  ],
+  "html": "c364ccaf4d7f",
+  "uzun": 34408
+ },
+ "bx-B3Y-tayyor": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z sayringiz\nShart bilan bog‘da sayr qiling.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nrepeat\n10\nif path\n→\nthen\nmove right\nif path\n↑\nthen\nmove up\n10\n✕ yo‘q\n✕ yo‘q\n5 / 12 ta blok\nMaslahat\nSayringiz tayyor!\nIshga tushir",
+  "bloklar": [
+   "p:repeat10if path→thenmove rightif path↑thenmove up",
+   "a:if path→thenmove rightif path↑thenmove up",
+   "r:move right",
+   "a:if path↑thenmove up",
+   "u:move up"
+  ],
+  "html": "3b666a02a51f",
+  "uzun": 30056
+ },
+ "bx-B5-natija": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nQahramon devor oldida to‘xtaydi!\n\nBulut\nHar qadamdan oldin yo‘lni tekshirdingiz.\n\nSiz bugun\n7\nta shart qo‘ydi\n6\nta labirintdan o‘tdi\n1\nta xato tuzatdi\nBulut\nKeyingi darsda labirint o‘yinida ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "8149174ce2fd",
+  "uzun": 27634
+ },
+ "bx-P2N-tanladi": {
+  "id": "P2N",
+  "matn": "8-DARS · SHART\nSAVOL\nBitta dastur bilan qanday yetamiz?\n\nCoddy\nQaysi yo‘l bilan ikkala yulduzga yetamiz?\n\nA\nSanab yuramiz\n3\nB\nKo‘p yuramiz\n6\nC\nYo‘l bo‘lsa yuramiz\n6\n→\n1\n2\nDastur bitta — ikkala labirintda ishlasin\nBirini tanlang",
+  "bloklar": [],
+  "html": "7945fe7a7329",
+  "uzun": 64679
+ },
+ "bx-BQ": {
+  "id": "BQ",
+  "matn": "8-DARS · SHART\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang",
+  "bloklar": [],
+  "html": "36d7e2a93b8c",
+  "uzun": 52600
+ },
+ "bx-BQ-tanladi": {
+  "id": "BK",
+  "matn": "8-DARS · SHART\n↑\nUstoz ekraniga qarang\nJavobingiz qabul qilindi",
+  "bloklar": [],
+  "html": "17c7b45100b0",
+  "uzun": 15151
+ },
+ "sq-01-0-B0": {
+  "id": "B0",
+  "matn": "8-DARS · SHART\nSalom, Aziz!\nTayyor bo‘lsangiz — tugmani bosing\nTayyorman",
+  "bloklar": [],
+  "html": "c49f0be12b3f",
+  "uzun": 24474
+ },
+ "sq-01-1-P1": {
+  "id": "P1",
+  "matn": "8-DARS · SHART\nBugun qahramon devorga urilmaydi!\n\nCoddy\nSalom! Bugun yurishdan oldin yo‘lni tekshiraman.\n\nO‘TGAN DARSDA\nAnimatsiya\nKostyumlar navbat bilan almashadi\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "2967c53b029c",
+  "uzun": 42207
+ },
+ "sq-02-0-P2N": {
+  "id": "P2N",
+  "matn": "8-DARS · SHART\nSAVOL\nBitta dastur bilan qanday yetamiz?\n\nCoddy\nQaysi yo‘l bilan ikkala yulduzga yetamiz?\n\nA\nSanab yuramiz\n3\nB\nKo‘p yuramiz\n6\nC\nYo‘l bo‘lsa yuramiz\n6\n→\n1\n2\nDastur bitta — ikkala labirintda ishlasin\nBirini tanlang",
+  "bloklar": [],
+  "html": "0cd9fc90973f",
+  "uzun": 64670
+ },
+ "sq-03-0-P2S": {
+  "id": "P2S",
+  "matn": "SAVOL\nBitta dastur bilan qanday yetamiz?\n\nCoddy\nIkkala yulduz devor oldida. Lekin uzoqligi har xil.\n\nA\nSanab yuramiz\n▶ Sinab ko‘rish\n3\nB\nKo‘p yuramiz\n▶ Sinab ko‘rish\n6\nC\nYo‘l bo‘lsa yuramiz\n▶ Sinab ko‘rish\n6\n→\n1\n2\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "24532ef8dc13",
+  "uzun": 65670
+ },
+ "sq-04-0-P2C": {
+  "id": "P2C",
+  "matn": "JAVOB\nYo‘l bo‘lsa — yuradi\n\nCoddy\nYo‘l bo‘lsa yuraman, devor bo‘lsa turaman.\n\nA\nSanab yuramiz\n✕ 2-labirintda yetmadi\n3\nB\nKo‘p yuramiz\n✕ devorga urildi\n6\nC\nYo‘l bo‘lsa yuramiz\n✓ ikkalasida yetdi\n6\n→\n1\n2\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "154defaad559",
+  "uzun": 65608
+ },
+ "sq-05-0-P3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nShart nima?\n\nCoddy\nShart — tekshiriladigan narsa: yo‘l bormi?\n\n→\n✓ ha\nYo‘l bor — ichidagi blok bajariladi\n→\n✕ yo‘q\nDevor — ichidagi blok bajarilmaydi\n6\n→\nHar safar qaytadan tekshiradi\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "63088d90a265",
+  "uzun": 39103
+ },
+ "sq-06-0-P4": {
+  "id": "P4",
+  "matn": "REJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Birinchisidan boshlaymiz.\n\nDars oxirida · o‘z sayringiz\nDasturini o‘qib berasiz\n1\nDevorgacha\n2\nIkki shart\n3\nXatoni topamiz\n‹ Orqaga\nBoshladik ›",
+  "bloklar": [],
+  "html": "f5ffb6194c69",
+  "uzun": 40120
+ },
+ "sq-07-0-P6": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nif — agar … unda\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nrepeat\n6\nif path\n←\nthen\nmove left\n3 / 3 ta blok\n1\n2\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›",
+  "bloklar": [
+   "p:repeat6if path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left"
+  ],
+  "html": "a3cefdc02322",
+  "uzun": 62622
+ },
+ "sq-08-0-B1A": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nPastga\nIkkala yulduz pastda.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nBlokni shu yerga ulang\n0 / 3 ta blok\n1\n2\nMaslahat\nIkkala labirintda ham yetsin — dastur bitta\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "f6e0d52b58cd",
+  "uzun": 40553
+ },
+ "sq-08-1-B1B": {
+  "id": "B1B",
+  "matn": "MASHQ · 2-POG‘ONA\nTepaga\nIkki yo‘l — uzunligi har xil.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nBlokni shu yerga ulang\n0 / 3 ta blok\n1\n2\nMaslahat\nIkkala labirintda ham yetsin — dastur bitta\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "035e667a8117",
+  "uzun": 40392
+ },
+ "sq-08-2-B1C": {
+  "id": "B1C",
+  "matn": "MASHQ · 3-POG‘ONA\nBurchak\nAvval o‘ngga, keyin tepaga.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nBlokni shu yerga ulang\n0 / 6 ta blok\n1\n2\nMaslahat\nIkkala labirintda ham yetsin — dastur bitta\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "9e7d65fcb6bd",
+  "uzun": 50520
+ },
+ "sq-08-3-B1Y": {
+  "id": "B1Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nUch tomon\nPastga, o‘ngga, tepaga.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nBlokni shu yerga ulang\n0 / 9 ta blok\n1\n2\nMaslahat\nIkkala labirintda ham yetsin — dastur bitta\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "a6d678f4368b",
+  "uzun": 49124
+ },
+ "sq-09-0-P4B": {
+  "id": "P4B",
+  "matn": "REJA · 2-BEKAT\n2 · Ikki shart\n\nCoddy\nEndi bitta repeat ichida ikki shart.\n\nDars oxirida · o‘z sayringiz\nDasturini o‘qib berasiz\n✓\nDevorgacha\n2\nIkki shart\n3\nXatoni topamiz\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "27fe8c11f8aa",
+  "uzun": 39801
+ },
+ "sq-10-0-P7": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nIkki shart — zinapoya\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nrepeat\n6\nif path\n→\nthen\nmove right\nif path\n↑\nthen\nmove up\n5 / 5 ta blok\n1\n2\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›",
+  "bloklar": [
+   "p:repeat6if path→thenmove rightif path↑thenmove up",
+   "a:if path→thenmove rightif path↑thenmove up",
+   "r:move right",
+   "a:if path↑thenmove up",
+   "u:move up"
+  ],
+  "html": "bca48f26ac11",
+  "uzun": 66926
+ },
+ "sq-11-0-B2A": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nPastga zinapoya\nO‘ngga va pastga.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nBlokni shu yerga ulang\n0 / 5 ta blok\n1\n2\nMaslahat\nBitta repeat — ichida ikki shart\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "c29f5990603b",
+  "uzun": 45342
+ },
+ "sq-11-1-B2B": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nChapga zinapoya\nQahramon o‘ng chetda.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nBlokni shu yerga ulang\n0 / 5 ta blok\n1\n2\nMaslahat\nBitta repeat — ichida ikki shart\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "fd152b354d54",
+  "uzun": 41736
+ },
+ "sq-11-2-B2C": {
+  "id": "B2C",
+  "matn": "MASHQ · 3-POG‘ONA\nChapga va pastga\n2-labirint uzunroq.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nBlokni shu yerga ulang\n0 / 5 ta blok\n1\n2\nMaslahat\nBitta repeat — ichida ikki shart\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "04d50565b36a",
+  "uzun": 41740
+ },
+ "sq-11-3-B2Y": {
+  "id": "B2Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nTog‘\nChiqamiz, keyin tushamiz.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nBlokni shu yerga ulang\n0 / 10 ta blok\n1\n2\nMaslahat\nBitta repeat — ichida ikki shart\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "62c6cf5a95e0",
+  "uzun": 48273
+ },
+ "sq-12-0-P9": {
+  "id": "P9",
+  "matn": "XULOSA\nShart\n\nCoddy\nAvval tekshiraman, keyin yuraman.\n\n✓ ha\n✕ yo‘q\nShart\nHa bo‘lsa, ichidagisi bajariladi\nif path\n→\nthen\nmove right\nif path → then\nAgar o‘ngda yo‘l bo‘lsa\n1\n2\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "a6cf34de425c",
+  "uzun": 66393
+ },
+ "sq-13-0-P4C": {
+  "id": "P4C",
+  "matn": "REJA · 3-BEKAT\n3 · Xatoni topamiz\n\nCoddy\nOxirgi bekat: dasturdagi xatoni topamiz.\n\nDars oxirida · o‘z sayringiz\nDasturini o‘qib berasiz\n✓\nDevorgacha\n✓\nIkki shart\n3\nXatoni topamiz\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "05ecb16e5b6c",
+  "uzun": 39903
+ },
+ "sq-14-0-P8": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nXato qayerda?\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nrepeat\n2\nif path\n←\nthen\nmove left\n3 ta blok\n1\n2\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›",
+  "bloklar": [
+   "p:repeat2if path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left"
+  ],
+  "html": "6be3af310ded",
+  "uzun": 59865
+ },
+ "sq-15-0-B3A": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nQimirlamaydi\nBitta xatoni toping.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nrepeat\n7\nif path\n↑\nthen\nmove right\n3 / 3 ta blok\n1\n2\nMaslahat\nIshga tushiring — qayerda to‘xtaydi?\nIshga tushir\nKeyingi ›",
+  "bloklar": [
+   "p:repeat7if path↑thenmove right",
+   "a:if path↑thenmove right",
+   "r:move right"
+  ],
+  "html": "244ec20f9b56",
+  "uzun": 43107
+ },
+ "sq-15-1-B3B": {
+  "id": "B3B",
+  "matn": "MASHQ · 2-POG‘ONA\nYulduzdan keyin\nBitta xatoni toping.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nrepeat\n8\nif path\n→\nthen\nmove right\nmove up\n4 / 5 ta blok\n1\n2\nMaslahat\nIshga tushiring — qayerda to‘xtaydi?\nIshga tushir\nKeyingi ›",
+  "bloklar": [
+   "p:repeat8if path→thenmove rightmove up",
+   "a:if path→thenmove rightmove up",
+   "r:move right",
+   "u:move up"
+  ],
+  "html": "3ec2af9f96a5",
+  "uzun": 43627
+ },
+ "sq-15-2-B3C": {
+  "id": "B3C",
+  "matn": "MASHQ · 3-POG‘ONA\nDarrov urildi\nBitta xatoni toping.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nrepeat\n8\nif path\n↓\nthen\nmove down\nif path\n→\nthen\nmove down\n5 / 5 ta blok\n1\n2\nMaslahat\nIshga tushiring — qayerda to‘xtaydi?\nIshga tushir\nKeyingi ›",
+  "bloklar": [
+   "p:repeat8if path↓thenmove downif path→thenmove down",
+   "a:if path↓thenmove downif path→thenmove down",
+   "d:move down",
+   "a:if path→thenmove down",
+   "d:move down"
+  ],
+  "html": "e4ca6e093733",
+  "uzun": 41727
+ },
+ "sq-15-3-B3Y": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z sayringiz\nShart bilan bog‘da sayr qiling.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nBlokni shu yerga ulang\n0 / 12 ta blok\nMaslahat\nIshga tushiring — qayerda to‘xtaydi?\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "45926fa71c24",
+  "uzun": 28673
+ },
+ "sq-17-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nQahramon devor oldida to‘xtaydi!\n\nBulut\nHar qadamdan oldin yo‘lni tekshirdingiz.\n\nSiz bugun\n0\nta shart qo‘ydi\n0\nta labirintdan o‘tdi\n0\nta xato tuzatdi\nBulut\nKeyingi darsda labirint o‘yinida ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "68676404e712",
+  "uzun": 27634
+ },
+ "sx-P2S-A": {
+  "id": "P2S",
+  "matn": "SAVOL\nBitta dastur bilan qanday yetamiz?\n\nCoddy\nIkkala yulduz devor oldida. Lekin uzoqligi har xil.\n\nA\nSanab yuramiz\n✕ 2-labirintda yetmadi\n3\nB\nKo‘p yuramiz\n▶ Sinab ko‘rish\n6\nC\nYo‘l bo‘lsa yuramiz\n▶ Sinab ko‘rish\n6\n→\n2\n1\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "6ea2e88ea5dc",
+  "uzun": 66144
+ },
+ "sx-P2S-B": {
+  "id": "P2S",
+  "matn": "SAVOL\nBitta dastur bilan qanday yetamiz?\n\nCoddy\nIkkala yulduz devor oldida. Lekin uzoqligi har xil.\n\nA\nSanab yuramiz\n✕ 2-labirintda yetmadi\n3\nB\nKo‘p yuramiz\n✕ devorga urildi\n6\nC\nYo‘l bo‘lsa yuramiz\n▶ Sinab ko‘rish\n6\n→\n1\n2\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "3706c9953895",
+  "uzun": 66189
+ },
+ "sx-P2S-C": {
+  "id": "P2S",
+  "matn": "SAVOL\nBitta dastur bilan qanday yetamiz?\n\nCoddy\nIkkala yulduz devor oldida. Lekin uzoqligi har xil.\n\nA\nSanab yuramiz\n✕ 2-labirintda yetmadi\n3\nB\nKo‘p yuramiz\n✕ devorga urildi\n6\nC\nYo‘l bo‘lsa yuramiz\n✓ ikkalasida yetdi\n6\n→\n2\n1\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "ae143128ed6a",
+  "uzun": 67223
+ },
+ "sx-P7-ikki-shart": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nIkki shart — zinapoya\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nrepeat\n6\nif path\n→\nthen\nmove right\nif path\n↑\nthen\nmove up\n5 / 5 ta blok\n1\n2\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›",
+  "bloklar": [
+   "p:repeat6if path→thenmove rightif path↑thenmove up",
+   "a:if path→thenmove rightif path↑thenmove up",
+   "r:move right",
+   "a:if path↑thenmove up",
+   "u:move up"
+  ],
+  "html": "bca48f26ac11",
+  "uzun": 66926
+ },
+ "y-01": {
+  "id": "P1",
+  "matn": "USTOZ · PROYEKTOR\n8-DARS · SHART\nBugun qahramon devorga urilmaydi!\n\nCoddy\nSalom! Bugun yurishdan oldin yo‘lni tekshiraman.\n\nO‘TGAN DARSDA\nAnimatsiya\nKostyumlar navbat bilan almashadi\n‹ Orqaga\nKirdi: 1\nKeyingi ›\nO‘QUVCHI · NOUTBUK\n8-DARS · SHART\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "6ca5bc17df11",
+  "uzun": 96183
+ },
+ "y-02": {
+  "id": "P2",
+  "matn": "USTOZ · PROYEKTOR\n8-DARS · SHART\nSAVOL\nBitta dastur bilan qanday yetamiz?\n\nCoddy\nIkkala yulduz devor oldida. Lekin uzoqligi har xil.\n\nA\nSanab yuramiz\n3\nB\nKo‘p yuramiz\n6\nC\nYo‘l bo‘lsa yuramiz\n6\n→\n1\n2\nDastur bitta — ikkala labirintda ishlasin\n‹ Orqaga\nJavob berdi: 0 / 1\nSinab ko‘ramiz ›\nO‘QUVCHI · NOUTBUK\n8-DARS · SHART\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "2dde48621e6a",
+  "uzun": 119543
+ },
+ "y-03": {
+  "id": "P2S",
+  "matn": "USTOZ · PROYEKTOR\nSAVOL\nBitta dastur bilan qanday yetamiz?\n\nCoddy\nIkkala yulduz devor oldida. Lekin uzoqligi har xil.\n\nA\nSanab yuramiz\n3\nB\nKo‘p yuramiz\n6\nC\nYo‘l bo‘lsa yuramiz\n6\n→\n1\n2\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "edd98c592be1",
+  "uzun": 119562
+ },
+ "y-04": {
+  "id": "P2C",
+  "matn": "USTOZ · PROYEKTOR\nJAVOB\nYo‘l bo‘lsa — yuradi\n\nCoddy\nYo‘l bo‘lsa yuraman, devor bo‘lsa turaman.\n\nA\nSanab yuramiz\n✕ 2-labirintda yetmadi\n3\nB\nKo‘p yuramiz\n✕ devorga urildi\n6\nC\nYo‘l bo‘lsa yuramiz\n✓ ikkalasida yetdi\n6\n→\n1\n2\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a5d2dab7238a",
+  "uzun": 119576
+ },
+ "y-05": {
+  "id": "P3",
+  "matn": "USTOZ · PROYEKTOR\nYANGI SO‘Z\nShart nima?\n\nCoddy\nShart — tekshiriladigan narsa: yo‘l bormi?\n\n→\n✓ ha\nYo‘l bor — ichidagi blok bajariladi\n→\n✕ yo‘q\nDevor — ichidagi blok bajarilmaydi\n6\n→\nHar safar qaytadan tekshiradi\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "7adfb0accbd3",
+  "uzun": 93071
+ },
+ "y-06": {
+  "id": "P4",
+  "matn": "USTOZ · PROYEKTOR\nREJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Birinchisidan boshlaymiz.\n\nDars oxirida · o‘z sayringiz\nDasturini o‘qib berasiz\n1\nDevorgacha\n2\nIkki shart\n3\nXatoni topamiz\n‹ Orqaga\nBoshladik ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "5ac4184c9626",
+  "uzun": 94088
+ },
+ "y-07": {
+  "id": "P6",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nif — agar … unda\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nBlokni shu yerga ulang\n0 / 3 ta blok\n1\n2\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "3094289bae44",
+  "uzun": 116599
+ },
+ "y-08": {
+  "id": "P5",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nEndi o‘zingiz!\n\nCoddy\nHar qadamdan oldin tekshiring — ikkala labirintda ham.\n\nUch pog‘onani tugatdi\n0 / 1\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nPastga\n2\n0\nTepaga\n3\n0\nBurchak\n★\n0\nUch tomon\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "f52d2628b8db",
+  "uzun": 94729
+ },
+ "y-09": {
+  "id": "P4B",
+  "matn": "USTOZ · PROYEKTOR\nREJA · 2-BEKAT\n2 · Ikki shart\n\nCoddy\nEndi bitta repeat ichida ikki shart.\n\nDars oxirida · o‘z sayringiz\nDasturini o‘qib berasiz\n✓\nDevorgacha\n2\nIkki shart\n3\nXatoni topamiz\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "66cffbc2ce24",
+  "uzun": 93769
+ },
+ "y-10": {
+  "id": "P7",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nIkki shart — zinapoya\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nrepeat\n6\nif path\n→\nthen\nmove right\n3 / 5 ta blok\n1\n2\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "p:repeat6if path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right"
+  ],
+  "html": "bd567ea9695d",
+  "uzun": 120894
+ },
+ "y-11": {
+  "id": "P5G",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nZinapoyadan o‘ting!\n\nCoddy\nHar safar ikki tomonni tekshiring.\n\nUch pog‘onani tugatdi\n0 / 1\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nPastga zinapoya\n2\n0\nChapga zinapoya\n3\n0\nChapga va pastga\n★\n0\nTog‘\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "8f6f9482b4ec",
+  "uzun": 94890
+ },
+ "y-12": {
+  "id": "P9",
+  "matn": "USTOZ · PROYEKTOR\nXULOSA\nShart\n\nCoddy\nAvval tekshiraman, keyin yuraman.\n\n✓ ha\n✕ yo‘q\nShart\nHa bo‘lsa, ichidagisi bajariladi\nif path\n→\nthen\nmove right\nif path → then\nAgar o‘ngda yo‘l bo‘lsa\n1\n2\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a35e1c2966dd",
+  "uzun": 120361
+ },
+ "y-13": {
+  "id": "P4C",
+  "matn": "USTOZ · PROYEKTOR\nREJA · 3-BEKAT\n3 · Xatoni topamiz\n\nCoddy\nOxirgi bekat: dasturdagi xatoni topamiz.\n\nDars oxirida · o‘z sayringiz\nDasturini o‘qib berasiz\n✓\nDevorgacha\n✓\nIkki shart\n3\nXatoni topamiz\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "68c31cdd25ae",
+  "uzun": 93871
+ },
+ "y-14": {
+  "id": "P8",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nXato qayerda?\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nrepeat\n2\nif path\n←\nthen\nmove left\n3 ta blok\n1\n2\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "p:repeat2if path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left"
+  ],
+  "html": "09118b67b260",
+  "uzun": 113833
+ },
+ "y-15": {
+  "id": "P5B",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nXatoni tuzating!\n\nCoddy\nAvval ishga tushiring — qayerda to‘xtaganiga qarang.\n\nUch xatoni tuzatdi\n0 / 1\n1\n0\nQimirlamaydi\n2\n0\nYulduzdan keyin\n3\n0\nDarrov urildi\n★\n0\nO‘z sayringiz\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "f559fd1c078a",
+  "uzun": 92348
+ },
+ "y-16": {
+  "id": "P11",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RSATISH\nDasturingizni o‘qib bering\nSiz o‘qiysiz — men bog‘da yuraman.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nBlokni shu yerga ulang\n0 / 12 ta blok\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "e3766e5f278d",
+  "uzun": 95294
+ },
+ "y-17": {
+  "id": "P12",
+  "matn": "USTOZ · PROYEKTOR\nYAKUN\nQahramon devor oldida to‘xtaydi!\nBUGUNGI SO‘Z\nShart\nHa bo‘lsa, ichidagisi bajariladi\nKeyingi dars\n9 · Labirint o‘yini\n✓\nDevorgacha\n✓\nIkki shart\n✓\nXatoni topamiz\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "c8f5f0b054aa",
+  "uzun": 83992
+ },
+ "y-18": {
+  "id": "P14",
+  "matn": "USTOZ · PROYEKTOR\nSINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nta shart qo‘ydi\n0\nta labirintdan o‘tdi\n0\nta xato tuzatdi\n‹ Orqaga\nDarsni yakunlash\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: yo‘l bo‘lsa — yuradi\n5 / 18 · Yangi so‘z: shart\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: if bloki\n8 / 18 · Devorgacha\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ikki shart\n11 / 18 · Ikki shart\n12 / 18 · Xulosa: shart\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: xatoni topamiz\n15 / 18 · Xatoni topamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "d12de40fbf0f",
+  "uzun": 92967
+ },
+ "varaq": {
+  "id": "",
+  "matn": "8-dars · Shart — ustoz varag‘i\n\nAsosiy fikr: shart — tekshiriladigan narsa: yo‘l bormi? Ha bo‘lsa — ichidagi bloklar bajariladi, yo‘q bo‘lsa — bajarilmaydi. Dastur bitta — ikki labirintda ham ishlaydi.\n\nYo‘l: huk (ikki labirint — uch sinov) → yangi so‘z «shart» → reja → 1-bekat «Devorgacha» → 2-bekat «Ikki shart» → 3-bekat «Xatoni topamiz» → o‘qib berish → yakun.\n\nYangi blok: if path → then — agar yo‘l bo‘lsa, unda (Shart oilasi, kulrang-ko‘k). C-shaklli: javondan bosilsa tanlanadi, keyingi bloklar ichiga tushadi; tanlangan if bo‘lsa, yangi if undan keyin tushadi. Tomon bosib tanlanadi.\n\nIkki labirint: dastur avval 1-labirintda, keyin 2-labirintda yuradi; har biri yonida ✓ yoki ✕. Sanab yozilgan dastur faqat bittasida ishlaydi — shart bilan yozilgani ikkalasida.\n\nBoshqaruv: → yoki «Keyingi» — oldinga, ← — orqaga, F — to‘liq ekran. O‘ng tepada (sichqoncha olib borilsa) — qadam ro‘yxati va «aloqa» belgisi (yashil — ulangan).\n\n1\nKirish\n\nEKRANDA\n«8-dars · Shart» — «Bugun qahramon devorga urilmaydi!» Labirint, Coddy startda; pastda «O‘tgan darsda» — animatsiya.\n\nSIZ\n«O‘tgan darsda qahramonni jonlantirdik.» «Bugun qahramon devorga urilmaydi — avval yo‘lni tekshiradi.» «Noutbukda «Tayyorman» tugmasini bosing.»\n\nBOLA O‘RGANADI\nBugun qahramon yo‘lni tekshiradi.\n\n2\nSavol\n\nEKRANDA\nSavol: «Bitta dastur bilan qanday yetamiz?» Ikki labirint: yulduz 3 va 5 katak narida. Uchta karta: A «Sanab yuramiz», B «Ko‘p yuramiz», C «Yo‘l bo‘lsa yuramiz».\n\nSIZ\n«Qahramon ikkala labirintda yulduzga yetsin. Dastur esa bitta.» «Har kim noutbukida bitta kartani tanlasin: qanday yetamiz?»\n\nBOLA O‘RGANADI\nTaxmin qiladi — bu huk.\n\n3\nUch sinov\n\nEKRANDA\nUch sinov: A o‘zi boshlanadi — 1-labirintda yetdi, 2-da yetmadi. «Keyingi» — B: 1-labirintda devorga urildi. «Keyingi» — C: har qadamdan oldin tekshiradi — ikkalasida yetdi.\n\nSIZ\n«Sanab yursak — faqat birida yetdi. Ko‘p yursak — devorga urildi.» «Uchinchisi har qadamdan oldin tekshirdi: yo‘l bormi?»\n\nBOLA O‘RGANADI\nTekshirib yurish kerak.\n\n4\nJavob: yo‘l bo‘lsa — yuradi\n\nEKRANDA\nJavob: «Yo‘l bo‘lsa — yuradi». A va B xira, C oltin.\n\nSIZ\n«Dastur har qadamdan oldin tekshiradi: yo‘l bormi? Bor bo‘lsa — yuradi, devor bo‘lsa — turadi.»\n\nBOLA O‘RGANADI\nShart g‘oyasi.\n\n5\nYangi so‘z: shart\n\nEKRANDA\nYangi so‘z: «Shart nima?» «Keyingi» — birma-bir: ✓ ha, ✕ yo‘q, repeat ichida.\n\nSIZ\n«Shart — tekshiriladigan narsa. if bloki tekshiradi: yo‘l bormi?» «Ha bo‘lsa — ichidagi bloklar bajariladi. Yo‘q bo‘lsa — bajarilmaydi.»\n\nBOLA O‘RGANADI\nYangi so‘z: shart.\n\n6\nReja\n\nEKRANDA\nReja: tepalik — devorgacha → ikki shart → xatoni topamiz; cho‘qqida «o‘z sayringiz».\n\nSIZ\n«Bugun uchta bekat: devorgacha, ikki shart, xatoni topamiz.» «Dars oxirida shart bilan o‘z sayringizni tuzasiz.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n7\nKo‘ramiz: if bloki\n\nEKRANDA\nKo‘ramiz: «if — agar … unda». Javonda yangi oila — Shart. Ikki labirint; repeat 6, ichida if path ← then, ichida move left.\n\nSIZ\n«if — agar. Shart — yo‘l bormi? Ha bo‘lsa — ichidagi blok bajariladi.» «repeat har safar qaytadan tekshiradi. Devorga yetsa — qahramon to‘xtaydi.» «Endi o‘zingiz.»\n\nBOLA O‘RGANADI\nif — agar yo‘l bo‘lsa.\n\n8\nDevorgacha\n\nEKRANDA\nMashq: «Endi o‘zingiz!» — zinapoya: 1 pastga · 2 tepaga · 3 burchak · ★ uch tomon.\n\nSIZ\n«Dastur ikkala labirintda ishlasin. Sanash yordam bermaydi — shart qo‘ying.» «repeat soni uzunroq yo‘lga yetsin.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nShartni o‘zi qo‘yadi.\n\n9\n2-bekat\n\nEKRANDA\nTepalik: 1-bekat ✓ — «Ikki shart».\n\nSIZ\n«Devorgacha yurishni bildik. Endi dastur burilishda ham yo‘lni tekshiradi.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n10\nKo‘ramiz: ikki shart\n\nEKRANDA\nKo‘ramiz: «Ikki shart — zinapoya». Tayyor repeat 6 [if → [→]] — 1 qadamda to‘xtaydi; if ni bosib, javondan yana if — tomoni ↑, ichiga move up.\n\nSIZ\n«Bitta shart — bitta tomon. Zinapoyada ikki tomon kerak.» «Har safar ikkala shart tekshiriladi: o‘ngda yo‘l bo‘lsa — o‘ngga, tepada yo‘l bo‘lsa — tepaga.» «Endi o‘zingiz.»\n\nBOLA O‘RGANADI\nBitta repeat — ikki shart.\n\n11\nIkki shart\n\nEKRANDA\nMashq: «Zinapoyadan o‘ting!» — zinapoya: 1 pastga zinapoya · 2 chapga zinapoya · 3 chapga va pastga · ★ tog‘.\n\nSIZ\n«Bitta repeat — ichida ikki shart. Har shart o‘z tomonini tekshiradi.» «Yo‘l qaysi ikki tomonga ketyapti? Shu tomonlarni tekshiring.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nIkki shartni birga ishlatadi.\n\n12\nXulosa: shart\n\nEKRANDA\nXulosa: «Shart». Ikki karta: shart — ha bo‘lsa, ichidagisi bajariladi; if path → then — agar o‘ngda yo‘l bo‘lsa.\n\nSIZ\n«Shart — tekshiriladigan narsa: yo‘l bormi?» «Ha bo‘lsa — ichidagisi bajariladi. Yo‘q bo‘lsa — bajarilmaydi.»\n\nBOLA O‘RGANADI\nShart nima ekanini aytadi.\n\n13\n3-bekat\n\nEKRANDA\nTepalik: 1, 2 ✓ — «Xatoni topamiz».\n\nSIZ\n«Ikki bekatdan o‘tdik. Oxirgisi — xatoni topamiz.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n14\nKo‘ramiz: xatoni topamiz\n\nEKRANDA\nKo‘ramiz: «Xato qayerda?» Tayyor repeat 2 [if ← [←]] — 2-labirintda yetmadi; sonni 5 ga almashtirasiz.\n\nSIZ\n«Avval ishga tushiramiz: qaysi labirintda, qayerda to‘xtadi?» «Keyin dasturni o‘qiymiz: shart tomoni, ichidagi blok, son. Xato shulardan birida.» «Endi o‘zingiz.»\n\nBOLA O‘RGANADI\nXatoni qanday topishni ko‘radi.\n\n15\nXatoni topamiz\n\nEKRANDA\nMashq: «Xatoni tuzating!» — zinapoya: 1 qimirlamaydi · 2 yulduzdan keyin · 3 darrov urildi · ★ o‘z sayringiz.\n\nSIZ\n«Har pog‘onada tayyor dastur bor, unda bitta xato. Avval ishga tushiring.» «Qayerda to‘xtadi? O‘sha joyda shartni va ichidagi blokni o‘qing.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nXatoni topib tuzatadi.\n\n16\nDasturingizni o‘qib bering\n\nEKRANDA\n«Dasturingizni o‘qib bering». Sayr bog‘i, dastur bo‘sh. Proyektorda ism yo‘q; bola noutbukida — oxirgi yechgan pog‘onasi.\n\nSIZ\n«Kim dasturini o‘qib beradi? Avval repeat soni, keyin har if: qaysi tomon, ichida nima.» «Kuzating: bu dastur bog‘da qayerga boradi?»\n\nBOLA O‘RGANADI\nO‘z dasturini o‘qib beradi.\n\n17\nYakun\n\nEKRANDA\nYakun: «Qahramon devor oldida to‘xtaydi!» Bugungi so‘z — shart; keyingi dars — 9 · Labirint o‘yini.\n\nSIZ\n«Uchala bekatdan o‘tdik: devorgacha, ikki shart, xatoni topamiz.» «Bugungi so‘z — shart: ha bo‘lsa, ichidagisi bajariladi.» «Keyingi darsda harakat, shart va tugmalardan o‘yin yasaymiz — labirint o‘yini.»\n\nBOLA O‘RGANADI\nO‘z natijasini ko‘radi.\n\n18\nSinfimiz bugun\n\nEKRANDA\nSinfimiz bugun: nechta shart, nechta labirint, nechta xato tuzatildi (haqiqiy son, ismsiz).\n\nSIZ\n«Hammangiz zo‘r ishladingiz!» (keyin raqamlarni o‘qiydi) «Robot-changyutgich ham shunday ishlaydi: avval tekshiradi, keyin yuradi.»\n\nBOLA O‘RGANADI\nSinf bilan birga natijani ko‘radi.",
+  "bloklar": [],
+  "html": "591cd3761241",
+  "uzun": 8226
+ },
+ "eshik": {
+  "id": "",
+  "matn": "8-dars · Shart\n\nQaysi oynani ochamiz?\n\nO‘quvchi oynasi\nUstoz oynasi (proyektor)\nO‘quvchi — o‘zi (ustozsiz)\nIkkalasi yonma-yon (ko‘rik)\nUstoz varag‘i",
+  "bloklar": [],
+  "html": "6c269c97febd",
+  "uzun": 760
+ },
+ "kirish-ismsiz": {
+  "id": "",
+  "matn": "Darsga kirish\n\nIsmingizni yozing\n\nKirish",
+  "bloklar": [],
+  "html": "bb43a0750caa",
+  "uzun": 213
+ }
+}

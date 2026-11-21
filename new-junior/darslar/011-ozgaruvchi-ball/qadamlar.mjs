@@ -1,0 +1,43 @@
+// 11-dars «O‘zgaruvchi: ball» qadamlari (QADAM) va ustoz varag'i (VARAQ) — 21.11. Manba: new-junior/manba/011-ozgaruvchi-ball.md, 18 qadam.
+// 16-qadam bola ro'yxati 'oxirgi' (A·1) — bola noutbukida oxirgi yechgan pog'onasi o'z dasturi bilan.
+const QADAM = [
+  ['Kirish', 'P1', ['B0', 'BK']],
+  ['Savol: ballni qanday sanaymiz?', 'P2', ['P2N', 'BK']],
+  ['Uch sinov', 'P2S', ['BK'], 'Ustoz yo‘llarni sinayapti — kuzating'],
+  ['Javob: kompyuter sonni eslab qoladi', 'P2C', ['BK']],
+  ['Yangi so‘z: o‘zgaruvchi', 'P3', ['BK'], 'Yangi so‘z: o‘zgaruvchi'],
+  ['Reja', 'P4', ['BK'], 'Bugun: uchta bekat'],
+  ['Ko‘ramiz: change bloki', 'P6', ['BK'], 'Ustoz ball sanashni ko‘rsatyapti — kuzating'],
+  ['Ball: pog‘onalar', 'P5', ['B1A', 'B1B', 'B1C', 'B1Y', 'BK']],
+  ['2-bekat', 'P4B', ['BK'], '2-bekat: noldan'],
+  ['Ko‘ramiz: set bloki', 'P7', ['BK'], 'Ustoz o‘yinni qayta boshlayapti — kuzating'],
+  ['Noldan: pog‘onalar', 'P5G', ['B2A', 'B2B', 'B2C', 'B2Y', 'BK']],
+  ['Xulosa: o‘zgaruvchi', 'P9', ['BK'], 'Xulosa: o‘zgaruvchi'],
+  ['3-bekat', 'P4C', ['BK'], '3-bekat: oldindan aytamiz'],
+  ['Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz', 'P8', ['BK'], 'Ustoz dasturni o‘qiyapti — kuzating'],
+  ['Oldindan aytamiz: pog‘onalar', 'P5B', ['B3A', 'B3B', 'B3C', 'B3Y', 'BK']],
+  ['O‘yiningiz dasturini o‘qib bering', 'P11', 'oxirgi'],
+  ['Yakun', 'P12', ['B5']],
+  ['Sinfimiz bugun', 'P14', ['B5']],
+]
+// ustoz varag'i: [Ekranda · Siz (manbadagi tayanch gaplar, aynan) · Bola o'rganadi]
+const VARAQ = [
+  ['«11-dars · O‘zgaruvchi: ball» — «Bugun o‘yinda ball sanaymiz!» Maydon, Coddy (0, 0) da, uchta olma; pastda «O‘tgan darsda» — daraja.', '«O‘tgan darsda o‘yiningizga ikkinchi daraja qo‘shdingiz.» «Bugun o‘yinda ball sanaymiz.» «Noutbukda «Tayyorman» tugmasini bosing.»', 'Bugun ball sanaydi.'],
+  ['Savol: «Ballni qanday sanaymiz?» Uchta karta: A «Coddy «1» desin» · B «Bir, ikki, uch desin» · C «Kompyuter sonni eslab qolsin».', '«Coddy uchta olma teradi. Har olma — 1 ball. Ball ekranda chiqsin.» «Har kim noutbukida bitta kartani tanlasin: qanday sanaymiz?»', 'Taxmin qiladi — bu huk.'],
+  ['Uch sinov — o‘sha bosishlar →→→→→↑↑. A o‘zi boshlanadi: har olmada «1» — ✕ doim 1. «Keyingi» — B: birinchi olmadayoq 1, 2, 3 — ✕ birdan 3. «Keyingi» — C: «ball: 1», «2», «3» — ✓.', '«say faqat aytadi — u sonni eslab qolmaydi.» «Kompyuter sonni eslab qoldi va har olmada unga 1 qo‘shdi.»', 'Sanash uchun son eslab qolinishi kerak.'],
+  ['Javob: «Kompyuter sonni eslab qoladi». A va B xira, C oltin; «ball: 3».', '«Ball — kompyuter eslab qolgan son. Har olmada unga 1 qo‘shiladi.»', 'Ball — eslab qolingan son.'],
+  ['Yangi so‘z: «O‘zgaruvchi nima?» «Keyingi» — birma-bir: quti «ball» 0 → change — 1 → 3 va «ball: 3».', '«O‘zgaruvchi — kompyuter eslab qoladigan son. Uning nomi bor.» «Soni o‘zgarib turadi — shuning uchun o‘zgaruvchi.»', 'Yangi so‘z: o‘zgaruvchi.'],
+  ['Reja: tepalik — ball → noldan → oldindan aytamiz; cho‘qqida «olma terish o‘yini · ball sanaladi».', '«Bugun uchta bekat: ball, noldan, oldindan aytamiz.» «Dars oxirida o‘yiningiz ballni o‘zi sanaydi.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: «change — ballga qo‘sh». Javonda O‘zgaruvchi (change) va Hodisa (when touching apple); «Boshqaruv» tayyor. Ustoz ikki blokni qo‘yadi, «▶ Boshlash», →→→↑↑→→↓↓ — ball 3, yutdi.', '«Olmaga tekkanda — ballga 1 qo‘shiladi.» «ball — o‘zgaruvchining nomi. Sahnada — uning soni.» «Endi o‘zingiz.» Rangini ayting: «O‘zgaruvchi oilasi — jigarrang. Bu bloklar sonni eslab qoladi va o‘zgartiradi.»', 'change va when touching apple.'],
+  ['Mashq: «Ball sanang!» — zinapoya: 1 uch olma · 2 ikki ball · 3 oltin olma · ★ oltin — 10.', '«Har pog‘ona tepasida yozilgan: har olma necha ball.» «O‘ynab ko‘ring: ball aytilgan son bo‘lsin.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'Ballni o‘zi sanaydi.'],
+  ['Tepalik: 1-bekat ✓ — «Noldan».', '«Ballni sanadik. Endi o‘yin qayta boshlanganda nima bo‘lishini ko‘ramiz.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: «set — ballni 0 qil». Ikki marta o‘ynang — ball 3, keyin «ball: 4», «ball: 5», «ball: 6» («Olma 3 ta — ball 6»). Javondan when ▶ clicked va set ball to 0 — yana o‘ynang: ball 3.', '«Kompyuter sonni o‘zi unutmaydi — o‘yin qayta boshlansa ham eslab turadi.» «O‘yin boshida ballni 0 qilamiz: when ▶ clicked — set ball to 0.» «Endi o‘zingiz.»', 'set — o‘yin boshida sonni qo‘yadi.'],
+  ['Mashq: «O‘yinni boshlang!» — zinapoya: 1 noldan · 2 sovg‘a · 3 uch va oltin · ★ o‘z o‘yiningiz.', '«Har pog‘ona o‘tgan o‘yindan qolgan ball bilan ochiladi — sahnaga qarang.» «O‘yin boshida ball nechchi bo‘lishini set bloki aytadi.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.» Set qo‘yilmasa — Ortiqvoy «Ball ko‘p!» («Ball 9 — 4 bo‘lishi kerak. O‘yin boshida ball 5 edi»).', 'O‘yinni kerakli sondan boshlaydi.'],
+  ['Xulosa: «O‘zgaruvchi». Ikki karta: set — sonni qo‘yadi; change — songa qo‘shadi.', '«set — sonni qo‘yadi. change — songa qo‘shadi.» «O‘yin boshida — set, olmada — change.»', 'set va change farqini aytadi.'],
+  ['Tepalik: 1, 2 ✓ — «Oldindan aytamiz».', '«Ikki bekatdan o‘tdik. Oxirgisi — oldindan aytamiz.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: «Ball nechchi bo‘ladi?» Tayyor dastur: set 0, +2, +2, +1. «Keyingi» to‘rt marta — har blok yonida «ball: 0», «ball: 2», «ball: 4», «ball: 5»; 5 kartasi; «▶ Tekshirish» — «Oldindan aytdingiz!».', '«Dasturni yuqoridan pastga o‘qing: set — sonni qo‘yadi, change — qo‘shadi.» «Oxirgi son — javob. Kartani bosing, keyin tekshiring.» «Endi o‘zingiz.»', 'Dasturni o‘qib, sonni oldindan aytadi.'],
+  ['Mashq: «Oldindan ayting!» — zinapoya: 1 uch blok · 2 takrorlash · 3 ikki set · ★ ichida ikki blok.', '«Dasturni yuqoridan pastga o‘qing: har blokdan keyin ball nechchi?» «Sonni tanlang, keyin «Tekshirish»ni bosing.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'O‘zgaruvchining sonini oldindan aytadi.'],
+  ['«Dasturingizni o‘qib bering». 7-qadamdagi maydon, dasturda faqat «Boshqaruv». Proyektorda ism yo‘q; bola noutbukida — oxirgi yechgan pog‘onasi.', '«Kim o‘yinining dasturini o‘qib beradi? Avval o‘yin boshi, keyin olmalar.» «Kuzating: ball qanday o‘zgaradi.»', 'O‘z dasturini o‘qib beradi.'],
+  ['Yakun: «Siz ball sanadingiz!» Bugungi so‘z — o‘zgaruvchi; keyingi dars — 12 · Jon va qadam.', '«Uchala bekatdan o‘tdik: ball sanadik, noldan boshladik, oldindan aytdik.» «Bugungi so‘z — o‘zgaruvchi: kompyuter eslab qoladigan son.» «Keyingi darsda o‘yinda jon bo‘ladi: jon tugasa — o‘yin tugaydi.»', 'O‘z natijasini ko‘radi.'],
+  ['Sinfimiz bugun: nechta olma terildi, necha marta oldindan aytildi (haqiqiy son, ismsiz).', '«Hammangiz zo‘r ishladingiz!» (keyin raqamlarni o‘qiydi) «Kompyuter bir sonni ham, mingta sonni ham unutmaydi.»', 'Sinf bilan birga natijani ko‘radi.'],
+]

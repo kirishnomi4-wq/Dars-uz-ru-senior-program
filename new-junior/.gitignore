@@ -1,0 +1,5 @@
+# Vaqtinchalik sinov chiqishlari (21.11)
+sinov/dvigatel/.yangi/
+sinov/dvigatel/.setka-*.html
+# Oltin namuna suratlari — diskda va zaxira arxivida; git'da faqat html/json (21.11 qaror)
+sinov/dvigatel/oltin/**/*.png

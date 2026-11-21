@@ -1,0 +1,43 @@
+// 10-dars «Labirint o‘yini 2» qadamlari (QADAM) va ustoz varag'i (VARAQ) — 20.11. Manba: new-junior/manba/010-labirint-oyini-2.md, 18 qadam.
+// 16-qadam bola ro'yxati — BD («Do‘stingiz o‘ynaydi»): do'st o'ynaydi, egasi qaytib natijasini ko'radi (A·1 — o'z o'yini va undagi yo'l).
+const QADAM = [
+  ['Kirish', 'P1', ['B0', 'BK']],
+  ['Savol', 'P2', ['P2N', 'BK']],
+  ['Uch sinov', 'P2S', ['BK'], 'Ustoz yo‘llarni sinayapti — kuzating'],
+  ['Javob: dastur bitta, labirint ko‘p', 'P2C', ['BK']],
+  ['Yangi so‘z: daraja', 'P3', ['BK'], 'Yangi so‘z: daraja'],
+  ['Reja', 'P4', ['BK'], 'Bugun: uchta bekat'],
+  ['Ko‘ramiz: labirint yasaymiz', 'P6', ['BK'], 'Ustoz labirint yasayapti — kuzating'],
+  ['O‘z labirintingiz', 'P5', ['B1A', 'B1B', 'B1C', 'B1Y', 'BK']],
+  ['2-bekat', 'P4B', ['BK'], '2-bekat: kalit va eshik'],
+  ['Ko‘ramiz: kalit va eshik qo‘yamiz', 'P7', ['BK'], 'Ustoz eshik qo‘yyapti — kuzating'],
+  ['Kalit va eshik', 'P5G', ['B2A', 'B2B', 'B2Y', 'BK']],
+  ['Xulosa: daraja', 'P9', ['BK'], 'Xulosa: daraja'],
+  ['3-bekat', 'P4C', ['BK'], '3-bekat: ikki daraja'],
+  ['Ko‘ramiz: ikki daraja', 'P8', ['BK'], 'Ustoz o‘yinni o‘ynayapti — kuzating'],
+  ['Ikki daraja', 'P5B', ['B3A', 'B3Y', 'BK']],
+  ['Do‘stingiz o‘ynasin', 'P11', ['BD']],
+  ['Yakun', 'P12', ['B5']],
+  ['Sinfimiz bugun', 'P14', ['B5']],
+]
+// ustoz varag'i: [Ekranda · Siz (manbadagi tayanch gaplar, aynan) · Bola o'rganadi]
+const VARAQ = [
+  ['«10-dars · Labirint o‘yini 2» — «Bugun o‘yiningizni davom ettiramiz!» Coddy’ning o‘yini — labirint; pastda «O‘tgan darsda» — qoida.', '«O‘tgan darsda labirint o‘yini yasadik: strelkalar, qoida, kalit.» «Bugun o‘sha o‘yinni davom ettiramiz.» «Noutbukda «Tayyorman» tugmasini bosing.»', 'Tayyor ish ustiga qo‘shib boriladi.'],
+  ['Savol: «Ikkinchi labirintni qanday qo‘shamiz?» «O‘ynab ko‘rsat» — Coddy yutdi, o‘yin tugadi. Uchta karta: A «Yangi o‘yin ochamiz», B «Labirintni o‘zgartiramiz», C «Ikkinchi labirint qo‘shamiz».', '«O‘yin bitta labirint bilan tez tugadi. Unga ikkinchi labirint kerak.» «Qanday qo‘shamiz? Har kim bitta kartani tanlasin.»', 'Taxmin qiladi — bu huk.'],
+  ['Uch sinov: A — yangi o‘yin, dastur bo‘sh: Bo‘shvoy. «Keyingi» — B: labirint o‘zgardi, «Daraja: 1 / 1». «Keyingi» — C: D1, keyin ikkinchi labirint — o‘sha dastur, bitta «yo‘q».', '«Yangi o‘yinda dastur yo‘q — boshqaruvni ham, qoidani ham boshidan tuzish kerak.» «Labirintni o‘zgartirsak — o‘yin baribir bitta labirint. Qo‘shsak — ikkita, dastur esa o‘sha.»', 'Dastur bitta — labirint ko‘p.'],
+  ['Javob: «Dastur bitta, labirint ko‘p». A va B xira, C oltin; ikki labirint yonma-yon.', '«Tayyor o‘yinni buzmaymiz — unga yangi labirint qo‘shamiz.» «Dastur bitta: boshqaruv va qoida hamma labirintda ishlaydi.»', 'Tayyor ishni kengaytirish.'],
+  ['Yangi so‘z: «Daraja nima?» «Keyingi» — birma-bir: 1-daraja, «2-daraja!», 2-daraja.', '«Daraja — o‘yindagi bitta labirint. Biri yutilsa, keyingisi ochiladi.» «O‘tgan darsdagi labirint — o‘yiningizning 1-darajasi. Bugun 2-darajani o‘zingiz yasaysiz.»', 'Yangi so‘z: daraja.'],
+  ['Reja: tepalik — o‘z labirintingiz → kalit va eshik → ikki daraja; cho‘qqida «ikki darajali o‘yin».', '«Bugun uchta bekat: o‘z labirintingiz, kalit va eshik, ikki daraja.» «Dars oxirida o‘yiningizni do‘stingiz o‘ynaydi.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: «Labirint yasaymiz». Javon o‘rnida asboblar: Devor · Kalit · Eshik · Yulduz. Kataklarni bosasiz — devorlar; (5, 4) — «Yo‘l yo‘q»; yana bosasiz — devor ketadi; «▶ Sinab ko‘rish».', '«Katakni bosing — devor. Yana bosing — devor ketadi.» «Yo‘l yo‘q bo‘lsa — o‘yinni hech kim yuta olmaydi. Yo‘lni kompyuter o‘zi sanaydi.» «Labirint tayyor bo‘lsa — avval o‘zingiz o‘ynab ko‘ring. Endi o‘zingiz.»', 'Labirint yasash.'],
+  ['Mashq: «Labirintingizni yasang!» — zinapoya: 1 devorlar · 6 · 2 uzun yo‘l · 14 · 3 burilishlar · 5 · ★ boshi berk yo‘llar · 2.', '«O‘z labirintingizni yasang. Har pog‘onada bitta shart — sahna ostida son.» «Labirint tayyor bo‘lsa — o‘zingiz o‘ynab yuting.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'O‘z labirintini yasaydi.'],
+  ['Tepalik: 1-bekat ✓ — «Kalit va eshik».', '«Labirintingiz bor. Endi unga kalit va eshik qo‘yamiz.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: «Eshik yo‘lni to‘ssin». Eshik (3, 4) — «Eshik keraksiz!»; (5, 4) — «Kalit qani?»; kalit (0, 2); «▶ Sinab ko‘rish».', '«Eshik yo‘lni to‘ssin: yulduzga faqat eshikdan o‘tib boriladi.» «Kalit eshikdan oldin bo‘lsin — eshikdan o‘tmasdan yetib boriladigan joyda.» «Endi o‘zingiz.»', 'Kalit va eshik qo‘yish.'],
+  ['Mashq: «Kalit va eshik qo‘ying!» — zinapoya: 1 kalit va eshik · 2 kalit chetda · ★ uzun daraja · 20.', '«Eshik yo‘lni to‘ssin, kalit eshikdan oldin bo‘lsin.» «Kalit chetda bo‘lsa — o‘yinchi borib, orqaga qaytadi.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'Labirintiga kalit va eshik qo‘yadi.'],
+  ['Xulosa: «Daraja». Ikki karta: daraja — o‘yindagi bitta labirint; dastur bitta — darajalar ko‘p.', '«Daraja — o‘yindagi bitta labirint.» «Labirintni yasadik — dastur o‘zgarmadi, o‘yin baribir ishladi.»', 'Daraja nima ekanini aytadi.'],
+  ['Tepalik: 1, 2 ✓ — «Ikki daraja».', '«Ikki bekatdan o‘tdik. Oxirgisi — o‘yinni boshidan oxirigacha o‘ynaymiz.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: «Ikki daraja». «▶ Boshlash» — 1-daraja, «2-daraja!», keyin ikkinchi labirint; ro‘yxatda «Ikki daraja yutildi» ✓.', '«▶ Boshlash — o‘yin 1-darajadan boshlanadi. Yutsangiz — 2-daraja ochiladi.» «Ro‘yxatdagi bandlar ✓ bo‘lsa — o‘yin do‘stingizga tayyor.»', 'Ikki darajali o‘yin.'],
+  ['Mashq: «Ikki darajani yuting!» — zinapoya: 1 ikki daraja · ★ adashmasdan.', '«O‘yiningizni boshidan o‘ynang: avval 1-daraja, keyin o‘zingiz yasagan 2-daraja.» «Ro‘yxatda bo‘sh band bo‘lsa — avval shuni to‘ldiring.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'O‘z o‘yinini yutadi.'],
+  ['«Do‘stingiz o‘ynasin». Bolalar joy almashadi, do‘stining o‘yinini o‘ynaydi; qaytib, do‘stining natijasini ko‘radi. Proyektorda ism yo‘q.', '«Yoningizdagi do‘stingiz bilan joy almashing. Uning o‘yinini o‘ynang — dasturiga tegmang.» «Joyingizga qayting: do‘stingiz qanday o‘ynaganini ko‘ring.»', 'O‘yinini boshqaga o‘ynatadi.'],
+  ['Yakun: «Siz ikki darajali o‘yin yasadingiz!» Bugungi so‘z — daraja; keyingi dars — 11 · O‘zgaruvchi: ball.', '«Uchala bekatdan o‘tdik: o‘z labirintingiz, kalit va eshik, ikki daraja.» «Bugungi so‘z — daraja: o‘yindagi bitta labirint.» «Keyingi darsda o‘yinda ball sanaymiz: kompyuter sonni eslab qoladi.»', 'O‘z natijasini ko‘radi.'],
+  ['Sinfimiz bugun: nechta labirint yasaldi, nechta o‘yinni do‘st o‘ynadi, nechta daraja yutildi (haqiqiy son, ismsiz).', '«Hammangiz zo‘r ishladingiz!» (keyin raqamlarni o‘qiydi) «Bugun 14 ta yangi labirint yasaldi — har biri o‘ziga xos.» (haqiqiy son bilan)', 'Sinf bilan birga natijani ko‘radi.'],
+]

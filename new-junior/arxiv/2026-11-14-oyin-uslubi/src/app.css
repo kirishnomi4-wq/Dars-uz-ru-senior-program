@@ -1,0 +1,41 @@
+/* Ish xaritasi ko'rinishi. Bu Junior darslarining dizayni EMAS — faqat bizning ish stolimiz. */
+:root {
+  --xr-fon: #f6f5f1;
+  --xr-karta: #ffffff;
+  --xr-matn: #1d1c1a;
+  --xr-xira: #6f6b63;
+  --xr-chiziq: #e4e1d8;
+  --xr-urg: #2f6f4f;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--xr-fon); color: var(--xr-matn); font: 16px/1.45 system-ui, -apple-system, 'Segoe UI', sans-serif; }
+
+.xr { max-width: 920px; margin: 0 auto; padding: 32px 16px 80px; }
+.xr-bosh h1 { margin: 0; font-size: 34px; letter-spacing: -0.02em; }
+.xr-bosh p { margin: 6px 0 28px; color: var(--xr-xira); }
+.xr-bosh b { color: var(--xr-urg); }
+
+.xr-modul { background: var(--xr-karta); border: 1px solid var(--xr-chiziq); border-radius: 16px; margin-bottom: 18px; overflow: hidden; }
+.xr-modul-bosh { display: flex; gap: 14px; align-items: center; padding: 16px 18px; border-bottom: 1px solid var(--xr-chiziq); }
+.xr-modul-raqam { flex: none; width: 40px; height: 40px; border-radius: 12px; background: var(--xr-matn); color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 18px; }
+.xr-modul-bosh h2 { margin: 0; font-size: 19px; }
+.xr-modul-bosh p { margin: 2px 0 0; font-size: 13px; color: var(--xr-xira); }
+
+.xr-darslar { list-style: none; margin: 0; padding: 0; }
+.xr-darslar li + li { border-top: 1px solid var(--xr-chiziq); }
+.xr-qator { display: flex; gap: 12px; align-items: center; padding: 10px 18px; color: inherit; text-decoration: none; }
+a.xr-qator:hover { background: #f1f7f3; }
+.xr-n { flex: none; width: 34px; color: var(--xr-xira); font-variant-numeric: tabular-nums; }
+.xr-mavzu { flex: 1; min-width: 0; }
+.xr-mavzu small { display: block; color: var(--xr-xira); font-size: 13px; }
+.xr-tur { flex: none; font-size: 12px; padding: 2px 8px; border-radius: 999px; background: #efece3; color: #5a5548; white-space: nowrap; }
+.xr-holat { flex: none; width: 92px; text-align: right; font-size: 13px; color: #a9a498; }
+.xr-holat.xr-tayyor { color: var(--xr-urg); font-weight: 700; }
+.xr-kutish { padding: 40px; text-align: center; color: var(--xr-xira); }
+
+@media (max-width: 560px) {
+  .xr-qator { flex-wrap: wrap; row-gap: 4px; }
+  .xr-mavzu { flex-basis: calc(100% - 46px); }
+  .xr-tur { margin-left: 46px; }
+  .xr-holat { width: auto; margin-left: auto; }
+}

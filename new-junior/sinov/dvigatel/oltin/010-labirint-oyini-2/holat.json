@@ -1,0 +1,1435 @@
+{
+ "u-01-P1": {
+  "id": "P1",
+  "matn": "10-DARS · LABIRINT O‘YINI 2\nBugun o‘yiningizni davom ettiramiz!\n\nCoddy\nSalom! O‘tgan darsdagi o‘yiningiz saqlangan. Bugun uni kattalashtiramiz.\n\nO‘TGAN DARSDA\n→\n→\nQoida\nO‘yinda nima bo‘lishini aytadigan shart\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKirdi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "8107d574717e",
+  "uzun": 45439
+ },
+ "u-02-P2": {
+  "id": "P2",
+  "matn": "10-DARS · LABIRINT O‘YINI 2\nSAVOL\nIkkinchi labirintni qanday qo‘shamiz?\n\nCoddy\nBitta labirint tez tugadi. Yana bittasi kerak.\n\nA\nYangi o‘yin ochamiz\nB\nLabirintni o‘zgartiramiz\n✎\nC\nIkkinchi labirint qo‘shamiz\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 1 / 1\n‹ Orqaga\nJavob berdi: 0 / 0\n▶ O‘ynab ko‘rsat\nSinab ko‘ramiz ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "ef35aa71d2c4",
+  "uzun": 56218
+ },
+ "u-03-P2S": {
+  "id": "P2S",
+  "matn": "SAVOL\nIkkinchi labirintni qanday qo‘shamiz?\n\nCoddy\nBitta labirint tez tugadi. Yana bittasi kerak.\n\nA\nYangi o‘yin ochamiz\nB\nLabirintni o‘zgartiramiz\n✎\nC\nIkkinchi labirint qo‘shamiz\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 1 / 1\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "8ea8c4cefdb3",
+  "uzun": 54013
+ },
+ "u-04-P2C": {
+  "id": "P2C",
+  "matn": "JAVOB\nDastur bitta, labirint ko‘p\n\nCoddy\nStrelkalar va qoida ikkala labirintda ishladi.\n\nA\nYangi o‘yin ochamiz\n✕ boshqaruv va qoida yo‘q\nB\nLabirintni o‘zgartiramiz\n✕ labirint baribir bitta\n✎\nC\nIkkinchi labirint qo‘shamiz\n✓ ikki labirint, dastur o‘sha\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n1-daraja\n2-daraja\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "1cf075f69161",
+  "uzun": 85520
+ },
+ "u-05-P3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nDaraja nima?\n\nCoddy\nDaraja — o‘yindagi bitta labirint.\n\n1-daraja\n2-daraja!\nYulduzga yetdi\n2-daraja\nBiri yutilsa — keyingisi ochiladi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 2 / 2\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "d7ec611c3250",
+  "uzun": 48984
+ },
+ "u-06-P4": {
+  "id": "P4",
+  "matn": "REJA\nBugun nima qilamiz?\n\nCoddy\nBugun 2-darajani o‘zingiz yasaysiz.\n\nDars oxirida · ikki darajali o‘yin\nDo‘stingiz o‘ynaydi\n1\nO‘z labirintingiz\n2\nKalit va eshik\n3\nIkki daraja\n‹ Orqaga\nBoshladik ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "93f489ba7d00",
+  "uzun": 45633
+ },
+ "u-07-P6": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nLabirint yasaymiz\nLabirint\nHodisa\nHarakat\nShart\nTovush\nLabirint\nDevor\nKalit\nEshik\nYulduz\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 2 / 2\nDevor: 0 · Yo‘l: 10 qadam\n‹ Orqaga\n▶ Sinab ko‘rish\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "2b15c8cb7100",
+  "uzun": 43791
+ },
+ "u-08-P5": {
+  "id": "P5",
+  "matn": "MASHQ\nLabirintingizni yasang!\n\nCoddy\nHar pog‘onada labirintingiz qiyinroq bo‘ladi.\n\nUch pog‘onani tugatdi\n0 / 0\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\n6\nDevorlar · 6\n2\n0\n14\nUzun yo‘l · 14\n3\n0\n5\nBurilishlar · 5\n★\n0\n2\nBoshi berk yo‘llar · 2\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "20e8446f71ad",
+  "uzun": 25565
+ },
+ "u-09-P4B": {
+  "id": "P4B",
+  "matn": "REJA · 2-BEKAT\n2 · Kalit va eshik\n\nCoddy\nEndi labirintingizga kalit va eshik qo‘yamiz.\n\nDars oxirida · ikki darajali o‘yin\nDo‘stingiz o‘ynaydi\n✓\nO‘z labirintingiz\n2\nKalit va eshik\n3\nIkki daraja\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "687ea261f3be",
+  "uzun": 45406
+ },
+ "u-10-P7": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nEshik yo‘lni to‘ssin\nLabirint\nHodisa\nHarakat\nShart\nTovush\nLabirint\nDevor\nKalit\nEshik\nYulduz\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 2 / 2\nKalit — · Eshik — · Yo‘l: 10 qadam\n‹ Orqaga\n▶ Sinab ko‘rish\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "4880bb6ce112",
+  "uzun": 45542
+ },
+ "u-11-P5G": {
+  "id": "P5G",
+  "matn": "MASHQ\nKalit va eshik qo‘ying!\n\nCoddy\nAvval kalit, keyin eshik — endi sizning labirintingizda.\n\nIkki pog‘onani tugatdi\n0 / 0\n1\n0\nKalit va eshik\n2\n0\nKalit chetda\n★\n0\n20\nUzun daraja · 20\n1\n2\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "b96e9f27b0e4",
+  "uzun": 25533
+ },
+ "u-12-P9": {
+  "id": "P9",
+  "matn": "XULOSA\nDaraja\n\nCoddy\nYangi daraja — yangi labirint. Dastur o‘sha.\n\n1 → 2\nDaraja\nO‘yindagi bitta labirint\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nDastur bitta — darajalar ko‘p\nBoshqaruv va qoida hamma labirintda\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "9b78863d80a0",
+  "uzun": 51688
+ },
+ "u-13-P4C": {
+  "id": "P4C",
+  "matn": "REJA · 3-BEKAT\n3 · Ikki daraja\n\nCoddy\nOxirgi bekat: ikki darajani birga o‘ynaymiz.\n\nDars oxirida · ikki darajali o‘yin\nDo‘stingiz o‘ynaydi\n✓\nO‘z labirintingiz\n✓\nKalit va eshik\n3\nIkki daraja\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "d1fd85e5bbe0",
+  "uzun": 45438
+ },
+ "u-14-P8": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nIkki daraja\nHodisa\nHarakat\nShart\nTovush\nHodisa\nwhen\n→\nkey pressed\nO‘yiningizda:\n✓\nTo‘rt strelka\n✓\nQoida\n2-daraja: kalit va eshik\nIkki daraja yutildi\nDo‘stingiz o‘ynadi\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 1 / 2\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "88e37aa5bf29",
+  "uzun": 46697
+ },
+ "u-15-P5B": {
+  "id": "P5B",
+  "matn": "MASHQ\nIkki darajani yuting!\n\nCoddy\nO‘yiningizni boshidan oxirigacha o‘ynang.\n\nIkki darajani yutdi\n0 / 0\nHar belgi — ikki darajani yutgan bitta bola\n1\n0\nIkki daraja\n★\n0\nAdashmasdan\n1\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "b41350d6d617",
+  "uzun": 30878
+ },
+ "u-16-P11": {
+  "id": "P11",
+  "matn": "KO‘RSATISH\nDo‘stingiz o‘ynasin\n\nCoddy\nDo‘stingiz yasagan labirintni siz yuta olasizmi?\n\nO‘ynab ko‘rildi\n0 / 0\nHar belgi — do‘sti o‘ynab ko‘rgan bitta o‘yin\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "2c5c40434743",
+  "uzun": 22579
+ },
+ "u-17-P12": {
+  "id": "P12",
+  "matn": "YAKUN\nSiz ikki darajali o‘yin yasadingiz!\nBUGUNGI SO‘Z\nDaraja\nO‘yindagi bitta labirint\nKeyingi dars\nball 3\n11 · O‘zgaruvchi: ball\n✓\nO‘z labirintingiz\n✓\nKalit va eshik\n✓\nIkki daraja\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a874554f473c",
+  "uzun": 29978
+ },
+ "u-18-P14": {
+  "id": "P14",
+  "matn": "SINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nta labirint yasaldi\n0\nta o‘yinni do‘st o‘ynadi\n0\ndaraja yutildi\n‹ Orqaga\nDarsni yakunlash\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a4841bbc2048",
+  "uzun": 40191
+ },
+ "u-x-P2-yutdi": {
+  "id": "P2",
+  "matn": "10-DARS · LABIRINT O‘YINI 2\nSAVOL\nIkkinchi labirintni qanday qo‘shamiz?\n\nCoddy\nBitta labirint tez tugadi. Yana bittasi kerak.\n\nA\nYangi o‘yin ochamiz\nB\nLabirintni o‘zgartiramiz\n✎\nC\nIkkinchi labirint qo‘shamiz\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nDaraja: 1 / 1\n‹ Orqaga\n▶ O‘ynab ko‘rsat\nSinab ko‘ramiz ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "12c9375e0244",
+  "uzun": 58117
+ },
+ "u-x-P2S-A": {
+  "id": "P2S",
+  "matn": "SAVOL\nIkkinchi labirintni qanday qo‘shamiz?\n\nCoddy\nBitta labirint tez tugadi. Yana bittasi kerak.\n\nA\nYangi o‘yin ochamiz\n✕ boshqaruv va qoida yo‘q\nB\nLabirintni o‘zgartiramiz\n✎\nC\nIkkinchi labirint qo‘shamiz\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 1 / 1\nMen nimani kutaman?\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "5397dead3493",
+  "uzun": 59310
+ },
+ "u-x-P2S-B": {
+  "id": "P2S",
+  "matn": "SAVOL\nIkkinchi labirintni qanday qo‘shamiz?\n\nCoddy\nBitta labirint tez tugadi. Yana bittasi kerak.\n\nA\nYangi o‘yin ochamiz\n✕ boshqaruv va qoida yo‘q\nB\nLabirintni o‘zgartiramiz\n✕ labirint baribir bitta\n✎\nC\nIkkinchi labirint qo‘shamiz\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nDaraja: 1 / 1\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a164eb438c6f",
+  "uzun": 58085
+ },
+ "u-x-P2S-C": {
+  "id": "P2S",
+  "matn": "SAVOL\nIkkinchi labirintni qanday qo‘shamiz?\n\nCoddy\nBitta labirint tez tugadi. Yana bittasi kerak.\n\nA\nYangi o‘yin ochamiz\n✕ boshqaruv va qoida yo‘q\nB\nLabirintni o‘zgartiramiz\n✕ labirint baribir bitta\n✎\nC\nIkkinchi labirint qo‘shamiz\n✓ ikki labirint, dastur o‘sha\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nDaraja: 2 / 2\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "95861685ea14",
+  "uzun": 55675
+ },
+ "u-x-P3-1": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nDaraja nima?\n\nCoddy\nDaraja — o‘yindagi bitta labirint.\n\n1-daraja\n2-daraja!\nYulduzga yetdi\n2-daraja\nBiri yutilsa — keyingisi ochiladi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 2 / 2\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "3c7a917b2c4b",
+  "uzun": 48987
+ },
+ "u-x-P3-2": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nDaraja nima?\n\nCoddy\nDaraja — o‘yindagi bitta labirint.\n\n1-daraja\n2-daraja!\nYulduzga yetdi\n2-daraja\nBiri yutilsa — keyingisi ochiladi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 2 / 2\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "0a45e8835a61",
+  "uzun": 48990
+ },
+ "u-x-P3-3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nDaraja nima?\n\nCoddy\nDaraja — o‘yindagi bitta labirint.\n\n1-daraja\n2-daraja!\nYulduzga yetdi\n2-daraja\nBiri yutilsa — keyingisi ochiladi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 2 / 2\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "1c41efc8e3b5",
+  "uzun": 48996
+ },
+ "u-x-P6-U1": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nLabirint yasaymiz\nLabirint\nHodisa\nHarakat\nShart\nTovush\nLabirint\nDevor\nKalit\nEshik\nYulduz\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 2 / 2\nDevor: 10 · Yo‘l: 10 qadam\n‹ Orqaga\n▶ Sinab ko‘rish\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "611263e43e72",
+  "uzun": 45531
+ },
+ "u-x-P6-yolyoq": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nLabirint yasaymiz\nLabirint\nHodisa\nHarakat\nShart\nTovush\nLabirint\nDevor\nKalit\nEshik\nYulduz\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 2 / 2\nDevor: 11 · Yo‘l yo‘q\nYo‘l yo‘q!\n‹ Orqaga\nYulduzga yo‘l yo‘q. Qaysi devorni olib tashlaysiz?\n▶ Sinab ko‘rish\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "2528ae64d8e4",
+  "uzun": 51304
+ },
+ "u-x-P6-yutdi": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nLabirint yasaymiz\nLabirint\nHodisa\nHarakat\nShart\nTovush\nLabirint\nDevor\nKalit\nEshik\nYulduz\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nDaraja: 2 / 2\nDevor: 10 · Yo‘l: 10 qadam\n‹ Orqaga\nSiz yutdingiz!\n▶ Sinab ko‘rish\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "47f5b7cb3d1e",
+  "uzun": 47055
+ },
+ "u-x-P7-keraksiz": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nEshik yo‘lni to‘ssin\nLabirint\nHodisa\nHarakat\nShart\nTovush\nLabirint\nDevor\nKalit\nEshik\nYulduz\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 2 / 2\nKalit — · Eshik ✓ · Yo‘l: 12 qadam\nEshik keraksiz!\n‹ Orqaga\nYulduzga eshikdan o‘tmay ham boriladi. Eshik yo‘lni to‘ssin\n▶ Sinab ko‘rish\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "1deedd326500",
+  "uzun": 51530
+ },
+ "u-x-P7-kalitqani": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nEshik yo‘lni to‘ssin\nLabirint\nHodisa\nHarakat\nShart\nTovush\nLabirint\nDevor\nKalit\nEshik\nYulduz\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 2 / 2\nKalit — · Eshik ✓ · Yo‘l yo‘q\nKalit qani?\n‹ Orqaga\nKalitga eshikdan o‘tmasdan yetib bo‘ladigan joy toping\n▶ Sinab ko‘rish\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "62a3ddff6a30",
+  "uzun": 51673
+ },
+ "u-x-P7-U2": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nEshik yo‘lni to‘ssin\nLabirint\nHodisa\nHarakat\nShart\nTovush\nLabirint\nDevor\nKalit\nEshik\nYulduz\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 2 / 2\nKalit ✓ · Eshik ✓ · Yo‘l: 10 qadam\n‹ Orqaga\nKalitga eshikdan o‘tmasdan yetib bo‘ladigan joy toping\n▶ Sinab ko‘rish\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "2cfcf0a694c9",
+  "uzun": 46871
+ },
+ "u-x-P7-yutdi": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nEshik yo‘lni to‘ssin\nLabirint\nHodisa\nHarakat\nShart\nTovush\nLabirint\nDevor\nKalit\nEshik\nYulduz\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nDaraja: 2 / 2\nKalit ✓ · Eshik ✓ · Yo‘l: 10 qadam\n‹ Orqaga\nSiz yutdingiz!\n▶ Sinab ko‘rish\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "05c555c5f5e4",
+  "uzun": 48351
+ },
+ "u-x-P8-2daraja": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nIkki daraja\nHodisa\nHarakat\nShart\nTovush\nHodisa\nwhen\n→\nkey pressed\nO‘yiningizda:\n✓\nTo‘rt strelka\n✓\nQoida\n2-daraja: kalit va eshik\nIkki daraja yutildi\nDo‘stingiz o‘ynadi\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nDaraja: 1 / 2\nO‘yin: strelkalarni bosing\n2-daraja!\n‹ Orqaga\n■ To‘xtatish\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "b60fd4f0ecbe",
+  "uzun": 47900
+ },
+ "u-x-P8-yutdi": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nIkki daraja\nHodisa\nHarakat\nShart\nTovush\nHodisa\nwhen\n→\nkey pressed\nO‘yiningizda:\n✓\nTo‘rt strelka\n✓\nQoida\n2-daraja: kalit va eshik\n✓\nIkki daraja yutildi\nDo‘stingiz o‘ynadi\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nDaraja: 2 / 2\n‹ Orqaga\nSiz yutdingiz!\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "f5f5a12a4698",
+  "uzun": 47017
+ },
+ "u-x-yakunlandi": {
+  "id": "P14",
+  "matn": "SINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nta labirint yasaldi\n0\nta o‘yinni do‘st o‘ynadi\n0\ndaraja yutildi\nDars tugadi!\nKo‘rishguncha — keyingi darsda ball bilan!\n‹ Orqaga\nDarsni yakunlash\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "2e33dd20a221",
+  "uzun": 40326
+ },
+ "bq-01-0-B0": {
+  "id": "B0",
+  "matn": "10-DARS · LABIRINT O‘YINI 2\nSalom, Aziz!\nTayyor o‘yin ochildi: to‘rt strelka, qoida va labirint\nTayyor bo‘lsangiz — tugmani bosing\nTayyorman",
+  "bloklar": [],
+  "html": "5937678f002a",
+  "uzun": 24653
+ },
+ "bq-01-1-BK": {
+  "id": "BK",
+  "matn": "10-DARS · LABIRINT O‘YINI 2\n↑\nUstoz ekraniga qarang\nDars hozir boshlanadi",
+  "bloklar": [],
+  "html": "ac5d12d7307e",
+  "uzun": 16099
+ },
+ "bq-02-0-P2N": {
+  "id": "P2N",
+  "matn": "10-DARS · LABIRINT O‘YINI 2\nSAVOL\nIkkinchi labirintni qanday qo‘shamiz?\n\nCoddy\nQaysi yo‘l bilan o‘yin uzunroq bo‘ladi?\n\nA\nYangi o‘yin ochamiz\nB\nLabirintni o‘zgartiramiz\n✎\nC\nIkkinchi labirint qo‘shamiz\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 1 / 1\nBirini tanlang",
+  "bloklar": [],
+  "html": "f1666b8094c6",
+  "uzun": 53983
+ },
+ "bq-02-1-BK": {
+  "id": "BK",
+  "matn": "10-DARS · LABIRINT O‘YINI 2\n↑\nUstoz ekraniga qarang\nJavobingiz qabul qilindi",
+  "bloklar": [],
+  "html": "00354c56c07f",
+  "uzun": 16102
+ },
+ "bq-03-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz yo‘llarni sinayapti — kuzating",
+  "bloklar": [],
+  "html": "aecb35599314",
+  "uzun": 16114
+ },
+ "bq-04-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstozni tinglang",
+  "bloklar": [],
+  "html": "e2d470335db6",
+  "uzun": 16094
+ },
+ "bq-05-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nYangi so‘z: daraja",
+  "bloklar": [],
+  "html": "2f77559ca960",
+  "uzun": 16096
+ },
+ "bq-06-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nBugun: uchta bekat",
+  "bloklar": [],
+  "html": "6874aa49cd08",
+  "uzun": 16096
+ },
+ "bq-07-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz labirint yasayapti — kuzating",
+  "bloklar": [],
+  "html": "ec4b9e5c51db",
+  "uzun": 16113
+ },
+ "bq-08-0-B1A": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nDevorlar\nKamida 6 ta devor qo‘ying va o‘ynab ko‘ring.\nLabirint\nHodisa\nHarakat\nShart\nTovush\nLabirint\nDevor\nKalit\nEshik\nYulduz\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 2 / 2\nDevor: 0 / 6 · Yo‘l: 10 qadam\nMaslahat\nKatakni bosing — devor. Tayyor bo‘lsa — «Sinab ko‘rish»\nSinab ko‘rish",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "aad784c651a7",
+  "uzun": 29435
+ },
+ "bq-08-1-B1B": {
+  "id": "B1B",
+  "matn": "MASHQ · 2-POG‘ONA\nUzun yo‘l\nYo‘l kamida 14 qadam bo‘lsin.\nLabirint\nHodisa\nHarakat\nShart\nTovush\nLabirint\nDevor\nKalit\nEshik\nYulduz\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 2 / 2\nYo‘l: 10 / 14 qadam\nMaslahat\nKatakni bosing — devor. Tayyor bo‘lsa — «Sinab ko‘rish»\nSinab ko‘rish",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "1dbb1ff5874e",
+  "uzun": 29411
+ },
+ "bq-08-2-B1C": {
+  "id": "B1C",
+  "matn": "MASHQ · 3-POG‘ONA\nBurilishlar\nYo‘l kamida 5 marta burilsin.\nLabirint\nHodisa\nHarakat\nShart\nTovush\nLabirint\nDevor\nKalit\nEshik\nYulduz\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 2 / 2\nBurilish: 1 / 5\nMaslahat\nKatakni bosing — devor. Tayyor bo‘lsa — «Sinab ko‘rish»\nSinab ko‘rish",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "90e72e9e13a1",
+  "uzun": 29409
+ },
+ "bq-08-3-B1Y": {
+  "id": "B1Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nBoshi berk yo‘llar\nYulduzga olib bormaydigan 2 ta yo‘lak qo‘shing.\nLabirint\nHodisa\nHarakat\nShart\nTovush\nLabirint\nDevor\nKalit\nEshik\nYulduz\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 2 / 2\nBoshi berk yo‘l: 0 / 2\nMaslahat\nKatakni bosing — devor. Tayyor bo‘lsa — «Sinab ko‘rish»\nSinab ko‘rish",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "a5c2e2a80c72",
+  "uzun": 29444
+ },
+ "bq-08-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "8da264e35fc4",
+  "uzun": 16109
+ },
+ "bq-09-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\n2-bekat: kalit va eshik",
+  "bloklar": [],
+  "html": "c6c626a0b474",
+  "uzun": 16101
+ },
+ "bq-10-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz eshik qo‘yyapti — kuzating",
+  "bloklar": [],
+  "html": "0a14e73723c0",
+  "uzun": 16110
+ },
+ "bq-11-0-B2A": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nKalit va eshik\nEshik yo‘lni to‘ssin, kalit eshikdan oldin bo‘lsin.\nLabirint\nHodisa\nHarakat\nShart\nTovush\nLabirint\nDevor\nKalit\nEshik\nYulduz\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 2 / 2\nKalit — · Eshik —\nMaslahat\nAsbobni tanlang, keyin katakni bosing\nSinab ko‘rish",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "c3e857a16924",
+  "uzun": 29418
+ },
+ "bq-11-1-B2B": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nKalit chetda\nKalitga borib, orqaga qaytilsin.\nLabirint\nHodisa\nHarakat\nShart\nTovush\nLabirint\nDevor\nKalit\nEshik\nYulduz\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 2 / 2\nBorib qaytish: yo‘q\nMaslahat\nAsbobni tanlang, keyin katakni bosing\nSinab ko‘rish",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "cd6fab3d876c",
+  "uzun": 29399
+ },
+ "bq-11-2-B2Y": {
+  "id": "B2Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nUzun daraja\nYo‘l kamida 20 qadam bo‘lsin.\nLabirint\nHodisa\nHarakat\nShart\nTovush\nLabirint\nDevor\nKalit\nEshik\nYulduz\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 2 / 2\nYo‘l: 10 / 20 qadam\nMaslahat\nAsbobni tanlang, keyin katakni bosing\nSinab ko‘rish",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "9e5fff52faa0",
+  "uzun": 29398
+ },
+ "bq-11-3-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "8da264e35fc4",
+  "uzun": 16109
+ },
+ "bq-12-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nXulosa: daraja",
+  "bloklar": [],
+  "html": "d815d53af6e1",
+  "uzun": 16092
+ },
+ "bq-13-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\n3-bekat: ikki daraja",
+  "bloklar": [],
+  "html": "7ac4c82e33be",
+  "uzun": 16098
+ },
+ "bq-14-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz o‘yinni o‘ynayapti — kuzating",
+  "bloklar": [],
+  "html": "f5478289347c",
+  "uzun": 16113
+ },
+ "bq-15-0-B3A": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nIkki daraja\nBoshidan o‘ynang: ikkala darajani yuting.\nHodisa\nHarakat\nShart\nTovush\nHodisa\nwhen\n→\nkey pressed\nO‘yiningizda:\n✓\nTo‘rt strelka\n✓\nQoida\n2-daraja: kalit va eshik\nIkki daraja yutildi\nDo‘stingiz o‘ynadi\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 1 / 2\nMaslahat\n▶ Boshlash — 1-darajadan\nBoshlash",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "38f77d1d15f0",
+  "uzun": 32312
+ },
+ "bq-15-1-B3Y": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nAdashmasdan\nIkkala darajani bir marta ham devor tomonga bosmay yuting.\nHodisa\nHarakat\nShart\nTovush\nHodisa\nwhen\n→\nkey pressed\nO‘yiningizda:\n✓\nTo‘rt strelka\n✓\nQoida\n2-daraja: kalit va eshik\nIkki daraja yutildi\nDo‘stingiz o‘ynadi\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 1 / 2\nMaslahat\n▶ Boshlash — 1-darajadan\nBoshlash",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "cf4f06a306ae",
+  "uzun": 32332
+ },
+ "bq-15-2-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "8da264e35fc4",
+  "uzun": 16109
+ },
+ "bq-16-0-BD": {
+  "id": "BD",
+  "matn": "KO‘RSATISH\nDo‘stingiz o‘ynaydi\n\nCoddy\nYoningizdagi do‘stingiz bilan joy almashing. Uning o‘yinini o‘ynang — dasturiga tegmang.\n\nDO‘STINGIZ O‘YNAYDI\n↑\n←\n↓\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 1 / 2\n▶ Do‘stingiz o‘ynaydi\nDo‘stingiz o‘ynaydi: faqat strelkalar",
+  "bloklar": [],
+  "html": "38a9448b4688",
+  "uzun": 36301
+ },
+ "bq-17-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nSiz ikki darajali o‘yin yasadingiz!\n\nBulut\nIkki daraja — birini o‘zim yasadim!\n\nSiz bugun\n0\nta devor qo‘ydi\n0\nqadam — labirintingiz yo‘li\n0\ndaraja yutdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nO‘yiningizda:\n✓\nTo‘rt strelka\n✓\nQoida\n2-daraja: kalit va eshik\nIkki daraja yutildi\nDo‘stingiz o‘ynadi\nDars tugadi",
+  "bloklar": [],
+  "html": "c3e40f41082a",
+  "uzun": 26711
+ },
+ "bq-18-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nSiz ikki darajali o‘yin yasadingiz!\n\nBulut\nIkki daraja — birini o‘zim yasadim!\n\nSiz bugun\n0\nta devor qo‘ydi\n0\nqadam — labirintingiz yo‘li\n0\ndaraja yutdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nO‘yiningizda:\n✓\nTo‘rt strelka\n✓\nQoida\n2-daraja: kalit va eshik\nIkki daraja yutildi\nDo‘stingiz o‘ynadi\nDars tugadi",
+  "bloklar": [],
+  "html": "c3e40f41082a",
+  "uzun": 26711
+ },
+ "bx-B1A-bosh": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nDevorlar\nKamida 6 ta devor qo‘ying va o‘ynab ko‘ring.\nLabirint\nHodisa\nHarakat\nShart\nTovush\nLabirint\nDevor\nKalit\nEshik\nYulduz\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 2 / 2\nDevor: 0 / 6 · Yo‘l: 10 qadam\nMaslahat\nKatakni bosing — devor. Tayyor bo‘lsa — «Sinab ko‘rish»\nSinab ko‘rish",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "aad784c651a7",
+  "uzun": 29435
+ },
+ "bx-B1A-ozqoldi": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nDevorlar\nKamida 6 ta devor qo‘ying va o‘ynab ko‘ring.\nLabirint\nHodisa\nHarakat\nShart\nTovush\nLabirint\nDevor\nKalit\nEshik\nYulduz\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nDaraja: 2 / 2\nDevor: 0 / 6 · Yo‘l: 10 qadam\nOz qoldi!\nMaslahat\nDevor: 0 ta. Kerak: kamida 6\nSinab ko‘rish",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "cdfb020f1737",
+  "uzun": 35620
+ },
+ "bx-B1A-tayyor": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nDevorlar\nKamida 6 ta devor qo‘ying va o‘ynab ko‘ring.\nLabirint\nHodisa\nHarakat\nShart\nTovush\nLabirint\nDevor\nKalit\nEshik\nYulduz\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 2 / 2\nDevor: 8 / 6 · Yo‘l: 10 qadam\nMaslahat\nLabirint tayyor. Endi o‘zingiz o‘ynab ko‘ring — «Sinab ko‘rish»\nSinab ko‘rish",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "f1a6fb164dc0",
+  "uzun": 30839
+ },
+ "bx-B1A-yutdi": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nDevorlar\nKamida 6 ta devor qo‘ying va o‘ynab ko‘ring.\nLabirint\nHodisa\nHarakat\nShart\nTovush\nLabirint\nDevor\nKalit\nEshik\nYulduz\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nDaraja: 2 / 2\nDevor: 8 / 6 · Yo‘l: 10 qadam\nMaslahat\nLabirint tayyor!\nSinab ko‘rish",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "e3de875c746b",
+  "uzun": 32305
+ },
+ "bx-B2A-NK1": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nKalit va eshik\nEshik yo‘lni to‘ssin, kalit eshikdan oldin bo‘lsin.\nLabirint\nHodisa\nHarakat\nShart\nTovush\nLabirint\nDevor\nKalit\nEshik\nYulduz\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 2 / 2\nKalit ✓ · Eshik ✓\nMaslahat\nLabirint tayyor. Endi o‘zingiz o‘ynab ko‘ring — «Sinab ko‘rish»\nSinab ko‘rish",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "f38bdc84d104",
+  "uzun": 33329
+ },
+ "bx-B3A-yutdi": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nIkki daraja\nBoshidan o‘ynang: ikkala darajani yuting.\nHodisa\nHarakat\nShart\nTovush\nHodisa\nwhen\n→\nkey pressed\nO‘yiningizda:\n✓\nTo‘rt strelka\n✓\nQoida\n✓\n2-daraja: kalit va eshik\n✓\nIkki daraja yutildi\nDo‘stingiz o‘ynadi\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nDaraja: 2 / 2\nMaslahat\nO‘yiningiz tayyor!\nBoshlash",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "610d292c2a5b",
+  "uzun": 33759
+ },
+ "bx-BD-natija": {
+  "id": "BD",
+  "matn": "KO‘RSATISH\nDo‘stingiz o‘ynaydi\n\nCoddy\nYoningizdagi do‘stingiz bilan joy almashing. Uning o‘yinini o‘ynang — dasturiga tegmang.\n\nDO‘STINGIZ O‘YNAYDI\n↑\n←\n↓\n→\nJOYINGIZGA QAYTING\nDo‘stingiz o‘ynadi: 2 / 2 daraja · 1 marta devor oldida to‘xtadi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nDaraja: 2 / 2\n▶ Do‘stingiz o‘ynaydi\nSiz yutdingiz!",
+  "bloklar": [],
+  "html": "39bad0135616",
+  "uzun": 37856
+ },
+ "bx-B5-natija": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nSiz ikki darajali o‘yin yasadingiz!\n\nBulut\nIkki daraja — birini o‘zim yasadim!\n\nSiz bugun\n8\nta devor qo‘ydi\n10\nqadam — labirintingiz yo‘li\n2\ndaraja yutdi\nDo‘stingiz o‘ynadi: 2 / 2 daraja · 1 marta devor oldida to‘xtadi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nO‘yiningizda:\n✓\nTo‘rt strelka\n✓\nQoida\n✓\n2-daraja: kalit va eshik\n✓\nIkki daraja yutildi\n✓\nDo‘stingiz o‘ynadi\nBulut\nO‘yiningiz saqlandi. Keyingi darsda ball bilan ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "8971ab07b63f",
+  "uzun": 30699
+ },
+ "bx-P2N-tanladi": {
+  "id": "P2N",
+  "matn": "10-DARS · LABIRINT O‘YINI 2\nSAVOL\nIkkinchi labirintni qanday qo‘shamiz?\n\nCoddy\nQaysi yo‘l bilan o‘yin uzunroq bo‘ladi?\n\nA\nYangi o‘yin ochamiz\nB\nLabirintni o‘zgartiramiz\n✎\nC\nIkkinchi labirint qo‘shamiz\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 1 / 1\nBirini tanlang",
+  "bloklar": [],
+  "html": "48f518d182db",
+  "uzun": 53992
+ },
+ "bx-BQ": {
+  "id": "BQ",
+  "matn": "10-DARS · LABIRINT O‘YINI 2\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang",
+  "bloklar": [],
+  "html": "92c1bd3d2550",
+  "uzun": 52613
+ },
+ "bx-BQ-tanladi": {
+  "id": "BK",
+  "matn": "10-DARS · LABIRINT O‘YINI 2\n↑\nUstoz ekraniga qarang\nJavobingiz qabul qilindi",
+  "bloklar": [],
+  "html": "d46bc7d652fb",
+  "uzun": 15164
+ },
+ "sq-01-0-B0": {
+  "id": "B0",
+  "matn": "10-DARS · LABIRINT O‘YINI 2\nSalom, Aziz!\nTayyor o‘yin ochildi: to‘rt strelka, qoida va labirint\nTayyor bo‘lsangiz — tugmani bosing\nTayyorman",
+  "bloklar": [],
+  "html": "5937678f002a",
+  "uzun": 24653
+ },
+ "sq-01-1-P1": {
+  "id": "P1",
+  "matn": "10-DARS · LABIRINT O‘YINI 2\nBugun o‘yiningizni davom ettiramiz!\n\nCoddy\nSalom! O‘tgan darsdagi o‘yiningiz saqlangan. Bugun uni kattalashtiramiz.\n\nO‘TGAN DARSDA\n→\n→\nQoida\nO‘yinda nima bo‘lishini aytadigan shart\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "de6edea1793c",
+  "uzun": 44178
+ },
+ "sq-02-0-P2N": {
+  "id": "P2N",
+  "matn": "10-DARS · LABIRINT O‘YINI 2\nSAVOL\nIkkinchi labirintni qanday qo‘shamiz?\n\nCoddy\nQaysi yo‘l bilan o‘yin uzunroq bo‘ladi?\n\nA\nYangi o‘yin ochamiz\nB\nLabirintni o‘zgartiramiz\n✎\nC\nIkkinchi labirint qo‘shamiz\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 1 / 1\n▶ O‘ynab ko‘rsat\nBirini tanlang",
+  "bloklar": [],
+  "html": "c70f2abc7909",
+  "uzun": 54063
+ },
+ "sq-03-0-P2S": {
+  "id": "P2S",
+  "matn": "SAVOL\nIkkinchi labirintni qanday qo‘shamiz?\n\nCoddy\nBitta labirint tez tugadi. Yana bittasi kerak.\n\nA\nYangi o‘yin ochamiz\n▶ Sinab ko‘rish\nB\nLabirintni o‘zgartiramiz\n▶ Sinab ko‘rish\n✎\nC\nIkkinchi labirint qo‘shamiz\n▶ Sinab ko‘rish\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 1 / 1\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "9735dee51e30",
+  "uzun": 55220
+ },
+ "sq-04-0-P2C": {
+  "id": "P2C",
+  "matn": "JAVOB\nDastur bitta, labirint ko‘p\n\nCoddy\nStrelkalar va qoida ikkala labirintda ishladi.\n\nA\nYangi o‘yin ochamiz\n✕ boshqaruv va qoida yo‘q\nB\nLabirintni o‘zgartiramiz\n✕ labirint baribir bitta\n✎\nC\nIkkinchi labirint qo‘shamiz\n✓ ikki labirint, dastur o‘sha\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n1-daraja\n2-daraja\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "12840c11a428",
+  "uzun": 84267
+ },
+ "sq-05-0-P3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nDaraja nima?\n\nCoddy\nDaraja — o‘yindagi bitta labirint.\n\n1-daraja\n2-daraja!\nYulduzga yetdi\n2-daraja\nBiri yutilsa — keyingisi ochiladi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 2 / 2\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "7fb524c00f2c",
+  "uzun": 47731
+ },
+ "sq-06-0-P4": {
+  "id": "P4",
+  "matn": "REJA\nBugun nima qilamiz?\n\nCoddy\nBugun 2-darajani o‘zingiz yasaysiz.\n\nDars oxirida · ikki darajali o‘yin\nDo‘stingiz o‘ynaydi\n1\nO‘z labirintingiz\n2\nKalit va eshik\n3\nIkki daraja\n‹ Orqaga\nBoshladik ›",
+  "bloklar": [],
+  "html": "ee8a5f495e2d",
+  "uzun": 44380
+ },
+ "sq-07-0-P6": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nLabirint yasaymiz\nLabirint\nHodisa\nHarakat\nShart\nTovush\nLabirint\nDevor\nKalit\nEshik\nYulduz\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 2 / 2\nDevor: 10 · Yo‘l: 10 qadam\n‹ Orqaga\nKatakni bosing — devor. Yana bosing — devor ketadi\n▶ Sinab ko‘rish\nKeyingi ›",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "176243ce31e0",
+  "uzun": 44328
+ },
+ "sq-08-0-B1A": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nDevorlar\nKamida 6 ta devor qo‘ying va o‘ynab ko‘ring.\nLabirint\nHodisa\nHarakat\nShart\nTovush\nLabirint\nDevor\nKalit\nEshik\nYulduz\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 2 / 2\nDevor: 0 / 6 · Yo‘l: 10 qadam\nMaslahat\nKatakni bosing — devor. Tayyor bo‘lsa — «Sinab ko‘rish»\nSinab ko‘rish\nKeyingi ›",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "76a2419e07a6",
+  "uzun": 29482
+ },
+ "sq-08-1-B1B": {
+  "id": "B1B",
+  "matn": "MASHQ · 2-POG‘ONA\nUzun yo‘l\nYo‘l kamida 14 qadam bo‘lsin.\nLabirint\nHodisa\nHarakat\nShart\nTovush\nLabirint\nDevor\nKalit\nEshik\nYulduz\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 2 / 2\nYo‘l: 10 / 14 qadam\nMaslahat\nKatakni bosing — devor. Tayyor bo‘lsa — «Sinab ko‘rish»\nSinab ko‘rish\nKeyingi ›",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "3881c23cf513",
+  "uzun": 29458
+ },
+ "sq-08-2-B1C": {
+  "id": "B1C",
+  "matn": "MASHQ · 3-POG‘ONA\nBurilishlar\nYo‘l kamida 5 marta burilsin.\nLabirint\nHodisa\nHarakat\nShart\nTovush\nLabirint\nDevor\nKalit\nEshik\nYulduz\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 2 / 2\nBurilish: 1 / 5\nMaslahat\nKatakni bosing — devor. Tayyor bo‘lsa — «Sinab ko‘rish»\nSinab ko‘rish\nKeyingi ›",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "53573b9bb745",
+  "uzun": 29456
+ },
+ "sq-08-3-B1Y": {
+  "id": "B1Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nBoshi berk yo‘llar\nYulduzga olib bormaydigan 2 ta yo‘lak qo‘shing.\nLabirint\nHodisa\nHarakat\nShart\nTovush\nLabirint\nDevor\nKalit\nEshik\nYulduz\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 2 / 2\nBoshi berk yo‘l: 0 / 2\nMaslahat\nKatakni bosing — devor. Tayyor bo‘lsa — «Sinab ko‘rish»\nSinab ko‘rish\nKeyingi ›",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "258d6379c308",
+  "uzun": 29491
+ },
+ "sq-09-0-P4B": {
+  "id": "P4B",
+  "matn": "REJA · 2-BEKAT\n2 · Kalit va eshik\n\nCoddy\nEndi labirintingizga kalit va eshik qo‘yamiz.\n\nDars oxirida · ikki darajali o‘yin\nDo‘stingiz o‘ynaydi\n✓\nO‘z labirintingiz\n2\nKalit va eshik\n3\nIkki daraja\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "e0b81b66fde8",
+  "uzun": 44153
+ },
+ "sq-10-0-P7": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nEshik yo‘lni to‘ssin\nLabirint\nHodisa\nHarakat\nShart\nTovush\nLabirint\nDevor\nKalit\nEshik\nYulduz\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 2 / 2\nKalit ✓ · Eshik ✓ · Yo‘l: 10 qadam\n‹ Orqaga\nKatakni bosing — devor. Yana bosing — devor ketadi\n▶ Sinab ko‘rish\nKeyingi ›",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "80e4079106ed",
+  "uzun": 45614
+ },
+ "sq-11-0-B2A": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nKalit va eshik\nEshik yo‘lni to‘ssin, kalit eshikdan oldin bo‘lsin.\nLabirint\nHodisa\nHarakat\nShart\nTovush\nLabirint\nDevor\nKalit\nEshik\nYulduz\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 2 / 2\nKalit — · Eshik —\nMaslahat\nAsbobni tanlang, keyin katakni bosing\nSinab ko‘rish\nKeyingi ›",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "dc3f335ea0af",
+  "uzun": 29465
+ },
+ "sq-11-1-B2B": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nKalit chetda\nKalitga borib, orqaga qaytilsin.\nLabirint\nHodisa\nHarakat\nShart\nTovush\nLabirint\nDevor\nKalit\nEshik\nYulduz\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 2 / 2\nBorib qaytish: yo‘q\nMaslahat\nAsbobni tanlang, keyin katakni bosing\nSinab ko‘rish\nKeyingi ›",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "5dea9b1fc143",
+  "uzun": 29446
+ },
+ "sq-11-2-B2Y": {
+  "id": "B2Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nUzun daraja\nYo‘l kamida 20 qadam bo‘lsin.\nLabirint\nHodisa\nHarakat\nShart\nTovush\nLabirint\nDevor\nKalit\nEshik\nYulduz\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 2 / 2\nYo‘l: 10 / 20 qadam\nMaslahat\nAsbobni tanlang, keyin katakni bosing\nSinab ko‘rish\nKeyingi ›",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "6c46cd68b7bb",
+  "uzun": 29445
+ },
+ "sq-12-0-P9": {
+  "id": "P9",
+  "matn": "XULOSA\nDaraja\n\nCoddy\nYangi daraja — yangi labirint. Dastur o‘sha.\n\n1 → 2\nDaraja\nO‘yindagi bitta labirint\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nDastur bitta — darajalar ko‘p\nBoshqaruv va qoida hamma labirintda\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "1a493ff825c3",
+  "uzun": 50435
+ },
+ "sq-13-0-P4C": {
+  "id": "P4C",
+  "matn": "REJA · 3-BEKAT\n3 · Ikki daraja\n\nCoddy\nOxirgi bekat: ikki darajani birga o‘ynaymiz.\n\nDars oxirida · ikki darajali o‘yin\nDo‘stingiz o‘ynaydi\n✓\nO‘z labirintingiz\n✓\nKalit va eshik\n3\nIkki daraja\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "0a21afdaaf9d",
+  "uzun": 44185
+ },
+ "sq-14-0-P8": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nIkki daraja\nHodisa\nHarakat\nShart\nTovush\nHodisa\nwhen\n→\nkey pressed\nO‘yiningizda:\n✓\nTo‘rt strelka\n✓\nQoida\n2-daraja: kalit va eshik\nIkki daraja yutildi\nDo‘stingiz o‘ynadi\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 1 / 2\n‹ Orqaga\n▶ Boshlash\nKeyingi ›",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "1b8c41579381",
+  "uzun": 45444
+ },
+ "sq-15-0-B3A": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nIkki daraja\nBoshidan o‘ynang: ikkala darajani yuting.\nHodisa\nHarakat\nShart\nTovush\nHodisa\nwhen\n→\nkey pressed\nO‘yiningizda:\n✓\nTo‘rt strelka\n✓\nQoida\n2-daraja: kalit va eshik\nIkki daraja yutildi\nDo‘stingiz o‘ynadi\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 1 / 2\nMaslahat\n▶ Boshlash — 1-darajadan\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "81ebc5fcd225",
+  "uzun": 32359
+ },
+ "sq-15-1-B3Y": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nAdashmasdan\nIkkala darajani bir marta ham devor tomonga bosmay yuting.\nHodisa\nHarakat\nShart\nTovush\nHodisa\nwhen\n→\nkey pressed\nO‘yiningizda:\n✓\nTo‘rt strelka\n✓\nQoida\n2-daraja: kalit va eshik\nIkki daraja yutildi\nDo‘stingiz o‘ynadi\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 1 / 2\nMaslahat\n▶ Boshlash — 1-darajadan\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "5151104653cb",
+  "uzun": 32379
+ },
+ "sq-16-0-BD": {
+  "id": "BD",
+  "matn": "KO‘RSATISH\nDo‘stingiz o‘ynaydi\n\nCoddy\nYoningizdagi do‘stingiz bilan joy almashing. Uning o‘yinini o‘ynang — dasturiga tegmang.\n\nDO‘STINGIZ O‘YNAYDI\n↑\n←\n↓\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 1 / 2\n▶ Do‘stingiz o‘ynaydi\nKimgadir o‘ynating — uydagilardan biri o‘ynasa bo‘ladi\nKeyingi ›",
+  "bloklar": [],
+  "html": "b0e3ba60fb05",
+  "uzun": 36360
+ },
+ "sq-17-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nSiz ikki darajali o‘yin yasadingiz!\n\nBulut\nIkki daraja — birini o‘zim yasadim!\n\nSiz bugun\n0\nta devor qo‘ydi\n0\nqadam — labirintingiz yo‘li\n0\ndaraja yutdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nO‘yiningizda:\n✓\nTo‘rt strelka\n✓\nQoida\n2-daraja: kalit va eshik\nIkki daraja yutildi\nDo‘stingiz o‘ynadi\nDars tugadi",
+  "bloklar": [],
+  "html": "c3e40f41082a",
+  "uzun": 26711
+ },
+ "sx-P2S-A": {
+  "id": "P2S",
+  "matn": "SAVOL\nIkkinchi labirintni qanday qo‘shamiz?\n\nCoddy\nBitta labirint tez tugadi. Yana bittasi kerak.\n\nA\nYangi o‘yin ochamiz\n✕ boshqaruv va qoida yo‘q\nB\nLabirintni o‘zgartiramiz\n▶ Sinab ko‘rish\n✎\nC\nIkkinchi labirint qo‘shamiz\n▶ Sinab ko‘rish\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 1 / 1\nMen nimani kutaman?\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "b016c44d0db1",
+  "uzun": 58234
+ },
+ "sx-P6-U1": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nLabirint yasaymiz\nLabirint\nHodisa\nHarakat\nShart\nTovush\nLabirint\nDevor\nKalit\nEshik\nYulduz\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 2 / 2\nDevor: 10 · Yo‘l: 10 qadam\n‹ Orqaga\nKatakni bosing — devor. Yana bosing — devor ketadi\n▶ Sinab ko‘rish\nKeyingi ›",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "176243ce31e0",
+  "uzun": 44328
+ },
+ "sx-P7-U2": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nEshik yo‘lni to‘ssin\nLabirint\nHodisa\nHarakat\nShart\nTovush\nLabirint\nDevor\nKalit\nEshik\nYulduz\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 2 / 2\nKalit ✓ · Eshik ✓ · Yo‘l: 10 qadam\n‹ Orqaga\nKatakni bosing — devor. Yana bosing — devor ketadi\n▶ Sinab ko‘rish\nKeyingi ›",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "80e4079106ed",
+  "uzun": 45614
+ },
+ "y-01": {
+  "id": "P1",
+  "matn": "USTOZ · PROYEKTOR\n10-DARS · LABIRINT O‘YINI 2\nBugun o‘yiningizni davom ettiramiz!\n\nCoddy\nSalom! O‘tgan darsdagi o‘yiningiz saqlangan. Bugun uni kattalashtiramiz.\n\nO‘TGAN DARSDA\n→\n→\nQoida\nO‘yinda nima bo‘lishini aytadigan shart\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKirdi: 1\nKeyingi ›\nO‘QUVCHI · NOUTBUK\n10-DARS · LABIRINT O‘YINI 2\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "ec307fd38b03",
+  "uzun": 98196
+ },
+ "y-02": {
+  "id": "P2",
+  "matn": "USTOZ · PROYEKTOR\n10-DARS · LABIRINT O‘YINI 2\nSAVOL\nIkkinchi labirintni qanday qo‘shamiz?\n\nCoddy\nBitta labirint tez tugadi. Yana bittasi kerak.\n\nA\nYangi o‘yin ochamiz\nB\nLabirintni o‘zgartiramiz\n✎\nC\nIkkinchi labirint qo‘shamiz\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 1 / 1\n‹ Orqaga\nJavob berdi: 0 / 1\n▶ O‘ynab ko‘rsat\nSinab ko‘ramiz ›\nO‘QUVCHI · NOUTBUK\n10-DARS · LABIRINT O‘YINI 2\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "590bf3338e22",
+  "uzun": 108975
+ },
+ "y-03": {
+  "id": "P2S",
+  "matn": "USTOZ · PROYEKTOR\nSAVOL\nIkkinchi labirintni qanday qo‘shamiz?\n\nCoddy\nBitta labirint tez tugadi. Yana bittasi kerak.\n\nA\nYangi o‘yin ochamiz\nB\nLabirintni o‘zgartiramiz\n✎\nC\nIkkinchi labirint qo‘shamiz\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 1 / 1\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "7ffb22fa0605",
+  "uzun": 106770
+ },
+ "y-04": {
+  "id": "P2C",
+  "matn": "USTOZ · PROYEKTOR\nJAVOB\nDastur bitta, labirint ko‘p\n\nCoddy\nStrelkalar va qoida ikkala labirintda ishladi.\n\nA\nYangi o‘yin ochamiz\n✕ boshqaruv va qoida yo‘q\nB\nLabirintni o‘zgartiramiz\n✕ labirint baribir bitta\n✎\nC\nIkkinchi labirint qo‘shamiz\n✓ ikki labirint, dastur o‘sha\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n1-daraja\n2-daraja\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "3342683c3e1d",
+  "uzun": 138277
+ },
+ "y-05": {
+  "id": "P3",
+  "matn": "USTOZ · PROYEKTOR\nYANGI SO‘Z\nDaraja nima?\n\nCoddy\nDaraja — o‘yindagi bitta labirint.\n\n1-daraja\n2-daraja!\nYulduzga yetdi\n2-daraja\nBiri yutilsa — keyingisi ochiladi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 2 / 2\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "cfd7ba50498c",
+  "uzun": 101741
+ },
+ "y-06": {
+  "id": "P4",
+  "matn": "USTOZ · PROYEKTOR\nREJA\nBugun nima qilamiz?\n\nCoddy\nBugun 2-darajani o‘zingiz yasaysiz.\n\nDars oxirida · ikki darajali o‘yin\nDo‘stingiz o‘ynaydi\n1\nO‘z labirintingiz\n2\nKalit va eshik\n3\nIkki daraja\n‹ Orqaga\nBoshladik ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "e2fae86270ee",
+  "uzun": 98390
+ },
+ "y-07": {
+  "id": "P6",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nLabirint yasaymiz\nLabirint\nHodisa\nHarakat\nShart\nTovush\nLabirint\nDevor\nKalit\nEshik\nYulduz\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 2 / 2\nDevor: 0 · Yo‘l: 10 qadam\n‹ Orqaga\n▶ Sinab ko‘rish\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "b2bae6c8b7c4",
+  "uzun": 96569
+ },
+ "y-08": {
+  "id": "P5",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nLabirintingizni yasang!\n\nCoddy\nHar pog‘onada labirintingiz qiyinroq bo‘ladi.\n\nUch pog‘onani tugatdi\n0 / 1\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\n6\nDevorlar · 6\n2\n0\n14\nUzun yo‘l · 14\n3\n0\n5\nBurilishlar · 5\n★\n0\n2\nBoshi berk yo‘llar · 2\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "c90be0ffb1ff",
+  "uzun": 78322
+ },
+ "y-09": {
+  "id": "P4B",
+  "matn": "USTOZ · PROYEKTOR\nREJA · 2-BEKAT\n2 · Kalit va eshik\n\nCoddy\nEndi labirintingizga kalit va eshik qo‘yamiz.\n\nDars oxirida · ikki darajali o‘yin\nDo‘stingiz o‘ynaydi\n✓\nO‘z labirintingiz\n2\nKalit va eshik\n3\nIkki daraja\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "62805ef8feed",
+  "uzun": 98163
+ },
+ "y-10": {
+  "id": "P7",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nEshik yo‘lni to‘ssin\nLabirint\nHodisa\nHarakat\nShart\nTovush\nLabirint\nDevor\nKalit\nEshik\nYulduz\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 2 / 2\nKalit — · Eshik — · Yo‘l: 10 qadam\n‹ Orqaga\n▶ Sinab ko‘rish\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "defb1f0e7349",
+  "uzun": 98320
+ },
+ "y-11": {
+  "id": "P5G",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nKalit va eshik qo‘ying!\n\nCoddy\nAvval kalit, keyin eshik — endi sizning labirintingizda.\n\nIkki pog‘onani tugatdi\n0 / 1\n1\n0\nKalit va eshik\n2\n0\nKalit chetda\n★\n0\n20\nUzun daraja · 20\n1\n2\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "018e8b22830a",
+  "uzun": 78290
+ },
+ "y-12": {
+  "id": "P9",
+  "matn": "USTOZ · PROYEKTOR\nXULOSA\nDaraja\n\nCoddy\nYangi daraja — yangi labirint. Dastur o‘sha.\n\n1 → 2\nDaraja\nO‘yindagi bitta labirint\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nDastur bitta — darajalar ko‘p\nBoshqaruv va qoida hamma labirintda\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "0ee569b3170b",
+  "uzun": 104445
+ },
+ "y-13": {
+  "id": "P4C",
+  "matn": "USTOZ · PROYEKTOR\nREJA · 3-BEKAT\n3 · Ikki daraja\n\nCoddy\nOxirgi bekat: ikki darajani birga o‘ynaymiz.\n\nDars oxirida · ikki darajali o‘yin\nDo‘stingiz o‘ynaydi\n✓\nO‘z labirintingiz\n✓\nKalit va eshik\n3\nIkki daraja\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "6ea608e6a32c",
+  "uzun": 98195
+ },
+ "y-14": {
+  "id": "P8",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nIkki daraja\nHodisa\nHarakat\nShart\nTovush\nHodisa\nwhen\n→\nkey pressed\nO‘yiningizda:\n✓\nTo‘rt strelka\n✓\nQoida\n2-daraja: kalit va eshik\nIkki daraja yutildi\nDo‘stingiz o‘ynadi\nDastur\nwhen\n→\nkey pressed\nif path\n→\nthen\nmove right\nwhen\n←\nkey pressed\nif path\n←\nthen\nmove left\nwhen\n↑\nkey pressed\nif path\n↑\nthen\nmove up\nwhen\n↓\nkey pressed\nif path\n↓\nthen\nmove down\n4 ta dasturcha\n12 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDaraja: 1 / 2\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:when→key pressedif path→thenmove right",
+   "a:if path→thenmove right",
+   "r:move right",
+   "k:when←key pressedif path←thenmove left",
+   "a:if path←thenmove left",
+   "l:move left",
+   "k:when↑key pressedif path↑thenmove up",
+   "a:if path↑thenmove up",
+   "u:move up",
+   "k:when↓key pressedif path↓thenmove down",
+   "a:if path↓thenmove down",
+   "d:move down"
+  ],
+  "html": "fe599490e0c2",
+  "uzun": 99475
+ },
+ "y-15": {
+  "id": "P5B",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nIkki darajani yuting!\n\nCoddy\nO‘yiningizni boshidan oxirigacha o‘ynang.\n\nIkki darajani yutdi\n0 / 1\nHar belgi — ikki darajani yutgan bitta bola\n1\n0\nIkki daraja\n★\n0\nAdashmasdan\n1\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "42385ca9e50e",
+  "uzun": 83635
+ },
+ "y-16": {
+  "id": "P11",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RSATISH\nDo‘stingiz o‘ynasin\n\nCoddy\nDo‘stingiz yasagan labirintni siz yuta olasizmi?\n\nO‘ynab ko‘rildi\n0 / 1\nHar belgi — do‘sti o‘ynab ko‘rgan bitta o‘yin\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "2f49430cc8b9",
+  "uzun": 75336
+ },
+ "y-17": {
+  "id": "P12",
+  "matn": "USTOZ · PROYEKTOR\nYAKUN\nSiz ikki darajali o‘yin yasadingiz!\nBUGUNGI SO‘Z\nDaraja\nO‘yindagi bitta labirint\nKeyingi dars\nball 3\n11 · O‘zgaruvchi: ball\n✓\nO‘z labirintingiz\n✓\nKalit va eshik\n✓\nIkki daraja\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "6cebf5e17d46",
+  "uzun": 82735
+ },
+ "y-18": {
+  "id": "P14",
+  "matn": "USTOZ · PROYEKTOR\nSINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nta labirint yasaldi\n0\nta o‘yinni do‘st o‘ynadi\n0\ndaraja yutildi\n‹ Orqaga\nDarsni yakunlash\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur bitta, labirint ko‘p\n5 / 18 · Yangi so‘z: daraja\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: labirint yasaymiz\n8 / 18 · O‘z labirintingiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kalit va eshik qo‘yamiz\n11 / 18 · Kalit va eshik\n12 / 18 · Xulosa: daraja\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ikki daraja\n15 / 18 · Ikki daraja\n16 / 18 · Do‘stingiz o‘ynasin\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "5c84760a88ab",
+  "uzun": 92948
+ },
+ "varaq": {
+  "id": "",
+  "matn": "10-dars · Labirint o‘yini 2 — ustoz varag‘i\n\nAsosiy fikr: tayyor o‘yinni buzmaymiz — unga yangi daraja qo‘shamiz; dastur bitta, labirint ko‘p.\n\nYo‘l: huk (ikkinchi labirint — uch sinov) → yangi so‘z «daraja» → reja → 1-bekat «O‘z labirintingiz» → 2-bekat «Kalit va eshik» → 3-bekat «Ikki daraja» → do‘stingiz o‘ynaydi → yakun.\n\nLabirint yasash: asbobni tanlang (Devor · Kalit · Eshik · Yulduz), katakni bosing. Devor — yana bosilsa olinadi; kalit, eshik, yulduz — bittadan, ko‘chadi. Start (0, 0) o‘zgarmaydi. Sahna tepasida o‘lchov: devor, yo‘l, burilish…\n\nLabirint yasashda yagona javob yo‘q. Bolaga labirint chizib bermang — o‘lchovdagi songa qaratib savol bering: «Yo‘lni qanday uzaytirasiz?»\n\n16-qadam: juftlarni oldindan o‘ylang (yoningizdagi do‘st; toq bo‘lsa — uchtadan). «Do‘stingiz o‘ynaydi» rejimida dastur yopiq — do‘st o‘yinni o‘zgartirmaydi.\n\nBoshqaruv: → yoki «Keyingi» — oldinga, ← — orqaga, F — to‘liq ekran. O‘ng tepada (sichqoncha olib borilsa) — qadam ro‘yxati va «aloqa» belgisi (yashil — ulangan).\n\n1\nKirish\n\nEKRANDA\n«10-dars · Labirint o‘yini 2» — «Bugun o‘yiningizni davom ettiramiz!» Coddy’ning o‘yini — labirint; pastda «O‘tgan darsda» — qoida.\n\nSIZ\n«O‘tgan darsda labirint o‘yini yasadik: strelkalar, qoida, kalit.» «Bugun o‘sha o‘yinni davom ettiramiz.» «Noutbukda «Tayyorman» tugmasini bosing.»\n\nBOLA O‘RGANADI\nTayyor ish ustiga qo‘shib boriladi.\n\n2\nSavol\n\nEKRANDA\nSavol: «Ikkinchi labirintni qanday qo‘shamiz?» «O‘ynab ko‘rsat» — Coddy yutdi, o‘yin tugadi. Uchta karta: A «Yangi o‘yin ochamiz», B «Labirintni o‘zgartiramiz», C «Ikkinchi labirint qo‘shamiz».\n\nSIZ\n«O‘yin bitta labirint bilan tez tugadi. Unga ikkinchi labirint kerak.» «Qanday qo‘shamiz? Har kim bitta kartani tanlasin.»\n\nBOLA O‘RGANADI\nTaxmin qiladi — bu huk.\n\n3\nUch sinov\n\nEKRANDA\nUch sinov: A — yangi o‘yin, dastur bo‘sh: Bo‘shvoy. «Keyingi» — B: labirint o‘zgardi, «Daraja: 1 / 1». «Keyingi» — C: D1, keyin ikkinchi labirint — o‘sha dastur, bitta «yo‘q».\n\nSIZ\n«Yangi o‘yinda dastur yo‘q — boshqaruvni ham, qoidani ham boshidan tuzish kerak.» «Labirintni o‘zgartirsak — o‘yin baribir bitta labirint. Qo‘shsak — ikkita, dastur esa o‘sha.»\n\nBOLA O‘RGANADI\nDastur bitta — labirint ko‘p.\n\n4\nJavob: dastur bitta, labirint ko‘p\n\nEKRANDA\nJavob: «Dastur bitta, labirint ko‘p». A va B xira, C oltin; ikki labirint yonma-yon.\n\nSIZ\n«Tayyor o‘yinni buzmaymiz — unga yangi labirint qo‘shamiz.» «Dastur bitta: boshqaruv va qoida hamma labirintda ishlaydi.»\n\nBOLA O‘RGANADI\nTayyor ishni kengaytirish.\n\n5\nYangi so‘z: daraja\n\nEKRANDA\nYangi so‘z: «Daraja nima?» «Keyingi» — birma-bir: 1-daraja, «2-daraja!», 2-daraja.\n\nSIZ\n«Daraja — o‘yindagi bitta labirint. Biri yutilsa, keyingisi ochiladi.» «O‘tgan darsdagi labirint — o‘yiningizning 1-darajasi. Bugun 2-darajani o‘zingiz yasaysiz.»\n\nBOLA O‘RGANADI\nYangi so‘z: daraja.\n\n6\nReja\n\nEKRANDA\nReja: tepalik — o‘z labirintingiz → kalit va eshik → ikki daraja; cho‘qqida «ikki darajali o‘yin».\n\nSIZ\n«Bugun uchta bekat: o‘z labirintingiz, kalit va eshik, ikki daraja.» «Dars oxirida o‘yiningizni do‘stingiz o‘ynaydi.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n7\nKo‘ramiz: labirint yasaymiz\n\nEKRANDA\nKo‘ramiz: «Labirint yasaymiz». Javon o‘rnida asboblar: Devor · Kalit · Eshik · Yulduz. Kataklarni bosasiz — devorlar; (5, 4) — «Yo‘l yo‘q»; yana bosasiz — devor ketadi; «▶ Sinab ko‘rish».\n\nSIZ\n«Katakni bosing — devor. Yana bosing — devor ketadi.» «Yo‘l yo‘q bo‘lsa — o‘yinni hech kim yuta olmaydi. Yo‘lni kompyuter o‘zi sanaydi.» «Labirint tayyor bo‘lsa — avval o‘zingiz o‘ynab ko‘ring. Endi o‘zingiz.»\n\nBOLA O‘RGANADI\nLabirint yasash.\n\n8\nO‘z labirintingiz\n\nEKRANDA\nMashq: «Labirintingizni yasang!» — zinapoya: 1 devorlar · 6 · 2 uzun yo‘l · 14 · 3 burilishlar · 5 · ★ boshi berk yo‘llar · 2.\n\nSIZ\n«O‘z labirintingizni yasang. Har pog‘onada bitta shart — sahna ostida son.» «Labirint tayyor bo‘lsa — o‘zingiz o‘ynab yuting.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nO‘z labirintini yasaydi.\n\n9\n2-bekat\n\nEKRANDA\nTepalik: 1-bekat ✓ — «Kalit va eshik».\n\nSIZ\n«Labirintingiz bor. Endi unga kalit va eshik qo‘yamiz.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n10\nKo‘ramiz: kalit va eshik qo‘yamiz\n\nEKRANDA\nKo‘ramiz: «Eshik yo‘lni to‘ssin». Eshik (3, 4) — «Eshik keraksiz!»; (5, 4) — «Kalit qani?»; kalit (0, 2); «▶ Sinab ko‘rish».\n\nSIZ\n«Eshik yo‘lni to‘ssin: yulduzga faqat eshikdan o‘tib boriladi.» «Kalit eshikdan oldin bo‘lsin — eshikdan o‘tmasdan yetib boriladigan joyda.» «Endi o‘zingiz.»\n\nBOLA O‘RGANADI\nKalit va eshik qo‘yish.\n\n11\nKalit va eshik\n\nEKRANDA\nMashq: «Kalit va eshik qo‘ying!» — zinapoya: 1 kalit va eshik · 2 kalit chetda · ★ uzun daraja · 20.\n\nSIZ\n«Eshik yo‘lni to‘ssin, kalit eshikdan oldin bo‘lsin.» «Kalit chetda bo‘lsa — o‘yinchi borib, orqaga qaytadi.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nLabirintiga kalit va eshik qo‘yadi.\n\n12\nXulosa: daraja\n\nEKRANDA\nXulosa: «Daraja». Ikki karta: daraja — o‘yindagi bitta labirint; dastur bitta — darajalar ko‘p.\n\nSIZ\n«Daraja — o‘yindagi bitta labirint.» «Labirintni yasadik — dastur o‘zgarmadi, o‘yin baribir ishladi.»\n\nBOLA O‘RGANADI\nDaraja nima ekanini aytadi.\n\n13\n3-bekat\n\nEKRANDA\nTepalik: 1, 2 ✓ — «Ikki daraja».\n\nSIZ\n«Ikki bekatdan o‘tdik. Oxirgisi — o‘yinni boshidan oxirigacha o‘ynaymiz.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n14\nKo‘ramiz: ikki daraja\n\nEKRANDA\nKo‘ramiz: «Ikki daraja». «▶ Boshlash» — 1-daraja, «2-daraja!», keyin ikkinchi labirint; ro‘yxatda «Ikki daraja yutildi» ✓.\n\nSIZ\n«▶ Boshlash — o‘yin 1-darajadan boshlanadi. Yutsangiz — 2-daraja ochiladi.» «Ro‘yxatdagi bandlar ✓ bo‘lsa — o‘yin do‘stingizga tayyor.»\n\nBOLA O‘RGANADI\nIkki darajali o‘yin.\n\n15\nIkki daraja\n\nEKRANDA\nMashq: «Ikki darajani yuting!» — zinapoya: 1 ikki daraja · ★ adashmasdan.\n\nSIZ\n«O‘yiningizni boshidan o‘ynang: avval 1-daraja, keyin o‘zingiz yasagan 2-daraja.» «Ro‘yxatda bo‘sh band bo‘lsa — avval shuni to‘ldiring.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nO‘z o‘yinini yutadi.\n\n16\nDo‘stingiz o‘ynasin\n\nEKRANDA\n«Do‘stingiz o‘ynasin». Bolalar joy almashadi, do‘stining o‘yinini o‘ynaydi; qaytib, do‘stining natijasini ko‘radi. Proyektorda ism yo‘q.\n\nSIZ\n«Yoningizdagi do‘stingiz bilan joy almashing. Uning o‘yinini o‘ynang — dasturiga tegmang.» «Joyingizga qayting: do‘stingiz qanday o‘ynaganini ko‘ring.»\n\nBOLA O‘RGANADI\nO‘yinini boshqaga o‘ynatadi.\n\n17\nYakun\n\nEKRANDA\nYakun: «Siz ikki darajali o‘yin yasadingiz!» Bugungi so‘z — daraja; keyingi dars — 11 · O‘zgaruvchi: ball.\n\nSIZ\n«Uchala bekatdan o‘tdik: o‘z labirintingiz, kalit va eshik, ikki daraja.» «Bugungi so‘z — daraja: o‘yindagi bitta labirint.» «Keyingi darsda o‘yinda ball sanaymiz: kompyuter sonni eslab qoladi.»\n\nBOLA O‘RGANADI\nO‘z natijasini ko‘radi.\n\n18\nSinfimiz bugun\n\nEKRANDA\nSinfimiz bugun: nechta labirint yasaldi, nechta o‘yinni do‘st o‘ynadi, nechta daraja yutildi (haqiqiy son, ismsiz).\n\nSIZ\n«Hammangiz zo‘r ishladingiz!» (keyin raqamlarni o‘qiydi) «Bugun 14 ta yangi labirint yasaldi — har biri o‘ziga xos.» (haqiqiy son bilan)\n\nBOLA O‘RGANADI\nSinf bilan birga natijani ko‘radi.",
+  "bloklar": [],
+  "html": "e4202e4e557d",
+  "uzun": 8666
+ },
+ "eshik": {
+  "id": "",
+  "matn": "10-dars · Labirint o‘yini 2\n\nQaysi oynani ochamiz?\n\nO‘quvchi oynasi\nUstoz oynasi (proyektor)\nO‘quvchi — o‘zi (ustozsiz)\nIkkalasi yonma-yon (ko‘rik)\nUstoz varag‘i",
+  "bloklar": [],
+  "html": "36428f17a3f7",
+  "uzun": 773
+ },
+ "kirish-ismsiz": {
+  "id": "",
+  "matn": "Darsga kirish\n\nIsmingizni yozing\n\nKirish",
+  "bloklar": [],
+  "html": "bb43a0750caa",
+  "uzun": 213
+ }
+}

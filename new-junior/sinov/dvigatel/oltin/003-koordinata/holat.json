@@ -1,0 +1,947 @@
+{
+ "u-01-P1": {
+  "id": "P1",
+  "matn": "3-DARS · X VA Y\nBugun katakning manzilini bilib olamiz!\n\nCoddy\nSalom! Bugun meni aytilgan katakka olib borasiz.\n\nO‘TGAN DARSDA\nmove right\nmove up\nmove right\nKetma-ketlik\nBuyruqlar tartibi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKirdi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "9a50c3f0cee1",
+  "uzun": 34872
+ },
+ "u-02-P2": {
+  "id": "P2",
+  "matn": "3-DARS · X VA Y\nSAVOL\nYashirin yulduzni qaysi xat bilan topamiz?\n\nCoddy\nUchta xat bor. Qaysi biri bilan yulduzni topamiz?\n\nA\nYulduz daraxt yonida\nB\nYulduz pastki qatorda\nC\nYulduz: o‘ngga 4, tepaga 2\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nJavob berdi: 0 / 0\nSinab ko‘ramiz ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "2e7032110215",
+  "uzun": 36424
+ },
+ "u-03-P2S": {
+  "id": "P2S",
+  "matn": "SAVOL\nYashirin yulduzni qaysi xat bilan topamiz?\n\nCoddy\nUchta xat bor. Qaysi biri bilan yulduzni topamiz?\n\nA\nYulduz daraxt yonida\nB\nYulduz pastki qatorda\nC\nYulduz: o‘ngga 4, tepaga 2\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "0444667a1967",
+  "uzun": 36443
+ },
+ "u-04-P2C": {
+  "id": "P2C",
+  "matn": "JAVOB\nIkki son — bitta katak\n\nCoddy\nO‘ngga nechta, tepaga nechta — shu ikki son yetadi.\n\nA\nYulduz daraxt yonida\n✕ 3 ta katak\nB\nYulduz pastki qatorda\n✕ 7 ta katak\nC\nYulduz: o‘ngga 4, tepaga 2\n✓ bitta katak\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 2)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "225e44a14251",
+  "uzun": 36905
+ },
+ "u-05-P3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nKoordinata nima?\n\nCoddy\nKoordinata — katakning manzili: X va Y.\n\nX — chap chetdan o‘ngga necha katak\n0\n1\n2\n3\n4\n5\n6\n→\n\nY — pastdan tepaga necha katak\n0\n1\n2\n3\n4\n↑\n\nAvval X, keyin Y\n\n(4, 2)\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "949786cd34d8",
+  "uzun": 35220
+ },
+ "u-06-P4": {
+  "id": "P4",
+  "matn": "REJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Birinchisidan boshlaymiz.\n\nDars oxirida · o‘z yo‘lingiz\nManzillarni o‘qib berasiz\n1\nManzilni o‘qiymiz\n2\nManzilga boramiz\n3\nOldindan aytamiz\n‹ Orqaga\nBoshladik ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "789c67dc0657",
+  "uzun": 41537
+ },
+ "u-07-P6": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nCoddy qayerda?\n\nCoddy\nAvval X, keyin Y.\n\nX = 3\n0\n1\n2\n3\n4\n5\n6\n→\n\nY = 1\n0\n1\n2\n3\n4\n↑\n\nManzil — (3, 1)\n\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 1)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "d7e11ceebe06",
+  "uzun": 34443
+ },
+ "u-08-P5": {
+  "id": "P5",
+  "matn": "MASHQ\nEndi o‘zingiz!\n\nCoddy\nManzilni o‘qing va o‘sha katakni bosing.\n\nUch katakni topdi\n0 / 0\nHar belgi — uch katakni topgan bitta bola\n1\n0\nPastki qator\n2\n0\nChap ustun\n3\n0\nIstalgan katak\n★\n0\nIkki o‘xshash manzil\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "6d163f4ea71f",
+  "uzun": 37177
+ },
+ "u-09-P4B": {
+  "id": "P4B",
+  "matn": "REJA · 2-BEKAT\n2 · Manzilga boramiz\n\nCoddy\nEndi manzilni blokka qo‘yamiz — men o‘zim boraman.\n\nDars oxirida · o‘z yo‘lingiz\nManzillarni o‘qib berasiz\n✓\nManzilni o‘qiymiz\n2\nManzilga boramiz\n3\nOldindan aytamiz\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "e6113eb16249",
+  "uzun": 41255
+ },
+ "u-10-P7": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\ngo to — manzilga bor\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "5bea578b518f",
+  "uzun": 36789
+ },
+ "u-11-P5G": {
+  "id": "P5G",
+  "matn": "MASHQ\nManzilga boring!\n\nCoddy\nManzilni blokka qo‘ying — qahramon o‘zi sakraydi.\n\nUch pog‘onani tugatdi\n0 / 0\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nBitta manzil\n2\n0\nIkki manzil\n3\n0\nUch manzil\n★\n0\nO‘z yo‘lingiz\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "ff72716f4037",
+  "uzun": 37369
+ },
+ "u-12-P9": {
+  "id": "P9",
+  "matn": "XULOSA\nKoordinata\n\nCoddy\nIkki son — bitta katak. Avval X, keyin Y.\n\nKoordinata\nKatakning manzili\ngo to\nx:\n4\ny:\n2\ngo to\nManzilga bor\n(2, 4)\n(4, 2)\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "ac01d8fbb423",
+  "uzun": 38226
+ },
+ "u-13-P4C": {
+  "id": "P4C",
+  "matn": "REJA · 3-BEKAT\n3 · Oldindan aytamiz\n\nCoddy\nOxirgi bekat: dasturni o‘qib, qayerga borishimni ayting.\n\nDars oxirida · o‘z yo‘lingiz\nManzillarni o‘qib berasiz\n✓\nManzilni o‘qiymiz\n✓\nManzilga boramiz\n3\nOldindan aytamiz\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "5aebf9e0ed44",
+  "uzun": 41390
+ },
+ "u-14-P8": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nCoddy qayerda to‘xtaydi?\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nX: 2\nmove right\nX: 3\nmove up\nY: 2\n3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 1)\n‹ Orqaga\n▶ Tekshirish\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "3cbfae1bd4cd",
+  "uzun": 36816
+ },
+ "u-15-P5B": {
+  "id": "P5B",
+  "matn": "MASHQ\nOldindan ayting!\n\nCoddy\nDasturni o‘qing, bayroqchani qo‘ying, keyin tekshiring.\n\nUch marta oldindan aytdi\n0 / 0\n1\n0\nTo‘rt blok\n2\n0\nPastga ham\n3\n0\ngo to bilan\n★\n0\nIkki go to\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "0c8dc92e509c",
+  "uzun": 36777
+ },
+ "u-16-P11": {
+  "id": "P11",
+  "matn": "KO‘RSATISH\nManzillarni o‘qib bering\nSiz manzilni aytasiz — men o‘sha katakka sakrayman.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "84398f9616de",
+  "uzun": 36067
+ },
+ "u-17-P12": {
+  "id": "P12",
+  "matn": "YAKUN\nSiz manzilni bilasiz!\nBUGUNGI SO‘Z\nKoordinata\nKatakning manzili\nKeyingi dars\n4 · Hodisalar\n✓\nManzilni o‘qiymiz\n✓\nManzilga boramiz\n✓\nOldindan aytamiz\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "d52409f00a1f",
+  "uzun": 30673
+ },
+ "u-18-P14": {
+  "id": "P14",
+  "matn": "SINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nkatak topdi\n0\nmanzilga bordi\n0\nmarta oldindan aytdi\n‹ Orqaga\nDarsni yakunlash\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "6db0e691ad55",
+  "uzun": 40063
+ },
+ "u-x-P2S-A": {
+  "id": "P2S",
+  "matn": "SAVOL\nYashirin yulduzni qaysi xat bilan topamiz?\n\nCoddy\nUchta xat bor. Qaysi biri bilan yulduzni topamiz?\n\nA\nYulduz daraxt yonida\n✕ 3 ta katak\nB\nYulduz pastki qatorda\nC\nYulduz: o‘ngga 4, tepaga 2\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nQaysi biri?\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "f2a26b852c31",
+  "uzun": 36583
+ },
+ "u-x-P2S-B": {
+  "id": "P2S",
+  "matn": "SAVOL\nYashirin yulduzni qaysi xat bilan topamiz?\n\nCoddy\nUchta xat bor. Qaysi biri bilan yulduzni topamiz?\n\nA\nYulduz daraxt yonida\n✕ 3 ta katak\nB\nYulduz pastki qatorda\n✕ 7 ta katak\nC\nYulduz: o‘ngga 4, tepaga 2\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nQaysi biri?\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "9d116d3dcc8a",
+  "uzun": 36647
+ },
+ "u-x-P2S-C": {
+  "id": "P2S",
+  "matn": "SAVOL\nYashirin yulduzni qaysi xat bilan topamiz?\n\nCoddy\nUchta xat bor. Qaysi biri bilan yulduzni topamiz?\n\nA\nYulduz daraxt yonida\n✕ 3 ta katak\nB\nYulduz pastki qatorda\n✕ 7 ta katak\nC\nYulduz: o‘ngga 4, tepaga 2\n✓ bitta katak\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 2)\nQaysi biri?\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "4be74d29d039",
+  "uzun": 37917
+ },
+ "u-x-P3-1": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nKoordinata nima?\n\nCoddy\nKoordinata — katakning manzili: X va Y.\n\nX — chap chetdan o‘ngga necha katak\n0\n1\n2\n3\n4\n5\n6\n→\n\nY — pastdan tepaga necha katak\n0\n1\n2\n3\n4\n↑\n\nAvval X, keyin Y\n\n(4, 2)\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "221ceb20be47",
+  "uzun": 35255
+ },
+ "u-x-P3-2": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nKoordinata nima?\n\nCoddy\nKoordinata — katakning manzili: X va Y.\n\nX — chap chetdan o‘ngga necha katak\n0\n1\n2\n3\n4\n5\n6\n→\n\nY — pastdan tepaga necha katak\n0\n1\n2\n3\n4\n↑\n\nAvval X, keyin Y\n\n(4, 2)\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "d2f78d5f1935",
+  "uzun": 35284
+ },
+ "u-x-P3-3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nKoordinata nima?\n\nCoddy\nKoordinata — katakning manzili: X va Y.\n\nX — chap chetdan o‘ngga necha katak\n0\n1\n2\n3\n4\n5\n6\n→\n\nY — pastdan tepaga necha katak\n0\n1\n2\n3\n4\n↑\n\nAvval X, keyin Y\n\n(4, 2)\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "3807cc8e1386",
+  "uzun": 35304
+ },
+ "u-x-P6-3": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nCoddy qayerda?\n\nCoddy\nAvval X, keyin Y.\n\nX = 3\n0\n1\n2\n3\n4\n5\n6\n→\n\nY = 1\n0\n1\n2\n3\n4\n↑\n\nManzil — (3, 1)\n\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 1)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "212a8f72a873",
+  "uzun": 34491
+ },
+ "u-x-P7-yetdi": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\ngo to — manzilga bor\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\ngo to x:\n4\ny:\n2\n1 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 2)\n‹ Orqaga\nYetib bordi!\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "x:go to x:4y:2"
+  ],
+  "html": "5ef421c146bc",
+  "uzun": 37721
+ },
+ "u-x-P7-olma": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\ngo to — manzilga bor\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\ngo to x:\n1\ny:\n3\ngo to x:\n4\ny:\n2\n2 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 2)\n‹ Orqaga\nYetib bordi!\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "x:go to x:1y:3go to x:4y:2",
+   "x:go to x:4y:2"
+  ],
+  "html": "e482c83a2860",
+  "uzun": 37800
+ },
+ "u-x-P8-sanoq": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nCoddy qayerda to‘xtaydi?\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nX: 2\nmove right\nX: 3\nmove up\nY: 2\n3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 1)\n‹ Orqaga\n▶ Tekshirish\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "b8d92eca3e6e",
+  "uzun": 36825
+ },
+ "u-x-P8-bayroq": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nCoddy qayerda to‘xtaydi?\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nX: 2\nmove right\nX: 3\nmove up\nY: 2\n3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 1)\n‹ Orqaga\nBayroqcha qo‘yildi. «Tekshirish»ni bosing\n▶ Tekshirish\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "719907023569",
+  "uzun": 37246
+ },
+ "u-x-P8-oldindan": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nCoddy qayerda to‘xtaydi?\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nX: 2\nmove right\nX: 3\nmove up\nY: 2\n3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\n‹ Orqaga\nOldindan aytdingiz!\n▶ Tekshirish\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "31654ce959c5",
+  "uzun": 38276
+ },
+ "u-x-P11-yol": {
+  "id": "P11",
+  "matn": "KO‘RSATISH\nManzillarni o‘qib bering\nSiz manzilni aytasiz — men o‘sha katakka sakrayman.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\ngo to x:\n2\ny:\n1\ngo to x:\n5\ny:\n3\n2 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 3)\n‹ Orqaga\nYo‘lingiz tayyor!\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "x:go to x:2y:1go to x:5y:3",
+   "x:go to x:5y:3"
+  ],
+  "html": "710b82ca0834",
+  "uzun": 37075
+ },
+ "u-x-yakunlandi": {
+  "id": "P14",
+  "matn": "SINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nkatak topdi\n0\nmanzilga bordi\n0\nmarta oldindan aytdi\nDars tugadi!\nKo‘rishguncha — keyingi darsda hodisalar bilan!\n‹ Orqaga\nDarsni yakunlash\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "1f33abbf2736",
+  "uzun": 40203
+ },
+ "bq-01-0-B0": {
+  "id": "B0",
+  "matn": "3-DARS · X VA Y\nSalom, Aziz!\nTayyor bo‘lsangiz — tugmani bosing\nTayyorman",
+  "bloklar": [],
+  "html": "e77dfb2737b4",
+  "uzun": 24475
+ },
+ "bq-01-1-BK": {
+  "id": "BK",
+  "matn": "3-DARS · X VA Y\n↑\nUstoz ekraniga qarang\nDars hozir boshlanadi",
+  "bloklar": [],
+  "html": "a231c07cf7b0",
+  "uzun": 16410
+ },
+ "bq-02-0-P2N": {
+  "id": "P2N",
+  "matn": "3-DARS · X VA Y\nSAVOL\nYashirin yulduzni qaysi xat bilan topamiz?\n\nCoddy\nQaysi xat yulduzni aniq topadi?\n\nA\nYulduz daraxt yonida\nB\nYulduz pastki qatorda\nC\nYulduz: o‘ngga 4, tepaga 2\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBirini tanlang",
+  "bloklar": [],
+  "html": "a37d3641b30b",
+  "uzun": 34264
+ },
+ "bq-02-1-BK": {
+  "id": "BK",
+  "matn": "3-DARS · X VA Y\n↑\nUstoz ekraniga qarang\nJavobingiz qabul qilindi",
+  "bloklar": [],
+  "html": "2aae2749a3a5",
+  "uzun": 16413
+ },
+ "bq-03-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz xatlarni sinayapti — kuzating",
+  "bloklar": [],
+  "html": "a39ae4080997",
+  "uzun": 16424
+ },
+ "bq-04-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstozni tinglang",
+  "bloklar": [],
+  "html": "ac96ada8749e",
+  "uzun": 16405
+ },
+ "bq-05-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nYangi so‘z: koordinata",
+  "bloklar": [],
+  "html": "85599c7411c3",
+  "uzun": 16411
+ },
+ "bq-06-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nBugun: uchta bekat",
+  "bloklar": [],
+  "html": "7b69430202fd",
+  "uzun": 16407
+ },
+ "bq-07-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz manzilni o‘qiyapti — kuzating",
+  "bloklar": [],
+  "html": "2a0ac63ba365",
+  "uzun": 16424
+ },
+ "bq-08-0-B1A": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\n(3, 0) katakni toping\n\nBulut\nManzilni o‘qing va o‘sha katakni bosing.\n\nX\nchap chetdan o‘ngga necha katak\n0\n1\n2\n3\n4\n5\n6\n→\nY\npastdan tepaga necha katak\n0\n1\n2\n3\n4\n↑\n(\nX\navval\n,\nY\nkeyin\n)\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nAvval X, keyin Y",
+  "bloklar": [],
+  "html": "b1c4a7bbd2d8",
+  "uzun": 20404
+ },
+ "bq-08-1-B1B": {
+  "id": "B1B",
+  "matn": "MASHQ · 2-POG‘ONA\n(0, 2) katakni toping\n\nBulut\nManzilni o‘qing va o‘sha katakni bosing.\n\nX\nchap chetdan o‘ngga necha katak\n0\n1\n2\n3\n4\n5\n6\n→\nY\npastdan tepaga necha katak\n0\n1\n2\n3\n4\n↑\n(\nX\navval\n,\nY\nkeyin\n)\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nAvval X, keyin Y",
+  "bloklar": [],
+  "html": "f849a7f52681",
+  "uzun": 20404
+ },
+ "bq-08-2-B1C": {
+  "id": "B1C",
+  "matn": "MASHQ · 3-POG‘ONA\n(4, 3) katakni toping\n\nBulut\nManzilni o‘qing va o‘sha katakni bosing.\n\nX\nchap chetdan o‘ngga necha katak\n0\n1\n2\n3\n4\n5\n6\n→\nY\npastdan tepaga necha katak\n0\n1\n2\n3\n4\n↑\n(\nX\navval\n,\nY\nkeyin\n)\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nAvval X, keyin Y",
+  "bloklar": [],
+  "html": "481fce0e2ef6",
+  "uzun": 20404
+ },
+ "bq-08-3-B1Y": {
+  "id": "B1Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\n(2, 4), keyin (4, 2)\n\nBulut\nManzilni o‘qing va o‘sha katakni bosing.\n\nX\nchap chetdan o‘ngga necha katak\n0\n1\n2\n3\n4\n5\n6\n→\nY\npastdan tepaga necha katak\n0\n1\n2\n3\n4\n↑\n(\nX\navval\n,\nY\nkeyin\n)\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nAvval X, keyin Y",
+  "bloklar": [],
+  "html": "a2b9bd176b5c",
+  "uzun": 20406
+ },
+ "bq-08-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "ea8d34abc5f4",
+  "uzun": 16420
+ },
+ "bq-09-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\n2-bekat: manzilga boramiz",
+  "bloklar": [],
+  "html": "fbc1a7fe4d15",
+  "uzun": 16414
+ },
+ "bq-10-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz go to blokini ko‘rsatyapti — kuzating",
+  "bloklar": [],
+  "html": "7aeead52a4af",
+  "uzun": 16432
+ },
+ "bq-11-0-B2A": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nYulduz (5, 3) da\nQahramoningizni yulduzga olib boring.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nManzilni o‘qing: avval X, keyin Y\nIshga tushir",
+  "bloklar": [],
+  "html": "1c8be26548de",
+  "uzun": 22355
+ },
+ "bq-11-1-B2B": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nOlma, keyin yulduz\nOlma (2, 1) da, yulduz (6, 4) da.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nManzilni o‘qing: avval X, keyin Y\nIshga tushir",
+  "bloklar": [],
+  "html": "184b9b16f0ef",
+  "uzun": 22919
+ },
+ "bq-11-2-B2C": {
+  "id": "B2C",
+  "matn": "MASHQ · 3-POG‘ONA\nUch manzil\nOlma (1, 3), olma (5, 1), yulduz (3, 4).\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nManzilni o‘qing: avval X, keyin Y\nIshga tushir",
+  "bloklar": [],
+  "html": "8aa4bc227024",
+  "uzun": 23485
+ },
+ "bq-11-3-B2Y": {
+  "id": "B2Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z yo‘lingiz\nUchta yoki ko‘proq katakni o‘zingiz tanlang.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nManzilni o‘qing: avval X, keyin Y\nIshga tushir",
+  "bloklar": [],
+  "html": "224fdebda847",
+  "uzun": 22115
+ },
+ "bq-11-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "ea8d34abc5f4",
+  "uzun": 16420
+ },
+ "bq-12-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nXulosa: koordinata",
+  "bloklar": [],
+  "html": "e6fb4f95e408",
+  "uzun": 16407
+ },
+ "bq-13-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\n3-bekat: oldindan aytamiz",
+  "bloklar": [],
+  "html": "5516cc777fcf",
+  "uzun": 16414
+ },
+ "bq-14-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz dasturni o‘qiyapti — kuzating",
+  "bloklar": [],
+  "html": "cb46912a5827",
+  "uzun": 16424
+ },
+ "bq-15-0-B3A": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nTo‘rt blok\nQahramon to‘xtaydigan katakni bosing.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove right\nmove up\nmove right\n4 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 1)\nMaslahat\nDasturni o‘qing: qahramon qayerda to‘xtaydi?\nTekshirish",
+  "bloklar": [],
+  "html": "b5aaeab971f0",
+  "uzun": 23003
+ },
+ "bq-15-1-B3B": {
+  "id": "B3B",
+  "matn": "MASHQ · 2-POG‘ONA\nPastga ham\nQahramon to‘xtaydigan katakni bosing.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nmove up\nmove up\nmove right\nmove right\nmove right\nmove down\nmove right\n7 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturni o‘qing: qahramon qayerda to‘xtaydi?\nTekshirish",
+  "bloklar": [],
+  "html": "3f2ad7121c49",
+  "uzun": 23697
+ },
+ "bq-15-2-B3C": {
+  "id": "B3C",
+  "matn": "MASHQ · 3-POG‘ONA\ngo to bilan\nQahramon to‘xtaydigan katakni bosing.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\ngo to\nx:\n2\ny:\n3\nmove right\nmove down\nmove right\nmove down\nmove right\n6 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturni o‘qing: qahramon qayerda to‘xtaydi?\nTekshirish",
+  "bloklar": [],
+  "html": "29874839897b",
+  "uzun": 23654
+ },
+ "bq-15-3-B3Y": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nIkki go to\nQahramon to‘xtaydigan katakni bosing.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\ngo to\nx:\n5\ny:\n4\nmove left\nmove left\nmove left\nmove down\ngo to\nx:\n1\ny:\n0\nmove up\nmove up\nmove right\n9 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturni o‘qing: qahramon qayerda to‘xtaydi?\nTekshirish",
+  "bloklar": [],
+  "html": "e1ac0c439adc",
+  "uzun": 24534
+ },
+ "bq-15-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "ea8d34abc5f4",
+  "uzun": 16420
+ },
+ "bq-17-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nSiz manzilni bilasiz!\n\nBulut\nKatakni topdingiz, manzilga bordingiz va oldindan aytdingiz.\n\nSiz bugun\n0\nkatak topdi\n0\nmanzilga bordi\n0\nmarta oldindan aytdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBulut\nKeyingi darsda hodisalar bilan ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "dfea7b6c199b",
+  "uzun": 20897
+ },
+ "bq-18-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nSiz manzilni bilasiz!\n\nBulut\nKatakni topdingiz, manzilga bordingiz va oldindan aytdingiz.\n\nSiz bugun\n0\nkatak topdi\n0\nmanzilga bordi\n0\nmarta oldindan aytdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBulut\nKeyingi darsda hodisalar bilan ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "dfea7b6c199b",
+  "uzun": 20897
+ },
+ "bx-B1A-boshqa": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\n(3, 0) katakni toping\n\nBulut\nManzilni o‘qing va o‘sha katakni bosing.\n\nX\nchap chetdan o‘ngga necha katak\n0\n1\n2\n3\n4\n5\n6\n→\nY\npastdan tepaga necha katak\n0\n1\n2\n3\n4\n↑\n(\nX\navval\n,\nY\nkeyin\n)\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 3)\nBu — (0, 3)\nMaslahat\nAvval X — o‘ngga sanang, keyin Y — tepaga",
+  "bloklar": [],
+  "html": "e49c3322d849",
+  "uzun": 25986
+ },
+ "bx-B1A-maslahat": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\n(3, 0) katakni toping\n\nBulut\nManzilni o‘qing va o‘sha katakni bosing.\n\nX\nchap chetdan o‘ngga necha katak\n0\n1\n2\n3\n4\n5\n6\n→\nY\npastdan tepaga necha katak\n0\n1\n2\n3\n4\n↑\n(\nX\navval\n,\nY\nkeyin\n)\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 3)\nBu — (0, 3)\nMaslahat\nBirinchi son — X: chap chetdan o‘ngga sanang. Ikkinchisi — Y: pastdan tepaga",
+  "bloklar": [],
+  "html": "8a37564b66ad",
+  "uzun": 26021
+ },
+ "bx-B1A-topdi": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\n(3, 0) katakni toping\n\nBulut\nManzilni o‘qing va o‘sha katakni bosing.\n\nX\nchap chetdan o‘ngga necha katak\n0\n1\n2\n3\n4\n5\n6\n→\nY\npastdan tepaga necha katak\n0\n1\n2\n3\n4\n↑\n(\nX\navval\n,\nY\nkeyin\n)\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nMaslahat\nTopdingiz!",
+  "bloklar": [],
+  "html": "1523c1a0145d",
+  "uzun": 21509
+ },
+ "bx-B1Y-birinchi": {
+  "id": "B1Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\n(2, 4), keyin (4, 2)\n\nBulut\nManzilni o‘qing va o‘sha katakni bosing.\n\nX\nchap chetdan o‘ngga necha katak\n0\n1\n2\n3\n4\n5\n6\n→\nY\npastdan tepaga necha katak\n0\n1\n2\n3\n4\n↑\n(\nX\navval\n,\nY\nkeyin\n)\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 4)\nMaslahat\nEndi (4, 2)",
+  "bloklar": [],
+  "html": "326d4f482d10",
+  "uzun": 21493
+ },
+ "bx-B1Y-topdi": {
+  "id": "B1Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\n(2, 4), keyin (4, 2)\n\nBulut\nManzilni o‘qing va o‘sha katakni bosing.\n\nX\nchap chetdan o‘ngga necha katak\n0\n1\n2\n3\n4\n5\n6\n→\nY\npastdan tepaga necha katak\n0\n1\n2\n3\n4\n↑\n(\nX\navval\n,\nY\nkeyin\n)\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 2)\nMaslahat\nTopdingiz!",
+  "bloklar": [],
+  "html": "85b57f243afe",
+  "uzun": 21748
+ },
+ "bx-B2A-boshqa": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nYulduz (5, 3) da\nQahramoningizni yulduzga olib boring.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\ngo to x:\n3\ny:\n4\n1 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 4)\nYulduz bu yerda emas!\nMaslahat\nQahramon (3, 4) da. Sonlarni tekshiring: avval X, keyin Y\nIshga tushir",
+  "bloklar": [
+   "x:go to x:3y:4"
+  ],
+  "html": "9ca2cb9da2a6",
+  "uzun": 28006
+ },
+ "bx-B2A-yetdi": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nYulduz (5, 3) da\nQahramoningizni yulduzga olib boring.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\ngo to x:\n5\ny:\n3\n1 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 3)\nMaslahat\nYetib bordi!\nIshga tushir",
+  "bloklar": [
+   "x:go to x:5y:3"
+  ],
+  "html": "994fe7ffcf16",
+  "uzun": 23260
+ },
+ "bx-B2B-olmasiz": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nOlma, keyin yulduz\nOlma (2, 1) da, yulduz (6, 4) da.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\ngo to x:\n6\ny:\n4\n1 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nOlma qoldi-ku!\nMaslahat\nAvval olmaga boring — u (2, 1) da\nIshga tushir",
+  "bloklar": [
+   "x:go to x:6y:4"
+  ],
+  "html": "a69d4d47d410",
+  "uzun": 28547
+ },
+ "bx-B2B-yetdi": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nOlma, keyin yulduz\nOlma (2, 1) da, yulduz (6, 4) da.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\ngo to x:\n2\ny:\n1\ngo to x:\n6\ny:\n4\n2 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nMaslahat\nYetib bordi!\nIshga tushir",
+  "bloklar": [
+   "x:go to x:2y:1go to x:6y:4",
+   "x:go to x:6y:4"
+  ],
+  "html": "0e5b3bce9a66",
+  "uzun": 23903
+ },
+ "bx-B2Y-kam": {
+  "id": "B2Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z yo‘lingiz\nUchta yoki ko‘proq katakni o‘zingiz tanlang.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\ngo to x:\n1\ny:\n4\ngo to x:\n1\ny:\n4\n2 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 4)\nOz qoldi!\nMaslahat\nYana bitta manzil qo‘shing\nIshga tushir",
+  "bloklar": [
+   "x:go to x:1y:4go to x:1y:4",
+   "x:go to x:1y:4"
+  ],
+  "html": "f9c0c46eacfc",
+  "uzun": 27795
+ },
+ "bx-B2Y-tayyor": {
+  "id": "B2Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z yo‘lingiz\nUchta yoki ko‘proq katakni o‘zingiz tanlang.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\ngo to x:\n1\ny:\n4\ngo to x:\n6\ny:\n4\ngo to x:\n6\ny:\n0\ngo to x:\n3\ny:\n2\n4 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\nMaslahat\nYo‘lingiz tayyor!\nIshga tushir",
+  "bloklar": [
+   "x:go to x:1y:4go to x:6y:4go to x:6y:0go to x:3y:2",
+   "x:go to x:6y:4go to x:6y:0go to x:3y:2",
+   "x:go to x:6y:0go to x:3y:2",
+   "x:go to x:3y:2"
+  ],
+  "html": "ba1bd070bafb",
+  "uzun": 23230
+ },
+ "bx-B3A-bayroqsiz": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nTo‘rt blok\nQahramon to‘xtaydigan katakni bosing.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove right\nmove up\nmove right\n4 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 1)\nMaslahat\nDasturni o‘qing: qahramon qayerda to‘xtaydi?\nTekshirish",
+  "bloklar": [],
+  "html": "b5aaeab971f0",
+  "uzun": 23003
+ },
+ "bx-B3A-boshqa": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nTo‘rt blok\nQahramon to‘xtaydigan katakni bosing.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove right\nmove up\nmove right\n4 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 2)\nBoshqa katak!\nMaslahat\nQahramon (4, 2) da to‘xtadi. Dasturni qaytadan sanang: X qancha, Y qancha\nTekshirish",
+  "bloklar": [],
+  "html": "bb45782bdb69",
+  "uzun": 29229
+ },
+ "bx-B3A-oldindan": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nTo‘rt blok\nQahramon to‘xtaydigan katakni bosing.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove right\nmove up\nmove right\n4 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 2)\nMaslahat\nOldindan aytdingiz!\nTekshirish",
+  "bloklar": [],
+  "html": "46c782a918b6",
+  "uzun": 24474
+ },
+ "bx-B5-natija": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nSiz manzilni bilasiz!\n\nBulut\nKatakni topdingiz, manzilga bordingiz va oldindan aytdingiz.\n\nSiz bugun\n3\nkatak topdi\n7\nmanzilga bordi\n1\nmarta oldindan aytdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\nBulut\nKeyingi darsda hodisalar bilan ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "cfa38a03461b",
+  "uzun": 21184
+ },
+ "bx-P2N-tanladi": {
+  "id": "P2N",
+  "matn": "3-DARS · X VA Y\nSAVOL\nYashirin yulduzni qaysi xat bilan topamiz?\n\nCoddy\nQaysi xat yulduzni aniq topadi?\n\nA\nYulduz daraxt yonida\nB\nYulduz pastki qatorda\nC\nYulduz: o‘ngga 4, tepaga 2\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBirini tanlang",
+  "bloklar": [],
+  "html": "7cf91f3877e1",
+  "uzun": 34273
+ },
+ "bx-BQ": {
+  "id": "BQ",
+  "matn": "3-DARS · X VA Y\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang",
+  "bloklar": [],
+  "html": "b0e07ad9ba18",
+  "uzun": 52601
+ },
+ "bx-BQ-tanladi": {
+  "id": "BK",
+  "matn": "3-DARS · X VA Y\n↑\nUstoz ekraniga qarang\nJavobingiz qabul qilindi",
+  "bloklar": [],
+  "html": "f4c76c2c4e83",
+  "uzun": 15152
+ },
+ "sq-01-0-B0": {
+  "id": "B0",
+  "matn": "3-DARS · X VA Y\nSalom, Aziz!\nTayyor bo‘lsangiz — tugmani bosing\nTayyorman",
+  "bloklar": [],
+  "html": "e77dfb2737b4",
+  "uzun": 24475
+ },
+ "sq-01-1-P1": {
+  "id": "P1",
+  "matn": "3-DARS · X VA Y\nBugun katakning manzilini bilib olamiz!\n\nCoddy\nSalom! Bugun meni aytilgan katakka olib borasiz.\n\nO‘TGAN DARSDA\nmove right\nmove up\nmove right\nKetma-ketlik\nBuyruqlar tartibi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "321351ecde6e",
+  "uzun": 33617
+ },
+ "sq-02-0-P2N": {
+  "id": "P2N",
+  "matn": "3-DARS · X VA Y\nSAVOL\nYashirin yulduzni qaysi xat bilan topamiz?\n\nCoddy\nQaysi xat yulduzni aniq topadi?\n\nA\nYulduz daraxt yonida\nB\nYulduz pastki qatorda\nC\nYulduz: o‘ngga 4, tepaga 2\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBirini tanlang",
+  "bloklar": [],
+  "html": "a37d3641b30b",
+  "uzun": 34264
+ },
+ "sq-03-0-P2S": {
+  "id": "P2S",
+  "matn": "SAVOL\nYashirin yulduzni qaysi xat bilan topamiz?\n\nCoddy\nUchta xat bor. Qaysi biri bilan yulduzni topamiz?\n\nA\nYulduz daraxt yonida\n▶ Sinab ko‘rish\nB\nYulduz pastki qatorda\n▶ Sinab ko‘rish\nC\nYulduz: o‘ngga 4, tepaga 2\n▶ Sinab ko‘rish\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "8177666d8fd3",
+  "uzun": 35344
+ },
+ "sq-04-0-P2C": {
+  "id": "P2C",
+  "matn": "JAVOB\nIkki son — bitta katak\n\nCoddy\nO‘ngga nechta, tepaga nechta — shu ikki son yetadi.\n\nA\nYulduz daraxt yonida\n✕ 3 ta katak\nB\nYulduz pastki qatorda\n✕ 7 ta katak\nC\nYulduz: o‘ngga 4, tepaga 2\n✓ bitta katak\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 2)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "7d43c4044d83",
+  "uzun": 35658
+ },
+ "sq-05-0-P3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nKoordinata nima?\n\nCoddy\nKoordinata — katakning manzili: X va Y.\n\nX — chap chetdan o‘ngga necha katak\n0\n1\n2\n3\n4\n5\n6\n→\n\nY — pastdan tepaga necha katak\n0\n1\n2\n3\n4\n↑\n\nAvval X, keyin Y\n\n(4, 2)\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "67b217b7ffe2",
+  "uzun": 33973
+ },
+ "sq-06-0-P4": {
+  "id": "P4",
+  "matn": "REJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Birinchisidan boshlaymiz.\n\nDars oxirida · o‘z yo‘lingiz\nManzillarni o‘qib berasiz\n1\nManzilni o‘qiymiz\n2\nManzilga boramiz\n3\nOldindan aytamiz\n‹ Orqaga\nBoshladik ›",
+  "bloklar": [],
+  "html": "cc1ad35fc221",
+  "uzun": 40290
+ },
+ "sq-07-0-P6": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nCoddy qayerda?\n\nCoddy\nAvval X, keyin Y.\n\nX = 3\n0\n1\n2\n3\n4\n5\n6\n→\n\nY = 1\n0\n1\n2\n3\n4\n↑\n\nManzil — (3, 1)\n\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 1)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "66c6f13abda3",
+  "uzun": 33196
+ },
+ "sq-08-0-B1A": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\n(3, 0) katakni toping\n\nBulut\nManzilni o‘qing va o‘sha katakni bosing.\n\nX\nchap chetdan o‘ngga necha katak\n0\n1\n2\n3\n4\n5\n6\n→\nY\npastdan tepaga necha katak\n0\n1\n2\n3\n4\n↑\n(\nX\navval\n,\nY\nkeyin\n)\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nAvval X, keyin Y\nKeyingi ›",
+  "bloklar": [],
+  "html": "455affe1236e",
+  "uzun": 20446
+ },
+ "sq-08-1-B1B": {
+  "id": "B1B",
+  "matn": "MASHQ · 2-POG‘ONA\n(0, 2) katakni toping\n\nBulut\nManzilni o‘qing va o‘sha katakni bosing.\n\nX\nchap chetdan o‘ngga necha katak\n0\n1\n2\n3\n4\n5\n6\n→\nY\npastdan tepaga necha katak\n0\n1\n2\n3\n4\n↑\n(\nX\navval\n,\nY\nkeyin\n)\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nAvval X, keyin Y\nKeyingi ›",
+  "bloklar": [],
+  "html": "86116d74a909",
+  "uzun": 20446
+ },
+ "sq-08-2-B1C": {
+  "id": "B1C",
+  "matn": "MASHQ · 3-POG‘ONA\n(4, 3) katakni toping\n\nBulut\nManzilni o‘qing va o‘sha katakni bosing.\n\nX\nchap chetdan o‘ngga necha katak\n0\n1\n2\n3\n4\n5\n6\n→\nY\npastdan tepaga necha katak\n0\n1\n2\n3\n4\n↑\n(\nX\navval\n,\nY\nkeyin\n)\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nAvval X, keyin Y\nKeyingi ›",
+  "bloklar": [],
+  "html": "fe8509f5a76a",
+  "uzun": 20446
+ },
+ "sq-08-3-B1Y": {
+  "id": "B1Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\n(2, 4), keyin (4, 2)\n\nBulut\nManzilni o‘qing va o‘sha katakni bosing.\n\nX\nchap chetdan o‘ngga necha katak\n0\n1\n2\n3\n4\n5\n6\n→\nY\npastdan tepaga necha katak\n0\n1\n2\n3\n4\n↑\n(\nX\navval\n,\nY\nkeyin\n)\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nAvval X, keyin Y\nKeyingi ›",
+  "bloklar": [],
+  "html": "ba4db64890ae",
+  "uzun": 20448
+ },
+ "sq-09-0-P4B": {
+  "id": "P4B",
+  "matn": "REJA · 2-BEKAT\n2 · Manzilga boramiz\n\nCoddy\nEndi manzilni blokka qo‘yamiz — men o‘zim boraman.\n\nDars oxirida · o‘z yo‘lingiz\nManzillarni o‘qib berasiz\n✓\nManzilni o‘qiymiz\n2\nManzilga boramiz\n3\nOldindan aytamiz\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "f2472b5ddd0b",
+  "uzun": 40008
+ },
+ "sq-10-0-P7": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\ngo to — manzilga bor\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\ngo to x:\n1\ny:\n3\ngo to x:\n4\ny:\n2\n2 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›",
+  "bloklar": [
+   "x:go to x:1y:3go to x:4y:2",
+   "x:go to x:4y:2"
+  ],
+  "html": "aee0303606b9",
+  "uzun": 35533
+ },
+ "sq-11-0-B2A": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nYulduz (5, 3) da\nQahramoningizni yulduzga olib boring.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nManzilni o‘qing: avval X, keyin Y\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "012c838e515a",
+  "uzun": 22402
+ },
+ "sq-11-1-B2B": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nOlma, keyin yulduz\nOlma (2, 1) da, yulduz (6, 4) da.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nManzilni o‘qing: avval X, keyin Y\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "2b861fde6bb6",
+  "uzun": 22966
+ },
+ "sq-11-2-B2C": {
+  "id": "B2C",
+  "matn": "MASHQ · 3-POG‘ONA\nUch manzil\nOlma (1, 3), olma (5, 1), yulduz (3, 4).\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nManzilni o‘qing: avval X, keyin Y\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "3987ec2235c0",
+  "uzun": 23532
+ },
+ "sq-11-3-B2Y": {
+  "id": "B2Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z yo‘lingiz\nUchta yoki ko‘proq katakni o‘zingiz tanlang.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nManzilni o‘qing: avval X, keyin Y\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "0d07df3ee138",
+  "uzun": 22162
+ },
+ "sq-12-0-P9": {
+  "id": "P9",
+  "matn": "XULOSA\nKoordinata\n\nCoddy\nIkki son — bitta katak. Avval X, keyin Y.\n\nKoordinata\nKatakning manzili\ngo to\nx:\n4\ny:\n2\ngo to\nManzilga bor\n(2, 4)\n(4, 2)\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "3a417f30bf94",
+  "uzun": 36979
+ },
+ "sq-13-0-P4C": {
+  "id": "P4C",
+  "matn": "REJA · 3-BEKAT\n3 · Oldindan aytamiz\n\nCoddy\nOxirgi bekat: dasturni o‘qib, qayerga borishimni ayting.\n\nDars oxirida · o‘z yo‘lingiz\nManzillarni o‘qib berasiz\n✓\nManzilni o‘qiymiz\n✓\nManzilga boramiz\n3\nOldindan aytamiz\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "c5aae51fc7ac",
+  "uzun": 40143
+ },
+ "sq-14-0-P8": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nCoddy qayerda to‘xtaydi?\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nX: 2\nmove right\nX: 3\nmove up\nY: 2\n3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 1)\n‹ Orqaga\n(3, 2) katakni bosing — bayroqcha qo‘yiladi\n▶ Tekshirish\nKeyingi ›",
+  "bloklar": [],
+  "html": "e4a330016dbf",
+  "uzun": 35621
+ },
+ "sq-15-0-B3A": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nTo‘rt blok\nQahramon to‘xtaydigan katakni bosing.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove right\nmove up\nmove right\n4 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 1)\nMaslahat\nDasturni o‘qing: qahramon qayerda to‘xtaydi?\nTekshirish\nKeyingi ›",
+  "bloklar": [],
+  "html": "d8a188a27400",
+  "uzun": 23050
+ },
+ "sq-15-1-B3B": {
+  "id": "B3B",
+  "matn": "MASHQ · 2-POG‘ONA\nPastga ham\nQahramon to‘xtaydigan katakni bosing.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nmove up\nmove up\nmove right\nmove right\nmove right\nmove down\nmove right\n7 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturni o‘qing: qahramon qayerda to‘xtaydi?\nTekshirish\nKeyingi ›",
+  "bloklar": [],
+  "html": "798b5699b325",
+  "uzun": 23744
+ },
+ "sq-15-2-B3C": {
+  "id": "B3C",
+  "matn": "MASHQ · 3-POG‘ONA\ngo to bilan\nQahramon to‘xtaydigan katakni bosing.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\ngo to\nx:\n2\ny:\n3\nmove right\nmove down\nmove right\nmove down\nmove right\n6 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturni o‘qing: qahramon qayerda to‘xtaydi?\nTekshirish\nKeyingi ›",
+  "bloklar": [],
+  "html": "dfaef1c1c058",
+  "uzun": 23701
+ },
+ "sq-15-3-B3Y": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nIkki go to\nQahramon to‘xtaydigan katakni bosing.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\ngo to\nx:\n5\ny:\n4\nmove left\nmove left\nmove left\nmove down\ngo to\nx:\n1\ny:\n0\nmove up\nmove up\nmove right\n9 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturni o‘qing: qahramon qayerda to‘xtaydi?\nTekshirish\nKeyingi ›",
+  "bloklar": [],
+  "html": "93e9d08ddce7",
+  "uzun": 24581
+ },
+ "sq-17-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nSiz manzilni bilasiz!\n\nBulut\nKatakni topdingiz, manzilga bordingiz va oldindan aytdingiz.\n\nSiz bugun\n0\nkatak topdi\n0\nmanzilga bordi\n0\nmarta oldindan aytdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBulut\nKeyingi darsda hodisalar bilan ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "dfea7b6c199b",
+  "uzun": 20897
+ },
+ "sx-P2S-A": {
+  "id": "P2S",
+  "matn": "SAVOL\nYashirin yulduzni qaysi xat bilan topamiz?\n\nCoddy\nUchta xat bor. Qaysi biri bilan yulduzni topamiz?\n\nA\nYulduz daraxt yonida\n✕ 3 ta katak\nB\nYulduz pastki qatorda\n▶ Sinab ko‘rish\nC\nYulduz: o‘ngga 4, tepaga 2\n▶ Sinab ko‘rish\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nQaysi biri?\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "7ed15da17778",
+  "uzun": 35513
+ },
+ "sx-P2S-B": {
+  "id": "P2S",
+  "matn": "SAVOL\nYashirin yulduzni qaysi xat bilan topamiz?\n\nCoddy\nUchta xat bor. Qaysi biri bilan yulduzni topamiz?\n\nA\nYulduz daraxt yonida\n✕ 3 ta katak\nB\nYulduz pastki qatorda\n✕ 7 ta katak\nC\nYulduz: o‘ngga 4, tepaga 2\n▶ Sinab ko‘rish\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nQaysi biri?\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "fcf5f65eda48",
+  "uzun": 35577
+ },
+ "sx-P2S-C": {
+  "id": "P2S",
+  "matn": "SAVOL\nYashirin yulduzni qaysi xat bilan topamiz?\n\nCoddy\nUchta xat bor. Qaysi biri bilan yulduzni topamiz?\n\nA\nYulduz daraxt yonida\n✕ 3 ta katak\nB\nYulduz pastki qatorda\n✕ 7 ta katak\nC\nYulduz: o‘ngga 4, tepaga 2\n✓ bitta katak\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 2)\nQaysi biri?\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "82b7be40c1b1",
+  "uzun": 36847
+ },
+ "y-01": {
+  "id": "P1",
+  "matn": "USTOZ · PROYEKTOR\n3-DARS · X VA Y\nBugun katakning manzilini bilib olamiz!\n\nCoddy\nSalom! Bugun meni aytilgan katakka olib borasiz.\n\nO‘TGAN DARSDA\nmove right\nmove up\nmove right\nKetma-ketlik\nBuyruqlar tartibi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKirdi: 1\nKeyingi ›\nO‘QUVCHI · NOUTBUK\n3-DARS · X VA Y\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "820838938ada",
+  "uzun": 87617
+ },
+ "y-02": {
+  "id": "P2",
+  "matn": "USTOZ · PROYEKTOR\n3-DARS · X VA Y\nSAVOL\nYashirin yulduzni qaysi xat bilan topamiz?\n\nCoddy\nUchta xat bor. Qaysi biri bilan yulduzni topamiz?\n\nA\nYulduz daraxt yonida\nB\nYulduz pastki qatorda\nC\nYulduz: o‘ngga 4, tepaga 2\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nJavob berdi: 0 / 1\nSinab ko‘ramiz ›\nO‘QUVCHI · NOUTBUK\n3-DARS · X VA Y\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "9cc78a08772a",
+  "uzun": 89169
+ },
+ "y-03": {
+  "id": "P2S",
+  "matn": "USTOZ · PROYEKTOR\nSAVOL\nYashirin yulduzni qaysi xat bilan topamiz?\n\nCoddy\nUchta xat bor. Qaysi biri bilan yulduzni topamiz?\n\nA\nYulduz daraxt yonida\nB\nYulduz pastki qatorda\nC\nYulduz: o‘ngga 4, tepaga 2\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "c88f27429b49",
+  "uzun": 89188
+ },
+ "y-04": {
+  "id": "P2C",
+  "matn": "USTOZ · PROYEKTOR\nJAVOB\nIkki son — bitta katak\n\nCoddy\nO‘ngga nechta, tepaga nechta — shu ikki son yetadi.\n\nA\nYulduz daraxt yonida\n✕ 3 ta katak\nB\nYulduz pastki qatorda\n✕ 7 ta katak\nC\nYulduz: o‘ngga 4, tepaga 2\n✓ bitta katak\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 2)\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a5db3d321d1f",
+  "uzun": 89650
+ },
+ "y-05": {
+  "id": "P3",
+  "matn": "USTOZ · PROYEKTOR\nYANGI SO‘Z\nKoordinata nima?\n\nCoddy\nKoordinata — katakning manzili: X va Y.\n\nX — chap chetdan o‘ngga necha katak\n0\n1\n2\n3\n4\n5\n6\n→\n\nY — pastdan tepaga necha katak\n0\n1\n2\n3\n4\n↑\n\nAvval X, keyin Y\n\n(4, 2)\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "823b9446883f",
+  "uzun": 87965
+ },
+ "y-06": {
+  "id": "P4",
+  "matn": "USTOZ · PROYEKTOR\nREJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Birinchisidan boshlaymiz.\n\nDars oxirida · o‘z yo‘lingiz\nManzillarni o‘qib berasiz\n1\nManzilni o‘qiymiz\n2\nManzilga boramiz\n3\nOldindan aytamiz\n‹ Orqaga\nBoshladik ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "d885b22493b2",
+  "uzun": 94282
+ },
+ "y-07": {
+  "id": "P6",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nCoddy qayerda?\n\nCoddy\nAvval X, keyin Y.\n\nX = 3\n0\n1\n2\n3\n4\n5\n6\n→\n\nY = 1\n0\n1\n2\n3\n4\n↑\n\nManzil — (3, 1)\n\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 1)\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "b0eff5831a5e",
+  "uzun": 87188
+ },
+ "y-08": {
+  "id": "P5",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nEndi o‘zingiz!\n\nCoddy\nManzilni o‘qing va o‘sha katakni bosing.\n\nUch katakni topdi\n0 / 1\nHar belgi — uch katakni topgan bitta bola\n1\n0\nPastki qator\n2\n0\nChap ustun\n3\n0\nIstalgan katak\n★\n0\nIkki o‘xshash manzil\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "c289525cf813",
+  "uzun": 89922
+ },
+ "y-09": {
+  "id": "P4B",
+  "matn": "USTOZ · PROYEKTOR\nREJA · 2-BEKAT\n2 · Manzilga boramiz\n\nCoddy\nEndi manzilni blokka qo‘yamiz — men o‘zim boraman.\n\nDars oxirida · o‘z yo‘lingiz\nManzillarni o‘qib berasiz\n✓\nManzilni o‘qiymiz\n2\nManzilga boramiz\n3\nOldindan aytamiz\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "be505dccacbe",
+  "uzun": 94000
+ },
+ "y-10": {
+  "id": "P7",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\ngo to — manzilga bor\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "74f996e15883",
+  "uzun": 89534
+ },
+ "y-11": {
+  "id": "P5G",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nManzilga boring!\n\nCoddy\nManzilni blokka qo‘ying — qahramon o‘zi sakraydi.\n\nUch pog‘onani tugatdi\n0 / 1\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nBitta manzil\n2\n0\nIkki manzil\n3\n0\nUch manzil\n★\n0\nO‘z yo‘lingiz\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "7a113345aabf",
+  "uzun": 90114
+ },
+ "y-12": {
+  "id": "P9",
+  "matn": "USTOZ · PROYEKTOR\nXULOSA\nKoordinata\n\nCoddy\nIkki son — bitta katak. Avval X, keyin Y.\n\nKoordinata\nKatakning manzili\ngo to\nx:\n4\ny:\n2\ngo to\nManzilga bor\n(2, 4)\n(4, 2)\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "21c4f0920679",
+  "uzun": 90971
+ },
+ "y-13": {
+  "id": "P4C",
+  "matn": "USTOZ · PROYEKTOR\nREJA · 3-BEKAT\n3 · Oldindan aytamiz\n\nCoddy\nOxirgi bekat: dasturni o‘qib, qayerga borishimni ayting.\n\nDars oxirida · o‘z yo‘lingiz\nManzillarni o‘qib berasiz\n✓\nManzilni o‘qiymiz\n✓\nManzilga boramiz\n3\nOldindan aytamiz\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "93b73b174291",
+  "uzun": 94135
+ },
+ "y-14": {
+  "id": "P8",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nCoddy qayerda to‘xtaydi?\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nX: 2\nmove right\nX: 3\nmove up\nY: 2\n3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 1)\n‹ Orqaga\n▶ Tekshirish\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "5034a66cb801",
+  "uzun": 89561
+ },
+ "y-15": {
+  "id": "P5B",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nOldindan ayting!\n\nCoddy\nDasturni o‘qing, bayroqchani qo‘ying, keyin tekshiring.\n\nUch marta oldindan aytdi\n0 / 1\n1\n0\nTo‘rt blok\n2\n0\nPastga ham\n3\n0\ngo to bilan\n★\n0\nIkki go to\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "c4cfa94b3d12",
+  "uzun": 89522
+ },
+ "y-16": {
+  "id": "P11",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RSATISH\nManzillarni o‘qib bering\nSiz manzilni aytasiz — men o‘sha katakka sakrayman.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "12e56b90e60b",
+  "uzun": 88812
+ },
+ "y-17": {
+  "id": "P12",
+  "matn": "USTOZ · PROYEKTOR\nYAKUN\nSiz manzilni bilasiz!\nBUGUNGI SO‘Z\nKoordinata\nKatakning manzili\nKeyingi dars\n4 · Hodisalar\n✓\nManzilni o‘qiymiz\n✓\nManzilga boramiz\n✓\nOldindan aytamiz\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "78fbff1ccd26",
+  "uzun": 83418
+ },
+ "y-18": {
+  "id": "P14",
+  "matn": "USTOZ · PROYEKTOR\nSINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nkatak topdi\n0\nmanzilga bordi\n0\nmarta oldindan aytdi\n‹ Orqaga\nDarsni yakunlash\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "ebe104c30e71",
+  "uzun": 92808
+ },
+ "varaq": {
+  "id": "",
+  "matn": "3-dars · X va Y — ustoz varag‘i\n\nAsosiy fikr: ikki son — bitta katak; avval X, keyin Y. Hukda, xulosada va ★ masalalarda (sonlar almashsa — boshqa katak) chiqadi.\n\nYo‘l: huk (uchta xat va uch sinov) → yangi so‘z «koordinata» → reja → 1-bekat «Manzilni o‘qiymiz» → 2-bekat «Manzilga boramiz» → 3-bekat «Oldindan aytamiz» → o‘qib berish → yakun.\n\nYangi blok: go to x: y: — X va Y ga bor. U ham ko‘k — harakat. Birinchi chiqqanda bir marta ayting; sonni bosib tanlashni sekin, ikki marta ko‘rsating. X ni «iks», Y ni «igrek» deb o‘qing; ekranda faqat harf.\n\nDarsda savol bitta — boshidagi huk. 3-bekatdagi «oldindan aytish» — har bolaning o‘z topshirig‘i (bayroqcha qo‘yadi va o‘zi tekshiradi), sinfga savol emas.\n\nDemoda: hukdagi raqamlar haqiqiy (kirdi, javob berdi). Doskalardagi raqamlar — bolalar bajargani bo‘yicha. go to blokidagi sonni bosing — ro‘yxatdan tanlanadi.\n\nBoshqaruv: → yoki «Keyingi» — oldinga, ← — orqaga, F — to‘liq ekran. O‘ng tepada (sichqoncha olib borilsa) — qadam ro‘yxati va «aloqa» belgisi (yashil — ulangan).\n\n1\nKirish\n\nEKRANDA\n«3-dars · X va Y» — «Bugun katakning manzilini bilib olamiz!» Maydon, ostida va chapida sonlar, Coddy (0, 0) da. Pastda «O‘tgan darsda»: ketma-ketlik. «Kirdi» — haqiqiy son.\n\nSIZ\n«O‘tgan darsda labirintdan chiqdik. Bloklar tartibi — ketma-ketlik.» «Bugun har katakning manzili borligini bilib olamiz.» «Noutbukda «Tayyorman» tugmasini bosing.»\n\nBOLA O‘RGANADI\nO‘tgan darsni eslaydi: ketma-ketlik.\n\n2\nSavol\n\nEKRANDA\nSavol: «Yashirin yulduzni qaysi xat bilan topamiz?» Uchta xat: A «Yulduz daraxt yonida», B «Yulduz pastki qatorda», C «Yulduz: o‘ngga 4, tepaga 2». Kartada — nechta bola tanlagani.\n\nSIZ\n«Do‘stimiz yulduzni bog‘ga yashirdi va uchta xat qoldirdi.» «Har kim noutbukida bitta xatni tanlasin: qaysi biri bilan yulduzni aniq topamiz?» Xatlarni ovoz chiqarib o‘qing.\n\nBOLA O‘RGANADI\nTaxmin qiladi. Hali hech narsa o‘rgatilmaydi — bu huk.\n\n3\nUch sinov\n\nEKRANDA\nUch sinov: A o‘zi boshlanadi — daraxtlar yonidagi uchta katak yonadi («✕ 3 ta katak»). «Keyingi» — B: pastki qatordagi yettita katak («✕ 7 ta katak»). Yana «Keyingi» — C: Coddy o‘ngga 4, tepaga 2 yuradi, yulduz chiqadi («✓ bitta katak»).\n\nSIZ\n«Kuzating: qaysi xat bitta katakni ko‘rsatadi?» «Ikkita son — o‘ngga 4, tepaga 2 — bitta katakni aytdi.» A da «qaysi daraxt?» deb so‘rang, B da «qatorning qaysi katagi?».\n\nBOLA O‘RGANADI\nO‘z taxmini sinalganini ko‘radi: aniq manzil — ikki son.\n\n4\nJavob: ikki son\n\nEKRANDA\nJavob: «Ikki son — bitta katak». A va B xira, C oltin; Coddy yulduzda, oltin iz: to‘rt katak o‘ngga, ikki katak tepaga.\n\nSIZ\n«Daraxt ham, qator ham ko‘p. Ikkita son esa bitta katakni aytadi.» «Avval o‘ngga necha katak, keyin tepaga necha katak.»\n\nBOLA O‘RGANADI\nIkki son bitta katakni aniq aytadi.\n\n5\nYangi so‘z: koordinata\n\nEKRANDA\nYangi so‘z: «Koordinata — katakning manzili: X va Y». «Keyingi» — X qatori, Y ustuni, keyin (4, 2) katagi birma-bir yonadi.\n\nSIZ\n«Keyingi»ni bosasiz (uch marta), uchinchisidan keyin «Keyingi» — keyingi qadam. «Koordinata — katakning manzili. Unda ikkita son bor: X va Y.» «X — o‘ngga necha katak. Y — tepaga necha katak. Avval X, keyin Y.» Misol: kinoteatrda «5-qator, 7-o‘rin». X ni «iks», Y ni «igrek» deb o‘qing.\n\nBOLA O‘RGANADI\nYangi so‘z: koordinata — katakning manzili, X va Y.\n\n6\nReja\n\nEKRANDA\nReja: «Bugun nima qilamiz?» Tepalik: manzilni o‘qiymiz → manzilga boramiz → oldindan aytamiz; cho‘qqida — «Manzillarni o‘qib berasiz».\n\nSIZ\n«Bugun uchta bekat: manzilni o‘qiymiz, manzilga boramiz, oldindan aytamiz.» «Dars oxirida o‘z yo‘lingizning manzillarini sinfga o‘qib berasiz.»\n\nBOLA O‘RGANADI\nDars qayerga borishini biladi.\n\n7\nKo‘ramiz: manzilni o‘qiymiz\n\nEKRANDA\nKo‘ramiz: «Coddy qayerda?» Coddy (3, 1) da. «Keyingi» — ustun X gacha yonadi («X = 3»), qator Y gacha («Y = 1»), keyin yorliq «(3, 1)».\n\nSIZ\n«Keyingi»ni bosasiz (uch marta). «Avval X: Coddy’ning ostidagi son — 3.» «Keyin Y: chapdagi son — 1. Manzil — 3 va 1.» «Endi o‘zingiz.» X va Y almashsa (1, 3) — boshqa katak ekanini ko‘rsating.\n\nBOLA O‘RGANADI\nKatakning manzilini o‘qiydi: avval X, keyin Y.\n\n8\nManzilni o‘qiymiz\n\nEKRANDA\nMashq: «Endi o‘zingiz!» — uch katakni topganlar soni va zinapoya: 1 pastki qator · 2 chap ustun · 3 istalgan katak · ★ ikki o‘xshash manzil. Pastda — «Yordam so‘radi».\n\nSIZ\n«Endi o‘zingiz: manzilni o‘qing va o‘sha katakni bosing.» «Avval X — pastdagi sonlar, keyin Y — chapdagi sonlar.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.» Javobni aytmang — «X qayerda? Y qayerda?» deb so‘rang.\n\nBOLA O‘RGANADI\nManzilni o‘qib, katakni o‘zi topadi.\n\n9\n2-bekat\n\nEKRANDA\nTepalik: 1-bekat ✓, Coddy 2-bekatda — «Manzilga boramiz».\n\nSIZ\n«Manzilni o‘qishni bilib oldik. Endi — qahramonni manzilga olib boramiz.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini ko‘radi.\n\n10\nKo‘ramiz: go to bloki\n\nEKRANDA\nKo‘ramiz: «go to — manzilga bor». Javonda yangi blok go to x: 0 y: 0 va to‘rtta move; yulduz (4, 2) da, olma (1, 3) da, Coddy (0, 0) da, dastur bo‘sh.\n\nSIZ\ngo to blokini qo‘shasiz; X sonini bosasiz — ro‘yxatdan «4», Y — «2»; «▶ Ishga tushir»: Coddy bitta sakrash bilan yulduzga. Keyin dasturning boshiga go to x: 1 y: 3 (blokni qo‘shib, joyini almashtirasiz) — Coddy avval olmaga, keyin yulduzga. «go to — manzilga bor. Blokka X va Y ni qo‘yamiz — qahramon o‘sha katakka sakraydi.» «Ikki blok — ikki manzil. Coddy ularni tartib bilan bosib o‘tadi.» «Endi o‘zingiz.»\n\nBOLA O‘RGANADI\ngo to qahramonni aytilgan katakka bir sakrashda olib boradi.\n\n11\nManzilga boramiz\n\nEKRANDA\nMashq: «Manzilga boring!» — uch pog‘onani tugatganlar soni va zinapoya: 1 bitta manzil · 2 ikki manzil · 3 uch manzil · ★ o‘z yo‘lingiz.\n\nSIZ\n«Har pog‘onada manzil yozilgan. Uni go to blokiga qo‘ying.» «Bir nechta manzil bo‘lsa — tartib bilan: avval olma, keyin yulduz.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.» So‘rang: «Blokdagi X qaysi? Y qaysi?»; ★ da «Yo‘lingiz qanday rasm chizadi?».\n\nBOLA O‘RGANADI\nManzilni go to blokiga qo‘yib, qahramonni olib boradi; o‘z yo‘lini tuzadi.\n\n12\nXulosa: koordinata\n\nEKRANDA\nXulosa: «Koordinata». Ikki karta: «Koordinata — Katakning manzili» va «go to — Manzilga bor»; maydonda (2, 4) va (4, 2).\n\nSIZ\n«Koordinata — katakning manzili: X va Y.» «Sonlar bir xil bo‘lsa ham, tartibi boshqa bo‘lsa — katak boshqa.» Ikki-uch boladan ★ dagi yo‘li qanday shakl chizganini so‘rang.\n\nBOLA O‘RGANADI\nKoordinata va go to; sonlar tartibi muhim.\n\n13\n3-bekat\n\nEKRANDA\nTepalik: 1, 2 ✓, Coddy 3-bekatda — «Oldindan aytamiz».\n\nSIZ\n«Ikki bekatdan o‘tdik. Oxirgisi — oldindan aytamiz.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini ko‘radi.\n\n14\nKo‘ramiz: oldindan aytamiz\n\nEKRANDA\nKo‘ramiz: «Coddy qayerda to‘xtaydi?» Coddy (1, 1) da, dastur: move right, move right, move up. «Keyingi» — har blok yonida sanoq: X: 2, X: 3, Y: 2.\n\nSIZ\n«Keyingi»ni bosasiz (uch marta), keyin (3, 2) katakni bosasiz — bayroqcha qo‘yiladi, «▶ Tekshirish» — Coddy bayroqchada to‘xtaydi. «Har move right — X ga bitta. Har move up — Y ga bitta.» «Dasturni o‘qib, qayerda to‘xtashini oldindan aytsa bo‘ladi.» «Endi o‘zingiz: bayroqchani qo‘ying, keyin tekshiring.»\n\nBOLA O‘RGANADI\nDasturni o‘qib, qahramon qayerda to‘xtashini sanaydi.\n\n15\nOldindan aytamiz\n\nEKRANDA\nMashq: «Oldindan ayting!» — uch marta oldindan aytganlar soni va zinapoya: 1 to‘rt blok · 2 pastga ham · 3 go to bilan · ★ ikki go to.\n\nSIZ\n«Dasturni yuqoridan pastga o‘qing va sanang: X qancha, Y qancha.» «Bayroqchani qo‘ying, keyin «Tekshirish»ni bosing.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.» So‘rang: «go to dan keyin sanashni qaysi katakdan boshlaysiz?»; ★ da «birinchi to‘rt blok kerakmi?».\n\nBOLA O‘RGANADI\nNatijani oldindan aytadi va o‘zi tekshiradi.\n\n16\nManzillarni o‘qib bering\n\nEKRANDA\n«Manzillarni o‘qib bering». Maydon, dastur bo‘sh. Proyektorda ism yo‘q; bolalar noutbukida — o‘z ekrani (o‘zgarmaydi).\n\nSIZ\nBola o‘rnidan manzillarni o‘qiydi («X 2, Y 4; X 5, Y 1…») — siz har biriga go to qo‘shib sonlarni tanlaysiz, keyin «▶ Ishga tushir». Ikki-uch bola; X va Y almashib qolsa — shakl boshqacha chiqadi, sinf bilan tuzatasiz. «Kim yo‘lining manzillarini o‘qib beradi? Avval X, keyin Y.» «Kuzating: Coddy aytilgan kataklarga sakraydi.»\n\nBOLA O‘RGANADI\nManzillarni o‘qiydi: avval X, keyin Y.\n\n17\nYakun\n\nEKRANDA\nYakun: «Siz manzilni bilasiz!» Bugungi so‘z — koordinata; uchala bekat ✓; keyingi dars — 4 · Hodisalar.\n\nSIZ\n«Uchala bekatdan o‘tdik: manzilni o‘qidik, manzilga bordik, oldindan aytdik.» «Bugungi so‘z — koordinata: katakning manzili, X va Y.» «Keyingi darsda qahramon strelka tugmalari bilan yuradi.» Bolalar noutbukida — o‘z natijasi (ekranga chiqmaydi).\n\nBOLA O‘RGANADI\nBugungi so‘zni eslaydi; keyingi darsni biladi.\n\n18\nSinfimiz bugun\n\nEKRANDA\nSinfimiz bugun: butun sinf nechta katak topdi, manzilga bordi va oldindan aytdi (haqiqiy son, ismsiz); o‘ngda bolalar qahramonlari.\n\nSIZ\n«Hammangiz zo‘r ishladingiz!» Raqamlarni o‘qing. «Ikki son bilan istalgan katakni aytsa bo‘ladi. O‘yinlarda ham, saytlarda ham shunday.» «Darsni yakunlash»ni bossangiz — hammada «Dars tugadi» chiqadi.\n\nBOLA O‘RGANADI\nJamoa bo‘lib nimaga erishganini ko‘radi.",
+  "bloklar": [],
+  "html": "c9065df2fc00",
+  "uzun": 10602
+ },
+ "eshik": {
+  "id": "",
+  "matn": "3-dars · X va Y\n\nQaysi oynani ochamiz?\n\nO‘quvchi oynasi\nUstoz oynasi (proyektor)\nO‘quvchi — o‘zi (ustozsiz)\nIkkalasi yonma-yon (ko‘rik)\nUstoz varag‘i",
+  "bloklar": [],
+  "html": "8cee85bc6c06",
+  "uzun": 761
+ },
+ "kirish-ismsiz": {
+  "id": "",
+  "matn": "Darsga kirish\n\nIsmingizni yozing\n\nKirish",
+  "bloklar": [],
+  "html": "bb43a0750caa",
+  "uzun": 213
+ }
+}

@@ -1,0 +1,107 @@
+/* 2-dars «Labirint» — ekranlarga xos uslub (dvigatel 5b-2, 19.11). yigish.mjs: «dars» qismi dars uslubi oxiriga, «qobiq» qismi qobiq uslubi oxiriga.
+   Dars uslubi blok oxirida turadi — teng kuchdagi umumiy qoidadan doim ustun. Izohga backtik yozilmaydi. */
+/* == dars == */
+/* sarlavha ikki qatorgacha: huk va javob ekranlari, kirish, yangi so'z, yakun (1-darsdagidek — har ekranga alohida) */
+.e-P1 .sar,.e-P2 .sar,.e-P2N .sar,.e-P2S .sar,.e-P2C .sar,.e-B5 .sar{white-space:normal}
+
+/* kirish: «O'tgan darsda» — blok va dastur (1-darsning xulosa kartalari) */
+.otd{flex:1;min-height:0;display:flex;flex-direction:column;gap:.7cqw;margin-top:auto}
+.otd > small{font:700 1.1cqw/1 var(--f-kod);letter-spacing:.06em;text-transform:uppercase;color:#5A5A60}
+.e-P1 .chap{gap:1cqw}
+
+/* huk: uchta dastur kartasi yonma-yon — harf, qisqa gap, kichik dastur (yuqoridan pastga) */
+.jv.dkv{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1cqw;margin-top:auto;flex:1;min-height:0;align-items:stretch;background:none;box-shadow:none;border:0;padding:0}
+.dkv .jk{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:.6cqw;margin:0;padding:.8cqw .6cqw .9cqw;background:#fff;border:.2cqw solid transparent;border-radius:1.2cqw;box-shadow:0 .2cqw .9cqw rgba(58,53,48,.12);white-space:normal;font:600 1.2cqw/1.2 var(--f-matn);color:#0D2137;opacity:1;cursor:pointer;transition:transform .25s ease,box-shadow .25s ease,opacity .25s ease}
+.dkv .jt{display:flex;flex-direction:column;align-items:center;gap:.35cqw;text-align:center;text-wrap:balance}
+.dkv .jt > span{display:flex;flex-direction:column;align-items:center;gap:.45cqw}
+.dkv .jt b{display:grid;place-items:center;width:2.5cqw;height:2.5cqw;margin:0;border-radius:.7cqw;color:#fff;font:800 1.45cqw/1 var(--f-kod);box-shadow:inset 0 -.22cqw 0 rgba(0,0,0,.15)}
+.dkv .c1 .jt b{background:#3FA2FF}
+.dkv .c2 .jt b{background:#FF7A59}
+.dkv .c3 .jt b{background:#9A7BFF}
+.dkv .jr-s{right:-.6cqw;top:-.6cqw;bottom:auto}
+.dkv .jk.tanlandi{border-color:#0D2137;box-shadow:0 0 0 .2cqw #0D2137}
+.dkv .jk.sinov{border-color:#FF4F28;box-shadow:0 0 0 .2cqw #FF4F28,0 .8cqw 2cqw -.6cqw rgba(255,79,40,.45);transform:scale(1.05);z-index:2}
+.dkv .jk.n-yoq{filter:opacity(.6) saturate(.6)}
+.dkv .jk.n-yoq .jt b{background:#A7ABB4}
+.dkv .jk.n-ok{background:#FFF7DD;border-color:#F5B82E;box-shadow:0 0 0 .2cqw #F5B82E}
+.dkv .jn{font:800 1.15cqw/1.2 var(--f-matn)}
+.dkv .jk.n-yoq .jn{color:#C7381A}
+.dkv .jk.n-ok .jn{color:#8A6A0C}
+.dkv .hk-sinab{font-size:1.05cqw;margin-top:.2cqw}
+
+/* javob ekrani: har kartada natija qatori bor — bloklar orasi qisqaroq, ostidagi joy sig'sin */
+.e-P2C .chap{gap:1cqw}
+.e-P2C .dkv .jk{gap:.45cqw;padding-block:.7cqw .8cqw}
+.e-P2C .dk{gap:.2cqw}
+.e-P2C .dk:not(.nomli) .mb{height:1.7cqw}
+
+/* kichik dastur: har blok — ko'k katakcha, ichida yo'nalish strelkasi; yuqoridan pastga */
+.dk{display:flex;flex-direction:column;align-items:center;gap:.25cqw}
+.dk:not(.nomli) .mb{margin:0;width:4cqw;min-width:0;max-width:none;height:1.85cqw;padding:0;justify-content:center;clip-path:none;border-radius:.5cqw;box-shadow:inset 0 -.2cqw 0 rgba(0,0,0,.18);transition:box-shadow .2s ease}
+.dk:not(.nomli) .mb svg{width:1.3cqw;height:1.3cqw}
+.dk .mb.hozir{box-shadow:0 0 0 .3cqw #FFD54A,0 0 1cqw rgba(255,213,74,.8)}
+.dk .mb.yon{--c:#64B4FF}
+.dk .mb.urildi{--c:#2F8FF0;box-shadow:0 0 0 .3cqw #FFD54A,0 0 1cqw rgba(255,213,74,.8)}
+.dk.gor{flex-direction:row;gap:.3cqw}
+.dk.gor .mb{width:2.6cqw;height:2.6cqw}
+.dk .dk-n{position:absolute;display:grid;place-items:center;width:1.7cqw;height:1.7cqw;border-radius:50%;background:#fff;color:#0D2137;font:800 1cqw/1 var(--f-kod);box-shadow:0 .1cqw .4cqw rgba(13,33,55,.3)}
+.dk.gor .dk-n{top:-.9cqw;left:50%;transform:translateX(-50%)}
+.dk.gor{padding-top:.9cqw}
+
+/* yangi so'z: C dasturi — haqiqiy bloklar, chapida raqam (bitta qatorda); «Keyingi» bosilganda raqam yonadi (blok va labirint katagi birga) */
+.dk.nomli{align-items:stretch;gap:0;margin-top:auto;filter:drop-shadow(0 .2cqw 0 rgba(13,33,55,.28))}
+.dk.nomli .dk-q{display:flex;align-items:center;gap:1cqw}
+.dk.nomli .dk-q + .dk-q{margin-top:-.45cqw}
+.dk.nomli .mb{position:relative;margin:0;min-width:17cqw;width:auto;font-size:1.7cqw;padding:1.12cqw 1.4cqw 1.52cqw;gap:.7cqw;clip-path:none;border-radius:.45cqw}
+.dk.nomli .mb svg{width:1.8cqw;height:1.8cqw}
+.dk.nomli .dk-n{position:static;flex:none;width:2.6cqw;height:2.6cqw;font-size:1.4cqw;background:#E7E4DC;color:#8A8578;box-shadow:none;transition:background .25s,color .25s}
+.dk.nomli .dk-q.on .dk-n{background:#F5B82E;color:#0D2137;box-shadow:0 0 0 .25cqw #FFE7A3}
+.dk.nomli .dk-q.on .mb{box-shadow:inset 0 0 0 .32cqw #FFD54A}
+/* bloklar ostidagi izoh (1-dars P3 dagidek) */
+.e-P3 .izq{margin:0;font-size:1.5cqw;color:#4A4A50}
+.kt-rq circle{fill:#fff;stroke:#D8C8A2;stroke-width:3;transition:fill .25s,stroke .25s}
+.kt-rq text{font:800 26px/1 var(--f-kod);fill:#A89C82;text-anchor:middle;transition:fill .25s}
+.kt-rq.on circle{fill:#F5B82E;stroke:#C98A0E}
+.kt-rq.on text{fill:#0D2137}
+
+/* xulosa: ikki karta */
+.e-P9 .tf{grid-template-columns:auto minmax(0,1fr)}
+.e-P9 .tf-r{padding:.6cqw .8cqw}
+.e-P9 .dk.gor .mb{width:2.2cqw;height:2.2cqw}
+.e-P9 .dk.gor .mb svg{width:1.2cqw;height:1.2cqw}
+.e-P9 .chap{gap:1cqw}
+
+/* reja: bekat nomi uzun — panel kengroq, sarlavha bir qatorda (1-dars P4 dagidek) */
+.e-P4B .pan,.e-P4C .pan{width:auto;max-width:62%}
+.e-P4B .sar,.e-P4C .sar{white-space:nowrap}
+
+/* doskalar: zinapoyadagi uzun nom ikki qatorga (2-bekat) */
+.e-P5X .pg-m{white-space:normal;text-wrap:balance}
+/* doskalar: katta son ostida izoh yo'q (manbada faqat 8-qadamda) — son kattaroq, ustun bo'sh qolmasin */
+.e-P5X .tugatdi > b,.e-P5K .tugatdi > b{font-size:10.2cqw}
+
+/* zinapoya kartalaridagi kichik labirint */
+.pg-k .mk{width:100%;height:auto;max-height:6.4cqw;display:block}
+.kd3-r.lb2{background:#EAF6E2}
+.kd3-r.lb2 > svg{inset:8%;width:84%;height:84%}
+
+/* yakun: bugungi so'z */
+.e-P8 .pan{padding:1.4cqw 2cqw;gap:.8cqw}
+.bsoz{font:700 1.1cqw/1 var(--f-kod);letter-spacing:.06em;text-transform:uppercase;color:#5A5A60}
+
+/* bolaning natijasi: uch son yotiq kartalarda (1-dars B5 dagidek), qahramon labirint chiqishida — tepada karta, labirint pastda */
+.e-B5 .chap{gap:.8cqw}
+.e-B5 .st-s{margin-top:auto}
+/* uch son — bitta ustunda, yotiq kartalar (ikki ustunda uchinchisining yonida bo'sh joy qolardi) */
+.e-B5 .sn,.e-P14 .sn{grid-template-columns:1fr;gap:.9cqw;margin-top:0}
+.e-P14 .sn{margin-top:auto}
+.e-B5 .sn-t,.e-P14 .sn-t{flex-direction:row;align-items:center;gap:1.4cqw;padding:1.8cqw 1.6cqw}
+.e-P14 .sn-t{padding-block:2.4cqw}
+.e-P14 .sn-t b{font-size:4.8cqw}
+.e-B5 .sn-t span,.e-P14 .sn-t span{flex-direction:row;align-items:baseline;gap:1cqw}
+.e-B5 .sn-t i,.e-P14 .sn-t i{width:3.8cqw;height:3.8cqw}
+.e-B5 .sn-t b,.e-P14 .sn-t b{font-size:4.2cqw}
+.e-B5 .sn-t small,.e-P14 .sn-t small{font-size:1.7cqw}
+.e-B5 .oyna{background:linear-gradient(#A9DE86,#86CB6C)}
+.e-B5 .oyna > .katak{top:30%}
+/* == qobiq == */

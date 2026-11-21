@@ -1,0 +1,98 @@
+// 7-dars «Kostyum, animatsiya va tovush» ekranlari (E) — 20.11. Matn manbasi: new-junior/manba/007-kostyum-tovush.md (qo'shtirnoq ichidagi gaplar — aynan).
+// Studiya: 1–2-bekat — javonda Ko'rinish, Harakat, Takrorlash (Hodisa va Tovush yashirin), «▶ Ishga tushir»; 3-bekat — o'yin: Hodisa, Harakat, Ko'rinish, Tovush, «▶ Boshlash».
+// Maydonda qahramonning to'rt kostyumi oldindan chizilgan (katak.js o.kostyum), ko'rinadigani almashadi (sahna.js kostyumKor).
+const xyQator = (q) => `<div class="xyl">${q.map(([r, t]) => `<div class="xq" data-r="${r}">${t}</div>`).join('')}</div>`
+const st = (o) => studiya({ aktiv: 'v', dunyo: null, holat: { e: 'yoq', t: 'yoq' }, ...o })
+const stO = (o) => studiya({ aktiv: 'e', dunyo: null, holat: { b: 'yoq' }, ...o })
+const fO = (hint) => fB({ hint, label: `${PLAY}Boshlash` })
+const qg = (gap) => `<div class="cg qg"><span class="av">${momiqYuz()}</span><p><small>Momiq</small>${gap}</p></div>`
+const doska = (sar, cg, son, zinaR, kichik = 'Uch pog‘onani tugatdi', iz = '') => `<div class="chap">${matn('Mashq', sar, cg)}<div class="tugatdi"><small>${kichik}</small><b>${son}<i> / 14</i></b>${yulduzlar14(son)}${iz ? `<span class="tg-iz">${iz}</span>` : ''}</div></div><div class="oyna">${world('hovli')}${zina(zinaR)}</div>`
+const B1H = 'Dasturni tuzing, keyin ▶ Ishga tushir', B3H = 'Dasturcha tuzing, keyin ▶ Boshlash'
+const bol = (tag, h, iz, id, hint = B1H, o = {}) => ({ body: () => st({ tag, h, iz, prog: o.prog || [], yuz: momiqYuz(), sahna: maydonQ(T7[id]) + (o.an ? anYz(o.an) : '') }), foot: () => fB({ hint }) })
+const bolO = (tag, h, iz, id) => ({ body: () => stO({ tag, h, iz, prog: [], yuz: momiqYuz(), sahna: maydonQ(T7[id]) }), foot: () => fO(B3H) })
+const E = {
+  P1: { rol: 'p', b: 0, t: 't1', nom: 'Kirish', izoh: '1-qadam. Maydon, Coddy (0, 0) da; pastda «O‘tgan darslarda» — takrorlash.',
+    body: () => `<div class="chap">${matn('', 'Bugun qahramonni <em>jonlantiramiz</em>!', 'Salom! Bugun meni jonlantirasiz — qo‘l silkitaman va ovoz chiqaraman.')}<div class="otd"><small>O‘tgan darslarda</small><div class="tf-l"><div class="tf"><div class="tf-r">${takror('4', ['r'])}</div><div class="tf-t"><b>Takrorlash</b><span>Bir ishni ko‘p marta bajarish</span></div></div></div></div></div><div class="oyna">${maydonC({})}</div>`,
+    foot: () => fU('Kirdi: 12 / 14', 'Keyingi ›') },
+  P2: { rol: 'p', b: 0, t: 't1', nom: 'Savol', izoh: '2-qadam. Coddy (3, 2) da, ikki kostyum: qo‘llar pastda va tepada.',
+    body: () => `<div class="chap">${matn('Savol', DARS.savol, 'Mana ikkita kostyumim. Ular bilan qanday qo‘l silkitamiz?')}${tKartalar({ son: SONI })}</div><div class="oyna">${maydonC(HUK_M)}${ikkiKos()}</div>`,
+    foot: () => fU('Javob berdi: 14 / 14', 'Sinab ko‘ramiz ›') },
+  P2N: { rol: 'b', b: 0, t: 't1', nom: 'Savol (noutbukda)', izoh: '2-qadam, bola.',
+    body: () => `<div class="chap">${matn('Savol', DARS.savol, 'Qaysi yo‘l bilan qo‘l silkitaman?')}${tKartalar()}</div><div class="oyna">${maydonC(HUK_M)}${ikkiKos()}</div>`,
+    foot: () => fJim('Birini tanlang') },
+  P2S: { rol: 'p', b: 0, t: 't1', nom: 'Uch sinov', izoh: '3-qadam. A — bir marta xursand, qotdi ✕; B — joyida silkinadi ✕; C — xotirjam ⇄ xursand olti marta ✓ (studiya.js, huk: data-dastur cxu…, w).',
+    body: () => `<div class="chap">${matn('Savol', DARS.savol, 'Mana ikkita kostyumim. Ular bilan qanday qo‘l silkitamiz?')}${tKartalar({ son: SONI })}</div><div class="oyna">${maydonC(HUK_M)}${ikkiKos()}</div>`,
+    foot: () => fU('', 'Keyingi ›') },
+  P2C: { rol: 'p', b: 0, t: 't1', nom: 'Javob', izoh: '4-qadam. A va B xira, C oltin; Coddy qo‘l silkitib turadi (kostyumlar navbat bilan — CSS).',
+    body: () => `<div class="chap">${matn('Javob', 'Kostyumlar almashsa — <em>jonlanadi</em>', 'Kostyum almashdi, yana almashdi — men qo‘l silkitdim.')}${tKartalar({ son: SONI, nat: true })}</div><div class="oyna kos-almash">${maydonC(HUK_M)}</div>`,
+    foot: () => fU('', 'Keyingi ›') },
+  P3: { rol: 'p', b: 0, t: 't1', nom: 'Yangi so‘z: animatsiya', izoh: '5-qadam. «Keyingi» — birma-bir: 1-kostyum, 2-kostyum, navbat bilan (studiya.js, raqam).',
+    body: () => `<div class="chap">${matn('Yangi so‘z', '<em>Animatsiya</em> nima?', 'Animatsiya — kostyumlar navbat bilan almashsa, qahramon jonlanadi.')}${xyQator([[1, `<span class="hq">${kRasm('xotirjam')}1-kostyum</span>`], [2, `<span class="hq">${kRasm('xursand')}2-kostyum</span>`], [3, `<span class="hq"><span class="kos-almash-m">${kRasm('xotirjam')}${kRasm('xursand')}</span>Navbat bilan — jonlandi</span>`]])}</div><div class="oyna">${maydonC(HUK_M)}</div>`,
+    foot: () => fU('', 'Keyingi ›') },
+  P4: { rol: 'p', b: 0, t: 't2', nom: 'Reja', izoh: '6-qadam.',
+    body: () => `<div class="oyna to">${world('hovli')}<div class="gl pan">${matn('Reja', 'Bugun nima <em>qilamiz</em>?', 'Uchta bekat. Birinchisidan boshlaymiz.')}</div>${darsOxiri()}${tepalik({ otdi: 0, joy: 0 })}</div>`,
+    foot: () => fU('', 'Boshladik ›') },
+  P6: { rol: 'p', b: 1, t: 't3', nom: 'Ko‘ramiz: switch costume to', izoh: '7-qadam. Yulduz (2, 0); ustoz → → va switch costume to xursand, keyin hayron (jonli darsda dastur bo‘sh, solo’da tayyor).',
+    body: () => st({ tag: 'Ko‘ramiz', h: 'Kostyum <em>almashadi</em>', iz: 'switch costume to — kostyumni almashtir.', prog: ['r', 'r', ['v', 'xursand']], yuz: coddyYuz(), sahna: maydonC(T7.P6) }),
+    foot: () => fU('', 'Keyingi ›') },
+  P5: { rol: 'p', b: 1, t: 't1', nom: 'Sinf doskasi: kostyum', izoh: '8-qadam.',
+    body: () => doska('Endi <em>o‘zingiz</em>!', 'Kostyumni almashtiring — yulduzda qahramoningiz o‘zgarsin.', 4, POG.kos, 'Uch pog‘onani tugatdi', 'Har belgi — uch pog‘onani tugatgan bitta bola'),
+    foot: () => fU('Yordam so‘radi: 1 ta noutbuk', 'Keyingi ›') },
+  P4B: { rol: 'p', b: 2, t: 't2', nom: 'Reja · 2-bekat', izoh: '9-qadam.',
+    body: () => `<div class="oyna to">${world('hovli')}<div class="gl pan">${matn('Reja · 2-bekat', '2 · <em>Animatsiya</em>', 'Endi kostyumlar navbat bilan almashadi — animatsiya.')}</div>${darsOxiri()}${tepalik({ otdi: 1, joy: 2 })}</div>`,
+    foot: () => fU('', 'Keyingi ›') },
+  P7: { rol: 'p', b: 2, t: 't3', nom: 'Ko‘ramiz: har qadamda animatsiya', izoh: '10-qadam. Yulduz (3, 0); repeat 3 [→, xursand, xotirjam]; «Animatsiya: 0 / 3».',
+    body: () => st({ tag: 'Ko‘ramiz', h: 'Har qadamda <em>animatsiya</em>', prog: [], yuz: coddyYuz(), dst: `<div class="dst" data-z="dastur"><span class="dsb"><span class="dyz">${coddyYuz()}</span><b>Dastur</b></span><div class="mbw">${takror('3', ['r', ['v', 'xursand'], ['v', 'xotirjam']])}</div><small class="dsn">4 ta blok</small></div>`, sahna: maydonC(T7.P7) + anYz(3) }),
+    foot: () => fU('', 'Keyingi ›') },
+  P5G: { rol: 'p', b: 2, t: 't1', nom: 'Sinf doskasi: animatsiya', izoh: '11-qadam.',
+    body: () => doska('<em>Jonlantiring</em>!', 'Har qadamda kostyum almashsin — qahramon jonlanadi.', 5, POG.anim),
+    foot: () => fU('Yordam so‘radi: 1 ta noutbuk', 'Keyingi ›') },
+  P9: { rol: 'p', b: 2, t: 't1', nom: 'Xulosa: animatsiya', izoh: '12-qadam.',
+    body: () => `<div class="chap">${matn('Xulosa', '<em>Animatsiya</em>', 'Kostyumlar almashdi — men jonlandim.')}<div class="tf-l"><div class="tf"><div class="tf-r"><span class="kos-almash-m">${kRasm('xotirjam')}${kRasm('xursand')}</span></div><div class="tf-t"><b>Animatsiya</b><span>Kostyumlar navbat bilan almashadi</span></div></div><div class="tf"><div class="tf-r">${mb('v', 'xursand')}</div><div class="tf-t"><b>switch costume to</b><span>Kostyumni almashtir</span></div></div></div></div><div class="oyna kos-almash">${maydonC({})}</div>`,
+    foot: () => fU('', 'Keyingi ›') },
+  P4C: { rol: 'p', b: 3, t: 't2', nom: 'Reja · 3-bekat', izoh: '13-qadam.',
+    body: () => `<div class="oyna to">${world('hovli')}<div class="gl pan">${matn('Reja · 3-bekat', '3 · <em>Tovush</em>', 'Oxirgi bekat: tovush — tugma bosilsa, ovoz chiqaraman.')}</div>${darsOxiri()}${tepalik({ otdi: 2, joy: 3 })}</div>`,
+    foot: () => fU('', 'Keyingi ›') },
+  P8: { rol: 'p', b: 3, t: 't3', nom: 'Ko‘ramiz: play sound', izoh: '14-qadam. O‘yin: yulduz (5, 0); W→[→, ♪ qadam], W space[xursand, ♪ jiring]; yulduzda space.',
+    body: () => stO({ tag: 'Ko‘ramiz', h: 'Tugma bosilsa — <em>tovush</em>', iz: 'play sound — tovushni chal.', prog: [['k', 'right'], 'r', ['n', 'qadam'], ['k', 'space'], ['v', 'xursand'], ['n', 'jiring']], yuz: coddyYuz(), sahna: maydonC(T7.P8) }),
+    foot: () => fU('', 'Keyingi ›') },
+  P5B: { rol: 'p', b: 3, t: 't1', nom: 'Sinf doskasi: tovush', izoh: '15-qadam.',
+    body: () => doska('Tovush <em>bering</em>!', 'Tugma bosilsa — qadam, yulduzda — jiring.', 6, POG.tovush, 'Ikki pog‘onani tugatdi'),
+    foot: () => fU('Yordam so‘radi: 1 ta noutbuk', 'Keyingi ›') },
+  P11: { rol: 'p', b: 3, t: 't3', nom: 'Dasturchalaringizni o‘qib bering', izoh: '16-qadam. O‘yin, dastur bo‘sh: bola o‘qiydi, ustoz tuzadi. Proyektorda ism yo‘q; bola noutbukida — oxirgi yechgan pog‘onasi (A·1).',
+    body: () => stO({ tag: 'Ko‘rsatish', h: 'Dasturchalaringizni <em>o‘qib bering</em>', iz: 'Siz o‘qiysiz — men o‘sha kostyum va tovush bilan o‘ynayman.', prog: [], yuz: coddyYuz(), sahna: maydonC(T7.P11) }),
+    foot: () => fU('', 'Keyingi ›') },
+  P12: { rol: 'p', b: 4, t: 't2', nom: 'Yakun', izoh: '17-qadam.',
+    body: () => `<div class="oyna to">${world('hovli')}${KONFETI()}<div class="gl pan">${matn('Yakun', 'Qahramoningiz <em>jonlandi</em>!', '')}<div class="tm ix"><small class="bsoz">Bugungi so‘z</small><div class="tr"><span class="ti d"><i></i><i></i><i></i></span><span><b>Animatsiya</b>Kostyumlar navbat bilan almashadi</span></div></div></div>${keyingiDars()}${tepalik({ otdi: 3, joy: 3, pose: 'quvonadi' })}</div>`,
+    foot: () => fU('', 'Keyingi ›') },
+  P14: { rol: 'p', b: 4, t: 't1', nom: 'Sinfimiz bugun', izoh: '18-qadam.',
+    body: () => `<div class="chap">${matn('Sinf natijasi', 'Sinfimiz <em>bugun</em>', 'Hammangiz zo‘r ishladingiz!')}${sinfNatija()}</div><div class="oyna">${world('hovli')}${KONFETI()}<div class="qq sn-qq"><span class="m1">${hero({ k: 'momiq', mood: 'xursand' })}</span><span class="m2">${robot({ pose: 'quvonadi' })}</span><span class="m3">${hero({ k: 'katak', mood: 'xursand' })}</span></div></div>`,
+    foot: () => fU('', 'Darsni yakunlash') },
+
+
+
+  // ---- bola noutbuki ----
+  B0: { rol: 'b', b: 0, t: 't4', nom: 'Darsga kirish', izoh: '1-qadam.',
+    body: () => kutish({ kech: false, uq: '', h: 'Salom, <em>Aziz</em>!', sub: '', aktyor: yolchaYakka(coddyQ('', 'salom', 'xursand')) }),
+    foot: () => fKid('Tayyor bo‘lsangiz — tugmani bosing', 'Tayyorman') },
+  BK: { rol: 'b', b: 0, t: 't4', nom: 'Ustoz ekraniga qarang', izoh: 'Ustoz ko‘rsatayotganda.',
+    body: () => kutish({ h: 'Ustoz ekraniga qarang', sub: 'Ustozni tinglang', aktyor: yolchaYakka(momiqQ('', 'xursand')) }),
+    foot: () => fJim('') },
+  BQ: { rol: 'b', b: 0, t: 't2', nom: 'Qahramon tanlash', izoh: 'Faqat qahramoni yo‘q bolaga (94-qaror).',
+    body: () => `<div class="oyna to">${world('hovli')}<div class="gl pan">${matn('Qahramon', 'Qahramoningizni <em>tanlang</em>', 'Birini tanlang — bugun unga buyruq berasiz.')}</div>${tanlovQator('momiq')}</div>`,
+    foot: () => fJim('Birini tanlang') },
+  B1A: { rol: 'b', b: 1, t: 't3', nom: 'Mashq · 1-pog‘ona', izoh: '8-qadam. Tayyor → → →; + switch costume to xursand.', ...bol('Mashq · 1-pog‘ona', '<em>Xursand</em>', 'Yulduzda qahramon xursand bo‘lsin.', 'B1A', B1H, { prog: TAYYOR.B1A }) },
+  B1B: { rol: 'b', b: 1, t: 't3', nom: 'Mashq · 2-pog‘ona', izoh: '8-qadam. ↑ ↑ ↑, hayron.', ...bol('Mashq · 2-pog‘ona', '<em>Hayron</em>', 'Yulduz tepada. U yerda — hayron.', 'B1B') },
+  B1C: { rol: 'b', b: 1, t: 't3', nom: 'Mashq · 3-pog‘ona', izoh: '8-qadam. → → hayron ↑ ↑ xursand.', ...bol('Mashq · 3-pog‘ona', 'Ikki <em>kostyum</em>', 'Belgida — hayron, yulduzda — xursand.', 'B1C') },
+  B1Y: { rol: 'b', b: 1, t: 't3', nom: 'Mashq · ★ qo‘shimcha', izoh: '8-qadam. Uch belgi: (0, 2) hayron, (2, 2) o‘ylanadi, (5, 2) xursand.', ...bol('Mashq · ★ qo‘shimcha', 'Uch <em>belgi</em>', 'Har belgida — o‘sha kostyum.', 'B1Y') },
+  B2A: { rol: 'b', b: 2, t: 't3', nom: 'Mashq · 1-pog‘ona', izoh: '11-qadam. → → R3[xursand, xotirjam].', ...bol('Mashq · 1-pog‘ona', 'Uch <em>marta</em>', 'Yulduzda 3 marta: xursand, xotirjam.', 'B2A', B1H, { an: 3 }) },
+  B2B: { rol: 'b', b: 2, t: 't3', nom: 'Mashq · 2-pog‘ona', izoh: '11-qadam. R4[→, xursand, xotirjam].', ...bol('Mashq · 2-pog‘ona', 'Har <em>qadamda</em>', 'Har qadamda: xursand, xotirjam.', 'B2B', B1H, { an: 4 }) },
+  B2C: { rol: 'b', b: 2, t: 't3', nom: 'Mashq · 3-pog‘ona', izoh: '11-qadam. R3[↑ …] R3[→ …].', ...bol('Mashq · 3-pog‘ona', 'Tepaga, keyin <em>o‘ngga</em>', 'Yulduz (3, 3) da. Har qadamda — animatsiya.', 'B2C', B1H, { an: 6 }) },
+  B2Y: { rol: 'b', b: 2, t: 't3', nom: 'Mashq · ★ qo‘shimcha', izoh: '11-qadam. R6[→ …] R4[↑ …], 12 blokgacha.', ...bol('Mashq · ★ qo‘shimcha', 'Uzoq <em>yo‘l</em>', 'Yulduz (6, 4) da. Bloklar — 12 tagacha.', 'B2Y', B1H, { an: 10 }) },
+  B3A: { rol: 'b', b: 3, t: 't3', nom: 'O‘yin · 1-pog‘ona', izoh: '15-qadam. W→[→, ♪ qadam].', ...bolO('Mashq · 1-pog‘ona', 'Qadam <em>tovushi</em>', 'Har qadamda — ♪ qadam.', 'B3A') },
+  B3B: { rol: 'b', b: 3, t: 't3', nom: 'O‘yin · 2-pog‘ona', izoh: '15-qadam. + W↑, W space[xursand, ♪ jiring]; yulduzda space.', ...bolO('Mashq · 2-pog‘ona', 'Yulduzda <em>quvoning</em>', 'Yulduzga yeting va space bosing.', 'B3B') },
+  B3Y: { rol: 'b', b: 3, t: 't3', nom: 'O‘yin · ★ qo‘shimcha', izoh: '15-qadam. Har tugmaga o‘z kostyumi va tovushi; kamida 2 xil.', ...bolO('Mashq · ★ qo‘shimcha', 'O‘z <em>qahramoningiz</em>', 'Har tugmaga — o‘z kostyumi va tovushi.', 'B3Y') },
+  B5: { rol: 'b', b: 4, t: 't1', nom: 'O‘z natijasi', izoh: '17–18-qadam. «Siz bugun» — haqiqiy son.',
+    body: () => `<div class="chap">${matn('Sizning natijangiz', 'Qahramoningiz <em>jonlandi</em>!', '')}${qg('Kostyum almashtirdingiz, jonlantirdingiz va ovoz chiqardingiz.')}<small class="st-s">Siz bugun</small>${sinfNatija(BOLA_T)}</div><div class="oyna kos-almash">${maydonQ({})}<div class="gl kd2 a-tr"><small>Momiq</small><b>Keyingi darsda shart bilan ko‘rishamiz!</b></div></div>`,
+    foot: () => fJim('Dars tugadi') },
+}

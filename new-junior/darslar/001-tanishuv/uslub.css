@@ -1,0 +1,97 @@
+/* 1-darsning ekranlarga xos uslubi (dvigatel 3e, 19.11): dvigatel/shablon.html va dvigatel/qobiq.css dan ajratildi, qoidalar o'zgarmagan.
+   yigish.mjs uslub() ikki qismni o'z blokining oxiriga qo'shadi: «dars» qismi — dars uslubi (shablon.html) oxiriga, «qobiq» qismi — qobiq uslubi oxiriga.
+   Dvigatel uslubida ekran nomi (.e-P2B kabi) yozilmaydi: ekranga xos qoida shu faylga yoziladi. Izohga backtik yozilmaydi. */
+/* == dars == */
+/* 3e: asl tartibda keyingi umumiy qoida (shablon .tugatdi .yulduzlar, .tugatdi .yulduzlar i, .tugatdi > b) bosib ketgan, ya'ni
+   tasdiqlangan ko'rinishda hech qachon ishlamagan 3 qoida olib tashlandi: .e-P5/.e-P5A .yulduzlar{gap:.3cqw}, .e-P5/.e-P5A .yulduzlar i{1.85cqw},
+   .e-P12 .tugatdi b{font-size:2.6cqw}. Oxiriga ko'chganda ular yutib chiqib, P5A, P5, P12 doskasini o'zgartirardi (oltin namuna ushladi). */
+.e-B1 .ishora{left:9.8cqw;right:auto;top:5.55cqw;background:#fff;color:#0D2137;font-size:1.45cqw;font-weight:700;border:.14cqw solid #9CC9F5;box-shadow:0 .4cqw 1.4cqw -.4cqw rgba(13,33,55,.28);padding:.75cqw 1.2cqw;border-radius:.9cqw;transition:top .35s ease}
+.e-B1 .ishora.g{top:12.3cqw;border-color:#C9B6FB}
+.e-B1 .ishora .O{font-size:1.6cqw}
+.e-B1 .rg{position:relative;z-index:5}
+.e-P5 .doska{width:70%}
+.e-B5 .qq .m2{width:34%}
+.e-P5 .doska{top:1.6cqw;transform:translateX(-50%)}
+/* B3: muammocha pufagi — faqat bitta gap, kichik, uchi qahramonga qaragan */
+.e-B3 .muam{align-items:center}
+.e-B3 .pufak{background:#fff;padding:.6cqw 1.15cqw .7cqw;border-radius:1cqw;-webkit-backdrop-filter:none;backdrop-filter:none}
+.e-B3 .pufak b{font-size:1.6cqw;margin:0;white-space:nowrap}
+.e-B3 .pufak::before{content:"";position:absolute;left:-.55cqw;top:50%;width:1.1cqw;height:1.1cqw;background:#fff;transform:translateY(-50%) rotate(45deg);border-radius:.15cqw}
+.e-P4 .chap > .rj{margin-top:auto;gap:1cqw}
+.e-P4 .rj li{padding:1.7cqw 1.7cqw;gap:1.4cqw}
+.e-P4 .rj i{width:3.8cqw;height:3.8cqw;font-size:1.8cqw}
+.e-P4 .rj b{font-size:2.2cqw}
+.e-P4 .rj span{font-size:1.45cqw}
+.e-P2N .t2 .gl.a-r .jk,.e-P2N .gl.a-r .jk{padding:1.45cqw 1.3cqw}
+.e-P2N .jk .sh{width:2.8cqw;height:2.8cqw}
+.e-B5 .sahna-ok{margin-top:0}
+/* yakun paneli: uchta so'z ixcham */
+.e-P8 .t2 .pan,.e-P8 .pan{padding:1.4cqw 2cqw;gap:.8cqw}
+.e-P3 .izq{margin-top:auto}
+.e-B6 .chap > .rng-k{flex:1;justify-content:center}
+.e-B6 .oyna{--yq:16cqw}
+/* v4.1 (F-1116-15): o'rgatish ekranlari ikki ustunda — chapda yuqoridan pastga yorliq, sarlavha, Coddy gapi, mazmun kartalari; o'ngda faqat sahna */
+.e-P2 .sar,.e-P2N .sar,.e-P2S .sar,.e-P2B .sar,.e-P2K .sar,.e-P2C .sar{white-space:normal}
+.e-P4 .t2 .pan,.e-P4 .pan{width:auto;max-width:62%}
+.e-P4 .sar{white-space:nowrap}
+.e-P3 .izq{font-size:1.3cqw}
+.e-P4T .pan{width:auto;max-width:62%}
+.e-P4T .sar{white-space:nowrap}
+.e-P12 .chap .sh-l{gap:.4cqw}
+.e-P12 .chap .sh-r{padding:.4cqw .8cqw;font-size:1.25cqw}
+.e-P12 .chap .sh-r i{width:2cqw;height:2cqw}
+.e-P12 .chap{gap:.9cqw}
+.e-B5 .sar,.e-P1 .sar,.e-B6 .sar,.e-P4I .sar,.e-P4B .sar{white-space:normal}
+.e-P4B .pan{width:auto;max-width:52%}
+.e-P1 .chap{gap:.8cqw}
+.e-P1 .kurs{gap:.6cqw}
+.e-P1 .kr{padding:.5cqw .8cqw}
+.e-P1 .kr-t{gap:.2cqw}
+.e-P1 .kr-t span{font-size:1.15cqw}
+.e-P1 .chap .kr-t b{font-size:1.6cqw}
+.e-P7 .gap-p,.e-P7A .gap-p{left:25%;top:auto;bottom:47%}
+.e-B5 .chap{gap:.8cqw}
+/* 17.11: bolaning o'z to'rt soni — chap ustunga sig'ishi uchun kartalar yotiq (ustozdagi P14 o'zgarmaydi) */
+.e-B5 .st-s{margin-top:auto}
+.e-B5 .sn{gap:.9cqw;margin-top:0}
+.e-B5 .sn-t{flex-direction:row;align-items:center;gap:1.2cqw;padding:1.8cqw 1.5cqw}
+.e-B5 .sn-t i{width:3.8cqw;height:3.8cqw}
+.e-B5 .sn-t b{font-size:4.2cqw}
+.e-B5 .sn-t small{font-size:1.5cqw}
+.e-P2B .kursor-q{left:19%;bottom:31%;animation:ksudra 2.8s ease-in-out infinite}
+.e-P2B .yol .q > svg{animation:qsudra 2.8s ease-in-out infinite;transform-origin:50% 90%}
+@media (prefers-reduced-motion:reduce){.e-P2B .kursor-q,.e-P2B .yol .q > svg{animation:none}}
+.e-P2S .jv.ch .jk,.e-P2B .jv.ch .jk,.e-P2K .jv.ch .jk,.e-P2C .jv.ch .jk{font-size:1.65cqw}
+.e-P1 .chap .kr-t b{font-size:1.75cqw}
+.e-P1 .chap .kr{padding:.7cqw .9cqw}
+.e-P12 .sar{white-space:normal}
+.e-P12 .chap{gap:.7cqw}
+.e-P12 .chap .sh-r{padding:.35cqw .8cqw;font-size:1.2cqw}
+.e-P12 .chap .sh-r i{width:1.8cqw;height:1.8cqw}
+.e-P12 .chap .sh-l{gap:.3cqw}
+.e-P12 .tugatdi.kichik .yulduzlar i{width:2cqw;height:2cqw}
+.e-P12 .tugatdi.kichik{padding:.8cqw 1.2cqw;gap:.4cqw}
+.e-B6 .chap{gap:.8cqw}
+.e-B6 .ism-k,.e-B6 .rng-k{padding:.8cqw 1.1cqw}
+.e-B6 .rng i{width:3cqw;height:3cqw}
+.e-B6 .rng{gap:.7cqw 1.4cqw}
+.e-P2K .jv.ch .jk{padding:.5cqw 1.2cqw}
+.e-P2K .jv.ch .jr{width:4cqw;height:4cqw}
+.e-P2K .jv.ch{gap:.7cqw}
+.e-P2K .chap{gap:.8cqw}
+.e-P2K .jk.n-yoq .jn{display:none}
+.e-P2K .jk.n-yoq .jt{flex-direction:row;align-items:center;gap:.6cqw}
+.e-P2K .jk.n-yoq .jt::after{content:"✕";color:#C7381A;font-weight:800}
+.e-P2K .jv.ch .jk{font-size:1.6cqw}
+.e-P2S .jv.ch .jk,.e-P2B .jv.ch .jk,.e-P2K .jv.ch .jk,.e-P2C .jv.ch .jk{padding:.75cqw 1.3cqw}
+.e-P2S .jv.ch .jr,.e-P2B .jv.ch .jr,.e-P2K .jv.ch .jr,.e-P2C .jv.ch .jr{width:4.6cqw;height:4.6cqw}
+.e-P2S .jv.ch .jr > svg,.e-P2B .jv.ch .jr > svg,.e-P2K .jv.ch .jr > svg,.e-P2C .jv.ch .jr > svg{width:2.8cqw;height:2.8cqw}
+.e-P2S .chap,.e-P2B .chap,.e-P2K .chap,.e-P2C .chap{gap:1cqw}
+.e-B6 .ism-i{font-size:2cqw;padding:.8cqw 1.1cqw}
+.e-B6 .ism-k,.e-B6 .rng-k{padding:1.1cqw 1.4cqw;gap:.6cqw}
+.e-B6 .rng i{width:3.4cqw;height:3.4cqw}
+.e-B6 .rng{gap:.8cqw}
+/* == qobiq == */
+.e-P2B .kursor-q{display:none}
+.e-P2B .yol .q > svg{animation:none!important;cursor:grab;touch-action:none}
+.e-P2B .yol .q > svg:active{cursor:grabbing}

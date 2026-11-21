@@ -1,0 +1,188 @@
+
+### 1. Kirish
+USTOZ P1: 1-dars · Tanishuv Bugun birinchi dasturingizni tuzasiz! Coddy Salom! Men Coddy. Bugun birga dasturlashni o‘rganamiz! Blokli dasturlash modulimizda Labirint 2-darsda 3 Olma yig‘amiz 11-darsda Kosmik o‘yin 17-darsda 1 2 3 ‹ Orqaga Kirdi: 12 / 14 Keyingi ›
+BOLA B0: 1-dars · Tanishuv Salom, Aziz ! Tayyor bo‘lsangiz — tugmani bosing Tayyorman
+BOLA BK: (Ustoz ekraniga qarang) 
+VARAQ ekranda: «Bugun birinchi dasturingizni tuzasiz!» Pastda — Blokli dasturlash modulimizdagi o‘yinlar: labirint, olma yig‘amiz, kosmik o‘yin.
+VARAQ siz: «Bugun birga dasturlashni o‘rganamiz. Shu modulda bloklardan o‘yin ham yasaymiz.» O‘quvchilar ismini yozib kiradi, «Kirdi» soni o‘sadi.
+VARAQ bola o‘rganadi: Kursda nima bo‘lishini biladi — qiziqish.
+
+### 2. Savol
+USTOZ P2: 1-dars · Tanishuv Savol Coddy’ni yulduzga qanday olib boramiz? Coddy Qaysi biri ishlaydi? Sinab ko‘ramiz. 3 A «YUR!» deb aytamiz 7 B Sichqoncha bilan ko‘chiramiz 4 C Unga buyruq beramiz 1 2 3 ‹ Orqaga Javob berdi: 14 / 14 Sinab ko‘ramiz ›
+BOLA P2N: 1-dars · Tanishuv Savol Coddy’ni yulduzga qanday olib boramiz? Coddy Qaysi biri ishlaydi deb o‘ylaysiz? A «YUR!» deb aytamiz B Sichqoncha bilan ko‘chiramiz C Unga buyruq beramiz 1 2 3 Birini tanlang
+BOLA BK: (Ustoz ekraniga qarang) 
+VARAQ ekranda: Savol: «Coddy’ni yulduzga qanday olib boramiz?» A — «YUR!» deb aytamiz, B — sichqoncha bilan ko‘chiramiz, C — buyruq beramiz.
+VARAQ siz: «Har kim noutbukida bitta javobni bossin.» Kartalarda — nechta bola qaysi javobni tanlagani.
+VARAQ bola o‘rganadi: Taxmin qiladi. Hali hech narsa o‘rgatilmaydi — bu huk.
+
+### 3. 1-sinov: YUR!
+USTOZ P2S: 1-dars · Tanishuv 1-sinov · A Hammamiz birga: YUR! Coddy «YUR!» deng va tugmani bosing! 3 A «YUR!» deb aytamiz 7 B Sichqoncha bilan ko‘chiramiz 4 C Unga buyruq beramiz Sinf ovozi YUR! YUR! YUR! YUR! YUR! 1 2 3 ‹ Orqaga «YUR!» dedi: 9 bola Keyingi ›
+BOLA BY: 1-dars · Tanishuv Bosing va « YUR! » deng! Butun sinf birga YUR! 1 2 3 Bir marta bosing — ovozingiz sinfga qo‘shiladi
+VARAQ ekranda: 1-sinov: «Hammamiz birga: YUR!» — nechta bola «YUR!» degani.
+VARAQ siz: «Uchgacha sanaymiz — hammamiz “YUR!” deymiz va tugmani bir marta bosamiz.» Coddy qimirlamaydi.
+VARAQ bola o‘rganadi: Ovoz bilan kompyuter ishlamaydi.
+
+### 4. 2-sinov: ko‘chiramiz
+USTOZ P2B: 1-dars · Tanishuv 2-sinov · B Sichqoncha bilan ko‘chiramiz Coddy Meni sichqoncha bilan ko‘chirib ko‘ring! 3 A «YUR!» deb aytamiz ✕ qimirlamadi 7 B Sichqoncha bilan ko‘chiramiz 4 C Unga buyruq beramiz 1 2 3 ‹ Orqaga Keyingi ›
+BOLA BK: (Ustoz ekraniga qarang) Bir o‘quvchi Coddy’ni sichqoncha bilan ko‘chiradi
+VARAQ ekranda: 2-sinov: sichqoncha bilan ko‘chiramiz.
+VARAQ siz: Bir bolani chiqarib, Coddy’ni sichqoncha bilan ko‘chirtirasiz — Coddy biroz siljiydi-yu, joyiga qaytadi.
+VARAQ bola o‘rganadi: Qahramonni qo‘l bilan surish ham ishlamaydi.
+
+### 5. 3-sinov: buyruq
+USTOZ P2K: 1-dars · Tanishuv 3-sinov · C Unga buyruq beramiz Coddy Bitta buyruq — bitta qadam! 3 A «YUR!» deb aytamiz ✕ qimirlamadi 7 B Sichqoncha bilan ko‘chiramiz ✕ qimirlamadi 4 C Unga buyruq beramiz move right Ustoz 3 marta bosadi 1 2 3 ‹ Orqaga Keyingi ›
+BOLA BK: (Ustoz ekraniga qarang) Ustoz blokni bosadi — Coddy’ni kuzating
+VARAQ ekranda: 3-sinov: «Bitta buyruq — bitta qadam!» — move right bloki.
+VARAQ siz: Ekrandagi move right blokini o‘zingiz bosasiz: har bosishda Coddy bitta zonachaga sakraydi, uchinchisida yulduzga yetadi.
+VARAQ bola o‘rganadi: Blokdagi buyruq ishlaydi: bitta blok — bitta qadam.
+
+### 6. Javob
+USTOZ P2C: 1-dars · Tanishuv Javob Coddy faqat blokni tushunadi Coddy «YUR!» ham buyruq, lekin men faqat blokni tushunaman. 3 A «YUR!» deb aytamiz ✕ qimirlamadi 7 B Sichqoncha bilan ko‘chiramiz ✕ qimirlamadi 4 C Unga buyruq beramiz ✓ ishladi 1 2 3 ‹ Orqaga Keyingi ›
+BOLA BK: (Ustoz ekraniga qarang) Coddy faqat blokni tushunadi
+VARAQ ekranda: Javob: «Coddy faqat blokni tushunadi». A va B — ✕, C — ✓.
+VARAQ siz: Bola «“YUR!” ham buyruq-ku» desa — to‘g‘ri, lekin Coddy faqat blokdagi buyruqni tushunadi.
+VARAQ bola o‘rganadi: Darsning asosiy fikri: kompyuter faqat o‘zi tushunadigan buyruqni — blokni — bajaradi.
+
+### 7. Dasturlash nima?
+USTOZ P3: 1-dars · Tanishuv Yangi so‘z Dasturlash nima? Coddy Dasturlash — kompyuterga buyruq berish. Dasturchi yozadi coddy.move("right") coddy.move("right") = Biz ulaymiz move right move right Ikkalasi bir xil. Biz bloklardan foydalanamiz. 1 2 3 ‹ Orqaga Keyingi ›
+BOLA BK: (Ustoz ekraniga qarang) Yangi so‘z: dasturlash
+VARAQ ekranda: «Dasturlash nima?» Dasturchi kod yozadi = biz bloklarni ulaymiz. «Biz bloklardan foydalanamiz.»
+VARAQ siz: Ekrandagini o‘qiysiz: «Dasturlash — kompyuterga buyruq berish.»
+VARAQ bola o‘rganadi: Yangi so‘z: dasturlash. Biz buyruqni blok bilan beramiz.
+
+### 8. Reja
+USTOZ P4: 1-dars · Tanishuv Bugungi reja Bugun nima o‘rganamiz ? Dars oxirida Bu — mening sahnam! O‘z sahnangiz 1 Harakatlantirish 2 Gapirtirish 3 Sahna yaratish ‹ Orqaga Boshladik ›
+BOLA BK: (Ustoz ekraniga qarang) Bugungi reja: uch bekat
+VARAQ ekranda: Reja: «Bugun nima o‘rganamiz?» Yo‘l tepalikka ko‘tariladi: uch bekat — harakatlantirish, gapirtirish, sahna yaratish; cho‘qqida — dars oxirida o‘z sahnangiz.
+VARAQ siz: Uch bekatni pastdan yuqoriga ko‘rsatasiz: har bekat — bir pog‘ona baland. Navbatdagi bekat miltillab turadi.
+VARAQ bola o‘rganadi: Dars qayerga borishini biladi.
+
+### 9. Qahramon tanlash
+USTOZ P4T: 1-dars · Tanishuv Qahramon tanlash Qahramoningizni tanlang Coddy Men — ustozning yordamchisiman. Sizda o‘z qahramoningiz bo‘ladi. Tanladi 9 / 14 Ustoz ‹ Orqaga Tanladi: 9 / 14 Keyingi ›
+BOLA BQ: 1-dars · Tanishuv Qahramon Qahramoningizni tanlang Coddy Birini tanlang — bugun unga buyruq berasiz. Momiq Jele Katak Zippi Nihol Birini tanlang
+BOLA BK: (Ustoz ekraniga qarang) 
+VARAQ ekranda: «Qahramoningizni tanlang». Coddy: «Men — ustozning yordamchisiman. Sizda o‘z qahramoningiz bo‘ladi.»
+VARAQ siz: Bolalar noutbukida qahramon tanlaydi; ustoz ekranida — nechta bola tanlagani va ularning qahramonlari (haqiqiy son).
+VARAQ bola o‘rganadi: O‘z qahramoni bor — bugun unga buyruq beradi.
+
+### 10. Ranglar
+USTOZ B1: 1-dars · Tanishuv Blok studiya Ko‘k blok yurgizadi , binafsha blok gapirtiradi Harakat Gap Harakat move right move left jump Dastur Blokni shu yerga ulang 0 ta blok 1 2 3 👈 Ko‘k doirachani bosing Ikkala rangni bosing · 1 / 2
+BOLA B1: 1-dars · Tanishuv Blok studiya Ko‘k blok yurgizadi , binafsha blok gapirtiradi Harakat Gap Harakat move right move left jump Dastur Blokni shu yerga ulang 0 ta blok 1 2 3 👈 Ko‘k doirachani bosing Ikkala rangni bosing · 1 / 2
+VARAQ ekranda: Blok studiya: «Ko‘k blok yurgizadi, binafsha blok gapirtiradi».
+VARAQ siz: Ko‘k doirachani bosasiz — harakat bloklari chiqadi, binafshani — gap bloki. Bolalar ham o‘z noutbukida bosadi.
+VARAQ bola o‘rganadi: Blokning rangi — uning ishi: ko‘k — harakat, binafsha — gap.
+
+### 11. Birinchi dastur
+USTOZ P5A: 1-dars · Tanishuv Mashq Endi o‘zingiz ! Coddy Qahramoningizni yulduzga olib boring. Yulduzga yetdi 6 / 14 Har belgi — yulduzga yetgan bitta bola 1 2 3 ‹ Orqaga Yordam so‘radi: 1 ta noutbuk Keyingi ›
+BOLA B2: 1-dars · Tanishuv Mashq · 1-pog‘ona Qahramoningizni yulduzga olib&nbsp;boring. Harakat Gap Harakat move right move left jump Dastur move right move right move right 3 ta blok 1 2 3 4 Maslahat Qadamlarni sanang: yulduzgacha nechta? Ishga tushir
+BOLA B4: 1-dars · Tanishuv Mashq · 1-pog‘ona Yetib bordi! Birinchi dasturingiz. Harakat Gap Harakat move right move left jump Dastur move right move right move right 3 ta blok 1 2 3 Qayta ko‘rish Zo‘r! Ustoz keyingisini ko‘rsatadi
+VARAQ ekranda: Mashq: «Endi o‘zingiz!» — nechta bola yulduzga yetgani va yordam so‘raganlar (haqiqiy son).
+VARAQ siz: Bolalar blokni bosib dasturga qo‘shadi va «Ishga tushir»ni bosadi: kam bo‘lsa — «Oz qoldi!», ko‘p bo‘lsa — «Bir qadam ortiqcha!», to‘g‘ri bo‘lsa — «Yetib bordi!».
+VARAQ bola o‘rganadi: Birinchi dasturini o‘zi tuzadi. Huk shu yerda yopiladi.
+
+### 12. Coddy sanaydi
+USTOZ P6: 1-dars · Tanishuv Ko‘ramiz 4 ta blok — 4 qadam Bizga 3 qadam kerak edi — bitta blok ortiqcha. Harakat Gap Harakat move right move left jump Dastur move right move right move right move right 4 ta blok 1 2 3 4 «To‘xta! Men shu yerdaman!» ‹ Orqaga Endi bolalar o‘z noutbukida ortiqcha blokni olib tashlaydi Keyingi ›
+BOLA BK: (Ustoz ekraniga qarang) Ustoz Coddy’ni yurgizyapti — kuzating
+BOLA B3X: 1-dars · Tanishuv Mashq · xatoni tuzating Bir qadam ortiqcha ! Harakat Gap Harakat move right move left jump Dastur move right move right move right move right 4 ta blok 1 2 3 4 Maslahat Ortiqcha blokni bosing — u dasturdan chiqadi Ishga tushir
+BOLA B3Y: 1-dars · Tanishuv Mashq · xatoni tuzating To‘g‘ri! 3 ta blok — 3 qadam Harakat Gap Harakat move right move left jump Dastur move right move right move right 3 ta blok 1 2 3 4 Xatoni o‘zingiz tuzatdingiz!
+VARAQ ekranda: Avval: «4 ta blok bilan ishga tushiramiz». Ishga tushirgach: «4 ta blok — 4 qadam» — Coddy yulduzdan o‘tib ketdi.
+VARAQ siz: «▶ Ishga tushir»ni bosasiz: Coddy qadamlarni yuzida sanab, yulduzdan o‘tib ketadi. Shu payt bolalar noutbukida topshiriq ochiladi — ortiqcha blokni olib tashlash. Siz ham ortiqcha blokni bosib olib tashlab, qayta ishga tushirishingiz mumkin.
+VARAQ bola o‘rganadi: Xatoni o‘zi topib tuzatadi: har blok — bitta qadam.
+
+### 13. Pog‘onalar
+USTOZ P5: 1-dars · Tanishuv Mashq Endi o‘zingiz ! Coddy Qiynalsangiz — «Maslahat»ni bosing. Uch pog‘onani tugatdi 3 / 14 Har belgi — uch pog‘onani tugatgan bitta bola 1 4 Yulduzda to‘xtang 2 4 Orqaga qayting 3 3 Olma, keyin yulduz ★ 3 Aniq 9 ta blok 1 2 3 ‹ Orqaga Yordam so‘radi: 1 ta noutbuk Keyingi ›
+BOLA B2P: 1-dars · Tanishuv Mashq · 2-pog‘ona Orqaga qayting Yulduz orqada qoldi. Harakat Gap Harakat move right move left jump Dastur move left move left 2 ta blok 1 2 3 Maslahat Qahramon qaysi tomonga yurishi kerak? Ishga tushir
+BOLA B2Q: 1-dars · Tanishuv Mashq · 3-pog‘ona Olma , keyin yulduz Olmani oling va yulduzga qayting. Harakat Gap Harakat move right move left jump Dastur move right move right move right move right move left 5 ta blok 1 2 3 4 Maslahat Olma qaysi zonachada? Avval o‘sha yerga boring Ishga tushir
+BOLA B2Y: 1-dars · Tanishuv Mashq · ★ qo‘shimcha Aniq 9 ta blok Olma va yulduz — 9 ta blok bilan. Harakat Gap Harakat move right move left jump Dastur move right move right move right move right move right move right move left move left move left 9 ta blok 1 2 3 4 5 6 Maslahat Olmagacha nechta qadam? Yulduzga qaytish uchun-chi? Ishga tushir
+BOLA BK: (Ustoz ekraniga qarang) 
+VARAQ ekranda: Mashq: pog‘onalar — 1 yulduzda to‘xtang · 2 orqaga qayting · 3 olma, keyin yulduz · ★ aniq 9 ta blok. Doskada — har pog‘onani nechta bola bajargani.
+VARAQ siz: Bolalar o‘zi bajaradi: biri tugasa, keyingisi o‘zi ochiladi (★ — qo‘shimcha). Siz yordam so‘raganlarga borasiz — soni pastda.
+VARAQ bola o‘rganadi: move left — yangi blok; ketma-ketlikni o‘zi tuzadi.
+
+### 14. Xulosa
+USTOZ P9: 1-dars · Tanishuv Xulosa Blok va dastur Coddy Bugungi ikki so‘z — eslab qoling. move right Blok Bitta buyruq move right move right move right Dastur Ketma-ket buyruqlar 1 2 3 ‹ Orqaga Keyingi ›
+BOLA BK: (Ustoz ekraniga qarang) Xulosa: blok va dastur
+VARAQ ekranda: Xulosa: «Blok — bitta buyruq. Dastur — ketma-ket buyruqlar.»
+VARAQ siz: Ikki so‘zni o‘qiysiz; o‘ngda Coddy bloklar bilan yuradi.
+VARAQ bola o‘rganadi: Ikki atama: blok va dastur.
+
+### 15. O‘yin: Men robotman
+USTOZ P10: 1-dars · Tanishuv O‘yin Men — robotman ! Coddy Menga faqat shu buyruqlarni bering! move right Bir qadam o‘ngga move left Bir qadam chapga jump Sakraydi Boshqa buyruqni bilmayman 1 2 3 ‹ Orqaga O‘yin: siz — robot, bolalar buyruq beradi Keyingi ›
+BOLA BK: (Ustoz ekraniga qarang) O‘yin: ustozga buyruq bering!
+VARAQ ekranda: O‘yin: «Men — robotman!» — uchta buyruq va «Boshqa buyruqni bilmayman».
+VARAQ siz: Siz robot bo‘lasiz, bolalar inglizcha buyruq beradi. Boshqa buyruqni bajarmaysiz. Sinfga orqa o‘girib turing — shunda o‘ng va chap bolalarniki bilan bir xil bo‘ladi.
+VARAQ bola o‘rganadi: Buyruq aniq bo‘lishi kerak — kompyuter faqat bilganini qiladi.
+
+### 16. 2-bekat
+USTOZ P4B: 1-dars · Tanishuv Bugungi reja · 2-bekat Endi qahramonimiz gapiradi ! Dars oxirida Bu — mening sahnam! O‘z sahnangiz ✓ Harakatlantirish 2 Gapirtirish 3 Sahna yaratish ‹ Orqaga Keyingi ›
+BOLA BK: (Ustoz ekraniga qarang) Reja: 1-bekat o‘tildi
+VARAQ ekranda: Tepalik: 1-bekat o‘tildi (✓, yoyi oltin), Coddy birinchi pog‘onada. «Endi qahramonimiz gapiradi!»
+VARAQ siz: «Birinchi bekatni o‘tdik — endi qahramonimiz gapiradi.»
+VARAQ bola o‘rganadi: Darsda qayerda turganini ko‘radi.
+
+### 17. say bloki
+USTOZ P7A: 1-dars · Tanishuv Yangi blok · say — ayt say blokiga « 2 qadam yur » yozdik Harakat Gap Gap say Salom! Dastur say 2 qadam yur 1 ta blok ‹ Orqaga Keyingi ›
+BOLA BK: (Ustoz ekraniga qarang) Yangi blok: say
+VARAQ ekranda: Yangi blok «say — ayt»: «say blokiga “2 qadam yur” yozdik». Coddy hali jim.
+VARAQ siz: «▶ Ishga tushir»ni bosasiz — Coddy «2 qadam yur» deb aytadi, lekin joyidan qimirlamaydi. Keyin «Keyingi».
+VARAQ bola o‘rganadi: say bloki bilan tanishadi.
+
+### 18. say: natija
+USTOZ P7: 1-dars · Tanishuv Yangi blok · say — ayt Gapirdi, lekin yurmadi say faqat gapiradi, yurgizmaydi. Harakat Gap Gap say Salom! Dastur say 2 qadam yur 1 ta blok 2 qadam yur ‹ Orqaga Keyingi ›
+BOLA BK: (Ustoz ekraniga qarang) say faqat gapiradi
+VARAQ ekranda: «Gapirdi, lekin yurmadi»: Coddy «2 qadam yur» deb aytdi, lekin joyidan qimirlamadi.
+VARAQ siz: «say faqat gapiradi, yurgizmaydi.» So‘rashingiz mumkin: «Nega yurmadi?»
+VARAQ bola o‘rganadi: Blok nima desa, shu bajariladi; yozuv — faqat gap.
+
+### 19. Ism va rang
+USTOZ P4I: 1-dars · Tanishuv Qahramoningiz Qahramoningizga ism qo‘ying Coddy Rangini ham o‘zingiz tanlang. Ism berdi 9 / 14 Ustoz ‹ Orqaga Ism berdi: 9 / 14 Keyingi ›
+BOLA B6: 1-dars · Tanishuv Qahramoningiz Qahramoningizga ism qo‘ying Coddy Rangini ham o‘zingiz tanlang. Ism Momiq 🎲 Ism tanlab ber 5 / 12 harf Rang Momiq Tayyor bo‘lsa — tugmani bosing Tayyor!
+BOLA BK: (Ustoz ekraniga qarang) 
+VARAQ ekranda: «Qahramoningizga ism qo‘ying» — sinf taxtasi, «Ism berdi».
+VARAQ siz: Bolalar ism yozadi (yoki «Ism tanlab ber») va rang tanlaydi — qahramon darhol o‘sha rangga kiradi. Ismlar ustoz ekraniga chiqmaydi.
+VARAQ bola o‘rganadi: Qahramoni — o‘ziniki.
+
+### 20. Gapirtiramiz
+USTOZ B7: 1-dars · Tanishuv Mashq Qahramoningizga gap yozing Harakat Gap Gap say Salom! Dastur say Men Momiqman! 1 ta blok 1 2 3 ✎ Yozing · 13 / 30 Maslahat Binafsha blokdagi yozuvni bosing va o‘zingiz yozing Ishga tushir
+BOLA B7: 1-dars · Tanishuv Mashq Qahramoningizga gap yozing Harakat Gap Gap say Salom! Dastur say Men Momiqman! 1 ta blok 1 2 3 ✎ Yozing · 13 / 30 Maslahat Binafsha blokdagi yozuvni bosing va o‘zingiz yozing Ishga tushir
+BOLA BK: (Ustoz ekraniga qarang) 
+VARAQ ekranda: Mashq: «Qahramoningizga gap yozing» — say blokidagi yozuv.
+VARAQ siz: Bolalar binafsha blokdagi yozuvni bosib, o‘z gapini yozadi va «Ishga tushir»ni bosadi; «Men Momiqman!» — faqat namuna.
+VARAQ bola o‘rganadi: O‘zi yozgan gapni qahramoni aytadi.
+
+### 21. Ustozning sahnasi
+USTOZ P11: 1-dars · Tanishuv Ko‘ramiz · ustozning sahnasi Coddy kosmosda jump — sakraydi. Ko‘k blok, demak harakat. Harakat Gap Harakat move right move left jump Dastur move right say Mening kosmosim! jump move right 4 ta blok Mening kosmosim! ‹ Orqaga Keyingi ›
+BOLA BK: (Ustoz ekraniga qarang) Ustoz o‘z sahnasini ko‘rsatyapti
+VARAQ ekranda: Ustozning sahnasi: Coddy kosmosda — yuradi, gapiradi, sakraydi (jump — o‘yinda tanishgan blok).
+VARAQ siz: «▶ Ishga tushir»ni bosasiz: Coddy yuradi, gapiradi, sakraydi. «Siznikisi boshqacha bo‘lsin.»
+VARAQ bola o‘rganadi: O‘z sahnasini qanday yasashni ko‘radi.
+
+### 22. O‘z sahnangiz
+USTOZ P12: 1-dars · Tanishuv Mashq O‘z sahnangizni yarating! Coddy Endi navbat sizda! Qahramoningiz uchun kichik dastur tuzing. Joy tanlang Kamida 2 ta harakat bloki O‘zingiz yozgan gap ★ Qo‘shimcha: jump Sahnasi tayyor 8 / 14 Hovli 3 Kosmos 7 Suv osti 4 ‹ Orqaga Sahnasi tayyor: 8 / 14 · yordam kerak: 1 Keyingi ›
+BOLA B8A: 1-dars · Tanishuv O‘z sahnangiz Joy tanlang Coddy Qahramoningiz shu joyda o‘ynaydi. Hovli Kosmos Suv osti Birini tanlang
+BOLA B8: 1-dars · Tanishuv O‘z sahnangiz O‘z sahnangizni yarating! Joy ✓ 2 ta harakat ✓ O‘z gapingiz ✓ ★ jump ✓ Harakat Gap Gap say Salom! Dastur move right say Men Zippiman! jump move right say Mening sahnam! 5 ta blok Mening sahnam! ✓ Sahna tayyor! Maslahat Yana o‘zgartirsangiz bo‘ladi Ishga tushir
+BOLA BK: (Ustoz ekraniga qarang) 
+VARAQ ekranda: Mashq: «O‘z sahnangizni yarating!» — joy, kamida 2 ta harakat bloki, o‘zingiz yozgan gap; qo‘shimcha — jump.
+VARAQ siz: Bolalar joy tanlaydi, bloklarni bosib qo‘shadi va ishga tushiradi; shartlar bajarilgan sari ✓ yonadi. Doskada — haqiqiy son: kim tayyor, kim qaysi joyni tanladi.
+VARAQ bola o‘rganadi: Harakat va gap blokini o‘zi birlashtiradi — farqini amalda ko‘rsatadi.
+
+### 23. Ko‘rgazma
+USTOZ P13: 1-dars · Tanishuv Ko‘rgazma Do‘stingizning sahnasi Coddy Yoningizdagi do‘stingizning sahnasini ko‘ring. ‹ Orqaga Keyin 2–3 bola ko‘rsatadi. So‘rang: «Qahramoni nima qildi?» Keyingi ›
+BOLA B9: 1-dars · Tanishuv Men Zippiman! Aziz · Zippi Sahnangiz qayta-qayta o‘ynaydi
+VARAQ ekranda: Ko‘rgazma: «Yoningizdagi do‘stingizning sahnasini ko‘ring».
+VARAQ siz: Bolalar yonidagi do‘stining sahnasini ko‘radi, keyin 2–3 bola o‘zinikini ko‘rsatadi. So‘rang: «Do‘stingizning qahramoni nima qildi?» Bolalar ishi ustoz ekraniga chiqmaydi.
+VARAQ bola o‘rganadi: Ishini ko‘rsatadi, boshqalarnikini ko‘radi.
+
+### 24. Yakun
+USTOZ P8: 1-dars · Tanishuv Yakun Siz dastur tuzdingiz! ! Dasturlash Kompyuterga buyruq berish Blok Bitta buyruq Dastur Ketma-ket buyruqlar Keyingi dars 2 · Labirint ✓ Harakatlantirish ✓ Gapirtirish ✓ Sahna yaratish ‹ Orqaga Keyingi ›
+BOLA B5: 1-dars · Tanishuv Sizning natijangiz Birinchi dasturingiz tayyor! Coddy Qahramoningizni harakatlantirdingiz, gapirtirdingiz va o‘z sahnangizni yaratdingiz. Siz bugun 17 qadam 2 sakrash 5 gap 1 sahna Zippi Keyingi darsda labirintda ko‘rishamiz! Dars tugadi
+VARAQ ekranda: Yakun: «Siz dastur tuzdingiz!» — dasturlash, blok, dastur. Keyingi dars — labirint.
+VARAQ siz: «Noutbukingizga qarang» — har kimda o‘z natijasi: bugun haqiqatan ishlatgan bloklari. Keyin «Keyingi» — butun sinf natijasi.
+VARAQ bola o‘rganadi: Bugungi uch so‘zni eslaydi; keyingi darsni biladi.
+
+### 25. Sinfimiz bugun
+USTOZ P14: 1-dars · Tanishuv Sinf natijasi Sinfimiz bugun Coddy Hammangiz zo‘r ishladingiz! 210 qadam 28 sakrash 54 gap 12 sahna ‹ Orqaga Darsni yakunlash
+BOLA B5: 1-dars · Tanishuv Sizning natijangiz Birinchi dasturingiz tayyor! Coddy Qahramoningizni harakatlantirdingiz, gapirtirdingiz va o‘z sahnangizni yaratdingiz. Siz bugun 17 qadam 2 sakrash 5 gap 1 sahna Zippi Keyingi darsda labirintda ko‘rishamiz! Dars tugadi
+VARAQ ekranda: Sinfimiz bugun: butun sinf nechta qadam, sakrash, gap va sahna qildi (haqiqiy son); o‘ngda bolalar tanlagan qahramonlar.
+VARAQ siz: «Hammangiz zo‘r ishladingiz!» Raqamlarni o‘qing. «Darsni yakunlash»ni bossangiz — hammada «Dars tugadi» chiqadi.
+VARAQ bola o‘rganadi: Jamoa bo‘lib nimaga erishganini ko‘radi.

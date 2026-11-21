@@ -1,0 +1,368 @@
+<title>Dars tuzilmasi</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@500;700;800;900&family=Nunito:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* Sahifa: qaror varag'i — tashxis, ikki tuzilma varianti (har birida proyektorning 3 ekrani va bola noutbuki), qaror.
+   Maketlar darsning o'z ranglari va chizmalari bilan; sahifa ranglari tokenlarda, maket ichidagi ranglar darsniki (har ikki mavzuda bir xil). */
+:root{
+  --bg:#eef3f8; --surface:#ffffff; --surface2:#f5f8fb; --ink:#15203a; --muted:#5b6782; --line:#d9e2ec;
+  --accent:#ff4f28; --blue:#2f8ff0; --green:#0f9d5f; --green-bg:#e3f6ec; --amber-bg:#fff4d6; --amber:#8a5a00;
+  --display:"Nunito","Trebuchet MS","Segoe UI",system-ui,sans-serif; --body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1522;--surface:#162133;--surface2:#1b2840;--ink:#e6edf7;--muted:#9ba8c0;--line:#26344c;--accent:#ff7a59;--blue:#6db4ff;--green:#3fd08a;--green-bg:#13301f;--amber-bg:#33280f;--amber:#f2c66b;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e1522;--surface:#162133;--surface2:#1b2840;--ink:#e6edf7;--muted:#9ba8c0;--line:#26344c;--accent:#ff7a59;--blue:#6db4ff;--green:#3fd08a;--green-bg:#13301f;--amber-bg:#33280f;--amber:#f2c66b;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+.wrap{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:26px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+.tepa{padding-top:30px;display:flex;flex-direction:column;gap:10px}
+.tepa h1{font-size:clamp(28px,4.4vw,42px);font-weight:900;letter-spacing:-.01em}
+.tepa p{margin:0;max-width:76ch;color:var(--muted)}
+.blok{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:14px}
+.blok > h2{font-size:22px;font-weight:900}
+.yorliq{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.ikki{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:820px){.ikki{grid-template-columns:1fr}}
+.ikki > div{min-width:0}
+ul.r{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:5px}
+.hozir{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media (max-width:820px){.hozir{grid-template-columns:1fr 1fr}}
+.hozir figure,.ekranlar figure{margin:0;display:flex;flex-direction:column;gap:6px;min-width:0}
+.hozir img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;border:1px solid var(--line);display:block}
+figcaption{font-size:13px;color:var(--muted);font-weight:600}
+.variant-bosh{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.variant-bosh .harf{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-family:var(--display);font-weight:900;font-size:22px;color:#fff;background:var(--accent)}
+.variant-bosh .harf.b{background:#3FA2FF}
+.variant-bosh h2{font-size:24px;font-weight:900}
+.variant-bosh p{margin:0;color:var(--muted);flex-basis:100%}
+.ekranlar{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:820px){.ekranlar{grid-template-columns:1fr}}
+.qaror{display:flex;flex-direction:column;gap:12px}
+.tanlov{display:flex;flex-wrap:wrap;gap:10px}
+.tanlov label{display:flex;gap:8px;align-items:center;font-weight:700;padding:10px 14px;border:1.5px solid var(--line);border-radius:12px;cursor:pointer;background:var(--surface2)}
+.tanlov label:has(input:checked){border-color:var(--blue);background:color-mix(in srgb,var(--blue) 14%,var(--surface))}
+.tanlov label:focus-within{outline:3px solid var(--blue);outline-offset:2px}
+textarea{font:inherit;font-size:14px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);padding:10px 12px;min-height:90px;resize:vertical;width:100%}
+.saqlov{font-size:13px;color:var(--muted)}
+.qoldi{display:flex;flex-wrap:wrap;gap:6px}
+.qoldi span{font-size:13px;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--green-bg);color:var(--green)}
+
+/* ================= MAKETLAR (darsning o'z ranglari) ================= */
+.ekran{container-type:inline-size;position:relative;aspect-ratio:16/9;width:100%;max-width:100%;border-radius:12px;overflow:hidden;font-family:var(--display);color:#1D1640;box-shadow:0 10px 30px -14px rgba(20,30,60,.45);border:1px solid var(--line)}
+.ekran *{box-sizing:border-box}
+.ekran img.r{display:block;width:100%;height:100%}
+.ekran img.q{display:block;width:100%;height:auto}
+/* umumiy: blok, ustoz paneli */
+.m-blok{display:inline-flex;align-items:center;gap:.8cqw;background:linear-gradient(180deg,#6fb8ff,#3FA2FF 55%,#2c7fd6);color:#fff;font-weight:900;border-radius:1.2cqw;padding:.7cqw 1.6cqw .9cqw;box-shadow:inset 0 .25cqw 0 rgba(255,255,255,.35),inset 0 -.4cqw 0 rgba(20,40,90,.22);white-space:nowrap}
+.m-blok i{width:2.2cqw;height:2.2cqw;border-radius:.6cqw;background:rgba(255,255,255,.25);display:grid;place-items:center;font-style:normal;font-size:1.3cqw}
+.m-panel{position:absolute;left:0;right:0;bottom:0;height:5cqw;background:#0D2137;color:#fff;display:flex;align-items:center;gap:1.4cqw;padding:0 1.6cqw;font-size:1.35cqw;font-weight:800}
+.m-panel b{color:#FFD45A}
+.m-panel .pmatn{flex:1;text-align:right;color:rgba(255,255,255,.92)}
+.m-panel .psoat{color:rgba(255,255,255,.7)}
+.m-panel .kel{background:#FF4F28;border-radius:.8cqw;padding:.5cqw 1.4cqw}
+.m-shakl{display:inline-block;width:1.9cqw;height:1.9cqw;flex:none}
+.m-shakl.c1{background:#3FA2FF;border-radius:50%}.m-shakl.c2{background:#FF7A59;border-radius:.35cqw}.m-shakl.c3{background:#9A7BFF;clip-path:polygon(50% 0,100% 100%,0 100%)}
+
+/* ---------- A2: Darslik × CoddyCamp ranglari (o'zimizning uslub) ---------- */
+.vc{background:#EBEFF5;font-family:"Onest","Nunito",system-ui,sans-serif;color:#0D2137}
+.vc::before{content:"";position:absolute;right:-12cqw;top:-14cqw;width:42cqw;height:42cqw;border-radius:50%;background:radial-gradient(circle at 40% 40%,rgba(255,79,40,.20),rgba(231,202,102,.16) 45%,transparent 70%)}
+.vc::after{content:"";position:absolute;left:-10cqw;bottom:-16cqw;width:34cqw;height:34cqw;border-radius:50%;background:radial-gradient(circle,rgba(231,202,102,.22),transparent 65%)}
+.vc .bosh{position:absolute;z-index:2;left:1.8cqw;right:1.8cqw;top:1.5cqw;height:5.6cqw;background:#fff;border-radius:1.8cqw;display:flex;align-items:center;gap:1.4cqw;padding:0 1.2cqw 0 .8cqw;box-shadow:0 .6cqw 1.6cqw -1cqw rgba(13,33,55,.35)}
+.vc .dars{display:flex;align-items:center;gap:1cqw;min-width:0}
+.vc .belgi{width:4cqw;height:4cqw;border-radius:1.2cqw;background:linear-gradient(135deg,#FF4F28,#FF8A3D 60%,#E7CA66);color:#fff;display:grid;place-items:center;font-weight:900;font-size:2cqw;line-height:1}
+.vc .dars span{display:flex;flex-direction:column;line-height:1.05}
+.vc .dars small{font-size:1.05cqw;font-weight:800;letter-spacing:.14em;color:#8492A6}
+.vc .dars b{font-size:2cqw;font-weight:900}
+.vc .zina{margin-left:auto;display:flex;align-items:center;gap:.45cqw}
+.vc .zina span{display:flex;align-items:center;gap:.5cqw;font-size:1.3cqw;font-weight:800;color:#8492A6;padding:.45cqw .9cqw .45cqw .45cqw;border-radius:999px;white-space:nowrap}
+.vc .zina span i{width:2.2cqw;height:2.2cqw;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:1.1cqw;background:#EBEFF5;color:#6A7E95}
+.vc .zina span.otdi{color:#0D2137}.vc .zina span.otdi i{background:#D9F27A;color:#0D2137}
+.vc .zina span.hozir{background:#0D2137;color:#fff}.vc .zina span.hozir i{background:#E7CA66;color:#0D2137}
+.vc .tana{position:absolute;z-index:1;left:1.8cqw;right:1.8cqw;top:8.8cqw;bottom:6.6cqw;display:grid;gap:1.6cqw}
+.vc .karta{position:relative;background:#fff;border-radius:2.4cqw;padding:2.2cqw 2.6cqw;box-shadow:0 1cqw 2.4cqw -1.6cqw rgba(13,33,55,.35);display:flex;flex-direction:column;gap:1.1cqw;min-width:0;overflow:hidden}
+.vc .pill{align-self:flex-start;display:inline-flex;align-items:center;gap:.6cqw;font-size:1.2cqw;font-weight:900;letter-spacing:.1em;border-radius:999px;padding:.4cqw 1.1cqw;background:#D9F27A;color:#0D2137}
+.vc .pill.k{background:#EBEFF5;color:#6A7E95}
+.vc .soz{font-size:7.2cqw;font-weight:900;line-height:.92;letter-spacing:-.03em;background:linear-gradient(100deg,#FF4F28 10%,#FF8A3D 55%,#E7CA66 95%);-webkit-background-clip:text;background-clip:text;color:transparent;align-self:flex-start;padding-right:.6cqw}
+.vc .tarif{font-size:2.8cqw;font-weight:800}
+.vc .misollar{display:flex;flex-direction:column;gap:.9cqw;margin-top:.4cqw}
+.vc .misol{display:flex;align-items:center;gap:1cqw;font-size:1.6cqw;font-weight:700;color:#6A7E95}
+.vc .misol .m-blok{font-size:1.55cqw}
+.vc .misol b{color:#0D2137}
+.vc .yoz{margin-top:auto;align-self:flex-start;display:flex;align-items:center;gap:.7cqw;font-size:1.35cqw;font-weight:800;color:#0D2137;background:#FFF6DA;border-radius:1cqw;padding:.55cqw 1.1cqw}
+.vc .yoz em{font-style:normal;color:#FF4F28}
+.vc .rasm{position:relative;border-radius:2.4cqw;overflow:hidden;box-shadow:0 1cqw 2.4cqw -1.6cqw rgba(13,33,55,.4)}
+.vc .rasm .olam{position:absolute;inset:0}
+.vc .rasm .coddy{position:absolute;width:30%;left:16%;bottom:12%}
+.vc .rasm .qadam{position:absolute;bottom:9%;left:50%;display:flex;gap:2.2cqw}
+.vc .rasm .qadam span{width:3cqw;height:3cqw;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:1.4cqw;font-weight:900;box-shadow:0 .3cqw .6cqw rgba(13,33,55,.3)}
+.vc .rasm .qadam span:first-child{background:#E7CA66}
+.vc .rasm .yozuv{position:absolute;left:1.6cqw;top:1.6cqw;background:#0D2137;color:#fff;border-radius:999px;padding:.5cqw 1.3cqw;font-size:1.3cqw;font-weight:800}
+.vc .lenta{position:absolute;right:-3cqw;top:-3cqw;width:14cqw;height:14cqw;border-radius:50%;border:2.2cqw solid transparent;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(135deg,#FF4F28,#E7CA66) border-box;opacity:.9}
+.vc .vazifa{font-size:2.9cqw;font-weight:900;line-height:1.1}
+.vc .pog{display:flex;flex-direction:column;gap:.8cqw}
+.vc .pog div{display:flex;align-items:center;gap:1.1cqw;font-size:1.55cqw;font-weight:800;background:#F4F6FA;border-radius:1.3cqw;padding:.75cqw 1.1cqw}
+.vc .pog i{width:2.6cqw;height:2.6cqw;border-radius:.9cqw;display:grid;place-items:center;font-style:normal;font-weight:900;color:#fff;flex:none;background:#3FA2FF}
+.vc .pog div:nth-child(2) i{background:#FF7A59}.vc .pog div:nth-child(3) i{background:#9A7BFF}.vc .pog div:nth-child(4) i{background:#E7CA66;color:#0D2137}
+.vc .pog span{flex:1}
+.vc .pog b{font-size:1.7cqw}
+.vc .pog small{font-size:1.1cqw;color:#8492A6;font-weight:800}
+.vc .raqam{font-size:8.6cqw;font-weight:900;line-height:.9;letter-spacing:-.03em;background:linear-gradient(100deg,#FF4F28,#E7CA66);-webkit-background-clip:text;background-clip:text;color:transparent}
+.vc .raqam-izoh{font-size:1.8cqw;font-weight:800;color:#6A7E95;margin-top:-.4cqw}
+.vc .yulduzlar{display:flex;flex-wrap:wrap;gap:.35cqw;font-size:1.9cqw;line-height:1}
+.vc .yulduzlar i{font-style:normal;color:#E7CA66}.vc .yulduzlar i.b{color:#DCE3EC}
+.vc .taymer{align-self:flex-start;background:#0D2137;color:#fff;border-radius:999px;padding:.5cqw 1.4cqw;font-size:2cqw;font-weight:900;display:flex;gap:.6cqw;align-items:center}
+.vc .taymer em{font-style:normal;color:#E7CA66}
+.vc .maslahat{margin-top:auto;font-size:1.4cqw;font-weight:800;color:#6A7E95}
+.vc .savol{font-size:3.3cqw;font-weight:900;line-height:1.08}
+.vc .mini{position:relative;border-radius:1.6cqw;overflow:hidden;flex:1;min-height:0}
+.vc .mini .olam{position:absolute;inset:0}
+.vc .mini .yo{position:absolute;left:24%;right:6%;bottom:9%;display:flex;justify-content:space-between}
+.vc .mini .yo span{width:3.2cqw;height:3.2cqw;border-radius:50%;background:#fff;display:grid;place-items:center;font-weight:900;font-size:1.4cqw}
+.vc .mini .yo span.y3{box-shadow:0 0 0 .35cqw #E7CA66}
+.vc .mini .coddy{position:absolute;width:19%;left:4%;bottom:6%}
+.vc .mini .y{position:absolute;bottom:23%;left:57%;font-size:3.6cqw;color:#E7CA66;text-shadow:0 .2cqw .4cqw rgba(0,0,0,.25)}
+.vc .javoblar{display:flex;flex-direction:column;gap:1cqw}
+.vc .javob{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:1.1cqw;font-size:1.7cqw;font-weight:800;padding:1cqw 1.2cqw;border-radius:1.4cqw;background:#F4F6FA}
+.vc .javob .bar{grid-column:1/-1;height:1cqw;border-radius:999px;background:#E2E8F1;overflow:hidden}
+.vc .javob .bar i{display:block;height:100%;border-radius:999px}
+.vc .javob.c1 .bar i{background:#3FA2FF}.vc .javob.c2 .bar i{background:#FF7A59}.vc .javob.c3 .bar i{background:linear-gradient(90deg,#9A7BFF,#7353E6)}
+.vc .javob.togri{background:#F3FBD2;box-shadow:inset 0 0 0 .3cqw #B6DE2E}
+.vc .javob .ok{font-size:1.2cqw;background:#D9F27A;color:#0D2137;border-radius:999px;padding:.2cqw .9cqw;margin-left:.6cqw}
+.vc .natija{margin-top:auto;display:flex;align-items:center;gap:1cqw;font-size:1.6cqw;font-weight:800}
+.vc .natija b{font-size:2.6cqw;background:linear-gradient(100deg,#FF4F28,#E7CA66);-webkit-background-clip:text;background-clip:text;color:transparent}
+/* bola: daftar */
+.vc .daftar h4{margin:0;font-size:2.6cqw;font-weight:900}
+.vc .qator{display:flex;align-items:center;gap:1.1cqw;font-size:1.9cqw;font-weight:800;min-height:4cqw;border-bottom:.15cqw dashed #DCE3EC}
+.vc .qator i{font-style:normal;width:2.6cqw;height:2.6cqw;border-radius:.8cqw;display:grid;place-items:center;background:#D9F27A;font-size:1.3cqw;flex:none}
+.vc .qator.yangi{background:#FFF6DA;border-radius:1.2cqw;border-bottom-color:transparent;padding:0 1cqw;margin:0 -1cqw}
+.vc .qator.yangi i{background:linear-gradient(135deg,#FF4F28,#E7CA66);color:#fff}
+.vc .qator.keyin{color:#B8C2D0}.vc .qator.keyin i{background:#EBEFF5;color:#8492A6}
+.vc .qarang{background:#0D2137;color:#fff;align-items:center;justify-content:center;text-align:center}
+.vc .qarang .uq{font-size:3.6cqw;color:#E7CA66;line-height:1}
+.vc .qarang b{font-size:2.6cqw;font-weight:900;line-height:1.1}
+.vc .qarang span{font-size:1.45cqw;font-weight:700;color:#B9C6D6}
+.vc .qarang img{width:46%}
+/* xulosa */
+.vc .terminlar{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1cqw;flex:1;min-height:0}
+.vc .termin{border-radius:1.8cqw;padding:1.4cqw;display:flex;flex-direction:column;gap:.6cqw;background:#F4F6FA}
+.vc .termin i{font-style:normal;width:3.2cqw;height:3.2cqw;border-radius:1cqw;display:grid;place-items:center;font-weight:900;font-size:1.6cqw;color:#fff;background:#3FA2FF}
+.vc .termin:nth-child(2) i{background:#FF4F28}.vc .termin:nth-child(3) i{background:#9A7BFF}
+.vc .termin b{font-size:2.4cqw;font-weight:900}
+.vc .termin span{font-size:1.45cqw;font-weight:700;color:#6A7E95;line-height:1.3}
+.vc .sonlar{display:grid;grid-template-columns:repeat(3,1fr);gap:1cqw}
+.vc .sonlar div{display:flex;flex-direction:column}
+.vc .sonlar b{font-size:4.4cqw;font-weight:900;line-height:1;background:linear-gradient(100deg,#FF4F28,#E7CA66);-webkit-background-clip:text;background-clip:text;color:transparent}
+.vc .sonlar span{font-size:1.3cqw;font-weight:800;color:#6A7E95}
+.vc .keyingi{margin-top:auto;display:flex;align-items:center;gap:1.2cqw;background:#0D2137;color:#fff;border-radius:1.6cqw;padding:1.1cqw 1.4cqw}
+.vc .keyingi img{width:5cqw}
+.vc .keyingi small{display:block;font-size:1.1cqw;font-weight:800;letter-spacing:.12em;color:#E7CA66}
+.vc .keyingi b{font-size:1.9cqw;font-weight:900}
+.vc .m-panel{z-index:3}
+</style>
+
+<div class="wrap">
+  <header class="tepa">
+    <span class="yorliq">1-dars «Tanishuv» · tuzilma A · CoddyCamp ranglarida</span>
+    <h1>Dars tuzilmasi: A, o'z uslubimizda</h1>
+    <p>Siz tanlagan A tuzilmasi: tepada dars sarlavhasi va bosqichlar, markazda doska, dunyo — rasm sifatida. Ranglar CoddyCamp brendidan: to'q ko'k, coral, oltin, och kulrang-ko'k fon. Eski LMS dizayni olinmadi. Uslub o'zimizniki: coral→oltin gradient, yashil-sariq yorliqlar, katta yumaloq kartochkalar.</p>
+  </header>
+
+  <section class="blok" aria-label="A, CoddyCamp ranglarida">
+    <div class="variant-bosh"><span class="harf">A</span><h2>Darslik — CoddyCamp ranglarida</h2><p>Proyektorning to'rt ekrani (tushuntirish, mashq, test, xulosa) va bola noutbuki. Ostidagi to'q ko'k panel — ustozniki, bolalarga ko'rinadi, lekin e'tiborni tortmaydi.</p></div>
+    <div class="ekranlar">
+      <figure>
+        <div class="ekran vc" role="img" aria-label="Tushuntirish">
+          <div class="bosh"><span class="dars"><span class="belgi">1</span><span><small>1-DARS</small><b>Tanishuv</b></span></span><span class="zina"><span class="otdi"><i>✓</i>Savol</span><span class="hozir"><i>2</i>Yangi mavzu</span><span><i>3</i>Mashq</span><span><i>4</i>Test</span><span><i>5</i>Xulosa</span></span></div>
+          <div class="tana" style="grid-template-columns:1.1fr 1fr">
+            <div class="karta">
+              <span class="pill">YANGI SO'Z · 1/2</span>
+              <span class="soz">Blok</span>
+              <span class="tarif">— bitta buyruq.</span>
+              <div class="misollar">
+                <div class="misol"><span class="m-blok"><i>▸</i>1 qadam yur</span>→ <b>1 qadam</b></div>
+                <div class="misol"><span class="m-blok"><i>▸</i>1 qadam yur</span><span class="m-blok"><i>▸</i>1 qadam yur</span>→ <b>2 qadam</b></div>
+              </div>
+              <span class="yoz">✎ Daftarga: <em>Blok</em> — bitta buyruq</span>
+            </div>
+            <div class="rasm"><img class="r olam" src="{{hovli}}" alt=""><img class="q coddy" src="{{coddyKorsat}}" alt=""><div class="qadam"><span>1</span><span>2</span><span>3</span></div><span class="yozuv">Bitta blok — bitta qadam</span></div>
+          </div>
+          <div class="m-panel"><b>Yangi mavzu</b><span class="pmatn">Blok — bitta buyruq</span><span class="psoat">0:01 / 2 daq</span><span class="kel">Keyingi ›</span></div>
+        </div>
+        <figcaption>Tushuntirish: bitta so'z, ta'rif, misol va daftarga yoziladigan qator</figcaption>
+      </figure>
+      <figure>
+        <div class="ekran vc" role="img" aria-label="Mashq">
+          <div class="bosh"><span class="dars"><span class="belgi">1</span><span><small>1-DARS</small><b>Tanishuv</b></span></span><span class="zina"><span class="otdi"><i>✓</i>Savol</span><span class="otdi"><i>✓</i>Yangi mavzu</span><span class="hozir"><i>3</i>Mashq</span><span><i>4</i>Test</span><span><i>5</i>Xulosa</span></span></div>
+          <div class="tana" style="grid-template-columns:1.3fr 1fr">
+            <div class="karta">
+              <span class="pill">MASHQ · O'ZINGIZ</span>
+              <span class="vazifa">Qahramoningizni yulduzga yetkazing</span>
+              <div class="pog">
+                <div><i>1</i><span>Dasturni tuzating</span><b>14</b><small>bola</small></div>
+                <div><i>2</i><span>Yulduz orqada qoldi</span><b>8</b><small>bola</small></div>
+                <div><i>3</i><span>«Orqaga» ham bo'lsin</span><b>3</b><small>bola</small></div>
+                <div><i>★</i><span>Roppa-rosa 9 ta blok</span><b>1</b><small>bola</small></div>
+              </div>
+            </div>
+            <div class="karta">
+              <span class="pill k">SINF</span>
+              <span class="raqam">6/14</span>
+              <span class="raqam-izoh">uch pog'onani tugatdi</span>
+              <div class="yulduzlar"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i><i class="b">★</i><i class="b">★</i><i class="b">★</i><i class="b">★</i><i class="b">★</i><i class="b">★</i><i class="b">★</i><i class="b">★</i></div>
+              <span class="taymer">⏱ <em>6:29</em> qoldi</span>
+              <span class="maslahat">Qiynalsangiz — «Maslahat»ni bosing</span>
+            </div>
+          </div>
+          <div class="m-panel"><b>Mashq</b><span class="pmatn">Tugatdi: 6 / 14 · sinfni aylaning</span><span class="psoat">0:31 / 7 daq</span><span class="kel">Keyingi ›</span></div>
+        </div>
+        <figcaption>Mashq: bolalar noutbukda, doskada topshiriq, pog'onalar va sinf jarayoni</figcaption>
+      </figure>
+      <figure>
+        <div class="ekran vc" role="img" aria-label="Test">
+          <div class="bosh"><span class="dars"><span class="belgi">1</span><span><small>1-DARS</small><b>Tanishuv</b></span></span><span class="zina"><span class="otdi"><i>✓</i>Savol</span><span class="otdi"><i>✓</i>Yangi mavzu</span><span class="otdi"><i>✓</i>Mashq</span><span class="hozir"><i>4</i>Test</span><span><i>5</i>Xulosa</span></span></div>
+          <div class="tana" style="grid-template-columns:1fr 1.1fr">
+            <div class="karta">
+              <span class="pill">TEST · 1/3</span>
+              <span class="savol">Coddy qayerda to'xtaydi?</span>
+              <div class="mini"><img class="r olam" src="{{hovli}}" alt=""><img class="q coddy" src="{{coddy}}" alt=""><span class="y">★</span><div class="yo"><span>1</span><span>2</span><span class="y3">3</span><span>4</span></div></div>
+            </div>
+            <div class="karta">
+              <span class="pill k">SINF JAVOBLARI · 13/14</span>
+              <div class="javoblar">
+                <div class="javob c1"><span class="m-shakl c1"></span><span>2-nuqtada</span><b>2</b><span class="bar"><i style="width:15%"></i></span></div>
+                <div class="javob c2"><span class="m-shakl c2"></span><span>3-nuqtada, yulduzda</span><b>6</b><span class="bar"><i style="width:46%"></i></span></div>
+                <div class="javob c3 togri"><span class="m-shakl c3"></span><span>4-nuqtada<span class="ok">TO'G'RI</span></span><b>5</b><span class="bar"><i style="width:38%"></i></span></div>
+              </div>
+              <div class="natija"><b>5 bola</b> topdi — Coddy 4-nuqtada to'xtadi</div>
+            </div>
+          </div>
+          <div class="m-panel"><b>Test</b><span class="pmatn">Tushuntiring: Coddy bloklarni sanaydi</span><span class="psoat">0:17 / 4 daq</span><span class="kel">Keyingi ›</span></div>
+        </div>
+        <figcaption>Test: savol va tajriba chapda, sinf javoblari va natija o'ngda</figcaption>
+      </figure>
+      <figure>
+        <div class="ekran vc" role="img" aria-label="Xulosa">
+          <div class="bosh"><span class="dars"><span class="belgi">1</span><span><small>1-DARS</small><b>Tanishuv</b></span></span><span class="zina"><span class="otdi"><i>✓</i>Savol</span><span class="otdi"><i>✓</i>Yangi mavzu</span><span class="otdi"><i>✓</i>Mashq</span><span class="otdi"><i>✓</i>Test</span><span class="hozir"><i>5</i>Xulosa</span></span></div>
+          <div class="tana" style="grid-template-columns:1.45fr 1fr">
+            <div class="karta">
+              <span class="pill">BUGUN O'RGANDIK</span>
+              <div class="terminlar">
+                <div class="termin"><i>!</i><b>Buyruq</b><span>Kompyuterga aytiladigan aniq ish</span></div>
+                <div class="termin"><i>▸</i><b>Blok</b><span>Bitta buyruq</span></div>
+                <div class="termin"><i>≡</i><b>Dastur</b><span>Buyruqlar ro'yxati</span></div>
+              </div>
+            </div>
+            <div class="karta">
+              <span class="pill k">SINFIMIZ BUGUN</span>
+              <div class="sonlar"><div><b>210</b><span>qadam</span></div><div><b>54</b><span>gap</span></div><div><b>8</b><span>sahna</span></div></div>
+              <div class="keyingi"><img class="q" src="{{coddyHayron}}" alt=""><div><small>KEYINGI DARS</small><b>Labirint</b></div></div>
+            </div>
+          </div>
+          <div class="m-panel"><b>Xulosa</b><span class="pmatn">Uchala bekatdan o'tdik</span><span class="psoat">0:02 / 4 daq</span><span class="kel">Tugatish</span></div>
+        </div>
+        <figcaption>Xulosa (yangi): o'rganilgan uch so'z, sinf natijasi va keyingi dars</figcaption>
+      </figure>
+      <figure>
+        <div class="ekran vc" role="img" aria-label="Bola noutbuki">
+          <div class="bosh"><span class="dars"><span class="belgi">1</span><span><small>1-DARS</small><b>Tanishuv</b></span></span><span class="zina"><span class="otdi"><i>✓</i>Savol</span><span class="hozir"><i>2</i>Yangi mavzu</span><span><i>3</i>Mashq</span><span><i>4</i>Test</span><span><i>5</i>Xulosa</span></span></div>
+          <div class="tana" style="grid-template-columns:1.35fr 1fr;bottom:1.8cqw">
+            <div class="karta daftar">
+              <h4>Mening daftarim</h4>
+              <div class="qator"><i>✓</i>Buyruq — kompyuterga aytiladigan ish</div>
+              <div class="qator yangi"><i>✎</i>Blok — bitta buyruq</div>
+              <div class="qator keyin"><i>3</i>Dastur — …</div>
+            </div>
+            <div class="karta qarang"><span class="uq">↑</span><b>Katta ekranga qarang</b><span>Ustoz yangi so'zni tushuntiryapti</span><img class="q" src="{{momiq}}" alt=""></div>
+          </div>
+        </div>
+        <figcaption>Bola noutbuki: o'sha ramka, daftar va «katta ekranga qarang»</figcaption>
+      </figure>
+      <figure>
+        <div class="ekran" style="background:#fff;display:flex;flex-direction:column;justify-content:center;gap:1.6cqw;padding:3cqw;font-family:var(--body);color:#15203a" role="img" aria-label="Ranglar">
+          <b style="font-family:var(--display);font-size:2.6cqw">Ranglar va ularning vazifasi</b>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.2cqw;font-size:1.4cqw;font-weight:600">
+            <div><div style="height:5cqw;border-radius:1cqw;background:#0D2137"></div>Blue 0D2137 — matn, panel, tanlangan bosqich</div>
+            <div><div style="height:5cqw;border-radius:1cqw;background:#FF4F28"></div>Coral FF4F28 — asosiy harakat, yangi so'z</div>
+            <div><div style="height:5cqw;border-radius:1cqw;background:#E7CA66"></div>Gold E7CA66 — taymer, yulduz, natija</div>
+            <div><div style="height:5cqw;border-radius:1cqw;background:#EBEFF5;border:1px solid #d9e2ec"></div>Fon EBEFF5 — sahifa</div>
+            <div><div style="height:5cqw;border-radius:1cqw;background:#D9F27A"></div>Yashil-sariq — yorliq, bajarildi</div>
+            <div><div style="height:5cqw;border-radius:1cqw;background:linear-gradient(100deg,#FF4F28,#E7CA66)"></div>Gradient — katta so'z va sonlar</div>
+          </div>
+        </div>
+        <figcaption>Brenddan olingan ranglar va har birining darsdagi vazifasi</figcaption>
+      </figure>
+    </div>
+  </section>
+
+
+  <section class="blok" aria-label="Ekran qonunlari">
+    <h2>Ekran qonunlari: 7 soniyada tushunarli</h2>
+    <p style="margin:0;color:var(--muted)">Har ekran bir xil «skelet»da quriladi. Bola birinchi ekranni o'rgangach, qolganlarida nimani qayerda topishini oldindan biladi: qayerga qarash, qayerga bosish, nimani kutish.</p>
+    <div class="ikki">
+      <figure style="margin:0">
+        <div class="ekran" style="background:#EBEFF5;font-family:var(--display)" role="img" aria-label="Ekran zonalari sxemasi">
+          <div style="position:absolute;left:1.8cqw;right:1.8cqw;top:1.5cqw;height:5.6cqw;border-radius:1.8cqw;background:#fff;border:.25cqw dashed #8492A6;display:flex;align-items:center;justify-content:space-between;padding:0 1.6cqw;font-size:1.5cqw;font-weight:800;color:#0D2137"><span>① Qayerdaman: dars + bosqich</span><span style="color:#6A7E95">doim tepada</span></div>
+          <div style="position:absolute;left:1.8cqw;right:1.8cqw;top:8.8cqw;height:4.6cqw;border-radius:1.4cqw;background:#D9F27A;display:flex;align-items:center;padding:0 1.6cqw;font-size:1.6cqw;font-weight:900;color:#0D2137">② Nima qilaman: bitta gap (vazifa yoki savol)</div>
+          <div style="position:absolute;left:1.8cqw;right:1.8cqw;top:15cqw;bottom:9.2cqw;border-radius:2cqw;background:#fff;border:.25cqw dashed #8492A6;display:grid;place-items:center;font-size:1.8cqw;font-weight:800;color:#0D2137;text-align:center">③ Ish maydoni<br><span style="font-size:1.35cqw;color:#6A7E95">doska, Blok studiya yoki javob kartalari — bitta narsa</span></div>
+          <div style="position:absolute;left:1.8cqw;right:1.8cqw;bottom:1.8cqw;height:6cqw;border-radius:1.6cqw;background:#fff;display:flex;align-items:center;gap:1.4cqw;padding:0 1.2cqw;font-size:1.4cqw;font-weight:800;color:#6A7E95"><span style="border:.2cqw solid #DCE3EC;border-radius:1cqw;padding:.6cqw 1.2cqw">④ yordam: Maslahat</span><span style="flex:1;text-align:center">holat: «3 ta blok»</span><span style="background:#FF4F28;color:#fff;border-radius:1.2cqw;padding:1cqw 2cqw;font-size:1.7cqw;font-weight:900">⑤ BITTA asosiy tugma</span></div>
+        </div>
+        <figcaption>Har ekranning skeleti: 5 ta zona, har doim bir joyda</figcaption>
+      </figure>
+      <div><ol class="r" style="padding-left:20px;display:flex;flex-direction:column;gap:7px;margin:0">
+        <li><b>7 soniya qoidasi.</b> Ekran ochilganda bola uch savolga 7 soniyada javob topadi: qayerdaman (①), nima qilaman (②), qayerga bosaman (⑤).</li>
+        <li><b>Bitta asosiy tugma.</b> Har ekranda faqat bitta coral tugma, doim o'ng pastda: «Tayyorman», «Ishga tushir», «Keyingi pog'ona». Ikkita coral tugma hech qachon bo'lmaydi.</li>
+        <li><b>Ikkinchi darajali amallar chapda va kulrang:</b> «Maslahat», «qayta ko'rish». Ular asosiy tugma bilan raqobatlashmaydi.</li>
+        <li><b>Bosiladigan narsa bosiladigandek ko'rinadi.</b> Blok — bo'rtiq, soyali, sichqoncha ustiga borsa ko'tariladi. Bosilmaydigan narsa tugmaga o'xshamaydi.</li>
+        <li><b>Yopiq tugma sababini aytadi.</b> Kulrang tugma ustida qulf va bitta gap: «Avval taxmin qiling».</li>
+        <li><b>Bitta ekran — bitta ish.</b> Ish maydonida faqat bitta narsa: tushuntirish yoki mashq yoki test. Konfetti va sakrash faqat muvaffaqiyat lahzasida.</li>
+        <li><b>Rang ma'no beradi va o'zgarmaydi:</b> coral — harakat; yashil-sariq — bajarildi; oltin — vaqt va yulduz; to'q ko'k — matn. Bloklar o'z rangida: ko'k — yurish, marjon — gapirish, binafsha — sakrash.</li>
+        <li><b>Kutishni ko'rsatamiz.</b> Bola ustozni kutayotganda ham ① va ② joyida turadi: «Katta ekranga qarang — ustoz tushuntiryapti».</li>
+      </ol></div>
+    </div>
+  </section>
+  <section class="blok" aria-label="Fikringiz">
+    <h2>Fikringiz</h2>
+    <p style="margin:0;color:var(--muted)">Yoqqanini va o'zgartirish kerak joyni yozing. Tasdiqlasangiz, avval 4–7-sahnani shu uslubda kodda quraman, keyin butun darsni.</p>
+    <div class="qaror">
+      <div class="tanlov" role="radiogroup" aria-label="Qaror">
+        <label><input type="radio" name="tanlov" id="t-ha" value="Ha — shu uslubda qur"> Ha — shu uslubda qur</label>
+        <label><input type="radio" name="tanlov" id="t-oz" value="Ozgina o'zgartir"> Ozgina o'zgartir (izohda)</label>
+        <label><input type="radio" name="tanlov" id="t-yoq" value="Boshqacha bo'lsin"> Boshqacha bo'lsin</label>
+      </div>
+      <textarea id="izoh" aria-label="Izoh" placeholder="Masalan: sarlavha kattaroq; doska rangliroq; xulosa ekrani yoqdi…"></textarea>
+      <span class="saqlov" id="saqlov">Javob shu sahifada saqlanadi</span>
+    </div>
+  </section>
+</div>
+
+<script>
+(() => {
+  const saqlov = document.getElementById('saqlov'), ta = document.getElementById('izoh')
+  let db = null, holat = {}
+  const KALIT = 'dars-tuzilmasi-javob-2'
+  try { holat = JSON.parse(localStorage.getItem(KALIT) || '{}') } catch {}
+  const chiz = () => {
+    document.querySelectorAll('input[name="tanlov"]').forEach((i) => { i.checked = i.value === holat.tanlov })
+    if (document.activeElement !== ta && holat.izoh != null) ta.value = holat.izoh
+  }
+  async function yoz(o) {
+    holat = { ...holat, ...o, vaqt: Date.now() }
+    try { localStorage.setItem(KALIT, JSON.stringify(holat)) } catch {}
+    if (!db) { saqlov.textContent = 'Saqlandi (shu brauzerda). Chatga tanlovingizni yozing.'; return }
+    saqlov.textContent = 'Saqlanmoqda…'
+    try { await db.collection('javob').doc('a2').set(holat); saqlov.textContent = 'Saqlandi — chatga «tayyor» deb yozing' }
+    catch { saqlov.textContent = 'Saqlanmadi — tanlovingizni chatga yozing' }
+  }
+  document.querySelectorAll('input[name="tanlov"]').forEach((i) => i.addEventListener('change', () => yoz({ tanlov: i.value })))
+  let tm = null
+  ta.addEventListener('input', () => { clearTimeout(tm); tm = setTimeout(() => yoz({ izoh: ta.value.trim() }), 700) })
+  chiz()
+  ;(async () => {
+    try { db = await window.claude?.use?.('db') } catch { db = null }
+    if (!db) return
+    db.collection('javob').onSnapshot((s) => { for (const d of s.docs) if (d.id === 'a2' && d.data()) holat = { ...d.data() }; chiz() }, () => {})
+  })()
+})()
+</script>

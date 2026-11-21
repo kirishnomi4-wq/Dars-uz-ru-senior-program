@@ -1,0 +1,238 @@
+<title>Tanishuv oldin va keyin</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geologica:wght@600;700&family=Onest:wght@400;500;600;700&family=JetBrains+Mono:wght@600;700&display=swap">
+<style>
+/* Tartib: tepada tungi ish xulosasi va ertalabki qarorlar; keyin 16 sahna — har birida «oldin» (v9 kodi) va «keyin» (etalon) yonma-yon; oxirida halol ro'yxat. Junior etalonining tokenlari. */
+:root{
+  --bg:#F6F4EF; --sirt:#FFFFFF; --sirt2:#FBFAF7; --siyoh:#0D2137; --xira:#5A5A60; --chiziq:#E4E0D6;
+  --aksent:#E2431F; --ok:#1F7A4D; --ok-bg:#E3F0E8; --oltin:#8A6A0C; --oltin-bg:#FFF3C4; --kok:#1B62B5; --kok-bg:#E3EFFD;
+  --f-sar:"Geologica",system-ui,sans-serif; --f-matn:"Onest",system-ui,-apple-system,"Segoe UI",sans-serif; --f-kod:"JetBrains Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11161f;--sirt:#18202c;--sirt2:#1d2633;--siyoh:#ECEFF4;--xira:#A4ACB9;--chiziq:#2A3442;--aksent:#FF7A59;--ok:#59C98F;--ok-bg:#163024;--oltin:#E7CA66;--oltin-bg:#3a3010;--kok:#7DBBFA;--kok-bg:#14263c;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#11161f;--sirt:#18202c;--sirt2:#1d2633;--siyoh:#ECEFF4;--xira:#A4ACB9;--chiziq:#2A3442;--aksent:#FF7A59;--ok:#59C98F;--ok-bg:#163024;--oltin:#E7CA66;--oltin-bg:#3a3010;--kok:#7DBBFA;--kok-bg:#14263c;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--siyoh);font:16px/1.55 var(--f-matn);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 72px}
+.wrap{max-width:1240px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+h1,h2,h3{font-family:var(--f-sar);letter-spacing:-.02em;text-wrap:balance;margin:0}
+p{margin:0}
+.tepa{display:flex;flex-direction:column;gap:12px}
+.tepa .yorliq{font:700 12px/1 var(--f-kod);letter-spacing:.12em;text-transform:uppercase;color:var(--aksent)}
+.tepa h1{font-size:clamp(30px,4.6vw,48px);line-height:1.05}
+.tepa p{max-width:72ch;color:var(--xira)}
+.sonlar{display:flex;flex-wrap:wrap;gap:8px}
+.sonlar span{font:600 14px/1 var(--f-matn);padding:9px 12px;border-radius:999px;background:var(--sirt);border:1px solid var(--chiziq)}
+.sonlar b{font-family:var(--f-kod);font-variant-numeric:tabular-nums}
+.blok{background:var(--sirt);border:1px solid var(--chiziq);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:14px}
+.blok h2{font-size:24px}
+.tun{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.tun > div{background:var(--sirt2);border:1px solid var(--chiziq);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.tun h3{font-size:17px}
+.tun p{font-size:14.5px;color:var(--xira)}
+.tun a{color:var(--kok);font-weight:600}
+.qaror{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
+.qaror li{max-width:90ch}
+.chip{display:inline-block;font:700 11.5px/1 var(--f-kod);letter-spacing:.04em;padding:5px 8px;border-radius:999px;vertical-align:1px}
+.chip.qabul{background:var(--ok-bg);color:var(--ok)}
+.chip.korik{background:var(--oltin-bg);color:var(--oltin)}
+.chip.yangi{background:var(--kok-bg);color:var(--kok)}
+.izoh{display:flex;flex-wrap:wrap;gap:10px 18px;font-size:14px;color:var(--xira);align-items:center}
+.sahna{display:flex;flex-direction:column;gap:14px;padding-top:18px;border-top:1px solid var(--chiziq);scroll-margin-top:12px}
+.s-bosh{display:flex;gap:14px;align-items:flex-start}
+.s-n{flex:none;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font:700 17px/1 var(--f-kod);background:var(--siyoh);color:var(--bg)}
+.s-bosh h2{font-size:24px;line-height:1.15}
+.ozg{margin:6px 0 0;padding-left:18px;color:var(--xira);font-size:14.5px;display:flex;flex-direction:column;gap:2px}
+.juft{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:18px;align-items:start}
+@media (max-width:980px){.juft{grid-template-columns:1fr}}
+.ust{display:flex;flex-direction:column;gap:10px;min-width:0}
+.ust .yorliq{font:700 12px/1.3 var(--f-kod);letter-spacing:.06em;color:var(--xira)}
+.ust.keyin .yorliq{color:var(--aksent)}
+.ust img{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--chiziq);background:var(--sirt2)}
+.oldin img{filter:saturate(.85)}
+.bosh{font-size:14.5px;color:var(--xira);background:var(--sirt2);border:1px dashed var(--chiziq);border-radius:10px;padding:16px}
+.ekr{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.ekr figure{margin:0;display:flex;flex-direction:column;gap:6px;min-width:0}
+.ekr figcaption{font-size:13.5px;color:var(--xira);display:flex;flex-wrap:wrap;gap:6px;align-items:baseline}
+.ekr figcaption b{font:700 12px/1 var(--f-kod);color:var(--siyoh);background:var(--sirt);border:1px solid var(--chiziq);border-radius:6px;padding:3px 6px}
+.chala{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
+.mundarija{display:flex;flex-wrap:wrap;gap:6px}
+.mundarija a{font:600 13px/1 var(--f-matn);color:var(--siyoh);text-decoration:none;background:var(--sirt2);border:1px solid var(--chiziq);border-radius:8px;padding:7px 9px}
+.mundarija a:focus-visible,.tun a:focus-visible{outline:3px solid #3FA2FF;outline-offset:2px}
+.bl-rasm{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.bl-rasm img{width:100%;height:auto;border-radius:10px;border:1px solid var(--chiziq)}
+.jad{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--chiziq);vertical-align:top}
+th{font:700 12px/1.2 var(--f-kod);letter-spacing:.06em;color:var(--xira);text-transform:uppercase}
+td:last-child{font-family:var(--f-kod);font-variant-numeric:tabular-nums}
+</style>
+<div class="wrap">
+  <header class="tepa">
+    <span class="yorliq">Junior · 1-dars «Tanishuv» · tungi ish, 16.11</span>
+    <h1>Oldin va keyin</h1>
+    <p>Har sahna uchun chapda — hozirgi darsning haqiqiy ekrani (kod hali 9-versiyada, suratlar 16.11 tunda olingan), o‘ngda — etalon v4 dagi yangi ekranlar. Yangi ekranlar hali kod emas: bu — dars qanday ko‘rinishi kerakligining namunasi.</p>
+    <div class="sonlar"><span><b>16</b> sahna</span><span><b>32</b> yangi ekran</span><span class="chip qabul">Qabul · 11</span><span class="chip korik">Ko‘rikda · 5</span><span class="chip yangi">Yangi · 16</span></div>
+  </header>
+
+  <section class="blok" aria-labelledby="tun-h">
+    <h2 id="tun-h">Tunda nima qilindi</h2>
+    <div class="tun">
+      <div><h3>Tartib</h3><p>Etalon <code>arxiv/</code> dan <code>new-junior/etalon/</code> ga ko‘chdi (bitta buyruq: <code>node new-junior/etalon/yig.mjs</code>), tekshiruvlar — <code>sinov/etalon/</code> ga. Natija baytma-bayt bir xil. Commit qilinmadi.</p></div>
+      <div><h3>Blockly sinovi — o‘tdi</h3><p>4 blok bizning ko‘rinishda; sudrash, bosib qo‘shish, ishga tushirish, yozuvni o‘zgartirish, JavaScript kodi — hammasi ishladi. Tez va yengil. Hukm: <b>Blockly</b>. <a href="https://claude.ai/artifact/V4gd1b6ZVuRsjgueAAC4bg">O‘zingiz o‘ynab ko‘ring</a></p></div>
+      <div><h3>Etalon v4 — butun dars</h3><p>16 ta yangi ekran: kutish, qahramon tanlash, YUR! tugmasi, xulosa, «Men robotman», ism va rang, say yozuvi, ustozning sahnasi, o‘z sahnangiz, galereya. 33 ekran setka tekshiruvidan toza. <a href="https://claude.ai/artifact/98WuUFScW38c9u9RyPoJbp">Etalon sahifasi</a></p></div>
+      <div><h3>Ekran qonunlari — bitta fayl</h3><p><code>new-junior/etalon/QONUNLAR.md</code>: 26 qonun, har birining manbasi va tekshiruvi, hujjatlar orasidagi ziddiyatlar ro‘yxati.</p></div>
+    </div>
+  </section>
+
+  <section class="blok" aria-labelledby="qaror-h">
+    <h2 id="qaror-h">Ertalab sizdan kerak</h2>
+    <ol class="qaror">
+      <li><b>Yangi 16 ekran va v3.4 dagi 5 ekranni ko‘rish</b> — etalon sahifasida «Qabul / Boshqa g‘oya», keyin «Javobni nusxalash».</li>
+      <li><b>Blockly’ni tasdiqlash.</b> «Ha» bo‘lsa: Blockly fayllari loyihaga qo‘yiladi (sinfda internet bo‘lmasa ham ishlashi uchun) va 1-darsning studiyasi Blockly ustiga ko‘chiriladi.</li>
+      <li><b>Ustoz gaplari qayerda turadi?</b> Proyektor ustoz noutbukini takrorlaydi, shuning uchun pastki qatordagi «Ustozga: … deb ayting» sinfga ham ko‘rinadi. Yo faqat varaqda, yo noutbukda alohida ustoz oynasi.</li>
+      <li><b>Commit.</b> <code>new-junior/</code> hali git’da yo‘q — bitta xato yoki disk nosozligi bilan hammasi yo‘qolishi mumkin. Buyrug‘ingiz bilan commit qilaman.</li>
+    </ol>
+  </section>
+
+  <nav class="blok" aria-label="Sahnalar"><h2>Sahnalar</h2><div class="mundarija"><a href="#s1">1 · Kirish</a><a href="#s2">2 · Savol: Coddy’ni qanday yurgizamiz?</a><a href="#s3">3 · Dasturlash nima?</a><a href="#s4">4 · Reja va qahramon</a><a href="#s5">5 · Blok studiya: ranglar va birinchi dastur</a><a href="#s6">6 · Ko‘ramiz: Coddy bloklarni sanaydi</a><a href="#s7">7 · O‘zingiz: yulduzga yetkazing</a><a href="#s8">8 · Xulosa: blok va dastur</a><a href="#s9">9 · Harakatli o‘yin: «Men robotman»</a><a href="#s10">10 · Ko‘ramiz: say bloki</a><a href="#s11">11 · Ism va rang</a><a href="#s12">12 · O‘zingiz: gapirtiramiz</a><a href="#s13">13 · Ko‘ramiz: ustozning sahnasi</a><a href="#s14">14 · O‘zingiz: o‘z sahnangiz</a><a href="#s15">15 · Ko‘rsatish: galereya</a><a href="#s16">16 · Yakun</a><a href="#blockly">Blockly sinovi</a><a href="#chala">Hali chala</a></div>
+    <div class="izoh"><span class="chip qabul">Qabul</span> siz qabul qilgansiz <span class="chip korik">Ko‘rikda</span> v3.4 da o‘zgardi <span class="chip yangi">Yangi</span> tunda chizildi</div></nav>
+  
+  <section class="sahna" id="s1" aria-labelledby="h1">
+    <header class="s-bosh"><span class="s-n">1</span><div><h2 id="h1">Kirish</h2><ul class="ozg"><li>Kursning birinchi darsi ekani va bloklardan nima yasalishi (labirint, olma terish, kosmik o‘yin) — v9 da yo‘q edi</li><li>Coddy bugun nima qilishimizni aytadi; «Keyin — …», «Bugun esa — …»</li></ul></div></header>
+    <div class="juft">
+      <div class="ust oldin"><p class="yorliq">Oldin · hozirgi kod (v9) — chapda proyektor, o‘ngda bola noutbuki</p><img src="rasm/do-01-1-kirish.jpg" alt="Eski dars, 1-sahna: 1-kirish" loading="lazy" width="1200" height="384"><img src="rasm/do-02-1-kirdi.jpg" alt="Eski dars, 1-sahna: 1-kirdi" loading="lazy" width="1200" height="384"></div>
+      <div class="ust keyin"><p class="yorliq">Keyin · etalon v4</p><div class="ekr"><figure><img src="rasm/posle-P1.jpg" alt="P1 Kirish" loading="lazy" width="945" height="532"><figcaption><b>P1</b> Kirish <span class="chip korik" title="v3.4 da o‘zgardi — ko‘rib chiqing">Ko‘rikda</span></figcaption></figure><figure><img src="rasm/posle-B0.jpg" alt="B0 Darsga kirish" loading="lazy" width="945" height="532"><figcaption><b>B0</b> Darsga kirish <span class="chip yangi" title="v4, tunda chizildi — ko‘rib chiqing">Yangi</span></figcaption></figure><figure><img src="rasm/posle-BK.jpg" alt="BK Katta ekranga qarang" loading="lazy" width="945" height="532"><figcaption><b>BK</b> Katta ekranga qarang <span class="chip yangi" title="v4, tunda chizildi — ko‘rib chiqing">Yangi</span></figcaption></figure></div></div>
+    </div>
+  </section>
+  <section class="sahna" id="s2" aria-labelledby="h2">
+    <header class="s-bosh"><span class="s-n">2</span><div><h2 id="h2">Savol: Coddy’ni qanday yurgizamiz?</h2><ul class="ozg"><li>Javob kartalari katta ekranda ham, rasmli; to‘g‘ri javob «buyruq beramiz» (v9: «yozamiz» — keyingi sahnaga zid)</li><li>«Uch taxmin — uch sinov»: natija kartaning o‘zida (✕ qimirlamadi / ✓ ishladi)</li></ul></div></header>
+    <div class="juft">
+      <div class="ust oldin"><p class="yorliq">Oldin · hozirgi kod (v9) — chapda proyektor, o‘ngda bola noutbuki</p><img src="rasm/do-03-2a-savol.jpg" alt="Eski dars, 2-sahna: 2a-savol" loading="lazy" width="1200" height="384"><img src="rasm/do-06-2c-baqirish.jpg" alt="Eski dars, 2-sahna: 2c-baqirish" loading="lazy" width="1200" height="384"><img src="rasm/do-11-2e-javob-1.jpg" alt="Eski dars, 2-sahna: 2e-javob-1" loading="lazy" width="1200" height="384"></div>
+      <div class="ust keyin"><p class="yorliq">Keyin · etalon v4</p><div class="ekr"><figure><img src="rasm/posle-P2.jpg" alt="P2 Savol · uch taxmin" loading="lazy" width="945" height="532"><figcaption><b>P2</b> Savol · uch taxmin <span class="chip korik" title="v3.4 da o‘zgardi — ko‘rib chiqing">Ko‘rikda</span></figcaption></figure><figure><img src="rasm/posle-P2N.jpg" alt="P2N Savol (noutbukda)" loading="lazy" width="945" height="532"><figcaption><b>P2N</b> Savol (noutbukda) <span class="chip qabul" title="Siz qabul qilgansiz (v3.3)">Qabul</span></figcaption></figure><figure><img src="rasm/posle-P2S.jpg" alt="P2S Savol · 1-sinov" loading="lazy" width="945" height="532"><figcaption><b>P2S</b> Savol · 1-sinov <span class="chip yangi" title="v4, tunda chizildi — ko‘rib chiqing">Yangi</span></figcaption></figure><figure><img src="rasm/posle-BY.jpg" alt="BY YUR! tugmasi" loading="lazy" width="945" height="532"><figcaption><b>BY</b> YUR! tugmasi <span class="chip yangi" title="v4, tunda chizildi — ko‘rib chiqing">Yangi</span></figcaption></figure><figure><img src="rasm/posle-P2C.jpg" alt="P2C Savol · sinovdan keyin" loading="lazy" width="945" height="532"><figcaption><b>P2C</b> Savol · sinovdan keyin <span class="chip korik" title="v3.4 da o‘zgardi — ko‘rib chiqing">Ko‘rikda</span></figcaption></figure></div></div>
+    </div>
+  </section>
+  <section class="sahna" id="s3" aria-labelledby="h3">
+    <header class="s-bosh"><span class="s-n">3</span><div><h2 id="h3">Dasturlash nima?</h2><ul class="ozg"><li>Yangi sahna: dasturchi yozadi — biz bloklarni ulaymiz (blokli dasturlash)</li></ul></div></header>
+    <div class="juft">
+      <div class="ust oldin"><p class="yorliq">Oldin · hozirgi kod (v9) — chapda proyektor, o‘ngda bola noutbuki</p><p class="bosh">Bu sahna eski darsda yo‘q edi — yangi.</p></div>
+      <div class="ust keyin"><p class="yorliq">Keyin · etalon v4</p><div class="ekr"><figure><img src="rasm/posle-P3.jpg" alt="P3 Dasturlash nima?" loading="lazy" width="945" height="532"><figcaption><b>P3</b> Dasturlash nima? <span class="chip korik" title="v3.4 da o‘zgardi — ko‘rib chiqing">Ko‘rikda</span></figcaption></figure></div></div>
+    </div>
+  </section>
+  <section class="sahna" id="s4" aria-labelledby="h4">
+    <header class="s-bosh"><span class="s-n">4</span><div><h2 id="h4">Reja va qahramon</h2><ul class="ozg"><li>Reja — yo‘l xaritasi: bekatlar zonacha, rangi — oilasi; xarita har bekat boshida qaytadi</li><li>Sinf taxtasi: Coddy (Ustoz) + 14 o‘rin, ismsiz</li></ul></div></header>
+    <div class="juft">
+      <div class="ust oldin"><p class="yorliq">Oldin · hozirgi kod (v9) — chapda proyektor, o‘ngda bola noutbuki</p><img src="rasm/do-13-3a-reja.jpg" alt="Eski dars, 4-sahna: 3a-reja" loading="lazy" width="1200" height="384"><img src="rasm/do-16-3c-tanlov.jpg" alt="Eski dars, 4-sahna: 3c-tanlov" loading="lazy" width="1200" height="384"><img src="rasm/do-18-3c-sinf-toldi.jpg" alt="Eski dars, 4-sahna: 3c-sinf-toldi" loading="lazy" width="1200" height="384"></div>
+      <div class="ust keyin"><p class="yorliq">Keyin · etalon v4</p><div class="ekr"><figure><img src="rasm/posle-P4.jpg" alt="P4 Reja — yo‘l xaritasi" loading="lazy" width="945" height="532"><figcaption><b>P4</b> Reja — yo‘l xaritasi <span class="chip qabul" title="Siz qabul qilgansiz (v3.3)">Qabul</span></figcaption></figure><figure><img src="rasm/posle-P4T.jpg" alt="P4T Sinf taxtasi" loading="lazy" width="945" height="532"><figcaption><b>P4T</b> Sinf taxtasi <span class="chip yangi" title="v4, tunda chizildi — ko‘rib chiqing">Yangi</span></figcaption></figure><figure><img src="rasm/posle-BQ.jpg" alt="BQ Qahramon tanlash" loading="lazy" width="945" height="532"><figcaption><b>BQ</b> Qahramon tanlash <span class="chip yangi" title="v4, tunda chizildi — ko‘rib chiqing">Yangi</span></figcaption></figure></div></div>
+    </div>
+  </section>
+  <section class="sahna" id="s5" aria-labelledby="h5">
+    <header class="s-bosh"><span class="s-n">5</span><div><h2 id="h5">Blok studiya: ranglar va birinchi dastur</h2><ul class="ozg"><li>Scratch tartibi: rang doirachalari → bloklar → dastur → sahna; bloklar inglizcha va mozaikadek ulanadi</li><li>Yo‘lda zonachalar va sakrash yoylari; muammocha pufagi — bitta gap</li></ul></div></header>
+    <div class="juft">
+      <div class="ust oldin"><p class="yorliq">Oldin · hozirgi kod (v9) — chapda proyektor, o‘ngda bola noutbuki</p><img src="rasm/do-19-4a-bloklar.jpg" alt="Eski dars, 5-sahna: 4a-bloklar" loading="lazy" width="1200" height="384"><img src="rasm/do-23-4b-kam.jpg" alt="Eski dars, 5-sahna: 4b-kam" loading="lazy" width="1200" height="384"><img src="rasm/do-24-4b-yetdi.jpg" alt="Eski dars, 5-sahna: 4b-yetdi" loading="lazy" width="1200" height="384"></div>
+      <div class="ust keyin"><p class="yorliq">Keyin · etalon v4</p><div class="ekr"><figure><img src="rasm/posle-B1.jpg" alt="B1 Ranglar" loading="lazy" width="945" height="532"><figcaption><b>B1</b> Ranglar <span class="chip qabul" title="Siz qabul qilgansiz (v3.3)">Qabul</span></figcaption></figure><figure><img src="rasm/posle-B2.jpg" alt="B2 Studiya" loading="lazy" width="945" height="532"><figcaption><b>B2</b> Studiya <span class="chip qabul" title="Siz qabul qilgansiz (v3.3)">Qabul</span></figcaption></figure><figure><img src="rasm/posle-B3.jpg" alt="B3 Xato" loading="lazy" width="945" height="532"><figcaption><b>B3</b> Xato <span class="chip qabul" title="Siz qabul qilgansiz (v3.3)">Qabul</span></figcaption></figure><figure><img src="rasm/posle-B4.jpg" alt="B4 Yetib bordi" loading="lazy" width="945" height="532"><figcaption><b>B4</b> Yetib bordi <span class="chip qabul" title="Siz qabul qilgansiz (v3.3)">Qabul</span></figcaption></figure></div></div>
+    </div>
+  </section>
+  <section class="sahna" id="s6" aria-labelledby="h6">
+    <header class="s-bosh"><span class="s-n">6</span><div><h2 id="h6">Ko‘ramiz: Coddy bloklarni sanaydi</h2><ul class="ozg"><li>v9 dagi «Coddy qayerda to‘xtaydi?» testi olib tashlandi — ustoz ko‘rsatadi va tushuntiradi</li></ul></div></header>
+    <div class="juft">
+      <div class="ust oldin"><p class="yorliq">Oldin · hozirgi kod (v9) — chapda proyektor, o‘ngda bola noutbuki</p><img src="rasm/do-26-5a-savol.jpg" alt="Eski dars, 6-sahna: 5a-savol" loading="lazy" width="1200" height="384"><img src="rasm/do-30-5d-kormaydi.jpg" alt="Eski dars, 6-sahna: 5d-kormaydi" loading="lazy" width="1200" height="384"></div>
+      <div class="ust keyin"><p class="yorliq">Keyin · etalon v4</p><div class="ekr"><figure><img src="rasm/posle-P6.jpg" alt="P6 Coddy sanaydi" loading="lazy" width="945" height="532"><figcaption><b>P6</b> Coddy sanaydi <span class="chip qabul" title="Siz qabul qilgansiz (v3.3)">Qabul</span></figcaption></figure></div></div>
+    </div>
+  </section>
+  <section class="sahna" id="s7" aria-labelledby="h7">
+    <header class="s-bosh"><span class="s-n">7</span><div><h2 id="h7">O‘zingiz: yulduzga yetkazing</h2><ul class="ozg"><li>Sinf doskasi: pog‘onalar zinapoya — kichik rasm, bir qator topshiriq, nechta bola; vaqt yo‘q</li></ul></div></header>
+    <div class="juft">
+      <div class="ust oldin"><p class="yorliq">Oldin · hozirgi kod (v9) — chapda proyektor, o‘ngda bola noutbuki</p><img src="rasm/do-25-4b-doska.jpg" alt="Eski dars, 7-sahna: 4b-doska" loading="lazy" width="1200" height="384"><img src="rasm/do-32-6-pog1.jpg" alt="Eski dars, 7-sahna: 6-pog1" loading="lazy" width="1200" height="384"><img src="rasm/do-34-6-pog1-maslahat.jpg" alt="Eski dars, 7-sahna: 6-pog1-maslahat" loading="lazy" width="1200" height="384"></div>
+      <div class="ust keyin"><p class="yorliq">Keyin · etalon v4</p><div class="ekr"><figure><img src="rasm/posle-P5.jpg" alt="P5 Sinf doskasi" loading="lazy" width="945" height="532"><figcaption><b>P5</b> Sinf doskasi <span class="chip korik" title="v3.4 da o‘zgardi — ko‘rib chiqing">Ko‘rikda</span></figcaption></figure></div></div>
+    </div>
+  </section>
+  <section class="sahna" id="s8" aria-labelledby="h8">
+    <header class="s-bosh"><span class="s-n">8</span><div><h2 id="h8">Xulosa: blok va dastur</h2><ul class="ozg"><li>Sarlavha bir qatorda; ta’riflar Coddy gapida; uchta blok birin-ketin yonadi</li></ul></div></header>
+    <div class="juft">
+      <div class="ust oldin"><p class="yorliq">Oldin · hozirgi kod (v9) — chapda proyektor, o‘ngda bola noutbuki</p><img src="rasm/do-43-7a-blok.jpg" alt="Eski dars, 8-sahna: 7a-blok" loading="lazy" width="1200" height="384"><img src="rasm/do-44-7b-dastur.jpg" alt="Eski dars, 8-sahna: 7b-dastur" loading="lazy" width="1200" height="384"></div>
+      <div class="ust keyin"><p class="yorliq">Keyin · etalon v4</p><div class="ekr"><figure><img src="rasm/posle-P9.jpg" alt="P9 Xulosa: blok va dastur" loading="lazy" width="945" height="532"><figcaption><b>P9</b> Xulosa: blok va dastur <span class="chip yangi" title="v4, tunda chizildi — ko‘rib chiqing">Yangi</span></figcaption></figure></div></div>
+    </div>
+  </section>
+  <section class="sahna" id="s9" aria-labelledby="h9">
+    <header class="s-bosh"><span class="s-n">9</span><div><h2 id="h9">Harakatli o‘yin: «Men robotman»</h2><ul class="ozg"><li>Bloklar inglizcha: move right · move left · jump; «run!», «fly!» — boshqa buyruq yo‘q</li></ul></div></header>
+    <div class="juft">
+      <div class="ust oldin"><p class="yorliq">Oldin · hozirgi kod (v9) — chapda proyektor, o‘ngda bola noutbuki</p><img src="rasm/do-45-8-oyin.jpg" alt="Eski dars, 9-sahna: 8-oyin" loading="lazy" width="1200" height="384"></div>
+      <div class="ust keyin"><p class="yorliq">Keyin · etalon v4</p><div class="ekr"><figure><img src="rasm/posle-P10.jpg" alt="P10 O‘yin: Men robotman" loading="lazy" width="945" height="532"><figcaption><b>P10</b> O‘yin: Men robotman <span class="chip yangi" title="v4, tunda chizildi — ko‘rib chiqing">Yangi</span></figcaption></figure></div></div>
+    </div>
+  </section>
+  <section class="sahna" id="s10" aria-labelledby="h10">
+    <header class="s-bosh"><span class="s-n">10</span><div><h2 id="h10">Ko‘ramiz: say bloki</h2><ul class="ozg"><li>Xarita qaytadi: o‘tilgan yoy oltin, Coddy keyingi bekatda</li><li>«de» o‘rniga say; v9 dagi test o‘rniga — ko‘rsatish («Yurmadi — faqat aytdi»)</li></ul></div></header>
+    <div class="juft">
+      <div class="ust oldin"><p class="yorliq">Oldin · hozirgi kod (v9) — chapda proyektor, o‘ngda bola noutbuki</p><img src="rasm/do-46-9-xarita.jpg" alt="Eski dars, 10-sahna: 9-xarita" loading="lazy" width="1200" height="384"><img src="rasm/do-49-9b-savol.jpg" alt="Eski dars, 10-sahna: 9b-savol" loading="lazy" width="1200" height="384"><img src="rasm/do-51-9d-aytdi.jpg" alt="Eski dars, 10-sahna: 9d-aytdi" loading="lazy" width="1200" height="384"></div>
+      <div class="ust keyin"><p class="yorliq">Keyin · etalon v4</p><div class="ekr"><figure><img src="rasm/posle-P4B.jpg" alt="P4B Xarita · 2-bekat boshi" loading="lazy" width="945" height="532"><figcaption><b>P4B</b> Xarita · 2-bekat boshi <span class="chip qabul" title="Siz qabul qilgansiz (v3.3)">Qabul</span></figcaption></figure><figure><img src="rasm/posle-P7.jpg" alt="P7 say bloki" loading="lazy" width="945" height="532"><figcaption><b>P7</b> say bloki <span class="chip qabul" title="Siz qabul qilgansiz (v3.3)">Qabul</span></figcaption></figure></div></div>
+    </div>
+  </section>
+  <section class="sahna" id="s11" aria-labelledby="h11">
+    <header class="s-bosh"><span class="s-n">11</span><div><h2 id="h11">Ism va rang</h2><ul class="ozg"><li>Ism (12 harf, «Tasodifiy ism») va sakkiz rang; ism faqat bola noutbukida</li></ul></div></header>
+    <div class="juft">
+      <div class="ust oldin"><p class="yorliq">Oldin · hozirgi kod (v9) — chapda proyektor, o‘ngda bola noutbuki</p><img src="rasm/do-54-10-ism.jpg" alt="Eski dars, 11-sahna: 10-ism" loading="lazy" width="1200" height="384"><img src="rasm/do-56-10-sinf-rangli.jpg" alt="Eski dars, 11-sahna: 10-sinf-rangli" loading="lazy" width="1200" height="384"></div>
+      <div class="ust keyin"><p class="yorliq">Keyin · etalon v4</p><div class="ekr"><figure><img src="rasm/posle-B6.jpg" alt="B6 Ism va rang" loading="lazy" width="945" height="532"><figcaption><b>B6</b> Ism va rang <span class="chip yangi" title="v4, tunda chizildi — ko‘rib chiqing">Yangi</span></figcaption></figure></div></div>
+    </div>
+  </section>
+  <section class="sahna" id="s12" aria-labelledby="h12">
+    <header class="s-bosh"><span class="s-n">12</span><div><h2 id="h12">O‘zingiz: gapirtiramiz</h2><ul class="ozg"><li>say yozuvi tahrirlanmoqda: qalam, «13 / 30»; binafsha — Gap oilasi</li></ul></div></header>
+    <div class="juft">
+      <div class="ust oldin"><p class="yorliq">Oldin · hozirgi kod (v9) — chapda proyektor, o‘ngda bola noutbuki</p><img src="rasm/do-59-11-pog1.jpg" alt="Eski dars, 12-sahna: 11-pog1" loading="lazy" width="1200" height="384"><img src="rasm/do-60-11-yozmoqda.jpg" alt="Eski dars, 12-sahna: 11-yozmoqda" loading="lazy" width="1200" height="384"><img src="rasm/do-65-11-doska.jpg" alt="Eski dars, 12-sahna: 11-doska" loading="lazy" width="1200" height="384"></div>
+      <div class="ust keyin"><p class="yorliq">Keyin · etalon v4</p><div class="ekr"><figure><img src="rasm/posle-B7.jpg" alt="B7 Gapirtiramiz" loading="lazy" width="945" height="532"><figcaption><b>B7</b> Gapirtiramiz <span class="chip yangi" title="v4, tunda chizildi — ko‘rib chiqing">Yangi</span></figcaption></figure></div></div>
+    </div>
+  </section>
+  <section class="sahna" id="s13" aria-labelledby="h13">
+    <header class="s-bosh"><span class="s-n">13</span><div><h2 id="h13">Ko‘ramiz: ustozning sahnasi</h2><ul class="ozg"><li>Kosmosda Coddy: yangi jump bloki (u ham ko‘k — harakat)</li></ul></div></header>
+    <div class="juft">
+      <div class="ust oldin"><p class="yorliq">Oldin · hozirgi kod (v9) — chapda proyektor, o‘ngda bola noutbuki</p><img src="rasm/do-69-12-kosmos-bosh.jpg" alt="Eski dars, 13-sahna: 12-kosmos-bosh" loading="lazy" width="1200" height="384"><img src="rasm/do-70-12-gapiryapti.jpg" alt="Eski dars, 13-sahna: 12-gapiryapti" loading="lazy" width="1200" height="384"></div>
+      <div class="ust keyin"><p class="yorliq">Keyin · etalon v4</p><div class="ekr"><figure><img src="rasm/posle-P11.jpg" alt="P11 Ustozning sahnasi" loading="lazy" width="945" height="532"><figcaption><b>P11</b> Ustozning sahnasi <span class="chip yangi" title="v4, tunda chizildi — ko‘rib chiqing">Yangi</span></figcaption></figure></div></div>
+    </div>
+  </section>
+  <section class="sahna" id="s14" aria-labelledby="h14">
+    <header class="s-bosh"><span class="s-n">14</span><div><h2 id="h14">O‘zingiz: o‘z sahnangiz</h2><ul class="ozg"><li>Sinf doskasi: uch shart va uch joy (tanlaganlar soni, ismsiz)</li><li>Studiyada uch shart yashil ✓ oladi, «Sahna tayyor!»</li></ul></div></header>
+    <div class="juft">
+      <div class="ust oldin"><p class="yorliq">Oldin · hozirgi kod (v9) — chapda proyektor, o‘ngda bola noutbuki</p><img src="rasm/do-72-13-joy.jpg" alt="Eski dars, 14-sahna: 13-joy" loading="lazy" width="1200" height="384"><img src="rasm/do-75-13-ozgap.jpg" alt="Eski dars, 14-sahna: 13-ozgap" loading="lazy" width="1200" height="384"><img src="rasm/do-77-13-doska.jpg" alt="Eski dars, 14-sahna: 13-doska" loading="lazy" width="1200" height="384"></div>
+      <div class="ust keyin"><p class="yorliq">Keyin · etalon v4</p><div class="ekr"><figure><img src="rasm/posle-P12.jpg" alt="P12 Sinf doskasi: o‘z sahnangiz" loading="lazy" width="945" height="532"><figcaption><b>P12</b> Sinf doskasi: o‘z sahnangiz <span class="chip yangi" title="v4, tunda chizildi — ko‘rib chiqing">Yangi</span></figcaption></figure><figure><img src="rasm/posle-B8A.jpg" alt="B8A Joy tanlang" loading="lazy" width="945" height="532"><figcaption><b>B8A</b> Joy tanlang <span class="chip yangi" title="v4, tunda chizildi — ko‘rib chiqing">Yangi</span></figcaption></figure><figure><img src="rasm/posle-B8.jpg" alt="B8 O‘z sahnangiz" loading="lazy" width="945" height="532"><figcaption><b>B8</b> O‘z sahnangiz <span class="chip yangi" title="v4, tunda chizildi — ko‘rib chiqing">Yangi</span></figcaption></figure></div></div>
+    </div>
+  </section>
+  <section class="sahna" id="s15" aria-labelledby="h15">
+    <header class="s-bosh"><span class="s-n">15</span><div><h2 id="h15">Ko‘rsatish: galereya</h2><ul class="ozg"><li>Proyektorda bolaning ishi yo‘q; bola noutbukida sahnasi o‘zi o‘ynaydi</li></ul></div></header>
+    <div class="juft">
+      <div class="ust oldin"><p class="yorliq">Oldin · hozirgi kod (v9) — chapda proyektor, o‘ngda bola noutbuki</p><img src="rasm/do-78-14-galereya.jpg" alt="Eski dars, 15-sahna: 14-galereya" loading="lazy" width="1200" height="384"></div>
+      <div class="ust keyin"><p class="yorliq">Keyin · etalon v4</p><div class="ekr"><figure><img src="rasm/posle-P13.jpg" alt="P13 Galereya" loading="lazy" width="945" height="532"><figcaption><b>P13</b> Galereya <span class="chip yangi" title="v4, tunda chizildi — ko‘rib chiqing">Yangi</span></figcaption></figure><figure><img src="rasm/posle-B9.jpg" alt="B9 Galereya: mening sahnam" loading="lazy" width="945" height="532"><figcaption><b>B9</b> Galereya: mening sahnam <span class="chip yangi" title="v4, tunda chizildi — ko‘rib chiqing">Yangi</span></figcaption></figure></div></div>
+    </div>
+  </section>
+  <section class="sahna" id="s16" aria-labelledby="h16">
+    <header class="s-bosh"><span class="s-n">16</span><div><h2 id="h16">Yakun</h2><ul class="ozg"><li>O‘sha xarita — yo‘l oxiri, bugungi so‘zlar; sinf jami yo‘q — har bola o‘z ma’lumotini o‘z noutbukida ko‘radi</li></ul></div></header>
+    <div class="juft">
+      <div class="ust oldin"><p class="yorliq">Oldin · hozirgi kod (v9) — chapda proyektor, o‘ngda bola noutbuki</p><img src="rasm/do-79-15-xarita.jpg" alt="Eski dars, 16-sahna: 15-xarita" loading="lazy" width="1200" height="384"><img src="rasm/do-80-15a-sinf-bugun.jpg" alt="Eski dars, 16-sahna: 15a-sinf-bugun" loading="lazy" width="1200" height="384"></div>
+      <div class="ust keyin"><p class="yorliq">Keyin · etalon v4</p><div class="ekr"><figure><img src="rasm/posle-P8.jpg" alt="P8 Yakun — yo‘l oxiri" loading="lazy" width="945" height="532"><figcaption><b>P8</b> Yakun — yo‘l oxiri <span class="chip qabul" title="Siz qabul qilgansiz (v3.3)">Qabul</span></figcaption></figure><figure><img src="rasm/posle-B5.jpg" alt="B5 O‘z ma’lumoti" loading="lazy" width="945" height="532"><figcaption><b>B5</b> O‘z ma’lumoti <span class="chip qabul" title="Siz qabul qilgansiz (v3.3)">Qabul</span></figcaption></figure></div></div>
+    </div>
+  </section>
+
+  <section class="blok" id="blockly" aria-labelledby="bl-h">
+    <h2 id="bl-h">Blockly sinovi</h2>
+    <p>Blok studiya Blockly 13.4.0 da (Apache 2.0), etalondagi «Studiya» shablonida: rang doirachalari · bloklar · dastur · sahna. Chapda — sudrab ulangan dastur, o‘ngda — «say» yozuvi o‘zgartirilib, qahramon yulduzga yetgan.</p>
+    <div class="bl-rasm"><img src="rasm/blockly-sudrab.jpg" alt="Blockly sinovi: sudrab ulangan to‘rt blok" loading="lazy"><img src="rasm/blockly-say.jpg" alt="Blockly sinovi: say yozuvi o‘zgartirildi, qahramon yulduzda" loading="lazy"></div>
+    <div class="jad"><table><thead><tr><th>Nima</th><th>Natija</th></tr></thead><tbody>
+      <tr><td>Ish maydoni tayyor</td><td>0,3–0,5 s</td></tr>
+      <tr><td>Blockly fayllari (tarmoqdan, siqilgan)</td><td>~170 KB</td></tr>
+      <tr><td>4× sekin protsessorda: tayyor · 5 marta bosib qo‘shish</td><td>0,5 s · 0,29 s</td></tr>
+      <tr><td>Xotira</td><td>~10 MB</td></tr>
+      <tr><td>Bosib qo‘shish · sudrab ulash · ishga tushirish · yozuvni o‘zgartirish · «Kodini ko‘rsat»</td><td>hammasi ishladi</td></tr>
+    </tbody></table></div>
+    <p>Sinalmagani: sensorli panelda bola barmog‘i bilan sudrash; sinfda internetsiz ishlash (fayllar loyihaga qo‘yiladi); uzun «say» gapi tor ustunda. Hisobot: <code>new-junior/sinov/blockly/HISOBOT.md</code>. <a href="https://claude.ai/artifact/V4gd1b6ZVuRsjgueAAC4bg">Sinov sahifasini ochish</a> — bloklarni bosing yoki sudrang, «Ishga tushir».</p>
+  </section>
+
+  <section class="blok" id="chala" aria-labelledby="ch-h">
+    <h2 id="ch-h">Hali chala</h2>
+    <ul class="chala">
+      <li><b>Kod.</b> Dars hali 9-versiyada (chapdagi suratlar). Yangi ko‘rinish kodga ko‘chirilmagan — Blockly tasdig‘i va ekranlar ko‘rigidan keyin.</li>
+      <li><b>Bolalarda sinalmagan:</b> inglizcha blok nomlari, bekat belgilari, pog‘ona rasmlari, rasmli javob kartalari.</li>
+      <li><b>Proyektorda o‘qilishi o‘lchanmagan:</b> ko‘p yorliq ekran kengligining 1–1,3 foizida.</li>
+      <li><b>Birinchi dasturgacha 16–19 daqiqa</b> — kirish, savol, «Dasturlash nima?» va reja ketma-ket. 9 yoshli uchun uzun bo‘lishi mumkin.</li>
+      <li><b>Harakat va tovush</b> etalonda faqat qisman; to‘liq — kodda.</li>
+    </ul>
+  </section>
+</div>

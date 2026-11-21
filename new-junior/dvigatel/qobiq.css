@@ -1,0 +1,281 @@
+html,body{margin:0;height:100%;background:#0D2137;overflow:hidden}
+body{display:grid;place-items:center;font-family:var(--f-matn)}
+.sahna-q{position:relative;width:min(100vw,calc(100vh * 16 / 9));aspect-ratio:16/9}
+.sahna-q .ekran{width:100%;max-width:none;border-radius:0;border:0;box-shadow:none;cursor:default}
+.yonma .sahna-q{width:min(48.5vw,calc((100vh - 120px) * 16 / 9))}
+.yonma{display:flex;gap:1.5vw;align-items:center;justify-content:center;width:100vw}
+.yonma figure{margin:0;display:flex;flex-direction:column;gap:8px}
+.yonma figcaption{color:#E7E6BE;font:700 13px var(--f-kod);letter-spacing:.04em}
+.ustoz-tasma{position:fixed;right:12px;top:12px;z-index:90;display:flex;gap:8px;align-items:center;font:600 13px var(--f-matn);color:#fff;background:rgba(13,33,55,.82);border-radius:10px;padding:6px 8px;opacity:.15;transition:opacity .2s}
+.ustoz-tasma:hover{opacity:1}
+.ustoz-tasma button{font:600 13px var(--f-matn);border:0;border-radius:7px;padding:6px 10px;background:#FF4F28;color:#fff;cursor:pointer}
+.ustoz-tasma button.ik{background:rgba(255,255,255,.16)}
+.ustoz-tasma select{font:600 13px var(--f-matn);border-radius:7px;border:0;padding:5px}
+.ustoz-tasma .ul{display:inline-flex;align-items:center;gap:5px}
+.ustoz-tasma .ul i{width:9px;height:9px;border-radius:50%;background:#A7ABB4}
+.ustoz-tasma .ul.on i{background:#38C793}
+.r-yonma .ustoz-tasma{top:auto;right:auto;bottom:14px;left:50%;transform:translateX(-50%);opacity:1}
+body.r-ustoz,body.r-bola{background:#F6F4EF}
+.ekran .pl .mbw:not(.yopiq) .mb,.ekran .dst .mb,.ekran .sin3,.ekran .hn .mas,.ekran .rng i,.ekran .asos,.ekran .orq,.ekran .jk,.ekran .tq-o,.ekran .jy,.ekran .yur-b,.ekran .rd,.ekran .ism-t{cursor:pointer}
+.nomsiz .ekran .hb .hl{visibility:hidden}
+.hn .ishga{white-space:nowrap;margin-left:auto}.hn .ishga + .asos,.hn .ishga ~ .k-ust{margin-left:1cqw}
+.ism-inp{font:inherit;color:inherit;border:0;outline:0;background:transparent;width:100%;min-width:0;padding:0}
+.dst .mb .inp[contenteditable=true]{outline:.2cqw solid #FFC93C;cursor:text}
+.dv-pufak{position:absolute;z-index:6;white-space:nowrap}
+#bol .q.kichik > svg,#bol .dyz > svg,#bol .m2 > svg{filter:var(--qf,none)}
+@keyframes kir{from{opacity:0;translate:0 .9cqw}to{opacity:1;translate:0 0}}
+.kir .chap > *,.kir .pan > *,.kir .ust > *,.kir .qarang{animation:kir .5s cubic-bezier(.2,.7,.3,1) both}
+.kir .chap > :nth-child(2),.kir .pan > :nth-child(2),.kir .ust > :nth-child(2){animation-delay:.15s}
+.kir .chap > :nth-child(3),.kir .pan > :nth-child(3),.kir .ust > :nth-child(3){animation-delay:.32s}
+.kir .chap > :nth-child(4),.kir .pan > :nth-child(4){animation-delay:.48s}
+.kir .chap > :nth-child(n+5){animation-delay:.6s}
+.kir .jv > *,.kir .tf-l > *,.kir .kurs > *{animation:kir .45s cubic-bezier(.2,.7,.3,1) both}
+.kir .jv > :nth-child(1),.kir .tf-l > :nth-child(1),.kir .kurs > :nth-child(1){animation-delay:.6s}
+.kir .jv > :nth-child(2),.kir .tf-l > :nth-child(2),.kir .kurs > :nth-child(2){animation-delay:.74s}
+.kir .jv > :nth-child(3),.kir .tf-l > :nth-child(3),.kir .kurs > :nth-child(3){animation-delay:.88s}
+.kir .jv > :nth-child(n+4),.kir .tf-l > :nth-child(n+4),.kir .kurs > :nth-child(n+4){animation-delay:1s}
+@media (prefers-reduced-motion:reduce){.kir .chap > *,.kir .pan > *,.kir .ust > *,.kir .qarang,.kir .jv > *,.kir .tf-l > *,.kir .kurs > *{animation:none}}
+
+.tugadi-fon{position:absolute;inset:0;z-index:7;background:rgba(13,33,55,.38)}
+.tugadi-k{left:50%;top:46%;transform:translate(-50%,-50%);z-index:8;background:#fff!important;box-shadow:0 2cqw 5cqw -1cqw rgba(13,33,55,.5);padding:3cqw 4.4cqw;display:flex;flex-direction:column;align-items:center;gap:.8cqw;text-align:center;border-radius:1.6cqw}
+.tugadi-k b{font:var(--sar-w) 4cqw/1.1 var(--f-sar);color:#0D2137}
+.tugadi-k span{font:600 1.6cqw/1.3 var(--f-matn);color:#4A4A50}
+.ekran .jk.tanlandi{outline:.35cqw solid #FF4F28;outline-offset:.2cqw}
+.yur-b.bos{animation:yurbos .25s}
+@keyframes yurbos{30%{transform:translate(-50%,-50%) scale(.92)}}
+.eshik{position:fixed;inset:0;z-index:95;display:grid;place-items:center;background:linear-gradient(#BFE3FF,#EAF6FF 60%,#BDE6A4)}
+.eshik form{background:#fff;border-radius:22px;padding:34px 36px;display:flex;flex-direction:column;gap:14px;width:min(420px,90vw);box-shadow:0 24px 60px -24px rgba(13,33,55,.45)}
+.eshik h1{margin:0;font:700 28px var(--f-sar);color:#0D2137}
+.eshik p{margin:0;color:#5A5A60;font:500 15px var(--f-matn)}
+.eshik input{font:600 20px var(--f-matn);padding:12px 14px;border-radius:12px;border:2px solid #D7DCE6;outline:0}
+.eshik input:focus{border-color:#3FA2FF}
+.vq{max-width:760px;margin:0 auto;padding:20px 16px 60px;color:#0D2137;font:16px/1.5 var(--f-matn)}
+.vq h1{font:700 24px/1.25 var(--f-sar);margin:4px 0 14px}
+.vq-b{background:#fff;border-radius:14px;padding:14px 16px;margin-bottom:16px;box-shadow:0 2px 10px rgba(58,53,48,.08)}
+.vq-b p{margin:6px 0}
+.vq-k{background:#fff;border-radius:14px;padding:12px 16px;margin:10px 0;box-shadow:0 2px 10px rgba(58,53,48,.08)}
+.vq-k h2{font:700 18px/1.3 var(--f-sar);margin:2px 0 8px;display:flex;gap:10px;align-items:center}
+.vq-k h2 span{flex:none;width:28px;height:28px;border-radius:50%;background:#FF4F28;color:#fff;display:grid;place-items:center;font:700 14px var(--f-kod)}
+.vq-k p{margin:4px 0}
+.vq-k i{display:block;font:700 12px/1.4 var(--f-kod);font-style:normal;color:#5A5A60;letter-spacing:.04em;text-transform:uppercase}
+.jr-bl{position:relative;flex:1 1 auto;min-height:0}
+.jr-bl-ws{position:absolute;inset:0}
+.jr-bl > .bosh{position:absolute;left:0;right:0;top:0;display:none}
+.jr-bl.bosh-bor > .bosh{display:block}
+.jr-bl .blocklySvg{background:transparent!important}
+.jr-bl .blocklyMainBackground{fill:transparent!important;stroke:none!important}
+.jr-bl .blocklyBlockCanvas{filter:drop-shadow(0 3.2px 0 rgba(13,33,55,.28))}
+.jr-bl .mb.hozir > .blocklyPath{stroke:#FFD54A!important;stroke-width:5px}
+.jr-bl .mb[data-tur="r"] > .blocklyPath,.jr-bl .mb[data-tur="l"] > .blocklyPath,.jr-bl .mb[data-tur="j"] > .blocklyPath{fill:url(#jr-g-h)}
+.jr-bl .mb[data-tur="s"] > .blocklyPath{fill:url(#jr-g-g)}
+.jr-bl .mb.yon[data-tur="r"] > .blocklyPath,.jr-bl .mb.yon[data-tur="l"] > .blocklyPath,.jr-bl .mb.yon[data-tur="u"] > .blocklyPath,.jr-bl .mb.yon[data-tur="d"] > .blocklyPath,.jr-bl .mb.yon[data-tur="j"] > .blocklyPath{fill:url(#jr-g-hy)}
+/* 5a: dastur to'xtagan blok (devorga urildi) sariq hoshiya bilan qoladi — dastur o'zgarsa yoki qayta ishga tushirilsa ketadi */
+.jr-bl .mb.urildi > .blocklyPath{stroke:#FFD54A!important;stroke-width:5px}
+.jr-bl .mb.yon[data-tur="s"] > .blocklyPath{fill:url(#jr-g-gy)}
+/* 4d (95-qaror): tanlangan blok — coral hoshiya (bajarilayotgani sariq); yonida «✕» — olib tashlash */
+.jr-bl .mb.bl-tanlangan > .blocklyPath{stroke:#FF4F28!important;stroke-width:5px}
+/* Blockly tanlangan blok ustiga o'z nusxasini sariq porlash filtri bilan chizadi (#fff200) — bizda sariq «bajarilyapti» degani; porlash o'chiriladi */
+.jr-bl .blocklyPathSelected{filter:none!important;stroke:#FF4F28!important}
+.jr-bl .bl-x{position:absolute;z-index:6;width:2.4cqw;height:2.4cqw;transform:translate(.5cqw,-50%);border-radius:50%;background:#FF4F28;color:#fff;display:grid;place-items:center;font:700 1.3cqw/1 var(--f-matn);cursor:pointer;box-shadow:0 .25cqw .7cqw rgba(13,33,55,.35)}
+.eshik button{font:700 18px var(--f-matn);padding:13px;border:0;border-radius:12px;background:#FF4F28;color:#fff;cursor:pointer}
+/* muammocha (qaror 1-B): etalon B3 — pufakda faqat bitta gap, kichik, uchi muammochaga qaragan */
+.dv-muam{top:27%;left:16%;align-items:center;pointer-events:none}
+.dv-muam.o-ng{left:auto;right:7%;flex-direction:row-reverse}
+.dv-muam.o-ng .pufak::before{left:auto;right:-.55cqw}
+.dv-muam .mk svg{display:block}
+.dv-muam .pufak{max-width:none;background:#fff;padding:.6cqw 1.15cqw .7cqw;border-radius:1cqw;-webkit-backdrop-filter:none;backdrop-filter:none}
+.dv-muam .pufak b{font-size:1.6cqw;margin:0;white-space:nowrap}
+.dv-muam .pufak::before{content:"";position:absolute;left:-.55cqw;top:50%;width:1.1cqw;height:1.1cqw;background:#fff;transform:translateY(-50%) rotate(45deg);border-radius:.15cqw}
+.dv-muam .mk{animation:muam-k .45s cubic-bezier(.3,1.5,.5,1) both}
+@keyframes muam-k{from{transform:translateY(30%) rotate(-8deg) scale(.6);opacity:0}to{transform:rotate(-8deg);opacity:1}}
+@media (prefers-reduced-motion:reduce){.dv-muam .mk{animation:none}}
+/* 5a: katak sahnasi (labirint, 99-qaror) — tepadan qaralgan bog', butun oyna; chizmasi katak.js, harakati sahna.js */
+.oyna > .katak{position:absolute;inset:0;z-index:1;background:linear-gradient(#A9DE86,#86CB6C)}
+.katak .kt{position:absolute;left:3%;top:3%;width:94%;height:94%;display:block}
+.katak .kt-butalar{filter:drop-shadow(0 6px 4px rgba(31,79,42,.35))}
+.katak .kt-c{stroke:rgba(150,120,60,.25);stroke-width:2;transition:stroke .3s}
+.katak .kt-c.iz{stroke:#E3B53A;stroke-width:6}
+.katak .kt-il{stroke:#E3B53A;stroke-width:7;stroke-linecap:round;stroke-dasharray:2 14}
+.katak .kt-q > svg{width:80px;height:88px;overflow:visible}
+/* 5b-2: bolaning qahramoni labirintda ham o'z rangida (B6 da tanlangan rang, --qf) */
+#bol .katak .kt-q > svg{filter:var(--qf,none)}
+.katak .kt-kalit,.katak .kt-qk{transition:opacity .25s}
+.katak .kt-qk{opacity:0}
+.katak.kalitli .kt-qk{opacity:1;filter:drop-shadow(0 0 5px #FFE08A)}
+.katak.kalitli .kt-kalit{opacity:0}
+.katak .kt-ev{transform-box:fill-box;transform-origin:0 50%;transition:transform .35s,opacity .35s}
+.katak .kt-eshik.ochiq .kt-ev{transform:scaleX(.14);opacity:.6}
+/* labirintda muammocha qahramondan uzoq burchakda (studiya.js: muammo) */
+.dv-muam.kt-m{left:3%;top:4%}
+.dv-muam.kt-m.k-past{top:auto;bottom:4%}
+.dv-muam.kt-m.o-ng{left:auto;right:3%}
+/* 5b-1: huk kartasidagi «Sinab ko'rish» (faqat solo — bola o'zi sinaydi) */
+.jk .hk-sinab{display:inline-flex;align-items:center;margin-top:.5cqw;padding:.35cqw .9cqw;border-radius:99px;background:#0D2137;color:#fff;font:700 1.15cqw/1.2 var(--f-matn);cursor:pointer}
+.jk.n-ok .hk-sinab,.jk.n-yoq .hk-sinab{display:none}
+/* 3-dars (20.11): maydon — devorsiz katak sahnasi, X va Y o'qlari (chizmasi katak.js maydonHtml, harakati sahna.js maydonBajar) */
+.katak .md-n{font:800 40px/1 var(--f-kod);fill:#5B6B80;text-anchor:middle;transition:fill .25s}
+.katak .md-n.on{fill:#B9800C}
+.katak .md-ax{font:800 34px/1 var(--f-kod);fill:#0D2137;text-anchor:middle}
+.katak .md-bant{fill:#F5B82E;opacity:.3;transition:opacity .3s}
+.katak .md-bant[data-r]{opacity:0}
+.katak .md-bant[data-r].on{opacity:.3}
+.katak .md-oqb[data-r].on{opacity:.42}
+.katak .md-kes > rect{fill:none;stroke:#E3A81A;stroke-width:8}
+.katak .md-kes[data-r]{opacity:0;transition:opacity .3s}
+.katak .md-kes[data-r].on{opacity:1}
+.katak .md-kt rect,.katak .kt-yr rect{fill:#0D2137;opacity:.88}
+.katak .md-kt text{font:800 22px/1 var(--f-kod);fill:#fff;text-anchor:middle}
+.katak .kt-yr text{font:800 20px/1 var(--f-kod);fill:#fff;text-anchor:middle}
+.katak .md-d{filter:drop-shadow(0 5px 3px rgba(31,79,42,.3))}
+.katak .md-yon{fill:#FBD266;opacity:.75}
+.katak .kt-c.yonk{fill:#FBD266;stroke:#E3A81A;stroke-width:6}
+.katak .kt-il.kt-gl{stroke-dasharray:12 12;stroke-width:6}
+.katak .kt-olma{transition:opacity .3s}
+.katak .kt-olma.olindi{opacity:0}
+.katak .kt-yul.yashirin{opacity:0;transition:opacity .35s}
+.katak .kt-yul.qochdi{animation:ktQoch .55s ease-out}
+@keyframes ktQoch{0%{opacity:0}45%{opacity:1;filter:drop-shadow(0 0 .25px #F5B82E)}100%{opacity:1}}
+.katak .kt-yul.yashirin.topildi{opacity:1}
+.katak .md-bq{filter:drop-shadow(0 4px 3px rgba(0,0,0,.25))}
+.hn .kut{opacity:.45;filter:saturate(.6)}
+/* go to bloki (HTML: javon, tayyor dastur) — sonlar oq kapsulada */
+.mb .xy{display:flex;align-items:center;gap:.25cqw;font:700 1.15cqw/1 var(--f-kod);white-space:nowrap}
+.mb .xy i{font-style:normal;background:#fff;color:#1B62B5;border-radius:999px;padding:.3cqw .6cqw;min-width:1.6cqw;text-align:center}
+.katak .kt-yr[data-r]{opacity:0;transition:opacity .3s}
+.katak .kt-yr[data-r].on{opacity:1}
+/* 4-dars (20.11): Hodisa oilasi — to'q sariq; hodisasiz qolgan bloklar xira (hech qachon bajarilmaydi); o'yin yozuvi va olma hisobi */
+.mb.f-e{--c:#F08A24;--d:#C96A12}
+.mb.f-e.yon{--c:#F6AC66}
+.mbw .mb.f-e.yon.hozir{--c:#F08A24}
+.rd.f-e{--c:#F08A24}
+.pl > small.f-e{color:#C96A12}
+.mb.f-e .xy i{color:#C96A12}
+.jr-bl .bl-xira{opacity:.42}
+.oyin-yz{position:absolute;left:50%;top:3%;transform:translateX(-50%);z-index:3;padding:.6cqw 1.2cqw;border-radius:999px;background:rgba(13,33,55,.86);color:#fff;font:700 1.25cqw/1 var(--f-matn);white-space:nowrap}
+.oyin-yz b{color:#FFD54A}
+/* 5-dars (20.11): Boshqaruv oilasi — takrorlash (yashil-feruza); HTML ko'rinishda C-shakl: sarlavha, ichki bloklar chapdan surilgan, pastki tub */
+.mb.f-b{--c:#13A58A;--d:#0D7A66}
+.mb.f-b.yon{--c:#4CC2AC}
+.rd.f-b{--c:#13A58A}
+.pl > small.f-b{color:#0D7A66}
+.mb.f-b .xy i{color:#0D7A66}
+.c-blok{display:flex;flex-direction:column;width:max-content}
+.c-blok > .mb{border-bottom-left-radius:0}
+.c-ich{margin-left:1.4cqw;padding-left:0;border-left:1.4cqw solid #13A58A;margin-left:0;padding-block:.2cqw}
+.c-ich .mb + .mb{margin-top:-.45cqw}
+.c-tub{display:block;width:8cqw;height:1.4cqw;background:#13A58A;border-radius:0 0 .5cqw .5cqw}
+/* 5-dars: rasm topshirig'i — chiziladigan kataklar kulrang, qahramon o'tgani oltin; takrorlash sanog'i */
+.katak .kt-c.md-rasm{fill:#C9CDD3}
+.katak .kt-c.md-rasm.iz{fill:#F8D877}
+.jr-bl .bl-son{position:absolute;z-index:4;transform-origin:50% 50%;min-width:1.8cqw;padding:.25cqw .5cqw;border-radius:999px;background:#2C8A50;color:#fff;font:800 1.1cqw/1 var(--f-kod);text-align:center;pointer-events:none}
+.mb.f-b{--c:#3FAE6A;--d:#2C8A50}
+.mb.f-b.yon{--c:#6CC48E}
+.rd.f-b{--c:#3FAE6A}
+.pl > small.f-b{color:#2C8A50}
+.mb.f-b .xy i{color:#2C8A50}
+.c-ich{border-left-color:#3FAE6A}
+.c-tub{background:#3FAE6A}
+.jr-bl .bl-juft > .blocklyPath{stroke-width:3.5}
+.jr-bl .bl-juft-0 > .blocklyPath{stroke:#FF4F28}
+.jr-bl .bl-juft-1 > .blocklyPath{stroke:#F5B82E}
+/* 6-dars: kechiktirilgan Maslahat — qulf belgisi, xira; birinchi ishga tushirishdan keyin ochiladi */
+.hn .mas.qulf{color:#8A93A0;background:#F4F2EC}
+.hn .mas .mas-qulf{width:1.2cqw;height:1.2cqw;margin-left:.2cqw}
+/* 7-dars: Ko'rinish (feruza) va Tovush (pushti) oilalari */
+.mb.f-v{--c:#14B8A6;--d:#0E8C7E}
+.mb.f-v.yon{--c:#5ED4C5}
+.mbw .mb.f-v.yon.hozir{--c:#14B8A6}
+.rd.f-v{--c:#14B8A6}
+.pl > small.f-v{color:#0E8C7E}
+.mb.f-v .xy i{color:#0E8C7E}
+.mb.f-t{--c:#D9468F;--d:#AE2F6F}
+.mb.f-t.yon{--c:#E97DB3}
+.mbw .mb.f-t.yon.hozir{--c:#D9468F}
+.rd.f-t{--c:#D9468F}
+.pl > small.f-t{color:#AE2F6F}
+.mb.f-t .xy i{color:#AE2F6F}
+
+
+/* 7-dars: javonda oila yashirin (studiya holat: yoq) — bekatga qarab */
+.rd.yoq{display:none}
+/* 8-dars: Shart oilasi (kulrang-ko'k), egizak labirint, shart tekshiruvi */
+.mb.f-a{--c:#5B80A5;--d:#3F6283}
+.mb.f-a.yon{--c:#86A3C2}
+.mbw .mb.f-a.yon.hozir{--c:#5B80A5}
+.rd.f-a{--c:#5B80A5}
+.pl > small.f-a{color:#3F6283}
+.mb.f-a .xy i{color:#3F6283}
+/* egizak: ikki labirint bir oynada — keng labirintlar ustma-ust, tik (.yon) — yonma-yon; ko'rinish tartibi order bilan (DOM tartibi — faol birinchi) */
+.oyna > .egiz{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;gap:.6cqw;padding:.6cqw;background:linear-gradient(#A9DE86,#86CB6C)}
+.oyna > .egiz.yon{flex-direction:row}
+.egiz > .katak{position:relative;flex:1;min-height:0;min-width:0;border-radius:1cqw;background:rgba(255,255,255,.14)}
+.egiz > .katak[data-egiz="1"]{order:1}
+.egiz > .katak[data-egiz="2"]{order:2}
+.egiz > .katak.faol{box-shadow:inset 0 0 0 .25cqw rgba(13,33,55,.35)}
+.katak .egiz-n{position:absolute;left:.6cqw;top:.6cqw;z-index:3;display:inline-flex;align-items:center;gap:.3cqw;padding:.3cqw .8cqw;border-radius:999px;background:#0D2137;color:#fff;font:800 1.15cqw/1 var(--f-kod)}
+.katak .egiz-n.ok::after{content:'✓';color:#7BE0A0}
+.katak .egiz-n.yoq::after{content:'✕';color:#FF8A7A}
+.katak .kt-shart{fill:none;stroke-width:7}
+.katak .kt-shart.ha{stroke:#F5B82E}
+.katak .kt-shart.yoq{stroke:#C0392B;stroke-dasharray:12 9}
+.jr-bl .bl-son.bl-ha{background:#F5B82E;color:#0D2137}
+.jr-bl .bl-son.bl-ha.yoq{background:#C6CEDB;color:#5B6676}
+/* 11-dars (21.11, manba 011): O'zgaruvchi oilasi — jigarrang (yog'och quti rangi); sahnadagi ball kapsulasi, «+N» uchishi, boshqaruv qatori, son kartalari */
+.mb.f-o{--c:#A86B32;--d:#7E4C1F}
+.mb.f-o.yon{--c:#C99464}
+.mbw .mb.f-o.yon.hozir{--c:#A86B32}
+.rd.f-o{--c:#A86B32}
+.pl > small.f-o{color:#7E4C1F}
+.mb.f-o .xy i{color:#7E4C1F}
+.oyna .ball-k{left:5.6cqw;top:1.2cqw;display:inline-flex;align-items:baseline;gap:.5cqw;padding:.6cqw 1.3cqw;border-radius:999px;background:#A86B32;border-color:#7E4C1F;color:#fff;font:800 1.5cqw/1 var(--f-kod);transform-origin:20% 50%;transition:transform .18s}
+.oyna .ball-k small{font:700 1.2cqw/1 var(--f-kod);opacity:.9}
+.oyna .ball-k.yashirin{opacity:0}
+.oyna .ball-k.bump{transform:scale(1.22)}
+.oyna .ball-uch{position:absolute;z-index:5;transform:translate(-50%,-100%);padding:.3cqw .7cqw;border-radius:999px;background:#A86B32;color:#fff;font:800 1.3cqw/1 var(--f-kod);pointer-events:none;animation:ball-uch .9s ease-out forwards}
+@keyframes ball-uch{from{opacity:0;margin-top:0}20%{opacity:1}to{opacity:0;margin-top:-4cqw}}
+.oyna .ball-iz{left:50%;bottom:3%;top:auto;transform:translateX(-50%);padding:.6cqw 1.2cqw;border-radius:999px;font:700 1.2cqw/1.2 var(--f-matn);white-space:nowrap}
+.oyna .ball-iz b{color:#7E4C1F}
+/* 21.11: «Boshqaruv:»/«Qahramon:» qatori tor dastur ustunida ichidan ~7px oshib, ▾ qirqilardi — oraliqlar ixchamlandi */
+.dst .bq-q{position:relative;display:flex;align-items:center;gap:.35cqw;padding:.55cqw .6cqw;border-radius:.8cqw;background:#F08A24;color:#fff;font:700 1.1cqw/1 var(--f-matn);cursor:pointer;user-select:none}
+.dst .bq-q b{font-weight:800}
+.dst .bq-q .bq-s{display:inline-flex;gap:.2cqw;font:800 1.15cqw/1 var(--f-kod)}
+.dst .bq-q .bq-s i{font-style:normal;min-width:1.5cqw;padding:.25cqw .25cqw;border-radius:.4cqw;background:#fff;color:#C96A12;text-align:center;transition:background .15s,color .15s}
+.dst .bq-q .bq-s i.hozir{background:#FFD54A;color:#0D2137}
+.dst .bq-q .bq-o{margin-left:auto;font:800 1cqw/1 var(--f-kod);transition:transform .2s}
+.dst .bq-q.ochiq .bq-o{transform:rotate(180deg)}
+.dst .bq-och{display:none;position:absolute;left:0;top:calc(100% + .5cqw);z-index:6;flex-direction:column;gap:.5cqw;padding:.8cqw;border-radius:.9cqw;background:#fff;box-shadow:0 .5cqw 1.6cqw -.4cqw rgba(13,33,55,.4);cursor:default}
+.dst .bq-q.ochiq .bq-och{display:flex}
+.dst .bq-och .bq-d{display:flex;flex-direction:column;align-items:flex-start}
+.dst .bq-och .bq-d .mb + .mb{margin-top:-.45cqw}
+.dst .bq-och small{color:#5A6474;font:600 .95cqw/1.2 var(--f-matn)}
+/* oldindan aytish: katta kapsula va oltita son kartasi (bir xil ko'rinishda; tanlangan — coral hoshiya) */
+.oyna .bsh{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.2cqw;padding-left:24%}
+.oyna .bsh-k{display:inline-flex;align-items:baseline;gap:.8cqw;padding:1.1cqw 2.4cqw;border-radius:999px;background:#A86B32;color:#fff;font:800 3.2cqw/1 var(--f-kod);box-shadow:0 .4cqw 1.2cqw -.4cqw rgba(13,33,55,.45);transition:transform .18s}
+.oyna .bsh-k small{font:700 2.2cqw/1 var(--f-kod);opacity:.9}
+.oyna .bsh-k.bump{transform:scale(1.12)}
+.oyna .bsh-q{display:flex;gap:1cqw}
+.oyna .bsh-q .sk{display:grid;place-items:center;width:5cqw;height:5.6cqw;border-radius:1cqw;background:#fff;border:.25cqw solid #fff;box-shadow:0 .3cqw .9cqw -.3cqw rgba(13,33,55,.4);color:#0D2137;font:800 2.2cqw/1 var(--f-kod);cursor:pointer;transition:transform .12s,border-color .12s}
+.oyna .bsh-q .sk:hover{transform:translateY(-.2cqw)}
+.oyna .bsh-q .sk.tan{border-color:#FF4F28;box-shadow:0 0 0 .25cqw rgba(255,79,40,.25)}
+.oyna .bsh-q .sk.ok{border-color:#2C8A50;background:#E3F6EA}
+.oyna .bsh .bsh-qh{position:absolute;left:3%;bottom:6%;width:20%}
+.hn .ishga.xira{opacity:.45;filter:saturate(.6)}
+.jr-bl .bl-son.bl-ball{background:#A86B32}
+/* 12-dars (21.11, manba 012): bir nechta o'zgaruvchi — kapsulalar ostma-ost (.ball-q), faqat dasturda ishlatilgani; «O‘yin tugadi» taxtasi */
+.oyna .ball-q{left:5.6cqw;top:1.2cqw;display:flex;flex-direction:column;align-items:flex-start;gap:.5cqw;padding:0;background:none;border:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+.oyna .ball-q .ball-k{position:static}
+.oyna .ball-k.yoq{display:none}
+.oyna .ball-k[data-v="jon"]{background:#C0392B;border-color:#8E2A1F}
+.oyna .ball-k[data-v="qadam"]{background:#2C6E9E;border-color:#1D4E73}
+.oyna .oyin-tugadi{left:50%;top:14%;transform:translateX(-50%) rotate(-2deg);z-index:6;padding:1.1cqw 2.6cqw;border-radius:1cqw;background:linear-gradient(#B5793F,#8A5527);border:.3cqw solid #6B3F1A;color:#FFF3DD;font:800 2.6cqw/1 var(--f-sar);letter-spacing:.02em;text-shadow:0 .2cqw 0 rgba(0,0,0,.3);box-shadow:0 .6cqw 1.6cqw -.4cqw rgba(13,33,55,.5);white-space:nowrap}
+/* 13-dars (21.11, manba 013): random — oval son bloki (O'zgaruvchi rangi); go to ichidagi random; savatlar; tushgan olma, oldingi joylar (xira); «Sinov: N / 3» */
+.mb.mb-oval{border-radius:999px;clip-path:none;padding-block:.7cqw;min-width:0}
+.mb .mrnd{display:inline-flex;align-items:center;gap:.25cqw;padding:.2cqw .5cqw;border-radius:999px;background:#A86B32;color:#fff;font:700 .9cqw/1 var(--f-kod)}
+.mb .mrnd i{font-style:normal;background:#fff;color:#7E4C1F;border-radius:999px;padding:.15cqw .35cqw}
+.katak .kt-sg circle{fill:#0D2137}
+.katak .kt-sg text{fill:#fff;font:800 18px/1 var(--f-kod);text-anchor:middle}
+.katak .kt-olma.iz-olma{opacity:.28;filter:grayscale(.5)}
+.katak .kt-olma.chet{filter:saturate(.6)}
+.dst .sinov-n{font:700 1cqw/1.2 var(--f-kod);color:#5A6474}
+.dsb .olma-ega{display:inline-grid;place-items:center;width:1.9cqw;height:1.9cqw}
+.dsb .olma-ega svg{width:100%;height:100%}

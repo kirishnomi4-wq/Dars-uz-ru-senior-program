@@ -1,0 +1,43 @@
+// 5-dars «Takrorlash» qadamlari (QADAM) va ustoz varag'i (VARAQ) — 20.11. Manba: new-junior/manba/005-takrorlash.md, 18 qadam.
+// 16-qadam bola ro'yxati 'oxirgi' (A·1, 20.11) — bola noutbukida oxirgi yechgan pog'onasi o'z dasturi bilan (o'qib berish uchun); hech narsa yechmagan bo'lsa — «Ustoz ekraniga qarang».
+const QADAM = [
+  ['Kirish', 'P1', ['B0', 'BK']],
+  ['Savol', 'P2', ['P2N', 'BK']],
+  ['Uch sinov', 'P2S', ['BK'], 'Ustoz yo‘llarni sinayapti — kuzating'],
+  ['Javob: bir blok — ko‘p marta', 'P2C', ['BK']],
+  ['Yangi so‘z: takrorlash', 'P3', ['BK'], 'Yangi so‘z: takrorlash'],
+  ['Reja', 'P4', ['BK'], 'Bugun: uchta bekat'],
+  ['Ko‘ramiz: repeat bloki', 'P6', ['BK'], 'Ustoz repeat blokini ko‘rsatyapti — kuzating'],
+  ['Uzun yo‘l', 'P5', ['B1A', 'B1B', 'B1C', 'B1Y', 'BK']],
+  ['2-bekat', 'P4B', ['BK'], '2-bekat: kvadrat'],
+  ['Ko‘ramiz: kvadrat', 'P7', ['BK'], 'Ustoz kvadrat chizyapti — kuzating'],
+  ['Kvadrat', 'P5G', ['B2A', 'B2B', 'B2C', 'B2Y', 'BK']],
+  ['Xulosa: takrorlash', 'P9', ['BK'], 'Xulosa: takrorlash'],
+  ['3-bekat', 'P4C', ['BK'], '3-bekat: zinapoya'],
+  ['Ko‘ramiz: ichida ikki blok', 'P8', ['BK'], 'Ustoz dasturni qisqartiryapti — kuzating'],
+  ['Qisqartiramiz', 'P5B', ['B3A', 'B3B', 'B3C', 'B3Y', 'BK']],
+  ['Dasturingizni o‘qib bering', 'P11', 'oxirgi'],
+  ['Yakun', 'P12', ['B5']],
+  ['Sinfimiz bugun', 'P14', ['B5']],
+]
+// ustoz varag'i: [Ekranda · Siz (manbadagi tayanch gaplar, aynan) · Bola o'rganadi]
+const VARAQ = [
+  ['«5-dars · Takrorlash» — «Bugun bir blok bilan ko‘p yuramiz!» Maydon, Coddy (0, 0) da; pastda «O‘tgan darsda» — hodisa.', '«O‘tgan darsda qahramonni tugmalar bilan boshqardik.» «Bugun qahramon bir blok bilan ko‘p marta yuradi.» «Noutbukda «Tayyorman» tugmasini bosing.»', 'O‘tgan darsni eslaydi: hodisa.'],
+  ['Savol: «Uchta blok bilan yulduzga qanday yetamiz?» Pastki qatorda 5 olma, yulduz (6, 0) da; «Dasturga 3 ta blok sig‘adi». Kartalar: A «Ko‘p blok qo‘yamiz», B «go to bilan sakraymiz», C «Bitta blok — 6 marta».', '«Qahramon olmalarni terib, yulduzga yetsin. Dasturga faqat 3 ta blok sig‘adi.» «Har kim noutbukida bitta kartani tanlasin: qanday yetamiz?»', 'Taxmin qiladi — bu huk.'],
+  ['Uch sinov: A o‘zi boshlanadi — uchta move right sig‘adi, Coddy (3, 0) da, 3 olma («✕ sig‘madi»). «Keyingi» — B: go to bilan yulduz katagiga sakraydi, olmalar qoladi («✕ olmalar qoldi»). «Keyingi» — C: olti qadam, 5 olma va yulduz («✓ 2 ta blok»).', '«Ko‘p blok sig‘madi. go to esa olmalardan sakrab o‘tdi.» «Bitta blok olti marta bajarildi — dasturda atigi 2 ta blok.» C da qadamlarni sinf bilan sanang.', 'Bir xil blokni ko‘p yozib bo‘lmaydi — takrorlash kerak.'],
+  ['Javob: «Bir blok — ko‘p marta». A va B xira, C oltin; Coddy yulduzda.', '«Bir xil blokni qayta-qayta yozish shart emas. Bir marta qo‘yamiz va necha marta bajarilishini aytamiz.»', 'Bir blok ko‘p marta bajarilishi mumkin.'],
+  ['Yangi so‘z: «Takrorlash — bir ishni ko‘p marta qilish». «Keyingi» — birma-bir: oltita bir xil blok, repeat 6, «6 ta blok o‘rniga 2 ta».', '«Keyingi»ni bosasiz (uch marta). «Takrorlash — bir ishni ko‘p marta bajarish.» «repeat bloki — takrorla. Son — necha marta, ichidagi blok — nima qilish.» Misol: «10 marta o‘tirib-turing».', 'Yangi so‘z: takrorlash.'],
+  ['Reja: tepalik — uzun yo‘l → kvadrat → zinapoya; cho‘qqida «o‘z rasmingiz».', '«Bugun uchta bekat: uzun yo‘l, kvadrat, zinapoya.» «Dars oxirida takrorlash bilan o‘z rasmingizni chizasiz.»', 'Dars qayerga borishini biladi.'],
+  ['Ko‘ramiz: «repeat — takrorla». Javonda yangi oila — Takrorlash (yashil), repeat 2; olma (0, 1), (0, 2), yulduz (0, 3); dastur bo‘sh, «0 / 2 ta blok».', 'Javondan repeat 2 ni bosasiz — u dasturga tushadi va tanlanadi (coral hoshiya); sonni bosib «3» ni tanlaysiz; Harakatdan move up ni bosasiz — u repeat ichiga tushadi. «▶ Ishga tushir» — repeat yonida 1, 2, 3. «repeat — takrorla. Ichidagi blok shu son marta bajariladi.» «Son — necha marta. Ichidagi blok — nima qilish.» «Endi o‘zingiz.» Sekin, ikki marta ko‘rsating.', 'repeat bloki; ichiga blok qo‘yish.'],
+  ['Mashq: «Endi o‘zingiz!» — zinapoya: 1 o‘ngga · 2 pastga · 3 burchak · ★ ilon yo‘li.', '«Avval kataklarni sanang — shu son repeat ga.» «Har pog‘onada bloklar soni cheklangan: takrorlashsiz sig‘maydi.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.» So‘rang: «Necha qadam kerak? repeat dagi son nechta?»', 'Kataklarni sanab, takrorlash bilan uzoqqa boradi.'],
+  ['Tepalik: 1-bekat ✓ — «Kvadrat».', '«Uzun yo‘lni bildik. Endi takrorlash bilan rasm chizamiz.»', 'Darsda qayerda turganini ko‘radi.'],
+  ['Ko‘ramiz: «Kvadrat — to‘rt tomon». Kulrang kvadrat (2, 1)–(5, 4); dasturda repeat 3 → va repeat 3 ↑.', 'Javondan repeat (son 3), ichiga move left; yana repeat (son 3), ichiga move down — «8 / 8 ta blok». «▶ Ishga tushir» — kulrang kataklar oltin bo‘ladi, «Rasm tayyor!». «Kulrang kataklar — chiziladigan rasm. Qahramon o‘tgan katak oltin bo‘ladi.» «Kvadrat — to‘rt tomon. Har tomonga bitta repeat.» «Endi o‘zingiz.»', 'Kulrang kataklar — rasm; har tomonga bitta repeat.'],
+  ['Mashq: «Rasm chizing!» — zinapoya: 1 kvadrat · 2 boshqa burchak · 3 minora · ★ deraza.', '«Kulrang kataklar ustidan yuring. Har tomonga — bitta repeat.» «Tomonning kataklarini sanang — shu son repeat ga.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.» Qaysi burchakdan boshlash ahamiyatsiz.', 'Takrorlash bilan rasm chizadi.'],
+  ['Xulosa: «Takrorlash». Ikki karta: «Takrorlash — Bir ishni ko‘p marta bajarish» va «repeat 3 — Ichidagini 3 marta»; maydonda kvadratning oltin izi.', '«Takrorlash — bir ishni ko‘p marta bajarish.» «Son — necha marta. Ichidagi blok — nima qilish.» Kvadratda 12 o‘rniga 8 ta blok yetdi.', 'Takrorlash — son va ichidagi blok.'],
+  ['Tepalik: 1, 2 ✓ — «Zinapoya».', '«Ikki bekatdan o‘tdik. Oxirgisi — zinapoya.»', 'Darsda qayerda turganini ko‘radi.'],
+  ['Ko‘ramiz: «Ichida ikki blok». Uzun dastur → ↑ → ↑ → ↑ (6 blok), kulrang zinapoya.', '«▶ Ishga tushir» — «Rasm tayyor!». Keyin «Keyingi» — juftliklar hoshiyalanadi («Bir xil juftlik — 3 marta»), yana «Keyingi» — dastur repeat 3 [move right, move up] ga almashadi («Rasm o‘sha — bloklar kam»), yana «▶ Ishga tushir». «Qarang: move right, move up — uch marta takrorlanyapti.» «Ikkalasini repeat ichiga qo‘yamiz — ular tartib bilan, juft-juft takrorlanadi.» «Endi o‘zingiz: uzun dasturni qisqartiring.»', 'Ichida bir nechta blok — guruh bo‘lib takrorlanadi.'],
+  ['Mashq: «Qisqartiring!» — zinapoya: 1 zinapoya · 2 toj · 3 tog‘ · ★ o‘z rasmingiz. Bola ekranida uzun dastur sarlavha ostida strelkalar bilan.', '«Uzun dasturni o‘qing: qaysi bloklar takrorlanyapti?» «Takrorlanadigan bo‘lak — repeat ichiga. Necha marta — shu son.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'Uzun dasturni takrorlash bilan qisqartiradi.'],
+  ['«Dasturingizni o‘qib bering». Dastur bo‘sh. Proyektorda ism yo‘q; bolalar noutbukida — o‘z ekrani.', 'Bola rasmining dasturini o‘qiydi («repeat 3: move right, move right, move up»), siz qo‘yasiz va ishga tushirasiz. «Kim rasmining dasturini o‘qib beradi? Avval repeat soni, keyin ichidagi bloklar.» «Kuzating: qanday rasm chiqadi?»', 'Dasturini o‘qiydi: son va ichidagi bloklar.'],
+  ['Yakun: «Siz rasm chizdingiz!» Bugungi so‘z — takrorlash; keyingi dars — 6 · Amaliyot.', '«Uchala bekatdan o‘tdik: uzun yo‘l, kvadrat, zinapoya.» «Bugungi so‘z — takrorlash: bir ishni ko‘p marta bajarish.» «Keyingi darsda o‘rganganlarimizni o‘zingiz ishlatasiz — amaliyot.»', 'Bugungi so‘zni eslaydi.'],
+  ['Sinfimiz bugun: nechta rasm chizdi, nechta repeat qo‘ydi, nechta blok tejadi (haqiqiy son, ismsiz).', '«Hammangiz zo‘r ishladingiz!» Raqamlarni o‘qing. «Kompyuter bir ishni ming marta ham charchamay takrorlaydi.» «Darsni yakunlash»ni bossangiz — hammada «Dars tugadi».', 'Jamoa bo‘lib nimaga erishganini ko‘radi.'],
+]

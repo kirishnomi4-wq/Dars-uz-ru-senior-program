@@ -1,0 +1,1115 @@
+{
+ "u-01-P1": {
+  "id": "P1",
+  "matn": "11-DARS · O‘ZGARUVCHI: BALL\nBugun o‘yinda ball sanaymiz!\n\nCoddy\nSalom! Bugun kompyuter sonni eslab qoladi.\n\nO‘TGAN DARSDA\nDaraja\nO‘yindagi bitta labirint\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKirdi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "fa94f51ce86a",
+  "uzun": 40701
+ },
+ "u-02-P2": {
+  "id": "P2",
+  "matn": "11-DARS · O‘ZGARUVCHI: BALL\nSAVOL\nBallni qanday sanaymiz?\n\nCoddy\nUch olma teraman. Ekranda ball chiqsin.\n\nA\nCoddy «1» desin\nwhen touching\napple\nsay\n1\nB\nBir, ikki, uch desin\nwhen touching\napple\nsay\n1\nsay\n2\nsay\n3\nC\nKompyuter sonni eslab qolsin\nwhen touching\napple\nchange\nball\nby\n1\nball:\n0\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nHar olma — 1 ball\n‹ Orqaga\nJavob berdi: 0 / 0\nSinab ko‘ramiz ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "558b4b7ef99d",
+  "uzun": 39481
+ },
+ "u-03-P2S": {
+  "id": "P2S",
+  "matn": "SAVOL\nBallni qanday sanaymiz?\n\nCoddy\nUch olma teraman. Ekranda ball chiqsin.\n\nA\nCoddy «1» desin\nwhen touching\napple\nsay\n1\nB\nBir, ikki, uch desin\nwhen touching\napple\nsay\n1\nsay\n2\nsay\n3\nC\nKompyuter sonni eslab qolsin\nwhen touching\napple\nchange\nball\nby\n1\nball:\n0\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\nball:\n0\nHar olma — 1 ball\n→\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "48fcef3085b8",
+  "uzun": 39850
+ },
+ "u-04-P2C": {
+  "id": "P2C",
+  "matn": "JAVOB\nKompyuter sonni eslab qoladi\n\nCoddy\nMen 3 ni eslab qoldim.\n\nA\nCoddy «1» desin\n✕ doim 1\nwhen touching\napple\nsay\n1\nB\nBir, ikki, uch desin\n✕ birdan 3\nwhen touching\napple\nsay\n1\nsay\n2\nsay\n3\nC\nKompyuter sonni eslab qolsin\n✓ ball: 3\nwhen touching\napple\nchange\nball\nby\n1\nball:\n0\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 2)\nball:\n3\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "7d930c195b46",
+  "uzun": 37886
+ },
+ "u-05-P3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nO‘zgaruvchi nima?\n\nCoddy\nO‘zgaruvchi — men eslab qoladigan son.\n\n0\nNomi — ball, soni — 0\n\nchange\nball\nby\n1\nchange — songa qo‘shadi\n\nball: 3\nNomi o‘sha — soni o‘zgardi\n\nball\n0\n1\n3\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "e957351038f6",
+  "uzun": 23288
+ },
+ "u-06-P4": {
+  "id": "P4",
+  "matn": "REJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Avval ballni sanaymiz.\n\nDars oxirida · olma terish o‘yini · ball sanaladi\nball: 7\nO‘yiningiz ballni sanaydi\n1\nBall\n2\nNoldan\n3\nOldindan aytamiz\n‹ Orqaga\nBoshladik ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "0333048f058b",
+  "uzun": 41787
+ },
+ "u-07-P6": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nchange — ballga qo‘sh\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "7d14aba6123a",
+  "uzun": 40510
+ },
+ "u-08-P5": {
+  "id": "P5",
+  "matn": "MASHQ\nBall sanang!\n\nCoddy\nOlmaga tekkanda ballga qo‘shing.\n\nUch pog‘onani tugatdi\n0 / 0\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nUch olma\n2\n0\nIkki ball\n3\n0\nOltin olma\n★\n0\nOltin — 10\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "682546168812",
+  "uzun": 38857
+ },
+ "u-09-P4B": {
+  "id": "P4B",
+  "matn": "REJA · 2-BEKAT\n2 · Noldan\n\nCoddy\nEndi o‘yinni qaytadan boshlaymiz.\n\nDars oxirida · olma terish o‘yini · ball sanaladi\nball: 7\nO‘yiningiz ballni sanaydi\n✓\nBall\n2\nNoldan\n3\nOldindan aytamiz\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "8c58e662c345",
+  "uzun": 41636
+ },
+ "u-10-P7": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nset — ballni 0 qil\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen touching\napple\nchange\nball\nby\n1\n1 ta dasturcha\n2 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "q:when touchingapplechangeballby1",
+   "c:changeballby1"
+  ],
+  "html": "bacad7ede191",
+  "uzun": 40492
+ },
+ "u-11-P5G": {
+  "id": "P5G",
+  "matn": "MASHQ\nO‘yinni boshlang!\n\nCoddy\nO‘yin boshida ballni o‘zingiz qo‘ying.\n\nUch pog‘onani tugatdi\n0 / 0\n1\n0\nNoldan\n2\n0\nSovg‘a\n3\n0\nUch va oltin\n★\n0\nO‘z o‘yiningiz\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "0b043fa66ed1",
+  "uzun": 38713
+ },
+ "u-12-P9": {
+  "id": "P9",
+  "matn": "XULOSA\nO‘zgaruvchi\n\nCoddy\nNomi bir xil — soni o‘zgaradi.\n\nset\nball\nto\n0\nset ball to 0\nSonni qo‘yadi\nchange\nball\nby\n1\nchange ball by 1\nSonga qo‘shadi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nball:\n3\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a4fc8e84f539",
+  "uzun": 35173
+ },
+ "u-13-P4C": {
+  "id": "P4C",
+  "matn": "REJA · 3-BEKAT\n3 · Oldindan aytamiz\n\nCoddy\nOxirgi bekat: dasturni o‘qib, ballni oldindan aytamiz.\n\nDars oxirida · olma terish o‘yini · ball sanaladi\nball: 7\nO‘yiningiz ballni sanaydi\n✓\nBall\n✓\nNoldan\n3\nOldindan aytamiz\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "fe0bae370238",
+  "uzun": 41527
+ },
+ "u-14-P8": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nBall nechchi bo‘ladi?\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nwhen ▶ clicked\nset\nball\nto\n0\nchange\nball\nby\n2\nchange\nball\nby\n2\nchange\nball\nby\n1\n1 ta dasturcha\n5 / 12 ta blok\nball:\n?\n2\n3\n4\n5\n6\n7\n‹ Orqaga\n▶ Tekshirish\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "f:when ▶ clickedsetballto0changeballby2changeballby2changeballby1",
+   "z:setballto0changeballby2changeballby2changeballby1",
+   "c:changeballby2changeballby2changeballby1",
+   "c:changeballby2changeballby1",
+   "c:changeballby1"
+  ],
+  "html": "66a9d35360bc",
+  "uzun": 37438
+ },
+ "u-15-P5B": {
+  "id": "P5B",
+  "matn": "MASHQ\nOldindan ayting!\n\nCoddy\nDasturni o‘qing, sonni tanlang, keyin tekshiring.\n\nUch marta oldindan aytdi\n0 / 0\n1\n0\nUch blok\n2\n0\nTakrorlash\n3\n0\nIkki set\n★\n0\nIchida ikki blok\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "8acf22344a60",
+  "uzun": 25966
+ },
+ "u-16-P11": {
+  "id": "P11",
+  "matn": "KO‘RSATISH\nDasturingizni o‘qib bering\nSiz o‘qiysiz — men o‘ynayman.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "2230f3884d71",
+  "uzun": 40566
+ },
+ "u-17-P12": {
+  "id": "P12",
+  "matn": "YAKUN\nSiz ball sanadingiz!\nBUGUNGI SO‘Z\nO‘zgaruvchi\nKompyuter eslab qoladigan son\nKeyingi dars\njon: 2\n12 · Jon va qadam\n✓\nBall\n✓\nNoldan\n✓\nOldindan aytamiz\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a2ed66b87c3f",
+  "uzun": 30189
+ },
+ "u-18-P14": {
+  "id": "P14",
+  "matn": "SINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nta olma terdi\n0\nmarta oldindan aytdi\n‹ Orqaga\nDarsni yakunlash\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "7891a0756a90",
+  "uzun": 39958
+ },
+ "u-x-P2S-A": {
+  "id": "P2S",
+  "matn": "SAVOL\nBallni qanday sanaymiz?\n\nCoddy\nUch olma teraman. Ekranda ball chiqsin.\n\nA\nCoddy «1» desin\n✕ doim 1\nwhen touching\napple\nsay\n1\nB\nBir, ikki, uch desin\nwhen touching\napple\nsay\n1\nsay\n2\nsay\n3\nC\nKompyuter sonni eslab qolsin\nwhen touching\napple\nchange\nball\nby\n1\nball:\n0\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 2)\nball:\n0\nHar olma — 1 ball\n1\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a0c97b21fd22",
+  "uzun": 40345
+ },
+ "u-x-P2S-B": {
+  "id": "P2S",
+  "matn": "SAVOL\nBallni qanday sanaymiz?\n\nCoddy\nUch olma teraman. Ekranda ball chiqsin.\n\nA\nCoddy «1» desin\n✕ doim 1\nwhen touching\napple\nsay\n1\nB\nBir, ikki, uch desin\n✕ birdan 3\nwhen touching\napple\nsay\n1\nsay\n2\nsay\n3\nC\nKompyuter sonni eslab qolsin\nwhen touching\napple\nchange\nball\nby\n1\nball:\n0\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 2)\nball:\n0\nHar olma — 1 ball\n3\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "40c18f243294",
+  "uzun": 40387
+ },
+ "u-x-P2S-C": {
+  "id": "P2S",
+  "matn": "SAVOL\nBallni qanday sanaymiz?\n\nCoddy\nUch olma teraman. Ekranda ball chiqsin.\n\nA\nCoddy «1» desin\n✕ doim 1\nwhen touching\napple\nsay\n1\nB\nBir, ikki, uch desin\n✕ birdan 3\nwhen touching\napple\nsay\n1\nsay\n2\nsay\n3\nC\nKompyuter sonni eslab qolsin\n✓ ball: 3\nwhen touching\napple\nchange\nball\nby\n1\nball:\n0\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 2)\nball:\n3\nHar olma — 1 ball\n3\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "decd287764a9",
+  "uzun": 41269
+ },
+ "u-x-P3-1": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nO‘zgaruvchi nima?\n\nCoddy\nO‘zgaruvchi — men eslab qoladigan son.\n\n0\nNomi — ball, soni — 0\n\nchange\nball\nby\n1\nchange — songa qo‘shadi\n\nball: 3\nNomi o‘sha — soni o‘zgardi\n\nball\n0\n1\n3\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "17befe8550da",
+  "uzun": 23302
+ },
+ "u-x-P3-2": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nO‘zgaruvchi nima?\n\nCoddy\nO‘zgaruvchi — men eslab qoladigan son.\n\n0\nNomi — ball, soni — 0\n\nchange\nball\nby\n1\nchange — songa qo‘shadi\n\nball: 3\nNomi o‘sha — soni o‘zgardi\n\nball\n0\n1\n3\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "e8ea2ad493ad",
+  "uzun": 23316
+ },
+ "u-x-P3-3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nO‘zgaruvchi nima?\n\nCoddy\nO‘zgaruvchi — men eslab qoladigan son.\n\n0\nNomi — ball, soni — 0\n\nchange\nball\nby\n1\nchange — songa qo‘shadi\n\nball: 3\nNomi o‘sha — soni o‘zgardi\n\nball\n0\n1\n3\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "94bb2c70582d",
+  "uzun": 23330
+ },
+ "u-x-P6-dastur": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nchange — ballga qo‘sh\nHodisa\nO‘zgaruvchi\nO‘zgaruvchi\nchange\nball\nby\n1\nset\nball\nto\n0\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen touching\napple\nchange\nball\nby\n1\n1 ta dasturcha\n2 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "q:when touchingapplechangeballby1",
+   "c:changeballby1"
+  ],
+  "html": "7f5727c39cb0",
+  "uzun": 41635
+ },
+ "u-x-P6-boshqaruv": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nchange — ballga qo‘sh\nHodisa\nO‘zgaruvchi\nO‘zgaruvchi\nchange\nball\nby\n1\nset\nball\nto\n0\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen\n→\nkey pressed\nmove right\nwhen\n←\nkey pressed\nmove left\nwhen\n↑\nkey pressed\nmove up\nwhen\n↓\nkey pressed\nmove down\nBoshqaruv tayyor — bloklar sanog‘iga kirmaydi\nwhen touching\napple\nchange\nball\nby\n1\n1 ta dasturcha\n2 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "q:when touchingapplechangeballby1",
+   "c:changeballby1"
+  ],
+  "html": "fb24319268a1",
+  "uzun": 41641
+ },
+ "u-x-P6-ball1": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nchange — ballga qo‘sh\nHodisa\nO‘zgaruvchi\nO‘zgaruvchi\nchange\nball\nby\n1\nset\nball\nto\n0\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen touching\napple\nchange\nball\nby\n1\n1 ta dasturcha\n2 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 0)\nball:\n1\nO‘yin: strelkalarni bosing\n‹ Orqaga\n■ To‘xtatish\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "q:when touchingapplechangeballby1",
+   "c:changeballby1"
+  ],
+  "html": "dec2ffa5c3e7",
+  "uzun": 41863
+ },
+ "u-x-P6-yutdi": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nchange — ballga qo‘sh\nHodisa\nO‘zgaruvchi\nO‘zgaruvchi\nchange\nball\nby\n1\nset\nball\nto\n0\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen touching\napple\nchange\nball\nby\n1\n1 ta dasturcha\n2 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nball:\n3\n‹ Orqaga\nSiz yutdingiz!\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "q:when touchingapplechangeballby1",
+   "c:changeballby1"
+  ],
+  "html": "329442e41453",
+  "uzun": 43156
+ },
+ "u-x-P7-6": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nset — ballni 0 qil\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen touching\napple\nchange\nball\nby\n1\n1 ta dasturcha\n2 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nball:\n6\nOlma 3 ta — ball 6\n‹ Orqaga\nSiz yutdingiz!\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "q:when touchingapplechangeballby1",
+   "c:changeballby1"
+  ],
+  "html": "8bc280941171",
+  "uzun": 42070
+ },
+ "u-x-P7-set": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nset — ballni 0 qil\nHodisa\nO‘zgaruvchi\nO‘zgaruvchi\nchange\nball\nby\n1\nset\nball\nto\n0\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen touching\napple\nchange\nball\nby\n1\nwhen ▶ clicked\nset\nball\nto\n0\n2 ta dasturcha\n4 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nball:\n6\nOlma 3 ta — ball 6\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "q:when touchingapplechangeballby1",
+   "c:changeballby1",
+   "f:when ▶ clickedsetballto0",
+   "z:setballto0"
+  ],
+  "html": "f4c470de6688",
+  "uzun": 43184
+ },
+ "u-x-P7-yutdi": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nset — ballni 0 qil\nHodisa\nO‘zgaruvchi\nO‘zgaruvchi\nchange\nball\nby\n1\nset\nball\nto\n0\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen touching\napple\nchange\nball\nby\n1\nwhen ▶ clicked\nset\nball\nto\n0\n2 ta dasturcha\n4 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nball:\n3\n‹ Orqaga\nSiz yutdingiz!\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "q:when touchingapplechangeballby1",
+   "c:changeballby1",
+   "f:when ▶ clickedsetballto0",
+   "z:setballto0"
+  ],
+  "html": "9c4ff8a51ec3",
+  "uzun": 43141
+ },
+ "u-x-P8-oqildi": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nBall nechchi bo‘ladi?\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nwhen ▶ clicked\nset\nball\nto\n0\nchange\nball\nby\n2\nchange\nball\nby\n2\nchange\nball\nby\n1\nball: 0\nball: 2\nball: 4\nball: 5\n1 ta dasturcha\n5 / 12 ta blok\nball:\n?\n2\n3\n4\n5\n6\n7\n‹ Orqaga\n▶ Tekshirish\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "f:when ▶ clickedsetballto0changeballby2changeballby2changeballby1",
+   "z:setballto0changeballby2changeballby2changeballby1",
+   "c:changeballby2changeballby2changeballby1",
+   "c:changeballby2changeballby1",
+   "c:changeballby1"
+  ],
+  "html": "909bbcabb8d9",
+  "uzun": 37821
+ },
+ "u-x-P8-karta": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nBall nechchi bo‘ladi?\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nwhen ▶ clicked\nset\nball\nto\n0\nchange\nball\nby\n2\nchange\nball\nby\n2\nchange\nball\nby\n1\nball: 0\nball: 2\nball: 4\nball: 5\n1 ta dasturcha\n5 / 12 ta blok\nball:\n?\n2\n3\n4\n5\n6\n7\n‹ Orqaga\n▶ Tekshirish\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "f:when ▶ clickedsetballto0changeballby2changeballby2changeballby1",
+   "z:setballto0changeballby2changeballby2changeballby1",
+   "c:changeballby2changeballby2changeballby1",
+   "c:changeballby2changeballby1",
+   "c:changeballby1"
+  ],
+  "html": "587b7a49d03e",
+  "uzun": 37840
+ },
+ "u-x-P8-aytdi": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nBall nechchi bo‘ladi?\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nwhen ▶ clicked\nset\nball\nto\n0\nchange\nball\nby\n2\nchange\nball\nby\n2\nchange\nball\nby\n1\n1 ta dasturcha\n5 / 12 ta blok\nball:\n5\n2\n3\n4\n5\n6\n7\n‹ Orqaga\nOldindan aytdingiz!\n▶ Tekshirish\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "f:when ▶ clickedsetballto0changeballby2changeballby2changeballby1",
+   "z:setballto0changeballby2changeballby2changeballby1",
+   "c:changeballby2changeballby2changeballby1",
+   "c:changeballby2changeballby1",
+   "c:changeballby1"
+  ],
+  "html": "6c89c32b4d04",
+  "uzun": 38330
+ },
+ "u-x-yakunlandi": {
+  "id": "P14",
+  "matn": "SINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nta olma terdi\n0\nmarta oldindan aytdi\nDars tugadi!\nKo‘rishguncha — keyingi darsda jon bilan!\n‹ Orqaga\nDarsni yakunlash\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "16de64788b21",
+  "uzun": 40092
+ },
+ "bq-01-0-B0": {
+  "id": "B0",
+  "matn": "11-DARS · O‘ZGARUVCHI: BALL\nSalom, Aziz!\nTayyor bo‘lsangiz — tugmani bosing\nTayyorman",
+  "bloklar": [],
+  "html": "57c6d04daae3",
+  "uzun": 24487
+ },
+ "bq-01-1-BK": {
+  "id": "BK",
+  "matn": "11-DARS · O‘ZGARUVCHI: BALL\n↑\nUstoz ekraniga qarang\nDars hozir boshlanadi",
+  "bloklar": [],
+  "html": "2a80522a1eba",
+  "uzun": 16099
+ },
+ "bq-02-0-P2N": {
+  "id": "P2N",
+  "matn": "11-DARS · O‘ZGARUVCHI: BALL\nSAVOL\nBallni qanday sanaymiz?\n\nCoddy\nBallni qaysi yo‘l bilan sanaymiz?\n\nA\nCoddy «1» desin\nwhen touching\napple\nsay\n1\nB\nBir, ikki, uch desin\nwhen touching\napple\nsay\n1\nsay\n2\nsay\n3\nC\nKompyuter sonni eslab qolsin\nwhen touching\napple\nchange\nball\nby\n1\nball:\n0\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nHar olma — 1 ball\nBirini tanlang",
+  "bloklar": [],
+  "html": "f5002e359072",
+  "uzun": 37227
+ },
+ "bq-02-1-BK": {
+  "id": "BK",
+  "matn": "11-DARS · O‘ZGARUVCHI: BALL\n↑\nUstoz ekraniga qarang\nJavobingiz qabul qilindi",
+  "bloklar": [],
+  "html": "32f4f4e8ec16",
+  "uzun": 16102
+ },
+ "bq-03-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz yo‘llarni sinayapti — kuzating",
+  "bloklar": [],
+  "html": "13a6aeaf02c0",
+  "uzun": 16114
+ },
+ "bq-04-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstozni tinglang",
+  "bloklar": [],
+  "html": "eac3ca9ac1c3",
+  "uzun": 16094
+ },
+ "bq-05-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nYangi so‘z: o‘zgaruvchi",
+  "bloklar": [],
+  "html": "26006a529566",
+  "uzun": 16101
+ },
+ "bq-06-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nBugun: uchta bekat",
+  "bloklar": [],
+  "html": "9d80ee7ca096",
+  "uzun": 16096
+ },
+ "bq-07-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz ball sanashni ko‘rsatyapti — kuzating",
+  "bloklar": [],
+  "html": "3e002172054b",
+  "uzun": 16121
+ },
+ "bq-08-0-B1A": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nUch olma\nHar olma — 1 ball. Ball 3 bo‘lsin.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\nMaslahat\nOlmaga tekkanda ballga qancha qo‘shilsin?\nBoshlash",
+  "bloklar": [],
+  "html": "23bd0a685e9b",
+  "uzun": 26042
+ },
+ "bq-08-1-B1B": {
+  "id": "B1B",
+  "matn": "MASHQ · 2-POG‘ONA\nIkki ball\nHar olma — 2 ball. Ball 8 bo‘lsin.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\nMaslahat\nOlmaga tekkanda ballga qancha qo‘shilsin?\nBoshlash",
+  "bloklar": [],
+  "html": "152e18d52652",
+  "uzun": 26609
+ },
+ "bq-08-2-B1C": {
+  "id": "B1C",
+  "matn": "MASHQ · 3-POG‘ONA\nOltin olma\nOlma — 1 ball, oltin olma — 5 ball.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nball:\n0\nMaslahat\nOlmaga tekkanda ballga qancha qo‘shilsin?\nBoshlash",
+  "bloklar": [],
+  "html": "74d990dfa72e",
+  "uzun": 26176
+ },
+ "bq-08-3-B1Y": {
+  "id": "B1Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nOltin — 10\nOlma — 2 ball, oltin olma — 10 ball.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\nMaslahat\nOlmaga tekkanda ballga qancha qo‘shilsin?\nBoshlash",
+  "bloklar": [],
+  "html": "4ad3ca692713",
+  "uzun": 27312
+ },
+ "bq-08-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "568a97b7792d",
+  "uzun": 16109
+ },
+ "bq-09-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\n2-bekat: noldan",
+  "bloklar": [],
+  "html": "8330622769b7",
+  "uzun": 16093
+ },
+ "bq-10-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz o‘yinni qayta boshlayapti — kuzating",
+  "bloklar": [],
+  "html": "3e12abd4572f",
+  "uzun": 16120
+ },
+ "bq-11-0-B2A": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nNoldan\nO‘yin 0 dan boshlansin. Har olma — 1 ball.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n5\nO‘tgan o‘yindan qolgan ball\nMaslahat\nO‘yin boshida ball nechchi bo‘lishi kerak?\nBoshlash",
+  "bloklar": [],
+  "html": "e4a0b9e32e73",
+  "uzun": 26669
+ },
+ "bq-11-1-B2B": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nSovg‘a\nO‘yin 10 balldan boshlansin. Har olma — 1 ball.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\nball:\n5\nO‘tgan o‘yindan qolgan ball\nMaslahat\nO‘yin boshida ball nechchi bo‘lishi kerak?\nBoshlash",
+  "bloklar": [],
+  "html": "7db64a6febad",
+  "uzun": 26107
+ },
+ "bq-11-2-B2C": {
+  "id": "B2C",
+  "matn": "MASHQ · 3-POG‘ONA\nUch va oltin\nO‘yin 3 balldan. Olma — 2, oltin olma — 4 ball.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n5\nO‘tgan o‘yindan qolgan ball\nMaslahat\nO‘yin boshida ball nechchi bo‘lishi kerak?\nBoshlash",
+  "bloklar": [],
+  "html": "f8497b537063",
+  "uzun": 26244
+ },
+ "bq-11-3-B2Y": {
+  "id": "B2Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z o‘yiningiz\nBoshidagi ballni va olmalar necha ball berishini o‘zingiz tanlang.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n5\nO‘tgan o‘yindan qolgan ball\nMaslahat\nO‘yin boshida ball nechchi bo‘lishi kerak?\nBoshlash",
+  "bloklar": [],
+  "html": "8cf55397e0bb",
+  "uzun": 26965
+ },
+ "bq-11-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "568a97b7792d",
+  "uzun": 16109
+ },
+ "bq-12-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nXulosa: o‘zgaruvchi",
+  "bloklar": [],
+  "html": "581dd61bbd3a",
+  "uzun": 16097
+ },
+ "bq-13-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\n3-bekat: oldindan aytamiz",
+  "bloklar": [],
+  "html": "4bca48c39b79",
+  "uzun": 16103
+ },
+ "bq-14-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz dasturni o‘qiyapti — kuzating",
+  "bloklar": [],
+  "html": "eba8ff829677",
+  "uzun": 16113
+ },
+ "bq-15-0-B3A": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nUch blok\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nwhen ▶ clicked\nset\nball\nto\n3\nchange\nball\nby\n1\nchange\nball\nby\n5\n1 ta dasturcha\n4 / 12 ta blok\nball:\n?\n3\n4\n5\n6\n8\n9\nMaslahat\nDasturni o‘qing: oxirida ball nechchi bo‘ladi?\nTekshirish",
+  "bloklar": [
+   "f:when ▶ clickedsetballto3changeballby1changeballby5",
+   "z:setballto3changeballby1changeballby5",
+   "c:changeballby1changeballby5",
+   "c:changeballby5"
+  ],
+  "html": "b8c013129c9e",
+  "uzun": 22761
+ },
+ "bq-15-1-B3B": {
+  "id": "B3B",
+  "matn": "MASHQ · 2-POG‘ONA\nTakrorlash\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nwhen ▶ clicked\nset\nball\nto\n0\nrepeat\n3\nchange\nball\nby\n2\n1 ta dasturcha\n4 / 12 ta blok\nball:\n?\n2\n3\n4\n5\n6\n8\nMaslahat\nDasturni o‘qing: oxirida ball nechchi bo‘ladi?\nTekshirish",
+  "bloklar": [
+   "f:when ▶ clickedsetballto0repeat3changeballby2",
+   "z:setballto0repeat3changeballby2",
+   "p:repeat3changeballby2",
+   "c:changeballby2"
+  ],
+  "html": "6940bc37db75",
+  "uzun": 22763
+ },
+ "bq-15-2-B3C": {
+  "id": "B3C",
+  "matn": "MASHQ · 3-POG‘ONA\nIkki set\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nwhen ▶ clicked\nset\nball\nto\n0\nchange\nball\nby\n5\nset\nball\nto\n1\nchange\nball\nby\n1\n1 ta dasturcha\n5 / 12 ta blok\nball:\n?\n0\n1\n2\n5\n6\n7\nMaslahat\nDasturni o‘qing: oxirida ball nechchi bo‘ladi?\nTekshirish",
+  "bloklar": [
+   "f:when ▶ clickedsetballto0changeballby5setballto1changeballby1",
+   "z:setballto0changeballby5setballto1changeballby1",
+   "c:changeballby5setballto1changeballby1",
+   "z:setballto1changeballby1",
+   "c:changeballby1"
+  ],
+  "html": "81389a31bfec",
+  "uzun": 22761
+ },
+ "bq-15-3-B3Y": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nIchida ikki blok\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nwhen ▶ clicked\nset\nball\nto\n4\nrepeat\n2\nchange\nball\nby\n3\nchange\nball\nby\n2\n1 ta dasturcha\n5 / 12 ta blok\nball:\n?\n9\n10\n11\n14\n15\n19\nMaslahat\nDasturni o‘qing: oxirida ball nechchi bo‘ladi?\nTekshirish",
+  "bloklar": [
+   "f:when ▶ clickedsetballto4repeat2changeballby3changeballby2",
+   "z:setballto4repeat2changeballby3changeballby2",
+   "p:repeat2changeballby3changeballby2",
+   "c:changeballby3changeballby2",
+   "c:changeballby2"
+  ],
+  "html": "09276b3ed6d9",
+  "uzun": 22782
+ },
+ "bq-15-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "568a97b7792d",
+  "uzun": 16109
+ },
+ "bq-17-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nSiz ball sanadingiz!\n\nBulut\nOlmalarni terdim — kompyuter ballni eslab qoldi.\n\nSiz bugun\n0\nta olma terdi\n0\neng katta ball\n0\nmarta oldindan aytdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nball:\n0\nBulut\nKeyingi darsda jon bilan ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "16661a4ebbd4",
+  "uzun": 20599
+ },
+ "bq-18-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nSiz ball sanadingiz!\n\nBulut\nOlmalarni terdim — kompyuter ballni eslab qoldi.\n\nSiz bugun\n0\nta olma terdi\n0\neng katta ball\n0\nmarta oldindan aytdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nball:\n0\nBulut\nKeyingi darsda jon bilan ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "16661a4ebbd4",
+  "uzun": 20599
+ },
+ "bx-B1A-bosh": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nUch olma\nHar olma — 1 ball. Ball 3 bo‘lsin.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\nMaslahat\nOlmaga tekkanda ballga qancha qo‘shilsin?\nBoshlash",
+  "bloklar": [],
+  "html": "23bd0a685e9b",
+  "uzun": 26042
+ },
+ "bx-B1A-ballchi": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nUch olma\nHar olma — 1 ball. Ball 3 bo‘lsin.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 2)\nball:\n0\nO‘yin: strelkalarni bosing\nOlma terildi, ball-chi?\nMaslahat\nOlmaga tekkanda nima bo‘lsin? Buning uchun o‘z hodisa bloki bor\n■ To‘xtatish",
+  "bloklar": [],
+  "html": "55bafd8460e9",
+  "uzun": 31466
+ },
+ "bx-B1A-kam": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nUch olma\nHar olma — 1 ball. Ball 3 bo‘lsin.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\nball:\n0\nBall kam!\nMaslahat\nBall 0 — 3 bo‘lishi kerak. Har olma necha ball?\nBoshlash",
+  "bloklar": [],
+  "html": "3e99e26e5bee",
+  "uzun": 32313
+ },
+ "bx-B1A-yutdi": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nUch olma\nHar olma — 1 ball. Ball 3 bo‘lsin.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen touching\napple\nchange\nball\nby\n1\n1 ta dasturcha\n2 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\nball:\n3\nMaslahat\nSiz yutdingiz!\nBoshlash",
+  "bloklar": [
+   "q:when touchingapplechangeballby1",
+   "c:changeballby1"
+  ],
+  "html": "cbdc0e009d8f",
+  "uzun": 27574
+ },
+ "bx-B1C-oltin": {
+  "id": "B1C",
+  "matn": "MASHQ · 3-POG‘ONA\nOltin olma\nOlma — 1 ball, oltin olma — 5 ball.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen touching\napple\nchange\nball\nby\n1\n1 ta dasturcha\n2 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nball:\n0\nO‘yin: strelkalarni bosing\nOltin olma-chi?\nMaslahat\nOltin olmaga o‘z dasturchasi kerak — hodisa blokida olma turini tanlang\n■ To‘xtatish",
+  "bloklar": [
+   "q:when touchingapplechangeballby1",
+   "c:changeballby1"
+  ],
+  "html": "aeb4e193be28",
+  "uzun": 31794
+ },
+ "bx-B2A-bosh": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nNoldan\nO‘yin 0 dan boshlansin. Har olma — 1 ball.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen touching\napple\nchange\nball\nby\n1\n1 ta dasturcha\n2 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n5\nO‘tgan o‘yindan qolgan ball\nMaslahat\nO‘yin boshida ball nechchi bo‘lishi kerak?\nBoshlash",
+  "bloklar": [
+   "q:when touchingapplechangeballby1",
+   "c:changeballby1"
+  ],
+  "html": "b4a1e4aa6993",
+  "uzun": 26660
+ },
+ "bx-B2A-kop": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nNoldan\nO‘yin 0 dan boshlansin. Har olma — 1 ball.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen touching\napple\nchange\nball\nby\n1\n1 ta dasturcha\n2 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 4)\nball:\n9\nO‘tgan o‘yindan qolgan ball\nBall ko‘p!\nMaslahat\nBall 9 — 4 bo‘lishi kerak. O‘yin boshida ball 5 edi\nBoshlash",
+  "bloklar": [
+   "q:when touchingapplechangeballby1",
+   "c:changeballby1"
+  ],
+  "html": "3a2d07bfef83",
+  "uzun": 33326
+ },
+ "bx-B2A-yutdi": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nNoldan\nO‘yin 0 dan boshlansin. Har olma — 1 ball.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\nball\nto\n0\nwhen touching\napple\nchange\nball\nby\n1\n2 ta dasturcha\n4 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 4)\nball:\n4\nO‘tgan o‘yindan qolgan ball\nMaslahat\nSiz yutdingiz!\nBoshlash",
+  "bloklar": [
+   "f:when ▶ clickedsetballto0",
+   "z:setballto0",
+   "q:when touchingapplechangeballby1",
+   "c:changeballby1"
+  ],
+  "html": "6f78dd55597e",
+  "uzun": 28744
+ },
+ "bx-B2Y-tayyor": {
+  "id": "B2Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z o‘yiningiz\nBoshidagi ballni va olmalar necha ball berishini o‘zingiz tanlang.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\nball\nto\n5\nwhen touching\napple\nchange\nball\nby\n3\nwhen touching\ngold apple\nchange\nball\nby\n10\n3 ta dasturcha\n6 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\nball:\n31\nO‘tgan o‘yindan qolgan ball\nMaslahat\nO‘yiningiz tayyor!\nBoshlash",
+  "bloklar": [
+   "f:when ▶ clickedsetballto5",
+   "z:setballto5",
+   "q:when touchingapplechangeballby3",
+   "c:changeballby3",
+   "q:when touchinggold applechangeballby10",
+   "c:changeballby10"
+  ],
+  "html": "5768c09a45be",
+  "uzun": 29040
+ },
+ "bx-B3A-bosh": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nUch blok\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nwhen ▶ clicked\nset\nball\nto\n3\nchange\nball\nby\n1\nchange\nball\nby\n5\n1 ta dasturcha\n4 / 12 ta blok\nball:\n?\n3\n4\n5\n6\n8\n9\nMaslahat\nDasturni o‘qing: oxirida ball nechchi bo‘ladi?\nTekshirish",
+  "bloklar": [
+   "f:when ▶ clickedsetballto3changeballby1changeballby5",
+   "z:setballto3changeballby1changeballby5",
+   "c:changeballby1changeballby5",
+   "c:changeballby5"
+  ],
+  "html": "b8c013129c9e",
+  "uzun": 22761
+ },
+ "bx-B3A-karta": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nUch blok\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nwhen ▶ clicked\nset\nball\nto\n3\nchange\nball\nby\n1\nchange\nball\nby\n5\n1 ta dasturcha\n4 / 12 ta blok\nball:\n?\n3\n4\n5\n6\n8\n9\nMaslahat\nTekshirish",
+  "bloklar": [
+   "f:when ▶ clickedsetballto3changeballby1changeballby5",
+   "z:setballto3changeballby1changeballby5",
+   "c:changeballby1changeballby5",
+   "c:changeballby5"
+  ],
+  "html": "3eedf21f261c",
+  "uzun": 22734
+ },
+ "bx-B3A-boshqa": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nUch blok\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nwhen ▶ clicked\nset\nball\nto\n3\nchange\nball\nby\n1\nchange\nball\nby\n5\n1 ta dasturcha\n4 / 12 ta blok\nball:\n9\n3\n4\n5\n6\n8\n9\nBoshqa son!\nMaslahat\nBall 9 bo‘ldi. Dasturni qaytadan o‘qing: har blokdan keyin ball nechchi?\nTekshirish",
+  "bloklar": [
+   "f:when ▶ clickedsetballto3changeballby1changeballby5",
+   "z:setballto3changeballby1changeballby5",
+   "c:changeballby1changeballby5",
+   "c:changeballby5"
+  ],
+  "html": "12d586a24043",
+  "uzun": 28343
+ },
+ "bx-B3A-aytdi": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nUch blok\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nwhen ▶ clicked\nset\nball\nto\n3\nchange\nball\nby\n1\nchange\nball\nby\n5\n1 ta dasturcha\n4 / 12 ta blok\nball:\n9\n3\n4\n5\n6\n8\n9\nMaslahat\nOldindan aytdingiz!\nTekshirish",
+  "bloklar": [
+   "f:when ▶ clickedsetballto3changeballby1changeballby5",
+   "z:setballto3changeballby1changeballby5",
+   "c:changeballby1changeballby5",
+   "c:changeballby5"
+  ],
+  "html": "87c2b0ba089c",
+  "uzun": 23606
+ },
+ "bx-B3B-bosh": {
+  "id": "B3B",
+  "matn": "MASHQ · 2-POG‘ONA\nTakrorlash\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nwhen ▶ clicked\nset\nball\nto\n0\nrepeat\n3\nchange\nball\nby\n2\n1 ta dasturcha\n4 / 12 ta blok\nball:\n?\n2\n3\n4\n5\n6\n8\nMaslahat\nDasturni o‘qing: oxirida ball nechchi bo‘ladi?\nTekshirish",
+  "bloklar": [
+   "f:when ▶ clickedsetballto0repeat3changeballby2",
+   "z:setballto0repeat3changeballby2",
+   "p:repeat3changeballby2",
+   "c:changeballby2"
+  ],
+  "html": "6940bc37db75",
+  "uzun": 22763
+ },
+ "bx-B5-natija": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nSiz ball sanadingiz!\n\nBulut\nOlmalarni terdim — kompyuter ballni eslab qoldi.\n\nSiz bugun\n11\nta olma terdi\n31\neng katta ball\n0\nmarta oldindan aytdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nball:\n31\nBulut\nKeyingi darsda jon bilan ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "5a31f8d4b698",
+  "uzun": 20602
+ },
+ "bx-P2N-tanladi": {
+  "id": "P2N",
+  "matn": "11-DARS · O‘ZGARUVCHI: BALL\nSAVOL\nBallni qanday sanaymiz?\n\nCoddy\nBallni qaysi yo‘l bilan sanaymiz?\n\nA\nCoddy «1» desin\nwhen touching\napple\nsay\n1\nB\nBir, ikki, uch desin\nwhen touching\napple\nsay\n1\nsay\n2\nsay\n3\nC\nKompyuter sonni eslab qolsin\nwhen touching\napple\nchange\nball\nby\n1\nball:\n0\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nHar olma — 1 ball\nBirini tanlang",
+  "bloklar": [],
+  "html": "6f469740e3b4",
+  "uzun": 37236
+ },
+ "bx-BQ": {
+  "id": "BQ",
+  "matn": "11-DARS · O‘ZGARUVCHI: BALL\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang",
+  "bloklar": [],
+  "html": "f9fa4420ca5e",
+  "uzun": 52613
+ },
+ "bx-BQ-tanladi": {
+  "id": "BK",
+  "matn": "11-DARS · O‘ZGARUVCHI: BALL\n↑\nUstoz ekraniga qarang\nJavobingiz qabul qilindi",
+  "bloklar": [],
+  "html": "5e8d523bb7c7",
+  "uzun": 15164
+ },
+ "sq-01-0-B0": {
+  "id": "B0",
+  "matn": "11-DARS · O‘ZGARUVCHI: BALL\nSalom, Aziz!\nTayyor bo‘lsangiz — tugmani bosing\nTayyorman",
+  "bloklar": [],
+  "html": "57c6d04daae3",
+  "uzun": 24487
+ },
+ "sq-01-1-P1": {
+  "id": "P1",
+  "matn": "11-DARS · O‘ZGARUVCHI: BALL\nBugun o‘yinda ball sanaymiz!\n\nCoddy\nSalom! Bugun kompyuter sonni eslab qoladi.\n\nO‘TGAN DARSDA\nDaraja\nO‘yindagi bitta labirint\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "1623b2c9b0b2",
+  "uzun": 39361
+ },
+ "sq-02-0-P2N": {
+  "id": "P2N",
+  "matn": "11-DARS · O‘ZGARUVCHI: BALL\nSAVOL\nBallni qanday sanaymiz?\n\nCoddy\nBallni qaysi yo‘l bilan sanaymiz?\n\nA\nCoddy «1» desin\nwhen touching\napple\nsay\n1\nB\nBir, ikki, uch desin\nwhen touching\napple\nsay\n1\nsay\n2\nsay\n3\nC\nKompyuter sonni eslab qolsin\nwhen touching\napple\nchange\nball\nby\n1\nball:\n0\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nHar olma — 1 ball\nBirini tanlang",
+  "bloklar": [],
+  "html": "f5002e359072",
+  "uzun": 37227
+ },
+ "sq-03-0-P2S": {
+  "id": "P2S",
+  "matn": "SAVOL\nBallni qanday sanaymiz?\n\nCoddy\nUch olma teraman. Ekranda ball chiqsin.\n\nA\nCoddy «1» desin\n▶ Sinab ko‘rish\nwhen touching\napple\nsay\n1\nB\nBir, ikki, uch desin\n▶ Sinab ko‘rish\nwhen touching\napple\nsay\n1\nsay\n2\nsay\n3\nC\nKompyuter sonni eslab qolsin\n▶ Sinab ko‘rish\nwhen touching\napple\nchange\nball\nby\n1\nball:\n0\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\nHar olma — 1 ball\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "84b9068e39b4",
+  "uzun": 38565
+ },
+ "sq-04-0-P2C": {
+  "id": "P2C",
+  "matn": "JAVOB\nKompyuter sonni eslab qoladi\n\nCoddy\nMen 3 ni eslab qoldim.\n\nA\nCoddy «1» desin\n✕ doim 1\nwhen touching\napple\nsay\n1\nB\nBir, ikki, uch desin\n✕ birdan 3\nwhen touching\napple\nsay\n1\nsay\n2\nsay\n3\nC\nKompyuter sonni eslab qolsin\n✓ ball: 3\nwhen touching\napple\nchange\nball\nby\n1\nball:\n0\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 2)\nball:\n3\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "7e10119b9e19",
+  "uzun": 36554
+ },
+ "sq-05-0-P3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nO‘zgaruvchi nima?\n\nCoddy\nO‘zgaruvchi — men eslab qoladigan son.\n\n0\nNomi — ball, soni — 0\n\nchange\nball\nby\n1\nchange — songa qo‘shadi\n\nball: 3\nNomi o‘sha — soni o‘zgardi\n\nball\n0\n1\n3\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "8759e5fb2eb0",
+  "uzun": 21956
+ },
+ "sq-06-0-P4": {
+  "id": "P4",
+  "matn": "REJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Avval ballni sanaymiz.\n\nDars oxirida · olma terish o‘yini · ball sanaladi\nball: 7\nO‘yiningiz ballni sanaydi\n1\nBall\n2\nNoldan\n3\nOldindan aytamiz\n‹ Orqaga\nBoshladik ›",
+  "bloklar": [],
+  "html": "27103102cd6c",
+  "uzun": 40455
+ },
+ "sq-07-0-P6": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nchange — ballga qo‘sh\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen touching\napple\nchange\nball\nby\n1\n1 ta dasturcha\n2 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\n‹ Orqaga\n▶ Boshlash\nKeyingi ›",
+  "bloklar": [
+   "q:when touchingapplechangeballby1",
+   "c:changeballby1"
+  ],
+  "html": "b182391482eb",
+  "uzun": 39169
+ },
+ "sq-08-0-B1A": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nUch olma\nHar olma — 1 ball. Ball 3 bo‘lsin.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\nMaslahat\nOlmaga tekkanda ballga qancha qo‘shilsin?\nBoshlash\nKeyingi ›",
+  "bloklar": [],
+  "html": "dda3713504b8",
+  "uzun": 26089
+ },
+ "sq-08-1-B1B": {
+  "id": "B1B",
+  "matn": "MASHQ · 2-POG‘ONA\nIkki ball\nHar olma — 2 ball. Ball 8 bo‘lsin.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\nMaslahat\nOlmaga tekkanda ballga qancha qo‘shilsin?\nBoshlash\nKeyingi ›",
+  "bloklar": [],
+  "html": "e11dd3e2f178",
+  "uzun": 26656
+ },
+ "sq-08-2-B1C": {
+  "id": "B1C",
+  "matn": "MASHQ · 3-POG‘ONA\nOltin olma\nOlma — 1 ball, oltin olma — 5 ball.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nball:\n0\nMaslahat\nOlmaga tekkanda ballga qancha qo‘shilsin?\nBoshlash\nKeyingi ›",
+  "bloklar": [],
+  "html": "8a2a16a1e469",
+  "uzun": 26223
+ },
+ "sq-08-3-B1Y": {
+  "id": "B1Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nOltin — 10\nOlma — 2 ball, oltin olma — 10 ball.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\nMaslahat\nOlmaga tekkanda ballga qancha qo‘shilsin?\nBoshlash\nKeyingi ›",
+  "bloklar": [],
+  "html": "a89c4db40ed2",
+  "uzun": 27359
+ },
+ "sq-09-0-P4B": {
+  "id": "P4B",
+  "matn": "REJA · 2-BEKAT\n2 · Noldan\n\nCoddy\nEndi o‘yinni qaytadan boshlaymiz.\n\nDars oxirida · olma terish o‘yini · ball sanaladi\nball: 7\nO‘yiningiz ballni sanaydi\n✓\nBall\n2\nNoldan\n3\nOldindan aytamiz\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "c5749ca9cd1f",
+  "uzun": 40304
+ },
+ "sq-10-0-P7": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nset — ballni 0 qil\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen touching\napple\nchange\nball\nby\n1\n1 ta dasturcha\n2 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\n‹ Orqaga\nIkki marta o‘ynang: ball qanday bo‘ladi?\n▶ Boshlash\nKeyingi ›",
+  "bloklar": [
+   "q:when touchingapplechangeballby1",
+   "c:changeballby1"
+  ],
+  "html": "be6ad86e439c",
+  "uzun": 39200
+ },
+ "sq-11-0-B2A": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nNoldan\nO‘yin 0 dan boshlansin. Har olma — 1 ball.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n5\nO‘tgan o‘yindan qolgan ball\nMaslahat\nO‘yin boshida ball nechchi bo‘lishi kerak?\nBoshlash\nKeyingi ›",
+  "bloklar": [],
+  "html": "65457b9620ff",
+  "uzun": 26716
+ },
+ "sq-11-1-B2B": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nSovg‘a\nO‘yin 10 balldan boshlansin. Har olma — 1 ball.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\nball:\n5\nO‘tgan o‘yindan qolgan ball\nMaslahat\nO‘yin boshida ball nechchi bo‘lishi kerak?\nBoshlash\nKeyingi ›",
+  "bloklar": [],
+  "html": "35143c3f1d98",
+  "uzun": 26154
+ },
+ "sq-11-2-B2C": {
+  "id": "B2C",
+  "matn": "MASHQ · 3-POG‘ONA\nUch va oltin\nO‘yin 3 balldan. Olma — 2, oltin olma — 4 ball.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n5\nO‘tgan o‘yindan qolgan ball\nMaslahat\nO‘yin boshida ball nechchi bo‘lishi kerak?\nBoshlash\nKeyingi ›",
+  "bloklar": [],
+  "html": "81b8b99f214d",
+  "uzun": 26291
+ },
+ "sq-11-3-B2Y": {
+  "id": "B2Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z o‘yiningiz\nBoshidagi ballni va olmalar necha ball berishini o‘zingiz tanlang.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n5\nO‘tgan o‘yindan qolgan ball\nMaslahat\nO‘yin boshida ball nechchi bo‘lishi kerak?\nBoshlash\nKeyingi ›",
+  "bloklar": [],
+  "html": "63058ad03dac",
+  "uzun": 27012
+ },
+ "sq-12-0-P9": {
+  "id": "P9",
+  "matn": "XULOSA\nO‘zgaruvchi\n\nCoddy\nNomi bir xil — soni o‘zgaradi.\n\nset\nball\nto\n0\nset ball to 0\nSonni qo‘yadi\nchange\nball\nby\n1\nchange ball by 1\nSonga qo‘shadi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nball:\n3\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "ef914a746277",
+  "uzun": 33841
+ },
+ "sq-13-0-P4C": {
+  "id": "P4C",
+  "matn": "REJA · 3-BEKAT\n3 · Oldindan aytamiz\n\nCoddy\nOxirgi bekat: dasturni o‘qib, ballni oldindan aytamiz.\n\nDars oxirida · olma terish o‘yini · ball sanaladi\nball: 7\nO‘yiningiz ballni sanaydi\n✓\nBall\n✓\nNoldan\n3\nOldindan aytamiz\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "ab7ee3b9121b",
+  "uzun": 40195
+ },
+ "sq-14-0-P8": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nBall nechchi bo‘ladi?\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nwhen ▶ clicked\nset\nball\nto\n0\nchange\nball\nby\n2\nchange\nball\nby\n2\nchange\nball\nby\n1\n1 ta dasturcha\n5 / 12 ta blok\nball:\n?\n2\n3\n4\n5\n6\n7\n‹ Orqaga\n5 kartasini bosing, keyin «Tekshirish»\n▶ Tekshirish\nKeyingi ›",
+  "bloklar": [
+   "f:when ▶ clickedsetballto0changeballby2changeballby2changeballby1",
+   "z:setballto0changeballby2changeballby2changeballby1",
+   "c:changeballby2changeballby2changeballby1",
+   "c:changeballby2changeballby1",
+   "c:changeballby1"
+  ],
+  "html": "4bcc6ac21018",
+  "uzun": 36144
+ },
+ "sq-15-0-B3A": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nUch blok\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nwhen ▶ clicked\nset\nball\nto\n3\nchange\nball\nby\n1\nchange\nball\nby\n5\n1 ta dasturcha\n4 / 12 ta blok\nball:\n?\n3\n4\n5\n6\n8\n9\nMaslahat\nDasturni o‘qing: oxirida ball nechchi bo‘ladi?\nTekshirish\nKeyingi ›",
+  "bloklar": [
+   "f:when ▶ clickedsetballto3changeballby1changeballby5",
+   "z:setballto3changeballby1changeballby5",
+   "c:changeballby1changeballby5",
+   "c:changeballby5"
+  ],
+  "html": "8d79c1be7913",
+  "uzun": 22808
+ },
+ "sq-15-1-B3B": {
+  "id": "B3B",
+  "matn": "MASHQ · 2-POG‘ONA\nTakrorlash\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nwhen ▶ clicked\nset\nball\nto\n0\nrepeat\n3\nchange\nball\nby\n2\n1 ta dasturcha\n4 / 12 ta blok\nball:\n?\n2\n3\n4\n5\n6\n8\nMaslahat\nDasturni o‘qing: oxirida ball nechchi bo‘ladi?\nTekshirish\nKeyingi ›",
+  "bloklar": [
+   "f:when ▶ clickedsetballto0repeat3changeballby2",
+   "z:setballto0repeat3changeballby2",
+   "p:repeat3changeballby2",
+   "c:changeballby2"
+  ],
+  "html": "64e19a4478c1",
+  "uzun": 22810
+ },
+ "sq-15-2-B3C": {
+  "id": "B3C",
+  "matn": "MASHQ · 3-POG‘ONA\nIkki set\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nwhen ▶ clicked\nset\nball\nto\n0\nchange\nball\nby\n5\nset\nball\nto\n1\nchange\nball\nby\n1\n1 ta dasturcha\n5 / 12 ta blok\nball:\n?\n0\n1\n2\n5\n6\n7\nMaslahat\nDasturni o‘qing: oxirida ball nechchi bo‘ladi?\nTekshirish\nKeyingi ›",
+  "bloklar": [
+   "f:when ▶ clickedsetballto0changeballby5setballto1changeballby1",
+   "z:setballto0changeballby5setballto1changeballby1",
+   "c:changeballby5setballto1changeballby1",
+   "z:setballto1changeballby1",
+   "c:changeballby1"
+  ],
+  "html": "c9afd3aa4575",
+  "uzun": 22808
+ },
+ "sq-15-3-B3Y": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nIchida ikki blok\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nwhen ▶ clicked\nset\nball\nto\n4\nrepeat\n2\nchange\nball\nby\n3\nchange\nball\nby\n2\n1 ta dasturcha\n5 / 12 ta blok\nball:\n?\n9\n10\n11\n14\n15\n19\nMaslahat\nDasturni o‘qing: oxirida ball nechchi bo‘ladi?\nTekshirish\nKeyingi ›",
+  "bloklar": [
+   "f:when ▶ clickedsetballto4repeat2changeballby3changeballby2",
+   "z:setballto4repeat2changeballby3changeballby2",
+   "p:repeat2changeballby3changeballby2",
+   "c:changeballby3changeballby2",
+   "c:changeballby2"
+  ],
+  "html": "7d40debefecc",
+  "uzun": 22829
+ },
+ "sq-17-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nSiz ball sanadingiz!\n\nBulut\nOlmalarni terdim — kompyuter ballni eslab qoldi.\n\nSiz bugun\n0\nta olma terdi\n0\neng katta ball\n0\nmarta oldindan aytdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nball:\n0\nBulut\nKeyingi darsda jon bilan ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "16661a4ebbd4",
+  "uzun": 20599
+ },
+ "sx-P2S-C": {
+  "id": "P2S",
+  "matn": "SAVOL\nBallni qanday sanaymiz?\n\nCoddy\nUch olma teraman. Ekranda ball chiqsin.\n\nA\nCoddy «1» desin\n▶ Sinab ko‘rish\nwhen touching\napple\nsay\n1\nB\nBir, ikki, uch desin\n▶ Sinab ko‘rish\nwhen touching\napple\nsay\n1\nsay\n2\nsay\n3\nC\nKompyuter sonni eslab qolsin\n✓ ball: 3\nwhen touching\napple\nchange\nball\nby\n1\nball:\n0\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 2)\nball:\n3\nHar olma — 1 ball\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "9c01cc138fac",
+  "uzun": 39936
+ },
+ "sx-P6-tayyor": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nchange — ballga qo‘sh\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen touching\napple\nchange\nball\nby\n1\n1 ta dasturcha\n2 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\n‹ Orqaga\n▶ Boshlash\nKeyingi ›",
+  "bloklar": [
+   "q:when touchingapplechangeballby1",
+   "c:changeballby1"
+  ],
+  "html": "b182391482eb",
+  "uzun": 39169
+ },
+ "sx-P8-ishora": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nBall nechchi bo‘ladi?\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nwhen ▶ clicked\nset\nball\nto\n0\nchange\nball\nby\n2\nchange\nball\nby\n2\nchange\nball\nby\n1\n1 ta dasturcha\n5 / 12 ta blok\nball:\n?\n2\n3\n4\n5\n6\n7\n‹ Orqaga\n5 kartasini bosing, keyin «Tekshirish»\n▶ Tekshirish\nKeyingi ›",
+  "bloklar": [
+   "f:when ▶ clickedsetballto0changeballby2changeballby2changeballby1",
+   "z:setballto0changeballby2changeballby2changeballby1",
+   "c:changeballby2changeballby2changeballby1",
+   "c:changeballby2changeballby1",
+   "c:changeballby1"
+  ],
+  "html": "4bcc6ac21018",
+  "uzun": 36144
+ },
+ "y-01": {
+  "id": "P1",
+  "matn": "USTOZ · PROYEKTOR\n11-DARS · O‘ZGARUVCHI: BALL\nBugun o‘yinda ball sanaymiz!\n\nCoddy\nSalom! Bugun kompyuter sonni eslab qoladi.\n\nO‘TGAN DARSDA\nDaraja\nO‘yindagi bitta labirint\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKirdi: 1\nKeyingi ›\nO‘QUVCHI · NOUTBUK\n11-DARS · O‘ZGARUVCHI: BALL\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "24346c53e04b",
+  "uzun": 93458
+ },
+ "y-02": {
+  "id": "P2",
+  "matn": "USTOZ · PROYEKTOR\n11-DARS · O‘ZGARUVCHI: BALL\nSAVOL\nBallni qanday sanaymiz?\n\nCoddy\nUch olma teraman. Ekranda ball chiqsin.\n\nA\nCoddy «1» desin\nwhen touching\napple\nsay\n1\nB\nBir, ikki, uch desin\nwhen touching\napple\nsay\n1\nsay\n2\nsay\n3\nC\nKompyuter sonni eslab qolsin\nwhen touching\napple\nchange\nball\nby\n1\nball:\n0\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nHar olma — 1 ball\n‹ Orqaga\nJavob berdi: 0 / 1\nSinab ko‘ramiz ›\nO‘QUVCHI · NOUTBUK\n11-DARS · O‘ZGARUVCHI: BALL\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "38b5638ddbe1",
+  "uzun": 92238
+ },
+ "y-03": {
+  "id": "P2S",
+  "matn": "USTOZ · PROYEKTOR\nSAVOL\nBallni qanday sanaymiz?\n\nCoddy\nUch olma teraman. Ekranda ball chiqsin.\n\nA\nCoddy «1» desin\nwhen touching\napple\nsay\n1\nB\nBir, ikki, uch desin\nwhen touching\napple\nsay\n1\nsay\n2\nsay\n3\nC\nKompyuter sonni eslab qolsin\nwhen touching\napple\nchange\nball\nby\n1\nball:\n0\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\nball:\n0\nHar olma — 1 ball\n→\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "88f20755c7be",
+  "uzun": 92607
+ },
+ "y-04": {
+  "id": "P2C",
+  "matn": "USTOZ · PROYEKTOR\nJAVOB\nKompyuter sonni eslab qoladi\n\nCoddy\nMen 3 ni eslab qoldim.\n\nA\nCoddy «1» desin\n✕ doim 1\nwhen touching\napple\nsay\n1\nB\nBir, ikki, uch desin\n✕ birdan 3\nwhen touching\napple\nsay\n1\nsay\n2\nsay\n3\nC\nKompyuter sonni eslab qolsin\n✓ ball: 3\nwhen touching\napple\nchange\nball\nby\n1\nball:\n0\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 2)\nball:\n3\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "f4e1a4660f95",
+  "uzun": 90643
+ },
+ "y-05": {
+  "id": "P3",
+  "matn": "USTOZ · PROYEKTOR\nYANGI SO‘Z\nO‘zgaruvchi nima?\n\nCoddy\nO‘zgaruvchi — men eslab qoladigan son.\n\n0\nNomi — ball, soni — 0\n\nchange\nball\nby\n1\nchange — songa qo‘shadi\n\nball: 3\nNomi o‘sha — soni o‘zgardi\n\nball\n0\n1\n3\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "59b8f58f4290",
+  "uzun": 76045
+ },
+ "y-06": {
+  "id": "P4",
+  "matn": "USTOZ · PROYEKTOR\nREJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Avval ballni sanaymiz.\n\nDars oxirida · olma terish o‘yini · ball sanaladi\nball: 7\nO‘yiningiz ballni sanaydi\n1\nBall\n2\nNoldan\n3\nOldindan aytamiz\n‹ Orqaga\nBoshladik ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "ee938331dd99",
+  "uzun": 94544
+ },
+ "y-07": {
+  "id": "P6",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nchange — ballga qo‘sh\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "9ccfd1de519c",
+  "uzun": 93267
+ },
+ "y-08": {
+  "id": "P5",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nBall sanang!\n\nCoddy\nOlmaga tekkanda ballga qo‘shing.\n\nUch pog‘onani tugatdi\n0 / 1\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nUch olma\n2\n0\nIkki ball\n3\n0\nOltin olma\n★\n0\nOltin — 10\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "51cdf9c0fa67",
+  "uzun": 91614
+ },
+ "y-09": {
+  "id": "P4B",
+  "matn": "USTOZ · PROYEKTOR\nREJA · 2-BEKAT\n2 · Noldan\n\nCoddy\nEndi o‘yinni qaytadan boshlaymiz.\n\nDars oxirida · olma terish o‘yini · ball sanaladi\nball: 7\nO‘yiningiz ballni sanaydi\n✓\nBall\n2\nNoldan\n3\nOldindan aytamiz\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "277cedc74724",
+  "uzun": 94393
+ },
+ "y-10": {
+  "id": "P7",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nset — ballni 0 qil\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen touching\napple\nchange\nball\nby\n1\n1 ta dasturcha\n2 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "q:when touchingapplechangeballby1",
+   "c:changeballby1"
+  ],
+  "html": "0f7cba42ce49",
+  "uzun": 93249
+ },
+ "y-11": {
+  "id": "P5G",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nO‘yinni boshlang!\n\nCoddy\nO‘yin boshida ballni o‘zingiz qo‘ying.\n\nUch pog‘onani tugatdi\n0 / 1\n1\n0\nNoldan\n2\n0\nSovg‘a\n3\n0\nUch va oltin\n★\n0\nO‘z o‘yiningiz\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "785282fce9e5",
+  "uzun": 91470
+ },
+ "y-12": {
+  "id": "P9",
+  "matn": "USTOZ · PROYEKTOR\nXULOSA\nO‘zgaruvchi\n\nCoddy\nNomi bir xil — soni o‘zgaradi.\n\nset\nball\nto\n0\nset ball to 0\nSonni qo‘yadi\nchange\nball\nby\n1\nchange ball by 1\nSonga qo‘shadi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nball:\n3\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "d2880fb36e1f",
+  "uzun": 87930
+ },
+ "y-13": {
+  "id": "P4C",
+  "matn": "USTOZ · PROYEKTOR\nREJA · 3-BEKAT\n3 · Oldindan aytamiz\n\nCoddy\nOxirgi bekat: dasturni o‘qib, ballni oldindan aytamiz.\n\nDars oxirida · olma terish o‘yini · ball sanaladi\nball: 7\nO‘yiningiz ballni sanaydi\n✓\nBall\n✓\nNoldan\n3\nOldindan aytamiz\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "516114e2ca38",
+  "uzun": 94284
+ },
+ "y-14": {
+  "id": "P8",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nBall nechchi bo‘ladi?\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nwhen ▶ clicked\nset\nball\nto\n0\nchange\nball\nby\n2\nchange\nball\nby\n2\nchange\nball\nby\n1\n1 ta dasturcha\n5 / 12 ta blok\nball:\n?\n2\n3\n4\n5\n6\n7\n‹ Orqaga\n▶ Tekshirish\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "f:when ▶ clickedsetballto0changeballby2changeballby2changeballby1",
+   "z:setballto0changeballby2changeballby2changeballby1",
+   "c:changeballby2changeballby2changeballby1",
+   "c:changeballby2changeballby1",
+   "c:changeballby1"
+  ],
+  "html": "6c89c44ba940",
+  "uzun": 90195
+ },
+ "y-15": {
+  "id": "P5B",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nOldindan ayting!\n\nCoddy\nDasturni o‘qing, sonni tanlang, keyin tekshiring.\n\nUch marta oldindan aytdi\n0 / 1\n1\n0\nUch blok\n2\n0\nTakrorlash\n3\n0\nIkki set\n★\n0\nIchida ikki blok\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "98cb921fb309",
+  "uzun": 78723
+ },
+ "y-16": {
+  "id": "P11",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RSATISH\nDasturingizni o‘qib bering\nSiz o‘qiysiz — men o‘ynayman.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "e314f6276857",
+  "uzun": 93323
+ },
+ "y-17": {
+  "id": "P12",
+  "matn": "USTOZ · PROYEKTOR\nYAKUN\nSiz ball sanadingiz!\nBUGUNGI SO‘Z\nO‘zgaruvchi\nKompyuter eslab qoladigan son\nKeyingi dars\njon: 2\n12 · Jon va qadam\n✓\nBall\n✓\nNoldan\n✓\nOldindan aytamiz\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "b66df665924a",
+  "uzun": 82946
+ },
+ "y-18": {
+  "id": "P14",
+  "matn": "USTOZ · PROYEKTOR\nSINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nta olma terdi\n0\nmarta oldindan aytdi\n‹ Orqaga\nDarsni yakunlash\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "0c805f82f81e",
+  "uzun": 92715
+ },
+ "varaq": {
+  "id": "",
+  "matn": "11-dars · O‘zgaruvchi: ball — ustoz varag‘i\n\nAsosiy fikr: kompyuter sonni eslab qoladi — o‘zgaruvchida. change — songa qo‘shadi, set — sonni qo‘yadi. Hukda, 10-qadamda («ball 6») va 3-bekatda chiqadi.\n\nYo‘l: huk (ballni qanday sanaymiz — uch sinov) → yangi so‘z «o‘zgaruvchi» → reja → 1-bekat «Ball» → 2-bekat «Noldan» → 3-bekat «Oldindan aytamiz» → o‘qib berish → yakun.\n\nYangi oila — O‘zgaruvchi (jigarrang): change ball by 1 — ballga 1 qo‘sh; set ball to 0 — ballni 0 qil. Hodisada ikki yangi blok: when touching apple — olmaga tekkanda (olma turi tanlanadi: olma yoki oltin olma); when ▶ clicked — «▶ Boshlash» bosilganda. Sonni bosib tanlashni sekin ko‘rsating.\n\nBoshqaruv tayyor: to‘rt strelka — dastur tepasidagi «Boshqaruv» qatori (bosilsa ochiladi). 4-darsda olma hisobini o‘yin o‘zi ko‘rsatardi — bu darsda yo‘q: «Bugun o‘yinni o‘zimiz tuzamiz — ballni ham o‘zimiz sanaymiz». Bola «avval o‘zi sanardi-ku» desa — shu gapni ayting.\n\nBelgilar (pog‘onalar javobi): ▶[0] — when ▶ clicked ostida set ball to 0 · O[+1] — when touching apple ostida change ball by 1 · OO[+5] — when touching gold apple ostida change ball by 5 · R3[+2] — repeat 3 ichida change ball by 2. 1-bekat: O[+1] · O[+2] · O[+1] OO[+5] · O[+2] OO[+10]. 2-bekat: ▶[0] O[+1] · ▶[10] O[+1] · ▶[3] O[+2] OO[+4]. 3-bekat javoblari: 9 · 6 · 2 · 14.\n\nBall saqlanadi: 2-bekat pog‘onalari «ball: 5» bilan ochiladi — bu ataylab: set bo‘lmasa, o‘yin eski sondan boshlanadi. 1-bekatda set bloki hali yo‘q — u yerda har o‘yin pog‘ona sonidan boshlanadi. 3-bekatda dastur tayyor: bola son kartasini tanlaydi va o‘zi tekshiradi (natijada faqat birinchi urinish sanaladi). 16-qadamda proyektorga ism chiqmaydi.\n\nBoshqaruv: → yoki «Keyingi» — oldinga, ← — orqaga, F — to‘liq ekran. O‘ng tepada (sichqoncha olib borilsa) — qadam ro‘yxati va «aloqa» belgisi (yashil — ulangan).\n\n1\nKirish\n\nEKRANDA\n«11-dars · O‘zgaruvchi: ball» — «Bugun o‘yinda ball sanaymiz!» Maydon, Coddy (0, 0) da, uchta olma; pastda «O‘tgan darsda» — daraja.\n\nSIZ\n«O‘tgan darsda o‘yiningizga ikkinchi daraja qo‘shdingiz.» «Bugun o‘yinda ball sanaymiz.» «Noutbukda «Tayyorman» tugmasini bosing.»\n\nBOLA O‘RGANADI\nBugun ball sanaydi.\n\n2\nSavol: ballni qanday sanaymiz?\n\nEKRANDA\nSavol: «Ballni qanday sanaymiz?» Uchta karta: A «Coddy «1» desin» · B «Bir, ikki, uch desin» · C «Kompyuter sonni eslab qolsin».\n\nSIZ\n«Coddy uchta olma teradi. Har olma — 1 ball. Ball ekranda chiqsin.» «Har kim noutbukida bitta kartani tanlasin: qanday sanaymiz?»\n\nBOLA O‘RGANADI\nTaxmin qiladi — bu huk.\n\n3\nUch sinov\n\nEKRANDA\nUch sinov — o‘sha bosishlar →→→→→↑↑. A o‘zi boshlanadi: har olmada «1» — ✕ doim 1. «Keyingi» — B: birinchi olmadayoq 1, 2, 3 — ✕ birdan 3. «Keyingi» — C: «ball: 1», «2», «3» — ✓.\n\nSIZ\n«say faqat aytadi — u sonni eslab qolmaydi.» «Kompyuter sonni eslab qoldi va har olmada unga 1 qo‘shdi.»\n\nBOLA O‘RGANADI\nSanash uchun son eslab qolinishi kerak.\n\n4\nJavob: kompyuter sonni eslab qoladi\n\nEKRANDA\nJavob: «Kompyuter sonni eslab qoladi». A va B xira, C oltin; «ball: 3».\n\nSIZ\n«Ball — kompyuter eslab qolgan son. Har olmada unga 1 qo‘shiladi.»\n\nBOLA O‘RGANADI\nBall — eslab qolingan son.\n\n5\nYangi so‘z: o‘zgaruvchi\n\nEKRANDA\nYangi so‘z: «O‘zgaruvchi nima?» «Keyingi» — birma-bir: quti «ball» 0 → change — 1 → 3 va «ball: 3».\n\nSIZ\n«O‘zgaruvchi — kompyuter eslab qoladigan son. Uning nomi bor.» «Soni o‘zgarib turadi — shuning uchun o‘zgaruvchi.»\n\nBOLA O‘RGANADI\nYangi so‘z: o‘zgaruvchi.\n\n6\nReja\n\nEKRANDA\nReja: tepalik — ball → noldan → oldindan aytamiz; cho‘qqida «olma terish o‘yini · ball sanaladi».\n\nSIZ\n«Bugun uchta bekat: ball, noldan, oldindan aytamiz.» «Dars oxirida o‘yiningiz ballni o‘zi sanaydi.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n7\nKo‘ramiz: change bloki\n\nEKRANDA\nKo‘ramiz: «change — ballga qo‘sh». Javonda O‘zgaruvchi (change) va Hodisa (when touching apple); «Boshqaruv» tayyor. Ustoz ikki blokni qo‘yadi, «▶ Boshlash», →→→↑↑→→↓↓ — ball 3, yutdi.\n\nSIZ\n«Olmaga tekkanda — ballga 1 qo‘shiladi.» «ball — o‘zgaruvchining nomi. Sahnada — uning soni.» «Endi o‘zingiz.» Rangini ayting: «O‘zgaruvchi oilasi — jigarrang. Bu bloklar sonni eslab qoladi va o‘zgartiradi.»\n\nBOLA O‘RGANADI\nchange va when touching apple.\n\n8\nBall: pog‘onalar\n\nEKRANDA\nMashq: «Ball sanang!» — zinapoya: 1 uch olma · 2 ikki ball · 3 oltin olma · ★ oltin — 10.\n\nSIZ\n«Har pog‘ona tepasida yozilgan: har olma necha ball.» «O‘ynab ko‘ring: ball aytilgan son bo‘lsin.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nBallni o‘zi sanaydi.\n\n9\n2-bekat\n\nEKRANDA\nTepalik: 1-bekat ✓ — «Noldan».\n\nSIZ\n«Ballni sanadik. Endi o‘yin qayta boshlanganda nima bo‘lishini ko‘ramiz.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n10\nKo‘ramiz: set bloki\n\nEKRANDA\nKo‘ramiz: «set — ballni 0 qil». Ikki marta o‘ynang — ball 3, keyin «ball: 4», «ball: 5», «ball: 6» («Olma 3 ta — ball 6»). Javondan when ▶ clicked va set ball to 0 — yana o‘ynang: ball 3.\n\nSIZ\n«Kompyuter sonni o‘zi unutmaydi — o‘yin qayta boshlansa ham eslab turadi.» «O‘yin boshida ballni 0 qilamiz: when ▶ clicked — set ball to 0.» «Endi o‘zingiz.»\n\nBOLA O‘RGANADI\nset — o‘yin boshida sonni qo‘yadi.\n\n11\nNoldan: pog‘onalar\n\nEKRANDA\nMashq: «O‘yinni boshlang!» — zinapoya: 1 noldan · 2 sovg‘a · 3 uch va oltin · ★ o‘z o‘yiningiz.\n\nSIZ\n«Har pog‘ona o‘tgan o‘yindan qolgan ball bilan ochiladi — sahnaga qarang.» «O‘yin boshida ball nechchi bo‘lishini set bloki aytadi.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.» Set qo‘yilmasa — Ortiqvoy «Ball ko‘p!» («Ball 9 — 4 bo‘lishi kerak. O‘yin boshida ball 5 edi»).\n\nBOLA O‘RGANADI\nO‘yinni kerakli sondan boshlaydi.\n\n12\nXulosa: o‘zgaruvchi\n\nEKRANDA\nXulosa: «O‘zgaruvchi». Ikki karta: set — sonni qo‘yadi; change — songa qo‘shadi.\n\nSIZ\n«set — sonni qo‘yadi. change — songa qo‘shadi.» «O‘yin boshida — set, olmada — change.»\n\nBOLA O‘RGANADI\nset va change farqini aytadi.\n\n13\n3-bekat\n\nEKRANDA\nTepalik: 1, 2 ✓ — «Oldindan aytamiz».\n\nSIZ\n«Ikki bekatdan o‘tdik. Oxirgisi — oldindan aytamiz.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n14\nKo‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n\nEKRANDA\nKo‘ramiz: «Ball nechchi bo‘ladi?» Tayyor dastur: set 0, +2, +2, +1. «Keyingi» to‘rt marta — har blok yonida «ball: 0», «ball: 2», «ball: 4», «ball: 5»; 5 kartasi; «▶ Tekshirish» — «Oldindan aytdingiz!».\n\nSIZ\n«Dasturni yuqoridan pastga o‘qing: set — sonni qo‘yadi, change — qo‘shadi.» «Oxirgi son — javob. Kartani bosing, keyin tekshiring.» «Endi o‘zingiz.»\n\nBOLA O‘RGANADI\nDasturni o‘qib, sonni oldindan aytadi.\n\n15\nOldindan aytamiz: pog‘onalar\n\nEKRANDA\nMashq: «Oldindan ayting!» — zinapoya: 1 uch blok · 2 takrorlash · 3 ikki set · ★ ichida ikki blok.\n\nSIZ\n«Dasturni yuqoridan pastga o‘qing: har blokdan keyin ball nechchi?» «Sonni tanlang, keyin «Tekshirish»ni bosing.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nO‘zgaruvchining sonini oldindan aytadi.\n\n16\nO‘yiningiz dasturini o‘qib bering\n\nEKRANDA\n«Dasturingizni o‘qib bering». 7-qadamdagi maydon, dasturda faqat «Boshqaruv». Proyektorda ism yo‘q; bola noutbukida — oxirgi yechgan pog‘onasi.\n\nSIZ\n«Kim o‘yinining dasturini o‘qib beradi? Avval o‘yin boshi, keyin olmalar.» «Kuzating: ball qanday o‘zgaradi.»\n\nBOLA O‘RGANADI\nO‘z dasturini o‘qib beradi.\n\n17\nYakun\n\nEKRANDA\nYakun: «Siz ball sanadingiz!» Bugungi so‘z — o‘zgaruvchi; keyingi dars — 12 · Jon va qadam.\n\nSIZ\n«Uchala bekatdan o‘tdik: ball sanadik, noldan boshladik, oldindan aytdik.» «Bugungi so‘z — o‘zgaruvchi: kompyuter eslab qoladigan son.» «Keyingi darsda o‘yinda jon bo‘ladi: jon tugasa — o‘yin tugaydi.»\n\nBOLA O‘RGANADI\nO‘z natijasini ko‘radi.\n\n18\nSinfimiz bugun\n\nEKRANDA\nSinfimiz bugun: nechta olma terildi, necha marta oldindan aytildi (haqiqiy son, ismsiz).\n\nSIZ\n«Hammangiz zo‘r ishladingiz!» (keyin raqamlarni o‘qiydi) «Kompyuter bir sonni ham, mingta sonni ham unutmaydi.»\n\nBOLA O‘RGANADI\nSinf bilan birga natijani ko‘radi.",
+  "bloklar": [],
+  "html": "0ab5b9d777f6",
+  "uzun": 9437
+ },
+ "eshik": {
+  "id": "",
+  "matn": "11-dars · O‘zgaruvchi: ball\n\nQaysi oynani ochamiz?\n\nO‘quvchi oynasi\nUstoz oynasi (proyektor)\nO‘quvchi — o‘zi (ustozsiz)\nIkkalasi yonma-yon (ko‘rik)\nUstoz varag‘i",
+  "bloklar": [],
+  "html": "6b8349f59d89",
+  "uzun": 773
+ },
+ "kirish-ismsiz": {
+  "id": "",
+  "matn": "Darsga kirish\n\nIsmingizni yozing\n\nKirish",
+  "bloklar": [],
+  "html": "bb43a0750caa",
+  "uzun": 213
+ }
+}

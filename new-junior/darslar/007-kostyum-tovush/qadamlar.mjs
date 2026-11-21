@@ -1,0 +1,43 @@
+// 7-dars «Kostyum, animatsiya va tovush» qadamlari (QADAM) va ustoz varag'i (VARAQ) — 20.11. Manba: new-junior/manba/007-kostyum-tovush.md, 18 qadam.
+// 16-qadam bola ro'yxati 'oxirgi' (A·1) — bola noutbukida oxirgi yechgan pog'onasi o'z dasturi bilan; hech narsa yechmagan bo'lsa — «Ustoz ekraniga qarang».
+const QADAM = [
+  ['Kirish', 'P1', ['B0', 'BK']],
+  ['Savol', 'P2', ['P2N', 'BK']],
+  ['Uch sinov', 'P2S', ['BK'], 'Ustoz yo‘llarni sinayapti — kuzating'],
+  ['Javob: kostyumlar almashsa — jonlanadi', 'P2C', ['BK']],
+  ['Yangi so‘z: animatsiya', 'P3', ['BK'], 'Yangi so‘z: animatsiya'],
+  ['Reja', 'P4', ['BK'], 'Bugun: uchta bekat'],
+  ['Ko‘ramiz: switch costume to', 'P6', ['BK'], 'Ustoz kostyum blokini ko‘rsatyapti — kuzating'],
+  ['Kostyum', 'P5', ['B1A', 'B1B', 'B1C', 'B1Y', 'BK']],
+  ['2-bekat', 'P4B', ['BK'], '2-bekat: animatsiya'],
+  ['Ko‘ramiz: har qadamda animatsiya', 'P7', ['BK'], 'Ustoz animatsiyani ko‘rsatyapti — kuzating'],
+  ['Animatsiya', 'P5G', ['B2A', 'B2B', 'B2C', 'B2Y', 'BK']],
+  ['Xulosa: animatsiya', 'P9', ['BK'], 'Xulosa: animatsiya'],
+  ['3-bekat', 'P4C', ['BK'], '3-bekat: tovush'],
+  ['Ko‘ramiz: play sound', 'P8', ['BK'], 'Ustoz tovushni ko‘rsatyapti — tinglang'],
+  ['Tovush', 'P5B', ['B3A', 'B3B', 'B3Y', 'BK']],
+  ['Dasturchalaringizni o‘qib bering', 'P11', 'oxirgi'],
+  ['Yakun', 'P12', ['B5']],
+  ['Sinfimiz bugun', 'P14', ['B5']],
+]
+// ustoz varag'i: [Ekranda · Siz (manbadagi tayanch gaplar, aynan) · Bola o'rganadi]
+const VARAQ = [
+  ['«7-dars · Kostyum va tovush» — «Bugun qahramonni jonlantiramiz!» Maydon, Coddy (0, 0) da; pastda «O‘tgan darslarda» — takrorlash.', '«O‘tgan darslarda qahramon strelkalar bilan yurdi va repeat bilan ko‘p marta bajardi.» «Bugun qahramon faqat yurmaydi — jonlanadi va ovoz chiqaradi.» «Noutbukda «Tayyorman» tugmasini bosing.»', 'Bugun qahramon jonlanadi.'],
+  ['Savol: «Coddy qanday qo‘l silkitadi?» Coddy yonida ikki kostyum. Uchta karta: A «Bitta kostyum qo‘yamiz», B «Coddy’ni silkitamiz», C «Kostyumlarni almashtiramiz».', '«Kostyum — qahramonning bitta rasmi. Kiyim emas. Coddy’ning ikkita kostyumi bor.» «Har kim noutbukida bitta kartani tanlasin: Coddy qo‘llarini qanday silkitadi?»', 'Taxmin qiladi — bu huk.'],
+  ['Uch sinov: A o‘zi boshlanadi — bir marta qo‘llar tepada, qotdi («✕ bir marta ko‘tardi»). «Keyingi» — B: joyida silkinadi («✕ qo‘li qimirlamadi»). «Keyingi» — C: kostyumlar olti marta almashadi («✓ qo‘l silkitdi»).', '«Bitta kostyum — bitta rasm: u qotib turadi.» «Kostyumlar navbat bilan almashsa — Coddy qo‘l silkitadi.»', 'Kostyumlar almashsa — jonlanadi.'],
+  ['Javob: «Kostyumlar almashsa — jonlanadi». A va B xira, C oltin; Coddy qo‘l silkitib turadi.', '«Bitta kostyum qimirlamaydi. Kostyumlar navbat bilan almashsa — qahramon jonlanadi.»', 'Animatsiya g‘oyasi.'],
+  ['Yangi so‘z: «Animatsiya nima?» «Keyingi» — birma-bir: 1-kostyum, 2-kostyum, navbat bilan.', '«Animatsiya — kostyumlar navbat bilan almashsa, qahramon jonlanadi.» «Multfilm ham shunday yasaladi.»', 'Yangi so‘z: animatsiya.'],
+  ['Reja: tepalik — kostyum → animatsiya → tovush; cho‘qqida «ovozli qahramon».', '«Bugun uchta bekat: kostyum, animatsiya, tovush.» «Dars oxirida qahramoningiz yuradi, jonlanadi va ovoz chiqaradi.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: «Kostyum almashadi». Javonda yangi oila — Ko‘rinish (feruza); yulduz (2, 0). → → va switch costume to xursand; keyin nomini hayron qilasiz.', '«switch costume to — kostyumni almashtir. Qahramon joyidan qimirlamaydi — faqat kostyumi o‘zgaradi.» «Kostyum keyingi almashtirishgacha qoladi.» «Endi o‘zingiz.»', 'switch costume to — kostyumni almashtiradi.'],
+  ['Mashq: «Endi o‘zingiz!» — zinapoya: 1 xursand · 2 hayron · 3 ikki kostyum · ★ uch belgi.', '«Yulduzga boring va kostyumni almashtiring. Kostyum nomini bosib tanlaysiz.» «Biri tugasa, keyingisi o‘zi ochiladi.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'Kostyumni o‘zi tanlaydi.'],
+  ['Tepalik: 1-bekat ✓ — «Animatsiya».', '«Kostyumni almashtirishni bildik. Endi ko‘p marta — repeat bilan.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: «Har qadamda animatsiya». Yulduz (3, 0); «Animatsiya: 0 / 3». repeat 3 ichiga: move right, xursand, xotirjam.', '«Har qadamda ikki kostyum: xursand, keyin xotirjam. Bu — bitta animatsiya.» «repeat 3 — shuni uch marta. Coddy yuradi va jonlanadi.» «Endi o‘zingiz.»', 'Animatsiya repeat bilan.'],
+  ['Mashq: «Jonlantiring!» — zinapoya: 1 uch marta · 2 har qadamda · 3 tepaga, keyin o‘ngga · ★ uzoq yo‘l.', '«Animatsiya — xursand, keyin xotirjam. Har qadamda — repeat ichida.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'Har qadamda animatsiya.'],
+  ['Xulosa: «Animatsiya». Ikki karta: animatsiya — kostyumlar navbat bilan almashadi; switch costume to — kostyumni almashtir.', '«Animatsiya — kostyumlar navbat bilan almashsa, qahramon jonlanadi.» «repeat bilan animatsiya ko‘p marta bo‘ladi — har qadamda.»', 'Animatsiya nima ekanini aytadi.'],
+  ['Tepalik: 1, 2 ✓ — «Tovush».', '«Ikki bekatdan o‘tdik. Oxirgisi — tovush va o‘yin.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: «Tugma bosilsa — tovush». O‘yin: yulduz (5, 0). W→[move right, play sound qadam], W space[xursand, play sound jiring]; → besh marta, yulduzda space.', '«play sound — tovushni chal. Tovush hodisaga ulanadi: tugma bosilsa — ovoz.» «Noutbukingiz jim: tovush chalinsa, qahramon ustida ♪ chiqadi. Ovozni katta ekranda eshitamiz.» «Endi o‘zingiz.»', 'play sound — tovushni chaladi.'],
+  ['Mashq: «Tovush bering!» — zinapoya: 1 qadam tovushi · 2 yulduzda quvoning · ★ o‘z qahramoningiz.', '«Dasturcha tuzing, «Boshlash»ni bosing va o‘ynang. Tovush chalinsa — ♪ ni ko‘rasiz.» «★ da qahramoningizni o‘zingiz jonlantirasiz: har tugmaga o‘z kostyumi va tovushi.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'Tugmaga tovush ulaydi.'],
+  ['«Dasturchalaringizni o‘qib bering». O‘yin, dastur bo‘sh. Proyektorda ism yo‘q; bola noutbukida — oxirgi yechgan pog‘onasi.', '«Kim dasturchalarini o‘qib beradi? Qaysi tugma — qaysi kostyum, qaysi tovush?» «Sinf, qaysi tugmani bosay? Tinglang!»', 'O‘z dasturchalarini o‘qib beradi.'],
+  ['Yakun: «Qahramoningiz jonlandi!» Bugungi so‘z — animatsiya; keyingi dars — 8 · Shart.', '«Uchala bekatdan o‘tdik: kostyum, animatsiya, tovush.» «Bugungi so‘z — animatsiya: kostyumlar navbat bilan almashsa, qahramon jonlanadi.» «Keyingi darsda — shart: dastur yurishdan oldin yo‘lni tekshiradi.»', 'O‘z natijasini ko‘radi.'],
+  ['Sinfimiz bugun: nechta marta kostyum almashtirildi, nechta animatsiya, nechta tovush (haqiqiy son, ismsiz).', '«Hammangiz zo‘r ishladingiz!» (keyin raqamlarni o‘qiydi) «Multfilm ham, o‘yindagi qahramon ham shunday jonlanadi: kostyumlar almashadi.»', 'Sinf bilan birga natijani ko‘radi.'],
+]

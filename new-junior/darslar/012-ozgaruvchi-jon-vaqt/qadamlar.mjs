@@ -1,0 +1,43 @@
+// 12-dars «Jon va qadam» qadamlari (QADAM) va ustoz varag'i (VARAQ) — 21.11. Manba: new-junior/manba/012-ozgaruvchi-jon-vaqt.md, 18 qadam.
+// 16-qadam bola ro'yxati 'oxirgi' (A·1) — bola noutbukida oxirgi yechgan pog'onasi o'z dasturi bilan.
+const QADAM = [
+  ['Kirish', 'P1', ['B0', 'BK']],
+  ['Savol: jon tugasa, o‘yinni qanday tugatamiz?', 'P2', ['P2N', 'BK']],
+  ['Uch sinov', 'P2S', ['BK'], 'Ustoz yo‘llarni sinayapti — kuzating'],
+  ['Javob: kamaytiramiz va tekshiramiz', 'P2C', ['BK']],
+  ['Yangi so‘z: jon', 'P3', ['BK'], 'Yangi so‘z: jon'],
+  ['Reja', 'P4', ['BK'], 'Bugun: uchta bekat'],
+  ['Ko‘ramiz: jon qoidasi', 'P6', ['BK'], 'Ustoz jon qoidasini ko‘rsatyapti — kuzating'],
+  ['Jon: pog‘onalar', 'P5', ['B1A', 'B1B', 'B1C', 'B1Y', 'BK']],
+  ['2-bekat', 'P4B', ['BK'], '2-bekat: ball va jon'],
+  ['Ko‘ramiz: ball va jon', 'P7', ['BK'], 'Ustoz ball va jonni ko‘rsatyapti — kuzating'],
+  ['Ball va jon: pog‘onalar', 'P5G', ['B2A', 'B2B', 'B2C', 'B2Y', 'BK']],
+  ['Xulosa: jon', 'P9', ['BK'], 'Xulosa: jon'],
+  ['3-bekat', 'P4C', ['BK'], '3-bekat: qadam'],
+  ['Ko‘ramiz: qadam qoidasi', 'P8', ['BK'], 'Ustoz qadam qoidasini ko‘rsatyapti — kuzating'],
+  ['Qadam: pog‘onalar', 'P5B', ['B3A', 'B3B', 'B3C', 'B3Y', 'BK']],
+  ['O‘yiningiz qoidalarini o‘qib bering', 'P11', 'oxirgi'],
+  ['Yakun', 'P12', ['B5']],
+  ['Sinfimiz bugun', 'P14', ['B5']],
+]
+// ustoz varag'i: [Ekranda · Siz (manbadagi tayanch gaplar, aynan) · Bola o'rganadi]
+const VARAQ = [
+  ['«12-dars · Jon va qadam» — «Bugun o‘yinda jon bo‘ladi!» Maydon, Coddy (0, 0) da, yonida kaktus; pastda «O‘tgan darsda» — o‘zgaruvchi.', '«O‘tgan darsda kompyuter ballni eslab qoldi.» «Bugun o‘yinda jon bo‘ladi: jon tugasa — o‘yin tugaydi.» «Noutbukda «Tayyorman» tugmasini bosing.»', 'Bugun o‘yinda jon bo‘ladi.'],
+  ['Savol: «Jon tugasa, o‘yinni qanday tugatamiz?» Uchta karta: A «Tegsa — o‘yin tugasin» · B «Jonni kamaytiramiz» · C «Kamaytiramiz va tekshiramiz».', '«Coddy’da 3 ta jon. Jon tugaganda o‘yin tugashi kerak.» «Har kim noutbukida bitta kartani tanlasin: qanday tugatamiz?»', 'Taxmin qiladi — bu huk.'],
+  ['Uch sinov — o‘sha bosishlar →→→→→ (bolalar taxmini: «tegsa — tugasin», «jonni kamaytiramiz», «kamaytirib, tekshiramiz»). A: 1-tegishda «O‘yin tugadi», jon 3 — ✕. «Keyingi» — B: jon 2, 1, 0, −1, o‘yin davom — ✕. «Keyingi» — C: jon 0 da «✓ ha», «O‘yin tugadi» — ✓.', '«A da jon bo‘lsa ham o‘yin tugadi. B da jon tugadi, o‘yin esa tugamadi.» «C da jon kamaydi, shart uni tekshirdi: jon 0 — o‘yin tugadi.»', 'Kamaytirish va tekshirish kerak.'],
+  ['Javob: «Kamaytiramiz va tekshiramiz». A va B xira, C oltin; «jon: 0», «O‘yin tugadi».', '«Jon — o‘zgaruvchi: kaktus uni kamaytiradi. Shart tekshiradi: jon 0 bo‘lsa — o‘yin tugaydi.»', 'Jon — o‘zgaruvchi.'],
+  ['Yangi so‘z: «Jon nima?» «Keyingi» — birma-bir: «jon: 3» va uch yurakcha → tegdi — «jon: 2» → jon 0 — «✓ ha», «O‘yin tugadi».', '«Jon — o‘yinchining qolgan imkoniyati. 0 bo‘lsa — o‘yin tugaydi.» «Jon ham o‘zgaruvchi: nomi — jon, soni kamayib boradi.»', 'Yangi so‘z: jon.'],
+  ['Reja: tepalik — jon → ball va jon → qadam; cho‘qqida «o‘yiningiz · ball, jon va qadam bilan».', '«Bugun uchta bekat: jon, ball va jon, qadam.» «Dars oxirida o‘yiningizda uchta o‘zgaruvchi bo‘ladi.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: «Jon kamayadi — shart tekshiradi». Tayyor when ▶ clicked → set jon to 3. Javondan when touching apple (turini cactus ga), change (jon, −1), if (jon = 0), ichiga game over. ↑ uch marta: «jon: 2», «jon: 1», «jon: 0» — «O‘yin tugadi».', '«Kaktusga tegsa — jon kamayadi: change jon by -1.» «if jon = 0 — agar jon 0 ga teng bo‘lsa. Unda — game over.» «Endi o‘zingiz: avval qoidangizni sinab ko‘ring.»', 'Jon qoidasi.'],
+  ['Mashq: «Jon qoidasi!» — zinapoya: 1 uch jon · 2 achchiq kaktus · 3 ehtiyot bo‘ling · ★ bitta jon.', '«Birinchi ikki pog‘onada qoidani sinaysiz: ataylab kaktusga teging — jon 0 bo‘lganda o‘yin tugasin.» «Keyin kaktuslarga tegmay yulduzga boring.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'Jon qoidasini tuzadi va sinaydi.'],
+  ['Tepalik: 1-bekat ✓ — «Ball va jon».', '«Jon qoidasi tayyor. Endi bitta o‘yinda ikki o‘zgaruvchi.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: «Ikki o‘zgaruvchi — bitta o‘yin». Dasturda jon qoidasi; ustoz set ball to 0 va olma dasturchasini qo‘shadi; ataylab → (jon 2), keyin teradi — «ball: 1», «ball: 2», «ball: 3», yutdi.', '«Bitta o‘yinda ikki o‘zgaruvchi: ball va jon. Har birining o‘z nomi, o‘z soni.» «Olma — ballga qo‘shadi, kaktus — jonni kamaytiradi.» «Endi o‘zingiz.»', 'Bitta o‘yinda ikki o‘zgaruvchi.'],
+  ['Mashq: «Ball ham, jon ham!» — zinapoya: 1 ikki o‘zgaruvchi · 2 jon sovg‘asi · 3 qimmat kaktus · ★ toza o‘yin.', '«Har pog‘ona tepasida o‘yin qoidasi yozilgan: nima ballga qo‘shadi, nima jonni kamaytiradi.» «Sahnadagi ikki songa qarab o‘ynang.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'Ball va jon bilan o‘ynaydi.'],
+  ['Xulosa: «Jon». Ikki karta: change jon by −1 — jon bittaga kamayadi; if jon = 0 then — jon 0 bo‘lsa «ha».', '«O‘yinda bir nechta o‘zgaruvchi bo‘ladi — har birining o‘z nomi.» «Shart o‘zgaruvchining sonini tekshiradi: jon 0 bo‘lsa — o‘yin tugaydi.»', 'Shart o‘zgaruvchini tekshiradi.'],
+  ['Tepalik: 1, 2 ✓ — «Qadam».', '«Ikki bekatdan o‘tdik. Oxirgisi — qadam.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: «Har bosish — bitta qadam». Bo‘sh when ▶ clicked; ustoz set qadam to 6, when any key pressed → change qadam by −1, if qadam = 0 then → game over. «▶ Boshlash» — «qadam: 6»; ↑↑↓↓↑↑ — 6-bosishda tugadi; yana «qadam: 6», →→→→ — yutdi, «qadam: 2».', '«Har bosish qadamdan bittasini oladi. Qadam 0 bo‘lsa — o‘yin tugaydi.» «Yulduzga qadam tugamasdan yeting: qadam 0 bo‘lgan bosishda o‘yin tugaydi.» «Endi o‘zingiz.»', 'Qadam qoidasi.'],
+  ['Mashq: «Qadamni sanang!» — zinapoya: 1 besh qadam · 2 qisqa yo‘l · 3 hammasi birga · ★ o‘z o‘yiningiz.', '«Avval qadam qoidasini sinang: qadam 0 bo‘lganda o‘yin tugasin.» «Keyin yo‘lni sanab o‘ynang — qadam yetsin.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'Uch o‘zgaruvchi bilan o‘ynaydi.'],
+  ['«Qoidalaringizni o‘qib bering». 15 · ★ maydoni, dasturda faqat «Boshqaruv». Proyektorda ism yo‘q; bola noutbukida — oxirgi yechgan pog‘onasi.', '«Kim o‘yinining qoidalarini o‘qib beradi? Avval o‘yin boshi, keyin har dasturcha.» «Kuzating: jon va qadam qanday kamayadi.»', 'O‘z qoidalarini o‘qib beradi.'],
+  ['Yakun: «O‘yiningizda jon bor!» Bugungi so‘z — jon; keyingi dars — 13 · Tasodifiy son.', '«Uchala bekatdan o‘tdik: jon, ball va jon, qadam.» «Bugungi so‘z — jon: o‘yinchining qolgan imkoniyati. Shart uni tekshiradi.» «Keyingi darsda olmalar har safar boshqa joyda chiqadi — tasodifiy son.»', 'O‘z natijasini ko‘radi.'],
+  ['Sinfimiz bugun: nechta o‘yin yutildi, nechta shart qo‘yildi (haqiqiy son, ismsiz).', '«Hammangiz zo‘r ishladingiz!» (keyin raqamlarni o‘qiydi) «Har o‘yinda qoida bor — siz endi uni o‘zingiz tuzasiz.»', 'Sinf bilan birga natijani ko‘radi.'],
+]

@@ -1,0 +1,999 @@
+{
+ "u-01-P1": {
+  "id": "P1",
+  "matn": "7-DARS · KOSTYUM VA TOVUSH\nBugun qahramonni jonlantiramiz!\n\nCoddy\nSalom! Bugun meni jonlantirasiz — qo‘l silkitaman va ovoz chiqaraman.\n\nO‘TGAN DARSLARDA\nrepeat\n4\nmove right\nTakrorlash\nBir ishni ko‘p marta bajarish\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKirdi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "758bd4cb3c33",
+  "uzun": 78084
+ },
+ "u-02-P2": {
+  "id": "P2",
+  "matn": "7-DARS · KOSTYUM VA TOVUSH\nSAVOL\nCoddy qanday qo‘l silkitadi?\n\nCoddy\nMana ikkita kostyumim. Ular bilan qanday qo‘l silkitamiz?\n\nA\nBitta kostyum qo‘yamiz\nB\nCoddy’ni silkitamiz\n↔\nC\nKostyumlarni almashtiramiz\n1 ⇄ 2\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\n1-kostyum\n2-kostyum\n‹ Orqaga\nJavob berdi: 0 / 0\nSinab ko‘ramiz ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "939b1cfd7726",
+  "uzun": 138624
+ },
+ "u-03-P2S": {
+  "id": "P2S",
+  "matn": "SAVOL\nCoddy qanday qo‘l silkitadi?\n\nCoddy\nMana ikkita kostyumim. Ular bilan qanday qo‘l silkitamiz?\n\nA\nBitta kostyum qo‘yamiz\nB\nCoddy’ni silkitamiz\n↔\nC\nKostyumlarni almashtiramiz\n1 ⇄ 2\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\n1-kostyum\n2-kostyum\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "4ebf50e269da",
+  "uzun": 138649
+ },
+ "u-04-P2C": {
+  "id": "P2C",
+  "matn": "JAVOB\nKostyumlar almashsa — jonlanadi\n\nCoddy\nKostyum almashdi, yana almashdi — men qo‘l silkitdim.\n\nA\nBitta kostyum qo‘yamiz\n✕ bir marta ko‘tardi\nB\nCoddy’ni silkitamiz\n✕ qo‘li qimirlamadi\n↔\nC\nKostyumlarni almashtiramiz\n✓ qo‘l silkitdi\n1 ⇄ 2\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "67ffda8a3bfb",
+  "uzun": 108647
+ },
+ "u-05-P3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nAnimatsiya nima?\n\nCoddy\nAnimatsiya — kostyumlar navbat bilan almashsa, qahramon jonlanadi.\n\n1-kostyum\n2-kostyum\nNavbat bilan — jonlandi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "02817998e413",
+  "uzun": 137243
+ },
+ "u-06-P4": {
+  "id": "P4",
+  "matn": "REJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Birinchisidan boshlaymiz.\n\nDars oxirida · o‘yin\n♪\nOvozli qahramon\n1\nKostyum\n2\nAnimatsiya\n3\nTovush\n‹ Orqaga\nBoshladik ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "424de02e7186",
+  "uzun": 43111
+ },
+ "u-07-P6": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nKostyum almashadi\nswitch costume to — kostyumni almashtir.\nKo‘rinish\nHarakat\nTakrorlash\nKo‘rinish\nswitch costume to\nDastur\nBlokni shu yerga ulang\n0 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "bd1929932ff2",
+  "uzun": 79622
+ },
+ "u-08-P5": {
+  "id": "P5",
+  "matn": "MASHQ\nEndi o‘zingiz!\n\nCoddy\nKostyumni almashtiring — yulduzda qahramoningiz o‘zgarsin.\n\nUch pog‘onani tugatdi\n0 / 0\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nXursand\n2\n0\nHayron\n3\n0\nIkki kostyum\n★\n0\nUch belgi\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "6834de0a4c7c",
+  "uzun": 37630
+ },
+ "u-09-P4B": {
+  "id": "P4B",
+  "matn": "REJA · 2-BEKAT\n2 · Animatsiya\n\nCoddy\nEndi kostyumlar navbat bilan almashadi — animatsiya.\n\nDars oxirida · o‘yin\n♪\nOvozli qahramon\n✓\nKostyum\n2\nAnimatsiya\n3\nTovush\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a44896c7a35f",
+  "uzun": 42910
+ },
+ "u-10-P7": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nHar qadamda animatsiya\nKo‘rinish\nHarakat\nTakrorlash\nKo‘rinish\nswitch costume to\nDastur\nBlokni shu yerga ulang\n0 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nAnimatsiya: 0 / 3\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "e2138bbce305",
+  "uzun": 79617
+ },
+ "u-11-P5G": {
+  "id": "P5G",
+  "matn": "MASHQ\nJonlantiring!\n\nCoddy\nHar qadamda kostyum almashsin — qahramon jonlanadi.\n\nUch pog‘onani tugatdi\n0 / 0\n1\n0\nUch marta\n2\n0\nHar qadamda\n3\n0\nTepaga, keyin o‘ngga\n★\n0\nUzoq yo‘l\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "15e238f83e12",
+  "uzun": 37566
+ },
+ "u-12-P9": {
+  "id": "P9",
+  "matn": "XULOSA\nAnimatsiya\n\nCoddy\nKostyumlar almashdi — men jonlandim.\n\nAnimatsiya\nKostyumlar navbat bilan almashadi\nswitch costume to\nxursand\nswitch costume to\nKostyumni almashtir\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "dcdf0c091c92",
+  "uzun": 107534
+ },
+ "u-13-P4C": {
+  "id": "P4C",
+  "matn": "REJA · 3-BEKAT\n3 · Tovush\n\nCoddy\nOxirgi bekat: tovush — tugma bosilsa, ovoz chiqaraman.\n\nDars oxirida · o‘yin\n♪\nOvozli qahramon\n✓\nKostyum\n✓\nAnimatsiya\n3\nTovush\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "1032ffb0074d",
+  "uzun": 42863
+ },
+ "u-14-P8": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nTugma bosilsa — tovush\nplay sound — tovushni chal.\nKo‘rinish\nHarakat\nHodisa\nTovush\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "73a4efb61be2",
+  "uzun": 79726
+ },
+ "u-15-P5B": {
+  "id": "P5B",
+  "matn": "MASHQ\nTovush bering!\n\nCoddy\nTugma bosilsa — qadam, yulduzda — jiring.\n\nIkki pog‘onani tugatdi\n0 / 0\n1\n0\nQadam tovushi\n2\n0\nYulduzda quvoning\n★\n0\nO‘z qahramoningiz\n1\n2\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a5b0b3bb8e12",
+  "uzun": 33769
+ },
+ "u-16-P11": {
+  "id": "P11",
+  "matn": "KO‘RSATISH\nDasturchalaringizni o‘qib bering\nSiz o‘qiysiz — men o‘sha kostyum va tovush bilan o‘ynayman.\nKo‘rinish\nHarakat\nHodisa\nTovush\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "f363ed5be92d",
+  "uzun": 79771
+ },
+ "u-17-P12": {
+  "id": "P12",
+  "matn": "YAKUN\nQahramoningiz jonlandi!\nBUGUNGI SO‘Z\nAnimatsiya\nKostyumlar navbat bilan almashadi\nKeyingi dars\n?\n8 · Shart\n✓\nKostyum\n✓\nAnimatsiya\n✓\nTovush\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a5bcfcf35e90",
+  "uzun": 29824
+ },
+ "u-18-P14": {
+  "id": "P14",
+  "matn": "SINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nmarta kostyum almashtirdi\n0\nta animatsiya tuzdi\n0\nmarta tovush chaldi\n‹ Orqaga\nDarsni yakunlash\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "0e3397e07866",
+  "uzun": 40091
+ },
+ "u-x-P2S-A": {
+  "id": "P2S",
+  "matn": "SAVOL\nCoddy qanday qo‘l silkitadi?\n\nCoddy\nMana ikkita kostyumim. Ular bilan qanday qo‘l silkitamiz?\n\nA\nBitta kostyum qo‘yamiz\n✕ bir marta ko‘tardi\nB\nCoddy’ni silkitamiz\n↔\nC\nKostyumlarni almashtiramiz\n1 ⇄ 2\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\n1-kostyum\n2-kostyum\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "0faa1a81a2e2",
+  "uzun": 138677
+ },
+ "u-x-P2S-B": {
+  "id": "P2S",
+  "matn": "SAVOL\nCoddy qanday qo‘l silkitadi?\n\nCoddy\nMana ikkita kostyumim. Ular bilan qanday qo‘l silkitamiz?\n\nA\nBitta kostyum qo‘yamiz\n✕ bir marta ko‘tardi\nB\nCoddy’ni silkitamiz\n✕ qo‘li qimirlamadi\n↔\nC\nKostyumlarni almashtiramiz\n1 ⇄ 2\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\n1-kostyum\n2-kostyum\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "8c41582d1702",
+  "uzun": 138728
+ },
+ "u-x-P2S-C": {
+  "id": "P2S",
+  "matn": "SAVOL\nCoddy qanday qo‘l silkitadi?\n\nCoddy\nMana ikkita kostyumim. Ular bilan qanday qo‘l silkitamiz?\n\nA\nBitta kostyum qo‘yamiz\n✕ bir marta ko‘tardi\nB\nCoddy’ni silkitamiz\n✕ qo‘li qimirlamadi\n↔\nC\nKostyumlarni almashtiramiz\n✓ qo‘l silkitdi\n1 ⇄ 2\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\n1-kostyum\n2-kostyum\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "56a073fd1591",
+  "uzun": 139625
+ },
+ "u-x-P3-1": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nAnimatsiya nima?\n\nCoddy\nAnimatsiya — kostyumlar navbat bilan almashsa, qahramon jonlanadi.\n\n1-kostyum\n2-kostyum\nNavbat bilan — jonlandi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "fe97e6d0462a",
+  "uzun": 137246
+ },
+ "u-x-P3-2": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nAnimatsiya nima?\n\nCoddy\nAnimatsiya — kostyumlar navbat bilan almashsa, qahramon jonlanadi.\n\n1-kostyum\n2-kostyum\nNavbat bilan — jonlandi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a7053a0fa672",
+  "uzun": 137249
+ },
+ "u-x-P3-3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nAnimatsiya nima?\n\nCoddy\nAnimatsiya — kostyumlar navbat bilan almashsa, qahramon jonlanadi.\n\n1-kostyum\n2-kostyum\nNavbat bilan — jonlandi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "162a9bf15c24",
+  "uzun": 137252
+ },
+ "u-x-P6-xursand": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nKostyum almashadi\nswitch costume to — kostyumni almashtir.\nKo‘rinish\nHarakat\nTakrorlash\nKo‘rinish\nswitch costume to\nDastur\nmove right\nmove right\nswitch costume to\nxursand\n3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 0)\n‹ Orqaga\nYetib bordi!\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "r:move rightmove rightswitch costume toxursand",
+   "r:move rightswitch costume toxursand",
+   "v:switch costume toxursand"
+  ],
+  "html": "0ae82f04f192",
+  "uzun": 80625
+ },
+ "u-x-P7-animatsiya": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nHar qadamda animatsiya\nKo‘rinish\nHarakat\nTakrorlash\nKo‘rinish\nswitch costume to\nDastur\nrepeat\n3\nmove right\nswitch costume to\nxursand\nswitch costume to\nxotirjam\n3\n4 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nAnimatsiya: 3 / 3\n‹ Orqaga\nYetib bordi!\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "p:repeat3move rightswitch costume toxursandswitch costume toxotirjam",
+   "r:move rightswitch costume toxursandswitch costume toxotirjam",
+   "v:switch costume toxursandswitch costume toxotirjam",
+   "v:switch costume toxotirjam"
+  ],
+  "html": "e221ec184703",
+  "uzun": 80767
+ },
+ "u-x-P8-yulduzda": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nTugma bosilsa — tovush\nplay sound — tovushni chal.\nKo‘rinish\nHarakat\nHodisa\nTovush\nHodisa\nwhen\n→\nkey pressed\nDastur\nwhen\n→\nkey pressed\nmove right\nplay sound\nqadam\nwhen\nspace\nkey pressed\nswitch costume to\nxursand\nplay sound\njiring\n2 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nO‘yin: strelkalarni bosing\n‹ Orqaga\nYulduzdasiz — space bosing\n■ To‘xtatish\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:when→key pressedmove rightplay soundqadam",
+   "r:move rightplay soundqadam",
+   "n:play soundqadam",
+   "k:whenspacekey pressedswitch costume toxursandplay soundjiring",
+   "v:switch costume toxursandplay soundjiring",
+   "n:play soundjiring"
+  ],
+  "html": "265bdbd69449",
+  "uzun": 80153
+ },
+ "u-x-P8-yetdi": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nTugma bosilsa — tovush\nplay sound — tovushni chal.\nKo‘rinish\nHarakat\nHodisa\nTovush\nHodisa\nwhen\n→\nkey pressed\nDastur\nwhen\n→\nkey pressed\nmove right\nplay sound\nqadam\nwhen\nspace\nkey pressed\nswitch costume to\nxursand\nplay sound\njiring\n2 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\n‹ Orqaga\nYetib bordi!\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:when→key pressedmove rightplay soundqadam",
+   "r:move rightplay soundqadam",
+   "n:play soundqadam",
+   "k:whenspacekey pressedswitch costume toxursandplay soundjiring",
+   "v:switch costume toxursandplay soundjiring",
+   "n:play soundjiring"
+  ],
+  "html": "61c4f1ec03b7",
+  "uzun": 80927
+ },
+ "u-x-yakunlandi": {
+  "id": "P14",
+  "matn": "SINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nmarta kostyum almashtirdi\n0\nta animatsiya tuzdi\n0\nmarta tovush chaldi\nDars tugadi!\nKo‘rishguncha — keyingi darsda shart bilan!\n‹ Orqaga\nDarsni yakunlash\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "db17e7fa92f2",
+  "uzun": 40227
+ },
+ "bq-01-0-B0": {
+  "id": "B0",
+  "matn": "7-DARS · KOSTYUM VA TOVUSH\nSalom, Aziz!\nTayyor bo‘lsangiz — tugmani bosing\nTayyorman",
+  "bloklar": [],
+  "html": "8937abacfdab",
+  "uzun": 24486
+ },
+ "bq-01-1-BK": {
+  "id": "BK",
+  "matn": "7-DARS · KOSTYUM VA TOVUSH\n↑\nUstoz ekraniga qarang\nDars hozir boshlanadi",
+  "bloklar": [],
+  "html": "16c670e73603",
+  "uzun": 16098
+ },
+ "bq-02-0-P2N": {
+  "id": "P2N",
+  "matn": "7-DARS · KOSTYUM VA TOVUSH\nSAVOL\nCoddy qanday qo‘l silkitadi?\n\nCoddy\nQaysi yo‘l bilan qo‘l silkitaman?\n\nA\nBitta kostyum qo‘yamiz\nB\nCoddy’ni silkitamiz\n↔\nC\nKostyumlarni almashtiramiz\n1 ⇄ 2\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\n1-kostyum\n2-kostyum\nBirini tanlang",
+  "bloklar": [],
+  "html": "92ae764033e9",
+  "uzun": 136448
+ },
+ "bq-02-1-BK": {
+  "id": "BK",
+  "matn": "7-DARS · KOSTYUM VA TOVUSH\n↑\nUstoz ekraniga qarang\nJavobingiz qabul qilindi",
+  "bloklar": [],
+  "html": "1d74f8d6be8d",
+  "uzun": 16101
+ },
+ "bq-03-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz yo‘llarni sinayapti — kuzating",
+  "bloklar": [],
+  "html": "65cca6e3d16b",
+  "uzun": 16113
+ },
+ "bq-04-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstozni tinglang",
+  "bloklar": [],
+  "html": "630c6838af4a",
+  "uzun": 16093
+ },
+ "bq-05-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nYangi so‘z: animatsiya",
+  "bloklar": [],
+  "html": "a888d2095905",
+  "uzun": 16099
+ },
+ "bq-06-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nBugun: uchta bekat",
+  "bloklar": [],
+  "html": "ae9f17c34383",
+  "uzun": 16095
+ },
+ "bq-07-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz kostyum blokini ko‘rsatyapti — kuzating",
+  "bloklar": [],
+  "html": "08cabb86ff96",
+  "uzun": 16122
+ },
+ "bq-08-0-B1A": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nXursand\nYulduzda qahramon xursand bo‘lsin.\nKo‘rinish\nHarakat\nTakrorlash\nKo‘rinish\nswitch costume to\nDastur\nmove right\nmove right\nmove right\n3 ta blok\nxursand\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturni tuzing, keyin ▶ Ishga tushir\nIshga tushir",
+  "bloklar": [
+   "r:move rightmove rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "a5fc25988ecf",
+  "uzun": 41418
+ },
+ "bq-08-1-B1B": {
+  "id": "B1B",
+  "matn": "MASHQ · 2-POG‘ONA\nHayron\nYulduz tepada. U yerda — hayron.\nKo‘rinish\nHarakat\nTakrorlash\nKo‘rinish\nswitch costume to\nDastur\nBlokni shu yerga ulang\n0 ta blok\nhayron\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturni tuzing, keyin ▶ Ishga tushir\nIshga tushir",
+  "bloklar": [],
+  "html": "672704d6a9d0",
+  "uzun": 41421
+ },
+ "bq-08-2-B1C": {
+  "id": "B1C",
+  "matn": "MASHQ · 3-POG‘ONA\nIkki kostyum\nBelgida — hayron, yulduzda — xursand.\nKo‘rinish\nHarakat\nTakrorlash\nKo‘rinish\nswitch costume to\nDastur\nBlokni shu yerga ulang\n0 ta blok\nhayron\nxursand\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturni tuzing, keyin ▶ Ishga tushir\nIshga tushir",
+  "bloklar": [],
+  "html": "6e0e675bb496",
+  "uzun": 41575
+ },
+ "bq-08-3-B1Y": {
+  "id": "B1Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nUch belgi\nHar belgida — o‘sha kostyum.\nKo‘rinish\nHarakat\nTakrorlash\nKo‘rinish\nswitch costume to\nDastur\nBlokni shu yerga ulang\n0 ta blok\nhayron\no‘ylanadi\nxursand\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturni tuzing, keyin ▶ Ishga tushir\nIshga tushir",
+  "bloklar": [],
+  "html": "3d2bd7c430a2",
+  "uzun": 41708
+ },
+ "bq-08-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "ff39f482e05b",
+  "uzun": 16108
+ },
+ "bq-09-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\n2-bekat: animatsiya",
+  "bloklar": [],
+  "html": "514650f58c0c",
+  "uzun": 16096
+ },
+ "bq-10-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz animatsiyani ko‘rsatyapti — kuzating",
+  "bloklar": [],
+  "html": "f561e4de399c",
+  "uzun": 16119
+ },
+ "bq-11-0-B2A": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nUch marta\nYulduzda 3 marta: xursand, xotirjam.\nKo‘rinish\nHarakat\nTakrorlash\nKo‘rinish\nswitch costume to\nDastur\nBlokni shu yerga ulang\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nAnimatsiya: 0 / 3\nMaslahat\nDasturni tuzing, keyin ▶ Ishga tushir\nIshga tushir",
+  "bloklar": [],
+  "html": "3e84fe534972",
+  "uzun": 41349
+ },
+ "bq-11-1-B2B": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nHar qadamda\nHar qadamda: xursand, xotirjam.\nKo‘rinish\nHarakat\nTakrorlash\nKo‘rinish\nswitch costume to\nDastur\nBlokni shu yerga ulang\n0 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nAnimatsiya: 0 / 4\nMaslahat\nDasturni tuzing, keyin ▶ Ishga tushir\nIshga tushir",
+  "bloklar": [],
+  "html": "b8144b823ca2",
+  "uzun": 41345
+ },
+ "bq-11-2-B2C": {
+  "id": "B2C",
+  "matn": "MASHQ · 3-POG‘ONA\nTepaga, keyin o‘ngga\nYulduz (3, 3) da. Har qadamda — animatsiya.\nKo‘rinish\nHarakat\nTakrorlash\nKo‘rinish\nswitch costume to\nDastur\nBlokni shu yerga ulang\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nAnimatsiya: 0 / 6\nMaslahat\nDasturni tuzing, keyin ▶ Ishga tushir\nIshga tushir",
+  "bloklar": [],
+  "html": "d1d6fe7c7a0b",
+  "uzun": 41367
+ },
+ "bq-11-3-B2Y": {
+  "id": "B2Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nUzoq yo‘l\nYulduz (6, 4) da. Bloklar — 12 tagacha.\nKo‘rinish\nHarakat\nTakrorlash\nKo‘rinish\nswitch costume to\nDastur\nBlokni shu yerga ulang\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nAnimatsiya: 0 / 10\nMaslahat\nDasturni tuzing, keyin ▶ Ishga tushir\nIshga tushir",
+  "bloklar": [],
+  "html": "e69cf37bf317",
+  "uzun": 41355
+ },
+ "bq-11-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "ff39f482e05b",
+  "uzun": 16108
+ },
+ "bq-12-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nXulosa: animatsiya",
+  "bloklar": [],
+  "html": "9c6a0c44f535",
+  "uzun": 16095
+ },
+ "bq-13-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\n3-bekat: tovush",
+  "bloklar": [],
+  "html": "0e4aaf961db5",
+  "uzun": 16092
+ },
+ "bq-14-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz tovushni ko‘rsatyapti — tinglang",
+  "bloklar": [],
+  "html": "740759d5145d",
+  "uzun": 16115
+ },
+ "bq-15-0-B3A": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nQadam tovushi\nHar qadamda — ♪ qadam.\nKo‘rinish\nHarakat\nHodisa\nTovush\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash",
+  "bloklar": [],
+  "html": "ffdd29e51d35",
+  "uzun": 41546
+ },
+ "bq-15-1-B3B": {
+  "id": "B3B",
+  "matn": "MASHQ · 2-POG‘ONA\nYulduzda quvoning\nYulduzga yeting va space bosing.\nKo‘rinish\nHarakat\nHodisa\nTovush\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash",
+  "bloklar": [],
+  "html": "4138a7d4d8c0",
+  "uzun": 41560
+ },
+ "bq-15-2-B3Y": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z qahramoningiz\nHar tugmaga — o‘z kostyumi va tovushi.\nKo‘rinish\nHarakat\nHodisa\nTovush\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash",
+  "bloklar": [],
+  "html": "39c94a1e4268",
+  "uzun": 41568
+ },
+ "bq-15-3-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "ff39f482e05b",
+  "uzun": 16108
+ },
+ "bq-17-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nQahramoningiz jonlandi!\n\nBulut\nKostyum almashtirdingiz, jonlantirdingiz va ovoz chiqardingiz.\n\nSiz bugun\n0\nmarta kostyum almashtirdi\n0\nta animatsiya tuzdi\n0\nmarta tovush chaldi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBulut\nKeyingi darsda shart bilan ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "a124fe4c4e84",
+  "uzun": 39477
+ },
+ "bq-18-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nQahramoningiz jonlandi!\n\nBulut\nKostyum almashtirdingiz, jonlantirdingiz va ovoz chiqardingiz.\n\nSiz bugun\n0\nmarta kostyum almashtirdi\n0\nta animatsiya tuzdi\n0\nmarta tovush chaldi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBulut\nKeyingi darsda shart bilan ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "a124fe4c4e84",
+  "uzun": 39477
+ },
+ "bx-B1A-kostyumboshqa": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nXursand\nYulduzda qahramon xursand bo‘lsin.\nKo‘rinish\nHarakat\nTakrorlash\nKo‘rinish\nswitch costume to\nDastur\nmove right\nmove right\nmove right\n3 ta blok\nxursand\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nKostyum boshqa!\nMaslahat\nHozir: xotirjam. Kerak: xursand. Oxiriga switch costume to xursand\nIshga tushir",
+  "bloklar": [
+   "r:move rightmove rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "21b850a2907e",
+  "uzun": 47204
+ },
+ "bx-B1A-yetdi": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nXursand\nYulduzda qahramon xursand bo‘lsin.\nKo‘rinish\nHarakat\nTakrorlash\nKo‘rinish\nswitch costume to\nDastur\nmove right\nmove right\nmove right\nswitch costume to\nxursand\n4 ta blok\nxursand\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nMaslahat\nYetib bordi!\nIshga tushir",
+  "bloklar": [
+   "r:move rightmove rightmove rightswitch costume toxursand",
+   "r:move rightmove rightswitch costume toxursand",
+   "r:move rightswitch costume toxursand",
+   "v:switch costume toxursand"
+  ],
+  "html": "600893337d4f",
+  "uzun": 42458
+ },
+ "bx-B1C-belgi": {
+  "id": "B1C",
+  "matn": "MASHQ · 3-POG‘ONA\nIkki kostyum\nBelgida — hayron, yulduzda — xursand.\nKo‘rinish\nHarakat\nTakrorlash\nKo‘rinish\nswitch costume to\nDastur\nmove right\nmove right\nmove up\nmove up\nswitch costume to\nxursand\n5 ta blok\nhayron\nxursand\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 2)\nBu katakda — hayron!\nMaslahat\n(2, 0) da switch costume to hayron qo‘ying\nIshga tushir",
+  "bloklar": [
+   "r:move rightmove rightmove upmove upswitch costume toxursand",
+   "r:move rightmove upmove upswitch costume toxursand",
+   "u:move upmove upswitch costume toxursand",
+   "u:move upswitch costume toxursand",
+   "v:switch costume toxursand"
+  ],
+  "html": "92dc6619b378",
+  "uzun": 47415
+ },
+ "bx-B1C-yetdi": {
+  "id": "B1C",
+  "matn": "MASHQ · 3-POG‘ONA\nIkki kostyum\nBelgida — hayron, yulduzda — xursand.\nKo‘rinish\nHarakat\nTakrorlash\nKo‘rinish\nswitch costume to\nDastur\nmove right\nmove right\nswitch costume to\nhayron\nmove up\nmove up\nswitch costume to\nxursand\n6 ta blok\nhayron\nxursand\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 2)\nMaslahat\nYetib bordi!\nIshga tushir",
+  "bloklar": [
+   "r:move rightmove rightswitch costume tohayronmove upmove upswitch costume toxursand",
+   "r:move rightswitch costume tohayronmove upmove upswitch costume toxursand",
+   "v:switch costume tohayronmove upmove upswitch costume toxursand",
+   "u:move upmove upswitch costume toxursand",
+   "u:move upswitch costume toxursand",
+   "v:switch costume toxursand"
+  ],
+  "html": "0bf1af9f9d89",
+  "uzun": 42674
+ },
+ "bx-B2A-yulduzdaemas": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nUch marta\nYulduzda 3 marta: xursand, xotirjam.\nKo‘rinish\nHarakat\nTakrorlash\nKo‘rinish\nswitch costume to\nDastur\nrepeat\n3\nswitch costume to\nxursand\nswitch costume to\nxotirjam\nmove right\nmove right\n3\n5 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 0)\nAnimatsiya: 0 / 3\nOz qoldi!\nMaslahat\nAnimatsiya: 0 / 3. repeat sonini tekshiring\nIshga tushir",
+  "bloklar": [
+   "p:repeat3switch costume toxursandswitch costume toxotirjammove rightmove right",
+   "v:switch costume toxursandswitch costume toxotirjam",
+   "v:switch costume toxotirjam",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "0852f9763d54",
+  "uzun": 47129
+ },
+ "bx-B2A-yetdi": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nUch marta\nYulduzda 3 marta: xursand, xotirjam.\nKo‘rinish\nHarakat\nTakrorlash\nKo‘rinish\nswitch costume to\nDastur\nmove right\nmove right\nrepeat\n3\nswitch costume to\nxursand\nswitch costume to\nxotirjam\n3\n5 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 0)\nAnimatsiya: 3 / 3\nMaslahat\nYetib bordi!\nIshga tushir",
+  "bloklar": [
+   "r:move rightmove rightrepeat3switch costume toxursandswitch costume toxotirjam",
+   "r:move rightrepeat3switch costume toxursandswitch costume toxotirjam",
+   "p:repeat3switch costume toxursandswitch costume toxotirjam",
+   "v:switch costume toxursandswitch costume toxotirjam",
+   "v:switch costume toxotirjam"
+  ],
+  "html": "f0f4e928f32c",
+  "uzun": 42394
+ },
+ "bx-B2B-qani": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nHar qadamda\nHar qadamda: xursand, xotirjam.\nKo‘rinish\nHarakat\nTakrorlash\nKo‘rinish\nswitch costume to\nDastur\nmove right\nmove right\nmove right\nmove right\nrepeat\n4\nswitch costume to\nxursand\nswitch costume to\nxotirjam\n4\n7 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 0)\nAnimatsiya: 4 / 4\nAnimatsiya qani?\nMaslahat\nHar move blokidan keyin: switch costume to xursand, switch costume to xotirjam\nIshga tushir",
+  "bloklar": [
+   "r:move rightmove rightmove rightmove rightrepeat4switch costume toxursandswitch costume toxotirjam",
+   "r:move rightmove rightmove rightrepeat4switch costume toxursandswitch costume toxotirjam",
+   "r:move rightmove rightrepeat4switch costume toxursandswitch costume toxotirjam",
+   "r:move rightrepeat4switch costume toxursandswitch costume toxotirjam",
+   "p:repeat4switch costume toxursandswitch costume toxotirjam",
+   "v:switch costume toxursandswitch costume toxotirjam",
+   "v:switch costume toxotirjam"
+  ],
+  "html": "0363564ceebb",
+  "uzun": 47293
+ },
+ "bx-B2B-yetdi": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nHar qadamda\nHar qadamda: xursand, xotirjam.\nKo‘rinish\nHarakat\nTakrorlash\nKo‘rinish\nswitch costume to\nDastur\nrepeat\n4\nmove right\nswitch costume to\nxursand\nswitch costume to\nxotirjam\n4\n4 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 0)\nAnimatsiya: 4 / 4\nMaslahat\nYetib bordi!\nIshga tushir",
+  "bloklar": [
+   "p:repeat4move rightswitch costume toxursandswitch costume toxotirjam",
+   "r:move rightswitch costume toxursandswitch costume toxotirjam",
+   "v:switch costume toxursandswitch costume toxotirjam",
+   "v:switch costume toxotirjam"
+  ],
+  "html": "0d20485ea768",
+  "uzun": 42523
+ },
+ "bx-B3A-tovushqani": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nQadam tovushi\nHar qadamda — ♪ qadam.\nKo‘rinish\nHarakat\nHodisa\nTovush\nHodisa\nwhen\n→\nkey pressed\nDastur\nwhen\n→\nkey pressed\nmove right\n1 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 0)\nO‘yin: strelkalarni bosing\nTovush qani?\nMaslahat\n→ dasturchasiga play sound qadam ulang\n■ To‘xtatish",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right"
+  ],
+  "html": "d4e9fd38fc86",
+  "uzun": 47342
+ },
+ "bx-B3B-spacebosing": {
+  "id": "B3B",
+  "matn": "MASHQ · 2-POG‘ONA\nYulduzda quvoning\nYulduzga yeting va space bosing.\nKo‘rinish\nHarakat\nHodisa\nTovush\nHodisa\nwhen\n→\nkey pressed\nDastur\nwhen\n→\nkey pressed\nmove right\nplay sound\nqadam\nwhen\n↑\nkey pressed\nmove up\nplay sound\nqadam\nwhen\nspace\nkey pressed\nswitch costume to\nxursand\nplay sound\njiring\n3 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\nO‘yin: strelkalarni bosing\nMaslahat\nYulduzdasiz — space bosing\n■ To‘xtatish",
+  "bloklar": [
+   "k:when→key pressedmove rightplay soundqadam",
+   "r:move rightplay soundqadam",
+   "n:play soundqadam",
+   "k:when↑key pressedmove upplay soundqadam",
+   "u:move upplay soundqadam",
+   "n:play soundqadam",
+   "k:whenspacekey pressedswitch costume toxursandplay soundjiring",
+   "v:switch costume toxursandplay soundjiring",
+   "n:play soundjiring"
+  ],
+  "html": "7b17d01b86bf",
+  "uzun": 41860
+ },
+ "bx-B3B-yetdi": {
+  "id": "B3B",
+  "matn": "MASHQ · 2-POG‘ONA\nYulduzda quvoning\nYulduzga yeting va space bosing.\nKo‘rinish\nHarakat\nHodisa\nTovush\nHodisa\nwhen\n→\nkey pressed\nDastur\nwhen\n→\nkey pressed\nmove right\nplay sound\nqadam\nwhen\n↑\nkey pressed\nmove up\nplay sound\nqadam\nwhen\nspace\nkey pressed\nswitch costume to\nxursand\nplay sound\njiring\n3 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\nMaslahat\nYetib bordi!\nBoshlash",
+  "bloklar": [
+   "k:when→key pressedmove rightplay soundqadam",
+   "r:move rightplay soundqadam",
+   "n:play soundqadam",
+   "k:when↑key pressedmove upplay soundqadam",
+   "u:move upplay soundqadam",
+   "n:play soundqadam",
+   "k:whenspacekey pressedswitch costume toxursandplay soundjiring",
+   "v:switch costume toxursandplay soundjiring",
+   "n:play soundjiring"
+  ],
+  "html": "92928fee4f4d",
+  "uzun": 42727
+ },
+ "bx-B3Y-birxil": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z qahramoningiz\nHar tugmaga — o‘z kostyumi va tovushi.\nKo‘rinish\nHarakat\nHodisa\nTovush\nHodisa\nwhen\n→\nkey pressed\nDastur\nwhen\n→\nkey pressed\nmove right\nswitch costume to\nxursand\nplay sound\nqadam\nwhen\n↑\nkey pressed\nmove up\nswitch costume to\nxursand\nplay sound\nqadam\nwhen\nspace\nkey pressed\nswitch costume to\nxursand\nplay sound\nqadam\n3 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nO‘yin: strelkalarni bosing\nHammasi bir xil-ku!\nMaslahat\nYana bitta kostyum yoki tovush qo‘shing — kamida ikki xil\n■ To‘xtatish",
+  "bloklar": [
+   "k:when→key pressedmove rightswitch costume toxursandplay soundqadam",
+   "r:move rightswitch costume toxursandplay soundqadam",
+   "v:switch costume toxursandplay soundqadam",
+   "n:play soundqadam",
+   "k:when↑key pressedmove upswitch costume toxursandplay soundqadam",
+   "u:move upswitch costume toxursandplay soundqadam",
+   "v:switch costume toxursandplay soundqadam",
+   "n:play soundqadam",
+   "k:whenspacekey pressedswitch costume toxursandplay soundqadam",
+   "v:switch costume toxursandplay soundqadam",
+   "n:play soundqadam"
+  ],
+  "html": "c784102702ba",
+  "uzun": 47801
+ },
+ "bx-B5-natija": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nQahramoningiz jonlandi!\n\nBulut\nKostyum almashtirdingiz, jonlantirdingiz va ovoz chiqardingiz.\n\nSiz bugun\n18\nmarta kostyum almashtirdi\n7\nta animatsiya tuzdi\n6\nmarta tovush chaldi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBulut\nKeyingi darsda shart bilan ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "a3f9f5ca4158",
+  "uzun": 39478
+ },
+ "bx-P2N-tanladi": {
+  "id": "P2N",
+  "matn": "7-DARS · KOSTYUM VA TOVUSH\nSAVOL\nCoddy qanday qo‘l silkitadi?\n\nCoddy\nQaysi yo‘l bilan qo‘l silkitaman?\n\nA\nBitta kostyum qo‘yamiz\nB\nCoddy’ni silkitamiz\n↔\nC\nKostyumlarni almashtiramiz\n1 ⇄ 2\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\n1-kostyum\n2-kostyum\nBirini tanlang",
+  "bloklar": [],
+  "html": "a1d858fea208",
+  "uzun": 136457
+ },
+ "bx-BQ": {
+  "id": "BQ",
+  "matn": "7-DARS · KOSTYUM VA TOVUSH\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang",
+  "bloklar": [],
+  "html": "4878e6e79f2c",
+  "uzun": 52612
+ },
+ "bx-BQ-tanladi": {
+  "id": "BK",
+  "matn": "7-DARS · KOSTYUM VA TOVUSH\n↑\nUstoz ekraniga qarang\nJavobingiz qabul qilindi",
+  "bloklar": [],
+  "html": "70fecb1f4b7d",
+  "uzun": 15163
+ },
+ "sq-01-0-B0": {
+  "id": "B0",
+  "matn": "7-DARS · KOSTYUM VA TOVUSH\nSalom, Aziz!\nTayyor bo‘lsangiz — tugmani bosing\nTayyorman",
+  "bloklar": [],
+  "html": "8937abacfdab",
+  "uzun": 24486
+ },
+ "sq-01-1-P1": {
+  "id": "P1",
+  "matn": "7-DARS · KOSTYUM VA TOVUSH\nBugun qahramonni jonlantiramiz!\n\nCoddy\nSalom! Bugun meni jonlantirasiz — qo‘l silkitaman va ovoz chiqaraman.\n\nO‘TGAN DARSLARDA\nrepeat\n4\nmove right\nTakrorlash\nBir ishni ko‘p marta bajarish\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "877754e895bd",
+  "uzun": 76819
+ },
+ "sq-02-0-P2N": {
+  "id": "P2N",
+  "matn": "7-DARS · KOSTYUM VA TOVUSH\nSAVOL\nCoddy qanday qo‘l silkitadi?\n\nCoddy\nQaysi yo‘l bilan qo‘l silkitaman?\n\nA\nBitta kostyum qo‘yamiz\nB\nCoddy’ni silkitamiz\n↔\nC\nKostyumlarni almashtiramiz\n1 ⇄ 2\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\n1-kostyum\n2-kostyum\nBirini tanlang",
+  "bloklar": [],
+  "html": "92ae764033e9",
+  "uzun": 136448
+ },
+ "sq-03-0-P2S": {
+  "id": "P2S",
+  "matn": "SAVOL\nCoddy qanday qo‘l silkitadi?\n\nCoddy\nMana ikkita kostyumim. Ular bilan qanday qo‘l silkitamiz?\n\nA\nBitta kostyum qo‘yamiz\n▶ Sinab ko‘rish\nB\nCoddy’ni silkitamiz\n▶ Sinab ko‘rish\n↔\nC\nKostyumlarni almashtiramiz\n▶ Sinab ko‘rish\n1 ⇄ 2\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\n1-kostyum\n2-kostyum\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "8df8963cddbd",
+  "uzun": 137534
+ },
+ "sq-04-0-P2C": {
+  "id": "P2C",
+  "matn": "JAVOB\nKostyumlar almashsa — jonlanadi\n\nCoddy\nKostyum almashdi, yana almashdi — men qo‘l silkitdim.\n\nA\nBitta kostyum qo‘yamiz\n✕ bir marta ko‘tardi\nB\nCoddy’ni silkitamiz\n✕ qo‘li qimirlamadi\n↔\nC\nKostyumlarni almashtiramiz\n✓ qo‘l silkitdi\n1 ⇄ 2\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "9e63ad89c402",
+  "uzun": 107390
+ },
+ "sq-05-0-P3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nAnimatsiya nima?\n\nCoddy\nAnimatsiya — kostyumlar navbat bilan almashsa, qahramon jonlanadi.\n\n1-kostyum\n2-kostyum\nNavbat bilan — jonlandi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "9b6771b7de90",
+  "uzun": 135986
+ },
+ "sq-06-0-P4": {
+  "id": "P4",
+  "matn": "REJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Birinchisidan boshlaymiz.\n\nDars oxirida · o‘yin\n♪\nOvozli qahramon\n1\nKostyum\n2\nAnimatsiya\n3\nTovush\n‹ Orqaga\nBoshladik ›",
+  "bloklar": [],
+  "html": "07d10158b3d7",
+  "uzun": 41854
+ },
+ "sq-07-0-P6": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nKostyum almashadi\nswitch costume to — kostyumni almashtir.\nKo‘rinish\nHarakat\nTakrorlash\nKo‘rinish\nswitch costume to\nDastur\nmove right\nmove right\nswitch costume to\nxursand\n3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›",
+  "bloklar": [
+   "r:move rightmove rightswitch costume toxursand",
+   "r:move rightswitch costume toxursand",
+   "v:switch costume toxursand"
+  ],
+  "html": "6c04b0993d89",
+  "uzun": 78356
+ },
+ "sq-08-0-B1A": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nXursand\nYulduzda qahramon xursand bo‘lsin.\nKo‘rinish\nHarakat\nTakrorlash\nKo‘rinish\nswitch costume to\nDastur\nmove right\nmove right\nmove right\n3 ta blok\nxursand\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturni tuzing, keyin ▶ Ishga tushir\nIshga tushir\nKeyingi ›",
+  "bloklar": [
+   "r:move rightmove rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "1a885e75bed6",
+  "uzun": 41465
+ },
+ "sq-08-1-B1B": {
+  "id": "B1B",
+  "matn": "MASHQ · 2-POG‘ONA\nHayron\nYulduz tepada. U yerda — hayron.\nKo‘rinish\nHarakat\nTakrorlash\nKo‘rinish\nswitch costume to\nDastur\nBlokni shu yerga ulang\n0 ta blok\nhayron\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturni tuzing, keyin ▶ Ishga tushir\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "b68e20c8b317",
+  "uzun": 41468
+ },
+ "sq-08-2-B1C": {
+  "id": "B1C",
+  "matn": "MASHQ · 3-POG‘ONA\nIkki kostyum\nBelgida — hayron, yulduzda — xursand.\nKo‘rinish\nHarakat\nTakrorlash\nKo‘rinish\nswitch costume to\nDastur\nBlokni shu yerga ulang\n0 ta blok\nhayron\nxursand\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturni tuzing, keyin ▶ Ishga tushir\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "2dc35a2ff17a",
+  "uzun": 41622
+ },
+ "sq-08-3-B1Y": {
+  "id": "B1Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nUch belgi\nHar belgida — o‘sha kostyum.\nKo‘rinish\nHarakat\nTakrorlash\nKo‘rinish\nswitch costume to\nDastur\nBlokni shu yerga ulang\n0 ta blok\nhayron\no‘ylanadi\nxursand\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturni tuzing, keyin ▶ Ishga tushir\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "d8a01af5ae1b",
+  "uzun": 41755
+ },
+ "sq-09-0-P4B": {
+  "id": "P4B",
+  "matn": "REJA · 2-BEKAT\n2 · Animatsiya\n\nCoddy\nEndi kostyumlar navbat bilan almashadi — animatsiya.\n\nDars oxirida · o‘yin\n♪\nOvozli qahramon\n✓\nKostyum\n2\nAnimatsiya\n3\nTovush\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "c55de83f04fb",
+  "uzun": 41653
+ },
+ "sq-10-0-P7": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nHar qadamda animatsiya\nKo‘rinish\nHarakat\nTakrorlash\nKo‘rinish\nswitch costume to\nDastur\nrepeat\n3\nmove right\nswitch costume to\nxursand\nswitch costume to\nxotirjam\n4 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nAnimatsiya: 0 / 3\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›",
+  "bloklar": [
+   "p:repeat3move rightswitch costume toxursandswitch costume toxotirjam",
+   "r:move rightswitch costume toxursandswitch costume toxotirjam",
+   "v:switch costume toxursandswitch costume toxotirjam",
+   "v:switch costume toxotirjam"
+  ],
+  "html": "378151e0edc8",
+  "uzun": 78351
+ },
+ "sq-11-0-B2A": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nUch marta\nYulduzda 3 marta: xursand, xotirjam.\nKo‘rinish\nHarakat\nTakrorlash\nKo‘rinish\nswitch costume to\nDastur\nBlokni shu yerga ulang\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nAnimatsiya: 0 / 3\nMaslahat\nDasturni tuzing, keyin ▶ Ishga tushir\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "7c7e640bcf4f",
+  "uzun": 41396
+ },
+ "sq-11-1-B2B": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nHar qadamda\nHar qadamda: xursand, xotirjam.\nKo‘rinish\nHarakat\nTakrorlash\nKo‘rinish\nswitch costume to\nDastur\nBlokni shu yerga ulang\n0 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nAnimatsiya: 0 / 4\nMaslahat\nDasturni tuzing, keyin ▶ Ishga tushir\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "c6999edea748",
+  "uzun": 41392
+ },
+ "sq-11-2-B2C": {
+  "id": "B2C",
+  "matn": "MASHQ · 3-POG‘ONA\nTepaga, keyin o‘ngga\nYulduz (3, 3) da. Har qadamda — animatsiya.\nKo‘rinish\nHarakat\nTakrorlash\nKo‘rinish\nswitch costume to\nDastur\nBlokni shu yerga ulang\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nAnimatsiya: 0 / 6\nMaslahat\nDasturni tuzing, keyin ▶ Ishga tushir\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "55cff825bc2d",
+  "uzun": 41414
+ },
+ "sq-11-3-B2Y": {
+  "id": "B2Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nUzoq yo‘l\nYulduz (6, 4) da. Bloklar — 12 tagacha.\nKo‘rinish\nHarakat\nTakrorlash\nKo‘rinish\nswitch costume to\nDastur\nBlokni shu yerga ulang\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nAnimatsiya: 0 / 10\nMaslahat\nDasturni tuzing, keyin ▶ Ishga tushir\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "6b5ba8567e75",
+  "uzun": 41402
+ },
+ "sq-12-0-P9": {
+  "id": "P9",
+  "matn": "XULOSA\nAnimatsiya\n\nCoddy\nKostyumlar almashdi — men jonlandim.\n\nAnimatsiya\nKostyumlar navbat bilan almashadi\nswitch costume to\nxursand\nswitch costume to\nKostyumni almashtir\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "0307da6d6664",
+  "uzun": 106277
+ },
+ "sq-13-0-P4C": {
+  "id": "P4C",
+  "matn": "REJA · 3-BEKAT\n3 · Tovush\n\nCoddy\nOxirgi bekat: tovush — tugma bosilsa, ovoz chiqaraman.\n\nDars oxirida · o‘yin\n♪\nOvozli qahramon\n✓\nKostyum\n✓\nAnimatsiya\n3\nTovush\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "d0450bf22f08",
+  "uzun": 41606
+ },
+ "sq-14-0-P8": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nTugma bosilsa — tovush\nplay sound — tovushni chal.\nKo‘rinish\nHarakat\nHodisa\nTovush\nHodisa\nwhen\n→\nkey pressed\nDastur\nwhen\n→\nkey pressed\nmove right\nplay sound\nqadam\nwhen\nspace\nkey pressed\nswitch costume to\nxursand\nplay sound\njiring\n2 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nOvozni yoqing — tovush eshitiladi\n▶ Boshlash\nKeyingi ›",
+  "bloklar": [
+   "k:when→key pressedmove rightplay soundqadam",
+   "r:move rightplay soundqadam",
+   "n:play soundqadam",
+   "k:whenspacekey pressedswitch costume toxursandplay soundjiring",
+   "v:switch costume toxursandplay soundjiring",
+   "n:play soundjiring"
+  ],
+  "html": "aee4dbcfa993",
+  "uzun": 78493
+ },
+ "sq-15-0-B3A": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nQadam tovushi\nHar qadamda — ♪ qadam.\nKo‘rinish\nHarakat\nHodisa\nTovush\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash\nKeyingi ›",
+  "bloklar": [],
+  "html": "e60275a63b69",
+  "uzun": 41593
+ },
+ "sq-15-1-B3B": {
+  "id": "B3B",
+  "matn": "MASHQ · 2-POG‘ONA\nYulduzda quvoning\nYulduzga yeting va space bosing.\nKo‘rinish\nHarakat\nHodisa\nTovush\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash\nKeyingi ›",
+  "bloklar": [],
+  "html": "ecfc2b32313e",
+  "uzun": 41607
+ },
+ "sq-15-2-B3Y": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z qahramoningiz\nHar tugmaga — o‘z kostyumi va tovushi.\nKo‘rinish\nHarakat\nHodisa\nTovush\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash\nKeyingi ›",
+  "bloklar": [],
+  "html": "9e3923973308",
+  "uzun": 41615
+ },
+ "sq-17-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nQahramoningiz jonlandi!\n\nBulut\nKostyum almashtirdingiz, jonlantirdingiz va ovoz chiqardingiz.\n\nSiz bugun\n0\nmarta kostyum almashtirdi\n0\nta animatsiya tuzdi\n0\nmarta tovush chaldi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBulut\nKeyingi darsda shart bilan ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "a124fe4c4e84",
+  "uzun": 39477
+ },
+ "sx-P2S-A": {
+  "id": "P2S",
+  "matn": "SAVOL\nCoddy qanday qo‘l silkitadi?\n\nCoddy\nMana ikkita kostyumim. Ular bilan qanday qo‘l silkitamiz?\n\nA\nBitta kostyum qo‘yamiz\n✕ bir marta ko‘tardi\nB\nCoddy’ni silkitamiz\n▶ Sinab ko‘rish\n↔\nC\nKostyumlarni almashtiramiz\n▶ Sinab ko‘rish\n1 ⇄ 2\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\n1-kostyum\n2-kostyum\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "f88672eda753",
+  "uzun": 137597
+ },
+ "sx-P2S-B": {
+  "id": "P2S",
+  "matn": "SAVOL\nCoddy qanday qo‘l silkitadi?\n\nCoddy\nMana ikkita kostyumim. Ular bilan qanday qo‘l silkitamiz?\n\nA\nBitta kostyum qo‘yamiz\n✕ bir marta ko‘tardi\nB\nCoddy’ni silkitamiz\n✕ qo‘li qimirlamadi\n↔\nC\nKostyumlarni almashtiramiz\n▶ Sinab ko‘rish\n1 ⇄ 2\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\n1-kostyum\n2-kostyum\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "c9e925c16c58",
+  "uzun": 137648
+ },
+ "sx-P2S-C": {
+  "id": "P2S",
+  "matn": "SAVOL\nCoddy qanday qo‘l silkitadi?\n\nCoddy\nMana ikkita kostyumim. Ular bilan qanday qo‘l silkitamiz?\n\nA\nBitta kostyum qo‘yamiz\n✕ bir marta ko‘tardi\nB\nCoddy’ni silkitamiz\n✕ qo‘li qimirlamadi\n↔\nC\nKostyumlarni almashtiramiz\n✓ qo‘l silkitdi\n1 ⇄ 2\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\n1-kostyum\n2-kostyum\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "8d7789f53951",
+  "uzun": 138545
+ },
+ "y-01": {
+  "id": "P1",
+  "matn": "USTOZ · PROYEKTOR\n7-DARS · KOSTYUM VA TOVUSH\nBugun qahramonni jonlantiramiz!\n\nCoddy\nSalom! Bugun meni jonlantirasiz — qo‘l silkitaman va ovoz chiqaraman.\n\nO‘TGAN DARSLARDA\nrepeat\n4\nmove right\nTakrorlash\nBir ishni ko‘p marta bajarish\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKirdi: 1\nKeyingi ›\nO‘QUVCHI · NOUTBUK\n7-DARS · KOSTYUM VA TOVUSH\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "dfba664111c6",
+  "uzun": 130840
+ },
+ "y-02": {
+  "id": "P2",
+  "matn": "USTOZ · PROYEKTOR\n7-DARS · KOSTYUM VA TOVUSH\nSAVOL\nCoddy qanday qo‘l silkitadi?\n\nCoddy\nMana ikkita kostyumim. Ular bilan qanday qo‘l silkitamiz?\n\nA\nBitta kostyum qo‘yamiz\nB\nCoddy’ni silkitamiz\n↔\nC\nKostyumlarni almashtiramiz\n1 ⇄ 2\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\n1-kostyum\n2-kostyum\n‹ Orqaga\nJavob berdi: 0 / 1\nSinab ko‘ramiz ›\nO‘QUVCHI · NOUTBUK\n7-DARS · KOSTYUM VA TOVUSH\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "ad75d3277e94",
+  "uzun": 191380
+ },
+ "y-03": {
+  "id": "P2S",
+  "matn": "USTOZ · PROYEKTOR\nSAVOL\nCoddy qanday qo‘l silkitadi?\n\nCoddy\nMana ikkita kostyumim. Ular bilan qanday qo‘l silkitamiz?\n\nA\nBitta kostyum qo‘yamiz\nB\nCoddy’ni silkitamiz\n↔\nC\nKostyumlarni almashtiramiz\n1 ⇄ 2\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\n1-kostyum\n2-kostyum\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "f130c84bf884",
+  "uzun": 191405
+ },
+ "y-04": {
+  "id": "P2C",
+  "matn": "USTOZ · PROYEKTOR\nJAVOB\nKostyumlar almashsa — jonlanadi\n\nCoddy\nKostyum almashdi, yana almashdi — men qo‘l silkitdim.\n\nA\nBitta kostyum qo‘yamiz\n✕ bir marta ko‘tardi\nB\nCoddy’ni silkitamiz\n✕ qo‘li qimirlamadi\n↔\nC\nKostyumlarni almashtiramiz\n✓ qo‘l silkitdi\n1 ⇄ 2\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "9f2083f98e87",
+  "uzun": 161403
+ },
+ "y-05": {
+  "id": "P3",
+  "matn": "USTOZ · PROYEKTOR\nYANGI SO‘Z\nAnimatsiya nima?\n\nCoddy\nAnimatsiya — kostyumlar navbat bilan almashsa, qahramon jonlanadi.\n\n1-kostyum\n2-kostyum\nNavbat bilan — jonlandi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "f190070c88a0",
+  "uzun": 189999
+ },
+ "y-06": {
+  "id": "P4",
+  "matn": "USTOZ · PROYEKTOR\nREJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Birinchisidan boshlaymiz.\n\nDars oxirida · o‘yin\n♪\nOvozli qahramon\n1\nKostyum\n2\nAnimatsiya\n3\nTovush\n‹ Orqaga\nBoshladik ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "ab8c336c0644",
+  "uzun": 95867
+ },
+ "y-07": {
+  "id": "P6",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nKostyum almashadi\nswitch costume to — kostyumni almashtir.\nKo‘rinish\nHarakat\nTakrorlash\nKo‘rinish\nswitch costume to\nDastur\nBlokni shu yerga ulang\n0 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "47f6d0f994c9",
+  "uzun": 132378
+ },
+ "y-08": {
+  "id": "P5",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nEndi o‘zingiz!\n\nCoddy\nKostyumni almashtiring — yulduzda qahramoningiz o‘zgarsin.\n\nUch pog‘onani tugatdi\n0 / 1\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nXursand\n2\n0\nHayron\n3\n0\nIkki kostyum\n★\n0\nUch belgi\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "c4c44f705378",
+  "uzun": 90386
+ },
+ "y-09": {
+  "id": "P4B",
+  "matn": "USTOZ · PROYEKTOR\nREJA · 2-BEKAT\n2 · Animatsiya\n\nCoddy\nEndi kostyumlar navbat bilan almashadi — animatsiya.\n\nDars oxirida · o‘yin\n♪\nOvozli qahramon\n✓\nKostyum\n2\nAnimatsiya\n3\nTovush\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "98c70ddfa254",
+  "uzun": 95666
+ },
+ "y-10": {
+  "id": "P7",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nHar qadamda animatsiya\nKo‘rinish\nHarakat\nTakrorlash\nKo‘rinish\nswitch costume to\nDastur\nBlokni shu yerga ulang\n0 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nAnimatsiya: 0 / 3\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "0ea636eb2414",
+  "uzun": 132373
+ },
+ "y-11": {
+  "id": "P5G",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nJonlantiring!\n\nCoddy\nHar qadamda kostyum almashsin — qahramon jonlanadi.\n\nUch pog‘onani tugatdi\n0 / 1\n1\n0\nUch marta\n2\n0\nHar qadamda\n3\n0\nTepaga, keyin o‘ngga\n★\n0\nUzoq yo‘l\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "eefa196c728a",
+  "uzun": 90322
+ },
+ "y-12": {
+  "id": "P9",
+  "matn": "USTOZ · PROYEKTOR\nXULOSA\nAnimatsiya\n\nCoddy\nKostyumlar almashdi — men jonlandim.\n\nAnimatsiya\nKostyumlar navbat bilan almashadi\nswitch costume to\nxursand\nswitch costume to\nKostyumni almashtir\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "e429062d61d0",
+  "uzun": 160290
+ },
+ "y-13": {
+  "id": "P4C",
+  "matn": "USTOZ · PROYEKTOR\nREJA · 3-BEKAT\n3 · Tovush\n\nCoddy\nOxirgi bekat: tovush — tugma bosilsa, ovoz chiqaraman.\n\nDars oxirida · o‘yin\n♪\nOvozli qahramon\n✓\nKostyum\n✓\nAnimatsiya\n3\nTovush\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "15be5124d354",
+  "uzun": 95619
+ },
+ "y-14": {
+  "id": "P8",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nTugma bosilsa — tovush\nplay sound — tovushni chal.\nKo‘rinish\nHarakat\nHodisa\nTovush\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "17162c3d141d",
+  "uzun": 132482
+ },
+ "y-15": {
+  "id": "P5B",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nTovush bering!\n\nCoddy\nTugma bosilsa — qadam, yulduzda — jiring.\n\nIkki pog‘onani tugatdi\n0 / 1\n1\n0\nQadam tovushi\n2\n0\nYulduzda quvoning\n★\n0\nO‘z qahramoningiz\n1\n2\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "1b37fbd8ac29",
+  "uzun": 86525
+ },
+ "y-16": {
+  "id": "P11",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RSATISH\nDasturchalaringizni o‘qib bering\nSiz o‘qiysiz — men o‘sha kostyum va tovush bilan o‘ynayman.\nKo‘rinish\nHarakat\nHodisa\nTovush\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "52c777a8c8b4",
+  "uzun": 132527
+ },
+ "y-17": {
+  "id": "P12",
+  "matn": "USTOZ · PROYEKTOR\nYAKUN\nQahramoningiz jonlandi!\nBUGUNGI SO‘Z\nAnimatsiya\nKostyumlar navbat bilan almashadi\nKeyingi dars\n?\n8 · Shart\n✓\nKostyum\n✓\nAnimatsiya\n✓\nTovush\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "e02b9ef302b9",
+  "uzun": 82580
+ },
+ "y-18": {
+  "id": "P14",
+  "matn": "USTOZ · PROYEKTOR\nSINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nmarta kostyum almashtirdi\n0\nta animatsiya tuzdi\n0\nmarta tovush chaldi\n‹ Orqaga\nDarsni yakunlash\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: kostyumlar almashsa — jonlanadi\n5 / 18 · Yangi so‘z: animatsiya\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: switch costume to\n8 / 18 · Kostyum\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: har qadamda animatsiya\n11 / 18 · Animatsiya\n12 / 18 · Xulosa: animatsiya\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: play sound\n15 / 18 · Tovush\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a9b5d529c08a",
+  "uzun": 92847
+ },
+ "varaq": {
+  "id": "",
+  "matn": "7-dars · Kostyum va tovush — ustoz varag‘i\n\nAsosiy fikr: kostyum — qahramonning bitta rasmi; kostyumlar navbat bilan almashsa — qahramon jonlanadi (animatsiya). Hukda, xulosada va yakunda chiqadi.\n\nYo‘l: huk (qo‘l silkitish — uch sinov) → yangi so‘z «animatsiya» → reja → 1-bekat «Kostyum» → 2-bekat «Animatsiya» → 3-bekat «Tovush» (o‘yin) → o‘qib berish → yakun.\n\nYangi bloklar: switch costume to — kostyumni almashtir (Ko‘rinish oilasi, feruza); play sound — tovushni chal (Tovush oilasi, pushti). Nom bosib tanlanadi. Har ishga tushirishda qahramon xotirjamdan boshlaydi.\n\nTovush: bolalar noutbuki jim — tovush chalinsa qahramon ustida «♪ nom» chiqadi; sinf tovushni katta ekranda eshitadi (14- va 16-qadam). 3-bekat — o‘yin: «▶ Boshlash», strelkalar; 2-pog‘onadan yulduzda space bosiladi.\n\nBoshqaruv: → yoki «Keyingi» — oldinga, ← — orqaga, F — to‘liq ekran. O‘ng tepada (sichqoncha olib borilsa) — qadam ro‘yxati va «aloqa» belgisi (yashil — ulangan).\n\n1\nKirish\n\nEKRANDA\n«7-dars · Kostyum va tovush» — «Bugun qahramonni jonlantiramiz!» Maydon, Coddy (0, 0) da; pastda «O‘tgan darslarda» — takrorlash.\n\nSIZ\n«O‘tgan darslarda qahramon strelkalar bilan yurdi va repeat bilan ko‘p marta bajardi.» «Bugun qahramon faqat yurmaydi — jonlanadi va ovoz chiqaradi.» «Noutbukda «Tayyorman» tugmasini bosing.»\n\nBOLA O‘RGANADI\nBugun qahramon jonlanadi.\n\n2\nSavol\n\nEKRANDA\nSavol: «Coddy qanday qo‘l silkitadi?» Coddy yonida ikki kostyum. Uchta karta: A «Bitta kostyum qo‘yamiz», B «Coddy’ni silkitamiz», C «Kostyumlarni almashtiramiz».\n\nSIZ\n«Kostyum — qahramonning bitta rasmi. Kiyim emas. Coddy’ning ikkita kostyumi bor.» «Har kim noutbukida bitta kartani tanlasin: Coddy qo‘llarini qanday silkitadi?»\n\nBOLA O‘RGANADI\nTaxmin qiladi — bu huk.\n\n3\nUch sinov\n\nEKRANDA\nUch sinov: A o‘zi boshlanadi — bir marta qo‘llar tepada, qotdi («✕ bir marta ko‘tardi»). «Keyingi» — B: joyida silkinadi («✕ qo‘li qimirlamadi»). «Keyingi» — C: kostyumlar olti marta almashadi («✓ qo‘l silkitdi»).\n\nSIZ\n«Bitta kostyum — bitta rasm: u qotib turadi.» «Kostyumlar navbat bilan almashsa — Coddy qo‘l silkitadi.»\n\nBOLA O‘RGANADI\nKostyumlar almashsa — jonlanadi.\n\n4\nJavob: kostyumlar almashsa — jonlanadi\n\nEKRANDA\nJavob: «Kostyumlar almashsa — jonlanadi». A va B xira, C oltin; Coddy qo‘l silkitib turadi.\n\nSIZ\n«Bitta kostyum qimirlamaydi. Kostyumlar navbat bilan almashsa — qahramon jonlanadi.»\n\nBOLA O‘RGANADI\nAnimatsiya g‘oyasi.\n\n5\nYangi so‘z: animatsiya\n\nEKRANDA\nYangi so‘z: «Animatsiya nima?» «Keyingi» — birma-bir: 1-kostyum, 2-kostyum, navbat bilan.\n\nSIZ\n«Animatsiya — kostyumlar navbat bilan almashsa, qahramon jonlanadi.» «Multfilm ham shunday yasaladi.»\n\nBOLA O‘RGANADI\nYangi so‘z: animatsiya.\n\n6\nReja\n\nEKRANDA\nReja: tepalik — kostyum → animatsiya → tovush; cho‘qqida «ovozli qahramon».\n\nSIZ\n«Bugun uchta bekat: kostyum, animatsiya, tovush.» «Dars oxirida qahramoningiz yuradi, jonlanadi va ovoz chiqaradi.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n7\nKo‘ramiz: switch costume to\n\nEKRANDA\nKo‘ramiz: «Kostyum almashadi». Javonda yangi oila — Ko‘rinish (feruza); yulduz (2, 0). → → va switch costume to xursand; keyin nomini hayron qilasiz.\n\nSIZ\n«switch costume to — kostyumni almashtir. Qahramon joyidan qimirlamaydi — faqat kostyumi o‘zgaradi.» «Kostyum keyingi almashtirishgacha qoladi.» «Endi o‘zingiz.»\n\nBOLA O‘RGANADI\nswitch costume to — kostyumni almashtiradi.\n\n8\nKostyum\n\nEKRANDA\nMashq: «Endi o‘zingiz!» — zinapoya: 1 xursand · 2 hayron · 3 ikki kostyum · ★ uch belgi.\n\nSIZ\n«Yulduzga boring va kostyumni almashtiring. Kostyum nomini bosib tanlaysiz.» «Biri tugasa, keyingisi o‘zi ochiladi.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nKostyumni o‘zi tanlaydi.\n\n9\n2-bekat\n\nEKRANDA\nTepalik: 1-bekat ✓ — «Animatsiya».\n\nSIZ\n«Kostyumni almashtirishni bildik. Endi ko‘p marta — repeat bilan.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n10\nKo‘ramiz: har qadamda animatsiya\n\nEKRANDA\nKo‘ramiz: «Har qadamda animatsiya». Yulduz (3, 0); «Animatsiya: 0 / 3». repeat 3 ichiga: move right, xursand, xotirjam.\n\nSIZ\n«Har qadamda ikki kostyum: xursand, keyin xotirjam. Bu — bitta animatsiya.» «repeat 3 — shuni uch marta. Coddy yuradi va jonlanadi.» «Endi o‘zingiz.»\n\nBOLA O‘RGANADI\nAnimatsiya repeat bilan.\n\n11\nAnimatsiya\n\nEKRANDA\nMashq: «Jonlantiring!» — zinapoya: 1 uch marta · 2 har qadamda · 3 tepaga, keyin o‘ngga · ★ uzoq yo‘l.\n\nSIZ\n«Animatsiya — xursand, keyin xotirjam. Har qadamda — repeat ichida.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nHar qadamda animatsiya.\n\n12\nXulosa: animatsiya\n\nEKRANDA\nXulosa: «Animatsiya». Ikki karta: animatsiya — kostyumlar navbat bilan almashadi; switch costume to — kostyumni almashtir.\n\nSIZ\n«Animatsiya — kostyumlar navbat bilan almashsa, qahramon jonlanadi.» «repeat bilan animatsiya ko‘p marta bo‘ladi — har qadamda.»\n\nBOLA O‘RGANADI\nAnimatsiya nima ekanini aytadi.\n\n13\n3-bekat\n\nEKRANDA\nTepalik: 1, 2 ✓ — «Tovush».\n\nSIZ\n«Ikki bekatdan o‘tdik. Oxirgisi — tovush va o‘yin.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n14\nKo‘ramiz: play sound\n\nEKRANDA\nKo‘ramiz: «Tugma bosilsa — tovush». O‘yin: yulduz (5, 0). W→[move right, play sound qadam], W space[xursand, play sound jiring]; → besh marta, yulduzda space.\n\nSIZ\n«play sound — tovushni chal. Tovush hodisaga ulanadi: tugma bosilsa — ovoz.» «Noutbukingiz jim: tovush chalinsa, qahramon ustida ♪ chiqadi. Ovozni katta ekranda eshitamiz.» «Endi o‘zingiz.»\n\nBOLA O‘RGANADI\nplay sound — tovushni chaladi.\n\n15\nTovush\n\nEKRANDA\nMashq: «Tovush bering!» — zinapoya: 1 qadam tovushi · 2 yulduzda quvoning · ★ o‘z qahramoningiz.\n\nSIZ\n«Dasturcha tuzing, «Boshlash»ni bosing va o‘ynang. Tovush chalinsa — ♪ ni ko‘rasiz.» «★ da qahramoningizni o‘zingiz jonlantirasiz: har tugmaga o‘z kostyumi va tovushi.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nTugmaga tovush ulaydi.\n\n16\nDasturchalaringizni o‘qib bering\n\nEKRANDA\n«Dasturchalaringizni o‘qib bering». O‘yin, dastur bo‘sh. Proyektorda ism yo‘q; bola noutbukida — oxirgi yechgan pog‘onasi.\n\nSIZ\n«Kim dasturchalarini o‘qib beradi? Qaysi tugma — qaysi kostyum, qaysi tovush?» «Sinf, qaysi tugmani bosay? Tinglang!»\n\nBOLA O‘RGANADI\nO‘z dasturchalarini o‘qib beradi.\n\n17\nYakun\n\nEKRANDA\nYakun: «Qahramoningiz jonlandi!» Bugungi so‘z — animatsiya; keyingi dars — 8 · Shart.\n\nSIZ\n«Uchala bekatdan o‘tdik: kostyum, animatsiya, tovush.» «Bugungi so‘z — animatsiya: kostyumlar navbat bilan almashsa, qahramon jonlanadi.» «Keyingi darsda — shart: dastur yurishdan oldin yo‘lni tekshiradi.»\n\nBOLA O‘RGANADI\nO‘z natijasini ko‘radi.\n\n18\nSinfimiz bugun\n\nEKRANDA\nSinfimiz bugun: nechta marta kostyum almashtirildi, nechta animatsiya, nechta tovush (haqiqiy son, ismsiz).\n\nSIZ\n«Hammangiz zo‘r ishladingiz!» (keyin raqamlarni o‘qiydi) «Multfilm ham, o‘yindagi qahramon ham shunday jonlanadi: kostyumlar almashadi.»\n\nBOLA O‘RGANADI\nSinf bilan birga natijani ko‘radi.",
+  "bloklar": [],
+  "html": "ef48835d99fd",
+  "uzun": 8455
+ },
+ "eshik": {
+  "id": "",
+  "matn": "7-dars · Kostyum va tovush\n\nQaysi oynani ochamiz?\n\nO‘quvchi oynasi\nUstoz oynasi (proyektor)\nO‘quvchi — o‘zi (ustozsiz)\nIkkalasi yonma-yon (ko‘rik)\nUstoz varag‘i",
+  "bloklar": [],
+  "html": "de93501fe44f",
+  "uzun": 772
+ },
+ "kirish-ismsiz": {
+  "id": "",
+  "matn": "Darsga kirish\n\nIsmingizni yozing\n\nKirish",
+  "bloklar": [],
+  "html": "bb43a0750caa",
+  "uzun": 213
+ }
+}

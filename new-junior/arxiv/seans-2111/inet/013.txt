@@ -1,0 +1,16 @@
+✓ 1 · Aziz: B0; Lola: avval BQ
+✗ 1 · ustoz: «Kirdi: 2»; «Bugun o‘yin har safar boshqacha!»; «O‘tgan darsda» — jon  — Bugun o‘yin har safar boshqacha!
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('#bol .jk').nth(2)[22m
+
+    at /tmp/claude-1000/-home-kali-Desktop-internetLesson/bd769a87-b745-4b6b-9161-4df0dc658f85/scratchpad/inet/013-toliq-dars.mjs:55:36 {
+  log: [ "  - waiting for locator('#bol .jk').nth(2)" ],
+  name: 'TimeoutError'
+}
+
+Node.js v24.18.0

@@ -1,0 +1,64 @@
+✓ 1 · Aziz: B0; Lola: avval BQ
+✓ 1 · ustoz: «Kirdi: 2»; «Bugun o‘yinda ball sanaymiz!»; «O‘tgan darsda» — daraja
+✓ 2 · «Javob berdi: 2 / 2»
+✓ 3 · A o‘zi boshlandi: «✕ doim 1»; bolada «Ustoz yo‘llarni sinayapti»
+✓ 3 · B: «✕ birdan 3»
+✓ 3 · C: «✓ ball: 3», sahnada «ball: 3»
+✓ 4 · javob «Kompyuter sonni eslab qoladi»: A, B xira; «ball: 3»
+✓ 5 · «O‘zgaruvchi nima?» — uch bo‘lak yondi, qutida 3
+✓ 6 · reja
+✓ 7 · P6: dastur bo‘sh, «Boshqaruv» qatori, «ball: 0»; bolada «Ustoz ball sanashni ko‘rsatyapti»
+✓ 7 · javondan: O[+1]
+✓ 7 · →→→↑↑→→↓↓ — «ball: 3», «Siz yutdingiz!»
+✓ 8 · Aziz B1A: «ball: 0», dastur bo‘sh, javonda set yopiq
+✓ 8 · dasturchasiz yutdi — ball 0: Kamvoy «Ball kam!», «Ball 0 — 3 bo‘lishi kerak. Har olma necha ball?»
+✓ 8 · «Maslahat» — manbadagi gap
+✓ 8 · Aziz 1-pog‘ona: O[+1] — ball 3 → B1B
+✓ 8 · B1B o‘sha dastur bilan (O[+1]), «ball: 0»
+✓ 8 · O[+1] qoldi — ball 4: Kamvoy «Ball kam!»
+✓ 8 · O[+2] — ball 8 (qayta o‘yin 0 dan) → B1C
+✓ 8 · 3-pog‘ona: O[+1] OO[+5] — 7 → B1Y
+✓ 8 · ★: O[+2] OO[+10] — 18 → BK
+✓ 8 · Lola 1-pog‘ona
+✓ 8 · doska: «1 / 2»; zinapoya 2 · 1 · 1 · 1
+✓ 10 · P7: tayyor O[+1], «ball: 0»
+✓ 10 · 1-o‘yin — ball 3
+✓ 10 · qayta «▶ Boshlash» — ball 3 turibdi
+✓ 10 · 2-o‘yin — ball 6, «Olma 3 ta — ball 6»
+✓ 10 · javondan: ▶[=0] O[+1]
+✓ 10 · «▶ Boshlash» — «ball: 0»
+✓ 10 · set bilan — ball 3
+✓ 11 · Aziz B2A: «ball: 5», «O‘tgan o‘yindan qolgan ball»; dastur 8-qadamdan (O[+2] OO[+10])
+✓ 11 · Aziz 1-pog‘ona: ▶[0] O[+1] — 4 → B2B
+✓ 11 · 2-pog‘ona: ▶[10] — 13 → B2C
+✓ 11 · 3-pog‘ona: 11 → B2Y
+✓ 11 · ★ o‘z o‘yini: 31, «O‘yiningiz tayyor!» → BK
+✓ 11 · Lola: set yo‘q (O[+1]) — 9: Ortiqvoy «Ball ko‘p!», «Ball 9 — 4 bo‘lishi kerak. O‘yin boshida ball 5 edi»
+✓ 11 · Lola: set ball to 0 — 4 → B2B
+✓ 11 · doska: «1 / 2»; zinapoya 2 · 1 · 1 · 1
+✓ 12 · xulosa «O‘zgaruvchi»
+✓ 14 · P8: «ball: ?», kartalar 2 3 4 5 6 7, bolada «Ustoz dasturni o‘qiyapti»
+✓ 14 · «Keyingi» to‘rt marta — «ball: 0», «ball: 2», «ball: 4», «ball: 5»; qadam almashmadi
+✓ 14 · 5 kartasi, «▶ Tekshirish» — «Oldindan aytdingiz!»
+✓ 15 · Aziz B3A: javon yopiq, dastur tayyor, «▶ Tekshirish» xira
+✓ 15 · Aziz 5 — Kamvoy «Boshqa son!», «Ball 9 bo‘ldi. …»
+✓ 15 · Aziz 9 — «Oldindan aytdingiz!» → B3B
+✓ 15 · 2-pog‘ona: 6 → B3C
+✓ 15 · 3-pog‘ona (ikki set): 2 → B3Y
+✓ 15 · ★: 14 → BK
+✓ 15 · Lola 1-pog‘ona birinchi urinishda
+✓ 15 · Lola 2-pog‘ona
+✓ 15 · doska: «Uch marta oldindan aytdi 1 / 2»; zinapoya 2 · 2 · 1 · 1
+✓ 16 · ustoz P11: faqat «Boshqaruv», «ball: 0»
+✓ 16 · Aziz: oxirgi yechgan pog‘onasi — B3Y, 14 kartasi tanlangan, «Dasturingizni ustozga o‘qib bering»
+✓ 16 · Lola: B3B, 6 kartasi
+✓ 16 · ustoz bola o‘qigan dastur bilan o‘ynadi — ball 3
+✓ 17 · Aziz: 29 ta olma, eng katta ball 31, 3 marta oldindan aytdi; kapsula «ball: 31»
+✓ 17 · Lola: 7, 4, 2
+✓ 17 · yakun: «Siz ball sanadingiz!», keyingi dars «12 · Jon va qadam»
+✓ 18 · Sinfimiz bugun: 36 ta olma terdi, 5 marta oldindan aytdi
+✓ 18 · «Darsni yakunlash» — hammada «Dars tugadi»
+✓ konsolda xato yo‘q
+
+NATIJA: 61 / 61
+XATO: yo‘q

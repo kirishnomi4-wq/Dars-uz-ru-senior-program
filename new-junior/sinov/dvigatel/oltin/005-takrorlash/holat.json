@@ -1,0 +1,1012 @@
+{
+ "u-01-P1": {
+  "id": "P1",
+  "matn": "5-DARS · TAKRORLASH\nBugun bir blok bilan ko‘p yuramiz!\n\nCoddy\nSalom! Bugun bitta blokni ko‘p marta bajaraman.\n\nO‘TGAN DARSDA\nwhen\n→\nkey pressed\nHodisa\nBiror narsa sodir bo‘lishi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKirdi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "c486133fc681",
+  "uzun": 34558
+ },
+ "u-02-P2": {
+  "id": "P2",
+  "matn": "5-DARS · TAKRORLASH\nSAVOL\nUchta blok bilan qanday yetamiz?\n\nCoddy\nYo‘lda 5 ta olma. Hammasini terib, yulduzga boramiz.\n\nA\nKo‘p blok qo‘yamiz\nB\ngo to bilan sakraymiz\n6, 0\nC\nBitta blok — 6 marta\n× 6\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDasturga 3 ta blok sig‘adi\n‹ Orqaga\nJavob berdi: 0 / 0\nSinab ko‘ramiz ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "20d9cc4c4ac9",
+  "uzun": 40513
+ },
+ "u-03-P2S": {
+  "id": "P2S",
+  "matn": "SAVOL\nUchta blok bilan qanday yetamiz?\n\nCoddy\nYo‘lda 5 ta olma. Hammasini terib, yulduzga boramiz.\n\nA\nKo‘p blok qo‘yamiz\nB\ngo to bilan sakraymiz\n6, 0\nC\nBitta blok — 6 marta\n× 6\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\nDasturga 3 ta blok sig‘adi\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "75d2a96d0609",
+  "uzun": 40599
+ },
+ "u-04-P2C": {
+  "id": "P2C",
+  "matn": "JAVOB\nBir blok — ko‘p marta\n\nCoddy\nBitta move right — olti qadam.\n\nA\nKo‘p blok qo‘yamiz\n✕ sig‘madi\nB\ngo to bilan sakraymiz\n✕ olmalar qoldi\n6, 0\nC\nBitta blok — 6 marta\n✓ 2 ta blok\n× 6\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "7038515a350f",
+  "uzun": 38095
+ },
+ "u-05-P3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nTakrorlash nima?\n\nCoddy\nTakrorlash — bir ishni ko‘p marta qilish.\n\nOlti marta bir xil blok\n6\nrepeat 6 — olti marta takrorla\n6 ta blok o‘rniga 2 ta\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "8d2691118fdb",
+  "uzun": 36523
+ },
+ "u-06-P4": {
+  "id": "P4",
+  "matn": "REJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Birinchisidan boshlaymiz.\n\nDars oxirida · o‘z rasmingiz\nDasturini o‘qib berasiz\n1\nUzun yo‘l\n2\nKvadrat\n3\nZinapoya\n‹ Orqaga\nBoshladik ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "3931f815ee74",
+  "uzun": 41297
+ },
+ "u-07-P6": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nrepeat — takrorla\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nBlokni shu yerga ulang\n0 / 2 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "336d29b8e936",
+  "uzun": 37140
+ },
+ "u-08-P5": {
+  "id": "P5",
+  "matn": "MASHQ\nEndi o‘zingiz!\n\nCoddy\nKataklarni sanang va sonni repeat ga qo‘ying.\n\nUch pog‘onani tugatdi\n0 / 0\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nO‘ngga\n2\n0\nPastga\n3\n0\nBurchak\n★\n0\nIlon yo‘li\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "1e1839fd1473",
+  "uzun": 38842
+ },
+ "u-09-P4B": {
+  "id": "P4B",
+  "matn": "REJA · 2-BEKAT\n2 · Kvadrat\n\nCoddy\nEndi chizamiz: oltin izim rasm bo‘ladi.\n\nDars oxirida · o‘z rasmingiz\nDasturini o‘qib berasiz\n✓\nUzun yo‘l\n2\nKvadrat\n3\nZinapoya\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "0aa830ec3433",
+  "uzun": 41144
+ },
+ "u-10-P7": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nKvadrat — to‘rt tomon\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nrepeat\n3\nmove right\nrepeat\n3\nmove up\n4 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 1)\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "p:repeat3move rightrepeat3move up",
+   "r:move right",
+   "p:repeat3move up",
+   "u:move up"
+  ],
+  "html": "f8224d371e09",
+  "uzun": 35863
+ },
+ "u-11-P5G": {
+  "id": "P5G",
+  "matn": "MASHQ\nRasm chizing!\n\nCoddy\nKulrang kataklarni oltin qiling.\n\nUch pog‘onani tugatdi\n0 / 0\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nKvadrat\n2\n0\nBoshqa burchak\n3\n0\nMinora\n★\n0\nDeraza\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "988cb17b0211",
+  "uzun": 36802
+ },
+ "u-12-P9": {
+  "id": "P9",
+  "matn": "XULOSA\nTakrorlash\n\nCoddy\nBir marta qo‘ydim — ko‘p marta bajardim.\n\nTakrorlash\nBir ishni ko‘p marta bajarish\nrepeat\n3\nmove right\nrepeat 3\nIchidagini 3 marta\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 1)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a3df74d4876d",
+  "uzun": 36567
+ },
+ "u-13-P4C": {
+  "id": "P4C",
+  "matn": "REJA · 3-BEKAT\n3 · Zinapoya\n\nCoddy\nOxirgi bekat: uzun dasturni qisqartiramiz.\n\nDars oxirida · o‘z rasmingiz\nDasturini o‘qib berasiz\n✓\nUzun yo‘l\n✓\nKvadrat\n3\nZinapoya\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "0e9034e32677",
+  "uzun": 41127
+ },
+ "u-14-P8": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nIchida ikki blok\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nmove right\nmove up\nmove right\nmove up\nmove right\nmove up\n6 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 0)\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "r:move rightmove upmove rightmove upmove rightmove up",
+   "u:move upmove rightmove upmove rightmove up",
+   "r:move rightmove upmove rightmove up",
+   "u:move upmove rightmove up",
+   "r:move rightmove up",
+   "u:move up"
+  ],
+  "html": "dc6c91f283d8",
+  "uzun": 35829
+ },
+ "u-15-P5B": {
+  "id": "P5B",
+  "matn": "MASHQ\nQisqartiring!\n\nCoddy\nUzun dasturdan takrorlanadigan bo‘lakni toping.\n\nUch pog‘onani tugatdi\n0 / 0\n1\n0\nZinapoya\n2\n0\nToj\n3\n0\nTog‘\n★\n0\nO‘z rasmingiz\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "0bbc78a5b59d",
+  "uzun": 36741
+ },
+ "u-16-P11": {
+  "id": "P11",
+  "matn": "KO‘RSATISH\nDasturingizni o‘qib bering\nSiz o‘qiysiz — men chizaman.\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nBlokni shu yerga ulang\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "0a7c47d05ddd",
+  "uzun": 35837
+ },
+ "u-17-P12": {
+  "id": "P12",
+  "matn": "YAKUN\nSiz rasm chizdingiz!\nBUGUNGI SO‘Z\nTakrorlash\nBir ishni ko‘p marta bajarish\nKeyingi dars\n1\n2\n3\n6 · Amaliyot\n✓\nUzun yo‘l\n✓\nKvadrat\n✓\nZinapoya\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "b08f12e0ff82",
+  "uzun": 30353
+ },
+ "u-18-P14": {
+  "id": "P14",
+  "matn": "SINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nrasm chizdi\n0\nta repeat qo‘ydi\n0\nta blok tejadi\n‹ Orqaga\nDarsni yakunlash\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "d556bf1c5a97",
+  "uzun": 40217
+ },
+ "u-x-P2S-A": {
+  "id": "P2S",
+  "matn": "SAVOL\nUchta blok bilan qanday yetamiz?\n\nCoddy\nYo‘lda 5 ta olma. Hammasini terib, yulduzga boramiz.\n\nA\nKo‘p blok qo‘yamiz\n✕ sig‘madi\nB\ngo to bilan sakraymiz\n6, 0\nC\nBitta blok — 6 marta\n× 6\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nDasturga 3 ta blok sig‘adi\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "4f374c5a30fa",
+  "uzun": 40770
+ },
+ "u-x-P2S-B": {
+  "id": "P2S",
+  "matn": "SAVOL\nUchta blok bilan qanday yetamiz?\n\nCoddy\nYo‘lda 5 ta olma. Hammasini terib, yulduzga boramiz.\n\nA\nKo‘p blok qo‘yamiz\n✕ sig‘madi\nB\ngo to bilan sakraymiz\n✕ olmalar qoldi\n6, 0\nC\nBitta blok — 6 marta\n× 6\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\nDasturga 3 ta blok sig‘adi\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "800b51a7e9c0",
+  "uzun": 40670
+ },
+ "u-x-P2S-C": {
+  "id": "P2S",
+  "matn": "SAVOL\nUchta blok bilan qanday yetamiz?\n\nCoddy\nYo‘lda 5 ta olma. Hammasini terib, yulduzga boramiz.\n\nA\nKo‘p blok qo‘yamiz\n✕ sig‘madi\nB\ngo to bilan sakraymiz\n✕ olmalar qoldi\n6, 0\nC\nBitta blok — 6 marta\n✓ 2 ta blok\n× 6\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\nDasturga 3 ta blok sig‘adi\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "c7d5a5bf4239",
+  "uzun": 41922
+ },
+ "u-x-P3-1": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nTakrorlash nima?\n\nCoddy\nTakrorlash — bir ishni ko‘p marta qilish.\n\nOlti marta bir xil blok\n6\nrepeat 6 — olti marta takrorla\n6 ta blok o‘rniga 2 ta\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "c6d09582b6f7",
+  "uzun": 36526
+ },
+ "u-x-P3-2": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nTakrorlash nima?\n\nCoddy\nTakrorlash — bir ishni ko‘p marta qilish.\n\nOlti marta bir xil blok\n6\nrepeat 6 — olti marta takrorla\n6 ta blok o‘rniga 2 ta\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "3d6a33156b96",
+  "uzun": 36529
+ },
+ "u-x-P3-3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nTakrorlash nima?\n\nCoddy\nTakrorlash — bir ishni ko‘p marta qilish.\n\nOlti marta bir xil blok\n6\nrepeat 6 — olti marta takrorla\n6 ta blok o‘rniga 2 ta\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "8214f7de3fb0",
+  "uzun": 36538
+ },
+ "u-x-P6-tanlandi": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nrepeat — takrorla\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nrepeat\n2\n✕\n1 / 2 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nEndi bosgan bloklaringiz repeat ichiga tushadi. Tashqariga — repeat ni yana bosing\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "p:repeat2"
+  ],
+  "html": "1eb4b1eb16a9",
+  "uzun": 37343
+ },
+ "u-x-P6-ichida": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nrepeat — takrorla\nTakrorlash\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nrepeat\n2\nmove up\n✕\n2 / 2 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "p:repeat2move up",
+   "u:move up"
+  ],
+  "html": "2a9428deb464",
+  "uzun": 38814
+ },
+ "u-x-P6-yetdi": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nrepeat — takrorla\nTakrorlash\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nrepeat\n3\nmove up\n3\n2 / 2 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 3)\n‹ Orqaga\nYetib bordi!\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "p:repeat3move up",
+   "u:move up"
+  ],
+  "html": "062aae68df18",
+  "uzun": 39856
+ },
+ "u-x-P7-rasm": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nKvadrat — to‘rt tomon\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nrepeat\n3\nmove right\nrepeat\n3\nmove up\nrepeat\n3\nmove left\nrepeat\n3\nmove down\n3\n3\n3\n3\n8 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 1)\n‹ Orqaga\nRasm tayyor!\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "p:repeat3move rightrepeat3move uprepeat3move leftrepeat3move down",
+   "r:move right",
+   "p:repeat3move uprepeat3move leftrepeat3move down",
+   "u:move up",
+   "p:repeat3move leftrepeat3move down",
+   "l:move left",
+   "p:repeat3move down",
+   "d:move down"
+  ],
+  "html": "ad6000e6ca27",
+  "uzun": 37839
+ },
+ "u-x-P8-juft": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nIchida ikki blok\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nmove right\nmove up\nmove right\nmove up\nmove right\nmove up\n6 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 0)\n‹ Orqaga\nBir xil juftlik — 3 marta\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "r:move rightmove upmove rightmove upmove rightmove up",
+   "u:move upmove rightmove upmove rightmove up",
+   "r:move rightmove upmove rightmove up",
+   "u:move upmove rightmove up",
+   "r:move rightmove up",
+   "u:move up"
+  ],
+  "html": "bf6d3ef5efc9",
+  "uzun": 35854
+ },
+ "u-x-P8-qisqa": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nIchida ikki blok\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nrepeat\n3\nmove right\nmove up\n3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 0)\n‹ Orqaga\nRasm o‘sha — bloklar kam\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "p:repeat3move rightmove up",
+   "r:move rightmove up",
+   "u:move up"
+  ],
+  "html": "6b2050ca65a5",
+  "uzun": 35853
+ },
+ "u-x-P8-rasm": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nIchida ikki blok\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nrepeat\n3\nmove right\nmove up\n3\n3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 3)\n‹ Orqaga\nRasm tayyor!\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "p:repeat3move rightmove up",
+   "r:move rightmove up",
+   "u:move up"
+  ],
+  "html": "6c398ea1f008",
+  "uzun": 37174
+ },
+ "u-x-yakunlandi": {
+  "id": "P14",
+  "matn": "SINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nrasm chizdi\n0\nta repeat qo‘ydi\n0\nta blok tejadi\nDars tugadi!\nKo‘rishguncha — keyingi darsda amaliyot bilan!\n‹ Orqaga\nDarsni yakunlash\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "7b6ef11f4ddd",
+  "uzun": 40356
+ },
+ "bq-01-0-B0": {
+  "id": "B0",
+  "matn": "5-DARS · TAKRORLASH\nSalom, Aziz!\nTayyor bo‘lsangiz — tugmani bosing\nTayyorman",
+  "bloklar": [],
+  "html": "01ef8fde6a98",
+  "uzun": 24479
+ },
+ "bq-01-1-BK": {
+  "id": "BK",
+  "matn": "5-DARS · TAKRORLASH\n↑\nUstoz ekraniga qarang\nDars hozir boshlanadi",
+  "bloklar": [],
+  "html": "21b508538ca3",
+  "uzun": 16414
+ },
+ "bq-02-0-P2N": {
+  "id": "P2N",
+  "matn": "5-DARS · TAKRORLASH\nSAVOL\nUchta blok bilan qanday yetamiz?\n\nCoddy\nQaysi yo‘l bilan yulduzga yetamiz?\n\nA\nKo‘p blok qo‘yamiz\nB\ngo to bilan sakraymiz\n6, 0\nC\nBitta blok — 6 marta\n× 6\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDasturga 3 ta blok sig‘adi\nBirini tanlang",
+  "bloklar": [],
+  "html": "cf97c6670af4",
+  "uzun": 38367
+ },
+ "bq-02-1-BK": {
+  "id": "BK",
+  "matn": "5-DARS · TAKRORLASH\n↑\nUstoz ekraniga qarang\nJavobingiz qabul qilindi",
+  "bloklar": [],
+  "html": "9ce1d6934247",
+  "uzun": 16417
+ },
+ "bq-03-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz yo‘llarni sinayapti — kuzating",
+  "bloklar": [],
+  "html": "e997477c6398",
+  "uzun": 16429
+ },
+ "bq-04-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstozni tinglang",
+  "bloklar": [],
+  "html": "d0cf7a992384",
+  "uzun": 16409
+ },
+ "bq-05-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nYangi so‘z: takrorlash",
+  "bloklar": [],
+  "html": "0186ed28bc61",
+  "uzun": 16415
+ },
+ "bq-06-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nBugun: uchta bekat",
+  "bloklar": [],
+  "html": "73563bd12441",
+  "uzun": 16411
+ },
+ "bq-07-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz repeat blokini ko‘rsatyapti — kuzating",
+  "bloklar": [],
+  "html": "2b3800a28d0c",
+  "uzun": 16437
+ },
+ "bq-08-0-B1A": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nO‘ngga\nOlmalarni terib, yulduzga boring.\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nBlokni shu yerga ulang\n0 / 2 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nKataklarni sanang — son repeat ga\nIshga tushir",
+  "bloklar": [],
+  "html": "902d5fb10e1d",
+  "uzun": 24404
+ },
+ "bq-08-1-B1B": {
+  "id": "B1B",
+  "matn": "MASHQ · 2-POG‘ONA\nPastga\nYulduz pastda.\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nBlokni shu yerga ulang\n0 / 2 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 4)\nMaslahat\nKataklarni sanang — son repeat ga\nIshga tushir",
+  "bloklar": [],
+  "html": "3af13f89114c",
+  "uzun": 23819
+ },
+ "bq-08-2-B1C": {
+  "id": "B1C",
+  "matn": "MASHQ · 3-POG‘ONA\nBurchak\nAvval olma, keyin yulduz.\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nBlokni shu yerga ulang\n0 / 4 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nKataklarni sanang — son repeat ga\nIshga tushir",
+  "bloklar": [],
+  "html": "50b781f6a43f",
+  "uzun": 22696
+ },
+ "bq-08-3-B1Y": {
+  "id": "B1Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nIlon yo‘li\nIkki olma, keyin yulduz.\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nBlokni shu yerga ulang\n0 / 6 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nKataklarni sanang — son repeat ga\nIshga tushir",
+  "bloklar": [],
+  "html": "bc458a69e482",
+  "uzun": 23268
+ },
+ "bq-08-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "e96d06b0987f",
+  "uzun": 16424
+ },
+ "bq-09-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\n2-bekat: kvadrat",
+  "bloklar": [],
+  "html": "f9664fff3f26",
+  "uzun": 16409
+ },
+ "bq-10-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz kvadrat chizyapti — kuzating",
+  "bloklar": [],
+  "html": "23b801319fb6",
+  "uzun": 16427
+ },
+ "bq-11-0-B2A": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nKvadrat\nHar tomoni 3 ta katak.\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nBlokni shu yerga ulang\n0 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nKulrang kataklar ustidan yuring\nIshga tushir",
+  "bloklar": [],
+  "html": "a35d6bf6743d",
+  "uzun": 21982
+ },
+ "bq-11-1-B2B": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nBoshqa burchak\nQahramon tepada.\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nBlokni shu yerga ulang\n0 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 4)\nMaslahat\nKulrang kataklar ustidan yuring\nIshga tushir",
+  "bloklar": [],
+  "html": "ba4f54faa389",
+  "uzun": 21984
+ },
+ "bq-11-2-B2C": {
+  "id": "B2C",
+  "matn": "MASHQ · 3-POG‘ONA\nMinora\nO‘ngga 3, tepaga 4.\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nBlokni shu yerga ulang\n0 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nKulrang kataklar ustidan yuring\nIshga tushir",
+  "bloklar": [],
+  "html": "8b7ec6eb36a3",
+  "uzun": 21994
+ },
+ "bq-11-3-B2Y": {
+  "id": "B2Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nDeraza\nIkki oynali deraza.\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nBlokni shu yerga ulang\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nMaslahat\nKulrang kataklar ustidan yuring\nIshga tushir",
+  "bloklar": [],
+  "html": "2a89ff6a9efd",
+  "uzun": 21991
+ },
+ "bq-11-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "e96d06b0987f",
+  "uzun": 16424
+ },
+ "bq-12-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nXulosa: takrorlash",
+  "bloklar": [],
+  "html": "f3f8c46f0e18",
+  "uzun": 16411
+ },
+ "bq-13-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\n3-bekat: zinapoya",
+  "bloklar": [],
+  "html": "d94915d20fae",
+  "uzun": 16410
+ },
+ "bq-14-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz dasturni qisqartiryapti — kuzating",
+  "bloklar": [],
+  "html": "b1cb0c4adecf",
+  "uzun": 16433
+ },
+ "bq-15-0-B3A": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nZinapoya\n3 ta blok bilan chizing. Uzun dastur: ↓ → ↓ → ↓ → ↓ →\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nBlokni shu yerga ulang\n0 / 3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 4)\nMaslahat\nUzun dasturda takrorlanadigan bo‘lakni toping\nIshga tushir",
+  "bloklar": [],
+  "html": "6d6a0b583a63",
+  "uzun": 22005
+ },
+ "bq-15-1-B3B": {
+  "id": "B3B",
+  "matn": "MASHQ · 2-POG‘ONA\nToj\n5 ta blok bilan chizing. Uzun dastur: ↑ → ↓ → ↑ → ↓ →\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nBlokni shu yerga ulang\n0 / 5 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 0)\nMaslahat\nUzun dasturda takrorlanadigan bo‘lakni toping\nIshga tushir",
+  "bloklar": [],
+  "html": "306a766653e3",
+  "uzun": 22000
+ },
+ "bq-15-2-B3C": {
+  "id": "B3C",
+  "matn": "MASHQ · 3-POG‘ONA\nTog‘\n6 ta blok bilan chizing. Uzun dastur: → ↑ → ↑ → ↓ → ↓\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nBlokni shu yerga ulang\n0 / 6 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\nMaslahat\nUzun dasturda takrorlanadigan bo‘lakni toping\nIshga tushir",
+  "bloklar": [],
+  "html": "2a277d1a5556",
+  "uzun": 22001
+ },
+ "bq-15-3-B3Y": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z rasmingiz\nTakrorlash bilan o‘z rasmingizni chizing.\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nBlokni shu yerga ulang\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nUzun dasturda takrorlanadigan bo‘lakni toping\nIshga tushir",
+  "bloklar": [],
+  "html": "d7c809f253f4",
+  "uzun": 21929
+ },
+ "bq-15-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "e96d06b0987f",
+  "uzun": 16424
+ },
+ "bq-17-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nSiz rasm chizdingiz!\n\nBulut\nBir blokni ko‘p marta bajardingiz va rasm chizdingiz.\n\nSiz bugun\n0\nrasm chizdi\n0\nta repeat qo‘ydi\n0\nta blok tejadi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBulut\nKeyingi darsda amaliyotda ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "2ef4341750f6",
+  "uzun": 21052
+ },
+ "bq-18-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nSiz rasm chizdingiz!\n\nBulut\nBir blokni ko‘p marta bajardingiz va rasm chizdingiz.\n\nSiz bugun\n0\nrasm chizdi\n0\nta repeat qo‘ydi\n0\nta blok tejadi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBulut\nKeyingi darsda amaliyotda ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "2ef4341750f6",
+  "uzun": 21052
+ },
+ "bx-B1A-joyqolmadi": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nO‘ngga\nOlmalarni terib, yulduzga boring.\nTakrorlash\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove right\n2 / 2 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nJoy qolmadi!\nMaslahat\nDasturga 2 ta blok sig‘adi. Takrorlanadigan bloklarni repeat ichiga qo‘ying\nIshga tushir",
+  "bloklar": [
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "15688d385791",
+  "uzun": 31406
+ },
+ "bx-B1A-ichibosh": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nO‘ngga\nOlmalarni terib, yulduzga boring.\nTakrorlash\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nrepeat\n5\n1 / 2 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nIchi bo‘sh-ku…\nMaslahat\nrepeat ichiga blok qo‘ying\nIshga tushir",
+  "bloklar": [
+   "p:repeat5"
+  ],
+  "html": "483aae5a68b8",
+  "uzun": 31217
+ },
+ "bx-B1A-otib": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nO‘ngga\nOlmalarni terib, yulduzga boring.\nTakrorlash\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nrepeat\n6\nmove right\n6\n2 / 2 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\nKo‘payib ketdi!\nMaslahat\nQahramon yulduzdan o‘tib ketdi — repeat sonini kamaytiring\nIshga tushir",
+  "bloklar": [
+   "p:repeat6move right",
+   "r:move right"
+  ],
+  "html": "802eb2d2fefd",
+  "uzun": 31898
+ },
+ "bx-B1A-yetdi": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nO‘ngga\nOlmalarni terib, yulduzga boring.\nTakrorlash\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nrepeat\n5\nmove right\n5\n2 / 2 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nMaslahat\nYetib bordi!\nIshga tushir",
+  "bloklar": [
+   "p:repeat5move right",
+   "r:move right"
+  ],
+  "html": "63963fa418eb",
+  "uzun": 27236
+ },
+ "bx-B2A-kam": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nKvadrat\nHar tomoni 3 ta katak.\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nrepeat\n3\nmove right\nrepeat\n3\nmove up\nrepeat\n3\nmove left\nrepeat\n2\nmove down\n3\n3\n3\n2\n8 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 1)\nMaslahat\nRasm tayyor!\nIshga tushir",
+  "bloklar": [
+   "p:repeat3move rightrepeat3move uprepeat3move leftrepeat2move down",
+   "r:move right",
+   "p:repeat3move uprepeat3move leftrepeat2move down",
+   "u:move up",
+   "p:repeat3move leftrepeat2move down",
+   "l:move left",
+   "p:repeat2move down",
+   "d:move down"
+  ],
+  "html": "d655b3b12944",
+  "uzun": 23857
+ },
+ "bx-B2A-tayyor": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nKvadrat\nHar tomoni 3 ta katak.\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nrepeat\n3\nmove right\nrepeat\n3\nmove up\nrepeat\n3\nmove left\nrepeat\n3\nmove down\n3\n3\n3\n3\n8 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nRasm tayyor!\nIshga tushir",
+  "bloklar": [
+   "p:repeat3move rightrepeat3move uprepeat3move leftrepeat3move down",
+   "r:move right",
+   "p:repeat3move uprepeat3move leftrepeat3move down",
+   "u:move up",
+   "p:repeat3move leftrepeat3move down",
+   "l:move left",
+   "p:repeat3move down",
+   "d:move down"
+  ],
+  "html": "a65ee5142c9e",
+  "uzun": 23918
+ },
+ "bx-B3A-uzun": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nZinapoya\n3 ta blok bilan chizing. Uzun dastur: ↓ → ↓ → ↓ → ↓ →\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nBlokni shu yerga ulang\n0 / 3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 4)\nMaslahat\nUzun dasturda takrorlanadigan bo‘lakni toping\nIshga tushir",
+  "bloklar": [],
+  "html": "6d6a0b583a63",
+  "uzun": 22005
+ },
+ "bx-B3A-tayyor": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nZinapoya\n3 ta blok bilan chizing. Uzun dastur: ↓ → ↓ → ↓ → ↓ →\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nrepeat\n4\nmove down\nmove right\n4\n3 / 3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nMaslahat\nQisqartirdingiz!\nIshga tushir",
+  "bloklar": [
+   "p:repeat4move downmove right",
+   "d:move downmove right",
+   "r:move right"
+  ],
+  "html": "674dcf1420ef",
+  "uzun": 23432
+ },
+ "bx-B3Y-kamichki": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z rasmingiz\nTakrorlash bilan o‘z rasmingizni chizing.\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nrepeat\n3\nmove right\n3\n2 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nOz qoldi!\nMaslahat\nrepeat ichiga kamida ikkita blok qo‘ying\nIshga tushir",
+  "bloklar": [
+   "p:repeat3move right",
+   "r:move right"
+  ],
+  "html": "8ba1c4e21730",
+  "uzun": 27747
+ },
+ "bx-B3Y-tayyor": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z rasmingiz\nTakrorlash bilan o‘z rasmingizni chizing.\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nrepeat\n2\nmove right\nmove right\nmove up\nrepeat\n2\nmove down\n2\n2\n6 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 0)\nMaslahat\nRasmingiz tayyor!\nIshga tushir",
+  "bloklar": [
+   "p:repeat2move rightmove rightmove uprepeat2move down",
+   "r:move rightmove rightmove up",
+   "r:move rightmove up",
+   "u:move up",
+   "p:repeat2move down",
+   "d:move down"
+  ],
+  "html": "32ca604c7d90",
+  "uzun": 23434
+ },
+ "bx-B5-natija": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nSiz rasm chizdingiz!\n\nBulut\nBir blokni ko‘p marta bajardingiz va rasm chizdingiz.\n\nSiz bugun\n3\nrasm chizdi\n8\nta repeat qo‘ydi\n5\nta blok tejadi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 0)\nBulut\nKeyingi darsda amaliyotda ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "c86c898543e5",
+  "uzun": 21698
+ },
+ "bx-P2N-tanladi": {
+  "id": "P2N",
+  "matn": "5-DARS · TAKRORLASH\nSAVOL\nUchta blok bilan qanday yetamiz?\n\nCoddy\nQaysi yo‘l bilan yulduzga yetamiz?\n\nA\nKo‘p blok qo‘yamiz\nB\ngo to bilan sakraymiz\n6, 0\nC\nBitta blok — 6 marta\n× 6\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDasturga 3 ta blok sig‘adi\nBirini tanlang",
+  "bloklar": [],
+  "html": "2d072a298bce",
+  "uzun": 38376
+ },
+ "bx-BQ": {
+  "id": "BQ",
+  "matn": "5-DARS · TAKRORLASH\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang",
+  "bloklar": [],
+  "html": "9a8752c5c1b8",
+  "uzun": 52605
+ },
+ "bx-BQ-tanladi": {
+  "id": "BK",
+  "matn": "5-DARS · TAKRORLASH\n↑\nUstoz ekraniga qarang\nJavobingiz qabul qilindi",
+  "bloklar": [],
+  "html": "bf416b2de3fa",
+  "uzun": 15156
+ },
+ "sq-01-0-B0": {
+  "id": "B0",
+  "matn": "5-DARS · TAKRORLASH\nSalom, Aziz!\nTayyor bo‘lsangiz — tugmani bosing\nTayyorman",
+  "bloklar": [],
+  "html": "01ef8fde6a98",
+  "uzun": 24479
+ },
+ "sq-01-1-P1": {
+  "id": "P1",
+  "matn": "5-DARS · TAKRORLASH\nBugun bir blok bilan ko‘p yuramiz!\n\nCoddy\nSalom! Bugun bitta blokni ko‘p marta bajaraman.\n\nO‘TGAN DARSDA\nwhen\n→\nkey pressed\nHodisa\nBiror narsa sodir bo‘lishi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "5dca7e211f5d",
+  "uzun": 33317
+ },
+ "sq-02-0-P2N": {
+  "id": "P2N",
+  "matn": "5-DARS · TAKRORLASH\nSAVOL\nUchta blok bilan qanday yetamiz?\n\nCoddy\nQaysi yo‘l bilan yulduzga yetamiz?\n\nA\nKo‘p blok qo‘yamiz\nB\ngo to bilan sakraymiz\n6, 0\nC\nBitta blok — 6 marta\n× 6\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDasturga 3 ta blok sig‘adi\nBirini tanlang",
+  "bloklar": [],
+  "html": "cf97c6670af4",
+  "uzun": 38367
+ },
+ "sq-03-0-P2S": {
+  "id": "P2S",
+  "matn": "SAVOL\nUchta blok bilan qanday yetamiz?\n\nCoddy\nYo‘lda 5 ta olma. Hammasini terib, yulduzga boramiz.\n\nA\nKo‘p blok qo‘yamiz\n▶ Sinab ko‘rish\nB\ngo to bilan sakraymiz\n▶ Sinab ko‘rish\n6, 0\nC\nBitta blok — 6 marta\n▶ Sinab ko‘rish\n× 6\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDasturga 3 ta blok sig‘adi\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "724129073f54",
+  "uzun": 39447
+ },
+ "sq-04-0-P2C": {
+  "id": "P2C",
+  "matn": "JAVOB\nBir blok — ko‘p marta\n\nCoddy\nBitta move right — olti qadam.\n\nA\nKo‘p blok qo‘yamiz\n✕ sig‘madi\nB\ngo to bilan sakraymiz\n✕ olmalar qoldi\n6, 0\nC\nBitta blok — 6 marta\n✓ 2 ta blok\n× 6\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "9341d5e3eb9e",
+  "uzun": 36862
+ },
+ "sq-05-0-P3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nTakrorlash nima?\n\nCoddy\nTakrorlash — bir ishni ko‘p marta qilish.\n\nOlti marta bir xil blok\n6\nrepeat 6 — olti marta takrorla\n6 ta blok o‘rniga 2 ta\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "cecafccb45b1",
+  "uzun": 35290
+ },
+ "sq-06-0-P4": {
+  "id": "P4",
+  "matn": "REJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Birinchisidan boshlaymiz.\n\nDars oxirida · o‘z rasmingiz\nDasturini o‘qib berasiz\n1\nUzun yo‘l\n2\nKvadrat\n3\nZinapoya\n‹ Orqaga\nBoshladik ›",
+  "bloklar": [],
+  "html": "dc5e8a2a12b6",
+  "uzun": 40064
+ },
+ "sq-07-0-P6": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nrepeat — takrorla\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nrepeat\n3\nmove up\n2 / 2 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›",
+  "bloklar": [
+   "p:repeat3move up",
+   "u:move up"
+  ],
+  "html": "91a18897f6c7",
+  "uzun": 35898
+ },
+ "sq-08-0-B1A": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nO‘ngga\nOlmalarni terib, yulduzga boring.\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nBlokni shu yerga ulang\n0 / 2 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nKataklarni sanang — son repeat ga\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "26a1d104a54c",
+  "uzun": 24451
+ },
+ "sq-08-1-B1B": {
+  "id": "B1B",
+  "matn": "MASHQ · 2-POG‘ONA\nPastga\nYulduz pastda.\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nBlokni shu yerga ulang\n0 / 2 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 4)\nMaslahat\nKataklarni sanang — son repeat ga\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "da5f9e98569f",
+  "uzun": 23866
+ },
+ "sq-08-2-B1C": {
+  "id": "B1C",
+  "matn": "MASHQ · 3-POG‘ONA\nBurchak\nAvval olma, keyin yulduz.\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nBlokni shu yerga ulang\n0 / 4 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nKataklarni sanang — son repeat ga\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "8c5913be3d4a",
+  "uzun": 22743
+ },
+ "sq-08-3-B1Y": {
+  "id": "B1Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nIlon yo‘li\nIkki olma, keyin yulduz.\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nBlokni shu yerga ulang\n0 / 6 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nKataklarni sanang — son repeat ga\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "065450690b28",
+  "uzun": 23315
+ },
+ "sq-09-0-P4B": {
+  "id": "P4B",
+  "matn": "REJA · 2-BEKAT\n2 · Kvadrat\n\nCoddy\nEndi chizamiz: oltin izim rasm bo‘ladi.\n\nDars oxirida · o‘z rasmingiz\nDasturini o‘qib berasiz\n✓\nUzun yo‘l\n2\nKvadrat\n3\nZinapoya\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "089442a2f823",
+  "uzun": 39911
+ },
+ "sq-10-0-P7": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nKvadrat — to‘rt tomon\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nrepeat\n3\nmove right\nrepeat\n3\nmove up\n4 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 1)\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›",
+  "bloklar": [
+   "p:repeat3move rightrepeat3move up",
+   "r:move right",
+   "p:repeat3move up",
+   "u:move up"
+  ],
+  "html": "78efdac8d47b",
+  "uzun": 34630
+ },
+ "sq-11-0-B2A": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nKvadrat\nHar tomoni 3 ta katak.\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nBlokni shu yerga ulang\n0 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nKulrang kataklar ustidan yuring\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "d0c83402a29a",
+  "uzun": 22029
+ },
+ "sq-11-1-B2B": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nBoshqa burchak\nQahramon tepada.\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nBlokni shu yerga ulang\n0 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 4)\nMaslahat\nKulrang kataklar ustidan yuring\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "92e063fd24fa",
+  "uzun": 22031
+ },
+ "sq-11-2-B2C": {
+  "id": "B2C",
+  "matn": "MASHQ · 3-POG‘ONA\nMinora\nO‘ngga 3, tepaga 4.\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nBlokni shu yerga ulang\n0 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nKulrang kataklar ustidan yuring\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "5063a70ef8d2",
+  "uzun": 22041
+ },
+ "sq-11-3-B2Y": {
+  "id": "B2Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nDeraza\nIkki oynali deraza.\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nBlokni shu yerga ulang\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nMaslahat\nKulrang kataklar ustidan yuring\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "875cbb015c93",
+  "uzun": 22038
+ },
+ "sq-12-0-P9": {
+  "id": "P9",
+  "matn": "XULOSA\nTakrorlash\n\nCoddy\nBir marta qo‘ydim — ko‘p marta bajardim.\n\nTakrorlash\nBir ishni ko‘p marta bajarish\nrepeat\n3\nmove right\nrepeat 3\nIchidagini 3 marta\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 1)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "b0dc0facc07a",
+  "uzun": 35334
+ },
+ "sq-13-0-P4C": {
+  "id": "P4C",
+  "matn": "REJA · 3-BEKAT\n3 · Zinapoya\n\nCoddy\nOxirgi bekat: uzun dasturni qisqartiramiz.\n\nDars oxirida · o‘z rasmingiz\nDasturini o‘qib berasiz\n✓\nUzun yo‘l\n✓\nKvadrat\n3\nZinapoya\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "283bcf49c3c7",
+  "uzun": 39894
+ },
+ "sq-14-0-P8": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nIchida ikki blok\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nmove right\nmove up\nmove right\nmove up\nmove right\nmove up\n6 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 0)\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›",
+  "bloklar": [
+   "r:move rightmove upmove rightmove upmove rightmove up",
+   "u:move upmove rightmove upmove rightmove up",
+   "r:move rightmove upmove rightmove up",
+   "u:move upmove rightmove up",
+   "r:move rightmove up",
+   "u:move up"
+  ],
+  "html": "3c8e45d00016",
+  "uzun": 34596
+ },
+ "sq-15-0-B3A": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nZinapoya\n3 ta blok bilan chizing. Uzun dastur: ↓ → ↓ → ↓ → ↓ →\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nBlokni shu yerga ulang\n0 / 3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 4)\nMaslahat\nUzun dasturda takrorlanadigan bo‘lakni toping\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "5979331b9c06",
+  "uzun": 22052
+ },
+ "sq-15-1-B3B": {
+  "id": "B3B",
+  "matn": "MASHQ · 2-POG‘ONA\nToj\n5 ta blok bilan chizing. Uzun dastur: ↑ → ↓ → ↑ → ↓ →\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nBlokni shu yerga ulang\n0 / 5 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 0)\nMaslahat\nUzun dasturda takrorlanadigan bo‘lakni toping\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "30f2ad6c72cb",
+  "uzun": 22047
+ },
+ "sq-15-2-B3C": {
+  "id": "B3C",
+  "matn": "MASHQ · 3-POG‘ONA\nTog‘\n6 ta blok bilan chizing. Uzun dastur: → ↑ → ↑ → ↓ → ↓\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nBlokni shu yerga ulang\n0 / 6 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\nMaslahat\nUzun dasturda takrorlanadigan bo‘lakni toping\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "35aa2a7a3a69",
+  "uzun": 22048
+ },
+ "sq-15-3-B3Y": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z rasmingiz\nTakrorlash bilan o‘z rasmingizni chizing.\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nBlokni shu yerga ulang\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nUzun dasturda takrorlanadigan bo‘lakni toping\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "d4043e588c7a",
+  "uzun": 21976
+ },
+ "sq-17-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nSiz rasm chizdingiz!\n\nBulut\nBir blokni ko‘p marta bajardingiz va rasm chizdingiz.\n\nSiz bugun\n0\nrasm chizdi\n0\nta repeat qo‘ydi\n0\nta blok tejadi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBulut\nKeyingi darsda amaliyotda ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "2ef4341750f6",
+  "uzun": 21052
+ },
+ "sx-P2S-A": {
+  "id": "P2S",
+  "matn": "SAVOL\nUchta blok bilan qanday yetamiz?\n\nCoddy\nYo‘lda 5 ta olma. Hammasini terib, yulduzga boramiz.\n\nA\nKo‘p blok qo‘yamiz\n✕ sig‘madi\nB\ngo to bilan sakraymiz\n▶ Sinab ko‘rish\n6, 0\nC\nBitta blok — 6 marta\n▶ Sinab ko‘rish\n× 6\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nDasturga 3 ta blok sig‘adi\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "eb3ae146a45e",
+  "uzun": 39714
+ },
+ "sx-P2S-B": {
+  "id": "P2S",
+  "matn": "SAVOL\nUchta blok bilan qanday yetamiz?\n\nCoddy\nYo‘lda 5 ta olma. Hammasini terib, yulduzga boramiz.\n\nA\nKo‘p blok qo‘yamiz\n✕ sig‘madi\nB\ngo to bilan sakraymiz\n✕ olmalar qoldi\n6, 0\nC\nBitta blok — 6 marta\n▶ Sinab ko‘rish\n× 6\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\nDasturga 3 ta blok sig‘adi\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "6abf9e260809",
+  "uzun": 39614
+ },
+ "sx-P2S-C": {
+  "id": "P2S",
+  "matn": "SAVOL\nUchta blok bilan qanday yetamiz?\n\nCoddy\nYo‘lda 5 ta olma. Hammasini terib, yulduzga boramiz.\n\nA\nKo‘p blok qo‘yamiz\n✕ sig‘madi\nB\ngo to bilan sakraymiz\n✕ olmalar qoldi\n6, 0\nC\nBitta blok — 6 marta\n✓ 2 ta blok\n× 6\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\nDasturga 3 ta blok sig‘adi\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "c632a644de77",
+  "uzun": 40866
+ },
+ "sx-P3-3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nTakrorlash nima?\n\nCoddy\nTakrorlash — bir ishni ko‘p marta qilish.\n\nOlti marta bir xil blok\n6\nrepeat 6 — olti marta takrorla\n6 ta blok o‘rniga 2 ta\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "8ae2dc7a920e",
+  "uzun": 35305
+ },
+ "y-01": {
+  "id": "P1",
+  "matn": "USTOZ · PROYEKTOR\n5-DARS · TAKRORLASH\nBugun bir blok bilan ko‘p yuramiz!\n\nCoddy\nSalom! Bugun bitta blokni ko‘p marta bajaraman.\n\nO‘TGAN DARSDA\nwhen\n→\nkey pressed\nHodisa\nBiror narsa sodir bo‘lishi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKirdi: 1\nKeyingi ›\nO‘QUVCHI · NOUTBUK\n5-DARS · TAKRORLASH\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "6295691e8035",
+  "uzun": 87307
+ },
+ "y-02": {
+  "id": "P2",
+  "matn": "USTOZ · PROYEKTOR\n5-DARS · TAKRORLASH\nSAVOL\nUchta blok bilan qanday yetamiz?\n\nCoddy\nYo‘lda 5 ta olma. Hammasini terib, yulduzga boramiz.\n\nA\nKo‘p blok qo‘yamiz\nB\ngo to bilan sakraymiz\n6, 0\nC\nBitta blok — 6 marta\n× 6\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nDasturga 3 ta blok sig‘adi\n‹ Orqaga\nJavob berdi: 0 / 1\nSinab ko‘ramiz ›\nO‘QUVCHI · NOUTBUK\n5-DARS · TAKRORLASH\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "44031df4ed0f",
+  "uzun": 93262
+ },
+ "y-03": {
+  "id": "P2S",
+  "matn": "USTOZ · PROYEKTOR\nSAVOL\nUchta blok bilan qanday yetamiz?\n\nCoddy\nYo‘lda 5 ta olma. Hammasini terib, yulduzga boramiz.\n\nA\nKo‘p blok qo‘yamiz\nB\ngo to bilan sakraymiz\n6, 0\nC\nBitta blok — 6 marta\n× 6\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\nDasturga 3 ta blok sig‘adi\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "476b4de71af7",
+  "uzun": 93348
+ },
+ "y-04": {
+  "id": "P2C",
+  "matn": "USTOZ · PROYEKTOR\nJAVOB\nBir blok — ko‘p marta\n\nCoddy\nBitta move right — olti qadam.\n\nA\nKo‘p blok qo‘yamiz\n✕ sig‘madi\nB\ngo to bilan sakraymiz\n✕ olmalar qoldi\n6, 0\nC\nBitta blok — 6 marta\n✓ 2 ta blok\n× 6\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "8ec94adec348",
+  "uzun": 90844
+ },
+ "y-05": {
+  "id": "P3",
+  "matn": "USTOZ · PROYEKTOR\nYANGI SO‘Z\nTakrorlash nima?\n\nCoddy\nTakrorlash — bir ishni ko‘p marta qilish.\n\nOlti marta bir xil blok\n6\nrepeat 6 — olti marta takrorla\n6 ta blok o‘rniga 2 ta\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "377207e7e6b2",
+  "uzun": 89272
+ },
+ "y-06": {
+  "id": "P4",
+  "matn": "USTOZ · PROYEKTOR\nREJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Birinchisidan boshlaymiz.\n\nDars oxirida · o‘z rasmingiz\nDasturini o‘qib berasiz\n1\nUzun yo‘l\n2\nKvadrat\n3\nZinapoya\n‹ Orqaga\nBoshladik ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "3863e74e7948",
+  "uzun": 94046
+ },
+ "y-07": {
+  "id": "P6",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nrepeat — takrorla\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nBlokni shu yerga ulang\n0 / 2 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "944448cd6fb6",
+  "uzun": 89889
+ },
+ "y-08": {
+  "id": "P5",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nEndi o‘zingiz!\n\nCoddy\nKataklarni sanang va sonni repeat ga qo‘ying.\n\nUch pog‘onani tugatdi\n0 / 1\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nO‘ngga\n2\n0\nPastga\n3\n0\nBurchak\n★\n0\nIlon yo‘li\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "2b0ed54b5622",
+  "uzun": 91591
+ },
+ "y-09": {
+  "id": "P4B",
+  "matn": "USTOZ · PROYEKTOR\nREJA · 2-BEKAT\n2 · Kvadrat\n\nCoddy\nEndi chizamiz: oltin izim rasm bo‘ladi.\n\nDars oxirida · o‘z rasmingiz\nDasturini o‘qib berasiz\n✓\nUzun yo‘l\n2\nKvadrat\n3\nZinapoya\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "f93e233879e5",
+  "uzun": 93893
+ },
+ "y-10": {
+  "id": "P7",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nKvadrat — to‘rt tomon\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nrepeat\n3\nmove right\nrepeat\n3\nmove up\n4 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 1)\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "p:repeat3move rightrepeat3move up",
+   "r:move right",
+   "p:repeat3move up",
+   "u:move up"
+  ],
+  "html": "2939ebd849e3",
+  "uzun": 88612
+ },
+ "y-11": {
+  "id": "P5G",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nRasm chizing!\n\nCoddy\nKulrang kataklarni oltin qiling.\n\nUch pog‘onani tugatdi\n0 / 1\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nKvadrat\n2\n0\nBoshqa burchak\n3\n0\nMinora\n★\n0\nDeraza\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "16bcd31260ed",
+  "uzun": 89551
+ },
+ "y-12": {
+  "id": "P9",
+  "matn": "USTOZ · PROYEKTOR\nXULOSA\nTakrorlash\n\nCoddy\nBir marta qo‘ydim — ko‘p marta bajardim.\n\nTakrorlash\nBir ishni ko‘p marta bajarish\nrepeat\n3\nmove right\nrepeat 3\nIchidagini 3 marta\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 1)\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "78b30fc35a0d",
+  "uzun": 89316
+ },
+ "y-13": {
+  "id": "P4C",
+  "matn": "USTOZ · PROYEKTOR\nREJA · 3-BEKAT\n3 · Zinapoya\n\nCoddy\nOxirgi bekat: uzun dasturni qisqartiramiz.\n\nDars oxirida · o‘z rasmingiz\nDasturini o‘qib berasiz\n✓\nUzun yo‘l\n✓\nKvadrat\n3\nZinapoya\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "b12440439f8f",
+  "uzun": 93876
+ },
+ "y-14": {
+  "id": "P8",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nIchida ikki blok\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nmove right\nmove up\nmove right\nmove up\nmove right\nmove up\n6 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 0)\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "r:move rightmove upmove rightmove upmove rightmove up",
+   "u:move upmove rightmove upmove rightmove up",
+   "r:move rightmove upmove rightmove up",
+   "u:move upmove rightmove up",
+   "r:move rightmove up",
+   "u:move up"
+  ],
+  "html": "88618ff13288",
+  "uzun": 88578
+ },
+ "y-15": {
+  "id": "P5B",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nQisqartiring!\n\nCoddy\nUzun dasturdan takrorlanadigan bo‘lakni toping.\n\nUch pog‘onani tugatdi\n0 / 1\n1\n0\nZinapoya\n2\n0\nToj\n3\n0\nTog‘\n★\n0\nO‘z rasmingiz\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "394ff87b16b8",
+  "uzun": 89490
+ },
+ "y-16": {
+  "id": "P11",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RSATISH\nDasturingizni o‘qib bering\nSiz o‘qiysiz — men chizaman.\nTakrorlash\nHarakat\nTakrorlash\nrepeat\n2\nDastur\nBlokni shu yerga ulang\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "ae5b36c8d21b",
+  "uzun": 88586
+ },
+ "y-17": {
+  "id": "P12",
+  "matn": "USTOZ · PROYEKTOR\nYAKUN\nSiz rasm chizdingiz!\nBUGUNGI SO‘Z\nTakrorlash\nBir ishni ko‘p marta bajarish\nKeyingi dars\n1\n2\n3\n6 · Amaliyot\n✓\nUzun yo‘l\n✓\nKvadrat\n✓\nZinapoya\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "5382f24128ad",
+  "uzun": 83102
+ },
+ "y-18": {
+  "id": "P14",
+  "matn": "USTOZ · PROYEKTOR\nSINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nrasm chizdi\n0\nta repeat qo‘ydi\n0\nta blok tejadi\n‹ Orqaga\nDarsni yakunlash\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: bir blok — ko‘p marta\n5 / 18 · Yangi so‘z: takrorlash\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: repeat bloki\n8 / 18 · Uzun yo‘l\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kvadrat\n11 / 18 · Kvadrat\n12 / 18 · Xulosa: takrorlash\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ichida ikki blok\n15 / 18 · Qisqartiramiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "0c7677883bbb",
+  "uzun": 92966
+ },
+ "varaq": {
+  "id": "",
+  "matn": "5-dars · Takrorlash — ustoz varag‘i\n\nAsosiy fikr: bir marta qo‘yamiz — ko‘p marta bajariladi; ichidagi bloklar tartib bilan takrorlanadi. Hukda, xulosada va 3-bekatda (qisqartirish) chiqadi.\n\nYo‘l: huk (uchta blok — uch sinov) → yangi so‘z «takrorlash» → reja → 1-bekat «Uzun yo‘l» → 2-bekat «Kvadrat» → 3-bekat «Zinapoya» → o‘qib berish → yakun.\n\nYangi blok: repeat — takrorla. Yangi oila — Takrorlash (yashil). Javondan repeat bossangiz, u tanlanadi (coral hoshiya) — keyin bosgan bloklaringiz uning ichiga tushadi; repeat ni yana bossangiz — tanlov bekor, keyingi bloklar tashqariga. Sonni bosib tanlashni va ichiga qo‘yishni sekin, ikki marta ko‘rsating.\n\nChegara: har pog‘onada bloklar soni cheklangan («N / M ta blok») — «Joy qolmadi!» chiqsa, bu takrorlashga ishora, xato emas. 2–3-bekatda maqsad — kulrang kataklarning hammasini oltin qilish; qaysi burchakdan boshlash ahamiyatsiz.\n\nBoshqaruv: → yoki «Keyingi» — oldinga, ← — orqaga, F — to‘liq ekran. O‘ng tepada (sichqoncha olib borilsa) — qadam ro‘yxati va «aloqa» belgisi (yashil — ulangan).\n\n1\nKirish\n\nEKRANDA\n«5-dars · Takrorlash» — «Bugun bir blok bilan ko‘p yuramiz!» Maydon, Coddy (0, 0) da; pastda «O‘tgan darsda» — hodisa.\n\nSIZ\n«O‘tgan darsda qahramonni tugmalar bilan boshqardik.» «Bugun qahramon bir blok bilan ko‘p marta yuradi.» «Noutbukda «Tayyorman» tugmasini bosing.»\n\nBOLA O‘RGANADI\nO‘tgan darsni eslaydi: hodisa.\n\n2\nSavol\n\nEKRANDA\nSavol: «Uchta blok bilan yulduzga qanday yetamiz?» Pastki qatorda 5 olma, yulduz (6, 0) da; «Dasturga 3 ta blok sig‘adi». Kartalar: A «Ko‘p blok qo‘yamiz», B «go to bilan sakraymiz», C «Bitta blok — 6 marta».\n\nSIZ\n«Qahramon olmalarni terib, yulduzga yetsin. Dasturga faqat 3 ta blok sig‘adi.» «Har kim noutbukida bitta kartani tanlasin: qanday yetamiz?»\n\nBOLA O‘RGANADI\nTaxmin qiladi — bu huk.\n\n3\nUch sinov\n\nEKRANDA\nUch sinov: A o‘zi boshlanadi — uchta move right sig‘adi, Coddy (3, 0) da, 3 olma («✕ sig‘madi»). «Keyingi» — B: go to bilan yulduz katagiga sakraydi, olmalar qoladi («✕ olmalar qoldi»). «Keyingi» — C: olti qadam, 5 olma va yulduz («✓ 2 ta blok»).\n\nSIZ\n«Ko‘p blok sig‘madi. go to esa olmalardan sakrab o‘tdi.» «Bitta blok olti marta bajarildi — dasturda atigi 2 ta blok.» C da qadamlarni sinf bilan sanang.\n\nBOLA O‘RGANADI\nBir xil blokni ko‘p yozib bo‘lmaydi — takrorlash kerak.\n\n4\nJavob: bir blok — ko‘p marta\n\nEKRANDA\nJavob: «Bir blok — ko‘p marta». A va B xira, C oltin; Coddy yulduzda.\n\nSIZ\n«Bir xil blokni qayta-qayta yozish shart emas. Bir marta qo‘yamiz va necha marta bajarilishini aytamiz.»\n\nBOLA O‘RGANADI\nBir blok ko‘p marta bajarilishi mumkin.\n\n5\nYangi so‘z: takrorlash\n\nEKRANDA\nYangi so‘z: «Takrorlash — bir ishni ko‘p marta qilish». «Keyingi» — birma-bir: oltita bir xil blok, repeat 6, «6 ta blok o‘rniga 2 ta».\n\nSIZ\n«Keyingi»ni bosasiz (uch marta). «Takrorlash — bir ishni ko‘p marta bajarish.» «repeat bloki — takrorla. Son — necha marta, ichidagi blok — nima qilish.» Misol: «10 marta o‘tirib-turing».\n\nBOLA O‘RGANADI\nYangi so‘z: takrorlash.\n\n6\nReja\n\nEKRANDA\nReja: tepalik — uzun yo‘l → kvadrat → zinapoya; cho‘qqida «o‘z rasmingiz».\n\nSIZ\n«Bugun uchta bekat: uzun yo‘l, kvadrat, zinapoya.» «Dars oxirida takrorlash bilan o‘z rasmingizni chizasiz.»\n\nBOLA O‘RGANADI\nDars qayerga borishini biladi.\n\n7\nKo‘ramiz: repeat bloki\n\nEKRANDA\nKo‘ramiz: «repeat — takrorla». Javonda yangi oila — Takrorlash (yashil), repeat 2; olma (0, 1), (0, 2), yulduz (0, 3); dastur bo‘sh, «0 / 2 ta blok».\n\nSIZ\nJavondan repeat 2 ni bosasiz — u dasturga tushadi va tanlanadi (coral hoshiya); sonni bosib «3» ni tanlaysiz; Harakatdan move up ni bosasiz — u repeat ichiga tushadi. «▶ Ishga tushir» — repeat yonida 1, 2, 3. «repeat — takrorla. Ichidagi blok shu son marta bajariladi.» «Son — necha marta. Ichidagi blok — nima qilish.» «Endi o‘zingiz.» Sekin, ikki marta ko‘rsating.\n\nBOLA O‘RGANADI\nrepeat bloki; ichiga blok qo‘yish.\n\n8\nUzun yo‘l\n\nEKRANDA\nMashq: «Endi o‘zingiz!» — zinapoya: 1 o‘ngga · 2 pastga · 3 burchak · ★ ilon yo‘li.\n\nSIZ\n«Avval kataklarni sanang — shu son repeat ga.» «Har pog‘onada bloklar soni cheklangan: takrorlashsiz sig‘maydi.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.» So‘rang: «Necha qadam kerak? repeat dagi son nechta?»\n\nBOLA O‘RGANADI\nKataklarni sanab, takrorlash bilan uzoqqa boradi.\n\n9\n2-bekat\n\nEKRANDA\nTepalik: 1-bekat ✓ — «Kvadrat».\n\nSIZ\n«Uzun yo‘lni bildik. Endi takrorlash bilan rasm chizamiz.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini ko‘radi.\n\n10\nKo‘ramiz: kvadrat\n\nEKRANDA\nKo‘ramiz: «Kvadrat — to‘rt tomon». Kulrang kvadrat (2, 1)–(5, 4); dasturda repeat 3 → va repeat 3 ↑.\n\nSIZ\nJavondan repeat (son 3), ichiga move left; yana repeat (son 3), ichiga move down — «8 / 8 ta blok». «▶ Ishga tushir» — kulrang kataklar oltin bo‘ladi, «Rasm tayyor!». «Kulrang kataklar — chiziladigan rasm. Qahramon o‘tgan katak oltin bo‘ladi.» «Kvadrat — to‘rt tomon. Har tomonga bitta repeat.» «Endi o‘zingiz.»\n\nBOLA O‘RGANADI\nKulrang kataklar — rasm; har tomonga bitta repeat.\n\n11\nKvadrat\n\nEKRANDA\nMashq: «Rasm chizing!» — zinapoya: 1 kvadrat · 2 boshqa burchak · 3 minora · ★ deraza.\n\nSIZ\n«Kulrang kataklar ustidan yuring. Har tomonga — bitta repeat.» «Tomonning kataklarini sanang — shu son repeat ga.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.» Qaysi burchakdan boshlash ahamiyatsiz.\n\nBOLA O‘RGANADI\nTakrorlash bilan rasm chizadi.\n\n12\nXulosa: takrorlash\n\nEKRANDA\nXulosa: «Takrorlash». Ikki karta: «Takrorlash — Bir ishni ko‘p marta bajarish» va «repeat 3 — Ichidagini 3 marta»; maydonda kvadratning oltin izi.\n\nSIZ\n«Takrorlash — bir ishni ko‘p marta bajarish.» «Son — necha marta. Ichidagi blok — nima qilish.» Kvadratda 12 o‘rniga 8 ta blok yetdi.\n\nBOLA O‘RGANADI\nTakrorlash — son va ichidagi blok.\n\n13\n3-bekat\n\nEKRANDA\nTepalik: 1, 2 ✓ — «Zinapoya».\n\nSIZ\n«Ikki bekatdan o‘tdik. Oxirgisi — zinapoya.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini ko‘radi.\n\n14\nKo‘ramiz: ichida ikki blok\n\nEKRANDA\nKo‘ramiz: «Ichida ikki blok». Uzun dastur → ↑ → ↑ → ↑ (6 blok), kulrang zinapoya.\n\nSIZ\n«▶ Ishga tushir» — «Rasm tayyor!». Keyin «Keyingi» — juftliklar hoshiyalanadi («Bir xil juftlik — 3 marta»), yana «Keyingi» — dastur repeat 3 [move right, move up] ga almashadi («Rasm o‘sha — bloklar kam»), yana «▶ Ishga tushir». «Qarang: move right, move up — uch marta takrorlanyapti.» «Ikkalasini repeat ichiga qo‘yamiz — ular tartib bilan, juft-juft takrorlanadi.» «Endi o‘zingiz: uzun dasturni qisqartiring.»\n\nBOLA O‘RGANADI\nIchida bir nechta blok — guruh bo‘lib takrorlanadi.\n\n15\nQisqartiramiz\n\nEKRANDA\nMashq: «Qisqartiring!» — zinapoya: 1 zinapoya · 2 toj · 3 tog‘ · ★ o‘z rasmingiz. Bola ekranida uzun dastur sarlavha ostida strelkalar bilan.\n\nSIZ\n«Uzun dasturni o‘qing: qaysi bloklar takrorlanyapti?» «Takrorlanadigan bo‘lak — repeat ichiga. Necha marta — shu son.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nUzun dasturni takrorlash bilan qisqartiradi.\n\n16\nDasturingizni o‘qib bering\n\nEKRANDA\n«Dasturingizni o‘qib bering». Dastur bo‘sh. Proyektorda ism yo‘q; bolalar noutbukida — o‘z ekrani.\n\nSIZ\nBola rasmining dasturini o‘qiydi («repeat 3: move right, move right, move up»), siz qo‘yasiz va ishga tushirasiz. «Kim rasmining dasturini o‘qib beradi? Avval repeat soni, keyin ichidagi bloklar.» «Kuzating: qanday rasm chiqadi?»\n\nBOLA O‘RGANADI\nDasturini o‘qiydi: son va ichidagi bloklar.\n\n17\nYakun\n\nEKRANDA\nYakun: «Siz rasm chizdingiz!» Bugungi so‘z — takrorlash; keyingi dars — 6 · Amaliyot.\n\nSIZ\n«Uchala bekatdan o‘tdik: uzun yo‘l, kvadrat, zinapoya.» «Bugungi so‘z — takrorlash: bir ishni ko‘p marta bajarish.» «Keyingi darsda o‘rganganlarimizni o‘zingiz ishlatasiz — amaliyot.»\n\nBOLA O‘RGANADI\nBugungi so‘zni eslaydi.\n\n18\nSinfimiz bugun\n\nEKRANDA\nSinfimiz bugun: nechta rasm chizdi, nechta repeat qo‘ydi, nechta blok tejadi (haqiqiy son, ismsiz).\n\nSIZ\n«Hammangiz zo‘r ishladingiz!» Raqamlarni o‘qing. «Kompyuter bir ishni ming marta ham charchamay takrorlaydi.» «Darsni yakunlash»ni bossangiz — hammada «Dars tugadi».\n\nBOLA O‘RGANADI\nJamoa bo‘lib nimaga erishganini ko‘radi.",
+  "bloklar": [],
+  "html": "c2adff1edc19",
+  "uzun": 9563
+ },
+ "eshik": {
+  "id": "",
+  "matn": "5-dars · Takrorlash\n\nQaysi oynani ochamiz?\n\nO‘quvchi oynasi\nUstoz oynasi (proyektor)\nO‘quvchi — o‘zi (ustozsiz)\nIkkalasi yonma-yon (ko‘rik)\nUstoz varag‘i",
+  "bloklar": [],
+  "html": "8c1ae05102a6",
+  "uzun": 765
+ },
+ "kirish-ismsiz": {
+  "id": "",
+  "matn": "Darsga kirish\n\nIsmingizni yozing\n\nKirish",
+  "bloklar": [],
+  "html": "bb43a0750caa",
+  "uzun": 213
+ }
+}

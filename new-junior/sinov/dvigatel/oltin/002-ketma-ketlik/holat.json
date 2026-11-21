@@ -1,0 +1,1321 @@
+{
+ "u-01-P1": {
+  "id": "P1",
+  "matn": "2-DARS · LABIRINT\nBugun labirintdan chiqamiz!\n\nCoddy\nSalom! Bugun meni labirintdan olib chiqasiz.\n\nO‘TGAN DARSDA\nmove right\nBlok\nBitta buyruq\nmove right\nmove right\nmove right\nDastur\nKetma-ket buyruqlar\n‹ Orqaga\nKirdi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a7a05238b592",
+  "uzun": 35152
+ },
+ "u-02-P2": {
+  "id": "P2",
+  "matn": "2-DARS · LABIRINT\nSAVOL\nCoddy’ni labirintdan qanday chiqaramiz?\n\nCoddy\nUchala dasturda bloklar bir xil. Qaysi biri ishlaydi?\n\nA\nO‘ngga 4, tepaga 2\nB\nTepaga 2, o‘ngga 4\nC\nO‘ngga 2, tepaga 2, o‘ngga 2\n‹ Orqaga\nJavob berdi: 0 / 0\nSinab ko‘ramiz ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "e9b2346dc673",
+  "uzun": 39133
+ },
+ "u-03-P2S": {
+  "id": "P2S",
+  "matn": "SAVOL\nCoddy’ni labirintdan qanday chiqaramiz?\n\nCoddy\nUchala dasturda bloklar bir xil. Qaysi biri ishlaydi?\n\nA\nO‘ngga 4, tepaga 2\nB\nTepaga 2, o‘ngga 4\nC\nO‘ngga 2, tepaga 2, o‘ngga 2\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "316d098a3e8d",
+  "uzun": 39225
+ },
+ "u-04-P2C": {
+  "id": "P2C",
+  "matn": "JAVOB\nBloklar bir xil, tartib boshqa\n\nCoddy\nMen bloklarni yuqoridan pastga, birma-bir bajaraman.\n\nA\nO‘ngga 4, tepaga 2\n✕ devorga urildi\nB\nTepaga 2, o‘ngga 4\n✕ devorga urildi\nC\nO‘ngga 2, tepaga 2, o‘ngga 2\n✓ chiqdi\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "9909a7e33c37",
+  "uzun": 39643
+ },
+ "u-05-P3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nKetma-ketlik nima?\n\nCoddy\nKetma-ketlik — buyruqlar tartibi.\n\n1\nmove right\n2\nmove right\n3\nmove up\n4\nmove up\n5\nmove right\n6\nmove right\n\nTartib o‘zgarsa — yo‘l ham o‘zgaradi.\n\n1\n2\n3\n4\n5\n6\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "bcd3b2125645",
+  "uzun": 36462
+ },
+ "u-06-P4": {
+  "id": "P4",
+  "matn": "REJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Birinchisidan boshlaymiz.\n\nDars oxirida · kalit, eshik va yulduz\nLabirintdan chiqasiz\n1\nLabirintda yuramiz\n2\nXatoni topamiz\n3\nLabirintdan chiqamiz\n‹ Orqaga\nBoshladik ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "f8493649690c",
+  "uzun": 39740
+ },
+ "u-07-P6": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nTo‘rt yo‘nalish\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "c927cddfca7b",
+  "uzun": 32206
+ },
+ "u-08-P5": {
+  "id": "P5",
+  "matn": "MASHQ\nEndi o‘zingiz!\n\nCoddy\nQiynalsangiz — «Maslahat»ni bosing.\n\nUch pog‘onani tugatdi\n0 / 0\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nBitta burilish\n2\n0\nPastga ham\n3\n0\nIkki burilish\n★\n0\nUch burilish\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "512f1d208e97",
+  "uzun": 30902
+ },
+ "u-09-P4B": {
+  "id": "P4B",
+  "matn": "REJA · 2-BEKAT\n2 · Xatoni topamiz\n\nCoddy\nEndi tayyor dasturdagi xatoni topamiz.\n\nDars oxirida · kalit, eshik va yulduz\nLabirintdan chiqasiz\n✓\nLabirintda yuramiz\n2\nXatoni topamiz\n3\nLabirintdan chiqamiz\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "3a8e91e8ae7b",
+  "uzun": 39513
+ },
+ "u-10-P7": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nXatoni topamiz\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove right\nmove up\nmove right\nmove up\nmove right\n6 ta blok\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "r:move rightmove rightmove upmove rightmove upmove right",
+   "r:move rightmove upmove rightmove upmove right",
+   "u:move upmove rightmove upmove right",
+   "r:move rightmove upmove right",
+   "u:move upmove right",
+   "r:move right"
+  ],
+  "html": "1f9a0343b70d",
+  "uzun": 35464
+ },
+ "u-11-P5X": {
+  "id": "P5X",
+  "matn": "MASHQ\nXatoni tuzating!\n\nCoddy\nQayerda urilganiga qarang — xato o‘sha yerda.\n\nUch xatoni tuzatdi\n0 / 0\n1\n0\nIkki blok almashgan\n2\n0\nPastga yo‘l\n3\n0\nBitta blok joyida emas\n★\n0\nIkki xato\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "43b65e78bf21",
+  "uzun": 30853
+ },
+ "u-12-P9": {
+  "id": "P9",
+  "matn": "XULOSA\nKetma-ketlik\n\nCoddy\nBloklar bir xil bo‘lsa ham, tartib hal qiladi.\n\n1\n2\n3\n4\n5\n6\nKetma-ketlik\nBuyruqlar tartibi\nXato qayerda?\nQahramon to‘xtagan joyda\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "0978d582beee",
+  "uzun": 37467
+ },
+ "u-13-P4C": {
+  "id": "P4C",
+  "matn": "REJA · 3-BEKAT\n3 · Labirintdan chiqamiz\n\nCoddy\nOxirgi bekat: kalit, eshik va yulduz.\n\nDars oxirida · kalit, eshik va yulduz\nLabirintdan chiqasiz\n✓\nLabirintda yuramiz\n✓\nXatoni topamiz\n3\nLabirintdan chiqamiz\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a3f6665c769a",
+  "uzun": 39521
+ },
+ "u-14-P8K": {
+  "id": "P8K",
+  "matn": "KO‘RAMIZ\nAvval kalit, keyin eshik\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "92a070a90b26",
+  "uzun": 32950
+ },
+ "u-15-P5K": {
+  "id": "P5K",
+  "matn": "MASHQ\nLabirintdan chiqing!\n\nCoddy\nKalitni oling, eshikdan o‘ting, yulduzga yeting.\n\nLabirintdan chiqdi\n0 / 0\n1\n0\nKalit va eshik\n2\n0\nKalit pastda\n★\n0\nKalit uzoqda\n1\n2\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "8bae12b5a14a",
+  "uzun": 29951
+ },
+ "u-16-P11": {
+  "id": "P11",
+  "matn": "KO‘RSATISH\nDasturingizni o‘qib bering\nSiz o‘qiysiz — men aynan shu tartibda bajaraman.\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "14422ca7f864",
+  "uzun": 36288
+ },
+ "u-17-P8": {
+  "id": "P8",
+  "matn": "YAKUN\nLabirintdan chiqdingiz!\nBUGUNGI SO‘Z\nKetma-ketlik\nBuyruqlar tartibi\nKeyingi dars\nX\nY\n3 · X va Y\n✓\nLabirintda yuramiz\n✓\nXatoni topamiz\n✓\nLabirintdan chiqamiz\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "b749b7b7ac5e",
+  "uzun": 30504
+ },
+ "u-18-P14": {
+  "id": "P14",
+  "matn": "SINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nqadam\n0\ntuzatilgan xato\n0\nlabirint\n‹ Orqaga\nDarsni yakunlash\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "f0d7c56e1664",
+  "uzun": 39912
+ },
+ "u-x-P2S-A": {
+  "id": "P2S",
+  "matn": "SAVOL\nCoddy’ni labirintdan qanday chiqaramiz?\n\nCoddy\nUchala dasturda bloklar bir xil. Qaysi biri ishlaydi?\n\nA\nO‘ngga 4, tepaga 2\n✕ devorga urildi\nB\nTepaga 2, o‘ngga 4\nC\nO‘ngga 2, tepaga 2, o‘ngga 2\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "f9f4eeb9429b",
+  "uzun": 39316
+ },
+ "u-x-P2S-B": {
+  "id": "P2S",
+  "matn": "SAVOL\nCoddy’ni labirintdan qanday chiqaramiz?\n\nCoddy\nUchala dasturda bloklar bir xil. Qaysi biri ishlaydi?\n\nA\nO‘ngga 4, tepaga 2\n✕ devorga urildi\nB\nTepaga 2, o‘ngga 4\n✕ devorga urildi\nC\nO‘ngga 2, tepaga 2, o‘ngga 2\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "204d43b4a9b3",
+  "uzun": 39236
+ },
+ "u-x-P2S-C": {
+  "id": "P2S",
+  "matn": "SAVOL\nCoddy’ni labirintdan qanday chiqaramiz?\n\nCoddy\nUchala dasturda bloklar bir xil. Qaysi biri ishlaydi?\n\nA\nO‘ngga 4, tepaga 2\n✕ devorga urildi\nB\nTepaga 2, o‘ngga 4\n✕ devorga urildi\nC\nO‘ngga 2, tepaga 2, o‘ngga 2\n✓ chiqdi\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "30e8c601e38b",
+  "uzun": 40520
+ },
+ "u-x-P3-1": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nKetma-ketlik nima?\n\nCoddy\nKetma-ketlik — buyruqlar tartibi.\n\n1\nmove right\n2\nmove right\n3\nmove up\n4\nmove up\n5\nmove right\n6\nmove right\n\nTartib o‘zgarsa — yo‘l ham o‘zgaradi.\n\n1\n2\n3\n4\n5\n6\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "54dd1bd10d79",
+  "uzun": 36468
+ },
+ "u-x-P3-6": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nKetma-ketlik nima?\n\nCoddy\nKetma-ketlik — buyruqlar tartibi.\n\n1\nmove right\n2\nmove right\n3\nmove up\n4\nmove up\n5\nmove right\n6\nmove right\n\nTartib o‘zgarsa — yo‘l ham o‘zgaradi.\n\n1\n2\n3\n4\n5\n6\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "b851af614274",
+  "uzun": 36498
+ },
+ "u-x-P6-tuzildi": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nTo‘rt yo‘nalish\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove up\nmove right\nmove right\n4 ta blok\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "r:move rightmove upmove rightmove right",
+   "u:move upmove rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "b57600e672ae",
+  "uzun": 32197
+ },
+ "u-x-P6-yetdi": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nTo‘rt yo‘nalish\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove up\nmove right\nmove right\n4 ta blok\n‹ Orqaga\nYetib bordi!\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "r:move rightmove upmove rightmove right",
+   "u:move upmove rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "391ba73750e4",
+  "uzun": 33326
+ },
+ "u-x-P7-urildi": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nXatoni topamiz\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove right\nmove up\nmove right\nmove up\nmove right\n6 ta blok\nDevor!\n‹ Orqaga\nQahramon shu blokda to‘xtadi. Bu yerda qaysi tomonga yurish kerak?\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "r:move rightmove rightmove upmove rightmove upmove right",
+   "r:move rightmove upmove rightmove upmove right",
+   "u:move upmove rightmove upmove right",
+   "r:move rightmove upmove right",
+   "u:move upmove right",
+   "r:move right"
+  ],
+  "html": "e26ac8cbf99f",
+  "uzun": 41303
+ },
+ "u-x-P7-tanlandi": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nXatoni topamiz\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove right\nmove up\nmove right\nmove up\nmove right\n✕\n6 ta blok\nDevor!\n‹ Orqaga\nTanlandi: boshqa blokni bosing yoki ✕\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "r:move rightmove rightmove upmove rightmove upmove right",
+   "r:move rightmove upmove rightmove upmove right",
+   "u:move upmove rightmove upmove right",
+   "r:move rightmove upmove right",
+   "u:move upmove right",
+   "r:move right"
+  ],
+  "html": "43580d59ed8e",
+  "uzun": 41388
+ },
+ "u-x-P7-almashdi": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nXatoni topamiz\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove right\nmove up\nmove up\nmove right\nmove right\n6 ta blok\n‹ Orqaga\nBloklar joyi almashdi\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "r:move rightmove rightmove upmove upmove rightmove right",
+   "r:move rightmove upmove upmove rightmove right",
+   "u:move upmove upmove rightmove right",
+   "u:move upmove rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "a6c5997fec33",
+  "uzun": 35688
+ },
+ "u-x-P7-yetdi": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nXatoni topamiz\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove right\nmove up\nmove up\nmove right\nmove right\n6 ta blok\n‹ Orqaga\nYetib bordi!\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "r:move rightmove rightmove upmove upmove rightmove right",
+   "r:move rightmove upmove upmove rightmove right",
+   "u:move upmove upmove rightmove right",
+   "u:move upmove rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "ff8cf10aaefb",
+  "uzun": 36724
+ },
+ "u-x-P8K-eshik": {
+  "id": "P8K",
+  "matn": "KO‘RAMIZ\nAvval kalit, keyin eshik\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove up\nmove right\nmove right\nmove right\n4 ta blok\nKalit qani?\n‹ Orqaga\nEshik yopiq. Avval kalitni oling\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "u:move upmove rightmove rightmove right",
+   "r:move rightmove rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "72168013e4b7",
+  "uzun": 38658
+ },
+ "u-x-P8K-yetdi": {
+  "id": "P8K",
+  "matn": "KO‘RAMIZ\nAvval kalit, keyin eshik\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove up\nmove right\nmove right\n4 ta blok\n‹ Orqaga\nYetib bordi!\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "r:move rightmove upmove rightmove right",
+   "u:move upmove rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "f2410fe34280",
+  "uzun": 34084
+ },
+ "u-x-P11-bosh": {
+  "id": "P11",
+  "matn": "KO‘RSATISH\nDasturingizni o‘qib bering\nSiz o‘qiysiz — men aynan shu tartibda bajaraman.\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\nBu yerda hech narsa yo‘q-ku…\n‹ Orqaga\nAvval blokni bosing — u dasturga qo‘shiladi\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "d57aec76ac45",
+  "uzun": 41604
+ },
+ "u-x-P11-yetdi": {
+  "id": "P11",
+  "matn": "KO‘RSATISH\nDasturingizni o‘qib bering\nSiz o‘qiysiz — men aynan shu tartibda bajaraman.\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove left\nmove up\nmove up\nmove right\nmove right\nmove right\nmove right\n8 ta blok\n‹ Orqaga\nYetib bordi!\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "r:move rightmove leftmove upmove upmove rightmove rightmove rightmove right",
+   "l:move leftmove upmove upmove rightmove rightmove rightmove right",
+   "u:move upmove upmove rightmove rightmove rightmove right",
+   "u:move upmove rightmove rightmove rightmove right",
+   "r:move rightmove rightmove rightmove right",
+   "r:move rightmove rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "7359a008d179",
+  "uzun": 37672
+ },
+ "u-x-yakunlandi": {
+  "id": "P14",
+  "matn": "SINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nqadam\n0\ntuzatilgan xato\n0\nlabirint\nDars tugadi!\nKo‘rishguncha — keyingi darsda X va Y bilan!\n‹ Orqaga\nDarsni yakunlash\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a9fb85378a99",
+  "uzun": 40049
+ },
+ "bq-01-0-B0": {
+  "id": "B0",
+  "matn": "2-DARS · LABIRINT\nSalom, Aziz!\nTayyor bo‘lsangiz — tugmani bosing\nTayyorman",
+  "bloklar": [],
+  "html": "c2f5f066f72d",
+  "uzun": 24477
+ },
+ "bq-01-1-BK": {
+  "id": "BK",
+  "matn": "2-DARS · LABIRINT\n↑\nUstoz ekraniga qarang\nDars hozir boshlanadi",
+  "bloklar": [],
+  "html": "9f3044ed5014",
+  "uzun": 15277
+ },
+ "bq-02-0-P2N": {
+  "id": "P2N",
+  "matn": "2-DARS · LABIRINT\nSAVOL\nCoddy’ni labirintdan qanday chiqaramiz?\n\nCoddy\nQaysi dastur Coddy’ni yulduzga olib boradi?\n\nA\nO‘ngga 4, tepaga 2\nB\nTepaga 2, o‘ngga 4\nC\nO‘ngga 2, tepaga 2, o‘ngga 2\nBirini tanlang",
+  "bloklar": [],
+  "html": "55a01920830a",
+  "uzun": 36969
+ },
+ "bq-02-1-BK": {
+  "id": "BK",
+  "matn": "2-DARS · LABIRINT\n↑\nUstoz ekraniga qarang\nJavobingiz qabul qilindi",
+  "bloklar": [],
+  "html": "b5e66eee16f7",
+  "uzun": 15280
+ },
+ "bq-03-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz dasturlarni sinayapti — kuzating",
+  "bloklar": [],
+  "html": "7424d9a309a3",
+  "uzun": 15294
+ },
+ "bq-04-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstozni tinglang",
+  "bloklar": [],
+  "html": "b080f25f96fe",
+  "uzun": 15272
+ },
+ "bq-05-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nYangi so‘z: ketma-ketlik",
+  "bloklar": [],
+  "html": "fda8c5af5019",
+  "uzun": 15280
+ },
+ "bq-06-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nBugun: uchta bekat",
+  "bloklar": [],
+  "html": "076dda8f1830",
+  "uzun": 15274
+ },
+ "bq-07-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz yo‘l tuzyapti — kuzating",
+  "bloklar": [],
+  "html": "871ba6d914ca",
+  "uzun": 15286
+ },
+ "bq-08-0-B2": {
+  "id": "B2",
+  "matn": "MASHQ · 1-POG‘ONA\nBitta burilish\nQahramoningizni yulduzga olib boring.\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\nMaslahat\nYo‘lni barmog‘ingiz bilan kuzating: qayerda buriladi?\nIshga tushir",
+  "bloklar": [],
+  "html": "07e05794867e",
+  "uzun": 18556
+ },
+ "bq-08-1-B2B": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nPastga ham\nYulduz pastda.\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\nMaslahat\nYo‘lni barmog‘ingiz bilan kuzating: qayerda buriladi?\nIshga tushir",
+  "bloklar": [],
+  "html": "85a451859811",
+  "uzun": 18544
+ },
+ "bq-08-2-B2C": {
+  "id": "B2C",
+  "matn": "MASHQ · 3-POG‘ONA\nIkki burilish\nYo‘l ikki marta buriladi.\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\nMaslahat\nYo‘lni barmog‘ingiz bilan kuzating: qayerda buriladi?\nIshga tushir",
+  "bloklar": [],
+  "html": "96eef50b4391",
+  "uzun": 19932
+ },
+ "bq-08-3-B2Y": {
+  "id": "B2Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nUch burilish\nKatta labirint.\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\nMaslahat\nYo‘lni barmog‘ingiz bilan kuzating: qayerda buriladi?\nIshga tushir",
+  "bloklar": [],
+  "html": "f6fd3d915947",
+  "uzun": 24223
+ },
+ "bq-08-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "d5961c82dbe0",
+  "uzun": 15287
+ },
+ "bq-09-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\n2-bekat: xatoni topamiz",
+  "bloklar": [],
+  "html": "4c4327f4f0f8",
+  "uzun": 15279
+ },
+ "bq-10-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz xatoni topyapti — kuzating",
+  "bloklar": [],
+  "html": "4014d7769629",
+  "uzun": 15288
+ },
+ "bq-11-0-B3A": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nIkki blok almashgan\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove up\nmove right\nmove up\nmove right\nmove right\n5 ta blok\nMaslahat\nIshga tushiring — qahramon qayerda to‘xtaydi?\nIshga tushir",
+  "bloklar": [
+   "u:move upmove rightmove upmove rightmove right",
+   "r:move rightmove upmove rightmove right",
+   "u:move upmove rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "db95959f9e3c",
+  "uzun": 18485
+ },
+ "bq-11-1-B3B": {
+  "id": "B3B",
+  "matn": "MASHQ · 2-POG‘ONA\nPastga yo‘l\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove down\nmove right\nmove down\nmove right\n5 ta blok\nMaslahat\nIshga tushiring — qahramon qayerda to‘xtaydi?\nIshga tushir",
+  "bloklar": [
+   "r:move rightmove downmove rightmove downmove right",
+   "d:move downmove rightmove downmove right",
+   "r:move rightmove downmove right",
+   "d:move downmove right",
+   "r:move right"
+  ],
+  "html": "a3db008cd09b",
+  "uzun": 18490
+ },
+ "bq-11-2-B3C": {
+  "id": "B3C",
+  "matn": "MASHQ · 3-POG‘ONA\nBitta blok joyida emas\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove up\nmove right\nmove right\nmove right\nmove up\nmove right\n6 ta blok\nMaslahat\nIshga tushiring — qahramon qayerda to‘xtaydi?\nIshga tushir",
+  "bloklar": [
+   "u:move upmove rightmove rightmove rightmove upmove right",
+   "r:move rightmove rightmove rightmove upmove right",
+   "r:move rightmove rightmove upmove right",
+   "r:move rightmove upmove right",
+   "u:move upmove right",
+   "r:move right"
+  ],
+  "html": "7bc0e321e2c3",
+  "uzun": 19875
+ },
+ "bq-11-3-B3Y": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nIkki xato\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove up\nmove right\nmove up\nmove right\nmove right\nmove up\nmove right\nmove right\n8 ta blok\nMaslahat\nIshga tushiring — qahramon qayerda to‘xtaydi?\nIshga tushir",
+  "bloklar": [
+   "u:move upmove rightmove upmove rightmove rightmove upmove rightmove right",
+   "r:move rightmove upmove rightmove rightmove upmove rightmove right",
+   "u:move upmove rightmove rightmove upmove rightmove right",
+   "r:move rightmove rightmove upmove rightmove right",
+   "r:move rightmove upmove rightmove right",
+   "u:move upmove rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "ea8ff9bb8d66",
+  "uzun": 24164
+ },
+ "bq-11-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "d5961c82dbe0",
+  "uzun": 15287
+ },
+ "bq-12-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nXulosa: ketma-ketlik",
+  "bloklar": [],
+  "html": "45d32a794ee8",
+  "uzun": 15276
+ },
+ "bq-13-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\n3-bekat: labirintdan chiqamiz",
+  "bloklar": [],
+  "html": "38848df363f7",
+  "uzun": 15285
+ },
+ "bq-14-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz kalitni ko‘rsatyapti — kuzating",
+  "bloklar": [],
+  "html": "9532f571a147",
+  "uzun": 15293
+ },
+ "bq-15-0-B4A": {
+  "id": "B4A",
+  "matn": "MASHQ · 1-POG‘ONA\nKalit va eshik\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\nMaslahat\nKalit qayerda? Avval o‘sha yerga boring\nIshga tushir",
+  "bloklar": [],
+  "html": "d5fc6ef16ca8",
+  "uzun": 20594
+ },
+ "bq-15-1-B4B": {
+  "id": "B4B",
+  "matn": "MASHQ · 2-POG‘ONA\nKalit pastda\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\nMaslahat\nKalit qayerda? Avval o‘sha yerga boring\nIshga tushir",
+  "bloklar": [],
+  "html": "194e8bf089da",
+  "uzun": 20762
+ },
+ "bq-15-2-B4Y": {
+  "id": "B4Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nKalit uzoqda\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\nMaslahat\nKalit qayerda? Avval o‘sha yerga boring\nIshga tushir",
+  "bloklar": [],
+  "html": "0a0f382e2fa7",
+  "uzun": 20424
+ },
+ "bq-15-3-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "d5961c82dbe0",
+  "uzun": 15287
+ },
+ "bq-17-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nLabirintdan chiqdingiz!\n\nCoddy\nLabirintda yurdingiz, xatoni tuzatdingiz va kalit bilan chiqdingiz.\n\nSiz bugun\n0\nqadam\n0\ntuzatilgan xato\n0\nlabirint\nBulut\nKeyingi darsda X va Y bilan ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "56ba9bf5159a",
+  "uzun": 27023
+ },
+ "bq-18-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nLabirintdan chiqdingiz!\n\nCoddy\nLabirintda yurdingiz, xatoni tuzatdingiz va kalit bilan chiqdingiz.\n\nSiz bugun\n0\nqadam\n0\ntuzatilgan xato\n0\nlabirint\nBulut\nKeyingi darsda X va Y bilan ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "56ba9bf5159a",
+  "uzun": 27023
+ },
+ "bx-B2-bosh": {
+  "id": "B2",
+  "matn": "MASHQ · 1-POG‘ONA\nBitta burilish\nQahramoningizni yulduzga olib boring.\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\nBu yerda hech narsa yo‘q-ku…\nMaslahat\nAvval blokni bosing — u dasturga qo‘shiladi\nIshga tushir",
+  "bloklar": [],
+  "html": "5a15bf27da36",
+  "uzun": 23822
+ },
+ "bx-B2-urildi": {
+  "id": "B2",
+  "matn": "MASHQ · 1-POG‘ONA\nBitta burilish\nQahramoningizni yulduzga olib boring.\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove right\nmove right\n3 ta blok\nDevor!\nMaslahat\nQahramon shu blokda to‘xtadi. Bu yerda qaysi tomonga yurish kerak?\nIshga tushir",
+  "bloklar": [
+   "r:move rightmove rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "3dcfe3c412d0",
+  "uzun": 24133
+ },
+ "bx-B2-maslahat": {
+  "id": "B2",
+  "matn": "MASHQ · 1-POG‘ONA\nBitta burilish\nQahramoningizni yulduzga olib boring.\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove right\nmove right\n3 ta blok\nDevor!\nMaslahat\nQahramondan yulduzgacha yo‘lni barmog‘ingiz bilan yuring: qayerda buriladi?\nIshga tushir",
+  "bloklar": [
+   "r:move rightmove rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "177fa45b72ee",
+  "uzun": 24142
+ },
+ "bx-B2-kam": {
+  "id": "B2",
+  "matn": "MASHQ · 1-POG‘ONA\nBitta burilish\nQahramoningizni yulduzga olib boring.\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove up\nmove up\n2 ta blok\nOz qoldi!\nMaslahat\nOz qoldi! Yana blok qo‘shing\nIshga tushir",
+  "bloklar": [
+   "u:move upmove up",
+   "u:move up"
+  ],
+  "html": "3c9ae31499d7",
+  "uzun": 24207
+ },
+ "bx-B2-yetdi": {
+  "id": "B2",
+  "matn": "MASHQ · 1-POG‘ONA\nBitta burilish\nQahramoningizni yulduzga olib boring.\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove up\nmove up\nmove right\nmove right\nmove right\n5 ta blok\nMaslahat\nYetib bordi!\nIshga tushir",
+  "bloklar": [
+   "u:move upmove upmove rightmove rightmove right",
+   "u:move upmove rightmove rightmove right",
+   "r:move rightmove rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "c7a036b3a278",
+  "uzun": 19682
+ },
+ "bx-B2B-yetdi": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nPastga ham\nYulduz pastda.\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove down\nmove down\nmove right\nmove right\n5 ta blok\nMaslahat\nYetib bordi!\nIshga tushir",
+  "bloklar": [
+   "r:move rightmove downmove downmove rightmove right",
+   "d:move downmove downmove rightmove right",
+   "d:move downmove rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "0394d4179ef2",
+  "uzun": 19678
+ },
+ "bx-B2C-yetdi": {
+  "id": "B2C",
+  "matn": "MASHQ · 3-POG‘ONA\nIkki burilish\nYo‘l ikki marta buriladi.\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove up\nmove right\nmove right\nmove up\nmove right\n6 ta blok\nMaslahat\nYetib bordi!\nIshga tushir",
+  "bloklar": [
+   "r:move rightmove upmove rightmove rightmove upmove right",
+   "u:move upmove rightmove rightmove upmove right",
+   "r:move rightmove rightmove upmove right",
+   "r:move rightmove upmove right",
+   "u:move upmove right",
+   "r:move right"
+  ],
+  "html": "5f73e3846c77",
+  "uzun": 21132
+ },
+ "bx-B2Y-yetdi": {
+  "id": "B2Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nUch burilish\nKatta labirint.\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove up\nmove up\nmove right\nmove right\nmove right\nmove up\nmove right\n8 ta blok\nMaslahat\nYetib bordi!\nIshga tushir",
+  "bloklar": [
+   "r:move rightmove upmove upmove rightmove rightmove rightmove upmove right",
+   "u:move upmove upmove rightmove rightmove rightmove upmove right",
+   "u:move upmove rightmove rightmove rightmove upmove right",
+   "r:move rightmove rightmove rightmove upmove right",
+   "r:move rightmove rightmove upmove right",
+   "r:move rightmove upmove right",
+   "u:move upmove right",
+   "r:move right"
+  ],
+  "html": "859449ffa767",
+  "uzun": 25555
+ },
+ "bx-B3A-urildi": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nIkki blok almashgan\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove up\nmove right\nmove up\nmove right\nmove right\n5 ta blok\nDevor!\nMaslahat\nQahramon shu blokda to‘xtadi. Bu yerda qaysi tomonga yurish kerak?\nIshga tushir",
+  "bloklar": [
+   "u:move upmove rightmove upmove rightmove right",
+   "r:move rightmove upmove rightmove right",
+   "u:move upmove rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "9a30b523ac9e",
+  "uzun": 24148
+ },
+ "bx-B3A-tanlandi": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nIkki blok almashgan\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove up\nmove right\nmove up\nmove right\nmove right\n✕\n5 ta blok\nDevor!\nMaslahat\nTanlandi: boshqa blokni bosing yoki ✕\nIshga tushir",
+  "bloklar": [
+   "u:move upmove rightmove upmove rightmove right",
+   "r:move rightmove upmove rightmove right",
+   "u:move upmove rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "e36ad98bd08c",
+  "uzun": 24232
+ },
+ "bx-B3A-almashdi": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nIkki blok almashgan\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove up\nmove up\nmove right\nmove right\nmove right\n5 ta blok\nMaslahat\nBloklar joyi almashdi\nIshga tushir",
+  "bloklar": [
+   "u:move upmove upmove rightmove rightmove right",
+   "u:move upmove rightmove rightmove right",
+   "r:move rightmove rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "e138e7379407",
+  "uzun": 18529
+ },
+ "bx-B3A-yetdi": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nIkki blok almashgan\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove up\nmove up\nmove right\nmove right\nmove right\n5 ta blok\nMaslahat\nXatoni tuzatdingiz!\nIshga tushir",
+  "bloklar": [
+   "u:move upmove upmove rightmove rightmove right",
+   "u:move upmove rightmove rightmove right",
+   "r:move rightmove rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "54370268d215",
+  "uzun": 19634
+ },
+ "bx-B3B-urildi": {
+  "id": "B3B",
+  "matn": "MASHQ · 2-POG‘ONA\nPastga yo‘l\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove down\nmove right\nmove down\nmove right\n5 ta blok\nDevor!\nMaslahat\nQahramon shu blokda to‘xtadi. Bu yerda qaysi tomonga yurish kerak?\nIshga tushir",
+  "bloklar": [
+   "r:move rightmove downmove rightmove downmove right",
+   "d:move downmove rightmove downmove right",
+   "r:move rightmove downmove right",
+   "d:move downmove right",
+   "r:move right"
+  ],
+  "html": "9188a0014806",
+  "uzun": 24218
+ },
+ "bx-B3B-yetdi": {
+  "id": "B3B",
+  "matn": "MASHQ · 2-POG‘ONA\nPastga yo‘l\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove down\nmove down\nmove right\nmove right\n5 ta blok\nMaslahat\nXatoni tuzatdingiz!\nIshga tushir",
+  "bloklar": [
+   "r:move rightmove downmove downmove rightmove right",
+   "d:move downmove downmove rightmove right",
+   "d:move downmove rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "739c7a8f93c2",
+  "uzun": 19647
+ },
+ "bx-B3C-urildi": {
+  "id": "B3C",
+  "matn": "MASHQ · 3-POG‘ONA\nBitta blok joyida emas\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove up\nmove right\nmove right\nmove right\nmove up\nmove right\n6 ta blok\nDevor!\nMaslahat\nQahramon shu blokda to‘xtadi. Bu yerda qaysi tomonga yurish kerak?\nIshga tushir",
+  "bloklar": [
+   "u:move upmove rightmove rightmove rightmove upmove right",
+   "r:move rightmove rightmove rightmove upmove right",
+   "r:move rightmove rightmove upmove right",
+   "r:move rightmove upmove right",
+   "u:move upmove right",
+   "r:move right"
+  ],
+  "html": "2c98ce92047a",
+  "uzun": 25469
+ },
+ "bx-B3C-yetdi": {
+  "id": "B3C",
+  "matn": "MASHQ · 3-POG‘ONA\nBitta blok joyida emas\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove up\nmove right\nmove right\nmove up\nmove right\n6 ta blok\nMaslahat\nXatoni tuzatdingiz!\nIshga tushir",
+  "bloklar": [
+   "r:move rightmove upmove rightmove rightmove upmove right",
+   "u:move upmove rightmove rightmove upmove right",
+   "r:move rightmove rightmove upmove right",
+   "r:move rightmove upmove right",
+   "u:move upmove right",
+   "r:move right"
+  ],
+  "html": "1558ea918952",
+  "uzun": 21098
+ },
+ "bx-B3Y-urildi1": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nIkki xato\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove up\nmove right\nmove up\nmove right\nmove right\nmove up\nmove right\nmove right\n8 ta blok\nDevor!\nMaslahat\nQahramon shu blokda to‘xtadi. Bu yerda qaysi tomonga yurish kerak?\nIshga tushir",
+  "bloklar": [
+   "u:move upmove rightmove upmove rightmove rightmove upmove rightmove right",
+   "r:move rightmove upmove rightmove rightmove upmove rightmove right",
+   "u:move upmove rightmove rightmove upmove rightmove right",
+   "r:move rightmove rightmove upmove rightmove right",
+   "r:move rightmove upmove rightmove right",
+   "u:move upmove rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "ec1e6a353b6f",
+  "uzun": 29758
+ },
+ "bx-B3Y-urildi6": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nIkki xato\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove up\nmove up\nmove right\nmove right\nmove up\nmove right\nmove right\n8 ta blok\nDevor!\nMaslahat\nQahramon shu blokda to‘xtadi. Bu yerda qaysi tomonga yurish kerak?\nIshga tushir",
+  "bloklar": [
+   "r:move rightmove upmove upmove rightmove rightmove upmove rightmove right",
+   "u:move upmove upmove rightmove rightmove upmove rightmove right",
+   "u:move upmove rightmove rightmove upmove rightmove right",
+   "r:move rightmove rightmove upmove rightmove right",
+   "r:move rightmove upmove rightmove right",
+   "u:move upmove rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "4b03dcf839bc",
+  "uzun": 30093
+ },
+ "bx-B3Y-yetdi": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nIkki xato\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove up\nmove up\nmove right\nmove right\nmove right\nmove up\nmove right\n8 ta blok\nMaslahat\nXatoni tuzatdingiz!\nIshga tushir",
+  "bloklar": [
+   "r:move rightmove upmove upmove rightmove rightmove rightmove upmove right",
+   "u:move upmove upmove rightmove rightmove rightmove upmove right",
+   "u:move upmove rightmove rightmove rightmove upmove right",
+   "r:move rightmove rightmove rightmove upmove right",
+   "r:move rightmove rightmove upmove right",
+   "r:move rightmove upmove right",
+   "u:move upmove right",
+   "r:move right"
+  ],
+  "html": "3518ab53cc42",
+  "uzun": 25519
+ },
+ "bx-B4A-eshik": {
+  "id": "B4A",
+  "matn": "MASHQ · 1-POG‘ONA\nKalit va eshik\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove up\nmove up\nmove right\nmove right\nmove right\nmove right\n6 ta blok\nKalit qani?\nMaslahat\nEshik yopiq. Avval kalitni oling\nIshga tushir",
+  "bloklar": [
+   "u:move upmove upmove rightmove rightmove rightmove right",
+   "u:move upmove rightmove rightmove rightmove right",
+   "r:move rightmove rightmove rightmove right",
+   "r:move rightmove rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "e9e774f59ac6",
+  "uzun": 26393
+ },
+ "bx-B4A-yetdi": {
+  "id": "B4A",
+  "matn": "MASHQ · 1-POG‘ONA\nKalit va eshik\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove left\nmove up\nmove up\nmove right\nmove right\nmove right\nmove right\n8 ta blok\nMaslahat\nLabirintdan chiqdingiz!\nIshga tushir",
+  "bloklar": [
+   "r:move rightmove leftmove upmove upmove rightmove rightmove rightmove right",
+   "l:move leftmove upmove upmove rightmove rightmove rightmove right",
+   "u:move upmove upmove rightmove rightmove rightmove right",
+   "u:move upmove rightmove rightmove rightmove right",
+   "r:move rightmove rightmove rightmove right",
+   "r:move rightmove rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "e4ae30b79cfc",
+  "uzun": 21950
+ },
+ "bx-B4B-yetdi": {
+  "id": "B4B",
+  "matn": "MASHQ · 2-POG‘ONA\nKalit pastda\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove down\nmove down\nmove up\nmove up\nmove right\nmove right\nmove right\nmove right\n8 ta blok\nMaslahat\nLabirintdan chiqdingiz!\nIshga tushir",
+  "bloklar": [
+   "d:move downmove downmove upmove upmove rightmove rightmove rightmove right",
+   "d:move downmove upmove upmove rightmove rightmove rightmove right",
+   "u:move upmove upmove rightmove rightmove rightmove right",
+   "u:move upmove rightmove rightmove rightmove right",
+   "r:move rightmove rightmove rightmove right",
+   "r:move rightmove rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "cef4903dc1c0",
+  "uzun": 22112
+ },
+ "bx-B4Y-toldi": {
+  "id": "B4Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nKalit uzoqda\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove right\nmove left\nmove left\nmove up\nmove up\nmove right\nmove right\nmove right\nmove right\n10 ta blok\nMaslahat\nBlok qo‘shildi. «Ishga tushir»ni bosing\nIshga tushir",
+  "bloklar": [
+   "r:move rightmove rightmove leftmove leftmove upmove upmove rightmove rightmove rightmove right",
+   "r:move rightmove leftmove leftmove upmove upmove rightmove rightmove rightmove right",
+   "l:move leftmove leftmove upmove upmove rightmove rightmove rightmove right",
+   "l:move leftmove upmove upmove rightmove rightmove rightmove right",
+   "u:move upmove upmove rightmove rightmove rightmove right",
+   "u:move upmove rightmove rightmove rightmove right",
+   "r:move rightmove rightmove rightmove right",
+   "r:move rightmove rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "fd3fd3233695",
+  "uzun": 20416
+ },
+ "bx-B4Y-10dan-kop": {
+  "id": "B4Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nKalit uzoqda\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove right\nmove left\nmove left\nmove up\nmove up\nmove right\nmove right\nmove right\nmove right\n10 ta blok\nMaslahat\nDastur to‘ldi — 10 ta blokdan ko‘p bo‘lmaydi\nIshga tushir",
+  "bloklar": [
+   "r:move rightmove rightmove leftmove leftmove upmove upmove rightmove rightmove rightmove right",
+   "r:move rightmove leftmove leftmove upmove upmove rightmove rightmove rightmove right",
+   "l:move leftmove leftmove upmove upmove rightmove rightmove rightmove right",
+   "l:move leftmove upmove upmove rightmove rightmove rightmove right",
+   "u:move upmove upmove rightmove rightmove rightmove right",
+   "u:move upmove rightmove rightmove rightmove right",
+   "r:move rightmove rightmove rightmove right",
+   "r:move rightmove rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "7746455ff3d6",
+  "uzun": 20421
+ },
+ "bx-B4Y-yetdi": {
+  "id": "B4Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nKalit uzoqda\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove right\nmove left\nmove left\nmove up\nmove up\nmove right\nmove right\nmove right\nmove right\n10 ta blok\nMaslahat\nLabirintdan chiqdingiz!\nIshga tushir",
+  "bloklar": [
+   "r:move rightmove rightmove leftmove leftmove upmove upmove rightmove rightmove rightmove right",
+   "r:move rightmove leftmove leftmove upmove upmove rightmove rightmove rightmove right",
+   "l:move leftmove leftmove upmove upmove rightmove rightmove rightmove right",
+   "l:move leftmove upmove upmove rightmove rightmove rightmove right",
+   "u:move upmove upmove rightmove rightmove rightmove right",
+   "u:move upmove rightmove rightmove rightmove right",
+   "r:move rightmove rightmove rightmove right",
+   "r:move rightmove rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "a785d72dd1b6",
+  "uzun": 21910
+ },
+ "bx-B5-natija": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nLabirintdan chiqdingiz!\n\nCoddy\nLabirintda yurdingiz, xatoni tuzatdingiz va kalit bilan chiqdingiz.\n\nSiz bugun\n74\nqadam\n4\ntuzatilgan xato\n11\nlabirint\nBulut\nKeyingi darsda X va Y bilan ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "35cf8f19c3cd",
+  "uzun": 27025
+ },
+ "bx-P2N-tanladi": {
+  "id": "P2N",
+  "matn": "2-DARS · LABIRINT\nSAVOL\nCoddy’ni labirintdan qanday chiqaramiz?\n\nCoddy\nQaysi dastur Coddy’ni yulduzga olib boradi?\n\nA\nO‘ngga 4, tepaga 2\nB\nTepaga 2, o‘ngga 4\nC\nO‘ngga 2, tepaga 2, o‘ngga 2\nBirini tanlang",
+  "bloklar": [],
+  "html": "e7de9a8a9ebb",
+  "uzun": 36978
+ },
+ "bx-BQ": {
+  "id": "BQ",
+  "matn": "2-DARS · LABIRINT\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang",
+  "bloklar": [],
+  "html": "c66a7f625e3a",
+  "uzun": 52603
+ },
+ "bx-BQ-tanladi": {
+  "id": "BK",
+  "matn": "2-DARS · LABIRINT\n↑\nUstoz ekraniga qarang\nJavobingiz qabul qilindi",
+  "bloklar": [],
+  "html": "22d2669f2337",
+  "uzun": 15154
+ },
+ "sq-01-0-B0": {
+  "id": "B0",
+  "matn": "2-DARS · LABIRINT\nSalom, Aziz!\nTayyor bo‘lsangiz — tugmani bosing\nTayyorman",
+  "bloklar": [],
+  "html": "c2f5f066f72d",
+  "uzun": 24477
+ },
+ "sq-01-1-P1": {
+  "id": "P1",
+  "matn": "2-DARS · LABIRINT\nBugun labirintdan chiqamiz!\n\nCoddy\nSalom! Bugun meni labirintdan olib chiqasiz.\n\nO‘TGAN DARSDA\nmove right\nBlok\nBitta buyruq\nmove right\nmove right\nmove right\nDastur\nKetma-ket buyruqlar\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "2b22ebe8bb5c",
+  "uzun": 33885
+ },
+ "sq-02-0-P2N": {
+  "id": "P2N",
+  "matn": "2-DARS · LABIRINT\nSAVOL\nCoddy’ni labirintdan qanday chiqaramiz?\n\nCoddy\nQaysi dastur Coddy’ni yulduzga olib boradi?\n\nA\nO‘ngga 4, tepaga 2\nB\nTepaga 2, o‘ngga 4\nC\nO‘ngga 2, tepaga 2, o‘ngga 2\nBirini tanlang",
+  "bloklar": [],
+  "html": "55a01920830a",
+  "uzun": 36969
+ },
+ "sq-03-0-P2S": {
+  "id": "P2S",
+  "matn": "SAVOL\nCoddy’ni labirintdan qanday chiqaramiz?\n\nCoddy\nUchala dasturda bloklar bir xil. Qaysi biri ishlaydi?\n\nA\nO‘ngga 4, tepaga 2\n▶ Sinab ko‘rish\nB\nTepaga 2, o‘ngga 4\n▶ Sinab ko‘rish\nC\nO‘ngga 2, tepaga 2, o‘ngga 2\n▶ Sinab ko‘rish\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "97b6619bc9cc",
+  "uzun": 38041
+ },
+ "sq-04-0-P2C": {
+  "id": "P2C",
+  "matn": "JAVOB\nBloklar bir xil, tartib boshqa\n\nCoddy\nMen bloklarni yuqoridan pastga, birma-bir bajaraman.\n\nA\nO‘ngga 4, tepaga 2\n✕ devorga urildi\nB\nTepaga 2, o‘ngga 4\n✕ devorga urildi\nC\nO‘ngga 2, tepaga 2, o‘ngga 2\n✓ chiqdi\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "d7749f7cce69",
+  "uzun": 38384
+ },
+ "sq-05-0-P3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nKetma-ketlik nima?\n\nCoddy\nKetma-ketlik — buyruqlar tartibi.\n\n1\nmove right\n2\nmove right\n3\nmove up\n4\nmove up\n5\nmove right\n6\nmove right\n\nTartib o‘zgarsa — yo‘l ham o‘zgaradi.\n\n1\n2\n3\n4\n5\n6\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "a10ad7d07a40",
+  "uzun": 35203
+ },
+ "sq-06-0-P4": {
+  "id": "P4",
+  "matn": "REJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Birinchisidan boshlaymiz.\n\nDars oxirida · kalit, eshik va yulduz\nLabirintdan chiqasiz\n1\nLabirintda yuramiz\n2\nXatoni topamiz\n3\nLabirintdan chiqamiz\n‹ Orqaga\nBoshladik ›",
+  "bloklar": [],
+  "html": "d108a283136d",
+  "uzun": 38481
+ },
+ "sq-07-0-P6": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nTo‘rt yo‘nalish\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove up\nmove right\nmove right\n4 ta blok\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›",
+  "bloklar": [
+   "r:move rightmove upmove rightmove right",
+   "u:move upmove rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "cb804883b5ff",
+  "uzun": 30938
+ },
+ "sq-08-0-B2": {
+  "id": "B2",
+  "matn": "MASHQ · 1-POG‘ONA\nBitta burilish\nQahramoningizni yulduzga olib boring.\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\nMaslahat\nYo‘lni barmog‘ingiz bilan kuzating: qayerda buriladi?\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "0e0f34216868",
+  "uzun": 18603
+ },
+ "sq-08-1-B2B": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nPastga ham\nYulduz pastda.\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\nMaslahat\nYo‘lni barmog‘ingiz bilan kuzating: qayerda buriladi?\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "419189661a55",
+  "uzun": 18591
+ },
+ "sq-08-2-B2C": {
+  "id": "B2C",
+  "matn": "MASHQ · 3-POG‘ONA\nIkki burilish\nYo‘l ikki marta buriladi.\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\nMaslahat\nYo‘lni barmog‘ingiz bilan kuzating: qayerda buriladi?\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "ec786e877c96",
+  "uzun": 19979
+ },
+ "sq-08-3-B2Y": {
+  "id": "B2Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nUch burilish\nKatta labirint.\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\nMaslahat\nYo‘lni barmog‘ingiz bilan kuzating: qayerda buriladi?\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "986b0289e1d9",
+  "uzun": 24270
+ },
+ "sq-09-0-P4B": {
+  "id": "P4B",
+  "matn": "REJA · 2-BEKAT\n2 · Xatoni topamiz\n\nCoddy\nEndi tayyor dasturdagi xatoni topamiz.\n\nDars oxirida · kalit, eshik va yulduz\nLabirintdan chiqasiz\n✓\nLabirintda yuramiz\n2\nXatoni topamiz\n3\nLabirintdan chiqamiz\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "f0e1535e7d4f",
+  "uzun": 38254
+ },
+ "sq-10-0-P7": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nXatoni topamiz\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove right\nmove up\nmove right\nmove up\nmove right\n6 ta blok\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›",
+  "bloklar": [
+   "r:move rightmove rightmove upmove rightmove upmove right",
+   "r:move rightmove upmove rightmove upmove right",
+   "u:move upmove rightmove upmove right",
+   "r:move rightmove upmove right",
+   "u:move upmove right",
+   "r:move right"
+  ],
+  "html": "f51c8a1ee218",
+  "uzun": 34205
+ },
+ "sq-11-0-B3A": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nIkki blok almashgan\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove up\nmove right\nmove up\nmove right\nmove right\n5 ta blok\nMaslahat\nIshga tushiring — qahramon qayerda to‘xtaydi?\nIshga tushir\nKeyingi ›",
+  "bloklar": [
+   "u:move upmove rightmove upmove rightmove right",
+   "r:move rightmove upmove rightmove right",
+   "u:move upmove rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "26ea393be38b",
+  "uzun": 18532
+ },
+ "sq-11-1-B3B": {
+  "id": "B3B",
+  "matn": "MASHQ · 2-POG‘ONA\nPastga yo‘l\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove down\nmove right\nmove down\nmove right\n5 ta blok\nMaslahat\nIshga tushiring — qahramon qayerda to‘xtaydi?\nIshga tushir\nKeyingi ›",
+  "bloklar": [
+   "r:move rightmove downmove rightmove downmove right",
+   "d:move downmove rightmove downmove right",
+   "r:move rightmove downmove right",
+   "d:move downmove right",
+   "r:move right"
+  ],
+  "html": "f775ef1fa8f0",
+  "uzun": 18537
+ },
+ "sq-11-2-B3C": {
+  "id": "B3C",
+  "matn": "MASHQ · 3-POG‘ONA\nBitta blok joyida emas\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove up\nmove right\nmove right\nmove right\nmove up\nmove right\n6 ta blok\nMaslahat\nIshga tushiring — qahramon qayerda to‘xtaydi?\nIshga tushir\nKeyingi ›",
+  "bloklar": [
+   "u:move upmove rightmove rightmove rightmove upmove right",
+   "r:move rightmove rightmove rightmove upmove right",
+   "r:move rightmove rightmove upmove right",
+   "r:move rightmove upmove right",
+   "u:move upmove right",
+   "r:move right"
+  ],
+  "html": "9be4bdb46252",
+  "uzun": 19922
+ },
+ "sq-11-3-B3Y": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nIkki xato\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove up\nmove right\nmove up\nmove right\nmove right\nmove up\nmove right\nmove right\n8 ta blok\nMaslahat\nIshga tushiring — qahramon qayerda to‘xtaydi?\nIshga tushir\nKeyingi ›",
+  "bloklar": [
+   "u:move upmove rightmove upmove rightmove rightmove upmove rightmove right",
+   "r:move rightmove upmove rightmove rightmove upmove rightmove right",
+   "u:move upmove rightmove rightmove upmove rightmove right",
+   "r:move rightmove rightmove upmove rightmove right",
+   "r:move rightmove upmove rightmove right",
+   "u:move upmove rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "30a6790872a9",
+  "uzun": 24211
+ },
+ "sq-12-0-P9": {
+  "id": "P9",
+  "matn": "XULOSA\nKetma-ketlik\n\nCoddy\nBloklar bir xil bo‘lsa ham, tartib hal qiladi.\n\n1\n2\n3\n4\n5\n6\nKetma-ketlik\nBuyruqlar tartibi\nXato qayerda?\nQahramon to‘xtagan joyda\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "f0705f9c1a73",
+  "uzun": 36208
+ },
+ "sq-13-0-P4C": {
+  "id": "P4C",
+  "matn": "REJA · 3-BEKAT\n3 · Labirintdan chiqamiz\n\nCoddy\nOxirgi bekat: kalit, eshik va yulduz.\n\nDars oxirida · kalit, eshik va yulduz\nLabirintdan chiqasiz\n✓\nLabirintda yuramiz\n✓\nXatoni topamiz\n3\nLabirintdan chiqamiz\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "d40c606d048c",
+  "uzun": 38262
+ },
+ "sq-14-0-P8K": {
+  "id": "P8K",
+  "matn": "KO‘RAMIZ\nAvval kalit, keyin eshik\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove up\nmove right\nmove right\nmove right\n4 ta blok\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›",
+  "bloklar": [
+   "u:move upmove rightmove rightmove right",
+   "r:move rightmove rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "c78a2c38da55",
+  "uzun": 31682
+ },
+ "sq-15-0-B4A": {
+  "id": "B4A",
+  "matn": "MASHQ · 1-POG‘ONA\nKalit va eshik\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\nMaslahat\nKalit qayerda? Avval o‘sha yerga boring\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "66190c542df0",
+  "uzun": 20641
+ },
+ "sq-15-1-B4B": {
+  "id": "B4B",
+  "matn": "MASHQ · 2-POG‘ONA\nKalit pastda\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\nMaslahat\nKalit qayerda? Avval o‘sha yerga boring\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "5efd711150a3",
+  "uzun": 20809
+ },
+ "sq-15-2-B4Y": {
+  "id": "B4Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nKalit uzoqda\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\nMaslahat\nKalit qayerda? Avval o‘sha yerga boring\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "7cd4ca875fe2",
+  "uzun": 20471
+ },
+ "sq-17-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nLabirintdan chiqdingiz!\n\nCoddy\nLabirintda yurdingiz, xatoni tuzatdingiz va kalit bilan chiqdingiz.\n\nSiz bugun\n0\nqadam\n0\ntuzatilgan xato\n0\nlabirint\nBulut\nKeyingi darsda X va Y bilan ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "56ba9bf5159a",
+  "uzun": 27023
+ },
+ "sx-P2S-A": {
+  "id": "P2S",
+  "matn": "SAVOL\nCoddy’ni labirintdan qanday chiqaramiz?\n\nCoddy\nUchala dasturda bloklar bir xil. Qaysi biri ishlaydi?\n\nA\nO‘ngga 4, tepaga 2\n✕ devorga urildi\nB\nTepaga 2, o‘ngga 4\n▶ Sinab ko‘rish\nC\nO‘ngga 2, tepaga 2, o‘ngga 2\n▶ Sinab ko‘rish\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "955a49a8e174",
+  "uzun": 38234
+ },
+ "sx-P2S-B": {
+  "id": "P2S",
+  "matn": "SAVOL\nCoddy’ni labirintdan qanday chiqaramiz?\n\nCoddy\nUchala dasturda bloklar bir xil. Qaysi biri ishlaydi?\n\nA\nO‘ngga 4, tepaga 2\n✕ devorga urildi\nB\nTepaga 2, o‘ngga 4\n✕ devorga urildi\nC\nO‘ngga 2, tepaga 2, o‘ngga 2\n▶ Sinab ko‘rish\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "78c57cbd8654",
+  "uzun": 38154
+ },
+ "sx-P2S-C": {
+  "id": "P2S",
+  "matn": "SAVOL\nCoddy’ni labirintdan qanday chiqaramiz?\n\nCoddy\nUchala dasturda bloklar bir xil. Qaysi biri ishlaydi?\n\nA\nO‘ngga 4, tepaga 2\n✕ devorga urildi\nB\nTepaga 2, o‘ngga 4\n✕ devorga urildi\nC\nO‘ngga 2, tepaga 2, o‘ngga 2\n✓ chiqdi\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "4c252c9621e5",
+  "uzun": 39438
+ },
+ "sx-P3-6": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nKetma-ketlik nima?\n\nCoddy\nKetma-ketlik — buyruqlar tartibi.\n\n1\nmove right\n2\nmove right\n3\nmove up\n4\nmove up\n5\nmove right\n6\nmove right\n\nTartib o‘zgarsa — yo‘l ham o‘zgaradi.\n\n1\n2\n3\n4\n5\n6\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "256aaf313324",
+  "uzun": 35239
+ },
+ "y-01": {
+  "id": "P1",
+  "matn": "USTOZ · PROYEKTOR\n2-DARS · LABIRINT\nBugun labirintdan chiqamiz!\n\nCoddy\nSalom! Bugun meni labirintdan olib chiqasiz.\n\nO‘TGAN DARSDA\nmove right\nBlok\nBitta buyruq\nmove right\nmove right\nmove right\nDastur\nKetma-ket buyruqlar\n‹ Orqaga\nKirdi: 1\nKeyingi ›\nO‘QUVCHI · NOUTBUK\n2-DARS · LABIRINT\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "32ee099ae241",
+  "uzun": 87899
+ },
+ "y-02": {
+  "id": "P2",
+  "matn": "USTOZ · PROYEKTOR\n2-DARS · LABIRINT\nSAVOL\nCoddy’ni labirintdan qanday chiqaramiz?\n\nCoddy\nUchala dasturda bloklar bir xil. Qaysi biri ishlaydi?\n\nA\nO‘ngga 4, tepaga 2\nB\nTepaga 2, o‘ngga 4\nC\nO‘ngga 2, tepaga 2, o‘ngga 2\n‹ Orqaga\nJavob berdi: 0 / 1\nSinab ko‘ramiz ›\nO‘QUVCHI · NOUTBUK\n2-DARS · LABIRINT\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "3be258d3bd99",
+  "uzun": 91880
+ },
+ "y-03": {
+  "id": "P2S",
+  "matn": "USTOZ · PROYEKTOR\nSAVOL\nCoddy’ni labirintdan qanday chiqaramiz?\n\nCoddy\nUchala dasturda bloklar bir xil. Qaysi biri ishlaydi?\n\nA\nO‘ngga 4, tepaga 2\nB\nTepaga 2, o‘ngga 4\nC\nO‘ngga 2, tepaga 2, o‘ngga 2\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "704dce2db955",
+  "uzun": 91972
+ },
+ "y-04": {
+  "id": "P2C",
+  "matn": "USTOZ · PROYEKTOR\nJAVOB\nBloklar bir xil, tartib boshqa\n\nCoddy\nMen bloklarni yuqoridan pastga, birma-bir bajaraman.\n\nA\nO‘ngga 4, tepaga 2\n✕ devorga urildi\nB\nTepaga 2, o‘ngga 4\n✕ devorga urildi\nC\nO‘ngga 2, tepaga 2, o‘ngga 2\n✓ chiqdi\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a6c98049f638",
+  "uzun": 92390
+ },
+ "y-05": {
+  "id": "P3",
+  "matn": "USTOZ · PROYEKTOR\nYANGI SO‘Z\nKetma-ketlik nima?\n\nCoddy\nKetma-ketlik — buyruqlar tartibi.\n\n1\nmove right\n2\nmove right\n3\nmove up\n4\nmove up\n5\nmove right\n6\nmove right\n\nTartib o‘zgarsa — yo‘l ham o‘zgaradi.\n\n1\n2\n3\n4\n5\n6\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "220e1d015d3c",
+  "uzun": 89209
+ },
+ "y-06": {
+  "id": "P4",
+  "matn": "USTOZ · PROYEKTOR\nREJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Birinchisidan boshlaymiz.\n\nDars oxirida · kalit, eshik va yulduz\nLabirintdan chiqasiz\n1\nLabirintda yuramiz\n2\nXatoni topamiz\n3\nLabirintdan chiqamiz\n‹ Orqaga\nBoshladik ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "5c6823d747ca",
+  "uzun": 92487
+ },
+ "y-07": {
+  "id": "P6",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nTo‘rt yo‘nalish\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "904d176ab4a5",
+  "uzun": 84953
+ },
+ "y-08": {
+  "id": "P5",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nEndi o‘zingiz!\n\nCoddy\nQiynalsangiz — «Maslahat»ni bosing.\n\nUch pog‘onani tugatdi\n0 / 1\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nBitta burilish\n2\n0\nPastga ham\n3\n0\nIkki burilish\n★\n0\nUch burilish\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "0222f413ce9a",
+  "uzun": 83649
+ },
+ "y-09": {
+  "id": "P4B",
+  "matn": "USTOZ · PROYEKTOR\nREJA · 2-BEKAT\n2 · Xatoni topamiz\n\nCoddy\nEndi tayyor dasturdagi xatoni topamiz.\n\nDars oxirida · kalit, eshik va yulduz\nLabirintdan chiqasiz\n✓\nLabirintda yuramiz\n2\nXatoni topamiz\n3\nLabirintdan chiqamiz\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a805d0687d4d",
+  "uzun": 92260
+ },
+ "y-10": {
+  "id": "P7",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nXatoni topamiz\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove right\nmove up\nmove right\nmove up\nmove right\n6 ta blok\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "r:move rightmove rightmove upmove rightmove upmove right",
+   "r:move rightmove upmove rightmove upmove right",
+   "u:move upmove rightmove upmove right",
+   "r:move rightmove upmove right",
+   "u:move upmove right",
+   "r:move right"
+  ],
+  "html": "3431fa87c82c",
+  "uzun": 88211
+ },
+ "y-11": {
+  "id": "P5X",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nXatoni tuzating!\n\nCoddy\nQayerda urilganiga qarang — xato o‘sha yerda.\n\nUch xatoni tuzatdi\n0 / 1\n1\n0\nIkki blok almashgan\n2\n0\nPastga yo‘l\n3\n0\nBitta blok joyida emas\n★\n0\nIkki xato\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "e4f5a99df31c",
+  "uzun": 83600
+ },
+ "y-12": {
+  "id": "P9",
+  "matn": "USTOZ · PROYEKTOR\nXULOSA\nKetma-ketlik\n\nCoddy\nBloklar bir xil bo‘lsa ham, tartib hal qiladi.\n\n1\n2\n3\n4\n5\n6\nKetma-ketlik\nBuyruqlar tartibi\nXato qayerda?\nQahramon to‘xtagan joyda\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "be17e23b3d8e",
+  "uzun": 90214
+ },
+ "y-13": {
+  "id": "P4C",
+  "matn": "USTOZ · PROYEKTOR\nREJA · 3-BEKAT\n3 · Labirintdan chiqamiz\n\nCoddy\nOxirgi bekat: kalit, eshik va yulduz.\n\nDars oxirida · kalit, eshik va yulduz\nLabirintdan chiqasiz\n✓\nLabirintda yuramiz\n✓\nXatoni topamiz\n3\nLabirintdan chiqamiz\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "9da5eed7993b",
+  "uzun": 92268
+ },
+ "y-14": {
+  "id": "P8K",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nAvval kalit, keyin eshik\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "b497e0a37a42",
+  "uzun": 85697
+ },
+ "y-15": {
+  "id": "P5K",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nLabirintdan chiqing!\n\nCoddy\nKalitni oling, eshikdan o‘ting, yulduzga yeting.\n\nLabirintdan chiqdi\n0 / 1\n1\n0\nKalit va eshik\n2\n0\nKalit pastda\n★\n0\nKalit uzoqda\n1\n2\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "08b7a3db26a2",
+  "uzun": 82698
+ },
+ "y-16": {
+  "id": "P11",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RSATISH\nDasturingizni o‘qib bering\nSiz o‘qiysiz — men aynan shu tartibda bajaraman.\nHarakat\nHarakat\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "9f06e0fd2031",
+  "uzun": 89035
+ },
+ "y-17": {
+  "id": "P8",
+  "matn": "USTOZ · PROYEKTOR\nYAKUN\nLabirintdan chiqdingiz!\nBUGUNGI SO‘Z\nKetma-ketlik\nBuyruqlar tartibi\nKeyingi dars\nX\nY\n3 · X va Y\n✓\nLabirintda yuramiz\n✓\nXatoni topamiz\n✓\nLabirintdan chiqamiz\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "8e171e79e168",
+  "uzun": 83251
+ },
+ "y-18": {
+  "id": "P14",
+  "matn": "USTOZ · PROYEKTOR\nSINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nqadam\n0\ntuzatilgan xato\n0\nlabirint\n‹ Orqaga\nDarsni yakunlash\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: tartib boshqa\n5 / 18 · Yangi so‘z: ketma-ketlik\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: to‘rt yo‘nalish\n8 / 18 · Labirintda yuramiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: xato qayerda\n11 / 18 · Xatoni tuzating\n12 / 18 · Xulosa: ketma-ketlik\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kalit va eshik\n15 / 18 · Labirintdan chiqamiz\n16 / 18 · Dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "aee80a7c3a10",
+  "uzun": 92659
+ },
+ "varaq": {
+  "id": "",
+  "matn": "2-dars · Labirint — ustoz varag‘i\n\nAsosiy fikr: bloklar bir xil bo‘lsa ham, tartib hal qiladi. Hukda, xatoni topishda va kalitda — uch marta, uch xil ko‘rinishda chiqadi.\n\nYo‘l: huk (savol va uch sinov) → yangi so‘z «ketma-ketlik» → reja → 1-bekat «Labirintda yuramiz» → 2-bekat «Xatoni topamiz» → 3-bekat «Labirintdan chiqamiz» → o‘qib berish → yakun.\n\nYangi bloklar: move up — tepaga yur, move down — pastga yur. Ikkalasi ham ko‘k — harakat. Birinchi chiqqanda bir marta ayting. Darsda savol bitta — boshidagi huk; qolgan joyda avval ko‘rsating, keyin bolalar o‘zi bajaradi.\n\nDemoda: hukdagi raqamlar haqiqiy (kirdi, javob berdi). Doskalardagi raqamlar — bolalar bajargani bo‘yicha. Blokni ko‘chirish: dasturdagi blokni bosing (tanlanadi), keyin boshqasini — ikkalasining joyi almashadi; ✕ — olib tashlaydi; sudrasa ham bo‘ladi.\n\nBoshqaruv: → yoki «Keyingi» — oldinga, ← — orqaga, F — to‘liq ekran. O‘ng tepada (sichqoncha olib borilsa) — qadam ro‘yxati va «aloqa» belgisi (yashil — ulangan).\n\n1\nKirish\n\nEKRANDA\n«2-dars · Labirint» — «Bugun labirintdan chiqamiz!» Labirint H, Coddy startda. Pastda «O‘tgan darsda»: blok va dastur. «Kirdi» — haqiqiy son.\n\nSIZ\n«O‘tgan darsda Coddy’ni yulduzga olib bordik. Blok — bitta buyruq, dastur — ketma-ket buyruqlar.» «Bugun labirintdan chiqamiz.» «Noutbukda «Tayyorman» tugmasini bosing.»\n\nBOLA O‘RGANADI\nO‘tgan darsni eslaydi: blok va dastur.\n\n2\nSavol\n\nEKRANDA\nSavol: «Coddy’ni labirintdan qanday chiqaramiz?» Uchta karta: A «O‘ngga 4, tepaga 2», B «Tepaga 2, o‘ngga 4», C «O‘ngga 2, tepaga 2, o‘ngga 2». Kartada — nechta bola tanlagani.\n\nSIZ\n«Coddy’ni labirintdan qanday chiqaramiz? Uchala dasturda bloklar bir xil: to‘rtta move right, ikkita move up.» «Har kim noutbukida bitta dasturni tanlasin.» Yangi blokni ayting: move up — tepaga yur, u ham ko‘k — demak, harakat.\n\nBOLA O‘RGANADI\nTaxmin qiladi. Hali hech narsa o‘rgatilmaydi — bu huk.\n\n3\nUch sinov\n\nEKRANDA\nUch sinov: A kartasi o‘zi boshlanadi — 3-blokda devorga uriladi («✕ devorga urildi»). «Keyingi» — B (1-blokda urildi), yana «Keyingi» — C: yulduzda, «✓ chiqdi».\n\nSIZ\n«Kuzating: bloklar birma-bir yonadi — Coddy ularni yuqoridan pastga bajaradi.» «Bloklar uchalasida bir xil edi. Faqat bittasi chiqdi.» «Keyingi»ni bosasiz (har sinovdan keyin).\n\nBOLA O‘RGANADI\nO‘z taxmini sinalganini ko‘radi: bloklar bir xil, natija har xil.\n\n4\nJavob: tartib boshqa\n\nEKRANDA\nJavob: «Bloklar bir xil, tartib boshqa». A va B xira, to‘xtagan blok belgilangan (A — 3-blok, B — 1-blok); C oltin.\n\nSIZ\n«Bloklar bir xil edi, faqat tartibi boshqa. Natija ham boshqa bo‘ldi.» «Coddy dasturni yuqoridan pastga, blokma-blok bajaradi.»\n\nBOLA O‘RGANADI\nKompyuter bloklarni yuqoridan pastga, birma-bir bajaradi.\n\n5\nYangi so‘z: ketma-ketlik\n\nEKRANDA\nYangi so‘z: «Ketma-ketlik — buyruqlar tartibi». Chapda C dasturi 1–6 raqam bilan, labirintda o‘sha raqamlar.\n\nSIZ\n«Keyingi»ni bosasiz — raqamlar birma-bir yonadi: blok va katak birga; oltinchisidan keyin «Keyingi» — keyingi qadam. «Ketma-ketlik — buyruqlar tartibi.» «Kompyuter buyruqlarni aynan siz qo‘ygan tartibda bajaradi.»\n\nBOLA O‘RGANADI\nYangi so‘z: ketma-ketlik — buyruqlar tartibi.\n\n6\nReja\n\nEKRANDA\nReja: «Bugun nima qilamiz?» Tepalik: labirintda yuramiz → xatoni topamiz → labirintdan chiqamiz; cho‘qqida — «Labirintdan chiqasiz».\n\nSIZ\n«Bugun uchta bekat: labirintda yuramiz, xatoni topamiz, labirintdan chiqamiz.» «Dars oxirida kalitni olib, eshikdan o‘tasiz.»\n\nBOLA O‘RGANADI\nDars qayerga borishini biladi.\n\n7\nKo‘ramiz: to‘rt yo‘nalish\n\nEKRANDA\nKo‘ramiz: «To‘rt yo‘nalish». Javonda to‘rtta ko‘k blok; labirint N, dastur bo‘sh.\n\nSIZ\nYo‘lni barmog‘ingiz bilan ko‘rsatib, bloklarni bosasiz: move right → move up → move right → move right, keyin «▶ Ishga tushir». «Harakat oilasida endi to‘rtta blok: o‘ngga, chapga, tepaga, pastga.» «Yo‘l burilgan joyda — boshqa yo‘nalish bloki.» «Endi o‘zingiz.»\n\nBOLA O‘RGANADI\nTo‘rt yo‘nalish bloki; burilishda — boshqa blok.\n\n8\nLabirintda yuramiz\n\nEKRANDA\nMashq: «Endi o‘zingiz!» — uch pog‘onani tugatganlar soni va zinapoya: 1 bitta burilish · 2 pastga ham · 3 ikki burilish · ★ uch burilish. Pastda — «Yordam so‘radi».\n\nSIZ\n«Endi o‘zingiz: qahramoningizni labirintdan olib chiqing. Biri tugasa, keyingisi o‘zi ochiladi.» «Avval yo‘lni barmog‘ingiz bilan kuzating, keyin bloklarni qo‘ying.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.» Javobni aytmang — «Qahramon qayerda buriladi?» deb so‘rang; 2-pog‘onada move down kerak.\n\nBOLA O‘RGANADI\nO‘zi yo‘l tuzadi; urilsa — o‘sha blokni tuzatadi.\n\n9\n2-bekat\n\nEKRANDA\nTepalik: 1-bekat ✓, Coddy 2-bekatda — «Xatoni topamiz».\n\nSIZ\n«Birinchi bekatdan o‘tdik. Endi — xatoni topamiz.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini ko‘radi.\n\n10\nKo‘ramiz: xato qayerda\n\nEKRANDA\nKo‘ramiz: «Xatoni topamiz». Labirint H, tayyor dastur: → → ↑ → ↑ →.\n\nSIZ\n«▶ Ishga tushir»: Coddy 4-blokda devorga uriladi, blok sariq yonib qoladi. 4-blokni bosing, keyin 5-blokni — ikkalasining joyi almashadi (sudrasa ham bo‘ladi); sekin, ikki marta ko‘rsating. Qayta ishga tushiring — Coddy yulduzda. «Coddy qayerda to‘xtasa — xato o‘sha blokda yoki undan oldin.» «Blokni o‘chirmaymiz — joyini almashtiramiz.» «Endi o‘zingiz tuzating.»\n\nBOLA O‘RGANADI\nXato qahramon to‘xtagan blokda yoki undan oldin; uni blok joyini almashtirib tuzatadi.\n\n11\nXatoni tuzating\n\nEKRANDA\nMashq: «Xatoni tuzating!» — uch xatoni tuzatganlar soni va zinapoya: 1 ikki blok almashgan · 2 pastga yo‘l · 3 bitta blok joyida emas · ★ ikki xato.\n\nSIZ\n«Har pog‘onada tayyor dastur bor, lekin unda xato bor. Avval ishga tushiring — qayerda urilganini ko‘ring.» «Blokni o‘chirmang — joyini almashtiring.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.» So‘rang: «Qahramon qaysi blokda to‘xtadi? U yerda qaysi tomonga yurish kerak edi?»\n\nBOLA O‘RGANADI\nTayyor dasturdagi xatoni o‘zi topib tuzatadi.\n\n12\nXulosa: ketma-ketlik\n\nEKRANDA\nXulosa: «Ketma-ketlik». Ikki karta: «Ketma-ketlik — Buyruqlar tartibi» va «Xato qayerda? — Qahramon to‘xtagan joyda».\n\nSIZ\n«Ketma-ketlik — buyruqlar tartibi. Tartib o‘zgarsa — natija o‘zgaradi.» «Xatoni topish uchun: qahramon qayerda to‘xtadi — o‘sha blokni tekshiramiz.» Ikki-uch boladan so‘rang: «Qaysi bloklarni almashtirdingiz?»\n\nBOLA O‘RGANADI\nKetma-ketlik va xatoni topish yo‘li.\n\n13\n3-bekat\n\nEKRANDA\nTepalik: 1, 2 ✓, Coddy 3-bekatda — «Labirintdan chiqamiz».\n\nSIZ\n«Ikki bekatdan o‘tdik. Oxirgisi — labirintdan chiqamiz.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini ko‘radi.\n\n14\nKo‘ramiz: kalit va eshik\n\nEKRANDA\nKo‘ramiz: «Avval kalit, keyin eshik». Labirint KN: Coddy yonida kalit, tepada yopiq eshik, ortida yulduz.\n\nSIZ\nAvval ↑ → → → tuzasiz (kalitsiz) va ishga tushirasiz — eshik yopiq, «Kalit qani?». Keyin bloklar joyini almashtirasiz: → ↑ → →, qayta ishga tushirasiz — Coddy kalitni oladi, eshik ochiladi. «Eshik yopiq. Uni faqat kalit ochadi.» «Bloklar o‘sha-o‘sha — avval kalit, keyin eshik. Tartib yana hal qildi.» Kalit katagiga kirganda o‘zi olinadi — alohida blok kerak emas.\n\nBOLA O‘RGANADI\nMaqsadlar ham tartib bilan bajariladi: avval kalit, keyin eshik.\n\n15\nLabirintdan chiqamiz\n\nEKRANDA\nMashq: «Labirintdan chiqing!» — labirintdan chiqqanlar soni va zinapoya: 1 kalit va eshik · 2 kalit pastda · ★ kalit uzoqda.\n\nSIZ\n«Endi o‘zingiz: kalitni olib, labirintdan chiqing.» «Kalit uzoqda bo‘lsa — borib, orqaga qaytasiz.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.» So‘rang: «Avval qayerga borasiz?» ★ da dastur 10 ta blok bilan to‘ladi — ortiqcha blok qolmasin.\n\nBOLA O‘RGANADI\nKalitgacha, keyin eshikkacha yo‘lni o‘zi tuzadi.\n\n16\nDasturingizni o‘qib bering\n\nEKRANDA\n«Dasturingizni o‘qib bering». Labirint K1, dastur bo‘sh. Proyektorda ism yo‘q; bolalar noutbukida — oxirgi yechgan labirinti o‘z dasturi bilan.\n\nSIZ\nBola o‘rnidan dasturini yuqoridan pastga o‘qiydi («move right, move left, move up…») — siz aynan shu tartibda bosasiz, keyin «▶ Ishga tushir». Ikki-uch bola; xato chiqsa — sinf bilan qayerda to‘xtaganini ko‘rib tuzatasiz. «Kim dasturini yuqoridan pastga o‘qib beradi? Men Coddy bilan aynan shu tartibda bajaraman.» «Kuzating: Coddy aytilgan tartibda yuradi.»\n\nBOLA O‘RGANADI\nDasturini o‘qiydi: tartib va har blok muhim.\n\n17\nYakun\n\nEKRANDA\nYakun: «Labirintdan chiqdingiz!» Bugungi so‘z — ketma-ketlik; uchala bekat ✓; keyingi dars — 3 · X va Y.\n\nSIZ\n«Uchala bekatdan o‘tdik: labirintda yurdik, xatoni topdik, labirintdan chiqdik.» «Bugungi so‘z — ketma-ketlik: buyruqlar tartibi.» «Keyingi darsda — X va Y: qahramonni aytilgan joyga olib boramiz.» Bolalar noutbukida — o‘z natijasi (ekranga chiqmaydi).\n\nBOLA O‘RGANADI\nBugungi so‘zni eslaydi; keyingi darsni biladi.\n\n18\nSinfimiz bugun\n\nEKRANDA\nSinfimiz bugun: butun sinf nechta qadam, tuzatilgan xato va labirint (haqiqiy son, ismsiz); o‘ngda bolalar qahramonlari.\n\nSIZ\n«Hammangiz zo‘r ishladingiz!» Raqamlarni o‘qing. «Kompyuter buyruqlarni siz qo‘ygan tartibda bajaradi. Tartibni esa siz tuzasiz.» «Darsni yakunlash»ni bossangiz — hammada «Dars tugadi» chiqadi.\n\nBOLA O‘RGANADI\nJamoa bo‘lib nimaga erishganini ko‘radi.",
+  "bloklar": [],
+  "html": "bc694783b6c3",
+  "uzun": 10521
+ },
+ "eshik": {
+  "id": "",
+  "matn": "2-dars · Labirint\n\nQaysi oynani ochamiz?\n\nO‘quvchi oynasi\nUstoz oynasi (proyektor)\nO‘quvchi — o‘zi (ustozsiz)\nIkkalasi yonma-yon (ko‘rik)\nUstoz varag‘i",
+  "bloklar": [],
+  "html": "a8db88b4936f",
+  "uzun": 763
+ },
+ "kirish-ismsiz": {
+  "id": "",
+  "matn": "Darsga kirish\n\nIsmingizni yozing\n\nKirish",
+  "bloklar": [],
+  "html": "bb43a0750caa",
+  "uzun": 213
+ }
+}

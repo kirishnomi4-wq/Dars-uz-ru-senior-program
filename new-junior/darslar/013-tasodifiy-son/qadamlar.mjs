@@ -1,0 +1,43 @@
+// 13-dars «Tasodifiy son» qadamlari (QADAM) va ustoz varag'i (VARAQ) — 21.11. Manba: new-junior/manba/013-tasodifiy-son.md, 18 qadam.
+// 16-qadam bola ro'yxati 'oxirgi' (A·1) — bola noutbukida oxirgi yechgan pog'onasi o'z dasturi bilan.
+const QADAM = [
+  ['Kirish', 'P1', ['B0', 'BK']],
+  ['Savol: olma har safar boshqa joyga qanday tushadi?', 'P2', ['P2N', 'BK']],
+  ['Uch sinov', 'P2S', ['BK'], 'Ustoz yo‘llarni sinayapti — kuzating'],
+  ['Javob: dastur o‘zi tanlaydi', 'P2C', ['BK']],
+  ['Yangi so‘z: tasodifiy son', 'P3', ['BK'], 'Yangi so‘z: tasodifiy son'],
+  ['Reja', 'P4', ['BK'], 'Bugun: uchta bekat'],
+  ['Ko‘ramiz: random bloki', 'P6', ['BK'], 'Ustoz random blokini ko‘rsatyapti — kuzating'],
+  ['Bitta son: pog‘onalar', 'P5', ['B1A', 'B1B', 'B1C', 'B1Y', 'BK']],
+  ['2-bekat', 'P4B', ['BK'], '2-bekat: ikki son'],
+  ['Ko‘ramiz: ikki son', 'P7', ['BK'], 'Ustoz ikkinchi random qo‘yyapti — kuzating'],
+  ['Ikki son: pog‘onalar', 'P5G', ['B2A', 'B2B', 'B2C', 'B2Y', 'BK']],
+  ['Xulosa: tasodifiy son', 'P9', ['BK'], 'Xulosa: tasodifiy son'],
+  ['3-bekat', 'P4C', ['BK'], '3-bekat: o‘yin'],
+  ['Ko‘ramiz: o‘yin', 'P8', ['BK'], 'Ustoz o‘ynayapti — kuzating'],
+  ['O‘yin: pog‘onalar', 'P5B', ['B3A', 'B3B', 'B3C', 'B3Y', 'BK']],
+  ['Olma dasturingizni o‘qib bering', 'P11', 'oxirgi'],
+  ['Yakun', 'P12', ['B5']],
+  ['Sinfimiz bugun', 'P14', ['B5']],
+]
+// ustoz varag'i: [Ekranda · Siz (manbadagi tayanch gaplar, aynan) · Bola o'rganadi]
+const VARAQ = [
+  ['«13-dars · Tasodifiy son» — «Bugun o‘yin har safar boshqacha!» Maydon, Coddy (3, 0); pastda «O‘tgan darsda» — jon.', '«O‘tgan darsda o‘yinga jon qo‘shdik.» «Bugun olma har safar boshqa joyga tushadi.» «Noutbukda «Tayyorman» tugmasini bosing.»', 'Bugun olma har safar boshqa joyga tushadi.'],
+  ['Savol: «Olma har safar boshqa joyga qanday tushadi?» Olma doim (3, 0) ga — Coddy qimirlamay yutdi. Uchta karta: A «Boshqa son qo‘yamiz» · B «Navbat bilan uch joy» · C «Dastur o‘zi tanlasin».', '«Olma doim bir joyga tushadi — o‘ynash qiziq emas. Har o‘yin boshqacha bo‘lsin.» «Har kim noutbukida bitta kartani tanlasin: qanday qilamiz?»', 'Taxmin qiladi — bu huk.'],
+  ['Uch sinov: har kartada ikki o‘yin × uch olma. A — «1-o‘yin: 5 · 5 · 5», «2-o‘yin: 5 · 5 · 5» — ✕. «Keyingi» — B: 1 · 5 · 3 ikki marta — ✕. «Keyingi» — C: 4 · 1 · 6 va 2 · 5 · 0 — ✓.', '«Boshqa son ham, navbat ham — ikkinchi o‘yinda o‘sha-o‘sha. Yodlab olsa bo‘ladi.» «Uchinchisida sonni dastur o‘zi tanladi — har o‘yin boshqacha.»', 'Dastur sonni o‘zi tanlay oladi.'],
+  ['Javob: «Dastur o‘zi tanlaydi». A va B xira, C oltin; maydonda olti tushgan joy.', '«Sonni o‘zimiz yozmaymiz — dastur har safar o‘zi tanlaydi. Shuning uchun har o‘yin boshqacha.»', 'Dastur o‘zi tanlaydi.'],
+  ['Yangi so‘z: «Tasodifiy son nima?» «Keyingi» — birma-bir: zar va random 1 to 6 → «4» → «2».', '«Tasodifiy son — dastur o‘zi tanlaydigan son. Qaysi biri — oldindan bilmaymiz.» «random 1 to 6 — 1 dan 6 gacha istalgan son. Lekin 7 hech qachon chiqmaydi.»', 'Yangi so‘z: tasodifiy son.'],
+  ['Reja: tepalik — bitta son → ikki son → o‘yin; cho‘qqida «o‘z o‘yiningiz · Dasturini o‘qib berasiz».', '«Bugun uchta bekat: bitta son, ikki son, o‘yin.» «Dars oxirida olmalari har safar boshqa joyga tushadigan o‘z o‘yiningizni tuzasiz.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: «random — tasodifiy son». Javondan go to x: 0 y: 0; X dagi sonni bosing — «random»: go to x: (random 1 to 10) y: 0. «▶ Ishga tushir»: «8» — olma maydondan chiqdi, Kamvoy «Maydon tugadi!» («random 8 ni tanladi. Maydonda X — 0 dan 6 gacha»). Sonlarni 1 va 5 ga — uch marta: 4, 2, 5 — «Har safar boshqa joy!».', '«random — tasodifiy. Dastur shu sonlar orasidan birini o‘zi tanlaydi.» «Sonlarni savatlarga qarab tanlaymiz: 1 dan 5 gacha.» «Endi o‘zingiz.»', 'random bloki.'],
+  ['Mashq: «Endi o‘zingiz!» — zinapoya: 1 butun qator · 2 uchta savat · 3 ustun · ★ ikki olma.', '«Avval savatlarni o‘qing: X i qaysi sondan qaysi songacha? Y i-chi?» «Uch marta ishga tushiring — har safar savatga tushyaptimi?» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'Bitta sonni tasodifiy qiladi.'],
+  ['Tepalik: 1-bekat ✓ — «Ikki son».', '«Bitta tasodifiy sonni bildik. Endi ikkalasi tasodifiy bo‘ladi.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: «Ikki son — ikki random». Tayyor go to x: (random 3 to 5) y: 1 — «4»: Kamvoy «Bu savat bo‘sh qoladi!» («(3, 2) dagi savatga olma tushmaydi. random sonlarini tekshiring»). Y ga random 1 to 2 — (5, 2), (3, 1), (4, 2).', '«Bitta random — bitta son. Savatlar ikki qatorda bo‘lsa, Y ham tasodifiy bo‘lsin.» «X ning o‘z random i, Y ning o‘z random i. Har biri o‘z sonlari bilan.» «Endi o‘zingiz.»', 'Ikkala sonni tasodifiy qiladi.'],
+  ['Mashq: «Ikkala son tasodifiy!» — zinapoya: 1 kichik kvadrat · 2 to‘rtburchak · 3 katta to‘rtburchak · ★ olma yomg‘iri.', '«Chap pastki savat va o‘ng yuqori savat — ularning X va Y si sizga kerak.» «Daraxt va gulga tushmasin — sonlarni ortiqcha olmang.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'X ga ham, Y ga ham random.'],
+  ['Xulosa: «Tasodifiy son». Ikki karta: dastur o‘zi tanlaydigan son; random 2 to 4 — 2, 3 yoki 4.', '«Tasodifiy son — dastur o‘zi tanlaydigan son.» «random 2 to 4 — 2, 3 yoki 4. Qaysi biri — bilmaymiz, lekin shu sonlardan biri.»', 'Tasodifiy son nima ekanini aytadi.'],
+  ['Tepalik: 1, 2 ✓ — «O‘yin».', '«Ikki bekatdan o‘tdik. Oxirgisi — olma terish o‘yini.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: «O‘yin: olma terish». «Qahramon» tayyor; olma dasturiga go to x: (random 0 to 6) y: 0. «▶ Boshlash»: «O‘yin: strelkalarni bosing · Olma: 0 / 5»; olma (5, 0) ga; ↓ ↓ → → — oldi, «Olma: 1 / 5»; yangi olma (1, 0) ga. «■ To‘xtatish», yana «▶ Boshlash» — birinchi olma endi (2, 0) ga.', '«Qahramonni strelkalar bilan yurgizamiz. Olmani esa dastur tushiradi.» «Olma olindi — olma dasturi yana ishlaydi, random yana son tanlaydi.» «Endi o‘zingiz: olma dasturini tuzing va o‘ynang.»', 'Tasodifiy o‘yin.'],
+  ['Mashq: «O‘yiningizni tuzing!» — zinapoya: 1 bog‘ o‘rtasi · 2 tepa qator · 3 chap ustun · ★ o‘z o‘yiningiz.', '«Avval olma dasturi: random sonlari savatlarga qarab. Keyin «▶ Boshlash».» «Beshta olmani terganingizda — yutdingiz.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'O‘z o‘yinini tuzadi.'],
+  ['«Olma dasturingizni o‘qib bering». Maydon savatsiz, olma dasturi bo‘sh. Proyektorda ism yo‘q; bola noutbukida — oxirgi yechgan pog‘onasi.', '«Kim olma dasturini o‘qib beradi? Avval X, keyin Y: qaysi sondan qaysi songacha.» «Kuzating: olmalar qayerlarga tushyapti?»', 'Olma dasturini o‘qib beradi.'],
+  ['Yakun: «O‘yiningiz har safar boshqacha!» Bugungi so‘z — tasodifiy son; keyingi dars — 14 · Xatoni topish.', '«Uchala bekatdan o‘tdik: bitta son, ikki son, o‘yin.» «Bugungi so‘z — tasodifiy son: dastur o‘zi tanlaydigan son.» «Keyingi darsda dasturlardagi xatolarni topib tuzatamiz.»', 'O‘z natijasini ko‘radi.'],
+  ['Sinfimiz bugun: nechta random qo‘yildi, nechta olma tushirildi va terildi (haqiqiy son, ismsiz).', '«Hammangiz zo‘r ishladingiz!» (keyin raqamlarni o‘qiydi) «Kompyuter o‘yinlarida ham shunday: sovg‘a va to‘siq har safar boshqa joyda chiqadi.»', 'Sinf bilan birga natijani ko‘radi.'],
+]

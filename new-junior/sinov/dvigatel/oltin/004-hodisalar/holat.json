@@ -1,0 +1,1011 @@
+{
+ "u-01-P1": {
+  "id": "P1",
+  "matn": "4-DARS · HODISALAR\nBugun qahramonni boshqaramiz!\n\nCoddy\nSalom! Bugun meni o‘zingiz boshqarasiz.\n\nO‘TGAN DARSDA\ngo to\nx:\n4\ny:\n2\nKoordinata\nKatakning manzili\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKirdi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "6f887682da55",
+  "uzun": 34554
+ },
+ "u-02-P2": {
+  "id": "P2",
+  "matn": "4-DARS · HODISALAR\nSAVOL\nYulduz qochsa, qanday yetamiz?\n\nCoddy\nYulduz qochib yuradi. Qanday yetamiz?\n\nA\nTayyor dastur\nB\nIshga tushirni qayta bosamiz\nC\nStrelka bosilganda yursin\n↑\n←\n↓\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nJavob berdi: 0 / 0\nSinab ko‘ramiz ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "ae58ddaf9507",
+  "uzun": 37298
+ },
+ "u-03-P2S": {
+  "id": "P2S",
+  "matn": "SAVOL\nYulduz qochsa, qanday yetamiz?\n\nCoddy\nYulduz qochib yuradi. Qanday yetamiz?\n\nA\nTayyor dastur\nB\nIshga tushirni qayta bosamiz\nC\nStrelka bosilganda yursin\n↑\n←\n↓\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "3bf3d5b864d5",
+  "uzun": 37384
+ },
+ "u-04-P2C": {
+  "id": "P2C",
+  "matn": "JAVOB\nDastur tugmani kutadi\n\nCoddy\nSiz bosasiz — men yuraman.\n\nA\nTayyor dastur\n✕ yulduz boshqa joyda\nB\nIshga tushirni qayta bosamiz\n✕ yana o‘sha yo‘l\nC\nStrelka bosilganda yursin\n✓ yetib bordi\n↑\n←\n↓\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 4)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a11e225407e5",
+  "uzun": 37401
+ },
+ "u-05-P3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nHodisa nima?\n\nCoddy\nHodisa — biror narsa sodir bo‘lishi: tugma bosildi.\n\n→\nTugma bosildi\n\nwhen\n→\nkey pressed\nDasturcha ishladi\n\nmove right\nQahramon yurdi\n\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a46a4bb26462",
+  "uzun": 34952
+ },
+ "u-06-P4": {
+  "id": "P4",
+  "matn": "REJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Birinchisidan boshlaymiz.\n\nDars oxirida · o‘yin\nOlma terish\n1\nBitta tugma\n2\nTo‘rt tugma\n3\nO‘yin\n‹ Orqaga\nBoshladik ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "26e33a68f47e",
+  "uzun": 41929
+ },
+ "u-07-P6": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nTugma bosilganda\nwhen → key pressed — tugma bosilganda.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a0524f66e2f8",
+  "uzun": 35800
+ },
+ "u-08-P5": {
+  "id": "P5",
+  "matn": "MASHQ\nEndi o‘zingiz!\n\nCoddy\nDasturcha tuzing, «Boshlash»ni bosing va strelka bilan yuring.\n\nUch pog‘onani tugatdi\n0 / 0\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nO‘ngga\n2\n0\nChapga\n3\n0\nIkki tugma\n★\n0\nIkki katak\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "0c496134b553",
+  "uzun": 37594
+ },
+ "u-09-P4B": {
+  "id": "P4B",
+  "matn": "REJA · 2-BEKAT\n2 · To‘rt tugma\n\nCoddy\nEndi to‘rt strelka — qahramon istalgan tomonga yuradi.\n\nDars oxirida · o‘yin\nOlma terish\n✓\nBitta tugma\n2\nTo‘rt tugma\n3\nO‘yin\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "4da51ad87d8e",
+  "uzun": 41807
+ },
+ "u-10-P7": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nTo‘rt tugma — to‘rt dasturcha\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nwhen\n→\nkey pressed\nmove right\nwhen\n←\nkey pressed\nmove left\nwhen\n↑\nkey pressed\nmove up\nwhen\n↓\nkey pressed\nmove down\n4 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right",
+   "k:when←key pressedmove left",
+   "l:move left",
+   "k:when↑key pressedmove up",
+   "u:move up",
+   "k:when↓key pressedmove down",
+   "d:move down"
+  ],
+  "html": "c6ff1c02918f",
+  "uzun": 35742
+ },
+ "u-11-P5G": {
+  "id": "P5G",
+  "matn": "MASHQ\nTo‘rt tugma!\n\nCoddy\nTo‘rtta dasturcha tuzing va qahramonni boshqaring.\n\nUch pog‘onani tugatdi\n0 / 0\n1\n0\nTo‘rt strelka\n2\n0\nOlma, keyin yulduz\n3\n0\nIkki olma\n★\n0\nBoshiga qayt\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "4a3a92008259",
+  "uzun": 38044
+ },
+ "u-12-P9": {
+  "id": "P9",
+  "matn": "XULOSA\nHodisa\n\nCoddy\nTugma bosildi — dastur ishladi.\n\n→\nHodisa\nBiror narsa sodir bo‘lishi: tugma bosildi\nwhen\n→\nkey pressed\nmove right\nwhen → key pressed\nTugma bosilganda\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "ebff01909cd8",
+  "uzun": 34883
+ },
+ "u-13-P4C": {
+  "id": "P4C",
+  "matn": "REJA · 3-BEKAT\n3 · O‘yin\n\nCoddy\nOxirgi bekat: haqiqiy o‘yin — «Olma terish».\n\nDars oxirida · o‘yin\nOlma terish\n✓\nBitta tugma\n✓\nTo‘rt tugma\n3\nO‘yin\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "897f4438716d",
+  "uzun": 41629
+ },
+ "u-14-P8": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nO‘yin: olma terish\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nwhen\n→\nkey pressed\nmove right\nwhen\n←\nkey pressed\nmove left\nwhen\n↑\nkey pressed\nmove up\nwhen\n↓\nkey pressed\nmove down\n4 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right",
+   "k:when←key pressedmove left",
+   "l:move left",
+   "k:when↑key pressedmove up",
+   "u:move up",
+   "k:when↓key pressedmove down",
+   "d:move down"
+  ],
+  "html": "b72af0d6a93d",
+  "uzun": 37439
+ },
+ "u-15-P5B": {
+  "id": "P5B",
+  "matn": "MASHQ\nO‘ynang!\n\nCoddy\nOlmalarni tering, keyin yulduzni tuting!\n\nO‘yinni yutdi\n0 / 0\nHar belgi — o‘yinni yutgan bitta bola\n1\n0\nUch olma\n2\n0\nBesh olma\n★\n0\nO‘z o‘yiningiz\n1\n2\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "1d51517ceb46",
+  "uzun": 35137
+ },
+ "u-16-P11": {
+  "id": "P11",
+  "matn": "KO‘RSATISH\nDasturchalaringizni o‘qib bering\nSiz o‘qiysiz — men o‘sha tugmalarni kutaman.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "cf959b015305",
+  "uzun": 37534
+ },
+ "u-17-P12": {
+  "id": "P12",
+  "matn": "YAKUN\nSiz o‘yin tuzdingiz!\nBUGUNGI SO‘Z\nHodisa\nBiror narsa sodir bo‘lishi\nKeyingi dars\n5 · Takrorlash\n✓\nBitta tugma\n✓\nTo‘rt tugma\n✓\nO‘yin\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "0dbf4017919b",
+  "uzun": 29937
+ },
+ "u-18-P14": {
+  "id": "P14",
+  "matn": "SINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nmarta tugma bosdi\n0\nolma terdi\n0\nmarta yutdi\n‹ Orqaga\nDarsni yakunlash\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "2aff74f16497",
+  "uzun": 40079
+ },
+ "u-x-P2S-A": {
+  "id": "P2S",
+  "matn": "SAVOL\nYulduz qochsa, qanday yetamiz?\n\nCoddy\nYulduz qochib yuradi. Qanday yetamiz?\n\nA\nTayyor dastur\n✕ yulduz boshqa joyda\nB\nIshga tushirni qayta bosamiz\nC\nStrelka bosilganda yursin\n↑\n←\n↓\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 2)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "b92e03e3ccb6",
+  "uzun": 37750
+ },
+ "u-x-P2S-B": {
+  "id": "P2S",
+  "matn": "SAVOL\nYulduz qochsa, qanday yetamiz?\n\nCoddy\nYulduz qochib yuradi. Qanday yetamiz?\n\nA\nTayyor dastur\n✕ yulduz boshqa joyda\nB\nIshga tushirni qayta bosamiz\n✕ yana o‘sha yo‘l\nC\nStrelka bosilganda yursin\n↑\n←\n↓\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 2)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "c239c8c82ba2",
+  "uzun": 37799
+ },
+ "u-x-P2S-C-qochdi": {
+  "id": "P2S",
+  "matn": "SAVOL\nYulduz qochsa, qanday yetamiz?\n\nCoddy\nYulduz qochib yuradi. Qanday yetamiz?\n\nA\nTayyor dastur\n✕ yulduz boshqa joyda\nB\nIshga tushirni qayta bosamiz\n✕ yana o‘sha yo‘l\nC\nStrelka bosilganda yursin\n↑\n←\n↓\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 0)\nO‘yin: strelkalarni bosing\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "584ea1ce7523",
+  "uzun": 37614
+ },
+ "u-x-P2S-C": {
+  "id": "P2S",
+  "matn": "SAVOL\nYulduz qochsa, qanday yetamiz?\n\nCoddy\nYulduz qochib yuradi. Qanday yetamiz?\n\nA\nTayyor dastur\n✕ yulduz boshqa joyda\nB\nIshga tushirni qayta bosamiz\n✕ yana o‘sha yo‘l\nC\nStrelka bosilganda yursin\n✓ yetib bordi\n↑\n←\n↓\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 4)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a13ce2c00fb6",
+  "uzun": 38755
+ },
+ "u-x-P3-1": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nHodisa nima?\n\nCoddy\nHodisa — biror narsa sodir bo‘lishi: tugma bosildi.\n\n→\nTugma bosildi\n\nwhen\n→\nkey pressed\nDasturcha ishladi\n\nmove right\nQahramon yurdi\n\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "fe9934199087",
+  "uzun": 34963
+ },
+ "u-x-P3-2": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nHodisa nima?\n\nCoddy\nHodisa — biror narsa sodir bo‘lishi: tugma bosildi.\n\n→\nTugma bosildi\n\nwhen\n→\nkey pressed\nDasturcha ishladi\n\nmove right\nQahramon yurdi\n\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "6dbf7d86924c",
+  "uzun": 34974
+ },
+ "u-x-P3-3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nHodisa nima?\n\nCoddy\nHodisa — biror narsa sodir bo‘lishi: tugma bosildi.\n\n→\nTugma bosildi\n\nwhen\n→\nkey pressed\nDasturcha ishladi\n\nmove right\nQahramon yurdi\n\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "d8fba5946cdd",
+  "uzun": 34992
+ },
+ "u-x-P6-tuzildi": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nTugma bosilganda\nwhen → key pressed — tugma bosilganda.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nwhen\n→\nkey pressed\nmove right\n1 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right"
+  ],
+  "html": "fa5aefb55b37",
+  "uzun": 35791
+ },
+ "u-x-P6-yetdi": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nTugma bosilganda\nwhen → key pressed — tugma bosilganda.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nwhen\n→\nkey pressed\nmove right\n1 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nYetib bordi!\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right"
+  ],
+  "html": "b45229b650ee",
+  "uzun": 36858
+ },
+ "u-x-P8-yulduz": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nO‘yin: olma terish\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nwhen\n→\nkey pressed\nmove right\nwhen\n←\nkey pressed\nmove left\nwhen\n↑\nkey pressed\nmove up\nwhen\n↓\nkey pressed\nmove down\n4 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\nO‘yin: strelkalarni bosing · Olma: 3 / 3\n‹ Orqaga\n■ To‘xtatish\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right",
+   "k:when←key pressedmove left",
+   "l:move left",
+   "k:when↑key pressedmove up",
+   "u:move up",
+   "k:when↓key pressedmove down",
+   "d:move down"
+  ],
+  "html": "7d18b3fc82a8",
+  "uzun": 38361
+ },
+ "u-x-P8-qochdi": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nO‘yin: olma terish\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nwhen\n→\nkey pressed\nmove right\nwhen\n←\nkey pressed\nmove left\nwhen\n↑\nkey pressed\nmove up\nwhen\n↓\nkey pressed\nmove down\n4 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘yin: strelkalarni bosing · Olma: 3 / 3\n‹ Orqaga\n■ To‘xtatish\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right",
+   "k:when←key pressedmove left",
+   "l:move left",
+   "k:when↑key pressedmove up",
+   "u:move up",
+   "k:when↓key pressedmove down",
+   "d:move down"
+  ],
+  "html": "2391c8af4932",
+  "uzun": 38568
+ },
+ "u-x-P8-yetdi": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nO‘yin: olma terish\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nwhen\n→\nkey pressed\nmove right\nwhen\n←\nkey pressed\nmove left\nwhen\n↑\nkey pressed\nmove up\nwhen\n↓\nkey pressed\nmove down\n4 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\n‹ Orqaga\nYetib bordi!\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right",
+   "k:when←key pressedmove left",
+   "l:move left",
+   "k:when↑key pressedmove up",
+   "u:move up",
+   "k:when↓key pressedmove down",
+   "d:move down"
+  ],
+  "html": "abe94bda2e24",
+  "uzun": 39465
+ },
+ "u-x-yakunlandi": {
+  "id": "P14",
+  "matn": "SINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nmarta tugma bosdi\n0\nolma terdi\n0\nmarta yutdi\nDars tugadi!\nKo‘rishguncha — keyingi darsda takrorlash bilan!\n‹ Orqaga\nDarsni yakunlash\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "3bf2253501a3",
+  "uzun": 40220
+ },
+ "bq-01-0-B0": {
+  "id": "B0",
+  "matn": "4-DARS · HODISALAR\nSalom, Aziz!\nTayyor bo‘lsangiz — tugmani bosing\nTayyorman",
+  "bloklar": [],
+  "html": "7001a67bc758",
+  "uzun": 24478
+ },
+ "bq-01-1-BK": {
+  "id": "BK",
+  "matn": "4-DARS · HODISALAR\n↑\nUstoz ekraniga qarang\nDars hozir boshlanadi",
+  "bloklar": [],
+  "html": "7fe34407ea3d",
+  "uzun": 16090
+ },
+ "bq-02-0-P2N": {
+  "id": "P2N",
+  "matn": "4-DARS · HODISALAR\nSAVOL\nYulduz qochsa, qanday yetamiz?\n\nCoddy\nQaysi yo‘l bilan yulduzga yetamiz?\n\nA\nTayyor dastur\nB\nIshga tushirni qayta bosamiz\nC\nStrelka bosilganda yursin\n↑\n←\n↓\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBirini tanlang",
+  "bloklar": [],
+  "html": "036fbe5bad08",
+  "uzun": 35174
+ },
+ "bq-02-1-BK": {
+  "id": "BK",
+  "matn": "4-DARS · HODISALAR\n↑\nUstoz ekraniga qarang\nJavobingiz qabul qilindi",
+  "bloklar": [],
+  "html": "02bddcf412e4",
+  "uzun": 16093
+ },
+ "bq-03-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz yo‘llarni sinayapti — kuzating",
+  "bloklar": [],
+  "html": "566b03ffae91",
+  "uzun": 16105
+ },
+ "bq-04-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstozni tinglang",
+  "bloklar": [],
+  "html": "71d9bdb1dc94",
+  "uzun": 16085
+ },
+ "bq-05-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nYangi so‘z: hodisa",
+  "bloklar": [],
+  "html": "5bc151907845",
+  "uzun": 16087
+ },
+ "bq-06-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nBugun: uchta bekat",
+  "bloklar": [],
+  "html": "f650a044fefb",
+  "uzun": 16087
+ },
+ "bq-07-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz hodisa blokini ko‘rsatyapti — kuzating",
+  "bloklar": [],
+  "html": "4acf31523322",
+  "uzun": 16113
+ },
+ "bq-08-0-B1A": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nO‘ngga\n→ bosilganda qahramon o‘ngga yursin.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash",
+  "bloklar": [],
+  "html": "2eb791e09a91",
+  "uzun": 21375
+ },
+ "bq-08-1-B1B": {
+  "id": "B1B",
+  "matn": "MASHQ · 2-POG‘ONA\nChapga\nYulduz chapda.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash",
+  "bloklar": [],
+  "html": "010383045049",
+  "uzun": 21354
+ },
+ "bq-08-2-B1C": {
+  "id": "B1C",
+  "matn": "MASHQ · 3-POG‘ONA\nIkki tugma\nYulduz (3, 2) da.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash",
+  "bloklar": [],
+  "html": "f6b0b1f76447",
+  "uzun": 21360
+ },
+ "bq-08-3-B1Y": {
+  "id": "B1Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nIkki katak\n→ bir bosishda ikki katak yursin.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash",
+  "bloklar": [],
+  "html": "44b0b99cd6d6",
+  "uzun": 21378
+ },
+ "bq-08-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "1bbb4152e718",
+  "uzun": 16100
+ },
+ "bq-09-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\n2-bekat: to‘rt tugma",
+  "bloklar": [],
+  "html": "7ccc3656208f",
+  "uzun": 16089
+ },
+ "bq-10-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz to‘rt tugmani ko‘rsatyapti — kuzating",
+  "bloklar": [],
+  "html": "122821121e4e",
+  "uzun": 16112
+ },
+ "bq-11-0-B2A": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nTo‘rt strelka\nYulduz (4, 4) da.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash",
+  "bloklar": [],
+  "html": "f79142a3b6db",
+  "uzun": 21362
+ },
+ "bq-11-1-B2B": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nOlma, keyin yulduz\nOlma (2, 3) da, yulduz (5, 0) da.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash",
+  "bloklar": [],
+  "html": "f98f93383dd0",
+  "uzun": 21951
+ },
+ "bq-11-2-B2C": {
+  "id": "B2C",
+  "matn": "MASHQ · 3-POG‘ONA\nIkki olma\nQahramon (3, 2) da. Ikkala olmani oling, keyin yulduzga.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash",
+  "bloklar": [],
+  "html": "13b33f625b20",
+  "uzun": 22531
+ },
+ "bq-11-3-B2Y": {
+  "id": "B2Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nBoshiga qayt\nspace bosilganda qahramon (0, 0) ga qaytsin.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash",
+  "bloklar": [],
+  "html": "7f69747dfbff",
+  "uzun": 21391
+ },
+ "bq-11-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "1bbb4152e718",
+  "uzun": 16100
+ },
+ "bq-12-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nXulosa: hodisa",
+  "bloklar": [],
+  "html": "8a365d16304a",
+  "uzun": 16083
+ },
+ "bq-13-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\n3-bekat: o‘yin",
+  "bloklar": [],
+  "html": "4d6834e74d11",
+  "uzun": 16083
+ },
+ "bq-14-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz o‘yinni ko‘rsatyapti — kuzating",
+  "bloklar": [],
+  "html": "12293d647bb8",
+  "uzun": 16106
+ },
+ "bq-15-0-B3A": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nUch olma\nOlmalarni tering, keyin yulduzni tuting — u qochadi!\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash",
+  "bloklar": [],
+  "html": "ef374e1cd2fd",
+  "uzun": 23100
+ },
+ "bq-15-1-B3B": {
+  "id": "B3B",
+  "matn": "MASHQ · 2-POG‘ONA\nBesh olma\nOlmalarni tering, keyin yulduzni tuting — u qochadi!\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash",
+  "bloklar": [],
+  "html": "2cdbacf84709",
+  "uzun": 24235
+ },
+ "bq-15-2-B3Y": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z o‘yiningiz\nspace bosilganda qahramoningiz gapirsin.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash",
+  "bloklar": [],
+  "html": "d37a09467e9d",
+  "uzun": 23099
+ },
+ "bq-15-3-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "1bbb4152e718",
+  "uzun": 16100
+ },
+ "bq-17-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nSiz o‘yin tuzdingiz!\n\nBulut\nTugmalar bilan boshqardingiz va o‘yinni yutdingiz.\n\nSiz bugun\n0\nmarta tugma bosdi\n0\nolma terdi\n0\nmarta yutdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 4)\nBulut\nKeyingi darsda takrorlash bilan ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "777cde8eb900",
+  "uzun": 20501
+ },
+ "bq-18-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nSiz o‘yin tuzdingiz!\n\nBulut\nTugmalar bilan boshqardingiz va o‘yinni yutdingiz.\n\nSiz bugun\n0\nmarta tugma bosdi\n0\nolma terdi\n0\nmarta yutdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 4)\nBulut\nKeyingi darsda takrorlash bilan ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "777cde8eb900",
+  "uzun": 20501
+ },
+ "bx-B1A-dasturchayoq": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nO‘ngga\n→ bosilganda qahramon o‘ngga yursin.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nwhen\n→\nkey pressed\nmove right\n1 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nO‘yin: strelkalarni bosing\nBu tugma uchun dasturcha yo‘q-ku…\nMaslahat\n↑ tugmasi uchun when ↑ key pressed bloki kerak\n■ To‘xtatish",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right"
+  ],
+  "html": "9ac1ff2a15b5",
+  "uzun": 26640
+ },
+ "bx-B1A-yetdi": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nO‘ngga\n→ bosilganda qahramon o‘ngga yursin.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nwhen\n→\nkey pressed\nmove right\n1 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘yin: strelkalarni bosing\nMaslahat\n↑ tugmasi uchun when ↑ key pressed bloki kerak\n■ To‘xtatish",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right"
+  ],
+  "html": "efdd792c04dd",
+  "uzun": 21562
+ },
+ "bx-B1Y-shart": {
+  "id": "B1Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nIkki katak\n→ bir bosishda ikki katak yursin.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nwhen\n→\nkey pressed\nmove right\nwhen\n↑\nkey pressed\nmove up\n2 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nO‘yin: strelkalarni bosing\nOz qoldi!\nMaslahat\n→ bir bosishda ikki katak yursin: ostiga ikkita move right\n■ To‘xtatish",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right",
+   "k:when↑key pressedmove up",
+   "u:move up"
+  ],
+  "html": "e8258256b4ea",
+  "uzun": 27586
+ },
+ "bx-B2B-olmasiz": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nOlma, keyin yulduz\nOlma (2, 3) da, yulduz (5, 0) da.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nwhen\n→\nkey pressed\nmove right\nwhen\n←\nkey pressed\nmove left\nwhen\n↑\nkey pressed\nmove up\nwhen\n↓\nkey pressed\nmove down\n4 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nO‘yin: strelkalarni bosing · Olma: 0 / 1\nOlma qoldi-ku!\nMaslahat\nAvval olmani oling — u (2, 3) da\n■ To‘xtatish",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right",
+   "k:when←key pressedmove left",
+   "l:move left",
+   "k:when↑key pressedmove up",
+   "u:move up",
+   "k:when↓key pressedmove down",
+   "d:move down"
+  ],
+  "html": "1a7be5377dbd",
+  "uzun": 27830
+ },
+ "bx-B2B-yetdi": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nOlma, keyin yulduz\nOlma (2, 3) da, yulduz (5, 0) da.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nwhen\n→\nkey pressed\nmove right\nwhen\n←\nkey pressed\nmove left\nwhen\n↑\nkey pressed\nmove up\nwhen\n↓\nkey pressed\nmove down\n4 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nMaslahat\nYetib bordi!\nBoshlash",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right",
+   "k:when←key pressedmove left",
+   "l:move left",
+   "k:when↑key pressedmove up",
+   "u:move up",
+   "k:when↓key pressedmove down",
+   "d:move down"
+  ],
+  "html": "37a06235bfeb",
+  "uzun": 23503
+ },
+ "bx-B3A-yashirin": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nUch olma\nOlmalarni tering, keyin yulduzni tuting — u qochadi!\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nwhen\n→\nkey pressed\nmove right\nwhen\n←\nkey pressed\nmove left\nwhen\n↑\nkey pressed\nmove up\nwhen\n↓\nkey pressed\nmove down\n4 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 4)\nO‘yin: strelkalarni bosing · Olma: 2 / 3\nMaslahat\n■ To‘xtatish",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right",
+   "k:when←key pressedmove left",
+   "l:move left",
+   "k:when↑key pressedmove up",
+   "u:move up",
+   "k:when↓key pressedmove down",
+   "d:move down"
+  ],
+  "html": "5de3ba8d0d85",
+  "uzun": 23596
+ },
+ "bx-B3A-ochildi": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nUch olma\nOlmalarni tering, keyin yulduzni tuting — u qochadi!\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nwhen\n→\nkey pressed\nmove right\nwhen\n←\nkey pressed\nmove left\nwhen\n↑\nkey pressed\nmove up\nwhen\n↓\nkey pressed\nmove down\n4 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 2)\nO‘yin: strelkalarni bosing · Olma: 3 / 3\nMaslahat\n■ To‘xtatish",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right",
+   "k:when←key pressedmove left",
+   "l:move left",
+   "k:when↑key pressedmove up",
+   "u:move up",
+   "k:when↓key pressedmove down",
+   "d:move down"
+  ],
+  "html": "1de857daffa9",
+  "uzun": 23870
+ },
+ "bx-B3A-qochdi": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nUch olma\nOlmalarni tering, keyin yulduzni tuting — u qochadi!\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nwhen\n→\nkey pressed\nmove right\nwhen\n←\nkey pressed\nmove left\nwhen\n↑\nkey pressed\nmove up\nwhen\n↓\nkey pressed\nmove down\n4 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\nO‘yin: strelkalarni bosing · Olma: 3 / 3\nMaslahat\n■ To‘xtatish",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right",
+   "k:when←key pressedmove left",
+   "l:move left",
+   "k:when↑key pressedmove up",
+   "u:move up",
+   "k:when↓key pressedmove down",
+   "d:move down"
+  ],
+  "html": "6b674224fa28",
+  "uzun": 24077
+ },
+ "bx-B3A-yutdi": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nUch olma\nOlmalarni tering, keyin yulduzni tuting — u qochadi!\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nwhen\n→\nkey pressed\nmove right\nwhen\n←\nkey pressed\nmove left\nwhen\n↑\nkey pressed\nmove up\nwhen\n↓\nkey pressed\nmove down\n4 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 1)\nMaslahat\nSiz yutdingiz!\nBoshlash",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right",
+   "k:when←key pressedmove left",
+   "l:move left",
+   "k:when↑key pressedmove up",
+   "u:move up",
+   "k:when↓key pressedmove down",
+   "d:move down"
+  ],
+  "html": "3333898abd1a",
+  "uzun": 25006
+ },
+ "bx-B5-natija": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nSiz o‘yin tuzdingiz!\n\nBulut\nTugmalar bilan boshqardingiz va o‘yinni yutdingiz.\n\nSiz bugun\n27\nmarta tugma bosdi\n4\nolma terdi\n1\nmarta yutdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 4)\nBulut\nKeyingi darsda takrorlash bilan ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "e0cc7ca62ec4",
+  "uzun": 20502
+ },
+ "bx-P2N-tanladi": {
+  "id": "P2N",
+  "matn": "4-DARS · HODISALAR\nSAVOL\nYulduz qochsa, qanday yetamiz?\n\nCoddy\nQaysi yo‘l bilan yulduzga yetamiz?\n\nA\nTayyor dastur\nB\nIshga tushirni qayta bosamiz\nC\nStrelka bosilganda yursin\n↑\n←\n↓\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBirini tanlang",
+  "bloklar": [],
+  "html": "f6c86b112c36",
+  "uzun": 35183
+ },
+ "bx-BQ": {
+  "id": "BQ",
+  "matn": "4-DARS · HODISALAR\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang",
+  "bloklar": [],
+  "html": "587f85e80a13",
+  "uzun": 52604
+ },
+ "bx-BQ-tanladi": {
+  "id": "BK",
+  "matn": "4-DARS · HODISALAR\n↑\nUstoz ekraniga qarang\nJavobingiz qabul qilindi",
+  "bloklar": [],
+  "html": "a21175990580",
+  "uzun": 15155
+ },
+ "sq-01-0-B0": {
+  "id": "B0",
+  "matn": "4-DARS · HODISALAR\nSalom, Aziz!\nTayyor bo‘lsangiz — tugmani bosing\nTayyorman",
+  "bloklar": [],
+  "html": "7001a67bc758",
+  "uzun": 24478
+ },
+ "sq-01-1-P1": {
+  "id": "P1",
+  "matn": "4-DARS · HODISALAR\nBugun qahramonni boshqaramiz!\n\nCoddy\nSalom! Bugun meni o‘zingiz boshqarasiz.\n\nO‘TGAN DARSDA\ngo to\nx:\n4\ny:\n2\nKoordinata\nKatakning manzili\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "003bf8d1aa04",
+  "uzun": 33320
+ },
+ "sq-02-0-P2N": {
+  "id": "P2N",
+  "matn": "4-DARS · HODISALAR\nSAVOL\nYulduz qochsa, qanday yetamiz?\n\nCoddy\nQaysi yo‘l bilan yulduzga yetamiz?\n\nA\nTayyor dastur\nB\nIshga tushirni qayta bosamiz\nC\nStrelka bosilganda yursin\n↑\n←\n↓\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBirini tanlang",
+  "bloklar": [],
+  "html": "036fbe5bad08",
+  "uzun": 35174
+ },
+ "sq-03-0-P2S": {
+  "id": "P2S",
+  "matn": "SAVOL\nYulduz qochsa, qanday yetamiz?\n\nCoddy\nYulduz qochib yuradi. Qanday yetamiz?\n\nA\nTayyor dastur\n▶ Sinab ko‘rish\nB\nIshga tushirni qayta bosamiz\n▶ Sinab ko‘rish\nC\nStrelka bosilganda yursin\n▶ Sinab ko‘rish\n↑\n←\n↓\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "0f1cd77aecfb",
+  "uzun": 36239
+ },
+ "sq-04-0-P2C": {
+  "id": "P2C",
+  "matn": "JAVOB\nDastur tugmani kutadi\n\nCoddy\nSiz bosasiz — men yuraman.\n\nA\nTayyor dastur\n✕ yulduz boshqa joyda\nB\nIshga tushirni qayta bosamiz\n✕ yana o‘sha yo‘l\nC\nStrelka bosilganda yursin\n✓ yetib bordi\n↑\n←\n↓\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 4)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "824ea5f5f155",
+  "uzun": 36175
+ },
+ "sq-05-0-P3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nHodisa nima?\n\nCoddy\nHodisa — biror narsa sodir bo‘lishi: tugma bosildi.\n\n→\nTugma bosildi\n\nwhen\n→\nkey pressed\nDasturcha ishladi\n\nmove right\nQahramon yurdi\n\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "2ac8268ca774",
+  "uzun": 33726
+ },
+ "sq-06-0-P4": {
+  "id": "P4",
+  "matn": "REJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Birinchisidan boshlaymiz.\n\nDars oxirida · o‘yin\nOlma terish\n1\nBitta tugma\n2\nTo‘rt tugma\n3\nO‘yin\n‹ Orqaga\nBoshladik ›",
+  "bloklar": [],
+  "html": "4d67fe4e4c02",
+  "uzun": 40703
+ },
+ "sq-07-0-P6": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nTugma bosilganda\nwhen → key pressed — tugma bosilganda.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nwhen\n→\nkey pressed\nmove right\n1 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Boshlash\nKeyingi ›",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right"
+  ],
+  "html": "0a1ce37a499e",
+  "uzun": 34565
+ },
+ "sq-08-0-B1A": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nO‘ngga\n→ bosilganda qahramon o‘ngga yursin.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash\nKeyingi ›",
+  "bloklar": [],
+  "html": "c9c38133d815",
+  "uzun": 21422
+ },
+ "sq-08-1-B1B": {
+  "id": "B1B",
+  "matn": "MASHQ · 2-POG‘ONA\nChapga\nYulduz chapda.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash\nKeyingi ›",
+  "bloklar": [],
+  "html": "74a0c071867e",
+  "uzun": 21401
+ },
+ "sq-08-2-B1C": {
+  "id": "B1C",
+  "matn": "MASHQ · 3-POG‘ONA\nIkki tugma\nYulduz (3, 2) da.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash\nKeyingi ›",
+  "bloklar": [],
+  "html": "1bff9676f98d",
+  "uzun": 21407
+ },
+ "sq-08-3-B1Y": {
+  "id": "B1Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nIkki katak\n→ bir bosishda ikki katak yursin.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash\nKeyingi ›",
+  "bloklar": [],
+  "html": "74954a40d33a",
+  "uzun": 21425
+ },
+ "sq-09-0-P4B": {
+  "id": "P4B",
+  "matn": "REJA · 2-BEKAT\n2 · To‘rt tugma\n\nCoddy\nEndi to‘rt strelka — qahramon istalgan tomonga yuradi.\n\nDars oxirida · o‘yin\nOlma terish\n✓\nBitta tugma\n2\nTo‘rt tugma\n3\nO‘yin\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "94c828c588d2",
+  "uzun": 40581
+ },
+ "sq-10-0-P7": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nTo‘rt tugma — to‘rt dasturcha\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nwhen\n→\nkey pressed\nmove right\nwhen\n←\nkey pressed\nmove left\nwhen\n↑\nkey pressed\nmove up\nwhen\n↓\nkey pressed\nmove down\n4 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Boshlash\nKeyingi ›",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right",
+   "k:when←key pressedmove left",
+   "l:move left",
+   "k:when↑key pressedmove up",
+   "u:move up",
+   "k:when↓key pressedmove down",
+   "d:move down"
+  ],
+  "html": "3320ed69b3f2",
+  "uzun": 34516
+ },
+ "sq-11-0-B2A": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nTo‘rt strelka\nYulduz (4, 4) da.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash\nKeyingi ›",
+  "bloklar": [],
+  "html": "7653a9e37fea",
+  "uzun": 21409
+ },
+ "sq-11-1-B2B": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nOlma, keyin yulduz\nOlma (2, 3) da, yulduz (5, 0) da.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash\nKeyingi ›",
+  "bloklar": [],
+  "html": "33158f130ba0",
+  "uzun": 21998
+ },
+ "sq-11-2-B2C": {
+  "id": "B2C",
+  "matn": "MASHQ · 3-POG‘ONA\nIkki olma\nQahramon (3, 2) da. Ikkala olmani oling, keyin yulduzga.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash\nKeyingi ›",
+  "bloklar": [],
+  "html": "f318ec04353f",
+  "uzun": 22578
+ },
+ "sq-11-3-B2Y": {
+  "id": "B2Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nBoshiga qayt\nspace bosilganda qahramon (0, 0) ga qaytsin.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash\nKeyingi ›",
+  "bloklar": [],
+  "html": "67b3bdeefe83",
+  "uzun": 21438
+ },
+ "sq-12-0-P9": {
+  "id": "P9",
+  "matn": "XULOSA\nHodisa\n\nCoddy\nTugma bosildi — dastur ishladi.\n\n→\nHodisa\nBiror narsa sodir bo‘lishi: tugma bosildi\nwhen\n→\nkey pressed\nmove right\nwhen → key pressed\nTugma bosilganda\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "0066ae8c39f1",
+  "uzun": 33657
+ },
+ "sq-13-0-P4C": {
+  "id": "P4C",
+  "matn": "REJA · 3-BEKAT\n3 · O‘yin\n\nCoddy\nOxirgi bekat: haqiqiy o‘yin — «Olma terish».\n\nDars oxirida · o‘yin\nOlma terish\n✓\nBitta tugma\n✓\nTo‘rt tugma\n3\nO‘yin\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "6294526262d3",
+  "uzun": 40403
+ },
+ "sq-14-0-P8": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nO‘yin: olma terish\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nwhen\n→\nkey pressed\nmove right\nwhen\n←\nkey pressed\nmove left\nwhen\n↑\nkey pressed\nmove up\nwhen\n↓\nkey pressed\nmove down\n4 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Boshlash\nKeyingi ›",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right",
+   "k:when←key pressedmove left",
+   "l:move left",
+   "k:when↑key pressedmove up",
+   "u:move up",
+   "k:when↓key pressedmove down",
+   "d:move down"
+  ],
+  "html": "2fe476456e0b",
+  "uzun": 36213
+ },
+ "sq-15-0-B3A": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nUch olma\nOlmalarni tering, keyin yulduzni tuting — u qochadi!\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash\nKeyingi ›",
+  "bloklar": [],
+  "html": "20799d4ba230",
+  "uzun": 23147
+ },
+ "sq-15-1-B3B": {
+  "id": "B3B",
+  "matn": "MASHQ · 2-POG‘ONA\nBesh olma\nOlmalarni tering, keyin yulduzni tuting — u qochadi!\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash\nKeyingi ›",
+  "bloklar": [],
+  "html": "f36fd1117d24",
+  "uzun": 24282
+ },
+ "sq-15-2-B3Y": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z o‘yiningiz\nspace bosilganda qahramoningiz gapirsin.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash\nKeyingi ›",
+  "bloklar": [],
+  "html": "d1c06cb8bcc2",
+  "uzun": 23146
+ },
+ "sq-17-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nSiz o‘yin tuzdingiz!\n\nBulut\nTugmalar bilan boshqardingiz va o‘yinni yutdingiz.\n\nSiz bugun\n0\nmarta tugma bosdi\n0\nolma terdi\n0\nmarta yutdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 4)\nBulut\nKeyingi darsda takrorlash bilan ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "777cde8eb900",
+  "uzun": 20501
+ },
+ "sx-P2S-A": {
+  "id": "P2S",
+  "matn": "SAVOL\nYulduz qochsa, qanday yetamiz?\n\nCoddy\nYulduz qochib yuradi. Qanday yetamiz?\n\nA\nTayyor dastur\n✕ yulduz boshqa joyda\nB\nIshga tushirni qayta bosamiz\n▶ Sinab ko‘rish\nC\nStrelka bosilganda yursin\n▶ Sinab ko‘rish\n↑\n←\n↓\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 2)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "ef6878c17c67",
+  "uzun": 36701
+ },
+ "sx-P2S-C": {
+  "id": "P2S",
+  "matn": "SAVOL\nYulduz qochsa, qanday yetamiz?\n\nCoddy\nYulduz qochib yuradi. Qanday yetamiz?\n\nA\nTayyor dastur\n✕ yulduz boshqa joyda\nB\nIshga tushirni qayta bosamiz\n▶ Sinab ko‘rish\nC\nStrelka bosilganda yursin\n✓ yetib bordi\n↑\n←\n↓\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 4)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "69d5bbb995c6",
+  "uzun": 37657
+ },
+ "y-01": {
+  "id": "P1",
+  "matn": "USTOZ · PROYEKTOR\n4-DARS · HODISALAR\nBugun qahramonni boshqaramiz!\n\nCoddy\nSalom! Bugun meni o‘zingiz boshqarasiz.\n\nO‘TGAN DARSDA\ngo to\nx:\n4\ny:\n2\nKoordinata\nKatakning manzili\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKirdi: 1\nKeyingi ›\nO‘QUVCHI · NOUTBUK\n4-DARS · HODISALAR\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a9165726edc2",
+  "uzun": 87302
+ },
+ "y-02": {
+  "id": "P2",
+  "matn": "USTOZ · PROYEKTOR\n4-DARS · HODISALAR\nSAVOL\nYulduz qochsa, qanday yetamiz?\n\nCoddy\nYulduz qochib yuradi. Qanday yetamiz?\n\nA\nTayyor dastur\nB\nIshga tushirni qayta bosamiz\nC\nStrelka bosilganda yursin\n↑\n←\n↓\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nJavob berdi: 0 / 1\nSinab ko‘ramiz ›\nO‘QUVCHI · NOUTBUK\n4-DARS · HODISALAR\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "fd67e1710b4c",
+  "uzun": 90046
+ },
+ "y-03": {
+  "id": "P2S",
+  "matn": "USTOZ · PROYEKTOR\nSAVOL\nYulduz qochsa, qanday yetamiz?\n\nCoddy\nYulduz qochib yuradi. Qanday yetamiz?\n\nA\nTayyor dastur\nB\nIshga tushirni qayta bosamiz\nC\nStrelka bosilganda yursin\n↑\n←\n↓\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "2439167ff1b2",
+  "uzun": 90132
+ },
+ "y-04": {
+  "id": "P2C",
+  "matn": "USTOZ · PROYEKTOR\nJAVOB\nDastur tugmani kutadi\n\nCoddy\nSiz bosasiz — men yuraman.\n\nA\nTayyor dastur\n✕ yulduz boshqa joyda\nB\nIshga tushirni qayta bosamiz\n✕ yana o‘sha yo‘l\nC\nStrelka bosilganda yursin\n✓ yetib bordi\n↑\n←\n↓\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 4)\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "ca36e817955d",
+  "uzun": 90149
+ },
+ "y-05": {
+  "id": "P3",
+  "matn": "USTOZ · PROYEKTOR\nYANGI SO‘Z\nHodisa nima?\n\nCoddy\nHodisa — biror narsa sodir bo‘lishi: tugma bosildi.\n\n→\nTugma bosildi\n\nwhen\n→\nkey pressed\nDasturcha ishladi\n\nmove right\nQahramon yurdi\n\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "16b18aebe032",
+  "uzun": 87700
+ },
+ "y-06": {
+  "id": "P4",
+  "matn": "USTOZ · PROYEKTOR\nREJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Birinchisidan boshlaymiz.\n\nDars oxirida · o‘yin\nOlma terish\n1\nBitta tugma\n2\nTo‘rt tugma\n3\nO‘yin\n‹ Orqaga\nBoshladik ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a320c46d251a",
+  "uzun": 94677
+ },
+ "y-07": {
+  "id": "P6",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nTugma bosilganda\nwhen → key pressed — tugma bosilganda.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "afcdc11764bc",
+  "uzun": 88548
+ },
+ "y-08": {
+  "id": "P5",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nEndi o‘zingiz!\n\nCoddy\nDasturcha tuzing, «Boshlash»ni bosing va strelka bilan yuring.\n\nUch pog‘onani tugatdi\n0 / 1\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nO‘ngga\n2\n0\nChapga\n3\n0\nIkki tugma\n★\n0\nIkki katak\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "3b048beb83fd",
+  "uzun": 90342
+ },
+ "y-09": {
+  "id": "P4B",
+  "matn": "USTOZ · PROYEKTOR\nREJA · 2-BEKAT\n2 · To‘rt tugma\n\nCoddy\nEndi to‘rt strelka — qahramon istalgan tomonga yuradi.\n\nDars oxirida · o‘yin\nOlma terish\n✓\nBitta tugma\n2\nTo‘rt tugma\n3\nO‘yin\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "d3cb12dade8d",
+  "uzun": 94555
+ },
+ "y-10": {
+  "id": "P7",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nTo‘rt tugma — to‘rt dasturcha\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nwhen\n→\nkey pressed\nmove right\nwhen\n←\nkey pressed\nmove left\nwhen\n↑\nkey pressed\nmove up\nwhen\n↓\nkey pressed\nmove down\n4 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right",
+   "k:when←key pressedmove left",
+   "l:move left",
+   "k:when↑key pressedmove up",
+   "u:move up",
+   "k:when↓key pressedmove down",
+   "d:move down"
+  ],
+  "html": "bb557f986ab2",
+  "uzun": 88490
+ },
+ "y-11": {
+  "id": "P5G",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nTo‘rt tugma!\n\nCoddy\nTo‘rtta dasturcha tuzing va qahramonni boshqaring.\n\nUch pog‘onani tugatdi\n0 / 1\n1\n0\nTo‘rt strelka\n2\n0\nOlma, keyin yulduz\n3\n0\nIkki olma\n★\n0\nBoshiga qayt\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a5ae02e0b26a",
+  "uzun": 90792
+ },
+ "y-12": {
+  "id": "P9",
+  "matn": "USTOZ · PROYEKTOR\nXULOSA\nHodisa\n\nCoddy\nTugma bosildi — dastur ishladi.\n\n→\nHodisa\nBiror narsa sodir bo‘lishi: tugma bosildi\nwhen\n→\nkey pressed\nmove right\nwhen → key pressed\nTugma bosilganda\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "191e35b226a8",
+  "uzun": 87631
+ },
+ "y-13": {
+  "id": "P4C",
+  "matn": "USTOZ · PROYEKTOR\nREJA · 3-BEKAT\n3 · O‘yin\n\nCoddy\nOxirgi bekat: haqiqiy o‘yin — «Olma terish».\n\nDars oxirida · o‘yin\nOlma terish\n✓\nBitta tugma\n✓\nTo‘rt tugma\n3\nO‘yin\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "5c464f41871b",
+  "uzun": 94377
+ },
+ "y-14": {
+  "id": "P8",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nO‘yin: olma terish\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nwhen\n→\nkey pressed\nmove right\nwhen\n←\nkey pressed\nmove left\nwhen\n↑\nkey pressed\nmove up\nwhen\n↓\nkey pressed\nmove down\n4 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right",
+   "k:when←key pressedmove left",
+   "l:move left",
+   "k:when↑key pressedmove up",
+   "u:move up",
+   "k:when↓key pressedmove down",
+   "d:move down"
+  ],
+  "html": "cfa8bebb6387",
+  "uzun": 90187
+ },
+ "y-15": {
+  "id": "P5B",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nO‘ynang!\n\nCoddy\nOlmalarni tering, keyin yulduzni tuting!\n\nO‘yinni yutdi\n0 / 1\nHar belgi — o‘yinni yutgan bitta bola\n1\n0\nUch olma\n2\n0\nBesh olma\n★\n0\nO‘z o‘yiningiz\n1\n2\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "2815e22e10d3",
+  "uzun": 87885
+ },
+ "y-16": {
+  "id": "P11",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RSATISH\nDasturchalaringizni o‘qib bering\nSiz o‘qiysiz — men o‘sha tugmalarni kutaman.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "dcbcba05ab7d",
+  "uzun": 90282
+ },
+ "y-17": {
+  "id": "P12",
+  "matn": "USTOZ · PROYEKTOR\nYAKUN\nSiz o‘yin tuzdingiz!\nBUGUNGI SO‘Z\nHodisa\nBiror narsa sodir bo‘lishi\nKeyingi dars\n5 · Takrorlash\n✓\nBitta tugma\n✓\nTo‘rt tugma\n✓\nO‘yin\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "cf697004038c",
+  "uzun": 82685
+ },
+ "y-18": {
+  "id": "P14",
+  "matn": "USTOZ · PROYEKTOR\nSINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nmarta tugma bosdi\n0\nolma terdi\n0\nmarta yutdi\n‹ Orqaga\nDarsni yakunlash\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "e217deca8b15",
+  "uzun": 92827
+ },
+ "varaq": {
+  "id": "",
+  "matn": "4-dars · Hodisalar — ustoz varag‘i\n\nAsosiy fikr: dastur tugmani kutadi — tugma bosilsa, o‘sha tugmaning dasturchasi ishlaydi. Tugma bosilishi — hodisa (biror narsa sodir bo‘lishi).\n\nYo‘l: huk (yulduz qochadi — uch sinov) → yangi so‘z «hodisa» → reja → 1-bekat «Bitta tugma» → 2-bekat «To‘rt tugma» → 3-bekat «O‘yin» → o‘qib berish → yakun.\n\nYangi blok: when → key pressed — tugma bosilganda. Yangi oila — Hodisa (to‘q sariq). Hodisa bloki doim dasturchaning tepasida. Javondan hodisa blokini bossangiz — yangi dasturcha; keyin bosilgan blok oxirgi dasturchaga ulanadi.\n\nO‘yin: «▶ Boshlash» bilan boshlanadi; ungacha strelka ishlamaydi. O‘yin paytida proyektorda → va ← qadam almashtirmaydi — keyingi qadamga «Keyingi» bilan o‘ting. «To‘xtadik. Qo‘llar klaviaturadan.» kelishuvini dars boshida eslating.\n\nBoshqaruv: → yoki «Keyingi» — oldinga, ← — orqaga, F — to‘liq ekran. O‘ng tepada (sichqoncha olib borilsa) — qadam ro‘yxati va «aloqa» belgisi (yashil — ulangan).\n\n1\nKirish\n\nEKRANDA\n«4-dars · Hodisalar» — «Bugun qahramonni boshqaramiz!» Maydon, Coddy (0, 0) da; pastda «O‘tgan darsda»: go to x: 4 y: 2 — koordinata.\n\nSIZ\n«O‘tgan darsda qahramonni manzilga dastur bilan olib bordik.» «Bugun dastur tugmani kutadi — qahramonni o‘zingiz boshqarasiz.» «Noutbukda «Tayyorman» tugmasini bosing.»\n\nBOLA O‘RGANADI\nO‘tgan darsni eslaydi: koordinata.\n\n2\nSavol\n\nEKRANDA\nSavol: «Yulduz qochsa, qanday yetamiz?» Uchta karta: A «Tayyor dastur», B «Ishga tushirni qayta bosamiz», C «Strelka bosilganda yursin». Kartada — nechta bola tanlagani.\n\nSIZ\n«Bu — o‘yin: yulduz qochib yuradi.» «Har kim noutbukida bitta kartani tanlasin: qahramonni yulduzga qanday olib boramiz?»\n\nBOLA O‘RGANADI\nTaxmin qiladi — bu huk.\n\n3\nUch sinov\n\nEKRANDA\nUch sinov — har birida yulduz (4, 2) da turadi va Coddy yurayotganda qochadi. A o‘zi boshlanadi: Coddy tayyor dastur bilan yuradi, yulduz (2, 3) ga qochadi, Coddy baribir (4, 2) ga boradi («✕ yulduz boshqa joyda»). «Keyingi» — B: o‘sha dastur yana; yulduz (5, 1) ga qochadi («✕ yana o‘sha yo‘l»). «Keyingi» — C: sahnada «O‘yin: strelkalarni bosing».\n\nSIZ\nC da klaviaturada → → bosasiz — yulduz (1, 4) ga qochadi; keyin ← ↑ ↑ ↑ ↑ — Coddy ortidan borib yetadi («✓ yetib bordi»). «Tayyor dastur har safar bir xil yo‘ldan yuradi — yulduz esa qochadi.» «Strelka bosilganda yursa — qahramonni o‘zimiz boshqaramiz.»\n\nBOLA O‘RGANADI\nOldindan yozilgan dastur o‘yinda yetmaydi.\n\n4\nJavob: dastur kutadi\n\nEKRANDA\nJavob: «Dastur tugmani kutadi». A va B xira, C oltin; Coddy yulduzda.\n\nSIZ\n«Tayyor dastur oldindan hammasini aytadi. O‘yinda esa dastur kutadi: tugma bosilsa — yuradi.»\n\nBOLA O‘RGANADI\nDastur tugmani kutishi mumkin.\n\n5\nYangi so‘z: hodisa\n\nEKRANDA\nYangi so‘z: «Hodisa — biror narsa sodir bo‘lishi: tugma bosildi». «Keyingi» — birma-bir: tugma bosildi, dasturcha ishladi, qahramon yurdi.\n\nSIZ\n«Keyingi»ni bosasiz (uch marta). «Hodisa — biror narsa sodir bo‘lishi. Bugun hodisa — tugma bosildi.» «Dastur hodisani kutadi va unga javob beradi.» Misol: eshik qo‘ng‘irog‘i — tugma bosilsa, jiringlaydi.\n\nBOLA O‘RGANADI\nYangi so‘z: hodisa.\n\n6\nReja\n\nEKRANDA\nReja: tepalik — bitta tugma → to‘rt tugma → o‘yin; cho‘qqida «Olma terish» o‘yini.\n\nSIZ\n«Bugun uchta bekat: bitta tugma, to‘rt tugma, o‘yin.» «Dars oxirida o‘z o‘yiningizni o‘ynaysiz.»\n\nBOLA O‘RGANADI\nDars qayerga borishini biladi.\n\n7\nKo‘ramiz: when → key pressed\n\nEKRANDA\nKo‘ramiz: «Tugma bosilganda». Javonda yangi oila — Hodisa (to‘q sariq), unda when → key pressed; yulduz (3, 0), dastur bo‘sh.\n\nSIZ\nHodisa blokini bosasiz (yangi dasturcha), Harakat oilasiga o‘tib move right ni bosasiz — u dasturchaga ulanadi. «▶ Boshlash», keyin → ni uch marta bosasiz. Keyin «■ To‘xtatish», yana hodisa blokini qo‘shasiz va undagi → ni bosasiz — ro‘yxatdan ← ni tanlaysiz, ostiga move left; sekin, ikki marta ko‘rsating (8-qadamning 2-pog‘onasi shuni talab qiladi). «when → key pressed — → tugmasi bosilganda. Ostidagi bloklar shu payt bajariladi.» «Hodisa bloki doim tepada turadi — dasturcha shundan boshlanadi.» «Endi o‘zingiz.»\n\nBOLA O‘RGANADI\nHodisa bloki va dasturcha.\n\n8\nBitta tugma\n\nEKRANDA\nMashq: «Endi o‘zingiz!» — zinapoya: 1 o‘ngga · 2 chapga · 3 ikki tugma · ★ ikki katak.\n\nSIZ\n«Avval dasturcha tuzing, keyin «Boshlash» — va strelkani bosing.» «Har tugmaga — o‘z dasturchasi.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.» So‘rang: «Qaysi tugmani bosyapsiz? Uning dasturchasi bormi?»\n\nBOLA O‘RGANADI\nBitta-ikkita tugmaga dasturcha tuzadi va o‘ynaydi.\n\n9\n2-bekat\n\nEKRANDA\nTepalik: 1-bekat ✓ — «To‘rt tugma».\n\nSIZ\n«Bitta tugmani bildik. Endi to‘rtta — to‘liq boshqaruv.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini ko‘radi.\n\n10\nKo‘ramiz: to‘rt tugma\n\nEKRANDA\nKo‘ramiz: «To‘rt tugma — to‘rt dasturcha». Dasturda tayyor to‘rtta dasturcha; yulduz (5, 3).\n\nSIZ\n«▶ Boshlash», keyin ↑ ↑ ↑ va → ni besh marta bosasiz. «To‘rt tugma — to‘rt dasturcha. Har biri o‘z tugmasini kutadi.» «Endi o‘zingiz.»\n\nBOLA O‘RGANADI\nTo‘rt strelka — to‘rt dasturcha.\n\n11\nTo‘rt tugma\n\nEKRANDA\nMashq: «To‘rt tugma!» — zinapoya: 1 to‘rt strelka · 2 olma, keyin yulduz · 3 ikki olma · ★ boshiga qayt.\n\nSIZ\n«To‘rtta dasturcha — to‘rt strelka. Keyin «Boshlash» va o‘ynang.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.» 2-pog‘onadan dastur oldingi pog‘onadagi dasturchalar bilan ochiladi.\n\nBOLA O‘RGANADI\nTo‘rt tugma bilan qahramonni boshqaradi.\n\n12\nXulosa: hodisa\n\nEKRANDA\nXulosa: «Hodisa». Ikki karta: «Hodisa — Biror narsa sodir bo‘lishi: tugma bosildi» va «when → key pressed — Tugma bosilganda».\n\nSIZ\n«Hodisa — biror narsa sodir bo‘lishi. Dastur hodisani kutadi va javob beradi.» «Har tugmaga o‘z dasturchasi.» So‘rang: «Telefoningizda qanday hodisalar bor?»\n\nBOLA O‘RGANADI\nHodisa va dasturcha.\n\n13\n3-bekat\n\nEKRANDA\nTepalik: 1, 2 ✓ — «O‘yin».\n\nSIZ\n«Ikki bekatdan o‘tdik. Oxirgisi — o‘yin.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini ko‘radi.\n\n14\nKo‘ramiz: olma terish\n\nEKRANDA\nKo‘ramiz: «O‘yin: olma terish». 3 olma; yulduz yashirin — hamma olma olingach ochiladi va uch bosishdan keyin boshqa katakka qochadi (4·11 A); sahnada «Olma: 0 / 3».\n\nSIZ\n«▶ Boshlash» va strelkalar bilan olmalarni terasiz, keyin yulduzga — u qochsa, ortidan borasiz. «O‘yin qoidasi: hamma olmani tering — keyin yulduz chiqadi. Yulduz qochadi — tutib oling.» «Dasturchalar o‘sha-o‘sha. O‘yin — siz bosgan tugmalardan.»\n\nBOLA O‘RGANADI\nO‘yin qoidasi: olmalar, keyin qochgan yulduzni tutish.\n\n15\nO‘yin\n\nEKRANDA\nMashq: «O‘ynang!» — o‘yinni yutganlar soni va zinapoya: 1 uch olma · 2 besh olma · ★ o‘z o‘yiningiz.\n\nSIZ\n«Dasturchalar tayyor — endi o‘ynang: hamma olmani tering, keyin yulduzni tuting.» «★ da space bosilganda qahramoningiz o‘z gapini aytsin.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nO‘yinni o‘ynaydi; ★ da o‘z gapini qo‘shadi.\n\n16\nDasturchalaringizni o‘qib bering\n\nEKRANDA\n«Dasturchalaringizni o‘qib bering». Dastur bo‘sh, 3 olma. Proyektorda ism yo‘q; bolalar noutbukida — o‘z ekrani.\n\nSIZ\nBola o‘z dasturchalarini o‘qiydi («→ bosilganda — move right…»), siz tuzasiz, «▶ Boshlash» — sinf qaysi strelkani bosishni aytadi. «Kim dasturchalarini o‘qib beradi? Qaysi tugma — nima qiladi?» «Sinf, qaysi strelkani bosay?»\n\nBOLA O‘RGANADI\nDasturchalarini o‘qiydi.\n\n17\nYakun\n\nEKRANDA\nYakun: «Siz o‘yin tuzdingiz!» Bugungi so‘z — hodisa; uchala bekat ✓; keyingi dars — 5 · Takrorlash.\n\nSIZ\n«Uchala bekatdan o‘tdik: bitta tugma, to‘rt tugma, o‘yin.» «Bugungi so‘z — hodisa: biror narsa sodir bo‘lishi, tugma bosildi.» «Keyingi darsda qahramon bir blok bilan ko‘p marta yuradi — takrorlash.»\n\nBOLA O‘RGANADI\nBugungi so‘zni eslaydi.\n\n18\nSinfimiz bugun\n\nEKRANDA\nSinfimiz bugun: butun sinf necha marta tugma bosdi, nechta olma terdi va necha marta yutdi (haqiqiy son, ismsiz).\n\nSIZ\n«Hammangiz zo‘r ishladingiz!» Raqamlarni o‘qing. «Har bir o‘yin shunday ishlaydi: dastur tugmani kutadi.» «Darsni yakunlash»ni bossangiz — hammada «Dars tugadi» chiqadi.\n\nBOLA O‘RGANADI\nJamoa bo‘lib nimaga erishganini ko‘radi.",
+  "bloklar": [],
+  "html": "467f133c405d",
+  "uzun": 9480
+ },
+ "eshik": {
+  "id": "",
+  "matn": "4-dars · Hodisalar\n\nQaysi oynani ochamiz?\n\nO‘quvchi oynasi\nUstoz oynasi (proyektor)\nO‘quvchi — o‘zi (ustozsiz)\nIkkalasi yonma-yon (ko‘rik)\nUstoz varag‘i",
+  "bloklar": [],
+  "html": "43d8f53d51e1",
+  "uzun": 764
+ },
+ "kirish-ismsiz": {
+  "id": "",
+  "matn": "Darsga kirish\n\nIsmingizni yozing\n\nKirish",
+  "bloklar": [],
+  "html": "bb43a0750caa",
+  "uzun": 213
+ }
+}

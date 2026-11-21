@@ -1,0 +1,147 @@
+/* Qahramon, robot va zona harakatlari */
+.hero,.robot{display:block;width:100%;height:auto;overflow:visible}
+.world{display:block;width:100%;height:100%}
+.hero .h-all{transform-origin:100px 204px;animation:nafas 3.4s ease-in-out infinite;animation-delay:var(--d,0s)}
+.hero .lid{transform-box:fill-box;transform:translateY(var(--lid));animation:kipr 4.8s infinite;animation-delay:var(--d,0s)}
+.hero .pp{transform:translate(var(--gx,0px),var(--gy,0px));transition:transform .12s ease-out}
+.hero .mo{transform-box:fill-box;transform-origin:50% 0}
+.hero .ft-l,.hero .ft-r,.hero .hd-l,.hero .hd-r{transform-box:fill-box;transform-origin:50% 50%}
+@keyframes nafas{50%{transform:scale(1.022,.976)}}
+@keyframes kipr{0%,93%,100%{transform:translateY(var(--lid))}96%{transform:translateY(0)}}
+.hero.mv-yuradi .h-all{animation:qadam .46s ease-in-out infinite}
+@keyframes qadam{0%,100%{transform:translateY(0) rotate(-2.5deg)}50%{transform:translateY(-6px) rotate(2.5deg)}}
+.hero.mv-yuradi .ft-l{animation:oyoq .46s ease-in-out infinite}
+.hero.mv-yuradi .ft-r{animation:oyoq .46s ease-in-out -.23s infinite}
+@keyframes oyoq{0%,100%{transform:translate(-3px,0)}50%{transform:translate(5px,-9px)}}
+.hero.mv-yuradi .hd-l{animation:qol .46s ease-in-out -.23s infinite}
+.hero.mv-yuradi .hd-r{animation:qol .46s ease-in-out infinite}
+@keyframes qol{0%,100%{transform:translateY(3px)}50%{transform:translateY(-5px)}}
+.hero.mv-sakraydi .h-all{animation:sakra 1.05s cubic-bezier(.3,.6,.4,1) infinite}
+@keyframes sakra{0%,100%{transform:translateY(0) scale(1.1,.88)}12%{transform:translateY(0) scale(1.13,.84)}50%{transform:translateY(-44px) scale(.94,1.07)}88%{transform:translateY(0) scale(1.04,.96)}}
+.hero.mv-sakraydi .h-sh{transform-box:fill-box;transform-origin:50% 50%;animation:soya 1.05s cubic-bezier(.3,.6,.4,1) infinite}
+@keyframes soya{50%{transform:scale(.6);opacity:.1}}
+.hero.mv-gapiradi .mo{animation:gap .3s ease-in-out infinite alternate}
+@keyframes gap{from{transform:scaleY(.25)}to{transform:scaleY(1)}}
+.hero .fl1{animation:suz 3s ease-in-out infinite}.hero .fl2{animation:suz 3.6s ease-in-out -1s infinite}.hero .fl3{animation:suz 2.6s ease-in-out -2s infinite}
+@keyframes suz{50%{transform:translateY(-5px)}}
+.hero .sway{transform-origin:100px 76px;animation:tebran 3.6s ease-in-out infinite}
+@keyframes tebran{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(6deg)}}
+.tw{transform-box:fill-box;transform-origin:50% 50%;animation:milt 2.4s ease-in-out infinite}
+@keyframes milt{50%{opacity:.25;transform:scale(.7)}}
+.hero .z1,.hero .z2,.hero .z3{animation:zz 2.6s ease-in-out infinite}.hero .z2{animation-delay:-.5s}.hero .z3{animation-delay:-1s}
+@keyframes zz{0%{opacity:0;transform:translateY(6px)}40%{opacity:1}100%{opacity:0;transform:translateY(-8px)}}
+/* ===== Robot (Coddy): bogimli harakat. Qoida: yelka boshlaydi, kaft ergashadi; tana qimirlasa bosh biroz kechikadi ===== */
+.robot .r-all{transform-origin:130px 230px}
+.robot .mk-up{transform-origin:130px 176px;animation:mkNafas 3.8s ease-in-out infinite}
+@keyframes mkNafas{0%,100%{transform:translateY(0) rotate(-.7deg)}50%{transform:translateY(-1.5px) rotate(.7deg)}}
+.robot .mk-head{transform-origin:130px 112px;animation:mkBosh 3.8s ease-in-out -.55s infinite}
+@keyframes mkBosh{0%,100%{transform:translateY(0) rotate(1.1deg)}50%{transform:translateY(-1.1px) rotate(-1.1deg)}}
+.robot .mk-arm{animation:mkQol 3.8s ease-in-out -1s infinite}
+.robot .mk-arm.a-R{animation-delay:-2.7s}
+@keyframes mkQol{0%,100%{transform:rotate(-1.8deg)}50%{transform:rotate(2deg)}}
+.robot .mk-gaze{transform:translate(var(--gx,0px),var(--gy,0px));transition:transform .14s ease-out}
+.robot .mk-gaze:not([data-fix]) .mk-look{animation:mkQara 7.5s ease-in-out infinite}
+@keyframes mkQara{0%,58%,93%,100%{transform:translate(0,0)}63%,72%{transform:translate(4.5px,-1px)}78%,88%{transform:translate(-4.5px,0)}}
+.robot .mk-eyes{transform-box:fill-box;transform-origin:50% 50%;animation:rkipr 4.4s infinite}
+@keyframes rkipr{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.08)}}
+.robot .mo{transform-box:fill-box;transform-origin:50% 0;animation:gap .3s ease-in-out infinite alternate}
+.robot .lg-l,.robot .lg-r{transform-box:fill-box}
+/* salom beradi: qol yelkadan, kaft kechikib ergashadi, bosh qol tomonga egiladi */
+.robot .mk-arm.a-wave{animation:mkSalom .85s ease-in-out infinite alternate}
+@keyframes mkSalom{from{transform:rotate(-8deg)}to{transform:rotate(7deg)}}
+.robot .wave{animation:silkit .85s ease-in-out .16s infinite alternate}
+@keyframes silkit{from{transform:rotate(-13deg)}to{transform:rotate(15deg)}}
+.robot.rp-salom .mk-head{animation:mkBoshSalom 1.7s ease-in-out infinite alternate}
+@keyframes mkBoshSalom{from{transform:rotate(-3.6deg)}to{transform:rotate(-1.2deg) translateY(-1px)}}
+/* quvonadi */
+.robot.rp-quvonadi .r-all{animation:mkSakracha .42s ease-in-out infinite alternate}
+@keyframes mkSakracha{from{transform:translateY(0) scale(1.012,.988)}to{transform:translateY(-4.5px) scale(.992,1.01)}}
+.robot .mk-arm.a-up{animation:mkTepa .42s ease-in-out infinite alternate}
+.robot .mk-arm.a-up.a-R{animation-direction:alternate-reverse;animation-delay:0s}
+@keyframes mkTepa{from{transform:rotate(-6deg)}to{transform:rotate(6deg)}}
+.robot .cheer{animation:silkit2 .42s ease-in-out .1s infinite alternate}
+@keyframes silkit2{from{transform:rotate(-9deg)}to{transform:rotate(9deg)}}
+.robot.rp-quvonadi .mk-head{animation:mkBoshQuv .84s ease-in-out infinite alternate}
+@keyframes mkBoshQuv{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
+/* tushuntiradi: qol bilan ishora, bosh bosh irgaydi */
+.robot .mk-arm.a-gest{animation:mkGest 1.15s ease-in-out infinite alternate}
+@keyframes mkGest{from{transform:rotate(7deg)}to{transform:rotate(-7deg)}}
+.robot.rp-tushuntiradi .mk-head{animation:mkNod 1.15s ease-in-out .12s infinite alternate}
+@keyframes mkNod{from{transform:translateY(0) rotate(.5deg)}to{transform:translateY(1.6px) rotate(2.4deg)}}
+/* korsatadi: qol turtib korsatadi, bosh osha tomonga buriladi */
+.robot .mk-arm.a-point{animation:mkNuqta 1.5s ease-in-out infinite}
+@keyframes mkNuqta{0%,100%{transform:rotate(1.5deg)}45%{transform:rotate(-4deg)}60%{transform:rotate(-2.5deg)}}
+.robot.rp-korsatadi .mk-head{animation:mkBoshKor 3s ease-in-out infinite alternate}
+@keyframes mkBoshKor{from{transform:rotate(2deg)}to{transform:rotate(3.6deg) translateY(.6px)}}
+/* oylaydi */
+.robot .mk-arm.a-think{animation:mkOylaQ 2.6s ease-in-out infinite alternate}
+@keyframes mkOylaQ{from{transform:rotate(-1deg)}to{transform:rotate(1.6deg)}}
+.robot.rp-oylaydi .mk-head{animation:mkBoshOy 2.6s ease-in-out infinite alternate}
+@keyframes mkBoshOy{from{transform:rotate(2.4deg)}to{transform:rotate(4.4deg) translateY(.6px)}}
+/* yuradi: har qadamda tana kotariladi, ogirlik oyoqdan oyoqqa otadi, qollar tebranadi, bosh kechikadi */
+.robot.mv-yuradi .r-all{animation:mkYurB .3s ease-in-out infinite alternate}
+@keyframes mkYurB{from{transform:translateY(0)}to{transform:translateY(-3.6px)}}
+.robot.mv-yuradi .mk-up{animation:mkYurT .6s ease-in-out infinite alternate}
+@keyframes mkYurT{from{transform:rotate(-2.4deg) translateX(-1.2px)}to{transform:rotate(2.4deg) translateX(1.2px)}}
+.robot.mv-yuradi .mk-head{animation:mkYurH .6s ease-in-out -.1s infinite alternate}
+@keyframes mkYurH{from{transform:rotate(1.8deg)}to{transform:rotate(-1.8deg) translateY(.8px)}}
+.robot.mv-yuradi .lg-l{animation:mkOyoq .6s linear infinite}
+.robot.mv-yuradi .lg-r{animation:mkOyoq .6s linear -.3s infinite}
+@keyframes mkOyoq{0%,100%{transform:translate(-2.5px,0)}22%{transform:translate(0,-8px)}45%{transform:translate(3.5px,0)}}
+.robot.mv-yuradi .mk-arm.a-L,.robot.mv-yuradi .mk-arm.a-R{animation:mkSwing .6s ease-in-out -.09s infinite alternate}
+@keyframes mkSwing{from{transform:rotate(-7deg)}to{transform:rotate(7deg)}}
+/* sakraydi: avval chokadi, uchadi (qollar kotariladi), qonib tebranadi */
+.robot.mv-sakraydi .r-all{animation:mkSakra 1.05s cubic-bezier(.35,.5,.4,1) infinite}
+@keyframes mkSakra{0%,100%{transform:translateY(0) scale(1,1)}13%{transform:translateY(0) scale(1.06,.9)}24%{transform:translateY(-6px) scale(.96,1.06)}50%{transform:translateY(-44px) scale(.985,1.02)}76%{transform:translateY(-4px) scale(.97,1.05)}85%{transform:translateY(0) scale(1.07,.9)}93%{transform:translateY(0) scale(.99,1.02)}}
+.robot.mv-sakraydi .mk-up{animation:none}
+.robot.mv-sakraydi .mk-arm.a-L{animation:mkSakQL 1.05s ease-in-out infinite}
+.robot.mv-sakraydi .mk-arm.a-R{animation:mkSakQR 1.05s ease-in-out infinite}
+@keyframes mkSakQL{0%,100%{transform:rotate(0)}13%{transform:rotate(-10deg)}38%,55%{transform:rotate(124deg)}80%{transform:rotate(30deg)}90%{transform:rotate(-4deg)}}
+@keyframes mkSakQR{0%,100%{transform:rotate(0)}13%{transform:rotate(10deg)}38%,55%{transform:rotate(-124deg)}80%{transform:rotate(-30deg)}90%{transform:rotate(4deg)}}
+.robot.mv-sakraydi .lg-l,.robot.mv-sakraydi .lg-r{animation:mkSakOy 1.05s ease-in-out infinite}
+@keyframes mkSakOy{0%,15%,80%,100%{transform:translateY(0)}36%,58%{transform:translateY(-6px)}}
+.robot.mv-sakraydi .mk-head{animation:mkSakH 1.05s ease-in-out infinite}
+@keyframes mkSakH{0%,100%{transform:translateY(0)}13%{transform:translateY(2.2px)}30%{transform:translateY(1.5px)}55%{transform:translateY(-1.5px)}85%{transform:translateY(3px)}93%{transform:translateY(-.6px)}}
+.robot.mv-sakraydi .r-sh{transform-box:fill-box;transform-origin:50% 50%;animation:soya 1.05s cubic-bezier(.3,.6,.4,1) infinite}
+/* solishtirish uchun: oldingi (bogimsiz) harakat */
+.world .drift{animation:bulut 26s linear infinite alternate}
+@keyframes bulut{to{transform:translateX(70px)}}
+.world .fly{animation:uch 14s ease-in-out infinite alternate}
+@keyframes uch{to{transform:translate(160px,-40px)}}
+.world .bub{animation:pufak 5s ease-in infinite}
+@keyframes pufak{0%{transform:translateY(40px);opacity:0}20%{opacity:1}100%{transform:translateY(-220px);opacity:0}}
+.world .weed{animation:otlar 4s ease-in-out infinite alternate}
+@keyframes otlar{from{transform:rotate(-4deg)}to{transform:rotate(5deg)}}
+.world .swim{animation:baliq 16s linear infinite}
+@keyframes baliq{0%{transform:translateX(-760px)}100%{transform:translateX(300px)}}
+.world .swim2{animation:baliq2 22s linear infinite}
+@keyframes baliq2{0%{transform:translateX(-300px)}100%{transform:translateX(760px)}}
+.world .snow{animation:qor 7s linear infinite}
+@keyframes qor{from{transform:translateY(-40px)}to{transform:translateY(460px)}}
+/* Bir qadam: bitta sakrash, bir marta (dars ichida har blok shuni bir marta oynatadi). «juft» — navbatdagi oyoq */
+.hero.mv-qadam .h-all{animation:birQadam .46s cubic-bezier(.3,.6,.4,1) 1}
+@keyframes birQadam{0%{transform:translateY(0) scale(1.07,.9)}42%{transform:translateY(-13px) scale(.96,1.06) rotate(3deg)}80%{transform:translateY(0) scale(1.08,.9)}100%{transform:none}}
+.hero.mv-qadam .h-sh{transform-box:fill-box;transform-origin:50% 50%;animation:birSoya .46s ease-in-out 1}
+@keyframes birSoya{42%{transform:scale(.72);opacity:.12}}
+.hero.mv-qadam .ft-l,.hero.mv-qadam.juft .ft-r{animation:birOyoq .46s ease-in-out 1}
+.hero.mv-qadam.juft .ft-l{animation:none}
+@keyframes birOyoq{42%{transform:translate(4px,-8px)}}
+.hero.mv-qadam .hd-l,.hero.mv-qadam .hd-r{animation:birQolcha .46s ease-in-out 1}
+@keyframes birQolcha{42%{transform:translateY(-6px)}}
+.robot.mv-qadam .r-all{animation:mkBirQadam .46s cubic-bezier(.3,.6,.4,1) 1}
+@keyframes mkBirQadam{0%{transform:translateY(0) scale(1.03,.96)}42%{transform:translateY(-8px) rotate(2deg)}80%{transform:translateY(0) scale(1.04,.95)}100%{transform:none}}
+.robot.mv-qadam .mk-up,.robot.mv-qadam .mk-head{animation:none}
+.robot.mv-qadam .lg-l,.robot.mv-qadam.juft .lg-r{animation:mkBirOyoq .46s ease-in-out 1}
+.robot.mv-qadam.juft .lg-l{animation:none}
+@keyframes mkBirOyoq{42%{transform:translate(3px,-9px)}}
+.robot.mv-qadam .mk-arm.a-L,.robot.mv-qadam .mk-arm.a-R{animation:mkBirQol .46s ease-in-out 1}
+@keyframes mkBirQol{42%{transform:rotate(10deg)}}
+.robot.mv-qadam .r-sh{transform-box:fill-box;transform-origin:50% 50%;animation:birSoya .46s ease-in-out 1}
+@media (prefers-reduced-motion:reduce){.hero *,.robot *,.world *{animation:none!important}}
+
+/* Quyosh: nurlar juda sekin aylanadi, toj sekin «nafas oladi» (hovli) */
+.quyosh-nur{transform-box:view-box;transform-origin:660px 92px;animation:quyoshAylan 90s linear infinite}
+@keyframes quyoshAylan{to{transform:rotate(360deg)}}
+.quyosh-toj{transform-box:view-box;transform-origin:660px 92px;animation:quyoshNafas 5s ease-in-out infinite}
+@keyframes quyoshNafas{50%{transform:scale(1.08);opacity:.85}}
+@media (prefers-reduced-motion:reduce){.quyosh-nur,.quyosh-toj{animation:none}}

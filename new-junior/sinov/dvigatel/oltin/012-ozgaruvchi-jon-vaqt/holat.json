@@ -1,0 +1,1227 @@
+{
+ "u-01-P1": {
+  "id": "P1",
+  "matn": "12-DARS · JON VA QADAM\nBugun o‘yinda jon bo‘ladi!\n\nCoddy\nSalom! Bugun kaktusdan ehtiyot bo‘lamiz.\n\nO‘TGAN DARSDA\nball: 3\nO‘zgaruvchi\nKompyuter eslab qoladigan son\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKirdi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "6c9c48d5af91",
+  "uzun": 35083
+ },
+ "u-02-P2": {
+  "id": "P2",
+  "matn": "12-DARS · JON VA QADAM\nSAVOL\nJon tugasa, o‘yinni qanday tugatamiz?\n\nCoddy\nMenda 3 ta jon. Kaktusga tegsam, bittasi ketadi.\n\nA\nTegsa — o‘yin tugasin\nwhen touching\ncactus\ngame over\nB\nJonni kamaytiramiz\nwhen touching\ncactus\nchange\njon\nby\n−1\nC\nKamaytiramiz va tekshiramiz\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\njon:\n3\n‹ Orqaga\nJavob berdi: 0 / 0\nSinab ko‘ramiz ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "b9021787bf70",
+  "uzun": 39217
+ },
+ "u-03-P2S": {
+  "id": "P2S",
+  "matn": "SAVOL\nJon tugasa, o‘yinni qanday tugatamiz?\n\nCoddy\nMenda 3 ta jon. Kaktusga tegsam, bittasi ketadi.\n\nA\nTegsa — o‘yin tugasin\nwhen touching\ncactus\ngame over\nB\nJonni kamaytiramiz\nwhen touching\ncactus\nchange\njon\nby\n−1\nC\nKamaytiramiz va tekshiramiz\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\njon:\n3\n→\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "f27827cc6cbf",
+  "uzun": 39532
+ },
+ "u-04-P2C": {
+  "id": "P2C",
+  "matn": "JAVOB\nKamaytiramiz va tekshiramiz\n\nCoddy\nJon 0 bo‘ldi — shart «ha» dedi, o‘yin tugadi.\n\nA\nTegsa — o‘yin tugasin\n✕ jon 3 — tugadi\nwhen touching\ncactus\ngame over\nB\nJonni kamaytiramiz\n✕ jon −1\nwhen touching\ncactus\nchange\njon\nby\n−1\nC\nKamaytiramiz va tekshiramiz\n✓ jon 0 — tugadi\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\njon:\n0\nO‘yin tugadi\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "cd092ed448f9",
+  "uzun": 39365
+ },
+ "u-05-P3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nJon nima?\n\nCoddy\nJon — nechta imkoniyatim qolgani.\n\nO‘yin boshida — 3 ta jon\n\nchange\njon\nby\n−1\nTegdi — jon kamaydi\n\nif\njon\n=\n0\nthen\n✓ ha\nJon 0 — o‘yin tugadi\n\njon:\n3\nO‘yin tugadi\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "db56de44b0cd",
+  "uzun": 24478
+ },
+ "u-06-P4": {
+  "id": "P4",
+  "matn": "REJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Avval jon.\n\nDars oxirida · o‘yiningiz · ball, jon va qadam bilan\nball: 20\njon: 3\nqadam: 5\nUch o‘zgaruvchi\n1\nJon\n2\nBall va jon\n3\nQadam\n‹ Orqaga\nBoshladik ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "6e27458dcf0b",
+  "uzun": 42686
+ },
+ "u-07-P6": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nJon kamayadi — shart tekshiradi\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\njon\nto\n3\n1 ta dasturcha\n2 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\njon:\n0\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3"
+  ],
+  "html": "44adbecab2d7",
+  "uzun": 41508
+ },
+ "u-08-P5": {
+  "id": "P5",
+  "matn": "MASHQ\nJon qoidasi!\n\nCoddy\nAvval qoidani sinang, keyin ehtiyot bo‘lib o‘ynang.\n\nUch pog‘onani tugatdi\n0 / 0\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nUch jon\n2\n0\nAchchiq kaktus\n3\n0\nEhtiyot bo‘ling\n★\n0\nBitta jon\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a100eb38cdf2",
+  "uzun": 41008
+ },
+ "u-09-P4B": {
+  "id": "P4B",
+  "matn": "REJA · 2-BEKAT\n2 · Ball va jon\n\nCoddy\nEndi olmalar ham bor: ball ham, jon ham.\n\nDars oxirida · o‘yiningiz · ball, jon va qadam bilan\nball: 20\njon: 3\nqadam: 5\nUch o‘zgaruvchi\n✓\nJon\n2\nBall va jon\n3\nQadam\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "8b9b8ff7896c",
+  "uzun": 42477
+ },
+ "u-10-P7": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nIkki o‘zgaruvchi — bitta o‘yin\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\njon\nto\n3\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n2 ta dasturcha\n6 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\njon:\n0\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3",
+   "q:when touchingcactuschangejonby−1ifjon=0thengame over",
+   "c:changejonby−1ifjon=0thengame over",
+   "i:ifjon=0thengame over",
+   "g:game over"
+  ],
+  "html": "ce263c6b2ca1",
+  "uzun": 45149
+ },
+ "u-11-P5G": {
+  "id": "P5G",
+  "matn": "MASHQ\nBall ham, jon ham!\n\nCoddy\nOlmalarni tering, kaktuslardan ehtiyot bo‘ling.\n\nUch pog‘onani tugatdi\n0 / 0\n1\n0\nIkki o‘zgaruvchi\n2\n0\nJon sovg‘asi\n3\n0\nQimmat kaktus\n★\n0\nToza o‘yin\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "4a6c80cfae59",
+  "uzun": 41199
+ },
+ "u-12-P9": {
+  "id": "P9",
+  "matn": "XULOSA\nJon\n\nCoddy\nShart o‘zgaruvchining sonini tekshiradi.\n\nchange\njon\nby\n−1\nchange jon by -1\nJon bittaga kamayadi\nif\njon\n=\n0\nthen\ngame over\nif jon = 0 then\nJon 0 bo‘lsa: «ha»\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nball:\n3\njon:\n2\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "bdf369ec0278",
+  "uzun": 39252
+ },
+ "u-13-P4C": {
+  "id": "P4C",
+  "matn": "REJA · 3-BEKAT\n3 · Qadam\n\nCoddy\nOxirgi bekat: qadamlar ham tugaydi.\n\nDars oxirida · o‘yiningiz · ball, jon va qadam bilan\nball: 20\njon: 3\nqadam: 5\nUch o‘zgaruvchi\n✓\nJon\n✓\nBall va jon\n3\nQadam\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "8b48bf466565",
+  "uzun": 42522
+ },
+ "u-14-P8": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nHar bosish — bitta qadam\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\n1 ta dasturcha\n1 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "f:when ▶ clicked"
+  ],
+  "html": "750999f6877f",
+  "uzun": 40044
+ },
+ "u-15-P5B": {
+  "id": "P5B",
+  "matn": "MASHQ\nQadamni sanang!\n\nCoddy\nAvval yo‘lni sanang, keyin o‘ynang.\n\nUch pog‘onani tugatdi\n0 / 0\n1\n0\nBesh qadam\n2\n0\nQisqa yo‘l\n3\n0\nHammasi birga\n★\n0\nO‘z o‘yiningiz\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "c23ca0390e32",
+  "uzun": 40264
+ },
+ "u-16-P11": {
+  "id": "P11",
+  "matn": "KO‘RSATISH\nQoidalaringizni o‘qib bering\nSiz o‘qiysiz — men o‘ynayman.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "bf9357c27359",
+  "uzun": 46622
+ },
+ "u-17-P12": {
+  "id": "P12",
+  "matn": "YAKUN\nO‘yiningizda jon bor!\nBUGUNGI SO‘Z\nJon\nO‘yinchining qolgan imkoniyati\nKeyingi dars\n? ? ?\n13 · Tasodifiy son\n✓\nJon\n✓\nBall va jon\n✓\nQadam\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a81723dca59b",
+  "uzun": 30114
+ },
+ "u-18-P14": {
+  "id": "P14",
+  "matn": "SINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nta o‘yin yutdi\n0\nta shart qo‘ydi\n‹ Orqaga\nDarsni yakunlash\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "9e50b14cf5a7",
+  "uzun": 39782
+ },
+ "u-x-P2S-A": {
+  "id": "P2S",
+  "matn": "SAVOL\nJon tugasa, o‘yinni qanday tugatamiz?\n\nCoddy\nMenda 3 ta jon. Kaktusga tegsam, bittasi ketadi.\n\nA\nTegsa — o‘yin tugasin\n✕ jon 3 — tugadi\nwhen touching\ncactus\ngame over\nB\nJonni kamaytiramiz\nwhen touching\ncactus\nchange\njon\nby\n−1\nC\nKamaytiramiz va tekshiramiz\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\njon:\n3\nO‘yin tugadi\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "3864c6a62bd0",
+  "uzun": 39570
+ },
+ "u-x-P2S-B": {
+  "id": "P2S",
+  "matn": "SAVOL\nJon tugasa, o‘yinni qanday tugatamiz?\n\nCoddy\nMenda 3 ta jon. Kaktusga tegsam, bittasi ketadi.\n\nA\nTegsa — o‘yin tugasin\n✕ jon 3 — tugadi\nwhen touching\ncactus\ngame over\nB\nJonni kamaytiramiz\n✕ jon −1\nwhen touching\ncactus\nchange\njon\nby\n−1\nC\nKamaytiramiz va tekshiramiz\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\njon:\n−1\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "6107bdbccb08",
+  "uzun": 39563
+ },
+ "u-x-P2S-C": {
+  "id": "P2S",
+  "matn": "SAVOL\nJon tugasa, o‘yinni qanday tugatamiz?\n\nCoddy\nMenda 3 ta jon. Kaktusga tegsam, bittasi ketadi.\n\nA\nTegsa — o‘yin tugasin\n✕ jon 3 — tugadi\nwhen touching\ncactus\ngame over\nB\nJonni kamaytiramiz\n✕ jon −1\nwhen touching\ncactus\nchange\njon\nby\n−1\nC\nKamaytiramiz va tekshiramiz\n✓ jon 0 — tugadi\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\njon:\n0\nO‘yin tugadi\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "91243a178d62",
+  "uzun": 40508
+ },
+ "u-x-P3-1": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nJon nima?\n\nCoddy\nJon — nechta imkoniyatim qolgani.\n\nO‘yin boshida — 3 ta jon\n\nchange\njon\nby\n−1\nTegdi — jon kamaydi\n\nif\njon\n=\n0\nthen\n✓ ha\nJon 0 — o‘yin tugadi\n\njon:\n3\nO‘yin tugadi\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "6ee6b24d6c65",
+  "uzun": 24492
+ },
+ "u-x-P3-2": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nJon nima?\n\nCoddy\nJon — nechta imkoniyatim qolgani.\n\nO‘yin boshida — 3 ta jon\n\nchange\njon\nby\n−1\nTegdi — jon kamaydi\n\nif\njon\n=\n0\nthen\n✓ ha\nJon 0 — o‘yin tugadi\n\njon:\n2\nO‘yin tugadi\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "e63a3bc35143",
+  "uzun": 24509
+ },
+ "u-x-P3-3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nJon nima?\n\nCoddy\nJon — nechta imkoniyatim qolgani.\n\nO‘yin boshida — 3 ta jon\n\nchange\njon\nby\n−1\nTegdi — jon kamaydi\n\nif\njon\n=\n0\nthen\n✓ ha\nJon 0 — o‘yin tugadi\n\njon:\n0\nO‘yin tugadi\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "41c17a5bf035",
+  "uzun": 24532
+ },
+ "u-x-P6-qoida": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nJon kamayadi — shart tekshiradi\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\njon\nto\n3\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n✕\n2 ta dasturcha\n6 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\njon:\n0\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3",
+   "q:when touchingcactuschangejonby−1ifjon=0thengame over",
+   "c:changejonby−1ifjon=0thengame over",
+   "i:ifjon=0thengame over",
+   "g:game over"
+  ],
+  "html": "b9d7190d03ad",
+  "uzun": 43955
+ },
+ "u-x-P6-jon2": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nJon kamayadi — shart tekshiradi\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\njon\nto\n3\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n2 ta dasturcha\n6 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\njon:\n2\nO‘yin: strelkalarni bosing\n‹ Orqaga\n■ To‘xtatish\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3",
+   "q:when touchingcactuschangejonby−1ifjon=0thengame over",
+   "c:changejonby−1ifjon=0thengame over",
+   "i:ifjon=0thengame over",
+   "g:game over"
+  ],
+  "html": "7685cf5900d5",
+  "uzun": 43922
+ },
+ "u-x-P6-tugadi": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nJon kamayadi — shart tekshiradi\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\njon\nto\n3\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n2 ta dasturcha\n6 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\njon:\n0\nO‘yin tugadi\n‹ Orqaga\nJon tugadi. ▶ Boshlash — yana o‘ynang\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3",
+   "q:when touchingcactuschangejonby−1ifjon=0thengame over",
+   "c:changejonby−1ifjon=0thengame over",
+   "i:ifjon=0thengame over",
+   "g:game over"
+  ],
+  "html": "9b8ad4daacf6",
+  "uzun": 43933
+ },
+ "u-x-P8-qoida": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nHar bosish — bitta qadam\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\nqadam\nto\n6\nwhen\nany\nkey pressed\nchange\nqadam\nby\n−1\nif\nqadam\n=\n0\nthen\ngame over\n2 ta dasturcha\n6 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nqadam:\n0\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "f:when ▶ clickedsetqadamto6",
+   "z:setqadamto6",
+   "k:whenanykey pressedchangeqadamby−1ifqadam=0thengame over",
+   "c:changeqadamby−1ifqadam=0thengame over",
+   "i:ifqadam=0thengame over",
+   "g:game over"
+  ],
+  "html": "daf671df456a",
+  "uzun": 40040
+ },
+ "u-x-P8-tugadi": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nHar bosish — bitta qadam\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\nqadam\nto\n6\nwhen\nany\nkey pressed\nchange\nqadam\nby\n−1\nif\nqadam\n=\n0\nthen\ngame over\n2 ta dasturcha\n6 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 2)\nqadam:\n0\nO‘yin tugadi\n‹ Orqaga\nQadam tugadi. Qisqaroq yo‘l toping. ▶ Boshlash — yana o‘ynang\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "f:when ▶ clickedsetqadamto6",
+   "z:setqadamto6",
+   "k:whenanykey pressedchangeqadamby−1ifqadam=0thengame over",
+   "c:changeqadamby−1ifqadam=0thengame over",
+   "i:ifqadam=0thengame over",
+   "g:game over"
+  ],
+  "html": "914502cfb1c3",
+  "uzun": 40545
+ },
+ "u-x-P8-yutdi": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nHar bosish — bitta qadam\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\nqadam\nto\n6\nwhen\nany\nkey pressed\nchange\nqadam\nby\n−1\nif\nqadam\n=\n0\nthen\ngame over\n2 ta dasturcha\n6 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 0)\nqadam:\n2\n‹ Orqaga\nSiz yutdingiz!\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "f:when ▶ clickedsetqadamto6",
+   "z:setqadamto6",
+   "k:whenanykey pressedchangeqadamby−1ifqadam=0thengame over",
+   "c:changeqadamby−1ifqadam=0thengame over",
+   "i:ifqadam=0thengame over",
+   "g:game over"
+  ],
+  "html": "d5e6ed69ba6e",
+  "uzun": 41202
+ },
+ "u-x-yakunlandi": {
+  "id": "P14",
+  "matn": "SINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nta o‘yin yutdi\n0\nta shart qo‘ydi\nDars tugadi!\nKo‘rishguncha — keyingi darsda tasodifiy son bilan!\n‹ Orqaga\nDarsni yakunlash\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "fb06d7865ddd",
+  "uzun": 39926
+ },
+ "bq-01-0-B0": {
+  "id": "B0",
+  "matn": "12-DARS · JON VA QADAM\nSalom, Aziz!\nTayyor bo‘lsangiz — tugmani bosing\nTayyorman",
+  "bloklar": [],
+  "html": "4a7519c6271b",
+  "uzun": 24482
+ },
+ "bq-01-1-BK": {
+  "id": "BK",
+  "matn": "12-DARS · JON VA QADAM\n↑\nUstoz ekraniga qarang\nDars hozir boshlanadi",
+  "bloklar": [],
+  "html": "e73188878599",
+  "uzun": 16094
+ },
+ "bq-02-0-P2N": {
+  "id": "P2N",
+  "matn": "12-DARS · JON VA QADAM\nSAVOL\nJon tugasa, o‘yinni qanday tugatamiz?\n\nCoddy\nQaysi yo‘l bilan o‘yinni tugatamiz?\n\nA\nTegsa — o‘yin tugasin\nwhen touching\ncactus\ngame over\nB\nJonni kamaytiramiz\nwhen touching\ncactus\nchange\njon\nby\n−1\nC\nKamaytiramiz va tekshiramiz\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\njon:\n3\nBirini tanlang",
+  "bloklar": [],
+  "html": "e204a6db2a4f",
+  "uzun": 36989
+ },
+ "bq-02-1-BK": {
+  "id": "BK",
+  "matn": "12-DARS · JON VA QADAM\n↑\nUstoz ekraniga qarang\nJavobingiz qabul qilindi",
+  "bloklar": [],
+  "html": "6b9e33ebec4e",
+  "uzun": 16097
+ },
+ "bq-03-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz yo‘llarni sinayapti — kuzating",
+  "bloklar": [],
+  "html": "bc0ba847e8b5",
+  "uzun": 16109
+ },
+ "bq-04-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstozni tinglang",
+  "bloklar": [],
+  "html": "26e8eb317008",
+  "uzun": 16089
+ },
+ "bq-05-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nYangi so‘z: jon",
+  "bloklar": [],
+  "html": "66bd88b437dd",
+  "uzun": 16088
+ },
+ "bq-06-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nBugun: uchta bekat",
+  "bloklar": [],
+  "html": "0eef91b2808e",
+  "uzun": 16091
+ },
+ "bq-07-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz jon qoidasini ko‘rsatyapti — kuzating",
+  "bloklar": [],
+  "html": "5514ab929250",
+  "uzun": 16116
+ },
+ "bq-08-0-B1A": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nUch jon\nQoidani sinang: kaktusga 3 marta tegsa — o‘yin tugasin.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\njon\nto\n3\nwhen touching\ncactus\n2 ta dasturcha\n3 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\njon:\n0\nMaslahat\nKaktusga tekkanda jon kamaysin, jon 0 bo‘lsa — o‘yin tugasin\nBoshlash",
+  "bloklar": [
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3",
+   "q:when touchingcactus"
+  ],
+  "html": "e1ccf57aab86",
+  "uzun": 27103
+ },
+ "bq-08-1-B1B": {
+  "id": "B1B",
+  "matn": "MASHQ · 2-POG‘ONA\nAchchiq kaktus\nJon 4. Kaktus har tegishda 2 ta jon oladi.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\njon\nto\n3\nwhen touching\ncactus\n2 ta dasturcha\n3 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\njon:\n0\nMaslahat\nKaktusga tekkanda jon kamaysin, jon 0 bo‘lsa — o‘yin tugasin\nBoshlash",
+  "bloklar": [
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3",
+   "q:when touchingcactus"
+  ],
+  "html": "391c39207b85",
+  "uzun": 27946
+ },
+ "bq-08-2-B1C": {
+  "id": "B1C",
+  "matn": "MASHQ · 3-POG‘ONA\nEhtiyot bo‘ling\nJon 2. Kaktuslarga tegmay yulduzga yeting.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\njon\nto\n3\nwhen touching\ncactus\n2 ta dasturcha\n3 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\njon:\n0\nMaslahat\nKaktusga tekkanda jon kamaysin, jon 0 bo‘lsa — o‘yin tugasin\nBoshlash",
+  "bloklar": [
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3",
+   "q:when touchingcactus"
+  ],
+  "html": "013a9577b6cd",
+  "uzun": 30724
+ },
+ "bq-08-3-B1Y": {
+  "id": "B1Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nBitta jon\nJon 1. Bitta tegish — o‘yin tugaydi.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\njon\nto\n3\nwhen touching\ncactus\n2 ta dasturcha\n3 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\njon:\n0\nMaslahat\nKaktusga tekkanda jon kamaysin, jon 0 bo‘lsa — o‘yin tugasin\nBoshlash",
+  "bloklar": [
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3",
+   "q:when touchingcactus"
+  ],
+  "html": "bc322be32d56",
+  "uzun": 33255
+ },
+ "bq-08-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "a1f8b3e56090",
+  "uzun": 16104
+ },
+ "bq-09-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\n2-bekat: ball va jon",
+  "bloklar": [],
+  "html": "ad59681a89c9",
+  "uzun": 16093
+ },
+ "bq-10-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz ball va jonni ko‘rsatyapti — kuzating",
+  "bloklar": [],
+  "html": "9eba2b713554",
+  "uzun": 16116
+ },
+ "bq-11-0-B2A": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nIkki o‘zgaruvchi\nJon 3, ball 0 dan. Har olma — 1 ball.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\njon\nto\n3\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n2 ta dasturcha\n6 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\njon:\n0\nMaslahat\nBall va jon — ikkala son ham o‘yin boshida qo‘yiladi\nBoshlash",
+  "bloklar": [
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3",
+   "q:when touchingcactuschangejonby−1ifjon=0thengame over",
+   "c:changejonby−1ifjon=0thengame over",
+   "i:ifjon=0thengame over",
+   "g:game over"
+  ],
+  "html": "e108e4ed697c",
+  "uzun": 30728
+ },
+ "bq-11-1-B2B": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nJon sovg‘asi\nJon 1. Oltin olma 1 ta jon beradi.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\njon\nto\n3\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n2 ta dasturcha\n6 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\njon:\n0\nMaslahat\nBall va jon — ikkala son ham o‘yin boshida qo‘yiladi\nBoshlash",
+  "bloklar": [
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3",
+   "q:when touchingcactuschangejonby−1ifjon=0thengame over",
+   "c:changejonby−1ifjon=0thengame over",
+   "i:ifjon=0thengame over",
+   "g:game over"
+  ],
+  "html": "c9ee393ca433",
+  "uzun": 30571
+ },
+ "bq-11-2-B2C": {
+  "id": "B2C",
+  "matn": "MASHQ · 3-POG‘ONA\nQimmat kaktus\nKaktus jonni ham, 2 ballni ham oladi.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\njon\nto\n3\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n2 ta dasturcha\n6 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\njon:\n0\nMaslahat\nBall va jon — ikkala son ham o‘yin boshida qo‘yiladi\nBoshlash",
+  "bloklar": [
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3",
+   "q:when touchingcactuschangejonby−1ifjon=0thengame over",
+   "c:changejonby−1ifjon=0thengame over",
+   "i:ifjon=0thengame over",
+   "g:game over"
+  ],
+  "html": "e74993c9b06b",
+  "uzun": 31571
+ },
+ "bq-11-3-B2Y": {
+  "id": "B2Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nToza o‘yin\nJon 1. Har olma — 2 ball. Ball 10 bo‘lsin.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\njon\nto\n3\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n2 ta dasturcha\n6 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\njon:\n0\nMaslahat\nBall va jon — ikkala son ham o‘yin boshida qo‘yiladi\nBoshlash",
+  "bloklar": [
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3",
+   "q:when touchingcactuschangejonby−1ifjon=0thengame over",
+   "c:changejonby−1ifjon=0thengame over",
+   "i:ifjon=0thengame over",
+   "g:game over"
+  ],
+  "html": "a09f818db259",
+  "uzun": 32711
+ },
+ "bq-11-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "a1f8b3e56090",
+  "uzun": 16104
+ },
+ "bq-12-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nXulosa: jon",
+  "bloklar": [],
+  "html": "9c96bd9e0347",
+  "uzun": 16084
+ },
+ "bq-13-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\n3-bekat: qadam",
+  "bloklar": [],
+  "html": "89d9063b3aa5",
+  "uzun": 16087
+ },
+ "bq-14-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz qadam qoidasini ko‘rsatyapti — kuzating",
+  "bloklar": [],
+  "html": "f6693b8e4d18",
+  "uzun": 16118
+ },
+ "bq-15-0-B3A": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nBesh qadam\nQadam 5. Qoidani sinang: 5-bosishda o‘yin tugasin.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\nball\nto\n0\nset\njon\nto\n3\nwhen touching\napple\nchange\nball\nby\n1\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n3 ta dasturcha\n9 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\njon:\n0\nMaslahat\nHar bosishda qadam kamaysin, qadam 0 bo‘lsa — o‘yin tugasin\nBoshlash",
+  "bloklar": [
+   "f:when ▶ clickedsetballto0setjonto3",
+   "z:setballto0setjonto3",
+   "z:setjonto3",
+   "q:when touchingapplechangeballby1",
+   "c:changeballby1",
+   "q:when touchingcactuschangejonby−1ifjon=0thengame over",
+   "c:changejonby−1ifjon=0thengame over",
+   "i:ifjon=0thengame over",
+   "g:game over"
+  ],
+  "html": "559146df303a",
+  "uzun": 25635
+ },
+ "bq-15-1-B3B": {
+  "id": "B3B",
+  "matn": "MASHQ · 2-POG‘ONA\nQisqa yo‘l\nQadam 12. Olmalarni terib, yulduzga yeting.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\nball\nto\n0\nset\njon\nto\n3\nwhen touching\napple\nchange\nball\nby\n1\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n3 ta dasturcha\n9 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\njon:\n0\nMaslahat\nHar bosishda qadam kamaysin, qadam 0 bo‘lsa — o‘yin tugasin\nBoshlash",
+  "bloklar": [
+   "f:when ▶ clickedsetballto0setjonto3",
+   "z:setballto0setjonto3",
+   "z:setjonto3",
+   "q:when touchingapplechangeballby1",
+   "c:changeballby1",
+   "q:when touchingcactuschangejonby−1ifjon=0thengame over",
+   "c:changejonby−1ifjon=0thengame over",
+   "i:ifjon=0thengame over",
+   "g:game over"
+  ],
+  "html": "e00f2dfe5578",
+  "uzun": 29879
+ },
+ "bq-15-2-B3C": {
+  "id": "B3C",
+  "matn": "MASHQ · 3-POG‘ONA\nHammasi birga\nJon 2, qadam 16. Uch o‘zgaruvchi — bitta o‘yin.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\nball\nto\n0\nset\njon\nto\n3\nwhen touching\napple\nchange\nball\nby\n1\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n3 ta dasturcha\n9 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\nball:\n0\njon:\n0\nMaslahat\nHar bosishda qadam kamaysin, qadam 0 bo‘lsa — o‘yin tugasin\nBoshlash",
+  "bloklar": [
+   "f:when ▶ clickedsetballto0setjonto3",
+   "z:setballto0setjonto3",
+   "z:setjonto3",
+   "q:when touchingapplechangeballby1",
+   "c:changeballby1",
+   "q:when touchingcactuschangejonby−1ifjon=0thengame over",
+   "c:changejonby−1ifjon=0thengame over",
+   "i:ifjon=0thengame over",
+   "g:game over"
+  ],
+  "html": "492d8924ede2",
+  "uzun": 31580
+ },
+ "bq-15-3-B3Y": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z o‘yiningiz\nJon, qadam va olma ballini o‘zingiz tanlang.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\nball\nto\n0\nset\njon\nto\n3\nwhen touching\napple\nchange\nball\nby\n1\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n3 ta dasturcha\n9 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\njon:\n0\nMaslahat\nHar bosishda qadam kamaysin, qadam 0 bo‘lsa — o‘yin tugasin\nBoshlash",
+  "bloklar": [
+   "f:when ▶ clickedsetballto0setjonto3",
+   "z:setballto0setjonto3",
+   "z:setjonto3",
+   "q:when touchingapplechangeballby1",
+   "c:changeballby1",
+   "q:when touchingcactuschangejonby−1ifjon=0thengame over",
+   "c:changejonby−1ifjon=0thengame over",
+   "i:ifjon=0thengame over",
+   "g:game over"
+  ],
+  "html": "3c1b1aef2770",
+  "uzun": 32144
+ },
+ "bq-15-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "a1f8b3e56090",
+  "uzun": 16104
+ },
+ "bq-17-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nO‘yiningizda jon bor!\n\nBulut\nJon tugasa — o‘yin tugaydi. Qoidani o‘zim tuzdim!\n\nSiz bugun\n0\nta o‘yin yutdi\n0\nta shart qo‘ydi\n0\nta o‘zgaruvchi ishlatdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nball:\n0\njon:\n3\nqadam:\n5\nBulut\nKeyingi darsda tasodifiy son bilan ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "b13ad515c506",
+  "uzun": 27264
+ },
+ "bq-18-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nO‘yiningizda jon bor!\n\nBulut\nJon tugasa — o‘yin tugaydi. Qoidani o‘zim tuzdim!\n\nSiz bugun\n0\nta o‘yin yutdi\n0\nta shart qo‘ydi\n0\nta o‘zgaruvchi ishlatdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nball:\n0\njon:\n3\nqadam:\n5\nBulut\nKeyingi darsda tasodifiy son bilan ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "b13ad515c506",
+  "uzun": 27264
+ },
+ "bx-B1A-bosh": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nUch jon\nQoidani sinang: kaktusga 3 marta tegsa — o‘yin tugasin.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\njon\nto\n3\nwhen touching\ncactus\n2 ta dasturcha\n3 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\njon:\n0\nMaslahat\nKaktusga tekkanda jon kamaysin, jon 0 bo‘lsa — o‘yin tugasin\nBoshlash",
+  "bloklar": [
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3",
+   "q:when touchingcactus"
+  ],
+  "html": "e1ccf57aab86",
+  "uzun": 27103
+ },
+ "bx-B1A-boshkaktus": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nUch jon\nQoidani sinang: kaktusga 3 marta tegsa — o‘yin tugasin.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\njon\nto\n3\nwhen touching\ncactus\n2 ta dasturcha\n3 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\njon:\n3\nO‘yin: strelkalarni bosing\nTegdim — nima qilay?\nMaslahat\nKaktusga tekkanda jon kamaysin — dasturchaga blok ulang\n■ To‘xtatish",
+  "bloklar": [
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3",
+   "q:when touchingcactus"
+  ],
+  "html": "12b25bebad1a",
+  "uzun": 32428
+ },
+ "bx-B1A-jontugadiku": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nUch jon\nQoidani sinang: kaktusga 3 marta tegsa — o‘yin tugasin.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\njon\nto\n3\nwhen touching\ncactus\nchange\njon\nby\n−1\n2 ta dasturcha\n4 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\njon:\n0\nO‘yin: strelkalarni bosing\nMaslahat\n■ To‘xtatish",
+  "bloklar": [
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3",
+   "q:when touchingcactuschangejonby−1",
+   "c:changejonby−1"
+  ],
+  "html": "0dd2cecf7128",
+  "uzun": 27104
+ },
+ "bx-B1A-erta": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nUch jon\nQoidani sinang: kaktusga 3 marta tegsa — o‘yin tugasin.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\njon\nto\n3\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n1\nthen\ngame over\n2 ta dasturcha\n6 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\njon:\n1\nO‘yin tugadi\nErta tugadi!\nMaslahat\nJon 1 qoldi, o‘yin esa tugadi. Shart qachon «ha» deydi — sonni tekshiring\nBoshlash",
+  "bloklar": [
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3",
+   "q:when touchingcactuschangejonby−1ifjon=1thengame over",
+   "c:changejonby−1ifjon=1thengame over",
+   "i:ifjon=1thengame over",
+   "g:game over"
+  ],
+  "html": "433116329c9e",
+  "uzun": 32647
+ },
+ "bx-B1A-ishladi": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nUch jon\nQoidani sinang: kaktusga 3 marta tegsa — o‘yin tugasin.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\njon\nto\n3\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n2 ta dasturcha\n6 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\njon:\n0\nO‘yin tugadi\nMaslahat\nShart ishladi: jon 0 — o‘yin tugadi!\nBoshlash",
+  "bloklar": [
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3",
+   "q:when touchingcactuschangejonby−1ifjon=0thengame over",
+   "c:changejonby−1ifjon=0thengame over",
+   "i:ifjon=0thengame over",
+   "g:game over"
+  ],
+  "html": "cd0649c126d9",
+  "uzun": 28058
+ },
+ "bx-B1B-oldingi": {
+  "id": "B1B",
+  "matn": "MASHQ · 2-POG‘ONA\nAchchiq kaktus\nJon 4. Kaktus har tegishda 2 ta jon oladi.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nset\njon\nto\n3\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\ncactus\n2 ta dasturcha\n6 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\njon:\n0\nMaslahat\nKaktusga tekkanda jon kamaysin, jon 0 bo‘lsa — o‘yin tugasin\nBoshlash",
+  "bloklar": [
+   "f:setjonto3when ▶ clicked",
+   "z:setjonto3",
+   "q:game overifjon=0thenchangejonby−1when touchingcactus",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "a02f37f6c6c6",
+  "uzun": 27946
+ },
+ "bx-B1B-kamoldi": {
+  "id": "B1B",
+  "matn": "MASHQ · 2-POG‘ONA\nAchchiq kaktus\nJon 4. Kaktus har tegishda 2 ta jon oladi.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\njon\nto\n4\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n2 ta dasturcha\n6 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\njon:\n0\nO‘yin tugadi\nKaktus kam oldi!\nMaslahat\nKaktus har tegishda 2 ta jon olsin\nBoshlash",
+  "bloklar": [
+   "f:when ▶ clickedsetjonto4",
+   "z:setjonto4",
+   "q:when touchingcactuschangejonby−1ifjon=0thengame over",
+   "c:changejonby−1ifjon=0thengame over",
+   "i:ifjon=0thengame over",
+   "g:game over"
+  ],
+  "html": "e718c08f78f8",
+  "uzun": 33549
+ },
+ "bx-B1C-qoidachi": {
+  "id": "B1C",
+  "matn": "MASHQ · 3-POG‘ONA\nEhtiyot bo‘ling\nJon 2. Kaktuslarga tegmay yulduzga yeting.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\njon\nto\n2\nwhen touching\ncactus\nchange\njon\nby\n−1\n2 ta dasturcha\n4 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\njon:\n2\nQoida-chi?\nMaslahat\nJon 0 bo‘lsa, o‘yin tugashi kerak: kaktus dasturchasida shart bormi?\nBoshlash",
+  "bloklar": [
+   "f:when ▶ clickedsetjonto2",
+   "z:setjonto2",
+   "q:when touchingcactuschangejonby−1",
+   "c:changejonby−1"
+  ],
+  "html": "2f1896b31e45",
+  "uzun": 37103
+ },
+ "bx-B3A-tayyor": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nBesh qadam\nQadam 5. Qoidani sinang: 5-bosishda o‘yin tugasin.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\nball\nto\n0\nset\njon\nto\n3\nwhen touching\napple\nchange\nball\nby\n1\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n3 ta dasturcha\n9 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\njon:\n0\nMaslahat\nHar bosishda qadam kamaysin, qadam 0 bo‘lsa — o‘yin tugasin\nBoshlash",
+  "bloklar": [
+   "f:when ▶ clickedsetballto0setjonto3",
+   "z:setballto0setjonto3",
+   "z:setjonto3",
+   "q:when touchingapplechangeballby1",
+   "c:changeballby1",
+   "q:when touchingcactuschangejonby−1ifjon=0thengame over",
+   "c:changejonby−1ifjon=0thengame over",
+   "i:ifjon=0thengame over",
+   "g:game over"
+  ],
+  "html": "559146df303a",
+  "uzun": 25635
+ },
+ "bx-B3A-ishladi": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nBesh qadam\nQadam 5. Qoidani sinang: 5-bosishda o‘yin tugasin.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\nball\nto\n0\nset\njon\nto\n3\nset\nqadam\nto\n5\nwhen touching\napple\nchange\nball\nby\n1\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\nwhen\nany\nkey pressed\nchange\nqadam\nby\n−1\nif\nqadam\n=\n0\nthen\ngame over\n4 ta dasturcha\n14 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nball:\n0\njon:\n3\nqadam:\n0\nO‘yin tugadi\nMaslahat\nShart ishladi: qadam 0 — o‘yin tugadi!\nBoshlash",
+  "bloklar": [
+   "f:when ▶ clickedsetballto0setjonto3setqadamto5",
+   "z:setballto0setjonto3setqadamto5",
+   "z:setjonto3setqadamto5",
+   "z:setqadamto5",
+   "q:when touchingapplechangeballby1",
+   "c:changeballby1",
+   "q:when touchingcactuschangejonby−1ifjon=0thengame over",
+   "c:changejonby−1ifjon=0thengame over",
+   "i:ifjon=0thengame over",
+   "g:game over",
+   "k:whenanykey pressedchangeqadamby−1ifqadam=0thengame over",
+   "c:changeqadamby−1ifqadam=0thengame over",
+   "i:ifqadam=0thengame over",
+   "g:game over"
+  ],
+  "html": "465d89a53912",
+  "uzun": 26855
+ },
+ "bx-B5-natija": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nO‘yiningizda jon bor!\n\nBulut\nJon tugasa — o‘yin tugaydi. Qoidani o‘zim tuzdim!\n\nSiz bugun\n0\nta o‘yin yutdi\n2\nta shart qo‘ydi\n3\nta o‘zgaruvchi ishlatdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nball:\n0\njon:\n3\nqadam:\n5\nBulut\nKeyingi darsda tasodifiy son bilan ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "29ddde8e8824",
+  "uzun": 27264
+ },
+ "bx-P2N-tanladi": {
+  "id": "P2N",
+  "matn": "12-DARS · JON VA QADAM\nSAVOL\nJon tugasa, o‘yinni qanday tugatamiz?\n\nCoddy\nQaysi yo‘l bilan o‘yinni tugatamiz?\n\nA\nTegsa — o‘yin tugasin\nwhen touching\ncactus\ngame over\nB\nJonni kamaytiramiz\nwhen touching\ncactus\nchange\njon\nby\n−1\nC\nKamaytiramiz va tekshiramiz\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\njon:\n3\nBirini tanlang",
+  "bloklar": [],
+  "html": "af90f7553c26",
+  "uzun": 36998
+ },
+ "bx-BQ": {
+  "id": "BQ",
+  "matn": "12-DARS · JON VA QADAM\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang",
+  "bloklar": [],
+  "html": "24a8a2c67cd7",
+  "uzun": 52608
+ },
+ "bx-BQ-tanladi": {
+  "id": "BK",
+  "matn": "12-DARS · JON VA QADAM\n↑\nUstoz ekraniga qarang\nJavobingiz qabul qilindi",
+  "bloklar": [],
+  "html": "b20d55af3127",
+  "uzun": 15159
+ },
+ "sq-01-0-B0": {
+  "id": "B0",
+  "matn": "12-DARS · JON VA QADAM\nSalom, Aziz!\nTayyor bo‘lsangiz — tugmani bosing\nTayyorman",
+  "bloklar": [],
+  "html": "4a7519c6271b",
+  "uzun": 24482
+ },
+ "sq-01-1-P1": {
+  "id": "P1",
+  "matn": "12-DARS · JON VA QADAM\nBugun o‘yinda jon bo‘ladi!\n\nCoddy\nSalom! Bugun kaktusdan ehtiyot bo‘lamiz.\n\nO‘TGAN DARSDA\nball: 3\nO‘zgaruvchi\nKompyuter eslab qoladigan son\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "e2492ffa701d",
+  "uzun": 33776
+ },
+ "sq-02-0-P2N": {
+  "id": "P2N",
+  "matn": "12-DARS · JON VA QADAM\nSAVOL\nJon tugasa, o‘yinni qanday tugatamiz?\n\nCoddy\nQaysi yo‘l bilan o‘yinni tugatamiz?\n\nA\nTegsa — o‘yin tugasin\nwhen touching\ncactus\ngame over\nB\nJonni kamaytiramiz\nwhen touching\ncactus\nchange\njon\nby\n−1\nC\nKamaytiramiz va tekshiramiz\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\njon:\n3\nBirini tanlang",
+  "bloklar": [],
+  "html": "e204a6db2a4f",
+  "uzun": 36989
+ },
+ "sq-03-0-P2S": {
+  "id": "P2S",
+  "matn": "SAVOL\nJon tugasa, o‘yinni qanday tugatamiz?\n\nCoddy\nMenda 3 ta jon. Kaktusga tegsam, bittasi ketadi.\n\nA\nTegsa — o‘yin tugasin\n▶ Sinab ko‘rish\nwhen touching\ncactus\ngame over\nB\nJonni kamaytiramiz\n▶ Sinab ko‘rish\nwhen touching\ncactus\nchange\njon\nby\n−1\nC\nKamaytiramiz va tekshiramiz\n▶ Sinab ko‘rish\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\njon:\n3\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "84e127224403",
+  "uzun": 38280
+ },
+ "sq-04-0-P2C": {
+  "id": "P2C",
+  "matn": "JAVOB\nKamaytiramiz va tekshiramiz\n\nCoddy\nJon 0 bo‘ldi — shart «ha» dedi, o‘yin tugadi.\n\nA\nTegsa — o‘yin tugasin\n✕ jon 3 — tugadi\nwhen touching\ncactus\ngame over\nB\nJonni kamaytiramiz\n✕ jon −1\nwhen touching\ncactus\nchange\njon\nby\n−1\nC\nKamaytiramiz va tekshiramiz\n✓ jon 0 — tugadi\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\njon:\n0\nO‘yin tugadi\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "c54d54d3c7cd",
+  "uzun": 38066
+ },
+ "sq-05-0-P3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nJon nima?\n\nCoddy\nJon — nechta imkoniyatim qolgani.\n\nO‘yin boshida — 3 ta jon\n\nchange\njon\nby\n−1\nTegdi — jon kamaydi\n\nif\njon\n=\n0\nthen\n✓ ha\nJon 0 — o‘yin tugadi\n\njon:\n3\nO‘yin tugadi\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "77193e517442",
+  "uzun": 23179
+ },
+ "sq-06-0-P4": {
+  "id": "P4",
+  "matn": "REJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Avval jon.\n\nDars oxirida · o‘yiningiz · ball, jon va qadam bilan\nball: 20\njon: 3\nqadam: 5\nUch o‘zgaruvchi\n1\nJon\n2\nBall va jon\n3\nQadam\n‹ Orqaga\nBoshladik ›",
+  "bloklar": [],
+  "html": "37c9267067bc",
+  "uzun": 41387
+ },
+ "sq-07-0-P6": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nJon kamayadi — shart tekshiradi\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\njon\nto\n3\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n2 ta dasturcha\n6 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\njon:\n0\n‹ Orqaga\n↑ ni uch marta bosing — kaktusga teging\n▶ Boshlash\nKeyingi ›",
+  "bloklar": [
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3",
+   "q:when touchingcactuschangejonby−1ifjon=0thengame over",
+   "c:changejonby−1ifjon=0thengame over",
+   "i:ifjon=0thengame over",
+   "g:game over"
+  ],
+  "html": "5004f5918a9d",
+  "uzun": 40248
+ },
+ "sq-08-0-B1A": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nUch jon\nQoidani sinang: kaktusga 3 marta tegsa — o‘yin tugasin.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\njon\nto\n3\nwhen touching\ncactus\n2 ta dasturcha\n3 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\njon:\n0\nMaslahat\nKaktusga tekkanda jon kamaysin, jon 0 bo‘lsa — o‘yin tugasin\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3",
+   "q:when touchingcactus"
+  ],
+  "html": "4105790c5891",
+  "uzun": 27150
+ },
+ "sq-08-1-B1B": {
+  "id": "B1B",
+  "matn": "MASHQ · 2-POG‘ONA\nAchchiq kaktus\nJon 4. Kaktus har tegishda 2 ta jon oladi.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\njon\nto\n3\nwhen touching\ncactus\n2 ta dasturcha\n3 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\njon:\n0\nMaslahat\nKaktusga tekkanda jon kamaysin, jon 0 bo‘lsa — o‘yin tugasin\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3",
+   "q:when touchingcactus"
+  ],
+  "html": "0e4eb9b6511b",
+  "uzun": 27993
+ },
+ "sq-08-2-B1C": {
+  "id": "B1C",
+  "matn": "MASHQ · 3-POG‘ONA\nEhtiyot bo‘ling\nJon 2. Kaktuslarga tegmay yulduzga yeting.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\njon\nto\n3\nwhen touching\ncactus\n2 ta dasturcha\n3 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\njon:\n0\nMaslahat\nKaktusga tekkanda jon kamaysin, jon 0 bo‘lsa — o‘yin tugasin\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3",
+   "q:when touchingcactus"
+  ],
+  "html": "2b8b31a04345",
+  "uzun": 30771
+ },
+ "sq-08-3-B1Y": {
+  "id": "B1Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nBitta jon\nJon 1. Bitta tegish — o‘yin tugaydi.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\njon\nto\n3\nwhen touching\ncactus\n2 ta dasturcha\n3 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\njon:\n0\nMaslahat\nKaktusga tekkanda jon kamaysin, jon 0 bo‘lsa — o‘yin tugasin\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3",
+   "q:when touchingcactus"
+  ],
+  "html": "4776ff565cc1",
+  "uzun": 33302
+ },
+ "sq-09-0-P4B": {
+  "id": "P4B",
+  "matn": "REJA · 2-BEKAT\n2 · Ball va jon\n\nCoddy\nEndi olmalar ham bor: ball ham, jon ham.\n\nDars oxirida · o‘yiningiz · ball, jon va qadam bilan\nball: 20\njon: 3\nqadam: 5\nUch o‘zgaruvchi\n✓\nJon\n2\nBall va jon\n3\nQadam\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "51930e2d282a",
+  "uzun": 41178
+ },
+ "sq-10-0-P7": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nIkki o‘zgaruvchi — bitta o‘yin\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\njon\nto\n3\nset\nball\nto\n0\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\nwhen touching\napple\nchange\nball\nby\n1\n3 ta dasturcha\n9 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\njon:\n0\n‹ Orqaga\n▶ Boshlash\nKeyingi ›",
+  "bloklar": [
+   "f:when ▶ clickedsetjonto3setballto0",
+   "z:setjonto3setballto0",
+   "z:setballto0",
+   "q:when touchingcactuschangejonby−1ifjon=0thengame over",
+   "c:changejonby−1ifjon=0thengame over",
+   "i:ifjon=0thengame over",
+   "g:game over",
+   "q:when touchingapplechangeballby1",
+   "c:changeballby1"
+  ],
+  "html": "dc0fe7422759",
+  "uzun": 43846
+ },
+ "sq-11-0-B2A": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nIkki o‘zgaruvchi\nJon 3, ball 0 dan. Har olma — 1 ball.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\njon\nto\n3\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n2 ta dasturcha\n6 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\njon:\n0\nMaslahat\nBall va jon — ikkala son ham o‘yin boshida qo‘yiladi\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3",
+   "q:when touchingcactuschangejonby−1ifjon=0thengame over",
+   "c:changejonby−1ifjon=0thengame over",
+   "i:ifjon=0thengame over",
+   "g:game over"
+  ],
+  "html": "f39ca672b10a",
+  "uzun": 30775
+ },
+ "sq-11-1-B2B": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nJon sovg‘asi\nJon 1. Oltin olma 1 ta jon beradi.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\njon\nto\n3\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n2 ta dasturcha\n6 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\njon:\n0\nMaslahat\nBall va jon — ikkala son ham o‘yin boshida qo‘yiladi\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3",
+   "q:when touchingcactuschangejonby−1ifjon=0thengame over",
+   "c:changejonby−1ifjon=0thengame over",
+   "i:ifjon=0thengame over",
+   "g:game over"
+  ],
+  "html": "60c713b41dc0",
+  "uzun": 30618
+ },
+ "sq-11-2-B2C": {
+  "id": "B2C",
+  "matn": "MASHQ · 3-POG‘ONA\nQimmat kaktus\nKaktus jonni ham, 2 ballni ham oladi.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\njon\nto\n3\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n2 ta dasturcha\n6 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\njon:\n0\nMaslahat\nBall va jon — ikkala son ham o‘yin boshida qo‘yiladi\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3",
+   "q:when touchingcactuschangejonby−1ifjon=0thengame over",
+   "c:changejonby−1ifjon=0thengame over",
+   "i:ifjon=0thengame over",
+   "g:game over"
+  ],
+  "html": "84b402f9b754",
+  "uzun": 31618
+ },
+ "sq-11-3-B2Y": {
+  "id": "B2Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nToza o‘yin\nJon 1. Har olma — 2 ball. Ball 10 bo‘lsin.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\njon\nto\n3\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n2 ta dasturcha\n6 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\njon:\n0\nMaslahat\nBall va jon — ikkala son ham o‘yin boshida qo‘yiladi\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3",
+   "q:when touchingcactuschangejonby−1ifjon=0thengame over",
+   "c:changejonby−1ifjon=0thengame over",
+   "i:ifjon=0thengame over",
+   "g:game over"
+  ],
+  "html": "44e376559edc",
+  "uzun": 32758
+ },
+ "sq-12-0-P9": {
+  "id": "P9",
+  "matn": "XULOSA\nJon\n\nCoddy\nShart o‘zgaruvchining sonini tekshiradi.\n\nchange\njon\nby\n−1\nchange jon by -1\nJon bittaga kamayadi\nif\njon\n=\n0\nthen\ngame over\nif jon = 0 then\nJon 0 bo‘lsa: «ha»\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nball:\n3\njon:\n2\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "c681a4174702",
+  "uzun": 37953
+ },
+ "sq-13-0-P4C": {
+  "id": "P4C",
+  "matn": "REJA · 3-BEKAT\n3 · Qadam\n\nCoddy\nOxirgi bekat: qadamlar ham tugaydi.\n\nDars oxirida · o‘yiningiz · ball, jon va qadam bilan\nball: 20\njon: 3\nqadam: 5\nUch o‘zgaruvchi\n✓\nJon\n✓\nBall va jon\n3\nQadam\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "2d1a34c728e1",
+  "uzun": 41223
+ },
+ "sq-14-0-P8": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nHar bosish — bitta qadam\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\nqadam\nto\n6\nwhen\nany\nkey pressed\nchange\nqadam\nby\n−1\nif\nqadam\n=\n0\nthen\ngame over\n2 ta dasturcha\n6 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nqadam:\n0\n‹ Orqaga\nAvval istalgan strelkani 6 marta bosing, keyin yulduzga boring\n▶ Boshlash\nKeyingi ›",
+  "bloklar": [
+   "f:when ▶ clickedsetqadamto6",
+   "z:setqadamto6",
+   "k:whenanykey pressedchangeqadamby−1ifqadam=0thengame over",
+   "c:changeqadamby−1ifqadam=0thengame over",
+   "i:ifqadam=0thengame over",
+   "g:game over"
+  ],
+  "html": "c68a81f55acf",
+  "uzun": 38803
+ },
+ "sq-15-0-B3A": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nBesh qadam\nQadam 5. Qoidani sinang: 5-bosishda o‘yin tugasin.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\nball\nto\n0\nset\njon\nto\n3\nwhen touching\napple\nchange\nball\nby\n1\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n3 ta dasturcha\n9 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\njon:\n0\nMaslahat\nHar bosishda qadam kamaysin, qadam 0 bo‘lsa — o‘yin tugasin\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "f:when ▶ clickedsetballto0setjonto3",
+   "z:setballto0setjonto3",
+   "z:setjonto3",
+   "q:when touchingapplechangeballby1",
+   "c:changeballby1",
+   "q:when touchingcactuschangejonby−1ifjon=0thengame over",
+   "c:changejonby−1ifjon=0thengame over",
+   "i:ifjon=0thengame over",
+   "g:game over"
+  ],
+  "html": "f5858271a826",
+  "uzun": 25682
+ },
+ "sq-15-1-B3B": {
+  "id": "B3B",
+  "matn": "MASHQ · 2-POG‘ONA\nQisqa yo‘l\nQadam 12. Olmalarni terib, yulduzga yeting.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\nball\nto\n0\nset\njon\nto\n3\nwhen touching\napple\nchange\nball\nby\n1\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n3 ta dasturcha\n9 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\njon:\n0\nMaslahat\nHar bosishda qadam kamaysin, qadam 0 bo‘lsa — o‘yin tugasin\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "f:when ▶ clickedsetballto0setjonto3",
+   "z:setballto0setjonto3",
+   "z:setjonto3",
+   "q:when touchingapplechangeballby1",
+   "c:changeballby1",
+   "q:when touchingcactuschangejonby−1ifjon=0thengame over",
+   "c:changejonby−1ifjon=0thengame over",
+   "i:ifjon=0thengame over",
+   "g:game over"
+  ],
+  "html": "43888e1d4aa1",
+  "uzun": 29926
+ },
+ "sq-15-2-B3C": {
+  "id": "B3C",
+  "matn": "MASHQ · 3-POG‘ONA\nHammasi birga\nJon 2, qadam 16. Uch o‘zgaruvchi — bitta o‘yin.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\nball\nto\n0\nset\njon\nto\n3\nwhen touching\napple\nchange\nball\nby\n1\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n3 ta dasturcha\n9 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\nball:\n0\njon:\n0\nMaslahat\nHar bosishda qadam kamaysin, qadam 0 bo‘lsa — o‘yin tugasin\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "f:when ▶ clickedsetballto0setjonto3",
+   "z:setballto0setjonto3",
+   "z:setjonto3",
+   "q:when touchingapplechangeballby1",
+   "c:changeballby1",
+   "q:when touchingcactuschangejonby−1ifjon=0thengame over",
+   "c:changejonby−1ifjon=0thengame over",
+   "i:ifjon=0thengame over",
+   "g:game over"
+  ],
+  "html": "3a368c59cc99",
+  "uzun": 31627
+ },
+ "sq-15-3-B3Y": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z o‘yiningiz\nJon, qadam va olma ballini o‘zingiz tanlang.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\nball\nto\n0\nset\njon\nto\n3\nwhen touching\napple\nchange\nball\nby\n1\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n3 ta dasturcha\n9 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\njon:\n0\nMaslahat\nHar bosishda qadam kamaysin, qadam 0 bo‘lsa — o‘yin tugasin\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "f:when ▶ clickedsetballto0setjonto3",
+   "z:setballto0setjonto3",
+   "z:setjonto3",
+   "q:when touchingapplechangeballby1",
+   "c:changeballby1",
+   "q:when touchingcactuschangejonby−1ifjon=0thengame over",
+   "c:changejonby−1ifjon=0thengame over",
+   "i:ifjon=0thengame over",
+   "g:game over"
+  ],
+  "html": "cb323f268dc1",
+  "uzun": 32191
+ },
+ "sq-17-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nO‘yiningizda jon bor!\n\nBulut\nJon tugasa — o‘yin tugaydi. Qoidani o‘zim tuzdim!\n\nSiz bugun\n0\nta o‘yin yutdi\n0\nta shart qo‘ydi\n0\nta o‘zgaruvchi ishlatdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nball:\n0\njon:\n3\nqadam:\n5\nBulut\nKeyingi darsda tasodifiy son bilan ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "b13ad515c506",
+  "uzun": 27264
+ },
+ "sx-P2S-C": {
+  "id": "P2S",
+  "matn": "SAVOL\nJon tugasa, o‘yinni qanday tugatamiz?\n\nCoddy\nMenda 3 ta jon. Kaktusga tegsam, bittasi ketadi.\n\nA\nTegsa — o‘yin tugasin\n▶ Sinab ko‘rish\nwhen touching\ncactus\ngame over\nB\nJonni kamaytiramiz\n▶ Sinab ko‘rish\nwhen touching\ncactus\nchange\njon\nby\n−1\nC\nKamaytiramiz va tekshiramiz\n✓ jon 0 — tugadi\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\njon:\n0\nO‘yin tugadi\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "797c62ebf7db",
+  "uzun": 39298
+ },
+ "sx-P6-tayyor": {
+  "id": "P6",
+  "matn": "KO‘RAMIZ\nJon kamayadi — shart tekshiradi\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\njon\nto\n3\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n2 ta dasturcha\n6 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\njon:\n0\n‹ Orqaga\n↑ ni uch marta bosing — kaktusga teging\n▶ Boshlash\nKeyingi ›",
+  "bloklar": [
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3",
+   "q:when touchingcactuschangejonby−1ifjon=0thengame over",
+   "c:changejonby−1ifjon=0thengame over",
+   "i:ifjon=0thengame over",
+   "g:game over"
+  ],
+  "html": "5004f5918a9d",
+  "uzun": 40248
+ },
+ "sx-P8-tayyor": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nHar bosish — bitta qadam\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\nqadam\nto\n6\nwhen\nany\nkey pressed\nchange\nqadam\nby\n−1\nif\nqadam\n=\n0\nthen\ngame over\n2 ta dasturcha\n6 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nqadam:\n0\n‹ Orqaga\nAvval istalgan strelkani 6 marta bosing, keyin yulduzga boring\n▶ Boshlash\nKeyingi ›",
+  "bloklar": [
+   "f:when ▶ clickedsetqadamto6",
+   "z:setqadamto6",
+   "k:whenanykey pressedchangeqadamby−1ifqadam=0thengame over",
+   "c:changeqadamby−1ifqadam=0thengame over",
+   "i:ifqadam=0thengame over",
+   "g:game over"
+  ],
+  "html": "c68a81f55acf",
+  "uzun": 38803
+ },
+ "y-01": {
+  "id": "P1",
+  "matn": "USTOZ · PROYEKTOR\n12-DARS · JON VA QADAM\nBugun o‘yinda jon bo‘ladi!\n\nCoddy\nSalom! Bugun kaktusdan ehtiyot bo‘lamiz.\n\nO‘TGAN DARSDA\nball: 3\nO‘zgaruvchi\nKompyuter eslab qoladigan son\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKirdi: 1\nKeyingi ›\nO‘QUVCHI · NOUTBUK\n12-DARS · JON VA QADAM\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "da1906c4c793",
+  "uzun": 87835
+ },
+ "y-02": {
+  "id": "P2",
+  "matn": "USTOZ · PROYEKTOR\n12-DARS · JON VA QADAM\nSAVOL\nJon tugasa, o‘yinni qanday tugatamiz?\n\nCoddy\nMenda 3 ta jon. Kaktusga tegsam, bittasi ketadi.\n\nA\nTegsa — o‘yin tugasin\nwhen touching\ncactus\ngame over\nB\nJonni kamaytiramiz\nwhen touching\ncactus\nchange\njon\nby\n−1\nC\nKamaytiramiz va tekshiramiz\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\njon:\n3\n‹ Orqaga\nJavob berdi: 0 / 1\nSinab ko‘ramiz ›\nO‘QUVCHI · NOUTBUK\n12-DARS · JON VA QADAM\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "1093e47b79c3",
+  "uzun": 91969
+ },
+ "y-03": {
+  "id": "P2S",
+  "matn": "USTOZ · PROYEKTOR\nSAVOL\nJon tugasa, o‘yinni qanday tugatamiz?\n\nCoddy\nMenda 3 ta jon. Kaktusga tegsam, bittasi ketadi.\n\nA\nTegsa — o‘yin tugasin\nwhen touching\ncactus\ngame over\nB\nJonni kamaytiramiz\nwhen touching\ncactus\nchange\njon\nby\n−1\nC\nKamaytiramiz va tekshiramiz\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\njon:\n3\n→\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "90cdac3f8a84",
+  "uzun": 92284
+ },
+ "y-04": {
+  "id": "P2C",
+  "matn": "USTOZ · PROYEKTOR\nJAVOB\nKamaytiramiz va tekshiramiz\n\nCoddy\nJon 0 bo‘ldi — shart «ha» dedi, o‘yin tugadi.\n\nA\nTegsa — o‘yin tugasin\n✕ jon 3 — tugadi\nwhen touching\ncactus\ngame over\nB\nJonni kamaytiramiz\n✕ jon −1\nwhen touching\ncactus\nchange\njon\nby\n−1\nC\nKamaytiramiz va tekshiramiz\n✓ jon 0 — tugadi\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\njon:\n0\nO‘yin tugadi\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "7af9fd36b730",
+  "uzun": 92117
+ },
+ "y-05": {
+  "id": "P3",
+  "matn": "USTOZ · PROYEKTOR\nYANGI SO‘Z\nJon nima?\n\nCoddy\nJon — nechta imkoniyatim qolgani.\n\nO‘yin boshida — 3 ta jon\n\nchange\njon\nby\n−1\nTegdi — jon kamaydi\n\nif\njon\n=\n0\nthen\n✓ ha\nJon 0 — o‘yin tugadi\n\njon:\n3\nO‘yin tugadi\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "f930ac05dc3e",
+  "uzun": 77230
+ },
+ "y-06": {
+  "id": "P4",
+  "matn": "USTOZ · PROYEKTOR\nREJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Avval jon.\n\nDars oxirida · o‘yiningiz · ball, jon va qadam bilan\nball: 20\njon: 3\nqadam: 5\nUch o‘zgaruvchi\n1\nJon\n2\nBall va jon\n3\nQadam\n‹ Orqaga\nBoshladik ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "eda31e663c76",
+  "uzun": 95438
+ },
+ "y-07": {
+  "id": "P6",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nJon kamayadi — shart tekshiradi\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\njon\nto\n3\n1 ta dasturcha\n2 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\njon:\n0\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3"
+  ],
+  "html": "6a4633e05348",
+  "uzun": 94260
+ },
+ "y-08": {
+  "id": "P5",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nJon qoidasi!\n\nCoddy\nAvval qoidani sinang, keyin ehtiyot bo‘lib o‘ynang.\n\nUch pog‘onani tugatdi\n0 / 1\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nUch jon\n2\n0\nAchchiq kaktus\n3\n0\nEhtiyot bo‘ling\n★\n0\nBitta jon\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "e253ccd09b3d",
+  "uzun": 93760
+ },
+ "y-09": {
+  "id": "P4B",
+  "matn": "USTOZ · PROYEKTOR\nREJA · 2-BEKAT\n2 · Ball va jon\n\nCoddy\nEndi olmalar ham bor: ball ham, jon ham.\n\nDars oxirida · o‘yiningiz · ball, jon va qadam bilan\nball: 20\njon: 3\nqadam: 5\nUch o‘zgaruvchi\n✓\nJon\n2\nBall va jon\n3\nQadam\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "3050b6937120",
+  "uzun": 95229
+ },
+ "y-10": {
+  "id": "P7",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nIkki o‘zgaruvchi — bitta o‘yin\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\nset\njon\nto\n3\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n2 ta dasturcha\n6 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\njon:\n0\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3",
+   "q:when touchingcactuschangejonby−1ifjon=0thengame over",
+   "c:changejonby−1ifjon=0thengame over",
+   "i:ifjon=0thengame over",
+   "g:game over"
+  ],
+  "html": "6c5321d5345c",
+  "uzun": 97901
+ },
+ "y-11": {
+  "id": "P5G",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nBall ham, jon ham!\n\nCoddy\nOlmalarni tering, kaktuslardan ehtiyot bo‘ling.\n\nUch pog‘onani tugatdi\n0 / 1\n1\n0\nIkki o‘zgaruvchi\n2\n0\nJon sovg‘asi\n3\n0\nQimmat kaktus\n★\n0\nToza o‘yin\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a61b2edecdfd",
+  "uzun": 93951
+ },
+ "y-12": {
+  "id": "P9",
+  "matn": "USTOZ · PROYEKTOR\nXULOSA\nJon\n\nCoddy\nShart o‘zgaruvchining sonini tekshiradi.\n\nchange\njon\nby\n−1\nchange jon by -1\nJon bittaga kamayadi\nif\njon\n=\n0\nthen\ngame over\nif jon = 0 then\nJon 0 bo‘lsa: «ha»\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nball:\n3\njon:\n2\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "40cab30d934e",
+  "uzun": 92004
+ },
+ "y-13": {
+  "id": "P4C",
+  "matn": "USTOZ · PROYEKTOR\nREJA · 3-BEKAT\n3 · Qadam\n\nCoddy\nOxirgi bekat: qadamlar ham tugaydi.\n\nDars oxirida · o‘yiningiz · ball, jon va qadam bilan\nball: 20\njon: 3\nqadam: 5\nUch o‘zgaruvchi\n✓\nJon\n✓\nBall va jon\n3\nQadam\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "b73b847eaab7",
+  "uzun": 95274
+ },
+ "y-14": {
+  "id": "P8",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nHar bosish — bitta qadam\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nwhen ▶ clicked\n1 ta dasturcha\n1 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "f:when ▶ clicked"
+  ],
+  "html": "c667cbf41fb6",
+  "uzun": 92796
+ },
+ "y-15": {
+  "id": "P5B",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nQadamni sanang!\n\nCoddy\nAvval yo‘lni sanang, keyin o‘ynang.\n\nUch pog‘onani tugatdi\n0 / 1\n1\n0\nBesh qadam\n2\n0\nQisqa yo‘l\n3\n0\nHammasi birga\n★\n0\nO‘z o‘yiningiz\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "523a6b4cb2ed",
+  "uzun": 93016
+ },
+ "y-16": {
+  "id": "P11",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RSATISH\nQoidalaringizni o‘qib bering\nSiz o‘qiysiz — men o‘ynayman.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "b33723a98880",
+  "uzun": 99374
+ },
+ "y-17": {
+  "id": "P12",
+  "matn": "USTOZ · PROYEKTOR\nYAKUN\nO‘yiningizda jon bor!\nBUGUNGI SO‘Z\nJon\nO‘yinchining qolgan imkoniyati\nKeyingi dars\n? ? ?\n13 · Tasodifiy son\n✓\nJon\n✓\nBall va jon\n✓\nQadam\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "23a80c8aca6e",
+  "uzun": 82866
+ },
+ "y-18": {
+  "id": "P14",
+  "matn": "USTOZ · PROYEKTOR\nSINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nta o‘yin yutdi\n0\nta shart qo‘ydi\n‹ Orqaga\nDarsni yakunlash\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "ee56deb82ff2",
+  "uzun": 92534
+ },
+ "varaq": {
+  "id": "",
+  "matn": "12-dars · Jon va qadam — ustoz varag‘i\n\nAsosiy fikr: o‘yinda bir nechta o‘zgaruvchi bo‘ladi; shart o‘zgaruvchining sonini tekshiradi — jon 0 bo‘lsa, o‘yin tugaydi. Hukda (B karta — sanadi, lekin tugatmadi), xulosada va 3-bekatda chiqadi.\n\nYo‘l: huk (o‘yinni qanday tugatamiz — uch sinov) → yangi so‘z «jon» → reja → 1-bekat «Jon» → 2-bekat «Ball va jon» → 3-bekat «Qadam» → o‘qib berish → yakun.\n\nYangi bloklar: if jon = 0 then — agar jon 0 ga teng bo‘lsa, unda (Shart oilasi, 8-darsdagi ramka); game over — o‘yin tugadi (Hodisa oilasi). Kaktus (when touching cactus), manfiy son (change jon by −1 — «minus bir», jon bittaga kamayadi), o‘zgaruvchilar ro‘yxati: ball, jon, qadam. 3-bekatda when any key pressed. Ustoz aytadi: «if — Shart oilasidan, 8-darsdagidek. game over — Hodisa oilasida, o‘yin bloklari yonida.»\n\nQoidani sinash: 1-bekatning 1–2-pog‘onasida va 3-bekatning 1-pog‘onasida bolalar ataylab yutqazadi — «O‘yin tugadi» chiqsa, «Shart ishladi!» deb maqtang. «O‘yin tugadi» — muammo emas: yana «▶ Boshlash». Bolaga «yutqazdingiz» demang. Qadam: «qadam: 12» — 11 ta bosishda yutish kerak (12-bosishda qadam 0 bo‘ladi va o‘yin tugaydi).\n\nMuammocha namunalari: jon 0 dan o‘tdi — Kamvoy «Jon tugadi-ku!» («Jon −1 bo‘ldi, o‘yin esa davom etyapti. Jon 0 bo‘lganda o‘yin tugashi uchun shart kerak»); erta tugadi — Ortiqvoy «Erta tugadi!» («Jon 2 qoldi, o‘yin esa tugadi. Shart qachon «ha» deydi — sonni tekshiring»). Belgilar (pog‘onalar javobi): ▶[jon 3] — when ▶ clicked ostida set jon to 3 · K[−1; =0] — when touching cactus ostida change jon by −1 va if jon = 0 then → game over · O[+1] — when touching apple → change ball by 1 · OO[jon +1] — when touching gold apple → change jon by 1 · Q — when any key pressed → change qadam by −1, if qadam = 0 then → game over.\n\nBoshqaruv: → yoki «Keyingi» — oldinga, ← — orqaga, F — to‘liq ekran. O‘ng tepada (sichqoncha olib borilsa) — qadam ro‘yxati va «aloqa» belgisi (yashil — ulangan).\n\n1\nKirish\n\nEKRANDA\n«12-dars · Jon va qadam» — «Bugun o‘yinda jon bo‘ladi!» Maydon, Coddy (0, 0) da, yonida kaktus; pastda «O‘tgan darsda» — o‘zgaruvchi.\n\nSIZ\n«O‘tgan darsda kompyuter ballni eslab qoldi.» «Bugun o‘yinda jon bo‘ladi: jon tugasa — o‘yin tugaydi.» «Noutbukda «Tayyorman» tugmasini bosing.»\n\nBOLA O‘RGANADI\nBugun o‘yinda jon bo‘ladi.\n\n2\nSavol: jon tugasa, o‘yinni qanday tugatamiz?\n\nEKRANDA\nSavol: «Jon tugasa, o‘yinni qanday tugatamiz?» Uchta karta: A «Tegsa — o‘yin tugasin» · B «Jonni kamaytiramiz» · C «Kamaytiramiz va tekshiramiz».\n\nSIZ\n«Coddy’da 3 ta jon. Jon tugaganda o‘yin tugashi kerak.» «Har kim noutbukida bitta kartani tanlasin: qanday tugatamiz?»\n\nBOLA O‘RGANADI\nTaxmin qiladi — bu huk.\n\n3\nUch sinov\n\nEKRANDA\nUch sinov — o‘sha bosishlar →→→→→ (bolalar taxmini: «tegsa — tugasin», «jonni kamaytiramiz», «kamaytirib, tekshiramiz»). A: 1-tegishda «O‘yin tugadi», jon 3 — ✕. «Keyingi» — B: jon 2, 1, 0, −1, o‘yin davom — ✕. «Keyingi» — C: jon 0 da «✓ ha», «O‘yin tugadi» — ✓.\n\nSIZ\n«A da jon bo‘lsa ham o‘yin tugadi. B da jon tugadi, o‘yin esa tugamadi.» «C da jon kamaydi, shart uni tekshirdi: jon 0 — o‘yin tugadi.»\n\nBOLA O‘RGANADI\nKamaytirish va tekshirish kerak.\n\n4\nJavob: kamaytiramiz va tekshiramiz\n\nEKRANDA\nJavob: «Kamaytiramiz va tekshiramiz». A va B xira, C oltin; «jon: 0», «O‘yin tugadi».\n\nSIZ\n«Jon — o‘zgaruvchi: kaktus uni kamaytiradi. Shart tekshiradi: jon 0 bo‘lsa — o‘yin tugaydi.»\n\nBOLA O‘RGANADI\nJon — o‘zgaruvchi.\n\n5\nYangi so‘z: jon\n\nEKRANDA\nYangi so‘z: «Jon nima?» «Keyingi» — birma-bir: «jon: 3» va uch yurakcha → tegdi — «jon: 2» → jon 0 — «✓ ha», «O‘yin tugadi».\n\nSIZ\n«Jon — o‘yinchining qolgan imkoniyati. 0 bo‘lsa — o‘yin tugaydi.» «Jon ham o‘zgaruvchi: nomi — jon, soni kamayib boradi.»\n\nBOLA O‘RGANADI\nYangi so‘z: jon.\n\n6\nReja\n\nEKRANDA\nReja: tepalik — jon → ball va jon → qadam; cho‘qqida «o‘yiningiz · ball, jon va qadam bilan».\n\nSIZ\n«Bugun uchta bekat: jon, ball va jon, qadam.» «Dars oxirida o‘yiningizda uchta o‘zgaruvchi bo‘ladi.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n7\nKo‘ramiz: jon qoidasi\n\nEKRANDA\nKo‘ramiz: «Jon kamayadi — shart tekshiradi». Tayyor when ▶ clicked → set jon to 3. Javondan when touching apple (turini cactus ga), change (jon, −1), if (jon = 0), ichiga game over. ↑ uch marta: «jon: 2», «jon: 1», «jon: 0» — «O‘yin tugadi».\n\nSIZ\n«Kaktusga tegsa — jon kamayadi: change jon by -1.» «if jon = 0 — agar jon 0 ga teng bo‘lsa. Unda — game over.» «Endi o‘zingiz: avval qoidangizni sinab ko‘ring.»\n\nBOLA O‘RGANADI\nJon qoidasi.\n\n8\nJon: pog‘onalar\n\nEKRANDA\nMashq: «Jon qoidasi!» — zinapoya: 1 uch jon · 2 achchiq kaktus · 3 ehtiyot bo‘ling · ★ bitta jon.\n\nSIZ\n«Birinchi ikki pog‘onada qoidani sinaysiz: ataylab kaktusga teging — jon 0 bo‘lganda o‘yin tugasin.» «Keyin kaktuslarga tegmay yulduzga boring.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nJon qoidasini tuzadi va sinaydi.\n\n9\n2-bekat\n\nEKRANDA\nTepalik: 1-bekat ✓ — «Ball va jon».\n\nSIZ\n«Jon qoidasi tayyor. Endi bitta o‘yinda ikki o‘zgaruvchi.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n10\nKo‘ramiz: ball va jon\n\nEKRANDA\nKo‘ramiz: «Ikki o‘zgaruvchi — bitta o‘yin». Dasturda jon qoidasi; ustoz set ball to 0 va olma dasturchasini qo‘shadi; ataylab → (jon 2), keyin teradi — «ball: 1», «ball: 2», «ball: 3», yutdi.\n\nSIZ\n«Bitta o‘yinda ikki o‘zgaruvchi: ball va jon. Har birining o‘z nomi, o‘z soni.» «Olma — ballga qo‘shadi, kaktus — jonni kamaytiradi.» «Endi o‘zingiz.»\n\nBOLA O‘RGANADI\nBitta o‘yinda ikki o‘zgaruvchi.\n\n11\nBall va jon: pog‘onalar\n\nEKRANDA\nMashq: «Ball ham, jon ham!» — zinapoya: 1 ikki o‘zgaruvchi · 2 jon sovg‘asi · 3 qimmat kaktus · ★ toza o‘yin.\n\nSIZ\n«Har pog‘ona tepasida o‘yin qoidasi yozilgan: nima ballga qo‘shadi, nima jonni kamaytiradi.» «Sahnadagi ikki songa qarab o‘ynang.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nBall va jon bilan o‘ynaydi.\n\n12\nXulosa: jon\n\nEKRANDA\nXulosa: «Jon». Ikki karta: change jon by −1 — jon bittaga kamayadi; if jon = 0 then — jon 0 bo‘lsa «ha».\n\nSIZ\n«O‘yinda bir nechta o‘zgaruvchi bo‘ladi — har birining o‘z nomi.» «Shart o‘zgaruvchining sonini tekshiradi: jon 0 bo‘lsa — o‘yin tugaydi.»\n\nBOLA O‘RGANADI\nShart o‘zgaruvchini tekshiradi.\n\n13\n3-bekat\n\nEKRANDA\nTepalik: 1, 2 ✓ — «Qadam».\n\nSIZ\n«Ikki bekatdan o‘tdik. Oxirgisi — qadam.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n14\nKo‘ramiz: qadam qoidasi\n\nEKRANDA\nKo‘ramiz: «Har bosish — bitta qadam». Bo‘sh when ▶ clicked; ustoz set qadam to 6, when any key pressed → change qadam by −1, if qadam = 0 then → game over. «▶ Boshlash» — «qadam: 6»; ↑↑↓↓↑↑ — 6-bosishda tugadi; yana «qadam: 6», →→→→ — yutdi, «qadam: 2».\n\nSIZ\n«Har bosish qadamdan bittasini oladi. Qadam 0 bo‘lsa — o‘yin tugaydi.» «Yulduzga qadam tugamasdan yeting: qadam 0 bo‘lgan bosishda o‘yin tugaydi.» «Endi o‘zingiz.»\n\nBOLA O‘RGANADI\nQadam qoidasi.\n\n15\nQadam: pog‘onalar\n\nEKRANDA\nMashq: «Qadamni sanang!» — zinapoya: 1 besh qadam · 2 qisqa yo‘l · 3 hammasi birga · ★ o‘z o‘yiningiz.\n\nSIZ\n«Avval qadam qoidasini sinang: qadam 0 bo‘lganda o‘yin tugasin.» «Keyin yo‘lni sanab o‘ynang — qadam yetsin.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nUch o‘zgaruvchi bilan o‘ynaydi.\n\n16\nO‘yiningiz qoidalarini o‘qib bering\n\nEKRANDA\n«Qoidalaringizni o‘qib bering». 15 · ★ maydoni, dasturda faqat «Boshqaruv». Proyektorda ism yo‘q; bola noutbukida — oxirgi yechgan pog‘onasi.\n\nSIZ\n«Kim o‘yinining qoidalarini o‘qib beradi? Avval o‘yin boshi, keyin har dasturcha.» «Kuzating: jon va qadam qanday kamayadi.»\n\nBOLA O‘RGANADI\nO‘z qoidalarini o‘qib beradi.\n\n17\nYakun\n\nEKRANDA\nYakun: «O‘yiningizda jon bor!» Bugungi so‘z — jon; keyingi dars — 13 · Tasodifiy son.\n\nSIZ\n«Uchala bekatdan o‘tdik: jon, ball va jon, qadam.» «Bugungi so‘z — jon: o‘yinchining qolgan imkoniyati. Shart uni tekshiradi.» «Keyingi darsda olmalar har safar boshqa joyda chiqadi — tasodifiy son.»\n\nBOLA O‘RGANADI\nO‘z natijasini ko‘radi.\n\n18\nSinfimiz bugun\n\nEKRANDA\nSinfimiz bugun: nechta o‘yin yutildi, nechta shart qo‘yildi (haqiqiy son, ismsiz).\n\nSIZ\n«Hammangiz zo‘r ishladingiz!» (keyin raqamlarni o‘qiydi) «Har o‘yinda qoida bor — siz endi uni o‘zingiz tuzasiz.»\n\nBOLA O‘RGANADI\nSinf bilan birga natijani ko‘radi.",
+  "bloklar": [],
+  "html": "c9783ab5e8ee",
+  "uzun": 9730
+ },
+ "eshik": {
+  "id": "",
+  "matn": "12-dars · Jon va qadam\n\nQaysi oynani ochamiz?\n\nO‘quvchi oynasi\nUstoz oynasi (proyektor)\nO‘quvchi — o‘zi (ustozsiz)\nIkkalasi yonma-yon (ko‘rik)\nUstoz varag‘i",
+  "bloklar": [],
+  "html": "e8a34e8dc80e",
+  "uzun": 768
+ },
+ "kirish-ismsiz": {
+  "id": "",
+  "matn": "Darsga kirish\n\nIsmingizni yozing\n\nKirish",
+  "bloklar": [],
+  "html": "bb43a0750caa",
+  "uzun": 213
+ }
+}

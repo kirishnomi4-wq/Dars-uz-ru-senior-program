@@ -1,0 +1,57 @@
+✓ 1 · Aziz: B0; Lola: avval BQ
+✓ 1 · ustoz: «Kirdi: 2»; «Bugun o‘yinda jon bo‘ladi!»; «O‘tgan darsda» — o‘zgaruvchi
+✓ 2 · «Javob berdi: 2 / 2»; sahnada «jon: 3»
+✓ 3 · A: «✕ jon 3 — tugadi», «O‘yin tugadi»
+✓ 3 · B: «✕ jon −1», o‘yin tugamadi
+✓ 3 · C: «✓ jon 0 — tugadi»
+✓ 4 · javob «Kamaytiramiz va tekshiramiz»: A, B xira; «jon: 0», «O‘yin tugadi»
+✓ 5 · «Jon nima?» — uch bo‘lak yondi, «jon: 0», uch yurakcha xira, «O‘yin tugadi»
+✓ 6 · reja
+✓ 7 · P6: tayyor ▶ set jon 3; bolada «Ustoz jon qoidasini ko‘rsatyapti»
+✓ 7 · javondan: kaktus → change jon −1, if jon = 0 { game over }
+✓ 7 · ↑↑↑ — «jon: 0», «O‘yin tugadi»
+✓ 8 · Aziz B1A: tayyor bo‘lak, «jon: 0»
+✓ 8 · shartsiz — Kamvoy «Jon tugadi-ku!»
+✓ 8 · Aziz 1-pog‘ona: «Shart ishladi: jon 0 — o‘yin tugadi!» → B1B
+✓ 8 · B1B o‘sha dastur bilan (if ichidagisi ham)
+✓ 8 · 2-pog‘ona: jon 4, −2 → B1C
+✓ 8 · 3-pog‘ona: yutdi → B1Y
+✓ 8 · ★: jon 1 bilan yutdi → BK
+✓ 8 · Lola 1-pog‘ona
+✓ 8 · doska: «1 / 2»; zinapoya 2 · 1 · 1 · 1
+✓ 10 · P7: jon qoidasi tayyor, olma va set ball yo‘q
+✓ 10 · ikki kapsula: «ball: 0», «jon: 3»
+✓ 10 · ataylab → — jon 2; teradi — ball 3, yutdi
+✓ 11 · Aziz B2A: dastur 8-qadamdan (jon 1)
+✓ 11 · Aziz 1-pog‘ona: ball 3 → B2B
+✓ 11 · 2-pog‘ona: oltin olma — jon 2 → B2C
+✓ 11 · 3-pog‘ona: qimmat kaktus → B2Y
+✓ 11 · ★: ball 10 → BK
+✓ 11 · Lola: ball qismi yo‘q — Bo‘shvoy «Olma terildi, ball-chi?», yutsa ham ball 0
+✓ 11 · Lola: ball 3 → B2B
+✓ 11 · doska: «1 / 2»; zinapoya 2 · 1 · 1 · 1
+✓ 12 · xulosa «Jon»
+✓ 14 · P8: bo‘sh when ▶ clicked, yulduz ko‘rinadi
+✓ 14 · javondan: ▶ set qadam 6; any → change qadam −1, if qadam = 0 { game over }
+✓ 14 · ↑↑↓↓↑↑ — «qadam: 0», «O‘yin tugadi»
+✓ 14 · →→→→ — yutdi, «qadam: 2»
+✓ 15 · Aziz B3A: tayyor o‘yin (bolaning 2-bekat dasturi emas)
+✓ 15 · Aziz 1-pog‘ona: «Shart ishladi: qadam 0 — o‘yin tugadi!» → B3B
+✓ 15 · 2-pog‘ona (dastur B3A dan, qadam 5 — yetmaydi)…
+✓ 15 · … qadam 12 — ball 3, qadam 3 → B3C
+✓ 15 · 3-pog‘ona: jon 2, qadam 16 → B3Y
+✓ 15 · ★: «O‘yiningiz tayyor!» → BK
+✓ 15 · Lola 1-pog‘ona
+✓ 15 · doska: «1 / 2»; zinapoya 2 · 1 · 1 · 1
+✓ 16 · ustoz P11: faqat «Boshqaruv»
+✓ 16 · Aziz: oxirgi yechgan pog‘onasi — B3Y o‘z dasturi bilan
+✓ 16 · ustoz bola o‘qigan dastur bilan o‘ynadi (ataylab bir tegish) — jon 2
+✓ 17 · Aziz: 9 ta o‘yin yutdi, 2 ta shart, 3 ta o‘zgaruvchi
+✓ 17 · Lola: 1, 2, 3
+✓ 17 · yakun: «O‘yiningizda jon bor!», keyingi dars «13 · Tasodifiy son»
+✓ 18 · Sinfimiz bugun: 10 ta o‘yin yutdi, 4 ta shart qo‘ydi
+✓ 18 · «Darsni yakunlash» — hammada «Dars tugadi»
+✓ konsolda xato yo‘q
+
+NATIJA: 54 / 54
+XATO: yo‘q

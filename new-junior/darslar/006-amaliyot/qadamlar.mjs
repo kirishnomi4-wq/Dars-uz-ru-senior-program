@@ -1,0 +1,43 @@
+// 6-dars «Amaliyot» qadamlari (QADAM) va ustoz varag'i (VARAQ) — 20.11. Manba: new-junior/manba/006-amaliyot.md, 18 qadam.
+// 16-qadam bola ro'yxati 'oxirgi' (A·1, 20.11) — bola noutbukida oxirgi yechgan pog'onasi o'z dasturi bilan (o'qib berish uchun); hech narsa yechmagan bo'lsa — «Ustoz ekraniga qarang».
+const QADAM = [
+  ['Kirish', 'P1', ['B0', 'BK']],
+  ['Savol', 'P2', ['P2N', 'BK']],
+  ['Uch sinov', 'P2S', ['BK'], 'Ustoz yo‘llarni sinayapti — kuzating'],
+  ['Javob: bloklar birga ishlaydi', 'P2C', ['BK']],
+  ['Eslaymiz: uch blok', 'P3', ['BK'], 'Eslaymiz: uch blok'],
+  ['Reja', 'P4', ['BK'], 'Bugun: uchta bekat'],
+  ['Bugungi qoida: o‘zingiz', 'P6', ['BK'], 'Ustoz bugungi qoidani aytyapti'],
+  ['Yo‘l', 'P5', ['B1A', 'B1B', 'B1C', 'B1Y', 'BK']],
+  ['2-bekat', 'P4B', ['BK'], '2-bekat: rasm'],
+  ['Eslaymiz: kulrang rasm', 'P7', ['BK'], 'Ustoz rasm topshirig‘ini eslatyapti'],
+  ['Rasm', 'P5G', ['B2A', 'B2B', 'B2C', 'B2Y', 'BK']],
+  ['Xulosa: har ishga — o‘z bloki', 'P9', ['BK'], 'Xulosa: har ishga — o‘z bloki'],
+  ['3-bekat', 'P4C', ['BK'], '3-bekat: hammasi birga'],
+  ['Eslaymiz: dasturni tuzatish', 'P8', ['BK'], 'Ustoz dasturni tuzatyapti — kuzating'],
+  ['Hammasi birga', 'P5B', ['B3A', 'B3B', 'B3C', 'B3Y', 'BK']],
+  ['Rasmingiz dasturini o‘qib bering', 'P11', 'oxirgi'],
+  ['Yakun', 'P12', ['B5']],
+  ['Sinfimiz bugun', 'P14', ['B5']],
+]
+// ustoz varag'i: [Ekranda · Siz (manbadagi tayanch gaplar, aynan) · Bola o'rganadi]
+const VARAQ = [
+  ['«6-dars · Amaliyot» — «Bugun hammasini o‘zingiz tuzasiz!» Maydon, Coddy (0, 0) da; pastda «O‘tgan darsda» — takrorlash.', '«O‘tgan darsda takrorlash bilan rasm chizdik.» «Bugun yangi blok yo‘q — o‘rganganlarimizni o‘zingiz ishlatasiz.» «Noutbukda «Tayyorman» tugmasini bosing.»', 'Bugun o‘zi tuzadi.'],
+  ['Savol: «Qaysi bloklar bilan yetamiz?» Olmalar (1, 2)…(4, 2), yulduz (5, 2); «Dasturga 3 ta blok sig‘adi». Uchta karta: A «Ikkita repeat», B «go to bilan sakraymiz», C «Sakrab, keyin takrorlaymiz».', '«Qahramon olmalarni terib, yulduzga yetsin. Dasturga faqat 3 ta blok sig‘adi.» «Har kim noutbukida bitta kartani tanlasin: qaysi bloklar bilan yetamiz?»', 'Taxmin qiladi — bu huk.'],
+  ['Uch sinov: A o‘zi boshlanadi — to‘rt blok, sig‘gan qismi ishlaydi: Coddy (0, 2) da («✕ sig‘madi: 4 ta blok»). «Keyingi» — B: bitta sakrash, olmalar qoldi («✕ olmalar qoldi»). «Keyingi» — C: sakrash, keyin besh qadam («✓ 3 ta blok»).', '«repeat ham blok — ikkita repeat to‘rt blok bo‘ldi. go to esa olmalardan sakrab o‘tdi.» «go to sakratdi, repeat terib bordi — ikki xil blok birga ishladi.»', 'Bir dasturda har xil bloklar birga ishlaydi.'],
+  ['Javob: «Bloklar birga ishlaydi». A va B xira, C oltin; Coddy yulduzda.', '«Bir dasturda har xil bloklar birga ishlaydi. Qaysi blok kerakligini o‘zingiz tanlaysiz.»', 'Blokni o‘zi tanlaydi.'],
+  ['Eslaymiz: «Uch blok — uch ish». «Keyingi» — birma-bir: move, go to, repeat.', '«move — bitta katak. go to — manzilga sakraydi. repeat — ko‘p marta.» «Bugun shu uchtasini o‘zingiz tanlab ishlatasiz.»', 'Uch blokni eslaydi.'],
+  ['Reja: tepalik — yo‘l → rasm → hammasi birga; cho‘qqida «o‘z rasmingiz».', '«Bugun uchta bekat: yo‘l, rasm, hammasi birga.» «Dars oxirida go to va repeat bilan o‘z rasmingizni chizasiz.»', 'Darsda qayerda turganini biladi.'],
+  ['Qoida: «Bugun — o‘zingiz». «Keyingi» — birma-bir: javon, «N / M ta blok», «Maslahat» qulfi.', '«Bugun topshiriqlarni men yechmayman — o‘zingiz tuzasiz.» «Avval maydonni o‘qing: qahramon qayerda, yulduz qayerda, nechta blok sig‘adi.» «Maslahat bir marta ishga tushirgandan keyin ochiladi. Endi o‘zingiz.»', 'Avval maydonni o‘qiydi.'],
+  ['Mashq: «Endi o‘zingiz!» — zinapoya: 1 burchak · 2 eng uzoq katak · 3 tepa qator · ★ uchta blok.', '«Avval o‘ylang: qaysi blok kerak? Nechta blok sig‘adi?» «Muammocha qayerda to‘xtaganini ko‘rsatadi — o‘sha joydan tuzating.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'move, go to — kerakligini o‘zi tanlaydi.'],
+  ['Tepalik: 1-bekat ✓ — «Rasm».', '«Yo‘l bekatidan o‘tdik. Endi kam blok bilan rasm chizamiz.»', 'Darsda qayerda turganini biladi.'],
+  ['Eslaymiz: «Kulrang — chiziladigan rasm». Tayyor dastur ↑ ↑ → →; «▶ Ishga tushir» — «Rasm tayyor!».', '«Kulrang kataklar — chiziladigan rasm. Hammasi oltin bo‘lsa — tayyor.» «Endi o‘zingiz: rasmlarni kam blok bilan chizing.»', 'Rasm topshirig‘ini eslaydi.'],
+  ['Mashq: «Rasm chizing!» — zinapoya: 1 chiziq · 2 eshik · 3 keng zinapoya · ★ to‘lqin.', '«Bir xil qadamlar ko‘p bo‘lsa — repeat.» «Uzun dasturni o‘qing: qaysi bo‘lak takrorlanyapti?» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'repeat ni o‘zi qo‘yadi.'],
+  ['Xulosa: «Har ishga — o‘z bloki». Uch karta: move — bir-ikki qadam, go to — uzoq joyga, repeat — bir xil qadam ko‘p.', '«Bir-ikki qadam — move. Uzoq joy — go to. Bir xil qadam ko‘p — repeat.» «Kerak bo‘lsa, ular bir dasturda birga ishlaydi.»', 'Har ishga o‘z blokini biladi.'],
+  ['Tepalik: 1, 2 ✓ — «Hammasi birga».', '«Ikki bekatdan o‘tdik. Oxirgisida go to va repeat birga kerak bo‘ladi.»', 'Darsda qayerda turganini biladi.'],
+  ['Eslaymiz: «Tayyor dasturni tuzatamiz». Olma (3, 0), yulduz (3, 2); tayyor repeat 2 [↑], repeat 3 [→] — olma qoladi; ikki repeat ni bosib joyini almashtirasiz.', '«Avval dasturni o‘qing, keyin ishga tushiring — muammocha qayerda to‘xtaganini ko‘rsatadi.» «Bloklar to‘g‘ri, tartibi boshqa — joyini almashtiramiz.» «Endi o‘zingiz.»', 'Tayyor dasturni tuzatishni eslaydi.'],
+  ['Mashq: «Hammasi birga!» — zinapoya: 1 ustun · 2 teng belgisi · 3 xatoni toping · ★ o‘z rasmingiz.', '«Bu bekatda bitta oila yetmaydi — go to va repeat birga kerak.» «Tayyor dasturni avval ishga tushiring: qayerda to‘xtaydi?» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'go to va repeat ni birga ishlatadi.'],
+  ['«Dasturingizni o‘qib bering». Dastur bo‘sh. Proyektorda ism yo‘q; bola noutbukida — oxirgi yechgan pog‘onasi o‘z dasturi bilan.', '«Kim rasmining dasturini o‘qib beradi? Blokma-blok, yuqoridan pastga.» «Kuzating: qanday rasm chiqadi?»', 'O‘z dasturini o‘qib beradi.'],
+  ['Yakun: «Siz o‘zingiz tuzdingiz!» Bugungi qoida — har ishga o‘z bloki; keyingi dars — 7 · Kostyum va tovush.', '«Uchala bekatdan o‘tdik: yo‘l, rasm, hammasi birga.» «Bugun bloklarni o‘zingiz tanladingiz: har ishga — o‘z bloki.» «Keyingi darsda qahramon kostyumini almashtiradi va ovoz chiqaradi.»', 'O‘z natijasini ko‘radi.'],
+  ['Sinfimiz bugun: nechta pog‘ona bajarildi, nechta go to, nechta repeat qo‘yildi (haqiqiy son, ismsiz).', '«Hammangiz o‘zingiz tuzdingiz!» (keyin raqamlarni o‘qiydi) «Dasturchi ham shunday ishlaydi: avval o‘ylaydi, keyin blokni tanlaydi.»', 'Sinf bilan birga natijani ko‘radi.'],
+]
