@@ -89,6 +89,8 @@ function Screen3(p) {
     {seg.v === 'ev' && <div style={{ display: 'grid', gap: 10 }}><Term title={t("VS Code terminali · npm run live", "терминал VS Code · npm run live")} lines={T3EV} />
       <div className="pg-two"><Card c={C1.ws} h={t("Hodisa nomi", "Имя события")}><p><code>order-changed</code>{t(" — bo'lib o'tgan ish, kichik harf va chiziqcha", " — о случившемся, строчными буквами через дефис")}</p></Card><Card c={C1.live} h={t("Ichida", "Внутри")}><p><code>orderId</code>{t(" va ", " и ")}<code>reason</code> (<code>new</code> | <code>status</code>{t(") — ro'yxat emas", ") — не список")}</p></Card></div></div>}
     {seg.v === 'start' && <Term title={t("VS Code terminali · ws1-start (gateway yo'q)", "терминал VS Code · ws1-start (нет gateway)")} lines={T3C} er />}
+    {/* F-1120-02 (M51): xulosada darsning rasmi — serverda gateway yo'q: panel socket.io bilan urinadi, xhr poll error (T3C) */}
+    {seg.v === 'start' && <div className="mk-light" style={{ padding: 12 }}><BotMap loc={DB_ALL} on={['telegram', 'order']} jest={{ get name() { return t('Admin panel', 'Админ-панель'); }, steps: [['socket.io', 'ok'], ['xhr poll error', 'bad']], res: 'fail', get badge() { return t("gateway yo'q", 'нет gateway'); } }} max={1} tag={t("Serverda gateway bo'lmasa — klient cheksiz xhr poll error", 'Нет gateway на сервере — у клиента бесконечный xhr poll error')} /></div>}
   </>} />;
 }
 

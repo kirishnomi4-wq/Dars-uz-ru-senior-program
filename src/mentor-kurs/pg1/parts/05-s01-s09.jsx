@@ -170,12 +170,14 @@ function Screen4(p) {
   return <Lesson p={p} S={S4} scene={({ seg }) => <div className="pg-two" style={{ gridTemplateColumns: seg.rows.includes(10) ? '1fr' : 'minmax(0,1.5fr) minmax(0,1fr)' }}>
     <div className="mk-light" style={{ padding: 12 }}>
       <table className="pg-dict"><thead><tr><th style={{ color: PG.mongo }}>MongoDB (Mongoose)</th><th /><th style={{ color: PG.pg }}>PostgreSQL</th></tr></thead><tbody>
-        {DICT4.map(([a, b], i) => (seg.rows.includes(10) && !seg.rows.includes(i)) ? null : <tr key={a} className={seg.rows.includes(i) ? 'hl' : (seg.rows.length ? 'dim' : '')}><td><code>{a}</code></td><td>↔</td><td><code>{b}</code></td></tr>)}
+        {DICT4.map(([a, b], i) => ((seg.rows.includes(10) && !seg.rows.includes(i)) || (!seg.rows.includes(10) && i >= 10)) ? null : /* F-1120-02: buyruq qatorlari (10–13) faqat xulosada — 1280 da sahna sig'sin */ <tr key={a} className={seg.rows.includes(i) ? 'hl' : (seg.rows.length ? 'dim' : '')}><td><code>{a}</code></td><td>↔</td><td><code>{b}</code></td></tr>)}
       </tbody></table>
     </div>
     <div style={{ display: 'grid', gap: 10 }}>
       {!seg.rows.includes(10) && <Psql title="CREATE TABLE posts" lines={POSTS_DDL} focus={seg.focus} />}
-      <div className="mk-rule">{t(<>Mongo'da qoida <b>kodda</b> (Mongoose sxemasi), PostgreSQL'da <b>jadvalda</b>. O'quvchi «populate qani?» desa — <b>JOIN</b>.</>, <>В Mongo правило <b>в коде</b> (схема Mongoose), в PostgreSQL — <b>в таблице</b>. Если ученик спросит «где populate?» — <b>JOIN</b>.</>)}</div>
+      {/* F-1120-02 (M51): xulosada matnli qoida o'rniga darsning rasmi — qoida jadvalning o'zida, populate o'rnida JOIN */}
+      {seg.rows.includes(10) ? <div className="mk-light" style={{ padding: 12 }}><BlogDb rules fk join="inner" compact max={1} tag={t("Mongo'da qoida kodda — PostgreSQL'da jadvalning o'zida; populate o'rnida JOIN", 'В Mongo правило в коде — в PostgreSQL в самой таблице; вместо populate — JOIN')} /></div>
+        : <div className="mk-rule">{t(<>Mongo'da qoida <b>kodda</b> (Mongoose sxemasi), PostgreSQL'da <b>jadvalda</b>. O'quvchi «populate qani?» desa — <b>JOIN</b>.</>, <>В Mongo правило <b>в коде</b> (схема Mongoose), в PostgreSQL — <b>в таблице</b>. Если ученик спросит «где populate?» — <b>JOIN</b>.</>)}</div>}
     </div>
   </div>} />;
 }

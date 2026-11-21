@@ -207,7 +207,8 @@ function Screen6(p) {
     {seg.v === 'dev' && <DevTools off />}
     {seg.v === 'a' && <Term title={t("panel logi · Offline ~6 s (ws2-start)", "лог панели · Offline ~6 s (ws2-start)")} lines={P6A} />}
     {seg.v === 'b' && <Term title={t("panel logi · Offline 60 s (ws2-start)", "лог панели · Offline 60 s (ws2-start)")} lines={P6B} er />}
-    {seg.v === 'res' && <div style={{ display: 'grid', gap: 8 }}><PanelView k="02-4" small label={t("ws2-start · Online'dan keyin", "ws2-start · после Online")} /><div style={{ display: 'grid', gap: 8 }}><Term title={t("server logi", "лог сервера")} lines={BAZA6} /><div className="mk-rule">Offline <b>{t("belgi «Ulanmoqda…» bo'lguncha", "пока знак не станет «Ulanmoqda…»")}</b>{t(" ushlab turilsa — buziladi (ping: 25 + 20 s).", " держать — ломается (ping: 25 + 20 s).")}</div></div></div>}
+    {/* F-1120-02 (M51): xulosada darsning rasmi (matnli qoida o'rniga) — Offline 60 s: #2 bazada, panelda yo'q (server logi BAZA6) */}
+    {seg.v === 'res' && <div style={{ display: 'grid', gap: 8 }}><PanelView k="02-4" small label={t("ws2-start · Online'dan keyin", "ws2-start · после Online")} /><div style={{ display: 'grid', gap: 8 }}><Term title={t("server logi", "лог сервера")} lines={BAZA6} /><div className="mk-light" style={{ padding: 10 }}><BotMap loc={DB_ALL} on={['telegram', 'orders', 'db']} note={{ get orders() { return t("#2 bazada, panelda yo'q", '#2 в базе, в панели нет'); } }} jest={PNL(() => [['Offline 60 s', 'bad'], [t('qayta ulandi', 'переподключился'), 'ok']], 'fail', 'Ulangan')} max={1} tag={t("Offline ping vaqtidan uzun bo'lsa buziladi — 45 soniyadan ko'p kuting", 'Offline дольше ping — ломается; ждите больше 45 секунд')} /></div></div></div>}
   </>} />;
 }
 

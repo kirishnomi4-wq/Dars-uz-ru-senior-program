@@ -51,7 +51,8 @@ function Screen9(p) {
       <Card c={C1.ci} h={t("Kutubxona (npm paketi)", "Библиотека (npm-пакет)")}><p>{t("Har xil loyihalarda, har xil Node'da ishlatiladi → ", "Используется в разных проектах, на разных Node → ")}<b>{t("matrix kerak", "нужен matrix")}</b>: 20, 22, 24…</p></Card>
       <Card c={T.green} h={t("Bot / sayt (OrderBotNest)", "Бот / сайт (OrderBotNest)")}><p>{t("Bitta serverda, bitta Node'da yuradi → ", "Работает на одном сервере, на одном Node → ")}<b>{t("mashinangizdagi bitta raqam", "одного числа с вашей машины")}</b>{t(" yetadi (CI/CD-1 17-ekran).", " хватает (CI/CD-1, экран 17).")}</p></Card>
     </div>}
-    {seg.v === 'sum' && <div style={{ display: 'grid', gap: 10 }}><RunView k="31" job="test (24)" ann={null} only={/^Run np/} /><div className="mk-rule">{t("matrix — bir nechta versiya, parallel · ", "matrix — несколько версий, параллельно · ")}<code>fail-fast</code>{t(" tez to'xtatadi · ", " быстро останавливает · ")}<code>fail-fast: false</code>{t(" — to'liq javob.", " — полный ответ.")}</div></div>}
+    {/* F-1120-02 (M51): xulosada darsning rasmi (matnli qoida o'rniga) — matrix: test (22) qizil, test (24) yashil, fail-fast: false — ikkalasi oxirigacha (run 31) */}
+    {seg.v === 'sum' && <div style={{ display: 'grid', gap: 10 }}><RunView k="31" job="test (24)" ann={null} only={/^Run np/} /><div className="mk-light" style={{ padding: 12 }}><BotMap loc={DB_ALL} on={[...CI_ON, 'db', 'products', 'users', 'carts', 'orders']} dbLabel={DB_SVC} jest={{ name: 'matrix', steps: [['test (22)', 'bad'], ['test (24)', 'ok']], res: 'fail', badge: 'fail-fast: false' }} max={1} tag={t("matrix — bir nechta versiya, parallel; fail-fast tez, false — to'liq javob", 'matrix — несколько версий параллельно; fail-fast быстро, false — полный ответ')} /></div></div>}
   </>} />;
 }
 

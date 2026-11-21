@@ -14,6 +14,8 @@ function Screen8(p) {
         {MAP8.map(([a, b], i) => <div key={a} className="c1-code" style={{ marginBottom: 6, animation: `mk-up .35s ${i * 0.08}s ease both` }}><span className="n" style={{ color: T.accent, fontSize: 18 }}>{i + 1}</span><span className="t"><code>{a}</code><br />{b}</span></div>)}
       </div>
     </div>}
+    {/* F-1120-02 (M51): xulosada matnli qoida ostida darsning rasmi — to'rt run: satri lentaning to'rt qadami */}
+    {seg.map && <div className="mk-light" style={{ padding: 12 }}><BotMap loc={DB_ALL} on={CI_ON} jest={{ ...CI_OK, name: 'ci.yml' }} max={0.8} tag={t("To'rt run: satri — to'rtinchi ekrandagi to'rt buyruq, aynan o'sha tartibda", 'Четыре строки run: — четыре команды с экрана 4, в том же порядке')} /></div>}
   </>} />;
 }
 
@@ -30,7 +32,8 @@ function Screen9(p) {
     {seg.v === 'push' && <div style={{ display: 'grid', gap: 10 }}><Term title={t("VS Code terminali · OrderBotNest", "терминал VS Code · OrderBotNest")} lines={PUSH9} /><RunRows keys={['10']} hl={['10']} /></div>}
     {seg.v === 'run' && <RunView k="10" hlStep={seg.hl} />}
     {seg.v === 'log' && <RunView k="10" open="Run npm test" lines={L9} hlStep="Run npm test" />}
-    {seg.v === 'sum' && <div style={{ display: 'grid', gap: 10 }}><Lenta4 st={{ ci: 'ok', tsc: 'ok', test: 'ok', build: 'ok' }} dur={DUR9} /><div className="mk-rule">{t("push → toza mashina → ", "push → чистая машина → ")}<code>checkout</code> → <code>setup-node</code>{t(" → sizning to'rt buyrug'ingiz → ", " → ваши четыре команды → ")}<b>{t("yashil", "зелёный")}</b>{t(". Run jami ", ". Всего run ")}{KOD.RUNS['10'].dur}{t(" (GitHub'dagi haqiqiy run #", " (настоящий run на GitHub #")}{KOD.RUNS['10'].n}).</div></div>}
+    {/* F-1120-02 (M51): xulosada matnli qoida o'rniga darsning rasmi — push → toza mashina → to'rt buyruq → yashil (DUR9) */}
+    {seg.v === 'sum' && <div style={{ display: 'grid', gap: 10 }}><Lenta4 st={{ ci: 'ok', tsc: 'ok', test: 'ok', build: 'ok' }} dur={DUR9} /><div className="mk-light" style={{ padding: 12 }}><BotMap loc={DB_ALL} on={CI_ON} jest={CI_OK} ro={['git push', t("toza mashina → checkout → setup-node → to'rt buyruq → <b>yashil</b>", 'чистая машина → checkout → setup-node → четыре команды → <b>зелёный</b>')]} max={1} tag={t("push → toza mashina → sizning buyruqlaringiz → yashil", 'push → чистая машина → ваши команды → зелёный')} /></div></div>}
   </>} />;
 }
 
@@ -102,7 +105,8 @@ function Screen13(p) {
     {seg.v === 'mach' && <Machines left={MACH13.l} right={MACH13.r} hl="r" />}
     {seg.v === 'sum' && <div style={{ display: 'grid', gap: 10 }}>
       <CodePanel file="ci.yml · 6–8" lines={kod('CI_DONE', { 7: 'c' }, 6, 8)} focus={['c']} />
-      <div className="n2-warn">{t("Har workflow'da ", "В каждом workflow ")}<b>{t("birinchi qadam — ", "первый шаг — ")}<code>actions/checkout</code></b>{t(". Logda «lock yo'q» yoki «package.json yo'q» ko'rsangiz — repongizni emas, ", ". Если в логе видите «нет lock» или «нет package.json» — ищите не в репозитории, а эту строку в ")}<code>ci.yml</code>{t("dagi shu satrni qidiring.", ".")}</div>
+      {/* F-1120-02 (M51): xulosada matnli qoida o'rniga darsning rasmi — checkout'siz lenta: npm ci qizil, qolgani o'tkazib yuborildi (CI_TUZOQ) */}
+      <div className="mk-light" style={{ padding: 12 }}><BotMap loc={DB_ALL} on={CI_ON} jest={CI_TUZOQ} ro={['ci.yml:7', t("<b>uses: actions/checkout@v4</b> — birinchi qadam doim; «lock yo'q» ko'rsangiz — shu satr", '<b>uses: actions/checkout@v4</b> — всегда первый шаг; видите «нет lock» — ищите эту строку')]} max={1} tag={t("Birinchi qadam doim checkout", 'Первый шаг — всегда checkout')} /></div>
     </div>}
   </>} />;
 }
@@ -174,7 +178,8 @@ function Screen15(p) {
     {seg.v === 'both' && <div className="pg-two c1-small"><RunView k="14" /><RunView k="15" hlStep="Run npx tsc --noEmit" /></div>}
     {seg.v === 'sum' && <div style={{ display: 'grid', gap: 10 }}>
       <CodePanel file="ci.yml · 12–15" lines={kod('CI_DONE', { 13: 't' }, 12, 15)} focus={['t']} />
-      <div className="n2-warn">{t("Lenta ", "Конвейер ")}<b>{t("faqat so'ralgan narsani", "только то, о чём спросили,")}</b>{t(" tekshiradi. Testlar yashil bo'lsa ham, turlar noto'g'ri bo'lishi mumkin. ", " проверяет. Даже если тесты зелёные, типы могут быть неверными. ")}{t(<><code>npx tsc --noEmit</code> — <code>npm ci</code>dan keyin, <code>npm test</code>dan oldin: 3 soniya, build'gacha bormay to'xtatadi.</>, <><code>npx tsc --noEmit</code> — после <code>npm ci</code>, до <code>npm test</code>: 3 секунды, останавливает, не доходя до build.</>)}</div>
+      {/* F-1120-02 (M51): xulosada matnli qoida o'rniga darsning rasmi — tsc qadami tur xatosini ushladi (haqiqiy run: TS2322, user.service.ts 20) */}
+      <div className="mk-light" style={{ padding: 12 }}><BotMap loc={DB_ALL} on={CI_ON} bad={{ at: 'user' }} jest={{ name: 'Actions', steps: [['npm ci', 'ok'], ['tsc', 'bad'], ['npm test', 'skip'], ['build', 'skip']], res: 'fail', badge: 'error TS2322' }} ro={['user.service.ts:20', t("<span class=\"n1-er\">error TS2322</span> — tsc qadami npm ci dan keyin, npm test dan oldin", '<span class=\"n1-er\">error TS2322</span> — шаг tsc после npm ci, перед npm test')]} max={1} tag={t("Lenta faqat so'ralgan narsani tekshiradi — tsc qadamini test'dan oldin qo'ying", 'Конвейер проверяет только то, о чём спросили — шаг tsc ставьте перед тестами')} /></div>
     </div>}
   </>} />;
 }

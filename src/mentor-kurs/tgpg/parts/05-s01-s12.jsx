@@ -197,12 +197,14 @@ Seed: 0 ta mahsulot qo'shildi, 6 tasi bazada bor edi.
 $ psql -U postgres -d shop -c '\d products'
     "UQ_products_name" UNIQUE CONSTRAINT, btree (name)
     "CHK_products_stock" CHECK (stock >= 0)`);
-const S10 = mkS(10, [{ v: 'diff' }, { v: 'out' }, { v: 'run' }, { v: 'run' }]);
+const S10 = mkS(10, [{ v: 'diff' }, { v: 'out' }, { v: 'run' }, { v: 'run', sum: true }]);
 function Screen10(p) {
   return <Lesson p={p} S={S10} scene={({ seg }) => <>
     {seg.v !== 'run' && <Term title={t("git diff --stat — 1-tajriba, 1-prompt", "git diff --stat — 1-й опыт, 1-й промпт")} lines={DIFF10L} focus={seg.v === 'out' ? ['x'] : []} />}
     {seg.v === 'out' && <AiReply who={t("1-tajriba · 1-prompt", "1-й опыт · 1-й промпт")} said={<>«<b>{t("Bitta chetga chiqish (buni bilib qo'ying):", "Один выход за рамки (имейте в виду):")}</b>{t(" order va telegram servislarida bir nechta qatorni o'zgartirdim. Bazaga so'rov asinxron, shuning uchun CatalogService metodlari endi Promise qaytaradi…»", " в сервисах order и telegram я изменил несколько строк. Запрос к базе асинхронный, поэтому методы CatalogService теперь возвращают Promise…»")}</>} hl />}
     {seg.v === 'run' && <Term title={t("terminal — o'zingiz yurgizasiz", "терминал — запускаете сами")} lines={T10} />}
+    {/* F-1120-02 (M51): xulosada darsning rasmi — katalog bazada, seed ikki marta yurdi, qoidalar \d products da (T10) */}
+    {seg.sum && <div className="mk-light" style={{ padding: 12 }}><BotMap loc={{ products: 'db' }} on={['catalog', 'db', 'products']} note={{ products: '6 ta · UNIQUE · CHECK' }} ro={['git', t("o'qing → solishtiring → yurgizing → <b>git commit</b>", 'прочитать → сравнить → запустить → <b>git commit</b>')]} max={1} tag={t("O'qing, solishtiring, yurgizing — shundan keyin commit", 'Прочитайте, сравните, запустите — потом коммит')} /></div>}
   </>} />;
 }
 

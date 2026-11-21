@@ -26,7 +26,8 @@ function Screen13(p) {
       <Card c={PG.ai} h="2 · transformer → number (AI)"><p>{t("bazadan kelganda ", "из базы — ")}<code>Number(v)</code>{t("; Telegram id 52 bitdan oshmaydi", "; Telegram id не больше 52 бит")}</p></Card>
     </div>}
     {seg.v === 'c' && <Code k="DONE_USER" from={16} to={19} focus={['t']} ids={{ 18: 't', 19: 't' }} />}
-    {seg.v === 'd' && <div className="mk-rule">{t("Diffda ikki joy: migratsiyada ", "В diff два места: в миграции ")}<b>BIGINT</b>{t("mi · entity'da qaysi tur va qayerda ", "ли · какой тип в entity и где ")}<code>===</code>{t(" bilan solishtirilgan.", " сравнивается.")}</div>}
+    {/* F-1120-02 (M51): xulosada matnli qoida o'rniga darsning rasmi — users jadvali bazada, telegram_id BIGINT; entity'dagi haqiqiy satr (user.entity.ts:18–19) */}
+    {seg.v === 'd' && <div className="mk-light" style={{ padding: 14 }}><BotMap loc={{ products: 'db', users: 'db' }} on={['user', 'db', 'users']} ro={['user.entity.ts:18', t("type: <b>'bigint'</b> · telegram_id: <b>string</b> — solishtirish String(ctx.from.id) bilan", "type: <b>'bigint'</b> · telegram_id: <b>string</b> — сравнение через String(ctx.from.id)")]} max={1} tag={t("Diffda ikki joy: migratsiyada BIGINT · entity'da tur va === solishtirish", 'В diff два места: BIGINT в миграции · тип и сравнение === в entity')} /></div>}
   </>} />;
 }
 
@@ -64,11 +65,13 @@ shop=# SELECT telegram_id, name, phone, state FROM users;
 -------------+-------+-------+---------------
   5123456789 | Aziza |       | WAITING_PHONE
 (1 row)`, { 4: { id: 's' } });
-const S15 = mkS(15, [{ v: 'a' }, { v: 'b' }, { v: 'c' }, { v: 'b' }]);
+const S15 = mkS(15, [{ v: 'a' }, { v: 'b' }, { v: 'c' }, { v: 'sum' }]);
 function Screen15(p) {
   return <Lesson p={p} S={S15} scene={({ seg }) => <>
     {seg.v === 'a' && <><Code k="DONE_USER" from={30} to={32} focus={['s']} ids={{ 31: 's', 32: 's' }} /><Psql title={t("psql — telefon so'ralgan payt", "psql — момент запроса телефона")} lines={T15} focus={['s']} /></>}
     {seg.v === 'b' && <TgFlow title={t("Bobur — 3-bosqichdan keyin", "Бобур — после 3-го этапа")} items={FLOW15} />}
+    {/* F-1120-02 (M51): xulosada darsning rasmi — server qayta ishga tushdi, xotira bo'shadi, lekin users va savat bazada: WAITING_PHONE qoldi, buyurtma o'tdi (FLOW15) */}
+    {seg.v === 'sum' && <div className="mk-light" style={{ padding: 14 }}><BotMap loc={{ products: 'db', users: 'db', carts: 'db' }} restart chat={['+998935554433', 'Buyurtma #1 qabul qilindi!', 'ok']} on={['phone', 'user', 'db', 'users', 'carts', 'mem']} note={{ users: 'state = WAITING_PHONE' }} max={1} tag={t("State'ni sinash: restart suhbat o'rtasida — holat bazada qoldi", 'Проверка state: рестарт посреди диалога — состояние осталось в базе')} /></div>}
     {seg.v === 'c' && <div className="pg-two"><TgFlow title={t("2-bosqichdan keyin", "после 2-го этапа")} items={FLOW15B} /><TgFlow title={t("3-bosqichdan keyin", "после 3-го этапа")} items={FLOW15.slice(2)} /></div>}
   </>} />;
 }
@@ -161,6 +164,8 @@ function Screen19(p) {
     <Race19 step={seg.step} />
     {seg.flow && <TgFlow title={t("ikki mijoz bir vaqtda", "два клиента одновременно")} items={FLOW19} src="npm run smoke -- race" />}
     {seg.smoke && <Term lines={T19} />}
+    {/* F-1120-02 (M51): xulosada darsning rasmi — ikki mijoz bir vaqtda, bitta tranzaksiya COMMIT, ikkinchisi aniq xabar oladi (FLOW19, T19) */}
+    {seg.smoke && <div className="mk-light" style={{ padding: 12 }}><BotMap loc={DB_ALL} clients={2} tx="commit" ops={{ products: 'UPDATE', orders: 'INSERT' }} on={['phone', 'order', 'db', 'products', 'orders']} chat={['[✅ Buyurtma berish]', 'Bobur ← omborda faqat 0 ta qoldi', 'bad']} note={{ products: 'stock 0' }} max={1} tag={t("Ortiqcha sotilmasin — faqat bir vaqtdagi ko'p mijoz sinovi bilan tekshiriladi", 'Не продать лишнего — проверяется только одновременными клиентами')} /></div>}
   </>} />;
 }
 

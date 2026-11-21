@@ -1194,7 +1194,7 @@ function BotMap({ loc = {}, restart, on, chat, clients = 1, tx, note = {}, ops =
   const dbChip = (d, i) => box(d[0], 506, 152 + i * 35, 222, 32, BM.pg, <div style={{ display: 'flex', alignItems: 'center', gap: 6, height: 20, whiteSpace: 'nowrap' }}>
     <span style={{ font: `700 11.5px ${MONO}`, color: BM.pg }}>{d[3]}</span>
     {ops[d[0]] ? <span style={{ font: `700 9.5px/1.4 ${MONO}`, color: '#fff', background: ops[d[0]] === 'DELETE' ? T.yellow : ops[d[0]] === 'INSERT' ? T.green : T.accent, borderRadius: 4, padding: '0 4px' }}>{ops[d[0]]}</span> : null}
-    <span style={{ marginLeft: 'auto', minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', font: `500 10px ${MONO}`, color: T.ink2, paddingRight: badge[d[0]] != null ? 18 : 0 }}>{note[d[0]] || d[4]}</span>{badgeEl(d[0])}
+    <span style={{ marginLeft: 'auto', minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', font: `500 10px/15px ${MONO}`, color: T.ink2, paddingRight: badge[d[0]] != null ? 18 : 0 }}>{note[d[0]] || d[4]}</span>{badgeEl(d[0])}
   </div>, { padding: '4px 8px' });
   const memLit = memItems.some((d) => lit(d[0])) && memItems.length > 0;
   const dbLit = dbItems.some((d) => lit(d[0])) && dbItems.length > 0;
@@ -9756,7 +9756,8 @@ function Screen9(p) {
       <Card c={C1.ci} h={t("Kutubxona (npm paketi)", "Библиотека (npm-пакет)")}><p>{t("Har xil loyihalarda, har xil Node'da ishlatiladi → ", "Используется в разных проектах, на разных Node → ")}<b>{t("matrix kerak", "нужен matrix")}</b>: 20, 22, 24…</p></Card>
       <Card c={T.green} h={t("Bot / sayt (OrderBotNest)", "Бот / сайт (OrderBotNest)")}><p>{t("Bitta serverda, bitta Node'da yuradi → ", "Работает на одном сервере, на одном Node → ")}<b>{t("mashinangizdagi bitta raqam", "одного числа с вашей машины")}</b>{t(" yetadi (CI/CD-1 17-ekran).", " хватает (CI/CD-1, экран 17).")}</p></Card>
     </div>}
-    {seg.v === 'sum' && <div style={{ display: 'grid', gap: 10 }}><RunView k="31" job="test (24)" ann={null} only={/^Run np/} /><div className="mk-rule">{t("matrix — bir nechta versiya, parallel · ", "matrix — несколько версий, параллельно · ")}<code>fail-fast</code>{t(" tez to'xtatadi · ", " быстро останавливает · ")}<code>fail-fast: false</code>{t(" — to'liq javob.", " — полный ответ.")}</div></div>}
+    {/* F-1120-02 (M51): xulosada darsning rasmi (matnli qoida o'rniga) — matrix: test (22) qizil, test (24) yashil, fail-fast: false — ikkalasi oxirigacha (run 31) */}
+    {seg.v === 'sum' && <div style={{ display: 'grid', gap: 10 }}><RunView k="31" job="test (24)" ann={null} only={/^Run np/} /><div className="mk-light" style={{ padding: 12 }}><BotMap loc={DB_ALL} on={[...CI_ON, 'db', 'products', 'users', 'carts', 'orders']} dbLabel={DB_SVC} jest={{ name: 'matrix', steps: [['test (22)', 'bad'], ['test (24)', 'ok']], res: 'fail', badge: 'fail-fast: false' }} max={1} tag={t("matrix — bir nechta versiya, parallel; fail-fast tez, false — to'liq javob", 'matrix — несколько версий параллельно; fail-fast быстро, false — полный ответ')} /></div></div>}
   </>} />;
 }
 
@@ -9905,8 +9906,11 @@ function Screen16(p) {
     {seg.v === 'pr' && <PrCard checks />}
     {seg.v === 'merge' && <div style={{ display: 'grid', gap: 10 }} className="c1-small"><PrCard checks merged /><RunView k="37" job="smoke" ann={null} only={/Initialize|npm run smoke/} /></div>}
     {seg.v === 'badge' && <div style={{ display: 'grid', gap: 10 }}>
-      <Code k="README_BADGE" files={FILES()} active={F.readme} ids={{ 1: 'b' }} focus={['b']} title="README.md · cicd2-done" />
+      {/* F-1120-02: 1280 da rasm sig'sin — butun VS Code oynasi o'rniga README'ning o'sha 1-satri */}
+      <CodePanel file="README.md · cicd2-done" lines={kod('README_BADGE', { 1: 'b' }, 1, 1)} focus={['b']} />
       <div className="mk-light" style={{ padding: 14, display: 'flex', gap: 14, alignItems: 'center' }}><div className="mk-tag" style={{ margin: 0 }}>{t("Reponi ochgan odam ko'radi", "Кто открыл репозиторий, видит")}</div><Badge ok /><span style={{ fontSize: 13, color: T.ink2 }}>{t("— main'dagi oxirgi run holati (", "— состояние последнего run в main (")}<code>actions/workflows/ci.yml/badge.svg</code>)</span></div>
+      {/* F-1120-02 (M51): xulosada darsning rasmi — README badge main'dagi oxirgi run'ni ko'rsatadi: ikki job yashil */}
+      <div className="mk-light" style={{ padding: 12 }}><BotMap loc={DB_ALL} on={[...CI_ON, 'db', 'products', 'users', 'carts', 'orders']} dbLabel={DB_SVC} jest={CI2_OK} max={0.85} tag={t("README'ga badge — ochgan odam lentani ko'radi", 'Бейдж в README — кто открыл, видит конвейер')} /></div>
     </div>}
   </>} />;
 }
@@ -9927,6 +9931,8 @@ function Screen17(p) {
       <AiReply who={t("2-AI (kuchsizroq model)", "2-й AI (модель слабее)")} said={<><code>ci.yml</code>{t(" +17 satr: xuddi shu services va healthcheck · ", " +17 строк: те же services и healthcheck · ")}<b>{t("env job darajasida", "env на уровне job")}</b>{t(" (hamma qadamga) · smoke oxirida · izohsiz", " (во все шаги) · smoke в конце · без пояснений")}</>} />
     </div>}
     {seg.v === 'runs' && <div className="pg-two c1-small"><RunView k="40" ann={null} only={/Initialize|npm ci|npm run smoke|Stop/} hlStep="Run npm run smoke" /><RunView k="41" ann={null} only={/Initialize|npm ci|npm run smoke|Stop/} hlStep="Run npm run smoke" /></div>}
+    {/* F-1120-02 (M51): xulosada darsning rasmi — ikkala AI lentasi: services konteyneri, smoke yashil; secret ishlatilmadi (run 40, 41) */}
+    {seg.v === 'runs' && <div className="mk-light" style={{ padding: 12 }}><BotMap loc={DB_ALL} on={[...CI_ON, 'db', 'products', 'users', 'carts', 'orders']} dbLabel={DB_SVC} jest={{ name: 'AI ×2', steps: [['1-AI · smoke', 'ok'], ['2-AI · smoke', 'ok']], res: 'pass', get badge() { return t('tekshiruv oldinda', 'проверка впереди'); } }} max={0.85} tag={t("AI secret ishlatmadi — to'g'ri: konteyner — sir emas; yashil, lekin tekshiruv hali oldinda", 'AI не взял secret — верно: контейнер не секрет; зелёный, но проверка впереди')} /></div>}
   </>} />;
 }
 

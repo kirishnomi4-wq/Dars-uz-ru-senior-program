@@ -33,11 +33,14 @@ const PATHS2 = [
 ];
 const S2 = mkS(2, [{ on: 0 }, { on: 1 }, { on: 2 }, { on: -1, all: true }]);
 function Screen2(p) {
-  return <Lesson p={p} S={S2} scene={({ seg }) => <div className="pg-three">
+  return <Lesson p={p} S={S2} scene={({ seg }) => <><div className="pg-three">
     {PATHS2.map((x, i) => <div key={x.k} className={`path${seg.on === i ? ' hl' : ''}${seg.on >= 0 && seg.on !== i ? ' dim' : ''}`} style={{ '--c': x.c }}>
       <h4>{x.h}</h4>{x.ex.map((e) => <div key={e} className="ex">{e}</div>)}<div className="q">{x.q}</div>{seg.all && <div className="t">{x.t}</div>}
     </div>)}
-  </div>} />;
+  </div>
+    {/* F-1120-02 (M51): xulosada darsning rasmi — bugungi uch yo'l botning qaysi joyida sinaladi (telegram · phone.ts, order); testlar hali yozilmagan */}
+    {seg.all && <div className="mk-light" style={{ padding: 12 }}><BotMap loc={DB_ALL} tgSub="phone.ts" on={['telegram', 'order']} jest={{ steps: [['happy path', ''], ['edge case', ''], ['error path', '']], res: '?', badge: t('bugun yozamiz', 'пишем сегодня') }} max={1} tag={t("Har funksiyaga uch yo'lning testi — bugun uchalasini yozamiz", 'Тесты трёх путей для каждой функции — сегодня пишем все три')} /></div>}
+  </>} />;
 }
 
 // ============================================================
@@ -183,7 +186,8 @@ function Screen8(p) {
   return <Lesson p={p} S={S8} scene={({ seg }) => <>
     {seg.v === 'code' && <Code k="ORDER_PLACE" files={FILES()} active={F.ord} ids={{ 25: 's', 26: 's', 36: 'a', 37: 'a', 38: 'a' }} focus={seg.f} from={24} to={38} />}
     {seg.v === 'flow' && <Flow8 hl={seg.hl} />}
-    {seg.sum && <div className="mk-rule">{t("Sinxron xato — ", "Синхронная ошибка — ")}<code>expect(() =&gt; …).toThrow()</code>{t(" · promise xatosi — ", " · ошибка promise — ")}<code>await expect(…).rejects.toThrow()</code>{t(". Shakl almashsa, Jest qizil ham bermaydi (11, 13-ekran).", ". Если перепутать форму, Jest даже не даст красного (экраны 11, 13).")}</div>}
+    {/* F-1120-02 (M51): xulosada matnli qoida o'rniga darsning rasmi — order moduli, ikki xil xato va ikki xil expect (order.service.ts 25–26 · 27→37) */}
+    {seg.sum && <div className="mk-light" style={{ padding: 12 }}><BotMap loc={DB_ALL} tgSub="phone.ts" on={['order', 'orders', 'products']} tx="rollback" jest={{ steps: [['toThrow()', 'ok'], ['rejects.toThrow()', 'ok']], res: 'pass' }} ro={['order.service.ts:25', t("25–26 darhol → <b>.toThrow()</b> · 27→37 transaction ichida → <b>await … .rejects.toThrow()</b>", "25–26 сразу → <b>.toThrow()</b> · 27→37 внутри transaction → <b>await … .rejects.toThrow()</b>")]} max={1} tag={t("Xatoni sinashdan oldin qayerda otilishini aniqlang — darholmi, promise ichidami", 'Прежде чем проверять ошибку — где она бросается: сразу или внутри promise')} /></div>}
   </>} />;
 }
 

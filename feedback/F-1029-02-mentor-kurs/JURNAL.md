@@ -1073,3 +1073,30 @@ Oldingi seans 17:59 dan keyin ham ishlagan, jurnal yozilmagan (seans uzildi). Fa
 - Ovoz: 12 dars matni yig'ildi (uz 1429, ru 1431) → `ovoz-statik.py` — 2860 mp3, xato 0.
 - Sayt `coddycamp-mentor-kurs` **qayta yoqildi** (`vercel project resume`, paused: false) → `dev/vercel-deploy.sh` → prod **g1yvugq60** (Ready). / va ?dars=cicd-01 → 200; mp3 → 200.
 - Jonli saytda tekshirildi: PG-2 22 (act bosildi, kichik rasm, Postman 201), TgPg 1 (xarita), Webhook 13 (act), Nest-1 23 — xato 0, toshish 0; TgPg 1 va PG-2 22 da mp3 so'rovlari 200/206.
+
+## 21.11 02:31 — F-1120-02 2-bosqich: qolgan tushuncha ekranlariga dars rasmi (PG-1 · PG-2 · TgPg)
+- Foydalanuvchi: «hamma darsga maksimal shu qo'shib…» → tanlov «Qoldir, qolganini qil»: F-1109-06 da qabul qilingan 34 ta sxemaga tegilmaydi.
+- Ro'yxat (natija.tsv 09.11, ko'rinish <50%, Lesson turi, sinf/tekshiruv emas, F-1109-06 da yo'q): jami **33** ekran — nest1 37 · nest2 26 · pg1 5,7,8,9,19,24 · pg2 3,6,11,14 · tgpg 10,13,15,19 · jest1 12 · jest2 2,8 · cicd1 4,8,9,13,15,18,22 · cicd2 9,16,17 · ws1 3,13,14 · ws2 6.
+- Ko'rildi va rasm qo'yilmadi (sahnaning o'zi haqiqiy chiqish yoki ro'yxat): pg1 7 (Windows uch narsa), 8 (Homebrew terminali), 9 (psql birinchi so'rov), 19 (CHECK xatosi), 24 (sinf kompyuterlari ro'yxati).
+  - PG-2 6 (sum): CrudMachine psql → ORDER BY id. PG-2 11 (sum): CrudMachine + haqiqiy `stock_nonneg` xatosi → ROLLBACK (T11.c); jadvallar qoldi.
+- Qilindi (matn/ovoz o'zgarmadi):
+  - PG-1 5: xulosada `mk-rule` o'rniga BlogDb (rules · fk · join). Avvaldan bor toshish tuzatildi: lug'atning buyruq qatorlari (10–13) faqat xulosada — 1280: 106 px → 0, 1600: 30 px → 0.
+  - PG-2 3: xulosa (warn) — CrudMachine psql → shop.products, qoidasiz. PG-2 14: xulosa — CrudMachine + haqiqiy `ERROR: null value in column "name"…` to'liq qatori (ro).
+  - TgPg 10 (4-qadam sum): BotMap katalog bazada + ro «o'qing → solishtiring → yurgizing → git commit». 13 (d): users bazada + user.entity.ts:18 satri. 15 (4-qadam 'b' takrori → 'sum'): restart, users+savat bazada, WAITING_PHONE, buyurtma qabul. 19 (smoke): ×2 mijoz, tx commit, stock 0.
+  - parts/02e-bot.jsx: jadval izohi `font 10px/15px` — pastki chiziq («telegram_id», «WAITING_PHONE») kesilmaydi (8 darsga umumiy, faqat yaxshilanish).
+  - ro matnlari t() bilan — RU'da o'zbekcha qolmaydi (RU 4 ekran ko'rildi).
+- Tekshiruv: gates 12/13 (esbuild — @lesson/runtime, ma'lum) PG-1 · PG-2 · TgPg; toshish 0 (1600 va 1280); xato 0.
+- Natija sahifasi v14: bo'lim «2-bosqich: PG-1 · PG-2 · TgPg» (7 surat).
+
+## 21.11 02:52 — F-1120-02 2-bosqich davomi: Jest-1/2 · CI/CD-1/2 · WebSocket-1/2 — 2-bosqich YOPILDI
+- Jest-1 12 (tab all): BotMap telegram (keyboards) + Jest: NEW · CONFIRMED · DELIVERED/CANCELLED — 3 passed (jest1v2-out/07).
+- Jest-2 2 (all): uch karta ostida BotMap — happy/edge/error, «bugun yozamiz». Jest-2 8 (sum): mk-rule o'rniga BotMap order + tx rollback, Jest: toThrow() · rejects.toThrow(), ro order.service.ts 25–26 · 27→37.
+- CI/CD-1 4 · 8 · 9 · 13 · 15 · 18 · 22: xulosadagi mk-rule / n2-warn o'rniga (8 da — ostida) BotMap + lenta qatori: qo'lda ≈15 s · CI_OK · checkout yo'q (CI_TUZOQ) · tsc ✕ error TS2322 (user qizil) · AI ×2 (tsc/build uzuq) · node dist/main «DATABASE_URL topilmadi» (haqiqiy xato).
+- CI/CD-2 9 (matrix: test (22) ✕ · test (24) ✓, fail-fast: false) · 16 (badge; 1280 da 82 px toshardi → butun VS Code o'rniga README 1-satri CodePanel) · 17 (AI ×2 smoke ✓, «tekshiruv oldinda»).
+- WebSocket-1 3 (gateway yo'q: xhr poll error) · 13 (connect · disconnect · socket.active) · 14 (Savol kartasi + rasm to'liq kenglikda; PanelView 10d bu yerdan olindi — 13-ekranda o'sha ko'rinish bor, 1280 da rasm 0.5 ga kichrayib o'qilmay qolardi). WebSocket-2 6 (mk-rule o'rniga BotMap: Offline 60 s ✕, qayta ulandi ✓, «#2 bazada, panelda yo'q»).
+- Rasm qo'yilmadi (sabab bilan): Nest-1 37 «O'quvchi so'raydigan savollar» va Nest-2 26 «sizning tayyorgarligingiz» — sinfga tayyorgarlik (M41); PG-1 7, 8 (o'rnatish), 9 (psql birinchi ulanish — blog bazasi hali yo'q), 19 (products — blog rasmida yo'q jadval), 24 (sinf kompyuterlari ro'yxati).
+- Jami 2-bosqich: 33 nomzod ko'rildi → **26 ekranga rasm**, 7 tasi sabab bilan qoldirildi. Matn va ovoz o'zgarmadi (MDT/ru-qism tegilmadi; yangi matnlar faqat rasm yorliqlari — t() bilan RU).
+- Getter qoidasi saqlandi: modul darajasida yangi t() yo'q (tag/ro/badge render paytida yoki get bilan).
+- Tekshiruv: gates 12/13 (esbuild — @lesson/runtime, ma'lum) — PG-1, PG-2, TgPg, Jest-1, Jest-2, CI/CD-1, CI/CD-2, WS-1, WS-2, Webhook; lint:jsx 375 fayl toza; lint:prompt toza; toshish 0 (1600 va 1280); RU: 9 ekran ko'rildi.
+- Natija sahifasi **v15**: bo'limlar «2-bosqich: PG-1 · PG-2 · TgPg» (9 surat) va «2-bosqich: Jest-1/2 · CI/CD-1/2 · WebSocket-1/2» (17 surat).
+- Zaxira: ~/Desktop/zaxira-2026-11-20-jonli-sahna/mentor-kurs-2bosqich-2111-0252.tgz. Commit/deploy YO'Q — foydalanuvchi buyrug'i kutiladi.

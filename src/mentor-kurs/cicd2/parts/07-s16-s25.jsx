@@ -10,8 +10,11 @@ function Screen16(p) {
     {seg.v === 'pr' && <PrCard checks />}
     {seg.v === 'merge' && <div style={{ display: 'grid', gap: 10 }} className="c1-small"><PrCard checks merged /><RunView k="37" job="smoke" ann={null} only={/Initialize|npm run smoke/} /></div>}
     {seg.v === 'badge' && <div style={{ display: 'grid', gap: 10 }}>
-      <Code k="README_BADGE" files={FILES()} active={F.readme} ids={{ 1: 'b' }} focus={['b']} title="README.md · cicd2-done" />
+      {/* F-1120-02: 1280 da rasm sig'sin — butun VS Code oynasi o'rniga README'ning o'sha 1-satri */}
+      <CodePanel file="README.md · cicd2-done" lines={kod('README_BADGE', { 1: 'b' }, 1, 1)} focus={['b']} />
       <div className="mk-light" style={{ padding: 14, display: 'flex', gap: 14, alignItems: 'center' }}><div className="mk-tag" style={{ margin: 0 }}>{t("Reponi ochgan odam ko'radi", "Кто открыл репозиторий, видит")}</div><Badge ok /><span style={{ fontSize: 13, color: T.ink2 }}>{t("— main'dagi oxirgi run holati (", "— состояние последнего run в main (")}<code>actions/workflows/ci.yml/badge.svg</code>)</span></div>
+      {/* F-1120-02 (M51): xulosada darsning rasmi — README badge main'dagi oxirgi run'ni ko'rsatadi: ikki job yashil */}
+      <div className="mk-light" style={{ padding: 12 }}><BotMap loc={DB_ALL} on={[...CI_ON, 'db', 'products', 'users', 'carts', 'orders']} dbLabel={DB_SVC} jest={CI2_OK} max={0.85} tag={t("README'ga badge — ochgan odam lentani ko'radi", 'Бейдж в README — кто открыл, видит конвейер')} /></div>
     </div>}
   </>} />;
 }
@@ -32,6 +35,8 @@ function Screen17(p) {
       <AiReply who={t("2-AI (kuchsizroq model)", "2-й AI (модель слабее)")} said={<><code>ci.yml</code>{t(" +17 satr: xuddi shu services va healthcheck · ", " +17 строк: те же services и healthcheck · ")}<b>{t("env job darajasida", "env на уровне job")}</b>{t(" (hamma qadamga) · smoke oxirida · izohsiz", " (во все шаги) · smoke в конце · без пояснений")}</>} />
     </div>}
     {seg.v === 'runs' && <div className="pg-two c1-small"><RunView k="40" ann={null} only={/Initialize|npm ci|npm run smoke|Stop/} hlStep="Run npm run smoke" /><RunView k="41" ann={null} only={/Initialize|npm ci|npm run smoke|Stop/} hlStep="Run npm run smoke" /></div>}
+    {/* F-1120-02 (M51): xulosada darsning rasmi — ikkala AI lentasi: services konteyneri, smoke yashil; secret ishlatilmadi (run 40, 41) */}
+    {seg.v === 'runs' && <div className="mk-light" style={{ padding: 12 }}><BotMap loc={DB_ALL} on={[...CI_ON, 'db', 'products', 'users', 'carts', 'orders']} dbLabel={DB_SVC} jest={{ name: 'AI ×2', steps: [['1-AI · smoke', 'ok'], ['2-AI · smoke', 'ok']], res: 'pass', get badge() { return t('tekshiruv oldinda', 'проверка впереди'); } }} max={0.85} tag={t("AI secret ishlatmadi — to'g'ri: konteyner — sir emas; yashil, lekin tekshiruv hali oldinda", 'AI не взял secret — верно: контейнер не секрет; зелёный, но проверка впереди')} /></div>}
   </>} />;
 }
 

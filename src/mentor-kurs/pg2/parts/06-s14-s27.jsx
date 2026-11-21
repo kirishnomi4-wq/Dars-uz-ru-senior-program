@@ -55,7 +55,8 @@ function Screen14(p) {
         <div className="pg-rules" style={{ gridTemplateColumns: 'repeat(3, minmax(0,1fr))' }}>{RULES14.filter(([, , k]) => !k || seg.on.includes(k)).map(([c, r, k]) => <div key={c + r} className={`${k ? 'on' : ''}${(seg.neu || []).includes(k) ? ' new' : ''}`}><b style={{ minWidth: 70, whiteSpace: 'nowrap' }}>{c}</b><span>{r}</span></div>)}</div></div>
     </div>
     {seg.e === 'a' && <div className="n2-warn">{t("Xato yo'q, nomsiz qator saqlandi — jadvalda ", "Ошибки нет, строка без имени сохранилась — в таблице ")}<b>{t("NOT NULL yo'q", "нет NOT NULL")}</b>{t(" edi. Baza faqat yozilgan qoidani qo'riqlaydi.", " . База охраняет только записанное правило.")}</div>}
-    {seg.sum && <div className="mk-rule">{t("Qoida ", "Правило ")}<b>{t("bazada", "в базе")}</b>{t(" bo'lsa — xatoni kod emas, baza ushlaydi, va har xabar ichida qoidaning nomi turadi (", " есть — ошибку ловит не код, а база, и в каждом сообщении стоит имя правила (")}<code>products_name_unique</code>, <code>stock_nonneg</code>).</div>}
+    {/* F-1120-02 (M51): xulosada matnli qoida o'rniga darsning rasmi — psql'dagi nomsiz yozuvni endi baza o'zi rad etadi (haqiqiy xato, T14.d) */}
+    {seg.sum && <div className="mk-light" style={{ padding: 12 }}><CrudMachine path="psql" on={['psql', 'shop']} prods={[['1', 'Klaviatura', '120000'], ['2', 'Sichqoncha', '75000']]} psqlLine={['shop=#', 'INSERT INTO products (price, stock) VALUES (30000, 4);', 'ERROR: null value in column "name" … violates not-null constraint']} ro={['psql · shop', '<span class="n1-er">ERROR:  null value in column "name" of relation "products" violates not-null constraint</span>']} max={1} tag={t("Qoida bazada — xatoni kod emas, baza ushlaydi; xabarda qoida nomi bor", 'Правило в базе — ошибку ловит не код, а база; в сообщении есть имя правила')} /></div>}
   </>} />;
 }
 

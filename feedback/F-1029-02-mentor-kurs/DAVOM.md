@@ -1,6 +1,8 @@
 # F-1029-02 · Mentor kursi — DAVOM (01.11.2026 avtopilot — PG-1, PG-2, Jest-1, Jest-2, CI/CD-1, Telegraf+PG, WebSocket-1, WebSocket-2, Webhook qurildi; ertalab ko'rik)
 
 > **🟢🟢🟢 21.11 — F-1120-02 «Jonli sahna» 12 DARSDA TAYYOR — saytda (g1yvugq60). YANGI SEANS SHU YERDAN.**
+> **🟢🟢🟢 21.11 10:36 — YANGI SEANS SHU YERDAN (noutbuk o'chirildi, ~1 soatdan keyin).** 2-bosqich (26 ekran rasm) lokal, commitsiz (37 fayl); zaxira `~/Desktop/zaxira-2026-11-20-jonli-sahna/mentor-kurs-2bosqich-2111-1036.tgz`. Kutilayotgan: foydalanuvchi «commit + deploy» desa — commit (pathspec `src/mentor-kurs feedback/F-1029-02-mentor-kurs`, BOSHQA fayllarga tegilmaydi) → ovoz o'zgarmagan → `S=<scratchpad> bash dev/vercel-deploy.sh` → jonli saytda PG-2 3, CI/CD-2 16, WS-1 14 ko'rish. Serverlar qayta yoqilishi kerak (15-qatordagi buyruqlar).
+> **🟢 21.11 02:52 — 2-BOSQICH (26 ekran qo'shimcha rasm) LOKAL TAYYOR, saytda emas — pastdagi «2-BOSQICH TAYYOR» bloki; artifact v15. Commit/deploy — buyruq bilan.**
 > **Natija:** https://claude.ai/artifact/RGUTPShyxrRmmnVcNFviX9 (v13 — har dars bo'limi suratlar bilan). Har dars yozuvi JURNAL.md da (20.11 21:58 … 21.11).
 > **21.11 — COMMIT f9da8f26 · DEPLOY g1yvugq60 (sayt qayta yoqildi, 2860 mp3).** Keyingi: mentor/foydalanuvchi ko'rigi → fidbek (B retsepti). LMS'ga chiqmaydi (mentor kursi — alohida sayt).
 > **Kod:** umumiy rasm — `parts/02b-rasm.jsx` (N1Fit, useAct, N1Mini) · Nest — `02c-nest.jsx` · PG — `02d-pg.jsx` + `pg2/parts/04b-mashina.jsx` · OrderBot 8 darsi — `parts/02e-bot.jsx` (BotMap: xarita + `jest` pastki qator — Jest / Actions / Admin panel / To'lov xizmati; FlowMini — «Buzamiz» kichik rasmi), darsga xos — `<dars>/parts/04b-mashina.jsx`. Act: MD'da `0.` band + `Bosish:`; `dev/act-patch.py` (generator + mkS), `ru-ajrat/ru-qur` act'ni biladi. Modul darajasidagi tarjima — faqat getter (`get badge() { return t(…) }`).
@@ -251,6 +253,11 @@
 > Dvigatelda yangi: `FileTree`/`Ide` (Explorer), `Browser`, LineCheck `task/fixed/fixedExtra/tree`, Practice «Kodni ochish» (`code[].step`), Davom qulfi (`p.seen`), ↺ boshidan (`onRestart`, ildiz `rev`), `testScore` → S28.
 > Commit YO'Q (buyruqsiz). Tekshiruv: headless Chrome skripti scratchpad'da edi — kerak bo'lsa qayta yoziladi (playwright-core + /usr/bin/google-chrome, `?s=N`, ovozni o'chirib «Keyingi qadam»ni bosib boradi).
 
+
+## 🟢 21.11 02:52 — F-1120-02 2-BOSQICH TAYYOR (lokal, saytda EMAS)
+- «Hamma darsga maksimal» → 26 ta qolgan tushuncha ekraniga dars rasmi (F-1109-06 dagi 34 sxemaga tegilmadi). Ro'yxat va sabablar — JURNAL.md «21.11 02:31» va «21.11 02:52».
+- Natija sahifasi v15 (https://claude.ai/artifact/RGUTPShyxrRmmnVcNFviX9). Zaxira: mentor-kurs-2bosqich-2111-0252.tgz.
+- Keyingi qadam (faqat buyruq bilan): commit (pathspec: src/mentor-kurs, feedback/F-1029-02-mentor-kurs) → ovoz o'zgarmagan, ovoz-statik shart emas → dev/vercel-deploy.sh → jonli saytda 2–3 ekran.
 
 ## Holat bir qarashda
 - Dars: `src/mentor-kurs/NestArchMentorLesson.jsx` — **v3, 39 ekran**, ovozli (segment-sinxron), yig'ilgan fayl.

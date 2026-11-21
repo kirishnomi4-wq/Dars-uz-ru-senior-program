@@ -69,7 +69,8 @@ const S13 = mkS(13, [{ on: 0 }, { on: 1 }, { on: 2 }, { sum: true }]);
 function Screen13(p) {
   return <Lesson p={p} S={S13} scene={({ seg }) => <>
     {!seg.sum && <><States on={seg.on} />{seg.on === 1 && <div style={{ marginTop: 10 }}><PanelView k="10d" small note={t("server to'xtatildi — ro'yxat ekranda qoladi", "сервер остановлен — список остаётся на экране")} /></div>}{seg.on === 2 && <div style={{ marginTop: 10 }}><PanelView k="10e" small note={t("ikkinchi oyna — token «notogri»", "второе окно — токен «notogri»")} /></div>}</>}
-    {seg.sum && <div style={{ display: 'grid', gap: 10 }}><States /><CodePanel file="admin.html" lines={kod('HTML', { [H.ul + 6]: 'd', [H.ul + 7]: 'd' }, H.ul + 5, H.ul + 7)} focus={['d']} /></div>}
+    {/* F-1120-02 (M51): xulosada darsning rasmi — panel belgisi bitta satr: holatni disconnect va active beradi */}
+    {seg.sum && <div style={{ display: 'grid', gap: 10 }}><States /><CodePanel file="admin.html" lines={kod('HTML', { [H.ul + 6]: 'd', [H.ul + 7]: 'd' }, H.ul + 5, H.ul + 7)} focus={['d']} /><div className="mk-light" style={{ padding: 12 }}><BotMap loc={DB_ALL} on={LIVE_ON} jest={{ get name() { return t('Admin panel', 'Админ-панель'); }, steps: [['connect', 'ok'], ['disconnect', ''], ['socket.active', '']], res: 'pass', badge: 'Ulangan' }} max={0.8} tag={t("Holatni disconnect va active beradi; panelda bir satr", 'Состояние дают disconnect и active; в панели одна строка')} /></div></div>}
   </>} />;
 }
 
@@ -87,7 +88,8 @@ function Screen14(p) {
     {seg.v === 'a' && <Term title={t(`npm run live · ${STOPAT} — server to'xtatildi (Ctrl+C)`, `npm run live · ${STOPAT} — сервер остановлен (Ctrl+C)`)} lines={T14A.concat(T14B.slice(0, 1))} />}
     {seg.v === 'b' && <Term title={t("npm run live · qayta urinishlar", "npm run live · повторные попытки")} lines={T14B} />}
     {seg.v === 'c' && <Term title={t(`npm run live · ${STARTAT} — server qayta ishga tushirildi`, `npm run live · ${STARTAT} — сервер снова запущен`)} lines={T14C} />}
-    {seg.v === 'q' && <div className="pg-two"><PanelView k="10d" small note={t("server o'chgan payt", "момент, когда сервер выключен")} /><Card c={C1.live} h={t("Savol — WebSocket-2", "Вопрос — WebSocket-2")}><p>{t("Server o'chiq paytida bot buyurtma olsa, panel qayta ulanganda uni ", "Если бот получил заказ, пока сервер был выключен, панель при переподключении ")}<b>{t("ko'radimi", "увидит его")}</b>{t("? Hodisa o'sha paytda hech kimga yetmagan.", "? Событие в тот момент ни до кого не дошло.")}</p></Card></div>}
+    {/* F-1120-02 (M51): xulosada darsning rasmi — server qaytdi, klient o'zi ulandi; uzilish paytidagi buyurtma — ochiq savol (WebSocket-2). Panelning «server o'chgan payt» ko'rinishi 13-ekranda (10d) — 1280 da rasm sig'ishi uchun bu yerda takrorlanmaydi */}
+    {seg.v === 'q' && <div style={{ display: 'grid', gap: 10 }}><Card c={C1.live} h={t("Savol — WebSocket-2", "Вопрос — WebSocket-2")}><p>{t("Server o'chiq paytida bot buyurtma olsa, panel qayta ulanganda uni ", "Если бот получил заказ, пока сервер был выключен, панель при переподключении ")}<b>{t("ko'radimi", "увидит его")}</b>{t("? Hodisa o'sha paytda hech kimga yetmagan.", "? Событие в тот момент ни до кого не дошло.")}</p></Card><div className="mk-light" style={{ padding: 12 }}><BotMap loc={DB_ALL} on={['telegram', 'order', 'db', 'orders']} note={{ get orders() { return t('uzilishdagi buyurtma — ?', 'заказ во время обрыва — ?'); } }} jest={{ get name() { return t('Admin panel', 'Админ-панель'); }, get steps() { return [['transport close', 'bad'], [t('qayta ulandi', 'переподключился'), 'ok']]; }, res: 'pass', badge: 'Ulangan' }} max={1} tag={t("Qayta ulanish o'zi bo'ladi; uzilish paytidagi hodisa — keyingi darsda", 'Переподключение само; событие во время обрыва — на следующем уроке')} /></div></div>}
   </>} />;
 }
 

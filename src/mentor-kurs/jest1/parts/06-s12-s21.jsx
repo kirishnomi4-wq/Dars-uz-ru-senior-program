@@ -11,6 +11,8 @@ const S12 = mkS(12, [{ v: 'tab' }, { v: 'src' }, { v: 'spec' }, { v: 'tab', all:
 function Screen12(p) {
   return <Lesson p={p} S={S12} scene={({ seg }) => <>
     {seg.v === 'tab' && <StatusTab on={seg.all ? [0, 1, 2, 3] : []} />}
+    {/* F-1120-02 (M51): xulosada darsning rasmi — telegram modulidagi keyboards, har statusga test (haqiqiy chiqish: jest1v2-out/07, 3 passed) */}
+    {seg.all && <div className="mk-light" style={{ padding: 12 }}><BotMap loc={DB_ALL} on={UNIT_ON} tgSub="keyboards" jest={{ cmd: 'npx jest keyboards', files: [], steps: [['NEW', 'ok'], ['CONFIRMED', 'ok'], ['DELIVERED/CANCELLED', 'ok']], res: 'pass', txt: '3 passed' }} max={1} tag={t("Har status — bitta vaziyat; bittasi tushib qolsa, o'sha qoida qo'riqlanmaydi", 'Каждый статус — одна ситуация; выпадет одна — это правило не охраняется')} /></div>}
     {seg.v === 'src' && <Code k="KB_ORDER" ids={{ 39: 'u', 43: 'b', 44: 'b', 47: 'b', 48: 'b' }} focus={['u', 'b']} files={FILES()} active={F.kb} />}
     {seg.v === 'spec' && <><CodePanel file="keyboards.spec.ts" lines={[...kod('SPEC_KB', { 5: 'h', 6: 'h', 7: 'h', 8: 'h' }, 4, 10), { h: '<span class="cm">…</span>', n: '' }, ...kod('SPEC_KB', { 31: 'u', 32: 'u', 33: 'u' }, 31, 35)]} focus={['h', 'u']} /><Term lines={T12} /></>}
   </>} />;

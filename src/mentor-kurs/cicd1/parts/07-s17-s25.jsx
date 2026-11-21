@@ -37,7 +37,8 @@ function Screen18(p) {
     </div>}
     {seg.v === 'yml' && <div style={{ display: 'grid', gap: 8 }}>
       <div className="pg-two"><Yml k="YML_AI1" title="test.yml · 1-AI" from={NV('YML_AI1') - 3} to={NV('YML_AI1') + 1} ids={{ [NV('YML_AI1')]: 'n' }} focus={['n']} /><Yml k="YML_AI2" title="ci.yml · 2-AI" from={NV('YML_AI2') - 3} to={NV('YML_AI2') + 1} ids={{ [NV('YML_AI2')]: 'n' }} focus={['n']} /></div>
-      <div className="n2-warn">{t("Ikkalasida ham: ", "В обоих: ")}<b>node-version: 22</b>{t(" (mashinangizni so'ramadi) · ", " (вашу машину не спросил) · ")}<b>{t("tsc yo'q", "нет tsc")}</b> · <b>{t("build yo'q", "нет build")}</b>{t(" — prompt «testlar yursin» dedi, AI aynan shuni qildi.", " — промпт сказал «пусть тесты идут», AI ровно это и сделал.")}</div>
+      {/* F-1120-02 (M51): xulosada matnli qoida o'rniga darsning rasmi — AI yozgan lenta: tsc va build yo'q, hali sinalmagan */}
+      <div className="mk-light" style={{ padding: 12 }}><BotMap loc={DB_ALL} on={CI_ON} jest={{ name: 'AI ×2', steps: [['npm ci', ''], ['tsc', 'skip'], ['npm test', ''], ['build', 'skip']], res: '?', badge: t('lentada sinaymiz', 'проверим на конвейере') }} max={1} tag={t("Ikkalasida tsc va build yo'q — to'g'ri ko'ringan fayl hali tekshiruv emas", 'В обоих нет tsc и build — правильный на вид файл ещё не проверка')} /></div>
     </div>}
   </>} />;
 }
@@ -106,7 +107,8 @@ function Screen22(p) {
       <Card c={C1.cd} h="Server"><p>{t("Bot qayerda yuradi — alohida mashina yoki xizmat", "Где работает бот — отдельная машина или сервис")}</p></Card>
       <Card c={C1.cd} h={t("Chiqarish buyrug'i", "Команда выпуска")}><p>{t("Paketni serverga yetkazib, ishga tushirish — lentaning oxirgi qadami", "Доставить пакет на сервер и запустить — последний шаг конвейера")}</p></Card>
     </div>}
-    {seg.v === 'sum' && <div style={{ display: 'grid', gap: 10 }}><CdFlow today /><div className="mk-rule">{t("Bugun: ", "Сегодня: ")}<b>{t("CI to'liq", "CI полностью")}</b>{t(" — har push'da to'rt qadam. ", " — при каждом push четыре шага. ")}<b>{t("CD chegarasi", "граница CD")}</b>{t(" aniq: paket bor, maxfiy qiymatlarsiz yurmaydi. Keyingi mentor darsi: run'ni o'qish, secrets, cache.", " ясна: пакет есть, без секретных значений не работает. Следующий урок для менторов: чтение run, secrets, cache.")}</div></div>}
+    {/* F-1120-02 (M51): xulosada matnli qoida o'rniga darsning rasmi — CI yashil, lekin toza mashinada node dist/main yiqildi (haqiqiy xato, outPick 05) */}
+    {seg.v === 'sum' && <div style={{ display: 'grid', gap: 10 }}><CdFlow today /><div className="mk-light" style={{ padding: 12 }}><BotMap loc={DB_ALL} on={CI_ON} jest={CI_OK} ro={['node dist/main', '<span class="n1-er">Error: DATABASE_URL topilmadi.</span> .env …']} max={1} tag={t("Bugun CI to'liq, CD chegarasi aniq; secrets va run'ni o'qish — keyingi mentor darsida", 'Сегодня CI полностью, граница CD ясна; secrets и чтение run — на следующем уроке')} /></div></div>}
   </>} />;
 }
 

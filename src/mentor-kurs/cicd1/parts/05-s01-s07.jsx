@@ -118,7 +118,8 @@ function Screen4(p) {
     {seg.v === 'test' && <Term title={t("VS Code terminali · OrderBotNest", "терминал VS Code · OrderBotNest")} lines={T4C} />}
     {seg.v === 'lenta' && <div style={{ display: 'grid', gap: 10 }}>
       <Lenta4 st={{ ci: 'ok', tsc: 'ok', test: 'ok', build: 'ok' }} dur={DUR4} />
-      <div className="mk-rule">{t("To'rt buyruq · jami ", "Четыре команды · всего ")}<b>{t("≈ 15 soniya", "≈ 15 секунд")}</b>{t(" · to'rtala chiqish kodi ", " · все четыре кода выхода ")}<b>0</b>{t(" — lenta yashil. GitHub'dagi mashina har push'da aynan shuni qiladi.", " — конвейер зелёный. Машина на GitHub при каждом push делает ровно это.")}</div>
+      {/* F-1120-02 (M51): xulosada matnli qoida o'rniga darsning rasmi — lenta qo'lda: to'rt buyruq, ≈ 15 s, exit 0 (DUR4) */}
+      <div className="mk-light" style={{ padding: 12 }}><BotMap loc={DB_ALL} on={CI_ON} jest={{ name: t("Qo'lda", 'Вручную'), steps: CI_OK.steps, res: 'pass', badge: '≈ 15 s · exit 0' }} max={1} tag={t("To'rt buyruq, 15 soniya, to'rt nol — bu lenta; GitHub'da aynan shu yuradi", 'Четыре команды, 15 секунд, четыре нуля — это конвейер; в GitHub идёт именно он')} /></div>
     </div>}
   </>} />;
 }
