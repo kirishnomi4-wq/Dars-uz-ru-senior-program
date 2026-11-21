@@ -14,7 +14,7 @@ const PRODS0 = [['1', 'Klaviatura', '120000'], ['2', 'Sichqoncha', '75000']];
 // bad: { at: 'json'|'route'|'pool'|'cars'|'pg', why } · pins: { json|route|pool|cars|col|pm: raqam } (M52-4)
 // cars/prods: jadval qatorlari · newRow: cars'da yangi qator (yashil) · col: cars ustunlari satri · psqlLine: [buyruq, natija]
 // route/sql: Express ichidagi satrlar · rc: natija chipi · ro: [fayl:satr, html] · tag · max
-function CrudMachine({ on, path = 'api', back, st = null, res, bad, pins = {}, cars = CARS0, newRow, col, prods = PRODS0, psqlLine, req, route, sql, rc, ro, tag, max, json = true }) {
+function CrudMachine({ on, path = 'api', back, st = null, res, bad, pins = {}, cars = CARS0, newRow, col, prods = PRODS0, pcols, psqlLine, req, route, sql, rc, ro, tag, max, json = true }) {
   const W = 760, BOT = 300;
   const H = BOT + (ro ? 54 : 4);
   const lit = (k) => !on || on.includes(k);
@@ -67,7 +67,8 @@ function CrudMachine({ on, path = 'api', back, st = null, res, bad, pins = {}, c
     <div className="n1-abs" style={{ left: 520, top: 30, width: 220, height: 266, borderRadius: 14, border: `2px solid ${ds('pg') === 'bad' ? '#DC2626' : PG.pg}`, background: ds('pg') === 'bad' ? '#FEF2F2' : '#F7FAFC' }} />
     <span className="n1-abs" style={{ left: 532, top: 21, background: T.paper, padding: '0 6px', font: `700 12.5px/16px ${SANS}`, color: PG.pg, whiteSpace: 'nowrap' }}>PostgreSQL :5432</span>
     {tbl('cars', 'car_rental · cars', 'id · model · daily_price', cars, 48, newRow, col)}
-    {tbl('shop', 'shop · products', 'id · name · price', prods, 210, -1)}
+    {/* 2 dan ko'p qator — jadval yuqoriga suriladi (har qator 20 px), PostgreSQL ramkasidan chiqmaydi; 2 qatorda joyi o'zgarmaydi */}
+    {tbl('shop', 'shop · products', pcols || 'id · name · price', prods, 210 - 20 * Math.max(0, prods.length - 2), -1)}
     {pin('cars', 716, 40)}{pin('col', 716, 66)}
     {/* yo'llar */}
     <svg className="n1-svg" width={W} height={H} viewBox={`0 0 ${W} ${H}`}>

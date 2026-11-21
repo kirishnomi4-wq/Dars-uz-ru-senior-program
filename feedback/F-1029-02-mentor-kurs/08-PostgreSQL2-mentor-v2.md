@@ -163,6 +163,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M42 · Haqiqiy chiqishlar: `manba/pg2-out/` 
    ```
 4. **Xulosa: jadval tayyor — ==hech qanday qoidasiz==; baza faqat yozilgan qoidani qo'riqlaydi**
    Ovoz: «Xulosa: bazangizda to'rt mahsulotli do'kon bor. Bitta narsani eslab qoling: bu jadvalda hozircha not null ham, boshqa qoida ham yo'q. Baza faqat yozilgan qoidani qo'riqlaydi. Nima bo'lishini uchinchi bosqichda o'z ko'zingiz bilan ko'rasiz.»
+   Rasm (F-1120-02, M51): darsning rasmi — psql to'g'ridan-to'g'ri `shop · products` ga, qoidasiz; jadvalda to'rt ustun (`id · name · price · stock`) va to'rt qator — yuqoridagi `SELECT *` natijasi bilan bir xil (F-1120-02, 21.11).
 - Manba: `pg2-out/v2b-01-ekran3-7.txt`; `CREATE DATABASE` / `\c shop` — `v2c-baza.txt`; Mongoose — `v2d-mongoose.txt`.
 
 ## 4 · `SELECT` va `WHERE`  ← `Lesson`
@@ -266,6 +267,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M42 · Haqiqiy chiqishlar: `manba/pg2-out/` 
      4 | Kolonka    | 50000 |    10
    (3 rows)
    ```
+   Rasm (F-1120-02, M51): xulosada darsning rasmi — psql → `shop · products`, `ORDER BY id`; jadvalda to'rt ustun va uch qator (1 Klaviatura 99000 7 · 2 Sichqoncha 75000 15 · 4 Kolonka 50000 10) — yuqoridagi natija bilan bir xil (21.11).
 - Manba: `pg2-out/v2b-01-ekran3-7.txt` (5-ekrandagi buyruqlardan keyin: 3 qator, `ctid (0,6)`, `ORDER BY id`).
 
 ## 7 · Tekshiruv 1 — `UPDATE 0`  ← `MCRetry`

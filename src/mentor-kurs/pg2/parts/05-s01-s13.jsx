@@ -108,7 +108,7 @@ function Screen3(p) {
   return <Lesson p={p} S={S3} scene={({ seg, beat }) => <>
     <Psql title="psql" lines={seg.v === 'warn' ? T3.filter((l) => l.at === 1) : upto(T3, beat)} beat={beat} focus={seg.focus} />
     {/* F-1120-02 (M51): xulosada ogohlantirish kartasi o'rniga darsning rasmi — psql to'g'ridan-to'g'ri shop.products ga, qoidasiz jadval */}
-    {seg.v === 'warn' && <div className="mk-light" style={{ padding: 12 }}><CrudMachine path="psql" on={['psql', 'shop']} prods={[['1', 'Klaviatura', '120000'], ['2', 'Sichqoncha', '75000']]} psqlLine={['shop=#', 'SELECT * FROM products;', '(4 rows)']} max={1} tag={t("Jadval tayyor — lekin hech qanday qoida yo'q: baza faqat yozilgan qoidani qo'riqlaydi", 'Таблица готова — но правил нет: база охраняет только записанное правило')} /></div>}
+    {seg.v === 'warn' && <div className="mk-light" style={{ padding: 12 }}><CrudMachine path="psql" on={['psql', 'shop']} prods={[['1', 'Klaviatura', '120000', '8'], ['2', 'Sichqoncha', '75000', '15'], ['3', 'Quloqchin', '95000', '5'], ['4', 'Kolonka', '50000', '10']]} pcols="id · name · price · stock" psqlLine={['shop=#', 'SELECT * FROM products;', '(4 rows)']} max={1} tag={t("Jadval tayyor — lekin hech qanday qoida yo'q: baza faqat yozilgan qoidani qo'riqlaydi", 'Таблица готова — но правил нет: база охраняет только записанное правило')} /></div>}
     {seg.v !== 'warn' && <div className="pg-two">
       <div className="mk-light" style={{ padding: 12 }}><div className="mk-tag">{t("products — ustun va turi", "products — колонки и тип")}</div>
         <div style={{ fontSize: 13.5, lineHeight: 1.7 }}><code>id</code>{t(" SERIAL PRIMARY KEY — o'zi o'sadi · ", " SERIAL PRIMARY KEY — растёт сам · ")}<code>name</code> TEXT · <code>price</code> INTEGER · <code>stock</code> INTEGER<div style={{ color: T.ink3, fontSize: 12.5 }}>{t("hozircha hech qanday qoida yo'q — ataylab", "пока никаких правил — нарочно")}</div></div></div>
@@ -227,7 +227,7 @@ function Screen6(p) {
     <Psql title="psql — shop" lines={cur(T6, beat)} beat={beat} focus={seg.focus} />
     {seg.page && <FilePage hl={seg.page} />}
     {/* F-1120-02 (M51): xulosada matnli qoida o'rniga darsning rasmi — psql → shop.products, ORDER BY id bilan (T6) */}
-    {seg.sum && <div className="mk-light" style={{ padding: 12 }}><CrudMachine path="psql" on={['psql', 'shop']} prods={[['1', 'Klaviatura', '99000'], ['2', 'Sichqoncha', '75000']]} psqlLine={['shop=#', 'SELECT * FROM products ORDER BY id;', '(3 rows)']} max={1} tag={t("ORDER BY yozilmasa — fayldagi tartib; tartib kerak bo'lsa — ORDER BY id", 'Без ORDER BY — порядок файла; нужен порядок — ORDER BY id')} /></div>}
+    {seg.sum && <div className="mk-light" style={{ padding: 12 }}><CrudMachine path="psql" on={['psql', 'shop']} prods={[['1', 'Klaviatura', '99000', '7'], ['2', 'Sichqoncha', '75000', '15'], ['4', 'Kolonka', '50000', '10']]} pcols="id · name · price · stock" psqlLine={['shop=#', 'SELECT * FROM products ORDER BY id;', '(3 rows)']} max={1} tag={t("ORDER BY yozilmasa — fayldagi tartib; tartib kerak bo'lsa — ORDER BY id", 'Без ORDER BY — порядок файла; нужен порядок — ORDER BY id')} /></div>}
   </>} />;
 }
 

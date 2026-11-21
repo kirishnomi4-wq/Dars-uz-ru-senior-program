@@ -1100,3 +1100,20 @@ Oldingi seans 17:59 dan keyin ham ishlagan, jurnal yozilmagan (seans uzildi). Fa
 - Tekshiruv: gates 12/13 (esbuild — @lesson/runtime, ma'lum) — PG-1, PG-2, TgPg, Jest-1, Jest-2, CI/CD-1, CI/CD-2, WS-1, WS-2, Webhook; lint:jsx 375 fayl toza; lint:prompt toza; toshish 0 (1600 va 1280); RU: 9 ekran ko'rildi.
 - Natija sahifasi **v15**: bo'limlar «2-bosqich: PG-1 · PG-2 · TgPg» (9 surat) va «2-bosqich: Jest-1/2 · CI/CD-1/2 · WebSocket-1/2» (17 surat).
 - Zaxira: ~/Desktop/zaxira-2026-11-20-jonli-sahna/mentor-kurs-2bosqich-2111-0252.tgz. Commit/deploy YO'Q — foydalanuvchi buyrug'i kutiladi.
+
+## 21.11 11:47 — F-1120-02 2-bosqich: COMMIT 3d1c968c · DEPLOY gbthk0iwr (jonli saytda)
+- Seans boshi: 37 fayl joyida; ish papkasi zaxira `mentor-kurs-2bosqich-2111-1036.tgz` bilan bir xil (`tar d` — faqat DAVOM.md farq qildi, 10:36 yozuvi arxivdan keyin qo'shilgan). Serverlar qayta yoqildi (tts :5332, vite :5333).
+- lint:jsx — o'zgargan 32 .jsx fayl toza.
+- Commit **3d1c968c** — faqat `src/mentor-kurs` va `feedback/F-1029-02-mentor-kurs` (156 fayl, shundan 120 — artifact/img suratlari). f9da8f26 da yo'q qolgan rasm manba qismlari ham kirdi: `parts/02b-rasm`, `02c-nest`, `02d-pg`, `02e-bot`, `jest1|pg2|tgpg/parts/04b-mashina`. Indeksdagi boshqa seans fayllari (tekshiruv, uyga-vazifa-v2 — 41 ta) tegilmadi, staged holicha qoldi. Push yo'q.
+- Ovoz: eski scratchpad o'chgan edi → `ovoz-matnlar.mjs` uz 1429 · ru 1431 → `ovoz-statik.py` 2860 mp3, **yangi 0**, xato 0 (ovoz o'zgarmagani tasdiqlandi).
+- Deploy `dev/vercel-deploy.sh` → **gbthk0iwr** Ready, Production; `/` va `?dars=cicd-01` 200; tasodifiy 8 mp3 — 8/8 200.
+- Jonli ko'rik (1600×900, n1-surat nusxasi jonli manzil bilan; xato 0, toshish 0): PG-2 3 (CrudMachine psql → shop · products, «qoidasiz»), CI/CD-2 16 (README 1-satri + CI passing badge + BotMap, Actions test · smoke yashil), WS-1 14 (Savol — WebSocket-2 + BotMap: Admin panel transport close → qayta ulandi, orders «uzilishdagi buyurtma — ?») — uchalasi lokal surat bilan bir xil.
+- Kuzatuv (tuzatilmadi, qaror foydalanuvchida): PG-2 3 — psql «(4 rows)», rasmdagi `shop · products` da 2 qator (`pg2/parts/04b-mashina.jsx:11` PRODS0 ataylab 2 ta).
+
+## 21.11 12:27 — F-1120-02 PG-2 3 va 6: rasmdagi jadval terminal natijasi bilan tenglashtirildi
+- Topilma (11:47 jonli ko'rikda): PG-2 3 sarlavhasi «to'rt ustun, to'rt mahsulot», psql «(4 rows)», rasmdagi `shop · products` — 3 ustun, 2 qator. Foydalanuvchi: «da boshla».
+- Sinf-supurish (psql «(N rows)» ↔ rasm qatorlari; PG-1, PG-2, TgPg, umumiy parts): 5 moslik → 1 qo'shimcha nomzod — **PG-2 6** xulosa: `ORDER BY id` «(3 rows)», rasmda 2 qator (Kolonka yo'q). Foydalanuvchi: «ha tuzat». pg1 05:21 (BlogDb out — 3 qator yozilgan, mos), pg1 06:265 va pg2 05:51 — terminal matni, rasm emas. pg2 05:424 (ROLLBACK) va 06:59 (ERROR) — son da'vosi yo'q, namuna; tegilmadi.
+- Kod: `pg2/parts/04b-mashina.jsx` — CrudMachine'ga `pcols` (ixtiyoriy ustun satri); `shop · products` 2 dan ko'p qatorda har qator uchun 20 px yuqoriga suriladi (PostgreSQL ramkasidan chiqmaydi), 2 qatorda joyi o'zgarmaydi. `pg2/parts/05-s01-s13.jsx` — 3-ekran: 4 qator + stock (MD 149-qatordagi INSERT); 6-ekran: 1 · 99000 · 7 / 2 · 75000 · 15 / 4 · 50000 · 10 (T6 dagi ORDER BY natijasi). `yig.sh` — faqat PgCrudMentorLesson.jsx o'zgardi.
+- MD `08-PostgreSQL2-mentor-v2.md`: 3- va 6-ekranga «Rasm» qatori. Matn va ovoz o'zgarmadi.
+- Tekshiruv: n1-surat 1600 (3, 6, 14), 1280 (3, 6), RU (3, 6) — xato 0, toshish 0; ko'z bilan: jadval ramka ichida, strelka (y 259) jadvalga tushadi. Regressiya: 14-ekran va (3-ekran tuzatishidan keyin) 6-ekranning 2 qatorli holati natija sahifasi suratlari bilan piksel farqi 0. gates 12/13 (esbuild — @lesson/runtime, ma'lum).
+- Qonun taklifi (yozilmadi, foydalanuvchi qarori): rasmdagi son/qator ekran sarlavhasi va terminal natijasi bilan bir xil bo'lsin (MENTOR_DARS_ETALON yangi M-raqam + tekshiruv bandi).
