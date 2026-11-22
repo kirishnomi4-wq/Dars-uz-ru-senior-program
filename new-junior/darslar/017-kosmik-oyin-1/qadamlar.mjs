@@ -1,0 +1,43 @@
+// 17-dars «Kosmik o‘yin 1» qadamlari (QADAM) va ustoz varag'i (VARAQ) — 21.11. Manba: new-junior/manba/017-kosmik-oyin-1.md v1, 18 qadam.
+// 16-qadam bola ro'yxati 'oxirgi' (A·1) — bola noutbukida oxirgi yechgan pog'onasi o'z dasturi bilan.
+const QADAM = [
+  ['Kirish', 'P1', ['B0', 'BK']],
+  ['Savol: raketa qanday o‘q otadi?', 'P2', ['P2N', 'BK']],
+  ['Uch sinov', 'P2S', ['BK'], 'Ustoz yo‘llarni sinayapti — kuzating'],
+  ['Javob: o‘q — o‘z dasturi bilan', 'P2C', ['BK']],
+  ['Yangi so‘z: personaj', 'P3', ['BK'], 'Yangi so‘z: personaj'],
+  ['Reja', 'P4', ['BK'], 'Bugun: uchta bekat'],
+  ['Ko‘ramiz: raketaning dasturi', 'P7', ['BK'], 'Ustoz raketani yurgizyapti — kuzating'],
+  ['O‘zingiz: raketa', 'P5', ['B1A', 'B1B', 'B1C', 'B1Y', 'BK']],
+  ['2-bekat', 'P4B', ['BK'], '2-bekat: o‘q'],
+  ['Ko‘ramiz: o‘qning dasturi', 'P8', ['BK'], 'Ustoz o‘q otyapti — kuzating'],
+  ['O‘zingiz: o‘q', 'P5G', ['B2A', 'B2B', 'B2C', 'B2Y', 'BK']],
+  ['Xulosa: personaj', 'P9', ['BK'], 'Xulosa: personaj'],
+  ['3-bekat', 'P4C', ['BK'], '3-bekat: nishonlar'],
+  ['Ko‘ramiz: nishonlar', 'P10', ['BK'], 'Ustoz nishon uryapti — kuzating'],
+  ['O‘zingiz: kosmik o‘yin', 'P5B', ['B3A', 'B3B', 'B3C', 'B3Y', 'BK']],
+  ['O‘q dasturingizni o‘qib bering', 'P11', 'oxirgi'],
+  ['Yakun', 'P12', ['B5']],
+  ['Sinfimiz bugun', 'P14', ['B5']],
+]
+// ustoz varag'i: [Ekranda · Siz (manbadagi tayanch gaplar, aynan) · Bola o'rganadi]
+const VARAQ = [
+  ['«17-dars · Kosmik o‘yin 1» — «Bugun raketa uchadi!» Kosmos maydoni, pastda raketa (ichida Coddy), tepada uchta nishon; pastda «O‘tgan darsda» — klon.', '«O‘tgan darsda dushmandan ko‘p nusxa yasadik.» «Bugun va keyingi darsda katta o‘yin yasaymiz — kosmik o‘yin.» «Noutbukda «Tayyorman» tugmasini bosing.»', 'Bugun kosmik o‘yin yasashini biladi.'],
+  ['Savol: «Raketa qanday o‘q otadi?» Uchta karta: A «Raketaning o‘zi uchsin» · B «Bitta o‘q chizamiz» · C «O‘qdan nusxa olamiz».', '«Space bosilsa, o‘q uchsin. Qaysi yo‘l bilan?» «Har kim noutbukida bitta kartani tanlasin.»', 'O‘q qanday otilishi haqida o‘ylaydi.'],
+  ['Uch sinov: A — raketaning o‘zi uchadi va tepada qoladi («✕ raketa ketib qoldi»). «Keyingi» — B: bitta o‘q, ikkinchi marta yo‘q («✕ bir marta otildi»). «Keyingi» — C: har space — yangi o‘q («✓ har safar yangi o‘q»).', '«Raketa uchib ketsa — o‘yinchi qayerda? Bitta o‘q — bitta otish.» «O‘qdan nusxa olsak — har bosishda yangi o‘q.»', 'Uch usulning natijasini ko‘radi.'],
+  ['Javob: «O‘qning o‘z dasturi». A va B xira, C oltin; maydonda raketa, uchayotgan uch o‘q.', '«Raketa va o‘q — ikki personaj. Har birining o‘z dasturi.»', 'Bugungi asosiy fikrni eshitadi.'],
+  ['Yangi so‘z: «Personaj nima?» «Keyingi» — birma-bir: raketa dasturi, o‘q dasturi, ikkalasi bitta o‘yinda.', '«Personaj — o‘yindagi har bir qatnashchi. Har birining o‘z rasmi va o‘z dasturi bor.» «Katta o‘yinni personajlarga bo‘lamiz — har birini alohida yasaymiz.»', '«Personaj» so‘zini biladi.'],
+  ['Reja: tepalik — raketa → o‘q → nishonlar; cho‘qqida «Dars oxirida · kosmik o‘yin».', '«Bugun uchta bekat: raketa, o‘q, nishonlar.» «Har bekatda o‘yinning bitta qismini yasaymiz.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: «Raketaning dasturi». Personaj kartalari «Raketa» · «O‘q»; dastur bo‘sh — when → key pressed + move right, when ← key pressed + move left; ▶ Boshlash, → → ←.', '«Bu — Raketa dasturi. Raketa strelkalar bilan yuradi — 4-darsdagidek.» «Har personajning dasturi alohida: kartani bosamiz — uning dasturi ochiladi.»', 'Personaj kartasini va raketa dasturini ko‘radi.'],
+  ['Mashq: «Raketani yurgizing!» — zinapoya: 1 o‘ngga · 2 ikki tomonga · 3 startga · ★ qadam tovushi.', '«Raketa dasturiga bloklarni qo‘ying. Har strelkaga o‘z dasturchasi.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'Raketani strelkalar bilan yurgizadi.'],
+  ['Tepalik: 1-bekat ✓ — «O‘q».', '«Raketa yuradi. Endi o‘q — uning o‘z dasturi bo‘ladi.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: «O‘qning dasturi». «O‘q» kartasi — dastur bo‘sh; when space key pressed + create clone of myself — o‘q paydo bo‘ladi va turib qoladi (Bo‘shvoy «Men nima qilay?»); when I start as a clone + repeat 4 [move up] + delete this clone — har space — yangi o‘q.', '«O‘qning asli raketaning ichida. Space — o‘qdan nusxa.» «Nusxa tepaga uchadi va o‘chadi — 16-darsdagi dushman kabi, faqat teskari.»', 'O‘q dasturini — nusxa, uchish, o‘chishni ko‘radi.'],
+  ['Mashq: «O‘q oting!» — zinapoya: 1 otish · 2 uchish · 3 o‘chish · ★ otish tovushi.', '«O‘q dasturini oching — kartani bosing.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'O‘q dasturini tuzadi va otadi.'],
+  ['Xulosa: «Personaj». Ikki karta: raketa — «Raketa dasturi: yuradi»; o‘q — «O‘q dasturi: uchadi».', '«Katta o‘yinni personajlarga bo‘ldik. Har birini alohida yasadik.»', 'Personaj nimaligini aytib bera oladi.'],
+  ['Tepalik: 1, 2 ✓ — «Nishonlar».', '«Oxirgi bekat: o‘yin tayyor bo‘ladi.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: «Nishonlar». Ikkala dastur tayyor; nishonlar (1, 4), (3, 3), (5, 4); ▶ Boshlash — ← → va space; uchala nishon — «Siz yutdingiz!», ro‘yxat «O‘yiningizda:» to‘ladi.', '«Nishon ostiga boring — keyin space.» «Ro‘yxatga qarang: o‘yinda hamma narsa bormi?» «Endi o‘zingiz.»', 'O‘yin qanday yutilishini ko‘radi.'],
+  ['Mashq: «Nishonlarni uring!» — zinapoya: 1 uch nishon · 2 pastda nishon · 3 qator · ★ o‘z nishonlaringiz.', '«Ro‘yxatdagi to‘rt band — hammasi ✓ bo‘lsin.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'Kosmik o‘yinni tugatadi.'],
+  ['«Dasturingizni o‘qib bering». Raketa dasturi tayyor, o‘q dasturi bo‘sh; bola o‘qiydi, siz qo‘yasiz va o‘ynaysiz. Proyektorda ism yo‘q.', '«Kim o‘q dasturini o‘qib beradi? Avval otish, keyin uchish.»', 'O‘q dasturini o‘qib beradi.'],
+  ['Yakun: «Raketa uchdi!» Bugungi so‘z — «Personaj»; keyingi dars — 18 · Kosmik o‘yin 2.', '«Uchala bekatdan o‘tdik: raketa, o‘q, nishonlar.» «Keyingi darsda osmondan dushmanlar tushadi — ball va jon ham bo‘ladi.»', 'Bugun nima qilganini biladi.'],
+  ['Sinfimiz bugun: nechta o‘q otildi, nechta nishon urildi, nechta pog‘ona bajarildi (haqiqiy son, ismsiz).', '«Hammangiz zo‘r ishladingiz!» (keyin raqamlarni o‘qiydi)', 'Sinf natijasini ko‘radi.'],
+]

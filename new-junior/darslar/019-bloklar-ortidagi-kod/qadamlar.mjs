@@ -1,0 +1,43 @@
+// 19-dars «Bloklar ortidagi kod» qadamlari (QADAM) va ustoz varag'i (VARAQ) — 22.11. Manba: new-junior/manba/019-bloklar-ortidagi-kod.md v1, 18 qadam.
+// 16-qadam bola ro'yxati 'oxirgi' (A·1) — bola noutbukida oxirgi yechgan pog'onasi o'z dasturi bilan.
+const QADAM = [
+  ['Kirish', 'P1', ['B0', 'BK']],
+  ['Savol: dasturni yozuv bilan qanday yozamiz?', 'P2', ['P2N', 'BK']],
+  ['Uch sinov', 'P2S', ['BK'], 'Ustoz yozuvlarni sinayapti — kuzating'],
+  ['Javob: har blok — bitta qator', 'P2C', ['BK']],
+  ['Yangi so‘z: kod', 'P3', ['BK'], 'Yangi so‘z: kod'],
+  ['Reja', 'P4', ['BK'], 'Bugun: uchta bekat'],
+  ['Ko‘ramiz: «Kodini ko‘rsat»', 'P7', ['BK'], 'Ustoz kodni ochyapti — kuzating'],
+  ['O‘zingiz: blok va qator', 'P5', ['B1A', 'B1B', 'B1C', 'B1Y', 'BK']],
+  ['2-bekat', 'P4B', ['BK'], '2-bekat: kodda son'],
+  ['Ko‘ramiz: kodda son', 'P8', ['BK'], 'Ustoz kodni o‘zgartiryapti — kuzating'],
+  ['O‘zingiz: kodda son', 'P5G', ['B2A', 'B2B', 'B2C', 'B2Y', 'BK']],
+  ['Xulosa: bitta dastur — ikki ko‘rinish', 'P9', ['BK'], 'Xulosa: kod'],
+  ['3-bekat', 'P4C', ['BK'], '3-bekat: kodni o‘qiymiz'],
+  ['Ko‘ramiz: kodni o‘qiymiz', 'P10', ['BK'], 'Ustoz kodni o‘qiyapti — kuzating'],
+  ['O‘zingiz: kodni o‘qiymiz', 'P5B', ['B3A', 'B3B', 'B3C', 'B3Y', 'BK']],
+  ['Kodingizni o‘qib bering', 'P11', 'oxirgi'],
+  ['Yakun', 'P12', ['B5']],
+  ['Sinfimiz bugun', 'P14', ['B5']],
+]
+// ustoz varag'i: [Ekranda · Siz (manbadagi tayanch gaplar, aynan) · Bola o'rganadi]
+const VARAQ = [
+  ['«19-dars · Bloklar ortidagi kod» — «Bloklar ortida nima bor?» Kosmos maydoni: raketa, o‘q, dushman; pastda «O‘tgan darsda» — kosmik o‘yin tayyor.', '«O‘tgan darsda kosmik o‘yinimiz to‘liq bo‘ldi.» «Bugun o‘yinimizning ichiga qaraymiz: bloklar ortida nima bor?» «Noutbukda «Tayyorman» tugmasini bosing.»', 'Darsga kiradi.'],
+  ['Savol: «Dasturni yozuv bilan qanday yozamiz?» Blok when → key pressed [move right]; uchta karta: A «o‘ngga yur» · B «→» · C moveRight();.', '«Bloklarni yozuv bilan yozsak — qanday bo‘ladi?» «Har kim noutbukida bitta kartani tanlasin.»', 'Taxmin qiladi.'],
+  ['Uch sinov: A — «o‘ngga yur», raketa joyida («✕ kompyuter bu so‘zni bilmaydi»). «Keyingi» — B: «→», raketa joyida («✕ belgi — buyruq emas»). «Keyingi» — C: moveRight(); — raketa yurdi («✓ raketa yurdi»).', '«Kompyuter faqat o‘z so‘zlarini biladi. Bu so‘zlar — JavaScript tilida.» «moveRight — «o‘ngga yur» degani. Kompyuter shuni bajaradi.»', 'Kod — kompyuter tushunadigan yozuv ekanini ko‘radi.'],
+  ['Javob: «Har blok — bitta qator». A va B xira, C oltin; blok va qator yonma-yon.', '«Har blok ortida bitta qator bor. Kompyuter aslida shu qatorlarni bajaradi.»', 'Bugungi asosiy fikrni eshitadi.'],
+  ['Yangi so‘z: «Kod nima?» «Keyingi» — birma-bir: blok, qator, bitta dastur ikki ko‘rinishda. Ta’rif: «Kod — Dastur yozuv ko‘rinishida: har blok — bitta qator».', '«Kod — dastur yozuv ko‘rinishida. Har blok — bitta qator.» «Bloklar — kodning rasmli ko‘rinishi. Katta dasturchilar kodni o‘zi yozadi.»', 'Yangi so‘z: kod.'],
+  ['Reja: tepalik — blok va qator → kodda son → kodni o‘qiymiz; cho‘qqida «Dars oxirida · kodni o‘qiysiz».', '«Bugun uchta bekat: blok va qator, kodda son, kodni o‘qish.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: «Kodini ko‘rsat». Raketa tanlangan; tugmani bosasiz — kod bloklar yonida; blokni bosasiz — qatori yonadi, qatorni bosasiz — bloki; «Dushman» kartasi — kod ham almashadi.', '«Kodini ko‘rsat — dasturning yozuvi chiqadi.» «Blokni bosaman — uning qatori yonadi. Qatorni bosaman — bloki yonadi.»', 'Blok va qator bog‘langanini ko‘radi.'],
+  ['Mashq: «Qatorni toping!» — zinapoya: 1 kodni oching · 2 qaysi qator? · 3 qaysi blok? · ★ yangi qator.', '«Blokning so‘zi qatorda ham bor: move right — moveRight.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'Blok va qatorni moslaydi.'],
+  ['Tepalik: 1-bekat ✓ — «Kodda son».', '«Blok va qatorni moslay olamiz. Endi kodning o‘zini o‘zgartiramiz.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: «Kodda son». Dushman, kod ochiq; for qatoridagi 5 ni bosasiz, 8 ni tanlaysiz — repeat blokida ham 8; «▶ Boshlash» — sakkizta dushman.', '«Kodda sonni o‘zgartirdim — blokda ham o‘zgardi. Bu bitta dastur.» «Bu qatordagi 5 — repeat ning soni: necha marta.»', 'Kod va blok bitta dastur ekanini ko‘radi.'],
+  ['Mashq: «Kodni o‘zgartiring!» — zinapoya: 1 ko‘p dushman · 2 ikki ball · 3 ko‘proq jon · ★ o‘z sonlaringiz.', '«Sonni kodda o‘zgartiring, blokda emas.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'Kodda 2 ta sonni o‘zgartiradi.'],
+  ['Xulosa: «Kod». Ikki karta: bloklar — sudrab ulaymiz; kod — kompyuter shuni bajaradi.', '«Bloklar va kod — bitta dastur. Bittasi o‘zgarsa, ikkinchisi ham o‘zgaradi.»', 'Bloklar va kodni bog‘laydi.'],
+  ['Tepalik: 1, 2 ✓ — «Kodni o‘qiymiz».', '«Oxirgi bekat: bloklar yo‘q, faqat kod. Raketa qayerga borishini kodni o‘qib aytamiz.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: faqat kod — goTo(1, 0); moveRight(); moveRight();. Qatorlarni o‘qiysiz, (3, 0) ga bayroqcha, «Tekshirish» — raketa yuradi, bloklar ham ko‘rinadi.', '«Kodni o‘qiymiz: har qator — bitta qadam.» «Avval o‘ylaymiz, keyin tekshiramiz.»', 'Kodni o‘qishni ko‘radi.'],
+  ['Mashq: «Kodni o‘qing!» — zinapoya: 1 ikki qadam · 2 takrorlash · 3 orqaga · ★ nishonga.', '«Barmog‘ingiz bilan qatorlarni bittadan o‘qing.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'Kodni o‘qib, natijani oldindan aytadi.'],
+  ['«Kodingizni o‘qib bering». Kosmik o‘yin, kod ochiq; bola bitta qatorni o‘qiydi, siz blokini topasiz. Proyektorda ism yo‘q.', '«Kim kodidan bitta qatorni o‘qib beradi? Qaysi blok ekan?»', 'Kodni ovoz chiqarib o‘qiydi.'],
+  ['Yakun: «Bloklar ortida — kod!» Bugungi so‘z — kod; keyingi dars — 20 · Takrorlash va test.', '«Uchala bekatdan o‘tdik: blok va qator, kodda son, kodni o‘qish.» «Keyingi darsda modulni takrorlaymiz — kichik test bo‘ladi.»', 'Bugungi so‘zni eslaydi.'],
+  ['Sinfimiz bugun: nechta qator topildi, nechta son o‘zgartirildi, nechta pog‘ona bajarildi (haqiqiy son, ismsiz).', '«Hammangiz zo‘r ishladingiz!» (keyin raqamlarni o‘qiydi)', 'Sinf natijasini ko‘radi.'],
+]

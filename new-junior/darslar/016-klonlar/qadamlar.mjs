@@ -1,0 +1,43 @@
+// 16-dars «Klonlar» qadamlari (QADAM) va ustoz varag'i (VARAQ) — 21.11. Manba: new-junior/manba/016-klonlar.md v1, 18 qadam.
+// 16-qadam bola ro'yxati 'oxirgi' (A·1) — bola noutbukida oxirgi yechgan pog'onasi o'z dasturi bilan.
+const QADAM = [
+  ['Kirish', 'P1', ['B0', 'BK']],
+  ['Savol: beshta dushmanni qanday tushiramiz?', 'P2', ['P2N', 'BK']],
+  ['Uch sinov', 'P2S', ['BK'], 'Ustoz yo‘llarni sinayapti — kuzating'],
+  ['Javob: dastur o‘zi nusxa yasaydi', 'P2C', ['BK']],
+  ['Yangi so‘z: klon', 'P3', ['BK'], 'Yangi so‘z: klon'],
+  ['Reja', 'P4', ['BK'], 'Bugun: uchta bekat'],
+  ['Ko‘ramiz: nusxa yasaymiz', 'P7', ['BK'], 'Ustoz nusxa yasayapti — kuzating'],
+  ['Bitta nusxa: pog‘onalar', 'P5', ['B1A', 'B1B', 'B1C', 'B1Y', 'BK']],
+  ['2-bekat', 'P4B', ['BK'], '2-bekat: ko‘p nusxa'],
+  ['Ko‘ramiz: ko‘p nusxa', 'P8', ['BK'], 'Ustoz ko‘p nusxa yasayapti — kuzating'],
+  ['Ko‘p nusxa: pog‘onalar', 'P5G', ['B2A', 'B2B', 'B2C', 'B2Y', 'BK']],
+  ['Xulosa: klon', 'P9', ['BK'], 'Xulosa: klon'],
+  ['3-bekat', 'P4C', ['BK'], '3-bekat: o‘yin'],
+  ['Ko‘ramiz: yerda qolgan nusxa', 'P10', ['BK'], 'Ustoz o‘yinni ko‘rsatyapti — kuzating'],
+  ['O‘yin: pog‘onalar', 'P5B', ['B3A', 'B3B', 'B3C', 'B3Y', 'BK']],
+  ['Dushman dasturingizni o‘qib bering', 'P11', 'oxirgi'],
+  ['Yakun', 'P12', ['B5']],
+  ['Sinfimiz bugun', 'P14', ['B5']],
+]
+// ustoz varag'i: [Ekranda · Siz (manbadagi tayanch gaplar, aynan) · Bola o'rganadi]
+const VARAQ = [
+  ['«16-dars · Klonlar» — «Bugun nusxa yasaymiz!» Kosmos maydoni, tepada dushman, Coddy (3, 0) da; pastda «O‘tgan darsda» — xakaton.', '«O‘tgan darsda do‘stingiz bilan birga o‘yin yasadingiz.» «Bugun yangi bloklar: dastur o‘zi nusxa yasaydi.» «Noutbukda «Tayyorman» tugmasini bosing.»', 'Bugun dushmandan nusxa yasashini biladi.'],
+  ['Savol: «Ko‘p dushmanni qanday tushiramiz?» Uchta karta: A «Bittasini besh marta tushiramiz» · B «Beshta dushman chizamiz» · C «Dushmandan nusxa olamiz».', '«Bizning dushman bitta. Osmondan beshta dushman qanday tushadi?» «Har kim noutbukida bitta kartani tanlasin.»', 'Ko‘p dushman qanday tushishi haqida o‘ylaydi.'],
+  ['Uch sinov: A — bitta dushman besh marta («✕ bittadan tushadi»). «Keyingi» — B: beshta dushman, beshta dastur («✕ beshta bir xil dastur»). «Keyingi» — C: nusxalar («✓ bitta dastur, beshta dushman»).', '«Bittasini qayta-qayta tushirsak — osmonda doim bitta dushman. Beshta chizsak — beshta bir xil dastur.» «Nusxa olsak — dastur bitta, dushman esa ko‘p.»', 'Uch usulning natijasini ko‘radi.'],
+  ['Javob: «Dastur o‘zi nusxa yasaydi». A va B xira, C oltin; tepada asl, pastda beshta nusxa.', '«Dushmanni bir marta yasaymiz. Nusxalarni dastur o‘zi yasaydi.»', 'Bugungi asosiy fikrni eshitadi.'],
+  ['Yangi so‘z: «Klon nima?» «Keyingi» — birma-bir: asl, nusxa, uchala nusxa tushdi.', '«Klon — nusxa. Ko‘rinishi ham, dasturchasi ham aslniki bilan bir xil.» «Asl joyida qoladi. Nusxa uning joyidan boshlaydi.»', '«Klon» so‘zini biladi.'],
+  ['Reja: tepalik — bitta nusxa → ko‘p nusxa → o‘yin; cho‘qqida «Dars oxirida · dushman yomg‘iri».', '«Bugun uchta bekat: bitta nusxa, ko‘p nusxa, o‘yin.» «Dars oxirida o‘yiningizda osmondan dushmanlar tushadi — qochib qutulasiz.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: «Nusxa yasaymiz». Asl (3, 4), Coddy (6, 0); dastur bo‘sh. when ▶ clicked + create clone of myself — nusxa paydo bo‘ladi va turib qoladi (Bo‘shvoy «Men nima qilay?»); when I start as a clone + repeat 4 [move down] — nusxa yerga tushadi.', '«create clone of myself — o‘zimdan nusxa yasa. Mana, nusxa paydo bo‘ldi — lekin u nima qilishni bilmaydi.» «when I start as a clone — nusxa shu dasturchani bajaradi. Asl esa joyida qoladi.»', 'Ikki yangi blokni ko‘radi.'],
+  ['Mashq: «Nusxani tushiring!» — zinapoya: 1 bitta nusxa · 2 yerga · 3 ikki nusxa · ★ boshqa ustun.', '«Ikki dasturcha bor: biri — asl uchun, biri — nusxa uchun.» «Nusxa qayerda to‘xtadi? Yergacha yana nechta katak?» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'Bitta nusxa yasab, uni yerga tushiradi.'],
+  ['Tepalik: 1-bekat ✓ — «Ko‘p nusxa».', '«Bitta nusxani yasadik. Endi beshtasini — va har biri boshqa ustundan.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: «Ko‘p nusxa». Tayyor ▶[C] · K[R4[↓]]; create clone ni repeat 5 ichiga — beshtasi bir ustundan; go to x: (random 0 to 6) y: 4 — 1, 5, 2, 6, 0.', '«repeat 5 ichida create clone — beshta nusxa.» «Har nusxa o‘z random sonini tanlaydi — shuning uchun har biri boshqa ustundan tushadi.»', 'repeat va random bilan ko‘p nusxani ko‘radi.'],
+  ['Mashq: «Dushman yomg‘iri!» — zinapoya: 1 beshta · 2 har xil ustun · 3 chap yarmi · ★ yomg‘ir.', '«Nechta nusxa kerak? repeat soni — shuncha.» «random qaysi ustunlarni tanlay oladi? Kerakmas joyga tushmaydimi?» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'Ko‘p nusxa yasaydi, har birini boshqa ustundan tushiradi.'],
+  ['Xulosa: «Klon». Ikki karta: create clone of myself — «Asldan nusxa yasaydi»; when I start as a clone — «Har nusxa shuni bajaradi».', '«Asl nusxa yasaydi. Nusxa o‘z dasturchasini bajaradi.» «Yuzta dushman kerak bo‘lsa ham — dastur bitta.»', 'Klon nimaligini aytib bera oladi.'],
+  ['Tepalik: 1, 2 ✓ — «O‘yin».', '«Oxirgi bekat: dushman yomg‘iri o‘yinga aylanadi.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: «Tushgan nusxa o‘chsin». O‘yin, Coddy (3, 0), jon 3; tayyor ▶[R6[C]] · K[go(R0-6, 4) R4[↓]] — nusxalar yerda qoladi; delete this clone qo‘shasiz — o‘chadi, yutasiz.', '«Nusxa yerga tushdi — endi u kerak emas. U yo‘lni to‘sib qoldi.» «delete this clone — bu nusxani o‘chir. Asl o‘chmaydi.» «Endi o‘zingiz.»', 'delete this clone nega kerakligini ko‘radi.'],
+  ['Mashq: «Dushmandan qoching!» — zinapoya: 1 tozalang · 2 sakkizta · 3 tor yo‘l · ★ o‘z o‘yiningiz.', '«Avval dushman dasturi, keyin o‘yin. Tushgan nusxa o‘chsin.» «Jon tugasa — yana boshlang. Dasturingiz to‘g‘ri bo‘lsa, yutish mumkin.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'Dushman dasturini tuzadi va o‘ynaydi.'],
+  ['«Dasturingizni o‘qib bering». Dushman dasturi bo‘sh; bola o‘qiydi, siz qo‘yasiz va Coddy bilan o‘ynaysiz. Proyektorda ism yo‘q.', '«Kim dushman dasturini o‘qib beradi? Avval asl, keyin nusxa.» «Nechta nusxa? Qaysi ustunlardan?»', 'Dasturini o‘qib beradi.'],
+  ['Yakun: «Siz nusxa yasadingiz!» Bugungi so‘z — «Klon»; keyingi dars — 17 · Kosmik o‘yin 1.', '«Uchala bekatdan o‘tdik: bitta nusxa, ko‘p nusxa, o‘yin.» «Bitta dastur — ko‘p nusxa. Tushgan nusxa o‘chadi.» «Keyingi darsda kosmik o‘yin: raketa o‘q otadi.»', 'Bugun nima qilganini biladi.'],
+  ['Sinfimiz bugun: nechta nusxa yasaldi, nechta o‘yin yutildi, nechta pog‘ona bajarildi (haqiqiy son, ismsiz).', '«Hammangiz zo‘r ishladingiz!» (keyin raqamlarni o‘qiydi) «Bugun sinfimiz 600 ta nusxa yasadi!» (haqiqiy son bilan)', 'Sinf natijasini ko‘radi.'],
+]

@@ -26,93 +26,135 @@ const qahramonlar = () => `<div class="qq"><span class="m1">${hero({ k: 'momiq',
 const fJim = (t) => `<footer class="hn jim"><span class="hint">${t}</span></footer>`
 
 
-// 13-dars e'loni (21.11): «Tasodifiy son». Manba: new-junior/manba/013-tasodifiy-son.md (v1, tavsiya bo'yicha qurildi — «Savollar» 1–11 hammasi A).
-// Faqat ma'lumot. 1–2-bekatda dastur egasi — olma (bosh.olmaDastur: har go to — bitta olma tushadi), 3-bekatda o'yin: qahramon strelkalar bilan (boshqaruv tayyor),
-// olma dasturini bola tuzadi. random — oval son bloki, go to ning X / Y katagiga (studiya.js «13-dars», blockly.js go_to_r, random_n). Sinov: sinov/dvigatel/tasodif.mjs
-const q13 = (y, a, b) => Array.from({ length: b - a + 1 }, (_, i) => [a + i, y])
-const u13 = (x, a, b) => Array.from({ length: b - a + 1 }, (_, i) => [x, a + i])
-const t13 = (x1, x2, y1, y2) => { const r = []; for (let y = y1; y <= y2; y++) for (let x = x1; x <= x2; x++) r.push([x, y]); return r }
-const SAVAT13 = {
-  P6: q13(0, 1, 5), B1A: q13(2, 0, 6), B1B: q13(0, 2, 4), B1C: u13(3, 0, 4), B1Y: [...q13(4, 1, 3).map((k) => [...k, 1]), ...q13(0, 5, 6).map((k) => [...k, 2])],
-  P7: t13(3, 5, 1, 2), B2A: t13(0, 1, 2, 3), B2B: t13(2, 4, 0, 1), B2C: t13(2, 5, 0, 2), B2Y: t13(3, 5, 0, 1),
-  P8: q13(0, 0, 6), B3A: t13(3, 5, 0, 2), B3B: q13(4, 1, 4), B3C: u13(0, 0, 3),
-}
+// 23-dars e'loni (22.11): «Demo Day №1». Manba: new-junior/manba/023-demo-day-1.md (v1 — «Savollar» 1–8 tavsiya A bo'yicha qurildi; foydalanuvchi javobi kutilmoqda).
+// Faqat ma'lumot. Demo Day: oxirgi sinov (kosmik.kerak = karta3), mehmon o'ynaydi (oynadi · karta3), uy yo'riqnomasi kartasi Y1 («Yo‘riqnoma tayyor»; Scratch — ota-ona ruxsati bilan).
+// Karta — 21-dars saqlagani (DARS.kartaKalit), bo'lmasa namuna; o'yin — 22-dars saqlagani (perKalit17), bo'lmasa karta bo'yicha tayyor. Sinov: sinov/dvigatel/shaxsiy.mjs
+const RPR = [[['k', 'right'], ['r']], [['k', 'left'], ['l']]] // raketa: →[→] ←[←]
+const OQP = [[['k', 'space'], ['C']], [['H'], ['p', '4', [['u']]], ['D']]] // o'q: S[C] · K[R4[↑] D]
+const DK = [['H'], ['y', 'r0-6,4'], ['p', '4', [['d']]], ['D']] // dushman nusxasi: K[go(R0-6, 4) R4[↓] D]
+const DSP = (n = 5) => [[['f'], ['p', String(n), [['C']]]], DK] // dushman: ▶[Rn[C]] · K[…]
+const OQB = [[['q', 'enemy'], ['c', 'ball:1']]] // o'q: T[change ball by 1]
+const RJ = [[['f'], ['z', 'ball:0'], ['z', 'jon:3']], [['q', 'enemy'], ['c', 'jon:-1'], ['i', 'jon:0', [['g']]]]] // raketa: ▶[ball 0, jon 3] · T[jon −1; if jon = 0 → game over]
+const PR = { royxat: [{ id: 'raketa', nom: 'Raketa' }, { id: 'oq', nom: 'O‘q' }, { id: 'dushman', nom: 'Dushman' }] }
+const pD = { ...PR, tanla: 'dushman' }, pO = { ...PR, tanla: 'oq' }, pR = { ...PR, tanla: 'raketa' }
+// 18-darsning to'liq o'yini (saqlanmagan bo'lsa)
+const tayyor = () => ({ raketa: [...RPR, ...RJ], oq: [...OQP, ...OQB], dushman: DSP(5) })
+const kb = (kosmik, personaj, kod, o = {}) => ({ sahna: 'katak', oyin: true, kosmik: { dushman: { asl: [3, 4] }, ozg: true, ...kosmik }, personaj, prog: 'per', perProg: tayyor(), kod, ...o })
+const TEST_M = 'Test paytida maslahat yo‘q'
 const DARS = {
-  raqam: 13,
-  nom: 'Tasodifiy son',
-  savol: 'Olma har safar boshqa joyga <em>qanday</em> tushadi?',
-  // javon: random (O'zgaruvchi oilasi — «Savollar» 3), Harakat (go to — son katakli), Takrorlash (repeat 2 — 11 · ★ uchun)
-  javon: { h: [['y', '0,0']], o: [['m', '1-10']], b: [['p', '2']] },
+  raqam: 23,
+  nom: 'Demo Day №1',
+  savol: '',
+  // javon (loyiha — hammasi, 18-dars + Tovush): ★ «Yangi qator» — play sound
+  javon: { e: [['k', 'right'], 'f', ['q', 'enemy'], 'g'], h: ['r', 'l', 'u', 'd', ['y', '3,4']], b: [['p', '4']], K: ['C', 'H', 'D'], o: [['z', 'ball:0'], ['c', 'ball:1'], ['m', '0-6']], a: [['i', 'jon:0']], t: [['n', 'qadam']] },
   maydon: { w: 7, h: 5 },
-  masshtabMin: 0.5, // go to (random bilan) keng — dastur ustuniga sig'sin (blockly.js blMasshtab)
-  bezak: { daraxt: [[1, 1], [4, 3], [6, 1]], gul: [[0, 4], [2, 3], [5, 4], [6, 3]] }, // ★: olma daraxt va gulga tushmasin
-  savatlar: SAVAT13,
+  masshtabMin: 0.5,
+  dasturchalar: 'oyin', // o'yin ekranlari — dasturchalar; 3-bekat (oldindan aytish) — bitta zanjir
+  dasturchaBlok: true,
+  dasturchaUstun: 1,
   blokChegara: 12,
+  maslahatKeyin: true,
   joyQolmadi: 'Dasturga N ta blok sig‘adi',
+  ozgaruvchi: ['ball', 'jon'],
+  changeSonlar: [-3, -2, -1, 1, 2, 3, 5],
+  dushmanTegish: true, // when touching — tur ro'yxatiga «enemy» (blockly.js BL_OLMA_D)
+  perKalit17: 'jr022', // oldingi darsda saqlangan o'yin (kosmik.js perTayyorla, prog 'per17') — 22-dars
+  klonGap: { sanoq: 'O‘q: N' },
+  kartaPog: 4, // yo'riqnoma kartasi — pog'ona 4 (kod.js kartaTayyor)
+  kartaKalit: 'jr021', // 21-dars kaliti — karta shu yerdan o'qiladi (kod.js kartaOl)
+  kartaNamuna: { kim: 'do‘stim', dush: 5, ball: 2, jon: 3 }, // karta saqlanmagan bo'lsa
+  // loyiha kartasi gaplari (kod.js KR; N — son; q_* — bola ekranidagi qator sarlavhalari)
+  kartaGap: { kim: 'Kim o‘ynaydi', dush: 'Dushmanlar', ball: 'Har dushman — ball', jon: 'Jon', maqsad: 'Yutish uchun', q_kim: 'Kim o‘ynaydi?', q_dush: 'Dushmanlar', q_ball: 'Har dushman — ball', q_jon: 'Jon',
+    toldiring: 'Hamma qatorni tanlang', tayyor: 'Karta tayyor!', kartaYoq: 'Avval kartani to‘ldiring', dushKarta: 'Kartada N ta dushman bor', jonKarta: 'Kartada jon: N', ballKarta: 'Kartada har dushman — N ball',
+    uring: 'Dushmanni uring — ball oshadimi?', maqsadKam: 'Yutish uchun N ball kerak', jonQolsin: 'Jon qolsin — yana o‘ynang', bir: 'Hammasi bir ustundan tushdi. Son o‘rniga random qo‘ying', hammasi: 'Hamma N dushmanni uring', oshir: 'Yana uring: kamida N ball kerak' },
+  // kosmik o'yin gaplari (kosmik.js KS) — 18-dars bilan bir xil (chek-list — 3-bekat)
+  kosmikGap: {
+    dasturi: 'dasturi', royxat: 'O‘yiningizda:',
+    chek: [['tushadi', 'Dushmanlar tushadi'], ['ball', 'O‘q urganda ball'], ['jon', 'Tekkanda jon'], ['tugaydi', 'Jon tugasa — o‘yin tugaydi'], ['yutdi', 'O‘yin yutildi']],
+    oyinYz: 'O‘yin: ← → va space', dushSanoq: 'Dushman: N',
+    bosh: 'Avval blokni bosing — u dasturga qo‘shiladi', boshP: 'Bu yerda hech narsa yo‘q-ku…',
+    raketaKlon: 'create clone of myself — O‘q yoki Dushman dasturiga', raketaKlonP: 'Raketa ko‘payib ketdi!',
+    turib: 'Nusxa when I start as a clone ostidagi bloklarni bajaradi', turibP: 'Men nima qilay?',
+    chet: 'O‘q tepadan ham yuqoriga uchmoqchi bo‘ldi. move up necha marta?', chetP: 'Maydon tugadi!',
+    chetD: 'Dushman yerdan ham pastga yurmoqchi bo‘ldi. move down necha marta?',
+    qoldi: 'Uchib bo‘lgan o‘q o‘chsin — delete this clone', qoldiP: 'Tepada qolib ketdi!',
+    yetmadi: 'O‘q tepaga yetmay o‘chdi. move up necha marta?', yetmadiP: 'Oz qoldi!',
+    oqQani: 'O‘qni create clone of myself yasaydi — O‘q dasturida', oqQaniP: 'O‘q qani?',
+    dushQani: 'Dushman nusxasini create clone of myself yasaydi — Dushman dasturida', dushQaniP: 'Dushman qani?',
+    yerda: 'Tushib bo‘lgan dushman o‘chsin — delete this clone', yerdaP: 'Yerda qolib ketdi!',
+    ballQani: 'O‘q dushmanni urdi. O‘q dasturida when touching enemy ostiga — change ball by 1', ballQaniP: 'Ball qani?',
+    eskiBall: 'O‘yin boshida ball 0 bo‘lsin — set ball to 0', eskiBallP: 'Eski ball!',
+    jonQani: 'Dushman tegdi. Raketa dasturida when touching enemy ostiga — change jon by -1', jonQaniP: 'Jon qani?',
+    jonTugadi: 'Jon 0 bo‘lsa — o‘yin tugasin: if jon = 0 then → game over', jonTugadiP: 'Jon tugadi-ku!',
+    soni: 'N ta dushman tushsin', bir: 'Hammasi bir ustundan tushdi. Son o‘rniga random qo‘ying', birP: 'Yana o‘sha joy!',
+    urdiKam: 'Yana uring: N ta dushman', ballKam: 'Ball: N. Yana uring!', ikkiBall: 'Har dushman 2 ball bersin', ozP: 'Oz qoldi!',
+    ikkinchi: 'Endi yana ▶ Boshlash — ball 0 dan boshlanadimi?', toliq: 'Yuting: kamida 3 ball, jon qolsin', kamida8: 'Kamida 8 ta dushman bo‘lsin',
+    tegsin: 'Ataylab dushman ostida turing — jon kamayadimi?', toliqKam: 'Ro‘yxatga qarang: qaysi band hali ✓ emas?', tugadiYutdi: 'Jon 0 — o‘yin tugadi. Qoida ishlayapti!',
+    tugadi: 'O‘yin tugadi. ▶ Boshlash — yana o‘ynang', yutdi: 'Siz yutdingiz!', oynadi: 'O‘yin tugadi — mehmon o‘ynadi!',
+  },
+  // kod oynasi gaplari (kod.js KG2; N — son)
+  kodGap: {
+    sarlavha: 'Kod', ochish: 'Kodini ko‘rsat', yopish: 'Kodni yopish',
+    korildi: 'Ochildi: N', topildi: 'Topildi: N / 3', ozgardi: 'Kodda o‘zgargan son: N',
+    boshqaKarta: 'Endi boshqa personaj kartasini bosing',
+    qatorTop: 'Belgilangan blokning qatorini bosing', blokTop: 'Belgilangan qatorning blokini bosing',
+    boshqaQ: 'Belgilangan blokka qarang: uning so‘zi qaysi qatorda?', boshqaQP: 'Bu boshqa qator!',
+    boshqaB: 'Qatordagi so‘zga qarang: qaysi blok shunday?', boshqaBP: 'Bu boshqa blok!',
+    koddaO: 'Sonni kodda o‘zgartiring — qatordagi sonni bosing',
+    ozgarmadi: 'Kodda son o‘zgarmadi — qatordagi sonni bosing', dush8: 'Dushman: N. Kodda dushmanlar sonini 8 qiling',
+    ball2: 'Har dushman 2 ball bersin — kodda o‘zgartiring', uring: 'Dushmanni uring — ball oshadimi?',
+    jon5: 'O‘yin 5 jon bilan boshlansin — kodda o‘zgartiring', jonQolsin: 'Jon qolsin — yana o‘ynang',
+    ikkiSon: 'Kodda yana bitta sonni o‘zgartiring', yuting: 'Dushmanni uring va yuting',
+    hukSarlavha: 'Kod', hukTushunmadi: 'Tushunmadim…',
+    yutdi: 'Siz yutdingiz!',
+  },
 
   namuna: { qahramon: ['Momiq', 'Zippi'], ism: 'Aziz' },
-  qahramonli: ['BK', 'B1A', 'B1B', 'B1C', 'B1Y', 'B2A', 'B2B', 'B2C', 'B2Y', 'B3A', 'B3B', 'B3C', 'B3Y', 'B5'],
+  qahramonli: ['BK', 'B1A', 'B2A', 'B2Y', 'Y1', 'B5'],
   coddyli: [],
 
-  // pog'onalar: 1–4 bitta son (B1A…B1Y), 5–8 ikki son (B2A…B2Y), 9–12 o'yin (B3A…B3Y)
-  sanoq: { P1: ['kirdi'], P2: ['javob'], P5: ['pog', 3, 0], P5G: ['pog', 7, 4], P5B: ['pog', 11, 8], P14: ['sinf'] },
+  // pog'onalar: 1 oxirgi sinov (B1A), 2–3 mehmon (B2A, B2Y), 4 uy yo'riqnomasi (Y1)
+  sanoq: { P1: ['kirdi'], P5: ['pog', 1, 0], P5G: ['pog', 2, 1], P5B: ['pog', 4, 3], P14: ['sinf'] },
 
-  bola: { javob: 'P2N', qahramonYoq: 'BQ', yakun: 'B5', kutish: 'BK', kutishGap: 'Ustozni tinglang' },
+  bola: { karta: 'Y1', qahramonYoq: 'BQ', yakun: 'B5', kutish: 'BK', kutishGap: 'Ustozni tinglang' },
   ochish: [],
-  oqishGap: 'Dasturingizni ustozga o‘qib bering', // 16-qadam (A·1)
-  kichikGap: { B0: 'Dars hozir boshlanadi', P2N: 'Javobingiz qabul qilindi', B1Y: 'Hamma pog‘onalarni bajardingiz!', B2Y: 'Hamma pog‘onalarni bajardingiz!', B3Y: 'Hamma pog‘onalarni bajardingiz!' },
+  oqishGap: 'O‘yiningiz haqida mehmonlarga ayting',
+  kichikGap: { B0: 'Dars hozir boshlanadi', Y1: 'Karta tayyor bo‘lsa — tugmani bosing', B2Y: 'Hamma pog‘onalarni bajardingiz!' },
 
-  tugadi: { ustoz: ['Dars tugadi!', 'Ko‘rishguncha — keyingi darsda xatolarni topamiz!'], bola: 'Dars tugadi. Ko‘rishguncha!' },
+  tugadi: { ustoz: ['Dars tugadi!', 'Ko‘rishguncha — keyingi modulda sun‘iy intellekt!'], bola: 'Dars tugadi. Ko‘rishguncha!' },
 
   solo: {
-    yol: { 0: ['B0', 'P1'], 1: ['P2N'], 2: ['P2S'], 3: ['P2C'], 4: ['P3'], 5: ['P4'], 6: ['P6'], 7: ['B1A', 'B1B', 'B1C', 'B1Y'], 8: ['P4B'], 9: ['P7'], 10: ['B2A', 'B2B', 'B2C', 'B2Y'], 11: ['P9'], 12: ['P4C'], 13: ['P8'], 14: ['B3A', 'B3B', 'B3C', 'B3Y'], 16: ['B5'] },
-    keyingi: ['B1A', 'B1B', 'B1C', 'B1Y', 'B2A', 'B2B', 'B2C', 'B2Y', 'B3A', 'B3B', 'B3C', 'B3Y'],
+    yol: { 0: ['B0', 'P1'], 1: ['P4'], 2: ['P7'], 3: ['B1A'], 4: ['P4B'], 5: ['P8'], 6: ['B2A', 'B2Y'], 7: ['P4C'], 8: ['P10'], 9: ['Y1'], 10: ['B5'] },
+    keyingi: ['B1A', 'B2A', 'B2Y'],
     gap: [],
   },
 
-  // bosh.olmaDastur — olma dasturi; savat — savatlar ([x, y, guruh?]); olmaSoni; erkinOlma — savatsiz ★; oyin — 3-bekat o'yini; tanlov — ko'rish ekranida random tanlovi
+  // bosh.kosmik.kerak — pog'ona sharti (kosmik.js): karta3 (yutdi) · oynadi (bitta o'yin tugadi — yutdi yoki «O‘yin tugadi»). Dastur: 22-dars o'yini (K+'per', perKalit17 = 22-dars kaliti), bo'lmasa karta bo'yicha tayyor.
   studiya: {
-    P2S: { ish: 'huk', gap: { avto: true, keyingi: 'Keyingi ›', sinab: '▶ Sinab ko‘rish' } },
-    P3: { ish: 'raqam' },
-    P6: { tur: 'yol', bosh: { sahna: 'katak', olmaDastur: true, prog: [0, 'qoldir'], savat: SAVAT13.P6 }, chegara: 2, tanlov: [8, 4, 2, 5], gap: { boshla: ['', 'random sonlarini 1 va 5 ga o‘zgartiring'] } },
-    B1A: { tur: 'yol', bosh: { sahna: 'katak', olmaDastur: true, prog: 0, pog: 1, savat: SAVAT13.B1A }, chegara: 2, maslahat: 'Savatlar bitta qatorda — Y bir xil. X qaysi sondan qaysi songacha?' },
-    B1B: { tur: 'yol', bosh: { sahna: 'katak', olmaDastur: true, prog: 0, pog: 2, savat: SAVAT13.B1B }, chegara: 2, maslahat: 'Eng chapdagi savatning X i — boshi, eng o‘ngdagisiniki — oxiri' },
-    B1C: { tur: 'yol', bosh: { sahna: 'katak', olmaDastur: true, prog: 0, pog: 3, savat: SAVAT13.B1C }, chegara: 2, maslahat: 'Bu safar qaysi son o‘zgaradi: X mi yoki Y mi?' },
-    B1Y: { tur: 'yol', bosh: { sahna: 'katak', olmaDastur: true, prog: 0, pog: 4, savat: SAVAT13.B1Y, olmaSoni: 2 }, chegara: 4, maslahat: 'Har olmaga o‘z go to. Birinchi go to — 1-olma' },
-    P7: { tur: 'yol', bosh: { sahna: 'katak', olmaDastur: true, prog: 'qoldir', savat: SAVAT13.P7 }, chegara: 3, tanlov: [4, 5, 2, 3, 1, 4, 2], gap: { boshla: ['', 'Y ga ham random qo‘ying'] } },
-    B2A: { tur: 'yol', bosh: { sahna: 'katak', olmaDastur: true, prog: 0, pog: 5, savat: SAVAT13.B2A }, chegara: 3, maslahat: 'Savatlar ikki ustun va ikki qator: X qaysi sonlar? Y qaysi sonlar?' },
-    B2B: { tur: 'yol', bosh: { sahna: 'katak', olmaDastur: true, prog: 0, pog: 6, savat: SAVAT13.B2B }, chegara: 3, maslahat: 'Chap pastki va o‘ng yuqori savatni toping — ularning X va Y sini o‘qing' },
-    B2C: { tur: 'yol', bosh: { sahna: 'katak', olmaDastur: true, prog: 0, pog: 7, savat: SAVAT13.B2C }, chegara: 3, maslahat: 'Chetdagi savatlardan bitta katak ham chiqmasin — yonida daraxt bor' },
-    B2Y: { tur: 'yol', bosh: { sahna: 'katak', olmaDastur: true, prog: 0, pog: 8, savat: SAVAT13.B2Y, olmaSoni: 3 }, chegara: 4, maslahat: 'Bitta olmaning dasturini repeat ichiga qo‘ying' },
-    P8: { tur: 'yol', bosh: { sahna: 'katak', oyin: true, olmaDastur: true, prog: [0, 'qoldir'], savat: SAVAT13.P8 }, chegara: 2, tanlov: [5, 1, 2, 6, 0, 3], gap: { yetdi: 'Siz yutdingiz!' } },
-    B3A: { tur: 'yol', bosh: { sahna: 'katak', oyin: true, olmaDastur: true, prog: 'qoldir', pog: 9, savat: SAVAT13.B3A }, chegara: 3, gap: { yetdi: 'Siz yutdingiz!' }, maslahat: 'Savatlar uch ustun va uch qator — qaysi sonlarga random kerak?' },
-    B3B: { tur: 'yol', bosh: { sahna: 'katak', oyin: true, olmaDastur: true, prog: 0, pog: 10, savat: SAVAT13.B3B }, chegara: 2, gap: { yetdi: 'Siz yutdingiz!' }, maslahat: 'Ikki chetda gul bor — chetdagi savatlarning X ini o‘qing' },
-    B3C: { tur: 'yol', bosh: { sahna: 'katak', oyin: true, olmaDastur: true, prog: 0, pog: 11, savat: SAVAT13.B3C }, chegara: 2, gap: { yetdi: 'Siz yutdingiz!' }, maslahat: 'Tepada gul bor — eng yuqori savatning Y ini o‘qing' },
-    B3Y: { tur: 'yol', bosh: { sahna: 'katak', oyin: true, olmaDastur: true, prog: 0, pog: 12, erkinOlma: true }, chegara: 3, gap: { yetdi: 'O‘yiningiz tayyor!' }, maslahat: 'Daraxt va gullar orasidagi bo‘sh joyni toping — X va Y sini o‘qing' },
-    P11: { tur: 'yol', bosh: { sahna: 'katak', oyin: true, olmaDastur: true, prog: 0, erkinOlma: true }, chegara: 3, gap: { yetdi: 'Siz yutdingiz!' } },
+    P8: { tur: 'yol', chegara: 12, bosh: kb({}, pR, undefined, { prog: 'per17', kartaProg: true }), gap: { boshla: ['', 'Strelkalar — raketa, probel — o‘q'] } },
+    B1A: { tur: 'yol', chegara: 12, bosh: kb({ kerak: 'karta3', chek: true }, pR, undefined, { pog: 1, prog: 'per17', kartaProg: true }), maslahat: 'O‘yin kartadagidek ishlayaptimi? Dushmanlar, jon, ball' },
+    B2A: { tur: 'yol', chegara: 12, bosh: kb({ kerak: 'oynadi', chek: true }, pR, undefined, { pog: 2, prog: 'per17', kartaProg: true }), maslahat: 'Mehmon o‘ynaganda aytib bering: nechta dushman, qanday yutiladi' },
+    B2Y: { tur: 'yol', chegara: 12, bosh: kb({ kerak: 'karta3', chek: true }, pR, undefined, { pog: 3, prog: 'per17', kartaProg: true }), maslahat: 'Mehmon yutsin — kartadagi maqsadga yetsin' },
     B5: { ish: 'natija' },
   },
-  // natija: ta random qo‘ydi — muvaffaqiyatli dasturlardagi random bloklari; ta olma tushirdi — savatga tushgan olmalar; ta olma terdi — o'yinda
-  natija: [{ k: 'ta random qo‘ydi', blok: 'R' }, { k: 'ta olma tushirdi', blok: 'T' }, { k: 'ta olma terdi', blok: 'o' }],
+  // natija: ta o‘yin tugadi — mehmon o‘ynadi, ta mehmon yutdi — mehmon yutdi, pog‘ona bajardi — 4 pog'ona
+  natija: [{ k: 'ta o‘yin tugadi', ekran: ['B2A'] }, { k: 'ta mehmon yutdi', ekran: ['B2Y'] }, { k: 'pog‘ona bajardi', ekran: ['B1A', 'B2A', 'B2Y', 'Y1'] }],
   gapStandart: 'Salom!',
 
   lms: {
-    id: 'junior-013-tasodifiy-son-v1', versiya: 'v1', kalit: 'jr013',
-    // «Zar» — 8-qadamda 1-pog'ona (birinchi tasodifiy dastur); «Bog‘bon» — 15-qadamda 1-pog'ona (birinchi tasodifiy o'yin)
-    yutuqlar: [{ t: 'pog', n: 1, nom: 'zar' }, { t: 'pog', n: 9, nom: 'bogbon' }],
+    id: 'junior-023-demo-day-1-v1', versiya: 'v1', kalit: 'jr023',
+    // «Namoyishchi» — 2-bekatning 1-pog'onasi (mehmon o‘ynadi); «Modul bitiruvchisi» — yo'riqnoma kartasi (4-pog'ona)
+    yutuqlar: [{ t: 'pog', n: 2, nom: 'namoyishchi' }, { t: 'pog', n: 4, nom: 'bitiruvchi' }],
   },
 
   varaq: [
-    '<b>Asosiy fikr:</b> son har doim dasturga yozib qo‘yilmaydi — random uni har safar o‘zi tanlaydi; «dan … gacha» sonlarini savatlarga qarab o‘ylab tanlaymiz; tasodifiy dasturni bir necha marta ishga tushirib tekshiramiz.',
-    '<b>Yo‘l:</b> huk (olma har safar boshqa joyga — uch sinov) → yangi so‘z «tasodifiy son» → reja → 1-bekat «Bitta son» → 2-bekat «Ikki son» → 3-bekat «O‘yin» → o‘qib berish → yakun.',
-    '<b>Yangi blok:</b> random 1 to 10 — tasodifiy son (oval, O‘zgaruvchi oilasida — jigarrang). O‘zi yurmaydi — go to ning sonida turadi. Qo‘yish: go to dagi sonni bosing — ro‘yxat oxirida «random»; yoki javondan random ni bosing — go to ning bo‘sh soniga tushadi. Ustoz bir marta aytadi: «random — tasodifiy».',
-    '<b>Olma dasturi:</b> 1–2-bekatda dastur olmaniki — har go to bitta olmani tushiradi, qahramon kuzatadi. Dvigatel random ning hamma sonini o‘zi sanab tekshiradi; bola uch marta ishga tushiradi («Sinov: N / 3») — olma kamida 2 xil joyga tushsa, «Har safar boshqa joy!». 3-bekatda o‘yin: qahramon strelkalar bilan (boshqaruv tayyor), olma olinsa — olma dasturi yana ishlaydi; 5 ta olma — yutdi.',
-    '<b>Tasma va muammocha namunalari:</b> «2 / 2 ta blok», «3 / 3 ta blok»; «Sinov: 1 / 3» — «Yana ishga tushiring — olma qayerga tushadi?»; «Sinov: 3 / 3» — «Har safar boshqa joy!». Ortiqvoy: «random 5 ni ham tanlashi mumkin — olma (5, 0) ga tushadi. random sonlarini tekshiring», «random 7 ni ham tanlashi mumkin — maydonda X 0 dan 6 gacha». Huk: olma doim (3, 0) ga — «Olma: 1 / 3», «2 / 3», «3 / 3». 14-qadamda ikkinchi o‘yin: «Bu safar boshqa joy». Olma tushganda — yengil «tup».',
-    '<b>Belgilar (pog‘onalar javobi):</b> «go(R0-6, 2)» — go to x: (random 0 to 6) y: 2; «R3[…]» — repeat 3; «3 ta sinovda 2 xil» — uch ishga tushirishda kamida 2 xil joy. 1-bekat: go(R0-6, 2) · go(R2-4, 0) · go(3, R0-4) · go(R1-3, 4) go(R5-6, 0). 2-bekat: go(R0-1, R2-3) · go(R2-4, R0-1) · go(R2-5, R0-2) · R3[go(R3-5, R0-1)]. 3-bekat: go(R3-5, R0-2) · go(R1-4, 4) · go(0, R0-3).',
-    '<b>Ko‘rish ekranlarida</b> (huk, 7, 10, 14-qadam) tanlov oldindan berilgan: 7-qadamda «8» albatta chiqadi (maydondan tashqari), keyin 4, 2, 5. Bola pog‘onalarida tasodif — haqiqiy. 16-qadamda proyektorga ism chiqmaydi.',
+    '<b>Asosiy fikr:</b> bola o‘z ishini ko‘rsatadi, mehmon o‘ynaydi. Ota-ona bolaning mehnatini ko‘radi.',
+    '<b>Yo‘l:</b> reja → qoidalar → 1-bekat «Tayyorlanamiz» (oxirgi sinov) → 2-bekat «Ko‘rsatamiz» (mehmon o‘ynaydi) → 3-bekat «Uyga olib ketamiz» (yo‘riqnoma kartasi) → yakun.',
+    '<b>Mehmonlar bilan:</b> noutbuklar tayyor, o‘yinlar saqlangan bo‘lishi kerak (21–22-dars). Mehmon yutmasa — bola «yana urining» deydi. Ism proyektorga chiqmaydi.',
+    '<b>Uy yo‘riqnomasi:</b> Scratch — bepul sayt (scratch.mit.edu); bolalar ota-ona ruxsati bilan kiradi. Blok nomlari deyarli bir xil, lekin o‘zgaruvchi nomi «score» bo‘lishi mumkin.',
+    '<b>Himoya:</b> har bolani tinglang — nechta dushman, qanday yutiladi, eng qiyin joyi. «Noto‘g‘ri» deb aytilmaydi.',
   ],
 }
-for (const k in DARS.studiya) if (DARS.studiya[k].bosh && DARS.studiya[k].bosh.olmaDastur && DARS.studiya[k].chegara == null) DARS.studiya[k].chegara = DARS.blokChegara
 
 // Umumiy ekran qismlari (dvigatel 1b, 19.11): bloklar, palitra, studiya, dastur tasmasi, sarlavha, Coddy gapi, footer, kutish, taxta,
 // joy kartasi, shartlar, sinf natijasi va h.k. Avval etalon/ekranlar.mjs ichida 1-dars ekranlari bilan aralash edi — mazmuni o'zgarmagan.
@@ -148,9 +190,13 @@ const IKON = {
   g: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.3 3h7.4L21 8.3v7.4L15.7 21H8.3L3 15.7V8.3z" fill="#fff"/><path d="M8.6 12h6.8" stroke="#F08A24" stroke-width="2.8" stroke-linecap="round"/></svg>',
   // 13-dars: random — zar (uch nuqta)
   m: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.4" y="3.4" width="17.2" height="17.2" rx="4" fill="none" stroke="#fff" stroke-width="2.4"/><circle cx="8.2" cy="8.2" r="1.8" fill="#fff"/><circle cx="12" cy="12" r="1.8" fill="#fff"/><circle cx="15.8" cy="15.8" r="1.8" fill="#fff"/></svg>',
+  // 16-dars (21.11): Klon oilasi — C create clone (ikki varaq), H when I start as a clone (varaq va ▶), D delete this clone (varaq va ✕)
+  C: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8.4" y="3.6" width="12" height="12" rx="2.6" fill="none" stroke="#fff" stroke-width="2.4"/><rect x="3.6" y="8.4" width="12" height="12" rx="2.6" fill="#fff"/></svg>',
+  H: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.4" y="5" width="11" height="14" rx="2.4" fill="#fff"/><path d="M14.6 7.6l6 4.4-6 4.4z" fill="#fff"/></svg>',
+  D: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.6" y="3.6" width="16.8" height="16.8" rx="3" fill="none" stroke="#fff" stroke-width="2.4"/><path d="M8.4 8.4l7.2 7.2M15.6 8.4l-7.2 7.2" stroke="#fff" stroke-width="2.8" stroke-linecap="round"/></svg>',
   x: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.4" fill="none" stroke="#fff" stroke-width="2.8"/><circle cx="12" cy="12" r="2.6" fill="#fff"/><path d="M12 1.6v4M12 18.4v4M1.6 12h4M18.4 12h4" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>',
 }
-const BL = { r: ['h', 'move right'], l: ['h', 'move left'], u: ['h', 'move up'], d: ['h', 'move down'], j: ['h', 'jump'], s: ['g', 'say'], x: ['h', 'go to'], k: ['e', 'when'], p: ['b', 'repeat'], v: ['v', 'switch costume to'], n: ['t', 'play sound'], a: ['a', 'if path'], q: ['e', 'when touching'], f: ['e', 'when ▶ clicked'], z: ['o', 'set'], c: ['o', 'change'], i: ['a', 'if'], g: ['e', 'game over'], y: ['h', 'go to'], m: ['o', 'random'] }
+const BL = { C: ['K', 'create clone of myself'], H: ['K', 'when I start as a clone'], D: ['K', 'delete this clone'], r: ['h', 'move right'], l: ['h', 'move left'], u: ['h', 'move up'], d: ['h', 'move down'], j: ['h', 'jump'], s: ['g', 'say'], x: ['h', 'go to'], k: ['e', 'when'], p: ['b', 'repeat'], v: ['v', 'switch costume to'], n: ['t', 'play sound'], a: ['a', 'if path'], q: ['e', 'when touching'], f: ['e', 'when ▶ clicked'], z: ['o', 'set'], c: ['o', 'change'], i: ['a', 'if'], g: ['e', 'game over'], y: ['h', 'go to'], m: ['o', 'random'] }
 // mb('r') · mb('s','Salom!') · mb('r','', 'yon') · mb('x', '4,2') — go to manzili (3-dars; sonlar oq kapsulada, data-x / data-y — blockly.js, blokXY)
 const mbXY = (m) => { const [x = 0, y = 0] = String(m === 'Salom!' ? '0,0' : m).split(','); return [+x || 0, +y || 0] }
 // 4-dars: mb('k', 'right') — hodisa bloki, tugma oq kapsulada (data-tugma — blockly.js, blokTugma)
@@ -160,29 +206,31 @@ const TUGMA_K = { right: '→', left: '←', up: '↑', down: '↓', space: 'spa
 const KOS_NOM = { xotirjam: 'xotirjam', xursand: 'xursand', hayron: 'hayron', oylanadi: 'o‘ylanadi' }
 // 8-dars: mb('a', 'right') — shart sarlavhasi (data-yon), tomon oq kapsulada; ichidagi bloklar bilan — shart('right', ichki)
 // 11-dars: mb('q', 'gold') — olmaga tekkanda (data-q: apple | gold); mb('f') — «▶ Boshlash» bosilganda; mb('z', 0) — set ball to 0, mb('c', 1) — change ball by 1 (data-n)
-const OLMA_NOM = { apple: 'apple', gold: 'gold apple', cactus: 'cactus' }
+const OLMA_NOM = { apple: 'apple', gold: 'gold apple', cactus: 'cactus', enemy: 'enemy' } // 18-dars: enemy — dushmanga tekkanda
 const mb = (t, matn = 'Salom!', cls = '') => { const [f, nom] = BL[t]; if (t === 'q') { const q = OLMA_NOM[matn] ? matn : 'apple'; return `<span class="mb f-${f} ${cls}" data-tur="q" data-q="${q}">${IKON[t]}<span>${nom}</span><span class="xy"><i>${OLMA_NOM[q]}</i></span></span>` } // 13-dars: mb('y', '0,0') — go to son katakli (katak «rA-B» bo'lsa — ichida random oval), mb('m', '1-10') — random bloki
   const rndI = (sp) => { const [a, c] = sp.slice(1).split('-'); return `<span class="mrnd">random <i>${a}</i> to <i>${c}</i></span>` }
   if (t === 'y') { const [x0 = '0', y0 = '0'] = String(matn === 'Salom!' ? '0,0' : matn).split(','); return `<span class="mb f-${f} ${cls}" data-tur="y" data-x="${x0}" data-y="${y0}">${IKON.x}<span>${nom}</span><span class="xy">x: ${/^r/.test(x0) ? rndI(x0) : `<i>${x0}</i>`} y: ${/^r/.test(y0) ? rndI(y0) : `<i>${y0}</i>`}</span></span>` }
   if (t === 'm') { const [a = '1', c = '10'] = String(matn === 'Salom!' ? '1-10' : matn).split('-'); return `<span class="mb f-${f} mb-oval ${cls}" data-tur="m" data-ra="${a}" data-rb="${c}">${IKON[t]}<span>${nom}</span><span class="xy"><i>${a}</i> to <i>${c}</i></span></span>` }
-  if (t === 'f' || t === 'g') return `<span class="mb f-${f} ${cls}" data-tur="${t}">${IKON[t]}<span>${nom}</span></span>`; if (t === 'z' || t === 'c' || t === 'i') { const s0 = String(matn), [v0, n0] = s0.indexOf(':') >= 0 ? s0.split(':') : ['', s0], n = /^-?\d+$/.test(n0) ? n0 : t === 'c' ? '1' : '0', vr = v0 || (typeof DARS !== 'undefined' && DARS.ozgaruvchi && DARS.ozgaruvchi[0]) || 'ball', nk = +n < 0 ? '−' + -n : n; return `<span class="mb f-${f} ${cls}" data-tur="${t}"${v0 ? ` data-v="${v0}"` : ''} data-n="${n}">${IKON[t]}<span>${nom}</span><span class="xy"><i>${vr}</i> ${t === 'z' ? 'to' : t === 'c' ? 'by' : '='} <i>${nk}</i>${t === 'i' ? ' then' : ''}</span></span>` } if (t === 'a') { const y = TUGMA_K[matn] && matn !== 'space' ? matn : 'right'; return `<span class="mb f-${f} ${cls}" data-yon="${y}">${IKON[t]}<span>${nom}</span><span class="xy"><i>${TUGMA_K[y]}</i> then</span></span>` } if (t === 'v' || t === 'n') { const q = matn === 'Salom!' ? (t === 'v' ? 'xursand' : 'qadam') : matn; return `<span class="mb f-${f} ${cls}" data-q="${q}">${IKON[t]}<span>${nom}</span><span class="xy"><i>${KOS_NOM[q] || q}</i></span></span>` } if (t === 'p') { const n = /^\d+$/.test(String(matn)) ? matn : '3'; return `<span class="mb f-${f} ${cls}" data-n="${n}">${IKON[t]}<span>${nom}</span><span class="xy"><i>${n}</i></span></span>` } if (t === 'k') { const k = TUGMA_K[matn] ? matn : 'right'; return `<span class="mb f-${f} ${cls}" data-tugma="${k}">${IKON[t]}<span>${nom}</span><span class="xy"><i>${TUGMA_K[k]}</i> key pressed</span></span>` } if (t === 'x') { const [x, y] = mbXY(matn); return `<span class="mb f-${f} ${cls}" data-x="${x}" data-y="${y}">${IKON[t]}<span>${nom}</span><span class="xy">x: <i>${x}</i> y: <i>${y}</i></span></span>` } return `<span class="mb f-${f} ${cls}">${IKON[t]}<span>${nom}</span>${t === 's' ? `<span class="inp">${matn}</span>` : ''}</span>` }
+  if (t === 'f' || t === 'g' || t === 'C' || t === 'H' || t === 'D') return `<span class="mb f-${f} ${cls}" data-tur="${t}">${IKON[t]}<span>${nom}</span></span>`; if (t === 'z' || t === 'c' || t === 'i') { const s0 = String(matn), [v0, n0] = s0.indexOf(':') >= 0 ? s0.split(':') : ['', s0], n = /^-?\d+$/.test(n0) ? n0 : t === 'c' ? '1' : '0', vr = v0 || (typeof DARS !== 'undefined' && DARS.ozgaruvchi && DARS.ozgaruvchi[0]) || 'ball', nk = +n < 0 ? '−' + -n : n; return `<span class="mb f-${f} ${cls}" data-tur="${t}"${v0 ? ` data-v="${v0}"` : ''} data-n="${n}">${IKON[t]}<span>${nom}</span><span class="xy"><i>${vr}</i> ${t === 'z' ? 'to' : t === 'c' ? 'by' : '='} <i>${nk}</i>${t === 'i' ? ' then' : ''}</span></span>` } if (t === 'a') { const y = TUGMA_K[matn] && matn !== 'space' ? matn : 'right'; return `<span class="mb f-${f} ${cls}" data-yon="${y}">${IKON[t]}<span>${nom}</span><span class="xy"><i>${TUGMA_K[y]}</i> then</span></span>` } if (t === 'v' || t === 'n') { const q = matn === 'Salom!' ? (t === 'v' ? 'xursand' : 'qadam') : matn; return `<span class="mb f-${f} ${cls}" data-q="${q}">${IKON[t]}<span>${nom}</span><span class="xy"><i>${KOS_NOM[q] || q}</i></span></span>` } if (t === 'p') { const n = /^\d+$/.test(String(matn)) ? matn : '3'; return `<span class="mb f-${f} ${cls}" data-n="${n}">${IKON[t]}<span>${nom}</span><span class="xy"><i>${n}</i></span></span>` } if (t === 'k') { const k = TUGMA_K[matn] ? matn : 'right'; return `<span class="mb f-${f} ${cls}" data-tugma="${k}">${IKON[t]}<span>${nom}</span><span class="xy"><i>${TUGMA_K[k]}</i> key pressed</span></span>` } if (t === 'x') { const [x, y] = mbXY(matn); return `<span class="mb f-${f} ${cls}" data-x="${x}" data-y="${y}">${IKON[t]}<span>${nom}</span><span class="xy">x: <i>${x}</i> y: <i>${y}</i></span></span>` } return `<span class="mb f-${f} ${cls}">${IKON[t]}<span>${nom}</span>${t === 's' ? `<span class="inp">${matn}</span>` : ''}</span>` }
 const yigma = (arr) => `<div class="mbw">${arr.map((x) => (typeof x === 'string' ? mb(x) : mb(...x))).join('')}</div>`
-const OILA = { h: ['Harakat', 'r'], g: ['Gap', 's'], e: ['Hodisa', 'k'], b: ['Takrorlash', 'p'], v: ['Ko‘rinish', 'v'], t: ['Tovush', 'n'], a: ['Shart', 'a'], o: ['O‘zgaruvchi', 'c'] }
+const OILA = { K: ['Klon', 'C'], h: ['Harakat', 'r'], g: ['Gap', 's'], e: ['Hodisa', 'k'], b: ['Takrorlash', 'p'], v: ['Ko‘rinish', 'v'], t: ['Tovush', 'n'], a: ['Shart', 'a'], o: ['O‘zgaruvchi', 'c'] }
 // takrorlash bloki ichidagilari bilan (tayyor dastur HTML'i): ichki — [t | [t, m]…]; blockly.js uni ichma-ich o'qiydi (.c-blok)
 const shart = (yon, ichki) => `<div class="c-blok" data-yon="${yon}">${mb('a', yon)}<div class="c-ich">${ichki.map((x) => (typeof x === 'string' ? mb(x) : mb(...x))).join('')}</div><span class="c-tub"></span></div>`
 const takror = (n, ichki) => `<div class="c-blok" data-n="${n}">${mb('p', String(n))}<div class="c-ich">${ichki.map((x) => (typeof x === 'string' ? mb(x) : mb(...x))).join('')}</div><span class="c-tub"></span></div>`
 const rang = (f, cls = '') => `<span class="rd f-${f} ${cls}"><i>${IKON[OILA[f][1]]}</i><small>${OILA[f][0]}</small></span>`
 // 5a: javondagi oilalar va bloklar — dars e'lonidan (DARS.javon; 2-darsda faqat Harakat: r, l, u, d), bo'lmasa 1-darsdagi to'plam
 const PAL = DARS.javon || { h: ['r', 'l', 'j'], g: [['s', 'Salom!']] }
-const ranglar = (aktiv, holat = {}) => `<div class="rg" data-z="ranglar">${Object.keys(PAL).map((f) => rang(f, (aktiv === f ? 'on ' : '') + (holat[f] || ''))).join('')}</div>`
-const palitra = (f, ochiq = PAL[f].length) => `<div class="pl" data-z="bloklar"><small class="f-${f}">${OILA[f][0]}</small>${PAL[f].map((b, i) => `<div class="mbw${i >= ochiq ? ' yopiq' : ''}">${typeof b === 'string' ? mb(b) : mb(...b)}</div>`).join('')}</div>`
+// 14-dars: J — ekranning o'z javoni (studiya({ javon })); berilmasa — dars javoni (PAL), chiqish avvalgidek
+const ranglar = (aktiv, holat = {}, J = PAL) => `<div class="rg" data-z="ranglar">${Object.keys(J).map((f) => rang(f, (aktiv === f ? 'on ' : '') + (holat[f] || ''))).join('')}</div>`
+const palitra = (f, ochiq, J = PAL) => `<div class="pl" data-z="bloklar"><small class="f-${f}">${OILA[f][0]}</small>${J[f].map((b, i) => `<div class="mbw${i >= (ochiq == null ? J[f].length : ochiq) ? ' yopiq' : ''}">${typeof b === 'string' ? mb(b) : mb(...b)}</div>`).join('')}</div>`
 const dastur = (arr, yuz, iz = '') => `<div class="dst" data-z="dastur"><span class="dsb"><span class="dyz">${yuz}</span><b>Dastur</b></span>${arr.length ? yigma(arr) : '<span class="bosh">Blokni shu yerga ulang</span>'}${iz || `<small class="dsn">${arr.length} ta blok</small>`}</div>`
 const momiqYuz = () => (globalThis.QAH === 'coddy' ? bust('xursand') : hero({ k: globalThis.QAH || 'momiq', lite: true }))
 const coddyYuz = () => bust('xursand')
 const ust = (tag, h, iz = '') => `<div class="ust" data-z="sarlavha"><span class="tag">${tag}</span><h3 class="sar">${h}</h3>${iz ? `<span class="iz">${iz}</span>` : ''}</div>`
 // dunyo: null — manzarasiz (labirint butun oynani egallaydi, 99-qaror)
 // dst — dastur ustunining o'zi (3-dars «oldindan ayting»: tayyor dastur sanoq yozuvlari bilan); berilmasa — dastur(prog, yuz)
-const studiya = ({ tag, h, iz, aktiv = 'h', holat, ochiq, prog, yuz, sahna, extra = '', dunyo = 'hovli', dst }) => `${ust(tag, h, iz)}${ranglar(aktiv, holat)}${palitra(aktiv, ochiq)}${dst || dastur(prog, yuz)}<div class="oyna">${dunyo ? world(dunyo) : ''}${sahna}</div>${extra}`
+// javon (14-dars) — ekranning o'z oilalari va bloklari; oila almashtirilganda studiya shu ekranning <template class="pal-t"> idan oladi
+const studiya = ({ tag, h, iz, aktiv = 'h', holat, ochiq, prog, yuz, sahna, extra = '', dunyo = 'hovli', dst, javon }) => `${ust(tag, h, iz)}${ranglar(aktiv, holat, javon || PAL)}${palitra(aktiv, ochiq, javon || PAL)}${javon ? Object.keys(javon).map((f) => `<template class="pal-t" data-f="${f}">${palitra(f, undefined, javon)}</template>`).join('') : ''}${dst || dastur(prog, yuz)}<div class="oyna">${dunyo ? world(dunyo) : ''}${sahna}</div>${extra}`
 const fB = ({ mas = '', hint = '', label = `${PLAY}Ishga tushir`, chap } = {}) => `<footer class="hn">${chap || `<span class="mas ${mas}">${LAMP}Maslahat</span>`}<span class="hint">${hint}</span><span class="asos">${label}</span></footer>`
 const fU = (hint, label) => `<footer class="hn"><span class="orq">‹ Orqaga</span><span class="hint">${hint}</span><span class="asos">${label}</span></footer>`
 // v3.2 (F-1116-01): kirishda butun kurs emas — Blok studiya modulida yasaladigan o'yinlar (rasmlari; kartalari — dars qismlarida, oyinlar)
@@ -431,211 +479,200 @@ function maydonHtml(m, o) {
     + '</g></svg></div>'
 }
 
-// 13-dars «Tasodifiy son» — darsning o'z ekran bo'laklari (21.11). Manba: new-junior/manba/013-tasodifiy-son.md («Maydon, savatlar va bloklar», «Topshiriqlar»).
-// Maydon — 3–6-darsdagi bog' (katak.js maydonHtml): 7 × 5, (x, y), Y tepaga; savatlar — m.savat ([x, y, guruh?]); tushgan olmalar — dvigatel chizadi.
-const MB = { w: 7, h: 5, daraxt: [[1, 1], [4, 3], [6, 1]], gul: [[0, 4], [2, 3], [5, 4], [6, 3]] }
-const md = (m = {}) => ({ ...MB, start: [0, 0], ...m })
-const maydon = (m, aktyor, o = {}) => maydonHtml(md(m), { aktyor, ...o })
-const coddyK = () => robot({ pose: 'turadi', yuz: 'xursand' })
-const qahK = () => (globalThis.QAH === 'coddy' ? robot({ pose: 'turadi', yuz: 'xursand' }) : hero({ k: globalThis.QAH || 'momiq', mood: 'xursand' }))
-const SV = DARS.savatlar
-// har ekranning maydoni: savatlar va qahramon katagi (manba jadvali)
-const M13 = {
-  HUK: { start: [3, 0] }, P6: { savat: SV.P6, start: [6, 2] },
-  B1A: { savat: SV.B1A, start: [3, 0] }, B1B: { savat: SV.B1B, start: [0, 2] }, B1C: { savat: SV.B1C, start: [5, 2] }, B1Y: { savat: SV.B1Y, start: [3, 2] },
-  P7: { savat: SV.P7, start: [1, 0] }, B2A: { savat: SV.B2A, start: [3, 2] }, B2B: { savat: SV.B2B, start: [0, 2] }, B2C: { savat: SV.B2C, start: [0, 0] }, B2Y: { savat: SV.B2Y, start: [1, 2] },
-  P8: { savat: SV.P8, start: [3, 2] }, B3A: { savat: SV.B3A, start: [4, 4] }, B3B: { savat: SV.B3B, start: [3, 2] }, B3C: { savat: SV.B3C, start: [3, 0] }, B3Y: { start: [3, 2] }, P11: { start: [3, 2] },
-}
-// dastur ustuni: «Olma dasturi» (tasmada olma), dastur, «n / N ta blok», «Sinov: 0 / 3»; qah — 3-bekat: tepada «Qahramon» qatori (to'rt strelka, tayyor)
-const OLMA_IK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8c-.6-2.4-2.6-3.6-2.6-3.6" fill="none" stroke="#6B4423" stroke-width="1.7" stroke-linecap="round"/><path d="M12.6 6.6c1.4-2.4 4.4-2.4 4.4-2.4-.4 2.4-2.6 3.2-4.4 2.4z" fill="#4CB050"/><path d="M12 8.4c-1.6-1.2-7-1.6-7.8 3.8-.6 4.4 2.6 8.8 5.2 8.8 1.2 0 1.6-.6 2.6-.6s1.4.6 2.6.6c2.6 0 5.8-4.4 5.2-8.8-.8-5.4-6.2-5-7.8-3.8z" fill="#F0435A"/></svg>'
-const TORT = [['right', 'r', '→'], ['left', 'l', '←'], ['up', 'u', '↑'], ['down', 'd', '↓']]
-const qahQ = () => `<div class="bq-q" role="button" data-z="qahramon"><b>Qahramon:</b><span class="bq-s">${TORT.map(([k, , s]) => `<i data-k="${k}">${s}</i>`).join('')}</span><span class="bq-o">▾</span><div class="bq-och">${TORT.map(([k, t]) => `<div class="bq-d">${mb('k', k)}${mb(t)}</div>`).join('')}<small>Qahramon tayyor — o‘zgartirilmaydi</small></div></div>`
-const dst13 = (r, chegara, { qah = false, sinov = true } = {}) => `<div class="dst" data-z="dastur"><span class="dsb"><span class="dyz olma-ega">${OLMA_IK}</span><b>Olma dasturi</b></span>${qah ? qahQ() : ''}${r.length ? `<div class="mbw">${r.map((x) => (typeof x === 'string' ? x : mb(...x))).join('')}</div>` : '<span class="bosh">Blokni shu yerga ulang</span>'}<small class="dsn">${r.filter((x) => !(x[2] || '').includes('solo-faqat')).reduce((a, x) => a + (typeof x === 'string' ? (x.match(/class="mb /g) || []).length : String(x[1] || '').split('r').length), 0)} / ${chegara} ta blok</small>${sinov ? '<small class="sinov-n">Sinov: 0 / 3</small>' : ''}</div>`
-// kichik maydon (zinapoya, reja): savatlar (jigarrang kvadratcha), qahramon; dastur va sonlar yo'q (audit saboqlari)
-const miniMaydon = (m, { cls = 'mini' } = {}) => {
-  const W = MB.w * 10, H = MB.h * 10, Y = (y) => (MB.h - 1 - y) * 10, s = m.start || [0, 0]
+// 23-dars «Demo Day №1» — darsning o'z ekran bo'laklari (22.11). Manba: new-junior/manba/023-demo-day-1.md. 18–22-dars qismlarining davomi.
+// 18-dars qismlarining davomi: «Kosmos» maydoni, raketa (oynachasida qahramon), o'q, dushman, uch personaj kartasi, kapsulalar.
+// Yangisi — kod: statik kod qutisi (kodK — kod.js dagi .kodp ko'rinishida), zinapoya uchun kod rasmi (kodRasm). Kod oynasining o'zini dvigatel chizadi (kod.js).
+const MB = { w: 7, h: 5, daraxt: [], gul: [] }
+const md = (m = {}) => ({ ...MB, start: [3, 0], ...m })
+const raketa = (yuz) => `<svg viewBox="0 0 80 88" aria-hidden="true"><path d="M40 3c14 11 19 28 19 44v22H21V47C21 31 26 14 40 3z" fill="#F4F6FB"/><path d="M21 50L7 67v10l14-7zM59 50l14 17v10l-14-7z" fill="#FF4F28"/><path d="M28 69h24l-4 8H32z" fill="#0D2137"/><path d="M33 77h14l-7 10z" fill="#FFC93C"/><circle cx="40" cy="37" r="14" fill="#3FA2FF" stroke="#0D2137" stroke-width="3"/>${yuz.replace('<svg ', '<svg x="29" y="25" width="22" height="24" ')}</svg>`
+const coddyK = () => raketa(robot({ pose: 'turadi', yuz: 'xursand' }))
+const qahK = () => raketa(globalThis.QAH === 'coddy' ? robot({ pose: 'turadi', yuz: 'xursand' }) : hero({ k: globalThis.QAH || 'momiq', mood: 'xursand' }))
+const OQ_SVG = '<svg viewBox="0 0 24 20" aria-hidden="true"><rect x="9.2" y="1" width="5.6" height="15" rx="2.8" fill="#FFC93C"/><rect x="10.7" y="3" width="2.6" height="9.5" rx="1.3" fill="#FFF6D6"/><path d="M9.6 16h4.8L12 19.6z" fill="#FF8A3C"/></svg>'
+const DUSH_R = '#8B5CF6'
+const DUSH_SVG = dushman(DUSH_R)
+DARS.klonSvg = OQ_SVG // klon.js: o'q nusxalari rasmi
+DARS.dushSvg = DUSH_SVG // kosmik.js: dushman (asl va nusxalar)
+const OQ = (cls = '') => `<span class="oqr ${cls}">${OQ_SVG}</span>` // oqr — o'q rasmi; «oq» shablon.html dagi uchayotgan o'q (absolute, animatsiya) bilan to'qnashardi (22.11)
+const DUSH = (cls = '') => `<span class="dsh ${cls}">${DUSH_SVG}</span>`
+const RAK = (yuz = robot({ pose: 'turadi', yuz: 'xursand' }), cls = '') => `<span class="rak ${cls}">${raketa(yuz)}</span>`
+DARS.perRasm = { raketa: `<span class="rak">${raketa('<svg></svg>')}</span>`, oq: OQ(), dushman: DUSH() }
+// maydon: dushman (asli tepada, nusxalari), o'qlar — dvigateldagi .kt-asl / .kt-klon bilan bir xil chizma
+const kG = (cls, x, y, svg) => `<g class="${cls}" style="transform:${katakJoy(x, MB.h - 1 - y)}">${svg.replace('<svg ', '<svg x="4" y="18" width="72" height="62" ')}</g>`
+const maydon = (m, aktyor, { asl = null, dush = [], oq = [] } = {}) => maydonHtml(md(m), { aktyor }).replace('class="katak maydon', 'class="katak maydon kosmos')
+  .replace('<g class="kt-q"', (asl ? kG('kt-asl ks-d', asl[0], asl[1], DUSH_SVG) : '') + dush.map(([x, y]) => kG('kt-klon ks-d', x, y, DUSH_SVG)).join('') + oq.map(([x, y]) => kG('kt-klon', x, y, OQ_SVG)).join('') + '<g class="kt-q"')
+// sahnadagi sonlar (12-dars kapsulalari): ball, jon — dasturda ishlatilgani ko'rinadi (studiya.js ozgKorinsin)
+const OZG = ['ball', 'jon']
+const ozgQ = (v = {}, doim = '') => `<div class="gl ball-q" data-z="o‘zgaruvchilar"${doim ? ` data-doim="${doim}"` : ''}>${OZG.map((n) => `<span class="ball-k${n in v ? '' : ' yoq'}" data-v="${n}"><small>${n}:</small><b>${v[n] || 0}</b></span>`).join('')}</div>`
+const sanoqK = (n = 0) => `<span class="gl kl-son">Dushman: ${n}</span>`
+const tugadiT = () => '<span class="gl oyin-tugadi">O‘yin tugadi</span>'
+
+// dastur ustuni: uch personaj kartasi
+const PER = [['raketa', 'Raketa'], ['oq', 'O‘q'], ['dushman', 'Dushman']]
+const perQ = (cur = 'dushman') => `<div class="per-q per-3">${PER.map(([id, nom]) => `<span class="per-k${id === cur ? ' on' : ''}" data-p="${id}" role="button"><i>${DARS.perRasm[id]}</i><b>${nom}</b></span>`).join('')}</div>`
+const dstP = (chegara, { cur = 'dushman' } = {}) => `<div class="dst" data-z="dastur"><span class="dsb"><b>${{ raketa: 'Raketa', oq: 'O‘q', dushman: 'Dushman' }[cur]} dasturi</b></span>${perQ(cur)}<span class="bosh">Blokni shu yerga ulang</span><small class="dsn">0 ta dasturcha\n0 / ${chegara} ta blok</small></div>`
+
+// kichik kosmos maydoni (zinapoya, reja): raketa, dushmanlar (tepada · tushish izi), o'q izi, kapsula
+const miniKosmos = ({ rak = [3, 0], dush = [], iz = [], oq = [], son = '' } = {}, cls = 'mini') => {
+  const W = MB.w * 10, H = MB.h * 10, Y = (y) => (MB.h - 1 - y) * 10
   let h = ''
-  for (let q = 0; q < MB.h; q++) for (let x = 0; x < MB.w; x++) h += `<rect x="${x * 10 + 0.6}" y="${q * 10 + 0.6}" width="8.8" height="8.8" rx="2" fill="${(x + MB.h - 1 - q) % 2 ? '#F7EACB' : '#F3E3BE'}"/>`
-  MB.daraxt.forEach(([x, y]) => { h += `<circle cx="${x * 10 + 3.6}" cy="${Y(y) + 3.6}" r="2.8" fill="#3E8E4E"/>` })
-  ;(m.savat || []).forEach(([x, y]) => { h += `<path d="M${x * 10 + 1.6} ${Y(y) + 4}h6.8l-1 4.4h-4.8z" fill="#C9955A" stroke="#8A5A2E" stroke-width=".6"/>` })
-  ;(m.olma || []).forEach(([x, y]) => { h += `<circle cx="${x * 10 + 5}" cy="${Y(y) + 4.6}" r="2.4" fill="#F0435A"/>` })
-  h += `<circle cx="${s[0] * 10 + 5}" cy="${Y(s[1]) + 5}" r="2.4" fill="#2F8FF0"/>`
-  return `<svg class="${cls} mk" viewBox="-1 -1 ${W + 2} ${H + 2}" aria-hidden="true"><rect x="-1" y="-1" width="${W + 2}" height="${H + 2}" rx="3" fill="#9AD57C" opacity=".55"/>${h}</svg>`
+  for (let q = 0; q < MB.h; q++) for (let x = 0; x < MB.w; x++) h += `<rect x="${x * 10 + 0.6}" y="${q * 10 + 0.6}" width="8.8" height="8.8" rx="2" fill="${(x + q) % 2 ? '#243B6B' : '#1E3360'}"/>`
+  ;[[1, 3], [5, 2], [0, 1], [6, 4], [4, 1]].forEach(([x, y]) => { h += `<circle cx="${x * 10 + 7}" cy="${Y(y) + 2.6}" r=".7" fill="#fff" opacity=".8"/>` })
+  iz.forEach(([x, a, b]) => { h += `<path d="M${x * 10 + 5} ${Y(a) + 5}V${Y(b) + 5}" stroke="${DUSH_R}" stroke-width="1.4" stroke-dasharray="1.4 1.8" stroke-linecap="round" opacity=".7"/>` })
+  oq.forEach(([x, a, b]) => { h += `<path d="M${x * 10 + 5} ${Y(a) + 3}V${Y(b) + 7}" stroke="#FFC93C" stroke-width="1.6" stroke-dasharray="1.6 1.8" stroke-linecap="round"/>` })
+  dush.forEach(([x, y]) => { h += `<ellipse cx="${x * 10 + 5}" cy="${Y(y) + 5.4}" rx="3.8" ry="2.8" fill="${DUSH_R}"/><circle cx="${x * 10 + 3.6}" cy="${Y(y) + 5}" r=".9" fill="#fff"/><circle cx="${x * 10 + 6.4}" cy="${Y(y) + 5}" r=".9" fill="#fff"/>` })
+  if (rak) h += `<path d="M${rak[0] * 10 + 5} ${Y(rak[1]) + 1}c2.2 1.8 2.8 4.2 2.8 6.6v1.6h-5.6v-1.6c0-2.4.6-4.8 2.8-6.6z" fill="#F4F6FB"/><circle cx="${rak[0] * 10 + 5}" cy="${Y(rak[1]) + 5}" r="1.2" fill="#3FA2FF"/>`
+  if (son) h += `<rect x="1" y="1" width="${son.length * 3.4 + 4}" height="7" rx="3.5" fill="#fff"/><text x="3" y="6.4" font-size="5.4" font-weight="800" fill="#0D2137" font-family="sans-serif">${son}</text>`
+  return `<svg class="${cls} mk" viewBox="-1 -1 ${W + 2} ${H + 2}" aria-hidden="true"><rect x="-1" y="-1" width="${W + 2}" height="${H + 2}" rx="3" fill="#0F1E3D"/>${h}</svg>`
 }
-const mm = (id, o) => miniMaydon(M13[id], o)
+// statik kod qatorlari (huk, javob, yangi so'z, xulosa): [[chuqurlik, html, xira?]…] — kod.js qatorlari bilan bir xil belgilar (<em> funksiya, <u> kalit so'z, <s> satr, <b class="kn"> son)
+const kq = (h, d = 0, cls = '') => `<div class="kq${cls ? ' ' + cls : ''}" style="--d:${d}"><code>${h}</code></div>`
+const kodK = (qatorlar, cls = '') => `<div class="kodk ${cls}">${qatorlar.join('')}</div>`
+const K = { mr: '<em>moveRight</em>();', onR: '<em>onKey</em>(<s>"right"</s>, () =&gt; {', yop: '});' }
+// zinapoya va reja uchun kichik kod rasmi: qator uzunliklari (rangli chiziqlar), belgilangan qator, son kapsulasi
+const kodRasm = ({ q = [[0, 30, 'f'], [1, 22, 'f'], [0, 8, 'x']], yon = -1, son = -1 } = {}, cls = 'mini') => {
+  const R = { f: '#FFC93C', k: '#8FD3FF', x: '#5B6B85', s: '#A6E3A1' }
+  let h = ''
+  q.forEach(([d, w, t], i) => { const y = 6 + i * 9; if (i === yon) h += `<rect x="2" y="${y - 3}" width="66" height="8" rx="2" fill="#FF6B4A" opacity=".35"/>`; h += `<rect x="${6 + d * 6}" y="${y}" width="${w}" height="3" rx="1.5" fill="${R[t] || R.f}"/>`; if (i === son) h += `<rect x="${8 + d * 6 + w}" y="${y - 2.2}" width="9" height="7" rx="3.5" fill="#fff"/>` })
+  return `<svg class="${cls} mk" viewBox="0 0 70 ${10 + q.length * 9}" aria-hidden="true"><rect x="0" y="0" width="70" height="${10 + q.length * 9}" rx="4" fill="#0F1E3D"/>${h}</svg>`
+}
+
+// ---- loyiha kartasi (21-darsdan; 23-dars faqat o'qiydi): xulosa «Mening o‘yinim» (bola ekranida .kc-mini — kod.js kartaChiz to'ldiradi) ----
+const kartaG = (k) => ((DARS.kartaGap || {})[k] || '')
+const kartaQ = (nom, v, bor = true) => `<span class="kx-q${bor ? ' ok' : ''}"><small>${nom}</small><b>${bor ? v : '?'}</b></span>`
+
+// Demo Day qoidalari (3-qadam) va uy yo'riqnomasi (9–10-qadam): qatorlar
+const qoQator = (n, nom, iz) => `<div class="ty-q"><i>${n}</i><span><b>${nom}</b><small>${iz}</small></span></div>`
+const qoidaKarta = () => `<div class="tq-t">${qoQator(1, 'Mehmon o‘ynaydi', 'strelkalar — raketa, probel — o‘q')}${qoQator(2, 'Bola aytib beradi', 'nechta dushman, qanday yutiladi')}${qoQator(3, 'Savolga javob beradi', 'eng qiyin joyi qaysi edi')}</div>`
+// «Blok studiya → Scratch» jadvali: uchta blok (hodisa, klon, o'zgaruvchi)
+const SCRATCH_J = [['when ▶ clicked', 'when green flag clicked'], ['create clone of myself', 'create clone of myself'], ['change ball by 1', 'change score by 1']]
+const uyKarta = () => `<div class="tq-t uy-t">${qoQator(1, 'Scratch saytiga kiring', 'ota-onangizdan ruxsat so‘rang: scratch.mit.edu')}${qoQator(2, 'Yangi loyiha oching', 'bloklar tanish')}${qoQator(3, 'O‘yiningizni o‘zingiz yasang', 'karta bo‘yicha')}</div><div class="uy-j"><small>Blok studiya → Scratch</small>${SCRATCH_J.map(([a, b]) => `<span class="uy-q"><code>${a}</code><i>→</i><code>${b}</code></span>`).join('')}</div>`
+
+// bekatlar (reja tepaligi): tayyorlanamiz · ko'rsatamiz · uyga olib ketamiz
+const BALL_OQ = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.8 5.8 6.4.9-4.6 4.5 1.1 6.3L12 17.1l-5.7 3 1.1-6.3-4.6-4.5 6.4-.9z" fill="#fff"/></svg>'
+const JON_OQ = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.6s-7.6-4.6-7.6-10.2A4.4 4.4 0 0 1 12 7.6a4.4 4.4 0 0 1 7.6 2.8c0 5.6-7.6 10.2-7.6 10.2z" fill="#fff"/></svg>'
+const TAYYOR_OQ = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+const KORSAT_OQ = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-6.4 10-6.4S22 12 22 12s-3.6 6.4-10 6.4S2 12 2 12z" fill="#fff"/><circle cx="12" cy="12" r="3.4" fill="#0F1E3D"/></svg>'
+const UY_OQ = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5L12 4l9 7.5V20H3z" fill="#fff"/><rect x="9.5" y="13" width="5" height="7" fill="#0F1E3D"/></svg>'
+const BEKATLAR = [['h', 'Tayyorlanamiz', TAYYOR_OQ], ['g', 'Ko‘rsatamiz', KORSAT_OQ], ['y', 'Uyga olib ketamiz', UY_OQ]]
+const darsOxiri = () => `<div class="gl kd3" data-z="dars oxirida"><small>Dars oxirida · uy yo‘riqnomasi</small><div class="kd3-r lb2">${miniKosmos({ dush: [[1, 3], [5, 2]], oq: [[1, 1, 2]], son: 'ball: 3' }, 'kd-mk')}</div><b>Uyda davom eting</b></div>`
+const AI_RASM = '<svg class="kd-xy" viewBox="0 0 100 64" aria-hidden="true"><rect x="0" y="0" width="100" height="64" rx="6" fill="#0F1E3D"/><rect x="26" y="14" width="48" height="36" rx="10" fill="#E6ECF5"/><circle cx="40" cy="30" r="5" fill="#0F1E3D"/><circle cx="60" cy="30" r="5" fill="#0F1E3D"/><path d="M42 41h16" stroke="#0F1E3D" stroke-width="3" stroke-linecap="round"/><path d="M50 14V8" stroke="#E6ECF5" stroke-width="3" stroke-linecap="round"/><circle cx="50" cy="7" r="3" fill="#FFC93C"/></svg>'
+const keyingiDars = () => `<div class="gl kd3" data-z="keyingi dars"><small>Keyingi dars</small><div class="kd3-r lb2">${AI_RASM}</div><b>24 · Sun‘iy intellekt (AI) nima</b></div>`
+// kirish: «O‘tgan darsda» — taqdimot
+const otganDars = () => `<div class="otd"><small>O‘tgan darsda</small><div class="tf-l"><div class="tf"><div class="tf-r otd-k">${kartaQ('Dushmanlar', 5)}${kartaQ('Jon', 3)}</div><div class="tf-t"><b>Taqdimot</b><span>Mening o‘yinim, qanday yutiladi, eng qiyin joyi</span></div></div></div></div>`
+
+// zinapoyalar: 1-bekat (oxirgi sinov — bitta pog'ona), 2-bekat (mehmon), 3-bekat (yo'riqnoma — bitta pog'ona)
 const POG = {
-  bir: [['1', 10, mm('B1A'), 'Butun qator'], ['2', 8, mm('B1B'), 'Uchta savat'], ['3', 5, mm('B1C'), 'Ustun'], ['★', 2, mm('B1Y'), 'Ikki olma']],
-  ikki: [['1', 9, mm('B2A'), 'Kichik kvadrat'], ['2', 7, mm('B2B'), 'To‘rtburchak'], ['3', 5, mm('B2C'), 'Katta to‘rtburchak'], ['★', 2, mm('B2Y'), 'Olma yomg‘iri']],
-  oyin: [['1', 8, mm('B3A'), 'Bog‘ o‘rtasi'], ['2', 6, mm('B3B'), 'Tepa qator'], ['3', 4, mm('B3C'), 'Chap ustun'], ['★', 2, mm('B3Y'), 'O‘z o‘yiningiz']],
+  sinov: [['1', 9, miniKosmos({ dush: [[1, 3], [5, 2]], oq: [[1, 1, 2]], son: 'ball: 4' }), 'Oxirgi sinov']],
+  mehmon: [['1', 9, miniKosmos({ rak: [2, 0], dush: [[4, 3]], son: 'ball: 2' }), 'Mehmon o‘ynadi'], ['★', 4, miniKosmos({ dush: [[1, 3], [5, 2]], oq: [[1, 1, 2]], son: 'ball: 6' }), 'Mehmon yutdi']],
+  yoriq: [['1', 9, kodRasm({ q: [[0, 30, 'f'], [0, 22, 'k'], [0, 26, 'f']] }), 'Yo‘riqnoma']],
 }
-// huk (2–4-qadam): pastki qator, Coddy (3, 0); har kartada ikki o'yin × uch olma — kartaning o'zida ikki qator son
-const HUK = [
-  ['A', 'Boshqa son qo‘yamiz', { olma: '5,5,5', nat: '✕ ikki o‘yin bir xil', ok: '0' }, () => `<span class="hk-d">${mb('y', '5,0')}</span>`],
-  ['B', 'Navbat bilan uch joy', { olma: '1,5,3', nat: '✕ yana bir xil', ok: '0' }, () => `<span class="hk-d">${mb('y', '1,0')}${mb('y', '5,0')}${mb('y', '3,0')}</span><small class="hk-n">1-olma · 2-olma · 3-olma</small>`],
-  ['C', 'Dastur o‘zi tanlasin', { tanlov: '4,1,6|2,5,0', nat: '✓ har o‘yin boshqacha', ok: '1' }, () => `<span class="hk-d">${mb('y', 'r0-6,0')}</span>`],
-]
-const SONI = { A: 3, B: 4, C: 7 }
-const PIK_R = { A: 'c1', B: 'c2', C: 'c3' }
-const hKartalar = ({ son, nat = false, avto = false } = {}) => `<div class="jv dkv hkv">${HUK.map(([l, t, d, rasm]) => `<div class="jk ${PIK_R[l]}${nat ? (l === 'C' ? ' n-ok' : ' n-yoq') : ''}"${avto ? `${d.olma ? ` data-olma="${d.olma}"` : ''}${d.tanlov ? ` data-tanlov="${d.tanlov}"` : ''} data-ok="${d.ok}"` : ''} data-nat="${d.nat}"><span class="jt"><span><b>${l}</b><q>${t}</q></span>${nat ? `<small class="jn">${d.nat}</small>` : ''}</span><div class="hk-r">${rasm()}<span class="ho-q">${nat ? (l === 'C' ? '<span>1-o‘yin: <b>4 · 1 · 6</b></span><span>2-o‘yin: <b>2 · 5 · 0</b></span>' : l === 'A' ? '<span>1-o‘yin: <b>5 · 5 · 5</b></span><span>2-o‘yin: <b>5 · 5 · 5</b></span>' : '<span>1-o‘yin: <b>1 · 5 · 3</b></span><span>2-o‘yin: <b>1 · 5 · 3</b></span>') : ''}</span></div>${son ? `<span class="jr-s" aria-label="${son[l]} bola">${ODAM}<b>${son[l]}</b></span>` : ''}</div>`).join('')}</div>`
-// tushgan olmalar (statik rasm: javob, xulosa, natija) — xira belgi yoki olma
-const OLMA_SVG = (x, y, iz) => `<g class="kt-olma${iz ? ' iz-olma' : ''}" transform="translate(${x * 100 + 50} ${(4 - y) * 100 + 52})">${MD_OLMA}</g>`
-const olmaliMaydon = (m, aktyor, olmalar, o = {}) => maydon(m, aktyor, o).replace('<g class="kt-q"', olmalar.map(([x, y, iz]) => OLMA_SVG(x, y, iz)).join('') + '<g class="kt-q"')
-// 5-qadam: zar va random 1 to 6 — son birma-bir (studiya.js «raqam»: [data-r]; ko'rinadigani — eng oxirgi yongan)
-const ZAR = (n) => { const N = { 1: [[12, 12]], 2: [[7, 7], [17, 17]], 3: [[7, 7], [12, 12], [17, 17]], 4: [[7, 7], [17, 7], [7, 17], [17, 17]], 5: [[7, 7], [17, 7], [12, 12], [7, 17], [17, 17]], 6: [[7, 6], [17, 6], [7, 12], [17, 12], [7, 18], [17, 18]] }[n] || []; return `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="#fff" stroke="#0D2137" stroke-width="1.4"/>${N.map(([x, y]) => `<circle cx="${x}" cy="${y}" r="2" fill="#0D2137"/>`).join('')}</svg>` }
-const zarRasm = () => `<div class="zr" data-z="zar"><span class="zr-z"><i class="q0">${ZAR(0)}</i><i class="q1" data-r="2">${ZAR(4)}</i><i class="q3" data-r="3">${ZAR(2)}</i></span><span class="zr-b">${mb('m', '1-6')}<b class="zr-s q1" data-r="2">4</b><b class="zr-s q3" data-r="3">2</b></span></div>`
 
-// bekatlar: bitta son · ikki son · o'yin
-const ZAR_OQ = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.4" y="3.4" width="17.2" height="17.2" rx="4" fill="none" stroke="#fff" stroke-width="2.4"/><circle cx="12" cy="12" r="2" fill="#fff"/></svg>'
-const IKKI_OQ = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="6" width="9" height="9" rx="2.4" fill="none" stroke="#fff" stroke-width="2"/><rect x="13" y="9" width="9" height="9" rx="2.4" fill="none" stroke="#fff" stroke-width="2"/><circle cx="6.5" cy="10.5" r="1.4" fill="#fff"/><circle cx="17.5" cy="13.5" r="1.4" fill="#fff"/></svg>'
-const OLMA_OQ = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8.4c-1.6-1.2-7-1.6-7.8 3.8-.6 4.4 2.6 8.8 5.2 8.8 1.2 0 1.6-.6 2.6-.6s1.4.6 2.6.6c2.6 0 5.8-4.4 5.2-8.8-.8-5.4-6.2-5-7.8-3.8z" fill="#fff"/><path d="M12 8c-.4-2-1.8-3.4-1.8-3.4" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>'
-const BEKATLAR = [['h', 'Bitta son', ZAR_OQ], ['g', 'Ikki son', IKKI_OQ], ['y', 'O‘yin', OLMA_OQ]]
-const darsOxiri = () => `<div class="gl kd3" data-z="dars oxirida"><small>Dars oxirida · o‘z o‘yiningiz · Dasturini o‘qib berasiz</small><div class="kd3-r lb2">${miniMaydon({ ...M13.B3A, olma: [[3, 1], [5, 2], [4, 0]] }, { cls: 'kd-mk' })}</div><b>O‘z o‘yiningiz</b></div>`
-const LUPA = '<svg class="kd-xy" viewBox="0 0 100 64" aria-hidden="true"><rect x="0" y="0" width="100" height="64" rx="6" fill="#F4F8FD"/><rect x="14" y="12" width="40" height="11" rx="3" fill="#2F8FF0"/><rect x="14" y="26" width="40" height="11" rx="3" fill="#FF4F28"/><rect x="14" y="40" width="40" height="11" rx="3" fill="#2F8FF0"/><circle cx="70" cy="30" r="13" fill="none" stroke="#0D2137" stroke-width="3.4"/><path d="M79 40l10 10" stroke="#0D2137" stroke-width="4" stroke-linecap="round"/></svg>'
-const keyingiDars = () => `<div class="gl kd3" data-z="keyingi dars"><small>Keyingi dars</small><div class="kd3-r lb2">${LUPA}</div><b>14 · Xatoni topish</b></div>`
-const otganDars = () => `<div class="otd"><small>O‘tgan darsda</small><div class="tf-l"><div class="tf"><div class="tf-r">${yigma([['c', 'jon:-1']])}</div><div class="tf-t"><b>Jon</b><span>Tugasa, o‘yin tugaydi</span></div></div></div></div>`
+// natija (11, 12-qadam): sonlar kartaning boshida (natijaSon)
+const SINF_T = [['h', BALL_OQ, 'ta o‘yin tugadi', 28], ['g', KORSAT_OQ, 'ta mehmon yutdi', 17], ['y', JON_OQ, 'pog‘ona bajardi', 56]]
+const BOLA_T = [['h', BALL_OQ, 'ta o‘yin tugadi', 1], ['g', KORSAT_OQ, 'ta mehmon yutdi', 1], ['y', JON_OQ, 'pog‘ona bajardi', 4]]
 
-// natija (17, 18-qadam): ta random qo‘ydi · ta olma tushirdi · ta olma terdi
-const SINF_T = [['h', ZAR_OQ, 'ta random qo‘ydi', 168], ['g', OLMA_OQ, 'ta olma tushirdi', 512], ['y', YULDUZ_OQ, 'ta olma terdi', 140]]
-const BOLA_T = [['h', ZAR_OQ, 'ta random qo‘ydi', 14], ['g', OLMA_OQ, 'ta olma tushirdi', 41], ['y', YULDUZ_OQ, 'ta olma terdi', 20]]
-
-// 13-dars «Tasodifiy son» ekranlari (E) — 21.11. Matn manbasi: new-junior/manba/013-tasodifiy-son.md (qo'shtirnoq ichidagi gaplar — aynan).
-// 1–2-bekat: olma dasturi («▶ Ishga tushir» — olma tushadi), 3-bekat: o'yin («▶ Boshlash»; qahramon strelkalar bilan, olma dasturi olmani tushiradi).
+// 23-dars «Demo Day №1» ekranlari (E) — 22.11. Matn manbasi: new-junior/manba/023-demo-day-1.md v1 (qo'shtirnoq ichidagi gaplar — aynan).
+// Bola noutbukida: kosmik o'yin (mehmon o'ynaydi, kosmik.kerak = karta3/oynadi) va uy yo'riqnomasi kartasi (Y1). Sahnada kichik «Mening o‘yinim» kartasi (.kc-mini).
 const fO = (hint) => fB({ hint, label: `${PLAY}Boshlash` })
-const fI = (hint) => fB({ hint })
-const xyQator = (q) => `<div class="xyl">${q.map(([r, t]) => `<p data-r="${r}">${t}</p>`).join('')}</div>`
-const st = (o) => studiya({ aktiv: 'h', dunyo: null, ...o })
+const st = (o) => studiya({ aktiv: 'K', dunyo: null, ...o })
 const qg = (gap) => `<div class="cg qg"><span class="av">${momiqYuz()}</span><p><small>Momiq</small>${gap}</p></div>`
-const doska = (sar, cg, son, zinaR, kichik, iz = '') => `<div class="chap">${matn('Mashq', sar, cg)}<div class="tugatdi"><small>${kichik}</small><b>${son}<i> / 14</i></b>${yulduzlar14(son)}${iz ? `<span class="tg-iz">${iz}</span>` : ''}</div></div><div class="oyna">${world('hovli')}${zina(zinaR)}</div>`
-const H1 = 'Savatlarning X va Y sini o‘qing', H2 = 'X ga ham, Y ga ham random', H3 = 'Olma dasturini tuzing, keyin ▶ Boshlash'
-const bol = (tag, h, iz, id, hint, { r = [], oyin = false } = {}) => ({ body: () => st({ tag, h, iz, dst: dst13(r, DARS.studiya[id].chegara, { qah: oyin, sinov: !oyin }), sahna: maydon(M13[id], qahK()) }), foot: () => (oyin ? fO(hint) : fI(hint)) })
+const JV = DARS.javon
+const doska = (sar, cg, son, zinaR, kichik, iz = '', yorliq = 'Mashq') => `<div class="chap">${matn(yorliq, sar, cg)}<div class="tugatdi"><small>${kichik}</small><b>${son}<i> / 14</i></b>${yulduzlar14(son)}${iz ? `<span class="tg-iz">${iz}</span>` : ''}</div></div><div class="oyna kosmos-o">${world('kosmos')}${zina(zinaR)}</div>`
+// studiya sahnasi: maydon (dushman asli tepada), kapsulalar, sanoq «Dushman: 0», kichik karta
+const sahna = (aktyor, v = { ball: 0 }) => maydon({}, aktyor, { asl: [3, 4] }) + ozgQ(v) + sanoqK() + '<div class="gl kc-mini"></div>'
+const bol = (tag, h, iz, id, hint) => {
+  const b = DARS.studiya[id], P = b.bosh.personaj
+  return { body: () => st({ tag, h, iz, javon: JV, dst: dstP(b.chegara, { cur: P.tanla }), sahna: sahna(qahK()) }), foot: () => fO(hint) }
+}
+const H1 = 'Kartadagidek yuting', H2 = 'Mehmon o‘ynasin'
 const E = {
-  P1: { rol: 'p', b: 0, t: 't1', nom: 'Kirish', izoh: '1-qadam. Maydon, Coddy (3, 0) da; pastda «O‘tgan darsda» — jon.',
-    body: () => `<div class="chap">${matn('', 'Bugun o‘yin har safar <em>boshqacha</em>!', 'Salom! Bugun dastur sonni o‘zi tanlaydi.')}${otganDars()}</div><div class="oyna">${maydon(M13.HUK, coddyK())}</div>`,
+  P1: { rol: 'p', b: 0, t: 't1', nom: 'Kirish', izoh: '1-qadam. Kosmos maydoni; pastda «O‘tgan darsda» — taqdimot.',
+    body: () => `<div class="chap">${matn('', '<em>Demo Day</em>!', 'Salom, mehmonlar! O‘yinlarimizni ko‘rsatamiz.')}${otganDars()}</div><div class="oyna">${maydon({}, coddyK(), { asl: [3, 4], oq: [[3, 2]] })}</div>`,
     foot: () => fU('Kirdi: 12 / 14', 'Keyingi ›') },
-  P2: { rol: 'p', b: 0, t: 't1', nom: 'Savol', izoh: '2-qadam. Olma doim (3, 0) ga tushadi — Coddy qimirlamay yutdi («Olma: 3 / 3»); uchta karta.',
-    body: () => `<div class="chap">${matn('Savol', DARS.savol, 'Qimirlamay yutdim. Olma doim shu yerga tushadi.')}${hKartalar({ son: SONI })}</div><div class="oyna">${maydon(M13.HUK, coddyK())}<span class="gl oyin-yz">Olma: <b>3 / 3</b></span><span class="gl ball-qy">Har o‘yin boshqacha bo‘lsin</span></div>`,
-    foot: () => fU('Javob berdi: 14 / 14', 'Sinab ko‘ramiz ›') },
-  P2N: { rol: 'b', b: 0, t: 't1', nom: 'Savol (noutbukda)', izoh: '2-qadam, bola: kartani bosishning o‘zi javob.',
-    body: () => `<div class="chap">${matn('Savol', DARS.savol, 'Qaysi yo‘l bilan har o‘yin boshqacha bo‘ladi?')}${hKartalar()}</div><div class="oyna">${maydon(M13.HUK, coddyK())}<span class="gl ball-qy">Har o‘yin boshqacha bo‘lsin</span></div>`,
-    foot: () => fJim('Birini tanlang') },
-  P2S: { rol: 'p', b: 0, t: 't1', nom: 'Uch sinov', izoh: '3-qadam. Har kartada ikki o‘yin × uch olma: A — 5 · 5 · 5 ikki marta; B — 1 · 5 · 3 ikki marta; C — 4 · 1 · 6 va 2 · 5 · 0 (tanlov oldindan berilgan; studiya.js hukOlma).',
-    body: () => `<div class="chap">${matn('Savol', DARS.savol, 'Qimirlamay yutdim. Olma doim shu yerga tushadi.')}${hKartalar({ son: SONI, avto: true })}</div><div class="oyna">${maydon(M13.HUK, coddyK())}</div>`,
-    foot: () => fU('', 'Keyingi ›') },
-  P2C: { rol: 'p', b: 0, t: 't1', nom: 'Javob', izoh: '4-qadam. A va B xira, C oltin; maydonda C ning olti tushgan joyi xira belgi bilan.',
-    body: () => `<div class="chap">${matn('Javob', 'Dastur o‘zi <em>tanlaydi</em>', 'Endi olma qayerga tushishini men ham bilmayman.')}${hKartalar({ son: SONI, nat: true })}</div><div class="oyna">${olmaliMaydon(M13.HUK, coddyK(), [[4, 0, 1], [1, 0, 1], [6, 0, 1], [2, 0, 1], [5, 0, 1], [0, 0, 1]])}</div>`,
-    foot: () => fU('', 'Keyingi ›') },
-  P3: { rol: 'p', b: 0, t: 't1', nom: 'Yangi so‘z: tasodifiy son', izoh: '5-qadam. «Keyingi» — birma-bir: zar va random 1 to 6; «4»; «2» (studiya.js, raqam).',
-    body: () => `<div class="chap">${matn('Yangi so‘z', '<em>Tasodifiy son</em> nima?', 'Tasodifiy son — dastur o‘zi tanlaydigan son.')}${xyQator([[1, '<span class="hq">1 dan 6 gacha — zar kabi</span>'], [2, '<span class="hq"><b class="zr-k">4</b>Bu safar — 4</span>'], [3, '<span class="hq"><b class="zr-k">2</b>Har safar boshqa son</span>']])}</div><div class="oyna">${world('hovli')}<div class="qt-o" data-r="1">${zarRasm()}</div></div>`,
-    foot: () => fU('', 'Keyingi ›') },
-  P4: { rol: 'p', b: 0, t: 't2', nom: 'Reja', izoh: '6-qadam. Tepalik: uch bekat; cho‘qqida — dars oxirida nima bo‘lishi.',
-    body: () => `<div class="oyna to">${world('hovli')}<div class="gl pan">${matn('Reja', 'Bugun nima <em>qilamiz</em>?', 'Uchta bekat. Birinchisidan boshlaymiz.')}</div>${darsOxiri()}${tepalik({ otdi: 0, joy: 0 })}</div>`,
+  P4: { rol: 'p', b: 0, t: 't2', nom: 'Reja', izoh: '2-qadam.',
+    body: () => `<div class="oyna to">${world('kosmos')}<div class="gl pan">${matn('Reja', 'Bugun nima <em>qilamiz</em>?', 'Uchta bekat. Oxirida uyga yo‘riqnoma olasiz.')}</div>${darsOxiri()}${tepalik({ otdi: 0, joy: 0 })}</div>`,
     foot: () => fU('', 'Boshladik ›') },
-  P6: { rol: 'p', b: 1, t: 't3', nom: 'Ko‘ramiz: random bloki', izoh: '7-qadam. Savatlar (1, 0)…(5, 0); Coddy (6, 2); ustoz go to qo‘yadi, X ga random; tanlov: «8» — maydondan tashqari, keyin 1 to 5 bilan 4, 2, 5 (solo’da dastur tayyor).',
-    body: () => st({ tag: 'Ko‘ramiz', h: '<em>random</em> — tasodifiy son', dst: dst13([['y', 'r1-10,0', 'solo-faqat']], 2), sahna: maydon(M13.P6, coddyK()) }),
+  P7: { rol: 'p', b: 1, t: 't1', nom: 'Ko‘ramiz: Demo Day qoidalari', izoh: '3-qadam. Uch qator: mehmon o‘ynaydi, bola aytib beradi, savolga javob beradi.',
+    body: () => `<div class="chap">${matn('Qoidalar', 'Demo Day <em>qoidalari</em>', 'Bolalar o‘z o‘yinini ko‘rsatadi.')}${qoidaKarta()}</div><div class="oyna">${maydon({}, coddyK(), { asl: [3, 4], oq: [[3, 2]] })}</div>`,
     foot: () => fU('', 'Keyingi ›') },
-  P5: { rol: 'p', b: 1, t: 't1', nom: 'Sinf doskasi: bitta son', izoh: '8-qadam.',
-    body: () => doska('Endi <em>o‘zingiz</em>!', 'Savatlarni o‘qing va random sonlarini tanlang.', 4, POG.bir, 'Uch pog‘onani tugatdi', 'Har belgi — uch pog‘onani tugatgan bitta bola'),
+  P5: { rol: 'p', b: 1, t: 't1', nom: 'Sinf doskasi: oxirgi sinov', izoh: '4-qadam.',
+    body: () => doska('O‘yinni <em>sinab</em> oling!', 'Mehmonlar kelishidan oldin — oxirgi sinov.', 5, POG.sinov, 'O‘yinni yutdi', 'Har belgi — o‘yinni yutgan bitta bola', '', 'Mashq'),
     foot: () => fU('Yordam so‘radi: 1 ta noutbuk', 'Keyingi ›') },
-  P4B: { rol: 'p', b: 2, t: 't2', nom: 'Reja · 2-bekat', izoh: '9-qadam.',
-    body: () => `<div class="oyna to">${world('hovli')}<div class="gl pan">${matn('Reja · 2-bekat', '2 · <em>Ikki son</em>', 'Endi X ham, Y ham tasodifiy.')}</div>${darsOxiri()}${tepalik({ otdi: 1, joy: 2 })}</div>`,
+  P4B: { rol: 'p', b: 2, t: 't2', nom: 'Reja · 2-bekat', izoh: '5-qadam.',
+    body: () => `<div class="oyna to">${world('kosmos')}<div class="gl pan">${matn('Reja · 2-bekat', '2 · <em>Ko‘rsatamiz</em>', 'Endi mehmonlar o‘ynaydi!')}</div>${darsOxiri()}${tepalik({ otdi: 1, joy: 2 })}</div>`,
     foot: () => fU('', 'Keyingi ›') },
-  P7: { rol: 'p', b: 2, t: 't3', nom: 'Ko‘ramiz: ikki son', izoh: '10-qadam. Savatlar (3, 1)…(5, 2); tayyor go to x: (random 3 to 5) y: 1 — «4»: (4, 1), Kamvoy «Bu savat bo‘sh qoladi!»; Y ga random 1 to 2 — (5, 2), (3, 1), (4, 2).',
-    body: () => st({ tag: 'Ko‘ramiz', h: 'Ikki son — ikki <em>random</em>', dst: dst13([['y', 'r3-5,1']], 3), sahna: maydon(M13.P7, coddyK()) }),
+  P8: { rol: 'p', b: 2, t: 't3', nom: 'Ko‘ramiz: mehmon qanday o‘ynaydi', izoh: '6-qadam. Ustoz o‘yinni o‘ynaydi: ← → va probel.',
+    body: () => st({ tag: 'Ko‘ramiz', h: 'Qanday <em>o‘ynaladi</em>', javon: JV, dst: dstP(12, { cur: 'raketa' }), sahna: sahna(coddyK()) }),
     foot: () => fU('', 'Keyingi ›') },
-  P5G: { rol: 'p', b: 2, t: 't1', nom: 'Sinf doskasi: ikki son', izoh: '11-qadam.',
-    body: () => doska('Ikkala son <em>tasodifiy</em>!', 'Savatlarning chetlarini toping — X va Y uchun.', 5, POG.ikki, 'Uch pog‘onani tugatdi'),
+  P5G: { rol: 'p', b: 2, t: 't1', nom: 'Sinf doskasi: mehmon o‘ynaydi', izoh: '7-qadam.',
+    body: () => doska('Mehmon <em>o‘ynaydi</em>!', 'Siz aytasiz — mehmon o‘ynaydi.', 6, POG.mehmon, 'O‘yin tugadi', 'Har belgi — mehmon o‘ynagan bitta bola', '', 'Demo Day'),
     foot: () => fU('Yordam so‘radi: 1 ta noutbuk', 'Keyingi ›') },
-  P9: { rol: 'p', b: 2, t: 't1', nom: 'Xulosa: tasodifiy son', izoh: '12-qadam. Ikki karta; o‘ngda 10-qadamdagi savatlar va tushgan joylar.',
-    body: () => `<div class="chap">${matn('Xulosa', '<em>Tasodifiy son</em>', 'Dastur sonni o‘zi tanladi — har safar boshqa.')}<div class="tf-l"><div class="tf"><div class="tf-r"><span class="zr-b">${mb('m', '1-6')}<b class="zr-s on">4</b></span></div><div class="tf-t"><b>Tasodifiy son</b><span>Dastur o‘zi tanlaydigan son</span></div></div><div class="tf"><div class="tf-r">${mb('m', '2-4')}</div><div class="tf-t"><b>random 2 to 4</b><span>2, 3 yoki 4</span></div></div></div></div><div class="oyna">${olmaliMaydon(M13.P7, coddyK(), [[4, 1, 1], [5, 2, 1], [3, 1, 1], [4, 2]])}</div>`,
+  P4C: { rol: 'p', b: 3, t: 't2', nom: 'Reja · 3-bekat', izoh: '8-qadam.',
+    body: () => `<div class="oyna to">${world('kosmos')}<div class="gl pan">${matn('Reja · 3-bekat', '3 · <em>Uyga olib ketamiz</em>', 'Endi uyga yo‘riqnoma!')}</div>${darsOxiri()}${tepalik({ otdi: 2, joy: 3 })}</div>`,
     foot: () => fU('', 'Keyingi ›') },
-  P4C: { rol: 'p', b: 3, t: 't2', nom: 'Reja · 3-bekat', izoh: '13-qadam.',
-    body: () => `<div class="oyna to">${world('hovli')}<div class="gl pan">${matn('Reja · 3-bekat', '3 · <em>O‘yin</em>', 'Oxirgi bekat: o‘yin har safar boshqacha.')}</div>${darsOxiri()}${tepalik({ otdi: 2, joy: 3 })}</div>`,
+  P10: { rol: 'p', b: 3, t: 't1', nom: 'Ko‘ramiz: uy yo‘riqnomasi', izoh: '9-qadam. Uch qadam va jadval «Blok studiya → Scratch».',
+    body: () => `<div class="chap">${matn('Uyga', 'Uyda <em>davom eting</em>', 'Scratch — bolalar uchun bepul sayt.')}${uyKarta()}</div><div class="oyna kosmos-o">${world('kosmos')}</div>`,
     foot: () => fU('', 'Keyingi ›') },
-  P8: { rol: 'p', b: 3, t: 't3', nom: 'Ko‘ramiz: o‘yin', izoh: '14-qadam. Savatlar (0, 0)…(6, 0); Coddy (3, 2); «Qahramon» tayyor; ustoz olma dasturiga go to x: (random 0 to 6) y: 0; o‘yin — tanlov 5, 1, keyin yangi o‘yinda 2 (solo’da dastur tayyor).',
-    body: () => st({ tag: 'Ko‘ramiz', h: 'O‘yin: <em>olma terish</em>', dst: dst13([['y', 'r0-6,0', 'solo-faqat']], 2, { qah: true, sinov: false }), sahna: maydon(M13.P8, coddyK()) }),
+  P5B: { rol: 'p', b: 3, t: 't1', nom: 'Sinf doskasi: yo‘riqnoma', izoh: '10-qadam.',
+    body: () => doska('Yo‘riqnomani <em>oling</em>!', 'Uyga olib ketasiz.', 6, POG.yoriq, 'Yo‘riqnomani oldi', 'Har belgi — yo‘riqnomani olgan bitta bola', '', 'Uyga'),
+    foot: () => fU('Yo‘riqnomani oldi: 6 / 14', 'Keyingi ›') },
+  P12: { rol: 'p', b: 4, t: 't2', nom: 'Yakun', izoh: '11-qadam.',
+    body: () => `<div class="oyna to">${world('kosmos')}${KONFETI()}<div class="gl pan">${matn('Yakun', 'Demo Day <em>tugadi</em>!', '1-modul tugadi!')}<div class="tm ix"><small class="bsoz">Bugun</small><div class="tr"><span class="ti d"><i></i><i></i><i></i></span><span><b>Tayyorlandik · Ko‘rsatdik · Uyga oldik</b>O‘z o‘yiningizni yasadingiz</span></div></div></div>${keyingiDars()}${tepalik({ otdi: 3, joy: 3, pose: 'quvonadi' })}</div>`,
     foot: () => fU('', 'Keyingi ›') },
-  P5B: { rol: 'p', b: 3, t: 't1', nom: 'Sinf doskasi: o‘yin', izoh: '15-qadam.',
-    body: () => doska('O‘yiningizni <em>tuzing</em>!', 'Olma dasturini tuzing, keyin o‘ynang.', 6, POG.oyin, 'Uch o‘yinni yutdi'),
-    foot: () => fU('Yordam so‘radi: 1 ta noutbuk', 'Keyingi ›') },
-  P11: { rol: 'p', b: 3, t: 't3', nom: 'Olma dasturingizni o‘qib bering', izoh: '16-qadam. Maydon savatsiz, Coddy (3, 2); olma dasturi bo‘sh — bola o‘qiydi, ustoz qo‘yadi va o‘ynaydi. Proyektorda ism yo‘q; bola noutbukida — oxirgi yechgan pog‘onasi (A·1).',
-    body: () => st({ tag: 'Ko‘rsatish', h: 'Olma dasturingizni <em>o‘qib bering</em>', iz: 'Siz o‘qiysiz — men teraman.', dst: dst13([], 3, { qah: true, sinov: false }), sahna: maydon(M13.P11, coddyK()) }),
-    foot: () => fU('', 'Keyingi ›') },
-  P12: { rol: 'p', b: 4, t: 't2', nom: 'Yakun', izoh: '17-qadam.',
-    body: () => `<div class="oyna to">${world('hovli')}${KONFETI()}<div class="gl pan">${matn('Yakun', 'O‘yiningiz har safar <em>boshqacha</em>!', '')}<div class="tm ix"><small class="bsoz">Bugungi so‘z</small><div class="tr"><span class="ti d"><i></i><i></i><i></i></span><span><b>Tasodifiy son</b>Dastur o‘zi tanlaydigan son</span></div></div></div>${keyingiDars()}${tepalik({ otdi: 3, joy: 3, pose: 'quvonadi' })}</div>`,
-    foot: () => fU('', 'Keyingi ›') },
-  P14: { rol: 'p', b: 4, t: 't1', nom: 'Sinfimiz bugun', izoh: '18-qadam. Butun sinf jami (haqiqiy son, ismsiz).',
-    body: () => `<div class="chap">${matn('Sinf natijasi', 'Sinfimiz <em>bugun</em>', 'Hammangiz zo‘r ishladingiz!')}${sinfNatija()}</div><div class="oyna">${world('hovli')}${KONFETI()}<div class="qq sn-qq"><span class="m1">${hero({ k: 'momiq', mood: 'xursand' })}</span><span class="m2">${robot({ pose: 'quvonadi' })}</span><span class="m3">${hero({ k: 'katak', mood: 'xursand' })}</span></div></div>`,
+  P14: { rol: 'p', b: 4, t: 't1', nom: 'Sinfimiz bugun', izoh: '12-qadam. Butun sinf jami (haqiqiy son, ismsiz).',
+    body: () => `<div class="chap">${matn('Sinf natijasi', 'Sinfimiz <em>bugun</em>', 'Hammangiz zo‘r ishladingiz!')}${sinfNatija()}</div><div class="oyna kosmos-o">${world('kosmos')}${KONFETI()}<div class="qq sn-qq"><span class="m1">${hero({ k: 'momiq', mood: 'xursand' })}</span><span class="m2">${robot({ pose: 'quvonadi' })}</span><span class="m3">${hero({ k: 'katak', mood: 'xursand' })}</span></div></div>`,
     foot: () => fU('', 'Darsni yakunlash') },
 
   // ---- bola noutbuki ----
   B0: { rol: 'b', b: 0, t: 't4', nom: 'Darsga kirish', izoh: '1-qadam.',
-    body: () => kutish({ kech: false, uq: '', h: 'Salom, <em>Aziz</em>!', sub: '', aktyor: yolchaYakka(coddyQ('', 'salom', 'xursand')) }),
+    body: () => kutish({ kech: false, uq: '', h: 'Salom, <em>Aziz</em>!', sub: '', dunyo: 'kosmos', aktyor: yolchaYakka(coddyQ('', 'salom', 'xursand')) }),
     foot: () => fKid('Tayyor bo‘lsangiz — tugmani bosing', 'Tayyorman') },
   BK: { rol: 'b', b: 0, t: 't4', nom: 'Ustoz ekraniga qarang', izoh: 'Ustoz ko‘rsatayotganda.',
-    body: () => kutish({ h: 'Ustoz ekraniga qarang', sub: 'Ustozni tinglang', aktyor: yolchaYakka(momiqQ('', 'xursand')) }),
+    body: () => kutish({ h: 'Ustoz ekraniga qarang', sub: 'Ustozni tinglang', dunyo: 'kosmos', aktyor: yolchaYakka(momiqQ('', 'xursand')) }),
     foot: () => fJim('') },
   BQ: { rol: 'b', b: 0, t: 't2', nom: 'Qahramon tanlash', izoh: 'Faqat qahramoni yo‘q bolaga (94-qaror).',
-    body: () => `<div class="oyna to">${world('hovli')}<div class="gl pan">${matn('Qahramon', 'Qahramoningizni <em>tanlang</em>', 'Birini tanlang — bugun unga buyruq berasiz.')}</div>${tanlovQator('momiq')}</div>`,
+    body: () => `<div class="oyna to">${world('kosmos')}<div class="gl pan">${matn('Qahramon', 'Qahramoningizni <em>tanlang</em>', 'Birini tanlang — bugun unga buyruq berasiz.')}</div>${tanlovQator('momiq')}</div>`,
     foot: () => fJim('Birini tanlang') },
-  B1A: { rol: 'b', b: 1, t: 't3', nom: 'Mashq · 1-pog‘ona', izoh: '8-qadam. go(R0-6, 2).', ...bol('Mashq · 1-pog‘ona', 'Butun <em>qator</em>', 'Olma istalgan savatga tushsin.', 'B1A', H1) },
-  B1B: { rol: 'b', b: 1, t: 't3', nom: 'Mashq · 2-pog‘ona', izoh: '8-qadam. go(R2-4, 0).', ...bol('Mashq · 2-pog‘ona', 'Uchta <em>savat</em>', 'Olma faqat savatlarga tushsin.', 'B1B', H1) },
-  B1C: { rol: 'b', b: 1, t: 't3', nom: 'Mashq · 3-pog‘ona', izoh: '8-qadam. go(3, R0-4).', ...bol('Mashq · 3-pog‘ona', '<em>Ustun</em>', 'Savatlar ustma-ust.', 'B1C', H1) },
-  B1Y: { rol: 'b', b: 1, t: 't3', nom: 'Mashq · ★ qo‘shimcha', izoh: '8-qadam. go(R1-3, 4) go(R5-6, 0).', ...bol('Mashq · ★ qo‘shimcha', 'Ikki <em>olma</em>', '1-olma «1» savatlarga, 2-olma «2» savatlarga.', 'B1Y', H1) },
-  B2A: { rol: 'b', b: 2, t: 't3', nom: 'Mashq · 1-pog‘ona', izoh: '11-qadam. go(R0-1, R2-3).', ...bol('Mashq · 1-pog‘ona', 'Kichik <em>kvadrat</em>', 'To‘rtta savat.', 'B2A', H2) },
-  B2B: { rol: 'b', b: 2, t: 't3', nom: 'Mashq · 2-pog‘ona', izoh: '11-qadam. go(R2-4, R0-1).', ...bol('Mashq · 2-pog‘ona', '<em>To‘rtburchak</em>', 'Olti savat.', 'B2B', H2) },
-  B2C: { rol: 'b', b: 2, t: 't3', nom: 'Mashq · 3-pog‘ona', izoh: '11-qadam. go(R2-5, R0-2).', ...bol('Mashq · 3-pog‘ona', 'Katta <em>to‘rtburchak</em>', 'O‘n ikki savat.', 'B2C', H2) },
-  B2Y: { rol: 'b', b: 2, t: 't3', nom: 'Mashq · ★ qo‘shimcha', izoh: '11-qadam. R3[go(R3-5, R0-1)].', ...bol('Mashq · ★ qo‘shimcha', 'Olma <em>yomg‘iri</em>', 'Bir ishga tushirishda uchta olma.', 'B2Y', H2) },
-  B3A: { rol: 'b', b: 3, t: 't3', nom: 'O‘yin · 1-pog‘ona', izoh: '15-qadam. Tayyor go(4, 1) — random qo‘shiladi: go(R3-5, R0-2).', ...bol('Mashq · 1-pog‘ona', 'Bog‘ <em>o‘rtasi</em>', 'Olma dasturida random yo‘q.', 'B3A', H3, { r: [['y', '4,1']], oyin: true }) },
-  B3B: { rol: 'b', b: 3, t: 't3', nom: 'O‘yin · 2-pog‘ona', izoh: '15-qadam. go(R1-4, 4).', ...bol('Mashq · 2-pog‘ona', 'Tepa <em>qator</em>', 'Savatlar eng tepada.', 'B3B', H3, { oyin: true }) },
-  B3C: { rol: 'b', b: 3, t: 't3', nom: 'O‘yin · 3-pog‘ona', izoh: '15-qadam. go(0, R0-3).', ...bol('Mashq · 3-pog‘ona', 'Chap <em>ustun</em>', 'Savatlar chap chetda.', 'B3C', H3, { oyin: true }) },
-  B3Y: { rol: 'b', b: 3, t: 't3', nom: 'O‘yin · ★ qo‘shimcha', izoh: '15-qadam. Savatsiz: random bor, maydondan chiqmaydi, daraxt va gulga tushmaydi, kamida 2 joy.', ...bol('Mashq · ★ qo‘shimcha', 'O‘z <em>o‘yiningiz</em>', 'Olmalar qayerga tushishini o‘zingiz tanlang.', 'B3Y', H3, { oyin: true }) },
-  B5: { rol: 'b', b: 4, t: 't1', nom: 'O‘z natijasi', izoh: '17–18-qadam. «Siz bugun» — haqiqiy son.',
-    body: () => `<div class="chap">${matn('Sizning natijangiz', 'O‘yiningiz har safar <em>boshqacha</em>!', '')}${qg('Olmalarni dastur o‘zi tanlagan joylarga tushirdingiz.')}<small class="st-s">Siz bugun</small>${sinfNatija(BOLA_T)}</div><div class="oyna">${olmaliMaydon(M13.B3A, qahK(), [[3, 1], [5, 2, 1], [4, 0, 1]])}<div class="gl kd2 a-tr"><small>Momiq</small><b>Keyingi darsda xatolarni topamiz — ko‘rishguncha!</b></div></div>`,
+  B1A: { rol: 'b', b: 1, t: 't3', nom: 'Oxirgi sinov', izoh: '4-qadam. 22-dars o‘yini (bo‘lmasa karta bo‘yicha tayyor) — bola kartadagidek yutadi.', ...bol('Oxirgi sinov', '<em>Oxirgi</em> sinov', 'Kartadagidek yuting', 'B1A', H1) },
+  B2A: { rol: 'b', b: 2, t: 't3', nom: 'Mehmon · 1', izoh: '7-qadam. Mehmon o‘yinni o‘ynaydi (bola aytib beradi); o‘yin tugashi sanaladi.', ...bol('Mehmon · 1', 'Mehmon <em>o‘ynaydi</em>', 'Mehmon o‘yinni o‘ynasin', 'B2A', H2) },
+  B2Y: { rol: 'b', b: 2, t: 't3', nom: 'Mehmon · ★', izoh: '7-qadam. Mehmon yutadi — kartadagidek.', ...bol('Mehmon · ★', 'Mehmon <em>yutdi</em>', 'Mehmon yutsin — kartadagidek', 'B2Y', H2) },
+  Y1: { rol: 'b', b: 3, t: 't1', nom: 'Yo‘riqnoma kartasi', izoh: '10-qadam. «Uyda davom eting» kartasi — uch qadam va jadval; asosiy tugma «Yo‘riqnoma tayyor».',
+    body: () => `<div class="chap">${matn('Uyga', 'Uyda <em>davom eting</em>', 'Yo‘riqnoma kartasini o‘qing.')}${uyKarta()}</div><div class="oyna kosmos-o">${world('kosmos')}<div class="kc-xul" hidden></div></div>`,
+    foot: () => fKid('Uyda ota-onangiz bilan davom etasiz', 'Yo‘riqnoma tayyor') },
+  B5: { rol: 'b', b: 4, t: 't1', nom: 'O‘z natijasi', izoh: '11–12-qadam. «Siz bugun» — haqiqiy son.',
+    body: () => `<div class="chap">${matn('Sizning natijangiz', 'Demo Day <em>tugadi</em>!', '')}${qg('Mening o‘yinim bor!')}<small class="st-s">Siz bugun</small>${sinfNatija(BOLA_T)}</div><div class="oyna">${maydon({}, qahK(), { asl: [3, 4], dush: [[5, 2]], oq: [[1, 2]] })}${ozgQ({ ball: 6, jon: 3 })}<div class="gl kd2 a-tr"><small>Momiq</small><b>Keyingi darsda sun‘iy intellektni o‘rganamiz!</b></div></div>`,
     foot: () => fJim('Dars tugadi') },
 }
 
-// 13-dars «Tasodifiy son» qadamlari (QADAM) va ustoz varag'i (VARAQ) — 21.11. Manba: new-junior/manba/013-tasodifiy-son.md, 18 qadam.
-// 16-qadam bola ro'yxati 'oxirgi' (A·1) — bola noutbukida oxirgi yechgan pog'onasi o'z dasturi bilan.
+// 23-dars «Demo Day №1» qadamlari (QADAM) va ustoz varag'i (VARAQ) — 22.11. Manba: new-junior/manba/023-demo-day-1.md v1, 12 qadam.
 const QADAM = [
   ['Kirish', 'P1', ['B0', 'BK']],
-  ['Savol: olma har safar boshqa joyga qanday tushadi?', 'P2', ['P2N', 'BK']],
-  ['Uch sinov', 'P2S', ['BK'], 'Ustoz yo‘llarni sinayapti — kuzating'],
-  ['Javob: dastur o‘zi tanlaydi', 'P2C', ['BK']],
-  ['Yangi so‘z: tasodifiy son', 'P3', ['BK'], 'Yangi so‘z: tasodifiy son'],
   ['Reja', 'P4', ['BK'], 'Bugun: uchta bekat'],
-  ['Ko‘ramiz: random bloki', 'P6', ['BK'], 'Ustoz random blokini ko‘rsatyapti — kuzating'],
-  ['Bitta son: pog‘onalar', 'P5', ['B1A', 'B1B', 'B1C', 'B1Y', 'BK']],
-  ['2-bekat', 'P4B', ['BK'], '2-bekat: ikki son'],
-  ['Ko‘ramiz: ikki son', 'P7', ['BK'], 'Ustoz ikkinchi random qo‘yyapti — kuzating'],
-  ['Ikki son: pog‘onalar', 'P5G', ['B2A', 'B2B', 'B2C', 'B2Y', 'BK']],
-  ['Xulosa: tasodifiy son', 'P9', ['BK'], 'Xulosa: tasodifiy son'],
-  ['3-bekat', 'P4C', ['BK'], '3-bekat: o‘yin'],
-  ['Ko‘ramiz: o‘yin', 'P8', ['BK'], 'Ustoz o‘ynayapti — kuzating'],
-  ['O‘yin: pog‘onalar', 'P5B', ['B3A', 'B3B', 'B3C', 'B3Y', 'BK']],
-  ['Olma dasturingizni o‘qib bering', 'P11', 'oxirgi'],
+  ['Ko‘ramiz: Demo Day qoidalari', 'P7', ['BK'], 'Ustoz qoidalarni aytyapti'],
+  ['O‘zingiz: oxirgi sinov', 'P5', ['B1A', 'BK']],
+  ['2-bekat', 'P4B', ['BK'], '2-bekat: ko‘rsatamiz'],
+  ['Ko‘ramiz: mehmon qanday o‘ynaydi', 'P8', ['BK'], 'Ustoz o‘yinni ko‘rsatyapti — kuzating'],
+  ['O‘zingiz: mehmon o‘ynaydi', 'P5G', ['B2A', 'B2Y', 'BK']],
+  ['3-bekat', 'P4C', ['BK'], '3-bekat: uyga olib ketamiz'],
+  ['Ko‘ramiz: uy yo‘riqnomasi', 'P10', ['BK'], 'Ustoz yo‘riqnomani ko‘rsatyapti'],
+  ['O‘zingiz: yo‘riqnoma kartasi', 'P5B', ['Y1', 'BK']],
   ['Yakun', 'P12', ['B5']],
   ['Sinfimiz bugun', 'P14', ['B5']],
 ]
 // ustoz varag'i: [Ekranda · Siz (manbadagi tayanch gaplar, aynan) · Bola o'rganadi]
 const VARAQ = [
-  ['«13-dars · Tasodifiy son» — «Bugun o‘yin har safar boshqacha!» Maydon, Coddy (3, 0); pastda «O‘tgan darsda» — jon.', '«O‘tgan darsda o‘yinga jon qo‘shdik.» «Bugun olma har safar boshqa joyga tushadi.» «Noutbukda «Tayyorman» tugmasini bosing.»', 'Bugun olma har safar boshqa joyga tushadi.'],
-  ['Savol: «Olma har safar boshqa joyga qanday tushadi?» Olma doim (3, 0) ga — Coddy qimirlamay yutdi. Uchta karta: A «Boshqa son qo‘yamiz» · B «Navbat bilan uch joy» · C «Dastur o‘zi tanlasin».', '«Olma doim bir joyga tushadi — o‘ynash qiziq emas. Har o‘yin boshqacha bo‘lsin.» «Har kim noutbukida bitta kartani tanlasin: qanday qilamiz?»', 'Taxmin qiladi — bu huk.'],
-  ['Uch sinov: har kartada ikki o‘yin × uch olma. A — «1-o‘yin: 5 · 5 · 5», «2-o‘yin: 5 · 5 · 5» — ✕. «Keyingi» — B: 1 · 5 · 3 ikki marta — ✕. «Keyingi» — C: 4 · 1 · 6 va 2 · 5 · 0 — ✓.', '«Boshqa son ham, navbat ham — ikkinchi o‘yinda o‘sha-o‘sha. Yodlab olsa bo‘ladi.» «Uchinchisida sonni dastur o‘zi tanladi — har o‘yin boshqacha.»', 'Dastur sonni o‘zi tanlay oladi.'],
-  ['Javob: «Dastur o‘zi tanlaydi». A va B xira, C oltin; maydonda olti tushgan joy.', '«Sonni o‘zimiz yozmaymiz — dastur har safar o‘zi tanlaydi. Shuning uchun har o‘yin boshqacha.»', 'Dastur o‘zi tanlaydi.'],
-  ['Yangi so‘z: «Tasodifiy son nima?» «Keyingi» — birma-bir: zar va random 1 to 6 → «4» → «2».', '«Tasodifiy son — dastur o‘zi tanlaydigan son. Qaysi biri — oldindan bilmaymiz.» «random 1 to 6 — 1 dan 6 gacha istalgan son. Lekin 7 hech qachon chiqmaydi.»', 'Yangi so‘z: tasodifiy son.'],
-  ['Reja: tepalik — bitta son → ikki son → o‘yin; cho‘qqida «o‘z o‘yiningiz · Dasturini o‘qib berasiz».', '«Bugun uchta bekat: bitta son, ikki son, o‘yin.» «Dars oxirida olmalari har safar boshqa joyga tushadigan o‘z o‘yiningizni tuzasiz.»', 'Darsda qayerda turganini biladi.'],
-  ['Ko‘ramiz: «random — tasodifiy son». Javondan go to x: 0 y: 0; X dagi sonni bosing — «random»: go to x: (random 1 to 10) y: 0. «▶ Ishga tushir»: «8» — olma maydondan chiqdi, Kamvoy «Maydon tugadi!» («random 8 ni tanladi. Maydonda X — 0 dan 6 gacha»). Sonlarni 1 va 5 ga — uch marta: 4, 2, 5 — «Har safar boshqa joy!».', '«random — tasodifiy. Dastur shu sonlar orasidan birini o‘zi tanlaydi.» «Sonlarni savatlarga qarab tanlaymiz: 1 dan 5 gacha.» «Endi o‘zingiz.»', 'random bloki.'],
-  ['Mashq: «Endi o‘zingiz!» — zinapoya: 1 butun qator · 2 uchta savat · 3 ustun · ★ ikki olma.', '«Avval savatlarni o‘qing: X i qaysi sondan qaysi songacha? Y i-chi?» «Uch marta ishga tushiring — har safar savatga tushyaptimi?» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'Bitta sonni tasodifiy qiladi.'],
-  ['Tepalik: 1-bekat ✓ — «Ikki son».', '«Bitta tasodifiy sonni bildik. Endi ikkalasi tasodifiy bo‘ladi.»', 'Darsda qayerda turganini biladi.'],
-  ['Ko‘ramiz: «Ikki son — ikki random». Tayyor go to x: (random 3 to 5) y: 1 — «4»: Kamvoy «Bu savat bo‘sh qoladi!» («(3, 2) dagi savatga olma tushmaydi. random sonlarini tekshiring»). Y ga random 1 to 2 — (5, 2), (3, 1), (4, 2).', '«Bitta random — bitta son. Savatlar ikki qatorda bo‘lsa, Y ham tasodifiy bo‘lsin.» «X ning o‘z random i, Y ning o‘z random i. Har biri o‘z sonlari bilan.» «Endi o‘zingiz.»', 'Ikkala sonni tasodifiy qiladi.'],
-  ['Mashq: «Ikkala son tasodifiy!» — zinapoya: 1 kichik kvadrat · 2 to‘rtburchak · 3 katta to‘rtburchak · ★ olma yomg‘iri.', '«Chap pastki savat va o‘ng yuqori savat — ularning X va Y si sizga kerak.» «Daraxt va gulga tushmasin — sonlarni ortiqcha olmang.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'X ga ham, Y ga ham random.'],
-  ['Xulosa: «Tasodifiy son». Ikki karta: dastur o‘zi tanlaydigan son; random 2 to 4 — 2, 3 yoki 4.', '«Tasodifiy son — dastur o‘zi tanlaydigan son.» «random 2 to 4 — 2, 3 yoki 4. Qaysi biri — bilmaymiz, lekin shu sonlardan biri.»', 'Tasodifiy son nima ekanini aytadi.'],
-  ['Tepalik: 1, 2 ✓ — «O‘yin».', '«Ikki bekatdan o‘tdik. Oxirgisi — olma terish o‘yini.»', 'Darsda qayerda turganini biladi.'],
-  ['Ko‘ramiz: «O‘yin: olma terish». «Qahramon» tayyor; olma dasturiga go to x: (random 0 to 6) y: 0. «▶ Boshlash»: «O‘yin: strelkalarni bosing · Olma: 0 / 5»; olma (5, 0) ga; ↓ ↓ → → — oldi, «Olma: 1 / 5»; yangi olma (1, 0) ga. «■ To‘xtatish», yana «▶ Boshlash» — birinchi olma endi (2, 0) ga.', '«Qahramonni strelkalar bilan yurgizamiz. Olmani esa dastur tushiradi.» «Olma olindi — olma dasturi yana ishlaydi, random yana son tanlaydi.» «Endi o‘zingiz: olma dasturini tuzing va o‘ynang.»', 'Tasodifiy o‘yin.'],
-  ['Mashq: «O‘yiningizni tuzing!» — zinapoya: 1 bog‘ o‘rtasi · 2 tepa qator · 3 chap ustun · ★ o‘z o‘yiningiz.', '«Avval olma dasturi: random sonlari savatlarga qarab. Keyin «▶ Boshlash».» «Beshta olmani terganingizda — yutdingiz.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'O‘z o‘yinini tuzadi.'],
-  ['«Olma dasturingizni o‘qib bering». Maydon savatsiz, olma dasturi bo‘sh. Proyektorda ism yo‘q; bola noutbukida — oxirgi yechgan pog‘onasi.', '«Kim olma dasturini o‘qib beradi? Avval X, keyin Y: qaysi sondan qaysi songacha.» «Kuzating: olmalar qayerlarga tushyapti?»', 'Olma dasturini o‘qib beradi.'],
-  ['Yakun: «O‘yiningiz har safar boshqacha!» Bugungi so‘z — tasodifiy son; keyingi dars — 14 · Xatoni topish.', '«Uchala bekatdan o‘tdik: bitta son, ikki son, o‘yin.» «Bugungi so‘z — tasodifiy son: dastur o‘zi tanlaydigan son.» «Keyingi darsda dasturlardagi xatolarni topib tuzatamiz.»', 'O‘z natijasini ko‘radi.'],
-  ['Sinfimiz bugun: nechta random qo‘yildi, nechta olma tushirildi va terildi (haqiqiy son, ismsiz).', '«Hammangiz zo‘r ishladingiz!» (keyin raqamlarni o‘qiydi) «Kompyuter o‘yinlarida ham shunday: sovg‘a va to‘siq har safar boshqa joyda chiqadi.»', 'Sinf bilan birga natijani ko‘radi.'],
+  ['«23-dars · Demo Day №1» — «Demo Day!» Kosmos maydoni: raketa, o‘q, dushman; pastda «O‘tgan darsda» — taqdimot.', '«Hurmatli mehmonlar, xush kelibsiz! Bugun bolalar o‘z o‘yinlarini ko‘rsatadi.» «O‘tgan darsda o‘yinimiz haqida gapirishni mashq qildik.» «Noutbukda «Tayyorman» tugmasini bosing.»', 'Darsga kiradi, mehmonlarni salomlaydi.'],
+  ['Reja: tepalik — tayyorlanamiz → ko‘rsatamiz → uyga olib ketamiz; cho‘qqida «Dars oxirida · uy yo‘riqnomasi».', '«Bugun uchta bekat: tayyorlanamiz, ko‘rsatamiz, uyga olib ketamiz.»', 'Darsda qayerda turganini biladi.'],
+  ['Qoidalar: «Demo Day qoidalari». Uch qator: mehmon o‘ynaydi · bola aytib beradi · savolga javob beradi.', '«Mehmon o‘ynaydi, bola aytib beradi: nechta dushman, qanday yutiladi, eng qiyin joyi.» «Mehmon yutmasa ham yaxshi: yana urinadi.»', 'Demo Day qoidalarini eshitadi.'],
+  ['Mashq: «O‘yinni sinab oling!» — pog‘ona: oxirgi sinov.', '«O‘yiningiz ishlayaptimi? Kartadagidek yuting.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'O‘yinini oxirgi marta sinaydi.'],
+  ['Tepalik: 1-bekat ✓ — «Ko‘rsatamiz».', '«Hurmatli mehmonlar, noutbuklarga marhamat.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: mehmon qanday o‘ynaydi. O‘yinni ← → va probel bilan o‘ynaysiz.', '«O‘ynash oson: strelkalar — raketa, probel — o‘q. Dushman tegsa — jon kamayadi.»', 'Mehmonga qanday tushuntirishni ko‘radi.'],
+  ['Demo Day: «Mehmon o‘ynaydi!» — zinapoya: 1 mehmon o‘ynadi · ★ mehmon yutdi.', '«Mehmon o‘ynasin. Siz aytib bering: nechta dushman, qanday yutiladi, eng qiyin joyi.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'O‘yinini mehmonga ko‘rsatadi va tushuntiradi.'],
+  ['Tepalik: 1, 2 ✓ — «Uyga olib ketamiz».', '«Oxirgi bekat: uyda davom ettirishni o‘rganamiz.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: uy yo‘riqnomasi. «Uyda davom eting» — uch qadam va jadval «Blok studiya → Scratch».', '«Scratch — bolalar uchun bepul dasturlash sayti. Bloklar bizniki bilan deyarli bir xil.» «Saytga kirishdan oldin ota-onangizdan ruxsat so‘rang.»', 'Uyda davom ettirish yo‘lini biladi.'],
+  ['Mashq: «Yo‘riqnomani oling!» — pog‘ona: yo‘riqnoma kartasi.', '«Yo‘riqnoma kartasini o‘qing. Uyda ota-onangiz bilan davom etasiz.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'Yo‘riqnomani o‘qiydi.'],
+  ['Yakun: «Demo Day tugadi!» «1-modul tugadi!» Keyingi dars — 24 · Sun‘iy intellekt (AI) nima.', '«Uchala bekatdan o‘tdik. Birinchi modul tugadi — o‘z o‘yiningizni yasadingiz!» «Keyingi modulda sun‘iy intellekt bilan tanishamiz.»', 'Modul yakunlanganini biladi.'],
+  ['Sinfimiz bugun: nechta o‘yin tugadi, nechta mehmon yutdi, nechta pog‘ona bajarildi (haqiqiy son, ismsiz).', '«Hammangiz zo‘r ishladingiz!» (keyin raqamlarni o‘qiydi; mehmonlarga minnatdorchilik)', 'Sinf natijasini ko‘radi.'],
 ]
 
 // Dars ma'lumoti (dvigatel 2d, 19.11; avval sahifa.mjs boshida edi — mazmuni o'zgarmagan): oldindan chizilgan ekranlar va tanlov rasmlari.
@@ -652,7 +689,9 @@ const MUAM_SVG = Object.fromEntries(['kamvoy', 'ortiqvoy', 'boshvoy'].map((k) =>
 const ekranHtml = (id) => { const e = E[id]; return `<div class="ekran hy ${e.t} e-${id}" data-id="${id}">${bosh(e.b)}<main class="hm">${e.body()}</main>${e.foot()}</div>` }
 // 5b-1: qadamlarda yo'q, lekin kerak bo'ladigan ekran — qahramoni yo'q bolaning tanlash ekrani (DARS.bola.qahramonYoq), oxirida qo'shiladi
 // 5b-2: bola ro'yxati null bo'lishi mumkin (bola ekrani o'zgarmaydigan qadam — qobiq.js, bolaQ)
-const kerak = [...new Set([...QADAM.flatMap(([, p, b]) => [p, ...(Array.isArray(b) ? b : [])]), ...(DARS.bola.qahramonYoq ? [DARS.bola.qahramonYoq] : [])])]
+// 15-dars: QADAM[i][4] — ikkinchi noutbuk ro'yxati (juftlik); DARS.ekranTanlov — o'yin turi bo'yicha ekran (BX → BXO, BXL)
+const ekranT = (id) => (DARS.ekranTanlov && DARS.ekranTanlov[id]) || [id]
+const kerak = [...new Set([...QADAM.flatMap(([, p, b, , b2]) => [p, ...(Array.isArray(b) ? b : []), ...(Array.isArray(b2) ? b2 : [])]).flatMap(ekranT), ...(DARS.bola.qahramonYoq ? [DARS.bola.qahramonYoq] : [])])]
 const EKRANLAR = Object.fromEntries(kerak.map((id) => [id, ekranHtml(id)]))
 const QAH_IDS = DARS.qahramonli.filter((id) => kerak.includes(id))
 // namuna qahramon nomi (DARS.namuna.qahramon) → shu qahramonning nomi; Coddy'li ekranlarda → «Coddy»

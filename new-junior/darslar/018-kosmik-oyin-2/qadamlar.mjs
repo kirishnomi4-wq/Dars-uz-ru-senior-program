@@ -1,0 +1,43 @@
+// 18-dars «Kosmik o‘yin 2» qadamlari (QADAM) va ustoz varag'i (VARAQ) — 21.11. Manba: new-junior/manba/018-kosmik-oyin-2.md v1, 18 qadam.
+// 16-qadam bola ro'yxati 'oxirgi' (A·1) — bola noutbukida oxirgi yechgan pog'onasi o'z dasturi bilan.
+const QADAM = [
+  ['Kirish', 'P1', ['B0', 'BK']],
+  ['Savol: ballni kim sanaydi?', 'P2', ['P2N', 'BK']],
+  ['Uch sinov', 'P2S', ['BK'], 'Ustoz yo‘llarni sinayapti — kuzating'],
+  ['Javob: o‘q tegsa — ball', 'P2C', ['BK']],
+  ['Eslaymiz: klon, o‘zgaruvchi, shart', 'P3', ['BK'], 'Eslaymiz: uch so‘z'],
+  ['Reja', 'P4', ['BK'], 'Bugun: uchta bekat'],
+  ['Ko‘ramiz: dushman', 'P7', ['BK'], 'Ustoz dushman yasayapti — kuzating'],
+  ['O‘zingiz: dushman', 'P5', ['B1A', 'B1B', 'B1C', 'B1Y', 'BK']],
+  ['2-bekat', 'P4B', ['BK'], '2-bekat: ball'],
+  ['Ko‘ramiz: ball', 'P8', ['BK'], 'Ustoz ball qo‘shyapti — kuzating'],
+  ['O‘zingiz: ball', 'P5G', ['B2A', 'B2B', 'B2C', 'B2Y', 'BK']],
+  ['Xulosa: uch personaj — uch ish', 'P9', ['BK'], 'Xulosa: uch personaj'],
+  ['3-bekat', 'P4C', ['BK'], '3-bekat: jon'],
+  ['Ko‘ramiz: jon', 'P10', ['BK'], 'Ustoz jonni ko‘rsatyapti — kuzating'],
+  ['O‘zingiz: to‘liq o‘yin', 'P5B', ['B3A', 'B3B', 'B3C', 'B3Y', 'BK']],
+  ['O‘yiningizni ko‘rsating', 'P11', 'oxirgi'],
+  ['Yakun', 'P12', ['B5']],
+  ['Sinfimiz bugun', 'P14', ['B5']],
+]
+// ustoz varag'i: [Ekranda · Siz (manbadagi tayanch gaplar, aynan) · Bola o'rganadi]
+const VARAQ = [
+  ['«18-dars · Kosmik o‘yin 2» — «Dushmanlar keldi!» Kosmos maydoni: pastda raketa, tepada binafsha dushman; pastda «O‘tgan darsda» — personaj.', '«O‘tgan darsda raketa o‘q otdi.» «Bugun osmondan dushmanlar tushadi. O‘yinda ball va jon bo‘ladi.» «Noutbukda «Tayyorman» tugmasini bosing.»', 'Bugun o‘yinini tugatishini biladi.'],
+  ['Savol: «Ballni kim sanaydi?» Uchta karta: A «Doskada o‘zimiz sanaymiz» · B «Har dushmanga ball bloki» · C «O‘q tegsa — ball +1».', '«O‘q dushmanni urdi. Ball qanday oshadi?» «Har kim noutbukida bitta kartani tanlasin.»', 'Ballni kim sanashi haqida o‘ylaydi.'],
+  ['Uch sinov: A — o‘q uradi, sahnada son yo‘q («✕ o‘yin bilmaydi»). «Keyingi» — B: beshta dushman, har birida blok («✕ dushman ko‘p — blok ham ko‘p»). «Keyingi» — C: o‘q dasturida bitta blok — «ball: 3» («✓ bitta blok — har dushman +1»).', '«Biz sanasak — o‘yin bilmaydi. Har dushmanga blok — dushman ko‘p bo‘lsa, blok ham ko‘p.» «O‘q tegsa — ball +1. Bitta blok hamma dushmanga ishlaydi.»', 'Uch usulning natijasini ko‘radi.'],
+  ['Javob: «O‘q tegsa — ball». A va B xira, C oltin; maydonda «ball: 3».', '«Ballni o‘yin o‘zi sanaydi — o‘zgaruvchi bilan.»', 'Bugungi asosiy fikrni eshitadi.'],
+  ['Eslaymiz: «Bugun uchalasi birga». «Keyingi» — birma-bir: klon (dushmanlar), o‘zgaruvchi (ball va jon), shart (o‘yin tugaydi).', '«Klon — ko‘p dushman. O‘zgaruvchi — ball va jon. Shart — jon tugasa, o‘yin tugaydi.» «Hammasini bilasiz. Bugun bitta o‘yinga yig‘amiz.»', 'Uch so‘zni eslaydi.'],
+  ['Reja: tepalik — dushman → ball → jon; cho‘qqida «Dars oxirida · to‘liq o‘yin».', '«Bugun uchta bekat: dushman, ball, jon.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: «Dushman». Uchinchi karta — «Dushman», dastur bo‘sh; when ▶ clicked + repeat 3 [create clone of myself], when I start as a clone + go to x: (random 0 to 6) y: 4 + repeat 4 [move down] + delete this clone; ▶ Boshlash — uch dushman tushadi, o‘q bilan urasiz.', '«Uchinchi personaj — dushman. Uning dasturi 16-darsdagidek.» «O‘q dushmanga tegsa — ikkalasi o‘chadi.»', 'Dushman personajini va dasturini ko‘radi.'],
+  ['Mashq: «Dushmanlar tushsin!» — zinapoya: 1 bitta dushman · 2 beshta · 3 har xil ustun · ★ o‘q uradi.', '«Dushman kartasini bosing. Avval asl — nusxa yasaydi, keyin nusxa — tushadi.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'Dushman dasturini tuzadi.'],
+  ['Tepalik: 1-bekat ✓ — «Ball».', '«Dushmanlar tushadi. Endi har urilgan dushman ball beradi.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: «Ball». «O‘q» kartasi — when touching enemy + change ball by 1; o‘ynaysiz — har urilgan dushman +1. «Raketa» kartasi — when ▶ clicked + set ball to 0.', '«when touching enemy — dushmanga tekkanda. O‘q dasturida: o‘q urdi — ball +1.» «O‘yin boshida ball 0 — set ball to 0.»', 'when touching enemy va ballni ko‘radi.'],
+  ['Mashq: «Ball yig‘ing!» — zinapoya: 1 ball · 2 boshidan 0 · 3 har dushman — 2 ball · ★ rekord.', '«Ball qaysi personajda oshadi? Kim dushmanni uradi?» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'O‘yiniga ball qo‘shadi.'],
+  ['Xulosa: «Uch personaj — uch ish». Uch karta: raketa — yuradi; o‘q — uradi va ball beradi; dushman — tushadi.', '«Har personaj o‘z ishini qiladi — birga o‘yin bo‘ladi.»', 'Har personaj ishini aytib bera oladi.'],
+  ['Tepalik: 1, 2 ✓ — «Jon».', '«Oxirgi bekat: dushman raketaga tegsa — jon kamayadi.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: «Jon». «Raketa» kartasi — when ▶ clicked ga set jon to 3; when touching enemy + change jon by -1 + if jon = 0 then → game over; ataylab tegasiz — jon 2, 1, 0 — «O‘yin tugadi».', '«Raketa dasturida: dushman tegdi — jon −1.» «Jon 0 bo‘lsa — o‘yin tugaydi. 12-darsdagi shart.» «Endi o‘zingiz — va yuting!»', 'Jon va o‘yin tugashini ko‘radi.'],
+  ['Mashq: «O‘yinni tugating!» — zinapoya: 1 jon · 2 o‘yin tugaydi · 3 to‘liq o‘yin · ★ o‘z o‘yiningiz.', '«Ro‘yxatdagi besh band — hammasi ✓ bo‘lsin.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'O‘yinini tugatadi.'],
+  ['«O‘yiningizni ko‘rsating». To‘liq o‘yin; bola qoidasini aytadi, siz o‘ynaysiz. Proyektorda ism yo‘q.', '«Kim o‘yinining qoidasini aytib beradi? Nechta dushman? Ball qachon oshadi? Jon qachon kamayadi?»', 'O‘yini qoidasini aytib beradi.'],
+  ['Yakun: «O‘yin tayyor!» Bugun bitta o‘yinda — klon, o‘zgaruvchi, shart; keyingi dars — 19 · Bloklar ortidagi kod.', '«Uchala bekatdan o‘tdik: dushman, ball, jon. O‘yiningiz tayyor!» «Keyingi darsda o‘yiningizning kodini ko‘ramiz — bloklar ortida nima bor.»', 'Bugun nima qilganini biladi.'],
+  ['Sinfimiz bugun: nechta dushman urildi, nechta o‘yin yutildi, nechta pog‘ona bajarildi (haqiqiy son, ismsiz).', '«Hammangiz zo‘r ishladingiz!» (keyin raqamlarni o‘qiydi)', 'Sinf natijasini ko‘radi.'],
+]

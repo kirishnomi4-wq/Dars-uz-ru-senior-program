@@ -1,0 +1,407 @@
+/* 18-dars «Kosmik o‘yin 2» — ekranlarga xos uslub (21.11; 17-dars uslubidan nusxa + oxirida 18-dars bloki). Avval: 17-dars (16-dars uslubidan nusxa + 17-dars bloki). Asli: 13-dars «Tasodifiy son». yigish.mjs: «dars» qismi dars uslubi oxiriga, «qobiq» qismi qobiq uslubi oxiriga.
+   11-darsdagi qoidalar (kirish, huk, birma-bir qatorlar, javon, zinapoya, yakun, natija) shu yerga nusxa qilib olingan. Izohga backtik yozilmaydi. */
+/* == dars == */
+.e-P1 .sar,.e-P2 .sar,.e-P2N .sar,.e-P2S .sar,.e-P2C .sar,.e-B5 .sar{white-space:normal}
+
+/* kirish: «O'tgan darsda» — blok va dastur (1-darsning xulosa kartalari) */
+.otd{flex:1;min-height:0;display:flex;flex-direction:column;gap:.7cqw;margin-top:auto}
+.otd > small{font:700 1.1cqw/1 var(--f-kod);letter-spacing:.06em;text-transform:uppercase;color:#5A5A60}
+.e-P1 .chap{gap:1cqw}
+/* 21.11: «O'tgan darsda» kartasida blok chap ustunga (44%) sig'masdi — ustun blok kengligida (P9 kartalaridagidek) */
+.otd .tf{grid-template-columns:auto minmax(0,1fr)}
+.otd .tf-r{padding:.6cqw .8cqw}
+.otd .tf-r .mbw .mb{min-width:0}
+
+/* huk: uchta dastur kartasi yonma-yon — harf, qisqa gap, kichik dastur (yuqoridan pastga) */
+.jv.dkv{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1cqw;margin-top:auto;flex:1;min-height:0;align-items:stretch;background:none;box-shadow:none;border:0;padding:0}
+.dkv .jk{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:.6cqw;margin:0;padding:.8cqw .6cqw .9cqw;background:#fff;border:.2cqw solid transparent;border-radius:1.2cqw;box-shadow:0 .2cqw .9cqw rgba(58,53,48,.12);white-space:normal;font:600 1.2cqw/1.2 var(--f-matn);color:#0D2137;opacity:1;cursor:pointer;transition:transform .25s ease,box-shadow .25s ease,opacity .25s ease}
+.dkv .jt{display:flex;flex-direction:column;align-items:center;gap:.35cqw;text-align:center;text-wrap:balance}
+.dkv .jt > span{display:flex;flex-direction:column;align-items:center;gap:.45cqw}
+.dkv .jt b{display:grid;place-items:center;width:2.5cqw;height:2.5cqw;margin:0;border-radius:.7cqw;color:#fff;font:800 1.45cqw/1 var(--f-kod);box-shadow:inset 0 -.22cqw 0 rgba(0,0,0,.15)}
+.dkv .c1 .jt b{background:#3FA2FF}
+.dkv .c2 .jt b{background:#FF7A59}
+.dkv .c3 .jt b{background:#9A7BFF}
+.dkv .jr-s{right:-.6cqw;top:-.6cqw;bottom:auto}
+.dkv .jk.tanlandi{border-color:#0D2137;box-shadow:0 0 0 .2cqw #0D2137}
+.dkv .jk.sinov{border-color:#FF4F28;box-shadow:0 0 0 .2cqw #FF4F28,0 .8cqw 2cqw -.6cqw rgba(255,79,40,.45);transform:scale(1.05);z-index:2}
+.dkv .jk.n-yoq{filter:opacity(.6) saturate(.6)}
+.dkv .jk.n-yoq .jt b{background:#A7ABB4}
+.dkv .jk.n-ok{background:#FFF7DD;border-color:#F5B82E;box-shadow:0 0 0 .2cqw #F5B82E}
+.dkv .jn{font:800 1.15cqw/1.2 var(--f-matn)}
+.dkv .jk.n-yoq .jn{color:#C7381A}
+.dkv .jk.n-ok .jn{color:#8A6A0C}
+.dkv .hk-sinab{font-size:1.05cqw;margin-top:.2cqw}
+
+/* 4-dars: kartada — harf, karta nomi va rasm (kichik dastur, ▶ yoki to'rt strelka) */
+.hkv .jk{justify-content:center;padding:1cqw .8cqw}
+.hkv .jt{margin-top:auto}
+.hkv .jt > span{gap:.6cqw}
+.hkv .jt q{quotes:none;font:700 1.35cqw/1.25 var(--f-matn);color:#0D2137;text-wrap:balance}
+.hkv .hk-r{display:grid;place-items:center;margin-bottom:auto;min-height:7cqw}
+.hk-play{display:grid;place-items:center;width:4.2cqw;height:4.2cqw;border-radius:50%;background:#2F8FF0}
+.hk-play svg{width:2cqw;height:2cqw}
+.e-P2C .chap{gap:1cqw}
+/* kichik dastur: har blok — ko'k katakcha, ichida yo'nalish strelkasi; yuqoridan pastga */
+.dk{display:flex;flex-direction:column;align-items:center;gap:.25cqw}
+.dk:not(.nomli) .mb{margin:0;width:4cqw;min-width:0;max-width:none;height:1.85cqw;padding:0;justify-content:center;clip-path:none;border-radius:.5cqw;box-shadow:inset 0 -.2cqw 0 rgba(0,0,0,.18);transition:box-shadow .2s ease}
+.dk:not(.nomli) .mb svg{width:1.3cqw;height:1.3cqw}
+.dk .mb.hozir{box-shadow:0 0 0 .3cqw #FFD54A,0 0 1cqw rgba(255,213,74,.8)}
+.dk .mb.yon{--c:#64B4FF}
+.dk .mb.urildi{--c:#2F8FF0;box-shadow:0 0 0 .3cqw #FFD54A,0 0 1cqw rgba(255,213,74,.8)}
+.dk.gor{flex-direction:row;gap:.3cqw}
+.dk.gor .mb{width:2.6cqw;height:2.6cqw}
+.dk .dk-n{position:absolute;display:grid;place-items:center;width:1.7cqw;height:1.7cqw;border-radius:50%;background:#fff;color:#0D2137;font:800 1cqw/1 var(--f-kod);box-shadow:0 .1cqw .4cqw rgba(13,33,55,.3)}
+.dk.gor .dk-n{top:-.9cqw;left:50%;transform:translateX(-50%)}
+.dk.gor{padding-top:.9cqw}
+
+
+/* klaviatura tugmasi va to'rt strelka */
+.kc-t{display:inline-grid;place-items:center;min-width:2.6cqw;height:2.6cqw;padding:0 .5cqw;border-radius:.55cqw;background:#fff;border:.15cqw solid #C8D0DC;box-shadow:0 .25cqw 0 #C8D0DC;font:800 1.4cqw/1 var(--f-kod);color:#0D2137}
+.kc-t.katta{min-width:4cqw;height:4cqw;font-size:2.1cqw;border-radius:.8cqw}
+.kt4{display:grid;grid-template-columns:repeat(3,auto);grid-template-areas:". u ." "l d r";gap:.3cqw}
+.kt4 .u{grid-area:u}.kt4 .l{grid-area:l}.kt4 .d{grid-area:d}.kt4 .r{grid-area:r}
+.kt4.katta .kc-t{min-width:3.6cqw;height:3.6cqw;font-size:1.8cqw}
+/* javon tor — hodisa bloki ixcham (3-darsdagi go to kabi) */
+.pl .mb[data-tugma]{gap:.3cqw;padding-inline:.8cqw .5cqw;font-size:1.05cqw}
+.pl .mb[data-tugma] .xy{gap:.15cqw;font-size:.85cqw}
+.pl .mb[data-tugma] .xy i{padding:.2cqw .38cqw;min-width:1.2cqw}
+/* xulosa: blok kartasi — blok kichikroq, sarlavha ikki qatorgacha */
+.e-P9 .tf-r .mbw{zoom:.8}
+.e-P9 .tf:nth-child(2) .tf-t b{font-size:2.2cqw}
+
+/* yangi so'z va «Ko'ramiz»: uch qator — «Keyingi» bosilganda birma-bir yonadi (studiya.js, raqam; maydonda o'sha raqamli bant) */
+.xyl{display:flex;flex-direction:column;gap:.9cqw;margin-top:auto}
+.xyl p{margin:0;padding:1cqw 1.4cqw;border-radius:1cqw;background:#fff;font:700 1.7cqw/1.2 var(--f-matn);color:#0D2137;box-shadow:0 .2cqw .9cqw rgba(58,53,48,.1);opacity:.28;transition:opacity .3s,box-shadow .3s}
+.xyl p{display:flex;flex-direction:column;gap:.8cqw}
+.e-P3 .xyl p{padding:2.1cqw 1.6cqw;font-size:1.9cqw}
+.xyl p.on{opacity:1;box-shadow:0 0 0 .22cqw #F5B82E,0 .4cqw 1.2cqw rgba(245,184,46,.3)}
+.xyl p{display:flex;flex-direction:column;gap:.8cqw}
+.hq{display:flex;align-items:center;gap:1.2cqw}
+.hq .mb{min-width:0;flex:none}
+.e-P3 .xyl p{padding:2.2cqw 1.6cqw;font-size:1.8cqw}
+
+/* xulosa: ikki karta */
+.e-P9 .tf{grid-template-columns:auto minmax(0,1fr)}
+.e-P9 .tf-r{padding:.6cqw .8cqw}
+.e-P9 .tf-r .mbw .mb{min-width:0}
+.e-P9 .chap{gap:1cqw}
+
+/* reja: bekat nomi uzun — panel kengroq, sarlavha bir qatorda */
+.e-P4B .pan,.e-P4C .pan{width:auto;max-width:62%}
+.e-P4B .sar,.e-P4C .sar{white-space:nowrap}
+
+/* doskalar: katta son ostida izoh yo'q (manbada faqat 8-qadamda) — son kattaroq */
+.e-P5G .tugatdi > b,.e-P5B .tugatdi > b{font-size:10.2cqw}
+
+/* zinapoya kartalaridagi kichik labirint */
+.pg-k .mk{width:100%;height:auto;max-height:6.4cqw;display:block}
+.kd3-r.lb2{background:#EAF6E2}
+.kd3-r.lb2 > svg{inset:8%;width:84%;height:84%}
+
+/* yakun: bugungi so'z */
+.e-P12 .pan{padding:1.4cqw 2cqw;gap:.8cqw}
+.bsoz{font:700 1.1cqw/1 var(--f-kod);letter-spacing:.06em;text-transform:uppercase;color:#5A5A60}
+
+/* bolaning natijasi: uch son yotiq kartalarda (1-dars B5 dagidek), qahramon labirint chiqishida — tepada karta, labirint pastda */
+.e-B5 .chap{gap:.8cqw}
+.e-B5 .st-s{margin-top:auto}
+/* uch son — bitta ustunda, yotiq kartalar (ikki ustunda uchinchisining yonida bo'sh joy qolardi) */
+.e-B5 .sn,.e-P14 .sn{grid-template-columns:1fr;gap:.9cqw;margin-top:0}
+.e-P14 .sn{margin-top:auto}
+.e-B5 .sn-t,.e-P14 .sn-t{flex-direction:row;align-items:center;gap:1.4cqw;padding:1.8cqw 1.6cqw}
+.e-P14 .sn-t{padding-block:2.4cqw}
+.e-P14 .sn-t b{font-size:4.8cqw}
+.e-B5 .sn-t span,.e-P14 .sn-t span{flex-direction:row;align-items:baseline;gap:1cqw}
+.e-B5 .sn-t i,.e-P14 .sn-t i{width:3.8cqw;height:3.8cqw}
+.e-B5 .sn-t b,.e-P14 .sn-t b{font-size:4.2cqw}
+.e-B5 .sn-t small,.e-P14 .sn-t small{font-size:1.7cqw}
+.e-B5 .oyna{background:linear-gradient(#A9DE86,#86CB6C)}
+.e-B5 .oyna > .katak{top:26%}
+/* bola ekranidagi pufak: bolaning qahramoni (Coddy emas) */
+.qg .av{background:#F1ECFF;display:grid;place-items:center}
+.qg .av > svg{width:82%;height:82%}
+/* bola ekranidagi pufak: bolaning qahramoni (Coddy emas) */
+.qg .av{background:#F1ECFF;display:grid;place-items:center}
+.qg .av > svg{width:82%;height:82%}
+/* doska: zinapoyadagi uzun nom ikki qatorga */
+.e-P5 .pg-m,.e-P5G .pg-m,.e-P5B .pg-m{white-space:normal;text-wrap:balance}
+
+/* 11-dars: huk kartasidagi kichik dastur (hodisa bloki va ostidagilari) — ixcham, yuqoridan pastga */
+.hk-d{display:flex;flex-direction:column;align-items:flex-start;zoom:.55}
+.hk-d .mb + .mb{margin-top:-.45cqw}
+/* C kartasi: go to + random keng — karta ichiga sig'sin (21.11: chetidan chiqardi) */
+.hkv .jk.c3 .hk-d{zoom:.44}
+.hk-bk,.kd-bk{display:inline-flex;align-items:baseline;gap:.3cqw;padding:.35cqw .8cqw;border-radius:999px;background:#A86B32;color:#fff;font:800 1.1cqw/1 var(--f-kod)}
+.hk-bk small{font:700 .9cqw/1 var(--f-kod)}
+.hkv .hk-r{display:flex;flex-direction:column;align-items:center;gap:.4cqw}
+/* sahna ustidagi kichik yozuvlar: «Har olma — 1 ball» (huk), «O‘tgan o‘yindan qolgan ball» (2-bekat — kapsula ostida) */
+.oyna .ball-qy{left:5.6cqw;top:4.6cqw;padding:.4cqw .9cqw;border-radius:999px;font:700 1cqw/1.2 var(--f-matn);color:#5A4126;white-space:nowrap}
+.oyna .ball-qy.hk-yz{left:50%;top:3%;transform:translateX(-50%);font-size:1.2cqw}
+/* tasma ostidagi sanoq — ikki qator («N ta dasturcha», «n / 12 ta blok») */
+.dst .dsn{white-space:pre-line}
+/* sinf natijasi: ikki son — kartalar balandroq (chap ustun bo'sh qolmasin) */
+.e-B5 .sn-t{padding-block:1.2cqw}
+.kd3 > small{font-size:.85cqw}
+.hk-n{font:700 .7cqw/1 var(--f-kod);color:#5A6474;white-space:nowrap} /* 21.11: bitta qatorda */
+/* kirish: «O'tgan darsda» — ikki kichik labirint */
+.lab2{display:flex;gap:.6cqw;align-items:center}
+.lab2 .lab-m{width:5.6cqw;height:auto}
+/* yangi so'z: quti «ball» — son birma-bir o'zgaradi; ko'rinadigani — eng oxirgi yongan son */
+.qt-o{position:absolute;inset:0;z-index:2;display:grid;place-items:center;opacity:.22;transition:opacity .3s}
+.qt-o.on{opacity:1}
+.qt{position:relative;width:46%;display:grid;place-items:center}
+.qt .qt-r{width:100%;height:auto;display:block}
+.qt .qt-y{position:absolute;top:-1.4cqw;left:50%;transform:translateX(-50%);z-index:2;padding:.5cqw 1.4cqw;border-radius:999px;background:#fff;color:#7E4C1F;font:800 1.9cqw/1 var(--f-kod);box-shadow:0 .3cqw .9cqw -.3cqw rgba(13,33,55,.4)}
+.qt .qt-s{position:absolute;left:0;right:0;top:44%;display:grid;place-items:center}
+.qt .qt-s b{grid-area:1/1;font:800 6cqw/1 var(--f-kod);color:#fff;text-shadow:0 .3cqw 0 rgba(126,76,31,.6);opacity:0;transition:opacity .25s}
+.qt .qt-s b.q0{opacity:1}
+.qt:has(.q1.on) .qt-s b.q0{opacity:0}
+.qt .qt-s b.q1.on{opacity:1}
+.qt:has(.q3.on) .qt-s b.q1{opacity:0}
+.qt .qt-s b.q3.on{opacity:1}
+.qt-k{position:relative;display:inline-grid;place-items:center;width:4.6cqw;flex:none}
+.qt-k svg{width:100%;height:auto}
+.qt-k b{position:absolute;top:44%;font:800 1.6cqw/1 var(--f-kod);color:#fff}
+/* javon tor — yangi bloklar ixcham (4-darsdagi hodisa bloki kabi) */
+.pl .mb[data-tur]{gap:.3cqw;padding-inline:.8cqw .5cqw;font-size:1.05cqw}
+.pl .mb[data-tur] .xy{gap:.15cqw;font-size:.85cqw}
+.pl .mb[data-tur] .xy i{padding:.2cqw .38cqw;min-width:1.2cqw}
+/* dars oxiri kartasi: kichik maydon va «ball: 7» */
+.kd-b{position:relative}
+.kd-b .kd-bk{position:absolute;left:6%;top:6%;font-size:.9cqw}
+/* 3-bekat: sahna — manzarali fon, kapsula va kartalar */
+.e-P8 .oyna,.e-B3A .oyna,.e-B3B .oyna,.e-B3C .oyna,.e-B3Y .oyna{background:linear-gradient(#A9DE86,#86CB6C)}
+/* javonda «when touching apple» — eng keng blok: yozuvi kichikroq (javon ustuniga sig'sin; umumiy ixcham qoidadan keyin turadi) */
+.pl .mb[data-tur="q"]{font-size:.9cqw;gap:.25cqw;padding-inline:.5cqw .3cqw}
+.pl .mb[data-tur="q"] > span:first-of-type{letter-spacing:-.03em}
+.pl .mb[data-tur="q"] .xy{font-size:.7cqw}
+.pl .mb[data-tur="q"] svg{width:1.3cqw;height:1.3cqw}
+/* dastur ustunidagi tayyor «when touching apple» (HTML; ish paytida Blockly o'zi masshtablaydi) */
+.dst .mb[data-tur="q"]{font-size:1cqw;gap:.3cqw;padding-inline:.7cqw .4cqw}
+.dst .mb[data-tur="q"] .xy{font-size:.82cqw}
+/* yangi so'z: uch qator chap ustunni to'ldirsin; 2-bekat doskasi: Coddy gapi bir qator — katta son balandroq (setka: bo'sh oraliq qolmasin) */
+.e-P3 .xyl p{padding-block:2.85cqw}
+.e-P5B .tugatdi > b{font-size:13.4cqw}
+.e-P5B .tugatdi{padding-bottom:2cqw}
+/* 13-dars: huk kartasidagi ikki qator son; 5-qadam — zar va random (son birma-bir) */
+.ho-q{display:flex;flex-direction:column;align-items:center;gap:.25cqw;font:700 .95cqw/1.2 var(--f-kod);color:#5A6474;min-height:2.6cqw}
+.ho-q b{color:#0D2137}
+/* 21.11: «1-o‘yin: 4 · 1 · 6» bitta qatorda (karta tor — oxirgi son pastga tushardi) */
+.ho-q > span{white-space:nowrap;font-size:.85cqw}
+.oyna .ball-qy.hk-yz13{left:50%;top:auto;bottom:3%;transform:translateX(-50%);font-size:1.2cqw}
+.zr{display:flex;align-items:center;gap:3cqw}
+.zr .zr-z{position:relative;display:grid;width:12cqw;height:12cqw}
+.zr .zr-z i{grid-area:1/1;opacity:0;transition:opacity .25s}
+.zr .zr-z i svg{width:100%;height:100%}
+.zr .zr-z i.q0{opacity:1}
+.zr:has(.q1.on) .zr-z i.q0{opacity:0}
+.zr .zr-z i.q1.on{opacity:1}
+.zr:has(.q3.on) .zr-z i.q1{opacity:0}
+.zr .zr-z i.q3.on{opacity:1}
+.zr-b{position:relative;display:inline-flex}
+.zr-b .zr-s{position:absolute;right:-1cqw;top:-1.6cqw;display:none;place-items:center;min-width:2.4cqw;height:2.4cqw;border-radius:999px;background:#2C8A50;color:#fff;font:800 1.3cqw/1 var(--f-kod)}
+.zr .zr-b .zr-s.q1.on{display:grid}
+.zr:has(.zr-s.q3.on) .zr-b .zr-s.q1{display:none}
+.zr .zr-b .zr-s.q3.on{display:grid}
+.tf-r .zr-b .zr-s.on{display:grid}
+.zr-k{display:inline-grid;place-items:center;min-width:2.6cqw;height:2.6cqw;border-radius:999px;background:#2C8A50;color:#fff;font:800 1.4cqw/1 var(--f-kod);flex:none}
+.pl .mb[data-tur="y"]{font-size:.95cqw;gap:.25cqw;padding-inline:.6cqw .4cqw}
+.pl .mb[data-tur="y"] .xy{font-size:.8cqw}
+.dst .mb[data-tur="y"]{font-size:.85cqw;gap:.25cqw;padding-inline:.5cqw .3cqw}
+.dst .mb[data-tur="y"] .xy{font-size:.62cqw;gap:.12cqw}
+.dst .mb[data-tur="y"] svg{width:1.1cqw;height:1.1cqw}
+.dst .mb .mrnd{font-size:.6cqw;padding:.12cqw .3cqw;gap:.15cqw}
+/* ===== 16-dars (21.11): «Kosmos» maydoni, asl dushman va nusxalar, Klon bloklari ===== */
+.katak.maydon.kosmos{background:radial-gradient(1.2px 1.2px at 12% 18%,#fff 50%,transparent 51%),radial-gradient(1px 1px at 38% 8%,#fff 50%,transparent 51%),radial-gradient(1.4px 1.4px at 72% 22%,#fff 50%,transparent 51%),radial-gradient(1px 1px at 88% 12%,#cfe3ff 50%,transparent 51%),radial-gradient(1.2px 1.2px at 58% 4%,#fff 50%,transparent 51%),linear-gradient(#0F1E3D,#1B2F5C)}
+.katak.maydon.kosmos .kt-c rect,.katak.maydon.kosmos rect.kt-c{fill:#24396A}
+.katak.maydon.kosmos .kt-c:nth-child(odd) rect{fill:#1F3463}
+.katak.maydon.kosmos text{fill:#CFE0FF}
+.kosmos-o{background:#0F1E3D}
+.kt-asl,.kt-klon{transition:transform .5s ease-in}
+.kt-asl svg{filter:drop-shadow(0 0 6px rgba(255,255,255,.35))}
+.kt-klon.yangi svg{animation:kl-pup .35s ease-out}
+@keyframes kl-pup{from{opacity:0;transform:scale(.5);transform-origin:center}}
+@media (prefers-reduced-motion:reduce){.kt-asl,.kt-klon{transition:none}.kt-klon.yangi svg{animation:none}}
+.kl-son{position:absolute;right:1.2cqw;top:1.2cqw;z-index:3;padding:.5cqw 1cqw;border-radius:999px;font:700 1.15cqw/1 var(--f-kod);color:#0D2137}
+.kl-jon{left:1.2cqw;top:1.2cqw}
+.kl-jon .ball-k{background:#C0392B}
+.dsh{display:inline-grid;place-items:center;width:3cqw;height:2.6cqw}
+.dsh svg{width:100%;height:100%}
+.dsh.dsh-x{opacity:.35}
+.e-P9 .tf-t b{font-size:1.6cqw;line-height:1.15}
+.e-P9 .tf-r .mb{font-size:1cqw}
+.e-P1 .tf{grid-template-columns:auto minmax(0,1fr)}
+.e-P1 .tf-r{padding:1.2cqw 1.6cqw;display:grid;place-items:center}
+.dsh-ega svg{width:100%;height:100%}
+.hk-rs{display:flex;align-items:center;justify-content:center;gap:.4cqw;min-height:5cqw;flex-wrap:wrap}
+.hk-b .dsh{width:2.2cqw;height:1.9cqw}
+.hk-ay{font:800 1.3cqw/1 var(--f-kod);color:#5A6B7D}
+.hk-sn{display:block;margin-top:.4cqw;font:700 .9cqw/1.2 var(--f-kod);color:#5A6B7D;text-align:center}
+.otd-ik{display:inline-grid;place-items:center;width:3.4cqw;height:3.4cqw}
+.otd-ik svg{width:100%;height:100%}
+/* yangi so'z: uch bo'lak */
+.xs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.9cqw;margin-top:auto}
+.xs-b{display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:.6cqw;padding:1.2cqw .8cqw;border-radius:1cqw;background:#fff;box-shadow:0 .2cqw .9cqw rgba(58,53,48,.1);opacity:.28;transition:opacity .3s,box-shadow .3s;min-height:12cqw}
+.xs-b.on{opacity:1;box-shadow:0 0 0 .22cqw #F5B82E,0 .4cqw 1.2cqw rgba(245,184,46,.3)}
+.xs-b > b{font:800 1.3cqw/1.15 var(--f-sar);color:#0D2137;text-align:center}
+.xs-d{display:flex;flex-direction:column;align-items:center;gap:.5cqw}
+.xs-d .dsh{width:4.4cqw;height:3.8cqw}
+.xs-n{position:relative;display:flex;gap:.3cqw}
+.xs-n .dsh{width:3cqw;height:2.6cqw}
+.xs-n em{position:absolute;right:-.4cqw;top:-1.2cqw;font:700 .85cqw/1 var(--f-kod);font-style:normal;color:#C98A00}
+.xs-mk{width:9cqw;height:auto}
+.xs-ta{position:absolute;left:50%;top:36%;transform:translate(-50%,-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:.6cqw;padding:2cqw 3cqw;border-radius:1.4cqw;text-align:center;opacity:0;transition:opacity .4s}
+.xs-ta.on{opacity:1}
+.xs-ta b{font:800 4cqw/1 var(--f-sar);color:#0D2137}
+.xs-ta span{font:700 1.8cqw/1.2 var(--f-matn);color:#0D2137}
+/* javon: Klon oilasi bloklari uzun — ixcham */
+.pl .mb[data-tur="C"],.pl .mb[data-tur="H"],.pl .mb[data-tur="D"]{font-size:.88cqw;gap:.3cqw;padding-inline:.5cqw .4cqw;letter-spacing:-.02em;line-height:1.1}
+.pl .mb[data-tur="C"] > span,.pl .mb[data-tur="H"] > span,.pl .mb[data-tur="D"] > span{white-space:normal;text-wrap:balance}
+.xs-d .mb{zoom:.68}
+.e-P3 .xs{grid-template-columns:.9fr 1.6fr 1fr}
+.xs-d .mb > span{white-space:normal}
+.e-P3 .xs{flex:1}
+.e-P5G .tugatdi > b,.e-P5B .tugatdi > b{font-size:8.6cqw}
+.e-B5 .sn-t{padding-block:2.3cqw}
+.dst .mb[data-tur="C"],.dst .mb[data-tur="H"],.dst .mb[data-tur="D"]{font-size:.9cqw;gap:.25cqw;padding-inline:.5cqw .3cqw}
+/* ===== 17-dars (21.11): raketa, o'q, nishonlar, personaj kartalari ===== */
+.katak.maydon.kosmos .kt-klon{transition:transform .32s linear}
+.katak.maydon.kosmos .kt-q > svg{filter:drop-shadow(0 0 5px rgba(255,255,255,.3))}
+.ks-n,.ks-b{transition:opacity .3s,transform .3s}
+.ks-n.urildi{opacity:0}
+.ks-n.urildi svg{animation:ks-parcha .38s ease-out forwards}
+@keyframes ks-parcha{to{transform:scale(1.5);opacity:0;transform-origin:center}}
+.ks-b.ok path:last-child{fill:#3FAE6A}
+@media (prefers-reduced-motion:reduce){.katak.maydon.kosmos .kt-klon{transition:none}.ks-n.urildi svg{animation:none}}
+.rak{display:inline-grid;place-items:center;width:3cqw;height:3.3cqw}
+.rak svg,.oqr svg,.nsh svg{width:100%;height:100%}
+.oqr{display:inline-grid;place-items:center;width:2cqw;height:2.4cqw}
+.oqr.oq-x{opacity:.35}
+.oqr.oq-k{width:2.6cqw;height:3cqw}
+.nsh{display:inline-grid;place-items:center;width:2.6cqw;height:2.6cqw}
+.hk-c .oqr{width:1.8cqw}
+/* dastur ustuni: personaj kartalari (kosmik.js perKartalar) */
+.per-q{display:flex;gap:.5cqw;margin:.3cqw 0 .5cqw}
+.per-k{display:flex;align-items:center;gap:.4cqw;flex:1;min-width:0;padding:.35cqw .6cqw;border-radius:.8cqw;background:#fff;border:.18cqw solid #D6DCE6;cursor:pointer;font:800 1.05cqw/1 var(--f-sar);color:#0D2137}
+.per-k i{display:grid;place-items:center;flex:none;width:2cqw;height:2.2cqw}
+.per-k i .rak,.per-k i .oqr{width:100%;height:100%}
+.per-k.on{border-color:#FF6B4A;box-shadow:0 0 0 .14cqw #FF6B4A}
+.per-k.qulf{opacity:.4;cursor:default}
+.e-P3 .xs-d{flex-direction:row;gap:.6cqw}
+.e-P3 .xs-d .rak{width:4cqw;height:4.4cqw}
+.tf-r .rak{width:2.8cqw;height:3cqw}
+/* ===== 18-dars (21.11): uch personaj, dushman, ball va jon ===== */
+.per-q.per-3{gap:.35cqw}
+.per-3 .per-k{padding:.3cqw .4cqw;gap:.25cqw;font-size:.92cqw}
+.per-3 .per-k i{width:1.7cqw;height:1.9cqw}
+.per-k i .dsh{width:100%;height:100%}
+.katak.maydon.kosmos .ks-d{transition:transform .5s ease-in}
+.hk-dsk{display:inline-grid;place-items:center;min-width:6cqw;height:3.6cqw;padding:0 1cqw;border-radius:.6cqw;background:#2F4A3A;color:#E9F2EC;font:700 1.6cqw/1 var(--f-kod);letter-spacing:.3em}
+.xs-r{flex-direction:row}
+.xs-q{position:static;display:flex;flex-direction:column;gap:.3cqw}
+.xs-tg{display:inline-block;padding:.3cqw .7cqw;border-radius:.5cqw;background:#8A5A2B;color:#fff;font:800 .95cqw/1 var(--f-sar)}
+/* == qobiq == */
+/* 17-dars: chek-list «O'yiningizda:» — javon ustunining pastida (9-darsdagi ko'rinish; kosmik.js kosmikChekChiz) */
+.pl .chek{margin-top:auto}
+.chek{display:flex;flex-direction:column;gap:.45cqw;padding:.8cqw .9cqw;border-radius:.9cqw;background:#F4F7FB;font:700 1.05cqw/1.15 var(--f-matn);color:#0D2137}
+.chek > small{font:700 .95cqw/1 var(--f-kod);letter-spacing:.04em;color:#5A5A60}
+.chek .ch-r{display:flex;align-items:center;gap:.5cqw;color:#7A8291}
+.chek .ch-r i{display:grid;place-items:center;flex:none;width:1.45cqw;height:1.45cqw;border-radius:50%;border:.15cqw solid #C8D0DC;background:#fff;font:800 .95cqw/1 var(--f-kod);font-style:normal;color:#fff}
+.chek .ch-r.ok{color:#0D2137}
+.chek .ch-r.ok i{background:#3FAE6A;border-color:#3FAE6A}
+
+/* B5: «O‘yiningiz saqlandi.» — keyingi dars kartasining ichida (10, 17-darsdagidek), faqat saqlangan bo'lsa */
+.e-B5 .kd2 .saqlandi{display:block;margin-top:.6cqw;font:700 1.1cqw/1.2 var(--f-matn);color:#3FA65A}
+.e-B5 .kd2 .saqlandi[hidden]{display:none}
+/* P3 (22.11): uch karta teng, karta ichi ustma-ust va o'rtada. 16-darsdan qolgan .9fr 1.6fr 1fr va yonma-yon joylash 3-kartani sahna ostiga surardi */
+.e-P3 .xs{grid-template-columns:repeat(3,minmax(0,1fr))}
+.e-P3 .xs-b{min-width:0}
+.e-P3 .xs-d{flex:1;flex-direction:column;justify-content:center;gap:1cqw;max-width:100%}
+.e-P3 .xs-d .mb{zoom:.6}
+.e-P3 .xs-d.xs-r{flex-direction:row;flex-wrap:wrap;gap:.5cqw}
+/* P3 kapsulalari: sahnadagi .oyna .ball-k ko'rinishi (karta ichida u uslubsiz, mayda matn edi) */
+.xs-q{align-items:center}
+.xs-q .ball-k{display:inline-flex;align-items:baseline;gap:.5cqw;padding:.6cqw 1.3cqw;border-radius:999px;background:#A86B32;color:#fff;font:800 1.5cqw/1 var(--f-kod)}
+.xs-q .ball-k small{font:700 1.2cqw/1 var(--f-kod);opacity:.9}
+.e-P3 .xs-d.xs-r{gap:.3cqw}
+.e-P3 .xs-d.xs-r .dsh{width:2.8cqw;height:2.45cqw}
+/* doska P5G: Coddy gapi bir qator — son kattaroq, chap ustunda bo'sh oraliq qolmaydi (17-darsdagidek) */
+.e-P5G .tugatdi > b{font-size:9.2cqw}
+/* ===== 19-dars (22.11): kod ekranlari ===== */
+/* huk va savol: sahnada bloklar (P2, P2N), sinovdagi kod qutisi (kod.js kodHuk) */
+.oyna .hk-bl{left:2cqw;top:2cqw;display:flex;flex-direction:column;gap:.3cqw;padding:1cqw}
+.oyna .hk-bl .mb{zoom:.8}
+.oyna .kodh-q{left:2cqw;top:2cqw;display:flex;align-items:center;gap:1.2cqw;padding:1cqw 1.4cqw;background:#0F1E3D;border-color:#0F1E3D;color:#E6ECF5}
+.oyna .kodh-q small{font:700 .9cqw/1 var(--f-kod);color:#8FD3FF}
+.oyna .kodh-q code{font:700 1.6cqw/1.2 var(--f-kod);padding:.2cqw .5cqw;border-radius:.4cqw}
+.oyna .kodh-q code.hozir{background:rgba(255,201,60,.45)}
+.oyna .kodh-q code.qizil{color:#FF8A80;text-decoration:underline wavy #FF6B4A}
+.kodh-t{display:inline-grid;place-items:center;min-width:2.6cqw;height:2.6cqw;border-radius:.6cqw;background:#fff;color:#0D2137;font:800 1.4cqw/1 var(--f-kod);box-shadow:0 .25cqw 0 #9AA6B8;transition:transform .12s}
+.kodh-t.bos{transform:translateY(.2cqw) scale(.92);background:#FFC93C;box-shadow:0 .05cqw 0 #9AA6B8}
+.hk-kod{font-size:1.05cqw}
+/* javob (P2C): blok = qator */
+.oyna .jv-kod{left:50%;top:14%;transform:translateX(-50%);display:flex;align-items:center;gap:1.2cqw;padding:1.2cqw 1.6cqw}
+.jv-t{font:800 2.4cqw/1 var(--f-sar);color:#0D2137}
+/* yangi so'z (P3): uchinchi bo'lakda bloklar va kod yonma-yon */
+.xs-kod{font-size:.95cqw}
+.e-P3 .xs-d.xs-ikki{gap:.8cqw}
+.xs-bl{display:flex;flex-direction:column;gap:.2cqw;align-items:flex-start}
+/* xulosa (P9): kod kartasi */
+.tf-kod{font-size:1.1cqw}
+/* o'tgan darsda: uch personaj */
+.otd-3{display:flex;gap:.4cqw;align-items:flex-end}
+/* 22.11: rang doirachalari — 6–7 oila ustunga sig'sin (oxirgisi pastdan chiqib qolardi); uch personaj kartasi — belgi tepada, nom ostida (yonma-yon sig'masdi) */
+.rg{gap:.8cqw;padding-block:1cqw}
+.rd i{width:3cqw;height:3cqw}
+.rd i svg{width:1.55cqw;height:1.55cqw}
+.rd small{font-size:.92cqw}
+.per-3 .per-k{flex-direction:column;justify-content:center;padding:.35cqw .2cqw;gap:.2cqw;font-size:.82cqw}
+.per-3 .per-k i{width:1.8cqw;height:2cqw}
+/* ===== 21-dars (22.11): loyiha kartasi ===== */
+.kc-tan{display:flex;flex-direction:column;gap:.7cqw}
+.kc-g{display:flex;flex-direction:column;gap:.35cqw}
+.kc-g > small{font:700 1.05cqw/1 var(--f-kod);color:#4A4A50}
+.kc-r{display:flex;gap:.5cqw}
+.kc-o{flex:1;min-width:0;display:grid;place-items:center;padding:.7cqw .5cqw;border-radius:.8cqw;background:#fff;border:.18cqw solid #D6DCE6;box-shadow:0 .2cqw .6cqw rgba(58,53,48,.08);font:800 1.5cqw/1 var(--f-sar);color:#0D2137;cursor:pointer;transition:transform .12s,border-color .12s}
+.kc-o:hover{transform:translateY(-.1cqw)}
+.kc-o.on{border-color:#FF6B4A;box-shadow:0 0 0 .2cqw #FF6B4A,0 .3cqw .8cqw rgba(255,107,74,.25);background:#FFF4F0}
+.kc-xul,.kc-mini{display:flex;gap:.4cqw;flex-wrap:wrap}
+.kc-mini:empty{display:none}
+.kc-xul{margin-top:.6cqw;padding:.8cqw;border-radius:1cqw;background:#fff;box-shadow:0 .2cqw .9cqw rgba(58,53,48,.1)}
+.kx-q{flex:1 1 auto;min-width:6cqw;display:flex;flex-direction:column;align-items:center;gap:.3cqw;padding:.5cqw .6cqw;border-radius:.7cqw;background:#EEF1F6;color:#8793A6}
+.kx-q small{font:700 .85cqw/1.1 var(--f-matn);text-align:center}
+.kx-q b{font:800 1.6cqw/1 var(--f-sar)}
+.kx-q.ok{background:#E4F4E8;color:#0D2137}
+.kc-n{margin-top:1cqw}
+/* sahnadagi kichik karta (bola ekranida): pastki o'ngda */
+.oyna .kc-mini{left:auto;right:1.2cqw;bottom:1.2cqw;top:auto;max-width:28cqw;padding:.6cqw;border-radius:.9cqw;background:rgba(255,255,255,.92)}
+.oyna .kc-mini .kx-q{min-width:4.2cqw;padding:.3cqw .4cqw}
+.oyna .kc-mini .kx-q small{font-size:.65cqw}
+.oyna .kc-mini .kx-q b{font-size:1.1cqw}
+.kc-mini.kc-b{margin-top:.6cqw;padding:.8cqw;border-radius:1cqw;background:#fff}
+.kc-rs{width:5cqw;height:3.8cqw}
+.xs-oq{display:inline-grid;place-items:center;width:2.6cqw;height:2.6cqw;border-radius:50%;background:#A86B32}
+.xs-oq svg{width:1.5cqw;height:1.5cqw}
+.xs-oq.y{background:#F5B82E;width:3.2cqw;height:3.2cqw}
+.xs-oq.y svg{width:1.9cqw;height:1.9cqw}
+.hkv .jk.eng{box-shadow:0 0 0 .22cqw #F5B82E,0 .4cqw 1.2cqw rgba(245,184,46,.3)}
+/* ===== 22-dars (22.11): taqdimot kartasi ===== */
+.tq-t{display:flex;flex-direction:column;gap:.7cqw}
+.ty-q{display:flex;align-items:center;gap:1cqw;padding:1cqw 1.2cqw;border-radius:1cqw;background:#fff;box-shadow:0 .2cqw .9cqw rgba(58,53,48,.1)}
+.ty-q i{flex:none;display:grid;place-items:center;width:2.6cqw;height:2.6cqw;border-radius:50%;background:#0D2137;color:#fff;font:800 1.4cqw/1 var(--f-sar);font-style:normal}
+.ty-q span{display:flex;flex-direction:column;gap:.3cqw}
+.ty-q b{font:800 1.5cqw/1.1 var(--f-sar);color:#0D2137}
+.ty-q small{font:600 1.05cqw/1.2 var(--f-matn);color:#6B7385}
+.otd-k{display:flex;gap:.5cqw}
+/* karta ekranlari maketi (22.11): ustun ichidagi bloklar siqilmasin; qatorlar ixcham */
+.chap > .kc-tan,.chap > .kc-xul,.chap > .tq-t,.chap > .uy-j{flex:none}
+.kc-tan{gap:.5cqw}
+.kc-g{gap:.25cqw}
+.kc-g > small{font-size:.95cqw}
+.kc-o{padding:.45cqw .4cqw;font-size:1.3cqw}
+.kc-xul{margin-top:.4cqw;padding:.55cqw}
+.kx-q{padding:.35cqw .5cqw}
+.kx-q b{font-size:1.4cqw}
+.e-P5G .tugatdi > b,.e-P5B .tugatdi > b{font-size:12.6cqw}
+.e-P5G .tugatdi > b{font-size:11cqw}
+/* K2: karta to'lgunga qadar joyi saqlansin (kartaChiz to'ldiradi) */

@@ -24,7 +24,8 @@ export function chizuvchi(dars = '001-tanishuv') {
 
 export function skript({ demo }) {
   // 4b: ijrochi.js (dastur daraxti va bajarish), 4c: sahna.js (sahna qolipi) — blockly.js dan keyin, studiya.js dan oldin
-  const q = [oqi(DV + 'tovush.js') + '\n' + oqi(DV + 'blockly.js') + '\n' + oqi(DV + 'ijrochi.js') + '\n' + oqi(DV + 'katak.js') + '\n' + oqi(DV + 'sahna.js') + '\n' + oqi(DV + 'studiya.js')]
+  // 21.11: kichik.js (zoom li kichik nusxa Safari'da ham aniq) — mustaqil, birinchi
+  const q = [oqi(DV + 'kichik.js') + '\n' + oqi(DV + 'tovush.js') + '\n' + oqi(DV + 'blockly.js') + '\n' + oqi(DV + 'ijrochi.js') + '\n' + oqi(DV + 'tahrir.js') + '\n' + oqi(DV + 'katak.js') + '\n' + oqi(DV + 'sahna.js') + '\n' + oqi(DV + 'studiya.js') + '\n' + oqi(DV + 'xakaton.js') + '\n' + oqi(DV + 'klon.js') + '\n' + oqi(DV + 'kosmik.js') + '\n' + oqi(DV + 'kod.js')]
   if (demo) q.push(izohsiz(oqi(DV + 'aloqa-demo.js')))
   q.push(izohsiz(oqi(DV + 'qobiq.js')))
   return q.join('\n')

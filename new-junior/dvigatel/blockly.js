@@ -6,8 +6,8 @@
 // Keyingi darslarda «takrorla», «agar» kabi ichma-ich bloklar shu ustunga qo'shiladi.
 // Studiya mantig'i (studiya.js) bloklarga faqat shu funksiyalar orqali tegadi: blTayyorla · blQosh · blOchir · blokMatn · blokTuri (SVG uchun data-tur).
 const BL_ASOS = 1600 // o'lchovlar shu ekran kengligida; boshqa kenglikda masshtab (ws.setScale)
-const BL_RANG = { h: ['#2F8FF0', '#64B4FF', '#1B62B5'], g: ['#8B5CF6', '#A98BFF', '#6D3FD6'], e: ['#F08A24', '#F6AC66', '#C96A12'], b: ['#3FAE6A', '#6CC48E', '#2C8A50'], v: ['#14B8A6', '#5ED4C5', '#0E8C7E'], t: ['#D9468F', '#E97DB3', '#AE2F6F'], a: ['#5B80A5', '#86A3C2', '#3F6283'], o: ['#A86B32', '#C99464', '#7E4C1F'] }
-const BL_TUR = { r: ['move_right', 'move right', 'h'], l: ['move_left', 'move left', 'h'], u: ['move_up', 'move up', 'h'], d: ['move_down', 'move down', 'h'], j: ['jump', 'jump', 'h'], s: ['say', 'say', 'g'], x: ['go_to', 'go to', 'h'], k: ['when_key', 'when', 'e'], p: ['repeat', 'repeat', 'b'], v: ['costume', 'switch costume to', 'v'], n: ['sound', 'play sound', 't'], a: ['if_path', 'if path', 'a'], q: ['when_touch', 'when touching', 'e'], f: ['when_start', 'when ▶ clicked', 'e'], z: ['set_var', 'set', 'o'], c: ['change_var', 'change', 'o'], i: ['if_var', 'if', 'a'], g: ['game_over', 'game over', 'e'], y: ['go_to_r', 'go to', 'h'], m: ['random_n', 'random', 'o'] }
+const BL_RANG = { K: ['#C98A00', '#E3B24A', '#9A6A00'], h: ['#2F8FF0', '#64B4FF', '#1B62B5'], g: ['#8B5CF6', '#A98BFF', '#6D3FD6'], e: ['#F08A24', '#F6AC66', '#C96A12'], b: ['#3FAE6A', '#6CC48E', '#2C8A50'], v: ['#14B8A6', '#5ED4C5', '#0E8C7E'], t: ['#D9468F', '#E97DB3', '#AE2F6F'], a: ['#5B80A5', '#86A3C2', '#3F6283'], o: ['#A86B32', '#C99464', '#7E4C1F'] }
+const BL_TUR = { C: ['create_clone', 'create clone of myself', 'K'], H: ['when_clone', 'when I start as a clone', 'K'], D: ['delete_clone', 'delete this clone', 'K'], r: ['move_right', 'move right', 'h'], l: ['move_left', 'move left', 'h'], u: ['move_up', 'move up', 'h'], d: ['move_down', 'move down', 'h'], j: ['jump', 'jump', 'h'], s: ['say', 'say', 'g'], x: ['go_to', 'go to', 'h'], k: ['when_key', 'when', 'e'], p: ['repeat', 'repeat', 'b'], v: ['costume', 'switch costume to', 'v'], n: ['sound', 'play sound', 't'], a: ['if_path', 'if path', 'a'], q: ['when_touch', 'when touching', 'e'], f: ['when_start', 'when ▶ clicked', 'e'], z: ['set_var', 'set', 'o'], c: ['change_var', 'change', 'o'], i: ['if_var', 'if', 'a'], g: ['game_over', 'game over', 'e'], y: ['go_to_r', 'go to', 'h'], m: ['random_n', 'random', 'o'] }
 const BL_TURI = Object.fromEntries(Object.entries(BL_TUR).map(([k, v]) => [v[0], k]))
 const BL_WS = new Map() // .ekran → workspace
 // 3-dars: go to sonlari — maydon o'lchamidan (DARS.maydon; bo'lmasa 7 × 5)
@@ -30,10 +30,10 @@ const BL_CH_SON = () => ((typeof DARS !== 'undefined' && DARS.changeSonlar) || [
 // 12-dars: shart sonlari (if jon = 0) — 0…10; olma turiga kaktus (DARS.kaktus)
 const BL_IF_SON = () => Array.from({ length: 11 }, (_, i) => [String(i), String(i)])
 const BL_OLMA = [['apple', 'apple'], ['gold apple', 'gold']]
-const BL_OLMA_D = () => [...BL_OLMA, ...(typeof DARS !== 'undefined' && DARS.kaktus ? [['cactus', 'cactus']] : [])]
+const BL_OLMA_D = () => [...BL_OLMA, ...(typeof DARS !== 'undefined' && DARS.kaktus ? [['cactus', 'cactus']] : []), ...(typeof DARS !== 'undefined' && DARS.dushmanTegish ? [['enemy', 'enemy']] : [])] // 18-dars: dushmanga tekkanda
 // hodisa bloklari (dasturcha boshlaydi): when_key (4-dars) · when_touch, when_start (11-dars)
-const BL_HODISA = new Set(['when_key', 'when_touch', 'when_start'])
-const BL_BOSH = (t) => t === 'k' || t === 'q' || t === 'f'
+const BL_HODISA = new Set(['when_key', 'when_touch', 'when_start', 'when_clone']) // 16-dars: when I start as a clone — har nusxa bajaradi
+const BL_BOSH = (t) => t === 'k' || t === 'q' || t === 'f' || t === 'H' // 16-dars: H — when I start as a clone
 const BL_TOVUSH = [['qadam', 'qadam'], ['sakrash', 'sakrash'], ['jiring', 'jiring'], ['tuk', 'tuk']]
 // bir nechta dasturcha: DARS.dasturchalar true — butun dars (4-dars); 'oyin' — faqat o'yin ekranlarida (bosh.oyin; 7-dars: 1–2-bekat bitta dastur, 3-bekat o'yin).
 // x — ish maydoni (ws.__jrEk) yoki ekran; ish maydoni yaratilganda ekran unga yoziladi (blTayyorla)
@@ -152,6 +152,10 @@ function blBir() {
     { type: 'num_x', message0: '%1', args0: [{ type: 'field_jr_son', name: 'N', options: [...blSonlar(BL_MAYDON().w), ['random', 'random']] }], output: 'Number', style: 'harakat' },
     { type: 'num_y', message0: '%1', args0: [{ type: 'field_jr_son', name: 'N', options: [...blSonlar(BL_MAYDON().h), ['random', 'random']] }], output: 'Number', style: 'harakat' },
     { type: 'random_n', message0: 'random %1 to %2', args0: [{ type: 'field_jr_son', name: 'A', options: blSonlar(11) }, { type: 'field_jr_son', name: 'B', options: blSonlar(11) }], output: 'Number', style: 'ozgaruvchi' },
+    // 16-dars (21.11, manba 016): Klon oilasi (to'q sariq) — nusxa yasash, nusxa boshlanganda (boshli blok), nusxani o'chirish
+    { type: 'create_clone', message0: '%1 create clone of myself', args0: [img('C')], previousStatement: null, nextStatement: null, style: 'klon' },
+    { type: 'when_clone', message0: '%1 when I start as a clone', args0: [img('H')], nextStatement: null, style: 'klon' },
+    { type: 'delete_clone', message0: '%1 delete this clone', args0: [img('D')], previousStatement: null, nextStatement: null, style: 'klon' }, // ostidagi bloklar bajarilmaydi — nusxa o'chdi
     { type: 'sound', message0: '%1 play sound %2', args0: [img('n'), { type: 'field_jr_son', name: 'NOM', options: BL_TOVUSH }], previousStatement: null, nextStatement: null, style: 'tovush' },
   ])
   for (const t of ['num_x', 'num_y']) B.Blocks[t].init = ((asl) => function () { asl.call(this); const blk = this; this.getField('N').setValidator((v) => { if (v !== 'random') return v; setTimeout(() => blRandomQoy(blk), 0); return null }) })(B.Blocks[t].init)
@@ -159,7 +163,7 @@ function blBir() {
   B.Blocks.say.init = ((asl) => function () { asl.call(this); this.getField('TEXT').setValidator((v) => String(v).slice(0, 30)) })(B.Blocks.say.init)
   B.Theme.defineTheme('junior', {
     name: 'junior', base: B.Themes.Classic,
-    blockStyles: { harakat: { colourPrimary: BL_RANG.h[0], colourSecondary: BL_RANG.h[1], colourTertiary: BL_RANG.h[2] }, gap: { colourPrimary: BL_RANG.g[0], colourSecondary: BL_RANG.g[1], colourTertiary: BL_RANG.g[2] }, hodisa: { colourPrimary: BL_RANG.e[0], colourSecondary: BL_RANG.e[1], colourTertiary: BL_RANG.e[2] }, boshqaruv: { colourPrimary: BL_RANG.b[0], colourSecondary: BL_RANG.b[1], colourTertiary: BL_RANG.b[2] } , korinish: { colourPrimary: BL_RANG.v[0], colourSecondary: BL_RANG.v[1], colourTertiary: BL_RANG.v[2] }, tovush: { colourPrimary: BL_RANG.t[0], colourSecondary: BL_RANG.t[1], colourTertiary: BL_RANG.t[2] }, shart: { colourPrimary: BL_RANG.a[0], colourSecondary: BL_RANG.a[1], colourTertiary: BL_RANG.a[2] }, ozgaruvchi: { colourPrimary: BL_RANG.o[0], colourSecondary: BL_RANG.o[1], colourTertiary: BL_RANG.o[2] } },
+    blockStyles: { klon: { colourPrimary: BL_RANG.K[0], colourSecondary: BL_RANG.K[1], colourTertiary: BL_RANG.K[2] }, harakat: { colourPrimary: BL_RANG.h[0], colourSecondary: BL_RANG.h[1], colourTertiary: BL_RANG.h[2] }, gap: { colourPrimary: BL_RANG.g[0], colourSecondary: BL_RANG.g[1], colourTertiary: BL_RANG.g[2] }, hodisa: { colourPrimary: BL_RANG.e[0], colourSecondary: BL_RANG.e[1], colourTertiary: BL_RANG.e[2] }, boshqaruv: { colourPrimary: BL_RANG.b[0], colourSecondary: BL_RANG.b[1], colourTertiary: BL_RANG.b[2] } , korinish: { colourPrimary: BL_RANG.v[0], colourSecondary: BL_RANG.v[1], colourTertiary: BL_RANG.v[2] }, tovush: { colourPrimary: BL_RANG.t[0], colourSecondary: BL_RANG.t[1], colourTertiary: BL_RANG.t[2] }, shart: { colourPrimary: BL_RANG.a[0], colourSecondary: BL_RANG.a[1], colourTertiary: BL_RANG.a[2] }, ozgaruvchi: { colourPrimary: BL_RANG.o[0], colourSecondary: BL_RANG.o[1], colourTertiary: BL_RANG.o[2] } },
     componentStyles: { workspaceBackgroundColour: '#EEF1F6', scrollbarColour: '#C6CEDB', scrollbarOpacity: 0.8, insertionMarkerColour: '#0D2137', insertionMarkerOpacity: 0.3 },
     fontStyle: { family: '"JetBrains Mono", ui-monospace, monospace', weight: '700', size: 15.6 },
   })
@@ -247,7 +251,7 @@ function blTayyorla(ek) {
     }
     if (e.type === Blockly.Events.BLOCK_DRAG && e.isStart) blTanlovOl(ek)
     if (e.type === Blockly.Events.BLOCK_DRAG && !e.isStart) setTimeout(() => { blBirlashtir(ws); blMahkam(ws); sanoq(ek) }, 0)
-    if (e.type === Blockly.Events.BLOCK_CHANGE) shartYangila(ek)
+    if (e.type === Blockly.Events.BLOCK_CHANGE) { shartYangila(ek); if (ek.__bq && typeof qadamOl === 'function') qadamOl(ek) } // 14-dars: son yoki tomon o'zgardi — «Bitta qadam» boshidan
     if (e.type === Blockly.Events.BLOCK_CREATE || e.type === Blockly.Events.BLOCK_MOVE) setTimeout(() => ws.getAllBlocks(false).forEach(blBelgila), 0)
   })
   sanoq(ek)
@@ -265,7 +269,7 @@ function blYangi(ws, t, matn) {
   if (t === 'v') b.setFieldValue(BL_KOSTYUM.some((q) => q[1] === matn) ? matn : 'xursand', 'KOS')
   if (t === 'n') b.setFieldValue(BL_TOVUSH.some((q) => q[1] === matn) ? matn : 'qadam', 'NOM')
   if (t === 'a') b.setFieldValue(BL_YON.some((q) => q[1] === matn) ? matn : 'right', 'YON')
-  if (t === 'q') b.setFieldValue(matn === 'gold' || matn === 'cactus' ? matn : 'apple', 'OLMA')
+  if (t === 'q') b.setFieldValue(matn === 'gold' || matn === 'cactus' || matn === 'enemy' ? matn : 'apple', 'OLMA')
   // set / change / if: matn — «son» yoki «o'zgaruvchi:son» (12-dars: «jon:-1»)
   if (t === 'z' || t === 'c' || t === 'i') {
     const [vr, son] = String(matn == null ? '' : matn).indexOf(':') >= 0 ? String(matn).split(':') : ['', String(matn == null ? '' : matn)]
@@ -364,6 +368,7 @@ function blTanla(ek, b) {
 }
 function blTanlaBos(ek, ws, b) {
   if (ek.dataset.yuryapti || ek.dataset.faqatOqish || b.disposed) return // 11-dars: oldindan aytishda dastur o'zgarmaydi
+  if (typeof kodBlokBos === 'function' && kodBlokBos(ek, b)) return // 19-dars: kod ochiq — blok bosilsa qatori yonadi, dastur o'zgarmaydi
   // 12-dars: blokdagi ro'yxat (o'zgaruvchi, son) ochildi — bu tanlov bosishi emas (aks holda yangi if tanlovdan tushib, keyingi blok ichiga emas, keyiniga tushardi)
   if (Blockly.DropDownDiv && Blockly.DropDownDiv.isVisible && Blockly.DropDownDiv.isVisible()) return
   const t = blTanlov(ek)
@@ -372,18 +377,30 @@ function blTanlaBos(ek, ws, b) {
   blTanlovOl(ek)
   if (t === b) { ishora(ek, ''); return }
   if (t.outputConnection || b.outputConnection) { blTanla(ek, b); ishora(ek, 'Tanlandi: boshqa blokni bosing yoki ✕'); return } // 13-dars: random (son bloki) joy almashtirmaydi
-  blAlmashtir(ws, t, b); sanoq(ek); ishora(ek, 'Bloklar joyi almashdi')
+  if (!blAlmashtir(ws, t, b)) { blTanla(ek, b); ishora(ek, 'Tanlandi: boshqa blokni bosing yoki ✕'); return } // almashmasa — «almashdi» demaymiz (21.11)
+  sanoq(ek); ishora(ek, 'Bloklar joyi almashdi')
 }
 // ikki blokning dasturdagi joyini almashtirish: zanjir bo'laklarga ajratiladi va yangi tartibda qayta ulanadi
 function blAlmashtir(ws, a, b) {
+  // 14-dars (21.11): ikkalasi bitta ichki zanjirda (repeat yoki if ichida) — o'sha zanjirda almashadi; zanjir boshi ota blokning ichki ulanishiga qaytadi
+  const bosh = (x) => { let p = x; for (let q = p.getPreviousBlock(); q && q.getNextBlock() === p; q = p.getPreviousBlock()) p = q; return p }
+  const za = bosh(a), ota = za.previousConnection && za.previousConnection.targetConnection
+  if (za === bosh(b) && ota && za.getPreviousBlock() && za.getPreviousBlock().getNextBlock() !== za) {
+    const r = blZanjir(za), i = r.indexOf(a), j = r.indexOf(b); if (i < 0 || j < 0) return false
+    const y = r.slice(); y[i] = b; y[j] = a
+    B_GURUH(() => { r.forEach((x) => x.unplug(false)); let o = null; for (const x of y) { (o ? o.nextConnection : ota).connect(x.previousConnection); o = x } })
+    ws.getAllBlocks(false).forEach(blBelgila); blMahkam(ws)
+    return true
+  }
   // 4-dars: faqat bitta dasturcha ichida va hodisa blokisiz (hodisa bloki doim tepada); 1–3-darsda dastur bitta — avvalgidek
-  if (BL_DASTURCHA(ws) && (a.getRootBlock() !== b.getRootBlock() || BL_HODISA.has(a.type) || BL_HODISA.has(b.type))) return
-  const r = BL_DASTURCHA(ws) ? blZanjir(a.getRootBlock()) : blRoyxat(ws), i = r.indexOf(a), j = r.indexOf(b); if (i < 0 || j < 0) return
+  if (BL_DASTURCHA(ws) && (a.getRootBlock() !== b.getRootBlock() || BL_HODISA.has(a.type) || BL_HODISA.has(b.type))) return false
+  const r = BL_DASTURCHA(ws) ? blZanjir(a.getRootBlock()) : blRoyxat(ws), i = r.indexOf(a), j = r.indexOf(b); if (i < 0 || j < 0) return false
   const y = r.slice(); y[i] = b; y[j] = a
   const joy = BL_DASTURCHA(ws) ? r[0].getRelativeToSurfaceXY() : new Blockly.utils.Coordinate(0, 0)
   B_GURUH(() => { r.forEach((x) => x.unplug(false)); let o = null; for (const x of y) { if (o) o.nextConnection.connect(x.previousConnection); else x.moveTo(joy); o = x } })
   if (BL_DASTURCHA(ws)) blTartib(ws)
   ws.getAllBlocks(false).forEach(blBelgila); blMahkam(ws)
+  return true
 }
 function blTanlovOchir(ek) {
   const t = blTanlov(ek); if (!t) return false

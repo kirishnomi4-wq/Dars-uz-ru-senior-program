@@ -7,6 +7,10 @@
 .otd{flex:1;min-height:0;display:flex;flex-direction:column;gap:.7cqw;margin-top:auto}
 .otd > small{font:700 1.1cqw/1 var(--f-kod);letter-spacing:.06em;text-transform:uppercase;color:#5A5A60}
 .e-P1 .chap{gap:1cqw}
+/* 21.11: «O'tgan darsda» kartasida blok chap ustunga (44%) sig'masdi — ustun blok kengligida (P9 kartalaridagidek) */
+.otd .tf{grid-template-columns:auto minmax(0,1fr)}
+.otd .tf-r{padding:.6cqw .8cqw}
+.otd .tf-r .mbw .mb{min-width:0}
 
 /* huk: uchta dastur kartasi yonma-yon — harf, qisqa gap, kichik dastur (yuqoridan pastga) */
 .jv.dkv{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1cqw;margin-top:auto;flex:1;min-height:0;align-items:stretch;background:none;box-shadow:none;border:0;padding:0}

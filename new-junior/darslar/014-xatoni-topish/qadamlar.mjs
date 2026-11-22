@@ -1,0 +1,43 @@
+// 14-dars «Xatoni topish» qadamlari (QADAM) va ustoz varag'i (VARAQ) — 21.11. Manba: new-junior/manba/014-xatoni-topish.md v1.1, 18 qadam.
+// 16-qadam bola ro'yxati 'oxirgi' (A·1) — bola noutbukida oxirgi yechgan pog'onasi o'z dasturi bilan; hech narsa yechmagan bo'lsa — «Ustoz ekraniga qarang».
+const QADAM = [
+  ['Kirish', 'P1', ['B0', 'BK']],
+  ['Savol: xatoni qanday topamiz?', 'P2', ['P2N', 'BK']],
+  ['Uch sinov', 'P2S', ['BK'], 'Ustoz usullarni sinayapti — kuzating'],
+  ['Javob: qadam-baqadam yuramiz', 'P2C', ['BK']],
+  ['Eslaymiz: muammochalar', 'P3', ['BK'], 'Eslaymiz: muammochalar'],
+  ['Reja', 'P4', ['BK'], 'Bugun: uchta bekat'],
+  ['Bugungi qoida: o‘zingiz topasiz', 'P6', ['BK'], 'Ustoz bugungi qoidani aytyapti'],
+  ['To‘xtagan joy', 'P5', ['B1A', 'B1B', 'B1C', 'B1Y', 'BK']],
+  ['2-bekat', 'P4B', ['BK'], '2-bekat: bitta qadam'],
+  ['Ko‘ramiz: bitta qadam', 'P7', ['BK'], 'Ustoz qadam-baqadam yuryapti — kuzating'],
+  ['Bitta qadam', 'P5G', ['B2A', 'B2B', 'B2C', 'B2Y', 'BK']],
+  ['Xulosa: xato qanday topiladi', 'P9', ['BK'], 'Xulosa: xato qanday topiladi'],
+  ['3-bekat', 'P4C', ['BK'], '3-bekat: yashirin xato'],
+  ['Ko‘ramiz: ko‘p marta sinaymiz', 'P8', ['BK'], 'Ustoz dasturni ko‘p marta sinayapti — kuzating'],
+  ['Yashirin xato', 'P5B', ['B3A', 'B3B', 'B3C', 'B3Y', 'BK']],
+  ['Topishmog‘ingizni o‘qib bering', 'P11', 'oxirgi'],
+  ['Yakun', 'P12', ['B5']],
+  ['Sinfimiz bugun', 'P14', ['B5']],
+]
+// ustoz varag'i: [Ekranda · Siz (manbadagi tayanch gaplar, aynan) · Bola o'rganadi]
+const VARAQ = [
+  ['«14-dars · Xatoni topish» — «Bugun xatolarni topamiz!» Maydon, Coddy (0, 0) da; pastda «O‘tgan darsda» — tasodifiy son.', '«O‘tgan darsda dastur sonni o‘zi tanladi — o‘yin har safar boshqacha bo‘ldi.» «Bugun yangi blok yo‘q. Xatosi bor dasturlarni tuzatasiz.» «Noutbukda «Tayyorman» tugmasini bosing.»', 'Bugun xatoni o‘zi topadi.'],
+  ['Savol: «Xatoni qanday topamiz?» Kulrang tepalik, oltin iz rasmdan chiqqan; dastur 6 ta blok. Uchta karta: A «Oxirgi blokni tuzatamiz», B «Har xil o‘zgartirib ko‘ramiz», C «Qadam-baqadam yuramiz».', '«Dasturda bitta xato bor. Rasm boshqacha chiqdi.» «Har kim noutbukida bitta kartani tanlasin: xatoni qanday topamiz?»', 'Taxmin qiladi — buni sinov ko‘rsatadi.'],
+  ['Uch sinov: A — oxirgi repeat 2: iz yana chiqdi («✕ xato boshqa joyda»). «Keyingi» — B: birinchi repeat 3 — battar («✕ rasm battar»). «Keyingi» — C: «Bitta qadam» besh marta, 5-qadamda rasmdan chiqdi («✓ 5-qadamda topildi»).', '«Muammocha oxirida chiqdi, lekin xato oxirida emas edi. Har xil o‘zgartirsak — battar.» «Qadam-baqadam yurdik: qahramon qayerda rasmdan chiqdi — xato o‘sha yerda.»', 'Tavakkal emas — qadam-baqadam izlaydi.'],
+  ['Javob: «Qadam-baqadam yuramiz». A va B xira, C oltin; tepalik to‘liq oltin.', '«Xato — topiladigan narsa. Qadam-baqadam yursak, u o‘zi ko‘rinadi.»', 'Xato topiladigan narsa ekanini biladi.'],
+  ['Eslaymiz: «Muammocha nima deydi?» «Keyingi» — birma-bir: Bo‘shvoy, Kamvoy, Ortiqvoy, To‘siqvoy.', '«Muammocha — jazo emas. U yordamchi.» «Muammocha gapini o‘qing — u qayerga qarashni aytadi.»', 'Muammochadan iz oladi.'],
+  ['Reja: tepalik — to‘xtagan joy → bitta qadam → yashirin xato; cho‘qqida «topishmoq».', '«Bugun uchta bekat: to‘xtagan joy, bitta qadam, yashirin xato.» «Dars oxirida o‘zingiz topishmoq tuzasiz — bitta xatoli dastur.»', 'Darsda qayerda turganini biladi.'],
+  ['Qoida: «Bugun xatoni o‘zingiz topasiz». «Keyingi» — birma-bir: «▶ Ishga tushir», «Bitta qadam», «Maslahat» qulfi.', '«Har pog‘onada dastur tayyor, unda xato bor. Men tuzatmayman — o‘zingiz topasiz.» «Avval ishga tushiring. Kerak bo‘lsa — Bitta qadam.» «Tuzatgach — yana ishga tushiring. Endi o‘zingiz.»', 'Avval ishga tushiradi.'],
+  ['Mashq: «Endi o‘zingiz!» — zinapoya: 1 burilish · 2 pastga · 3 qator · ★ ikki xato.', '«Avval ishga tushiring. Muammocha qayerda chiqdi?» «To‘xtagan blokni o‘qing — va undan oldingisini ham.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'To‘xtagan joydan xatoni topadi.'],
+  ['Tepalik: 1-bekat ✓ — «Bitta qadam».', '«To‘xtagan joyni topdik. Endi xato to‘xtatmaydi — uni qadam-baqadam izlaymiz.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: «Har bosishda bitta qadam». Kulrang zinapoya; tayyor repeat 3 [↑ →]. «▶ Ishga tushir» — rasmdan chiqdi; «Bitta qadam» — 1-qadamda (2, 1); ikki blok joyini almashtirasiz — «Rasm tayyor!».', '«Bitta qadam — har bosishda qahramon bitta qadam yuradi. Qahramon qayerda — rasm bilan solishtiramiz.» «Qahramon rasmdan chiqqan qadam — xatoga eng yaqin joy. Shu blokni va undan oldingisini o‘qiymiz.» «Endi o‘zingiz.»', '«Bitta qadam»ni ishlatadi.'],
+  ['Mashq: «Qadam-baqadam!» — zinapoya: 1 ilmoq · 2 ilon · 3 darvoza · ★ uch ustun.', '«Bitta qadam bosing va qarang: qahramon kulrang katakdami?» «Rasmdan chiqqan qadamda dastur to‘xtaydi — shu blokni va undan oldingisini o‘qing.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'Rasmdan chiqqan qadamni topadi.'],
+  ['Xulosa: «Xato — topiladigan narsa». Ikki karta: «▶ Ishga tushir» — muammocha joyni ko‘rsatadi; «Bitta qadam» — qayerda rasmdan chiqqani ko‘rinadi.', '«Avval ishga tushiramiz. Xato to‘xtatmasa — qadam-baqadam yuramiz.» «Xato — qahramon rasmdan chiqqan joyda yoki undan oldinroq. Tuzatgach — yana ishga tushiramiz.»', 'Xatoni topish usulini biladi.'],
+  ['Tepalik: 1, 2 ✓ — «Yashirin xato».', '«Ikki bekatdan o‘tdik. Oxirgisida xato har safar ko‘rinmaydi.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: «Ko‘p marta sinaymiz». Savatlar (2, 0)…(6, 0); go to x: (random 2 to 7) y: 0. Uch marta: 4, 2 — savatga, 7 — maydon cheti. 7 ni 6 ga o‘zgartirib, yana uch marta — «Har safar boshqa joy!».', '«Ikki marta ishladi, uchinchisida chiqib ketdi. Xato yashirin edi.» «Dastur har holatda ishlasin: har labirintda, har tugmada, har sonda.» «Endi o‘zingiz.»', 'Dasturni ko‘p marta sinaydi.'],
+  ['Mashq: «Hamma holatni sinang!» — zinapoya: 1 ikki labirint · 2 olma terish · 3 savatlar · ★ topishmoq.', '«Bu bekatda dastur bir holatda ishlaydi, boshqasida — yo‘q. O‘sha holatni toping.» «Topishmoqda xato bitta bo‘lsin.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'Hamma holatni sinaydi.'],
+  ['«Topishmog‘ingizni o‘qib bering». Topishmoq maydoni, dastur bo‘sh. Bola o‘qiydi, siz bloklarni qo‘yasiz, «Bitta qadam» bilan xatoni topasiz. Proyektorda ism yo‘q.', '«Kim topishmog‘ini o‘qib beradi? Blokma-blok, yuqoridan pastga.» «Kuzating: qahramon qayerda to‘xtadi va qayerga borishi kerak edi?»', 'O‘z topishmog‘ini o‘qib beradi.'],
+  ['Yakun: «Siz xatolarni topdingiz!» Bugungi qoida — «Xato — topiladigan narsa»; keyingi dars — 15 · Xakaton №1.', '«Uchala bekatdan o‘tdik: to‘xtagan joy, bitta qadam, yashirin xato.» «Xato — topiladigan narsa: ishga tushiring, qadam-baqadam yuring, tuzating, yana sinang.» «Keyingi darsda do‘stingiz bilan juftlikda kichik o‘yin yasaysiz — xakaton.»', 'O‘z natijasini ko‘radi.'],
+  ['Sinfimiz bugun: nechta xato tuzatildi, necha marta «Bitta qadam» bosildi, nechta pog‘ona bajarildi (haqiqiy son, ismsiz).', '«Hammangiz zo‘r ishladingiz!» (keyin raqamlarni o‘qiydi) «Dasturchilar ham har kuni xato topib tuzatadi. Bugun siz ham shunday qildingiz.»', 'Sinf bilan birga natijani ko‘radi.'],
+]

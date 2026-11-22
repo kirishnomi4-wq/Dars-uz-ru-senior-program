@@ -19,6 +19,14 @@ body.r-ustoz,body.r-bola{background:#F6F4EF}
 .ekran .pl .mbw:not(.yopiq) .mb,.ekran .dst .mb,.ekran .sin3,.ekran .hn .mas,.ekran .rng i,.ekran .asos,.ekran .orq,.ekran .jk,.ekran .tq-o,.ekran .jy,.ekran .yur-b,.ekran .rd,.ekran .ism-t{cursor:pointer}
 .nomsiz .ekran .hb .hl{visibility:hidden}
 .hn .ishga{white-space:nowrap;margin-left:auto}.hn .ishga + .asos,.hn .ishga ~ .k-ust{margin-left:1cqw}
+/* 21.11: Blockly ro'yxati qatorlari OQ FONDA OQ edi (zelos chizuvchisi ro'yxat foni blok rangida deb matnni oq qiladi, bizda fon oq) — bola sonlarni ko'rmasdi; hamma darsda */
+html .blocklyDropDownDiv.junior-renderer .blocklyMenuItem .blocklyMenuItemContent{color:#0D2137}
+/* 21.11 (U-3): Blockly ro'yxatidagi tanlangan son oldidagi belgi — Blockly uni /sprites.svg dan olardi (saytda yo'q, LMS'da boshqa domen) — endi shu yerda, rasm qatorda */
+.blocklyDropDownDiv .blocklyMenuItemSelected .blocklyMenuItemCheckbox{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.2 8.6l3.1 3L12.8 4.6' fill='none' stroke='%230D2137' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center/14px 14px}
+/* 14-dars: «Bitta qadam» — «Ishga tushir» yonida, asosiy emas: oq, coral hoshiya; ostida «N-qadam» */
+.hn .bq-t{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.2cqw;white-space:nowrap;margin-left:auto;color:#C7381A;font-weight:800;line-height:1;border:.15cqw solid #FF4F28;border-radius:.8cqw;padding:.6cqw 1.2cqw;background:#fff;cursor:pointer}
+.hn .bq-t small{font:700 .95cqw/1 var(--f-kod);color:#8A8A90}.hn .bq-t small:empty{display:none}
+.hn .bq-t + .ishga,.hn .bq-t + .asos{margin-left:1cqw}
 .ism-inp{font:inherit;color:inherit;border:0;outline:0;background:transparent;width:100%;min-width:0;padding:0}
 .dst .mb .inp[contenteditable=true]{outline:.2cqw solid #FFC93C;cursor:text}
 .dv-pufak{position:absolute;z-index:6;white-space:nowrap}
@@ -144,6 +152,12 @@ body.r-ustoz,body.r-bola{background:#F6F4EF}
 .katak .kt-yr[data-r]{opacity:0;transition:opacity .3s}
 .katak .kt-yr[data-r].on{opacity:1}
 /* 4-dars (20.11): Hodisa oilasi — to'q sariq; hodisasiz qolgan bloklar xira (hech qachon bajarilmaydi); o'yin yozuvi va olma hisobi */
+/* 16-dars: Klon oilasi — to'q sariq */
+.mb.f-K{--c:#C98A00;--d:#9A6A00}
+.mb.f-K.yon{--c:#E3B24A}
+.mbw .mb.f-K.yon.hozir{--c:#C98A00}
+.rd.f-K{--c:#C98A00}
+.pl > small.f-K{color:#9A6A00}
 .mb.f-e{--c:#F08A24;--d:#C96A12}
 .mb.f-e.yon{--c:#F6AC66}
 .mbw .mb.f-e.yon.hozir{--c:#F08A24}
@@ -279,3 +293,43 @@ body.r-ustoz,body.r-bola{background:#F6F4EF}
 .dst .sinov-n{font:700 1cqw/1.2 var(--f-kod);color:#5A6474}
 .dsb .olma-ega{display:inline-grid;place-items:center;width:1.9cqw;height:1.9cqw}
 .dsb .olma-ega svg{width:100%;height:100%}
+/* ===== 19-dars (22.11): «Kodini ko‘rsat» — kod oynasi (kod.js). Kod ochiq: rang doirachalari va javon o'rnida, bloklar yonida; faqat kod (3-bekat): dastur ustunigacha ===== */
+.kodp{display:none}
+.kod-och .kodp{display:flex;grid-column:1/3;grid-row:2;flex-direction:column;gap:.6cqw;min-width:0;min-height:0;padding:1cqw 1cqw 1.2cqw;border-radius:1.2cqw;background:#0F1E3D;box-shadow:0 .2cqw .9cqw rgba(13,33,55,.25);color:#E6ECF5;font:500 .95cqw/1.55 var(--f-kod)}
+.kod-och .rg,.kod-och .pl{display:none}
+.kod-och .dst{grid-column:3;grid-row:2}
+.kod-och .oyna{grid-column:4;grid-row:2}
+.kod-faqat .kodp{grid-column:1/4}
+.kod-faqat .dst{display:none}
+.kodp-b{display:flex;align-items:baseline;gap:.6cqw;font:700 1.05cqw/1 var(--f-kod);color:#8FD3FF}
+.kodp-b small{font-size:.8cqw;font-weight:600;color:#7C8BA6}
+.kodp-q{flex:1;min-height:0;overflow:auto}
+.kodp-s{font:700 .95cqw/1.2 var(--f-matn);color:#FFC93C}
+.kq{display:flex;gap:.6cqw;align-items:baseline;padding:.05cqw .4cqw;border-radius:.4cqw;white-space:pre;cursor:pointer}
+.kq i{flex:none;width:1.5cqw;text-align:right;font-style:normal;font-size:.8cqw;color:#5B6B85}
+.kq code{font:inherit;color:inherit;padding-left:calc(var(--d,0) * 1.4cqw);white-space:pre}
+.kq.xira-q{opacity:.55;cursor:default}
+.kq.bosh{min-height:.9cqw;cursor:default}
+.kq.on{background:rgba(255,107,74,.3);box-shadow:inset .2cqw 0 0 #FF6B4A}
+.kq.nishon{background:rgba(255,201,60,.22);box-shadow:inset .2cqw 0 0 #FFC93C}
+.kq.hozir{background:rgba(255,201,60,.42)}
+.kq em{font-style:normal;color:#FFC93C}
+.kq u{text-decoration:none;color:#C792EA}
+.kq s{text-decoration:none;color:#A6E3A1}
+.kq .kn{display:inline-block;min-width:1.5cqw;padding:0 .45cqw;border-radius:999px;background:#fff;color:#0D2137;font-weight:800;text-align:center;cursor:pointer}
+.kodp-q.tahrir-yoq .kn{cursor:default;background:#DDE5F2}
+/* «Kodini ko‘rsat» — pastki qatorda, «Maslahat» yonida */
+.hn .kod-t{display:inline-flex;align-items:center;gap:.6cqw;margin-left:1cqw;padding:.85cqw 1.3cqw;border-radius:1cqw;background:#0F1E3D;color:#fff;font:700 1.15cqw/1 var(--f-matn);white-space:nowrap;cursor:pointer}
+.hn .kod-t b{font:800 1.05cqw/1 var(--f-kod);color:#FFC93C}
+.kod-och .hn .kod-t{background:#fff;color:#0F1E3D;box-shadow:inset 0 0 0 .15cqw #0F1E3D}
+.kod-och .hn .kod-t b{color:#C7381A}
+/* faqat kod (3-bekat): o'qish uchun yirikroq */
+.kod-faqat .kodp{font-size:1.5cqw;padding:1.4cqw 1.6cqw}
+.kod-faqat .kq i{width:2.2cqw;font-size:1.1cqw}
+.kod-faqat .kodp-b{font-size:1.3cqw}
+/* blok va qator: yonayotgan blok (coral), moslash nishoni (sariq) */
+.jr-bl .kod-yon > .blocklyPath{stroke:#FF6B4A;stroke-width:3px}
+.jr-bl .kod-nishon > .blocklyPath{stroke:#FFC93C;stroke-width:5px}
+/* statik kod qutisi (dars ekranlari: huk, javob, yangi so'z, xulosa) — kod oynasidagi qatorlar ko'rinishida */
+.kodk{display:inline-flex;flex-direction:column;padding:.6cqw 1cqw;border-radius:.8cqw;background:#0F1E3D;color:#E6ECF5;font:600 1.15cqw/1.55 var(--f-kod);text-align:left}
+.kodk .kq{cursor:default;padding:0}

@@ -31,12 +31,16 @@ function pufak(oyna, q, matn) {
 function bloklar(st) { const r = typeof blBloklar === 'function' && blBloklar(st); return r || Array.from(st.querySelectorAll('.dst .mb')) }
 function blokTuri(mb) { if (mb && mb.dataset && mb.dataset.tur) return mb.dataset.tur; const t = (mb.querySelector('span') || {}).textContent || ''; if (t.indexOf('if path') >= 0) return 'a'; if (t.indexOf('switch costume') >= 0) return 'v'; if (t.indexOf('play sound') >= 0) return 'n'; return t.indexOf('right') >= 0 ? 'r' : t.indexOf('left') >= 0 ? 'l' : t.indexOf('jump') >= 0 ? 'j' : t.indexOf('move up') >= 0 ? 'u' : t.indexOf('move down') >= 0 ? 'd' : t.indexOf('go to') >= 0 ? 'x' : t.indexOf('when') >= 0 ? 'k' : t.indexOf('repeat') >= 0 ? 'p' : 's' }
 // 5a: dastur to'xtagan blokning belgisi (ijrochi.js, «urildi») — dastur o'zgarsa yoki qayta ishga tushirilsa ketadi
+// pog'ona yechilgach keyingisiga o'tish — bir ekranda bir marta (21.11): o'tish kutilayotganda (1,4 s) yana yechilsa, ikkinchi o'tish rejalashtirilmaydi —
+// aks holda bola bitta pog'onani ko'rmasdan o'tib ketardi (14-dars to'liq sinovi topdi). Belgi JS xossasida — ekran HTML'i (oltin namuna) o'zgarmaydi
+function otKeyin(ek, ms = 1400, f = () => bolaKeyingi()) { if (ek && ek.__otadi) return; if (ek) ek.__otadi = true; setTimeout(f, ms) }
 function urildiOl(ek) { ek.querySelectorAll('.mb.urildi').forEach((x) => x.classList.remove('urildi')) }
-function sanoq(st) { muammoOl(st); urildiOl(st); const n = bloklar(st).length, s = st.querySelector('.dsn'); if (s) s.textContent = typeof BL_DASTURCHA === 'function' && BL_DASTURCHA(st) && typeof blDasturchalar === 'function' ? blDasturchalar(st).length + ' ta dasturcha' + (DARS.dasturchaBlok ? '\n' + n + ' / ' + (TOP(st.dataset.id).chegara || DARS.blokChegara) + ' ta blok' : '') : TOP(st.dataset.id).chegara ? n + ' / ' + TOP(st.dataset.id).chegara + ' ta blok' : n + ' ta blok'; if (typeof ozgKorinsin === 'function') ozgKorinsin(st); const jb = st.querySelector('.jr-bl'); if (jb) { jb.classList.toggle('bosh-bor', !n); if (typeof blSigdir === 'function') blSigdir(st); shartYangila(st); return } if (!n) { const w = st.querySelector('.dst .mbw'); if (w) w.remove(); if (!st.querySelector('.dst .bosh')) st.querySelector('.dst .dsb').insertAdjacentHTML('afterend', '<span class="bosh">Blokni shu yerga ulang</span>') } shartYangila(st) }
+function sanoq(st) { if (st.__bq) qadamOl(st); else qadamYoz(st, 0); muammoOl(st); urildiOl(st); const n = bloklar(st).length, s = st.querySelector('.dsn'); if (s) s.textContent = typeof BL_DASTURCHA === 'function' && BL_DASTURCHA(st) && typeof blDasturchalar === 'function' ? blDasturchalar(st).length + ' ta dasturcha' + (DARS.dasturchaBlok ? '\n' + n + ' / ' + (TOP(st.dataset.id).chegara || DARS.blokChegara) + ' ta blok' : '') : TOP(st.dataset.id).chegara ? n + ' / ' + TOP(st.dataset.id).chegara + ' ta blok' : n + ' ta blok'; if (typeof ozgKorinsin === 'function') ozgKorinsin(st); const jb = st.querySelector('.jr-bl'); if (jb) { jb.classList.toggle('bosh-bor', !n); if (typeof blSigdir === 'function') blSigdir(st); shartYangila(st); return } if (!n) { const w = st.querySelector('.dst .mbw'); if (w) w.remove(); if (!st.querySelector('.dst .bosh')) st.querySelector('.dst .dsb').insertAdjacentHTML('afterend', '<span class="bosh">Blokni shu yerga ulang</span>') } shartYangila(st) }
 function ishora(st, matn) { const h = st.querySelector('.hn .hint'); if (h) h.textContent = matn }
 // Muammocha (qaror 1-B, 18.11; etalon B3, 73-qaror): xato chiqqanda sahnada chiqadi — pufagida faqat bitta gap; «Maslahat» yonadi.
 // Kamvoy — yetmadi, Ortiqvoy — ortiqcha, Bo'shvoy — bo'sh. Qahramon chapda bo'lsa — muammocha o'ng tomonda (uni yopmaydi).
 function muammo(ek, kim, gap) {
+  if (typeof xkMuammo === 'function') xkMuammo(ek, kim) // 15-dars: o'yin paytidagi muammocha — seans «buzildi»
   muammoOl(ek)
   const o = ek.querySelector('.oyna'); if (!o || typeof MUAM_SVG === 'undefined' || !MUAM_SVG[kim]) return
   const q = o.querySelector('.yol .q') || o.querySelector('.katak .kt-q'), or = o.getBoundingClientRect(), qr = q && (q.firstElementChild || q).getBoundingClientRect()
@@ -66,6 +70,7 @@ function studiyaTayyorla(ildiz) {
   if (!ildiz) return
   const ek = ildiz.querySelector('.ekran'); if (!ek) return
   const id = ek.dataset.id
+  if (typeof DARS !== 'undefined' && DARS.bola && typeof kartaChiz === 'function' && ((ildiz.id === 'bol' && (DARS.bola.karta === id || ek.querySelector('.kc-mini'))) || (ildiz.id === 'ust' && DARS.kartaNamuna && ek.querySelector('.kc-mini')))) kartaChiz(ek) // 21–23-dars: loyiha kartasi (kod.js); ustozda — namuna karta (22–23)
   if (ildiz.id === 'ust') { const fo = ek.querySelector('.hn'); if (fo && !fo.querySelector('.orq') && !fo.querySelector('.k-ust')) { const a = fo.querySelector('.asos'); if (a) { a.className = 'mas ishga'; a.textContent = '▶ Ishga tushir' } fo.insertAdjacentHTML('beforeend', '<span class="asos k-ust">Keyingi ›</span>') } }
   const t = TOP(id)
   if (t.ish === 'uchBosish') return uchBosish(ek, true)
@@ -76,11 +81,16 @@ function studiyaTayyorla(ildiz) {
   if (t.ish === 'katakBos') return katakBosTayyorla(ek)
   if (t.ish === 'sahnaOyin') return sahnaOyinTayyorla(ek, ildiz)
   if (t.ish === 'oyinKarta') return oyinKarta(ek) // 10-dars
+  if (t.ish === 'juftlik') return juftlikTayyorla(ek) // 15-dars (xakaton.js)
+  if (t.ish === 'juftQah') return juftQahTayyorla(ek)
+  if (ek.querySelector('.jd-q') && typeof juftDostQoy === 'function' && typeof juftRol === 'function' && juftRol() === 'ikki') juftDostQoy(ek)
+  if (t.ish === 'xkTanlov') return xkTanlovTayyorla(ek)
   if (t.dunyo) dunyoQoy(ek)
   if (t.ish === 'takror') return takrorla(ek)
   if (t.ish === 'natija') return natijaYoz(ek)
   if (t.ish === 'sudrash') return sudrashTayyorla(ek)
   const b = t.bosh; if (!b) return
+  if (b.xk) xkBosh(ek) // 15-dars: hozirgi qism bayroqlari va «Maslahat» (qulfdan oldin)
   if (b.korish) { ek.dataset.korish = '1'; return }
   ek.dataset.qurish = '1'
   if (t.tur === 'namoyish') { sarlavha(ek, t.gap.sarlavha, ''); ishora(ek, GAPT(t.gap.boshla)) }
@@ -89,6 +99,8 @@ function studiyaTayyorla(ildiz) {
   if (b.sana) yuzSon(ek, 0)
   if (b.q) { const r = ek.querySelector(b.q); if (r) { r.style.transition = 'none'; r.style.transform = 'none' } }
   const fo = ek.querySelector('.hn'); if (fo && fo.querySelector('.orq') && !fo.querySelector('.ishga')) fo.querySelector('.asos').insertAdjacentHTML('beforebegin', '<span class="mas ishga">▶ Ishga tushir</span>')
+  // 14-dars (KOD 1): «Bitta qadam» — «▶ Ishga tushir» yonida (DARS.bittaQadam; o'yin, olma dasturi, oldindan aytish, labirint yasash, egizakda yo'q)
+  qadamOl(ek); if (!BQ_YOQ(b)) { const ig = fo && (fo.querySelector('.ishga') || Array.from(fo.querySelectorAll('.asos')).find((a) => a.textContent.indexOf('Ishga tushir') >= 0)); if (ig && !fo.querySelector('.bq-t')) ig.insertAdjacentHTML('beforebegin', '<span class="bq-t" role="button">Bitta qadam<small></small></span>') }
   // 5b-2: prog [jonli, solo] juftligi ham bo'ladi (2-dars: ustoz ko'rsatadigan ekranda ustoz dasturni o'zi tuzadi, solo'da bola tayyor dasturni ishga tushiradi)
   if (GAPT(b.prog) === 0) { const w = ek.querySelector('.dst .mbw'); if (w) w.remove(); sanoq(ek) }
   if (t.tur === 'gap') { const inp = ek.querySelector('.dst .mb .inp'); if (inp) inp.textContent = DARS.gapStandart; const iz = ek.querySelector('.tahrir-iz'); if (iz) iz.remove() }
@@ -101,7 +113,7 @@ function studiyaTayyorla(ildiz) {
   // 3-dars «oldindan ayting»: dastur tayyor va o'zgarmaydi (HTML bloklar, Blockly'siz), bola katakni bosib bayroqcha qo'yadi
   // 6-dars (KOD 1): DARS.maslahatKeyin — o'quvchi pog'onasida «Maslahat» qulf bilan; birinchi «▶ Ishga tushir»dan keyin ochiladi (ishgaTushir)
   if (DARS.maslahatKeyin && ildiz.id === 'bol' && TOP(id).maslahat) { const m = ek.querySelector('.hn .mas:not(.ishga)'); if (m) { ek.dataset.maslahatQulf = '1'; m.classList.add('qulf'); m.insertAdjacentHTML('beforeend', '<svg class="mas-qulf" viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="7" width="10" height="7.5" rx="1.6" fill="currentColor"/><path d="M5.2 7V5.2a2.8 2.8 0 0 1 5.6 0V7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>') } }
-  if (b.bashorat) return bashoratTayyorla(ek)
+  if (b.bashorat && !b.kod) return bashoratTayyorla(ek) // 19-dars: kod bilan — Blockly dasturi (kod oynasi uchun), bashorat pastda
   // 8-dars: .solo-faqat — tayyor dasturning faqat solo'dagi qismi (jonli darsda ustoz o'zi qo'shadi)
   if (!(typeof SOLO !== 'undefined' && SOLO)) ek.querySelectorAll('.dst .solo-faqat').forEach((x) => x.remove())
   if (typeof blTayyorla === 'function' && ek.querySelector('.dst')) blTayyorla(ek)
@@ -109,6 +121,10 @@ function studiyaTayyorla(ildiz) {
   if (b.olmaDastur) { olmaTayyorla(ek); const bq = ek.querySelector('.dst .bq-q'), dsb = ek.querySelector('.dst .dsb'); if (bq && dsb && dsb.nextElementSibling !== bq) dsb.after(bq) } // 13-dars
   // 4-dars: o'yin — dastur tugmani kutadi («▶ Boshlash»)
   if (b.oyin) oyinTayyorla(ek)
+  if (b.klon && typeof klonTayyorla === 'function') klonTayyorla(ek) // 16-dars: asl dushman, nusxalar yo'q
+  if (b.kosmik && typeof kosmikTayyorla === 'function') kosmikTayyorla(ek) // 17-dars: personajlar, raketa, nishonlar (kosmik.js)
+  if (b.kod && typeof kodTayyorla === 'function') kodTayyorla(ek) // 19-dars: «Kodini ko‘rsat» (kod.js)
+  if (b.kod && b.bashorat) return bashoratTayyorla(ek)
   // 5-dars: qisqartirish ko'rsatish (ustoz «Keyingi»: juftliklar, keyin qisqa dastur)
   if (t.qisqa) ek.dataset.qisqa = '0'
 }
@@ -123,9 +139,26 @@ function shartYangila(ek) {
   return ok
 }
 function maslahatOch(ek) { if (!ek.dataset.maslahatQulf) return; delete ek.dataset.maslahatQulf; const m = ek.querySelector('.hn .mas.qulf'); if (m) { m.classList.remove('qulf'); m.querySelectorAll('.mas-qulf').forEach((x) => x.remove()) } }
-async function ishgaTushir(ek) {
+// ===== 14-dars: «Bitta qadam» (KOD 1–2) — ek.__bq: { n — qahramon qadamlari, navbat — oldindan bosilganlar, kut — kutayotgan bosish,
+// davom — «▶ Ishga tushir» bosildi (qolgani odatdagidek), bekor — dastur o'zgardi, chiqdi — qadamda rasmdan chiqdi }.
+// Har bosish — qahramon bitta qadam (move, go to); repeat sanog'i va if tekshiruvi o'sha bosishda. Kulrang rasmda qahramon rasmdan chiqqan
+// qadamda dastur to'xtaydi (blok «urildi» belgisi bilan), Ortiqvoy; keyingi bosish — boshidan.
+const BQ_YOQ = (b) => !DARS.bittaQadam || !b || b.oyin || b.olmaDastur || b.bashorat || b.sonBashorat || b.yasash || b.egiz || b.korish || b.qadamYoq
+function qadamYoz(ek, n) { const s = ek.querySelector('.hn .bq-t small'); if (s) s.textContent = n ? n + '-qadam' : '' }
+// bekor: kutayotgan ijro tozalanguncha (ijro oxiri ~150 ms) belgi yana o'shaniki — shu orada yangi ijro boshlanib, eski uni buzmasin
+function qadamOl(ek) { const s = ek.__bq; ek.__bq = null; if (s) { s.bekor = true; if (s.kut) { ek.dataset.yuryapti = '1'; const k = s.kut; s.kut = null; k() } } qadamYoz(ek, 0) }
+function qadamBos(ek) {
+  if (typeof bqQosh === 'function') bqQosh(ek)
+  const s = ek.__bq
+  if (s && !s.davom) { if (s.kut) { const k = s.kut; s.kut = null; k() } else s.navbat++; return }
   if (ek.dataset.yuryapti) return
+  ishgaTushir(ek, true)
+}
+function rasmTashqari(h) { const r = h.k && h.k.querySelectorAll('.kt-c.md-rasm'); return !!(r && r.length) && !Array.from(r).some((c) => c.dataset.k === h.x + ',' + h.y) }
+async function ishgaTushir(ek, qadam) {
+  if (ek.dataset.yuryapti || (ek.__bq && ek.__bq.kut)) { const s = ek.__bq; if (s && !qadam && !s.davom) { s.davom = true; if (s.kut) { const k = s.kut; s.kut = null; k() } } return }
   { const b0 = TOP(ek.dataset.id).bosh; if (b0 && b0.olmaDastur && !b0.oyin) return olmaIshga(ek) } // 13-dars: olma dasturi
+  { const b0 = TOP(ek.dataset.id).bosh; if (b0 && b0.klon && !b0.oyin) return klonIshga(ek) } // 16-dars: dushman dasturi (klon.js)
   maslahatOch(ek)
   if (typeof blTanlovOl === 'function') blTanlovOl(ek)
   urildiOl(ek)
@@ -137,11 +170,30 @@ async function ishgaTushir(ek) {
   if (typeof blShartBosh === 'function' && blShartBosh(ek)) { ishora(ek, 'if ichiga blok qo‘ying — yo‘l bo‘lsa, u bajariladi'); chal('muammo'); muammo(ek, 'boshvoy', 'Ichi bo‘sh-ku…'); return }
   if (!bl.length) { ishora(ek, 'Avval blokni bosing — u dasturga qo‘shiladi'); if (TOP(id).bosh && !TOP(id).bosh.erkin) { chal('muammo'); muammo(ek, 'boshvoy', 'Bu yerda hech narsa yo‘q-ku…') } return }
   ek.dataset.yuryapti = '1'
+  qadamOl(ek); const s = qadam && !BQ_YOQ(b) ? (ek.__bq = { n: 0, navbat: 0, kut: null, davom: false, bekor: false, chiqdi: null }) : null
   // boshlang'ich holatga qaytaramiz (hamma sahnada bir xil); qolgani — sahnaning o'zida (sahna.js, 4c)
   pufak(oyna, q, ''); muammoOl(ek); const tx = ek.querySelector('.y-tox'); if (tx) tx.remove(); ek.querySelectorAll('.konfeti').forEach((x) => x.remove())
   egizAlmash(ek, 1)
   const sahna = SAHNA[sahnaTuri(b)], h = await sahna.boshla(ek, b)
-  ishora(ek, 'Dastur ishlayapti…')
+  ishora(ek, s ? GAPT((DARS.gap && DARS.gap.qadamIshora) || 'Bitta qadam — qahramon qayerda?') : 'Dastur ishlayapti…')
+  if (s) {
+    const oldin = async () => {
+      if (s.bekor) return 'bekor'
+      if (s.davom) return
+      // bosish kutilganda dastur tahrirlansa bo'ladi (yuryapti olinadi) — tahrir sanoq() orqali qadamni bekor qiladi
+      if (s.n > 0) { if (s.navbat > 0) s.navbat--; else { delete ek.dataset.yuryapti; await new Promise((r) => { s.kut = r }); if (!s.bekor) ek.dataset.yuryapti = '1' } }
+      if (s.bekor) return 'bekor'
+      if (s.davom) { ishora(ek, 'Dastur ishlayapti…'); return }
+      s.n++; qadamYoz(ek, s.n)
+    }
+    const bajarQ = async (tugun) => { const r = await sahna.bajar(h, tugun); if (r !== 'toxta' && !s.davom && rasmTashqari(h)) { s.chiqdi = { n: s.n, x: h.x, y: mdY(h.xr, h.y) }; return 'toxta' } return r }
+    const res = await ijro(dastur, bajarQ, { oldin })
+    delete ek.dataset.yuryapti
+    if (res.bekor) { if (sahnaTuri(b) === 'katak') katakAsl(ek); return }
+    if (ek.__bq === s) ek.__bq = null
+    if (s.chiqdi) { const c = s.chiqdi; chal('muammo'); muammo(ek, 'ortiqvoy', 'Rasmdan chiqdi!'); ishora(ek, (GAPT((TOP(id).gap || {}).qadamChiqdi || '') || GAPT((DARS.gap && DARS.gap.qadamChiqdi) || '') || 'N-qadam: qahramon (x, y) ga chiqdi. Shu blokni va undan oldingisini o‘qing').replace('N-', c.n + '-').replace('(x, y)', '(' + c.x + ', ' + c.y + ')')); return }
+    natija(ek, id, h, bl); return
+  }
   await ijro(dastur, (tugun) => sahna.bajar(h, tugun))
   // 8-dars: egizak labirint (bosh.egiz) — dastur bitta: avval 1-labirintda, yetsa — 2-labirintda; har biri yonida ✓ / ✕
   if (b.egiz && ek.querySelector('.katak[data-egiz="2"]')) {
@@ -173,13 +225,14 @@ function natija(ek, id, h, bl) {
   const t = TOP(id), b = t.bosh || {}, g = t.gap || {}
   if (t.tur === 'korish') { ishora(ek, GAPT(g.yetdi)); konfeti(ek); return }
   if (t.tur === 'yol') {
+    if (b.topishmoq) return topishmoqNatija(ek, id, bl, bola) // 14-dars (KOD 4)
     const bh = SAHNA[sahnaTuri(b)].baho(h, b, bl)
     if (bh.maydon) return maydonNatija(ek, id, h, bh, bl, bola)
     // 5a, labirint: devorga urildi (To'siqvoy, 96-qaror) · yopiq eshikka keldi, kalit yo'q (Kamvoy)
     // 8-dars: shart darsida To'siqvoyning ikki gapi (urilgan blokning ota shart bloki va tomoni bo'yicha), «N-labirint» bilan
     const nL = h.egizN ? h.egizN + '-labirint' : ''
     if (bh.tur === 'urildi' && b.shartGap) { const ota = typeof blOtaShart === 'function' && blOtaShart(h.urildi && h.urildi.el); chal('muammo'); ishora(ek, (nL ? nL + ': ' : '') + (ota ? 'shart bir tomonni tekshirdi, blok boshqa tomonga yurdi' : 'bu blok yo‘lni tekshirmay yurdi. Yurishdan oldin tekshiring')); muammo(ek, 'tosiqvoy', 'Devor!'); return }
-    if (bh.tur === 'kam' && b.shartGap) { chal('muammo'); ishora(ek, (g.kam && GAPT(g.kam)) || (nL ? nL + 'da' : 'Labirintda') + ' yulduzgacha yetmadi. repeat soni va shart tomonini tekshiring'); muammo(ek, 'kamvoy', 'Oz qoldi!'); return }
+    if (bh.tur === 'kam' && b.shartGap) { chal('muammo'); ishora(ek, (g.kam && GAPT(g.kam).replace('N-labirint', nL || 'Labirint')) || (nL ? nL + 'da' : 'Labirintda') + ' yulduzgacha yetmadi. repeat soni va shart tomonini tekshiring'); muammo(ek, 'kamvoy', 'Oz qoldi!'); return }
     // 8-dars 15 · ★: erkin sayr (yulduzsiz) — kamida ikki shart har xil tomonga, urilmadi, kamida 4 qadam
     if (bh.tur === 'kamShart') { chal('muammo'); ishora(ek, 'Ikki if qo‘ying — har xil tomonga'); muammo(ek, 'kamvoy', 'Oz qoldi!'); return }
     if (bh.tur === 'kamYurdi') { chal('muammo'); ishora(ek, 'Qahramon kam yurdi. Boshqa tomonlarni tekshiring'); muammo(ek, 'kamvoy', 'Oz qoldi!'); return }
@@ -194,7 +247,7 @@ function natija(ek, id, h, bl) {
         if (typeof blokQosh === 'function') blokQosh(id, [...bl, ...labirintBelgi(h, b)])
         if (typeof oxirgiSaqla === 'function') oxirgiSaqla(ek)
         if (b.pog && typeof pogQosh === 'function') pogQosh(b.pog)
-        setTimeout(() => { if (t.keyin) { ichki = QADAM[qadam][2].indexOf(t.keyin); chiz() } else bolaKeyingi() }, 1400)
+        otKeyin(ek, 1400, () => { if (t.keyin) { ichki = QADAM[qadam][2].indexOf(t.keyin); chiz() } else bolaKeyingi() })
       }
     } else {
       chal('muammo')
@@ -219,7 +272,7 @@ function natija(ek, id, h, bl) {
     const sb = bl.find((x) => blokTuri(x) === 's'), m = sb ? blokMatn(sb) : ''
     if (!m || m === DARS.gapStandart) { ishora(ek, sb ? 'Yozuvni bosib, o‘zingiz yozing — keyin yana ishga tushiring' : 'Binafsha say blokini qo‘shing'); chal('muammo'); muammo(ek, !sb ? 'kamvoy' : !m ? 'boshvoy' : 'kamvoy', !sb ? 'Yurdi, lekin jim…' : !m ? 'Hech narsa demadi…' : 'Hali ham «' + DARS.gapStandart + '» deyapti'); return }
     ishora(ek, 'Qahramoningiz gapirdi!')
-    if (bola) { if (typeof blokQosh === 'function') blokQosh(id, bl); setTimeout(bolaKeyingi, 1800) }
+    if (bola) { if (typeof blokQosh === 'function') blokQosh(id, bl); otKeyin(ek, 1800) }
     return
   }
   if (t.tur === 'sahna') {
@@ -233,6 +286,21 @@ function natija(ek, id, h, bl) {
   }
 }
 // 3-sinov: ustoz move right blokini bosadi — har bosishda Coddy bitta zonachaga sakraydi
+// 14-dars 15 · ★ «Topishmoq» (KOD 4): bola dasturida aynan bitta xato bo'lsin — dvigatel o'zi qidiradi (tahrir.js); maydon — bosh.topishmoq
+// { w, h, start, olma, yulduz } (y tepaga). Aynan bitta xato — odatdagi muammocha chiqmaydi: «Topishmoq tayyor!»
+function thDaraxt(d) { return d.map((t) => { const o = { t: t.tur, n: t.n || 0, ichki: thDaraxt(t.ichki || []) }; if (t.tur === 'x') { const [X, Y] = blokXY(t.el); o.X = X; o.Y = Y } return o }) }
+function topishmoqNatija(ek, id, bl, bola) {
+  const t = TOP(id), b = t.bosh, g = t.gap || {}, r = thTopishmoq(thDaraxt(dasturDaraxti(ek)), b.topishmoq)
+  if (r === 'kam') { chal('muammo'); ishora(ek, GAPT(g.topKam || 'Topishmoqda kamida 3 ta blok bo‘lsin')); muammo(ek, 'kamvoy', 'Oz qoldi!'); return }
+  if (r === 'ishlayapti') { ishora(ek, GAPT(g.topIshlayapti || 'Dastur ishlayapti! Endi bitta blokni o‘zgartiring — topishmoq bo‘lsin.')); return }
+  if (r === 'kop') { chal('muammo'); ishora(ek, GAPT(g.topKop || 'Xato bittadan ko‘p. Topishmoqda bitta xato bo‘lsin')); muammo(ek, 'ortiqvoy', 'Ko‘payib ketdi!'); return }
+  ishora(ek, GAPT(g.yetdi || 'Topishmoq tayyor!')); konfeti(ek)
+  if (!bola || ek.dataset.oqish) return
+  if (typeof blokQosh === 'function') blokQosh(id, bl)
+  if (typeof oxirgiSaqla === 'function') oxirgiSaqla(ek)
+  if (b.pog && typeof pogQosh === 'function') pogQosh(b.pog)
+  otKeyin(ek)
+}
 function uchBosish(ek, boshla) {
   const q = ek.querySelector('.oyna .yol .q'), qator = ek.querySelector('.sin3'), yozuv = qator && qator.querySelector('.tf-t span')
   if (!q || !qator) return
@@ -270,6 +338,8 @@ async function hukSina(ek, i) {
   // 4-dars: karta yulduzni ko'chiradi (data-yulduz); C kartasi — o'yin (data-oyin: strelkalar bilan, ustoz yoki solo'da bola bosadi)
   if (k.dataset.yulduz) { const [x, y] = k.dataset.yulduz.split(',').map(Number); mdYulduzQoy(ek, x, y) }
   if (k.dataset.oyin) return hukOyin(ek, k, i)
+  if (k.dataset.klon) return klonHukSina(ek, k, i) // 16-dars
+  if (k.dataset.kosmik || k.dataset.kosmik2 || k.dataset.kodh) return kosmikHukSina(ek, k, i) // 17–19-dars
   if (k.dataset.avto) return hukAvto(ek, k, i)
   if (k.dataset.olma || k.dataset.tanlov) return hukOlma(ek, k, i) // 13-dars
   const g = TOP(ek.dataset.id).gap || {}
@@ -292,7 +362,10 @@ async function hukSina(ek, i) {
     egizAlmash(ek, 1)
     let h = await SAHNA.katak.boshla(ek, {}), qoch = hukQoch(k)
     let n = 0
-    await ijro(daraxt, async (t) => { const r = await SAHNA.katak.bajar(h, t); n++; if (qoch && n === qoch.n) yulduzQoch(ek, h, qoch.x, qoch.y); return r })
+    // 14-dars: data-qadam — karta «Bitta qadam» bilan o'ynaladi: har qadam oldidan pauza va «N-qadam», qahramon rasmdan chiqqan qadamda to'xtaydi
+    const qd = !!k.dataset.qadam, oq = ek.querySelector('.oyna'); let qn = 0
+    const oldin = qd ? async () => { if (qn) await KUT(+k.dataset.qadam || 450); qn++; pufak(oq, ek.querySelector('.oyna .kt-q'), qn + '-qadam') } : null
+    await ijro(daraxt, async (t) => { const r = await SAHNA.katak.bajar(h, t); n++; if (qoch && n === qoch.n) yulduzQoch(ek, h, qoch.x, qoch.y); if (qd && r !== 'toxta' && rasmTashqari(h)) return 'toxta'; return r }, { oldin })
     // egizak labirint: 1-labirintda yetsa — o'sha dastur 2-labirintda
     if (ek.querySelector('.katak[data-egiz="2"]')) {
       const b1 = SAHNA.katak.baho(h, {}); egizBelgi(ek, 1, b1.tur === 'yetdi')
@@ -335,14 +408,21 @@ function studiyaBosish(e) {
   if (TOP(id).ish === 'raqam') return raqamBosish(e, ek, ildiz)
   if (TOP(id).ish === 'katakBos') return katakBosish(e, ek, ildiz)
   if (TOP(id).ish === 'sahnaOyin') return sahnaOyinBosish(e, ek, ildiz)
+  if (TOP(id).ish === 'juftlik') return juftlikBosish(e, ek) // 15-dars (xakaton.js)
+  if (TOP(id).ish === 'juftQah') return juftQahBosish(e, ek)
+  if (TOP(id).ish === 'xkTanlov') return xkTanlovBosish(e, ek)
+  if (TOP(id).ish === 'xkKorsat') return xkKorsatBosish(e, ek)
+  if (TOP(id).bosh && TOP(id).bosh.xk) { const r = xkBosish(e, ek); if (r != null) return r }
+  if (TOP(id).bosh && TOP(id).bosh.kod && typeof kodBosish === 'function') { const r = kodBosish(e, ek); if (r != null) return r } // 19-dars: kod oynasi
+  if (TOP(id).bosh && TOP(id).bosh.personaj) { const r = kosmikBosish(e, ek); if (r != null) return r } // 17-dars: personaj kartasi
   if (TOP(id).bosh && TOP(id).bosh.bashorat) { const r = bashoratBosish(e, ek, ildiz); if (r != null) return r }
   if (TOP(id).bosh && TOP(id).bosh.yasash) { const r = yasashBosish(e, ek, ildiz); if (r != null) return r } // 10-dars: labirint yasash
-  if (TOP(id).bosh && (TOP(id).bosh.ball || TOP(id).bosh.sonBashorat || TOP(id).bosh.olmaDastur)) { const r = ballBosish(e, ek, ildiz); if (r != null) return r } // 11-dars
+  if (TOP(id).bosh && (TOP(id).bosh.ball || TOP(id).bosh.sonBashorat || TOP(id).bosh.olmaDastur || TOP(id).bosh.klon)) { const r = ballBosish(e, ek, ildiz); if (r != null) return r } // 11-dars (16-dars: «Boshqaruv» qatori)
   if (TOP(id).bosh && TOP(id).bosh.oyin) { const r = oyinBosish(e, ek); if (r != null) return r }
   // 5-dars, 14-qadam: ustoz «Keyingi» — 1) bir xil juftliklar hoshiyalanadi, 2) dastur qisqa ko'rinishga o'tadi; keyin odatdagidek keyingi qadam
   if (TOP(id).qisqa && ildiz.id === 'ust' && !(typeof SOLO !== 'undefined' && SOLO) && e.target.closest('.hn .asos') && !e.target.closest('.hn .ishga') && !ek.dataset.yuryapti) {
     const n = +(ek.dataset.qisqa || 0)
-    if (n === 0) { bloklar(ek).forEach((el, i) => el.classList.add('bl-juft', 'bl-juft-' + (Math.floor(i / 2) % 2))); ishora(ek, 'Bir xil juftlik — ' + Math.floor(bloklar(ek).length / 2) + ' marta'); chal('qadam'); ek.dataset.qisqa = '1'; return true }
+    if (n === 0) { bloklar(ek).forEach((el, i) => el.classList.add('bl-juft', 'bl-juft-' + (Math.floor(i / 2) % 2))); ishora(ek, 'Bir xil ikki blok — ' + Math.floor(bloklar(ek).length / 2) + ' marta'); chal('qadam'); ek.dataset.qisqa = '1'; return true }
     if (n === 1 && typeof blQur === 'function') { blQur(ek, TOP(id).qisqa); sanoq(ek); katakAsl(ek); ishora(ek, 'Rasm o‘sha — bloklar kam'); chal('qadam'); ek.dataset.qisqa = '2'; return true }
   }
   // birinchi dastur — «Qayta ko'rish»: o'sha dastur yana o'ynaydi
@@ -354,8 +434,8 @@ function studiyaBosish(e) {
     ek.querySelectorAll('.rg .rd').forEach((r) => r.classList.toggle('on', r === rd))
     rd.classList.remove('puls'); rd.classList.add('ok')
     const pl = ek.querySelector('.pl'); if (!pl.dataset.asl) pl.dataset.asl = (pl.querySelector('small') || {}).className || ''
-    const yangiPal = (TOP(id).ish === 'rang' && typeof PAL_B1 !== 'undefined' && PAL_B1[f]) || (DARS.palQosh && DARS.palQosh[f]) || PAL_HTML[f] // 10-dars: palQosh — «Labirint» asboblari
-    if ((pl.dataset.asl || '').indexOf('f-' + f) < 0 || pl.dataset.almashgan) { pl.querySelectorAll('.chek').forEach((x) => x.remove()); if (!pl.dataset.aslHtml) pl.dataset.aslHtml = pl.innerHTML; pl.innerHTML = (pl.dataset.asl.indexOf('f-' + f) >= 0) ? pl.dataset.aslHtml : yangiPal; pl.dataset.almashgan = '1'; if (((TOP(id).bosh || {}).chek)) chekChiz(ek); if (TOP(id).ochiq) ballJavon(ek); if (f === 'L') pl.querySelectorAll('.asb').forEach((x) => x.classList.toggle('on', x.dataset.t === (ek.dataset.asb || 'devor'))) }
+    const yangiPal = (ek.querySelector('template.pal-t[data-f="' + f + '"]') || {}).innerHTML || (TOP(id).ish === 'rang' && typeof PAL_B1 !== 'undefined' && PAL_B1[f]) || (DARS.palQosh && DARS.palQosh[f]) || PAL_HTML[f] // 10-dars: palQosh — «Labirint» asboblari
+    if ((pl.dataset.asl || '').indexOf('f-' + f) < 0 || pl.dataset.almashgan) { pl.querySelectorAll('.chek').forEach((x) => x.remove()); if (!pl.dataset.aslHtml) pl.dataset.aslHtml = pl.innerHTML; pl.innerHTML = (pl.dataset.asl.indexOf('f-' + f) >= 0) ? pl.dataset.aslHtml : yangiPal; pl.dataset.almashgan = '1'; if (((TOP(id).bosh || {}).chek)) chekChiz(ek); if ((TOP(id).bosh || {}).kosmik && typeof kosmikChekChiz === 'function') kosmikChekChiz(ek); if (TOP(id).ochiq) ballJavon(ek); if (f === 'L') pl.querySelectorAll('.asb').forEach((x) => x.classList.toggle('on', x.dataset.t === (ek.dataset.asb || 'devor'))) }
     if (TOP(id).ish === 'rang') {
       const n = ek.querySelectorAll('.rg .rd.ok').length, ish = ek.querySelector('.ishora')
       if (f === 'h' && n < 2) { const g = ek.querySelector('.rd.f-g'); if (g) g.classList.add('puls'); if (ish) { ish.lastChild.textContent = 'Endi binafshani bosing'; ish.classList.add('g') } }
@@ -391,6 +471,7 @@ function studiyaBosish(e) {
   }
   const dmb = e.target.closest('.dst .mb')
   if (dmb && !ek.dataset.yuryapti) { chal('bos'); dmb.remove(); sanoq(ek); ishora(ek, 'Blok olib tashlandi'); return true }
+  if (e.target.closest('.hn .bq-t')) { qadamBos(ek); return true } // 14-dars
   if (e.target.closest('.hn .ishga')) { ishgaTushir(ek); return true }
   if (e.target.closest('.hn .mas') && ek.dataset.maslahatQulf) { ishora(ek, 'Avval bir marta ishga tushiring'); return true }
   if (e.target.closest('.hn .mas')) { ishora(ek, TOP(id).maslahat || ''); bildirB(ek, { t: 'yordam', s: typeof qadam !== 'undefined' ? qadam : 0 }); return true }
@@ -467,6 +548,7 @@ function sudrashTayyorla(ek) {
 function natijaYoz(ek) {
   dunyoQoy(ek)
   if (typeof labNatija === 'function') labNatija(ek)
+  if (typeof kosmikNatija === 'function' && DARS.kosmikGap) kosmikNatija(ek) // 17-dars: «O‘yiningiz saqlandi.» — personaj dasturlari saqlangan bo'lsa
   if (typeof ballNatija === 'function') ballNatija(ek) // 11-dars
   // 3-dars: maydonda bolaning ★ yo'li (erkin yo'l — go to manzillari, qDastur) oltin iz bilan qayta chiziladi
   const md = ek.querySelector('.katak.maydon'); if (md && typeof qDastur !== 'undefined') mdYolChiz(md, qDastur.filter((b) => b.t === 'x').map((b) => String(b.m).split(',').map(Number)))
@@ -474,6 +556,7 @@ function natijaYoz(ek) {
   // sonlar — dars e'lonidagi natija turlari (DARS.natija, qobiq.js: natijaSon)
   const n = natijaSon(blokJami(), typeof qTayyor !== 'undefined' && qTayyor), qo = (k, v) => { const b = ek.querySelector('.sn-t[data-k="' + k + '"] b'); if (b) b.textContent = v }
   for (const k in n) qo(k, n[k])
+  if (typeof xkNatija === 'function') xkNatija(ek) // 15-dars
 }
 
 // ===== 3-dars (20.11, manba 003): maydon topshiriqlari =====
@@ -499,7 +582,7 @@ function katakBosish(e, ek, ildiz) {
     if (ildiz.id === 'bol') {
       if (typeof blokQosh === 'function') blokQosh(id, t.katak.map(() => ({ dataset: { tur: 'c' } })))
       if (t.pog && typeof pogQosh === 'function') pogQosh(t.pog)
-      ek.dataset.yuryapti = '1'; setTimeout(() => { delete ek.dataset.yuryapti; bolaKeyingi() }, 1400)
+      ek.dataset.yuryapti = '1'; otKeyin(ek, 1400, () => { delete ek.dataset.yuryapti; bolaKeyingi() })
     }
     return true
   }
@@ -567,11 +650,11 @@ function maydonNatija(ek, id, h, bh, bl, bola) {
   // «manzilga bordi» — bolaning o'z dasturidagi go to bloklari; oldindan aytishda dastur tayyor — faqat ekran sanaladi
   // dastur bloklari (takrorlash va uning ichidagilar bir martadan; takrorlashsiz darslarda — bajarilgan bloklar bilan bir xil); rasm va tejalgan bloklar — belgi bloklar
   const dasturBl = typeof bloklar === 'function' ? bloklar(ek) : bl
-  const qosh = [...kosTovushBelgi(h), ...(b.bashorat ? [] : dasturBl), ...(bh.rasm ? [{ dataset: { tur: 'c' } }] : []), ...Array.from({ length: b.uzun ? Math.max(0, b.uzun.length - dasturBl.length) : 0 }, () => ({ dataset: { tur: 'z' } }))]
+  const qosh = [...kosTovushBelgi(h), ...(b.bashorat ? [] : dasturBl), ...(bh.rasm ? [{ dataset: { tur: 'c' } }] : []), ...(b.kod && typeof kodHisob === 'function' ? kodHisob(ek) : []), ...Array.from({ length: b.uzun ? Math.max(0, b.uzun.length - dasturBl.length) : 0 }, () => ({ dataset: { tur: 'z' } }))]
   if ((bh.tur === 'rasmTayyor' || bh.tur === 'tayyor') && b.erkinRasm && typeof qDasturSaqla === 'function') qDasturSaqla(h.yol.map(([x, q]) => ({ t: 'x', m: x + ',' + mdY(h.xr, q) })))
   if (typeof blokQosh === 'function') blokQosh(id, qosh)
   if (b.pog && typeof pogQosh === 'function') pogQosh(b.pog)
-  setTimeout(() => { if (t.keyin) { ichki = QADAM[qadam][2].indexOf(t.keyin); chiz() } else bolaKeyingi() }, 1400)
+  otKeyin(ek, 1400, () => { if (t.keyin) { ichki = QADAM[qadam][2].indexOf(t.keyin); chiz() } else bolaKeyingi() })
 }
 // yakun ekrani: bolaning ★ yo'li — startdan manzillarga to'g'ri oltin punktir, qahramon oxirgi manzilda
 function mdYolChiz(k, nuqtalar) {
@@ -604,6 +687,7 @@ function oyinDasturOl() { try { return JSON.parse(localStorage.getItem(oyinKalit
 function oyinDasturSaqla(r) { try { localStorage.setItem(oyinKalit(), JSON.stringify(r)) } catch (e) {} }
 function oyinTayyorla(ek) {
   const t = TOP(ek.dataset.id), b = t.bosh, g = t.gap || {}
+  if (b.xk) return xkTayyorla(ek) // 15-dars
   oyinToxtat(ek)
   if (b.prog === 'oldingi' && b.labirint) labDasturYukla(ek)
   else if (b.soloDastur && typeof SOLO !== 'undefined' && SOLO) labQur(ek, b.soloDastur)
@@ -618,7 +702,7 @@ function oyinTayyorla(ek) {
 }
 function oyinBosish(e, ek) {
   const tb = oyinTugma(ek)
-  if (tb && e.target.closest('.hn .ishga, .hn .asos') === tb) { if (ek.dataset.oyin) oyinToxtat(ek); else oyinBoshla(ek); return true }
+  if (tb && e.target.closest('.hn .ishga, .hn .asos') === tb) { if (ek.dataset.oyin) { const o = OYIN.get(ek); if (TOP(ek.dataset.id).bosh.klon) klonOyinToxtat(ek); else if (TOP(ek.dataset.id).bosh.kosmik) kosmikToxtat(ek); else oyinToxtat(ek); if (TOP(ek.dataset.id).bosh.xk) xkSeans(ek, o, 'toxta') } else oyinBoshla(ek); return true }
   return null
 }
 function oyinYozuv(ek, o) {
@@ -628,11 +712,14 @@ function oyinYozuv(ek, o) {
 }
 async function oyinBoshla(ek) {
   const b = TOP(ek.dataset.id).bosh
+  maslahatOch(ek) // 21.11: o'yinni boshlash ham urinish — «Maslahat» qulfi ochiladi (avval faqat «▶ Ishga tushir»da ochilardi; 14-dars B3B)
   if (b.ball) return ballBoshla(ek) // 11-dars
   if (b.olmaDastur) return olmaOyinBoshla(ek) // 13-dars
+  if (b.klon) return klonOyinBoshla(ek) // 16-dars
+  if (b.kosmik) return kosmikBoshla(ek) // 17-dars
   muammoOl(ek); urildiOl(ek); ek.querySelectorAll('.konfeti,.dv-pufak').forEach((x) => x.remove())
   if (typeof blTanlovOl === 'function') blTanlovOl(ek)
-  if (!blDasturchalar(ek).length) { chal('muammo'); ishora(ek, 'Avval hodisa blokini qo‘ying: when … key pressed'); muammo(ek, 'boshvoy', 'Men nimani kutaman?'); return }
+  if (!blDasturchalar(ek).length) { chal('muammo'); ishora(ek, b.xk ? xkO(xkS(ek)).bosh : 'Avval hodisa blokini qo‘ying: when … key pressed'); muammo(ek, 'boshvoy', 'Men nimani kutaman?'); return }
   if (b.yasash && labOlchov(ek.querySelector('.katak').dataset.xarita).yol == null) { yasashMuammo(ek, true); return }
   if (b.darajalar) { mdQayta(ek, darajaXarita(b.darajalar[0])); darajaYoz(ek, 0, b.darajalar.length) }
   if (b.labirint && typeof blShartBosh === 'function' && blShartBosh(ek)) { chal('muammo'); ishora(ek, 'if ichiga blok qo‘ying — yo‘l bo‘lsa, u bajariladi'); muammo(ek, 'boshvoy', 'Ichi bo‘sh-ku…'); return }
@@ -646,7 +733,9 @@ async function oyinBoshla(ek) {
   // ogohlantirish (o'yin baribir boshlanadi): hodisasiz bloklar hech qachon bajarilmaydi; bitta tugmaga ikki dasturcha — ikkalasi ham ishlaydi
   const ws = typeof BL_WS !== 'undefined' && BL_WS.get(ek), yetim = ws ? blTepalar(ws).some((t) => t.type !== 'when_key') : false
   const tug = blDasturchalar(ek).map((d) => d.tugma), ikki = tug.find((t, i) => tug.indexOf(t) !== i)
-  ishora(ek, yetim ? 'Bu bloklar hech qachon ishlamaydi — tepasiga hodisa bloki qo‘ying' : ikki ? TUGMA_BELGI[ikki] + ' uchun ikkita dasturcha bor — ikkalasi ham ishlaydi' : '')
+  // 14-dars 15 · 2 (bosh.ikkiIshoraYoq): «ikkita dasturcha» ishorasi xatoni ochib qo'yardi — o'rniga pog'ona ishorasi
+  if (b.xk) xkSeansBosh(ek) // 15-dars
+  ishora(ek, yetim ? 'Bu bloklar hech qachon ishlamaydi — tepasiga hodisa bloki qo‘ying' : ikki && !b.ikkiIshoraYoq ? TUGMA_BELGI[ikki] + ' uchun ikkita dasturcha bor — ikkalasi ham ishlaydi' : b.ikkiIshoraYoq ? GAPT((TOP(ek.dataset.id).gap || {}).oyinIshora || '') : '')
 }
 function oyinToxtat(ek) {
   delete ek.dataset.oyin; OYIN.delete(ek)
@@ -665,12 +754,15 @@ async function oyinTugmaBos(ek, k) {
   const o = OYIN.get(ek); if (!o || ek.dataset.yuryapti) return
   if (ek.dataset.oyin === 'huk') return hukOyinBos(ek, k, o)
   if (ek.dataset.oyin === 'sahna') return sahnaOyinBos(ek, k, o)
+  if (ek.dataset.oyin === 'klon') return klonOyinBos(ek, k, o) // 16-dars
+  if (ek.dataset.oyin === 'kosmik') return kosmikBos(ek, k, o) // 17-dars
   if ((TOP(ek.dataset.id).bosh || {}).ball) return ballBos(ek, k, o) // 11-dars
   if ((TOP(ek.dataset.id).bosh || {}).olmaDastur) return olmaOyinBos(ek, k, o) // 13-dars
   if ((TOP(ek.dataset.id).bosh || {}).labirint) return labTugmaBos(ek, k, o)
   o.bosildi.add(k); o.bosish++; o.tugma = k; muammoOl(ek)
   const d = blDasturchalar(ek).filter((x) => x.tugma === k)
-  if (!d.length) { chal('muammo'); ishora(ek, TUGMA_BELGI[k] + ' tugmasi uchun when ' + TUGMA_BELGI[k] + ' key pressed bloki kerak'); muammo(ek, 'boshvoy', 'Bu tugma uchun dasturcha yo‘q-ku…'); return }
+  // 14-dars: gap.dasturchaYoq — dars gapi (javobni aytmaydi; ↓ — bosilgan tugma belgisiga almashadi)
+  if (!d.length) { const gy = (TOP(ek.dataset.id).gap || {}).dasturchaYoq; chal('muammo'); ishora(ek, gy ? GAPT(gy).replace('↓', TUGMA_BELGI[k]) : TUGMA_BELGI[k] + ' tugmasi uchun when ' + TUGMA_BELGI[k] + ' key pressed bloki kerak'); muammo(ek, 'boshvoy', 'Bu tugma uchun dasturcha yo‘q-ku…'); return }
   if (d.every((x) => !x.bloklar.length)) { chal('muammo'); ishora(ek, 'Hodisa blokining ostiga move blokini ulang'); muammo(ek, 'kamvoy', 'Tugma bosildi, lekin men nima qilay?'); return }
   ek.dataset.yuryapti = '1'
   for (const x of d) {
@@ -735,10 +827,13 @@ function oyinShart(ek, o, sh) {
   if (sh.blok && soni < sh.blok) return ['Oz qoldi!', sh.gap0]
   if (sh.qaytdi && !o.qaytdi) return ['Oz qoldi!', sh.gap0]
   if (sh.gap && !o.gapAytildi) return ['Hech narsa demadi…', sh.gap0]
+  // 14-dars 15 · 2: har strelka o'z tomoniga yuradi (tugmani almashtirib yutish qabul qilinmaydi)
+  if (sh.tomon) { const yon = { right: 'r', left: 'l', up: 'u', down: 'd' }; if (blDasturchalar(ek).some((x) => yon[x.tugma] && x.bloklar.some((el) => { const t = blokTuri(el); return 'rlud'.indexOf(t) >= 0 && t !== yon[x.tugma] }))) return ['Oz qoldi!', sh.gap0] }
   return null
 }
 function oyinYutdi(ek, o) {
   const id = ek.dataset.id, t = TOP(id), b = t.bosh, g = t.gap || {}
+  if (b.xk) { oyinToxtat(ek); ishora(ek, 'Siz yutdingiz!'); konfeti(ek); return xkSeans(ek, o, 'yutdi') } // 15-dars
   oyinToxtat(ek)
   ishora(ek, g.yetdi ? GAPT(g.yetdi) : 'Yetib bordi!'); konfeti(ek)
   const ildiz = ek.parentNode && ek.parentNode.closest('#ust,#bol'); if (!ildiz || ildiz.id !== 'bol' || ek.dataset.oqish) return
@@ -749,7 +844,7 @@ function oyinYutdi(ek, o) {
   const lab = b.labirint ? [...Array.from({ length: labYoq(o) }, () => ({ dataset: { tur: 'Y' } })), { dataset: { tur: 'L' } }, ...Array.from({ length: b.darajalar ? (o.daraja || 0) + 1 : 0 }, () => ({ dataset: { tur: 'G' } }))] : []
   if (typeof blokQosh === 'function') blokQosh(id, [...Array.from({ length: o.bosish }, () => ({ dataset: { tur: 't' } })), ...o.h.olma.map(() => ({ dataset: { tur: 'o' } })), ...kosTovushBelgi(o.h), ...lab])
   if (b.pog && typeof pogQosh === 'function') pogQosh(b.pog)
-  setTimeout(() => bolaKeyingi(), 1400)
+  otKeyin(ek)
 }
 // A·1 (20.11, foydalanuvchi qarori): 16-qadam «… o'qib bering» — bola noutbukida oxirgi yechgan pog'onasi o'z dasturi bilan qayta ochiladi
 // (qadamning bola ro'yxati 'oxirgi' — qobiq.js). Dastur Blockly'ning o'z saqlash shaklida (takrorlash ichidagilar va bir necha dasturcha bilan);
@@ -859,13 +954,14 @@ async function labTugmaBos(ek, k, o) {
   }
   delete ek.dataset.yuryapti
   if (OYIN.get(ek) !== o) return
+  if (b.xk) xkLabIz(ek, o, iz, k, yoq0) // 15-dars: sinash belgilari
   // urildi — o'yin to'xtadi (blok «urildi» belgisi bilan qoladi; «▶ Boshlash» — startdan)
   if (h.urildi) {
     const u = h.urildi; h.urildi = null; o.toxtadi = true
     oyinToxtat(ek); chal('muammo')
     if (u.eshik) { ishora(ek, 'Eshik yopiq. Avval kalitni oling'); muammo(ek, 'kamvoy', 'Kalit qani?') }
     else { const ota = typeof blOtaShart === 'function' && blOtaShart(u.el); ishora(ek, ota ? 'Shart bir tomonni tekshirdi, blok boshqa tomonga yurdi' : b.shartGap ? 'Bu blok yo‘lni tekshirmay yurdi. Yurishdan oldin tekshiring' : 'O‘yin to‘xtadi. Qaytadan — «▶ Boshlash»'); muammo(ek, 'tosiqvoy', 'Devor!') }
-    labChekYangila(ek, o); return
+    labChekYangila(ek, o); if (b.xk) xkSeans(ek, o, 'urildi'); return
   }
   if (b.startga && iz.go && !iz.go[0] && !iz.go[1]) o.startga = true
   if (iz.tovushIf && iz.yurdi) o.tovushIf = true
@@ -1022,7 +1118,7 @@ async function sahnaBos(ek, o, k) {
   return ''
 }
 const sahnaYetdi = (h) => h.yulduz && h.x === h.yulduz[0] && h.y === h.yulduz[1]
-async function sahnaAvto(ek, nom, ketma, lbs) {
+async function sahnaAvto(ek, nom, ketma, lbs, { yoq = false } = {}) {
   ek.dataset.yuryapti = '1'
   muammoOl(ek); ek.querySelectorAll('.konfeti').forEach((x) => x.remove())
   // 10-dars: lbs — darajalar (DARS.labirintlar nomlari); ketma — har daraja uchun '|' bilan; dastur bo'sh — Bo'shvoy (huk A)
@@ -1034,6 +1130,7 @@ async function sahnaAvto(ek, nom, ketma, lbs) {
     if (!document.body.contains(ek)) break
     if (ch === '|') continue
     const r = await sahnaBos(ek, o, AVTO_TUGMA[ch])
+    if (yoq && !sahnaDastur(nom).some((x) => x.tugma === AVTO_TUGMA[ch])) { nat = 'yoq'; chal('muammo'); muammo(ek, 'boshvoy', 'Bu tugma uchun dasturcha yo‘q-ku…'); break } // 15-dars huk A
     if (r === 'urildi') { nat = 'urildi'; chal('muammo'); muammo(ek, 'tosiqvoy', 'Devor!'); break }
     if (r === 'tugadi') { nat = 'tugadi'; ek.querySelector('.oyna').insertAdjacentHTML('beforeend', '<span class="gl oyin-tugadi">O‘yin tugadi</span>'); chal('tuk'); break } // 12-dars huk
     if (sahnaYetdi(o.h)) { if (lbs && o.daraja < lbs.length - 1) { await sahnaDarajaKeyingi(ek, o, lbs); continue } nat = 'yetdi'; break }
@@ -1104,7 +1201,15 @@ async function hukAvto(ek, k, i) {
   lbAlmash(ek, k.dataset.lb || '')
   const bk = ek.querySelector('.oyna .ball-k:not([data-v])'); if (bk) bk.classList.toggle('yashirin', !k.dataset.ball) // 11-dars: kapsula faqat C kartasida
   if (ek.querySelector('.oyna .ball-k')) { vBosh(ek, k.dataset.v0 || 0); ek.__tugadi = false; ek.querySelectorAll('.oyin-tugadi').forEach((x) => x.remove()) } // 12-dars: data-v0 «jon:3»
-  const r = await sahnaAvto(ek, k.dataset.dastur, k.dataset.avto, k.dataset.lbs ? k.dataset.lbs.split(',') : null), ok = k.dataset.ok ? k.dataset.ok === '1' : r === 'yetdi'
+  // 15-dars: data-dastur / data-avto vergul bilan — ketma-ket ikki o'yin (yangi maydonda); data-ball '2' — kapsula faqat ikkinchisida; data-yoq — dasturchasi yo'q tugma — Bo'shvoy
+  const qd = k.dataset.dastur.split(','), qa = k.dataset.avto.split(','), lbs = k.dataset.lbs ? k.dataset.lbs.split(',') : null
+  let r = ''
+  for (let j = 0; j < qd.length; j++) {
+    if (j) { await KUT(900); if (!document.body.contains(ek)) return; katakAsl(ek) }
+    if (bk && k.dataset.ball && k.dataset.ball !== '1') { bk.classList.toggle('yashirin', k.dataset.ball !== String(j + 1)); vBosh(ek, 0) }
+    r = await sahnaAvto(ek, qd[j], qa[j], lbs, { yoq: !!k.dataset.yoq })
+  }
+  const ok = k.dataset.ok ? k.dataset.ok === '1' : r === 'yetdi'
   k.classList.remove('sinov'); k.classList.add(ok ? 'n-ok' : 'n-yoq')
   ;(k.querySelector('.jt') || k).insertAdjacentHTML('beforeend', '<small class="jn">' + (k.dataset.nat || (ok ? g.yetdi : g.urildi)) + '</small>')
   if (ok) konfeti(ek)
@@ -1117,7 +1222,8 @@ async function hukAvto(ek, k, i) {
 // ({ devor, yol, burilish, boshiBerk, eshik, qaytish }), bosh.olchov — o'lchov qatoridagi bandlar; «▶ Sinab ko‘rish» — shu labirintni o'yin rejimida
 // o'ynash (bola o'zi yutishi — pog'onaning ikkinchi sharti). bosh.darajalar — o'yin labirintlar ro'yxati bilan ([nom…]: DARS.labirintlar, 'L2' — bola yasagani).
 const LAB_D2 = 'jr-labirint-daraja2' // bola yasagan 2-daraja (keyingi darslar ham o'qiydi — dars kalitisiz)
-function labD2() { try { return localStorage.getItem(LAB_D2) || '' } catch (e) { return '' } }
+const labD2Kalit = () => (DARS.xakaton && typeof xkD2Kalit === 'function' ? xkD2Kalit() : LAB_D2) // 15-dars: o'z kaliti
+function labD2() { try { return localStorage.getItem(labD2Kalit()) || '' } catch (e) { return '' } }
 function darajaXarita(nom) { return nom === 'L2' ? (labD2() || (DARS.labirintlar || {}).BOSH || '') : ((DARS.labirintlar || {})[nom] || nom) }
 const labYoq = (o) => (o.yoqOld || 0) + ((o.h && o.h.yoqSoni) || 0) // hamma darajadagi «yo'q»lar
 // o'lchovlar (manba «O'lchovlar»; sinov — labirint.mjs dagi mustaqil hisob): yol — startdan yulduzgacha eng qisqa yo'l (kalit va eshik bilan; kalitsiz eshik — devor),
@@ -1242,7 +1348,7 @@ function yasashBosish(e, ek, ildiz) {
   else { const b = { kalit: 'K', eshik: 'E', yulduz: '*' }[asb]; if (ch === '*' && b !== '*') { ishora(ek, 'Yulduzni «Yulduz» asbobi bilan ko‘chiring'); return true } if (ch === b) { if (b !== '*') xr[q][x] = '.' } else qoy(b) }
   const yangi = xr.map((r) => r.join('')).join('|')
   chal('bos'); mdQayta(ek, yangi); katakAsl(ek)
-  if (labBola(ek)) try { localStorage.setItem(LAB_D2, yangi) } catch (e2) {}
+  if (labBola(ek)) try { localStorage.setItem(labD2Kalit(), yangi) } catch (e2) {}
   olchovYoz(ek); yasashMuammo(ek, false); if (DARS.chekStatik && ek.querySelector('.chek')) chekChiz(ek)
   return true
 }
@@ -1250,6 +1356,7 @@ function yasashBosish(e, ek, ildiz) {
 function yasashYutdi(ek, o) {
   const t = TOP(ek.dataset.id), b = t.bosh, g = t.gap || {}, k = b.kerak, ol = labOlchov(yasashXarita(ek))
   oyinToxtat(ek); muammoOl(ek)
+  if (b.xk) { if (k && !kerakOk(ol, k)) { chal('muammo'); ishora(ek, kerakGap(ol, k)); muammo(ek, 'kamvoy', 'Oz qoldi!') } else { ishora(ek, 'Labirint tayyor!'); konfeti(ek) } return xkSeans(ek, o, 'yutdi') } // 15-dars
   if (!k) { ishora(ek, 'Siz yutdingiz!'); konfeti(ek); return }
   if (!kerakOk(ol, k)) { chal('muammo'); ishora(ek, kerakGap(ol, k)); muammo(ek, 'kamvoy', 'Oz qoldi!'); return }
   ishora(ek, g.yetdi ? GAPT(g.yetdi) : 'Labirint tayyor!'); konfeti(ek)
@@ -1258,7 +1365,7 @@ function yasashYutdi(ek, o) {
   if (ol.eshik && ol.kalit && ol.eshikTosadi && ol.kalitYol) chekBelgi(ek, 'daraja2')
   if (typeof blokQosh === 'function') { blokQosh('L2', [...Array.from({ length: ol.devor }, () => ({ dataset: { tur: 'D' } })), ...Array.from({ length: ol.yol || 0 }, () => ({ dataset: { tur: 'Q' } }))]); blokQosh(ek.dataset.id, [{ dataset: { tur: 'y' } }]) }
   if (b.pog && typeof pogQosh === 'function') pogQosh(b.pog)
-  setTimeout(() => bolaKeyingi(), 1400)
+  otKeyin(ek)
 }
 // ---- dasturi ko'rinmaydigan o'yin darajalar bilan (huk, «Do‘stingiz o‘ynaydi») ----
 // saqlangan Blockly dasturi (serialization) → DARS.oyinlar shakli: [[tugma, [{ t, yon?, m?, ichki? }]]]
@@ -1375,6 +1482,7 @@ async function ballBoshla(ek) {
   muammoOl(ek); urildiOl(ek); ek.querySelectorAll('.konfeti,.dv-pufak,.ball-iz,.oyin-tugadi').forEach((x) => x.remove())
   if (typeof blTanlovOl === 'function') blTanlovOl(ek)
   const ds = blDasturchalar(ek), st = ds.filter((x) => x.tur === 'when_start')
+  if (b.xk && !ds.length) { chal('muammo'); ishora(ek, xkO(xkS(ek)).bosh); muammo(ek, 'boshvoy', 'Men nimani kutaman?'); return } // 15-dars
   if (st.some((x) => !x.bloklar.length)) { chal('muammo'); ishora(ek, 'O‘yin boshida ball nechchi bo‘lsin? Shu blokning ostiga ulang'); muammo(ek, 'boshvoy', 'Boshlandi, lekin nima qilay?'); return }
   if (typeof blShartBosh === 'function' && blShartBosh(ek)) { chal('muammo'); ishora(ek, 'if ichiga blok qo‘ying — shart «ha» bo‘lsa, u bajariladi'); muammo(ek, 'boshvoy', 'Ichi bo‘sh-ku…'); return }
   if (!b.saqla) vBosh(ek, b.v != null ? b.v : 0)
@@ -1383,7 +1491,7 @@ async function ballBoshla(ek) {
   const h = await SAHNA.katak.boshla(ek, b)
   h.yashirinKut = !!h.k.querySelector('.kt-yul.yashirin')
   const o = { h, bosish: 0, terildi: new Set(), jami: ballOlmaSoni(h), ball0: vOl(ek, 'ball'), set: false, teg: 0, manfiy: {} }
-  OYIN.set(ek, o); ek.dataset.oyin = '1'
+  OYIN.set(ek, o); ek.dataset.oyin = '1'; if (b.xk) xkSeansBosh(ek) // 15-dars
   ek.querySelector('.oyna').insertAdjacentHTML('beforeend', '<span class="gl oyin-yz">' + (DARS.oyinYozuv || 'O‘yin: strelkalarni bosing') + '</span>')
   const tb = oyinTugma(ek); if (tb) tb.textContent = '■ To‘xtatish'
   const ws = typeof BL_WS !== 'undefined' && BL_WS.get(ek), yetim = ws ? blTepalar(ws).some((x) => !BL_HODISA.has(x.type)) : false
@@ -1402,7 +1510,8 @@ async function ballBos(ek, k, o) {
   o.bosish++; muammoOl(ek)
   ek.dataset.yuryapti = '1'
   const s = ek.querySelector('.dst .bq-q .bq-s i[data-k="' + k + '"]'); if (s) { s.classList.add('hozir'); setTimeout(() => s.classList.remove('hozir'), 320) }
-  await SAHNA.katak.bajar(o.h, { tur, el: document.createElement('span') })
+  if ((TOP(ek.dataset.id).bosh || {}).xk) { if (!(await xkOlmaBos(ek, k, o))) { delete ek.dataset.yuryapti; return } } // 15-dars: strelka — bolaning dasturchasi (4-dars)
+  else await SAHNA.katak.bajar(o.h, { tur, el: document.createElement('span') })
   const kaktus = !!(o.h.urildi && o.h.urildi.kaktus); o.h.urildi = null // chetga urilish — «tuk», muammochasiz
   // bosish tartibi (12-dars): 1) yurish yoki kaktusga tegish → tegish dasturchasi; 2) istalgan tugma dasturchasi; 3) yulduz tekshiruvi
   if (kaktus) { o.teg++; await ballTegish(ek, o, 'cactus') }
@@ -1412,20 +1521,23 @@ async function ballBos(ek, k, o) {
   if (OYIN.get(ek) !== o) return
   if (ek.__tugadi) return ballTugadi(ek, o)
   ballKuzat(ek, o)
+  if ((TOP(ek.dataset.id).bosh || {}).xk) xkJonli(ek, o) // 15-dars: sinash belgilari shu zahoti
   ballTekshir(ek, o)
 }
 async function ballTegish(ek, o, olma) {
   const b = TOP(ek.dataset.id).bosh || {}, d = blDasturchalar(ek).filter((x) => x.tur === 'when_touch' && x.olma === olma)
+  if (b.xk && d.every((x) => !x.bloklar.length) && xkTegishYoq(ek, olma)) return // 15-dars: tanlanmagan (hozirgi bo'lmagan) qism muammocha chiqarmaydi
   if (olma === 'cactus' && (!d.length || d.every((x) => !x.bloklar.length))) { chal('muammo'); ishora(ek, 'Kaktusga tekkanda jon kamaysin — dasturchaga blok ulang'); muammo(ek, 'boshvoy', 'Tegdim — nima qilay?'); return }
   if (!d.length) {
     chal('muammo')
     if (olma === 'gold') { ishora(ek, DARS.oltinGap || 'Oltin olmaga o‘z dasturchasi kerak — hodisa blokida olma turini tanlang'); muammo(ek, 'boshvoy', 'Oltin olma-chi?') }
-    else { ishora(ek, 'Olmaga tekkanda nima bo‘lsin? Buning uchun o‘z hodisa bloki bor'); muammo(ek, 'boshvoy', 'Olma terildi, ball-chi?') }
+    else { ishora(ek, 'Olmaga tekkanda nima bo‘lsin? Buning uchun o‘z hodisa bloki bor'); muammo(ek, 'boshvoy', b.xk && typeof xkHozirId === 'function' && xkHozirId(ek) === 'quvonch' ? 'Tegdim — nima qilay?' : 'Olma terildi, ball-chi?') } // 15-dars: «Quvonch» — ball haqida emas
     return
   }
   if (d.every((x) => !x.bloklar.length)) { chal('muammo'); ishora(ek, 'Hodisa blokining ostiga O‘zgaruvchi oilasidan blok ulang'); muammo(ek, 'kamvoy', 'Tegdim, lekin nima qilay?'); return }
   const old = Object.assign({}, ek.__v)
   for (const x of d) { x.hodisa.classList.add('hozir'); await ijro(turla(x.daraxt), (n) => ballBlok(ek, o.h, n), { kut: 220 }); x.hodisa.classList.remove('hozir'); if (ek.__tugadi) return }
+  if (b.xk) xkTegdi(ek, o, olma, old)
   // 12-dars: pog'ona sharti tegish paytida (o'yin davom etadi)
   if (olma === 'gold' && b.oltinJon && !(vOl(ek, 'jon') > (old.jon || 0))) { chal('muammo'); ishora(ek, 'Oltin olma jon bersin — uning dasturchasini tekshiring'); muammo(ek, 'kamvoy', 'Jon-chi?') }
   if (olma === 'cactus' && b.kaktusBall && vOl(ek, 'ball') === (old.ball || 0)) { chal('muammo'); ishora(ek, 'Kaktus jonni ham, 2 ballni ham olsin — kaktus dasturchasini tekshiring'); muammo(ek, 'kamvoy', 'Kaktus-chi?') }
@@ -1449,6 +1561,7 @@ function ballTugadi(ek, o) {
   oyinToxtat(ek)
   ek.querySelector('.oyna').insertAdjacentHTML('beforeend', '<span class="gl oyin-tugadi">O‘yin tugadi</span>')
   chal('tuk')
+  if (b.xk) { ishora(ek, ek.__ifOzg === 'qadam' ? 'Qadam tugadi. ▶ Boshlash — yana o‘ynang' : 'Jon tugadi. ▶ Boshlash — yana o‘ynang'); return xkSeans(ek, o, 'tugadi') } // 15-dars
   if (s) {
     const v = vOl(ek, s.ozg)
     if (v === 0 && (!s.teg || o.teg === s.teg) && (!s.bosish || o.bosish === s.bosish)) return ballYutdi(ek, o, s.ozg === 'qadam' ? 'Shart ishladi: qadam 0 — o‘yin tugadi!' : 'Shart ishladi: jon 0 — o‘yin tugadi!', true)
@@ -1488,6 +1601,7 @@ function ballTekshir(ek, o) {
 }
 function ballYutdi(ek, o, gap, sinov) {
   const id = ek.dataset.id, t = TOP(id), b = t.bosh, g = t.gap || {}
+  if (b.xk) { oyinToxtat(ek); ishora(ek, 'Siz yutdingiz!'); konfeti(ek); return xkSeans(ek, o, 'yutdi') } // 15-dars
   oyinToxtat(ek)
   ishora(ek, gap || (g.yetdi ? GAPT(g.yetdi) : 'Siz yutdingiz!')); konfeti(ek)
   const ball = vOl(ek, 'ball')
@@ -1506,7 +1620,7 @@ function ballYutdi(ek, o, gap, sinov) {
   const q = [...(kerak.includes('o') ? bl('o', o.terildi.size) : []), ...(kerak.includes('B') ? bl('B', ball) : []), ...(kerak.includes('W') && !sinov ? bl('W', 1) : []), ...(kerak.includes('S') && ws ? bl('S', ws.getBlocksByType('if_var', false).length) : []), ...(kerak.includes('V') ? bl('V', ozg.size) : [])]
   if (typeof blokQosh === 'function') blokQosh(id, q)
   if (b.pog && typeof pogQosh === 'function') pogQosh(b.pog)
-  setTimeout(() => bolaKeyingi(), 1400)
+  otKeyin(ek)
 }
 // ---- oldindan aytish (3-bekat): dastur when ▶ clicked ostida tayyor, o'zgarmaydi; karta tanlanadi, «▶ Tekshirish» ----
 const sonBashTugma = (ek) => ek.querySelector('.hn .ishga') || ek.querySelector('.hn .asos') // ustozda — «▶ Tekshirish» qo'shilgan, bolada — asosiy tugma
@@ -1561,7 +1675,7 @@ async function sonBashTekshir(ek) {
   if (typeof blokQosh === 'function') blokQosh(id, urinish === 1 ? [{ dataset: { tur: 'A' } }] : [])
   if (b.pog && typeof pogQosh === 'function') pogQosh(b.pog)
   if (urinish === 1 && b.pog && typeof bildir === 'function') bildir({ t: 'bildi', n: b.pog }) // LMS yutug'i «Oldindan bildi» (DARS.lms.yutuqlar: t 'bildi') — faqat birinchi urinish
-  setTimeout(() => bolaKeyingi(), 1400)
+  otKeyin(ek)
 }
 // 17-qadam: bola natijasida kapsula — eng katta ball
 function ballNatija(ek) { const k = ek.querySelector('.oyna .ball-k b'); if (!k || typeof blokJami !== 'function') return; const j = blokJami(); k.textContent = (j.eng && j.eng.B) || 0 }
@@ -1667,13 +1781,17 @@ async function olmaIshga(ek) {
   if (h.chet) { chal('muammo'); ishora(ek, h.chet.oq === 'Y' ? 'random N ni tanladi. Maydonda Y — 0 dan 4 gacha'.replace('N', h.chet.son) : 'random N ni tanladi. Maydonda X — 0 dan 6 gacha'.replace('N', h.chet.son)); muammo(ek, 'kamvoy', 'Maydon tugadi!'); return }
   const t = olmaTahlil(ek, b)
   if (['randomYoq', 'kam', 'kop'].includes(t.tur)) return olmaXato(ek, t)
+  // 14-dars (bosh.savatKech): sanab topiladigan muammocha (bo'lishi mumkin — savat bo'sh qoladi, savat yo'q katak) faqat «Sinov: 3 / 3» dan keyin;
+  // shu safar ko'ringani (maydon cheti, savat yo'q katakka tushdi) — darhol
+  const kech = !!b.savatKech
   if (!b.erkinOlma) for (let i = 0; i < h.tushdi.length; i++) { const k = h.tushdi[i]; if (!(b.savat || []).some((s) => kat(s, k))) { chal('muammo'); ishora(ek, 'Olma (x, y) ga tushdi — u yerda savat yo‘q. random sonlarini tekshiring'.replace('(x, y)', '(' + k.join(', ') + ')')); muammo(ek, 'ortiqvoy', 'Savat yo‘q-ku!'); return } if (!olmaSavat(b, i).some((s) => kat(s, k))) return olmaXato(ek, { tur: 'boshqaGuruh' }) }
-  if (olmaXato(ek, t)) return
+  if (!kech && olmaXato(ek, t)) return
   // sinov: dastur o'zgarsa — sanoq boshidan; uch marta va kamida 2 xil joy
   const kalit = sinovKalit(ek); if (!ek.__sinov || ek.__sinov.kalit !== kalit) ek.__sinov = { kalit, n: 0, joy: new Set(), olma: 0 }
   const s = ek.__sinov; s.n++; s.joy.add(h.tushdi.map((k) => k.join(',')).join('|')); s.olma += h.tushdi.length; sinovYoz(ek)
   h.gl.forEach((x) => x && x.classList.add('savatda'))
   if (3 > s.n) { ishora(ek, 'Yana ishga tushiring — olma qayerga tushadi?'); return }
+  if (kech && olmaXato(ek, t)) return
   if (2 > s.joy.size) { ishora(ek, 'Olma yana o‘sha joyga tushdi — bu ham tasodif. Yana bir marta'); return }
   ishora(ek, g.yetdi ? GAPT(g.yetdi) : 'Har safar boshqa joy!'); konfeti(ek)
   olmaHisob(ek, b, { T: s.olma })
@@ -1685,7 +1803,7 @@ function olmaHisob(ek, b, { T = 0, o = 0 } = {}) {
   const ws = BL_WS.get(ek), R = ws ? ws.getBlocksByType('random_n', false).length : 0, bl = (tur, n) => Array.from({ length: n }, () => ({ dataset: { tur } }))
   if (typeof blokQosh === 'function') blokQosh(ek.dataset.id, [...bl('R', R), ...bl('T', T), ...bl('o', o)])
   if (b.pog && typeof pogQosh === 'function') pogQosh(b.pog)
-  setTimeout(() => bolaKeyingi(), 1400)
+  otKeyin(ek)
 }
 // ---- 3-bekat: o'yin — qahramon strelkalar bilan (boshqaruv tayyor), olma dasturi olmani tushiradi; 5 ta olma — yutdi ----
 async function olmaOyinBoshla(ek) {

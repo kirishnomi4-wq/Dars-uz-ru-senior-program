@@ -1,7 +1,7 @@
 // ============================================================
 //  AVTO-YIG'ILGAN FAYL — QO'LDA TAHRIRLAMANG. Junior · 1-dars «Tanishuv» (junior-001-tanishuv-v1, v1)
 //  Manba: new-junior/dvigatel (yigish.mjs — demo bilan bir xil) + new-junior/lms/{Dars.jsx, aloqa.js}. Qayta yig'ish: node new-junior/lms/yig.mjs
-//  Server: https://dars-api.coddycamp.uz · yig'ma 8466c412
+//  Server: https://dars-api.coddycamp.uz · yig'ma 8cf485ee
 //  Ichida: Blockly 13.4.0 — Copyright Google LLC, Apache License 2.0 (https://www.apache.org/licenses/LICENSE-2.0)
 // ============================================================
 // new-junior/lms/Dars.jsx
@@ -515,11 +515,11 @@ var DARS = {
     B9: { ish: "takror", dunyo: true },
     B5: { ish: "natija", dunyo: true },
     P2B: { ish: "sudrash" },
-    B2: { tur: "yol", bosh: { at: 0, prog: 0, pog: 1 }, keyin: "B4", maslahat: "Yulduzgacha qadamlarni sanang: 1, 2, 3" },
-    B3X: { tur: "yol", bosh: { at: 0, prog: "qoldir" }, maslahat: "Coddy bitta qadam ko‘p yurdi — bitta blokni olib tashlang" },
-    B2P: { tur: "yol", bosh: { at: 3, prog: 0, pog: 2 }, gap: { yetdi: "Yetib bordi! move left bilan orqaga qaytdingiz", kam: "Yulduz orqada qoldi — move left kerak" }, maslahat: "Yulduz chapda — move left blokidan foydalaning" },
-    B2Q: { tur: "yol", bosh: { at: 0, prog: 0, olma: 4, pog: 3 }, maslahat: "Olmagacha 4 ta move right, keyin bitta move left" },
-    B2Y: { tur: "yol", bosh: { at: 0, prog: 0, olma: 6, aniq: 9, pog: 4 }, maslahat: "Olmagacha 6 ta move right, yulduzga 3 ta move left: 6 + 3 = 9" },
+    B2: { tur: "yol", bosh: { at: 0, prog: 0, pog: 1 }, keyin: "B4", maslahat: "Yulduzgacha katakchalarni barmog‘ingiz bilan sanang" },
+    B3X: { tur: "yol", bosh: { at: 0, prog: "qoldir" }, maslahat: "Coddy qayerda to‘xtadi? Yulduzgacha nechta blok kerak — sanang" },
+    B2P: { tur: "yol", bosh: { at: 3, prog: 0, pog: 2 }, gap: { yetdi: "Yetib bordi! move left bilan orqaga qaytdingiz", kam: "Yulduz orqada qoldi — move left kerak" }, maslahat: "Yulduz qaysi tomonda? O‘sha tomonga yuradigan blokni toping" },
+    B2Q: { tur: "yol", bosh: { at: 0, prog: 0, olma: 4, pog: 3 }, maslahat: "Avval olmagacha sanang, keyin olmadan yulduzgacha" },
+    B2Y: { tur: "yol", bosh: { at: 0, prog: 0, olma: 6, aniq: 9, pog: 4 }, maslahat: "Yo‘l ikki bo‘lak: olmagacha va olmadan yulduzgacha — har birini sanang" },
     B4: { tur: "korish", bosh: { at: 3, start: 0, prog: "qoldir", korish: true }, gap: { yetdi: ["Yetib bordi! Zo‘r! Ustoz keyingisini ko‘rsatadi", "Yetib bordi! Zo‘r!"] } },
     P6: {
       tur: "namoyish",
@@ -566,24 +566,97 @@ var IKON = {
   u: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V7M6 12l6-6 6 6" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
   d: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v13M6 12l6 6 6-6" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
   j: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19C6 6 18 6 20 19" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/><path d="M15 16l5 4 2-6" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-  s: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14a3 3 0 0 1 3 3v7a3 3 0 0 1-3 3h-7l-5 4v-4H5a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3z" fill="#fff"/></svg>'
+  s: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14a3 3 0 0 1 3 3v7a3 3 0 0 1-3 3h-7l-5 4v-4H5a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3z" fill="#fff"/></svg>',
+  // 5-dars: takrorlash — aylana strelka
+  p: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12a7.5 7.5 0 0 1 12.8-5.3" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round"/><path d="M18.6 3.4v4.2h-4.2" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M19.5 12a7.5 7.5 0 0 1-12.8 5.3" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round"/><path d="M5.4 20.6v-4.2h4.2" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  // 4-dars: hodisa — klaviatura tugmasi (strelka bilan)
+  k: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="3" fill="none" stroke="#fff" stroke-width="2.4"/><path d="M7 12h8.5M12.5 9l3 3-3 3" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  // 3-dars: go to — manzil belgisi (nishon: doira va markaz)
+  // 8-dars: shart — ayri yo'l (savol belgisi bilan tarmoq)
+  a: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21v-7l-6-6M12 14l6-6" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 6.5h5v-5M21 6.5h-5v-5" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  // 7-dars: kostyum — futbolka; tovush — nota
+  v: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.2 3.5 3 6.6l2.2 4.1 2.6-1.1V20h8.4V9.6l2.6 1.1L21 6.6l-5.2-3.1c-.7 1.5-2.1 2.4-3.8 2.4s-3.1-.9-3.8-2.4z" fill="#fff"/></svg>',
+  n: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 17.5V5.2l11-2.2v12.3" fill="none" stroke="#fff" stroke-width="2.6" stroke-linejoin="round"/><circle cx="6.3" cy="17.6" r="3" fill="#fff"/><circle cx="17.3" cy="15.4" r="3" fill="#fff"/></svg>',
+  // 11-dars: olmaga tekkanda — barmoq tegishi (nuqta va uch chiziq); «▶ Boshlash» bosilganda — uchburchak; set — «=», change — «+»
+  q: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="14" r="4.4" fill="#fff"/><path d="M12 2.6v3.6M4.6 5.6l2.4 2.6M19.4 5.6 17 8.2" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>',
+  f: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.6v14.8L19.4 12z" fill="#fff" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>',
+  z: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9h14M5 15h14" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/></svg>',
+  c: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.6v14.8M4.6 12h14.8" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/></svg>',
+  // 12-dars: o'zgaruvchi sharti — «=» belgili ayri yo'l; game over — to'xtash belgisi (sakkizburchak)
+  i: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21v-7l-6-6M12 14l6-6" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 3.6h6M3 7h6" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>',
+  g: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.3 3h7.4L21 8.3v7.4L15.7 21H8.3L3 15.7V8.3z" fill="#fff"/><path d="M8.6 12h6.8" stroke="#F08A24" stroke-width="2.8" stroke-linecap="round"/></svg>',
+  // 13-dars: random — zar (uch nuqta)
+  m: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.4" y="3.4" width="17.2" height="17.2" rx="4" fill="none" stroke="#fff" stroke-width="2.4"/><circle cx="8.2" cy="8.2" r="1.8" fill="#fff"/><circle cx="12" cy="12" r="1.8" fill="#fff"/><circle cx="15.8" cy="15.8" r="1.8" fill="#fff"/></svg>',
+  // 16-dars (21.11): Klon oilasi — C create clone (ikki varaq), H when I start as a clone (varaq va ▶), D delete this clone (varaq va ✕)
+  C: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8.4" y="3.6" width="12" height="12" rx="2.6" fill="none" stroke="#fff" stroke-width="2.4"/><rect x="3.6" y="8.4" width="12" height="12" rx="2.6" fill="#fff"/></svg>',
+  H: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.4" y="5" width="11" height="14" rx="2.4" fill="#fff"/><path d="M14.6 7.6l6 4.4-6 4.4z" fill="#fff"/></svg>',
+  D: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.6" y="3.6" width="16.8" height="16.8" rx="3" fill="none" stroke="#fff" stroke-width="2.4"/><path d="M8.4 8.4l7.2 7.2M15.6 8.4l-7.2 7.2" stroke="#fff" stroke-width="2.8" stroke-linecap="round"/></svg>',
+  x: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.4" fill="none" stroke="#fff" stroke-width="2.8"/><circle cx="12" cy="12" r="2.6" fill="#fff"/><path d="M12 1.6v4M12 18.4v4M1.6 12h4M18.4 12h4" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>'
 };
-var BL = { r: ["h", "move right"], l: ["h", "move left"], u: ["h", "move up"], d: ["h", "move down"], j: ["h", "jump"], s: ["g", "say"] };
+var BL = { C: ["K", "create clone of myself"], H: ["K", "when I start as a clone"], D: ["K", "delete this clone"], r: ["h", "move right"], l: ["h", "move left"], u: ["h", "move up"], d: ["h", "move down"], j: ["h", "jump"], s: ["g", "say"], x: ["h", "go to"], k: ["e", "when"], p: ["b", "repeat"], v: ["v", "switch costume to"], n: ["t", "play sound"], a: ["a", "if path"], q: ["e", "when touching"], f: ["e", "when ▶ clicked"], z: ["o", "set"], c: ["o", "change"], i: ["a", "if"], g: ["e", "game over"], y: ["h", "go to"], m: ["o", "random"] };
+var mbXY = (m) => {
+  const [x = 0, y = 0] = String(m === "Salom!" ? "0,0" : m).split(",");
+  return [+x || 0, +y || 0];
+};
+var TUGMA_K = { right: "→", left: "←", up: "↑", down: "↓", space: "space", any: "any" };
+var KOS_NOM = { xotirjam: "xotirjam", xursand: "xursand", hayron: "hayron", oylanadi: "o‘ylanadi" };
+var OLMA_NOM = { apple: "apple", gold: "gold apple", cactus: "cactus", enemy: "enemy" };
 var mb = (t, matn2 = "Salom!", cls = "") => {
   const [f, nom] = BL[t];
+  if (t === "q") {
+    const q = OLMA_NOM[matn2] ? matn2 : "apple";
+    return `<span class="mb f-${f} ${cls}" data-tur="q" data-q="${q}">${IKON[t]}<span>${nom}</span><span class="xy"><i>${OLMA_NOM[q]}</i></span></span>`;
+  }
+  const rndI = (sp) => {
+    const [a, c] = sp.slice(1).split("-");
+    return `<span class="mrnd">random <i>${a}</i> to <i>${c}</i></span>`;
+  };
+  if (t === "y") {
+    const [x0 = "0", y0 = "0"] = String(matn2 === "Salom!" ? "0,0" : matn2).split(",");
+    return `<span class="mb f-${f} ${cls}" data-tur="y" data-x="${x0}" data-y="${y0}">${IKON.x}<span>${nom}</span><span class="xy">x: ${/^r/.test(x0) ? rndI(x0) : `<i>${x0}</i>`} y: ${/^r/.test(y0) ? rndI(y0) : `<i>${y0}</i>`}</span></span>`;
+  }
+  if (t === "m") {
+    const [a = "1", c = "10"] = String(matn2 === "Salom!" ? "1-10" : matn2).split("-");
+    return `<span class="mb f-${f} mb-oval ${cls}" data-tur="m" data-ra="${a}" data-rb="${c}">${IKON[t]}<span>${nom}</span><span class="xy"><i>${a}</i> to <i>${c}</i></span></span>`;
+  }
+  if (t === "f" || t === "g" || t === "C" || t === "H" || t === "D") return `<span class="mb f-${f} ${cls}" data-tur="${t}">${IKON[t]}<span>${nom}</span></span>`;
+  if (t === "z" || t === "c" || t === "i") {
+    const s0 = String(matn2), [v0, n0] = s0.indexOf(":") >= 0 ? s0.split(":") : ["", s0], n = /^-?\d+$/.test(n0) ? n0 : t === "c" ? "1" : "0", vr = v0 || typeof DARS !== "undefined" && DARS.ozgaruvchi && DARS.ozgaruvchi[0] || "ball", nk = +n < 0 ? "−" + -n : n;
+    return `<span class="mb f-${f} ${cls}" data-tur="${t}"${v0 ? ` data-v="${v0}"` : ""} data-n="${n}">${IKON[t]}<span>${nom}</span><span class="xy"><i>${vr}</i> ${t === "z" ? "to" : t === "c" ? "by" : "="} <i>${nk}</i>${t === "i" ? " then" : ""}</span></span>`;
+  }
+  if (t === "a") {
+    const y = TUGMA_K[matn2] && matn2 !== "space" ? matn2 : "right";
+    return `<span class="mb f-${f} ${cls}" data-yon="${y}">${IKON[t]}<span>${nom}</span><span class="xy"><i>${TUGMA_K[y]}</i> then</span></span>`;
+  }
+  if (t === "v" || t === "n") {
+    const q = matn2 === "Salom!" ? t === "v" ? "xursand" : "qadam" : matn2;
+    return `<span class="mb f-${f} ${cls}" data-q="${q}">${IKON[t]}<span>${nom}</span><span class="xy"><i>${KOS_NOM[q] || q}</i></span></span>`;
+  }
+  if (t === "p") {
+    const n = /^\d+$/.test(String(matn2)) ? matn2 : "3";
+    return `<span class="mb f-${f} ${cls}" data-n="${n}">${IKON[t]}<span>${nom}</span><span class="xy"><i>${n}</i></span></span>`;
+  }
+  if (t === "k") {
+    const k = TUGMA_K[matn2] ? matn2 : "right";
+    return `<span class="mb f-${f} ${cls}" data-tugma="${k}">${IKON[t]}<span>${nom}</span><span class="xy"><i>${TUGMA_K[k]}</i> key pressed</span></span>`;
+  }
+  if (t === "x") {
+    const [x, y] = mbXY(matn2);
+    return `<span class="mb f-${f} ${cls}" data-x="${x}" data-y="${y}">${IKON[t]}<span>${nom}</span><span class="xy">x: <i>${x}</i> y: <i>${y}</i></span></span>`;
+  }
   return `<span class="mb f-${f} ${cls}">${IKON[t]}<span>${nom}</span>${t === "s" ? `<span class="inp">${matn2}</span>` : ""}</span>`;
 };
 var yigma = (arr) => `<div class="mbw">${arr.map((x) => typeof x === "string" ? mb(x) : mb(...x)).join("")}</div>`;
-var OILA = { h: ["Harakat", "r"], g: ["Gap", "s"] };
+var OILA = { K: ["Klon", "C"], h: ["Harakat", "r"], g: ["Gap", "s"], e: ["Hodisa", "k"], b: ["Takrorlash", "p"], v: ["Ko‘rinish", "v"], t: ["Tovush", "n"], a: ["Shart", "a"], o: ["O‘zgaruvchi", "c"] };
 var rang = (f, cls = "") => `<span class="rd f-${f} ${cls}"><i>${IKON[OILA[f][1]]}</i><small>${OILA[f][0]}</small></span>`;
 var PAL = DARS.javon || { h: ["r", "l", "j"], g: [["s", "Salom!"]] };
-var ranglar = (aktiv, holat = {}) => `<div class="rg" data-z="ranglar">${Object.keys(PAL).map((f) => rang(f, (aktiv === f ? "on " : "") + (holat[f] || ""))).join("")}</div>`;
-var palitra = (f, ochiq = PAL[f].length) => `<div class="pl" data-z="bloklar"><small class="f-${f}">${OILA[f][0]}</small>${PAL[f].map((b, i) => `<div class="mbw${i >= ochiq ? " yopiq" : ""}">${typeof b === "string" ? mb(b) : mb(...b)}</div>`).join("")}</div>`;
+var ranglar = (aktiv, holat = {}, J = PAL) => `<div class="rg" data-z="ranglar">${Object.keys(J).map((f) => rang(f, (aktiv === f ? "on " : "") + (holat[f] || ""))).join("")}</div>`;
+var palitra = (f, ochiq, J = PAL) => `<div class="pl" data-z="bloklar"><small class="f-${f}">${OILA[f][0]}</small>${J[f].map((b, i) => `<div class="mbw${i >= (ochiq == null ? J[f].length : ochiq) ? " yopiq" : ""}">${typeof b === "string" ? mb(b) : mb(...b)}</div>`).join("")}</div>`;
 var dastur = (arr, yuz, iz = "") => `<div class="dst" data-z="dastur"><span class="dsb"><span class="dyz">${yuz}</span><b>Dastur</b></span>${arr.length ? yigma(arr) : '<span class="bosh">Blokni shu yerga ulang</span>'}${iz || `<small class="dsn">${arr.length} ta blok</small>`}</div>`;
 var momiqYuz = () => globalThis.QAH === "coddy" ? bust("xursand") : hero({ k: globalThis.QAH || "momiq", lite: true });
 var coddyYuz = () => bust("xursand");
 var ust = (tag, h, iz = "") => `<div class="ust" data-z="sarlavha"><span class="tag">${tag}</span><h3 class="sar">${h}</h3>${iz ? `<span class="iz">${iz}</span>` : ""}</div>`;
-var studiya = ({ tag, h, iz, aktiv = "h", holat, ochiq, prog, yuz, sahna, extra = "", dunyo = "hovli" }) => `${ust(tag, h, iz)}${ranglar(aktiv, holat)}${palitra(aktiv, ochiq)}${dastur(prog, yuz)}<div class="oyna">${dunyo ? world(dunyo) : ""}${sahna}</div>${extra}`;
+var studiya = ({ tag, h, iz, aktiv = "h", holat, ochiq, prog, yuz, sahna, extra = "", dunyo = "hovli", dst, javon }) => `${ust(tag, h, iz)}${ranglar(aktiv, holat, javon || PAL)}${palitra(aktiv, ochiq, javon || PAL)}${javon ? Object.keys(javon).map((f) => `<template class="pal-t" data-f="${f}">${palitra(f, void 0, javon)}</template>`).join("") : ""}${dst || dastur(prog, yuz)}<div class="oyna">${dunyo ? world(dunyo) : ""}${sahna}</div>${extra}`;
 var fB = ({ mas = "", hint = "", label = `${PLAY}Ishga tushir`, chap } = {}) => `<footer class="hn">${chap || `<span class="mas ${mas}">${LAMP}Maslahat</span>`}<span class="hint">${hint}</span><span class="asos">${label}</span></footer>`;
 var fU = (hint, label) => `<footer class="hn"><span class="orq">‹ Orqaga</span><span class="hint">${hint}</span><span class="asos">${label}</span></footer>`;
 var ichSvg = (svg, x, y, w, h) => svg.replace("<svg ", `<svg x="${x}" y="${y}" width="${w}" height="${h}" `);
@@ -652,6 +725,8 @@ var KURSOR = '<span class="kursor-q" aria-hidden="true"><svg viewBox="0 0 24 24"
 var yulduzlar14 = (n) => `<div class="yulduzlar">${Array.from({ length: 14 }, (_, i) => `<i class="${i < n ? "on" : ""}">${ODAM}</i>`).join("")}</div>`;
 var yolOlma = (cls, aktyor, n, star, olma) => yol(cls, aktyor, n, star).replace(/<\/div>$/, `<span class="olma-z" style="grid-column:${olma + 1}">${OLMA}</span></div>`);
 var sinfNatija = (T = SINF_T) => `<div class="sn">${T.map(([f, ik, nom, son]) => `<div class="sn-t sn-${f}" data-k="${nom}"><i>${ik}</i><span><b>${son}</b><small>${nom}</small></span></div>`).join("")}</div>`;
+var MD_OLMA = '<g transform="translate(-24 -26) scale(2.1)"><path d="M12 8c-.6-2.4-2.6-3.6-2.6-3.6" fill="none" stroke="#6B4423" stroke-width="1.7" stroke-linecap="round"/><path d="M12.6 6.6c1.4-2.4 4.4-2.4 4.4-2.4-.4 2.4-2.6 3.2-4.4 2.4z" fill="#4CB050"/><path d="M12 8.4c-1.6-1.2-7-1.6-7.8 3.8-.6 4.4 2.6 8.8 5.2 8.8 1.2 0 1.6-.6 2.6-.6s1.4.6 2.6.6c2.6 0 5.8-4.4 5.2-8.8-.8-5.4-6.2-5-7.8-3.8z" fill="#F0435A"/><ellipse cx="8.6" cy="11.8" rx="1.3" ry="2.1" fill="#fff" opacity=".5"/></g>';
+var MD_OLMA_G = MD_OLMA.replace('fill="#F0435A"', 'fill="#F5B82E" stroke="#C98A0E" stroke-width=".7"').replace("</g>", '<path d="M17.6 3.2l.7 1.6 1.6.7-1.6.7-.7 1.6-.7-1.6-1.6-.7 1.6-.7z" fill="#FFF6C9"/></g>');
 var oyinlar = () => `<div class="kurs">
   <div class="gl kr"><div class="kr-r lb">${labirint()}</div><div class="kr-t"><b>Labirint</b><small>2-darsda</small></div></div>
   <div class="gl kr"><div class="kr-r ol">${world("hovli", true)}<i class="olma o1">${OLMA}</i><i class="olma o2">${OLMA}</i><i class="olma o3">${OLMA}</i><span class="savat">${hero({ k: "jele", mood: "xursand", lite: true })}</span><span class="ball">${BALL}3</span></div><div class="kr-t"><b>Olma yig‘amiz</b><small>11-darsda</small></div></div>
@@ -1193,7 +1268,7 @@ VARAQ[20][0] = "Ustozning sahnasi: Coddy kosmosda — yuradi, gapiradi, sakraydi
 VARAQ[21][1] = "Bolalar joy tanlaydi, bloklarni bosib qo‘shadi va ishga tushiradi; shartlar bajarilgan sari ✓ yonadi. Doskada — haqiqiy son: kim tayyor, kim qaysi joyni tanladi.";
 VARAQ[23][1] = "«Noutbukingizga qarang» — har kimda o‘z natijasi: bugun haqiqatan ishlatgan bloklari. Keyin «Keyingi» — butun sinf natijasi.";
 VARAQ.push(["Sinfimiz bugun: butun sinf nechta qadam, sakrash, gap va sahna qildi (haqiqiy son); o‘ngda bolalar tanlagan qahramonlar.", "«Hammangiz zo‘r ishladingiz!» Raqamlarni o‘qing. «Darsni yakunlash»ni bossangiz — hammada «Dars tugadi» chiqadi.", "Jamoa bo‘lib nimaga erishganini ko‘radi."]);
-var PAL_HTML = Object.fromEntries(Object.keys(PAL).map((f) => [f, palitra(f)]));
+var PAL_HTML = Object.fromEntries([...Object.keys(PAL).map((f) => [f, palitra(f)]), ...Object.entries(DARS.ikonOila || {}).map(([f, r]) => [f, `<div class="pl">${r.map((t) => mb(t)).join("")}</div>`])]);
 var PAL_B1 = Object.fromEntries(Object.keys(PAL).map((f) => [f, palitra(f, f === "h" ? 1 : 0)]));
 var QAH_SVG = Object.fromEntries(QAHRAMONLAR.map((k) => [k, hero({ k, mood: "xursand", lite: true })]));
 var DUNYO_HTML = { hovli: world("hovli"), kosmos: world("kosmos"), suv: world("suv") };
@@ -1202,7 +1277,8 @@ var ekranHtml = (id) => {
   const e = E[id];
   return `<div class="ekran hy ${e.t} e-${id}" data-id="${id}">${bosh(e.b)}<main class="hm">${e.body()}</main>${e.foot()}</div>`;
 };
-var kerak = [.../* @__PURE__ */ new Set([...QADAM.flatMap(([, p, b]) => [p, ...b || []]), ...DARS.bola.qahramonYoq ? [DARS.bola.qahramonYoq] : []])];
+var ekranT = (id) => DARS.ekranTanlov && DARS.ekranTanlov[id] || [id];
+var kerak = [.../* @__PURE__ */ new Set([...QADAM.flatMap(([, p, b, , b2]) => [p, ...Array.isArray(b) ? b : [], ...Array.isArray(b2) ? b2 : []]).flatMap(ekranT), ...DARS.bola.qahramonYoq ? [DARS.bola.qahramonYoq] : []])];
 var EKRANLAR = Object.fromEntries(kerak.map((id) => [id, ekranHtml(id)]));
 var QAH_IDS = DARS.qahramonli.filter((id) => kerak.includes(id));
 var nomQoy = (h, nom) => DARS.namuna.qahramon.reduce((x, n) => x.replaceAll(n, nom), h);
@@ -1222,6 +1298,79 @@ var D = { EKRANLAR, QADAM, VARAQ, EKRANLAR_Q, EKRANLAR_U, PAL_HTML, PAL_B1, QAH_
 function ishga(D2, A, OPT) {
   const { EKRANLAR: EKRANLAR2, QADAM: QADAM2, VARAQ: VARAQ2, EKRANLAR_Q: EKRANLAR_Q2, EKRANLAR_U: EKRANLAR_U2, PAL_HTML: PAL_HTML2, PAL_B1: PAL_B12, QAH_SVG: QAH_SVG2, ODAM_SVG, MUAM_SVG: MUAM_SVG2, DUNYO_HTML: DUNYO_HTML2, QAHRAMONLAR: QAHRAMONLAR2, QNOM: QNOM2, JOYLAR: JOYLAR2, DARS: DARS2 } = D2;
   const KIRISH = { rol: OPT.solo ? "solo" : OPT.rol, k: OPT.k, ism: OPT.ism, aloqa: A };
+  (function() {
+    if (typeof window === "undefined" || window.__kichikNusxa) return;
+    window.__kichikNusxa = true;
+    function aniqmi() {
+      const d = document.createElement("div");
+      d.style.cssText = "position:absolute;left:-9999px;top:0;visibility:hidden;container-type:inline-size;width:1000px";
+      const s = "display:inline-block;white-space:nowrap;font:20px/1 sans-serif;padding:0 2cqw";
+      d.innerHTML = '<span style="' + s + '">MMMMMMMMMM</span><br><span style="' + s + ';zoom:.3">MMMMMMMMMM</span>';
+      document.body.appendChild(d);
+      const a = d.children[0].getBoundingClientRect().width, b = d.children[2].getBoundingClientRect().width;
+      d.remove();
+      return a > 0 && Math.abs(b / a - 0.3) < 0.01;
+    }
+    const px = (v) => parseFloat(v) || 0;
+    function qoy(e) {
+      const z = +e.dataset.kz;
+      e.style.zoom = "1";
+      e.style.transform = "";
+      e.style.margin = "";
+      e.style.width = "";
+      const s = getComputedStyle(e);
+      const w0 = e.offsetWidth;
+      e.style.width = "max-content";
+      const ichki2 = e.offsetWidth;
+      e.style.width = "";
+      const toldir = w0 > ichki2 + 1;
+      if (toldir) e.style.width = w0 / z + "px";
+      const w = e.offsetWidth, h = e.offsetHeight;
+      e.style.transformOrigin = "0 0";
+      e.style.transform = "scale(" + z + ")";
+      e.style.margin = px(s.marginTop) * z + "px " + (px(s.marginRight) * z + (z - 1) * w) + "px " + (px(s.marginBottom) * z + (z - 1) * h) + "px " + px(s.marginLeft) * z + "px";
+    }
+    const kuzat = typeof ResizeObserver === "function" ? new ResizeObserver((yoz) => {
+      yoz.forEach((x) => {
+        const e = x.target;
+        if (e.isConnected && e.dataset.kz && !e.__kqoy) {
+          e.__kqoy = true;
+          requestAnimationFrame(() => {
+            e.__kqoy = false;
+            if (e.isConnected) qoy(e);
+          });
+        }
+      });
+    }) : null;
+    function tuzat(ildiz) {
+      const els = ildiz.nodeType === 1 ? [ildiz].concat(Array.from(ildiz.querySelectorAll("*"))) : [];
+      els.forEach((e) => {
+        if (!(e instanceof HTMLElement) || e.dataset.kz || e.closest("svg")) return;
+        const z = parseFloat(getComputedStyle(e).zoom);
+        if (!z || Math.abs(z - 1) < 1e-3) return;
+        e.dataset.kz = String(z);
+        qoy(e);
+        if (kuzat) kuzat.observe(e);
+      });
+    }
+    function boshla() {
+      if (aniqmi()) return;
+      document.documentElement.classList.add("kichik-siqiladi");
+      tuzat(document.body);
+      new MutationObserver((ms) => {
+        ms.forEach((m) => m.addedNodes.forEach((n) => {
+          if (n.nodeType === 1 && n.isConnected) tuzat(n);
+        }));
+      }).observe(document.body, { childList: true, subtree: true });
+      let t = 0;
+      window.addEventListener("resize", () => {
+        clearTimeout(t);
+        t = setTimeout(() => document.querySelectorAll("[data-kz]").forEach((e) => qoy(e)), 120);
+      });
+    }
+    if (document.body) boshla();
+    else document.addEventListener("DOMContentLoaded", boshla);
+  })();
   let TOV_CTX = null;
   function tovNota(ch, boshi, uz, tur = "sine", kuch = 0.12) {
     const c = TOV_CTX, o = c.createOscillator(), g = c.createGain();
@@ -1286,10 +1435,32 @@ function ishga(D2, A, OPT) {
     }
   }
   const BL_ASOS = 1600;
-  const BL_RANG = { h: ["#2F8FF0", "#64B4FF", "#1B62B5"], g: ["#8B5CF6", "#A98BFF", "#6D3FD6"] };
-  const BL_TUR = { r: ["move_right", "move right", "h"], l: ["move_left", "move left", "h"], u: ["move_up", "move up", "h"], d: ["move_down", "move down", "h"], j: ["jump", "jump", "h"], s: ["say", "say", "g"] };
+  const BL_RANG = { K: ["#C98A00", "#E3B24A", "#9A6A00"], h: ["#2F8FF0", "#64B4FF", "#1B62B5"], g: ["#8B5CF6", "#A98BFF", "#6D3FD6"], e: ["#F08A24", "#F6AC66", "#C96A12"], b: ["#3FAE6A", "#6CC48E", "#2C8A50"], v: ["#14B8A6", "#5ED4C5", "#0E8C7E"], t: ["#D9468F", "#E97DB3", "#AE2F6F"], a: ["#5B80A5", "#86A3C2", "#3F6283"], o: ["#A86B32", "#C99464", "#7E4C1F"] };
+  const BL_TUR = { C: ["create_clone", "create clone of myself", "K"], H: ["when_clone", "when I start as a clone", "K"], D: ["delete_clone", "delete this clone", "K"], r: ["move_right", "move right", "h"], l: ["move_left", "move left", "h"], u: ["move_up", "move up", "h"], d: ["move_down", "move down", "h"], j: ["jump", "jump", "h"], s: ["say", "say", "g"], x: ["go_to", "go to", "h"], k: ["when_key", "when", "e"], p: ["repeat", "repeat", "b"], v: ["costume", "switch costume to", "v"], n: ["sound", "play sound", "t"], a: ["if_path", "if path", "a"], q: ["when_touch", "when touching", "e"], f: ["when_start", "when ▶ clicked", "e"], z: ["set_var", "set", "o"], c: ["change_var", "change", "o"], i: ["if_var", "if", "a"], g: ["game_over", "game over", "e"], y: ["go_to_r", "go to", "h"], m: ["random_n", "random", "o"] };
   const BL_TURI = Object.fromEntries(Object.entries(BL_TUR).map(([k, v]) => [v[0], k]));
   const BL_WS = /* @__PURE__ */ new Map();
+  const BL_MAYDON = () => typeof DARS2 !== "undefined" && DARS2.maydon || { w: 7, h: 5 };
+  const blSonlar = (n) => Array.from({ length: n }, (_, i) => [String(i), String(i)]);
+  const BL_TUGMALAR = [["→", "right"], ["←", "left"], ["↑", "up"], ["↓", "down"], ["space", "space"]];
+  const BL_TUGMALAR_D = () => [...BL_TUGMALAR, ...typeof DARS2 !== "undefined" && DARS2.tugmaAny ? [["any", "any"]] : []];
+  const BL_MARTA = Array.from({ length: 9 }, (_, i) => [String(i + 2), String(i + 2)]);
+  const BL_KOSTYUM = [["xotirjam", "xotirjam"], ["xursand", "xursand"], ["hayron", "hayron"], ["o‘ylanadi", "oylanadi"]];
+  const BL_YON = [["→", "right"], ["←", "left"], ["↑", "up"], ["↓", "down"]];
+  const BL_OZG = () => (typeof DARS2 !== "undefined" && DARS2.ozgaruvchi || ["ball"]).map((v) => [v, v]);
+  const BL_SET_SON = () => (typeof DARS2 !== "undefined" && DARS2.setSonlar || [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 25, 30]).map((n) => [String(n), String(n)]);
+  const BL_CH_SON = () => (typeof DARS2 !== "undefined" && DARS2.changeSonlar || [1, 2, 3, 4, 5, 10]).map((n) => [n < 0 ? "−" + -n : String(n), String(n)]);
+  const BL_IF_SON = () => Array.from({ length: 11 }, (_, i) => [String(i), String(i)]);
+  const BL_OLMA = [["apple", "apple"], ["gold apple", "gold"]];
+  const BL_OLMA_D = () => [...BL_OLMA, ...typeof DARS2 !== "undefined" && DARS2.kaktus ? [["cactus", "cactus"]] : [], ...typeof DARS2 !== "undefined" && DARS2.dushmanTegish ? [["enemy", "enemy"]] : []];
+  const BL_HODISA = /* @__PURE__ */ new Set(["when_key", "when_touch", "when_start", "when_clone"]);
+  const BL_BOSH = (t) => t === "k" || t === "q" || t === "f" || t === "H";
+  const BL_TOVUSH = [["qadam", "qadam"], ["sakrash", "sakrash"], ["jiring", "jiring"], ["tuk", "tuk"]];
+  const BL_DASTURCHA = (x) => {
+    if (typeof DARS2 === "undefined" || !DARS2.dasturchalar) return false;
+    if (DARS2.dasturchalar !== "oyin") return true;
+    const ek = x && (x.__jrEk || x);
+    return !!(ek && ek.dataset && typeof TOP === "function" && ((TOP(ek.dataset.id) || {}).bosh || {}).oyin);
+  };
   let BL_TAYYOR = false;
   function blIkon(t) {
     const f = BL_TUR[t][2], d = document.createElement("div");
@@ -1321,6 +1492,8 @@ function ishga(D2, A, OPT) {
         this.FIELD_BORDER_RECT_X_PADDING = 9.6;
         this.FIELD_BORDER_RECT_HEIGHT = 27;
         this.FIELD_TEXT_HEIGHT = 20.8;
+        this.FIELD_DROPDOWN_SVG_ARROW = false;
+        this.FIELD_DROPDOWN_COLOURED_DIV = false;
       }
       init() {
         super.init();
@@ -1389,6 +1562,34 @@ function ishga(D2, A, OPT) {
       }
     }
     B.fieldRegistry.register("field_jr_matn", JrMatn);
+    class JrSon extends B.FieldDropdown {
+      static fromJson(o) {
+        return new JrSon(o.options);
+      }
+      createTextArrow_() {
+        this.arrow = B.utils.dom.createSvgElement("tspan", {}, this.textElement_);
+      }
+      applyColour() {
+        super.applyColour();
+        if (this.borderRect_) {
+          this.borderRect_.setAttribute("fill", "#fff");
+          this.borderRect_.setAttribute("stroke", "none");
+        }
+        const t = this.textElement_, sb = this.getSourceBlock && this.getSourceBlock();
+        if (t) t.style.setProperty("fill", sb && (sb.type === "set_var" || sb.type === "change_var" || sb.type === "random_n") ? BL_RANG.o[2] : "#1B62B5", "important");
+      }
+      // kapsula ichidagi bo'shliq ixchamroq (javondagi .xy i kabi)
+      updateSize_(m) {
+        const c = this.getConstants(), a = c.FIELD_BORDER_RECT_X_PADDING;
+        c.FIELD_BORDER_RECT_X_PADDING = 7;
+        try {
+          super.updateSize_(m);
+        } finally {
+          c.FIELD_BORDER_RECT_X_PADDING = a;
+        }
+      }
+    }
+    B.fieldRegistry.register("field_jr_son", JrSon);
     B.blockRendering.register("junior", JrRenderer);
     const img = (t) => ({ type: "field_image", src: blIkon(t), width: 23, height: 23, alt: "" });
     B.common.defineBlocksWithJsonArray([
@@ -1397,8 +1598,48 @@ function ishga(D2, A, OPT) {
       { type: "move_up", message0: "%1 move up", args0: [img("u")], previousStatement: null, nextStatement: null, style: "harakat" },
       { type: "move_down", message0: "%1 move down", args0: [img("d")], previousStatement: null, nextStatement: null, style: "harakat" },
       { type: "jump", message0: "%1 jump", args0: [img("j")], previousStatement: null, nextStatement: null, style: "harakat" },
-      { type: "say", message0: "%1 say %2", args0: [img("s"), { type: "field_jr_matn", name: "TEXT", text: "Salom!" }], previousStatement: null, nextStatement: null, style: "gap" }
+      { type: "say", message0: "%1 say %2", args0: [img("s"), { type: "field_jr_matn", name: "TEXT", text: "Salom!" }], previousStatement: null, nextStatement: null, style: "gap" },
+      // 3-dars (20.11, manba 003 «Qarorlar» 4): go to — X va Y sonlari ro'yxatdan bosib tanlanadi (maydon o'lchamidan: X 0…eni-1, Y 0…bo'yi-1)
+      { type: "go_to", message0: "%1 go to x: %2 y: %3", args0: [img("x"), { type: "field_jr_son", name: "X", options: blSonlar(BL_MAYDON().w) }, { type: "field_jr_son", name: "Y", options: blSonlar(BL_MAYDON().h) }], previousStatement: null, nextStatement: null, style: "harakat" },
+      // 4-dars (20.11, manba 004): hodisa — boshli blok (tepasida ulanish yo'q); tugma ro'yxatdan: → ← ↑ ↓ space
+      // 5-dars (20.11): takrorlash — C-shaklli blok, ichidagi bloklar N marta bajariladi; N ro'yxatdan (2…10)
+      { type: "repeat", message0: "%1 repeat %2", args0: [img("p"), { type: "field_jr_son", name: "N", options: BL_MARTA }], message1: "%1", args1: [{ type: "input_statement", name: "DO" }], previousStatement: null, nextStatement: null, style: "boshqaruv" },
+      { type: "when_key", message0: "%1 when %2 key pressed", args0: [img("k"), { type: "field_jr_son", name: "KEY", options: BL_TUGMALAR_D() }], nextStatement: null, style: "hodisa" },
+      // 7-dars (20.11, manba 007): kostyum — Ko'rinish oilasi (feruza); tovush — Tovush oilasi (pushti); qiymat ro'yxatdan
+      { type: "costume", message0: "%1 switch costume to %2", args0: [img("v"), { type: "field_jr_son", name: "KOS", options: BL_KOSTYUM }], previousStatement: null, nextStatement: null, style: "korinish" },
+      // 8-dars (20.11, manba 008): shart — C-blok «yo'l bormi»: tomon ro'yxatdan; «ha» bo'lsa ichidagi bloklar bajariladi
+      { type: "if_path", message0: "%1 if path %2 then", args0: [img("a"), { type: "field_jr_son", name: "YON", options: BL_YON }], message1: "%1", args1: [{ type: "input_statement", name: "DO" }], previousStatement: null, nextStatement: null, style: "shart" },
+      // 11-dars (21.11, manba 011): olmaga tekkanda (olma turi ro'yxatdan) va «▶ Boshlash» bosilganda — boshli bloklar (dasturcha boshlaydi);
+      // O'zgaruvchi oilasi (jigarrang): set — sonni qo'yadi, change — songa qo'shadi; o'zgaruvchi va son ro'yxatdan
+      { type: "when_touch", message0: "%1 when touching %2", args0: [img("q"), { type: "field_jr_son", name: "OLMA", options: BL_OLMA_D() }], nextStatement: null, style: "hodisa" },
+      { type: "when_start", message0: "%1 when ▶ clicked", args0: [img("f")], nextStatement: null, style: "hodisa" },
+      { type: "set_var", message0: "%1 set %2 to %3", args0: [img("z"), { type: "field_jr_son", name: "VAR", options: BL_OZG() }, { type: "field_jr_son", name: "N", options: BL_SET_SON() }], previousStatement: null, nextStatement: null, style: "ozgaruvchi" },
+      { type: "change_var", message0: "%1 change %2 by %3", args0: [img("c"), { type: "field_jr_son", name: "VAR", options: BL_OZG() }, { type: "field_jr_son", name: "N", options: BL_CH_SON() }], previousStatement: null, nextStatement: null, style: "ozgaruvchi" },
+      // 12-dars (21.11, manba 012): shart — o'zgaruvchining soni teng bo'lsa (C-blok, Shart oilasi); game over — o'yin tugadi (Hodisa oilasi)
+      { type: "if_var", message0: "%1 if %2 = %3 then", args0: [img("i"), { type: "field_jr_son", name: "VAR", options: BL_OZG() }, { type: "field_jr_son", name: "N", options: BL_IF_SON() }], message1: "%1", args1: [{ type: "input_statement", name: "DO" }], previousStatement: null, nextStatement: null, style: "shart" },
+      { type: "game_over", message0: "%1 game over", args0: [img("g")], previousStatement: null, nextStatement: null, style: "hodisa" },
+      // 13-dars (21.11, manba 013): go to — X va Y son katagi (input_value): ichida son (soya blok, ro'yxatdan; oxirida «random» bandi) yoki random bloki;
+      // random — oval son bloki (O'zgaruvchi oilasi, «Savollar» 3), ikki soni ro'yxatdan 0…10
+      { type: "go_to_r", message0: "%1 go to x: %2 y: %3", args0: [img("y"), { type: "input_value", name: "X", check: "Number" }, { type: "input_value", name: "Y", check: "Number" }], inputsInline: false, previousStatement: null, nextStatement: null, style: "harakat" },
+      { type: "num_x", message0: "%1", args0: [{ type: "field_jr_son", name: "N", options: [...blSonlar(BL_MAYDON().w), ["random", "random"]] }], output: "Number", style: "harakat" },
+      { type: "num_y", message0: "%1", args0: [{ type: "field_jr_son", name: "N", options: [...blSonlar(BL_MAYDON().h), ["random", "random"]] }], output: "Number", style: "harakat" },
+      { type: "random_n", message0: "random %1 to %2", args0: [{ type: "field_jr_son", name: "A", options: blSonlar(11) }, { type: "field_jr_son", name: "B", options: blSonlar(11) }], output: "Number", style: "ozgaruvchi" },
+      // 16-dars (21.11, manba 016): Klon oilasi (to'q sariq) — nusxa yasash, nusxa boshlanganda (boshli blok), nusxani o'chirish
+      { type: "create_clone", message0: "%1 create clone of myself", args0: [img("C")], previousStatement: null, nextStatement: null, style: "klon" },
+      { type: "when_clone", message0: "%1 when I start as a clone", args0: [img("H")], nextStatement: null, style: "klon" },
+      { type: "delete_clone", message0: "%1 delete this clone", args0: [img("D")], previousStatement: null, nextStatement: null, style: "klon" },
+      // ostidagi bloklar bajarilmaydi — nusxa o'chdi
+      { type: "sound", message0: "%1 play sound %2", args0: [img("n"), { type: "field_jr_son", name: "NOM", options: BL_TOVUSH }], previousStatement: null, nextStatement: null, style: "tovush" }
     ]);
+    for (const t of ["num_x", "num_y"]) B.Blocks[t].init = /* @__PURE__ */ ((asl) => function() {
+      asl.call(this);
+      const blk = this;
+      this.getField("N").setValidator((v) => {
+        if (v !== "random") return v;
+        setTimeout(() => blRandomQoy(blk), 0);
+        return null;
+      });
+    })(B.Blocks[t].init);
     B.Blocks.say.init = /* @__PURE__ */ ((asl) => function() {
       asl.call(this);
       this.getField("TEXT").setValidator((v) => String(v).slice(0, 30));
@@ -1406,7 +1647,7 @@ function ishga(D2, A, OPT) {
     B.Theme.defineTheme("junior", {
       name: "junior",
       base: B.Themes.Classic,
-      blockStyles: { harakat: { colourPrimary: BL_RANG.h[0], colourSecondary: BL_RANG.h[1], colourTertiary: BL_RANG.h[2] }, gap: { colourPrimary: BL_RANG.g[0], colourSecondary: BL_RANG.g[1], colourTertiary: BL_RANG.g[2] } },
+      blockStyles: { klon: { colourPrimary: BL_RANG.K[0], colourSecondary: BL_RANG.K[1], colourTertiary: BL_RANG.K[2] }, harakat: { colourPrimary: BL_RANG.h[0], colourSecondary: BL_RANG.h[1], colourTertiary: BL_RANG.h[2] }, gap: { colourPrimary: BL_RANG.g[0], colourSecondary: BL_RANG.g[1], colourTertiary: BL_RANG.g[2] }, hodisa: { colourPrimary: BL_RANG.e[0], colourSecondary: BL_RANG.e[1], colourTertiary: BL_RANG.e[2] }, boshqaruv: { colourPrimary: BL_RANG.b[0], colourSecondary: BL_RANG.b[1], colourTertiary: BL_RANG.b[2] }, korinish: { colourPrimary: BL_RANG.v[0], colourSecondary: BL_RANG.v[1], colourTertiary: BL_RANG.v[2] }, tovush: { colourPrimary: BL_RANG.t[0], colourSecondary: BL_RANG.t[1], colourTertiary: BL_RANG.t[2] }, shart: { colourPrimary: BL_RANG.a[0], colourSecondary: BL_RANG.a[1], colourTertiary: BL_RANG.a[2] }, ozgaruvchi: { colourPrimary: BL_RANG.o[0], colourSecondary: BL_RANG.o[1], colourTertiary: BL_RANG.o[2] } },
       componentStyles: { workspaceBackgroundColour: "#EEF1F6", scrollbarColour: "#C6CEDB", scrollbarOpacity: 0.8, insertionMarkerColour: "#0D2137", insertionMarkerOpacity: 0.3 },
       fontStyle: { family: '"JetBrains Mono", ui-monospace, monospace', weight: "700", size: 15.6 }
     });
@@ -1433,6 +1674,10 @@ function ishga(D2, A, OPT) {
     qosh("jr-g-g", BL_RANG.g[0]);
     qosh("jr-g-hy", BL_RANG.h[1]);
     qosh("jr-g-gy", BL_RANG.g[1]);
+    if (typeof DARS2 !== "undefined" && DARS2.dasturchalar) {
+      qosh("jr-g-e", BL_RANG.e[0]);
+      qosh("jr-g-ey", BL_RANG.e[1]);
+    }
   }
   function blAsosiy(ws) {
     const t = ws.getTopBlocks(true);
@@ -1448,6 +1693,7 @@ function ishga(D2, A, OPT) {
     return r;
   }
   function blBelgila(b) {
+    if (b.isShadow && b.isShadow()) return;
     const s = b.getSvgRoot();
     if (!s) return;
     s.classList.add("mb");
@@ -1459,6 +1705,7 @@ function ishga(D2, A, OPT) {
     }
   }
   function blBirlashtir(ws) {
+    if (BL_DASTURCHA(ws)) return blTartib(ws);
     const t = ws.getTopBlocks(true);
     if (t.length < 2) return;
     B_GURUH(() => {
@@ -1490,6 +1737,11 @@ function ishga(D2, A, OPT) {
       ws.setScale(Math.max(asos * 0.6, (joy - 2) / h));
       blMahkam(ws);
     }
+    const en = bb.right - bb.left, jEn = ws.getParentSvg().getBoundingClientRect().width;
+    if (typeof DARS2 !== "undefined" && DARS2.maydon && en * ws.scale > jEn - 2) {
+      ws.setScale(Math.max(asos * (DARS2.masshtabMin || 0.6), (jEn - 2) / en));
+      blMahkam(ws);
+    }
     blXJoy(ek);
   }
   function blTayyorla(ek) {
@@ -1504,7 +1756,13 @@ function ishga(D2, A, OPT) {
     if (BL_WS.has(ek)) return BL_WS.get(ek);
     const dst = ek.querySelector(".dst");
     if (!dst) return null;
-    const bosh2 = Array.from(dst.querySelectorAll(".mbw .mb")).map((mb2) => ({ t: blokTuri(mb2), m: ((mb2.querySelector(".inp") || {}).textContent || "").trim() }));
+    const blMa = (mb2) => ({ t: blokTuri(mb2), m: blokTuri(mb2) === "x" ? blokXY(mb2).join(",") : blokTuri(mb2) === "y" ? (mb2.dataset.x || "0") + "," + (mb2.dataset.y || "0") : blokTuri(mb2) === "m" ? (mb2.dataset.ra || "1") + "-" + (mb2.dataset.rb || "10") : (
+      /* 13-dars: data-a emas — u qobiq tasmasi tugmalariniki */
+      blokTuri(mb2) === "k" ? blokTugma(mb2) : blokTuri(mb2) === "p" ? String(blokSon(mb2)) : blokTuri(mb2) === "v" || blokTuri(mb2) === "n" ? mb2.dataset.q || "" : blokTuri(mb2) === "a" ? mb2.dataset.yon || "right" : blokTuri(mb2) === "q" ? mb2.dataset.q || "apple" : blokTuri(mb2) === "z" || blokTuri(mb2) === "c" || blokTuri(mb2) === "i" ? (mb2.dataset.v ? mb2.dataset.v + ":" : "") + (mb2.dataset.n || "") : ((mb2.querySelector(".inp") || {}).textContent || "").trim()
+    ) });
+    const ichma = dst.querySelector(".c-blok");
+    const oqiQator = (c) => Array.from(c.children).flatMap((x) => x.classList.contains("c-blok") ? [{ ...blMa(x.querySelector(":scope > .mb")), ichki: oqiQator(x.querySelector(":scope > .c-ich")) }] : x.classList.contains("mb") ? [blMa(x)] : x.classList.contains("mbw") ? oqiQator(x) : []);
+    const bosh2 = ichma ? oqiQator(dst.querySelector(".mbw")) : Array.from(dst.querySelectorAll(".mbw .mb")).map(blMa);
     dst.querySelectorAll(".mbw,.bosh").forEach((x) => x.remove());
     const joy = document.createElement("div");
     joy.className = "jr-bl";
@@ -1525,15 +1783,31 @@ function ishga(D2, A, OPT) {
     };
     blGradient(ws.getParentSvg());
     BL_WS.set(ek, ws);
+    ws.__jrEk = ek;
+    const ichiga = (ota, royxat) => {
+      let o = null;
+      for (const x of royxat) {
+        const b = blYangi(ws, x.t, x.m);
+        if (o) o.nextConnection.connect(b.previousConnection);
+        else ota.getInput("DO").connection.connect(b.previousConnection);
+        if (x.ichki) ichiga(b, x.ichki);
+        o = b;
+      }
+    };
     B_GURUH(() => {
-      let oldingi = null;
+      let oldingi = null, n = 0;
       for (const x of bosh2) {
         const b = blYangi(ws, x.t, x.m);
-        if (oldingi) oldingi.nextConnection.connect(b.previousConnection);
-        else b.moveTo(new Blockly.utils.Coordinate(0, 0));
+        if (oldingi && !(BL_DASTURCHA(ws) && BL_BOSH(x.t))) oldingi.nextConnection.connect(b.previousConnection);
+        else b.moveTo(new Blockly.utils.Coordinate(0, BL_DASTURCHA(ws) ? 1e3 * n++ : 0));
+        if (x.ichki) ichiga(b, x.ichki);
         oldingi = b;
       }
     });
+    if (BL_DASTURCHA(ws)) {
+      blTartib(ws);
+      blTartibKeyin(ws);
+    }
     ws.getAllBlocks(false).forEach(blBelgila);
     blMasshtab(ek, ws);
     if (window.ResizeObserver) new ResizeObserver(() => {
@@ -1560,13 +1834,17 @@ function ishga(D2, A, OPT) {
         blMahkam(ws);
         sanoq(ek);
       }, 0);
-      if (e.type === Blockly.Events.BLOCK_CHANGE) shartYangila(ek);
+      if (e.type === Blockly.Events.BLOCK_CHANGE) {
+        shartYangila(ek);
+        if (ek.__bq && typeof qadamOl === "function") qadamOl(ek);
+      }
       if (e.type === Blockly.Events.BLOCK_CREATE || e.type === Blockly.Events.BLOCK_MOVE) setTimeout(() => ws.getAllBlocks(false).forEach(blBelgila), 0);
     });
     sanoq(ek);
     return ws;
   }
   function blMahkam(ws) {
+    if (BL_DASTURCHA(ws)) return blTartib(ws);
     const a = blAsosiy(ws);
     if (!a) return;
     const xy = a.getRelativeToSurfaceXY();
@@ -1579,21 +1857,136 @@ function ishga(D2, A, OPT) {
   function blYangi(ws, t, matn2) {
     const b = ws.newBlock(BL_TUR[t][0]);
     if (t === "s") b.setFieldValue(matn2 || "Salom!", "TEXT");
+    if (t === "x") {
+      const [x, y] = String(matn2 || "0,0").split(",");
+      b.setFieldValue(String(+x || 0), "X");
+      b.setFieldValue(String(+y || 0), "Y");
+    }
+    if (t === "p") b.setFieldValue(String(Math.min(10, Math.max(2, +matn2 || 3))), "N");
+    if (t === "k") b.setFieldValue(BL_TUGMALAR_D().some((q) => q[1] === matn2) ? matn2 : "right", "KEY");
+    if (t === "v") b.setFieldValue(BL_KOSTYUM.some((q) => q[1] === matn2) ? matn2 : "xursand", "KOS");
+    if (t === "n") b.setFieldValue(BL_TOVUSH.some((q) => q[1] === matn2) ? matn2 : "qadam", "NOM");
+    if (t === "a") b.setFieldValue(BL_YON.some((q) => q[1] === matn2) ? matn2 : "right", "YON");
+    if (t === "q") b.setFieldValue(matn2 === "gold" || matn2 === "cactus" || matn2 === "enemy" ? matn2 : "apple", "OLMA");
+    if (t === "z" || t === "c" || t === "i") {
+      const [vr, son] = String(matn2 == null ? "" : matn2).indexOf(":") >= 0 ? String(matn2).split(":") : ["", String(matn2 == null ? "" : matn2)];
+      if (vr && BL_OZG().some((q) => q[1] === vr)) b.setFieldValue(vr, "VAR");
+      const r = t === "z" ? BL_SET_SON() : t === "c" ? BL_CH_SON() : BL_IF_SON();
+      b.setFieldValue(r.some((q) => q[1] === son) ? son : r[0][1], "N");
+    }
+    if (t === "m") {
+      const [a, c] = String(matn2 || "1-10").split("-");
+      b.setFieldValue(String(+a || 0), "A");
+      b.setFieldValue(String(c == null ? 10 : +c), "B");
+    }
     b.contextMenu = false;
     b.initSvg();
     b.render();
+    if (t === "y") blGoKatak(ws, b, matn2);
     return b;
+  }
+  function blGoKatak(ws, b, matn2) {
+    const [xs, ys] = String(matn2 == null ? "0,0" : matn2).split(",");
+    for (const [nm, sp, sh] of [["X", xs || "0", "num_x"], ["Y", ys || "0", "num_y"]]) {
+      const c = b.getInput(nm).connection, rnd2 = /^r/.test(sp);
+      c.setShadowState({ type: sh, fields: { N: rnd2 ? "0" : String(+sp || 0) } });
+      if (rnd2) {
+        const r = blYangi(ws, "m", sp.slice(1));
+        c.connect(r.outputConnection);
+      }
+    }
+  }
+  function blRandomQoy(sh) {
+    if (!sh || sh.disposed) return;
+    const c = sh.outputConnection && sh.outputConnection.targetConnection, ws = sh.workspace;
+    if (!c) return;
+    B_GURUH(() => {
+      const r = blYangi(ws, "m", "1-10");
+      c.connect(r.outputConnection);
+    });
+    ws.getAllBlocks(false).forEach(blBelgila);
+    const ek = ws.__jrEk;
+    if (ek && typeof sanoq === "function") sanoq(ek);
+    if (typeof chal === "function") chal("bos");
+    blKengKeyin(ek, ws);
+  }
+  function blKengKeyin(ek, ws) {
+    const R = Blockly.renderManagement;
+    const f = () => {
+      if (ek && !ws.disposed && document.body.contains(ek)) blMasshtab(ek, ws);
+    };
+    if (R && R.finishQueuedRenders) R.finishQueuedRenders().then(f);
+    else requestAnimationFrame(f);
+  }
+  function blRandomJoy(ws, tk) {
+    const goLar = ws.getBlocksByType("go_to_r", false), g = tk && tk.type === "go_to_r" ? [tk] : goLar.slice().reverse();
+    for (const b of g) for (const nm of ["X", "Y"]) {
+      const x = b.getInputTargetBlock(nm);
+      if (!x || x.isShadow()) return b.getInput(nm).connection;
+    }
+    return null;
   }
   function blQosh(ek, t, matn2) {
     const ws = BL_WS.get(ek) || blTayyorla(ek);
     if (!ws) return null;
     let b;
     B_GURUH(() => {
-      const r = blRoyxat(ws), o = r[r.length - 1];
+      const tk = blTanlov(ek);
+      if (t === "m") {
+        const c = blRandomJoy(ws, tk);
+        if (!c) {
+          b = null;
+          return;
+        }
+        b = blYangi(ws, t, matn2);
+        c.connect(b.outputConnection);
+        return;
+      }
+      if ((t === "a" || t === "i") && tk && (tk.type === "if_path" || tk.type === "if_var")) {
+        b = blYangi(ws, t, matn2);
+        tk.nextConnection.connect(b.previousConnection);
+        return;
+      }
+      if (tk && BL_HODISA.has(tk.type) && !BL_BOSH(t) && BL_DASTURCHA(ws)) {
+        const z = blZanjir(tk);
+        b = blYangi(ws, t, matn2);
+        z[z.length - 1].nextConnection.connect(b.previousConnection);
+        return;
+      }
+      const ich = tk && BL_C(tk) && !BL_BOSH(t) && t !== "p" ? tk : null;
+      if (ich) {
+        const z = blZanjir(ich.getInputTargetBlock("DO")), o2 = z[z.length - 1];
+        b = blYangi(ws, t, matn2);
+        if (o2) o2.nextConnection.connect(b.previousConnection);
+        else ich.getInput("DO").connection.connect(b.previousConnection);
+        return;
+      }
+      const r = BL_DASTURCHA(ws) ? blZanjir(blOxirgi(ws)) : blRoyxat(ws), o = r[r.length - 1];
       b = blYangi(ws, t, matn2);
-      if (o) o.nextConnection.connect(b.previousConnection);
-      else b.moveTo(new Blockly.utils.Coordinate(0, 0));
+      if (o && !(BL_DASTURCHA(ws) && BL_BOSH(t))) o.nextConnection.connect(b.previousConnection);
+      else b.moveTo(new Blockly.utils.Coordinate(0, BL_DASTURCHA(ws) ? 99999 : 0));
     });
+    if (t === "p") setTimeout(() => {
+      if (!b.disposed) {
+        blTanla(ek, b);
+        if (typeof ishora === "function") ishora(ek, "Endi bosgan bloklaringiz repeat ichiga tushadi. Tashqariga — repeat ni yana bosing");
+      }
+    }, 0);
+    if (t === "a" || t === "i") setTimeout(() => {
+      if (!b.disposed) {
+        blTanla(ek, b);
+        if (typeof ishora === "function") ishora(ek, "Endi bosgan bloklaringiz if ichiga tushadi. Tashqariga — if ni yana bosing");
+      }
+    }, 0);
+    if (!b) {
+      if (typeof ishora === "function") ishora(ek, "random — sonning o‘rniga: avval go to qo‘ying");
+      return null;
+    }
+    if (t === "m" || t === "y") blKengKeyin(ek, ws);
+    if (BL_DASTURCHA(ws)) {
+      blTartib(ws);
+      blTartibKeyin(ws);
+    }
     blBelgila(b);
     const s = b.getSvgRoot();
     if (s && s.animate) s.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 220 });
@@ -1631,7 +2024,9 @@ function ishga(D2, A, OPT) {
     blXJoy(ek);
   }
   function blTanlaBos(ek, ws, b) {
-    if (ek.dataset.yuryapti || b.disposed) return;
+    if (ek.dataset.yuryapti || ek.dataset.faqatOqish || b.disposed) return;
+    if (typeof kodBlokBos === "function" && kodBlokBos(ek, b)) return;
+    if (Blockly.DropDownDiv && Blockly.DropDownDiv.isVisible && Blockly.DropDownDiv.isVisible()) return;
     const t = blTanlov(ek);
     if (typeof chal === "function") chal("bos");
     if (!t) {
@@ -1644,27 +2039,64 @@ function ishga(D2, A, OPT) {
       ishora(ek, "");
       return;
     }
-    blAlmashtir(ws, t, b);
+    if (t.outputConnection || b.outputConnection) {
+      blTanla(ek, b);
+      ishora(ek, "Tanlandi: boshqa blokni bosing yoki ✕");
+      return;
+    }
+    if (!blAlmashtir(ws, t, b)) {
+      blTanla(ek, b);
+      ishora(ek, "Tanlandi: boshqa blokni bosing yoki ✕");
+      return;
+    }
     sanoq(ek);
     ishora(ek, "Bloklar joyi almashdi");
   }
   function blAlmashtir(ws, a, b) {
-    const r = blRoyxat(ws), i = r.indexOf(a), j = r.indexOf(b);
-    if (i < 0 || j < 0) return;
+    const bosh2 = (x) => {
+      let p = x;
+      for (let q = p.getPreviousBlock(); q && q.getNextBlock() === p; q = p.getPreviousBlock()) p = q;
+      return p;
+    };
+    const za = bosh2(a), ota = za.previousConnection && za.previousConnection.targetConnection;
+    if (za === bosh2(b) && ota && za.getPreviousBlock() && za.getPreviousBlock().getNextBlock() !== za) {
+      const r2 = blZanjir(za), i2 = r2.indexOf(a), j2 = r2.indexOf(b);
+      if (i2 < 0 || j2 < 0) return false;
+      const y2 = r2.slice();
+      y2[i2] = b;
+      y2[j2] = a;
+      B_GURUH(() => {
+        r2.forEach((x) => x.unplug(false));
+        let o = null;
+        for (const x of y2) {
+          (o ? o.nextConnection : ota).connect(x.previousConnection);
+          o = x;
+        }
+      });
+      ws.getAllBlocks(false).forEach(blBelgila);
+      blMahkam(ws);
+      return true;
+    }
+    if (BL_DASTURCHA(ws) && (a.getRootBlock() !== b.getRootBlock() || BL_HODISA.has(a.type) || BL_HODISA.has(b.type))) return false;
+    const r = BL_DASTURCHA(ws) ? blZanjir(a.getRootBlock()) : blRoyxat(ws), i = r.indexOf(a), j = r.indexOf(b);
+    if (i < 0 || j < 0) return false;
     const y = r.slice();
     y[i] = b;
     y[j] = a;
+    const joy = BL_DASTURCHA(ws) ? r[0].getRelativeToSurfaceXY() : new Blockly.utils.Coordinate(0, 0);
     B_GURUH(() => {
       r.forEach((x) => x.unplug(false));
       let o = null;
       for (const x of y) {
         if (o) o.nextConnection.connect(x.previousConnection);
-        else x.moveTo(new Blockly.utils.Coordinate(0, 0));
+        else x.moveTo(joy);
         o = x;
       }
     });
+    if (BL_DASTURCHA(ws)) blTartib(ws);
     ws.getAllBlocks(false).forEach(blBelgila);
     blMahkam(ws);
+    return true;
   }
   function blTanlovOchir(ek) {
     const t = blTanlov(ek);
@@ -1690,36 +2122,272 @@ function ishga(D2, A, OPT) {
     }
     return ((mb2 && mb2.querySelector(".inp") || {}).textContent || "").trim();
   }
+  function blokXY(mb2) {
+    if (mb2 && mb2.dataset && mb2.dataset.id) {
+      const b = blBlok(mb2);
+      if (b && b.getField("X")) return [+b.getFieldValue("X"), +b.getFieldValue("Y")];
+    }
+    return [+(mb2 && mb2.dataset && mb2.dataset.x || 0), +(mb2 && mb2.dataset && mb2.dataset.y || 0)];
+  }
   function blBloklar(ek) {
     const ws = BL_WS.get(ek);
-    return ws ? blRoyxat(ws).map((b) => b.getSvgRoot()) : null;
+    if (!ws) return null;
+    const z = BL_DASTURCHA(ek) ? blTepalar(ws).flatMap(blZanjir) : blRoyxat(ws);
+    return [...blTakrorBor(ws) ? z.flatMap(blIchma) : z, ...ws.getBlocksByType("random_n", false)].map((b) => b.getSvgRoot());
+  }
+  const BL_C = (b) => b && (b.type === "repeat" || b.type === "if_path" || b.type === "if_var");
+  function blTakrorBor(ws) {
+    return ws.getBlocksByType && (ws.getBlocksByType("repeat", false).length > 0 || ws.getBlocksByType("if_path", false).length > 0 || ws.getBlocksByType("if_var", false).length > 0);
+  }
+  function blIchma(b) {
+    return BL_C(b) ? [b, ...blZanjir(b.getInputTargetBlock("DO")).flatMap(blIchma)] : [b];
+  }
+  function blTugun(b) {
+    return { el: b.getSvgRoot(), n: b.type === "repeat" ? +b.getFieldValue("N") : 0, yon: b.type === "if_path" ? b.getFieldValue("YON") : "", ichki: BL_C(b) ? blZanjir(b.getInputTargetBlock("DO")).map(blTugun) : [] };
+  }
+  function blokSon(mb2) {
+    if (mb2 && mb2.dataset && mb2.dataset.id) {
+      const b = blBlok(mb2);
+      if (b && b.getField("N")) return +b.getFieldValue("N");
+    }
+    return +(mb2 && mb2.dataset && mb2.dataset.n || 3);
+  }
+  function blTepalar(ws) {
+    return ws.getTopBlocks(false).slice().sort((a, c) => a.getRelativeToSurfaceXY().y - c.getRelativeToSurfaceXY().y);
+  }
+  function blZanjir(b) {
+    const r = [];
+    while (b) {
+      r.push(b);
+      b = b.getNextBlock();
+    }
+    return r;
+  }
+  function blOxirgi(ws) {
+    const t = typeof DARS2 !== "undefined" && DARS2.dasturchaUstun === 2 ? ws.getTopBlocks(false) : blTepalar(ws);
+    return t[t.length - 1] || null;
+  }
+  function blTartibKeyin(ws) {
+    const R = Blockly.renderManagement;
+    if (R && R.finishQueuedRenders) R.finishQueuedRenders().then(() => {
+      if (!ws.disposed) blTartib(ws);
+    });
+    else requestAnimationFrame(() => blTartib(ws));
+  }
+  function blTartib(ws) {
+    if (typeof DARS2 !== "undefined" && DARS2.dasturchaUstun === 2) return blTartib2(ws);
+    let y = 0;
+    for (const t of blTepalar(ws)) {
+      const xy = t.getRelativeToSurfaceXY();
+      if (Math.abs(xy.x) > 0.5 || Math.abs(xy.y - y) > 0.5) t.moveTo(new Blockly.utils.Coordinate(0, y));
+      const s = t.getSvgRoot();
+      if (s) s.classList.toggle("bl-xira", !BL_HODISA.has(t.type));
+      y += t.getHeightWidth().height + 18;
+    }
+  }
+  function blTartib2(ws) {
+    const tt = ws.getTopBlocks(false), y = [0, 0], ust2 = tt.map(() => 0);
+    tt.forEach((t, i) => {
+      const u = y[1] < y[0] ? 1 : 0;
+      ust2[i] = u;
+      y[u] += t.getHeightWidth().height + 18;
+    });
+    const x2 = Math.max(330, Math.max(0, ...tt.filter((t, i) => !ust2[i]).map((t) => t.getHeightWidth().width)) + 26);
+    y[0] = 0;
+    y[1] = 0;
+    tt.forEach((t, i) => {
+      const u = ust2[i], X = u ? x2 : 0, xy = t.getRelativeToSurfaceXY();
+      if (Math.abs(xy.x - X) > 0.5 || Math.abs(xy.y - y[u]) > 0.5) t.moveTo(new Blockly.utils.Coordinate(X, y[u]));
+      const s = t.getSvgRoot();
+      if (s) s.classList.toggle("bl-xira", !BL_HODISA.has(t.type));
+      y[u] += t.getHeightWidth().height + 18;
+    });
+  }
+  function blokTugma(mb2) {
+    if (mb2 && mb2.dataset && mb2.dataset.id) {
+      const b = blBlok(mb2);
+      if (b && b.getField("KEY")) return b.getFieldValue("KEY");
+    }
+    return mb2 && mb2.dataset && mb2.dataset.tugma || "right";
+  }
+  function blDasturchalar(ek) {
+    const ws = BL_WS.get(ek);
+    if (!ws) return [];
+    return blTepalar(ws).filter((t) => BL_HODISA.has(t.type)).map((t) => {
+      const z = blZanjir(t);
+      return { tur: t.type, tugma: t.type === "when_key" ? t.getFieldValue("KEY") : "", olma: t.type === "when_touch" ? t.getFieldValue("OLMA") : "", hodisa: t.getSvgRoot(), bloklar: z.slice(1).map((b) => b.getSvgRoot()), daraxt: z.slice(1).map(blTugun) };
+    });
+  }
+  function blQur(ek, royxat) {
+    const ws = BL_WS.get(ek);
+    if (!ws) return;
+    ws.clear();
+    const ichiga = (ota, r) => {
+      let o = null;
+      for (const x of r) {
+        const b = blYangi(ws, x.t, x.m);
+        if (o) o.nextConnection.connect(b.previousConnection);
+        else ota.getInput("DO").connection.connect(b.previousConnection);
+        if (x.ichki) ichiga(b, x.ichki);
+        o = b;
+      }
+    };
+    B_GURUH(() => {
+      let o = null;
+      for (const x of royxat) {
+        const b = blYangi(ws, x.t, x.m);
+        if (o) o.nextConnection.connect(b.previousConnection);
+        else b.moveTo(new Blockly.utils.Coordinate(0, 0));
+        if (x.ichki) ichiga(b, x.ichki);
+        o = b;
+      }
+    });
+    ws.getAllBlocks(false).forEach(blBelgila);
+    blMasshtab(ek, ws);
+  }
+  function blIchiBosh(ek) {
+    const ws = BL_WS.get(ek);
+    return !!ws && ws.getBlocksByType("repeat", false).some((r) => !r.getInputTargetBlock("DO"));
+  }
+  function blShartBosh(ek) {
+    const ws = BL_WS.get(ek);
+    return !!ws && [...ws.getBlocksByType("if_path", false), ...ws.getBlocksByType("if_var", false)].some((r) => !r.getInputTargetBlock("DO"));
+  }
+  function blokYon(mb2) {
+    if (mb2 && mb2.dataset && mb2.dataset.id) {
+      const b = blBlok(mb2);
+      if (b && b.getField("YON")) return b.getFieldValue("YON");
+    }
+    return mb2 && mb2.dataset && mb2.dataset.yon || "right";
+  }
+  function blShartBelgi(el, ha) {
+    blSanoq(el, ha ? "✓ ha" : "✕ yo‘q");
+    const joy = el.closest && el.closest(".jr-bl"), s = joy && joy.querySelector('.bl-son[data-id="' + el.dataset.id + '"]');
+    if (s) {
+      s.classList.add("bl-ha");
+      s.classList.toggle("yoq", !ha);
+    }
+  }
+  function blOtaShart(el) {
+    const b = el && el.dataset && el.dataset.id && blBlok(el);
+    let p = b && b.getSurroundParent();
+    while (p && p.type !== "if_path") p = p.getSurroundParent();
+    return p ? { yon: p.getFieldValue("YON") } : null;
+  }
+  function blIchkiKop(ek, n) {
+    const ws = BL_WS.get(ek);
+    return !!ws && ws.getBlocksByType("repeat", false).some((r) => blZanjir(r.getInputTargetBlock("DO")).length >= n);
+  }
+  function blSanoq(el, i) {
+    const joy = el.closest && el.closest(".jr-bl");
+    if (!joy) return;
+    let s = joy.querySelector('.bl-son[data-id="' + el.dataset.id + '"]');
+    if (!s) {
+      s = document.createElement("span");
+      s.className = "bl-son";
+      s.dataset.id = el.dataset.id;
+      joy.appendChild(s);
+    }
+    const b = blBlok(el), fn = b && (b.getField("N") || b.getField("YON")), fs = fn && fn.getSvgRoot(), j = joy.getBoundingClientRect();
+    const r = (fs || el).getBoundingClientRect();
+    s.style.left = (fs ? r.right - j.left + 6 : r.left - j.left) + "px";
+    s.style.top = r.top - j.top + (fs ? 0 : 4) + "px";
+    s.textContent = i;
+    if (s.animate) s.animate([{ transform: "scale(1.35)" }, { transform: "scale(1)" }], { duration: 220 });
+  }
+  function blSanoqOl(ek) {
+    ek.querySelectorAll(".jr-bl .bl-son").forEach((x) => x.remove());
+  }
+  function blYukla(ek, royxat) {
+    const ws = BL_WS.get(ek);
+    if (!ws) return;
+    ws.clear();
+    B_GURUH(() => {
+      let o = null, n = 0;
+      for (const x of royxat) {
+        const b = blYangi(ws, x.t, x.m);
+        if (o && !BL_BOSH(x.t)) o.nextConnection.connect(b.previousConnection);
+        else b.moveTo(new Blockly.utils.Coordinate(0, 1e3 * n++));
+        o = b;
+      }
+    });
+    ws.getAllBlocks(false).forEach(blBelgila);
+    blTartib(ws);
+    blMasshtab(ek, ws);
+    blTartibKeyin(ws);
+  }
+  function blRoyxatMa(ek) {
+    const ws = BL_WS.get(ek);
+    if (!ws) return [];
+    return blTepalar(ws).flatMap(blZanjir).map((b) => {
+      const t = BL_TURI[b.type] || "s";
+      return { t, m: t === "k" ? b.getFieldValue("KEY") : t === "x" ? b.getFieldValue("X") + "," + b.getFieldValue("Y") : t === "s" ? b.getFieldValue("TEXT") : t === "v" ? b.getFieldValue("KOS") : t === "n" ? b.getFieldValue("NOM") : t === "a" ? b.getFieldValue("YON") : t === "q" ? b.getFieldValue("OLMA") : t === "z" || t === "c" || t === "i" ? b.getFieldValue("VAR") + ":" + b.getFieldValue("N") : t === "y" ? blGoSpec(b) : "" };
+    });
+  }
+  function blKatakSpec(b, nm) {
+    const x = b.getInputTargetBlock(nm);
+    if (!x) return "0";
+    if (x.type === "random_n") return "r" + x.getFieldValue("A") + "-" + x.getFieldValue("B");
+    return String(x.getFieldValue("N"));
+  }
+  function blGoSpec(b) {
+    return blKatakSpec(b, "X") + "," + blKatakSpec(b, "Y");
+  }
+  function blokQiymat(mb2, nom) {
+    if (mb2 && mb2.dataset && mb2.dataset.id) {
+      const b = blBlok(mb2);
+      if (b && b.getField(nom)) return b.getFieldValue(nom);
+    }
+    return mb2 && mb2.dataset && mb2.dataset.q || "";
   }
   function blDaraxt(ek) {
     const ws = BL_WS.get(ek);
-    return ws ? blRoyxat(ws).map((b) => ({ el: b.getSvgRoot(), ichki: [] })) : null;
+    return ws ? blRoyxat(ws).map(blTugun) : null;
   }
   function dasturDaraxti(ek) {
     const d = typeof blDaraxt === "function" && blDaraxt(ek) || Array.from(ek.querySelectorAll(".dst .mb")).map((el) => ({ el, ichki: [] }));
     const tur = (t) => {
       t.tur = blokTuri(t.el);
+      if (t.tur === "p" && !t.n) t.n = typeof blokSon === "function" ? blokSon(t.el) : 3;
+      if (t.tur === "a" && !t.yon) t.yon = typeof blokYon === "function" ? blokYon(t.el) : "right";
       t.ichki.forEach(tur);
       return t;
     };
     return d.map(tur);
   }
-  function* ijroTartibi(daraxt) {
+  function* ijroTartibi(daraxt, belgi = false) {
     for (const t of daraxt) {
-      yield t;
-      if (t.ichki.length) yield* ijroTartibi(t.ichki);
+      if (t.tur === "a" || t.tur === "i") {
+        yield t;
+        if (!belgi || t.ha) yield* ijroTartibi(t.ichki, belgi);
+        continue;
+      }
+      if (t.tur === "p") {
+        for (let i = 0; i < (t.n || 0); i++) {
+          if (belgi) yield { belgi: true, el: t.el, i: i + 1 };
+          yield* ijroTartibi(t.ichki, belgi);
+        }
+      } else {
+        yield t;
+        if (t.ichki.length) yield* ijroTartibi(t.ichki, belgi);
+      }
     }
   }
-  async function ijro(daraxt, bajar, { kut = 700 } = {}) {
+  async function ijro(daraxt, bajar, { kut = 700, oldin = null } = {}) {
     const otdi = [];
-    let toxtadi = false;
-    for (const t of ijroTartibi(daraxt)) {
+    let toxtadi = false, bekor = false;
+    for (const t of ijroTartibi(daraxt, true)) {
+      if (t.belgi) {
+        if (typeof blSanoq === "function") blSanoq(t.el, t.i);
+        continue;
+      }
+      if (oldin && t.tur !== "a" && t.tur !== "i" && await oldin(t) === "bekor") {
+        bekor = true;
+        break;
+      }
       t.el.classList.add("hozir");
       const r = await bajar(t);
-      await KUT(kut);
+      await KUT(t.tur === "a" || t.tur === "i" ? Math.min(kut, 350) : kut);
       t.el.classList.remove("hozir");
       t.el.classList.add("yon");
       otdi.push(t);
@@ -1731,7 +2399,104 @@ function ishga(D2, A, OPT) {
     }
     await KUT(150);
     otdi.forEach((t) => t.el.classList.remove("yon"));
-    return { bajarildi: otdi.length, toxtadi };
+    if (typeof blSanoqOl === "function" && daraxt[0] && daraxt[0].el) {
+      const ek = daraxt[0].el.closest && daraxt[0].el.closest(".ekran");
+      if (ek) setTimeout(() => blSanoqOl(ek), 900);
+    }
+    return { bajarildi: otdi.length, toxtadi, bekor };
+  }
+  function thNusxa(d) {
+    return d.map((t) => ({ t: t.t, n: t.n, X: t.X, Y: t.Y, ichki: thNusxa(t.ichki || []) }));
+  }
+  function thSana(d) {
+    return d.reduce((a, t) => a + 1 + thSana(t.ichki || []), 0);
+  }
+  function thSinov(d, m) {
+    const DY = { r: [1, 0], l: [-1, 0], u: [0, 1], d: [0, -1] };
+    let x = m.start[0], y = m.start[1], chet = false;
+    const otdi = /* @__PURE__ */ new Set([x + "," + y]);
+    const yur = (r) => {
+      for (const t of r) {
+        if (chet) return;
+        if (t.t === "p") {
+          for (let i = 0; i < (t.n || 0) && !chet; i++) yur(t.ichki || []);
+          continue;
+        }
+        if (t.t === "x") {
+          x = Math.max(0, Math.min(m.w - 1, t.X));
+          y = Math.max(0, Math.min(m.h - 1, t.Y));
+          otdi.add(x + "," + y);
+          continue;
+        }
+        const d2 = DY[t.t];
+        if (!d2) continue;
+        const nx = x + d2[0], ny = y + d2[1];
+        if (nx < 0 || ny < 0 || nx >= m.w || ny >= m.h) {
+          chet = true;
+          return;
+        }
+        x = nx;
+        y = ny;
+        otdi.add(x + "," + y);
+      }
+    };
+    yur(d);
+    return !chet && (m.olma || []).every(([a, b]) => otdi.has(a + "," + b)) && x === m.yulduz[0] && y === m.yulduz[1];
+  }
+  function* thTahrirlar(d, m) {
+    const yollar = [], yig = (L, yol2) => {
+      yollar.push(yol2);
+      L.forEach((t, i) => {
+        if (t.t === "p") yig(t.ichki, yol2.concat(i));
+      });
+    };
+    yig(d, []);
+    const ol = (D3, yol2) => yol2.reduce((L, i) => L[i].ichki, D3);
+    for (const yol2 of yollar) {
+      const L0 = ol(d, yol2), yangi = (f) => {
+        const D3 = thNusxa(d);
+        f(ol(D3, yol2));
+        return D3;
+      };
+      for (let i = 0; i < L0.length; i++) {
+        const t = L0[i];
+        if ("rlud".indexOf(t.t) >= 0) {
+          for (const k of "rlud") if (k !== t.t) yield yangi((L) => {
+            L[i].t = k;
+          });
+        }
+        if (t.t === "p") {
+          for (let n = 2; n <= 10; n++) if (n !== t.n) yield yangi((L) => {
+            L[i].n = n;
+          });
+        }
+        if (t.t === "x") {
+          for (let X = 0; X < m.w; X++) if (X !== t.X) yield yangi((L) => {
+            L[i].X = X;
+          });
+          for (let Y = 0; Y < m.h; Y++) if (Y !== t.Y) yield yangi((L) => {
+            L[i].Y = Y;
+          });
+        }
+        yield yangi((L) => {
+          L.splice(i, 1);
+        });
+        for (let j = i + 1; j < L0.length; j++) yield yangi((L) => {
+          const a = L[i];
+          L[i] = L[j];
+          L[j] = a;
+        });
+      }
+      for (let i = 0; i <= L0.length; i++) for (const k of "rlud") yield yangi((L) => {
+        L.splice(i, 0, { t: k, ichki: [] });
+      });
+    }
+  }
+  function thTopishmoq(d, m, kam = 3) {
+    if (thSana(d) < kam) return "kam";
+    if (thSinov(d, m)) return "ishlayapti";
+    for (const D3 of thTahrirlar(d, m)) if (thSinov(D3, m)) return "tayyor";
+    return "kop";
   }
   const KT = 100, KT_CHET = 22;
   function katakXarita(x) {
@@ -1749,6 +2514,9 @@ function ishga(D2, A, OPT) {
   }
   const KT_YULDUZ = "M0,-1 L.29,-.4 .95,-.31 .48,.15 .59,.81 0,.5 -.59,.81 -.48,.15 -.95,-.31 -.29,-.4Z";
   const KT_KALIT = '<g class="kt-kb"><circle cx="-9" cy="0" r="9" fill="#F5B82E" stroke="#B9800C" stroke-width="3"/><circle cx="-9" cy="0" r="3.4" fill="#FBF0D2"/><path d="M0 -3.2H20V3.2H0Z M12 3.2V10H17V3.2Z" fill="#F5B82E" stroke="#B9800C" stroke-width="2.4" stroke-linejoin="round"/></g>';
+  const ktButa = (X, Y) => '<g transform="translate(' + X + " " + Y + ')"><rect x="4" y="5" width="92" height="90" rx="30" fill="#3E8E4E"/><circle cx="31" cy="34" r="15" fill="#4FA35D"/><circle cx="67" cy="38" r="14" fill="#4FA35D"/><circle cx="36" cy="68" r="14" fill="#47995A"/><circle cx="68" cy="70" r="13" fill="#47995A"/><circle cx="30" cy="27" r="7" fill="#8CD48F" opacity=".6"/><path d="M14 80Q50 98 86 80" fill="none" stroke="#2E6E3C" stroke-width="5" stroke-linecap="round" opacity=".45"/></g>';
+  const ktKalit = (x, y) => '<g class="kt-kalit" data-k="' + x + "," + y + '" transform="translate(' + (x * KT + 52) + " " + (y * KT + 54) + ') rotate(-24) scale(1.5)">' + KT_KALIT + "</g>";
+  const ktEshik = (x, y) => '<g class="kt-eshik" data-k="' + x + "," + y + '" transform="translate(' + x * KT + " " + y * KT + ')"><g class="kt-ev"><rect x="8" y="10" width="84" height="80" rx="8" fill="#B5793F" stroke="#7A4B22" stroke-width="4"/><path d="M29 12V88M50 12V88M71 12V88" stroke="#8E5A2B" stroke-width="5"/><rect x="38" y="40" width="24" height="22" rx="5" fill="#E7CA66" stroke="#7A4B22" stroke-width="3"/><path d="M43 41V35A7 7 0 0 1 57 35V41" fill="none" stroke="#7A4B22" stroke-width="3.4"/><circle cx="50" cy="50" r="3.2" fill="#7A4B22"/></g></g>';
   function katakHtml(xarita, o) {
     o = o || {};
     const xr = katakXarita(xarita), kr = xr.length, kq = Math.max(...xr.map((s2) => s2.length));
@@ -1758,16 +2526,151 @@ function ishga(D2, A, OPT) {
     for (let y = 0; y < kr; y++) for (let x = 0; x < kq; x++) {
       const b = c(x, y), X = x * KT, Y = y * KT;
       if (b === "#") {
-        buta += '<g transform="translate(' + X + " " + Y + ')"><rect x="4" y="5" width="92" height="90" rx="30" fill="#3E8E4E"/><circle cx="31" cy="34" r="15" fill="#4FA35D"/><circle cx="67" cy="38" r="14" fill="#4FA35D"/><circle cx="36" cy="68" r="14" fill="#47995A"/><circle cx="68" cy="70" r="13" fill="#47995A"/><circle cx="30" cy="27" r="7" fill="#8CD48F" opacity=".6"/><path d="M14 80Q50 98 86 80" fill="none" stroke="#2E6E3C" stroke-width="5" stroke-linecap="round" opacity=".45"/></g>';
+        buta += ktButa(X, Y);
         continue;
       }
       const fon = b === "S" ? "#D6E8FA" : b === "*" ? "#F8E3A0" : "#F7EACB";
       yol2 += '<rect class="kt-c" data-k="' + x + "," + y + '" x="' + (X + 4) + '" y="' + (Y + 4) + '" width="92" height="92" rx="18" fill="' + fon + '"/><ellipse cx="' + (X + 26) + '" cy="' + (Y + 30) + '" rx="4" ry="2.8" fill="#C9AE78" opacity=".35"/><ellipse cx="' + (X + 70) + '" cy="' + (Y + 66) + '" rx="4.4" ry="3" fill="#C9AE78" opacity=".35"/><ellipse cx="' + (X + 50) + '" cy="' + (Y + 52) + '" rx="3" ry="2" fill="#C9AE78" opacity=".3"/>';
       if (b === "*") narsa += '<g class="kt-yul" transform="translate(' + (X + 50) + " " + (Y + 52) + ') scale(30)"><path d="' + KT_YULDUZ + '" fill="#F5B82E" stroke="#C98A0E" stroke-width=".07" stroke-linejoin="round"/></g>';
-      if (b === "K") narsa += '<g class="kt-kalit" data-k="' + x + "," + y + '" transform="translate(' + (X + 52) + " " + (Y + 54) + ') rotate(-24) scale(1.5)">' + KT_KALIT + "</g>";
-      if (b === "E") narsa += '<g class="kt-eshik" data-k="' + x + "," + y + '" transform="translate(' + X + " " + Y + ')"><g class="kt-ev"><rect x="8" y="10" width="84" height="80" rx="8" fill="#B5793F" stroke="#7A4B22" stroke-width="4"/><path d="M29 12V88M50 12V88M71 12V88" stroke="#8E5A2B" stroke-width="5"/><rect x="38" y="40" width="24" height="22" rx="5" fill="#E7CA66" stroke="#7A4B22" stroke-width="3"/><path d="M43 41V35A7 7 0 0 1 57 35V41" fill="none" stroke="#7A4B22" stroke-width="3.4"/><circle cx="50" cy="50" r="3.2" fill="#7A4B22"/></g></g>';
+      if (b === "K") narsa += ktKalit(x, y);
+      if (b === "E") narsa += ktEshik(x, y);
     }
     return '<div class="katak" data-z="sahna" data-xarita="' + xr.join("|") + '"><svg class="kt" viewBox="' + -KT_CHET + " " + -KT_CHET + " " + (W + 2 * KT_CHET) + " " + (H + 2 * KT_CHET) + '" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><rect x="' + -KT_CHET / 2 + '" y="' + -KT_CHET / 2 + '" width="' + (W + KT_CHET) + '" height="' + (H + KT_CHET) + '" rx="26" fill="#9AD57C" opacity=".55"/>' + yol2 + '<g class="kt-iz"></g>' + narsa + '<g class="kt-butalar">' + buta + '</g><g class="kt-q" style="transform:' + katakJoy(s[0], s[1]) + '">' + (o.aktyor || "").replace("<svg ", '<svg x="0" y="0" width="80" height="88" ') + '<g class="kt-qk" transform="translate(70 66) rotate(-24) scale(1.05)">' + KT_KALIT + "</g></g></svg></div>";
+  }
+  function mdKostyumlar(ks) {
+    return Object.keys(ks).map((n, i) => '<g class="kos" data-kos="' + n + '"' + (i ? ' style="display:none"' : "") + ">" + ks[n].replace("<svg ", '<svg x="0" y="0" width="80" height="88" ') + "</g>").join("");
+  }
+  const MD_CH = 74, MD_TEPA = 62, MD_ONG = 96;
+  const mdQ = (m, y) => m.h - 1 - y;
+  function maydonXarita(m) {
+    const r = Array.from({ length: m.h }, () => Array(m.w).fill("."));
+    (m.olma || []).forEach(([x, y]) => {
+      r[mdQ(m, y)][x] = "O";
+    });
+    (m.oltin || []).forEach(([x, y]) => {
+      r[mdQ(m, y)][x] = "G";
+    });
+    (m.kaktus || []).forEach(([x, y]) => {
+      r[mdQ(m, y)][x] = "C";
+    });
+    (m.devor || []).forEach(([x, y]) => {
+      r[mdQ(m, y)][x] = "#";
+    });
+    if (m.kalit) r[mdQ(m, m.kalit[1])][m.kalit[0]] = "K";
+    if (m.eshik) r[mdQ(m, m.eshik[1])][m.eshik[0]] = "E";
+    if (m.yulduz) r[mdQ(m, m.yulduz[1])][m.yulduz[0]] = "*";
+    if (m.start) r[mdQ(m, m.start[1])][m.start[0]] = "S";
+    return r.map((q) => q.join("")).join("|");
+  }
+  function mdXaritaM(s) {
+    const r = katakXarita(s), h = r.length, m = { w: Math.max(...r.map((q) => q.length)), h, start: [0, 0], devor: [], labirint: true };
+    r.forEach((q, i) => [...q].forEach((c, x) => {
+      const y = h - 1 - i;
+      if (c === "#") m.devor.push([x, y]);
+      if (c === "*") m.yulduz = [x, y];
+      if (c === "K") m.kalit = [x, y];
+      if (c === "E") m.eshik = [x, y];
+      if (c === "S") m.start = [x, y];
+    }));
+    return m;
+  }
+  const MD_DARAXT = '<ellipse cx="0" cy="34" rx="30" ry="9" fill="#2E6E3C" opacity=".22"/><rect x="-6" y="6" width="12" height="28" rx="5" fill="#8A5A2E"/><circle cx="0" cy="-10" r="27" fill="#3E8E4E"/><circle cx="-15" cy="2" r="17" fill="#47995A"/><circle cx="15" cy="0" r="18" fill="#4FA35D"/><circle cx="-8" cy="-22" r="10" fill="#8CD48F" opacity=".55"/>';
+  const MD_GUL = (c) => '<circle r="5.5" fill="' + c + '"/><circle cx="-7" cy="0" r="5" fill="' + c + '"/><circle cx="7" cy="0" r="5" fill="' + c + '"/><circle cx="0" cy="-7" r="5" fill="' + c + '"/><circle cx="0" cy="7" r="5" fill="' + c + '"/><circle r="3.6" fill="#FFE08A"/>';
+  const MD_OLMA2 = '<g transform="translate(-24 -26) scale(2.1)"><path d="M12 8c-.6-2.4-2.6-3.6-2.6-3.6" fill="none" stroke="#6B4423" stroke-width="1.7" stroke-linecap="round"/><path d="M12.6 6.6c1.4-2.4 4.4-2.4 4.4-2.4-.4 2.4-2.6 3.2-4.4 2.4z" fill="#4CB050"/><path d="M12 8.4c-1.6-1.2-7-1.6-7.8 3.8-.6 4.4 2.6 8.8 5.2 8.8 1.2 0 1.6-.6 2.6-.6s1.4.6 2.6.6c2.6 0 5.8-4.4 5.2-8.8-.8-5.4-6.2-5-7.8-3.8z" fill="#F0435A"/><ellipse cx="8.6" cy="11.8" rx="1.3" ry="2.1" fill="#fff" opacity=".5"/></g>';
+  const MD_OLMA_G2 = MD_OLMA2.replace('fill="#F0435A"', 'fill="#F5B82E" stroke="#C98A0E" stroke-width=".7"').replace("</g>", '<path d="M17.6 3.2l.7 1.6 1.6.7-1.6.7-.7 1.6-.7-1.6-1.6-.7 1.6-.7z" fill="#FFF6C9"/></g>');
+  const MD_KAKTUS = '<g class="kt-kak-r"><ellipse cx="0" cy="38" rx="24" ry="6" fill="#2E6E3C" opacity=".22"/><path d="M-15 24h30l-4 14h-22z" fill="#C46A3A"/><rect x="-17" y="20" width="34" height="7" rx="2.5" fill="#D98250"/><rect x="-9" y="-30" width="18" height="52" rx="9" fill="#3FA65A"/><path d="M-9 2h-8a7 7 0 0 1-7-7v-12" stroke="#3FA65A" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M9 -6h8a7 7 0 0 0 7-7v-10" stroke="#3FA65A" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M-3 -22l-4-2M3 -12l4-2M-3 -2l-4-2M3 8l4-2M-3 14l-4-2M-24 -14l-4-1M24 -18l4-1" stroke="#1F6B33" stroke-width="2" stroke-linecap="round"/><path d="M-2 -26v44" stroke="#5CC478" stroke-width="3" stroke-linecap="round" opacity=".55"/></g>';
+  const MD_SAVAT = '<g class="kt-savat-r"><ellipse cx="0" cy="30" rx="30" ry="7" fill="#6B4A2B" opacity=".18"/><path d="M-30 4h60l-7 26h-46z" fill="#C9955A" stroke="#8A5A2E" stroke-width="2.4" stroke-linejoin="round"/><path d="M-27 13h54M-25 21h50M-14 5l-3 24M0 5v24M14 5l3 24" stroke="#8A5A2E" stroke-width="1.6" opacity=".55"/><path d="M-24 4c4-14 44-14 48 0" fill="none" stroke="#8A5A2E" stroke-width="3" stroke-linecap="round"/></g>';
+  const MD_BAYROQ = '<g class="kt-bayroq"><path d="M-10 34V-36" stroke="#5A3B1E" stroke-width="5" stroke-linecap="round"/><path d="M-8 -36L30 -24L-8 -10Z" fill="#FF4F28" stroke="#C7381A" stroke-width="2.4" stroke-linejoin="round"/><ellipse cx="-10" cy="35" rx="10" ry="3.6" fill="#5A3B1E" opacity=".3"/></g>';
+  const mdYorliq = (x, y) => "(" + x + ", " + y + ")";
+  function maydonHtml(m, o) {
+    o = o || {};
+    const W = m.w * KT, H = m.h * KT, s = m.start || [0, 0];
+    let yol2 = "", bezak = "", narsa = "", bant = "";
+    const lab = !!(m.labirint || m.devor && m.devor.length), dv = (x, y) => (m.devor || []).some(([a, c]) => a === x && c === y);
+    let buta = "";
+    for (let q2 = 0; q2 < m.h; q2++) for (let x = 0; x < m.w; x++) {
+      const X = x * KT, Y = q2 * KT, y = m.h - 1 - q2;
+      if (lab && dv(x, y)) {
+        buta += ktButa(X, Y);
+        continue;
+      }
+      const fon = lab ? x === s[0] && y === s[1] ? "#D6E8FA" : m.yulduz && x === m.yulduz[0] && y === m.yulduz[1] ? "#F8E3A0" : "#F7EACB" : (x + y) % 2 ? "#F7EACB" : "#F3E3BE", rs = (m.rasm || []).some(([a, c]) => a === x && c === y);
+      yol2 += '<rect class="kt-c' + (rs ? " md-rasm" : "") + '" data-k="' + x + "," + q2 + '" x="' + (X + 4) + '" y="' + (Y + 4) + '" width="92" height="92" rx="18" fill="' + fon + '"/>';
+      if (lab) yol2 += '<ellipse cx="' + (X + 26) + '" cy="' + (Y + 30) + '" rx="4" ry="2.8" fill="#C9AE78" opacity=".35"/><ellipse cx="' + (X + 70) + '" cy="' + (Y + 66) + '" rx="4.4" ry="3" fill="#C9AE78" opacity=".35"/><ellipse cx="' + (X + 50) + '" cy="' + (Y + 52) + '" rx="3" ry="2" fill="#C9AE78" opacity=".3"/>';
+    }
+    if (m.kalit) narsa += ktKalit(m.kalit[0], mdQ(m, m.kalit[1]));
+    if (m.eshik) narsa += ktEshik(m.eshik[0], mdQ(m, m.eshik[1]));
+    (m.gul || []).forEach(([x, y], i) => {
+      bezak += '<g transform="translate(' + (x * KT + 78) + " " + (mdQ(m, y) * KT + 80) + ') scale(.9)">' + MD_GUL(["#F07AA8", "#FFFFFF", "#B58CF5"][i % 3]) + "</g>";
+    });
+    (m.belgi || []).forEach(([x, y, nom]) => {
+      bezak += '<g class="md-belgi" transform="translate(' + (x * KT + 50) + " " + (mdQ(m, y) * KT + 84) + ')"><rect x="-40" y="-13" width="80" height="26" rx="13"/><text y="6">' + (nom === "oylanadi" ? "o‘ylanadi" : nom) + "</text></g>";
+    });
+    (m.daraxt || []).forEach(([x, y]) => {
+      bezak += '<g class="md-d" transform="translate(' + (x * KT + 30) + " " + (mdQ(m, y) * KT + 34) + ') scale(.78)">' + MD_DARAXT + "</g>";
+    });
+    (m.savat || []).forEach(([x, y, g]) => {
+      bezak += '<g class="kt-savat" data-k="' + x + "," + mdQ(m, y) + '" transform="translate(' + (x * KT + 50) + " " + (mdQ(m, y) * KT + 56) + ')">' + MD_SAVAT + (g ? '<g class="kt-sg" transform="translate(26 -30)"><circle r="13"/><text y="6">' + g + "</text></g>" : "") + "</g>";
+    });
+    (m.kaktus || []).forEach(([x, y]) => {
+      narsa += '<g class="kt-kaktus" data-k="' + x + "," + mdQ(m, y) + '" transform="translate(' + (x * KT + 50) + " " + (mdQ(m, y) * KT + 48) + ')">' + MD_KAKTUS + "</g>";
+    });
+    (m.oltin || []).forEach(([x, y]) => {
+      narsa += '<g class="kt-olma oltin" data-k="' + x + "," + mdQ(m, y) + '" transform="translate(' + (x * KT + 50) + " " + (mdQ(m, y) * KT + 52) + ')">' + MD_OLMA_G2 + "</g>";
+    });
+    (m.olma || []).forEach(([x, y]) => {
+      narsa += '<g class="kt-olma" data-k="' + x + "," + mdQ(m, y) + '" transform="translate(' + (x * KT + 50) + " " + (mdQ(m, y) * KT + 52) + ')">' + MD_OLMA2 + "</g>";
+    });
+    if (m.yulduz) narsa += '<g class="kt-yul' + (m.yashirin ? " yashirin" : "") + '" transform="translate(' + (m.yulduz[0] * KT + 50) + " " + (mdQ(m, m.yulduz[1]) * KT + 52) + ') scale(30)"><path d="' + KT_YULDUZ + '" fill="#F5B82E" stroke="#C98A0E" stroke-width=".07" stroke-linejoin="round"/></g>';
+    (o.yon || []).forEach(([x, y]) => {
+      narsa += '<rect class="md-yon" x="' + (x * KT + 6) + '" y="' + (mdQ(m, y) * KT + 6) + '" width="88" height="88" rx="16"/>';
+    });
+    if (o.bayroq) narsa += '<g class="md-bq" transform="translate(' + (o.bayroq[0] * KT + 50) + " " + (mdQ(m, o.bayroq[1]) * KT + 52) + ')">' + MD_BAYROQ + "</g>";
+    const nR = { x: {}, y: {} }, nQoy = (o2, i, r) => {
+      if (r == null) r = 0;
+      if (nR[o2][i] == null || r < nR[o2][i]) nR[o2][i] = r;
+    };
+    (o.bant || []).forEach((b) => {
+      const r = b.r != null ? ' data-r="' + b.r + '"' : "";
+      if (b.oqX) {
+        bant += '<rect class="md-bant md-oqb"' + r + ' x="-8" y="' + (H + 14) + '" width="' + (W + 16) + '" height="52" rx="26"/>';
+        for (let i = 0; i < m.w; i++) nQoy("x", i, b.r);
+      }
+      if (b.oqY) {
+        bant += '<rect class="md-bant md-oqb"' + r + ' x="-62" y="-8" width="52" height="' + (H + 16) + '" rx="26"/>';
+        for (let i = 0; i < m.h; i++) nQoy("y", i, b.r);
+      }
+      if (b.ust != null) nQoy("x", b.ust, b.r);
+      if (b.qat != null) nQoy("y", b.qat, b.r);
+      if (b.ust != null) {
+        const q0 = b.dan != null ? mdQ(m, b.dan) : 0;
+        bant += '<rect class="md-bant"' + r + ' x="' + (b.ust * KT + 14) + '" y="' + (q0 * KT + 14) + '" width="72" height="' + (H - q0 * KT + 40) + '" rx="36"/>';
+      }
+      if (b.qat != null) {
+        const x1 = b.gacha != null ? b.gacha : m.w - 1;
+        bant += '<rect class="md-bant"' + r + ' x="-52" y="' + (mdQ(m, b.qat) * KT + 14) + '" width="' + (x1 * KT + 86 + 52) + '" height="72" rx="36"/>';
+      }
+      if (b.kes && b.yur) bant += '<g class="md-kes"' + r + ' data-yur="' + b.kes[0] + "," + b.kes[1] + '" transform="translate(' + (b.kes[0] * KT + 50) + " " + (mdQ(m, b.kes[1]) * KT + 52) + ')"><rect x="-46" y="-46" width="92" height="92" rx="18"/></g>';
+      else if (b.kes) bant += '<g class="md-kes"' + r + ' transform="translate(' + (b.kes[0] * KT + 50) + " " + (mdQ(m, b.kes[1]) * KT + 52) + ')"><rect x="-46" y="-46" width="92" height="92" rx="18"/>' + (b.yulduz ? '<path transform="scale(30)" d="' + KT_YULDUZ + '" fill="#F5B82E" stroke="#C98A0E" stroke-width=".07"/>' : "") + '<g class="md-kt" transform="translate(0 ' + (b.past ? 60 : -58) + ')"><rect x="-46" y="-17" width="92" height="34" rx="17"/><text y="9">' + mdYorliq(b.kes[0], b.kes[1]) + "</text></g></g>";
+    });
+    let oq = '<g class="md-oq">';
+    for (let x = 0; x < m.w; x++) oq += '<text class="md-n md-nx' + (nR.x[x] === 0 ? " on" : "") + '"' + (nR.x[x] ? ' data-r="' + nR.x[x] + '"' : "") + ' data-x="' + x + '" x="' + (x * KT + 50) + '" y="' + (H + 50) + '">' + x + "</text>";
+    for (let y = 0; y < m.h; y++) oq += '<text class="md-n md-ny' + (nR.y[y] === 0 ? " on" : "") + '"' + (nR.y[y] ? ' data-r="' + nR.y[y] + '"' : "") + ' data-y="' + y + '" x="-36" y="' + (mdQ(m, y) * KT + 64) + '">' + y + "</text>";
+    oq += '<text class="md-ax" x="' + (W + 22) + '" y="' + (H + 50) + '">X →</text><text class="md-ax" x="-36" y="-24">Y ↑</text></g>';
+    let iz = "";
+    const chiz2 = (p, cls) => p.slice(1).forEach(([x, y], i) => {
+      const [a, b] = p[i];
+      iz += '<line class="kt-il' + cls + '" x1="' + (a * KT + 50) + '" y1="' + (mdQ(m, b) * KT + 52) + '" x2="' + (x * KT + 50) + '" y2="' + (mdQ(m, y) * KT + 52) + '"/>';
+    });
+    if (o.izlar) {
+      chiz2(o.izlar, "");
+      o.izlar.forEach(([x, y]) => {
+        yol2 = yol2.replace('class="kt-c" data-k="' + x + "," + mdQ(m, y) + '"', 'class="kt-c iz" data-k="' + x + "," + mdQ(m, y) + '"');
+      });
+    }
+    if (o.goIz) chiz2(o.goIz, " kt-gl");
+    const q = o.joy || s;
+    return '<div class="katak maydon" data-z="sahna" data-xarita="' + maydonXarita(m) + '" data-start="' + s.join(",") + '"><svg class="kt" viewBox="' + -MD_CH + " " + -MD_TEPA + " " + (W + MD_CH + MD_ONG) + " " + (H + MD_TEPA + 74) + '" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><rect x="-11" y="-11" width="' + (W + 22) + '" height="' + (H + 22) + '" rx="26" fill="#9AD57C" opacity=".55"/>' + yol2 + bant + bezak + '<g class="kt-iz">' + iz + "</g>" + narsa + (buta ? '<g class="kt-butalar">' + buta + "</g>" : "") + oq + '<g class="kt-q" style="transform:' + katakJoy(q[0], mdQ(m, q[1])) + '">' + (o.kostyum ? mdKostyumlar(o.kostyum) : (o.aktyor || "").replace("<svg ", '<svg x="0" y="0" width="80" height="88" ')) + (o.yorliqsiz ? "" : '<g class="kt-yr" transform="translate(40 101)"' + (o.yorliqR ? ' data-r="' + o.yorliqR + '"' : "") + '><rect x="-38" y="-15" width="76" height="30" rx="15"/><text y="7">' + mdYorliq(q[0], q[1]) + "</text></g>") + (m.kalit ? '<g class="kt-qk" transform="translate(70 66) rotate(-24) scale(1.05)">' + KT_KALIT + "</g>" : "") + "</g></svg></div>";
   }
   function sahnaTuri(b) {
     return b.erkin ? "erkin" : b.sahna || "yol";
@@ -1866,11 +2769,19 @@ function ishga(D2, A, OPT) {
       async boshla(ek, b) {
         const k = ek.querySelector(".katak"), xr = katakXarita(k.dataset.xarita), s = katakTop(xr, "S") || [0, xr.length - 1];
         const h = { ek, b, oyna: ek.querySelector(".oyna"), k, q: k.querySelector(".kt-q"), xr, x: s[0], y: s[1], yulduz: katakTop(xr, "*"), kalit: false, urildi: null, qadamlar: 0 };
+        if (k.classList.contains("maydon")) Object.assign(h, { kos: "xotirjam", anim: 0, qadamAnim: [], kosSoni: 0, kosNomlar: [], tovushlar: [], belgiXato: null });
+        {
+          const ay = ek.querySelector(".an-yz b");
+          if (ay && b && b.animatsiya) ay.textContent = "0 / " + b.animatsiya;
+        }
+        if (k.classList.contains("maydon")) Object.assign(h, { maydon: true, yol: [[h.x, h.y]], go: [], olma: mdTop(xr, "O") });
         const kochdi = katakAsl(ek);
         if (kochdi) await KUT(250);
         return h;
       },
       async bajar(h, tugun) {
+        if (tugun.tur === "a") return katakShart(h, tugun);
+        if (h.maydon) return maydonBajar(h, tugun);
         const t = tugun.tur, d = { r: [1, 0], l: [-1, 0], u: [0, -1], d: [0, 1] }[t];
         if (!d) {
           sahnaUmumiy(h, t, tugun.el);
@@ -1878,7 +2789,7 @@ function ishga(D2, A, OPT) {
         }
         const nx = h.x + d[0], ny = h.y + d[1], c = (h.xr[ny] || "")[nx] || "#";
         if (c === "#" || c === "E" && !h.kalit) {
-          h.urildi = { eshik: c === "E" };
+          h.urildi = { eshik: c === "E", el: tugun.el };
           katakTurtil(h, d);
           chal("tuk");
           return "toxta";
@@ -1902,26 +2813,31 @@ function ishga(D2, A, OPT) {
           setTimeout(() => h.k.classList.add("kalitli"), 380);
         }
       },
-      baho(h) {
+      baho(h, b) {
+        if (h.maydon) return maydonBaho(h, b || {});
         if (h.urildi) return { tur: h.urildi.eshik ? "eshik" : "urildi" };
+        if (b && b.erkinSayr) {
+          const ws = typeof BL_WS !== "undefined" && BL_WS.get(h.ek), yon = new Set(ws ? ws.getBlocksByType("if_path", false).map((x) => x.getFieldValue("YON")) : []);
+          return { tur: yon.size < 2 ? "kamShart" : h.qadamlar < 4 ? "kamYurdi" : "tayyor" };
+        }
         if (h.yulduz && h.x === h.yulduz[0] && h.y === h.yulduz[1]) return { tur: "yetdi" };
         return { tur: "kam" };
       }
     }
   };
   const KT_YON = (x, y) => [x * KT + 50, y * KT + 52];
-  function katakSur(g, x, y, sakrab) {
+  function katakSur(g, x, y, sakrab, baland = 0) {
     const eski = g.style.transform, yangi = katakJoy(x, y);
     g.style.transform = yangi;
     if (!sakrab || !g.animate || !eski) return;
     const m = eski.match(/-?[\d.]+/g).map(Number), n = yangi.match(/-?[\d.]+/g).map(Number);
-    g.animate([{ transform: eski }, { transform: "translate(" + (m[0] + n[0]) / 2 + "px," + ((m[1] + n[1]) / 2 - 26) + "px)" }, { transform: yangi }], { duration: 520, easing: "ease-in-out" });
+    g.animate([{ transform: eski }, { transform: "translate(" + (m[0] + n[0]) / 2 + "px," + ((m[1] + n[1]) / 2 - 26 - baland) + "px)" }, { transform: yangi }], { duration: 520 + (baland ? 160 : 0), easing: "ease-in-out" });
   }
   function katakTurtil(h, d) {
     const g = h.q, j = g.style.transform, m = j.match(/-?[\d.]+/g).map(Number), at = (k) => "translate(" + (m[0] + d[0] * k) + "px," + (m[1] + d[1] * k) + "px)";
     if (g.animate) g.animate([{ transform: j }, { transform: at(20) }, { transform: at(-7) }, { transform: at(4) }, { transform: j }], { duration: 440, easing: "ease-out" });
   }
-  function katakIz(h, x1, y1, x2, y2) {
+  function katakIz(h, x1, y1, x2, y2, cls) {
     const iz = h.k.querySelector(".kt-iz");
     if (!iz) return;
     [[x1, y1], [x2, y2]].forEach(([x, y]) => {
@@ -1929,7 +2845,7 @@ function ishga(D2, A, OPT) {
       if (c) c.classList.add("iz");
     });
     const a = KT_YON(x1, y1), b = KT_YON(x2, y2), l = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    l.setAttribute("class", "kt-il");
+    l.setAttribute("class", "kt-il" + (cls ? " " + cls : ""));
     l.setAttribute("x1", a[0]);
     l.setAttribute("y1", a[1]);
     l.setAttribute("x2", b[0]);
@@ -1945,11 +2861,256 @@ function ishga(D2, A, OPT) {
     k.querySelectorAll(".kt-c.iz").forEach((c) => c.classList.remove("iz"));
     const iz = k.querySelector(".kt-iz");
     if (iz) iz.innerHTML = "";
+    if (k.classList.contains("maydon")) {
+      k.querySelectorAll(".kt-olma.olindi,.kt-yul.topildi").forEach((x) => x.classList.remove("olindi", "topildi"));
+      k.querySelectorAll(".kt-c.yonk").forEach((c) => c.classList.remove("yonk"));
+    }
     if (!g) return false;
     if (g.getAnimations) g.getAnimations().forEach((a) => a.cancel());
     const joy = katakJoy(s[0], s[1]), kochdi = g.style.transform.replace(/\s/g, "") !== joy;
     g.style.transform = joy;
+    if (k.classList.contains("maydon")) mdYorliqQoy(k, s[0], s[1]);
+    if (k.querySelector(".kt-q .kos")) kostyumKor(k, "xotirjam");
     return kochdi;
+  }
+  function mdTop(xr, belgi) {
+    const r = [];
+    xr.forEach((q, y) => [...q].forEach((c, x) => {
+      if (c === belgi) r.push([x, y]);
+    }));
+    return r;
+  }
+  const mdY = (xr, q) => xr.length - 1 - q;
+  function mdYorliqQoy(k, x, q) {
+    const t = k.querySelector(".kt-yr text");
+    if (t) t.textContent = mdYorliq(x, mdY(katakXarita(k.dataset.xarita), q));
+  }
+  async function maydonBajar(h, tugun) {
+    const t = tugun.tur, H = h.xr.length, W = Math.max(...h.xr.map((r) => r.length));
+    let nx, ny;
+    if (t === "x") {
+      const [X, Y] = blokXY(tugun.el);
+      nx = Math.max(0, Math.min(W - 1, X));
+      ny = Math.max(0, Math.min(H - 1, H - 1 - Y));
+    } else {
+      const d = { r: [1, 0], l: [-1, 0], u: [0, -1], d: [0, 1] }[t];
+      if (t === "w") {
+        katakTurtil(h, [1, 0]);
+        chal("bos");
+        await KUT(300);
+        return;
+      }
+      if (t === "v") {
+        kostyumAlmash(h, typeof blokQiymat === "function" && blokQiymat(tugun.el, "KOS") || "xursand");
+        return;
+      }
+      if (t === "n") {
+        tovushChal(h, typeof blokQiymat === "function" && blokQiymat(tugun.el, "NOM") || "qadam");
+        return;
+      }
+      if (!d) {
+        sahnaUmumiy(h, t, tugun.el);
+        return;
+      }
+      nx = h.x + d[0];
+      ny = h.y + d[1];
+      if (nx < 0 || ny < 0 || nx >= W || ny >= H) {
+        h.urildi = { chet: true, el: tugun.el };
+        katakTurtil(h, d);
+        chal("tuk");
+        return "toxta";
+      }
+    }
+    const c = (h.xr[ny] || "")[nx] || ".";
+    if (c === "C") {
+      h.urildi = { kaktus: true, el: tugun.el };
+      katakTurtil(h, [Math.sign(nx - h.x), Math.sign(ny - h.y)]);
+      chal("tuk");
+      return "toxta";
+    }
+    if (c === "#" || c === "E" && !h.kalit) {
+      h.urildi = { eshik: c === "E", el: tugun.el };
+      katakTurtil(h, [Math.sign(nx - h.x), Math.sign(ny - h.y)]);
+      chal("tuk");
+      return "toxta";
+    }
+    if (c === "E") {
+      const e = h.k.querySelector('.kt-eshik[data-k="' + nx + "," + ny + '"]');
+      if (e && !e.classList.contains("ochiq")) {
+        e.classList.add("ochiq");
+        h.eshikOchildi = true;
+        chal("bos");
+        await KUT(280);
+      }
+    }
+    if (h.qadamAnim) belgiTekshir(h);
+    const uzoq = Math.abs(nx - h.x) + Math.abs(ny - h.y);
+    katakIz(h, h.x, h.y, nx, ny, t === "x" ? "kt-gl" : "");
+    h.x = nx;
+    h.y = ny;
+    katakSur(h.q, nx, ny, true, t === "x" ? 26 + Math.min(uzoq, 6) * 12 : 0);
+    chal(t === "x" ? "sakra" : "qadam");
+    h.qadamlar++;
+    if (t === "x") h.go.push([nx, mdY(h.xr, ny)]);
+    h.yol.push([nx, ny]);
+    if (t !== "x" && h.qadamAnim) {
+      h.qadamAnim.push(false);
+      h.animOxiri = 0;
+      if ((h.b || {}).oxirida) animYozuv(h);
+    }
+    mdYorliqQoy(h.k, nx, ny);
+    const o = h.k.querySelector('.kt-olma[data-k="' + nx + "," + ny + '"]:not(.olindi)');
+    if (o) setTimeout(() => o.classList.add("olindi"), 380);
+    if (c === "K" && !h.kalit) {
+      h.kalit = true;
+      setTimeout(() => h.k.classList.add("kalitli"), 380);
+    }
+    if (h.yulduz && nx === h.yulduz[0] && ny === h.yulduz[1] && !h.yashirinKut) {
+      const y = h.k.querySelector(".kt-yul.yashirin");
+      if (y) setTimeout(() => y.classList.add("topildi"), 380);
+    }
+  }
+  const YON_D = { right: [1, 0], left: [-1, 0], up: [0, -1], down: [0, 1] };
+  async function katakShart(h, t) {
+    const d = YON_D[t.yon] || [1, 0], nx = h.x + d[0], ny = h.y + d[1], c = (h.xr[ny] || "")[nx] || "#";
+    t.ha = !(c === "#" || c === "E" && !h.kalit);
+    if (!t.ha) {
+      h.yoqSoni = (h.yoqSoni || 0) + 1;
+      if (c === "E") h.eshikYoq = true;
+    }
+    const iz = h.k.querySelector(".kt-iz");
+    if (iz && ny >= 0 && ny < h.xr.length && nx >= 0 && nx < Math.max(...h.xr.map((r) => r.length))) {
+      const r = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+      r.setAttribute("class", "kt-shart " + (t.ha ? "ha" : "yoq"));
+      r.setAttribute("x", nx * KT + 6);
+      r.setAttribute("y", ny * KT + 6);
+      r.setAttribute("width", 88);
+      r.setAttribute("height", 88);
+      r.setAttribute("rx", 18);
+      iz.appendChild(r);
+      setTimeout(() => r.remove(), 350);
+    }
+    if (typeof blShartBelgi === "function") blShartBelgi(t.el, t.ha);
+  }
+  const TOVUSH_KUY = { qadam: "qadam", sakrash: "sakra", jiring: "yulduz", tuk: "tuk" };
+  function kostyumKor(k, nom) {
+    k.querySelectorAll(".kt-q .kos").forEach((g) => {
+      g.style.display = g.dataset.kos === nom ? "" : "none";
+    });
+  }
+  function kostyumAlmash(h, nom) {
+    if (nom !== h.kos) h.kosSoni++;
+    (h.kosNomlar = h.kosNomlar || []).push(nom);
+    if (h.kos === "xursand" && nom === "xotirjam") {
+      h.anim++;
+      h.animOxiri = (h.animOxiri || 0) + 1;
+      if (h.qadamAnim.length) h.qadamAnim[h.qadamAnim.length - 1] = true;
+      animYozuv(h);
+    }
+    h.kos = nom;
+    kostyumKor(h.k, nom);
+  }
+  function tovushChal(h, nom) {
+    chal(TOVUSH_KUY[nom] || "qadam");
+    h.tovushlar.push(nom);
+    if (typeof pufak === "function") {
+      pufak(h.oyna, h.q, "♪ " + nom);
+      const p = h.oyna.querySelector(".dv-pufak");
+      if (p) {
+        p.classList.add("nota-p");
+        setTimeout(() => p.remove(), 700);
+      }
+    }
+  }
+  function belgiTekshir(h) {
+    const b = h.b || {};
+    if (!b.belgi || h.belgiXato) return;
+    const y = mdY(h.xr, h.y), bg = b.belgi.find(([x, c]) => x === h.x && c === y);
+    if (bg && h.kos !== bg[2]) h.belgiXato = { katak: [h.x, y], kerak: bg[2] };
+  }
+  function animYozuv(h) {
+    const b = h.b || {}, p = h.ek.querySelector(".an-yz b");
+    if (p && b.animatsiya) p.textContent = (b.oxirida ? h.animOxiri || 0 : h.anim) + " / " + b.animatsiya;
+  }
+  function maydonBaho(h, b) {
+    const joy = [h.x, mdY(h.xr, h.y)], m = { maydon: true, joy, yulduzK: h.yulduz ? [h.yulduz[0], mdY(h.xr, h.yulduz[1])] : null };
+    if (h.urildi) return { ...m, tur: "chet" };
+    if (h.qadamAnim) {
+      belgiTekshir(h);
+      if (h.belgiXato) return { ...m, tur: "belgiKostyum", katak: h.belgiXato.katak, kerak: h.belgiXato.kerak };
+    }
+    if (b.bashorat) {
+      const f = mdBayroq(h.ek);
+      return { ...m, tur: f && f[0] === joy[0] && f[1] === joy[1] ? "oldindan" : "boshqaKatak" };
+    }
+    if (b.erkinYol) {
+      const n = new Set(h.go.map(String)).size;
+      return { ...m, tur: n >= b.erkinYol ? "tayyor" : "kamManzil", n };
+    }
+    if (b.erkinRasm && b.erkinRasm.kerak) {
+      const tur = typeof bloklar === "function" ? bloklar(h.ek).map(blokTuri) : [], ok = b.erkinRasm.kerak.every((t) => t === "p" ? typeof blIchkiKop === "function" && blIchkiKop(h.ek, 1) : tur.indexOf(t) >= 0);
+      return { ...m, tur: ok ? "tayyor" : "kamOila", rasm: ok };
+    }
+    if (b.erkinRasm) {
+      const ok = typeof blIchkiKop === "function" && blIchkiKop(h.ek, 2);
+      return { ...m, tur: ok ? "tayyor" : "kamIchki", rasm: ok };
+    }
+    const rasm = Array.from(h.k.querySelectorAll(".kt-c.md-rasm")).map((c) => c.dataset.k);
+    if (rasm.length) {
+      const otdi = h.yol.map(([x, q]) => x + "," + q), chiq = otdi.find((k) => rasm.indexOf(k) < 0);
+      const masofa = (k) => {
+        const [x, q] = k.split(",").map(Number);
+        return Math.abs(x - h.x) + Math.abs(q - h.y);
+      };
+      const kam = rasm.filter((k) => otdi.indexOf(k) < 0).reduce((e, k) => e == null || masofa(k) < masofa(e) ? k : e, null);
+      const xy = (k) => {
+        const [x, q] = k.split(",").map(Number);
+        return [x, mdY(h.xr, q)];
+      };
+      if (chiq) return { ...m, tur: "rasmChiqdi", katak: xy(chiq) };
+      if (kam) return { ...m, tur: "rasmKam", katak: xy(kam) };
+      return { ...m, tur: "rasmTayyor", rasm: true };
+    }
+    const qoldi = h.olma.filter(([x, y]) => !h.yol.some(([a, c]) => a === x && c === y));
+    if (qoldi.length && b.olmaShart !== false) return { ...m, tur: "olmasiz", olma: [qoldi[0][0], mdY(h.xr, qoldi[0][1])] };
+    if (h.yulduz && h.x === h.yulduz[0] && h.y === h.yulduz[1]) {
+      if (b.kostyum && h.kos !== b.kostyum) return { ...m, tur: "kostyumBoshqa", hozir: h.kos, kerak: b.kostyum };
+      const an = b.oxirida ? h.animOxiri || 0 : h.anim;
+      if (b.animatsiya && an < b.animatsiya) return { ...m, tur: "animKam", n: an, kerak: b.animatsiya };
+      if (b.harQadam && h.qadamAnim.some((x) => !x)) return { ...m, tur: "animQani" };
+      return { ...m, tur: "yetdi", olmaKerak: h.olma.length > 0 };
+    }
+    if (b.otib && h.yulduz && h.yol.some(([x, q]) => x === h.yulduz[0] && q === h.yulduz[1])) return { ...m, tur: "otibKetdi" };
+    return { ...m, tur: "boshqa" };
+  }
+  function mdBayroq(ek) {
+    const v = ek && ek.dataset.bayroq;
+    return v ? v.split(",").map(Number) : null;
+  }
+  function mdBayroqQoy(ek, x, y) {
+    const k = ek.querySelector(".katak.maydon");
+    if (!k) return;
+    const xr = katakXarita(k.dataset.xarita), q = xr.length - 1 - y;
+    k.querySelectorAll(".md-bq.b-bola").forEach((b) => b.remove());
+    const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+    g.setAttribute("class", "md-bq b-bola");
+    g.setAttribute("transform", "translate(" + (x * KT + 50) + " " + (q * KT + 52) + ")");
+    g.innerHTML = MD_BAYROQ;
+    k.querySelector(".kt-iz").insertAdjacentElement("afterend", g);
+    ek.dataset.bayroq = x + "," + y;
+    if (g.animate) g.animate([{ opacity: 0, transform: g.getAttribute("transform") + " translate(0 -30px)" }, { opacity: 1, transform: g.getAttribute("transform") }], { duration: 260 });
+  }
+  function mdBosilgan(e, ek) {
+    const k = ek.querySelector(".katak.maydon"), svg = k && k.querySelector("svg.kt");
+    if (!svg || !e.target.closest(".katak.maydon")) return null;
+    const xr = katakXarita(k.dataset.xarita), H = xr.length, W = Math.max(...xr.map((r) => r.length));
+    const p = svg.createSVGPoint();
+    p.x = e.clientX;
+    p.y = e.clientY;
+    const m = svg.getScreenCTM();
+    if (!m) return null;
+    const t = p.matrixTransform(m.inverse()), x = Math.floor(t.x / KT), q = Math.floor(t.y / KT);
+    return x >= 0 && q >= 0 && x < W && q < H ? [x, H - 1 - q] : null;
   }
   const KUT = (ms) => new Promise((r) => setTimeout(r, ms));
   const ATLAR = (q) => {
@@ -2008,16 +3169,27 @@ function ishga(D2, A, OPT) {
   function blokTuri(mb2) {
     if (mb2 && mb2.dataset && mb2.dataset.tur) return mb2.dataset.tur;
     const t = (mb2.querySelector("span") || {}).textContent || "";
-    return t.indexOf("right") >= 0 ? "r" : t.indexOf("left") >= 0 ? "l" : t.indexOf("jump") >= 0 ? "j" : t.indexOf("move up") >= 0 ? "u" : t.indexOf("move down") >= 0 ? "d" : "s";
+    if (t.indexOf("if path") >= 0) return "a";
+    if (t.indexOf("switch costume") >= 0) return "v";
+    if (t.indexOf("play sound") >= 0) return "n";
+    return t.indexOf("right") >= 0 ? "r" : t.indexOf("left") >= 0 ? "l" : t.indexOf("jump") >= 0 ? "j" : t.indexOf("move up") >= 0 ? "u" : t.indexOf("move down") >= 0 ? "d" : t.indexOf("go to") >= 0 ? "x" : t.indexOf("when") >= 0 ? "k" : t.indexOf("repeat") >= 0 ? "p" : "s";
+  }
+  function otKeyin(ek, ms = 1400, f = () => bolaKeyingi()) {
+    if (ek && ek.__otadi) return;
+    if (ek) ek.__otadi = true;
+    setTimeout(f, ms);
   }
   function urildiOl(ek) {
     ek.querySelectorAll(".mb.urildi").forEach((x) => x.classList.remove("urildi"));
   }
   function sanoq(st) {
+    if (st.__bq) qadamOl(st);
+    else qadamYoz(st, 0);
     muammoOl(st);
     urildiOl(st);
     const n = bloklar(st).length, s = st.querySelector(".dsn");
-    if (s) s.textContent = n + " ta blok";
+    if (s) s.textContent = typeof BL_DASTURCHA === "function" && BL_DASTURCHA(st) && typeof blDasturchalar === "function" ? blDasturchalar(st).length + " ta dasturcha" + (DARS2.dasturchaBlok ? "\n" + n + " / " + (TOP(st.dataset.id).chegara || DARS2.blokChegara) + " ta blok" : "") : TOP(st.dataset.id).chegara ? n + " / " + TOP(st.dataset.id).chegara + " ta blok" : n + " ta blok";
+    if (typeof ozgKorinsin === "function") ozgKorinsin(st);
     const jb = st.querySelector(".jr-bl");
     if (jb) {
       jb.classList.toggle("bosh-bor", !n);
@@ -2037,14 +3209,23 @@ function ishga(D2, A, OPT) {
     if (h) h.textContent = matn2;
   }
   function muammo(ek, kim, gap) {
+    if (typeof xkMuammo === "function") xkMuammo(ek, kim);
     muammoOl(ek);
     const o = ek.querySelector(".oyna");
     if (!o || typeof MUAM_SVG2 === "undefined" || !MUAM_SVG2[kim]) return;
     const q = o.querySelector(".yol .q") || o.querySelector(".katak .kt-q"), or = o.getBoundingClientRect(), qr = q && (q.firstElementChild || q).getBoundingClientRect();
     const ong = qr && or.width && (qr.left + qr.width / 2 - or.left) / or.width < 0.45;
-    const kat = o.querySelector(".katak") && qr && or.height ? " kt-m " + ((qr.top + qr.height / 2 - or.top) / or.height < 0.5 ? "k-past" : "k-tepa") : "";
+    let kat2 = "", kOng = ong;
+    const kt = o.querySelector(".katak");
+    if (kt && qr && or.height) {
+      const xr = katakXarita(kt.dataset.xarita), H = xr.length, W = Math.max(...xr.map((r) => r.length)), qx = (qr.left + qr.width / 2 - or.left) / or.width, qy = (qr.top + qr.height / 2 - or.top) / or.height;
+      const bur = [[0, 0, xr[0][0]], [1, 0, xr[0][W - 1]], [0, 1, xr[H - 1][0]], [1, 1, xr[H - 1][W - 1]]].filter((c) => c[2] === "#").sort((a, c) => Math.hypot(c[0] - qx, c[1] - qy) - Math.hypot(a[0] - qx, a[1] - qy));
+      const [bx, by] = bur.length ? bur[0] : [qx < 0.45 ? 1 : 0, qy < 0.5 ? 1 : 0];
+      kat2 = " kt-m " + (by ? "k-past" : "k-tepa");
+      kOng = !!bx;
+    }
     const d = document.createElement("div");
-    d.className = "muam dv-muam m-" + kim + (ong ? " o-ng" : "") + kat;
+    d.className = "muam dv-muam m-" + kim + (kOng ? " o-ng" : "") + kat2;
     d.innerHTML = '<span class="mk">' + MUAM_SVG2[kim] + '</span><span class="gl pufak"><b></b></span>';
     d.querySelector("b").textContent = gap;
     o.appendChild(d);
@@ -2075,6 +3256,7 @@ function ishga(D2, A, OPT) {
     const ek = ildiz.querySelector(".ekran");
     if (!ek) return;
     const id = ek.dataset.id;
+    if (typeof DARS2 !== "undefined" && DARS2.bola && typeof kartaChiz === "function" && (ildiz.id === "bol" && (DARS2.bola.karta === id || ek.querySelector(".kc-mini")) || ildiz.id === "ust" && DARS2.kartaNamuna && ek.querySelector(".kc-mini"))) kartaChiz(ek);
     if (ildiz.id === "ust") {
       const fo2 = ek.querySelector(".hn");
       if (fo2 && !fo2.querySelector(".orq") && !fo2.querySelector(".k-ust")) {
@@ -2098,12 +3280,20 @@ function ishga(D2, A, OPT) {
     if (t.ish === "ism") return ismTayyorla(ek);
     if (t.ish === "huk") return hukTayyorla(ek);
     if (t.ish === "raqam") return raqamTayyorla(ek);
+    if (t.ish === "katakBos") return katakBosTayyorla(ek);
+    if (t.ish === "sahnaOyin") return sahnaOyinTayyorla(ek, ildiz);
+    if (t.ish === "oyinKarta") return oyinKarta(ek);
+    if (t.ish === "juftlik") return juftlikTayyorla(ek);
+    if (t.ish === "juftQah") return juftQahTayyorla(ek);
+    if (ek.querySelector(".jd-q") && typeof juftDostQoy === "function" && typeof juftRol === "function" && juftRol() === "ikki") juftDostQoy(ek);
+    if (t.ish === "xkTanlov") return xkTanlovTayyorla(ek);
     if (t.dunyo) dunyoQoy(ek);
     if (t.ish === "takror") return takrorla(ek);
     if (t.ish === "natija") return natijaYoz(ek);
     if (t.ish === "sudrash") return sudrashTayyorla(ek);
     const b = t.bosh;
     if (!b) return;
+    if (b.xk) xkBosh(ek);
     if (b.korish) {
       ek.dataset.korish = "1";
       return;
@@ -2129,6 +3319,11 @@ function ishga(D2, A, OPT) {
     }
     const fo = ek.querySelector(".hn");
     if (fo && fo.querySelector(".orq") && !fo.querySelector(".ishga")) fo.querySelector(".asos").insertAdjacentHTML("beforebegin", '<span class="mas ishga">▶ Ishga tushir</span>');
+    qadamOl(ek);
+    if (!BQ_YOQ(b)) {
+      const ig = fo && (fo.querySelector(".ishga") || Array.from(fo.querySelectorAll(".asos")).find((a) => a.textContent.indexOf("Ishga tushir") >= 0));
+      if (ig && !fo.querySelector(".bq-t")) ig.insertAdjacentHTML("beforebegin", '<span class="bq-t" role="button">Bitta qadam<small></small></span>');
+    }
     if (GAPT(b.prog) === 0) {
       const w = ek.querySelector(".dst .mbw");
       if (w) w.remove();
@@ -2151,7 +3346,33 @@ function ishga(D2, A, OPT) {
     ek.querySelectorAll(".yoy path").forEach((p) => p.classList.remove("otdi"));
     ek.querySelectorAll(".oyna .gap-p:not(.dv-pufak)").forEach((x) => x.remove());
     ek.querySelectorAll(".muam,.konfeti").forEach((x) => x.remove());
+    if (DARS2.maslahatKeyin && ildiz.id === "bol" && TOP(id).maslahat) {
+      const m = ek.querySelector(".hn .mas:not(.ishga)");
+      if (m) {
+        ek.dataset.maslahatQulf = "1";
+        m.classList.add("qulf");
+        m.insertAdjacentHTML("beforeend", '<svg class="mas-qulf" viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="7" width="10" height="7.5" rx="1.6" fill="currentColor"/><path d="M5.2 7V5.2a2.8 2.8 0 0 1 5.6 0V7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>');
+      }
+    }
+    if (b.bashorat && !b.kod) return bashoratTayyorla(ek);
+    if (!(typeof SOLO !== "undefined" && SOLO)) ek.querySelectorAll(".dst .solo-faqat").forEach((x) => x.remove());
     if (typeof blTayyorla === "function" && ek.querySelector(".dst")) blTayyorla(ek);
+    if (b.sonBashorat) {
+      const bq = ek.querySelector(".dst .bq-q");
+      if (bq) bq.remove();
+      return sonBashTayyorla(ek);
+    }
+    if (b.olmaDastur) {
+      olmaTayyorla(ek);
+      const bq = ek.querySelector(".dst .bq-q"), dsb = ek.querySelector(".dst .dsb");
+      if (bq && dsb && dsb.nextElementSibling !== bq) dsb.after(bq);
+    }
+    if (b.oyin) oyinTayyorla(ek);
+    if (b.klon && typeof klonTayyorla === "function") klonTayyorla(ek);
+    if (b.kosmik && typeof kosmikTayyorla === "function") kosmikTayyorla(ek);
+    if (b.kod && typeof kodTayyorla === "function") kodTayyorla(ek);
+    if (b.kod && b.bashorat) return bashoratTayyorla(ek);
+    if (t.qisqa) ek.dataset.qisqa = "0";
   }
   function shartYangila(ek) {
     const top = ek && TOP(ek.dataset.id);
@@ -2170,12 +3391,90 @@ function ishga(D2, A, OPT) {
     });
     return ok;
   }
-  async function ishgaTushir(ek) {
+  function maslahatOch(ek) {
+    if (!ek.dataset.maslahatQulf) return;
+    delete ek.dataset.maslahatQulf;
+    const m = ek.querySelector(".hn .mas.qulf");
+    if (m) {
+      m.classList.remove("qulf");
+      m.querySelectorAll(".mas-qulf").forEach((x) => x.remove());
+    }
+  }
+  const BQ_YOQ = (b) => !DARS2.bittaQadam || !b || b.oyin || b.olmaDastur || b.bashorat || b.sonBashorat || b.yasash || b.egiz || b.korish || b.qadamYoq;
+  function qadamYoz(ek, n) {
+    const s = ek.querySelector(".hn .bq-t small");
+    if (s) s.textContent = n ? n + "-qadam" : "";
+  }
+  function qadamOl(ek) {
+    const s = ek.__bq;
+    ek.__bq = null;
+    if (s) {
+      s.bekor = true;
+      if (s.kut) {
+        ek.dataset.yuryapti = "1";
+        const k = s.kut;
+        s.kut = null;
+        k();
+      }
+    }
+    qadamYoz(ek, 0);
+  }
+  function qadamBos(ek) {
+    if (typeof bqQosh === "function") bqQosh(ek);
+    const s = ek.__bq;
+    if (s && !s.davom) {
+      if (s.kut) {
+        const k = s.kut;
+        s.kut = null;
+        k();
+      } else s.navbat++;
+      return;
+    }
     if (ek.dataset.yuryapti) return;
+    ishgaTushir(ek, true);
+  }
+  function rasmTashqari(h) {
+    const r = h.k && h.k.querySelectorAll(".kt-c.md-rasm");
+    return !!(r && r.length) && !Array.from(r).some((c) => c.dataset.k === h.x + "," + h.y);
+  }
+  async function ishgaTushir(ek, qadam2) {
+    if (ek.dataset.yuryapti || ek.__bq && ek.__bq.kut) {
+      const s2 = ek.__bq;
+      if (s2 && !qadam2 && !s2.davom) {
+        s2.davom = true;
+        if (s2.kut) {
+          const k = s2.kut;
+          s2.kut = null;
+          k();
+        }
+      }
+      return;
+    }
+    {
+      const b0 = TOP(ek.dataset.id).bosh;
+      if (b0 && b0.olmaDastur && !b0.oyin) return olmaIshga(ek);
+    }
+    {
+      const b0 = TOP(ek.dataset.id).bosh;
+      if (b0 && b0.klon && !b0.oyin) return klonIshga(ek);
+    }
+    maslahatOch(ek);
     if (typeof blTanlovOl === "function") blTanlovOl(ek);
     urildiOl(ek);
     const id = ek.dataset.id, b = TOP(id).bosh || { at: 0 }, oyna = ek.querySelector(".oyna"), q = ek.querySelector(b.q || ".oyna .yol .q");
     const dastur2 = dasturDaraxti(ek), bl = [...ijroTartibi(dastur2)].map((t) => t.el);
+    if (typeof blIchiBosh === "function" && blIchiBosh(ek)) {
+      ishora(ek, "repeat ichiga blok qo‘ying");
+      chal("muammo");
+      muammo(ek, "boshvoy", "Ichi bo‘sh-ku…");
+      return;
+    }
+    if (typeof blShartBosh === "function" && blShartBosh(ek)) {
+      ishora(ek, "if ichiga blok qo‘ying — yo‘l bo‘lsa, u bajariladi");
+      chal("muammo");
+      muammo(ek, "boshvoy", "Ichi bo‘sh-ku…");
+      return;
+    }
     if (!bl.length) {
       ishora(ek, "Avval blokni bosing — u dasturga qo‘shiladi");
       if (TOP(id).bosh && !TOP(id).bosh.erkin) {
@@ -2185,16 +3484,96 @@ function ishga(D2, A, OPT) {
       return;
     }
     ek.dataset.yuryapti = "1";
+    qadamOl(ek);
+    const s = qadam2 && !BQ_YOQ(b) ? ek.__bq = { n: 0, navbat: 0, kut: null, davom: false, bekor: false, chiqdi: null } : null;
     pufak(oyna, q, "");
     muammoOl(ek);
     const tx = ek.querySelector(".y-tox");
     if (tx) tx.remove();
     ek.querySelectorAll(".konfeti").forEach((x) => x.remove());
+    egizAlmash(ek, 1);
     const sahna = SAHNA[sahnaTuri(b)], h = await sahna.boshla(ek, b);
-    ishora(ek, "Dastur ishlayapti…");
+    ishora(ek, s ? GAPT(DARS2.gap && DARS2.gap.qadamIshora || "Bitta qadam — qahramon qayerda?") : "Dastur ishlayapti…");
+    if (s) {
+      const oldin = async () => {
+        if (s.bekor) return "bekor";
+        if (s.davom) return;
+        if (s.n > 0) {
+          if (s.navbat > 0) s.navbat--;
+          else {
+            delete ek.dataset.yuryapti;
+            await new Promise((r) => {
+              s.kut = r;
+            });
+            if (!s.bekor) ek.dataset.yuryapti = "1";
+          }
+        }
+        if (s.bekor) return "bekor";
+        if (s.davom) {
+          ishora(ek, "Dastur ishlayapti…");
+          return;
+        }
+        s.n++;
+        qadamYoz(ek, s.n);
+      };
+      const bajarQ = async (tugun) => {
+        const r = await sahna.bajar(h, tugun);
+        if (r !== "toxta" && !s.davom && rasmTashqari(h)) {
+          s.chiqdi = { n: s.n, x: h.x, y: mdY(h.xr, h.y) };
+          return "toxta";
+        }
+        return r;
+      };
+      const res = await ijro(dastur2, bajarQ, { oldin });
+      delete ek.dataset.yuryapti;
+      if (res.bekor) {
+        if (sahnaTuri(b) === "katak") katakAsl(ek);
+        return;
+      }
+      if (ek.__bq === s) ek.__bq = null;
+      if (s.chiqdi) {
+        const c = s.chiqdi;
+        chal("muammo");
+        muammo(ek, "ortiqvoy", "Rasmdan chiqdi!");
+        ishora(ek, (GAPT((TOP(id).gap || {}).qadamChiqdi || "") || GAPT(DARS2.gap && DARS2.gap.qadamChiqdi || "") || "N-qadam: qahramon (x, y) ga chiqdi. Shu blokni va undan oldingisini o‘qing").replace("N-", c.n + "-").replace("(x, y)", "(" + c.x + ", " + c.y + ")"));
+        return;
+      }
+      natija(ek, id, h, bl);
+      return;
+    }
     await ijro(dastur2, (tugun) => sahna.bajar(h, tugun));
+    if (b.egiz && ek.querySelector('.katak[data-egiz="2"]')) {
+      const bh1 = sahna.baho(h, b, bl);
+      egizBelgi(ek, 1, bh1.tur === "yetdi");
+      if (bh1.tur === "yetdi") {
+        await KUT(700);
+        egizAlmash(ek, 2);
+        const h2 = await sahna.boshla(ek, b);
+        h2.egizN = 2;
+        await ijro(dastur2, (tugun) => sahna.bajar(h2, tugun));
+        egizBelgi(ek, 2, sahna.baho(h2, b, bl).tur === "yetdi");
+        delete ek.dataset.yuryapti;
+        natija(ek, id, h2, bl);
+        return;
+      }
+      h.egizN = 1;
+    }
     delete ek.dataset.yuryapti;
     natija(ek, id, h, bl);
+  }
+  function egizAlmash(ek, n) {
+    const k = ek.querySelector('.katak[data-egiz="' + n + '"]');
+    if (!k) return;
+    k.parentNode.insertBefore(k, k.parentNode.firstChild);
+    ek.querySelectorAll(".katak[data-egiz]").forEach((x) => x.classList.toggle("faol", x === k));
+    if (n === 1) ek.querySelectorAll(".katak[data-egiz] .egiz-n").forEach((x) => x.classList.remove("ok", "yoq"));
+  }
+  function egizBelgi(ek, n, ok) {
+    const x = ek.querySelector('.katak[data-egiz="' + n + '"] .egiz-n');
+    if (x) {
+      x.classList.toggle("ok", ok);
+      x.classList.toggle("yoq", !ok);
+    }
   }
   function natija(ek, id, h, bl) {
     const ildiz = ek.parentNode.closest("#ust,#bol");
@@ -2206,7 +3585,35 @@ function ishga(D2, A, OPT) {
       return;
     }
     if (t.tur === "yol") {
+      if (b.topishmoq) return topishmoqNatija(ek, id, bl, bola);
       const bh = SAHNA[sahnaTuri(b)].baho(h, b, bl);
+      if (bh.maydon) return maydonNatija(ek, id, h, bh, bl, bola);
+      const nL = h.egizN ? h.egizN + "-labirint" : "";
+      if (bh.tur === "urildi" && b.shartGap) {
+        const ota = typeof blOtaShart === "function" && blOtaShart(h.urildi && h.urildi.el);
+        chal("muammo");
+        ishora(ek, (nL ? nL + ": " : "") + (ota ? "shart bir tomonni tekshirdi, blok boshqa tomonga yurdi" : "bu blok yo‘lni tekshirmay yurdi. Yurishdan oldin tekshiring"));
+        muammo(ek, "tosiqvoy", "Devor!");
+        return;
+      }
+      if (bh.tur === "kam" && b.shartGap) {
+        chal("muammo");
+        ishora(ek, g.kam && GAPT(g.kam).replace("N-labirint", nL || "Labirint") || (nL ? nL + "da" : "Labirintda") + " yulduzgacha yetmadi. repeat soni va shart tomonini tekshiring");
+        muammo(ek, "kamvoy", "Oz qoldi!");
+        return;
+      }
+      if (bh.tur === "kamShart") {
+        chal("muammo");
+        ishora(ek, "Ikki if qo‘ying — har xil tomonga");
+        muammo(ek, "kamvoy", "Oz qoldi!");
+        return;
+      }
+      if (bh.tur === "kamYurdi") {
+        chal("muammo");
+        ishora(ek, "Qahramon kam yurdi. Boshqa tomonlarni tekshiring");
+        muammo(ek, "kamvoy", "Oz qoldi!");
+        return;
+      }
       if (bh.tur === "urildi") {
         chal("muammo");
         ishora(ek, g.urildi ? GAPT(g.urildi) : "Qahramon shu blokda to‘xtadi. Bu yerda qaysi tomonga yurish kerak?");
@@ -2231,18 +3638,19 @@ function ishga(D2, A, OPT) {
         muammo(ek, bh.n > bh.kerak ? "ortiqvoy" : "kamvoy", bh.n > bh.kerak ? "Ko‘payib ketdi!" : "Oz qoldi!");
         return;
       }
-      if (bh.tur === "yetdi") {
+      if (bh.tur === "yetdi" || bh.tur === "tayyor") {
         ishora(ek, g.yetdi ? GAPT(g.yetdi) : bh.olmaKerak ? "Zo‘r! Olma ham, yulduz ham!" : "Yetib bordi!");
         konfeti(ek);
         if (bola) {
-          if (typeof blokQosh === "function") blokQosh(id, bl);
+          if (typeof blokQosh === "function") blokQosh(id, [...bl, ...labirintBelgi(h, b)]);
+          if (typeof oxirgiSaqla === "function") oxirgiSaqla(ek);
           if (b.pog && typeof pogQosh === "function") pogQosh(b.pog);
-          setTimeout(() => {
+          otKeyin(ek, 1400, () => {
             if (t.keyin) {
               ichki = QADAM2[qadam][2].indexOf(t.keyin);
               chiz();
             } else bolaKeyingi();
-          }, 1400);
+          });
         }
       } else {
         chal("muammo");
@@ -2288,7 +3696,7 @@ function ishga(D2, A, OPT) {
       ishora(ek, "Qahramoningiz gapirdi!");
       if (bola) {
         if (typeof blokQosh === "function") blokQosh(id, bl);
-        setTimeout(bolaKeyingi, 1800);
+        otKeyin(ek, 1800);
       }
       return;
     }
@@ -2304,6 +3712,43 @@ function ishga(D2, A, OPT) {
         }
       } else ishora(ek, !ok.blok ? "Yana harakat bloki kerak (kamida " + t.harakat + " ta)" : "Binafsha blokka o‘zingiz gap yozing");
     }
+  }
+  function thDaraxt(d) {
+    return d.map((t) => {
+      const o = { t: t.tur, n: t.n || 0, ichki: thDaraxt(t.ichki || []) };
+      if (t.tur === "x") {
+        const [X, Y] = blokXY(t.el);
+        o.X = X;
+        o.Y = Y;
+      }
+      return o;
+    });
+  }
+  function topishmoqNatija(ek, id, bl, bola) {
+    const t = TOP(id), b = t.bosh, g = t.gap || {}, r = thTopishmoq(thDaraxt(dasturDaraxti(ek)), b.topishmoq);
+    if (r === "kam") {
+      chal("muammo");
+      ishora(ek, GAPT(g.topKam || "Topishmoqda kamida 3 ta blok bo‘lsin"));
+      muammo(ek, "kamvoy", "Oz qoldi!");
+      return;
+    }
+    if (r === "ishlayapti") {
+      ishora(ek, GAPT(g.topIshlayapti || "Dastur ishlayapti! Endi bitta blokni o‘zgartiring — topishmoq bo‘lsin."));
+      return;
+    }
+    if (r === "kop") {
+      chal("muammo");
+      ishora(ek, GAPT(g.topKop || "Xato bittadan ko‘p. Topishmoqda bitta xato bo‘lsin"));
+      muammo(ek, "ortiqvoy", "Ko‘payib ketdi!");
+      return;
+    }
+    ishora(ek, GAPT(g.yetdi || "Topishmoq tayyor!"));
+    konfeti(ek);
+    if (!bola || ek.dataset.oqish) return;
+    if (typeof blokQosh === "function") blokQosh(id, bl);
+    if (typeof oxirgiSaqla === "function") oxirgiSaqla(ek);
+    if (b.pog && typeof pogQosh === "function") pogQosh(b.pog);
+    otKeyin(ek);
   }
   function uchBosish(ek, boshla) {
     const q = ek.querySelector(".oyna .yol .q"), qator = ek.querySelector(".sin3"), yozuv = qator && qator.querySelector(".tf-t span");
@@ -2359,7 +3804,16 @@ function ishga(D2, A, OPT) {
   }
   async function hukSina(ek, i) {
     const k = ek.querySelectorAll(".jk")[i];
-    if (!k || ek.dataset.yuryapti) return;
+    if (!k || ek.dataset.yuryapti || ek.dataset.oyin) return;
+    if (k.dataset.yulduz) {
+      const [x, y] = k.dataset.yulduz.split(",").map(Number);
+      mdYulduzQoy(ek, x, y);
+    }
+    if (k.dataset.oyin) return hukOyin(ek, k, i);
+    if (k.dataset.klon) return klonHukSina(ek, k, i);
+    if (k.dataset.kosmik || k.dataset.kosmik2 || k.dataset.kodh) return kosmikHukSina(ek, k, i);
+    if (k.dataset.avto) return hukAvto(ek, k, i);
+    if (k.dataset.olma || k.dataset.tanlov) return hukOlma(ek, k, i);
     const g = TOP(ek.dataset.id).gap || {};
     ek.dataset.yuryapti = "1";
     ek.querySelectorAll(".jk").forEach((x) => x.classList.toggle("sinov", x === k));
@@ -2367,12 +3821,67 @@ function ishga(D2, A, OPT) {
     k.classList.remove("n-ok", "n-yoq");
     k.querySelectorAll(".jn").forEach((x) => x.remove());
     urildiOl(k);
-    const daraxt = Array.from(k.querySelectorAll(".mb")).map((el) => ({ el, tur: blokTuri(el), ichki: [] }));
-    const h = await SAHNA.katak.boshla(ek, {});
-    await ijro(daraxt, (t) => SAHNA.katak.bajar(h, t));
-    const bh = SAHNA.katak.baho(h), ok = bh.tur === "yetdi";
+    let ok, bh = {};
+    if (k.dataset.yon) {
+      katakAsl(ek);
+      const kt = ek.querySelector(".katak"), xr = katakXarita(kt.dataset.xarita);
+      for (const p of k.dataset.yon.split(";")) {
+        const [x, y] = p.split(",").map(Number), c = kt.querySelector('.kt-c[data-k="' + x + "," + (xr.length - 1 - y) + '"]');
+        if (c) c.classList.add("yonk");
+        chal("qadam");
+        await KUT(420);
+      }
+      const q = kt.querySelector(".kt-q");
+      if (q) pufak(ek.querySelector(".oyna"), q, "Qaysi biri?");
+      ok = false;
+    } else {
+      const els = k.dataset.dastur ? (k.dataset.dastur.match(/x\d+,\d+|c(?:xo|xu|ha|oy)|[rludw]/g) || []).map((t) => {
+        const x = document.createElement("span");
+        x.dataset.tur = t[0] === "c" ? "v" : t[0];
+        if (t[0] === "x") {
+          const [a2, c] = t.slice(1).split(",");
+          x.dataset.x = a2;
+          x.dataset.y = c;
+        }
+        if (t[0] === "c") x.dataset.q = { xo: "xotirjam", xu: "xursand", ha: "hayron", oy: "oylanadi" }[t.slice(1)];
+        return x;
+      }) : Array.from(k.querySelectorAll(".mb"));
+      const dq = (x) => ({ el: document.createElement("span"), tur: x.t, n: x.n || 0, yon: x.yon || "", ichki: (x.ichki || []).map(dq) });
+      const daraxt = k.dataset.daraxt ? JSON.parse(k.dataset.daraxt).map(dq) : els.map((el) => ({ el, tur: blokTuri(el), ichki: [] }));
+      egizAlmash(ek, 1);
+      let h = await SAHNA.katak.boshla(ek, {}), qoch = hukQoch(k);
+      let n = 0;
+      const qd = !!k.dataset.qadam, oq = ek.querySelector(".oyna");
+      let qn = 0;
+      const oldin = qd ? async () => {
+        if (qn) await KUT(+k.dataset.qadam || 450);
+        qn++;
+        pufak(oq, ek.querySelector(".oyna .kt-q"), qn + "-qadam");
+      } : null;
+      await ijro(daraxt, async (t) => {
+        const r = await SAHNA.katak.bajar(h, t);
+        n++;
+        if (qoch && n === qoch.n) yulduzQoch(ek, h, qoch.x, qoch.y);
+        if (qd && r !== "toxta" && rasmTashqari(h)) return "toxta";
+        return r;
+      }, { oldin });
+      if (ek.querySelector('.katak[data-egiz="2"]')) {
+        const b1 = SAHNA.katak.baho(h, {});
+        egizBelgi(ek, 1, b1.tur === "yetdi");
+        if (b1.tur === "yetdi") {
+          await KUT(500);
+          egizAlmash(ek, 2);
+          h = await SAHNA.katak.boshla(ek, {});
+          await ijro(daraxt, (t) => SAHNA.katak.bajar(h, t));
+          egizBelgi(ek, 2, SAHNA.katak.baho(h, {}).tur === "yetdi");
+        }
+      }
+      bh = SAHNA.katak.baho(h);
+      ok = k.dataset.ok ? k.dataset.ok === "1" : bh.tur === "yetdi";
+    }
+    k.classList.remove("sinov");
     k.classList.add(ok ? "n-ok" : "n-yoq");
-    (k.querySelector(".jt") || k).insertAdjacentHTML("beforeend", '<small class="jn">' + (ok ? g.yetdi : bh.tur === "kam" ? g.kam : g.urildi) + "</small>");
+    (k.querySelector(".jt") || k).insertAdjacentHTML("beforeend", '<small class="jn">' + (k.dataset.nat || (ok ? g.yetdi : bh.tur === "kam" ? g.kam : g.urildi)) + "</small>");
     if (ok) konfeti(ek);
     delete ek.dataset.yuryapti;
     ek.dataset.huk = Math.max(+(ek.dataset.huk || 0), i + 1);
@@ -2390,6 +3899,13 @@ function ishga(D2, A, OPT) {
     ek.dataset.raqam = n + 1;
     ek.querySelectorAll('[data-r="' + (n + 1) + '"]').forEach((x) => x.classList.add("on"));
     chal("qadam");
+    ek.querySelectorAll('[data-r="' + (n + 1) + '"][data-yur]').forEach((x) => {
+      const k = x.closest(".katak.maydon"), g = k && k.querySelector(".kt-q");
+      if (!g) return;
+      const [X, Y] = x.dataset.yur.split(",").map(Number), q = katakXarita(k.dataset.xarita).length - 1 - Y;
+      katakSur(g, X, q, true);
+      mdYorliqQoy(k, X, q);
+    });
     return true;
   }
   function studiyaBosish(e) {
@@ -2407,23 +3923,81 @@ function ishga(D2, A, OPT) {
     }
     if (TOP(id).ish === "huk") return hukBosish(e, ek, ildiz);
     if (TOP(id).ish === "raqam") return raqamBosish(e, ek, ildiz);
+    if (TOP(id).ish === "katakBos") return katakBosish(e, ek, ildiz);
+    if (TOP(id).ish === "sahnaOyin") return sahnaOyinBosish(e, ek, ildiz);
+    if (TOP(id).ish === "juftlik") return juftlikBosish(e, ek);
+    if (TOP(id).ish === "juftQah") return juftQahBosish(e, ek);
+    if (TOP(id).ish === "xkTanlov") return xkTanlovBosish(e, ek);
+    if (TOP(id).ish === "xkKorsat") return xkKorsatBosish(e, ek);
+    if (TOP(id).bosh && TOP(id).bosh.xk) {
+      const r = xkBosish(e, ek);
+      if (r != null) return r;
+    }
+    if (TOP(id).bosh && TOP(id).bosh.kod && typeof kodBosish === "function") {
+      const r = kodBosish(e, ek);
+      if (r != null) return r;
+    }
+    if (TOP(id).bosh && TOP(id).bosh.personaj) {
+      const r = kosmikBosish(e, ek);
+      if (r != null) return r;
+    }
+    if (TOP(id).bosh && TOP(id).bosh.bashorat) {
+      const r = bashoratBosish(e, ek, ildiz);
+      if (r != null) return r;
+    }
+    if (TOP(id).bosh && TOP(id).bosh.yasash) {
+      const r = yasashBosish(e, ek, ildiz);
+      if (r != null) return r;
+    }
+    if (TOP(id).bosh && (TOP(id).bosh.ball || TOP(id).bosh.sonBashorat || TOP(id).bosh.olmaDastur || TOP(id).bosh.klon)) {
+      const r = ballBosish(e, ek, ildiz);
+      if (r != null) return r;
+    }
+    if (TOP(id).bosh && TOP(id).bosh.oyin) {
+      const r = oyinBosish(e, ek);
+      if (r != null) return r;
+    }
+    if (TOP(id).qisqa && ildiz.id === "ust" && !(typeof SOLO !== "undefined" && SOLO) && e.target.closest(".hn .asos") && !e.target.closest(".hn .ishga") && !ek.dataset.yuryapti) {
+      const n = +(ek.dataset.qisqa || 0);
+      if (n === 0) {
+        bloklar(ek).forEach((el, i) => el.classList.add("bl-juft", "bl-juft-" + Math.floor(i / 2) % 2));
+        ishora(ek, "Bir xil ikki blok — " + Math.floor(bloklar(ek).length / 2) + " marta");
+        chal("qadam");
+        ek.dataset.qisqa = "1";
+        return true;
+      }
+      if (n === 1 && typeof blQur === "function") {
+        blQur(ek, TOP(id).qisqa);
+        sanoq(ek);
+        katakAsl(ek);
+        ishora(ek, "Rasm o‘sha — bloklar kam");
+        chal("qadam");
+        ek.dataset.qisqa = "2";
+        return true;
+      }
+    }
     if (ek.dataset.korish && e.target.closest(".hn .mas")) {
       ishgaTushir(ek);
       return true;
     }
     const rd = e.target.closest(".rg .rd");
     if (rd && ek.querySelector(".pl")) {
-      const f = rd.classList.contains("f-g") ? "g" : "h";
+      const f = (rd.className.match(/\bf-(\w)\b/) || [])[1] || "h";
       ek.querySelectorAll(".rg .rd").forEach((r) => r.classList.toggle("on", r === rd));
       rd.classList.remove("puls");
       rd.classList.add("ok");
       const pl = ek.querySelector(".pl");
       if (!pl.dataset.asl) pl.dataset.asl = (pl.querySelector("small") || {}).className || "";
-      const yangiPal = TOP(id).ish === "rang" && typeof PAL_B12 !== "undefined" && PAL_B12[f] || PAL_HTML2[f];
+      const yangiPal = (ek.querySelector('template.pal-t[data-f="' + f + '"]') || {}).innerHTML || TOP(id).ish === "rang" && typeof PAL_B12 !== "undefined" && PAL_B12[f] || DARS2.palQosh && DARS2.palQosh[f] || PAL_HTML2[f];
       if ((pl.dataset.asl || "").indexOf("f-" + f) < 0 || pl.dataset.almashgan) {
+        pl.querySelectorAll(".chek").forEach((x) => x.remove());
         if (!pl.dataset.aslHtml) pl.dataset.aslHtml = pl.innerHTML;
         pl.innerHTML = pl.dataset.asl.indexOf("f-" + f) >= 0 ? pl.dataset.aslHtml : yangiPal;
         pl.dataset.almashgan = "1";
+        if ((TOP(id).bosh || {}).chek) chekChiz(ek);
+        if ((TOP(id).bosh || {}).kosmik && typeof kosmikChekChiz === "function") kosmikChekChiz(ek);
+        if (TOP(id).ochiq) ballJavon(ek);
+        if (f === "L") pl.querySelectorAll(".asb").forEach((x) => x.classList.toggle("on", x.dataset.t === (ek.dataset.asb || "devor")));
       }
       if (TOP(id).ish === "rang") {
         const n = ek.querySelectorAll(".rg .rd.ok").length, ish = ek.querySelector(".ishora");
@@ -2467,14 +4041,21 @@ function ishga(D2, A, OPT) {
     }
     const pmb = e.target.closest(".pl .mbw:not(.yopiq) .mb");
     if (pmb) {
-      if (typeof blTanlovOl === "function") blTanlovOl(ek);
-      if (bloklar(ek).length >= 10) {
-        ishora(ek, "Dastur to‘ldi — 10 ta blokdan ko‘p bo‘lmaydi");
+      const tk = typeof blTanlov === "function" && blTanlov(ek);
+      if (typeof blTanlovOl === "function" && !(tk && (tk.type === "repeat" || tk.type === "if_path" || tk.type === "if_var" || BL_HODISA.has(tk.type) && !BL_BOSH(blokTuri(pmb))))) blTanlovOl(ek);
+      const chegara = TOP(id).chegara || DARS2.blokChegara || 10;
+      if (bloklar(ek).length >= chegara) {
+        if (TOP(id).chegara) {
+          chal("muammo");
+          ishora(ek, TOP(id).joyQolmadi || DARS2.joyQolmadi ? (TOP(id).joyQolmadi || DARS2.joyQolmadi).replace("N", chegara) : "Dasturga " + chegara + " ta blok sig‘adi. Takrorlanadigan bloklarni repeat ichiga qo‘ying");
+          muammo(ek, "ortiqvoy", "Joy qolmadi!");
+        } else ishora(ek, "Dastur to‘ldi — " + chegara + " ta blokdan ko‘p bo‘lmaydi");
         return true;
       }
       chal("bos");
+      const jt = blokTuri(pmb), jm = jt === "p" ? pmb.dataset.n : jt === "k" ? pmb.dataset.tugma : jt === "v" || jt === "n" ? pmb.dataset.q : jt === "a" ? pmb.dataset.yon : jt === "q" ? pmb.dataset.q : jt === "z" || jt === "c" ? pmb.dataset.n : jt === "y" ? (pmb.dataset.x || "0") + "," + (pmb.dataset.y || "0") : jt === "m" ? (pmb.dataset.ra || "1") + "-" + (pmb.dataset.rb || "10") : ((pmb.querySelector(".inp") || {}).textContent || "").trim();
       if (ek.querySelector(".jr-bl")) {
-        blQosh(ek, blokTuri(pmb), ((pmb.querySelector(".inp") || {}).textContent || "").trim());
+        blQosh(ek, jt, jm);
         sanoq(ek);
         ishora(ek, TOP(id).maslahat ? "Blok qo‘shildi. «Ishga tushir»ni bosing" : "");
         return true;
@@ -2502,8 +4083,16 @@ function ishga(D2, A, OPT) {
       ishora(ek, "Blok olib tashlandi");
       return true;
     }
+    if (e.target.closest(".hn .bq-t")) {
+      qadamBos(ek);
+      return true;
+    }
     if (e.target.closest(".hn .ishga")) {
       ishgaTushir(ek);
+      return true;
+    }
+    if (e.target.closest(".hn .mas") && ek.dataset.maslahatQulf) {
+      ishora(ek, "Avval bir marta ishga tushiring");
       return true;
     }
     if (e.target.closest(".hn .mas")) {
@@ -2660,12 +4249,4998 @@ function ishga(D2, A, OPT) {
   }
   function natijaYoz(ek) {
     dunyoQoy(ek);
+    if (typeof labNatija === "function") labNatija(ek);
+    if (typeof kosmikNatija === "function" && DARS2.kosmikGap) kosmikNatija(ek);
+    if (typeof ballNatija === "function") ballNatija(ek);
+    const md = ek.querySelector(".katak.maydon");
+    if (md && typeof qDastur !== "undefined") mdYolChiz(md, qDastur.filter((b) => b.t === "x").map((b) => String(b.m).split(",").map(Number)));
     if (typeof blokJami !== "function") return;
     const n = natijaSon(blokJami(), typeof qTayyor !== "undefined" && qTayyor), qo = (k, v) => {
       const b = ek.querySelector('.sn-t[data-k="' + k + '"] b');
       if (b) b.textContent = v;
     };
     for (const k in n) qo(k, n[k]);
+    if (typeof xkNatija === "function") xkNatija(ek);
+  }
+  function katakBosTayyorla(ek) {
+    ek.dataset.kb = "0";
+    delete ek.dataset.yuryapti;
+    katakAsl(ek);
+    ek.querySelectorAll(".muam,.konfeti,.md-top").forEach((x) => x.remove());
+  }
+  function katakBosish(e, ek, ildiz) {
+    const id = ek.dataset.id, t = TOP(id), g = t.gap || {};
+    if (e.target.closest(".hn .mas")) {
+      ishora(ek, t.maslahat || "");
+      bildirB(ek, { t: "yordam", s: typeof qadam !== "undefined" ? qadam : 0 });
+      return true;
+    }
+    const c = mdBosilgan(e, ek);
+    if (!c) return false;
+    if (ek.dataset.yuryapti) return true;
+    const i = +(ek.dataset.kb || 0), kerak2 = t.katak[i];
+    if (!kerak2) return true;
+    const k = ek.querySelector(".katak.maydon"), xr = katakXarita(k.dataset.xarita), q = xr.length - 1 - c[1], qh = k.querySelector(".kt-q");
+    muammoOl(ek);
+    ek.querySelectorAll(".konfeti").forEach((x) => x.remove());
+    const kc = k.querySelector('.kt-c[data-k="' + c[0] + "," + q + '"]');
+    if (kc) {
+      kc.classList.add("yonk");
+      setTimeout(() => kc.classList.remove("yonk"), 600);
+    }
+    katakSur(qh, c[0], q, true, 30);
+    mdYorliqQoy(k, c[0], q);
+    chal("sakra");
+    if (c[0] === kerak2[0] && c[1] === kerak2[1]) {
+      const y = document.createElementNS("http://www.w3.org/2000/svg", "g");
+      y.setAttribute("class", "md-top");
+      y.setAttribute("transform", "translate(" + (c[0] * KT + 50) + " " + (q * KT + 30) + ") scale(24)");
+      y.innerHTML = '<path d="' + KT_YULDUZ + '" fill="#F5B82E" stroke="#C98A0E" stroke-width=".07" stroke-linejoin="round"/>';
+      k.querySelector(".kt-iz").insertAdjacentElement("afterend", y);
+      konfeti(ek);
+      ek.dataset.kb = i + 1;
+      if (i + 1 < t.katak.length) {
+        ishora(ek, (g.endi || "Endi") + " " + mdYorliq(...t.katak[i + 1]));
+        return true;
+      }
+      ishora(ek, g.yetdi || "Topdingiz!");
+      if (ildiz.id === "bol") {
+        if (typeof blokQosh === "function") blokQosh(id, t.katak.map(() => ({ dataset: { tur: "c" } })));
+        if (t.pog && typeof pogQosh === "function") pogQosh(t.pog);
+        ek.dataset.yuryapti = "1";
+        otKeyin(ek, 1400, () => {
+          delete ek.dataset.yuryapti;
+          bolaKeyingi();
+        });
+      }
+      return true;
+    }
+    chal("muammo");
+    setTimeout(() => {
+      if (document.body.contains(ek)) muammo(ek, "kamvoy", "Bu — " + mdYorliq(c[0], c[1]));
+    }, 300);
+    ishora(ek, "Avval X — o‘ngga sanang, keyin Y — tepaga");
+    return true;
+  }
+  function bashoratTayyorla(ek) {
+    delete ek.dataset.bayroq;
+    ek.querySelectorAll(".md-bq.b-bola,.muam,.konfeti").forEach((x) => x.remove());
+    ek.dataset.raqam = "0";
+    ek.querySelectorAll("[data-r]").forEach((x) => x.classList.remove("on"));
+    const ig = ek.querySelector(".hn .ishga");
+    if (ig) ig.textContent = "▶ Tekshirish";
+    const tb = bashoratTugma(ek);
+    if (tb) tb.classList.add("kut");
+    const g = TOP(ek.dataset.id).gap || {};
+    if (g.boshla && GAPT(g.boshla)) ishora(ek, GAPT(g.boshla));
+    if (typeof SOLO !== "undefined" && SOLO) ek.querySelectorAll("[data-r]").forEach((x) => x.classList.add("on"));
+  }
+  function bashoratTugma(ek) {
+    return ek.querySelector(".hn .ishga") || ek.querySelector(".hn .asos");
+  }
+  function bashoratBosish(e, ek, ildiz) {
+    const id = ek.dataset.id, t = TOP(id);
+    const kb = e.target.closest(".hn .asos");
+    if (ildiz.id === "ust" && !(typeof SOLO !== "undefined" && SOLO) && kb && kb !== bashoratTugma(ek)) {
+      const n = +(ek.dataset.raqam || 0), jami = Math.max(0, ...Array.from(ek.querySelectorAll("[data-r]")).map((x) => +x.dataset.r));
+      if (n >= jami) return false;
+      ek.dataset.raqam = n + 1;
+      ek.querySelectorAll('[data-r="' + (n + 1) + '"]').forEach((x) => x.classList.add("on"));
+      chal("qadam");
+      return true;
+    }
+    if (e.target.closest(".dst")) return true;
+    if (ek.dataset.yuryapti) return e.target.closest(".katak,.hn") ? true : null;
+    const c = mdBosilgan(e, ek);
+    if (c) {
+      chal("bos");
+      muammoOl(ek);
+      ek.querySelectorAll(".konfeti").forEach((x) => x.remove());
+      katakAsl(ek);
+      mdBayroqQoy(ek, c[0], c[1]);
+      const tb2 = bashoratTugma(ek);
+      if (tb2) tb2.classList.remove("kut");
+      ishora(ek, "Bayroqcha qo‘yildi. «Tekshirish»ni bosing");
+      return true;
+    }
+    const tb = bashoratTugma(ek), tek = tb && e.target.closest(".hn .ishga, .hn .asos") === tb;
+    if (tek) {
+      if (!ek.dataset.bayroq) {
+        ishora(ek, "Avval bayroqchani qo‘ying");
+        return true;
+      }
+      ishgaTushir(ek);
+      return true;
+    }
+    if (e.target.closest(".hn .mas")) {
+      ishora(ek, t.maslahat || "");
+      bildirB(ek, { t: "yordam", s: typeof qadam !== "undefined" ? qadam : 0 });
+      return true;
+    }
+    return null;
+  }
+  function maydonNatija(ek, id, h, bh, bl, bola) {
+    const t = TOP(id), b = t.bosh || {}, g = t.gap || {}, joy = mdYorliq(...bh.joy);
+    const xato = {
+      chet: ["Maydon tugadi!", "Qahramon shu blokda to‘xtadi. Boshqa tomonga yuring"],
+      boshqa: ["Yulduz bu yerda emas!", "Qahramon " + joy + " da. Sonlarni tekshiring: avval X, keyin Y"],
+      olmasiz: ["Olma qoldi-ku!", "Avval olmaga boring — u " + (bh.olma ? mdYorliq(...bh.olma) : "") + " da"],
+      kamManzil: ["Oz qoldi!", "Yana bitta manzil qo‘shing"],
+      boshqaKatak: ["Boshqa katak!", "Qahramon " + joy + " da to‘xtadi. Dasturni qaytadan sanang: X qancha, Y qancha"],
+      // 5-dars
+      otibKetdi: ["Ko‘payib ketdi!", "Qahramon yulduzdan o‘tib ketdi — repeat sonini kamaytiring", "ortiqvoy"],
+      rasmKam: ["Oz qoldi!", "Kulrang katak qoldi — " + (bh.katak ? mdYorliq(...bh.katak) : "") + ". repeat sonini tekshiring"],
+      rasmChiqdi: ["Rasmdan chiqdi!", "Qahramon " + (bh.katak ? mdYorliq(...bh.katak) : "") + " ga chiqdi — u kulrang emas. Son va yo‘nalishni tekshiring", "ortiqvoy"],
+      kamIchki: ["Oz qoldi!", "repeat ichiga kamida ikkita blok qo‘ying"],
+      // 6-dars
+      kamOila: ["Oz qoldi!", "Dasturda go to ham, repeat ham bo‘lsin"],
+      // 7-dars
+      kostyumBoshqa: ["Kostyum boshqa!", "Hozir: " + KN(bh.hozir) + ". Kerak: " + KN(bh.kerak) + ". Oxiriga switch costume to " + KN(bh.kerak)],
+      belgiKostyum: ["Bu katakda — " + KN(bh.kerak) + "!", (bh.katak ? mdYorliq(...bh.katak) : "") + " da switch costume to " + KN(bh.kerak) + " qo‘ying"],
+      animKam: ["Oz qoldi!", "Animatsiya: " + bh.n + " / " + bh.kerak + ". repeat sonini tekshiring"],
+      animQani: ["Animatsiya qani?", "Har move blokidan keyin: switch costume to xursand, switch costume to xotirjam"]
+    }[bh.tur];
+    const gt = g[bh.tur] && GAPT(g[bh.tur]);
+    if (xato) {
+      chal("muammo");
+      ishora(ek, gt ? gt.replace("(x, y)", bh.katak ? mdYorliq(...bh.katak) : joy).replace("(x2, y2)", bh.yulduzK ? mdYorliq(...bh.yulduzK) : "") : xato[1]);
+      muammo(ek, xato[2] || "kamvoy", xato[0]);
+      return;
+    }
+    ishora(ek, g.yetdi ? GAPT(g.yetdi) : { yetdi: "Yetib bordi!", tayyor: "Yo‘lingiz tayyor!", oldindan: "Oldindan aytdingiz!", rasmTayyor: "Rasm tayyor!" }[bh.tur]);
+    konfeti(ek);
+    if (!bola || ek.dataset.oqish) return;
+    oxirgiSaqla(ek);
+    if (bh.tur === "tayyor" && typeof qDasturSaqla === "function") qDasturSaqla(h.go.map(([x, y]) => ({ t: "x", m: x + "," + y })));
+    const dasturBl = typeof bloklar === "function" ? bloklar(ek) : bl;
+    const qosh = [...kosTovushBelgi(h), ...b.bashorat ? [] : dasturBl, ...bh.rasm ? [{ dataset: { tur: "c" } }] : [], ...b.kod && typeof kodHisob === "function" ? kodHisob(ek) : [], ...Array.from({ length: b.uzun ? Math.max(0, b.uzun.length - dasturBl.length) : 0 }, () => ({ dataset: { tur: "z" } }))];
+    if ((bh.tur === "rasmTayyor" || bh.tur === "tayyor") && b.erkinRasm && typeof qDasturSaqla === "function") qDasturSaqla(h.yol.map(([x, q]) => ({ t: "x", m: x + "," + mdY(h.xr, q) })));
+    if (typeof blokQosh === "function") blokQosh(id, qosh);
+    if (b.pog && typeof pogQosh === "function") pogQosh(b.pog);
+    otKeyin(ek, 1400, () => {
+      if (t.keyin) {
+        ichki = QADAM2[qadam][2].indexOf(t.keyin);
+        chiz();
+      } else bolaKeyingi();
+    });
+  }
+  function mdYolChiz(k, nuqtalar) {
+    if (!nuqtalar.length) return;
+    const xr = katakXarita(k.dataset.xarita), H = xr.length, s = (k.dataset.start || "0,0").split(",").map(Number), iz = k.querySelector(".kt-iz"), q = (y) => H - 1 - y;
+    let [ax, ay] = s;
+    iz.innerHTML = "";
+    for (const [x, y] of nuqtalar) {
+      const l = document.createElementNS("http://www.w3.org/2000/svg", "line");
+      l.setAttribute("class", "kt-il kt-gl");
+      l.setAttribute("x1", ax * KT + 50);
+      l.setAttribute("y1", q(ay) * KT + 52);
+      l.setAttribute("x2", x * KT + 50);
+      l.setAttribute("y2", q(y) * KT + 52);
+      iz.appendChild(l);
+      const c = k.querySelector('.kt-c[data-k="' + x + "," + q(y) + '"]');
+      if (c) c.classList.add("iz");
+      ax = x;
+      ay = y;
+    }
+    const g = k.querySelector(".kt-q");
+    if (g) g.style.transform = katakJoy(ax, q(ay));
+    mdYorliqQoy(k, ax, q(ay));
+  }
+  const OYIN = /* @__PURE__ */ new Map();
+  const OYIN_TUGMA = { ArrowRight: "right", ArrowLeft: "left", ArrowUp: "up", ArrowDown: "down", " ": "space" };
+  const TUGMA_BELGI = { right: "→", left: "←", up: "↑", down: "↓", space: "space" };
+  const oyinTugma = (ek) => ek.querySelector(".hn .ishga") || ek.querySelector(".hn .asos");
+  const oyinKalit = () => (typeof K !== "undefined" ? K : "jr-") + "dasturcha";
+  function oyinDasturOl() {
+    try {
+      return JSON.parse(localStorage.getItem(oyinKalit()) || "[]");
+    } catch (e) {
+      return [];
+    }
+  }
+  function oyinDasturSaqla(r) {
+    try {
+      localStorage.setItem(oyinKalit(), JSON.stringify(r));
+    } catch (e) {
+    }
+  }
+  function oyinTayyorla(ek) {
+    const t = TOP(ek.dataset.id), b = t.bosh, g = t.gap || {};
+    if (b.xk) return xkTayyorla(ek);
+    oyinToxtat(ek);
+    if (b.prog === "oldingi" && b.labirint) labDasturYukla(ek);
+    else if (b.soloDastur && typeof SOLO !== "undefined" && SOLO) labQur(ek, b.soloDastur);
+    else if (b.prog === "oldingi" && typeof blYukla === "function") {
+      const s = oyinDasturOl();
+      if (s.length) {
+        blYukla(ek, s);
+        sanoq(ek);
+      }
+    }
+    if (b.chek) chekChiz(ek);
+    if (b.ball) ballTayyorla(ek);
+    if (b.labirint) labJoyKuzat(ek);
+    if (b.yasash) yasashTayyorla(ek);
+    else if (b.darajalar) {
+      mdQayta(ek, darajaXarita(b.darajalar[0]));
+      darajaYoz(ek, 0, b.darajalar.length);
+    }
+    const tb = oyinTugma(ek);
+    if (tb) {
+      if (tb.classList.contains("ishga")) tb.textContent = b.yasash ? "▶ Sinab ko‘rish" : "▶ Boshlash";
+      tb.dataset.asl = tb.innerHTML;
+    }
+    if (g.boshla && GAPT(g.boshla)) ishora(ek, GAPT(g.boshla));
+  }
+  function oyinBosish(e, ek) {
+    const tb = oyinTugma(ek);
+    if (tb && e.target.closest(".hn .ishga, .hn .asos") === tb) {
+      if (ek.dataset.oyin) {
+        const o = OYIN.get(ek);
+        if (TOP(ek.dataset.id).bosh.klon) klonOyinToxtat(ek);
+        else if (TOP(ek.dataset.id).bosh.kosmik) kosmikToxtat(ek);
+        else oyinToxtat(ek);
+        if (TOP(ek.dataset.id).bosh.xk) xkSeans(ek, o, "toxta");
+      } else oyinBoshla(ek);
+      return true;
+    }
+    return null;
+  }
+  function oyinYozuv(ek, o) {
+    const p = ek.querySelector(".oyin-yz");
+    if (!p) return;
+    const n = o.h.olma.filter(([x, y]) => o.h.yol.some(([a, c]) => a === x && c === y)).length;
+    p.innerHTML = "O‘yin: strelkalarni bosing" + (o.h.olma.length ? " · Olma: <b>" + n + " / " + o.h.olma.length + "</b>" : "");
+  }
+  async function oyinBoshla(ek) {
+    const b = TOP(ek.dataset.id).bosh;
+    maslahatOch(ek);
+    if (b.ball) return ballBoshla(ek);
+    if (b.olmaDastur) return olmaOyinBoshla(ek);
+    if (b.klon) return klonOyinBoshla(ek);
+    if (b.kosmik) return kosmikBoshla(ek);
+    muammoOl(ek);
+    urildiOl(ek);
+    ek.querySelectorAll(".konfeti,.dv-pufak").forEach((x) => x.remove());
+    if (typeof blTanlovOl === "function") blTanlovOl(ek);
+    if (!blDasturchalar(ek).length) {
+      chal("muammo");
+      ishora(ek, b.xk ? xkO(xkS(ek)).bosh : "Avval hodisa blokini qo‘ying: when … key pressed");
+      muammo(ek, "boshvoy", "Men nimani kutaman?");
+      return;
+    }
+    if (b.yasash && labOlchov(ek.querySelector(".katak").dataset.xarita).yol == null) {
+      yasashMuammo(ek, true);
+      return;
+    }
+    if (b.darajalar) {
+      mdQayta(ek, darajaXarita(b.darajalar[0]));
+      darajaYoz(ek, 0, b.darajalar.length);
+    }
+    if (b.labirint && typeof blShartBosh === "function" && blShartBosh(ek)) {
+      chal("muammo");
+      ishora(ek, "if ichiga blok qo‘ying — yo‘l bo‘lsa, u bajariladi");
+      muammo(ek, "boshvoy", "Ichi bo‘sh-ku…");
+      return;
+    }
+    const h = await SAHNA.katak.boshla(ek, b);
+    h.yashirinKut = !!(h.k.querySelector(".kt-yul.yashirin") && h.olma.length);
+    const o = { h, bosildi: /* @__PURE__ */ new Set(), bosish: 0, qaytdi: false, gapAytildi: false };
+    OYIN.set(ek, o);
+    ek.dataset.oyin = "1";
+    ek.querySelector(".oyna").insertAdjacentHTML("beforeend", '<span class="gl oyin-yz"></span>');
+    oyinYozuv(ek, o);
+    const tb = oyinTugma(ek);
+    if (tb) tb.textContent = "■ To‘xtatish";
+    const ws = typeof BL_WS !== "undefined" && BL_WS.get(ek), yetim = ws ? blTepalar(ws).some((t) => t.type !== "when_key") : false;
+    const tug = blDasturchalar(ek).map((d) => d.tugma), ikki = tug.find((t, i) => tug.indexOf(t) !== i);
+    if (b.xk) xkSeansBosh(ek);
+    ishora(ek, yetim ? "Bu bloklar hech qachon ishlamaydi — tepasiga hodisa bloki qo‘ying" : ikki && !b.ikkiIshoraYoq ? TUGMA_BELGI[ikki] + " uchun ikkita dasturcha bor — ikkalasi ham ishlaydi" : b.ikkiIshoraYoq ? GAPT((TOP(ek.dataset.id).gap || {}).oyinIshora || "") : "");
+  }
+  function oyinToxtat(ek) {
+    delete ek.dataset.oyin;
+    OYIN.delete(ek);
+    ek.querySelectorAll(".oyin-yz").forEach((x) => x.remove());
+    const tb = oyinTugma(ek);
+    if (tb && tb.dataset.asl) tb.innerHTML = tb.dataset.asl;
+  }
+  document.addEventListener("keydown", (e) => {
+    const ek = document.querySelector(".ekran[data-oyin]");
+    if (!ek) return;
+    const k = OYIN_TUGMA[e.key];
+    if (!k) return;
+    if (e.target.closest && e.target.closest("input,textarea,select,[contenteditable=true]")) return;
+    e.preventDefault();
+    e.stopPropagation();
+    oyinTugmaBos(ek, k);
+  }, true);
+  async function oyinTugmaBos(ek, k) {
+    const o = OYIN.get(ek);
+    if (!o || ek.dataset.yuryapti) return;
+    if (ek.dataset.oyin === "huk") return hukOyinBos(ek, k, o);
+    if (ek.dataset.oyin === "sahna") return sahnaOyinBos(ek, k, o);
+    if (ek.dataset.oyin === "klon") return klonOyinBos(ek, k, o);
+    if (ek.dataset.oyin === "kosmik") return kosmikBos(ek, k, o);
+    if ((TOP(ek.dataset.id).bosh || {}).ball) return ballBos(ek, k, o);
+    if ((TOP(ek.dataset.id).bosh || {}).olmaDastur) return olmaOyinBos(ek, k, o);
+    if ((TOP(ek.dataset.id).bosh || {}).labirint) return labTugmaBos(ek, k, o);
+    o.bosildi.add(k);
+    o.bosish++;
+    o.tugma = k;
+    muammoOl(ek);
+    const d = blDasturchalar(ek).filter((x) => x.tugma === k);
+    if (!d.length) {
+      const gy = (TOP(ek.dataset.id).gap || {}).dasturchaYoq;
+      chal("muammo");
+      ishora(ek, gy ? GAPT(gy).replace("↓", TUGMA_BELGI[k]) : TUGMA_BELGI[k] + " tugmasi uchun when " + TUGMA_BELGI[k] + " key pressed bloki kerak");
+      muammo(ek, "boshvoy", "Bu tugma uchun dasturcha yo‘q-ku…");
+      return;
+    }
+    if (d.every((x) => !x.bloklar.length)) {
+      chal("muammo");
+      ishora(ek, "Hodisa blokining ostiga move blokini ulang");
+      muammo(ek, "kamvoy", "Tugma bosildi, lekin men nima qilay?");
+      return;
+    }
+    ek.dataset.yuryapti = "1";
+    for (const x of d) {
+      x.hodisa.classList.add("hozir");
+      await ijro(x.bloklar.map((el) => ({ el, tur: blokTuri(el), ichki: [] })), (t) => {
+        if (t.tur === "s" && blokMatn(t.el) && blokMatn(t.el) !== DARS2.gapStandart) o.gapAytildi = true;
+        if (t.tur === "n") {
+          o.tovushT = o.tovushT || {};
+          (o.tovushT[k] = o.tovushT[k] || /* @__PURE__ */ new Set()).add(blokQiymat(t.el, "NOM") || "qadam");
+        }
+        if (t.tur === "x" && k === "space" && blokXY(t.el).join(",") === "0,0") o.qaytdi = true;
+        return SAHNA.katak.bajar(o.h, t);
+      }, { kut: 140 });
+      x.hodisa.classList.remove("hozir");
+      if (o.h.urildi) {
+        o.h.urildi = null;
+        urildiOl(ek);
+      }
+    }
+    delete ek.dataset.yuryapti;
+    if (OYIN.get(ek) === o) oyinTekshir(ek, o);
+  }
+  function oyinTekshir(ek, o) {
+    const h = o.h, b = TOP(ek.dataset.id).bosh;
+    const qoldi = h.olma.filter(([x, y]) => !h.yol.some(([a, c]) => a === x && c === y));
+    oyinYozuv(ek, o);
+    if (!qoldi.length && h.yashirinKut) {
+      h.yashirinKut = false;
+      const y = h.k.querySelector(".kt-yul.yashirin");
+      if (y) y.classList.add("topildi");
+      chal("bos");
+      o.qochBos = 0;
+      o.endiChiqdi = true;
+    }
+    if (!h.yulduz || h.yashirinKut) return;
+    if (h.x !== h.yulduz[0] || h.y !== h.yulduz[1]) {
+      oyinQoch(ek, o, b);
+      return;
+    }
+    if (qoldi.length) {
+      chal("muammo");
+      ishora(ek, "Avval olmani oling — u " + mdYorliq(qoldi[0][0], mdY(h.xr, qoldi[0][1])) + " da");
+      muammo(ek, "kamvoy", "Olma qoldi-ku!");
+      return;
+    }
+    if (b.oxiri === "space" && o.tugma !== "space") {
+      ishora(ek, "Yulduzdasiz — space bosing");
+      return;
+    }
+    if (b.tovush && !((o.tovushT || {})[b.tovush.tugma] || /* @__PURE__ */ new Set()).has(b.tovush.nom)) {
+      chal("muammo");
+      ishora(ek, TUGMA_BELGI[b.tovush.tugma] + " dasturchasiga play sound " + b.tovush.nom + " ulang");
+      muammo(ek, "kamvoy", "Tovush qani?");
+      return;
+    }
+    if (b.kostyum && h.kos !== b.kostyum) {
+      chal("muammo");
+      ishora(ek, "Hozir: " + KN(h.kos) + ". Kerak: " + KN(b.kostyum) + ". space dasturchasiga switch costume to " + KN(b.kostyum));
+      muammo(ek, "kamvoy", "Kostyum boshqa!");
+      return;
+    }
+    if (b.xil && (new Set(h.kosNomlar || []).size < b.xil || new Set(h.tovushlar || []).size < b.xil)) {
+      chal("muammo");
+      ishora(ek, "Yana bitta kostyum yoki tovush qo‘shing — kamida ikki xil");
+      muammo(ek, "kamvoy", "Hammasi bir xil-ku!");
+      return;
+    }
+    const xato = b.kerak && oyinShart(ek, o, b.kerak);
+    if (xato) {
+      chal("muammo");
+      ishora(ek, xato[1]);
+      muammo(ek, "kamvoy", xato[0]);
+      return;
+    }
+    oyinYutdi(ek, o);
+  }
+  function oyinQoch(ek, o, b) {
+    const q = b && b.qoch;
+    if (!q || !q.joy) return;
+    if (o.endiChiqdi) {
+      o.endiChiqdi = false;
+      return;
+    }
+    o.qochBos = (o.qochBos || 0) + 1;
+    if (o.qochBos % q.har) return;
+    const h = o.h;
+    let i = o.qochI || 0;
+    while (i < q.joy.length && q.joy[i][0] === h.x && q.joy[i][1] === mdY(h.xr, h.y)) i++;
+    if (i >= q.joy.length) return;
+    o.qochI = i + 1;
+    yulduzQoch(ek, h, q.joy[i][0], q.joy[i][1]);
+  }
+  const KN = (k) => k === "oylanadi" ? "o‘ylanadi" : k;
+  function kosTovushBelgi(h) {
+    const n = (DARS2.natija || []).map((x) => x.blok);
+    if (!h || n.indexOf("K") < 0 && n.indexOf("T") < 0 && n.indexOf("N") < 0) return [];
+    return [...Array.from({ length: h.kosSoni || 0 }, () => ({ dataset: { tur: "K" } })), ...Array.from({ length: h.anim || 0 }, () => ({ dataset: { tur: "N" } })), ...Array.from({ length: (h.tovushlar || []).length }, () => ({ dataset: { tur: "T" } }))];
+  }
+  function labirintBelgi(h, b) {
+    const n = (DARS2.natija || []).map((x) => x.blok), r = [];
+    if (n.indexOf("S") >= 0) {
+      const ws = typeof BL_WS !== "undefined" && BL_WS.get(h.ek);
+      r.push(...Array.from({ length: ws ? ws.getBlocksByType("if_path", false).length : 0 }, () => ({ dataset: { tur: "S" } })));
+    }
+    if (n.indexOf("L") >= 0 && !b.erkinSayr) r.push(...Array.from({ length: h.egizN === 2 ? 2 : 1 }, () => ({ dataset: { tur: "L" } })));
+    return r;
+  }
+  function oyinShart(ek, o, sh) {
+    const d = blDasturchalar(ek).filter((x) => x.tugma === sh.tugma), soni = Math.max(0, ...d.map((x) => x.bloklar.filter((el) => blokTuri(el) === sh.tur).length));
+    if (sh.blok && soni < sh.blok) return ["Oz qoldi!", sh.gap0];
+    if (sh.qaytdi && !o.qaytdi) return ["Oz qoldi!", sh.gap0];
+    if (sh.gap && !o.gapAytildi) return ["Hech narsa demadi…", sh.gap0];
+    if (sh.tomon) {
+      const yon = { right: "r", left: "l", up: "u", down: "d" };
+      if (blDasturchalar(ek).some((x) => yon[x.tugma] && x.bloklar.some((el) => {
+        const t = blokTuri(el);
+        return "rlud".indexOf(t) >= 0 && t !== yon[x.tugma];
+      }))) return ["Oz qoldi!", sh.gap0];
+    }
+    return null;
+  }
+  function oyinYutdi(ek, o) {
+    const id = ek.dataset.id, t = TOP(id), b = t.bosh, g = t.gap || {};
+    if (b.xk) {
+      oyinToxtat(ek);
+      ishora(ek, "Siz yutdingiz!");
+      konfeti(ek);
+      return xkSeans(ek, o, "yutdi");
+    }
+    oyinToxtat(ek);
+    ishora(ek, g.yetdi ? GAPT(g.yetdi) : "Yetib bordi!");
+    konfeti(ek);
+    const ildiz = ek.parentNode && ek.parentNode.closest("#ust,#bol");
+    if (!ildiz || ildiz.id !== "bol" || ek.dataset.oqish) return;
+    oxirgiSaqla(ek);
+    oyinDasturSaqla(blRoyxatMa(ek));
+    if (b.labirint) labYutdi(ek, o);
+    const lab = b.labirint ? [...Array.from({ length: labYoq(o) }, () => ({ dataset: { tur: "Y" } })), { dataset: { tur: "L" } }, ...Array.from({ length: b.darajalar ? (o.daraja || 0) + 1 : 0 }, () => ({ dataset: { tur: "G" } }))] : [];
+    if (typeof blokQosh === "function") blokQosh(id, [...Array.from({ length: o.bosish }, () => ({ dataset: { tur: "t" } })), ...o.h.olma.map(() => ({ dataset: { tur: "o" } })), ...kosTovushBelgi(o.h), ...lab]);
+    if (b.pog && typeof pogQosh === "function") pogQosh(b.pog);
+    otKeyin(ek);
+  }
+  const oxirgiKalit = () => (typeof K !== "undefined" ? K : "jr-") + "oxirgi";
+  function oxirgiSaqla(ek) {
+    const ws = typeof BL_WS !== "undefined" && BL_WS.get(ek);
+    const x = { id: ek.dataset.id, bl: ws ? Blockly.serialization.workspaces.save(ws) : null, bayroq: ek.dataset.bayroq || "" };
+    try {
+      localStorage.setItem(oxirgiKalit(), JSON.stringify(x));
+    } catch (e) {
+    }
+  }
+  function oxirgiOl() {
+    try {
+      return JSON.parse(localStorage.getItem(oxirgiKalit()) || "null");
+    } catch (e) {
+      return null;
+    }
+  }
+  function oqishYukla(ek) {
+    const x = oxirgiOl();
+    if (!ek || !x || x.id !== ek.dataset.id) return;
+    ek.dataset.oqish = "1";
+    const ws = typeof BL_WS !== "undefined" && BL_WS.get(ek);
+    if (ws && x.bl) {
+      ws.clear();
+      Blockly.serialization.workspaces.load(x.bl, ws);
+      ws.getAllBlocks(false).forEach(blBelgila);
+      blTartib(ws);
+      blMasshtab(ek, ws);
+      blTartibKeyin(ws);
+      sanoq(ek);
+    }
+    if (x.bayroq && x.bayroq.indexOf("son:") === 0) {
+      if (typeof sonBashTayyorla === "function") sonBashTayyorla(ek);
+      const sk = ek.querySelector('.bsh-q .sk[data-v="' + x.bayroq.slice(4) + '"]');
+      if (sk) {
+        sk.classList.add("tan");
+        ek.dataset.bayroq = x.bayroq;
+        const ish = ek.querySelector(".hn .ishga") || ek.querySelector(".hn .asos");
+        if (ish) ish.classList.remove("xira");
+      }
+    } else if (x.bayroq) {
+      const [a, c] = x.bayroq.split(",").map(Number);
+      mdBayroqQoy(ek, a, c);
+    }
+    ishora(ek, DARS2.oqishGap || "Dasturingizni ustozga o‘qib bering");
+  }
+  function hukQoch(k) {
+    const m = k && k.dataset.qoch && k.dataset.qoch.match(/^(\d+):(\d+),(\d+)$/);
+    return m ? { n: +m[1], x: +m[2], y: +m[3] } : null;
+  }
+  function yulduzQoch(ek, h, x, y) {
+    const s = ek.querySelector(".katak.maydon .kt-yul"), kor = s && s.classList.contains("topildi");
+    mdYulduzQoy(ek, x, y);
+    h.yulduz = [x, h.xr.length - 1 - y];
+    chal("sakra");
+    if (s) {
+      if (kor) s.classList.add("topildi");
+      s.classList.remove("qochdi");
+      void s.getBoundingClientRect();
+      s.classList.add("qochdi");
+    }
+  }
+  function mdYulduzQoy(ek, x, y) {
+    const k = ek.querySelector(".katak.maydon");
+    if (!k) return;
+    const xr = katakXarita(k.dataset.xarita).map((r) => r.replace("*", ".")), q = xr.length - 1 - y;
+    xr[q] = xr[q].slice(0, x) + "*" + xr[q].slice(x + 1);
+    k.dataset.xarita = xr.join("|");
+    const s = k.querySelector(".kt-yul");
+    if (s) {
+      s.setAttribute("transform", "translate(" + (x * KT + 50) + " " + (q * KT + 52) + ") scale(30)");
+      s.classList.remove("topildi");
+    }
+  }
+  async function hukOyin(ek, k, i) {
+    ek.querySelectorAll(".jk").forEach((x) => x.classList.toggle("sinov", x === k));
+    ek.querySelectorAll(".muam,.konfeti").forEach((x) => x.remove());
+    k.classList.remove("n-ok", "n-yoq");
+    k.querySelectorAll(".jn").forEach((x) => x.remove());
+    const h = await SAHNA.katak.boshla(ek, {});
+    OYIN.set(ek, { h, huk: { k, i, qoch: hukQoch(k), n: 0 } });
+    ek.dataset.oyin = "huk";
+    ek.querySelector(".oyna").insertAdjacentHTML("beforeend", '<span class="gl oyin-yz">O‘yin: strelkalarni bosing</span>');
+  }
+  async function hukOyinBos(ek, key, o) {
+    const tur = { right: "r", left: "l", up: "u", down: "d" }[key];
+    if (!tur) return;
+    ek.dataset.yuryapti = "1";
+    await SAHNA.katak.bajar(o.h, { tur, el: document.createElement("span") });
+    if (o.h.urildi) o.h.urildi = null;
+    o.huk.n++;
+    const qc = o.huk.qoch;
+    if (qc && o.huk.n === qc.n) yulduzQoch(ek, o.h, qc.x, qc.y);
+    await KUT(160);
+    delete ek.dataset.yuryapti;
+    const h = o.h;
+    if (!h.yulduz || h.x !== h.yulduz[0] || h.y !== h.yulduz[1]) return;
+    const { k, i } = o.huk, g = TOP(ek.dataset.id).gap || {};
+    oyinToxtat(ek);
+    k.classList.remove("sinov");
+    k.classList.add("n-ok");
+    (k.querySelector(".jt") || k).insertAdjacentHTML("beforeend", '<small class="jn">' + (k.dataset.nat || g.yetdi) + "</small>");
+    konfeti(ek);
+    ek.dataset.huk = Math.max(+(ek.dataset.huk || 0), i + 1);
+    const a = ek.querySelector(".hn .asos");
+    if (a && g.keyingi) a.textContent = g.keyingi;
+  }
+  const LAB_YON = { r: "right", l: "left", u: "up", d: "down" };
+  const YON_GAP = { right: "o‘ngga", left: "chapga", up: "tepaga", down: "pastga" };
+  const STRELKA = ["right", "left", "up", "down"];
+  const labTurla = (t) => {
+    t.tur = blokTuri(t.el);
+    t.ichki.forEach(labTurla);
+    return t;
+  };
+  const labBola = (ek) => {
+    const r = ek && ek.parentNode && ek.parentNode.closest("#ust,#bol");
+    return !!r && r.id === "bol";
+  };
+  function labQoida(ek) {
+    const r = { ochiq: [], boshqa: [], strelka: 0, move: 0 }, bor = /* @__PURE__ */ new Set();
+    for (const x of blDasturchalar(ek)) {
+      if (STRELKA.indexOf(x.tugma) < 0) continue;
+      if (x.bloklar.length) bor.add(x.tugma);
+      const yur = (tt, ota) => tt.forEach((t) => {
+        const tur = blokTuri(t.el);
+        if (tur === "a") return yur(t.ichki, t.yon);
+        if (LAB_YON[tur]) {
+          r.move++;
+          if (!ota) {
+            if (r.ochiq.indexOf(x.tugma) < 0) r.ochiq.push(x.tugma);
+          } else if (ota !== LAB_YON[tur]) r.boshqa.push([x.tugma, ota]);
+        }
+        yur(t.ichki, ota);
+      });
+      yur(x.daraxt, null);
+    }
+    r.strelka = bor.size;
+    r.ok = r.move > 0 && !r.ochiq.length && !r.boshqa.length;
+    return r;
+  }
+  async function labTugmaBos(ek, k, o) {
+    const b = TOP(ek.dataset.id).bosh, h = o.h;
+    o.bosildi.add(k);
+    o.bosish++;
+    o.tugma = k;
+    muammoOl(ek);
+    const d = blDasturchalar(ek).filter((x) => x.tugma === k);
+    if (!d.length) {
+      chal("muammo");
+      ishora(ek, TUGMA_BELGI[k] + " tugmasi uchun when " + TUGMA_BELGI[k] + " key pressed bloki kerak");
+      muammo(ek, "boshvoy", "Bu tugma uchun dasturcha yo‘q-ku…");
+      return;
+    }
+    if (d.every((x) => !x.bloklar.length)) {
+      chal("muammo");
+      ishora(ek, "Hodisa blokining ostiga move blokini ulang");
+      muammo(ek, "kamvoy", "Tugma bosildi, lekin men nima qilay?");
+      return;
+    }
+    ek.dataset.yuryapti = "1";
+    const iz = { yurdi: 0, yon: [], boshqa: null, tovush: false, tovushIf: false, go: null }, yoq0 = h.yoqSoni || 0;
+    for (const x of d) {
+      x.hodisa.classList.add("hozir");
+      await ijro(x.daraxt.map(labTurla), async (t) => {
+        const q0 = h.qadamlar, r = await SAHNA.katak.bajar(h, t);
+        if (t.tur === "a") iz.yon.push(t.yon);
+        if (LAB_YON[t.tur] && h.qadamlar > q0) {
+          iz.yurdi++;
+          if (LAB_YON[t.tur] !== k && k !== "space") iz.boshqa = LAB_YON[t.tur];
+        }
+        if (t.tur === "n") {
+          iz.tovush = true;
+          if (typeof blOtaShart === "function" && blOtaShart(t.el)) iz.tovushIf = true;
+        }
+        if (t.tur === "x" && r !== "toxta") iz.go = [h.x, mdY(h.xr, h.y)];
+        return r;
+      }, { kut: 140 });
+      x.hodisa.classList.remove("hozir");
+      if (h.urildi) break;
+    }
+    delete ek.dataset.yuryapti;
+    if (OYIN.get(ek) !== o) return;
+    if (b.xk) xkLabIz(ek, o, iz, k, yoq0);
+    if (h.urildi) {
+      const u = h.urildi;
+      h.urildi = null;
+      o.toxtadi = true;
+      oyinToxtat(ek);
+      chal("muammo");
+      if (u.eshik) {
+        ishora(ek, "Eshik yopiq. Avval kalitni oling");
+        muammo(ek, "kamvoy", "Kalit qani?");
+      } else {
+        const ota = typeof blOtaShart === "function" && blOtaShart(u.el);
+        ishora(ek, ota ? "Shart bir tomonni tekshirdi, blok boshqa tomonga yurdi" : b.shartGap ? "Bu blok yo‘lni tekshirmay yurdi. Yurishdan oldin tekshiring" : "O‘yin to‘xtadi. Qaytadan — «▶ Boshlash»");
+        muammo(ek, "tosiqvoy", "Devor!");
+      }
+      labChekYangila(ek, o);
+      if (b.xk) xkSeans(ek, o, "urildi");
+      return;
+    }
+    if (b.startga && iz.go && !iz.go[0] && !iz.go[1]) o.startga = true;
+    if (iz.tovushIf && iz.yurdi) o.tovushIf = true;
+    let mm = null, gap = "";
+    if (h.eshikYoq) {
+      h.eshikYoq = false;
+      mm = ["kamvoy", "Kalit qani?"];
+      gap = "Eshik yopiq. Avval kalitni oling";
+    } else if (b.tovushIf && iz.tovush && !iz.yurdi) {
+      mm = ["kamvoy", "Men yurmadim-ku!"];
+      gap = "Tovush qahramon turganda ham chalindi. U faqat yurganda chalinsin";
+    } else if (b.startga && iz.go && (iz.go[0] || iz.go[1])) {
+      mm = ["kamvoy", "Bu start emas!"];
+      gap = "Qahramon " + mdYorliq(...iz.go) + " ga bordi. Start — (0, 0)";
+    } else if (iz.boshqa) gap = TUGMA_BELGI[k] + " bosildi — qahramon " + YON_GAP[iz.boshqa] + " yurdi. Dasturchani tekshiring";
+    else if (!iz.yurdi && k !== "space" && iz.yon.some((y) => y !== k)) gap = TUGMA_BELGI[k] + " bosildi — shart " + TUGMA_BELGI[iz.yon.find((y) => y !== k)] + " tomonni tekshirdi";
+    else if (b.adashmay && (h.yoqSoni || 0) > yoq0) gap = "Devor tomonga bosildi. Qaytadan — «▶ Boshlash»";
+    else if (b.qoidaIshora && k !== "space" && labQoida(ek).ochiq.indexOf(k) >= 0) gap = TUGMA_BELGI[k] + " dasturchasi yo‘lni tekshirmaydi";
+    if (mm) {
+      chal("muammo");
+      muammo(ek, mm[0], mm[1]);
+    }
+    ishora(ek, gap);
+    labChekYangila(ek, o);
+    labTekshir(ek, o);
+  }
+  async function labTekshir(ek, o) {
+    const h = o.h, b = TOP(ek.dataset.id).bosh;
+    if (!h.yulduz || h.x !== h.yulduz[0] || h.y !== h.yulduz[1]) return;
+    if (b.yasash) return yasashYutdi(ek, o);
+    if (b.darajalar && (o.daraja || 0) < b.darajalar.length - 1) return darajaKeyingi(ek, o, b);
+    let xato = null;
+    if (b.qoida) {
+      const q = labQoida(ek);
+      if (q.ochiq.length) xato = ["Oz qoldi!", TUGMA_BELGI[q.ochiq[0]] + " dasturchasi yo‘lni tekshirmaydi"];
+      else if (q.boshqa.length) xato = ["Oz qoldi!", TUGMA_BELGI[q.boshqa[0][0]] + " dasturchasida shart " + TUGMA_BELGI[q.boshqa[0][1]] + " tomonni tekshiradi"];
+      else if (!q.move) xato = ["Oz qoldi!", "Hodisa blokining ostiga move blokini ulang"];
+    }
+    if (!xato && b.adashmay && labYoq(o) > 0) xato = ["Oz qoldi!", "Devor tomonga bosildi. Qaytadan — «▶ Boshlash»"];
+    if (!xato && b.yoq && !(h.yoqSoni > 0)) xato = ["Oz qoldi!", "Ataylab devor tomonga bosing — keyin yuting"];
+    if (!xato && b.tovushIf && !o.tovushIf) xato = ["Oz qoldi!", "Qahramon yurganda tovush chalinsin"];
+    if (!xato && b.startga && !o.startga) xato = ["Oz qoldi!", "Bitta tugma qahramonni startga qaytarsin"];
+    if (xato) {
+      chal("muammo");
+      ishora(ek, xato[1]);
+      muammo(ek, "kamvoy", xato[0]);
+      return;
+    }
+    if (b.darajalar && b.darajalar.length > 1) chekBelgi(ek, "ikki");
+    if (b.chek) chekBelgi(ek, "yulduz");
+    if (b.chekTola) {
+      const bosh2 = chekRoyxat().filter(([c]) => (Array.isArray(b.chekTola) ? b.chekTola.indexOf(c) >= 0 : true) && !chekHolat(ek)[c]).map(([, t]) => t);
+      if (bosh2.length && b.darajalar) {
+        oyinToxtat(ek);
+        chal("muammo");
+        ishora(ek, "Ro‘yxatda bo‘sh band bor: " + bosh2[0]);
+        muammo(ek, "kamvoy", "Oz qoldi!");
+        return;
+      }
+      if (bosh2.length) {
+        oyinToxtat(ek);
+        ishora(ek, "Siz yutdingiz! Ro‘yxatda bo‘sh band bor: " + bosh2.join(", "));
+        konfeti(ek);
+        return;
+      }
+    }
+    oyinYutdi(ek, o);
+  }
+  const labKalit = () => (typeof K !== "undefined" ? K : "jr-") + "labdastur";
+  const LAB_OYIN = "jr-labirint-oyini";
+  function labYutdi(ek, o) {
+    const ws = typeof BL_WS !== "undefined" && BL_WS.get(ek);
+    if (!ws) return;
+    const bl = Blockly.serialization.workspaces.save(ws);
+    try {
+      localStorage.setItem(labKalit(), JSON.stringify(bl));
+    } catch (e) {
+    }
+    if (TOP(ek.dataset.id).bosh.saqla) try {
+      localStorage.setItem(LAB_OYIN, JSON.stringify({ bl, xarita: (ek.querySelector(".katak") || {}).dataset.xarita, bosish: o.bosish }));
+    } catch (e) {
+    }
+  }
+  function labDasturYukla(ek) {
+    let bl = null;
+    try {
+      bl = JSON.parse(localStorage.getItem(labKalit()) || "null");
+    } catch (e) {
+    }
+    if (!bl && DARS2.oyin9) {
+      try {
+        bl = (JSON.parse(localStorage.getItem(LAB_OYIN) || "null") || {}).bl || null;
+      } catch (e) {
+      }
+      if (!bl && DARS2.oyinTayyor) return labQur(ek, DARS2.oyinTayyor);
+    }
+    const ws = typeof BL_WS !== "undefined" && BL_WS.get(ek);
+    if (!ws || !bl) return;
+    ws.clear();
+    Blockly.serialization.workspaces.load(bl, ws);
+    ws.getAllBlocks(false).forEach(blBelgila);
+    blTartib(ws);
+    blMasshtab(ek, ws);
+    blTartibKeyin(ws);
+    sanoq(ek);
+  }
+  function labQur(ek, nom) {
+    const ws = typeof BL_WS !== "undefined" && BL_WS.get(ek);
+    if (!ws) return;
+    ws.clear();
+    const zanjir = (ota, r) => {
+      let o = ota;
+      r.forEach((x, i) => {
+        const b = blYangi(ws, x.t, x.t === "a" ? x.yon : x.m);
+        if (i === 0 && ota.type !== "when_key") ota.getInput("DO").connection.connect(b.previousConnection);
+        else o.nextConnection.connect(b.previousConnection);
+        if (x.ichki) zanjir(b, x.ichki);
+        o = b;
+      });
+    };
+    B_GURUH(() => {
+      ((DARS2.oyinlar || {})[nom] || []).forEach(([tugma, d], n) => {
+        const h = blYangi(ws, "k", tugma);
+        h.moveTo(new Blockly.utils.Coordinate(0, 1e3 * n));
+        zanjir(h, d);
+      });
+    });
+    ws.getAllBlocks(false).forEach(blBelgila);
+    blTartib(ws);
+    blMasshtab(ek, ws);
+    blTartibKeyin(ws);
+    sanoq(ek);
+  }
+  function labJoyKuzat(ek) {
+    const ws = typeof BL_WS !== "undefined" && BL_WS.get(ek);
+    if (!ws || ws.__labJoy) return;
+    ws.__labJoy = true;
+    let t = 0, iz = "";
+    const joyla = () => {
+      if (ws.disposed || !document.body.contains(ek)) return;
+      if (Blockly.DropDownDiv && Blockly.DropDownDiv.isVisible && Blockly.DropDownDiv.isVisible() || Blockly.WidgetDiv && Blockly.WidgetDiv.isVisible && Blockly.WidgetDiv.isVisible()) {
+        clearTimeout(t);
+        t = setTimeout(joyla, 300);
+        return;
+      }
+      const yangi = ws.getTopBlocks(false).map((x) => {
+        const xy = x.getRelativeToSurfaceXY(), hw = x.getHeightWidth();
+        return [x.id, Math.round(xy.x), Math.round(xy.y), Math.round(hw.height), Math.round(hw.width)].join();
+      }).join("|") + "|" + Math.round(ek.getBoundingClientRect().width);
+      if (yangi === iz) {
+        delete ek.dataset.joylanmoqda;
+        return;
+      }
+      blTartib(ws);
+      blMasshtab(ek, ws);
+      const bb = ws.getBlocksBoundingBox(), en = (bb.right - bb.left) * ws.scale, jEn = ws.getParentSvg().getBoundingClientRect().width;
+      if (en > jEn - 2 && bb.right > bb.left) {
+        ws.setScale((jEn - 2) / (bb.right - bb.left));
+        blTartib(ws);
+      }
+      iz = ws.getTopBlocks(false).map((x) => {
+        const xy = x.getRelativeToSurfaceXY(), hw = x.getHeightWidth();
+        return [x.id, Math.round(xy.x), Math.round(xy.y), Math.round(hw.height), Math.round(hw.width)].join();
+      }).join("|") + "|" + Math.round(ek.getBoundingClientRect().width);
+      clearTimeout(t);
+      t = setTimeout(joyla, 150);
+    };
+    ek.dataset.joylanmoqda = "1";
+    ws.addChangeListener((e) => {
+      if (e.isUiEvent) return;
+      ek.dataset.joylanmoqda = "1";
+      clearTimeout(t);
+      t = setTimeout(joyla, 120);
+    });
+    t = setTimeout(joyla, 300);
+  }
+  function labOyinSaqlandi() {
+    try {
+      return !!localStorage.getItem(LAB_OYIN);
+    } catch (e) {
+      return false;
+    }
+  }
+  const CHEK = [["strelka", "To‘rt strelka"], ["qoida", "Qoida"], ["kalit", "Kalit va eshik"], ["yulduz", "Yulduz"]];
+  const chekKalit = () => (typeof K !== "undefined" ? K : "jr-") + "chek";
+  function chekSaqlangan() {
+    try {
+      return JSON.parse(localStorage.getItem(chekKalit()) || "{}") || {};
+    } catch (e) {
+      return {};
+    }
+  }
+  function chekHolat(ek) {
+    const bola = labBola(ek), s = bola ? chekSaqlangan() : ek.__chek = ek.__chek || {};
+    if (ek.querySelector(".jr-bl")) {
+      const q = labQoida(ek);
+      if (q.strelka === 4) s.strelka = true;
+      if ((!bola || DARS2.chekStatik) && q.ok) s.qoida = true;
+    }
+    if (DARS2.chekStatik) {
+      const d2 = labOlchov(darajaXarita("L2"));
+      if (d2.eshik && d2.kalit && d2.eshikTosadi && d2.kalitYol && d2.yol != null) s.daraja2 = true;
+    }
+    return s;
+  }
+  function chekBelgi(ek, k) {
+    const s = chekHolat(ek);
+    if (s[k]) return;
+    s[k] = true;
+    if (labBola(ek)) try {
+      localStorage.setItem(chekKalit(), JSON.stringify(s));
+    } catch (e) {
+    }
+    if (ek.querySelector(".chek")) {
+      chekChiz(ek);
+      const r = ek.querySelector(".chek .ch-" + k);
+      if (r && r.animate) r.animate([{ transform: "scale(1.12)" }, { transform: "none" }], { duration: 300 });
+    }
+  }
+  function chekChiz(ek) {
+    const pl = ek.querySelector(".pl");
+    if (!pl) return;
+    pl.querySelectorAll(".chek").forEach((x) => x.remove());
+    const c = chekHolat(ek);
+    if (labBola(ek) && c.strelka) try {
+      localStorage.setItem(chekKalit(), JSON.stringify(c));
+    } catch (e) {
+    }
+    pl.insertAdjacentHTML("beforeend", chekHtml(c));
+  }
+  const chekRoyxat = () => DARS2.chek || CHEK;
+  const chekHtml = (c) => '<div class="chek"><small>O‘yiningizda:</small>' + chekRoyxat().map(([k, t]) => '<span class="ch-r ch-' + k + (c[k] ? " ok" : "") + '"><i>' + (c[k] ? "✓" : "") + "</i>" + t + "</span>").join("") + "</div>";
+  function labChekYangila(ek, o) {
+    const h = o.h, q = labQoida(ek);
+    if (q.strelka === 4) chekBelgi(ek, "strelka");
+    if (q.ok && h.yoqSoni > 0) chekBelgi(ek, "qoida");
+    if (h.kalit && h.eshikOchildi) chekBelgi(ek, "kalit");
+  }
+  function labNatija(ek) {
+    const c = ek.querySelector(".chek-y");
+    if (c) c.innerHTML = chekHtml(chekSaqlangan());
+    const s = ek.querySelector(".saqlandi");
+    if (s) s.hidden = !(DARS2.chekStatik ? labD2() : labOyinSaqlandi());
+    if (DARS2.chekStatik && ek.querySelector(".katak.maydon")) {
+      const k = mdQayta(ek, darajaXarita("L2")), xr = katakXarita(k.dataset.xarita), y = katakTop(xr, "*"), g = k.querySelector(".kt-q");
+      if (y && g) {
+        g.style.transform = katakJoy(y[0], y[1]);
+        mdYorliqQoy(k, y[0], y[1]);
+      }
+      let x = null;
+      try {
+        x = JSON.parse(localStorage.getItem(LAB_DOST()) || "null");
+      } catch (e) {
+      }
+      dostKor(ek, x);
+    }
+  }
+  function oyinKarta(ek) {
+    let bor = false;
+    try {
+      bor = !!localStorage.getItem(LAB_OYIN);
+    } catch (e) {
+    }
+    ek.querySelectorAll(".ok-9").forEach((x) => {
+      x.hidden = !bor;
+    });
+    ek.querySelectorAll(".ok-t").forEach((x) => {
+      x.hidden = bor;
+    });
+  }
+  const AVTO_TUGMA = { "→": "right", "←": "left", "↑": "up", "↓": "down" };
+  function sahnaDastur(nom) {
+    const tug = (x) => {
+      const el = document.createElement("span");
+      if (x.t === "x") {
+        const [a, c] = String(x.m || "0,0").split(",");
+        el.dataset.x = a;
+        el.dataset.y = c;
+      }
+      if (x.t === "n") el.dataset.q = x.m || "qadam";
+      if (x.t === "s") el.innerHTML = '<span class="inp">' + (x.m || "") + "</span>";
+      if (x.t === "z" || x.t === "c" || x.t === "i") {
+        const [a, c] = String(x.m).indexOf(":") >= 0 ? String(x.m).split(":") : ["", x.m];
+        if (a) el.dataset.v = a;
+        el.dataset.n = c;
+      }
+      return { el, tur: x.t, yon: x.yon || "", n: x.n || 0, ichki: (x.ichki || []).map(tug) };
+    };
+    return ((DARS2.oyinlar || {})[nom] || []).map(([tugma, d]) => ({ tugma, daraxt: d.map(tug) }));
+  }
+  function bosildiKor(ek, k) {
+    const o = ek.querySelector(".oyna");
+    if (!o) return;
+    o.querySelectorAll(".oyin-bos").forEach((x) => x.remove());
+    o.insertAdjacentHTML("beforeend", '<span class="gl oyin-bos">' + TUGMA_BELGI[k] + "</span>");
+    const p = o.querySelector(".oyin-bos");
+    setTimeout(() => p.remove(), 420);
+  }
+  async function sahnaBos(ek, o, k) {
+    bosildiKor(ek, k);
+    const d = sahnaDastur(o.dastur).filter((x) => x.tugma === k);
+    if (!d.length) {
+      await KUT(300);
+      return "";
+    }
+    for (const x of d) {
+      await ijro(x.daraxt, (t) => SAHNA.katak.bajar(o.h, t), { kut: 140 });
+      if (o.h.urildi && o.h.urildi.kaktus && sahnaDastur(o.dastur).some((y) => y.tugma === "cactus")) {
+        o.h.urildi = null;
+        for (const y of sahnaDastur(o.dastur).filter((z) => z.tugma === "cactus")) {
+          await ijro(y.daraxt, (t) => ballBlok(ek, o.h, t), { kut: 420 });
+          if (ek.__tugadi) return "tugadi";
+        }
+        return "";
+      }
+      if (o.h.urildi) return "urildi";
+    }
+    const tg = sahnaDastur(o.dastur).some((x) => x.tugma === "apple" || x.tugma === "gold") ? ballTegdi(o) : "";
+    if (tg) for (const x of sahnaDastur(o.dastur).filter((y) => y.tugma === tg)) await ijro(x.daraxt, (t) => ballBlok(ek, o.h, t), { kut: 520 });
+    return "";
+  }
+  const sahnaYetdi = (h) => h.yulduz && h.x === h.yulduz[0] && h.y === h.yulduz[1];
+  async function sahnaAvto(ek, nom, ketma, lbs, { yoq = false } = {}) {
+    ek.dataset.yuryapti = "1";
+    muammoOl(ek);
+    ek.querySelectorAll(".konfeti").forEach((x) => x.remove());
+    if (lbs) {
+      mdQayta(ek, darajaXarita(lbs[0]));
+      darajaYoz(ek, 0, lbs.length);
+    }
+    const o = { h: await SAHNA.katak.boshla(ek, {}), dastur: nom, daraja: 0 };
+    if (!sahnaDastur(nom).length) {
+      await KUT(300);
+      bosildiKor(ek, AVTO_TUGMA[ketma[0]] || "right");
+      chal("muammo");
+      muammo(ek, "boshvoy", "Men nimani kutaman?");
+      delete ek.dataset.yuryapti;
+      return "bosh";
+    }
+    let nat = "kam";
+    for (const ch of [...ketma]) {
+      if (!document.body.contains(ek)) break;
+      if (ch === "|") continue;
+      const r = await sahnaBos(ek, o, AVTO_TUGMA[ch]);
+      if (yoq && !sahnaDastur(nom).some((x) => x.tugma === AVTO_TUGMA[ch])) {
+        nat = "yoq";
+        chal("muammo");
+        muammo(ek, "boshvoy", "Bu tugma uchun dasturcha yo‘q-ku…");
+        break;
+      }
+      if (r === "urildi") {
+        nat = "urildi";
+        chal("muammo");
+        muammo(ek, "tosiqvoy", "Devor!");
+        break;
+      }
+      if (r === "tugadi") {
+        nat = "tugadi";
+        ek.querySelector(".oyna").insertAdjacentHTML("beforeend", '<span class="gl oyin-tugadi">O‘yin tugadi</span>');
+        chal("tuk");
+        break;
+      }
+      if (sahnaYetdi(o.h)) {
+        if (lbs && o.daraja < lbs.length - 1) {
+          await sahnaDarajaKeyingi(ek, o, lbs);
+          continue;
+        }
+        nat = "yetdi";
+        break;
+      }
+      await KUT(260);
+    }
+    delete ek.dataset.yuryapti;
+    return nat;
+  }
+  function sahnaOyinTayyorla(ek, ildiz) {
+    const t = TOP(ek.dataset.id), solo = typeof SOLO !== "undefined" && SOLO;
+    oyinToxtat(ek);
+    katakAsl(ek);
+    delete ek.dataset.yuryapti;
+    ek.querySelectorAll(".muam,.konfeti,.oyin-bos").forEach((x) => x.remove());
+    if (t.darajalar) {
+      mdQayta(ek, darajaXarita(t.darajalar[0]));
+      darajaYoz(ek, 0, t.darajalar.length);
+    }
+    if (t.dost) {
+      let x = null;
+      try {
+        x = JSON.parse(localStorage.getItem(LAB_DOST()) || "null");
+      } catch (e) {
+      }
+      dostKor(ek, x);
+    }
+    if (t.soloFaqat && !solo) return;
+    const fo = ek.querySelector(".hn");
+    if (!fo || fo.querySelector(".so-t")) return;
+    const yoz = '<span class="mas ishga so-t">' + (t.tugma || (t.avto ? "▶ O‘ynab ko‘rsat" : "▶ Boshlash")) + "</span>", a = fo.querySelector(".asos");
+    if (a) a.insertAdjacentHTML("beforebegin", yoz);
+    else fo.insertAdjacentHTML("afterbegin", yoz);
+    const tb = fo.querySelector(".so-t");
+    tb.dataset.asl = tb.innerHTML;
+    if (t.gap && t.gap.boshla && GAPT(t.gap.boshla)) ishora(ek, GAPT(t.gap.boshla));
+  }
+  function sahnaOyinBosish(e, ek, ildiz) {
+    const tb = e.target.closest(".hn .so-t");
+    if (!tb) return false;
+    if (ek.dataset.yuryapti) return true;
+    const t = TOP(ek.dataset.id), g = t.gap || {};
+    if (t.avto) {
+      ishora(ek, "");
+      sahnaAvto(ek, t.dastur, t.avto, t.darajalar).then((r) => {
+        if (r === "yetdi") konfeti(ek);
+        if (g[r] && GAPT(g[r])) ishora(ek, GAPT(g[r]));
+      });
+      return true;
+    }
+    if (ek.dataset.oyin) {
+      const o = OYIN.get(ek);
+      if (t.dost && o) dostYoz(ek, o, t.darajalar || ["D1"]);
+      sahnaOyinToxtat(ek);
+      return true;
+    }
+    sahnaOyinBoshla(ek);
+    return true;
+  }
+  async function sahnaOyinBoshla(ek) {
+    muammoOl(ek);
+    ek.querySelectorAll(".konfeti").forEach((x) => x.remove());
+    const t = TOP(ek.dataset.id);
+    if (t.darajalar) {
+      mdQayta(ek, darajaXarita(t.darajalar[0]));
+      darajaYoz(ek, 0, t.darajalar.length);
+    }
+    if (t.dost) {
+      DARS2.oyinlar = DARS2.oyinlar || {};
+      DARS2.oyinlar.__dost = bolaDastur();
+      ek.querySelectorAll(".dost-n").forEach((x) => x.remove());
+    }
+    const h = await SAHNA.katak.boshla(ek, {});
+    OYIN.set(ek, { h, dastur: t.dost ? "__dost" : t.dastur, daraja: 0, yoqOld: 0 });
+    ek.dataset.oyin = "sahna";
+    ek.querySelector(".oyna").insertAdjacentHTML("beforeend", '<span class="gl oyin-yz">O‘yin: strelkalarni bosing</span>');
+    const tb = ek.querySelector(".hn .so-t");
+    if (tb) tb.textContent = "■ To‘xtatish";
+  }
+  async function sahnaOyinBos(ek, k, o) {
+    if (k === "space") return;
+    ek.dataset.yuryapti = "1";
+    muammoOl(ek);
+    const r = await sahnaBos(ek, o, k);
+    delete ek.dataset.yuryapti;
+    if (OYIN.get(ek) !== o) return;
+    const t = TOP(ek.dataset.id), lbs = t.darajalar;
+    if (r === "urildi") {
+      o.h.urildi = null;
+      if (t.dost) dostYoz(ek, o, lbs || ["D1"]);
+      sahnaOyinToxtat(ek);
+      chal("muammo");
+      muammo(ek, "tosiqvoy", "Devor!");
+      ishora(ek, "O‘yin to‘xtadi. Qaytadan — «▶ Boshlash»");
+      return;
+    }
+    if (sahnaYetdi(o.h)) {
+      if (lbs && o.daraja < lbs.length - 1) {
+        ek.dataset.yuryapti = "1";
+        await sahnaDarajaKeyingi(ek, o, lbs);
+        delete ek.dataset.yuryapti;
+        return;
+      }
+      o.yutdi = true;
+      if (t.dost) dostYoz(ek, o, lbs || ["D1"]);
+      sahnaOyinToxtat(ek);
+      ishora(ek, "Siz yutdingiz!");
+      konfeti(ek);
+    }
+  }
+  function sahnaOyinToxtat(ek) {
+    oyinToxtat(ek);
+    const tb = ek.querySelector(".hn .so-t");
+    if (tb && tb.dataset.asl) tb.innerHTML = tb.dataset.asl;
+  }
+  function lbAlmash(ek, lb) {
+    const kt = ek.querySelector(".oyna .katak");
+    if (!kt) return;
+    if (!ek.__lbAsl) ek.__lbAsl = kt.outerHTML;
+    if ((ek.dataset.lbHozir || "") === (lb || "")) return;
+    const tpl = lb && ek.querySelector("template.lb-" + lb);
+    kt.outerHTML = tpl ? tpl.innerHTML : ek.__lbAsl;
+    ek.dataset.lbHozir = lb || "";
+  }
+  async function hukAvto(ek, k, i) {
+    if (ek.dataset.yuryapti) return;
+    const g = TOP(ek.dataset.id).gap || {};
+    ek.querySelectorAll(".jk").forEach((x) => x.classList.toggle("sinov", x === k));
+    ek.querySelectorAll(".muam,.konfeti").forEach((x) => x.remove());
+    k.classList.remove("n-ok", "n-yoq");
+    k.querySelectorAll(".jn").forEach((x) => x.remove());
+    lbAlmash(ek, k.dataset.lb || "");
+    const bk = ek.querySelector(".oyna .ball-k:not([data-v])");
+    if (bk) bk.classList.toggle("yashirin", !k.dataset.ball);
+    if (ek.querySelector(".oyna .ball-k")) {
+      vBosh(ek, k.dataset.v0 || 0);
+      ek.__tugadi = false;
+      ek.querySelectorAll(".oyin-tugadi").forEach((x) => x.remove());
+    }
+    const qd = k.dataset.dastur.split(","), qa = k.dataset.avto.split(","), lbs = k.dataset.lbs ? k.dataset.lbs.split(",") : null;
+    let r = "";
+    for (let j = 0; j < qd.length; j++) {
+      if (j) {
+        await KUT(900);
+        if (!document.body.contains(ek)) return;
+        katakAsl(ek);
+      }
+      if (bk && k.dataset.ball && k.dataset.ball !== "1") {
+        bk.classList.toggle("yashirin", k.dataset.ball !== String(j + 1));
+        vBosh(ek, 0);
+      }
+      r = await sahnaAvto(ek, qd[j], qa[j], lbs, { yoq: !!k.dataset.yoq });
+    }
+    const ok = k.dataset.ok ? k.dataset.ok === "1" : r === "yetdi";
+    k.classList.remove("sinov");
+    k.classList.add(ok ? "n-ok" : "n-yoq");
+    (k.querySelector(".jt") || k).insertAdjacentHTML("beforeend", '<small class="jn">' + (k.dataset.nat || (ok ? g.yetdi : g.urildi)) + "</small>");
+    if (ok) konfeti(ek);
+    ek.dataset.huk = Math.max(+(ek.dataset.huk || 0), i + 1);
+    const a = ek.querySelector(".hn .asos");
+    if (a && g.keyingi) a.textContent = g.keyingi;
+  }
+  const LAB_D2 = "jr-labirint-daraja2";
+  const labD2Kalit = () => DARS2.xakaton && typeof xkD2Kalit === "function" ? xkD2Kalit() : LAB_D2;
+  function labD2() {
+    try {
+      return localStorage.getItem(labD2Kalit()) || "";
+    } catch (e) {
+      return "";
+    }
+  }
+  function darajaXarita(nom) {
+    return nom === "L2" ? labD2() || (DARS2.labirintlar || {}).BOSH || "" : (DARS2.labirintlar || {})[nom] || nom;
+  }
+  const labYoq = (o) => (o.yoqOld || 0) + (o.h && o.h.yoqSoni || 0);
+  const LAB_D4 = [[1, 0], [-1, 0], [0, -1], [0, 1]];
+  function labOlchov(xarita) {
+    const xr = katakXarita(xarita), H = xr.length, W = Math.max(...xr.map((r2) => r2.length)), c = (x, y) => (xr[y] || "")[x];
+    const S = katakTop(xr, "S") || [0, H - 1], Y = katakTop(xr, "*"), K2 = katakTop(xr, "K"), E2 = katakTop(xr, "E");
+    let devor = 0, boshiBerk = 0;
+    const ochiq0 = (x, y) => {
+      const ch = c(x, y);
+      return ch !== void 0 && ch !== "#";
+    };
+    xr.forEach((r2, y) => [...r2].forEach((ch, x) => {
+      if (ch === "#") devor++;
+      else if ("S*K".indexOf(ch) < 0 && LAB_D4.filter(([dx, dy]) => ochiq0(x + dx, y + dy)).length === 1) boshiBerk++;
+    }));
+    const ochiq = (x, y, k, eshikDevor) => {
+      const ch = c(x, y);
+      if (ch === void 0 || ch === "#") return false;
+      return ch === "E" ? !eshikDevor && !!k : true;
+    };
+    const qidir = (eshikDevor) => {
+      if (!Y) return null;
+      const id = (x, y, k, d) => ((y * W + x) * 2 + k) * 5 + d, dist = /* @__PURE__ */ new Map(), bur = /* @__PURE__ */ new Map(), nav = [[S[0], S[1], 0, 4]];
+      dist.set(id(S[0], S[1], 0, 4), 0);
+      bur.set(id(S[0], S[1], 0, 4), 0);
+      let eng2 = null;
+      for (let i = 0; i < nav.length; i++) {
+        const [x, y, k, d] = nav[i], j = id(x, y, k, d), dd = dist.get(j), bb = bur.get(j);
+        if (eng2 && dd > eng2.d) break;
+        if (x === Y[0] && y === Y[1]) {
+          if (!eng2 || bb < eng2.b) eng2 = { d: dd, b: bb };
+          continue;
+        }
+        LAB_D4.forEach(([dx, dy], nd) => {
+          const nx = x + dx, ny = y + dy;
+          if (!ochiq(nx, ny, k, eshikDevor)) return;
+          const nk = k || c(nx, ny) === "K" ? 1 : 0, nj = id(nx, ny, nk, nd), nb = bb + (d !== 4 && d !== nd ? 1 : 0);
+          if (!dist.has(nj)) {
+            dist.set(nj, dd + 1);
+            bur.set(nj, nb);
+            nav.push([nx, ny, nk, nd]);
+          } else if (dist.get(nj) === dd + 1 && nb < bur.get(nj)) bur.set(nj, nb);
+        });
+      }
+      return eng2;
+    };
+    const eng = qidir(false), r = { devor, boshiBerk, yol: eng ? eng.d : null, burilish: eng ? eng.b : null, kalit: !!K2, eshik: !!E2, eshikTosadi: false, kalitYol: false, qaytish: false };
+    if (E2) r.eshikTosadi = !qidir(true);
+    if (K2) {
+      const kor = /* @__PURE__ */ new Set([S.join()]), nav = [S];
+      for (let i = 0; i < nav.length; i++) {
+        const [x, y] = nav[i];
+        if (x === K2[0] && y === K2[1]) {
+          r.kalitYol = true;
+          break;
+        }
+        LAB_D4.forEach(([dx, dy]) => {
+          const nx = x + dx, ny = y + dy;
+          if (ochiq(nx, ny, 0, true) && !kor.has(nx + "," + ny)) {
+            kor.add(nx + "," + ny);
+            nav.push([nx, ny]);
+          }
+        });
+      }
+    }
+    if (eng && E2 && K2 && r.eshikTosadi) {
+      const man = (a, b) => Math.abs(a[0] - b[0]) + Math.abs(a[1] - b[1]), qolgan = (x, y, k) => k ? man([x, y], Y) : man([x, y], K2) + man(K2, Y), bor = /* @__PURE__ */ new Set([S.join()]);
+      const dfs = (x, y, k, n) => {
+        if (x === Y[0] && y === Y[1]) return n === eng.d;
+        if (n + qolgan(x, y, k) > eng.d) return false;
+        for (const [dx, dy] of LAB_D4) {
+          const nx = x + dx, ny = y + dy, kk = nx + "," + ny;
+          if (!ochiq(nx, ny, k, false) || bor.has(kk)) continue;
+          bor.add(kk);
+          const ok = dfs(nx, ny, k || c(nx, ny) === "K" ? 1 : 0, n + 1);
+          bor.delete(kk);
+          if (ok) return true;
+        }
+        return false;
+      };
+      r.qaytish = !dfs(S[0], S[1], 0, 0);
+    }
+    return r;
+  }
+  function mdQayta(ek, xarita) {
+    const k = ek.querySelector(".oyna .katak.maydon");
+    if (!k || !xarita) return null;
+    if (k.dataset.xarita === katakXarita(xarita).join("|") && k.dataset.qayta) return k;
+    const q = k.querySelector(".kt-q"), m = mdXaritaM(xarita), t = document.createElement("div");
+    t.innerHTML = maydonHtml(m, {});
+    const yk = t.firstElementChild, yq = yk.querySelector(".kt-q");
+    yk.dataset.qayta = "1";
+    if (q && yq) {
+      q.querySelectorAll(".kt-qk").forEach((x) => x.remove());
+      const yk2 = yq.querySelector(".kt-qk");
+      if (yk2) q.appendChild(yk2);
+      yq.replaceWith(q);
+    }
+    k.replaceWith(yk);
+    return yk;
+  }
+  function darajaYoz(ek, i, n) {
+    const o = ek.querySelector(".oyna");
+    if (!o) return;
+    let d = o.querySelector(".daraja-yz");
+    if (!d) {
+      o.insertAdjacentHTML("beforeend", '<span class="gl daraja-yz"></span>');
+      d = o.querySelector(".daraja-yz");
+    }
+    d.innerHTML = "Daraja: <b>" + (i + 1) + " / " + n + "</b>";
+  }
+  async function darajaKeyingi(ek, o, b) {
+    o.daraja = (o.daraja || 0) + 1;
+    o.yoqOld = labYoq(o);
+    ek.dataset.yuryapti = "1";
+    chal("yulduz");
+    const ob = ek.querySelector(".oyna");
+    ob.querySelectorAll(".daraja-otdi").forEach((x) => x.remove());
+    ob.insertAdjacentHTML("beforeend", '<span class="gl daraja-otdi">' + (o.daraja + 1) + "-daraja!</span>");
+    await KUT(1400);
+    ob.querySelectorAll(".daraja-otdi").forEach((x) => x.remove());
+    if (OYIN.get(ek) !== o) {
+      delete ek.dataset.yuryapti;
+      return;
+    }
+    mdQayta(ek, darajaXarita(b.darajalar[o.daraja]));
+    darajaYoz(ek, o.daraja, b.darajalar.length);
+    o.h = await SAHNA.katak.boshla(ek, b);
+    delete ek.dataset.yuryapti;
+  }
+  function yasashXarita(ek) {
+    return (ek.querySelector(".oyna .katak") || {}).dataset.xarita || "";
+  }
+  function yasashTayyorla(ek) {
+    const b = TOP(ek.dataset.id).bosh, solo = typeof SOLO !== "undefined" && SOLO;
+    const nom = labBola(ek) ? "L2" : solo && b.xaritaSolo || b.xarita || "BOSH";
+    mdQayta(ek, darajaXarita(nom));
+    darajaYoz(ek, 1, 2);
+    ek.dataset.asb = "devor";
+    ek.querySelectorAll(".pl .asb").forEach((x) => x.classList.toggle("on", x.dataset.t === "devor"));
+    const tb = oyinTugma(ek);
+    if (tb && tb.classList.contains("ishga")) {
+      tb.textContent = "▶ Sinab ko‘rish";
+      tb.dataset.asl = tb.innerHTML;
+    }
+    olchovYoz(ek);
+    yasashMuammo(ek, false);
+    if (TOP(ek.dataset.id).gap && TOP(ek.dataset.id).gap.boshla) ishora(ek, GAPT(TOP(ek.dataset.id).gap.boshla));
+  }
+  const OLCHOV_YOZ = {
+    devor: (o, k) => "Devor: " + o.devor + (k.devor ? " / " + k.devor : ""),
+    yol: (o, k) => o.yol == null ? "Yo‘l yo‘q" : "Yo‘l: " + o.yol + (k.yol ? " / " + k.yol : "") + " qadam",
+    burilish: (o, k) => "Burilish: " + (o.burilish == null ? 0 : o.burilish) + (k.burilish ? " / " + k.burilish : ""),
+    boshiBerk: (o, k) => "Boshi berk yo‘l: " + o.boshiBerk + (k.boshiBerk ? " / " + k.boshiBerk : ""),
+    kalit: (o) => "Kalit " + (o.kalit ? "✓" : "—"),
+    eshik: (o) => "Eshik " + (o.eshik ? "✓" : "—"),
+    qaytish: (o) => "Borib qaytish: " + (o.qaytish ? "bor" : "yo‘q")
+  };
+  function olchovYoz(ek) {
+    const b = TOP(ek.dataset.id).bosh, k = b.kerak || {}, o = labOlchov(yasashXarita(ek)), f = b.olchov || ["devor", "yol"];
+    const qism2 = f.map((x) => OLCHOV_YOZ[x](o, k));
+    if (o.yol == null && f.indexOf("yol") < 0) qism2.push("Yo‘l yo‘q");
+    const ob = ek.querySelector(".oyna");
+    let s = ob.querySelector(".olchov");
+    if (!s) {
+      ob.insertAdjacentHTML("beforeend", '<span class="gl olchov"></span>');
+      s = ob.querySelector(".olchov");
+    }
+    s.textContent = qism2.join(" · ");
+    s.classList.toggle("yoq", o.yol == null);
+    return o;
+  }
+  function kerakOk(o, k) {
+    return o.yol != null && (!k.devor || o.devor >= k.devor) && (!k.yol || o.yol >= k.yol) && (!k.burilish || o.burilish >= k.burilish) && (!k.boshiBerk || o.boshiBerk >= k.boshiBerk) && (!k.eshik || o.eshik && o.kalit && o.eshikTosadi && o.kalitYol) && (!k.qaytish || o.qaytish);
+  }
+  function kerakGap(o, k) {
+    if (k.devor && o.devor < k.devor) return "Devor: " + o.devor + " ta. Kerak: kamida " + k.devor;
+    if (k.yol && o.yol < k.yol) return "Yo‘l: " + o.yol + " qadam. Kerak: kamida " + k.yol;
+    if (k.burilish && o.burilish < k.burilish) return "Burilish: " + o.burilish + ". Kerak: kamida " + k.burilish;
+    if (k.boshiBerk && o.boshiBerk < k.boshiBerk) return "Boshi berk yo‘l: " + o.boshiBerk + ". Kerak: kamida " + k.boshiBerk;
+    if (k.eshik && !o.eshik) return "Eshik qo‘ying — yulduzga yo‘lni to‘ssin";
+    if (k.qaytish && !o.qaytish) return "Borib qaytish: yo‘q. Kalitni yo‘ldan chetga qo‘ying";
+    return "";
+  }
+  function yasashMuammo(ek, boshlandi) {
+    muammoOl(ek);
+    const b = TOP(ek.dataset.id).bosh, o = labOlchov(yasashXarita(ek)), k = b.kerak || {};
+    if (o.eshik && !o.eshikTosadi) {
+      chal("muammo");
+      ishora(ek, "Yulduzga eshikdan o‘tmay ham boriladi. Eshik yo‘lni to‘ssin");
+      muammo(ek, "ortiqvoy", "Eshik keraksiz!");
+      return o;
+    }
+    if (o.eshik && (!o.kalit || !o.kalitYol)) {
+      chal("muammo");
+      ishora(ek, "Kalitga eshikdan o‘tmasdan yetib bo‘ladigan joy toping");
+      muammo(ek, "kamvoy", "Kalit qani?");
+      return o;
+    }
+    if (o.yol == null) {
+      chal("muammo");
+      ishora(ek, "Yulduzga yo‘l yo‘q. Qaysi devorni olib tashlaysiz?");
+      muammo(ek, "kamvoy", "Yo‘l yo‘q!");
+      return o;
+    }
+    if (b.kerak && kerakOk(o, k) && labBola(ek)) ishora(ek, "Labirint tayyor. Endi o‘zingiz o‘ynab ko‘ring — «Sinab ko‘rish»");
+    return o;
+  }
+  function yasashBosish(e, ek, ildiz) {
+    if (ek.dataset.oyin) return null;
+    const a = e.target.closest(".pl .asb");
+    if (a) {
+      ek.dataset.asb = a.dataset.t;
+      ek.querySelectorAll(".pl .asb").forEach((x2) => x2.classList.toggle("on", x2 === a));
+      chal("bos");
+      return true;
+    }
+    const c = mdBosilgan(e, ek);
+    if (!c) return null;
+    if (ek.dataset.yuryapti) return true;
+    if (!c[0] && !c[1]) {
+      ishora(ek, "Start — (0, 0). Unga hech narsa qo‘yilmaydi");
+      return true;
+    }
+    const xr = katakXarita(yasashXarita(ek)).map((r) => [...r]), H = xr.length, q = H - 1 - c[1], x = c[0], ch = xr[q][x], asb = ek.dataset.asb || "devor";
+    const qoy = (b) => {
+      xr.forEach((r) => r.forEach((v, i) => {
+        if (v === b) r[i] = ".";
+      }));
+      xr[q][x] = b;
+    };
+    if (asb === "devor") {
+      if (ch === "*") {
+        ishora(ek, "Yulduzni «Yulduz» asbobi bilan ko‘chiring");
+        return true;
+      }
+      xr[q][x] = ch === "#" ? "." : "#";
+    } else {
+      const b = { kalit: "K", eshik: "E", yulduz: "*" }[asb];
+      if (ch === "*" && b !== "*") {
+        ishora(ek, "Yulduzni «Yulduz» asbobi bilan ko‘chiring");
+        return true;
+      }
+      if (ch === b) {
+        if (b !== "*") xr[q][x] = ".";
+      } else qoy(b);
+    }
+    const yangi = xr.map((r) => r.join("")).join("|");
+    chal("bos");
+    mdQayta(ek, yangi);
+    katakAsl(ek);
+    if (labBola(ek)) try {
+      localStorage.setItem(labD2Kalit(), yangi);
+    } catch (e2) {
+    }
+    olchovYoz(ek);
+    yasashMuammo(ek, false);
+    if (DARS2.chekStatik && ek.querySelector(".chek")) chekChiz(ek);
+    return true;
+  }
+  function yasashYutdi(ek, o) {
+    const t = TOP(ek.dataset.id), b = t.bosh, g = t.gap || {}, k = b.kerak, ol = labOlchov(yasashXarita(ek));
+    oyinToxtat(ek);
+    muammoOl(ek);
+    if (b.xk) {
+      if (k && !kerakOk(ol, k)) {
+        chal("muammo");
+        ishora(ek, kerakGap(ol, k));
+        muammo(ek, "kamvoy", "Oz qoldi!");
+      } else {
+        ishora(ek, "Labirint tayyor!");
+        konfeti(ek);
+      }
+      return xkSeans(ek, o, "yutdi");
+    }
+    if (!k) {
+      ishora(ek, "Siz yutdingiz!");
+      konfeti(ek);
+      return;
+    }
+    if (!kerakOk(ol, k)) {
+      chal("muammo");
+      ishora(ek, kerakGap(ol, k));
+      muammo(ek, "kamvoy", "Oz qoldi!");
+      return;
+    }
+    ishora(ek, g.yetdi ? GAPT(g.yetdi) : "Labirint tayyor!");
+    konfeti(ek);
+    if (!labBola(ek) || ek.dataset.oqish) return;
+    oxirgiSaqla(ek);
+    if (ol.eshik && ol.kalit && ol.eshikTosadi && ol.kalitYol) chekBelgi(ek, "daraja2");
+    if (typeof blokQosh === "function") {
+      blokQosh("L2", [...Array.from({ length: ol.devor }, () => ({ dataset: { tur: "D" } })), ...Array.from({ length: ol.yol || 0 }, () => ({ dataset: { tur: "Q" } }))]);
+      blokQosh(ek.dataset.id, [{ dataset: { tur: "y" } }]);
+    }
+    if (b.pog && typeof pogQosh === "function") pogQosh(b.pog);
+    otKeyin(ek);
+  }
+  function blJsonDaraxt(bl) {
+    const zanjir = (b) => {
+      const r = [];
+      while (b) {
+        const t = BL_TURI[b.type] || "s", f = b.fields || {}, n = { t };
+        if (t === "a") n.yon = f.YON;
+        if (t === "x") n.m = f.X + "," + f.Y;
+        if (t === "n") n.m = f.NOM;
+        if (b.inputs && b.inputs.DO && b.inputs.DO.block) n.ichki = zanjir(b.inputs.DO.block);
+        r.push(n);
+        b = b.next && b.next.block;
+      }
+      return r;
+    };
+    return (((bl || {}).blocks || {}).blocks || []).filter((b) => b.type === "when_key").map((b) => [(b.fields || {}).KEY, zanjir(b.next && b.next.block)]);
+  }
+  function bolaDastur() {
+    let bl = null;
+    try {
+      bl = JSON.parse(localStorage.getItem(labKalit()) || "null") || (JSON.parse(localStorage.getItem(LAB_OYIN) || "null") || {}).bl || null;
+    } catch (e) {
+    }
+    return bl ? blJsonDaraxt(bl) : (DARS2.oyinlar || {})[DARS2.oyinTayyor] || [];
+  }
+  async function sahnaDarajaKeyingi(ek, o, lbs) {
+    o.daraja++;
+    o.yoqOld = (o.yoqOld || 0) + (o.h.yoqSoni || 0);
+    chal("yulduz");
+    const ob = ek.querySelector(".oyna");
+    ob.insertAdjacentHTML("beforeend", '<span class="gl daraja-otdi">' + (o.daraja + 1) + "-daraja!</span>");
+    await KUT(1400);
+    ob.querySelectorAll(".daraja-otdi").forEach((x) => x.remove());
+    mdQayta(ek, darajaXarita(lbs[o.daraja]));
+    darajaYoz(ek, o.daraja, lbs.length);
+    o.h = await SAHNA.katak.boshla(ek, {});
+  }
+  const LAB_DOST = () => (typeof K !== "undefined" ? K : "jr-") + "dost";
+  function dostYoz(ek, o, lbs) {
+    const n = o.yutdi ? lbs.length : o.daraja || 0, yoq = (o.yoqOld || 0) + (o.h.yoqSoni || 0), x = { n, jami: lbs.length, yoq };
+    try {
+      localStorage.setItem(LAB_DOST(), JSON.stringify(x));
+    } catch (e) {
+    }
+    dostKor(ek, x);
+    if (o.yutdi || (o.daraja || 0) > 0 || o.h && o.h.qadamlar > 0) {
+      chekBelgi(ek, "dost");
+      if (typeof blokQosh === "function") blokQosh("BD", [{ dataset: { tur: "w" } }]);
+      const pg = TOP(ek.dataset.id).pog;
+      if (pg && typeof pogQosh === "function") pogQosh(pg);
+    }
+  }
+  function dostKor(ek, x) {
+    if (!x) return;
+    let d = ek.querySelector(".dost-n");
+    const ch = ek.querySelector(".chap");
+    if (!d && !ch) return;
+    if (!d) {
+      const o = ch.querySelector(".dost-o");
+      (o || ch).insertAdjacentHTML("beforeend", '<div class="gl dost-n">' + (o ? "<small>Joyingizga qayting</small>" : "") + "<b></b></div>");
+      d = ek.querySelector(".dost-n");
+    }
+    d.hidden = false;
+    d.querySelector("b").textContent = "Do‘stingiz o‘ynadi: " + x.n + " / " + x.jami + " daraja · " + x.yoq + " marta devor oldida to‘xtadi";
+  }
+  const TUR_STR = { right: "r", left: "l", up: "u", down: "d" };
+  function turla(d) {
+    return d.map((t) => {
+      t.tur = blokTuri(t.el);
+      if (t.tur === "p" && !t.n) t.n = blokSon(t.el);
+      t.ichki = turla(t.ichki || []);
+      return t;
+    });
+  }
+  function ozgNom(el) {
+    const b = el && el.dataset && el.dataset.id && typeof blBlok === "function" ? blBlok(el) : null;
+    return (b && b.getField("VAR") ? b.getFieldValue("VAR") : el && el.dataset && el.dataset.v) || "ball";
+  }
+  function vOl(ek, n) {
+    return (ek.__v || {})[n] || 0;
+  }
+  function vQoy(ek, n, v) {
+    (ek.__v = ek.__v || {})[n] = v;
+  }
+  function vBosh(ek, v) {
+    ek.__v = {};
+    if (typeof v === "number") ek.__v.ball = v;
+    else if (typeof v === "string") v.split(",").forEach((x) => {
+      const [n, s] = x.split(":");
+      if (n) ek.__v[n] = +s || 0;
+    });
+    else Object.assign(ek.__v, v || {});
+    ek.querySelectorAll(".oyna .ball-k").forEach((k) => ballKor(ek, vOl(ek, k.dataset.v || "ball"), null, null, k.dataset.v || "ball"));
+  }
+  const sonK = (v) => v < 0 ? "−" + -v : String(v);
+  function kapsula(ek, n) {
+    return ek.querySelector('.oyna .ball-k[data-v="' + n + '"]') || (n === "ball" ? ek.querySelector(".oyna .ball-k:not([data-v]), .oyna .bsh-k") : null);
+  }
+  function ballKor(ek, v, plus, q, n = "ball") {
+    const kap = kapsula(ek, n), k = kap && kap.querySelector("b");
+    if (!k) return;
+    k.textContent = v == null ? "?" : sonK(v);
+    if (plus == null) return;
+    kap.classList.remove("bump");
+    void kap.offsetWidth;
+    kap.classList.add("bump");
+    setTimeout(() => kap.classList.remove("bump"), 220);
+    chal("bos");
+    const o = ek.querySelector(".oyna");
+    if (!o || !q || !plus) return;
+    const r = q.getBoundingClientRect(), j = o.getBoundingClientRect();
+    o.insertAdjacentHTML("beforeend", '<span class="ball-uch" style="left:' + (r.left + r.width / 2 - j.left) + "px;top:" + (r.top - j.top) + 'px">' + plus + "</span>");
+    const u = o.querySelectorAll(".ball-uch");
+    setTimeout(() => u[u.length - 1] && u[u.length - 1].remove(), 950);
+  }
+  function ozgKorinsin(ek) {
+    const q = ek && ek.querySelector(".oyna .ball-q");
+    if (!q) return;
+    const ws = typeof BL_WS !== "undefined" && BL_WS.get(ek), bor = new Set((q.dataset.doim || "").split(",").filter(Boolean));
+    if (ws) ws.getAllBlocks(false).forEach((b) => {
+      if (b.getField("VAR")) bor.add(b.getFieldValue("VAR"));
+    });
+    q.querySelectorAll(".ball-k[data-v]").forEach((k) => k.classList.toggle("yoq", !bor.has(k.dataset.v)));
+  }
+  function ballBlok(ek, h, t) {
+    if (t.tur === "z" || t.tur === "c") {
+      const n = ozgNom(t.el), k = blokSon(t.el), v = t.tur === "z" ? k : vOl(ek, n) + k;
+      vQoy(ek, n, v);
+      ballKor(ek, v, t.tur === "z" ? "" : k < 0 ? "−" + -k : "+" + k, h && h.q, n);
+      if (typeof blSanoq === "function" && t.el.dataset.id) {
+        blSanoq(t.el, n + ": " + sonK(v));
+        ballSonRang(t.el);
+      }
+      return;
+    }
+    if (t.tur === "i") {
+      const n = ozgNom(t.el);
+      t.ha = vOl(ek, n) === blokSon(t.el);
+      if (t.ha) ek.__ifOzg = n;
+      if (typeof blShartBelgi === "function" && t.el.dataset.id) blShartBelgi(t.el, t.ha);
+      return;
+    }
+    if (t.tur === "g") {
+      ek.__tugadi = true;
+      return "toxta";
+    }
+    if (h) return SAHNA.katak.bajar(h, t);
+  }
+  function ballSonRang(el) {
+    const joy = el.closest && el.closest(".jr-bl"), s = joy && joy.querySelector('.bl-son[data-id="' + el.dataset.id + '"]');
+    if (s) s.classList.add("bl-ball");
+  }
+  function ballTegdi(o) {
+    const h = o.h, c = (h.xr[h.y] || "")[h.x], kalit = h.x + "," + h.y;
+    o.terildi = o.terildi || /* @__PURE__ */ new Set();
+    if (c !== "O" && c !== "G" || o.terildi.has(kalit)) return "";
+    o.terildi.add(kalit);
+    return c === "G" ? "gold" : "apple";
+  }
+  function ballOlmaSoni(h) {
+    return h.xr.join("").split("").filter((c) => c === "O" || c === "G").length;
+  }
+  const dasturJsonKalit = () => (typeof K !== "undefined" ? K : "jr-") + "dasturJson";
+  function ballTayyorla(ek) {
+    const t = TOP(ek.dataset.id), b = t.bosh;
+    if (b.prog === "oldingi" && DARS2.dasturJson) {
+      let x = null;
+      try {
+        x = JSON.parse(localStorage.getItem(dasturJsonKalit()) || "null");
+      } catch (e) {
+      }
+      const ws = BL_WS.get(ek);
+      if (x && ws) {
+        ws.clear();
+        Blockly.serialization.workspaces.load(x, ws);
+        ws.getAllBlocks(false).forEach(blBelgila);
+        blTartib(ws);
+        blMasshtab(ek, ws);
+        blTartibKeyin(ws);
+        sanoq(ek);
+      }
+    }
+    vBosh(ek, b.v != null ? b.v : 0);
+    ek.__tugadi = false;
+    ek.querySelectorAll(".ball-iz,.ball-uch,.oyin-tugadi").forEach((x) => x.remove());
+    const bq = ek.querySelector(".dst .bq-q"), dsb = ek.querySelector(".dst .dsb");
+    if (bq && dsb && dsb.nextElementSibling !== bq) dsb.after(bq);
+    if (bq) bq.classList.remove("ochiq");
+    ballJavon(ek);
+    ozgKorinsin(ek);
+  }
+  function ballJavon(ek) {
+    const oc = TOP(ek.dataset.id).ochiq, pl = ek.querySelector(".pl"), f = pl && ((pl.querySelector("small") || {}).className || "").replace("f-", "");
+    if (!oc || !pl || oc[f] == null) return;
+    pl.querySelectorAll(".mbw").forEach((w, i) => w.classList.toggle("yopiq", i >= oc[f]));
+  }
+  function ballBosish(e, ek, ildiz) {
+    const bq = e.target.closest(".dst .bq-q");
+    if (bq) {
+      if (!e.target.closest(".bq-och")) {
+        bq.classList.toggle("ochiq");
+        chal("bos");
+      }
+      return true;
+    }
+    const b = TOP(ek.dataset.id).bosh || {};
+    if (b.sonBashorat) return sonBashBosish(e, ek, ildiz);
+    return null;
+  }
+  async function ballBoshla(ek) {
+    const id = ek.dataset.id, t = TOP(id), b = t.bosh;
+    muammoOl(ek);
+    urildiOl(ek);
+    ek.querySelectorAll(".konfeti,.dv-pufak,.ball-iz,.oyin-tugadi").forEach((x) => x.remove());
+    if (typeof blTanlovOl === "function") blTanlovOl(ek);
+    const ds = blDasturchalar(ek), st = ds.filter((x) => x.tur === "when_start");
+    if (b.xk && !ds.length) {
+      chal("muammo");
+      ishora(ek, xkO(xkS(ek)).bosh);
+      muammo(ek, "boshvoy", "Men nimani kutaman?");
+      return;
+    }
+    if (st.some((x) => !x.bloklar.length)) {
+      chal("muammo");
+      ishora(ek, "O‘yin boshida ball nechchi bo‘lsin? Shu blokning ostiga ulang");
+      muammo(ek, "boshvoy", "Boshlandi, lekin nima qilay?");
+      return;
+    }
+    if (typeof blShartBosh === "function" && blShartBosh(ek)) {
+      chal("muammo");
+      ishora(ek, "if ichiga blok qo‘ying — shart «ha» bo‘lsa, u bajariladi");
+      muammo(ek, "boshvoy", "Ichi bo‘sh-ku…");
+      return;
+    }
+    if (!b.saqla) vBosh(ek, b.v != null ? b.v : 0);
+    ek.__tugadi = false;
+    ek.__ifOzg = "";
+    ozgKorinsin(ek);
+    const h = await SAHNA.katak.boshla(ek, b);
+    h.yashirinKut = !!h.k.querySelector(".kt-yul.yashirin");
+    const o = { h, bosish: 0, terildi: /* @__PURE__ */ new Set(), jami: ballOlmaSoni(h), ball0: vOl(ek, "ball"), set: false, teg: 0, manfiy: {} };
+    OYIN.set(ek, o);
+    ek.dataset.oyin = "1";
+    if (b.xk) xkSeansBosh(ek);
+    ek.querySelector(".oyna").insertAdjacentHTML("beforeend", '<span class="gl oyin-yz">' + (DARS2.oyinYozuv || "O‘yin: strelkalarni bosing") + "</span>");
+    const tb = oyinTugma(ek);
+    if (tb) tb.textContent = "■ To‘xtatish";
+    const ws = typeof BL_WS !== "undefined" && BL_WS.get(ek), yetim = ws ? blTepalar(ws).some((x) => !BL_HODISA.has(x.type)) : false;
+    ishora(ek, yetim ? "Bu bloklar hech qachon ishlamaydi — tepasiga hodisa bloki qo‘ying" : "");
+    if (st.length) {
+      ek.dataset.yuryapti = "1";
+      for (const x of st) {
+        x.hodisa.classList.add("hozir");
+        await ijro(turla(x.daraxt), (n) => {
+          if (n.tur === "z" && ozgNom(n.el) === "ball") o.set = true;
+          return ballBlok(ek, h, n);
+        }, { kut: 320 });
+        x.hodisa.classList.remove("hozir");
+        if (ek.__tugadi) break;
+      }
+      delete ek.dataset.yuryapti;
+    }
+    o.ball0 = vOl(ek, "ball");
+    o.v0 = Object.assign({}, ek.__v);
+    if (ek.__tugadi) ballTugadi(ek, o);
+  }
+  async function ballBos(ek, k, o) {
+    const tur = TUR_STR[k];
+    if (!tur) return;
+    o.bosish++;
+    muammoOl(ek);
+    ek.dataset.yuryapti = "1";
+    const s = ek.querySelector('.dst .bq-q .bq-s i[data-k="' + k + '"]');
+    if (s) {
+      s.classList.add("hozir");
+      setTimeout(() => s.classList.remove("hozir"), 320);
+    }
+    if ((TOP(ek.dataset.id).bosh || {}).xk) {
+      if (!await xkOlmaBos(ek, k, o)) {
+        delete ek.dataset.yuryapti;
+        return;
+      }
+    } else await SAHNA.katak.bajar(o.h, { tur, el: document.createElement("span") });
+    const kaktus = !!(o.h.urildi && o.h.urildi.kaktus);
+    o.h.urildi = null;
+    if (kaktus) {
+      o.teg++;
+      await ballTegish(ek, o, "cactus");
+    } else {
+      const tg = ballTegdi(o);
+      if (tg) await ballTegish(ek, o, tg);
+    }
+    if (!ek.__tugadi) for (const x of blDasturchalar(ek).filter((d) => d.tur === "when_key" && d.tugma === "any")) {
+      x.hodisa.classList.add("hozir");
+      await ijro(turla(x.daraxt), (n) => ballBlok(ek, o.h, n), { kut: 160 });
+      x.hodisa.classList.remove("hozir");
+      if (ek.__tugadi) break;
+    }
+    delete ek.dataset.yuryapti;
+    if (OYIN.get(ek) !== o) return;
+    if (ek.__tugadi) return ballTugadi(ek, o);
+    ballKuzat(ek, o);
+    if ((TOP(ek.dataset.id).bosh || {}).xk) xkJonli(ek, o);
+    ballTekshir(ek, o);
+  }
+  async function ballTegish(ek, o, olma) {
+    const b = TOP(ek.dataset.id).bosh || {}, d = blDasturchalar(ek).filter((x) => x.tur === "when_touch" && x.olma === olma);
+    if (b.xk && d.every((x) => !x.bloklar.length) && xkTegishYoq(ek, olma)) return;
+    if (olma === "cactus" && (!d.length || d.every((x) => !x.bloklar.length))) {
+      chal("muammo");
+      ishora(ek, "Kaktusga tekkanda jon kamaysin — dasturchaga blok ulang");
+      muammo(ek, "boshvoy", "Tegdim — nima qilay?");
+      return;
+    }
+    if (!d.length) {
+      chal("muammo");
+      if (olma === "gold") {
+        ishora(ek, DARS2.oltinGap || "Oltin olmaga o‘z dasturchasi kerak — hodisa blokida olma turini tanlang");
+        muammo(ek, "boshvoy", "Oltin olma-chi?");
+      } else {
+        ishora(ek, "Olmaga tekkanda nima bo‘lsin? Buning uchun o‘z hodisa bloki bor");
+        muammo(ek, "boshvoy", b.xk && typeof xkHozirId === "function" && xkHozirId(ek) === "quvonch" ? "Tegdim — nima qilay?" : "Olma terildi, ball-chi?");
+      }
+      return;
+    }
+    if (d.every((x) => !x.bloklar.length)) {
+      chal("muammo");
+      ishora(ek, "Hodisa blokining ostiga O‘zgaruvchi oilasidan blok ulang");
+      muammo(ek, "kamvoy", "Tegdim, lekin nima qilay?");
+      return;
+    }
+    const old = Object.assign({}, ek.__v);
+    for (const x of d) {
+      x.hodisa.classList.add("hozir");
+      await ijro(turla(x.daraxt), (n) => ballBlok(ek, o.h, n), { kut: 220 });
+      x.hodisa.classList.remove("hozir");
+      if (ek.__tugadi) return;
+    }
+    if (b.xk) xkTegdi(ek, o, olma, old);
+    if (olma === "gold" && b.oltinJon && !(vOl(ek, "jon") > (old.jon || 0))) {
+      chal("muammo");
+      ishora(ek, "Oltin olma jon bersin — uning dasturchasini tekshiring");
+      muammo(ek, "kamvoy", "Jon-chi?");
+    }
+    if (olma === "cactus" && b.kaktusBall && vOl(ek, "ball") === (old.ball || 0)) {
+      chal("muammo");
+      ishora(ek, "Kaktus jonni ham, 2 ballni ham olsin — kaktus dasturchasini tekshiring");
+      muammo(ek, "kamvoy", "Kaktus-chi?");
+    }
+  }
+  const BOSH_HARF = (n) => n.charAt(0).toUpperCase() + n.slice(1);
+  function ballKuzat(ek, o) {
+    const b = TOP(ek.dataset.id).bosh || {};
+    for (const n of ["jon", "qadam"]) if (0 > vOl(ek, n) && !o.manfiy[n]) {
+      o.manfiy[n] = true;
+      chal("muammo");
+      ishora(ek, "Jon N bo‘ldi, o‘yin esa davom etyapti. Jon 0 bo‘lganda o‘yin tugashi uchun shart kerak".replace(/Jon/g, BOSH_HARF(n)).replace("N", sonK(vOl(ek, n))));
+      muammo(ek, "kamvoy", n === "qadam" ? "Qadam tugadi-ku!" : "Jon tugadi-ku!");
+      return;
+    }
+    if (b.sinov && b.sinov.ozg === "qadam" && o.bosish === 2 && vOl(ek, "qadam") === ((o.v0 || {}).qadam || 0) && !o.qadamGap) {
+      o.qadamGap = true;
+      chal("muammo");
+      ishora(ek, "Har bosishda qadam kamaysin: qaysi hodisa bloki har bosishda ishlaydi?");
+      muammo(ek, "kamvoy", "Qadam-chi?");
+    }
+  }
+  function qoidaBor(ek, n) {
+    const ws = typeof BL_WS !== "undefined" && BL_WS.get(ek);
+    if (!ws) return false;
+    return ws.getBlocksByType("if_var", false).some((b) => {
+      const r = b.getRootBlock();
+      return b.getFieldValue("VAR") === n && b.getFieldValue("N") === "0" && blZanjir(b.getInputTargetBlock("DO")).some((x) => x.type === "game_over") && (n === "qadam" ? r.type === "when_key" && r.getFieldValue("KEY") === "any" : r.type === "when_touch" && r.getFieldValue("OLMA") === "cactus");
+    });
+  }
+  function dasturchaBlok(ek, olma, f) {
+    return blDasturchalar(ek).filter((x) => x.tur === "when_touch" && x.olma === olma).some((x) => x.bloklar.some((el) => f(el)));
+  }
+  function ballTugadi(ek, o) {
+    const id = ek.dataset.id, t = TOP(id), b = t.bosh || {}, s = b.sinov;
+    oyinToxtat(ek);
+    ek.querySelector(".oyna").insertAdjacentHTML("beforeend", '<span class="gl oyin-tugadi">O‘yin tugadi</span>');
+    chal("tuk");
+    if (b.xk) {
+      ishora(ek, ek.__ifOzg === "qadam" ? "Qadam tugadi. ▶ Boshlash — yana o‘ynang" : "Jon tugadi. ▶ Boshlash — yana o‘ynang");
+      return xkSeans(ek, o, "tugadi");
+    }
+    if (s) {
+      const v = vOl(ek, s.ozg);
+      if (v === 0 && (!s.teg || o.teg === s.teg) && (!s.bosish || o.bosish === s.bosish)) return ballYutdi(ek, o, s.ozg === "qadam" ? "Shart ishladi: qadam 0 — o‘yin tugadi!" : "Shart ishladi: jon 0 — o‘yin tugadi!", true);
+      chal("muammo");
+      if (v === 0) {
+        ishora(ek, s.teg ? s.tegGap : s.bosishGap);
+        muammo(ek, "kamvoy", s.teg ? "Kaktus kam oldi!" : "Oz qoldi!");
+        return;
+      }
+      ishora(ek, "Jon N qoldi, o‘yin esa tugadi. Shart qachon «ha» deydi — sonni tekshiring".replace("Jon", BOSH_HARF(s.ozg)).replace("N", sonK(v)));
+      muammo(ek, "ortiqvoy", "Erta tugadi!");
+      return;
+    }
+    ishora(ek, ek.__ifOzg === "qadam" ? "Qadam tugadi. Qisqaroq yo‘l toping. ▶ Boshlash — yana o‘ynang" : "Jon tugadi. ▶ Boshlash — yana o‘ynang");
+  }
+  function ballTekshir(ek, o) {
+    const h = o.h, t = TOP(ek.dataset.id), b = t.bosh;
+    if (o.terildi.size >= o.jami && h.yashirinKut) {
+      h.yashirinKut = false;
+      const y = h.k.querySelector(".kt-yul.yashirin");
+      if (y) y.classList.add("topildi");
+      chal("bos");
+    }
+    if (!h.yulduz || h.yashirinKut || h.x !== h.yulduz[0] || h.y !== h.yulduz[1]) return;
+    const v = vOl(ek, "ball"), xato = (kim, gap, g) => {
+      oyinToxtat(ek);
+      chal("muammo");
+      ishora(ek, g);
+      muammo(ek, kim, gap);
+    };
+    if (b.sinov) return xato("kamvoy", "Oz qoldi!", b.sinov.bosishGap || b.sinov.tegGap || "");
+    if (b.erkin) {
+      const ds = blDasturchalar(ek), setBor = ds.some((x) => x.tur === "when_start" && x.bloklar.some((el) => blokTuri(el) === "z"));
+      const turlar = new Set(ds.filter((x) => x.tur === "when_touch" && x.bloklar.length).map((x) => x.olma));
+      const yoq = !setBor ? "O‘yin boshida ballni qo‘ying" : !turlar.has("gold") || !turlar.has("apple") ? "Oltin olmaga ham dasturcha qo‘ying" : !(v > 0) ? "Olmalar ball bersin — change blokidagi sonni tanlang" : "";
+      if (yoq) return xato("kamvoy", "Oz qoldi!", yoq);
+    } else if (b.erkin3) {
+      const setlar = new Set(blDasturchalar(ek).filter((x) => x.tur === "when_start").flatMap((x) => x.bloklar.filter((el) => blokTuri(el) === "z").map(ozgNom)));
+      const yoq = !(setlar.has("jon") && setlar.has("qadam")) ? "O‘yin boshida jon va qadamni qo‘ying" : !qoidaBor(ek, "qadam") ? "Qadam qoidasi kerak" : !qoidaBor(ek, "jon") ? "Jon qoidasi kerak" : "";
+      if (yoq) return xato("kamvoy", "Oz qoldi!", yoq);
+    } else if (b.kerak != null && v !== b.kerak) {
+      const NM = (g) => g.replace("N", v).replace("M", b.kerak).replace("K", o.ball0);
+      if (b.kerak > v) return xato("kamvoy", "Ball kam!", o.set ? "O‘yin boshida ball nechchi bo‘lishi kerak?" : NM("Ball N — M bo‘lishi kerak. Har olma necha ball?"));
+      return xato("ortiqvoy", "Ball ko‘p!", NM(o.set ? "Ball N — M bo‘lishi kerak. Sonlarni tekshiring" : "Ball N — M bo‘lishi kerak. O‘yin boshida ball K edi"));
+    }
+    if (b.oltinJon && !dasturchaBlok(ek, "gold", (el) => blokTuri(el) === "c" && ozgNom(el) === "jon" && blokSon(el) > 0)) return xato("kamvoy", "Jon-chi?", "Oltin olma jon bersin — uning dasturchasini tekshiring");
+    if (b.kaktusBall && !dasturchaBlok(ek, "cactus", (el) => blokTuri(el) === "c" && ozgNom(el) === "ball" && blokSon(el) === -2)) return xato("kamvoy", "Kaktus-chi?", "Kaktus jonni ham, 2 ballni ham olsin — kaktus dasturchasini tekshiring");
+    for (const n of b.qoida || []) if (!qoidaBor(ek, n)) return xato("kamvoy", "Qoida-chi?", n === "qadam" ? "Qadam 0 bo‘lsa, o‘yin tugashi kerak: har bosishda ishlaydigan dasturchada shart bormi?" : "Jon 0 bo‘lsa, o‘yin tugashi kerak: kaktus dasturchasida shart bormi?");
+    ballYutdi(ek, o);
+  }
+  function ballYutdi(ek, o, gap, sinov) {
+    const id = ek.dataset.id, t = TOP(id), b = t.bosh, g = t.gap || {};
+    if (b.xk) {
+      oyinToxtat(ek);
+      ishora(ek, "Siz yutdingiz!");
+      konfeti(ek);
+      return xkSeans(ek, o, "yutdi");
+    }
+    oyinToxtat(ek);
+    ishora(ek, gap || (g.yetdi ? GAPT(g.yetdi) : "Siz yutdingiz!"));
+    konfeti(ek);
+    const ball = vOl(ek, "ball");
+    if (b.olmaIz && ball !== o.terildi.size) ek.querySelector(".oyna").insertAdjacentHTML("beforeend", '<span class="gl ball-iz">Olma ' + o.terildi.size + " ta — ball <b>" + ball + "</b></span>");
+    ek.__yutdi = (ek.__yutdi || 0) + 1;
+    if (b.soloSet && typeof SOLO !== "undefined" && SOLO && ek.__yutdi === 2 && typeof blQosh === "function") setTimeout(() => {
+      if (!document.body.contains(ek)) return;
+      blQosh(ek, "f");
+      blQosh(ek, "z", "0");
+      sanoq(ek);
+      ishora(ek, "O‘yin boshida ball 0 bo‘ladi. Yana o‘ynang");
+    }, 1600);
+    const ildiz = ek.parentNode && ek.parentNode.closest("#ust,#bol");
+    if (!ildiz || ildiz.id !== "bol" || ek.dataset.oqish) return;
+    oxirgiSaqla(ek);
+    const ws = typeof BL_WS !== "undefined" && BL_WS.get(ek);
+    if (DARS2.dasturJson) {
+      try {
+        localStorage.setItem(dasturJsonKalit(), JSON.stringify(Blockly.serialization.workspaces.save(ws)));
+      } catch (e) {
+      }
+    } else oyinDasturSaqla(blRoyxatMa(ek));
+    const kerak2 = DARS2.natija.map((n) => n.blok || n.eng || "").join(""), bl = (tur, n) => Array.from({ length: Math.max(0, n) }, () => ({ dataset: { tur } }));
+    const ozg = /* @__PURE__ */ new Set();
+    if (ws) ws.getAllBlocks(false).forEach((x) => {
+      if (x.getField("VAR")) ozg.add(x.getFieldValue("VAR"));
+    });
+    const q = [...kerak2.includes("o") ? bl("o", o.terildi.size) : [], ...kerak2.includes("B") ? bl("B", ball) : [], ...kerak2.includes("W") && !sinov ? bl("W", 1) : [], ...kerak2.includes("S") && ws ? bl("S", ws.getBlocksByType("if_var", false).length) : [], ...kerak2.includes("V") ? bl("V", ozg.size) : []];
+    if (typeof blokQosh === "function") blokQosh(id, q);
+    if (b.pog && typeof pogQosh === "function") pogQosh(b.pog);
+    otKeyin(ek);
+  }
+  const sonBashTugma = (ek) => ek.querySelector(".hn .ishga") || ek.querySelector(".hn .asos");
+  function sonBashDastur(ek) {
+    const d = blDasturchalar(ek).find((x) => x.tur === "when_start");
+    return d ? turla(d.daraxt) : [];
+  }
+  function sonBashIz(daraxt) {
+    const r = [];
+    let v = 0;
+    for (const t of ijroTartibi(daraxt)) {
+      if (t.tur === "z") v = blokSon(t.el);
+      if (t.tur === "c") v += blokSon(t.el);
+      if (t.tur === "z" || t.tur === "c") r.push([t.el, v]);
+    }
+    return { iz: r, v };
+  }
+  function sonBashTayyorla(ek) {
+    const ws = typeof BL_WS !== "undefined" && BL_WS.get(ek);
+    if (ws) ws.getAllBlocks(false).forEach((x) => {
+      x.setMovable(false);
+      x.setDeletable(false);
+      x.setEditable(false);
+    });
+    ek.dataset.faqatOqish = "1";
+    ek.dataset.oqildi = "0";
+    ek.dataset.urinish = "0";
+    ek.querySelectorAll(".bsh-q .sk").forEach((x) => x.classList.remove("tan", "ok"));
+    if (typeof blSanoqOl === "function") blSanoqOl(ek);
+    ek.__v = {};
+    ballKor(ek, null);
+    delete ek.dataset.bayroq;
+    const ish = sonBashTugma(ek);
+    if (ish) {
+      if (ish.classList.contains("ishga")) ish.textContent = "▶ Tekshirish";
+      ish.classList.add("xira");
+    }
+    const g = TOP(ek.dataset.id).gap || {};
+    const gb = g.boshla && GAPT(g.boshla);
+    if (gb) ishora(ek, gb);
+  }
+  function sonBashBosish(e, ek, ildiz) {
+    const sk = e.target.closest(".bsh-q .sk");
+    if (sk) {
+      if (ek.dataset.yuryapti) return true;
+      ek.querySelectorAll(".bsh-q .sk").forEach((x) => x.classList.toggle("tan", x === sk));
+      x0(ek);
+      chal("bos");
+      ek.dataset.bayroq = "son:" + sk.dataset.v;
+      const ish = sonBashTugma(ek);
+      if (ish) ish.classList.remove("xira");
+      ishora(ek, "");
+      return true;
+    }
+    const tb = sonBashTugma(ek);
+    if (tb && e.target.closest(".hn .ishga, .hn .asos") === tb) {
+      sonBashTekshir(ek);
+      return true;
+    }
+    const solo = typeof SOLO !== "undefined" && SOLO;
+    if (TOP(ek.dataset.id).oqiydi && ildiz.id === "ust" && !solo && e.target.closest(".hn .asos")) {
+      const { iz } = sonBashIz(sonBashDastur(ek)), n = +(ek.dataset.oqildi || 0);
+      if (n < iz.length) {
+        const [el, v] = iz[n];
+        blSanoq(el, "ball: " + v);
+        ballSonRang(el);
+        el.classList.add("yon");
+        chal("qadam");
+        ek.dataset.oqildi = n + 1;
+        return true;
+      }
+    }
+    if (e.target.closest(".jr-bl, .pl, .rg")) return true;
+    return null;
+  }
+  function x0(ek) {
+    muammoOl(ek);
+    ek.querySelectorAll(".konfeti").forEach((x) => x.remove());
+    ballKor(ek, null);
+    ek.querySelectorAll(".bsh-q .sk").forEach((x) => x.classList.remove("ok"));
+  }
+  async function sonBashTekshir(ek) {
+    if (ek.dataset.yuryapti) return;
+    const sk = ek.querySelector(".bsh-q .sk.tan");
+    if (!sk) {
+      chal("muammo");
+      ishora(ek, "Avval sonni tanlang");
+      return;
+    }
+    const id = ek.dataset.id, t = TOP(id), b = t.bosh, g = t.gap || {};
+    x0(ek);
+    if (typeof blSanoqOl === "function") blSanoqOl(ek);
+    ek.querySelectorAll(".jr-bl .mb.yon").forEach((x) => x.classList.remove("yon"));
+    ek.dataset.yuryapti = "1";
+    ishora(ek, "Dastur ishlayapti…");
+    ek.__v = {};
+    const d = blDasturchalar(ek).find((x) => x.tur === "when_start");
+    if (d) d.hodisa.classList.add("hozir");
+    await ijro(sonBashDastur(ek), (n) => ballBlok(ek, null, n), { kut: 650 });
+    if (d) d.hodisa.classList.remove("hozir");
+    delete ek.dataset.yuryapti;
+    const v = vOl(ek, "ball"), tanlandi = +sk.dataset.v, urinish = +(ek.dataset.urinish || 0) + 1;
+    ek.dataset.urinish = urinish;
+    if (v !== tanlandi) {
+      chal("muammo");
+      ishora(ek, "Ball N bo‘ldi. Dasturni qaytadan o‘qing: har blokdan keyin ball nechchi?".replace("N", v));
+      muammo(ek, "kamvoy", "Boshqa son!");
+      return;
+    }
+    sk.classList.add("ok");
+    ishora(ek, g.yetdi ? GAPT(g.yetdi) : "Oldindan aytdingiz!");
+    konfeti(ek);
+    const ildiz = ek.parentNode && ek.parentNode.closest("#ust,#bol");
+    if (!ildiz || ildiz.id !== "bol" || ek.dataset.oqish) return;
+    oxirgiSaqla(ek);
+    if (typeof blokQosh === "function") blokQosh(id, urinish === 1 ? [{ dataset: { tur: "A" } }] : []);
+    if (b.pog && typeof pogQosh === "function") pogQosh(b.pog);
+    if (urinish === 1 && b.pog && typeof bildir === "function") bildir({ t: "bildi", n: b.pog });
+    otKeyin(ek);
+  }
+  function ballNatija(ek) {
+    const k = ek.querySelector(".oyna .ball-k b");
+    if (!k || typeof blokJami !== "function") return;
+    const j = blokJami();
+    k.textContent = j.eng && j.eng.B || 0;
+  }
+  function tasodif(ek, a, b) {
+    const t = TOP(ek.dataset.id).tanlov, i = +(ek.dataset.tn || 0);
+    if (t && i < t.length) {
+      ek.dataset.tn = i + 1;
+      return t[i];
+    }
+    return a + Math.floor(Math.random() * (b - a + 1));
+  }
+  const OLMA_W = () => BL_MAYDON().w - 1, OLMA_H = () => BL_MAYDON().h - 1;
+  function olmaDasturi(ek) {
+    const ws = typeof BL_WS !== "undefined" && BL_WS.get(ek), r = [];
+    if (!ws) return r;
+    const sp = (b, nm) => {
+      const x = b.getInputTargetBlock(nm);
+      if (x && x.type === "random_n") {
+        const a = +x.getFieldValue("A"), c = +x.getFieldValue("B");
+        return { r: [Math.min(a, c), Math.max(a, c)], blk: x };
+      }
+      return { n: x ? +x.getFieldValue("N") : 0 };
+    };
+    const yur = (b) => {
+      while (b) {
+        if (b.type === "go_to_r") r.push({ el: b.getSvgRoot(), X: sp(b, "X"), Y: sp(b, "Y") });
+        if (b.type === "repeat") for (let i = 0; i < +b.getFieldValue("N"); i++) yur(b.getInputTargetBlock("DO"));
+        b = b.getNextBlock();
+      }
+    };
+    yur(blAsosiy(ws));
+    return r;
+  }
+  const qiymatlar = (s) => s.r ? Array.from({ length: s.r[1] - s.r[0] + 1 }, (_, i) => s.r[0] + i) : [s.n];
+  const kat = (a, b) => a[0] === b[0] && a[1] === b[1];
+  function olmaSavat(b, i) {
+    const s = b.savat || [];
+    return s.some((x) => x[2]) ? s.filter((x) => +x[2] === i + 1) : s;
+  }
+  function olmaTahlil(ek, b) {
+    const o = olmaDasturi(ek);
+    if (!o.length) return { tur: "bosh" };
+    if (!o.some((x) => x.X.r || x.Y.r)) return { tur: "randomYoq" };
+    const kerak2 = b.olmaSoni || 1;
+    if (b.oyin && o.length > 1) return { tur: "kop", oyin: true };
+    if (o.length < kerak2) return { tur: "kam", n: kerak2 };
+    if (o.length > kerak2) return { tur: "kop", n: kerak2 };
+    for (const x of o) {
+      for (const v of qiymatlar(x.X)) if (v < 0 || v > OLMA_W()) return { tur: "chetMumkin", son: v, oq: "X" };
+      for (const v of qiymatlar(x.Y)) if (v < 0 || v > OLMA_H()) return { tur: "chetMumkin", son: v, oq: "Y" };
+    }
+    if (b.erkinOlma) {
+      const bez = DARS2.bezak || {}, joy = /* @__PURE__ */ new Set();
+      for (const x of o) for (const X of qiymatlar(x.X)) for (const Y of qiymatlar(x.Y)) {
+        joy.add(X + "," + Y);
+        for (const nom of ["daraxt", "gul"]) if ((bez[nom] || []).some((k) => kat(k, [X, Y]))) return { tur: "bezak", k: [X, Y], nom };
+      }
+      return joy.size >= 2 ? { tur: "tayyor" } : { tur: "randomYoq" };
+    }
+    const hamma = b.savat || [], tush = [];
+    for (let i = 0; i < o.length; i++) {
+      const S = olmaSavat(b, i), x = o[i];
+      for (const X of qiymatlar(x.X)) for (const Y of qiymatlar(x.Y)) {
+        tush.push([X, Y]);
+        if (S.some((s) => kat(s, [X, Y]))) continue;
+        if (hamma.some((s) => kat(s, [X, Y]))) return { tur: "boshqaGuruh" };
+        const sonX = x.X.r && !S.some((s) => s[0] === X), son = sonX || !x.Y.r ? X : Y;
+        return { tur: "savatYoqMumkin", son, k: [X, Y] };
+      }
+    }
+    const bosh2 = hamma.find((s) => !tush.some((t) => kat(t, s)));
+    if (bosh2) return { tur: "boshSavat", k: [bosh2[0], bosh2[1]] };
+    return { tur: "tayyor" };
+  }
+  const sinovKalit = (ek) => olmaDasturi(ek).map((x) => (x.X.r ? "r" + x.X.r.join("-") : x.X.n) + "," + (x.Y.r ? "r" + x.Y.r.join("-") : x.Y.n)).join("|");
+  function olmaXato(ek, t) {
+    const M = {
+      bosh: ["boshvoy", "Bu yerda hech narsa yo‘q-ku…", "Avval blokni bosing — u dasturga qo‘shiladi"],
+      randomYoq: ["kamvoy", "Yana o‘sha joy!", "Son doim bir xil. Son o‘rniga random qo‘ying"],
+      kam: ["kamvoy", "Oz qoldi!", "N ta olma tushishi kerak".replace("N", t.n)],
+      kop: ["ortiqvoy", "Ko‘payib ketdi!", t.oyin ? "O‘yinda bitta olma: dasturda bitta go to bo‘lsin" : "N ta olma tushishi kerak".replace("N", t.n)],
+      chetMumkin: ["ortiqvoy", "Savat yo‘q-ku!", t.oq === "Y" ? "random N ni ham tanlashi mumkin — maydonda Y 0 dan 4 gacha".replace("N", t.son) : "random N ni ham tanlashi mumkin — maydonda X 0 dan 6 gacha".replace("N", t.son)],
+      savatYoqMumkin: ["ortiqvoy", "Savat yo‘q-ku!", "random N ni ham tanlashi mumkin — olma (x, y) ga tushadi. random sonlarini tekshiring".replace("N", t.son).replace("(x, y)", "(" + (t.k || []).join(", ") + ")")],
+      boshqaGuruh: ["ortiqvoy", "Savat yo‘q-ku!", "1-olma «1» savatlarga tushsin. Birinchi go to — 1-olma"],
+      boshSavat: ["kamvoy", "Bu savat bo‘sh qoladi!", "(x, y) dagi savatga olma tushmaydi. random sonlarini tekshiring".replace("(x, y)", "(" + (t.k || []).join(", ") + ")")],
+      bezak: ["kamvoy", t.nom === "gul" ? "Gulga tushadi!" : "Daraxtga tushadi!", (t.nom === "gul" ? "random (x, y) ni ham tanlashi mumkin — u yerda gul" : "random (x, y) ni ham tanlashi mumkin — u yerda daraxt").replace("(x, y)", "(" + (t.k || []).join(", ") + ")")]
+    }[t.tur];
+    if (!M) return false;
+    chal("muammo");
+    ishora(ek, M[2]);
+    muammo(ek, M[0], M[1]);
+    return true;
+  }
+  function olmaChiz(ek, x, y, chet) {
+    const k = ek.querySelector(".katak.maydon"), svg = k && k.querySelector("svg.kt");
+    if (!svg) return null;
+    const H = katakXarita(k.dataset.xarita).length, cx = Math.max(0, Math.min(OLMA_W(), x)) * KT + 50 + (x > OLMA_W() ? 46 : x < 0 ? -46 : 0), cy = (H - 1 - Math.max(0, Math.min(OLMA_H(), y))) * KT + 52 + (y > OLMA_H() ? -46 : 0);
+    const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+    g.setAttribute("class", "kt-olma tushdi" + (chet ? " chet" : ""));
+    g.setAttribute("transform", "translate(" + cx + " " + cy + ")");
+    g.innerHTML = '<g class="tsh">' + MD_OLMA2 + "</g>";
+    svg.insertBefore(g, k.querySelector(".kt-q"));
+    const t = g.firstChild;
+    if (t.animate) t.animate(chet ? [{ transform: "translate(0px,-260px)" }, { transform: "translate(0px,0px)" }, { transform: "translate(10px,0px)" }, { transform: "translate(-6px,0px)" }, { transform: "translate(0px,0px)" }] : [{ transform: "translate(0px,-260px)", opacity: 0 }, { transform: "translate(0px,0px)", opacity: 1 }], { duration: 420, easing: "ease-in" });
+    return g;
+  }
+  function olmaTozala(ek, hammasi) {
+    ek.querySelectorAll(".katak.maydon .kt-olma.tushdi").forEach((g) => {
+      if (hammasi || g.classList.contains("chet")) g.remove();
+      else {
+        g.classList.remove("tushdi");
+        g.classList.add("iz-olma");
+      }
+    });
+    if (hammasi) ek.querySelectorAll(".katak.maydon .kt-olma.iz-olma").forEach((g) => g.remove());
+  }
+  async function olmaBajar(ek, h, t) {
+    if (t.tur !== "y") return;
+    const b = blBlok(t.el);
+    if (!b) return;
+    const val = (nm) => {
+      const x = b.getInputTargetBlock(nm);
+      if (x && x.type === "random_n") {
+        const a = +x.getFieldValue("A"), c = +x.getFieldValue("B"), v = tasodif(ek, Math.min(a, c), Math.max(a, c));
+        if (typeof blSanoq === "function") blSanoq(x.getSvgRoot(), v);
+        return v;
+      }
+      return x ? +x.getFieldValue("N") : 0;
+    };
+    const X = val("X"), Y = val("Y"), chet = X < 0 || X > OLMA_W() || Y < 0 || Y > OLMA_H();
+    await KUT(260);
+    const g = olmaChiz(ek, X, Y, chet);
+    if (chet) {
+      chal("tuk");
+      h.chet = { son: X > OLMA_W() || X < 0 ? X : Y, oq: X > OLMA_W() || X < 0 ? "X" : "Y" };
+      return "toxta";
+    }
+    chal("qadam");
+    h.tushdi.push([X, Y]);
+    h.gl.push(g);
+  }
+  function sinovYoz(ek) {
+    const s = ek.querySelector(".dst .sinov-n"), n = (ek.__sinov || {}).n || 0;
+    if (s) s.textContent = "Sinov: " + Math.min(n, 3) + " / 3";
+  }
+  function olmaTayyorla(ek) {
+    ek.__sinov = null;
+    delete ek.dataset.tn;
+    olmaTozala(ek, true);
+    sinovYoz(ek);
+    {
+      const ws = typeof BL_WS !== "undefined" && BL_WS.get(ek);
+      if (ws && typeof blKengKeyin === "function") blKengKeyin(ek, ws);
+    }
+    const g = TOP(ek.dataset.id).gap || {}, gb = g.boshla && GAPT(g.boshla);
+    if (gb) ishora(ek, gb);
+  }
+  async function olmaIshga(ek) {
+    if (ek.dataset.yuryapti) return;
+    maslahatOch(ek);
+    if (typeof blTanlovOl === "function") blTanlovOl(ek);
+    urildiOl(ek);
+    muammoOl(ek);
+    ek.querySelectorAll(".konfeti").forEach((x) => x.remove());
+    const id = ek.dataset.id, b = TOP(id).bosh, g = TOP(id).gap || {};
+    if (!olmaDasturi(ek).length) return olmaXato(ek, { tur: "bosh" });
+    ek.dataset.yuryapti = "1";
+    ishora(ek, "Dastur ishlayapti…");
+    olmaTozala(ek, false);
+    const h = { tushdi: [], gl: [], chet: null };
+    await ijro(dasturDaraxti(ek), (t2) => olmaBajar(ek, h, t2), { kut: 300 });
+    delete ek.dataset.yuryapti;
+    if (h.chet) {
+      chal("muammo");
+      ishora(ek, h.chet.oq === "Y" ? "random N ni tanladi. Maydonda Y — 0 dan 4 gacha".replace("N", h.chet.son) : "random N ni tanladi. Maydonda X — 0 dan 6 gacha".replace("N", h.chet.son));
+      muammo(ek, "kamvoy", "Maydon tugadi!");
+      return;
+    }
+    const t = olmaTahlil(ek, b);
+    if (["randomYoq", "kam", "kop"].includes(t.tur)) return olmaXato(ek, t);
+    const kech = !!b.savatKech;
+    if (!b.erkinOlma) for (let i = 0; i < h.tushdi.length; i++) {
+      const k = h.tushdi[i];
+      if (!(b.savat || []).some((s2) => kat(s2, k))) {
+        chal("muammo");
+        ishora(ek, "Olma (x, y) ga tushdi — u yerda savat yo‘q. random sonlarini tekshiring".replace("(x, y)", "(" + k.join(", ") + ")"));
+        muammo(ek, "ortiqvoy", "Savat yo‘q-ku!");
+        return;
+      }
+      if (!olmaSavat(b, i).some((s2) => kat(s2, k))) return olmaXato(ek, { tur: "boshqaGuruh" });
+    }
+    if (!kech && olmaXato(ek, t)) return;
+    const kalit = sinovKalit(ek);
+    if (!ek.__sinov || ek.__sinov.kalit !== kalit) ek.__sinov = { kalit, n: 0, joy: /* @__PURE__ */ new Set(), olma: 0 };
+    const s = ek.__sinov;
+    s.n++;
+    s.joy.add(h.tushdi.map((k) => k.join(",")).join("|"));
+    s.olma += h.tushdi.length;
+    sinovYoz(ek);
+    h.gl.forEach((x) => x && x.classList.add("savatda"));
+    if (3 > s.n) {
+      ishora(ek, "Yana ishga tushiring — olma qayerga tushadi?");
+      return;
+    }
+    if (kech && olmaXato(ek, t)) return;
+    if (2 > s.joy.size) {
+      ishora(ek, "Olma yana o‘sha joyga tushdi — bu ham tasodif. Yana bir marta");
+      return;
+    }
+    ishora(ek, g.yetdi ? GAPT(g.yetdi) : "Har safar boshqa joy!");
+    konfeti(ek);
+    olmaHisob(ek, b, { T: s.olma });
+  }
+  function olmaHisob(ek, b, { T = 0, o = 0 } = {}) {
+    const ildiz = ek.parentNode && ek.parentNode.closest("#ust,#bol");
+    if (!ildiz || ildiz.id !== "bol" || ek.dataset.oqish) return;
+    oxirgiSaqla(ek);
+    const ws = BL_WS.get(ek), R = ws ? ws.getBlocksByType("random_n", false).length : 0, bl = (tur, n) => Array.from({ length: n }, () => ({ dataset: { tur } }));
+    if (typeof blokQosh === "function") blokQosh(ek.dataset.id, [...bl("R", R), ...bl("T", T), ...bl("o", o)]);
+    if (b.pog && typeof pogQosh === "function") pogQosh(b.pog);
+    otKeyin(ek);
+  }
+  async function olmaOyinBoshla(ek) {
+    const id = ek.dataset.id, b = TOP(id).bosh;
+    muammoOl(ek);
+    urildiOl(ek);
+    ek.querySelectorAll(".konfeti,.dv-pufak").forEach((x) => x.remove());
+    if (typeof blTanlovOl === "function") blTanlovOl(ek);
+    const t = olmaTahlil(ek, Object.assign({}, b, { oyin: true }));
+    if (t.tur !== "tayyor") return olmaXato(ek, t);
+    olmaTozala(ek, true);
+    const h = await SAHNA.katak.boshla(ek, b);
+    const oy = { h, olma: null, g: null, terildi: 0, tushdi: 0 };
+    OYIN.set(ek, oy);
+    ek.dataset.oyin = "1";
+    ek.querySelector(".oyna").insertAdjacentHTML("beforeend", '<span class="gl oyin-yz">O‘yin: strelkalarni bosing · Olma: <b>0 / 5</b></span>');
+    const tb = oyinTugma(ek);
+    if (tb) tb.textContent = "■ To‘xtatish";
+    ishora(ek, "");
+    await olmaTushir(ek, oy);
+  }
+  async function olmaTushir(ek, oy) {
+    if (OYIN.get(ek) !== oy) return;
+    ek.dataset.yuryapti = "1";
+    const h = { tushdi: [], gl: [] };
+    await ijro(dasturDaraxti(ek), (t) => olmaBajar(ek, h, t), { kut: 200 });
+    oy.olma = h.tushdi[0] || null;
+    oy.g = h.gl[0] || null;
+    oy.tushdi++;
+    delete ek.dataset.yuryapti;
+    if (oy.olma && oy.h.x === oy.olma[0] && katakXarita(oy.h.k.dataset.xarita).length - 1 - oy.h.y === oy.olma[1]) await olmaOl(ek, oy);
+  }
+  async function olmaOyinBos(ek, k, oy) {
+    const tur = TUR_STR[k];
+    if (!tur) return;
+    ek.dataset.yuryapti = "1";
+    await SAHNA.katak.bajar(oy.h, { tur, el: document.createElement("span") });
+    oy.h.urildi = null;
+    delete ek.dataset.yuryapti;
+    const y = katakXarita(oy.h.k.dataset.xarita).length - 1 - oy.h.y;
+    if (oy.olma && oy.h.x === oy.olma[0] && y === oy.olma[1]) await olmaOl(ek, oy);
+  }
+  async function olmaOl(ek, oy) {
+    if (oy.g) oy.g.remove();
+    oy.olma = null;
+    oy.terildi++;
+    chal("bos");
+    const z = ek.querySelector(".oyin-yz b");
+    if (z) z.textContent = oy.terildi + " / 5";
+    if (oy.terildi >= 5) {
+      const t = TOP(ek.dataset.id), g = t.gap || {};
+      oyinToxtat(ek);
+      ishora(ek, g.yetdi ? GAPT(g.yetdi) : "Siz yutdingiz!");
+      konfeti(ek);
+      return olmaHisob(ek, t.bosh, { T: oy.tushdi, o: oy.terildi });
+    }
+    await olmaTushir(ek, oy);
+  }
+  async function hukOlma(ek, k, i) {
+    if (ek.dataset.yuryapti) return;
+    const g = TOP(ek.dataset.id).gap || {};
+    ek.dataset.yuryapti = "1";
+    ek.querySelectorAll(".jk").forEach((x) => x.classList.toggle("sinov", x === k));
+    ek.querySelectorAll(".muam,.konfeti").forEach((x) => x.remove());
+    k.classList.remove("n-ok", "n-yoq");
+    k.querySelectorAll(".jn").forEach((x) => x.remove());
+    const q = k.querySelector(".ho-q");
+    if (q) q.innerHTML = "";
+    const yil = k.dataset.tanlov ? k.dataset.tanlov.split("|").map((s) => s.split(",").map(Number)) : [0, 1].map(() => k.dataset.olma.split(",").map(Number));
+    for (let o = 0; o < 2; o++) {
+      olmaTozala(ek, true);
+      for (const x of yil[o]) {
+        olmaChiz(ek, x, 0);
+        chal("qadam");
+        await KUT(380);
+      }
+      if (q) q.insertAdjacentHTML("beforeend", "<span>" + (o + 1) + "-o‘yin: <b>" + yil[o].join(" · ") + "</b></span>");
+      await KUT(420);
+    }
+    const ok = k.dataset.ok === "1";
+    k.classList.remove("sinov");
+    k.classList.add(ok ? "n-ok" : "n-yoq");
+    (k.querySelector(".jt") || k).insertAdjacentHTML("beforeend", '<small class="jn">' + (k.dataset.nat || "") + "</small>");
+    if (ok) konfeti(ek);
+    delete ek.dataset.yuryapti;
+    ek.dataset.huk = Math.max(+(ek.dataset.huk || 0), i + 1);
+    const a = ek.querySelector(".hn .asos");
+    if (a && g.keyingi) a.textContent = g.keyingi;
+  }
+  const XG = (k, n) => {
+    const g = (typeof DARS2 !== "undefined" && DARS2.xakaton || {}).gap || {};
+    const t = g[k] != null ? g[k] : "";
+    return n != null && typeof t === "string" ? t.replace(/\bN\b/, n) : t;
+  };
+  function xkBanner(ek, t) {
+    const o = ek.querySelector(".oyna");
+    if (!o) return;
+    o.querySelectorAll(".xk-bn").forEach((x) => x.remove());
+    if (!t) return;
+    o.insertAdjacentHTML("beforeend", '<span class="gl xk-bn">' + t + "</span>");
+    const bn = o.querySelector(".xk-bn");
+    setTimeout(() => bn.remove(), 2600);
+  }
+  const xkKalit = () => (typeof K !== "undefined" ? K : "jr-") + "xk";
+  function xkOl() {
+    try {
+      return JSON.parse(localStorage.getItem(xkKalit()) || "null") || {};
+    } catch (e) {
+      return {};
+    }
+  }
+  function xkYoz(s) {
+    try {
+      localStorage.setItem(xkKalit(), JSON.stringify(s));
+    } catch (e) {
+    }
+  }
+  const xkBola = (ek) => {
+    const r = ek && ek.parentNode && ek.parentNode.closest("#ust,#bol");
+    return !!r && r.id === "bol";
+  };
+  const xkSolo = () => typeof SOLO !== "undefined" && SOLO;
+  const xkO = (s) => DARS2.xakaton[s.oyin === "lab" ? "lab" : "olma"];
+  const xkQ = (s, id) => xkO(s).qism.find((q) => q.id === id);
+  const xkBirinchi = (s) => xkO(s).qism.find((q) => q.birinchi);
+  const xkYulduzQ = (s) => xkO(s).qism.find((q) => q.yulduz);
+  function xkS(ek) {
+    if (ek.__xk) return ek.__xk;
+    const b = TOP(ek.dataset.id).bosh;
+    if (!xkBola(ek)) {
+      const q = b.namoyish || [];
+      ek.__xk = { oyin: b.xk, qism: q, tayyor: Object.fromEntries(q.map((x) => [x, 1])), kim: {}, sina: {}, iz: {}, haydovchi: 1, dost: [] };
+      return ek.__xk;
+    }
+    const s = xkOl();
+    if (!s.oyin) s.oyin = b.xk;
+    if (s.oyin !== b.xk) {
+      s.oyin = b.xk;
+      s.qism = null;
+    }
+    if (!s.qism || !s.qism.length) s.qism = [xkBirinchi(s).id];
+    s.tayyor = s.tayyor || {};
+    s.kim = s.kim || {};
+    s.sina = s.sina || {};
+    s.iz = s.iz || {};
+    s.dost = s.dost || [];
+    s.haydovchi = s.haydovchi || 1;
+    ek.__xk = s;
+    return s;
+  }
+  const xkSaqla = (ek) => {
+    if (xkBola(ek)) xkYoz(ek.__xk);
+  };
+  const xkTayyorSoni = (s) => s.qism.filter((id) => s.tayyor[id] && !xkQ(s, id).yulduz).length;
+  const xkHozir = (s) => {
+    const id = s.qism.find((x) => !s.tayyor[x]);
+    return id ? xkQ(s, id) : null;
+  };
+  const xkYulduzBor = (s) => {
+    const y = xkYulduzQ(s);
+    return y && s.qism.indexOf(y.id) < 0 && xkTayyorSoni(s) >= 3 && (!y.ozi || s.tayyor[y.ozi]) ? y : null;
+  };
+  const xkBosqich = (ek) => TOP(ek.dataset.id).bosh.bosqich;
+  function xkBosh(ek) {
+    const t = TOP(ek.dataset.id), b = t.bosh, s = xkS(ek), bq = xkBosqich(ek);
+    const p = bq === "yasash" ? xkHozir(s) : null, bor = (id) => !!s.tayyor[id] || p && p.id === id;
+    b.saqla = true;
+    if (b.xk === "olma") {
+      b.qoida = ["jon", "qadam"].filter((n) => bor(n));
+    } else {
+      b.qoida = bor("qoida");
+      b.qoidaIshora = !!(p && p.id === "qoida");
+      b.tovushIf = bor("tovush");
+      b.startga = bor("start");
+      b.yasash = !!(p && p.yasash);
+      b.kerak = p && p.yasash ? p.yasash : null;
+      b.olchov = p && p.yasash ? p.id === "kalit" ? ["kalit", "eshik"] : p.id === "uzun" ? ["yol"] : ["devor", "yol"] : null;
+      b.darajalar = s.tayyor.daraja2 && !b.yasash ? ["D1", "L2"] : null;
+    }
+    t.maslahat = p ? p.maslahat : null;
+  }
+  const xkD2Kalit = () => (typeof K !== "undefined" ? K : "jr-") + "d2";
+  function xkTayyorla(ek, qayta) {
+    const t = TOP(ek.dataset.id), b = t.bosh, s = xkS(ek), bq = xkBosqich(ek);
+    oyinToxtat(ek);
+    muammoOl(ek);
+    xkBosh(ek);
+    ek.classList.toggle("xk-dost", bq === "dost");
+    ek.classList.toggle("xk-sinash", bq === "sinash");
+    const ws = typeof BL_WS !== "undefined" && BL_WS.get(ek);
+    if (!qayta && ws && s.dastur && bq !== "namoyish") {
+      ws.clear();
+      Blockly.serialization.workspaces.load(s.dastur, ws);
+      ws.getAllBlocks(false).forEach(blBelgila);
+      blTartib(ws);
+      blMasshtab(ek, ws);
+      if (typeof blTartibKeyin === "function") blTartibKeyin(ws);
+      sanoq(ek);
+    }
+    if (b.xk === "olma") {
+      const y = xkYulduzQ(s), m2 = DARS2.xakaton.olma.maydon, oltin = !!(y && s.qism.indexOf(y.id) >= 0);
+      if (m2 && (oltin || ek.__xkOltin)) {
+        xkMaydonQoy(ek, oltin ? { ...m2, oltin: [DARS2.xakaton.olma.oltin] } : m2);
+        ek.__xkOltin = oltin;
+      }
+      ballTayyorla(ek);
+    } else {
+      if (b.yasash) {
+        mdQayta(ek, xkD2() || DARS2.labirintlar.BOSH);
+        darajaYoz(ek, 1, 2);
+        ek.dataset.asb = "devor";
+        olchovYoz(ek);
+        yasashMuammo(ek, false);
+      } else {
+        mdQayta(ek, DARS2.labirintlar.D1);
+        ek.querySelectorAll(".olchov").forEach((x) => x.remove());
+        if (b.darajalar) darajaYoz(ek, 0, 2);
+        else ek.querySelectorAll(".daraja-yz").forEach((x) => x.remove());
+      }
+      katakAsl(ek);
+      labJoyKuzat(ek);
+      const rd = ek.querySelector(".rg .rd.f-L");
+      if (rd) {
+        rd.hidden = !b.yasash;
+        if (b.yasash && !rd.classList.contains("on")) rd.click();
+        if (!b.yasash && rd.classList.contains("on")) {
+          const e = ek.querySelector(".rg .rd.f-e");
+          if (e) e.click();
+        }
+      }
+    }
+    const tb = oyinTugma(ek);
+    if (tb) {
+      tb.innerHTML = bq === "dost" ? XG("dostTugma") : b.yasash ? "▶ Sinab ko‘rish" : "▶ Boshlash";
+      tb.dataset.asl = tb.innerHTML;
+    }
+    const m = ek.querySelector(".hn .mas:not(.ishga)");
+    if (m) m.hidden = bq !== "yasash" || !t.maslahat;
+    xkKarta(ek);
+    xkRoyChiz(ek);
+    if (bq === "yasash" && qayta && DARS2.maslahatKeyin && xkBola(ek) && t.maslahat) xkQulf(ek);
+    if (bq === "dost") xkDostKor(ek);
+    const g = t.gap || {};
+    if (bq === "yasash") ishora(ek, xkHozir(s) ? XG("karta") : XG("tayyor"));
+    else if (bq === "sinash") ishora(ek, XG("sinang"));
+    else if (bq === "dost") ishora(ek, xkSolo() ? XG("soloDost") : "");
+    else if (g.boshla && GAPT(g.boshla)) ishora(ek, GAPT(g.boshla));
+  }
+  function xkMaydonQoy(ek, m) {
+    const k = ek.querySelector(".oyna .katak.maydon");
+    if (!k) return;
+    const q = k.querySelector(".kt-q"), t = document.createElement("div");
+    t.innerHTML = maydonHtml(m, {});
+    const yk = t.firstElementChild, yq = yk.querySelector(".kt-q");
+    if (q && yq) {
+      q.querySelectorAll(".kt-qk").forEach((x) => x.remove());
+      const yk2 = yq.querySelector(".kt-qk");
+      if (yk2) q.appendChild(yk2);
+      yq.replaceWith(q);
+    }
+    k.replaceWith(yk);
+  }
+  function xkD2() {
+    try {
+      return localStorage.getItem(xkD2Kalit()) || "";
+    } catch (e) {
+      return "";
+    }
+  }
+  function xkQulf(ek) {
+    const m = ek.querySelector(".hn .mas:not(.ishga)");
+    if (!m || m.classList.contains("qulf")) return;
+    ek.dataset.maslahatQulf = "1";
+    m.classList.add("qulf");
+    m.insertAdjacentHTML("beforeend", '<svg class="mas-qulf" viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="7" width="10" height="7.5" rx="1.6" fill="currentColor"/><path d="M5.2 7V5.2a2.8 2.8 0 0 1 5.6 0V7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>');
+  }
+  function xkKarta(ek) {
+    const s = xkS(ek), bq = xkBosqich(ek), u = ek.querySelector(".ust");
+    if (!u || bq !== "yasash") return;
+    const p = xkHozir(s), tag = u.querySelector(".tag"), sar = u.querySelector(".sar");
+    let iz = u.querySelector(".iz");
+    if (!iz) {
+      u.insertAdjacentHTML("beforeend", '<span class="iz"></span>');
+      iz = u.querySelector(".iz");
+    }
+    if (!p) {
+      tag.textContent = XG("tag");
+      sar.innerHTML = XG("tayyorSar");
+      iz.innerHTML = "";
+      return;
+    }
+    const n = s.qism.indexOf(p.id) + 1;
+    tag.textContent = p.yulduz ? XG("yulduzTag") : XG("qismTag", n);
+    sar.textContent = p.nom;
+    iz.innerHTML = p.karta + ' <b class="xk-hj f-' + p.oila + '">' + p.hajm + "</b>";
+  }
+  const XK_RUL = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.6" fill="none" stroke="currentColor" stroke-width="2.6"/><circle cx="12" cy="12" r="2.4" fill="currentColor"/><path d="M12 14.4v6M9.8 11.2 3.8 9.6M14.2 11.2l6-1.6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>';
+  const XK_XARITA = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.2 8.6 4l6.8 2.4L21 4.2v13.6l-5.6 2.2-6.8-2.4L3 19.8z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M8.6 4v13.6M15.4 6.4V20" stroke="currentColor" stroke-width="2"/></svg>';
+  function xkRollar(s) {
+    const r = '<span class="xk-rl k-rul">' + XK_RUL + XG("haydovchi") + "</span>", x = '<span class="xk-rl k-xar">' + XK_XARITA + XG("xaritachi") + "</span>";
+    return '<span class="xk-rr' + ((s.haydovchi || 1) % 2 ? "" : " alm") + '">' + r + x + "</span>";
+  }
+  function xkRoyChiz(ek) {
+    const s = xkS(ek), bq = xkBosqich(ek), q = ek.querySelector(".xk-roy .xk-rq");
+    if (!q) return;
+    const p = bq === "yasash" ? xkHozir(s) : null, jonli = !xkSolo() && xkBola(ek);
+    let h = "";
+    for (const id of s.qism) {
+      const x = xkQ(s, id), ok = !!s.tayyor[id], hz = p && p.id === id;
+      const cls = ok ? "ok" : hz ? "hozir" : bq === "yasash" ? "kut" : "tug";
+      h += '<i class="xk-r ' + cls + '"><span class="xk-b">' + (ok ? "✓" : x.yulduz ? "★" : s.qism.indexOf(id) + 1) + "</span>" + x.nom + (cls === "tug" ? " <small>" + XG("tugamagan") + "</small>" : "") + "</i>";
+      if (hz && jonli) h += xkRollar(s);
+      if ((bq === "sinash" || bq === "namoyish") && ok && x.sina) h += '<i class="xk-r sn' + (s.sina[x.sina[0]] ? " ok" : "") + '"><span class="xk-b">' + (s.sina[x.sina[0]] ? "✓" : "") + "</span>" + x.sina[1] + "</i>";
+    }
+    if (bq === "sinash" || bq === "namoyish") {
+      const [k, t] = DARS2.xakaton.yutdi;
+      h += '<i class="xk-r sn' + (s.sina[k] ? " ok" : "") + '"><span class="xk-b">' + (s.sina[k] ? "✓" : "") + "</span>" + t + "</i>";
+    }
+    if (bq === "sinash" || bq === "dost") h += '<i class="xk-r' + (s.dost.length ? " ok" : "") + '"><span class="xk-b">' + (s.dost.length ? "✓" : "") + "</span>" + XG("dostlar") + "</i>";
+    q.innerHTML = h;
+  }
+  const xkSinaldi = (s) => s.qism.filter((id) => s.tayyor[id] && xkQ(s, id).sina).every((id) => s.sina[xkQ(s, id).sina[0]]) && !!s.sina[DARS2.xakaton.yutdi[0]];
+  const xkKos = (el) => blokQiymat(el, "KOS");
+  function xkStatik(ek, s, p, o) {
+    const ds = blDasturchalar(ek), tr = p.tayyor || {};
+    const bloklar2 = (f) => ds.filter(f).flatMap((x) => x.bloklar);
+    if (tr.tort) return ["right", "left", "up", "down"].every((k) => ds.some((x) => x.tur === "when_key" && x.tugma === k && x.bloklar.some((el) => ["r", "l", "u", "d"].indexOf(blokTuri(el)) >= 0)));
+    if (tr.set && !bloklar2((x) => x.tur === "when_start").some((el) => blokTuri(el) === "z" && ozgNom(el) === tr.set)) return false;
+    if (tr.set === "qadam" && tr.yetsin) {
+      const v = bloklar2((x) => x.tur === "when_start").filter((el) => blokTuri(el) === "z" && ozgNom(el) === "qadam").map(blokSon);
+      if (v.length && Math.max(...v) < DARS2.xakaton.olma.kamQadam) {
+        ishora(ek, XG("qadamKam"));
+        return false;
+      }
+    }
+    const hd = tr.hodisa ? bloklar2((x) => tr.hodisa === "any" ? x.tur === "when_key" && x.tugma === "any" : x.tur === "when_touch" && x.olma === tr.hodisa) : [];
+    if (tr.change && !hd.some((el) => blokTuri(el) === "c" && ozgNom(el) === tr.change)) return false;
+    if (typeof tr.qoida === "string" && !qoidaBor(ek, tr.qoida)) return false;
+    if (tr.kostyum && !hd.some((el) => blokTuri(el) === "v" && xkKos(el) === tr.kostyum)) return false;
+    if (tr.tovush && !hd.some((el) => blokTuri(el) === "n")) return false;
+    if (tr.oltin && !(o && o.xk && o.xk.oltin === tr.oltin)) return false;
+    if (tr.qoida === true) {
+      const q = labQoida(ek);
+      if (q.strelka < 4 || q.ochiq.length || q.boshqa.length) return false;
+    }
+    if (tr.tovushIf && !(o && o.tovushIf)) return false;
+    if (tr.startga && !(o && o.startga)) return false;
+    if (p.yasash && !(o && o.xk && o.xk.yutdi && kerakOk(labOlchov(yasashXarita(ek)), p.yasash))) return false;
+    return true;
+  }
+  function xkSeansBosh(ek) {
+    xkBanner(ek, "");
+    const o = OYIN.get(ek);
+    if (!o || o.xk) return;
+    o.xk = { buz: false, tomon: /* @__PURE__ */ new Set() };
+    if (xkBosqich(ek) === "dost") o.xk.dost = { yoq: 0 };
+  }
+  function xkMuammo(ek, kim) {
+    const o = ek && ek.dataset.oyin && OYIN.get(ek);
+    if (o && o.xk && kim !== "tosiqvoy") o.xk.buz = true;
+  }
+  async function xkOlmaBos(ek, k, o) {
+    const d = blDasturchalar(ek).filter((x) => x.tur === "when_key" && x.tugma === k);
+    if (!d.length) {
+      chal("muammo");
+      ishora(ek, TUGMA_BELGI[k] + " tugmasi uchun when " + TUGMA_BELGI[k] + " key pressed bloki kerak");
+      muammo(ek, "boshvoy", "Bu tugma uchun dasturcha yo‘q-ku…");
+      return false;
+    }
+    if (d.every((x) => !x.bloklar.length)) {
+      chal("muammo");
+      ishora(ek, "Hodisa blokining ostiga move blokini ulang");
+      muammo(ek, "kamvoy", "Tugma bosildi, lekin men nima qilay?");
+      return false;
+    }
+    const x02 = o.h.x, y0 = o.h.y;
+    for (const x of d) {
+      x.hodisa.classList.add("hozir");
+      await ijro(turla(x.daraxt), (n) => ballBlok(ek, o.h, n), { kut: 140 });
+      x.hodisa.classList.remove("hozir");
+      if (ek.__tugadi || o.h.urildi && o.h.urildi.kaktus) break;
+    }
+    const dx = o.h.x - x02, dy = o.h.y - y0, yon = dx > 0 ? "right" : dx < 0 ? "left" : dy < 0 ? "up" : dy > 0 ? "down" : "";
+    if (o.xk && yon === k) o.xk.tomon.add(k);
+    return true;
+  }
+  function xkTegishYoq(ek, olma) {
+    const s = xkS(ek), p = xkBosqich(ek) === "yasash" ? xkHozir(s) : null;
+    const kerak2 = { apple: ["ball", "quvonch"], cactus: ["jon"], gold: ["oltin"] }[olma] || [];
+    return !(p && kerak2.indexOf(p.id) >= 0);
+  }
+  const xkHozirId = (ek) => {
+    const p = xkBosqich(ek) === "yasash" ? xkHozir(xkS(ek)) : null;
+    return p ? p.id : "";
+  };
+  function xkTegdi(ek, o, olma, old) {
+    if (!o.xk) return;
+    if (olma === "gold" && vOl(ek, "ball") - (old.ball || 0) === 10) o.xk.oltin = 10;
+    if (olma === "apple") {
+      const h = o.h;
+      if (h.kos === "xursand" && (h.tovushlar || []).length > (o.xk.tov0 || 0)) o.xk.quvonch = true;
+      o.xk.tov0 = (h.tovushlar || []).length;
+      if (vOl(ek, "ball") > (old.ball || 0)) o.xk.ballOsdi = true;
+    }
+  }
+  function xkLabIz(ek, o, iz, k, yoq0) {
+    if (!o.xk) return;
+    const h = o.h;
+    if ((h.yoqSoni || 0) > yoq0 && !h.urildi) o.xk.yoq = true;
+    if (h.eshikYoq || h.urildi && h.urildi.eshik) o.xk.eshik = true;
+    if (iz.tovush && iz.yurdi) o.xk.tovYur = true;
+    if (!iz.tovush && !iz.yurdi && k !== "space") o.xk.tovJim = true;
+    if (k === "space" && iz.go && !iz.go[0] && !iz.go[1]) o.xk.start = true;
+    if (o.xk.dost && (h.yoqSoni || 0) > yoq0) o.xk.dost.yoq++;
+    xkJonli(ek, o);
+  }
+  function xkSeans(ek, o, nat) {
+    if (!o || !o.xk || o.xk.tugadi) return;
+    o.xk.tugadi = true;
+    if (nat === "yutdi") o.xk.yutdi = true;
+    const s = xkS(ek), bq = xkBosqich(ek), b = TOP(ek.dataset.id).bosh;
+    if (bq === "dost") return xkSizgaYoqdi(ek, o, nat);
+    const sina = bq === "sinash" || bq === "namoyish", sn = sina ? s.sina : {}, iz = sina ? s.iz : {};
+    if (sina) xkJonliYoz(s, o);
+    if (o.ball0 === 0 && o.xk.ballOsdi) {
+      iz.ball0 = (iz.ball0 || 0) + 1;
+      if (iz.ball0 >= 2) sn.ball0 = 1;
+    }
+    let gap = "";
+    if (nat === "tugadi") {
+      const n = ek.__ifOzg;
+      if (n && vOl(ek, n) === 0 && !(o.manfiy || {})[n]) sn["nol:" + n] = 1;
+      else if (n && vOl(ek, n) > 0) gap = (xkQ(s, n) || {}).royxat || "";
+    }
+    if (nat === "yutdi") {
+      sn.yutdi = 1;
+      if (b.darajalar && b.darajalar.length > 1) sn.ikki = 1;
+    }
+    if (bq === "yasash") {
+      const p = xkHozir(s);
+      if (p && (o.bosish || 0) > 0 && !o.xk.buz && xkStatik(ek, s, p, o)) {
+        xkSaqla(ek);
+        return xkQismTayyor(ek, p);
+      }
+    }
+    if (bq === "sinash" || bq === "namoyish") {
+      if (gap && !o.xk.buz) {
+        chal("muammo");
+        ishora(ek, gap);
+        muammo(ek, "kamvoy", "Oz qoldi!");
+      }
+      const tug = s.qism.map((id) => xkQ(s, id)).find((x) => !s.tayyor[x.id]);
+      if (o.xk.buz && tug && bq === "sinash") {
+        ishora(ek, XG("tugQism", tug.nom));
+        muammo(ek, "kamvoy", "Oz qoldi!");
+      }
+      xkSinaldiMi(ek);
+    }
+    xkDasturSaqla(ek);
+    xkSaqla(ek);
+    xkRoyChiz(ek);
+  }
+  function xkJonliYoz(s, o) {
+    const sn = s.sina, iz = s.iz, eski = JSON.stringify(sn);
+    iz.tomon = [.../* @__PURE__ */ new Set([...iz.tomon || [], ...o.xk.tomon])];
+    if (iz.tomon.length === 4) sn.tomon = 1;
+    if (o.xk.quvonch) sn.quvonch = 1;
+    if (o.xk.yoq) sn.yoq = 1;
+    if (o.xk.eshik) sn.eshik = 1;
+    if (o.xk.tovJim) iz.tovJim = 1;
+    if (o.xk.tovYur && iz.tovJim) sn.tovush = 1;
+    if (o.xk.start) sn.start = 1;
+    return JSON.stringify(sn) !== eski;
+  }
+  function xkJonli(ek, o) {
+    const bq = xkBosqich(ek);
+    if (!o || !o.xk || bq !== "sinash" && bq !== "namoyish") return;
+    const s = xkS(ek);
+    if (!xkJonliYoz(s, o)) return;
+    xkSaqla(ek);
+    xkRoyChiz(ek);
+    xkSinaldiMi(ek);
+  }
+  function xkSinaldiMi(ek) {
+    const s = xkS(ek);
+    if (xkBosqich(ek) !== "sinash" || s.sinaldi || !xkSinaldi(s)) return;
+    s.sinaldi = 1;
+    xkSaqla(ek);
+    konfeti(ek);
+    xkBanner(ek, XG("sinaldi"));
+    ishora(ek, XG("dostKut"));
+    if (xkBola(ek) && typeof pogQosh === "function") pogQosh(7);
+    xkBildir(ek);
+  }
+  function xkDasturSaqla(ek) {
+    if (!xkBola(ek)) return;
+    const ws = typeof BL_WS !== "undefined" && BL_WS.get(ek);
+    if (ws) ek.__xk.dastur = Blockly.serialization.workspaces.save(ws);
+  }
+  function xkQismTayyor(ek, p) {
+    const s = xkS(ek);
+    s.tayyor[p.id] = 1;
+    s.kim[p.id] = s.haydovchi || 1;
+    xkDasturSaqla(ek);
+    xkSaqla(ek);
+    const n = xkTayyorSoni(s);
+    if (xkBola(ek) && typeof pogQosh === "function") pogQosh(p.yulduz ? 6 : 2 + n);
+    if (xkBola(ek) && typeof blokQosh === "function") blokQosh("xk", xkBelgilar(s));
+    xkBildir(ek);
+    konfeti(ek);
+    xkBanner(ek, n >= 3 && !p.yulduz ? XG("tayyor") : XG("qismTayyor"));
+    ishora(ek, "");
+    xkRoyChiz(ek);
+    const keyin = xkHozir(s) || xkYulduzBor(s);
+    if (!keyin) {
+      xkKarta(ek);
+      return;
+    }
+    ek.__xkKut = true;
+    setTimeout(() => {
+      if (!document.body.contains(ek)) return;
+      if (xkSolo() || !xkBola(ek)) return xkKeyingi(ek);
+      xkAlmashKor(ek);
+    }, 1400);
+  }
+  function xkAlmashKor(ek) {
+    const s = xkS(ek), fo = ek.querySelector(".hn");
+    if (!fo || fo.querySelector(".xk-alm")) return;
+    s.haydovchi = (s.haydovchi || 1) % (s.juft || 2) + 1;
+    xkSaqla(ek);
+    const rr = ek.querySelector(".xk-rr");
+    if (rr) rr.classList.toggle("alm");
+    ishora(ek, (s.juft || 2) > 2 ? XG("almash3") : XG("almash"));
+    const a = oyinTugma(ek);
+    if (a) a.hidden = true;
+    fo.insertAdjacentHTML("beforeend", '<span class="asos xk-alm">' + XG("almashdik") + "</span>");
+  }
+  function xkKeyingi(ek) {
+    const s = xkS(ek);
+    ek.querySelectorAll(".hn .xk-alm").forEach((x) => x.remove());
+    const a = oyinTugma(ek);
+    if (a) a.hidden = false;
+    const y = !xkHozir(s) && xkYulduzBor(s);
+    if (y) s.qism.push(y.id);
+    delete ek.__xkKut;
+    xkSaqla(ek);
+    xkTayyorla(ek, true);
+    if (y) ishora(ek, XG("vaqt"));
+  }
+  function xkBelgilar(s) {
+    const b = (tur, n) => Array.from({ length: n }, () => ({ dataset: { tur } }));
+    return [...b("W", s.tayyor[xkBirinchi(s).id] ? 1 : 0), ...b("Q", s.qism.filter((id) => s.tayyor[id]).length), ...b("D", s.dost.length)];
+  }
+  function xkXulosa(s) {
+    const kim = new Set(Object.values(s.kim || {}));
+    return { oyin: s.oyin, q: s.qism.filter((id) => s.tayyor[id]).length, ikki: kim.size >= 2, d: (s.dost || []).length, w: !!(s.tayyor || {})[xkBirinchi(s).id], royxat: s.qism.map((id) => [xkQ(s, id).nom, !!s.tayyor[id]]) };
+  }
+  function xkBildir(ek) {
+    if (xkBola(ek)) bildirB(ek, { t: "xk", x: xkXulosa(xkS(ek)) });
+  }
+  function xkBosish(e, ek) {
+    if (e.target.closest(".hn .xk-alm")) {
+      chal("bos");
+      xkKeyingi(ek);
+      return true;
+    }
+    if (ek.__xkKut && e.target.closest(".hn .ishga, .hn .asos")) return true;
+    if (e.target.closest(".xk-yq")) return xkYoqdiBos(e, ek);
+    return null;
+  }
+  const XK_YOQDI = () => XG("yoqdiK") || [];
+  const XK_YQ_RASM = {
+    qiziq: '<svg viewBox="-1.2 -1.2 2.4 2.4" aria-hidden="true"><circle r="1.1" fill="#FFE9A8"/><path d="' + (typeof KT_YULDUZ !== "undefined" ? KT_YULDUZ : "") + '" fill="#F5B82E" stroke="#C98A0E" stroke-width=".06"/></svg>',
+    chiroyli: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="3.6" fill="#FF8FB1"/><circle cx="7.4" cy="10.6" r="3.6" fill="#FF8FB1"/><circle cx="16.6" cy="10.6" r="3.6" fill="#FF8FB1"/><circle cx="9" cy="15.4" r="3.6" fill="#FF8FB1"/><circle cx="15" cy="15.4" r="3.6" fill="#FF8FB1"/><circle cx="12" cy="11.8" r="3" fill="#F5B82E"/></svg>',
+    yana: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7.6l7 4.4-7 4.4z" fill="#2F8FF0"/><path d="M19.4 12a7.4 7.4 0 0 1-12.8 5M4.6 12a7.4 7.4 0 0 1 12.8-5" fill="none" stroke="#2F8FF0" stroke-width="2.2" stroke-linecap="round"/></svg>'
+  };
+  function xkSizgaYoqdi(ek, o, nat) {
+    const ob = ek.querySelector(".oyna");
+    if (!ob) return;
+    ek.__xkDost = { yutdi: nat === "yutdi", teg: o.teg || 0, yoq: (o.xk.dost || {}).yoq || 0, bosish: o.bosish || 0 };
+    const qah2 = ek.querySelector(".oyna .kt-q svg, .oyna .aktyor svg"), quv = qah2 ? qah2.outerHTML : "";
+    ob.insertAdjacentHTML("beforeend", '<div class="xk-yq-f"></div><div class="gl xk-yq"><b class="xk-yq-s">' + XG("yoqdi") + '</b><div class="xk-yq-k">' + XK_YOQDI().map(([k, t]) => '<span class="xk-yk" data-k="' + k + '" role="button"><i>' + (k === "quvnoq" ? quv : XK_YQ_RASM[k]) + "</i><b>" + t + "</b></span>").join("") + '</div><span class="xk-yq-t off" role="button">' + XG("tayyorT") + "</span></div>");
+    ishora(ek, "");
+  }
+  function xkYoqdiBos(e, ek) {
+    const k = e.target.closest(".xk-yk"), box = ek.querySelector(".xk-yq");
+    if (k) {
+      k.classList.toggle("on");
+      chal("bos");
+      box.querySelector(".xk-yq-t").classList.toggle("off", !box.querySelector(".xk-yk.on"));
+      return true;
+    }
+    if (!e.target.closest(".xk-yq-t") || !box.querySelector(".xk-yk.on")) return true;
+    const s = xkS(ek), d = ek.__xkDost || {};
+    d.belgi = [...box.querySelectorAll(".xk-yk.on")].map((x) => x.dataset.k);
+    s.dost.push(d);
+    delete ek.__xkDost;
+    xkSaqla(ek);
+    box.remove();
+    ek.querySelectorAll(".xk-yq-f").forEach((x) => x.remove());
+    if (xkBola(ek) && typeof blokQosh === "function") blokQosh("xk", xkBelgilar(s));
+    if (xkBola(ek) && typeof pogQosh === "function") pogQosh(8);
+    xkBildir(ek);
+    chal("yulduz");
+    xkDostKor(ek);
+    xkRoyChiz(ek);
+    return true;
+  }
+  function xkDostMatn(s) {
+    const d = s.dost || [];
+    if (!d.length) return "";
+    const yut = d.filter((x) => x.yutdi).length, lab = s.oyin === "lab", teg = d.reduce((a, x) => a + (lab ? x.yoq : x.teg), 0);
+    const belgi = [...new Set(d.flatMap((x) => x.belgi || []))].map((k) => (XK_YOQDI().find((y) => y[0] === k) || [, k])[1]);
+    const t = XG(lab ? "devor" : "teg", teg), q = " · " + t + " · " + XG("belgi") + belgi.join(", ");
+    if (d.length === 1) return XG("dost1") + (yut ? XG("yutdi") : XG("yetmadi")) + q;
+    return XG("dostN", d.length) + (yut ? XG("yutdiN", yut) : XG("yetmadi")) + q;
+  }
+  function xkDostKor(ek) {
+    const s = xkS(ek), m = xkDostMatn(s), ob = ek.querySelector(".oyna");
+    if (!ob) return;
+    ob.querySelectorAll(".xk-dn").forEach((x) => x.remove());
+    if (m) ob.insertAdjacentHTML("beforeend", '<div class="gl xk-dn">' + (xkSolo() ? "" : "<small>" + XG("joy") + "</small>") + "<b>" + m + "</b></div>");
+  }
+  function juftlikTayyorla(ek) {
+    ek.querySelectorAll(".jf-o").forEach((x) => x.classList.remove("on"));
+  }
+  function juftlikBosish(e, ek) {
+    const c = e.target.closest(".jf-o");
+    if (!c) return false;
+    ek.querySelectorAll(".jf-o").forEach((x) => x.classList.toggle("on", x === c));
+    chal("bos");
+    if (typeof juftTanla === "function") juftTanla(c.dataset.j);
+    return true;
+  }
+  function xkTanlovTayyorla(ek) {
+    const s = xkOl();
+    ek.__tan = { oyin: s.tanladi ? s.oyin : "", tan: s.tanladi ? s.qism.slice(1) : [], bosqich: s.tanladi ? 2 : 0 };
+    xkTanlovChiz(ek);
+  }
+  function xkTanlovChiz(ek) {
+    const t = ek.__tan, xt = ek.querySelector(".xk-t"), a = ek.querySelector(".hn .asos"), pr = ek.querySelector(".xk-pr");
+    if (xt && !xt.__kartalar) xt.__kartalar = xt.innerHTML;
+    if (pr) {
+      pr.classList.toggle("on", !!t.oyin);
+      pr.querySelectorAll("[data-o]").forEach((x) => {
+        x.hidden = x.dataset.o !== t.oyin;
+      });
+    }
+    if (!t.oyin) {
+      if (xt) xt.innerHTML = xt.__kartalar;
+      if (a) a.classList.add("off");
+      ishora(ek, XG("tanlaO"));
+      return;
+    }
+    const o = DARS2.xakaton[t.oyin], sar = ek.querySelector(".chap .sar");
+    if (sar) sar.textContent = o.nom;
+    const ql = xt;
+    if (ql) {
+      const yop = (q) => q.ozi && t.tan.indexOf(q.ozi) < 0;
+      ql.innerHTML = '<div class="xk-ql">' + o.qism.map((q) => {
+        const tan = q.birinchi || t.tan.indexOf(q.id) >= 0, cls = q.birinchi ? "qot" : q.yulduz ? "yd" : yop(q) ? "yop" : tan ? "on" : "";
+        return '<span class="xk-qk ' + cls + '" data-q="' + q.id + '" role="button"><span class="xk-qt"><i>' + (q.birinchi ? "1" : q.yulduz ? "★" : tan ? "✓" : "") + "</i><b>" + q.nom + '</b><small class="xk-hj f-' + q.oila + '">' + q.hajm + "</small></span>" + (q.birinchi ? "<em>" + XG("yurmaydi") + "</em>" : q.yulduz ? "<em>" + XG("vaqtQ") + "</em>" : yop(q) ? "<em>" + q.bilan + "</em>" : tan ? "<em>" + q.karta + "</em>" : "") + "</span>";
+      }).join("") + "</div>";
+    }
+    if (t.bosqich === 2) {
+      if (a) {
+        a.textContent = XG("tayyormiz");
+        a.classList.remove("off");
+      }
+      ishora(ek, XG("birinchi"));
+      return;
+    }
+    if (a) {
+      a.textContent = XG("tanladik");
+      a.classList.toggle("off", t.tan.length !== 2);
+    }
+    ishora(ek, "");
+  }
+  function xkTanlovBosish(e, ek) {
+    const t = ek.__tan;
+    if (!t) return false;
+    if (e.target.closest(".xk-pr") && t.bosqich !== 2) {
+      t.oyin = "";
+      t.tan = [];
+      chal("bos");
+      xkTanlovChiz(ek);
+      return true;
+    }
+    const o = e.target.closest(".xk-o[data-o]");
+    if (o && t.bosqich !== 2 && o.dataset.o !== t.oyin) {
+      t.oyin = o.dataset.o;
+      t.tan = [];
+      chal("bos");
+      xkTanlovChiz(ek);
+      return true;
+    }
+    const q = e.target.closest(".xk-qk");
+    if (q && t.bosqich !== 2) {
+      const x = DARS2.xakaton[t.oyin].qism.find((y) => y.id === q.dataset.q);
+      if (!x || x.birinchi || x.yulduz) return true;
+      if (x.ozi && t.tan.indexOf(x.ozi) < 0) {
+        ishora(ek, x.bilan);
+        return true;
+      }
+      const i = t.tan.indexOf(x.id);
+      if (i >= 0) {
+        t.tan.splice(i, 1);
+        t.tan = t.tan.filter((id) => {
+          const z = DARS2.xakaton[t.oyin].qism.find((y) => y.id === id);
+          return !z.ozi || t.tan.indexOf(z.ozi) >= 0;
+        });
+      } else if (t.tan.length < 2) t.tan.push(x.id);
+      chal("bos");
+      xkTanlovChiz(ek);
+      return true;
+    }
+    if (e.target.closest(".hn .asos")) {
+      if (t.bosqich === 2) {
+        chal("bos");
+        return false;
+      }
+      if (t.tan.length !== 2) return true;
+      const s = { oyin: t.oyin, qism: [DARS2.xakaton[t.oyin].qism.find((y) => y.birinchi).id, ...t.tan], tanladi: 1, tayyor: {}, kim: {}, sina: {}, iz: {}, haydovchi: 1, dost: [], juft: xkOl().juft || 2 };
+      xkYoz(s);
+      t.bosqich = 2;
+      chal("bos");
+      xkTanlovChiz(ek);
+      if (typeof pogQosh === "function") pogQosh(2);
+      bildirB(ek, { t: "xk", x: xkXulosa(s) });
+      return true;
+    }
+    return true;
+  }
+  function xkKorsatBosish(e, ek) {
+    const o = e.target.closest(".xk-o");
+    if (!o) return false;
+    ek.querySelectorAll(".xk-o").forEach((x) => x.classList.toggle("on", x === o));
+    chal("bos");
+    return true;
+  }
+  function xkNatija(ek) {
+    if (!DARS2.xakaton) return;
+    const juft = typeof juftRol === "function" ? juftRol() : "oyin", s = xkOl();
+    const x = juft === "ikki" ? typeof juftXulosa === "function" ? juftXulosa() : null : s.oyin ? xkXulosa({ ...s, tayyor: s.tayyor || {}, kim: s.kim || {}, dost: s.dost || [] }) : null;
+    const qo = (k, v) => {
+      const b = ek.querySelector('.sn-t[data-k="' + k + '"] b');
+      if (b) b.textContent = v;
+    };
+    const sn = ek.querySelector(".sn"), st = ek.querySelector(".st-s");
+    if (!x) {
+      if (sn) sn.hidden = true;
+      if (st) st.hidden = true;
+      const h = ek.querySelector(".chap .sar");
+      if (h) h.innerHTML = XG("natijaYoq");
+      return;
+    }
+    qo("ta qism yasadingiz", x.q);
+    qo("marta o‘ynab ko‘rildi", x.d);
+    const ik = ek.querySelector('.sn-t[data-k="ikkalangiz ham haydadingiz ✓"]');
+    if (ik) ik.hidden = !x.ikki;
+    const rq = ek.querySelector(".xk-nr .xk-rq");
+    if (rq && x.royxat) rq.innerHTML = x.royxat.map(([n, ok]) => '<i class="xk-r ' + (ok ? "ok" : "tug") + '"><span class="xk-b">' + (ok ? "✓" : "") + "</span>" + n + "</i>").join("");
+    if (x.oyin === "lab") {
+      const k = ek.querySelector(".oyna .katak");
+      if (k) mdQayta(ek, DARS2.labirintlar.D1);
+    }
+    const sq = ek.querySelector(".saqlandi");
+    if (sq) sq.hidden = !(juft !== "ikki" && s.dastur);
+  }
+  const juftQ = (k) => {
+    const [q, r, n] = String(k).split("|");
+    return { q: q || "momiq", r: +r, n: n || typeof QNOM2 !== "undefined" && QNOM2[q] || "" };
+  };
+  function juftQahTayyorla(ek) {
+    const jq = ek.querySelector(".tq.jq");
+    if (!jq || typeof juftRoyxat !== "function") return;
+    jq.innerHTML = juftRoyxat().map((k) => {
+      const x = juftQ(k);
+      return '<span class="tq-o jq-o" data-k="' + k + '" role="button"><span class="aktyor tq-q">' + (QAH_SVG2[x.q] || "") + '</span><i class="z"></i><b class="jq-n">' + x.n + "</b></span>";
+    }).join("");
+  }
+  function juftQahBosish(e, ek) {
+    const o = e.target.closest(".jq-o");
+    if (!o) return false;
+    ek.querySelectorAll(".jq-o").forEach((x) => x.classList.toggle("on", x === o));
+    chal("bos");
+    try {
+      localStorage.setItem(K + "juftQ", o.dataset.k);
+    } catch (er) {
+    }
+    if (typeof bildir === "function") bildir({ t: "juftIkki", q: o.dataset.k });
+    setTimeout(() => {
+      if (typeof bolaKeyingi === "function") bolaKeyingi();
+    }, 600);
+    return true;
+  }
+  function juftDost() {
+    let k = "";
+    try {
+      k = localStorage.getItem(K + "juftQ") || "";
+    } catch (e) {
+    }
+    return k ? juftQ(k) : null;
+  }
+  function juftDostQoy(ek) {
+    const d = juftDost(), q = ek.querySelector(".jd-q");
+    if (d && q && QAH_SVG2[d.q]) q.innerHTML = QAH_SVG2[d.q];
+  }
+  const KG = (k, n) => {
+    const g = typeof DARS2 !== "undefined" && DARS2.klonGap || {};
+    const t = g[k] != null ? g[k] : "";
+    return n != null && typeof t === "string" ? t.replace(/\bN\b/, n) : t;
+  };
+  const klonBola = (ek) => {
+    const r = ek && ek.parentNode && ek.parentNode.closest("#ust,#bol");
+    return !!r && r.id === "bol";
+  };
+  const KL_W = () => (typeof DARS2 !== "undefined" && DARS2.maydon || { w: 7 }).w - 1;
+  const KL_H = () => (typeof DARS2 !== "undefined" && DARS2.maydon || { h: 5 }).h - 1;
+  function klonMaydon(ek) {
+    const k = ek.querySelector(".oyna .katak.maydon");
+    return k ? { k, svg: k.querySelector("svg.kt"), H: katakXarita(k.dataset.xarita).length } : null;
+  }
+  function klonRasm(ek, x, y, cls, svg) {
+    const m = klonMaydon(ek);
+    if (!m || !m.svg) return null;
+    const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+    g.setAttribute("class", cls);
+    g.style.transform = katakJoy(x, m.H - 1 - y);
+    g.innerHTML = (svg || DARS2.klonSvg || "").replace("<svg ", '<svg x="4" y="18" width="72" height="62" ');
+    m.svg.insertBefore(g, m.k.querySelector(".kt-q"));
+    return g;
+  }
+  function klonSur(ek, n, sakrab = true) {
+    const m = klonMaydon(ek);
+    if (m && n.g) katakSur(n.g, n.x, m.H - 1 - n.y, sakrab);
+  }
+  function klonOl(ek) {
+    ek.querySelectorAll(".katak .kt-klon, .katak .kt-asl").forEach((x) => x.remove());
+    ek.__klon = null;
+  }
+  function klonTayyorla(ek) {
+    const b = TOP(ek.dataset.id).bosh, k = b.klon || {};
+    klonOl(ek);
+    {
+      const bq = ek.querySelector(".dst .bq-q"), dsb = ek.querySelector(".dst .dsb");
+      if (bq && dsb && dsb.nextElementSibling !== bq) dsb.after(bq);
+      if (bq) bq.classList.remove("ochiq");
+    }
+    const [ax, ay] = k.asl || [3, KL_H()];
+    if (b.soloProg && typeof SOLO !== "undefined" && SOLO && !ek.__klonQurildi) {
+      ek.__klonQurildi = true;
+      klonQur(ek, b.soloProg);
+    }
+    ek.__klon = { asl: { x: ax, y: ay, g: klonRasm(ek, ax, ay, "kt-asl"), asl: true }, nusxa: [], soni: 0 };
+    klonSanoq(ek);
+  }
+  function klonQur(ek, prog) {
+    const ws = typeof BL_WS !== "undefined" && BL_WS.get(ek);
+    if (!ws) return;
+    ws.clear();
+    const ichiga = (ota, q) => {
+      let o = null;
+      for (const [t, m, ich] of q) {
+        const x = blYangi(ws, t, m);
+        if (o) o.nextConnection.connect(x.previousConnection);
+        else ota.getInput("DO").connection.connect(x.previousConnection);
+        if (ich) ichiga(x, ich);
+        o = x;
+      }
+    };
+    B_GURUH(() => prog.forEach(([h, ...q], i) => {
+      const hb = blYangi(ws, h[0], h[1]);
+      hb.moveTo(new Blockly.utils.Coordinate(0, i * 1e3));
+      let o = hb;
+      for (const [t, m, ich] of q) {
+        const x = blYangi(ws, t, m);
+        o.nextConnection.connect(x.previousConnection);
+        if (ich) ichiga(x, ich);
+        o = x;
+      }
+    }));
+    ws.getAllBlocks(false).forEach(blBelgila);
+    blTartib(ws);
+    blMasshtab(ek, ws);
+    if (typeof blTartibKeyin === "function") blTartibKeyin(ws);
+    sanoq(ek);
+  }
+  function klonSanoq(ek) {
+    const b = TOP(ek.dataset.id).bosh, k = b.klon || {}, s = ek.__klon || { nusxa: [] }, ob = ek.querySelector(".oyna");
+    if (!ob) return;
+    let el = ob.querySelector(".kl-son");
+    if (!el) {
+      ob.insertAdjacentHTML("beforeend", '<span class="gl kl-son"></span>');
+      el = ob.querySelector(".kl-son");
+    }
+    el.textContent = KG("sanoq", s.nusxa.length + (k.soni ? " / " + k.soni : ""));
+  }
+  function klonSon(ek, b, nm) {
+    const x = b.getInputTargetBlock(nm);
+    if (x && x.type === "random_n") {
+      const a = +x.getFieldValue("A"), c = +x.getFieldValue("B"), v = tasodif(ek, Math.min(a, c), Math.max(a, c));
+      if (typeof blSanoq === "function") blSanoq(x.getSvgRoot(), v);
+      return v;
+    }
+    return x ? +x.getFieldValue("N") || 0 : 0;
+  }
+  async function klonBlok(ek, n, t) {
+    const s = n.s || ek.__klon;
+    if (!s || n.ochdi || n.toxtat || s.toxtat) return "toxta";
+    if (t.tur === "C") {
+      if (n.asl) await klonYasa(ek, s);
+      return;
+    }
+    if (t.tur === "D") {
+      if (!n.asl) {
+        klonOchir(ek, n);
+        return "toxta";
+      }
+      return;
+    }
+    const d = { r: [1, 0], l: [-1, 0], u: [0, 1], d: [0, -1] }[t.tur];
+    let nx = n.x, ny = n.y;
+    if (d) {
+      nx += d[0];
+      ny += d[1];
+    } else if (t.tur === "x") {
+      const [a, c] = blokXY(t.el);
+      nx = a;
+      ny = c;
+    } else if (t.tur === "y") {
+      const bl = blBlok(t.el), sp = (v) => {
+        const m = /^r(\d+)-(\d+)$/.exec(v || "");
+        return m ? tasodif(ek, Math.min(+m[1], +m[2]), Math.max(+m[1], +m[2])) : +v || 0;
+      };
+      if (bl) {
+        nx = klonSon(ek, bl, "X");
+        ny = klonSon(ek, bl, "Y");
+      } else if (t.el && t.el.dataset && t.el.dataset.kx != null) {
+        nx = sp(t.el.dataset.kx);
+        ny = sp(t.el.dataset.ky);
+      } else return;
+    } else return;
+    if (nx < 0 || nx > KL_W() || ny < 0 || ny > KL_H()) {
+      n.chet = { x: nx, y: ny, tur: t.tur };
+      chal("tuk");
+      if (n.g && n.g.animate && d) n.g.animate([{ transform: n.g.style.transform }, { transform: n.g.style.transform.replace(/translate\(([-\d.]+)px,\s*([-\d.]+)px\)/, (m0, a, c) => "translate(" + (+a + d[0] * 18) + "px," + (+c - d[1] * 18) + "px)") }, { transform: n.g.style.transform }], { duration: 380 });
+      return "toxta";
+    }
+    n.x = nx;
+    n.y = ny;
+    klonSur(ek, n, t.tur === "x" || t.tur === "y");
+    chal("qadam");
+    if (s.oyin && !n.asl) klonTegdimi(ek, n);
+    if (s.kosmik && !n.asl && typeof kosmikNishon === "function") kosmikNishon(ek, n);
+  }
+  async function klonYasa(ek, s0) {
+    const s = s0 || ek.__klon;
+    if (!s) return;
+    if (s.kosmik && !s.tushadi && typeof kosmikAslJoy === "function") kosmikAslJoy(ek, s);
+    const n = { x: s.asl.x, y: s.asl.y, g: klonRasm(ek, s.asl.x, s.asl.y, "kt-klon yangi" + (s.cls ? " " + s.cls : ""), s.svg), boshladi: false, s };
+    s.nusxa.push(n);
+    s.soni++;
+    if (!s.sanoqYoq) klonSanoq(ek);
+    chal("bos");
+    if (n.g) setTimeout(() => n.g && n.g.classList.remove("yangi"), 400);
+    const d = (s.nusxaD ? s.nusxaD() : blDasturchalar(ek)).filter((x) => x.tur === "when_clone");
+    n.boshladi = d.some((x) => x.bloklar.length);
+    n.tugadi = Promise.all(d.map((x) => ijro(turla(x.daraxt), (t) => klonBlok(ek, n, t), { kut: s.kut || 620 }))).then(() => {
+      if (!n.ochdi) n.yerda = true;
+      if (s.kosmik && typeof kosmikNusxaTugadi === "function") kosmikNusxaTugadi(ek, n);
+    });
+    s.ishlar.push(n.tugadi);
+  }
+  function klonOchir(ek, n) {
+    n.ochdi = true;
+    const g = n.g;
+    n.g = null;
+    if (g) {
+      if (g.animate) {
+        g.animate([{ opacity: 1, transform: g.style.transform }, { opacity: 0, transform: g.style.transform + " scale(.6)" }], { duration: 260 });
+        setTimeout(() => g.remove(), 250);
+      } else g.remove();
+    }
+  }
+  async function klonIshga(ek) {
+    if (ek.dataset.yuryapti) return;
+    maslahatOch(ek);
+    if (typeof blTanlovOl === "function") blTanlovOl(ek);
+    urildiOl(ek);
+    muammoOl(ek);
+    ek.querySelectorAll(".konfeti").forEach((x) => x.remove());
+    const id = ek.dataset.id, b = TOP(id).bosh, k = b.klon || {}, g = TOP(id).gap || {};
+    const ds = blDasturchalar(ek), st = ds.filter((x) => x.tur === "when_start");
+    if (!ds.length || ds.every((x) => !x.bloklar.length)) {
+      chal("muammo");
+      ishora(ek, KG("bosh"));
+      muammo(ek, "boshvoy", KG("boshP"));
+      return;
+    }
+    klonTayyorla(ek);
+    const s = ek.__klon;
+    s.ishlar = [];
+    ek.dataset.yuryapti = "1";
+    ishora(ek, KG("ishlayapti"));
+    for (const x of st) {
+      x.hodisa.classList.add("hozir");
+      await ijro(turla(x.daraxt), (t) => klonBlok(ek, s.asl, t), { kut: 620 });
+      x.hodisa.classList.remove("hozir");
+    }
+    while (s.ishlar.length) {
+      const r = s.ishlar.splice(0);
+      await Promise.all(r);
+    }
+    delete ek.dataset.yuryapti;
+    klonBaho(ek, k, g);
+  }
+  function klonBaho(ek, k, g) {
+    const s = ek.__klon, nus = s.nusxa, M = (kim, p, i) => {
+      chal("muammo");
+      ishora(ek, i);
+      muammo(ek, kim, p);
+    };
+    if (!nus.length) return M("boshvoy", KG("yoqP"), KG("yoq"));
+    if (nus.some((n) => !n.boshladi)) return M("boshvoy", KG("turibP"), KG("turib"));
+    const chet = nus.find((n) => n.chet);
+    if (chet) return M("kamvoy", KG("chetP"), chet.chet.tur === "y" ? KG(chet.chet.x < 0 || chet.chet.x > KL_W() ? "chetX" : "chetY", chet.chet.x < 0 || chet.chet.x > KL_W() ? chet.chet.x : chet.chet.y) : KG("chet"));
+    const osil = nus.find((n) => !n.ochdi && n.y > 0 && k.yer !== false);
+    if (osil) return M("kamvoy", KG("yetmadiP"), KG("yetmadi", osil.y).replace("(x, y)", "(" + osil.x + ", " + osil.y + ")"));
+    if (k.soni && nus.length < k.soni) return M("kamvoy", KG("kamP"), KG("soni", k.soni));
+    if (k.soni && nus.length > k.soni) return M("ortiqvoy", KG("kopP"), KG("soni", k.soni));
+    if (k.joy && nus.some((n) => !k.joy.some(([x, y]) => x === n.x && y === n.y))) {
+      const n = nus.find((q) => !k.joy.some(([x, y]) => x === q.x && y === q.y));
+      return M("kamvoy", KG("joyP"), KG("joy").replace("(x, y)", "(" + n.x + ", " + n.y + ")").replace("(a, b)", "(" + k.joy[0].join(", ") + ")"));
+    }
+    const r = klonRandom(ek);
+    if (k.ustun === "xil" && !r.bor) return M("kamvoy", KG("birP"), KG("bir"));
+    if (Array.isArray(k.ustun)) {
+      const tash = r.bor ? r.qiymat.find((v) => v < k.ustun[0] || v > k.ustun[1]) : nus.map((n) => n.x).find((v) => v < k.ustun[0] || v > k.ustun[1]);
+      if (tash != null) return M("ortiqvoy", KG("ustunP"), KG("ustun", tash));
+    }
+    if (r.bor && r.qiymat.some((v) => v < 0 || v > KL_W())) {
+      const v = r.qiymat.find((q) => q < 0 || q > KL_W());
+      return M("kamvoy", KG("chetP"), KG("chetX", v));
+    }
+    ishora(ek, g.yetdi ? GAPT(g.yetdi) : KG("tayyor"));
+    konfeti(ek);
+    klonHisob(ek);
+  }
+  function klonRandom(ek) {
+    const ws = typeof BL_WS !== "undefined" && BL_WS.get(ek), r = { bor: false, qiymat: [] };
+    if (!ws) return r;
+    ws.getBlocksByType("go_to_r", false).filter((b) => (b.getRootBlock() || {}).type === "when_clone").forEach((b) => {
+      const x = b.getInputTargetBlock("X");
+      if (x && x.type === "random_n") {
+        const a = +x.getFieldValue("A"), c = +x.getFieldValue("B");
+        if (a !== c) r.bor = true;
+        for (let v = Math.min(a, c); v <= Math.max(a, c); v++) r.qiymat.push(v);
+      }
+    });
+    return r;
+  }
+  function klonHisob(ek, yutdi) {
+    if (!klonBola(ek) || ek.dataset.oqish) return;
+    const b = TOP(ek.dataset.id).bosh, s = ek.__klon || { nusxa: [] }, bl = (tur, n) => Array.from({ length: n }, () => ({ dataset: { tur } }));
+    oxirgiSaqla(ek);
+    if (typeof blokQosh === "function") blokQosh(ek.dataset.id, [...bl("N", s.nusxa.length), ...bl("W", yutdi ? 1 : 0)]);
+    if (b.pog && typeof pogQosh === "function") pogQosh(b.pog);
+    otKeyin(ek);
+  }
+  async function klonOyinBoshla(ek) {
+    const id = ek.dataset.id, b = TOP(id).bosh, k = b.klon || {};
+    muammoOl(ek);
+    urildiOl(ek);
+    ek.querySelectorAll(".konfeti,.dv-pufak,.oyin-tugadi").forEach((x) => x.remove());
+    if (typeof blTanlovOl === "function") blTanlovOl(ek);
+    const ds = blDasturchalar(ek);
+    if (!ds.length || ds.every((x) => !x.bloklar.length)) {
+      chal("muammo");
+      ishora(ek, KG("bosh"));
+      muammo(ek, "boshvoy", KG("boshP"));
+      return;
+    }
+    klonTayyorla(ek);
+    const s = ek.__klon;
+    s.ishlar = [];
+    s.oyin = true;
+    s.kut = k.kut || 560;
+    const h = await SAHNA.katak.boshla(ek, b);
+    s.h = h;
+    s.jon = k.jon || 3;
+    klonJon(ek);
+    const o = { h, klon: true, bosish: 0 };
+    OYIN.set(ek, o);
+    ek.dataset.oyin = "klon";
+    const tb = oyinTugma(ek);
+    if (tb) tb.textContent = "■ To‘xtatish";
+    ishora(ek, KG("oyinIshora"));
+    maslahatOch(ek);
+    const st = ds.filter((x) => x.tur === "when_start");
+    for (const x of st) {
+      x.hodisa.classList.add("hozir");
+      await ijro(turla(x.daraxt), (t) => klonBlok(ek, s.asl, t), { kut: s.kut });
+      x.hodisa.classList.remove("hozir");
+      if (OYIN.get(ek) !== o) return;
+    }
+    while (s.ishlar.length) {
+      const r = s.ishlar.splice(0);
+      await Promise.all(r);
+    }
+    if (OYIN.get(ek) !== o) return;
+    klonOyinTugadi(ek, o);
+  }
+  function klonJon(ek) {
+    const s = ek.__klon;
+    if (typeof ballKor === "function") ballKor(ek, s.jon, null, null, "jon");
+  }
+  function klonTegdimi(ek, n) {
+    const s = ek.__klon, h = s && s.h;
+    if (!h || n.ochdi || !ek.dataset.oyin) return false;
+    if (n.x !== h.x || n.y !== mdY(h.xr, h.y)) return false;
+    s.jon--;
+    klonJon(ek);
+    chal("tuk");
+    klonOchir(ek, n);
+    if (ballKor && h.q) ballKor(ek, s.jon, "−1", h.q, "jon");
+    if (s.jon <= 0) {
+      klonOyinToxtat(ek);
+      ek.querySelector(".oyna").insertAdjacentHTML("beforeend", '<span class="gl oyin-tugadi">O‘yin tugadi</span>');
+      ishora(ek, KG("jonTugadi"));
+    }
+    return true;
+  }
+  async function klonOyinBos(ek, k, o) {
+    const s = ek.__klon, h = o.h;
+    if (!s || !h || k !== "right" && k !== "left") return;
+    const nx = h.x + (k === "right" ? 1 : -1), y = mdY(h.xr, h.y);
+    if (nx < 0 || nx > KL_W()) {
+      chal("tuk");
+      return;
+    }
+    if (s.nusxa.some((n) => !n.ochdi && n.x === nx && n.y === y && n.yerda)) {
+      chal("tuk");
+      if (!s.qamaldi) {
+        s.qamaldi = true;
+        chal("muammo");
+        muammo(ek, "kamvoy", KG("yerdaP"));
+        ishora(ek, KG("yerda"));
+      }
+      return;
+    }
+    o.bosish++;
+    await SAHNA.katak.bajar(h, { tur: k === "right" ? "r" : "l", el: document.createElement("span") });
+    h.urildi = null;
+    for (const n of s.nusxa) if (!n.ochdi && klonTegdimi(ek, n)) break;
+  }
+  function klonOyinTugadi(ek, o) {
+    const s = ek.__klon, b = TOP(ek.dataset.id).bosh, k = b.klon || {};
+    const qoldi = s.nusxa.filter((n) => !n.ochdi);
+    qoldi.forEach((n) => {
+      n.yerda = true;
+    });
+    if (!s.nusxa.length) {
+      klonOyinToxtat(ek);
+      chal("muammo");
+      ishora(ek, KG("yoq"));
+      muammo(ek, "boshvoy", KG("yoqP"));
+      return;
+    }
+    if (qoldi.length) {
+      klonOyinToxtat(ek);
+      chal("muammo");
+      ishora(ek, KG("yerda"));
+      muammo(ek, "kamvoy", KG("yerdaP"));
+      return;
+    }
+    if (k.soni && s.nusxa.length < k.soni) {
+      klonOyinToxtat(ek);
+      chal("muammo");
+      ishora(ek, KG("soni", k.soni));
+      muammo(ek, "kamvoy", KG("kamP"));
+      return;
+    }
+    if (k.kamida && s.nusxa.length < k.kamida) {
+      klonOyinToxtat(ek);
+      chal("muammo");
+      ishora(ek, KG("kamida", k.kamida));
+      muammo(ek, "kamvoy", KG("kamP"));
+      return;
+    }
+    if (k.soni && s.nusxa.length > k.soni) {
+      klonOyinToxtat(ek);
+      chal("muammo");
+      ishora(ek, KG("soni", k.soni));
+      muammo(ek, "ortiqvoy", KG("kopP"));
+      return;
+    }
+    const r = klonRandom(ek);
+    if (Array.isArray(k.ustun) && r.qiymat.some((v) => v < k.ustun[0] || v > k.ustun[1])) {
+      klonOyinToxtat(ek);
+      chal("muammo");
+      ishora(ek, KG("ustun", r.qiymat.find((v) => v < k.ustun[0] || v > k.ustun[1])));
+      muammo(ek, "ortiqvoy", KG("ustunP"));
+      return;
+    }
+    if (k.random && !r.bor) {
+      klonOyinToxtat(ek);
+      chal("muammo");
+      ishora(ek, KG("bir"));
+      muammo(ek, "kamvoy", KG("birP"));
+      return;
+    }
+    klonOyinToxtat(ek);
+    ishora(ek, KG("yutdi"));
+    konfeti(ek);
+    klonHisob(ek, true);
+  }
+  function klonOyinToxtat(ek) {
+    const s = ek.__klon;
+    if (s) {
+      s.toxtat = true;
+      s.nusxa.forEach((n) => {
+        if (!n.ochdi) n.toxtat = true;
+      });
+    }
+    oyinToxtat(ek);
+  }
+  async function klonHuk(ek, k) {
+    const d = JSON.parse(k.dataset.klon || "{}"), m = klonMaydon(ek);
+    if (!m) return "kam";
+    klonOl(ek);
+    const asl = d.asl0 || [3, KL_H()];
+    const s = ek.__klon = { asl: { x: asl[0], y: asl[1], g: d.kop ? null : klonRasm(ek, asl[0], asl[1], "kt-asl"), asl: true }, nusxa: [], soni: 0, ishlar: [], eng: 0 };
+    const jon = () => {
+      s.eng = Math.max(s.eng, s.nusxa.filter((n) => !n.ochdi).length + (d.ozi ? 1 : 0));
+    };
+    const yur = async (n, bl) => {
+      for (const t of bl) {
+        if (n.ochdi) return;
+        if (Array.isArray(t) && t[0] === "p") {
+          for (let i = 0; i < t[1]; i++) await yur(n, t[2]);
+          continue;
+        }
+        if (t === "C") {
+          const q = { x: s.asl.x, y: s.asl.y, g: klonRasm(ek, s.asl.x, s.asl.y, "kt-klon yangi") };
+          s.nusxa.push(q);
+          chal("bos");
+          jon();
+          s.ishlar.push(yur(q, d.nusxa || []));
+          await KUT(560);
+          continue;
+        }
+        if (t === "D") {
+          klonOchir(ek, n);
+          continue;
+        }
+        if (t === "d") {
+          n.y--;
+          katakSur(n.g, n.x, m.H - 1 - n.y, false);
+          chal("qadam");
+          jon();
+        }
+        if (Array.isArray(t) && t[0] === "x") {
+          n.x = t[1] === "r" ? tasodif(ek, 0, KL_W()) : t[1];
+          n.y = t[2];
+          if (!n.g) n.g = klonRasm(ek, n.x, n.y, "kt-klon");
+          katakSur(n.g, n.x, m.H - 1 - n.y, true);
+        }
+        await KUT(520);
+      }
+    };
+    if (d.kop) {
+      const x02 = d.kopX || [0, 2, 3, 4, 6];
+      const bir = x02.map((x) => ({ x, y: KL_H(), g: klonRasm(ek, x, KL_H(), "kt-klon") }));
+      s.nusxa.push(...bir);
+      jon();
+      await Promise.all(bir.map((n) => yur(n, d.nusxa || [])));
+    } else {
+      d.ozi = !d.nusxa;
+      await yur(s.asl, d.asl || []);
+      while (s.ishlar.length) await Promise.all(s.ishlar.splice(0));
+    }
+    return "yetdi";
+  }
+  async function klonHukSina(ek, k, i) {
+    if (ek.dataset.yuryapti) return;
+    const g = TOP(ek.dataset.id).gap || {};
+    ek.dataset.yuryapti = "1";
+    ek.querySelectorAll(".jk").forEach((x) => x.classList.toggle("sinov", x === k));
+    ek.querySelectorAll(".muam,.konfeti").forEach((x) => x.remove());
+    k.classList.remove("n-ok", "n-yoq");
+    k.querySelectorAll(".jn").forEach((x) => x.remove());
+    await klonHuk(ek, k);
+    delete ek.dataset.yuryapti;
+    const ok = k.dataset.ok === "1";
+    k.classList.remove("sinov");
+    k.classList.add(ok ? "n-ok" : "n-yoq");
+    (k.querySelector(".jt") || k).insertAdjacentHTML("beforeend", '<small class="jn">' + k.dataset.nat + "</small>");
+    if (ok) konfeti(ek);
+    ek.dataset.huk = Math.max(+(ek.dataset.huk || 0), i + 1);
+    const a = ek.querySelector(".hn .asos");
+    if (a && g.keyingi) a.textContent = g.keyingi;
+  }
+  const KS = (k, n) => {
+    const g = typeof DARS2 !== "undefined" && DARS2.kosmikGap || {};
+    const t = g[k] != null ? g[k] : "";
+    return n != null && typeof t === "string" ? t.replace(/\bN\b/, n) : t;
+  };
+  const perKalit = () => (typeof K !== "undefined" ? K : "jr-") + "per";
+  function perOl() {
+    try {
+      return JSON.parse(localStorage.getItem(perKalit()) || "null") || {};
+    } catch (e) {
+      return {};
+    }
+  }
+  function perYoz(m) {
+    try {
+      localStorage.setItem(perKalit(), JSON.stringify(m));
+    } catch (e) {
+    }
+  }
+  const perBola = (ek) => {
+    const r = ek && ek.parentNode && ek.parentNode.closest("#ust,#bol");
+    return !!r && r.id === "bol";
+  };
+  const perWs = (ek) => typeof BL_WS !== "undefined" && BL_WS.get(ek);
+  const perSave = (ek) => {
+    const ws = perWs(ek);
+    return ws ? Blockly.serialization.workspaces.save(ws) : null;
+  };
+  function perLoad(ek, j) {
+    const ws = perWs(ek);
+    if (!ws) return;
+    ws.clear();
+    if (j) Blockly.serialization.workspaces.load(j, ws);
+    ws.getAllBlocks(false).forEach(blBelgila);
+    blTartib(ws);
+    blMasshtab(ek, ws);
+    if (typeof blTartibKeyin === "function") blTartibKeyin(ws);
+    sanoq(ek);
+  }
+  function perTayyorla(ek) {
+    const b = TOP(ek.dataset.id).bosh, P = b.personaj;
+    if (!P || !perWs(ek)) return;
+    const saq = perOl(), json = {};
+    let pp = typeof SOLO !== "undefined" && SOLO && b.soloPerProg || b.perProg;
+    const kp = typeof SOLO !== "undefined" && SOLO && b.soloKarta || b.kartaProg;
+    if (kp && typeof kartaProg === "function") {
+      const kpp = kartaProg();
+      pp = { ...pp || {} };
+      for (const k of kp === true ? Object.keys(kpp) : kp) pp[k] = kpp[k];
+    }
+    const saq17 = b.prog === "per17" && perBola(ek) ? perOl17() : {};
+    for (const { id } of P.royxat) {
+      if (b.prog === "per" && saq[id] && perBola(ek) && !(b.progYoq || []).includes(id)) json[id] = saq[id];
+      else if (saq17[id]) json[id] = saq17[id];
+      else if (pp && pp[id]) {
+        klonQur(ek, pp[id]);
+        json[id] = perSave(ek);
+      } else json[id] = null;
+    }
+    ek.__per = { cur: P.tanla || P.royxat[0].id, json };
+    perLoad(ek, json[ek.__per.cur]);
+    perKartalar(ek);
+    if (D18(ek)) kosmikOzg(ek);
+  }
+  function perKartalar(ek) {
+    const b = TOP(ek.dataset.id).bosh, P = b.personaj, s = ek.__per, dst = ek.querySelector(".dst");
+    if (!P || !s || !dst) return;
+    let q = dst.querySelector(".per-q");
+    if (!q) {
+      dst.querySelector(".dsb").insertAdjacentHTML("afterend", '<div class="per-q"></div>');
+      q = dst.querySelector(".per-q");
+    }
+    const ochiq = (id) => !P.ochiq || P.ochiq.indexOf(id) >= 0;
+    q.innerHTML = P.royxat.map(({ id, nom }) => '<span class="per-k' + (id === s.cur ? " on" : "") + (ochiq(id) ? "" : " qulf") + '" data-p="' + id + '" role="button"><i>' + ((DARS2.perRasm || {})[id] || "") + "</i><b>" + nom + "</b></span>").join("");
+    const sb = dst.querySelector(".dsb b"), p = P.royxat.find((x) => x.id === s.cur);
+    if (sb && p) sb.textContent = p.nom + " " + KS("dasturi");
+  }
+  function perAlmash(ek, id) {
+    const s = ek.__per;
+    if (!s || s.cur === id || ek.dataset.oyin || ek.dataset.yuryapti) return;
+    s.json[s.cur] = perSave(ek);
+    s.cur = id;
+    perLoad(ek, s.json[id]);
+    perKartalar(ek);
+    chal("bos");
+    if (D18(ek)) kosmikOzg(ek);
+    if (typeof kodPersonaj === "function") kodPersonaj(ek);
+  }
+  function perSaqla(ek) {
+    const s = ek.__per;
+    if (!s || !perBola(ek)) return;
+    s.json[s.cur] = perSave(ek);
+    perYoz(s.json);
+  }
+  function perJsonD(j) {
+    const bl = ((j || {}).blocks || {}).blocks || [], r = [];
+    const kir2 = (b, nm) => {
+      const q = b.inputs && b.inputs[nm], x = q && (q.block || q.shadow);
+      if (!x) return "0";
+      const g = x.fields || {};
+      return x.type === "random_n" ? "r" + g.A + "-" + g.B : String(g.N == null ? 0 : g.N);
+    };
+    const tugun = (b) => {
+      const tur = BL_TURI[b.type] || "?", f = b.fields || {}, el = document.createElement("span");
+      el.dataset.tur = tur;
+      if (f.N != null) el.dataset.n = f.N;
+      if (f.X != null) {
+        el.dataset.x = f.X;
+        el.dataset.y = f.Y;
+      }
+      if (f.NOM) el.dataset.q = f.NOM;
+      if (f.VAR) el.dataset.v = f.VAR;
+      if (b.type === "go_to_r") {
+        el.dataset.kx = kir2(b, "X");
+        el.dataset.ky = kir2(b, "Y");
+      }
+      const t = { el, tur, ichki: [] };
+      if (b.inputs && b.inputs.DO && b.inputs.DO.block) t.ichki = zanjir(b.inputs.DO.block);
+      return t;
+    };
+    const zanjir = (b) => {
+      const z = [];
+      while (b) {
+        z.push(tugun(b));
+        b = b.next && b.next.block;
+      }
+      return z;
+    };
+    for (const t of bl) if (BL_HODISA.has(t.type)) {
+      const z = zanjir(t.next && t.next.block);
+      r.push({ tur: t.type, tugma: t.type === "when_key" ? (t.fields || {}).KEY : "", olma: t.type === "when_touch" ? (t.fields || {}).OLMA : "", daraxt: z, bloklar: z.map((x) => x.el), hodisa: document.createElement("span") });
+    }
+    return r;
+  }
+  function kosmikNatija(ek) {
+    const s = ek.querySelector(".saqlandi"), m = perOl();
+    let y = null;
+    try {
+      y = localStorage.getItem(perKalit() + "3");
+    } catch (e) {
+    }
+    if (s) s.hidden = !(y && (m.raketa || m.oq));
+  }
+  function perD(ek, id) {
+    const s = ek.__per;
+    if (!s) return [];
+    return id === s.cur ? blDasturchalar(ek) : perJsonD(s.json[id]);
+  }
+  function kosmikChiz(ek) {
+    const b = TOP(ek.dataset.id).bosh, k = b.kosmik || {}, m = klonMaydon(ek);
+    if (!m || !m.svg) return;
+    m.svg.querySelectorAll(".ks-b,.ks-n").forEach((x) => x.remove());
+    const g = (cls, x, y, ic) => {
+      const e = document.createElementNS("http://www.w3.org/2000/svg", "g");
+      e.setAttribute("class", cls);
+      e.dataset.k = x + "," + y;
+      e.style.transform = katakJoy(x, m.H - 1 - y);
+      e.innerHTML = ic;
+      m.svg.insertBefore(e, m.k.querySelector(".kt-q"));
+      return e;
+    };
+    (k.bayroq || []).forEach(([x, y]) => g("ks-b", x, y, DARS2.ksBayroq || ""));
+    (k.nishon || ek.__ksNishon || []).forEach(([x, y]) => g("ks-n", x, y, DARS2.ksNishon || ""));
+  }
+  function kosmikTayyorla(ek) {
+    const b = TOP(ek.dataset.id).bosh;
+    if ((b.kosmik || {}).qoy) ek.__ksNishon = [];
+    perTayyorla(ek);
+    kosmikChiz(ek);
+    kosmikChekChiz(ek, {});
+    if (D18(ek)) dushTayyorla(ek);
+  }
+  function kosmikChekChiz(ek, c) {
+    const b = TOP(ek.dataset.id).bosh, k = b.kosmik || {}, pl = ek.querySelector(".pl");
+    if (!pl || !k.chek) return;
+    c = c || ek.__ksChek || {};
+    ek.__ksChek = c;
+    pl.querySelectorAll(".chek").forEach((x) => x.remove());
+    pl.insertAdjacentHTML("beforeend", '<div class="chek"><small>' + KS("royxat") + "</small>" + (KS("chek") || []).map(([id, t]) => '<span class="ch-r' + (c[id] ? " ok" : "") + '"><i>' + (c[id] ? "✓" : "") + "</i>" + t + "</span>").join("") + "</div>");
+  }
+  function kosmikAslJoy(ek, s0) {
+    const s = s0 || ek.__klon, o = OYIN.get(ek);
+    if (s && o && o.h) {
+      s.asl.x = o.h.x;
+      s.asl.y = mdY(o.h.xr, o.h.y);
+    }
+  }
+  async function kosmikBoshla(ek) {
+    const id = ek.dataset.id, b = TOP(id).bosh, k = b.kosmik || {};
+    muammoOl(ek);
+    urildiOl(ek);
+    ek.querySelectorAll(".konfeti,.dv-pufak").forEach((x) => x.remove());
+    if (typeof blTanlovOl === "function") blTanlovOl(ek);
+    const P = b.personaj, all = P.royxat.flatMap(({ id: p }) => perD(ek, p).map((d) => ({ ...d, p })));
+    if (!all.length || all.every((d) => !d.bloklar.length)) {
+      chal("muammo");
+      ishora(ek, KS("bosh"));
+      muammo(ek, "boshvoy", KS("boshP"));
+      return;
+    }
+    if (k.qoy && (ek.__ksNishon || []).length < k.qoy) {
+      chal("muammo");
+      ishora(ek, KS("qoyKam", k.qoy));
+      muammo(ek, "kamvoy", KS("ozP"));
+      return;
+    }
+    kosmikChiz(ek);
+    klonOl(ek);
+    const h = await SAHNA.katak.boshla(ek, b);
+    ek.__klon = { asl: { x: h.x, y: mdY(h.xr, h.y), asl: true }, nusxa: [], soni: 0, ishlar: [], kosmik: true, kut: k.kut || 380, nusxaD: () => perD(ek, "oq"), sanoqYoq: D18(ek) };
+    const o = { h, bosish: 0, yurdi: /* @__PURE__ */ new Set(), bayroq: /* @__PURE__ */ new Set(), tovushYur: /* @__PURE__ */ new Set(), oqTovush: false, urildi: 0, tepaga: 0, tepadaOchdi: 0, chek: {}, kosmik: true };
+    OYIN.set(ek, o);
+    ek.dataset.oyin = "kosmik";
+    const tb = oyinTugma(ek);
+    if (tb) tb.textContent = "■ To‘xtatish";
+    ek.querySelector(".oyna").insertAdjacentHTML("beforeend", '<span class="gl oyin-yz">' + KS("oyinYz") + "</span>");
+    maslahatOch(ek);
+    if (D18(ek)) return dushBoshla(ek, o, all);
+    const x02 = h.x, y0 = mdY(h.xr, h.y);
+    for (const d of all.filter((x) => x.tur === "when_start")) {
+      ek.dataset.yuryapti = "1";
+      d.hodisa.classList && d.hodisa.classList.add("hozir");
+      await ijro(turla(d.daraxt), (t) => kosmikBlok(ek, o, d.p, t), { kut: 300 });
+      d.hodisa.classList && d.hodisa.classList.remove("hozir");
+      delete ek.dataset.yuryapti;
+      if (OYIN.get(ek) !== o) return;
+    }
+    if (k.kerak === "start") {
+      const x = o.h.x, y = mdY(o.h.xr, o.h.y);
+      if ((x !== x02 || y !== y0) && x === 3 && y === 0) return kosmikYutdi(ek, o);
+      if (x02 !== 3) {
+        chal("muammo");
+        ishora(ek, KS("startKerak"));
+        muammo(ek, "kamvoy", KS("ozP"));
+      }
+    }
+  }
+  async function kosmikBos(ek, k, o) {
+    const b = TOP(ek.dataset.id).bosh, P = b.personaj;
+    const ds = P.royxat.flatMap(({ id }) => perD(ek, id).filter((d) => d.tur === "when_key" && d.tugma === k).map((d) => ({ ...d, p: id })));
+    muammoOl(ek);
+    if (!ds.length) {
+      chal("muammo");
+      ishora(ek, TUGMA_BELGI[k] + " tugmasi uchun when " + TUGMA_BELGI[k] + " key pressed bloki kerak");
+      muammo(ek, "boshvoy", "Bu tugma uchun dasturcha yo‘q-ku…");
+      return;
+    }
+    if (ds.every((d) => !d.bloklar.length)) {
+      chal("muammo");
+      ishora(ek, "Hodisa blokining ostiga blok ulang");
+      muammo(ek, "kamvoy", "Tugma bosildi, lekin men nima qilay?");
+      return;
+    }
+    o.bosish++;
+    ek.dataset.yuryapti = "1";
+    const bor = (z, tur) => z.some((t) => t.tur === tur || bor(t.ichki || [], tur));
+    for (const d of ds.filter((x) => x.p !== "oq")) {
+      d.hodisa.classList && d.hodisa.classList.add("hozir");
+      const x02 = o.h.x, z = turla(d.daraxt);
+      await ijro(z, (t) => kosmikBlok(ek, o, d.p, t), { kut: 140 });
+      d.hodisa.classList && d.hodisa.classList.remove("hozir");
+      if (o.h.x !== x02 && bor(z, "n")) o.tovushYur.add(o.h.x > x02 ? "r" : "l");
+    }
+    delete ek.dataset.yuryapti;
+    const oqD = ds.filter((x) => x.p === "oq").map((d) => ({ ...d, z: turla(d.daraxt) }));
+    if (k === "space" && !oqD.some((d) => bor(d.z, "C")) && !ds.some((d) => d.p !== "oq" && bor(turla(d.daraxt), "C"))) {
+      chal("muammo");
+      ishora(ek, KS("oqQani"));
+      muammo(ek, "boshvoy", KS("oqQaniP"));
+    }
+    for (const d of oqD) ijro(d.z, (t) => kosmikBlok(ek, o, d.p, t), { kut: 120 });
+    if (OYIN.get(ek) === o) kosmikTekshir(ek, o);
+  }
+  async function kosmikBlok(ek, o, p, t) {
+    if (OYIN.get(ek) !== o) return "toxta";
+    if (t.tur === "z" || t.tur === "c" || t.tur === "i" || t.tur === "g") {
+      const r2 = ballBlok(ek, null, t);
+      if (t.tur === "g") {
+        if (OYIN.get(ek) === o) kosmikOyinTugadi(ek, o);
+        return "toxta";
+      }
+      return r2;
+    }
+    if (p === "dushman") {
+      if (t.tur === "C") {
+        await klonYasa(ek, ek.__dush);
+        dushSanoq(ek);
+      } else if (t.tur === "n") chal("bos");
+      return;
+    }
+    if (t.tur === "C") {
+      if (p !== "oq") {
+        chal("muammo");
+        ishora(ek, KS("raketaKlon"));
+        muammo(ek, "kamvoy", KS("raketaKlonP"));
+        return "toxta";
+      }
+      await klonYasa(ek, ek.__klon);
+      o.chek.otildi = true;
+      kosmikChekChiz(ek, o.chek);
+      return;
+    }
+    if (t.tur === "n" && p === "oq") {
+      o.oqTovush = true;
+      chal("sakrash");
+      return;
+    }
+    if (p === "oq") return;
+    const x02 = o.h.x;
+    const r = await SAHNA.katak.bajar(o.h, t);
+    o.h.urildi = null;
+    const dx = o.h.x - x02;
+    if (dx) o.yurdi.add(dx > 0 ? "r" : "l");
+    const y = mdY(o.h.xr, o.h.y);
+    ((TOP(ek.dataset.id).bosh.kosmik || {}).bayroq || []).forEach(([bx, by]) => {
+      if (bx === o.h.x && by === y) {
+        o.bayroq.add(bx + "," + by);
+        const e = ek.querySelector('.ks-b[data-k="' + bx + "," + by + '"]');
+        if (e) e.classList.add("ok");
+      }
+    });
+    if (o.yurdi.has("r") && o.yurdi.has("l")) {
+      o.chek.yuradi = true;
+      if (!o.d18) kosmikChekChiz(ek, o.chek);
+    }
+    if (o.d18 && dx && ek.__dush) {
+      const d = ek.__dush.nusxa.find((q) => !q.ochdi && q.x === o.h.x && q.y === y);
+      if (d) await dushTegdi(ek, o, d);
+    }
+    return r;
+  }
+  function kosmikNishon(ek, n) {
+    if (D18(ek)) return kosmikTegish(ek, n);
+    const o = OYIN.get(ek);
+    if (!o || n.ochdi) return;
+    const e = ek.querySelector('.ks-n:not(.urildi)[data-k="' + n.x + "," + n.y + '"]');
+    if (!e) return;
+    e.classList.add("urildi");
+    chal("bos");
+    n.nishon = true;
+    klonOchir(ek, n);
+    o.urildi++;
+    o.chek.ochdi = true;
+    kosmikChekChiz(ek, o.chek);
+    setTimeout(() => e.remove(), 380);
+    kosmikTekshir(ek, o);
+  }
+  function kosmikNusxaTugadi(ek, n) {
+    const o = OYIN.get(ek);
+    if (!o) return;
+    if (ek.__dush && n.s === ek.__dush) return;
+    const tepa = n.y === KL_H();
+    if (tepa || n.chet && n.chet.tur === "u") o.tepaga++;
+    if (n.ochdi && tepa) {
+      o.tepadaOchdi++;
+      o.chek.ochdi = true;
+      kosmikChekChiz(ek, o.chek);
+    }
+    if (!n.boshladi) {
+      if (!o.turibGap) {
+        o.turibGap = true;
+        chal("muammo");
+        ishora(ek, KS("turib"));
+        muammo(ek, "boshvoy", KS("turibP"));
+      }
+    } else if (n.chet) {
+      chal("muammo");
+      ishora(ek, KS("chet"));
+      muammo(ek, "kamvoy", KS("chetP"));
+    } else if (!n.ochdi && tepa && !o.qolganGap) {
+      o.qolganGap = true;
+      chal("muammo");
+      ishora(ek, KS("qoldi"));
+      muammo(ek, "kamvoy", KS("qoldiP"));
+    } else if (!tepa && !n.nishon && !o.yetmadiGap) {
+      o.yetmadiGap = true;
+      chal("muammo");
+      ishora(ek, KS("yetmadi"));
+      muammo(ek, "kamvoy", KS("yetmadiP"));
+    }
+    kosmikTekshir(ek, o);
+  }
+  function kosmikTekshir(ek, o) {
+    const b = TOP(ek.dataset.id).bosh, k = b.kosmik || {}, s = ek.__klon || { nusxa: [] };
+    const ok = {
+      "o‘ng": () => (k.bayroq || []).every(([x, y]) => o.bayroq.has(x + "," + y)),
+      ikki: () => (k.bayroq || []).every(([x, y]) => o.bayroq.has(x + "," + y)),
+      tovush: () => o.tovushYur.has("r") && o.tovushYur.has("l"),
+      otish: () => o.tepadaOchdi >= 1,
+      uchish: () => o.tepadaOchdi >= 1,
+      ochish: () => o.tepadaOchdi >= 1,
+      oqTovush: () => o.oqTovush && o.tepadaOchdi >= 1,
+      nishon: () => !ek.querySelector(".ks-n:not(.urildi)") && (!k.chek || ["yuradi", "otildi", "ochdi"].every((c) => o.chek[c]))
+    }[k.kerak];
+    if (!ok || !ok()) return;
+    if (k.kerak === "nishon") {
+      o.chek.hamma = true;
+      kosmikChekChiz(ek, o.chek);
+    }
+    return kosmikYutdi(ek, o);
+  }
+  function kosmikYutdi(ek, o, tugadi) {
+    const id = ek.dataset.id, t = TOP(id), b = t.bosh, g = t.gap || {};
+    if (o.yutdi) return;
+    o.yutdi = true;
+    kosmikToxtat(ek);
+    ishora(ek, g.yetdi ? GAPT(g.yetdi) : tugadi === "oynadi" ? KS("oynadi") : tugadi ? KS("tugadiYutdi") : KS("yutdi"));
+    konfeti(ek);
+    if (!perBola(ek) || ek.dataset.oqish) return;
+    perSaqla(ek);
+    oxirgiSaqla(ek);
+    if ((b.kosmik || {}).chek) try {
+      localStorage.setItem(perKalit() + "3", "1");
+    } catch (e) {
+    }
+    const s = ek.__klon || { nusxa: [] }, bl = (tur, n) => Array.from({ length: n }, () => ({ dataset: { tur } }));
+    if (typeof blokQosh === "function") blokQosh(id, [...o.d18 ? [...bl("U", o.urdi), ...bl("W", 1)] : [...bl("O", s.nusxa.length), ...bl("U", o.urildi)], ...typeof kodHisob === "function" && b.kod ? kodHisob(ek) : []]);
+    if (b.pog && typeof pogQosh === "function") pogQosh(b.pog);
+    otKeyin(ek);
+  }
+  function kosmikToxtat(ek) {
+    for (const s of [ek.__klon, ek.__dush]) if (s) {
+      s.toxtat = true;
+      s.nusxa.forEach((n) => {
+        n.toxtat = true;
+      });
+    }
+    oyinToxtat(ek);
+  }
+  function kosmikBosish(e, ek) {
+    const ks = TOP(ek.dataset.id).bosh.kosmik || {};
+    if (ks.qoy && !ek.dataset.oyin) {
+      const c = e.target.closest(".katak.maydon .kt-c, .katak.maydon .ks-n"), m = klonMaydon(ek);
+      if (c && m) {
+        const [x, r] = c.dataset.k.split(",").map(Number), y = c.classList.contains("ks-n") ? r : m.H - 1 - r;
+        if (y < 2) {
+          ishora(ek, KS("qoyPast"));
+          return true;
+        }
+        const l = ek.__ksNishon = ek.__ksNishon || [], i = l.findIndex(([a, q]) => a === x && q === y);
+        if (i >= 0) l.splice(i, 1);
+        else l.push([x, y]);
+        chal("bos");
+        kosmikChiz(ek);
+        ishora(ek, KS("qoyN", l.length));
+        return true;
+      }
+    }
+    const k = e.target.closest(".dst .per-k");
+    if (!k) return null;
+    if (k.classList.contains("qulf")) {
+      ishora(ek, KS("qulf"));
+      return true;
+    }
+    perAlmash(ek, k.dataset.p);
+    return true;
+  }
+  async function kosmikHuk(ek, k) {
+    const m = klonMaydon(ek);
+    if (!m) return;
+    const q = m.k.querySelector(".kt-q"), tur = k.dataset.kosmik, H = m.H;
+    ek.querySelectorAll(".kt-klon").forEach((x) => x.remove());
+    ek.querySelectorAll(".ks-n.urildi").forEach((x) => x.classList.remove("urildi"));
+    if (q) katakSur(q, 3, H - 1, false);
+    const ur = () => {
+      const n = ek.querySelector(".ks-n:not(.urildi)");
+      if (n) {
+        n.classList.add("urildi");
+        chal("bos");
+      }
+    };
+    await KUT(400);
+    if (tur === "A") {
+      for (let y = 1; y <= 4; y++) {
+        katakSur(q, 3, H - 1 - y, true);
+        chal("qadam");
+        await KUT(420);
+      }
+      ur();
+      await KUT(700);
+      chal("tuk");
+      await KUT(500);
+      return;
+    }
+    const oq = (y) => klonRasm(ek, 3, y, "kt-klon");
+    if (tur === "B") {
+      const g = oq(0);
+      for (let y = 1; y <= 4; y++) {
+        katakSur(g, 3, H - 1 - y, false);
+        await KUT(380);
+      }
+      ur();
+      await KUT(800);
+      chal("muammo");
+      muammo(ek, "boshvoy", KS("oqQaniP"));
+      await KUT(900);
+      return;
+    }
+    for (let i = 0; i < 3; i++) {
+      const g = oq(0);
+      (async () => {
+        for (let y = 1; y <= 4; y++) {
+          katakSur(g, 3, H - 1 - y, false);
+          await KUT(380);
+        }
+        if (!i) ur();
+        g.remove();
+      })();
+      await KUT(700);
+    }
+    await KUT(1700);
+  }
+  async function kosmikHukSina(ek, k, i) {
+    if (ek.dataset.yuryapti) return;
+    const g = TOP(ek.dataset.id).gap || {};
+    ek.dataset.yuryapti = "1";
+    ek.querySelectorAll(".jk").forEach((x) => x.classList.toggle("sinov", x === k));
+    ek.querySelectorAll(".muam,.konfeti").forEach((x) => x.remove());
+    muammoOl(ek);
+    k.classList.remove("n-ok", "n-yoq");
+    k.querySelectorAll(".jn").forEach((x) => x.remove());
+    await (k.dataset.kodh ? kodHuk(ek, k) : k.dataset.kosmik2 ? kosmikHuk2(ek, k) : kosmikHuk(ek, k));
+    delete ek.dataset.yuryapti;
+    const ok = k.dataset.ok === "1";
+    k.classList.remove("sinov");
+    k.classList.add(ok ? "n-ok" : "n-yoq");
+    (k.querySelector(".jt") || k).insertAdjacentHTML("beforeend", '<small class="jn">' + k.dataset.nat + "</small>");
+    if (ok) konfeti(ek);
+    ek.dataset.huk = Math.max(+(ek.dataset.huk || 0), i + 1);
+    const a = ek.querySelector(".hn .asos");
+    if (a && g.keyingi) a.textContent = g.keyingi;
+  }
+  const D18 = (ek) => !!(((TOP(ek.dataset.id) || {}).bosh || {}).kosmik || {}).dushman;
+  const perKalit17 = () => {
+    const k = perKalit(), a = (DARS2.lms || {}).kalit, b = DARS2.perKalit17;
+    return a && b && k.indexOf(a) >= 0 ? k.replace(a, b) : null;
+  };
+  function perOl17() {
+    const k = perKalit17();
+    if (!k) return {};
+    try {
+      return JSON.parse(localStorage.getItem(k) || "null") || {};
+    } catch (e) {
+      return {};
+    }
+  }
+  function kosmikOzg(ek) {
+    const q = ek.querySelector(".oyna .ball-q"), s = ek.__per;
+    if (!q || !s) return;
+    const v = /* @__PURE__ */ new Set();
+    JSON.stringify(s.json).replace(/"VAR":"(\w+)"/g, (m, n) => {
+      v.add(n);
+      return m;
+    });
+    if ((TOP(ek.dataset.id).bosh.kosmik || {}).ozg) v.add("ball");
+    q.dataset.doim = [...v].join(",");
+    if (typeof ozgKorinsin === "function") ozgKorinsin(ek);
+  }
+  function dushAslChiz(ek) {
+    const k = TOP(ek.dataset.id).bosh.kosmik.dushman, a = k.asl || [3, KL_H()];
+    ek.querySelectorAll(".katak .kt-asl.ks-d").forEach((x) => x.remove());
+    return { x: a[0], y: a[1], g: klonRasm(ek, a[0], a[1], "kt-asl ks-d", DARS2.dushSvg), asl: true };
+  }
+  function jonQoidasi(ek) {
+    const bor = (z) => z.some((t) => t.tur === "i" && ozgNom(t.el) === "jon" && blokSon(t.el) === 0 && (t.ichki || []).some((x) => x.tur === "g") || bor(t.ichki || []));
+    return perD(ek, "raketa").some((d) => bor(turla(d.daraxt)));
+  }
+  function dushTayyorla(ek) {
+    ek.__ksChek = {};
+    ek.__oyinlar = 0;
+    ek.__oldBall = null;
+    if (typeof vBosh === "function") vBosh(ek, {});
+    kosmikOzg(ek);
+  }
+  async function dushBoshla(ek, o, all) {
+    const b = TOP(ek.dataset.id).bosh, k = b.kosmik;
+    o.chek = ek.__ksChek = ek.__ksChek || {};
+    o.urdi = 0;
+    o.tegdi = 0;
+    o.tushdi = 0;
+    o.d18 = true;
+    ek.querySelectorAll(".oyin-tugadi").forEach((x) => x.remove());
+    ek.__tugadi = false;
+    const s2 = ek.__dush = { asl: dushAslChiz(ek), nusxa: [], soni: 0, ishlar: [], kosmik: true, tushadi: true, svg: DARS2.dushSvg, cls: "ks-d", sanoqYoq: true, kut: k.kutD || 600, nusxaD: () => perD(ek, "dushman") };
+    s2.asl.s = s2;
+    ["ball", "jon"].forEach((n) => {
+      if (typeof ballKor === "function") ballKor(ek, vOl(ek, n), null, null, n);
+    });
+    dushSanoq(ek);
+    if (jonQoidasi(ek)) o.chek.tugaydi = true;
+    kosmikChekChiz(ek, o.chek);
+    ek.__oyinlar++;
+    for (const d of all.filter((x) => x.tur === "when_start" && x.p !== "dushman")) {
+      ek.dataset.yuryapti = "1";
+      await ijro(turla(d.daraxt), (t) => kosmikBlok(ek, o, d.p, t), { kut: 200 });
+      delete ek.dataset.yuryapti;
+      if (OYIN.get(ek) !== o) return;
+    }
+    o.ball0 = vOl(ek, "ball");
+    o.jon0 = vOl(ek, "jon");
+    if (k.kerak === "ball0" && ek.__oyinlar >= 2 && o.ball0 !== 0) {
+      chal("muammo");
+      ishora(ek, KS("eskiBall"));
+      muammo(ek, "kamvoy", KS("eskiBallP"));
+    }
+    const ds = all.filter((x) => x.tur === "when_start" && x.p === "dushman");
+    (async () => {
+      for (const d of ds) {
+        await ijro(turla(d.daraxt), (t) => kosmikBlok(ek, o, "dushman", t), { kut: k.kutAsl || 900 });
+        if (OYIN.get(ek) !== o) return;
+      }
+      while (s2.ishlar.length) {
+        const r = s2.ishlar.splice(0);
+        await Promise.all(r);
+      }
+      await KUT(300);
+      if (OYIN.get(ek) === o && !o.yutdi) dushTugadi(ek, o);
+    })();
+  }
+  function dushSanoq(ek) {
+    const ob = ek.querySelector(".oyna"), s2 = ek.__dush;
+    if (!ob) return;
+    let el = ob.querySelector(".kl-son");
+    if (!el) {
+      ob.insertAdjacentHTML("beforeend", '<span class="gl kl-son"></span>');
+      el = ob.querySelector(".kl-son");
+    }
+    el.textContent = KS("dushSanoq", s2 ? s2.nusxa.length : 0);
+  }
+  function kosmikTegish(ek, n) {
+    const o = OYIN.get(ek), s1 = ek.__klon, s2 = ek.__dush;
+    if (!o || !s2 || n.ochdi) return;
+    const tirik = (s) => s ? s.nusxa.filter((q) => !q.ochdi) : [];
+    if (n.s === s2) {
+      n.yurdi = true;
+      const q = tirik(s1).find((q2) => q2.x === n.x && q2.y === n.y);
+      if (q) return dushUrish(ek, o, q, n);
+      if (o.h && o.h.x === n.x && mdY(o.h.xr, o.h.y) === n.y) return dushTegdi(ek, o, n);
+    } else {
+      const d = tirik(s2).find((d2) => d2.x === n.x && d2.y === n.y);
+      if (d) return dushUrish(ek, o, n, d);
+    }
+  }
+  async function tegishIsh(ek, o, p) {
+    const ds = perD(ek, p).filter((d) => d.tur === "when_touch" && d.olma === "enemy");
+    for (const d of ds) {
+      await ijro(turla(d.daraxt), (t) => kosmikBlok(ek, o, p, t), { kut: 60 });
+      if (ek.__tugadi) break;
+    }
+    return ds.length;
+  }
+  async function dushUrish(ek, o, q, d) {
+    klonOchir(ek, q);
+    klonOchir(ek, d);
+    q.nishon = true;
+    d.urildi = true;
+    chal("bos");
+    o.urdi++;
+    const b0 = vOl(ek, "ball");
+    await tegishIsh(ek, o, "oq");
+    if (OYIN.get(ek) !== o) return;
+    if (vOl(ek, "ball") > b0) {
+      o.chek.ball = true;
+      kosmikChekChiz(ek, o.chek);
+    } else o.ballsiz = true;
+    if (ek.__tugadi) return kosmikOyinTugadi(ek, o);
+    dushTekshir(ek, o, "urdi");
+  }
+  async function dushTegdi(ek, o, d) {
+    klonOchir(ek, d);
+    d.tegdi = true;
+    o.tegdi++;
+    chal("tuk");
+    if (o.h && o.h.q) katakTurtil(o.h, [0, 1]);
+    const j0 = vOl(ek, "jon");
+    await tegishIsh(ek, o, "raketa");
+    if (OYIN.get(ek) !== o) return;
+    const j = vOl(ek, "jon");
+    if (j < j0) {
+      o.chek.jon = true;
+      kosmikChekChiz(ek, o.chek);
+    } else if (!o.jonGap && (TOP(ek.dataset.id).bosh.kosmik || {}).chek) {
+      o.jonGap = true;
+      chal("muammo");
+      ishora(ek, KS("jonQani"));
+      muammo(ek, "kamvoy", KS("jonQaniP"));
+    }
+    if (ek.__tugadi) return kosmikOyinTugadi(ek, o);
+    if (j <= 0 && j < j0) {
+      kosmikToxtat(ek);
+      chal("muammo");
+      ishora(ek, KS("jonTugadi"));
+      muammo(ek, "kamvoy", KS("jonTugadiP"));
+      return;
+    }
+    dushTekshir(ek, o, "tegdi");
+  }
+  function kosmikOyinTugadi(ek, o) {
+    const k = TOP(ek.dataset.id).bosh.kosmik;
+    kosmikToxtat(ek);
+    ek.querySelector(".oyna").insertAdjacentHTML("beforeend", '<span class="gl oyin-tugadi">O‘yin tugadi</span>');
+    chal("tuk");
+    const j = vOl(ek, "jon");
+    if (j === 0) {
+      o.chek.tugaydi = true;
+      kosmikChekChiz(ek, o.chek);
+    }
+    if (k.kerak === "tugaydi" && j === 0) return kosmikYutdi(ek, o, true);
+    if (k.kerak === "oynadi") return kosmikYutdi(ek, o, "oynadi");
+    ishora(ek, KS("tugadi"));
+  }
+  function dushTekshir(ek, o, nima) {
+    const k = TOP(ek.dataset.id).bosh.kosmik;
+    if (k.kerak === "jon" && nima === "tegdi" && o.chek.jon) return kosmikYutdi(ek, o);
+  }
+  function dushTugadi(ek, o) {
+    const k = TOP(ek.dataset.id).bosh.kosmik, s2 = ek.__dush, nus = s2.nusxa, ball = vOl(ek, "ball"), jon = vOl(ek, "jon");
+    const M = (kim, p, i) => {
+      kosmikToxtat(ek);
+      chal("muammo");
+      ishora(ek, i);
+      muammo(ek, kim, p);
+    };
+    if (!nus.length) return M("boshvoy", KS("dushQaniP"), KS("dushQani"));
+    if (nus.some((n) => !n.boshladi)) return M("boshvoy", KS("turibP"), KS("turib"));
+    if (nus.some((n) => n.chet)) return M("kamvoy", KS("chetP"), KS("chetD"));
+    if (nus.some((n) => !n.ochdi)) return M("kamvoy", KS("yerdaP"), KS("yerda"));
+    o.tushdi = nus.filter((n) => n.yurdi).length;
+    if (o.tushdi >= 3) {
+      o.chek.tushadi = true;
+      kosmikChekChiz(ek, o.chek);
+    }
+    if (o.ballsiz && !o.chek.ball && (k.kerak || "").indexOf("ball") === 0) return M("kamvoy", KS("ballQaniP"), KS("ballQani"));
+    if (o.jonGap && !o.chek.jon && ["jon", "tugaydi", "toliq"].includes(k.kerak)) return M("kamvoy", KS("jonQaniP"), KS("jonQani"));
+    const yon = jon > 0 || !perD(ek, "raketa").length || !JSON.stringify(ek.__per.json).includes('"jon"');
+    const ustun = new Set(nus.map((n) => n.x)).size;
+    const sh = {
+      dush1: () => nus.length >= 1 || KS("soni", 1),
+      dush5: () => nus.length === 5 || KS("soni", 5),
+      ustun: () => nus.length >= 5 && ustun >= 2 || (nus.length < 5 ? KS("soni", 5) : KS("bir")),
+      // «har xil» — kamida 2 ustun (16-dars 'xil'); 22.11: 3 ustunda 5 ta tushsa ham «5 ta tushsin» derdi
+      urdi: () => o.urdi >= (k.soni || 3) || KS("urdiKam", k.soni || 3),
+      ball1: () => ball >= 1 || KS("ballKam", ball),
+      ball0: () => ek.__oyinlar >= 2 && o.ball0 === 0 && ek.__oldBall > 0 && ball >= 1 || (ek.__oyinlar < 2 ? KS("ikkinchi") : o.ball0 !== 0 ? KS("eskiBall") : KS("ballKam", ball)),
+      ball2: () => ball >= 2 && ball === 2 * o.urdi || KS("ikkiBall"),
+      rekord: () => ball >= 8 || KS("ballKam", ball),
+      jon: () => KS("tegsin"),
+      tugaydi: () => KS("tegsin"),
+      toliq: () => jon > 0 && ball >= 3 && ["tushadi", "ball", "jon", "tugaydi"].every((c) => o.chek[c]) || (jon > 0 && ball < 3 ? KS("ballKam", ball) : KS("toliqKam")),
+      oz: () => nus.length >= 8 || KS("kamida8"),
+      oynadi: () => true,
+      // 23-dars: bitta o'yin tugadi
+      kod: () => typeof kodOyinShart === "function" ? kodOyinShart(ek, o, { nus, ball, jon }) : true,
+      // 19-dars: kodda son (kod.js)
+      karta1: () => kartaShart(ek, o, { nus, ball, jon }, "karta1"),
+      karta2: () => kartaShart(ek, o, { nus, ball, jon }, "karta2"),
+      karta3: () => kartaShart(ek, o, { nus, ball, jon }, "karta3"),
+      karta4: () => kartaShart(ek, o, { nus, ball, jon }, "karta4"),
+      karta5: () => kartaShart(ek, o, { nus, ball, jon }, "karta5")
+      // 21–23-dars: loyiha kartasi (kod.js)
+    }[k.kerak];
+    ek.__oldBall = ball;
+    if (yon && sh) {
+      const r = sh();
+      if (r === true) {
+        if (yon) {
+          o.chek.yutdi = true;
+          kosmikChekChiz(ek, o.chek);
+        }
+        return kosmikYutdi(ek, o);
+      }
+      kosmikToxtat(ek);
+      if (k.kerak === "ball0" && ek.__oyinlar < 2) {
+        chal("qadam");
+        ishora(ek, r);
+        return;
+      }
+      chal("muammo");
+      ishora(ek, r);
+      muammo(ek, "kamvoy", KS("ozP"));
+      return;
+    }
+    kosmikToxtat(ek);
+    ishora(ek, KS("yutdi"));
+  }
+  async function kosmikHuk2(ek, k) {
+    const m = klonMaydon(ek);
+    if (!m) return;
+    const tur = k.dataset.kosmik2, H = m.H, kap = ek.querySelector('.oyna .ball-k[data-v="ball"]');
+    ek.querySelectorAll(".katak .kt-klon").forEach((x) => x.remove());
+    if (typeof vBosh === "function") vBosh(ek, {});
+    if (kap) {
+      kap.classList.toggle("yoq", tur !== "C");
+      ballKor(ek, 0, null, null, "ball");
+    }
+    const uch = async (x, y) => {
+      const g = klonRasm(ek, x, 0, "kt-klon");
+      for (let q = 1; q <= y; q++) {
+        katakSur(g, x, H - 1 - q, false);
+        await KUT(330);
+      }
+      g.remove();
+    };
+    const dush = (x, y) => klonRasm(ek, x, y, "kt-klon ks-d", DARS2.dushSvg);
+    await KUT(300);
+    if (tur === "A") {
+      const d = dush(3, 3);
+      await uch(3, 3);
+      d.remove();
+      chal("bos");
+      await KUT(900);
+      return;
+    }
+    if (tur === "B") {
+      const r = [1, 2, 3, 4, 5].map((x) => dush(x, 3));
+      for (const d of r) {
+        d.classList.add("yangi");
+        chal("bos");
+        await KUT(260);
+      }
+      await KUT(800);
+      r.forEach((d) => d.remove());
+      return;
+    }
+    for (let i = 1; i <= 3; i++) {
+      const d = dush(3, 3);
+      await uch(3, 3);
+      d.remove();
+      chal("bos");
+      vQoy(ek, "ball", i);
+      ballKor(ek, i, "+1", null, "ball");
+      await KUT(450);
+    }
+    await KUT(900);
+  }
+  const KG2 = (k, n) => {
+    const g = typeof DARS2 !== "undefined" && DARS2.kodGap || {};
+    const t = g[k] != null ? g[k] : "";
+    return n != null && typeof t === "string" ? t.replace(/\bN\b/, n) : t;
+  };
+  const KOD_B = (ek) => ((TOP(ek.dataset.id) || {}).bosh || {}).kod;
+  const kodEsc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  const kS = (t) => "<s>" + kodEsc(t) + "</s>";
+  const kK = (t) => "<u>" + t + "</u>";
+  const kF = (t) => "<em>" + t + "</em>";
+  function kodSon(b, f, ko) {
+    const v = b.getFieldValue(f);
+    return '<b class="kn" data-b="' + b.id + '" data-f="' + f + '">' + kodEsc(ko != null ? ko : v) + "</b>";
+  }
+  function kodIfoda(b) {
+    if (!b) return "0";
+    if (b.type === "random_n") return kF("random") + "(" + kodSon(b, "A") + ", " + kodSon(b, "B") + ")";
+    if (b.getField("N")) return b.getFieldValue("N") === "random" ? kF("random") + "()" : kodSon(b, "N");
+    return "0";
+  }
+  function kodBlok(b, d, out) {
+    const t = b.type, q = (h, o = {}) => out.push({ h, id: b.id, d, ...o });
+    const ich = (nm) => {
+      let c = b.getInputTargetBlock(nm);
+      while (c) {
+        kodBlok(c, d + 1, out);
+        c = c.getNextBlock();
+      }
+    };
+    const yop = (h) => out.push({ h, d, xira: true });
+    const fn = (nom, arg = "") => q(kF(nom) + "(" + arg + ");");
+    switch (t) {
+      case "move_right":
+        return fn("moveRight");
+      case "move_left":
+        return fn("moveLeft");
+      case "move_up":
+        return fn("moveUp");
+      case "move_down":
+        return fn("moveDown");
+      case "jump":
+        return fn("jump");
+      case "say":
+        return fn("say", kS('"' + b.getFieldValue("TEXT") + '"'));
+      case "go_to":
+        return fn("goTo", kodSon(b, "X") + ", " + kodSon(b, "Y"));
+      case "go_to_r":
+        return fn("goTo", kodIfoda(b.getInputTargetBlock("X")) + ", " + kodIfoda(b.getInputTargetBlock("Y")));
+      case "costume":
+        return fn("switchCostume", kS('"' + b.getFieldValue("KOS") + '"'));
+      case "sound":
+        return fn("playSound", kS('"' + b.getFieldValue("NOM") + '"'));
+      case "create_clone":
+        return fn("createClone");
+      case "delete_clone":
+        return fn("deleteClone");
+      case "game_over":
+        return fn("gameOver");
+      case "set_var":
+        return q(b.getFieldValue("VAR") + " = " + kodSon(b, "N") + ";");
+      case "change_var": {
+        const v = b.getFieldValue("VAR"), n = +b.getFieldValue("N");
+        return q(v + " = " + v + (n < 0 ? " - " : " + ") + kodSon(b, "N", String(Math.abs(n))) + ";");
+      }
+      case "repeat":
+        q(kK("for") + " (" + kK("let") + " i = 0; i &lt; " + kodSon(b, "N") + "; i++) {");
+        ich("DO");
+        return yop("}");
+      case "if_var":
+        q(kK("if") + " (" + b.getFieldValue("VAR") + " === " + kodSon(b, "N") + ") {");
+        ich("DO");
+        return yop("}");
+      case "if_path":
+        q(kK("if") + " (" + kF("canMove") + "(" + kS('"' + b.getFieldValue("YON") + '"') + ")) {");
+        ich("DO");
+        return yop("}");
+      default:
+        return q("// " + kodEsc(t));
+    }
+  }
+  function kodHodisa(b) {
+    const t = b.type;
+    if (t === "when_start") return kF("onStart") + "(() =&gt; {";
+    if (t === "when_key") return kF("onKey") + "(" + kS('"' + b.getFieldValue("KEY") + '"') + ", () =&gt; {";
+    if (t === "when_touch") return kF("onTouch") + "(" + kS('"' + b.getFieldValue("OLMA") + '"') + ", () =&gt; {";
+    if (t === "when_clone") return kF("onClone") + "(() =&gt; {";
+    return null;
+  }
+  function kodQatorlar(ws, ek) {
+    const out = [], kop = typeof BL_DASTURCHA !== "function" || !ek || BL_DASTURCHA(ek);
+    blTepalar(ws).forEach((t, i) => {
+      if (i) out.push({ h: "", d: 0, bosh: true });
+      const hb = kodHodisa(t);
+      if (hb) {
+        out.push({ h: hb, id: t.id, d: 0 });
+        let c = t.getNextBlock();
+        while (c) {
+          kodBlok(c, 1, out);
+          c = c.getNextBlock();
+        }
+        out.push({ h: "});", d: 0, xira: true });
+      } else {
+        const n = out.length;
+        let c = t;
+        while (c) {
+          kodBlok(c, 0, out);
+          c = c.getNextBlock();
+        }
+        if (kop) for (let j = n; j < out.length; j++) out[j].xira = true;
+      }
+    });
+    return out;
+  }
+  function kodWs(ek) {
+    return typeof BL_WS !== "undefined" && BL_WS.get(ek);
+  }
+  function kodTayyorla(ek) {
+    const k = KOD_B(ek) || {}, hm = ek.querySelector(".hm");
+    if (!hm) return;
+    ek.querySelectorAll(".kodp").forEach((x) => x.remove());
+    hm.insertAdjacentHTML("beforeend", '<div class="kodp" aria-label="Kod"><div class="kodp-b"><b>' + (KG2("sarlavha") || "Kod") + '</b><small>JavaScript</small></div><div class="kodp-q"></div><div class="kodp-s" hidden></div></div>');
+    const hn = ek.querySelector(".hn"), hint = hn && hn.querySelector(".hint");
+    if (hn && hint && !k.faqat && !hn.querySelector(".kod-t")) hint.insertAdjacentHTML("beforebegin", '<span class="kod-t" role="button"><b>&lt;/&gt;</b><span>' + KG2("ochish") + "</span></span>");
+    ek.__kod = { son: /* @__PURE__ */ new Map(), kor: /* @__PURE__ */ new Set(), topdi: 0, nishon: null, eski: /* @__PURE__ */ new Map() };
+    if (k.prog && typeof klonQur === "function" && kodWs(ek)) klonQur(ek, k.prog);
+    ek.classList.toggle("kod-faqat", !!k.faqat);
+    kodOch(ek, !!(k.och || k.faqat), true);
+    const ws = kodWs(ek);
+    if (ws && !ws.__kodTinglar) {
+      ws.__kodTinglar = true;
+      ws.addChangeListener((e) => {
+        if (e.isUiEvent) return;
+        if (ek.__kod) {
+          kodSonQayd(ek, e);
+          kodYangila(ek);
+          kodTekshirSahna(ek);
+        }
+      });
+    }
+    const jr = ek.querySelector(".dst");
+    if (jr && !jr.__kodKuzat) {
+      jr.__kodKuzat = new MutationObserver(() => {
+        const h = ek.querySelector(".dst [data-id].hozir");
+        ek.querySelectorAll(".kodp .kq.hozir").forEach((x) => x.classList.remove("hozir"));
+        if (h) {
+          const q = ek.querySelector('.kodp .kq[data-b="' + h.dataset.id + '"]');
+          if (q) q.classList.add("hozir");
+        }
+      });
+      jr.__kodKuzat.observe(jr, { attributes: true, attributeFilter: ["class"], subtree: true });
+    }
+    if (k.faqat && !ek.__kodYugur) {
+      ek.__kodYugur = new MutationObserver(() => {
+        if (ek.dataset.yuryapti) ek.classList.remove("kod-faqat");
+      });
+      ek.__kodYugur.observe(ek, { attributes: true, attributeFilter: ["data-yuryapti"] });
+    }
+    kodSanoq(ek);
+    if (k.kerak === "qator" || k.kerak === "blok") kodNishonQoy(ek);
+    setTimeout(() => {
+      if (ek.__kod) ek.__kod.tayyor = true;
+    }, 400);
+  }
+  function kodOch(ek, och, birinchi) {
+    ek.classList.toggle("kod-och", och);
+    const t = ek.querySelector(".hn .kod-t span");
+    if (t) t.textContent = och ? KG2("yopish") : KG2("ochish");
+    if (och) {
+      kodYangila(ek);
+      kodKorildi(ek);
+    }
+    if (!birinchi && typeof blMasshtab === "function") {
+      const ws = kodWs(ek);
+      if (ws) setTimeout(() => {
+        Blockly.svgResize(ws);
+        blMasshtab(ek, ws);
+      }, 30);
+    }
+  }
+  function kodYangila(ek) {
+    const p = ek.querySelector(".kodp .kodp-q"), ws = kodWs(ek);
+    if (!p || !ws) return;
+    const qs = kodQatorlar(ws, ek), y = ek.__kod || {};
+    p.innerHTML = qs.length ? qs.map((q, i) => '<div class="kq' + (q.xira ? " xira-q" : "") + (q.bosh ? " bosh" : "") + (q.id && q.id === y.tanlov ? " on" : "") + (q.id && q.id === y.nishon && (KOD_B(ek) || {}).kerak === "blok" ? " nishon" : "") + '"' + (q.id ? ' data-b="' + q.id + '"' : "") + ' style="--d:' + q.d + '"><i>' + (i + 1) + "</i><code>" + q.h + "</code></div>").join("") : '<div class="kq bosh"><i>1</i><code></code></div>';
+    if (KOD_B(ek) && KOD_B(ek).tahrirYoq) p.classList.add("tahrir-yoq");
+  }
+  function kodKorildi(ek) {
+    const s = ek.__per, y = ek.__kod;
+    if (!y) return;
+    if (s) y.kor.add(s.cur);
+    kodTekshir(ek);
+  }
+  function kodSanoq(ek) {
+    const k = KOD_B(ek) || {}, el = ek.querySelector(".kodp .kodp-s"), y = ek.__kod;
+    if (!el || !y) return;
+    let t = "";
+    if (k.kerak === "qator" || k.kerak === "blok") t = KG2("topildi", y.topdi);
+    else if (k.kerak === "och") t = KG2("korildi", y.kor.size + " / " + ((((TOP(ek.dataset.id).bosh || {}).personaj || {}).royxat || []).length || 1));
+    else if (["dush8", "ball2", "jon5", "ikki"].includes(k.kerak)) t = KG2("ozgardi", kodOzgarSoni(ek));
+    el.hidden = !t;
+    el.textContent = t;
+  }
+  function kodSonQayd(ek, e) {
+    const y = ek.__kod;
+    if (!y || e.type !== Blockly.Events.BLOCK_CHANGE || e.element !== "field") return;
+    const kalit = e.blockId + ":" + e.name;
+    if (y.tahrir === kalit) {
+      if (!y.eski.has(kalit)) y.eski.set(kalit, e.oldValue);
+      if (String(y.eski.get(kalit)) === String(e.newValue)) y.son.delete(kalit);
+      else y.son.set(kalit, e.newValue);
+      y.tahrir = null;
+      kodSanoq(ek);
+      kodHisobQosh(ek);
+    } else if (y.tayyor && ["dush8", "ball2", "jon5", "ikki"].includes((KOD_B(ek) || {}).kerak) && !y.tahrir) ishora(ek, KG2("koddaO"));
+  }
+  const kodOzgarSoni = (ek) => ek.__kod ? ek.__kod.son.size : 0;
+  function kodOzgardi(ek, f) {
+    const y = ek.__kod;
+    if (!y) return false;
+    for (const k of y.son.keys()) {
+      const [id, nm] = k.split(":");
+      if (f(id, nm)) return true;
+    }
+    return false;
+  }
+  function kodHisob(ek) {
+    const y = ek.__kod || { topdi: 0, son: /* @__PURE__ */ new Map() }, q = (t, n) => Array.from({ length: n }, () => ({ dataset: { tur: t } }));
+    return [...q("Q", y.topdi), ...q("S", y.son.size)];
+  }
+  function kodHisobQosh(ek) {
+    if (perBola(ek) && !ek.dataset.oqish && typeof blokQosh === "function") blokQosh(ek.dataset.id, kodHisob(ek));
+  }
+  function kodQatorYon(ek, id) {
+    const y = ek.__kod;
+    if (y) y.tanlov = id;
+    ek.querySelectorAll(".kodp .kq.on").forEach((x) => x.classList.remove("on"));
+    const q = id && ek.querySelector('.kodp .kq[data-b="' + id + '"]');
+    if (q) {
+      q.classList.add("on");
+      q.scrollIntoView({ block: "nearest" });
+    }
+  }
+  function kodBlokYon(ek, id) {
+    const ws = kodWs(ek), b = ws && ws.getBlockById(id);
+    if (!b) return;
+    if (typeof blTanlovOl === "function") blTanlovOl(ek);
+    ek.querySelectorAll(".dst .kod-yon").forEach((x) => x.classList.remove("kod-yon"));
+    b.getSvgRoot().classList.add("kod-yon");
+  }
+  function kodBlokBos(ek, b) {
+    if (!KOD_B(ek) || !ek.classList.contains("kod-och")) return false;
+    if (typeof chal === "function") chal("bos");
+    const id = b.isShadow() && b.getParent() ? b.getParent().id : b.id;
+    kodBlokYon(ek, id);
+    kodQatorYon(ek, id);
+    const k = KOD_B(ek), y = ek.__kod;
+    if (k.kerak === "blok" && y && y.nishon) kodMoslash(ek, id === y.nishon);
+    return true;
+  }
+  function kodBosish(e, ek) {
+    const k = KOD_B(ek);
+    if (!k) return null;
+    if (e.target.closest(".hn .kod-t")) {
+      if (ek.dataset.oyin || ek.dataset.yuryapti) return true;
+      chal("bos");
+      kodOch(ek, !ek.classList.contains("kod-och"));
+      return true;
+    }
+    const kp = e.target.closest(".kodp");
+    if (!kp) return null;
+    if (ek.dataset.yuryapti) return true;
+    const n = e.target.closest(".kn");
+    if (n && !k.tahrirYoq && !ek.dataset.oyin) {
+      kodSonOch(ek, n);
+      return true;
+    }
+    const q = e.target.closest(".kq[data-b]");
+    if (q) {
+      chal("bos");
+      kodQatorYon(ek, q.dataset.b);
+      kodBlokYon(ek, q.dataset.b);
+      if (k.kerak === "qator" && ek.__kod.nishon) kodMoslash(ek, q.dataset.b === ek.__kod.nishon);
+    }
+    return true;
+  }
+  function kodSonOch(ek, n) {
+    const ws = kodWs(ek), b = ws && ws.getBlockById(n.dataset.b), f = b && b.getField(n.dataset.f);
+    if (!f) return;
+    chal("bos");
+    ek.__kod.tahrir = n.dataset.b + ":" + n.dataset.f;
+    const ota = b.isShadow() && b.getParent() ? b.getParent().id : b.id;
+    kodBlokYon(ek, ota);
+    kodQatorYon(ek, ota);
+    try {
+      f.showEditor_();
+    } catch (x) {
+      ek.__kod.tahrir = null;
+    }
+  }
+  function kodNishonQoy(ek) {
+    const ws = kodWs(ek), y = ek.__kod;
+    if (!ws || !y) return;
+    const bl = ws.getAllBlocks(true).filter((b2) => !b2.isShadow() && b2.type !== "random_n" && BL_HODISA && !BL_HODISA.has(b2.type) && b2.getRootBlock() && BL_HODISA.has(b2.getRootBlock().type));
+    const tur = new Set(y.otdi || []), qol = bl.filter((b2) => !tur.has(b2.type)), r = qol.length ? qol : bl;
+    if (!r.length) return;
+    const b = r[Math.floor(Math.random() * r.length)];
+    y.nishon = b.id;
+    y.otdi = [...y.otdi || [], b.type];
+    ek.querySelectorAll(".dst .kod-nishon").forEach((x) => x.classList.remove("kod-nishon"));
+    if (KOD_B(ek).kerak === "qator") b.getSvgRoot().classList.add("kod-nishon");
+    kodYangila(ek);
+    ishora(ek, KG2(KOD_B(ek).kerak === "qator" ? "qatorTop" : "blokTop"));
+  }
+  function kodMoslash(ek, togri) {
+    const y = ek.__kod;
+    if (!togri) {
+      chal("muammo");
+      const k = KOD_B(ek).kerak;
+      ishora(ek, KG2(k === "qator" ? "boshqaQ" : "boshqaB"));
+      muammo(ek, "kamvoy", KG2(k === "qator" ? "boshqaQP" : "boshqaBP"));
+      return;
+    }
+    muammoOl(ek);
+    chal("sakrash");
+    y.topdi++;
+    kodHisobQosh(ek);
+    kodSanoq(ek);
+    ek.querySelectorAll(".dst .kod-nishon").forEach((x) => x.classList.remove("kod-nishon"));
+    if (y.topdi >= 3) {
+      y.nishon = null;
+      kodYangila(ek);
+      return kodYutdi(ek);
+    }
+    setTimeout(() => {
+      if (document.body.contains(ek)) kodNishonQoy(ek);
+    }, 500);
+  }
+  function kodTekshirSahna(ek) {
+    const k = KOD_B(ek);
+    if (k && k.kerak === "yangi") kodTekshir(ek);
+  }
+  function kodTekshir(ek) {
+    const k = KOD_B(ek) || {}, y = ek.__kod;
+    if (!y || y.yutdi) return;
+    if (k.kerak === "och") {
+      kodSanoq(ek);
+      const n = (((TOP(ek.dataset.id).bosh || {}).personaj || {}).royxat || []).length || 1;
+      if (y.kor.size >= n) kodYutdi(ek);
+      else if (y.kor.size) ishora(ek, KG2("boshqaKarta"));
+    }
+    if (k.kerak === "yangi") {
+      const s = ek.__per, ws = kodWs(ek);
+      if (s && s.cur === "raketa" && ws && ek.classList.contains("kod-och") && ws.getAllBlocks(false).some((b) => b.type === "sound" && b.getRootBlock() && BL_HODISA.has(b.getRootBlock().type))) kodYutdi(ek);
+    }
+  }
+  function kodYutdi(ek) {
+    const y = ek.__kod, t = TOP(ek.dataset.id), b = t.bosh || {}, g = t.gap || {};
+    if (!y || y.yutdi) return;
+    y.yutdi = true;
+    chal("yulduz");
+    ishora(ek, g.yetdi ? GAPT(g.yetdi) : KG2("yutdi"));
+    konfeti(ek);
+    if (!perBola(ek) || ek.dataset.oqish) return;
+    if (typeof perSaqla === "function") perSaqla(ek);
+    kodHisobQosh(ek);
+    if (b.pog && typeof pogQosh === "function") pogQosh(b.pog);
+    otKeyin(ek);
+  }
+  function kodPersonaj(ek) {
+    if (!ek.__kod) return;
+    kodYangila(ek);
+    if (ek.classList.contains("kod-och")) kodKorildi(ek);
+    if (KOD_B(ek).kerak === "qator" || KOD_B(ek).kerak === "blok") kodNishonQoy(ek);
+  }
+  function kodOyinShart(ek, o, { nus, ball, jon }) {
+    const k = KOD_B(ek) || {}, ws = kodWs(ek), s = ek.__per;
+    const turda = (tur, f) => kodOzgardi(ek, (id, nm) => {
+      let b = ws && ws.getBlockById(id);
+      if (!b) return false;
+      if (b.isShadow() && b.getParent()) b = b.getParent();
+      return b.type === tur && (!f || f(b, nm));
+    });
+    if (!kodOzgarSoni(ek)) return KG2("ozgarmadi");
+    if (k.kerak === "dush8") return nus.length >= 8 || KG2("dush8", nus.length);
+    if (k.kerak === "ball2") return o.urdi >= 1 && ball === 2 * o.urdi || (o.urdi ? KG2("ball2") : KG2("uring"));
+    if (k.kerak === "jon5") return o.jon0 === 5 && jon > 0 || (o.jon0 !== 5 ? KG2("jon5") : KG2("jonQolsin"));
+    if (k.kerak === "ikki") return kodOzgarSoni(ek) >= 2 && jon > 0 && o.urdi >= 1 || (kodOzgarSoni(ek) < 2 ? KG2("ikkiSon") : KG2("yuting"));
+    return true;
+  }
+  async function kodHuk(ek, k) {
+    const m = klonMaydon(ek), o = ek.querySelector(".oyna");
+    if (!m || !o) return;
+    const q = m.k.querySelector(".kt-q"), H = m.H;
+    ek.querySelectorAll(".oyna .kodh-q").forEach((x) => x.remove());
+    if (q) katakSur(q, 2, H - 1, false);
+    o.insertAdjacentHTML("beforeend", '<div class="gl kodh-q"><small>' + (KG2("hukSarlavha") || "Kod") + "</small><code>" + kodEsc(k.dataset.yoz || "") + '</code><span class="kodh-t">→</span></div>');
+    const w = o.querySelector(".kodh-q"), c = w.querySelector("code"), t = w.querySelector(".kodh-t");
+    await KUT(700);
+    t.classList.add("bos");
+    chal("bos");
+    await KUT(260);
+    t.classList.remove("bos");
+    if (k.dataset.kodh === "C") {
+      c.classList.add("hozir");
+      katakSur(q, 3, H - 1, true);
+      chal("qadam");
+      await KUT(700);
+      c.classList.remove("hozir");
+      await KUT(500);
+      return;
+    }
+    c.classList.add("qizil");
+    chal("muammo");
+    muammo(ek, "boshvoy", KG2("hukTushunmadi"));
+    await KUT(1400);
+  }
+  const KARTA0 = { kim: "", dush: 0, ball: 0, jon: 0 };
+  const KR = (k, n) => {
+    const g = typeof DARS2 !== "undefined" && DARS2.kartaGap || {};
+    const t = g[k] != null ? g[k] : "";
+    return n != null && typeof t === "string" ? t.replace(/\bN\b/, n) : t;
+  };
+  const kartaKalit = () => (typeof K !== "undefined" ? K : "jr-") + "karta";
+  function kartaOl() {
+    let s = null;
+    try {
+      s = localStorage.getItem(kartaKalit());
+    } catch (e) {
+    }
+    const d = typeof DARS2 !== "undefined" && DARS2.lms || {};
+    if (!s && DARS2.kartaKalit && d.kalit && kartaKalit().indexOf(d.kalit) >= 0) {
+      try {
+        s = localStorage.getItem(kartaKalit().replace(d.kalit, DARS2.kartaKalit));
+      } catch (e) {
+      }
+    }
+    try {
+      const m = { ...KARTA0, ...JSON.parse(s || "null") || {} };
+      return !kartaTolik(m) && !s && DARS2.kartaNamuna ? { ...DARS2.kartaNamuna } : m;
+    } catch (e) {
+      return { ...KARTA0 };
+    }
+  }
+  function kartaYoz(m) {
+    try {
+      localStorage.setItem(kartaKalit(), JSON.stringify(m));
+    } catch (e) {
+    }
+  }
+  const kartaTolik = (m) => !!(m.kim && m.dush && m.ball && m.jon);
+  const kartaMaqsad = (m) => m.ball * Math.ceil(m.dush / 2);
+  function kartaXulosa(m) {
+    const q = (nom, v, bor) => '<span class="kx-q' + (bor ? " ok" : "") + '"><small>' + nom + "</small><b>" + (bor ? v : "?") + "</b></span>";
+    return q(KR("kim"), m.kim, !!m.kim) + q(KR("dush"), m.dush, !!m.dush) + q(KR("ball"), m.ball, !!m.ball) + q(KR("jon"), m.jon, !!m.jon) + q(KR("maqsad"), kartaMaqsad(m), kartaTolik(m));
+  }
+  function kartaChiz(ek) {
+    const m = kartaOl();
+    ek.querySelectorAll(".kc-o").forEach((x) => {
+      const v = m[x.dataset.g];
+      x.classList.toggle("on", !!v && String(v) === x.dataset.v);
+    });
+    ek.querySelectorAll(".kc-xul,.kc-mini").forEach((s) => {
+      s.innerHTML = kartaXulosa(m);
+    });
+  }
+  function kartaTanla(ek, ko) {
+    const g = ko.dataset.g, m = kartaOl();
+    m[g] = g === "kim" ? ko.dataset.v : +ko.dataset.v;
+    kartaYoz(m);
+    if (typeof chal === "function") chal("bos");
+    kartaChiz(ek);
+  }
+  function kartaTayyor(ek) {
+    const m = kartaOl();
+    if (!kartaTolik(m)) {
+      chal("muammo");
+      ishora(ek, KR("toldiring"));
+      return false;
+    }
+    chal("yulduz");
+    ishora(ek, KR("tayyor"));
+    if (typeof blokQosh === "function") blokQosh(ek.dataset.id, [{ dataset: { tur: "K" } }]);
+    if (typeof pogQosh === "function" && DARS2.kartaPog) pogQosh(DARS2.kartaPog);
+    return true;
+  }
+  function kartaShart(ek, o, { nus, ball, jon }, kerak2) {
+    const m = kartaOl(), ustun = new Set(nus.map((n) => n.x)).size;
+    if (!kartaTolik(m)) return KR("kartaYoq");
+    if (kerak2 === "karta1") return nus.length === m.dush && ustun >= 2 || (nus.length !== m.dush ? KR("dushKarta", m.dush) : KR("bir"));
+    if (kerak2 === "karta2") return nus.length === m.dush && o.urdi >= 1 && ball === m.ball * o.urdi && o.jon0 === m.jon && jon > 0 || (nus.length !== m.dush ? KR("dushKarta", m.dush) : o.jon0 !== m.jon ? KR("jonKarta", m.jon) : !o.urdi ? KR("uring") : KR("ballKarta", m.ball));
+    if (kerak2 === "karta3") return nus.length === m.dush && o.jon0 === m.jon && jon > 0 && ball >= kartaMaqsad(m) || (nus.length !== m.dush ? KR("dushKarta", m.dush) : o.jon0 !== m.jon ? KR("jonKarta", m.jon) : jon <= 0 ? KR("jonQolsin") : KR("maqsadKam", kartaMaqsad(m)));
+    if (kerak2 === "karta4") return nus.length === m.dush && o.urdi >= m.dush && jon > 0 || (nus.length !== m.dush ? KR("dushKarta", m.dush) : jon <= 0 ? KR("jonQolsin") : KR("hammasi", m.dush));
+    if (kerak2 === "karta5") {
+      const maq = Math.min(kartaMaqsad(m) + 2, m.dush * m.ball);
+      return nus.length === m.dush && jon > 0 && ball >= maq || (nus.length !== m.dush ? KR("dushKarta", m.dush) : jon <= 0 ? KR("jonQolsin") : KR("oshir", maq));
+    }
+    return true;
+  }
+  function kartaProg() {
+    const m = kartaOl(), n = m.dush || 5, b = m.ball || 2, j = m.jon || 3;
+    return {
+      raketa: [[["k", "right"], ["r"]], [["k", "left"], ["l"]], [["f"], ["z", "ball:0"], ["z", "jon:" + j]], [["q", "enemy"], ["c", "jon:-1"], ["i", "jon:0", [["g"]]]]],
+      oq: [[["k", "space"], ["C"]], [["H"], ["p", "4", [["u"]]], ["D"]], [["q", "enemy"], ["c", "ball:" + b]]],
+      dushman: [[["f"], ["p", String(n), [["C"]]]], [["H"], ["y", "r0-6,4"], ["p", "4", [["d"]]], ["D"]]]
+    };
   }
   const ROL0 = KIRISH.rol || "eshik", K = KIRISH.k, KP = KIRISH.kp || K;
   const SOLO = ROL0 === "solo", ROL = SOLO ? "bola" : ROL0;
@@ -2716,20 +9291,39 @@ function ishga(D2, A, OPT) {
     qBlok[id] = x;
     saqla(K + "bloklar", JSON.stringify(qBlok));
     bildir({ t: "bloklar", x: blokJami() });
+    if (DARS2.tuzatish && id !== "_bq") bildir({ t: "tuzatdi", n: Object.keys(qBlok).filter((e) => DARS2.tuzatish.indexOf(e) >= 0).length });
+  }
+  function bqQosh(ek) {
+    const r = ek && ek.parentNode && ek.parentNode.closest("#ust,#bol");
+    if (!r || r.id !== "bol" || ek.dataset.oqish) return;
+    const n = ((qBlok._bq || {}).Q || 0) + 1;
+    blokQosh("_bq", Array.from({ length: n }, () => ({ dataset: { tur: "Q" } })));
   }
   function blokJami() {
-    const j = { r: 0, l: 0, j: 0, s: 0 };
+    const j = { r: 0, l: 0, j: 0, s: 0 }, eng = {};
     Object.values(qBlok).forEach((x) => {
-      for (const t in x) if (t !== "m") j[t] = (j[t] || 0) + (x[t] || 0);
+      for (const t in x) if (t !== "m") {
+        j[t] = (j[t] || 0) + (x[t] || 0);
+        eng[t] = Math.max(eng[t] || 0, x[t] || 0);
+      }
     });
     j.e = Object.keys(qBlok);
+    if (DARS2.natija.some((n) => n.eng)) j.eng = eng;
     return j;
   }
   function natijaSon(x, tayyor) {
-    return Object.fromEntries(DARS2.natija.map((n) => [n.k, n.tayyor ? tayyor ? 1 : 0 : n.ekran ? (x.e || []).filter((id) => n.ekran.indexOf(id) >= 0).length : [...n.blok].reduce((a, t) => a + (x[t] || 0), 0)]));
+    return Object.fromEntries(DARS2.natija.map((n) => [n.k, n.tayyor ? tayyor ? 1 : 0 : n.eng ? (x.eng || {})[n.eng] || 0 : n.ekran ? (x.e || []).filter((id) => n.ekran.indexOf(id) >= 0).length : [...n.blok].reduce((a, t) => a + (x[t] || 0), 0)]));
   }
   const blokM = /* @__PURE__ */ new Map(), tanlov = /* @__PURE__ */ new Map(), ismBerdi = /* @__PURE__ */ new Set(), pogM = /* @__PURE__ */ new Map(), joyM = /* @__PURE__ */ new Map(), tayyorS = /* @__PURE__ */ new Set(), yordamM = /* @__PURE__ */ new Map(), ochildi = /* @__PURE__ */ new Set();
-  const qadamX = () => ({ t: "qadam", i: qadam, v: Date.now(), o: ochildi.has(qadam) });
+  const juftM = /* @__PURE__ */ new Map(), ikkiM = /* @__PURE__ */ new Map(), xkM = /* @__PURE__ */ new Map();
+  const qadamX = () => {
+    const x = { t: "qadam", i: qadam, v: Date.now(), o: ochildi.has(qadam) };
+    if (DARS2.xakaton && juftM.size) {
+      x.xq = [...new Set(juftM.values())];
+      x.xk = Object.fromEntries([...juftM].map(([kim, k]) => [k, { ...xkM.get(kim) || {}, n: 1 + [...ikkiM.values()].filter((v) => v === k).length }]));
+    }
+    return x;
+  };
   function ochil() {
     if (SOLO) {
       setTimeout(soloKeyingi, 1800);
@@ -2841,6 +9435,15 @@ function ishga(D2, A, OPT) {
   }
   function salom() {
     yubor({ t: "salom", kim: MEN, javob: menJavob, qah, ism: !!qism, pog: qPog, joy: qJoy, tayyor: qTayyor, bloklar: blokJami() });
+    if (DARS2.xakaton && juftRol() === "oyin") yubor({ t: "juft", kim: MEN, q: qahKalit() });
+    if (DARS2.xakaton && juftRol() === "ikki") {
+      let k = "";
+      try {
+        k = localStorage.getItem(K + "juftQ") || "";
+      } catch (e) {
+      }
+      if (k) yubor({ t: "juftIkki", kim: MEN, q: k });
+    }
   }
   function hisob() {
     if (SOLO) return soloHisob();
@@ -2904,6 +9507,19 @@ function ishga(D2, A, OPT) {
       });
       if (hint) hint.textContent = "Yordam so‘radi: " + yordam;
     }
+    if (tur === "juft") {
+      const n = pogSon(sanoq2[1]), j = Math.max(n, Math.max(1, Math.floor(bolalar.size / 2))), pv = [...pogM.values()];
+      tug(n, j);
+      if (sanoq2[3] === "hozir") u.querySelectorAll(".pg-k").forEach((k, i, all) => {
+        const b = k.querySelector(".pg-s b"), v = (sanoq2[2] || 0) + 1 + i;
+        if (b) b.textContent = pv.filter((x) => i === all.length - 1 ? x >= v : x === v).length;
+      });
+      u.querySelectorAll(".xk-o[data-o]").forEach((c) => {
+        const b = c.querySelector(".jr-s b");
+        if (b) b.textContent = [...xkM.values()].filter((x) => x.oyin === c.dataset.o).length;
+      });
+      if (hint) hint.textContent = sanoq2[4] ? sanoq2[4] + ": " + n + " / " + j : "Yordam so‘radi: " + yordam + " ta noutbuk";
+    }
     if (tur === "sinf") {
       const j = {};
       blokM.forEach((x) => {
@@ -2930,6 +9546,25 @@ function ishga(D2, A, OPT) {
       });
       if (hint) hint.textContent = "Sahnasi tayyor: " + n + " / " + j + " · yordam so‘radi: " + yordam;
     }
+  }
+  function juftQabul(x) {
+    const yangi = JSON.stringify(x.xq) !== JSON.stringify(qXq);
+    qXq = x.xq;
+    qXk = x.xk || qXk;
+    saqla(K + "xq", JSON.stringify(qXq));
+    saqla(K + "xkU", JSON.stringify(qXk));
+    if (juftRol() === "oyin" && qXk && qXk[qahKalit()]) {
+      try {
+        const s = JSON.parse(localStorage.getItem(K + "xk") || "{}") || {};
+        if (s.juft !== qXk[qahKalit()].n) {
+          s.juft = qXk[qahKalit()].n;
+          localStorage.setItem(K + "xk", JSON.stringify(s));
+        }
+      } catch (e) {
+      }
+    }
+    const ek = document.querySelector("#bol .ekran");
+    if (yangi && ek && TOP(ek.dataset.id).ish === "juftQah" && typeof juftQahTayyorla === "function") juftQahTayyorla(ek);
   }
   function ishlov(x) {
     if (ROL === "ustoz" || ROL === "yonma") {
@@ -2986,11 +9621,27 @@ function ishga(D2, A, OPT) {
         yurBolalar.add(x.kim || "nomalum");
         hisob();
       }
+      if (x.t === "juft" && x.kim) {
+        juftM.set(x.kim, x.q);
+        yubor(qadamX());
+        hisob();
+      }
+      if (x.t === "juftIkki" && x.kim) {
+        if (x.q) ikkiM.set(x.kim, x.q);
+        else ikkiM.delete(x.kim);
+        yubor(qadamX());
+        hisob();
+      }
+      if (x.t === "xk" && x.kim) {
+        xkM.set(x.kim, x.x);
+        hisob();
+      }
     }
     if (ROL === "bola" && x.t === "kimbor" && ism) salom();
     if (ROL === "bola" && x.t === "qadam") {
       if (x.v && x.v < oxirgiV) return;
       if (x.v) oxirgiV = x.v;
+      if (x.xq) juftQabul(x);
       if (x.i !== qadam) {
         const eski = bolaQ(qadam);
         qadam = x.i;
@@ -3054,7 +9705,7 @@ function ishga(D2, A, OPT) {
     const u = document.querySelector("#ust");
     if (!u) return;
     const h = u.querySelector(".hn .hint");
-    if (h && /[0-9]/.test(h.textContent)) h.textContent = "";
+    if (h && DARS2.sanoq[QADAM2[qadam][1]] && /[0-9]/.test(h.textContent)) h.textContent = "";
     u.querySelectorAll(".jk").forEach((jk) => {
       const l = (jk.querySelector(".jt b") || {}).textContent, s = jk.querySelector(".jr-s");
       if (!s) return;
@@ -3069,22 +9720,71 @@ function ishga(D2, A, OPT) {
     const fo = ek.querySelector(".hn");
     if (!fo || fo.querySelector(".k-solo")) return;
     const a = fo.querySelector(".asos");
-    if (a) a.className = "mas ishga";
+    if (a) {
+      a.classList.remove("asos");
+      a.classList.add("mas", "ishga");
+    }
     fo.insertAdjacentHTML("beforeend", '<span class="asos k-solo">Keyingi ›</span>');
+  }
+  const juftRol = () => {
+    try {
+      return localStorage.getItem(K + "juft") || "";
+    } catch (e) {
+      return "";
+    }
+  };
+  const qahKalit = () => (qah || "momiq") + "|" + qrang + "|" + qism;
+  const ekranT2 = (id) => {
+    const m = DARS2.ekranTanlov && DARS2.ekranTanlov[id];
+    if (!m) return id;
+    let o = "";
+    try {
+      o = (JSON.parse(localStorage.getItem(K + "xk") || "{}") || {}).oyin || "";
+    } catch (e) {
+    }
+    return m[o === "lab" ? 1 : 0];
+  };
+  let qXq = null, qXk = null;
+  try {
+    qXq = JSON.parse(localStorage.getItem(K + "xq") || "null");
+    qXk = JSON.parse(localStorage.getItem(K + "xkU") || "null");
+  } catch (e) {
+  }
+  function juftTanla(j) {
+    saqla(K + "juft", j);
+    if (j === "oyin") {
+      bildir({ t: "juft", q: qahKalit() });
+      pogQosh(1);
+    } else bildir({ t: "juftIkki", q: "" });
+    setTimeout(bolaKeyingi, 500);
+  }
+  const juftRoyxat = () => qXq && qXq.length ? qXq : QAHRAMONLAR2.map((k) => k + "|-1|");
+  function juftXulosa() {
+    let k = "";
+    try {
+      k = localStorage.getItem(K + "juftQ") || "";
+    } catch (e) {
+    }
+    return qXk && k && qXk[k] || null;
   }
   const bolaQ = (i) => {
     while (i > 0 && !QADAM2[i][2]) i--;
     return i;
   };
-  const bolaR = () => QADAM2[bolaQ(qadam)][2];
+  const bolaR = () => {
+    const q = QADAM2[bolaQ(qadam)], r = q[4] && juftRol() === "ikki" && q[4] || q[2];
+    if (r !== "oxirgi") return r;
+    const x = typeof oxirgiOl === "function" && oxirgiOl();
+    return [x && x.id || DARS2.bola.kutish];
+  };
   function bolaId() {
     if (DARS2.bola.qahramonYoq && !qah) return DARS2.bola.qahramonYoq;
     if (SOLO) {
       const r = soloR(qadam);
-      return r[Math.min(ichki, r.length - 1)];
+      return ekranT2(r[Math.min(ichki, r.length - 1)]);
     }
     const b = bolaR();
-    return b[Math.min(ichki, b.length - 1)];
+    return ekranT2(b[Math.min(ichki, b.length - 1)]);
   }
   function chiz(qoldi) {
     const ilova = document.getElementById("ilova");
@@ -3102,6 +9802,7 @@ function ishga(D2, A, OPT) {
     studiyaTayyorla(document.getElementById("ust"));
     if (!eskiB) studiyaTayyorla(document.getElementById("bol"));
     qrangQoy();
+    if (!SOLO && !eskiB && ROL !== "ustoz" && QADAM2[bolaQ(qadam)][2] === "oxirgi" && typeof oqishYukla === "function") oqishYukla(document.querySelector("#bol .ekran"));
     if (SOLO) soloTugma();
     hisob();
   }
@@ -3177,6 +9878,11 @@ function ishga(D2, A, OPT) {
       else yubor(m);
       return;
     }
+    const ko = e.target.closest(".kc-o");
+    if (ko && id === DARS2.bola.karta && typeof kartaTanla === "function") {
+      kartaTanla(bol.querySelector(".ekran"), ko);
+      return;
+    }
     if (jk && id === DARS2.bola.javob) {
       jk.classList.add("tanlandi");
       menJavob = (jk.querySelector(".jt b") || {}).textContent || "";
@@ -3210,6 +9916,7 @@ function ishga(D2, A, OPT) {
       return;
     }
     if (e.target.closest(".asos")) {
+      if (id === DARS2.bola.karta && typeof kartaTayyor === "function" && !kartaTayyor(bol.querySelector(".ekran"))) return;
       if (id === DARS2.bola.ism) bildir({ t: "ism" });
       bolaKeyingi();
     }
@@ -4417,6 +11124,14 @@ body.r-ustoz,body.r-bola{background:#F6F4EF}
 .ekran .pl .mbw:not(.yopiq) .mb,.ekran .dst .mb,.ekran .sin3,.ekran .hn .mas,.ekran .rng i,.ekran .asos,.ekran .orq,.ekran .jk,.ekran .tq-o,.ekran .jy,.ekran .yur-b,.ekran .rd,.ekran .ism-t{cursor:pointer}
 .nomsiz .ekran .hb .hl{visibility:hidden}
 .hn .ishga{white-space:nowrap;margin-left:auto}.hn .ishga + .asos,.hn .ishga ~ .k-ust{margin-left:1cqw}
+/* 21.11: Blockly ro'yxati qatorlari OQ FONDA OQ edi (zelos chizuvchisi ro'yxat foni blok rangida deb matnni oq qiladi, bizda fon oq) — bola sonlarni ko'rmasdi; hamma darsda */
+html .blocklyDropDownDiv.junior-renderer .blocklyMenuItem .blocklyMenuItemContent{color:#0D2137}
+/* 21.11 (U-3): Blockly ro'yxatidagi tanlangan son oldidagi belgi — Blockly uni /sprites.svg dan olardi (saytda yo'q, LMS'da boshqa domen) — endi shu yerda, rasm qatorda */
+.blocklyDropDownDiv .blocklyMenuItemSelected .blocklyMenuItemCheckbox{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.2 8.6l3.1 3L12.8 4.6' fill='none' stroke='%230D2137' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center/14px 14px}
+/* 14-dars: «Bitta qadam» — «Ishga tushir» yonida, asosiy emas: oq, coral hoshiya; ostida «N-qadam» */
+.hn .bq-t{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.2cqw;white-space:nowrap;margin-left:auto;color:#C7381A;font-weight:800;line-height:1;border:.15cqw solid #FF4F28;border-radius:.8cqw;padding:.6cqw 1.2cqw;background:#fff;cursor:pointer}
+.hn .bq-t small{font:700 .95cqw/1 var(--f-kod);color:#8A8A90}.hn .bq-t small:empty{display:none}
+.hn .bq-t + .ishga,.hn .bq-t + .asos{margin-left:1cqw}
 .ism-inp{font:inherit;color:inherit;border:0;outline:0;background:transparent;width:100%;min-width:0;padding:0}
 .dst .mb .inp[contenteditable=true]{outline:.2cqw solid #FFC93C;cursor:text}
 .dv-pufak{position:absolute;z-index:6;white-space:nowrap}
@@ -4510,6 +11225,219 @@ body.r-ustoz,body.r-bola{background:#F6F4EF}
 /* 5b-1: huk kartasidagi «Sinab ko'rish» (faqat solo — bola o'zi sinaydi) */
 .jk .hk-sinab{display:inline-flex;align-items:center;margin-top:.5cqw;padding:.35cqw .9cqw;border-radius:99px;background:#0D2137;color:#fff;font:700 1.15cqw/1.2 var(--f-matn);cursor:pointer}
 .jk.n-ok .hk-sinab,.jk.n-yoq .hk-sinab{display:none}
+/* 3-dars (20.11): maydon — devorsiz katak sahnasi, X va Y o'qlari (chizmasi katak.js maydonHtml, harakati sahna.js maydonBajar) */
+.katak .md-n{font:800 40px/1 var(--f-kod);fill:#5B6B80;text-anchor:middle;transition:fill .25s}
+.katak .md-n.on{fill:#B9800C}
+.katak .md-ax{font:800 34px/1 var(--f-kod);fill:#0D2137;text-anchor:middle}
+.katak .md-bant{fill:#F5B82E;opacity:.3;transition:opacity .3s}
+.katak .md-bant[data-r]{opacity:0}
+.katak .md-bant[data-r].on{opacity:.3}
+.katak .md-oqb[data-r].on{opacity:.42}
+.katak .md-kes > rect{fill:none;stroke:#E3A81A;stroke-width:8}
+.katak .md-kes[data-r]{opacity:0;transition:opacity .3s}
+.katak .md-kes[data-r].on{opacity:1}
+.katak .md-kt rect,.katak .kt-yr rect{fill:#0D2137;opacity:.88}
+.katak .md-kt text{font:800 22px/1 var(--f-kod);fill:#fff;text-anchor:middle}
+.katak .kt-yr text{font:800 20px/1 var(--f-kod);fill:#fff;text-anchor:middle}
+.katak .md-d{filter:drop-shadow(0 5px 3px rgba(31,79,42,.3))}
+.katak .md-yon{fill:#FBD266;opacity:.75}
+.katak .kt-c.yonk{fill:#FBD266;stroke:#E3A81A;stroke-width:6}
+.katak .kt-il.kt-gl{stroke-dasharray:12 12;stroke-width:6}
+.katak .kt-olma{transition:opacity .3s}
+.katak .kt-olma.olindi{opacity:0}
+.katak .kt-yul.yashirin{opacity:0;transition:opacity .35s}
+.katak .kt-yul.qochdi{animation:ktQoch .55s ease-out}
+@keyframes ktQoch{0%{opacity:0}45%{opacity:1;filter:drop-shadow(0 0 .25px #F5B82E)}100%{opacity:1}}
+.katak .kt-yul.yashirin.topildi{opacity:1}
+.katak .md-bq{filter:drop-shadow(0 4px 3px rgba(0,0,0,.25))}
+.hn .kut{opacity:.45;filter:saturate(.6)}
+/* go to bloki (HTML: javon, tayyor dastur) — sonlar oq kapsulada */
+.mb .xy{display:flex;align-items:center;gap:.25cqw;font:700 1.15cqw/1 var(--f-kod);white-space:nowrap}
+.mb .xy i{font-style:normal;background:#fff;color:#1B62B5;border-radius:999px;padding:.3cqw .6cqw;min-width:1.6cqw;text-align:center}
+.katak .kt-yr[data-r]{opacity:0;transition:opacity .3s}
+.katak .kt-yr[data-r].on{opacity:1}
+/* 4-dars (20.11): Hodisa oilasi — to'q sariq; hodisasiz qolgan bloklar xira (hech qachon bajarilmaydi); o'yin yozuvi va olma hisobi */
+/* 16-dars: Klon oilasi — to'q sariq */
+.mb.f-K{--c:#C98A00;--d:#9A6A00}
+.mb.f-K.yon{--c:#E3B24A}
+.mbw .mb.f-K.yon.hozir{--c:#C98A00}
+.rd.f-K{--c:#C98A00}
+.pl > small.f-K{color:#9A6A00}
+.mb.f-e{--c:#F08A24;--d:#C96A12}
+.mb.f-e.yon{--c:#F6AC66}
+.mbw .mb.f-e.yon.hozir{--c:#F08A24}
+.rd.f-e{--c:#F08A24}
+.pl > small.f-e{color:#C96A12}
+.mb.f-e .xy i{color:#C96A12}
+.jr-bl .bl-xira{opacity:.42}
+.oyin-yz{position:absolute;left:50%;top:3%;transform:translateX(-50%);z-index:3;padding:.6cqw 1.2cqw;border-radius:999px;background:rgba(13,33,55,.86);color:#fff;font:700 1.25cqw/1 var(--f-matn);white-space:nowrap}
+.oyin-yz b{color:#FFD54A}
+/* 5-dars (20.11): Boshqaruv oilasi — takrorlash (yashil-feruza); HTML ko'rinishda C-shakl: sarlavha, ichki bloklar chapdan surilgan, pastki tub */
+.mb.f-b{--c:#13A58A;--d:#0D7A66}
+.mb.f-b.yon{--c:#4CC2AC}
+.rd.f-b{--c:#13A58A}
+.pl > small.f-b{color:#0D7A66}
+.mb.f-b .xy i{color:#0D7A66}
+.c-blok{display:flex;flex-direction:column;width:max-content}
+.c-blok > .mb{border-bottom-left-radius:0}
+.c-ich{margin-left:1.4cqw;padding-left:0;border-left:1.4cqw solid #13A58A;margin-left:0;padding-block:.2cqw}
+.c-ich .mb + .mb{margin-top:-.45cqw}
+.c-tub{display:block;width:8cqw;height:1.4cqw;background:#13A58A;border-radius:0 0 .5cqw .5cqw}
+/* 5-dars: rasm topshirig'i — chiziladigan kataklar kulrang, qahramon o'tgani oltin; takrorlash sanog'i */
+.katak .kt-c.md-rasm{fill:#C9CDD3}
+.katak .kt-c.md-rasm.iz{fill:#F8D877}
+.jr-bl .bl-son{position:absolute;z-index:4;transform-origin:50% 50%;min-width:1.8cqw;padding:.25cqw .5cqw;border-radius:999px;background:#2C8A50;color:#fff;font:800 1.1cqw/1 var(--f-kod);text-align:center;pointer-events:none}
+.mb.f-b{--c:#3FAE6A;--d:#2C8A50}
+.mb.f-b.yon{--c:#6CC48E}
+.rd.f-b{--c:#3FAE6A}
+.pl > small.f-b{color:#2C8A50}
+.mb.f-b .xy i{color:#2C8A50}
+.c-ich{border-left-color:#3FAE6A}
+.c-tub{background:#3FAE6A}
+.jr-bl .bl-juft > .blocklyPath{stroke-width:3.5}
+.jr-bl .bl-juft-0 > .blocklyPath{stroke:#FF4F28}
+.jr-bl .bl-juft-1 > .blocklyPath{stroke:#F5B82E}
+/* 6-dars: kechiktirilgan Maslahat — qulf belgisi, xira; birinchi ishga tushirishdan keyin ochiladi */
+.hn .mas.qulf{color:#8A93A0;background:#F4F2EC}
+.hn .mas .mas-qulf{width:1.2cqw;height:1.2cqw;margin-left:.2cqw}
+/* 7-dars: Ko'rinish (feruza) va Tovush (pushti) oilalari */
+.mb.f-v{--c:#14B8A6;--d:#0E8C7E}
+.mb.f-v.yon{--c:#5ED4C5}
+.mbw .mb.f-v.yon.hozir{--c:#14B8A6}
+.rd.f-v{--c:#14B8A6}
+.pl > small.f-v{color:#0E8C7E}
+.mb.f-v .xy i{color:#0E8C7E}
+.mb.f-t{--c:#D9468F;--d:#AE2F6F}
+.mb.f-t.yon{--c:#E97DB3}
+.mbw .mb.f-t.yon.hozir{--c:#D9468F}
+.rd.f-t{--c:#D9468F}
+.pl > small.f-t{color:#AE2F6F}
+.mb.f-t .xy i{color:#AE2F6F}
+
+
+/* 7-dars: javonda oila yashirin (studiya holat: yoq) — bekatga qarab */
+.rd.yoq{display:none}
+/* 8-dars: Shart oilasi (kulrang-ko'k), egizak labirint, shart tekshiruvi */
+.mb.f-a{--c:#5B80A5;--d:#3F6283}
+.mb.f-a.yon{--c:#86A3C2}
+.mbw .mb.f-a.yon.hozir{--c:#5B80A5}
+.rd.f-a{--c:#5B80A5}
+.pl > small.f-a{color:#3F6283}
+.mb.f-a .xy i{color:#3F6283}
+/* egizak: ikki labirint bir oynada — keng labirintlar ustma-ust, tik (.yon) — yonma-yon; ko'rinish tartibi order bilan (DOM tartibi — faol birinchi) */
+.oyna > .egiz{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;gap:.6cqw;padding:.6cqw;background:linear-gradient(#A9DE86,#86CB6C)}
+.oyna > .egiz.yon{flex-direction:row}
+.egiz > .katak{position:relative;flex:1;min-height:0;min-width:0;border-radius:1cqw;background:rgba(255,255,255,.14)}
+.egiz > .katak[data-egiz="1"]{order:1}
+.egiz > .katak[data-egiz="2"]{order:2}
+.egiz > .katak.faol{box-shadow:inset 0 0 0 .25cqw rgba(13,33,55,.35)}
+.katak .egiz-n{position:absolute;left:.6cqw;top:.6cqw;z-index:3;display:inline-flex;align-items:center;gap:.3cqw;padding:.3cqw .8cqw;border-radius:999px;background:#0D2137;color:#fff;font:800 1.15cqw/1 var(--f-kod)}
+.katak .egiz-n.ok::after{content:'✓';color:#7BE0A0}
+.katak .egiz-n.yoq::after{content:'✕';color:#FF8A7A}
+.katak .kt-shart{fill:none;stroke-width:7}
+.katak .kt-shart.ha{stroke:#F5B82E}
+.katak .kt-shart.yoq{stroke:#C0392B;stroke-dasharray:12 9}
+.jr-bl .bl-son.bl-ha{background:#F5B82E;color:#0D2137}
+.jr-bl .bl-son.bl-ha.yoq{background:#C6CEDB;color:#5B6676}
+/* 11-dars (21.11, manba 011): O'zgaruvchi oilasi — jigarrang (yog'och quti rangi); sahnadagi ball kapsulasi, «+N» uchishi, boshqaruv qatori, son kartalari */
+.mb.f-o{--c:#A86B32;--d:#7E4C1F}
+.mb.f-o.yon{--c:#C99464}
+.mbw .mb.f-o.yon.hozir{--c:#A86B32}
+.rd.f-o{--c:#A86B32}
+.pl > small.f-o{color:#7E4C1F}
+.mb.f-o .xy i{color:#7E4C1F}
+.oyna .ball-k{left:5.6cqw;top:1.2cqw;display:inline-flex;align-items:baseline;gap:.5cqw;padding:.6cqw 1.3cqw;border-radius:999px;background:#A86B32;border-color:#7E4C1F;color:#fff;font:800 1.5cqw/1 var(--f-kod);transform-origin:20% 50%;transition:transform .18s}
+.oyna .ball-k small{font:700 1.2cqw/1 var(--f-kod);opacity:.9}
+.oyna .ball-k.yashirin{opacity:0}
+.oyna .ball-k.bump{transform:scale(1.22)}
+.oyna .ball-uch{position:absolute;z-index:5;transform:translate(-50%,-100%);padding:.3cqw .7cqw;border-radius:999px;background:#A86B32;color:#fff;font:800 1.3cqw/1 var(--f-kod);pointer-events:none;animation:ball-uch .9s ease-out forwards}
+@keyframes ball-uch{from{opacity:0;margin-top:0}20%{opacity:1}to{opacity:0;margin-top:-4cqw}}
+.oyna .ball-iz{left:50%;bottom:3%;top:auto;transform:translateX(-50%);padding:.6cqw 1.2cqw;border-radius:999px;font:700 1.2cqw/1.2 var(--f-matn);white-space:nowrap}
+.oyna .ball-iz b{color:#7E4C1F}
+/* 21.11: «Boshqaruv:»/«Qahramon:» qatori tor dastur ustunida ichidan ~7px oshib, ▾ qirqilardi — oraliqlar ixchamlandi */
+.dst .bq-q{position:relative;display:flex;align-items:center;gap:.35cqw;padding:.55cqw .6cqw;border-radius:.8cqw;background:#F08A24;color:#fff;font:700 1.1cqw/1 var(--f-matn);cursor:pointer;user-select:none}
+.dst .bq-q b{font-weight:800}
+.dst .bq-q .bq-s{display:inline-flex;gap:.2cqw;font:800 1.15cqw/1 var(--f-kod)}
+.dst .bq-q .bq-s i{font-style:normal;min-width:1.5cqw;padding:.25cqw .25cqw;border-radius:.4cqw;background:#fff;color:#C96A12;text-align:center;transition:background .15s,color .15s}
+.dst .bq-q .bq-s i.hozir{background:#FFD54A;color:#0D2137}
+.dst .bq-q .bq-o{margin-left:auto;font:800 1cqw/1 var(--f-kod);transition:transform .2s}
+.dst .bq-q.ochiq .bq-o{transform:rotate(180deg)}
+.dst .bq-och{display:none;position:absolute;left:0;top:calc(100% + .5cqw);z-index:6;flex-direction:column;gap:.5cqw;padding:.8cqw;border-radius:.9cqw;background:#fff;box-shadow:0 .5cqw 1.6cqw -.4cqw rgba(13,33,55,.4);cursor:default}
+.dst .bq-q.ochiq .bq-och{display:flex}
+.dst .bq-och .bq-d{display:flex;flex-direction:column;align-items:flex-start}
+.dst .bq-och .bq-d .mb + .mb{margin-top:-.45cqw}
+.dst .bq-och small{color:#5A6474;font:600 .95cqw/1.2 var(--f-matn)}
+/* oldindan aytish: katta kapsula va oltita son kartasi (bir xil ko'rinishda; tanlangan — coral hoshiya) */
+.oyna .bsh{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.2cqw;padding-left:24%}
+.oyna .bsh-k{display:inline-flex;align-items:baseline;gap:.8cqw;padding:1.1cqw 2.4cqw;border-radius:999px;background:#A86B32;color:#fff;font:800 3.2cqw/1 var(--f-kod);box-shadow:0 .4cqw 1.2cqw -.4cqw rgba(13,33,55,.45);transition:transform .18s}
+.oyna .bsh-k small{font:700 2.2cqw/1 var(--f-kod);opacity:.9}
+.oyna .bsh-k.bump{transform:scale(1.12)}
+.oyna .bsh-q{display:flex;gap:1cqw}
+.oyna .bsh-q .sk{display:grid;place-items:center;width:5cqw;height:5.6cqw;border-radius:1cqw;background:#fff;border:.25cqw solid #fff;box-shadow:0 .3cqw .9cqw -.3cqw rgba(13,33,55,.4);color:#0D2137;font:800 2.2cqw/1 var(--f-kod);cursor:pointer;transition:transform .12s,border-color .12s}
+.oyna .bsh-q .sk:hover{transform:translateY(-.2cqw)}
+.oyna .bsh-q .sk.tan{border-color:#FF4F28;box-shadow:0 0 0 .25cqw rgba(255,79,40,.25)}
+.oyna .bsh-q .sk.ok{border-color:#2C8A50;background:#E3F6EA}
+.oyna .bsh .bsh-qh{position:absolute;left:3%;bottom:6%;width:20%}
+.hn .ishga.xira{opacity:.45;filter:saturate(.6)}
+.jr-bl .bl-son.bl-ball{background:#A86B32}
+/* 12-dars (21.11, manba 012): bir nechta o'zgaruvchi — kapsulalar ostma-ost (.ball-q), faqat dasturda ishlatilgani; «O‘yin tugadi» taxtasi */
+.oyna .ball-q{left:5.6cqw;top:1.2cqw;display:flex;flex-direction:column;align-items:flex-start;gap:.5cqw;padding:0;background:none;border:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+.oyna .ball-q .ball-k{position:static}
+.oyna .ball-k.yoq{display:none}
+.oyna .ball-k[data-v="jon"]{background:#C0392B;border-color:#8E2A1F}
+.oyna .ball-k[data-v="qadam"]{background:#2C6E9E;border-color:#1D4E73}
+.oyna .oyin-tugadi{left:50%;top:14%;transform:translateX(-50%) rotate(-2deg);z-index:6;padding:1.1cqw 2.6cqw;border-radius:1cqw;background:linear-gradient(#B5793F,#8A5527);border:.3cqw solid #6B3F1A;color:#FFF3DD;font:800 2.6cqw/1 var(--f-sar);letter-spacing:.02em;text-shadow:0 .2cqw 0 rgba(0,0,0,.3);box-shadow:0 .6cqw 1.6cqw -.4cqw rgba(13,33,55,.5);white-space:nowrap}
+/* 13-dars (21.11, manba 013): random — oval son bloki (O'zgaruvchi rangi); go to ichidagi random; savatlar; tushgan olma, oldingi joylar (xira); «Sinov: N / 3» */
+.mb.mb-oval{border-radius:999px;clip-path:none;padding-block:.7cqw;min-width:0}
+.mb .mrnd{display:inline-flex;align-items:center;gap:.25cqw;padding:.2cqw .5cqw;border-radius:999px;background:#A86B32;color:#fff;font:700 .9cqw/1 var(--f-kod)}
+.mb .mrnd i{font-style:normal;background:#fff;color:#7E4C1F;border-radius:999px;padding:.15cqw .35cqw}
+.katak .kt-sg circle{fill:#0D2137}
+.katak .kt-sg text{fill:#fff;font:800 18px/1 var(--f-kod);text-anchor:middle}
+.katak .kt-olma.iz-olma{opacity:.28;filter:grayscale(.5)}
+.katak .kt-olma.chet{filter:saturate(.6)}
+.dst .sinov-n{font:700 1cqw/1.2 var(--f-kod);color:#5A6474}
+.dsb .olma-ega{display:inline-grid;place-items:center;width:1.9cqw;height:1.9cqw}
+.dsb .olma-ega svg{width:100%;height:100%}
+/* ===== 19-dars (22.11): «Kodini ko‘rsat» — kod oynasi (kod.js). Kod ochiq: rang doirachalari va javon o'rnida, bloklar yonida; faqat kod (3-bekat): dastur ustunigacha ===== */
+.kodp{display:none}
+.kod-och .kodp{display:flex;grid-column:1/3;grid-row:2;flex-direction:column;gap:.6cqw;min-width:0;min-height:0;padding:1cqw 1cqw 1.2cqw;border-radius:1.2cqw;background:#0F1E3D;box-shadow:0 .2cqw .9cqw rgba(13,33,55,.25);color:#E6ECF5;font:500 .95cqw/1.55 var(--f-kod)}
+.kod-och .rg,.kod-och .pl{display:none}
+.kod-och .dst{grid-column:3;grid-row:2}
+.kod-och .oyna{grid-column:4;grid-row:2}
+.kod-faqat .kodp{grid-column:1/4}
+.kod-faqat .dst{display:none}
+.kodp-b{display:flex;align-items:baseline;gap:.6cqw;font:700 1.05cqw/1 var(--f-kod);color:#8FD3FF}
+.kodp-b small{font-size:.8cqw;font-weight:600;color:#7C8BA6}
+.kodp-q{flex:1;min-height:0;overflow:auto}
+.kodp-s{font:700 .95cqw/1.2 var(--f-matn);color:#FFC93C}
+.kq{display:flex;gap:.6cqw;align-items:baseline;padding:.05cqw .4cqw;border-radius:.4cqw;white-space:pre;cursor:pointer}
+.kq i{flex:none;width:1.5cqw;text-align:right;font-style:normal;font-size:.8cqw;color:#5B6B85}
+.kq code{font:inherit;color:inherit;padding-left:calc(var(--d,0) * 1.4cqw);white-space:pre}
+.kq.xira-q{opacity:.55;cursor:default}
+.kq.bosh{min-height:.9cqw;cursor:default}
+.kq.on{background:rgba(255,107,74,.3);box-shadow:inset .2cqw 0 0 #FF6B4A}
+.kq.nishon{background:rgba(255,201,60,.22);box-shadow:inset .2cqw 0 0 #FFC93C}
+.kq.hozir{background:rgba(255,201,60,.42)}
+.kq em{font-style:normal;color:#FFC93C}
+.kq u{text-decoration:none;color:#C792EA}
+.kq s{text-decoration:none;color:#A6E3A1}
+.kq .kn{display:inline-block;min-width:1.5cqw;padding:0 .45cqw;border-radius:999px;background:#fff;color:#0D2137;font-weight:800;text-align:center;cursor:pointer}
+.kodp-q.tahrir-yoq .kn{cursor:default;background:#DDE5F2}
+/* «Kodini ko‘rsat» — pastki qatorda, «Maslahat» yonida */
+.hn .kod-t{display:inline-flex;align-items:center;gap:.6cqw;margin-left:1cqw;padding:.85cqw 1.3cqw;border-radius:1cqw;background:#0F1E3D;color:#fff;font:700 1.15cqw/1 var(--f-matn);white-space:nowrap;cursor:pointer}
+.hn .kod-t b{font:800 1.05cqw/1 var(--f-kod);color:#FFC93C}
+.kod-och .hn .kod-t{background:#fff;color:#0F1E3D;box-shadow:inset 0 0 0 .15cqw #0F1E3D}
+.kod-och .hn .kod-t b{color:#C7381A}
+/* faqat kod (3-bekat): o'qish uchun yirikroq */
+.kod-faqat .kodp{font-size:1.5cqw;padding:1.4cqw 1.6cqw}
+.kod-faqat .kq i{width:2.2cqw;font-size:1.1cqw}
+.kod-faqat .kodp-b{font-size:1.3cqw}
+/* blok va qator: yonayotgan blok (coral), moslash nishoni (sariq) */
+.jr-bl .kod-yon > .blocklyPath{stroke:#FF6B4A;stroke-width:3px}
+.jr-bl .kod-nishon > .blocklyPath{stroke:#FFC93C;stroke-width:5px}
+/* statik kod qutisi (dars ekranlari: huk, javob, yangi so'z, xulosa) — kod oynasidagi qatorlar ko'rinishida */
+.kodk{display:inline-flex;flex-direction:column;padding:.6cqw 1cqw;border-radius:.8cqw;background:#0F1E3D;color:#E6ECF5;font:600 1.15cqw/1.55 var(--f-kod);text-align:left}
+.kodk .kq{cursor:default;padding:0}
 .e-P2B .kursor-q{display:none}
 .e-P2B .yol .q > svg{animation:none!important;cursor:grab;touch-action:none}
 .e-P2B .yol .q > svg:active{cursor:grabbing}

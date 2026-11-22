@@ -110,6 +110,8 @@
 .dk .mb.f-b{--c:#3FAE6A}
 .dk .hk-xira{opacity:.3}
 .hkv .dk{gap:.2cqw}
+/* 21.11 (8·1): C kartasidagi besh bo'lakli qator karta chetidan 7 px chiqardi — faqat shu karta kichrayadi */
+.hkv .jk.c3 .dk.gor{zoom:.86}
 /* 5-dars: huk kartalaridagi kichik dastur — sig'magan bloklar xira; «× 6»; maydondagi «Dasturga 3 ta blok sig'adi» */
 .hk-d{display:flex;flex-direction:column;align-items:center;gap:0}
 .hk-d .mb{min-width:0;font-size:1cqw;padding:.45cqw .7cqw .75cqw;gap:.35cqw}

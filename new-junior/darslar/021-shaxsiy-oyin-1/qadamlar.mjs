@@ -1,0 +1,36 @@
+// 21-dars «Shaxsiy o‘yin 1» qadamlari (QADAM) va ustoz varag'i (VARAQ) — 22.11. Manba: new-junior/manba/021-shaxsiy-oyin-1.md v1, 15 qadam.
+const QADAM = [
+  ['Kirish', 'P1', ['B0', 'BK']],
+  ['Savol: yasashdan oldin nima qilamiz?', 'P2', ['P2N', 'BK']],
+  ['Javob: reja — loyiha kartasi', 'P2C', ['BK']],
+  ['Yangi so‘z: loyiha kartasi', 'P3', ['BK'], 'Yangi so‘z: loyiha kartasi'],
+  ['Reja', 'P4', ['BK'], 'Bugun: uchta bekat'],
+  ['Ko‘ramiz: karta', 'P7', ['BK'], 'Ustoz kartani to‘ldiryapti — kuzating'],
+  ['O‘zingiz: karta', 'P5', ['K1', 'BK']],
+  ['2-bekat', 'P4B', ['BK'], '2-bekat: dushmanlar'],
+  ['Ko‘ramiz: kartadagi dushmanlar', 'P8', ['BK'], 'Ustoz dushmanlarni qo‘yyapti — kuzating'],
+  ['O‘zingiz: dushmanlar', 'P5G', ['B2A', 'B2Y', 'BK']],
+  ['3-bekat', 'P4C', ['BK'], '3-bekat: ball va jon'],
+  ['Ko‘ramiz: ball va jon', 'P10', ['BK'], 'Ustoz ball va jonni qo‘yyapti — kuzating'],
+  ['O‘zingiz: ball va jon', 'P5B', ['B3A', 'B3Y', 'BK']],
+  ['Yakun', 'P12', ['B5']],
+  ['Sinfimiz bugun', 'P14', ['B5']],
+]
+// ustoz varag'i: [Ekranda · Siz (manbadagi tayanch gaplar, aynan) · Bola o'rganadi]
+const VARAQ = [
+  ['«21-dars · Shaxsiy o‘yin 1» — «Bugun o‘z o‘yiningiz!» Kosmos maydoni: raketa, dushman; pastda «O‘tgan darsda» — test.', '«O‘tgan darsda testni yechdik.» «Bugun o‘z o‘yiningizni yasashni boshlaymiz — avval reja, keyin dastur.» «Noutbukda «Tayyorman» tugmasini bosing.»', 'Darsga kiradi.'],
+  ['Savol: «Yasashdan oldin nima qilamiz?» Uchta karta: A «Darhol yasayman» · B «Avval reja tuzaman» · C «Do‘stimdan so‘rayman».', '«Katta o‘yinni qanday boshlaymiz? Halol javob bering.» «Har kim noutbukida bitta kartani tanlasin.»', 'O‘ylab javob beradi (baho emas).'],
+  ['Javob: «Avval reja». Namuna karta «Mening o‘yinim»: kim o‘ynaydi, dushmanlar, har dushman — ball, jon, yutish uchun.', '«Katta ishni reja bilan boshlaymiz. Reja — qisqa karta.»', 'Reja — karta ekanini ko‘radi.'],
+  ['Yangi so‘z: «Loyiha kartasi nima?» «Keyingi» — birma-bir: kim o‘ynaydi, qoidalar, maqsad. Ta’rif: «Loyiha kartasi — O‘yin rejasi: kim o‘ynaydi, qoidalari qanday, nimaga erishamiz».', '«Loyiha kartasi — o‘yin rejasi: kim o‘ynaydi, qoidalari qanday, nimaga erishamiz.» «Avval karta — keyin dastur. Karta o‘zgarsa, dastur ham o‘zgaradi.»', 'Yangi so‘z: loyiha kartasi.'],
+  ['Reja: tepalik — karta → dushmanlar → ball va jon; cho‘qqida «Dars oxirida · o‘yinning boshi».', '«Bugun uchta bekat: karta, dushmanlar, ball va jon.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: karta. To‘rt qator (kim · dushmanlar · ball · jon) va pastda «Mening o‘yinim» kartasi; siz o‘z variantlaringizni tanlaysiz — pastdagi karta to‘ladi.', '«Har qatorda bitta tanlov. Pastdagi karta o‘zi to‘ladi.» «Yutish uchun kerak ball ham o‘zi hisoblanadi: dushmanlarning yarmini ursangiz — yutasiz.»', 'Kartani to‘ldirishni ko‘radi.'],
+  ['Mashq: «Kartangizni to‘ldiring!» — pog‘ona: karta.', '«Har qatorda bittadan tanlang. Pastdagi karta sizning o‘yiningiz.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'O‘z kartasini to‘ldiradi.'],
+  ['Tepalik: 1-bekat ✓ — «Dushmanlar».', '«Kartada nechta dushman yozilgan — shuncha tushsin.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: kartadagi dushmanlar. «Dushman» tanlangan; kartaga qarab ▶[R5[C]] va K[…] qo‘yasiz, o‘ynaysiz.', '«Kartaga qarayman: dushmanlar — 5. repeat ning soni ham 5.» «Karta o‘zgarsa — repeat ning soni ham o‘zgaradi.»', 'Karta va dastur bog‘liqligini ko‘radi.'],
+  ['Mashq: «Dushmanlar tushsin!» — zinapoya: 1 kartadagi dushmanlar · ★ o‘q uradi.', '«Kartaga qarang: nechta dushman yozilgan?» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'Dushmanlarni karta bo‘yicha yasaydi.'],
+  ['Tepalik: 1, 2 ✓ — «Ball va jon».', '«Oxirgi bekat: ball va jon. Kartada nima yozilgan — shunday bo‘lsin.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: ball va jon. «O‘q» kartasi — kartadagi ballga change ball by …; «Raketa» kartasi — kartadagi jonga set jon to …; o‘ynaysiz.', '«Kartada har dushman — 2 ball. O‘q dasturida change ball by 2.» «Kartada jon — 3. Raketa dasturida set jon to 3.»', 'Karta va ball, jon bog‘liqligini ko‘radi.'],
+  ['Mashq: «Ball va jon — kartadagidek!» — zinapoya: 1 ball va jon · ★ to‘liq o‘yin.', '«Kartada ball nechta? Jon nechta? Dasturda ham shunday.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'Ball va jonni karta bo‘yicha qo‘yadi.'],
+  ['Yakun: «O‘yinning boshi tayyor!» Bugungi so‘z — loyiha kartasi; keyingi dars — 22 · Shaxsiy o‘yin 2.', '«Uchala bekatdan o‘tdik: karta, dushmanlar, ball va jon.» «Keyingi darsda o‘yinni tugatamiz va ko‘rsatishni mashq qilamiz.»', 'Bugungi so‘zni eslaydi.'],
+  ['Sinfimiz bugun: nechta karta to‘ldirildi, nechta o‘yin yutildi, nechta pog‘ona bajarildi (haqiqiy son, ismsiz).', '«Hammangiz zo‘r ishladingiz!» (keyin raqamlarni o‘qiydi)', 'Sinf natijasini ko‘radi.'],
+]

@@ -341,7 +341,7 @@ Iz kulrangdan chiqsa ham, kulrang qolsa ham — avval «Rasmdan chiqdi!» (birin
 - **Qadamlar:**
   1. Proyektorda: yorliq «Ko‘ramiz», sarlavha «Ichida ikki blok». Maydonda kulrang zinapoya (2, 0) dan (5, 3) gacha; Coddy (2, 0) da. Dasturda uzun dastur: `move right`, `move up`, `move right`, `move up`, `move right`, `move up` — «6 ta blok».
   2. «▶ Ishga tushir»: Coddy zinapoyani chizadi — «Rasm tayyor!».
-  3. «Keyingi»: bloklar juft-juft hoshiyalanadi — uchta bir xil juftlik; yozuv «Bir xil juftlik — 3 marta» (`raqam` ishi).
+  3. «Keyingi»: bloklar juft-juft hoshiyalanadi — uchta bir xil juftlik; yozuv «Bir xil ikki blok — 3 marta» (21.11: «juftlik» — 15-darsdan bolalar juftligi; 15-dars «Savollar» 17) (`raqam` ishi).
   4. «Keyingi»: dastur qisqa ko'rinishga o'tadi — `repeat 3` ichida `move right`, `move up`; «3 ta blok». «▶ Ishga tushir» — o'sha zinapoya; yozuv «Rasm o‘sha — bloklar kam» (**KOD**: ko'rish ekranida dastur almashadi).
 - **Tayanch gaplar:**
   1. «Qarang: move right, move up — uch marta takrorlanyapti.»

@@ -12,7 +12,9 @@ const MUAM_SVG = Object.fromEntries(['kamvoy', 'ortiqvoy', 'boshvoy'].map((k) =>
 const ekranHtml = (id) => { const e = E[id]; return `<div class="ekran hy ${e.t} e-${id}" data-id="${id}">${bosh(e.b)}<main class="hm">${e.body()}</main>${e.foot()}</div>` }
 // 5b-1: qadamlarda yo'q, lekin kerak bo'ladigan ekran — qahramoni yo'q bolaning tanlash ekrani (DARS.bola.qahramonYoq), oxirida qo'shiladi
 // 5b-2: bola ro'yxati null bo'lishi mumkin (bola ekrani o'zgarmaydigan qadam — qobiq.js, bolaQ)
-const kerak = [...new Set([...QADAM.flatMap(([, p, b]) => [p, ...(Array.isArray(b) ? b : [])]), ...(DARS.bola.qahramonYoq ? [DARS.bola.qahramonYoq] : [])])]
+// 15-dars: QADAM[i][4] — ikkinchi noutbuk ro'yxati (juftlik); DARS.ekranTanlov — o'yin turi bo'yicha ekran (BX → BXO, BXL)
+const ekranT = (id) => (DARS.ekranTanlov && DARS.ekranTanlov[id]) || [id]
+const kerak = [...new Set([...QADAM.flatMap(([, p, b, , b2]) => [p, ...(Array.isArray(b) ? b : []), ...(Array.isArray(b2) ? b2 : [])]).flatMap(ekranT), ...(DARS.bola.qahramonYoq ? [DARS.bola.qahramonYoq] : [])])]
 const EKRANLAR = Object.fromEntries(kerak.map((id) => [id, ekranHtml(id)]))
 const QAH_IDS = DARS.qahramonli.filter((id) => kerak.includes(id))
 // namuna qahramon nomi (DARS.namuna.qahramon) → shu qahramonning nomi; Coddy'li ekranlarda → «Coddy»

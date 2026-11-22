@@ -5,12 +5,16 @@
 // ekranlari shu nomda); ro'yxatda yo'q ekranda ikki qatorli sarlavha «sarlavha 2 qator» bo'lib chiqadi.
 // 21.11 (13-dars): ichidan oshish — tanlov kartasi (.jk) ichidagi bloklar karta chetidan chiqmaydi, «Boshqaruv/Qahramon» qatori (.bq-q) ichidan oshmaydi
 // (ikkalasi ham ko'z bilan topilgan edi: huk C kartasidagi go to + random, 11–13-darsda ▾ qirqilgan).
-// Ishlatish (loyiha ildizidan, demo yig'ilgan): node new-junior/sinov/dvigatel/setka.mjs <dars-papkasi>
+// 21.11 (F-1121, Safari): blok o'z qutisidan chiqmaydi — har .mb / .c-blok eng yaqin ko'rinadigan qutisi (fon, soya yoki hoshiyali ota) ichida,
+// to'rt tomondan ham (eski .jk tekshiruvi shunga kirdi; 1-ekran «O'tgan darsda» kartasidagi oshish shu bilan topildi). Studiyaning statik
+// dastur ro'yxati (.dst) o'tkaziladi — jonli darsda uning o'rnida Blockly. Sahifaga dvigatel/kichik.js qo'shiladi (demodagidek).
+// --webkit — ichki tekshiruvlar Safari dvigatelida (Playwright WebKit; kutubxonalari — sinov/OQI.md); etalon setkasi faqat Chrome'da.
+// Ishlatish (loyiha ildizidan, demo yig'ilgan): node new-junior/sinov/dvigatel/setka.mjs <dars-papkasi> [--webkit]
 import { readFileSync, writeFileSync } from 'node:fs'
 import { execFileSync } from 'node:child_process'
-import { chromium } from '/home/kali/Desktop/internetLesson/node_modules/playwright-core/index.mjs'
+import { chromium, webkit } from '/home/kali/Desktop/internetLesson/node_modules/playwright-core/index.mjs'
 const NJ = new URL('../../', import.meta.url).pathname
-const dars = process.argv[2]
+const dars = process.argv[2], WK = process.argv.includes('--webkit')
 if (!dars) { console.error('Ishlatish: node new-junior/sinov/dvigatel/setka.mjs <dars-papkasi>'); process.exit(2) }
 const demo = +dars.slice(0, 3) === 1 ? 'demo.html' : 'demo-' + dars.slice(0, 3) + '.html'
 const h = readFileSync(NJ + 'public/' + demo, 'utf8')
@@ -19,13 +23,14 @@ if (!q) { console.error(demo + ': EKRANLAR topilmadi'); process.exit(2) }
 const EK = JSON.parse(q[1])
 const sahifa = bosh + '<style>body{display:block;overflow:auto;height:auto}.wrap{max-width:1280px;margin:20px auto;display:flex;flex-direction:column;gap:30px}</style></head><body><div class="wrap">'
   // demodagidek: har ekran .sahna-q ichida (16:9 o'lcham shu o'ramdan), kengligi etalon sahifasidagidek 1280 px
-  + Object.entries(EK).map(([id, x]) => '<div class="sahna-q" style="width:1280px">' + x.replace('class="ekran hy', 'role="img" aria-label="' + id + '" class="ekran hy') + '</div>').join('\n') + '</div></body></html>'
+  + Object.entries(EK).map(([id, x]) => '<div class="sahna-q" style="width:1280px">' + x.replace('class="ekran hy', 'role="img" aria-label="' + id + '" class="ekran hy') + '</div>').join('\n') + '</div><script>' + readFileSync(NJ + 'dvigatel/kichik.js', 'utf8') + '</script></body></html>'
 const F = NJ + 'sinov/dvigatel/.setka-' + dars + '.html'
 writeFileSync(F, sahifa)
 let kod = 0
-try { process.stdout.write(execFileSync(process.execPath, [NJ + 'sinov/etalon/setka-tekshiruv.mjs', F], { encoding: 'utf8' })) } catch (e) { process.stdout.write(e.stdout || ''); kod = 1 }
+if (!WK) try { process.stdout.write(execFileSync(process.execPath, [NJ + 'sinov/etalon/setka-tekshiruv.mjs', F], { encoding: 'utf8' })) } catch (e) { process.stdout.write(e.stdout || ''); kod = 1 }
 // labirint: qahramonni hech narsa yopmaydi
-const b = await chromium.launch({ executablePath: '/usr/bin/google-chrome' })
+if (WK) process.env.PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS = '1'
+const b = WK ? await webkit.launch() : await chromium.launch({ executablePath: '/usr/bin/google-chrome' })
 const p = await b.newPage({ viewport: { width: 1500, height: 1000 } })
 await p.goto('file://' + F); await p.waitForTimeout(1500); await p.evaluate(() => document.fonts.ready)
 const r = await p.evaluate(() => {
@@ -40,12 +45,21 @@ const r = await p.evaluate(() => {
   let ich = 0
   document.querySelectorAll('.wrap .ekran').forEach((ek) => {
     const id = ek.getAttribute('aria-label')
-    ek.querySelectorAll('.jk').forEach((k, i) => { const kr = R(k); k.querySelectorAll('.mb').forEach((m) => { ich++; const mr = R(m); if (mr.width && (mr.left < kr.left - 1 || mr.right > kr.right + 1)) out.push(`${id}: ${i + 1}-karta — blok karta chetidan chiqdi (${Math.round(Math.max(kr.left - mr.left, mr.right - kr.right))} px)`) }) })
+    const quti = (el) => { for (let a = el.parentElement; a && a !== ek; a = a.parentElement) { const s = getComputedStyle(a); if ((s.backgroundColor !== 'rgba(0, 0, 0, 0)' && s.backgroundColor !== 'transparent') || s.backgroundImage !== 'none' || s.boxShadow !== 'none' || parseFloat(s.borderTopWidth) > 0) return a } return ek }
+    const kor = new Set()
+    ek.querySelectorAll('.mb, .c-blok').forEach((m) => {
+      if (m.parentElement.closest('.mb') || m.closest('.dst')) return
+      const mr = R(m); if (!mr.width || !mr.height) return
+      ich++
+      const qt = quti(m), qr = R(qt), osh = Math.max(qr.left - mr.left, mr.right - qr.right, qr.top - mr.top, mr.bottom - qr.bottom)
+      const nom = (qt.className + '').split(' ')[0]
+      if (osh > 1.5 && !kor.has(nom)) { kor.add(nom); out.push(`${id}: blok «${m.textContent.trim().replace(/\s+/g, ' ').slice(0, 20)}» o'z qutisidan («${nom}») ${Math.round(osh)} px chiqdi`) }
+    })
     ek.querySelectorAll('.bq-q').forEach((b) => { ich++; if (b.scrollWidth > b.clientWidth + 1) out.push(`${id}: «${b.textContent.trim().slice(0, 12)}» qatori ichidan ${b.scrollWidth - b.clientWidth} px oshdi`) })
   })
   out.ich = ich
   return { out, soni, ich: out.ich }
 })
 await b.close()
-console.log(`labirintli ekran: ${r.soni}; ichidan oshish tekshirildi: ${r.ich} element`, r.out.length ? '\n  ' + r.out.join('\n  ') : '— qahramon ochiq, hech narsa oshmadi')
+console.log((WK ? '[WebKit] ' : '') + `labirintli ekran: ${r.soni}; ichidan oshish tekshirildi: ${r.ich} element`, r.out.length ? '\n  ' + r.out.join('\n  ') : '— qahramon ochiq, hech narsa oshmadi')
 process.exit(kod || r.out.length ? 1 : 0)

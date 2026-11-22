@@ -1,6 +1,6 @@
 // 14-dars «Xatoni topish» — 1-qism: MUSTAQIL hisob (21.11, avtopilot). Dvigatelga tegmaydi: manba 014 jadvalidagi har da'vo
 // (nima bo'ladi, «Bitta qadam» nechanchi bosishda rasmdan chiqadi, bitta o'zgartirish bilan qaysi tuzatishlar ishlaydi, bezak) o'z simulyatori bilan.
-// Tahrir qidiruvi — bola qila oladigan hamma bitta o'zgartirish: son (repeat 1–9, go to X 0–6 / Y 0–4), tomon (move, if), blokni ✕ (ichidagilari bilan),
+// Tahrir qidiruvi — bola qila oladigan hamma bitta o'zgartirish: son (repeat 2–10 — dvigateldagidek, 21.11 manba 2-qarori, go to X 0–6 / Y 0–4), tomon (move, if), blokni ✕ (ichidagilari bilan),
 // bir ro'yxatdagi ikki blok joyini almashtirish, istalgan joyga move qo'shish.
 // Ishlatish: node new-junior/sinov/dvigatel/xato.mjs
 let ok = 0, jami = 0
@@ -11,7 +11,7 @@ const K = (x, y) => x + ',' + y
 function oqi(s) {
   const t = s.replace(/\[/g, ' [ ').replace(/\]/g, ' ] ').trim().split(/\s+/).filter(Boolean); let i = 0
   const ro = () => { const out = []; while (i < t.length && t[i] !== ']') { const w = t[i++]
-    if (/^R\d$/.test(w)) { i++; out.push({ t: 'R', n: +w[1], b: ro() }); i++ }
+    if (/^R\d+$/.test(w)) { i++; out.push({ t: 'R', n: +w.slice(1), b: ro() }); i++ } // R10 ham (repeat 2–10)
     else if (/^i:[rlud]$/.test(w)) { i++; out.push({ t: 'if', d: w[2], b: ro() }); i++ }
     else if (/^go\(/.test(w)) { const [x, y] = w.slice(3, -1).split(','); out.push({ t: 'g', x: +x, y: +y }) }
     else out.push({ t: 'm', d: w }) } return out }
@@ -47,7 +47,7 @@ function* tahrirlar(p0) {
   const har = function* (f) { for (let li = 0; li < L0.length; li++) { const p = nusxa(p0), L = [...royxatlar(p)]; const r = f(L[li], li, p); if (r) yield* r } }
   for (let li = 0; li < L0.length; li++) for (let bi = 0; bi < L0[li].length; bi++) {
     const b0 = L0[li][bi], ol = () => { const p = nusxa(p0); return [p, [...royxatlar(p)][li][bi], [...royxatlar(p)][li]] }
-    if (b0.t === 'R') for (let n = 1; n <= 9; n++) if (n !== b0.n) { const [p, b] = ol(); b.n = n; yield [p, `${bi + 1}-blok R${b0.n}→R${n}`] }
+    if (b0.t === 'R') for (let n = 2; n <= 10; n++) if (n !== b0.n) { const [p, b] = ol(); b.n = n; yield [p, `${bi + 1}-blok R${b0.n}→R${n}`] }
     if (b0.t === 'm' || b0.t === 'if') for (const d of 'rlud') if (d !== b0.d) { const [p, b] = ol(); b.d = d; yield [p, `${b0.t === 'if' ? 'if' : 'move'} ${b0.d}→${d}`] }
     if (b0.t === 'g') { for (let x = 0; x <= 6; x++) if (x !== b0.x) { const [p, b] = ol(); b.x = x; yield [p, `go X ${b0.x}→${x}`] } for (let y = 0; y <= 4; y++) if (y !== b0.y) { const [p, b] = ol(); b.y = y; yield [p, `go Y ${b0.y}→${y}`] } }
     { const [p, , r] = ol(); r.splice(bi, 1); yield [p, `✕ ${yoz([b0])}`] }
@@ -91,7 +91,7 @@ h = holat(oqi(T.b11y.p), T.b11y); tek('11 · ★: 13 ta kulrang; chiqdi (2, 0) �
 // tahrir qidiruvi: manbadagi «bitta o'zgartirish bilan» ustuni
 const KUT = {
   huk: ['2-blok R3→R2'], u10: ['almash u ↔ r'], b81: ['move l→r'], b82: ['1-blok R5→R3'], b83: ['go X 5→6', '+r 2-o‘ringa'] /* manba: «faqat X 5→6» — mustaqil qidiruv ikkinchisini topdi: go to dan keyin → */, b8y: [],
-  b111: ['1-blok R2→R1', '✕ u', '+d 2-o‘ringa'] /* manba: «faqat ✕» — yana: R2→R1 (ortiqcha ↑ uning o'rnini oladi), ↓ qo'shish (↑↑↓↑ — kulrangda qoladi) */, b112: ['+d 3-o‘ringa', '+d 4-o‘ringa'], b113: ['almash R2[d] ↔ R2[r]'], b11y: ['go X 2→3'],
+  b111: ['✕ u', '+d 2-o‘ringa'] /* manba: «faqat ✕» — yana: ↓ qo'shish (↑↑↓↑ — kulrangda qoladi); R2→R1 — dvigatelda repeat 1 yo'q (21.11) */, b112: ['+d 3-o‘ringa', '+d 4-o‘ringa'], b113: ['almash R2[d] ↔ R2[r]'], b11y: ['go X 2→3'],
 }
 for (const [k, v] of Object.entries(T)) { const s = tuzat(oqi(v.p), v); tek(`${k}: bitta o'zgartirish bilan — ${KUT[k].length ? KUT[k].join(', ') : 'yo‘q'}`, JSON.stringify(s) === JSON.stringify(KUT[k]), s.join(' | ')) }
 // bezak: start, olma, yulduz, kulrang va tuzatilgan yo'l bezakda emas
@@ -133,5 +133,22 @@ const topish = (s) => { const p = oqi(s); if (bloklar(p) < 3) return 'kam'; if (
 for (const [s, kut] of [['R2[u] R3[r]', 'tayyor'], ['R2[u] R4[l]', 'tayyor'], ['R4[r] R2[u]', 'tayyor'], ['R2[u] R4[r]', 'ishlayapti'], ['R3[u] R5[r]', 'kop'], ['go(4,2) R2[u]', 'kop'], ['r r', 'kam']])
   tek(`15 · ★: ${s} — ${kut}`, topish(s) === kut, topish(s))
 tek('15 · ★: start, olma, yulduz bezakda emas', !['0,0', '2,2', '4,2'].some((c) => BEZAK.includes(c)))
+
+// ===== 3-qism (21.11): dvigateldagi topishmoq tekshiruvi (dvigatel/tahrir.js) shu mustaqil hisob bilan bir xilmi — tasodifiy dasturlar
+{
+  const { readFileSync } = await import('node:fs')
+  const TH = new Function(readFileSync(new URL('../../dvigatel/tahrir.js', import.meta.url), 'utf8') + '; return { thTopishmoq, thSinov }')()
+  const th = (p) => p.map((b) => (b.t === 'R' ? { t: 'p', n: b.n, ichki: th(b.b) } : b.t === 'g' ? { t: 'x', X: b.x, Y: b.y, ichki: [] } : { t: b.d, ichki: [] }))
+  const M = { w: 7, h: 5, start: VT.start, olma: VT.olma, yulduz: VT.yulduz }
+  for (const [s, kut] of [['R2[u] R3[r]', 'tayyor'], ['R2[u] R4[l]', 'tayyor'], ['R4[r] R2[u]', 'tayyor'], ['R2[u] R4[r]', 'ishlayapti'], ['R3[u] R5[r]', 'kop'], ['go(4,2) R2[u]', 'kop'], ['r r', 'kam']])
+    tek(`dvigatel tahrir.js: ${s} — ${kut}`, TH.thTopishmoq(th(oqi(s)), M) === kut, TH.thTopishmoq(th(oqi(s)), M))
+  // ishlaydigan dasturlardan boshlab 0–2 ta tasodifiy bitta o'zgartirish (mustaqil tahrirlar() dan) — natijalar aralash chiqsin
+  let u = 2026, farq = []; const son = {}
+  const rnd = (n) => { u = (u * 1103515245 + 12345) % 2147483648; return u % n }
+  const ASOS = ['R2[u] R4[r]', 'go(2,2) R2[r]', 'R2[r] R2[u] R2[r]', 'u u R4[r]', 'R2[u] r r r r', 'go(0,2) R4[r]', 'r r R2[u] r r', 'R2[u] R2[r] R2[r]']
+  for (let i = 0; i < 400; i++) { let p = oqi(ASOS[rnd(ASOS.length)]); for (let k = rnd(3); k > 0; k--) { const t = [...tahrirlar(p)]; p = t[rnd(t.length)][0] } const s = yoz(p), a = topish(s), b2 = TH.thTopishmoq(th(oqi(s)), M); son[a] = (son[a] || 0) + 1; if (a !== b2) farq.push(`${s}: mustaqil ${a}, dvigatel ${b2}`) }
+  console.log('   taqsimot:', JSON.stringify(son))
+  tek('dvigatel tahrir.js = mustaqil hisob (400 dastur: ishlaydigandan 0–2 o‘zgartirish, urug‘ 2026)', !farq.length && son.tayyor > 50 && son.kop > 50 && son.ishlayapti > 20, farq.slice(0, 3).join(' | '))
+}
 
 console.log(`\n${ok} / ${jami}`); process.exit(ok === jami ? 0 : 1)

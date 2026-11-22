@@ -1,0 +1,122 @@
+demo ok demo.html 4142KB 42 ekran, 25 qadam
+demo ok demo-002.html 2997KB 34 ekran, 18 qadam
+demo ok demo-003.html 3106KB 35 ekran, 18 qadam
+demo ok demo-004.html 3000KB 34 ekran, 18 qadam
+demo ok demo-005.html 3138KB 35 ekran, 18 qadam
+demo ok demo-006.html 3225KB 35 ekran, 18 qadam
+demo ok demo-007.html 5150KB 34 ekran, 18 qadam
+demo ok demo-008.html 4904KB 35 ekran, 18 qadam
+demo ok demo-009.html 3803KB 34 ekran, 18 qadam
+demo ok demo-010.html 3584KB 33 ekran, 18 qadam
+demo ok demo-011.html 3399KB 35 ekran, 18 qadam
+demo ok demo-012.html 3966KB 35 ekran, 18 qadam
+demo ok demo-013.html 3100KB 35 ekran, 18 qadam
+demo ok demo-014.html 3613KB 35 ekran, 18 qadam
+demo ok demo-015.html 3177KB 33 ekran, 18 qadam
+== LMS
+✔ chizuvchi: 42 ekran, 25 qadam, 173 SVG ichki nomi takrorsiz
+✔ /home/kali/Desktop/internetLesson/new-junior/lms/chiqish/junior-001-tanishuv.jsx — 1454 KB, react importi: 1, server: prod
+== OLTIN 001-tanishuv
+BIR XIL: 264 / 264
+== OLTIN 002-ketma-ketlik
+BIR XIL: 143 / 143
+== OLTIN 003-koordinata
+BIR XIL: 131 / 131
+== OLTIN 004-hodisalar
+BIR XIL: 122 / 122
+== OLTIN 005-takrorlash
+BIR XIL: 126 / 128
+✗ u-x-P8-juft — matn; html (35854 → 35856 belgi); surat: 2168 piksel (eng katta farq 172/255), joyi (479, 759, 709, 778)
+✗ varaq — matn; html (9563 → 9565 belgi); surat: 11123 piksel (eng katta farq 242/255), joyi (372, 3883, 1067, 3949)
+== OLTIN 006-amaliyot
+BIR XIL: 132 / 132
+== OLTIN 007-kostyum-tovush
+BIR XIL: 124 / 124
+== OLTIN 008-shart
+BIR XIL: 125 / 125
+== OLTIN 009-labirint-oyini-1
+BIR XIL: 133 / 133
+== OLTIN 010-labirint-oyini-2
+BIR XIL: 123 / 123
+== OLTIN 011-ozgaruvchi-ball
+BIR XIL: 134 / 134
+== OLTIN 012-ozgaruvchi-jon-vaqt
+BIR XIL: 126 / 126
+== OLTIN 013-tasodifiy-son
+BIR XIL: 127 / 128
+✗ u-x-P6-royxat — surat: 593 piksel (eng katta farq 242/255), joyi (539, 282, 608, 494)
+== OLTIN 014-xatoni-topish
+BIR XIL: 136 / 138
+✗ bx-B3B-boshla — html (24232 → 23956 belgi); surat: 13118 piksel (eng katta farq 172/255), joyi (59, 739, 858, 798)
+✗ bx-B3B-past — html (29690 → 29414 belgi); surat: 18083 piksel (eng katta farq 172/255), joyi (59, 734, 1072, 803)
+== SETKA 001-tanishuv
+ekran: 42 — toza
+[WebKit] labirintli ekran: 0; ichidan oshish tekshirildi: 44 element — qahramon ochiq, hech narsa oshmadi
+== SETKA 002-ketma-ketlik
+ekran: 34 — toza
+[WebKit] labirintli ekran: 23; ichidan oshish tekshirildi: 154 element — qahramon ochiq, hech narsa oshmadi
+== SETKA 003-koordinata
+ekran: 35 — toza
+[WebKit] labirintli ekran: 24; ichidan oshish tekshirildi: 59 element — qahramon ochiq, hech narsa oshmadi
+== SETKA 004-hodisalar
+ekran: 34 — toza
+[WebKit] labirintli ekran: 23; ichidan oshish tekshirildi: 44 element — qahramon ochiq, hech narsa oshmadi
+== SETKA 005-takrorlash
+ekran: 35 — toza
+[WebKit] labirintli ekran: 24; ichidan oshish tekshirildi: 60 element — qahramon ochiq, hech narsa oshmadi
+== SETKA 006-amaliyot
+ekran: 35 — toza
+[WebKit] labirintli ekran: 24; ichidan oshish tekshirildi: 121 element — qahramon ochiq, hech narsa oshmadi
+== SETKA 007-kostyum-tovush
+ekran: 34 — toza
+[WebKit] labirintli ekran: 23; ichidan oshish tekshirildi: 19 element — qahramon ochiq, hech narsa oshmadi
+== SETKA 008-shart
+ekran: 35 — toza
+[WebKit] labirintli ekran: 24; ichidan oshish tekshirildi: 56 element — qahramon ochiq, hech narsa oshmadi
+== SETKA 009-labirint-oyini-1
+ekran: 34 — toza
+[WebKit] labirintli ekran: 23; ichidan oshish tekshirildi: 32 element — qahramon ochiq, hech narsa oshmadi
+== SETKA 010-labirint-oyini-2
+ekran: 33 — toza
+[WebKit] labirintli ekran: 21; ichidan oshish tekshirildi: 10 element — qahramon ochiq, hech narsa oshmadi
+== SETKA 011-ozgaruvchi-ball
+ekran: 35 — toza
+[WebKit] labirintli ekran: 18; ichidan oshish tekshirildi: 78 element — qahramon ochiq, hech narsa oshmadi
+== SETKA 012-ozgaruvchi-jon-vaqt
+ekran: 35 — toza
+[WebKit] labirintli ekran: 23; ichidan oshish tekshirildi: 122 element — qahramon ochiq, hech narsa oshmadi
+== SETKA 013-tasodifiy-son
+ekran: 35 — toza
+[WebKit] labirintli ekran: 23; ichidan oshish tekshirildi: 46 element — qahramon ochiq, hech narsa oshmadi
+== SETKA 014-xatoni-topish
+ekran: 35 — toza
+[WebKit] labirintli ekran: 24; ichidan oshish tekshirildi: 72 element — qahramon ochiq, hech narsa oshmadi
+== 001 toliq-dars
+NATIJA: 35 / 35
+== 001 solo
+NATIJA: 12 / 12
+== 001 tovush
+NATIJA: 7 / 7
+== 002 toliq-dars
+NATIJA: 66 / 66
+== 002 solo
+NATIJA: 34 / 34
+== 002 tovush
+NATIJA: 7 / 7
+== 003 toliq-dars
+NATIJA: 68 / 68
+== 003 solo
+NATIJA: 31 / 31
+== 003 tovush
+NATIJA: 7 / 7
+== 004 toliq-dars
+NATIJA: 61 / 61
+== 004 solo
+NATIJA: 29 / 29
+== 004 tovush
+NATIJA: 6 / 6
+== 005 toliq-dars
+NATIJA: 47 / 47
+== 005 solo
+NATIJA: 27 / 27
+== 005 tovush

@@ -1,0 +1,1238 @@
+{
+ "u-01-P1": {
+  "id": "P1",
+  "matn": "14-DARS · XATONI TOPISH\nBugun xatolarni topamiz!\n\nCoddy\nSalom! Bugun dasturlardagi xatolarni topib tuzatasiz.\n\nO‘TGAN DARSDA\nrandom\n1\nto\n6\nTasodifiy son\nDastur o‘zi tanlaydigan son\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKirdi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "d727d9d92f42",
+  "uzun": 34693
+ },
+ "u-02-P2": {
+  "id": "P2",
+  "matn": "14-DARS · XATONI TOPISH\nSAVOL\nXatoni qanday topamiz?\n\nCoddy\nDastur tepalikni chizishi kerak edi. Boshqa rasm chiqdi.\n\nA\nOxirgi blokni tuzatamiz\n3\n→ 2\nB\nHar xil o‘zgartirib ko‘ramiz\n2\n3\n4\nC\nQadam-baqadam yuramiz\nBitta qadam\n5-qadam\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 3)\n‹ Orqaga\nJavob berdi: 0 / 0\nSinab ko‘ramiz ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "cc273f4bf446",
+  "uzun": 38524
+ },
+ "u-03-P2S": {
+  "id": "P2S",
+  "matn": "SAVOL\nXatoni qanday topamiz?\n\nCoddy\nDastur tepalikni chizishi kerak edi. Boshqa rasm chiqdi.\n\nA\nOxirgi blokni tuzatamiz\n3\n→ 2\nB\nHar xil o‘zgartirib ko‘ramiz\n2\n3\n4\nC\nQadam-baqadam yuramiz\nBitta qadam\n5-qadam\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "28955451a69e",
+  "uzun": 38095
+ },
+ "u-04-P2C": {
+  "id": "P2C",
+  "matn": "JAVOB\nQadam-baqadam yuramiz\n\nCoddy\nHar qadamda qarayman: rasmdan chiqmadimmi?\n\nA\nOxirgi blokni tuzatamiz\n✕ xato boshqa joyda\n3\n→ 2\nB\nHar xil o‘zgartirib ko‘ramiz\n✕ rasm battar\n2\n3\n4\nC\nQadam-baqadam yuramiz\n✓ 5-qadamda topildi\nBitta qadam\n5-qadam\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 2)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "ddc4bd6d1ef8",
+  "uzun": 38558
+ },
+ "u-05-P3": {
+  "id": "P3",
+  "matn": "ESLAYMIZ\nMuammocha — iz\n\nCoddy\nMuammocha xato qayerdaligini ko‘rsatadi.\n\nBo‘shvoy — dastur bo‘sh yoki ichi bo‘sh\nKamvoy — yetmadi, qoldi yoki maydon tugadi\nOrtiqvoy — ortiqcha yurdi\nTo‘siqvoy — devorga urildi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "63cecc87d5e4",
+  "uzun": 55848
+ },
+ "u-06-P4": {
+  "id": "P4",
+  "matn": "REJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Har birida xatoni o‘zingiz topasiz.\n\nDars oxirida · topishmoq · Ustoz xatoni izlaydi\nTopishmoq\n1\nTo‘xtagan joy\n2\nBitta qadam\n3\nYashirin xato\n‹ Orqaga\nBoshladik ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "f759f785a811",
+  "uzun": 41649
+ },
+ "u-07-P6": {
+  "id": "P6",
+  "matn": "QOIDA\nO‘zingiz topasiz\n\nCoddy\nAvval ishga tushiring, keyin tuzating.\n\nIshga tushir\nAvval ishga tushiring — qayerda to‘xtaydi?\nBitta qadam\nHar bosishda bitta qadam\nMaslahat\nBir urinishdan keyin ochiladi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "458f9cf2877b",
+  "uzun": 34733
+ },
+ "u-08-P5": {
+  "id": "P5",
+  "matn": "MASHQ\nEndi o‘zingiz!\n\nCoddy\nIshga tushiring — muammocha to‘xtagan joyni ko‘rsatadi.\n\nUch xatoni tuzatdi\n0 / 0\nHar belgi — uch xatoni tuzatgan bitta bola\n1\n0\nBurilish\n2\n0\nPastga\n3\n0\nQator\n★\n0\nIkki xato\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "fe54548224ad",
+  "uzun": 38534
+ },
+ "u-09-P4B": {
+  "id": "P4B",
+  "matn": "REJA · 2-BEKAT\n2 · Bitta qadam\n\nCoddy\nEndi dastur to‘xtamaydi — rasm boshqa chiqadi.\n\nDars oxirida · topishmoq · Ustoz xatoni izlaydi\nTopishmoq\n✓\nTo‘xtagan joy\n2\nBitta qadam\n3\nYashirin xato\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "0bbb75b16fd3",
+  "uzun": 41485
+ },
+ "u-10-P7": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nHar bosishda bitta qadam\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nrepeat\n3\nmove up\nmove right\n3 / 3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 0)\n‹ Orqaga\nBitta qadam\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "p:repeat3move upmove right",
+   "u:move upmove right",
+   "r:move right"
+  ],
+  "html": "408f654a44d8",
+  "uzun": 39116
+ },
+ "u-11-P5G": {
+  "id": "P5G",
+  "matn": "MASHQ\nQadam-baqadam!\n\nCoddy\nBitta qadam bilan yuring — rasmdan chiqqan joyni toping.\n\nUch xatoni tuzatdi\n0 / 0\n1\n0\nIlmoq\n2\n0\nIlon\n3\n0\nDarvoza\n★\n0\nUch ustun\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a8377dd6eafd",
+  "uzun": 36810
+ },
+ "u-12-P9": {
+  "id": "P9",
+  "matn": "XULOSA\nXato — topiladi!\n\nCoddy\nAvval ishga tushiraman, keyin qadam-baqadam qarayman.\n\n▶ Ishga tushir\nMuammocha joyni ko‘rsatadi\nBitta qadam\nBitta qadam\nQayerda rasmdan chiqqani ko‘rinadi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 2)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "63fe93c04b60",
+  "uzun": 40305
+ },
+ "u-13-P4C": {
+  "id": "P4C",
+  "matn": "REJA · 3-BEKAT\n3 · Yashirin xato\n\nCoddy\nOxirgi bekat: bir marta ishlagan dasturda ham xato bo‘lishi mumkin.\n\nDars oxirida · topishmoq · Ustoz xatoni izlaydi\nTopishmoq\n✓\nTo‘xtagan joy\n✓\nBitta qadam\n3\nYashirin xato\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "8f327402924b",
+  "uzun": 41454
+ },
+ "u-14-P8": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nKo‘p marta sinaymiz\nHarakat\nO‘zgaruvchi\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\ngo to x:\ny:\nrandom\n2\nto\n7\n0\n2 / 2 ta blok\nSinov: 0 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 2)\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "y:go to x:y:random2to70",
+   "m:random2to7"
+  ],
+  "html": "ad289c16189c",
+  "uzun": 28572
+ },
+ "u-15-P5B": {
+  "id": "P5B",
+  "matn": "MASHQ\nHamma holatni sinang!\n\nCoddy\nBir holatda ishladi — endi boshqasida sinang.\n\nUch xatoni tuzatdi\n0 / 0\nHar belgi — uch xatoni tuzatgan bitta bola\n1\n0\nIkki labirint\n2\n0\nOlma terish\n3\n0\nSavatlar\n★\n0\nTopishmoq\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "728e90dfbc08",
+  "uzun": 38257
+ },
+ "u-16-P11": {
+  "id": "P11",
+  "matn": "KO‘RSATISH\nTopishmog‘ingizni o‘qib bering\nSiz o‘qiysiz — men xatoni izlayman.\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nBitta qadam\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "581c2c51679c",
+  "uzun": 39943
+ },
+ "u-17-P12": {
+  "id": "P12",
+  "matn": "YAKUN\nSiz xatolarni topdingiz!\nBUGUNGI QOIDA\nXato — topiladigan narsa\nIshga tushiring · Qadam-baqadam yuring · Tuzating · Yana sinang\nKeyingi dars\n15 · Xakaton №1\n✓\nTo‘xtagan joy\n✓\nBitta qadam\n✓\nYashirin xato\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "3ad92222600e",
+  "uzun": 30025
+ },
+ "u-18-P14": {
+  "id": "P14",
+  "matn": "SINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nta xato tuzatdi\n0\nmarta «Bitta qadam» bosdi\n0\npog‘ona bajardi\n‹ Orqaga\nDarsni yakunlash\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "e0c2c5e30585",
+  "uzun": 40022
+ },
+ "u-x-P2S-A": {
+  "id": "P2S",
+  "matn": "SAVOL\nXatoni qanday topamiz?\n\nCoddy\nDastur tepalikni chizishi kerak edi. Boshqa rasm chiqdi.\n\nA\nOxirgi blokni tuzatamiz\n✕ xato boshqa joyda\n3\n→ 2\nB\nHar xil o‘zgartirib ko‘ramiz\n2\n3\n4\nC\nQadam-baqadam yuramiz\nBitta qadam\n5-qadam\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 3)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "6c827c8e81d3",
+  "uzun": 38517
+ },
+ "u-x-P2S-B": {
+  "id": "P2S",
+  "matn": "SAVOL\nXatoni qanday topamiz?\n\nCoddy\nDastur tepalikni chizishi kerak edi. Boshqa rasm chiqdi.\n\nA\nOxirgi blokni tuzatamiz\n✕ xato boshqa joyda\n3\n→ 2\nB\nHar xil o‘zgartirib ko‘ramiz\n✕ rasm battar\n2\n3\n4\nC\nQadam-baqadam yuramiz\nBitta qadam\n5-qadam\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 3)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "113523137217",
+  "uzun": 38694
+ },
+ "u-x-P2S-C": {
+  "id": "P2S",
+  "matn": "SAVOL\nXatoni qanday topamiz?\n\nCoddy\nDastur tepalikni chizishi kerak edi. Boshqa rasm chiqdi.\n\nA\nOxirgi blokni tuzatamiz\n✕ xato boshqa joyda\n3\n→ 2\nB\nHar xil o‘zgartirib ko‘ramiz\n✕ rasm battar\n2\n3\n4\nC\nQadam-baqadam yuramiz\n✓ 5-qadamda topildi\nBitta qadam\n5-qadam\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 3)\n5-qadam\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "8b86f88c4058",
+  "uzun": 39437
+ },
+ "u-x-P3-1": {
+  "id": "P3",
+  "matn": "ESLAYMIZ\nMuammocha — iz\n\nCoddy\nMuammocha xato qayerdaligini ko‘rsatadi.\n\nBo‘shvoy — dastur bo‘sh yoki ichi bo‘sh\nKamvoy — yetmadi, qoldi yoki maydon tugadi\nOrtiqvoy — ortiqcha yurdi\nTo‘siqvoy — devorga urildi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "c3fb259b3105",
+  "uzun": 55851
+ },
+ "u-x-P3-2": {
+  "id": "P3",
+  "matn": "ESLAYMIZ\nMuammocha — iz\n\nCoddy\nMuammocha xato qayerdaligini ko‘rsatadi.\n\nBo‘shvoy — dastur bo‘sh yoki ichi bo‘sh\nKamvoy — yetmadi, qoldi yoki maydon tugadi\nOrtiqvoy — ortiqcha yurdi\nTo‘siqvoy — devorga urildi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "95070f4fa672",
+  "uzun": 55854
+ },
+ "u-x-P3-3": {
+  "id": "P3",
+  "matn": "ESLAYMIZ\nMuammocha — iz\n\nCoddy\nMuammocha xato qayerdaligini ko‘rsatadi.\n\nBo‘shvoy — dastur bo‘sh yoki ichi bo‘sh\nKamvoy — yetmadi, qoldi yoki maydon tugadi\nOrtiqvoy — ortiqcha yurdi\nTo‘siqvoy — devorga urildi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "ec191b614b42",
+  "uzun": 55857
+ },
+ "u-x-P3-4": {
+  "id": "P3",
+  "matn": "ESLAYMIZ\nMuammocha — iz\n\nCoddy\nMuammocha xato qayerdaligini ko‘rsatadi.\n\nBo‘shvoy — dastur bo‘sh yoki ichi bo‘sh\nKamvoy — yetmadi, qoldi yoki maydon tugadi\nOrtiqvoy — ortiqcha yurdi\nTo‘siqvoy — devorga urildi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "1b1f690e8969",
+  "uzun": 55860
+ },
+ "u-x-P6-1": {
+  "id": "P6",
+  "matn": "QOIDA\nO‘zingiz topasiz\n\nCoddy\nAvval ishga tushiring, keyin tuzating.\n\nIshga tushir\nAvval ishga tushiring — qayerda to‘xtaydi?\nBitta qadam\nHar bosishda bitta qadam\nMaslahat\nBir urinishdan keyin ochiladi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "d5240f9ea58e",
+  "uzun": 34736
+ },
+ "u-x-P6-2": {
+  "id": "P6",
+  "matn": "QOIDA\nO‘zingiz topasiz\n\nCoddy\nAvval ishga tushiring, keyin tuzating.\n\nIshga tushir\nAvval ishga tushiring — qayerda to‘xtaydi?\nBitta qadam\nHar bosishda bitta qadam\nMaslahat\nBir urinishdan keyin ochiladi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "52e67974ce14",
+  "uzun": 34739
+ },
+ "u-x-P6-3": {
+  "id": "P6",
+  "matn": "QOIDA\nO‘zingiz topasiz\n\nCoddy\nAvval ishga tushiring, keyin tuzating.\n\nIshga tushir\nAvval ishga tushiring — qayerda to‘xtaydi?\nBitta qadam\nHar bosishda bitta qadam\nMaslahat\nBir urinishdan keyin ochiladi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "1c1c089d2cec",
+  "uzun": 34742
+ },
+ "u-x-P7-chiqdi": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nHar bosishda bitta qadam\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nrepeat\n3\nmove up\nmove right\n3 / 3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 3)\nRasmdan chiqdi!\n‹ Orqaga\nQahramon (2, 1) ga chiqdi — u kulrang emas. Bitta qadam bilan yuring\nBitta qadam\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "p:repeat3move upmove right",
+   "u:move upmove right",
+   "r:move right"
+  ],
+  "html": "dc3156ca2d74",
+  "uzun": 44982
+ },
+ "u-x-P7-qadam1": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nHar bosishda bitta qadam\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nrepeat\n3\nmove up\nmove right\n3 / 3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 1)\nRasmdan chiqdi!\n‹ Orqaga\n1-qadam: qahramon (2, 1) ga chiqdi. Shu blokni va undan oldingisini o‘qing\nBitta qadam\n1-qadam\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "p:repeat3move upmove right",
+   "u:move upmove right",
+   "r:move right"
+  ],
+  "html": "113d40b69b09",
+  "uzun": 44671
+ },
+ "u-x-P7-tayyor": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nHar bosishda bitta qadam\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nrepeat\n3\nmove right\nmove up\n3 / 3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 3)\n‹ Orqaga\nRasm tayyor!\nBitta qadam\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "p:repeat3move rightmove up",
+   "r:move rightmove up",
+   "u:move up"
+  ],
+  "html": "67cf5ed9809a",
+  "uzun": 40380
+ },
+ "u-x-P8-1": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nKo‘p marta sinaymiz\nHarakat\nO‘zgaruvchi\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\ngo to x:\ny:\nrandom\n2\nto\n7\n0\n2 / 2 ta blok\nSinov: 1 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 2)\n‹ Orqaga\nYana ishga tushiring — olma qayerga tushadi?\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "y:go to x:y:random2to70",
+   "m:random2to7"
+  ],
+  "html": "a258aee1ed2f",
+  "uzun": 29216
+ },
+ "u-x-P8-chet": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nKo‘p marta sinaymiz\nHarakat\nO‘zgaruvchi\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\ngo to x:\ny:\nrandom\n2\nto\n7\n0\n2 / 2 ta blok\nSinov: 2 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 2)\nMaydon tugadi!\n‹ Orqaga\nrandom 7 ni tanladi. Maydonda X — 0 dan 6 gacha\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "y:go to x:y:random2to70",
+   "m:random2to7"
+  ],
+  "html": "483e2eb64985",
+  "uzun": 35948
+ },
+ "u-x-P8-tayyor": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nKo‘p marta sinaymiz\nHarakat\nO‘zgaruvchi\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\ngo to x:\ny:\nrandom\n2\nto\n6\n0\n2 / 2 ta blok\nSinov: 3 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 2)\n‹ Orqaga\nHar safar boshqa joy!\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "y:go to x:y:random2to60",
+   "m:random2to6"
+  ],
+  "html": "e4719a0fd543",
+  "uzun": 32400
+ },
+ "u-x-yakunlandi": {
+  "id": "P14",
+  "matn": "SINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nta xato tuzatdi\n0\nmarta «Bitta qadam» bosdi\n0\npog‘ona bajardi\nDars tugadi!\nKo‘rishguncha — keyingi darsda xakaton!\n‹ Orqaga\nDarsni yakunlash\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "f79e50452118",
+  "uzun": 40154
+ },
+ "bq-01-0-B0": {
+  "id": "B0",
+  "matn": "14-DARS · XATONI TOPISH\nSalom, Aziz!\nTayyor bo‘lsangiz — tugmani bosing\nTayyorman",
+  "bloklar": [],
+  "html": "a4fe98e299f7",
+  "uzun": 24483
+ },
+ "bq-01-1-BK": {
+  "id": "BK",
+  "matn": "14-DARS · XATONI TOPISH\n↑\nUstoz ekraniga qarang\nDars hozir boshlanadi",
+  "bloklar": [],
+  "html": "e33c9c3478d5",
+  "uzun": 16095
+ },
+ "bq-02-0-P2N": {
+  "id": "P2N",
+  "matn": "14-DARS · XATONI TOPISH\nSAVOL\nXatoni qanday topamiz?\n\nCoddy\nXatoni qaysi usul bilan topamiz?\n\nA\nOxirgi blokni tuzatamiz\n3\n→ 2\nB\nHar xil o‘zgartirib ko‘ramiz\n2\n3\n4\nC\nQadam-baqadam yuramiz\nBitta qadam\n5-qadam\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 3)\nBirini tanlang",
+  "bloklar": [],
+  "html": "64dd09a556ca",
+  "uzun": 36310
+ },
+ "bq-02-1-BK": {
+  "id": "BK",
+  "matn": "14-DARS · XATONI TOPISH\n↑\nUstoz ekraniga qarang\nJavobingiz qabul qilindi",
+  "bloklar": [],
+  "html": "9dee7471d007",
+  "uzun": 16098
+ },
+ "bq-03-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz usullarni sinayapti — kuzating",
+  "bloklar": [],
+  "html": "73c00457c205",
+  "uzun": 16110
+ },
+ "bq-04-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstozni tinglang",
+  "bloklar": [],
+  "html": "1a9d3a27b480",
+  "uzun": 16090
+ },
+ "bq-05-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nEslaymiz: muammochalar",
+  "bloklar": [],
+  "html": "2d469e024e9f",
+  "uzun": 16096
+ },
+ "bq-06-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nBugun: uchta bekat",
+  "bloklar": [],
+  "html": "97be3173aa5f",
+  "uzun": 16092
+ },
+ "bq-07-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz bugungi qoidani aytyapti",
+  "bloklar": [],
+  "html": "f734560da49e",
+  "uzun": 16104
+ },
+ "bq-08-0-B1A": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nBurilish\nBitta xatoni toping.\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nrepeat\n4\nmove left\nrepeat\n2\nmove up\n4 / 5 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nIshga tushiring — qayerda to‘xtaydi?\nBitta qadam\nIshga tushir",
+  "bloklar": [
+   "p:repeat4move leftrepeat2move up",
+   "l:move left",
+   "p:repeat2move up",
+   "u:move up"
+  ],
+  "html": "3240ffa44fba",
+  "uzun": 25530
+ },
+ "bq-08-1-B1B": {
+  "id": "B1B",
+  "matn": "MASHQ · 2-POG‘ONA\nPastga\nBitta xatoni toping.\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nrepeat\n5\nmove down\n2 / 3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 3)\nMaslahat\nIshga tushiring — qayerda to‘xtaydi?\nBitta qadam\nIshga tushir",
+  "bloklar": [
+   "p:repeat5move down",
+   "d:move down"
+  ],
+  "html": "94943f50c009",
+  "uzun": 26095
+ },
+ "bq-08-2-B1C": {
+  "id": "B1C",
+  "matn": "MASHQ · 3-POG‘ONA\nQator\nBitta xatoni toping.\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\ngo to x:\n5\ny:\n2\nrepeat\n5\nmove left\n3 / 4 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nIshga tushiring — qayerda to‘xtaydi?\nBitta qadam\nIshga tushir",
+  "bloklar": [
+   "x:go to x:5y:2repeat5move left",
+   "p:repeat5move left",
+   "l:move left"
+  ],
+  "html": "3ada16c1f03b",
+  "uzun": 26661
+ },
+ "bq-08-3-B1Y": {
+  "id": "B1Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nIkki xato\nBu dasturda ikkita xato bor.\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nrepeat\n6\nmove right\nrepeat\n3\nmove up\n4 / 5 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\nMaslahat\nIshga tushiring — qayerda to‘xtaydi?\nBitta qadam\nIshga tushir",
+  "bloklar": [
+   "p:repeat6move rightrepeat3move up",
+   "r:move right",
+   "p:repeat3move up",
+   "u:move up"
+  ],
+  "html": "a46f210254eb",
+  "uzun": 25542
+ },
+ "bq-08-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "fc7755a0b0e5",
+  "uzun": 16105
+ },
+ "bq-09-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\n2-bekat: bitta qadam",
+  "bloklar": [],
+  "html": "91bfafcf63b1",
+  "uzun": 16094
+ },
+ "bq-10-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz qadam-baqadam yuryapti — kuzating",
+  "bloklar": [],
+  "html": "d37e47713223",
+  "uzun": 16113
+ },
+ "bq-11-0-B2A": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nIlmoq\nBitta xatoni toping.\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nrepeat\n2\nmove up\nmove up\nrepeat\n3\nmove right\n5 / 6 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nBitta qadam bilan yuring — qayerda rasmdan chiqadi?\nBitta qadam\nIshga tushir",
+  "bloklar": [
+   "p:repeat2move upmove uprepeat3move right",
+   "u:move up",
+   "u:move uprepeat3move right",
+   "p:repeat3move right",
+   "r:move right"
+  ],
+  "html": "14953826e405",
+  "uzun": 24785
+ },
+ "bq-11-1-B2B": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nIlon\nBitta xatoni toping.\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove right\nmove down\nmove right\nmove right\n5 / 7 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 2)\nMaslahat\nBitta qadam bilan yuring — qayerda rasmdan chiqadi?\nBitta qadam\nIshga tushir",
+  "bloklar": [
+   "r:move rightmove rightmove downmove rightmove right",
+   "r:move rightmove downmove rightmove right",
+   "d:move downmove rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "1833af0e2df5",
+  "uzun": 24792
+ },
+ "bq-11-2-B2C": {
+  "id": "B2C",
+  "matn": "MASHQ · 3-POG‘ONA\nDarvoza\nBitta xatoni toping.\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nrepeat\n2\nmove up\nrepeat\n2\nmove down\nrepeat\n2\nmove right\n6 / 7 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 0)\nMaslahat\nBitta qadam bilan yuring — qayerda rasmdan chiqadi?\nBitta qadam\nIshga tushir",
+  "bloklar": [
+   "p:repeat2move uprepeat2move downrepeat2move right",
+   "u:move up",
+   "p:repeat2move downrepeat2move right",
+   "d:move down",
+   "p:repeat2move right",
+   "r:move right"
+  ],
+  "html": "32b23229a870",
+  "uzun": 24796
+ },
+ "bq-11-3-B2Y": {
+  "id": "B2Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nUch ustun\nUzun dasturda bitta xato bor.\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nrepeat\n3\nmove up\ngo to x:\n2\ny:\n0\nrepeat\n4\nmove up\ngo to x:\n5\ny:\n0\nrepeat\n3\nmove up\n8 / 9 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nBitta qadam bilan yuring — qayerda rasmdan chiqadi?\nBitta qadam\nIshga tushir",
+  "bloklar": [
+   "p:repeat3move upgo to x:2y:0repeat4move upgo to x:5y:0repeat3move up",
+   "u:move up",
+   "x:go to x:2y:0repeat4move upgo to x:5y:0repeat3move up",
+   "p:repeat4move upgo to x:5y:0repeat3move up",
+   "u:move up",
+   "x:go to x:5y:0repeat3move up",
+   "p:repeat3move up",
+   "u:move up"
+  ],
+  "html": "433f91d77952",
+  "uzun": 24857
+ },
+ "bq-11-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "fc7755a0b0e5",
+  "uzun": 16105
+ },
+ "bq-12-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nXulosa: xato qanday topiladi",
+  "bloklar": [],
+  "html": "aa4217927569",
+  "uzun": 16102
+ },
+ "bq-13-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\n3-bekat: yashirin xato",
+  "bloklar": [],
+  "html": "4c4847fad2bb",
+  "uzun": 16096
+ },
+ "bq-14-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz dasturni ko‘p marta sinayapti — kuzating",
+  "bloklar": [],
+  "html": "5bc71bc548f8",
+  "uzun": 16120
+ },
+ "bq-15-0-B3A": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nIkki labirint\nBitta xatoni toping.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nrepeat\n6\nif path\n→\nthen\nmove right\nif path\n↓\nthen\nmove up\n5 / 6 ta blok\n1\n2\nMaslahat\nIkkala labirintda ham sinang\nIshga tushir",
+  "bloklar": [
+   "p:repeat6if path→thenmove rightif path↓thenmove up",
+   "a:if path→thenmove rightif path↓thenmove up",
+   "r:move right",
+   "a:if path↓thenmove up",
+   "u:move up"
+  ],
+  "html": "46761e7d6a74",
+  "uzun": 44140
+ },
+ "bq-15-1-B3B": {
+  "id": "B3B",
+  "matn": "MASHQ · 2-POG‘ONA\nOlma terish\nBitta xatoni toping.\nHodisa\nHarakat\nHodisa\nwhen\n→\nkey pressed\nDastur\nwhen\n→\nkey pressed\nmove right\nwhen\n←\nkey pressed\nmove left\nwhen\n↑\nkey pressed\nmove up\nwhen\n↑\nkey pressed\nmove down\n4 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nHar strelkani bosib ko‘ring\nBoshlash",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right",
+   "k:when←key pressedmove left",
+   "l:move left",
+   "k:when↑key pressedmove up",
+   "u:move up",
+   "k:when↑key pressedmove down",
+   "d:move down"
+  ],
+  "html": "f82ee472b600",
+  "uzun": 24230
+ },
+ "bq-15-2-B3C": {
+  "id": "B3C",
+  "matn": "MASHQ · 3-POG‘ONA\nSavatlar\nBitta xatoni toping.\nHarakat\nO‘zgaruvchi\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\ngo to x:\ny:\nrandom\n1\nto\n5\n2\n2 / 3 ta blok\nSinov: 0 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nMaslahat\nHar savatga olma tusha oladimi?\nIshga tushir",
+  "bloklar": [
+   "y:go to x:y:random1to52",
+   "m:random1to5"
+  ],
+  "html": "ada6245c8f34",
+  "uzun": 21331
+ },
+ "bq-15-3-B3Y": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nTopishmoq\nAvval ishlaydigan dastur tuzing. Keyin bitta xato qo‘ying.\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nAvval ishlaydigan dastur tuzing\nBitta qadam\nIshga tushir",
+  "bloklar": [],
+  "html": "ee81e6b1d603",
+  "uzun": 25577
+ },
+ "bq-15-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "fc7755a0b0e5",
+  "uzun": 16105
+ },
+ "bq-17-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nSiz xatolarni topdingiz!\n\nBulut\nXatolarni qadam-baqadam topib tuzatdingiz.\n\nSiz bugun\n0\nta xato tuzatdi\n0\nmarta «Bitta qadam» bosdi\n0\npog‘ona bajardi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBulut\nKeyingi darsda xakatonda ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "9f10e9863269",
+  "uzun": 20128
+ },
+ "bq-18-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nSiz xatolarni topdingiz!\n\nBulut\nXatolarni qadam-baqadam topib tuzatdingiz.\n\nSiz bugun\n0\nta xato tuzatdi\n0\nmarta «Bitta qadam» bosdi\n0\npog‘ona bajardi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBulut\nKeyingi darsda xakatonda ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "9f10e9863269",
+  "uzun": 20128
+ },
+ "bx-B1A-bosh": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nBurilish\nBitta xatoni toping.\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nrepeat\n4\nmove left\nrepeat\n2\nmove up\n4 / 5 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nIshga tushiring — qayerda to‘xtaydi?\nBitta qadam\nIshga tushir",
+  "bloklar": [
+   "p:repeat4move leftrepeat2move up",
+   "l:move left",
+   "p:repeat2move up",
+   "u:move up"
+  ],
+  "html": "3240ffa44fba",
+  "uzun": 25530
+ },
+ "bx-B1A-chet": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nBurilish\nBitta xatoni toping.\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nrepeat\n4\nmove left\nrepeat\n2\nmove up\n4 / 5 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaydon tugadi!\nMaslahat\nQahramon shu blokda to‘xtadi. Shu blokni va undan oldingisini o‘qing\nBitta qadam\nIshga tushir",
+  "bloklar": [
+   "p:repeat4move leftrepeat2move up",
+   "l:move left",
+   "p:repeat2move up",
+   "u:move up"
+  ],
+  "html": "b54c0d342b77",
+  "uzun": 30844
+ },
+ "bx-B1A-yetdi": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nBurilish\nBitta xatoni toping.\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nrepeat\n4\nmove right\nrepeat\n2\nmove up\n4 / 5 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 2)\nMaslahat\nYetib bordi!\nBitta qadam\nIshga tushir",
+  "bloklar": [
+   "p:repeat4move rightrepeat2move up",
+   "r:move right",
+   "p:repeat2move up",
+   "u:move up"
+  ],
+  "html": "f60007c84b1c",
+  "uzun": 26490
+ },
+ "bx-B1B-qadam3": {
+  "id": "B1B",
+  "matn": "MASHQ · 2-POG‘ONA\nPastga\nBitta xatoni toping.\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nrepeat\n5\nmove down\n4\n2 / 3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nMaslahat\nBitta qadam — qahramon qayerda?\nBitta qadam\n3-qadam\nIshga tushir",
+  "bloklar": [
+   "p:repeat5move down",
+   "d:move down"
+  ],
+  "html": "63a31851866f",
+  "uzun": 26121
+ },
+ "bx-B1B-chet": {
+  "id": "B1B",
+  "matn": "MASHQ · 2-POG‘ONA\nPastga\nBitta xatoni toping.\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nrepeat\n5\nmove down\n2 / 3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nMaydon tugadi!\nMaslahat\nQahramon shu blokda to‘xtadi. Shu blokni va undan oldingisini o‘qing\nBitta qadam\n3-qadam\nIshga tushir",
+  "bloklar": [
+   "p:repeat5move down",
+   "d:move down"
+  ],
+  "html": "0334f7473544",
+  "uzun": 31630
+ },
+ "bx-B1C-olma": {
+  "id": "B1C",
+  "matn": "MASHQ · 3-POG‘ONA\nQator\nBitta xatoni toping.\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\ngo to x:\n5\ny:\n2\nrepeat\n5\nmove left\n3 / 4 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 2)\nOlma qoldi-ku!\nMaslahat\nAvval olmaga boring — u (6, 2) da\nBitta qadam\nIshga tushir",
+  "bloklar": [
+   "x:go to x:5y:2repeat5move left",
+   "p:repeat5move left",
+   "l:move left"
+  ],
+  "html": "881c8279a287",
+  "uzun": 32360
+ },
+ "bx-B2A-chiqdi": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nIlmoq\nBitta xatoni toping.\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nrepeat\n2\nmove up\nmove up\nrepeat\n3\nmove right\n5 / 6 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 3)\nRasmdan chiqdi!\nMaslahat\nQahramon (0, 3) ga chiqdi — u kulrang emas. Bitta qadam bilan yuring\nBitta qadam\nIshga tushir",
+  "bloklar": [
+   "p:repeat2move upmove uprepeat3move right",
+   "u:move up",
+   "u:move uprepeat3move right",
+   "p:repeat3move right",
+   "r:move right"
+  ],
+  "html": "6c093d0089a0",
+  "uzun": 30322
+ },
+ "bx-B2A-qadam3": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nIlmoq\nBitta xatoni toping.\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nrepeat\n2\nmove up\nmove up\nrepeat\n3\nmove right\n5 / 6 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 3)\nRasmdan chiqdi!\nMaslahat\n3-qadam: qahramon (0, 3) ga chiqdi. Shu blokni va undan oldingisini o‘qing\nBitta qadam\n3-qadam\nIshga tushir",
+  "bloklar": [
+   "p:repeat2move upmove uprepeat3move right",
+   "u:move up",
+   "u:move uprepeat3move right",
+   "p:repeat3move right",
+   "r:move right"
+  ],
+  "html": "f81c80fcdd28",
+  "uzun": 30142
+ },
+ "bx-B2C-qadam5": {
+  "id": "B2C",
+  "matn": "MASHQ · 3-POG‘ONA\nDarvoza\nBitta xatoni toping.\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nrepeat\n2\nmove up\nrepeat\n2\nmove down\nrepeat\n2\nmove right\n6 / 7 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nRasmdan chiqdi!\nMaslahat\n5-qadam: qahramon (3, 0) ga chiqdi. Shu blokni va undan oldingisini o‘qing\nBitta qadam\n5-qadam\nIshga tushir",
+  "bloklar": [
+   "p:repeat2move uprepeat2move downrepeat2move right",
+   "u:move up",
+   "p:repeat2move downrepeat2move right",
+   "d:move down",
+   "p:repeat2move right",
+   "r:move right"
+  ],
+  "html": "e37454ec438d",
+  "uzun": 30281
+ },
+ "bx-B3A-2lab": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nIkki labirint\nBitta xatoni toping.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nrepeat\n6\nif path\n→\nthen\nmove right\nif path\n↓\nthen\nmove up\n5 / 6 ta blok\n2\n1\nOz qoldi!\nMaslahat\n2-labirintda yulduzgacha yetmadi. O‘sha joyda if larni o‘qing\nIshga tushir",
+  "bloklar": [
+   "p:repeat6if path→thenmove rightif path↓thenmove up",
+   "a:if path→thenmove rightif path↓thenmove up",
+   "r:move right",
+   "a:if path↓thenmove up",
+   "u:move up"
+  ],
+  "html": "0f1b5b71dd80",
+  "uzun": 49799
+ },
+ "bx-B3A-yetdi": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nIkki labirint\nBitta xatoni toping.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nrepeat\n6\nif path\n→\nthen\nmove right\nif path\n↑\nthen\nmove up\n5 / 6 ta blok\n2\n1\nMaslahat\nIkkalasida yetdi!\nIshga tushir",
+  "bloklar": [
+   "p:repeat6if path→thenmove rightif path↑thenmove up",
+   "a:if path→thenmove rightif path↑thenmove up",
+   "r:move right",
+   "a:if path↑thenmove up",
+   "u:move up"
+  ],
+  "html": "7f4233fd3cb7",
+  "uzun": 45450
+ },
+ "bx-B3B-boshla": {
+  "id": "B3B",
+  "matn": "MASHQ · 2-POG‘ONA\nOlma terish\nBitta xatoni toping.\nHodisa\nHarakat\nHodisa\nwhen\n→\nkey pressed\nDastur\nwhen\n→\nkey pressed\nmove right\nwhen\n←\nkey pressed\nmove left\nwhen\n↑\nkey pressed\nmove up\nwhen\n↑\nkey pressed\nmove down\n4 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nO‘yin: strelkalarni bosing · Olma: 0 / 2\nMaslahat\nHar strelkani bosib ko‘ring\n■ To‘xtatish",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right",
+   "k:when←key pressedmove left",
+   "l:move left",
+   "k:when↑key pressedmove up",
+   "u:move up",
+   "k:when↑key pressedmove down",
+   "d:move down"
+  ],
+  "html": "3efeaf3fa3a4",
+  "uzun": 24232
+ },
+ "bx-B3B-past": {
+  "id": "B3B",
+  "matn": "MASHQ · 2-POG‘ONA\nOlma terish\nBitta xatoni toping.\nHodisa\nHarakat\nHodisa\nwhen\n→\nkey pressed\nDastur\nwhen\n→\nkey pressed\nmove right\nwhen\n←\nkey pressed\nmove left\nwhen\n↑\nkey pressed\nmove up\nwhen\n↑\nkey pressed\nmove down\n4 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nO‘yin: strelkalarni bosing · Olma: 0 / 2\nBu tugma uchun dasturcha yo‘q-ku…\nMaslahat\n↓ bosildi — uning dasturchasi yo‘q. Dasturchalarning tugmalarini o‘qing.\n■ To‘xtatish",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right",
+   "k:when←key pressedmove left",
+   "l:move left",
+   "k:when↑key pressedmove up",
+   "u:move up",
+   "k:when↑key pressedmove down",
+   "d:move down"
+  ],
+  "html": "b47b9c1300d0",
+  "uzun": 29690
+ },
+ "bx-B3C-1": {
+  "id": "B3C",
+  "matn": "MASHQ · 3-POG‘ONA\nSavatlar\nBitta xatoni toping.\nHarakat\nO‘zgaruvchi\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\ngo to x:\ny:\nrandom\n1\nto\n5\n2\n2 / 3 ta blok\nSinov: 1 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nMaslahat\nYana ishga tushiring — olma qayerga tushadi?\nIshga tushir",
+  "bloklar": [
+   "y:go to x:y:random1to52",
+   "m:random1to5"
+  ],
+  "html": "584c26ba1167",
+  "uzun": 21656
+ },
+ "bx-B3C-bosh": {
+  "id": "B3C",
+  "matn": "MASHQ · 3-POG‘ONA\nSavatlar\nBitta xatoni toping.\nHarakat\nO‘zgaruvchi\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\ngo to x:\ny:\nrandom\n1\nto\n5\n2\n2 / 3 ta blok\nSinov: 3 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nBu savat bo‘sh qoladi!\nMaslahat\n(0, 2) dagi savatga olma tushmaydi. random sonlarini tekshiring\nIshga tushir",
+  "bloklar": [
+   "y:go to x:y:random1to52",
+   "m:random1to5"
+  ],
+  "html": "5d6967b2c43b",
+  "uzun": 28414
+ },
+ "bx-B3Y-ishlayapti": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nTopishmoq\nAvval ishlaydigan dastur tuzing. Keyin bitta xato qo‘ying.\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nrepeat\n2\nmove up\nrepeat\n4\nmove right\n4 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 2)\nMaslahat\nDastur ishlayapti! Endi bitta blokni o‘zgartiring — topishmoq bo‘lsin.\nBitta qadam\nIshga tushir",
+  "bloklar": [
+   "p:repeat2move uprepeat4move right",
+   "u:move up",
+   "p:repeat4move right",
+   "r:move right"
+  ],
+  "html": "a42b2124a68a",
+  "uzun": 25736
+ },
+ "bx-B3Y-kop": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nTopishmoq\nAvval ishlaydigan dastur tuzing. Keyin bitta xato qo‘ying.\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nrepeat\n3\nmove up\nrepeat\n5\nmove right\n4 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 3)\nKo‘payib ketdi!\nMaslahat\nXato bittadan ko‘p. Topishmoqda bitta xato bo‘lsin\nBitta qadam\nIshga tushir",
+  "bloklar": [
+   "p:repeat3move uprepeat5move right",
+   "u:move up",
+   "p:repeat5move right",
+   "r:move right"
+  ],
+  "html": "ddfbd5d972df",
+  "uzun": 31239
+ },
+ "bx-B3Y-tayyor": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nTopishmoq\nAvval ishlaydigan dastur tuzing. Keyin bitta xato qo‘ying.\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nrepeat\n2\nmove up\nrepeat\n3\nmove right\n4 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\nMaslahat\nTopishmoq tayyor!\nBitta qadam\nIshga tushir",
+  "bloklar": [
+   "p:repeat2move uprepeat3move right",
+   "u:move up",
+   "p:repeat3move right",
+   "r:move right"
+  ],
+  "html": "25b644ade776",
+  "uzun": 26468
+ },
+ "bx-B5-natija": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nSiz xatolarni topdingiz!\n\nBulut\nXatolarni qadam-baqadam topib tuzatdingiz.\n\nSiz bugun\n2\nta xato tuzatdi\n11\nmarta «Bitta qadam» bosdi\n3\npog‘ona bajardi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBulut\nKeyingi darsda xakatonda ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "38172cb9734f",
+  "uzun": 20129
+ },
+ "bx-P2N-tanladi": {
+  "id": "P2N",
+  "matn": "14-DARS · XATONI TOPISH\nSAVOL\nXatoni qanday topamiz?\n\nCoddy\nXatoni qaysi usul bilan topamiz?\n\nA\nOxirgi blokni tuzatamiz\n3\n→ 2\nB\nHar xil o‘zgartirib ko‘ramiz\n2\n3\n4\nC\nQadam-baqadam yuramiz\nBitta qadam\n5-qadam\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 3)\nBirini tanlang",
+  "bloklar": [],
+  "html": "a08b2a8347e9",
+  "uzun": 36319
+ },
+ "bx-BQ": {
+  "id": "BQ",
+  "matn": "14-DARS · XATONI TOPISH\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang",
+  "bloklar": [],
+  "html": "1f5720e067c9",
+  "uzun": 52609
+ },
+ "bx-BQ-tanladi": {
+  "id": "BK",
+  "matn": "14-DARS · XATONI TOPISH\n↑\nUstoz ekraniga qarang\nJavobingiz qabul qilindi",
+  "bloklar": [],
+  "html": "1367764a6ec2",
+  "uzun": 15160
+ },
+ "sq-01-0-B0": {
+  "id": "B0",
+  "matn": "14-DARS · XATONI TOPISH\nSalom, Aziz!\nTayyor bo‘lsangiz — tugmani bosing\nTayyorman",
+  "bloklar": [],
+  "html": "a4fe98e299f7",
+  "uzun": 24483
+ },
+ "sq-01-1-P1": {
+  "id": "P1",
+  "matn": "14-DARS · XATONI TOPISH\nBugun xatolarni topamiz!\n\nCoddy\nSalom! Bugun dasturlardagi xatolarni topib tuzatasiz.\n\nO‘TGAN DARSDA\nrandom\n1\nto\n6\nTasodifiy son\nDastur o‘zi tanlaydigan son\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "f372adb8bf0c",
+  "uzun": 33390
+ },
+ "sq-02-0-P2N": {
+  "id": "P2N",
+  "matn": "14-DARS · XATONI TOPISH\nSAVOL\nXatoni qanday topamiz?\n\nCoddy\nXatoni qaysi usul bilan topamiz?\n\nA\nOxirgi blokni tuzatamiz\n3\n→ 2\nB\nHar xil o‘zgartirib ko‘ramiz\n2\n3\n4\nC\nQadam-baqadam yuramiz\nBitta qadam\n5-qadam\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 3)\nBirini tanlang",
+  "bloklar": [],
+  "html": "64dd09a556ca",
+  "uzun": 36310
+ },
+ "sq-03-0-P2S": {
+  "id": "P2S",
+  "matn": "SAVOL\nXatoni qanday topamiz?\n\nCoddy\nDastur tepalikni chizishi kerak edi. Boshqa rasm chiqdi.\n\nA\nOxirgi blokni tuzatamiz\n▶ Sinab ko‘rish\n3\n→ 2\nB\nHar xil o‘zgartirib ko‘ramiz\n▶ Sinab ko‘rish\n2\n3\n4\nC\nQadam-baqadam yuramiz\n▶ Sinab ko‘rish\nBitta qadam\n5-qadam\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "fa27674b51dd",
+  "uzun": 36884
+ },
+ "sq-04-0-P2C": {
+  "id": "P2C",
+  "matn": "JAVOB\nQadam-baqadam yuramiz\n\nCoddy\nHar qadamda qarayman: rasmdan chiqmadimmi?\n\nA\nOxirgi blokni tuzatamiz\n✕ xato boshqa joyda\n3\n→ 2\nB\nHar xil o‘zgartirib ko‘ramiz\n✕ rasm battar\n2\n3\n4\nC\nQadam-baqadam yuramiz\n✓ 5-qadamda topildi\nBitta qadam\n5-qadam\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 2)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "099ca8d2806a",
+  "uzun": 37263
+ },
+ "sq-05-0-P3": {
+  "id": "P3",
+  "matn": "ESLAYMIZ\nMuammocha — iz\n\nCoddy\nMuammocha xato qayerdaligini ko‘rsatadi.\n\nBo‘shvoy — dastur bo‘sh yoki ichi bo‘sh\nKamvoy — yetmadi, qoldi yoki maydon tugadi\nOrtiqvoy — ortiqcha yurdi\nTo‘siqvoy — devorga urildi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "aa8641b6e331",
+  "uzun": 54553
+ },
+ "sq-06-0-P4": {
+  "id": "P4",
+  "matn": "REJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Har birida xatoni o‘zingiz topasiz.\n\nDars oxirida · topishmoq · Ustoz xatoni izlaydi\nTopishmoq\n1\nTo‘xtagan joy\n2\nBitta qadam\n3\nYashirin xato\n‹ Orqaga\nBoshladik ›",
+  "bloklar": [],
+  "html": "68769601351a",
+  "uzun": 40354
+ },
+ "sq-07-0-P6": {
+  "id": "P6",
+  "matn": "QOIDA\nO‘zingiz topasiz\n\nCoddy\nAvval ishga tushiring, keyin tuzating.\n\nIshga tushir\nAvval ishga tushiring — qayerda to‘xtaydi?\nBitta qadam\nHar bosishda bitta qadam\nMaslahat\nBir urinishdan keyin ochiladi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "b88336f54a12",
+  "uzun": 33438
+ },
+ "sq-08-0-B1A": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nBurilish\nBitta xatoni toping.\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nrepeat\n4\nmove left\nrepeat\n2\nmove up\n4 / 5 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nIshga tushiring — qayerda to‘xtaydi?\nBitta qadam\nIshga tushir\nKeyingi ›",
+  "bloklar": [
+   "p:repeat4move leftrepeat2move up",
+   "l:move left",
+   "p:repeat2move up",
+   "u:move up"
+  ],
+  "html": "73f7c78cd8fe",
+  "uzun": 25577
+ },
+ "sq-08-1-B1B": {
+  "id": "B1B",
+  "matn": "MASHQ · 2-POG‘ONA\nPastga\nBitta xatoni toping.\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nrepeat\n5\nmove down\n2 / 3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 3)\nMaslahat\nIshga tushiring — qayerda to‘xtaydi?\nBitta qadam\nIshga tushir\nKeyingi ›",
+  "bloklar": [
+   "p:repeat5move down",
+   "d:move down"
+  ],
+  "html": "2736b97d2cab",
+  "uzun": 26142
+ },
+ "sq-08-2-B1C": {
+  "id": "B1C",
+  "matn": "MASHQ · 3-POG‘ONA\nQator\nBitta xatoni toping.\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\ngo to x:\n5\ny:\n2\nrepeat\n5\nmove left\n3 / 4 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nIshga tushiring — qayerda to‘xtaydi?\nBitta qadam\nIshga tushir\nKeyingi ›",
+  "bloklar": [
+   "x:go to x:5y:2repeat5move left",
+   "p:repeat5move left",
+   "l:move left"
+  ],
+  "html": "9b5540e6c7cd",
+  "uzun": 26708
+ },
+ "sq-08-3-B1Y": {
+  "id": "B1Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nIkki xato\nBu dasturda ikkita xato bor.\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nrepeat\n6\nmove right\nrepeat\n3\nmove up\n4 / 5 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\nMaslahat\nIshga tushiring — qayerda to‘xtaydi?\nBitta qadam\nIshga tushir\nKeyingi ›",
+  "bloklar": [
+   "p:repeat6move rightrepeat3move up",
+   "r:move right",
+   "p:repeat3move up",
+   "u:move up"
+  ],
+  "html": "a449319049dd",
+  "uzun": 25589
+ },
+ "sq-09-0-P4B": {
+  "id": "P4B",
+  "matn": "REJA · 2-BEKAT\n2 · Bitta qadam\n\nCoddy\nEndi dastur to‘xtamaydi — rasm boshqa chiqadi.\n\nDars oxirida · topishmoq · Ustoz xatoni izlaydi\nTopishmoq\n✓\nTo‘xtagan joy\n2\nBitta qadam\n3\nYashirin xato\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "0bec43f6afdf",
+  "uzun": 40190
+ },
+ "sq-10-0-P7": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nHar bosishda bitta qadam\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nrepeat\n3\nmove up\nmove right\n3 / 3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 0)\n‹ Orqaga\nBitta qadam\n▶ Ishga tushir\nKeyingi ›",
+  "bloklar": [
+   "p:repeat3move upmove right",
+   "u:move upmove right",
+   "r:move right"
+  ],
+  "html": "4925a9b3193d",
+  "uzun": 37821
+ },
+ "sq-11-0-B2A": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nIlmoq\nBitta xatoni toping.\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nrepeat\n2\nmove up\nmove up\nrepeat\n3\nmove right\n5 / 6 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nBitta qadam bilan yuring — qayerda rasmdan chiqadi?\nBitta qadam\nIshga tushir\nKeyingi ›",
+  "bloklar": [
+   "p:repeat2move upmove uprepeat3move right",
+   "u:move up",
+   "u:move uprepeat3move right",
+   "p:repeat3move right",
+   "r:move right"
+  ],
+  "html": "3b9b591eb8bd",
+  "uzun": 24832
+ },
+ "sq-11-1-B2B": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nIlon\nBitta xatoni toping.\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove right\nmove down\nmove right\nmove right\n5 / 7 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 2)\nMaslahat\nBitta qadam bilan yuring — qayerda rasmdan chiqadi?\nBitta qadam\nIshga tushir\nKeyingi ›",
+  "bloklar": [
+   "r:move rightmove rightmove downmove rightmove right",
+   "r:move rightmove downmove rightmove right",
+   "d:move downmove rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "0241da441969",
+  "uzun": 24839
+ },
+ "sq-11-2-B2C": {
+  "id": "B2C",
+  "matn": "MASHQ · 3-POG‘ONA\nDarvoza\nBitta xatoni toping.\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nrepeat\n2\nmove up\nrepeat\n2\nmove down\nrepeat\n2\nmove right\n6 / 7 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 0)\nMaslahat\nBitta qadam bilan yuring — qayerda rasmdan chiqadi?\nBitta qadam\nIshga tushir\nKeyingi ›",
+  "bloklar": [
+   "p:repeat2move uprepeat2move downrepeat2move right",
+   "u:move up",
+   "p:repeat2move downrepeat2move right",
+   "d:move down",
+   "p:repeat2move right",
+   "r:move right"
+  ],
+  "html": "fa5344c33f8d",
+  "uzun": 24843
+ },
+ "sq-11-3-B2Y": {
+  "id": "B2Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nUch ustun\nUzun dasturda bitta xato bor.\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nrepeat\n3\nmove up\ngo to x:\n2\ny:\n0\nrepeat\n4\nmove up\ngo to x:\n5\ny:\n0\nrepeat\n3\nmove up\n8 / 9 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nBitta qadam bilan yuring — qayerda rasmdan chiqadi?\nBitta qadam\nIshga tushir\nKeyingi ›",
+  "bloklar": [
+   "p:repeat3move upgo to x:2y:0repeat4move upgo to x:5y:0repeat3move up",
+   "u:move up",
+   "x:go to x:2y:0repeat4move upgo to x:5y:0repeat3move up",
+   "p:repeat4move upgo to x:5y:0repeat3move up",
+   "u:move up",
+   "x:go to x:5y:0repeat3move up",
+   "p:repeat3move up",
+   "u:move up"
+  ],
+  "html": "d2db20c8890b",
+  "uzun": 24904
+ },
+ "sq-12-0-P9": {
+  "id": "P9",
+  "matn": "XULOSA\nXato — topiladi!\n\nCoddy\nAvval ishga tushiraman, keyin qadam-baqadam qarayman.\n\n▶ Ishga tushir\nMuammocha joyni ko‘rsatadi\nBitta qadam\nBitta qadam\nQayerda rasmdan chiqqani ko‘rinadi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 2)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "009e50be9531",
+  "uzun": 39010
+ },
+ "sq-13-0-P4C": {
+  "id": "P4C",
+  "matn": "REJA · 3-BEKAT\n3 · Yashirin xato\n\nCoddy\nOxirgi bekat: bir marta ishlagan dasturda ham xato bo‘lishi mumkin.\n\nDars oxirida · topishmoq · Ustoz xatoni izlaydi\nTopishmoq\n✓\nTo‘xtagan joy\n✓\nBitta qadam\n3\nYashirin xato\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "52f846db22cc",
+  "uzun": 40159
+ },
+ "sq-14-0-P8": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nKo‘p marta sinaymiz\nHarakat\nO‘zgaruvchi\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\ngo to x:\ny:\nrandom\n2\nto\n7\n0\n2 / 2 ta blok\nSinov: 0 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 2)\n‹ Orqaga\n7 ni 6 ga o‘zgartiring\n▶ Ishga tushir\nKeyingi ›",
+  "bloklar": [
+   "y:go to x:y:random2to70",
+   "m:random2to7"
+  ],
+  "html": "851390f373e4",
+  "uzun": 27299
+ },
+ "sq-15-0-B3A": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nIkki labirint\nBitta xatoni toping.\nShart\nTakrorlash\nHarakat\nShart\nif path\n→\nthen\nDastur\nrepeat\n6\nif path\n→\nthen\nmove right\nif path\n↓\nthen\nmove up\n5 / 6 ta blok\n1\n2\nMaslahat\nIkkala labirintda ham sinang\nIshga tushir\nKeyingi ›",
+  "bloklar": [
+   "p:repeat6if path→thenmove rightif path↓thenmove up",
+   "a:if path→thenmove rightif path↓thenmove up",
+   "r:move right",
+   "a:if path↓thenmove up",
+   "u:move up"
+  ],
+  "html": "a90f628194e6",
+  "uzun": 44187
+ },
+ "sq-15-1-B3B": {
+  "id": "B3B",
+  "matn": "MASHQ · 2-POG‘ONA\nOlma terish\nBitta xatoni toping.\nHodisa\nHarakat\nHodisa\nwhen\n→\nkey pressed\nDastur\nwhen\n→\nkey pressed\nmove right\nwhen\n←\nkey pressed\nmove left\nwhen\n↑\nkey pressed\nmove up\nwhen\n↑\nkey pressed\nmove down\n4 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nHar strelkani bosib ko‘ring\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right",
+   "k:when←key pressedmove left",
+   "l:move left",
+   "k:when↑key pressedmove up",
+   "u:move up",
+   "k:when↑key pressedmove down",
+   "d:move down"
+  ],
+  "html": "974e037464f8",
+  "uzun": 24277
+ },
+ "sq-15-2-B3C": {
+  "id": "B3C",
+  "matn": "MASHQ · 3-POG‘ONA\nSavatlar\nBitta xatoni toping.\nHarakat\nO‘zgaruvchi\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\ngo to x:\ny:\nrandom\n1\nto\n5\n2\n2 / 3 ta blok\nSinov: 0 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nMaslahat\nHar savatga olma tusha oladimi?\nIshga tushir\nKeyingi ›",
+  "bloklar": [
+   "y:go to x:y:random1to52",
+   "m:random1to5"
+  ],
+  "html": "21264c85124a",
+  "uzun": 21378
+ },
+ "sq-15-3-B3Y": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nTopishmoq\nAvval ishlaydigan dastur tuzing. Keyin bitta xato qo‘ying.\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nAvval ishlaydigan dastur tuzing\nBitta qadam\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "a8fa4c983cc2",
+  "uzun": 25624
+ },
+ "sq-17-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nSiz xatolarni topdingiz!\n\nBulut\nXatolarni qadam-baqadam topib tuzatdingiz.\n\nSiz bugun\n0\nta xato tuzatdi\n0\nmarta «Bitta qadam» bosdi\n0\npog‘ona bajardi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBulut\nKeyingi darsda xakatonda ko‘rishamiz!\nDars tugadi",
+  "bloklar": [],
+  "html": "9f10e9863269",
+  "uzun": 20128
+ },
+ "sx-P2S-C": {
+  "id": "P2S",
+  "matn": "SAVOL\nXatoni qanday topamiz?\n\nCoddy\nDastur tepalikni chizishi kerak edi. Boshqa rasm chiqdi.\n\nA\nOxirgi blokni tuzatamiz\n▶ Sinab ko‘rish\n3\n→ 2\nB\nHar xil o‘zgartirib ko‘ramiz\n▶ Sinab ko‘rish\n2\n3\n4\nC\nQadam-baqadam yuramiz\n✓ 5-qadamda topildi\nBitta qadam\n5-qadam\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 3)\n5-qadam\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "5715caf32235",
+  "uzun": 38223
+ },
+ "sx-P7-qadam1": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nHar bosishda bitta qadam\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nrepeat\n3\nmove up\nmove right\n3 / 3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 1)\nRasmdan chiqdi!\n‹ Orqaga\nmove right va move up ni bosing — joyi almashadi\nBitta qadam\n1-qadam\n▶ Ishga tushir\nKeyingi ›",
+  "bloklar": [
+   "p:repeat3move upmove right",
+   "u:move upmove right",
+   "r:move right"
+  ],
+  "html": "67fb8574b4f5",
+  "uzun": 43350
+ },
+ "sx-P8-tayyor": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nKo‘p marta sinaymiz\nHarakat\nO‘zgaruvchi\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\ngo to x:\ny:\nrandom\n2\nto\n7\n0\n2 / 2 ta blok\nSinov: 0 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 2)\n‹ Orqaga\n7 ni 6 ga o‘zgartiring\n▶ Ishga tushir\nKeyingi ›",
+  "bloklar": [
+   "y:go to x:y:random2to70",
+   "m:random2to7"
+  ],
+  "html": "851390f373e4",
+  "uzun": 27299
+ },
+ "y-01": {
+  "id": "P1",
+  "matn": "USTOZ · PROYEKTOR\n14-DARS · XATONI TOPISH\nBugun xatolarni topamiz!\n\nCoddy\nSalom! Bugun dasturlardagi xatolarni topib tuzatasiz.\n\nO‘TGAN DARSDA\nrandom\n1\nto\n6\nTasodifiy son\nDastur o‘zi tanlaydigan son\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKirdi: 1\nKeyingi ›\nO‘QUVCHI · NOUTBUK\n14-DARS · XATONI TOPISH\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "f83c2201f49e",
+  "uzun": 87446
+ },
+ "y-02": {
+  "id": "P2",
+  "matn": "USTOZ · PROYEKTOR\n14-DARS · XATONI TOPISH\nSAVOL\nXatoni qanday topamiz?\n\nCoddy\nDastur tepalikni chizishi kerak edi. Boshqa rasm chiqdi.\n\nA\nOxirgi blokni tuzatamiz\n3\n→ 2\nB\nHar xil o‘zgartirib ko‘ramiz\n2\n3\n4\nC\nQadam-baqadam yuramiz\nBitta qadam\n5-qadam\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 3)\n‹ Orqaga\nJavob berdi: 0 / 1\nSinab ko‘ramiz ›\nO‘QUVCHI · NOUTBUK\n14-DARS · XATONI TOPISH\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "b64b35538cc2",
+  "uzun": 91277
+ },
+ "y-03": {
+  "id": "P2S",
+  "matn": "USTOZ · PROYEKTOR\nSAVOL\nXatoni qanday topamiz?\n\nCoddy\nDastur tepalikni chizishi kerak edi. Boshqa rasm chiqdi.\n\nA\nOxirgi blokni tuzatamiz\n3\n→ 2\nB\nHar xil o‘zgartirib ko‘ramiz\n2\n3\n4\nC\nQadam-baqadam yuramiz\nBitta qadam\n5-qadam\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "ad5cefe94443",
+  "uzun": 90848
+ },
+ "y-04": {
+  "id": "P2C",
+  "matn": "USTOZ · PROYEKTOR\nJAVOB\nQadam-baqadam yuramiz\n\nCoddy\nHar qadamda qarayman: rasmdan chiqmadimmi?\n\nA\nOxirgi blokni tuzatamiz\n✕ xato boshqa joyda\n3\n→ 2\nB\nHar xil o‘zgartirib ko‘ramiz\n✕ rasm battar\n2\n3\n4\nC\nQadam-baqadam yuramiz\n✓ 5-qadamda topildi\nBitta qadam\n5-qadam\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 2)\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "3f9126b561e0",
+  "uzun": 91311
+ },
+ "y-05": {
+  "id": "P3",
+  "matn": "USTOZ · PROYEKTOR\nESLAYMIZ\nMuammocha — iz\n\nCoddy\nMuammocha xato qayerdaligini ko‘rsatadi.\n\nBo‘shvoy — dastur bo‘sh yoki ichi bo‘sh\nKamvoy — yetmadi, qoldi yoki maydon tugadi\nOrtiqvoy — ortiqcha yurdi\nTo‘siqvoy — devorga urildi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "7ce9eea3d122",
+  "uzun": 108601
+ },
+ "y-06": {
+  "id": "P4",
+  "matn": "USTOZ · PROYEKTOR\nREJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Har birida xatoni o‘zingiz topasiz.\n\nDars oxirida · topishmoq · Ustoz xatoni izlaydi\nTopishmoq\n1\nTo‘xtagan joy\n2\nBitta qadam\n3\nYashirin xato\n‹ Orqaga\nBoshladik ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "9d91a512ac9e",
+  "uzun": 94402
+ },
+ "y-07": {
+  "id": "P6",
+  "matn": "USTOZ · PROYEKTOR\nQOIDA\nO‘zingiz topasiz\n\nCoddy\nAvval ishga tushiring, keyin tuzating.\n\nIshga tushir\nAvval ishga tushiring — qayerda to‘xtaydi?\nBitta qadam\nHar bosishda bitta qadam\nMaslahat\nBir urinishdan keyin ochiladi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "2fd12448bbb2",
+  "uzun": 87486
+ },
+ "y-08": {
+  "id": "P5",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nEndi o‘zingiz!\n\nCoddy\nIshga tushiring — muammocha to‘xtagan joyni ko‘rsatadi.\n\nUch xatoni tuzatdi\n0 / 1\nHar belgi — uch xatoni tuzatgan bitta bola\n1\n0\nBurilish\n2\n0\nPastga\n3\n0\nQator\n★\n0\nIkki xato\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "af08d23a5b85",
+  "uzun": 91287
+ },
+ "y-09": {
+  "id": "P4B",
+  "matn": "USTOZ · PROYEKTOR\nREJA · 2-BEKAT\n2 · Bitta qadam\n\nCoddy\nEndi dastur to‘xtamaydi — rasm boshqa chiqadi.\n\nDars oxirida · topishmoq · Ustoz xatoni izlaydi\nTopishmoq\n✓\nTo‘xtagan joy\n2\nBitta qadam\n3\nYashirin xato\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "aa9b5e87b183",
+  "uzun": 94238
+ },
+ "y-10": {
+  "id": "P7",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nHar bosishda bitta qadam\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nrepeat\n3\nmove up\nmove right\n3 / 3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 0)\n‹ Orqaga\nBitta qadam\n▶ Ishga tushir\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "p:repeat3move upmove right",
+   "u:move upmove right",
+   "r:move right"
+  ],
+  "html": "049c0f3795f1",
+  "uzun": 91869
+ },
+ "y-11": {
+  "id": "P5G",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nQadam-baqadam!\n\nCoddy\nBitta qadam bilan yuring — rasmdan chiqqan joyni toping.\n\nUch xatoni tuzatdi\n0 / 1\n1\n0\nIlmoq\n2\n0\nIlon\n3\n0\nDarvoza\n★\n0\nUch ustun\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "de3e9c96c4e4",
+  "uzun": 89563
+ },
+ "y-12": {
+  "id": "P9",
+  "matn": "USTOZ · PROYEKTOR\nXULOSA\nXato — topiladi!\n\nCoddy\nAvval ishga tushiraman, keyin qadam-baqadam qarayman.\n\n▶ Ishga tushir\nMuammocha joyni ko‘rsatadi\nBitta qadam\nBitta qadam\nQayerda rasmdan chiqqani ko‘rinadi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 2)\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "5769e63a07d1",
+  "uzun": 93058
+ },
+ "y-13": {
+  "id": "P4C",
+  "matn": "USTOZ · PROYEKTOR\nREJA · 3-BEKAT\n3 · Yashirin xato\n\nCoddy\nOxirgi bekat: bir marta ishlagan dasturda ham xato bo‘lishi mumkin.\n\nDars oxirida · topishmoq · Ustoz xatoni izlaydi\nTopishmoq\n✓\nTo‘xtagan joy\n✓\nBitta qadam\n3\nYashirin xato\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "c17a823d72b5",
+  "uzun": 94207
+ },
+ "y-14": {
+  "id": "P8",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nKo‘p marta sinaymiz\nHarakat\nO‘zgaruvchi\nHarakat\ngo to\nx:\n0\ny:\n0\nOlma dasturi\ngo to x:\ny:\nrandom\n2\nto\n7\n0\n2 / 2 ta blok\nSinov: 0 / 3\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 2)\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "y:go to x:y:random2to70",
+   "m:random2to7"
+  ],
+  "html": "d5f5c40a194e",
+  "uzun": 81325
+ },
+ "y-15": {
+  "id": "P5B",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nHamma holatni sinang!\n\nCoddy\nBir holatda ishladi — endi boshqasida sinang.\n\nUch xatoni tuzatdi\n0 / 1\nHar belgi — uch xatoni tuzatgan bitta bola\n1\n0\nIkki labirint\n2\n0\nOlma terish\n3\n0\nSavatlar\n★\n0\nTopishmoq\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "45147ac9be87",
+  "uzun": 91010
+ },
+ "y-16": {
+  "id": "P11",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RSATISH\nTopishmog‘ingizni o‘qib bering\nSiz o‘qiysiz — men xatoni izlayman.\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nBitta qadam\n▶ Ishga tushir\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "2155d5224699",
+  "uzun": 92696
+ },
+ "y-17": {
+  "id": "P12",
+  "matn": "USTOZ · PROYEKTOR\nYAKUN\nSiz xatolarni topdingiz!\nBUGUNGI QOIDA\nXato — topiladigan narsa\nIshga tushiring · Qadam-baqadam yuring · Tuzating · Yana sinang\nKeyingi dars\n15 · Xakaton №1\n✓\nTo‘xtagan joy\n✓\nBitta qadam\n✓\nYashirin xato\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "18bf11c241ab",
+  "uzun": 82778
+ },
+ "y-18": {
+  "id": "P14",
+  "matn": "USTOZ · PROYEKTOR\nSINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nta xato tuzatdi\n0\nmarta «Bitta qadam» bosdi\n0\npog‘ona bajardi\n‹ Orqaga\nDarsni yakunlash\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a334963ced67",
+  "uzun": 92775
+ },
+ "varaq": {
+  "id": "",
+  "matn": "14-dars · Xatoni topish — ustoz varag‘i\n\nAsosiy fikr: xato — topiladigan narsa: ishga tushiring, qadam-baqadam yuring, tuzating, yana sinang. Hukda, xulosada (12) va yakunda chiqadi.\n\nYo‘l: huk (uch usul — uch sinov) → eslaymiz: muammochalar → reja → qoida → 1-bekat «To‘xtagan joy» → 2-bekat «Bitta qadam» → 3-bekat «Yashirin xato» → topishmoqni o‘qib berish → yakun.\n\nBu — amaliyot darsi: yangi blok yo‘q, siz xatoni tuzatib bermaysiz. 10- va 14-qadamda faqat usulni ko‘rsatasiz («Bitta qadam», ko‘p marta sinash) — bolalarning pog‘onalari boshqa maydonda, boshqa xato bilan.\n\nBitta qadam — yangi tugma («▶ Ishga tushir» yonida): har bosish — qahramon bitta qadam; repeat sanog‘i va if tekshiruvi o‘sha bosishda ko‘rinadi. Kulrang rasmda qahramon rasmdan chiqqan qadamda dastur to‘xtaydi. «▶ Ishga tushir» — qolganini odatdagidek. 3-bekatning 1–3-pog‘onalarida tugma yo‘q.\n\nMaslahat bir urinishdan keyin ochiladi. Mashq paytida xatoni aytmang: «Qahramon qayerda to‘xtadi? Qayerga borishi kerak edi? Nechanchi qadamda chiqdi?» «Xato qildingiz» demang — «dasturda xato bor, uni topamiz». Muammocha chiqsa — maqtang: u iz beradi.\n\nBugungi to‘qqiz xato (faqat siz uchun — bolaga turi aytilmaydi). Ko‘p bola tursa: 8 · 1 yo‘nalish — «Yulduz qaysi tomonda?» · 8 · 2 takrorlash soni — «Yulduzgacha nechta katak?» · 8 · 3 go to soni — «Eng o‘ngdagi olmaning X i nechchi?» · 11 · 1 ortiqcha move up — «Rasmda tepaga nechta katak? Dasturda nechta?» · 11 · 2 yetishmaydigan move down — javondan qo‘shilgan blok oxiriga tushishini va joy almashtirishni eslating · 11 · 3 ikki repeat tartibi — «Tepaga chiqqach — qaysi tomonga?» · 15 · 1 shart tomoni — 8-darsdagi «har qadamdan oldin tekshiradi»ni eslating · 15 · 2 hodisa tugmasi — «Har strelkani bittadan bosib ko‘ring» · 15 · 3 random sonlari — «Chap chetdagi savatning X i nechchi?» 12-qadamda bitta qiyin pog‘onani sinf bilan qadam-baqadam o‘qing (xatoni aytmang).\n\nKo‘rish ekranlarida (huk, 10, 14-qadam) hamma narsa oldindan: 14-qadamda random 4, 2, 7 chiqadi (7 — maydon cheti), tuzatilgach 5, 3, 6. 16-qadamda topishmoqni siz «Bitta qadam» bilan topasiz — sinfdan so‘ramang; proyektorga ism chiqmaydi.\n\nBoshqaruv: → yoki «Keyingi» — oldinga, ← — orqaga, F — to‘liq ekran. O‘ng tepada (sichqoncha olib borilsa) — qadam ro‘yxati va «aloqa» belgisi (yashil — ulangan).\n\n1\nKirish\n\nEKRANDA\n«14-dars · Xatoni topish» — «Bugun xatolarni topamiz!» Maydon, Coddy (0, 0) da; pastda «O‘tgan darsda» — tasodifiy son.\n\nSIZ\n«O‘tgan darsda dastur sonni o‘zi tanladi — o‘yin har safar boshqacha bo‘ldi.» «Bugun yangi blok yo‘q. Xatosi bor dasturlarni tuzatasiz.» «Noutbukda «Tayyorman» tugmasini bosing.»\n\nBOLA O‘RGANADI\nBugun xatoni o‘zi topadi.\n\n2\nSavol: xatoni qanday topamiz?\n\nEKRANDA\nSavol: «Xatoni qanday topamiz?» Kulrang tepalik, oltin iz rasmdan chiqqan; dastur 6 ta blok. Uchta karta: A «Oxirgi blokni tuzatamiz», B «Har xil o‘zgartirib ko‘ramiz», C «Qadam-baqadam yuramiz».\n\nSIZ\n«Dasturda bitta xato bor. Rasm boshqacha chiqdi.» «Har kim noutbukida bitta kartani tanlasin: xatoni qanday topamiz?»\n\nBOLA O‘RGANADI\nTaxmin qiladi — buni sinov ko‘rsatadi.\n\n3\nUch sinov\n\nEKRANDA\nUch sinov: A — oxirgi repeat 2: iz yana chiqdi («✕ xato boshqa joyda»). «Keyingi» — B: birinchi repeat 3 — battar («✕ rasm battar»). «Keyingi» — C: «Bitta qadam» besh marta, 5-qadamda rasmdan chiqdi («✓ 5-qadamda topildi»).\n\nSIZ\n«Muammocha oxirida chiqdi, lekin xato oxirida emas edi. Har xil o‘zgartirsak — battar.» «Qadam-baqadam yurdik: qahramon qayerda rasmdan chiqdi — xato o‘sha yerda.»\n\nBOLA O‘RGANADI\nTavakkal emas — qadam-baqadam izlaydi.\n\n4\nJavob: qadam-baqadam yuramiz\n\nEKRANDA\nJavob: «Qadam-baqadam yuramiz». A va B xira, C oltin; tepalik to‘liq oltin.\n\nSIZ\n«Xato — topiladigan narsa. Qadam-baqadam yursak, u o‘zi ko‘rinadi.»\n\nBOLA O‘RGANADI\nXato topiladigan narsa ekanini biladi.\n\n5\nEslaymiz: muammochalar\n\nEKRANDA\nEslaymiz: «Muammocha nima deydi?» «Keyingi» — birma-bir: Bo‘shvoy, Kamvoy, Ortiqvoy, To‘siqvoy.\n\nSIZ\n«Muammocha — jazo emas. U yordamchi.» «Muammocha gapini o‘qing — u qayerga qarashni aytadi.»\n\nBOLA O‘RGANADI\nMuammochadan iz oladi.\n\n6\nReja\n\nEKRANDA\nReja: tepalik — to‘xtagan joy → bitta qadam → yashirin xato; cho‘qqida «topishmoq».\n\nSIZ\n«Bugun uchta bekat: to‘xtagan joy, bitta qadam, yashirin xato.» «Dars oxirida o‘zingiz topishmoq tuzasiz — bitta xatoli dastur.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n7\nBugungi qoida: o‘zingiz topasiz\n\nEKRANDA\nQoida: «Bugun xatoni o‘zingiz topasiz». «Keyingi» — birma-bir: «▶ Ishga tushir», «Bitta qadam», «Maslahat» qulfi.\n\nSIZ\n«Har pog‘onada dastur tayyor, unda xato bor. Men tuzatmayman — o‘zingiz topasiz.» «Avval ishga tushiring. Kerak bo‘lsa — Bitta qadam.» «Tuzatgach — yana ishga tushiring. Endi o‘zingiz.»\n\nBOLA O‘RGANADI\nAvval ishga tushiradi.\n\n8\nTo‘xtagan joy\n\nEKRANDA\nMashq: «Endi o‘zingiz!» — zinapoya: 1 burilish · 2 pastga · 3 qator · ★ ikki xato.\n\nSIZ\n«Avval ishga tushiring. Muammocha qayerda chiqdi?» «To‘xtagan blokni o‘qing — va undan oldingisini ham.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nTo‘xtagan joydan xatoni topadi.\n\n9\n2-bekat\n\nEKRANDA\nTepalik: 1-bekat ✓ — «Bitta qadam».\n\nSIZ\n«To‘xtagan joyni topdik. Endi xato to‘xtatmaydi — uni qadam-baqadam izlaymiz.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n10\nKo‘ramiz: bitta qadam\n\nEKRANDA\nKo‘ramiz: «Har bosishda bitta qadam». Kulrang zinapoya; tayyor repeat 3 [↑ →]. «▶ Ishga tushir» — rasmdan chiqdi; «Bitta qadam» — 1-qadamda (2, 1); ikki blok joyini almashtirasiz — «Rasm tayyor!».\n\nSIZ\n«Bitta qadam — har bosishda qahramon bitta qadam yuradi. Qahramon qayerda — rasm bilan solishtiramiz.» «Qahramon rasmdan chiqqan qadam — xatoga eng yaqin joy. Shu blokni va undan oldingisini o‘qiymiz.» «Endi o‘zingiz.»\n\nBOLA O‘RGANADI\n«Bitta qadam»ni ishlatadi.\n\n11\nBitta qadam\n\nEKRANDA\nMashq: «Qadam-baqadam!» — zinapoya: 1 ilmoq · 2 ilon · 3 darvoza · ★ uch ustun.\n\nSIZ\n«Bitta qadam bosing va qarang: qahramon kulrang katakdami?» «Rasmdan chiqqan qadamda dastur to‘xtaydi — shu blokni va undan oldingisini o‘qing.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nRasmdan chiqqan qadamni topadi.\n\n12\nXulosa: xato qanday topiladi\n\nEKRANDA\nXulosa: «Xato — topiladigan narsa». Ikki karta: «▶ Ishga tushir» — muammocha joyni ko‘rsatadi; «Bitta qadam» — qayerda rasmdan chiqqani ko‘rinadi.\n\nSIZ\n«Avval ishga tushiramiz. Xato to‘xtatmasa — qadam-baqadam yuramiz.» «Xato — qahramon rasmdan chiqqan joyda yoki undan oldinroq. Tuzatgach — yana ishga tushiramiz.»\n\nBOLA O‘RGANADI\nXatoni topish usulini biladi.\n\n13\n3-bekat\n\nEKRANDA\nTepalik: 1, 2 ✓ — «Yashirin xato».\n\nSIZ\n«Ikki bekatdan o‘tdik. Oxirgisida xato har safar ko‘rinmaydi.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n14\nKo‘ramiz: ko‘p marta sinaymiz\n\nEKRANDA\nKo‘ramiz: «Ko‘p marta sinaymiz». Savatlar (2, 0)…(6, 0); go to x: (random 2 to 7) y: 0. Uch marta: 4, 2 — savatga, 7 — maydon cheti. 7 ni 6 ga o‘zgartirib, yana uch marta — «Har safar boshqa joy!».\n\nSIZ\n«Ikki marta ishladi, uchinchisida chiqib ketdi. Xato yashirin edi.» «Dastur har holatda ishlasin: har labirintda, har tugmada, har sonda.» «Endi o‘zingiz.»\n\nBOLA O‘RGANADI\nDasturni ko‘p marta sinaydi.\n\n15\nYashirin xato\n\nEKRANDA\nMashq: «Hamma holatni sinang!» — zinapoya: 1 ikki labirint · 2 olma terish · 3 savatlar · ★ topishmoq.\n\nSIZ\n«Bu bekatda dastur bir holatda ishlaydi, boshqasida — yo‘q. O‘sha holatni toping.» «Topishmoqda xato bitta bo‘lsin.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nHamma holatni sinaydi.\n\n16\nTopishmog‘ingizni o‘qib bering\n\nEKRANDA\n«Topishmog‘ingizni o‘qib bering». Topishmoq maydoni, dastur bo‘sh. Bola o‘qiydi, siz bloklarni qo‘yasiz, «Bitta qadam» bilan xatoni topasiz. Proyektorda ism yo‘q.\n\nSIZ\n«Kim topishmog‘ini o‘qib beradi? Blokma-blok, yuqoridan pastga.» «Kuzating: qahramon qayerda to‘xtadi va qayerga borishi kerak edi?»\n\nBOLA O‘RGANADI\nO‘z topishmog‘ini o‘qib beradi.\n\n17\nYakun\n\nEKRANDA\nYakun: «Siz xatolarni topdingiz!» Bugungi qoida — «Xato — topiladigan narsa»; keyingi dars — 15 · Xakaton №1.\n\nSIZ\n«Uchala bekatdan o‘tdik: to‘xtagan joy, bitta qadam, yashirin xato.» «Xato — topiladigan narsa: ishga tushiring, qadam-baqadam yuring, tuzating, yana sinang.» «Keyingi darsda do‘stingiz bilan juftlikda kichik o‘yin yasaysiz — xakaton.»\n\nBOLA O‘RGANADI\nO‘z natijasini ko‘radi.\n\n18\nSinfimiz bugun\n\nEKRANDA\nSinfimiz bugun: nechta xato tuzatildi, necha marta «Bitta qadam» bosildi, nechta pog‘ona bajarildi (haqiqiy son, ismsiz).\n\nSIZ\n«Hammangiz zo‘r ishladingiz!» (keyin raqamlarni o‘qiydi) «Dasturchilar ham har kuni xato topib tuzatadi. Bugun siz ham shunday qildingiz.»\n\nBOLA O‘RGANADI\nSinf bilan birga natijani ko‘radi.",
+  "bloklar": [],
+  "html": "925e428171c3",
+  "uzun": 10278
+ },
+ "eshik": {
+  "id": "",
+  "matn": "14-dars · Xatoni topish\n\nQaysi oynani ochamiz?\n\nO‘quvchi oynasi\nUstoz oynasi (proyektor)\nO‘quvchi — o‘zi (ustozsiz)\nIkkalasi yonma-yon (ko‘rik)\nUstoz varag‘i",
+  "bloklar": [],
+  "html": "604eb4350fa1",
+  "uzun": 769
+ },
+ "kirish-ismsiz": {
+  "id": "",
+  "matn": "Darsga kirish\n\nIsmingizni yozing\n\nKirish",
+  "bloklar": [],
+  "html": "bb43a0750caa",
+  "uzun": 213
+ }
+}

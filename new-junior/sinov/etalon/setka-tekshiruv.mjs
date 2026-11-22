@@ -1,7 +1,7 @@
 // Ishlatish: node new-junior/sinov/etalon/setka-tekshiruv.mjs [sahifa.html]  (standart: new-junior/etalon/etalon.html)
 // Qat'iy setka tekshiruvi (v3.2): (1) panel/matn qahramonni yopmaydimi; (2) yo'l qatlamiga (oynaning pastki 40%) panel tushmaydimi;
 // (3) narsa oynadan yoki ish zonasidan chiqmaydimi; (4) sarlavha bir qatorda (sahna shablonida — huk savoli — ikki qatorgacha) va ustuniga sig'adimi;
-// (5) Coddy gapi 12 so'zdan oshmaydimi; (6) tepada bekat chizig'i yo'qmi (38-qaror); (7) bir qatorli yozuv idishidan chiqmaydimi; (8) chap ustunda bo'sh oraliq yo'qmi; (9) panel ichi sig'adimi; (10) quti cho'zilmaganmi
+// (5) Coddy gapi 12 so'zdan oshmaydimi; (6) tepada bekat chizig'i yo'qmi (38-qaror); (7) bir qatorli yozuv idishidan chiqmaydimi; (8) chap ustunda bo'sh oraliq yo'qmi; (9) panel ichi sig'adimi; (10) quti cho'zilmaganmi; (11) chap ustundagi narsa sahnaga kirmaydimi
 import { chromium } from '/home/kali/Desktop/internetLesson/node_modules/playwright-core/index.mjs'
 const b = await chromium.launch({ executablePath: '/usr/bin/google-chrome' })
 const p = await b.newPage({ viewport: { width: 1500, height: 1000 } })
@@ -17,7 +17,7 @@ const r = await p.evaluate(() => {
     const id = ek.getAttribute('aria-label').split(' ')[0]
     ek.querySelectorAll('.oyna').forEach((o) => {
       const or = R(o), yq = { left: or.left, right: or.right, top: or.top + or.height * 0.6, bottom: or.bottom }
-      const panel = [...o.querySelectorAll('.gl, .jv')].filter((e) => !e.closest('.yol'))
+      const panel = [...o.querySelectorAll('.gl, .jv')].filter((e) => !e.closest('.yol') && e.getClientRects().length)
       const aktyor = [...o.querySelectorAll('.yol .q svg, .cdy svg, .cdy2 svg, .qq svg, .xr-q svg, .aktyor svg')]
       panel.forEach((pn) => { const pr = R(pn); if (kes(pr, yq) > 4) out.push(`${id}: «${(pn.className + '').slice(0, 18)}» yo‘l qatlamiga tushdi (${Math.round(kes(pr, yq))}px²)`); if (pr.left < or.left - 1 || pr.right > or.right + 1 || pr.top < or.top - 1 || pr.bottom > or.bottom + 1) out.push(`${id}: «${(pn.className + '').slice(0, 18)}» oynadan chiqdi`)
         aktyor.forEach((a) => { const ar = R(a), k = kes(pr, ar); if (k > ar.width * ar.height * 0.03) out.push(`${id}: «${(pn.className + '').slice(0, 18)}» qahramonni yopdi (${Math.round(100 * k / (ar.width * ar.height))}%)`) }) })
@@ -37,11 +37,13 @@ const r = await p.evaluate(() => {
     ek.querySelectorAll('.hm *').forEach((e) => { if (getComputedStyle(e).whiteSpace !== 'nowrap' || !e.parentElement || e.closest('svg')) return; const er = R(e), pr = R(e.parentElement); if (er.width && (e.scrollWidth > e.clientWidth + 2 || er.right > pr.right + 1.5 || er.left < pr.left - 1.5) && !e.closest('.sudra, .yol, .konfeti')) out.push(`${id}: «${(e.textContent || '').trim().slice(0, 22)}» idishidan chiqdi`) })
     // (8) ikki ustun: chap ustunda bo'sh oraliq 3 cqw dan oshmaydi (16.11: sarlavha bir qatorga tushgach 9–17 cqw bo'sh qolgan edi)
     const cw = R(ek).width / 100
-    ek.querySelectorAll('.t1 .chap, .chap').forEach((c) => { if (!ek.classList.contains('t1')) return; const k = [...c.children].map(R), cr = R(c); let m = 0; for (let i = 1; i < k.length; i++) m = Math.max(m, k[i].top - k[i - 1].bottom); m = Math.max(m, cr.bottom - k[k.length - 1].bottom); if (m > 3 * cw) out.push(`${id}: chap ustunda ${(m / cw).toFixed(1)} cqw bo‘sh oraliq`) })
+    ek.querySelectorAll('.t1 .chap, .chap').forEach((c) => { if (!ek.classList.contains('t1')) return; const k = [...c.children].filter((x) => x.getClientRects().length).map(R), cr = R(c); let m = 0; for (let i = 1; i < k.length; i++) m = Math.max(m, k[i].top - k[i - 1].bottom); m = Math.max(m, cr.bottom - k[k.length - 1].bottom); if (m > 3 * cw) out.push(`${id}: chap ustunda ${(m / cw).toFixed(1)} cqw bo‘sh oraliq`) })
     // (10) quti cho'zilmaydi: chap ustundagi fonli qutida mazmun ichki balandlikning kamida 80% i (16.11: kod qutisining 35% ida mazmun bor edi — «bo'sh joyni cho'zish muammoni yechmaydi»)
     if (ek.classList.contains('t1')) ek.querySelectorAll('.chap > *, .chap > * > *').forEach((e) => { const cs = getComputedStyle(e), er = R(e); if ((cs.backgroundColor === 'rgba(0, 0, 0, 0)' && cs.backgroundImage === 'none') || er.height < 6 * cw) return; const rg = document.createRange(); rg.selectNodeContents(e); const mr = rg.getBoundingClientRect(), ich = er.height - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom); if (mr.height / ich < 0.8) out.push(`${id}: «${(e.className + '').slice(0, 14)}» qutisi cho‘zilgan — mazmun ${Math.round(100 * mr.height / ich)}%`) })
     // (9) sahna panelining ichi sig'adi (kesilmaydi)
     ek.querySelectorAll('.pan').forEach((pn) => { if (pn.scrollHeight > pn.clientHeight + 1) out.push(`${id}: panel ichi sig‘madi (${pn.scrollHeight - pn.clientHeight}px)`) })
+    // (11) chap ustundagi narsa sahnaga (.oyna) kirmaydi — 22.11: 17–18-dars P3 da uchinchi karta sahna ostida qolgan edi, setka sezmagan
+    { const oy = ek.querySelector('.oyna'), ch = ek.querySelector('.chap'); if (oy && ch && !ch.contains(oy)) { const or = R(oy), kir = (e) => { const er = R(e); return er.width > 0 && er.height > 0 && er.right > or.left + 2 && er.left < or.right && er.bottom > or.top + 2 && er.top < or.bottom }; [...ch.querySelectorAll('*')].filter((e) => !e.closest('svg') && kir(e) && !(e.parentElement !== ch && kir(e.parentElement))).slice(0, 2).forEach((e) => out.push(`${id}: «${(e.className + '').slice(0, 18)}» chap ustundan sahnaga kirdi`)) } }
     if (ek.querySelector('.seg')) out.push(`${id}: tepada bekat chizig‘i bor (38-qaror)`)
   })
   return { out, soni }

@@ -21,7 +21,10 @@ try { qPog = +(localStorage.getItem((K + 'pog')) || 0); qTayyor = localStorage.g
 function bildir(m) { m.kim = ROL === 'yonma' ? 'yonma' : MEN; if (ROL === 'yonma') ishlov(m); else yubor(m) }
 function pogQosh(n) { if (n > qPog) { qPog = n; saqla((K + 'pog'), n) } bildir({ t: 'pog', n }) }
 function tayyorBildir() { qTayyor = true; saqla((K + 'tayyor'), '1'); bildir({ t: 'tayyor' }) }
-function blokQosh(id, bl) { const x = { r: 0, l: 0, j: 0, s: 0, m: '' }; bl.forEach((mb) => { const t = blokTuri(mb); x[t] = (x[t] || 0) + 1; if (t === 's') x.m = blokMatn(mb) }); qBlok[id] = x; saqla((K + 'bloklar'), JSON.stringify(qBlok)); bildir({ t: 'bloklar', x: blokJami() }) }
+function blokQosh(id, bl) { const x = { r: 0, l: 0, j: 0, s: 0, m: '' }; bl.forEach((mb) => { const t = blokTuri(mb); x[t] = (x[t] || 0) + 1; if (t === 's') x.m = blokMatn(mb) }); qBlok[id] = x; saqla((K + 'bloklar'), JSON.stringify(qBlok)); bildir({ t: 'bloklar', x: blokJami() }); if (DARS.tuzatish && id !== '_bq') bildir({ t: 'tuzatdi', n: Object.keys(qBlok).filter((e) => DARS.tuzatish.indexOf(e) >= 0).length }) }
+// 14-dars: «Bitta qadam» bosishlari — '_bq' yozuvida 'Q' sanog'i (natija { blok: 'Q' }; ustozga odatdagi bloklar xabari bilan); 16-qadamda (oqish) sanalmaydi.
+// DARS.tuzatish — «Tuzatuvchi» yutug'i uchun ekranlar: bajarilganlari soni { t: 'tuzatdi', n } (LMS yutuqlar: x.n >= n)
+function bqQosh(ek) { const r = ek && ek.parentNode && ek.parentNode.closest('#ust,#bol'); if (!r || r.id !== 'bol' || ek.dataset.oqish) return; const n = ((qBlok._bq || {}).Q || 0) + 1; blokQosh('_bq', Array.from({ length: n }, () => ({ dataset: { tur: 'Q' } }))) }
 // bolaning bugungi jami bloklari (ustozdagi «Sinfimiz bugun» uchun)
 // 5b-1: har blok turi bo'yicha jami (r, l, u, d, j, s) va e — muvaffaqiyatli topshiriq ekranlari (natija «nechta labirint» kabi sanaydi)
 // 11-dars: eng — har tur bo'yicha eng katta son (bitta ekrandagi; natija «eng katta ball»)
@@ -31,7 +34,8 @@ function blokJami() { const j = { r: 0, l: 0, j: 0, s: 0 }, eng = {}; Object.val
 function natijaSon(x, tayyor) { return Object.fromEntries(DARS.natija.map((n) => [n.k, n.tayyor ? (tayyor ? 1 : 0) : n.eng ? ((x.eng || {})[n.eng] || 0) : n.ekran ? (x.e || []).filter((id) => n.ekran.indexOf(id) >= 0).length : [...n.blok].reduce((a, t) => a + (x[t] || 0), 0)])) }
 // ustozda: har bolaning holati (kim — oyna belgisi); ochildi — ustoz ko'rsatib bo'lgan qadamlar
 const blokM = new Map(), tanlov = new Map(), ismBerdi = new Set(), pogM = new Map(), joyM = new Map(), tayyorS = new Set(), yordamM = new Map(), ochildi = new Set()
-const qadamX = () => ({ t: 'qadam', i: qadam, v: Date.now(), o: ochildi.has(qadam) })
+const juftM = new Map(), ikkiM = new Map(), xkM = new Map()
+const qadamX = () => { const x = { t: 'qadam', i: qadam, v: Date.now(), o: ochildi.has(qadam) }; if (DARS.xakaton && juftM.size) { x.xq = [...new Set(juftM.values())]; x.xk = Object.fromEntries([...juftM].map(([kim, k]) => [k, { ...(xkM.get(kim) || {}), n: 1 + [...ikkiM.values()].filter((v) => v === k).length }])) } return x }
 function ochil() { if (SOLO) { setTimeout(soloKeyingi, 1800); return } ochildi.add(qadam); if (ROL === 'yonma') { if (bolaId() === DARS.bola.kutish) bolaKeyingi() } else yubor(qadamX()) }
 function tugadiBola() { const ek = document.querySelector('#bol .ekran'); if (!ek || ek.dataset.id !== DARS.bola.yakun) return; ishora(ek, DARS.tugadi.bola); konfeti(ek) }
 function tugat() {
@@ -63,7 +67,7 @@ if (AL) AL.boshla({ kim: MEN, rol: ROL, qabul, holat, bor() { ulangan = true }, 
 // ustoz qadamni muntazam qayta yuboradi — o'quvchi bir xabarni o'tkazib yuborsa ham to'g'ri qadamda qoladi
 if (ROL === 'ustoz') setInterval(() => yubor(qadamX()), 4000)
 function holat(on) { const u = document.querySelector('.ul'); if (u) u.classList.toggle('on', on) }
-function salom() { yubor({ t: 'salom', kim: MEN, javob: menJavob, qah, ism: !!qism, pog: qPog, joy: qJoy, tayyor: qTayyor, bloklar: blokJami() }) }
+function salom() { yubor({ t: 'salom', kim: MEN, javob: menJavob, qah, ism: !!qism, pog: qPog, joy: qJoy, tayyor: qTayyor, bloklar: blokJami() }); if (DARS.xakaton && juftRol() === 'oyin') yubor({ t: 'juft', kim: MEN, q: qahKalit() }); if (DARS.xakaton && juftRol() === 'ikki') { let k = ''; try { k = localStorage.getItem(K + 'juftQ') || '' } catch (e) {} if (k) yubor({ t: 'juftIkki', kim: MEN, q: k }) } }
 function hisob() {
   if (SOLO) return soloHisob()
   const u = document.querySelector('#ust'); if (!u) return
@@ -86,6 +90,14 @@ function hisob() {
   // pog'ona: sanoq[1]-pog'onani bajarganlar; zinapoya (.pg-k) bo'lsa — har pog'ona alohida
   // sanoq[2] — zinapoyaning birinchi pog'onasi raqamidan oldingisi (5b-1: bir darsda bir necha zinapoya — 2-darsda 1–4, 5–8, 9–11)
   if (tur === 'pog') { const n = pogSon(sanoq[1]); tug(n, T(n)); u.querySelectorAll('.pg-k').forEach((k, i) => { const b = k.querySelector('.pg-s b'); if (b) b.textContent = pogSon(i + 1 + (sanoq[2] || 0)) }); if (hint) hint.textContent = 'Yordam so‘radi: ' + yordam }
+  // 15-dars: doskalar juftlik bo'yicha — o'yin noutbuklarining pog'onasi, maxraj — juftliklar (bolalar / 2); 'hozir' — zinapoyada hozir shu qismdagilar
+  if (tur === 'juft') {
+    const n = pogSon(sanoq[1]), j = Math.max(n, Math.max(1, Math.floor(bolalar.size / 2))), pv = [...pogM.values()]
+    tug(n, j)
+    if (sanoq[3] === 'hozir') u.querySelectorAll('.pg-k').forEach((k, i, all) => { const b = k.querySelector('.pg-s b'), v = (sanoq[2] || 0) + 1 + i; if (b) b.textContent = pv.filter((x) => (i === all.length - 1 ? x >= v : x === v)).length })
+    u.querySelectorAll('.xk-o[data-o]').forEach((c) => { const b = c.querySelector('.jr-s b'); if (b) b.textContent = [...xkM.values()].filter((x) => x.oyin === c.dataset.o).length })
+    if (hint) hint.textContent = sanoq[4] ? sanoq[4] + ': ' + n + ' / ' + j : 'Yordam so‘radi: ' + yordam + ' ta noutbuk'
+  }
   if (tur === 'sinf') {
     const j = {}; blokM.forEach((x) => { const n = natijaSon(x, false); for (const k in n) j[k] = (j[k] || 0) + n[k] })
     const qo = (k, v) => { const b = u.querySelector('.sn-t[data-k="' + k + '"] b'); if (b) b.textContent = v }
@@ -94,6 +106,11 @@ function hisob() {
     if (qq) qq.innerHTML = turlar.slice(0, 2).map((k) => '<span>' + (QAH_SVG[k] || '') + '</span>').join('') + robotHtml + turlar.slice(2).map((k) => '<span>' + (QAH_SVG[k] || '') + '</span>').join('')
   }
   if (tur === 'sahna') { const n = tayyorS.size, j = T(n); tug(n, j); u.querySelectorAll('.jy-q .jy').forEach((c, i) => { const kimlar = [...joyM.keys()].filter((k) => joyM.get(k) === JOYLAR[i]); const b = c.querySelector('.jy-s b'); if (b) b.textContent = kimlar.length; const qq = c.querySelector('.jy-qq'); if (qq) qq.innerHTML = kimlar.slice(0, 3).map((k) => '<i>' + (QAH_SVG[tanlov.get(k)] || '') + '</i>').join('') }); if (hint) hint.textContent = 'Sahnasi tayyor: ' + n + ' / ' + j + ' · yordam so‘radi: ' + yordam }
+}
+function juftQabul(x) {
+  const yangi = JSON.stringify(x.xq) !== JSON.stringify(qXq); qXq = x.xq; qXk = x.xk || qXk; saqla(K + 'xq', JSON.stringify(qXq)); saqla(K + 'xkU', JSON.stringify(qXk))
+  if (juftRol() === 'oyin' && qXk && qXk[qahKalit()]) { try { const s = JSON.parse(localStorage.getItem(K + 'xk') || '{}') || {}; if (s.juft !== qXk[qahKalit()].n) { s.juft = qXk[qahKalit()].n; localStorage.setItem(K + 'xk', JSON.stringify(s)) } } catch (e) {} }
+  const ek = document.querySelector('#bol .ekran'); if (yangi && ek && TOP(ek.dataset.id).ish === 'juftQah' && typeof juftQahTayyorla === 'function') juftQahTayyorla(ek)
 }
 function ishlov(x) {
   if (ROL === 'ustoz' || ROL === 'yonma') {
@@ -107,10 +124,13 @@ function ishlov(x) {
     if (x.t === 'yordam' && x.kim) { if (!yordamM.has(x.s)) yordamM.set(x.s, new Set()); yordamM.get(x.s).add(x.kim); hisob() }
     if (x.t === 'javob' && x.kim) { bolalar.add(x.kim); javoblar.set(x.kim, x.k); hisob() }
     if (x.t === 'yur') { yurBolalar.add(x.kim || 'nomalum'); hisob() }
+    if (x.t === 'juft' && x.kim) { juftM.set(x.kim, x.q); yubor(qadamX()); hisob() }
+    if (x.t === 'juftIkki' && x.kim) { if (x.q) ikkiM.set(x.kim, x.q); else ikkiM.delete(x.kim); yubor(qadamX()); hisob() }
+    if (x.t === 'xk' && x.kim) { xkM.set(x.kim, x.x); hisob() }
   }
   if (ROL === 'bola' && x.t === 'kimbor' && ism) salom()
   // eskirgan xabar (tarmoqda kechikib kelgan) e'tiborsiz — aks holda bola ishi o'chib ketadi
-  if (ROL === 'bola' && x.t === 'qadam') { if (x.v && x.v < oxirgiV) return; if (x.v) oxirgiV = x.v; if (x.i !== qadam) { const eski = bolaQ(qadam); qadam = x.i; if (QADAM[qadam][2] || bolaQ(qadam) !== eski) { ichki = 0; chiz() } } if (x.o && DARS.ochish.indexOf(QADAM[qadam][1]) >= 0 && bolaId() === DARS.bola.kutish) bolaKeyingi() }
+  if (ROL === 'bola' && x.t === 'qadam') { if (x.v && x.v < oxirgiV) return; if (x.v) oxirgiV = x.v; if (x.xq) juftQabul(x); if (x.i !== qadam) { const eski = bolaQ(qadam); qadam = x.i; if (QADAM[qadam][2] || bolaQ(qadam) !== eski) { ichki = 0; chiz() } } if (x.o && DARS.ochish.indexOf(QADAM[qadam][1]) >= 0 && bolaId() === DARS.bola.kutish) bolaKeyingi() }
   if (ROL === 'bola' && x.t === 'tugadi') tugadiBola()
 }
 // --- ekran ---
@@ -147,10 +167,21 @@ function soloTugma() {
 }
 // 5b-1 (94-qaror, 2-A): qahramoni yo'q bola (oldingi darsda bo'lmagan) — dars e'lonidagi qahramon tanlash ekrani, tanlagach o'z joyiga qaytadi
 // 5b-2: qadamning bola ro'yxati null — bola ekrani o'zgarmaydi: oldingi qadamdagi ekrani (va undagi dasturi) qoladi (2-dars 16-qadam: bola dasturini o'qib beradi)
+// 15-dars: juftlik — o'yin noutbuki ('oyin') yoki ikkinchi noutbuk ('ikki', QADAM[i][4] ro'yxati bo'yicha yuradi); DARS.ekranTanlov — o'yin turi bo'yicha ekran
+// (tanlov holati K+'xk' — studiya xakaton.js). Ikkinchi noutbuk do'stining qahramonini bosadi (kalit — qahramon, rangi, nomi); o'yin noutbuki xulosasi
+// (bildir { t: 'xk' }) ustozga keladi, ustoz qadam xabari bilan uzatadi: xq — o'yin noutbuklaridagi qahramonlar, xk — kalit → xulosa (n — juftlikda necha bola)
+const juftRol = () => { try { return localStorage.getItem(K + 'juft') || '' } catch (e) { return '' } }
+const qahKalit = () => (qah || 'momiq') + '|' + qrang + '|' + qism
+const ekranT = (id) => { const m = DARS.ekranTanlov && DARS.ekranTanlov[id]; if (!m) return id; let o = ''; try { o = (JSON.parse(localStorage.getItem(K + 'xk') || '{}') || {}).oyin || '' } catch (e) {} return m[o === 'lab' ? 1 : 0] }
+let qXq = null, qXk = null
+try { qXq = JSON.parse(localStorage.getItem(K + 'xq') || 'null'); qXk = JSON.parse(localStorage.getItem(K + 'xkU') || 'null') } catch (e) {}
+function juftTanla(j) { saqla(K + 'juft', j); if (j === 'oyin') { bildir({ t: 'juft', q: qahKalit() }); pogQosh(1) } else bildir({ t: 'juftIkki', q: '' }); setTimeout(bolaKeyingi, 500) }
+const juftRoyxat = () => (qXq && qXq.length ? qXq : QAHRAMONLAR.map((k) => k + '|-1|'))
+function juftXulosa() { let k = ''; try { k = localStorage.getItem(K + 'juftQ') || '' } catch (e) {} return (qXk && k && qXk[k]) || null }
 const bolaQ = (i) => { while (i > 0 && !QADAM[i][2]) i--; return i }
 // A·1 (20.11): bola ro'yxati 'oxirgi' — bola oxirgi yechgan pog'onasini ko'radi (studiya.js oxirgiOl); hech narsa yechmagan bo'lsa — kutish ekrani
-const bolaR = () => { const r = QADAM[bolaQ(qadam)][2]; if (r !== 'oxirgi') return r; const x = typeof oxirgiOl === 'function' && oxirgiOl(); return [(x && x.id) || DARS.bola.kutish] }
-function bolaId() { if (DARS.bola.qahramonYoq && !qah) return DARS.bola.qahramonYoq; if (SOLO) { const r = soloR(qadam); return r[Math.min(ichki, r.length - 1)] } const b = bolaR(); return b[Math.min(ichki, b.length - 1)] }
+const bolaR = () => { const q = QADAM[bolaQ(qadam)], r = (q[4] && juftRol() === 'ikki' && q[4]) || q[2]; if (r !== 'oxirgi') return r; const x = typeof oxirgiOl === 'function' && oxirgiOl(); return [(x && x.id) || DARS.bola.kutish] }
+function bolaId() { if (DARS.bola.qahramonYoq && !qah) return DARS.bola.qahramonYoq; if (SOLO) { const r = soloR(qadam); return ekranT(r[Math.min(ichki, r.length - 1)]) } const b = bolaR(); return ekranT(b[Math.min(ichki, b.length - 1)]) }
 function chiz(qoldi) {
   const ilova = document.getElementById('ilova')
   // yonma-yon ko'rikda bola ekrani o'zgarmaydigan qadam (bolaQ) — eski o'quvchi oynasi joyiga qaytariladi, dasturi bilan
@@ -184,10 +215,11 @@ document.addEventListener('click', (e) => {
   const id = bolaId()
   const jk = e.target.closest('.jk'), tq = e.target.closest('.tq-o'), jy = e.target.closest('.jy'), yur = e.target.closest('.yur-b')
   if (yur) { if (yur.dataset.b) return; yur.dataset.b = 1; yur.classList.add('bos'); yur.textContent = '✓'; const hn = bol.querySelector('.hint'); if (hn) hn.textContent = SOLO ? 'Coddy qimirlamadi — ovoz bilan ishlamaydi' : 'Ovozingiz sinfga qo‘shildi!'; if (SOLO) { chal('muammo'); setTimeout(soloKeyingi, 2200); return } const m = { t: 'yur', kim: ROL === 'yonma' ? 'yonma' : MEN }; if (ROL === 'yonma') ishlov(m); else yubor(m); return }
+  const ko = e.target.closest('.kc-o'); if (ko && id === DARS.bola.karta && typeof kartaTanla === 'function') { kartaTanla(bol.querySelector('.ekran'), ko); return } // 21-dars: loyiha kartasi (kod.js)
   if (jk && id === DARS.bola.javob) { jk.classList.add('tanlandi'); menJavob = (jk.querySelector('.jt b') || {}).textContent || ''; const m = { t: 'javob', kim: ROL === 'yonma' ? 'yonma' : MEN, k: menJavob }; if (ROL === 'yonma') ishlov(m); else yubor(m); setTimeout(bolaKeyingi, 500); return }
   if (tq && (id === DARS.bola.qahramon || id === DARS.bola.qahramonYoq)) { bol.querySelectorAll('.tq-o').forEach((x) => { x.classList.toggle('on', x === tq); const z = x.querySelector('i.z'); if (z) z.classList.toggle('y', x === tq) }); qah = QAHRAMONLAR[Array.from(tq.parentNode.children).indexOf(tq)] || ''; saqla((KP + 'qah'), qah); bildir({ t: 'tanladi', k: qah }); qism = ''; saqla((KP + 'qism'), ''); setTimeout(id === DARS.bola.qahramon ? bolaKeyingi : chiz, 600); return }
   if (jy && id === DARS.bola.joy) { bol.querySelectorAll('.jy').forEach((x) => x.classList.toggle('on', x === jy)); qJoy = JOYLAR[Array.from(jy.parentNode.children).indexOf(jy)] || ''; saqla((K + 'joy'), qJoy); dunyoQoy(bol); bildir({ t: 'joy', j: qJoy }); setTimeout(bolaKeyingi, 500); return }
-  if (e.target.closest('.asos')) { if (id === DARS.bola.ism) bildir({ t: 'ism' }); bolaKeyingi() }
+  if (e.target.closest('.asos')) { if (id === DARS.bola.karta && typeof kartaTayyor === 'function' && !kartaTayyor(bol.querySelector('.ekran'))) return; if (id === DARS.bola.ism) bildir({ t: 'ism' }); bolaKeyingi() }
 })
 document.addEventListener('change', (e) => { if (e.target.dataset.a === 'sakra') ot(+e.target.value) })
 document.addEventListener('keydown', (e) => {

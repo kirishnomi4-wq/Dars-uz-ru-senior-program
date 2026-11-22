@@ -1,0 +1,36 @@
+// 20-dars «Takrorlash va test» qadamlari (QADAM) va ustoz varag'i (VARAQ) — 22.11. Manba: new-junior/manba/020-takrorlash-va-test.md v1, 15 qadam.
+const QADAM = [
+  ['Kirish', 'P1', ['B0', 'BK']],
+  ['Savol: qaysi mavzu qiyin?', 'P2', ['P2N', 'BK']],
+  ['Javob: sinf tanlovi', 'P2C', ['BK']],
+  ['Eslaymiz: klon, o‘zgaruvchi, shart', 'P3', ['BK'], 'Eslaymiz: uch mavzu'],
+  ['Reja', 'P4', ['BK'], 'Bugun: uchta bekat'],
+  ['Ko‘ramiz: o‘yin', 'P7', ['BK'], 'Ustoz o‘yinni ko‘rsatyapti — kuzating'],
+  ['O‘zingiz: takrorlaymiz', 'P5', ['B1A', 'B1B', 'B1C', 'B1Y', 'BK']],
+  ['2-bekat: test', 'P4B', ['BK'], '2-bekat: test'],
+  ['Test', 'P5G', ['B2A', 'B2B', 'B2C', 'B2Y', 'BK']],
+  ['3-bekat', 'P4C', ['BK'], '3-bekat: katta test'],
+  ['Ko‘ramiz: ro‘yxat', 'P10', ['BK'], 'Ustoz ro‘yxatni ko‘rsatyapti — kuzating'],
+  ['O‘zingiz: katta test', 'P5B', ['B3A', 'B3Y', 'BK']],
+  ['Qiyin mavzu — qayta ko‘ramiz', 'P13', ['BK'], 'Ustoz qiyin mavzuni ko‘rsatyapti'],
+  ['O‘z natijangiz', 'P12', ['B5']],
+  ['Sinfimiz bugun', 'P14', ['B5']],
+]
+// ustoz varag'i: [Ekranda · Siz (manbadagi tayanch gaplar, aynan) · Bola o'rganadi]
+const VARAQ = [
+  ['«20-dars · Takrorlash va test» — «Bugun test!» Kosmos maydoni: raketa, o‘q, dushman; pastda «O‘tgan darsda» — kod.', '«O‘tgan darsda bloklar ortidagi kodni ko‘rdik.» «Bugun modulni takrorlaymiz va kichik test yechamiz.» «Noutbukda «Tayyorman» tugmasini bosing.»', 'Darsga kiradi.'],
+  ['Savol: «Qaysi mavzu sizga qiyin?» Uchta karta: A «Klon» · B «O‘zgaruvchi» · C «Shart».', '«Qaysi mavzu sizga qiyin? Halol javob bering.» «Har kim noutbukida bitta kartani tanlasin.»', 'O‘z bilimini baholaydi (baho emas).'],
+  ['Javob: «Sinf tanlovi». Uchala karta, nechta bola tanlagani; eng ko‘p tanlangani oltin hoshiyada.', '«Qiyin bo‘lsa — yaxshi: shuni takrorlaymiz. Hamma bir xil narsada qiynalmaydi.»', 'Qiyin bo‘lish normal ekanini eshitadi.'],
+  ['Eslaymiz: «Bugungi test shulardan». «Keyingi» — birma-bir: klon, o‘zgaruvchi, shart.', '«Klon — ko‘p dushman. O‘zgaruvchi — ball va jon. Shart — jon tugasa, o‘yin tugaydi.» «Bularni bilasiz. Hozir tezkor takrorlaymiz, keyin test.»', 'Uch mavzuni eslaydi.'],
+  ['Reja: tepalik — takrorlaymiz → test → katta test; cho‘qqida «Dars oxirida · test natijasi».', '«Bugun uchta bekat: takrorlash, test, katta test.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: o‘yin. 18-dars o‘yini tayyor; «▶ Boshlash»ni bosasiz — o‘yin ishlaydi.', '«Bu — sizning o‘yiningiz. Hozir uning bo‘laklarini takrorlaymiz.»', 'O‘z o‘yinini ko‘radi.'],
+  ['Mashq: «Tezkor takrorlash!» — zinapoya: 1 beshta dushman · 2 ball · 3 o‘yin tugaydi · 4 qaysi qator?', '«Qiyin bo‘lsa — Maslahat tugmasini bosing.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'Mavzularni qayta bajaradi.'],
+  ['Tepalik: 1-bekat ✓ — «Test».', '«Test: maslahat yo‘q, dastur noldan. O‘zingiz yeching — qiyin bo‘lsa, yoningizga kelaman.»', 'Darsda qayerda turganini biladi.'],
+  ['Test: «O‘zingiz yeching!» — zinapoya: 1 dushmanlar · 2 ball · 3 jon · 4 kodda son.', '«Test paytida maslahat yo‘q. O‘zingiz yeching.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'Noldan, maslahatsiz yechadi.'],
+  ['Tepalik: 1, 2 ✓ — «Katta test».', '«Oxirgi bekat: hammasini bitta o‘yinga yig‘amiz.»', 'Darsda qayerda turganini biladi.'],
+  ['Ko‘ramiz: ro‘yxat. To‘liq o‘yin; sahna yonida «O‘yiningizda:» — besh band, o‘yin bajargani sari ✓.', '«Ro‘yxatdagi besh band — hammasi ✓ bo‘lsin.»', 'Ro‘yxatning ma’nosini tushunadi.'],
+  ['Katta test: «O‘yinni yuting!» — zinapoya: 1 to‘liq o‘yin · ★ o‘z o‘yiningiz.', '«Ro‘yxatga qarang: qaysi band hali ✓ emas?» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»', 'Butun o‘yinni o‘zi tuzadi.'],
+  ['Natija: «Qiyin topshiriq» Test topshiriqlari, nechta bola yechgani.', '«Eng kam yechilgan topshiriq qaysi? Shuni birga takrorlaymiz.»', 'Qiyin mavzuni qayta ko‘radi.'],
+  ['Yakun: «Test tugadi!» Keyingi dars — 21 · Shaxsiy o‘yin 1.', '«Uchala bekatdan o‘tdik: takrorlash, test, katta test.» «Keyingi darsda o‘z o‘yiningizni yasashni boshlaymiz.»', 'Bugungi natijani biladi.'],
+  ['Sinfimiz bugun: nechta topshiriq yechildi, nechta o‘yin yutildi, nechta pog‘ona bajarildi (haqiqiy son, ismsiz).', '«Hammangiz zo‘r ishladingiz!» (keyin raqamlarni o‘qiydi)', 'Sinf natijasini ko‘radi.'],
+]
