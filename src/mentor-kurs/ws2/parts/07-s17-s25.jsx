@@ -55,7 +55,7 @@ function Screen18(p) {
 }
 
 // ============================================================
-//  19 · Tekshiruv 4 — «sinadim, o'tdi» (ai1/01a)
+//  19 · Tekshiruv 4 — hodisa kelgan sinov (ai1/01a — bizning birinchi sinovimiz)
 // ============================================================
 function Screen19(p) {
   return MC(p, 19, {

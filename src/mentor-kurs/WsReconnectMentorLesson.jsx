@@ -7128,9 +7128,9 @@ const MDT = {
   "type": "MCRetry",
   "kicker": "Tekshiruv 4",
   "eyebrow": "Tekshiruv · 4 / 4",
-  "title": "AI: «Sinadim — server qayta yondi, panel #2 ni ko'rsatdi». Panel logida qayta ulanishdan keyin kadr keldi … \"orderId\":2 bor. Bu sinov nimani isbotlaydi?",
-  "q": "AI tuzatishlarini ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. AI aytdi: sinadim, server qayta yondi, panel ikkinchi buyurtmani ko'rsatdi. Panel logida esa qayta ulanishdan keyin ikkinchi buyurtma hodisasi kelgan. Bu sinov nimani isbotlaydi? Variantni tanlang.",
-  "ok": "To'g'ri. Hodisa kelgan bo'lsa, panel qayta ulanib ulgurgan va oddiy tinglovchi ro'yxatni yangilagan. Eski, tuzatilmagan kod ham shu sinovdan o'tardi. Sinov xatoni tekshirishi uchun eski kod unda yiqilishi kerak. Demak, avval eski kodda buzildi'ni ko'ring, keyin tuzatilganda takrorlanmadi'ni.",
+  "title": "Birinchi sinovimizda AI tuzatgan panel #2 ni ko'rsatdi. Panel logida qayta ulanishdan keyin kadr keldi … \"orderId\":2 bor. Bu sinov nimani isbotlaydi?",
+  "q": "AI tuzatishlarini ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. Birinchi sinovimizda AI tuzatgan panel ikkinchi buyurtmani ko'rsatdi. Panel logida esa qayta ulanishdan keyin ikkinchi buyurtma hodisasi kelgan. Bu sinov nimani isbotlaydi? Variantni tanlang.",
+  "ok": "To'g'ri. Hodisa kelgan bo'lsa, panel qayta ulanib ulgurgan va oddiy tinglovchi ro'yxatni yangilagan. Eski, tuzatilmagan kod ham shu sinovdan o'tardi. Sinov xatoni tekshirishi uchun eski kod unda yiqilishi kerak. Demak, avval eski kodda buzildi'ni ko'ring, keyin tuzatilganda takrorlanmadi'ni. Birinchi AI o'zi aynan shunday sinagan: eski sahifada xato takrorlandi, yangisida yo'q.",
   "okShort": "Hodisa kelgan — xato yuz bermagan; eski kod ham o'tardi. Sinov avval eski kodni yiqitsin.",
   "hint": "Shu sinovni tuzatilmagan kodda yurgizsak, natija boshqacha bo'larmidi?",
   "demak": "Sinov xatoni tekshiradi, agar eski kod unda yiqilsa; hodisa kelgan urinish — isbot emas.",
@@ -8135,7 +8135,7 @@ function Screen18(p) {
 }
 
 // ============================================================
-//  19 · Tekshiruv 4 — «sinadim, o'tdi» (ai1/01a)
+//  19 · Tekshiruv 4 — hodisa kelgan sinov (ai1/01a — bizning birinchi sinovimiz)
 // ============================================================
 function Screen19(p) {
   return MC(p, 19, {
@@ -9114,9 +9114,9 @@ const RU_MDT = {
  "19": {
   "kicker": "Проверка 4",
   "eyebrow": "Проверка · 4 / 4",
-  "title": "AI: «Проверил: сервер перезапустился, панель показала #2». В логе панели после переподключения — кадр … \"orderId\":2. Что это доказывает?",
-  "q": "Вы видели исправления от AI, теперь проверим. Четвёртая проверка. AI сказал: проверил, сервер перезапустился, панель показала второй заказ. А в логе панели после переподключения пришло событие второго заказа. Что доказывает эта проверка? Выберите вариант.",
-  "ok": "Верно. Если событие пришло, панель успела переподключиться, и обычный слушатель обновил список. Старый, неисправленный код тоже прошёл бы эту проверку. Чтобы проверка проверяла ошибку, старый код должен на ней падать. Значит, сначала увидьте «сломалось» на старом коде, потом «не повторилось» на исправленном.",
+  "title": "В нашей первой проверке панель, исправленная AI, показала #2. В логе панели после переподключения — кадр … \"orderId\":2. Что это доказывает?",
+  "q": "Вы видели исправления от AI, теперь проверим. Четвёртая проверка. В нашей первой проверке панель, исправленная AI, показала второй заказ. А в логе панели после переподключения пришло событие второго заказа. Что доказывает эта проверка? Выберите вариант.",
+  "ok": "Верно. Если событие пришло, панель успела переподключиться, и обычный слушатель обновил список. Старый, неисправленный код тоже прошёл бы эту проверку. Чтобы проверка проверяла ошибку, старый код должен на ней падать. Значит, сначала увидьте «сломалось» на старом коде, потом «не повторилось» на исправленном. Первый AI сам проверял именно так: на старой странице ошибка повторилась, на новой — нет.",
   "okShort": "Событие пришло — ошибка не проявилась; старый код тоже прошёл бы. Пусть проверка сначала роняет старый код.",
   "hint": "Если запустить эту проверку на неисправленном коде, был бы результат другим?",
   "demak": "проверка проверяет ошибку, если старый код на ней падает; попытка, где событие пришло, — не доказательство.",

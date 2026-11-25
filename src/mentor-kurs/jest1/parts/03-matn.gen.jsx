@@ -622,8 +622,8 @@ const MDT = {
   "type": "MCRetry",
   "kicker": "Tekshiruv 4",
   "eyebrow": "Tekshiruv · 4 / 4",
-  "title": "AI testi: expect(STATUS_UZ.CANCELLED).toBeTruthy(). Kimdir matnni «Bekor qilingan» dan «Yangi» ga o'zgartirdi. Test nima deydi?",
-  "q": "Buzib tekshirishni ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. AI testi bekor qilingan status matnini to be truthy bilan tekshiradi. Kimdir matnni xato bilan yangi deb o'zgartirdi: mijoz bekor qilingan buyurtmasini yangi deb ko'radi. Test nima deydi? Variantni tanlang.",
+  "title": "AI testi: for (const s of all) expect(STATUS_UZ[s]).toBeTruthy(). Kimdir CANCELLED matnini «Bekor qilingan» dan «Yangi» ga o'zgartirdi. Test nima deydi?",
+  "q": "Buzib tekshirishni ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. AI testi har bir status matnini, bekor qilinganini ham, to be truthy bilan tekshiradi. Kimdir matnni xato bilan yangi deb o'zgartirdi: mijoz bekor qilingan buyurtmasini yangi deb ko'radi. Test nima deydi? Variantni tanlang.",
   "ok": "To'g'ri. To be truthy faqat qiymat bo'sh emasligini tekshiradi. Yangi degan matn ham bo'sh emas, shuning uchun test yashil. Mijoz esa noto'g'ri status ko'radi. Etalonni aniq yozsangiz, test qizaradi. Demak, to be truthy qiymat borligini tekshiradi, to'g'riligini emas.",
   "okShort": "«Yangi» matni ham bo'sh emas — PASS. Statusning to'liq matnini kutgan aniq <code>toBe</code> buni ushlaydi.",
   "hint": "toBeTruthy qaysi qiymatlarda FAIL beradi? «Yangi» matni shulardan birimi?",
@@ -638,7 +638,7 @@ const MDT = {
   "wrong": {
    "0": "toBeTruthy matnni etalon bilan solishtirmaydi — faqat bo'sh emasmi.",
    "2": "Ikkalasi ham string — turi o'zgarmadi.",
-   "3": "Fayl joyi va nomi o'zgarmadi."
+   "3": "Test matnlarni bir-biri bilan solishtirmaydi — faqat har biri bo'sh emasmi."
   }
  },
  "21": {

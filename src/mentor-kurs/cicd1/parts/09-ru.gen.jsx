@@ -616,21 +616,21 @@ const RU_MDT = {
  "20": {
   "kicker": "Проверка 4",
   "eyebrow": "Проверка · 4 / 4",
-  "title": "Workflow от AI: checkout@v4 · setup-node@v4 (node-version: 22) · npm install · npm test. На вашей машине Node 24. Что измените перед тем, как ставить в конвейер?",
-  "q": "Вы видели workflow от AI, теперь проверим. Четвёртая проверка. В файле от AI есть checkout, setup node двадцать два, npm install и npm test. На вашей машине Node двадцать четыре. Что измените перед тем, как ставить в конвейер? Выберите вариант.",
-  "ok": "Верно. Три вещи. Node version — двадцать четыре, как на вашей машине, иначе красный с семнадцатого экрана. Вместо npm install — npm ci: в конвейере доверяем lock. И шаги tsc и build: иначе ошибка типа и несобираемый код пройдут зелёными. Значит, файл от AI — точка старта, а четыре вопроса — ваши.",
-  "okShort": "<code>node-version</code> = <code>node --version</code> · <code>npm ci</code> · шаги <code>tsc</code> + <code>build</code>. Checkout остаётся.",
+  "title": "Workflow от 1-го AI: checkout@v4 · setup-node@v4 (node-version: 22) · npm ci · npm test. На вашей машине Node 24. Что измените перед тем, как ставить в конвейер?",
+  "q": "Вы видели workflow от AI, теперь проверим. Четвёртая проверка. Это файл первого AI: есть checkout, setup node двадцать два, npm ci и npm test. На вашей машине Node двадцать четыре. Что измените перед тем, как ставить в конвейер? Выберите вариант.",
+  "ok": "Верно. Две вещи. Node version — двадцать четыре, как на вашей машине, иначе красный с семнадцатого экрана. И шаги tsc и build: иначе ошибка типа и несобираемый код пройдут зелёными. Checkout и npm ci верные, они остаются. Значит, файл от AI — точка старта, а четыре вопроса — ваши.",
+  "okShort": "<code>node-version</code> = <code>node --version</code> · шаги <code>tsc</code> + <code>build</code>. <code>checkout</code> и <code>npm ci</code> остаются.",
   "hint": "Задайте этому файлу четыре вопроса с экрана 19: checkout? версия? ci? tsc/build?",
-  "demak": "workflow от AI — точка старта: <code>node-version</code> мой · <code>npm ci</code> · <code>tsc</code> и <code>build</code> · <code>checkout</code> остаётся.",
+  "demak": "workflow от AI — точка старта: <code>node-version</code> мой · <code>tsc</code> и <code>build</code> добавляются · <code>checkout</code> и <code>npm ci</code> остаются.",
   "opts": [
-   "Ничего — checkout есть, остальное работает",
-   "Только npm install → npm ci — версия не важна",
-   "node-version 24, npm ci, шаги tsc и build",
+   "Ничего — есть checkout и npm ci, остальное работает",
+   "Только node-version 24 — раз тесты проходят, хватит",
+   "node-version 24 и добавить шаги tsc и build",
    "Убрать checkout — setup-node сам принесёт"
   ],
   "wrong": {
-   "0": "С node-version: 22 npm ci красный (экран 17); npm install в конвейере меняет lock.",
-   "1": "Версия важна: npm на runner читает lock иначе — экран 17.",
+   "0": "С node-version: 22 npm ci красный (экран 17); без tsc ошибка типа проходит зелёной (экран 15).",
+   "1": "Run будет зелёным, но нет tsc и build: ошибка типа и несобираемый код тоже пройдут зелёными (экран 15).",
    "3": "setup-node только ставит Node; код приносит checkout (экран 13)."
   }
  },

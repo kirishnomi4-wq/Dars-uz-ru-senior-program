@@ -368,14 +368,14 @@ Loyiha: **OrderBotNest** — Telegraf+PG darsidagi aynan shu repo. Teglar (lokal
 
 ## 20 · Tekshiruv 4 — `toBeTruthy`  ← `MCRetry`
 - Kicker: `Tekshiruv 4` · Eyebrow: `Tekshiruv · 4 / 4`
-- Sarlavha: **AI testi: `expect(STATUS_UZ.CANCELLED).toBeTruthy()`. Kimdir matnni «Bekor qilingan» dan «Yangi» ga o'zgartirdi. Test nima deydi?**
+- Sarlavha: **AI testi: `for (const s of all) expect(STATUS_UZ[s]).toBeTruthy()`. Kimdir `CANCELLED` matnini «Bekor qilingan» dan «Yangi» ga o'zgartirdi. Test nima deydi?**
 - Material (`above`): kod `ai1/texts.spec.ts` 41–46 (`describe('STATUS_UZ')` · `it('har bir status uchun matn bor', …)` · `toBeTruthy()`); ostida `texts.ts` 9-satr buzilgan: `CANCELLED: '🆕 Yangi',`.
-- Ovoz: «Buzib tekshirishni ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. AI testi bekor qilingan status matnini to be truthy bilan tekshiradi. Kimdir matnni xato bilan yangi deb o'zgartirdi: mijoz bekor qilingan buyurtmasini yangi deb ko'radi. Test nima deydi? Variantni tanlang.»
+- Ovoz: «Buzib tekshirishni ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. AI testi har bir status matnini, bekor qilinganini ham, to be truthy bilan tekshiradi. Kimdir matnni xato bilan yangi deb o'zgartirdi: mijoz bekor qilingan buyurtmasini yangi deb ko'radi. Test nima deydi? Variantni tanlang.»
 - Variantlar (to'g'risi — 2): 1 FAIL — `toBeTruthy` matn o'zgarganini sezadi · 2 PASS — `toBeTruthy` faqat bo'sh emasmi deydi · 3 TypeScript xato — status matni turi o'zgardi · 4 FAIL — ikki status endi bir xil matnda
 - To'g'ri (ovoz): «To'g'ri. To be truthy faqat qiymat bo'sh emasligini tekshiradi. Yangi degan matn ham bo'sh emas, shuning uchun test yashil. Mijoz esa noto'g'ri status ko'radi. Etalonni aniq yozsangiz, test qizaradi. Demak, to be truthy qiymat borligini tekshiradi, to'g'riligini emas.» · qisqa: ««Yangi» matni ham bo'sh emas — PASS. Statusning to'liq matnini kutgan aniq `toBe` buni ushlaydi.»
 - Isbot (`after`): terminal `25-b5-cancelled.txt`: `CANCELLED: '🆕 Yangi'` · 1-AI to'plami `Tests: 36 passed, 36 total` · 2-AI to'plami `1 failed` (aniq etalon `toBe('❌ Bekor qilingan')`).
 - Demak: «`toBeTruthy` qiymat borligini tekshiradi, to'g'riligini emas.»
-- Xato izohlari: 1 — «`toBeTruthy` matnni etalon bilan solishtirmaydi — faqat bo'sh emasmi.» · 3 — «Ikkalasi ham `string` — turi o'zgarmadi.» · 4 — «Fayl joyi va nomi o'zgarmadi.»
+- Xato izohlari: 1 — «`toBeTruthy` matnni etalon bilan solishtirmaydi — faqat bo'sh emasmi.» · 3 — «Ikkalasi ham `string` — turi o'zgarmadi.» · 4 — «Test matnlarni bir-biri bilan solishtirmaydi — faqat har biri bo'sh emasmi.»
 - Maslahat: «`toBeTruthy` qaysi qiymatlarda FAIL beradi? «Yangi» matni shulardan birimi?»
 - Manba: `jest1v2-ai/ai1/texts.spec.ts` 41–46, `ai2/texts.spec.ts` 53–56, `mutatsiya.txt`.
 

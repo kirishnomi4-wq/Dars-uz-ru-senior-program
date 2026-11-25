@@ -62,13 +62,14 @@ function Screen19(p) {
 }
 
 // ============================================================
-//  20 · Tekshiruv 4 — AI workflow'ni qabul qilish (5-npm-install.yml · run 21, 14, 10a)
+//  20 · Tekshiruv 4 — AI workflow'ni qabul qilish (1-AI test.yml aynan · run 21, 14, 10a)
 // ============================================================
+const AI20 = new Set([12, 15, 16, 17, 21, 24]); // 1-AI test.yml — faqat qadam satrlari, raqami aynan (nom va bo'sh satrlarsiz: panel eski 6 satr balandligida qoladi)
 const NODE20 = jt('$ node --version\n' + KOD.VERSIONS.local.split('\n')[0]);
 function Screen20(p) {
   return MC(p, 20, {
     above: <div style={{ display: 'grid', gap: 8 }}>
-      <Yml k="YML_5_NPM_INSTALL" title={t("ci.yml · AI yozgan (namuna)", "ci.yml · написал AI (образец)")} from={7} ids={{ [NV('YML_5_NPM_INSTALL')]: 'n', 10: 'i' }} focus={['n', 'i']} />
+      <CodePanel file={t("test.yml · 1-AI yozgan · qadam satrlari", "test.yml · написал 1-й AI · строки шагов")} lines={kod('YML_AI1', { [NV('YML_AI1')]: 'n' }).filter((l) => AI20.has(l.n))} focus={['n']} />
       <Term title={t("VS Code terminali · sizning mashinangiz", "терминал VS Code · ваша машина")} lines={NODE20} />
     </div>,
     after: <div className="c1-small"><RunView k="21" only={/olish|rnatish|Testlar/} note={[t('node-version: 24 bilan — yashil', "с node-version: 24 — зелёный"), t("lekin tsc va build yo'q: tur xatosi yashil o'tadi (run 14)", "но нет tsc и build: ошибка типа проходит зелёной (run 14)")]} /></div>,

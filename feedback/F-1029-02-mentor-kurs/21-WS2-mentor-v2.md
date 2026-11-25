@@ -362,13 +362,13 @@ Loyiha: **OrderBotNest** — teglar `ws2-start` (= `ws1-done` fb8b8b4) · `ws2-d
    Ovoz: «Xulosa: AI'ning qayta ulanish tuzatishiga to'rt savol. Ro'yxat connect'da so'raladimi. Tinglovchi bitta, tashqaridami. Sinovda xato haqiqatan yuz berdimi, ya'ni eski kod o'sha sinovda yiqilganmi. Va nima ortiqcha qo'shildi, kerakmi. Bu safar ikkalasi o'tdi.» · to'rt savol
 - Manba: `ws2v2-ai/ai1/01-qayta-ishga.txt`, `ai2/01-qayta-ishga.txt`, `ai1/01a-omadli-panel-oldin-ulandi.txt`, `ai1/diff.patch` (aynan).
 
-## 19 · Tekshiruv 4 — «sinadim, o'tdi»  ← `MCRetry`
+## 19 · Tekshiruv 4 — hodisa kelgan sinov  ← `MCRetry`
 - Kicker: `Tekshiruv 4` · Eyebrow: `Tekshiruv · 4 / 4`
-- Sarlavha: **AI: «Sinadim — server qayta yondi, panel #2 ni ko'rsatdi». Panel logida qayta ulanishdan keyin `kadr keldi … "orderId":2` bor. Bu sinov nimani isbotlaydi?**
+- Sarlavha: **Birinchi sinovimizda AI tuzatgan panel #2 ni ko'rsatdi. Panel logida qayta ulanishdan keyin `kadr keldi … "orderId":2` bor. Bu sinov nimani isbotlaydi?**
 - Material (`above`): `ai1/01a` panel logi: `WebSocket ochildi` → `kadr keldi 42["order-changed",{"orderId":2,…}]`.
-- Ovoz: «AI tuzatishlarini ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. AI aytdi: sinadim, server qayta yondi, panel ikkinchi buyurtmani ko'rsatdi. Panel logida esa qayta ulanishdan keyin ikkinchi buyurtma hodisasi kelgan. Bu sinov nimani isbotlaydi? Variantni tanlang.»
+- Ovoz: «AI tuzatishlarini ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. Birinchi sinovimizda AI tuzatgan panel ikkinchi buyurtmani ko'rsatdi. Panel logida esa qayta ulanishdan keyin ikkinchi buyurtma hodisasi kelgan. Bu sinov nimani isbotlaydi? Variantni tanlang.»
 - Variantlar (to'g'risi — 4): 1 Tuzatish ishlaydi — panel #2 ni ko'rsatdi · 2 Xato tuzatilmagan — hodisa ikki marta kelgan, GET ham ikki · 3 Server o'zgargan — endi hodisa saqlanadi · 4 Hech narsani — bu urinishda xato yuz bermagan
-- To'g'ri (ovoz): «To'g'ri. Hodisa kelgan bo'lsa, panel qayta ulanib ulgurgan va oddiy tinglovchi ro'yxatni yangilagan. Eski, tuzatilmagan kod ham shu sinovdan o'tardi. Sinov xatoni tekshirishi uchun eski kod unda yiqilishi kerak. Demak, avval eski kodda buzildi'ni ko'ring, keyin tuzatilganda takrorlanmadi'ni.» · qisqa: «Hodisa kelgan — xato yuz bermagan; eski kod ham o'tardi. Sinov avval eski kodni yiqitsin.»
+- To'g'ri (ovoz): «To'g'ri. Hodisa kelgan bo'lsa, panel qayta ulanib ulgurgan va oddiy tinglovchi ro'yxatni yangilagan. Eski, tuzatilmagan kod ham shu sinovdan o'tardi. Sinov xatoni tekshirishi uchun eski kod unda yiqilishi kerak. Demak, avval eski kodda buzildi'ni ko'ring, keyin tuzatilganda takrorlanmadi'ni. Birinchi AI o'zi aynan shunday sinagan: eski sahifada xato takrorlandi, yangisida yo'q.» · qisqa: «Hodisa kelgan — xato yuz bermagan; eski kod ham o'tardi. Sinov avval eski kodni yiqitsin.»
 - Isbot (`after`): `ai1/01` (qayta sinov): «#2 hodisasi panelga keldimi: yo'q» → `#2` sariq.
 - Demak: «Sinov xatoni tekshiradi, agar eski kod unda yiqilsa; hodisa kelgan urinish — isbot emas.»
 - Xato izohlari: 1 — «Ko'rsatdi, lekin hodisa ham kelgan — eski kod ham ko'rsatardi.» · 2 — «Logda bitta kadr; GET soni oddiy.» · 3 — «Server kodiga tegilmagan — `diff-stat`: faqat `admin.html` (va README).»

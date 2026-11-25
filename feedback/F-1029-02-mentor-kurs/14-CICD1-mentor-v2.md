@@ -375,16 +375,16 @@ Loyiha: **OrderBotNest** — teglar `cicd1-start` (= `jest2-done` e15a44c) · `c
 
 ## 20 · Tekshiruv 4 — AI workflow'ni qabul qilish  ← `MCRetry`
 - Kicker: `Tekshiruv 4` · Eyebrow: `Tekshiruv · 4 / 4`
-- Sarlavha: **AI yozgan workflow: `checkout@v4` · `setup-node@v4` (`node-version: 22`) · `npm install` · `npm test`. Mashinangizda Node 24. Lentaga qo'yishdan oldin nimani o'zgartirasiz?**
-- Material (`above`): yml 10 satr (AI varianti: `node-version: 22`, `- run: npm install`, `- run: npm test`); ostida `node --version` → `v24.18.0`.
-- Ovoz: «AI workflow'larini ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. AI yozgan faylda checkout bor, setup node yigirma ikki, npm install va npm test. Mashinangizda Node yigirma to'rt. Lentaga qo'yishdan oldin nimani o'zgartirasiz? Variantni tanlang.»
-- Variantlar (to'g'risi — 3): 1 Hech narsa — checkout bor, qolgani ishlaydi · 2 Faqat `npm install` → `npm ci` — versiya muhim emas · 3 `node-version` 24, `npm ci`, `tsc` va `build` qadamlari · 4 `checkout`ni olib tashlash — `setup-node` o'zi olib keladi
-- To'g'ri (ovoz): «To'g'ri. Uch narsa. Node version mashinangizdagi yigirma to'rt, aks holda o'n yettinchi ekrandagi qizil. Npm install o'rniga npm si ay: lentada lock'ga ishonamiz. Va tsc bilan build qadamlari: aks holda tur xatosi va yig'ilmaydigan kod yashil o'tadi. Demak, AI fayli boshlanish nuqtasi, to'rt savol esa sizniki.» · qisqa: «`node-version` = `node --version` · `npm ci` · `tsc` + `build` qadamlari. Checkout qoladi.»
+- Sarlavha: **1-AI yozgan workflow: `checkout@v4` · `setup-node@v4` (`node-version: 22`) · `npm ci` · `npm test`. Mashinangizda Node 24. Lentaga qo'yishdan oldin nimani o'zgartirasiz?**
+- Material (`above`): 1-AI fayli aynan — `ai1/.github/workflows/test.yml` qadam satrlari 12, 15–17, 21, 24 (`uses: actions/checkout@v4` … `node-version: 22`, `run: npm ci`, `run: npm test`; nom va bo'sh satrlarsiz — panel eski 6 satr balandligida); ostida `node --version` → `v24.18.0`.
+- Ovoz: «AI workflow'larini ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. Bu birinchi AI yozgan fayl: checkout bor, setup node yigirma ikki, npm si ay va npm test. Mashinangizda Node yigirma to'rt. Lentaga qo'yishdan oldin nimani o'zgartirasiz? Variantni tanlang.»
+- Variantlar (to'g'risi — 3): 1 Hech narsa — checkout va `npm ci` bor, qolgani ishlaydi · 2 Faqat `node-version` 24 — testlar o'tsa, yetarli · 3 `node-version` 24 va `tsc`, `build` qadamlarini qo'shish · 4 `checkout`ni olib tashlash — `setup-node` o'zi olib keladi
+- To'g'ri (ovoz): «To'g'ri. Ikki narsa. Node version mashinangizdagi yigirma to'rt, aks holda o'n yettinchi ekrandagi qizil. Va tsc bilan build qadamlari: aks holda tur xatosi va yig'ilmaydigan kod yashil o'tadi. Checkout va npm si ay to'g'ri, ular qoladi. Demak, AI fayli boshlanish nuqtasi, to'rt savol esa sizniki.» · qisqa: «`node-version` = `node --version` · `tsc` + `build` qadamlari. `checkout` va `npm ci` qoladi.»
 - Isbot (`after`): run `21` qadamlari (`node-version: 24` bilan yashil) + eslatma: «`tsc`siz — 15-ekrandagi tur xatosi yashil o'tadi (run 14)».
-- Demak: «AI workflow'i — boshlanish nuqtasi: `node-version` meniki · `npm ci` · `tsc` va `build` · `checkout` qoladi.»
-- Xato izohlari: 1 — «`node-version: 22` bilan `npm ci` qizil (17-ekran); `npm install` lentada lock'ni o'zgartiradi.» · 2 — «Versiya muhim: runner'dagi npm lock'ni boshqacha o'qiydi — 17-ekran.» · 4 — «`setup-node` faqat Node o'rnatadi; kodni `checkout` olib keladi (13-ekran).»
+- Demak: «AI workflow'i — boshlanish nuqtasi: `node-version` meniki · `tsc` va `build` qo'shiladi · `checkout` va `npm ci` qoladi.»
+- Xato izohlari: 1 — «`node-version: 22` bilan `npm ci` qizil (17-ekran); `tsc` qadamisiz tur xatosi yashil o'tadi (15-ekran).» · 2 — «Run yashil bo'ladi, lekin `tsc` va `build` yo'q: tur xatosi va yig'ilmaydigan kod ham yashil o'tadi (15-ekran).» · 4 — «`setup-node` faqat Node o'rnatadi; kodni `checkout` olib keladi (13-ekran).»
 - Maslahat: «19-ekrandagi to'rt savolni shu faylga bering: checkout? versiya? `ci`? `tsc`/`build`?»
-- Manba: `cicd1v2-ai/ai1/.github/workflows/test.yml`, `cicd1v2-out/21`, `14`, `10a`.
+- Manba: `cicd1v2-ai/ai1/.github/workflows/test.yml` (aynan; 2-AI ham `npm ci`), `cicd1v2-out/21`, `14`, `10a`.
 
 ## 21 · Amaliyot 3 — AI workflow, to'rt tekshiruv, buzib ko'rish  ← `Practice`
 - Kicker: `Amaliyot 3 / 3` · Eyebrow: `Hozir o'zingizda · 20 daqiqa` · Sarlavha: **O'z AI'ingizga workflow yozdiring, to'rt savol bilan tuzating, push — yashil; keyin tur xatosi bilan push — qizil bo'lsin** · `tableAt: 3`

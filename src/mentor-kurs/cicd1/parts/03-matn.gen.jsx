@@ -633,22 +633,22 @@ const MDT = {
   "type": "MCRetry",
   "kicker": "Tekshiruv 4",
   "eyebrow": "Tekshiruv · 4 / 4",
-  "title": "AI yozgan workflow: checkout@v4 · setup-node@v4 (node-version: 22) · npm install · npm test. Mashinangizda Node 24. Lentaga qo'yishdan oldin nimani o'zgartirasiz?",
-  "q": "AI workflow'larini ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. AI yozgan faylda checkout bor, setup node yigirma ikki, npm install va npm test. Mashinangizda Node yigirma to'rt. Lentaga qo'yishdan oldin nimani o'zgartirasiz? Variantni tanlang.",
-  "ok": "To'g'ri. Uch narsa. Node version mashinangizdagi yigirma to'rt, aks holda o'n yettinchi ekrandagi qizil. Npm install o'rniga npm si ay: lentada lock'ga ishonamiz. Va tsc bilan build qadamlari: aks holda tur xatosi va yig'ilmaydigan kod yashil o'tadi. Demak, AI fayli boshlanish nuqtasi, to'rt savol esa sizniki.",
-  "okShort": "<code>node-version</code> = <code>node --version</code> · <code>npm ci</code> · <code>tsc</code> + <code>build</code> qadamlari. Checkout qoladi.",
+  "title": "1-AI yozgan workflow: checkout@v4 · setup-node@v4 (node-version: 22) · npm ci · npm test. Mashinangizda Node 24. Lentaga qo'yishdan oldin nimani o'zgartirasiz?",
+  "q": "AI workflow'larini ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. Bu birinchi AI yozgan fayl: checkout bor, setup node yigirma ikki, npm si ay va npm test. Mashinangizda Node yigirma to'rt. Lentaga qo'yishdan oldin nimani o'zgartirasiz? Variantni tanlang.",
+  "ok": "To'g'ri. Ikki narsa. Node version mashinangizdagi yigirma to'rt, aks holda o'n yettinchi ekrandagi qizil. Va tsc bilan build qadamlari: aks holda tur xatosi va yig'ilmaydigan kod yashil o'tadi. Checkout va npm si ay to'g'ri, ular qoladi. Demak, AI fayli boshlanish nuqtasi, to'rt savol esa sizniki.",
+  "okShort": "<code>node-version</code> = <code>node --version</code> · <code>tsc</code> + <code>build</code> qadamlari. <code>checkout</code> va <code>npm ci</code> qoladi.",
   "hint": "19-ekrandagi to'rt savolni shu faylga bering: checkout? versiya? ci? tsc/build?",
-  "demak": "AI workflow'i — boshlanish nuqtasi: <code>node-version</code> meniki · <code>npm ci</code> · <code>tsc</code> va <code>build</code> · <code>checkout</code> qoladi.",
+  "demak": "AI workflow'i — boshlanish nuqtasi: <code>node-version</code> meniki · <code>tsc</code> va <code>build</code> qo'shiladi · <code>checkout</code> va <code>npm ci</code> qoladi.",
   "correct": 2,
   "opts": [
-   "Hech narsa — checkout bor, qolgani ishlaydi",
-   "Faqat npm install → npm ci — versiya muhim emas",
-   "node-version 24, npm ci, tsc va build qadamlari",
+   "Hech narsa — checkout va npm ci bor, qolgani ishlaydi",
+   "Faqat node-version 24 — testlar o'tsa, yetarli",
+   "node-version 24 va tsc, build qadamlarini qo'shish",
    "checkoutni olib tashlash — setup-node o'zi olib keladi"
   ],
   "wrong": {
-   "0": "node-version: 22 bilan npm ci qizil (17-ekran); npm install lentada lock'ni o'zgartiradi.",
-   "1": "Versiya muhim: runner'dagi npm lock'ni boshqacha o'qiydi — 17-ekran.",
+   "0": "node-version: 22 bilan npm ci qizil (17-ekran); tsc qadamisiz tur xatosi yashil o'tadi (15-ekran).",
+   "1": "Run yashil bo'ladi, lekin tsc va build yo'q: tur xatosi va yig'ilmaydigan kod ham yashil o'tadi (15-ekran).",
    "3": "setup-node faqat Node o'rnatadi; kodni checkout olib keladi (13-ekran)."
   }
  },

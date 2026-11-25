@@ -2915,8 +2915,8 @@ const MDT = {
   "type": "MCRetry",
   "kicker": "Tekshiruv 4",
   "eyebrow": "Tekshiruv · 4 / 4",
-  "title": "AI testi: expect(STATUS_UZ.CANCELLED).toBeTruthy(). Kimdir matnni «Bekor qilingan» dan «Yangi» ga o'zgartirdi. Test nima deydi?",
-  "q": "Buzib tekshirishni ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. AI testi bekor qilingan status matnini to be truthy bilan tekshiradi. Kimdir matnni xato bilan yangi deb o'zgartirdi: mijoz bekor qilingan buyurtmasini yangi deb ko'radi. Test nima deydi? Variantni tanlang.",
+  "title": "AI testi: for (const s of all) expect(STATUS_UZ[s]).toBeTruthy(). Kimdir CANCELLED matnini «Bekor qilingan» dan «Yangi» ga o'zgartirdi. Test nima deydi?",
+  "q": "Buzib tekshirishni ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. AI testi har bir status matnini, bekor qilinganini ham, to be truthy bilan tekshiradi. Kimdir matnni xato bilan yangi deb o'zgartirdi: mijoz bekor qilingan buyurtmasini yangi deb ko'radi. Test nima deydi? Variantni tanlang.",
   "ok": "To'g'ri. To be truthy faqat qiymat bo'sh emasligini tekshiradi. Yangi degan matn ham bo'sh emas, shuning uchun test yashil. Mijoz esa noto'g'ri status ko'radi. Etalonni aniq yozsangiz, test qizaradi. Demak, to be truthy qiymat borligini tekshiradi, to'g'riligini emas.",
   "okShort": "«Yangi» matni ham bo'sh emas — PASS. Statusning to'liq matnini kutgan aniq <code>toBe</code> buni ushlaydi.",
   "hint": "toBeTruthy qaysi qiymatlarda FAIL beradi? «Yangi» matni shulardan birimi?",
@@ -2931,7 +2931,7 @@ const MDT = {
   "wrong": {
    "0": "toBeTruthy matnni etalon bilan solishtirmaydi — faqat bo'sh emasmi.",
    "2": "Ikkalasi ham string — turi o'zgarmadi.",
-   "3": "Fayl joyi va nomi o'zgarmadi."
+   "3": "Test matnlarni bir-biri bilan solishtirmaydi — faqat har biri bo'sh emasmi."
   }
  },
  "21": {
@@ -4817,8 +4817,8 @@ const RU_MDT = {
  "20": {
   "kicker": "Проверка 4",
   "eyebrow": "Проверка · 4 / 4",
-  "title": "Тест от AI: expect(STATUS_UZ.CANCELLED).toBeTruthy(). Кто-то поменял текст с «Bekor qilingan» на «Yangi». Что скажет тест?",
-  "q": "Вы видели проверку поломкой, теперь проверим. Четвёртая проверка. Тест от AI проверяет текст статуса «отменён» через to be truthy. Кто-то по ошибке поменял текст на «новый»: клиент видит свой отменённый заказ как новый. Что скажет тест? Выберите вариант.",
+  "title": "Тест от AI: for (const s of all) expect(STATUS_UZ[s]).toBeTruthy(). Кто-то поменял текст CANCELLED с «Bekor qilingan» на «Yangi». Что скажет тест?",
+  "q": "Вы видели проверку поломкой, теперь проверим. Четвёртая проверка. Тест от AI проверяет текст каждого статуса, и «отменён» тоже, через to be truthy. Кто-то по ошибке поменял текст на «новый»: клиент видит свой отменённый заказ как новый. Что скажет тест? Выберите вариант.",
   "ok": "Верно. To be truthy проверяет только, что значение не пустое. Текст «новый» тоже не пустой, поэтому тест зелёный. А клиент видит неверный статус. Если написать эталон точно, тест покраснеет. Значит, to be truthy проверяет, что значение есть, а не что оно верное.",
   "okShort": "Текст «Yangi» тоже не пустой — PASS. Это ловит точный <code>toBe</code>, ожидающий полный текст статуса.",
   "hint": "При каких значениях toBeTruthy даёт FAIL? Текст «Yangi» — одно из них?",
@@ -4832,7 +4832,7 @@ const RU_MDT = {
   "wrong": {
    "0": "toBeTruthy не сравнивает текст с эталоном — только не пусто ли.",
    "2": "Оба — string, тип не изменился.",
-   "3": "Место и имя файла не изменились."
+   "3": "Тест не сравнивает тексты между собой — только не пуст ли каждый."
   }
  },
  "21": {

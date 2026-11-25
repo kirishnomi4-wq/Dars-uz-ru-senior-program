@@ -3884,22 +3884,22 @@ const MDT = {
   "type": "MCRetry",
   "kicker": "Tekshiruv 4",
   "eyebrow": "Tekshiruv · 4 / 4",
-  "title": "AI yozgan workflow: checkout@v4 · setup-node@v4 (node-version: 22) · npm install · npm test. Mashinangizda Node 24. Lentaga qo'yishdan oldin nimani o'zgartirasiz?",
-  "q": "AI workflow'larini ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. AI yozgan faylda checkout bor, setup node yigirma ikki, npm install va npm test. Mashinangizda Node yigirma to'rt. Lentaga qo'yishdan oldin nimani o'zgartirasiz? Variantni tanlang.",
-  "ok": "To'g'ri. Uch narsa. Node version mashinangizdagi yigirma to'rt, aks holda o'n yettinchi ekrandagi qizil. Npm install o'rniga npm si ay: lentada lock'ga ishonamiz. Va tsc bilan build qadamlari: aks holda tur xatosi va yig'ilmaydigan kod yashil o'tadi. Demak, AI fayli boshlanish nuqtasi, to'rt savol esa sizniki.",
-  "okShort": "<code>node-version</code> = <code>node --version</code> · <code>npm ci</code> · <code>tsc</code> + <code>build</code> qadamlari. Checkout qoladi.",
+  "title": "1-AI yozgan workflow: checkout@v4 · setup-node@v4 (node-version: 22) · npm ci · npm test. Mashinangizda Node 24. Lentaga qo'yishdan oldin nimani o'zgartirasiz?",
+  "q": "AI workflow'larini ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. Bu birinchi AI yozgan fayl: checkout bor, setup node yigirma ikki, npm si ay va npm test. Mashinangizda Node yigirma to'rt. Lentaga qo'yishdan oldin nimani o'zgartirasiz? Variantni tanlang.",
+  "ok": "To'g'ri. Ikki narsa. Node version mashinangizdagi yigirma to'rt, aks holda o'n yettinchi ekrandagi qizil. Va tsc bilan build qadamlari: aks holda tur xatosi va yig'ilmaydigan kod yashil o'tadi. Checkout va npm si ay to'g'ri, ular qoladi. Demak, AI fayli boshlanish nuqtasi, to'rt savol esa sizniki.",
+  "okShort": "<code>node-version</code> = <code>node --version</code> · <code>tsc</code> + <code>build</code> qadamlari. <code>checkout</code> va <code>npm ci</code> qoladi.",
   "hint": "19-ekrandagi to'rt savolni shu faylga bering: checkout? versiya? ci? tsc/build?",
-  "demak": "AI workflow'i — boshlanish nuqtasi: <code>node-version</code> meniki · <code>npm ci</code> · <code>tsc</code> va <code>build</code> · <code>checkout</code> qoladi.",
+  "demak": "AI workflow'i — boshlanish nuqtasi: <code>node-version</code> meniki · <code>tsc</code> va <code>build</code> qo'shiladi · <code>checkout</code> va <code>npm ci</code> qoladi.",
   "correct": 2,
   "opts": [
-   "Hech narsa — checkout bor, qolgani ishlaydi",
-   "Faqat npm install → npm ci — versiya muhim emas",
-   "node-version 24, npm ci, tsc va build qadamlari",
+   "Hech narsa — checkout va npm ci bor, qolgani ishlaydi",
+   "Faqat node-version 24 — testlar o'tsa, yetarli",
+   "node-version 24 va tsc, build qadamlarini qo'shish",
    "checkoutni olib tashlash — setup-node o'zi olib keladi"
   ],
   "wrong": {
-   "0": "node-version: 22 bilan npm ci qizil (17-ekran); npm install lentada lock'ni o'zgartiradi.",
-   "1": "Versiya muhim: runner'dagi npm lock'ni boshqacha o'qiydi — 17-ekran.",
+   "0": "node-version: 22 bilan npm ci qizil (17-ekran); tsc qadamisiz tur xatosi yashil o'tadi (15-ekran).",
+   "1": "Run yashil bo'ladi, lekin tsc va build yo'q: tur xatosi va yig'ilmaydigan kod ham yashil o'tadi (15-ekran).",
    "3": "setup-node faqat Node o'rnatadi; kodni checkout olib keladi (13-ekran)."
   }
  },
@@ -4953,13 +4953,14 @@ function Screen19(p) {
 }
 
 // ============================================================
-//  20 · Tekshiruv 4 — AI workflow'ni qabul qilish (5-npm-install.yml · run 21, 14, 10a)
+//  20 · Tekshiruv 4 — AI workflow'ni qabul qilish (1-AI test.yml aynan · run 21, 14, 10a)
 // ============================================================
+const AI20 = new Set([12, 15, 16, 17, 21, 24]); // 1-AI test.yml — faqat qadam satrlari, raqami aynan (nom va bo'sh satrlarsiz: panel eski 6 satr balandligida qoladi)
 const NODE20 = jt('$ node --version\n' + KOD.VERSIONS.local.split('\n')[0]);
 function Screen20(p) {
   return MC(p, 20, {
     above: <div style={{ display: 'grid', gap: 8 }}>
-      <Yml k="YML_5_NPM_INSTALL" title={t("ci.yml · AI yozgan (namuna)", "ci.yml · написал AI (образец)")} from={7} ids={{ [NV('YML_5_NPM_INSTALL')]: 'n', 10: 'i' }} focus={['n', 'i']} />
+      <CodePanel file={t("test.yml · 1-AI yozgan · qadam satrlari", "test.yml · написал 1-й AI · строки шагов")} lines={kod('YML_AI1', { [NV('YML_AI1')]: 'n' }).filter((l) => AI20.has(l.n))} focus={['n']} />
       <Term title={t("VS Code terminali · sizning mashinangiz", "терминал VS Code · ваша машина")} lines={NODE20} />
     </div>,
     after: <div className="c1-small"><RunView k="21" only={/olish|rnatish|Testlar/} note={[t('node-version: 24 bilan — yashil', "с node-version: 24 — зелёный"), t("lekin tsc va build yo'q: tur xatosi yashil o'tadi (run 14)", "но нет tsc и build: ошибка типа проходит зелёной (run 14)")]} /></div>,
@@ -5908,21 +5909,21 @@ const RU_MDT = {
  "20": {
   "kicker": "Проверка 4",
   "eyebrow": "Проверка · 4 / 4",
-  "title": "Workflow от AI: checkout@v4 · setup-node@v4 (node-version: 22) · npm install · npm test. На вашей машине Node 24. Что измените перед тем, как ставить в конвейер?",
-  "q": "Вы видели workflow от AI, теперь проверим. Четвёртая проверка. В файле от AI есть checkout, setup node двадцать два, npm install и npm test. На вашей машине Node двадцать четыре. Что измените перед тем, как ставить в конвейер? Выберите вариант.",
-  "ok": "Верно. Три вещи. Node version — двадцать четыре, как на вашей машине, иначе красный с семнадцатого экрана. Вместо npm install — npm ci: в конвейере доверяем lock. И шаги tsc и build: иначе ошибка типа и несобираемый код пройдут зелёными. Значит, файл от AI — точка старта, а четыре вопроса — ваши.",
-  "okShort": "<code>node-version</code> = <code>node --version</code> · <code>npm ci</code> · шаги <code>tsc</code> + <code>build</code>. Checkout остаётся.",
+  "title": "Workflow от 1-го AI: checkout@v4 · setup-node@v4 (node-version: 22) · npm ci · npm test. На вашей машине Node 24. Что измените перед тем, как ставить в конвейер?",
+  "q": "Вы видели workflow от AI, теперь проверим. Четвёртая проверка. Это файл первого AI: есть checkout, setup node двадцать два, npm ci и npm test. На вашей машине Node двадцать четыре. Что измените перед тем, как ставить в конвейер? Выберите вариант.",
+  "ok": "Верно. Две вещи. Node version — двадцать четыре, как на вашей машине, иначе красный с семнадцатого экрана. И шаги tsc и build: иначе ошибка типа и несобираемый код пройдут зелёными. Checkout и npm ci верные, они остаются. Значит, файл от AI — точка старта, а четыре вопроса — ваши.",
+  "okShort": "<code>node-version</code> = <code>node --version</code> · шаги <code>tsc</code> + <code>build</code>. <code>checkout</code> и <code>npm ci</code> остаются.",
   "hint": "Задайте этому файлу четыре вопроса с экрана 19: checkout? версия? ci? tsc/build?",
-  "demak": "workflow от AI — точка старта: <code>node-version</code> мой · <code>npm ci</code> · <code>tsc</code> и <code>build</code> · <code>checkout</code> остаётся.",
+  "demak": "workflow от AI — точка старта: <code>node-version</code> мой · <code>tsc</code> и <code>build</code> добавляются · <code>checkout</code> и <code>npm ci</code> остаются.",
   "opts": [
-   "Ничего — checkout есть, остальное работает",
-   "Только npm install → npm ci — версия не важна",
-   "node-version 24, npm ci, шаги tsc и build",
+   "Ничего — есть checkout и npm ci, остальное работает",
+   "Только node-version 24 — раз тесты проходят, хватит",
+   "node-version 24 и добавить шаги tsc и build",
    "Убрать checkout — setup-node сам принесёт"
   ],
   "wrong": {
-   "0": "С node-version: 22 npm ci красный (экран 17); npm install в конвейере меняет lock.",
-   "1": "Версия важна: npm на runner читает lock иначе — экран 17.",
+   "0": "С node-version: 22 npm ci красный (экран 17); без tsc ошибка типа проходит зелёной (экран 15).",
+   "1": "Run будет зелёным, но нет tsc и build: ошибка типа и несобираемый код тоже пройдут зелёными (экран 15).",
    "3": "setup-node только ставит Node; код приносит checkout (экран 13)."
   }
  },
