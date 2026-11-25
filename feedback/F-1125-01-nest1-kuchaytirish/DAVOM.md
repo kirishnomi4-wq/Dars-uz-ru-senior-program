@@ -1,5 +1,7 @@
 # F-1125-01 · Mentor Nest-1 darsini kuchaytirish — DAVOM
 
+> **25.11 21:05 — HAMMASI SAYTDA: commit b35a47dc, deploy mpb1l8y5h (PG-1, PG-2 + M57: surilgan «N-ekran» havolalari Nest-1/Nest-2/PG-1 da tuzatildi). Push yo'q.**
+>
 > **25.11 20:20 — 3-ish qolgan uchta dars: Nest-2 SAYTDA (commit 56223a09, deploy ofkmhq5ak); PG-1 va PG-2 lokal tayyor → commit → deploy. AI sinovlari: `ai-nest2/`, `ai-pg1/`, `ai-pg2/` (har birida `00-promptlar.md`, tekshiruv skripti, `XULOSA.md`); yamoqlar `taklif/patch-3ish-{nest2,pg1,pg2}.py`. Eng muhim topilmalar: Nest-2 — AI car namunasidagi zaiflikni ko'chirdi (`/customer/abc` → 500); PG-1 — haqiqiy AI chat uchun PostgreSQL dedi (darsda MongoDB), `ON DELETE CASCADE` yozishmani o'chirdi; PG-2 — ikkala AI «Kolonkani o'chir»ni ustun o'chirish deb tushundi (`DROP COLUMN`).**
 >
 > **25.11 18:25 — 1-, 2-, 3-ish (Nest-1) SAYTDA: commit 8df0b1e2 + c35fbe1c, deploy iixnev4gh → j4rwpexij. Push yo'q. KEYINGI: foydalanuvchi Nest-1 AI blokini (31–32-ekran) ko'rib chiqadi → Nest-2, PG-1, PG-2 AI bloki (M56; qolip — `ai-nest1/00-promptlar.md`, `ai-tekshir.sh`; har darsga 2 Haiku agent; resurs uyga vazifa bilan to'qnashmasin). 41-ekran DI qadamida 1600 da 8 px toshish — oldindan bor, tegilmagan.**

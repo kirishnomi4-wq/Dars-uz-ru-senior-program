@@ -1189,3 +1189,4 @@ Oldingi seans 17:59 dan keyin ham ishlagan, jurnal yozilmagan (seans uzildi). Fa
 - **Sinf-supurish:** bugun ekran qo'shilgan 4 dars — 3 tasida topildi, tuzatildi; qolgan 8 darsga ekran qo'shilmagan (havola surilmaydi).
 - **Qonun:** MENTOR_DARS_ETALON **M57** (ekran qo'shilsa — `s`, «N-ekran» matnlari, MD jadvali qayta hisoblanadi) + tekshiruv ro'yxati 41-band.
 - Darvozalar: jsx toza · gates Nest-1 (esbuild ma'lum, dark 19 = HEAD), PG-1, Nest-2, PG-2 — faqat esbuild · prompt-lint toza.
+- **21:05 — commit b35a47dc** (69 fayl, faqat shu ish; boshqa seansning 41 staged fayli tegilmadi) → **deploy mpb1l8y5h** Ready, Production (2984 mp3; ovoz: nest-02 141, pg-01 141, pg-02 139, nest-01 235 — xato 0). Jonli tekshiruv 1280: PG-1 24-ekran UZ/RU, PG-2 28-ekran UZ/RU, Nest-2 24-ekran RU (so'rov yorlig'i endi ruscha) — xato 0, toshish 0. Push yo'q.
