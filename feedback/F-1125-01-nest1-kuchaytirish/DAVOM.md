@@ -1,8 +1,37 @@
 # F-1125-01 · Mentor Nest-1 darsini kuchaytirish — DAVOM
 
-> **25.11 21:05 — HAMMASI SAYTDA: commit b35a47dc, deploy mpb1l8y5h (PG-1, PG-2 + M57: surilgan «N-ekran» havolalari Nest-1/Nest-2/PG-1 da tuzatildi). Push yo'q.**
+## ▶▶▶ YANGI SEANS SHU YERDAN (25.11 20:40, `date`)
+
+**Bajarildi va saytda** (https://coddycamp-mentor-kurs.vercel.app, deploy mpb1l8y5h; push YO'Q):
+Nest-1 — Nest 12 + kirish matni + AI bloki (31–32-ekran) · Nest-2 — AI bloki (24–25) · PG-1 — AI bloki (24–25) · PG-2 — AI bloki (28–29).
+Commitlar: 8df0b1e2 · c35fbe1c · c586da4e · 56223a09 · b35a47dc · 8028780d (+ shu holat commiti). Qonunlar: M54–M57 (`MENTOR_DARS_ETALON.md`).
+AI sinovlari (haqiqiy, Haiku ×2): `ai-nest1/`, `ai-nest2/`, `ai-pg1/`, `ai-pg2/` — har birida `00-promptlar.md`, tekshiruv skripti, `XULOSA.md`.
+
+**Qolgan ishlar (tartib bilan):**
+1. **Foydalanuvchi ko'rigi** — to'rt darsning AI bloki. Fidbek kelsa: B retsepti (tashxis avval, F-ID, tasdiqdan keyin tuzatish).
+2. **Qaror kutilmoqda — o'quvchi darsi m4-06 dagi «Kolonka»** (`src/4-Modull/PostgresCrudLesson.jsx` 1034–1053): haqiqiy AI «Kolonkani o'chir»ni `DROP COLUMN` deb tushundi. Variantlar: mahsulot nomini almashtirish (o'quvchi darsi → LMS qayta yuklash, G retsepti) yoki qoldirish (mentor darsida ogohlantirish bor). O'quvchi darsiga hozircha tegilmagan.
+3. **M57 supurish — qolgan 8 mentor darsi** (Jest-1, Jest-2, CI/CD-1, CI/CD-2, Telegraf+PG, WebSocket-1, WebSocket-2, Webhook): o'z-sinovdagi `s` («N-ekran» tugmasi, `onGoto(s - 1)`) va matn/ovoz/RU dagi «N-ekran», «N-inchi ekranda», «на N-м экране» havolalari joriy `SCREENS` tartibiga mosmi. Bugun faqat ekran qo'shilgan 4 dars tekshirildi; bu 8 darsda avvalgi ekran qo'shish/olishlar tekshirilmagan.
+4. **Ixtiyoriy audit** — shu 8 darsdagi mavjud AI bloklari M56 ga mosmi (haqiqiy AI, haqiqiy server/baza natijasi, «satrni bosing» AI'ning haqiqiy satri bilan). Faqat hisobot → [GATE] → foydalanuvchi qarori; agent kerak bo'lsa — avval ruxsat.
+5. **Push** — foydalanuvchining o'zi.
+
+Ma'lum, oldindan bor (tegilmagan): Nest-1 41-ekran 1600 da 8 px; Nest-2 va PG-2 yakuni 1280 da 7–8 px (eski versiyada ham, jonli o'lchangan).
+
+**Yangi seans uchun prompt:**
+```
+Mentor kursi F-1125-01 ni davom ettiramiz. Avval o'qi:
+feedback/F-1125-01-nest1-kuchaytirish/DAVOM.md («YANGI SEANS SHU YERDAN» bloki),
+feedback/F-1029-02-mentor-kurs/JURNAL.md oxirgi F-1125-01 yozuvlari,
+MENTOR_DARS_ETALON.md M54–M57.
+Holat: AI bloki to'rt darsda saytda (Nest-1, Nest-2, PG-1, PG-2), push yo'q.
+Qilinadigan: 1) men ko'rigimni yozaman — fikrimni kut; 2) m4-06 «Kolonka» bo'yicha qaror savolini sodda qilib ber;
+3) M57 bo'yicha qolgan 8 mentor darsini tekshir (o'z-sinov s va «N-ekran» havolalari) — avval hisobot, tuzatish tasdiqdan keyin;
+4) 8 darsdagi AI bloklarini M56 ga solishtirish — faqat hisobot.
+Commit va deploy ruxsati bor (faqat shu ish fayllari, pathspec bilan); push yo'q. Chatda o'zbekcha gapir.
+```
+
+> **25.11 20:29 — HAMMASI SAYTDA: commit b35a47dc, deploy mpb1l8y5h (PG-1, PG-2 + M57: surilgan «N-ekran» havolalari Nest-1/Nest-2/PG-1 da tuzatildi). Push yo'q.**
 >
-> **25.11 20:20 — 3-ish qolgan uchta dars: Nest-2 SAYTDA (commit 56223a09, deploy ofkmhq5ak); PG-1 va PG-2 lokal tayyor → commit → deploy. AI sinovlari: `ai-nest2/`, `ai-pg1/`, `ai-pg2/` (har birida `00-promptlar.md`, tekshiruv skripti, `XULOSA.md`); yamoqlar `taklif/patch-3ish-{nest2,pg1,pg2}.py`. Eng muhim topilmalar: Nest-2 — AI car namunasidagi zaiflikni ko'chirdi (`/customer/abc` → 500); PG-1 — haqiqiy AI chat uchun PostgreSQL dedi (darsda MongoDB), `ON DELETE CASCADE` yozishmani o'chirdi; PG-2 — ikkala AI «Kolonkani o'chir»ni ustun o'chirish deb tushundi (`DROP COLUMN`).**
+> **25.11 (20:07 dan oldin) — 3-ish qolgan uchta dars: Nest-2 SAYTDA (commit 56223a09, deploy ofkmhq5ak); PG-1 va PG-2 lokal tayyor → commit → deploy. AI sinovlari: `ai-nest2/`, `ai-pg1/`, `ai-pg2/` (har birida `00-promptlar.md`, tekshiruv skripti, `XULOSA.md`); yamoqlar `taklif/patch-3ish-{nest2,pg1,pg2}.py`. Eng muhim topilmalar: Nest-2 — AI car namunasidagi zaiflikni ko'chirdi (`/customer/abc` → 500); PG-1 — haqiqiy AI chat uchun PostgreSQL dedi (darsda MongoDB), `ON DELETE CASCADE` yozishmani o'chirdi; PG-2 — ikkala AI «Kolonkani o'chir»ni ustun o'chirish deb tushundi (`DROP COLUMN`).**
 >
 > **25.11 18:25 — 1-, 2-, 3-ish (Nest-1) SAYTDA: commit 8df0b1e2 + c35fbe1c, deploy iixnev4gh → j4rwpexij. Push yo'q. KEYINGI: foydalanuvchi Nest-1 AI blokini (31–32-ekran) ko'rib chiqadi → Nest-2, PG-1, PG-2 AI bloki (M56; qolip — `ai-nest1/00-promptlar.md`, `ai-tekshir.sh`; har darsga 2 Haiku agent; resurs uyga vazifa bilan to'qnashmasin). 41-ekran DI qadamida 1600 da 8 px toshish — oldindan bor, tegilmagan.**
 >
