@@ -1,6 +1,12 @@
 # F-1125-01 · Mentor Nest-1 darsini kuchaytirish — DAVOM
 
-## ▶▶▶ YANGI SEANS SHU YERDAN (26.11 00:25, `date`)
+## ▶▶▶ YANGI SEANS SHU YERDAN (26.11 03:34, `date`; tungi avtopilot 09:00 gacha)
+
+**26.11 — foydalanuvchi: «hammasi yaxshi halol ishla … realizatsiya», keyin «avtopilotda ishla, ertalab 9 gacha, har 20 minutda tekshir, hammasini so'nggi versiyaga chiqarib URL'ga yangila».**
+- To'rt dars AI bloki ko'rigi — **qabul** («hammasi yaxshi»).
+- 3-savol — **A, bajarildi va saytda**: commit **7e979174** (02:57), deploy **jggrhgbye**. CI/CD-1 20, WS-2 19, Jest-1 20 — AI'ning haqiqiy chiqishiga moslandi; qonun **M59** + tekshiruv 43. Batafsil — mentor kursi JURNAL «26.11 03:34».
+- Tungi ish (davom etmoqda): ovoz yig'uvchi tuzatildi (to'g'ri javobdan keyingi variantlar izohi ovozsiz edi — saytda 404) → 12 dars qayta yig'ish → qayta deploy; keyin jonli saytda 12 dars UZ/RU to'liq tekshiruv (sahifa xatosi, skroll, mp3, e2e). Fikr talab qiladigan joylar — qaror sahifasiga savol.
+- Push — foydalanuvchining o'zi (commitlar: … 70ccdff3 · 88e6e8e6 · 7e979174 + hujjat).
 
 **26.11 00:23 — avtopilot (foydalanuvchi: «avtopilotda ishla man 1-2 soatda kelaman»):** qaror sahifasi https://claude.ai/artifact/8vFUwfw1ZNfqdneYwvU3tX — tavsiyalar bo'yicha:
 - 1-savol «Kolonka» — **A, o'quvchi darsiga tegilmadi**.
