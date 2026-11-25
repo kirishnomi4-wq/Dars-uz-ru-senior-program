@@ -392,8 +392,8 @@ Loyiha: **OrderBotNest** — teglar `ws2-start` (= `ws1-done` fb8b8b4) · `ws2-d
    Ovoz: «Endi sinfga tayyorgarlik. O'quvchi darsi m10-05, o'n to'qqiz ekran. Maydon Jamoa'da agent uchala chekka holatni bajardim degan. O'quvchi buni da'vo deb oladi va uch usul bilan buzadi: internetni uzish, fonga olish va Backend'ning yangi versiyasi.» · kartalar
 2. **Uch muammo: ==son eski · jonli xabar ikki marta · «Hozir ko'ryapti» kam==**
    Ovoz: «O'quvchi uchta muammoni topadi. Son eski: siz bugun ko'rgan uzilishdagi hodisa. Jonli xabar ikki marta: takror tinglovchi, o'quvchi kodida u boshidan connect ichida. Hozir ko'ryapti kam: xona. OrderBotNest'da bunday muammo yo'q, uni o'quvchi kodida ko'ramiz.» · uch muammo
-3. **Bloklar: ==og'ir joy — 8-ekran kod oynasi va ikki amaliyot==**
-   Ovoz: «Bloklar jadvaliga qarang. Og'ir joy sakkizinchi ekrandagi kod oynasi va ikki amaliyot. Ikkinchi, to'rtinchi, oltinchi ekranlarga ortiqcha vaqt bermang. Har blokda siz qo'shadigan narsa o'ng ustunda: bugungi ekran raqami.» · jadval
+3. **Bloklar: ==og'ir joy — 9-ekran kod oynasi va ikki amaliyot==**
+   Ovoz: «Bloklar jadvaliga qarang. Og'ir joy to'qqizinchi ekrandagi kod oynasi va ikki amaliyot. Uchinchi, beshinchi, yettinchi ekranlarga ortiqcha vaqt bermang. Har blokda siz qo'shadigan narsa o'ng ustunda: bugungi ekran raqami.» · jadval
 4. **Xulosa: o'quvchi yozuvida ==«Nima bo'ldi» — ko'rgani==, taxmin emas; vaqtning ko'pi amaliyotga**
    Ovoz: «Xulosa: vaqtning ko'pi ikki amaliyotga. O'quvchi yozuvida nima bo'ldi qatori ekranda ko'rgani bo'lsin, taxmin emas. Tuzatishdan keyin xuddi shu usul bilan qayta buzsin. Ikki teg: o'n ikkinchi modul beshinchi dars start va done.» · teglar
 - Manba: `src/10-Modull/BreakAndFixLesson.jsx` (`SCREEN_META` 19, s0–s13, A1, A2); `maydon-jamoa` `m12-dars-05-start`, `m12-dars-05-done` (`BUZISH.md`).

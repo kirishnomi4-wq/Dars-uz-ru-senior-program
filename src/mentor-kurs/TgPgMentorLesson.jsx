@@ -3855,7 +3855,7 @@ const CARDS26 = [
   ['Katta id', 'value "5123456789" is out of range for type integer · yoki duplicate key', 'bigint; avval qidirish yoki ON CONFLICT'],
 ];
 const QA26 = [
-  ['«AI yozdi, ishlayapti — yana nega tekshiramiz?»', 'Bitta sinovda ko\'rinmaydigan xato bor: restart va ikki marta bosish (11, 15-ekran).'],
+  ['«AI yozdi, ishlayapti — yana nega tekshiramiz?»', 'Bitta sinovda ko\'rinmaydigan xato bor: restart va ikki marta bosish (11, 14-ekran).'],
   ['«Nega synchronize: true, ishlab turgan loyihada ham shundaymi?»', 'Yo\'q: u ustunni ogohlantirmasdan o\'chirishi mumkin; ishlab turgan loyihada migratsiya (9-ekran).'],
   ['«Telegram id raqam-ku, nega bazadan matn keldi?»', 'bigint JavaScript sonidan katta bo\'lishi mumkin, kutubxona matn beradi (13-ekran).'],
   ['«Neon o\'rniga o\'z kompyuterimdagi PostgreSQL bo\'ladimi?»', 'Ha, DATABASE_URL ni o\'zgartirasiz; botni hostingga chiqarganda baza internetda bo\'lishi kerak.'],
@@ -4167,7 +4167,7 @@ ru(CARDS26, [
   ['Большой id', 'value "5123456789" is out of range for type integer · или duplicate key', 'bigint; сначала поиск или ON CONFLICT'],
 ]);
 ru(QA26, [
-  ['«AI написал, работает — зачем ещё проверять?»', 'Есть ошибки, которые не видны в одной проверке: перезапуск и двойное нажатие (экраны 11, 15).'],
+  ['«AI написал, работает — зачем ещё проверять?»', 'Есть ошибки, которые не видны в одной проверке: перезапуск и двойное нажатие (экраны 11, 14).'],
   ['«Почему synchronize: true — и в рабочем проекте так же?»', 'Нет: он может без предупреждения удалить колонку; в рабочем проекте — миграции (экран 9).'],
   ['«Telegram id же число, почему из базы пришла строка?»', 'bigint может быть больше числа JavaScript, библиотека отдаёт строку (экран 13).'],
   ['«Можно вместо Neon PostgreSQL на своём компьютере?»', 'Да, меняете DATABASE_URL; когда выпускаете бота на хостинг, база должна быть в интернете.'],

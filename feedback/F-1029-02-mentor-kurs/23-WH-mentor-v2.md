@@ -413,8 +413,8 @@ Loyiha: **OrderBotNest** — teglar `wh-start` (= `ws2-done` 71c72a4) · `wh-don
    Ovoz: «Endi sinfga tayyorgarlik. O'quvchi darsi m11-03, yigirma ekran. Misol Maydon Jamoa: o'yin tashkilotchisi Pro obuna uchun to'laydi, o'ttiz kun, o'n ming so'm. Hammasi test rejimda, karta so'ralmaydi, pul yechilmaydi.» · kartalar
 2. **O'quvchi ham ==xabar, imzo, takror va rad==; amaliyotda agent bilan o'z Backend'i**
    Ovoz: «O'quvchi darsidagi yo'l siznikidek: to'lov xabari, imzo, takror, rad va to'lov oqimi sxemasi. Amaliyotda o'quvchi o'z Backend'iga webhook qo'shadi, agent bilan, keyin mashq sahifasida uch tekshiruv. Kalit faqat env va Render'da.» · yo'l
-3. **Bloklar: ==og'ir joy — 7-ekran kod oynasi va ikki amaliyot==**
-   Ovoz: «Bloklar jadvaliga qarang. Og'ir joy yettinchi ekrandagi kod oynasi va ikki amaliyot, har birida Render'da yangi versiya kutiladi. Har blokda siz qo'shadigan narsa o'ng ustunda, bugungi ekran raqami bilan.» · jadval
+3. **Bloklar: ==og'ir joy — 8-ekran kod oynasi va ikki amaliyot==**
+   Ovoz: «Bloklar jadvaliga qarang. Og'ir joy sakkizinchi ekrandagi kod oynasi va ikki amaliyot, har birida Render'da yangi versiya kutiladi. Har blokda siz qo'shadigan narsa o'ng ustunda, bugungi ekran raqami bilan.» · jadval
 4. **Xulosa: repo ==`m13-dars-03-done`==: `POST /tolov/webhook`, `X-Imzo`, `TOLOV_KALITI`**
    Ovoz: «Xulosa: o'quvchi loyihasi maydon jamoa, o'n uchinchi modul uchinchi dars done tegi. Manzil tolov webhook, imzo X Imzo sarlavhasida, kalit TOLOV KALITI. Nomlar o'zbekcha, qoidalar siz bugun ko'rgandek. Keyingi ekranda o'quvchi so'zlari.» · repo
 - Manba: `src/11-Modull/PaymentWebhookLesson.jsx` (`SCREEN_META` 20, s0–s14, A1, A2); `maydon-jamoa` `m13-dars-03-done`; v1 `manba/wh-out/README.md`.

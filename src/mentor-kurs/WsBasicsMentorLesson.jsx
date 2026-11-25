@@ -4720,8 +4720,8 @@ const MDT = {
    ],
    [
     "c",
-    "Bloklar: <b>og'ir joy — 9-ekran kod oynasi va birinchi amaliyot</b>",
-    "Bloklar jadvaliga qarang. Og'ir joy to'qqizinchi ekrandagi kod oynasi va birinchi amaliyot: Backend, ilova va Render birga. Ikkinchi, to'rtinchi, beshinchi ekranlarga ortiqcha vaqt bermang. Har blokda siz qo'shadigan narsa o'ng ustunda."
+    "Bloklar: <b>og'ir joy — 10-ekran kod oynasi va birinchi amaliyot</b>",
+    "Bloklar jadvaliga qarang. Og'ir joy o'ninchi ekrandagi kod oynasi va birinchi amaliyot: Backend, ilova va Render birga. Uchinchi, beshinchi, oltinchi ekranlarga ortiqcha vaqt bermang. Har blokda siz qo'shadigan narsa o'ng ustunda."
    ],
    [
     "d",
@@ -4957,7 +4957,7 @@ const SPOKEN = [
 DIGITS.unshift(["uch ming bir yuz", '3100'], ["to'rt ming to'rt yuz bir", '4401'], ["bir ming sakkiz", '1008'], ["sakkiz yuz ellik besh", '855'], ["besh yuz o'n ikki", '512'],
   ["to'rt yuz to'rt", '404'], ["to'rt yuz bir", '401'], ["yigirma besh soniyada", '25 soniyada'], ["yigirma soniya", '20 soniya'], ["qirq besh soniya", '45 soniya'], ["qirq uch soniya", '43 soniya'],
   ["o'n besh soniya", '15 soniya'], ["beshdan besh", '5/5'], ["to'qqizdan to'qqiz", '9/9'], ["oxirgi yigirma", 'oxirgi 20'], ["o'n besh daqiqa", '15 daqiqa'], ["yigirma daqiqa", '20 daqiqa'], ["yigirma ekran", '20 ekran'],
-  ["sakkizdan o'n", '8 / 10'], ["to'qqizinchi ekran", '9-ekran'], ["oltinchi ekran", '6-ekran']);
+  ["sakkizdan o'n", '8 / 10'], ["Uchinchi, beshinchi, oltinchi ekranlarga", '3, 5, 6-ekranlarga'], ["o'ninchi ekran", '10-ekran'], ["oltinchi ekran", '6-ekran']);
 const wr = (s) => digits(SPOKEN.reduce((acc, [a, b]) => acc.split(a).join(b), s));
 EN_PHRASES.unshift(/io server disconnect/gi, /transport close/gi, /xhr poll error/gi, /ping timeout/gi, /connect error/gi, /order changed/gi, /handle connection/gi, /handshake auth token/gi,
   /WebSocket gateway/gi, /WebSocket server/gi, /client disconnect/gi, /server emit/gi, /polling/g, /websocket/g, /socket\.io/g, /snapshot/g, /created/g, /updated/g, /Ctrl C/g, /kill minus STOP/g);
@@ -6575,8 +6575,8 @@ const RU_MDT = {
     "Правила в уроке ученика те же, что у вас: socket.io, токен при соединении, внутри конверта нет числа, приложение запрашивает заново, и три знака. Только у ученика приложение — телефон, сервер на Render. Поэтому если AI напишет голый ws, это столкнётся с уроком ученика."
    ],
    "c": [
-    "Блоки: <b>трудное место — окно кода на 9-м экране и первая практика</b>",
-    "Посмотрите на таблицу блоков. Трудное место — окно кода на девятом экране и первая практика: Backend, приложение и Render вместе. На второй, четвёртый и пятый экраны лишнего времени не давайте. Что вы добавляете в каждом блоке — в правой колонке."
+    "Блоки: <b>трудное место — окно кода на 10-м экране и первая практика</b>",
+    "Посмотрите на таблицу блоков. Трудное место — окно кода на десятом экране и первая практика: Backend, приложение и Render вместе. На третий, пятый и шестой экраны лишнего времени не давайте. Что вы добавляете в каждом блоке — в правой колонке."
    ],
    "d": [
     "Итог: в репозитории <b>на <code>m12-dars-02</code> события нет, на <code>m12-dars-03</code> есть</b> — пусть ученик увидит разницу",

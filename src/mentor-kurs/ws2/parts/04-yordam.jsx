@@ -56,7 +56,7 @@ const SPOKEN = [
   ['m10-05', 'm10-05'], ['ulanish on', 'ulanish.on'],
 ];
 DIGITS.unshift(["o'n to'qqiz ekran", '19 ekran'], ["o'ttiz ikki", '32'], ["to'qqizdan to'qqiz", '9/9'], ["o'n besh daqiqa", '15 daqiqa'], ["yigirma daqiqa", '20 daqiqa'],
-  ["yigirma besh va yigirma", '25 va 20'], ["qirq besh soniya", '45 soniya'], ["olti soniya", '6 soniya'], ["O'ttiz uchinchi soniyada", '33-soniyada'], ["sakkizinchi ekran", '8-ekran'], ["to'rtinchi ekran", '4-ekran']);
+  ["yigirma besh va yigirma", '25 va 20'], ["qirq besh soniya", '45 soniya'], ["olti soniya", '6 soniya'], ["O'ttiz uchinchi soniyada", '33-soniyada'], ["Uchinchi, beshinchi, yettinchi ekranlarga", '3, 5, 7-ekranlarga'], ["to'qqizinchi ekran", '9-ekran'], ["to'rtinchi ekran", '4-ekran']);
 const wr = (s) => digits(SPOKEN.reduce((acc, [a, b]) => acc.split(a).join(b), s));
 EN_PHRASES.unshift(/transport close/gi, /xhr poll error/gi, /ping timeout/gi, /order changed/gi, /server emit/gi, /connection state recovery/gi, /socket recovered true/gi, /recovered (true|false)/gi,
   /on module init/gi, /bot launch/gi, /No throttling/g, /Offline/g, /Online/g, /Network/g, /websocket/g, /socket\.io/g, /jsdom/g, /Chrome/g, /Ctrl C/g, /deploy/g);

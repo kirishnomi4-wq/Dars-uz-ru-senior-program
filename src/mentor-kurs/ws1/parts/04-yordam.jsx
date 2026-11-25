@@ -62,7 +62,7 @@ const SPOKEN = [
 DIGITS.unshift(["uch ming bir yuz", '3100'], ["to'rt ming to'rt yuz bir", '4401'], ["bir ming sakkiz", '1008'], ["sakkiz yuz ellik besh", '855'], ["besh yuz o'n ikki", '512'],
   ["to'rt yuz to'rt", '404'], ["to'rt yuz bir", '401'], ["yigirma besh soniyada", '25 soniyada'], ["yigirma soniya", '20 soniya'], ["qirq besh soniya", '45 soniya'], ["qirq uch soniya", '43 soniya'],
   ["o'n besh soniya", '15 soniya'], ["beshdan besh", '5/5'], ["to'qqizdan to'qqiz", '9/9'], ["oxirgi yigirma", 'oxirgi 20'], ["o'n besh daqiqa", '15 daqiqa'], ["yigirma daqiqa", '20 daqiqa'], ["yigirma ekran", '20 ekran'],
-  ["sakkizdan o'n", '8 / 10'], ["to'qqizinchi ekran", '9-ekran'], ["oltinchi ekran", '6-ekran']);
+  ["sakkizdan o'n", '8 / 10'], ["Uchinchi, beshinchi, oltinchi ekranlarga", '3, 5, 6-ekranlarga'], ["o'ninchi ekran", '10-ekran'], ["oltinchi ekran", '6-ekran']);
 const wr = (s) => digits(SPOKEN.reduce((acc, [a, b]) => acc.split(a).join(b), s));
 EN_PHRASES.unshift(/io server disconnect/gi, /transport close/gi, /xhr poll error/gi, /ping timeout/gi, /connect error/gi, /order changed/gi, /handle connection/gi, /handshake auth token/gi,
   /WebSocket gateway/gi, /WebSocket server/gi, /client disconnect/gi, /server emit/gi, /polling/g, /websocket/g, /socket\.io/g, /snapshot/g, /created/g, /updated/g, /Ctrl C/g, /kill minus STOP/g);

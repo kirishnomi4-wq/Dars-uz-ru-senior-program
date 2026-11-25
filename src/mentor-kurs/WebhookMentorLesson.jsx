@@ -4354,8 +4354,8 @@ const MDT = {
    ],
    [
     "c",
-    "Bloklar: <b>og'ir joy — 7-ekran kod oynasi va ikki amaliyot</b>",
-    "Bloklar jadvaliga qarang. Og'ir joy yettinchi ekrandagi kod oynasi va ikki amaliyot, har birida Render'da yangi versiya kutiladi. Har blokda siz qo'shadigan narsa o'ng ustunda, bugungi ekran raqami bilan."
+    "Bloklar: <b>og'ir joy — 8-ekran kod oynasi va ikki amaliyot</b>",
+    "Bloklar jadvaliga qarang. Og'ir joy sakkizinchi ekrandagi kod oynasi va ikki amaliyot, har birida Render'da yangi versiya kutiladi. Har blokda siz qo'shadigan narsa o'ng ustunda, bugungi ekran raqami bilan."
    ],
    [
     "d",
@@ -4586,7 +4586,7 @@ const SPOKEN = [
   ['git checkout', 'git checkout'], ['Ctrl C', 'Ctrl+C'], ['m11-03', 'm11-03'],
 ];
 DIGITS.unshift(["bir yuz yigirma ming", '120 000'], ["bir ming ikki yuz", '1 200'], ["o'n ming so'm", "10 000 so'm"], ["oltmish to'rt", '64'], ["to'rt yuz to'rt", '404'], ["to'rt yuz bir", '401'], ["to'rt yuz", '400'], ["ikki yuz", '200'],
-  ["o'n besh daqiqa", '15 daqiqa'], ["yigirma ekran", '20 ekran'], ["o'ttiz kun", '30 kun'], ["yettinchi ekran", '7-ekran']);
+  ["o'n besh daqiqa", '15 daqiqa'], ["yigirma ekran", '20 ekran'], ["o'ttiz kun", '30 kun'], ["sakkizinchi ekran", '8-ekran']);
 const wr = (s) => digits(SPOKEN.reduce((acc, [a, b]) => acc.split(a).join(b), s));
 EN_PHRASES.unshift(/order changed/gi, /raw body/gi, /timing safe equal/gi, /is valid signature/gi, /parse payment/gi, /create hmac sha256/gi, /Nest factory create/gi, /JSON stringify/gi, /on conflict payment id do nothing/gi,
   /payment id/gi, /payment status/gi, /duplicate (true|false)/gi, /HMAC SHA256/g, /X Signature/g, /webhook/g, /Payme/g, /Click/g, /embedded postgres/gi, /Ctrl C/g, /deploy/g);
@@ -6316,8 +6316,8 @@ const RU_MDT = {
     "Путь в уроке ученика как у вас: сообщение об оплате, подпись, повтор, отказ и схема потока оплаты. На практике ученик добавляет webhook в свой Backend, с агентом, потом три проверки на странице тренировки. Ключ только в env и на Render."
    ],
    "c": [
-    "Блоки: <b>трудное место — окно кода на 7-м экране и две практики</b>",
-    "Посмотрите на таблицу блоков. Трудное место — окно кода на седьмом экране и две практики, в каждой ждём новую версию на Render. Что вы добавляете в каждом блоке — в правой колонке, с номером сегодняшнего экрана."
+    "Блоки: <b>трудное место — окно кода на 8-м экране и две практики</b>",
+    "Посмотрите на таблицу блоков. Трудное место — окно кода на восьмом экране и две практики, в каждой ждём новую версию на Render. Что вы добавляете в каждом блоке — в правой колонке, с номером сегодняшнего экрана."
    ],
    "d": [
     "Итог: репозиторий <b><code>m13-dars-03-done</code></b>: <code>POST /tolov/webhook</code>, <code>X-Imzo</code>, <code>TOLOV_KALITI</code>",

@@ -57,7 +57,7 @@ const SPOKEN = [
   ['git checkout', 'git checkout'], ['Ctrl C', 'Ctrl+C'], ['m11-03', 'm11-03'],
 ];
 DIGITS.unshift(["bir yuz yigirma ming", '120 000'], ["bir ming ikki yuz", '1 200'], ["o'n ming so'm", "10 000 so'm"], ["oltmish to'rt", '64'], ["to'rt yuz to'rt", '404'], ["to'rt yuz bir", '401'], ["to'rt yuz", '400'], ["ikki yuz", '200'],
-  ["o'n besh daqiqa", '15 daqiqa'], ["yigirma ekran", '20 ekran'], ["o'ttiz kun", '30 kun'], ["yettinchi ekran", '7-ekran']);
+  ["o'n besh daqiqa", '15 daqiqa'], ["yigirma ekran", '20 ekran'], ["o'ttiz kun", '30 kun'], ["sakkizinchi ekran", '8-ekran']);
 const wr = (s) => digits(SPOKEN.reduce((acc, [a, b]) => acc.split(a).join(b), s));
 EN_PHRASES.unshift(/order changed/gi, /raw body/gi, /timing safe equal/gi, /is valid signature/gi, /parse payment/gi, /create hmac sha256/gi, /Nest factory create/gi, /JSON stringify/gi, /on conflict payment id do nothing/gi,
   /payment id/gi, /payment status/gi, /duplicate (true|false)/gi, /HMAC SHA256/g, /X Signature/g, /webhook/g, /Payme/g, /Click/g, /embedded postgres/gi, /Ctrl C/g, /deploy/g);

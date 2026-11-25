@@ -696,8 +696,8 @@ const MDT = {
    ],
    [
     "c",
-    "Bloklar: <b>og'ir joy — 8-ekran kod oynasi va ikki amaliyot</b>",
-    "Bloklar jadvaliga qarang. Og'ir joy sakkizinchi ekrandagi kod oynasi va ikki amaliyot. Ikkinchi, to'rtinchi, oltinchi ekranlarga ortiqcha vaqt bermang. Har blokda siz qo'shadigan narsa o'ng ustunda: bugungi ekran raqami."
+    "Bloklar: <b>og'ir joy — 9-ekran kod oynasi va ikki amaliyot</b>",
+    "Bloklar jadvaliga qarang. Og'ir joy to'qqizinchi ekrandagi kod oynasi va ikki amaliyot. Uchinchi, beshinchi, yettinchi ekranlarga ortiqcha vaqt bermang. Har blokda siz qo'shadigan narsa o'ng ustunda: bugungi ekran raqami."
    ],
    [
     "d",

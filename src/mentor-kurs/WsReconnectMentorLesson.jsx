@@ -7165,8 +7165,8 @@ const MDT = {
    ],
    [
     "c",
-    "Bloklar: <b>og'ir joy — 8-ekran kod oynasi va ikki amaliyot</b>",
-    "Bloklar jadvaliga qarang. Og'ir joy sakkizinchi ekrandagi kod oynasi va ikki amaliyot. Ikkinchi, to'rtinchi, oltinchi ekranlarga ortiqcha vaqt bermang. Har blokda siz qo'shadigan narsa o'ng ustunda: bugungi ekran raqami."
+    "Bloklar: <b>og'ir joy — 9-ekran kod oynasi va ikki amaliyot</b>",
+    "Bloklar jadvaliga qarang. Og'ir joy to'qqizinchi ekrandagi kod oynasi va ikki amaliyot. Uchinchi, beshinchi, yettinchi ekranlarga ortiqcha vaqt bermang. Har blokda siz qo'shadigan narsa o'ng ustunda: bugungi ekran raqami."
    ],
    [
     "d",
@@ -7423,7 +7423,7 @@ const SPOKEN = [
   ['m10-05', 'm10-05'], ['ulanish on', 'ulanish.on'],
 ];
 DIGITS.unshift(["o'n to'qqiz ekran", '19 ekran'], ["o'ttiz ikki", '32'], ["to'qqizdan to'qqiz", '9/9'], ["o'n besh daqiqa", '15 daqiqa'], ["yigirma daqiqa", '20 daqiqa'],
-  ["yigirma besh va yigirma", '25 va 20'], ["qirq besh soniya", '45 soniya'], ["olti soniya", '6 soniya'], ["O'ttiz uchinchi soniyada", '33-soniyada'], ["sakkizinchi ekran", '8-ekran'], ["to'rtinchi ekran", '4-ekran']);
+  ["yigirma besh va yigirma", '25 va 20'], ["qirq besh soniya", '45 soniya'], ["olti soniya", '6 soniya'], ["O'ttiz uchinchi soniyada", '33-soniyada'], ["Uchinchi, beshinchi, yettinchi ekranlarga", '3, 5, 7-ekranlarga'], ["to'qqizinchi ekran", '9-ekran'], ["to'rtinchi ekran", '4-ekran']);
 const wr = (s) => digits(SPOKEN.reduce((acc, [a, b]) => acc.split(a).join(b), s));
 EN_PHRASES.unshift(/transport close/gi, /xhr poll error/gi, /ping timeout/gi, /order changed/gi, /server emit/gi, /connection state recovery/gi, /socket recovered true/gi, /recovered (true|false)/gi,
   /on module init/gi, /bot launch/gi, /No throttling/g, /Offline/g, /Online/g, /Network/g, /websocket/g, /socket\.io/g, /jsdom/g, /Chrome/g, /Ctrl C/g, /deploy/g);
@@ -9146,8 +9146,8 @@ const RU_MDT = {
     "Ученик находит три проблемы. Число старое: событие во время обрыва, которое вы сегодня видели. Живое сообщение дважды: повторный слушатель, в коде ученика он с самого начала внутри connect. «Сейчас смотрят» меньше: комната. В OrderBotNest такой проблемы нет, увидим её в коде ученика."
    ],
    "c": [
-    "Блоки: <b>трудное место — окно кода на 8-м экране и две практики</b>",
-    "Посмотрите на таблицу блоков. Трудное место — окно кода на восьмом экране и две практики. На второй, четвёртый и шестой экраны лишнего времени не давайте. Что вы добавляете в каждом блоке — в правой колонке: номер сегодняшнего экрана."
+    "Блоки: <b>трудное место — окно кода на 9-м экране и две практики</b>",
+    "Посмотрите на таблицу блоков. Трудное место — окно кода на девятом экране и две практики. На третий, пятый и седьмой экраны лишнего времени не давайте. Что вы добавляете в каждом блоке — в правой колонке: номер сегодняшнего экрана."
    ],
    "d": [
     "Итог: в записи ученика <b>«Что было» — то, что видел</b>, а не догадка; большая часть времени — практике",

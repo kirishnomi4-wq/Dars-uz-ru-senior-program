@@ -414,8 +414,8 @@ Loyiha: **OrderBotNest** — teglar `ws1-start` (= `cicd2-done` 87a5bb1) · `ws1
    Ovoz: «Endi sinfga tayyorgarlik. O'quvchi darsi m10-02, yigirma ekran. Misol Maydon Jamoa: futbol o'yiniga yozilish ilovasi. Ikki telefon: biri qo'shiladi, ikkinchisida eski sakkizdan o'n turadi. Siz bugun panelda ko'rgan muammo, telefonda.» · kartalar
 2. **O'quvchi ham ==socket.io, token, konvert va uch belgi== — siz bilgan qoidalar**
    Ovoz: «O'quvchi darsidagi qoidalar sizniki bilan bir xil: socket.io, token ulanishda, konvert ichida son yo'q, ilova qayta so'raydi, va uch belgi. Faqat o'quvchida ilova telefon, server Render'da. Shuning uchun AI xom ws yozsa, o'quvchi darsi bilan to'qnashadi.» · qoidalar
-3. **Bloklar: ==og'ir joy — 9-ekran kod oynasi va birinchi amaliyot==**
-   Ovoz: «Bloklar jadvaliga qarang. Og'ir joy to'qqizinchi ekrandagi kod oynasi va birinchi amaliyot: Backend, ilova va Render birga. Ikkinchi, to'rtinchi, beshinchi ekranlarga ortiqcha vaqt bermang. Har blokda siz qo'shadigan narsa o'ng ustunda.» · jadval
+3. **Bloklar: ==og'ir joy — 10-ekran kod oynasi va birinchi amaliyot==**
+   Ovoz: «Bloklar jadvaliga qarang. Og'ir joy o'ninchi ekrandagi kod oynasi va birinchi amaliyot: Backend, ilova va Render birga. Uchinchi, beshinchi, oltinchi ekranlarga ortiqcha vaqt bermang. Har blokda siz qo'shadigan narsa o'ng ustunda.» · jadval
 4. **Xulosa: repo ==`m12-dars-02` da hodisa yo'q, `m12-dars-03` da bor== — o'quvchi farqni ko'rsin**
    Ovoz: «Xulosa: o'quvchi loyihasida ikki teg muhim. Birinchisida ulanish bor, hodisa yo'q: son o'zi o'zgarmaydi, bu xato emas. Ikkinchisida hodisa bor. Sinfda ikkalasini ko'rsating: ulanish bilan hodisa alohida narsa.» · teglar
 - Manba: `src/10-Modull/WebSocketBasicsLesson.jsx` (`SCREEN_META` 20, s0–s14, A1); `maydon-jamoa` teglar `m12-dars-02-done` a5e3753, `m12-dars-03-done` 64283b2; v1 `ws1-out/05`, `06`.

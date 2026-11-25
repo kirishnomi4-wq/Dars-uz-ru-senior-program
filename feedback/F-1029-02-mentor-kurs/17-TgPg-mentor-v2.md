@@ -513,7 +513,7 @@ Loyiha: **OrderBotNest** — lokal `/home/kali/Desktop/order-bot`, teglar `tgpg-
   | 3 | Restartdan keyin ism unutildi | xato yo'q, «Salom! Ismingiz nima?» | state bazaga yozilmayapti — `SELECT … FROM users` |
   | 4 | Katta id | `value "5123456789" is out of range for type integer` · yoki ikkinchi `/start`da `duplicate key` | `bigint`; avval qidirish yoki `ON CONFLICT` |
 - O'quvchi so'rasa:
-  - «AI yozdi, ishlayapti — yana nega tekshiramiz?» → bitta sinovda ko'rinmaydigan xato bor: restart va ikki marta bosish (11, 15-ekran).
+  - «AI yozdi, ishlayapti — yana nega tekshiramiz?» → bitta sinovda ko'rinmaydigan xato bor: restart va ikki marta bosish (11, 14-ekran).
   - «Nega `synchronize: true`, ishlab turgan loyihada ham shundaymi?» → yo'q: u ustunni ogohlantirmasdan o'chirishi mumkin; ishlab turgan loyihada migratsiya (9-ekran). Nest-2 mentor darsida buni haqiqiy ko'rgansiz.
   - «Telegram id raqam-ku, nega bazadan matn keldi?» → `bigint` JavaScript sonidan katta bo'lishi mumkin, kutubxona matn beradi (13-ekran).
   - «Neon o'rniga o'z kompyuterimdagi PostgreSQL bo'ladimi?» → ha, `DATABASE_URL` ni o'zgartirasiz; botni hostingga chiqarganda baza internetda bo'lishi kerak.
