@@ -23,7 +23,7 @@ const MDT = {
    [
     "c",
     "O'quvchi darsidagi «oxirgi telefon»ni ikki oynada <b>o'z ko'zingiz bilan</b> ko'rasiz",
-    "O'quvchi darsida bitta telefonni ikki kishi bir vaqtda sotib olmoqchi bo'ladigan misol bor. Uni gap bilan emas, ikkita terminal oynasida o'zingiz sinab ko'rasiz va nima uni saqlab qolishini aniq bilasiz."
+    "O'quvchi darsida bitta telefonni ikki kishi bir vaqtda sotib olmoqchi bo'ladigan misol bor. Uni gap bilan emas, ikkita terminal oynasida o'zingiz sinab ko'rasiz va nima uni saqlab qolishini aniq bilasiz. Keyin AI tavsiya qilgan bazani va u yozgan jadvallarni ham bazada tekshirasiz."
    ],
    [
     "d",
@@ -32,8 +32,8 @@ const MDT = {
    ],
    [
     "e",
-    "Olti bosqich, to'rt amaliyot. <b>Shoshilmang</b>: ustoz gapirib bo'lgach Davom ochiladi",
-    "Dars olti bosqichdan iborat, orasida to'rtta amaliyot bor, ularni o'z kompyuteringizda qilasiz. Shoshilmang: har ekranni boshidan eshitish va matnini o'qish mumkin. Ustoz gapirib bo'lgach Davom ochiladi. Boshlaymiz."
+    "Yetti bosqich, to'rt amaliyot. <b>Shoshilmang</b>: ustoz gapirib bo'lgach Davom ochiladi",
+    "Dars yetti bosqichdan iborat, orasida to'rtta amaliyot bor, ularni o'z kompyuteringizda qilasiz. Shoshilmang: har ekranni boshidan eshitish va matnini o'qish mumkin. Ustoz gapirib bo'lgach Davom ochiladi. Boshlaymiz."
    ]
   ]
  },
@@ -158,7 +158,7 @@ const MDT = {
  "6": {
   "type": "MCRetry",
   "kicker": "Tekshiruv 1",
-  "eyebrow": "Tekshiruv · 1 / 4",
+  "eyebrow": "Tekshiruv · 1 / 5",
   "title": "Mongo'da ref ham, populate ham bor edi. PostgreSQL'da populate o'rnida qaysi biri?",
   "q": "Lug'atni ko'rdingiz, tekshirib olaylik. Birinchi tekshiruv. Mongo'da ikki narsa bor edi: ref bog'laydi, populate esa so'rov paytida birlashtiradi. PostgreSQL'da populate'ning ishini qaysi biri qiladi? Variantni tanlang.",
   "ok": "To'g'ri, JOIN. U so'rov paytida ikki jadvalni ulaydi va bitta javob beradi, populate kabi. REFERENCES esa ref'ning jufti: u faqat bog'lanishni belgilaydi va qo'riqlaydi, javobga hech narsa qo'shmaydi. Demak, PostgreSQL'da bog'lanishni REFERENCES belgilaydi, ikki jadvalni bitta javobga esa JOIN birlashtiradi.",
@@ -400,7 +400,7 @@ const MDT = {
  "14": {
   "type": "MCRetry",
   "kicker": "Tekshiruv 2",
-  "eyebrow": "Tekshiruv · 2 / 4",
+  "eyebrow": "Tekshiruv · 2 / 5",
   "title": "O'quvchi DELETE FROM users WHERE id = 1; yozdi va shu xabarni oldi. Nega?",
   "q": "Xatolarni o'qishni ko'rdingiz, endi o'zingiz o'qing. Ikkinchi tekshiruv. O'quvchi birinchi foydalanuvchini o'chirmoqchi bo'ldi va ekrandagi xabarni oldi. Uch savolni eslang: qaysi jadval, qaysi qoida, qaysi qiymat. Nega o'chmadi? Variantni tanlang.",
   "ok": "To'g'ri. Qoida posts user id fkey, tashqi kalit. Detail qatori aytadi: id bir hali ham posts jadvalidan ishora qilinmoqda, ya'ni bu foydalanuvchining postlari bor. Baza egasiz post qoldirmaydi. Demak, foydalanuvchini o'chirish kerak bo'lsa, avval uning postlari, keyin uning o'zi o'chiriladi.",
@@ -482,7 +482,7 @@ const MDT = {
  "17": {
   "type": "LineCheck",
   "kicker": "Tekshiruv 3",
-  "eyebrow": "Tekshiruv · 3 / 4 — qaysi satr xato?",
+  "eyebrow": "Tekshiruv · 3 / 5 — qaysi satr xato?",
   "title": "So'rov xatosiz ishladi, lekin «Bugun Nest o'rgandim»ni vali yozgandek chiqdi",
   "q": "JOIN'ni ko'rdingiz, endi xato topamiz. Uchinchi tekshiruv. Bu so'rov xato bermadi, baza javob qaytardi. Lekin natija noto'g'ri: «Bugun Nest o'rgandim» ali'niki, bu yerda esa vali'niki bo'lib chiqqan. Qoidani eslang: on satri tashqi kalitni tenglaydi. Xato satrni bosing.",
   "ok": "To'g'ri. Uchinchi satrda users id posts'ning o'z id'siga tenglangan, tashqi kalitga emas. Baza xato bermaydi, chunki ikkalasi ham son: u shunchaki birinchi postni birinchi foydalanuvchiga, ikkinchisini ikkinchisiga ulaydi. Ekranda tuzatilgan holat: posts user id, va natija to'g'ri. Demak, on satrida doim tashqi kalit ustuni turadi, ya'ni posts user id.",
@@ -578,7 +578,7 @@ const MDT = {
    [
     "e",
     "Xulosa: bir nechta jadval birga o'zgarsa — <code>BEGIN … COMMIT</code>; xato bo'lsa <b>hammasi bekor</b>",
-    "Xulosa: bir nechta jadval birga o'zgarishi kerak bo'lsa, ularni begin va commit orasiga olasiz. Ichida bitta xato bo'lsa, baza hammasini bekor qiladi. O'quvchi darsi oxirgi telefonni tranzaksiya deb atagan, bu soddalashtirish: buni yigirma yettinchi ekranda ko'ramiz."
+    "Xulosa: bir nechta jadval birga o'zgarishi kerak bo'lsa, ularni begin va commit orasiga olasiz. Ichida bitta xato bo'lsa, baza hammasini bekor qiladi. O'quvchi darsi oxirgi telefonni tranzaksiya deb atagan, bu soddalashtirish: buni yigirma to'qqizinchi ekranda ko'ramiz."
    ]
   ]
  },
@@ -617,7 +617,7 @@ const MDT = {
  "22": {
   "type": "MCRetry",
   "kicker": "Tekshiruv 4",
-  "eyebrow": "Tekshiruv · 4 / 4",
+  "eyebrow": "Tekshiruv · 4 / 5",
   "title": "BEGIN → buyurtma yozildi → ombor CHECK xatosi → COMMIT. orders jadvalida nima bor?",
   "q": "Tranzaksiyani ko'rdingiz, tekshirib olaylik. To'rtinchi tekshiruv. Tranzaksiya ichida buyurtma yozildi, insert bir, keyin ombor check qoidasi bilan rad etildi va commit yozildi. orders jadvalida nima qoldi? Variantni tanlang.",
   "ok": "To'g'ri, hech narsa. Tranzaksiya ichida xato bo'lgani uchun commit'ga baza rollback deb javob berdi va hammasini bekor qildi. insert bir chiqqan edi, lekin u hali tasdiqlanmagan edi. orders bo'sh, nol qator. Demak, tranzaksiya ichida bitta xato bo'lsa, undagi hamma o'zgarish bekor bo'ladi.",
@@ -666,7 +666,7 @@ const MDT = {
  },
  "24": {
   "type": "Lesson",
-  "kicker": "6-bosqich · o'quvchi darsini o'tish",
+  "kicker": "7-bosqich · o'quvchi darsini o'tish",
   "title": "Sinf kompyuterlari: har birida psql -U postgres ochilsin",
   "seg": [
    [
@@ -698,7 +698,7 @@ const MDT = {
  },
  "25": {
   "type": "Lesson",
-  "kicker": "6-bosqich · o'quvchi darsini o'tish",
+  "kicker": "7-bosqich · o'quvchi darsini o'tish",
   "eyebrow": "m4-03 · «SQL vs NoSQL — nega PostgreSQL»",
   "title": "m4-03: kodsiz dars — siz bugun hammasini qo'l bilan qildingiz",
   "seg": [
@@ -715,7 +715,7 @@ const MDT = {
    [
     "c",
     "Kuchlar bloki — siz bugun ko'rgan <b>JOIN va oxirgi telefon</b>; chat esa NoSQL kuchi",
-    "Uchinchi blok sizga eng tanish: JOIN, oxirgi telefon va chat oqimi. O'quvchi JOIN'ni id orqali bog'lash deb ko'radi, siz on satrini aytasiz. Chat misolida NoSQL kuchi: juda ko'p oddiy xabar, bog'lanish kam. Buni inkor qilmang, bu to'g'ri."
+    "Uchinchi blok sizga eng tanish: JOIN, oxirgi telefon va chat oqimi. O'quvchi JOIN'ni id orqali bog'lash deb ko'radi, siz on satrini aytasiz. Chat misolida NoSQL kuchi: juda ko'p oddiy xabar, bog'lanish kam. Buni inkor qilmang: millionlab xabarda bu to'g'ri. Oddiy chat uchun esa haqiqiy AI PostgreSQL dedi, oltinchi bosqichda ko'rdingiz."
    ],
    [
     "d",
@@ -731,7 +731,7 @@ const MDT = {
  },
  "26": {
   "type": "Lesson",
-  "kicker": "6-bosqich · o'quvchi darsini o'tish",
+  "kicker": "7-bosqich · o'quvchi darsini o'tish",
   "title": "O'quvchi darsi atamalarni kundalik so'zlar bilan tushuntiradi — siz ularni atama bilan bog'laysiz",
   "seg": [
    [
@@ -758,7 +758,7 @@ const MDT = {
  },
  "27": {
   "type": "Lesson",
-  "kicker": "6-bosqich · sinfda",
+  "kicker": "7-bosqich · sinfda",
   "title": "Ikki soddalashtirish va o'quvchining besh savoli — tayyor javoblar",
   "seg": [
    [
@@ -887,7 +887,7 @@ const MDT = {
     ],
     "c": 2,
     "e": "Tanlov modaga emas, vazifaga qarab; do'konda 3 mezon SQL tomonda.",
-    "s": 27
+    "s": 29
    }
   ]
  },

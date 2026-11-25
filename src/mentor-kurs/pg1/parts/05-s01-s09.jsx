@@ -2,7 +2,7 @@
 // ============================================================
 //  1 · Kirish
 // ============================================================
-const PLAN1 = ['Mongo bilan solishtirish', "O'rnatish va ulanish", "Jadval va bog'lanish", 'JOIN', 'Ishonchlilik: oxirgi telefon', "O'quvchi darsini o'tish"];
+const PLAN1 = ['Mongo bilan solishtirish', "O'rnatish va ulanish", "Jadval va bog'lanish", 'JOIN', 'Ishonchlilik: oxirgi telefon', 'AI tavsiyasi', "O'quvchi darsini o'tish"];
 const JOIN_OK = psql(String.raw`
 blog=# SELECT users.username, posts.izoh
 blog-# FROM posts
@@ -13,13 +13,13 @@ blog-# JOIN users ON users.id = posts.user_id;
  ali      | Bugun Nest o'rgandim
  vali     | Salom hammaga
 (3 rows)`);
-const S1 = mkS(1, [{ hl: [], res: true }, { hl: [0, 1, 2, 3] }, { hl: [4] }, { hl: [5] }, { hl: [] }], { plan: PLAN1 });
+const S1 = mkS(1, [{ hl: [], res: true }, { hl: [0, 1, 2, 3] }, { hl: [4, 5] }, { hl: [6] }, { hl: [] }], { plan: PLAN1 });
 // F-1120-02 (M51): darsning rasmi — blog bazasi (BlogDb, parts/02d-pg.jsx): users ← posts, JOIN natijasi + reja
 function Screen1(p) {
   return <Lesson p={p} S={S1} scene={({ seg }) => <div className="mk-light" style={{ padding: 16, display: 'grid', gap: 14 }}>
     <BlogDb join="inner" rules hl={{ users: [0], posts: [1] }} tag={t("Bugungi darsning rasmi — blog bazasi sizning kompyuteringizda", 'Картина урока — база blog на вашем компьютере')}
       read={['blog=#', 'SELECT users.username, posts.izoh FROM posts <span class="n1-k">JOIN</span> users ON users.id = posts.user_id;']} out={t('ali — Birinchi post · ali — Bugun Nest o\'rgandim · vali — Salom hammaga · (3 rows)', 'ali — Birinchi post · ali — Bugun Nest o\'rgandim · vali — Salom hammaga · (3 rows)')} />
-    <div className="n1-plan" style={{ position: 'static', gridTemplateColumns: 'repeat(6,minmax(0,1fr))', gap: 6 }}>
+    <div className="n1-plan" style={{ position: 'static', gridTemplateColumns: 'repeat(7,minmax(0,1fr))', gap: 6 }}>
       {S1.plan.map((x, i) => <div key={i} className={seg.hl.includes(i) ? 'hl' : (seg.hl.length ? 'dim' : '')}><b>0{i + 1}</b><span>{x}</span></div>)}
     </div>
   </div>} />;

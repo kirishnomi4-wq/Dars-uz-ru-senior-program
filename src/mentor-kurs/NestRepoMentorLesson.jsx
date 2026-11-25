@@ -2493,7 +2493,7 @@ const AI2_REQ_OK = [
 const AI2_REQ_ODD = [
   ['GET /customer/abc', { st: 400, n: '«uuid is expected»' }, { st: 500, n: '«Internal server error»', bad: true }],
   // modul darajasida tarjima — faqat getter (aks holda RU'da o'zbekcha qoladi)
-  ['POST · takror telefon · token', { st: 201, get n() { return t("ikkinchi mijoz, o'sha telefon", 'второй клиент, тот же телефон'); }, bad: true }, { st: 500, n: '«Internal server error»', bad: true }],
+  [() => t('POST · takror telefon · token', 'POST · повторный телефон · token'), { st: 201, get n() { return t("ikkinchi mijoz, o'sha telefon", 'второй клиент, тот же телефон'); }, bad: true }, { st: 500, n: '«Internal server error»', bad: true }],
 ];
 function Ai2Cell({ c }) {
   return <div style={{ display: 'flex', gap: 8, alignItems: 'center', minWidth: 0, padding: '6px 10px', borderRadius: 8, border: `1px solid ${c.bad ? T.accent : T.line}`, background: c.bad ? '#FFF0EB' : T.paper }}>
@@ -2502,9 +2502,10 @@ function Ai2Cell({ c }) {
   </div>;
 }
 function Ai2Rows({ rows }) {
-  return rows.map(([q, a, b]) => <div key={q} style={{ display: 'grid', gridTemplateColumns: '1.1fr 1fr 1fr', gap: 8, alignItems: 'center' }}>
+  // so'rov yorlig'i matn yoki tarjimali funksiya (modul darajasida t() ruschaga almashmaydi)
+  return rows.map(([q0, a, b]) => { const q = typeof q0 === 'function' ? q0() : q0; return <div key={q} style={{ display: 'grid', gridTemplateColumns: '1.1fr 1fr 1fr', gap: 8, alignItems: 'center' }}>
     <code style={{ font: `12.5px/1.35 ${MONO}`, overflowWrap: 'anywhere' }}>{q}</code><Ai2Cell c={a} /><Ai2Cell c={b} />
-  </div>);
+  </div>; });
 }
 const S_AI2 = {
   kicker: '6-bosqich · AI yozgan kod', title: 'AI yozgan customer resursi: ikki topshiriq, ikki natija',
@@ -3147,8 +3148,8 @@ const FINAL = [
   { q: 'GET /api/v1/car/1 — nima bo\'ladi?', o: ["500, terminalda uuid xatosi", "404, bunday mashina topilmadi", "200, birinchi mashina qaytadi", "400, DTO qoidasi buzilgani uchun"], c: 0, e: "id uuid; «1» bazada xato beradi, filtr uni 500 qiladi.", s: 13 },
   { q: 'Tokensiz GET /api/v1/admin yuborildi. Javob?', o: ['403, rol yetmaydi', "404, route yo'q", "401, token yo'q", "200, adminlar ro'yxati"], c: 2, e: "AuthGuard: Authorization yo'q → 401.", s: 16 },
   { q: "Entity'da price'dan @Column olib tashlandi, server qayta yoqildi. Nima bo'ladi?", o: ["Server yiqiladi, terminalda xato chiqadi", "Ustun bazadan xato bermay o'chadi", "Ustun bazada o'zgarmay qoladi", "Faqat DTO xato beradi, baza o'zgarmaydi"], c: 1, e: "synchronize bazani Entity'ga moslaydi — ustun o'chadi, xabar yo'q.", s: 21 },
-  { q: "O'quvchi m4a-03 bo'yicha localhost:3000/car'ni ochdi — 404, terminalda car uchun 5 ta Mapped bor. Nima deysiz?", o: ["Manzil /api/v1/car bo'lishi kerak", "CarModule'ni AppModule'ga ulang", "Serverni qayta ishga tushiring", "Authorize'ga tokenni qayta qo'ying"], c: 0, e: "Mapped bor — route bor; o'quvchi darsida prefiks yozilmagan.", s: 24 },
-  { q: "KitobShop: superadmin tokeni bilan POST /book — 403. O'quvchiga nima deysiz?", o: ["Qayta signin qiling, token eskirib qolgan", "Authorize'ga tokenni qayta qo'ying", "BookModule'ni AppModule'ga ulab qo'ying", "Oddiy admin yarating va u bilan kiring"], c: 3, e: "@Roles('admin') — superAdmin ro'yxatda yo'q; token yaroqli, shuning uchun 403.", s: 26 },
+  { q: "O'quvchi m4a-03 bo'yicha localhost:3000/car'ni ochdi — 404, terminalda car uchun 5 ta Mapped bor. Nima deysiz?", o: ["Manzil /api/v1/car bo'lishi kerak", "CarModule'ni AppModule'ga ulang", "Serverni qayta ishga tushiring", "Authorize'ga tokenni qayta qo'ying"], c: 0, e: "Mapped bor — route bor; o'quvchi darsida prefiks yozilmagan.", s: 26 },
+  { q: "KitobShop: superadmin tokeni bilan POST /book — 403. O'quvchiga nima deysiz?", o: ["Qayta signin qiling, token eskirib qolgan", "Authorize'ga tokenni qayta qo'ying", "BookModule'ni AppModule'ga ulab qo'ying", "Oddiy admin yarating va u bilan kiring"], c: 3, e: "@Roles('admin') — superAdmin ro'yxatda yo'q; token yaroqli, shuning uchun 403.", s: 28 },
   { q: "O'quvchi .env'ni keyin to'ldirdi, lekin kira olmayapti; bazada nomsiz superadmin bor. Nima qilasiz?", o: [".env'ni yana bir marta saqlab, kutib turing", "Serverni ikki marta to'xtatib qayta yoqing", "Bazadagi o'sha satrni o'chirib, qayta yoqing", "USER_NAME'ni boshqa nomga o'zgartiring"], c: 2, e: "Superadmin bor bo'lsa onModuleInit yangisini yaratmaydi.", s: 6 },
 ];
 function Screen28(p) {

@@ -68,13 +68,16 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M24 · Haqiqiy chiqishlar: `manba/nest2-out/
 | 21 | Buzamiz 2: Entity o'zgardi — baza o'zgardi | Lesson | 5 |
 | 22 | Tekshiruv 4 — o'quvchi KitobShop'idagi xato | MCRetry | 5 |
 | 23 | Amaliyot 4 — o'zingiz buzing | Practice | 5 |
-| 24 | m4a-03 va undagi `/car` xatosi | Lesson | 6 · ko'prik |
-| 25 | O'quvchi darsidagi so'zlar | Lesson | 6 |
-| 26 | m4a-04 KitobShop va tayyorgarlik | Lesson | 6 |
-| 27 | Sinfdagi 6 holat va o'quvchi savollari | Lesson | 6 |
-| 28 | Uyga vazifalarni tekshirish | Lesson | 6 |
-| 29 | O'z-sinov — 8 savol | Screen27 | — |
-| 30 | Yakun | Screen28 | — |
+| 24 | AI yozgan customer resursi: ikki topshiriq, ikki natija (F-1125-01) | Lesson | 6 · AI yozgan kod |
+| 25 | Tekshiruv 5 — AI yozgan Controller: qaysi satr 500 ga sabab? | LineCheck | 6 |
+| 26 | m4a-03 va undagi `/car` xatosi | Lesson | 7 · ko'prik |
+| 27 | O'quvchi darsidagi so'zlar | Lesson | 7 |
+| 28 | m4a-04 KitobShop va tayyorgarlik | Lesson | 7 |
+| 29 | Sinfdagi 6 holat va o'quvchi savollari | Lesson | 7 |
+| 30 | O'z-sinov — 8 savol | Screen27 | — |
+| 31 | Yakun | Screen28 | — |
+
+(«Uyga vazifalarni tekshirish» ekrani F-1031-09 da olib tashlangan — mentor tekshirmaydi.)
 
 **Explorer** (`root: 'IntroNestArxitechture'`): `src/main.ts` · `src/config/index.ts` · `src/api/app.module.ts` · `src/api/app.service.ts` · `src/api/admin/` (module · controller · service · dto ×3) · `src/api/auth/` · `src/core/index.ts` · `src/core/entity/Base.entity.ts` · `admin.entity.ts` · `src/core/repository/` · `src/common/guard/` · `src/common/decorator/` · `src/infrastructure/base/base.service.ts` · `src/infrastructure/exception/AllException.filter.ts` · `src/infrastructure/response/successRes.ts` · `.env.example` · `.env` (2-ekrandan). Car fayllari 8-ekrandan boshlab bittadan `fresh` bilan paydo bo'ladi: `core/entity/car.entity.ts` (8) · `api/car/dto/` (9) · `car.service.ts` (11) · `car.controller.ts`, `car.module.ts` (12).
 
@@ -874,8 +877,8 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M24 · Haqiqiy chiqishlar: `manba/nest2-out/
   | 3 | `GET /api/v1/car/1` — nima bo'ladi? | 500, terminalda uuid xatosi · 404, bunday mashina topilmadi · 200, birinchi mashina qaytadi · 400, DTO qoidasi buzilgani uchun | 1 | id uuid; «1» bazada xato beradi, filtr uni 500 qiladi. | 13 |
   | 4 | Tokensiz `GET /api/v1/admin` yuborildi. Javob? | 403, rol yetmaydi · 404, route yo'q · 401, token yo'q · 200, adminlar ro'yxati | 3 | AuthGuard: `Authorization` yo'q → 401. | 16 |
   | 5 | Entity'da `price`dan `@Column` olib tashlandi, server qayta yoqildi. Nima bo'ladi? | Server yiqiladi, terminalda xato chiqadi · Ustun bazadan xato bermay o'chadi · Ustun bazada o'zgarmay qoladi · Faqat DTO xato beradi, baza o'zgarmaydi | 2 | `synchronize` bazani Entity'ga moslaydi — ustun o'chadi, xabar yo'q. | 21 |
-  | 6 | O'quvchi m4a-03 bo'yicha `localhost:3000/car`ni ochdi — 404, terminalda car uchun 5 ta Mapped bor. Nima deysiz? | Manzil `/api/v1/car` bo'lishi kerak · CarModule'ni AppModule'ga ulang · Serverni qayta ishga tushiring · Authorize'ga tokenni qayta qo'ying | 1 | Mapped bor — route bor; o'quvchi darsida prefiks yozilmagan. | 24 |
-  | 7 | KitobShop: superadmin tokeni bilan `POST /book` — 403. O'quvchiga nima deysiz? | Qayta signin qiling, token eskirib qolgan · Authorize'ga tokenni qayta qo'ying · BookModule'ni AppModule'ga ulab qo'ying · Oddiy admin yarating va u bilan kiring | 4 | `@Roles('admin')` — `superAdmin` ro'yxatda yo'q; token yaroqli, shuning uchun 403. | 26 |
+  | 6 | O'quvchi m4a-03 bo'yicha `localhost:3000/car`ni ochdi — 404, terminalda car uchun 5 ta Mapped bor. Nima deysiz? | Manzil `/api/v1/car` bo'lishi kerak · CarModule'ni AppModule'ga ulang · Serverni qayta ishga tushiring · Authorize'ga tokenni qayta qo'ying | 1 | Mapped bor — route bor; o'quvchi darsida prefiks yozilmagan. | 26 |
+  | 7 | KitobShop: superadmin tokeni bilan `POST /book` — 403. O'quvchiga nima deysiz? | Qayta signin qiling, token eskirib qolgan · Authorize'ga tokenni qayta qo'ying · BookModule'ni AppModule'ga ulab qo'ying · Oddiy admin yarating va u bilan kiring | 4 | `@Roles('admin')` — `superAdmin` ro'yxatda yo'q; token yaroqli, shuning uchun 403. | 28 |
   | 8 | O'quvchi `.env`ni keyin to'ldirdi, lekin kira olmayapti; bazada nomsiz superadmin bor. Nima qilasiz? | `.env`ni yana bir marta saqlang · Serverni ikki marta to'xtatib qayta yoqing · Bazadagi o'sha satrni o'chirib, qayta yoqing · `USER_NAME`ni boshqa nomga o'zgartiring | 3 | Superadmin bor bo'lsa `onModuleInit` yangisini yaratmaydi. | 6 |
 - `passed = ball ≥ 6 && 4 amaliyot isbot bilan` (Nest-1 bilan bir xil); `onFinished` maydonlari o'zgarmaydi.
 

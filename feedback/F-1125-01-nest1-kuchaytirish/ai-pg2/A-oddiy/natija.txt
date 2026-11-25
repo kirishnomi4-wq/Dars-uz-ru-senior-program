@@ -1,0 +1,38 @@
+--- boshlang'ich holat (PG-2 1-bosqich)
+ id |    name    | price  | stock 
+----+------------+--------+-------
+  1 | Klaviatura | 120000 |     8
+  2 | Sichqoncha |  75000 |    15
+  3 | Quloqchin  |  95000 |     5
+  4 | Kolonka    |  50000 |    10
+(4 rows)
+
+--- psql -U postgres -d shop -f sorovlar.sql   (AI SQL, aynan)
+SELECT * FROM mahsulotlar WHERE narxi < 100000;
+psql:sorovlar.sql:1: ERROR:  relation "mahsulotlar" does not exist
+LINE 1: SELECT * FROM mahsulotlar WHERE narxi < 100000;
+                      ^
+SELECT * FROM mahsulotlar WHERE nomi ILIKE '%quloqchin%';
+psql:sorovlar.sql:3: ERROR:  relation "mahsulotlar" does not exist
+LINE 1: SELECT * FROM mahsulotlar WHERE nomi ILIKE '%quloqchin%';
+                      ^
+UPDATE mahsulotlar SET narxi = 90000 WHERE nomi ILIKE '%quloqchin%';
+psql:sorovlar.sql:5: ERROR:  relation "mahsulotlar" does not exist
+LINE 1: UPDATE mahsulotlar SET narxi = 90000 WHERE nomi ILIKE '%qulo...
+               ^
+ALTER TABLE mahsulotlar DROP COLUMN kolonka;
+psql:sorovlar.sql:6: ERROR:  relation "mahsulotlar" does not exist
+INSERT INTO mahsulotlar (nomi, narxi, soni) VALUES ('Monitor', 1500000, 3);
+psql:sorovlar.sql:7: ERROR:  relation "mahsulotlar" does not exist
+LINE 1: INSERT INTO mahsulotlar (nomi, narxi, soni) VALUES ('Monitor...
+                    ^
+--- yakuniy holat
+ id |    name    | price  | stock 
+----+------------+--------+-------
+  1 | Klaviatura | 120000 |     8
+  2 | Sichqoncha |  75000 |    15
+  3 | Quloqchin  |  95000 |     5
+  4 | Kolonka    |  50000 |    10
+(4 rows)
+
+--- kutilgan: Klaviatura 120000 8 · Sichqoncha 75000 15 · Quloqchin 90000 5 · Monitor 1500000 3 · Kolonka yo'q

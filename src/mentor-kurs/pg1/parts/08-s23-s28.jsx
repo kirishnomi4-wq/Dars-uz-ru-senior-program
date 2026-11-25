@@ -189,12 +189,13 @@ const SUM28 = [
   { k: 'join', t: "JOIN: ON'da tashqi kalit id'ga tenglanadi; xato ON — xatosiz, lekin noto'g'ri natija; LEFT JOIN — juftsizlar ham", st: ['join'] },
   { k: 'tx', t: "Oxirgi telefon: shart + qator qulfi → UPDATE 0; tranzaksiya — hammasi yoki hech narsa; jsonb — erkin qo'shimcha", st: ['jad', 'rule'] },
   { k: 'class', t: "Sinf: m4-06 dan oldin har kompyuterda psql -U postgres -c \"SELECT version();\"; m4-03 kodsiz — har blokda bitta qo'shimcha gapingiz bor", st: ['req', 'res'] },
+  { k: 'ai', t: "AI tavsiyasi: sabab — 4 mezon bilan (chat uchun AI PostgreSQL dedi, darsda MongoDB — sabab hal qiladi); sxema — bazada: bo'sh matn '', ON DELETE CASCADE", st: ['rule'] },
 ];
 // F-1120-02 (M51): xulosa — darsning o'sha rasmi (blog bazasi); har band rasmning o'z qismini ko'rsatadi
 function SummaryMap28({ hl }) {
   const read = hl === 'inst' || hl === 'class' ? ['$', 'psql -U postgres -c "SELECT version();"'] : hl === 'join' || hl === 'all' ? ['blog=#', 'SELECT users.username, posts.izoh FROM posts <span class="n1-k">JOIN</span> users ON users.id = posts.user_id;'] : null;
   return <div className="mk-light" style={{ padding: 16 }}>
-    <BlogDb rules={hl === 'mongo' || hl === 'rule' || hl === 'tx' || hl === 'all'} fk={hl === 'mongo' || hl === 'rule'} join={hl === 'join' || hl === 'all' ? 'inner' : null}
+    <BlogDb rules={hl === 'mongo' || hl === 'rule' || hl === 'tx' || hl === 'ai' || hl === 'all'} fk={hl === 'mongo' || hl === 'rule'} join={hl === 'join' || hl === 'all' ? 'inner' : null}
       bad={hl === 'rule' ? { t: 'posts', row: ['4', '99', "Muallifi yo'q post"], why: t("users'da id 99 yo'q", 'в users нет id 99') } : null}
       read={read} tag={t("Bugungi dars — blog bazasi bir qarashda", 'Сегодняшний урок — база blog одним взглядом')} />
   </div>;
@@ -234,6 +235,8 @@ kodsiz, 21 ekran: kirish · ikki tur va shakl · kuchlar (JOIN, oxirgi telefon, 
 «tranzaksiya saqlaydi» — aslida shart + qator qulfi · «NoSQL'da bog'lash qiyin» — bog'lash bor, baza qo'riqlamaydi
 ## O'quvchi darsidagi so'zlar
 Excel jadvali = table · papkadagi turli qog'ozlar = document · id orqali bog'lash = JOIN · SQL nazorati = tranzaksiya · qaror ko'rsatkichi = 4 mezon
+## AI tavsiyasi va AI yozgan sxema
+sabab — 4 mezon bilan (bog'langanmi · shakli qat'iymi · xato qimmatmi · ulkan hajm va tezlik); haqiqiy AI chat uchun PostgreSQL dedi, m4-03 dagi tayyor javob — MongoDB: sabab hal qiladi · sxemani bazada yurgizing: yo'q id → tashqi kalit xatosi · NULL → NOT NULL · takror → UNIQUE · bo'sh matn '' — NOT NULL to'xtatmaydi → CHECK (trim(body) <> '') · ON DELETE CASCADE — xabari bor foydalanuvchini o'chirish uning hamma xabarini xato bermay o'chiradi; olib tashlansa — DELETE rad etiladi
 ## Sizning uyga vazifangiz
 blog-db: README (4 mezon) + schema.sql + data.sql + queries.sql (JOIN, LEFT JOIN) + FK xatosining DETAIL satri → GitHub → repo linki platformadagi uyga vazifaga`;
 const s28Segments = (passed) => yakRu(passed, [
@@ -246,6 +249,7 @@ const s28Segments = (passed) => yakRu(passed, [
   sg('b4', "JOIN'da hammasi <b>ON satrida</b>; LEFT JOIN — juftsizlar ham", "To'rtinchi: JOIN'da hammasi on satrida, tashqi kalit boshqa jadvalning id'siga tenglanadi. Xato on xato bermaydi, lekin natijani buzadi. Left join juftsiz qatorlarni ham chiqaradi.", { hl: 'join' }),
   sg('b5', "Oxirgi telefon: <b>shart va qator qulfi</b>; tranzaksiya — hammasi yoki hech narsa", "Beshinchi: oxirgi telefonni so'rovdagi shart va qator qulfi saqlaydi, ikkinchi xaridor update nol oladi. Bir nechta jadval birga o'zgarsa, tranzaksiya: xato bo'lsa hammasi bekor.", { hl: 'tx' }),
   sg('b6', "Sinf: m4-06 dan oldin <b>har kompyuterda psql</b> ochilsin", "Oltinchi, sinf uchun eng muhimi: m4-06 dan oldin har sinf kompyuterida PostgreSQL ishlab tursin, bitta parol bilan. m4-03 kodsiz, lekin har blokda sizning bitta qo'shimcha gapingiz bor.", { hl: 'class' }),
+  sg('b7', "AI tavsiyasi: <b>sabab 4 mezon bilan</b>, sxema <b>bazada</b>", "Yettinchi: AI tavsiyasini sabab bilan qabul qiling va to'rt mezon bilan solishtiring. AI yozgan sxemani bazada yurgizing: bo'sh matn, takror qiymat va xabari bor foydalanuvchini o'chirib ko'ring. On delete cascade bilan o'chirish xato bermay boshqa jadvalga ham o'tadi.", { hl: 'ai' }),
   sg('hw', "<b>Uyga vazifa</b>: o'quvchi amaliyotini o'zingiz — haqiqiy bazada", "Uyga vazifa: o'quvchining amaliyotini o'zingiz to'liq qiling, lekin haqiqiy bazada. Bitta loyiha g'oyasini oling, masalan onlayn do'kon. README'da to'rt savolga javob yozing va bazani tanlang. Keyin uchta fayl: schema'da ikki bog'langan jadval, data'da ma'lumot, queries'da JOIN va left join. Bir marta tashqi kalit xatosini ataylab chiqaring.", { hl: 'hw' }),
   sg('hw2', "Topshirish: GitHub'dagi repo linkini <b>platformadagi uyga vazifaga</b> qo'ying — boshqa hech narsa kerak emas", "Xatoning detail qatorini README'ga yozing. GitHub'ga chiqaring va repo linkini platformadagi uyga vazifangizga qo'ying, boshqa hech narsa kerak emas. Qirq-oltmish daqiqa.", { hl: 'hw' }),
   sg('c', "<b>Eslatmani oling</b>: lug'at, o'rnatish, psql, qoidalar, JOIN — bir sahifada", "Pastda bir sahifalik eslatma: Mongo lug'ati, o'rnatish yo'llari, psql buyruqlari, qoidalar, JOIN, oxirgi telefon, ulanish xatolari va sinf kompyuterlari ro'yxati. Nusxalab yoki yuklab oling, sinfda yoningizda tursin.", { hl: 'note' }),
@@ -270,7 +274,8 @@ function Screen28(p) {
         <div className="mk-scene top" style={{ overflow: 'auto' }}>
           {phase === 'sum' && (<>
             <SummaryMap28 hl={hl} />
-            <div className="mk-plan">{SUM28.slice(0, shown).map((it, i) => <div key={it.k} className={it.k === hl ? 'hl' : ''} style={{ animation: 'mk-up .45s ease both' }}><b>0{i + 1}</b><span>{it.t}</span></div>)}</div>
+            {/* F-1125-01: 7 band 1280×720 ga sig'sin (yangi band pastda qirqilmasin) — faqat shu ro'yxatda zichroq */}
+            <div className="mk-plan" style={{ gap: 6 }}>{SUM28.slice(0, shown).map((it, i) => <div key={it.k} className={it.k === hl ? 'hl' : ''} style={{ animation: 'mk-up .45s ease both', padding: '8px 14px' }}><b>0{i + 1}</b><span>{it.t}</span></div>)}</div>
           </>)}
           {phase === 'hw' && <div className="mk-light" style={{ padding: 16, animation: 'mk-up .45s ease both' }}>
             <div className="mk-tag" style={{ color: T.accent }}>{t('Uyga vazifa · 40–60 daqiqa', 'Домашнее задание · 40–60 минут')}</div>
@@ -317,7 +322,7 @@ function Cover({ onStart, resume }) {
     </div></div>
   );
 }
-const SCREENS = [Screen1, ScreenSqlNosql, Screen2, Screen3, Screen4, Screen5, Screen6, Screen7, Screen8, ScreenP1, Screen10, Screen11, Screen12, Screen13, ScreenP2, Screen15, Screen16, ScreenP3, Screen18, Screen19, Screen20, Screen21, ScreenP4, Screen23, Screen24, Screen25, Screen26, Screen27, Screen28];
+const SCREENS = [Screen1, ScreenSqlNosql, Screen2, Screen3, Screen4, Screen5, Screen6, Screen7, Screen8, ScreenP1, Screen10, Screen11, Screen12, Screen13, ScreenP2, Screen15, Screen16, ScreenP3, Screen18, Screen19, Screen20, Screen21, ScreenP4, ScreenAI, ScreenLCAI, Screen23, Screen24, Screen25, Screen26, Screen27, Screen28];
 const PRACTICE_COUNT = SCREENS.filter((S) => /^ScreenP\d/.test(S.name)).length;
 export default function PgIntroMentorLesson({ studentName, lang = 'uz', onFinished, startAt }) {
   setLang(lang);

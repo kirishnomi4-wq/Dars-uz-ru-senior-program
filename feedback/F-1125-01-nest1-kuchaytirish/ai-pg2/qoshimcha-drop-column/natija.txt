@@ -1,0 +1,22 @@
+--- boshlang'ich holat (PG-2 1-bosqich)
+ id |    name    | price  | stock 
+----+------------+--------+-------
+  1 | Klaviatura | 120000 |     8
+  2 | Sichqoncha |  75000 |    15
+  3 | Quloqchin  |  95000 |     5
+  4 | Kolonka    |  50000 |    10
+(4 rows)
+
+--- psql -U postgres -d shop -f sorovlar.sql   (AI SQL, aynan)
+ALTER TABLE products DROP COLUMN stock;
+ALTER TABLE
+--- yakuniy holat
+ id |    name    | price  
+----+------------+--------
+  1 | Klaviatura | 120000
+  2 | Sichqoncha |  75000
+  3 | Quloqchin  |  95000
+  4 | Kolonka    |  50000
+(4 rows)
+
+--- kutilgan: Klaviatura 120000 8 · Sichqoncha 75000 15 · Quloqchin 90000 5 · Monitor 1500000 3 · Kolonka yo'q

@@ -136,6 +136,7 @@ const SUM31 = [
   { k: 'exp', t: 'Express: Pool birinchi so\'rovda ulanadi va ulanishni qayta ishlatadi → pool.query(sql, [$1…]) → rows / rowCount → res.json; 200 · 201 · 404 · 500', st: ['pm', 'srv', 'pool'] },
   { k: 'brk', t: "$1 — xavfsizlik: yopishtirilgan 1 OR 1=1 jadvalni bo'shatdi; server xatolari: ustun nomi · express.json() · parol/baza birinchi so'rovda · bo'sh xabar → console.error(err) · ikkinchi server «ishlayapti»", st: ['srv', 'pool'] },
   { k: 'class', t: "Sinf: m4-06 amaliyoti haqiqiy psql'da; m4-08 dan oldin parol, Postman, bitta terminal; olti holat va savollarga javoblar tayyor", st: ['pm', 'psql'] },
+  { k: 'ai', t: "AI yozgan SQL: fe'l topshiriqqa mosmi (o'chirish — DELETE, ALTER/DROP emas) · nomlar \\d bilan · javobdagi son · oxirida SELECT *", st: ['psql'] },
 ];
 // F-1120-02 (M51): xulosa — darsning o'sha rasmi (CrudMachine); har band rasmning o'z yo'lini yoritadi
 const PS31 = { psql: ['psql', 'shop'], api: ['pm', 'json', 'route', 'pool', 'cars'] };
@@ -145,6 +146,7 @@ const MAP31 = {
   rule: { path: 'psql', on: PS31.psql, psqlLine: ['shop=*#', 'UPDATE products SET stock = stock - 7 WHERE id = 3;', 'ERROR: … violates check constraint "stock_nonneg"'] },
   exp: { path: 'api', on: PS31.api, st: 201, back: 'rows[0] → res.status(201).json' },
   brk: { path: 'api', on: PS31.api, st: 500, back: 'catch → res.status(500)' },
+  ai: { path: 'psql', on: PS31.psql, psqlLine: ['shop=#', "DELETE FROM products WHERE name = 'Kolonka';", 'DELETE 1'] },
   class: { path: 'both', on: ['pm', 'psql'], st: 201, back: 'rows[0] → res.status(201).json' },
 };
 function SummaryMap31({ hl }) {
@@ -183,6 +185,8 @@ column "price" of relation "cars" does not exist → kodda ustun nomi (\\d cars)
 ## Sinfga tayyorgarlik
 m4-06 (21 ekran): amaliyot haqiqiy PostgreSQL terminalida — har kompyuterda PostgreSQL; siz qo'shasiz: javobdagi son, BEGIN … ROLLBACK proyektorda, ORDER BY, apostrof va NOT NULL maslahati, HINT ham adashadi
 m4-08 (9 ekran): sinf paroli, Postman, bitta terminal; to'rt farq — xato matni qisqa · Gemini kodi har xil · is_rented null (DEFAULT yo'q) · port band «ishlayapti»
+## AI yozgan SQL
+fe'l topshiriqqa mosmi: ko'rish SELECT · o'zgartirish UPDATE · o'chirish DELETE · qo'shish INSERT; ALTER / DROP — so'ralmagan bo'lsa yurgizilmaydi (DROP COLUMN stock → ALTER TABLE, so'roqsiz, hamma qatordan qiymat yo'qoladi) · nomlar \\d products bilan (AI tuzilishni bilmasa o'ylab topadi: relation "mahsulotlar" does not exist) · javobdagi son · oxirida SELECT * · haqiqiy AI «Kolonkani o'chir»ni ustun deb tushundi (ikkalasi) · butun javobni nusxalamang: shablondagi <…> xatosi tranzaksiyani buzadi, keyingi INSERT ham bajarilmaydi
 ## Sizning uyga vazifangiz (50–70 daqiqa)
 shop-api: schema.sql (products NOT NULL + CHECK, orders FK) + server.js (4 endpoint, $1, 404) + README (5 so'rov va javobi, BEGIN…COMMIT sotuv va CHECK xatosi) → GitHub → repo linki platformadagi uyga vazifaga`;
 const s31Segments = (passed) => yakRu(passed, [
@@ -195,6 +199,7 @@ const s31Segments = (passed) => yakRu(passed, [
   sg('b4', "Express: <b>Pool birinchi so'rovda ulanadi</b> → pool.query → rows / rowCount → res.json", "To'rtinchi: Express'dan bazaga yo'l. Pool bir marta sozlanadi, birinchi so'rovda ulanadi va ulanishni qayta ishlatadi. Pool query so'rov yuboradi, natijadan rows yoki rowcount olinadi, res json javob qaytaradi. Statuslar: ikki yuz, ikki yuz bir, to'rt yuz to'rt, besh yuz.", { hl: 'exp' }),
   sg('b5', "<b>$1 — xavfsizlik</b>; server xatolari: ustun nomi, express.json, parol, bo'sh xabar, ikkinchi server", "Beshinchi: foydalanuvchidan kelgan qiymat doim dollar bir bilan, yopishtirilgan matn butun jadvalni bo'shatdi. Server xatolari: ustun nomi, express json, parol va baza birinchi so'rovda. Xabar bo'sh bo'lsa, console error'ga butun xatoni bering. Ikkinchi server ham ishlayapti deydi.", { hl: 'brk' }),
   sg('b6', "Sinf: m4-06 amaliyoti <b>haqiqiy psql'da</b>; m4-08 dan oldin parol, Postman, bitta terminal", "Oltinchi, sinf uchun: m4-06 amaliyoti haqiqiy PostgreSQL terminalida, har kompyuterda PostgreSQL kerak. m4-08 dan oldin sinf paroli, Postman va bitta terminal qoidasi. Olti holat va o'quvchi savollariga javoblar sizda tayyor.", { hl: 'class' }),
+  sg('b7', "AI yozgan SQL: <b>fe'l, nom va son</b>; ALTER yoki DROP so'ralmagan bo'lsa — yurgizmang", "Yettinchi: AI yozgan SQL'ni fe'l, nom va son bilan tekshiring. O'chirish delete bo'lishi kerak; alter yoki drop so'ralmagan bo'lsa, uni yurgizmang. Haqiqiy AI kolonkani ustun deb tushundi, buni o'z ko'zingiz bilan ko'rdingiz.", { hl: 'ai' }),
   sg('hw', "<b>Uyga vazifa</b>: o'z do'koningiz uchun shop-api — ikki jadval, to'rt endpoint, README", "Uyga vazifa: o'z do'koningiz uchun shop api. Schema faylida ikki jadval: mahsulotlar not null va check stock katta yoki teng nol bilan, buyurtmalar tashqi kalit bilan. Server js'da to'rt endpoint, hamma qiymat dollar bir bilan, topilmasa to'rt yuz to'rt. README'da har endpoint uchun bitta so'rov va javobi.", { hl: 'hw' }),
   sg('hw2', "Terminalda <b>bitta sotuv va CHECK xatosi</b> — README'ga; repo linki platformaga", "Terminalda bitta sotuvni begin, update, insert va commit bilan qiling, keyin yetmagan qoldiqda check xatosini oling: ikkalasini README'ga yozing. GitHub'ga chiqaring va repo linkini platformadagi uyga vazifangizga qo'ying. Ellik-yetmish daqiqa.", { hl: 'hw' }),
   sg('c', "<b>Eslatmani oling</b>: CRUD, tranzaksiya, qoidalar, xatolar va server — bir sahifada", "Pastda bir sahifalik eslatma: CRUD va javobdagi son, tranzaksiya holatlari, baza qoidalari, SQL va server xatolari, Express yo'li va sinfga tayyorgarlik. Nusxalab yoki yuklab oling, sinfda yoningizda tursin.", { hl: 'note' }),
@@ -267,7 +272,7 @@ function Cover({ onStart, resume }) {
     </div></div>
   );
 }
-const SCREENS = [Screen1, Screen2, Screen3, Screen4, Screen5, Screen6, Screen7, ScreenP8, Screen9, Screen10, Screen11, Screen12, ScreenP13, Screen14, Screen15, Screen16, Screen17, Screen18, Screen19, Screen20, ScreenP21, Screen22, Screen23, Screen24, Screen25, Screen26, ScreenP27, Screen28, Screen29, Screen30, Screen31];
+const SCREENS = [Screen1, Screen2, Screen3, Screen4, Screen5, Screen6, Screen7, ScreenP8, Screen9, Screen10, Screen11, Screen12, ScreenP13, Screen14, Screen15, Screen16, Screen17, Screen18, Screen19, Screen20, ScreenP21, Screen22, Screen23, Screen24, Screen25, Screen26, ScreenP27, ScreenAI, ScreenLCAI, Screen28, Screen29, Screen30, Screen31];
 const PRACTICE_COUNT = SCREENS.filter((S) => /^ScreenP\d/.test(S.name)).length;
 export default function PgCrudMentorLesson({ studentName, lang = 'uz', onFinished, startAt }) {
   setLang(lang);

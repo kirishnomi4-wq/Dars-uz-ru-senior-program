@@ -1,0 +1,91 @@
+--- psql -U postgres -c "CREATE DATABASE chat;"
+CREATE DATABASE
+
+--- psql -U postgres -d chat -f schema.sql   (AI sxemasi, aynan)
+CREATE TABLE users (
+  id            BIGSERIAL PRIMARY KEY,
+  username      VARCHAR(50) UNIQUE NOT NULL,
+  password_hash TEXT NOT NULL,
+  avatar_url    TEXT,
+  created_at    TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE TABLE
+CREATE TABLE conversations (
+  id          BIGSERIAL PRIMARY KEY,
+  title       VARCHAR(100),              -- guruh nomi; shaxsiy chatda NULL
+  is_group    BOOLEAN NOT NULL DEFAULT FALSE,
+  created_at  TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE TABLE
+CREATE TABLE conversation_members (
+  conversation_id      BIGINT NOT NULL REFERENCES conversations(id) ON DELETE CASCADE,
+  user_id              BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  joined_at            TIMESTAMPTZ NOT NULL DEFAULT now(),
+  last_read_message_id BIGINT,           -- o'qilmagan xabarlar sonini hisoblash uchun
+  PRIMARY KEY (conversation_id, user_id)
+);
+CREATE TABLE
+CREATE TABLE messages (
+  id              BIGSERIAL PRIMARY KEY,
+  conversation_id BIGINT NOT NULL REFERENCES conversations(id) ON DELETE CASCADE,
+  sender_id       BIGINT NOT NULL REFERENCES users(id),
+  body            TEXT NOT NULL,
+  created_at      TIMESTAMPTZ NOT NULL DEFAULT now(),
+  edited_at       TIMESTAMPTZ,
+  is_deleted      BOOLEAN NOT NULL DEFAULT FALSE
+);
+CREATE TABLE
+CREATE INDEX idx_messages_conv_id ON messages (conversation_id, id DESC);
+CREATE INDEX
+CREATE INDEX idx_members_user      ON conversation_members (user_id);
+CREATE INDEX
+
+--- \d (jadvallar)
+                  List of relations
+ Schema |         Name         |   Type   |  Owner   
+--------+----------------------+----------+----------
+ public | conversation_members | table    | postgres
+ public | conversations        | table    | postgres
+ public | conversations_id_seq | sequence | postgres
+ public | messages             | table    | postgres
+ public | messages_id_seq      | sequence | postgres
+ public | users                | table    | postgres
+ public | users_id_seq         | sequence | postgres
+(7 rows)
+
+
+--- psql -U postgres -d chat -f sinov.sql   (mentor: odatiy + kutilmagan)
+INSERT INTO users (username, password_hash) VALUES ('ali', 'x'), ('vali', 'x');
+INSERT 0 2
+INSERT INTO conversations (title) VALUES (NULL);
+INSERT 0 1
+INSERT INTO conversation_members (conversation_id, user_id) VALUES (1, 1), (1, 2);
+INSERT 0 2
+INSERT INTO messages (conversation_id, sender_id, body) VALUES (1, 1, 'Salom!');
+INSERT 0 1
+INSERT INTO messages (conversation_id, sender_id, body) VALUES (1, 99, 'Men kimman?');
+psql:sinov.sql:7: ERROR:  insert or update on table "messages" violates foreign key constraint "messages_sender_id_fkey"
+DETAIL:  Key (sender_id)=(99) is not present in table "users".
+INSERT INTO messages (conversation_id, sender_id, body) VALUES (1, 1, NULL);
+psql:sinov.sql:9: ERROR:  null value in column "body" of relation "messages" violates not-null constraint
+DETAIL:  Failing row contains (3, 1, 1, null, 2026-11-25 19:11:27.35118+05, null, f).
+INSERT INTO messages (conversation_id, sender_id, body) VALUES (1, 1, '');
+INSERT 0 1
+INSERT INTO users (username, password_hash) VALUES ('ali', 'y');
+psql:sinov.sql:12: ERROR:  duplicate key value violates unique constraint "users_username_key"
+DETAIL:  Key (username)=(ali) already exists.
+INSERT INTO users (username, password_hash) VALUES ('sardor', 'x');
+INSERT 0 1
+INSERT INTO messages (conversation_id, sender_id, body) VALUES (1, 4, 'Men bu suhbatda yo''qman');
+INSERT 0 1
+DELETE FROM users WHERE username = 'ali';
+psql:sinov.sql:17: ERROR:  update or delete on table "users" violates foreign key constraint "messages_sender_id_fkey" on table "messages"
+DETAIL:  Key (id)=(1) is still referenced from table "messages".
+SELECT m.id, u.username, m.body FROM messages m JOIN users u ON u.id = m.sender_id ORDER BY m.id;
+ id | username |          body           
+----+----------+-------------------------
+  1 | ali      | Salom!
+  4 | ali      | 
+  5 | sardor   | Men bu suhbatda yo'qman
+(3 rows)
+

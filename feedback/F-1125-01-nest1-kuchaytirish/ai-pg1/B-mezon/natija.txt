@@ -1,0 +1,68 @@
+--- psql -U postgres -c "CREATE DATABASE chat;"
+CREATE DATABASE
+
+--- psql -U postgres -d chat -f schema.sql   (AI sxemasi, aynan)
+CREATE TABLE users (
+    id            BIGSERIAL    PRIMARY KEY,
+    username      VARCHAR(50)  NOT NULL UNIQUE,
+    email         VARCHAR(255) NOT NULL UNIQUE,
+    password_hash TEXT         NOT NULL,
+    created_at    TIMESTAMPTZ  NOT NULL DEFAULT now()
+);
+CREATE TABLE
+CREATE TABLE messages (
+    id          BIGSERIAL   PRIMARY KEY,
+    sender_id   BIGINT      NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    receiver_id BIGINT      NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    body        TEXT        NOT NULL,
+    created_at  TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE TABLE
+CREATE INDEX idx_messages_sender   ON messages (sender_id);
+CREATE INDEX
+CREATE INDEX idx_messages_receiver ON messages (receiver_id);
+CREATE INDEX
+
+--- \d (jadvallar)
+               List of relations
+ Schema |      Name       |   Type   |  Owner   
+--------+-----------------+----------+----------
+ public | messages        | table    | postgres
+ public | messages_id_seq | sequence | postgres
+ public | users           | table    | postgres
+ public | users_id_seq    | sequence | postgres
+(4 rows)
+
+
+--- psql -U postgres -d chat -f sinov.sql   (mentor: odatiy + kutilmagan)
+INSERT INTO users (username, email, password_hash) VALUES ('ali', 'ali@mail.uz', 'x'), ('vali', 'vali@mail.uz', 'x');
+INSERT 0 2
+INSERT INTO messages (sender_id, receiver_id, body) VALUES (1, 2, 'Salom!'), (2, 1, 'Va alaykum!');
+INSERT 0 2
+INSERT INTO messages (sender_id, receiver_id, body) VALUES (1, 99, 'Kimga ketdi?');
+psql:sinov.sql:5: ERROR:  insert or update on table "messages" violates foreign key constraint "messages_receiver_id_fkey"
+DETAIL:  Key (receiver_id)=(99) is not present in table "users".
+INSERT INTO messages (sender_id, receiver_id, body) VALUES (1, 2, NULL);
+psql:sinov.sql:7: ERROR:  null value in column "body" of relation "messages" violates not-null constraint
+DETAIL:  Failing row contains (4, 1, 2, null, 2026-11-25 19:11:28.425865+05).
+INSERT INTO messages (sender_id, receiver_id, body) VALUES (1, 2, '');
+INSERT 0 1
+INSERT INTO users (username, email, password_hash) VALUES ('ali', 'boshqa@mail.uz', 'y');
+psql:sinov.sql:10: ERROR:  duplicate key value violates unique constraint "users_username_key"
+DETAIL:  Key (username)=(ali) already exists.
+INSERT INTO messages (sender_id, receiver_id, body) VALUES (1, 1, 'O''zimga');
+INSERT 0 1
+SELECT count(*) AS vali_xabarlari_oldin FROM messages WHERE sender_id = 2 OR receiver_id = 2;
+ vali_xabarlari_oldin 
+----------------------
+                    3
+(1 row)
+
+DELETE FROM users WHERE username = 'ali';
+DELETE 1
+SELECT count(*) AS vali_xabarlari_keyin FROM messages WHERE sender_id = 2 OR receiver_id = 2;
+ vali_xabarlari_keyin 
+----------------------
+                    0
+(1 row)
+

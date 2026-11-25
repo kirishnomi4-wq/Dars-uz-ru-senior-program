@@ -1,0 +1,81 @@
+--- psql -U postgres -c "CREATE DATABASE chat;"
+CREATE DATABASE
+
+--- psql -U postgres -d chat -f schema.sql   (AI sxemasi, aynan)
+CREATE TABLE users (
+    id            BIGSERIAL    PRIMARY KEY,
+    username      VARCHAR(50)  NOT NULL UNIQUE,
+    email         VARCHAR(255) NOT NULL UNIQUE,
+    password_hash TEXT         NOT NULL,
+    created_at    TIMESTAMPTZ  NOT NULL DEFAULT now()
+);
+CREATE TABLE
+CREATE TABLE messages (
+    id          BIGSERIAL   PRIMARY KEY,
+    sender_id   BIGINT      NOT NULL REFERENCES users(id),
+    receiver_id BIGINT      NOT NULL REFERENCES users(id),
+    body        TEXT        NOT NULL,
+    created_at  TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE TABLE
+CREATE INDEX idx_messages_sender   ON messages (sender_id);
+CREATE INDEX
+CREATE INDEX idx_messages_receiver ON messages (receiver_id);
+CREATE INDEX
+
+--- \d (jadvallar)
+               List of relations
+ Schema |      Name       |   Type   |  Owner   
+--------+-----------------+----------+----------
+ public | messages        | table    | postgres
+ public | messages_id_seq | sequence | postgres
+ public | users           | table    | postgres
+ public | users_id_seq    | sequence | postgres
+(4 rows)
+
+
+--- psql -U postgres -d chat -f sinov.sql   (mentor: odatiy + kutilmagan)
+INSERT INTO users (username, email, password_hash) VALUES ('ali', 'ali@mail.uz', 'x'), ('vali', 'vali@mail.uz', 'x');
+INSERT 0 2
+INSERT INTO messages (sender_id, receiver_id, body) VALUES (1, 2, 'Salom!'), (2, 1, 'Va alaykum!');
+INSERT 0 2
+INSERT INTO messages (sender_id, receiver_id, body) VALUES (1, 99, 'Kimga ketdi?');
+psql:sinov.sql:5: ERROR:  insert or update on table "messages" violates foreign key constraint "messages_receiver_id_fkey"
+DETAIL:  Key (receiver_id)=(99) is not present in table "users".
+INSERT INTO messages (sender_id, receiver_id, body) VALUES (1, 2, NULL);
+psql:sinov.sql:7: ERROR:  null value in column "body" of relation "messages" violates not-null constraint
+DETAIL:  Failing row contains (4, 1, 2, null, 2026-11-25 19:12:10.420343+05).
+INSERT INTO messages (sender_id, receiver_id, body) VALUES (1, 2, '');
+INSERT 0 1
+INSERT INTO users (username, email, password_hash) VALUES ('ali', 'boshqa@mail.uz', 'y');
+psql:sinov.sql:10: ERROR:  duplicate key value violates unique constraint "users_username_key"
+DETAIL:  Key (username)=(ali) already exists.
+INSERT INTO messages (sender_id, receiver_id, body) VALUES (1, 1, 'O''zimga');
+INSERT 0 1
+SELECT count(*) AS vali_xabarlari_oldin FROM messages WHERE sender_id = 2 OR receiver_id = 2;
+ vali_xabarlari_oldin 
+----------------------
+                    3
+(1 row)
+
+DELETE FROM users WHERE username = 'ali';
+psql:sinov.sql:15: ERROR:  update or delete on table "users" violates foreign key constraint "messages_sender_id_fkey" on table "messages"
+DETAIL:  Key (id)=(1) is still referenced from table "messages".
+SELECT count(*) AS vali_xabarlari_keyin FROM messages WHERE sender_id = 2 OR receiver_id = 2;
+ vali_xabarlari_keyin 
+----------------------
+                    3
+(1 row)
+
+ALTER TABLE messages ADD CHECK (trim(body) <> '');
+psql:sinov.sql:18: ERROR:  check constraint "messages_body_check" of relation "messages" is violated by some row
+DELETE FROM messages WHERE trim(body) = '';
+DELETE 1
+ALTER TABLE messages ADD CHECK (trim(body) <> '');
+ALTER TABLE
+INSERT INTO messages (sender_id, receiver_id, body) VALUES (2, 1, '');
+psql:sinov.sql:21: ERROR:  new row for relation "messages" violates check constraint "messages_body_check"
+DETAIL:  Failing row contains (7, 2, 1, , 2026-11-25 19:12:10.432604+05).
+INSERT INTO messages (sender_id, receiver_id, body) VALUES (2, 1, '   ');
+psql:sinov.sql:22: ERROR:  new row for relation "messages" violates check constraint "messages_body_check"
+DETAIL:  Failing row contains (8, 2, 1,    , 2026-11-25 19:12:10.43298+05).

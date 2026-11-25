@@ -17,7 +17,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M31 · Haqiqiy chiqishlar: `manba/pg1-out/` 
 | Misol-ip | **`blog` bazasi: `users` + `posts`** — o'quvchi m4-03 amaliyotidagi namuna aynan shu: `users(id, username)` va `posts(id, user_id, izoh)`. Mongo tomonida xuddi shu blog (User, Post). 5-bosqichda shu bazaga `products` va `orders` qo'shiladi («oxirgi telefon»). |
 | Mongo bilan halollik | Mongo yomonlanmaydi. Sinovda chiqqan haqiqat ochiq aytiladi: **oxirgi telefon Mongo'da ham bittaga sotiladi** (bitta hujjat atomik). PostgreSQL farqi — bir nechta jadval bitta tranzaksiyada (oddiy o'rnatishda) va qoidalarni (`NOT NULL`, `UNIQUE`, `REFERENCES`, `CHECK`) bazaning o'zi qo'riqlashi. |
 | Haqiqiylik (M10) | Har `psql` satri va xato — 31.10.2026 yurgizishdan (PostgreSQL 18.4, `psql` 18.4, MongoDB 6.0.27, Mongoose 9.11.4, Node 24). Xabarlar inglizcha. Windows/macOS o'rnatuvchi oynalari bu kompyuterda sinalmaydi — **maket, rasmiy hujjatdan**, ekranda belgi: «⚠ rasmiy hujjatdan, sinalmagan». `SELECT version();` qatorida bu yerda `Debian … linux` — ekranda ochiq aytiladi: sizda Windows yoki macOS yozuvi bo'ladi. |
-| Hajm | **29 ekran** · 6 bosqich · 4 amaliyot · 4 tekshiruv · 8 savollik sinov · ovoz ≈ 30 daqiqa (taxmin: ~3200 so'z, 106 so'z/daq) · amaliyotlar ≈ 35–45 daqiqa · **jami ≈ 1 soat 10 daqiqa** |
+| Hajm | **31 ekran** (25.11, F-1125-01: 6-bosqich · AI tavsiyasi — «## AI-1», «## AI-2», saytda 24–25-ekran; MD raqamlari 24–29 saytda 26–31) · 7 bosqich · 4 amaliyot · 5 tekshiruv · 8 savollik sinov · ovoz ≈ 30 daqiqa (taxmin: ~3200 so'z, 106 so'z/daq) · amaliyotlar ≈ 35–45 daqiqa · **jami ≈ 1 soat 10 daqiqa** |
 | Me'yor | Har `Lesson` ≤ 5 segment, segment ovozi ≤ 60 so'z; 1-gap — ko'prik (M17), oxirgisi — «Xulosa» (M5); kalit ibora 8–14 so'z (M6) |
 
 ---
@@ -78,18 +78,18 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M31 · Haqiqiy chiqishlar: `manba/pg1-out/` 
 
 ## 1 · Kirish  ← `Lesson`
 - Kicker: `Kirish` · Eyebrow: `Mentor kursi · PostgreSQL` · Sarlavha: **Siz Mongo'ni bilasiz. Bugun blog misoli PostgreSQL'da.**
-- Sahna: chapda reja (6 bosqich, ovoz bilan yonadi); o'ngda natija — `psql` oynasi: `JOIN` so'rovi va 3 qatorli javob (`ali | Birinchi post` …).
-- Reja: 01 Mongo bilan solishtirish · 02 O'rnatish va ulanish · 03 Jadval va bog'lanish · 04 JOIN · 05 Ishonchlilik: oxirgi telefon · 06 O'quvchi darsini o'tish
+- Sahna: chapda reja (7 bosqich, ovoz bilan yonadi); o'ngda natija — `psql` oynasi: `JOIN` so'rovi va 3 qatorli javob (`ali | Birinchi post` …).
+- Reja: 01 Mongo bilan solishtirish · 02 O'rnatish va ulanish · 03 Jadval va bog'lanish · 04 JOIN · 05 Ishonchlilik: oxirgi telefon · 06 AI tavsiyasi · 07 O'quvchi darsini o'tish
 1. **Mongo'dagi oddiy blog misoli — bugun xuddi shu blogni PostgreSQL'da quramiz**
    Ovoz: «Assalomu alaykum. Siz MongoDB va Mongoose'ni videodarslarda ko'rgansiz: modellar, ref, populate. AI Startup kursidagi o'quvchilar PostgreSQL bilan ishlaydi. Bugun siz bilgan narsadan boshlaymiz: Mongo'dagi oddiy blogni olamiz va uni PostgreSQL'da qaytadan quramiz.»
 2. **Dars oxirida PostgreSQL sizda ishlaydi, ikki jadval va JOIN o'z qo'lingizda**
    Ovoz: «Dars oxirida PostgreSQL kompyuteringizda o'rnatilgan bo'ladi. Ikki bog'langan jadvalni o'zingiz yaratasiz, baza qaytargan xatolarni o'qiysiz va JOIN bilan ikki jadvalni bitta javobda ko'rasiz.» · reja 01–04
 3. **O'quvchi darsidagi «oxirgi telefon»ni ikki oynada o'z ko'zingiz bilan ko'rasiz**
-   Ovoz: «O'quvchi darsida bitta telefonni ikki kishi bir vaqtda sotib olmoqchi bo'ladigan misol bor. Uni gap bilan emas, ikkita terminal oynasida o'zingiz sinab ko'rasiz va nima uni saqlab qolishini aniq bilasiz.» · reja 05
+   Ovoz: «O'quvchi darsida bitta telefonni ikki kishi bir vaqtda sotib olmoqchi bo'ladigan misol bor. Uni gap bilan emas, ikkita terminal oynasida o'zingiz sinab ko'rasiz va nima uni saqlab qolishini aniq bilasiz. Keyin AI tavsiya qilgan bazani va u yozgan jadvallarni ham bazada tekshirasiz.» · reja 05–06
 4. **Sinf kompyuterlariga PostgreSQL'ni siz o'rnatasiz — o'quvchi darsida bu qism yo'q**
-   Ovoz: «Yana bir muhim narsa: o'quvchi darslarida PostgreSQL'ni o'rnatish o'rgatilmaydi. Sinf kompyuterlariga uni siz o'rnatasiz, keyingi darslar shunga tayanadi. Buni ham, o'quvchi darsini qanday o'tishni ham oxirgi bosqichda ko'ramiz.» · reja 06
-5. **Olti bosqich, to'rt amaliyot. Shoshilmang: ustoz gapirib bo'lgach Davom ochiladi**
-   Ovoz: «Dars olti bosqichdan iborat, orasida to'rtta amaliyot bor, ularni o'z kompyuteringizda qilasiz. Shoshilmang: har ekranni boshidan eshitish va matnini o'qish mumkin. Ustoz gapirib bo'lgach Davom ochiladi. Boshlaymiz.»
+   Ovoz: «Yana bir muhim narsa: o'quvchi darslarida PostgreSQL'ni o'rnatish o'rgatilmaydi. Sinf kompyuterlariga uni siz o'rnatasiz, keyingi darslar shunga tayanadi. Buni ham, o'quvchi darsini qanday o'tishni ham oxirgi bosqichda ko'ramiz.» · reja 07
+5. **Yetti bosqich, to'rt amaliyot. Shoshilmang: ustoz gapirib bo'lgach Davom ochiladi**
+   Ovoz: «Dars yetti bosqichdan iborat, orasida to'rtta amaliyot bor, ularni o'z kompyuteringizda qilasiz. Shoshilmang: har ekranni boshidan eshitish va matnini o'qish mumkin. Ustoz gapirib bo'lgach Davom ochiladi. Boshlaymiz.»
 - Manba: `pg1-out/09-join.txt`; PRD «Manbadan topilgan muhim fakt» (o'quvchi darslarida o'rnatish yo'q; m4-08 `psql -U postgres` kutadi).
 
 ---
@@ -204,7 +204,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M31 · Haqiqiy chiqishlar: `manba/pg1-out/` 
 - Manba: `pg1-out/06-jadvallar.txt` (`CREATE TABLE posts`, `\d posts`); Mongo tomoni — `drive-pg1.sh` 17-bo'lim; buyruq juftlari — `pg2-out/v2d-mongoose.txt` (03.11, Mongoose 9.11.4 · MongoDB 6.0.27).
 
 ## 6 · Tekshiruv 1 — `populate` ning jufti  ← `MCRetry`
-- Kicker: `Tekshiruv 1` · Eyebrow: `Tekshiruv · 1 / 4`
+- Kicker: `Tekshiruv 1` · Eyebrow: `Tekshiruv · 1 / 5`
 - Sarlavha: **Mongo'da `ref` ham, `populate` ham bor edi. PostgreSQL'da `populate` o'rnida qaysi biri?**
 - Ovoz: «Lug'atni ko'rdingiz, tekshirib olaylik. Birinchi tekshiruv. Mongo'da ikki narsa bor edi: ref bog'laydi, populate esa so'rov paytida birlashtiradi. PostgreSQL'da populate'ning ishini qaysi biri qiladi? Variantni tanlang.»
 - Variantlar (to'g'risi — 3): 1 `… REFERENCES users(id)` · 2 `SERIAL PRIMARY KEY` · 3 `SELECT … JOIN … ON …` · 4 `CREATE TABLE … (…)`
@@ -464,7 +464,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M31 · Haqiqiy chiqishlar: `manba/pg1-out/` 
 - Manba: `pg1-out/08-tekshiruv-xatolari.txt` (4 xato); Mongo tomoni — `17-mongo.txt` (2-blok).
 
 ## 14 · Tekshiruv 2 — `DELETE` rad etildi  ← `MCRetry`
-- Kicker: `Tekshiruv 2` · Eyebrow: `Tekshiruv · 2 / 4`
+- Kicker: `Tekshiruv 2` · Eyebrow: `Tekshiruv · 2 / 5`
 - Sarlavha: **O'quvchi `DELETE FROM users WHERE id = 1;` yozdi va shu xabarni oldi. Nega?**
 - Xabar (sahnada, haqiqiy):
   ```
@@ -551,7 +551,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M31 · Haqiqiy chiqishlar: `manba/pg1-out/` 
 - Manba: `pg1-out/09-join.txt` (1- va 3-so'rov); o'quvchi darsi `DbSqlNosqlLesson.jsx` Screen5 («Ikki jadvalni id orqali bog'lang»).
 
 ## 17 · Tekshiruv 3 — xatosiz, lekin noto'g'ri natija  ← `LineCheck`
-- Kicker: `Tekshiruv 3` · Eyebrow: `Tekshiruv · 3 / 4 — qaysi satr xato?` · Sarlavha: **So'rov xatosiz ishladi, lekin «Bugun Nest o'rgandim»ni vali yozgandek chiqdi**
+- Kicker: `Tekshiruv 3` · Eyebrow: `Tekshiruv · 3 / 5 — qaysi satr xato?` · Sarlavha: **So'rov xatosiz ishladi, lekin «Bugun Nest o'rgandim»ni vali yozgandek chiqdi**
 - Shart (`task`): «Qoida: `ON` satri `posts`dagi tashqi kalitni — `user_id`ni — `users.id`ga tenglaydi. Bu so'rov xato bermadi, lekin natija noto'g'ri: ikkinchi postni ali yozgan, natijada esa vali. **Xato satrni bosing.**»
 - Ovoz (`q`): «JOIN'ni ko'rdingiz, endi xato topamiz. Uchinchi tekshiruv. Bu so'rov xato bermadi, baza javob qaytardi. Lekin natija noto'g'ri: «Bugun Nest o'rgandim» ali'niki, bu yerda esa vali'niki bo'lib chiqqan. Qoidani eslang: on satri tashqi kalitni tenglaydi. Xato satrni bosing.»
 - Sahna: terminal (Explorer yo'q — KOD 1); yonida haqiqiy noto'g'ri natija:
@@ -682,7 +682,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M31 · Haqiqiy chiqishlar: `manba/pg1-out/` 
    Ovoz: «Endi halol solishtirish. Oxirgi telefonni MongoDB'da ham sinadik: shartli update bilan u ham bittaga sotdi, chunki bitta hujjatni o'zgartirish Mongo'da ham bo'linmaydi. Farq bir nechta hujjatda: oddiy o'rnatilgan MongoDB serverida tranzaksiya ishlamadi. PostgreSQL'da esa bir nechta jadval oddiy o'rnatishda ham bitta tranzaksiyada.»
    Mongo kartasi: `updateOne({ stock: { $gt: 0 } }, { $inc: { stock: -1 } })` → xaridor1 `modifiedCount: 0` · xaridor2 `modifiedCount: 1` · `stock: 0` | tranzaksiya → `XATO: This MongoDB deployment does not support retryable writes.`
 5. **Xulosa: bir nechta jadval birga o'zgarsa — `BEGIN … COMMIT`; xato bo'lsa hammasi bekor**
-   Ovoz: «Xulosa: bir nechta jadval birga o'zgarishi kerak bo'lsa, ularni begin va commit orasiga olasiz. Ichida bitta xato bo'lsa, baza hammasini bekor qiladi. O'quvchi darsi oxirgi telefonni tranzaksiya deb atagan, bu soddalashtirish: buni yigirma yettinchi ekranda ko'ramiz.»
+   Ovoz: «Xulosa: bir nechta jadval birga o'zgarishi kerak bo'lsa, ularni begin va commit orasiga olasiz. Ichida bitta xato bo'lsa, baza hammasini bekor qiladi. O'quvchi darsi oxirgi telefonni tranzaksiya deb atagan, bu soddalashtirish: buni yigirma to'qqizinchi ekranda ko'ramiz.»
 - Manba: `pg1-out/18-hammasi-yoki-hech.txt`, `17-mongo.txt` (4–6-blok: oxirgi telefon, standalone `mongod`da tranzaksiya xatosi; `retryWrites=false` bilan ham o'sha xabar). MongoDB rasmiy hujjati: tranzaksiya replica set yoki sharded cluster'da ishlaydi (darsda «oddiy o'rnatilgan server» deyiladi).
 
 ## 21 · JSON ham saqlaydi  ← `Lesson`
@@ -721,7 +721,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M31 · Haqiqiy chiqishlar: `manba/pg1-out/` 
 - Manba: `pg1-out/14-jsonb.txt`; o'quvchi darsi Screen10 («JSON ham saqlaydi»).
 
 ## 22 · Tekshiruv 4 — buyurtma qayerda?  ← `MCRetry`
-- Kicker: `Tekshiruv 4` · Eyebrow: `Tekshiruv · 4 / 4`
+- Kicker: `Tekshiruv 4` · Eyebrow: `Tekshiruv · 4 / 5`
 - Sarlavha: **`BEGIN` → buyurtma yozildi → ombor `CHECK` xatosi → `COMMIT`. `orders` jadvalida nima bor?**
 - Sahna (haqiqiy, oxiri yopiq):
   ```
@@ -772,8 +772,21 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M31 · Haqiqiy chiqishlar: `manba/pg1-out/` 
 
 ---
 
+## AI-1 · AI'dan chat uchun baza: ikki topshiriq, ikki javob  ← `Lesson` (F-1125-01, M56; kod `pg1/parts/07b-ai.jsx`, saytda 24-ekran; matn kodda — generator bu bo'limni o'qimaydi)
+- Kicker (kodda): `6-bosqich · AI tavsiyasi`. Manba (haqiqiy, Claude Haiku ×2, vositasiz): `feedback/F-1125-01-nest1-kuchaytirish/ai-pg1/` — `00-promptlar.md`, `A-oddiy/`, `B-mezon/`, `B-mezon-tuzatilgan/`, `XULOSA.md`.
+- Savol — o'quvchi darsi m4-03 (`DbSqlNosqlLesson.jsx` Screen11) dagi aynan tugma «Oddiy chat ilovasi»; darsdagi tayyor javob — NoSQL (MongoDB).
+- a · **O'quvchi darsidagi savolni haqiqiy AI'ga berdik: chat ilovasi, ikki xil topshiriq** — sahna: A va B topshiriq matni + darsdagi tayyor javob kartasi.
+- b · **Ikkala AI ham — PostgreSQL; bahs to'rtinchi mezonda** — A sababi (aynan parcha) + B ning 4 javobi (aynan): 1–2 → SQL, 3 — yo'q, 4 — «indekslar bilan PostgreSQL ko'taradi» (bahsli).
+- c · **AI xato emas — javobni sabab hal qiladi** — 4-savol: darsda millionlab xabar → NoSQL · AI: oddiy chat → PostgreSQL · «Sinfda»: «Javobni AI emas, sabab hal qiladi…».
+- d · **Sxema bazada: uchta yozuvni baza o'zi to'xtatdi, uchtasi o'tib ketdi** — jadval A/B: yo'q foydalanuvchi, NULL, takror username → ERROR (ikkalasida); `''` → INSERT 0 1 (ikkalasida); A: a'zo bo'lmagan yozdi → INSERT 0 1; `ali`ni o'chirish: A ERROR (rad etildi), B DELETE 1 — vali'ning xabarlari 3 → 0.
+- e · **Xulosa: tavsiyani 4 mezon bilan, sxemani bazada tekshiring** — qoida kartasi.
+
+## AI-2 · Tekshiruv 5 — AI yozgan sxema: ali o'chirildi, vali yozgan xabar ham yo'qoldi  ← `LineCheck` (kodda; saytda 25-ekran)
+- Kod: B ning `schema.sql` 9–15 (aynan). To'g'ri satr: 12 `receiver_id … REFERENCES users(id) ON DELETE CASCADE` («Va alaykum!»: vali → ali).
+- Tuzatish (yurgizilgan, `B-mezon-tuzatilgan/`): 11–12-satrdan `ON DELETE CASCADE` olindi → `DELETE` rad etildi (`still referenced from table "messages"`), vali'ning 3 xabari joyida.
+
 ## 24 · Sinf kompyuterlari: m4-06 dan oldin  ← `Lesson`
-- Kicker: `6-bosqich · o'quvchi darsini o'tish` · Sarlavha: **Sinf kompyuterlari: har birida `psql -U postgres` ochilsin**
+- Kicker: `7-bosqich · o'quvchi darsini o'tish` · Sarlavha: **Sinf kompyuterlari: har birida `psql -U postgres` ochilsin**
 - Sahna: «Darsdan oldin» tekshiruv ro'yxati (4 band, segment bilan yonadi, har birida ☐ → ☑); 2-segmentda o'quvchi darslari chizig'i: m4-03 (kodsiz) → m4-06 CRUD → m4-08 `psql -U postgres` (qizil belgi «PostgreSQL shu yerda kerak»); 4-segmentda terminal — tekshiruv buyrug'i va javobi.
 1. **O'zingizda ishladi — endi sinf: o'quvchi kompyuterlariga PostgreSQL'ni siz o'rnatasiz**
    Ovoz: «Mavzuni o'zingiz qo'l bilan o'tdingiz. Endi sinf. O'quvchi darslarida PostgreSQL'ni o'rnatish hech qayerda o'rgatilmaydi: m4-08 darsi psql minus U postgres buyrug'ini va o'rnatishda berilgan parolni tayyor deb kutadi. Shuning uchun sinf kompyuterlariga uni siz o'rnatasiz.»
@@ -794,7 +807,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M31 · Haqiqiy chiqishlar: `manba/pg1-out/` 
 - Manba: PRD (o'quvchi darslarida o'rnatish yo'q; m4-08 `psql -U postgres`); `IntroNestArxitechture/.env.example` (`DEV_DB_URL=postgres://postgres:password@localhost:5432/…` — M10); `pg1-out/02-version.txt` (`-c` bilan).
 
 ## 25 · m4-03 xaritasi  ← `Lesson`
-- Kicker: `6-bosqich · o'quvchi darsini o'tish` · Eyebrow: `m4-03 · «SQL vs NoSQL — nega PostgreSQL»` · Sarlavha: **m4-03: kodsiz dars — siz bugun hammasini qo'l bilan qildingiz**
+- Kicker: `7-bosqich · o'quvchi darsini o'tish` · Eyebrow: `m4-03 · «SQL vs NoSQL — nega PostgreSQL»` · Sarlavha: **m4-03: kodsiz dars — siz bugun hammasini qo'l bilan qildingiz**
 - Sahna: o'quvchi darsi xaritasi — 5 blok kartasi (segment bilan yonadi), har kartada «Siz qo'shasiz» qatori; 5-segmentda vaqt chizig'i.
 - Bloklar (o'quvchi darsidan, `SCREEN_META` 21):
   | Blok | O'quvchi ekranlari | Siz qo'shasiz |
@@ -809,7 +822,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M31 · Haqiqiy chiqishlar: `manba/pg1-out/` 
 2. **Kirish va shakl: «ikkalasi ham to'g'ri», keyin jadval va hujjat farqi**
    Ovoz: «Dars savol bilan boshlanadi: SQL ko'rinishimi yoki NoSQL? To'g'ri javob: ikkalasi ham, vazifaga bog'liq. Keyin ikki tur va shakl: o'quvchi kartalarni jadval ustunlariga joylaydi. Siz qo'shasiz: jadvalda ustun turi oldindan yoziladi, hujjatda esa maydon erkin.» · 1–2-blok
 3. **Kuchlar bloki — siz bugun ko'rgan JOIN va oxirgi telefon; chat esa NoSQL kuchi**
-   Ovoz: «Uchinchi blok sizga eng tanish: JOIN, oxirgi telefon va chat oqimi. O'quvchi JOIN'ni id orqali bog'lash deb ko'radi, siz on satrini aytasiz. Chat misolida NoSQL kuchi: juda ko'p oddiy xabar, bog'lanish kam. Buni inkor qilmang, bu to'g'ri.» · 3-blok
+   Ovoz: «Uchinchi blok sizga eng tanish: JOIN, oxirgi telefon va chat oqimi. O'quvchi JOIN'ni id orqali bog'lash deb ko'radi, siz on satrini aytasiz. Chat misolida NoSQL kuchi: juda ko'p oddiy xabar, bog'lanish kam. Buni inkor qilmang: millionlab xabarda bu to'g'ri. Oddiy chat uchun esa haqiqiy AI PostgreSQL dedi, oltinchi bosqichda ko'rdingiz.» · 3-blok
 4. **Qaror ko'rsatkichi to'rtta savoldan iborat; amaliyotda o'quvchi o'z loyihasi uchun bazani tanlaydi**
    Ovoz: «To'rtinchi va beshinchi blokda o'quvchi qaror qabul qilishni o'rganadi. Qaror ko'rsatkichi to'rtta savoldan iborat: ma'lumot bog'langanmi, shakli qat'iymi, xato qimmatga tushadimi va ulkan, oddiy, tez saqlash kerakmi. Keyin nega PostgreSQL tanlanganini va AI tavsiyasini loyihaga moslashtirishni ko'radi. Amaliyotda o'quvchi o'z loyihasi uchun bazani tanlaydi va ikki jadvalni qog'ozda yozadi: namunasi siz bugun yaratgan users va posts.» · 4–5-blok
 5. **Xulosa: o'quvchi tanlashni o'rganadi, siz har gapni bazada ko'rsata olasiz**
@@ -817,7 +830,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M31 · Haqiqiy chiqishlar: `manba/pg1-out/` 
 - Manba: `src/4-Modull/DbSqlNosqlLesson.jsx` — `SCREEN_META` (21 qator), Screen0 variantlari, Screen5 (JOIN), Screen6 (oxirgi telefon), Screen7 (chat.uz), Screen8 (4 mezon), Screen10 (5 sabab), amaliyot matni («namuna: `users(id, username)` va `posts(id, user_id, izoh)`»). Vaqt — taklif.
 
 ## 26 · O'quvchi darsidagi so'zlar  ← `Lesson`
-- Kicker: `6-bosqich · o'quvchi darsini o'tish` · Sarlavha: **O'quvchi darsi atamalarni kundalik so'zlar bilan tushuntiradi — siz ularni atama bilan bog'laysiz**
+- Kicker: `7-bosqich · o'quvchi darsini o'tish` · Sarlavha: **O'quvchi darsi atamalarni kundalik so'zlar bilan tushuntiradi — siz ularni atama bilan bog'laysiz**
 - Sahna: ikki ustunli lug'at kartalari (Nest-2 25-ekran uslubi), guruh-guruh yonadi.
 - Lug'at (o'quvchi darsidan aynan):
   | O'quvchi aytadi | Siz bilasiz | Qayerdan |
@@ -840,7 +853,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M31 · Haqiqiy chiqishlar: `manba/pg1-out/` 
 - Manba: `DbSqlNosqlLesson.jsx` — Screen2 («Excel jadvaliga o'xshaydi», «Papkadagi turli qog'ozlar kabi»), Screen5, Screen6 («Bu nazorat tranzaksiya deb ataladi»), Screen8, Screen10, Screen14, `DB_FLASHCARDS` («MongoDB, Firebase», «SQL bir lahzada faqat bittasiga sotadi»).
 
 ## 27 · Darsdagi soddalashtirishlar va o'quvchi savollari  ← `Lesson`
-- Kicker: `6-bosqich · sinfda` · Sarlavha: **Ikki soddalashtirish va o'quvchining besh savoli — tayyor javoblar**
+- Kicker: `7-bosqich · sinfda` · Sarlavha: **Ikki soddalashtirish va o'quvchining besh savoli — tayyor javoblar**
 - Sahna: tepada ikki karta «Darsda aytiladi → Aslida» (segment bilan yonadi); pastda «O'quvchi so'rasa» — 5 ta ochiladigan karta (`QA`, ovozsiz, bosib o'qiladi).
 - Soddalashtirishlar:
   | Darsda aytiladi | Aslida (sinovdan) | Sinfda nima deysiz |
@@ -877,7 +890,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M31 · Haqiqiy chiqishlar: `manba/pg1-out/` 
   | 5 | Postsiz foydalanuvchi ham natijada chiqishi kerak. Qaysi so'rov? | `FROM users LEFT JOIN posts ON …` · `FROM posts JOIN users ON …` · `JOIN`siz `SELECT * FROM users, posts` · `ON` satrini olib tashlash | 1 | `LEFT JOIN` chapdagi jadvalning hamma qatorini chiqaradi; sardor — bo'sh izoh bilan. | 16 |
   | 6 | 1-xaridor `BEGIN` + `UPDATE … WHERE stock > 0` qildi, `COMMIT` hali yo'q. 2-xaridor xuddi shu `UPDATE`ni yubordi. Nima bo'ladi? | Darhol `UPDATE 1`, telefon ikkalasiga · Kutadi, 1-xaridor `COMMIT`dan keyin `UPDATE 0` · Darhol `CHECK` xatosi — telefon hech kimga sotilmaydi · `stock = -1` bo'ladi, ikkalasi ham oladi | 2 | Qator band — 2-xaridor kutadi, keyin shartni qayta tekshiradi: `stock` 0. | 19 |
   | 7 | Tranzaksiya ichida xato chiqdi, keyin `COMMIT;` yozildi. psql nima deb javob beradi? | `COMMIT` · `ERROR` · Hech narsa · `ROLLBACK` | 4 | Xatoli tranzaksiya bekor qilinadi: `COMMIT;` → `ROLLBACK`, `orders` bo'sh. | 20 |
-  | 8 | O'quvchi: «NoSQL zamonaviyroq, onlayn do'konimga MongoDB olaman». Nima deysiz? | To'g'ri, NoSQL yangiroq — hamma joyda shuni oling · MongoDB sekin ishlaydi, uni umuman olmang · Ma'lumot bog'langan, xato qimmat — PostgreSQL · Farqi yo'q — o'quvchi istaganini olaversin | 3 | Tanlov modaga emas, vazifaga qarab; do'konda 3 mezon SQL tomonda. | 27 |
+  | 8 | O'quvchi: «NoSQL zamonaviyroq, onlayn do'konimga MongoDB olaman». Nima deysiz? | To'g'ri, NoSQL yangiroq — hamma joyda shuni oling · MongoDB sekin ishlaydi, uni umuman olmang · Ma'lumot bog'langan, xato qimmat — PostgreSQL · Farqi yo'q — o'quvchi istaganini olaversin | 3 | Tanlov modaga emas, vazifaga qarab; do'konda 3 mezon SQL tomonda. | 29 |
 - `passed = ball ≥ 6 && 4 amaliyot isbot bilan` (Nest-1 bilan bir xil); `onFinished` maydonlari o'zgarmaydi.
 
 ## 29 · Yakun  ← `Screen28`

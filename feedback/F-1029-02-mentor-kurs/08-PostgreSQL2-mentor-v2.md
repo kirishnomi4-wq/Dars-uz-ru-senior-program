@@ -25,7 +25,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M42 · Haqiqiy chiqishlar: `manba/pg2-out/` 
 | Gemini kodi | `server.js` — `pg2-out/11-server.js` **bitta namuna** (ekranda: «namuna — Gemini har safar boshqacha yozadi, mazmuni shu»). |
 | Postman | bu kompyuterda yo'q: javoblar `curl` bilan olingan (status + tana bir xil); ekranda Postman ko'rinishidagi karta + belgi «haqiqiy javob». |
 | Haqiqiylik (M10) | 01.11 (v1 `01…20`) va **03.11 (`v2-00…04`)** yurgizish: PostgreSQL 18 · Node 24 · express 5.3 · pg 8.23. Sinov porti 5436/5437 → ekranda 5432. |
-| Hajm | **31 ekran** · 6 bosqich · 4 amaliyot · 4 tekshiruv · 8 savol · ovoz ≈ 27 daq · amaliyot ≈ 45–55 daq · jami ≈ 1 s 20 daq |
+| Hajm | **33 ekran** (25.11, F-1125-01: 6-bosqich · AI yozgan SQL — «## AI-1», «## AI-2», saytda 28–29-ekran; MD raqamlari 28–31 saytda 30–33) · 7 bosqich · 4 amaliyot · 5 tekshiruv · 8 savol · ovoz ≈ 27 daq · amaliyot ≈ 45–55 daq · jami ≈ 1 s 20 daq |
 | Me'yor | PG-1 bilan bir xil (≤ 5 segment, ≤ 60 so'z, ko'prik M17, «Xulosa», kalit 8–14 so'z, M32 to'liq gap) |
 
 ---
@@ -89,17 +89,17 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M42 · Haqiqiy chiqishlar: `manba/pg2-out/` 
 
 ## 1 · Kirish  ← `Lesson`
 - Kicker: `Kirish` · Eyebrow: `Mentor kursi · PostgreSQL` · Sarlavha: **Jadval tayyor. Endi uni boshqaramiz — PostgreSQL terminalida va Express ichida**
-- Sahna: chapda reja (6 bosqich); o'ngda ikki natija: terminal `UPDATE 1` va Postman kartasi `POST /api/cars` → `201`.
+- Sahna: chapda reja (7 bosqich); o'ngda ikki natija: terminal `UPDATE 1` va Postman kartasi `POST /api/cars` → `201`.
   - F-1120-02 (M51): o'ngda darsning rasmi — «bitta baza, ikki yo'l»: Postman → Express (express.json 18 · route 32 · pool.query 36) → PostgreSQL (`car_rental · cars`, yangi qator id 4 Chevrolet Spark) va psql → `shop · products` (`UPDATE 1`); ostida bajarilayotgan satr, pastda reja. Har segmentda bitta yo'l yonadi (a — ikkalasi, b — psql, c — Express, d — ikkalasi). Muqova, 18-, 22-ekran xulosasi va yakun — shu rasm.
-- Reja: 01 CRUD terminalida · 02 Tranzaksiya: xavfsiz sinash va atomik ish · 03 Baza qo'riqlaydi · 04 Express'dan bazaga · 05 Buzamiz va tuzatamiz · 06 Sinfga tayyorgarlik
+- Reja: 01 CRUD terminalida · 02 Tranzaksiya: xavfsiz sinash va atomik ish · 03 Baza qo'riqlaydi · 04 Express'dan bazaga · 05 Buzamiz va tuzatamiz · 06 AI yozgan SQL · 07 Sinfga tayyorgarlik
 1. **PostgreSQL-1 da jadval yaratdingiz — bugun undagi ma'lumotni ==to'rt buyruq bilan boshqarasiz==**
    Ovoz: «Assalomu alaykum. Oldingi darsda PostgreSQL'ni o'rnatdingiz, jadval yaratdingiz va bog'ladingiz. Bugun jadvaldagi ma'lumotni boshqaramiz: qo'shish, ko'rish, o'zgartirish va o'chirish. Buni CRUD deyishadi, uning nimaligini keyingi ekranda aniq ko'ramiz.»
 2. **Avval buyruqlar terminalda — va har birining ==ichida nima bo'lishi==: son, tartib, tranzaksiya**
    Ovoz: «Avval buyruqlarni terminalda qo'lda yozamiz va har birining ichida nima bo'lishini ko'ramiz: javobdagi son nimani sanaydi, nega qatorlar tartibi o'zgaradi, tranzaksiya ichida baza nima qiladi. Misolimiz kichik do'kon: klaviatura, sichqoncha, quloqchin, kolonka.» · reja 01–03
 3. **Keyin o'sha so'rovlar Express ichida: ==`Pool` nima, nega `$1`==, server nega 500 beradi**
-   Ovoz: «Keyin xuddi shu so'rovlarni Express serveri ichiga qo'yamiz. Pool nimaligini, nega qiymatlar dollar bir bilan berilishini, server qachon va nega besh yuz qaytarishini o'zingiz sinab ko'rasiz. Serverni ataylab buzamiz va tuzatamiz.» · reja 04–05
-4. **Olti bosqich, to'rt amaliyot; oxirida ==ikki ekran sinfga tayyorgarlik==. Shoshilmang**
-   Ovoz: «Dars olti bosqichdan iborat, orasida to'rtta amaliyot bor. Oxirgi ikki ekran sinfga tayyorgarlik: o'quvchi darslari xaritasi va o'quvchilar xato qiladigan joylar. Shoshilmang: har ekranni boshidan eshitish va matnini o'qish mumkin. Ustoz gapirib bo'lgach Davom ochiladi. Boshlaymiz.» · reja 06
+   Ovoz: «Keyin xuddi shu so'rovlarni Express serveri ichiga qo'yamiz. Pool nimaligini, nega qiymatlar dollar bir bilan berilishini, server qachon va nega besh yuz qaytarishini o'zingiz sinab ko'rasiz. Serverni ataylab buzamiz va tuzatamiz. Keyin AI yozgan SQL'ni bazada tekshiramiz.» · reja 04–06
+4. **Yetti bosqich, to'rt amaliyot; oxirida ==ikki ekran sinfga tayyorgarlik==. Shoshilmang**
+   Ovoz: «Dars yetti bosqichdan iborat, orasida to'rtta amaliyot bor. Oxirgi ikki ekran sinfga tayyorgarlik: o'quvchi darslari xaritasi va o'quvchilar xato qiladigan joylar. Shoshilmang: har ekranni boshidan eshitish va matnini o'qish mumkin. Ustoz gapirib bo'lgach Davom ochiladi. Boshlaymiz.» · reja 07
 - Manba: `pg2-out/03-update-delete.txt` (`UPDATE 1`), `11-crud-sorovlar.txt` (POST → 201).
 
 ---
@@ -271,7 +271,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M42 · Haqiqiy chiqishlar: `manba/pg2-out/` 
 - Manba: `pg2-out/v2b-01-ekran3-7.txt` (5-ekrandagi buyruqlardan keyin: 3 qator, `ctid (0,6)`, `ORDER BY id`).
 
 ## 7 · Tekshiruv 1 — `UPDATE 0`  ← `MCRetry`
-- Kicker: `Tekshiruv 1` · Eyebrow: `Tekshiruv · 1 / 4`
+- Kicker: `Tekshiruv 1` · Eyebrow: `Tekshiruv · 1 / 5`
 - Sarlavha: **Buyruq xatosiz o'tdi, javob `UPDATE 0`. Bu nimani bildiradi?**
 - Material (`above`, M42): terminal `psql — shop`: `shop=# UPDATE products SET price = 1 WHERE id = 99;` → `UPDATE 0`.
 - Ovoz: «Javobdagi sonni ko'rdingiz, tekshirib olaylik. Birinchi tekshiruv. Ekrandagi terminalda to'qson to'qqizinchi mahsulot narxi o'zgartirilmoqchi bo'ldi. Xato yo'q, javob: update nol. Bu nimani bildiradi? Variantni tanlang.»
@@ -439,7 +439,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M42 · Haqiqiy chiqishlar: `manba/pg2-out/` 
 - Manba: `pg2-out/v2b-04-ekran11.txt` (o'sha baza, 10-ekrandan keyin).
 
 ## 12 · Tekshiruv 2 — `ROLLBACK`dan keyin  ← `MCRetry`
-- Kicker: `Tekshiruv 2` · Eyebrow: `Tekshiruv · 2 / 4`
+- Kicker: `Tekshiruv 2` · Eyebrow: `Tekshiruv · 2 / 5`
 - Sarlavha: **`BEGIN;` → `DELETE FROM products;` (`DELETE 3`) → `ROLLBACK;`. Endi `SELECT * FROM products;` nima qaytaradi?**
 - Material (`above`): terminal `psql — shop`: `shop=# BEGIN;` · `shop=*# DELETE FROM products;` → `DELETE 3` · `shop=*# ROLLBACK;` → `ROLLBACK` · `shop=#`.
 - Ovoz: «Tranzaksiya ichini ko'rdingiz, tekshirib olaylik. Ikkinchi tekshiruv. Ekranda: begin, where'siz delete, javob delete uch, keyin rollback. Endi select qilsak, jadvalda nima bor? Variantni tanlang.»
@@ -560,7 +560,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M42 · Haqiqiy chiqishlar: `manba/pg2-out/` 
 - Manba: `pg2-out/v2f-ekran15-16.txt` (03.11, uzluksiz holat: O'yinchoq id 9).
 
 ## 16 · Tekshiruv 3 — apostrof  ← `MCRetry`
-- Kicker: `Tekshiruv 3` · Eyebrow: `Tekshiruv · 3 / 4`
+- Kicker: `Tekshiruv 3` · Eyebrow: `Tekshiruv · 3 / 5`
 - Sarlavha: **`VALUES ('O'yinchoq', 30000, 4)` → `syntax error at or near "yinchoq"`. Tuzatish qaysi?**
 - Material (`above`): terminal `psql — shop`: `shop=# INSERT INTO products (name, price, stock) VALUES ('O'yinchoq', 30000, 4);` → `ERROR:  syntax error at or near "yinchoq"` + `LINE 1: …` + `^`.
 - Ovoz: «Xabarlarni o'qidingiz, tekshirib olaylik. Uchinchi tekshiruv. Ekranda o'yinchoq degan mahsulot qo'shilmoqchi, baza syntax error, yinchoq so'zida deydi. Nima bo'ldi va tuzatish qaysi? Variantni tanlang.»
@@ -771,7 +771,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M42 · Haqiqiy chiqishlar: `manba/pg2-out/` 
 - Manba: `pg2-out/16-port-band.txt`, `20-port-band-callback.txt` (`EADDRINUSE`, chiqish kodi 1); Express 5.3.0 `lib/application.js` (`app.listen`: `server.once('error', done)`).
 
 ## 26 · Tekshiruv 4 — qaysi satr 500 beradi  ← `LineCheck`
-- Kicker: `Tekshiruv 4` · Eyebrow: `Tekshiruv · 4 / 4 — qaysi satr xato?` · Sarlavha: **POST 500: `column "price" of relation "cars" does not exist`. Xato satrni toping**
+- Kicker: `Tekshiruv 4` · Eyebrow: `Tekshiruv · 4 / 5 — qaysi satr xato?` · Sarlavha: **POST 500: `column "price" of relation "cars" does not exist`. Xato satrni toping**
 - Shart (`task`): «Qoida: SQL'dagi ustun nomlari jadvaldagi bilan aynan bir xil bo'ladi — `cars`: `id, model, daily_price, year, is_rented`. Bu POST bo'lagida bitta satr jadvalda yo'q ustunni so'rayapti. **O'sha satrni bosing.**»
 - Ovoz (`q`): «Buzishni ko'rdingiz, endi o'zingiz toping. To'rtinchi tekshiruv. Jadval ustunlarini eslang: id, model, daily price, year, is rented. Bu POST bo'lagida bitta satr jadvalda yo'q ustunni so'rayapti. O'sha satrni bosing.»
 - Fayl: `server.js` (Explorer faol), POST bo'lagi — fayldagi haqiqiy satrlar 32–43 (`pg2-out/11-server-80.js`, Prettier 80 belgi, M43):
@@ -825,11 +825,24 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M42 · Haqiqiy chiqishlar: `manba/pg2-out/` 
 
 ---
 
+## AI-1 · AI yozgan SQL bazada: to'rt amal, ikki topshiriq — Kolonka o'chmadi  ← `Lesson` (F-1125-01, M56; kod `pg2/parts/06b-ai.jsx`, saytda 28-ekran; matn kodda — generator bu bo'limni o'qimaydi)
+- Kicker (kodda): `6-bosqich · AI yozgan SQL`. Manba (haqiqiy, Claude Haiku ×2, fayl va buyruqsiz): `feedback/F-1125-01-nest1-kuchaytirish/ai-pg2/` — `00-promptlar.md`, `A-oddiy/`, `A-oddiy-nomlar/`, `B-tuzilish/`, `A-tuzatilgan/`, `qoshimcha-drop-column/`, `XULOSA.md`.
+- Topshiriq — o'quvchi m4-06 amaliyotidagi to'rt amal (arzonlar · Quloqchin 90 000 · «Kolonkani o'chir» · Monitor qo'shish), baza — 1-bosqichdagi `shop · products`. A — oddiy so'z bilan, B — jadval tuzilishi va «WHERE, avval SELECT» qoidasi bilan.
+- a · **O'quvchi amaliyotidagi to'rt amalni haqiqiy AI'ga berdik: oddiy so'z bilan va jadval tuzilishi bilan** — sahna: ikki topshiriq + to'rt amal.
+- b · **A jadval nomini o'ylab topdi — beshala buyruq bir xil xato** — A ning SQL'i (aynan, `mahsulotlar`, `nomi`, `narxi`) + `ERROR: relation "mahsulotlar" does not exist`.
+- c · **«Kolonkani o'chir» — ikkala AI ham uni jadval ustuni deb tushundi** — A: `ALTER TABLE mahsulotlar DROP COLUMN kolonka;` · B: «qaysi kolonka aniq emas» + `ALTER TABLE products DROP COLUMN <kolonka_nomi>;`; topshiriq — `DELETE … WHERE`. `DROP COLUMN stock` sinab ko'rildi → `ALTER TABLE`, to'rtala qatordan qiymat yo'qoldi.
+- d · **Bazada: ikkalasida Kolonka joyida, B da Monitor ham qo'shilmadi** — A (nomlar AI aytganidek almashtirilgan): 3 qator · `UPDATE 1` · ERROR column · `INSERT 0 1`; B (butun javob): 3 qator · `BEGIN · UPDATE 1 · COMMIT` · ERROR syntax `<` · ERROR `current transaction is aborted`.
+- e · **Xulosa: AI buyrug'ini fe'l, nom va son bilan tekshiring** — qoida kartasi; `ALTER` / `DROP` so'ralmagan bo'lsa — yurgizilmaydi.
+
+## AI-2 · Tekshiruv 5 — AI yozgan SQL: to'rt amal, lekin Kolonka joyida qoldi  ← `LineCheck` (kodda; saytda 29-ekran)
+- Kod: `A-oddiy-nomlar/sorovlar.sql` 1–7 (A ning SQL'i, nomlar almashtirilgan). To'g'ri satr: 6 `ALTER TABLE products DROP COLUMN kolonka;`.
+- Tuzatish (yurgizilgan, `A-tuzatilgan/`): `DELETE FROM products WHERE name = 'Kolonka';` → `DELETE 1`; yakuniy holat kutilgan bilan bir xil.
+
 ## 28 · Sinfga tayyorgarlik: m4-06 va m4-08 xaritasi  ← `Lesson`
-- Kicker: `6-bosqich · sinfga tayyorgarlik` · Eyebrow: `m4-06 · m4-08` · Sarlavha: **Ikki o'quvchi darsi: nimani ko'radi, siz nimani qo'shasiz, nimaga tayyor turasiz**
+- Kicker: `7-bosqich · sinfga tayyorgarlik` · Eyebrow: `m4-06 · m4-08` · Sarlavha: **Ikki o'quvchi darsi: nimani ko'radi, siz nimani qo'shasiz, nimaga tayyor turasiz**
 - Sahna: ikki karta (m4-06 · 21 ekran · tugmalar + haqiqiy psql amaliyoti; m4-08 · 9 ekran · jadval qo'lda, Gemini server, Postman) → 3-segmentda «Siz qo'shasiz» ro'yxati va «To'rt farq» → 4-segmentda «Darsdan oldin» uch band (galma-gal).
 1. **m4-06 (21 ekran): do'kon tugmalar bilan, amaliyotda — ==haqiqiy PostgreSQL terminali==; jadval bugungi `products` ning o'zi**
-   Ovoz: «Endi sinfga tayyorgarlik, ikki ekran. Birinchi o'quvchi darsi m4-06, yigirma bir ekran: o'quvchi do'konni tugmalar bilan boshqaradi, insert, select, where, update, delete. Jadval bugun siz yaratgan products'ning aynan o'zi. Amaliyotda esa u haqiqiy PostgreSQL terminalida yoki VS Code'da AI bilan o'z do'konini yaratadi, shuning uchun PostgreSQL har kompyuterda ishlab turishi shart.»
+   Ovoz: «Endi sinfga tayyorgarlik, ikki ekran. Birinchi o'quvchi darsi m4-06, yigirma bir ekran: o'quvchi do'konni tugmalar bilan boshqaradi, insert, select, where, update, delete. Jadval bugun siz yaratgan products'ning aynan o'zi. Amaliyotda esa u haqiqiy PostgreSQL terminalida yoki VS Code'da AI bilan o'z do'konini yaratadi, shuning uchun PostgreSQL har kompyuterda ishlab turishi shart. AI yozgan buyruqni oltinchi bosqichdagidek tekshirasiz.»
 2. **m4-08 (9 ekran): `cars` jadvali qo'lda, `server.js` Gemini'dan, Postman bilan sinov — ==bugungi serveringizning o'zi==**
    Ovoz: «Ikkinchisi m4-08, AvtoIjara, to'qqiz ekran: o'quvchi cars jadvalini terminalda o'zi yozadi, server kodini Gemini'dan oladi, Postman bilan sinaydi va AI xatosini topadi. Bu bugun siz ko'targan serverning o'zi. Farqi: o'quvchi Pool'ning ichini, tranzaksiyani va injection'ni bilmaydi, siz bilasiz.»
 3. **Siz qo'shasiz: javobdagi son · `BEGIN … ROLLBACK` · `ORDER BY` · apostrof · `NOT NULL` · ==`HINT` ham adashadi==; to'rt farqni oldindan ayting**
@@ -847,7 +860,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M42 · Haqiqiy chiqishlar: `manba/pg2-out/` 
 - Manba: `src/4-Modull/PostgresCrudLesson.jsx` (`SCREEN_META` 21, amaliyot topshirig'i «VS Code yoki psql'da AI bilan…», `PRODUCTS`), `BackendCrudPracticeLesson.jsx` (`SCREEN_META` 9, Gemini promptlari, xato `column "price" does not exist`); `pg2-out/11`, `12`, `16`.
 
 ## 29 · O'quvchilar xato qiladigan olti joy va savollari  ← `Lesson`
-- Kicker: `6-bosqich · sinfga tayyorgarlik` · Sarlavha: **Olti holat va tayyor javoblar — hammasini bugun o'zingiz ko'rdingiz**
+- Kicker: `7-bosqich · sinfga tayyorgarlik` · Sarlavha: **Olti holat va tayyor javoblar — hammasini bugun o'zingiz ko'rdingiz**
 - Sahna: 6 karta (holat · xabar · yechim) segment bilan yonadi; pastda «O'quvchi so'rasa» — 5 ochiladigan karta (ovozsiz).
 - Kartalar:
   | # | Holat | Xabar | Yechim |

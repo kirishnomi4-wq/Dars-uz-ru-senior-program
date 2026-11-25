@@ -1,0 +1,41 @@
+--- boshlang'ich holat (PG-2 1-bosqich)
+ id |    name    | price  | stock 
+----+------------+--------+-------
+  1 | Klaviatura | 120000 |     8
+  2 | Sichqoncha |  75000 |    15
+  3 | Quloqchin  |  95000 |     5
+  4 | Kolonka    |  50000 |    10
+(4 rows)
+
+--- psql -U postgres -d shop -f sorovlar.sql   (AI SQL, aynan)
+SELECT * FROM products WHERE price < 100000;
+ id |    name    | price | stock 
+----+------------+-------+-------
+  2 | Sichqoncha | 75000 |    15
+  3 | Quloqchin  | 95000 |     5
+  4 | Kolonka    | 50000 |    10
+(3 rows)
+
+SELECT * FROM products WHERE name ILIKE '%quloqchin%';
+ id |   name    | price | stock 
+----+-----------+-------+-------
+  3 | Quloqchin | 95000 |     5
+(1 row)
+
+UPDATE products SET price = 90000 WHERE name ILIKE '%quloqchin%';
+UPDATE 1
+ALTER TABLE products DROP COLUMN kolonka;
+psql:sorovlar.sql:6: ERROR:  column "kolonka" of relation "products" does not exist
+INSERT INTO products (name, price, stock) VALUES ('Monitor', 1500000, 3);
+INSERT 0 1
+--- yakuniy holat
+ id |    name    |  price  | stock 
+----+------------+---------+-------
+  1 | Klaviatura |  120000 |     8
+  2 | Sichqoncha |   75000 |    15
+  3 | Quloqchin  |   90000 |     5
+  4 | Kolonka    |   50000 |    10
+  5 | Monitor    | 1500000 |     3
+(5 rows)
+
+--- kutilgan: Klaviatura 120000 8 · Sichqoncha 75000 15 · Quloqchin 90000 5 · Monitor 1500000 3 · Kolonka yo'q

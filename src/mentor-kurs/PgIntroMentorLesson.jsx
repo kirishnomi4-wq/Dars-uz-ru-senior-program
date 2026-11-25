@@ -1226,7 +1226,7 @@ const MDT = {
    [
     "c",
     "O'quvchi darsidagi «oxirgi telefon»ni ikki oynada <b>o'z ko'zingiz bilan</b> ko'rasiz",
-    "O'quvchi darsida bitta telefonni ikki kishi bir vaqtda sotib olmoqchi bo'ladigan misol bor. Uni gap bilan emas, ikkita terminal oynasida o'zingiz sinab ko'rasiz va nima uni saqlab qolishini aniq bilasiz."
+    "O'quvchi darsida bitta telefonni ikki kishi bir vaqtda sotib olmoqchi bo'ladigan misol bor. Uni gap bilan emas, ikkita terminal oynasida o'zingiz sinab ko'rasiz va nima uni saqlab qolishini aniq bilasiz. Keyin AI tavsiya qilgan bazani va u yozgan jadvallarni ham bazada tekshirasiz."
    ],
    [
     "d",
@@ -1235,8 +1235,8 @@ const MDT = {
    ],
    [
     "e",
-    "Olti bosqich, to'rt amaliyot. <b>Shoshilmang</b>: ustoz gapirib bo'lgach Davom ochiladi",
-    "Dars olti bosqichdan iborat, orasida to'rtta amaliyot bor, ularni o'z kompyuteringizda qilasiz. Shoshilmang: har ekranni boshidan eshitish va matnini o'qish mumkin. Ustoz gapirib bo'lgach Davom ochiladi. Boshlaymiz."
+    "Yetti bosqich, to'rt amaliyot. <b>Shoshilmang</b>: ustoz gapirib bo'lgach Davom ochiladi",
+    "Dars yetti bosqichdan iborat, orasida to'rtta amaliyot bor, ularni o'z kompyuteringizda qilasiz. Shoshilmang: har ekranni boshidan eshitish va matnini o'qish mumkin. Ustoz gapirib bo'lgach Davom ochiladi. Boshlaymiz."
    ]
   ]
  },
@@ -1361,7 +1361,7 @@ const MDT = {
  "6": {
   "type": "MCRetry",
   "kicker": "Tekshiruv 1",
-  "eyebrow": "Tekshiruv · 1 / 4",
+  "eyebrow": "Tekshiruv · 1 / 5",
   "title": "Mongo'da ref ham, populate ham bor edi. PostgreSQL'da populate o'rnida qaysi biri?",
   "q": "Lug'atni ko'rdingiz, tekshirib olaylik. Birinchi tekshiruv. Mongo'da ikki narsa bor edi: ref bog'laydi, populate esa so'rov paytida birlashtiradi. PostgreSQL'da populate'ning ishini qaysi biri qiladi? Variantni tanlang.",
   "ok": "To'g'ri, JOIN. U so'rov paytida ikki jadvalni ulaydi va bitta javob beradi, populate kabi. REFERENCES esa ref'ning jufti: u faqat bog'lanishni belgilaydi va qo'riqlaydi, javobga hech narsa qo'shmaydi. Demak, PostgreSQL'da bog'lanishni REFERENCES belgilaydi, ikki jadvalni bitta javobga esa JOIN birlashtiradi.",
@@ -1603,7 +1603,7 @@ const MDT = {
  "14": {
   "type": "MCRetry",
   "kicker": "Tekshiruv 2",
-  "eyebrow": "Tekshiruv · 2 / 4",
+  "eyebrow": "Tekshiruv · 2 / 5",
   "title": "O'quvchi DELETE FROM users WHERE id = 1; yozdi va shu xabarni oldi. Nega?",
   "q": "Xatolarni o'qishni ko'rdingiz, endi o'zingiz o'qing. Ikkinchi tekshiruv. O'quvchi birinchi foydalanuvchini o'chirmoqchi bo'ldi va ekrandagi xabarni oldi. Uch savolni eslang: qaysi jadval, qaysi qoida, qaysi qiymat. Nega o'chmadi? Variantni tanlang.",
   "ok": "To'g'ri. Qoida posts user id fkey, tashqi kalit. Detail qatori aytadi: id bir hali ham posts jadvalidan ishora qilinmoqda, ya'ni bu foydalanuvchining postlari bor. Baza egasiz post qoldirmaydi. Demak, foydalanuvchini o'chirish kerak bo'lsa, avval uning postlari, keyin uning o'zi o'chiriladi.",
@@ -1685,7 +1685,7 @@ const MDT = {
  "17": {
   "type": "LineCheck",
   "kicker": "Tekshiruv 3",
-  "eyebrow": "Tekshiruv · 3 / 4 — qaysi satr xato?",
+  "eyebrow": "Tekshiruv · 3 / 5 — qaysi satr xato?",
   "title": "So'rov xatosiz ishladi, lekin «Bugun Nest o'rgandim»ni vali yozgandek chiqdi",
   "q": "JOIN'ni ko'rdingiz, endi xato topamiz. Uchinchi tekshiruv. Bu so'rov xato bermadi, baza javob qaytardi. Lekin natija noto'g'ri: «Bugun Nest o'rgandim» ali'niki, bu yerda esa vali'niki bo'lib chiqqan. Qoidani eslang: on satri tashqi kalitni tenglaydi. Xato satrni bosing.",
   "ok": "To'g'ri. Uchinchi satrda users id posts'ning o'z id'siga tenglangan, tashqi kalitga emas. Baza xato bermaydi, chunki ikkalasi ham son: u shunchaki birinchi postni birinchi foydalanuvchiga, ikkinchisini ikkinchisiga ulaydi. Ekranda tuzatilgan holat: posts user id, va natija to'g'ri. Demak, on satrida doim tashqi kalit ustuni turadi, ya'ni posts user id.",
@@ -1781,7 +1781,7 @@ const MDT = {
    [
     "e",
     "Xulosa: bir nechta jadval birga o'zgarsa — <code>BEGIN … COMMIT</code>; xato bo'lsa <b>hammasi bekor</b>",
-    "Xulosa: bir nechta jadval birga o'zgarishi kerak bo'lsa, ularni begin va commit orasiga olasiz. Ichida bitta xato bo'lsa, baza hammasini bekor qiladi. O'quvchi darsi oxirgi telefonni tranzaksiya deb atagan, bu soddalashtirish: buni yigirma yettinchi ekranda ko'ramiz."
+    "Xulosa: bir nechta jadval birga o'zgarishi kerak bo'lsa, ularni begin va commit orasiga olasiz. Ichida bitta xato bo'lsa, baza hammasini bekor qiladi. O'quvchi darsi oxirgi telefonni tranzaksiya deb atagan, bu soddalashtirish: buni yigirma to'qqizinchi ekranda ko'ramiz."
    ]
   ]
  },
@@ -1820,7 +1820,7 @@ const MDT = {
  "22": {
   "type": "MCRetry",
   "kicker": "Tekshiruv 4",
-  "eyebrow": "Tekshiruv · 4 / 4",
+  "eyebrow": "Tekshiruv · 4 / 5",
   "title": "BEGIN → buyurtma yozildi → ombor CHECK xatosi → COMMIT. orders jadvalida nima bor?",
   "q": "Tranzaksiyani ko'rdingiz, tekshirib olaylik. To'rtinchi tekshiruv. Tranzaksiya ichida buyurtma yozildi, insert bir, keyin ombor check qoidasi bilan rad etildi va commit yozildi. orders jadvalida nima qoldi? Variantni tanlang.",
   "ok": "To'g'ri, hech narsa. Tranzaksiya ichida xato bo'lgani uchun commit'ga baza rollback deb javob berdi va hammasini bekor qildi. insert bir chiqqan edi, lekin u hali tasdiqlanmagan edi. orders bo'sh, nol qator. Demak, tranzaksiya ichida bitta xato bo'lsa, undagi hamma o'zgarish bekor bo'ladi.",
@@ -1869,7 +1869,7 @@ const MDT = {
  },
  "24": {
   "type": "Lesson",
-  "kicker": "6-bosqich · o'quvchi darsini o'tish",
+  "kicker": "7-bosqich · o'quvchi darsini o'tish",
   "title": "Sinf kompyuterlari: har birida psql -U postgres ochilsin",
   "seg": [
    [
@@ -1901,7 +1901,7 @@ const MDT = {
  },
  "25": {
   "type": "Lesson",
-  "kicker": "6-bosqich · o'quvchi darsini o'tish",
+  "kicker": "7-bosqich · o'quvchi darsini o'tish",
   "eyebrow": "m4-03 · «SQL vs NoSQL — nega PostgreSQL»",
   "title": "m4-03: kodsiz dars — siz bugun hammasini qo'l bilan qildingiz",
   "seg": [
@@ -1918,7 +1918,7 @@ const MDT = {
    [
     "c",
     "Kuchlar bloki — siz bugun ko'rgan <b>JOIN va oxirgi telefon</b>; chat esa NoSQL kuchi",
-    "Uchinchi blok sizga eng tanish: JOIN, oxirgi telefon va chat oqimi. O'quvchi JOIN'ni id orqali bog'lash deb ko'radi, siz on satrini aytasiz. Chat misolida NoSQL kuchi: juda ko'p oddiy xabar, bog'lanish kam. Buni inkor qilmang, bu to'g'ri."
+    "Uchinchi blok sizga eng tanish: JOIN, oxirgi telefon va chat oqimi. O'quvchi JOIN'ni id orqali bog'lash deb ko'radi, siz on satrini aytasiz. Chat misolida NoSQL kuchi: juda ko'p oddiy xabar, bog'lanish kam. Buni inkor qilmang: millionlab xabarda bu to'g'ri. Oddiy chat uchun esa haqiqiy AI PostgreSQL dedi, oltinchi bosqichda ko'rdingiz."
    ],
    [
     "d",
@@ -1934,7 +1934,7 @@ const MDT = {
  },
  "26": {
   "type": "Lesson",
-  "kicker": "6-bosqich · o'quvchi darsini o'tish",
+  "kicker": "7-bosqich · o'quvchi darsini o'tish",
   "title": "O'quvchi darsi atamalarni kundalik so'zlar bilan tushuntiradi — siz ularni atama bilan bog'laysiz",
   "seg": [
    [
@@ -1961,7 +1961,7 @@ const MDT = {
  },
  "27": {
   "type": "Lesson",
-  "kicker": "6-bosqich · sinfda",
+  "kicker": "7-bosqich · sinfda",
   "title": "Ikki soddalashtirish va o'quvchining besh savoli — tayyor javoblar",
   "seg": [
    [
@@ -2090,7 +2090,7 @@ const MDT = {
     ],
     "c": 2,
     "e": "Tanlov modaga emas, vazifaga qarab; do'konda 3 mezon SQL tomonda.",
-    "s": 27
+    "s": 29
    }
   ]
  },
@@ -2305,7 +2305,7 @@ function useCss3() {
 // ============================================================
 //  1 · Kirish
 // ============================================================
-const PLAN1 = ['Mongo bilan solishtirish', "O'rnatish va ulanish", "Jadval va bog'lanish", 'JOIN', 'Ishonchlilik: oxirgi telefon', "O'quvchi darsini o'tish"];
+const PLAN1 = ['Mongo bilan solishtirish', "O'rnatish va ulanish", "Jadval va bog'lanish", 'JOIN', 'Ishonchlilik: oxirgi telefon', 'AI tavsiyasi', "O'quvchi darsini o'tish"];
 const JOIN_OK = psql(String.raw`
 blog=# SELECT users.username, posts.izoh
 blog-# FROM posts
@@ -2316,13 +2316,13 @@ blog-# JOIN users ON users.id = posts.user_id;
  ali      | Bugun Nest o'rgandim
  vali     | Salom hammaga
 (3 rows)`);
-const S1 = mkS(1, [{ hl: [], res: true }, { hl: [0, 1, 2, 3] }, { hl: [4] }, { hl: [5] }, { hl: [] }], { plan: PLAN1 });
+const S1 = mkS(1, [{ hl: [], res: true }, { hl: [0, 1, 2, 3] }, { hl: [4, 5] }, { hl: [6] }, { hl: [] }], { plan: PLAN1 });
 // F-1120-02 (M51): darsning rasmi — blog bazasi (BlogDb, parts/02d-pg.jsx): users ← posts, JOIN natijasi + reja
 function Screen1(p) {
   return <Lesson p={p} S={S1} scene={({ seg }) => <div className="mk-light" style={{ padding: 16, display: 'grid', gap: 14 }}>
     <BlogDb join="inner" rules hl={{ users: [0], posts: [1] }} tag={t("Bugungi darsning rasmi — blog bazasi sizning kompyuteringizda", 'Картина урока — база blog на вашем компьютере')}
       read={['blog=#', 'SELECT users.username, posts.izoh FROM posts <span class="n1-k">JOIN</span> users ON users.id = posts.user_id;']} out={t('ali — Birinchi post · ali — Bugun Nest o\'rgandim · vali — Salom hammaga · (3 rows)', 'ali — Birinchi post · ali — Bugun Nest o\'rgandim · vali — Salom hammaga · (3 rows)')} />
-    <div className="n1-plan" style={{ position: 'static', gridTemplateColumns: 'repeat(6,minmax(0,1fr))', gap: 6 }}>
+    <div className="n1-plan" style={{ position: 'static', gridTemplateColumns: 'repeat(7,minmax(0,1fr))', gap: 6 }}>
       {S1.plan.map((x, i) => <div key={i} className={seg.hl.includes(i) ? 'hl' : (seg.hl.length ? 'dim' : '')}><b>0{i + 1}</b><span>{x}</span></div>)}
     </div>
   </div>} />;
@@ -2906,6 +2906,153 @@ const P3_TROUBLE = [
 ];
 const P3_PROOF = { label: 'Isbot: LEFT JOIN natijasidagi qatorlar soni', placeholder: 'natija ostidagi sonni yozing', check: (v) => /^\s*\(?\s*4\b/.test(v), wrong: "LEFT JOIN natijasi ostida qavs ichida qatorlar soni yozilgan — sardor ham sanaladi" };
 function ScreenP3(p) { return <Practice p={p} S={P3} steps={P3_STEPS} trouble={P3_TROUBLE} proof={P3_PROOF} />; }
+// ============================================================
+//  6-bosqich · AI tavsiyasi (F-1125-01, M56). HAQIQIY AI — Claude Haiku ×2, vositasiz (oddiy chatdagi javob).
+//  Savol — o'quvchi darsi m4-03 (src/4-Modull/DbSqlNosqlLesson.jsx Screen11) dagi aynan tugma: «Oddiy chat ilovasi».
+//  Sxema — javobdagi SQL aynan; vaqtinchalik PostgreSQL 18 da yurgizilgan (M10).
+//  Manba: feedback/F-1125-01-nest1-kuchaytirish/ai-pg1/ — 00-promptlar.md · A-oddiy/ · B-mezon/ · B-mezon-tuzatilgan/ · XULOSA.md
+//  Matn MD generatoridan tashqarida (MD'da «## AI-1», «## AI-2» — hujjat), RU shu faylning oxirida ru() bilan.
+// ============================================================
+SPOKEN.push(['on delete cascade', 'ON DELETE CASCADE'], ['receiver id', 'receiver_id'], ['sender id', 'sender_id'], ['schema sql', 'schema.sql']);
+// Topshiriqlar AI'ga o'zbekcha berilgan — ruscha darsda ham aynan shu matn (tarjima qilinmaydi)
+const AIP_A = "Oddiy chat ilovasi yasamoqchiman. Qaysi baza yaxshi: PostgreSQL yoki MongoDB? Jadvallarini ham yozib ber.";
+const AIP_B = ["Chat ilovasi uchun baza tanla. Avval to'rt savolga bittadan jumla bilan javob ber:", "1) ma'lumotlar bir-biriga bog'langanmi? 2) shakli qat'iymi? 3) xato pul yoki buyurtmaga zarar qiladimi? 4) ma'lumot juda katta hajmdami va tezlik muhimmi?", "Keyin tanlov va bir jumla sabab. PostgreSQL bo'lsa — users va messages uchun CREATE TABLE, MongoDB bo'lsa — Mongoose sxemasi."];
+// B ning 4 javobi — aynan (ai-pg1/B-mezon/javob.md); side — o'quvchi darsidagi qaror ko'rsatkichi bo'yicha
+const AIP_B4 = [
+  { a: "Ha, bog'langan: har bir xabar yuboruvchi va qabul qiluvchi foydalanuvchiga tegishli.", side: 'sql' },
+  { a: "Ha, shakl qat'iy: barcha foydalanuvchilar va barcha xabarlar bir xil maydonlarga ega.", side: 'sql' },
+  { a: "Yo'q, to'g'ridan-to'g'ri pul yoki buyurtmaga zarar yetmaydi…", side: 'neu' },
+  { a: "Hajm oshishi mumkin, ammo indekslar bilan PostgreSQL bunday yuklamani yaxshi ko'taradi.", side: 'arg' },
+];
+// [yozuv, A, B] — ai-pg1/A-oddiy/natija.txt va B-mezon/natija.txt; ok — baza to'xtatdi, bad — o'tib ketdi
+const AIP_ROWS = [
+  [{ uz: "yo'q foydalanuvchi (id 99)", ru: 'несуществующий пользователь (id 99)' }, { r: 'ERROR', n: 'messages_sender_id_fkey', ok: true }, { r: 'ERROR', n: 'messages_receiver_id_fkey', ok: true }],
+  [{ uz: 'matn NULL', ru: 'текст NULL' }, { r: 'ERROR', n: 'not-null', ok: true }, { r: 'ERROR', n: 'not-null', ok: true }],
+  [{ uz: 'takror username', ru: 'повторный username' }, { r: 'ERROR', n: 'users_username_key', ok: true }, { r: 'ERROR', n: 'users_username_key', ok: true }],
+  [{ uz: "bo'sh matn ''", ru: "пустой текст ''" }, { r: 'INSERT 0 1', n: { uz: 'saqlandi', ru: 'сохранено' }, bad: true }, { r: 'INSERT 0 1', n: { uz: 'saqlandi', ru: 'сохранено' }, bad: true }],
+  [{ uz: "suhbatga a'zo emas — yozdi", ru: 'не участник беседы — написал' }, { r: 'INSERT 0 1', n: { uz: "a'zolik tekshirilmaydi", ru: 'участие не проверяется' }, bad: true }, { r: '—', n: { uz: "suhbat jadvali yo'q", ru: 'нет таблицы бесед' } }],
+  [{ uz: "xabari bor ali'ni o'chirish", ru: 'удалить ali, у которого есть сообщения' }, { r: 'ERROR', n: { uz: 'rad etildi (14-ekrandagi kabi)', ru: 'отказано (как на 14-м экране)' }, ok: true }, { r: 'DELETE 1', n: { uz: "vali'ning xabarlari 3 → 0", ru: 'сообщений vali 3 → 0' }, bad: true }],
+];
+const tl = (x) => (x && typeof x === 'object' ? t(x.uz, x.ru) : x);
+function AipCell({ c }) {
+  const col = c.bad ? T.accent : c.ok ? T.green : T.ink3;
+  return <div style={{ display: 'flex', gap: 8, alignItems: 'baseline', minWidth: 0, padding: '5px 10px', borderRadius: 8, border: `1px solid ${c.bad ? T.accent : T.line}`, background: c.bad ? '#FFF0EB' : T.paper }}>
+    <b style={{ font: `700 12.5px/1.35 ${MONO}`, color: col, whiteSpace: 'nowrap' }}>{c.r}</b>
+    {c.n && <span style={{ font: `12px/1.35 ${MONO}`, color: c.bad ? T.accent : T.ink2, overflowWrap: 'anywhere' }}>{tl(c.n)}</span>}
+  </div>;
+}
+const S_PG1AI = {
+  kicker: '6-bosqich · AI tavsiyasi', title: "AI'dan chat uchun baza so'radik: ikki topshiriq, ikki javob",
+  segments: [
+    sg('a', "O'quvchi darsidagi savolni haqiqiy AI'ga berdik: <b>chat ilovasi</b>, ikki xil topshiriq", "m4-03 da o'quvchi AI'dan baza tavsiyasini so'raydi. Darsdagi javob tayyor yozilgan: oddiy chat ilovasi uchun MongoDB. Biz xuddi shu savolni haqiqiy AI'ga berdik, Claude Haiku'ga, ikki xil topshiriq bilan: chapdagisi oddiy so'zlar bilan, o'ngdagisi to'rt mezon bilan."),
+    sg('b', "Ikkala AI ham — <b>PostgreSQL</b>; bahs to'rtinchi mezonda", "Ikkala AI ham PostgreSQL'ni tanladi. Sababni to'rt mezon bilan solishtiramiz. Ma'lumot bog'langan, shakli qat'iy: bu ikkisi PostgreSQL tomonga. Pulga zarar yo'q. To'rtinchisi bahsli: AI hajm o'ssa ham PostgreSQL ko'taradi deydi, o'quvchi darsi esa aynan shu savolda NoSQL deydi."),
+    sg('c', "AI xato emas — <b>javobni sabab hal qiladi</b>", "Bu AI xatosi emas. Oddiy chat uchun PostgreSQL ham to'g'ri tanlov, darsdagi NoSQL javobi millionlab oddiy xabar haqida. O'quvchi uyda AI'dan so'rasa, boshqa javob olishi mumkin. Unda shunday deysiz: javobni AI emas, sabab hal qiladi. Sizning loyihangizda to'rtinchi savolga javob qanday?"),
+    sg('d', "Sxema bazada: uchta yozuvni <b>baza o'zi to'xtatdi</b>, uchtasi <b>o'tib ketdi</b>", "AI yozgan jadvallarni haqiqiy PostgreSQL'da yurgizdik. Yo'q foydalanuvchi, null matn va takror nomni ikkalasida ham baza o'zi to'xtatdi. Uchtasi o'tib ketdi: bo'sh matn ikkalasida saqlandi, A da suhbatga a'zo bo'lmagan kishi yozdi, B da esa alini o'chirganimizda valining uchta xabari ham o'chib ketdi."),
+    sg('e', "Xulosa: tavsiyani <b>4 mezon bilan</b>, sxemani <b>bazada</b> tekshiring", "Xulosa. AI tavsiyasini sabab bilan qabul qiling va uni to'rt mezon bilan solishtiring. AI yozgan sxemani bazada yurgizing va kutilmagan yozuvlarni sinang: yo'q id, bo'sh matn, takror qiymat va xabari bor foydalanuvchini o'chirish. Baza faqat yozilgan qoidani tekshiradi."),
+  ],
+};
+function ScreenAI(p) {
+  return <Lesson p={p} S={S_PG1AI} scene={({ beat }) => (<>
+    {beat === 0 && <>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+        <div className="mk-light" style={{ padding: 14 }}>
+          <div className="mk-tag">{t('A · oddiy topshiriq', 'A · простое задание (дано на узбекском)')}</div>
+          <div style={{ fontSize: 14.5, lineHeight: 1.5 }}>«{AIP_A}»</div>
+        </div>
+        <div className="mk-light" style={{ padding: 14 }}>
+          <div className="mk-tag">{t('B · 4 mezon bilan', 'B · с 4 критериями (дано на узбекском)')}</div>
+          <div style={{ display: 'grid', gap: 4, fontSize: 14, lineHeight: 1.45 }}>{AIP_B.map((x, i) => <div key={i}>{x}</div>)}</div>
+        </div>
+      </div>
+      <div className="mk-light" style={{ padding: 14, borderLeft: `4px solid ${T.blue}` }}>
+        <div className="mk-tag">{t("O'quvchi darsidagi tayyor javob · m4-03, AI tavsiyasi", 'Готовый ответ в уроке ученика · m4-03, совет ИИ')}</div>
+        <div style={{ fontSize: 14.5, lineHeight: 1.5 }}>{t("«Oddiy chat ilovasi yasamoqchiman» → ", '«Хочу сделать простой чат» → ')}<b style={{ color: T.blue }}>NoSQL (MongoDB)</b>{t(": «Millionlab oddiy xabar, tezlik kerak, bog'lanish kam»", ': «Миллионы простых сообщений, нужна скорость, связей мало»')}</div>
+      </div>
+    </>}
+    {(beat === 1 || beat === 2) && <>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.35fr', gap: 12 }}>
+        <div className="mk-light" style={{ padding: 14 }}>
+          <div className="mk-tag">{t('A · javob (aynan)', 'A · ответ (дословно, на узбекском)')}</div>
+          <div style={{ fontSize: 14, lineHeight: 1.5 }}><b style={{ color: T.accent }}>Tavsiya: PostgreSQL.</b> «…Postgres bunday bog'lanishlarni JOIN va tashqi kalitlar bilan aniq saqlaydi… MongoDB ham ishlaydi, lekin u xabarlarning sxemasi tez-tez o'zgaradigan… loyihalarda qulayroq.»</div>
+        </div>
+        <div className="mk-light" style={{ padding: 14 }}>
+          <div className="mk-tag">{t('B · 4 mezon (aynan) → Tanlov: PostgreSQL', 'B · 4 критерия (дословно, на узбекском) → Выбор: PostgreSQL')}</div>
+          <div style={{ display: 'grid', gap: 6 }}>{AIP_B4.map((x, i) => <div key={i} style={{ display: 'grid', gridTemplateColumns: '18px 1fr auto', gap: 8, alignItems: 'baseline', fontSize: 13.5, lineHeight: 1.4 }}>
+            <b>{i + 1}</b><span>{x.a}</span>
+            <b style={{ font: `700 12px/1.3 ${MONO}`, whiteSpace: 'nowrap', color: x.side === 'sql' ? T.accent : x.side === 'arg' ? T.blue : T.ink3 }}>{x.side === 'sql' ? '→ SQL' : x.side === 'arg' ? t('bahsli', 'спорно') : '—'}</b>
+          </div>)}</div>
+        </div>
+      </div>
+      {beat === 2 && <div className="mk-light" style={{ padding: 14, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, fontSize: 14, lineHeight: 1.5 }}>
+        <div><div className="mk-tag">{t("4-savol · o'quvchi darsida", 'Вопрос 4 · в уроке ученика')}</div>{t("millionlab oddiy xabar, tezlik → ", 'миллионы простых сообщений, скорость → ')}<b style={{ color: T.blue }}>NoSQL</b></div>
+        <div><div className="mk-tag">{t('4-savol · AI', 'Вопрос 4 · ИИ')}</div>{t("oddiy chat, indekslar yetadi → ", 'простой чат, индексов хватит → ')}<b style={{ color: T.accent }}>PostgreSQL</b></div>
+        <div style={{ gridColumn: '1 / -1', borderTop: `1px solid ${T.line}`, paddingTop: 10 }}><b>{t('Sinfda: ', 'В классе: ')}</b>{t("«Javobni AI emas, sabab hal qiladi. Loyihangizda 4-savolga javob qanday — millionlab oddiy xabarmi yoki sinfdoshlar chatimi?»", '«Ответ решает не ИИ, а причина. Как в вашем проекте отвечаем на 4-й вопрос — миллионы простых сообщений или чат одноклассников?»')}</div>
+      </div>}
+    </>}
+    {beat >= 3 && <div className="mk-light" style={{ padding: 14, display: 'grid', gap: 8 }}>
+      <div className="mk-tag">{t("Sxema haqiqiy PostgreSQL 18 da · mentor yozuvlari (aynan javoblar)", 'Схема в настоящем PostgreSQL 18 · записи ментора (дословные ответы)')}</div>
+      <div style={{ display: 'grid', gridTemplateColumns: '1.05fr 1fr 1fr', gap: 8, fontSize: 13, color: T.ink3, fontWeight: 600 }}><span>{t('Yozuv', 'Запись')}</span><span>{t('A · 4 jadval', 'A · 4 таблицы')}</span><span>{t('B · 2 jadval', 'B · 2 таблицы')}</span></div>
+      {AIP_ROWS.map(([q, a, b]) => <div key={q.uz} style={{ display: 'grid', gridTemplateColumns: '1.05fr 1fr 1fr', gap: 8, alignItems: 'center' }}>
+        <span style={{ fontSize: 13.5 }}>{tl(q)}</span><AipCell c={a} /><AipCell c={b} />
+      </div>)}
+    </div>}
+    <Block at={4} beat={beat}><div className="mk-rule">{t(<><b>AI tavsiyasini tekshirish:</b> sabab — 4 mezon bilan · sxema — bazada: yo'q id · bo'sh matn (<code>''</code> ham) · takror qiymat · xabari borni o'chirish. Baza faqat yozilgan qoidani tekshiradi.</>, <><b>Проверка совета ИИ:</b> причина — по 4 критериям · схема — в базе: несуществующий id · пустой текст (и <code>''</code>) · повтор значения · удаление того, у кого есть сообщения. База проверяет только записанное правило.</>)}</div></Block>
+  </>)} />;
+}
+
+// --- Tekshiruv 5: B sxemasi — ali o'chirildi, vali yozgan xabar ham yo'qoldi. Haqiqiy: ai-pg1/B-mezon/schema.sql 9–15, natija.txt ---
+const LCAIP_LINES = sql(String.raw`
+CREATE TABLE messages (
+    id          BIGSERIAL   PRIMARY KEY,
+    sender_id   BIGINT      NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    receiver_id BIGINT      NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    body        TEXT        NOT NULL,
+    created_at  TIMESTAMPTZ NOT NULL DEFAULT now()
+);`).map((l, i) => ({ ...l, n: 9 + i }));
+const LCAIP_FIXED = [
+  ...LCAIP_LINES.slice(0, 2),
+  { ...LCAIP_LINES[2], gone: true },
+  { h: sqlLine('    sender_id   BIGINT      NOT NULL REFERENCES users(id),'), n: 11, neu: true },
+  { ...LCAIP_LINES[3], gone: true },
+  { h: sqlLine('    receiver_id BIGINT      NOT NULL REFERENCES users(id),'), n: 12, neu: true },
+  ...LCAIP_LINES.slice(4),
+];
+const LCAIP_AFTER = psql(String.raw`
+chat=# DELETE FROM users WHERE username = 'ali';
+ERROR:  update or delete on table "users" violates foreign key constraint "messages_sender_id_fkey" on table "messages"
+DETAIL:  Key (id)=(1) is still referenced from table "messages".
+chat=# SELECT count(*) AS vali_xabarlari_keyin FROM messages WHERE sender_id = 2 OR receiver_id = 2;
+ vali_xabarlari_keyin
+----------------------
+                    3`);
+const LCAIP_TASK_PRE = '<pre class="pg-doc er" style="margin-top:12px;font-size:12px">' + escH(String.raw`chat=# DELETE FROM users WHERE username = 'ali';
+DELETE 1
+-- vali'ning xabarlari: 3 → 0`) + '</pre>';
+function ScreenLCAI(p) {
+  return <LineCheck {...p} kicker={t('Tekshiruv 5', 'Проверка 5')} eyebrow={t('Tekshiruv · 5 / 5 — qaysi satr xato?', 'Проверка · 5 / 5 — какая строка с ошибкой?')}
+    title={t("AI yozgan sxema: ali o'chirildi — vali yozgan xabar ham yo'qoldi", 'Схема от ИИ: удалили ali — пропало и сообщение, которое написал vali')}
+    task={t("Qoida: foydalanuvchi o'chirilsa, <b>boshqa odam yozgan xabar o'chmasligi</b> kerak. B ning sxemasida ali o'chirildi — xato yo'q, lekin vali o'zi ali'ga yozgan «Va alaykum!» ham yo'qoldi. <b>Shu xabarni o'chirgan satrni bosing.</b>", 'Правило: если пользователь удалён, <b>сообщение, которое написал другой человек, не должно пропасть</b>. В схеме B удалили ali — ошибки нет, но пропало и «Va alaykum!», которое vali сам написал ali. <b>Нажмите на строку, которая удалила это сообщение.</b>')
+      + t(LCAIP_TASK_PRE, LCAIP_TASK_PRE.replace("-- vali'ning xabarlari: 3 → 0", '-- сообщений vali: 3 → 0'))}
+    q={t("Beshinchi, oxirgi tekshiruv. Bu B yozgan messages jadvali, schema sql faylining to'qqizinchi satridan. Alini o'chirdik, baza xato bermadi, lekin vali o'zi aliga yozgan va alaykum xabari ham yo'qoldi. Qoida: foydalanuvchi o'chirilsa, boshqa odam yozgan xabar o'chmasligi kerak. Qaysi satr shu xabarni o'chirdi? O'sha satrni bosing.", 'Пятая, последняя проверка. Это таблица messages, которую написал B, с девятой строки файла schema sql. Мы удалили ali, база не выдала ошибку, но пропало и сообщение va alaykum, которое vali сам написал ali. Правило: если пользователь удалён, сообщение другого человека не должно пропасть. Какая строка удалила это сообщение? Нажмите на эту строку.')}
+    file={t('schema.sql — B (AI javobi, aynan)', 'schema.sql — B (ответ ИИ, дословно)')} lines={LCAIP_LINES} target={3}
+    fixed={LCAIP_FIXED} fixedExtra={[{ file: t("psql — chat · tuzatilgandan keyin (haqiqiy)", 'psql — chat · после исправления (настоящий)'), lines: LCAIP_AFTER }]}
+    ok={t("To'g'ri. O'n ikkinchi satr: receiver id, on delete cascade. Va alaykum xabarida qabul qiluvchi ali edi. Ali o'chirilganda baza qabul qiluvchisi ali bo'lgan hamma xabarni o'zi o'chirdi va xato bermadi. O'n birinchi satrda ham shu ibora bor, u ali yozgan xabarlarni o'chirdi. Tuzatish: ikkala satrdan on delete cascade'ni olib tashlaymiz. Tuzatilgan sxemada o'chirish rad etildi, xuddi o'n to'rtinchi ekrandagidek, valining uchta xabari joyida.", 'Верно. Двенадцатая строка: receiver id, on delete cascade. В сообщении va alaykum получателем был ali. Когда ali удалили, база сама удалила все сообщения, где получатель ali, и не выдала ошибку. В одиннадцатой строке то же выражение, оно удалило сообщения, которые написал ali. Исправление: убираем on delete cascade из обеих строк. В исправленной схеме удаление отклонено, как на четырнадцатом экране, три сообщения vali на месте.')}
+    okShort={t("12-satr: receiver_id … ON DELETE CASCADE — ali o'chirilganda unga kelgan hamma xabar o'chdi, vali yozgani ham. Tuzatildi: 11–12-satrdan ON DELETE CASCADE olindi → DELETE rad etildi, vali'ning 3 xabari joyida (sinab ko'rilgan).", "Строка 12: receiver_id … ON DELETE CASCADE — когда удалили ali, пропали все сообщения ему, в том числе от vali. Исправлено: ON DELETE CASCADE убран из строк 11–12 → DELETE отклонён, 3 сообщения vali на месте (проверено).")}
+    hint={t("«Va alaykum!»da yuboruvchi — vali, qabul qiluvchi — ali. O'chirilgan ali shu xabarning qaysi ustunida turibdi?", 'В «Va alaykum!» отправитель — vali, получатель — ali. В какой колонке этого сообщения стоит удалённый ali?')} />;
+}
+
+// --- RU: 6-bosqich · AI tavsiyasi (show = text: ovoz matnida kod-ibora yo'q) ---
+const rsA = (key, text) => ({ key, text, show: text });
+ru(S_PG1AI, {
+  kicker: 'Этап 6 · совет ИИ', title: 'Спросили у ИИ базу для чата: два задания, два ответа',
+  segments: {
+    a: rsA('Вопрос из урока ученика задали настоящему ИИ: <b>чат</b>, два разных задания', 'В m4-03 ученик просит у ИИ совет по базе. Ответ в уроке написан заранее: для простого чата — MongoDB. Мы задали тот же вопрос настоящему ИИ, Claude Haiku, двумя разными заданиями: слева простыми словами, справа с четырьмя критериями.'),
+    b: rsA('Оба ИИ — <b>PostgreSQL</b>; спор в четвёртом критерии', 'Оба ИИ выбрали PostgreSQL. Сравним причину с четырьмя критериями. Данные связаны, форма строгая — оба указывают на PostgreSQL. Вреда деньгам нет. Четвёртый спорный: ИИ говорит, что PostgreSQL выдержит и рост объёма, а урок ученика именно на этом вопросе говорит NoSQL.'),
+    c: rsA('ИИ не ошибся — <b>ответ решает причина</b>', 'Это не ошибка ИИ. Для простого чата PostgreSQL тоже верный выбор, а ответ NoSQL в уроке — про миллионы простых сообщений. Если ученик спросит ИИ дома, он может получить другой ответ. Тогда скажите так: ответ решает не ИИ, а причина. Как в вашем проекте отвечаем на четвёртый вопрос?'),
+    d: rsA('Схема в базе: три записи <b>база остановила сама</b>, три <b>прошли</b>', 'Таблицы, написанные ИИ, мы запустили в настоящем PostgreSQL. Несуществующего пользователя, текст null и повторное имя база остановила сама в обеих схемах. Три записи прошли: пустой текст сохранился в обеих, в A написал человек, который не участник беседы, а в B при удалении ali пропали и три сообщения vali.'),
+    e: rsA('Вывод: совет проверяйте <b>по 4 критериям</b>, схему — <b>в базе</b>', 'Вывод. Принимайте совет ИИ с причиной и сравнивайте его с четырьмя критериями. Схему от ИИ запустите в базе и попробуйте неожиданные записи: несуществующий id, пустой текст, повтор значения и удаление пользователя, у которого есть сообщения. База проверяет только записанное правило.'),
+  },
+});
 
 // ============================================================
 //  19 · Oxirgi telefon — ikki oyna yonma-yon (pg1-out/12: 2-xaridor 1 s da boshladi, 3,08 s da tugadi)
@@ -3280,12 +3427,13 @@ const SUM28 = [
   { k: 'join', t: "JOIN: ON'da tashqi kalit id'ga tenglanadi; xato ON — xatosiz, lekin noto'g'ri natija; LEFT JOIN — juftsizlar ham", st: ['join'] },
   { k: 'tx', t: "Oxirgi telefon: shart + qator qulfi → UPDATE 0; tranzaksiya — hammasi yoki hech narsa; jsonb — erkin qo'shimcha", st: ['jad', 'rule'] },
   { k: 'class', t: "Sinf: m4-06 dan oldin har kompyuterda psql -U postgres -c \"SELECT version();\"; m4-03 kodsiz — har blokda bitta qo'shimcha gapingiz bor", st: ['req', 'res'] },
+  { k: 'ai', t: "AI tavsiyasi: sabab — 4 mezon bilan (chat uchun AI PostgreSQL dedi, darsda MongoDB — sabab hal qiladi); sxema — bazada: bo'sh matn '', ON DELETE CASCADE", st: ['rule'] },
 ];
 // F-1120-02 (M51): xulosa — darsning o'sha rasmi (blog bazasi); har band rasmning o'z qismini ko'rsatadi
 function SummaryMap28({ hl }) {
   const read = hl === 'inst' || hl === 'class' ? ['$', 'psql -U postgres -c "SELECT version();"'] : hl === 'join' || hl === 'all' ? ['blog=#', 'SELECT users.username, posts.izoh FROM posts <span class="n1-k">JOIN</span> users ON users.id = posts.user_id;'] : null;
   return <div className="mk-light" style={{ padding: 16 }}>
-    <BlogDb rules={hl === 'mongo' || hl === 'rule' || hl === 'tx' || hl === 'all'} fk={hl === 'mongo' || hl === 'rule'} join={hl === 'join' || hl === 'all' ? 'inner' : null}
+    <BlogDb rules={hl === 'mongo' || hl === 'rule' || hl === 'tx' || hl === 'ai' || hl === 'all'} fk={hl === 'mongo' || hl === 'rule'} join={hl === 'join' || hl === 'all' ? 'inner' : null}
       bad={hl === 'rule' ? { t: 'posts', row: ['4', '99', "Muallifi yo'q post"], why: t("users'da id 99 yo'q", 'в users нет id 99') } : null}
       read={read} tag={t("Bugungi dars — blog bazasi bir qarashda", 'Сегодняшний урок — база blog одним взглядом')} />
   </div>;
@@ -3325,6 +3473,8 @@ kodsiz, 21 ekran: kirish · ikki tur va shakl · kuchlar (JOIN, oxirgi telefon, 
 «tranzaksiya saqlaydi» — aslida shart + qator qulfi · «NoSQL'da bog'lash qiyin» — bog'lash bor, baza qo'riqlamaydi
 ## O'quvchi darsidagi so'zlar
 Excel jadvali = table · papkadagi turli qog'ozlar = document · id orqali bog'lash = JOIN · SQL nazorati = tranzaksiya · qaror ko'rsatkichi = 4 mezon
+## AI tavsiyasi va AI yozgan sxema
+sabab — 4 mezon bilan (bog'langanmi · shakli qat'iymi · xato qimmatmi · ulkan hajm va tezlik); haqiqiy AI chat uchun PostgreSQL dedi, m4-03 dagi tayyor javob — MongoDB: sabab hal qiladi · sxemani bazada yurgizing: yo'q id → tashqi kalit xatosi · NULL → NOT NULL · takror → UNIQUE · bo'sh matn '' — NOT NULL to'xtatmaydi → CHECK (trim(body) <> '') · ON DELETE CASCADE — xabari bor foydalanuvchini o'chirish uning hamma xabarini xato bermay o'chiradi; olib tashlansa — DELETE rad etiladi
 ## Sizning uyga vazifangiz
 blog-db: README (4 mezon) + schema.sql + data.sql + queries.sql (JOIN, LEFT JOIN) + FK xatosining DETAIL satri → GitHub → repo linki platformadagi uyga vazifaga`;
 const s28Segments = (passed) => yakRu(passed, [
@@ -3337,6 +3487,7 @@ const s28Segments = (passed) => yakRu(passed, [
   sg('b4', "JOIN'da hammasi <b>ON satrida</b>; LEFT JOIN — juftsizlar ham", "To'rtinchi: JOIN'da hammasi on satrida, tashqi kalit boshqa jadvalning id'siga tenglanadi. Xato on xato bermaydi, lekin natijani buzadi. Left join juftsiz qatorlarni ham chiqaradi.", { hl: 'join' }),
   sg('b5', "Oxirgi telefon: <b>shart va qator qulfi</b>; tranzaksiya — hammasi yoki hech narsa", "Beshinchi: oxirgi telefonni so'rovdagi shart va qator qulfi saqlaydi, ikkinchi xaridor update nol oladi. Bir nechta jadval birga o'zgarsa, tranzaksiya: xato bo'lsa hammasi bekor.", { hl: 'tx' }),
   sg('b6', "Sinf: m4-06 dan oldin <b>har kompyuterda psql</b> ochilsin", "Oltinchi, sinf uchun eng muhimi: m4-06 dan oldin har sinf kompyuterida PostgreSQL ishlab tursin, bitta parol bilan. m4-03 kodsiz, lekin har blokda sizning bitta qo'shimcha gapingiz bor.", { hl: 'class' }),
+  sg('b7', "AI tavsiyasi: <b>sabab 4 mezon bilan</b>, sxema <b>bazada</b>", "Yettinchi: AI tavsiyasini sabab bilan qabul qiling va to'rt mezon bilan solishtiring. AI yozgan sxemani bazada yurgizing: bo'sh matn, takror qiymat va xabari bor foydalanuvchini o'chirib ko'ring. On delete cascade bilan o'chirish xato bermay boshqa jadvalga ham o'tadi.", { hl: 'ai' }),
   sg('hw', "<b>Uyga vazifa</b>: o'quvchi amaliyotini o'zingiz — haqiqiy bazada", "Uyga vazifa: o'quvchining amaliyotini o'zingiz to'liq qiling, lekin haqiqiy bazada. Bitta loyiha g'oyasini oling, masalan onlayn do'kon. README'da to'rt savolga javob yozing va bazani tanlang. Keyin uchta fayl: schema'da ikki bog'langan jadval, data'da ma'lumot, queries'da JOIN va left join. Bir marta tashqi kalit xatosini ataylab chiqaring.", { hl: 'hw' }),
   sg('hw2', "Topshirish: GitHub'dagi repo linkini <b>platformadagi uyga vazifaga</b> qo'ying — boshqa hech narsa kerak emas", "Xatoning detail qatorini README'ga yozing. GitHub'ga chiqaring va repo linkini platformadagi uyga vazifangizga qo'ying, boshqa hech narsa kerak emas. Qirq-oltmish daqiqa.", { hl: 'hw' }),
   sg('c', "<b>Eslatmani oling</b>: lug'at, o'rnatish, psql, qoidalar, JOIN — bir sahifada", "Pastda bir sahifalik eslatma: Mongo lug'ati, o'rnatish yo'llari, psql buyruqlari, qoidalar, JOIN, oxirgi telefon, ulanish xatolari va sinf kompyuterlari ro'yxati. Nusxalab yoki yuklab oling, sinfda yoningizda tursin.", { hl: 'note' }),
@@ -3361,7 +3512,8 @@ function Screen28(p) {
         <div className="mk-scene top" style={{ overflow: 'auto' }}>
           {phase === 'sum' && (<>
             <SummaryMap28 hl={hl} />
-            <div className="mk-plan">{SUM28.slice(0, shown).map((it, i) => <div key={it.k} className={it.k === hl ? 'hl' : ''} style={{ animation: 'mk-up .45s ease both' }}><b>0{i + 1}</b><span>{it.t}</span></div>)}</div>
+            {/* F-1125-01: 7 band 1280×720 ga sig'sin (yangi band pastda qirqilmasin) — faqat shu ro'yxatda zichroq */}
+            <div className="mk-plan" style={{ gap: 6 }}>{SUM28.slice(0, shown).map((it, i) => <div key={it.k} className={it.k === hl ? 'hl' : ''} style={{ animation: 'mk-up .45s ease both', padding: '8px 14px' }}><b>0{i + 1}</b><span>{it.t}</span></div>)}</div>
           </>)}
           {phase === 'hw' && <div className="mk-light" style={{ padding: 16, animation: 'mk-up .45s ease both' }}>
             <div className="mk-tag" style={{ color: T.accent }}>{t('Uyga vazifa · 40–60 daqiqa', 'Домашнее задание · 40–60 минут')}</div>
@@ -3408,7 +3560,7 @@ function Cover({ onStart, resume }) {
     </div></div>
   );
 }
-const SCREENS = [Screen1, ScreenSqlNosql, Screen2, Screen3, Screen4, Screen5, Screen6, Screen7, Screen8, ScreenP1, Screen10, Screen11, Screen12, Screen13, ScreenP2, Screen15, Screen16, ScreenP3, Screen18, Screen19, Screen20, Screen21, ScreenP4, Screen23, Screen24, Screen25, Screen26, Screen27, Screen28];
+const SCREENS = [Screen1, ScreenSqlNosql, Screen2, Screen3, Screen4, Screen5, Screen6, Screen7, Screen8, ScreenP1, Screen10, Screen11, Screen12, Screen13, ScreenP2, Screen15, Screen16, ScreenP3, Screen18, Screen19, Screen20, Screen21, ScreenP4, ScreenAI, ScreenLCAI, Screen23, Screen24, Screen25, Screen26, Screen27, Screen28];
 const PRACTICE_COUNT = SCREENS.filter((S) => /^ScreenP\d/.test(S.name)).length;
 export default function PgIntroMentorLesson({ studentName, lang = 'uz', onFinished, startAt }) {
   setLang(lang);
@@ -3462,7 +3614,7 @@ export default function PgIntroMentorLesson({ studentName, lang = 'uz', onFinish
 // --- sahna (ru/pg1-sahna.js) ---
 // PG-1 · sahna ruschasi (M24): modul darajasidagi ro'yxatlar va ekran obyektlariga qo'shimcha. ru() bitta obyektga bir marta.
 var RU_S = {
-  S1: { plan: ['Сравнение с Mongo', 'Установка и подключение', 'Таблица и связь', 'JOIN', 'Надёжность: последний телефон', 'Как вести урок ученика'] },
+  S1: { plan: ['Сравнение с Mongo', 'Установка и подключение', 'Таблица и связь', 'JOIN', 'Надёжность: последний телефон', 'Совет ИИ', 'Как вести урок ученика'] },
 };
 ru(DICT4, [
   [null, 'база (database) — \\l'], [null, 'таблица (table) posts'], [null, 'строка (row)'], ['поле (field)', 'колонка (column) — с типом: INT, TEXT'],
@@ -3567,6 +3719,7 @@ ru(SUM28, [
   { t: 'JOIN: в ON внешний ключ приравнивается к id; неверный ON — без ошибки, но с неверным результатом; LEFT JOIN — и строки без пары' },
   { t: 'Последний телефон: условие + блокировка строки → UPDATE 0; транзакция — всё или ничего; jsonb — свободные дополнения' },
   { t: 'Класс: до m4-06 на каждом компьютере psql -U postgres -c "SELECT version();"; m4-03 без кода — в каждом блоке у вас одна добавка' },
+  { t: 'Совет ИИ: причина — по 4 критериям (для чата ИИ сказал PostgreSQL, в уроке MongoDB — решает причина); схема — в базе: пустой текст \'\', ON DELETE CASCADE' },
 ]);
 ru(HOMEWORK28, [
   { t: 'Репозиторий и идея: blog-db (или своё название) · README.md — идея одной фразой + ответы на 4 вопроса указателя решения (связаны ли, строгая ли форма, дорога ли ошибка, нужно ли огромно-просто-быстро) + выбор и причина' },
@@ -3591,6 +3744,7 @@ RU_S.YAK = {
   b4: ['В JOIN всё решает <b>строка ON</b>; LEFT JOIN — и строки без пары', 'Четвёртое: в JOIN всё решает строка on, внешний ключ приравнивается к id другой таблицы. Неверный on не даёт ошибки, но портит результат. Left join выводит и строки без пары.'],
   b5: ['Последний телефон: <b>условие и блокировка строки</b>; транзакция — всё или ничего', 'Пятое: последний телефон сохраняют условие в запросе и блокировка строки, второй покупатель получает update ноль. Если несколько таблиц меняются вместе — транзакция: при ошибке отменяется всё.'],
   b6: ['Класс: до m4-06 <b>на каждом компьютере</b> должен открываться psql', 'Шестое, самое важное для класса: до m4-06 на каждом компьютере класса должен работать PostgreSQL, с одним паролем. m4-03 без кода, но в каждом блоке у вас есть одна своя добавка.'],
+  b7: ['Совет ИИ: <b>причина — по 4 критериям</b>, схема — <b>в базе</b>', 'Седьмое: принимайте совет ИИ с причиной и сравнивайте его с четырьмя критериями. Схему от ИИ запустите в базе: попробуйте пустой текст, повтор значения и удаление пользователя, у которого есть сообщения. С on delete cascade удаление без ошибки переходит и в другую таблицу.'],
   hw: ['<b>Домашнее задание</b>: практика ученика — сами, на настоящей базе', 'Домашнее задание: полностью выполните практику ученика сами, но на настоящей базе. Возьмите одну идею проекта, например интернет-магазин. В README ответьте на четыре вопроса и выберите базу. Потом три файла: в schema две связанные таблицы, в data данные, в queries JOIN и left join. Один раз нарочно вызовите ошибку внешнего ключа.'],
   hw2: ['Сдача: вставьте ссылку на репозиторий GitHub <b>в домашнее задание на платформе</b> — больше ничего не нужно', 'Строку detail из ошибки запишите в README. Выложите на GitHub и вставьте ссылку на репозиторий в своё домашнее задание на платформе, больше ничего не нужно. Сорок-шестьдесят минут.'],
   c: ['<b>Возьмите памятку</b>: словарь, установка, psql, правила, JOIN — на одной странице', 'Внизу памятка на одну страницу: словарь Mongo, способы установки, команды psql, правила, JOIN, последний телефон, ошибки подключения и список для компьютеров класса. Скопируйте или скачайте, пусть будет рядом в классе.'],
@@ -3622,6 +3776,8 @@ PostgreSQL 18 · команда psql в PATH · один пароль класс
 «сохраняет транзакция» — на самом деле условие + блокировка строки · «в NoSQL связывать трудно» — связь есть, база её не охраняет
 ## Слова из урока ученика
 таблица Excel = table · разные бумаги в папке = document · связь через id = JOIN · контроль SQL = транзакция · указатель решения = 4 критерия
+## Совет ИИ и схема от ИИ
+причина — по 4 критериям (связаны ли · строгая ли форма · дорога ли ошибка · огромный объём и скорость); настоящий ИИ для чата сказал PostgreSQL, готовый ответ в m4-03 — MongoDB: решает причина · схему запускайте в базе: несуществующий id → ошибка внешнего ключа · NULL → NOT NULL · повтор → UNIQUE · пустой текст '' — NOT NULL не останавливает → CHECK (trim(body) <> '') · ON DELETE CASCADE — удаление пользователя с сообщениями удаляет все его сообщения без ошибки; без него — DELETE отклоняется
 ## Ваше домашнее задание
 blog-db: README (4 критерия) + schema.sql + data.sql + queries.sql (JOIN, LEFT JOIN) + строка DETAIL ошибки FK → GitHub → ссылка на репозиторий в домашнее задание на платформе`;
 
@@ -3641,15 +3797,15 @@ const RU_MDT = {
    ],
    "c": [
     "«Последний телефон» из урока ученика увидите в двух окнах <b>своими глазами</b>",
-    "В уроке ученика есть пример, где два человека одновременно хотят купить один и тот же телефон. Вы проверите его не на словах, а сами, в двух окнах терминала, и точно узнаете, что его спасает."
+    "В уроке ученика есть пример, где два человека одновременно хотят купить один и тот же телефон. Вы проверите его не на словах, а сами, в двух окнах терминала, и точно узнаете, что его спасает. Потом в базе проверите и совет ИИ по выбору базы, и таблицы, которые он написал."
    ],
    "d": [
     "На компьютеры класса PostgreSQL <b>устанавливаете вы</b> — в уроке ученика этой части нет",
     "И ещё важное: в уроках ученика установке PostgreSQL не учат. На компьютеры класса ставите его вы, и следующие уроки опираются на это. Это, а также то, как вести урок ученика, разберём на последнем этапе."
    ],
    "e": [
-    "Шесть этапов, четыре практики. <b>Не спешите</b>: «Далее» откроется, когда учитель договорит",
-    "Урок состоит из шести этапов, между ними четыре практики, их вы делаете на своём компьютере. Не спешите: каждый экран можно прослушать сначала и прочитать его текст. «Далее» откроется, когда учитель договорит. Начинаем."
+    "Семь этапов, четыре практики. <b>Не спешите</b>: «Далее» откроется, когда учитель договорит",
+    "Урок состоит из семи этапов, между ними четыре практики, их вы делаете на своём компьютере. Не спешите: каждый экран можно прослушать сначала и прочитать его текст. «Далее» откроется, когда учитель договорит. Начинаем."
    ]
   }
  },
@@ -3751,7 +3907,7 @@ const RU_MDT = {
  },
  "6": {
   "kicker": "Проверка 1",
-  "eyebrow": "Проверка · 1 / 4",
+  "eyebrow": "Проверка · 1 / 5",
   "title": "В Mongo были и ref, и populate. Что в PostgreSQL вместо populate?",
   "q": "Вы посмотрели словарь, давайте проверим. Первая проверка. В Mongo было две вещи: ref связывает, а populate объединяет во время запроса. Что в PostgreSQL делает работу populate? Выберите вариант.",
   "ok": "Верно, JOIN. Он во время запроса соединяет две таблицы и даёт один ответ, как populate. А REFERENCES это пара для ref: он только задаёт связь и охраняет её, в ответ ничего не добавляет. Значит, в PostgreSQL связь задаёт REFERENCES, а две таблицы в один ответ объединяет JOIN.",
@@ -3944,7 +4100,7 @@ const RU_MDT = {
  },
  "14": {
   "kicker": "Проверка 2",
-  "eyebrow": "Проверка · 2 / 4",
+  "eyebrow": "Проверка · 2 / 5",
   "title": "Ученик написал DELETE FROM users WHERE id = 1; и получил это сообщение. Почему?",
   "q": "Вы видели, как читать ошибки, теперь прочитайте сами. Вторая проверка. Ученик хотел удалить первого пользователя и получил сообщение на экране. Вспомните три вопроса: какая таблица, какое правило, какое значение. Почему не удалилось? Выберите вариант.",
   "ok": "Верно. Правило posts user id fkey, внешний ключ. Строка detail говорит: на id 1 всё ещё ссылается таблица posts, то есть у этого пользователя есть посты. База не оставляет постов без владельца. Значит, если нужно удалить пользователя, сначала удаляются его посты, потом он сам.",
@@ -4013,7 +4169,7 @@ const RU_MDT = {
  },
  "17": {
   "kicker": "Проверка 3",
-  "eyebrow": "Проверка · 3 / 4 — какая строка с ошибкой?",
+  "eyebrow": "Проверка · 3 / 5 — какая строка с ошибкой?",
   "title": "Запрос выполнился без ошибок, но «Bugun Nest o'rgandim» вышло так, будто написал vali",
   "q": "Вы видели JOIN, теперь ищем ошибку. Третья проверка. Этот запрос не выдал ошибку, база вернула ответ. Но результат неверный: «Bugun Nest o'rgandim» написал ali, а здесь вышло, что vali. Вспомните правило: строка on приравнивает внешний ключ. Нажмите строку с ошибкой.",
   "ok": "Верно. В третьей строке users id приравнен к собственному id постов, а не к внешнему ключу. База не выдаёт ошибку, потому что оба числа: она просто соединяет первый пост с первым пользователем, второй со вторым. На экране исправленный вариант: posts user id, и результат верный. Значит, в строке on всегда стоит колонка внешнего ключа, то есть posts user id.",
@@ -4092,7 +4248,7 @@ const RU_MDT = {
    ],
    "e": [
     "Вывод: если вместе меняются несколько таблиц — <code>BEGIN … COMMIT</code>; при ошибке <b>отменяется всё</b>",
-    "Вывод: если несколько таблиц должны измениться вместе, вы помещаете их между begin и commit. Если внутри хоть одна ошибка, база отменяет всё. Урок ученика называет последний телефон транзакцией, это упрощение: разберём это на двадцать седьмом экране."
+    "Вывод: если несколько таблиц должны измениться вместе, вы помещаете их между begin и commit. Если внутри хоть одна ошибка, база отменяет всё. Урок ученика называет последний телефон транзакцией, это упрощение: разберём это на двадцать девятом экране."
    ]
   }
  },
@@ -4124,7 +4280,7 @@ const RU_MDT = {
  },
  "22": {
   "kicker": "Проверка 4",
-  "eyebrow": "Проверка · 4 / 4",
+  "eyebrow": "Проверка · 4 / 5",
   "title": "BEGIN → заказ записан → ошибка CHECK на складе → COMMIT. Что в таблице orders?",
   "q": "Вы видели транзакцию, давайте проверим. Четвёртая проверка. Внутри транзакции заказ записан, insert 1, затем склад отклонён правилом check, и написан commit. Что осталось в таблице orders? Выберите вариант.",
   "ok": "Верно, ничего. Раз внутри транзакции была ошибка, на commit база ответила rollback и отменила всё. insert 1 появился, но ещё не был подтверждён. orders пуста, ноль строк. Значит, если внутри транзакции одна ошибка, все её изменения отменяются.",
@@ -4166,7 +4322,7 @@ const RU_MDT = {
   }
  },
  "24": {
-  "kicker": "Этап 6 · как вести урок ученика",
+  "kicker": "Этап 7 · как вести урок ученика",
   "title": "Компьютеры класса: на каждом должен открываться psql -U postgres",
   "seg": {
    "a": [
@@ -4192,7 +4348,7 @@ const RU_MDT = {
   }
  },
  "25": {
-  "kicker": "Этап 6 · как вести урок ученика",
+  "kicker": "Этап 7 · как вести урок ученика",
   "eyebrow": "m4-03 · «SQL vs NoSQL — почему PostgreSQL»",
   "title": "m4-03: урок без кода — а вы сегодня всё сделали руками",
   "seg": {
@@ -4206,7 +4362,7 @@ const RU_MDT = {
    ],
    "c": [
     "Блок сильных сторон — то, что вы видели сегодня: <b>JOIN и последний телефон</b>; а чат — сила NoSQL",
-    "Третий блок вам самый знакомый: JOIN, последний телефон и поток чата. Ученик видит JOIN как связь через id, вы называете строку on. В примере с чатом сила NoSQL: очень много простых сообщений, связей мало. Не отрицайте это, это правда."
+    "Третий блок вам самый знакомый: JOIN, последний телефон и поток чата. Ученик видит JOIN как связь через id, вы называете строку on. В примере с чатом сила NoSQL: очень много простых сообщений, связей мало. Не отрицайте это: для миллионов сообщений это правда. А для простого чата настоящий ИИ сказал PostgreSQL — вы видели это на шестом этапе."
    ],
    "d": [
     "Указатель решения <b>состоит из четырёх вопросов</b>; на практике ученик выбирает базу для своего проекта",
@@ -4219,7 +4375,7 @@ const RU_MDT = {
   }
  },
  "26": {
-  "kicker": "Этап 6 · как вести урок ученика",
+  "kicker": "Этап 7 · как вести урок ученика",
   "title": "Урок ученика объясняет термины бытовыми словами — вы связываете их с терминами",
   "seg": {
    "a": [
@@ -4241,7 +4397,7 @@ const RU_MDT = {
   }
  },
  "27": {
-  "kicker": "Этап 6 · в классе",
+  "kicker": "Этап 7 · в классе",
   "title": "Два упрощения и пять вопросов ученика — готовые ответы",
   "seg": {
    "a": [
