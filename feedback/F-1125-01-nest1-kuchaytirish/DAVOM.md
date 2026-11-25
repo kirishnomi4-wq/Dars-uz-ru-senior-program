@@ -1,6 +1,6 @@
 # F-1125-01 · Mentor Nest-1 darsini kuchaytirish — DAVOM
 
-> **25.11 17:50 — 1-ish SAYTDA (iixnev4gh). 2-ish va 3-ish (Nest-1) darsga qo'yildi (`taklif/qollash.sh`), suratlar va ovoz yig'ilmoqda → commit + deploy (ruxsat bor). Keyingi: foydalanuvchi Nest-1 AI blokini ko'radi → Nest-2, PG-1, PG-2 AI bloki (M56; har darsga 2 agent — ruxsat «A» bo'yicha). Batafsil — mentor kursi JURNAL «25.11 17:50».**
+> **25.11 18:25 — 1-, 2-, 3-ish (Nest-1) SAYTDA: commit 8df0b1e2 + c35fbe1c, deploy iixnev4gh → j4rwpexij. Push yo'q. KEYINGI: foydalanuvchi Nest-1 AI blokini (31–32-ekran) ko'rib chiqadi → Nest-2, PG-1, PG-2 AI bloki (M56; qolip — `ai-nest1/00-promptlar.md`, `ai-tekshir.sh`; har darsga 2 Haiku agent; resurs uyga vazifa bilan to'qnashmasin). 41-ekran DI qadamida 1600 da 8 px toshish — oldindan bor, tegilmagan.**
 >
 > **25.11.2026 16:27 — 1-ish BAJARILDI, LOKAL. Saytda hali eski versiya: commit + deploy foydalanuvchi buyrug'ini kutmoqda (shoshilinch — mentor Nest 12 o'rnatsa 6-ekranda qotadi). Keyingi: 2-ish (kirish matni). YANGI SEANS SHU YERDAN.**
 >
