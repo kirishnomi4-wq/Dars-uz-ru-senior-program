@@ -1,0 +1,18 @@
+
+> cars-api@0.0.1 start:dev
+> nest start --watch
+
+[3:36:27 PM] Starting compilation in watch mode...
+
+[3:36:28 PM] Found 0 errors. Watching for file changes.
+
+[Nest] 472632  - 11/25/2026, 3:36:29 PM     LOG [NestFactory] Starting Nest application...
+[Nest] 472632  - 11/25/2026, 3:36:29 PM     LOG [InstanceLoader] AppModule dependencies initialized +8ms
+[Nest] 472632  - 11/25/2026, 3:36:29 PM     LOG [InstanceLoader] CarsModule dependencies initialized +0ms
+[Nest] 472632  - 11/25/2026, 3:36:29 PM     LOG [RoutesResolver] AppController {/}: +4ms
+[Nest] 472632  - 11/25/2026, 3:36:29 PM     LOG [RouterExplorer] Mapped {/, GET} route +2ms
+[Nest] 472632  - 11/25/2026, 3:36:29 PM     LOG [RoutesResolver] CarsController {/cars}: +0ms
+[Nest] 472632  - 11/25/2026, 3:36:29 PM     LOG [RouterExplorer] Mapped {/cars, GET} route +1ms
+[Nest] 472632  - 11/25/2026, 3:36:29 PM     LOG [RouterExplorer] Mapped {/cars/:id, GET} route +1ms
+[Nest] 472632  - 11/25/2026, 3:36:29 PM     LOG [RouterExplorer] Mapped {/cars, POST} route +0ms
+[Nest] 472632  - 11/25/2026, 3:36:29 PM     LOG [NestApplication] Nest application successfully started +1ms

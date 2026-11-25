@@ -1,0 +1,50 @@
+<section id="natija" data-transition="fade">
+<p class="lbl">NAMUNA LOYIHA · NATIJALAR</p>
+<h2>Do‘kon ishlayapti: 10 ta so‘rov va javob</h2>
+<x-embed style="position:absolute;left:128px;top:236px;width:1664px;height:620px"><style>
+body{margin:0;background:transparent;overflow:hidden;font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+button{font:inherit;cursor:pointer;border:none}
+.list{position:absolute;left:0;top:0;width:520px;height:620px;display:flex;flex-direction:column;gap:6px}
+.it{display:flex;align-items:center;gap:12px;text-align:left;padding:9px 14px;border-radius:12px;background:#FDFCF9;border:2px solid #E2E0D8;font:600 20px ui-monospace,Menlo,monospace;color:#14213D;transition:border-color .3s,background .3s}
+.it.on{border-color:#F0A04B;background:#FFF4E6}
+.it i{font-style:normal;flex:none;width:30px;font:700 20px ui-monospace,monospace;color:#8C9AB3}
+.it b{flex:none;width:58px;font-size:18px;color:#fff;border-radius:6px;text-align:center;padding:2px 0}
+.it span{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.it u{text-decoration:none;flex:none;font-size:20px}
+.pn{position:absolute;left:550px;top:0;width:1114px;height:620px;border-radius:24px;background:#0F1B2D;overflow:hidden;display:flex;flex-direction:column}
+.hd{padding:22px 30px;font-size:28px;font-weight:700;color:#F6F5F0;border-bottom:1px solid #1F3357}
+.hd small{display:block;margin-top:4px;font-size:22px;font-weight:500;color:#8C9AB3}
+.bd{display:flex;flex:1}
+.rq,.rs{flex:1;padding:22px 28px;font:500 22px/1.55 ui-monospace,Menlo,monospace;white-space:pre-wrap;color:#BFC9D9}
+.rq{border-right:1px solid #1F3357}
+h4{margin:0 0 10px;font:700 20px -apple-system,Arial,sans-serif;letter-spacing:1px;color:#8C9AB3}
+.st{display:inline-block;margin-bottom:10px;padding:4px 14px;border-radius:8px;color:#fff;font:700 22px ui-monospace,monospace}
+.fi{animation:f .45s both}@keyframes f{from{opacity:0;transform:translateY(10px)}}
+</style>
+<div class="list" id="ls"></div>
+<div class="pn"><div class="hd" id="hd"></div><div class="bd"><div class="rq" id="rq"></div><div class="rs" id="rs"></div></div></div>
+<script>
+const G='#2E8B57',R='#C0392B',MB={GET:'#2F5FD0',POST:'#B5561B',PATCH:'#7A4FB5'};
+const T='Authorization: Bearer eyJhbGci…\n\n';
+const S=[
+['POST','/auth/register','Ro‘yxatdan o‘tish','','{ "email": "ali@mail.uz",\n  "password": "secret123" }','201 Created',G,'{ "id": 1,\n  "email": "ali@mail.uz" }'],
+['POST','/auth/register','Shu email yana','','{ "email": "ali@mail.uz",\n  "password": "boshqa123" }','409 Conflict',R,'{ "message": "Bu email band",\n  "error": "Conflict",\n  "statusCode": 409 }'],
+['POST','/auth/login','Kirish — token olamiz','','{ "email": "ali@mail.uz",\n  "password": "secret123" }','200 OK',G,'{ "access_token":\n  "eyJhbGciOiJIUzI1NiIsInR5cCI6…" }'],
+['POST','/products','Tokensiz mahsulot qo‘shish','','{ "name": "Futbolka",\n  "price": 120000, "stock": 5 }','401 Unauthorized',R,'{ "message": "Unauthorized",\n  "statusCode": 401 }'],
+['POST','/products','Token bilan qo‘shish',T,'{ "name": "Futbolka",\n  "price": 120000, "stock": 5 }','201 Created',G,'{ "name": "Futbolka",\n  "price": 120000,\n  "stock": 5, "id": 1 }'],
+['POST','/products','Xato ma’lumot',T,'{ "name": "", "price": -5 }','400 Bad Request',R,'{ "message": [\n  "name should not be empty",\n  "price must not be less than 0",\n  "stock must not be less than 0",\n  "stock must be an integer number"\n ], "statusCode": 400 }'],
+['POST','/orders','2 ta futbolka buyurtma',T,'{ "productId": 1,\n  "quantity": 2 }','201 Created',G,'{ "userId": 1, "productId": 1,\n  "quantity": 2,\n  "total": 240000, "id": 1 }'],
+['GET','/products/1','Qoldiq kamaydimi?','','—','200 OK',G,'{ "id": 1, "name": "Futbolka",\n  "price": 120000,\n  "stock": 3 }'],
+['POST','/orders','10 ta — qoldiqdan ko‘p',T,'{ "productId": 1,\n  "quantity": 10 }','400 Bad Request',R,'{ "message":\n   "Omborda faqat 3 ta qoldi",\n  "statusCode": 400 }'],
+['GET','/products/99','Yo‘q mahsulot','','—','404 Not Found',R,'{ "message":\n   "Mahsulot #99 topilmadi",\n  "statusCode": 404 }']];
+const ls=document.getElementById('ls');let k=0,tm;
+ls.innerHTML=S.map((s,i)=>'<button class="it" id="i'+i+'"><i>'+(i+1)+'</i><b style="background:'+MB[s[0]]+'">'+s[0]+'</b><span>'+s[1]+'</span><u style="color:'+s[6]+'">'+s[5].split(' ')[0]+'</u></button>').join('');
+function go(i){k=i;S.forEach((_,j)=>document.getElementById('i'+j).classList.toggle('on',j===i));const s=S[i];
+document.getElementById('hd').innerHTML=(i+1)+'. '+s[2]+'<small>'+s[0]+' http://localhost:3000'+s[1]+'</small>';
+document.getElementById('rq').innerHTML='<div class="fi"><h4>SO‘ROV</h4>'+s[3]+s[4]+'</div>';
+document.getElementById('rs').innerHTML='<div class="fi" style="animation-delay:.6s"><h4>JAVOB</h4><span class="st" style="background:'+s[6]+'">'+s[5]+'</span>\n'+s[7]+'</div>';
+clearTimeout(tm);tm=setTimeout(()=>go((k+1)%S.length),6500)}
+S.forEach((_,j)=>document.getElementById('i'+j).onclick=()=>go(j));go(0);
+</script></x-embed>
+<aside>Do‘konning to‘liq ssenariysi 10 qadamda: ro‘yxatdan o‘tish, band email, kirish, tokensiz va token bilan mahsulot qo‘shish, xato ma’lumot, buyurtma, qoldiq kamayishi, qoldiqdan ko‘p buyurtma va yo‘q mahsulot. Chap ro‘yxatdan istalgan qadamni bosish mumkin, aks holda har 6,5 soniyada o‘zi o‘tadi. Yashil — muvaffaqiyat, qizil — server to‘g‘ri rad etgan holat. Bular — loyiha Postman yoki Thunder Client’da sinalganda chiqadigan javoblar ko‘rinishi; token qisqartirib ko‘rsatilgan, validatsiya xabarlarining tartibi biroz farq qilishi mumkin.</aside>
+</section>

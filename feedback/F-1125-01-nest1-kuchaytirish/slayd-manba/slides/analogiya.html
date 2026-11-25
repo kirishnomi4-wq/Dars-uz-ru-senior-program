@@ -1,0 +1,37 @@
+<section id="analogiya" data-transition="fade">
+<h2>Restoran misolida NestJS</h2>
+<x-embed style="position:absolute;left:128px;top:236px;width:1664px;height:640px"><style>
+body{margin:0;background:transparent;overflow:hidden;font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;color:#14213D}
+.st{position:absolute;top:12px;width:296px;height:250px;margin-left:-148px;box-sizing:border-box;border-radius:24px;background:#FDFCF9;border:2px solid #E2E0D8;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;transition:border-color .3s,box-shadow .3s,transform .3s}
+.st.on{border-color:#F0A04B;box-shadow:0 0 0 8px rgba(240,160,75,.22);transform:translateY(-6px)}
+.st .e{font-size:72px;line-height:1}
+.t{font-size:34px;font-weight:800}.s{font:700 24px ui-monospace,Menlo,monospace;color:#2F5FD0}
+.d{font-size:20px;color:#4A5568;text-align:center;padding:0 14px;line-height:1.3}
+.tr{position:absolute;left:148px;width:1368px;top:306px;border-top:4px dashed #CBD3E1}
+.tk{position:absolute;top:306px;transform:translate(-50%,-50%);padding:10px 22px;border-radius:30px;font-size:24px;font-weight:800;color:#fff;white-space:nowrap;box-shadow:0 6px 16px rgba(20,33,61,.25)}
+.cap{position:absolute;left:0;right:0;top:350px;height:150px;box-sizing:border-box;border-radius:24px;background:#0F1B2D;display:flex;flex-direction:column;justify-content:center;padding:0 44px;gap:10px}
+.c1{font-size:34px;font-weight:700;color:#F6F5F0}.c2{font-size:27px;color:#8FD19E}
+.lg{position:absolute;left:0;right:0;top:524px;display:flex;gap:12px}
+.lg div{flex:1;border-radius:16px;background:#FDFCF9;border:1px solid #E2E0D8;padding:12px 16px;font-size:22px;line-height:1.35}
+.lg b{color:#B5561B}
+</style>
+<div class="st" id="s0" style="left:148px"><div class="e">🧑</div><div class="t">Mijoz</div><div class="s">Brauzer</div><div class="d">buyurtma beradi</div></div>
+<div class="st" id="s1" style="left:490px"><div class="e">💂</div><div class="t">Nazoratchi</div><div class="s">Guard</div><div class="d">kirishga ruxsat bormi?</div></div>
+<div class="st" id="s2" style="left:832px"><div class="e">🤵</div><div class="t">Ofitsiant</div><div class="s">Controller</div><div class="d">buyurtmani oladi, oshxonaga uzatadi</div></div>
+<div class="st" id="s3" style="left:1174px"><div class="e">👨‍🍳</div><div class="t">Oshpaz</div><div class="s">Service</div><div class="d">haqiqiy ishni bajaradi</div></div>
+<div class="st" id="s4" style="left:1516px"><div class="e">📦</div><div class="t">Omborchi</div><div class="s">Repository</div><div class="d">ombordan (bazadan) olib beradi</div></div>
+<div class="tr"></div><div class="tk" id="k">Buyurtma</div>
+<div class="cap"><div class="c1" id="c1"></div><div class="c2" id="c2"></div></div>
+<div class="lg"><div><b>Lagan</b> = javob (JSON)</div><div><b>Menyu</b> = API manzillari</div><div><b>Restoran</b> = Module</div><div><b>Ombor</b> = baza</div></div>
+<script>
+const X=[148,490,832,1174,1516],S=[0,1,2,3,4].map(i=>document.getElementById('s'+i)),k=document.getElementById('k'),c1=document.getElementById('c1'),c2=document.getElementById('c2');
+const T=[['Mijoz “2 ta lavash” deb buyurtma beradi','Nest’da: brauzer so‘rov yuboradi — POST /orders'],['Nazoratchi tekshiradi: bilaguzugi bormi?','Nest’da: Guard tokenni tekshiradi, yo‘q bo‘lsa — 401'],['Ofitsiant buyurtmani oladi, lekin o‘zi pishirmaydi','Nest’da: Controller so‘rovni qabul qilib, Service’ga beradi'],['Oshpaz pishiradi','Nest’da: Service hisoblaydi va qaror qiladi'],['Omborchi mahsulot olib beradi','Nest’da: Repository bazadan o‘qiydi va yozadi'],['Tayyor taom lagan bilan mijozga qaytadi','Nest’da: javob JSON bo‘lib brauzerga qaytadi']];
+const K=[[0,0,0,0],[1.4,0,0,0],[2.4,1,0,1],[3.8,1,0,1],[4.8,2,0,2],[6.2,2,0,2],[7.2,3,0,3],[8.6,3,0,3],[9.6,4,0,4],[11,4,1,4],[13.4,0,1,5],[15.6,0,1,5]];
+const TT=15.6;let s0=performance.now();
+function f(n){const t=((n-s0)/1000)%TT;let i=0;while(i<K.length-2&&K[i+1][0]<=t)i++;const a=K[i],b=K[i+1],p=Math.min(1,(t-a[0])/(b[0]-a[0])),e=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2;
+k.style.left=(X[a[1]]+(X[b[1]]-X[a[1]])*e)+'px';k.textContent=b[2]?'🍽 Lagan':'📝 Buyurtma';k.style.background=b[2]?'#2E8B57':'#E8833A';
+S.forEach((x,j)=>x.classList.toggle('on',j===b[1]));c1.textContent=T[b[3]][0];c2.textContent=T[b[3]][1];requestAnimationFrame(f)}
+requestAnimationFrame(f);
+</script></x-embed>
+<aside>Bu metafora o‘quvchi darsi (m4a-01) bilan bir xil: o‘quvchi “ofitsiant”, “oshpaz”, “omborchi”, “nazoratchi” so‘zlarini eshitadi. Siz ikkala tilni bilishingiz kerak: o‘quvchi “oshpaz” desa — Service ekanini bilib, faylni ko‘rsatasiz. Darsda ikkala so‘zni birga ayting: “oshpaz, ya’ni Service”. Animatsiyada buyurtma (to‘q sariq) chapdan o‘ngga boradi, keyin lagan (yashil) mijozga qaytadi; pastdagi qora oynada har qadam restoran tilida va Nest tilida yoziladi. Ogohlantirish: metafora vazifani tushuntiradi, kodni emas — “ofitsiant oshxonaga kirmaydi” deganda Controller Service’ni chaqiradi, lekin uning ichidagi kodga aralashmaydi.</aside>
+</section>

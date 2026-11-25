@@ -1,0 +1,40 @@
+<section id="test1" data-transition="push">
+<p class="lbl">SINOV</p>
+<h2>Test: NestJS’ni tushundikmi?</h2>
+<x-embed style="position:absolute;left:128px;top:236px;width:1664px;height:690px"><script>
+const Q=[["NestJS nima?", ["Ma’lumotlar bazasi", "Backend yozish uchun tayyor reja (framework)", "Brauzer", "Dizayn dasturi"], 1, "NestJS — server tomonini tartibli yozish uchun framework, ichida Express ishlaydi."], ["Restoran misolida <b>Controller</b> kim?", ["Oshpaz", "Ofitsiant", "Omborchi", "Mijoz"], 1, "Controller so‘rovni qabul qiladi va javobni qaytaradi — ofitsiant kabi."], ["Haqiqiy ish (hisoblash, ma’lumot topish) qayerda yoziladi?", ["main.ts", "Controller", "Service", "Module"], 2, "Service — oshpaz. Controller faqat uni chaqiradi."], ["Qaysi loyihaga NestJS ko‘proq mos?", ["2 ta marshrutli oddiy bot", "5 kishilik jamoa yozadigan internet do‘kon", "Bir sahifali rasm", "Kalkulyator"], 1, "Ko‘p bo‘lim va jamoa bo‘lsa — Nest tartibi foyda beradi."], ["Express va Nest’da bir xil GET /cars yozildi. Natija qanday?", ["Nest’da tezroq", "Express’da xato", "Bir xil JSON qaytadi", "Nest JSON qaytarmaydi"], 2, "Natija bir xil — farq kod tartibida."]];
+</script>
+<style>
+body{margin:0;background:transparent;overflow:hidden;font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;color:#14213D}
+button{font:inherit;cursor:pointer;border:none}
+.top{display:flex;justify-content:space-between;align-items:center;height:64px}
+.pr{display:flex;gap:10px}.pr i{display:block;width:64px;height:12px;border-radius:6px;background:#E2E0D8}.pr i.done{background:#2E8B57}.pr i.cur{background:#F0A04B}
+.qn{font-size:28px;font-weight:800;color:#2F5FD0}
+.tmr{position:relative;width:64px;height:64px}.tmr svg{position:absolute;inset:0;transform:rotate(-90deg)}
+.tmr b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:800 28px ui-monospace,Menlo,monospace}
+.q{margin-top:20px;font-size:42px;font-weight:800;line-height:1.25;min-height:106px}
+.q code,.o code{font:700 0.85em ui-monospace,Menlo,monospace;color:#B5561B}
+.os{margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.o{text-align:left;font-size:30px;font-weight:600;padding:22px 28px;border-radius:18px;background:#FDFCF9;border:3px solid #E2E0D8;color:#14213D;transition:border-color .3s,background .3s,opacity .3s,transform .3s}
+.o b{display:inline-block;width:46px;color:#2F5FD0}
+.o.ok{background:#DDF1E3;border-color:#2E8B57;transform:scale(1.02)}.o.ok b{color:#2E8B57}.o.dim{opacity:.4}
+.ex{margin-top:20px;min-height:96px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px 28px;box-sizing:border-box;border-radius:18px;background:#0F1B2D;color:#F6F5F0;font-size:28px;line-height:1.35;opacity:0;transition:opacity .4s}
+.ex.on{opacity:1}.ex u{text-decoration:none;color:#8FD19E;font-weight:800}
+.nx{flex:none;font-size:28px;font-weight:800;padding:16px 30px;border-radius:14px;background:#F0A04B;color:#0F1B2D}
+.end{text-align:center;padding-top:130px}.end h1{font-size:72px;margin:0 0 20px;color:#2F5FD0}.end p{font-size:34px;font-weight:600;margin:0 0 40px;color:#4A5568}
+</style><div id="app"></div><script>
+const T=10,NEXT=3,L='ABCD',app=document.getElementById('app');let i=0,left=T,shown=0,after=0,last=0;
+function draw(){shown=0;left=T;after=0;
+if(i>=Q.length){app.innerHTML='<div class="end"><h1>Test tugadi!</h1><p>'+Q.length+' ta savol ko‘rib chiqildi. Qaysi savolda ko‘p adashildi?</p><button class="nx" id="re">↻ Qaytadan boshlash</button></div>';document.getElementById('re').onclick=()=>{i=0;draw()};return}
+const q=Q[i];app.innerHTML='<div class="top"><div class="pr">'+Q.map((_,j)=>'<i class="'+(j<i?'done':j===i?'cur':'')+'"></i>').join('')+'</div><div class="qn">'+(i+1)+' / '+Q.length+' savol</div><div class="tmr"><svg width="64" height="64"><circle cx="32" cy="32" r="27" fill="none" stroke="#E2E0D8" stroke-width="7"/><circle id="rg" cx="32" cy="32" r="27" fill="none" stroke="#F0A04B" stroke-width="7" stroke-linecap="round" stroke-dasharray="169.6"/></svg><b id="sc">'+T+'</b></div></div><div class="q">'+q[0]+'</div><div class="os">'+q[1].map((o,j)=>'<button class="o"><b>'+L[j]+'</b>'+o+'</button>').join('')+'</div><div class="ex" id="ex"><span>✓ To‘g‘ri javob: <u>'+L[q[2]]+'</u>. '+q[3]+'</span><button class="nx" id="nx">'+(i===Q.length-1?'Yakunlash →':'Keyingi →')+'</button></div>';
+[...app.querySelectorAll('.o')].forEach(b=>b.onclick=reveal);document.getElementById('nx').onclick=()=>{i++;draw()}}
+function reveal(){if(shown||i>=Q.length)return;shown=1;left=0;const q=Q[i];[...app.querySelectorAll('.o')].forEach((x,k)=>x.classList.add(k===q[2]?'ok':'dim'));document.getElementById('ex').classList.add('on');document.getElementById('sc').textContent='✓';document.getElementById('rg').style.stroke='#2E8B57'}
+function tick(t){const dt=Math.min(1,(t-(last||t))/1000);last=t;
+if(i<Q.length){if(!shown){left-=dt;const rg=document.getElementById('rg'),sc=document.getElementById('sc');if(left<=0)reveal();else{sc.textContent=Math.ceil(left);rg.style.strokeDashoffset=169.6*(1-left/T);if(left<=3)rg.style.stroke='#C0392B'}}
+else{after+=dt;if(after>=NEXT){i++;draw()}}}
+requestAnimationFrame(tick)}
+draw();requestAnimationFrame(tick);
+</script></x-embed>
+
+<aside>Avtomatik test: har savolga 10 soniya (o‘ng yuqorida taymer). Guruh javobni ovoz chiqarib aytadi. 10 soniyadan keyin to‘g‘ri javob yashil bo‘lib chiqadi va 3 soniyadan keyin o‘zi keyingi savolga o‘tadi. Kutmasdan o‘tish uchun “Keyingi →” ni bosing. Jami 5 ta savol.</aside>
+</section>

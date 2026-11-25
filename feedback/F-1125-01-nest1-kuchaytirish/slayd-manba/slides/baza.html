@@ -1,0 +1,30 @@
+<section id="baza" data-transition="fade">
+<h2>Nega baza kerak va ORM nima</h2>
+<div style="display:flex;gap:32px">
+<div class="card" style="border-top:8px solid #C0392B;flex:none;width:520px">
+<h3>Massiv — doskadagi bo‘r yozuv</h3>
+<p class="txt">Server o‘chib yonsa, hamma ma’lumot o‘chib ketadi. Haqiqiy do‘kon buyurtmalarni yo‘qotmasligi kerak — shuning uchun baza.</p>
+</div>
+<div class="card" style="border-top:8px solid #2F5FD0">
+<h3>ORM — tarjimon</h3>
+<p class="txt">Siz TypeScript’da gapirasiz, baza SQL tilida. TypeORM o‘rtada tarjima qiladi — SQL yozish shart emas.</p>
+<svg aria-label="Service Repository orqali TypeORM ga, TypeORM SQL bilan bazaga murojaat qiladi" width="1000" height="150" viewBox="0 0 1000 150" xmlns="http://www.w3.org/2000/svg" style="width:1000px;height:150px">
+<rect x="0" y="30" width="210" height="90" rx="16" fill="#DDF1E3" stroke="#2E8B57" stroke-width="3"/><text x="105" y="84" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="24" font-weight="600" fill="#14213D">Service</text>
+<rect x="265" y="30" width="210" height="90" rx="16" fill="#E8ECF7" stroke="#2F5FD0" stroke-width="3"/><text x="370" y="84" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="24" font-weight="600" fill="#14213D">TypeORM</text>
+<rect x="530" y="30" width="210" height="90" rx="16" fill="#0F1B2D"/><text x="635" y="84" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="24" font-weight="600" fill="#F6F5F0">SQLite</text>
+<path d="M210 75 H258" stroke="#2F5FD0" stroke-width="4"/><path d="M250 67 L262 75 L250 83 Z" fill="#2F5FD0"/>
+<path d="M475 75 H523" stroke="#2F5FD0" stroke-width="4"/><path d="M515 67 L527 75 L515 83 Z" fill="#2F5FD0"/>
+<text x="237" y="22" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="20" fill="#2E8B57">repo.find()</text>
+<text x="500" y="146" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="20" fill="#B5561B">SELECT * FROM car</text>
+<text x="790" y="84" font-family="IBM Plex Sans,Arial" font-size="24" fill="#4A5568">yoki PostgreSQL</text>
+</svg>
+</div>
+</div>
+<div style="display:flex;gap:24px;align-items:center;background:#0F1B2D;border-radius:20px;padding:24px 36px">
+<p style="font-size:28px;font-weight:700;color:#F0A04B;width:360px">Entity = jadval qolipi</p>
+<p style="font-family:'JetBrains Mono',monospace;font-size:26px;color:#E6EDF7">class Car { id; model; year }</p>
+<p style="font-size:30px;color:#F6F5F0">→</p>
+<p style="font-family:'JetBrains Mono',monospace;font-size:26px;color:#8FD19E">car jadvali: id | model | year</p>
+</div>
+<aside>Ikki hayotiy misol. Massiv — doskadagi bo‘r yozuv: dars tugab, doska artilsa, hammasi yo‘qoladi; baza esa daftar. ORM — tarjimon: siz repo.find() deysiz, TypeORM uni SELECT * FROM car ga o‘giradi. Pastdagi qator — Entity: class’ning har bir maydoni jadval ustuniga aylanadi. O‘rganishda SQLite (bitta fayl), haqiqiy loyihada PostgreSQL — kod deyarli o‘zgarmaydi.</aside>
+</section>

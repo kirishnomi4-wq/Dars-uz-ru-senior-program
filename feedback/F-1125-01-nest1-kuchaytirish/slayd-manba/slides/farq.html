@@ -1,0 +1,29 @@
+<section id="farq" data-transition="fade" style="gap:36px">
+<h2>Express va NestJS farqi</h2>
+<div style="display:flex;gap:32px">
+<div class="card" style="border-top:8px solid #2F5FD0;gap:14px">
+<p class="code" style="color:#2F5FD0">EXPRESS · uydagi oshxona</p>
+<p class="txt">Bir kishi hammasini qiladi: buyurtma oladi, pishiradi, idish yuvadi. 2–3 kishiga — tez va qulay.</p>
+<div style="background:#0F1B2D;border-radius:16px;padding:20px 24px;display:flex;flex-direction:column;gap:6px">
+<p style="font-family:'JetBrains Mono',monospace;font-size:24px;color:#E6EDF7">app.get('/cars', (req, res) =&gt; {</p>
+<p style="font-family:'JetBrains Mono',monospace;font-size:24px;color:#E6EDF7">  res.json(cars);</p>
+<p style="font-family:'JetBrains Mono',monospace;font-size:24px;color:#E6EDF7">});</p>
+</div>
+</div>
+<div class="card" style="border-top:8px solid #F0A04B;gap:14px">
+<p class="code">NESTJS · restoran oshxonasi</p>
+<p class="txt">Ofitsiant, oshpaz, omborchi — har kim o‘z ishida. 500 kishiga ham tartib buzilmaydi.</p>
+<div style="background:#0F1B2D;border-radius:16px;padding:20px 24px;display:flex;flex-direction:column;gap:6px">
+<p style="font-family:'JetBrains Mono',monospace;font-size:24px;color:#F0A04B">@Get()</p>
+<p style="font-family:'JetBrains Mono',monospace;font-size:24px;color:#E6EDF7">findAll() {</p>
+<p style="font-family:'JetBrains Mono',monospace;font-size:24px;color:#E6EDF7">  return this.carsService.findAll(); }</p>
+</div>
+</div>
+</div>
+<div style="display:flex;gap:24px;align-items:center;background:#DDF1E3;border:2px solid #2E8B57;border-radius:20px;padding:22px 32px">
+<p style="font-size:26px;font-weight:700;color:#1F6B42;width:330px">NATIJA — ikkalasida bir xil:</p>
+<p style="font-family:'JetBrains Mono',monospace;font-size:26px;color:#14213D">GET /cars → [{ "id": 1, "model": "Cobalt" }]</p>
+</div>
+<p style="font-size:30px;line-height:1.4;color:#4A5568">Farq natijada emas — <b style="color:#14213D">tartibda</b>: loyiha kattalashganda Nest’da kod qayerda ekanini hamma biladi.</p>
+<aside>Hayotiy misol: uydagi oshxonada bitta odam hammasini qiladi — bu Express. Kichik ish uchun juda yaxshi. Restoran oshxonasida esa ofitsiant, oshpaz, omborchi alohida — bu Nest. Pastdagi kodlarni solishtiring: ikkalasi ham bir xil natija beradi (yashil qator). Demak, farq — natijada emas, tartibda. Express’da kod qayerga yozilishini o‘zingiz hal qilasiz, Nest’da qoida bor: so‘rov — Controller’da, ish — Service’da.</aside>
+</section>

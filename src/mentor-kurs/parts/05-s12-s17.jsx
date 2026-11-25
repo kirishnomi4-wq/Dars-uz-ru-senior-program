@@ -301,6 +301,7 @@ const P2_TROUBLE = [
   ['Qizil TypeScript xatosi (fayl:satr)', "Nusxalashda satr tushib qolgan: ko'rsatilgan satrni «Kodni ochish»dagi kod bilan solishtiring"],
   ['Cannot GET /cars', "Terminalda Mapped {/cars…} bormi? Yo'q bo'lsa app.module.ts → imports: [CarsModule]"],
   ['POST da body undefined', "Postman'da Body → raw → JSON tanlanganmi? Content-Type: application/json"],
+  ["error TS2307: Cannot find module './cars.service'", "Loyiha ESM turida yaratilgan: cars-api papkasini o'chiring, 1-amaliyotning 3-qadamidagi buyruqni to'liq nusxalab qayta yarating va cars modulini qaytadan quring"],
 ];
 // F-1031-04: «Kodni ochish» oynasida butun cars-api ko'rinadi; faqat amaliyot fayllari bosiladi
 const P2_TREE = ['dist/', 'node_modules/', ...ALL_FILES, 'test/', 'package.json'];

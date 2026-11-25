@@ -1,0 +1,48 @@
+<section id="taxmin" data-transition="push">
+<p class="lbl">TAXMIN QILING</p>
+<h2>CLI yaratgan bo‘sh Controller: /cars nima qaytaradi?</h2>
+<x-embed style="position:absolute;left:128px;top:236px;width:1664px;height:640px"><style>
+body{margin:0;background:transparent;overflow:hidden;font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;color:#14213D}
+button{font:inherit;cursor:pointer;border:none}
+.code{position:absolute;left:0;top:0;width:640px;height:250px;box-sizing:border-box;border-radius:20px;background:#0F1B2D;padding:22px 26px;font:500 26px/1.55 ui-monospace,Menlo,monospace;color:#E6EDF7;white-space:pre}
+.code .k{color:#F0A04B}.code .m{color:#6C7A93}
+.os{position:absolute;left:680px;top:0;width:984px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.o{text-align:left;font-size:28px;font-weight:700;padding:22px 26px;border-radius:18px;background:#FDFCF9;border:3px solid #E2E0D8;color:#14213D;transition:border-color .3s,background .3s,opacity .3s}
+.o b{color:#2F5FD0;margin-right:10px}
+.o.ok{background:#DDF1E3;border-color:#2E8B57}.o.dim{opacity:.4}
+.tm{position:absolute;right:0;top:-60px;width:60px;height:60px;border-radius:50%;background:#0F1B2D;color:#F0A04B;font:800 26px ui-monospace,monospace;display:flex;align-items:center;justify-content:center}
+.rv{position:absolute;left:0;right:0;top:280px;display:flex;gap:20px;opacity:0;transform:translateY(12px);transition:opacity .5s,transform .5s}
+.rv.on{opacity:1;transform:none}
+.term{flex:1.2;border-radius:20px;background:#0A1322;border:1px solid #1F3357;padding:20px 24px;font:500 22px/1.6 ui-monospace,Menlo,monospace;color:#8C9AB3;white-space:pre}
+.term .g{color:#8FD19E}.term .r{color:#F59C8F}
+.ex{flex:1;border-radius:20px;background:#FFF4E6;border:2px solid #F0A04B;padding:22px 26px;font-size:27px;line-height:1.4}
+.ex b{color:#B5561B}
+</style>
+<div class="code"><span class="m">// cars.controller.ts</span>
+<span class="k">@Controller</span>('cars')
+<span class="k">export class</span> CarsController {
+  <span class="m">// hech qanday metod yo‘q</span>
+}</div>
+<div class="tm" id="tm">10</div>
+<div class="os" id="os">
+<button class="o"><b>A</b>Server yonmaydi</button>
+<button class="o"><b>B</b>500 — server xatosi</button>
+<button class="o"><b>C</b>404 — Cannot GET /cars</button>
+<button class="o"><b>D</b>200 — bo‘sh ro‘yxat []</button>
+</div>
+<div class="rv" id="rv">
+<div class="term">[Nest] LOG CarsModule dependencies initialized
+[Nest] LOG <span class="g">CarsController {/cars}:</span>
+<span class="r">  ← Mapped {/cars, GET} yo‘q — metod yo‘q</span>
+[Nest] LOG Nest application successfully started</div>
+<div class="ex"><b>To‘g‘ri javob: C — 404.</b><br>Bu xato emas: eshik bor, ichida ofitsiant yo‘q. Yo‘lni Controller beradi, eshikni esa <b>metod</b> (@Get, @Post) ochadi.</div>
+</div>
+<script>
+const os=[...document.querySelectorAll('.o')],rv=document.getElementById('rv'),tm=document.getElementById('tm');let left=10,done=0,last=0,after=0;
+function show(){if(done)return;done=1;os.forEach((o,i)=>o.classList.add(i===2?'ok':'dim'));rv.classList.add('on');tm.textContent='✓'}
+os.forEach(o=>o.onclick=show);
+function t(n){const dt=Math.min(1,(n-(last||n))/1000);last=n;if(!done){left-=dt;if(left<=0)show();else tm.textContent=Math.ceil(left)}else{after+=dt;if(after>12){done=0;after=0;left=10;os.forEach(o=>o.className='o');rv.classList.remove('on')}}requestAnimationFrame(t)}
+requestAnimationFrame(t);
+</script></x-embed>
+<aside>Saytdagi mentor darsidan olingan usul: avval taxmin, keyin natija. Guruhga 10 soniya bering, javobni ovoz chiqarib aytsin. Keyin to‘g‘ri javob ochiladi: server yonadi, terminalda CarsController {/cars} bor, lekin Mapped satri yo‘q, brauzerda 404. Xulosa: yo‘lni Controller dekoratori beradi, route’ni esa metod va uning ustidagi @Get yoki @Post. Shuning uchun keyingi qadamda avval Service, keyin Controller’ga metodlar yozamiz.</aside>
+</section>

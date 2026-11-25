@@ -1741,27 +1741,31 @@ function Scene5b({ beat }) {
 }
 
 // --- Amaliyot 1/4: Nest'ni o'rnating, nest new ni boshlab qo'ying (o'rnatilguncha dars davom etadi) ---
+// F-1125-01 (M54): versiya buyruqning o'zida qotirilgan (@12), nest new savollarsiz (bayroqlar bilan) —
+// dars chiqishlari Nest 12 da shu buyruqlar bilan tekshirilgan: feedback/F-1125-01-nest1-kuchaytirish/nest12/FARQLAR.md
 const P0 = {
   kicker: 'Amaliyot 1 / 4', eyebrow: "Hozir o'zingizda · 3–5 daqiqa (o'rnatish fonda)", title: "Nest'ni o'rnating, loyihani boshlab qo'ying", tableAt: 4,
   segments: [
     { id: 'a', key: "Endi <b>siz</b>: Nest'ni o'rnatib, loyihani yaratishni boshlab qo'yasiz", text: "Endi navbat sizga. Hozirgina ko'rgan loyihani o'zingizda yaratib qo'yasiz: uchta qadam. O'rnatish bir-uch daqiqa oladi, kutmaysiz, Davom bosib darsni davom ettirasiz, loyiha fonda o'rnatiladi.", hl: [] },
-    { id: 'b', key: "1-qadam: Node versiyasi <b>20 yoki undan yuqori</b> bo'lishi shart", text: "Birinchi: node versiyasini tekshiring. Nest o'n birinchi versiya Node yigirma yoki undan yuqorisini talab qiladi. Past bo'lsa, jadvaldagi yo'l bilan yangilang.", hl: [0] },
-    { id: 'c', key: "2-qadam: <b>Nest CLI</b>'ni o'rnating, versiyasini isbot maydoniga yozing", text: "Ikkinchi: Nest CLI'ni global o'rnating va versiyasini tekshiring. Chiqqan raqamni pastdagi isbot maydoniga yozing.", hl: [1] },
-    { id: 'd', key: "3-qadam: <code>nest new cars-api</code> — o'rnatish fonda, kutmasdan davom eting", text: "Uchinchi: nest new cars-api. Paket menejeri so'ralsa npm'ni tanlang. O'rnatish boshlangach, kutmang: katakchani belgilang va Davom bosing.", hl: [2] },
+    { id: 'b', key: "1-qadam: Node versiyasi <b>22 yoki undan yuqori</b> bo'lishi shart", text: "Birinchi: node versiyasini tekshiring. Yigirma ikki yoki undan yuqori bo'lishi kerak. Past bo'lsa, jadvaldagi yo'l bilan yangilang.", hl: [0] },
+    { id: 'c', key: "2-qadam: <b>Nest CLI 12</b>'ni o'rnating, versiyasini isbot maydoniga yozing", text: "Ikkinchi: Nest CLI'ni global o'rnating. Buyruq oxirida kuchukcha belgisi va o'n ikki turibdi: bu darsdagi hamma kod va terminal satrlari Nest'ning o'n ikkinchi versiyasida tekshirilgan, shuning uchun aynan shu versiyani o'rnatamiz. Keyin versiyani tekshiring va chiqqan raqamni pastdagi isbot maydoniga yozing.", show: "Ikkinchi: Nest CLI'ni global o'rnating. Buyruq oxirida <code>@12</code> turibdi: bu darsdagi hamma kod va terminal satrlari Nest'ning 12-versiyasida tekshirilgan, shuning uchun aynan shu versiyani o'rnatamiz. Keyin versiyani tekshiring va chiqqan raqamni pastdagi isbot maydoniga yozing.", hl: [1] },
+    { id: 'd', key: "3-qadam: <code>nest new</code> buyrug'ini <b>to'liq nusxalang</b> — o'rnatish fonda, kutmasdan davom eting", text: "Uchinchi: loyihani yarating. Buyruqni qo'lda yozmang, to'liq nusxalang. Nest'ning o'n ikkinchi versiyasi loyiha yaratishda to'rtta savol beradi, biz javoblarni buyruqning o'zida berdik: paket menejeri npm, modul tizimi CommonJS, kuzatuv xizmati va AI agentlar uchun fayllar kerak emas. CommonJS'ni tanladik, chunki o'quvchi loyihasi ham shu tizimda yozilgan. O'rnatish boshlangach, kutmang: katakchani belgilang va Davom bosing.", show: "Uchinchi: loyihani yarating. Buyruqni qo'lda yozmang, to'liq nusxalang. Nest'ning 12-versiyasi loyiha yaratishda to'rtta savol beradi, biz javoblarni buyruqning o'zida berdik: paket menejeri <code>npm</code>, modul tizimi <code>CommonJS</code>, kuzatuv xizmati va AI agentlar uchun fayllar kerak emas. CommonJS'ni tanladik, chunki o'quvchi loyihasi ham shu tizimda yozilgan. O'rnatish boshlangach, kutmang: katakchani belgilang va Davom bosing.", hl: [2] },
     { id: 'e', key: "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi", text: "Biror narsa boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing: yechimlar oynasi ochiladi, xato va yechimi o'sha yerda. Uchala katakcha belgilanmaguncha va isbot to'g'ri yozilmaguncha Davom tugmasi ochilmaydi. Demak, shu amaliyotdan keyin kompyuteringizda Nest o'rnatilgan va yangi loyiha yaratilmoqda.", hl: [] },
   ],
 };
 const P0_STEPS = [
-  { t: 'Node', cmds: ['node --version'], exp: 'v20 yoki undan yuqori (Nest 11 talabi)' },
-  { t: 'Nest CLI', cmds: ['npm i -g @nestjs/cli', 'nest --version'], exp: '11.x.x' },
-  { t: "Loyiha — boshlab qo'ying", cmds: ['nest new cars-api'], exp: "paket menejeri: npm · o'rnatish 1–3 daqiqa — kutmang, Davom bosing" },
+  { t: 'Node', cmds: ['node --version'], exp: 'v22 yoki undan yuqori' },
+  { t: 'Nest CLI', cmds: ['npm i -g @nestjs/cli@12', 'nest --version'], exp: '12.x.x' },
+  { t: "Loyiha — boshlab qo'ying", cmds: ['nest new cars-api -p npm --type cjs --no-observe --skip-skills'], exp: "savol chiqmaydi · o'rnatish 1–3 daqiqa — kutmang, Davom bosing" },
 ];
 const P0_TROUBLE = [
-  ['node: v18 yoki past', "nodejs.org dan LTS (20+) o'rnating, terminalni qayta oching, node --version ni qaytaring"],
+  ['node: 22 dan past', "nodejs.org dan LTS versiyani o'rnating, terminalni qayta oching, 1-qadamni qaytaring"],
   ['nest: command not found', "CLI o'rnatilmagan yoki terminal yangilanmagan: 2-qadamni qaytaring, terminalni qayta oching"],
-  ['npm install uzoq / xato', "internetni tekshiring; nest new --skip-install, keyin papkada npm install"],
+  ['nest new savol berdi (package manager, module system…)', "Buyruq to'liq nusxalanmagan: Ctrl+C bosing va 3-qadamdagi buyruqni to'liq nusxalab qayta yozing"],
+  ["error: unknown option '--type'", "Eski Nest CLI qolgan: 2-qadamdagi buyruqni qaytaring, nest --version 12 ni ko'rsatsin"],
+  ['npm install uzoq / xato', "internetni tekshiring; 3-qadamdagi buyruq oxiriga --skip-install qo'shing, keyin papkada npm install"],
 ];
-const P0_PROOF = { label: "Isbot: nest --version nima chiqardi?", placeholder: 'terminalda chiqqan raqamni yozing', check: (v) => /^v?11\./.test(v), wrong: "Kutilgan 11.x.x — CLI o'rnatilmagan yoki eski versiya" };
+const P0_PROOF = { label: "Isbot: nest --version nima chiqardi?", placeholder: 'terminalda chiqqan raqamni yozing', check: (v) => /^v?12\./.test(v), wrong: "Kutilgan 12.x.x — buyruqdagi @12 tushib qolgan yoki terminal yangilanmagan" };
 function ScreenP0(p) { return <Practice p={p} S={P0} steps={P0_STEPS} trouble={P0_TROUBLE} proof={P0_PROOF} />; }
 
 // ============================================================
@@ -1873,6 +1877,7 @@ function Screen8(p) {
 }
 
 // --- S9 main.ts va terminal chiqishi ---
+// F-1125-01: oxirgi satr Nest 12 qolipida void bilan keladi (feedback/F-1125-01-nest1-kuchaytirish/nest12/qolip-n12-cjs/main.ts)
 const MAIN_LINES = [
   { h: `<span class="k">import</span> { NestFactory } <span class="k">from</span> <span class="s">'@nestjs/core'</span>;` },
   { h: `<span class="k">import</span> { AppModule } <span class="k">from</span> <span class="s">'./app.module'</span>;` },
@@ -1881,7 +1886,7 @@ const MAIN_LINES = [
   { id: 'main-create', h: `  <span class="k">const</span> app = <span class="k">await</span> NestFactory.<span class="c">create</span>(<span class="c">AppModule</span>);` },
   { id: 'main-listen', h: `  <span class="k">await</span> app.<span class="c">listen</span>(process.env.PORT ?? <span class="d">3000</span>);` },
   { h: `}` },
-  { h: `<span class="c">bootstrap</span>();` },
+  { id: 'main-boot', h: `<span class="k">void</span> <span class="c">bootstrap</span>();` },
 ];
 const LOG_LINES = [
   { at: 1, h: `<span class="p">$</span> npm run start:dev` },
@@ -1895,7 +1900,7 @@ const S9 = {
   kicker: '2-bosqich · main.ts', title: "main.ts va terminaldagi ishga tushish satrlari",
   segments: [
     { id: 'a', key: "<code>main.ts</code> bosh modulni Nest'ga beradi — <b>Nest hammasini yig'adi</b>", text: "Uch bo'lakni ko'rdik. Endi ular qanday ishga tushadi? Hammasi main ts dan boshlanadi. Birinchi satr: Nest'ga bosh modulni beramiz. U modul ro'yxatini o'qiydi, Service'larni yaratadi, Controller'larni ulaydi.", show: "Uch bo'lakni ko'rdik. Endi ular qanday ishga tushadi? Hammasi main.ts dan boshlanadi. <code>NestFactory.create(AppModule)</code>: Nest'ga bosh modulni beramiz. U modul ro'yxatini o'qiydi, Service'larni yaratadi, Controller'larni ulaydi.", focus: ['main-create'], lf: [] },
-    { id: 'b', key: "Port 3000 tinglanadi. Terminalda: <code>npm run start:dev</code>", text: "Keyin uch ming portni tinglaydi, Express'dagi kabi. Endi terminalga qarang, npm run start dev yozdik.", show: "Keyin <code>listen(3000)</code>: Express'dagi kabi portni tinglaydi. Endi terminalga qarang, <code>npm run start:dev</code> yozdik.", focus: ['main-listen'], lf: [] },
+    { id: 'b', key: "Port 3000 tinglanadi. Terminalda: <code>npm run start:dev</code>", text: "Keyin uch ming portni tinglaydi, Express'dagi kabi. Oxirgi satrda bootstrap funksiyasi chaqiriladi. Oldidagi void so'zi bu chaqiruvning natijasi bizga kerak emasligini bildiradi, ilova ishlashiga ta'sir qilmaydi. Endi terminalga qarang, npm run start dev yozdik.", show: "Keyin <code>listen(3000)</code>: Express'dagi kabi portni tinglaydi. Oxirgi satrda <code>bootstrap()</code> chaqiriladi. Oldidagi <code>void</code> bu chaqiruvning natijasi bizga kerak emasligini bildiradi, ilova ishlashiga ta'sir qilmaydi. Endi terminalga qarang, <code>npm run start:dev</code> yozdik.", focus: ['main-listen', 'main-boot'], lf: [] },
     { id: 'c', key: "Terminal: <b>dependencies initialized</b> — ro'yxatdagi hamma narsa yaratildi", text: "Birinchi satr: Nest ilovasi ishga tushmoqda. Ikkinchi: AppModule'ning dependency'lari tayyor, ya'ni ro'yxatdagi hamma narsa yaratildi.", show: "Starting Nest application. <b>AppModule dependencies initialized</b>: AppModule'ning dependency'lari tayyor, ya'ni ro'yxatdagi hamma narsa yaratildi.", focus: [], lf: ['log1', 'log2'] },
     { id: 'd', key: "Terminal: <b>Mapped {/, GET}</b> — root path'ga GET route'i ulandi", text: "Keyin: AppController topildi va unga root path berildi. Mapped satri: root path'ga GET route'i ulandi. Va oxirgisi: ilova muvaffaqiyatli ishga tushdi.", show: "<code>AppController {/}</code>: Controller topildi va unga path berildi. <b>Mapped {/, GET} route</b>: root path'ga GET route'i ulandi. Nest application successfully started.", focus: [], lf: ['log3', 'log4', 'log5'] },
     { id: 'e', key: "Odat: route ishlamasa — <b>avval terminaldagi Mapped satrini</b> qidiring", text: "Bu satrlarni o'qishni odat qiling. Keyinchalik biror route ishlamasa, birinchi qiladigan ishingiz terminaldagi shu satrlarga qarash bo'ladi: Mapped satri bormi, yo'qmi.", focus: [], lf: ['log4'] },
@@ -1932,6 +1937,7 @@ const P1_TROUBLE = [
   ['nest new hali tugamagan', "Terminalda «Successfully created project» chiqishini kuting; 5 daqiqadan oshsa — internet yoki npm install uzoq (--skip-install, keyin npm install)"],
   ['EADDRINUSE :::3000', "3000-portda boshqa server ochiq: uni yoping yoki PORT=3001 npm run start:dev"],
   ['Mapped satri yo\'q, xato bor', "Xato matnini o'qing: qizil TypeScript xatosi bo'lsa fayl:satr ko'rsatilgan; nest new tugamagan bo'lsa kuting"],
+  ['Terminalda ObserveModule satrlari bor', "Loyiha 1-amaliyotdagi buyruq bilan yaratilmagan: cars-api papkasini o'chiring va 1-amaliyotning 3-qadamidagi buyruqni to'liq nusxalab qayta yarating"],
 ];
 const P1_PROOF = { label: 'Isbot: terminaldagi Mapped satrini nusxalang', placeholder: "terminaldagi satrni shu yerga qo'ying", check: (v) => /Mapped\s*\{\s*\/\s*,\s*GET\s*\}/i.test(v), wrong: "Kutilgan: Mapped {/, GET} route — terminaldagi satrni aynan nusxalang" };
 function ScreenP1(p) { return <Practice p={p} S={P1} steps={P1_STEPS} trouble={P1_TROUBLE} proof={P1_PROOF} />; }
@@ -2270,6 +2276,7 @@ const P2_TROUBLE = [
   ['Qizil TypeScript xatosi (fayl:satr)', "Nusxalashda satr tushib qolgan: ko'rsatilgan satrni «Kodni ochish»dagi kod bilan solishtiring"],
   ['Cannot GET /cars', "Terminalda Mapped {/cars…} bormi? Yo'q bo'lsa app.module.ts → imports: [CarsModule]"],
   ['POST da body undefined', "Postman'da Body → raw → JSON tanlanganmi? Content-Type: application/json"],
+  ["error TS2307: Cannot find module './cars.service'", "Loyiha ESM turida yaratilgan: cars-api papkasini o'chiring, 1-amaliyotning 3-qadamidagi buyruqni to'liq nusxalab qayta yarating va cars modulini qaytadan quring"],
 ];
 // F-1031-04: «Kodni ochish» oynasida butun cars-api ko'rinadi; faqat amaliyot fayllari bosiladi
 const P2_TREE = ['dist/', 'node_modules/', ...ALL_FILES, 'test/', 'package.json'];
@@ -2969,7 +2976,7 @@ function Screen27(p) {
 // --- S28 Yakun + eslatma ---
 const CHEATSHEET = `# Nest-1 — mentor eslatmasi
 ## Buyruqlar
-npm i -g @nestjs/cli · nest new cars-api · npm run start:dev
+npm i -g @nestjs/cli@12 · nest new cars-api -p npm --type cjs --no-observe --skip-skills · npm run start:dev
 nest g module cars · nest g controller cars --no-spec · nest g service cars --no-spec
 ## Uch bo'lak
 Controller — so'rovni oladi, Service'ni chaqiradi, qaytaradi (logika yozilmaydi)
@@ -3245,23 +3252,25 @@ ru(P0, {
   kicker: 'Практика 1 / 4', eyebrow: 'Сейчас у вас · 3–5 минут (установка в фоне)', title: 'Установите Nest, запустите создание проекта',
   segments: {
     a: { key: 'Теперь <b>вы</b>: установите Nest и запустите создание проекта', text: 'Теперь ваша очередь. Проект, который вы только что видели, вы создадите у себя: три шага. Установка занимает от одной до трёх минут. Не ждите: нажмите «Далее» и продолжайте урок, проект установится в фоне.' },
-    b: { key: 'Шаг 1: версия Node должна быть <b>20 или выше</b>', text: 'Первое: проверьте версию node. Nest версии 11 требует Node 20 или выше. Если ниже, обновите способом из таблицы.' },
-    c: { key: 'Шаг 2: установите <b>Nest CLI</b>, версию впишите в поле подтверждения', text: 'Второе: установите Nest CLI глобально и проверьте версию. Число, которое появится, впишите в поле подтверждения внизу.' },
-    d: { key: 'Шаг 3: <code>nest new cars-api</code> — установка в фоне, продолжайте, не дожидаясь', text: 'Третье: nest new cars-api. Если спросят менеджер пакетов, выберите npm. Когда установка началась, не ждите: отметьте пункт и нажмите «Далее».' },
+    b: { key: 'Шаг 1: версия Node должна быть <b>22 или выше</b>', text: 'Первое: проверьте версию node. Она должна быть 22 или выше. Если ниже, обновите способом из таблицы.' },
+    c: { key: 'Шаг 2: установите <b>Nest CLI 12</b>, версию впишите в поле подтверждения', text: 'Второе: установите Nest CLI глобально. В конце команды стоят собачка и двенадцать: весь код и все строки терминала в этом уроке проверены на двенадцатой версии Nest, поэтому ставим именно её. Потом проверьте версию и впишите число, которое появится, в поле подтверждения внизу.', show: 'Второе: установите Nest CLI глобально. В конце команды стоит <code>@12</code>: весь код и все строки терминала в этом уроке проверены на 12-й версии Nest, поэтому ставим именно её. Потом проверьте версию и впишите число, которое появится, в поле подтверждения внизу.' },
+    d: { key: 'Шаг 3: команду <code>nest new</code> <b>скопируйте целиком</b> — установка в фоне, продолжайте, не дожидаясь', text: 'Третье: создайте проект. Не набирайте команду вручную, скопируйте её целиком. Nest двенадцатой версии при создании проекта задаёт четыре вопроса, и мы ответили на них прямо в команде: менеджер пакетов npm, система модулей CommonJS, сервис наблюдения и файлы для ИИ-агентов не нужны. CommonJS мы выбрали потому, что проект ученика написан на этой же системе. Когда установка началась, не ждите: отметьте пункт и нажмите «Далее».', show: 'Третье: создайте проект. Не набирайте команду вручную, скопируйте её целиком. Nest 12-й версии при создании проекта задаёт четыре вопроса, и мы ответили на них прямо в команде: менеджер пакетов <code>npm</code>, система модулей <code>CommonJS</code>, сервис наблюдения и файлы для ИИ-агентов не нужны. CommonJS мы выбрали потому, что проект ученика написан на этой же системе. Когда установка началась, не ждите: отметьте пункт и нажмите «Далее».' },
     e: { key: 'Вышло иначе — нажмите <b>«Вышло иначе?»</b>, откроется окно с решениями', text: 'Если что-то вышло иначе, нажмите внизу кнопку «Вышло иначе»: откроется окно с решениями, там ошибка и её решение. Пока не отмечены все три пункта и не вписано верное подтверждение, кнопка «Далее» не откроется. Значит, после этой практики Nest установлен на вашем компьютере, а новый проект создаётся.' },
   },
 });
 ru(P0_STEPS, [
-  { exp: 'v20 или выше (требование Nest 11)' },
+  { exp: 'v22 или выше' },
   null,
-  { t: 'Проект — запустите создание', exp: 'менеджер пакетов: npm · установка 1–3 минуты — не ждите, нажмите «Далее»' },
+  { t: 'Проект — запустите создание', exp: 'вопросов не будет · установка 1–3 минуты — не ждите, нажмите «Далее»' },
 ]);
 ru(P0_TROUBLE, [
-  ['node: v18 или ниже', 'установите LTS (20+) с nodejs.org, откройте терминал заново, повторите node --version'],
+  ['node: ниже 22', 'установите LTS-версию с nodejs.org, откройте терминал заново, повторите шаг 1'],
   [null, 'CLI не установлен или терминал не обновился: повторите шаг 2, откройте терминал заново'],
-  ['npm install долго / ошибка', 'проверьте интернет; nest new --skip-install, затем npm install в папке'],
+  ['nest new задал вопросы (package manager, module system…)', 'Команда скопирована не целиком: нажмите Ctrl+C и заново вставьте команду из шага 3 целиком'],
+  [null, 'Остался старый Nest CLI: повторите команду из шага 2, nest --version должен показать 12'],
+  ['npm install долго / ошибка', 'проверьте интернет; добавьте в конец команды из шага 3 --skip-install, затем npm install в папке'],
 ]);
-ru(P0_PROOF, { label: 'Подтверждение: что вывел nest --version?', placeholder: 'впишите число из терминала', wrong: 'Ожидается 11.x.x — CLI не установлен или версия старая' });
+ru(P0_PROOF, { label: 'Подтверждение: что вывел nest --version?', placeholder: 'впишите число из терминала', wrong: 'Ожидается 12.x.x — в команде пропущено @12 или терминал не обновился' });
 
 // --- 04 · S6–S9, Практика 2, S10, S11 ---
 ru(S6, {
@@ -3299,7 +3308,7 @@ ru(S9, {
   kicker: 'Этап 2 · main.ts', title: 'main.ts и строки запуска в терминале',
   segments: {
     a: { key: '<code>main.ts</code> отдаёт Nest главный модуль — <b>Nest собирает всё</b>', text: 'Три части мы увидели. А как они запускаются? Всё начинается с main ts. Первая строка: отдаём Nest главный модуль. Он читает список модуля, создаёт Service и подключает Controller.', show: 'Три части мы увидели. А как они запускаются? Всё начинается с main.ts. <code>NestFactory.create(AppModule)</code>: отдаём Nest главный модуль. Он читает список модуля, создаёт Service и подключает Controller.' },
-    b: { key: 'Слушаем порт 3000. В терминале: <code>npm run start:dev</code>', text: 'Потом он слушает порт 3000, как в Express. Теперь посмотрите на терминал, мы написали npm run start dev.', show: 'Потом <code>listen(3000)</code>: слушает порт, как в Express. Теперь посмотрите на терминал, мы написали <code>npm run start:dev</code>.' },
+    b: { key: 'Слушаем порт 3000. В терминале: <code>npm run start:dev</code>', text: 'Потом он слушает порт 3000, как в Express. В последней строке вызывается функция bootstrap. Слово void перед ней означает, что результат этого вызова нам не нужен; на работу приложения оно не влияет. Теперь посмотрите на терминал, мы написали npm run start dev.', show: 'Потом <code>listen(3000)</code>: слушает порт, как в Express. В последней строке вызывается <code>bootstrap()</code>. Слово <code>void</code> перед ней означает, что результат этого вызова нам не нужен; на работу приложения оно не влияет. Теперь посмотрите на терминал, мы написали <code>npm run start:dev</code>.' },
     c: { key: 'Терминал: <b>dependencies initialized</b> — всё из списка создано', text: 'Первая строка: приложение Nest запускается. Вторая: dependency модуля AppModule готовы, то есть всё из списка создано.', show: 'Starting Nest application. <b>AppModule dependencies initialized</b>: dependency модуля AppModule готовы, то есть всё из списка создано.' },
     d: { key: 'Терминал: <b>Mapped {/, GET}</b> — к root path подключён GET route', text: 'Дальше: AppController найден, и ему дан root path. Строка Mapped: к root path подключён GET route. И последняя: приложение успешно запущено.', show: '<code>AppController {/}</code>: Controller найден, ему дан path. <b>Mapped {/, GET} route</b>: к root path подключён GET route. Nest application successfully started.' },
     e: { key: 'Привычка: route не работает — <b>сначала ищите строку Mapped</b> в терминале', text: 'Возьмите в привычку читать эти строки. Если потом какой-то route не работает, первым делом смотрите на эти строки в терминале: есть строка Mapped или нет.' },
@@ -3325,6 +3334,7 @@ ru(P1_TROUBLE, [
   ['nest new ещё не закончился', 'Дождитесь в терминале «Successfully created project»; если дольше 5 минут — интернет или npm install идёт долго (--skip-install, затем npm install)'],
   [null, 'На порту 3000 открыт другой сервер: закройте его или PORT=3001 npm run start:dev'],
   ['Строки Mapped нет, есть ошибка', 'Прочитайте текст ошибки: у красной ошибки TypeScript указаны файл:строка; если nest new не закончился — подождите'],
+  ['В терминале есть строки ObserveModule', 'Проект создан не командой из практики 1: удалите папку cars-api и создайте проект заново, целиком скопировав команду из шага 3 практики 1'],
 ]);
 ru(P1_PROOF, { label: 'Подтверждение: скопируйте строку Mapped из терминала', placeholder: 'вставьте сюда строку из терминала', wrong: 'Ожидается: Mapped {/, GET} route — скопируйте строку из терминала точно' });
 ru(S11, {
@@ -3427,6 +3437,7 @@ ru(P2_TROUBLE, [
   ['Красная ошибка TypeScript (файл:строка)', 'При копировании пропала строка: сравните указанную строку с кодом в «Открыть код»'],
   [null, 'Есть ли в терминале Mapped {/cars…}? Если нет — app.module.ts → imports: [CarsModule]'],
   ['В POST body undefined', 'В Postman выбрано Body → raw → JSON? Content-Type: application/json'],
+  [null, 'Проект создан как ESM: удалите папку cars-api, создайте проект заново командой из шага 3 практики 1 (скопируйте её целиком) и соберите модуль cars ещё раз'],
 ]);
 
 // --- 06 · S18–S23, Проверка 4, Практика 4 ---
@@ -3689,7 +3700,7 @@ const S28_RU = {
 };
 const CHEATSHEET_RU = `# Nest-1 — памятка ментора
 ## Команды
-npm i -g @nestjs/cli · nest new cars-api · npm run start:dev
+npm i -g @nestjs/cli@12 · nest new cars-api -p npm --type cjs --no-observe --skip-skills · npm run start:dev
 nest g module cars · nest g controller cars --no-spec · nest g service cars --no-spec
 ## Три части
 Controller — принимает запрос, вызывает Service, возвращает ответ (логику не пишут)

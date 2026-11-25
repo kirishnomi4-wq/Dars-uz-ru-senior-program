@@ -1,0 +1,18 @@
+<section id="oquvchi" class="dark" data-transition="fade" style="justify-content:flex-start;gap:26px">
+<p class="kicker">MENTOR UCHUN · O‘QUVCHI DARSI</p>
+<h2 style="color:#F6F5F0">O‘quvchi loyihasi: nimasi bizdagidan boshqacha</h2>
+<table style="width:1664px;border-collapse:collapse;font-size:25px">
+<tr><th style="text-align:left;padding:10px 18px;color:#8C9AB3;font-size:22px;border-bottom:2px solid #2A4470;width:330px">Nima</th><th style="text-align:left;padding:10px 18px;color:#8C9AB3;font-size:22px;border-bottom:2px solid #2A4470">Bu darsda</th><th style="text-align:left;padding:10px 18px;color:#F0A04B;font-size:22px;border-bottom:2px solid #2A4470">O‘quvchi loyihasida</th></tr>
+<tr><td style="padding:9px 18px;color:#F6F5F0;font-weight:700">Boshlanishi</td><td style="padding:9px 18px;color:#8C9AB3">nest new — noldan</td><td style="padding:9px 18px;color:#E6EDF7">git clone — tayyor loyiha</td></tr>
+<tr><td style="padding:9px 18px;color:#F6F5F0;font-weight:700">Baza</td><td style="padding:9px 18px;color:#8C9AB3">SQLite (bitta fayl)</td><td style="padding:9px 18px;color:#E6EDF7">PostgreSQL + .env fayli</td></tr>
+<tr><td style="padding:9px 18px;color:#F6F5F0;font-weight:700">Manzil</td><td style="padding:9px 18px;color:#8C9AB3;font-family:'JetBrains Mono',monospace">/cars</td><td style="padding:9px 18px;color:#E6EDF7;font-family:'JetBrains Mono',monospace">/api/v1/car</td></tr>
+<tr><td style="padding:9px 18px;color:#F6F5F0;font-weight:700">Sinash</td><td style="padding:9px 18px;color:#8C9AB3">Postman</td><td style="padding:9px 18px;color:#E6EDF7">Swagger (brauzerda)</td></tr>
+<tr><td style="padding:9px 18px;color:#F6F5F0;font-weight:700">id</td><td style="padding:9px 18px;color:#8C9AB3">son: 1, 2, 3</td><td style="padding:9px 18px;color:#E6EDF7">uuid: efa80745-…</td></tr>
+<tr><td style="padding:9px 18px;color:#F6F5F0;font-weight:700">CRUD</td><td style="padding:9px 18px;color:#8C9AB3">har Service’da qo‘lda</td><td style="padding:9px 18px;color:#E6EDF7">BaseService’dan meros — bir marta yozilgan</td></tr>
+<tr><td style="padding:9px 18px;color:#F6F5F0;font-weight:700">Himoya</td><td style="padding:9px 18px;color:#8C9AB3">Guard: token bor/yo‘q → 401</td><td style="padding:9px 18px;color:#E6EDF7">Guard + rollar (@Roles) → 401 va 403</td></tr>
+<tr><td style="padding:9px 18px;color:#F6F5F0;font-weight:700">Javob shakli</td><td style="padding:9px 18px;color:#8C9AB3">Nest’ning standart javobi</td><td style="padding:9px 18px;color:#E6EDF7;font-family:'JetBrains Mono',monospace">{ statusCode, message, data }</td></tr>
+<tr><td style="padding:9px 18px;color:#F6F5F0;font-weight:700">Server qayerda yonadi</td><td style="padding:9px 18px;color:#8C9AB3">main.ts</td><td style="padding:9px 18px;color:#E6EDF7">api/app.service.ts — nomi Service, lekin Service emas!</td></tr>
+</table>
+<p style="font-size:28px;color:#BFC9D9">Asos bir xil: <b style="color:#8FD19E">Module · Controller · Service · DTO · Entity · Guard</b> — o‘quvchi loyihasida ular faqat kattaroq papkalarda turadi.</p>
+<aside>Bu jadval saytdagi mentor darslariga asoslangan. Bu darsda biz soddaroq yo‘ldan bordik, o‘quvchi esa tayyor, kattaroq loyihani clone qiladi. Eng ko‘p chalkashtiradigan ikki joy: 1) hamma manzil /api/v1 bilan boshlanadi — /car emas, /api/v1/car; prefiks unutilsa 404; 2) server main.ts’da emas, api/app.service.ts faylida yonadi — nomi Service bo‘lsa ham, u Service emas. BaseService: findAll, findOne, create kabi metodlar bir marta yozilgan, har resurs undan meros oladi — yangi resursda CRUD qayta yozilmaydi. Rollar: superadmin va admin har xil; token bor, lekin roli to‘g‘ri kelmasa — 403 Forbidden resource. O‘quvchi loyihasini keyingi mentor darsida (NestJS-2) batafsil clone qilib ko‘rasiz.</aside>
+</section>

@@ -1,0 +1,35 @@
+<section id="prompt" data-transition="fade">
+<p class="lbl">BONUS · VIBE CODING · 1</p>
+<h2>AI’ga topshiriqni Nest tilida bering</h2>
+<x-embed style="position:absolute;left:128px;top:236px;width:1664px;height:640px"><style>
+body{margin:0;background:transparent;overflow:hidden;font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+.col{position:absolute;top:0;width:812px;height:640px;display:flex;flex-direction:column;gap:16px}
+.hd{font-size:30px;font-weight:800}
+.ch{border-radius:20px;background:#0F1B2D;padding:20px 24px;min-height:250px;box-sizing:border-box;font:500 23px/1.5 ui-monospace,Menlo,monospace;color:#E6EDF7;white-space:pre-wrap}
+.ch .u{color:#8C9AB3;font:700 20px -apple-system,Arial,sans-serif;display:block;margin-bottom:8px}
+.ch em{font-style:normal;color:#F0A04B}
+.cur{display:inline-block;width:11px;height:24px;background:#F0A04B;vertical-align:-4px}
+.rs{flex:1;border-radius:20px;padding:20px 24px;box-sizing:border-box;opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s}
+.rs.on{opacity:1;transform:none}
+.rs h4{margin:0 0 10px;font-size:24px}
+.rs div{font:600 22px/1.55 ui-monospace,Menlo,monospace}
+.bad{background:#FDECEA;border:2px solid #C0392B}.bad h4{color:#C0392B}.bad div{color:#14213D}
+.good{background:#DDF1E3;border:2px solid #2E8B57}.good h4{color:#1F6B42}.good div{color:#14213D}
+</style>
+<div class="col" style="left:0"><div class="hd" style="color:#C0392B">❌ Noaniq topshiriq</div><div class="ch" id="p0"></div>
+<div class="rs bad" id="r0"><h4>AI natijasi: hammasi bitta faylda</h4><div>app.js — 640 qator 😵<br>parol ochiq saqlangan<br>tekshiruv yo‘q, himoya yo‘q</div></div></div>
+<div class="col" style="left:852px"><div class="hd" style="color:#2E8B57">✅ Nest tilidagi topshiriq</div><div class="ch" id="p1"></div>
+<div class="rs good" id="r1"><h4>AI natijasi: tartibli modul</h4><div>products/ module · controller · service<br>dto/ · product.entity.ts<br>Guard ✓  Validatsiya ✓  404 ✓</div></div></div>
+<script>
+const $=id=>document.getElementById(id),W=ms=>new Promise(r=>setTimeout(r,ms));
+const P=['Menga do‘kon backend qilib ber.',
+'NestJS’da <em>products</em> moduli yarat.\nEntity: id, name, price, stock (TypeORM).\n<em>CreateProductDto</em>: name bo‘sh emas,\nprice va stock ≥ 0 (class-validator).\nLogika faqat <em>Service</em>’da bo‘lsin.\nPOST/PATCH/DELETE’ga <em>AuthGuard</em>.\nid uchun <em>ParseIntPipe</em>, topilmasa <em>404</em>.'];
+async function type(el,html){let out='',i=0;const plain=html.replace(/<[^>]+>/g,'');const total=plain.length;
+for(let n=0;n<=total;n+=2){let c=0,res='',tag=false;for(const ch of html){if(ch==='<')tag=true;if(tag){res+=ch;if(ch==='>')tag=false;continue}if(c>=n)break;res+=ch;c++}
+el.innerHTML='<span class="u">Siz → AI</span>'+res+'<span class="cur"></span>';await W(28)}el.innerHTML='<span class="u">Siz → AI</span>'+html}
+(async()=>{for(;;){['p0','p1'].forEach(x=>$(x).innerHTML='<span class="u">Siz → AI</span>');['r0','r1'].forEach(x=>$(x).classList.remove('on'));
+await type($('p0'),P[0]);await W(500);$('r0').classList.add('on');await W(1200);
+await type($('p1'),P[1]);await W(500);$('r1').classList.add('on');await W(7000)}})();
+</script></x-embed>
+<aside>Vibe coder uchun eng katta foyda: Nest so‘zlarini bilsangiz, AI’ga aniq topshiriq bera olasiz. Chapda noaniq topshiriq — AI o‘zicha qaror qiladi va hammasini bitta faylga tiqadi. O‘ngda xuddi shu ish Nest tilida: modul, Entity, DTO, Service, Guard, ParseIntPipe, 404. Natija — tartibli va xavfsiz kod. O‘quvchilarga o‘ngdagi topshiriqni nusxa qilib olishni ayting: bu tayyor shablon, faqat modul nomi va maydonlarni almashtirish kerak.</aside>
+</section>

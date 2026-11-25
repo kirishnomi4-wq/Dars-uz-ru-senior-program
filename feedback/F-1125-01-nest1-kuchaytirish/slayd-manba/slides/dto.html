@@ -1,0 +1,29 @@
+<section id="dto" data-transition="fade">
+<p class="lbl">KOD · DTO VA VALIDATSIYA</p>
+<h2>DTO: noto‘g‘ri ma’lumotni eshikda to‘xtatamiz</h2>
+<x-embed style="position:absolute;left:128px;top:236px;width:1664px;height:620px"><style>
+body{margin:0;background:transparent;overflow:hidden;font-family:ui-monospace,Menlo,Consolas,monospace}
+.L{position:absolute;left:0;top:0;width:1000px;height:620px;box-sizing:border-box;border-radius:24px;background:#0F1B2D;padding:18px 24px}
+.ln{display:flex;font-size:20px;line-height:1.4;color:#4A5C7A;padding:2px 14px;border-radius:10px;transition:background .3s,color .3s;white-space:pre;min-height:0}
+.ln .no{width:44px;color:#33445F;flex:none}
+.ln.on{background:#1F3357;color:#E6EDF7}.ln.on .k{color:#F0A04B}.ln.on .s{color:#8FD19E}.ln.on .f{color:#7FB2FF}
+.R{position:absolute;left:1040px;top:0;width:624px;height:620px;box-sizing:border-box;border-radius:24px;background:#FDFCF9;border:1px solid #E2E0D8;padding:36px;font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;display:flex;flex-direction:column;gap:18px}
+.R small{font-size:24px;font-weight:700;letter-spacing:1px;color:#B5561B}
+.R b{font-size:36px;line-height:1.25;color:#14213D;animation:fi .4s both}
+.R p{margin:0;font-size:28px;line-height:1.45;color:#4A5568;animation:fi .4s .1s both}
+@keyframes fi{from{opacity:0;transform:translateY(8px)}}
+.res{margin-top:auto;background:#0F1B2D;border-radius:16px;padding:16px 20px}.res small{color:#8FD19E}.res pre{margin:8px 0 0;font:500 22px/1.45 ui-monospace,Menlo,monospace;color:#E6EDF7;white-space:pre-wrap}.pg{display:flex;gap:8px}.pg i{width:40px;height:10px;border-radius:5px;background:#E2E0D8}.pg i.on{background:#2F5FD0}
+</style>
+<div class="L" id="L"></div><div class="R"><small id="sm"></small><b id="b"></b><p id="p"></p><div class="res"><small>NATIJA</small><pre id="r"></pre></div><div class="pg" id="pg"></div></div>
+<script>
+const CODE=["// npm i <span class=\"k\">class</span>-validator <span class=\"k\">class</span>-transformer", "// create-car.dto.ts", "<span class=\"k\">export</span> <span class=\"k\">class</span> CreateCarDto {", "  <span class=\"f\">@IsString</span>()", "  <span class=\"f\">@IsNotEmpty</span>()", "  model!: string;", "", "  <span class=\"f\">@IsInt</span>()", "  <span class=\"f\">@Min</span>(1990)", "  year!: number;", "}", "// main.ts", "app.<span class=\"f\">useGlobalPipes</span>(<span class=\"k\">new</span> <span class=\"f\">ValidationPipe</span>({ whitelist: true }));", "// cars.controller.ts", "<span class=\"f\">@Post</span>()", "<span class=\"f\">create</span>(<span class=\"f\">@Body</span>() dto: CreateCarDto) {", "  <span class=\"k\">return</span> <span class=\"k\">this</span>.carsService.<span class=\"f\">create</span>(dto);", "}"];
+const ST=[[[2, 3, 4, 5, 6, 7, 8, 9, 10], "DTO — ariza blankasi", "Qaysi maydon bo‘lishi va qanday bo‘lishi kerakligi yozilgan.", "model: matn, bo‘sh emas\nyear: butun son, ≥ 1990"], [[12], "ValidationPipe — blankani tekshiruvchi", "whitelist: blankada yo‘q ortiqcha maydonlarni olib tashlaydi.", "Hamma so‘rovlar endi\ntekshiriladi"], [[14, 15, 16, 17], "To‘g‘ri ma’lumot — o‘tadi", "{ \"model\": \"Tracker\", \"year\": 2024 }", "201 Created\n{ \"id\":3, \"model\":\"Tracker\",\n  \"year\":2024 }"], [[3, 4, 8], "Noto‘g‘ri ma’lumot — Service’gacha yetmaydi", "{ \"model\": \"\", \"year\": 1800 }", "400 Bad Request\n[\"model should not be empty\",\n \"year must not be less than 1990\"]"]];
+const L=document.getElementById('L');L.innerHTML=CODE.map((c,i)=>'<div class="ln" id="l'+i+'"><span class="no">'+(i+1)+'</span><span>'+c+'</span></div>').join('');
+const pg=document.getElementById('pg');pg.innerHTML=ST.map(()=>'<i></i>').join('');let k=0;
+function go(){const s=ST[k];CODE.forEach((_,i)=>document.getElementById('l'+i).classList.toggle('on',s[0].includes(i)));
+document.getElementById('sm').textContent=(k+1)+' / '+ST.length;const b=document.getElementById('b'),p=document.getElementById('p');b.textContent=s[1];p.textContent=s[2];document.getElementById('r').textContent=s[3]||'';b.style.animation='none';p.style.animation='none';b.offsetHeight;b.style.animation='';p.style.animation='';
+[...pg.children].forEach((d,j)=>d.classList.toggle('on',j<=k));k=(k+1)%ST.length}
+go();setInterval(go,5500);
+</script></x-embed>
+<aside>Hayotiy misol: davlat xizmatlari markazidagi ariza blankasi. Bo‘sh yoki xato to‘ldirilgan blankani qabulxona qabul qilmaydi — ichkariga (Service’ga) yetib bormaydi. DTO — blanka, ValidationPipe — tekshiruvchi xodim. Xato xabarlari class-validator’ning standart inglizcha matnlari. NestJS 12’da class-validator hali ham asosiy usul; qo‘shimcha ravishda @Body({ schema }) bilan Zod sxemasi ham ishlatish mumkin. model!: string dagi ! — TypeScript’ga “bu maydonni Nest o‘zi to‘ldiradi” degani; usiz yangi TypeScript versiyalari xato beradi.</aside>
+</section>

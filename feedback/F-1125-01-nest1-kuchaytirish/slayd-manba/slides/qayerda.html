@@ -1,0 +1,48 @@
+<section id="qayerda" data-transition="fade" style="gap:28px">
+<h2>Katta loyihada NestJS qayerda ishlaydi</h2>
+<x-embed style="position:absolute;left:128px;top:222px;width:1664px;height:560px"><style>
+body{margin:0;background:transparent;overflow:hidden;font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+.sc{position:absolute;inset:0;border-radius:24px;background:#0F1B2D;overflow:hidden}
+.col{position:absolute;top:22px;font-size:22px;font-weight:700;letter-spacing:1.5px;color:#8C9AB3;text-transform:uppercase}
+.cl{position:absolute;left:30px;width:300px;height:96px;box-sizing:border-box;border-radius:16px;background:#16263F;border:3px solid #2A4470;display:flex;align-items:center;gap:16px;padding:0 20px;font-size:26px;font-weight:700;color:#E6EDF7;transition:border-color .3s}
+.cl i{font-style:normal;font-size:36px}
+.nest{position:absolute;left:420px;top:64px;width:780px;height:330px;box-sizing:border-box;border-radius:22px;border:3px solid #F0A04B;background:rgba(240,160,75,.07)}
+.nest h4{margin:16px 24px 6px;font-size:26px;color:#F0A04B}
+.mods{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;padding:6px 24px}
+.md{height:110px;box-sizing:border-box;border-radius:14px;background:#16263F;border:3px solid #2A4470;padding:14px 16px;transition:border-color .3s,background .3s,box-shadow .3s}
+.md b{display:block;font:700 24px ui-monospace,Menlo,monospace;color:#F6F5F0}
+.md span{font-size:20px;color:#8C9AB3}
+.md.on,.cl.on,.rs.on{border-color:#8FD19E;background:#1F3357;box-shadow:0 0 0 6px rgba(143,209,158,.18)}
+.rs{position:absolute;left:1290px;width:340px;height:96px;box-sizing:border-box;border-radius:16px;background:#16263F;border:3px solid #2A4470;display:flex;align-items:center;gap:16px;padding:0 20px;font-size:26px;font-weight:700;color:#E6EDF7;transition:border-color .3s}
+.rs i{font-style:normal;font-size:36px}
+.cap{position:absolute;left:24px;right:24px;top:420px;height:116px;border-radius:16px;background:#0A1322;border:1px solid #1F3357;display:flex;align-items:center;gap:24px;padding:0 28px;box-sizing:border-box}
+.n{font:700 44px ui-monospace,monospace;color:#F0A04B;width:56px}
+.t{font-size:30px;font-weight:700;color:#F6F5F0}.t small{display:block;font-size:24px;font-weight:500;color:#8FD19E}
+</style>
+<div class="sc">
+<div class="col" style="left:30px">Foydalanuvchi</div><div class="col" style="left:440px">Backend · NestJS</div><div class="col" style="left:1290px">Tashqi xizmatlar</div>
+<div class="cl" id="c0" style="top:70px"><i>📱</i>Mobil ilova</div>
+<div class="cl" id="c1" style="top:180px"><i>💻</i>Veb-sayt</div>
+<div class="cl" id="c2" style="top:290px"><i>🤖</i>Telegram bot</div>
+<div class="nest"><h4>Bitta Nest ilova — ko‘p modul</h4><div class="mods">
+<div class="md" id="m0"><b>auth</b><span>kirish, token</span></div>
+<div class="md" id="m1"><b>products</b><span>mahsulotlar</span></div>
+<div class="md" id="m2"><b>cart</b><span>savat</span></div>
+<div class="md" id="m3"><b>orders</b><span>buyurtmalar</span></div>
+<div class="md" id="m4"><b>payments</b><span>to‘lov</span></div>
+<div class="md" id="m5"><b>notify</b><span>SMS, xabar</span></div>
+</div></div>
+<div class="rs" id="r0" style="top:70px"><i>🗄️</i>PostgreSQL</div>
+<div class="rs" id="r1" style="top:180px"><i>💳</i>To‘lov tizimi</div>
+<div class="rs" id="r2" style="top:290px"><i>✉️</i>SMS xizmati</div>
+<div class="cap"><div class="n" id="n">1</div><div class="t" id="t"></div></div>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const S=[[['c0','m0'],'Xaridor ilovaga kiradi','auth moduli login va parolni tekshiradi, token beradi'],[['c1','m1','r0'],'Mahsulotlarni ko‘radi','products moduli bazadan ro‘yxatni oladi'],[['c0','m2'],'Savatga qo‘shadi','cart moduli savatni saqlaydi'],[['c0','m3','r0'],'Buyurtma beradi','orders moduli buyurtmani bazaga yozadi'],[['m4','r1'],'To‘laydi','payments moduli to‘lov tizimi bilan gaplashadi'],[['m5','r2','c2'],'Xabar oladi','notify moduli SMS va Telegram orqali “buyurtmangiz yo‘lda” deydi']];
+const all=[...document.querySelectorAll('.cl,.md,.rs')];let k=0;
+function go(){const s=S[k];all.forEach(e=>e.classList.toggle('on',s[0].includes(e.id)));$('n').textContent=k+1;$('t').innerHTML=s[1]+'<small>'+s[2]+'</small>';k=(k+1)%S.length}
+go();setInterval(go,3200);
+</script></x-embed>
+<aside>Misol — internet do‘kon. Chapda foydalanuvchi qayerdan kiradi: mobil ilova, sayt, Telegram bot. Hammasi bitta Nest backend’ga keladi. Nest ichida har bir vazifa — alohida modul: auth, products, cart, orders, payments, notify. O‘ngda Nest gaplashadigan tashqi xizmatlar: baza, to‘lov tizimi, SMS. Animatsiya xaridorning yo‘lini 6 qadamda ko‘rsatadi — qaysi qadamda qaysi modul ishlashi yonib turadi. Muhim: Nest foydalanuvchi ko‘radigan ekran emas — u “orqa xona”, hamma ekranlar unga murojaat qiladi. Sxema umumiy misol; NestJS ishlatadigan haqiqiy kompaniyalar — keyingi slaydda.</aside>
+</section>

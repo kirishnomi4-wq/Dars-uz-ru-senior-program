@@ -1137,3 +1137,22 @@ Oldingi seans 17:59 dan keyin ham ishlagan, jurnal yozilmagan (seans uzildi). Fa
 - 14:23 — commit **dc24d8b5** (20 fayl, faqat ikki papka; boshqa seansning 41 staged fayli tegilmadi; push yo'q) → deploy **3t48rmmb2** Ready, Production. Jonli 1280: 6 ekran lokal bilan piksel farqi 0, xato 0, toshish 0. To'lganlik: CI/CD-1 6 31→74% · CI/CD-2 14 40→78% · Jest-1 10 42→69% · Webhook 12 33→58% · Webhook 13 33→58% · WS-1 10 39→82%. Sahnasi <50% ekranlar: 92 → **86** (qolgani — qonun istisnolari, sabab bilan qoldirilganlar va ko'z bilan yaxshi deb topilganlar).
 - Commitga kirmadi: `MENTOR_DARS_ETALON.md` (M53 + 37-band) — ikki papkadan tashqarida.
 - 15:20 — foydalanuvchi mentorga yubordi (sayt 3t48rmmb2; fidbek shakli: dars · ekran raqami · nima yoqmadi, skrinshot bilan). Seans yopildi; serverlar (tts :5332, vite :5333) o'chirildi.
+
+## 25.11 15:54 — F-1125-01: Muhammadbobur slaydlari tahlili → Nest-1 ni kuchaytirish rejasi; 1-ish (Nest 12) sinovi tugadi
+- Manba: mentor Muhammadbobur Nest-1 asosida 42 slayd yasagan (https://claude.ai/artifact/Nn48hrhft59pb6iLSyNnbW; nusxasi `feedback/F-1125-01-nest1-kuchaytirish/slayd-manba/`). Foydalanuvchi: «nima ustunligi bor, halol tahlil qilaylik». Xulosa: u — guruhga ko'rsatiladigan taqdimot, bizniki — yolg'iz o'tiladigan dars; foydalanuvchi: «o'zimizniki ancha yaxshi, kamchiliklarini kuchaytiramiz». Auditoriya aniqlandi: mentor Express'ni videodan o'rgangan, darsni yolg'iz ko'radi.
+- Reja (tasdiqlangan, 3 ish): 1) Nest 12 · 2) kirish matni («yozgansiz / his qilgansiz», tur va class, «kerak bo'ladi») · 3) AI bloki. Holat fayli: `feedback/F-1125-01-nest1-kuchaytirish/DAVOM.md`.
+- **Topilma (jiddiy):** Nest 12 27.08.2026 da chiqqan, Nest-1 esa Nest 11 da yozilgan (bu kompyuterda global CLI 11.0.10). 6-ekran isboti `11.` ni kutadi — yangi o'rnatgan mentor «Davom»ni ocha olmaydi. Slaydlarda «NestJS 12» yozilganini npm'dan tekshirganda chiqdi.
+- **Sinov (haqiqiy yurgizish, M10):** asl `drive.sh`/`drive2.sh`/`drive3.sh` holatlari Nest 12.0.15 / core 12.6.1 da ikki loyihada qayta yurgizildi (`feedback/F-1125-01-nest1-kuchaytirish/nest12/`, to'liq — `FARQLAR.md`):
+  - hamma savolga Enter (ESM + observe): dars kodi `error TS2307`, `app.module.ts` 22 qator, terminalda 8 satr — dars buziladi;
+  - `nest new cars-api -p npm --type cjs --no-observe --skip-skills`: savol chiqmaydi, 16 holatning hammasi Nest 11 bilan bir xil; farq — `void bootstrap();`, versiya raqami, Node talabi.
+- Sinf-supurish: versiyaga bog'langan isbot va global o'rnatish — qidirildi: 12 dars, faqat Nest-1 (1 joy). Nest-2 va o'quvchi loyihasi Nest 12 ga bog'liq emas.
+- Darsga tegilmadi. Tuzatish taklifi foydalanuvchiga berildi, tasdiq kutilmoqda. Commit/deploy yo'q.
+
+## 25.11 16:27 — F-1125-01 1-ish: Nest-1 Nest 12 ga moslandi (lokal; commit/deploy yo'q)
+- Foydalanuvchi: «Ha shu taklifing maqul, tuzatishing ham mumkin».
+- Kod (`src/mentor-kurs/parts/`): 03 — 6-ekran (1-amaliyot): ovoz b/c/d, qadamlar (`npm i -g @nestjs/cli@12`, `nest new cars-api -p npm --type cjs --no-observe --skip-skills`, Node 22+), «Boshqacha chiqdimi?» 3 → 5 holat, isbot `/^v?12\./` · 04 — 11-ekran `void bootstrap();` + ovozda bir gap (fokus `main-boot`), 12-ekran jadvaliga «ObserveModule satrlari» · 05 — 22-ekran jadvaliga «TS2307» · 07 — eslatma buyruqlari · 08-ru — hammasining ruschasi. `yig.sh` → `NestArchMentorLesson.jsx`.
+- Tekshiruv: esbuild ✓ (`--external:@lesson/runtime`) · lint:jsx toza · gates 11/13 — yiqilgani esbuild (umumiy darvoza @lesson/runtime'ni bilmaydi, ma'lum) va dark 17 (HEAD bilan bir xil); til 0 error (warn 512 → 516: yangi RU qatorlardagi kirill — ruxsat etilgan joy). Surat `n1-surat.mjs` 6, 11, 12, 22-ekran × 1600/1280/1920 UZ + 1600/1280 RU — xato 0, toshish 0; ko'z bilan ko'rildi. `F-1125-01/vosita/amaliyot-tekshir.mjs`: uchta «Boshqacha chiqdimi?» oynasi 4 o'lcham/tilda ekranga sig'adi, ichki aylanish yo'q; isbot 11.0.10 ✗ · 12.0.15 ✓ · v12.1.0 ✓ · 13.0.0 ✗.
+- Ovoz: `ovoz-matnlar.mjs` (nest-01) UZ 223 · RU 223 matn → `ovoz-statik.py` xato 0 (yangi bo'laklar surat paytida keshga yozilgan).
+- MD: `dev/nest1-md.py` → `04-Nest1-mentor-yakuniy.md` (farq faqat shu o'zgarishlar).
+- Qonun: `MENTOR_DARS_ETALON.md` **M54** + tekshiruv 38-band + jurnal.
+- Saytda hali eski versiya: deploy va commit foydalanuvchi buyrug'i bilan.

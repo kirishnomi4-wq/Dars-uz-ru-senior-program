@@ -1,0 +1,105 @@
+{
+  "v": 5,
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-11-23T09:18:46Z"
+  },
+  "lists": "css",
+  "format": {
+    "v": 1,
+    "shared": [
+      "project/deck.css"
+    ]
+  },
+  "title": "NestJS 1-dars: Module, Controller, Service",
+  "cover": "cover",
+  "order": [
+    "cover",
+    "video",
+    "oldin",
+    "nima",
+    "farq",
+    "qachon",
+    "qayerda",
+    "kompaniyalar",
+    "analogiya",
+    "arxitektura",
+    "ornatish",
+    "papkalar",
+    "ts",
+    "dekorator",
+    "controller",
+    "service",
+    "cli",
+    "taxmin",
+    "carsservice",
+    "carscontroller",
+    "sorovyoli",
+    "sinash",
+    "test1",
+    "crud",
+    "dto",
+    "baza",
+    "entity",
+    "guard",
+    "uchsavol",
+    "xatolar",
+    "buzing",
+    "oquvchi",
+    "sinf",
+    "loyiha",
+    "tuzilma",
+    "dokonorder",
+    "natija",
+    "prompt",
+    "xatotop",
+    "aitekshir",
+    "vazifa",
+    "lugat"
+  ],
+  "sections": {
+    "s1": {
+      "description": "Kirish: NestJS nima, Express’dan farqi, qachon va kim ishlatadi",
+      "start": "cover"
+    },
+    "s2": {
+      "description": "Restoran misoli: so‘rov Nest ichida qanday yuradi",
+      "start": "analogiya"
+    },
+    "s3": {
+      "description": "Kod va natija: cars modulini quramiz",
+      "start": "ts"
+    },
+    "s4": {
+      "description": "CRUD, validatsiya, baza va Guard",
+      "start": "crud"
+    },
+    "s5": {
+      "description": "Xatolarni o‘qish va o‘zingiz buzish",
+      "start": "uchsavol"
+    },
+    "s6": {
+      "description": "Mentor uchun: o‘quvchi loyihasi va sinf",
+      "start": "oquvchi"
+    },
+    "s7": {
+      "description": "Namuna loyiha: onlayn do‘kon",
+      "start": "loyiha"
+    },
+    "s8": {
+      "description": "Bonus: AI bilan ishlash va tayyorgarlik",
+      "start": "prompt"
+    }
+  },
+  "faces": {
+    "ibm-plex-sans": {
+      "family": "IBM Plex Sans",
+      "href": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&display=swap"
+    },
+    "jetbrains-mono": {
+      "family": "JetBrains Mono",
+      "href": "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap"
+    }
+  },
+  "designSystems": []
+}

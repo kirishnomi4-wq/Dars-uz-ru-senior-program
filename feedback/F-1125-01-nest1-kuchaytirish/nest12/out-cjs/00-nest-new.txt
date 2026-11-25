@@ -1,0 +1,36 @@
+$ nest new cars-api -p npm --type cjs --no-observe --skip-skills
+⠙⠹⠸⠼⠴⠦⠧⠇⠏⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏✨  We will scaffold your app in a few seconds..
+
+CREATE cars-api/.gitattributes (19 bytes)
+CREATE cars-api/.oxlintrc.json (206 bytes)
+CREATE cars-api/.prettierrc (52 bytes)
+CREATE cars-api/AGENTS.md (5234 bytes)
+CREATE cars-api/README.md (7475 bytes)
+CREATE cars-api/jest.config.ts (848 bytes)
+CREATE cars-api/nest-cli.json (171 bytes)
+CREATE cars-api/tsconfig.build.json (170 bytes)
+CREATE cars-api/tsconfig.json (591 bytes)
+CREATE cars-api/package.json (1775 bytes)
+CREATE cars-api/src/app.controller.ts (274 bytes)
+CREATE cars-api/src/app.module.ts (249 bytes)
+CREATE cars-api/src/app.service.ts (142 bytes)
+CREATE cars-api/src/main.ts (233 bytes)
+CREATE cars-api/src/app.controller.spec.ts (617 bytes)
+CREATE cars-api/test/jest-e2e.json (183 bytes)
+CREATE cars-api/test/app.e2e-spec.ts (725 bytes)
+
+▹▹▹▹▹ Installation in progress... ☕
+✔ Installation in progress... ☕
+
+🚀  Successfully created project cars-api
+👉  Get started with the following commands:
+
+$ cd cars-api
+$ npm run start
+
+                                              Thanks for installing Nest 🙏
+                                     Please consider donating to our open collective
+                                            to help us maintain this package.
+
+                                       🍷  Donate: https://opencollective.com/nest
+

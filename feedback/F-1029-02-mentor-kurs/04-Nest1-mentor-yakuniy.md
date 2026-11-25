@@ -85,22 +85,24 @@
 - Kicker: `Amaliyot 1 / 4` · Eyebrow: Hozir o'zingizda · 3–5 daqiqa (o'rnatish fonda)
 1. **Endi siz: Nest'ni o'rnatib, loyihani yaratishni boshlab qo'yasiz**
    Ovoz: «Endi navbat sizga. Hozirgina ko'rgan loyihani o'zingizda yaratib qo'yasiz: uchta qadam. O'rnatish bir-uch daqiqa oladi, kutmaysiz, Davom bosib darsni davom ettirasiz, loyiha fonda o'rnatiladi.»
-2. **1-qadam: Node versiyasi 20 yoki undan yuqori bo'lishi shart**
-   Ovoz: «Birinchi: node versiyasini tekshiring. Nest o'n birinchi versiya Node yigirma yoki undan yuqorisini talab qiladi. Past bo'lsa, jadvaldagi yo'l bilan yangilang.»
-3. **2-qadam: Nest CLI'ni o'rnating, versiyasini isbot maydoniga yozing**
-   Ovoz: «Ikkinchi: Nest CLI'ni global o'rnating va versiyasini tekshiring. Chiqqan raqamni pastdagi isbot maydoniga yozing.»
-4. **3-qadam: `nest new cars-api` — o'rnatish fonda, kutmasdan davom eting**
-   Ovoz: «Uchinchi: nest new cars-api. Paket menejeri so'ralsa npm'ni tanlang. O'rnatish boshlangach, kutmang: katakchani belgilang va Davom bosing.»
+2. **1-qadam: Node versiyasi 22 yoki undan yuqori bo'lishi shart**
+   Ovoz: «Birinchi: node versiyasini tekshiring. Yigirma ikki yoki undan yuqori bo'lishi kerak. Past bo'lsa, jadvaldagi yo'l bilan yangilang.»
+3. **2-qadam: Nest CLI 12'ni o'rnating, versiyasini isbot maydoniga yozing**
+   Ovoz: «Ikkinchi: Nest CLI'ni global o'rnating. Buyruq oxirida kuchukcha belgisi va o'n ikki turibdi: bu darsdagi hamma kod va terminal satrlari Nest'ning o'n ikkinchi versiyasida tekshirilgan, shuning uchun aynan shu versiyani o'rnatamiz. Keyin versiyani tekshiring va chiqqan raqamni pastdagi isbot maydoniga yozing.»
+4. **3-qadam: `nest new` buyrug'ini to'liq nusxalang — o'rnatish fonda, kutmasdan davom eting**
+   Ovoz: «Uchinchi: loyihani yarating. Buyruqni qo'lda yozmang, to'liq nusxalang. Nest'ning o'n ikkinchi versiyasi loyiha yaratishda to'rtta savol beradi, biz javoblarni buyruqning o'zida berdik: paket menejeri npm, modul tizimi CommonJS, kuzatuv xizmati va AI agentlar uchun fayllar kerak emas. CommonJS'ni tanladik, chunki o'quvchi loyihasi ham shu tizimda yozilgan. O'rnatish boshlangach, kutmang: katakchani belgilang va Davom bosing.»
 5. **Boshqacha chiqsa, «Boshqacha chiqdimi?» tugmasini bosing — yechimlar oynasi ochiladi**
    Ovoz: «Biror narsa boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing: yechimlar oynasi ochiladi, xato va yechimi o'sha yerda. Uchala katakcha belgilanmaguncha va isbot to'g'ri yozilmaguncha Davom tugmasi ochilmaydi. Demak, shu amaliyotdan keyin kompyuteringizda Nest o'rnatilgan va yangi loyiha yaratilmoqda.»
 - Qadamlar:
-  1. **Node** — `node --version` → kutilgan: v20 yoki undan yuqori (Nest 11 talabi)
-  2. **Nest CLI** — `npm i -g @nestjs/cli` · `nest --version` → kutilgan: 11.x.x
-  3. **Loyiha — boshlab qo'ying** — `nest new cars-api` → kutilgan: paket menejeri: npm · o'rnatish 1–3 daqiqa — kutmang, Davom bosing
+  1. **Node** — `node --version` → kutilgan: v22 yoki undan yuqori
+  2. **Nest CLI** — `npm i -g @nestjs/cli@12` · `nest --version` → kutilgan: 12.x.x
+  3. **Loyiha — boshlab qo'ying** — `nest new cars-api -p npm --type cjs --no-observe --skip-skills` → kutilgan: savol chiqmaydi · o'rnatish 1–3 daqiqa — kutmang, Davom bosing
 - «Boshqacha chiqdimi?» jadvali:
-  - `node: v18 yoki past` → nodejs.org dan LTS (20+) o'rnating, terminalni qayta oching, node --version ni qaytaring
+  - `node: 22 dan past` → nodejs.org dan LTS versiyani o'rnating, terminalni qayta oching, 1-qadamni qaytaring
   - `nest: command not found` → CLI o'rnatilmagan yoki terminal yangilanmagan: 2-qadamni qaytaring, terminalni qayta oching
-  - `npm install uzoq / xato` → internetni tekshiring; nest new --skip-install, keyin papkada npm install
+  - `nest new savol berdi (package manager, module system…)` → Buyruq to'liq nusxalanmagan: Ctrl+C bosing va 3-qadamdagi buyruqni to'liq nusxalab qayta yozing
+  - `error: unknown option '--type'` → Eski Nest CLI qolgan: 2-qadamdagi buyruqni qaytaring, nest --version 12 ni ko'rsatsin
+  - `npm install uzoq / xato` → internetni tekshiring; 3-qadamdagi buyruq oxiriga --skip-install qo'shing, keyin papkada npm install
 - Isbot: Isbot: nest --version nima chiqardi? (placeholder: «terminalda chiqqan raqamni yozing»)
 
 ---
@@ -174,7 +176,7 @@
 1. **`main.ts` bosh modulni Nest'ga beradi — Nest hammasini yig'adi**
    Ovoz: «Uch bo'lakni ko'rdik. Endi ular qanday ishga tushadi? Hammasi main ts dan boshlanadi. Birinchi satr: Nest'ga bosh modulni beramiz. U modul ro'yxatini o'qiydi, Service'larni yaratadi, Controller'larni ulaydi.»
 2. **Port 3000 tinglanadi. Terminalda: `npm run start:dev`**
-   Ovoz: «Keyin uch ming portni tinglaydi, Express'dagi kabi. Endi terminalga qarang, npm run start dev yozdik.»
+   Ovoz: «Keyin uch ming portni tinglaydi, Express'dagi kabi. Oxirgi satrda bootstrap funksiyasi chaqiriladi. Oldidagi void so'zi bu chaqiruvning natijasi bizga kerak emasligini bildiradi, ilova ishlashiga ta'sir qilmaydi. Endi terminalga qarang, npm run start dev yozdik.»
 3. **Terminal: dependencies initialized — ro'yxatdagi hamma narsa yaratildi**
    Ovoz: «Birinchi satr: Nest ilovasi ishga tushmoqda. Ikkinchi: AppModule'ning dependency'lari tayyor, ya'ni ro'yxatdagi hamma narsa yaratildi.»
 4. **Terminal: Mapped {/, GET} — root path'ga GET route'i ulandi**
@@ -206,6 +208,7 @@
   - `nest new hali tugamagan` → Terminalda «Successfully created project» chiqishini kuting; 5 daqiqadan oshsa — internet yoki npm install uzoq (--skip-install, keyin npm install)
   - `EADDRINUSE :::3000` → 3000-portda boshqa server ochiq: uni yoping yoki PORT=3001 npm run start:dev
   - `Mapped satri yo'q, xato bor` → Xato matnini o'qing: qizil TypeScript xatosi bo'lsa fayl:satr ko'rsatilgan; nest new tugamagan bo'lsa kuting
+  - `Terminalda ObserveModule satrlari bor` → Loyiha 1-amaliyotdagi buyruq bilan yaratilmagan: cars-api papkasini o'chiring va 1-amaliyotning 3-qadamidagi buyruqni to'liq nusxalab qayta yarating
 - Isbot: Isbot: terminaldagi Mapped satrini nusxalang (placeholder: «terminaldagi satrni shu yerga qo'ying»)
 
 ---
@@ -378,6 +381,7 @@
   - `Qizil TypeScript xatosi (fayl:satr)` → Nusxalashda satr tushib qolgan: ko'rsatilgan satrni «Kodni ochish»dagi kod bilan solishtiring
   - `Cannot GET /cars` → Terminalda Mapped {/cars…} bormi? Yo'q bo'lsa app.module.ts → imports: [CarsModule]
   - `POST da body undefined` → Postman'da Body → raw → JSON tanlanganmi? Content-Type: application/json
+  - `error TS2307: Cannot find module './cars.service'` → Loyiha ESM turida yaratilgan: cars-api papkasini o'chiring, 1-amaliyotning 3-qadamidagi buyruqni to'liq nusxalab qayta yarating va cars modulini qaytadan quring
 - Isbot: Isbot: GET /cars/99 javobidagi message maydoni (placeholder: «javobdagi message matnini yozing»)
 - «Kodni ochish»: namuna kodlar (`code`), Explorer — `tree` (butun loyiha, faqat amaliyot fayllari bosiladi)
 
@@ -747,7 +751,7 @@
 ```markdown
 # Nest-1 — mentor eslatmasi
 ## Buyruqlar
-npm i -g @nestjs/cli · nest new cars-api · npm run start:dev
+npm i -g @nestjs/cli@12 · nest new cars-api -p npm --type cjs --no-observe --skip-skills · npm run start:dev
 nest g module cars · nest g controller cars --no-spec · nest g service cars --no-spec
 ## Uch bo'lak
 Controller — so'rovni oladi, Service'ni chaqiradi, qaytaradi (logika yozilmaydi)

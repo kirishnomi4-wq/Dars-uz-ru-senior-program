@@ -1,0 +1,29 @@
+<section id="service" data-transition="fade">
+<p class="lbl">KOD · src/app.service.ts</p>
+<h2>Service va Nest’ning “yetkazib berishi”</h2>
+<x-embed style="position:absolute;left:128px;top:236px;width:1664px;height:560px"><style>
+body{margin:0;background:transparent;overflow:hidden;font-family:ui-monospace,Menlo,Consolas,monospace}
+.L{position:absolute;left:0;top:0;width:1000px;height:560px;box-sizing:border-box;border-radius:24px;background:#0F1B2D;padding:28px 24px}
+.ln{display:flex;font-size:22px;line-height:1.4;color:#4A5C7A;padding:2px 14px;border-radius:10px;transition:background .3s,color .3s;white-space:pre;min-height:0}
+.ln .no{width:44px;color:#33445F;flex:none}
+.ln.on{background:#1F3357;color:#E6EDF7}.ln.on .k{color:#F0A04B}.ln.on .s{color:#8FD19E}.ln.on .f{color:#7FB2FF}
+.R{position:absolute;left:1040px;top:0;width:624px;height:560px;box-sizing:border-box;border-radius:24px;background:#FDFCF9;border:1px solid #E2E0D8;padding:36px;font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;display:flex;flex-direction:column;gap:18px}
+.R small{font-size:24px;font-weight:700;letter-spacing:1px;color:#B5561B}
+.R b{font-size:36px;line-height:1.25;color:#14213D;animation:fi .4s both}
+.R p{margin:0;font-size:28px;line-height:1.45;color:#4A5568;animation:fi .4s .1s both}
+@keyframes fi{from{opacity:0;transform:translateY(8px)}}
+.res{margin-top:auto;background:#0F1B2D;border-radius:16px;padding:16px 20px}.res small{color:#8FD19E}.res pre{margin:8px 0 0;font:500 22px/1.45 ui-monospace,Menlo,monospace;color:#E6EDF7;white-space:pre-wrap}.pg{display:flex;gap:8px}.pg i{width:40px;height:10px;border-radius:5px;background:#E2E0D8}.pg i.on{background:#2F5FD0}
+</style>
+<div class="L" id="L"></div><div class="R"><small id="sm"></small><b id="b"></b><p id="p"></p><div class="res"><small>NATIJA</small><pre id="r"></pre></div><div class="pg" id="pg"></div></div>
+<script>
+const CODE=["<span class=\"k\">import</span> { Injectable } <span class=\"k\">from</span> <span class=\"s\">'@nestjs/common'</span>;", "", "<span class=\"f\">@Injectable</span>()", "<span class=\"k\">export</span> <span class=\"k\">class</span> AppService {", "  <span class=\"f\">getHello</span>(): string {", "    <span class=\"k\">return</span> <span class=\"s\">'Hello World!'</span>;", "  }", "}", "", "// app.module.ts", "<span class=\"f\">@Module</span>({", "  controllers: [AppController],", "  providers: [AppService],", "})"];
+const ST=[[[2, 3], "@Injectable() — “meni boshqalarga berish mumkin”", "Shu yorliq bo‘lsa, Nest bu sinfni o‘zi yaratadi va kerakli joyga beradi.", "Nest AppService’ni\nbir marta yaratadi"], [[4, 5, 6], "Haqiqiy ish shu yerda", "Hozircha oddiy matn. Keyin bazadan ma’lumot olish ham shu yerda bo‘ladi.", "Brauzer: localhost:3000\n→ Hello World!"], [[10, 11, 12, 13], "Module’da ro‘yxatdan o‘tkazamiz", "providers’ga yozilmagan Service’ni Nest topa olmaydi.", "providers’siz:\nNest can’t resolve dependencies…"], [[12], "Bu “Dependency Injection” deyiladi", "Controller “menga AppService kerak” deydi — Nest o‘zi yaratib, uzatib beradi.", "[Nest] AppModule dependencies\ninitialized"]];
+const L=document.getElementById('L');L.innerHTML=CODE.map((c,i)=>'<div class="ln" id="l'+i+'"><span class="no">'+(i+1)+'</span><span>'+c+'</span></div>').join('');
+const pg=document.getElementById('pg');pg.innerHTML=ST.map(()=>'<i></i>').join('');let k=0;
+function go(){const s=ST[k];CODE.forEach((_,i)=>document.getElementById('l'+i).classList.toggle('on',s[0].includes(i)));
+document.getElementById('sm').textContent=(k+1)+' / '+ST.length;const b=document.getElementById('b'),p=document.getElementById('p');b.textContent=s[1];p.textContent=s[2];document.getElementById('r').textContent=s[3]||'';b.style.animation='none';p.style.animation='none';b.offsetHeight;b.style.animation='';p.style.animation='';
+[...pg.children].forEach((d,j)=>d.classList.toggle('on',j<=k));k=(k+1)%ST.length}
+go();setInterval(go,5500);
+</script></x-embed>
+<aside>Dependency Injection’ni oddiy tushuntiring: ofitsiant oshpazni o‘zi yollamaydi — restoran boshqaruvchisi (Nest) tayinlab beradi. Ofitsiant faqat “menga oshpaz kerak” deydi (constructor). Shart: oshpaz xodimlar ro‘yxatida (providers) bo‘lishi kerak — aks holda natija qutisidagi xato chiqadi.</aside>
+</section>

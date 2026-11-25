@@ -324,7 +324,7 @@ function Screen27(p) {
 // --- S28 Yakun + eslatma ---
 const CHEATSHEET = `# Nest-1 — mentor eslatmasi
 ## Buyruqlar
-npm i -g @nestjs/cli · nest new cars-api · npm run start:dev
+npm i -g @nestjs/cli@12 · nest new cars-api -p npm --type cjs --no-observe --skip-skills · npm run start:dev
 nest g module cars · nest g controller cars --no-spec · nest g service cars --no-spec
 ## Uch bo'lak
 Controller — so'rovni oladi, Service'ni chaqiradi, qaytaradi (logika yozilmaydi)

@@ -1,0 +1,47 @@
+<section id="nima" data-transition="fade">
+<h2>NestJS nima?</h2>
+<div style="display:flex;gap:56px;align-items:flex-start">
+<div style="width:700px;display:flex;flex-direction:column;gap:28px">
+<p style="font-size:44px;font-weight:700;line-height:1.25;color:#14213D">NestJS — server (backend) yozish uchun <span style="color:#B5561B">tayyor reja</span>.</p>
+<p style="font-size:30px;line-height:1.45;color:#4A5568">Hayotiy misol: Lego. Express — qutidagi sochilgan detallar: istaganingizni yig‘asiz, lekin reja yo‘q. NestJS — o‘sha detallar + <b>yo‘riqnoma</b>: qaysi detal qayerga borishi oldindan aytilgan.</p>
+<div style="display:flex;flex-direction:column;gap:14px">
+<p style="font-size:28px;color:#14213D">✔ Ichida baribir Express ishlaydi</p>
+<p style="font-size:28px;color:#14213D">✔ TypeScript’da yoziladi — xato oldindan ko‘rinadi</p>
+<p style="font-size:28px;color:#14213D">✔ Har bir kodning o‘z “xonasi” bor</p>
+</div>
+</div>
+
+</div>
+<x-embed style="position:absolute;left:884px;top:250px;width:908px;height:600px"><style>
+body{margin:0;background:transparent;overflow:hidden;font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+.p{position:absolute;top:0;width:430px;height:600px;box-sizing:border-box;border-radius:28px;background:#FDFCF9;border:2px solid #E2E0D8}
+h3{margin:28px 0 0;text-align:center;font-size:34px;color:#14213D}
+.s{text-align:center;font-size:24px;color:#4A5568;margin-top:6px}
+.b{position:absolute;height:50px;border-radius:6px;transition:left 1s cubic-bezier(.5,1.6,.4,1),top 1s cubic-bezier(.5,1.6,.4,1),transform 1s;display:flex;align-items:center;justify-content:center;font:600 22px ui-monospace,Menlo,monospace;color:#F6F5F0}
+.j{animation:jg 2.4s ease-in-out infinite}
+@keyframes jg{50%{transform:translateY(-8px) rotate(var(--r))}}
+.q{position:absolute;left:300px;top:380px;font-size:90px;font-weight:800;color:#C0392B;animation:jg 1.6s infinite}
+.roof{position:absolute;left:548px;top:150px;width:0;height:0;border-left:145px solid transparent;border-right:145px solid transparent;border-bottom:100px solid #B5561B;opacity:0;transform:translateY(-40px);transition:opacity .6s,transform .6s}
+.roof.on{opacity:1;transform:none}
+.ok{position:absolute;left:478px;top:520px;width:430px;text-align:center;font-size:26px;font-weight:800;color:#2E8B57;opacity:0;transition:opacity .5s}
+.ok.on{opacity:1}
+</style>
+<div class="p" style="left:0"><h3>Express</h3><div class="s">detallar bor, reja yo‘q</div></div>
+<div class="p" style="left:478px"><h3>NestJS</h3><div class="s">detallar + yo‘riqnoma 📘</div></div>
+<div class="q">?</div>
+<div class="roof" id="roof"></div>
+<div class="b" id="b0" style="width:230px;background:#F0A04B;color:#14213D">Module</div>
+<div class="b" id="b1" style="width:230px;background:#2F5FD0">Controller</div>
+<div class="b" id="b2" style="width:230px;background:#2E8B57">Service</div>
+<div class="b" id="b3" style="width:230px;background:#14213D">main.ts</div>
+<div class="ok" id="ok">✓ Har bir detal o‘z joyida</div>
+<script>
+const B=[0,1,2,3].map(i=>document.getElementById('b'+i)),roof=document.getElementById('roof'),ok=document.getElementById('ok'),W=ms=>new Promise(r=>setTimeout(r,ms));
+const SC=[[40,190,-14],[150,300,12],[30,410,8],[170,480,-20]],DST=[[578,250],[578,306],[578,362],[578,418]];
+function scatter(){B.forEach((b,i)=>{b.style.left=SC[i][0]+'px';b.style.top=SC[i][1]+'px';b.style.setProperty('--r',SC[i][2]+'deg');b.style.transform='rotate('+SC[i][2]+'deg)';b.classList.add('j')});roof.classList.remove('on');ok.classList.remove('on')}
+(async()=>{for(;;){scatter();await W(2600);
+for(let i=3;i>=0;i--){const b=B[i];b.classList.remove('j');b.style.left=DST[i][0]+'px';b.style.top=DST[i][1]+'px';b.style.transform='none';await W(700)}
+roof.classList.add('on');await W(500);ok.classList.add('on');await W(4500)}})();
+</script></x-embed>
+<aside>Bitta jumla bilan boshlang: NestJS — backend yozish uchun tayyor reja (framework). Lego misolini ko‘rsating (animatsiya): chapda sochilgan, “sakrab” turgan detallar — Express, hamma narsani o‘zingiz o‘ylab topasiz; o‘ngda xuddi shu detallar yo‘riqnoma bilan yig‘ilgan uy — NestJS, har bir qavatning o‘z vazifasi bor: Module, Controller, Service, main.ts. Uchta fakt: ichida Express ishlaydi (ya’ni Express bilimi yo‘qolmaydi), TypeScript’da yoziladi, har bir kodning o‘z joyi bor.</aside>
+</section>

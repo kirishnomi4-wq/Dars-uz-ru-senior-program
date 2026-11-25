@@ -1,0 +1,32 @@
+<section id="kompaniyalar" class="dark" data-transition="fade" style="justify-content:flex-start;gap:28px">
+<p class="kicker">HAQIQIY DUNYODA</p>
+<h2 style="color:#F6F5F0">NestJS’ni ishlatadigan katta kompaniyalar</h2>
+<x-embed style="position:absolute;left:128px;top:300px;width:1664px;height:560px"><style>
+body{margin:0;background:transparent;overflow:hidden;font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+.g{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.c{height:150px;box-sizing:border-box;border-radius:20px;background:#16263F;border:2px solid #2A4470;padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;opacity:0;transform:translateY(30px) scale(.9);transition:opacity .5s,transform .5s,border-color .3s,background .3s}
+.c.in{opacity:1;transform:none}
+.c.hi{border-color:#F0A04B;background:#1F3357;transform:scale(1.05)}
+.c .e{font-size:42px;line-height:1}
+.c b{font-size:28px;color:#F6F5F0}
+.c span{font-size:20px;color:#8C9AB3}
+.tag{display:inline-block;margin-right:6px;padding:2px 10px;border-radius:999px;font-size:18px;font-weight:700}
+.ft{margin-top:20px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;font-size:22px;color:#BFC9D9}
+.ft .tag{font-size:20px;padding:6px 14px}
+</style>
+<div class="g" id="g"></div>
+<div class="ft" id="ft"></div>
+<script>
+const C=[['👟','adidas','Sport kiyim','r'],['🚗','BMW','Avtomobil','a'],['🚙','Mercedes-Benz','Avtomobil','a'],['🎵','ByteDance','TikTok egasi','t'],['🦊','GitLab','Dasturchilar platformasi','t'],
+['💊','Roche','Farmatsevtika','m'],['💉','Sanofi','Farmatsevtika','m'],['🖥️','IBM','Texnologiya','t'],['🧠','JetBrains','Dasturlash vositalari','t'],['📐','Autodesk','Dizayn dasturlari','t'],
+['⚽','Decathlon','Sport do‘koni','r'],['🛒','REWE','Supermarketlar','r'],['🏦','Société Générale','Bank','f'],['⚡','TotalEnergies','Energetika','e'],['💼','Capgemini','IT konsalting','t']];
+const T={r:['Savdo','#F0A04B'],a:['Avto','#7FB2FF'],t:['IT','#8FD19E'],m:['Tibbiyot','#F59C8F'],f:['Moliya','#C9B6F2'],e:['Energiya','#F0C04B']};
+const g=document.getElementById('g');g.innerHTML=C.map(c=>'<div class="c"><div class="e">'+c[0]+'</div><div><b>'+c[1]+'</b><br><span>'+c[2]+'</span></div></div>').join('');
+document.getElementById('ft').innerHTML='Sohalar: '+Object.values(T).map(t=>'<span class="tag" style="background:'+t[1]+';color:#0F1B2D">'+t[0]+'</span>').join('');
+const cs=[...g.children],W=ms=>new Promise(r=>setTimeout(r,ms));
+(async()=>{for(;;){cs.forEach(c=>c.className='c');for(const c of cs){c.classList.add('in');await W(140)}
+for(let r=0;r<12;r++){const i=Math.floor(Math.random()*cs.length);cs[i].classList.add('hi');await W(900);cs[i].classList.remove('hi')}}})();
+</script></x-embed>
+<p style="position:absolute;left:128px;top:880px;width:1664px;font-size:24px;color:#8C9AB3">Manba: NestJS rasmiy sahifasi “Who is using Nest?” (docs.nestjs.com/discover/companies). Ro‘yxat to‘liq emas — kichik startaplardan banklargacha minglab jamoalar ishlatadi.</p>
+<aside>Hammasi NestJS’ning rasmiy “Who is using Nest?” sahifasida logotipi bilan ko‘rsatilgan kompaniyalar. Sohalar turlicha: sport kiyim, avtomobil, tibbiyot, bank, energetika, IT. Xulosa: NestJS — “o‘yinchoq” emas, katta kompaniyalar ishonadigan vosita, demak NestJS biladigan dasturchiga talab bor. Eslatma: sahifa bu kompaniyalar NestJS’ni aynan qaysi mahsulotida ishlatishini aytmaydi — o‘quvchilarga “TikTok to‘liq NestJS’da yozilgan” kabi gaplarni aytmang.</aside>
+</section>

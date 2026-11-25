@@ -1,0 +1,21 @@
+
+> cars-api@0.0.1 start:dev
+> nest start --watch
+
+[3:32:43 PM] Starting compilation in watch mode...
+
+[3:32:45 PM] Found 0 errors. Watching for file changes.
+
+[Nest] 465019  - 11/25/2026, 3:32:45 PM     LOG [NestFactory] Starting Nest application...
+[Nest] 465019  - 11/25/2026, 3:32:45 PM     LOG [InstanceLoader] DiscoveryModule dependencies initialized +15ms
+[Nest] 465019  - 11/25/2026, 3:32:45 PM     LOG [InstanceLoader] AppModule dependencies initialized +1ms
+[Nest] 465019  - 11/25/2026, 3:32:45 PM     LOG [InstanceLoader] CarsModule dependencies initialized +0ms
+[Nest] 465019  - 11/25/2026, 3:32:45 PM     LOG [InstanceLoader] ObserveModule dependencies initialized +12ms
+[Nest] 465019  - 11/25/2026, 3:32:45 PM     LOG [RoutesResolver] AppController {/}: +4ms
+[Nest] 465019  - 11/25/2026, 3:32:45 PM     LOG [RouterExplorer] Mapped {/, GET} route +2ms
+[Nest] 465019  - 11/25/2026, 3:32:45 PM     LOG [RoutesResolver] CarsController {/cars}: +0ms
+[Nest] 465019  - 11/25/2026, 3:32:45 PM     LOG [RouterExplorer] Mapped {/cars, GET} route +1ms
+[Nest] 465019  - 11/25/2026, 3:32:45 PM     LOG [RouterExplorer] Mapped {/cars/:id, GET} route +1ms
+[Nest] 465019  - 11/25/2026, 3:32:45 PM     LOG [RouterExplorer] Mapped {/cars, POST} route +0ms
+[Nest] 465019  - 11/25/2026, 3:32:45 PM     LOG [ObserveAgentWorker] Observe is installed but not connected yet: appKey and appSecret are still the placeholders from nest new, so no telemetry is sent. Run npx @nestjs/observe link in this project to connect it, or see what this app will look like first: https://www.observe-demo.nestjs.com/dashboard
+[Nest] 465019  - 11/25/2026, 3:32:45 PM     LOG [NestApplication] Nest application successfully started +1ms

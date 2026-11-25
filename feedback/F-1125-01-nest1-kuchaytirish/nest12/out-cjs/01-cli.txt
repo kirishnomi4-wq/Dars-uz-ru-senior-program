@@ -1,0 +1,10 @@
+$ nest g module cars
+CREATE src/cars/cars.module.ts (81 bytes)
+UPDATE src/app.module.ts (308 bytes)
+⠙$ nest g controller cars --no-spec
+CREATE src/cars/cars.controller.ts (97 bytes)
+UPDATE src/cars/cars.module.ts (166 bytes)
+⠙$ nest g service cars --no-spec
+CREATE src/cars/cars.service.ts (88 bytes)
+UPDATE src/cars/cars.module.ts (240 bytes)
+⠙

@@ -108,6 +108,7 @@ function Screen8(p) {
 }
 
 // --- S9 main.ts va terminal chiqishi ---
+// F-1125-01: oxirgi satr Nest 12 qolipida void bilan keladi (feedback/F-1125-01-nest1-kuchaytirish/nest12/qolip-n12-cjs/main.ts)
 const MAIN_LINES = [
   { h: `<span class="k">import</span> { NestFactory } <span class="k">from</span> <span class="s">'@nestjs/core'</span>;` },
   { h: `<span class="k">import</span> { AppModule } <span class="k">from</span> <span class="s">'./app.module'</span>;` },
@@ -116,7 +117,7 @@ const MAIN_LINES = [
   { id: 'main-create', h: `  <span class="k">const</span> app = <span class="k">await</span> NestFactory.<span class="c">create</span>(<span class="c">AppModule</span>);` },
   { id: 'main-listen', h: `  <span class="k">await</span> app.<span class="c">listen</span>(process.env.PORT ?? <span class="d">3000</span>);` },
   { h: `}` },
-  { h: `<span class="c">bootstrap</span>();` },
+  { id: 'main-boot', h: `<span class="k">void</span> <span class="c">bootstrap</span>();` },
 ];
 const LOG_LINES = [
   { at: 1, h: `<span class="p">$</span> npm run start:dev` },
@@ -130,7 +131,7 @@ const S9 = {
   kicker: '2-bosqich · main.ts', title: "main.ts va terminaldagi ishga tushish satrlari",
   segments: [
     { id: 'a', key: "<code>main.ts</code> bosh modulni Nest'ga beradi — <b>Nest hammasini yig'adi</b>", text: "Uch bo'lakni ko'rdik. Endi ular qanday ishga tushadi? Hammasi main ts dan boshlanadi. Birinchi satr: Nest'ga bosh modulni beramiz. U modul ro'yxatini o'qiydi, Service'larni yaratadi, Controller'larni ulaydi.", show: "Uch bo'lakni ko'rdik. Endi ular qanday ishga tushadi? Hammasi main.ts dan boshlanadi. <code>NestFactory.create(AppModule)</code>: Nest'ga bosh modulni beramiz. U modul ro'yxatini o'qiydi, Service'larni yaratadi, Controller'larni ulaydi.", focus: ['main-create'], lf: [] },
-    { id: 'b', key: "Port 3000 tinglanadi. Terminalda: <code>npm run start:dev</code>", text: "Keyin uch ming portni tinglaydi, Express'dagi kabi. Endi terminalga qarang, npm run start dev yozdik.", show: "Keyin <code>listen(3000)</code>: Express'dagi kabi portni tinglaydi. Endi terminalga qarang, <code>npm run start:dev</code> yozdik.", focus: ['main-listen'], lf: [] },
+    { id: 'b', key: "Port 3000 tinglanadi. Terminalda: <code>npm run start:dev</code>", text: "Keyin uch ming portni tinglaydi, Express'dagi kabi. Oxirgi satrda bootstrap funksiyasi chaqiriladi. Oldidagi void so'zi bu chaqiruvning natijasi bizga kerak emasligini bildiradi, ilova ishlashiga ta'sir qilmaydi. Endi terminalga qarang, npm run start dev yozdik.", show: "Keyin <code>listen(3000)</code>: Express'dagi kabi portni tinglaydi. Oxirgi satrda <code>bootstrap()</code> chaqiriladi. Oldidagi <code>void</code> bu chaqiruvning natijasi bizga kerak emasligini bildiradi, ilova ishlashiga ta'sir qilmaydi. Endi terminalga qarang, <code>npm run start:dev</code> yozdik.", focus: ['main-listen', 'main-boot'], lf: [] },
     { id: 'c', key: "Terminal: <b>dependencies initialized</b> — ro'yxatdagi hamma narsa yaratildi", text: "Birinchi satr: Nest ilovasi ishga tushmoqda. Ikkinchi: AppModule'ning dependency'lari tayyor, ya'ni ro'yxatdagi hamma narsa yaratildi.", show: "Starting Nest application. <b>AppModule dependencies initialized</b>: AppModule'ning dependency'lari tayyor, ya'ni ro'yxatdagi hamma narsa yaratildi.", focus: [], lf: ['log1', 'log2'] },
     { id: 'd', key: "Terminal: <b>Mapped {/, GET}</b> — root path'ga GET route'i ulandi", text: "Keyin: AppController topildi va unga root path berildi. Mapped satri: root path'ga GET route'i ulandi. Va oxirgisi: ilova muvaffaqiyatli ishga tushdi.", show: "<code>AppController {/}</code>: Controller topildi va unga path berildi. <b>Mapped {/, GET} route</b>: root path'ga GET route'i ulandi. Nest application successfully started.", focus: [], lf: ['log3', 'log4', 'log5'] },
     { id: 'e', key: "Odat: route ishlamasa — <b>avval terminaldagi Mapped satrini</b> qidiring", text: "Bu satrlarni o'qishni odat qiling. Keyinchalik biror route ishlamasa, birinchi qiladigan ishingiz terminaldagi shu satrlarga qarash bo'ladi: Mapped satri bormi, yo'qmi.", focus: [], lf: ['log4'] },
@@ -167,6 +168,7 @@ const P1_TROUBLE = [
   ['nest new hali tugamagan', "Terminalda «Successfully created project» chiqishini kuting; 5 daqiqadan oshsa — internet yoki npm install uzoq (--skip-install, keyin npm install)"],
   ['EADDRINUSE :::3000', "3000-portda boshqa server ochiq: uni yoping yoki PORT=3001 npm run start:dev"],
   ['Mapped satri yo\'q, xato bor', "Xato matnini o'qing: qizil TypeScript xatosi bo'lsa fayl:satr ko'rsatilgan; nest new tugamagan bo'lsa kuting"],
+  ['Terminalda ObserveModule satrlari bor', "Loyiha 1-amaliyotdagi buyruq bilan yaratilmagan: cars-api papkasini o'chiring va 1-amaliyotning 3-qadamidagi buyruqni to'liq nusxalab qayta yarating"],
 ];
 const P1_PROOF = { label: 'Isbot: terminaldagi Mapped satrini nusxalang', placeholder: "terminaldagi satrni shu yerga qo'ying", check: (v) => /Mapped\s*\{\s*\/\s*,\s*GET\s*\}/i.test(v), wrong: "Kutilgan: Mapped {/, GET} route — terminaldagi satrni aynan nusxalang" };
 function ScreenP1(p) { return <Practice p={p} S={P1} steps={P1_STEPS} trouble={P1_TROUBLE} proof={P1_PROOF} />; }

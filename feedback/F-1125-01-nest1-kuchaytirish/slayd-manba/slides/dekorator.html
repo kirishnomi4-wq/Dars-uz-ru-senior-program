@@ -1,0 +1,15 @@
+<section id="dekorator" data-transition="fade">
+<h2>Dekorator — sinfga yopishtirilgan yorliq</h2>
+<div class="cards">
+<div class="card stick" style="border-top:8px solid #F0A04B"><p class="code">@Module()</p><h3>“Bu bo‘lim”</h3><p class="txt">Controller va Service’larni bir joyga yig‘adi</p></div>
+<div class="card stick" style="border-top:8px solid #2F5FD0"><p class="code">@Controller('cars')</p><h3>“Bu ofitsiant”</h3><p class="txt">Manzil boshlanishi: /cars</p></div>
+<div class="card stick" style="border-top:8px solid #2F5FD0"><p class="code">@Get()  @Post()</p><h3>“Bu eshik”</h3><p class="txt">Qaysi so‘rov qaysi metodga keladi</p></div>
+<div class="card stick" style="border-top:8px solid #2E8B57"><p class="code">@Injectable()</p><h3>“Bu oshpaz”</h3><p class="txt">Nest uni o‘zi yaratib, kerakli joyga beradi</p></div>
+</div>
+<div style="display:flex;gap:24px;align-items:center;background:#0F1B2D;border-radius:20px;padding:26px 36px">
+<p style="font-family:'JetBrains Mono',monospace;font-size:30px;color:#F0A04B">@Controller('cars') + @Get(':id')</p>
+<p style="font-size:30px;color:#F6F5F0">→</p>
+<p style="font-family:'JetBrains Mono',monospace;font-size:30px;color:#8FD19E">GET /cars/2</p>
+</div>
+<aside>Kartalar yorliq kabi “yopishib” chiqadi. Dekoratorni sumkaga yopishtirilgan yorliqqa o‘xshating: “mo‘rt”, “yuqoriga” — sumkaning o‘zi o‘zgarmaydi, lekin ishchilar unga qarab ish qiladi. Nest ham @ belgili yorliqlarga qarab qaysi sinf nima ekanini biladi. Pastdagi qora qatorda eng muhim qoida: Controller’dagi yo‘l + metoddagi yo‘l = to‘liq manzil. O‘quvchilardan so‘rang: @Controller('users') va @Post() bo‘lsa, manzil qanday? (POST /users)</aside>
+</section>

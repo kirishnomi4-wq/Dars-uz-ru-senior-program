@@ -218,25 +218,29 @@ function Scene5b({ beat }) {
 }
 
 // --- Amaliyot 1/4: Nest'ni o'rnating, nest new ni boshlab qo'ying (o'rnatilguncha dars davom etadi) ---
+// F-1125-01 (M54): versiya buyruqning o'zida qotirilgan (@12), nest new savollarsiz (bayroqlar bilan) —
+// dars chiqishlari Nest 12 da shu buyruqlar bilan tekshirilgan: feedback/F-1125-01-nest1-kuchaytirish/nest12/FARQLAR.md
 const P0 = {
   kicker: 'Amaliyot 1 / 4', eyebrow: "Hozir o'zingizda · 3–5 daqiqa (o'rnatish fonda)", title: "Nest'ni o'rnating, loyihani boshlab qo'ying", tableAt: 4,
   segments: [
     { id: 'a', key: "Endi <b>siz</b>: Nest'ni o'rnatib, loyihani yaratishni boshlab qo'yasiz", text: "Endi navbat sizga. Hozirgina ko'rgan loyihani o'zingizda yaratib qo'yasiz: uchta qadam. O'rnatish bir-uch daqiqa oladi, kutmaysiz, Davom bosib darsni davom ettirasiz, loyiha fonda o'rnatiladi.", hl: [] },
-    { id: 'b', key: "1-qadam: Node versiyasi <b>20 yoki undan yuqori</b> bo'lishi shart", text: "Birinchi: node versiyasini tekshiring. Nest o'n birinchi versiya Node yigirma yoki undan yuqorisini talab qiladi. Past bo'lsa, jadvaldagi yo'l bilan yangilang.", hl: [0] },
-    { id: 'c', key: "2-qadam: <b>Nest CLI</b>'ni o'rnating, versiyasini isbot maydoniga yozing", text: "Ikkinchi: Nest CLI'ni global o'rnating va versiyasini tekshiring. Chiqqan raqamni pastdagi isbot maydoniga yozing.", hl: [1] },
-    { id: 'd', key: "3-qadam: <code>nest new cars-api</code> — o'rnatish fonda, kutmasdan davom eting", text: "Uchinchi: nest new cars-api. Paket menejeri so'ralsa npm'ni tanlang. O'rnatish boshlangach, kutmang: katakchani belgilang va Davom bosing.", hl: [2] },
+    { id: 'b', key: "1-qadam: Node versiyasi <b>22 yoki undan yuqori</b> bo'lishi shart", text: "Birinchi: node versiyasini tekshiring. Yigirma ikki yoki undan yuqori bo'lishi kerak. Past bo'lsa, jadvaldagi yo'l bilan yangilang.", hl: [0] },
+    { id: 'c', key: "2-qadam: <b>Nest CLI 12</b>'ni o'rnating, versiyasini isbot maydoniga yozing", text: "Ikkinchi: Nest CLI'ni global o'rnating. Buyruq oxirida kuchukcha belgisi va o'n ikki turibdi: bu darsdagi hamma kod va terminal satrlari Nest'ning o'n ikkinchi versiyasida tekshirilgan, shuning uchun aynan shu versiyani o'rnatamiz. Keyin versiyani tekshiring va chiqqan raqamni pastdagi isbot maydoniga yozing.", show: "Ikkinchi: Nest CLI'ni global o'rnating. Buyruq oxirida <code>@12</code> turibdi: bu darsdagi hamma kod va terminal satrlari Nest'ning 12-versiyasida tekshirilgan, shuning uchun aynan shu versiyani o'rnatamiz. Keyin versiyani tekshiring va chiqqan raqamni pastdagi isbot maydoniga yozing.", hl: [1] },
+    { id: 'd', key: "3-qadam: <code>nest new</code> buyrug'ini <b>to'liq nusxalang</b> — o'rnatish fonda, kutmasdan davom eting", text: "Uchinchi: loyihani yarating. Buyruqni qo'lda yozmang, to'liq nusxalang. Nest'ning o'n ikkinchi versiyasi loyiha yaratishda to'rtta savol beradi, biz javoblarni buyruqning o'zida berdik: paket menejeri npm, modul tizimi CommonJS, kuzatuv xizmati va AI agentlar uchun fayllar kerak emas. CommonJS'ni tanladik, chunki o'quvchi loyihasi ham shu tizimda yozilgan. O'rnatish boshlangach, kutmang: katakchani belgilang va Davom bosing.", show: "Uchinchi: loyihani yarating. Buyruqni qo'lda yozmang, to'liq nusxalang. Nest'ning 12-versiyasi loyiha yaratishda to'rtta savol beradi, biz javoblarni buyruqning o'zida berdik: paket menejeri <code>npm</code>, modul tizimi <code>CommonJS</code>, kuzatuv xizmati va AI agentlar uchun fayllar kerak emas. CommonJS'ni tanladik, chunki o'quvchi loyihasi ham shu tizimda yozilgan. O'rnatish boshlangach, kutmang: katakchani belgilang va Davom bosing.", hl: [2] },
     { id: 'e', key: "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi", text: "Biror narsa boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing: yechimlar oynasi ochiladi, xato va yechimi o'sha yerda. Uchala katakcha belgilanmaguncha va isbot to'g'ri yozilmaguncha Davom tugmasi ochilmaydi. Demak, shu amaliyotdan keyin kompyuteringizda Nest o'rnatilgan va yangi loyiha yaratilmoqda.", hl: [] },
   ],
 };
 const P0_STEPS = [
-  { t: 'Node', cmds: ['node --version'], exp: 'v20 yoki undan yuqori (Nest 11 talabi)' },
-  { t: 'Nest CLI', cmds: ['npm i -g @nestjs/cli', 'nest --version'], exp: '11.x.x' },
-  { t: "Loyiha — boshlab qo'ying", cmds: ['nest new cars-api'], exp: "paket menejeri: npm · o'rnatish 1–3 daqiqa — kutmang, Davom bosing" },
+  { t: 'Node', cmds: ['node --version'], exp: 'v22 yoki undan yuqori' },
+  { t: 'Nest CLI', cmds: ['npm i -g @nestjs/cli@12', 'nest --version'], exp: '12.x.x' },
+  { t: "Loyiha — boshlab qo'ying", cmds: ['nest new cars-api -p npm --type cjs --no-observe --skip-skills'], exp: "savol chiqmaydi · o'rnatish 1–3 daqiqa — kutmang, Davom bosing" },
 ];
 const P0_TROUBLE = [
-  ['node: v18 yoki past', "nodejs.org dan LTS (20+) o'rnating, terminalni qayta oching, node --version ni qaytaring"],
+  ['node: 22 dan past', "nodejs.org dan LTS versiyani o'rnating, terminalni qayta oching, 1-qadamni qaytaring"],
   ['nest: command not found', "CLI o'rnatilmagan yoki terminal yangilanmagan: 2-qadamni qaytaring, terminalni qayta oching"],
-  ['npm install uzoq / xato', "internetni tekshiring; nest new --skip-install, keyin papkada npm install"],
+  ['nest new savol berdi (package manager, module system…)', "Buyruq to'liq nusxalanmagan: Ctrl+C bosing va 3-qadamdagi buyruqni to'liq nusxalab qayta yozing"],
+  ["error: unknown option '--type'", "Eski Nest CLI qolgan: 2-qadamdagi buyruqni qaytaring, nest --version 12 ni ko'rsatsin"],
+  ['npm install uzoq / xato', "internetni tekshiring; 3-qadamdagi buyruq oxiriga --skip-install qo'shing, keyin papkada npm install"],
 ];
-const P0_PROOF = { label: "Isbot: nest --version nima chiqardi?", placeholder: 'terminalda chiqqan raqamni yozing', check: (v) => /^v?11\./.test(v), wrong: "Kutilgan 11.x.x — CLI o'rnatilmagan yoki eski versiya" };
+const P0_PROOF = { label: "Isbot: nest --version nima chiqardi?", placeholder: 'terminalda chiqqan raqamni yozing', check: (v) => /^v?12\./.test(v), wrong: "Kutilgan 12.x.x — buyruqdagi @12 tushib qolgan yoki terminal yangilanmagan" };
 function ScreenP0(p) { return <Practice p={p} S={P0} steps={P0_STEPS} trouble={P0_TROUBLE} proof={P0_PROOF} />; }

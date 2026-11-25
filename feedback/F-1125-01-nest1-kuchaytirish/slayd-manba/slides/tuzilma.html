@@ -1,0 +1,29 @@
+<section id="tuzilma" data-transition="fade" style="gap:32px">
+<p class="lbl">NAMUNA LOYIHA</p>
+<h2>Papkalar va jadvallar</h2>
+<div style="display:flex;gap:32px">
+<div style="flex:none;width:700px;background:#0F1B2D;border-radius:24px;padding:28px 32px;display:flex;flex-direction:column;gap:4px">
+<p style="font-family:'JetBrains Mono',monospace;font-size:22px;color:#F0A04B">shop-api/src/</p>
+<p style="font-family:'JetBrains Mono',monospace;font-size:22px;color:#BFC9D9">├─ auth/</p>
+<p style="font-family:'JetBrains Mono',monospace;font-size:22px;color:#8C9AB3">│  ├─ auth.controller.ts · auth.service.ts</p>
+<p style="font-family:'JetBrains Mono',monospace;font-size:22px;color:#8C9AB3">│  ├─ auth.guard.ts · user.entity.ts</p>
+<p style="font-family:'JetBrains Mono',monospace;font-size:22px;color:#8C9AB3">│  └─ dto/register.dto.ts · login.dto.ts</p>
+<p style="font-family:'JetBrains Mono',monospace;font-size:22px;color:#BFC9D9">├─ products/</p>
+<p style="font-family:'JetBrains Mono',monospace;font-size:22px;color:#8C9AB3">│  ├─ products.module · controller · service</p>
+<p style="font-family:'JetBrains Mono',monospace;font-size:22px;color:#8C9AB3">│  ├─ product.entity.ts</p>
+<p style="font-family:'JetBrains Mono',monospace;font-size:22px;color:#8C9AB3">│  └─ dto/create-product.dto.ts</p>
+<p style="font-family:'JetBrains Mono',monospace;font-size:22px;color:#BFC9D9">├─ orders/</p>
+<p style="font-family:'JetBrains Mono',monospace;font-size:22px;color:#8C9AB3">│  ├─ orders.module · controller · service</p>
+<p style="font-family:'JetBrains Mono',monospace;font-size:22px;color:#8C9AB3">│  └─ order.entity.ts · dto/</p>
+<p style="font-family:'JetBrains Mono',monospace;font-size:22px;color:#BFC9D9">├─ app.module.ts</p>
+<p style="font-family:'JetBrains Mono',monospace;font-size:22px;color:#BFC9D9">└─ main.ts</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<div class="card" style="border-left:8px solid #F0A04B;padding:22px 30px;gap:6px"><h3 style="font-size:32px">User</h3><p class="code">id · email (unique) · password (xesh)</p></div>
+<div class="card" style="border-left:8px solid #2F5FD0;padding:22px 30px;gap:6px"><h3 style="font-size:32px">Product</h3><p class="code">id · name · price · stock</p></div>
+<div class="card" style="border-left:8px solid #2E8B57;padding:22px 30px;gap:6px"><h3 style="font-size:32px">Order</h3><p class="code">id · userId · productId · quantity · total</p></div>
+<div style="background:#FFF4E6;border:2px solid #F0A04B;border-radius:18px;padding:18px 26px"><p style="font-family:'JetBrains Mono',monospace;font-size:22px;line-height:1.5;color:#14213D">npm i @nestjs/typeorm typeorm better-sqlite3 class-validator class-transformer @nestjs/mapped-types @nestjs/jwt bcrypt</p></div>
+</div>
+</div>
+<aside>Chapda loyiha papkalari: har bir modul o‘z papkasida, ichida controller, service, entity va dto. O‘ngda uchta jadval (Entity). Order jadvali User va Product’ga id orqali bog‘lanadi. Pastdagi to‘q sariq qutida o‘rnatiladigan barcha paketlar bitta buyruqda; qo‘shimcha: npm i -D @types/bcrypt. @nestjs/mapped-types — UpdateProductDto’ni PartialType(CreateProductDto) bilan yasash uchun.</aside>
+</section>

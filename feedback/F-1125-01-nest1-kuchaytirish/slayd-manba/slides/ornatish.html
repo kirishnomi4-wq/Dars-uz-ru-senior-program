@@ -1,0 +1,44 @@
+<section id="ornatish" data-transition="fade">
+<p class="lbl">AMALIYOT · 1-QADAM</p>
+<h2>Loyihani 3 ta buyruq bilan yaratamiz</h2>
+<x-embed style="position:absolute;left:128px;top:236px;width:1664px;height:580px"><style>
+body{margin:0;background:transparent;overflow:hidden;font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+.term{position:absolute;left:0;top:0;width:1060px;height:580px;box-sizing:border-box;border-radius:24px;background:#0F1B2D;overflow:hidden}
+.tb{height:52px;background:#16263F;display:flex;align-items:center;gap:10px;padding:0 20px}
+.tb i{width:14px;height:14px;border-radius:50%}
+.tb span{margin-left:16px;font:600 22px ui-monospace,Menlo,monospace;color:#8C9AB3}
+.out{padding:20px 28px;font:500 25px/1.55 ui-monospace,Menlo,monospace;color:#BFC9D9;white-space:pre}
+.out .c{color:#F6F5F0}.out .p{color:#F0A04B}.out .g{color:#8FD19E}.out .m{color:#6C7A93}
+.cur{display:inline-block;width:13px;height:28px;background:#F0A04B;vertical-align:-5px;animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+.side{position:absolute;left:1100px;top:0;width:564px;display:flex;flex-direction:column;gap:18px}
+.st{box-sizing:border-box;border-radius:20px;background:#FDFCF9;border:2px solid #E2E0D8;padding:20px 24px;transition:border-color .3s,box-shadow .3s,opacity .3s;opacity:.55}
+.st.on{opacity:1;border-color:#F0A04B;box-shadow:0 0 0 6px rgba(240,160,75,.2)}
+.st.done{opacity:1}
+.st b{display:block;font-size:28px;color:#14213D;margin-bottom:6px}
+.st code{font:600 22px ui-monospace,Menlo,monospace;color:#B5561B}
+.st p{margin:8px 0 0;font-size:22px;line-height:1.35;color:#4A5568}
+</style>
+<div class="term"><div class="tb"><i style="background:#E8833A"></i><i style="background:#F0C04B"></i><i style="background:#2E8B57"></i><span>Terminal</span></div><div class="out" id="o"></div></div>
+<div class="side">
+<div class="st" id="s0"><b>1. Nest CLI’ni o‘rnatish</b><code>npm i -g @nestjs/cli</code><p>Bir marta o‘rnatiladi — “nest” buyrug‘i paydo bo‘ladi</p></div>
+<div class="st" id="s1"><b>2. Yangi loyiha</b><code>nest new cars-api</code><p>Papka, fayllar va paketlarni o‘zi tayyorlaydi (npm va CommonJS’ni tanlang)</p></div>
+<div class="st" id="s2"><b>3. Ishga tushirish</b><code>npm run start:dev</code><p>Faylni saqlasangiz — server o‘zi qayta yonadi</p></div>
+</div>
+<script>
+const o=document.getElementById('o'),S=[0,1,2].map(i=>document.getElementById('s'+i)),W=ms=>new Promise(r=>setTimeout(r,ms));
+const STEPS=[
+{cmd:'npm i -g @nestjs/cli',out:['<span class="m">added 271 packages in 18s</span>']},
+{cmd:'nest new cars-api',out:['<span class="g">✔</span> Which package manager? <span class="p">npm</span>','<span class="g">CREATE</span> cars-api/src/main.ts','<span class="g">CREATE</span> cars-api/src/app.module.ts','<span class="g">CREATE</span> cars-api/src/app.controller.ts','<span class="g">CREATE</span> cars-api/src/app.service.ts','<span class="g">🚀 Successfully created project cars-api</span>']},
+{cmd:'cd cars-api && npm run start:dev',out:['<span class="m">[Nest] LOG</span> Starting Nest application...','<span class="m">[Nest] LOG</span> Mapped {/, GET} route','<span class="m">[Nest] LOG</span> <span class="g">Nest application successfully started</span>']}];
+(async()=>{for(;;){o.innerHTML='';S.forEach(s=>s.className='st');let html='';
+for(let i=0;i<STEPS.length;i++){S[i].classList.add('on');const c=STEPS[i].cmd;
+for(let k=0;k<=c.length;k++){o.innerHTML=html+'<span class="p">$ </span><span class="c">'+c.slice(0,k)+'</span><span class="cur"></span>';await W(55)}
+html+='<span class="p">$ </span><span class="c">'+c+'</span>\n';o.innerHTML=html;await W(500);
+for(const l of STEPS[i].out){html+=l+'\n';o.innerHTML=html;await W(380)}
+S[i].classList.remove('on');S[i].classList.add('done');await W(900)}
+o.innerHTML=html+'<span class="p">$ </span><span class="cur"></span>';await W(5000)}})();
+</script></x-embed>
+<p class="foot">Brauzerda <b>localhost:3000</b> oching — “Hello World!” chiqsa, hammasi to‘g‘ri.</p>
+<aside>Terminal animatsiyasida uchta buyruq ketma-ket yoziladi, o‘ngda esa hozir qaysi qadam ekanligi yonadi. Darsda buni haqiqiy terminalda birga bajaring. Tipik muammolar: 1) Windows’da “nest is not recognized” — terminalni yopib qayta oching yoki npx @nestjs/cli new cars-api deb yozing; 2) paket menejerini so‘raganda strelka bilan npm’ni tanlang; NestJS 12 CLI CommonJS yoki ESM deb so‘raydi — CommonJS’ni tanlang, darsdagi kod va keyingi Jest darslari shunga mos; 3) Node versiyasi 22 dan past bo‘lsa — node -v bilan tekshiring. Hamma Hello World’ni ko‘rmaguncha keyingi slaydga o‘tmang.</aside>
+</section>

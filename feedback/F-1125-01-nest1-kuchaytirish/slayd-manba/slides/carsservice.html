@@ -1,0 +1,29 @@
+<section id="carsservice" data-transition="fade">
+<p class="lbl">KOD · src/cars/cars.service.ts</p>
+<h2>CarsService: mashinalar ro‘yxati</h2>
+<x-embed style="position:absolute;left:128px;top:236px;width:1664px;height:620px"><style>
+body{margin:0;background:transparent;overflow:hidden;font-family:ui-monospace,Menlo,Consolas,monospace}
+.L{position:absolute;left:0;top:0;width:1000px;height:620px;box-sizing:border-box;border-radius:24px;background:#0F1B2D;padding:18px 24px}
+.ln{display:flex;font-size:20px;line-height:1.4;color:#4A5C7A;padding:2px 14px;border-radius:10px;transition:background .3s,color .3s;white-space:pre;min-height:0}
+.ln .no{width:44px;color:#33445F;flex:none}
+.ln.on{background:#1F3357;color:#E6EDF7}.ln.on .k{color:#F0A04B}.ln.on .s{color:#8FD19E}.ln.on .f{color:#7FB2FF}
+.R{position:absolute;left:1040px;top:0;width:624px;height:620px;box-sizing:border-box;border-radius:24px;background:#FDFCF9;border:1px solid #E2E0D8;padding:36px;font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;display:flex;flex-direction:column;gap:18px}
+.R small{font-size:24px;font-weight:700;letter-spacing:1px;color:#B5561B}
+.R b{font-size:36px;line-height:1.25;color:#14213D;animation:fi .4s both}
+.R p{margin:0;font-size:28px;line-height:1.45;color:#4A5568;animation:fi .4s .1s both}
+@keyframes fi{from{opacity:0;transform:translateY(8px)}}
+.res{margin-top:auto;background:#0F1B2D;border-radius:16px;padding:16px 20px}.res small{color:#8FD19E}.res pre{margin:8px 0 0;font:500 22px/1.45 ui-monospace,Menlo,monospace;color:#E6EDF7;white-space:pre-wrap}.pg{display:flex;gap:8px}.pg i{width:40px;height:10px;border-radius:5px;background:#E2E0D8}.pg i.on{background:#2F5FD0}
+</style>
+<div class="L" id="L"></div><div class="R"><small id="sm"></small><b id="b"></b><p id="p"></p><div class="res"><small>NATIJA</small><pre id="r"></pre></div><div class="pg" id="pg"></div></div>
+<script>
+const CODE=["<span class=\"f\">@Injectable</span>()", "<span class=\"k\">export</span> <span class=\"k\">class</span> CarsService {", "  <span class=\"k\">private</span> cars = [", "    { id: 1, model: <span class=\"s\">'Cobalt'</span>, year: 2022 },", "    { id: 2, model: <span class=\"s\">'Malibu'</span>, year: 2023 },", "  ];", "  <span class=\"f\">findAll</span>() {", "    <span class=\"k\">return</span> <span class=\"k\">this</span>.cars;", "  }", "  <span class=\"f\">findOne</span>(id: number) {", "    <span class=\"k\">return</span> <span class=\"k\">this</span>.cars.<span class=\"k\">find</span>((c) =&gt; c.id === id);", "  }", "  <span class=\"f\">create</span>(car) {", "    <span class=\"k\">const</span> yangi = { id: <span class=\"k\">this</span>.cars.length + 1, ...car };", "    <span class=\"k\">this</span>.cars.<span class=\"f\">push</span>(yangi);", "    <span class=\"k\">return</span> yangi;", "  }", "}"];
+const ST=[[[2, 3, 4, 5], "Hozircha ma’lumot — oddiy massiv", "Bazani keyingi darslarda ulaymiz. Server qayta yonsa, massiv boshidan boshlanadi.", "2 ta mashina xotirada"], [[6, 7, 8], "findAll — hammasini qaytaradi", "GET /cars uchun.", "[{ \"id\":1, \"model\":\"Cobalt\" },\n { \"id\":2, \"model\":\"Malibu\" }]"], [[9, 10, 11], "findOne — id bo‘yicha bittasini topadi", "GET /cars/2 uchun. Topilmasa — undefined.", "findOne(2) →\n{ \"id\":2, \"model\":\"Malibu\" }"], [[12, 13, 14, 15, 16], "create — yangisini qo‘shadi", "POST /cars uchun. Yangi id = uzunlik + 1.", "create({model:\"Tracker\"}) →\n{ \"id\":3, \"model\":\"Tracker\" }"]];
+const L=document.getElementById('L');L.innerHTML=CODE.map((c,i)=>'<div class="ln" id="l'+i+'"><span class="no">'+(i+1)+'</span><span>'+c+'</span></div>').join('');
+const pg=document.getElementById('pg');pg.innerHTML=ST.map(()=>'<i></i>').join('');let k=0;
+function go(){const s=ST[k];CODE.forEach((_,i)=>document.getElementById('l'+i).classList.toggle('on',s[0].includes(i)));
+document.getElementById('sm').textContent=(k+1)+' / '+ST.length;const b=document.getElementById('b'),p=document.getElementById('p');b.textContent=s[1];p.textContent=s[2];document.getElementById('r').textContent=s[3]||'';b.style.animation='none';p.style.animation='none';b.offsetHeight;b.style.animation='';p.style.animation='';
+[...pg.children].forEach((d,j)=>d.classList.toggle('on',j<=k));k=(k+1)%ST.length}
+go();setInterval(go,5500);
+</script></x-embed>
+<aside>Service’da uchta metod: findAll, findOne, create. Bu faylda HTTP haqida hech narsa yo‘q — Service faqat ma’lumot bilan ishlaydi. Shuning uchun keyin massiv o‘rniga PostgreSQL ulasak, Controller’ga tegmaymiz — faqat Service o‘zgaradi.</aside>
+</section>

@@ -1,0 +1,14 @@
+./eslint.config.mjs
+./nest-cli.json
+./package.json
+./.prettierrc
+./README.md
+./src/app.controller.spec.ts
+./src/app.controller.ts
+./src/app.module.ts
+./src/app.service.ts
+./src/main.ts
+./test/app.e2e-spec.ts
+./test/jest-e2e.json
+./tsconfig.build.json
+./tsconfig.json

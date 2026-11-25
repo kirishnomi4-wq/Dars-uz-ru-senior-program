@@ -1,0 +1,22 @@
+### GET /cars/abc 
+HTTP/1.1 400 Bad Request
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 99
+ETag: W/"63-fbYqGzam3W3FhpKYGVugOXQk+/M"
+Date: Wed, 25 Nov 2026 10:36:11 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+{"message":"Validation failed (numeric string is expected)","error":"Bad Request","statusCode":400}
+### GET /cars/1 
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 57
+ETag: W/"39-zppUKf2xL18rpnHJxNo4w26+B3Y"
+Date: Wed, 25 Nov 2026 10:36:11 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+{"id":1,"brand":"Chevrolet","model":"Malibu","price":250}

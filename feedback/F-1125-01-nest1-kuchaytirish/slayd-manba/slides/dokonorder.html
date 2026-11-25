@@ -1,0 +1,29 @@
+<section id="dokonorder" data-transition="fade">
+<p class="lbl">NAMUNA LOYIHA · KOD</p>
+<h2>Buyurtma: ombordagi qoldiqni tekshiramiz</h2>
+<x-embed style="position:absolute;left:128px;top:236px;width:1664px;height:620px"><style>
+body{margin:0;background:transparent;overflow:hidden;font-family:ui-monospace,Menlo,Consolas,monospace}
+.L{position:absolute;left:0;top:0;width:1060px;height:620px;box-sizing:border-box;border-radius:24px;background:#0F1B2D;padding:14px 20px}
+.ln{display:flex;font-size:18px;line-height:1.4;color:#4A5C7A;padding:2px 14px;border-radius:10px;transition:background .3s,color .3s;white-space:pre;min-height:0}
+.ln .no{width:44px;color:#33445F;flex:none}
+.ln.on{background:#1F3357;color:#E6EDF7}.ln.on .k{color:#F0A04B}.ln.on .s{color:#8FD19E}.ln.on .f{color:#7FB2FF}
+.R{position:absolute;left:1090px;top:0;width:574px;height:620px;box-sizing:border-box;border-radius:24px;background:#FDFCF9;border:1px solid #E2E0D8;padding:36px;font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;display:flex;flex-direction:column;gap:18px}
+.R small{font-size:24px;font-weight:700;letter-spacing:1px;color:#B5561B}
+.R b{font-size:36px;line-height:1.25;color:#14213D;animation:fi .4s both}
+.R p{margin:0;font-size:28px;line-height:1.45;color:#4A5568;animation:fi .4s .1s both}
+@keyframes fi{from{opacity:0;transform:translateY(8px)}}
+.res{margin-top:auto;background:#0F1B2D;border-radius:16px;padding:16px 20px}.res small{color:#8FD19E}.res pre{margin:8px 0 0;font:500 22px/1.45 ui-monospace,Menlo,monospace;color:#E6EDF7;white-space:pre-wrap}.pg{display:flex;gap:8px}.pg i{width:40px;height:10px;border-radius:5px;background:#E2E0D8}.pg i.on{background:#2F5FD0}
+</style>
+<div class="L" id="L"></div><div class="R"><small id="sm"></small><b id="b"></b><p id="p"></p><div class="res"><small>NATIJA</small><pre id="r"></pre></div><div class="pg" id="pg"></div></div>
+<script>
+const CODE=["// products.service.ts", "async <span class=\"f\">decreaseStock</span>(id: number, qty: number) {", "  <span class=\"k\">const</span> p = await <span class=\"k\">this</span>.<span class=\"f\">findOne</span>(id);", "  if (p.stock &lt; qty)", "    <span class=\"k\">throw</span> <span class=\"k\">new</span> <span class=\"f\">BadRequestException</span>(`Omborda faqat ${p.stock} ta qoldi`);", "  p.stock -= qty;", "  <span class=\"k\">return</span> <span class=\"k\">this</span>.repo.<span class=\"f\">save</span>(p);", "}", "// orders.service.ts", "async <span class=\"f\">create</span>(userId: number, dto: CreateOrderDto) {", "  <span class=\"k\">const</span> p = await <span class=\"k\">this</span>.products.<span class=\"f\">decreaseStock</span>(dto.productId, dto.quantity);", "  <span class=\"k\">const</span> total = p.price * dto.quantity;", "  <span class=\"k\">return</span> <span class=\"k\">this</span>.repo.<span class=\"f\">save</span>({ userId, productId: p.id, quantity: dto.quantity, total });", "}", "// orders.controller.ts", "<span class=\"f\">@UseGuards</span>(AuthGuard)", "<span class=\"f\">@Post</span>()", "<span class=\"f\">create</span>(<span class=\"f\">@Req</span>() req, <span class=\"f\">@Body</span>() dto: CreateOrderDto) {", "  <span class=\"k\">return</span> <span class=\"k\">this</span>.orders.<span class=\"f\">create</span>(req.user.sub, dto); }"];
+const ST=[[[1, 2, 3, 4, 5, 6, 7], "Qoldiq yetmasa — rad etamiz", "Bu mantiq ProductsService’da: mahsulot haqidagi qoidalar bir joyda.", "400 { \"message\":\n \"Omborda faqat 3 ta qoldi\" }"], [[9, 10, 11, 12, 13], "Bir Service boshqasini chaqiradi", "OrdersModule ProductsModule’ni import qiladi, ProductsModule esa ProductsService’ni exports qiladi.", "stock: 5 → 3\ntotal: 120000 × 2 = 240000"], [[15, 16, 17, 18], "Faqat kirgan foydalanuvchi buyurtma beradi", "Guard tokendan id’ni oladi, Controller uni Service’ga beradi.", "201 { \"userId\": 1, \"productId\": 1,\n \"quantity\": 2, \"total\": 240000,\n \"id\": 1 }"]];
+const L=document.getElementById('L');L.innerHTML=CODE.map((c,i)=>'<div class="ln" id="l'+i+'"><span class="no">'+(i+1)+'</span><span>'+c+'</span></div>').join('');
+const pg=document.getElementById('pg');pg.innerHTML=ST.map(()=>'<i></i>').join('');let k=0;
+function go(){const s=ST[k];CODE.forEach((_,i)=>document.getElementById('l'+i).classList.toggle('on',s[0].includes(i)));
+document.getElementById('sm').textContent=(k+1)+' / '+ST.length;const b=document.getElementById('b'),p=document.getElementById('p');b.textContent=s[1];p.textContent=s[2];document.getElementById('r').textContent=s[3]||'';b.style.animation='none';p.style.animation='none';b.offsetHeight;b.style.animation='';p.style.animation='';
+[...pg.children].forEach((d,j)=>d.classList.toggle('on',j<=k));k=(k+1)%ST.length}
+go();setInterval(go,5500);
+</script></x-embed>
+<aside>Loyihaning eng “aqlli” joyi. Ikki muhim narsa: 1) modullar bir-biridan foydalanadi — buning uchun exports va imports kerak; 2) biznes qoidasi (qoldiq yetmasa sotmaslik) Service’da yoziladi, Controller’da emas. Haqiqiy do‘konda qoldiqni kamaytirish va buyurtmani yozish bitta tranzaksiyada qilinadi — bu keyingi mavzu.</aside>
+</section>

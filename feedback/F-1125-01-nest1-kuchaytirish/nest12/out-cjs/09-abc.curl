@@ -1,0 +1,11 @@
+### GET /cars/abc 
+HTTP/1.1 404 Not Found
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 76
+ETag: W/"4c-mmM6hG0a6xk3uzUcuXv4HRYh1tY"
+Date: Wed, 25 Nov 2026 10:35:40 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+{"message":"Car with id NaN not found","error":"Not Found","statusCode":404}
