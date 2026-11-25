@@ -1,17 +1,23 @@
 # F-1125-01 · Mentor Nest-1 darsini kuchaytirish — DAVOM
 
-## ▶▶▶ YANGI SEANS SHU YERDAN (25.11 20:40, `date`)
+## ▶▶▶ YANGI SEANS SHU YERDAN (26.11 00:25, `date`)
 
-**Bajarildi va saytda** (https://coddycamp-mentor-kurs.vercel.app, deploy mpb1l8y5h; push YO'Q):
+**26.11 00:23 — avtopilot (foydalanuvchi: «avtopilotda ishla man 1-2 soatda kelaman»):** qaror sahifasi https://claude.ai/artifact/8vFUwfw1ZNfqdneYwvU3tX — tavsiyalar bo'yicha:
+- 1-savol «Kolonka» — **A, o'quvchi darsiga tegilmadi**.
+- 2-savol — **A, bajarildi va saytda** (commit 70ccdff3, deploy **2mhf5ic7y**): TgPg «(11, 14-ekran)»; WS-1 «10-ekran» + «3, 5, 6», WS-2 «9-ekran» + «3, 5, 7», Webhook «8-ekran» (o'quvchi darsi hisoblagichi). Qonun **M58** + tekshiruv 42. Jonli: 8 holat UZ/RU ✓, mp3 200/206.
+- **Kutilmoqda:** foydalanuvchi ko'rigi (to'rt dars AI bloki) · **3-savol** — AI bloklari: CI/CD-1 «npm install» va WS-2 «Sinadim» savollari AI qilmagan ishni yuklaydi, Jest-1 satri soddalashtirilgan (tavsiya A — uch savolni haqiqatga moslash; matn sahifada). «Ikki xil topshiriq» 6 darsda yo'q — AI qayta yurgizish = agentlar, alohida ruxsat. Hammasi JURNAL «26.11 00:22».
+- Push — foydalanuvchining o'zi (commitlar: … b35a47dc · 8028780d · 2f06fcba · 70ccdff3 + hujjat).
+
+**25.11 holati — bajarildi va saytda** (https://coddycamp-mentor-kurs.vercel.app, deploy mpb1l8y5h; push YO'Q):
 Nest-1 — Nest 12 + kirish matni + AI bloki (31–32-ekran) · Nest-2 — AI bloki (24–25) · PG-1 — AI bloki (24–25) · PG-2 — AI bloki (28–29).
 Commitlar: 8df0b1e2 · c35fbe1c · c586da4e · 56223a09 · b35a47dc · 8028780d (+ shu holat commiti). Qonunlar: M54–M57 (`MENTOR_DARS_ETALON.md`).
 AI sinovlari (haqiqiy, Haiku ×2): `ai-nest1/`, `ai-nest2/`, `ai-pg1/`, `ai-pg2/` — har birida `00-promptlar.md`, tekshiruv skripti, `XULOSA.md`.
 
 **Qolgan ishlar (tartib bilan):**
 1. **Foydalanuvchi ko'rigi** — to'rt darsning AI bloki. Fidbek kelsa: B retsepti (tashxis avval, F-ID, tasdiqdan keyin tuzatish).
-2. **Qaror kutilmoqda — o'quvchi darsi m4-06 dagi «Kolonka»** (`src/4-Modull/PostgresCrudLesson.jsx` 1034–1053): haqiqiy AI «Kolonkani o'chir»ni `DROP COLUMN` deb tushundi. Variantlar: mahsulot nomini almashtirish (o'quvchi darsi → LMS qayta yuklash, G retsepti) yoki qoldirish (mentor darsida ogohlantirish bor). O'quvchi darsiga hozircha tegilmagan.
-3. **M57 supurish — qolgan 8 mentor darsi** (Jest-1, Jest-2, CI/CD-1, CI/CD-2, Telegraf+PG, WebSocket-1, WebSocket-2, Webhook): o'z-sinovdagi `s` («N-ekran» tugmasi, `onGoto(s - 1)`) va matn/ovoz/RU dagi «N-ekran», «N-inchi ekranda», «на N-м экране» havolalari joriy `SCREENS` tartibiga mosmi. Bugun faqat ekran qo'shilgan 4 dars tekshirildi; bu 8 darsda avvalgi ekran qo'shish/olishlar tekshirilmagan.
-4. **Ixtiyoriy audit** — shu 8 darsdagi mavjud AI bloklari M56 ga mosmi (haqiqiy AI, haqiqiy server/baza natijasi, «satrni bosing» AI'ning haqiqiy satri bilan). Faqat hisobot → [GATE] → foydalanuvchi qarori; agent kerak bo'lsa — avval ruxsat.
+2. ✅ 26.11 (avtopilot, A — tegilmadi). **O'quvchi darsi m4-06 dagi «Kolonka»** (`src/4-Modull/PostgresCrudLesson.jsx` 1034–1053): haqiqiy AI «Kolonkani o'chir»ni `DROP COLUMN` deb tushundi. Variantlar: mahsulot nomini almashtirish (o'quvchi darsi → LMS qayta yuklash, G retsepti) yoki qoldirish (mentor darsida ogohlantirish bor). O'quvchi darsiga hozircha tegilmagan.
+3. ✅ 26.11 (70ccdff3, 2mhf5ic7y; yangi sinf → M58). **M57 supurish — qolgan 8 mentor darsi** (Jest-1, Jest-2, CI/CD-1, CI/CD-2, Telegraf+PG, WebSocket-1, WebSocket-2, Webhook): o'z-sinovdagi `s` («N-ekran» tugmasi, `onGoto(s - 1)`) va matn/ovoz/RU dagi «N-ekran», «N-inchi ekranda», «на N-м экране» havolalari joriy `SCREENS` tartibiga mosmi. Bugun faqat ekran qo'shilgan 4 dars tekshirildi; bu 8 darsda avvalgi ekran qo'shish/olishlar tekshirilmagan.
+4. ✅ hisobot 26.11 (qaror — sahifadagi 3-savol). **Ixtiyoriy audit** — shu 8 darsdagi mavjud AI bloklari M56 ga mosmi (haqiqiy AI, haqiqiy server/baza natijasi, «satrni bosing» AI'ning haqiqiy satri bilan). Faqat hisobot → [GATE] → foydalanuvchi qarori; agent kerak bo'lsa — avval ruxsat.
 5. **Push** — foydalanuvchining o'zi.
 
 Ma'lum, oldindan bor (tegilmagan): Nest-1 41-ekran 1600 da 8 px; Nest-2 va PG-2 yakuni 1280 da 7–8 px (eski versiyada ham, jonli o'lchangan).
