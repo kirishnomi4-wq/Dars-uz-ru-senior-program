@@ -1,0 +1,157 @@
+ M src/app.module.ts
+?? src/users/
+
+diff --git a/src/app.module.ts b/src/app.module.ts
+index 1324240..594f193 100644
+--- a/src/app.module.ts
++++ b/src/app.module.ts
+@@ -2,9 +2,10 @@ import { Module } from '@nestjs/common';
+ import { AppController } from './app.controller';
+ import { AppService } from './app.service';
+ import { CarsModule } from './cars/cars.module';
++import { UsersModule } from './users/users.module';
+ 
+ @Module({
+-  imports: [CarsModule],
++  imports: [CarsModule, UsersModule],
+   controllers: [AppController],
+   providers: [AppService],
+ })
+=== yangi: src/users/users.controller.ts
+     1	import { Body, Controller, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
+     2	import type { CreateUserDto } from './users.service';
+     3	import { UsersService } from './users.service';
+     4	
+     5	@Controller('users')
+     6	export class UsersController {
+     7	  constructor(private readonly usersService: UsersService) {}
+     8	
+     9	  @Get()
+    10	  findAll() {
+    11	    return this.usersService.findAll();
+    12	  }
+    13	
+    14	  @Get(':id')
+    15	  findOne(@Param('id', ParseIntPipe) id: number) {
+    16	    return this.usersService.findOne(id);
+    17	  }
+    18	
+    19	  @Post()
+    20	  create(@Body() body: CreateUserDto) {
+    21	    return this.usersService.create(body);
+    22	  }
+    23	}
+=== yangi: src/users/users.module.ts
+     1	import { Module } from '@nestjs/common';
+     2	import { UsersController } from './users.controller';
+     3	import { UsersService } from './users.service';
+     4	
+     5	@Module({
+     6	  controllers: [UsersController],
+     7	  providers: [UsersService],
+     8	})
+     9	export class UsersModule {}
+=== yangi: src/users/users.service.spec.ts
+     1	import { BadRequestException } from '@nestjs/common';
+     2	import { UsersService } from './users.service';
+     3	
+     4	describe('UsersService', () => {
+     5	  let service: UsersService;
+     6	
+     7	  beforeEach(() => {
+     8	    service = new UsersService();
+     9	  });
+    10	
+    11	  it('returns all users', () => {
+    12	    expect(service.findAll()).toHaveLength(2);
+    13	  });
+    14	
+    15	  it('finds a user by id', () => {
+    16	    expect(service.findOne(1).name).toBe('Ali Valiyev');
+    17	  });
+    18	
+    19	  it('adds a user aged 18 or older', () => {
+    20	    const user = service.create({ name: 'Bobur', email: 'bobur@example.com', age: 18 });
+    21	    expect(user.id).toBe(3);
+    22	    expect(service.findOne(3)).toEqual(user);
+    23	  });
+    24	
+    25	  it('rejects a user younger than 18', () => {
+    26	    expect(() =>
+    27	      service.create({ name: 'Sardor', email: 'sardor@example.com', age: 17 }),
+    28	    ).toThrow(BadRequestException);
+    29	    expect(service.findAll()).toHaveLength(2);
+    30	  });
+    31	
+    32	  it('rejects an invalid email', () => {
+    33	    expect(() =>
+    34	      service.create({ name: 'Sardor', email: 'not-an-email', age: 20 }),
+    35	    ).toThrow(BadRequestException);
+    36	  });
+    37	});
+=== yangi: src/users/users.service.ts
+     1	import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+     2	
+     3	export interface User {
+     4	  id: number;
+     5	  name: string;
+     6	  email: string;
+     7	  age: number;
+     8	}
+     9	
+    10	export interface CreateUserDto {
+    11	  name: string;
+    12	  email: string;
+    13	  age: number;
+    14	}
+    15	
+    16	const MIN_AGE = 18;
+    17	const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    18	
+    19	@Injectable()
+    20	export class UsersService {
+    21	  private users: User[] = [
+    22	    { id: 1, name: 'Ali Valiyev', email: 'ali@example.com', age: 25 },
+    23	    { id: 2, name: 'Malika Karimova', email: 'malika@example.com', age: 30 },
+    24	  ];
+    25	
+    26	  findAll(): User[] {
+    27	    return this.users;
+    28	  }
+    29	
+    30	  findOne(id: number): User {
+    31	    const user = this.users.find((u) => u.id === id);
+    32	    if (!user) {
+    33	      throw new NotFoundException(`User with id ${id} not found`);
+    34	    }
+    35	    return user;
+    36	  }
+    37	
+    38	  create(data: CreateUserDto): User {
+    39	    const name = typeof data?.name === 'string' ? data.name.trim() : '';
+    40	    const email = typeof data?.email === 'string' ? data.email.trim() : '';
+    41	    const age = data?.age;
+    42	
+    43	    if (!name) {
+    44	      throw new BadRequestException('name is required');
+    45	    }
+    46	    if (!EMAIL_PATTERN.test(email)) {
+    47	      throw new BadRequestException('email is invalid');
+    48	    }
+    49	    if (typeof age !== 'number' || !Number.isInteger(age)) {
+    50	      throw new BadRequestException('age must be an integer');
+    51	    }
+    52	    if (age < MIN_AGE) {
+    53	      throw new BadRequestException(`age must be at least ${MIN_AGE}`);
+    54	    }
+    55	
+    56	    const user: User = {
+    57	      id: this.users.length + 1,
+    58	      name,
+    59	      email,
+    60	      age,
+    61	    };
+    62	    this.users.push(user);
+    63	    return user;
+    64	  }
+    65	}

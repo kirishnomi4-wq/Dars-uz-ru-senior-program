@@ -4687,6 +4687,16 @@ Sinf-supurish (19.10): ta'rif-qatori faqat 12-M da topildi (13 qator, 5 dars) �
 **Qoida (MENTOR_DARS_ETALON M49):** dasturchi belgini o'z nomi bilan aytadi (`\` — backslash, `/` — slash); tarjima-ta'rif («teskari chiziqcha») mentorni kuldiradi. Raqamli kod ovozga so'z bilan ketadi.
 🔧 Tekshiruv: `grep -rn "teskari chiziq" src/mentor-kurs/*/parts feedback/F-1029-02-mentor-kurs/*-v2.md` = 0.
 
+## §MENTOR-VIDEO — mentor Express va Mongo'ni videodarslardan o'rgangan: shaxsiy tajriba taxmin qilinmaydi (F-1125-01, 25.11; foydalanuvchi: «Mentor expressni videodan organgan boladi … u darsni hechkim otib bermaydi»)
+
+- ❌ «Siz Express bilan server yozgansiz: route ochgansiz, so'rovni qabul qilgansiz, javob qaytargansiz.»  ✅ «Siz Express'ni videodarslarda ko'rgansiz: route qanday ochilishini, so'rov qanday qabul qilinishini va javob qanday qaytishini bilasiz.»
+- ❌ «Ikki kishi bir faylda ishlasa, har kuni to'qnashuv. Siz buni his qilgansiz.»  ✅ «Ikki kishi bir faylda ishlasa, biri ikkinchisining o'zgarishini buzib qo'yadi. Videodarslardagi kichik loyihada bu sezilmaydi, haqiqiy jamoada esa har kuni bo'ladi.»
+- ❌ (o'tgan zamon — mentor shunday ishlaganini taxmin qiladi) «Express'da buni qo'lda … deb yozardingiz.» · «Express'da buni o'zingiz qilardingiz»  ✅ (hozirgi zamon — usul haqida) «Express'da buni qo'lda yozasiz: …» · «Express'da bu ishni o'zingiz qilasiz»
+- ❌ «Siz MongoDB bilan, Mongoose orqali ishlagansiz.» · «Siz Mongo'da blog yozgansiz»  ✅ «Siz MongoDB va Mongoose'ni videodarslarda ko'rgansiz.» · «Mongo'dagi oddiy blog misoli»
+- ✅ To'g'ri qoladi: «Jest ikkinchi darsidan eslaysiz» · «Demak, shu amaliyotdan keyin … o'zingiz ko'rgansiz» — kursning oldingi darsiga yoki shu darsdagi amaliyotga ishora (mentor kursni tartib bilan, yolg'iz o'tadi).
+**Qoida (MENTOR_DARS_ETALON M55):** «yozgansiz · ishlagansiz · his qilgansiz · -ardingiz» faqat kursning o'zida bajarilgan ishga ishora qilsa yoziladi; kursdan oldingi bilim — «videodarslarda ko'rgansiz».
+🔧 Tekshiruv: `grep -rnE "his qilgan|ardingiz\b|Express bilan server yozgan|blog yozgansiz|bilan ishlagansiz" src/mentor-kurs/parts/0[3-7]*.jsx src/mentor-kurs/*/parts/03-matn.gen.jsx` = 0.
+
 ## §BIR-NARSA-BIR-NOM — misol-ma'lumotda bitta narsaga ikki nom bo'lmaydi (F-1109-04 · 05, 09.11; foydalanuvchi PG-2 kirishini va jadvalini ko'rib: «sichqoncha, mishka bo'pti… ba'zi joyda mishka, ba'zi joyda sichqoncha turmasin, hamma joyda sichqoncha»)
 
 - ❌ «Misolimiz kichik do'kon: klaviatura, sichqoncha, quloqchin, mishka.»  ✅ «Misolimiz kichik do'kon: klaviatura, sichqoncha, quloqchin, kolonka.»

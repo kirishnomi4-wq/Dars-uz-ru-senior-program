@@ -8,12 +8,12 @@ const MDT = {
   "type": "Lesson",
   "kicker": "Kirish",
   "eyebrow": "Mentor kursi · PostgreSQL",
-  "title": "Siz Mongo'ni bilasiz. Bugun o'sha blog PostgreSQL'da.",
+  "title": "Siz Mongo'ni bilasiz. Bugun blog misoli PostgreSQL'da.",
   "seg": [
    [
     "a",
-    "Siz Mongo'da blog yozgansiz — bugun <b>xuddi shu blogni PostgreSQL'da</b> quramiz",
-    "Assalomu alaykum. Siz MongoDB bilan, Mongoose orqali ishlagansiz: modellar, ref, populate. AI Startup kursidagi o'quvchilar PostgreSQL bilan ishlaydi. Bugun siz bilgan narsadan boshlaymiz: Mongo'dagi oddiy blogni olamiz va uni PostgreSQL'da qaytadan quramiz."
+    "Mongo'dagi oddiy blog misoli — bugun <b>xuddi shu blogni PostgreSQL'da</b> quramiz",
+    "Assalomu alaykum. Siz MongoDB va Mongoose'ni videodarslarda ko'rgansiz: modellar, ref, populate. AI Startup kursidagi o'quvchilar PostgreSQL bilan ishlaydi. Bugun siz bilgan narsadan boshlaymiz: Mongo'dagi oddiy blogni olamiz va uni PostgreSQL'da qaytadan quramiz."
    ],
    [
     "b",

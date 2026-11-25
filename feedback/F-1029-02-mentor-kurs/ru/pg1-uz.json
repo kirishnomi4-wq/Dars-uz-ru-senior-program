@@ -1,9 +1,9 @@
 {
  "1.kicker": "Kirish",
  "1.eyebrow": "Mentor kursi · PostgreSQL",
- "1.title": "Siz Mongo'ni bilasiz. Bugun o'sha blog PostgreSQL'da.",
- "1.seg.a.key": "Siz Mongo'da blog yozgansiz — bugun <b>xuddi shu blogni PostgreSQL'da</b> quramiz",
- "1.seg.a.voice": "Assalomu alaykum. Siz MongoDB bilan, Mongoose orqali ishlagansiz: modellar, ref, populate. AI Startup kursidagi o'quvchilar PostgreSQL bilan ishlaydi. Bugun siz bilgan narsadan boshlaymiz: Mongo'dagi oddiy blogni olamiz va uni PostgreSQL'da qaytadan quramiz.",
+ "1.title": "Siz Mongo'ni bilasiz. Bugun blog misoli PostgreSQL'da.",
+ "1.seg.a.key": "Mongo'dagi oddiy blog misoli — bugun <b>xuddi shu blogni PostgreSQL'da</b> quramiz",
+ "1.seg.a.voice": "Assalomu alaykum. Siz MongoDB va Mongoose'ni videodarslarda ko'rgansiz: modellar, ref, populate. AI Startup kursidagi o'quvchilar PostgreSQL bilan ishlaydi. Bugun siz bilgan narsadan boshlaymiz: Mongo'dagi oddiy blogni olamiz va uni PostgreSQL'da qaytadan quramiz.",
  "1.seg.b.key": "Dars oxirida PostgreSQL sizda ishlaydi, <b>ikki jadval va JOIN</b> o'z qo'lingizda",
  "1.seg.b.voice": "Dars oxirida PostgreSQL kompyuteringizda o'rnatilgan bo'ladi. Ikki bog'langan jadvalni o'zingiz yaratasiz, baza qaytargan xatolarni o'qiysiz va JOIN bilan ikki jadvalni bitta javobda ko'rasiz.",
  "1.seg.c.key": "O'quvchi darsidagi «oxirgi telefon»ni ikki oynada <b>o'z ko'zingiz bilan</b> ko'rasiz",

@@ -1,0 +1,252 @@
+<title>Mentor darslari: kirish va AI bloki</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Sahifa: bitta ustunli qaror varag'i — har band: joy · hozir/taklif · tanlov. Pastda bitta «Javobni nusxalash». */
+:root {
+  --bg: #F4F5F7; --paper: #FFFFFF; --ink: #14171F; --ink2: #4A5163; --ink3: #8A90A2; --line: #E1E4EA;
+  --accent: #D9481C; --accent-soft: #FCEBE4; --ok: #1F8A5B; --ok-soft: #E3F4EC; --no: #B4232C; --no-soft: #FBE7E8;
+  --old: #FBEDEE; --old-ink: #8E2A32; --new: #E8F5EE; --new-ink: #19663F; --code: #F0F1F4;
+  --sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #12141A; --paper: #1A1D25; --ink: #ECEEF3; --ink2: #B3B9C8; --ink3: #7E8597; --line: #2B303C;
+  --accent: #FF7A4D; --accent-soft: #3A2219; --ok: #4CC38A; --ok-soft: #173326; --no: #F07178; --no-soft: #3A1C20;
+  --old: #3A1E22; --old-ink: #F3B3B8; --new: #17322A; --new-ink: #A6E3C4; --code: #232733; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #12141A; --paper: #1A1D25; --ink: #ECEEF3; --ink2: #B3B9C8; --ink3: #7E8597; --line: #2B303C;
+  --accent: #FF7A4D; --accent-soft: #3A2219; --ok: #4CC38A; --ok-soft: #173326; --no: #F07178; --no-soft: #3A1C20;
+  --old: #3A1E22; --old-ink: #F3B3B8; --new: #17322A; --new-ink: #A6E3C4; --code: #232733; color-scheme: dark }
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 64px }
+.wrap { max-width: 980px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px }
+h1 { font-size: clamp(24px, 3.2vw, 32px); line-height: 1.2; margin: 0; text-wrap: balance; letter-spacing: -0.01em }
+h2 { font-size: 21px; margin: 0; text-wrap: balance }
+h3 { font-size: 17px; margin: 0 }
+p { margin: 0 }
+code, .mono { font-family: var(--mono); font-size: 0.86em; background: var(--code); padding: 1px 5px; border-radius: 4px }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent) }
+.lead { color: var(--ink2); max-width: 70ch }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px }
+.fact { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; min-width: 0 }
+.fact b { font-size: 15px }
+.fact span { color: var(--ink2); font-size: 14px }
+section { display: flex; flex-direction: column; gap: 16px }
+.item { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; display: flex; flex-direction: column; gap: 14px; min-width: 0 }
+.item.ok { border-color: var(--ok) } .item.no { border-color: var(--no) }
+.ihead { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px }
+.tag { font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--paper); background: var(--ink); border-radius: 5px; padding: 2px 7px }
+.where { font-family: var(--mono); font-size: 12.5px; color: var(--ink3) }
+.why { color: var(--ink2); font-size: 15px; max-width: 75ch }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px }
+.pair > div { min-width: 0; border-radius: 8px; padding: 10px 12px; font-size: 14.5px }
+.pair .o { background: var(--old); color: var(--old-ink) } .pair .n { background: var(--new); color: var(--new-ink) }
+.pair .lbl { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.8; margin-bottom: 4px }
+.shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px }
+figure { margin: 0; display: flex; flex-direction: column; gap: 6px; min-width: 0 }
+figure img { width: 100%; height: auto; border: 1px solid var(--line); border-radius: 8px; display: block; background: #fff }
+figcaption { font-size: 13px; color: var(--ink3) }
+.choice { display: flex; flex-wrap: wrap; gap: 8px; align-items: center }
+.choice label { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; cursor: pointer; font-size: 14.5px; background: var(--paper) }
+.choice input { accent-color: var(--accent) }
+.choice label:has(input:checked) { border-color: var(--accent); background: var(--accent-soft) }
+.choice label:focus-within { outline: 2px solid var(--accent); outline-offset: 2px }
+.note { width: 100%; min-width: 0; font: inherit; font-size: 14px; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px }
+.note:focus { outline: 2px solid var(--accent); outline-offset: 1px }
+.small { font-size: 13.5px; color: var(--ink3) }
+table { width: 100%; border-collapse: collapse; font-size: 14.5px }
+.tbl { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--paper) }
+th, td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--line) }
+th { font-size: 12.5px; color: var(--ink3); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em }
+tr:last-child td { border-bottom: 0 }
+.rec { font-family: var(--mono); font-size: 11.5px; color: var(--ok); margin-left: 4px }
+.answer { position: sticky; bottom: env(safe-area-inset-bottom, 0px); background: var(--paper); border: 1px solid var(--ink); border-radius: 12px; padding: 14px 16px; display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; justify-content: space-between }
+.answer .cnt { font-size: 14.5px; color: var(--ink2) }
+button.copy { font: inherit; font-weight: 600; font-size: 15px; color: #fff; background: var(--accent); border: 0; border-radius: 8px; padding: 10px 18px; cursor: pointer }
+button.copy:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px }
+button.all { font: inherit; font-size: 14px; color: var(--ink); background: transparent; border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; cursor: pointer }
+#out { width: 100%; font-family: var(--mono); font-size: 12.5px; min-height: 120px; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 10px }
+@media (max-width: 640px) { .pair { grid-template-columns: 1fr } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important } }
+</style>
+
+<div class="wrap">
+  <header style="display:flex;flex-direction:column;gap:10px">
+    <span class="eyebrow">F-1125-01 · mentor kursi · 25.11.2026</span>
+    <h1>Mentor darslari: kirish matni va AI bloki</h1>
+    <p class="lead">1- va 2-savolga javobingiz qabul qilindi: kirish matnidagi 9 joyning hammasi «Qabul», AI bloki avval Nest-1 da, agentlarga ruxsat bor. Quyida Nest-1 uchun haqiqiy AI sinovining natijasi va bitta yangi savol. Tanlab bo'lgach, pastdagi «Javobni nusxalash» tugmasini bosib, chatga tashlang.</p>
+  </header>
+
+  <section id="s3">
+    <h2>3. Nest-1 AI sinovi: natija va bitta savol</h2>
+    <p class="why">Ikki AI ishga tushirildi: Claude Haiku, har biri o'z nusxasida, darsning 3-amaliyotdan keyingi <code>cars-api</code> loyihasida. Topshiriq: <code>users</code> moduli, yoshi 18 dan kichik bo'lsa qo'shilmasin. A oddiy so'zlar bilan yozildi, B Nest tilida. Kodni o'zim qurdim va serverda 11 ta so'rov bilan tekshirdim.</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Tekshiruv</th><th>A · oddiy topshiriq</th><th>B · Nest tilida</th></tr></thead>
+      <tbody>
+        <tr><td>Tuzilish: fayllar, ro'yxatlar, logika Service'da, decorator'lar</td><td>✓ (test fayli ham qo'shgan)</td><td>✓</td></tr>
+        <tr><td>GET /users · /users/99 · /users/abc · yosh 15</td><td>200 · 404 · 400 · 400</td><td>200 · 404 · 400 · 400</td></tr>
+        <tr><td>Bo'sh <code>POST {}</code></td><td>400 «name is required» — tekshiruvni o'zi qo'shgan</td><td><b>201 <code>{"id":4}</code></b> — bo'sh foydalanuvchi yaratildi</td></tr>
+        <tr><td>Body'da <code>"id": 1</code></td><td>e'tiborga olinmadi, id 4</td><td><b>201, ikkinchi <code>id: 1</code></b> paydo bo'ldi</td></tr>
+      </tbody>
+    </table></div>
+    <p class="why">B dagi aybdor satr: <code>const user: User = { id, ...data };</code> — body'dagi <code>id</code> server bergan id ustidan yoziladi. <code>{ ...data, id }</code> bilan tuzatib qayta sinadim: yangi foydalanuvchi id 5 ni oldi. Kutilmagan natija: Nest tilidagi aniq topshiriqni olgan AI aynan so'ralganini qildi, kiruvchi ma'lumotni tekshirish esa so'ralmagan edi. Darsga shu natija qo'yiladi: «satrni bosing» tekshiruvi aynan shu satr bilan.</p>
+    <div class="item" id="q3">
+      <h3>Muammo: uyga vazifa bilan to'qnashuv</h3>
+      <p class="why">Nest-1 ning uyga vazifasi: «cars-api'ga <code>users</code> modulini o'zingiz qo'shing». AI bloki AI yozgan <code>users</code> modulini ko'rsatsa, uyga vazifaning javobi qisman oldindan ochilib qoladi. Buni sinovdan keyin ko'rdim; AI'ni qayta yurgizish uchun sizdan yana ruxsat kerak.</p>
+      <div class="choice" role="radiogroup" aria-label="AI sinovi resursi" style="flex-direction:column;align-items:flex-start">
+        <label><input type="radio" name="res" id="res-a" value="A — ikki AI'ni qayta yurgizish, resurs customers (ijarachilar)"> A — ikki AI'ni qayta yurgizaman, resurs <b>customers</b> (ijarachilar: ism, telefon, yosh; 18 dan kichikka ijara yo'q). Uyga vazifa o'zgarmaydi. 2 agent, ~2 daqiqa; natija boshqacha chiqishi mumkin, qaysi chiqsa darsga shu qo'yiladi. <span class="rec">tavsiya</span></label>
+        <label><input type="radio" name="res" id="res-b" value="B — users natijasi qoladi, uyga vazifa boshqa modulga (brands)"> B — <code>users</code> natijasi qoladi, uyga vazifa boshqa modulga o'zgaradi (masalan, <code>brands</code> — mashina markalari).</label>
+        <label><input type="radio" name="res" id="res-c" value="C — hech narsa o'zgarmaydi"> C — hech narsa o'zgarmaydi: AI bloki ham, uyga vazifa ham <code>users</code>.</label>
+      </div>
+      <input class="note" id="res-note" type="text" placeholder="Izoh (ixtiyoriy)" aria-label="3-savol izohi">
+    </div>
+  </section>
+
+  <details class="old">
+  <summary style="cursor:pointer;font-weight:600;font-size:16px;padding:10px 0">1–2-savol: javob berilgan (25.11) — ko'rish</summary>
+  <div style="display:flex;flex-direction:column;gap:28px;margin-top:12px">
+
+  <div class="facts">
+    <div class="fact"><b>12 dars tekshirildi</b><span>Mentorning shaxsiy tajribasiga suyangan gaplar («yozgansiz», «his qilgansiz») qidirildi: 62 ta topildi, haqiqiysi 7 ta (Nest-1 da 6, PG-1 da 1).</span></div>
+    <div class="fact"><b>Qolgan 55 tasi to'g'ri</b><span>«Tajriba» u yerda darsdagi sinov degani; «Jest ikkinchi darsidan eslaysiz» kabilar kursning oldingi darsiga ishora qiladi. Mentor kursni tartib bilan o'tadi, ularga tegilmaydi.</span></div>
+    <div class="fact"><b>Yana ikki bo'shliq</b><span>TypeScript'dagi tip va class tushuntirilmagan (birinchi TS darsi Nest-1). Postman 22-ekranda o'rnatilmasdan chiqadi.</span></div>
+  </div>
+
+  <section id="ikki">
+    <div style="display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;justify-content:space-between">
+      <h2>1. Kirish matni — 9 joy</h2>
+      <button type="button" class="all" id="allok">Hammasini «Qabul» qilish</button>
+    </div>
+    <p class="small">Qabul qilingan har bandga keyin ruscha matn, ovoz, MD hujjati va tekshiruvlar ham qo'shiladi.</p>
+    <div id="items" style="display:flex;flex-direction:column;gap:16px"></div>
+  </section>
+
+  <section id="uch">
+    <h2>2. AI bloki — to'rt darsga</h2>
+    <p class="why">Qayta qurilgan sakkiz darsda (Telegraf+PG, Jest, CI/CD, WebSocket, Webhook) AI bilan ishlash bloki bor: topshiriq qolipi, AI javobini tekshirish va AI kodini ataylab buzib sinash. Eng birinchi qurilgan to'rt darsda u deyarli yo'q, holbuki shu darslarga mos o'quvchi darslarining har birida AI bilan ishlash qadami bor.</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Mentor darsi</th><th>O'quvchi darsida AI bilan nima qiladi</th><th>Mentor darsiga nima qo'shiladi</th></tr></thead>
+      <tbody>
+        <tr><td><b>Nest-1</b><br><span class="small">hozir: 1 gap</span></td><td>m4a-01: bo'lim nomini yozadi, AI 5 faylni yozadi; keyin AI qatorni noto'g'ri faylga qo'ygan joyni topadi</td><td>Nest tilidagi topshiriq qolipi; AI yozgan modulni 4 savol bilan tekshirish (providers, imports, logika Service'dami, decorator'lar); haqiqiy AI kodida «satrni bosing»</td></tr>
+        <tr><td><b>Nest-2</b><br><span class="small">hozir: yo'q</span></td><td>m4a-03: AI yozgan CarController, /car ishlamaydi · m4a-04: AI yozgan OrderController'da mijozni to'sgan qator</td><td>AI kodini o'quvchi reposi qoidalari bilan tekshirish: <code>/api/v1</code> prefiksi, BaseService, <code>@Roles</code></td></tr>
+        <tr><td><b>PG-1</b><br><span class="small">hozir: faqat xaritada</span></td><td>m4-03: AI loyihaga baza tavsiya qiladi, o'quvchi sababini mezon bilan solishtiradi</td><td>AI tavsiyasini 4 mezon bilan tekshirish; AI noto'g'ri sabab keltirsa, o'quvchi bilan qanday ajratish</td></tr>
+        <tr><td><b>PG-2</b><br><span class="small">hozir: server.js uchun</span></td><td>m4-06: AI SQL yozadi (masalan, <code>product</code> o'rniga <code>products</code>)</td><td>AI yozgan SQL'ni bazada yurgizib tekshirish: jadval nomi, <code>WHERE</code>'siz <code>UPDATE</code></td></tr>
+      </tbody>
+    </table></div>
+    <p class="why">AI kodi o'ylab topilmaydi: oldingi darslardagidek, alohida nusxada ikki AI yozadi (biri oddiy topshiriq bilan, biri to'liq topshiriq bilan), natijasi haqiqiy serverda va bazada sinaladi. AI xato qilmasa, darsda shunday aytiladi. Buning uchun AI agentlari kerak (sizning ruxsatingiz bilan, har darsga ikkitadan).</p>
+
+    <div class="item" id="q-ai">
+      <h3>Qamrov</h3>
+      <div class="choice" role="radiogroup" aria-label="AI bloki qamrovi">
+        <label><input type="radio" name="ai" id="ai-a" value="A — avval Nest-1, ko'rib chiqqach qolgan uchtasi"> A — avval Nest-1, ko'rib chiqqach qolgan uchtasi <span class="rec">tavsiya</span></label>
+        <label><input type="radio" name="ai" id="ai-b" value="B — to'rttala darsga birdan"> B — to'rttala darsga birdan</label>
+        <label><input type="radio" name="ai" id="ai-c" value="C — kerak emas"> C — kerak emas</label>
+      </div>
+      <h3>AI agentlarini ishlatishga ruxsat</h3>
+      <div class="choice" role="radiogroup" aria-label="Agent ruxsati">
+        <label><input type="radio" name="ag" id="ag-ha" value="Ha"> Ha</label>
+        <label><input type="radio" name="ag" id="ag-yoq" value="Yo'q"> Yo'q</label>
+      </div>
+      <input class="note" id="ai-note" type="text" placeholder="Izoh (ixtiyoriy)" aria-label="AI bloki bo'yicha izoh">
+    </div>
+  </section>
+
+  </div>
+  </details>
+
+  <div class="answer">
+    <span class="cnt" id="cnt">0 / 9 band tanlandi</span>
+    <button type="button" class="copy" id="copy">Javobni nusxalash</button>
+    <textarea id="out" readonly hidden aria-label="Nusxalanadigan javob"></textarea>
+  </div>
+</div>
+
+<script>
+const ITEMS = [
+  { id: 'T1', where: 'Nest-1 · 1-ekran · ovoz', title: "«Express bilan server yozgansiz» o'rniga «videodarslarda ko'rgansiz»",
+    why: "Mentor Express'ni videodan o'rgangan: route, so'rov va javobni biladi, lekin o'zi server yozmagan bo'lishi mumkin.",
+    old: "Assalomu alaykum. Siz Express bilan server yozgansiz: route ochgansiz, so'rovni qabul qilgansiz, javob qaytargansiz. Bugun shu bilimingiz ustiga NestJS qo'yamiz.",
+    neu: "Assalomu alaykum. Siz Express'ni videodarslarda ko'rgansiz: route qanday ochilishini, so'rov qanday qabul qilinishini va javob qanday qaytishini bilasiz. Bugun shu bilim ustiga NestJS qo'yamiz." },
+  { id: 'T2', where: 'Nest-1 · 2-ekran · 1-qadam ovozi', title: "«Mana tanish manzara» → «Videodarslarda ko'rganingizdek»",
+    why: "Bitta fayldagi server — videodarslarda ko'rsatiladigan shakl. «Tanish» so'zi to'g'ri, endi qayerdan tanishligi ham aytiladi.",
+    old: "Avval sizga tanish narsadan boshlaymiz, Express'dan. Mana tanish manzara: butun server bitta server js faylida.",
+    neu: "Avval tanish narsadan boshlaymiz, Express'dan. Videodarslarda ko'rganingizdek, butun server bitta server js faylida." },
+  { id: 'T3', where: 'Nest-1 · 2-ekran · xulosa ovozi', title: "«Siz buni his qilgansiz» olib tashlanadi",
+    why: "Jamoada bir faylda ishlash og'rig'ini videodan o'rgangan mentor boshdan kechirmagan. Og'riq o'zi aytiladi, his qilganini taxmin qilmaymiz.",
+    old: "… Ikki kishi bir faylda ishlasa, har kuni to'qnashuv. Siz buni his qilgansiz. Nest aynan shu og'riq uchun yaratilgan.",
+    neu: "… Ikki kishi bir faylda ishlasa, biri ikkinchisining o'zgarishini buzib qo'yadi. Videodarslardagi kichik loyihada bu sezilmaydi, haqiqiy jamoada esa har kuni bo'ladi. Nest aynan shu og'riq uchun yaratilgan.",
+    shots: [['t3-hozir.jpg', "Hozir: 2-ekran xulosasi (ko'rinishi o'zgarmaydi, faqat ovoz)"]] },
+  { id: 'T4', where: '4-ekran · ikki yangi qadam + sarlavha', title: 'TypeScript: tip va class — bitta misolda',
+    why: "Hozir ekran «JavaScript bilsangiz, TypeScript'ni o'qiy olasiz» deb o'tib ketadi. Keyingi ekranlar esa klass, constructor va private readonly ustiga quriladi. Xato matni haqiqiy: TypeScript 6.0.3 da yurgizilgan.",
+    old: "Sarlavha: «TypeScript va decorator: @ belgisi». Qadamlar: TypeScript nima → @ decorator → decorator nima deydi → xulosa.",
+    neu: "Sarlavha: «TypeScript: tip, class va decorator». Ikki yangi qadam: «Tip: price: number — faqat son; matn bersangiz dastur ishga tushmasdan xato» va «class — qolip; new Car('Kia', 320) bitta mashina yasaydi; Nest'da Controller va Service ham klass, ularni Nest o'zi yaratadi».",
+    shots: [['t4-hozir.jpg', 'Hozir: 1-qadam'], ['t4-tip.jpg', 'Taklif: tip qadami, terminalda haqiqiy xato'], ['t4-class.jpg', 'Taklif: class qadami']] },
+  { id: 'T5', where: '6-ekran (1-amaliyot) · 4-qadam · 22-ekran', title: "So'rov yuborish dasturi oldindan tayyorlanadi",
+    why: "Postman birinchi marta 22-ekranda chiqadi va o'rnatish aytilmagan. 1-amaliyotda o'rnatish fonda ketayotgan paytda tayyorlab qo'yiladi. Postman bo'lmasa — VS Code'ga Thunder Client kengaytmasi.",
+    old: "Uchta qadam: Node, Nest CLI, loyiha. 22-ekran: «brauzer yoki Postman bilan».",
+    neu: "To'rtta qadam: + «So'rov yuborish dasturi — Postman yoki VS Code → Extensions → Thunder Client». Ovoz: «to'rtta qadam», «To'rttala katakcha». 22-ekran: «brauzer, Postman yoki Thunder Client bilan».",
+    shots: [['t5-hozir.jpg', 'Hozir: uchta qadam'], ['t5-taklif.jpg', "Taklif: to'rtinchi qadam"]] },
+  { id: 'T6', where: '8-ekran · private readonly qadami ovozi', title: "«…deb yozardingiz» → 4-ekrandagi Car misoliga bog'lanadi",
+    why: "T4 qabul qilinsa ishlaydi: mentor this.brand = brand satrini 4-ekranda ko'rgan bo'ladi.",
+    old: "JavaScript'da this nuqta appService teng appService deb yozardingiz, bu yerda o'sha satr yozilmaydi, u o'zi bajariladi.",
+    neu: "To'rtinchi ekrandagi Car klassida buni qo'lda yozgan edik: this nuqta brand teng brand. Bu yerda o'sha satr yozilmaydi, u o'zi bajariladi." },
+  { id: 'T7', where: '14-ekran · Dependency Injection · 2-qadam', title: "«Express'da o'zingiz qilardingiz» → «qilasiz»",
+    why: "O'tgan zamon («qilardingiz») mentor shunday ishlaganini taxmin qiladi. Hozirgi zamon — Express'da bu ish qanday qilinishi haqida.",
+    old: "Kalit: «Express'da o'zingiz yaratardingiz…». Ovoz: «Express'da buni o'zingiz qilardingiz: require qilib, new bilan yaratib, har kerakli faylda qaytadan.»",
+    neu: "Kalit: «Express'da o'zingiz yaratasiz…». Ovoz: «Express'da bu ishni o'zingiz qilasiz: require qilasiz, new bilan yaratasiz, har kerakli faylda qaytadan.»" },
+  { id: 'T8', where: '17-ekran · NotFoundException qadami', title: "«…deb yozardingiz» → «yozasiz»",
+    why: 'T7 bilan bir xil sabab.',
+    old: "Express'da buni qo'lda, status to'rt yuz to'rt va json deb yozardingiz.",
+    neu: "Express'da buni qo'lda yozasiz: status to'rt yuz to'rt va json." },
+  { id: 'T9', where: 'PG-1 · 1-ekran · sarlavha, kalit ibora, ovoz', title: "«Mongo'da blog yozgansiz» → «Mongo'dagi blog misoli»",
+    why: "Mentor MongoDB va Mongoose'ni videodarslarda ko'rgan. Telegraf+PG darsi xuddi shunday aytadi: «videodarslarda ko'rgansiz».",
+    old: "Sarlavha: «Siz Mongo'ni bilasiz. Bugun o'sha blog PostgreSQL'da.» · Kalit: «Siz Mongo'da blog yozgansiz — …» · Ovoz: «Siz MongoDB bilan, Mongoose orqali ishlagansiz: modellar, ref, populate.»",
+    neu: "Sarlavha: «Siz Mongo'ni bilasiz. Bugun blog misoli PostgreSQL'da.» · Kalit: «Mongo'dagi oddiy blog misoli — …» · Ovoz: «Siz MongoDB va Mongoose'ni videodarslarda ko'rgansiz: modellar, ref, populate.»",
+    shots: [['t9-hozir.jpg', 'Hozir'], ['t9-taklif.jpg', 'Taklif']] },
+];
+const box = document.getElementById('items');
+const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+box.innerHTML = ITEMS.map((it) => `
+  <div class="item" id="it-${it.id}">
+    <div class="ihead"><span class="tag">${it.id}</span><h3>${esc(it.title)}</h3><span class="where">${esc(it.where)}</span></div>
+    <p class="why">${esc(it.why)}</p>
+    <div class="pair"><div class="o"><span class="lbl">Hozir</span>${esc(it.old)}</div><div class="n"><span class="lbl">Taklif</span>${esc(it.neu)}</div></div>
+    ${it.shots ? `<div class="shots">${it.shots.map(([f, c]) => `<figure><img src="img/${f}" alt="${esc(c)}" loading="lazy"><figcaption>${esc(c)}</figcaption></figure>`).join('')}</div>` : ''}
+    <div class="choice" role="radiogroup" aria-label="${it.id} qarori">
+      <label><input type="radio" name="${it.id}" id="${it.id}-q" value="Qabul"> Qabul <span class="rec">tavsiya</span></label>
+      <label><input type="radio" name="${it.id}" id="${it.id}-r" value="Rad"> Rad</label>
+      <label><input type="radio" name="${it.id}" id="${it.id}-o" value="O'zgartirib qabul"> O'zgartirib qabul</label>
+    </div>
+    <input class="note" type="text" id="${it.id}-n" placeholder="Izoh yoki o'zingizning matningiz (ixtiyoriy)" aria-label="${it.id} izohi">
+  </div>`).join('');
+
+const val = (name) => { const r = document.querySelector(`input[name="${name}"]:checked`); return r ? r.value : ''; };
+function refresh() {
+  let n = 0;
+  ITEMS.forEach((it) => {
+    const v = val(it.id); if (v) n++;
+    const el = document.getElementById('it-' + it.id);
+    el.classList.toggle('ok', v === 'Qabul'); el.classList.toggle('no', v === 'Rad');
+  });
+  document.getElementById('cnt').textContent = val('res') ? '3-savol: tanlandi' : '3-savol: tanlanmagan';
+}
+document.addEventListener('change', refresh);
+document.getElementById('allok').addEventListener('click', () => { ITEMS.forEach((it) => { document.getElementById(it.id + '-q').checked = true; }); refresh(); });
+
+function answer() {
+  const L = ['F-1125-01 javob (3-savol)', '', `AI sinovi resursi: ${val('res') || '—'}`];
+  const z = document.getElementById('res-note').value.trim(); if (z) L.push('Izoh: ' + z);
+  return L.join('\n');
+}
+document.getElementById('copy').addEventListener('click', () => {
+  const txt = answer(); const out = document.getElementById('out'); const b = document.getElementById('copy');
+  const shown = () => { out.hidden = false; out.value = txt; out.focus(); out.select(); b.textContent = 'Belgilandi — Ctrl+C bosing'; };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(txt).then(() => { b.textContent = 'Nusxalandi ✓ — chatga tashlang'; out.hidden = false; out.value = txt; }).catch(shown);
+  } else shown();
+});
+refresh();
+</script>

@@ -1,8 +1,14 @@
 # F-1125-01 · Mentor Nest-1 darsini kuchaytirish — DAVOM
 
+> **25.11 17:50 — 1-ish SAYTDA (iixnev4gh). 2-ish va 3-ish (Nest-1) darsga qo'yildi (`taklif/qollash.sh`), suratlar va ovoz yig'ilmoqda → commit + deploy (ruxsat bor). Keyingi: foydalanuvchi Nest-1 AI blokini ko'radi → Nest-2, PG-1, PG-2 AI bloki (M56; har darsga 2 agent — ruxsat «A» bo'yicha). Batafsil — mentor kursi JURNAL «25.11 17:50».**
+>
 > **25.11.2026 16:27 — 1-ish BAJARILDI, LOKAL. Saytda hali eski versiya: commit + deploy foydalanuvchi buyrug'ini kutmoqda (shoshilinch — mentor Nest 12 o'rnatsa 6-ekranda qotadi). Keyingi: 2-ish (kirish matni). YANGI SEANS SHU YERDAN.**
 >
 > Deploy tartibi (buyruq kelganda): 1) commit — pathspec `src/mentor-kurs feedback/F-1029-02-mentor-kurs feedback/F-1125-01-nest1-kuchaytirish MENTOR_DARS_ETALON.md`, boshqa fayllarga tegilmaydi; 2) 12 dars ovozi `$S/ovoz-sayt-deploy/tts` ga: `node dev/ovoz-matnlar.mjs` uz va ru (`DARSLAR` berilmaydi — 12 dars) → `python3 dev/ovoz-statik.py` (kesh to'liq, yangi 0 bo'lishi kerak); 3) `S=<scratchpad> bash feedback/F-1029-02-mentor-kurs/dev/vercel-deploy.sh`; 4) jonli saytda `?dars=nest-01&s=5` — isbotga 12.0.15 yozib ko'rish. Serverlar: tts :5332, vite :5333 (16:05 dan yoniq).
+
+> **25.11 16:58 — commit 8df0b1e2 ✓ (faqat shu ish fayllari). Deploy: ovoz to'plami yig'ilmoqda (UZ 1429 mp3 tayyor, RU darsma-dars qayta — 1-urinishda bitta bosish qotib yiqildi). 2- va 3-ish QAROR SAHIFASI: https://claude.ai/artifact/NJPQ7fsKfcEjAqTAAatY9r — foydalanuvchi javobi kutilmoqda.** Yamoqlar: `taklif/patch-2ish-nest1.py` (Nest-1, 9 joydan 8 tasi; `PARTS=<nusxa>` bilan quruq sinov), `taklif/patch-2ish-pg1.py` (PG-1 MD → `dev/pg1-matn.py`). Suratlar `taklif/surat/` (hozir — :5333, taklif — nusxa :5335 `scratchpad/taklif-nusxa`). Faqat UZ; tasdiqdan keyin RU + ovoz + MD qo'shiladi. 12 dars supurish natijasi: shaxsiy tajriba gaplari 62 → haqiqiysi 7 (Nest-1 6, PG-1 1); AI bloki yo'q darslar: Nest-1, Nest-2, PG-1, PG-2.
+
+> **25.11 17:18 — foydalanuvchi javoblari:** 1–2-savol (qaror sahifasi v1): T1–T9 hammasi «Qabul»; AI bloki — A (avval Nest-1), agentlar — «Ha». 3-savol (v2): «A — ikki AI'ni qayta yurgizish, resurs customers». 1-yurgizish (`users`, Haiku ×2) uyga vazifa bilan to'qnashgani uchun darsga kirmaydi — `ai-nest1/XULOSA.md`. 2-yurgizish (`customers`, Haiku ×2) — `ai-nest1-v2` nusxalarida.
 
 ## Bu nima
 

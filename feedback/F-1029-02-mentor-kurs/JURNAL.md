@@ -1156,3 +1156,12 @@ Oldingi seans 17:59 dan keyin ham ishlagan, jurnal yozilmagan (seans uzildi). Fa
 - MD: `dev/nest1-md.py` → `04-Nest1-mentor-yakuniy.md` (farq faqat shu o'zgarishlar).
 - Qonun: `MENTOR_DARS_ETALON.md` **M54** + tekshiruv 38-band + jurnal.
 - Saytda hali eski versiya: deploy va commit foydalanuvchi buyrug'i bilan.
+
+## 25.11 17:50 — F-1125-01: 1-ish SAYTDA (iixnev4gh) · 2-ish (T1–T9) va 3-ish (Nest-1 AI bloki) darsga qo'yildi
+- **1-ish deploy:** commit 8df0b1e2 (foydalanuvchi: «ha qil»). Ovoz to'plami 12 dars × UZ+RU — 2860 mp3, xato 0 (ruscha 1-urinishda bitta bosish qotib yiqildi, darsma-dars qayta). Vercel **iixnev4gh** Ready, Production. Jonli tekshiruv `?dars=nest-01&s=5` UZ va RU: `npm i -g @nestjs/cli@12` va bayroqli `nest new` ko'rinadi, isbot 11.0.10 ✗ · 12.0.15 ✓, mp3 200/206, sahifa xatosi 0.
+- **Qaror sahifasi** https://claude.ai/artifact/NJPQ7fsKfcEjAqTAAatY9r: T1–T9 hammasi «Qabul»; AI bloki «A — avval Nest-1», agentlar «Ha»; 3-savol (1-AI sinovi `users` uyga vazifa bilan to'qnashdi) — «A, resurs customers»; keyin «barchasiga ruxsat beraman».
+- **AI sinovi (haqiqiy, Haiku ×2 ×2):** `feedback/F-1125-01-nest1-kuchaytirish/ai-nest1/` — XULOSA.md. Darsga 2-yurgizish (customers): A — ParseIntPipe yo'q (`/customers/abc` → 404 «NaN»); B — bo'sh POST 201, body'dagi `"id":1` → takror id (36-satr `{ id: this.nextId++, ...data }`). Ikkala tuzatish yurgizib tekshirildi (id 5 · 400).
+- **Darsga qo'yildi** (`taklif/qollash.sh`): Nest-1 — 1, 2, 4 (tip + class, TS2322 haqiqiy), 6 (4-qadam Postman/Thunder Client), 8, 14, 17, 22-ekran; yangi `parts/06b-ai.jsx` — 31-ekran «6-bosqich · AI yozgan kod» va 32-ekran «Tekshiruv 6 / 6» (39 → 41 ekran); tekshiruvlar «/ 6»; 29-ekran «Oxirgi tekshiruv» olindi; reja 6-band; 35-ekran (xarita) 6-blokiga bir gap; yakunga 7-band; eslatmaga «AI yozgan kodni tekshirish» va lug'at. PG-1 — 1-ekran (MD → pg1-matn → ru-ajrat → ru-qur; 09-ru.gen.jsx da generatorning yangi `act` qatori — PG-1 da act yo'q, ta'sir 0). RU hammasiga.
+- **Tekshiruv:** esbuild ✓ (2 dars) · lint:jsx toza · gates: Nest-1 — esbuild (ma'lum) va dark 19 (17 → 19: yangi ikki terminal paneli, mavjud sinf), til 0 error (2 ta tuzatildi: «kengaytma» → «Thunder Client'ni», RU «молча» → «без ошибки»); PG-1 — faqat esbuild (ma'lum), til 0 error, HEAD bilan bir xil. M55 grep = 0. MD `04-Nest1-mentor-yakuniy.md` — 41 ekran.
+- **Qonunlashtirish:** korpus §MENTOR-VIDEO; MENTOR_DARS_ETALON **M55**, **M56**, tekshiruv 39–40.
+- Navbat (M56): Nest-2, PG-1, PG-2 AI bloki — foydalanuvchi Nest-1 ni ko'rib chiqqach.

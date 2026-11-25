@@ -1,0 +1,149 @@
+ M src/app.module.ts
+?? src/customers/
+
+diff --git a/src/app.module.ts b/src/app.module.ts
+index 1324240..1ab0b38 100644
+--- a/src/app.module.ts
++++ b/src/app.module.ts
+@@ -2,9 +2,10 @@ import { Module } from '@nestjs/common';
+ import { AppController } from './app.controller';
+ import { AppService } from './app.service';
+ import { CarsModule } from './cars/cars.module';
++import { CustomersModule } from './customers/customers.module';
+ 
+ @Module({
+-  imports: [CarsModule],
++  imports: [CarsModule, CustomersModule],
+   controllers: [AppController],
+   providers: [AppService],
+ })
+=== yangi: src/customers/customers.controller.ts
+     1	import { Body, Controller, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
+     2	import { CustomersService } from './customers.service';
+     3	import type { CreateCustomerDto } from './customers.service';
+     4	
+     5	@Controller('customers')
+     6	export class CustomersController {
+     7	  constructor(private readonly customersService: CustomersService) {}
+     8	
+     9	  @Get()
+    10	  findAll() {
+    11	    return this.customersService.findAll();
+    12	  }
+    13	
+    14	  @Get(':id')
+    15	  findOne(@Param('id', ParseIntPipe) id: number) {
+    16	    return this.customersService.findOne(id);
+    17	  }
+    18	
+    19	  @Post()
+    20	  create(@Body() body: CreateCustomerDto) {
+    21	    return this.customersService.create(body);
+    22	  }
+    23	}
+=== yangi: src/customers/customers.module.ts
+     1	import { Module } from '@nestjs/common';
+     2	import { CustomersController } from './customers.controller';
+     3	import { CustomersService } from './customers.service';
+     4	
+     5	@Module({
+     6	  controllers: [CustomersController],
+     7	  providers: [CustomersService],
+     8	})
+     9	export class CustomersModule {}
+=== yangi: src/customers/customers.service.spec.ts
+     1	import { BadRequestException } from '@nestjs/common';
+     2	import { CustomersService } from './customers.service';
+     3	
+     4	describe('CustomersService', () => {
+     5	  let service: CustomersService;
+     6	
+     7	  beforeEach(() => {
+     8	    service = new CustomersService();
+     9	  });
+    10	
+    11	  it('returns all customers', () => {
+    12	    expect(service.findAll().length).toBe(2);
+    13	  });
+    14	
+    15	  it('finds a customer by id', () => {
+    16	    expect(service.findOne(1).name).toBe('Aziz');
+    17	  });
+    18	
+    19	  it('creates a customer with age 18 or older', () => {
+    20	    const created = service.create({ name: 'Ali', phone: '+998900000000', age: 18 });
+    21	    expect(created.id).toBe(3);
+    22	    expect(service.findOne(3)).toEqual(created);
+    23	  });
+    24	
+    25	  it('rejects a customer younger than 18', () => {
+    26	    expect(() => service.create({ name: 'Bola', phone: '+998900000001', age: 17 })).toThrow(
+    27	      BadRequestException,
+    28	    );
+    29	    expect(service.findAll().length).toBe(2);
+    30	  });
+    31	
+    32	  it('rejects a missing name or phone', () => {
+    33	    expect(() => service.create({ name: ' ', phone: '+998900000002', age: 20 })).toThrow(
+    34	      BadRequestException,
+    35	    );
+    36	    expect(() => service.create({ name: 'Ali', phone: '', age: 20 })).toThrow(BadRequestException);
+    37	  });
+    38	});
+=== yangi: src/customers/customers.service.ts
+     1	import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+     2	
+     3	export interface Customer {
+     4	  id: number;
+     5	  name: string;
+     6	  phone: string;
+     7	  age: number;
+     8	}
+     9	
+    10	export type CreateCustomerDto = Omit<Customer, 'id'>;
+    11	
+    12	const MIN_AGE = 18;
+    13	
+    14	@Injectable()
+    15	export class CustomersService {
+    16	  private customers: Customer[] = [
+    17	    { id: 1, name: 'Aziz', phone: '+998901234567', age: 25 },
+    18	    { id: 2, name: 'Dilnoza', phone: '+998935551122', age: 31 },
+    19	  ];
+    20	
+    21	  findAll(): Customer[] {
+    22	    return this.customers;
+    23	  }
+    24	
+    25	  findOne(id: number): Customer {
+    26	    const customer = this.customers.find((c) => c.id === id);
+    27	    if (!customer) {
+    28	      throw new NotFoundException(`Customer with id ${id} not found`);
+    29	    }
+    30	    return customer;
+    31	  }
+    32	
+    33	  create(data: CreateCustomerDto): Customer {
+    34	    if (typeof data.name !== 'string' || data.name.trim() === '') {
+    35	      throw new BadRequestException('name is required');
+    36	    }
+    37	    if (typeof data.phone !== 'string' || data.phone.trim() === '') {
+    38	      throw new BadRequestException('phone is required');
+    39	    }
+    40	    if (!Number.isInteger(data.age)) {
+    41	      throw new BadRequestException('age must be an integer');
+    42	    }
+    43	    if (data.age < MIN_AGE) {
+    44	      throw new BadRequestException(`Customer must be at least ${MIN_AGE} years old`);
+    45	    }
+    46	
+    47	    const customer: Customer = {
+    48	      id: this.customers.length + 1,
+    49	      name: data.name.trim(),
+    50	      phone: data.phone.trim(),
+    51	      age: data.age,
+    52	    };
+    53	    this.customers.push(customer);
+    54	    return customer;
+    55	  }
+    56	}

@@ -1211,12 +1211,12 @@ const MDT = {
   "type": "Lesson",
   "kicker": "Kirish",
   "eyebrow": "Mentor kursi · PostgreSQL",
-  "title": "Siz Mongo'ni bilasiz. Bugun o'sha blog PostgreSQL'da.",
+  "title": "Siz Mongo'ni bilasiz. Bugun blog misoli PostgreSQL'da.",
   "seg": [
    [
     "a",
-    "Siz Mongo'da blog yozgansiz — bugun <b>xuddi shu blogni PostgreSQL'da</b> quramiz",
-    "Assalomu alaykum. Siz MongoDB bilan, Mongoose orqali ishlagansiz: modellar, ref, populate. AI Startup kursidagi o'quvchilar PostgreSQL bilan ishlaydi. Bugun siz bilgan narsadan boshlaymiz: Mongo'dagi oddiy blogni olamiz va uni PostgreSQL'da qaytadan quramiz."
+    "Mongo'dagi oddiy blog misoli — bugun <b>xuddi shu blogni PostgreSQL'da</b> quramiz",
+    "Assalomu alaykum. Siz MongoDB va Mongoose'ni videodarslarda ko'rgansiz: modellar, ref, populate. AI Startup kursidagi o'quvchilar PostgreSQL bilan ishlaydi. Bugun siz bilgan narsadan boshlaymiz: Mongo'dagi oddiy blogni olamiz va uni PostgreSQL'da qaytadan quramiz."
    ],
    [
     "b",
@@ -3629,11 +3629,11 @@ const RU_MDT = {
  "1": {
   "kicker": "Вступление",
   "eyebrow": "Курс для менторов · PostgreSQL",
-  "title": "Вы знаете Mongo. Сегодня тот же блог — в PostgreSQL.",
+  "title": "Вы знаете Mongo. Сегодня пример блога — в PostgreSQL.",
   "seg": {
    "a": [
-    "Вы писали блог на Mongo — сегодня <b>соберём тот же блог в PostgreSQL</b>",
-    "Здравствуйте. Вы работали с MongoDB через Mongoose: модели, ref, populate. Ученики курса AI Startup работают с PostgreSQL. Сегодня начнём с того, что вы уже знаете: возьмём простой блог на Mongo и соберём его заново в PostgreSQL."
+    "Простой пример блога на Mongo — сегодня <b>соберём тот же блог в PostgreSQL</b>",
+    "Здравствуйте. Вы видели MongoDB и Mongoose в видеоуроках: модели, ref, populate. Ученики курса AI Startup работают с PostgreSQL. Сегодня начнём с того, что вы уже знаете: возьмём простой блог на Mongo и соберём его заново в PostgreSQL."
    ],
    "b": [
     "К концу урока PostgreSQL работает у вас, <b>две таблицы и JOIN</b> — своими руками",
@@ -4362,9 +4362,9 @@ function yakRu(passed, segs) {
   return segs.map((s) => ({ ...s, ...(Y[s.id === 'a' ? (passed ? 'a_pass' : 'a_fail') : s.id] || {}) }));
 }
 (function ruMdtQo() {
-  const segRu = (n) => { const r = RU_MDT[n] && RU_MDT[n].seg; if (!r) return undefined; const o = {}; Object.keys(r).forEach((id) => { const [key, text] = r[id]; o[id] = { ...(key != null ? { key } : {}), ...(text != null ? { text, show: wrRu(text) } : {}) }; }); return o; };
+  const segRu = (n) => { const r = RU_MDT[n] && RU_MDT[n].seg; if (!r) return undefined; const o = {}; Object.keys(r).forEach((id) => { const [key, text, act] = r[id]; o[id] = { ...(key != null ? { key } : {}), ...(text != null ? { text, show: wrRu(text) } : {}), ...(act != null ? { act } : {}) }; }); return o; };
   const head = (n) => { const r = RU_MDT[n] || {}; const o = {}; ['kicker', 'eyebrow', 'title'].forEach((k) => { if (r[k] != null) o[k] = r[k]; }); const s = segRu(n); if (s) o.segments = s; return o; };
-  const mdt = {}; Object.keys(RU_MDT).forEach((n) => { const r = { ...RU_MDT[n] }; if (r.seg) r.seg = MDT[n].seg.map(([id]) => (r.seg[id] ? [null, r.seg[id][0], r.seg[id][1]] : null)); mdt[n] = r; });
+  const mdt = {}; Object.keys(RU_MDT).forEach((n) => { const r = { ...RU_MDT[n] }; if (r.seg) r.seg = MDT[n].seg.map(([id]) => (r.seg[id] ? [null, r.seg[id][0], r.seg[id][1], r.seg[id][2]] : null)); mdt[n] = r; });
   ru(MDT, mdt);
   ru(S1, { ...head(1), ...((typeof RU_S !== 'undefined' && RU_S.S1) || {}) });
   ru(S2SQL, { ...head(2), ...((typeof RU_S !== 'undefined' && RU_S.S2SQL) || {}) });

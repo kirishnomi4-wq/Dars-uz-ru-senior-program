@@ -1,0 +1,13 @@
+src/users/users.controller.ts:19:24 - error TS1272: A type referenced in a decorated signature must be imported with 'import type' or a namespace import when 'isolatedModules' and 'emitDecoratorMetadata' are enabled.
+
+19   create(@Body() body: CreateUserData) {
+                          ~~~~~~~~~~~~~~
+
+  src/users/users.controller.ts:2:10
+    2 import { CreateUserData, UsersService } from './users.service';
+               ~~~~~~~~~~~~~~
+    'CreateUserData' was imported here.
+
+
+ Error  Found 1 compilation error(s).
+

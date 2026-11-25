@@ -15,9 +15,9 @@ MKCFG.files = ALL_FILES;
 // ============================================================
 const S1 = {
   kicker: 'Kirish', eyebrow: 'Mentor kursi · NestJS', title: "Siz Express'ni bilasiz. Endi Nest.",
-  plan: ['Nega Nest', "Uch bo'lak: Controller · Service · Module", 'Dependency Injection', "cars route'larini quramiz", "Buzamiz va xatoni o'qiymiz", "Amaliyot (to'rt bo'lak)", "O'quvchi darsini o'tish"],
+  plan: ['Nega Nest', "Uch bo'lak: Controller · Service · Module", 'Dependency Injection', "cars route'larini quramiz", "Buzamiz va xatoni o'qiymiz", "Amaliyot va AI yozgan kod", "O'quvchi darsini o'tish"],
   segments: [
-    { id: 'a', key: "Express bilimingiz ustiga <b>Nest</b> qo'yamiz: u Express'ni bekor qilmaydi, tartib beradi", text: "Assalomu alaykum. Siz Express bilan server yozgansiz: route ochgansiz, so'rovni qabul qilgansiz, javob qaytargansiz. Bugun shu bilimingiz ustiga NestJS qo'yamiz. Nest Express'ni bekor qilmaydi, aksincha, uning ustiga tartib o'rnatadi.", hl: [] },
+    { id: 'a', key: "Express bilimingiz ustiga <b>Nest</b> qo'yamiz: u Express'ni bekor qilmaydi, tartib beradi", text: "Assalomu alaykum. Siz Express'ni videodarslarda ko'rgansiz: route qanday ochilishini, so'rov qanday qabul qilinishini va javob qanday qaytishini bilasiz. Bugun shu bilim ustiga NestJS qo'yamiz. Nest Express'ni bekor qilmaydi, aksincha, uning ustiga tartib o'rnatadi.", hl: [] },
     { id: 'b', key: "Dars oxirida bo'sh papkadan <b>ishlaydigan server</b> qurib bo'lasiz", text: "Dars oxirida siz bo'sh papkadan boshlab mashinalar ro'yxatini qaytaradigan server qurasiz.", hl: [3] },
     { id: 'c', key: "Nest xato xabarini <b>o'qiy olasiz</b>: qaysi klass, qaysi dependency yetishmayapti, qaysi fayl", text: "Nest'ning xato xabarlarini o'qiy olasiz: qaysi klassda xato, qaysi dependency yetishmayapti va qaysi faylni ochish kerak.", hl: [4] },
     { id: 'd', key: "O'quvchi darsidagi <b>har so'z</b> nimani anglatishini bilib olasiz", text: "Va o'quvchi darsida qaysi so'z nimani anglatishini bilasiz.", hl: [6] },
@@ -81,12 +81,12 @@ const GROWN_LINES = [
 const S2 = {
   kicker: '1-bosqich · Nega Nest', title: "Express: tanish manzara va og'riq",
   segments: [
-    { id: 'a', key: "Tanish manzara: butun Express server bitta <code>server.js</code> faylida", text: "Avval sizga tanish narsadan boshlaymiz, Express'dan. Mana tanish manzara: butun server bitta server js faylida.", focus: [] },
+    { id: 'a', key: "Tanish manzara: butun Express server bitta <code>server.js</code> faylida", text: "Avval tanish narsadan boshlaymiz, Express'dan. Videodarslarda ko'rganingizdek, butun server bitta server js faylida.", focus: [] },
     { id: 'b', key: "<code>GET /cars</code> kelsa, mashinalar <b>ro'yxatini</b> qaytaramiz", text: "cars route'iga GET kelsa, ro'yxatni qaytaramiz.", show: "<code>/cars</code> route'iga GET kelsa, ro'yxatni qaytaramiz.", focus: ['route1'] },
     { id: 'c', key: "<code>GET /cars/:id</code> kelsa, <b>bitta mashinani</b> qidiramiz, topilmasa 404", text: "cars path'idan keyin id kelsa, bittasini qidiramiz, topilmasa to'rt yuz to'rt.", show: "<code>/cars/:id</code> kelsa, bittasini qidiramiz, topilmasa 404.", focus: ['route2'] },
     { id: 'd', key: "<code>POST /cars</code> yangisini qo'shadi. Hammasi <b>20 qator</b> — muammo yo'q", text: "POST kelsa, yangisini qo'shamiz. Hammasi yigirma qator, hammasi ko'z oldingizda. Bu bosqichda hech qanday muammo yo'q.", show: "<code>POST /cars</code> kelsa, yangisini qo'shamiz. Hammasi 20 qator, hammasi ko'z oldingizda. Bu bosqichda hech qanday muammo yo'q.", focus: ['route3'] },
     { id: 'e', key: "Loyiha o'sib <b>1240 qatorga</b> yetdi (shartli misol) — login qayerdaligini qidirasiz", text: "Muammo loyiha o'sganda boshlanadi. Foydalanuvchilar qo'shildi, kirish va ro'yxatdan o'tish qo'shildi, buyurtmalar, to'lov, fayl yuklash. Mana shartli misol, haqiqiy loyiha emas: fayl ming ikki yuz qirq qator deylik. Login qayerda edi? Qidirasiz.", show: "Muammo loyiha o'sganda boshlanadi. Foydalanuvchilar, kirish, buyurtmalar, to'lov, fayl yuklash. Mana <b>shartli misol</b> (haqiqiy loyiha emas): fayl <b>1240 qator</b>. Login qayerda edi? Qidirasiz.", focus: ['login'], grow: true },
-    { id: 'f', key: "Xulosa: bitta route'da hamma ish — sinab bo'lmaydi, ikki kishi to'qnashadi. <b>Nest shu og'riq uchun</b>", text: "Xulosa: bitta route ichida ham so'rovni o'qish, ham tekshirish, ham bazaga yozish bor. Shu bo'lakni alohida sinab bo'lmaydi, chunki u route'dan ajralmagan. Ikki kishi bir faylda ishlasa, har kuni to'qnashuv. Siz buni his qilgansiz. Nest aynan shu og'riq uchun yaratilgan. O'quvchi darsi ham aynan shu misoldan boshlanadi.", focus: [], grow: true },
+    { id: 'f', key: "Xulosa: bitta route'da hamma ish — sinab bo'lmaydi, ikki kishi to'qnashadi. <b>Nest shu og'riq uchun</b>", text: "Xulosa: bitta route ichida ham so'rovni o'qish, ham tekshirish, ham bazaga yozish bor. Shu bo'lakni alohida sinab bo'lmaydi, chunki u route'dan ajralmagan. Ikki kishi bir faylda ishlasa, biri ikkinchisining o'zgarishini buzib qo'yadi. Videodarslardagi kichik loyihada bu sezilmaydi, haqiqiy jamoada esa har kuni bo'ladi. Nest aynan shu og'riq uchun yaratilgan. O'quvchi darsi ham aynan shu misoldan boshlanadi.", focus: [], grow: true },
   ],
 };
 function Screen2(p) {
@@ -127,11 +127,32 @@ const DECO_LINES = [
   { id: 'l-get', h: `  <span class="c">findAll</span>() { <span class="cm">/* … */</span> }` },
   { h: `}` },
 ];
+// F-1125-01 (2-ish): tip va class misoli — chiqish haqiqiy (TypeScript 6.0.3, nest build):
+// src/misol.ts:2:1 - error TS2322: Type 'string' is not assignable to type 'number'.
+const TS_LINES = [
+  { id: 'ts-let', h: `<span class="k">let</span> price: <span class="k">number</span> = <span class="d">250</span>;` },
+  { id: 'ts-bad', h: `price = <span class="s">'qimmat'</span>;` },
+  { h: `` },
+  { id: 'ts-class', h: `<span class="k">class</span> <span class="c">Car</span> {` },
+  { id: 'ts-class', h: `  brand: <span class="k">string</span>;` },
+  { id: 'ts-class', h: `  price: <span class="k">number</span>;` },
+  { id: 'ts-ctor', h: `  <span class="k">constructor</span>(brand: <span class="k">string</span>, price: <span class="k">number</span>) {` },
+  { id: 'ts-ctor', h: `    <span class="k">this</span>.brand = brand;` },
+  { id: 'ts-ctor', h: `    <span class="k">this</span>.price = price;` },
+  { id: 'ts-ctor', h: `  }` },
+  { h: `}` },
+  { id: 'ts-new', h: `<span class="k">const</span> k5 = <span class="k">new</span> <span class="c">Car</span>(<span class="s">'Kia'</span>, <span class="d">320</span>);` },
+];
+const TS_ERR = [
+  { h: `src/misol.ts:2:1 - <span class="er">error TS2322: Type 'string' is not assignable to type 'number'.</span>` },
+];
 const S4 = {
-  kicker: '1-bosqich · Nega Nest', title: 'TypeScript va decorator: @ belgisi',
+  kicker: '1-bosqich · Nega Nest', title: 'TypeScript: tip, class va decorator',
   segments: [
-    { id: 'a', key: "TypeScript — <b>tiplari bor</b> JavaScript: JavaScript bilsangiz, o'qiy olasiz", text: "Nest kodini ochishdan oldin bitta yangi narsani bilib olaylik, aks holda kod sizga begona ko'rinadi. Nest loyihalari TypeScript'da yoziladi. TypeScript bu JavaScript'ning o'zi, faqat tiplari bor: string, number va shunga o'xshash. Siz JavaScript bilsangiz, TypeScript'ni o'qiy olasiz.", focus: [] },
-    { id: 'b', key: "Yangi narsa: <b>@</b> (kuchukcha) bilan boshlanadigan satr — <b>decorator</b>", text: "Lekin bitta yangi narsa bor, u bilan ko'p uchrashasiz: kuchukcha belgisi bilan boshlanadigan satrlar. Masalan, Controller decorator'i, qavsda cars. Bu decorator deyiladi.", show: "Lekin bitta yangi narsa bor, u bilan ko'p uchrashasiz: <b>@</b> (kuchukcha) belgisi bilan boshlanadigan satrlar. Masalan, <code>@Controller('cars')</code>. Bu <b>decorator</b> deyiladi.", focus: ['l-ctrl'] },
+    { id: 'a', key: "TypeScript — <b>tiplari bor</b> JavaScript: JavaScript bilsangiz, o'qiy olasiz", text: "Nest kodini ochishdan oldin bitta yangi narsani bilib olaylik, aks holda kod sizga begona ko'rinadi. Nest loyihalari TypeScript'da yoziladi. TypeScript bu JavaScript'ning o'zi, faqat tiplari bor: string, number va shunga o'xshash. Siz JavaScript bilsangiz, TypeScript'ni o'qiy olasiz. Avval ikki narsani ko'rib olamiz: tip va class.", focus: [] },
+    { id: 'tip', key: "Tip: <code>price: number</code> — bu o'zgaruvchiga <b>faqat son</b> yoziladi, matn bersangiz dastur ishga tushmasdan xato", text: "Birinchisi, tip. price ikki nuqta number: bu o'zgaruvchiga faqat son yoziladi. Ikkinchi satrda unga matn berdik. JavaScript buni indamay qabul qilardi, TypeScript esa dastur ishga tushmasdan xato beradi: VS Code satr tagiga qizil chiziq tortadi, ishga tushirmoqchi bo'lsangiz, terminalda tip mos emasligi haqida xato chiqadi. Xato foydalanuvchiga yetmasdan, kod yozilayotganda ushlanadi.", show: "Birinchisi, <b>tip</b>. <code>price: number</code>: bu o'zgaruvchiga faqat son yoziladi. Ikkinchi satrda unga matn berdik. JavaScript buni indamay qabul qilardi, TypeScript esa dastur ishga tushmasdan xato beradi: VS Code satr tagiga qizil chiziq tortadi, terminalda <code>Type 'string' is not assignable to type 'number'</code>. Xato foydalanuvchiga yetmasdan, kod yozilayotganda ushlanadi.", focus: ['ts-let', 'ts-bad'] },
+    { id: 'cls', key: "<b>class</b> — bir xil obyektlar qolipi: <code>new Car('Kia', 320)</code> qolipdan bitta mashina yasaydi", text: "Ikkinchisi, class. Class bir xil obyektlar uchun qolip. Car klassida brand va price maydonlari bor, constructor esa yangi mashina yasalayotganda shu maydonlarni to'ldiradi. new Car, qavsda Kia va uch yuz yigirma: qolipdan bitta mashina yasaladi. Nest'da Controller ham, Service ham shunday klass. Faqat ularni new bilan siz emas, Nest o'zi yaratadi; qanday qilishini uchinchi bosqichda ko'ramiz.", show: "Ikkinchisi, <b>class</b>. Class bir xil obyektlar uchun qolip. <code>Car</code> klassida <code>brand</code> va <code>price</code> maydonlari bor, <code>constructor</code> esa yangi mashina yasalayotganda shu maydonlarni to'ldiradi. <code>new Car('Kia', 320)</code>: qolipdan bitta mashina yasaladi. Nest'da Controller ham, Service ham shunday klass. Faqat ularni <code>new</code> bilan siz emas, Nest o'zi yaratadi; qanday qilishini 3-bosqichda ko'ramiz.", focus: ['ts-class', 'ts-ctor', 'ts-new'] },
+    { id: 'b', key: "Yangi narsa: <b>@</b> (kuchukcha) bilan boshlanadigan satr — <b>decorator</b>", text: "Va uchinchi yangi narsa, u bilan eng ko'p uchrashasiz: kuchukcha belgisi bilan boshlanadigan satrlar. Masalan, Controller decorator'i, qavsda cars. Bu decorator deyiladi.", show: "Va uchinchi yangi narsa, u bilan eng ko'p uchrashasiz: <b>@</b> (kuchukcha) belgisi bilan boshlanadigan satrlar. Masalan, <code>@Controller('cars')</code>. Bu <b>decorator</b> deyiladi.", focus: ['l-ctrl'] },
     { id: 'c', key: "Decorator Nest'ga aytadi: <b>bu klass Controller</b>, bu metod GET'ni qabul qiladi", text: "Decorator klass yoki metodning tepasiga yoziladi va Nest'ga xabar beradi: bu klass Controller, uning path'i cars. Get decorator'i esa metod ustida turadi: GET so'rov kelsa, shu metod.", show: "Decorator klass yoki metodning tepasiga yoziladi va Nest'ga xabar beradi: «bu klass Controller, uning path'i cars». <code>@Get</code> esa metod ustida turadi: «GET so'rov kelsa, shu metod».", focus: ['l-get'] },
     { id: 'd', key: "Xulosa: decorator kod bajarmaydi, belgi qo'yadi — <b>belgi yo'q bo'lsa, Nest klassni tanimaydi</b>", text: "Xulosa: decorator kodni bajarmaydi, u belgi qo'yadi. Nest ishga tushganda shu belgilarni o'qib, hamma bo'lakni joyiga qo'yadi. Shuni eslab qoling: decorator yo'q bo'lsa, Nest o'sha klassni tanimaydi. Beshinchi bosqichda buni ataylab buzib, xatosini ham ko'ramiz.", focus: [] },
   ],
@@ -139,14 +160,17 @@ const S4 = {
 function Screen4(p) {
   return <Lesson p={p} S={S4} scene={({ seg, beat }) => (<>
     {/* UX-7: JS/TS solishtiruvi oynaning ichida, editor ustida — alohida «suzib» turmaydi */}
-    <Ide files={['src/cars/cars.controller.ts']} active="src/cars/cars.controller.ts">
-      <Block at={0} beat={beat}><div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+    <Ide files={beat === 1 || beat === 2 ? ['src/misol.ts'] : ['src/cars/cars.controller.ts']} active={beat === 1 || beat === 2 ? 'src/misol.ts' : 'src/cars/cars.controller.ts'}>
+      {!(beat === 1 || beat === 2) && <Block at={0} beat={beat}><div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
         <span className="mk-card" style={{ fontSize: 13.5 }}><b>JavaScript</b> → <code>let price = 250</code></span>
         <span className="mk-card" style={{ fontSize: 13.5 }}><b>TypeScript</b> → <code>let price: number = 250</code></span>
-      </div></Block>
-      <CodePanel file="src/cars/cars.controller.ts" lines={DECO_LINES} focus={seg.focus} style={{ fontSize: 15 }} />
+      </div></Block>}
+      {beat === 1 || beat === 2
+        ? <><CodePanel file={t("src/misol.ts · faqat misol, loyihada yo'q", 'src/misol.ts · только пример, в проекте нет')} lines={TS_LINES} focus={seg.focus} style={{ fontSize: 15 }} />
+          {beat === 1 && <CodePanel file={t('terminal — xato', 'terminal — ошибка')} numbers={false} wrap style={{ background: '#1F1115' }} lines={TS_ERR} />}</>
+        : <CodePanel file="src/cars/cars.controller.ts" lines={DECO_LINES} focus={seg.focus} style={{ fontSize: 15 }} />}
     </Ide>
-    <Block at={3} beat={beat}><div className="mk-rule">{t(<><b>Decorator</b> — klass yoki metod ustidagi <b>@</b> (kuchukcha) belgili satr. Kod bajarmaydi, Nest'ga «bu nima» deb aytadi. Belgi yo'q — Nest klassni tanimaydi.</>, <><b>Decorator</b> — строка со знаком <b>@</b> («собачка») над классом или методом. Код не выполняет, говорит Nest, «что это». Нет метки — Nest не узнаёт класс.</>)}</div></Block>
+    <Block at={5} beat={beat}><div className="mk-rule">{t(<><b>Decorator</b> — klass yoki metod ustidagi <b>@</b> (kuchukcha) belgili satr. Kod bajarmaydi, Nest'ga «bu nima» deb aytadi. Belgi yo'q — Nest klassni tanimaydi.</>, <><b>Decorator</b> — строка со знаком <b>@</b> («собачка») над классом или методом. Код не выполняет, говорит Nest, «что это». Нет метки — Nest не узнаёт класс.</>)}</div></Block>
   </>)} />;
 }
 
@@ -221,19 +245,21 @@ function Scene5b({ beat }) {
 // F-1125-01 (M54): versiya buyruqning o'zida qotirilgan (@12), nest new savollarsiz (bayroqlar bilan) —
 // dars chiqishlari Nest 12 da shu buyruqlar bilan tekshirilgan: feedback/F-1125-01-nest1-kuchaytirish/nest12/FARQLAR.md
 const P0 = {
-  kicker: 'Amaliyot 1 / 4', eyebrow: "Hozir o'zingizda · 3–5 daqiqa (o'rnatish fonda)", title: "Nest'ni o'rnating, loyihani boshlab qo'ying", tableAt: 4,
+  kicker: 'Amaliyot 1 / 4', eyebrow: "Hozir o'zingizda · 3–5 daqiqa (o'rnatish fonda)", title: "Nest'ni o'rnating, loyihani boshlab qo'ying", tableAt: 5,
   segments: [
-    { id: 'a', key: "Endi <b>siz</b>: Nest'ni o'rnatib, loyihani yaratishni boshlab qo'yasiz", text: "Endi navbat sizga. Hozirgina ko'rgan loyihani o'zingizda yaratib qo'yasiz: uchta qadam. O'rnatish bir-uch daqiqa oladi, kutmaysiz, Davom bosib darsni davom ettirasiz, loyiha fonda o'rnatiladi.", hl: [] },
+    { id: 'a', key: "Endi <b>siz</b>: Nest'ni o'rnatib, loyihani yaratishni boshlab qo'yasiz", text: "Endi navbat sizga. Hozirgina ko'rgan loyihani o'zingizda yaratib qo'yasiz va darsda kerak bo'ladigan dasturlarni tayyorlab qo'yasiz: to'rtta qadam. O'rnatish bir-uch daqiqa oladi, kutmaysiz, Davom bosib darsni davom ettirasiz, loyiha fonda o'rnatiladi.", hl: [] },
     { id: 'b', key: "1-qadam: Node versiyasi <b>22 yoki undan yuqori</b> bo'lishi shart", text: "Birinchi: node versiyasini tekshiring. Yigirma ikki yoki undan yuqori bo'lishi kerak. Past bo'lsa, jadvaldagi yo'l bilan yangilang.", hl: [0] },
     { id: 'c', key: "2-qadam: <b>Nest CLI 12</b>'ni o'rnating, versiyasini isbot maydoniga yozing", text: "Ikkinchi: Nest CLI'ni global o'rnating. Buyruq oxirida kuchukcha belgisi va o'n ikki turibdi: bu darsdagi hamma kod va terminal satrlari Nest'ning o'n ikkinchi versiyasida tekshirilgan, shuning uchun aynan shu versiyani o'rnatamiz. Keyin versiyani tekshiring va chiqqan raqamni pastdagi isbot maydoniga yozing.", show: "Ikkinchi: Nest CLI'ni global o'rnating. Buyruq oxirida <code>@12</code> turibdi: bu darsdagi hamma kod va terminal satrlari Nest'ning 12-versiyasida tekshirilgan, shuning uchun aynan shu versiyani o'rnatamiz. Keyin versiyani tekshiring va chiqqan raqamni pastdagi isbot maydoniga yozing.", hl: [1] },
-    { id: 'd', key: "3-qadam: <code>nest new</code> buyrug'ini <b>to'liq nusxalang</b> — o'rnatish fonda, kutmasdan davom eting", text: "Uchinchi: loyihani yarating. Buyruqni qo'lda yozmang, to'liq nusxalang. Nest'ning o'n ikkinchi versiyasi loyiha yaratishda to'rtta savol beradi, biz javoblarni buyruqning o'zida berdik: paket menejeri npm, modul tizimi CommonJS, kuzatuv xizmati va AI agentlar uchun fayllar kerak emas. CommonJS'ni tanladik, chunki o'quvchi loyihasi ham shu tizimda yozilgan. O'rnatish boshlangach, kutmang: katakchani belgilang va Davom bosing.", show: "Uchinchi: loyihani yarating. Buyruqni qo'lda yozmang, to'liq nusxalang. Nest'ning 12-versiyasi loyiha yaratishda to'rtta savol beradi, biz javoblarni buyruqning o'zida berdik: paket menejeri <code>npm</code>, modul tizimi <code>CommonJS</code>, kuzatuv xizmati va AI agentlar uchun fayllar kerak emas. CommonJS'ni tanladik, chunki o'quvchi loyihasi ham shu tizimda yozilgan. O'rnatish boshlangach, kutmang: katakchani belgilang va Davom bosing.", hl: [2] },
-    { id: 'e', key: "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi", text: "Biror narsa boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing: yechimlar oynasi ochiladi, xato va yechimi o'sha yerda. Uchala katakcha belgilanmaguncha va isbot to'g'ri yozilmaguncha Davom tugmasi ochilmaydi. Demak, shu amaliyotdan keyin kompyuteringizda Nest o'rnatilgan va yangi loyiha yaratilmoqda.", hl: [] },
+    { id: 'd', key: "3-qadam: <code>nest new</code> buyrug'ini <b>to'liq nusxalang</b> — o'rnatish fonda, kutmasdan davom eting", text: "Uchinchi: loyihani yarating. Buyruqni qo'lda yozmang, to'liq nusxalang. Nest'ning o'n ikkinchi versiyasi loyiha yaratishda to'rtta savol beradi, biz javoblarni buyruqning o'zida berdik: paket menejeri npm, modul tizimi CommonJS, kuzatuv xizmati va AI agentlar uchun fayllar kerak emas. CommonJS'ni tanladik, chunki o'quvchi loyihasi ham shu tizimda yozilgan. O'rnatish boshlangach, kutmang: katakchani belgilang va Davom bosing.", show: "Uchinchi: loyihani yarating. Buyruqni qo'lda yozmang, to'liq nusxalang. Nest'ning 12-versiyasi loyiha yaratishda to'rtta savol beradi, biz javoblarni buyruqning o'zida berdik: paket menejeri <code>npm</code>, modul tizimi <code>CommonJS</code>, kuzatuv xizmati va AI agentlar uchun fayllar kerak emas. CommonJS'ni tanladik, chunki o'quvchi loyihasi ham shu tizimda yozilgan. O'rnatish boshlangach, kutmang: katakchani belgilang va keyingi qadamga o'ting.", hl: [2] },
+    { id: 'pm', key: "4-qadam: so'rov yuborish uchun <b>Postman</b> yoki VS Code'dagi <b>Thunder Client</b>", text: "To'rtinchi: darsning o'rtasida serverga so'rov yuborasiz, buning uchun dastur kerak bo'ladi. Postman o'rnatilgan bo'lsa, shuni oching. Bo'lmasa, VS Code'ning Extensions bo'limidan Thunder Client'ni qo'shing: u ham xuddi shu ishni qiladi va VS Code ichida ochiladi.", hl: [3] },
+    { id: 'e', key: "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi", text: "Biror narsa boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing: yechimlar oynasi ochiladi, xato va yechimi o'sha yerda. To'rttala katakcha belgilanmaguncha va isbot to'g'ri yozilmaguncha Davom tugmasi ochilmaydi. Demak, shu amaliyotdan keyin kompyuteringizda Nest o'rnatilgan, yangi loyiha yaratilmoqda va so'rov yuborish dasturi tayyor.", hl: [] },
   ],
 };
 const P0_STEPS = [
   { t: 'Node', cmds: ['node --version'], exp: 'v22 yoki undan yuqori' },
   { t: 'Nest CLI', cmds: ['npm i -g @nestjs/cli@12', 'nest --version'], exp: '12.x.x' },
-  { t: "Loyiha — boshlab qo'ying", cmds: ['nest new cars-api -p npm --type cjs --no-observe --skip-skills'], exp: "savol chiqmaydi · o'rnatish 1–3 daqiqa — kutmang, Davom bosing" },
+  { t: "Loyiha — boshlab qo'ying", cmds: ['nest new cars-api -p npm --type cjs --no-observe --skip-skills'], exp: "savol chiqmaydi · o'rnatish 1–3 daqiqa — kutmang, keyingi qadamga o'ting" },
+  { t: "So'rov yuborish dasturi", cmds: [], exp: "Postman ochiladi yoki VS Code → Extensions → «Thunder Client» qo'shilgan (22-ekranda kerak bo'ladi)" },
 ];
 const P0_TROUBLE = [
   ['node: 22 dan past', "nodejs.org dan LTS versiyani o'rnating, terminalni qayta oching, 1-qadamni qaytaring"],

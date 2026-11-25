@@ -1,0 +1,44 @@
+### GET /users 
+[{"id":1,"name":"Ali","email":"ali@example.com","age":20},{"id":2,"name":"Laylo","email":"laylo@example.com","age":19}]
+← 200
+
+### GET /users/1 
+{"id":1,"name":"Ali","email":"ali@example.com","age":20}
+← 200
+
+### GET /users/99 
+{"message":"User with id 99 not found","error":"Not Found","statusCode":404}
+← 404
+
+### GET /users/abc 
+{"message":"Validation failed (numeric string is expected)","error":"Bad Request","statusCode":400}
+← 400
+
+### POST /users {"name":"Bobur","email":"bobur@mail.uz","age":20}
+{"name":"Bobur","email":"bobur@mail.uz","age":20,"id":3}
+← 201
+
+### POST /users {"name":"Kichik","email":"kichik@mail.uz","age":15}
+{"message":"User must be at least 18 years old","error":"Bad Request","statusCode":400}
+← 400
+
+### POST /users {}
+{"id":4}
+← 201
+
+### POST /users {"name":"Sardor","email":"sardor@mail.uz","age":"16"}
+{"message":"User must be at least 18 years old","error":"Bad Request","statusCode":400}
+← 400
+
+### POST /users {"id":1,"name":"Soxta","email":"soxta@mail.uz","age":30}
+{"id":5,"name":"Soxta","email":"soxta@mail.uz","age":30}
+← 201
+
+### GET /users 
+[{"id":1,"name":"Ali","email":"ali@example.com","age":20},{"id":2,"name":"Laylo","email":"laylo@example.com","age":19},{"name":"Bobur","email":"bobur@mail.uz","age":20,"id":3},{"id":4},{"id":5,"name":"Soxta","email":"soxta@mail.uz","age":30}]
+← 200
+
+### GET /users/1 
+{"id":1,"name":"Ali","email":"ali@example.com","age":20}
+← 200
+

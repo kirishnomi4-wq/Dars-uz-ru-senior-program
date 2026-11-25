@@ -1,15 +1,15 @@
 # Nest-1 mentor darsi — yakuniy MD (koddan)
 
 > **Manba-haqiqat — kod** (`src/mentor-kurs/parts/03–07`, ruscha `08-ru.jsx`). Bu fayl `dev/nest1-md.py` bilan avtomatik chiqarilgan — qo'lda tahrirlamang; kod o'zgarsa skriptni qayta yurgizing.
-> Dars: «NestJS arxitekturasi: Module, Controller, Service» · ID `mentor-nest-01-arxitektura-v1` · 39 ekran · UZ + RU · platforma fayli `tayyor/NestArchMentorLesson.oz.jsx`.
+> Dars: «NestJS arxitekturasi: Module, Controller, Service» · ID `mentor-nest-01-arxitektura-v1` · 41 ekran · UZ + RU · platforma fayli `tayyor/NestArchMentorLesson.oz.jsx`.
 
 ---
 
 ## 1 · Siz Express'ni bilasiz. Endi Nest.  ← `Lesson` (`Screen1`)
 - Kicker: `Kirish` · Eyebrow: Mentor kursi · NestJS
-- Reja: Nega Nest · Uch bo'lak: Controller · Service · Module · Dependency Injection · cars route'larini quramiz · Buzamiz va xatoni o'qiymiz · Amaliyot (to'rt bo'lak) · O'quvchi darsini o'tish
+- Reja: Nega Nest · Uch bo'lak: Controller · Service · Module · Dependency Injection · cars route'larini quramiz · Buzamiz va xatoni o'qiymiz · Amaliyot va AI yozgan kod · O'quvchi darsini o'tish
 1. **Express bilimingiz ustiga Nest qo'yamiz: u Express'ni bekor qilmaydi, tartib beradi**
-   Ovoz: «Assalomu alaykum. Siz Express bilan server yozgansiz: route ochgansiz, so'rovni qabul qilgansiz, javob qaytargansiz. Bugun shu bilimingiz ustiga NestJS qo'yamiz. Nest Express'ni bekor qilmaydi, aksincha, uning ustiga tartib o'rnatadi.»
+   Ovoz: «Assalomu alaykum. Siz Express'ni videodarslarda ko'rgansiz: route qanday ochilishini, so'rov qanday qabul qilinishini va javob qanday qaytishini bilasiz. Bugun shu bilim ustiga NestJS qo'yamiz. Nest Express'ni bekor qilmaydi, aksincha, uning ustiga tartib o'rnatadi.»
 2. **Dars oxirida bo'sh papkadan ishlaydigan server qurib bo'lasiz**
    Ovoz: «Dars oxirida siz bo'sh papkadan boshlab mashinalar ro'yxatini qaytaradigan server qurasiz.»
 3. **Nest xato xabarini o'qiy olasiz: qaysi klass, qaysi dependency yetishmayapti, qaysi fayl**
@@ -24,7 +24,7 @@
 ## 2 · Express: tanish manzara va og'riq  ← `Lesson` (`Screen2`)
 - Kicker: `1-bosqich · Nega Nest`
 1. **Tanish manzara: butun Express server bitta `server.js` faylida**
-   Ovoz: «Avval sizga tanish narsadan boshlaymiz, Express'dan. Mana tanish manzara: butun server bitta server js faylida.»
+   Ovoz: «Avval tanish narsadan boshlaymiz, Express'dan. Videodarslarda ko'rganingizdek, butun server bitta server js faylida.»
 2. **`GET /cars` kelsa, mashinalar ro'yxatini qaytaramiz**
    Ovoz: «cars route'iga GET kelsa, ro'yxatni qaytaramiz.»
 3. **`GET /cars/:id` kelsa, bitta mashinani qidiramiz, topilmasa 404**
@@ -34,7 +34,7 @@
 5. **Loyiha o'sib 1240 qatorga yetdi (shartli misol) — login qayerdaligini qidirasiz**
    Ovoz: «Muammo loyiha o'sganda boshlanadi. Foydalanuvchilar qo'shildi, kirish va ro'yxatdan o'tish qo'shildi, buyurtmalar, to'lov, fayl yuklash. Mana shartli misol, haqiqiy loyiha emas: fayl ming ikki yuz qirq qator deylik. Login qayerda edi? Qidirasiz.»
 6. **Xulosa: bitta route'da hamma ish — sinab bo'lmaydi, ikki kishi to'qnashadi. Nest shu og'riq uchun**
-   Ovoz: «Xulosa: bitta route ichida ham so'rovni o'qish, ham tekshirish, ham bazaga yozish bor. Shu bo'lakni alohida sinab bo'lmaydi, chunki u route'dan ajralmagan. Ikki kishi bir faylda ishlasa, har kuni to'qnashuv. Siz buni his qilgansiz. Nest aynan shu og'riq uchun yaratilgan. O'quvchi darsi ham aynan shu misoldan boshlanadi.»
+   Ovoz: «Xulosa: bitta route ichida ham so'rovni o'qish, ham tekshirish, ham bazaga yozish bor. Shu bo'lakni alohida sinab bo'lmaydi, chunki u route'dan ajralmagan. Ikki kishi bir faylda ishlasa, biri ikkinchisining o'zgarishini buzib qo'yadi. Videodarslardagi kichik loyihada bu sezilmaydi, haqiqiy jamoada esa har kuni bo'ladi. Nest aynan shu og'riq uchun yaratilgan. O'quvchi darsi ham aynan shu misoldan boshlanadi.»
 
 ---
 
@@ -51,15 +51,19 @@
 
 ---
 
-## 4 · TypeScript va decorator: @ belgisi  ← `Lesson` (`Screen4`)
+## 4 · TypeScript: tip, class va decorator  ← `Lesson` (`Screen4`)
 - Kicker: `1-bosqich · Nega Nest`
 1. **TypeScript — tiplari bor JavaScript: JavaScript bilsangiz, o'qiy olasiz**
-   Ovoz: «Nest kodini ochishdan oldin bitta yangi narsani bilib olaylik, aks holda kod sizga begona ko'rinadi. Nest loyihalari TypeScript'da yoziladi. TypeScript bu JavaScript'ning o'zi, faqat tiplari bor: string, number va shunga o'xshash. Siz JavaScript bilsangiz, TypeScript'ni o'qiy olasiz.»
-2. **Yangi narsa: @ (kuchukcha) bilan boshlanadigan satr — decorator**
-   Ovoz: «Lekin bitta yangi narsa bor, u bilan ko'p uchrashasiz: kuchukcha belgisi bilan boshlanadigan satrlar. Masalan, Controller decorator'i, qavsda cars. Bu decorator deyiladi.»
-3. **Decorator Nest'ga aytadi: bu klass Controller, bu metod GET'ni qabul qiladi**
+   Ovoz: «Nest kodini ochishdan oldin bitta yangi narsani bilib olaylik, aks holda kod sizga begona ko'rinadi. Nest loyihalari TypeScript'da yoziladi. TypeScript bu JavaScript'ning o'zi, faqat tiplari bor: string, number va shunga o'xshash. Siz JavaScript bilsangiz, TypeScript'ni o'qiy olasiz. Avval ikki narsani ko'rib olamiz: tip va class.»
+2. **Tip: `price: number` — bu o'zgaruvchiga faqat son yoziladi, matn bersangiz dastur ishga tushmasdan xato**
+   Ovoz: «Birinchisi, tip. price ikki nuqta number: bu o'zgaruvchiga faqat son yoziladi. Ikkinchi satrda unga matn berdik. JavaScript buni indamay qabul qilardi, TypeScript esa dastur ishga tushmasdan xato beradi: VS Code satr tagiga qizil chiziq tortadi, ishga tushirmoqchi bo'lsangiz, terminalda tip mos emasligi haqida xato chiqadi. Xato foydalanuvchiga yetmasdan, kod yozilayotganda ushlanadi.»
+3. **class — bir xil obyektlar qolipi: `new Car('Kia', 320)` qolipdan bitta mashina yasaydi**
+   Ovoz: «Ikkinchisi, class. Class bir xil obyektlar uchun qolip. Car klassida brand va price maydonlari bor, constructor esa yangi mashina yasalayotganda shu maydonlarni to'ldiradi. new Car, qavsda Kia va uch yuz yigirma: qolipdan bitta mashina yasaladi. Nest'da Controller ham, Service ham shunday klass. Faqat ularni new bilan siz emas, Nest o'zi yaratadi; qanday qilishini uchinchi bosqichda ko'ramiz.»
+4. **Yangi narsa: @ (kuchukcha) bilan boshlanadigan satr — decorator**
+   Ovoz: «Va uchinchi yangi narsa, u bilan eng ko'p uchrashasiz: kuchukcha belgisi bilan boshlanadigan satrlar. Masalan, Controller decorator'i, qavsda cars. Bu decorator deyiladi.»
+5. **Decorator Nest'ga aytadi: bu klass Controller, bu metod GET'ni qabul qiladi**
    Ovoz: «Decorator klass yoki metodning tepasiga yoziladi va Nest'ga xabar beradi: bu klass Controller, uning path'i cars. Get decorator'i esa metod ustida turadi: GET so'rov kelsa, shu metod.»
-4. **Xulosa: decorator kod bajarmaydi, belgi qo'yadi — belgi yo'q bo'lsa, Nest klassni tanimaydi**
+6. **Xulosa: decorator kod bajarmaydi, belgi qo'yadi — belgi yo'q bo'lsa, Nest klassni tanimaydi**
    Ovoz: «Xulosa: decorator kodni bajarmaydi, u belgi qo'yadi. Nest ishga tushganda shu belgilarni o'qib, hamma bo'lakni joyiga qo'yadi. Shuni eslab qoling: decorator yo'q bo'lsa, Nest o'sha klassni tanimaydi. Beshinchi bosqichda buni ataylab buzib, xatosini ham ko'ramiz.»
 
 ---
@@ -84,19 +88,22 @@
 ## 6 · Nest'ni o'rnating, loyihani boshlab qo'ying  ← `Practice` (`ScreenP0`)
 - Kicker: `Amaliyot 1 / 4` · Eyebrow: Hozir o'zingizda · 3–5 daqiqa (o'rnatish fonda)
 1. **Endi siz: Nest'ni o'rnatib, loyihani yaratishni boshlab qo'yasiz**
-   Ovoz: «Endi navbat sizga. Hozirgina ko'rgan loyihani o'zingizda yaratib qo'yasiz: uchta qadam. O'rnatish bir-uch daqiqa oladi, kutmaysiz, Davom bosib darsni davom ettirasiz, loyiha fonda o'rnatiladi.»
+   Ovoz: «Endi navbat sizga. Hozirgina ko'rgan loyihani o'zingizda yaratib qo'yasiz va darsda kerak bo'ladigan dasturlarni tayyorlab qo'yasiz: to'rtta qadam. O'rnatish bir-uch daqiqa oladi, kutmaysiz, Davom bosib darsni davom ettirasiz, loyiha fonda o'rnatiladi.»
 2. **1-qadam: Node versiyasi 22 yoki undan yuqori bo'lishi shart**
    Ovoz: «Birinchi: node versiyasini tekshiring. Yigirma ikki yoki undan yuqori bo'lishi kerak. Past bo'lsa, jadvaldagi yo'l bilan yangilang.»
 3. **2-qadam: Nest CLI 12'ni o'rnating, versiyasini isbot maydoniga yozing**
    Ovoz: «Ikkinchi: Nest CLI'ni global o'rnating. Buyruq oxirida kuchukcha belgisi va o'n ikki turibdi: bu darsdagi hamma kod va terminal satrlari Nest'ning o'n ikkinchi versiyasida tekshirilgan, shuning uchun aynan shu versiyani o'rnatamiz. Keyin versiyani tekshiring va chiqqan raqamni pastdagi isbot maydoniga yozing.»
 4. **3-qadam: `nest new` buyrug'ini to'liq nusxalang — o'rnatish fonda, kutmasdan davom eting**
    Ovoz: «Uchinchi: loyihani yarating. Buyruqni qo'lda yozmang, to'liq nusxalang. Nest'ning o'n ikkinchi versiyasi loyiha yaratishda to'rtta savol beradi, biz javoblarni buyruqning o'zida berdik: paket menejeri npm, modul tizimi CommonJS, kuzatuv xizmati va AI agentlar uchun fayllar kerak emas. CommonJS'ni tanladik, chunki o'quvchi loyihasi ham shu tizimda yozilgan. O'rnatish boshlangach, kutmang: katakchani belgilang va Davom bosing.»
-5. **Boshqacha chiqsa, «Boshqacha chiqdimi?» tugmasini bosing — yechimlar oynasi ochiladi**
-   Ovoz: «Biror narsa boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing: yechimlar oynasi ochiladi, xato va yechimi o'sha yerda. Uchala katakcha belgilanmaguncha va isbot to'g'ri yozilmaguncha Davom tugmasi ochilmaydi. Demak, shu amaliyotdan keyin kompyuteringizda Nest o'rnatilgan va yangi loyiha yaratilmoqda.»
+5. **4-qadam: so'rov yuborish uchun Postman yoki VS Code'dagi Thunder Client**
+   Ovoz: «To'rtinchi: darsning o'rtasida serverga so'rov yuborasiz, buning uchun dastur kerak bo'ladi. Postman o'rnatilgan bo'lsa, shuni oching. Bo'lmasa, VS Code'ning Extensions bo'limidan Thunder Client'ni qo'shing: u ham xuddi shu ishni qiladi va VS Code ichida ochiladi.»
+6. **Boshqacha chiqsa, «Boshqacha chiqdimi?» tugmasini bosing — yechimlar oynasi ochiladi**
+   Ovoz: «Biror narsa boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing: yechimlar oynasi ochiladi, xato va yechimi o'sha yerda. To'rttala katakcha belgilanmaguncha va isbot to'g'ri yozilmaguncha Davom tugmasi ochilmaydi. Demak, shu amaliyotdan keyin kompyuteringizda Nest o'rnatilgan, yangi loyiha yaratilmoqda va so'rov yuborish dasturi tayyor.»
 - Qadamlar:
   1. **Node** — `node --version` → kutilgan: v22 yoki undan yuqori
   2. **Nest CLI** — `npm i -g @nestjs/cli@12` · `nest --version` → kutilgan: 12.x.x
-  3. **Loyiha — boshlab qo'ying** — `nest new cars-api -p npm --type cjs --no-observe --skip-skills` → kutilgan: savol chiqmaydi · o'rnatish 1–3 daqiqa — kutmang, Davom bosing
+  3. **Loyiha — boshlab qo'ying** — `nest new cars-api -p npm --type cjs --no-observe --skip-skills` → kutilgan: savol chiqmaydi · o'rnatish 1–3 daqiqa — kutmang, keyingi qadamga o'ting
+  4. **So'rov yuborish dasturi** — kutilgan: Postman ochiladi yoki VS Code → Extensions → «Thunder Client» qo'shilgan (22-ekranda kerak bo'ladi)
 - «Boshqacha chiqdimi?» jadvali:
   - `node: 22 dan past` → nodejs.org dan LTS versiyani o'rnating, terminalni qayta oching, 1-qadamni qaytaring
   - `nest: command not found` → CLI o'rnatilmagan yoki terminal yangilanmagan: 2-qadamni qaytaring, terminalni qayta oching
@@ -133,7 +140,7 @@
 3. **Konstruktor aytadi: «menga AppService kerak» — qanday kelishi 14-ekranda**
    Ovoz: «Konstruktorda bitta satr bor: unda AppService nomli bo'lak so'raladi. Buni hozircha shunday tushuning: bu Controller'ga AppService kerak. Qanday kelishini o'n to'rtinchi ekranda ko'ramiz.»
 4. **`private readonly` parametr o'zi klass maydoniga aylanadi — `this.appService` tayyor**
-   Ovoz: «Bir TypeScript qisqa yozuvi: konstruktor parametri oldida private readonly tursa, u avtomatik klassning maydoni bo'ladi. JavaScript'da this nuqta appService teng appService deb yozardingiz, bu yerda o'sha satr yozilmaydi, u o'zi bajariladi.»
+   Ovoz: «Bir TypeScript qisqa yozuvi: konstruktor parametri oldida private readonly tursa, u avtomatik klassning maydoni bo'ladi. To'rtinchi ekrandagi Car klassida buni qo'lda yozgan edik: this nuqta brand teng brand. Bu yerda o'sha satr yozilmaydi, u o'zi bajariladi.»
 5. **`@Get()` metod ustida: GET so'rov kelsa, shu metodni chaqir**
    Ovoz: «Pastda Get decorator'i. U metod ustida turibdi va aytyapti: GET so'rov kelsa, shu metodni chaqir. Express'dagi app get bilan bir xil ma'no, faqat endi metodning ustida.»
 6. **Metod ichida bitta ish: Service'ni chaqirib, natijani qaytarish**
@@ -231,8 +238,8 @@
 - Kicker: `3-bosqich · Dependency Injection`
 1. **Konstruktorda «menga AppService kerak» — lekin uni hech kim `new` bilan yaratmagan**
    Ovoz: «Tekshiruvda Controller Service'ni chaqiradi dedik. Lekin Controller Service'ni qayerdan oladi? Shu savol bilan Controller faylidagi konstruktorga qaytamiz. Bu yerda yozilgan: menga AppService kerak. Lekin butun loyihada new AppService degan satr yo'q. Unda Service qayerdan keladi? Shu ekranda aynan shuni qadam-baqadam ko'ramiz.»
-2. **Express'da o'zingiz yaratardingiz: `require` + `new`, har faylda qaytadan**
-   Ovoz: «Express'da buni o'zingiz qilardingiz: require qilib, new bilan yaratib, har kerakli faylda qaytadan. Uchta faylga kerak bo'lsa, uch marta. Nest'da bu ish sizdan olingan.»
+2. **Express'da o'zingiz yaratasiz: `require` + `new`, har faylda qaytadan**
+   Ovoz: «Express'da bu ishni o'zingiz qilasiz: require qilasiz, new bilan yaratasiz, har kerakli faylda qaytadan. Uchta faylga kerak bo'lsa, uch marta. Nest'da bu ish sizdan olingan.»
 3. **1-qadam: Nest ishga tushganda app.module.ts'dagi `providers`'ni o'qiydi**
    Ovoz: «Birinchi qadam. Server ishga tushganda Nest app module ts faylini ochadi va providers ro'yxatini o'qiydi: unda AppService turibdi.»
 4. **2-qadam: Nest AppService'dan bitta instance yaratib, o'zida saqlaydi**
@@ -292,7 +299,7 @@
 3. **`findAll` hammasini qaytaradi, `findOne` id bo'yicha bittasini qidiradi**
    Ovoz: «findAll ro'yxatni qaytaradi. findOne id bo'yicha qidiradi.»
 4. **Topilmasa NotFoundException tashlaydi — Nest uni o'zi 404 javobga aylantiradi**
-   Ovoz: «Topilmasa, NotFoundException tashlaydi. Bu Nest'ning tayyor xatosi: siz uni tashlaysiz, Nest uni o'zi to'rt yuz to'rt javobga aylantiradi, statusi va xabari bilan. Express'da buni qo'lda, status to'rt yuz to'rt va json deb yozardingiz.»
+   Ovoz: «Topilmasa, NotFoundException tashlaydi. Bu Nest'ning tayyor xatosi: siz uni tashlaysiz, Nest uni o'zi to'rt yuz to'rt javobga aylantiradi, statusi va xabari bilan. Express'da buni qo'lda yozasiz: status to'rt yuz to'rt va json.»
 5. **Xulosa: `create` qo'shadi, Service'da esa so'rov haqida bitta so'z yo'q**
    Ovoz: «create yangi mashinani ro'yxatga qo'shadi va qaytaradi. Qavsdagi Omit Car vergul id, TypeScript yozuvi: Car'ning id'siz shakli, chunki id'ni biz o'zimiz beramiz. Xulosa: bu faylda so'rov haqida bitta so'z ham yo'q, req ham, res ham yo'q. Faqat mashinalar va ular bilan ishlaydigan uch metod. Shuning uchun uni Controller ham, Telegram bot ham ishlata oladi.»
 
@@ -369,7 +376,7 @@
 4. **3-qadam: Controller'ni o'zingiz yozing — namunani ko'rasiz, lekin nusxalanmaydi**
    Ovoz: «Uchinchi: Controller'ni o'zingiz yozing, yigirma qator. Namuna uchinchi qadam ichidagi Kodni ochish tugmasida ko'rinadi, lekin nusxalanmaydi, ataylab. Decorator va konstruktorni qo'lingiz his qilsin. Terminalda uchta Mapped satri chiqsin.»
 5. **4-qadam: to'rtta so'rov — javoblar 200 · 200 · 404 · 201 bo'lsin**
-   Ovoz: «To'rtinchi: brauzer yoki Postman bilan to'rtta so'rovni yuboring va javoblarni darsdagi bilan solishtiring: ikki yuz, ikki yuz, to'rt yuz to'rt, ikki yuz bir. cars to'qson to'qqiz javobidagi xabarni isbot maydoniga yozing.»
+   Ovoz: «To'rtinchi: brauzer, Postman yoki Thunder Client bilan to'rtta so'rovni yuboring va javoblarni darsdagi bilan solishtiring: ikki yuz, ikki yuz, to'rt yuz to'rt, ikki yuz bir. cars to'qson to'qqiz javobidagi xabarni isbot maydoniga yozing.»
 6. **Boshqacha chiqsa, «Boshqacha chiqdimi?» tugmasini bosing — yechimlar oynasi ochiladi**
    Ovoz: «Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha belgilanmaguncha va isbot to'g'ri yozilmaguncha Davom ochilmaydi. Demak, shu amaliyotdan keyin sizda o'zingiz qurgan cars moduli bor va u so'rovlarga javob beradi.»
 - Qadamlar:
@@ -380,7 +387,7 @@
 - «Boshqacha chiqdimi?» jadvali:
   - `Qizil TypeScript xatosi (fayl:satr)` → Nusxalashda satr tushib qolgan: ko'rsatilgan satrni «Kodni ochish»dagi kod bilan solishtiring
   - `Cannot GET /cars` → Terminalda Mapped {/cars…} bormi? Yo'q bo'lsa app.module.ts → imports: [CarsModule]
-  - `POST da body undefined` → Postman'da Body → raw → JSON tanlanganmi? Content-Type: application/json
+  - `POST da body undefined` → Postman yoki Thunder Client'da Body → JSON tanlanganmi? Content-Type: application/json
   - `error TS2307: Cannot find module './cars.service'` → Loyiha ESM turida yaratilgan: cars-api papkasini o'chiring, 1-amaliyotning 3-qadamidagi buyruqni to'liq nusxalab qayta yarating va cars modulini qaytadan quring
 - Isbot: Isbot: GET /cars/99 javobidagi message maydoni (placeholder: «javobdagi message matnini yozing»)
 - «Kodni ochish»: namuna kodlar (`code`), Explorer — `tree` (butun loyiha, faqat amaliyot fayllari bosiladi)
@@ -499,7 +506,7 @@
 ---
 
 ## 29 · Bu o'quvchingizning loyihasi. Qaysi faylni ochasiz va nimani tuzatasiz?  ← `MCRetry` (`Screen23`)
-- Ovoz (savol): «Oxirgi tekshiruv, sinfdagi haqiqiy holat. Beshinchi tekshiruv. Ekrandagi xabarni o'qing. Bu sizning emas, o'quvchingizning loyihasi, u yordam so'radi. Qaysi faylni ochasiz va nimani tuzatasiz?»
+- Ovoz (savol): «Sinfdagi haqiqiy holat. Beshinchi tekshiruv. Ekrandagi xabarni o'qing. Bu sizning emas, o'quvchingizning loyihasi, u yordam so'radi. Qaysi faylni ochasiz va nimani tuzatasiz?»
   A) orders.controller.ts — konstruktordan OrdersService'ni o'chirish
   B) orders.module.ts — providers'ga PaymentService qo'shish  ✔
   C) app.module.ts — imports'ga OrdersController qo'shish
@@ -533,7 +540,32 @@
 
 ---
 
-## 31 · O'quvchi clone qiladigan loyiha  ← `Lesson` (`Screen25a`)
+## 31 · AI yozgan customers moduli: ikki topshiriq, ikki natija  ← `Lesson` (`ScreenAI6`)
+- Kicker: `6-bosqich · AI yozgan kod`
+1. **AI'ga customers modulini yozdirdik: bir xil AI, ikki xil topshiriq**
+   Ovoz: «Hozir kodning ko'pini AI yozadi, sizning ishingiz uni tekshirish. Biz cars api loyihasiga ijarachilar, ya'ni customers modulini AI'ga yozdirdik. AI bitta, Claude Haiku, topshiriq ikki xil: chapdagisi oddiy so'zlar bilan, o'ngdagisi Nest tilida. Ikkalasida bitta qoida bor: yoshi o'n sakkizdan kichik bo'lsa, qo'shmasin.»
+2. **1-tekshiruv — tuzilish: to'rt savol, ikkala AI ham o'tdi**
+   Ovoz: «Birinchi tekshiruv tuzilish, bugungi darsning to'rt savoli. Fayllar: module, controller, service bormi. Ro'yxatlar: Service providers'da, modul AppModule imports'idami, terminalda customers uchun uchta Mapped satri chiqdimi. Logika: yosh qoidasi Service'dami. Decorator'lar joyidami. Ikkala AI ham to'rttala savoldan o'tdi.»
+3. **2-tekshiruv — so'rov: `/customers/abc` da A 404 «NaN» qaytardi**
+   Ovoz: «Ikkinchi tekshiruv so'rov bilan. Ro'yxat, to'qson to'qqiz va o'n besh yoshli mijoz ikkalasida to'g'ri. Lekin customers abc so'rovida A to'rt yuz to'rt va NaN qaytardi: unda ParseIntPipe yo'q, id Number bilan olingan, yigirma birinchi ekrandagi holatning o'zi. B da ParseIntPipe bor, chunki topshiriqda so'ralgan edi.»
+4. **Kutilmagan so'rov: bo'sh POST va body'da id: 1 — B da ikkalasi o'tib ketdi**
+   Ovoz: «Endi kutilmagan ikki so'rov: bo'sh POST va body ichida id bir. A ikkalasini to'xtatdi: bo'sh POST'ga to'rt yuz, body'dagi id'ga e'tibor bermadi. B esa bo'sh mijoz yaratdi va ro'yxatda ikkinchi id bir paydo bo'ldi. Endi customers bir so'rovi eskisini qaytaradi, yangisi esa takror id bilan yotadi.»
+5. **Xulosa: har AI topshiriqda yozilmaganini o'tkazib yubordi — 4 savol va 3 so'rov bilan tekshiring**
+   Ovoz: «Xulosa. Har AI topshiriqda yozilmagan narsani o'tkazib yubordi: oddiy topshiriq Nest'ga xos ParseIntPipe'ni, Nest topshirig'i kiruvchi ma'lumot tekshiruvini. Bu bitta sinov, boshqa AI boshqacha yozadi. Demak, AI kodini to'rt savol bilan o'qing va uchta kutilmagan so'rov yuboring: harfli id, bo'sh body va begona maydon.»
+
+---
+
+## 32 · AI yozgan create(): qaysi satr takror id'ga sabab?  ← `LineCheck` (`ScreenLCAI`)
+- Shart: Qoida: yangi yozuvning id'sini **server beradi**, so'rovdan kelgan id qabul qilinmaydi. Body'da `"id": 1` yuborilganda ro'yxatda ikkinchi `id: 1` paydo bo'ldi. **Aybdor satrni bosing.**
+- Ovoz (savol): «Oltinchi, oxirgi tekshiruv. Bu B yozgan create metodi, customers papkasidagi customers service ts faylida. Body ichida id bir yuborilganda, ro'yxatda ikkinchi id bir paydo bo'ldi. Qoida: yangi yozuvning id'sini server beradi, so'rovdan kelgan id qabul qilinmaydi. Qaysi satr so'rovdagi id'ni o'tkazib yuboryapti? O'sha satrni bosing.»
+- To'g'ri satr (0 dan): 4
+- Yo'llanma (noto'g'ri bosilsa): Bu satr yoshni tekshiradi, ro'yxatga qo'shadi yoki natijani qaytaradi. Yangi mijoz obyekti yig'ilayotgan satrni qidiring.
+- To'g'ri javobdan keyin (ovoz): «To'g'ri. O'ttiz oltinchi satrda avval server bergan id yoziladi, keyin data'ning hamma maydoni ustidan yoziladi, body'dagi id ham. Tuzatish: id'ni oxiriga qo'yish. Tuzatilgan kodda id bir yuborilsa ham yangi mijoz besh raqamini oldi. Bo'sh POST'ni esa DTO va ValidationPipe yopadi. Demak, AI kodida uch nuqta bilan yoyishni ko'rsangiz, tartibiga qarang.»
+- Ekranda: 36-satr: { id: …, ...data } — body'dagi id server bergan id ustidan yoziladi. Tuzatildi: { ...data, id: this.nextId++ } → yangi mijoz id 5 (sinab ko'rilgan).
+
+---
+
+## 33 · O'quvchi clone qiladigan loyiha  ← `Lesson` (`Screen25a`)
 - Kicker: `7-bosqich · o'quvchi darsini o'tish`
 1. **O'quvchi noldan yozmaydi: GitHub'dan tayyor loyihani clone qilib, ishga tushiradi**
    Ovoz: «Siz Nest'ni o'zingiz qurdingiz va o'zingiz buzdingiz. Endi darsning asosiy maqsadiga o'tamiz: bu mavzuni o'quvchiga o'tish. Avval o'quvchi darsiga qaraymiz, chunki u bu mavzuni boshqacha ko'radi. O'quvchi noldan yozmaydi: GitHub'dan tayyor loyihani clone qiladi, IntroNestArxitechture, va uni ishga tushiradi.»
@@ -556,7 +588,7 @@
 
 ---
 
-## 32 · O'quvchi darsining tili: restoran  ← `Lesson` (`Screen25b`)
+## 34 · O'quvchi darsining tili: restoran  ← `Lesson` (`Screen25b`)
 - Kicker: `7-bosqich · o'quvchi darsini o'tish`
 1. **O'quvchi darsi restoran tilida gapiradi: ofitsiant, oshpaz, omborchi…**
    Ovoz: «Loyihaning fayllarini ko'rdik. Endi o'quvchi shu fayllarni qanday so'zlar bilan eslashini bilib olaylik. O'quvchi darsi restoran tilida gapiradi: Controller ofitsiant, Service oshpaz, Repository omborchi, Guard nazoratchi, Module shtat jadvali. O'quvchi shu so'zlarda o'ylaydi.»
@@ -567,7 +599,7 @@
 
 ---
 
-## 33 · O'quvchi darsining xaritasi: 6 blok, 22 ekran  ← `Lesson` (`ScreenR1`)
+## 35 · O'quvchi darsining xaritasi: 6 blok, 22 ekran  ← `Lesson` (`ScreenR1`)
 - Kicker: `7-bosqich · o'tish rejasi` · Eyebrow: m4a-01 · «Nest arxitektura — tirik ko'rish»
 1. **O'quvchi darsi m4a-01: 6 blok, 22 ekran — har blokda siz nima deysiz**
    Ovoz: «Loyihani ham, o'quvchi tilini ham bilasiz. Endi o'quvchi darsining o'zini ekranma-ekran ko'ramiz, chunki siz uni o'tasiz. Yigirma ikki ekran, oltita blok. Har blok uchun o'quvchi nima qiladi va siz nima deysiz.»
@@ -582,13 +614,13 @@
 6. **5-blok · qatlamlar: Entity, DTO, BaseService — har biriga bir gap, chuqur emas**
    Ovoz: «Beshinchi blok, qatlamlar: Entity, DTO, BaseService, Module va besh qadam tartibi. Chuqur emas, har biriga bir gap. Entity, jadval shakli. DTO, kiruvchi ma'lumot shakli, noto'g'ri bo'lsa to'rt yuz. BaseService, tayyor CRUD metodlari. Module, ro'yxat. Xavotir olmang: Entity, DTO va Repository'ni kursdagi keyingi mentor darslarida to'liq, kodi bilan o'rganasiz. O'quvchi darsining bu blokida esa bir gap yetarli.»
 7. **6-blok · AI bilan qurish va debugging: Controller'da hisob bo'lmaydi qoidasi ishlaydi**
-   Ovoz: «Oltinchi blok: o'quvchi AI'ga beshta faylni yozdiradi, keyin yakuniy debugging, xato qatorni topib olib tashlaydi, so'ng amaliy topshiriq va arena. Debugging ekranida siz bugun o'rgangan qoida ishlaydi: Controller'da hisob bo'lmaydi.»
+   Ovoz: «Oltinchi blok: o'quvchi AI'ga beshta faylni yozdiradi, keyin yakuniy debugging, xato qatorni topib olib tashlaydi, so'ng amaliy topshiriq va arena. Debugging ekranida siz bugun o'rgangan qoida ishlaydi: Controller'da hisob bo'lmaydi. AI yozgan kodni esa oltinchi bosqichdagidek tekshirasiz: to'rt savol va uchta kutilmagan so'rov.»
 8. **Xulosa: eng ko'p kuch — 2-blok (server) va 6-blok (debugging)**
    Ovoz: «Xulosa: oltita blokdan ikkitasi sizdan eng ko'p kuch talab qiladi. Ikkinchisi, chunki hammaning serveri ishlashi kerak. Oltinchisi, chunki debugging'da bugungi qoidani o'quvchi o'zi topishi kerak.»
 
 ---
 
-## 34 · O'quvchilar xato qiladigan 6 joy  ← `Lesson` (`ScreenR2`)
+## 36 · O'quvchilar xato qiladigan 6 joy  ← `Lesson` (`ScreenR2`)
 - Kicker: `7-bosqich · o'tish rejasi` · Eyebrow: m4a-01 · darsda nima bo'ladi
 1. **Sinfda albatta uchraydigan 6 holat — har biriga tayyor javobingiz bo'lsin**
    Ovoz: «Rejani bilasiz. Endi reja buziladigan joylarni ko'raylik: darsda albatta uchraydigan oltita holat. Har biriga tayyor javobingiz bo'lsin.»
@@ -611,7 +643,7 @@
 
 ---
 
-## 35 · Baza ulanmadi: to'rt xabar, to'rt sabab  ← `Lesson` (`ScreenRdb`)
+## 37 · Baza ulanmadi: to'rt xabar, to'rt sabab  ← `Lesson` (`ScreenRdb`)
 - Kicker: `7-bosqich · o'tish rejasi` · Eyebrow: m4a-01 · sinfda eng ko'p chiqadigan xato
 1. **O'quvchi loyihasi PostgreSQL'ga ulanadi — sinfdagi 1-xato shu, sabab doim 2-satrda**
    Ovoz: «Oldingi ekrandagi uchinchi holatni, env va PostgreSQL'ni, alohida ko'ramiz, chunki sinfda eng ko'p vaqt shunga ketadi. Bugun to'rt Nest xatosini o'rgandingiz. Lekin sinfda eng ko'p chiqadigani boshqa: o'quvchi loyihasi PostgreSQL'ga ulanadi, va ulanish ko'pincha birinchi urinishda bo'lmaydi. Xabar har doim bir xil boshlanadi: Unable to connect to the database, Retrying. Sabab esa ikkinchi satrda. To'rtta haqiqiy holat.»
@@ -628,7 +660,7 @@
 
 ---
 
-## 36 · Vaqt rejasi va uch qoida  ← `Lesson` (`ScreenR3`)
+## 38 · Vaqt rejasi va uch qoida  ← `Lesson` (`ScreenR3`)
 - Kicker: `7-bosqich · o'tish rejasi` · Eyebrow: m4a-01 · 90 daqiqa (taklif)
 1. **Taklif: 90 daqiqa, oltita bo'lak — sinfingizga qarab o'zgartirasiz**
    Ovoz: «O'quvchilar xato qiladigan joylarni va ularning yechimini bilasiz. Endi vaqtni rejalaymiz. Taklif qilingan vaqt rejasi: to'qson daqiqa, oltita bo'lak. Bu taklif, sinfingizga qarab o'zgartirasiz.»
@@ -643,7 +675,7 @@
 
 ---
 
-## 37 · O'quvchi so'raydigan savollar  ← `Lesson` (`Screen26`)
+## 39 · O'quvchi so'raydigan savollar  ← `Lesson` (`Screen26`)
 - Kicker: `7-bosqich · savollar`
 1. **Darsda sizga beriladigan 6 savol va tayyor javoblar**
    Ovoz: «Dars rejasi tayyor. Oxirgi tayyorgarlik: o'quvchi sizga beradigan savollar. Ular taxminan shular bo'ladi.»
@@ -664,7 +696,7 @@
 
 ---
 
-## 38 · O'z-sinov — 8 savol  ← `Maxsus` (`Screen27`)
+## 40 · O'z-sinov — 8 savol  ← `Maxsus` (`Screen27`)
 - O'z-sinov: 8 savol, bitta urinish, 6+ — o'zlashtirildi; noto'g'ri savoldan ko'rsatilgan ekranga qaytiladi.
   1. Nest ichida so'rovni haqiqatda qaysi kutubxona qabul qiladi?
      A) Nest'ning o'z HTTP serveri
@@ -717,7 +749,7 @@
 
 ---
 
-## 39 · Yakun: xulosa, uyga vazifa, eslatma  ← `Maxsus` (`Screen28`)
+## 41 · Yakun: xulosa, uyga vazifa, eslatma  ← `Maxsus` (`Screen28`)
 1. [a] **Barakalla! Siz darsni yaxshi o'rgandingiz — bugungi darsni bir qarashda yig'amiz**
    Ovoz: «Barakalla! Siz darsni yaxshi o'rgandingiz. Endi bugun o'rganganlaringizni bir qarashda yig'amiz.»
 2. [a] **Dars oxiriga yetdingiz — sinovni qayta topshirishni maslahat beraman**
@@ -734,11 +766,13 @@
    Ovoz: «Beshinchi: Dependency Injection. Siz Service'ni providers'ga yozasiz va konstruktorda so'raysiz, yaratib inject qilishni Nest qiladi.»
 8. [b6] **Nest xatosi o'qiladi: qaysi klass · qaysi dependency · qaysi fayl**
    Ovoz: «Va eng muhimi: Nest xatosi o'qiladi. Xabarda qaysi klass, qaysi dependency yetishmayapti va qaysi faylni ochish kerakligi yozilgan, javob esa ko'pincha modul faylida.»
-9. [hw] **Uyga vazifa: cars-api'ga `users` modulini o'zingiz qo'shing va GitHub'ga chiqaring**
+9. [b7] **AI yozgan kod: 4 savol va 3 kutilmagan so'rov bilan tekshiriladi**
+   Ovoz: «Va yana bittasi: AI yozgan kodni to'rt savol bilan o'qing va uchta kutilmagan so'rov yuboring: harfli id, bo'sh body va begona maydon.»
+10. [hw] **Uyga vazifa: cars-api'ga `users` modulini o'zingiz qo'shing va GitHub'ga chiqaring**
    Ovoz: «Uyga vazifa. cars api loyihangizga users modulini shu darsdagi usulda qo'shing: uchta CLI buyrug'i, Service'da foydalanuvchilar ro'yxati va findAll, findOne, create metodlari, topilmasa NotFoundException. Controller'da uchta route. Keyin bir marta ataylab buzing, masalan providers'ni bo'shating, xabarni o'qing va tuzating. Tayyor loyihani GitHub'ga chiqaring va repo linkini platformadagi uyga vazifangizga qo'ying.»
-10. [c] **Eslatmani oling: buyruqlar, xatolar, qoidalar va uyga vazifa — bir sahifada**
+11. [c] **Eslatmani oling: buyruqlar, xatolar, qoidalar va uyga vazifa — bir sahifada**
    Ovoz: «Pastda bir sahifalik eslatma: buyruqlar, to'rt Nest xatosi, baza ulanish xatolari, qoidalar, o'quvchi darsi lug'ati va uyga vazifa. Nusxalab yoki yuklab oling, o'quvchi darsini o'tayotganda yoningizda tursin.»
-11. [z] **Rahmat! Darsni yakunlash tugmasini bosing**
+12. [z] **Rahmat! Darsni yakunlash tugmasini bosing**
    Ovoz: «Rahmat. Darsni yakunlash tugmasini bosing, dars tugallangan deb belgilanadi.»
 - Uyga vazifa:
   1. users moduli — `nest g module users` · `nest g controller users --no-spec` · `nest g service users --no-spec`
@@ -779,6 +813,13 @@ GET /cars 200 · GET /cars/1 200 · GET /cars/99 404 · POST /cars 201 (o'zi) ·
 ofitsiant=Controller · oshpaz=Service · omborchi=Repository · javon chizmasi=Entity · anketa=DTO · nazoratchi=Guard · shtat jadvali=Module
 ## Uch qoida (dars o'tishda)
 hammada server ishlaguncha oldinga o'tmang · «oshpaz, ya'ni Service» · xato chiqsa terminaldagi xabarni birga o'qing, javobni aytmang
+## AI yozgan kodni tekshirish
+4 savol: fayllar (module · controller · service) · ro'yxatlar (providers, AppModule imports, terminalda Mapped) · logika Service'da · decorator'lar
+3 kutilmagan so'rov: harfli id (/customers/abc → 400, 404 «NaN» emas) · bo'sh body ({} → 400, 201 emas) · begona maydon ("id": 1 → id'ni server beradi)
+Yoyish tartibi: { ...data, id } — id oxirida; { id, ...data } — body'dagi id ustidan yozadi
+TS1272 «must be imported with 'import type'» → Controller'dagi tipni import type bilan oling
+## Lug'at
+decorator — @ bilan boshlanadigan belgi · provider — modul yaratib beradigan narsa (asosan Service) · instance — klassdan yasalgan obyekt · inject — Nest'ning tayyor obyektni konstruktorga berishi · path — manzil, route — path + metod · Mapped — terminaldagi ulangan route satri · pipe — kiruvchi qiymatni tekshiradi yoki o'zgartiradi (ParseIntPipe) · DTO — kiruvchi ma'lumot shakli · HttpException — status bilan qaytadigan xatolar oilasi · CLI — nest g buyruqlari
 ## Uyga vazifa
 cars-api'ga users moduli: nest g module/controller/service users · Service: ro'yxat + findAll/findOne/create, topilmasa NotFoundException · Controller: GET /users · GET /users/:id · POST /users · bir marta ataylab buzing (providers bo'sh) va tuzating · GitHub'ga push → repo linki platformadagi uyga vazifaga
 ```

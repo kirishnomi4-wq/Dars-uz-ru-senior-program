@@ -122,7 +122,7 @@ const S14 = {
     { id: 'a', key: "<code>Car</code> interfeysi — mashinaning <b>shakli</b>: id, brand, model, price (bazadagi jadval emas)", text: "Fayllar bo'sh, route yo'q. Tartib bo'yicha avval ishni bajaradigan bo'lakni, Service'ni to'ldiramiz. cars service ts. Avval Car interfeysi: mashinada id, brand, model va price bo'ladi. Interface TypeScript'ning shakl tavsifi, bazadagi jadval emas, hozircha shunchaki shakl.", focus: ['l-interface'] },
     { id: 'b', key: "Ro'yxat hozircha <b>xotirada</b>: Malibu va K5 — bu darsda baza kerak emas", text: "Keyin ro'yxat: ikkita mashina, Chevrolet Malibu va Kia K5, narxi million so'mda. Baza hali yo'q, ma'lumot xotirada turibdi, bu dars uchun yetarli.", focus: ['l-array'] },
     { id: 'c', key: "<code>findAll</code> hammasini qaytaradi, <code>findOne</code> <b>id bo'yicha</b> bittasini qidiradi", text: "findAll ro'yxatni qaytaradi. findOne id bo'yicha qidiradi.", focus: ['l-findAll', 'l-findOne'] },
-    { id: 'd', key: "Topilmasa <b>NotFoundException</b> tashlaydi — Nest uni o'zi <b>404 javobga</b> aylantiradi", text: "Topilmasa, NotFoundException tashlaydi. Bu Nest'ning tayyor xatosi: siz uni tashlaysiz, Nest uni o'zi to'rt yuz to'rt javobga aylantiradi, statusi va xabari bilan. Express'da buni qo'lda, status to'rt yuz to'rt va json deb yozardingiz.", show: "Topilmasa, <b>NotFoundException</b> tashlaydi. Bu Nest'ning tayyor xatosi: siz uni tashlaysiz, Nest uni o'zi 404 javobga aylantiradi, statusi va xabari bilan. Express'da buni <code>res.status(404).json</code> deb qo'lda yozardingiz.", focus: ['l-notfound'] },
+    { id: 'd', key: "Topilmasa <b>NotFoundException</b> tashlaydi — Nest uni o'zi <b>404 javobga</b> aylantiradi", text: "Topilmasa, NotFoundException tashlaydi. Bu Nest'ning tayyor xatosi: siz uni tashlaysiz, Nest uni o'zi to'rt yuz to'rt javobga aylantiradi, statusi va xabari bilan. Express'da buni qo'lda yozasiz: status to'rt yuz to'rt va json.", show: "Topilmasa, <b>NotFoundException</b> tashlaydi. Bu Nest'ning tayyor xatosi: siz uni tashlaysiz, Nest uni o'zi 404 javobga aylantiradi, statusi va xabari bilan. Express'da buni qo'lda yozasiz: <code>res.status(404).json</code>.", focus: ['l-notfound'] },
     { id: 'e', key: "Xulosa: <code>create</code> qo'shadi, Service'da esa <b>so'rov haqida bitta so'z yo'q</b>", text: "create yangi mashinani ro'yxatga qo'shadi va qaytaradi. Qavsdagi Omit Car vergul id, TypeScript yozuvi: Car'ning id'siz shakli, chunki id'ni biz o'zimiz beramiz. Xulosa: bu faylda so'rov haqida bitta so'z ham yo'q, req ham, res ham yo'q. Faqat mashinalar va ular bilan ishlaydigan uch metod. Shuning uchun uni Controller ham, Telegram bot ham ishlata oladi.", show: "<code>create</code> yangi mashinani qo'shadi va qaytaradi. <code>Omit&lt;Car, 'id'&gt;</code> — TypeScript yozuvi: Car'ning id'siz shakli, chunki id'ni biz beramiz. <b>Xulosa:</b> bu faylda so'rov haqida bitta so'z ham yo'q — faqat mashinalar va uch metod.", focus: ['l-create'] },
   ],
 };
@@ -212,7 +212,7 @@ const LC1_SVC_FIXED = [
   { h: `  }` },
 ];
 function ScreenLC1(p) {
-  return <LineCheck {...p} kicker={t('Tekshiruv 2', 'Проверка 2')} eyebrow={t('Tekshiruv · 2 / 5 — qaysi satr xato?', 'Проверка · 2 / 5 — какая строка с ошибкой?')} title={t("Bu Controller ishlaydi, lekin bitta satr noto'g'ri faylda turibdi", 'Этот Controller работает, но одна строка стоит не в том файле')}
+  return <LineCheck {...p} kicker={t('Tekshiruv 2', 'Проверка 2')} eyebrow={t('Tekshiruv · 2 / 6 — qaysi satr xato?', 'Проверка · 2 / 6 — какая строка с ошибкой?')} title={t("Bu Controller ishlaydi, lekin bitta satr noto'g'ri faylda turibdi", 'Этот Controller работает, но одна строка стоит не в том файле')}
     task={t("Qoida: Controller faqat so'rovdan oladi, Service'ni chaqiradi va natijani qaytaradi — <b>hisob qilmaydi</b>. Bu Controller'da bitta satr hisob qilyapti. <b>O'sha satrni bosing.</b>", 'Правило: Controller только берёт из запроса, вызывает Service и возвращает результат — <b>не считает</b>. В этом Controller одна строка считает. <b>Нажмите на эту строку.</b>')}
     q={t("Controller'ni yozdik, endi o'zingiz tekshiring. Ikkinchi tekshiruv. Qoidani eslang: Controller faqat so'rovdan oladi, Service'ni chaqiradi va natijani qaytaradi, hisob qilmaydi. Ekrandagi Controller ishlaydi, lekin bitta satr hisob qilyapti. O'sha satrni bosing.", 'Controller мы написали, теперь проверьте сами. Вторая проверка. Вспомните правило: Controller только берёт из запроса, вызывает Service и возвращает результат, он не считает. Controller на экране работает, но одна строка в нём считает. Нажмите на эту строку.')}
     file="src/cars/cars.controller.ts" lines={LC1_LINES} target={10}
@@ -269,7 +269,7 @@ function Screen16(p) {
 
 // --- S17 Tekshiruv 3 — o'ylab ko'ring ---
 function Screen17(p) {
-  return <MCRetry {...p} kicker={t('Tekshiruv 3', 'Проверка 3')} eyebrow={t("Tekshiruv · 3 / 5 — o'ylab ko'ring", 'Проверка · 3 / 5 — подумайте')}
+  return <MCRetry {...p} kicker={t('Tekshiruv 3', 'Проверка 3')} eyebrow={t("Tekshiruv · 3 / 6 — o'ylab ko'ring", 'Проверка · 3 / 6 — подумайте')}
     title={t("Kodimiz hozirgi holatda. GET /cars/abc so'rovi kelsa, javob qanday bo'ladi?", 'Код в текущем виде. Пришёл запрос GET /cars/abc — каким будет ответ?')}
     q={t("Javoblarni ko'rdik. Endi bir qadam oldinga o'ylaymiz. Uchinchi tekshiruv, o'ylab ko'ring. Kimdir cars path'idan keyin abc deb yubordi. Kodimiz hozirgi holatda. Javob qanday bo'ladi?", 'Ответы мы увидели. Теперь подумаем на шаг вперёд. Третья проверка, подумайте. Кто-то отправил abc после пути cars. Код в текущем виде. Каким будет ответ?')}
     opts={t(["200 va bo'sh obyekt — mashina yo'q", "500 Internal server error — Service yiqildi", '404 va «Car with id NaN not found»', '400 Bad Request — id son emas'], ['200 и пустой объект — машины нет', '500 Internal server error — Service упал', '404 и «Car with id NaN not found»', '400 Bad Request — id не число'])} correct={2}
@@ -286,7 +286,7 @@ const P2 = {
     { id: 'b', key: "1-qadam: uch CLI buyrug'i — terminalda <b>3 CREATE, 3 UPDATE</b> chiqsin", text: "Birinchi: uch buyruq bilan modul, controller va service yarating. Terminalda uchta CREATE va uchta UPDATE chiqishi kerak.", hl: [0] },
     { id: 'c', key: "2-qadam: Service kodini <b>nusxalang</b> — qadam ichidagi «Kodni ochish» tugmasida", text: "Ikkinchi: Service'ni darsdagi kod bilan to'ldiring. Ikkinchi qadam ichida Kodni ochish tugmasi bor, kod o'sha yerda, nusxalab qo'ying.", hl: [1] },
     { id: 'd', key: "3-qadam: Controller'ni <b>o'zingiz yozing</b> — namunani ko'rasiz, lekin nusxalanmaydi", text: "Uchinchi: Controller'ni o'zingiz yozing, yigirma qator. Namuna uchinchi qadam ichidagi Kodni ochish tugmasida ko'rinadi, lekin nusxalanmaydi, ataylab. Decorator va konstruktorni qo'lingiz his qilsin. Terminalda uchta Mapped satri chiqsin.", hl: [2] },
-    { id: 'e', key: "4-qadam: to'rtta so'rov — javoblar <b>200 · 200 · 404 · 201</b> bo'lsin", text: "To'rtinchi: brauzer yoki Postman bilan to'rtta so'rovni yuboring va javoblarni darsdagi bilan solishtiring: ikki yuz, ikki yuz, to'rt yuz to'rt, ikki yuz bir. cars to'qson to'qqiz javobidagi xabarni isbot maydoniga yozing.", hl: [3] },
+    { id: 'e', key: "4-qadam: to'rtta so'rov — javoblar <b>200 · 200 · 404 · 201</b> bo'lsin", text: "To'rtinchi: brauzer, Postman yoki Thunder Client bilan to'rtta so'rovni yuboring va javoblarni darsdagi bilan solishtiring: ikki yuz, ikki yuz, to'rt yuz to'rt, ikki yuz bir. cars to'qson to'qqiz javobidagi xabarni isbot maydoniga yozing.", hl: [3] },
     { id: 'f', key: "Boshqacha chiqsa, <b>«Boshqacha chiqdimi?»</b> tugmasini bosing — yechimlar oynasi ochiladi", text: "Boshqacha chiqsa, pastdagi «Boshqacha chiqdimi» tugmasini bosing, yechimlar oynasi ochiladi. To'rtala katakcha belgilanmaguncha va isbot to'g'ri yozilmaguncha Davom ochilmaydi. Demak, shu amaliyotdan keyin sizda o'zingiz qurgan cars moduli bor va u so'rovlarga javob beradi.", hl: [] },
   ],
 };
@@ -300,7 +300,7 @@ const P2_PROOF = { label: 'Isbot: GET /cars/99 javobidagi message maydoni', plac
 const P2_TROUBLE = [
   ['Qizil TypeScript xatosi (fayl:satr)', "Nusxalashda satr tushib qolgan: ko'rsatilgan satrni «Kodni ochish»dagi kod bilan solishtiring"],
   ['Cannot GET /cars', "Terminalda Mapped {/cars…} bormi? Yo'q bo'lsa app.module.ts → imports: [CarsModule]"],
-  ['POST da body undefined', "Postman'da Body → raw → JSON tanlanganmi? Content-Type: application/json"],
+  ['POST da body undefined', "Postman yoki Thunder Client'da Body → JSON tanlanganmi? Content-Type: application/json"],
   ["error TS2307: Cannot find module './cars.service'", "Loyiha ESM turida yaratilgan: cars-api papkasini o'chiring, 1-amaliyotning 3-qadamidagi buyruqni to'liq nusxalab qayta yarating va cars modulini qaytadan quring"],
 ];
 // F-1031-04: «Kodni ochish» oynasida butun cars-api ko'rinadi; faqat amaliyot fayllari bosiladi

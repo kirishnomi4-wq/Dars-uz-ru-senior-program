@@ -86,7 +86,7 @@ const R1 = {
     { id: 'd', key: "3-blok · Swagger va papka strukturasi: <b>«ofitsiant»</b> so'zi shu yerda kiradi", text: "Uchinchi blok: Swagger'da eshiklarni ko'radi, keyin papka strukturasini. Ofitsiant so'zi shu yerda kiradi. Strukturada module, controller, service fayllarini o'zingiz ko'rsating.", hl: [2] },
     { id: 'e', key: "4-blok · buyurtma yo'li: bizning so'rov yo'li + <b>Guard va Repository</b>", text: "To'rtinchi blok, buyurtma yo'li: o'quvchi nazoratchi, ofitsiant, oshpaz, omborchi, lagan tartibini sudrab teradi. Bu bizning so'rov yo'li ekranimiz, faqat ikki bekat ko'p: Guard tokenni tekshiradi, Repository bazaga yozadi. Har biriga bitta gap yetarli.", hl: [3] },
     { id: 'f', key: "5-blok · qatlamlar: Entity, DTO, BaseService — <b>har biriga bir gap</b>, chuqur emas", text: "Beshinchi blok, qatlamlar: Entity, DTO, BaseService, Module va besh qadam tartibi. Chuqur emas, har biriga bir gap. Entity, jadval shakli. DTO, kiruvchi ma'lumot shakli, noto'g'ri bo'lsa to'rt yuz. BaseService, tayyor CRUD metodlari. Module, ro'yxat. Xavotir olmang: Entity, DTO va Repository'ni kursdagi keyingi mentor darslarida to'liq, kodi bilan o'rganasiz. O'quvchi darsining bu blokida esa bir gap yetarli.", hl: [4] },
-    { id: 'g', key: "6-blok · AI bilan qurish va debugging: <b>Controller'da hisob bo'lmaydi</b> qoidasi ishlaydi", text: "Oltinchi blok: o'quvchi AI'ga beshta faylni yozdiradi, keyin yakuniy debugging, xato qatorni topib olib tashlaydi, so'ng amaliy topshiriq va arena. Debugging ekranida siz bugun o'rgangan qoida ishlaydi: Controller'da hisob bo'lmaydi.", hl: [5] },
+    { id: 'g', key: "6-blok · AI bilan qurish va debugging: <b>Controller'da hisob bo'lmaydi</b> qoidasi ishlaydi", text: "Oltinchi blok: o'quvchi AI'ga beshta faylni yozdiradi, keyin yakuniy debugging, xato qatorni topib olib tashlaydi, so'ng amaliy topshiriq va arena. Debugging ekranida siz bugun o'rgangan qoida ishlaydi: Controller'da hisob bo'lmaydi. AI yozgan kodni esa oltinchi bosqichdagidek tekshirasiz: to'rt savol va uchta kutilmagan so'rov.", hl: [5] },
     { id: 'h', key: "Xulosa: eng ko'p kuch — <b>2-blok (server)</b> va <b>6-blok (debugging)</b>", text: "Xulosa: oltita blokdan ikkitasi sizdan eng ko'p kuch talab qiladi. Ikkinchisi, chunki hammaning serveri ishlashi kerak. Oltinchisi, chunki debugging'da bugungi qoidani o'quvchi o'zi topishi kerak.", hl: [1, 5] },
   ],
 };
@@ -352,6 +352,13 @@ GET /cars 200 · GET /cars/1 200 · GET /cars/99 404 · POST /cars 201 (o'zi) ·
 ofitsiant=Controller · oshpaz=Service · omborchi=Repository · javon chizmasi=Entity · anketa=DTO · nazoratchi=Guard · shtat jadvali=Module
 ## Uch qoida (dars o'tishda)
 hammada server ishlaguncha oldinga o'tmang · «oshpaz, ya'ni Service» · xato chiqsa terminaldagi xabarni birga o'qing, javobni aytmang
+## AI yozgan kodni tekshirish
+4 savol: fayllar (module · controller · service) · ro'yxatlar (providers, AppModule imports, terminalda Mapped) · logika Service'da · decorator'lar
+3 kutilmagan so'rov: harfli id (/customers/abc → 400, 404 «NaN» emas) · bo'sh body ({} → 400, 201 emas) · begona maydon ("id": 1 → id'ni server beradi)
+Yoyish tartibi: { ...data, id } — id oxirida; { id, ...data } — body'dagi id ustidan yozadi
+TS1272 «must be imported with 'import type'» → Controller'dagi tipni import type bilan oling
+## Lug'at
+decorator — @ bilan boshlanadigan belgi · provider — modul yaratib beradigan narsa (asosan Service) · instance — klassdan yasalgan obyekt · inject — Nest'ning tayyor obyektni konstruktorga berishi · path — manzil, route — path + metod · Mapped — terminaldagi ulangan route satri · pipe — kiruvchi qiymatni tekshiradi yoki o'zgartiradi (ParseIntPipe) · DTO — kiruvchi ma'lumot shakli · HttpException — status bilan qaytadigan xatolar oilasi · CLI — nest g buyruqlari
 ## Uyga vazifa
 cars-api'ga users moduli: nest g module/controller/service users · Service: ro'yxat + findAll/findOne/create, topilmasa NotFoundException · Controller: GET /users · GET /users/:id · POST /users · bir marta ataylab buzing (providers bo'sh) va tuzating · GitHub'ga push → repo linki platformadagi uyga vazifaga`;
 // --- S28 Yakun (F-1030-20): Barakalla → animatsion xulosa (so'rov yo'li qayta chiziladi, 6 band birin-ketin) → uyga vazifa → eslatma → «Darsni yakunlash» ---
@@ -363,6 +370,7 @@ const S28_ITEMS = [
   { k: 'mod', t: "Module — ro'yxat, Nest faqat ro'yxatdagini ko'radi" },
   { k: 'di', t: 'Dependency Injection: siz yaratmaysiz, Nest konstruktor orqali beradi' },
   { k: 'err', t: "Nest xatosi o'qiladi: qaysi klass · qaysi dependency · qaysi fayl" },
+  { k: 'ai', t: "AI yozgan kod: 4 savol va 3 kutilmagan so'rov bilan tekshiriladi" },
 ];
 const HOMEWORK = [
   { t: 'users moduli', c: ['nest g module users', 'nest g controller users --no-spec', 'nest g service users --no-spec'] },
@@ -381,6 +389,7 @@ const s28Segments = (passed) => s28Ru(passed, [
   { id: 'b4', key: "<b>Module</b> — ro'yxat: Nest faqat ro'yxatdagini ko'radi", text: "To'rtinchi: Module ro'yxat. Nest faqat ro'yxatda yozilganini ko'radi.", hl: 'mod' },
   { id: 'b5', key: "<b>Dependency Injection</b>: providers'ga yozasiz, konstruktorda so'raysiz — Nest inject qiladi", text: "Beshinchi: Dependency Injection. Siz Service'ni providers'ga yozasiz va konstruktorda so'raysiz, yaratib inject qilishni Nest qiladi.", hl: 'di' },
   { id: 'b6', key: "Nest xatosi <b>o'qiladi</b>: qaysi klass · qaysi dependency · qaysi fayl", text: "Va eng muhimi: Nest xatosi o'qiladi. Xabarda qaysi klass, qaysi dependency yetishmayapti va qaysi faylni ochish kerakligi yozilgan, javob esa ko'pincha modul faylida.", hl: 'err' },
+  { id: 'b7', key: "AI yozgan kod: <b>4 savol</b> va <b>3 kutilmagan so'rov</b> bilan tekshiriladi", text: "Va yana bittasi: AI yozgan kodni to'rt savol bilan o'qing va uchta kutilmagan so'rov yuboring: harfli id, bo'sh body va begona maydon.", hl: 'ai' },
   { id: 'hw', key: "<b>Uyga vazifa</b>: cars-api'ga <code>users</code> modulini o'zingiz qo'shing va GitHub'ga chiqaring", text: "Uyga vazifa. cars api loyihangizga users modulini shu darsdagi usulda qo'shing: uchta CLI buyrug'i, Service'da foydalanuvchilar ro'yxati va findAll, findOne, create metodlari, topilmasa NotFoundException. Controller'da uchta route. Keyin bir marta ataylab buzing, masalan providers'ni bo'shating, xabarni o'qing va tuzating. Tayyor loyihani GitHub'ga chiqaring va repo linkini platformadagi uyga vazifangizga qo'ying.", hl: 'hw' },
   { id: 'c', key: "<b>Eslatmani oling</b>: buyruqlar, xatolar, qoidalar va uyga vazifa — bir sahifada", text: "Pastda bir sahifalik eslatma: buyruqlar, to'rt Nest xatosi, baza ulanish xatolari, qoidalar, o'quvchi darsi lug'ati va uyga vazifa. Nusxalab yoki yuklab oling, o'quvchi darsini o'tayotganda yoningizda tursin.", hl: 'note' },
   { id: 'z', key: "Rahmat! <b>Darsni yakunlash</b> tugmasini bosing", text: "Rahmat. Darsni yakunlash tugmasini bosing, dars tugallangan deb belgilanadi.", hl: 'note' },
@@ -472,7 +481,7 @@ function Cover({ onStart, resume }) {
     </div></div>
   );
 }
-const SCREENS = [Screen1, Screen2, Screen3, Screen4, Screen5a, ScreenP0, Screen5b, Screen6, Screen7, Screen8, Screen9, ScreenP1, Screen10, Screen11, Screen12, Screen13, Screen14, Screen15, ScreenLC1, Screen16, Screen17, ScreenP2, Screen18, Screen19, Screen20, Screen21, ScreenLC2, Screen22, Screen23, ScreenP3, Screen25a, Screen25b, ScreenR1, ScreenR2, ScreenRdb, ScreenR3, Screen26, Screen27, Screen28];
+const SCREENS = [Screen1, Screen2, Screen3, Screen4, Screen5a, ScreenP0, Screen5b, Screen6, Screen7, Screen8, Screen9, ScreenP1, Screen10, Screen11, Screen12, Screen13, Screen14, Screen15, ScreenLC1, Screen16, Screen17, ScreenP2, Screen18, Screen19, Screen20, Screen21, ScreenLC2, Screen22, Screen23, ScreenP3, ScreenAI6, ScreenLCAI, Screen25a, Screen25b, ScreenR1, ScreenR2, ScreenRdb, ScreenR3, Screen26, Screen27, Screen28];
 const PRACTICE_COUNT = SCREENS.filter((S) => /^ScreenP\d/.test(S.name)).length;
 export default function NestArchMentorLesson({ studentName, lang = 'uz', onFinished, startAt }) {
   setLang(lang); // UZ-RU (F-1030-38): render'dan oldin — ma'lumot va t() shu tilda

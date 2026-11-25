@@ -1,0 +1,44 @@
+### GET /customers 
+[{"id":1,"name":"Ali","phone":"+998901234567","age":25},{"id":2,"name":"Malika","phone":"+998935551122","age":31}]
+← 200
+
+### GET /customers/1 
+{"id":1,"name":"Ali","phone":"+998901234567","age":25}
+← 200
+
+### GET /customers/99 
+{"message":"Customer with id 99 not found","error":"Not Found","statusCode":404}
+← 404
+
+### GET /customers/abc 
+{"message":"Validation failed (numeric string is expected)","error":"Bad Request","statusCode":400}
+← 400
+
+### POST /customers {"name":"Bobur","phone":"+998901112233","age":20}
+{"name":"Bobur","phone":"+998901112233","age":20,"id":3}
+← 201
+
+### POST /customers {"name":"Kichik","phone":"+998901112244","age":15}
+{"message":"Customer must be at least 18 years old","error":"Bad Request","statusCode":400}
+← 400
+
+### POST /customers {}
+{"id":4}
+← 201
+
+### POST /customers {"name":"Sardor","phone":"+998901112255","age":"16"}
+{"message":"Customer must be at least 18 years old","error":"Bad Request","statusCode":400}
+← 400
+
+### POST /customers {"id":1,"name":"Soxta","phone":"+998901112266","age":30}
+{"id":5,"name":"Soxta","phone":"+998901112266","age":30}
+← 201
+
+### GET /customers 
+[{"id":1,"name":"Ali","phone":"+998901234567","age":25},{"id":2,"name":"Malika","phone":"+998935551122","age":31},{"name":"Bobur","phone":"+998901112233","age":20,"id":3},{"id":4},{"id":5,"name":"Soxta","phone":"+998901112266","age":30}]
+← 200
+
+### GET /customers/1 
+{"id":1,"name":"Ali","phone":"+998901234567","age":25}
+← 200
+

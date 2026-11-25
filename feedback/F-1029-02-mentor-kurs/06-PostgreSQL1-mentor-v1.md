@@ -77,11 +77,11 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M31 · Haqiqiy chiqishlar: `manba/pg1-out/` 
 ---
 
 ## 1 · Kirish  ← `Lesson`
-- Kicker: `Kirish` · Eyebrow: `Mentor kursi · PostgreSQL` · Sarlavha: **Siz Mongo'ni bilasiz. Bugun o'sha blog PostgreSQL'da.**
+- Kicker: `Kirish` · Eyebrow: `Mentor kursi · PostgreSQL` · Sarlavha: **Siz Mongo'ni bilasiz. Bugun blog misoli PostgreSQL'da.**
 - Sahna: chapda reja (6 bosqich, ovoz bilan yonadi); o'ngda natija — `psql` oynasi: `JOIN` so'rovi va 3 qatorli javob (`ali | Birinchi post` …).
 - Reja: 01 Mongo bilan solishtirish · 02 O'rnatish va ulanish · 03 Jadval va bog'lanish · 04 JOIN · 05 Ishonchlilik: oxirgi telefon · 06 O'quvchi darsini o'tish
-1. **Siz Mongo'da blog yozgansiz — bugun xuddi shu blogni PostgreSQL'da quramiz**
-   Ovoz: «Assalomu alaykum. Siz MongoDB bilan, Mongoose orqali ishlagansiz: modellar, ref, populate. AI Startup kursidagi o'quvchilar PostgreSQL bilan ishlaydi. Bugun siz bilgan narsadan boshlaymiz: Mongo'dagi oddiy blogni olamiz va uni PostgreSQL'da qaytadan quramiz.»
+1. **Mongo'dagi oddiy blog misoli — bugun xuddi shu blogni PostgreSQL'da quramiz**
+   Ovoz: «Assalomu alaykum. Siz MongoDB va Mongoose'ni videodarslarda ko'rgansiz: modellar, ref, populate. AI Startup kursidagi o'quvchilar PostgreSQL bilan ishlaydi. Bugun siz bilgan narsadan boshlaymiz: Mongo'dagi oddiy blogni olamiz va uni PostgreSQL'da qaytadan quramiz.»
 2. **Dars oxirida PostgreSQL sizda ishlaydi, ikki jadval va JOIN o'z qo'lingizda**
    Ovoz: «Dars oxirida PostgreSQL kompyuteringizda o'rnatilgan bo'ladi. Ikki bog'langan jadvalni o'zingiz yaratasiz, baza qaytargan xatolarni o'qiysiz va JOIN bilan ikki jadvalni bitta javobda ko'rasiz.» · reja 01–04
 3. **O'quvchi darsidagi «oxirgi telefon»ni ikki oynada o'z ko'zingiz bilan ko'rasiz**

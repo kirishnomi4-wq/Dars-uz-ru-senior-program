@@ -1,0 +1,97 @@
+ M src/app.module.ts
+?? src/users/
+
+diff --git a/src/app.module.ts b/src/app.module.ts
+index 1324240..594f193 100644
+--- a/src/app.module.ts
++++ b/src/app.module.ts
+@@ -2,9 +2,10 @@ import { Module } from '@nestjs/common';
+ import { AppController } from './app.controller';
+ import { AppService } from './app.service';
+ import { CarsModule } from './cars/cars.module';
++import { UsersModule } from './users/users.module';
+ 
+ @Module({
+-  imports: [CarsModule],
++  imports: [CarsModule, UsersModule],
+   controllers: [AppController],
+   providers: [AppService],
+ })
+=== yangi: src/users/users.controller.ts
+     1	import { Body, Controller, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
+     2	import { type CreateUserData, UsersService } from './users.service';
+     3	
+     4	@Controller('users')
+     5	export class UsersController {
+     6	  constructor(private readonly usersService: UsersService) {}
+     7	
+     8	  @Get()
+     9	  findAll() {
+    10	    return this.usersService.findAll();
+    11	  }
+    12	
+    13	  @Get(':id')
+    14	  findOne(@Param('id', ParseIntPipe) id: number) {
+    15	    return this.usersService.findOne(id);
+    16	  }
+    17	
+    18	  @Post()
+    19	  create(@Body() body: CreateUserData) {
+    20	    return this.usersService.create(body);
+    21	  }
+    22	}
+=== yangi: src/users/users.module.ts
+     1	import { Module } from '@nestjs/common';
+     2	import { UsersController } from './users.controller';
+     3	import { UsersService } from './users.service';
+     4	
+     5	@Module({
+     6	  controllers: [UsersController],
+     7	  providers: [UsersService],
+     8	})
+     9	export class UsersModule {}
+=== yangi: src/users/users.service.ts
+     1	import {
+     2	  BadRequestException,
+     3	  Injectable,
+     4	  NotFoundException,
+     5	} from '@nestjs/common';
+     6	
+     7	export interface User {
+     8	  id: number;
+     9	  name: string;
+    10	  email: string;
+    11	  age: number;
+    12	}
+    13	
+    14	export type CreateUserData = Omit<User, 'id'>;
+    15	
+    16	@Injectable()
+    17	export class UsersService {
+    18	  private users: User[] = [
+    19	    { id: 1, name: 'Ali', email: 'ali@example.com', age: 20 },
+    20	    { id: 2, name: 'Laylo', email: 'laylo@example.com', age: 19 },
+    21	  ];
+    22	
+    23	  findAll(): User[] {
+    24	    return this.users;
+    25	  }
+    26	
+    27	  findOne(id: number): User {
+    28	    const user = this.users.find((u) => u.id === id);
+    29	    if (!user) {
+    30	      throw new NotFoundException(`User with id ${id} not found`);
+    31	    }
+    32	    return user;
+    33	  }
+    34	
+    35	  create(data: CreateUserData): User {
+    36	    if (data.age < 18) {
+    37	      throw new BadRequestException('User must be at least 18 years old');
+    38	    }
+    39	    const id = Math.max(0, ...this.users.map((u) => u.id)) + 1;
+    40	    const user: User = { ...data, id };
+    41	    this.users.push(user);
+    42	    return user;
+    43	  }
+    44	}
