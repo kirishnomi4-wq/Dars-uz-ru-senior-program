@@ -1663,13 +1663,13 @@ const METHOD_C = { GET: '#61AFFE', POST: '#49CC90', PATCH: '#50E3C2', DELETE: '#
 // ============================================================
 const S1 = {
   kicker: 'Kirish', eyebrow: 'Mentor kursi · NestJS', title: "Siz cars-api'ni qurdingiz. Endi o'quvchi reposi.",
-  plan: ['Ishga tushirish', "cars-api'dan farqlar", 'Resurs: 5 qatlam', 'Guard va token', 'Buzamiz', "O'quvchi darslarini o'tish"],
+  plan: ['Ishga tushirish', "cars-api'dan farqlar", 'Resurs: 5 qatlam', 'Guard va token', 'Buzamiz', 'AI yozgan kod', "O'quvchi darslarini o'tish"],
   segments: [
     sg('a', "Nest-1 da loyihani noldan qurdingiz — o'quvchi esa <b>tayyor loyihani clone qiladi</b>", "Assalomu alaykum. Nest birinchi darsida siz cars api'ni bo'sh papkadan qurdingiz. O'quvchingiz esa noldan yozmaydi: u GitHub'dan tayyor loyihani clone qiladi. Bugun aynan shu loyihani ochamiz, unga bitta resurs qo'shamiz va sinfda chiqadigan xatolarni ko'ramiz.", { hl: [] }),
     sg('b', "Dars oxirida loyiha sizda ishlaydi va unga <b>car resursini o'zingiz qo'shgan</b> bo'lasiz", "Dars oxirida loyiha sizning kompyuteringizda bazasi bilan ishlaydi, unga o'zingiz car resursini qo'shgan bo'lasiz. Resursning beshta qatlamini bir marta, tartib bilan yozamiz.", { hl: [0, 2] }),
     sg('c', "Token va rollarni bilasiz: <b>401 va 403</b> nima uchun chiqishini ajratasiz", "Loyiha himoyasini ham bilasiz: token qayerdan keladi, to'rt yuz bir va to'rt yuz uch nima uchun chiqadi. O'quvchi darsining ikkinchi qismi aynan shunga tayanadi.", { hl: [3] }),
-    sg('d', "O'quvchi darslaridagi <b>uchta xatoni</b> oldindan bilasiz — sinfda vaqt yo'qotmaysiz", "Va eng muhimi: o'quvchi darslarida uchta joy bor, ular sinfda albatta muammo beradi. Ularni oldindan bilib olasiz va sinfda vaqt yo'qotmaysiz.", { hl: [4, 5] }),
-    sg('e', "Olti bosqich, to'rt amaliyot. <b>Shoshilmang</b>: ustoz gapirib bo'lgach Davom ochiladi", "Dars olti bosqichdan iborat, orasida to'rtta amaliyot bor, ularni o'z kompyuteringizda qilasiz. Shoshilmang: har ekranni boshidan eshitish va matnini o'qish mumkin. Ustoz gapirib bo'lgach Davom ochiladi. Boshlaymiz.", { hl: [] }),
+    sg('d', "O'quvchi darslaridagi <b>uchta xatoni</b> oldindan bilasiz — sinfda vaqt yo'qotmaysiz", "Va eng muhimi: o'quvchi darslarida uchta joy bor, ular sinfda albatta muammo beradi. Ularni oldindan bilib olasiz va sinfda vaqt yo'qotmaysiz.", { hl: [4, 6] }),
+    sg('e', "Yetti bosqich, to'rt amaliyot. <b>Shoshilmang</b>: ustoz gapirib bo'lgach Davom ochiladi", "Dars yetti bosqichdan iborat, orasida to'rtta amaliyot bor, ularni o'z kompyuteringizda qilasiz. Shoshilmang: har ekranni boshidan eshitish va matnini o'qish mumkin. Ustoz gapirib bo'lgach Davom ochiladi. Boshlaymiz.", { hl: [] }),
   ],
 };
 // F-1120-02 (M51): darsning rasmi — o'quvchi loyihasida bitta so'rovning to'liq yo'li (RepoMachine, parts/02c-nest.jsx) + reja
@@ -1679,7 +1679,7 @@ function Screen1(p) {
       hl={beat === 1 ? ['mod', 'pipe', 'ctrl', 'svc', 'repo', 'db'] : beat === 2 ? ['guard'] : []}
       ok={beat === 2 ? null : { code: 200 }} stop={beat === 2 ? { k: 'guard', code: '401 · 403' } : null}
       resp={beat === 2 ? 'err' : 'ok'} url={beat === 2 ? 'GET /api/v1/admin' : 'GET /api/v1/car'} />
-    <div className="n1-plan" style={{ position: 'static', gridTemplateColumns: 'repeat(6,minmax(0,1fr))', gap: 6 }}>
+    <div className="n1-plan" style={{ position: 'static', gridTemplateColumns: 'repeat(7,minmax(0,1fr))', gap: 6 }}>
       {S1.plan.map((x, i) => <div key={i} className={seg.hl.includes(i) ? 'hl' : (seg.hl.length ? 'dim' : '')}><b>0{i + 1}</b><span>{x}</span></div>)}
     </div>
   </div>} />;
@@ -1953,7 +1953,7 @@ function Screen6(p) {
 //  7 · Tekshiruv 1 — «/admin ochdim, 404»
 // ============================================================
 function Screen7(p) {
-  return <MCRetry {...p} kicker={t('Tekshiruv 1', 'Проверка 1')} eyebrow={t('Tekshiruv · 1 / 4', 'Проверка · 1 / 4')}
+  return <MCRetry {...p} kicker={t('Tekshiruv 1', 'Проверка 1')} eyebrow={t('Tekshiruv · 1 / 5', 'Проверка · 1 / 5')}
     title={t("O'quvchi: «Brauzerda localhost:3000/admin ochdim — 404». Birinchi nimani tekshirasiz?", 'Ученик: «Открыл в браузере localhost:3000/admin — 404». Что проверите первым?')}
     q={t("Farqlarni ko'rdingiz, tekshirib olaylik. Birinchi tekshiruv. O'quvchi aytadi: brauzerda localhost uch ming slesh admin ochdim, to'rt yuz to'rt. Server ishlayapti, terminalda xato yo'q. Birinchi nimani tekshirasiz? Variantni tanlang.", 'Вы видели отличия, давайте проверим. Первая проверка. Ученик говорит: открыл в браузере localhost 3000 admin, получил 404. Сервер работает, в терминале ошибок нет. Что вы проверите первым? Выберите вариант.')}
     opts={t(['app.module.ts — AdminModule imports\'da bormi', 'Manzil — prefiks /api/v1 tushib qolgan', '.env — PostgreSQL paroli to\'g\'rimi', 'Swagger — Authorize bosilganmi'], ['app.module.ts — есть ли AdminModule в imports', 'Адрес — пропущен префикс /api/v1', '.env — верный ли пароль PostgreSQL', 'Swagger — нажата ли Authorize'])} correct={1}
@@ -2403,7 +2403,7 @@ export class CarEntity extends BaseEntity {
 const LC2_FIXED = LC2_LINES.map((l, i) => (i === 1 || i === 12) ? { ...l, gone: true, n: '' } : { ...l, n: i < 1 ? i + 1 : i })
   .flatMap((l, i) => i === 12 ? [l, { neu: true, n: 12, h: `  <span class="d">@Column</span>()   <span class="cm">// ustun — Entity'da; @IsNumber — DTO'da</span>` }] : [l]);
 function Screen14(p) {
-  return <LineCheck {...p} kicker={t('Tekshiruv 2', 'Проверка 2')} eyebrow={t('Tekshiruv · 2 / 4 — qaysi satr xato?', 'Проверка · 2 / 4 — какая строка с ошибкой?')}
+  return <LineCheck {...p} kicker={t('Tekshiruv 2', 'Проверка 2')} eyebrow={t('Tekshiruv · 2 / 5 — qaysi satr xato?', 'Проверка · 2 / 5 — какая строка с ошибкой?')}
     title={t("Bu Entity'da bitta satr boshqa qatlamniki", 'В этой Entity одна строка из другого слоя')}
     task={t("Qoida: Entity jadval shaklini belgilaydi — har ustun <code>@Column</code> bilan. Tekshirish qoidalari (<code>@IsString</code>, <code>@IsNumber</code>…) DTO'da turadi. Bu Entity'da bitta satr DTO'niki. <b>O'sha satrni bosing.</b>", "Правило: Entity задаёт форму таблицы — каждая колонка с <code>@Column</code>. Правила проверки (<code>@IsString</code>, <code>@IsNumber</code>…) живут в DTO. В этой Entity одна строка из DTO. <b>Нажмите на эту строку.</b>")}
     q={t("Besh qatlamni ko'rdingiz, endi o'zingiz tekshiring. Ikkinchi tekshiruv. Qoidani eslang: Entity'da har ustun Column bilan, tekshirish qoidalari esa DTO'da. Ekrandagi Entity'da bitta satr DTO'niki. O'sha satrni bosing.", 'Вы видели пять слоёв, теперь проверьте сами. Вторая проверка. Вспомните правило: в Entity каждая колонка с Column, а правила проверки в DTO. В Entity на экране одна строка из DTO. Нажмите на эту строку.')}
@@ -2465,6 +2465,124 @@ const P2_CODE = [
 const P2_TREE = ['dist/', 'node_modules/', 'src/api/admin/', 'src/api/auth/', F.cCdto, F.cUdto, F.cCtrl, F.cMod, F.cSvc, F.appMod, F.appSvc,
   'src/common/', 'src/config/', F.aEnt, F.baseEnt, F.cEnt, 'src/core/repository/', F.coreIdx, 'src/infrastructure/', F.main, 'test/', F.env, F.envEx, 'package.json'];
 function ScreenP2(p) { return <Practice p={p} S={P2} steps={P2_STEPS} trouble={P2_TROUBLE} proof={P2_PROOF} code={P2_CODE} tree={P2_TREE} />; }
+// ============================================================
+//  6-bosqich · AI yozgan kod (F-1125-01, M56). HAQIQIY AI yurgizishi — Claude Haiku ×2, har biri o'z nusxasida:
+//  o'quvchi reposi (45071ac) + 2-amaliyotdagi car resursi + o'z PostgreSQL bazasi. Resurs customer (2-amaliyot car va uyga vazifa brand bilan to'qnashmaydi).
+//  Manba: feedback/F-1125-01-nest1-kuchaytirish/ai-nest2/ — 00-promptlar.md · A-oddiy/ · B-nest/ · B-nest-tuzatilgan/ · XULOSA.md (M10)
+// ============================================================
+const CUS_ALL = ['src/core/entity/customer.entity.ts', 'src/api/customer/dto/create-customer.dto.ts', 'src/api/customer/dto/update-customer.dto.ts', 'src/api/customer/customer.service.ts', 'src/api/customer/customer.controller.ts', 'src/api/customer/customer.module.ts'];
+// Topshiriq AI'ga o'zbekcha berilgan — ruscha darsda ham aynan shu matn (tarjima qilinmaydi)
+const AI2_PROMPT_A = "Loyihamga mijozlar bo'limini qo'shib ber. Mijozlar ro'yxatini ko'rish, bittasini olish, yangi mijoz qo'shish, o'zgartirish va o'chirish kerak. Mijozda ism, telefon va yosh bo'lsin, yoshi 18 dan kichik bo'lsa qo'shmasin. Ro'yxatni hamma ko'ra olsin, qo'shish, o'zgartirish va o'chirishni faqat admin qila olsin.";
+const AI2_PROMPT_B = ["customer resursini car resursi bilan bir xil tuzilishda qo'sh.", "Entity: name, phone (unique), age; core/index.ts'dan export", 'DTO: class-validator, age butun son, kamida 18; UpdateCustomerDto — PartialType', "Service — BaseService'dan meros", "Controller: POST, GET, GET :id, PATCH, DELETE; AuthGuard + RolesGuard; yozish — superAdmin va admin, GET — hammaga", 'Module — forFeature, AppModule imports; npm run build xatosiz'];
+const AI2_LOG = term(String.raw`
+[Nest] LOG [InstanceLoader] CustomerModule dependencies initialized
+[Nest] LOG [RoutesResolver] CustomerController {/api/v1/customer}:
+[Nest] LOG [RouterExplorer] Mapped {/api/v1/customer, POST} route
+[Nest] LOG [RouterExplorer] Mapped {/api/v1/customer, GET} route
+[Nest] LOG [RouterExplorer] Mapped {/api/v1/customer/:id, GET} route
+[Nest] LOG [RouterExplorer] Mapped {/api/v1/customer/:id, PATCH} route
+[Nest] LOG [RouterExplorer] Mapped {/api/v1/customer/:id, DELETE} route`);
+// [so'rov, A, B] — ai-nest2/A-oddiy/04-sorovlar.txt va B-nest/04-sorovlar.txt; bad — kutilganidan boshqacha
+const AI2_REQ_OK = [
+  ['GET /customer', { st: 200 }, { st: 200 }],
+  ['POST /customer', { st: 401 }, { st: 401 }],
+  ['POST · age 15 · token', { st: 400 }, { st: 400 }],
+  ['POST {} · token', { st: 400 }, { st: 400 }],
+  ['POST + "id" · token', { st: 400, n: '«property id should not exist»' }, { st: 400, n: '«property id should not exist»' }],
+];
+const AI2_REQ_ODD = [
+  ['GET /customer/abc', { st: 400, n: '«uuid is expected»' }, { st: 500, n: '«Internal server error»', bad: true }],
+  // modul darajasida tarjima — faqat getter (aks holda RU'da o'zbekcha qoladi)
+  ['POST · takror telefon · token', { st: 201, get n() { return t("ikkinchi mijoz, o'sha telefon", 'второй клиент, тот же телефон'); }, bad: true }, { st: 500, n: '«Internal server error»', bad: true }],
+];
+function Ai2Cell({ c }) {
+  return <div style={{ display: 'flex', gap: 8, alignItems: 'center', minWidth: 0, padding: '6px 10px', borderRadius: 8, border: `1px solid ${c.bad ? T.accent : T.line}`, background: c.bad ? '#FFF0EB' : T.paper }}>
+    <span className={`st s${String(c.st)[0]}`}>{c.st}</span>
+    {c.n && <span style={{ font: `12.5px/1.35 ${MONO}`, color: c.bad ? T.accent : T.ink2, overflowWrap: 'anywhere' }}>{c.n}</span>}
+  </div>;
+}
+function Ai2Rows({ rows }) {
+  return rows.map(([q, a, b]) => <div key={q} style={{ display: 'grid', gridTemplateColumns: '1.1fr 1fr 1fr', gap: 8, alignItems: 'center' }}>
+    <code style={{ font: `12.5px/1.35 ${MONO}`, overflowWrap: 'anywhere' }}>{q}</code><Ai2Cell c={a} /><Ai2Cell c={b} />
+  </div>);
+}
+const S_AI2 = {
+  kicker: '6-bosqich · AI yozgan kod', title: 'AI yozgan customer resursi: ikki topshiriq, ikki natija',
+  segments: [
+    sg('a', "AI'ga o'quvchi reposida <b>customer</b> resursini yozdirdik: bir xil AI, <b>ikki xil topshiriq</b>", "Nest birinchi darsida AI'ga cars api'da customers modulini yozdirgan edik. Endi xuddi shu ishni o'quvchi reposida qildik, car resursi qo'shilgan holatda. AI bitta, Claude Haiku, topshiriq ikki xil: chapdagisi oddiy so'zlar bilan, o'ngdagisi repo uslubida. Bu safar tekshirish kengroq: besh qatlam, himoya va baza."),
+    sg('b', "1-tekshiruv — <b>besh qatlam va himoya</b>: ikkala AI ham to'g'ri qurdi", "Birinchi tekshiruv tuzilish. Besh qatlam joyidami: Entity, DTO, Base service'dan meros Service, Controller, forFeature bilan Module va bosh modul. Himoya: guard'lar klass ustida, GET'lar public, yozish faqat superadmin va admin. Ikkala AI ham bularning hammasini to'g'ri qildi, terminalda customer uchun beshta Mapped satri."),
+    sg('c', "2-tekshiruv — <b>so'rov</b>: odatiy so'rovlarda ikkalasi bir xil, <b>repo o'zi yordam beradi</b>", "Ikkinchi tekshiruv so'rov bilan. Odatiy so'rovlarda ikkalasi bir xil: ro'yxat hammaga ochiq, tokensiz qo'shish to'rt yuz bir, o'n besh yosh, bo'sh body va begona id maydoni to'rt yuz. Begona maydonni AI emas, reponing o'zi to'xtatadi: ValidationPipe'da forbidNonWhitelisted yoqilgan."),
+    sg('d', "Kutilmagan so'rov: <b>harfli id</b> va <b>takror telefon</b> — B ikkalasida 500", "Kutilmagan ikki so'rov boshqacha chiqdi. Harfli id: A to'rt yuz qaytardi, chunki ParseUUIDPipe qo'ygan, B esa besh yuz. B car resursidagi satrni ko'chirgan, uchinchi bosqichda car bir so'rovi ham besh yuz bergan edi. Takror telefon: B da telefon unique, baza rad etdi, lekin javob besh yuz. A da unique yo'q, ikkinchi mijoz o'sha telefon bilan yaratildi."),
+    sg('e', "Xulosa: AI loyihadagi namunani <b>zaifligi bilan birga</b> ko'chiradi — kutilmagan so'rovni o'zingiz yuboring", "Xulosa. AI loyihadagi namunani ko'chiradi, uning zaifligi bilan birga. Tuzilish va himoya to'g'ri bo'lsa ham, javobni kutilmagan so'rovlar ochadi: harfli id, bo'sh body, begona maydon va takror qiymat. Demak, AI yozgan resursni besh qatlam, himoya va to'rtta kutilmagan so'rov bilan tekshiring."),
+  ],
+};
+function ScreenAI(p) {
+  return <Lesson p={p} S={S_AI2} scene={({ beat }) => (<>
+    {beat === 0 && <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+      <div className="mk-light" style={{ padding: 14 }}>
+        <div className="mk-tag">{t('A · oddiy topshiriq', 'A · простое задание (дано на узбекском)')}</div>
+        <div style={{ fontSize: 14.5, lineHeight: 1.5 }}>«{AI2_PROMPT_A}»</div>
+      </div>
+      <div className="mk-light" style={{ padding: 14 }}>
+        <div className="mk-tag">{t('B · repo uslubidagi topshiriq', 'B · задание в стиле репозитория (дано на узбекском)')}</div>
+        <div style={{ display: 'grid', gap: 4, fontSize: 14, lineHeight: 1.45 }}>{AI2_PROMPT_B.map((x, i) => <div key={i}>{i ? '· ' : ''}{x}</div>)}</div>
+      </div>
+    </div>}
+    {beat === 1 && <>
+      <div className="mk-light" style={{ padding: 14 }}>
+        <div className="mk-tag">{t('1-tekshiruv · besh qatlam va himoya', 'Проверка 1 · пять слоёв и защита')}</div>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr auto auto', gap: '6px 14px', alignItems: 'center', fontSize: 14 }}>
+          <span /><b>A</b><b>B</b>
+          {[t('Entity · DTO · Service (BaseService) · Controller · Module', 'Entity · DTO · Service (BaseService) · Controller · Module'), t("core/index.ts · forFeature · AppModule · 5 ta Mapped", 'core/index.ts · forFeature · AppModule · 5 строк Mapped'), t("Guard'lar klass ustida · GET — @Roles('public') · yozish — superAdmin, admin", "Guard над классом · GET — @Roles('public') · запись — superAdmin, admin"), t("DTO: ism va telefon majburiy · age butun son, ≥ 18", 'DTO: имя и телефон обязательны · age целое, ≥ 18')].map((x) => [<span key={x}>{x}</span>, <span key={x + 'a'} style={{ color: T.green, fontWeight: 700 }}>✓</span>, <span key={x + 'b'} style={{ color: T.green, fontWeight: 700 }}>✓</span>])}
+        </div>
+      </div>
+      <Term title={t('VS Code terminali · IntroNestArxitechture (B)', 'Терминал VS Code · IntroNestArxitechture (B)')} lines={AI2_LOG} />
+    </>}
+    {beat >= 2 && <div className="mk-light mk-req" style={{ padding: 14, display: 'grid', gap: 8 }}>
+      <div className="mk-tag">{t("2-tekshiruv · so'rov — haqiqiy javoblar (/api/v1)", 'Проверка 2 · запросы — настоящие ответы (/api/v1)')}</div>
+      <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 1fr 1fr', gap: 8, fontSize: 13, color: T.ink3, fontWeight: 600 }}><span>{t("So'rov", 'Запрос')}</span><span>{t('A · oddiy', 'A · простое')}</span><span>{t('B · repo uslubida', 'B · в стиле репозитория')}</span></div>
+      <Ai2Rows rows={AI2_REQ_OK} />
+      {beat >= 3 && <>
+        <div className="mk-tag" style={{ marginTop: 6 }}>{t("Kutilmagan so'rovlar", 'Неожиданные запросы')}</div>
+        <Ai2Rows rows={AI2_REQ_ODD} />
+      </>}
+    </div>}
+    <Block at={4} beat={beat}><div className="mk-rule">{t(<><b>AI yozgan resursni tekshirish:</b> besh qatlam · himoya (guard, rollar) · kutilmagan so'rovlar — harfli id, bo'sh body, begona maydon, takror qiymat. Javob 500 bo'lsa — terminalni o'qing.</>, <><b>Проверка ресурса от ИИ:</b> пять слоёв · защита (guard, роли) · неожиданные запросы — id из букв, пустой body, чужое поле, повторное значение. Ответ 500 — читайте терминал.</>)}</div></Block>
+  </>)} />;
+}
+
+// --- Tekshiruv 5: B yozgan Controller — harfli id → 500. Haqiqiy kod: ai-nest2/B-nest/01-diff.txt, customer.controller.ts 32–42 ---
+const LCAI2_LINES = ts(String.raw`
+  @Roles('public')
+  @Get()
+  findAll() {
+    return this.customerService.findAll();
+  }
+
+  @Roles('public')
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.customerService.findOneById(id);
+  }`).map((l, i) => ({ ...l, n: 32 + i }));
+const LCAI2_FIXED = [
+  ...LCAI2_LINES.slice(0, 8),
+  { ...LCAI2_LINES[8], gone: true, n: '' },
+  { neu: true, n: 40, h: tsLine(`  findOne(@Param('id', ParseUUIDPipe) id: string) {`) },
+  ...LCAI2_LINES.slice(9),
+];
+function ScreenLCAI(p) {
+  return <LineCheck {...p} kicker={t('Tekshiruv 5', 'Проверка 5')} eyebrow={t('Tekshiruv · 5 / 5 — qaysi satr xato?', 'Проверка · 5 / 5 — какая строка с ошибкой?')} title={t("AI yozgan Controller: qaysi satr 500 ga sabab?", 'Controller от ИИ: какая строка даёт 500?')}
+    task={t("Qoida: id — uuid; noto'g'ri id <b>400</b> bilan qaytadi, 500 bilan emas. B ning <code>GET /api/v1/customer/abc</code> so'rovi <b>500</b> berdi. <b>Aybdor satrni bosing.</b>", 'Правило: id — это uuid; неверный id возвращается с <b>400</b>, а не с 500. Запрос <code>GET /api/v1/customer/abc</code> у B дал <b>500</b>. <b>Нажмите на виноватую строку.</b>')}
+    q={t("Beshinchi, oxirgi tekshiruv. Bu B yozgan Controller, customer papkasidagi customer controller ts faylida, o'ttiz ikkinchi satrdan. Harfli id bilan so'rov besh yuz berdi. Qoida: id uuid, noto'g'ri id to'rt yuz bilan qaytishi kerak. Qaysi satr id'ni tekshirmasdan bazaga yuboryapti? O'sha satrni bosing.", 'Пятая, последняя проверка. Это Controller, который написал B, файл customer controller ts в папке customer, с тридцать второй строки. Запрос с id из букв дал пятьсот. Правило: id это uuid, неверный id должен возвращаться с четырёхсот. Какая строка отправляет id в базу без проверки? Нажмите на эту строку.')}
+    file="src/api/customer/customer.controller.ts" lines={LCAI2_LINES} target={8}
+    tree={{ root: MKCFG.root, files: tree(BASE, CAR_ALL, CUS_ALL), active: 'src/api/customer/customer.controller.ts' }}
+    fixed={LCAI2_FIXED.filter((l) => String(l.h).trim() !== '')} fixedExtra={[{ file: t('terminal — tuzatilgandan keyin (haqiqiy)', 'terminal — после исправления (настоящий)'), lines: plainLines(String.raw`
+GET /api/v1/customer/abc → 400 {"message":"Validation failed (uuid is expected)"}
+GET /api/v1/customer/00000000-0000-0000-0000-000000000000 → 404 {"message":"not found"}`) }]}
+    ok={t("To'g'ri. Qirqinchi satrda id hech qanday tekshiruvsiz olinadi va to'g'ri bazaga ketadi. PostgreSQL abc'ni uuid deb o'qiy olmaydi, xato beradi, foydalanuvchiga esa besh yuz boradi. Tuzatish: ParseUUIDPipe. Tuzatilgan kodda abc so'roviga to'rt yuz keldi. Car resursida ham xuddi shu satr bor, uchinchi bosqichdagi besh yuz shundan. Demak, AI namunadan ko'chirgan satrni namunaning o'zi bilan birga tekshiring.", 'Верно. В сороковой строке id берётся без всякой проверки и сразу уходит в базу. PostgreSQL не может прочитать abc как uuid и выдаёт ошибку, а пользователю приходит пятьсот. Исправление: ParseUUIDPipe. В исправленном коде на запрос abc пришло четыреста. В ресурсе car такая же строка, отсюда и пятьсот на третьем этапе. Значит, строку, которую ИИ скопировал из образца, проверяйте вместе с самим образцом.')}
+    okShort={t("40-satr: @Param('id') — id tekshirilmay bazaga ketadi, PostgreSQL «invalid input syntax for type uuid» → 500. Tuzatildi: @Param('id', ParseUUIDPipe) → 400 (sinab ko'rilgan).", "Строка 40: @Param('id') — id уходит в базу без проверки, PostgreSQL «invalid input syntax for type uuid» → 500. Исправлено: @Param('id', ParseUUIDPipe) → 400 (проверено).")}
+    hint={t("Bu satr route'ni belgilaydi, ruxsat beradi yoki natijani qaytaradi. id qayerda olinayotganini qidiring.", 'Эта строка задаёт route, даёт доступ или возвращает результат. Ищите строку, где берётся id.')} />;
+}
 
 // ============================================================
 //  4-BOSQICH · Guard va token (16–19)
@@ -2600,7 +2718,7 @@ export class BookController {
     <Json st={403}>{t(`superadmin tokeni bilan POST /api/v1/book  →  {"statusCode":403,"error":{"message":"Forbidden resource"}}`, `с токеном superadmin POST /api/v1/book  →  {"statusCode":403,"error":{"message":"Forbidden resource"}}`)}</Json>
   </Ide></div>;
   const after = <Json st={201}>{t(`ali (role: admin) tokeni bilan POST /api/v1/book  →  {"statusCode":201,"message":"success","data":{…"title":"Test kitob"…}}`, `с токеном ali (role: admin) POST /api/v1/book  →  {"statusCode":201,"message":"success","data":{…"title":"Test kitob"…}}`)}</Json>;
-  return <MCRetry {...p} kicker={t('Tekshiruv 3', 'Проверка 3')} eyebrow={t('Tekshiruv · 3 / 4', 'Проверка · 3 / 4')} above={above} after={after}
+  return <MCRetry {...p} kicker={t('Tekshiruv 3', 'Проверка 3')} eyebrow={t('Tekshiruv · 3 / 5', 'Проверка · 3 / 5')} above={above} after={after}
     title={t("O'quvchi: «KitobShop'da superadmin tokeni bilan kitob qo'shdim — 403». Sabab?", 'Ученик: «В KitobShop добавил книгу с токеном суперадмина — 403». Причина?')}
     q={t("Ikkala qo'riqchini bilasiz, tekshirib olaylik. Uchinchi tekshiruv. O'quvchi KitobShop'da superadmin tokeni bilan kitob qo'shmoqchi, javob to'rt yuz uch. Ekranda route kodi va javob. Sabab nima? Variantni tanlang.", 'Вы знаете обоих охранников, давайте проверим. Третья проверка. Ученик в KitobShop хочет добавить книгу с токеном superadmin, ответ 403. На экране код route и ответ. В чём причина? Выберите вариант.')}
     opts={t(["Token muddati o'tgan, qayta signin kerak", "Authorize bosilmagan, so'rovda token yo'q", "Ro'yxatda faqat admin, superadminning roli boshqa", "BookModule AppModule'ga ulanmagan"], ['Срок токена истёк, нужен новый signin', 'Authorize не нажата, в запросе нет токена', 'В списке только admin, у superadmin другая роль', 'BookModule не подключён к AppModule'])} correct={2}
@@ -2814,9 +2932,9 @@ function Screen22(p) {
 })`, { 2: { gone: true }, 3: { neu: true } })} />
     <Term lines={BOOK_START} />
   </div>;
-  return <MCRetry {...p} kicker={t('Tekshiruv 4', 'Проверка 4')} eyebrow={t("Tekshiruv · 4 / 4 — xatoni o'qish", 'Проверка · 4 / 4 — чтение ошибки')} above={above} after={after}
+  return <MCRetry {...p} kicker={t('Tekshiruv 4', 'Проверка 4')} eyebrow={t("Tekshiruv · 4 / 5 — xatoni o'qish", 'Проверка · 4 / 5 — чтение ошибки')} above={above} after={after}
     title={t("O'quvchingizning KitobShop'i yiqildi. Qaysi faylni ochasiz va nimani tuzatasiz?", 'KitobShop вашего ученика упал. Какой файл откроете и что исправите?')}
-    q={t("Oxirgi tekshiruv, sinfdagi haqiqiy holat. To'rtinchi tekshiruv. O'quvchi agent yozgan kitob resursini ishga tushirdi, server yiqildi, ekranda xabar. U yordam so'radi. Qaysi faylni ochasiz va nimani tuzatasiz?", 'Последняя проверка, реальный случай из класса. Четвёртая проверка. Ученик запустил ресурс книг, написанный агентом, сервер упал, на экране сообщение. Он просит помощи. Какой файл вы откроете и что исправите?')}
+    q={t("Sinfdagi haqiqiy holat. To'rtinchi tekshiruv. O'quvchi agent yozgan kitob resursini ishga tushirdi, server yiqildi, ekranda xabar. U yordam so'radi. Qaysi faylni ochasiz va nimani tuzatasiz?", 'Реальный случай из класса. Четвёртая проверка. Ученик запустил ресурс книг, написанный агентом, сервер упал, на экране сообщение. Он просит помощи. Какой файл вы откроете и что исправите?')}
     opts={t(["book.module.ts — imports'ga TypeOrmModule.forFeature([BookEntity])", "app.module.ts — providers'ga BookService", "book.service.ts — konstruktordan Repository'ni olib tashlash", "book.entity.ts — @Injectable() qo'shish"], ["book.module.ts — в imports TypeOrmModule.forFeature([BookEntity])", "app.module.ts — в providers BookService", 'book.service.ts — убрать Repository из конструктора', 'book.entity.ts — добавить @Injectable()'])} correct={0}
     ok={t("To'g'ri: book module faylida imports ro'yxatiga Book entity bilan forFeature qo'shiladi. Xabar uch narsani aytadi: klass Book service, dependency Book entity Repository, fayl Book module. Ekranda tuzatilgan fayl va terminaldagi Book controller va Mapped satrlari ko'rinib turibdi. Demak, dependency nomida Repository so'zi bo'lsa, javob modulning forFeature ro'yxatida.", 'Верно: в файле book module в список imports добавляется forFeature с Book entity. Сообщение называет три вещи: класс Book service, dependency Book entity Repository, файл Book module. На экране виден исправленный файл и в терминале Book controller и строки Mapped. Значит, если в имени dependency есть слово Repository, ответ — в списке forFeature модуля.')}
     okShort={t('Klass BookService · dependency BookEntityRepository · fayl book.module.ts → forFeature([BookEntity]).', 'Класс BookService · dependency BookEntityRepository · файл book.module.ts → forFeature([BookEntity]).')}
@@ -2858,7 +2976,7 @@ const MAP03 = [
   { t: 'Podium, kartochkalar, yakun', s: '20–22', d: '12 kartochka: Resurs, Entity, BaseEntity, DTO, 400, PartialType, BaseService, super, @Post, Module, 404, DI', m: 'kartochkalarni birga o\'qing — har biri bugungi bir ekraningiz' },
 ];
 const S24 = {
-  kicker: "6-bosqich · o'quvchi darsini o'tish", eyebrow: "m4a-03 · «Birinchi resursni qo'lda qo'shish — mashinalar»", title: "m4a-03: o'quvchi siz bugun qilgan ishni qiladi",
+  kicker: "7-bosqich · o'quvchi darsini o'tish", eyebrow: "m4a-03 · «Birinchi resursni qo'lda qo'shish — mashinalar»", title: "m4a-03: o'quvchi siz bugun qilgan ishni qiladi",
   segments: [
     sg('a', "m4a-03 — <b>siz bugun qilgan ish</b>: car resursi, besh bosqich, 22 ekran", "Endi darsning asosiy maqsadi: bu mavzuni o'quvchiga o'tish. Ikkita o'quvchi darsi bor. Birinchisi m4a-03: o'quvchi aynan siz bugun qilgan ishni qiladi, car resursini besh bosqichda qo'shadi. Yigirma ikki ekran.", { hl: [] }),
     sg('b', "Har bosqichda o'quvchi <b>shu faylga tegishli qatorni</b> tanlaydi, keyin test, agent va haqiqiy loyiha", "Har bosqichda o'quvchi qatorlarni tanlaydi, qaysi biri shu faylga tegishli, keyin qisqa test. So'ng agent besh faylni yozadi va o'quvchi agent xatosini topadi. Oxirida amaliyot haqiqiy loyihada. Siz har bosqichda qoidani aytasiz: ustun Entity'da, qoida DTO'da, eshik Controller'da.", { hl: [1, 2] }),
@@ -2901,7 +3019,7 @@ const DICT2 = [
   ['yorliq — ko\'p kitob bitta yorliqda, yorliq kitobda', '@ManyToOne', 'categoryId kitob jadvalida', 'm4a-04'],
 ];
 const S25 = {
-  kicker: "6-bosqich · o'quvchi darsini o'tish", title: "O'quvchi darsidagi so'zlar: javon chizmasi, anketa, retsept kitobi…",
+  kicker: "7-bosqich · o'quvchi darsini o'tish", title: "O'quvchi darsidagi so'zlar: javon chizmasi, anketa, retsept kitobi…",
   segments: [
     sg('a', "O'quvchi darslari <b>restoran tilida</b> gapiradi — siz ikkala tilni birga aytasiz", "Ikkinchi darsga o'tishdan oldin til. O'quvchi darslari Nest birinchi darsidagidek restoran tilida gapiradi. Siz ikkala tilni bilasiz va sinfda ularni birga aytasiz.", { rows: [] }),
     sg('b', "Entity <b>javon chizmasi</b> deyiladi, DTO — <b>buyurtma anketasi</b>, 400 esa nazoratchi to'xtatgani", "Entity javon chizmasi. DTO buyurtma anketasi, Partial type uning nusxasi. Anketa qoidasi buzilsa nazoratchi to'xtatadi, to'rt yuz.", { rows: [0, 1, 2] }),
@@ -2950,9 +3068,9 @@ export class BookEntity extends BaseEntity {
   @Column() categoryId: string;
 }`, { 8: { id: 'm' }, 9: { id: 'm' }, 10: { id: 'm' }, 12: { id: 'm' } });
 const S26 = {
-  kicker: "6-bosqich · o'quvchi darsini o'tish", eyebrow: "m4a-04 · «Praktika — KitobShop backend»", title: "KitobShop: o'quvchi buyuradi, agent yozadi — sizning tayyorgarligingiz",
+  kicker: "7-bosqich · o'quvchi darsini o'tish", eyebrow: "m4a-04 · «Praktika — KitobShop backend»", title: "KitobShop: o'quvchi buyuradi, agent yozadi — sizning tayyorgarligingiz",
   segments: [
-    sg('a', "m4a-04 — <b>uch resurs agent bilan</b>: o'quvchi buyuradi, tekshiradi va shundan keyin qabul qiladi", "Ikkinchi dars m4a-04, KitobShop. Besh qadamni endi Copilot agenti qiladi, uch resurs uchun: kategoriya, kitob va buyurtma. O'quvchi yozmaydi: buyuradi, natijani tekshiruv ro'yxati bilan solishtiradi va shundan keyingina qabul qiladi.", { prep: -1, v: 'map' }),
+    sg('a', "m4a-04 — <b>uch resurs agent bilan</b>: o'quvchi buyuradi, tekshiradi va shundan keyin qabul qiladi", "Ikkinchi dars m4a-04, KitobShop. Besh qadamni endi Copilot agenti qiladi, uch resurs uchun: kategoriya, kitob va buyurtma. O'quvchi yozmaydi: buyuradi, natijani tekshiruv ro'yxati bilan solishtiradi va shundan keyingina qabul qiladi. Agent yozgan resursni siz oltinchi bosqichdagidek tekshirasiz: besh qatlam, himoya va kutilmagan so'rovlar.", { prep: -1, v: 'map' }),
     sg('b', "Diqqat: o'quvchi darslari <b>token va Authorize'ni o'rgatmaydi</b> — darsning boshida siz ko'rsatasiz", "Diqqat, ikkinchi xato. KitobShop'da yopiq eshiklar bor, ular token so'raydi. Lekin o'quvchi darslarining hech birida signin, token va Authorize o'rgatilmagan. Darsning boshida uchinchi amaliyotdagi ishni o'quvchilar bilan birga qiling: signin va Authorize.", { prep: 0, v: 'prep' }),
     sg('c', "Diqqat: playbook'da <code>@Roles('admin')</code> — <b>superadmin bilan 403</b>; har o'quvchi avval oddiy admin yaratsin", "Uchinchi xato. Playbook'larda yopiq eshiklarga faqat admin yozilgan. Superadmin bilan kirgan o'quvchi kitob qo'sha olmaydi, to'rt yuz uch oladi. Yechim: darsdan oldin har o'quvchi superadmin bilan oddiy admin yaratsin va KitobShop'ni shu admin bilan sinasin.", { prep: 1, v: 'prep' }),
     sg('d', "Yangi narsa — <b><code>ManyToOne</code></b>: kitob kategoriyaga bog'lanadi; yo'q kategoriya → 500, noto'g'ri id → 400", "Darsdagi yangi narsa: kitobni kategoriyaga bog'lash, ManyToOne. Kitob jadvalida kategoriya id'si ustuni va tashqi kalit paydo bo'ladi. Sinab ko'rdik: mavjud bo'lmagan kategoriya bilan besh yuz, terminalda violates foreign key constraint. Id formati noto'g'ri bo'lsa to'rt yuz. Avval kategoriya, keyin kitob.", { prep: 2, v: 'code' }),
@@ -2997,7 +3115,7 @@ const QA2 = [
   ['Nega javobda hashed_password ko\'rinadi?', "all/admin Entity'dagi hamma ustunni qaytaradi; sahifalangan GET /api/v1/admin'da select bilan faqat id, username, is_active olinadi — parol shunday yashiriladi."],
 ];
 const S27 = {
-  kicker: '6-bosqich · sinfda', title: 'Sinfda albatta chiqadigan 6 holat va tayyor javoblar',
+  kicker: '7-bosqich · sinfda', title: 'Sinfda albatta chiqadigan 6 holat va tayyor javoblar',
   segments: [
     sg('a', "Sinfda <b>albatta</b> chiqadigan olti holat — hammasini bugun o'zingiz ko'rdingiz", "Ikkala darsni bilasiz. Endi reja buziladigan joylar: sinfda albatta chiqadigan oltita holat. Hammasini bugun o'zingiz ko'rdingiz, shuning uchun qisqa.", { hl: [] }),
     sg('b', "<code>/car</code> manzili <b>404</b> beradi; kira olmaslik sababi — <code>.env</code> va bo'sh superadmin satri", "Birinchi: o'quvchi darsidagi slesh car, to'rt yuz to'rt, manzil api v bir slesh car. Ikkinchi: o'quvchi tizimga kira olmayapti. Env'dagi superadmin blokini tekshiring; superadmin bo'sh yaratilgan bo'lsa, bazadagi satrni o'chirib, serverni qayta ishga tushiring.", { hl: [0, 1] }),
@@ -3114,6 +3232,7 @@ const SUM2 = [
   { k: 'guard', t: "401 — token yo'q; 403 — rol ro'yxatda yo'q; superadmin va admin — har xil rol", st: ['guard'] },
   { k: 'sync', t: "Entity o'zgarsa baza o'zgaradi: ustun xato bermay o'chadi, majburiy ustun serverni yiqitadi", st: ['db'] },
   { k: 'bridge', t: "O'quvchi darslarida 3 xato: /car → /api/v1/car · token va Authorize'ni siz ko'rsatasiz · KitobShop'dan oldin oddiy admin", st: ['br'] },
+  { k: 'ai', t: "AI yozgan resurs: besh qatlam, himoya va kutilmagan so'rovlar bilan tekshiriladi — javob 500 bo'lsa terminal", st: ['pipe', 'guard'] },
 ];
 // F-1120-02 (M51): xulosa — darsning o'sha rasmi; har band rasmning o'z bekatlarini yoritadi (SUM2[].st)
 function SummaryMap2({ hl }) {
@@ -3151,6 +3270,8 @@ src/core/entity/car.entity.ts (+ core/index.ts export) · src/api/car/dto/create
 m4a-03: /car → /api/v1/car · token/Authorize o'rgatilmagan — siz ko'rsatasiz · m4a-04: KitobShop'dan oldin oddiy admin
 ## O'quvchi darsidagi so'zlar
 javon chizmasi=Entity · anketa=DTO · nazoratchi=ValidationPipe · retsept kitobi=BaseService · omborchi=Repository · ofitsiant=Controller · kirish taxtasi=Module · qo'riqchi=Guard · yorliq=@ManyToOne
+## AI yozgan resursni tekshirish
+besh qatlam (core/index.ts, forFeature, AppModule) · himoya: guard'lar klass ustida, GET — @Roles('public'), yozish — superAdmin, admin · kutilmagan so'rovlar: /resurs/abc → 400 (ParseUUIDPipe), bo'sh body → 400, begona maydon → 400 (forbidNonWhitelisted), takror unique qiymat → 500 bo'lsa terminalni o'qing · AI loyihadagi namunani zaifligi bilan ko'chiradi
 ## Sizning uyga vazifangiz
 brand resursi + car → brand (@ManyToOne, brandId nullable) + forFeature'ni buzib tuzatish → GitHub → repo linki platformadagi uyga vazifaga`;
 // UZ-RU: ruscha segmentlar nest2/parts/08-ru.jsx dagi S29_RU dan (id bo'yicha; 'a' — o'tgan/o'tmagan ikki varianti)
@@ -3165,6 +3286,7 @@ const s29Segments = (passed) => s29Ru(passed, [
   sg('b4', "<b>401</b> — token yo'q, <b>403</b> — rol yo'q; superadmin va admin — har xil rol", "To'rtinchi: to'rt yuz bir token yo'q, to'rt yuz uch rol ro'yxatda yo'q. Superadmin va admin har xil rol.", { hl: 'guard' }),
   sg('b5', "Entity o'zgarsa <b>baza o'zgaradi</b> — xato bermay yoki yiqilib", "Beshinchi: Entity o'zgarsa baza ham o'zgaradi. Ustun olib tashlansa ma'lumot xato bermay o'chadi, majburiy ustun qo'shilsa server yiqiladi.", { hl: 'sync' }),
   sg('b6', "O'quvchi darslarida <b>3 xato</b> — sinfda siz tuzatasiz", "Oltinchi, sinf uchun eng muhimi: o'quvchi darslarida uchta xato bor. Slesh car o'rniga api v bir slesh car, token va Authorize'ni siz ko'rsatasiz, KitobShop'dan oldin oddiy admin.", { hl: 'bridge' }),
+  sg('b7', "AI yozgan resurs: <b>besh qatlam, himoya</b> va <b>kutilmagan so'rovlar</b>", "Yettinchi: AI yozgan resursni besh qatlam va himoya bilan o'qing, keyin kutilmagan so'rovlar yuboring: harfli id, bo'sh body, begona maydon va takror qiymat. Javob besh yuz bo'lsa, sabab terminalda.", { hl: 'ai' }),
   sg('hw', "<b>Uyga vazifa</b>: brand resursi, car'ni brand'ga bog'lash va bitta buzib-tuzatish", "Uyga vazifa. O'z loyihangizga brand resursini qo'shing, aynan o'quvchining uyga vazifasi: name va country, DTO qoidalari, Base service'dan meros, to'rt eshik va bosh modul. Keyin car'ni brand'ga bog'lang, yangi ustun ixtiyoriy bo'lsin. Bir marta ataylab forFeature'ni olib tashlang, xabarni o'qing va tuzating.", { hl: 'hw' }),
   sg('hw2', "Topshirish: GitHub'dagi repo linkini <b>platformadagi uyga vazifaga</b> qo'ying — boshqa hech narsa kerak emas", "GitHub'ga chiqaring va repo linkini platformadagi uyga vazifangizga qo'ying, boshqa hech narsa kerak emas. Qirq-oltmish daqiqa.", { hl: 'hw' }),
   sg('c', "<b>Eslatmani oling</b>: .env, farqlar, 5 qatlam, statuslar, 3 xato — bir sahifada", "Pastda bir sahifalik eslatma: env ro'yxati, farqlar, besh qatlam, status jadvali, Guard qoidalari va o'quvchi darslaridagi uchta xato. Nusxalab yoki yuklab oling, sinfda yoningizda tursin.", { hl: 'note' }),
@@ -3236,7 +3358,7 @@ function Cover({ onStart, resume }) {
     </div></div>
   );
 }
-const SCREENS = [Screen1, Screen2, Screen3, ScreenP1, Screen5, Screen6, Screen7, Screen8, Screen9, Screen10, Screen11, Screen12, Screen13, Screen14, ScreenP2, Screen16, Screen17, Screen18, ScreenP3, Screen20, Screen21, Screen22, ScreenP4, Screen24, Screen25, Screen26, Screen27, Screen28, Screen29]; // F-1031-09: o'quvchi uyga vazifasini tekshirish ekrani olib tashlandi (mentor tekshirmaydi)
+const SCREENS = [Screen1, Screen2, Screen3, ScreenP1, Screen5, Screen6, Screen7, Screen8, Screen9, Screen10, Screen11, Screen12, Screen13, Screen14, ScreenP2, Screen16, Screen17, Screen18, ScreenP3, Screen20, Screen21, Screen22, ScreenP4, ScreenAI, ScreenLCAI, Screen24, Screen25, Screen26, Screen27, Screen28, Screen29]; // F-1031-09: o'quvchi uyga vazifasini tekshirish ekrani olib tashlandi (mentor tekshirmaydi)
 const PRACTICE_COUNT = SCREENS.filter((S) => /^ScreenP\d/.test(S.name)).length;
 export default function NestRepoMentorLesson({ studentName, lang = 'uz', onFinished, startAt }) {
   setLang(lang);
@@ -3294,13 +3416,13 @@ const rs = (key, text) => ({ key, text, show: text });
 // --- 03 · 1–7-ekran, Amaliyot 1 ---
 ru(S1, {
   kicker: 'Вступление', eyebrow: 'Курс для менторов · NestJS', title: 'Вы собрали cars-api. Теперь — репозиторий ученика.',
-  plan: ['Запуск', 'Отличия от cars-api', 'Ресурс: 5 слоёв', 'Guard и токен', 'Ломаем', 'Как вести уроки ученика'],
+  plan: ['Запуск', 'Отличия от cars-api', 'Ресурс: 5 слоёв', 'Guard и токен', 'Ломаем', 'Код от ИИ', 'Как вести уроки ученика'],
   segments: {
     a: rs('В Nest-1 вы собрали проект с нуля — ученик же <b>клонирует готовый проект</b>', 'Здравствуйте. На первом уроке по Nest вы собрали cars api с пустой папки. Ваш ученик с нуля не пишет: он клонирует готовый проект с GitHub. Сегодня откроем именно этот проект, добавим в него один ресурс и посмотрим ошибки, которые появляются в классе.'),
     b: rs('К концу урока проект работает у вас, и вы <b>сами добавили в него ресурс car</b>', 'К концу урока проект будет работать на вашем компьютере вместе с базой, и вы сами добавите в него ресурс car. Пять слоёв ресурса напишем один раз, по порядку.'),
     c: rs('Разберётесь в токенах и ролях: будете различать, <b>почему 401, а почему 403</b>', 'Разберётесь и в защите проекта: откуда берётся токен, почему появляется 401, а почему 403. На это опирается вторая часть урока ученика.'),
     d: rs('Заранее узнаете <b>три ошибки</b> в уроках ученика — не потеряете время в классе', 'И самое важное: в уроках ученика есть три места, которые в классе обязательно дадут проблему. Вы узнаете их заранее и не потеряете время в классе.'),
-    e: rs('Шесть этапов, четыре практики. <b>Не спешите</b>: «Далее» откроется, когда учитель договорит', 'Урок состоит из шести этапов, между ними четыре практики, их вы делаете на своём компьютере. Не спешите: каждый экран можно прослушать сначала и прочитать его текст. «Далее» откроется, когда учитель договорит. Начинаем.'),
+    e: rs('Семь этапов, четыре практики. <b>Не спешите</b>: «Далее» откроется, когда учитель договорит', 'Урок состоит из семи этапов, между ними четыре практики, их вы делаете на своём компьютере. Не спешите: каждый экран можно прослушать сначала и прочитать его текст. «Далее» откроется, когда учитель договорит. Начинаем.'),
   },
 });
 ru(MAP2_DESC, {
@@ -3563,7 +3685,7 @@ ru(MAP03, [
 ]);
 ru(TIME03, [[null, 'вступление, план, форма машины'], [null, 'пять этапов + тесты'], [null, 'путь запроса, агент, debugging'], [null, 'День открытия — реальный проект'], [null, 'подиум, карточки, итог']]);
 ru(S24, {
-  kicker: 'Этап 6 · как вести урок ученика', eyebrow: 'm4a-03 · «Первый ресурс вручную — машины»', title: 'm4a-03: ученик делает то, что вы сделали сегодня',
+  kicker: 'Этап 7 · как вести урок ученика', eyebrow: 'm4a-03 · «Первый ресурс вручную — машины»', title: 'm4a-03: ученик делает то, что вы сделали сегодня',
   segments: {
     a: rs('m4a-03 — <b>то, что вы сделали сегодня</b>: ресурс car, пять этапов, 22 экрана', 'Теперь главная цель урока: передать эту тему ученику. Уроков ученика два. Первый, m4a-03: ученик делает ровно то, что вы сделали сегодня, добавляет ресурс car за пять этапов. Двадцать два экрана.'),
     b: rs('На каждом этапе ученик выбирает <b>строку, относящуюся к этому файлу</b>, потом тест, агент и реальный проект', 'На каждом этапе ученик выбирает строки, какая относится к этому файлу, потом короткий тест. Затем агент пишет пять файлов, и ученик находит ошибку агента. В конце практика в реальном проекте. Вы на каждом этапе называете правило: колонка в Entity, правило в DTO, дверь в Controller.'),
@@ -3584,7 +3706,7 @@ ru(DICT2, [
   ['ярлык — много книг на одном ярлыке, ярлык в книге', null, 'categoryId в таблице книг'],
 ]);
 ru(S25, {
-  kicker: 'Этап 6 · как вести урок ученика', title: 'Слова из урока ученика: чертёж стеллажа, бланк, книга рецептов…',
+  kicker: 'Этап 7 · как вести урок ученика', title: 'Слова из урока ученика: чертёж стеллажа, бланк, книга рецептов…',
   segments: {
     a: rs('Уроки ученика говорят <b>языком ресторана</b> — вы называете оба языка вместе', 'Перед вторым уроком — о языке. Уроки ученика, как и первый урок по Nest, говорят языком ресторана. Вы знаете оба языка и в классе называете их вместе.'),
     b: rs('Entity называют <b>чертежом стеллажа</b>, DTO — <b>бланком заказа</b>, а 400 — это контролёр остановил', 'Entity — чертёж стеллажа. DTO — бланк заказа, Partial type — его копия. Нарушено правило бланка, и контролёр останавливает, 400.'),
@@ -3599,9 +3721,9 @@ ru(PREP04, [
   ['категория раньше книги', 'с несуществующей категорией 500 (foreign key), при неверном формате id 400'],
 ]);
 ru(S26, {
-  kicker: 'Этап 6 · как вести урок ученика', eyebrow: 'm4a-04 · «Практика — бэкенд KitobShop»', title: 'KitobShop: ученик командует, агент пишет — ваша подготовка',
+  kicker: 'Этап 7 · как вести урок ученика', eyebrow: 'm4a-04 · «Практика — бэкенд KitobShop»', title: 'KitobShop: ученик командует, агент пишет — ваша подготовка',
   segments: {
-    a: rs('m4a-04 — <b>три ресурса с агентом</b>: ученик командует, проверяет и только потом принимает', 'Второй урок m4a-04, KitobShop. Пять шагов теперь делает агент Copilot, для трёх ресурсов: категория, книга и заказ. Ученик не пишет: он командует, сверяет результат со списком проверки и только после этого принимает.'),
+    a: rs('m4a-04 — <b>три ресурса с агентом</b>: ученик командует, проверяет и только потом принимает', 'Второй урок m4a-04, KitobShop. Пять шагов теперь делает агент Copilot, для трёх ресурсов: категория, книга и заказ. Ученик не пишет: он командует, сверяет результат со списком проверки и только после этого принимает. Ресурс, написанный агентом, вы проверяете, как на шестом этапе: пять слоёв, защита и неожиданные запросы.'),
     b: rs('Внимание: уроки ученика <b>не учат токену и Authorize</b> — в начале урока покажете вы', 'Внимание, вторая ошибка. В KitobShop есть закрытые двери, они требуют токен. Но ни в одном уроке ученика signin, токен и Authorize не изучаются. В начале урока сделайте с учениками то, что было в третьей практике: signin и Authorize.'),
     c: rs("Внимание: в playbook <code>@Roles('admin')</code> — <b>с superadmin 403</b>; пусть каждый ученик сначала создаст обычного админа", 'Третья ошибка. В playbook на закрытых дверях указан только admin. Ученик, вошедший как superadmin, не сможет добавить книгу и получит 403. Решение: перед уроком каждый ученик создаёт через superadmin обычного админа и проверяет KitobShop под ним.'),
     d: rs('Новое — <b><code>ManyToOne</code></b>: книга связана с категорией; нет категории — 500, неверный id — 400', 'Новое на уроке: связь книги с категорией, ManyToOne. В таблице книг появляется колонка с id категории и внешний ключ. Мы проверили: с несуществующей категорией 500, в терминале violates foreign key constraint. При неверном формате id 400. Сначала категория, потом книга.'),
@@ -3623,7 +3745,7 @@ ru(QA2, [
   ['Почему в ответе виден hashed_password?', 'all/admin возвращает все колонки Entity; в постраничном GET /api/v1/admin select берёт только id, username, is_active — так пароль и скрывают.'],
 ]);
 ru(S27, {
-  kicker: 'Этап 6 · в классе', title: '6 случаев, которые точно будут в классе, и готовые ответы',
+  kicker: 'Этап 7 · в классе', title: '6 случаев, которые точно будут в классе, и готовые ответы',
   segments: {
     a: rs('Шесть случаев, которые <b>точно</b> будут в классе, — все вы сегодня видели сами', 'Оба урока вы знаете. Теперь места, где план ломается: шесть случаев, которые в классе будут обязательно. Все вы сегодня видели сами, поэтому коротко.'),
     b: rs('Адрес <code>/car</code> даёт <b>404</b>; не может войти — причина в <code>.env</code> и пустой строке superadmin', 'Первый: car из урока ученика, 404, адрес api v1 car. Второй: ученик не может войти. Проверьте блок superadmin в env; если superadmin создан пустым, удалите строку в базе и перезапустите сервер.'),
@@ -3649,6 +3771,7 @@ ru(SUM2, [
   { t: '401 — нет токена; 403 — роли нет в списке; superadmin и admin — разные роли' },
   { t: 'Изменилась Entity — меняется база: колонка удаляется без ошибки, обязательная колонка роняет сервер' },
   { t: 'В уроках ученика 3 ошибки: /car → /api/v1/car · токен и Authorize показываете вы · перед KitobShop обычный админ' },
+  { t: 'Ресурс от ИИ проверяют по пяти слоям, защите и неожиданным запросам — при 500 читайте терминал' },
 ]);
 ru(HOMEWORK2, [
   { t: 'ресурс brand — 5 этапов: brand.entity.ts (name, country) + core/index.ts · dto/ · brand.service.ts · brand.controller.ts (4 двери) · brand.module.ts + AppModule' },
@@ -3667,6 +3790,7 @@ const S29_RU = {
   b4: rs('<b>401</b> — нет токена, <b>403</b> — нет роли; superadmin и admin — разные роли', 'Четвёртое: 401, нет токена, 403, роли нет в списке. Superadmin и admin — разные роли.'),
   b5: rs('Изменилась Entity — <b>меняется база</b>: без ошибки или с падением', 'Пятое: изменилась Entity, меняется и база. Убрали колонку, данные удаляются без ошибки, добавили обязательную, сервер падает.'),
   b6: rs('В уроках ученика <b>3 ошибки</b> — в классе их исправляете вы', 'Шестое, самое важное для класса: в уроках ученика три ошибки. Вместо car — api v1 car, токен и Authorize показываете вы, перед KitobShop обычный админ.'),
+  b7: rs('Ресурс от ИИ: <b>пять слоёв, защита</b> и <b>неожиданные запросы</b>', 'Седьмое: ресурс от ИИ читайте по пяти слоям и защите, потом отправляйте неожиданные запросы: id из букв, пустой body, чужое поле и повторное значение. Если ответ пятьсот, причина в терминале.'),
   hw: rs('<b>Домашнее задание</b>: ресурс brand, связь car с brand и одна поломка с исправлением', 'Домашнее задание. Добавьте в свой проект ресурс brand, ровно домашнее задание ученика: name и country, правила DTO, наследование от Base service, четыре двери и главный модуль. Потом свяжите car с brand, новая колонка пусть будет необязательной. Один раз специально уберите forFeature, прочитайте сообщение и исправьте.'),
   hw2: rs('Сдача: вставьте ссылку на репозиторий GitHub <b>в домашнее задание на платформе</b> — больше ничего не нужно', 'Выложите на GitHub и вставьте ссылку на репозиторий в домашнее задание на платформе, больше ничего не нужно. Сорок-шестьдесят минут.'),
   c: rs('<b>Возьмите памятку</b>: .env, отличия, 5 слоёв, статусы, 3 ошибки — на одной странице', 'Внизу памятка на одну страницу: список env, отличия, пять слоёв, таблица статусов, правила Guard и три ошибки в уроках ученика. Скопируйте или скачайте, пусть будет под рукой в классе.'),
@@ -3692,5 +3816,19 @@ src/core/entity/car.entity.ts (+ export в core/index.ts) · src/api/car/dto/cre
 m4a-03: /car → /api/v1/car · токен/Authorize не изучаются — показываете вы · m4a-04: перед KitobShop обычный админ
 ## Слова из урока ученика
 чертёж стеллажа=Entity · бланк=DTO · контролёр=ValidationPipe · книга рецептов=BaseService · кладовщик=Repository · официант=Controller · табличка у входа=Module · охранник=Guard · ярлык=@ManyToOne
+## Проверка ресурса от ИИ
+пять слоёв (core/index.ts, forFeature, AppModule) · защита: guard над классом, GET — @Roles('public'), запись — superAdmin, admin · неожиданные запросы: /ресурс/abc → 400 (ParseUUIDPipe), пустой body → 400, чужое поле → 400 (forbidNonWhitelisted), повтор unique-значения → при 500 читайте терминал · ИИ копирует образец из проекта вместе с его слабостью
 ## Ваше домашнее задание
 ресурс brand + car → brand (@ManyToOne, brandId nullable) + сломать и исправить forFeature → GitHub → ссылка на репозиторий в домашнее задание на платформе`;
+
+// --- F-1125-01: 6-bosqich · AI yozgan kod (05b-ai.jsx) ---
+ru(S_AI2, {
+  kicker: 'Этап 6 · код от ИИ', title: 'Ресурс customer от ИИ: два задания, два результата',
+  segments: {
+    a: rs('Мы поручили ИИ ресурс <b>customer</b> в репозитории ученика: один ИИ, <b>два разных задания</b>', 'На первом уроке по Nest мы поручали ИИ модуль customers в cars api. Теперь то же самое сделали в репозитории ученика, где уже добавлен ресурс car. ИИ один, Claude Haiku, а задания два: слева простыми словами, справа в стиле репозитория. На этот раз проверка шире: пять слоёв, защита и база.'),
+    b: rs('Проверка 1 — <b>пять слоёв и защита</b>: оба ИИ собрали правильно', 'Первая проверка — структура. На месте ли пять слоёв: Entity, DTO, Service с наследованием от Base service, Controller, Module с forFeature и главный модуль. Защита: guard над классом, GET открыты через public, запись только у superadmin и admin. Оба ИИ сделали всё это правильно, в терминале пять строк Mapped для customer.'),
+    c: rs('Проверка 2 — <b>запросы</b>: на обычных оба одинаковы, <b>репозиторий помогает сам</b>', 'Вторая проверка — запросами. На обычных запросах оба одинаковы: список открыт всем, добавление без токена — четыреста один, возраст пятнадцать, пустой body и чужое поле id — четыреста. Чужое поле останавливает не ИИ, а сам репозиторий: в ValidationPipe включён forbidNonWhitelisted.'),
+    d: rs('Неожиданные запросы: <b>id из букв</b> и <b>повторный телефон</b> — у B оба дали 500', 'Два неожиданных запроса вышли по-разному. id из букв: A вернул четыреста, потому что поставил ParseUUIDPipe, а B — пятьсот. B скопировал строку из ресурса car: на третьем этапе запрос car один тоже дал пятьсот. Повторный телефон: у B телефон unique, база отказала, но ответ пятьсот. У A unique нет, и второй клиент создан с тем же телефоном.'),
+    e: rs('Вывод: ИИ копирует образец из проекта <b>вместе с его слабостью</b> — неожиданные запросы отправляйте сами', 'Вывод. ИИ копирует образец из проекта вместе с его слабостью. Даже если структура и защита правильные, ответ раскрывают неожиданные запросы: id из букв, пустой body, чужое поле и повторное значение. Значит, ресурс от ИИ проверяйте по пяти слоям, защите и четырём неожиданным запросам.'),
+  },
+});

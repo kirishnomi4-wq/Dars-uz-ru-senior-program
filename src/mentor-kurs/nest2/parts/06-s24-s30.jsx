@@ -10,7 +10,7 @@ const MAP03 = [
   { t: 'Podium, kartochkalar, yakun', s: '20–22', d: '12 kartochka: Resurs, Entity, BaseEntity, DTO, 400, PartialType, BaseService, super, @Post, Module, 404, DI', m: 'kartochkalarni birga o\'qing — har biri bugungi bir ekraningiz' },
 ];
 const S24 = {
-  kicker: "6-bosqich · o'quvchi darsini o'tish", eyebrow: "m4a-03 · «Birinchi resursni qo'lda qo'shish — mashinalar»", title: "m4a-03: o'quvchi siz bugun qilgan ishni qiladi",
+  kicker: "7-bosqich · o'quvchi darsini o'tish", eyebrow: "m4a-03 · «Birinchi resursni qo'lda qo'shish — mashinalar»", title: "m4a-03: o'quvchi siz bugun qilgan ishni qiladi",
   segments: [
     sg('a', "m4a-03 — <b>siz bugun qilgan ish</b>: car resursi, besh bosqich, 22 ekran", "Endi darsning asosiy maqsadi: bu mavzuni o'quvchiga o'tish. Ikkita o'quvchi darsi bor. Birinchisi m4a-03: o'quvchi aynan siz bugun qilgan ishni qiladi, car resursini besh bosqichda qo'shadi. Yigirma ikki ekran.", { hl: [] }),
     sg('b', "Har bosqichda o'quvchi <b>shu faylga tegishli qatorni</b> tanlaydi, keyin test, agent va haqiqiy loyiha", "Har bosqichda o'quvchi qatorlarni tanlaydi, qaysi biri shu faylga tegishli, keyin qisqa test. So'ng agent besh faylni yozadi va o'quvchi agent xatosini topadi. Oxirida amaliyot haqiqiy loyihada. Siz har bosqichda qoidani aytasiz: ustun Entity'da, qoida DTO'da, eshik Controller'da.", { hl: [1, 2] }),
@@ -53,7 +53,7 @@ const DICT2 = [
   ['yorliq — ko\'p kitob bitta yorliqda, yorliq kitobda', '@ManyToOne', 'categoryId kitob jadvalida', 'm4a-04'],
 ];
 const S25 = {
-  kicker: "6-bosqich · o'quvchi darsini o'tish", title: "O'quvchi darsidagi so'zlar: javon chizmasi, anketa, retsept kitobi…",
+  kicker: "7-bosqich · o'quvchi darsini o'tish", title: "O'quvchi darsidagi so'zlar: javon chizmasi, anketa, retsept kitobi…",
   segments: [
     sg('a', "O'quvchi darslari <b>restoran tilida</b> gapiradi — siz ikkala tilni birga aytasiz", "Ikkinchi darsga o'tishdan oldin til. O'quvchi darslari Nest birinchi darsidagidek restoran tilida gapiradi. Siz ikkala tilni bilasiz va sinfda ularni birga aytasiz.", { rows: [] }),
     sg('b', "Entity <b>javon chizmasi</b> deyiladi, DTO — <b>buyurtma anketasi</b>, 400 esa nazoratchi to'xtatgani", "Entity javon chizmasi. DTO buyurtma anketasi, Partial type uning nusxasi. Anketa qoidasi buzilsa nazoratchi to'xtatadi, to'rt yuz.", { rows: [0, 1, 2] }),
@@ -102,9 +102,9 @@ export class BookEntity extends BaseEntity {
   @Column() categoryId: string;
 }`, { 8: { id: 'm' }, 9: { id: 'm' }, 10: { id: 'm' }, 12: { id: 'm' } });
 const S26 = {
-  kicker: "6-bosqich · o'quvchi darsini o'tish", eyebrow: "m4a-04 · «Praktika — KitobShop backend»", title: "KitobShop: o'quvchi buyuradi, agent yozadi — sizning tayyorgarligingiz",
+  kicker: "7-bosqich · o'quvchi darsini o'tish", eyebrow: "m4a-04 · «Praktika — KitobShop backend»", title: "KitobShop: o'quvchi buyuradi, agent yozadi — sizning tayyorgarligingiz",
   segments: [
-    sg('a', "m4a-04 — <b>uch resurs agent bilan</b>: o'quvchi buyuradi, tekshiradi va shundan keyin qabul qiladi", "Ikkinchi dars m4a-04, KitobShop. Besh qadamni endi Copilot agenti qiladi, uch resurs uchun: kategoriya, kitob va buyurtma. O'quvchi yozmaydi: buyuradi, natijani tekshiruv ro'yxati bilan solishtiradi va shundan keyingina qabul qiladi.", { prep: -1, v: 'map' }),
+    sg('a', "m4a-04 — <b>uch resurs agent bilan</b>: o'quvchi buyuradi, tekshiradi va shundan keyin qabul qiladi", "Ikkinchi dars m4a-04, KitobShop. Besh qadamni endi Copilot agenti qiladi, uch resurs uchun: kategoriya, kitob va buyurtma. O'quvchi yozmaydi: buyuradi, natijani tekshiruv ro'yxati bilan solishtiradi va shundan keyingina qabul qiladi. Agent yozgan resursni siz oltinchi bosqichdagidek tekshirasiz: besh qatlam, himoya va kutilmagan so'rovlar.", { prep: -1, v: 'map' }),
     sg('b', "Diqqat: o'quvchi darslari <b>token va Authorize'ni o'rgatmaydi</b> — darsning boshida siz ko'rsatasiz", "Diqqat, ikkinchi xato. KitobShop'da yopiq eshiklar bor, ular token so'raydi. Lekin o'quvchi darslarining hech birida signin, token va Authorize o'rgatilmagan. Darsning boshida uchinchi amaliyotdagi ishni o'quvchilar bilan birga qiling: signin va Authorize.", { prep: 0, v: 'prep' }),
     sg('c', "Diqqat: playbook'da <code>@Roles('admin')</code> — <b>superadmin bilan 403</b>; har o'quvchi avval oddiy admin yaratsin", "Uchinchi xato. Playbook'larda yopiq eshiklarga faqat admin yozilgan. Superadmin bilan kirgan o'quvchi kitob qo'sha olmaydi, to'rt yuz uch oladi. Yechim: darsdan oldin har o'quvchi superadmin bilan oddiy admin yaratsin va KitobShop'ni shu admin bilan sinasin.", { prep: 1, v: 'prep' }),
     sg('d', "Yangi narsa — <b><code>ManyToOne</code></b>: kitob kategoriyaga bog'lanadi; yo'q kategoriya → 500, noto'g'ri id → 400", "Darsdagi yangi narsa: kitobni kategoriyaga bog'lash, ManyToOne. Kitob jadvalida kategoriya id'si ustuni va tashqi kalit paydo bo'ladi. Sinab ko'rdik: mavjud bo'lmagan kategoriya bilan besh yuz, terminalda violates foreign key constraint. Id formati noto'g'ri bo'lsa to'rt yuz. Avval kategoriya, keyin kitob.", { prep: 2, v: 'code' }),
@@ -149,7 +149,7 @@ const QA2 = [
   ['Nega javobda hashed_password ko\'rinadi?', "all/admin Entity'dagi hamma ustunni qaytaradi; sahifalangan GET /api/v1/admin'da select bilan faqat id, username, is_active olinadi — parol shunday yashiriladi."],
 ];
 const S27 = {
-  kicker: '6-bosqich · sinfda', title: 'Sinfda albatta chiqadigan 6 holat va tayyor javoblar',
+  kicker: '7-bosqich · sinfda', title: 'Sinfda albatta chiqadigan 6 holat va tayyor javoblar',
   segments: [
     sg('a', "Sinfda <b>albatta</b> chiqadigan olti holat — hammasini bugun o'zingiz ko'rdingiz", "Ikkala darsni bilasiz. Endi reja buziladigan joylar: sinfda albatta chiqadigan oltita holat. Hammasini bugun o'zingiz ko'rdingiz, shuning uchun qisqa.", { hl: [] }),
     sg('b', "<code>/car</code> manzili <b>404</b> beradi; kira olmaslik sababi — <code>.env</code> va bo'sh superadmin satri", "Birinchi: o'quvchi darsidagi slesh car, to'rt yuz to'rt, manzil api v bir slesh car. Ikkinchi: o'quvchi tizimga kira olmayapti. Env'dagi superadmin blokini tekshiring; superadmin bo'sh yaratilgan bo'lsa, bazadagi satrni o'chirib, serverni qayta ishga tushiring.", { hl: [0, 1] }),
@@ -266,6 +266,7 @@ const SUM2 = [
   { k: 'guard', t: "401 — token yo'q; 403 — rol ro'yxatda yo'q; superadmin va admin — har xil rol", st: ['guard'] },
   { k: 'sync', t: "Entity o'zgarsa baza o'zgaradi: ustun xato bermay o'chadi, majburiy ustun serverni yiqitadi", st: ['db'] },
   { k: 'bridge', t: "O'quvchi darslarida 3 xato: /car → /api/v1/car · token va Authorize'ni siz ko'rsatasiz · KitobShop'dan oldin oddiy admin", st: ['br'] },
+  { k: 'ai', t: "AI yozgan resurs: besh qatlam, himoya va kutilmagan so'rovlar bilan tekshiriladi — javob 500 bo'lsa terminal", st: ['pipe', 'guard'] },
 ];
 // F-1120-02 (M51): xulosa — darsning o'sha rasmi; har band rasmning o'z bekatlarini yoritadi (SUM2[].st)
 function SummaryMap2({ hl }) {
@@ -303,6 +304,8 @@ src/core/entity/car.entity.ts (+ core/index.ts export) · src/api/car/dto/create
 m4a-03: /car → /api/v1/car · token/Authorize o'rgatilmagan — siz ko'rsatasiz · m4a-04: KitobShop'dan oldin oddiy admin
 ## O'quvchi darsidagi so'zlar
 javon chizmasi=Entity · anketa=DTO · nazoratchi=ValidationPipe · retsept kitobi=BaseService · omborchi=Repository · ofitsiant=Controller · kirish taxtasi=Module · qo'riqchi=Guard · yorliq=@ManyToOne
+## AI yozgan resursni tekshirish
+besh qatlam (core/index.ts, forFeature, AppModule) · himoya: guard'lar klass ustida, GET — @Roles('public'), yozish — superAdmin, admin · kutilmagan so'rovlar: /resurs/abc → 400 (ParseUUIDPipe), bo'sh body → 400, begona maydon → 400 (forbidNonWhitelisted), takror unique qiymat → 500 bo'lsa terminalni o'qing · AI loyihadagi namunani zaifligi bilan ko'chiradi
 ## Sizning uyga vazifangiz
 brand resursi + car → brand (@ManyToOne, brandId nullable) + forFeature'ni buzib tuzatish → GitHub → repo linki platformadagi uyga vazifaga`;
 // UZ-RU: ruscha segmentlar nest2/parts/08-ru.jsx dagi S29_RU dan (id bo'yicha; 'a' — o'tgan/o'tmagan ikki varianti)
@@ -317,6 +320,7 @@ const s29Segments = (passed) => s29Ru(passed, [
   sg('b4', "<b>401</b> — token yo'q, <b>403</b> — rol yo'q; superadmin va admin — har xil rol", "To'rtinchi: to'rt yuz bir token yo'q, to'rt yuz uch rol ro'yxatda yo'q. Superadmin va admin har xil rol.", { hl: 'guard' }),
   sg('b5', "Entity o'zgarsa <b>baza o'zgaradi</b> — xato bermay yoki yiqilib", "Beshinchi: Entity o'zgarsa baza ham o'zgaradi. Ustun olib tashlansa ma'lumot xato bermay o'chadi, majburiy ustun qo'shilsa server yiqiladi.", { hl: 'sync' }),
   sg('b6', "O'quvchi darslarida <b>3 xato</b> — sinfda siz tuzatasiz", "Oltinchi, sinf uchun eng muhimi: o'quvchi darslarida uchta xato bor. Slesh car o'rniga api v bir slesh car, token va Authorize'ni siz ko'rsatasiz, KitobShop'dan oldin oddiy admin.", { hl: 'bridge' }),
+  sg('b7', "AI yozgan resurs: <b>besh qatlam, himoya</b> va <b>kutilmagan so'rovlar</b>", "Yettinchi: AI yozgan resursni besh qatlam va himoya bilan o'qing, keyin kutilmagan so'rovlar yuboring: harfli id, bo'sh body, begona maydon va takror qiymat. Javob besh yuz bo'lsa, sabab terminalda.", { hl: 'ai' }),
   sg('hw', "<b>Uyga vazifa</b>: brand resursi, car'ni brand'ga bog'lash va bitta buzib-tuzatish", "Uyga vazifa. O'z loyihangizga brand resursini qo'shing, aynan o'quvchining uyga vazifasi: name va country, DTO qoidalari, Base service'dan meros, to'rt eshik va bosh modul. Keyin car'ni brand'ga bog'lang, yangi ustun ixtiyoriy bo'lsin. Bir marta ataylab forFeature'ni olib tashlang, xabarni o'qing va tuzating.", { hl: 'hw' }),
   sg('hw2', "Topshirish: GitHub'dagi repo linkini <b>platformadagi uyga vazifaga</b> qo'ying — boshqa hech narsa kerak emas", "GitHub'ga chiqaring va repo linkini platformadagi uyga vazifangizga qo'ying, boshqa hech narsa kerak emas. Qirq-oltmish daqiqa.", { hl: 'hw' }),
   sg('c', "<b>Eslatmani oling</b>: .env, farqlar, 5 qatlam, statuslar, 3 xato — bir sahifada", "Pastda bir sahifalik eslatma: env ro'yxati, farqlar, besh qatlam, status jadvali, Guard qoidalari va o'quvchi darslaridagi uchta xato. Nusxalab yoki yuklab oling, sinfda yoningizda tursin.", { hl: 'note' }),
@@ -388,7 +392,7 @@ function Cover({ onStart, resume }) {
     </div></div>
   );
 }
-const SCREENS = [Screen1, Screen2, Screen3, ScreenP1, Screen5, Screen6, Screen7, Screen8, Screen9, Screen10, Screen11, Screen12, Screen13, Screen14, ScreenP2, Screen16, Screen17, Screen18, ScreenP3, Screen20, Screen21, Screen22, ScreenP4, Screen24, Screen25, Screen26, Screen27, Screen28, Screen29]; // F-1031-09: o'quvchi uyga vazifasini tekshirish ekrani olib tashlandi (mentor tekshirmaydi)
+const SCREENS = [Screen1, Screen2, Screen3, ScreenP1, Screen5, Screen6, Screen7, Screen8, Screen9, Screen10, Screen11, Screen12, Screen13, Screen14, ScreenP2, Screen16, Screen17, Screen18, ScreenP3, Screen20, Screen21, Screen22, ScreenP4, ScreenAI, ScreenLCAI, Screen24, Screen25, Screen26, Screen27, Screen28, Screen29]; // F-1031-09: o'quvchi uyga vazifasini tekshirish ekrani olib tashlandi (mentor tekshirmaydi)
 const PRACTICE_COUNT = SCREENS.filter((S) => /^ScreenP\d/.test(S.name)).length;
 export default function NestRepoMentorLesson({ studentName, lang = 'uz', onFinished, startAt }) {
   setLang(lang);

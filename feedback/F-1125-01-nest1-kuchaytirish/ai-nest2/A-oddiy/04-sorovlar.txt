@@ -1,0 +1,68 @@
+token olindi: ha
+
+### GET /api/v1/customer
+{"statusCode":200,"message":"success","data":[]}
+← 200
+
+### POST /api/v1/customer  {"name":"Bobur","phone_number":"+998901112233","age":20}
+{"statusCode":401,"error":{"message":"Unauthorized"}}
+← 401
+
+### POST /api/v1/customer  {"name":"Bobur","phone_number":"+998901112233","age":20}  [token]
+{"statusCode":201,"message":"success","data":{"id":"742c4cbf-3af0-4c82-9d34-43cbbb0ec302","created_at":"2026-11-25T03:52:01.995Z","updated_at":"2026-11-25T03:52:01.995Z","name":"Bobur","phone_number":"+998901112233","age":20}}
+← 201
+
+### POST /api/v1/customer  {"name":"Kichik","phone_number":"+998901112244","age":15}  [token]
+{"statusCode":400,"error":{"message":"age must not be less than 18"}}
+← 400
+
+### POST /api/v1/customer  {}  [token]
+{"statusCode":400,"error":{"message":"name should not be empty, name must be a string, phone_number should not be empty, phone_number must be a string, age must not be less than 18, age must be an integer number"}}
+← 400
+
+### POST /api/v1/customer  {"name":"Sardor","phone_number":"+998901112255","age":30,"id":"00000000-0000-0000-0000-000000000001"}  [token]
+{"statusCode":400,"error":{"message":"property id should not exist"}}
+← 400
+
+### POST /api/v1/customer  {"name":"Takror","phone_number":"+998901112233","age":25}  [token]
+{"statusCode":201,"message":"success","data":{"id":"166f14fb-5f92-4256-bfc0-f801461aefc0","created_at":"2026-11-25T03:52:02.051Z","updated_at":"2026-11-25T03:52:02.051Z","name":"Takror","phone_number":"+998901112233","age":25}}
+← 201
+
+### POST /api/v1/customer  {"name":"Matn","phone_number":"+998901112266","age":"20"}  [token]
+{"statusCode":400,"error":{"message":"age must not be less than 18, age must be an integer number"}}
+← 400
+
+birinchi id: 742c4cbf-3af0-4c82-9d34-43cbbb0ec302
+
+### GET /api/v1/customer
+{"statusCode":200,"message":"success","data":[{"id":"742c4cbf-3af0-4c82-9d34-43cbbb0ec302","created_at":"2026-11-25T03:52:01.995Z","updated_at":"2026-11-25T03:52:01.995Z","name":"Bobur","phone_number":"+998901112233","age":20},{"id":"166f14fb-5f92-4256-bfc0-f801461aefc0","created_at":"2026-11-25T03:52:02.051Z","updated_at":"2026-11-25T03:52:02.051Z","name":"Takror","phone_number":"+998901112233","age":25}]}
+← 200
+
+### GET /api/v1/customer/abc
+{"statusCode":400,"error":{"message":"Validation failed (uuid is expected)"}}
+← 400
+
+### GET /api/v1/customer/00000000-0000-0000-0000-000000000000
+{"statusCode":404,"error":{"message":"not found"}}
+← 404
+
+### GET /api/v1/customer/742c4cbf-3af0-4c82-9d34-43cbbb0ec302
+{"statusCode":200,"message":"success","data":{"id":"742c4cbf-3af0-4c82-9d34-43cbbb0ec302","created_at":"2026-11-25T03:52:01.995Z","updated_at":"2026-11-25T03:52:01.995Z","name":"Bobur","phone_number":"+998901112233","age":20}}
+← 200
+
+### PATCH /api/v1/customer/742c4cbf-3af0-4c82-9d34-43cbbb0ec302  {"age":31}
+{"statusCode":401,"error":{"message":"Unauthorized"}}
+← 401
+
+### PATCH /api/v1/customer/742c4cbf-3af0-4c82-9d34-43cbbb0ec302  {"age":12}  [token]
+{"statusCode":400,"error":{"message":"age must not be less than 18"}}
+← 400
+
+### DELETE /api/v1/customer/742c4cbf-3af0-4c82-9d34-43cbbb0ec302
+{"statusCode":401,"error":{"message":"Unauthorized"}}
+← 401
+
+### DELETE /api/v1/customer/742c4cbf-3af0-4c82-9d34-43cbbb0ec302  [token]
+{"statusCode":200,"message":"success","data":{}}
+← 200
+

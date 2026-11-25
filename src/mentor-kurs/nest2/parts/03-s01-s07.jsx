@@ -140,13 +140,13 @@ const METHOD_C = { GET: '#61AFFE', POST: '#49CC90', PATCH: '#50E3C2', DELETE: '#
 // ============================================================
 const S1 = {
   kicker: 'Kirish', eyebrow: 'Mentor kursi · NestJS', title: "Siz cars-api'ni qurdingiz. Endi o'quvchi reposi.",
-  plan: ['Ishga tushirish', "cars-api'dan farqlar", 'Resurs: 5 qatlam', 'Guard va token', 'Buzamiz', "O'quvchi darslarini o'tish"],
+  plan: ['Ishga tushirish', "cars-api'dan farqlar", 'Resurs: 5 qatlam', 'Guard va token', 'Buzamiz', 'AI yozgan kod', "O'quvchi darslarini o'tish"],
   segments: [
     sg('a', "Nest-1 da loyihani noldan qurdingiz — o'quvchi esa <b>tayyor loyihani clone qiladi</b>", "Assalomu alaykum. Nest birinchi darsida siz cars api'ni bo'sh papkadan qurdingiz. O'quvchingiz esa noldan yozmaydi: u GitHub'dan tayyor loyihani clone qiladi. Bugun aynan shu loyihani ochamiz, unga bitta resurs qo'shamiz va sinfda chiqadigan xatolarni ko'ramiz.", { hl: [] }),
     sg('b', "Dars oxirida loyiha sizda ishlaydi va unga <b>car resursini o'zingiz qo'shgan</b> bo'lasiz", "Dars oxirida loyiha sizning kompyuteringizda bazasi bilan ishlaydi, unga o'zingiz car resursini qo'shgan bo'lasiz. Resursning beshta qatlamini bir marta, tartib bilan yozamiz.", { hl: [0, 2] }),
     sg('c', "Token va rollarni bilasiz: <b>401 va 403</b> nima uchun chiqishini ajratasiz", "Loyiha himoyasini ham bilasiz: token qayerdan keladi, to'rt yuz bir va to'rt yuz uch nima uchun chiqadi. O'quvchi darsining ikkinchi qismi aynan shunga tayanadi.", { hl: [3] }),
-    sg('d', "O'quvchi darslaridagi <b>uchta xatoni</b> oldindan bilasiz — sinfda vaqt yo'qotmaysiz", "Va eng muhimi: o'quvchi darslarida uchta joy bor, ular sinfda albatta muammo beradi. Ularni oldindan bilib olasiz va sinfda vaqt yo'qotmaysiz.", { hl: [4, 5] }),
-    sg('e', "Olti bosqich, to'rt amaliyot. <b>Shoshilmang</b>: ustoz gapirib bo'lgach Davom ochiladi", "Dars olti bosqichdan iborat, orasida to'rtta amaliyot bor, ularni o'z kompyuteringizda qilasiz. Shoshilmang: har ekranni boshidan eshitish va matnini o'qish mumkin. Ustoz gapirib bo'lgach Davom ochiladi. Boshlaymiz.", { hl: [] }),
+    sg('d', "O'quvchi darslaridagi <b>uchta xatoni</b> oldindan bilasiz — sinfda vaqt yo'qotmaysiz", "Va eng muhimi: o'quvchi darslarida uchta joy bor, ular sinfda albatta muammo beradi. Ularni oldindan bilib olasiz va sinfda vaqt yo'qotmaysiz.", { hl: [4, 6] }),
+    sg('e', "Yetti bosqich, to'rt amaliyot. <b>Shoshilmang</b>: ustoz gapirib bo'lgach Davom ochiladi", "Dars yetti bosqichdan iborat, orasida to'rtta amaliyot bor, ularni o'z kompyuteringizda qilasiz. Shoshilmang: har ekranni boshidan eshitish va matnini o'qish mumkin. Ustoz gapirib bo'lgach Davom ochiladi. Boshlaymiz.", { hl: [] }),
   ],
 };
 // F-1120-02 (M51): darsning rasmi — o'quvchi loyihasida bitta so'rovning to'liq yo'li (RepoMachine, parts/02c-nest.jsx) + reja
@@ -156,7 +156,7 @@ function Screen1(p) {
       hl={beat === 1 ? ['mod', 'pipe', 'ctrl', 'svc', 'repo', 'db'] : beat === 2 ? ['guard'] : []}
       ok={beat === 2 ? null : { code: 200 }} stop={beat === 2 ? { k: 'guard', code: '401 · 403' } : null}
       resp={beat === 2 ? 'err' : 'ok'} url={beat === 2 ? 'GET /api/v1/admin' : 'GET /api/v1/car'} />
-    <div className="n1-plan" style={{ position: 'static', gridTemplateColumns: 'repeat(6,minmax(0,1fr))', gap: 6 }}>
+    <div className="n1-plan" style={{ position: 'static', gridTemplateColumns: 'repeat(7,minmax(0,1fr))', gap: 6 }}>
       {S1.plan.map((x, i) => <div key={i} className={seg.hl.includes(i) ? 'hl' : (seg.hl.length ? 'dim' : '')}><b>0{i + 1}</b><span>{x}</span></div>)}
     </div>
   </div>} />;
@@ -430,7 +430,7 @@ function Screen6(p) {
 //  7 · Tekshiruv 1 — «/admin ochdim, 404»
 // ============================================================
 function Screen7(p) {
-  return <MCRetry {...p} kicker={t('Tekshiruv 1', 'Проверка 1')} eyebrow={t('Tekshiruv · 1 / 4', 'Проверка · 1 / 4')}
+  return <MCRetry {...p} kicker={t('Tekshiruv 1', 'Проверка 1')} eyebrow={t('Tekshiruv · 1 / 5', 'Проверка · 1 / 5')}
     title={t("O'quvchi: «Brauzerda localhost:3000/admin ochdim — 404». Birinchi nimani tekshirasiz?", 'Ученик: «Открыл в браузере localhost:3000/admin — 404». Что проверите первым?')}
     q={t("Farqlarni ko'rdingiz, tekshirib olaylik. Birinchi tekshiruv. O'quvchi aytadi: brauzerda localhost uch ming slesh admin ochdim, to'rt yuz to'rt. Server ishlayapti, terminalda xato yo'q. Birinchi nimani tekshirasiz? Variantni tanlang.", 'Вы видели отличия, давайте проверим. Первая проверка. Ученик говорит: открыл в браузере localhost 3000 admin, получил 404. Сервер работает, в терминале ошибок нет. Что вы проверите первым? Выберите вариант.')}
     opts={t(['app.module.ts — AdminModule imports\'da bormi', 'Manzil — prefiks /api/v1 tushib qolgan', '.env — PostgreSQL paroli to\'g\'rimi', 'Swagger — Authorize bosilganmi'], ['app.module.ts — есть ли AdminModule в imports', 'Адрес — пропущен префикс /api/v1', '.env — верный ли пароль PostgreSQL', 'Swagger — нажата ли Authorize'])} correct={1}

@@ -1,0 +1,167 @@
+ M src/api/app.module.ts
+ M src/core/index.ts
+?? src/api/customer/
+?? src/core/entity/customer.entity.ts
+
+diff --git a/src/api/app.module.ts b/src/api/app.module.ts
+index bb6ccc7..a4b2861 100644
+--- a/src/api/app.module.ts
++++ b/src/api/app.module.ts
+@@ -7,6 +7,7 @@ import { ScheduleModule } from '@nestjs/schedule';
+ import { AdminModule } from './admin/admin.module';
+ import { AuthModule } from './auth/auth.module';
+ import { CarModule } from './car/car.module';
++import { CustomerModule } from './customer/customer.module';
+ 
+ 
+ const { url, sync } = config.DB;
+@@ -24,6 +25,7 @@ const { url, sync } = config.DB;
+     AdminModule,
+     AuthModule,
+     CarModule,
++    CustomerModule,
+ 
+   ],
+   controllers: [],
+diff --git a/src/core/index.ts b/src/core/index.ts
+index 8d7ef65..7e56546 100644
+--- a/src/core/index.ts
++++ b/src/core/index.ts
+@@ -6,3 +6,4 @@ export * from './entity/admin.entity';
+ // Repository export
+ export * from './repository/admin.repository';
+ export * from './entity/car.entity';
++export * from './entity/customer.entity';
+=== yangi: src/api/customer/customer.controller.ts
+     1	import {
+     2	  Body,
+     3	  Controller,
+     4	  Delete,
+     5	  Get,
+     6	  Param,
+     7	  Patch,
+     8	  Post,
+     9	  UseGuards,
+    10	} from '@nestjs/common';
+    11	import { ApiBearerAuth } from '@nestjs/swagger';
+    12	import { AuthGuard } from 'src/common/guard/auth.guard';
+    13	import { RolesGuard } from 'src/common/guard/roles.guard';
+    14	import { Roles } from 'src/common/decorator/roles-decorator';
+    15	import { UserRole } from 'src/common/enum/user-enum';
+    16	import { CustomerService } from './customer.service';
+    17	import { CreateCustomerDto } from './dto/create-customer.dto';
+    18	import { UpdateCustomerDto } from './dto/update-customer.dto';
+    19	
+    20	@UseGuards(AuthGuard, RolesGuard)
+    21	@Controller('customer')
+    22	export class CustomerController {
+    23	  constructor(private readonly customerService: CustomerService) {}
+    24	
+    25	  @Roles(UserRole.SUPER_ADMIN, UserRole.ADMIN)
+    26	  @Post()
+    27	  @ApiBearerAuth()
+    28	  create(@Body() dto: CreateCustomerDto) {
+    29	    return this.customerService.create(dto);
+    30	  }
+    31	
+    32	  @Roles('public')
+    33	  @Get()
+    34	  findAll() {
+    35	    return this.customerService.findAll();
+    36	  }
+    37	
+    38	  @Roles('public')
+    39	  @Get(':id')
+    40	  findOne(@Param('id') id: string) {
+    41	    return this.customerService.findOneById(id);
+    42	  }
+    43	
+    44	  @Roles(UserRole.SUPER_ADMIN, UserRole.ADMIN)
+    45	  @Patch(':id')
+    46	  @ApiBearerAuth()
+    47	  update(@Param('id') id: string, @Body() dto: UpdateCustomerDto) {
+    48	    return this.customerService.update(id, dto);
+    49	  }
+    50	
+    51	  @Roles(UserRole.SUPER_ADMIN, UserRole.ADMIN)
+    52	  @Delete(':id')
+    53	  @ApiBearerAuth()
+    54	  remove(@Param('id') id: string) {
+    55	    return this.customerService.remove(id);
+    56	  }
+    57	}
+=== yangi: src/api/customer/customer.module.ts
+     1	import { Module } from '@nestjs/common';
+     2	import { TypeOrmModule } from '@nestjs/typeorm';
+     3	import { CustomerEntity } from 'src/core';
+     4	import { CustomerService } from './customer.service';
+     5	import { CustomerController } from './customer.controller';
+     6	
+     7	@Module({
+     8	  imports: [TypeOrmModule.forFeature([CustomerEntity])],
+     9	  controllers: [CustomerController],
+    10	  providers: [CustomerService],
+    11	})
+    12	export class CustomerModule {}
+=== yangi: src/api/customer/customer.service.ts
+     1	import { Injectable } from '@nestjs/common';
+     2	import { InjectRepository } from '@nestjs/typeorm';
+     3	import { Repository } from 'typeorm';
+     4	import { BaseService } from 'src/infrastructure/base/base.service';
+     5	import { CustomerEntity } from 'src/core';
+     6	import { CreateCustomerDto } from './dto/create-customer.dto';
+     7	import { UpdateCustomerDto } from './dto/update-customer.dto';
+     8	
+     9	@Injectable()
+    10	export class CustomerService extends BaseService<
+    11	  CreateCustomerDto,
+    12	  UpdateCustomerDto,
+    13	  CustomerEntity
+    14	> {
+    15	  constructor(
+    16	    @InjectRepository(CustomerEntity)
+    17	    private readonly customerRepo: Repository<CustomerEntity>,
+    18	  ) {
+    19	    super(customerRepo);
+    20	  }
+    21	}
+=== yangi: src/api/customer/dto/create-customer.dto.ts
+     1	import { ApiProperty } from '@nestjs/swagger';
+     2	import { IsInt, IsNotEmpty, IsString, Min } from 'class-validator';
+     3	
+     4	export class CreateCustomerDto {
+     5	  @ApiProperty({ example: 'Azizbek' })
+     6	  @IsString()
+     7	  @IsNotEmpty()
+     8	  name: string;
+     9	
+    10	  @ApiProperty({ example: '+998901234567' })
+    11	  @IsString()
+    12	  @IsNotEmpty()
+    13	  phone: string;
+    14	
+    15	  @ApiProperty({ example: 18, minimum: 18 })
+    16	  @IsInt()
+    17	  @Min(18)
+    18	  age: number;
+    19	}
+=== yangi: src/api/customer/dto/update-customer.dto.ts
+     1	import { PartialType } from '@nestjs/swagger';
+     2	import { CreateCustomerDto } from './create-customer.dto';
+     3	
+     4	export class UpdateCustomerDto extends PartialType(CreateCustomerDto) {}
+=== yangi: src/core/entity/customer.entity.ts
+     1	import { Column, Entity } from 'typeorm';
+     2	import { BaseEntity } from './Base.entity';
+     3	
+     4	@Entity('customers')
+     5	export class CustomerEntity extends BaseEntity {
+     6	  @Column()
+     7	  name: string;
+     8	
+     9	  @Column({ unique: true })
+    10	  phone: string;
+    11	
+    12	  @Column({ type: 'int' })
+    13	  age: number;
+    14	}

@@ -440,7 +440,7 @@ export class CarEntity extends BaseEntity {
 const LC2_FIXED = LC2_LINES.map((l, i) => (i === 1 || i === 12) ? { ...l, gone: true, n: '' } : { ...l, n: i < 1 ? i + 1 : i })
   .flatMap((l, i) => i === 12 ? [l, { neu: true, n: 12, h: `  <span class="d">@Column</span>()   <span class="cm">// ustun — Entity'da; @IsNumber — DTO'da</span>` }] : [l]);
 function Screen14(p) {
-  return <LineCheck {...p} kicker={t('Tekshiruv 2', 'Проверка 2')} eyebrow={t('Tekshiruv · 2 / 4 — qaysi satr xato?', 'Проверка · 2 / 4 — какая строка с ошибкой?')}
+  return <LineCheck {...p} kicker={t('Tekshiruv 2', 'Проверка 2')} eyebrow={t('Tekshiruv · 2 / 5 — qaysi satr xato?', 'Проверка · 2 / 5 — какая строка с ошибкой?')}
     title={t("Bu Entity'da bitta satr boshqa qatlamniki", 'В этой Entity одна строка из другого слоя')}
     task={t("Qoida: Entity jadval shaklini belgilaydi — har ustun <code>@Column</code> bilan. Tekshirish qoidalari (<code>@IsString</code>, <code>@IsNumber</code>…) DTO'da turadi. Bu Entity'da bitta satr DTO'niki. <b>O'sha satrni bosing.</b>", "Правило: Entity задаёт форму таблицы — каждая колонка с <code>@Column</code>. Правила проверки (<code>@IsString</code>, <code>@IsNumber</code>…) живут в DTO. В этой Entity одна строка из DTO. <b>Нажмите на эту строку.</b>")}
     q={t("Besh qatlamni ko'rdingiz, endi o'zingiz tekshiring. Ikkinchi tekshiruv. Qoidani eslang: Entity'da har ustun Column bilan, tekshirish qoidalari esa DTO'da. Ekrandagi Entity'da bitta satr DTO'niki. O'sha satrni bosing.", 'Вы видели пять слоёв, теперь проверьте сами. Вторая проверка. Вспомните правило: в Entity каждая колонка с Column, а правила проверки в DTO. В Entity на экране одна строка из DTO. Нажмите на эту строку.')}

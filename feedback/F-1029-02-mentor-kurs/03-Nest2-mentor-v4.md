@@ -19,7 +19,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M24 · Haqiqiy chiqishlar: `manba/nest2-out/
 | Repo holati (qaror 1a) | Repo o'zgartirilmaydi: `server runnig onn port`, `Admin not fount`, `incorect`, filtrdagi `Danggg` — darsda «shunday chiqadi, xato emas» deb aytiladi. |
 | O'quvchi darslaridagi xatolar | Mentor darsida **ochiq aytiladi** (24, 26-ekran); o'quvchi darslarini tuzatish — alohida ish, oxirgi bo'limda ro'yxat (qaror kutilmoqda). |
 | Haqiqiylik (M10) | Har terminal satri, javob va xato — 31.10.2026 yurgizishdan (Node 24.18 · Nest 11.1 · TypeORM 1.0 · PostgreSQL 17, alohida `nest2_mentor` bazasi). Har ekranda «Manba» qatori. Ekrandagi `.env` paroli — `password` (namunadagidek). |
-| Hajm | **29 ekran** (31.10, F-1031-09: o'quvchi uyga vazifasini tekshirish ekrani olib tashlandi — mentor tekshirmaydi, support mentor tekshiradi) · 6 bosqich · 4 amaliyot · 4 tekshiruv · 8 savollik sinov · ovoz ≈ 35 daqiqa (o'lchandi: 3443 so'z + yakun) · amaliyotlar ≈ 35–45 daqiqa · **jami ≈ 1 soat 20 daqiqa** |
+| Hajm | **31 ekran** (25.11, F-1125-01: 6-bosqich · AI yozgan kod — 24–25-ekran; o'quvchi darsini o'tish 7-bosqich) · avval **29 ekran** (31.10, F-1031-09: o'quvchi uyga vazifasini tekshirish ekrani olib tashlandi — mentor tekshirmaydi, support mentor tekshiradi) · 6 bosqich · 4 amaliyot · 4 tekshiruv · 8 savollik sinov · ovoz ≈ 35 daqiqa (o'lchandi: 3443 so'z + yakun) · amaliyotlar ≈ 35–45 daqiqa · **jami ≈ 1 soat 20 daqiqa** |
 | Me'yor | Har `Lesson` ≤ 5 segment, segment ovozi ≤ 60 so'z; 1-gap — ko'prik (M17), oxirgisi — «Xulosa» (M5) |
 
 ---
@@ -749,7 +749,19 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M24 · Haqiqiy chiqishlar: `manba/nest2-out/
 
 ---
 
-## 24 · m4a-03 va undagi `/car` xatosi  ← `Lesson`
+## 24 · AI yozgan customer resursi: ikki topshiriq, ikki natija  ← `Lesson` (F-1125-01, M56; kod `nest2/parts/05b-ai.jsx`)
+- Kicker: `6-bosqich · AI yozgan kod`. Manba (haqiqiy, Claude Haiku ×2): `feedback/F-1125-01-nest1-kuchaytirish/ai-nest2/` — `00-promptlar.md`, `A-oddiy/`, `B-nest/`, `B-nest-tuzatilgan/`.
+1. **AI'ga o'quvchi reposida customer resursini yozdirdik: bir xil AI, ikki xil topshiriq** — sahna: A (oddiy) va B (repo uslubida) topshiriq matni.
+2. **1-tekshiruv — besh qatlam va himoya: ikkala AI ham to'g'ri qurdi** — sahna: 4 band ✓✓ + B terminali (5 ta Mapped `/api/v1/customer…`).
+3. **2-tekshiruv — so'rov: odatiy so'rovlarda ikkalasi bir xil, repo o'zi yordam beradi** — GET 200 · tokensiz POST 401 · age 15 / `{}` / begona `id` → 400 (`forbidNonWhitelisted`).
+4. **Kutilmagan so'rov: harfli id va takror telefon — B ikkalasida 500** — `/customer/abc`: A 400 (ParseUUIDPipe), B 500 (car namunasidan); takror telefon: A 201 (unique yo'q), B 500 (unique, 409 ga aylantirilmagan).
+5. **Xulosa: AI loyihadagi namunani zaifligi bilan birga ko'chiradi — kutilmagan so'rovni o'zingiz yuboring** — qoida kartasi.
+
+## 25 · Tekshiruv 5 — AI yozgan Controller: qaysi satr 500 ga sabab?  ← `LineCheck`
+- Kod: B ning `customer.controller.ts` 32–42 (haqiqiy). To'g'ri satr: 40 `findOne(@Param('id') id: string) {`.
+- Tuzatish (yurgizilgan): `@Param('id', ParseUUIDPipe)` → `/customer/abc` 400 «Validation failed (uuid is expected)», bor-yo'q uuid 404.
+
+## 26 · m4a-03 va undagi `/car` xatosi  ← `Lesson`
 - Kicker: `6-bosqich · o'quvchi darsini o'tish` · Eyebrow: `m4a-03 · «Birinchi resursni qo'lda qo'shish — mashinalar»` · Sarlavha: **m4a-03: o'quvchi siz bugun qilgan ishni qiladi**
 - Sahna: o'quvchi darsi xaritasi — 5 blok kartasi (segment bilan yonadi); 3-segmentda o'quvchi darsidagi amaliyot ro'yxati qatori qizil: «Brauzerda `/car` ni oching — `200` javobini ko'ring (404 emas)» va yonida haqiqiy javob `{"statusCode":404,"error":{"message":"Cannot GET /car"}}`; 4-segmentda vaqt chizig'i.
 - Bloklar (o'quvchi darsidan): 1 kirish va reja (1–3-ekran) · 2 besh bosqich, har bosqichdan keyin test (4–15) · 3 so'rov yo'li, agent 5 faylni yozadi, debugging — agent Controller'ga `@Column` qo'yib yuborgan (16–18) · 4 «Ochilish kuni» — haqiqiy loyihada, VS Code'da (19) · 5 podium, 12 kartochka, yakun (20–22).
@@ -765,7 +777,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M24 · Haqiqiy chiqishlar: `manba/nest2-out/
    Ovoz: «Xulosa: o'quvchi darsi besh fayl deydi, ikki DTO'ni bitta deb sanaydi, bu xato emas. Haqiqiy loyihada qoqilgan o'quvchiga ikkinchi amaliyotdagi jadvalingiz bilan yordam berasiz: har xabar va uning yechimi o'sha yerda.»
 - Manba: `src/4a-Modull/NestArchResourceLesson.jsx` (SCREEN_META 22, ekran sarlavhalari, `ScreenCarPractice` ro'yxati; `/car` prefikssiz 67 marta, `api/v1` — 2); `nest2-out/11-cars-requests.txt` (`GET /car` → 404).
 
-## 25 · O'quvchi darsidagi so'zlar  ← `Lesson`
+## 27 · O'quvchi darsidagi so'zlar  ← `Lesson`
 - Kicker: `6-bosqich · o'quvchi darsini o'tish` · Sarlavha: **O'quvchi darsidagi so'zlar: javon chizmasi, anketa, retsept kitobi…**
 - Sahna: ikki ustunli lug'at kartalari (Nest-1 S25b uslubi), guruh-guruh yonadi.
 - Lug'at (o'quvchi darslaridan aynan):
@@ -790,7 +802,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M24 · Haqiqiy chiqishlar: `manba/nest2-out/
    Ovoz: «KitobShop'da yana ikki so'z: qo'riqchi, bu Guard; yorliq, bu kitobni kategoriyaga bog'lash. Xulosa: ikkala so'zni birga ayting, masalan javon chizmasi, ya'ni Entity. Metafora vazifani tushuntiradi, kodni emas.» · 8–9-juft
 - Manba: `NestArchResourceLesson.jsx` (RULE_CARDS, FLASHCARDS), `NestArchPracticeLesson.jsx` (🔒/🌐, yorliq), `NestArchAliveLesson.jsx` (omborchi, ofitsiant).
 
-## 26 · m4a-04 KitobShop va tayyorgarlik  ← `Lesson`
+## 28 · m4a-04 KitobShop va tayyorgarlik  ← `Lesson`
 - Kicker: `6-bosqich · o'quvchi darsini o'tish` · Eyebrow: `m4a-04 · «Praktika — KitobShop backend»` · Sarlavha: **KitobShop: o'quvchi buyuradi, agent yozadi — sizning tayyorgarligingiz**
 - Sahna: 9 ekran kartasi; 2–3-segmentda «darsdan oldin» ro'yxati (3 band) yonadi; 4-segmentda `Ide` paneli — haqiqiy `book.entity.ts` va javoblar.
 - Ekranlar (o'quvchi darsidan): 1 kirish · 2 reja (3 resurs, Copilot Agent) · 3 Amaliyot 1 — aniq buyruq · 4 Amaliyot 2 — 3 playbook: Category → Book (`@ManyToOne → Category`) → Order (`@ManyToOne → Book`), har biridan keyin tekshiruv ro'yxati, keyin «Keep» · 5 Amaliyot 3 — `@Roles`: qaysi eshik ochiq · 6 Amaliyot 4 — eshik sinovi: agent `POST /order`ga `@Roles(ADMIN)` qo'ygan → `'public'` · 7 test · 8 podium · 9 yakun.
@@ -823,7 +835,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M24 · Haqiqiy chiqishlar: `manba/nest2-out/
    Ovoz: «Xulosa: KitobShop'dan oldin uch narsani tayyorlang: signin va Authorize'ni ko'rsatish, har o'quvchida oddiy admin, va kategoriya kitobdan oldin yaratilishi. Vaqt, taklif: to'qson daqiqaning qirqi uch playbook'ka ketadi, eng xavfli bo'lak, chunki hammaning agenti ishlashi kerak.»
 - Manba: `src/4a-Modull/NestArchPracticeLesson.jsx` (SCREEN_META 9, PLAYBOOK, TEKSHIRUV; signin/Authorize/superadmin — 0 marta); `nest2-out/21-roles-superadmin.txt`, `16-book-requests.txt`, `18-book-fk-requests.txt`.
 
-## 27 · Sinfdagi 6 holat va o'quvchi savollari  ← `Lesson`
+## 29 · Sinfdagi 6 holat va o'quvchi savollari  ← `Lesson`
 - Kicker: `6-bosqich · sinfda` · Sarlavha: **Sinfda albatta chiqadigan 6 holat va tayyor javoblar**
 - Sahna: Nest-1 R2 uslubi — 6 karta (`STUMBLE`), segment bilan yonadi; pastda «O'quvchi so'rasa» — 4 ta ochiladigan karta (`QA`, ovozsiz, bosib o'qiladi).
 - Kartalar:
@@ -852,7 +864,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M24 · Haqiqiy chiqishlar: `manba/nest2-out/
    Ovoz: «Xulosa va usul: xato chiqsa avval statusga qarang. To'rt yuz to'rt manzil yoki modul, to'rt yuz DTO, to'rt yuz bir va uch Guard, besh yuz terminal. Javobni aytmang, xabarni o'quvchi bilan birga o'qing. Pastdagi kartalarda o'quvchi savollariga tayyor javob bor.»
 - Manba: `nest2-out/11-cars-requests.txt`, `06-requests.txt`, `12-break-forfeature.log`, `13-break-appmodule.txt`, `21-roles-superadmin.txt`, `24-brand-fk.txt`, `23-entity-isnumber.txt`, `08-auth-requests.txt` (`hashed_password`); repo `admin.controller.ts:73–93` (`select`).
 
-## 28 · O'z-sinov — 8 savol  ← `Screen27`
+## 30 · O'z-sinov — 8 savol  ← `Screen27`
 - Kicker: `O'z-sinov` · Sarlavha: **Sakkiz savol. Bitta urinish. Oltitasi — o'tdingiz** (mexanika va ovoz Nest-1 S27 bilan bir xil; qaytganda M12 bo'yicha).
 - Savollar (`FINAL`; to'g'ri o'rinlar 1/2/3/4 — ikkitadan; `s` — xato bo'lsa qaytiladigan ekran):
   | # | Savol | Variantlar | ✔ | Izoh | s |
@@ -867,7 +879,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M24 · Haqiqiy chiqishlar: `manba/nest2-out/
   | 8 | O'quvchi `.env`ni keyin to'ldirdi, lekin kira olmayapti; bazada nomsiz superadmin bor. Nima qilasiz? | `.env`ni yana bir marta saqlang · Serverni ikki marta to'xtatib qayta yoqing · Bazadagi o'sha satrni o'chirib, qayta yoqing · `USER_NAME`ni boshqa nomga o'zgartiring | 3 | Superadmin bor bo'lsa `onModuleInit` yangisini yaratmaydi. | 6 |
 - `passed = ball ≥ 6 && 4 amaliyot isbot bilan` (Nest-1 bilan bir xil); `onFinished` maydonlari o'zgarmaydi.
 
-## 29 · Yakun  ← `Screen28`
+## 31 · Yakun  ← `Screen28`
 - Kicker: `Yakun` · Sarlavha: **Endi siz bilasiz** · tartib M13: (1) Barakalla / qayta topshirish maslahati → (2) animatsion xulosa — so'rov yo'li sxemasi (nuqta yuradi: brauzer → `/api/v1` → Guard → ValidationPipe → Controller → Service → Repository → jadval), 6 band birin-ketin yonadi → (3) uyga vazifa → (4) eslatma → (5) «Darsni yakunlash».
 - Xulosa 6 band (har biri 1–2 gap ovozda, sxemaning o'z bekati yonadi):
   1. O'quvchi loyihasi: server `app.service.ts`da, manzil `/api/v1`, javob `data`da, xato `error.message`da, sozlama `.env`dan.
