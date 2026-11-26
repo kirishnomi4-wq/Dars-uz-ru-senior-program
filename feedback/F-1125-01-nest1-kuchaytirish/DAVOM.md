@@ -1,13 +1,43 @@
 # F-1125-01 · Mentor Nest-1 darsini kuchaytirish — DAVOM
 
-## ▶▶▶ YANGI SEANS SHU YERDAN (26.11 08:20, `date`; tungi avtopilot natijasi)
+## ▶▶▶ YANGI SEANS SHU YERDAN (26.11 10:49, `date`; seans yopildi — noutbuk o'chirildi)
 
-**Foydalanuvchiga — qaror sahifasi https://claude.ai/artifact/8vFUwfw1ZNfqdneYwvU3tX (v3): tungi natija + 2 savol, javob kutilmoqda.**
-- 3-savol A — saytda (7e979174). Ovozsiz 116 izoh — ovoz qo'shildi (36b42f95). **Saytda `passed` doim false edi (12 dars, 03.11 dan) — tuzatildi** (1bd2deea, M60). Deploy: jggrhgbye → b5wlrxdry → **klcvo8z50**.
-- Tungi jonli QA (klcvo8z50): ekran-sweep 12 × UZ/RU — xato 0 · e2e UZ 12/12 `passed: true`, sinov 8/8 · toshish 1280×720 UZ — 4 darsda kichik kesilish (avvaldan) · RU o'lchovi 08:05 dan yurgan (natija `scratchpad/qa/natija`, jadval — `scratchpad/sahifa/qur.py`).
-- **Savollar (sahifada):** 1) 1280×720 da kesilgan panellar (Nest-1 23–25, Nest-2 20, Jest-1 14, Jest-2 2/8) — tavsiya A (faqat joylashuv); 2) eski 8 dars AI bo'limini Nest-1 darajasiga (ikki xil topshiriq + AI satrini bosish; agentlar kerak) — tavsiya B (mentor fikridan keyin).
-- Push — foydalanuvchining o'zi (commitlar: … 70ccdff3 · 88e6e8e6 · 7e979174 · 36b42f95 · 1bd2deea + hujjat).
-- Batafsil — mentor kursi JURNAL «26.11 03:34» va «26.11 07:05».
+**Holat: tungi ish TUGADI, hammasi saytda (https://coddycamp-mentor-kurs.vercel.app, deploy `klcvo8z50`). Push YO'Q — 14 commit `origin/main` dan oldinda, pushni foydalanuvchi qiladi.**
+
+Kechasi bajarildi (26.11 00:23 → 09:27):
+- **3-savol A** (AI tekshiruv savollari AI'ning haqiqiy chiqishiga moslandi): CI/CD-1 20-ekran, WebSocket-2 19-ekran, Jest-1 20-ekran — UZ, RU, ovoz, MD. Qonun **M59**. Commit 7e979174.
+- **Ovoz:** to'g'ri javobdan keyin bosilgan variant izohlari ovozsiz edi (saytda 404) — yig'uvchi tuzatildi, 116 mp3 qo'shildi. Commit 36b42f95.
+- **Saytda `"passed": false` xatosi** (12 dars, 03.11 dan): build'da funksiya nomlari qisqaradi, `S.name` bo'yicha sanash 0 berardi → havola bo'yicha sanash. Qonun **M60**. Commit 1bd2deea.
+- QA vositalari (`dev/ekran-sweep.mjs`, `sahna-olchov.mjs`, `e2e-ovozli-otish.mjs`, `ovoz-matnlar.mjs`) — `BASE` bilan jonli saytda ham yuradi, bosishlar himoyalangan. Commit d42b1f41, d311f5e0.
+- Deploylar: jggrhgbye → b5wlrxdry → **klcvo8z50** (hozirgi).
+
+Jonli saytdagi tekshiruv (klcvo8z50):
+- Ekran xatosi: 12 dars × UZ/RU — 0.
+- To'liq o'tish (muqova → oxir, ovoz bilan): UZ 12/12 `passed: true`, sinov 8/8. RU to'liq o'tish yuritilmagan.
+- 1280×720 kesilish (avvaldan bor, kecha tegilmagan): Nest-1 23–25, Nest-2 20, Jest-1 14, Jest-2 2/8; RU da qo'shimcha PG-2 18 (9 px), Jest-2 2 (33 px).
+- Natijalar va jadval generatori — `tungi-qa/` (shu papkada; `qa/natija/*.tsv|log`, `sahifa/qur.py` → qaror.html).
+
+**Kutilmoqda — foydalanuvchi javobi (qaror sahifasi v6: https://claude.ai/artifact/8vFUwfw1ZNfqdneYwvU3tX):**
+1. 1280×720 da kesilgan panellarni tuzatishmi — tavsiya **A** (faqat joylashuv: panel balandligi, terminal qatorlari; matn/ovozga tegilmaydi; har ekran 1280 va 1920 da surat).
+2. Eski 8 darsning AI bo'limini Nest-1 darajasiga (ikki xil topshiriq + AI satrini bosish; har darsga 2 agent) — tavsiya **B** (mentor fikridan keyin).
+Javob kelguncha kodga tegilmaydi.
+
+Ishga tushirish (kerak bo'lsa): tts :5332 va mentor vite :5333 o'chirilgan. Ovoz keshi doimiy — `feedback/F-1029-02-mentor-kurs/korik/tts-cache` (5021 mp3); deploy tartibi pastdagi «Deploy tartibi» bandida. Scratchpad yo'qolgan bo'lsa ham: `ovoz-matnlar.mjs` → `ovoz-statik.py` keshdan `$S/ovoz-sayt-deploy/tts` ni qayta to'ldiradi.
+
+**Yangi seans uchun prompt (26.11 kechqurun):**
+```
+Mentor kursi F-1125-01 ni davom ettiramiz. Avval o'qi:
+feedback/F-1125-01-nest1-kuchaytirish/DAVOM.md («YANGI SEANS SHU YERDAN» 26.11 10:49 bloki),
+feedback/F-1029-02-mentor-kurs/JURNAL.md oxirgi F-1125-01 yozuvlari (26.11 03:34, 07:05 va keyingilari),
+MENTOR_DARS_ETALON.md M59 va M60.
+Holat: tungi ish tugagan, hammasi saytda (klcvo8z50), push yo'q (14 commit).
+Qilinadigan:
+1) Kechasi nima qilinganini sodda qilib ko'rsat: nima o'zgardi, qaysi ekranda, saytda qanday tekshirildi —
+   men saytda o'zim ko'raman, har band uchun aniq havola ber (?dars=...&s=...).
+2) Qaror sahifasidagi 2 savolga javobimni kut (https://claude.ai/artifact/8vFUwfw1ZNfqdneYwvU3tX).
+3) Javobimdan keyin ishni boshlaysan; agent kerak bo'lsa — avval ruxsat so'ra.
+Commit va deploy ruxsati bor (faqat shu ish fayllari, pathspec bilan); push yo'q. Chatda o'zbekcha gapir.
+```
 
 **26.11 00:23 — avtopilot (foydalanuvchi: «avtopilotda ishla man 1-2 soatda kelaman»):** qaror sahifasi https://claude.ai/artifact/8vFUwfw1ZNfqdneYwvU3tX — tavsiyalar bo'yicha:
 - 1-savol «Kolonka» — **A, o'quvchi darsiga tegilmadi**.
@@ -29,7 +59,7 @@ AI sinovlari (haqiqiy, Haiku ×2): `ai-nest1/`, `ai-nest2/`, `ai-pg1/`, `ai-pg2/
 
 Ma'lum, oldindan bor (tegilmagan): Nest-1 41-ekran 1600 da 8 px; Nest-2 va PG-2 yakuni 1280 da 7–8 px (eski versiyada ham, jonli o'lchangan).
 
-**Yangi seans uchun prompt:**
+**25.11 dagi prompt (ESKIRGAN — yuqoridagi 26.11 promptini ishlat):**
 ```
 Mentor kursi F-1125-01 ni davom ettiramiz. Avval o'qi:
 feedback/F-1125-01-nest1-kuchaytirish/DAVOM.md («YANGI SEANS SHU YERDAN» bloki),

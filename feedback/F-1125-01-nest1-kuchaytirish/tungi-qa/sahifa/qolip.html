@@ -1,0 +1,119 @@
+<title>Mentor kursi qarorlari</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+/*CSS*/
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Mentor kursi · 26.11.2026 tong</span>
+    <h1>Tungi ish natijasi va ikki savol</h1>
+    <p class="lead">Hammasi saytda: coddycamp-mentor-kurs.vercel.app. Push qilinmagan, uni o'zingiz qilasiz. Pastda ikki savol bor: variantni belgilang, «Javobni nusxalash»ni bosing va chatga yuboring.</p>
+  </header>
+
+  <section class="done" aria-labelledby="dh">
+    <h2 id="dh">Kechasi bajarildi va saytga chiqdi</h2>
+    <ul class="plain">
+      <li><b>AI tekshiruv savollari haqiqatga moslandi</b> (siz tanlagan A). CI/CD-1 da savol «AI <code>npm install</code> yozdi» der edi, aslida ikkala AI <code>npm ci</code> yozgan. Endi ekranda 1-AI'ning o'z fayli turibdi. WebSocket-2 da «AI: Sinadim…» degan gap AI'niki emas edi, endi «birinchi sinovimizda» deyiladi. Jest-1 da AI'ning aynan satri ko'rsatiladi. UZ, RU, ovoz.</li>
+      <li><b>Darsni tugatgan mentor «o'tmadi» deb chiqardi. Tuzatildi.</b> Saytda mentor hamma amaliyotni bajarsa ham, oxirgi natijada <code>"passed": false</code> chiqardi. Bu 12 darsning hammasida, 03.11 dan beri bor edi. Lokal sinovlarda bu ko'rinmagan. Endi jonli saytda to'liq o'tish: <code>"passed": true</code>.</li>
+      <li><b>116 ta izohga ovoz qo'shildi.</b> Mentor to'g'ri javobdan keyingi variantni bossa, izoh ekranda chiqardi, lekin ovozsiz edi (12 darsda, UZ va RU).</li>
+      <li><b>Yangi qoidalar:</b> AI haqidagi savolda faqat AI haqiqatda yozgan narsa keltiriladi (M59). Kod funksiya nomiga tayanmaydi, yakuniy sinov saytdagi versiyada ham o'tkaziladi (M60).</li>
+      <li><b>Commitlar:</b> <code>7e979174</code> · <code>36b42f95</code> · <code>1bd2deea</code> + jurnal. Deploy: <code>jggrhgbye</code> → <code>b5wlrxdry</code> → <code>klcvo8z50</code>.</li>
+    </ul>
+    <div class="thumbs">
+      <figure><img alt="CI/CD-1 20-ekran: 1-AI yozgan test.yml qadam satrlari va to'g'ri javob" src="IMG:cicd1-20"><figcaption><b>CI/CD-1 · 20-ekran.</b> 1-AI fayli, to'g'ri javob — node-version 24 va tsc, build.</figcaption></figure>
+      <figure><img alt="WebSocket-2 19-ekran: Birinchi sinovimizda AI tuzatgan panel #2 ni ko'rsatdi" src="IMG:ws2-19"><figcaption><b>WebSocket-2 · 19-ekran.</b> «Birinchi sinovimizda…»</figcaption></figure>
+      <figure><img alt="Jest-1 20-ekran: AI testining aynan satri va 4-variant izohi" src="IMG:jest1-20"><figcaption><b>Jest-1 · 20-ekran.</b> AI'ning aynan satri; 4-variant izohi endi o'ziniki.</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="th">
+    <span class="tag report">Tungi tekshiruv · jonli sayt</span>
+    <h2 id="th">12 dars, har ekran</h2>
+    <p class="small"><b>Ekran xatosi</b>: har ekran ochildi, sahifa xatosi bormi. <b>To'liq o'tish</b>: muqovadan oxirigacha ovoz bilan, amaliyot isboti, tekshiruvlar va yakuniy sinov. <b>Kesilish</b>: 1280×720 ekranda panel ichida siljish (oxirgi ekrandagi eslatma oynasi ataylab siljiydi, u hisoblanmagan).</p>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Dars</th><th>Ekran</th><th>Ekran xatosi UZ</th><th>Ekran xatosi RU</th><th>To'liq o'tish UZ</th><th>Kesilish UZ</th><th>Kesilish RU</th></tr></thead>
+        <tbody>
+<!--JADVAL-->
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="q1h">
+    <span class="tag">1-savol</span>
+    <h2 id="q1h">Kichik ekranda kesilgan panellarni tuzataymi?</h2>
+    <ul class="plain">
+      <li>1280×720 ekranda (kichik noutbuk) 4 darsda panel ekranga sig'maydi. Oxirgi qator ko'rinmaydi yoki panelni siljitish kerak bo'ladi.</li>
+      <li>Eng ko'zga tashlanadigani: Nest-2 20-ekranda terminal 2 qatorga qisilgan, Jest-1 14-ekranda terminalning oxirgi qatori kesilgan.</li>
+      <li>Bu ekranlarga kecha tegilmagan, bu kesilish avvaldan bor. 1600 kenglikda deyarli yo'q (Nest-2 — 5 px), faqat Jest-1 14-ekranda qoladi.</li>
+      <li>Ruschada ikkitasi biroz kattaroq: PG-2 18-ekran 9 px (faqat RU), Jest-2 2-ekran 33 px (UZ da 13 px). «A» tanlansa, ular ham kiradi.</li>
+    </ul>
+    <div class="figs">
+      <figure><img alt="Nest-2 20-ekran 1280×720: terminal paneli ikki qatorga qisilgan" src="IMG:nest2-20"><figcaption><b>Nest-2 · 20-ekran.</b> Terminal ostida yana qatorlar bor, ko'rinmaydi.</figcaption></figure>
+      <figure><img alt="Jest-1 14-ekran 1280×720: terminal oxirgi qatori kesilgan" src="IMG:jest1-14"><figcaption><b>Jest-1 · 14-ekran.</b> Terminalning oxirgi qatori pastda kesilgan.</figcaption></figure>
+    </div>
+    <div class="opts" role="radiogroup" aria-labelledby="q1h">
+      <label class="opt"><input type="radio" name="q1" id="q1a" value="A — tuzat"><span><span class="t">A · Tuzating <span class="rec">tavsiya</span></span><span class="d">Faqat shu ekranlarning joylashuvi: panel balandligi va terminal qatorlari 1280×720 ga sig'adi. Matn va ovozga tegilmaydi. Har ekran 1280 va 1920 da suratga olinadi.</span></span></label>
+      <label class="opt"><input type="radio" name="q1" id="q1b" value="B — tegma"><span><span class="t">B · Tegmang</span><span class="d">Mentorlar kattaroq ekranda ko'radi deb qoldiramiz.</span></span></label>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="q2h">
+    <span class="tag">2-savol</span>
+    <h2 id="q2h">Eski 8 darsning AI bo'limini Nest-1 darajasiga olib chiqamizmi?</h2>
+    <ul class="plain">
+      <li>Kecha Nest-1, Nest-2, PG-1, PG-2 ga qo'shilgan AI bo'limida ikki narsa bor. AI'ga topshiriq ikki xil beriladi: oddiy so'zlar bilan va mavzu tilida. Mentor AI'ning haqiqiy kodidagi xato satrni o'zi bosib topadi.</li>
+      <li>Qolgan 8 darsda AI bo'limi bor va haqiqiy, lekin bu ikkisi to'liq emas. Ikki xil topshiriq faqat Telegraf + PG va Jest-1 da bor. AI'ning satrini bosish hech birida yo'q. Jest-2 da AI tekshiruvi umuman yo'q.</li>
+      <li>Ikki xil topshiriq uchun AI'ni qayta yurgizish kerak: har darsga ikkita agent.</li>
+    </ul>
+    <div class="opts" role="radiogroup" aria-labelledby="q2h">
+      <label class="opt"><input type="radio" name="q2" id="q2a" value="A — hozir"><span><span class="t">A · Hozir boshlang</span><span class="d">Agentlarga ruxsat bilan, darsma-dars: avval bitta dars, siz ko'rasiz, keyin qolgani. Bir-ikki kunlik ish.</span></span></label>
+      <label class="opt"><input type="radio" name="q2" id="q2b" value="B — mentor fidbekidan keyin"><span><span class="t">B · Mentor fikridan keyin <span class="rec">tavsiya</span></span><span class="d">Kurs bugun shu holatda topshiriladi. Mentor qaysi darsda qiynalganini aytgach, o'sha darslardan boshlaymiz.</span></span></label>
+      <label class="opt"><input type="radio" name="q2" id="q2c" value="C — kerak emas"><span><span class="t">C · Kerak emas</span><span class="d">Qoidani shu 8 darsga moslashtiraman: ularda AI bo'limi hozirgi ko'rinishida qoladi.</span></span></label>
+    </div>
+  </section>
+
+  <section class="block answer" aria-labelledby="ah">
+    <span class="tag">Javob</span>
+    <h2 id="ah">Javobni nusxalash</h2>
+    <label for="izoh" class="small">Izoh (ixtiyoriy)</label>
+    <textarea id="izoh" placeholder="Masalan: 1-savol A, lekin Jest-1 ni keyinroq"></textarea>
+    <div id="out"></div>
+    <button class="copy" id="copyBtn" type="button">Javobni nusxalash</button>
+    <span id="copied" hidden>Nusxalandi. Chatga qo'ying.</span>
+  </section>
+</div>
+
+<script>
+(function () {
+  var out = document.getElementById('out');
+  var izoh = document.getElementById('izoh');
+  var copied = document.getElementById('copied');
+  function val(name) { var el = document.querySelector('input[name="' + name + '"]:checked'); return el ? el.value : '—'; }
+  function text() {
+    var s = 'Tungi ish — javob\n1) Kichik ekranda kesilish: ' + val('q1') + '\n2) Eski 8 darsning AI bo\'limi: ' + val('q2');
+    var z = izoh.value.trim();
+    if (z) s += '\nIzoh: ' + z;
+    return s;
+  }
+  function render() { out.textContent = text(); copied.hidden = true; }
+  document.querySelectorAll('input[type="radio"]').forEach(function (r) { r.addEventListener('change', render); });
+  izoh.addEventListener('input', render);
+  render();
+  document.getElementById('copyBtn').addEventListener('click', function () {
+    var t = text();
+    function fallback() {
+      var range = document.createRange(); range.selectNodeContents(out);
+      var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
+      copied.textContent = 'Matn belgilandi — Ctrl+C bilan nusxalang.'; copied.hidden = false;
+    }
+    try {
+      navigator.clipboard.writeText(t).then(function () { copied.textContent = "Nusxalandi. Chatga qo'ying."; copied.hidden = false; }, fallback);
+    } catch (e) { fallback(); }
+  });
+})();
+</script>
