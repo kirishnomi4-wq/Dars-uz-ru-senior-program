@@ -26,7 +26,7 @@ Loyiha: **OrderBotNest** — lokal `/home/kali/Desktop/order-bot`, teglar `tgpg-
 | AI | Promptlar bitta AI dasturiga bog'lanmaydi: «Antigravity, Claude Code, Codex yoki Copilot — qaysi biri bo'lsa ham». Ekranda AI javobi — **haqiqiy**, ikki tajribadan (`orderbot-ai/` Opus 5.5, `orderbot-ai2/` Haiku); belgi: «namuna — sizning AI'ingiz boshqacha yozadi, tekshiruv bir xil». AI oynasining surati qo'yilmaydi (maket bo'lardi). |
 | Telegram | Bot logikasi haqiqiy: Telegram serverisiz `bot.handleUpdate` + javob ushlanadi (`manba/orderbot-harness.cjs`). Telegram ilovasidagi chat o'rniga — bot oqimi kartasi (GATE M 04.11). |
 | Haqiqiylik (M10) | 03–04.11: Node 24.18 · NestJS 11.2.8 · Telegraf 4.16.3 · TypeORM 1.1.2 · pg 8.23.1 · PostgreSQL 18.4. Sinov portlari 5436/5437 → ekranda 5432. |
-| Hajm | **28 ekran** · 6 bosqich · 4 amaliyot (AI bilan) · 4 tekshiruv · 8 savol · ovoz ≈ 27 daq · amaliyot ≈ 70–90 daq · jami ≈ 1 s 40 daq – 2 s |
+| Hajm | **29 ekran** (26.11, F-1125-01: «## AI-T5» Tekshiruv 5 — 2-AI migratsiyasining haqiqiy satri, saytda 25-ekran; MD raqamlari 25–28 saytda 26–29) · 6 bosqich · 4 amaliyot (AI bilan) · 5 tekshiruv · 8 savol · ovoz ≈ 27 daq · amaliyot ≈ 70–90 daq · jami ≈ 1 s 40 daq – 2 s |
 | Me'yor | PG-2 bilan bir xil (≤ 5 segment, ≤ 60 so'z, ko'prik M17, «Xulosa», kalit 8–14 so'z, M32 to'liq gap, M33 «Demak», M43 kod sahnasi) |
 
 ---
@@ -126,7 +126,7 @@ Loyiha: **OrderBotNest** — lokal `/home/kali/Desktop/order-bot`, teglar `tgpg-
 - Manba: `orderbot-out/01-xotira-senariy.txt` (2 jarayon, aynan).
 
 ## 4 · Tekshiruv 1 — restartdan keyin nima qoladi  ← `MCRetry`
-- Kicker: `Tekshiruv 1` · Eyebrow: `Tekshiruv · 1 / 4`
+- Kicker: `Tekshiruv 1` · Eyebrow: `Tekshiruv · 1 / 5`
 - Sarlavha: **Katalog kodda yozilgan massiv, ombordagi son ham shu massivda. Restartdan keyin Kolonka qoldig'i nechta bo'ladi?**
 - Material (`above`, M42): kod `catalog.service.ts`: `const PRODUCTS: Product[] = [ … { id: 4, name: 'Kolonka', price: 50000, stock: 10 }, …]` + bot oqimi: «Aziza: Kolonka × 2 — buyurtma #1» (qoldiq 8 bo'ldi).
 - Ovoz: «Xotirani ko'rdingiz, endi tekshirib olaylik. Birinchi tekshiruv. Katalog kodda yozilgan massiv, ombordagi son ham shu massivda turadi. Aziza ikkita Kolonka oldi, qoldiq sakkiz bo'ldi. Server qayta ishga tushsa, Kolonka qoldig'i nechta bo'ladi? Variantni tanlang.»
@@ -196,7 +196,7 @@ Loyiha: **OrderBotNest** — lokal `/home/kali/Desktop/order-bot`, teglar `tgpg-
 - Manba: `orderbot-ai/00-promptlar.md` (Prompt 1, aynan).
 
 ## 8 · Tekshiruv 2 — qaysi prompt  ← `MCRetry`
-- Kicker: `Tekshiruv 2` · Eyebrow: `Tekshiruv · 2 / 4`
+- Kicker: `Tekshiruv 2` · Eyebrow: `Tekshiruv · 2 / 5`
 - Sarlavha: **Ikki AI'ga bir xil vazifa berildi. Qaysi natijani ko'rib chiqib, commit qilish mumkin?**
 - Material (`above`): ikki karta. A: prompt «Katalogni postgresqlga ko'chirib ber, TypeORM ishlat.» → `22 files changed, 1145 insertions(+), 210 deletions(-)` · AI: «katalog va holat xotiradan PostgreSQL'ga ko'chirildi». B: besh qismli 1-prompt → `15 files changed` (shundan `package-lock.json`) · AI: «Bitta chetga chiqish: order va telegram servislarida bir nechta qatorni o'zgartirdim… `await` qo'shilmasa, kod kompilyatsiyadan o'tmaydi.»
 - Ovoz: «Prompt qolipini ko'rdingiz, endi tekshirib olaylik. Ikkinchi tekshiruv. Ikki AI'ga bir xil vazifa berildi: katalogni bazaga ko'chirish. Ekranda ikkala prompt, o'zgarish hajmi va AI javobidan parcha. Qaysi natijani ko'rib chiqib, commit qilish mumkin? Variantni tanlang.»
@@ -321,7 +321,7 @@ Loyiha: **OrderBotNest** — lokal `/home/kali/Desktop/order-bot`, teglar `tgpg-
 - Manba: `orderbot-ai/p2/04b-state-restart.txt` («Savat bo'sh»), `p3/04b-state-restart.txt` («Buyurtma #1 qabul qilindi!»), `order-bot` `user.entity.ts`.
 
 ## 16 · Tekshiruv 3 — `===` bilan solishtirish  ← `MCRetry`
-- Kicker: `Tekshiruv 3` · Eyebrow: `Tekshiruv · 3 / 4`
+- Kicker: `Tekshiruv 3` · Eyebrow: `Tekshiruv · 3 / 5`
 - Sarlavha: **Admin tekshiruvi xom so'rov natijasi bilan yozilgan: `rows[0].telegram_id !== 111`. Jasur (id 111) `/orders` bosdi. Nima bo'ladi?**
 - Material (`above`): kod `const rows = await this.orders.raw('SELECT telegram_id FROM users WHERE telegram_id = $1', [ctx.from.id]); // raw = this.ds.query` · `if (rows[0].telegram_id !== 111) return ctx.reply(texts.adminOnly);` · terminal: `npx tsc --noEmit` — xato yo'q.
 - Ovoz: «Big int'ni ko'rdingiz, endi tekshirib olaylik. Uchinchi tekshiruv. Admin tekshiruvi xom so'rov bilan yozilgan: bazadan telegram id olinadi va bir yuz o'n birga teng emasmi deb solishtiriladi. TypeScript xato bermadi. Jasurning id'si haqiqatan bir yuz o'n bir. U orders bosdi. Nima bo'ladi? Variantni tanlang.»
@@ -428,7 +428,7 @@ Loyiha: **OrderBotNest** — lokal `/home/kali/Desktop/order-bot`, teglar `tgpg-
 - Manba: `orderbot-out/04a-aborted-tx-xato.txt` (aynan), `order-bot` `tgpg-done` `order.service.ts`.
 
 ## 22 · Tekshiruv 4 — qaysi satr ortiqcha sotadi  ← `LineCheck`
-- Kicker: `Tekshiruv 4` · Eyebrow: `Tekshiruv · 4 / 4 — qaysi satr xato?` · Sarlavha: **Bitta Planshet besh kishiga sotildi. Xato satrni toping**
+- Kicker: `Tekshiruv 4` · Eyebrow: `Tekshiruv · 4 / 5 — qaysi satr xato?` · Sarlavha: **Bitta Planshet besh kishiga sotildi. Xato satrni toping**
 - Shart (`task`): «Qoida: tranzaksiya ichida o'qilgan qoldiq boshqa tranzaksiya uni o'zgartirmasligi uchun qulflanadi — yoki hisob bitta `UPDATE … WHERE` ichida bo'ladi. Bu bo'lakda bitta satr qatorni qulfsiz o'qiydi. **O'sha satrni bosing.**»
 - Ovoz (`q`): «Buzishni ko'rdingiz, endi o'zingiz toping. To'rtinchi tekshiruv. Besh mijoz oxirgi Planshetni bir vaqtda oldi va besh buyurtma yaratildi. Bu bo'lakda bitta satr qatorni qulfsiz o'qiydi. O'sha satrni bosing.»
 - Fayl: `order.service.ts` (Explorer faol), `place` bo'lagi 29–41 (buzuq nusxa, Prettier 80, M43): 29 `for (const c of cart) {` · **31 `const p = await m.findOneBy(Product, { id: c.product.id });` ← xato satr** · 32 `if (!p) throw …` · 33–35 `if (p.stock < c.qty) { throw … }` · 36 `p.stock = p.stock - c.qty;` · 37 `await m.save(p);` · 38–40 `items.push(…)` · 41 `}` → `target` = 31-satr (bo'lakda 2-satr; 30-satrdagi izoh ekranda ko'rsatilmaydi, raqamlar haqiqiy).
@@ -481,6 +481,11 @@ Loyiha: **OrderBotNest** — lokal `/home/kali/Desktop/order-bot`, teglar `tgpg-
 - Manba: `orderbot-ai/XULOSA.md`, `orderbot-ai/p2/00-ai-javobi.md` (Telegram'ga 1 so'rov, 401), `orderbot-out/10-smoke-tgpg-done.txt` (birinchi yurgizish: `✗ ikki marta bekor — ombor bir marta qaytdi: 2`; `FOR UPDATE` dan keyin 5/5).
 
 ---
+
+## AI-T5 · Tekshiruv 5 — 2-AI migratsiyasi: qaysi satr savatni mijozga bog'lamaydi  ← `LineCheck` (F-1125-01, M56; kod `tgpg/parts/06b-ai.jsx`, saytda 25-ekran; matn kodda — generator bu bo'limni o'qimaydi; MD raqamlari 25–28 saytda 26–29)
+- Kicker (kodda): `Tekshiruv 5` · Eyebrow: `Tekshiruv · 5 / 5 — qaysi satr bog'lanmagan?` · Sarlavha: «2-AI migratsiyasi: qaysi satr savatni mijozga bog'lamaydi?»
+- Kod: `orderbot-ai2/p1/diff.patch` → `src/db/migrations/1762000000000-Init.ts` 25–32 (2-AI Haiku, oddiy topshiriq, aynan). To'g'ri satr — 28 `telegram_id bigint NOT NULL,` (`users` ga bog'lanish yo'q; `orders` da ham, 36-satr — izohda aytiladi). Qoida — darsning o'z yechimi `tgpg-done`: `cart_items.user_id … REFERENCES users ON DELETE CASCADE`. Explorer daraxtisiz (M61-3).
+- Yurgizilgan (PostgreSQL 18.4, vaqtinchalik klaster, 26.11; SQL `orderbot-ai2/p1/07-fk/`): AI sxemasi aynan — mavjud bo'lmagan mijoz 999 ga `INSERT 0 1`, Aziza o'chirilsa savat qatorlari qoladi `(2 rows)` (`07-fk-sinov.txt`); 28-satrga `REFERENCES users(telegram_id) ON DELETE CASCADE` → `ERROR: … violates foreign key constraint "cart_items_telegram_id_fkey"`, o'chirishda savat ham o'chadi `(0 rows)` (`07-fk-tuzatilgan.txt`).
 
 ## 25 · Sinfga tayyorgarlik: m5-04 xaritasi  ← `Lesson`
 - Kicker: `6-bosqich · sinfga tayyorgarlik` · Eyebrow: `m5-04 · «Bot eslab qoladi»` · Sarlavha: **O'quvchi darsi: bitta `users` jadvali, Neon va uch qatorli prompt — siz bilgan yo'lning kichik varianti**

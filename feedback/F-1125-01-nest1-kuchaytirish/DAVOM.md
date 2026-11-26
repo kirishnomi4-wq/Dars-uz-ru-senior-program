@@ -1,8 +1,28 @@
 # F-1125-01 · Mentor Nest-1 darsini kuchaytirish — DAVOM
 
-## ▶▶▶ YANGI SEANS SHU YERDAN (26.11 10:49, `date`; seans yopildi — noutbuk o'chirildi)
+## ▶▶▶ YANGI SEANS SHU YERDAN (26.11 kunduzi — 1-savol A va 2-savol A bajarildi, saytda n0r62ebwh; qaror sahifasi v7 javobi kutilmoqda)
 
-**Holat: tungi ish TUGADI, hammasi saytda (https://coddycamp-mentor-kurs.vercel.app, deploy `klcvo8z50`). Push YO'Q — 14 commit `origin/main` dan oldinda, pushni foydalanuvchi qiladi.**
+**Foydalanuvchi javobi (qaror sahifasi v6):** 1) A — tuzat · 2) A — hozir, izoh «Faqat me'yor» (AskUserQuestion bilan aniqlashtirildi: hayotiy misol yo'q, AI bo'limi Nest-1 dagidek); birinchi dars — Jest-2.
+- **1-savol (M61):** Nest-1 23–25, Nest-2 20, Jest-1 14, Jest-2 2/8, PG-2 18 — 1280×720 UZ/RU, 1600, 1920 → 0 (matn/ovozga tegilmadi; `mk-zich` faqat past ekranda; Jest-1 14 terminali oyna ichida).
+- **2-savol — Jest-2 ✓:** 2-topshiriq Jest tilida (haqiqiy AI ×2, `feedback/F-1029-02-mentor-kurs/manba/jest2v2-ai/p2/`), 20-ekran ikki topshiriq, yangi 22-ekran «Tekshiruv 5» (dars 26 ekran). e2e lokal UZ/RU `passed: true`, `checks: 5`.
+- **Commit** `07f00473` (57 fayl, pathspec; boshqa seansning 41 staged fayli tegilmadi). Push yo'q.
+- **Saytda:** deploy **n0r62ebwh** (13:52, 3060 mp3). Jonli: o'zgargan ekranlar 1280 UZ/RU → 0; e2e Jest-2 UZ `passed: true`, `checks: 5`; yangi mp3 14/14 — 200. Qaror sahifasi **v7** nashr qilindi.
+- **Kutilmoqda:** foydalanuvchi Jest-2 ni ko'radi → qaror sahifasi v7 (https://claude.ai/artifact/8vFUwfw1ZNfqdneYwvU3tX) yangi savol: qolgan 7 dars (TgPg → Jest-1 → CI/CD-1 → CI/CD-2 → WS-1 → WS-2 → Webhook), tavsiya A — darsma-dars. TgPg va Jest-1 da ikki topshiriq bor — faqat «satrni bosing»; qolgan 5 darsga har biriga 2 agent (ruxsat — v7 javobi). Qolip: `jest2v2-ai/p2/` (git tarixsiz `git archive` nusxa, o'sha ikki model; mutatsiya skripti oldidan nusxada commit), kod `jest2/parts/06b-ai.jsx`, MD «## AI-T5».
+- Sahifa generatori: `tungi-qa/sahifa/qur-v7.py <deploy>` → `qaror-v7.html`.
+
+**Yangi seans uchun prompt (26.11 kunduzidan keyin):**
+```
+Mentor kursi F-1125-01 ni davom ettiramiz. Avval o'qi:
+feedback/F-1125-01-nest1-kuchaytirish/DAVOM.md («YANGI SEANS SHU YERDAN» bloki),
+feedback/F-1029-02-mentor-kurs/JURNAL.md oxirgi F-1125-01 yozuvi (26.11 13:23 va keyingi qatorlar),
+MENTOR_DARS_ETALON.md M56 («Eski 8 darsga» bandi) va M61.
+Holat: 1280×720 tuzatildi, Jest-2 AI bo'limi saytda (n0r62ebwh), push yo'q.
+Qilinadigan: qaror sahifasi v7 dagi savolga javobimni kut (https://claude.ai/artifact/8vFUwfw1ZNfqdneYwvU3tX) —
+qolgan 7 dars; javobdan keyin Jest-2 qolipida davom et; agent kerak bo'lsa — avval ruxsat so'ra.
+Commit va deploy ruxsati bor (faqat shu ish fayllari, pathspec bilan); push yo'q. Chatda o'zbekcha gapir.
+```
+
+**Oldingi holat (26.11 10:49) — tungi ish TUGADI, hammasi saytda (https://coddycamp-mentor-kurs.vercel.app, deploy `klcvo8z50`). Push YO'Q — 14 commit `origin/main` dan oldinda, pushni foydalanuvchi qiladi.**
 
 Kechasi bajarildi (26.11 00:23 → 09:27):
 - **3-savol A** (AI tekshiruv savollari AI'ning haqiqiy chiqishiga moslandi): CI/CD-1 20-ekran, WebSocket-2 19-ekran, Jest-1 20-ekran — UZ, RU, ovoz, MD. Qonun **M59**. Commit 7e979174.
@@ -24,7 +44,7 @@ Javob kelguncha kodga tegilmaydi.
 
 Ishga tushirish (kerak bo'lsa): tts :5332 va mentor vite :5333 o'chirilgan. Ovoz keshi doimiy — `feedback/F-1029-02-mentor-kurs/korik/tts-cache` (5021 mp3); deploy tartibi pastdagi «Deploy tartibi» bandida. Scratchpad yo'qolgan bo'lsa ham: `ovoz-matnlar.mjs` → `ovoz-statik.py` keshdan `$S/ovoz-sayt-deploy/tts` ni qayta to'ldiradi.
 
-**Yangi seans uchun prompt (26.11 kechqurun):**
+**Yangi seans uchun prompt (26.11 kechqurun — ESKIRGAN, yuqoridagisini ishlat):**
 ```
 Mentor kursi F-1125-01 ni davom ettiramiz. Avval o'qi:
 feedback/F-1125-01-nest1-kuchaytirish/DAVOM.md («YANGI SEANS SHU YERDAN» 26.11 10:49 bloki),

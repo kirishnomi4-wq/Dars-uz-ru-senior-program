@@ -2076,7 +2076,7 @@ const MDT = {
  "4": {
   "type": "MCRetry",
   "kicker": "Tekshiruv 1",
-  "eyebrow": "Tekshiruv · 1 / 4",
+  "eyebrow": "Tekshiruv · 1 / 5",
   "title": "Katalog kodda yozilgan massiv, ombordagi son ham shu massivda. Restartdan keyin Kolonka qoldig'i nechta bo'ladi?",
   "q": "Xotirani ko'rdingiz, endi tekshirib olaylik. Birinchi tekshiruv. Katalog kodda yozilgan massiv, ombordagi son ham shu massivda turadi. Aziza ikkita Kolonka oldi, qoldiq sakkiz bo'ldi. Server qayta ishga tushsa, Kolonka qoldig'i nechta bo'ladi? Variantni tanlang.",
   "ok": "To'g'ri. Massiv kodda yozilgan, jarayon ishga tushganda u yana koddagi qiymat bilan yaratiladi: o'n. Ya'ni restart buyurtmani o'chirdi va omborni ham o'n ga qaytardi. Ikkalasi bir-biriga mos, faqat noto'g'ri. Demak, xotiradagi ma'lumot har restartda kod yozilgan boshlang'ich qiymatiga qaytadi.",
@@ -2248,7 +2248,7 @@ const MDT = {
  "8": {
   "type": "MCRetry",
   "kicker": "Tekshiruv 2",
-  "eyebrow": "Tekshiruv · 2 / 4",
+  "eyebrow": "Tekshiruv · 2 / 5",
   "title": "Ikki AI'ga bir xil vazifa berildi. Qaysi natijani ko'rib chiqib, commit qilish mumkin?",
   "q": "Prompt qolipini ko'rdingiz, endi tekshirib olaylik. Ikkinchi tekshiruv. Ikki AI'ga bir xil vazifa berildi: katalogni bazaga ko'chirish. Ekranda ikkala prompt, o'zgarish hajmi va AI javobidan parcha. Qaysi natijani ko'rib chiqib, commit qilish mumkin? Variantni tanlang.",
   "ok": "To'g'ri. B faqat katalogni ko'chirdi va boshqa servislarga nega tekkanini o'zi aytdi: async bo'lgani uchun await kerak edi. Bu asosli va tekshirish oson. A ham ishladi, lekin so'ralmagan to'rt bosqichni bir yo'la qildi va buni aytmadi. Demak, commit qilinadigan natija hajmi siz so'ragan bosqichga teng bo'ladi.",
@@ -2531,7 +2531,7 @@ const MDT = {
  "16": {
   "type": "MCRetry",
   "kicker": "Tekshiruv 3",
-  "eyebrow": "Tekshiruv · 3 / 4",
+  "eyebrow": "Tekshiruv · 3 / 5",
   "title": "Admin tekshiruvi xom so'rov natijasi bilan yozilgan: rows[0].telegram_id !== 111. Jasur (id 111) /orders bosdi. Nima bo'ladi?",
   "q": "Big int'ni ko'rdingiz, endi tekshirib olaylik. Uchinchi tekshiruv. Admin tekshiruvi xom so'rov bilan yozilgan: bazadan telegram id olinadi va bir yuz o'n birga teng emasmi deb solishtiriladi. TypeScript xato bermadi. Jasurning id'si haqiqatan bir yuz o'n bir. U orders bosdi. Nima bo'ladi? Variantni tanlang.",
   "ok": "To'g'ri. Bazadan telegram id matn bo'lib keladi, bir yuz o'n bir qo'shtirnoq ichida. Matn bilan son hech qachon teng emas, shuning uchun Jasur admin bo'lmay qoladi. Xato xabari yo'q, bot faqat admin uchun deydi. Demak, big int ustunini solishtirishdan oldin turini bir xil qiling: matn bilan matn yoki son bilan son.",
@@ -2763,7 +2763,7 @@ const MDT = {
  "22": {
   "type": "LineCheck",
   "kicker": "Tekshiruv 4",
-  "eyebrow": "Tekshiruv · 4 / 4 — qaysi satr xato?",
+  "eyebrow": "Tekshiruv · 4 / 5 — qaysi satr xato?",
   "title": "Bitta Planshet besh kishiga sotildi. Xato satrni toping",
   "q": "Buzishni ko'rdingiz, endi o'zingiz toping. To'rtinchi tekshiruv. Besh mijoz oxirgi Planshetni bir vaqtda oldi va besh buyurtma yaratildi. Bu bo'lakda bitta satr qatorni qulfsiz o'qiydi. O'sha satrni bosing.",
   "ok": "To'g'ri. Find one by qatorni qulfsiz o'qiydi, shuning uchun hamma tranzaksiya bir xil qoldiqni ko'radi. Tekshiruv va hisob to'g'ri, lekin ular eski qiymat ustida ishlaydi. Ekranda tuzatilgan kod: lock pessimistic write, race'da bitta sotildi. Demak, ikki mijoz xatosida avval qoldiq qayerda o'qilganini qidiring.",
@@ -3570,6 +3570,48 @@ const P12 = mkPractice(12, [[], [0, 1], [2, 3], []]);
 function ScreenP12(p) { return <Practice p={p} S={P12.S} steps={P12.steps} trouble={P12.trouble} proof={P12.proof} />; }
 
 // ============================================================
+//  25 (saytda) · Tekshiruv 5 — 2-AI (oddiy topshiriq) migratsiyasi: qaysi satr savatni mijozga bog'lamaydi (F-1125-01, M56; MD «## AI-T5»)
+//  Matn shu yerda (generator o'qimaydi), RU — t(). Haqiqiy kod: feedback/F-1029-02-mentor-kurs/manba/orderbot-ai2/p1/diff.patch
+//  (src/db/migrations/1762000000000-Init.ts 25–32, aynan). Yurgizilgan: orderbot-ai2/p1/07-fk-sinov.txt (AI sxemasi) va 07-fk-tuzatilgan.txt
+//  (28-satrga REFERENCES users … ON DELETE CASCADE) — PostgreSQL 18.4, vaqtinchalik klaster, 26.11. Explorer daraxti yo'q — 1280 da satrlar to'liq (M61).
+// ============================================================
+const LC5_LINES = [
+  { n: 25, h: tsLine("    await q.query(`") },
+  { n: 26, h: sqlLine("      CREATE TABLE cart_items (") },
+  { n: 27, h: sqlLine("        id serial PRIMARY KEY,") },
+  { n: 28, h: sqlLine("        telegram_id bigint NOT NULL,") },
+  { n: 29, h: sqlLine("        product_id integer NOT NULL REFERENCES products(id) ON DELETE CASCADE,") },
+  { n: 30, h: sqlLine("        qty integer NOT NULL CHECK (qty > 0),") },
+  { n: 31, h: sqlLine("        CONSTRAINT uq_cart_item UNIQUE (telegram_id, product_id)") },
+  { n: 32, h: tsLine("      )`);") },
+];
+const LC5_FIXED = [
+  ...LC5_LINES.slice(0, 3),
+  { gone: true, n: '', h: LC5_LINES[3].h },
+  { neu: true, n: 28, h: sqlLine("        telegram_id bigint NOT NULL REFERENCES users(telegram_id) ON DELETE CASCADE,") },
+  ...LC5_LINES.slice(4),
+];
+// 07-fk-sinov.txt (oldin) va 07-fk-tuzatilgan.txt (keyin) — bir xil senariy, qisqartirilgan; t() chizish paytida — funksiya
+const LC5_RUN = () => [
+  { n: '', h: '<span class="p">INSERT INTO cart_items … VALUES (999, 1, 1);</span>  <span class="cm">' + t("-- 999 — users da yo'q", '-- 999 — нет в users') + '</span>' },
+  { n: '', h: t('  oldin → INSERT 0 1', '  до → INSERT 0 1') },
+  { n: '', h: t('  keyin → <span class="er">ERROR: … violates foreign key constraint "cart_items_telegram_id_fkey"</span>', '  после → <span class="er">ERROR: … violates foreign key constraint "cart_items_telegram_id_fkey"</span>') },
+  { n: '', h: '<span class="p">DELETE FROM users WHERE telegram_id = 5123456789;</span>  <span class="cm">' + t('-- Aziza, savatida 1 qator', '-- Азиза, в корзине 1 строка') + '</span>' },
+  { n: '', h: t('  savatda qoldi: oldin → (2 rows) · keyin → <span class="ok">(0 rows)</span>', '  осталось в корзине: до → (2 rows) · после → <span class="ok">(0 rows)</span>') },
+];
+function ScreenAI5(p) {
+  return <LineCheck {...p} kicker={t('Tekshiruv 5', 'Проверка 5')} eyebrow={t("Tekshiruv · 5 / 5 — qaysi satr bog'lanmagan?", 'Проверка · 5 / 5 — какая строка не связана?')}
+    title={t("2-AI migratsiyasi: qaysi satr savatni mijozga bog'lamaydi?", 'Миграция 2-го AI: какая строка не связывает корзину с клиентом?')}
+    task={t("Qoida (<code>tgpg-done</code>): savat qatori mijozga bog'langan — mijoz yo'q bo'lsa qator yozilmaydi, mijoz o'chsa savati ham o'chadi. Bu 2-AI ning oddiy topshiriqda yozgan migratsiyasi; build va bot sinovlari (restart, ko'p mijoz) o'tgan. <b>Qaysi satr bu bog'lanishni bermaydi? Bosing.</b>", 'Правило (<code>tgpg-done</code>): строка корзины связана с клиентом — если клиента нет, строка не записывается, если клиента удалили, его корзина тоже удаляется. Это миграция, которую 2-й AI написал по простому заданию; build и проверки бота (рестарт, много клиентов) прошли. <b>Какая строка не даёт этой связи? Нажмите.</b>')}
+    q={t("Beshinchi, oxirgi tekshiruv. Bu ikkinchi AI oddiy topshiriqda yozgan migratsiya: src, db, migrations papkasidagi init faylining savat jadvali. Build va bot sinovlari o'tgan. Darsdagi qoida: savat qatori mijozga bog'langan, mijoz o'chsa savati ham o'chadi. Qaysi satr bu bog'lanishni bermaydi? O'sha satrni bosing.", 'Пятая, последняя проверка. Это миграция, которую второй AI написал по простому заданию: таблица корзины в файле init в папке src, db, migrations. Build и проверки бота прошли. Правило урока: строка корзины связана с клиентом, если клиента удалили, его корзина тоже удаляется. Какая строка не даёт этой связи? Нажмите на неё.')}
+    file={t('src/db/migrations/1762000000000-Init.ts · 2-AI, oddiy topshiriq', 'src/db/migrations/1762000000000-Init.ts · 2-й AI, простое задание')} lines={LC5_LINES} target={3}
+    fixed={LC5_FIXED} fixedExtra={[{ file: t('psql — haqiqiy, bir xil senariy: oldin / keyin', 'psql — настоящий, один сценарий: до / после'), lines: LC5_RUN() }]}
+    ok={t("To'g'ri. Yigirma sakkizinchi satrda telegram id bor, lekin users jadvaliga bog'lanish yo'q. Biz sinadik: yo'q mijozga savat qatori yozildi, mijoz o'chirilganda savati qoldi. Satrga references users va on delete cascade qo'shdik: yo'q mijozga xato chiqdi, o'chirilganda savat ham o'chdi. Demak, AI migratsiyasida har id ustuni qaysi jadvalga bog'langanini backslash d bilan tekshiring.", 'Верно. В двадцать восьмой строке есть telegram id, но нет ссылки на таблицу users. Мы проверили: для несуществующего клиента строка корзины записалась, после удаления клиента его корзина осталась. Добавили в строку references users и on delete cascade: для несуществующего клиента — ошибка, при удалении корзина тоже удалилась. Значит, в миграции от AI проверяйте через backslash d, с какой таблицей связан каждый столбец id.')}
+    okShort={t("28-satr: telegram_id — users ga bog'lanish yo'q (orders da ham, 36-satr). Sinaldi: yo'q mijozga INSERT 0 1, mijoz o'chsa savat qoldi. REFERENCES users(telegram_id) ON DELETE CASCADE → foreign key xatosi, savat ham o'chdi.", 'Строка 28: telegram_id — нет ссылки на users (в orders тоже, строка 36). Проверено: для несуществующего клиента INSERT 0 1, после удаления клиента корзина осталась. REFERENCES users(telegram_id) ON DELETE CASCADE → ошибка foreign key, корзина тоже удалилась.')}
+    hint={t("Bu satr id, mahsulot, son yoki takrorlanmaslik haqida. Mijozni bildiradigan ustunni toping va uning oxirida nima yo'qligiga qarang.", 'Эта строка про id, товар, количество или уникальность. Найдите столбец, который обозначает клиента, и посмотрите, чего не хватает в его конце.')} />;
+}
+
+// ============================================================
 //  13 · BIGINT: Telegram id va matn (orderbot-out/05; tgpg-out/07, 14; orderbot-ai/p2; 12-k5 Mongoose)
 // ============================================================
 const T13A = psql(String.raw`
@@ -4100,7 +4142,7 @@ function Cover({ onStart, resume }) {
     </div></div>
   );
 }
-const SCREENS = [Screen1, Screen2, Screen3, Screen4, ScreenP5, Screen6, Screen7, Screen8, Screen9, Screen10, Screen11, ScreenP12, Screen13, Screen14, Screen15, Screen16, ScreenP17, Screen18, Screen19, Screen20, Screen21, Screen22, ScreenP23, Screen24, Screen25, Screen26, Screen27, Screen28];
+const SCREENS = [Screen1, Screen2, Screen3, Screen4, ScreenP5, Screen6, Screen7, Screen8, Screen9, Screen10, Screen11, ScreenP12, Screen13, Screen14, Screen15, Screen16, ScreenP17, Screen18, Screen19, Screen20, Screen21, Screen22, ScreenP23, Screen24, ScreenAI5, Screen25, Screen26, Screen27, Screen28]; // F-1125-01: ScreenAI5 (Tekshiruv 5) — saytda 25-ekran; MD 25–28 saytda 26–29 (M57)
 const PRACTICE_COUNT = [ScreenP5, ScreenP12, ScreenP17, ScreenP23].filter((S) => SCREENS.includes(S)).length; // 26.11 (F-1125-01): havola bo'yicha — build (minify) funksiya nomini qisqartiradi, nom bo'yicha son 0 chiqib passed doim false edi
 export default function TgPgMentorLesson({ studentName, lang = 'uz', onFinished, startAt }) {
   setLang(lang);
@@ -4202,7 +4244,7 @@ ru(HOMEWORK28, [
 ]);
 RU_S.SPOKEN = [['бэкслеша ', 'backslash '], ['Бэкслеш ', 'Backslash '], ['бэкслеш ', 'backslash ']];  // F-1109-01: ruscha ovoz → «Matn»da `\d products` kabi kod
 RU_S.TITLE = 'Бот заказов: переносим в базу вместе с AI';
-RU_S.COVER = ['Всего около 1 часа 40 минут – 2 часов: озвучка ~27 минут · четыре практики с AI 70–90 минут · 4 проверки · самопроверка 8 вопросов. После экрана 12 можно сделать перерыв', 'Нужно: видеоуроки по Telegraf · PostgreSQL-1 и PostgreSQL-2 · уроки для менторов по NestJS · работающий PostgreSQL · Node.js 20+ · VS Code · AI-помощник (Antigravity, Claude Code, Codex или Copilot) · тестовый бот в BotFather', 'Проект: github.com/Azizbekcrypto/OrderBotNest — начинаете с tgpg-start'];
+RU_S.COVER = ['Всего около 1 часа 40 минут – 2 часов: озвучка ~27 минут · четыре практики с AI 70–90 минут · 5 проверок · самопроверка 8 вопросов. После экрана 12 можно сделать перерыв', 'Нужно: видеоуроки по Telegraf · PostgreSQL-1 и PostgreSQL-2 · уроки для менторов по NestJS · работающий PostgreSQL · Node.js 20+ · VS Code · AI-помощник (Antigravity, Claude Code, Codex или Copilot) · тестовый бот в BotFather', 'Проект: github.com/Azizbekcrypto/OrderBotNest — начинаете с tgpg-start'];
 RU_S.FIN_INTRO = 'Вы всё посмотрели, теперь проверьте себя. Итоговый тест, восемь вопросов: память и перезапуск, этапы, миграция, big int, on conflict, блокировка и транзакция. На каждый вопрос одна попытка, после ответа откроются верный ответ и пояснение. Шесть и больше — урок усвоен. Если меньше, вернитесь к указанным экранам и пройдите тест заново.';
 RU_S.FIN_PASS = 'Урок усвоен. Теперь, когда ученик пишет бота с AI, вы знаете, что проверять.';
 RU_S.NEXT_T = 'Jest: первые тесты для OrderBotNest';
@@ -4322,7 +4364,7 @@ const RU_MDT = {
  },
  "4": {
   "kicker": "Проверка 1",
-  "eyebrow": "Проверка · 1 / 4",
+  "eyebrow": "Проверка · 1 / 5",
   "title": "Каталог — массив в коде, число на складе тоже в этом массиве. Сколько мишек останется после перезапуска?",
   "q": "Вы видели память, теперь проверим. Первая проверка. Каталог — массив, написанный в коде, число на складе тоже в этом массиве. Азиза взяла двух мишек, осталось восемь. Если сервер перезапустится, сколько мишек будет на складе? Выберите вариант.",
   "ok": "Верно. Массив написан в коде, при запуске процесса он снова создаётся со значением из кода: десять. То есть перезапуск стёр заказ и вернул склад к десяти. Оба согласованы между собой, только неверны. Значит, данные в памяти при каждом перезапуске возвращаются к начальному значению из кода.",
@@ -4455,7 +4497,7 @@ const RU_MDT = {
  },
  "8": {
   "kicker": "Проверка 2",
-  "eyebrow": "Проверка · 2 / 4",
+  "eyebrow": "Проверка · 2 / 5",
   "title": "Двум AI дали одинаковую задачу. Какой результат можно просмотреть и сделать commit?",
   "q": "Вы видели шаблон промпта, теперь проверим. Вторая проверка. Двум AI дали одинаковую задачу: перенести каталог в базу. На экране оба промпта, объём изменений и фрагмент ответа AI. Какой результат можно просмотреть и сделать commit? Выберите вариант.",
   "ok": "Верно. B перенёс только каталог и сам сказал, зачем тронул другие сервисы: стало async, понадобился await. Это обосновано и легко проверить. A тоже работал, но сделал разом четыре этапа, о которых не просили, и не сказал об этом. Значит, результат для commit по объёму равен этапу, который вы попросили.",
@@ -4685,7 +4727,7 @@ const RU_MDT = {
  },
  "16": {
   "kicker": "Проверка 3",
-  "eyebrow": "Проверка · 3 / 4",
+  "eyebrow": "Проверка · 3 / 5",
   "title": "Проверка админа написана на результате сырого запроса: rows[0].telegram_id !== 111. Жасур (id 111) нажал /orders. Что будет?",
   "q": "Вы видели big int, теперь проверим. Третья проверка. Проверка админа написана сырым запросом: из базы берётся telegram id и сравнивается, не равен ли он ста одиннадцати. TypeScript ошибку не дал. Id Жасура действительно сто одиннадцать. Он нажал orders. Что будет? Выберите вариант.",
   "ok": "Верно. Telegram id приходит из базы строкой, сто одиннадцать в кавычках. Строка никогда не равна числу, поэтому Жасур перестаёт быть админом. Сообщения об ошибке нет, бот просто говорит «только для админа». Значит, перед сравнением колонки big int приведите обе стороны к одному типу: строку со строкой или число с числом.",
@@ -4871,7 +4913,7 @@ const RU_MDT = {
  },
  "22": {
   "kicker": "Проверка 4",
-  "eyebrow": "Проверка · 4 / 4 — какая строка с ошибкой?",
+  "eyebrow": "Проверка · 4 / 5 — какая строка с ошибкой?",
   "title": "Один планшет продали пятерым. Найдите строку с ошибкой",
   "q": "Вы видели поломку, теперь найдите сами. Четвёртая проверка. Пять клиентов одновременно взяли последний планшет, и создалось пять заказов. В этом фрагменте одна строка читает строку без блокировки. Нажмите на эту строку.",
   "ok": "Верно. Find one by читает строку без блокировки, поэтому все транзакции видят один и тот же остаток. Проверка и счёт верные, но работают над старым значением. На экране исправленный код: lock pessimistic write, в race продан один. Значит, при ошибке двух клиентов сначала ищите, где прочитан остаток.",

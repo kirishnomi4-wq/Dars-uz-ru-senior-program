@@ -5537,7 +5537,8 @@ const AI2_P1_PROBEL = [
   { n: 61, h: tsLine("  ])('rad etiladi: %j (%s)', async (phone) => {") },
 ];
 // Natija 2 × 2 — jest2v2-ai/XULOSA.md (p1) va p2/XULOSA.md (p2): test soni (eski 10 bilan), qo'shilgan qator (diff-stat), telefon qoidasi
-const RES20 = [
+// t() chizish paytida (modul yuklanganda til hali o'rnatilmagan) — shuning uchun funksiya
+const RES20 = () => [
   [t('1-AI (kuchli model)', '1-й AI (сильная модель)'), t('50 test · 352 qator', '50 тестов · 352 строки'), false, t('23 test · 114 qator', '23 теста · 114 строк'), true],
   [t('2-AI (kuchsizroq model)', '2-й AI (модель слабее)'), t('42 test · 224 qator', '42 теста · 224 строки'), false, t('23 test · 90 qator', '23 теста · 90 строк'), true],
 ];
@@ -5554,7 +5555,7 @@ function Screen20(p) {
     </div>}
     {seg.v === 'two' && <div className="mk-light" style={{ padding: 12 }}><table className="j2-res"><thead><tr><th />
       <th>{t("1-topshiriq · oddiy so'zlar bilan", "1-е задание · простыми словами")}</th><th>{t("2-topshiriq · Jest tilida", "2-е задание · на языке Jest")}</th></tr></thead>
-      <tbody>{RES20.map(([who, a, aOk, b, bOk]) => <tr key={who}><td>{who}</td>
+      <tbody>{RES20().map(([who, a, aOk, b, bOk]) => <tr key={who}><td>{who}</td>
         <td>{a}<br /><b className={aOk ? 'ok' : 'no'}>{t("qoida ajratilmadi — handler orqali", "правило не выделено — через handler")}</b></td>
         <td>{b}<br /><b className={bOk ? 'ok' : 'no'}><code>isPhone</code>{t(" ajratildi", " выделен")}</b></td></tr>)}
         <tr><td>{t("To'rttalasida", "У всех четырёх")}</td><td colSpan={2}><code>await … rejects.toThrow</code> · <code>not.toHaveBeenCalled</code>{t(" — to'g'ri; so'ralmagan kodga tegmadi", " — верно; код, о котором не просили, не тронут")}</td></tr>

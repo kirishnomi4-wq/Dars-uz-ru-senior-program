@@ -260,7 +260,7 @@ function Cover({ onStart, resume }) {
     </div></div>
   );
 }
-const SCREENS = [Screen1, Screen2, Screen3, Screen4, ScreenP5, Screen6, Screen7, Screen8, Screen9, Screen10, Screen11, ScreenP12, Screen13, Screen14, Screen15, Screen16, ScreenP17, Screen18, Screen19, Screen20, Screen21, Screen22, ScreenP23, Screen24, Screen25, Screen26, Screen27, Screen28];
+const SCREENS = [Screen1, Screen2, Screen3, Screen4, ScreenP5, Screen6, Screen7, Screen8, Screen9, Screen10, Screen11, ScreenP12, Screen13, Screen14, Screen15, Screen16, ScreenP17, Screen18, Screen19, Screen20, Screen21, Screen22, ScreenP23, Screen24, ScreenAI5, Screen25, Screen26, Screen27, Screen28]; // F-1125-01: ScreenAI5 (Tekshiruv 5) — saytda 25-ekran; MD 25–28 saytda 26–29 (M57)
 const PRACTICE_COUNT = [ScreenP5, ScreenP12, ScreenP17, ScreenP23].filter((S) => SCREENS.includes(S)).length; // 26.11 (F-1125-01): havola bo'yicha — build (minify) funksiya nomini qisqartiradi, nom bo'yicha son 0 chiqib passed doim false edi
 export default function TgPgMentorLesson({ studentName, lang = 'uz', onFinished, startAt }) {
   setLang(lang);

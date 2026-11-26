@@ -48,7 +48,7 @@ ru(HOMEWORK28, [
 ]);
 RU_S.SPOKEN = [['бэкслеша ', 'backslash '], ['Бэкслеш ', 'Backslash '], ['бэкслеш ', 'backslash ']];  // F-1109-01: ruscha ovoz → «Matn»da `\d products` kabi kod
 RU_S.TITLE = 'Бот заказов: переносим в базу вместе с AI';
-RU_S.COVER = ['Всего около 1 часа 40 минут – 2 часов: озвучка ~27 минут · четыре практики с AI 70–90 минут · 4 проверки · самопроверка 8 вопросов. После экрана 12 можно сделать перерыв', 'Нужно: видеоуроки по Telegraf · PostgreSQL-1 и PostgreSQL-2 · уроки для менторов по NestJS · работающий PostgreSQL · Node.js 20+ · VS Code · AI-помощник (Antigravity, Claude Code, Codex или Copilot) · тестовый бот в BotFather', 'Проект: github.com/Azizbekcrypto/OrderBotNest — начинаете с tgpg-start'];
+RU_S.COVER = ['Всего около 1 часа 40 минут – 2 часов: озвучка ~27 минут · четыре практики с AI 70–90 минут · 5 проверок · самопроверка 8 вопросов. После экрана 12 можно сделать перерыв', 'Нужно: видеоуроки по Telegraf · PostgreSQL-1 и PostgreSQL-2 · уроки для менторов по NestJS · работающий PostgreSQL · Node.js 20+ · VS Code · AI-помощник (Antigravity, Claude Code, Codex или Copilot) · тестовый бот в BotFather', 'Проект: github.com/Azizbekcrypto/OrderBotNest — начинаете с tgpg-start'];
 RU_S.FIN_INTRO = 'Вы всё посмотрели, теперь проверьте себя. Итоговый тест, восемь вопросов: память и перезапуск, этапы, миграция, big int, on conflict, блокировка и транзакция. На каждый вопрос одна попытка, после ответа откроются верный ответ и пояснение. Шесть и больше — урок усвоен. Если меньше, вернитесь к указанным экранам и пройдите тест заново.';
 RU_S.FIN_PASS = 'Урок усвоен. Теперь, когда ученик пишет бота с AI, вы знаете, что проверять.';
 RU_S.NEXT_T = 'Jest: первые тесты для OrderBotNest';

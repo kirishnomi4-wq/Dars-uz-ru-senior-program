@@ -1,0 +1,24 @@
+# 2-AI (Haiku) migratsiyasi aynan: cart_items.telegram_id users ga bog'lanmagan (1762000000000-Init.ts 28-satr)
+# PostgreSQL 18.4, vaqtinchalik klaster (scratchpad, 26.11); sxema — haiku-schema.sql
+INSERT INTO users (telegram_id, name) VALUES (5123456789, 'Aziza');
+INSERT 0 1
+INSERT INTO products (name, price, stock) VALUES ('Kolonka', 50000, 5);
+INSERT 0 1
+INSERT INTO cart_items (telegram_id, product_id, qty) VALUES (5123456789, 1, 1);
+INSERT 0 1
+INSERT INTO cart_items (telegram_id, product_id, qty) VALUES (999, 1, 1);
+INSERT 0 1
+DELETE FROM users WHERE telegram_id = 5123456789;
+DELETE 1
+SELECT telegram_id, product_id, qty FROM cart_items;
+ telegram_id | product_id | qty 
+-------------+------------+-----
+  5123456789 |          1 |   1
+         999 |          1 |   1
+(2 rows)
+
+
+$ \d cart_items (faqat Foreign-key qismi)
+Foreign-key constraints:
+    "cart_items_product_id_fkey" FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+
