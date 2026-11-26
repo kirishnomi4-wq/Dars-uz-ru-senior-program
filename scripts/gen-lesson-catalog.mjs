@@ -3,13 +3,15 @@
 // Natija: server/data/lesson-catalog.json  → serverda `npm run seed:catalog` (lesson_catalog jadvali).
 // Nega: backend brauzerdan kelgan lesson_id ga ishonmaydi (LMS §6) — faqat katalogdagi dars ochiladi.
 // Qo'lda yozilmaydi — manba darsning o'zi.
-import { readFileSync, writeFileSync, readdirSync, statSync, mkdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, readdirSync, statSync, mkdirSync, existsSync } from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
 
 const ROOT = process.cwd();
 const SRC = path.join(ROOT, 'src');
 const OUT = path.join(ROOT, 'server', 'data', 'lesson-catalog.json');
+// 26.11: Junior kursi — LMS yig'malari (LESSON_META va ACHIEVEMENTS ni new-junior/lms/yig.mjs yozadi; manba — darsning e'loni va manbasi)
+const JUNIOR = path.join(ROOT, 'new-junior', 'lms', 'chiqish');
 
 // `src/live/` — modul, dars emas; `src/eski/` va `src/2-moodull eski/` — App.jsx'ga ULANMAGAN o'lik nusxalar
 // (til-lint/jsx-lint bilan bir xil SKIP_DIRS). Ular katalogga kirsa lesson_id takrorlanadi (2026-09-08: 6 takror).
@@ -66,7 +68,7 @@ function extractAchievements(text, rel, warnings) {
 const rows = [];
 const dupes = new Map();
 const warnings = [];
-for (const file of walk(SRC)) {
+for (const file of [...walk(SRC), ...(existsSync(JUNIOR) ? walk(JUNIOR) : [])]) {
   const text = readFileSync(file, 'utf8');
   const m = META_RE.exec(text);
   if (!m) continue;

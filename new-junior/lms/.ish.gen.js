@@ -4543,6 +4543,8 @@ function juftQabul(x) {
   const yangi = JSON.stringify(x.xq) !== JSON.stringify(qXq); qXq = x.xq; qXk = x.xk || qXk; saqla(K + 'xq', JSON.stringify(qXq)); saqla(K + 'xkU', JSON.stringify(qXk))
   if (juftRol() === 'oyin' && qXk && qXk[qahKalit()]) { try { const s = JSON.parse(localStorage.getItem(K + 'xk') || '{}') || {}; if (s.juft !== qXk[qahKalit()].n) { s.juft = qXk[qahKalit()].n; localStorage.setItem(K + 'xk', JSON.stringify(s)) } } catch (e) {} }
   const ek = document.querySelector('#bol .ekran'); if (yangi && ek && TOP(ek.dataset.id).ish === 'juftQah' && typeof juftQahTayyorla === 'function') juftQahTayyorla(ek)
+  // ikkinchi noutbuk: juftlik xulosasi ustozdan keldi — yutuqlar unga ham (LMS aloqasida AL.yutuq; demoda yo'q). F-1126-01
+  if (juftRol() === 'ikki' && AL && AL.yutuq) { const j = juftXulosa(); if (j) AL.yutuq({ t: 'xk', x: j }) }
 }
 function ishlov(x) {
   if (ROL === 'ustoz' || ROL === 'yonma') {

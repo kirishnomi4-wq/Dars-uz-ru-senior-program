@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-12T09:57:57.447Z",
-  "count": 183,
+  "generated_at": "2026-11-26T10:49:06.455Z",
+  "count": 206,
   "lessons": [
     {
       "lesson_id": "agent-arch-06-04-v18",
@@ -1559,6 +1559,489 @@
           "name": "Level Up!",
           "title_uz": "Birinchi JavaScript darsini to'liq yakunladingiz",
           "title_ru": "Вы полностью прошли первый урок JavaScript"
+        }
+      ]
+    },
+    {
+      "lesson_id": "junior-001-tanishuv-v1",
+      "title_uz": "Tanishuv",
+      "title_ru": null,
+      "version": "v1",
+      "source": "new-junior/lms/chiqish/junior-001-tanishuv.jsx",
+      "achievements": [
+        {
+          "id": "yulduz",
+          "name": "Birinchi dastur",
+          "title_uz": "Birinchi dastur",
+          "title_ru": null
+        },
+        {
+          "id": "sahna",
+          "name": "O‘z sahnam",
+          "title_uz": "O‘z sahnam",
+          "title_ru": null
+        }
+      ]
+    },
+    {
+      "lesson_id": "junior-002-ketma-ketlik-v1",
+      "title_uz": "Labirint",
+      "title_ru": null,
+      "version": "v1",
+      "source": "new-junior/lms/chiqish/junior-002-ketma-ketlik.jsx",
+      "achievements": [
+        {
+          "id": "tuzatuvchi",
+          "name": "Xato tuzatuvchi",
+          "title_uz": "Xato tuzatuvchi",
+          "title_ru": null
+        },
+        {
+          "id": "labirint",
+          "name": "Labirint",
+          "title_uz": "Labirint",
+          "title_ru": null
+        }
+      ]
+    },
+    {
+      "lesson_id": "junior-003-koordinata-v1",
+      "title_uz": "X va Y",
+      "title_ru": null,
+      "version": "v1",
+      "source": "new-junior/lms/chiqish/junior-003-koordinata.jsx",
+      "achievements": [
+        {
+          "id": "manzil",
+          "name": "Manzil",
+          "title_uz": "Manzil",
+          "title_ru": null
+        },
+        {
+          "id": "oldindan",
+          "name": "Oldindan aytdi",
+          "title_uz": "Oldindan aytdi",
+          "title_ru": null
+        }
+      ]
+    },
+    {
+      "lesson_id": "junior-004-hodisalar-v1",
+      "title_uz": "Hodisalar",
+      "title_ru": null,
+      "version": "v1",
+      "source": "new-junior/lms/chiqish/junior-004-hodisalar.jsx",
+      "achievements": [
+        {
+          "id": "boshqaruv",
+          "name": "Boshqaruvchi",
+          "title_uz": "Boshqaruvchi",
+          "title_ru": null
+        },
+        {
+          "id": "oyinchi",
+          "name": "O‘yinchi",
+          "title_uz": "O‘yinchi",
+          "title_ru": null
+        }
+      ]
+    },
+    {
+      "lesson_id": "junior-005-takrorlash-v1",
+      "title_uz": "Takrorlash",
+      "title_ru": null,
+      "version": "v1",
+      "source": "new-junior/lms/chiqish/junior-005-takrorlash.jsx",
+      "achievements": [
+        {
+          "id": "rassom",
+          "name": "Rassom",
+          "title_uz": "Rassom",
+          "title_ru": null
+        },
+        {
+          "id": "tejamkor",
+          "name": "Tejamkor",
+          "title_uz": "Tejamkor",
+          "title_ru": null
+        }
+      ]
+    },
+    {
+      "lesson_id": "junior-006-amaliyot-v1",
+      "title_uz": "Amaliyot",
+      "title_ru": null,
+      "version": "v1",
+      "source": "new-junior/lms/chiqish/junior-006-amaliyot.jsx",
+      "achievements": [
+        {
+          "id": "yolchi",
+          "name": "Yo‘lchi",
+          "title_uz": "Yo‘lchi",
+          "title_ru": null
+        },
+        {
+          "id": "usta",
+          "name": "Usta",
+          "title_uz": "Usta",
+          "title_ru": null
+        }
+      ]
+    },
+    {
+      "lesson_id": "junior-007-kostyum-tovush-v1",
+      "title_uz": "Kostyum va tovush",
+      "title_ru": null,
+      "version": "v1",
+      "source": "new-junior/lms/chiqish/junior-007-kostyum-tovush.jsx",
+      "achievements": [
+        {
+          "id": "animator",
+          "name": "Animator",
+          "title_uz": "Animator",
+          "title_ru": null
+        },
+        {
+          "id": "ovozli",
+          "name": "Ovozli qahramon",
+          "title_uz": "Ovozli qahramon",
+          "title_ru": null
+        }
+      ]
+    },
+    {
+      "lesson_id": "junior-008-shart-v1",
+      "title_uz": "Shart",
+      "title_ru": null,
+      "version": "v1",
+      "source": "new-junior/lms/chiqish/junior-008-shart.jsx",
+      "achievements": [
+        {
+          "id": "tekshiruvchi",
+          "name": "Tekshiruvchi",
+          "title_uz": "Tekshiruvchi",
+          "title_ru": null
+        },
+        {
+          "id": "izquvar",
+          "name": "Izquvar",
+          "title_uz": "Izquvar",
+          "title_ru": null
+        }
+      ]
+    },
+    {
+      "lesson_id": "junior-009-labirint-oyini-1-v1",
+      "title_uz": "Labirint o‘yini",
+      "title_ru": null,
+      "version": "v1",
+      "source": "new-junior/lms/chiqish/junior-009-labirint-oyini-1.jsx",
+      "achievements": [
+        {
+          "id": "qoida",
+          "name": "Qoida",
+          "title_uz": "Qoida",
+          "title_ru": null
+        },
+        {
+          "id": "labirint_oyini",
+          "name": "Labirint o‘yini",
+          "title_uz": "Labirint o‘yini",
+          "title_ru": null
+        }
+      ]
+    },
+    {
+      "lesson_id": "junior-010-labirint-oyini-2-v1",
+      "title_uz": "Labirint o‘yini 2",
+      "title_ru": null,
+      "version": "v1",
+      "source": "new-junior/lms/chiqish/junior-010-labirint-oyini-2.jsx",
+      "achievements": [
+        {
+          "id": "yasovchi",
+          "name": "Labirint yasovchi",
+          "title_uz": "Labirint yasovchi",
+          "title_ru": null
+        },
+        {
+          "id": "ikki_daraja",
+          "name": "Ikki daraja",
+          "title_uz": "Ikki daraja",
+          "title_ru": null
+        }
+      ]
+    },
+    {
+      "lesson_id": "junior-011-ozgaruvchi-ball-v1",
+      "title_uz": "O‘zgaruvchi: ball",
+      "title_ru": null,
+      "version": "v1",
+      "source": "new-junior/lms/chiqish/junior-011-ozgaruvchi-ball.jsx",
+      "achievements": [
+        {
+          "id": "hisobchi",
+          "name": "Hisobchi",
+          "title_uz": "Hisobchi",
+          "title_ru": null
+        },
+        {
+          "id": "bildi",
+          "name": "Oldindan bildi",
+          "title_uz": "Oldindan bildi",
+          "title_ru": null
+        }
+      ]
+    },
+    {
+      "lesson_id": "junior-012-ozgaruvchi-jon-vaqt-v1",
+      "title_uz": "Jon va qadam",
+      "title_ru": null,
+      "version": "v1",
+      "source": "new-junior/lms/chiqish/junior-012-ozgaruvchi-jon-vaqt.jsx",
+      "achievements": [
+        {
+          "id": "qoriqchi",
+          "name": "Jon qo‘riqchisi",
+          "title_uz": "Jon qo‘riqchisi",
+          "title_ru": null
+        },
+        {
+          "id": "uchala",
+          "name": "Uch o‘zgaruvchi",
+          "title_uz": "Uch o‘zgaruvchi",
+          "title_ru": null
+        }
+      ]
+    },
+    {
+      "lesson_id": "junior-013-tasodifiy-son-v1",
+      "title_uz": "Tasodifiy son",
+      "title_ru": null,
+      "version": "v1",
+      "source": "new-junior/lms/chiqish/junior-013-tasodifiy-son.jsx",
+      "achievements": [
+        {
+          "id": "zar",
+          "name": "Zar",
+          "title_uz": "Zar",
+          "title_ru": null
+        },
+        {
+          "id": "bogbon",
+          "name": "Bog‘bon",
+          "title_uz": "Bog‘bon",
+          "title_ru": null
+        }
+      ]
+    },
+    {
+      "lesson_id": "junior-014-xatoni-topish-v1",
+      "title_uz": "Xatoni topish",
+      "title_ru": null,
+      "version": "v1",
+      "source": "new-junior/lms/chiqish/junior-014-xatoni-topish.jsx",
+      "achievements": [
+        {
+          "id": "tuzatuvchi",
+          "name": "Tuzatuvchi",
+          "title_uz": "Tuzatuvchi",
+          "title_ru": null
+        },
+        {
+          "id": "topishmoqchi",
+          "name": "Topishmoqchi",
+          "title_uz": "Topishmoqchi",
+          "title_ru": null
+        }
+      ]
+    },
+    {
+      "lesson_id": "junior-015-xakaton-1-v1",
+      "title_uz": "Xakaton №1",
+      "title_ru": null,
+      "version": "v1",
+      "source": "new-junior/lms/chiqish/junior-015-xakaton-1.jsx",
+      "achievements": [
+        {
+          "id": "xakatonchi",
+          "name": "Xakatonchi",
+          "title_uz": "Xakatonchi",
+          "title_ru": null
+        },
+        {
+          "id": "ikki_haydovchi",
+          "name": "Ikki haydovchi",
+          "title_uz": "Ikki haydovchi",
+          "title_ru": null
+        }
+      ]
+    },
+    {
+      "lesson_id": "junior-016-klonlar-v1",
+      "title_uz": "Klonlar",
+      "title_ru": null,
+      "version": "v1",
+      "source": "new-junior/lms/chiqish/junior-016-klonlar.jsx",
+      "achievements": [
+        {
+          "id": "nusxachi",
+          "name": "Nusxachi",
+          "title_uz": "Nusxachi",
+          "title_ru": null
+        },
+        {
+          "id": "yomgir",
+          "name": "Dushman yomg‘iri",
+          "title_uz": "Dushman yomg‘iri",
+          "title_ru": null
+        }
+      ]
+    },
+    {
+      "lesson_id": "junior-017-kosmik-oyin-1-v1",
+      "title_uz": "Kosmik o‘yin 1",
+      "title_ru": null,
+      "version": "v1",
+      "source": "new-junior/lms/chiqish/junior-017-kosmik-oyin-1.jsx",
+      "achievements": [
+        {
+          "id": "uchuvchi",
+          "name": "Uchuvchi",
+          "title_uz": "Uchuvchi",
+          "title_ru": null
+        },
+        {
+          "id": "mergan",
+          "name": "Mergan",
+          "title_uz": "Mergan",
+          "title_ru": null
+        }
+      ]
+    },
+    {
+      "lesson_id": "junior-018-kosmik-oyin-2-v1",
+      "title_uz": "Kosmik o‘yin 2",
+      "title_ru": null,
+      "version": "v1",
+      "source": "new-junior/lms/chiqish/junior-018-kosmik-oyin-2.jsx",
+      "achievements": [
+        {
+          "id": "himoyachi",
+          "name": "Himoyachi",
+          "title_uz": "Himoyachi",
+          "title_ru": null
+        },
+        {
+          "id": "kosmik",
+          "name": "Kosmik o‘yinchi",
+          "title_uz": "Kosmik o‘yinchi",
+          "title_ru": null
+        }
+      ]
+    },
+    {
+      "lesson_id": "junior-019-bloklar-ortidagi-kod-v1",
+      "title_uz": "Bloklar ortidagi kod",
+      "title_ru": null,
+      "version": "v1",
+      "source": "new-junior/lms/chiqish/junior-019-bloklar-ortidagi-kod.jsx",
+      "achievements": [
+        {
+          "id": "kodchi",
+          "name": "Kod o‘quvchi",
+          "title_uz": "Kod o‘quvchi",
+          "title_ru": null
+        },
+        {
+          "id": "kodusta",
+          "name": "Kod ustasi",
+          "title_uz": "Kod ustasi",
+          "title_ru": null
+        }
+      ]
+    },
+    {
+      "lesson_id": "junior-020-takrorlash-va-test-v1",
+      "title_uz": "Takrorlash va test",
+      "title_ru": null,
+      "version": "v1",
+      "source": "new-junior/lms/chiqish/junior-020-takrorlash-va-test.jsx",
+      "achievements": [
+        {
+          "id": "takrorchi",
+          "name": "Takrorlovchi",
+          "title_uz": "Takrorlovchi",
+          "title_ru": null
+        },
+        {
+          "id": "testusta",
+          "name": "Test ustasi",
+          "title_uz": "Test ustasi",
+          "title_ru": null
+        }
+      ]
+    },
+    {
+      "lesson_id": "junior-021-shaxsiy-oyin-1-v1",
+      "title_uz": "Shaxsiy o‘yin 1",
+      "title_ru": null,
+      "version": "v1",
+      "source": "new-junior/lms/chiqish/junior-021-shaxsiy-oyin-1.jsx",
+      "achievements": [
+        {
+          "id": "rejachi",
+          "name": "Rejachi",
+          "title_uz": "Rejachi",
+          "title_ru": null
+        },
+        {
+          "id": "oyinboshi",
+          "name": "O‘yin boshi",
+          "title_uz": "O‘yin boshi",
+          "title_ru": null
+        }
+      ]
+    },
+    {
+      "lesson_id": "junior-022-shaxsiy-oyin-2-v1",
+      "title_uz": "Shaxsiy o‘yin 2",
+      "title_ru": null,
+      "version": "v1",
+      "source": "new-junior/lms/chiqish/junior-022-shaxsiy-oyin-2.jsx",
+      "achievements": [
+        {
+          "id": "oyinusta",
+          "name": "O‘yin ustasi",
+          "title_uz": "O‘yin ustasi",
+          "title_ru": null
+        },
+        {
+          "id": "taqdimotchi",
+          "name": "Taqdimotchi",
+          "title_uz": "Taqdimotchi",
+          "title_ru": null
+        }
+      ]
+    },
+    {
+      "lesson_id": "junior-023-demo-day-1-v1",
+      "title_uz": "Demo Day №1",
+      "title_ru": null,
+      "version": "v1",
+      "source": "new-junior/lms/chiqish/junior-023-demo-day-1.jsx",
+      "achievements": [
+        {
+          "id": "namoyishchi",
+          "name": "Namoyishchi",
+          "title_uz": "Namoyishchi",
+          "title_ru": null
+        },
+        {
+          "id": "bitiruvchi",
+          "name": "Modul bitiruvchisi",
+          "title_uz": "Modul bitiruvchisi",
+          "title_ru": null
         }
       ]
     },

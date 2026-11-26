@@ -54,7 +54,8 @@ export function sinfAloqa(k) {
 
   // --- o'quvchi: progress (qadam + yutuqlar), 1,2 s ichida bir marta
   const yutuq = new Set()
-  const yutuqTek = (x) => { for (const y of k.yutuqlar || []) if (x.t === y.t && (y.n == null || x.n >= y.n) && !yutuq.has(y.nom)) { yutuq.add(y.nom); progress() } }
+  // shart (26.11, 15-dars): xabar xulosasidagi (x.x) shu maydonlarning hammasi rost bo'lsa (F-1126-01: avval xk xabari kelishi bilan ikkala yutuq berilardi)
+  const yutuqTek = (x) => { for (const y of k.yutuqlar || []) if (x.t === y.t && (y.n == null || x.n >= y.n) && (y.shart == null || (x.x && y.shart.every((f) => x.x[f]))) && !yutuq.has(y.nom)) { yutuq.add(y.nom); progress() } }
   let qadam = 0, pT = null, boshT = Date.now()
   const progress = () => {
     if (k.rol !== 'bola' || !k.attemptId || !k.liveToken) return
@@ -101,6 +102,8 @@ export function sinfAloqa(k) {
 
   return {
     yubor,
+    // yutuq — xabar yubormasdan, faqat yutuqni tekshirish (15-dars: ikkinchi noutbuk juftlik xulosasini ustozdan oladi — F-1126-01)
+    yutuq(x) { if (k.rol === 'bola') yutuqTek(x) },
     // solo (18.11): bola qadamni o'zi boshqaradi — oxirgi ekranda (B5) qadam = jami-1 → server urinishni «tugatildi» deb yozadi
     soloQadam(i, oxiri) { if (k.rol !== 'bola') return; const q = oxiri ? k.jami - 1 : i; if (q !== qadam) { qadam = q; progress() } },
     boshla(h) { qabul = h.qabul; ulandi = h.ulandi; holat = h.holat || holat; if (k.rol === 'bola') progress(); if (!k.solo) aylan(); else holat(true) },

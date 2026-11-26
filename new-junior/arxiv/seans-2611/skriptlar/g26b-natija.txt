@@ -1,0 +1,41 @@
+== 001 OLTIN YOLG'IZ 18:14
+BIR XIL: 264 / 264
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+== SERVER SINOVLARI 18:20
+-- unit
+ℹ tests 90
+ℹ pass 90
+ℹ fail 0
+-- integratsion
+✖ 0012: jadvallar va ustunlar bor; result_events noyoblik v1/v2 ajratilgan (263.721446ms)
+ℹ tests 137
+ℹ pass 136
+ℹ fail 1
+✖ failing tests:
+✖ 0012: jadvallar va ustunlar bor; result_events noyoblik v1/v2 ajratilgan (263.721446ms)
+== LMS HAR DARS 1–23 18:20
+✓ 001-tanishuv — 17 / 17 (25 qadam)
+✓ 002-ketma-ketlik — 17 / 17 (18 qadam)
+✓ 003-koordinata — 17 / 17 (18 qadam)
+✓ 004-hodisalar — 17 / 17 (18 qadam)
+✓ 005-takrorlash — 17 / 17 (18 qadam)
+✓ 006-amaliyot — 17 / 17 (18 qadam)
+✓ 007-kostyum-tovush — 17 / 17 (18 qadam)
+✓ 008-shart — 17 / 17 (18 qadam)
+✓ 009-labirint-oyini-1 — 17 / 17 (18 qadam)
+✓ 010-labirint-oyini-2 — 17 / 17 (18 qadam)
+✓ 011-ozgaruvchi-ball — 17 / 17 (18 qadam)
+✓ 012-ozgaruvchi-jon-vaqt — 17 / 17 (18 qadam)
+✓ 013-tasodifiy-son — 17 / 17 (18 qadam)
+✓ 014-xatoni-topish — 17 / 17 (18 qadam)
+✓ 015-xakaton-1 — 17 / 17 (18 qadam)
+✓ 016-klonlar — 17 / 17 (18 qadam)
+✓ 017-kosmik-oyin-1 — 17 / 17 (18 qadam)
+✓ 018-kosmik-oyin-2 — 17 / 17 (18 qadam)
+✓ 019-bloklar-ortidagi-kod — 17 / 17 (18 qadam)
+✓ 020-takrorlash-va-test — 17 / 17 (15 qadam)
+✓ 021-shaxsiy-oyin-1 — 17 / 17 (15 qadam)
+✓ 022-shaxsiy-oyin-2 — 17 / 17 (13 qadam)
+✓ 023-demo-day-1 — 17 / 17 (12 qadam)
+NATIJA: 391 / 391 · 23 dars toza
+TAMOM 18:33

@@ -126,8 +126,10 @@ const DARS = {
 
   lms: {
     id: 'junior-015-xakaton-1-v1', versiya: 'v1', kalit: 'jr015',
-    // «Xakatonchi» — o'yin ishlaydi (1-qism tayyor) va do'stlar o'ynadi; «Ikki haydovchi» — ikkalasi ham kamida bitta qism yasadi (manba «Savollar» 16)
-    yutuqlar: [{ t: 'xk', k: 'xakatonchi', nom: 'xakatonchi' }, { t: 'xk', k: 'ikki', nom: 'ikki_haydovchi' }],
+    // «Xakatonchi» — o'yin ishlaydi (1-qism tayyor) va do'stlar o'ynadi; «Ikki haydovchi» — ikkalasi ham kamida bitta qism yasadi (manba «Savollar» 16).
+    // shart — o'yin noutbuki xulosasining (xakaton.js xkXulosa: w — 1-qism tayyor, d — do'stlar o'ynagani, ikki — ikkalasi haydadi) hammasi rost bo'lishi;
+    // ikkinchi noutbuk o'sha xulosani ustoz orqali oladi (qobiq.js juftQabul) — yutuq juftlikdagi har bolaga (26.11, F-1126-01)
+    yutuqlar: [{ t: 'xk', shart: ['w', 'd'], nom: 'xakatonchi' }, { t: 'xk', shart: ['ikki'], nom: 'ikki_haydovchi' }],
   },
 
   varaq: [

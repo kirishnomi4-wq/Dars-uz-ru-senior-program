@@ -9,6 +9,7 @@ import { healthRoutes } from './modules/health/routes.js';
 import { liveRoutes } from './modules/live/routes.js';
 import { lmsRoutes } from './modules/lms/routes.js';
 import { adminRoutes } from './modules/admin/routes.js';
+import { juniorRoutes } from './modules/junior/routes.js';
 import { createSchoolApi } from './modules/lms/school-api.js';
 import { createNotifier } from './lib/notify.js';
 import { createResultWorker } from './modules/results/result-worker.js';
@@ -108,6 +109,7 @@ export async function buildApp({ config, pool, logger, version, fetchImpl }) {
   await app.register(healthRoutes, { prefix: '/api/v1' });
   await app.register(liveRoutes, { prefix: '/api/v1' });
   await app.register(lmsRoutes, { prefix: '/api/v1', fetchImpl, schoolApi });
+  await app.register(juniorRoutes, { prefix: '/api/v1' });   // Junior kursi sinf aloqasi (0019)
   await app.register(adminRoutes, { prefix: '/admin' });
 
   return app;

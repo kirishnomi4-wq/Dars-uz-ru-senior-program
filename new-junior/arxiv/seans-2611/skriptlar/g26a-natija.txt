@@ -1,0 +1,192 @@
+== BOSHLANDI 16:28 — 23 demo yig'ish
+demo ok demo.html 4231KB 42 ekran, 25 qadam
+demo ok demo-002.html 3086KB 34 ekran, 18 qadam
+demo ok demo-003.html 3194KB 35 ekran, 18 qadam
+demo ok demo-004.html 3089KB 34 ekran, 18 qadam
+demo ok demo-005.html 3227KB 35 ekran, 18 qadam
+demo ok demo-006.html 3313KB 35 ekran, 18 qadam
+demo ok demo-007.html 5238KB 34 ekran, 18 qadam
+demo ok demo-008.html 4993KB 35 ekran, 18 qadam
+demo ok demo-009.html 3891KB 34 ekran, 18 qadam
+demo ok demo-010.html 3672KB 33 ekran, 18 qadam
+demo ok demo-011.html 3488KB 35 ekran, 18 qadam
+demo ok demo-012.html 4055KB 35 ekran, 18 qadam
+demo ok demo-013.html 3189KB 35 ekran, 18 qadam
+demo ok demo-014.html 3702KB 35 ekran, 18 qadam
+demo ok demo-015.html 3266KB 33 ekran, 18 qadam
+demo ok demo-016.html 3145KB 35 ekran, 18 qadam
+demo ok demo-017.html 3285KB 35 ekran, 18 qadam
+demo ok demo-018.html 3537KB 35 ekran, 18 qadam
+demo ok demo-019.html 3478KB 35 ekran, 18 qadam
+demo ok demo-020.html 3141KB 30 ekran, 15 qadam
+demo ok demo-021.html 2342KB 25 ekran, 15 qadam
+demo ok demo-022.html 2217KB 22 ekran, 13 qadam
+demo ok demo-023.html 2006KB 20 ekran, 12 qadam
+== OLTIN SOL 1–23 16:28
+-- oltin sol 001-tanishuv 16:28
+BIR XIL: 263 / 264
+✗ bx-B2P-yetdi — ekran B2P → B2Q; matn; bloklar ['l:move\xa0leftmove\xa0left', 'l:move\xa0left'] → []; html (23023 → 22833 belgi)
+-- oltin sol 002-ketma-ketlik 16:34
+BIR XIL: 143 / 143
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 003-koordinata 16:39
+BIR XIL: 131 / 131
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 004-hodisalar 16:42
+BIR XIL: 122 / 122
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 005-takrorlash 16:45
+BIR XIL: 128 / 128
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 006-amaliyot 16:48
+BIR XIL: 132 / 132
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 007-kostyum-tovush 16:51
+BIR XIL: 124 / 124
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 008-shart 16:55
+BIR XIL: 125 / 125
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 009-labirint-oyini-1 16:59
+BIR XIL: 133 / 133
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 010-labirint-oyini-2 17:04
+BIR XIL: 123 / 123
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 011-ozgaruvchi-ball 17:08
+BIR XIL: 134 / 134
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 012-ozgaruvchi-jon-vaqt 17:12
+BIR XIL: 126 / 126
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 013-tasodifiy-son 17:15
+BIR XIL: 128 / 128
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 014-xatoni-topish 17:18
+BIR XIL: 138 / 138
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 015-xakaton-1 17:23
+BIR XIL: 116 / 116
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 016-klonlar 17:27
+BIR XIL: 126 / 126
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 017-kosmik-oyin-1 17:30
+BIR XIL: 126 / 126
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 018-kosmik-oyin-2 17:34
+BIR XIL: 118 / 118
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 019-bloklar-ortidagi-kod 17:36
+BIR XIL: 113 / 113
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 020-takrorlash-va-test 17:38
+BIR XIL: 89 / 89
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 021-shaxsiy-oyin-1 17:40
+BIR XIL: 84 / 84
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 022-shaxsiy-oyin-2 17:41
+BIR XIL: 95 / 95
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 023-demo-day-1 17:43
+BIR XIL: 89 / 89
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+== 015 DEMO SINOVLARI 17:44
+-- 015 toliq-dars
+NATIJA: 62 / 62
+-- 015 solo
+NATIJA: 35 / 35
+-- 015 tovush
+NATIJA: 5 / 5
+-- sim xakaton
+NATIJA: 20 / 20
+-- qa25
+NATIJA: 13 / 13
+== LMS YIG'MA (lokal server) 17:51
+junior-001-tanishuv.jsx — 1538 KB, react importi: 1, server: http://127.0.0.1:3101
+junior-002-ketma-ketlik.jsx — 1522 KB, react importi: 1, server: http://127.0.0.1:3101
+junior-003-koordinata.jsx — 1533 KB, react importi: 1, server: http://127.0.0.1:3101
+junior-004-hodisalar.jsx — 1529 KB, react importi: 1, server: http://127.0.0.1:3101
+junior-005-takrorlash.jsx — 1532 KB, react importi: 1, server: http://127.0.0.1:3101
+junior-006-amaliyot.jsx — 1530 KB, react importi: 1, server: http://127.0.0.1:3101
+junior-007-kostyum-tovush.jsx — 1530 KB, react importi: 1, server: http://127.0.0.1:3101
+junior-008-shart.jsx — 1521 KB, react importi: 1, server: http://127.0.0.1:3101
+junior-009-labirint-oyini-1.jsx — 1533 KB, react importi: 1, server: http://127.0.0.1:3101
+junior-010-labirint-oyini-2.jsx — 1540 KB, react importi: 1, server: http://127.0.0.1:3101
+junior-011-ozgaruvchi-ball.jsx — 1538 KB, react importi: 1, server: http://127.0.0.1:3101
+junior-012-ozgaruvchi-jon-vaqt.jsx — 1540 KB, react importi: 1, server: http://127.0.0.1:3101
+junior-013-tasodifiy-son.jsx — 1538 KB, react importi: 1, server: http://127.0.0.1:3101
+junior-014-xatoni-topish.jsx — 1544 KB, react importi: 1, server: http://127.0.0.1:3101
+junior-015-xakaton-1.jsx — 1564 KB, react importi: 1, server: http://127.0.0.1:3101
+junior-016-klonlar.jsx — 1543 KB, react importi: 1, server: http://127.0.0.1:3101
+junior-017-kosmik-oyin-1.jsx — 1546 KB, react importi: 1, server: http://127.0.0.1:3101
+junior-018-kosmik-oyin-2.jsx — 1549 KB, react importi: 1, server: http://127.0.0.1:3101
+junior-019-bloklar-ortidagi-kod.jsx — 1551 KB, react importi: 1, server: http://127.0.0.1:3101
+junior-020-takrorlash-va-test.jsx — 1547 KB, react importi: 1, server: http://127.0.0.1:3101
+junior-021-shaxsiy-oyin-1.jsx — 1550 KB, react importi: 1, server: http://127.0.0.1:3101
+junior-022-shaxsiy-oyin-2.jsx — 1544 KB, react importi: 1, server: http://127.0.0.1:3101
+junior-023-demo-day-1.jsx — 1545 KB, react importi: 1, server: http://127.0.0.1:3101
+== LMS SINOVLARI 17:51
+-- yutuq-shart
+NATIJA: 11 / 11
+-- lms-har-dars 1–23
+✗ 001-tanishuv · X · sahifa va konsol xatosi yo‘q  — korik konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | solo konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | bola konsol: Fai
+✗ 001-tanishuv — 16 / 17 (25 qadam)
+✗ 002-ketma-ketlik · X · sahifa va konsol xatosi yo‘q  — korik konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | solo konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | bola konsol:
+✗ 002-ketma-ketlik — 16 / 17 (18 qadam)
+✗ 003-koordinata · X · sahifa va konsol xatosi yo‘q  — korik konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | solo konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | bola konsol: F
+✗ 003-koordinata — 16 / 17 (18 qadam)
+✗ 004-hodisalar · X · sahifa va konsol xatosi yo‘q  — korik konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | solo konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | bola konsol: Fa
+✗ 004-hodisalar — 16 / 17 (18 qadam)
+✗ 005-takrorlash · X · sahifa va konsol xatosi yo‘q  — korik konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | solo konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | bola konsol: F
+✗ 005-takrorlash — 16 / 17 (18 qadam)
+✗ 006-amaliyot · X · sahifa va konsol xatosi yo‘q  — korik konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | solo konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | bola konsol: Fai
+✗ 006-amaliyot — 16 / 17 (18 qadam)
+✗ 007-kostyum-tovush · X · sahifa va konsol xatosi yo‘q  — korik konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | solo konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | bola konso
+✗ 007-kostyum-tovush — 16 / 17 (18 qadam)
+✗ 008-shart · X · sahifa va konsol xatosi yo‘q  — korik konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | solo konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | bola konsol: Failed
+✗ 008-shart — 16 / 17 (18 qadam)
+✗ 009-labirint-oyini-1 · X · sahifa va konsol xatosi yo‘q  — korik konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | solo konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | bola kon
+✗ 009-labirint-oyini-1 — 16 / 17 (18 qadam)
+✗ 010-labirint-oyini-2 · X · sahifa va konsol xatosi yo‘q  — korik konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | solo konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | bola kon
+✗ 010-labirint-oyini-2 — 16 / 17 (18 qadam)
+✗ 011-ozgaruvchi-ball · X · sahifa va konsol xatosi yo‘q  — korik konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | solo konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | bola kons
+✗ 011-ozgaruvchi-ball — 16 / 17 (18 qadam)
+✗ 012-ozgaruvchi-jon-vaqt · X · sahifa va konsol xatosi yo‘q  — korik konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | solo konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | bola 
+✗ 012-ozgaruvchi-jon-vaqt — 16 / 17 (18 qadam)
+✗ 013-tasodifiy-son · X · sahifa va konsol xatosi yo‘q  — korik konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | solo konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | bola konsol
+✗ 013-tasodifiy-son — 16 / 17 (18 qadam)
+✗ 014-xatoni-topish · X · sahifa va konsol xatosi yo‘q  — korik konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | solo konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | bola konsol
+✗ 014-xatoni-topish — 16 / 17 (18 qadam)
+✗ 015-xakaton-1 · X · sahifa va konsol xatosi yo‘q  — korik konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | solo konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | bola konsol: Fa
+✗ 015-xakaton-1 — 16 / 17 (18 qadam)
+✗ 016-klonlar · X · sahifa va konsol xatosi yo‘q  — korik konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | solo konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | bola konsol: Fail
+✗ 016-klonlar — 16 / 17 (18 qadam)
+✗ 017-kosmik-oyin-1 · X · sahifa va konsol xatosi yo‘q  — korik konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | solo konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | bola konsol
+✗ 017-kosmik-oyin-1 — 16 / 17 (18 qadam)
+✗ 018-kosmik-oyin-2 · X · sahifa va konsol xatosi yo‘q  — korik konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | solo konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | bola konsol
+✗ 018-kosmik-oyin-2 — 16 / 17 (18 qadam)
+✗ 019-bloklar-ortidagi-kod · X · sahifa va konsol xatosi yo‘q  — korik konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | solo konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | bola
+✗ 019-bloklar-ortidagi-kod — 16 / 17 (18 qadam)
+✗ 020-takrorlash-va-test · X · sahifa va konsol xatosi yo‘q  — korik konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | solo konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | bola k
+✗ 020-takrorlash-va-test — 16 / 17 (15 qadam)
+✗ 021-shaxsiy-oyin-1 · X · sahifa va konsol xatosi yo‘q  — korik konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | solo konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | bola konso
+✗ 021-shaxsiy-oyin-1 — 16 / 17 (15 qadam)
+✗ 022-shaxsiy-oyin-2 · X · sahifa va konsol xatosi yo‘q  — korik konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | solo konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | bola konso
+✗ 022-shaxsiy-oyin-2 — 16 / 17 (13 qadam)
+✗ 023-demo-day-1 · X · sahifa va konsol xatosi yo‘q  — korik konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | solo konsol: Failed to load resource: net::ERR_INTERNET_DISCONNECTED | bola konsol: F
+✗ 023-demo-day-1 — 16 / 17 (12 qadam)
+NATIJA: 368 / 391 · yiqildi: 001-tanishuv, 002-ketma-ketlik, 003-koordinata, 004-hodisalar, 005-takrorlash, 006-amaliyot, 007-kostyum-tovush, 008-shart, 009-labirint-oyini-1, 010-labirint-oyini-2, 011-ozgaruvchi-ball, 0
+-- lms-toliq
+NATIJA: 43 / 43
+XATO: yo‘q
+-- lms-solo
+NATIJA: 19 / 19
+XATO: yo‘q
+-- lms-sinf
+NATIJA: 10 / 10
+XATO: [
+  'korik konsol: Failed to load resource: the server responded with a status of 404 (Not Found)',
+== SERVER SINOVLARI 18:09
+TAMOM 18:10

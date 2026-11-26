@@ -4,6 +4,58 @@ Har yozuv: sana-vaqt · nima qilindi · qaror. Eng yangisi tepada.
 
 ## Yangi seans shu yerdan boshlaydi (yangilandi 2026-11-20 ertalab)
 
+## ▶▶▶ 26.11 18:40 (`date`) — 1-MODUL YOPILDI (bizning qism): sinovlar yashil · LMS prod yig'ma 23 · QA sayti · commit · push
+
+**Keyingi seans shu yerdan.** Bizdan qolgan ish yo'q; qolgani foydalanuvchida (pastda «Sizda»).
+- **g26a** (16:28–18:10, `arxiv/seans-2611/skriptlar/g26a-natija.txt`): 23 demo yig'ildi · oltin sol 2–23 — farq 0 · 015 toliq-dars **62/62**, solo **35/35**, tovush **5/5**, sim xakaton **20/20**, qa25 **13/13** ·
+  yutuq-shart **11/11** · lms-toliq **43/43**, lms-solo **19/19**, lms-sinf **10/10** (404 — sinov sahifasining favicon.ico).
+  Ikki narsa qayta yurgizildi (**g26b**, 18:14–18:33, `g26b-natija.txt`):
+  - oltin 001 navbatda 263/264 (`bx-B2P-yetdi` — surat yulduzga yetgach ekran o'zi B2Q ga o'tgandan keyin olingan) → yolg'iz **264/264, farq 0** — mashina yuklamasidagi vaqt poygasi, dars xatosi emas;
+  - lms-har-dars navbatda 368/391 — 23 ta ✗ ning hammasi «X · konsol xatosi yo'q» bandi, sababi `ERR_INTERNET_DISCONNECTED` (sinov payti telefon interneti uzilgan) → qayta **391/391, 23 dars toza**;
+  - server sinovlari g26a da yozilmay qolgan (skriptda `cd server` dan keyin nisbiy yo'l) → unit **90/90**; integratsion 136/137 — `v2_schema.test.js` «0012: jadvallar va ustunlar bor» ustunlarni bo'limsiz sanaydi, `dars_test` dagi `junior_sinov` bo'limi bilan 16 ta chiqadi.
+    Stek to'xtatildi, `drop schema junior_sinov cascade` → **137/137** (junior_sinf.test.js ham). `lms/OQI.md` ga izoh yozildi. Lokal stek kerak bo'lsa — OQI.md tartibi bilan qayta yaratiladi.
+- **LMS prod yig'ma:** `node new-junior/lms/yig.mjs <dars>` (JR_API siz) × 23 → `lms/chiqish/junior-0NN-*.jsx` (1,52–1,56 MB), 23 tasida `dars-api.coddycamp.uz`, `127.0.0.1` — 0.
+- **QA sayti** (demolar F-1126-01 bilan +235 bayt): vite build → `vercel deploy --prod` (coddycamp-junior-dars1-hizzsouev) → `bayt-solish.sh` **BAYT-BAYT 24/24** (18:39).
+- **Commit** (shu yozuv bilan): `new-junior/` (dvigatel, 015, LMS 23 yig'ma, sinovlar, hujjatlar, arxiv/seans-2611) + server Junior qismi (`migrations/0019_junior_sinf.sql`, `src/modules/junior/`, `test/integration/junior_sinf.test.js`, `app.js`/`index.js` 2+2 qator) + `scripts/gen-lesson-catalog.mjs` +
+  `server/data/lesson-catalog.json` = HEAD (183) + 23 Junior = 206 (vaqtinchalik indeks bilan — boshqa seansning commitsiz 10 bridge darsi va staged 41 fayli kirmagan; ishchi nusxada bridge qatorlari joyida).
+- **Push** `origin main` — foydalanuvchi qarori «Hammasini push qil»: Junior commitlari + boshqa seansning mentor-kurs commitlari (ruxsatdan keyin qo'shilgan 6 tasi ham — 07f00473 … 1f304a04).
+
+**Sizda (tartib bilan):**
+1. Server prod deploy (GitLab sinxron — o'zingiz). Keyin men FAQAT O'QIB (GET) tekshiraman: health'da migratsiyalar +1 (0019_junior_sinf), katalog 183 → 206 (23 Junior, `junior-0NN-…-v1`).
+2. CRM'ga 23 dars yuklash (`new-junior/lms/chiqish/junior-0NN-*.jsx`) — buyrug'ingiz bilan; keyin haqiqiy sinfda sinov (pilot).
+3. QA guruhiga «sayt yangilandi» xabari · Telegram bot tokeni chatda ochilgan — @BotFather `/revoke` tavsiya etiladi.
+
+## ▶▶ 26.11 16:29 (`date`) — 1-MODULNI YOPISH: foydalanuvchi «ha, 1–3 ni qil; LMS'ga keyin yuklaymiz — tayyor qilib yop», «15-dars — to'liq tuzat», «push — hammasi»
+
+**Agar noutbuk o'chsa — shu yerdan:** stek (scratchpad `stek/yoq.sh` + vite kuzatuvsiz — `lms/OQI.md` «Lokal sinov») → `bash new-junior/arxiv/seans-2611/skriptlar/g26a.sh` natijasi
+(`g26a-natija.txt`) qayerda to'xtaganini ko'r, qolganini yurgiz → keyin: LMS prod yig'ma 23 → QA deploy + bayt-solish → commit (temp index: katalogda faqat Junior) → push.
+- **LMS yig'ma 23 dars:** `lms/yig.mjs` endi `.jsx` ga server ro'yxati uchun `LESSON_META` + `ACHIEVEMENTS` yozadi (yutuq nomi — manba «Yutuqlar:» qatoridan, topilmasa to'xtaydi).
+  `scripts/gen-lesson-catalog.mjs` (ildiz, ruxsat bilan) `new-junior/lms/chiqish/` ni ham o'qiydi → katalog 193 → 216 (+23 Junior, har birida 2 yutuq; title_uz = nom). Ishchi nusxa = oldingi (boshqa seansning 10 bridge darsi bilan) + 23; commit uchun = HEAD + 23 (scratchpad `katalog-commit.json`).
+- **Lokal stek:** junior_sinov — 0020 migratsiya + katalog 216 (seed). Vite ENOSPC (butun repo kuzatiladi) → kuzatuvsiz sozlama. `lms/sinov/main.jsx` — `&d=<dars>`.
+- **LMS sinovlari (F-1126-01 dan oldin):** 1-dars lms-toliq **43/43**, lms-solo **19/19**, lms-sinf **10/10** (konsoldagi 404 — sinov sahifasining favicon.ico, dars emas); yangi `lms/sinov/lms-har-dars.mjs` — **391/391, 23 dars toza**.
+- **F-1126-01 (o'zimiz topdik, LMS yutuqlari, 15-dars):** `aloqa.js yutuqTek` e'londagi `k` maydonini o'qimasdi → o'yin noutbukidan BIRINCHI `xk` xabari kelishi bilan «Xakatonchi» va «Ikki haydovchi» ikkalasi shartsiz berilardi;
+  ikkinchi noutbuk bola umuman yutuq olmasdi (manba 015 «Savollar» 6, 16 — A: shart + «juftlikdagi har bolaga», KOD 2). Foydalanuvchi: «To'liq tuzat».
+  Tuzatish: `015/dars.mjs` yutuqlar `shart: ['w','d']` / `['ikki']` (xkXulosa maydonlari) · `aloqa.js` — `shart` tekshiruvi + `yutuq(x)` (xabar yubormasdan) · `qobiq.js juftQabul` — ikkinchi noutbuk xulosani olganda `AL.yutuq`.
+  Yangi `lms/sinov/yutuq-shart.mjs` **11/11**; eski `aloqa.js` bilan 1–3 yiqiladi (sinov xatoni ushlaydi). Supurish: 23 darsning `lms.yutuqlar` — boshqa darsda `t/n/nom` dan boshqa maydon yo'q, yuboriladigan tur (`pog`, `tayyor`, `bildi`, `tuzatdi`, `xk`) hammasi qobiq/studiyada bor → 0.
+- `lms/OQI.md` yangilandi (23 dars, katalog, `&d=`, yangi sinovlar, `shart`). Zaxira: `arxiv/zaxira-2026-11-26-yopish-1628.tar.gz`.
+- **16:3x foydalanuvchi:** «barcha tayyor bo'lsa so'nggi versiyasini saqla, seansni yopamiz» → hali tayyor emas edi → tanlov: **«Noutbuk yoqiq qolsin»** — men o'zim tugataman (sinovlar → 001 farqi → LMS prod → QA deploy → commit → push), natija shu yerga.
+- g26a oltin 001: **263/264** — `bx-B2P-yetdi` ekran B2P → B2Q (yulduzga yetgach keyingi ekranga erta o'tgan; qobiq o'zgarishi bu yo'lga tegmaydi) → navbatdan keyin yolg'iz qayta `sol` (yuklama poygasi gumoni).
+- **16:29 g26a** (fonda, bittadan): 23 demo yig' → oltin sol 1–23 → 015 toliq/solo/tovush + sim xakaton + qa25 → LMS yig'ma (lokal) → yutuq-shart → lms-har-dars 23 → lms-toliq/solo/sinf → server unit + integratsion.
+
+## 26.11 15:19 (`date`) — «1-modul tayyormi, yopamiz» → TEKSHIRUV: kontent tayyor, LMS'ga chiqish TAYYOR EMAS (reja foydalanuvchida)
+
+- Kontent: 23/23 dars qurilgan va tasdiqlangan, sinovlar yashil, oltin 23/23, QA sayti toza (yuqorida).
+- **LMS yig'ma faqat 1-dars:** `lms/chiqish/junior-001-tanishuv.jsx` (26.11 05:24). 2–23 uchun `lms/yig.mjs <dars>` hech yurgizilmagan (hammasining `dars.mjs` da `lms` e'loni bor). LMS sinovlari (lms-toliq 43/43, lms-solo 19/19, lms-sinf 8/8) — 18.11, faqat 1-dars, dvigatel o'zgarishlaridan oldin.
+- **Server Junior qismi prod'da YO'Q:** `server/migrations/0019_junior_sinf.sql`, `server/src/modules/junior/`, `test/integration/junior_sinf.test.js` — git'da untracked; `app.js`/`index.js` 2+2 qator commitsiz. Prod health (GET, 26.11 10:18Z): migrations 19 (lokal 20 — 0020 bor, 0019 yo'q), catalog 183 (Junior darslari katalogda yo'q). Ya'ni LMS'dagi Junior darsida ustoz↔bola aloqasi (`/api/v1/junior/yubor|oqi`) hozir prod'da ishlamaydi.
+  Migratsiya ishga tushiruvchi id to'plami bo'yicha ishlaydi (`migrate.js`) — 0019 ning 0020 dan keyin qo'llanishi muammo emas.
+- `server/data/lesson-catalog.json` da boshqa seansning commitsiz 10 bridge darsi bor — umumiy fayl, ehtiyot.
+- 12:0x dagi «LMS'da Redis kerak emas» — to'g'ri, lekin LMS aloqasining o'zi (bizning server Junior qismi) hali prod'da emas — foydalanuvchiga ochiq aytildi.
+
+## 26.11 12:0x — Upstash KERAK EMAS (foydalanuvchi qarori)
+
+- Foydalanuvchi: «LMS'ga qo'yamiz, ushanda bo'ladi — Redis kerak bo'lmasa muammosiz». Darslar LMS'da `lms/aloqa.js` (LMS o'z aloqasi) bilan ishlaydi; Upstash faqat QA saytida ikki xil kompyuterdan ustoz+bola sinovi uchun edi → kutilayotganlar ro'yxatidan olindi. QA sayti `/api/sinf` 503 qoladi (bitta brauzer + solo ishlaydi).
+- Jonli QA sayti tekshiruvi (vercel.app'ning o'zida, bittadan, nice+taskset): qa25 **13/13** · smoke qa.html ✓ + 23 dars × ustoz/varaq 46/46 + bola/solo 46/46 (ism oldindan qo'yilgan; 1-yurishda bola/solo «Darsga kirish» eshigida qolgan — sinov xatosi, sayt emas) — JS xatosi 0. **Sayt toza.** Push — foydalanuvchi javobi kutilmoqda («hammasi» — 15 mentor commiti ham ketadi / «faqat Junior»).
+
 ## 26.11 11:38 (`date`) — 12-VERSIYA JAVOBI: T1 A, T2 A, T3 A, C1 A
 
 - Tungi 3 tuzatish (T1 varaq, T2 019 P3, T3 if C-blok) — o'z holicha qoladi, qaytariladigan narsa yo'q → demo/oltin/setka qayta yurgizish shart emas (06:48 dan beri saytga chiqadigan fayl o'zgarmagan).

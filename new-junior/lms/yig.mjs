@@ -35,6 +35,14 @@ if (uidlar(Object.values(D.EKRANLAR).join('')).size !== jamiUid) toxta('ekranlar
 const L_DARS = D.DARS && D.DARS.lms
 if (!L_DARS || !L_DARS.id || !L_DARS.versiya || !L_DARS.kalit) toxta('dars e\'lonida lms { id, versiya, kalit } yo\'q')
 const LESSON_ID = L_DARS.id, LESSON_VERSION = L_DARS.versiya
+// 26.11: server dars ro'yxati (scripts/gen-lesson-catalog.mjs) uchun — dars nomi va yutuqlar nomi. Yutuq nomi manbaning
+// «Yutuqlar: «Nom» (`id`) …» qatoridan (manba — bola ko'radigan har so'zning manbasi); e'londagi har yutuqning nomi bo'lishi shart.
+const MANBA_M = readFileSync(new URL('../manba/' + DARS_P + '.md', import.meta.url), 'utf8')
+const YQ = (MANBA_M.split('\n').find((s) => /Yutuqlar.*«[^»]+»\s*\(`[a-z0-9_]+`\)/.test(s)) || '')
+const YNOM = Object.fromEntries([...YQ.matchAll(/«([^»]+)»\s*\(`([a-z0-9_]+)`\)/g)].map((m) => [m[2], m[1]]))
+for (const y of L_DARS.yutuqlar || []) if (!YNOM[y.nom]) toxta('manba ' + DARS_P + '.md «Yutuqlar:» qatorida `' + y.nom + '` nomi yo\'q')
+const KATALOG = `const LESSON_META = { lessonId: '${LESSON_ID}', lessonTitle: { uz: ${J(D.DARS.nom)} } }\n` +
+  'const ACHIEVEMENTS = { ' + (L_DARS.yutuqlar || []).map((y) => y.nom + ': { name: ' + J(YNOM[y.nom]) + ' }').join(', ') + ' }\n'
 console.log('✔ chizuvchi: ' + Object.keys(D.EKRANLAR).length + ' ekran, ' + D.QADAM.length + ' qadam, ' + jamiUid + ' SVG ichki nomi takrorsiz')
 
 // ---------- 2) dars mantig'i: studiya + qobiq; kirish va aloqa — LMS'dan
@@ -85,6 +93,9 @@ const reactImport = chiq.match(/^import[^\n]*from "react";$/gm) || []
 if (/^import(?![^\n]*from "react";)/m.test(chiq)) toxta('react dan boshqa import qoldi')
 if (/react-dom/.test(chiq)) toxta('react-dom importi (CRM K03 rad etadi)')
 if (/import\.meta|node:fs/.test(chiq)) toxta('yig\'mada import.meta yoki node:fs qoldi')
+// server ro'yxati uchun nom va yutuqlar — react importlaridan keyin (CRM: tepada faqat react importi)
+const iOxir = reactImport.length ? chiq.indexOf(reactImport[reactImport.length - 1]) + reactImport[reactImport.length - 1].length + 1 : 0
+chiq = chiq.slice(0, iOxir) + '// server dars ro\'yxati (scripts/gen-lesson-catalog.mjs o\'qiydi) — dars ichida ishlatilmaydi\n' + KATALOG + chiq.slice(iOxir)
 const sha = createHash('sha1').update(chiq).digest('hex').slice(0, 8)
 chiq = `// ============================================================
 //  AVTO-YIG'ILGAN FAYL — QO'LDA TAHRIRLAMANG. Junior · ${D.DARS.raqam}-dars «${D.DARS.nom}» (${LESSON_ID}, ${LESSON_VERSION})

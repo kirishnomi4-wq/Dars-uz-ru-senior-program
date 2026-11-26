@@ -9,6 +9,7 @@ import { buildApp } from './app.js';
 import { syncAppConfig } from './modules/live/app-config.js';
 import { startMaintenance, closeStaleSessionsJob, closeOrphanLmsSessionsJob } from './modules/live/maintenance.js';
 import { runLmsMaintenance } from './modules/lms/maintenance.js';
+import { juniorTozalashJob } from './modules/junior/routes.js';
 
 let config;
 try {
@@ -45,6 +46,7 @@ const maintenance = startMaintenance({
   log: logger,
   jobs: [
     { name: 'close_stale_sessions', run: (p, l) => closeStaleSessionsJob(p, l, config.staleSessionMinutes) },
+    { name: 'junior_tozalash', run: juniorTozalashJob },   // Junior xabarlari 1 kundan keyin (0019)
     ...(config.lmsBridgeEnabled ? [
       { name: 'close_orphan_lms_sessions', run: closeOrphanLmsSessionsJob },   // F-0911-01
       { name: 'lms_attempts', run: runLmsMaintenance },

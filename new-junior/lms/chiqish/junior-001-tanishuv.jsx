@@ -1,11 +1,14 @@
 // ============================================================
 //  AVTO-YIG'ILGAN FAYL — QO'LDA TAHRIRLAMANG. Junior · 1-dars «Tanishuv» (junior-001-tanishuv-v1, v1)
 //  Manba: new-junior/dvigatel (yigish.mjs — demo bilan bir xil) + new-junior/lms/{Dars.jsx, aloqa.js}. Qayta yig'ish: node new-junior/lms/yig.mjs
-//  Server: https://dars-api.coddycamp.uz · yig'ma 82b9456a
+//  Server: https://dars-api.coddycamp.uz · yig'ma 1ae8cfe0
 //  Ichida: Blockly 13.4.0 — Copyright Google LLC, Apache License 2.0 (https://www.apache.org/licenses/LICENSE-2.0)
 // ============================================================
 // new-junior/lms/Dars.jsx
 import React, { useEffect, useRef, useState } from "react";
+// server dars ro'yxati (scripts/gen-lesson-catalog.mjs o'qiydi) — dars ichida ishlatilmaydi
+const LESSON_META = { lessonId: 'junior-001-tanishuv-v1', lessonTitle: { uz: "Tanishuv" } }
+const ACHIEVEMENTS = { yulduz: { name: "Birinchi dastur" }, sahna: { name: "O‘z sahnam" } }
 
 // new-junior/src/chizma/dvigatel.js
 var UID = 0;
@@ -9647,6 +9650,10 @@ function ishga(D2, A, OPT) {
     }
     const ek = document.querySelector("#bol .ekran");
     if (yangi && ek && TOP(ek.dataset.id).ish === "juftQah" && typeof juftQahTayyorla === "function") juftQahTayyorla(ek);
+    if (juftRol() === "ikki" && AL && AL.yutuq) {
+      const j = juftXulosa();
+      if (j) AL.yutuq({ t: "xk", x: j });
+    }
   }
   function ishlov(x) {
     if (ROL === "ustoz" || ROL === "yonma") {
@@ -11593,7 +11600,7 @@ function sinfAloqa(k) {
   const rpc = (fn, body) => sorov("POST", "/live/rpc/" + fn, body).catch(() => null);
   const yutuq = /* @__PURE__ */ new Set();
   const yutuqTek = (x) => {
-    for (const y of k.yutuqlar || []) if (x.t === y.t && (y.n == null || x.n >= y.n) && !yutuq.has(y.nom)) {
+    for (const y of k.yutuqlar || []) if (x.t === y.t && (y.n == null || x.n >= y.n) && (y.shart == null || x.x && y.shart.every((f) => x.x[f])) && !yutuq.has(y.nom)) {
       yutuq.add(y.nom);
       progress();
     }
@@ -11661,6 +11668,10 @@ function sinfAloqa(k) {
   }
   return {
     yubor,
+    // yutuq — xabar yubormasdan, faqat yutuqni tekshirish (15-dars: ikkinchi noutbuk juftlik xulosasini ustozdan oladi — F-1126-01)
+    yutuq(x) {
+      if (k.rol === "bola") yutuqTek(x);
+    },
     // solo (18.11): bola qadamni o'zi boshqaradi — oxirgi ekranda (B5) qadam = jami-1 → server urinishni «tugatildi» deb yozadi
     soloQadam(i, oxiri) {
       if (k.rol !== "bola") return;
