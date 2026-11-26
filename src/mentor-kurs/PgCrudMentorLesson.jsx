@@ -4257,7 +4257,7 @@ function Cover({ onStart, resume }) {
   );
 }
 const SCREENS = [Screen1, Screen2, Screen3, Screen4, Screen5, Screen6, Screen7, ScreenP8, Screen9, Screen10, Screen11, Screen12, ScreenP13, Screen14, Screen15, Screen16, Screen17, Screen18, Screen19, Screen20, ScreenP21, Screen22, Screen23, Screen24, Screen25, Screen26, ScreenP27, ScreenAI, ScreenLCAI, Screen28, Screen29, Screen30, Screen31];
-const PRACTICE_COUNT = SCREENS.filter((S) => /^ScreenP\d/.test(S.name)).length;
+const PRACTICE_COUNT = [ScreenP8, ScreenP13, ScreenP21, ScreenP27].filter((S) => SCREENS.includes(S)).length; // 26.11 (F-1125-01): havola bo'yicha — build (minify) funksiya nomini qisqartiradi, nom bo'yicha son 0 chiqib passed doim false edi
 export default function PgCrudMentorLesson({ studentName, lang = 'uz', onFinished, startAt }) {
   setLang(lang);
   useCss();

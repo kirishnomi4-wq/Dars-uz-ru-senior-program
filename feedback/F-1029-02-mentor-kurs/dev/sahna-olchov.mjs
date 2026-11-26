@@ -1,4 +1,5 @@
 // Sahna toshib ketishini o'lchash (F-1103-04, 03.11): har ekranning OXIRGI holatida (segmentlar ovozsiz o'tkaziladi)
+// 26.11 (F-1125-01): hamma .click() — timeout + .catch (qayta chizilgan element yiqitmasin; ekran-sweep va ovoz-matnlar tungi QA da yiqilgan)
 // aylanuvchi konteynerlar (overflow auto/scroll) ichida scrollHeight > clientHeight bo'lsa — toshgan; .mk-stage ham tekshiriladi.
 // ISHLATISH (dev :5333 yoniq): DARS=pg-02 node dev/sahna-olchov.mjs 1920x1080 [0,1,2,…]   → stdout TSV: dars · ekran · toshgan(px) · qayer · segment-soni
 import { chromium } from '/home/kali/Desktop/internetLesson/node_modules/playwright-core/index.mjs';
@@ -16,18 +17,18 @@ for (const i of idxs) {
   await page.goto(`${process.env.BASE || "http://localhost:5333"}/mentor-kurs.html?dars=${DARS}&s=${i}${process.env.TIL === "ru" ? "&lang=ru" : ""}`, { waitUntil: 'load' });
   await page.waitForSelector('.mk-stage');
   await page.waitForTimeout(250);
-  const mute = await page.$('.mk-audio button'); if (mute) await mute.click();
+  const mute = await page.$('.mk-audio button'); if (mute) await mute.click({ timeout: 3000 }).catch(() => {});
   let segs = 0;
   for (let t = 0; t < 40; t++) {
     await page.waitForTimeout(300);
-    const ask = await page.$('.mk-ask .row button'); if (ask) { await ask.click(); continue; }
-    const man = await page.$('button:text-matches("^(Keyingi qadam|Следующий шаг)")'); if (man) { await man.click(); continue; }
+    const ask = await page.$('.mk-ask .row button'); if (ask) { await ask.click({ timeout: 3000 }).catch(() => {}); continue; }
+    const man = await page.$('button:text-matches("^(Keyingi qadam|Следующий шаг)")'); if (man) { await man.click({ timeout: 3000 }).catch(() => {}); continue; }
     const st = await page.evaluate(() => { const b = [...document.querySelectorAll('.mk-nav .mk-btn')].pop(); const d = [...document.querySelectorAll('.mk-dots i')]; return { ready: b && !b.disabled, on: d.findIndex((x) => x.classList.contains('on')), n: d.length }; });
     segs = st.n;
     if (st.ready || (st.n > 0 && st.on === st.n - 1 && t > 3)) break;
   }
-  if (CLICK[i] != null) { const ln = await page.$$('.mk-ln.clk'); if (ln[CLICK[i]]) { await ln[CLICK[i]].click(); await page.waitForTimeout(700); } }
-  else { const o = await page.$$('.mk-opt'); for (const b of o) { if (await b.isDisabled()) continue; await b.click(); await page.waitForTimeout(500); if (await page.$('.mk-opt.ok')) break; } }
+  if (CLICK[i] != null) { const ln = await page.$$('.mk-ln.clk'); if (ln[CLICK[i]]) { await ln[CLICK[i]].click({ timeout: 3000 }).catch(() => {}); await page.waitForTimeout(700); } }
+  else { const o = await page.$$('.mk-opt'); for (const b of o) { if (await b.isDisabled()) continue; await b.click({ timeout: 3000 }).catch(() => {}); await page.waitForTimeout(500); if (await page.$('.mk-opt.ok')) break; } }
   await page.waitForTimeout(400);
   const r = await page.evaluate(() => {
     const out = [];

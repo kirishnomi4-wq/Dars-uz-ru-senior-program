@@ -5751,7 +5751,7 @@ function Cover({ onStart, resume }) {
   );
 }
 const SCREENS = [Screen1, Screen2, Screen3, Screen4, Screen5, Screen6, ScreenP7, Screen8, Screen9, Screen10, Screen11, Screen12, Screen13, Screen14, Screen15, Screen16, ScreenP17, Screen18, Screen19, Screen20, Screen21, ScreenP22, Screen23, Screen24, Screen25];
-const PRACTICE_COUNT = SCREENS.filter((S) => /^ScreenP\d/.test(S.name)).length;
+const PRACTICE_COUNT = [ScreenP7, ScreenP17, ScreenP22].filter((S) => SCREENS.includes(S)).length; // 26.11 (F-1125-01): havola bo'yicha — build (minify) funksiya nomini qisqartiradi, nom bo'yicha son 0 chiqib passed doim false edi
 export default function JestEdgeMentorLesson({ studentName, lang = 'uz', onFinished, startAt }) {
   setLang(lang);
   useCss();

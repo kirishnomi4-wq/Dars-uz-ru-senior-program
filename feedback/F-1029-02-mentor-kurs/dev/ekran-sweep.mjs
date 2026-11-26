@@ -17,7 +17,7 @@ for (let i = 0; i < total; i++) {
   await p.goto(url(i), { waitUntil: 'load' });
   const ok = await p.waitForSelector('.mk-stage', { timeout: 15000 }).then(() => true).catch(() => false);
   await p.waitForTimeout(250);
-  const mute = await p.$('.mk-audio button'); if (mute) await mute.click();
+  const mute = await p.$('.mk-audio button'); if (mute) await mute.click().catch(() => {});
   let segs = 0, ready = false;
   for (let t = 0; t < 50; t++) {
     await p.waitForTimeout(250);
@@ -25,8 +25,8 @@ for (let i = 0; i < total; i++) {
     segs = Math.max(segs, st.n); ready = !!st.ready;
     if (st.ready || (st.n > 0 && st.on === st.n - 1 && t > 3)) break;
     // avval holat o'qiladi, keyin bosiladi (aks holda «Keyingi qadam» bor ekan, holatga yetilmaydi)
-    const ask = await p.$('.mk-ask .row button'); if (ask) { await ask.click(); continue; }
-    const man = await p.$('button:text-matches("^(Keyingi qadam|Следующий шаг)")'); if (man) { await man.click(); continue; }
+    const ask = await p.$('.mk-ask .row button'); if (ask) { await ask.click({ timeout: 1500 }).catch(() => {}); continue; } // 26.11: qayta chizilgan tugma yiqitmasin
+    const man = await p.$('button:text-matches("^(Keyingi qadam|Следующий шаг)")'); if (man) { await man.click({ timeout: 1500 }).catch(() => {}); continue; }
   }
   // tekshiruv: to'g'ri javobgacha; satr-tekshiruv: hamma satr
   const o = await p.$$('.mk-opt'); for (const x of o) { try { if (await x.isDisabled()) continue; await x.click({ timeout: 1000 }); await p.waitForTimeout(300); if (await p.$('.mk-opt.ok')) break; } catch (e) {} }

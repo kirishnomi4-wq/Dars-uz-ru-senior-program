@@ -482,7 +482,7 @@ function Cover({ onStart, resume }) {
   );
 }
 const SCREENS = [Screen1, Screen2, Screen3, Screen4, Screen5a, ScreenP0, Screen5b, Screen6, Screen7, Screen8, Screen9, ScreenP1, Screen10, Screen11, Screen12, Screen13, Screen14, Screen15, ScreenLC1, Screen16, Screen17, ScreenP2, Screen18, Screen19, Screen20, Screen21, ScreenLC2, Screen22, Screen23, ScreenP3, ScreenAI6, ScreenLCAI, Screen25a, Screen25b, ScreenR1, ScreenR2, ScreenRdb, ScreenR3, Screen26, Screen27, Screen28];
-const PRACTICE_COUNT = SCREENS.filter((S) => /^ScreenP\d/.test(S.name)).length;
+const PRACTICE_COUNT = [ScreenP0, ScreenP1, ScreenP2, ScreenP3].filter((S) => SCREENS.includes(S)).length; // 26.11 (F-1125-01): havola bo'yicha — build (minify) funksiya nomini qisqartiradi, nom bo'yicha son 0 chiqib passed doim false edi
 export default function NestArchMentorLesson({ studentName, lang = 'uz', onFinished, startAt }) {
   setLang(lang); // UZ-RU (F-1030-38): render'dan oldin — ma'lumot va t() shu tilda
   useCss();
