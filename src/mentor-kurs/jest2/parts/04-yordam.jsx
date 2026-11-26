@@ -253,6 +253,16 @@ const CSS3 = `
 .cause div.bad{border-color:${T.accent};background:#FFF0EB}
 .cause i{font-style:normal;font:800 11px ${MONO};color:#fff;background:${T.ink3};border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center}
 .cause div.bad i{background:${T.accent}}
+/* F-1125-01 (2-savol, M56): 20-ekran natija jadvali 2 × 2 */
+.j2-res{width:100%;border-collapse:separate;border-spacing:0 6px;font-size:13.5px}
+.j2-res th{font:700 12px ${SANS};color:${T.ink2};text-align:left;padding:4px 10px}
+.j2-res td{padding:9px 12px;background:${T.paper};border-top:1px solid ${T.line};border-bottom:1px solid ${T.line};vertical-align:top;line-height:1.45;color:${T.ink}}
+.j2-res td:first-child{border-left:1px solid ${T.line};border-radius:10px 0 0 10px;font-weight:700;white-space:nowrap}
+.j2-res td:last-child{border-right:1px solid ${T.line};border-radius:0 10px 10px 0}
+.j2-res b{font-weight:600}.j2-res b.ok{color:${T.green}}.j2-res b.no{color:${JC.err}}
+.j2-res code{font:12px ${MONO};background:#EEF0F4;padding:1px 5px;border-radius:5px}
+/* F-1125-01 (1-savol): 1280×720 da 2-ekran uch yo'l kartalari va 2-, 8-ekran xulosa rasmi zichroq; 1600 va 1920 o'zgarmaydi */
+@media (max-height:760px){.pg-three.zich{gap:8px}.pg-three.zich .path{padding:8px 12px;gap:4px}.pg-three.zich .path .ex{padding:3px 8px}.pg-three.zich .path .t{padding-top:4px}.mk-light.zich{padding:6px!important}}
 `;
 function useCss3() {
   useEffect(() => {

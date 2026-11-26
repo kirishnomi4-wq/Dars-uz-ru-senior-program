@@ -89,7 +89,7 @@ const MDT = {
  "4": {
   "type": "MCRetry",
   "kicker": "Tekshiruv 1",
-  "eyebrow": "Tekshiruv · 1 / 4",
+  "eyebrow": "Tekshiruv · 1 / 5",
   "title": "Mijoz raqamni «+998 90 123 45 67» deb yozdi. isPhone hozirgi regex bilan nima qaytaradi?",
   "q": "Qoidani ajratdik, endi tekshirib olaylik. Birinchi tekshiruv. Mijoz raqamni probellar bilan yozdi: plus to'qqiz to'qqiz sakkiz, probel, to'qson, probel va hokazo. Is phone hozirgi regex bilan nima qaytaradi? Variantni tanlang.",
   "ok": "To'g'ri. Regex'da faqat plus va raqamlar bor, probel yo'q, shuning uchun false. Trim faqat boshi va oxiridagi probelni oladi, o'rtadagini emas. Bot bu raqamni rad etadi, mijoz esa raqamni to'g'ri yozganini o'ylaydi. Demak, edge case ko'pincha qoida emas, mijozning odatidan chiqadi.",
@@ -368,7 +368,7 @@ const MDT = {
  "12": {
   "type": "MCRetry",
   "kicker": "Tekshiruv 2",
-  "eyebrow": "Tekshiruv · 2 / 4",
+  "eyebrow": "Tekshiruv · 2 / 5",
   "title": "Telefon testini await expect(service.place(…)).rejects.toThrow() bilan yozdik. place xatoni darhol, funksiya ichida otadi. Natija?",
   "q": "Promise shaklini sinxron xatoga qo'yib ko'ramiz. Ikkinchi tekshiruv. Telefon testini rejects bilan yozdik, lekin place telefon xatosini darhol, funksiyaning o'zida otadi, promise qaytarmasdan. Npm test nima deydi? Variantni tanlang.",
   "ok": "To'g'ri. Place chaqirilganda xato darhol otildi, expect hali ishga tushmagan edi. Jest bu xatoni testning o'zi yiqildi deb hisoblaydi va FAIL beradi, xabari: telefon raqami yo'q. Bu safar natija bor, chunki xato sinxron, Jest uni ushladi. Demak, rejects faqat promise'dan keladigan xatoni ushlaydi.",
@@ -418,7 +418,7 @@ const MDT = {
  "14": {
   "type": "LineCheck",
   "kicker": "Tekshiruv 3",
-  "eyebrow": "Tekshiruv · 3 / 4 — qaysi satr xato?",
+  "eyebrow": "Tekshiruv · 3 / 5 — qaysi satr xato?",
   "title": "Bu test faylida npm test natija bermaydi — jarayon qulaydi. Sababchi satrni toping",
   "q": "Yashirin xatoni ko'rdingiz, endi o'zingiz toping. Uchinchi tekshiruv. Bu test faylida npm test natija bermaydi, jarayon qulaydi. Bo'lakda bitta satr promise'ni kutmaydi. O'sha satrni bosing.",
   "ok": "To'g'ri. Shu satrda await yo'q: test promise'ni kutmasdan tugaydi, xato keyin keladi va Jest uni testga bog'lay olmaydi. Ekranda tuzatilgan satr: await bilan. Endi noto'g'ri xabar oddiy qizil test beradi, expected va received bilan. Demak, natija chiqmasa, avval rejects oldidagi await'ni qidiring.",
@@ -606,7 +606,7 @@ const MDT = {
  "19": {
   "type": "MCRetry",
   "kicker": "Tekshiruv 4",
-  "eyebrow": "Tekshiruv · 4 / 4",
+  "eyebrow": "Tekshiruv · 4 / 5",
   "title": "Ilovada faqat GET / route'i bor. Test GET /nope yubordi. res.status va res.body.message nima bo'ladi?",
   "q": "HTTP testni ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. Ilovada faqat bitta route bor, ildiz. Test yo'q manzilga, nope'ga so'rov yubordi. Status va xabar nima bo'ladi? Variantni tanlang.",
   "ok": "To'g'ri. Nest yo'q manzilga o'zi to'rt yuz to'rt qaytaradi, tanasida message: cannot get nope. Bu kodingizdagi xato emas, kutilgan error path, va test uni aynan shunday kutadi. Demak, yo'q manzil beshyuz emas, to'rt yuz to'rt: mijoz xatosi, server xatosi emas.",
@@ -629,32 +629,32 @@ const MDT = {
  "20": {
   "type": "Lesson",
   "kicker": "5-bosqich · AI",
-  "title": "Yangi ko'nikma davomi: AI edge va xato testlarini yozdi — ikki to'plam, ikkalasi yashil; endi ularni qabul qilamiz",
+  "title": "Yangi ko'nikma davomi: AI edge va xato testlarini yozdi — ikki xil topshiriq, to'rt to'plam, hammasi yashil; endi ularni qabul qilamiz",
   "seg": [
    [
     "a",
     "Yana AI bosqichi: <b>edge va xato testlarini AI yozadi, siz qabul qilasiz</b>",
-    "Jest birinchi darsidagi kabi oxirgi bosqich AI bilan. Farqi: bu safar AI happy path emas, edge va xato testlarini yozadi, ya'ni bugungi mavzuni. Biz ikki xil AI'ga bitta oddiy prompt berdik va natijani olib keldik."
+    "Jest birinchi darsidagi kabi oxirgi bosqich AI bilan. Farqi: bu safar AI happy path emas, edge va xato testlarini yozadi, ya'ni bugungi mavzuni. Biz ikki xil AI'ga bitta vazifani ikki xil topshiriq bilan berdik va natijani olib keldik."
    ],
    [
     "b",
-    "Prompt: <b>«place va telefon tekshiruvi uchun edge case va xato testlar yoz»</b> — ishorasiz",
-    "Prompt oddiy: order service'dagi place funksiyasi va telefon raqami tekshiruvi uchun edge case va xato holatlariga jest testlar yoz, npm test yashil bo'lsin. Rejects, await, chegara, mock, bu so'zlarning hech biri promptda yo'q. Har AI loyihaning alohida nusxasida ishladi."
+    "Ikki topshiriq: <b>oddiy so'zlar bilan</b> va <b>Jest tilida</b> — qoida, <code>it.each</code>, mock, <code>rejects</code>, chegara",
+    "Birinchi topshiriq oddiy so'zlar bilan: place va telefon tekshiruvi uchun edge case va xato testlar yoz, npm test yashil bo'lsin. Ikkinchisi bugungi dars tilida: qoidani is phone funksiyasiga ajrat, it each bilan chegaralar, place uchun mock, rejects va await, xatodan keyin update ketmasin. Har AI loyihaning alohida nusxasida ishladi."
    ],
    [
     "c",
-    "Natija yaxshi: <b>50 va 42 test, kodga tegmadi</b>, <code>rejects</code> va <code>await</code> to'g'ri, «bo'lmasligi kerak» testlari bor",
-    "Natija yaxshi ko'rinadi. Ikkalasi faqat test fayllarini qo'shdi, kodga tegmadi. Birinchisi ellik, ikkinchisi qirq ikkita test, hammasi yashil. Ikkalasi ham promise xatosiga rejects va await yozdi, jarayon qulamadi. Ikkalasi ham xatodan keyin update ketmaganini tekshirdi."
+    "Oddiy: <b>50 va 42 test</b>, qoida ajratilmadi · Jest tilida: <b>23 va 23 test</b>, <code>isPhone</code> ajratildi",
+    "Natija. Oddiy topshiriqda ikkalasi faqat test fayllarini qo'shdi: ellik va qirq ikki test, telefon qoidasini ajratmadi, uni butun handler orqali to'rtta servisni soxtalab sinadi. Jest tilidagi topshiriqda ikkalasi qoidani is phone'ga ajratdi, testlar yigirma uchtadan, kod ikki barobardan ko'proq qisqa. To'rttalasi ham rejects va await'ni to'g'ri yozdi."
    ],
    [
     "d",
-    "Lekin: ikkalasi <b>qoidani ajratmadi</b> va <b>probelli raqam rad etilishini «to'g'ri» deb yozdi</b>",
-    "Lekin ikki narsa. Ikkalasi ham telefon qoidasini ajratmadi: uni butun handler orqali, to'rtta servisni soxtalab sinadi, birinchisida bir yuz qirq to'qqiz qator. Va ikkalasi ham probel bilan yozilgan raqam rad etilishini to'g'ri deb test qildi, biz esa buni oltinchi ekranda xato deb topgan edik."
+    "Lekin to'rttalasi ham <b>probelli raqam rad etilishini «to'g'ri» deb yozdi</b> — Jest tilidagi topshiriqda ham",
+    "Lekin bir narsa to'rttalasida bir xil: probel bilan yozilgan raqam rad etilishini to'g'ri deb test qildi. Biz buni oltinchi ekranda xato deb topgan edik. Jest tilidagi topshiriqda probel holati so'ralgan, lekin javobi yozilmagan edi, AI javobni hozirgi koddan oldi. O'sha satrni tekshiruvda o'zingiz topasiz."
    ],
    [
     "e",
-    "Xulosa: <b>yashil hali tekshiruv emas</b>; buzib ko'ramiz — va yana bir savol: test qoidani sinaydimi, kodni muhrlaydimi",
-    "Xulosa: yashil hali tekshiruv emas, keyingi ekranda beshta buzish bilan tekshiramiz. Va yangi savol tug'ildi: AI yozgan test qoidani sinaydimi, yoki kod hozir qanday ishlasa, shuni muhrlaydimi. Probelli raqam testi ikkinchisi."
+    "Xulosa: <b>dars tilidagi topshiriq tuzilishni beradi</b>, qoidani siz aytasiz; yashil — hali tekshiruv emas",
+    "Xulosa: topshiriqni dars tilida bersangiz, AI tuzilishni to'g'ri qiladi: qoidani ajratadi, testlar qisqa. Lekin qoidaning o'zini, probelli raqam qabul qilinadimi, siz aytasiz. Yashil hali tekshiruv emas: keyingi ekranda kodni buzib ko'ramiz."
    ]
   ]
  },
@@ -670,18 +670,18 @@ const MDT = {
    ],
    [
     "b",
-    "Natija: <b>uchala to'plam beshalasini ushladi</b> — bu safar AI xato yo'lini yaxshi yozdi",
-    "Natija: uchala to'plam beshala buzilishni ushladi. Bizning yigirma besh testimiz har buzilishda bittadan qizardi. Birinchi AI xabar o'zgarganda uchta, tartib buzilganda ikkita test bilan sezdi. Ikkinchi AI ham hammasini sezdi. Bu safar AI xato yo'lini yaxshi yozdi, buni tan olamiz."
+    "Natija: <b>hamma to'plam beshala buzishni ushladi</b>, Jest tilidagilar ham — AI xato yo'lini yaxshi yozdi",
+    "Natija: uchala to'plam beshala buzilishni ushladi. Bizning yigirma besh testimiz har buzilishda bittadan qizardi. Birinchi AI xabar o'zgarganda uchta test bilan sezdi, ikkinchisi ham hammasini sezdi. Jest tilidagi ikki to'plam ham beshalasini ushladi. Bu safar AI xato yo'lini yaxshi yozdi, buni tan olamiz."
    ],
    [
     "c",
     "Oltinchi «buzilish» jadvalda yo'q: <b>AI probelli raqam rad etilishini muhrladi</b> — <code>replace</code> tuzatishi uning testini qizartiradi",
-    "Lekin bitta narsa jadvalga sig'maydi, chunki uni buzib bo'lmaydi: probel. Ikkala AI probelli raqam rad etilishini test qilib muhrladi. Siz oltinchi ekrandagi replace bilan tuzatsangiz, ularning testi qizaradi. Test qoidani emas, hozirgi kodni qo'riqlayapti. Mijoz odati haqida AI bilmaydi."
+    "Lekin bitta narsa jadvalga sig'maydi, chunki uni buzib bo'lmaydi: probel. To'rttala to'plam ham probelli raqam rad etilishini test qilib muhrladi. Siz oltinchi ekrandagi replace bilan tuzatsangiz, ularning testi qizaradi. Test qoidani emas, hozirgi kodni qo'riqlayapti. Mijoz odati haqida AI bilmaydi."
    ],
    [
     "d",
     "Xulosa: AI testi <b>xatoni ushlaydi, lekin hozirgi xulqni ham muhrlaydi</b> — har testdan «bu qoidami?» deb so'rang",
-    "Xulosa: AI yozgan test ikki narsa qiladi. Xatoni ushlaydi, bu yaxshi. Va hozirgi xulqni, shu jumladan xatoni ham, muhrlab qo'yadi. Har testni o'qib so'rang: bu qoidami, yoki kod shunchaki hozir shunday ishlaydimi. Endi o'z AI'ingiz bilan sinab ko'rasiz."
+    "Xulosa: AI yozgan test ikki narsa qiladi. Xatoni ushlaydi, bu yaxshi. Va hozirgi xulqni, shu jumladan xatoni ham, muhrlab qo'yadi. Har testni o'qib so'rang: bu qoidami, yoki kod shunchaki hozir shunday ishlaydimi. Avval bitta tekshiruv, keyin o'z AI'ingiz bilan sinab ko'rasiz."
    ]
   ]
  },

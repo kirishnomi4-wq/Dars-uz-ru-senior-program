@@ -66,7 +66,7 @@ function Scene18({ b }) {
   const fixed = beat >= 6;
   const pin = beat === 2 ? 1 : beat === 3 ? 2 : beat === 4 ? 3 : 0;
   return (
-    <Ide files={ALL_FILES} active="src/cars/cars.module.ts">
+    <Ide className="mk-zich" files={ALL_FILES} active="src/cars/cars.module.ts">
       <div onClick={act.onClick}><CodePanel key={fixed ? 'f' : broken ? 'b' : 'o'} file="src/cars/cars.module.ts" numbers={false} lines={fixed ? MODULE_FIXED : broken ? MODULE_BROKEN : MODULE_OK} style={{ opacity: beat >= 2 && beat <= 5 ? 0.5 : 1, transition: 'opacity .4s' }} /></div>
       <MiniProviders broken={broken} fixed={fixed} pin={pin} known={!broken || beat >= 2} />
       {fixed
@@ -102,7 +102,7 @@ function Scene19({ b }) {
   const broken = act.hit || beat >= 1;
   const fixed = beat >= 7;
   if (fixed) return (
-    <Ide files={ALL_FILES} active="src/app.module.ts">
+    <Ide className="mk-zich" files={ALL_FILES} active="src/app.module.ts">
       <CodePanel key="f" file="src/app.module.ts" numbers={false} lines={[{ h: `<span class="d">@Module</span>({` }, { gone: true, h: `  imports: [],` }, { neu: true, h: `  imports: [<span class="c">CarsModule</span>],` }, { h: `  controllers: [<span class="c">AppController</span>],` }, { h: `  providers: [<span class="c">AppService</span>],` }, { h: `})` }]} />
       <MiniImports broken fixed />
       <CodePanel file={t('terminal — tuzatildi', 'terminal — исправлено')} numbers={false} wrap style={{ background: '#111827' }} lines={[...OK_CARS, { h: `` }, { h: `<span class="p">GET /cars</span> → <span class="ok">200</span>  [{"id":1,"brand":"Chevrolet",…}, …]` }]} />
@@ -113,7 +113,7 @@ function Scene19({ b }) {
     ? [{ h: `<span class="d">@Module</span>({` }, { gone: true, h: `  imports: [<span class="c">CarsModule</span>],` }, { neu: true, h: `  imports: [],` }, { h: `  controllers: [<span class="c">AppController</span>],` }, { h: `  providers: [<span class="c">AppService</span>],` }, { h: `})` }]
     : [{ h: `<span class="d">@Module</span>({` }, { h: `  imports: [<span class="c n1-act" data-act="1">CarsModule</span>],` }, { h: `  controllers: [<span class="c">AppController</span>],` }, { h: `  providers: [<span class="c">AppService</span>],` }, { h: `})` }];
   return (
-    <Ide files={ALL_FILES} active="src/app.module.ts">
+    <Ide className="mk-zich" files={ALL_FILES} active="src/app.module.ts">
       <Block at={0} beat={beat} dim={beat >= 3 && beat !== 5}><div onClick={act.onClick}><CodePanel key={broken ? 'b' : 'o'} file="src/app.module.ts" numbers={false} lines={lines} /></div></Block>
       <MiniImports broken={broken} fixed={false} known={beat >= 4} unread={beat >= 5} />
       <Block at={3} beat={beat}><CodePanel file={t("terminal — xato YO'Q", 'terminal — ошибки НЕТ')} numbers={false} wrap style={{ background: '#111827' }} beat={beat - 1} lines={[
@@ -153,7 +153,7 @@ function Scene20({ b }) {
   const deco = fixed ? { neu: true, h: `<span class="d">@Controller</span>(<span class="s">'cars'</span>)` }
     : broken ? { gone: true, h: `<span class="d">@Controller</span>(<span class="s">'cars'</span>)   <span class="cm">${t("← o'chirildi", '← удалено')}</span>` }
     : { h: `<span class="n1-act" data-act="1"><span class="d">@Controller</span>(<span class="s">'cars'</span>)</span>` };
-  return (<Ide files={ALL_FILES} active="src/cars/cars.controller.ts">
+  return (<Ide className="mk-zich" files={ALL_FILES} active="src/cars/cars.controller.ts">
     <div onClick={act.onClick}><CodePanel key={fixed ? 'f' : broken ? 'b' : 'o'} file="src/cars/cars.controller.ts" lines={[
       { h: `<span class="k">import</span> { Body, Controller, Get, Param, Post } <span class="k">from</span> <span class="s">'@nestjs/common'</span>;` },
       { h: `` },

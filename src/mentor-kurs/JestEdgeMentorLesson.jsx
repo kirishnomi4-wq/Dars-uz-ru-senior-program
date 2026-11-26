@@ -639,8 +639,9 @@ function FileTree({ root = MKCFG.root, files = MKCFG.files, active, onOpen, big,
   </div>;
 }
 // Bitta VS Code oynasi (F-1030-22): sarlavha · chapda Explorer · o'ngda editor (kod panelida fayl yorlig'i — tab)
-function Ide({ root = MKCFG.root, files, active, onOpen, fresh, clickable, children, style }) {
-  return <div className="mk-ide" style={style}>
+// className (F-1125-01): «mk-zich» — 1280×720 da zich sahna (CSS_N1, faqat past ekranda)
+function Ide({ root = MKCFG.root, files, active, onOpen, fresh, clickable, children, style, className }) {
+  return <div className={'mk-ide' + (className ? ' ' + className : '')} style={style}>
     <div className="mk-ide-bar"><i /><i /><i /><span>{root} — Visual Studio Code</span></div>
     <FileTree root={root} files={files} active={active} onOpen={onOpen} fresh={fresh} clickable={clickable} />
     <div className="mk-ide-main">{children}</div>
@@ -1100,6 +1101,17 @@ const CSS_N1 = `
 .n1-cv .pic{background:${T.bg};border-left:1px solid ${T.line};display:flex;align-items:center;padding:24px 20px}
 @media (max-width:900px){.mk-cover .card.n1-cv{grid-template-columns:1fr}.n1-cv .pic{border-left:0;border-top:1px solid ${T.line}}}
 @media (prefers-reduced-motion:reduce){.n1-pk.loop,.n1-sock.wait,.n1-act{animation:none}.n1-box *{transition:none!important}}
+/* F-1125-01 (1-savol): 1280×720 da Buzamiz sahnasi — kod, chizma, terminal va xulosa bitta oynaga sig'adi. Faqat Ide className mk-zich bo'lgan ekranlar; 1600 va 1920 o'zgarmaydi. Chizma o'z o'lchamida (kattalashtirilmaydi). */
+@media (max-height:920px){.mk-ide.mk-zich .mk-ide-main{gap:8px}}
+@media (max-height:760px){
+.mk-body:has(.mk-zich){padding-top:8px;padding-bottom:8px}
+.mk-ide.mk-zich .mk-ide-bar{padding:6px 12px}
+.mk-ide.mk-zich .mk-ide-main{gap:6px;padding:8px}
+.mk-ide.mk-zich .mk-panel{font-size:11.5px;line-height:1.26}
+.mk-ide.mk-zich .mk-panel .fn{margin-bottom:4px;padding:4px 12px}
+.mk-ide.mk-zich .mk-rule{padding:8px 12px;font-size:13.5px;line-height:1.4}
+.mk-ide.mk-zich .n1-fit{max-width:520px;margin:0 auto}
+}
 `;
 function useCssN1() {
   useEffect(() => {
@@ -3936,7 +3948,7 @@ const MDT = {
  "4": {
   "type": "MCRetry",
   "kicker": "Tekshiruv 1",
-  "eyebrow": "Tekshiruv · 1 / 4",
+  "eyebrow": "Tekshiruv · 1 / 5",
   "title": "Mijoz raqamni «+998 90 123 45 67» deb yozdi. isPhone hozirgi regex bilan nima qaytaradi?",
   "q": "Qoidani ajratdik, endi tekshirib olaylik. Birinchi tekshiruv. Mijoz raqamni probellar bilan yozdi: plus to'qqiz to'qqiz sakkiz, probel, to'qson, probel va hokazo. Is phone hozirgi regex bilan nima qaytaradi? Variantni tanlang.",
   "ok": "To'g'ri. Regex'da faqat plus va raqamlar bor, probel yo'q, shuning uchun false. Trim faqat boshi va oxiridagi probelni oladi, o'rtadagini emas. Bot bu raqamni rad etadi, mijoz esa raqamni to'g'ri yozganini o'ylaydi. Demak, edge case ko'pincha qoida emas, mijozning odatidan chiqadi.",
@@ -4215,7 +4227,7 @@ const MDT = {
  "12": {
   "type": "MCRetry",
   "kicker": "Tekshiruv 2",
-  "eyebrow": "Tekshiruv · 2 / 4",
+  "eyebrow": "Tekshiruv · 2 / 5",
   "title": "Telefon testini await expect(service.place(…)).rejects.toThrow() bilan yozdik. place xatoni darhol, funksiya ichida otadi. Natija?",
   "q": "Promise shaklini sinxron xatoga qo'yib ko'ramiz. Ikkinchi tekshiruv. Telefon testini rejects bilan yozdik, lekin place telefon xatosini darhol, funksiyaning o'zida otadi, promise qaytarmasdan. Npm test nima deydi? Variantni tanlang.",
   "ok": "To'g'ri. Place chaqirilganda xato darhol otildi, expect hali ishga tushmagan edi. Jest bu xatoni testning o'zi yiqildi deb hisoblaydi va FAIL beradi, xabari: telefon raqami yo'q. Bu safar natija bor, chunki xato sinxron, Jest uni ushladi. Demak, rejects faqat promise'dan keladigan xatoni ushlaydi.",
@@ -4265,7 +4277,7 @@ const MDT = {
  "14": {
   "type": "LineCheck",
   "kicker": "Tekshiruv 3",
-  "eyebrow": "Tekshiruv · 3 / 4 — qaysi satr xato?",
+  "eyebrow": "Tekshiruv · 3 / 5 — qaysi satr xato?",
   "title": "Bu test faylida npm test natija bermaydi — jarayon qulaydi. Sababchi satrni toping",
   "q": "Yashirin xatoni ko'rdingiz, endi o'zingiz toping. Uchinchi tekshiruv. Bu test faylida npm test natija bermaydi, jarayon qulaydi. Bo'lakda bitta satr promise'ni kutmaydi. O'sha satrni bosing.",
   "ok": "To'g'ri. Shu satrda await yo'q: test promise'ni kutmasdan tugaydi, xato keyin keladi va Jest uni testga bog'lay olmaydi. Ekranda tuzatilgan satr: await bilan. Endi noto'g'ri xabar oddiy qizil test beradi, expected va received bilan. Demak, natija chiqmasa, avval rejects oldidagi await'ni qidiring.",
@@ -4453,7 +4465,7 @@ const MDT = {
  "19": {
   "type": "MCRetry",
   "kicker": "Tekshiruv 4",
-  "eyebrow": "Tekshiruv · 4 / 4",
+  "eyebrow": "Tekshiruv · 4 / 5",
   "title": "Ilovada faqat GET / route'i bor. Test GET /nope yubordi. res.status va res.body.message nima bo'ladi?",
   "q": "HTTP testni ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. Ilovada faqat bitta route bor, ildiz. Test yo'q manzilga, nope'ga so'rov yubordi. Status va xabar nima bo'ladi? Variantni tanlang.",
   "ok": "To'g'ri. Nest yo'q manzilga o'zi to'rt yuz to'rt qaytaradi, tanasida message: cannot get nope. Bu kodingizdagi xato emas, kutilgan error path, va test uni aynan shunday kutadi. Demak, yo'q manzil beshyuz emas, to'rt yuz to'rt: mijoz xatosi, server xatosi emas.",
@@ -4476,32 +4488,32 @@ const MDT = {
  "20": {
   "type": "Lesson",
   "kicker": "5-bosqich · AI",
-  "title": "Yangi ko'nikma davomi: AI edge va xato testlarini yozdi — ikki to'plam, ikkalasi yashil; endi ularni qabul qilamiz",
+  "title": "Yangi ko'nikma davomi: AI edge va xato testlarini yozdi — ikki xil topshiriq, to'rt to'plam, hammasi yashil; endi ularni qabul qilamiz",
   "seg": [
    [
     "a",
     "Yana AI bosqichi: <b>edge va xato testlarini AI yozadi, siz qabul qilasiz</b>",
-    "Jest birinchi darsidagi kabi oxirgi bosqich AI bilan. Farqi: bu safar AI happy path emas, edge va xato testlarini yozadi, ya'ni bugungi mavzuni. Biz ikki xil AI'ga bitta oddiy prompt berdik va natijani olib keldik."
+    "Jest birinchi darsidagi kabi oxirgi bosqich AI bilan. Farqi: bu safar AI happy path emas, edge va xato testlarini yozadi, ya'ni bugungi mavzuni. Biz ikki xil AI'ga bitta vazifani ikki xil topshiriq bilan berdik va natijani olib keldik."
    ],
    [
     "b",
-    "Prompt: <b>«place va telefon tekshiruvi uchun edge case va xato testlar yoz»</b> — ishorasiz",
-    "Prompt oddiy: order service'dagi place funksiyasi va telefon raqami tekshiruvi uchun edge case va xato holatlariga jest testlar yoz, npm test yashil bo'lsin. Rejects, await, chegara, mock, bu so'zlarning hech biri promptda yo'q. Har AI loyihaning alohida nusxasida ishladi."
+    "Ikki topshiriq: <b>oddiy so'zlar bilan</b> va <b>Jest tilida</b> — qoida, <code>it.each</code>, mock, <code>rejects</code>, chegara",
+    "Birinchi topshiriq oddiy so'zlar bilan: place va telefon tekshiruvi uchun edge case va xato testlar yoz, npm test yashil bo'lsin. Ikkinchisi bugungi dars tilida: qoidani is phone funksiyasiga ajrat, it each bilan chegaralar, place uchun mock, rejects va await, xatodan keyin update ketmasin. Har AI loyihaning alohida nusxasida ishladi."
    ],
    [
     "c",
-    "Natija yaxshi: <b>50 va 42 test, kodga tegmadi</b>, <code>rejects</code> va <code>await</code> to'g'ri, «bo'lmasligi kerak» testlari bor",
-    "Natija yaxshi ko'rinadi. Ikkalasi faqat test fayllarini qo'shdi, kodga tegmadi. Birinchisi ellik, ikkinchisi qirq ikkita test, hammasi yashil. Ikkalasi ham promise xatosiga rejects va await yozdi, jarayon qulamadi. Ikkalasi ham xatodan keyin update ketmaganini tekshirdi."
+    "Oddiy: <b>50 va 42 test</b>, qoida ajratilmadi · Jest tilida: <b>23 va 23 test</b>, <code>isPhone</code> ajratildi",
+    "Natija. Oddiy topshiriqda ikkalasi faqat test fayllarini qo'shdi: ellik va qirq ikki test, telefon qoidasini ajratmadi, uni butun handler orqali to'rtta servisni soxtalab sinadi. Jest tilidagi topshiriqda ikkalasi qoidani is phone'ga ajratdi, testlar yigirma uchtadan, kod ikki barobardan ko'proq qisqa. To'rttalasi ham rejects va await'ni to'g'ri yozdi."
    ],
    [
     "d",
-    "Lekin: ikkalasi <b>qoidani ajratmadi</b> va <b>probelli raqam rad etilishini «to'g'ri» deb yozdi</b>",
-    "Lekin ikki narsa. Ikkalasi ham telefon qoidasini ajratmadi: uni butun handler orqali, to'rtta servisni soxtalab sinadi, birinchisida bir yuz qirq to'qqiz qator. Va ikkalasi ham probel bilan yozilgan raqam rad etilishini to'g'ri deb test qildi, biz esa buni oltinchi ekranda xato deb topgan edik."
+    "Lekin to'rttalasi ham <b>probelli raqam rad etilishini «to'g'ri» deb yozdi</b> — Jest tilidagi topshiriqda ham",
+    "Lekin bir narsa to'rttalasida bir xil: probel bilan yozilgan raqam rad etilishini to'g'ri deb test qildi. Biz buni oltinchi ekranda xato deb topgan edik. Jest tilidagi topshiriqda probel holati so'ralgan, lekin javobi yozilmagan edi, AI javobni hozirgi koddan oldi. O'sha satrni tekshiruvda o'zingiz topasiz."
    ],
    [
     "e",
-    "Xulosa: <b>yashil hali tekshiruv emas</b>; buzib ko'ramiz — va yana bir savol: test qoidani sinaydimi, kodni muhrlaydimi",
-    "Xulosa: yashil hali tekshiruv emas, keyingi ekranda beshta buzish bilan tekshiramiz. Va yangi savol tug'ildi: AI yozgan test qoidani sinaydimi, yoki kod hozir qanday ishlasa, shuni muhrlaydimi. Probelli raqam testi ikkinchisi."
+    "Xulosa: <b>dars tilidagi topshiriq tuzilishni beradi</b>, qoidani siz aytasiz; yashil — hali tekshiruv emas",
+    "Xulosa: topshiriqni dars tilida bersangiz, AI tuzilishni to'g'ri qiladi: qoidani ajratadi, testlar qisqa. Lekin qoidaning o'zini, probelli raqam qabul qilinadimi, siz aytasiz. Yashil hali tekshiruv emas: keyingi ekranda kodni buzib ko'ramiz."
    ]
   ]
  },
@@ -4517,18 +4529,18 @@ const MDT = {
    ],
    [
     "b",
-    "Natija: <b>uchala to'plam beshalasini ushladi</b> — bu safar AI xato yo'lini yaxshi yozdi",
-    "Natija: uchala to'plam beshala buzilishni ushladi. Bizning yigirma besh testimiz har buzilishda bittadan qizardi. Birinchi AI xabar o'zgarganda uchta, tartib buzilganda ikkita test bilan sezdi. Ikkinchi AI ham hammasini sezdi. Bu safar AI xato yo'lini yaxshi yozdi, buni tan olamiz."
+    "Natija: <b>hamma to'plam beshala buzishni ushladi</b>, Jest tilidagilar ham — AI xato yo'lini yaxshi yozdi",
+    "Natija: uchala to'plam beshala buzilishni ushladi. Bizning yigirma besh testimiz har buzilishda bittadan qizardi. Birinchi AI xabar o'zgarganda uchta test bilan sezdi, ikkinchisi ham hammasini sezdi. Jest tilidagi ikki to'plam ham beshalasini ushladi. Bu safar AI xato yo'lini yaxshi yozdi, buni tan olamiz."
    ],
    [
     "c",
     "Oltinchi «buzilish» jadvalda yo'q: <b>AI probelli raqam rad etilishini muhrladi</b> — <code>replace</code> tuzatishi uning testini qizartiradi",
-    "Lekin bitta narsa jadvalga sig'maydi, chunki uni buzib bo'lmaydi: probel. Ikkala AI probelli raqam rad etilishini test qilib muhrladi. Siz oltinchi ekrandagi replace bilan tuzatsangiz, ularning testi qizaradi. Test qoidani emas, hozirgi kodni qo'riqlayapti. Mijoz odati haqida AI bilmaydi."
+    "Lekin bitta narsa jadvalga sig'maydi, chunki uni buzib bo'lmaydi: probel. To'rttala to'plam ham probelli raqam rad etilishini test qilib muhrladi. Siz oltinchi ekrandagi replace bilan tuzatsangiz, ularning testi qizaradi. Test qoidani emas, hozirgi kodni qo'riqlayapti. Mijoz odati haqida AI bilmaydi."
    ],
    [
     "d",
     "Xulosa: AI testi <b>xatoni ushlaydi, lekin hozirgi xulqni ham muhrlaydi</b> — har testdan «bu qoidami?» deb so'rang",
-    "Xulosa: AI yozgan test ikki narsa qiladi. Xatoni ushlaydi, bu yaxshi. Va hozirgi xulqni, shu jumladan xatoni ham, muhrlab qo'yadi. Har testni o'qib so'rang: bu qoidami, yoki kod shunchaki hozir shunday ishlaydimi. Endi o'z AI'ingiz bilan sinab ko'rasiz."
+    "Xulosa: AI yozgan test ikki narsa qiladi. Xatoni ushlaydi, bu yaxshi. Va hozirgi xulqni, shu jumladan xatoni ham, muhrlab qo'yadi. Har testni o'qib so'rang: bu qoidami, yoki kod shunchaki hozir shunday ishlaydimi. Avval bitta tekshiruv, keyin o'z AI'ingiz bilan sinab ko'rasiz."
    ]
   ]
  },
@@ -5014,6 +5026,16 @@ const CSS3 = `
 .cause div.bad{border-color:${T.accent};background:#FFF0EB}
 .cause i{font-style:normal;font:800 11px ${MONO};color:#fff;background:${T.ink3};border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center}
 .cause div.bad i{background:${T.accent}}
+/* F-1125-01 (2-savol, M56): 20-ekran natija jadvali 2 × 2 */
+.j2-res{width:100%;border-collapse:separate;border-spacing:0 6px;font-size:13.5px}
+.j2-res th{font:700 12px ${SANS};color:${T.ink2};text-align:left;padding:4px 10px}
+.j2-res td{padding:9px 12px;background:${T.paper};border-top:1px solid ${T.line};border-bottom:1px solid ${T.line};vertical-align:top;line-height:1.45;color:${T.ink}}
+.j2-res td:first-child{border-left:1px solid ${T.line};border-radius:10px 0 0 10px;font-weight:700;white-space:nowrap}
+.j2-res td:last-child{border-right:1px solid ${T.line};border-radius:0 10px 10px 0}
+.j2-res b{font-weight:600}.j2-res b.ok{color:${T.green}}.j2-res b.no{color:${JC.err}}
+.j2-res code{font:12px ${MONO};background:#EEF0F4;padding:1px 5px;border-radius:5px}
+/* F-1125-01 (1-savol): 1280×720 da 2-ekran uch yo'l kartalari va 2-, 8-ekran xulosa rasmi zichroq; 1600 va 1920 o'zgarmaydi */
+@media (max-height:760px){.pg-three.zich{gap:8px}.pg-three.zich .path{padding:8px 12px;gap:4px}.pg-three.zich .path .ex{padding:3px 8px}.pg-three.zich .path .t{padding-top:4px}.mk-light.zich{padding:6px!important}}
 `;
 function useCss3() {
   useEffect(() => {
@@ -5057,13 +5079,13 @@ const PATHS2 = [
 ];
 const S2 = mkS(2, [{ on: 0 }, { on: 1 }, { on: 2 }, { on: -1, all: true }]);
 function Screen2(p) {
-  return <Lesson p={p} S={S2} scene={({ seg }) => <><div className="pg-three">
+  return <Lesson p={p} S={S2} scene={({ seg }) => <><div className="pg-three zich">
     {PATHS2.map((x, i) => <div key={x.k} className={`path${seg.on === i ? ' hl' : ''}${seg.on >= 0 && seg.on !== i ? ' dim' : ''}`} style={{ '--c': x.c }}>
       <h4>{x.h}</h4>{x.ex.map((e) => <div key={e} className="ex">{e}</div>)}<div className="q">{x.q}</div>{seg.all && <div className="t">{x.t}</div>}
     </div>)}
   </div>
     {/* F-1120-02 (M51): xulosada darsning rasmi — bugungi uch yo'l botning qaysi joyida sinaladi (telegram · phone.ts, order); testlar hali yozilmagan */}
-    {seg.all && <div className="mk-light" style={{ padding: 12 }}><BotMap loc={DB_ALL} tgSub="phone.ts" on={['telegram', 'order']} jest={{ steps: [['happy path', ''], ['edge case', ''], ['error path', '']], res: '?', badge: t('bugun yozamiz', 'пишем сегодня') }} max={1} tag={t("Har funksiyaga uch yo'lning testi — bugun uchalasini yozamiz", 'Тесты трёх путей для каждой функции — сегодня пишем все три')} /></div>}
+    {seg.all && <div className="mk-light zich" style={{ padding: 12 }}><BotMap loc={DB_ALL} tgSub="phone.ts" on={['telegram', 'order']} jest={{ steps: [['happy path', ''], ['edge case', ''], ['error path', '']], res: '?', badge: t('bugun yozamiz', 'пишем сегодня') }} max={1} tag={t("Har funksiyaga uch yo'lning testi — bugun uchalasini yozamiz", 'Тесты трёх путей для каждой функции — сегодня пишем все три')} /></div>}
   </>} />;
 }
 
@@ -5211,7 +5233,7 @@ function Screen8(p) {
     {seg.v === 'code' && <Code k="ORDER_PLACE" files={FILES()} active={F.ord} ids={{ 25: 's', 26: 's', 36: 'a', 37: 'a', 38: 'a' }} focus={seg.f} from={24} to={38} />}
     {seg.v === 'flow' && <Flow8 hl={seg.hl} />}
     {/* F-1120-02 (M51): xulosada matnli qoida o'rniga darsning rasmi — order moduli, ikki xil xato va ikki xil expect (order.service.ts 25–26 · 27→37) */}
-    {seg.sum && <div className="mk-light" style={{ padding: 12 }}><BotMap loc={DB_ALL} tgSub="phone.ts" on={['order', 'orders', 'products']} tx="rollback" jest={{ steps: [['toThrow()', 'ok'], ['rejects.toThrow()', 'ok']], res: 'pass' }} ro={['order.service.ts:25', t("25–26 darhol → <b>.toThrow()</b> · 27→37 transaction ichida → <b>await … .rejects.toThrow()</b>", "25–26 сразу → <b>.toThrow()</b> · 27→37 внутри transaction → <b>await … .rejects.toThrow()</b>")]} max={1} tag={t("Xatoni sinashdan oldin qayerda otilishini aniqlang — darholmi, promise ichidami", 'Прежде чем проверять ошибку — где она бросается: сразу или внутри promise')} /></div>}
+    {seg.sum && <div className="mk-light zich" style={{ padding: 12 }}><BotMap loc={DB_ALL} tgSub="phone.ts" on={['order', 'orders', 'products']} tx="rollback" jest={{ steps: [['toThrow()', 'ok'], ['rejects.toThrow()', 'ok']], res: 'pass' }} ro={['order.service.ts:25', t("25–26 darhol → <b>.toThrow()</b> · 27→37 transaction ichida → <b>await … .rejects.toThrow()</b>", "25–26 сразу → <b>.toThrow()</b> · 27→37 внутри transaction → <b>await … .rejects.toThrow()</b>")]} max={1} tag={t("Xatoni sinashdan oldin qayerda otilishini aniqlang — darholmi, promise ichidami", 'Прежде чем проверять ошибку — где она бросается: сразу или внутри promise')} /></div>}
   </>} />;
 }
 
@@ -5275,6 +5297,53 @@ function Scene11({ b }) {
     {v === 'run' && <Term title={t("VS Code terminali · natija yo'q", "терминал VS Code · результата нет")} lines={T11} er marks={{ [T11.findIndex((l) => /Node\.js v/.test(l.h || ''))]: 'n1-p2' }} />}
     {v === 'cause' && <><Term title={t("VS Code terminali · natija yo'q", "терминал VS Code · результата нет")} lines={T11} er /><Cause items={CAUSE11} on={4} bad={3} /></>}
   </>;
+}
+
+// ============================================================
+//  22 (saytda) · Tekshiruv 5 — Jest tilidagi topshiriq: AI testining qaysi satri qoidaga zid (F-1125-01, M56; MD «## AI-T5»)
+//  Matn shu yerda (generator o'qimaydi), RU — t(). Haqiqiy kod: feedback/F-1029-02-mentor-kurs/manba/jest2v2-ai/p2/ai1/phone.spec.ts 4–16;
+//  tuzatish yurgizilgan: p2/tuzatish-ai1.txt (replace + kutilgan: true → 23 passed); faqat replace — p2/mutatsiya-p2.txt B6 (1 failed).
+// ============================================================
+const LC5_SRC = [
+  [4, "  it.each(["],
+  [5, "    { nomi: \"to'g'ri raqam\", text: '+998901234567', kutilgan: true },"],
+  [6, "    { nomi: \"to'g'ri raqam, «+» siz\", text: '998901234567', kutilgan: true },"],
+  [7, "    { nomi: 'eng qisqa — 9 raqam', text: '901234567', kutilgan: true },"],
+  [8, "    { nomi: 'eng uzun — 13 raqam', text: '+9989012345678', kutilgan: true },"],
+  [9, "    { nomi: 'bittaga qisqa — 8 raqam', text: '90123456', kutilgan: false },"],
+  [10, "    { nomi: 'bittaga uzun — 14 raqam', text: '+99890123456789', kutilgan: false },"],
+  [11, "    { nomi: 'harf aralashgan', text: '+99890abc4567', kutilgan: false },"],
+  [12, "    { nomi: \"bo'sh satr\", text: '', kutilgan: false },"],
+  [13, "    { nomi: 'probel bilan', text: '+998 90 123 45 67', kutilgan: false },"],
+  [14, "  ])('$nomi: «$text» → $kutilgan', ({ text, kutilgan }) => {"],
+  [15, "    expect(isPhone(text)).toBe(kutilgan);"],
+  [16, "  });"],
+];
+const LC5_LINES = LC5_SRC.map(([n, s]) => ({ n, h: tsLine(s) }));
+const LC5_FIXED = [
+  ...LC5_LINES.slice(0, 9),
+  { gone: true, n: '', h: LC5_LINES[9].h },
+  { neu: true, n: 13, h: tsLine("    { nomi: 'probel bilan', text: '+998 90 123 45 67', kutilgan: true },") },
+  ...LC5_LINES.slice(10),
+];
+// Explorer daraxti yo'q: 1280 da AI satrlari (aynan, M59) to'liq ko'rinsin — fayl yo'li sarlavhada. 1280×720 ga sig'ishi uchun: phone.ts dan faqat o'zgargan 5-satr, terminaldan faqat natija satri (to'liq chiqish — p2/tuzatish-ai1.txt)
+const LC5_PHONE = [
+  { gone: true, n: '', h: tsLine("  return PHONE.test(text);") },
+  { neu: true, n: 5, h: tsLine("  return PHONE.test(text.replace(/[\\s-]/g, ''));") },
+];
+const LC5_RUN = [
+  { n: '', h: '$ npx jest  →  Tests:       <span class="ok">23 passed</span>, 23 total' },
+];
+function ScreenAI5(p) {
+  return <LineCheck {...p} kicker={t('Tekshiruv 5', 'Проверка 5')} eyebrow={t('Tekshiruv · 5 / 5 — qaysi satr qoidaga zid?', 'Проверка · 5 / 5 — какая строка против правила?')}
+    title={t('Jest tilidagi topshiriq: AI testining qaysi satri 6-ekrandagi qoidaga zid?', 'Задание на языке Jest: какая строка теста от AI против правила с экрана 6?')}
+    task={t("Qoida (6-ekran): mijoz raqamni <b>probel bilan</b> yozsa ham bot qabul qiladi — <code>phone.ts</code> da <code>replace</code>. Bu 1-AI ning Jest tilidagi topshiriqda yozgan testi, hammasi yashil. <b>Qaysi satr qoidani emas, hozirgi xulqni muhrlaydi? Bosing.</b>", "Правило (экран 6): бот принимает номер, даже если клиент написал его <b>с пробелами</b> — в <code>phone.ts</code> есть <code>replace</code>. Это тест, который 1-й AI написал по заданию на языке Jest, всё зелёное. <b>Какая строка запечатывает не правило, а текущее поведение? Нажмите.</b>")}
+    q={t("Beshinchi, oxirgi tekshiruv. Bu Jest tilidagi topshiriqda birinchi AI yozgan test: telegram papkasidagi phone spec ts fayli. Oltinchi ekranda qoida qildik: mijoz raqamni probel bilan yozsa ham bot qabul qiladi. Qaysi satr bu qoidaga zid, hozirgi xulqni muhrlaydi? O'sha satrni bosing.", 'Пятая, последняя проверка. Это тест, который первый AI написал по заданию на языке Jest: файл phone spec ts в папке telegram. На шестом экране мы сделали правило: бот принимает номер, даже если клиент написал его с пробелами. Какая строка противоречит этому правилу и запечатывает текущее поведение? Нажмите на неё.')}
+    file={t('src/api/telegram/phone.spec.ts · 1-AI, Jest tilida', 'src/api/telegram/phone.spec.ts · 1-й AI, на языке Jest')} lines={LC5_LINES} target={9}
+    fixed={LC5_FIXED} fixedExtra={[{ file: t("phone.ts · 6-ekrandagi tuzatish", 'phone.ts · исправление с экрана 6'), lines: LC5_PHONE }, { file: t('terminal — tuzatilgandan keyin (haqiqiy)', 'терминал — после исправления (настоящий)'), lines: LC5_RUN }]}
+    ok={t("To'g'ri. O'n uchinchi satr probel bilan yozilgan raqamdan false kutadi. Bu qoida emas, kod hozir shunday ishlaydi. Oltinchi ekrandagi replace bilan tuzatsak, shu test qizaradi: yigirma uchtadan bittasi. Satrda kutilganni true qildik, hammasi yashil, sinab ko'rdik. Demak, AI testidagi har kutilgan qiymatni qoidaga solishtiring.", 'Верно. Тринадцатая строка ждёт false для номера с пробелами. Это не правило, просто код сейчас так работает. Если исправить через replace с шестого экрана, этот тест покраснеет: один из двадцати трёх. Мы поменяли ожидание на true, всё зелёное, проверили. Значит, каждое ожидаемое значение в тесте от AI сверяйте с правилом.')}
+    okShort={t("13-satr: probelli raqam → false — bu hozirgi xulq, qoida emas. replace tuzatishidan keyin shu test qizaradi (1 failed); kutilgan true → 23 passed (sinab ko'rilgan).", 'Строка 13: номер с пробелами → false — это текущее поведение, а не правило. После исправления через replace этот тест краснеет (1 failed); ожидание true → 23 passed (проверено).')}
+    hint={t("Bu satr qoidaga mos: raqam soni, harf yoki bo'sh satr haqida. Mijozning yozish odati bilan bog'liq satrni qidiring.", 'Эта строка соответствует правилу: она про количество цифр, буквы или пустую строку. Ищите строку, связанную с привычкой клиента писать номер.')} />;
 }
 
 // ============================================================
@@ -5451,6 +5520,27 @@ function Screen19(p) {
 // ============================================================
 //  20 · AI edge testlar yozdi — ikki to'plam (jest2v2-ai/ai1, ai2)
 // ============================================================
+// 26.11 (F-1125-01, M56 — Nest-1 darajasi): bitta vazifa, ikki topshiriq — oddiy (p1-prompt.txt, 04.11) va Jest tilida (p2-prompt.txt, 26.11);
+// o'sha ikki model, har biri o'z nusxasida (jest2v2-ai/p2/). 2-topshiriqdagi probel satri bu yerda ko'rsatilmaydi — mentor uni 22-ekranda (Tekshiruv 5) o'zi topadi.
+const P2_JEST = ["OrderBotNest'ga jest bilan edge case va error path testlarini yoz.",
+  "- Telefon qoidasi: telegram.service.ts dagi PHONE ni src/api/telegram/phone.ts ga isPhone(text) funksiyasi qilib ajrat, telegram.service.ts shu funksiyani chaqirsin. phone.spec.ts da it.each bilan: to'g'ri raqam, chegara (eng qisqa va eng uzun to'g'ri raqam, bittaga qisqa va bittaga uzun), harf, bo'sh satr, probel bilan yozilgan raqam.",
+  "- OrderService.place: uch error path — telefon yo'q, savat bo'sh, omborda yetmaydi. Baza o'rniga mock: Test.createTestingModule, DataSource.transaction, manager.findOne va manager.query — jest.fn.",
+  "- Sinxron xato — expect(() => …).toThrow('…'), promise xatosi — await expect(…).rejects.toThrow('…'). Xatodan keyin UPDATE ketmaganini not.toHaveBeenCalled bilan tekshir. Chegara: omborda aynan 2 ta, 2 ta olinadi — o'tadi.",
+  "- Xato xabarini qo'lda yoz, koddan olma. Boshqa kodni o'zgartirma. npm test yashil bo'lsin; qaysi fayl qo'shilgani va o'zgarganini yoz."].join('\n');
+// 2-AI, 1-topshiriq: telegram.service.spec.ts — «rad etiladi» ro'yxati (jest2v2-ai/ai2, aynan; 50–55 va 58–60 qisqartirilgan)
+const AI2_P1_PROBEL = [
+  { n: 49, h: tsLine("  it.each([") },
+  { n: '', h: '<span class="cm">…</span>' },
+  { n: 56, h: tsLine("    ['++998901234567', 'ikki +'],") },
+  { n: 57, id: 'p', h: tsLine("    ['+998 90 123 45 67', 'ichida bo\\'shliq'],") },
+  { n: '', h: '<span class="cm">…</span>' },
+  { n: 61, h: tsLine("  ])('rad etiladi: %j (%s)', async (phone) => {") },
+];
+// Natija 2 × 2 — jest2v2-ai/XULOSA.md (p1) va p2/XULOSA.md (p2): test soni (eski 10 bilan), qo'shilgan qator (diff-stat), telefon qoidasi
+const RES20 = [
+  [t('1-AI (kuchli model)', '1-й AI (сильная модель)'), t('50 test · 352 qator', '50 тестов · 352 строки'), false, t('23 test · 114 qator', '23 теста · 114 строк'), true],
+  [t('2-AI (kuchsizroq model)', '2-й AI (модель слабее)'), t('42 test · 224 qator', '42 теста · 224 строки'), false, t('23 test · 90 qator', '23 теста · 90 строк'), true],
+];
 const S20 = mkS(20, [{ v: 'intro' }, { v: 'prompt' }, { v: 'two' }, { v: 'snip' }, { v: 'snip', sum: true }]);
 function Screen20(p) {
   return <Lesson p={p} S={S20} scene={({ seg }) => <>
@@ -5458,16 +5548,22 @@ function Screen20(p) {
       <Card c={T.ink3} h={t("1–4-bosqich · xato yo'lini siz yozdingiz", "Этапы 1–4 · путь ошибки писали вы")} dim><p><code>isPhone</code> · mock · <code>toThrow</code> / <code>rejects</code> · <code>not.toHaveBeenCalled</code>{t(" · chegara", " · граница")}</p></Card>
       <Card c={JC.ai} h={t("5-bosqich · AI yozadi, siz qabul qilasiz", "Этап 5 · пишет AI, вы принимаете")} hl><p>{t("Savol: ", "Вопрос: ")}<b>{t("bu test xatoni ushlaydimi — va qoidani sinaydimi?", "ловит ли этот тест ошибку — и проверяет ли он правило?")}</b></p></Card>
     </div>}
-    {(seg.v === 'prompt' || seg.v === 'two') && <AiReply who={t("Prompt — ikkala AI'ga bir xil", "Промпт — одинаковый для обоих AI")} prompt={KOD.PROMPT1} tag={t("haqiqiy yurgizish · 04.11", "настоящий запуск · 04.11")} />}
-    {seg.v === 'two' && <div className="pg-two">
-      <AiReply who={t('1-AI (kuchli model)', '1-й AI (сильная модель)')} said={t(<>«50 test, hammasi o'tdi» · <code>await expect(run(…)).rejects.toThrow(…)</code> · <code>not.toHaveBeenCalled</code> 12 ta</>, <>«50 тестов, все прошли» · <code>await expect(run(…)).rejects.toThrow(…)</code> · <code>not.toHaveBeenCalled</code> — 12</>)} diff={KOD.AI_DIFF1} hl />
-      <AiReply who={t('2-AI (kuchsizroq model)', '2-й AI (модель слабее)')} said={t(<>«42 test o'tdi» · <code>expect(() =&gt; service.place(…)).toThrow(…)</code> · <code>rejects</code> 3 ta</>, <>«42 теста прошли» · <code>expect(() =&gt; service.place(…)).toThrow(…)</code> · <code>rejects</code> — 3</>)} diff={KOD.AI_DIFF2} hl />
+    {seg.v === 'prompt' && <div className="pg-two">
+      <AiReply who={t("1-topshiriq · oddiy so'zlar bilan", "1-е задание · простыми словами")} prompt={KOD.PROMPT1} tag={t("haqiqiy yurgizish · 04.11", "настоящий запуск · 04.11")} />
+      <AiReply who={t("2-topshiriq · Jest tilida", "2-е задание · на языке Jest")} prompt={P2_JEST} tag={t("haqiqiy yurgizish · 26.11", "настоящий запуск · 26.11")} hl />
     </div>}
+    {seg.v === 'two' && <div className="mk-light" style={{ padding: 12 }}><table className="j2-res"><thead><tr><th />
+      <th>{t("1-topshiriq · oddiy so'zlar bilan", "1-е задание · простыми словами")}</th><th>{t("2-topshiriq · Jest tilida", "2-е задание · на языке Jest")}</th></tr></thead>
+      <tbody>{RES20.map(([who, a, aOk, b, bOk]) => <tr key={who}><td>{who}</td>
+        <td>{a}<br /><b className={aOk ? 'ok' : 'no'}>{t("qoida ajratilmadi — handler orqali", "правило не выделено — через handler")}</b></td>
+        <td>{b}<br /><b className={bOk ? 'ok' : 'no'}><code>isPhone</code>{t(" ajratildi", " выделен")}</b></td></tr>)}
+        <tr><td>{t("To'rttalasida", "У всех четырёх")}</td><td colSpan={2}><code>await … rejects.toThrow</code> · <code>not.toHaveBeenCalled</code>{t(" — to'g'ri; so'ralmagan kodga tegmadi", " — верно; код, о котором не просили, не тронут")}</td></tr>
+      </tbody></table></div>}
     {seg.v === 'snip' && <div className="pg-two">
-      <CodePanel file={t("1-AI · telegram.service.phone.spec.ts · rad ro'yxati", "1-й AI · telegram.service.phone.spec.ts · список отказов")} lines={kod('AI1_TEL', { 90: 'p' })} focus={['p']} />
-      <CodePanel file="2-AI · telegram.service.spec.ts" lines={kod('AI2_TEL', { 21: 'm' })} focus={['m']} />
+      <CodePanel file={t("1-AI · 1-topshiriq · telegram.service.phone.spec.ts · rad ro'yxati", "1-й AI · 1-е задание · telegram.service.phone.spec.ts · список отказов")} lines={kod('AI1_TEL', { 90: 'p' })} focus={['p']} />
+      <CodePanel file={t("2-AI · 1-topshiriq · telegram.service.spec.ts · «rad etiladi»", "2-й AI · 1-е задание · telegram.service.spec.ts · «rad etiladi»")} lines={AI2_P1_PROBEL} focus={['p']} />
     </div>}
-    {seg.sum && <div className="mk-rule">{t(<>«Hammasi yashil» — <b>tekshiruv emas</b>. Va yangi savol: test <b>qoidani</b> sinaydimi, <b>kodni muhrlaydimi</b>?</>, <>«Всё зелёное» — <b>не проверка</b>. И новый вопрос: тест проверяет <b>правило</b> или <b>запечатывает код</b>?</>)}</div>}
+    {seg.sum && <div className="mk-rule">{t(<>Topshiriqni <b>dars tilida</b> bering — tuzilish to'g'ri bo'ladi. <b>Qoidani</b> (probelli raqam qabul qilinadimi) siz aytasiz; «hammasi yashil» — hali <b>tekshiruv emas</b>.</>, <>Давайте задание <b>на языке урока</b> — структура будет верной. <b>Правило</b> (принимать ли номер с пробелами) задаёте вы; «всё зелёное» — ещё <b>не проверка</b>.</>)}</div>}
   </>} />;
 }
 
@@ -5477,7 +5573,7 @@ function Screen20(p) {
 const S21 = mkS(21, [{ rows: 5 }, { rows: 5, all: true }, { rows: 5, seal: true }, { rows: 5, sum: true }]);
 function Screen21(p) {
   return <Lesson p={p} S={S21} scene={({ seg }) => <>
-    {!seg.seal && <div className="mk-light" style={{ padding: 12 }}><div className="mk-tag">{t("Nechta test qizardi (0 — buzilish sezilmadi) · ", "Сколько тестов покраснело (0 — поломка не замечена) · ")}<code>jest2v2-mutatsiya.sh</code></div><MutTable rows={seg.rows} /></div>}
+    {!seg.seal && <div className="mk-light" style={{ padding: 12 }}><div className="mk-tag">{t("Nechta test qizardi (0 — buzilish sezilmadi) · ", "Сколько тестов покраснело (0 — поломка не замечена) · ")}<code>jest2v2-mutatsiya.sh</code></div><MutTable rows={seg.rows} />{(seg.all || seg.sum) && <div className="mk-pair" style={{ marginTop: 6 }}>{t("2-topshiriq (Jest tilida): 1-AI 23 test · 2-AI 23 test — beshala buzishda bittadan qizardi", "2-е задание (на языке Jest): 1-й AI 23 теста · 2-й AI 23 теста — на всех пяти поломках покраснело по одному")} · <code>p2/mutatsiya-p2.txt</code></div>}</div>}
     {seg.seal && <div style={{ display: 'grid', gap: 8 }}>
       <div className="mk-tag" style={{ margin: 0 }}>{t("Oltinchi «buzilish» — buzib bo'lmaydi: AI hozirgi xulqni muhrlagan", "Шестую «поломку» — не сломать: AI запечатал текущее поведение")}</div>
       <CodePanel file={t("1-AI · telegram.service.phone.spec.ts · «rad etiladi» ro'yxatida", '1-й AI · telegram.service.phone.spec.ts · в списке «rad etiladi»')} lines={kod('AI1_TEL', { 90: 'p' }, 88, 92)} focus={['p']} />
@@ -5661,6 +5757,7 @@ NATIJA YO'Q (PASS/FAIL yo'q, Node.js v24…): toThrow promise xatosida · await'
 ## HTTP test
 npm i -D supertest @types/supertest · Test.createTestingModule({ controllers: [AppController] }) → app = mod.createNestApplication(); await app.init() · request(app.getHttpServer()).get('/') → status 200, body · /nope → 404 «Cannot GET /nope»
 ## AI testini qabul qilish
+Topshiriq dars tilida (qoidani ajrat · it.each · mock · await + rejects · not.toHaveBeenCalled · chegara) — tuzilish to'g'ri chiqadi; kutilgan qiymatni (masalan, probelli raqam qabul qilinadimi) o'zingiz yozing — aks holda AI uni hozirgi koddan oladi
 git diff --stat — faqat .spec.ts · rejects oldida await · «bo'lmasligi kerak» testi bormi · har test: qoidami yoki «kod hozir shunday»mi (AI probelli raqam rad etilishini muhrlagan edi) · buzib tekshirish
 ## Xato qiladigan joylar
 Received function did not throw → guard yo'q · natija yo'q → () => yoki await yo'q · Expected substring / Received message → xabarni moslang · Nest can't resolve dependencies … (?, DataSource) → providers'da repository token yo'q · Received message: "Mahsulot topilmadi" → mockResolvedValue yozilmagan
@@ -5750,7 +5847,7 @@ function Cover({ onStart, resume }) {
     </div></div>
   );
 }
-const SCREENS = [Screen1, Screen2, Screen3, Screen4, Screen5, Screen6, ScreenP7, Screen8, Screen9, Screen10, Screen11, Screen12, Screen13, Screen14, Screen15, Screen16, ScreenP17, Screen18, Screen19, Screen20, Screen21, ScreenP22, Screen23, Screen24, Screen25];
+const SCREENS = [Screen1, Screen2, Screen3, Screen4, Screen5, Screen6, ScreenP7, Screen8, Screen9, Screen10, Screen11, Screen12, Screen13, Screen14, Screen15, Screen16, ScreenP17, Screen18, Screen19, Screen20, Screen21, ScreenAI5, ScreenP22, Screen23, Screen24, Screen25]; // F-1125-01: ScreenAI5 (Tekshiruv 5) — saytda 22-ekran; MD 22–25 saytda 23–26 (M57)
 const PRACTICE_COUNT = [ScreenP7, ScreenP17, ScreenP22].filter((S) => SCREENS.includes(S)).length; // 26.11 (F-1125-01): havola bo'yicha — build (minify) funksiya nomini qisqartiradi, nom bo'yicha son 0 chiqib passed doim false edi
 export default function JestEdgeMentorLesson({ studentName, lang = 'uz', onFinished, startAt }) {
   setLang(lang);
@@ -5844,7 +5941,7 @@ ru(HOMEWORK25, [
   { t: 'Раздел README «Тесты»: поломка → имя покрасневшего теста (3 строки) → git push → ссылка на репозиторий в домашнее задание на платформе' },
 ]);
 RU_S.TITLE = 'Путь ошибки: правильно ли бот ломается на неверном вводе';
-RU_S.COVER = ['Всего около 1 часа 15–30 минут: озвучка ~25 минут · три практики 50–65 минут · 4 проверки · самопроверка 8 вопросов. После экрана 14 можно сделать перерыв', 'Нужно: урок для менторов Jest-1 (вы написали в OrderBotNest texts.spec.ts, keyboards.spec.ts) · Node.js 20+ · VS Code · AI-помощник (Antigravity, Claude Code, Codex или Copilot). База и токен бота не нужны', 'Проект: github.com/Azizbekcrypto/OrderBotNest — начинаете с тега jest2-start'];
+RU_S.COVER = ['Всего около 1 часа 15–30 минут: озвучка ~25 минут · три практики 50–65 минут · 5 проверок · самопроверка 8 вопросов. После экрана 14 можно сделать перерыв', 'Нужно: урок для менторов Jest-1 (вы написали в OrderBotNest texts.spec.ts, keyboards.spec.ts) · Node.js 20+ · VS Code · AI-помощник (Antigravity, Claude Code, Codex или Copilot). База и токен бота не нужны', 'Проект: github.com/Azizbekcrypto/OrderBotNest — начинаете с тега jest2-start'];
 RU_S.FIN_INTRO = 'Вы всё посмотрели, теперь проверьте себя. Итоговый тест, восемь вопросов: три пути, вынос правила, to throw и rejects, случаи без результата, тест «не должно быть», граница и HTTP. На каждый вопрос одна попытка, после ответа откроются верный ответ и пояснение. Шесть и больше — урок усвоен. Если меньше, вернитесь к указанным экранам и пройдите тест заново.';
 RU_S.FIN_PASS = 'Урок усвоен. Теперь, если ученик скажет, что тест не даёт результата, вы знаете, куда смотреть.';
 RU_S.NEXT_T = 'CI/CD: тесты в конвейере';
@@ -5885,6 +5982,7 @@ manager.findOne.mockResolvedValue({ id: 4, name: 'Kolonka', stock: 1, price: 500
 ## HTTP-тест
 npm i -D supertest @types/supertest · Test.createTestingModule({ controllers: [AppController] }) → app = mod.createNestApplication(); await app.init() · request(app.getHttpServer()).get('/') → status 200, body · /nope → 404 «Cannot GET /nope»
 ## Приём теста от AI
+Задание на языке урока (выделить правило · it.each · mock · await + rejects · not.toHaveBeenCalled · граница) — структура выходит верной; ожидаемое значение (например, принимать ли номер с пробелами) пишите сами — иначе AI возьмёт его из текущего кода
 git diff --stat — только .spec.ts · await перед rejects · есть ли тест «не должно быть» · каждый тест: правило или «код просто сейчас так» (AI запечатал отказ номеру с пробелами) · проверка поломкой
 ## Где ошибаются
 Received function did not throw → нет guard · результата нет → нет () => или await · Expected substring / Received message → согласуйте сообщение · Nest can't resolve dependencies … (?, DataSource) → в providers нет repository token · Received message: "Mahsulot topilmadi" → не написан mockResolvedValue
@@ -5963,7 +6061,7 @@ const RU_MDT = {
  },
  "4": {
   "kicker": "Проверка 1",
-  "eyebrow": "Проверка · 1 / 4",
+  "eyebrow": "Проверка · 1 / 5",
   "title": "Клиент написал номер как «+998 90 123 45 67». Что вернёт isPhone с текущим regex?",
   "q": "Правило вынесли, теперь проверим. Первая проверка. Клиент написал номер с пробелами: плюс девять девять восемь, пробел, девяносто, пробел и так далее. Что вернёт is phone с текущим regex? Выберите вариант.",
   "ok": "Верно. В regex только плюс и цифры, пробела нет, поэтому false. Trim убирает только пробелы в начале и в конце, а не в середине. Бот отклонит этот номер, а клиент думает, что написал его правильно. Значит, edge case часто появляется не из правила, а из привычки клиента.",
@@ -6188,7 +6286,7 @@ const RU_MDT = {
  },
  "12": {
   "kicker": "Проверка 2",
-  "eyebrow": "Проверка · 2 / 4",
+  "eyebrow": "Проверка · 2 / 5",
   "title": "Тест телефона написали через await expect(service.place(…)).rejects.toThrow(). place бросает ошибку сразу, внутри функции. Результат?",
   "q": "Поставим форму для promise на синхронную ошибку. Вторая проверка. Тест телефона написали через rejects, но place бросает ошибку телефона сразу, в самой функции, не возвращая promise. Что скажет npm test? Выберите вариант.",
   "ok": "Верно. При вызове place ошибка бросилась сразу, expect ещё не запустился. Jest считает, что упал сам тест, и даёт FAIL с сообщением: нет номера телефона. На этот раз результат есть, потому что ошибка синхронная и Jest её поймал. Значит, rejects ловит только ошибку, пришедшую из promise.",
@@ -6231,7 +6329,7 @@ const RU_MDT = {
  },
  "14": {
   "kicker": "Проверка 3",
-  "eyebrow": "Проверка · 3 / 4 — какая строка с ошибкой?",
+  "eyebrow": "Проверка · 3 / 5 — какая строка с ошибкой?",
   "title": "В этом тестовом файле npm test не даёт результата — процесс падает. Найдите строку-виновника",
   "q": "Вы видели скрытую ошибку, теперь найдите её сами. Третья проверка. В этом тестовом файле npm test не даёт результата, процесс падает. Одна строка во фрагменте не ждёт promise. Нажмите на эту строку.",
   "ok": "Верно. В этой строке нет await: тест заканчивается, не дождавшись promise, ошибка приходит позже, и Jest не может привязать её к тесту. На экране исправленная строка: с await. Теперь неверное сообщение даёт обычный красный тест, с expected и received. Значит, если результата нет, сначала ищите await перед rejects.",
@@ -6384,7 +6482,7 @@ const RU_MDT = {
  },
  "19": {
   "kicker": "Проверка 4",
-  "eyebrow": "Проверка · 4 / 4",
+  "eyebrow": "Проверка · 4 / 5",
   "title": "В приложении есть только route GET /. Тест отправил GET /nope. Чему будут равны res.status и res.body.message?",
   "q": "Вы видели HTTP-тест, теперь проверим. Четвёртая проверка. В приложении только один route, корень. Тест отправил запрос на несуществующий адрес, nope. Какими будут статус и сообщение? Выберите вариант.",
   "ok": "Верно. На несуществующий адрес Nest сам возвращает четыреста четыре, в теле message: cannot get nope. Это не ошибка в вашем коде, а ожидаемый error path, и тест ждёт именно его. Значит, несуществующий адрес — не пятьсот, а четыреста четыре: ошибка клиента, а не сервера.",
@@ -6405,27 +6503,27 @@ const RU_MDT = {
  },
  "20": {
   "kicker": "Этап 5 · AI",
-  "title": "Продолжение нового навыка: AI написал тесты edge и ошибок — два набора, оба зелёные; теперь принимаем их",
+  "title": "Продолжение нового навыка: AI написал тесты edge и ошибок — два разных задания, четыре набора, все зелёные; теперь принимаем их",
   "seg": {
    "a": [
     "Снова этап AI: <b>тесты edge и ошибок пишет AI, вы их принимаете</b>",
-    "Как и на первом уроке по Jest, последний этап — с AI. Разница: на этот раз AI пишет не happy path, а тесты edge и ошибок, то есть сегодняшнюю тему. Мы дали двум разным AI один простой промпт и принесли результат."
+    "Как и на первом уроке по Jest, последний этап — с AI. Разница: на этот раз AI пишет не happy path, а тесты edge и ошибок, то есть сегодняшнюю тему. Мы дали двум разным AI одну задачу двумя разными заданиями и принесли результат."
    ],
    "b": [
-    "Промпт: <b>«напиши edge case и тесты ошибок для place и проверки телефона»</b> — без подсказок",
-    "Промпт простой: напиши jest-тесты для edge case и ошибочных ситуаций функции place в order service и проверки номера телефона, пусть npm test будет зелёным. Rejects, await, граница, mock — ни одного из этих слов в промпте нет. Каждый AI работал в отдельной копии проекта."
+    "Два задания: <b>простыми словами</b> и <b>на языке Jest</b> — правило, <code>it.each</code>, mock, <code>rejects</code>, граница",
+    "Первое задание простыми словами: напиши тесты edge case и ошибок для place и проверки телефона, пусть npm test будет зелёным. Второе — на языке сегодняшнего урока: вынеси правило в функцию is phone, границы через it each, mock для place, rejects и await, после ошибки update не уходит. Каждый AI работал в отдельной копии проекта."
    ],
    "c": [
-    "Результат хороший: <b>50 и 42 теста, код не тронут</b>, <code>rejects</code> и <code>await</code> верные, есть тесты «не должно быть»",
-    "Результат выглядит хорошо. Оба добавили только тестовые файлы и не тронули код. Первый написал пятьдесят тестов, второй сорок два, все зелёные. Оба написали для ошибки promise rejects и await, процесс не упал. Оба проверили, что после ошибки update не ушёл."
+    "Просто: <b>50 и 42 теста</b>, правило не вынесено · на языке Jest: <b>23 и 23 теста</b>, <code>isPhone</code> вынесен",
+    "Результат. По простому заданию оба добавили только тестовые файлы: пятьдесят и сорок два теста, правило телефона не вынесли, а проверяют его через весь handler, подделывая четыре сервиса. По заданию на языке Jest оба вынесли правило в is phone, тестов по двадцать три, код больше чем вдвое короче. Все четверо верно написали rejects и await."
    ],
    "d": [
-    "Но: оба <b>не вынесли правило</b> и <b>записали отказ номеру с пробелами как «правильный»</b>",
-    "Но есть две вещи. Ни один не вынес правило телефона: оба проверяют его через весь handler, подделывая четыре сервиса, у первого сто сорок девять строк. И оба записали в тест, что номер с пробелами правильно отклоняется, а мы на шестом экране нашли, что это ошибка."
+    "Но все четверо <b>записали отказ номеру с пробелами как «правильный»</b> — и на языке Jest тоже",
+    "Но одно у всех четверых одинаково: отказ номеру, написанному с пробелами, записан в тест как правильный. На шестом экране мы нашли, что это ошибка. В задании на языке Jest случай с пробелами был, но ответ не был написан, и AI взял ответ из текущего кода. Эту строку вы найдёте сами на проверке."
    ],
    "e": [
-    "Итог: <b>зелёный — ещё не проверка</b>; проверим поломкой — и ещё вопрос: тест проверяет правило или запечатывает код",
-    "Итог: зелёный — ещё не проверка, на следующем экране проверим пятью поломками. И появился новый вопрос: тест от AI проверяет правило или запечатывает то, как код работает сейчас? Тест номера с пробелами — второе."
+    "Итог: <b>задание на языке урока даёт структуру</b>, правило задаёте вы; зелёный — ещё не проверка",
+    "Итог: если давать задание на языке урока, AI делает структуру правильно: выносит правило, тесты короткие. Но само правило, принимать ли номер с пробелами, задаёте вы. Зелёный — ещё не проверка: на следующем экране ломаем код."
    ]
   }
  },
@@ -6438,16 +6536,16 @@ const RU_MDT = {
     "Мы взяли пять поломок, каждая — одно сегодняшнее правило. В regex девять на восемь. «Меньше» на «меньше или равно». Update раньше проверки склада. Изменить сообщение ошибки. Убрать проверку пустой корзины. Проверили все три набора: наш и двух AI."
    ],
    "b": [
-    "Результат: <b>все три набора поймали все пять</b> — на этот раз AI хорошо написал путь ошибки",
-    "Результат: все три набора поймали все пять поломок. Наши двадцать пять тестов краснели по одному на каждую поломку. Первый AI заметил изменение сообщения тремя тестами, нарушение порядка — двумя. Второй AI тоже заметил всё. На этот раз AI хорошо написал путь ошибки, это признаём."
+    "Результат: <b>все наборы поймали все пять поломок</b>, и на языке Jest тоже — AI хорошо написал путь ошибки",
+    "Результат: все три набора поймали все пять поломок. Наши двадцать пять тестов краснели по одному на каждую поломку. Первый AI заметил изменение сообщения тремя тестами, второй тоже заметил всё. Два набора на языке Jest тоже поймали все пять. На этот раз AI хорошо написал путь ошибки, это признаём."
    ],
    "c": [
     "Шестой «поломки» нет в таблице: <b>AI запечатал отказ номеру с пробелами</b> — исправление <code>replace</code> делает его тест красным",
-    "Но одна вещь в таблицу не помещается, потому что её нельзя сломать: пробел. Оба AI запечатали тестом отказ номеру с пробелами. Если вы исправите через replace с шестого экрана, их тест покраснеет. Тест охраняет не правило, а текущий код. О привычке клиента AI не знает."
+    "Но одна вещь в таблицу не помещается, потому что её нельзя сломать: пробел. Все четыре набора запечатали тестом отказ номеру с пробелами. Если вы исправите через replace с шестого экрана, их тест покраснеет. Тест охраняет не правило, а текущий код. О привычке клиента AI не знает."
    ],
    "d": [
     "Итог: тест от AI <b>ловит ошибку, но и запечатывает текущее поведение</b> — у каждого теста спрашивайте «это правило?»",
-    "Итог: тест от AI делает две вещи. Ловит ошибку — это хорошо. И запечатывает текущее поведение, в том числе ошибку. Читайте каждый тест и спрашивайте: это правило или код просто сейчас так работает? Теперь попробуете со своим AI."
+    "Итог: тест от AI делает две вещи. Ловит ошибку — это хорошо. И запечатывает текущее поведение, в том числе ошибку. Читайте каждый тест и спрашивайте: это правило или код просто сейчас так работает? Сначала одна проверка, потом попробуете со своим AI."
    ]
   }
  },

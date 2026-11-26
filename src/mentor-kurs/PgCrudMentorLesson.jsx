@@ -639,8 +639,9 @@ function FileTree({ root = MKCFG.root, files = MKCFG.files, active, onOpen, big,
   </div>;
 }
 // Bitta VS Code oynasi (F-1030-22): sarlavha · chapda Explorer · o'ngda editor (kod panelida fayl yorlig'i — tab)
-function Ide({ root = MKCFG.root, files, active, onOpen, fresh, clickable, children, style }) {
-  return <div className="mk-ide" style={style}>
+// className (F-1125-01): «mk-zich» — 1280×720 da zich sahna (CSS_N1, faqat past ekranda)
+function Ide({ root = MKCFG.root, files, active, onOpen, fresh, clickable, children, style, className }) {
+  return <div className={'mk-ide' + (className ? ' ' + className : '')} style={style}>
     <div className="mk-ide-bar"><i /><i /><i /><span>{root} — Visual Studio Code</span></div>
     <FileTree root={root} files={files} active={active} onOpen={onOpen} fresh={fresh} clickable={clickable} />
     <div className="mk-ide-main">{children}</div>
@@ -1100,6 +1101,17 @@ const CSS_N1 = `
 .n1-cv .pic{background:${T.bg};border-left:1px solid ${T.line};display:flex;align-items:center;padding:24px 20px}
 @media (max-width:900px){.mk-cover .card.n1-cv{grid-template-columns:1fr}.n1-cv .pic{border-left:0;border-top:1px solid ${T.line}}}
 @media (prefers-reduced-motion:reduce){.n1-pk.loop,.n1-sock.wait,.n1-act{animation:none}.n1-box *{transition:none!important}}
+/* F-1125-01 (1-savol): 1280×720 da Buzamiz sahnasi — kod, chizma, terminal va xulosa bitta oynaga sig'adi. Faqat Ide className mk-zich bo'lgan ekranlar; 1600 va 1920 o'zgarmaydi. Chizma o'z o'lchamida (kattalashtirilmaydi). */
+@media (max-height:920px){.mk-ide.mk-zich .mk-ide-main{gap:8px}}
+@media (max-height:760px){
+.mk-body:has(.mk-zich){padding-top:8px;padding-bottom:8px}
+.mk-ide.mk-zich .mk-ide-bar{padding:6px 12px}
+.mk-ide.mk-zich .mk-ide-main{gap:6px;padding:8px}
+.mk-ide.mk-zich .mk-panel{font-size:11.5px;line-height:1.26}
+.mk-ide.mk-zich .mk-panel .fn{margin-bottom:4px;padding:4px 12px}
+.mk-ide.mk-zich .mk-rule{padding:8px 12px;font-size:13.5px;line-height:1.4}
+.mk-ide.mk-zich .n1-fit{max-width:520px;margin:0 auto}
+}
 `;
 function useCssN1() {
   useEffect(() => {
@@ -2750,6 +2762,8 @@ const CSS3 = `
 .pg-rules div{display:flex;gap:10px;padding:6px 10px;border:1px solid ${T.line};border-radius:8px;background:${T.paper};transition:background .3s}
 .pg-rules div.on{background:#E3F5EC;border-color:${T.green}}
 .pg-rules div.new{animation:mk-up .4s ease both}
+/* F-1125-01 (1-savol): 1280×720 da 18-ekran xulosasi (ruschada 9 px toshardi) zichroq; 1600 va 1920 o'zgarmaydi */
+@media (max-height:760px){.z.z18{gap:8px}.z.z18 .z-card{padding:10px 12px!important}}
 `;
 function useCss3() {
   useEffect(() => {
@@ -3656,7 +3670,7 @@ const STEPS18 = [['Pool', 'ulanadi', T.purple], ['pool.query(sql)', "so'rov baza
 // F-1109-06: xulosa — to'rt kichik karta o'rniga GET /api/cars yo'li haqiqiy qiymatlar bilan, rowCount jadvali va catch (12-price-xato)
 // F-1120-02 (M51): yuqoridagi oqim kartasi o'rniga darsning rasmi — o'sha GET yo'li (CrudMachine)
 function Flow18() {
-  return <div className="z">
+  return <div className="z z18">
     <div className="z-card" style={{ padding: 12 }}>
       <CrudMachine path="api" on={['pm', 'route', 'pool', 'cars']} req={{ m: 'GET', url: '/api/cars', body: null }} st={200} res={'[{"id":1,"model":"Chevrolet Cobalt",…}, …]'}
         route={"app.<span class=\"n1-k\">get</span>(<span class=\"n1-s\">'/api/cars'</span>)"} sql={"pool.query(<span class=\"n1-s\">'SELECT * FROM cars'</span>)"} rc="rows: 3 · rowCount: 3" back="result.rows → res.json → 200"

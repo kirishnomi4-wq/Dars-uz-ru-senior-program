@@ -163,6 +163,7 @@ NATIJA YO'Q (PASS/FAIL yo'q, Node.js v24…): toThrow promise xatosida · await'
 ## HTTP test
 npm i -D supertest @types/supertest · Test.createTestingModule({ controllers: [AppController] }) → app = mod.createNestApplication(); await app.init() · request(app.getHttpServer()).get('/') → status 200, body · /nope → 404 «Cannot GET /nope»
 ## AI testini qabul qilish
+Topshiriq dars tilida (qoidani ajrat · it.each · mock · await + rejects · not.toHaveBeenCalled · chegara) — tuzilish to'g'ri chiqadi; kutilgan qiymatni (masalan, probelli raqam qabul qilinadimi) o'zingiz yozing — aks holda AI uni hozirgi koddan oladi
 git diff --stat — faqat .spec.ts · rejects oldida await · «bo'lmasligi kerak» testi bormi · har test: qoidami yoki «kod hozir shunday»mi (AI probelli raqam rad etilishini muhrlagan edi) · buzib tekshirish
 ## Xato qiladigan joylar
 Received function did not throw → guard yo'q · natija yo'q → () => yoki await yo'q · Expected substring / Received message → xabarni moslang · Nest can't resolve dependencies … (?, DataSource) → providers'da repository token yo'q · Received message: "Mahsulot topilmadi" → mockResolvedValue yozilmagan
@@ -252,7 +253,7 @@ function Cover({ onStart, resume }) {
     </div></div>
   );
 }
-const SCREENS = [Screen1, Screen2, Screen3, Screen4, Screen5, Screen6, ScreenP7, Screen8, Screen9, Screen10, Screen11, Screen12, Screen13, Screen14, Screen15, Screen16, ScreenP17, Screen18, Screen19, Screen20, Screen21, ScreenP22, Screen23, Screen24, Screen25];
+const SCREENS = [Screen1, Screen2, Screen3, Screen4, Screen5, Screen6, ScreenP7, Screen8, Screen9, Screen10, Screen11, Screen12, Screen13, Screen14, Screen15, Screen16, ScreenP17, Screen18, Screen19, Screen20, Screen21, ScreenAI5, ScreenP22, Screen23, Screen24, Screen25]; // F-1125-01: ScreenAI5 (Tekshiruv 5) — saytda 22-ekran; MD 22–25 saytda 23–26 (M57)
 const PRACTICE_COUNT = [ScreenP7, ScreenP17, ScreenP22].filter((S) => SCREENS.includes(S)).length; // 26.11 (F-1125-01): havola bo'yicha — build (minify) funksiya nomini qisqartiradi, nom bo'yicha son 0 chiqib passed doim false edi
 export default function JestEdgeMentorLesson({ studentName, lang = 'uz', onFinished, startAt }) {
   setLang(lang);

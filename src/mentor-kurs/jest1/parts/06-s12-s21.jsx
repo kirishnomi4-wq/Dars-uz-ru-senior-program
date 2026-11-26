@@ -57,14 +57,15 @@ function Scene14({ b }) {
   const v = beat === 0 ? (act.hit ? 'break' : 'act') : seg.v;
   const mini = <N1Mini><KbMini broken={v !== 'act'} fixed={v === 'fix'} known={beat >= 2} pins={beat === 2 ? { a: 1, b: 2 } : {}} /></N1Mini>;
   return <>
-    <Ide files={compact(FILES(F.txs, F.kbs), F.kb)} active={F.kb}>
+    <Ide className="mk-zich" files={compact(FILES(F.txs, F.kbs), F.kb)} active={F.kb}>
       {v === 'act' && <div onClick={act.onClick}><CodePanel file="keyboards.ts" lines={ACT14} focus={['x']} /></div>}
       {(v === 'break' || v === 'run') && <CodePanel key="b" file={t("keyboards.ts · buzilgan", "keyboards.ts · сломан")} lines={kod('KB_ORDER', { 39: 'x' }, 38, 41, BREAK14)} focus={['x']} />}
       {v === 'fix' && <CodePanel key="f" file={t("keyboards.ts · tiklandi", "keyboards.ts · восстановлен")} lines={kod('KB_ORDER', { 39: 'x' }, 38, 41)} focus={['x']} />}
       {mini}
+      {/* F-1125-01 (1-savol): terminal oyna ichida — explorer to'liq balandlikni oladi, 1280×720 va 1600×900 da kesilmaydi */}
+      {v === 'run' && <Term title={t("VS Code terminali · npm test -- keyboards", "терминал VS Code · npm test -- keyboards")} lines={T14S} er marks={{ [T14S.findIndex((l) => /● orderKeyboard ›/.test(l.h || ''))]: 'n1-p1', [T14S.findIndex((l) => /Received:/.test(l.h || ''))]: 'n1-p2' }} />}
+      {v === 'fix' && <Term lines={T14_OK} />}
     </Ide>
-    {v === 'run' && <Term title={t("VS Code terminali · npm test -- keyboards", "терминал VS Code · npm test -- keyboards")} lines={T14S} er marks={{ [T14S.findIndex((l) => /● orderKeyboard ›/.test(l.h || ''))]: 'n1-p1', [T14S.findIndex((l) => /Received:/.test(l.h || ''))]: 'n1-p2' }} />}
-    {v === 'fix' && <Term lines={T14_OK} />}
   </>;
 }
 

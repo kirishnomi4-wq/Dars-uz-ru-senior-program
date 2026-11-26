@@ -1,0 +1,28 @@
+## 1-AI Opus p2 (/tmp/claude-1000/-home-kali-Desktop-internetLesson/dbbd635b-6ea5-4c60-b2fe-611a741e0245/scratchpad/jest2p2-ai1/OrderBotNest)
+buzilmagan: Tests:       23 passed, 23 total
+B1 regex: 9–13 → 8–13 raqam (8 ta raqam o'tadi): Tests:       1 failed, 22 passed, 23 total
+B2 place: stock < qty → stock <= qty: Tests:       1 failed, 22 passed, 23 total
+B3 place: UPDATE ombor tekshiruvidan OLDIN: Tests:       1 failed, 22 passed, 23 total
+B4 xabar: «Telefon raqami yo'q» → «Raqam yo'q»: Tests:       1 failed, 22 passed, 23 total
+B5 place: bo'sh savat tekshiruvi olib tashlandi: Tests:       1 failed, 22 passed, 23 total
+
+## 2-AI Haiku p2 (/tmp/claude-1000/-home-kali-Desktop-internetLesson/dbbd635b-6ea5-4c60-b2fe-611a741e0245/scratchpad/jest2p2-ai2/OrderBotNest)
+buzilmagan: Tests:       23 passed, 23 total
+B1 regex: 9–13 → 8–13 raqam (8 ta raqam o'tadi): Tests:       1 failed, 22 passed, 23 total
+B2 place: stock < qty → stock <= qty: Tests:       1 failed, 22 passed, 23 total
+B3 place: UPDATE ombor tekshiruvidan OLDIN: Tests:       1 failed, 22 passed, 23 total
+B4 xabar: «Telefon raqami yo'q» → «Raqam yo'q»: Tests:       1 failed, 22 passed, 23 total
+B5 place: bo'sh savat tekshiruvi olib tashlandi: Tests:       1 failed, 22 passed, 23 total
+
+?? .phone.bak
+## ai1 B6 (6-ekran tuzatishi: phone.ts da replace(/[\s-]/g, ''))
+-  return PHONE.test(text);
++  return PHONE.test(text.replace(/[\s-]/g, ''));
+  ● isPhone › probel bilan: «+998 90 123 45 67» → false
+Tests:       1 failed, 22 passed, 23 total
+?? .phone.bak
+## ai2 B6 (6-ekran tuzatishi: phone.ts da replace(/[\s-]/g, ''))
+-  return /^\+?\d{9,13}$/.test(text);
++  return /^\+?\d{9,13}$/.test(text.replace(/[\s-]/g, ''));
+  ● isPhone › probel bilan yozilgan raqam — 90 123 45 67 → false
+Tests:       1 failed, 22 passed, 23 total

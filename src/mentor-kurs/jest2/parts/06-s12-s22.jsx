@@ -173,6 +173,27 @@ function Screen19(p) {
 // ============================================================
 //  20 · AI edge testlar yozdi — ikki to'plam (jest2v2-ai/ai1, ai2)
 // ============================================================
+// 26.11 (F-1125-01, M56 — Nest-1 darajasi): bitta vazifa, ikki topshiriq — oddiy (p1-prompt.txt, 04.11) va Jest tilida (p2-prompt.txt, 26.11);
+// o'sha ikki model, har biri o'z nusxasida (jest2v2-ai/p2/). 2-topshiriqdagi probel satri bu yerda ko'rsatilmaydi — mentor uni 22-ekranda (Tekshiruv 5) o'zi topadi.
+const P2_JEST = ["OrderBotNest'ga jest bilan edge case va error path testlarini yoz.",
+  "- Telefon qoidasi: telegram.service.ts dagi PHONE ni src/api/telegram/phone.ts ga isPhone(text) funksiyasi qilib ajrat, telegram.service.ts shu funksiyani chaqirsin. phone.spec.ts da it.each bilan: to'g'ri raqam, chegara (eng qisqa va eng uzun to'g'ri raqam, bittaga qisqa va bittaga uzun), harf, bo'sh satr, probel bilan yozilgan raqam.",
+  "- OrderService.place: uch error path — telefon yo'q, savat bo'sh, omborda yetmaydi. Baza o'rniga mock: Test.createTestingModule, DataSource.transaction, manager.findOne va manager.query — jest.fn.",
+  "- Sinxron xato — expect(() => …).toThrow('…'), promise xatosi — await expect(…).rejects.toThrow('…'). Xatodan keyin UPDATE ketmaganini not.toHaveBeenCalled bilan tekshir. Chegara: omborda aynan 2 ta, 2 ta olinadi — o'tadi.",
+  "- Xato xabarini qo'lda yoz, koddan olma. Boshqa kodni o'zgartirma. npm test yashil bo'lsin; qaysi fayl qo'shilgani va o'zgarganini yoz."].join('\n');
+// 2-AI, 1-topshiriq: telegram.service.spec.ts — «rad etiladi» ro'yxati (jest2v2-ai/ai2, aynan; 50–55 va 58–60 qisqartirilgan)
+const AI2_P1_PROBEL = [
+  { n: 49, h: tsLine("  it.each([") },
+  { n: '', h: '<span class="cm">…</span>' },
+  { n: 56, h: tsLine("    ['++998901234567', 'ikki +'],") },
+  { n: 57, id: 'p', h: tsLine("    ['+998 90 123 45 67', 'ichida bo\\'shliq'],") },
+  { n: '', h: '<span class="cm">…</span>' },
+  { n: 61, h: tsLine("  ])('rad etiladi: %j (%s)', async (phone) => {") },
+];
+// Natija 2 × 2 — jest2v2-ai/XULOSA.md (p1) va p2/XULOSA.md (p2): test soni (eski 10 bilan), qo'shilgan qator (diff-stat), telefon qoidasi
+const RES20 = [
+  [t('1-AI (kuchli model)', '1-й AI (сильная модель)'), t('50 test · 352 qator', '50 тестов · 352 строки'), false, t('23 test · 114 qator', '23 теста · 114 строк'), true],
+  [t('2-AI (kuchsizroq model)', '2-й AI (модель слабее)'), t('42 test · 224 qator', '42 теста · 224 строки'), false, t('23 test · 90 qator', '23 теста · 90 строк'), true],
+];
 const S20 = mkS(20, [{ v: 'intro' }, { v: 'prompt' }, { v: 'two' }, { v: 'snip' }, { v: 'snip', sum: true }]);
 function Screen20(p) {
   return <Lesson p={p} S={S20} scene={({ seg }) => <>
@@ -180,16 +201,22 @@ function Screen20(p) {
       <Card c={T.ink3} h={t("1–4-bosqich · xato yo'lini siz yozdingiz", "Этапы 1–4 · путь ошибки писали вы")} dim><p><code>isPhone</code> · mock · <code>toThrow</code> / <code>rejects</code> · <code>not.toHaveBeenCalled</code>{t(" · chegara", " · граница")}</p></Card>
       <Card c={JC.ai} h={t("5-bosqich · AI yozadi, siz qabul qilasiz", "Этап 5 · пишет AI, вы принимаете")} hl><p>{t("Savol: ", "Вопрос: ")}<b>{t("bu test xatoni ushlaydimi — va qoidani sinaydimi?", "ловит ли этот тест ошибку — и проверяет ли он правило?")}</b></p></Card>
     </div>}
-    {(seg.v === 'prompt' || seg.v === 'two') && <AiReply who={t("Prompt — ikkala AI'ga bir xil", "Промпт — одинаковый для обоих AI")} prompt={KOD.PROMPT1} tag={t("haqiqiy yurgizish · 04.11", "настоящий запуск · 04.11")} />}
-    {seg.v === 'two' && <div className="pg-two">
-      <AiReply who={t('1-AI (kuchli model)', '1-й AI (сильная модель)')} said={t(<>«50 test, hammasi o'tdi» · <code>await expect(run(…)).rejects.toThrow(…)</code> · <code>not.toHaveBeenCalled</code> 12 ta</>, <>«50 тестов, все прошли» · <code>await expect(run(…)).rejects.toThrow(…)</code> · <code>not.toHaveBeenCalled</code> — 12</>)} diff={KOD.AI_DIFF1} hl />
-      <AiReply who={t('2-AI (kuchsizroq model)', '2-й AI (модель слабее)')} said={t(<>«42 test o'tdi» · <code>expect(() =&gt; service.place(…)).toThrow(…)</code> · <code>rejects</code> 3 ta</>, <>«42 теста прошли» · <code>expect(() =&gt; service.place(…)).toThrow(…)</code> · <code>rejects</code> — 3</>)} diff={KOD.AI_DIFF2} hl />
+    {seg.v === 'prompt' && <div className="pg-two">
+      <AiReply who={t("1-topshiriq · oddiy so'zlar bilan", "1-е задание · простыми словами")} prompt={KOD.PROMPT1} tag={t("haqiqiy yurgizish · 04.11", "настоящий запуск · 04.11")} />
+      <AiReply who={t("2-topshiriq · Jest tilida", "2-е задание · на языке Jest")} prompt={P2_JEST} tag={t("haqiqiy yurgizish · 26.11", "настоящий запуск · 26.11")} hl />
     </div>}
+    {seg.v === 'two' && <div className="mk-light" style={{ padding: 12 }}><table className="j2-res"><thead><tr><th />
+      <th>{t("1-topshiriq · oddiy so'zlar bilan", "1-е задание · простыми словами")}</th><th>{t("2-topshiriq · Jest tilida", "2-е задание · на языке Jest")}</th></tr></thead>
+      <tbody>{RES20.map(([who, a, aOk, b, bOk]) => <tr key={who}><td>{who}</td>
+        <td>{a}<br /><b className={aOk ? 'ok' : 'no'}>{t("qoida ajratilmadi — handler orqali", "правило не выделено — через handler")}</b></td>
+        <td>{b}<br /><b className={bOk ? 'ok' : 'no'}><code>isPhone</code>{t(" ajratildi", " выделен")}</b></td></tr>)}
+        <tr><td>{t("To'rttalasida", "У всех четырёх")}</td><td colSpan={2}><code>await … rejects.toThrow</code> · <code>not.toHaveBeenCalled</code>{t(" — to'g'ri; so'ralmagan kodga tegmadi", " — верно; код, о котором не просили, не тронут")}</td></tr>
+      </tbody></table></div>}
     {seg.v === 'snip' && <div className="pg-two">
-      <CodePanel file={t("1-AI · telegram.service.phone.spec.ts · rad ro'yxati", "1-й AI · telegram.service.phone.spec.ts · список отказов")} lines={kod('AI1_TEL', { 90: 'p' })} focus={['p']} />
-      <CodePanel file="2-AI · telegram.service.spec.ts" lines={kod('AI2_TEL', { 21: 'm' })} focus={['m']} />
+      <CodePanel file={t("1-AI · 1-topshiriq · telegram.service.phone.spec.ts · rad ro'yxati", "1-й AI · 1-е задание · telegram.service.phone.spec.ts · список отказов")} lines={kod('AI1_TEL', { 90: 'p' })} focus={['p']} />
+      <CodePanel file={t("2-AI · 1-topshiriq · telegram.service.spec.ts · «rad etiladi»", "2-й AI · 1-е задание · telegram.service.spec.ts · «rad etiladi»")} lines={AI2_P1_PROBEL} focus={['p']} />
     </div>}
-    {seg.sum && <div className="mk-rule">{t(<>«Hammasi yashil» — <b>tekshiruv emas</b>. Va yangi savol: test <b>qoidani</b> sinaydimi, <b>kodni muhrlaydimi</b>?</>, <>«Всё зелёное» — <b>не проверка</b>. И новый вопрос: тест проверяет <b>правило</b> или <b>запечатывает код</b>?</>)}</div>}
+    {seg.sum && <div className="mk-rule">{t(<>Topshiriqni <b>dars tilida</b> bering — tuzilish to'g'ri bo'ladi. <b>Qoidani</b> (probelli raqam qabul qilinadimi) siz aytasiz; «hammasi yashil» — hali <b>tekshiruv emas</b>.</>, <>Давайте задание <b>на языке урока</b> — структура будет верной. <b>Правило</b> (принимать ли номер с пробелами) задаёте вы; «всё зелёное» — ещё <b>не проверка</b>.</>)}</div>}
   </>} />;
 }
 
@@ -199,7 +226,7 @@ function Screen20(p) {
 const S21 = mkS(21, [{ rows: 5 }, { rows: 5, all: true }, { rows: 5, seal: true }, { rows: 5, sum: true }]);
 function Screen21(p) {
   return <Lesson p={p} S={S21} scene={({ seg }) => <>
-    {!seg.seal && <div className="mk-light" style={{ padding: 12 }}><div className="mk-tag">{t("Nechta test qizardi (0 — buzilish sezilmadi) · ", "Сколько тестов покраснело (0 — поломка не замечена) · ")}<code>jest2v2-mutatsiya.sh</code></div><MutTable rows={seg.rows} /></div>}
+    {!seg.seal && <div className="mk-light" style={{ padding: 12 }}><div className="mk-tag">{t("Nechta test qizardi (0 — buzilish sezilmadi) · ", "Сколько тестов покраснело (0 — поломка не замечена) · ")}<code>jest2v2-mutatsiya.sh</code></div><MutTable rows={seg.rows} />{(seg.all || seg.sum) && <div className="mk-pair" style={{ marginTop: 6 }}>{t("2-topshiriq (Jest tilida): 1-AI 23 test · 2-AI 23 test — beshala buzishda bittadan qizardi", "2-е задание (на языке Jest): 1-й AI 23 теста · 2-й AI 23 теста — на всех пяти поломках покраснело по одному")} · <code>p2/mutatsiya-p2.txt</code></div>}</div>}
     {seg.seal && <div style={{ display: 'grid', gap: 8 }}>
       <div className="mk-tag" style={{ margin: 0 }}>{t("Oltinchi «buzilish» — buzib bo'lmaydi: AI hozirgi xulqni muhrlagan", "Шестую «поломку» — не сломать: AI запечатал текущее поведение")}</div>
       <CodePanel file={t("1-AI · telegram.service.phone.spec.ts · «rad etiladi» ro'yxatida", '1-й AI · telegram.service.phone.spec.ts · в списке «rad etiladi»')} lines={kod('AI1_TEL', { 90: 'p' }, 88, 92)} focus={['p']} />

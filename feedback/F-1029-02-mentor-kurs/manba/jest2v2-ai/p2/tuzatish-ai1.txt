@@ -1,0 +1,33 @@
+# 1-AI (Opus) p2 — tuzatish: phone.ts ga 6-ekrandagi replace + phone.spec.ts 13-satr kutilgan: true (26.11)
+diff --git a/src/api/telegram/phone.spec.ts b/src/api/telegram/phone.spec.ts
+index 0ab7ec7..7dcfca4 100644
+--- a/src/api/telegram/phone.spec.ts
++++ b/src/api/telegram/phone.spec.ts
+@@ -10,7 +10,7 @@ describe('isPhone', () => {
+     { nomi: 'bittaga uzun — 14 raqam', text: '+99890123456789', kutilgan: false },
+     { nomi: 'harf aralashgan', text: '+99890abc4567', kutilgan: false },
+     { nomi: "bo'sh satr", text: '', kutilgan: false },
+-    { nomi: 'probel bilan', text: '+998 90 123 45 67', kutilgan: false },
++    { nomi: 'probel bilan', text: '+998 90 123 45 67', kutilgan: true },
+   ])('$nomi: «$text» → $kutilgan', ({ text, kutilgan }) => {
+     expect(isPhone(text)).toBe(kutilgan);
+   });
+diff --git a/src/api/telegram/phone.ts b/src/api/telegram/phone.ts
+index 61b4aad..257c915 100644
+--- a/src/api/telegram/phone.ts
++++ b/src/api/telegram/phone.ts
+@@ -2,5 +2,5 @@
+ const PHONE = /^\+?\d{9,13}$/;
+ 
+ export function isPhone(text: string): boolean {
+-  return PHONE.test(text);
++  return PHONE.test(text.replace(/[\s-]/g, ''));
+ }
+
+$ npx jest
+PASS src/api/telegram/phone.spec.ts
+PASS src/api/order/order.service.spec.ts
+PASS src/api/telegram/keyboards.spec.ts
+PASS src/api/telegram/texts.spec.ts
+Test Suites: 4 passed, 4 total
+Tests:       23 passed, 23 total

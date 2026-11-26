@@ -267,6 +267,8 @@ const CSS3 = `
 .pg-rules div{display:flex;gap:10px;padding:6px 10px;border:1px solid ${T.line};border-radius:8px;background:${T.paper};transition:background .3s}
 .pg-rules div.on{background:#E3F5EC;border-color:${T.green}}
 .pg-rules div.new{animation:mk-up .4s ease both}
+/* F-1125-01 (1-savol): 1280×720 da 18-ekran xulosasi (ruschada 9 px toshardi) zichroq; 1600 va 1920 o'zgarmaydi */
+@media (max-height:760px){.z.z18{gap:8px}.z.z18 .z-card{padding:10px 12px!important}}
 `;
 function useCss3() {
   useEffect(() => {

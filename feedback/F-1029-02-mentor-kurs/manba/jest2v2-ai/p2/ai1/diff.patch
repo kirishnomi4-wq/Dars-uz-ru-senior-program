@@ -1,0 +1,155 @@
+diff --git a/src/api/order/order.service.spec.ts b/src/api/order/order.service.spec.ts
+new file mode 100644
+index 0000000..4a4e793
+--- /dev/null
++++ b/src/api/order/order.service.spec.ts
+@@ -0,0 +1,89 @@
++import { Test } from '@nestjs/testing';
++import { getRepositoryToken } from '@nestjs/typeorm';
++import { DataSource } from 'typeorm';
++import { CartItem, Order, Product, User } from '../../core/entity';
++import { OrderService } from './order.service';
++
++// Baza yo'q: tranzaksiya ichidagi manager — jest.fn'lardan yig'ilgan soxta obyekt
++const user = (phone: string | null) =>
++  ({ id: 1, name: 'Ali', phone }) as User;
++const product = (stock: number) =>
++  ({ id: 5, name: 'Lavash', price: 25000, stock }) as Product;
++const cartItem = (qty: number) =>
++  ({ id: 1, product: product(10), qty }) as CartItem;
++
++describe('OrderService.place', () => {
++  let service: OrderService;
++  let ds: { transaction: jest.Mock };
++  let manager: {
++    findOne: jest.Mock;
++    query: jest.Mock;
++    create: jest.Mock;
++    save: jest.Mock;
++    delete: jest.Mock;
++  };
++
++  beforeEach(async () => {
++    manager = {
++      findOne: jest.fn(),
++      query: jest.fn(),
++      create: jest.fn((_entity, data) => data),
++      save: jest.fn(async (order) => ({ id: 42, ...order })),
++      delete: jest.fn(),
++    };
++    ds = { transaction: jest.fn((work) => work(manager)) };
++
++    const moduleRef = await Test.createTestingModule({
++      providers: [
++        OrderService,
++        { provide: getRepositoryToken(Order), useValue: {} },
++        { provide: DataSource, useValue: ds },
++      ],
++    }).compile();
++    service = moduleRef.get(OrderService);
++  });
++
++  it("telefon yo'q — sinxron xato, UPDATE ketmaydi", () => {
++    expect(() => service.place(user(null), [cartItem(1)])).toThrow(
++      "Telefon raqami yo'q",
++    );
++    expect(ds.transaction).not.toHaveBeenCalled();
++    expect(manager.query).not.toHaveBeenCalled();
++  });
++
++  it("savat bo'sh — sinxron xato, UPDATE ketmaydi", () => {
++    expect(() => service.place(user('+998901234567'), [])).toThrow(
++      "Savat bo'sh",
++    );
++    expect(ds.transaction).not.toHaveBeenCalled();
++    expect(manager.query).not.toHaveBeenCalled();
++  });
++
++  it('omborda yetmaydi — promise rad etiladi, UPDATE ketmaydi', async () => {
++    manager.findOne.mockResolvedValue(product(1));
++
++    await expect(
++      service.place(user('+998901234567'), [cartItem(2)]),
++    ).rejects.toThrow('Lavash: omborda faqat 1 ta qoldi');
++    expect(manager.query).not.toHaveBeenCalled();
++    expect(manager.save).not.toHaveBeenCalled();
++  });
++
++  it("chegara: omborda aynan 2 ta, 2 ta olinadi — o'tadi", async () => {
++    manager.findOne.mockResolvedValue(product(2));
++
++    const order = await service.place(user('+998901234567'), [cartItem(2)]);
++
++    expect(manager.query).toHaveBeenCalledTimes(1);
++    expect(manager.query).toHaveBeenCalledWith(
++      expect.stringContaining('UPDATE products SET stock = stock -'),
++      [2, 5],
++    );
++    expect(order).toMatchObject({
++      id: 42,
++      phone: '+998901234567',
++      status: 'NEW',
++      total: 50000,
++    });
++  });
++});
+diff --git a/src/api/telegram/phone.spec.ts b/src/api/telegram/phone.spec.ts
+new file mode 100644
+index 0000000..0ab7ec7
+--- /dev/null
++++ b/src/api/telegram/phone.spec.ts
+@@ -0,0 +1,17 @@
++import { isPhone } from './phone';
++
++describe('isPhone', () => {
++  it.each([
++    { nomi: "to'g'ri raqam", text: '+998901234567', kutilgan: true },
++    { nomi: "to'g'ri raqam, «+» siz", text: '998901234567', kutilgan: true },
++    { nomi: 'eng qisqa — 9 raqam', text: '901234567', kutilgan: true },
++    { nomi: 'eng uzun — 13 raqam', text: '+9989012345678', kutilgan: true },
++    { nomi: 'bittaga qisqa — 8 raqam', text: '90123456', kutilgan: false },
++    { nomi: 'bittaga uzun — 14 raqam', text: '+99890123456789', kutilgan: false },
++    { nomi: 'harf aralashgan', text: '+99890abc4567', kutilgan: false },
++    { nomi: "bo'sh satr", text: '', kutilgan: false },
++    { nomi: 'probel bilan', text: '+998 90 123 45 67', kutilgan: false },
++  ])('$nomi: «$text» → $kutilgan', ({ text, kutilgan }) => {
++    expect(isPhone(text)).toBe(kutilgan);
++  });
++});
+diff --git a/src/api/telegram/phone.ts b/src/api/telegram/phone.ts
+new file mode 100644
+index 0000000..61b4aad
+--- /dev/null
++++ b/src/api/telegram/phone.ts
+@@ -0,0 +1,6 @@
++// Telefon raqami: ixtiyoriy «+» va 9 tadan 13 tagacha raqam, boshqa belgi yo'q
++const PHONE = /^\+?\d{9,13}$/;
++
++export function isPhone(text: string): boolean {
++  return PHONE.test(text);
++}
+diff --git a/src/api/telegram/telegram.service.ts b/src/api/telegram/telegram.service.ts
+index 92d8a18..917d825 100644
+--- a/src/api/telegram/telegram.service.ts
++++ b/src/api/telegram/telegram.service.ts
+@@ -7,10 +7,9 @@ import { CatalogService } from '../catalog/catalog.service';
+ import { OrderService } from '../order/order.service';
+ import { UserService } from '../user/user.service';
+ import { cartKeyboard, catalogKeyboard, orderKeyboard } from './keyboards';
++import { isPhone } from './phone';
+ import { texts } from './texts';
+ 
+-const PHONE = /^\+?\d{9,13}$/;
+-
+ @Injectable()
+ export class TelegramService implements OnModuleInit, OnModuleDestroy {
+   private bot: Telegraf;
+@@ -154,7 +153,7 @@ export class TelegramService implements OnModuleInit, OnModuleDestroy {
+     const user = await this.users.getOrCreate(ctx.from!);
+     if (user.state === 'WAITING_PHONE') {
+       const phone = ctx.message.text.trim();
+-      if (!PHONE.test(phone)) return ctx.reply(texts.badPhone);
++      if (!isPhone(phone)) return ctx.reply(texts.badPhone);
+       await this.users.setPhone(user, phone);
+       return this.placeOrder(ctx, user);
+     }

@@ -1,0 +1,5 @@
+OrderBotNest'ga jest bilan edge case va error path testlarini yoz.
+- Telefon qoidasi: telegram.service.ts dagi PHONE ni src/api/telegram/phone.ts ga isPhone(text) funksiyasi qilib ajrat, telegram.service.ts shu funksiyani chaqirsin. phone.spec.ts da it.each bilan: to'g'ri raqam, chegara (eng qisqa va eng uzun to'g'ri raqam, bittaga qisqa va bittaga uzun), harf, bo'sh satr, probel bilan yozilgan raqam.
+- OrderService.place: uch error path — telefon yo'q, savat bo'sh, omborda yetmaydi. Baza o'rniga mock: Test.createTestingModule, DataSource.transaction, manager.findOne va manager.query — jest.fn.
+- Sinxron xato — expect(() => …).toThrow('…'), promise xatosi — await expect(…).rejects.toThrow('…'). Xatodan keyin UPDATE ketmaganini not.toHaveBeenCalled bilan tekshir. Chegara: omborda aynan 2 ta, 2 ta olinadi — o'tadi.
+- Xato xabarini qo'lda yoz, koddan olma. Boshqa kodni o'zgartirma. npm test yashil bo'lsin; qaysi fayl qo'shilgani va o'zgarganini yoz.

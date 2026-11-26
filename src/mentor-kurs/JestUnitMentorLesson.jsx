@@ -639,8 +639,9 @@ function FileTree({ root = MKCFG.root, files = MKCFG.files, active, onOpen, big,
   </div>;
 }
 // Bitta VS Code oynasi (F-1030-22): sarlavha · chapda Explorer · o'ngda editor (kod panelida fayl yorlig'i — tab)
-function Ide({ root = MKCFG.root, files, active, onOpen, fresh, clickable, children, style }) {
-  return <div className="mk-ide" style={style}>
+// className (F-1125-01): «mk-zich» — 1280×720 da zich sahna (CSS_N1, faqat past ekranda)
+function Ide({ root = MKCFG.root, files, active, onOpen, fresh, clickable, children, style, className }) {
+  return <div className={'mk-ide' + (className ? ' ' + className : '')} style={style}>
     <div className="mk-ide-bar"><i /><i /><i /><span>{root} — Visual Studio Code</span></div>
     <FileTree root={root} files={files} active={active} onOpen={onOpen} fresh={fresh} clickable={clickable} />
     <div className="mk-ide-main">{children}</div>
@@ -1100,6 +1101,17 @@ const CSS_N1 = `
 .n1-cv .pic{background:${T.bg};border-left:1px solid ${T.line};display:flex;align-items:center;padding:24px 20px}
 @media (max-width:900px){.mk-cover .card.n1-cv{grid-template-columns:1fr}.n1-cv .pic{border-left:0;border-top:1px solid ${T.line}}}
 @media (prefers-reduced-motion:reduce){.n1-pk.loop,.n1-sock.wait,.n1-act{animation:none}.n1-box *{transition:none!important}}
+/* F-1125-01 (1-savol): 1280×720 da Buzamiz sahnasi — kod, chizma, terminal va xulosa bitta oynaga sig'adi. Faqat Ide className mk-zich bo'lgan ekranlar; 1600 va 1920 o'zgarmaydi. Chizma o'z o'lchamida (kattalashtirilmaydi). */
+@media (max-height:920px){.mk-ide.mk-zich .mk-ide-main{gap:8px}}
+@media (max-height:760px){
+.mk-body:has(.mk-zich){padding-top:8px;padding-bottom:8px}
+.mk-ide.mk-zich .mk-ide-bar{padding:6px 12px}
+.mk-ide.mk-zich .mk-ide-main{gap:6px;padding:8px}
+.mk-ide.mk-zich .mk-panel{font-size:11.5px;line-height:1.26}
+.mk-ide.mk-zich .mk-panel .fn{margin-bottom:4px;padding:4px 12px}
+.mk-ide.mk-zich .mk-rule{padding:8px 12px;font-size:13.5px;line-height:1.4}
+.mk-ide.mk-zich .n1-fit{max-width:520px;margin:0 auto}
+}
 `;
 function useCssN1() {
   useEffect(() => {
@@ -3763,14 +3775,15 @@ function Scene14({ b }) {
   const v = beat === 0 ? (act.hit ? 'break' : 'act') : seg.v;
   const mini = <N1Mini><KbMini broken={v !== 'act'} fixed={v === 'fix'} known={beat >= 2} pins={beat === 2 ? { a: 1, b: 2 } : {}} /></N1Mini>;
   return <>
-    <Ide files={compact(FILES(F.txs, F.kbs), F.kb)} active={F.kb}>
+    <Ide className="mk-zich" files={compact(FILES(F.txs, F.kbs), F.kb)} active={F.kb}>
       {v === 'act' && <div onClick={act.onClick}><CodePanel file="keyboards.ts" lines={ACT14} focus={['x']} /></div>}
       {(v === 'break' || v === 'run') && <CodePanel key="b" file={t("keyboards.ts · buzilgan", "keyboards.ts · сломан")} lines={kod('KB_ORDER', { 39: 'x' }, 38, 41, BREAK14)} focus={['x']} />}
       {v === 'fix' && <CodePanel key="f" file={t("keyboards.ts · tiklandi", "keyboards.ts · восстановлен")} lines={kod('KB_ORDER', { 39: 'x' }, 38, 41)} focus={['x']} />}
       {mini}
+      {/* F-1125-01 (1-savol): terminal oyna ichida — explorer to'liq balandlikni oladi, 1280×720 va 1600×900 da kesilmaydi */}
+      {v === 'run' && <Term title={t("VS Code terminali · npm test -- keyboards", "терминал VS Code · npm test -- keyboards")} lines={T14S} er marks={{ [T14S.findIndex((l) => /● orderKeyboard ›/.test(l.h || ''))]: 'n1-p1', [T14S.findIndex((l) => /Received:/.test(l.h || ''))]: 'n1-p2' }} />}
+      {v === 'fix' && <Term lines={T14_OK} />}
     </Ide>
-    {v === 'run' && <Term title={t("VS Code terminali · npm test -- keyboards", "терминал VS Code · npm test -- keyboards")} lines={T14S} er marks={{ [T14S.findIndex((l) => /● orderKeyboard ›/.test(l.h || ''))]: 'n1-p1', [T14S.findIndex((l) => /Received:/.test(l.h || ''))]: 'n1-p2' }} />}
-    {v === 'fix' && <Term lines={T14_OK} />}
   </>;
 }
 

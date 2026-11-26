@@ -19,7 +19,7 @@ const CFG = {
   'pg-01': { PROOF: { 10: 'PostgreSQL 18.4 (Debian 18.4-1+b1) on x86_64-pc-linux-gnu', 15: '"posts_user_id_fkey" FOREIGN KEY (user_id) REFERENCES users(id)', 18: '(4 rows)', 23: 'UPDATE 0' }, FINAL_C: [1, 0, 2, 3, 0, 1, 3, 2], REQ: 0, TEST: 28, LAST: 29 },
   'pg-02': { PROOF: {"8": "(3 rows)", "13": "99000", "21": "201", "27": "column \"price\" of relation \"cars\" does not exist"}, FINAL_C: [2, 0, 1, 3, 1, 3, 2, 0], REQ: 0, TEST: 0, LAST: 0 },
   'jest-01': { PROOF: {"8": "Tests:       2 passed, 2 total", "17": "oxirgi sahifada ▶ yo'q", "21": "uchalasi qizardi"}, FINAL_C: [0, 1, 2, 3, 0, 1, 2, 3], REQ: 0, TEST: 0, LAST: 0 },
-  'jest-02': { PROOF: {"7": "Tests:       8 passed, 8 total", "17": "chegara: omborda aynan 2 ta", "22": "uchalasi qizardi"}, FINAL_C: [0, 1, 2, 3, 0, 1, 2, 3], REQ: 0, TEST: 0, LAST: 0 },
+  'jest-02': { PROOF: {"7": "Tests:       8 passed, 8 total", "17": "chegara: omborda aynan 2 ta", "23": "uchalasi qizardi"}, /* 26.11 F-1125-01: 22-ekran Tekshiruv 5 qo'shildi, Amaliyot 3 → 23 */ FINAL_C: [0, 1, 2, 3, 0, 1, 2, 3], REQ: 0, TEST: 0, LAST: 0 },
   'cicd-01': { PROOF: {"7": "Tests:       1 failed, 24 passed, 25 total", "12": "https://github.com/siz/OrderBotNest/actions/runs/41831", "21": "npx tsc --noEmit"}, FINAL_C: [1, 2, 0, 2, 2, 1, 2, 3], REQ: 0, TEST: 0, LAST: 0 },
   'cicd-02': { PROOF: {"7": "Cache hit for: node-cache-Linux-x64-npm-abc", "11": "success", "20": "https://github.com/siz/OrderBotNest/pull/1"}, FINAL_C: [1, 1, 2, 1, 1, 2, 2, 2], REQ: 0, TEST: 0, LAST: 0 },
   'tgpg-01': { PROOF: {"5": "savat bo'sh", "12": "6", "17": "WAITING_PHONE", "23": "omborda faqat 0 ta"}, FINAL_C: [0, 1, 2, 3, 0, 1, 2, 3], REQ: 0, TEST: 0, LAST: 0 },

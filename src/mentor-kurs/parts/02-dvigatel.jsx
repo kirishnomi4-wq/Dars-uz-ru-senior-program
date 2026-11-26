@@ -258,8 +258,9 @@ function FileTree({ root = MKCFG.root, files = MKCFG.files, active, onOpen, big,
   </div>;
 }
 // Bitta VS Code oynasi (F-1030-22): sarlavha · chapda Explorer · o'ngda editor (kod panelida fayl yorlig'i — tab)
-function Ide({ root = MKCFG.root, files, active, onOpen, fresh, clickable, children, style }) {
-  return <div className="mk-ide" style={style}>
+// className (F-1125-01): «mk-zich» — 1280×720 da zich sahna (CSS_N1, faqat past ekranda)
+function Ide({ root = MKCFG.root, files, active, onOpen, fresh, clickable, children, style, className }) {
+  return <div className={'mk-ide' + (className ? ' ' + className : '')} style={style}>
     <div className="mk-ide-bar"><i /><i /><i /><span>{root} — Visual Studio Code</span></div>
     <FileTree root={root} files={files} active={active} onOpen={onOpen} fresh={fresh} clickable={clickable} />
     <div className="mk-ide-main">{children}</div>

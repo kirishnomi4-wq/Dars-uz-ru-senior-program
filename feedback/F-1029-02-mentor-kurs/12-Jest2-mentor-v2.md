@@ -23,9 +23,9 @@ Loyiha: **OrderBotNest** — teglar `jest2-start` (= `jest1-done` 9d6b947) · `j
 | Kursdagi o'rni | Jest-1 → **shu** → CI/CD-1 (test lentada) — M31: raqam yozilmaydi. |
 | Til | M9 + M32. Atamalar inglizcha: happy path, edge case, error path, mock, promise, async, await, regex. «Chegara» — boundary (o'zbekcha qoladi, Jest-1 dagidek). Ovozda `rejects.toThrow` — «rejects to throw». |
 | Misol-ip | **OrderBotNest** `jest1-done`: `src/api/telegram/telegram.service.ts` 12-satr `PHONE` → `phone.ts` (`isPhone`); `src/api/order/order.service.ts` 24–38 (`place`: ikki sinxron `throw`, bitta tranzaksiya ichidagi `throw`); `src/api/app.controller.ts` (`GET /` → `{ ok: true, service: 'order-bot' }`). Mijoz Aziza raqamni «+998 90 123 45 67» deb yozadi; Kolonka 50 000, omborda 1 ta / 2 ta. |
-| AI | 2 tajriba (ruxsat 04.11, har darsda): bitta oddiy prompt (`jest2v2-ai/p1-prompt.txt`), `ai1` kuchli, `ai2` kuchsizroq model; buzib tekshirish — `mutatsiya` qolipi. Ekranda «namuna — sizning AI'ingiz boshqacha yozadi». |
+| AI | 2 tajriba (ruxsat 04.11, har darsda): bitta oddiy prompt (`jest2v2-ai/p1-prompt.txt`), `ai1` kuchli, `ai2` kuchsizroq model; 26.11 (F-1125-01, M56) — 2-topshiriq Jest tilida (`p2-prompt.txt`, o'sha ikki model, natija `p2/`); buzib tekshirish — `mutatsiya` qolipi. Ekranda «namuna — sizning AI'ingiz boshqacha yozadi». |
 | Haqiqiylik (M10) | 04.11: Node 24.18 · jest 30.5.2 · ts-jest 29.4.15 · @nestjs/testing 11.2.8 · TypeScript 5.9.3 · supertest 7.3.1. Har buyruq toza muhitda; scratchpad yo'li ekranda `…/OrderBotNest/src`. |
-| Hajm | **25 ekran** · 6 bosqich · 3 amaliyot · 4 tekshiruv · 8 savol · ovoz ≈ 25 daq · amaliyot ≈ 50–65 daq · jami ≈ 1 s 15 – 1 s 30 daq |
+| Hajm | **26 ekran** (26.11, F-1125-01: AI bo'limi Nest-1 darajasida — 20-ekran ikki topshiriq, «## AI-T5» Tekshiruv 5 saytda 22-ekran; MD raqamlari 22–25 saytda 23–26) · 6 bosqich · 3 amaliyot · 5 tekshiruv · 8 savol · ovoz ≈ 25 daq · amaliyot ≈ 50–65 daq · jami ≈ 1 s 15 – 1 s 30 daq |
 | Me'yor | Jest-1 v2 bilan bir xil (≤ 5 segment, ≤ 60 so'z, M17 ko'prik, «Xulosa», kalit 8–14 so'z, M32, M33, M42, M43, M46, M47, M48) |
 
 ---
@@ -123,7 +123,7 @@ Loyiha: **OrderBotNest** — teglar `jest2-start` (= `jest1-done` 9d6b947) · `j
 - Manba: `jest2v2-out/01-phone-yashirin.txt`, `kod-02-phone.ts`; `order-bot` `jest2-start` `telegram.service.ts` 12, 155–157 · `jest2-done` 10, 155–156 (✅ KOD 1).
 
 ## 4 · Tekshiruv 1 — probel bilan yozilgan raqam  ← `MCRetry`
-- Kicker: `Tekshiruv 1` · Eyebrow: `Tekshiruv · 1 / 4`
+- Kicker: `Tekshiruv 1` · Eyebrow: `Tekshiruv · 1 / 5`
 - Sarlavha: **Mijoz raqamni «+998 90 123 45 67» deb yozdi. `isPhone` hozirgi regex bilan nima qaytaradi?**
 - Material (`above`, M42): kod `phone.ts` 1–4 (`PHONE = /^\+?\d{9,13}$/` · `isPhone = (text) => PHONE.test(text.trim())`); ostida bot oqimi qatori: «Aziza: +998 90 123 45 67».
 - Ovoz: «Qoidani ajratdik, endi tekshirib olaylik. Birinchi tekshiruv. Mijoz raqamni probellar bilan yozdi: plus to'qqiz to'qqiz sakkiz, probel, to'qson, probel va hokazo. Is phone hozirgi regex bilan nima qaytaradi? Variantni tanlang.»
@@ -248,7 +248,7 @@ Loyiha: **OrderBotNest** — teglar `jest2-start` (= `jest1-done` 9d6b947) · `j
 - Manba: `jest2v2-out/07-tothrow-promise.txt` (aynan), `kod-07-order-tothrow.spec.ts`.
 
 ## 12 · Tekshiruv 2 — `rejects` sinxron xatoda  ← `MCRetry`
-- Kicker: `Tekshiruv 2` · Eyebrow: `Tekshiruv · 2 / 4`
+- Kicker: `Tekshiruv 2` · Eyebrow: `Tekshiruv · 2 / 5`
 - Sarlavha: **Telefon testini `await expect(service.place(…)).rejects.toThrow()` bilan yozdik. `place` xatoni darhol, funksiya ichida otadi. Natija?**
 - Material (`above`): kod `kod-06-order-rejects.spec.ts` telefon testi (`it("telefon yo'q — darhol xato", async () => { await expect(service.place({ id: 1, phone: null } as User, cart)).rejects.toThrow("Telefon raqami yo'q"); })`); ostida `order.service.ts` 25-satr `if (!user.phone) throw new Error("Telefon raqami yo'q");`.
 - Ovoz: «Promise shaklini sinxron xatoga qo'yib ko'ramiz. Ikkinchi tekshiruv. Telefon testini rejects bilan yozdik, lekin place telefon xatosini darhol, funksiyaning o'zida otadi, promise qaytarmasdan. Npm test nima deydi? Variantni tanlang.»
@@ -274,7 +274,7 @@ Loyiha: **OrderBotNest** — teglar `jest2-start` (= `jest1-done` 9d6b947) · `j
 - Manba: `jest2v2-out/08-await-unutildi.txt` (aynan), `kod-08-order-await-yoq.spec.ts`.
 
 ## 14 · Tekshiruv 3 — qaysi satr natijani yo'qotadi  ← `LineCheck`
-- Kicker: `Tekshiruv 3` · Eyebrow: `Tekshiruv · 3 / 4 — qaysi satr xato?` · Sarlavha: **Bu test faylida `npm test` natija bermaydi — jarayon qulaydi. Sababchi satrni toping**
+- Kicker: `Tekshiruv 3` · Eyebrow: `Tekshiruv · 3 / 5 — qaysi satr xato?` · Sarlavha: **Bu test faylida `npm test` natija bermaydi — jarayon qulaydi. Sababchi satrni toping**
 - Shart (`task`): «Qoida: promise xatosi `await expect(…).rejects.toThrow()` bilan kutiladi. Bu bo'lakda bitta satr promise'ni kutmaydi. **O'sha satrni bosing.**»
 - Ovoz (`q`): «Yashirin xatoni ko'rdingiz, endi o'zingiz toping. Uchinchi tekshiruv. Bu test faylida npm test natija bermaydi, jarayon qulaydi. Bo'lakda bitta satr promise'ni kutmaydi. O'sha satrni bosing.»
 - Fayl: `order.service.spec.ts` (Explorer faol), `kod-08-order-await-yoq.spec.ts` ombor testi bo'lagi (Prettier, haqiqiy satrlar; xato satr — 51-satr, ✅ KOD 2): `it("omborda yetmaydi…", async () => {` · `manager.findOne.mockResolvedValue({ … stock: 1 … });` · **`expect(service.place(user, cart)).rejects.toThrow(` ← xato satr (await yo'q)** · `'Planshet: omborda faqat 9 ta qoldi',` · `);` · `});` → `target` = `expect(service.place` satri.
@@ -360,7 +360,7 @@ Loyiha: **OrderBotNest** — teglar `jest2-start` (= `jest1-done` 9d6b947) · `j
 - Manba: `jest2v2-out/10-supertest-ornatish.txt`, `11-http-pass.txt`, `kod-11-app.controller.spec.ts`.
 
 ## 19 · Tekshiruv 4 — `GET /nope`  ← `MCRetry`
-- Kicker: `Tekshiruv 4` · Eyebrow: `Tekshiruv · 4 / 4`
+- Kicker: `Tekshiruv 4` · Eyebrow: `Tekshiruv · 4 / 5`
 - Sarlavha: **Ilovada faqat `GET /` route'i bor. Test `GET /nope` yubordi. `res.status` va `res.body.message` nima bo'ladi?**
 - Material (`above`): kod `app.controller.ts` (`@Get() health() { return { ok: true, service: 'order-bot' }; }`) · `app.controller.spec.ts` 21–25 (`request(app.getHttpServer()).get('/nope')`).
 - Ovoz: «HTTP testni ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. Ilovada faqat bitta route bor, ildiz. Test yo'q manzilga, nope'ga so'rov yubordi. Status va xabar nima bo'ladi? Variantni tanlang.»
@@ -372,33 +372,39 @@ Loyiha: **OrderBotNest** — teglar `jest2-start` (= `jest1-done` 9d6b947) · `j
 - Maslahat: «Brauzerda yo'q sahifani ochsangiz qaysi raqam chiqadi? Nest ham shuni qaytaradi.»
 - Manba: `jest2v2-out/11-http-pass.txt`.
 
-## 20 · AI edge testlar yozdi — ikki to'plam  ← `Lesson`
-- Kicker: `5-bosqich · AI` · Sarlavha: **Yangi ko'nikma davomi: AI edge va xato testlarini yozdi — ikki to'plam, ikkalasi yashil; endi ularni qabul qilamiz**
-- Sahna: 1-segmentda bosqich kartasi (Jest-1 dagi kabi): «1–4-bosqich · xato yo'lini siz yozdingiz» (xira) → «5-bosqich · AI yozadi, siz qabul qilasiz» (yonadi); 2-segmentdan prompt kartasi (`p1-prompt.txt`); 3-segmentda ikki AI javobi kartasi (`AiReply`): «1-AI (kuchli model)» — `2 files changed, 352 insertions(+)`, «50 test, hammasi o'tdi», parcha `await expect(run(…)).rejects.toThrow("Telefon raqami yo'q")`; «2-AI (kuchsizroq model)» — `224 insertions(+)`, «42 test», parcha `expect(() => service.place(…)).toThrow("Telefon raqami yo'q")`; 4-segmentda ikki kod bo'lagi: Opus `telegram.service.phone.spec.ts` 84–96 (rad ro'yxati, 90-satr `["o'rtada probel", '+998 90 123 45 67']` yoritilgan) va Haiku `telegram.service.spec.ts` 18–22 (`new TelegramService(users as never, {} as never, cart as never, orders as never)`).
+## 20 · AI edge testlar yozdi — ikki topshiriq  ← `Lesson`
+- Kicker: `5-bosqich · AI` · Sarlavha: **Yangi ko'nikma davomi: AI edge va xato testlarini yozdi — ikki xil topshiriq, to'rt to'plam, hammasi yashil; endi ularni qabul qilamiz**
+- Sahna (26.11, F-1125-01 — Nest-1 darajasi, M56): 1-segmentda bosqich kartasi (Jest-1 dagi kabi): «1–4-bosqich · xato yo'lini siz yozdingiz» (xira) → «5-bosqich · AI yozadi, siz qabul qilasiz» (yonadi); 2-segmentda ikki topshiriq kartasi yonma-yon (`AiReply`): «1-topshiriq · oddiy so'zlar bilan» (`p1-prompt.txt`, 04.11) · «2-topshiriq · Jest tilida» (`p2-prompt.txt`, 26.11); 3-segmentda natija jadvali 2 × 2 (1-AI kuchli model · 2-AI kuchsizroq model × ikki topshiriq): oddiy — 50 / 42 test, 352 / 224 qator, qoida ajratilmadi; Jest tilida — 23 / 23 test, 114 / 90 qator, `isPhone` ajratildi; `rejects` + `await` va «bo'lmasligi kerak» — to'rttalasida ✓; 4-segmentda ikki kod bo'lagi (1-topshiriq): 1-AI `telegram.service.phone.spec.ts` 84–96 (90-satr `["o'rtada probel", '+998 90 123 45 67']`) va 2-AI `telegram.service.spec.ts` 49, 56–57, 61 (57-satr `['+998 90 123 45 67', 'ichida bo\'shliq']`, «rad etiladi» ro'yxatida; oraliq «…»); 2-topshiriqdagi shu satr ko'rsatilmaydi — uni mentor 22-ekranda (Tekshiruv 5) o'zi topadi.
 1. **Yana AI bosqichi: ==edge va xato testlarini AI yozadi, siz qabul qilasiz==**
-   Ovoz: «Jest birinchi darsidagi kabi oxirgi bosqich AI bilan. Farqi: bu safar AI happy path emas, edge va xato testlarini yozadi, ya'ni bugungi mavzuni. Biz ikki xil AI'ga bitta oddiy prompt berdik va natijani olib keldik.» · bosqich kartasi
-2. **Prompt: ==«place va telefon tekshiruvi uchun edge case va xato testlar yoz»== — ishorasiz**
-   Ovoz: «Prompt oddiy: order service'dagi place funksiyasi va telefon raqami tekshiruvi uchun edge case va xato holatlariga jest testlar yoz, npm test yashil bo'lsin. Rejects, await, chegara, mock, bu so'zlarning hech biri promptda yo'q. Har AI loyihaning alohida nusxasida ishladi.» · prompt
-3. **Natija yaxshi: ==50 va 42 test, kodga tegmadi==, `rejects` va `await` to'g'ri, «bo'lmasligi kerak» testlari bor**
-   Ovoz: «Natija yaxshi ko'rinadi. Ikkalasi faqat test fayllarini qo'shdi, kodga tegmadi. Birinchisi ellik, ikkinchisi qirq ikkita test, hammasi yashil. Ikkalasi ham promise xatosiga rejects va await yozdi, jarayon qulamadi. Ikkalasi ham xatodan keyin update ketmaganini tekshirdi.» · AI kartalari
-4. **Lekin: ikkalasi ==qoidani ajratmadi== va ==probelli raqam rad etilishini «to'g'ri» deb yozdi==**
-   Ovoz: «Lekin ikki narsa. Ikkalasi ham telefon qoidasini ajratmadi: uni butun handler orqali, to'rtta servisni soxtalab sinadi, birinchisida bir yuz qirq to'qqiz qator. Va ikkalasi ham probel bilan yozilgan raqam rad etilishini to'g'ri deb test qildi, biz esa buni oltinchi ekranda xato deb topgan edik.» · ikki bo'lak
-5. **Xulosa: ==yashil hali tekshiruv emas==; buzib ko'ramiz — va yana bir savol: test qoidani sinaydimi, kodni muhrlaydimi**
-   Ovoz: «Xulosa: yashil hali tekshiruv emas, keyingi ekranda beshta buzish bilan tekshiramiz. Va yangi savol tug'ildi: AI yozgan test qoidani sinaydimi, yoki kod hozir qanday ishlasa, shuni muhrlaydimi. Probelli raqam testi ikkinchisi.»
-- Manba: `jest2v2-ai/00-promptlar.md`, `p1-prompt.txt`, `ai1/diff-stat.txt`, `ai2/diff-stat.txt`, `ai1/order.service.spec.ts` 44–48, `ai1/telegram.service.phone.spec.ts` 84–96, `ai2/order.service.spec.ts` 33–38, `ai2/telegram.service.spec.ts` 18–22, `XULOSA.md`.
+   Ovoz: «Jest birinchi darsidagi kabi oxirgi bosqich AI bilan. Farqi: bu safar AI happy path emas, edge va xato testlarini yozadi, ya'ni bugungi mavzuni. Biz ikki xil AI'ga bitta vazifani ikki xil topshiriq bilan berdik va natijani olib keldik.» · bosqich kartasi
+2. **Ikki topshiriq: ==oddiy so'zlar bilan== va ==Jest tilida== — qoida, `it.each`, mock, `rejects`, chegara**
+   Ovoz: «Birinchi topshiriq oddiy so'zlar bilan: place va telefon tekshiruvi uchun edge case va xato testlar yoz, npm test yashil bo'lsin. Ikkinchisi bugungi dars tilida: qoidani is phone funksiyasiga ajrat, it each bilan chegaralar, place uchun mock, rejects va await, xatodan keyin update ketmasin. Har AI loyihaning alohida nusxasida ishladi.» · ikki topshiriq
+3. **Oddiy: ==50 va 42 test==, qoida ajratilmadi · Jest tilida: ==23 va 23 test==, `isPhone` ajratildi**
+   Ovoz: «Natija. Oddiy topshiriqda ikkalasi faqat test fayllarini qo'shdi: ellik va qirq ikki test, telefon qoidasini ajratmadi, uni butun handler orqali to'rtta servisni soxtalab sinadi. Jest tilidagi topshiriqda ikkalasi qoidani is phone'ga ajratdi, testlar yigirma uchtadan, kod ikki barobardan ko'proq qisqa. To'rttalasi ham rejects va await'ni to'g'ri yozdi.» · jadval
+4. **Lekin to'rttalasi ham ==probelli raqam rad etilishini «to'g'ri» deb yozdi== — Jest tilidagi topshiriqda ham**
+   Ovoz: «Lekin bir narsa to'rttalasida bir xil: probel bilan yozilgan raqam rad etilishini to'g'ri deb test qildi. Biz buni oltinchi ekranda xato deb topgan edik. Jest tilidagi topshiriqda probel holati so'ralgan, lekin javobi yozilmagan edi, AI javobni hozirgi koddan oldi. O'sha satrni tekshiruvda o'zingiz topasiz.» · ikki bo'lak
+5. **Xulosa: ==dars tilidagi topshiriq tuzilishni beradi==, qoidani siz aytasiz; yashil — hali tekshiruv emas**
+   Ovoz: «Xulosa: topshiriqni dars tilida bersangiz, AI tuzilishni to'g'ri qiladi: qoidani ajratadi, testlar qisqa. Lekin qoidaning o'zini, probelli raqam qabul qilinadimi, siz aytasiz. Yashil hali tekshiruv emas: keyingi ekranda kodni buzib ko'ramiz.»
+- Manba: `jest2v2-ai/00-promptlar.md`, `p1-prompt.txt`, `p2-prompt.txt`, `ai1/diff-stat.txt`, `ai2/diff-stat.txt`, `p2/ai1/diff-stat.txt`, `p2/ai2/diff-stat.txt`, `p2/ai*/00-javob.md`, `ai1/telegram.service.phone.spec.ts` 84–96, `ai2/telegram.service.spec.ts` 49–61, `XULOSA.md`, `p2/XULOSA.md`.
 
 ## 21 · Buzib tekshirish: AI to'plamlari  ← `Lesson`
 - Kicker: `5-bosqich · ichida` · Sarlavha: **Beshta buzish — uchala to'plam hammasini ushladi; oltinchi «buzilish»ni esa buzib bo'lmaydi: AI probelli raqam rad etilishini muhrlab qo'ygan**
-- Sahna: buzish jadvali (`MutTable`, `jest2v2-ai/mutatsiya-men.txt`, `mutatsiya-ai.txt`): | Buzish | Men (25) | 1-AI (50) | 2-AI (42) | — B1 regex 9–13 → 8–13: 1 · 1 · 2 · B2 `<` → `<=`: 1 · 1 · 1 · B3 `UPDATE` tekshiruvdan oldin: 1 · 2 · 1 · B4 xabar o'zgardi: 1 · 3 · 3 · B5 bo'sh savat tekshiruvi yo'q: 1 · 1 · 1; 3-segmentda «muhr» kartasi: Opus testi 90-satr `["o'rtada probel", '+998 90 123 45 67']` (rad kutiladi) ↔ 6-ekrandagi tuzatish `phone.ts` 4-satr `replace(/[\s-]/g, '')` → bu test qizaradi.
+- Sahna: buzish jadvali (`MutTable`, `jest2v2-ai/mutatsiya-men.txt`, `mutatsiya-ai.txt`; 26.11 — jadval tagida izoh qatori: Jest tilidagi to'plamlar 23 va 23 test, beshala buzishda bittadan qizardi — `p2/mutatsiya-p2.txt`): | Buzish | Men (25) | 1-AI (50) | 2-AI (42) | — B1 regex 9–13 → 8–13: 1 · 1 · 2 · B2 `<` → `<=`: 1 · 1 · 1 · B3 `UPDATE` tekshiruvdan oldin: 1 · 2 · 1 · B4 xabar o'zgardi: 1 · 3 · 3 · B5 bo'sh savat tekshiruvi yo'q: 1 · 1 · 1; 3-segmentda «muhr» kartasi: Opus testi 90-satr `["o'rtada probel", '+998 90 123 45 67']` (rad kutiladi) ↔ 6-ekrandagi tuzatish `phone.ts` 4-satr `replace(/[\s-]/g, '')` → bu test qizaradi.
 1. **Beshta buzish — ==bugungi beshta qoida==: regex chegarasi, `<=`, tartib, xabar, bo'sh savat**
    Ovoz: «Beshta buzish oldik, har biri bugungi bitta qoida. Regex'da to'qqizni sakkizga. Kichikni kichik yoki tengga. Update'ni ombor tekshiruvidan oldinga. Xato xabarini o'zgartirish. Bo'sh savat tekshiruvini olib tashlash. Uchala to'plamni sinadik: bizniki va ikki AI.» · jadval
-2. **Natija: ==uchala to'plam beshalasini ushladi== — bu safar AI xato yo'lini yaxshi yozdi**
-   Ovoz: «Natija: uchala to'plam beshala buzilishni ushladi. Bizning yigirma besh testimiz har buzilishda bittadan qizardi. Birinchi AI xabar o'zgarganda uchta, tartib buzilganda ikkita test bilan sezdi. Ikkinchi AI ham hammasini sezdi. Bu safar AI xato yo'lini yaxshi yozdi, buni tan olamiz.» · jadval
+2. **Natija: ==hamma to'plam beshala buzishni ushladi==, Jest tilidagilar ham — AI xato yo'lini yaxshi yozdi**
+   Ovoz: «Natija: uchala to'plam beshala buzilishni ushladi. Bizning yigirma besh testimiz har buzilishda bittadan qizardi. Birinchi AI xabar o'zgarganda uchta test bilan sezdi, ikkinchisi ham hammasini sezdi. Jest tilidagi ikki to'plam ham beshalasini ushladi. Bu safar AI xato yo'lini yaxshi yozdi, buni tan olamiz.» · jadval + izoh qatori
 3. **Oltinchi «buzilish» jadvalda yo'q: ==AI probelli raqam rad etilishini muhrladi== — `replace` tuzatishi uning testini qizartiradi**
-   Ovoz: «Lekin bitta narsa jadvalga sig'maydi, chunki uni buzib bo'lmaydi: probel. Ikkala AI probelli raqam rad etilishini test qilib muhrladi. Siz oltinchi ekrandagi replace bilan tuzatsangiz, ularning testi qizaradi. Test qoidani emas, hozirgi kodni qo'riqlayapti. Mijoz odati haqida AI bilmaydi.» · muhr kartasi
+   Ovoz: «Lekin bitta narsa jadvalga sig'maydi, chunki uni buzib bo'lmaydi: probel. To'rttala to'plam ham probelli raqam rad etilishini test qilib muhrladi. Siz oltinchi ekrandagi replace bilan tuzatsangiz, ularning testi qizaradi. Test qoidani emas, hozirgi kodni qo'riqlayapti. Mijoz odati haqida AI bilmaydi.» · muhr kartasi
 4. **Xulosa: AI testi ==xatoni ushlaydi, lekin hozirgi xulqni ham muhrlaydi== — har testdan «bu qoidami?» deb so'rang**
-   Ovoz: «Xulosa: AI yozgan test ikki narsa qiladi. Xatoni ushlaydi, bu yaxshi. Va hozirgi xulqni, shu jumladan xatoni ham, muhrlab qo'yadi. Har testni o'qib so'rang: bu qoidami, yoki kod shunchaki hozir shunday ishlaydimi. Endi o'z AI'ingiz bilan sinab ko'rasiz.»
+   Ovoz: «Xulosa: AI yozgan test ikki narsa qiladi. Xatoni ushlaydi, bu yaxshi. Va hozirgi xulqni, shu jumladan xatoni ham, muhrlab qo'yadi. Har testni o'qib so'rang: bu qoidami, yoki kod shunchaki hozir shunday ishlaydimi. Avval bitta tekshiruv, keyin o'z AI'ingiz bilan sinab ko'rasiz.»
 - Manba: `jest2v2-ai/mutatsiya-men.txt`, `mutatsiya-ai.txt`, `XULOSA.md`, `ai1/telegram.service.phone.spec.ts` 90, `ai2/telegram.service.spec.ts` 58.
+
+## AI-T5 · Tekshiruv 5 — Jest tilidagi topshiriq: AI testining qaysi satri qoidaga zid  ← `LineCheck` (F-1125-01, M56; kod `jest2/parts/06b-ai.jsx`, saytda 22-ekran; matn kodda — generator bu bo'limni o'qimaydi; MD raqamlari 22–25 saytda 23–26)
+- Kicker (kodda): `Tekshiruv 5` · Eyebrow: `Tekshiruv · 5 / 5 — qaysi satr qoidaga zid?` · Sarlavha: «Jest tilidagi topshiriq: AI testining qaysi satri 6-ekrandagi qoidaga zid?»
+- Kod: `jest2v2-ai/p2/ai1/phone.spec.ts` 4–16 (1-AI, Jest tilidagi topshiriq, aynan); explorer daraxtisiz — 1280 da satrlar to'liq ko'rinsin, fayl yo'li sarlavhada. Tuzatilgandan keyin: `phone.ts` 5-satr (eski/yangi) va `npx jest` natija satri. To'g'ri satr — 13: `{ nomi: 'probel bilan', text: '+998 90 123 45 67', kutilgan: false }` (2-AI da ham 13-satr, `p2/ai2/phone.spec.ts`).
+- Vazifa (ekranda): qoida — mijoz raqamni probel bilan yozsa ham bot qabul qiladi (6-ekran, `phone.ts` da `replace`); qaysi satr hozirgi xulqni muhrlaydi — bosing.
+- Tuzatish (yurgizilgan, `p2/tuzatish-ai1.txt`): `phone.ts` ga 6-ekrandagi `replace(/[\s-]/g, '')` + 13-satr `kutilgan: true` → `Tests: 23 passed, 23 total`; faqat `replace` bo'lsa — shu test qizaradi, `1 failed, 22 passed` (`p2/mutatsiya-p2.txt` B6).
 
 ## 22 · Amaliyot 3 — AI test yozadi, siz buzib tekshirasiz  ← `Practice`
 - Kicker: `Amaliyot 3 / 3` · Eyebrow: `Hozir o'zingizda · 20 daqiqa` · Sarlavha: **O'z AI'ingizga aniq shartli prompt bering, keyin to'rt tekshiruv va uchta buzish** · `tableAt: 3`
@@ -503,7 +509,7 @@ Loyiha: **OrderBotNest** — teglar `jest2-start` (= `jest1-done` 9d6b947) · `j
   | 4 | Uch buzish | `getOrCreate`: `if (!user)` tekshiruvini olib tashlang · `add`: `rows[0].qty` → `rows.length` · rol tekshiruvi `!==` → `===` — har biridan keyin `npm test`, `git checkout` | har biri `✕` |
   | 5 | README va topshirish | «Testlar» bo'limi: buzish → qizargan test nomi (3 qator) · `git add . && git commit -m "edge va error path testlari"` · `git push` → repo linki platformaga | — |
   Vaqt: 50–70 daqiqa. Tekshiruvchi qaraydi: har promise xatosida `await` + `rejects` · `not.toHaveBeenCalled` kamida ikki testda · README jadvalida 3 buzish, har biri qizargan.
-- **Eslatma:** uch yo'l · qoidani ajratish · `it.each` · mock qolipi (`manager`, `dataSource`, `Test.createTestingModule`) · `toThrow` / `rejects.toThrow` / `await` · «natija yo'q» ikki sababi · `not.toHaveBeenCalled` · chegara testi · `supertest` qolipi · AI prompti (22-ekran) · xato qiladigan joylar · o'z uyga vazifangiz.
+- **Eslatma:** uch yo'l · qoidani ajratish · `it.each` · mock qolipi (`manager`, `dataSource`, `Test.createTestingModule`) · `toThrow` / `rejects.toThrow` / `await` · «natija yo'q» ikki sababi · `not.toHaveBeenCalled` · chegara testi · `supertest` qolipi · AI prompti (22-ekran) · xato qiladigan joylar · o'z uyga vazifangiz. · 26.11 (F-1125-01): «AI testini qabul qilish» bo'limiga — topshiriq dars tilida (qoidani ajrat · `it.each` · mock · `await` + `rejects` · `not.toHaveBeenCalled` · chegara), kutilgan qiymatni o'zingiz yozing
 - Keyingi dars kartasi: «Kursdagi keyingi mentor darsi: **CI/CD: testlar lentada** — har push'da `npm test` o'zi yuradi, qizil bo'lsa — to'xtaydi».
 
 ---

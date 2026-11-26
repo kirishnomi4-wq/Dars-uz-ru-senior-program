@@ -190,6 +190,17 @@ const CSS_N1 = `
 .n1-cv .pic{background:${T.bg};border-left:1px solid ${T.line};display:flex;align-items:center;padding:24px 20px}
 @media (max-width:900px){.mk-cover .card.n1-cv{grid-template-columns:1fr}.n1-cv .pic{border-left:0;border-top:1px solid ${T.line}}}
 @media (prefers-reduced-motion:reduce){.n1-pk.loop,.n1-sock.wait,.n1-act{animation:none}.n1-box *{transition:none!important}}
+/* F-1125-01 (1-savol): 1280×720 da Buzamiz sahnasi — kod, chizma, terminal va xulosa bitta oynaga sig'adi. Faqat Ide className mk-zich bo'lgan ekranlar; 1600 va 1920 o'zgarmaydi. Chizma o'z o'lchamida (kattalashtirilmaydi). */
+@media (max-height:920px){.mk-ide.mk-zich .mk-ide-main{gap:8px}}
+@media (max-height:760px){
+.mk-body:has(.mk-zich){padding-top:8px;padding-bottom:8px}
+.mk-ide.mk-zich .mk-ide-bar{padding:6px 12px}
+.mk-ide.mk-zich .mk-ide-main{gap:6px;padding:8px}
+.mk-ide.mk-zich .mk-panel{font-size:11.5px;line-height:1.26}
+.mk-ide.mk-zich .mk-panel .fn{margin-bottom:4px;padding:4px 12px}
+.mk-ide.mk-zich .mk-rule{padding:8px 12px;font-size:13.5px;line-height:1.4}
+.mk-ide.mk-zich .n1-fit{max-width:520px;margin:0 auto}
+}
 `;
 function useCssN1() {
   useEffect(() => {

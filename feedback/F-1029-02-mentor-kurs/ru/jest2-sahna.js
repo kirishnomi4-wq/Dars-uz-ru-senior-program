@@ -40,7 +40,7 @@ ru(HOMEWORK25, [
   { t: 'Раздел README «Тесты»: поломка → имя покрасневшего теста (3 строки) → git push → ссылка на репозиторий в домашнее задание на платформе' },
 ]);
 RU_S.TITLE = 'Путь ошибки: правильно ли бот ломается на неверном вводе';
-RU_S.COVER = ['Всего около 1 часа 15–30 минут: озвучка ~25 минут · три практики 50–65 минут · 4 проверки · самопроверка 8 вопросов. После экрана 14 можно сделать перерыв', 'Нужно: урок для менторов Jest-1 (вы написали в OrderBotNest texts.spec.ts, keyboards.spec.ts) · Node.js 20+ · VS Code · AI-помощник (Antigravity, Claude Code, Codex или Copilot). База и токен бота не нужны', 'Проект: github.com/Azizbekcrypto/OrderBotNest — начинаете с тега jest2-start'];
+RU_S.COVER = ['Всего около 1 часа 15–30 минут: озвучка ~25 минут · три практики 50–65 минут · 5 проверок · самопроверка 8 вопросов. После экрана 14 можно сделать перерыв', 'Нужно: урок для менторов Jest-1 (вы написали в OrderBotNest texts.spec.ts, keyboards.spec.ts) · Node.js 20+ · VS Code · AI-помощник (Antigravity, Claude Code, Codex или Copilot). База и токен бота не нужны', 'Проект: github.com/Azizbekcrypto/OrderBotNest — начинаете с тега jest2-start'];
 RU_S.FIN_INTRO = 'Вы всё посмотрели, теперь проверьте себя. Итоговый тест, восемь вопросов: три пути, вынос правила, to throw и rejects, случаи без результата, тест «не должно быть», граница и HTTP. На каждый вопрос одна попытка, после ответа откроются верный ответ и пояснение. Шесть и больше — урок усвоен. Если меньше, вернитесь к указанным экранам и пройдите тест заново.';
 RU_S.FIN_PASS = 'Урок усвоен. Теперь, если ученик скажет, что тест не даёт результата, вы знаете, куда смотреть.';
 RU_S.NEXT_T = 'CI/CD: тесты в конвейере';
@@ -81,6 +81,7 @@ manager.findOne.mockResolvedValue({ id: 4, name: 'Kolonka', stock: 1, price: 500
 ## HTTP-тест
 npm i -D supertest @types/supertest · Test.createTestingModule({ controllers: [AppController] }) → app = mod.createNestApplication(); await app.init() · request(app.getHttpServer()).get('/') → status 200, body · /nope → 404 «Cannot GET /nope»
 ## Приём теста от AI
+Задание на языке урока (выделить правило · it.each · mock · await + rejects · not.toHaveBeenCalled · граница) — структура выходит верной; ожидаемое значение (например, принимать ли номер с пробелами) пишите сами — иначе AI возьмёт его из текущего кода
 git diff --stat — только .spec.ts · await перед rejects · есть ли тест «не должно быть» · каждый тест: правило или «код просто сейчас так» (AI запечатал отказ номеру с пробелами) · проверка поломкой
 ## Где ошибаются
 Received function did not throw → нет guard · результата нет → нет () => или await · Expected substring / Received message → согласуйте сообщение · Nest can't resolve dependencies … (?, DataSource) → в providers нет repository token · Received message: "Mahsulot topilmadi" → не написан mockResolvedValue

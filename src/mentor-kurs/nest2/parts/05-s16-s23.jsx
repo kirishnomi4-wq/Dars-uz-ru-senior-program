@@ -227,7 +227,7 @@ function Scene20({ b }) {
   const broken = act.hit || beat >= 1;
   const fixed = !!seg.fixed;
   const pins = beat === 2 ? [1] : beat === 3 ? [2, 3] : [];
-  return <Ide files={tree(BASE, CAR_ALL)} active={F.cMod}>
+  return <Ide className="mk-zich" files={tree(BASE, CAR_ALL)} active={F.cMod}>
     <div onClick={act.onClick}><CodePanel key={fixed ? 'f' : broken ? 'b' : 'o'} file={F.cMod} lines={fixed ? FF_FIXED : broken ? FF_BROKEN : FF_OK} /></div>
     <MiniProviders who="CarService" dep="CarEntityRepository" mod="CarModule · car.module.ts" broken={broken} fixed={fixed} pin={pins} known={!broken || beat >= 1} />
     {(!broken || fixed) ? (broken ? <Term title={t('terminal — tuzatildi', 'terminal — исправлено')} lines={CAR_START} /> : null) : <Block at={1} beat={beat}><Term er title={t('terminal — server yiqildi', 'terminal — сервер упал')} lines={FF_ERR} focus={seg.focus} marks={{ 0: 'n1-p1', 1: 'n1-p2' }} /></Block>}

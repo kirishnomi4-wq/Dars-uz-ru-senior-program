@@ -1,0 +1,5 @@
+ src/api/order/order.service.spec.ts  | 89 ++++++++++++++++++++++++++++++++++++
+ src/api/telegram/phone.spec.ts       | 17 +++++++
+ src/api/telegram/phone.ts            |  6 +++
+ src/api/telegram/telegram.service.ts |  5 +-
+ 4 files changed, 114 insertions(+), 3 deletions(-)
