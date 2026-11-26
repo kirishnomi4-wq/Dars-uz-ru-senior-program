@@ -598,7 +598,7 @@ const MDT = {
    [
     "d",
     "Xulosa: <b>to'g'ri ko'ringan fayl hali tekshiruv emas</b> — lentaga qo'yib ko'ramiz",
-    "Xulosa: to'g'ri ko'ringan workflow hali tekshiruv emas. Oddiy topshiriqdagi ikkala faylni OrderBotNest'ning sinov tarmog'iga push qildik, CI tilidagilarni lokal lentada yurgizdik. Natija keyingi ekranda."
+    "Xulosa: to'g'ri ko'ringan workflow hali tekshiruv emas. To'rttala faylni OrderBotNest'ning sinov tarmog'iga push qildik. CI tilidagilar birinchi urinishda yashil, run yigirma ikki va yigirma uch. Oddiy topshiriqdagilar qanday chiqqanini keyingi ekranda ko'ramiz."
    ]
   ]
  },

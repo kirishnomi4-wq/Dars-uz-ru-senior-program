@@ -21,7 +21,7 @@ const CFG = {
   'jest-01': { PROOF: {"8": "Tests:       2 passed, 2 total", "17": "oxirgi sahifada ▶ yo'q", "21": "uchalasi qizardi"}, FINAL_C: [0, 1, 2, 3, 0, 1, 2, 3], REQ: 0, TEST: 0, LAST: 0 },
   'jest-02': { PROOF: {"7": "Tests:       8 passed, 8 total", "17": "chegara: omborda aynan 2 ta", "23": "uchalasi qizardi"}, /* 26.11 F-1125-01: 22-ekran Tekshiruv 5 qo'shildi, Amaliyot 3 → 23 */ FINAL_C: [0, 1, 2, 3, 0, 1, 2, 3], REQ: 0, TEST: 0, LAST: 0 },
   'cicd-01': { PROOF: {"7": "Tests:       1 failed, 24 passed, 25 total", "12": "https://github.com/siz/OrderBotNest/actions/runs/41831", "21": "npx tsc --noEmit"}, FINAL_C: [1, 2, 0, 2, 2, 1, 2, 3], REQ: 0, TEST: 0, LAST: 0 },
-  'cicd-02': { PROOF: {"7": "Cache hit for: node-cache-Linux-x64-npm-abc", "11": "success", "20": "https://github.com/siz/OrderBotNest/pull/1"}, FINAL_C: [1, 1, 2, 1, 1, 2, 2, 2], REQ: 0, TEST: 0, LAST: 0 },
+  'cicd-02': { PROOF: {"7": "Cache hit for: node-cache-Linux-x64-npm-abc", "11": "success", "21": "https://github.com/siz/OrderBotNest/pull/1"} /* 26.11 F-1125-01: Tekshiruv 5 qo'shildi, Amaliyot 3 → 21 */, FINAL_C: [1, 1, 2, 1, 1, 2, 2, 2], REQ: 0, TEST: 0, LAST: 0 },
   'tgpg-01': { PROOF: {"5": "savat bo'sh", "12": "6", "17": "WAITING_PHONE", "23": "omborda faqat 0 ta"}, FINAL_C: [0, 1, 2, 3, 0, 1, 2, 3], REQ: 0, TEST: 0, LAST: 0 },
   'ws1-01': { PROOF: {"7": "LOG [Live] panel ulandi: abc", "12": "NATIJA: 4/4 ✓", "20": "NATIJA: 4/4 ✓"}, FINAL_C: [0, 1, 2, 3, 1, 2, 3, 0], REQ: 0, TEST: 0, LAST: 0 },
   'ws2-01': { PROOF: {"9": "#7", "12": "3", "16": "14:05:31 GET /admin/orders → 7 ta, eng yangisi #7"}, FINAL_C: [0, 2, 1, 3, 0, 1, 2, 3], REQ: 0, TEST: 0, LAST: 0 },

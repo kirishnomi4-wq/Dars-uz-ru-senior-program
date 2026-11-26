@@ -1,0 +1,287 @@
+# CI/CD-1 · 2-AI (Haiku) · 2-topshiriq «CI tilida» · o'zgartirilmagan
+# run 45816546527 · branch ci-sinov · commit 6bd3f00 · natija: success · yozildi 2026-11-26 17:06:50 +0500
+# https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/45816546527
+
+$ cat .github/workflows/ci.yml
+name: CI
+
+on:
+  push:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kodni olish
+        uses: actions/checkout@v4
+
+      - name: Node.js o'rnatish (mashinadagi versiya)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24.18.0'
+          cache: npm
+
+      - name: Kutubxonalar (package-lock.json bo'yicha aynan)
+        run: npm ci
+
+      - name: TypeScript tur tekshiruvi
+        run: npm run lint
+
+      - name: Testlar
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+## gh run view
+
+✓ ci-sinov CI · 45816546527
+Triggered via push less than a minute ago
+
+JOBS
+✓ ci in 23s (ID 139897637408)
+
+ANNOTATIONS
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+ci: .github#2
+
+
+For more information about the job, try: gh run view --job=139897637408
+View this run on GitHub: https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/45816546527
+
+## job → step
+JOB ci · success · 2026-11-26T12:06:20Z → 2026-11-26T12:06:43Z
+  1. Set up job · success · 2026-11-26T12:06:21Z → 2026-11-26T12:06:21Z
+  2. Kodni olish · success · 2026-11-26T12:06:21Z → 2026-11-26T12:06:22Z
+  3. Node.js o'rnatish (mashinadagi versiya) · success · 2026-11-26T12:06:22Z → 2026-11-26T12:06:28Z
+  4. Kutubxonalar (package-lock.json bo'yicha aynan) · success · 2026-11-26T12:06:28Z → 2026-11-26T12:06:33Z
+  5. TypeScript tur tekshiruvi · success · 2026-11-26T12:06:33Z → 2026-11-26T12:06:35Z
+  6. Testlar · success · 2026-11-26T12:06:35Z → 2026-11-26T12:06:37Z
+  7. Build · success · 2026-11-26T12:06:37Z → 2026-11-26T12:06:40Z
+  13. Post Node.js o'rnatish (mashinadagi versiya) · success · 2026-11-26T12:06:40Z → 2026-11-26T12:06:40Z
+  14. Post Kodni olish · success · 2026-11-26T12:06:40Z → 2026-11-26T12:06:40Z
+  15. Complete job · success · 2026-11-26T12:06:40Z → 2026-11-26T12:06:40Z
+
+## annotatsiyalar
+  [warning]  Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+
+## to'liq log
+ci	Set up job	﻿2026-11-26T12:06:21.2843666Z Current runner version: '2.338.2'
+ci	Set up job	2026-11-26T12:06:21.2865156Z ##[group]Runner Image Provisioner
+ci	Set up job	2026-11-26T12:06:21.2865912Z Hosted Compute Agent
+ci	Set up job	2026-11-26T12:06:21.2866451Z Version: 20261111.635
+ci	Set up job	2026-11-26T12:06:21.2866972Z Commit: b8a594ea514ff44cadb5342986c68b1eac6e22ed
+ci	Set up job	2026-11-26T12:06:21.2867557Z Build Date: 2026-11-11T01:49:01Z
+ci	Set up job	2026-11-26T12:06:21.2868211Z Worker ID: {95d0daaa-4060-4e55-9d94-74276b4f35e0}
+ci	Set up job	2026-11-26T12:06:21.2868810Z Region: westus3
+ci	Set up job	2026-11-26T12:06:21.2869326Z Cloud: Azure
+ci	Set up job	2026-11-26T12:06:21.2869779Z ##[endgroup]
+ci	Set up job	2026-11-26T12:06:21.2870821Z ##[group]Operating System
+ci	Set up job	2026-11-26T12:06:21.2871626Z Ubuntu
+ci	Set up job	2026-11-26T12:06:21.2872102Z 26.04.1
+ci	Set up job	2026-11-26T12:06:21.2872547Z LTS
+ci	Set up job	2026-11-26T12:06:21.2872984Z ##[endgroup]
+ci	Set up job	2026-11-26T12:06:21.2873445Z ##[group]Runner Image
+ci	Set up job	2026-11-26T12:06:21.2874005Z Image: ubuntu-26.04
+ci	Set up job	2026-11-26T12:06:21.2874501Z Version: 20261122.9.1
+ci	Set up job	2026-11-26T12:06:21.2875473Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261122.9/images/ubuntu/Ubuntu2604-Readme.md
+ci	Set up job	2026-11-26T12:06:21.2876848Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261122.9
+ci	Set up job	2026-11-26T12:06:21.2877762Z ##[endgroup]
+ci	Set up job	2026-11-26T12:06:21.2878968Z ##[group]GITHUB_TOKEN Permissions
+ci	Set up job	2026-11-26T12:06:21.2880636Z Contents: read
+ci	Set up job	2026-11-26T12:06:21.2881371Z Metadata: read
+ci	Set up job	2026-11-26T12:06:21.2881911Z ##[endgroup]
+ci	Set up job	2026-11-26T12:06:21.2883634Z Secret source: Actions
+ci	Set up job	2026-11-26T12:06:21.2884451Z Cache mode: write
+ci	Set up job	2026-11-26T12:06:21.2885008Z Prepare workflow directory
+ci	Set up job	2026-11-26T12:06:21.3149707Z Prepare all required actions
+ci	Set up job	2026-11-26T12:06:21.3203057Z Getting action download info
+ci	Set up job	2026-11-26T12:06:21.6147561Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+ci	Set up job	2026-11-26T12:06:21.6915293Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+ci	Set up job	2026-11-26T12:06:21.8583214Z Complete job name: ci
+ci	Kodni olish	﻿2026-11-26T12:06:21.9256707Z ##[group]Run actions/checkout@v4
+ci	Kodni olish	2026-11-26T12:06:21.9257425Z with:
+ci	Kodni olish	2026-11-26T12:06:21.9257811Z   repository: Azizbekcrypto/OrderBotNest
+ci	Kodni olish	2026-11-26T12:06:21.9261235Z   token: ***
+ci	Kodni olish	2026-11-26T12:06:21.9261603Z   ssh-strict: true
+ci	Kodni olish	2026-11-26T12:06:21.9261973Z   ssh-user: git
+ci	Kodni olish	2026-11-26T12:06:21.9262334Z   persist-credentials: true
+ci	Kodni olish	2026-11-26T12:06:21.9262730Z   clean: true
+ci	Kodni olish	2026-11-26T12:06:21.9263098Z   sparse-checkout-cone-mode: true
+ci	Kodni olish	2026-11-26T12:06:21.9263513Z   fetch-depth: 1
+ci	Kodni olish	2026-11-26T12:06:21.9263861Z   fetch-tags: false
+ci	Kodni olish	2026-11-26T12:06:21.9264234Z   show-progress: true
+ci	Kodni olish	2026-11-26T12:06:21.9264602Z   lfs: false
+ci	Kodni olish	2026-11-26T12:06:21.9264944Z   submodules: false
+ci	Kodni olish	2026-11-26T12:06:21.9265308Z   set-safe-directory: true
+ci	Kodni olish	2026-11-26T12:06:21.9265716Z   allow-unsafe-pr-checkout: false
+ci	Kodni olish	2026-11-26T12:06:21.9266309Z ##[endgroup]
+ci	Kodni olish	2026-11-26T12:06:22.1256196Z Syncing repository: Azizbekcrypto/OrderBotNest
+ci	Kodni olish	2026-11-26T12:06:22.1258144Z ##[group]Getting Git version info
+ci	Kodni olish	2026-11-26T12:06:22.1258829Z Working directory is '/home/runner/work/OrderBotNest/OrderBotNest'
+ci	Kodni olish	2026-11-26T12:06:22.1260253Z [command]/usr/bin/git version
+ci	Kodni olish	2026-11-26T12:06:22.1278019Z git version 2.56.1
+ci	Kodni olish	2026-11-26T12:06:22.1293654Z ##[endgroup]
+ci	Kodni olish	2026-11-26T12:06:22.1305988Z Temporarily overriding HOME='/home/runner/work/_temp/a8d02dd7-b114-46d6-9347-e8218f3fee6d' before making global git config changes
+ci	Kodni olish	2026-11-26T12:06:22.1307862Z Adding repository directory to the temporary git global config as a safe directory
+ci	Kodni olish	2026-11-26T12:06:22.1310294Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/OrderBotNest/OrderBotNest
+ci	Kodni olish	2026-11-26T12:06:22.1364106Z Deleting the contents of '/home/runner/work/OrderBotNest/OrderBotNest'
+ci	Kodni olish	2026-11-26T12:06:22.1366801Z ##[group]Initializing the repository
+ci	Kodni olish	2026-11-26T12:06:22.1370507Z [command]/usr/bin/git init /home/runner/work/OrderBotNest/OrderBotNest
+ci	Kodni olish	2026-11-26T12:06:22.1438762Z hint: Using 'master' as the name for the initial branch. This default branch name
+ci	Kodni olish	2026-11-26T12:06:22.1440527Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+ci	Kodni olish	2026-11-26T12:06:22.1443464Z hint: to use in all of your new repositories, which will suppress this warning,
+ci	Kodni olish	2026-11-26T12:06:22.1444826Z hint: call:
+ci	Kodni olish	2026-11-26T12:06:22.1445620Z hint:
+ci	Kodni olish	2026-11-26T12:06:22.1446358Z hint: 	git config --global init.defaultBranch <name>
+ci	Kodni olish	2026-11-26T12:06:22.1447118Z hint:
+ci	Kodni olish	2026-11-26T12:06:22.1447847Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+ci	Kodni olish	2026-11-26T12:06:22.1448980Z hint: 'development'. The just-created branch can be renamed via this command:
+ci	Kodni olish	2026-11-26T12:06:22.1449894Z hint:
+ci	Kodni olish	2026-11-26T12:06:22.1450431Z hint: 	git branch -m <name>
+ci	Kodni olish	2026-11-26T12:06:22.1451200Z hint:
+ci	Kodni olish	2026-11-26T12:06:22.1451990Z hint: Disable this message with "git config set advice.defaultBranchName false"
+ci	Kodni olish	2026-11-26T12:06:22.1453277Z Initialized empty Git repository in /home/runner/work/OrderBotNest/OrderBotNest/.git/
+ci	Kodni olish	2026-11-26T12:06:22.1458335Z [command]/usr/bin/git remote add origin https://github.com/Azizbekcrypto/OrderBotNest
+ci	Kodni olish	2026-11-26T12:06:22.1500867Z ##[endgroup]
+ci	Kodni olish	2026-11-26T12:06:22.1501976Z ##[group]Disabling automatic garbage collection
+ci	Kodni olish	2026-11-26T12:06:22.1503651Z [command]/usr/bin/git config --local gc.auto 0
+ci	Kodni olish	2026-11-26T12:06:22.1533844Z ##[endgroup]
+ci	Kodni olish	2026-11-26T12:06:22.1534732Z ##[group]Setting up auth
+ci	Kodni olish	2026-11-26T12:06:22.1539246Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+ci	Kodni olish	2026-11-26T12:06:22.1585703Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+ci	Kodni olish	2026-11-26T12:06:22.1952188Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+ci	Kodni olish	2026-11-26T12:06:22.1982762Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+ci	Kodni olish	2026-11-26T12:06:22.2226928Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+ci	Kodni olish	2026-11-26T12:06:22.2255288Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+ci	Kodni olish	2026-11-26T12:06:22.2483863Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+ci	Kodni olish	2026-11-26T12:06:22.2518119Z ##[endgroup]
+ci	Kodni olish	2026-11-26T12:06:22.2519077Z ##[group]Fetching the repository
+ci	Kodni olish	2026-11-26T12:06:22.2526573Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +6bd3f003bb14793bac8e8ac62305d09632488364:refs/remotes/origin/ci-sinov
+ci	Kodni olish	2026-11-26T12:06:22.7362776Z From https://github.com/Azizbekcrypto/OrderBotNest
+ci	Kodni olish	2026-11-26T12:06:22.7364004Z  * [new ref]         6bd3f003bb14793bac8e8ac62305d09632488364 -> origin/ci-sinov
+ci	Kodni olish	2026-11-26T12:06:22.7366049Z ##[endgroup]
+ci	Kodni olish	2026-11-26T12:06:22.7366950Z ##[group]Determining the checkout info
+ci	Kodni olish	2026-11-26T12:06:22.7368914Z ##[endgroup]
+ci	Kodni olish	2026-11-26T12:06:22.7374554Z [command]/usr/bin/git sparse-checkout disable
+ci	Kodni olish	2026-11-26T12:06:22.7418696Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+ci	Kodni olish	2026-11-26T12:06:22.7445325Z ##[group]Checking out the ref
+ci	Kodni olish	2026-11-26T12:06:22.7448713Z [command]/usr/bin/git checkout --progress --force -B ci-sinov refs/remotes/origin/ci-sinov
+ci	Kodni olish	2026-11-26T12:06:22.7539429Z Switched to a new branch 'ci-sinov'
+ci	Kodni olish	2026-11-26T12:06:22.7544126Z branch 'ci-sinov' set up to track 'origin/ci-sinov'.
+ci	Kodni olish	2026-11-26T12:06:22.7548983Z ##[endgroup]
+ci	Kodni olish	2026-11-26T12:06:22.7585185Z [command]/usr/bin/git log -1 --format=%H
+ci	Kodni olish	2026-11-26T12:06:22.7607277Z 6bd3f003bb14793bac8e8ac62305d09632488364
+ci	Node.js o'rnatish (mashinadagi versiya)	﻿2026-11-26T12:06:22.7874448Z ##[group]Run actions/setup-node@v4
+ci	Node.js o'rnatish (mashinadagi versiya)	2026-11-26T12:06:22.7874968Z with:
+ci	Node.js o'rnatish (mashinadagi versiya)	2026-11-26T12:06:22.7875314Z   node-version: 24.18.0
+ci	Node.js o'rnatish (mashinadagi versiya)	2026-11-26T12:06:22.7875714Z   cache: npm
+ci	Node.js o'rnatish (mashinadagi versiya)	2026-11-26T12:06:22.7876197Z   always-auth: false
+ci	Node.js o'rnatish (mashinadagi versiya)	2026-11-26T12:06:22.7876737Z   check-latest: false
+ci	Node.js o'rnatish (mashinadagi versiya)	2026-11-26T12:06:22.7883492Z   token: ***
+ci	Node.js o'rnatish (mashinadagi versiya)	2026-11-26T12:06:22.7883910Z ##[endgroup]
+ci	Node.js o'rnatish (mashinadagi versiya)	2026-11-26T12:06:22.8983014Z Attempting to download 24.18.0...
+ci	Node.js o'rnatish (mashinadagi versiya)	2026-11-26T12:06:22.9124548Z (node:2205) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+ci	Node.js o'rnatish (mashinadagi versiya)	2026-11-26T12:06:22.9127320Z (Use `node --trace-deprecation ...` to show where the warning was created)
+ci	Node.js o'rnatish (mashinadagi versiya)	2026-11-26T12:06:23.7506293Z Acquiring 24.18.0 - x64 from https://github.com/actions/node-versions/releases/download/24.18.0-28070977815/node-24.18.0-linux-x64.tar.gz
+ci	Node.js o'rnatish (mashinadagi versiya)	2026-11-26T12:06:24.2782822Z Extracting ...
+ci	Node.js o'rnatish (mashinadagi versiya)	2026-11-26T12:06:24.2888571Z [command]/usr/bin/tar xz --strip 1 --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/db155520-7394-416d-8571-2ca91c3616ef -f /home/runner/work/_temp/225c5828-341a-4608-b80e-5ad1c3983936
+ci	Node.js o'rnatish (mashinadagi versiya)	2026-11-26T12:06:24.9237887Z Adding to the cache ...
+ci	Node.js o'rnatish (mashinadagi versiya)	2026-11-26T12:06:26.6537737Z ##[group]Environment details
+ci	Node.js o'rnatish (mashinadagi versiya)	2026-11-26T12:06:26.8434581Z node: v24.18.0
+ci	Node.js o'rnatish (mashinadagi versiya)	2026-11-26T12:06:26.8435124Z npm: 11.16.0
+ci	Node.js o'rnatish (mashinadagi versiya)	2026-11-26T12:06:26.8511462Z yarn: 1.22.22
+ci	Node.js o'rnatish (mashinadagi versiya)	2026-11-26T12:06:26.8512266Z ##[endgroup]
+ci	Node.js o'rnatish (mashinadagi versiya)	2026-11-26T12:06:26.8514774Z [command]/opt/hostedtoolcache/node/24.18.0/x64/bin/npm config get cache
+ci	Node.js o'rnatish (mashinadagi versiya)	2026-11-26T12:06:26.9205545Z /home/runner/.npm
+ci	Node.js o'rnatish (mashinadagi versiya)	2026-11-26T12:06:27.1236927Z Cache hit for: node-cache-Linux-x64-npm-ccb2b15dd267c884b0610f9549734f2a266074ea2630c8be582139d289f32d79
+ci	Node.js o'rnatish (mashinadagi versiya)	2026-11-26T12:06:27.1358793Z (node:2205) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+ci	Node.js o'rnatish (mashinadagi versiya)	2026-11-26T12:06:28.2856717Z Received 36237216 of 36237216 (100.0%), 37.1 MBs/sec
+ci	Node.js o'rnatish (mashinadagi versiya)	2026-11-26T12:06:28.2861383Z Cache Size: ~35 MB (36237216 B)
+ci	Node.js o'rnatish (mashinadagi versiya)	2026-11-26T12:06:28.2879407Z [command]/usr/bin/tar -xf /home/runner/work/_temp/e409d750-50e2-4793-bd8f-11fb7686e89a/cache.tzst -P -C /home/runner/work/OrderBotNest/OrderBotNest --use-compress-program unzstd
+ci	Node.js o'rnatish (mashinadagi versiya)	2026-11-26T12:06:28.5297263Z Cache restored successfully
+ci	Node.js o'rnatish (mashinadagi versiya)	2026-11-26T12:06:28.5319178Z Cache restored from key: node-cache-Linux-x64-npm-ccb2b15dd267c884b0610f9549734f2a266074ea2630c8be582139d289f32d79
+ci	Kutubxonalar (package-lock.json bo'yicha aynan)	﻿2026-11-26T12:06:28.5528539Z ##[group]Run npm ci
+ci	Kutubxonalar (package-lock.json bo'yicha aynan)	2026-11-26T12:06:28.5528807Z ^[[36;1mnpm ci^[[0m
+ci	Kutubxonalar (package-lock.json bo'yicha aynan)	2026-11-26T12:06:28.5563553Z shell: /usr/bin/bash -e {0}
+ci	Kutubxonalar (package-lock.json bo'yicha aynan)	2026-11-26T12:06:28.5563793Z ##[endgroup]
+ci	Kutubxonalar (package-lock.json bo'yicha aynan)	2026-11-26T12:06:31.2050207Z npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+ci	Kutubxonalar (package-lock.json bo'yicha aynan)	2026-11-26T12:06:33.8732916Z 
+ci	Kutubxonalar (package-lock.json bo'yicha aynan)	2026-11-26T12:06:33.8733865Z added 633 packages, and audited 634 packages in 5s
+ci	Kutubxonalar (package-lock.json bo'yicha aynan)	2026-11-26T12:06:33.8734264Z 
+ci	Kutubxonalar (package-lock.json bo'yicha aynan)	2026-11-26T12:06:33.8734505Z 133 packages are looking for funding
+ci	Kutubxonalar (package-lock.json bo'yicha aynan)	2026-11-26T12:06:33.8734911Z   run `npm fund` for details
+ci	Kutubxonalar (package-lock.json bo'yicha aynan)	2026-11-26T12:06:33.9075868Z 
+ci	Kutubxonalar (package-lock.json bo'yicha aynan)	2026-11-26T12:06:33.9077284Z 21 vulnerabilities (19 moderate, 2 high)
+ci	Kutubxonalar (package-lock.json bo'yicha aynan)	2026-11-26T12:06:33.9077847Z 
+ci	Kutubxonalar (package-lock.json bo'yicha aynan)	2026-11-26T12:06:33.9078344Z To address issues that do not require attention, run:
+ci	Kutubxonalar (package-lock.json bo'yicha aynan)	2026-11-26T12:06:33.9079004Z   npm audit fix
+ci	Kutubxonalar (package-lock.json bo'yicha aynan)	2026-11-26T12:06:33.9079328Z 
+ci	Kutubxonalar (package-lock.json bo'yicha aynan)	2026-11-26T12:06:33.9079820Z To address all issues (including breaking changes), run:
+ci	Kutubxonalar (package-lock.json bo'yicha aynan)	2026-11-26T12:06:33.9080439Z   npm audit fix --force
+ci	Kutubxonalar (package-lock.json bo'yicha aynan)	2026-11-26T12:06:33.9080788Z 
+ci	Kutubxonalar (package-lock.json bo'yicha aynan)	2026-11-26T12:06:33.9081253Z Run `npm audit` for details.
+ci	Kutubxonalar (package-lock.json bo'yicha aynan)	2026-11-26T12:06:33.9086468Z npm warn allow-scripts 1 package has install scripts not yet covered by allowScripts:
+ci	Kutubxonalar (package-lock.json bo'yicha aynan)	2026-11-26T12:06:33.9087228Z npm warn allow-scripts   @parcel/watcher@2.6.0 (install: node scripts/build-from-source.js)
+ci	Kutubxonalar (package-lock.json bo'yicha aynan)	2026-11-26T12:06:33.9087610Z npm warn allow-scripts
+ci	Kutubxonalar (package-lock.json bo'yicha aynan)	2026-11-26T12:06:33.9088162Z npm warn allow-scripts Run `npm approve-scripts --allow-scripts-pending` to review, or `npm approve-scripts <pkg>` to allow.
+ci	TypeScript tur tekshiruvi	﻿2026-11-26T12:06:33.9768162Z ##[group]Run npm run lint
+ci	TypeScript tur tekshiruvi	2026-11-26T12:06:33.9768430Z ^[[36;1mnpm run lint^[[0m
+ci	TypeScript tur tekshiruvi	2026-11-26T12:06:33.9799239Z shell: /usr/bin/bash -e {0}
+ci	TypeScript tur tekshiruvi	2026-11-26T12:06:33.9799497Z ##[endgroup]
+ci	TypeScript tur tekshiruvi	2026-11-26T12:06:34.0609303Z 
+ci	TypeScript tur tekshiruvi	2026-11-26T12:06:34.0609700Z > order-bot-nest@1.0.0 lint
+ci	TypeScript tur tekshiruvi	2026-11-26T12:06:34.0610087Z > tsc --noEmit
+ci	TypeScript tur tekshiruvi	2026-11-26T12:06:34.0610267Z 
+ci	Testlar	﻿2026-11-26T12:06:35.8210379Z ##[group]Run npm test
+ci	Testlar	2026-11-26T12:06:35.8210635Z ^[[36;1mnpm test^[[0m
+ci	Testlar	2026-11-26T12:06:35.8240427Z shell: /usr/bin/bash -e {0}
+ci	Testlar	2026-11-26T12:06:35.8240664Z ##[endgroup]
+ci	Testlar	2026-11-26T12:06:35.9067311Z 
+ci	Testlar	2026-11-26T12:06:35.9068034Z > order-bot-nest@1.0.0 test
+ci	Testlar	2026-11-26T12:06:35.9068470Z > jest
+ci	Testlar	2026-11-26T12:06:35.9068632Z 
+ci	Testlar	2026-11-26T12:06:37.0722711Z PASS src/api/telegram/keyboards.spec.ts
+ci	Testlar	2026-11-26T12:06:37.1311524Z PASS src/api/telegram/phone.spec.ts
+ci	Testlar	2026-11-26T12:06:37.1482195Z PASS src/api/telegram/texts.spec.ts
+ci	Testlar	2026-11-26T12:06:37.3259894Z PASS src/api/app.controller.spec.ts
+ci	Testlar	2026-11-26T12:06:37.3492783Z PASS src/api/order/order.service.spec.ts
+ci	Testlar	2026-11-26T12:06:37.3756202Z 
+ci	Testlar	2026-11-26T12:06:37.3759058Z Test Suites: 5 passed, 5 total
+ci	Testlar	2026-11-26T12:06:37.3759541Z Tests:       25 passed, 25 total
+ci	Testlar	2026-11-26T12:06:37.3759891Z Snapshots:   0 total
+ci	Testlar	2026-11-26T12:06:37.3760258Z Time:        1.254 s
+ci	Testlar	2026-11-26T12:06:37.3760537Z Ran all test suites.
+ci	Build	﻿2026-11-26T12:06:37.4347441Z ##[group]Run npm run build
+ci	Build	2026-11-26T12:06:37.4347702Z ^[[36;1mnpm run build^[[0m
+ci	Build	2026-11-26T12:06:37.4377141Z shell: /usr/bin/bash -e {0}
+ci	Build	2026-11-26T12:06:37.4377372Z ##[endgroup]
+ci	Build	2026-11-26T12:06:37.5180865Z 
+ci	Build	2026-11-26T12:06:37.5181680Z > order-bot-nest@1.0.0 build
+ci	Build	2026-11-26T12:06:37.5182126Z > nest build
+ci	Build	2026-11-26T12:06:37.5182290Z 
+ci	Post Node.js o'rnatish (mashinadagi versiya)	﻿2026-11-26T12:06:40.2744736Z Post job cleanup.
+ci	Post Node.js o'rnatish (mashinadagi versiya)	2026-11-26T12:06:40.3706707Z (node:2400) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+ci	Post Node.js o'rnatish (mashinadagi versiya)	2026-11-26T12:06:40.3707783Z (Use `node --trace-deprecation ...` to show where the warning was created)
+ci	Post Node.js o'rnatish (mashinadagi versiya)	2026-11-26T12:06:40.3709365Z Cache hit occurred on the primary key node-cache-Linux-x64-npm-ccb2b15dd267c884b0610f9549734f2a266074ea2630c8be582139d289f32d79, not saving cache.
+ci	Post Kodni olish	﻿2026-11-26T12:06:40.3838385Z Post job cleanup.
+ci	Post Kodni olish	2026-11-26T12:06:40.4573144Z [command]/usr/bin/git version
+ci	Post Kodni olish	2026-11-26T12:06:40.4612175Z git version 2.56.1
+ci	Post Kodni olish	2026-11-26T12:06:40.4643676Z Temporarily overriding HOME='/home/runner/work/_temp/8bb97a1f-81a4-41fd-ad32-d25ce277fc99' before making global git config changes
+ci	Post Kodni olish	2026-11-26T12:06:40.4644863Z Adding repository directory to the temporary git global config as a safe directory
+ci	Post Kodni olish	2026-11-26T12:06:40.4647540Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/OrderBotNest/OrderBotNest
+ci	Post Kodni olish	2026-11-26T12:06:40.4680912Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+ci	Post Kodni olish	2026-11-26T12:06:40.4711278Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+ci	Post Kodni olish	2026-11-26T12:06:40.5003041Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+ci	Post Kodni olish	2026-11-26T12:06:40.5006400Z http.https://github.com/.extraheader
+ci	Post Kodni olish	2026-11-26T12:06:40.5017050Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+ci	Post Kodni olish	2026-11-26T12:06:40.5049622Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+ci	Post Kodni olish	2026-11-26T12:06:40.5308345Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+ci	Post Kodni olish	2026-11-26T12:06:40.5345862Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+ci	Complete job	﻿2026-11-26T12:06:40.5709819Z Cleaning up orphan processes
+ci	Complete job	2026-11-26T12:06:40.6048850Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

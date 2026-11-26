@@ -1,0 +1,41 @@
+diff --git a/.github/workflows/ci.yml b/.github/workflows/ci.yml
+index 3195356..8b8973d 100644
+--- a/.github/workflows/ci.yml
++++ b/.github/workflows/ci.yml
+@@ -13,3 +13,36 @@ jobs:
+       - run: npx tsc --noEmit
+       - run: npm test
+       - run: npm run build
++
++  smoke:
++    needs: test
++    runs-on: ubuntu-latest
++    steps:
++      - uses: actions/checkout@v4
++      - uses: actions/setup-node@v4
++        with:
++          node-version: 24
++          cache: npm
++      - run: npm ci
++      - name: PostgreSQL vaqtincha ko'tarish
++        run: |
++          docker run -d --name pg-smoke -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=shop -p 5432:5432 postgres:16
++      - name: PostgreSQL tayyorligini kutish
++        run: |
++          for i in $(seq 1 30); do
++            if docker exec pg-smoke pg_isready -h 127.0.0.1 -U postgres -q; then
++              echo "PostgreSQL tayyor"
++              exit 0
++            fi
++            sleep 2
++          done
++          echo "PostgreSQL 60 soniyada tayyor bo'lmadi"
++          docker logs pg-smoke
++          exit 1
++      - name: Smoke (Telegram'siz)
++        run: npm run smoke
++        env:
++          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/shop
++      - name: PostgreSQL to'xtatish
++        if: always()
++        run: docker rm -f pg-smoke || true

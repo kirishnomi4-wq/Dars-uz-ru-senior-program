@@ -8,12 +8,12 @@ Foydalanuvchi 26.11 (qaror sahifasi v8, 2-savol A — agentlarga ruxsat, darsma-
 | Qadamlar | checkout · setup-node · `npm ci` · `npm test` | + tur tekshiruvi (`npx tsc --noEmit` / `npm run lint` = `tsc --noEmit`) · `npm run build` |
 | Actions | `@v4` / `@v4` | `@v7` / `@v4` (v7 tegi haqiqatan bor — GitHub API, 26.11) |
 | Qo'shimcha | — / `permissions` | `permissions`, `timeout-minutes: 15` / `permissions` |
-| Lenta | GitHub: run 19, 20 — `npm ci` ✗ (`Missing: webpack… from lock file`); 22 → 24 bilan run 21 ✓ | lokal lenta (`../../lenta-lokal.py`, toza nusxa, Node 24.18) — ikkalasi ✓ (`ai*/lenta-lokal.txt`); GitHub'da yurgizilmagan (push — foydalanuvchi ruxsati bilan) |
+| Lenta | GitHub: run 19, 20 — `npm ci` ✗ (`Missing: webpack… from lock file`); 22 → 24 bilan run 21 ✓ | lokal lenta (`../../lenta-lokal.py`, toza nusxa, Node 24.18) — ikkalasi ✓ (`ai*/lenta-lokal.txt`); **GitHub: run 22 ✓, run 23 ✓** (`../../cicd1v2-out/22-ai1-p2.txt`, `23-ai2-p2.txt`; 26.11, foydalanuvchi ruxsati bilan `ci-sinov` ga push) |
 | 15-ekran tur xatosi | `tsc` qadami yo'q — run 14 yashil (yolg'on yashil) | ikkalasi tur tekshiruvi qadamida ✗, test va build yurmadi (`ai*/lenta-tur-xatosi.txt`) |
 
 ## Saboq
 1. Mavzu tilidagi topshiriq 19-ekrandagi to'rt savolning hammasiga javob berdi: versiya mashinadan, `npm ci`, tur tekshiruvi, build. Ikkala AI versiyani taxmin qilmadi — `node -v` ni yurgizdi.
-2. 1-topshiriqdagi ikki zaif joy (versiya 22, `tsc`/`build` yo'q) aniq topshiriq bilan yo'qoldi; lekin GitHub'dagi birinchi yurish hali ko'rilmagan — darsda «lokal lentada» deb aytiladi.
+2. 1-topshiriqdagi ikki zaif joy (versiya 22, `tsc`/`build` yo'q) aniq topshiriq bilan yo'qoldi; GitHub'da ikkalasi birinchi urinishda yashil (run 22, 23). Tur xatosi sinovi — lokal lentada.
 3. AI xato qilmagan joyda xato o'ylab topilmaydi (M56-3): «satrni bosing» 1-topshiriqdagi haqiqiy satr bilan (`node-version: 22`, run 19 → 21).
 
 ## Halol cheklov

@@ -8,3 +8,5 @@
 41846225069	28	ci: smoke job (PostgreSQL xizmati) va README badge	2026-11-04T14:18:23Z	2026-11-04T14:19:38Z	2026-11-04T14:18:23Z	lenta-smoke	success	pull_request
 41846525635	29	Merge pull request #1 from Azizbekcrypto/lenta-smoke	2026-11-04T14:20:12Z	2026-11-04T14:21:13Z	2026-11-04T14:20:12Z	main	success	push
 41844079933	21	sinov: matrix node 22/24 (fail-fast odatiy)	2026-11-04T14:05:18Z	2026-11-04T14:05:44Z	2026-11-04T14:05:18Z	ci-sinov	failure	push
+45816680844	47	sinov: CI/CD-2 2-topshiriq (CI tilida) — 1-AI ci.yml	2026-11-26T12:07:10Z	2026-11-26T12:08:11Z	2026-11-26T12:07:10Z	ci-sinov	success	push
+45816907134	48	sinov: CI/CD-2 2-topshiriq (CI tilida) — 2-AI ci.yml	2026-11-26T12:08:38Z	2026-11-26T12:09:36Z	2026-11-26T12:08:38Z	ci-sinov	success	push

@@ -25,7 +25,7 @@ Loyiha: **OrderBotNest** — teglar `cicd2-start` (= `cicd1-done` b842475) · `c
 | Misol-ip | **OrderBotNest** `cicd1-done`: `ci.yml` (test job, 4 qadam). Yangi: `strategy.matrix` · `smoke` job (`needs: test`, `services: postgres:18`, `npm run smoke` — Telegram'siz tekshiruv: restart 3 + race 2 = 5 band) · `lenta-smoke` tarmog'i → PR → merge → main. Buzishlar: `node-version: [22, 24]` (22 — CI/CD-1 tuzog'i) · `secrets.DATABSE_URL` (harf tushib qolgan). |
 | AI | 2 tajriba (ruxsat 04.11): bitta oddiy prompt (`cicd2v2-ai/p1-prompt.txt`: «…`npm run smoke` bor, unga PostgreSQL kerak (DATABASE_URL). Workflow'ga smoke'ni ham qo'shib ber»), `ai1` kuchli, `ai2` kuchsizroq; ikkalasi haqiqiy lentada (`40`, `41`) — yashil. |
 | Haqiqiylik (M10) | 04.11 17:51–19:2x: runner `ubuntu-latest` = **Ubuntu 26.04** (`Image: ubuntu-26.04`, runner 2.338.2), `actions/checkout@v4`, `setup-node@v4` (Node 24.22.1, npm 11.19.1); har run job/step/annotatsiya/log API'dan; cache kaliti haqiqiy (`node-cache-Linux-x64-npm-ccb2…`); smoke chiqishi `NATIJA: 5/5 ✓`. YAML — `@actions/workflow-parser` (`08`). |
-| Hajm | **25 ekran** · 6 bosqich · 3 amaliyot · 4 tekshiruv · 8 savol · ovoz ≈ 25 daq · amaliyot ≈ 50–65 daq · jami ≈ 1 s 15 – 1 s 30 daq |
+| Hajm | **26 ekran** (26.11, F-1125-01: 17-ekran ikki topshiriq, «## AI-T5» Tekshiruv 5 saytda 20-ekran; MD raqamlari 20–25 saytda 21–26) · 6 bosqich · 3 amaliyot · 5 tekshiruv · 8 savol · ovoz ≈ 25 daq · amaliyot ≈ 50–65 daq · jami ≈ 1 s 15 – 1 s 30 daq |
 | Me'yor | CI/CD-1 v2 bilan bir xil (≤ 5 segment, ≤ 60 so'z, M17 ko'prik, «Xulosa», kalit 8–14 so'z, M32, M33, M42, M43, M46, M47, M48) |
 
 ---
@@ -136,7 +136,7 @@ Loyiha: **OrderBotNest** — teglar `cicd2-start` (= `cicd1-done` b842475) · `c
 - Manba: `cicd1v2-out/15-tsc-bor-qizil.txt` (annotatsiyalar 3, log), `11-test-qizil.txt` (annotatsiya 1, log) — aynan.
 
 ## 5 · Tekshiruv 1 — annotatsiya «exit code 1»  ← `MCRetry`
-- Kicker: `Tekshiruv 1` · Eyebrow: `Tekshiruv · 1 / 4`
+- Kicker: `Tekshiruv 1` · Eyebrow: `Tekshiruv · 1 / 5`
 - Sarlavha: **Run qizil. Annotatsiyada faqat `Process completed with exit code 1.` — `npm test` qadamida. Sababni qayerdan o'qiysiz?**
 - Material (`above`, M42): run `11` oynasi: annotatsiya `Process completed with exit code 1.`; qadamlar `npm ci` ✓ · `tsc` ✓ · **`npm test` ✗** · `build` skipped (log yopiq).
 - Ovoz: «Qizil run'ni o'qishni ko'rdingiz, endi tekshirib olaylik. Birinchi tekshiruv. Run qizil, annotatsiyada faqat process completed with exit code one, npm test qadamida. Qaysi test yiqilganini qayerdan o'qiysiz? Variantni tanlang.»
@@ -218,7 +218,7 @@ Loyiha: **OrderBotNest** — teglar `cicd2-start` (= `cicd1-done` b842475) · `c
 - Manba: `cicd2v2-out/31-matrix-ikkalasi.txt` (aynan), `cicd2v2-yml/2-matrix-fail-fast-false.yml`.
 
 ## 10 · Tekshiruv 2 — fail-fast  ← `MCRetry`
-- Kicker: `Tekshiruv 2` · Eyebrow: `Tekshiruv · 2 / 4`
+- Kicker: `Tekshiruv 2` · Eyebrow: `Tekshiruv · 2 / 5`
 - Sarlavha: **matrix `[22, 24]`, `fail-fast` yozilmagan. `test (22)` 10-soniyada yiqildi, `test (24)` hali `tsc`da. `test (24)` bilan nima bo'ladi?**
 - Material (`above`): yml 6–8 (`strategy:` `matrix:` `node-version: [22, 24]` — `fail-fast` yo'q); ostida run `30` jobs: `test (22)` ✗ 10 s · `test (24)` ? 22 s.
 - Ovoz: «Matrix'ni ko'rdingiz, endi tekshirib olaylik. Ikkinchi tekshiruv. Matrix yigirma ikki va yigirma to'rt, fail fast yozilmagan. Test yigirma ikki o'ninchi soniyada yiqildi, test yigirma to'rt hali tsc'da. Yigirma to'rt bilan nima bo'ladi? Variantni tanlang.»
@@ -305,7 +305,7 @@ Loyiha: **OrderBotNest** — teglar `cicd2-start` (= `cicd1-done` b842475) · `c
 - Manba: `cicd2v2-out/33-smoke-secret-xato.txt` (aynan), `34-secret-echo.txt` (secret bo'lsa), `cicd2v2-yml/4-smoke-secret-xato.yml`, `5-secret-echo.yml`; lokal `DATABASE_URL=` smoke → kod 2 (`cicd1v2-run`, 04.11).
 
 ## 15 · Tekshiruv 3 — qaysi satr smoke'ni bazasiz qoldiradi  ← `LineCheck`
-- Kicker: `Tekshiruv 3` · Eyebrow: `Tekshiruv · 3 / 4 — qaysi satr xato?` · Sarlavha: **Bu `ci.yml` bilan `smoke` job qizil: «DATABASE_URL topilmadi». Postgres ko'tarildi, healthcheck o'tdi. Sababchi satrni toping**
+- Kicker: `Tekshiruv 3` · Eyebrow: `Tekshiruv · 3 / 5 — qaysi satr xato?` · Sarlavha: **Bu `ci.yml` bilan `smoke` job qizil: «DATABASE_URL topilmadi». Postgres ko'tarildi, healthcheck o'tdi. Sababchi satrni toping**
 - Shart (`task`): «Qoida: `${{ secrets.NOM }}` — NOM Settings'dagi bilan harfma-harf bir xil bo'lishi kerak; yo'q nom — bo'sh qiymat, xato yo'q. Bu bo'lakda bitta satr noto'g'ri nomga murojaat qiladi. **O'sha satrni bosing.**»
 - Ovoz (`q`): «Secret nomini ko'rdingiz, endi o'zingiz toping. Uchinchi tekshiruv. Bu ci yml bilan smoke job qizil: DATABASE URL topilmadi. Postgres ko'tarildi, healthcheck o'tdi. Bo'lakda bitta satr noto'g'ri secret nomiga murojaat qiladi. O'sha satrni bosing.»
 - Fayl: `.github/workflows/ci.yml` (`4-smoke-secret-xato.yml` 31–41 — smoke qadamlari): `steps:` · `- uses: actions/checkout@v4` · `- uses: actions/setup-node@v4` · `with:` · `node-version: 24` · `cache: npm` · `- run: npm ci` · `- run: npm run smoke` · `env:` · **`DATABASE_URL: ${{ secrets.DATABSE_URL }}` ← xato satr (41)** → `target` = 41-satr (bo'lakda indeks 10; ✅ KOD).
@@ -330,26 +330,26 @@ Loyiha: **OrderBotNest** — teglar `cicd2-start` (= `cicd1-done` b842475) · `c
    Ovoz: «Xulosa: tarmoq, pull request, checks, merge. Va README'ning birinchi satriga badge: workflows ci yml badge svg. Reponi ochgan har kim lenta yashilmi, qizilmi, darhol ko'radi. O'quvchi darsida bu tablo deyiladi. Endi AI'ga o'tamiz.» · README
 - Manba: `cicd2v2-out/35-pr-tarmoq.txt`, `36-pr-checks.txt`, `36b-pr-holat.txt`, `37-main-merge.txt` (aynan); `cicd2-done` `README.md` 1-satr.
 
-## 17 · AI smoke workflow yozdi — ikki to'plam, ikkalasi yashil  ← `Lesson`
-- Kicker: `5-bosqich · AI` · Sarlavha: **Yangi ko'nikma davomi: ikki AI'ga bitta prompt — «smoke'ni ham qo'sh, unga PostgreSQL kerak»; ikkalasi `services: postgres` yozdi va lentada birinchi urinishda yashil**
-- Sahna: 1-segmentda bosqich kartasi («1–4-bosqich · siz» xira → «5-bosqich · AI yozadi, siz qabul qilasiz»); 2-segmentda prompt kartasi (`p1-prompt.txt`); 3-segmentda ikki AiReply: «1-AI (kuchli model)» — `ci.yml` +20 satr: `services: postgres:18` healthcheck, `POSTGRES_DB: shop`, `npm run smoke` oxirida, `env: DATABASE_URL` faqat smoke qadamida, 3 izoh; «2-AI (kuchsizroq model)» — +17 satr: xuddi shu, `env` job darajasida; 4-segmentda run `40` va `41` ikkalasi ✓ (`Initialize containers` · `npm run smoke` ✓).
-1. **Yana AI bosqichi: ==prompt — «smoke'ni ham qo'sh, unga PostgreSQL kerak»==, services so'zi yo'q**
-   Ovoz: «CI/CD-1 dagi kabi oxirgi bosqich AI bilan. Prompt: OrderBotNest'da npm run smoke bor, unga PostgreSQL kerak, DATABASE URL. Workflow'ga shu smoke'ni ham qo'shib ber. Services, konteyner, healthcheck, secret, bu so'zlar promptda yo'q. Har AI loyihaning alohida nusxasida, mavjud ci yml bilan.» · bosqich + prompt
-2. **Ikkalasi ==`services: postgres:18`, healthcheck, `POSTGRES_DB: shop`== yozdi — README'dagi versiyadan**
-   Ovoz: «Ikkalasi ham services postgres o'n sakkiz yozdi, README'dagi versiyadan. Parol, baza nomi shop, port, va healthcheck pg is ready. Smoke qadami build'dan keyin, env'ida DATABASE URL. Birinchisi env'ni faqat smoke qadamiga, ikkinchisi butun job'ga berdi.» · AI kartalari
-3. **Lentada: ==ikkalasi birinchi urinishda yashil== — `Initialize containers`, `NATIJA: 5/5 ✓`**
-   Ovoz: «Ikkalasini ham sinov tarmog'iga push qildik. Ikkalasi yashil: initialize containers, Postgres ko'tarildi, npm run smoke, natija besh besh. CI/CD-1 dagidan farqli, bu safar AI birinchi urinishda to'g'ri qildi. Nega shunday, hozir ko'ramiz.» · run 40, 41
-4. **Xulosa: AI ==secret ishlatmadi — to'g'ri== («konteyner — sir emas»); yashil, lekin tekshiruv hali oldinda**
-   Ovoz: «Xulosa: ikkala AI secret ishlatmadi va birinchisi sababini yozdi: konteyner paroli faqat job ichida, sir emas. To'g'ri fikr. Ikkalasi yashil. Lekin yashil hali qabul emas: keyingi ekranda to'rt savol bilan o'qiymiz.»
-- Manba: `cicd2v2-ai/00-promptlar.md`, `p1-prompt.txt`, `ai1/.github/workflows/ci.yml`, `ai2/…`, `XULOSA.md`, `cicd2v2-out/40-ai1.txt`, `41-ai2.txt`.
+## 17 · AI smoke workflow yozdi — ikki topshiriq, to'rttalasi yashil  ← `Lesson`
+- Kicker: `5-bosqich · AI` · Sarlavha: **Yangi ko'nikma davomi: ikki AI'ga bitta vazifa ikki xil topshiriq bilan — to'rttala workflow lentada birinchi urinishda yashil; endi o'qiymiz**
+- Sahna (26.11, F-1125-01 — Nest-1 darajasi, M56): 1-segmentda bosqich kartasi («1–4-bosqich · siz» xira → «5-bosqich · AI yozadi, siz qabul qilasiz»); 2-segmentda ikki topshiriq kartasi (`p1-prompt.txt` 04.11 · `p2-prompt.txt` 26.11); 3-segmentda natija jadvali 2 × 2: oddiy — 1-AI +20 / 2-AI +17 satr, `services: postgres:18` (README'dan), smoke oxirgi qadam; CI tilida — 1-AI +32 / 2-AI +33 satr, alohida `smoke` job `needs: test`, `DATABASE_URL` faqat smoke qadamida; 1-AI `services: postgres:18` + healthcheck, 2-AI `docker run … postgres:16` + kutish sikli; 4-segmentda run `40`, `41` (oddiy) va run `42`, `43` (CI tilida, 26.11 — foydalanuvchi ruxsati bilan `ci-sinov` ga push) — to'rttalasi ✓, smoke `NATIJA: 5/5 ✓`.
+1. **Yana AI bosqichi: ==smoke'ni AI qo'shadi, siz qabul qilasiz== — bitta vazifa, ikki topshiriq**
+   Ovoz: «CI/CD-1 dagi kabi oxirgi bosqich AI bilan. Biz ikki xil AI'ga bitta vazifani ikki xil topshiriq bilan berdik: mavjud ci yml'ga smoke'ni qo'shish, unga PostgreSQL kerak. Har AI loyihaning alohida nusxasida ishladi.» · bosqich
+2. **Ikki topshiriq: ==oddiy== — «smoke'ni ham qo'sh»; ==CI tilida== — alohida job, faqat test yashil bo'lsa, job ichida vaqtinchalik baza**
+   Ovoz: «Birinchi topshiriq oddiy: smoke'ni ham qo'shib ber, unga PostgreSQL kerak. Ikkinchisi CI tilida: smoke alohida job bo'lsin va faqat testlar yashil bo'lsa yursin, PostgreSQL job ichida vaqtinchalik ko'tarilsin, DATABASE URL faqat smoke qadamiga. Services, needs, secret, bu so'zlar ikkala topshiriqda ham yo'q.» · ikki topshiriq
+3. **Oddiy: ==smoke oxirgi qadam==, `services: postgres:18` · CI tilida: ==alohida job, `needs: test`==; 2-AI bazani `docker run` bilan, versiya 16**
+   Ovoz: «Natija. Oddiy topshiriqda ikkalasi services postgres o'n sakkiz yozdi, README'dagi versiyadan, smoke'ni esa oxirgi qadam qildi. CI tilidagi topshiriqda ikkalasi smoke'ni alohida job qildi, needs test bilan. Birinchisi yana services yozdi. Ikkinchisi bazani qadam ichida docker run bilan ko'tardi, versiyasi o'n olti.» · jadval
+4. **Lentada: ==to'rttalasi birinchi urinishda yashil== — smoke `NATIJA: 5/5 ✓`**
+   Ovoz: «To'rttalasini ham sinov tarmog'iga push qildik. Hammasi yashil, smoke natijasi besh besh. CI/CD-1 dagidan farqli, bu safar AI birinchi urinishda ishlaydigan fayl yozdi. Nega shunday, va yashil bo'lsa ham nimani tekshirish kerak, hozir ko'ramiz.» · run 40–43
+- Manba: `cicd2v2-ai/00-promptlar.md`, `p1-prompt.txt`, `p2-prompt.txt`, `ai*/.github/workflows/ci.yml`, `p2/ai*/.github/workflows/ci.yml`, `p2/ai*/00-javob.md`, `XULOSA.md`, `p2/XULOSA.md`, `cicd2v2-out/40-ai1.txt`, `41-ai2.txt`, `42-ai1-p2.txt`, `43-ai2-p2.txt`.
 
 ## 18 · AI'ni qabul qilish: to'rt savol; tayanch to'g'ri — AI ham to'g'ri  ← `Lesson`
 - Kicker: `5-bosqich · ichida` · Sarlavha: **Nega bu safar yashil: AI faylni noldan yozmadi, sizning `ci.yml`ni (node 24) o'zgartirdi — tayanch to'g'ri bo'lsa AI ham to'g'ri; qabul — to'rt savol**
 - Sahna: yonma-yon (M47): chapda CI/CD-1 AI natijasi kartasi: «noldan yozdi → `node-version: 22` → qizil» ↔ o'ngda CI/CD-2: «mavjud `ci.yml` (24) ni o'zgartirdi → yashil»; 2-segmentda ikki AI yml bo'lagi yonma-yon: 1-AI `env:` smoke qadamida ↔ 2-AI `env:` job darajasida; 3-segmentda 1-AI izohi: «smoke ichida yana `nest build` — build ikki marta»; 4-segmentda to'rt savol ro'yxati.
 1. **Farq: CI/CD-1 da AI ==noldan yozdi== (node 22 → qizil); bu safar ==sizning faylingizni o'zgartirdi== (24 → yashil)**
    Ovoz: «CI/CD-1 da AI workflow'ni noldan yozdi va node yigirma ikki qo'ydi, qizil. Bu safar repoda sizning ci yml'ingiz bor edi, node yigirma to'rt bilan. AI uni o'zgartirdi, noldan yozmadi. Tayanch to'g'ri bo'lsa, AI ham to'g'ri davom etadi. Shuning uchun avval o'zingiz yozing, keyin AI'ga bering.» · ikki karta
-2. **Ikki farq: ==`env` qayerda== — 1-AI faqat smoke qadamida (torroq, yaxshi), 2-AI butun job'ga; smoke alohida job emas**
-   Ovoz: «Ikkalasini solishtiring. Birinchi AI DATABASE URL'ni faqat smoke qadamiga berdi, ikkinchisi butun job'ga: ikkalasi ishlaydi, torrog'i yaxshiroq. Ikkalasi smoke'ni alohida job qilmadi, oxirgi qadam qildi: ishlaydi, lekin test qizil bo'lsa ham Postgres ko'tariladi. Tavsiyada needs test bilan alohida job.» · yml bo'laklari
+2. **Ikki farq: ==`env` qayerda== — 1-AI faqat smoke qadamida (torroq, yaxshi), 2-AI butun job'ga; oddiy topshiriqda smoke alohida job emas**
+   Ovoz: «Ikkalasini solishtiring. Birinchi AI DATABASE URL'ni faqat smoke qadamiga berdi, ikkinchisi butun job'ga: ikkalasi ishlaydi, torrog'i yaxshiroq. Oddiy topshiriqda ikkalasi smoke'ni oxirgi qadam qildi: ishlaydi, lekin test qizil bo'lsa ham Postgres ko'tariladi. CI tilidagi topshiriqda esa alohida job, needs test bilan, tavsiyadagidek.» · yml bo'laklari
 3. **1-AI o'zi sezdi: ==smoke ichida yana `nest build` — build ikki marta==; AI izohini o'qing**
    Ovoz: «Birinchi AI yana bir narsani o'zi aytdi: smoke ichida yana nest build bor, build ikki marta yuradi, bir necha soniya ortiqcha. Siz hal qilasiz: npm run build qadamini qoldirasizmi, olasizmi. AI'ning izohlarini o'qing, ko'pincha eng foydali joyi shu.» · izoh
 4. **Xulosa: AI smoke workflow'iga ==to'rt savol==: services + healthcheck · `DATABASE_URL` yetib boradimi · tartib · secret kerakmi**
@@ -357,7 +357,7 @@ Loyiha: **OrderBotNest** — teglar `cicd2-start` (= `cicd1-done` b842475) · `c
 - Manba: `cicd2v2-ai/XULOSA.md`, `ai1/diff.patch`, `ai2/diff.patch`; CI/CD-1 `cicd1v2-ai/XULOSA.md`.
 
 ## 19 · Tekshiruv 4 — konteyner uchun secret kerakmi  ← `MCRetry`
-- Kicker: `Tekshiruv 4` · Eyebrow: `Tekshiruv · 4 / 4`
+- Kicker: `Tekshiruv 4` · Eyebrow: `Tekshiruv · 4 / 5`
 - Sarlavha: **AI `services: postgres` yozdi va `DATABASE_URL: postgresql://postgres:postgres@localhost:5432/shop` ni yml'da ochiq qoldirdi. Bu xatomi?**
 - Material (`above`): AI yml bo'lagi (`YML_AI1` smoke qadami: `- run: npm run smoke` · `env:` · `DATABASE_URL: postgresql://postgres:postgres@localhost:5432/shop`); ostida services kartasi qisqa: «konteyner — job ichida, job bilan o'chadi».
 - Ovoz: «AI workflow'ini ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. AI services postgres yozdi va DATABASE URL'ni, parol postgres bilan, yml'da ochiq qoldirdi. Bu xatomi? Variantni tanlang.»
@@ -368,6 +368,12 @@ Loyiha: **OrderBotNest** — teglar `cicd2-start` (= `cicd1-done` b842475) · `c
 - Xato izohlari: 1 — «Secrets tashqi resurs uchun; konteyner paroli job bilan o'ladi.» · 2 — «GitHub yml'dagi matnni tekshirmaydi — run yashil (40, 41).» · 4 — «`localhost` ham sir bo'lishi mumkin (masalan, self-hosted runner'dagi haqiqiy baza) — gap manzilda emas, qiymat nimani ochishida.»
 - Maslahat: «14-ekran: env — konteyner, secrets — tashqi. Bu konteyner job'dan tashqarida bormi?»
 - Manba: `cicd2v2-ai/ai1/.github/workflows/ci.yml`, `cicd2v2-out/40`, `41`.
+
+## AI-T5 · Tekshiruv 5 — 2-AI (CI tilida): qaysi satr lentani loyihadagidan boshqa bazada sinaydi  ← `LineCheck` (F-1125-01, M56; kod `cicd2/parts/06b-ai.jsx`, saytda 20-ekran; matn kodda — generator bu bo'limni o'qimaydi; MD raqamlari 20–25 saytda 21–26)
+- Kicker (kodda): `Tekshiruv 5` · Eyebrow: `Tekshiruv · 5 / 5 — qaysi satr?` · Sarlavha: «Run 43 yashil, lekin loyiha PostgreSQL 18 da. 2-AI faylining qaysi satri lentani boshqa versiyada sinaydi?»
+- Kod: `cicd2v2-ai/p2/ai2/.github/workflows/ci.yml` 17–29 va 42–45 (aynan; 30–41 — kutish sikli «…»), explorer daraxtisiz (M61-3); to'g'ri satr 29 `docker run -d --name pg-smoke … postgres:16`. Qoida: README «NestJS + Telegraf + TypeORM + PostgreSQL 18»; 1-topshiriqda ikkala AI versiyani README'dan olgan (18).
+- Run 43 (GitHub, 26.11) ✓ — smoke `NATIJA: 5/5 ✓` PostgreSQL 16 da; xato «qizil» emas: lenta loyihadagidan boshqa bazani sinaydi (CI/CD-1 dagi `node-version` kabi).
+- Tuzatish: `postgres:18` — yurgizilgan: shu loyihaning smoke'i PostgreSQL 18.4 da (lokal, vaqtinchalik klaster) `NATIJA: 5/5 ✓` (`p2/ai2/smoke-pg18-lokal.txt`); GitHub'da `postgres:18` bilan — run 42 (1-AI fayli, `services`) ✓. 2-AI faylining 18 bilan GitHub run'i yo'q — darsda shunday aytiladi.
 
 ## 20 · Amaliyot 3 — smoke job, PR, merge, badge  ← `Practice`
 - Kicker: `Amaliyot 3 / 3` · Eyebrow: `Hozir o'zingizda · 25 daqiqa` · Sarlavha: **O'z AI'ingizga smoke job yozdiring, to'rt savol bilan tekshiring, alohida tarmoqda PR oching, yashil bo'lgach merge qiling, README'ga badge** · `tableAt: 3`

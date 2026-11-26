@@ -22,21 +22,31 @@ function Screen16(p) {
 // ============================================================
 //  17 · AI smoke workflow yozdi — ikki to'plam, ikkalasi yashil (run 40, 41)
 // ============================================================
+// 26.11 (F-1125-01, M56 — Nest-1 darajasi): 2-topshiriq CI tilida (cicd2v2-ai/p2-prompt.txt aynan; natija p2/, GitHub run 42, 43 — ruxsat bilan ci-sinov)
+const P2_CI2 = "OrderBotNest'dagi .github/workflows/ci.yml ga smoke'ni qo'sh (npm run smoke — Telegram'siz tekshiruv, unga PostgreSQL kerak, DATABASE_URL orqali). Smoke alohida job bo'lsin va faqat testlar job'i yashil bo'lsa yursin. PostgreSQL job ichida vaqtinchalik ko'tarilsin, tayyor bo'lgach smoke boshlansin. DATABASE_URL faqat smoke qadamiga berilsin. Mavjud job'ni buzma, boshqa fayllarga tegma. Qaysi fayl o'zgargani va nimani qanday tekshirganingni yoz.";
+// t() chizish paytida — funksiya (modul yuklanganda til hali o'rnatilmagan). Satr soni — diff-stat (insertions)
+const RES17 = () => [
+  [t('1-AI (kuchli model)', '1-й AI (сильная модель)'), <>+20 {t('satr', 'строк')} · <code>services: postgres:18</code> · {t('smoke oxirgi qadam', 'smoke — последний шаг')}</>, <>+32 {t('satr', 'строки')} · <code>needs: test</code> · <code>services: postgres:18</code> + healthcheck</>],
+  [t('2-AI (kuchsizroq model)', '2-й AI (модель слабее)'), <>+17 {t('satr', 'строк')} · <code>services: postgres:18</code> · <code>env</code> {t("butun job'ga", 'на весь job')}</>, <>+33 {t('satr', 'строки')} · <code>needs: test</code> · <code>docker run … postgres:16</code> + {t('kutish sikli', 'цикл ожидания')}</>],
+  [t('Lentada', 'На конвейере'), <>run 40, 41 · <b className="ok">{t('yashil', 'зелёный')}</b> · smoke 5/5</>, <>run 42, 43 · <b className="ok">{t('yashil', 'зелёный')}</b> · smoke 5/5</>],
+];
 const S17 = mkS(17, [{ v: 'stage' }, { v: 'prompt' }, { v: 'cards' }, { v: 'runs' }]);
 function Screen17(p) {
   return <Lesson p={p} S={S17} scene={({ seg }) => <>
     {(seg.v === 'stage' || seg.v === 'prompt') && <div className="c1-stage">
       <div style={{ '--c': T.ink3, opacity: 0.45 }}><h4>{t("1–4-bosqich · siz", "Этапы 1–4 · вы")}</h4><p>{t("run'ni o'qish · cache · matrix · services + smoke · secret", "чтение run · cache · matrix · services + smoke · secret")}</p></div>
-      <div style={{ '--c': C1.ai }}><h4>{t("5-bosqich · AI yozadi, siz qabul qilasiz", "Этап 5 · пишет AI, вы принимаете")}</h4><p>{t("bitta prompt → ikki workflow → haqiqiy lentada sinov", "один промпт → два workflow → проверка в настоящем конвейере")}</p></div>
+      <div style={{ '--c': C1.ai }}><h4>{t("5-bosqich · AI yozadi, siz qabul qilasiz", "Этап 5 · пишет AI, вы принимаете")}</h4><p>{t("bitta vazifa, ikki topshiriq → to'rt workflow → haqiqiy lentada sinov", "одна задача, два задания → четыре workflow → проверка в настоящем конвейере")}</p></div>
     </div>}
-    {seg.v === 'prompt' && <AiReply who={t("Prompt — ikkala AI'ga bir xil", "Промпт — одинаковый для обоих AI")} prompt={KOD.PROMPT1} tag={t("ishorasiz: services, konteyner, healthcheck, secret yo'q", "без подсказок: нет services, контейнера, healthcheck, secret")} />}
-    {seg.v === 'cards' && <div className="pg-two">
-      <AiReply who={t("1-AI (kuchli model)", "1-й AI (сильная модель)")} said={<><code>ci.yml</code>{t(" +20 satr: ", " +20 строк: ")}<code>services: postgres:18</code> + <code>pg_isready</code> healthcheck · <code>POSTGRES_DB: shop</code> · <code>npm run smoke</code>{t(" build'dan keyin · ", " после build · ")}<b>{t("env faqat smoke qadamida", "env только в шаге smoke")}</b>{t(" · 3 izoh («build ikki marta»)", " · 3 пояснения («build дважды»)")}</>} />
-      <AiReply who={t("2-AI (kuchsizroq model)", "2-й AI (модель слабее)")} said={<><code>ci.yml</code>{t(" +17 satr: xuddi shu services va healthcheck · ", " +17 строк: те же services и healthcheck · ")}<b>{t("env job darajasida", "env на уровне job")}</b>{t(" (hamma qadamga) · smoke oxirida · izohsiz", " (во все шаги) · smoke в конце · без пояснений")}</>} />
+    {seg.v === 'prompt' && <div className="pg-two">
+      <AiReply who={t("1-topshiriq · oddiy", "1-е задание · простое")} prompt={KOD.PROMPT1} tag={t("haqiqiy yurgizish · 04.11", "настоящий запуск · 04.11")} />
+      <AiReply who={t("2-topshiriq · CI tilida", "2-е задание · на языке CI")} prompt={P2_CI2} tag={t("haqiqiy yurgizish · 26.11", "настоящий запуск · 26.11")} hl />
     </div>}
+    {seg.v === 'cards' && <div className="mk-light" style={{ padding: 12 }}><table className="c1-res"><thead><tr><th />
+      <th>{t("1-topshiriq · oddiy", "1-е задание · простое")}</th><th>{t("2-topshiriq · CI tilida", "2-е задание · на языке CI")}</th></tr></thead>
+      <tbody>{RES17().map(([who, a, b]) => <tr key={who}><td>{who}</td><td>{a}</td><td>{b}</td></tr>)}</tbody></table></div>}
     {seg.v === 'runs' && <div className="pg-two c1-small"><RunView k="40" ann={null} only={/Initialize|npm ci|npm run smoke|Stop/} hlStep="Run npm run smoke" /><RunView k="41" ann={null} only={/Initialize|npm ci|npm run smoke|Stop/} hlStep="Run npm run smoke" /></div>}
     {/* F-1120-02 (M51): xulosada darsning rasmi — ikkala AI lentasi: services konteyneri, smoke yashil; secret ishlatilmadi (run 40, 41) */}
-    {seg.v === 'runs' && <div className="mk-light" style={{ padding: 12 }}><BotMap loc={DB_ALL} on={[...CI_ON, 'db', 'products', 'users', 'carts', 'orders']} dbLabel={DB_SVC} jest={{ name: 'AI ×2', steps: [['1-AI · smoke', 'ok'], ['2-AI · smoke', 'ok']], res: 'pass', get badge() { return t('tekshiruv oldinda', 'проверка впереди'); } }} max={0.85} tag={t("AI secret ishlatmadi — to'g'ri: konteyner — sir emas; yashil, lekin tekshiruv hali oldinda", 'AI не взял secret — верно: контейнер не секрет; зелёный, но проверка впереди')} /></div>}
+    {seg.v === 'runs' && <div className="mk-light" style={{ padding: 12 }}><BotMap loc={DB_ALL} on={[...CI_ON, 'db', 'products', 'users', 'carts', 'orders']} dbLabel={DB_SVC} jest={{ name: 'AI ×2 × 2', steps: [['1-AI · oddiy', 'ok'], ['2-AI · oddiy', 'ok'], ['1-AI · CI tilida', 'ok'], ['2-AI · CI tilida', 'ok']], res: 'pass', get badge() { return t('tekshiruv oldinda', 'проверка впереди'); } }} max={0.85} tag={t("AI secret ishlatmadi — to'g'ri: konteyner — sir emas; yashil, lekin tekshiruv hali oldinda", 'AI не взял secret — верно: контейнер не секрет; зелёный, но проверка впереди')} /></div>}
   </>} />;
 }
 
@@ -363,7 +373,7 @@ function Cover({ onStart, resume }) {
     </div></div>
   );
 }
-const SCREENS = [Screen1, Screen2, Screen3, Screen4, Screen5, Screen6, ScreenP7, Screen8, Screen9, Screen10, ScreenP11, Screen12, Screen13, Screen14, Screen15, Screen16, Screen17, Screen18, Screen19, ScreenP20, Screen21, Screen22, Screen23, Screen24, Screen25];
+const SCREENS = [Screen1, Screen2, Screen3, Screen4, Screen5, Screen6, ScreenP7, Screen8, Screen9, Screen10, ScreenP11, Screen12, Screen13, Screen14, Screen15, Screen16, Screen17, Screen18, Screen19, ScreenAI5, ScreenP20, Screen21, Screen22, Screen23, Screen24, Screen25]; // F-1125-01: ScreenAI5 (Tekshiruv 5) — saytda 20-ekran; MD 20–25 saytda 21–26 (M57)
 const PRACTICE_COUNT = [ScreenP7, ScreenP11, ScreenP20].filter((S) => SCREENS.includes(S)).length; // 26.11 (F-1125-01): havola bo'yicha — build (minify) funksiya nomini qisqartiradi, nom bo'yicha son 0 chiqib passed doim false edi
 export default function GithubActionsMentorLesson({ studentName, lang = 'uz', onFinished, startAt }) {
   setLang(lang);

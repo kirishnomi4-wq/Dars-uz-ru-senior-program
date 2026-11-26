@@ -3861,7 +3861,7 @@ const MDT = {
    [
     "d",
     "Xulosa: <b>to'g'ri ko'ringan fayl hali tekshiruv emas</b> — lentaga qo'yib ko'ramiz",
-    "Xulosa: to'g'ri ko'ringan workflow hali tekshiruv emas. Oddiy topshiriqdagi ikkala faylni OrderBotNest'ning sinov tarmog'iga push qildik, CI tilidagilarni lokal lentada yurgizdik. Natija keyingi ekranda."
+    "Xulosa: to'g'ri ko'ringan workflow hali tekshiruv emas. To'rttala faylni OrderBotNest'ning sinov tarmog'iga push qildik. CI tilidagilar birinchi urinishda yashil, run yigirma ikki va yigirma uch. Oddiy topshiriqdagilar qanday chiqqanini keyingi ekranda ko'ramiz."
    ]
   ]
  },
@@ -4943,6 +4943,7 @@ function Screen18(p) {
       <th>{t("1-topshiriq · oddiy", "1-е задание · простое")}</th><th>{t("2-topshiriq · CI tilida", "2-е задание · на языке CI")}</th></tr></thead>
       <tbody>{RES18().map(([who, a, b]) => <tr key={who}><td>{who}</td><td>{a}<br /><b className="no"><code>node-version: 22</code>{t(" · tsc va build yo'q", " · нет tsc и build")}</b></td><td>{b}<br /><b className="ok"><code>node-version: '24.18.0'</code>{t(" · to'rt bosqich", " · четыре этапа")}</b></td></tr>)}
         <tr><td>{t("Versiya qayerdan", "Откуда версия")}</td><td>{t("so'ramadi — odatiy raqam", "не спросил — привычное число")}</td><td><code>node -v</code>{t(" ni o'zi yurgizdi", " запустил сам")}</td></tr>
+        <tr><td>GitHub</td><td>run 19, 20 · <b className="no">{t("qizil", "красный")}</b> (<code>npm ci</code>)</td><td>run 22, 23 · <b className="ok">{t("yashil", "зелёный")}</b></td></tr>
       </tbody></table></div>}
     {seg.v === 'yml' && <div style={{ display: 'grid', gap: 8 }}>
       <div className="pg-two"><Yml k="YML_AI1" title="test.yml · 1-AI" from={NV('YML_AI1') - 3} to={NV('YML_AI1') + 1} ids={{ [NV('YML_AI1')]: 'n' }} focus={['n']} /><Yml k="YML_AI2" title="ci.yml · 2-AI" from={NV('YML_AI2') - 3} to={NV('YML_AI2') + 1} ids={{ [NV('YML_AI2')]: 'n' }} focus={['n']} /></div>
@@ -5901,7 +5902,7 @@ const RU_MDT = {
    ],
    "d": [
     "Итог: <b>файл, который выглядит правильно, — ещё не проверка</b> — ставим на конвейер",
-    "Итог: workflow, который выглядит правильно, — ещё не проверка. Оба файла простого задания мы запушили в тестовую ветку OrderBotNest, а файлы на языке CI прогнали на локальном конвейере. Результат на следующем экране."
+    "Итог: workflow, который выглядит правильно, — ещё не проверка. Все четыре файла мы запушили в тестовую ветку OrderBotNest. Файлы на языке CI зелёные с первой попытки, run двадцать два и двадцать три. Как вышли файлы простого задания, увидим на следующем экране."
    ]
   }
  },

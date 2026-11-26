@@ -116,7 +116,7 @@ const MDT = {
  "5": {
   "type": "MCRetry",
   "kicker": "Tekshiruv 1",
-  "eyebrow": "Tekshiruv · 1 / 4",
+  "eyebrow": "Tekshiruv · 1 / 5",
   "title": "Run qizil. Annotatsiyada faqat Process completed with exit code 1. — npm test qadamida. Sababni qayerdan o'qiysiz?",
   "q": "Qizil run'ni o'qishni ko'rdingiz, endi tekshirib olaylik. Birinchi tekshiruv. Run qizil, annotatsiyada faqat process completed with exit code one, npm test qadamida. Qaysi test yiqilganini qayerdan o'qiysiz? Variantni tanlang.",
   "ok": "To'g'ri. Qizil qadamni bosasiz: npm test. Logda Jest'ning to'liq chiqishi: FAIL, qaysi test, kutilgan va kelgan, o'ttiz yettinchi satr. Annotatsiya faqat qadamni ko'rsatdi, chunki Jest error belgisi bilan yozmaydi. Demak, annotatsiya manzil, log esa sabab; lokalda qayta yurgizish shart emas.",
@@ -304,7 +304,7 @@ const MDT = {
  "10": {
   "type": "MCRetry",
   "kicker": "Tekshiruv 2",
-  "eyebrow": "Tekshiruv · 2 / 4",
+  "eyebrow": "Tekshiruv · 2 / 5",
   "title": "matrix [22, 24], fail-fast yozilmagan. test (22) 10-soniyada yiqildi, test (24) hali tscda. test (24) bilan nima bo'ladi?",
   "q": "Matrix'ni ko'rdingiz, endi tekshirib olaylik. Ikkinchi tekshiruv. Matrix yigirma ikki va yigirma to'rt, fail fast yozilmagan. Test yigirma ikki o'ninchi soniyada yiqildi, test yigirma to'rt hali tsc'da. Yigirma to'rt bilan nima bo'ladi? Variantni tanlang.",
   "ok": "To'g'ri. Fail fast yozilmasa, u true: bitta mashina yiqilishi bilan GitHub qolganini bekor qiladi, cancelled. Yigirma to'rt tsc'da to'xtatildi, natijasi noma'lum. To'liq javob kerak bo'lsa, fail fast false yoziladi. Demak, matrix'da cancelled ko'rsangiz, bu o'sha job'ning xatosi emas, boshqasining yiqilgani.",
@@ -500,7 +500,7 @@ const MDT = {
  "15": {
   "type": "LineCheck",
   "kicker": "Tekshiruv 3",
-  "eyebrow": "Tekshiruv · 3 / 4 — qaysi satr xato?",
+  "eyebrow": "Tekshiruv · 3 / 5 — qaysi satr xato?",
   "title": "Bu ci.yml bilan smoke job qizil: «DATABASE_URL topilmadi». Postgres ko'tarildi, healthcheck o'tdi. Sababchi satrni toping",
   "q": "Secret nomini ko'rdingiz, endi o'zingiz toping. Uchinchi tekshiruv. Bu ci yml bilan smoke job qizil: DATABASE URL topilmadi. Postgres ko'tarildi, healthcheck o'tdi. Bo'lakda bitta satr noto'g'ri secret nomiga murojaat qiladi. O'sha satrni bosing.",
   "ok": "To'g'ri. Secrets DATABSE URL: E harfi tushib qolgan. GitHub bunday secret'ni topmadi, lekin xato bermadi, bo'sh qiymat berdi. Smoke bo'sh manzil bilan ishga tushdi va o'zi to'xtadi: DATABASE URL topilmadi. Ekranda tuzatilgan satr. Demak, secret bilan bog'liq xatoni avval nomdan qidiring.",
@@ -538,27 +538,27 @@ const MDT = {
  "17": {
   "type": "Lesson",
   "kicker": "5-bosqich · AI",
-  "title": "Yangi ko'nikma davomi: ikki AI'ga bitta prompt — «smoke'ni ham qo'sh, unga PostgreSQL kerak»; ikkalasi services: postgres yozdi va lentada birinchi urinishda yashil",
+  "title": "Yangi ko'nikma davomi: ikki AI'ga bitta vazifa ikki xil topshiriq bilan — to'rttala workflow lentada birinchi urinishda yashil; endi o'qiymiz",
   "seg": [
    [
     "a",
-    "Yana AI bosqichi: <b>prompt — «smoke'ni ham qo'sh, unga PostgreSQL kerak»</b>, services so'zi yo'q",
-    "CI/CD-1 dagi kabi oxirgi bosqich AI bilan. Prompt: OrderBotNest'da npm run smoke bor, unga PostgreSQL kerak, DATABASE URL. Workflow'ga shu smoke'ni ham qo'shib ber. Services, konteyner, healthcheck, secret, bu so'zlar promptda yo'q. Har AI loyihaning alohida nusxasida, mavjud ci yml bilan."
+    "Yana AI bosqichi: <b>smoke'ni AI qo'shadi, siz qabul qilasiz</b> — bitta vazifa, ikki topshiriq",
+    "CI/CD-1 dagi kabi oxirgi bosqich AI bilan. Biz ikki xil AI'ga bitta vazifani ikki xil topshiriq bilan berdik: mavjud ci yml'ga smoke'ni qo'shish, unga PostgreSQL kerak. Har AI loyihaning alohida nusxasida ishladi."
    ],
    [
     "b",
-    "Ikkalasi <b><code>services: postgres:18</code>, healthcheck, <code>POSTGRES_DB: shop</code></b> yozdi — README'dagi versiyadan",
-    "Ikkalasi ham services postgres o'n sakkiz yozdi, README'dagi versiyadan. Parol, baza nomi shop, port, va healthcheck pg is ready. Smoke qadami build'dan keyin, env'ida DATABASE URL. Birinchisi env'ni faqat smoke qadamiga, ikkinchisi butun job'ga berdi."
+    "Ikki topshiriq: <b>oddiy</b> — «smoke'ni ham qo'sh»; <b>CI tilida</b> — alohida job, faqat test yashil bo'lsa, job ichida vaqtinchalik baza",
+    "Birinchi topshiriq oddiy: smoke'ni ham qo'shib ber, unga PostgreSQL kerak. Ikkinchisi CI tilida: smoke alohida job bo'lsin va faqat testlar yashil bo'lsa yursin, PostgreSQL job ichida vaqtinchalik ko'tarilsin, DATABASE URL faqat smoke qadamiga. Services, needs, secret, bu so'zlar ikkala topshiriqda ham yo'q."
    ],
    [
     "c",
-    "Lentada: <b>ikkalasi birinchi urinishda yashil</b> — <code>Initialize containers</code>, <code>NATIJA: 5/5 ✓</code>",
-    "Ikkalasini ham sinov tarmog'iga push qildik. Ikkalasi yashil: initialize containers, Postgres ko'tarildi, npm run smoke, natija besh besh. CI/CD-1 dagidan farqli, bu safar AI birinchi urinishda to'g'ri qildi. Nega shunday, hozir ko'ramiz."
+    "Oddiy: <b>smoke oxirgi qadam</b>, <code>services: postgres:18</code> · CI tilida: <b>alohida job, <code>needs: test</code></b>; 2-AI bazani <code>docker run</code> bilan, versiya 16",
+    "Natija. Oddiy topshiriqda ikkalasi services postgres o'n sakkiz yozdi, README'dagi versiyadan, smoke'ni esa oxirgi qadam qildi. CI tilidagi topshiriqda ikkalasi smoke'ni alohida job qildi, needs test bilan. Birinchisi yana services yozdi. Ikkinchisi bazani qadam ichida docker run bilan ko'tardi, versiyasi o'n olti."
    ],
    [
     "d",
-    "Xulosa: AI <b>secret ishlatmadi — to'g'ri</b> («konteyner — sir emas»); yashil, lekin tekshiruv hali oldinda",
-    "Xulosa: ikkala AI secret ishlatmadi va birinchisi sababini yozdi: konteyner paroli faqat job ichida, sir emas. To'g'ri fikr. Ikkalasi yashil. Lekin yashil hali qabul emas: keyingi ekranda to'rt savol bilan o'qiymiz."
+    "Lentada: <b>to'rttalasi birinchi urinishda yashil</b> — smoke <code>NATIJA: 5/5 ✓</code>",
+    "To'rttalasini ham sinov tarmog'iga push qildik. Hammasi yashil, smoke natijasi besh besh. CI/CD-1 dagidan farqli, bu safar AI birinchi urinishda ishlaydigan fayl yozdi. Nega shunday, va yashil bo'lsa ham nimani tekshirish kerak, hozir ko'ramiz."
    ]
   ]
  },
@@ -574,8 +574,8 @@ const MDT = {
    ],
    [
     "b",
-    "Ikki farq: <b><code>env</code> qayerda</b> — 1-AI faqat smoke qadamida (torroq, yaxshi), 2-AI butun job'ga; smoke alohida job emas",
-    "Ikkalasini solishtiring. Birinchi AI DATABASE URL'ni faqat smoke qadamiga berdi, ikkinchisi butun job'ga: ikkalasi ishlaydi, torrog'i yaxshiroq. Ikkalasi smoke'ni alohida job qilmadi, oxirgi qadam qildi: ishlaydi, lekin test qizil bo'lsa ham Postgres ko'tariladi. Tavsiyada needs test bilan alohida job."
+    "Ikki farq: <b><code>env</code> qayerda</b> — 1-AI faqat smoke qadamida (torroq, yaxshi), 2-AI butun job'ga; oddiy topshiriqda smoke alohida job emas",
+    "Ikkalasini solishtiring. Birinchi AI DATABASE URL'ni faqat smoke qadamiga berdi, ikkinchisi butun job'ga: ikkalasi ishlaydi, torrog'i yaxshiroq. Oddiy topshiriqda ikkalasi smoke'ni oxirgi qadam qildi: ishlaydi, lekin test qizil bo'lsa ham Postgres ko'tariladi. CI tilidagi topshiriqda esa alohida job, needs test bilan, tavsiyadagidek."
    ],
    [
     "c",
@@ -592,7 +592,7 @@ const MDT = {
  "19": {
   "type": "MCRetry",
   "kicker": "Tekshiruv 4",
-  "eyebrow": "Tekshiruv · 4 / 4",
+  "eyebrow": "Tekshiruv · 4 / 5",
   "title": "AI services: postgres yozdi va DATABASE_URL: postgresql://postgres:postgres@localhost:5432/shop ni yml'da ochiq qoldirdi. Bu xatomi?",
   "q": "AI workflow'ini ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. AI services postgres yozdi va DATABASE URL'ni, parol postgres bilan, yml'da ochiq qoldirdi. Bu xatomi? Variantni tanlang.",
   "ok": "To'g'ri. Bu konteyner job bilan ochiladi va job bilan o'chadi, unga tashqaridan hech kim ulanolmaydi, parol hech narsani ochmaydi. Secret tashqi resurs uchun: haqiqiy baza, bot tokeni. Demak, secret kerakmi deb so'raganda, bu qiymat job'dan tashqarida nimani ochadi, deb so'rang.",

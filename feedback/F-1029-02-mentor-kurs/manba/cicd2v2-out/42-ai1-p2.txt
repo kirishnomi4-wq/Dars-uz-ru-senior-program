@@ -1,0 +1,660 @@
+# CI/CD-2 · 1-AI (Opus) · 2-topshiriq «CI tilida» · o'zgartirilmagan
+# run 45816680844 · branch ci-sinov · commit 3ec6233 · natija: success · yozildi 2026-11-26 17:08:18 +0500
+# https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/45816680844
+
+$ cat .github/workflows/ci.yml
+name: CI
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx tsc --noEmit
+      - run: npm test
+      - run: npm run build
+
+  smoke:
+    # faqat test job'i yashil bo'lsa yuradi
+    needs: test
+    runs-on: ubuntu-latest
+    services:
+      # vaqtinchalik PostgreSQL: job tugashi bilan o'chadi
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: shop
+        ports:
+          - 5432:5432
+        # pg_isready "tayyor" demaguncha qadamlar boshlanmaydi
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Smoke (Telegram'siz)
+        run: npm run smoke
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/shop
+
+## gh run view
+
+✓ ci-sinov CI · 45816680844
+Triggered via push about 1 minute ago
+
+JOBS
+✓ test in 23s (ID 139898097526)
+✓ smoke in 33s (ID 139898328264)
+
+ANNOTATIONS
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+test: .github#2
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+smoke: .github#2
+
+
+For more information about a job, try: gh run view --job=<job-id>
+View this run on GitHub: https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/45816680844
+
+## job → step
+JOB test · success · 2026-11-26T12:07:13Z → 2026-11-26T12:07:36Z
+  1. Set up job · success · 2026-11-26T12:07:14Z → 2026-11-26T12:07:14Z
+  2. Run actions/checkout@v4 · success · 2026-11-26T12:07:14Z → 2026-11-26T12:07:15Z
+  3. Run actions/setup-node@v4 · success · 2026-11-26T12:07:15Z → 2026-11-26T12:07:18Z
+  4. Run npm ci · success · 2026-11-26T12:07:18Z → 2026-11-26T12:07:26Z
+  5. Run npx tsc --noEmit · success · 2026-11-26T12:07:26Z → 2026-11-26T12:07:28Z
+  6. Run npm test · success · 2026-11-26T12:07:28Z → 2026-11-26T12:07:30Z
+  7. Run npm run build · success · 2026-11-26T12:07:30Z → 2026-11-26T12:07:33Z
+  13. Post Run actions/setup-node@v4 · success · 2026-11-26T12:07:33Z → 2026-11-26T12:07:33Z
+  14. Post Run actions/checkout@v4 · success · 2026-11-26T12:07:33Z → 2026-11-26T12:07:34Z
+  15. Complete job · success · 2026-11-26T12:07:34Z → 2026-11-26T12:07:34Z
+JOB smoke · success · 2026-11-26T12:07:38Z → 2026-11-26T12:08:11Z
+  1. Set up job · success · 2026-11-26T12:07:39Z → 2026-11-26T12:07:40Z
+  2. Initialize containers · success · 2026-11-26T12:07:40Z → 2026-11-26T12:07:54Z
+  3. Run actions/checkout@v4 · success · 2026-11-26T12:07:54Z → 2026-11-26T12:07:55Z
+  4. Run actions/setup-node@v4 · success · 2026-11-26T12:07:55Z → 2026-11-26T12:07:57Z
+  5. Run npm ci · success · 2026-11-26T12:07:57Z → 2026-11-26T12:08:01Z
+  6. Smoke (Telegram'siz) · success · 2026-11-26T12:08:01Z → 2026-11-26T12:08:07Z
+  10. Post Run actions/setup-node@v4 · success · 2026-11-26T12:08:07Z → 2026-11-26T12:08:07Z
+  11. Post Run actions/checkout@v4 · success · 2026-11-26T12:08:07Z → 2026-11-26T12:08:07Z
+  12. Stop containers · success · 2026-11-26T12:08:07Z → 2026-11-26T12:08:09Z
+  13. Complete job · success · 2026-11-26T12:08:09Z → 2026-11-26T12:08:09Z
+
+## annotatsiyalar
+  [warning]  Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+  [warning]  Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+
+## to'liq log
+test	Set up job	﻿2026-11-26T12:07:14.1992850Z Current runner version: '2.338.2'
+test	Set up job	2026-11-26T12:07:14.2017997Z ##[group]Runner Image Provisioner
+test	Set up job	2026-11-26T12:07:14.2018907Z Hosted Compute Agent
+test	Set up job	2026-11-26T12:07:14.2019548Z Version: 20261111.635
+test	Set up job	2026-11-26T12:07:14.2020248Z Commit: b8a594ea514ff44cadb5342986c68b1eac6e22ed
+test	Set up job	2026-11-26T12:07:14.2020988Z Build Date: 2026-11-11T01:49:01Z
+test	Set up job	2026-11-26T12:07:14.2021669Z Worker ID: {18505821-aece-4aba-9df1-fb622b3b5725}
+test	Set up job	2026-11-26T12:07:14.2022493Z Region: westus2
+test	Set up job	2026-11-26T12:07:14.2023093Z Cloud: Azure
+test	Set up job	2026-11-26T12:07:14.2023684Z ##[endgroup]
+test	Set up job	2026-11-26T12:07:14.2025413Z ##[group]Operating System
+test	Set up job	2026-11-26T12:07:14.2026067Z Ubuntu
+test	Set up job	2026-11-26T12:07:14.2026699Z 26.04.1
+test	Set up job	2026-11-26T12:07:14.2027254Z LTS
+test	Set up job	2026-11-26T12:07:14.2027805Z ##[endgroup]
+test	Set up job	2026-11-26T12:07:14.2028378Z ##[group]Runner Image
+test	Set up job	2026-11-26T12:07:14.2028985Z Image: ubuntu-26.04
+test	Set up job	2026-11-26T12:07:14.2029642Z Version: 20261116.202.1
+test	Set up job	2026-11-26T12:07:14.2030746Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261116.202/images/ubuntu/Ubuntu2604-Readme.md
+test	Set up job	2026-11-26T12:07:14.2032476Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261116.202
+test	Set up job	2026-11-26T12:07:14.2033439Z ##[endgroup]
+test	Set up job	2026-11-26T12:07:14.2034853Z ##[group]GITHUB_TOKEN Permissions
+test	Set up job	2026-11-26T12:07:14.2036995Z Contents: read
+test	Set up job	2026-11-26T12:07:14.2038041Z Metadata: read
+test	Set up job	2026-11-26T12:07:14.2038632Z Packages: read
+test	Set up job	2026-11-26T12:07:14.2039215Z ##[endgroup]
+test	Set up job	2026-11-26T12:07:14.2041271Z Secret source: Actions
+test	Set up job	2026-11-26T12:07:14.2042312Z Cache mode: write
+test	Set up job	2026-11-26T12:07:14.2043027Z Prepare workflow directory
+test	Set up job	2026-11-26T12:07:14.2430571Z Prepare all required actions
+test	Set up job	2026-11-26T12:07:14.2484480Z Getting action download info
+test	Set up job	2026-11-26T12:07:14.5711846Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+test	Set up job	2026-11-26T12:07:14.6634004Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+test	Set up job	2026-11-26T12:07:14.8355550Z Complete job name: test
+test	Run actions/checkout@v4	﻿2026-11-26T12:07:14.9240499Z ##[group]Run actions/checkout@v4
+test	Run actions/checkout@v4	2026-11-26T12:07:14.9241413Z with:
+test	Run actions/checkout@v4	2026-11-26T12:07:14.9241881Z   repository: Azizbekcrypto/OrderBotNest
+test	Run actions/checkout@v4	2026-11-26T12:07:14.9245833Z   token: ***
+test	Run actions/checkout@v4	2026-11-26T12:07:14.9246274Z   ssh-strict: true
+test	Run actions/checkout@v4	2026-11-26T12:07:14.9246711Z   ssh-user: git
+test	Run actions/checkout@v4	2026-11-26T12:07:14.9247152Z   persist-credentials: true
+test	Run actions/checkout@v4	2026-11-26T12:07:14.9247642Z   clean: true
+test	Run actions/checkout@v4	2026-11-26T12:07:14.9248085Z   sparse-checkout-cone-mode: true
+test	Run actions/checkout@v4	2026-11-26T12:07:14.9248601Z   fetch-depth: 1
+test	Run actions/checkout@v4	2026-11-26T12:07:14.9249032Z   fetch-tags: false
+test	Run actions/checkout@v4	2026-11-26T12:07:14.9249468Z   show-progress: true
+test	Run actions/checkout@v4	2026-11-26T12:07:14.9249903Z   lfs: false
+test	Run actions/checkout@v4	2026-11-26T12:07:14.9250321Z   submodules: false
+test	Run actions/checkout@v4	2026-11-26T12:07:14.9250768Z   set-safe-directory: true
+test	Run actions/checkout@v4	2026-11-26T12:07:14.9251271Z   allow-unsafe-pr-checkout: false
+test	Run actions/checkout@v4	2026-11-26T12:07:14.9252036Z ##[endgroup]
+test	Run actions/checkout@v4	2026-11-26T12:07:15.1785711Z Syncing repository: Azizbekcrypto/OrderBotNest
+test	Run actions/checkout@v4	2026-11-26T12:07:15.1788573Z ##[group]Getting Git version info
+test	Run actions/checkout@v4	2026-11-26T12:07:15.1789986Z Working directory is '/home/runner/work/OrderBotNest/OrderBotNest'
+test	Run actions/checkout@v4	2026-11-26T12:07:15.1791728Z [command]/usr/bin/git version
+test	Run actions/checkout@v4	2026-11-26T12:07:15.1795110Z git version 2.56.1
+test	Run actions/checkout@v4	2026-11-26T12:07:15.1826868Z ##[endgroup]
+test	Run actions/checkout@v4	2026-11-26T12:07:15.1835519Z Temporarily overriding HOME='/home/runner/work/_temp/48aa979c-cc29-420c-a171-495632559ab9' before making global git config changes
+test	Run actions/checkout@v4	2026-11-26T12:07:15.1837826Z Adding repository directory to the temporary git global config as a safe directory
+test	Run actions/checkout@v4	2026-11-26T12:07:15.1841013Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/OrderBotNest/OrderBotNest
+test	Run actions/checkout@v4	2026-11-26T12:07:15.1904886Z Deleting the contents of '/home/runner/work/OrderBotNest/OrderBotNest'
+test	Run actions/checkout@v4	2026-11-26T12:07:15.1908126Z ##[group]Initializing the repository
+test	Run actions/checkout@v4	2026-11-26T12:07:15.1912644Z [command]/usr/bin/git init /home/runner/work/OrderBotNest/OrderBotNest
+test	Run actions/checkout@v4	2026-11-26T12:07:15.2018818Z hint: Using 'master' as the name for the initial branch. This default branch name
+test	Run actions/checkout@v4	2026-11-26T12:07:15.2020714Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+test	Run actions/checkout@v4	2026-11-26T12:07:15.2022890Z hint: to use in all of your new repositories, which will suppress this warning,
+test	Run actions/checkout@v4	2026-11-26T12:07:15.2024310Z hint: call:
+test	Run actions/checkout@v4	2026-11-26T12:07:15.2025500Z hint:
+test	Run actions/checkout@v4	2026-11-26T12:07:15.2026523Z hint: 	git config --global init.defaultBranch <name>
+test	Run actions/checkout@v4	2026-11-26T12:07:15.2027709Z hint:
+test	Run actions/checkout@v4	2026-11-26T12:07:15.2028831Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+test	Run actions/checkout@v4	2026-11-26T12:07:15.2030542Z hint: 'development'. The just-created branch can be renamed via this command:
+test	Run actions/checkout@v4	2026-11-26T12:07:15.2031950Z hint:
+test	Run actions/checkout@v4	2026-11-26T12:07:15.2032883Z hint: 	git branch -m <name>
+test	Run actions/checkout@v4	2026-11-26T12:07:15.2033843Z hint:
+test	Run actions/checkout@v4	2026-11-26T12:07:15.2035264Z hint: Disable this message with "git config set advice.defaultBranchName false"
+test	Run actions/checkout@v4	2026-11-26T12:07:15.2037358Z Initialized empty Git repository in /home/runner/work/OrderBotNest/OrderBotNest/.git/
+test	Run actions/checkout@v4	2026-11-26T12:07:15.2041314Z [command]/usr/bin/git remote add origin https://github.com/Azizbekcrypto/OrderBotNest
+test	Run actions/checkout@v4	2026-11-26T12:07:15.2090626Z ##[endgroup]
+test	Run actions/checkout@v4	2026-11-26T12:07:15.2092185Z ##[group]Disabling automatic garbage collection
+test	Run actions/checkout@v4	2026-11-26T12:07:15.2095168Z [command]/usr/bin/git config --local gc.auto 0
+test	Run actions/checkout@v4	2026-11-26T12:07:15.2130098Z ##[endgroup]
+test	Run actions/checkout@v4	2026-11-26T12:07:15.2131434Z ##[group]Setting up auth
+test	Run actions/checkout@v4	2026-11-26T12:07:15.2138003Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+test	Run actions/checkout@v4	2026-11-26T12:07:15.2171579Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+test	Run actions/checkout@v4	2026-11-26T12:07:15.2635018Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+test	Run actions/checkout@v4	2026-11-26T12:07:15.2674244Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+test	Run actions/checkout@v4	2026-11-26T12:07:15.2995576Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+test	Run actions/checkout@v4	2026-11-26T12:07:15.3039697Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+test	Run actions/checkout@v4	2026-11-26T12:07:15.3339896Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+test	Run actions/checkout@v4	2026-11-26T12:07:15.3378972Z ##[endgroup]
+test	Run actions/checkout@v4	2026-11-26T12:07:15.3380433Z ##[group]Fetching the repository
+test	Run actions/checkout@v4	2026-11-26T12:07:15.3390615Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +3ec6233c45c0c6b579aaf8917d0653703d0dec97:refs/remotes/origin/ci-sinov
+test	Run actions/checkout@v4	2026-11-26T12:07:15.6223187Z From https://github.com/Azizbekcrypto/OrderBotNest
+test	Run actions/checkout@v4	2026-11-26T12:07:15.6224842Z  * [new ref]         3ec6233c45c0c6b579aaf8917d0653703d0dec97 -> origin/ci-sinov
+test	Run actions/checkout@v4	2026-11-26T12:07:15.6230554Z ##[endgroup]
+test	Run actions/checkout@v4	2026-11-26T12:07:15.6232178Z ##[group]Determining the checkout info
+test	Run actions/checkout@v4	2026-11-26T12:07:15.6234149Z ##[endgroup]
+test	Run actions/checkout@v4	2026-11-26T12:07:15.6240680Z [command]/usr/bin/git sparse-checkout disable
+test	Run actions/checkout@v4	2026-11-26T12:07:15.6293828Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+test	Run actions/checkout@v4	2026-11-26T12:07:15.6322782Z ##[group]Checking out the ref
+test	Run actions/checkout@v4	2026-11-26T12:07:15.6329345Z [command]/usr/bin/git checkout --progress --force -B ci-sinov refs/remotes/origin/ci-sinov
+test	Run actions/checkout@v4	2026-11-26T12:07:15.6438577Z Switched to a new branch 'ci-sinov'
+test	Run actions/checkout@v4	2026-11-26T12:07:15.6444897Z branch 'ci-sinov' set up to track 'origin/ci-sinov'.
+test	Run actions/checkout@v4	2026-11-26T12:07:15.6450880Z ##[endgroup]
+test	Run actions/checkout@v4	2026-11-26T12:07:15.6494797Z [command]/usr/bin/git log -1 --format=%H
+test	Run actions/checkout@v4	2026-11-26T12:07:15.6518659Z 3ec6233c45c0c6b579aaf8917d0653703d0dec97
+test	Run actions/setup-node@v4	﻿2026-11-26T12:07:15.6812863Z ##[group]Run actions/setup-node@v4
+test	Run actions/setup-node@v4	2026-11-26T12:07:15.6813453Z with:
+test	Run actions/setup-node@v4	2026-11-26T12:07:15.6813859Z   node-version: 24
+test	Run actions/setup-node@v4	2026-11-26T12:07:15.6814284Z   cache: npm
+test	Run actions/setup-node@v4	2026-11-26T12:07:15.6814856Z   always-auth: false
+test	Run actions/setup-node@v4	2026-11-26T12:07:15.6815311Z   check-latest: false
+test	Run actions/setup-node@v4	2026-11-26T12:07:15.6819161Z   token: ***
+test	Run actions/setup-node@v4	2026-11-26T12:07:15.6819589Z ##[endgroup]
+test	Run actions/setup-node@v4	2026-11-26T12:07:15.8259070Z (node:2842) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+test	Run actions/setup-node@v4	2026-11-26T12:07:15.8260427Z (Use `node --trace-deprecation ...` to show where the warning was created)
+test	Run actions/setup-node@v4	2026-11-26T12:07:15.8268759Z Found in cache @ /opt/hostedtoolcache/node/24.22.3/x64
+test	Run actions/setup-node@v4	2026-11-26T12:07:15.8269920Z ##[group]Environment details
+test	Run actions/setup-node@v4	2026-11-26T12:07:16.2215534Z node: v24.22.3
+test	Run actions/setup-node@v4	2026-11-26T12:07:16.2217029Z npm: 11.19.1
+test	Run actions/setup-node@v4	2026-11-26T12:07:16.2218270Z yarn: 1.22.22
+test	Run actions/setup-node@v4	2026-11-26T12:07:16.2220559Z ##[endgroup]
+test	Run actions/setup-node@v4	2026-11-26T12:07:16.2239891Z [command]/opt/hostedtoolcache/node/24.22.3/x64/bin/npm config get cache
+test	Run actions/setup-node@v4	2026-11-26T12:07:16.3339663Z /home/runner/.npm
+test	Run actions/setup-node@v4	2026-11-26T12:07:16.5926784Z Cache hit for: node-cache-Linux-x64-npm-ccb2b15dd267c884b0610f9549734f2a266074ea2630c8be582139d289f32d79
+test	Run actions/setup-node@v4	2026-11-26T12:07:16.6044096Z (node:2842) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+test	Run actions/setup-node@v4	2026-11-26T12:07:17.8675507Z Received 8388608 of 36237216 (23.1%), 8.0 MBs/sec
+test	Run actions/setup-node@v4	2026-11-26T12:07:17.9911555Z Received 36237216 of 36237216 (100.0%), 30.7 MBs/sec
+test	Run actions/setup-node@v4	2026-11-26T12:07:17.9994502Z Cache Size: ~35 MB (36237216 B)
+test	Run actions/setup-node@v4	2026-11-26T12:07:18.0016635Z [command]/usr/bin/tar -xf /home/runner/work/_temp/4520d40f-b5ce-4832-a6c4-f6cdfeae4e03/cache.tzst -P -C /home/runner/work/OrderBotNest/OrderBotNest --use-compress-program unzstd
+test	Run actions/setup-node@v4	2026-11-26T12:07:18.1853608Z Cache restored successfully
+test	Run actions/setup-node@v4	2026-11-26T12:07:18.1872836Z Cache restored from key: node-cache-Linux-x64-npm-ccb2b15dd267c884b0610f9549734f2a266074ea2630c8be582139d289f32d79
+test	Run npm ci	﻿2026-11-26T12:07:18.2100208Z ##[group]Run npm ci
+test	Run npm ci	2026-11-26T12:07:18.2100631Z ^[[36;1mnpm ci^[[0m
+test	Run npm ci	2026-11-26T12:07:18.2144827Z shell: /usr/bin/bash -e {0}
+test	Run npm ci	2026-11-26T12:07:18.2145214Z ##[endgroup]
+test	Run npm ci	2026-11-26T12:07:22.0818667Z npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+test	Run npm ci	2026-11-26T12:07:25.9225744Z 
+test	Run npm ci	2026-11-26T12:07:25.9226852Z added 633 packages, and audited 634 packages in 8s
+test	Run npm ci	2026-11-26T12:07:25.9227622Z 
+test	Run npm ci	2026-11-26T12:07:25.9240434Z 133 packages are looking for funding
+test	Run npm ci	2026-11-26T12:07:25.9241316Z   run `npm fund` for details
+test	Run npm ci	2026-11-26T12:07:25.9660914Z 
+test	Run npm ci	2026-11-26T12:07:25.9661606Z 21 vulnerabilities (19 moderate, 2 high)
+test	Run npm ci	2026-11-26T12:07:25.9662072Z 
+test	Run npm ci	2026-11-26T12:07:25.9662494Z To address issues that do not require attention, run:
+test	Run npm ci	2026-11-26T12:07:25.9663318Z   npm audit fix
+test	Run npm ci	2026-11-26T12:07:25.9663607Z 
+test	Run npm ci	2026-11-26T12:07:25.9664307Z To address all issues (including breaking changes), run:
+test	Run npm ci	2026-11-26T12:07:25.9665348Z   npm audit fix --force
+test	Run npm ci	2026-11-26T12:07:25.9665755Z 
+test	Run npm ci	2026-11-26T12:07:25.9666234Z Run `npm audit` for details.
+test	Run npm ci	2026-11-26T12:07:25.9671694Z npm warn install-scripts 1 package has install scripts not yet covered by allowScripts:
+test	Run npm ci	2026-11-26T12:07:25.9673530Z npm warn install-scripts   @parcel/watcher@2.6.0 (install: node scripts/build-from-source.js)
+test	Run npm ci	2026-11-26T12:07:25.9675146Z npm warn install-scripts
+test	Run npm ci	2026-11-26T12:07:25.9676866Z npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+test	Run npx tsc --noEmit	﻿2026-11-26T12:07:26.0538367Z ##[group]Run npx tsc --noEmit
+test	Run npx tsc --noEmit	2026-11-26T12:07:26.0538741Z ^[[36;1mnpx tsc --noEmit^[[0m
+test	Run npx tsc --noEmit	2026-11-26T12:07:26.0573204Z shell: /usr/bin/bash -e {0}
+test	Run npx tsc --noEmit	2026-11-26T12:07:26.0573499Z ##[endgroup]
+test	Run npm test	﻿2026-11-26T12:07:28.5155339Z ##[group]Run npm test
+test	Run npm test	2026-11-26T12:07:28.5155679Z ^[[36;1mnpm test^[[0m
+test	Run npm test	2026-11-26T12:07:28.5188543Z shell: /usr/bin/bash -e {0}
+test	Run npm test	2026-11-26T12:07:28.5188823Z ##[endgroup]
+test	Run npm test	2026-11-26T12:07:28.6269429Z 
+test	Run npm test	2026-11-26T12:07:28.6269866Z > order-bot-nest@1.0.0 test
+test	Run npm test	2026-11-26T12:07:28.6270383Z > jest
+test	Run npm test	2026-11-26T12:07:28.6270536Z 
+test	Run npm test	2026-11-26T12:07:29.9646116Z PASS src/api/telegram/keyboards.spec.ts
+test	Run npm test	2026-11-26T12:07:30.0055943Z PASS src/api/telegram/phone.spec.ts
+test	Run npm test	2026-11-26T12:07:30.0442667Z PASS src/api/telegram/texts.spec.ts
+test	Run npm test	2026-11-26T12:07:30.1696810Z PASS src/api/app.controller.spec.ts
+test	Run npm test	2026-11-26T12:07:30.2775411Z PASS src/api/order/order.service.spec.ts
+test	Run npm test	2026-11-26T12:07:30.3017616Z 
+test	Run npm test	2026-11-26T12:07:30.3021943Z Test Suites: 5 passed, 5 total
+test	Run npm test	2026-11-26T12:07:30.3022649Z Tests:       25 passed, 25 total
+test	Run npm test	2026-11-26T12:07:30.3023205Z Snapshots:   0 total
+test	Run npm test	2026-11-26T12:07:30.3023663Z Time:        1.43 s
+test	Run npm test	2026-11-26T12:07:30.3024094Z Ran all test suites.
+test	Run npm run build	﻿2026-11-26T12:07:30.3845954Z ##[group]Run npm run build
+test	Run npm run build	2026-11-26T12:07:30.3846308Z ^[[36;1mnpm run build^[[0m
+test	Run npm run build	2026-11-26T12:07:30.3879166Z shell: /usr/bin/bash -e {0}
+test	Run npm run build	2026-11-26T12:07:30.3879447Z ##[endgroup]
+test	Run npm run build	2026-11-26T12:07:30.4889639Z 
+test	Run npm run build	2026-11-26T12:07:30.4890160Z > order-bot-nest@1.0.0 build
+test	Run npm run build	2026-11-26T12:07:30.4890718Z > nest build
+test	Run npm run build	2026-11-26T12:07:30.4890937Z 
+test	Post Run actions/setup-node@v4	﻿2026-11-26T12:07:33.8556573Z Post job cleanup.
+test	Post Run actions/setup-node@v4	2026-11-26T12:07:33.9786740Z (node:3038) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+test	Post Run actions/setup-node@v4	2026-11-26T12:07:33.9788008Z (Use `node --trace-deprecation ...` to show where the warning was created)
+test	Post Run actions/setup-node@v4	2026-11-26T12:07:33.9791231Z Cache hit occurred on the primary key node-cache-Linux-x64-npm-ccb2b15dd267c884b0610f9549734f2a266074ea2630c8be582139d289f32d79, not saving cache.
+test	Post Run actions/checkout@v4	﻿2026-11-26T12:07:33.9935934Z Post job cleanup.
+test	Post Run actions/checkout@v4	2026-11-26T12:07:34.0834767Z [command]/usr/bin/git version
+test	Post Run actions/checkout@v4	2026-11-26T12:07:34.0882111Z git version 2.56.1
+test	Post Run actions/checkout@v4	2026-11-26T12:07:34.0923851Z Temporarily overriding HOME='/home/runner/work/_temp/468aa6b3-d019-4cab-8b52-e040c7e7ef70' before making global git config changes
+test	Post Run actions/checkout@v4	2026-11-26T12:07:34.0925733Z Adding repository directory to the temporary git global config as a safe directory
+test	Post Run actions/checkout@v4	2026-11-26T12:07:34.0930070Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/OrderBotNest/OrderBotNest
+test	Post Run actions/checkout@v4	2026-11-26T12:07:34.0988234Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+test	Post Run actions/checkout@v4	2026-11-26T12:07:34.1015715Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+test	Post Run actions/checkout@v4	2026-11-26T12:07:34.1326954Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+test	Post Run actions/checkout@v4	2026-11-26T12:07:34.1353474Z http.https://github.com/.extraheader
+test	Post Run actions/checkout@v4	2026-11-26T12:07:34.1370311Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+test	Post Run actions/checkout@v4	2026-11-26T12:07:34.1412448Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+test	Post Run actions/checkout@v4	2026-11-26T12:07:34.1740337Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+test	Post Run actions/checkout@v4	2026-11-26T12:07:34.1782868Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+test	Complete job	﻿2026-11-26T12:07:34.2199210Z Cleaning up orphan processes
+test	Complete job	2026-11-26T12:07:34.2635439Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+smoke	Set up job	﻿2026-11-26T12:07:39.5088914Z Current runner version: '2.338.2'
+smoke	Set up job	2026-11-26T12:07:39.5108132Z ##[group]Runner Image Provisioner
+smoke	Set up job	2026-11-26T12:07:39.5108845Z Hosted Compute Agent
+smoke	Set up job	2026-11-26T12:07:39.5109300Z Version: 20261111.635
+smoke	Set up job	2026-11-26T12:07:39.5109709Z Commit: b8a594ea514ff44cadb5342986c68b1eac6e22ed
+smoke	Set up job	2026-11-26T12:07:39.5110195Z Build Date: 2026-11-11T01:49:01Z
+smoke	Set up job	2026-11-26T12:07:39.5110660Z Worker ID: {f7e81aea-818a-4c00-9afe-19474174318a}
+smoke	Set up job	2026-11-26T12:07:39.5111094Z Region: centralus
+smoke	Set up job	2026-11-26T12:07:39.5111722Z Cloud: Azure
+smoke	Set up job	2026-11-26T12:07:39.5112115Z ##[endgroup]
+smoke	Set up job	2026-11-26T12:07:39.5113233Z ##[group]Operating System
+smoke	Set up job	2026-11-26T12:07:39.5113649Z Ubuntu
+smoke	Set up job	2026-11-26T12:07:39.5113996Z 26.04.1
+smoke	Set up job	2026-11-26T12:07:39.5114331Z LTS
+smoke	Set up job	2026-11-26T12:07:39.5114700Z ##[endgroup]
+smoke	Set up job	2026-11-26T12:07:39.5115075Z ##[group]Runner Image
+smoke	Set up job	2026-11-26T12:07:39.5115728Z Image: ubuntu-26.04
+smoke	Set up job	2026-11-26T12:07:39.5116109Z Version: 20261122.9.1
+smoke	Set up job	2026-11-26T12:07:39.5116738Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261122.9/images/ubuntu/Ubuntu2604-Readme.md
+smoke	Set up job	2026-11-26T12:07:39.5117837Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261122.9
+smoke	Set up job	2026-11-26T12:07:39.5118431Z ##[endgroup]
+smoke	Set up job	2026-11-26T12:07:39.5119189Z ##[group]GITHUB_TOKEN Permissions
+smoke	Set up job	2026-11-26T12:07:39.5120643Z Contents: read
+smoke	Set up job	2026-11-26T12:07:39.5121056Z Metadata: read
+smoke	Set up job	2026-11-26T12:07:39.5121661Z Packages: read
+smoke	Set up job	2026-11-26T12:07:39.5122053Z ##[endgroup]
+smoke	Set up job	2026-11-26T12:07:39.5123481Z Secret source: Actions
+smoke	Set up job	2026-11-26T12:07:39.5124114Z Cache mode: write
+smoke	Set up job	2026-11-26T12:07:39.5124752Z Prepare workflow directory
+smoke	Set up job	2026-11-26T12:07:39.5406578Z Prepare all required actions
+smoke	Set up job	2026-11-26T12:07:39.5440970Z Getting action download info
+smoke	Set up job	2026-11-26T12:07:39.7506190Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+smoke	Set up job	2026-11-26T12:07:39.8408172Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+smoke	Set up job	2026-11-26T12:07:40.0089330Z Complete job name: smoke
+smoke	Initialize containers	﻿2026-11-26T12:07:40.0478409Z ##[group]Checking docker version
+smoke	Initialize containers	2026-11-26T12:07:40.0486915Z ##[command]/usr/bin/docker version --format '{{.Server.APIVersion}}'
+smoke	Initialize containers	2026-11-26T12:07:40.1460469Z '1.54'
+smoke	Initialize containers	2026-11-26T12:07:40.1480201Z Docker daemon API version: '1.54'
+smoke	Initialize containers	2026-11-26T12:07:40.1480715Z ##[command]/usr/bin/docker version --format '{{.Client.APIVersion}}'
+smoke	Initialize containers	2026-11-26T12:07:40.1635489Z '1.54'
+smoke	Initialize containers	2026-11-26T12:07:40.1651479Z Docker client API version: '1.54'
+smoke	Initialize containers	2026-11-26T12:07:40.1655187Z ##[endgroup]
+smoke	Initialize containers	2026-11-26T12:07:40.1656883Z ##[group]Clean up resources from previous jobs
+smoke	Initialize containers	2026-11-26T12:07:40.1660187Z ##[command]/usr/bin/docker ps --all --quiet --no-trunc --filter "label=be4d69"
+smoke	Initialize containers	2026-11-26T12:07:40.1790509Z ##[command]/usr/bin/docker network prune --force --filter "label=be4d69"
+smoke	Initialize containers	2026-11-26T12:07:40.1910635Z ##[endgroup]
+smoke	Initialize containers	2026-11-26T12:07:40.1910970Z ##[group]Create local container network
+smoke	Initialize containers	2026-11-26T12:07:40.1917832Z ##[command]/usr/bin/docker network create --label be4d69 github_network_9a7f0839fd5342a3b460f4ce376dca31
+smoke	Initialize containers	2026-11-26T12:07:40.2435400Z 2fb7bd0f6f293154a0c075b069b6ef14e2e21f9e8e4c7138347a8de74805a791
+smoke	Initialize containers	2026-11-26T12:07:40.2456251Z ##[endgroup]
+smoke	Initialize containers	2026-11-26T12:07:40.2475275Z ##[group]Starting postgres service container
+smoke	Initialize containers	2026-11-26T12:07:40.2490746Z ##[command]/usr/bin/docker pull postgres:18
+smoke	Initialize containers	2026-11-26T12:07:40.7070094Z 18: Pulling from library/postgres
+smoke	Initialize containers	2026-11-26T12:07:40.9157437Z 0f12a37b90bb: Pulling fs layer
+smoke	Initialize containers	2026-11-26T12:07:40.9158626Z 7fe3468bf416: Pulling fs layer
+smoke	Initialize containers	2026-11-26T12:07:40.9159280Z 1c59edd7eb40: Pulling fs layer
+smoke	Initialize containers	2026-11-26T12:07:40.9159793Z 40748add9f4f: Pulling fs layer
+smoke	Initialize containers	2026-11-26T12:07:40.9160252Z 7cb67b3b537a: Pulling fs layer
+smoke	Initialize containers	2026-11-26T12:07:40.9160650Z 61061a425fb0: Pulling fs layer
+smoke	Initialize containers	2026-11-26T12:07:40.9161009Z 8e4857f35fce: Pulling fs layer
+smoke	Initialize containers	2026-11-26T12:07:40.9161548Z 84a852dae169: Pulling fs layer
+smoke	Initialize containers	2026-11-26T12:07:40.9161875Z 0afa8bd0fe3a: Pulling fs layer
+smoke	Initialize containers	2026-11-26T12:07:40.9162310Z a1361b767ece: Pulling fs layer
+smoke	Initialize containers	2026-11-26T12:07:40.9162636Z c1436cf65049: Pulling fs layer
+smoke	Initialize containers	2026-11-26T12:07:40.9163053Z edf2405c6afe: Pulling fs layer
+smoke	Initialize containers	2026-11-26T12:07:41.0635948Z 7fe3468bf416: Download complete
+smoke	Initialize containers	2026-11-26T12:07:41.0636912Z 61061a425fb0: Download complete
+smoke	Initialize containers	2026-11-26T12:07:41.0637492Z 8e4857f35fce: Download complete
+smoke	Initialize containers	2026-11-26T12:07:41.0638446Z 7cb67b3b537a: Download complete
+smoke	Initialize containers	2026-11-26T12:07:41.0638989Z 0afa8bd0fe3a: Download complete
+smoke	Initialize containers	2026-11-26T12:07:41.3031065Z 84a852dae169: Download complete
+smoke	Initialize containers	2026-11-26T12:07:41.3047082Z 1c59edd7eb40: Download complete
+smoke	Initialize containers	2026-11-26T12:07:41.3624666Z 0f12a37b90bb: Download complete
+smoke	Initialize containers	2026-11-26T12:07:41.3626200Z 59e8b6ceb028: Download complete
+smoke	Initialize containers	2026-11-26T12:07:41.3628864Z c1436cf65049: Download complete
+smoke	Initialize containers	2026-11-26T12:07:41.4643070Z a1361b767ece: Download complete
+smoke	Initialize containers	2026-11-26T12:07:41.4646074Z 40748add9f4f: Download complete
+smoke	Initialize containers	2026-11-26T12:07:41.5629113Z 3c65b9afb00e: Download complete
+smoke	Initialize containers	2026-11-26T12:07:41.9644918Z 8e4857f35fce: Pull complete
+smoke	Initialize containers	2026-11-26T12:07:41.9722458Z 40748add9f4f: Pull complete
+smoke	Initialize containers	2026-11-26T12:07:42.0680979Z 0f12a37b90bb: Pull complete
+smoke	Initialize containers	2026-11-26T12:07:42.0713618Z c1436cf65049: Pull complete
+smoke	Initialize containers	2026-11-26T12:07:42.2634085Z 7fe3468bf416: Pull complete
+smoke	Initialize containers	2026-11-26T12:07:42.2651407Z 0afa8bd0fe3a: Pull complete
+smoke	Initialize containers	2026-11-26T12:07:42.2668891Z 84a852dae169: Pull complete
+smoke	Initialize containers	2026-11-26T12:07:42.2679282Z a1361b767ece: Pull complete
+smoke	Initialize containers	2026-11-26T12:07:43.3623689Z edf2405c6afe: Download complete
+smoke	Initialize containers	2026-11-26T12:07:44.7050780Z 61061a425fb0: Pull complete
+smoke	Initialize containers	2026-11-26T12:07:44.7051824Z 7cb67b3b537a: Pull complete
+smoke	Initialize containers	2026-11-26T12:07:44.7057684Z 1c59edd7eb40: Pull complete
+smoke	Initialize containers	2026-11-26T12:07:44.7063247Z edf2405c6afe: Pull complete
+smoke	Initialize containers	2026-11-26T12:07:44.7063888Z Digest: sha256:c699303802144847d238196173655dbbecf7a96aeca1565f2b02eb671a1f0b6b
+smoke	Initialize containers	2026-11-26T12:07:44.7064316Z Status: Downloaded newer image for postgres:18
+smoke	Initialize containers	2026-11-26T12:07:44.7070023Z docker.io/library/postgres:18
+smoke	Initialize containers	2026-11-26T12:07:44.7140173Z ##[command]/usr/bin/docker create --name 1d66a7241cfa424581a5a571ae25d968_postgres18_f07b24 --label be4d69 --network github_network_9a7f0839fd5342a3b460f4ce376dca31 --network-alias postgres -p 5432:5432 --health-cmd "pg_isready -U postgres" --health-interval 5s --health-timeout 5s --health-retries 10 -e "POSTGRES_USER=postgres" -e "POSTGRES_PASSWORD=postgres" -e "POSTGRES_DB=shop" -e GITHUB_ACTIONS=true -e CI=true postgres:18
+smoke	Initialize containers	2026-11-26T12:07:48.9599318Z 49a84b9fc9a200dbefe97ac7ed8819e116b80a94ed3869b71edce163bbd20eb2
+smoke	Initialize containers	2026-11-26T12:07:48.9624468Z ##[command]/usr/bin/docker start 49a84b9fc9a200dbefe97ac7ed8819e116b80a94ed3869b71edce163bbd20eb2
+smoke	Initialize containers	2026-11-26T12:07:49.1517285Z 49a84b9fc9a200dbefe97ac7ed8819e116b80a94ed3869b71edce163bbd20eb2
+smoke	Initialize containers	2026-11-26T12:07:49.1545056Z ##[command]/usr/bin/docker ps --all --filter id=49a84b9fc9a200dbefe97ac7ed8819e116b80a94ed3869b71edce163bbd20eb2 --filter status=running --no-trunc --format "{{.ID}} {{.Status}}"
+smoke	Initialize containers	2026-11-26T12:07:49.1762711Z 49a84b9fc9a200dbefe97ac7ed8819e116b80a94ed3869b71edce163bbd20eb2 Up Less than a second (health: starting)
+smoke	Initialize containers	2026-11-26T12:07:49.1787008Z ##[command]/usr/bin/docker port 49a84b9fc9a200dbefe97ac7ed8819e116b80a94ed3869b71edce163bbd20eb2
+smoke	Initialize containers	2026-11-26T12:07:49.1918537Z 5432/tcp -> 0.0.0.0:5432
+smoke	Initialize containers	2026-11-26T12:07:49.1919270Z 5432/tcp -> [::]:5432
+smoke	Initialize containers	2026-11-26T12:07:49.1963450Z ##[endgroup]
+smoke	Initialize containers	2026-11-26T12:07:49.1969642Z ##[group]Waiting for all services to be ready
+smoke	Initialize containers	2026-11-26T12:07:49.1979416Z ##[command]/usr/bin/docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" 49a84b9fc9a200dbefe97ac7ed8819e116b80a94ed3869b71edce163bbd20eb2
+smoke	Initialize containers	2026-11-26T12:07:49.2096551Z starting
+smoke	Initialize containers	2026-11-26T12:07:49.2120899Z postgres service is starting, waiting 2 seconds before checking again.
+smoke	Initialize containers	2026-11-26T12:07:51.2117074Z ##[command]/usr/bin/docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" 49a84b9fc9a200dbefe97ac7ed8819e116b80a94ed3869b71edce163bbd20eb2
+smoke	Initialize containers	2026-11-26T12:07:51.2228052Z starting
+smoke	Initialize containers	2026-11-26T12:07:51.2242839Z postgres service is starting, waiting 3 seconds before checking again.
+smoke	Initialize containers	2026-11-26T12:07:54.9010172Z ##[command]/usr/bin/docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" 49a84b9fc9a200dbefe97ac7ed8819e116b80a94ed3869b71edce163bbd20eb2
+smoke	Initialize containers	2026-11-26T12:07:54.9122002Z healthy
+smoke	Initialize containers	2026-11-26T12:07:54.9150668Z postgres service is healthy.
+smoke	Initialize containers	2026-11-26T12:07:54.9151414Z ##[endgroup]
+smoke	Run actions/checkout@v4	﻿2026-11-26T12:07:54.9322597Z ##[group]Run actions/checkout@v4
+smoke	Run actions/checkout@v4	2026-11-26T12:07:54.9322857Z with:
+smoke	Run actions/checkout@v4	2026-11-26T12:07:54.9322985Z   repository: Azizbekcrypto/OrderBotNest
+smoke	Run actions/checkout@v4	2026-11-26T12:07:54.9324413Z   token: ***
+smoke	Run actions/checkout@v4	2026-11-26T12:07:54.9324529Z   ssh-strict: true
+smoke	Run actions/checkout@v4	2026-11-26T12:07:54.9324646Z   ssh-user: git
+smoke	Run actions/checkout@v4	2026-11-26T12:07:54.9324770Z   persist-credentials: true
+smoke	Run actions/checkout@v4	2026-11-26T12:07:54.9324902Z   clean: true
+smoke	Run actions/checkout@v4	2026-11-26T12:07:54.9325038Z   sparse-checkout-cone-mode: true
+smoke	Run actions/checkout@v4	2026-11-26T12:07:54.9325182Z   fetch-depth: 1
+smoke	Run actions/checkout@v4	2026-11-26T12:07:54.9325299Z   fetch-tags: false
+smoke	Run actions/checkout@v4	2026-11-26T12:07:54.9325416Z   show-progress: true
+smoke	Run actions/checkout@v4	2026-11-26T12:07:54.9325536Z   lfs: false
+smoke	Run actions/checkout@v4	2026-11-26T12:07:54.9325641Z   submodules: false
+smoke	Run actions/checkout@v4	2026-11-26T12:07:54.9325761Z   set-safe-directory: true
+smoke	Run actions/checkout@v4	2026-11-26T12:07:54.9325904Z   allow-unsafe-pr-checkout: false
+smoke	Run actions/checkout@v4	2026-11-26T12:07:54.9326126Z ##[endgroup]
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.1940960Z Syncing repository: Azizbekcrypto/OrderBotNest
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.1942554Z ##[group]Getting Git version info
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.1942930Z Working directory is '/home/runner/work/OrderBotNest/OrderBotNest'
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.1943559Z [command]/usr/bin/git version
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.1943793Z git version 2.56.1
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.1944566Z ##[endgroup]
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.1948200Z Temporarily overriding HOME='/home/runner/work/_temp/503f472f-6dde-4494-9657-a9100d0f3dcc' before making global git config changes
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.1948858Z Adding repository directory to the temporary git global config as a safe directory
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.1949421Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/OrderBotNest/OrderBotNest
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.1950549Z Deleting the contents of '/home/runner/work/OrderBotNest/OrderBotNest'
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.1951619Z ##[group]Initializing the repository
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.1952153Z [command]/usr/bin/git init /home/runner/work/OrderBotNest/OrderBotNest
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.2067759Z hint: Using 'master' as the name for the initial branch. This default branch name
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.2068438Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.2069046Z hint: to use in all of your new repositories, which will suppress this warning,
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.2069478Z hint: call:
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.2069733Z hint:
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.2070060Z hint: 	git config --global init.defaultBranch <name>
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.2070348Z hint:
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.2070625Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.2071238Z hint: 'development'. The just-created branch can be renamed via this command:
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.2071567Z hint:
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.2071803Z hint: 	git branch -m <name>
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.2072057Z hint:
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.2072362Z hint: Disable this message with "git config set advice.defaultBranchName false"
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.2086784Z Initialized empty Git repository in /home/runner/work/OrderBotNest/OrderBotNest/.git/
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.2098388Z [command]/usr/bin/git remote add origin https://github.com/Azizbekcrypto/OrderBotNest
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.2168700Z ##[endgroup]
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.2169168Z ##[group]Disabling automatic garbage collection
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.2176284Z [command]/usr/bin/git config --local gc.auto 0
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.2209127Z ##[endgroup]
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.2209488Z ##[group]Setting up auth
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.2215054Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.2246458Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.2651562Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.2680422Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.2903547Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.2933651Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.3154799Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.3220421Z ##[endgroup]
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.3220852Z ##[group]Fetching the repository
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.3227387Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +3ec6233c45c0c6b579aaf8917d0653703d0dec97:refs/remotes/origin/ci-sinov
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.7134349Z From https://github.com/Azizbekcrypto/OrderBotNest
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.7135072Z  * [new ref]         3ec6233c45c0c6b579aaf8917d0653703d0dec97 -> origin/ci-sinov
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.7144838Z ##[endgroup]
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.7145208Z ##[group]Determining the checkout info
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.7145540Z ##[endgroup]
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.7146717Z [command]/usr/bin/git sparse-checkout disable
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.7229782Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.7255741Z ##[group]Checking out the ref
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.7258758Z [command]/usr/bin/git checkout --progress --force -B ci-sinov refs/remotes/origin/ci-sinov
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.7338011Z Switched to a new branch 'ci-sinov'
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.7344072Z branch 'ci-sinov' set up to track 'origin/ci-sinov'.
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.7348203Z ##[endgroup]
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.7385684Z [command]/usr/bin/git log -1 --format=%H
+smoke	Run actions/checkout@v4	2026-11-26T12:07:55.7405689Z 3ec6233c45c0c6b579aaf8917d0653703d0dec97
+smoke	Run actions/setup-node@v4	﻿2026-11-26T12:07:55.7603541Z ##[group]Run actions/setup-node@v4
+smoke	Run actions/setup-node@v4	2026-11-26T12:07:55.7603714Z with:
+smoke	Run actions/setup-node@v4	2026-11-26T12:07:55.7603847Z   node-version: 24
+smoke	Run actions/setup-node@v4	2026-11-26T12:07:55.7603969Z   cache: npm
+smoke	Run actions/setup-node@v4	2026-11-26T12:07:55.7604082Z   always-auth: false
+smoke	Run actions/setup-node@v4	2026-11-26T12:07:55.7604206Z   check-latest: false
+smoke	Run actions/setup-node@v4	2026-11-26T12:07:55.7605597Z   token: ***
+smoke	Run actions/setup-node@v4	2026-11-26T12:07:55.7605712Z ##[endgroup]
+smoke	Run actions/setup-node@v4	2026-11-26T12:07:55.8567116Z Found in cache @ /opt/hostedtoolcache/node/24.22.3/x64
+smoke	Run actions/setup-node@v4	2026-11-26T12:07:55.8570304Z (node:2579) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+smoke	Run actions/setup-node@v4	2026-11-26T12:07:55.8570942Z (Use `node --trace-deprecation ...` to show where the warning was created)
+smoke	Run actions/setup-node@v4	2026-11-26T12:07:55.8574141Z ##[group]Environment details
+smoke	Run actions/setup-node@v4	2026-11-26T12:07:56.2199103Z node: v24.22.3
+smoke	Run actions/setup-node@v4	2026-11-26T12:07:56.2199450Z npm: 11.19.1
+smoke	Run actions/setup-node@v4	2026-11-26T12:07:56.2199629Z yarn: 1.22.22
+smoke	Run actions/setup-node@v4	2026-11-26T12:07:56.2200167Z ##[endgroup]
+smoke	Run actions/setup-node@v4	2026-11-26T12:07:56.2213876Z [command]/opt/hostedtoolcache/node/24.22.3/x64/bin/npm config get cache
+smoke	Run actions/setup-node@v4	2026-11-26T12:07:56.3077308Z /home/runner/.npm
+smoke	Run actions/setup-node@v4	2026-11-26T12:07:56.4747505Z Cache hit for: node-cache-Linux-x64-npm-ccb2b15dd267c884b0610f9549734f2a266074ea2630c8be582139d289f32d79
+smoke	Run actions/setup-node@v4	2026-11-26T12:07:56.4823586Z (node:2579) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+smoke	Run actions/setup-node@v4	2026-11-26T12:07:57.1885304Z Received 36237216 of 36237216 (100.0%), 62.2 MBs/sec
+smoke	Run actions/setup-node@v4	2026-11-26T12:07:57.1886361Z Cache Size: ~35 MB (36237216 B)
+smoke	Run actions/setup-node@v4	2026-11-26T12:07:57.1901517Z [command]/usr/bin/tar -xf /home/runner/work/_temp/f842b9c9-a1fe-430b-88f9-e0e3ce40b17a/cache.tzst -P -C /home/runner/work/OrderBotNest/OrderBotNest --use-compress-program unzstd
+smoke	Run actions/setup-node@v4	2026-11-26T12:07:57.3130690Z Cache restored successfully
+smoke	Run actions/setup-node@v4	2026-11-26T12:07:57.3149700Z Cache restored from key: node-cache-Linux-x64-npm-ccb2b15dd267c884b0610f9549734f2a266074ea2630c8be582139d289f32d79
+smoke	Run npm ci	﻿2026-11-26T12:07:57.3332049Z ##[group]Run npm ci
+smoke	Run npm ci	2026-11-26T12:07:57.3332285Z ^[[36;1mnpm ci^[[0m
+smoke	Run npm ci	2026-11-26T12:07:57.3369378Z shell: /usr/bin/bash -e {0}
+smoke	Run npm ci	2026-11-26T12:07:57.3369553Z ##[endgroup]
+smoke	Run npm ci	2026-11-26T12:07:59.7925601Z npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+smoke	Run npm ci	2026-11-26T12:08:01.4880443Z 
+smoke	Run npm ci	2026-11-26T12:08:01.4881483Z added 633 packages, and audited 634 packages in 4s
+smoke	Run npm ci	2026-11-26T12:08:01.4881781Z 
+smoke	Run npm ci	2026-11-26T12:08:01.4881938Z 133 packages are looking for funding
+smoke	Run npm ci	2026-11-26T12:08:01.4900796Z   run `npm fund` for details
+smoke	Run npm ci	2026-11-26T12:08:01.5112484Z 
+smoke	Run npm ci	2026-11-26T12:08:01.5113080Z 21 vulnerabilities (19 moderate, 2 high)
+smoke	Run npm ci	2026-11-26T12:08:01.5113316Z 
+smoke	Run npm ci	2026-11-26T12:08:01.5113509Z To address issues that do not require attention, run:
+smoke	Run npm ci	2026-11-26T12:08:01.5113813Z   npm audit fix
+smoke	Run npm ci	2026-11-26T12:08:01.5113928Z 
+smoke	Run npm ci	2026-11-26T12:08:01.5114229Z To address all issues (including breaking changes), run:
+smoke	Run npm ci	2026-11-26T12:08:01.5114552Z   npm audit fix --force
+smoke	Run npm ci	2026-11-26T12:08:01.5114680Z 
+smoke	Run npm ci	2026-11-26T12:08:01.5114794Z Run `npm audit` for details.
+smoke	Run npm ci	2026-11-26T12:08:01.5120131Z npm warn install-scripts 1 package has install scripts not yet covered by allowScripts:
+smoke	Run npm ci	2026-11-26T12:08:01.5120903Z npm warn install-scripts   @parcel/watcher@2.6.0 (install: node scripts/build-from-source.js)
+smoke	Run npm ci	2026-11-26T12:08:01.5121481Z npm warn install-scripts
+smoke	Run npm ci	2026-11-26T12:08:01.5122001Z npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+smoke	Smoke (Telegram'siz)	﻿2026-11-26T12:08:01.5883298Z ##[group]Run npm run smoke
+smoke	Smoke (Telegram'siz)	2026-11-26T12:08:01.5883506Z ^[[36;1mnpm run smoke^[[0m
+smoke	Smoke (Telegram'siz)	2026-11-26T12:08:01.5912039Z shell: /usr/bin/bash -e {0}
+smoke	Smoke (Telegram'siz)	2026-11-26T12:08:01.5912253Z env:
+smoke	Smoke (Telegram'siz)	2026-11-26T12:08:01.5912668Z   DATABASE_URL: ***localhost:5432/shop
+smoke	Smoke (Telegram'siz)	2026-11-26T12:08:01.5912825Z ##[endgroup]
+smoke	Smoke (Telegram'siz)	2026-11-26T12:08:01.6580138Z 
+smoke	Smoke (Telegram'siz)	2026-11-26T12:08:01.6580948Z > order-bot-nest@1.0.0 smoke
+smoke	Smoke (Telegram'siz)	2026-11-26T12:08:01.6581348Z > node scripts/smoke.js
+smoke	Smoke (Telegram'siz)	2026-11-26T12:08:01.6581477Z 
+smoke	Smoke (Telegram'siz)	2026-11-26T12:08:01.8165966Z == build ==
+smoke	Smoke (Telegram'siz)	2026-11-26T12:08:04.7201718Z == vaqtinchalik baza: shop_smoke ==
+smoke	Smoke (Telegram'siz)	2026-11-26T12:08:04.8338209Z Telegram bot ulandi
+smoke	Smoke (Telegram'siz)	2026-11-26T12:08:06.1931307Z   katalogda 6 ta mahsulot
+smoke	Smoke (Telegram'siz)	2026-11-26T12:08:06.1937347Z 
+smoke	Smoke (Telegram'siz)	2026-11-26T12:08:06.1938018Z — restart: har qadam alohida jarayonda (server haqiqatan qayta ishga tushadi)
+smoke	Smoke (Telegram'siz)	2026-11-26T12:08:06.7677288Z   ✓ telefon kutish restartdan o'tdi → «Buyurtma #1 qabul qilindi!»
+smoke	Smoke (Telegram'siz)	2026-11-26T12:08:07.0440588Z   ✓ savat restartdan o'tdi → «Savat:»
+smoke	Smoke (Telegram'siz)	2026-11-26T12:08:07.0441552Z   ✓ buyurtma restartdan o'tdi → «#1 · Aziza · 120 000 so'm · 🆕 Yangi»
+smoke	Smoke (Telegram'siz)	2026-11-26T12:08:07.0442561Z 
+smoke	Smoke (Telegram'siz)	2026-11-26T12:08:07.0442926Z — race: 1 ta Planshet, 5 mijoz bir vaqtda (3 raund); keyin ikki marta bekor
+smoke	Smoke (Telegram'siz)	2026-11-26T12:08:07.0589733Z Telegram bot ulandi
+smoke	Smoke (Telegram'siz)	2026-11-26T12:08:07.2347184Z   rad etilgan mijoz: «Buyurtma berilmadi: Planshet: omborda faqat 0 ta qoldi»
+smoke	Smoke (Telegram'siz)	2026-11-26T12:08:07.2347734Z   ✓ ortiqcha sotilmadi (sotildi/ombor): 1/0  1/0  1/0
+smoke	Smoke (Telegram'siz)	2026-11-26T12:08:07.2682249Z   ✓ ikki marta bir vaqtda bekor — ombor bir marta qaytdi: 0 → 1
+smoke	Smoke (Telegram'siz)	2026-11-26T12:08:07.2888399Z 
+smoke	Smoke (Telegram'siz)	2026-11-26T12:08:07.2889124Z NATIJA: 5/5 ✓
+smoke	Post Run actions/setup-node@v4	﻿2026-11-26T12:08:07.3133535Z Post job cleanup.
+smoke	Post Run actions/setup-node@v4	2026-11-26T12:08:07.3971443Z (node:2838) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+smoke	Post Run actions/setup-node@v4	2026-11-26T12:08:07.3972290Z (Use `node --trace-deprecation ...` to show where the warning was created)
+smoke	Post Run actions/setup-node@v4	2026-11-26T12:08:07.3973571Z Cache hit occurred on the primary key node-cache-Linux-x64-npm-ccb2b15dd267c884b0610f9549734f2a266074ea2630c8be582139d289f32d79, not saving cache.
+smoke	Post Run actions/checkout@v4	﻿2026-11-26T12:08:07.4111257Z Post job cleanup.
+smoke	Post Run actions/checkout@v4	2026-11-26T12:08:07.4722140Z [command]/usr/bin/git version
+smoke	Post Run actions/checkout@v4	2026-11-26T12:08:07.4742045Z git version 2.56.1
+smoke	Post Run actions/checkout@v4	2026-11-26T12:08:07.4773463Z Temporarily overriding HOME='/home/runner/work/_temp/eee60701-6bf8-4804-9754-22ed88973979' before making global git config changes
+smoke	Post Run actions/checkout@v4	2026-11-26T12:08:07.4774254Z Adding repository directory to the temporary git global config as a safe directory
+smoke	Post Run actions/checkout@v4	2026-11-26T12:08:07.4775402Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/OrderBotNest/OrderBotNest
+smoke	Post Run actions/checkout@v4	2026-11-26T12:08:07.4821907Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+smoke	Post Run actions/checkout@v4	2026-11-26T12:08:07.4892609Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+smoke	Post Run actions/checkout@v4	2026-11-26T12:08:07.5203312Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+smoke	Post Run actions/checkout@v4	2026-11-26T12:08:07.5231019Z http.https://github.com/.extraheader
+smoke	Post Run actions/checkout@v4	2026-11-26T12:08:07.5239353Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+smoke	Post Run actions/checkout@v4	2026-11-26T12:08:07.5272803Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+smoke	Post Run actions/checkout@v4	2026-11-26T12:08:07.5617653Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+smoke	Post Run actions/checkout@v4	2026-11-26T12:08:07.5672796Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+smoke	Stop containers	﻿2026-11-26T12:08:07.6107564Z Print service container logs: 1d66a7241cfa424581a5a571ae25d968_postgres18_f07b24
+smoke	Stop containers	2026-11-26T12:08:07.6110912Z ##[command]/usr/bin/docker logs --details 49a84b9fc9a200dbefe97ac7ed8819e116b80a94ed3869b71edce163bbd20eb2
+smoke	Stop containers	2026-11-26T12:08:07.6232283Z  initdb: warning: enabling "trust" authentication for local connections
+smoke	Stop containers	2026-11-26T12:08:07.6232624Z  The files belonging to this database system will be owned by user "postgres".
+smoke	Stop containers	2026-11-26T12:08:07.6233603Z  This user must also own the server process.
+smoke	Stop containers	2026-11-26T12:08:07.6234460Z  initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+smoke	Stop containers	2026-11-26T12:08:07.6235067Z  2026-11-26 12:07:50.302 UTC [1] LOG:  starting PostgreSQL 18.7 (Debian 18.7-1.pgdg13+5) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+smoke	Stop containers	2026-11-26T12:08:07.6235475Z  2026-11-26 12:07:50.302 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+smoke	Stop containers	2026-11-26T12:08:07.6235747Z  2026-11-26 12:07:50.302 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+smoke	Stop containers	2026-11-26T12:08:07.6236098Z  2026-11-26 12:07:50.310 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+smoke	Stop containers	2026-11-26T12:08:07.6236414Z  2026-11-26 12:07:50.314 UTC [75] LOG:  database system was shut down at 2026-11-26 12:07:50 UTC
+smoke	Stop containers	2026-11-26T12:08:07.6236705Z  2026-11-26 12:07:50.317 UTC [1] LOG:  database system is ready to accept connections
+smoke	Stop containers	2026-11-26T12:08:07.6236969Z  2026-11-26 12:08:07.277 UTC [73] LOG:  checkpoint starting: immediate force wait
+smoke	Stop containers	2026-11-26T12:08:07.6237600Z  2026-11-26 12:08:07.281 UTC [73] LOG:  checkpoint complete: wrote 3 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 1 recycled; write=0.001 s, sync=0.001 s, total=0.004 s; sync files=5, longest=0.001 s, average=0.001 s; distance=4621 kB, estimate=4621 kB; lsn=0/204A600, redo lsn=0/204A5A8
+smoke	Stop containers	2026-11-26T12:08:07.6238180Z  
+smoke	Stop containers	2026-11-26T12:08:07.6238347Z  The database cluster will be initialized with locale "en_US.utf8".
+smoke	Stop containers	2026-11-26T12:08:07.6238597Z  The default database encoding has accordingly been set to "UTF8".
+smoke	Stop containers	2026-11-26T12:08:07.6238842Z  The default text search configuration will be set to "english".
+smoke	Stop containers	2026-11-26T12:08:07.6239025Z  
+smoke	Stop containers	2026-11-26T12:08:07.6239137Z  Data page checksums are enabled.
+smoke	Stop containers	2026-11-26T12:08:07.6239284Z  
+smoke	Stop containers	2026-11-26T12:08:07.6239457Z  fixing permissions on existing directory /var/lib/postgresql/18/docker ... ok
+smoke	Stop containers	2026-11-26T12:08:07.6239683Z  creating subdirectories ... ok
+smoke	Stop containers	2026-11-26T12:08:07.6239874Z  selecting dynamic shared memory implementation ... posix
+smoke	Stop containers	2026-11-26T12:08:07.6240072Z  selecting default "max_connections" ... 100
+smoke	Stop containers	2026-11-26T12:08:07.6240247Z  selecting default "shared_buffers" ... 128MB
+smoke	Stop containers	2026-11-26T12:08:07.6240672Z  selecting default time zone ... Etc/UTC
+smoke	Stop containers	2026-11-26T12:08:07.6240834Z  creating configuration files ... ok
+smoke	Stop containers	2026-11-26T12:08:07.6241009Z  running bootstrap script ... ok
+smoke	Stop containers	2026-11-26T12:08:07.6241320Z  performing post-bootstrap initialization ... ok
+smoke	Stop containers	2026-11-26T12:08:07.6241503Z  syncing data to disk ... ok
+smoke	Stop containers	2026-11-26T12:08:07.6241644Z  
+smoke	Stop containers	2026-11-26T12:08:07.6241744Z  
+smoke	Stop containers	2026-11-26T12:08:07.6241878Z  Success. You can now start the database server using:
+smoke	Stop containers	2026-11-26T12:08:07.6242048Z  
+smoke	Stop containers	2026-11-26T12:08:07.6242191Z      pg_ctl -D /var/lib/postgresql/18/docker -l logfile start
+smoke	Stop containers	2026-11-26T12:08:07.6242372Z  
+smoke	Stop containers	2026-11-26T12:08:07.6242722Z  waiting for server to start....2026-11-26 12:07:49.907 UTC [53] LOG:  starting PostgreSQL 18.7 (Debian 18.7-1.pgdg13+5) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+smoke	Stop containers	2026-11-26T12:08:07.6243193Z  2026-11-26 12:07:49.907 UTC [53] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+smoke	Stop containers	2026-11-26T12:08:07.6243508Z  2026-11-26 12:07:49.910 UTC [59] LOG:  database system was shut down at 2026-11-26 12:07:49 UTC
+smoke	Stop containers	2026-11-26T12:08:07.6243794Z  2026-11-26 12:07:49.913 UTC [53] LOG:  database system is ready to accept connections
+smoke	Stop containers	2026-11-26T12:08:07.6244000Z   done
+smoke	Stop containers	2026-11-26T12:08:07.6244106Z  server started
+smoke	Stop containers	2026-11-26T12:08:07.6244418Z  CREATE DATABASE
+smoke	Stop containers	2026-11-26T12:08:07.6244531Z  
+smoke	Stop containers	2026-11-26T12:08:07.6244627Z  
+smoke	Stop containers	2026-11-26T12:08:07.6244816Z  /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+smoke	Stop containers	2026-11-26T12:08:07.6245037Z  
+smoke	Stop containers	2026-11-26T12:08:07.6245238Z  waiting for server to shut down...2026-11-26 12:07:50.082 UTC [53] LOG:  received fast shutdown request
+smoke	Stop containers	2026-11-26T12:08:07.6245532Z  .2026-11-26 12:07:50.083 UTC [53] LOG:  aborting any active transactions
+smoke	Stop containers	2026-11-26T12:08:07.6245850Z  2026-11-26 12:07:50.085 UTC [53] LOG:  background worker "logical replication launcher" (PID 62) exited with exit code 1
+smoke	Stop containers	2026-11-26T12:08:07.6246150Z  2026-11-26 12:07:50.086 UTC [57] LOG:  shutting down
+smoke	Stop containers	2026-11-26T12:08:07.6246374Z  2026-11-26 12:07:50.086 UTC [57] LOG:  checkpoint starting: shutdown immediate
+smoke	Stop containers	2026-11-26T12:08:07.6246982Z  2026-11-26 12:07:50.178 UTC [57] LOG:  checkpoint complete: wrote 952 buffers (5.8%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.064 s, sync=0.008 s, total=0.093 s; sync files=303, longest=0.007 s, average=0.001 s; distance=4428 kB, estimate=4428 kB; lsn=0/1BC6EA8, redo lsn=0/1BC6EA8
+smoke	Stop containers	2026-11-26T12:08:07.6247578Z  2026-11-26 12:07:50.189 UTC [53] LOG:  database system is shut down
+smoke	Stop containers	2026-11-26T12:08:07.6247765Z   done
+smoke	Stop containers	2026-11-26T12:08:07.6247875Z  server stopped
+smoke	Stop containers	2026-11-26T12:08:07.6247990Z  
+smoke	Stop containers	2026-11-26T12:08:07.6248130Z  PostgreSQL init process complete; ready for start up.
+smoke	Stop containers	2026-11-26T12:08:07.6248305Z  
+smoke	Stop containers	2026-11-26T12:08:07.6253887Z Stop and remove container: 1d66a7241cfa424581a5a571ae25d968_postgres18_f07b24
+smoke	Stop containers	2026-11-26T12:08:07.6257914Z ##[command]/usr/bin/docker rm --force 49a84b9fc9a200dbefe97ac7ed8819e116b80a94ed3869b71edce163bbd20eb2
+smoke	Stop containers	2026-11-26T12:08:09.7648056Z 49a84b9fc9a200dbefe97ac7ed8819e116b80a94ed3869b71edce163bbd20eb2
+smoke	Stop containers	2026-11-26T12:08:09.7676541Z Remove container network: github_network_9a7f0839fd5342a3b460f4ce376dca31
+smoke	Stop containers	2026-11-26T12:08:09.7678937Z ##[command]/usr/bin/docker network rm github_network_9a7f0839fd5342a3b460f4ce376dca31
+smoke	Stop containers	2026-11-26T12:08:09.8273541Z github_network_9a7f0839fd5342a3b460f4ce376dca31
+smoke	Complete job	﻿2026-11-26T12:08:09.8335472Z Cleaning up orphan processes
+smoke	Complete job	2026-11-26T12:08:09.8617173Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

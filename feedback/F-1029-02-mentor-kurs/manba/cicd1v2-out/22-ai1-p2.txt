@@ -1,0 +1,303 @@
+# CI/CD-1 · 1-AI (Opus) · 2-topshiriq «CI tilida» · o'zgartirilmagan
+# run 45816413963 · branch ci-sinov · commit a72b74a · natija: success · yozildi 2026-11-26 17:06:00 +0500
+# https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/45816413963
+
+$ cat .github/workflows/ci.yml
+name: CI
+
+# Har push'da (istalgan branch) va main'ga ochilgan pull request'da ishlaydi.
+on:
+  push:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    name: install → typecheck → test → build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    # Qadamlar ketma-ket yuradi: biri qizil bo'lsa, keyingilari yurmaydi.
+    steps:
+      - name: Kodni olish
+        uses: actions/checkout@v7
+
+      - name: Node 24.18.0 (lokal mashinadagi bilan bir xil, npm 11.16.0)
+        uses: actions/setup-node@v7
+        with:
+          node-version: '24.18.0'
+          cache: npm
+
+      - name: 1. Kutubxonalar — package-lock.json bo'yicha aynan (npm ci)
+        run: npm ci
+
+      - name: 2. TypeScript tur tekshiruvi (tsc --noEmit)
+        run: npx tsc --noEmit
+
+      - name: 3. Testlar (jest)
+        run: npm test -- --ci
+
+      - name: 4. Build (nest build)
+        run: npm run build
+
+## gh run view
+
+✓ ci-sinov CI · 45816413963
+Triggered via push less than a minute ago
+
+JOBS
+✓ install → typecheck → test → build in 22s (ID 139897188862)
+
+For more information about the job, try: gh run view --job=139897188862
+View this run on GitHub: https://github.com/Azizbekcrypto/OrderBotNest/actions/runs/45816413963
+
+## job → step
+JOB install → typecheck → test → build · success · 2026-11-26T12:05:29Z → 2026-11-26T12:05:51Z
+  1. Set up job · success · 2026-11-26T12:05:30Z → 2026-11-26T12:05:30Z
+  2. Kodni olish · success · 2026-11-26T12:05:30Z → 2026-11-26T12:05:31Z
+  3. Node 24.18.0 (lokal mashinadagi bilan bir xil, npm 11.16.0) · success · 2026-11-26T12:05:31Z → 2026-11-26T12:05:36Z
+  4. 1. Kutubxonalar — package-lock.json bo'yicha aynan (npm ci) · success · 2026-11-26T12:05:36Z → 2026-11-26T12:05:42Z
+  5. 2. TypeScript tur tekshiruvi (tsc --noEmit) · success · 2026-11-26T12:05:42Z → 2026-11-26T12:05:43Z
+  6. 3. Testlar (jest) · success · 2026-11-26T12:05:43Z → 2026-11-26T12:05:44Z
+  7. 4. Build (nest build) · success · 2026-11-26T12:05:44Z → 2026-11-26T12:05:47Z
+  13. Post Node 24.18.0 (lokal mashinadagi bilan bir xil, npm 11.16.0) · success · 2026-11-26T12:05:47Z → 2026-11-26T12:05:49Z
+  14. Post Kodni olish · success · 2026-11-26T12:05:49Z → 2026-11-26T12:05:49Z
+  15. Complete job · success · 2026-11-26T12:05:49Z → 2026-11-26T12:05:49Z
+
+## annotatsiyalar
+
+## to'liq log
+install → typecheck → test → build	Set up job	﻿2026-11-26T12:05:30.3862489Z Current runner version: '2.338.2'
+install → typecheck → test → build	Set up job	2026-11-26T12:05:30.3887961Z ##[group]Runner Image Provisioner
+install → typecheck → test → build	Set up job	2026-11-26T12:05:30.3888965Z Hosted Compute Agent
+install → typecheck → test → build	Set up job	2026-11-26T12:05:30.3889660Z Version: 20261111.635
+install → typecheck → test → build	Set up job	2026-11-26T12:05:30.3890275Z Commit: b8a594ea514ff44cadb5342986c68b1eac6e22ed
+install → typecheck → test → build	Set up job	2026-11-26T12:05:30.3891017Z Build Date: 2026-11-11T01:49:01Z
+install → typecheck → test → build	Set up job	2026-11-26T12:05:30.3891635Z Worker ID: {d356218d-bfc7-4d8d-8f72-2de59eaebe7d}
+install → typecheck → test → build	Set up job	2026-11-26T12:05:30.3892318Z Region: centralus
+install → typecheck → test → build	Set up job	2026-11-26T12:05:30.3892880Z Cloud: Azure
+install → typecheck → test → build	Set up job	2026-11-26T12:05:30.3893366Z ##[endgroup]
+install → typecheck → test → build	Set up job	2026-11-26T12:05:30.3894831Z ##[group]Operating System
+install → typecheck → test → build	Set up job	2026-11-26T12:05:30.3895422Z Ubuntu
+install → typecheck → test → build	Set up job	2026-11-26T12:05:30.3895925Z 26.04.1
+install → typecheck → test → build	Set up job	2026-11-26T12:05:30.3896413Z LTS
+install → typecheck → test → build	Set up job	2026-11-26T12:05:30.3896886Z ##[endgroup]
+install → typecheck → test → build	Set up job	2026-11-26T12:05:30.3897388Z ##[group]Runner Image
+install → typecheck → test → build	Set up job	2026-11-26T12:05:30.3897919Z Image: ubuntu-26.04
+install → typecheck → test → build	Set up job	2026-11-26T12:05:30.3898585Z Version: 20261122.9.1
+install → typecheck → test → build	Set up job	2026-11-26T12:05:30.3899616Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261122.9/images/ubuntu/Ubuntu2604-Readme.md
+install → typecheck → test → build	Set up job	2026-11-26T12:05:30.3901176Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261122.9
+install → typecheck → test → build	Set up job	2026-11-26T12:05:30.3902032Z ##[endgroup]
+install → typecheck → test → build	Set up job	2026-11-26T12:05:30.3903417Z ##[group]GITHUB_TOKEN Permissions
+install → typecheck → test → build	Set up job	2026-11-26T12:05:30.3905305Z Contents: read
+install → typecheck → test → build	Set up job	2026-11-26T12:05:30.3905947Z Metadata: read
+install → typecheck → test → build	Set up job	2026-11-26T12:05:30.3906444Z ##[endgroup]
+install → typecheck → test → build	Set up job	2026-11-26T12:05:30.3908698Z Secret source: Actions
+install → typecheck → test → build	Set up job	2026-11-26T12:05:30.3909605Z Cache mode: write
+install → typecheck → test → build	Set up job	2026-11-26T12:05:30.3910719Z Prepare workflow directory
+install → typecheck → test → build	Set up job	2026-11-26T12:05:30.4137016Z Prepare all required actions
+install → typecheck → test → build	Set up job	2026-11-26T12:05:30.4170669Z Getting action download info
+install → typecheck → test → build	Set up job	2026-11-26T12:05:30.6534936Z Download action repository 'actions/checkout@v7' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+install → typecheck → test → build	Set up job	2026-11-26T12:05:30.7351344Z Download action repository 'actions/setup-node@v7' (SHA:949feb2413d6458794dcd2491c4babbbce0c15c1)
+install → typecheck → test → build	Set up job	2026-11-26T12:05:30.9475820Z Complete job name: install → typecheck → test → build
+install → typecheck → test → build	Kodni olish	﻿2026-11-26T12:05:31.0051563Z ##[group]Run actions/checkout@v7
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.0052059Z with:
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.0052323Z   repository: Azizbekcrypto/OrderBotNest
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.0054470Z   token: ***
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.0054714Z   ssh-strict: true
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.0054971Z   ssh-user: git
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.0055227Z   persist-credentials: true
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.0055505Z   clean: true
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.0055764Z   sparse-checkout-cone-mode: true
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.0056056Z   fetch-depth: 1
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.0056311Z   fetch-tags: false
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.0056567Z   show-progress: true
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.0056823Z   lfs: false
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.0057063Z   submodules: false
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.0057323Z   set-safe-directory: true
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.0057615Z   allow-unsafe-pr-checkout: false
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.0057980Z ##[endgroup]
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2075695Z Syncing repository: Azizbekcrypto/OrderBotNest
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2076894Z ##[group]Getting Git version info
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2077300Z Working directory is '/home/runner/work/OrderBotNest/OrderBotNest'
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2077971Z [command]/usr/bin/git version
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2090734Z git version 2.56.1
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2103583Z ##[endgroup]
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2118770Z Temporarily overriding HOME='/home/runner/work/_temp/c7045b83-32cc-4c1e-a4e2-864469b69d46' before making global git config changes
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2120078Z Adding repository directory to the temporary git global config as a safe directory
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2122234Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/OrderBotNest/OrderBotNest
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2180283Z Deleting the contents of '/home/runner/work/OrderBotNest/OrderBotNest'
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2182456Z ##[group]Determining repository object format
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2183603Z ##[endgroup]
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2184210Z ##[group]Initializing the repository
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2186402Z [command]/usr/bin/git init /home/runner/work/OrderBotNest/OrderBotNest
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2268922Z hint: Using 'master' as the name for the initial branch. This default branch name
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2270242Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2271081Z hint: to use in all of your new repositories, which will suppress this warning,
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2271721Z hint: call:
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2272062Z hint:
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2272504Z hint: 	git config --global init.defaultBranch <name>
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2273033Z hint:
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2273526Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2274333Z hint: 'development'. The just-created branch can be renamed via this command:
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2274991Z hint:
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2275360Z hint: 	git branch -m <name>
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2275806Z hint:
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2276354Z hint: Disable this message with "git config set advice.defaultBranchName false"
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2277300Z Initialized empty Git repository in /home/runner/work/OrderBotNest/OrderBotNest/.git/
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2289205Z [command]/usr/bin/git remote add origin https://github.com/Azizbekcrypto/OrderBotNest
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2364201Z ##[endgroup]
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2365081Z ##[group]Disabling automatic garbage collection
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2367371Z [command]/usr/bin/git config --local gc.auto 0
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2406414Z ##[endgroup]
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2407453Z ##[group]Setting up auth
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2407933Z Removing SSH command configuration
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2411738Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2449934Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2818465Z Removing HTTP extra header
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2823339Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.2851328Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.3067687Z Removing includeIf entries pointing to credentials config files
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.3072208Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.3106853Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.3324573Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-d120043a-5d32-40f0-a69e-ce871d72d000.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.3358386Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/OrderBotNest/OrderBotNest/.git.path /home/runner/work/_temp/git-credentials-d120043a-5d32-40f0-a69e-ce871d72d000.config
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.3385810Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/OrderBotNest/OrderBotNest/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-d120043a-5d32-40f0-a69e-ce871d72d000.config
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.3414631Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-d120043a-5d32-40f0-a69e-ce871d72d000.config
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.3440351Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-d120043a-5d32-40f0-a69e-ce871d72d000.config
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.3465443Z ##[endgroup]
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.3465978Z ##[group]Fetching the repository
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.3471551Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +a72b74a33169a4da9a168a55ac1d69781179b2ab:refs/remotes/origin/ci-sinov
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.6824486Z From https://github.com/Azizbekcrypto/OrderBotNest
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.6825837Z  * [new ref]         a72b74a33169a4da9a168a55ac1d69781179b2ab -> origin/ci-sinov
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.6833897Z [command]/usr/bin/git branch --list --remote origin/ci-sinov
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.6859105Z   origin/ci-sinov
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.6864830Z [command]/usr/bin/git rev-parse refs/remotes/origin/ci-sinov
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.6885544Z a72b74a33169a4da9a168a55ac1d69781179b2ab
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.6888618Z ##[endgroup]
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.6889155Z ##[group]Determining the checkout info
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.6889667Z ##[endgroup]
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.6892034Z [command]/usr/bin/git sparse-checkout disable
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.7238844Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.7533730Z ##[group]Checking out the ref
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.7537102Z [command]/usr/bin/git checkout --progress --force -B ci-sinov refs/remotes/origin/ci-sinov
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.8044822Z Switched to a new branch 'ci-sinov'
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.8050451Z branch 'ci-sinov' set up to track 'origin/ci-sinov'.
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.8055724Z ##[endgroup]
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.8097101Z [command]/usr/bin/git log -1 --format=%H
+install → typecheck → test → build	Kodni olish	2026-11-26T12:05:31.8119331Z a72b74a33169a4da9a168a55ac1d69781179b2ab
+install → typecheck → test → build	Node 24.18.0 (lokal mashinadagi bilan bir xil, npm 11.16.0)	﻿2026-11-26T12:05:31.8325415Z ##[group]Run actions/setup-node@v7
+install → typecheck → test → build	Node 24.18.0 (lokal mashinadagi bilan bir xil, npm 11.16.0)	2026-11-26T12:05:31.8325748Z with:
+install → typecheck → test → build	Node 24.18.0 (lokal mashinadagi bilan bir xil, npm 11.16.0)	2026-11-26T12:05:31.8325981Z   node-version: 24.18.0
+install → typecheck → test → build	Node 24.18.0 (lokal mashinadagi bilan bir xil, npm 11.16.0)	2026-11-26T12:05:31.8326232Z   cache: npm
+install → typecheck → test → build	Node 24.18.0 (lokal mashinadagi bilan bir xil, npm 11.16.0)	2026-11-26T12:05:31.8326465Z   check-latest: false
+install → typecheck → test → build	Node 24.18.0 (lokal mashinadagi bilan bir xil, npm 11.16.0)	2026-11-26T12:05:31.8328833Z   token: ***
+install → typecheck → test → build	Node 24.18.0 (lokal mashinadagi bilan bir xil, npm 11.16.0)	2026-11-26T12:05:31.8329079Z   package-manager-cache: true
+install → typecheck → test → build	Node 24.18.0 (lokal mashinadagi bilan bir xil, npm 11.16.0)	2026-11-26T12:05:31.8329359Z ##[endgroup]
+install → typecheck → test → build	Node 24.18.0 (lokal mashinadagi bilan bir xil, npm 11.16.0)	2026-11-26T12:05:31.9211768Z Attempting to download 24.18.0...
+install → typecheck → test → build	Node 24.18.0 (lokal mashinadagi bilan bir xil, npm 11.16.0)	2026-11-26T12:05:32.5630441Z Acquiring 24.18.0 - x64 from https://github.com/actions/node-versions/releases/download/24.18.0-28070977815/node-24.18.0-linux-x64.tar.gz
+install → typecheck → test → build	Node 24.18.0 (lokal mashinadagi bilan bir xil, npm 11.16.0)	2026-11-26T12:05:33.0266890Z Extracting ...
+install → typecheck → test → build	Node 24.18.0 (lokal mashinadagi bilan bir xil, npm 11.16.0)	2026-11-26T12:05:33.0361359Z [command]/usr/bin/tar xz --strip 1 --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/775086ab-8b99-4ee9-8a7c-7d591516cf8a -f /home/runner/work/_temp/74d6f4a2-c19e-492a-a12d-858c7ea6c900
+install → typecheck → test → build	Node 24.18.0 (lokal mashinadagi bilan bir xil, npm 11.16.0)	2026-11-26T12:05:33.6367997Z Adding to the cache ...
+install → typecheck → test → build	Node 24.18.0 (lokal mashinadagi bilan bir xil, npm 11.16.0)	2026-11-26T12:05:35.7439513Z ##[group]Environment details
+install → typecheck → test → build	Node 24.18.0 (lokal mashinadagi bilan bir xil, npm 11.16.0)	2026-11-26T12:05:35.9057594Z node: v24.18.0
+install → typecheck → test → build	Node 24.18.0 (lokal mashinadagi bilan bir xil, npm 11.16.0)	2026-11-26T12:05:35.9058501Z npm: 11.16.0
+install → typecheck → test → build	Node 24.18.0 (lokal mashinadagi bilan bir xil, npm 11.16.0)	2026-11-26T12:05:35.9058723Z yarn: 1.22.22
+install → typecheck → test → build	Node 24.18.0 (lokal mashinadagi bilan bir xil, npm 11.16.0)	2026-11-26T12:05:35.9059345Z ##[endgroup]
+install → typecheck → test → build	Node 24.18.0 (lokal mashinadagi bilan bir xil, npm 11.16.0)	2026-11-26T12:05:35.9070430Z [command]/opt/hostedtoolcache/node/24.18.0/x64/bin/npm config get cache
+install → typecheck → test → build	Node 24.18.0 (lokal mashinadagi bilan bir xil, npm 11.16.0)	2026-11-26T12:05:35.9761281Z /home/runner/.npm
+install → typecheck → test → build	Node 24.18.0 (lokal mashinadagi bilan bir xil, npm 11.16.0)	2026-11-26T12:05:36.1194441Z npm cache is not found
+install → typecheck → test → build	1. Kutubxonalar — package-lock.json bo'yicha aynan (npm ci)	﻿2026-11-26T12:05:36.1353323Z ##[group]Run npm ci
+install → typecheck → test → build	1. Kutubxonalar — package-lock.json bo'yicha aynan (npm ci)	2026-11-26T12:05:36.1353583Z ^[[36;1mnpm ci^[[0m
+install → typecheck → test → build	1. Kutubxonalar — package-lock.json bo'yicha aynan (npm ci)	2026-11-26T12:05:36.1385475Z shell: /usr/bin/bash -e {0}
+install → typecheck → test → build	1. Kutubxonalar — package-lock.json bo'yicha aynan (npm ci)	2026-11-26T12:05:36.1385681Z ##[endgroup]
+install → typecheck → test → build	1. Kutubxonalar — package-lock.json bo'yicha aynan (npm ci)	2026-11-26T12:05:39.1659530Z npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+install → typecheck → test → build	1. Kutubxonalar — package-lock.json bo'yicha aynan (npm ci)	2026-11-26T12:05:42.0725360Z 
+install → typecheck → test → build	1. Kutubxonalar — package-lock.json bo'yicha aynan (npm ci)	2026-11-26T12:05:42.0726347Z added 633 packages, and audited 634 packages in 6s
+install → typecheck → test → build	1. Kutubxonalar — package-lock.json bo'yicha aynan (npm ci)	2026-11-26T12:05:42.0726697Z 
+install → typecheck → test → build	1. Kutubxonalar — package-lock.json bo'yicha aynan (npm ci)	2026-11-26T12:05:42.0727067Z 133 packages are looking for funding
+install → typecheck → test → build	1. Kutubxonalar — package-lock.json bo'yicha aynan (npm ci)	2026-11-26T12:05:42.0727401Z   run `npm fund` for details
+install → typecheck → test → build	1. Kutubxonalar — package-lock.json bo'yicha aynan (npm ci)	2026-11-26T12:05:42.0994420Z 
+install → typecheck → test → build	1. Kutubxonalar — package-lock.json bo'yicha aynan (npm ci)	2026-11-26T12:05:42.0995283Z 21 vulnerabilities (19 moderate, 2 high)
+install → typecheck → test → build	1. Kutubxonalar — package-lock.json bo'yicha aynan (npm ci)	2026-11-26T12:05:42.0995611Z 
+install → typecheck → test → build	1. Kutubxonalar — package-lock.json bo'yicha aynan (npm ci)	2026-11-26T12:05:42.0995826Z To address issues that do not require attention, run:
+install → typecheck → test → build	1. Kutubxonalar — package-lock.json bo'yicha aynan (npm ci)	2026-11-26T12:05:42.0996129Z   npm audit fix
+install → typecheck → test → build	1. Kutubxonalar — package-lock.json bo'yicha aynan (npm ci)	2026-11-26T12:05:42.0996295Z 
+install → typecheck → test → build	1. Kutubxonalar — package-lock.json bo'yicha aynan (npm ci)	2026-11-26T12:05:42.0996654Z To address all issues (including breaking changes), run:
+install → typecheck → test → build	1. Kutubxonalar — package-lock.json bo'yicha aynan (npm ci)	2026-11-26T12:05:42.0997001Z   npm audit fix --force
+install → typecheck → test → build	1. Kutubxonalar — package-lock.json bo'yicha aynan (npm ci)	2026-11-26T12:05:42.0997152Z 
+install → typecheck → test → build	1. Kutubxonalar — package-lock.json bo'yicha aynan (npm ci)	2026-11-26T12:05:42.0997336Z Run `npm audit` for details.
+install → typecheck → test → build	1. Kutubxonalar — package-lock.json bo'yicha aynan (npm ci)	2026-11-26T12:05:42.1002731Z npm warn allow-scripts 1 package has install scripts not yet covered by allowScripts:
+install → typecheck → test → build	1. Kutubxonalar — package-lock.json bo'yicha aynan (npm ci)	2026-11-26T12:05:42.1003479Z npm warn allow-scripts   @parcel/watcher@2.6.0 (install: node scripts/build-from-source.js)
+install → typecheck → test → build	1. Kutubxonalar — package-lock.json bo'yicha aynan (npm ci)	2026-11-26T12:05:42.1004500Z npm warn allow-scripts
+install → typecheck → test → build	1. Kutubxonalar — package-lock.json bo'yicha aynan (npm ci)	2026-11-26T12:05:42.1004879Z npm warn allow-scripts Run `npm approve-scripts --allow-scripts-pending` to review, or `npm approve-scripts <pkg>` to allow.
+install → typecheck → test → build	2. TypeScript tur tekshiruvi (tsc --noEmit)	﻿2026-11-26T12:05:42.1627656Z ##[group]Run npx tsc --noEmit
+install → typecheck → test → build	2. TypeScript tur tekshiruvi (tsc --noEmit)	2026-11-26T12:05:42.1627895Z ^[[36;1mnpx tsc --noEmit^[[0m
+install → typecheck → test → build	2. TypeScript tur tekshiruvi (tsc --noEmit)	2026-11-26T12:05:42.1658146Z shell: /usr/bin/bash -e {0}
+install → typecheck → test → build	2. TypeScript tur tekshiruvi (tsc --noEmit)	2026-11-26T12:05:42.1658452Z ##[endgroup]
+install → typecheck → test → build	3. Testlar (jest)	﻿2026-11-26T12:05:43.7401990Z ##[group]Run npm test -- --ci
+install → typecheck → test → build	3. Testlar (jest)	2026-11-26T12:05:43.7402213Z ^[[36;1mnpm test -- --ci^[[0m
+install → typecheck → test → build	3. Testlar (jest)	2026-11-26T12:05:43.7429764Z shell: /usr/bin/bash -e {0}
+install → typecheck → test → build	3. Testlar (jest)	2026-11-26T12:05:43.7429923Z ##[endgroup]
+install → typecheck → test → build	3. Testlar (jest)	2026-11-26T12:05:43.8149200Z 
+install → typecheck → test → build	3. Testlar (jest)	2026-11-26T12:05:43.8149937Z > order-bot-nest@1.0.0 test
+install → typecheck → test → build	3. Testlar (jest)	2026-11-26T12:05:43.8150358Z > jest --ci
+install → typecheck → test → build	3. Testlar (jest)	2026-11-26T12:05:43.8150485Z 
+install → typecheck → test → build	3. Testlar (jest)	2026-11-26T12:05:44.7570722Z PASS src/api/telegram/keyboards.spec.ts
+install → typecheck → test → build	3. Testlar (jest)	2026-11-26T12:05:44.7972160Z PASS src/api/telegram/phone.spec.ts
+install → typecheck → test → build	3. Testlar (jest)	2026-11-26T12:05:44.8280176Z PASS src/api/telegram/texts.spec.ts
+install → typecheck → test → build	3. Testlar (jest)	2026-11-26T12:05:44.8833737Z PASS src/api/app.controller.spec.ts
+install → typecheck → test → build	3. Testlar (jest)	2026-11-26T12:05:44.9491911Z PASS src/api/order/order.service.spec.ts
+install → typecheck → test → build	3. Testlar (jest)	2026-11-26T12:05:44.9725783Z 
+install → typecheck → test → build	3. Testlar (jest)	2026-11-26T12:05:44.9749971Z Test Suites: 5 passed, 5 total
+install → typecheck → test → build	3. Testlar (jest)	2026-11-26T12:05:44.9755722Z Tests:       25 passed, 25 total
+install → typecheck → test → build	3. Testlar (jest)	2026-11-26T12:05:44.9755981Z Snapshots:   0 total
+install → typecheck → test → build	3. Testlar (jest)	2026-11-26T12:05:44.9756182Z Time:        0.987 s
+install → typecheck → test → build	3. Testlar (jest)	2026-11-26T12:05:44.9756353Z Ran all test suites.
+install → typecheck → test → build	4. Build (nest build)	﻿2026-11-26T12:05:44.9932784Z ##[group]Run npm run build
+install → typecheck → test → build	4. Build (nest build)	2026-11-26T12:05:44.9932997Z ^[[36;1mnpm run build^[[0m
+install → typecheck → test → build	4. Build (nest build)	2026-11-26T12:05:44.9961490Z shell: /usr/bin/bash -e {0}
+install → typecheck → test → build	4. Build (nest build)	2026-11-26T12:05:44.9961665Z ##[endgroup]
+install → typecheck → test → build	4. Build (nest build)	2026-11-26T12:05:45.0648022Z 
+install → typecheck → test → build	4. Build (nest build)	2026-11-26T12:05:45.0648950Z > order-bot-nest@1.0.0 build
+install → typecheck → test → build	4. Build (nest build)	2026-11-26T12:05:45.0649336Z > nest build
+install → typecheck → test → build	4. Build (nest build)	2026-11-26T12:05:45.0649472Z 
+install → typecheck → test → build	Post Node 24.18.0 (lokal mashinadagi bilan bir xil, npm 11.16.0)	﻿2026-11-26T12:05:47.5013326Z Post job cleanup.
+install → typecheck → test → build	Post Node 24.18.0 (lokal mashinadagi bilan bir xil, npm 11.16.0)	2026-11-26T12:05:47.5954719Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/OrderBotNest/OrderBotNest --files-from manifest.txt --use-compress-program zstdmt
+install → typecheck → test → build	Post Node 24.18.0 (lokal mashinadagi bilan bir xil, npm 11.16.0)	2026-11-26T12:05:48.8489754Z Sent 36237216 of 36237216 (100.0%), 34.6 MBs/sec
+install → typecheck → test → build	Post Node 24.18.0 (lokal mashinadagi bilan bir xil, npm 11.16.0)	2026-11-26T12:05:49.1908594Z Cache saved with the key: node-cache-Linux-x64-npm-ccb2b15dd267c884b0610f9549734f2a266074ea2630c8be582139d289f32d79
+install → typecheck → test → build	Post Kodni olish	﻿2026-11-26T12:05:49.2075719Z Post job cleanup.
+install → typecheck → test → build	Post Kodni olish	2026-11-26T12:05:49.2704514Z [command]/usr/bin/git version
+install → typecheck → test → build	Post Kodni olish	2026-11-26T12:05:49.2748752Z git version 2.56.1
+install → typecheck → test → build	Post Kodni olish	2026-11-26T12:05:49.2765574Z Temporarily overriding HOME='/home/runner/work/_temp/742f6820-2129-4e8b-98d2-9e2c5750f3ee' before making global git config changes
+install → typecheck → test → build	Post Kodni olish	2026-11-26T12:05:49.2766479Z Adding repository directory to the temporary git global config as a safe directory
+install → typecheck → test → build	Post Kodni olish	2026-11-26T12:05:49.2769263Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/OrderBotNest/OrderBotNest
+install → typecheck → test → build	Post Kodni olish	2026-11-26T12:05:49.2803811Z Removing SSH command configuration
+install → typecheck → test → build	Post Kodni olish	2026-11-26T12:05:49.2809563Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+install → typecheck → test → build	Post Kodni olish	2026-11-26T12:05:49.2843829Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+install → typecheck → test → build	Post Kodni olish	2026-11-26T12:05:49.3120391Z Removing HTTP extra header
+install → typecheck → test → build	Post Kodni olish	2026-11-26T12:05:49.3135138Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+install → typecheck → test → build	Post Kodni olish	2026-11-26T12:05:49.3190133Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+install → typecheck → test → build	Post Kodni olish	2026-11-26T12:05:49.3436647Z Removing includeIf entries pointing to credentials config files
+install → typecheck → test → build	Post Kodni olish	2026-11-26T12:05:49.3441943Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+install → typecheck → test → build	Post Kodni olish	2026-11-26T12:05:49.3466208Z includeif.gitdir:/home/runner/work/OrderBotNest/OrderBotNest/.git.path
+install → typecheck → test → build	Post Kodni olish	2026-11-26T12:05:49.3466885Z includeif.gitdir:/home/runner/work/OrderBotNest/OrderBotNest/.git/worktrees/*.path
+install → typecheck → test → build	Post Kodni olish	2026-11-26T12:05:49.3467949Z includeif.gitdir:/github/workspace/.git.path
+install → typecheck → test → build	Post Kodni olish	2026-11-26T12:05:49.3468535Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+install → typecheck → test → build	Post Kodni olish	2026-11-26T12:05:49.3473639Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/OrderBotNest/OrderBotNest/.git.path
+install → typecheck → test → build	Post Kodni olish	2026-11-26T12:05:49.3494511Z /home/runner/work/_temp/git-credentials-d120043a-5d32-40f0-a69e-ce871d72d000.config
+install → typecheck → test → build	Post Kodni olish	2026-11-26T12:05:49.3502354Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/OrderBotNest/OrderBotNest/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-d120043a\-5d32\-40f0\-a69e\-ce871d72d000\.config
+install → typecheck → test → build	Post Kodni olish	2026-11-26T12:05:49.3532488Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/OrderBotNest/OrderBotNest/.git/worktrees/*.path
+install → typecheck → test → build	Post Kodni olish	2026-11-26T12:05:49.3553335Z /home/runner/work/_temp/git-credentials-d120043a-5d32-40f0-a69e-ce871d72d000.config
+install → typecheck → test → build	Post Kodni olish	2026-11-26T12:05:49.3559891Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/OrderBotNest/OrderBotNest/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-d120043a\-5d32\-40f0\-a69e\-ce871d72d000\.config
+install → typecheck → test → build	Post Kodni olish	2026-11-26T12:05:49.3588034Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+install → typecheck → test → build	Post Kodni olish	2026-11-26T12:05:49.3607440Z /github/runner_temp/git-credentials-d120043a-5d32-40f0-a69e-ce871d72d000.config
+install → typecheck → test → build	Post Kodni olish	2026-11-26T12:05:49.3613375Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-d120043a\-5d32\-40f0\-a69e\-ce871d72d000\.config
+install → typecheck → test → build	Post Kodni olish	2026-11-26T12:05:49.3641603Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+install → typecheck → test → build	Post Kodni olish	2026-11-26T12:05:49.3660532Z /github/runner_temp/git-credentials-d120043a-5d32-40f0-a69e-ce871d72d000.config
+install → typecheck → test → build	Post Kodni olish	2026-11-26T12:05:49.3666395Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-d120043a\-5d32\-40f0\-a69e\-ce871d72d000\.config
+install → typecheck → test → build	Post Kodni olish	2026-11-26T12:05:49.3696929Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+install → typecheck → test → build	Post Kodni olish	2026-11-26T12:05:49.3920654Z Removing credentials config '/home/runner/work/_temp/git-credentials-d120043a-5d32-40f0-a69e-ce871d72d000.config'
+install → typecheck → test → build	Complete job	﻿2026-11-26T12:05:49.4057831Z Cleaning up orphan processes

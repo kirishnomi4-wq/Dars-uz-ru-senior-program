@@ -8289,11 +8289,1192 @@ const KOD_RUNS_41 = {
   ]
  }
 };
+const KOD_RUNS_42 = {
+ "id": "45816680844",
+ "n": 47,
+ "title": "sinov: CI/CD-2 2-topshiriq (CI tilida) — 1-AI ci.yml",
+ "ev": "push",
+ "br": "ci-sinov",
+ "sha": "3ec6233",
+ "st": "ok",
+ "dur": "1 daq 1 s",
+ "at": "2026-11-26T12:07:10Z",
+ "jobs": [
+  {
+   "name": "test",
+   "st": "ok",
+   "dur": "23 s",
+   "steps": [
+    [
+     "Set up job",
+     "ok",
+     "0 s"
+    ],
+    [
+     "Run actions/checkout@v4",
+     "ok",
+     "1 s"
+    ],
+    [
+     "Run actions/setup-node@v4",
+     "ok",
+     "3 s"
+    ],
+    [
+     "Run npm ci",
+     "ok",
+     "8 s"
+    ],
+    [
+     "Run npx tsc --noEmit",
+     "ok",
+     "2 s"
+    ],
+    [
+     "Run npm test",
+     "ok",
+     "2 s"
+    ],
+    [
+     "Run npm run build",
+     "ok",
+     "3 s"
+    ],
+    [
+     "Post Run actions/setup-node@v4",
+     "ok",
+     "0 s"
+    ],
+    [
+     "Post Run actions/checkout@v4",
+     "ok",
+     "1 s"
+    ],
+    [
+     "Complete job",
+     "ok",
+     "0 s"
+    ]
+   ]
+  },
+  {
+   "name": "smoke",
+   "st": "ok",
+   "dur": "33 s",
+   "steps": [
+    [
+     "Set up job",
+     "ok",
+     "1 s"
+    ],
+    [
+     "Initialize containers",
+     "ok",
+     "14 s"
+    ],
+    [
+     "Run actions/checkout@v4",
+     "ok",
+     "1 s"
+    ],
+    [
+     "Run actions/setup-node@v4",
+     "ok",
+     "2 s"
+    ],
+    [
+     "Run npm ci",
+     "ok",
+     "4 s"
+    ],
+    [
+     "Smoke (Telegram'siz)",
+     "ok",
+     "6 s"
+    ],
+    [
+     "Post Run actions/setup-node@v4",
+     "ok",
+     "0 s"
+    ],
+    [
+     "Post Run actions/checkout@v4",
+     "ok",
+     "0 s"
+    ],
+    [
+     "Stop containers",
+     "ok",
+     "2 s"
+    ],
+    [
+     "Complete job",
+     "ok",
+     "0 s"
+    ]
+   ]
+  }
+ ],
+ "ann": [
+  [
+   "warning",
+   "actions/checkout@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+  ],
+  [
+   "warning",
+   "actions/checkout@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+  ]
+ ],
+ "wfIssue": false,
+ "log": {
+  "test · Set up job": [
+   "Current runner version: '2.338.2'",
+   "Hosted Compute Agent",
+   "Version: 20261111.635",
+   "Commit: b8a594ea514ff44cadb5342986c68b1eac6e22ed",
+   "Build Date: 2026-11-11T01:49:01Z",
+   "Worker ID: {18505821-aece-4aba-9df1-fb622b3b5725}",
+   "Region: westus2",
+   "Cloud: Azure",
+   "Ubuntu",
+   "26.04.1",
+   "LTS",
+   "Image: ubuntu-26.04",
+   "Version: 20261116.202.1",
+   "Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261116.202/images/ubuntu/Ubuntu2604-Readme.md",
+   "Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261116.202",
+   "Contents: read",
+   "Metadata: read",
+   "Packages: read",
+   "Secret source: Actions",
+   "Cache mode: write",
+   "Prepare workflow directory",
+   "Prepare all required actions",
+   "Getting action download info",
+   "Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)",
+   "Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)",
+   "Complete job name: test"
+  ],
+  "test · Run actions/checkout@v4": [
+   "with:",
+   "  repository: Azizbekcrypto/OrderBotNest",
+   "  token: ***",
+   "  ssh-strict: true",
+   "  ssh-user: git",
+   "  persist-credentials: true",
+   "  clean: true",
+   "  sparse-checkout-cone-mode: true",
+   "  fetch-depth: 1",
+   "  fetch-tags: false",
+   "  show-progress: true",
+   "  lfs: false",
+   "  submodules: false",
+   "  set-safe-directory: true",
+   "  allow-unsafe-pr-checkout: false",
+   "Syncing repository: Azizbekcrypto/OrderBotNest",
+   "Working directory is '/home/runner/work/OrderBotNest/OrderBotNest'",
+   "[command]/usr/bin/git version",
+   "git version 2.56.1",
+   "Temporarily overriding HOME='/home/runner/work/_temp/48aa979c-cc29-420c-a171-495632559ab9' before making global git config changes",
+   "Adding repository directory to the temporary git global config as a safe directory",
+   "[command]/usr/bin/git config --global --add safe.directory /home/runner/work/OrderBotNest/OrderBotNest",
+   "Deleting the contents of '/home/runner/work/OrderBotNest/OrderBotNest'",
+   "[command]/usr/bin/git init /home/runner/work/OrderBotNest/OrderBotNest",
+   "hint: Using 'master' as the name for the initial branch. This default branch name",
+   "hint: will change to \"main\" in Git 3.0. To configure the initial branch name",
+   "hint: to use in all of your new repositories, which will suppress this warning,",
+   "hint: call:",
+   "hint:",
+   "hint: \tgit config --global init.defaultBranch <name>",
+   "hint:",
+   "hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and",
+   "hint: 'development'. The just-created branch can be renamed via this command:",
+   "hint:",
+   "hint: \tgit branch -m <name>",
+   "hint:",
+   "hint: Disable this message with \"git config set advice.defaultBranchName false\"",
+   "Initialized empty Git repository in /home/runner/work/OrderBotNest/OrderBotNest/.git/",
+   "[command]/usr/bin/git remote add origin https://github.com/Azizbekcrypto/OrderBotNest",
+   "[command]/usr/bin/git config --local gc.auto 0",
+   "[command]/usr/bin/git config --local --name-only --get-regexp core\\.sshCommand",
+   "[command]/usr/bin/git submodule foreach --recursive sh -c \"git config --local --name-only --get-regexp 'core\\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\"",
+   "[command]/usr/bin/git config --local --name-only --get-regexp http\\.https\\:\\/\\/github\\.com\\/\\.extraheader",
+   "[command]/usr/bin/git submodule foreach --recursive sh -c \"git config --local --name-only --get-regexp 'http\\.https\\:\\/\\/github\\.com\\/\\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\"",
+   "[command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\\.gitdir:",
+   "[command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url",
+   "[command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***",
+   "[command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +3ec6233c45c0c6b579aaf8917d0653703d0dec97:refs/remotes/origin/ci-sinov",
+   "From https://github.com/Azizbekcrypto/OrderBotNest",
+   " * [new ref]         3ec6233c45c0c6b579aaf8917d0653703d0dec97 -> origin/ci-sinov",
+   "[command]/usr/bin/git sparse-checkout disable",
+   "[command]/usr/bin/git config --local --unset-all extensions.worktreeConfig",
+   "[command]/usr/bin/git checkout --progress --force -B ci-sinov refs/remotes/origin/ci-sinov",
+   "Switched to a new branch 'ci-sinov'",
+   "branch 'ci-sinov' set up to track 'origin/ci-sinov'.",
+   "[command]/usr/bin/git log -1 --format=%H",
+   "3ec6233c45c0c6b579aaf8917d0653703d0dec97"
+  ],
+  "test · Run actions/setup-node@v4": [
+   "with:",
+   "  node-version: 24",
+   "  cache: npm",
+   "  always-auth: false",
+   "  check-latest: false",
+   "  token: ***",
+   "(node:2842) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.",
+   "(Use `node --trace-deprecation ...` to show where the warning was created)",
+   "Found in cache @ /opt/hostedtoolcache/node/24.22.3/x64",
+   "node: v24.22.3",
+   "npm: 11.19.1",
+   "yarn: 1.22.22",
+   "[command]/opt/hostedtoolcache/node/24.22.3/x64/bin/npm config get cache",
+   "/home/runner/.npm",
+   "Cache hit for: node-cache-Linux-x64-npm-ccb2b15dd267c884b0610f9549734f2a266074ea2630c8be582139d289f32d79",
+   "(node:2842) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.",
+   "Received 8388608 of 36237216 (23.1%), 8.0 MBs/sec",
+   "Received 36237216 of 36237216 (100.0%), 30.7 MBs/sec",
+   "Cache Size: ~35 MB (36237216 B)",
+   "[command]/usr/bin/tar -xf /home/runner/work/_temp/4520d40f-b5ce-4832-a6c4-f6cdfeae4e03/cache.tzst -P -C /home/runner/work/OrderBotNest/OrderBotNest --use-compress-program unzstd",
+   "Cache restored successfully",
+   "Cache restored from key: node-cache-Linux-x64-npm-ccb2b15dd267c884b0610f9549734f2a266074ea2630c8be582139d289f32d79"
+  ],
+  "test · Run npm ci": [
+   "$ npm ci",
+   "npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me",
+   "added 633 packages, and audited 634 packages in 8s",
+   "133 packages are looking for funding",
+   "  run `npm fund` for details",
+   "21 vulnerabilities (19 moderate, 2 high)",
+   "To address issues that do not require attention, run:",
+   "  npm audit fix",
+   "To address all issues (including breaking changes), run:",
+   "  npm audit fix --force",
+   "Run `npm audit` for details.",
+   "npm warn install-scripts 1 package has install scripts not yet covered by allowScripts:",
+   "npm warn install-scripts   @parcel/watcher@2.6.0 (install: node scripts/build-from-source.js)",
+   "npm warn install-scripts",
+   "npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow."
+  ],
+  "test · Run npx tsc --noEmit": [
+   "$ npx tsc --noEmit"
+  ],
+  "test · Run npm test": [
+   "$ npm test",
+   "> order-bot-nest@1.0.0 test",
+   "> jest",
+   "PASS src/api/telegram/keyboards.spec.ts",
+   "PASS src/api/telegram/phone.spec.ts",
+   "PASS src/api/telegram/texts.spec.ts",
+   "PASS src/api/app.controller.spec.ts",
+   "PASS src/api/order/order.service.spec.ts",
+   "Test Suites: 5 passed, 5 total",
+   "Tests:       25 passed, 25 total",
+   "Snapshots:   0 total",
+   "Time:        1.43 s",
+   "Ran all test suites."
+  ],
+  "test · Run npm run build": [
+   "$ npm run build",
+   "> order-bot-nest@1.0.0 build",
+   "> nest build"
+  ],
+  "test · Post Run actions/setup-node@v4": [
+   "Post job cleanup.",
+   "(node:3038) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.",
+   "(Use `node --trace-deprecation ...` to show where the warning was created)",
+   "Cache hit occurred on the primary key node-cache-Linux-x64-npm-ccb2b15dd267c884b0610f9549734f2a266074ea2630c8be582139d289f32d79, not saving cache."
+  ],
+  "test · Post Run actions/checkout@v4": [
+   "Post job cleanup.",
+   "[command]/usr/bin/git version",
+   "git version 2.56.1",
+   "Temporarily overriding HOME='/home/runner/work/_temp/468aa6b3-d019-4cab-8b52-e040c7e7ef70' before making global git config changes",
+   "Adding repository directory to the temporary git global config as a safe directory",
+   "[command]/usr/bin/git config --global --add safe.directory /home/runner/work/OrderBotNest/OrderBotNest",
+   "[command]/usr/bin/git config --local --name-only --get-regexp core\\.sshCommand",
+   "[command]/usr/bin/git submodule foreach --recursive sh -c \"git config --local --name-only --get-regexp 'core\\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\"",
+   "[command]/usr/bin/git config --local --name-only --get-regexp http\\.https\\:\\/\\/github\\.com\\/\\.extraheader",
+   "http.https://github.com/.extraheader",
+   "[command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader",
+   "[command]/usr/bin/git submodule foreach --recursive sh -c \"git config --local --name-only --get-regexp 'http\\.https\\:\\/\\/github\\.com\\/\\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\"",
+   "[command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\\.gitdir:",
+   "[command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url"
+  ],
+  "test · Complete job": [
+   "Cleaning up orphan processes",
+   "##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+  ],
+  "smoke · Set up job": [
+   "Current runner version: '2.338.2'",
+   "Hosted Compute Agent",
+   "Version: 20261111.635",
+   "Commit: b8a594ea514ff44cadb5342986c68b1eac6e22ed",
+   "Build Date: 2026-11-11T01:49:01Z",
+   "Worker ID: {f7e81aea-818a-4c00-9afe-19474174318a}",
+   "Region: centralus",
+   "Cloud: Azure",
+   "Ubuntu",
+   "26.04.1",
+   "LTS",
+   "Image: ubuntu-26.04",
+   "Version: 20261122.9.1",
+   "Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261122.9/images/ubuntu/Ubuntu2604-Readme.md",
+   "Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261122.9",
+   "Contents: read",
+   "Metadata: read",
+   "Packages: read",
+   "Secret source: Actions",
+   "Cache mode: write",
+   "Prepare workflow directory",
+   "Prepare all required actions",
+   "Getting action download info",
+   "Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)",
+   "Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)",
+   "Complete job name: smoke"
+  ],
+  "smoke · Initialize containers": [
+   "##[command]/usr/bin/docker version --format '{{.Server.APIVersion}}'",
+   "'1.54'",
+   "Docker daemon API version: '1.54'",
+   "##[command]/usr/bin/docker version --format '{{.Client.APIVersion}}'",
+   "'1.54'",
+   "Docker client API version: '1.54'",
+   "##[command]/usr/bin/docker ps --all --quiet --no-trunc --filter \"label=be4d69\"",
+   "##[command]/usr/bin/docker network prune --force --filter \"label=be4d69\"",
+   "##[command]/usr/bin/docker network create --label be4d69 github_network_9a7f0839fd5342a3b460f4ce376dca31",
+   "2fb7bd0f6f293154a0c075b069b6ef14e2e21f9e8e4c7138347a8de74805a791",
+   "##[command]/usr/bin/docker pull postgres:18",
+   "18: Pulling from library/postgres",
+   "0f12a37b90bb: Pulling fs layer",
+   "7fe3468bf416: Pulling fs layer",
+   "1c59edd7eb40: Pulling fs layer",
+   "40748add9f4f: Pulling fs layer",
+   "7cb67b3b537a: Pulling fs layer",
+   "61061a425fb0: Pulling fs layer",
+   "8e4857f35fce: Pulling fs layer",
+   "84a852dae169: Pulling fs layer",
+   "0afa8bd0fe3a: Pulling fs layer",
+   "a1361b767ece: Pulling fs layer",
+   "c1436cf65049: Pulling fs layer",
+   "edf2405c6afe: Pulling fs layer",
+   "7fe3468bf416: Download complete",
+   "61061a425fb0: Download complete",
+   "8e4857f35fce: Download complete",
+   "7cb67b3b537a: Download complete",
+   "0afa8bd0fe3a: Download complete",
+   "84a852dae169: Download complete",
+   "1c59edd7eb40: Download complete",
+   "0f12a37b90bb: Download complete",
+   "59e8b6ceb028: Download complete",
+   "c1436cf65049: Download complete",
+   "a1361b767ece: Download complete",
+   "40748add9f4f: Download complete",
+   "3c65b9afb00e: Download complete",
+   "8e4857f35fce: Pull complete",
+   "40748add9f4f: Pull complete",
+   "0f12a37b90bb: Pull complete",
+   "c1436cf65049: Pull complete",
+   "7fe3468bf416: Pull complete",
+   "0afa8bd0fe3a: Pull complete",
+   "84a852dae169: Pull complete",
+   "a1361b767ece: Pull complete",
+   "edf2405c6afe: Download complete",
+   "61061a425fb0: Pull complete",
+   "7cb67b3b537a: Pull complete",
+   "1c59edd7eb40: Pull complete",
+   "edf2405c6afe: Pull complete",
+   "Digest: sha256:c699303802144847d238196173655dbbecf7a96aeca1565f2b02eb671a1f0b6b",
+   "Status: Downloaded newer image for postgres:18",
+   "docker.io/library/postgres:18",
+   "##[command]/usr/bin/docker create --name 1d66a7241cfa424581a5a571ae25d968_postgres18_f07b24 --label be4d69 --network github_network_9a7f0839fd5342a3b460f4ce376dca31 --network-alias postgres -p 5432:5432 --health-cmd \"pg_isready -U postgres\" --health-interval 5s --health-timeout 5s --health-retries 10 -e \"POSTGRES_USER=postgres\" -e \"POSTGRES_PASSWORD=postgres\" -e \"POSTGRES_DB=shop\" -e GITHUB_ACTIONS=true -e CI=true postgres:18",
+   "49a84b9fc9a200dbefe97ac7ed8819e116b80a94ed3869b71edce163bbd20eb2",
+   "##[command]/usr/bin/docker start 49a84b9fc9a200dbefe97ac7ed8819e116b80a94ed3869b71edce163bbd20eb2",
+   "49a84b9fc9a200dbefe97ac7ed8819e116b80a94ed3869b71edce163bbd20eb2",
+   "##[command]/usr/bin/docker ps --all --filter id=49a84b9fc9a200dbefe97ac7ed8819e116b80a94ed3869b71edce163bbd20eb2 --filter status=running --no-trunc --format \"{{.ID}} {{.Status}}\"",
+   "49a84b9fc9a200dbefe97ac7ed8819e116b80a94ed3869b71edce163bbd20eb2 Up Less than a second (health: starting)",
+   "##[command]/usr/bin/docker port 49a84b9fc9a200dbefe97ac7ed8819e116b80a94ed3869b71edce163bbd20eb2",
+   "5432/tcp -> 0.0.0.0:5432",
+   "5432/tcp -> [::]:5432",
+   "##[command]/usr/bin/docker inspect --format=\"{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}\" 49a84b9fc9a200dbefe97ac7ed8819e116b80a94ed3869b71edce163bbd20eb2",
+   "starting",
+   "postgres service is starting, waiting 2 seconds before checking again.",
+   "##[command]/usr/bin/docker inspect --format=\"{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}\" 49a84b9fc9a200dbefe97ac7ed8819e116b80a94ed3869b71edce163bbd20eb2",
+   "starting",
+   "postgres service is starting, waiting 3 seconds before checking again.",
+   "##[command]/usr/bin/docker inspect --format=\"{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}\" 49a84b9fc9a200dbefe97ac7ed8819e116b80a94ed3869b71edce163bbd20eb2",
+   "healthy",
+   "postgres service is healthy."
+  ],
+  "smoke · Run actions/checkout@v4": [
+   "with:",
+   "  repository: Azizbekcrypto/OrderBotNest",
+   "  token: ***",
+   "  ssh-strict: true",
+   "  ssh-user: git",
+   "  persist-credentials: true",
+   "  clean: true",
+   "  sparse-checkout-cone-mode: true",
+   "  fetch-depth: 1",
+   "  fetch-tags: false",
+   "  show-progress: true",
+   "  lfs: false",
+   "  submodules: false",
+   "  set-safe-directory: true",
+   "  allow-unsafe-pr-checkout: false",
+   "Syncing repository: Azizbekcrypto/OrderBotNest",
+   "Working directory is '/home/runner/work/OrderBotNest/OrderBotNest'",
+   "[command]/usr/bin/git version",
+   "git version 2.56.1",
+   "Temporarily overriding HOME='/home/runner/work/_temp/503f472f-6dde-4494-9657-a9100d0f3dcc' before making global git config changes",
+   "Adding repository directory to the temporary git global config as a safe directory",
+   "[command]/usr/bin/git config --global --add safe.directory /home/runner/work/OrderBotNest/OrderBotNest",
+   "Deleting the contents of '/home/runner/work/OrderBotNest/OrderBotNest'",
+   "[command]/usr/bin/git init /home/runner/work/OrderBotNest/OrderBotNest",
+   "hint: Using 'master' as the name for the initial branch. This default branch name",
+   "hint: will change to \"main\" in Git 3.0. To configure the initial branch name",
+   "hint: to use in all of your new repositories, which will suppress this warning,",
+   "hint: call:",
+   "hint:",
+   "hint: \tgit config --global init.defaultBranch <name>",
+   "hint:",
+   "hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and",
+   "hint: 'development'. The just-created branch can be renamed via this command:",
+   "hint:",
+   "hint: \tgit branch -m <name>",
+   "hint:",
+   "hint: Disable this message with \"git config set advice.defaultBranchName false\"",
+   "Initialized empty Git repository in /home/runner/work/OrderBotNest/OrderBotNest/.git/",
+   "[command]/usr/bin/git remote add origin https://github.com/Azizbekcrypto/OrderBotNest",
+   "[command]/usr/bin/git config --local gc.auto 0",
+   "[command]/usr/bin/git config --local --name-only --get-regexp core\\.sshCommand",
+   "[command]/usr/bin/git submodule foreach --recursive sh -c \"git config --local --name-only --get-regexp 'core\\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\"",
+   "[command]/usr/bin/git config --local --name-only --get-regexp http\\.https\\:\\/\\/github\\.com\\/\\.extraheader",
+   "[command]/usr/bin/git submodule foreach --recursive sh -c \"git config --local --name-only --get-regexp 'http\\.https\\:\\/\\/github\\.com\\/\\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\"",
+   "[command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\\.gitdir:",
+   "[command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url",
+   "[command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***",
+   "[command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +3ec6233c45c0c6b579aaf8917d0653703d0dec97:refs/remotes/origin/ci-sinov",
+   "From https://github.com/Azizbekcrypto/OrderBotNest",
+   " * [new ref]         3ec6233c45c0c6b579aaf8917d0653703d0dec97 -> origin/ci-sinov",
+   "[command]/usr/bin/git sparse-checkout disable",
+   "[command]/usr/bin/git config --local --unset-all extensions.worktreeConfig",
+   "[command]/usr/bin/git checkout --progress --force -B ci-sinov refs/remotes/origin/ci-sinov",
+   "Switched to a new branch 'ci-sinov'",
+   "branch 'ci-sinov' set up to track 'origin/ci-sinov'.",
+   "[command]/usr/bin/git log -1 --format=%H",
+   "3ec6233c45c0c6b579aaf8917d0653703d0dec97"
+  ],
+  "smoke · Run actions/setup-node@v4": [
+   "with:",
+   "  node-version: 24",
+   "  cache: npm",
+   "  always-auth: false",
+   "  check-latest: false",
+   "  token: ***",
+   "Found in cache @ /opt/hostedtoolcache/node/24.22.3/x64",
+   "(node:2579) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.",
+   "(Use `node --trace-deprecation ...` to show where the warning was created)",
+   "node: v24.22.3",
+   "npm: 11.19.1",
+   "yarn: 1.22.22",
+   "[command]/opt/hostedtoolcache/node/24.22.3/x64/bin/npm config get cache",
+   "/home/runner/.npm",
+   "Cache hit for: node-cache-Linux-x64-npm-ccb2b15dd267c884b0610f9549734f2a266074ea2630c8be582139d289f32d79",
+   "(node:2579) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.",
+   "Received 36237216 of 36237216 (100.0%), 62.2 MBs/sec",
+   "Cache Size: ~35 MB (36237216 B)",
+   "[command]/usr/bin/tar -xf /home/runner/work/_temp/f842b9c9-a1fe-430b-88f9-e0e3ce40b17a/cache.tzst -P -C /home/runner/work/OrderBotNest/OrderBotNest --use-compress-program unzstd",
+   "Cache restored successfully",
+   "Cache restored from key: node-cache-Linux-x64-npm-ccb2b15dd267c884b0610f9549734f2a266074ea2630c8be582139d289f32d79"
+  ],
+  "smoke · Run npm ci": [
+   "$ npm ci",
+   "npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me",
+   "added 633 packages, and audited 634 packages in 4s",
+   "133 packages are looking for funding",
+   "  run `npm fund` for details",
+   "21 vulnerabilities (19 moderate, 2 high)",
+   "To address issues that do not require attention, run:",
+   "  npm audit fix",
+   "To address all issues (including breaking changes), run:",
+   "  npm audit fix --force",
+   "Run `npm audit` for details.",
+   "npm warn install-scripts 1 package has install scripts not yet covered by allowScripts:",
+   "npm warn install-scripts   @parcel/watcher@2.6.0 (install: node scripts/build-from-source.js)",
+   "npm warn install-scripts",
+   "npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow."
+  ],
+  "smoke · Smoke (Telegram'siz)": [
+   "npm run smoke",
+   "env:",
+   "  DATABASE_URL: ***localhost:5432/shop",
+   "> order-bot-nest@1.0.0 smoke",
+   "> node scripts/smoke.js",
+   "== build ==",
+   "== vaqtinchalik baza: shop_smoke ==",
+   "Telegram bot ulandi",
+   "  katalogda 6 ta mahsulot",
+   "— restart: har qadam alohida jarayonda (server haqiqatan qayta ishga tushadi)",
+   "  ✓ telefon kutish restartdan o'tdi → «Buyurtma #1 qabul qilindi!»",
+   "  ✓ savat restartdan o'tdi → «Savat:»",
+   "  ✓ buyurtma restartdan o'tdi → «#1 · Aziza · 120 000 so'm · 🆕 Yangi»",
+   "— race: 1 ta Planshet, 5 mijoz bir vaqtda (3 raund); keyin ikki marta bekor",
+   "Telegram bot ulandi",
+   "  rad etilgan mijoz: «Buyurtma berilmadi: Planshet: omborda faqat 0 ta qoldi»",
+   "  ✓ ortiqcha sotilmadi (sotildi/ombor): 1/0  1/0  1/0",
+   "  ✓ ikki marta bir vaqtda bekor — ombor bir marta qaytdi: 0 → 1",
+   "NATIJA: 5/5 ✓"
+  ],
+  "smoke · Post Run actions/setup-node@v4": [
+   "Post job cleanup.",
+   "(node:2838) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.",
+   "(Use `node --trace-deprecation ...` to show where the warning was created)",
+   "Cache hit occurred on the primary key node-cache-Linux-x64-npm-ccb2b15dd267c884b0610f9549734f2a266074ea2630c8be582139d289f32d79, not saving cache."
+  ],
+  "smoke · Post Run actions/checkout@v4": [
+   "Post job cleanup.",
+   "[command]/usr/bin/git version",
+   "git version 2.56.1",
+   "Temporarily overriding HOME='/home/runner/work/_temp/eee60701-6bf8-4804-9754-22ed88973979' before making global git config changes",
+   "Adding repository directory to the temporary git global config as a safe directory",
+   "[command]/usr/bin/git config --global --add safe.directory /home/runner/work/OrderBotNest/OrderBotNest",
+   "[command]/usr/bin/git config --local --name-only --get-regexp core\\.sshCommand",
+   "[command]/usr/bin/git submodule foreach --recursive sh -c \"git config --local --name-only --get-regexp 'core\\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\"",
+   "[command]/usr/bin/git config --local --name-only --get-regexp http\\.https\\:\\/\\/github\\.com\\/\\.extraheader",
+   "http.https://github.com/.extraheader",
+   "[command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader",
+   "[command]/usr/bin/git submodule foreach --recursive sh -c \"git config --local --name-only --get-regexp 'http\\.https\\:\\/\\/github\\.com\\/\\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\"",
+   "[command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\\.gitdir:",
+   "[command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url"
+  ],
+  "smoke · Stop containers": [
+   "Print service container logs: 1d66a7241cfa424581a5a571ae25d968_postgres18_f07b24",
+   "##[command]/usr/bin/docker logs --details 49a84b9fc9a200dbefe97ac7ed8819e116b80a94ed3869b71edce163bbd20eb2",
+   " initdb: warning: enabling \"trust\" authentication for local connections",
+   " The files belonging to this database system will be owned by user \"postgres\".",
+   " This user must also own the server process.",
+   " initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.",
+   " 2026-11-26 12:07:50.302 UTC [1] LOG:  starting PostgreSQL 18.7 (Debian 18.7-1.pgdg13+5) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit",
+   " 2026-11-26 12:07:50.302 UTC [1] LOG:  listening on IPv4 address \"0.0.0.0\", port 5432",
+   " 2026-11-26 12:07:50.302 UTC [1] LOG:  listening on IPv6 address \"::\", port 5432",
+   " 2026-11-26 12:07:50.310 UTC [1] LOG:  listening on Unix socket \"/var/run/postgresql/.s.PGSQL.5432\"",
+   " 2026-11-26 12:07:50.314 UTC [75] LOG:  database system was shut down at 2026-11-26 12:07:50 UTC",
+   " 2026-11-26 12:07:50.317 UTC [1] LOG:  database system is ready to accept connections",
+   " 2026-11-26 12:08:07.277 UTC [73] LOG:  checkpoint starting: immediate force wait",
+   " 2026-11-26 12:08:07.281 UTC [73] LOG:  checkpoint complete: wrote 3 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 1 recycled; write=0.001 s, sync=0.001 s, total=0.004 s; sync files=5, longest=0.001 s, average=0.001 s; distance=4621 kB, estimate=4621 kB; lsn=0/204A600, redo lsn=0/204A5A8",
+   " The database cluster will be initialized with locale \"en_US.utf8\".",
+   " The default database encoding has accordingly been set to \"UTF8\".",
+   " The default text search configuration will be set to \"english\".",
+   " Data page checksums are enabled.",
+   " fixing permissions on existing directory /var/lib/postgresql/18/docker ... ok",
+   " creating subdirectories ... ok",
+   " selecting dynamic shared memory implementation ... posix",
+   " selecting default \"max_connections\" ... 100",
+   " selecting default \"shared_buffers\" ... 128MB",
+   " selecting default time zone ... Etc/UTC",
+   " creating configuration files ... ok",
+   " running bootstrap script ... ok",
+   " performing post-bootstrap initialization ... ok",
+   " syncing data to disk ... ok",
+   " Success. You can now start the database server using:",
+   "     pg_ctl -D /var/lib/postgresql/18/docker -l logfile start",
+   " waiting for server to start....2026-11-26 12:07:49.907 UTC [53] LOG:  starting PostgreSQL 18.7 (Debian 18.7-1.pgdg13+5) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit",
+   " 2026-11-26 12:07:49.907 UTC [53] LOG:  listening on Unix socket \"/var/run/postgresql/.s.PGSQL.5432\"",
+   " 2026-11-26 12:07:49.910 UTC [59] LOG:  database system was shut down at 2026-11-26 12:07:49 UTC",
+   " 2026-11-26 12:07:49.913 UTC [53] LOG:  database system is ready to accept connections",
+   "  done",
+   " server started",
+   " CREATE DATABASE",
+   " /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*",
+   " waiting for server to shut down...2026-11-26 12:07:50.082 UTC [53] LOG:  received fast shutdown request",
+   " .2026-11-26 12:07:50.083 UTC [53] LOG:  aborting any active transactions",
+   " 2026-11-26 12:07:50.085 UTC [53] LOG:  background worker \"logical replication launcher\" (PID 62) exited with exit code 1",
+   " 2026-11-26 12:07:50.086 UTC [57] LOG:  shutting down",
+   " 2026-11-26 12:07:50.086 UTC [57] LOG:  checkpoint starting: shutdown immediate",
+   " 2026-11-26 12:07:50.178 UTC [57] LOG:  checkpoint complete: wrote 952 buffers (5.8%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.064 s, sync=0.008 s, total=0.093 s; sync files=303, longest=0.007 s, average=0.001 s; distance=4428 kB, estimate=4428 kB; lsn=0/1BC6EA8, redo lsn=0/1BC6EA8",
+   " 2026-11-26 12:07:50.189 UTC [53] LOG:  database system is shut down",
+   "  done",
+   " server stopped",
+   " PostgreSQL init process complete; ready for start up.",
+   "Stop and remove container: 1d66a7241cfa424581a5a571ae25d968_postgres18_f07b24",
+   "##[command]/usr/bin/docker rm --force 49a84b9fc9a200dbefe97ac7ed8819e116b80a94ed3869b71edce163bbd20eb2",
+   "49a84b9fc9a200dbefe97ac7ed8819e116b80a94ed3869b71edce163bbd20eb2",
+   "Remove container network: github_network_9a7f0839fd5342a3b460f4ce376dca31",
+   "##[command]/usr/bin/docker network rm github_network_9a7f0839fd5342a3b460f4ce376dca31",
+   "github_network_9a7f0839fd5342a3b460f4ce376dca31"
+  ],
+  "smoke · Complete job": [
+   "Cleaning up orphan processes",
+   "##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+  ]
+ }
+};
+const KOD_RUNS_43 = {
+ "id": "45816907134",
+ "n": 48,
+ "title": "sinov: CI/CD-2 2-topshiriq (CI tilida) — 2-AI ci.yml",
+ "ev": "push",
+ "br": "ci-sinov",
+ "sha": "e949645",
+ "st": "ok",
+ "dur": "58 s",
+ "at": "2026-11-26T12:08:38Z",
+ "jobs": [
+  {
+   "name": "test",
+   "st": "ok",
+   "dur": "17 s",
+   "steps": [
+    [
+     "Set up job",
+     "ok",
+     "0 s"
+    ],
+    [
+     "Run actions/checkout@v4",
+     "ok",
+     "1 s"
+    ],
+    [
+     "Run actions/setup-node@v4",
+     "ok",
+     "2 s"
+    ],
+    [
+     "Run npm ci",
+     "ok",
+     "5 s"
+    ],
+    [
+     "Run npx tsc --noEmit",
+     "ok",
+     "1 s"
+    ],
+    [
+     "Run npm test",
+     "ok",
+     "2 s"
+    ],
+    [
+     "Run npm run build",
+     "ok",
+     "2 s"
+    ],
+    [
+     "Post Run actions/setup-node@v4",
+     "ok",
+     "0 s"
+    ],
+    [
+     "Post Run actions/checkout@v4",
+     "ok",
+     "1 s"
+    ],
+    [
+     "Complete job",
+     "ok",
+     "0 s"
+    ]
+   ]
+  },
+  {
+   "name": "smoke",
+   "st": "ok",
+   "dur": "37 s",
+   "steps": [
+    [
+     "Set up job",
+     "ok",
+     "1 s"
+    ],
+    [
+     "Run actions/checkout@v4",
+     "ok",
+     "1 s"
+    ],
+    [
+     "Run actions/setup-node@v4",
+     "ok",
+     "4 s"
+    ],
+    [
+     "Run npm ci",
+     "ok",
+     "8 s"
+    ],
+    [
+     "PostgreSQL vaqtincha ko'tarish",
+     "ok",
+     "11 s"
+    ],
+    [
+     "PostgreSQL tayyorligini kutish",
+     "ok",
+     "2 s"
+    ],
+    [
+     "Smoke (Telegram'siz)",
+     "ok",
+     "8 s"
+    ],
+    [
+     "PostgreSQL to'xtatish",
+     "ok",
+     "0 s"
+    ],
+    [
+     "Post Run actions/setup-node@v4",
+     "ok",
+     "0 s"
+    ],
+    [
+     "Post Run actions/checkout@v4",
+     "ok",
+     "0 s"
+    ],
+    [
+     "Complete job",
+     "ok",
+     "0 s"
+    ]
+   ]
+  }
+ ],
+ "ann": [
+  [
+   "warning",
+   "actions/checkout@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+  ],
+  [
+   "warning",
+   "actions/checkout@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+  ]
+ ],
+ "wfIssue": false,
+ "log": {
+  "test · Set up job": [
+   "Current runner version: '2.338.2'",
+   "Hosted Compute Agent",
+   "Version: 20261111.635",
+   "Commit: b8a594ea514ff44cadb5342986c68b1eac6e22ed",
+   "Build Date: 2026-11-11T01:49:01Z",
+   "Worker ID: {2867be16-0759-4bfe-9b4f-9da3d59f58fe}",
+   "Region: westus3",
+   "Cloud: Azure",
+   "Ubuntu",
+   "26.04.1",
+   "LTS",
+   "Image: ubuntu-26.04",
+   "Version: 20261122.9.1",
+   "Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261122.9/images/ubuntu/Ubuntu2604-Readme.md",
+   "Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261122.9",
+   "Contents: read",
+   "Metadata: read",
+   "Packages: read",
+   "Secret source: Actions",
+   "Cache mode: write",
+   "Prepare workflow directory",
+   "Prepare all required actions",
+   "Getting action download info",
+   "Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)",
+   "Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)",
+   "Complete job name: test"
+  ],
+  "test · Run actions/checkout@v4": [
+   "with:",
+   "  repository: Azizbekcrypto/OrderBotNest",
+   "  token: ***",
+   "  ssh-strict: true",
+   "  ssh-user: git",
+   "  persist-credentials: true",
+   "  clean: true",
+   "  sparse-checkout-cone-mode: true",
+   "  fetch-depth: 1",
+   "  fetch-tags: false",
+   "  show-progress: true",
+   "  lfs: false",
+   "  submodules: false",
+   "  set-safe-directory: true",
+   "  allow-unsafe-pr-checkout: false",
+   "Syncing repository: Azizbekcrypto/OrderBotNest",
+   "Working directory is '/home/runner/work/OrderBotNest/OrderBotNest'",
+   "[command]/usr/bin/git version",
+   "git version 2.56.1",
+   "Temporarily overriding HOME='/home/runner/work/_temp/004356a2-6ed0-4a19-beea-5502ea4f86bd' before making global git config changes",
+   "Adding repository directory to the temporary git global config as a safe directory",
+   "[command]/usr/bin/git config --global --add safe.directory /home/runner/work/OrderBotNest/OrderBotNest",
+   "Deleting the contents of '/home/runner/work/OrderBotNest/OrderBotNest'",
+   "[command]/usr/bin/git init /home/runner/work/OrderBotNest/OrderBotNest",
+   "hint: Using 'master' as the name for the initial branch. This default branch name",
+   "hint: will change to \"main\" in Git 3.0. To configure the initial branch name",
+   "hint: to use in all of your new repositories, which will suppress this warning,",
+   "hint: call:",
+   "hint:",
+   "hint: \tgit config --global init.defaultBranch <name>",
+   "hint:",
+   "hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and",
+   "hint: 'development'. The just-created branch can be renamed via this command:",
+   "hint:",
+   "hint: \tgit branch -m <name>",
+   "hint:",
+   "hint: Disable this message with \"git config set advice.defaultBranchName false\"",
+   "Initialized empty Git repository in /home/runner/work/OrderBotNest/OrderBotNest/.git/",
+   "[command]/usr/bin/git remote add origin https://github.com/Azizbekcrypto/OrderBotNest",
+   "[command]/usr/bin/git config --local gc.auto 0",
+   "[command]/usr/bin/git config --local --name-only --get-regexp core\\.sshCommand",
+   "[command]/usr/bin/git submodule foreach --recursive sh -c \"git config --local --name-only --get-regexp 'core\\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\"",
+   "[command]/usr/bin/git config --local --name-only --get-regexp http\\.https\\:\\/\\/github\\.com\\/\\.extraheader",
+   "[command]/usr/bin/git submodule foreach --recursive sh -c \"git config --local --name-only --get-regexp 'http\\.https\\:\\/\\/github\\.com\\/\\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\"",
+   "[command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\\.gitdir:",
+   "[command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url",
+   "[command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***",
+   "[command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +e949645f9c5d8377efc202b0b049bb0d9a69c8ed:refs/remotes/origin/ci-sinov",
+   "From https://github.com/Azizbekcrypto/OrderBotNest",
+   " * [new ref]         e949645f9c5d8377efc202b0b049bb0d9a69c8ed -> origin/ci-sinov",
+   "[command]/usr/bin/git sparse-checkout disable",
+   "[command]/usr/bin/git config --local --unset-all extensions.worktreeConfig",
+   "[command]/usr/bin/git checkout --progress --force -B ci-sinov refs/remotes/origin/ci-sinov",
+   "Switched to a new branch 'ci-sinov'",
+   "branch 'ci-sinov' set up to track 'origin/ci-sinov'.",
+   "[command]/usr/bin/git log -1 --format=%H",
+   "e949645f9c5d8377efc202b0b049bb0d9a69c8ed"
+  ],
+  "test · Run actions/setup-node@v4": [
+   "with:",
+   "  node-version: 24",
+   "  cache: npm",
+   "  always-auth: false",
+   "  check-latest: false",
+   "  token: ***",
+   "Found in cache @ /opt/hostedtoolcache/node/24.22.3/x64",
+   "(node:2175) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.",
+   "(Use `node --trace-deprecation ...` to show where the warning was created)",
+   "node: v24.22.3",
+   "npm: 11.19.1",
+   "yarn: 1.22.22",
+   "[command]/opt/hostedtoolcache/node/24.22.3/x64/bin/npm config get cache",
+   "/home/runner/.npm",
+   "Cache hit for: node-cache-Linux-x64-npm-ccb2b15dd267c884b0610f9549734f2a266074ea2630c8be582139d289f32d79",
+   "(node:2175) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.",
+   "Received 36237216 of 36237216 (100.0%), 39.4 MBs/sec",
+   "Cache Size: ~35 MB (36237216 B)",
+   "[command]/usr/bin/tar -xf /home/runner/work/_temp/bc81043d-72b3-41bd-828f-f620bd10af26/cache.tzst -P -C /home/runner/work/OrderBotNest/OrderBotNest --use-compress-program unzstd",
+   "Cache restored successfully",
+   "Cache restored from key: node-cache-Linux-x64-npm-ccb2b15dd267c884b0610f9549734f2a266074ea2630c8be582139d289f32d79"
+  ],
+  "test · Run npm ci": [
+   "$ npm ci",
+   "npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me",
+   "added 633 packages, and audited 634 packages in 4s",
+   "133 packages are looking for funding",
+   "  run `npm fund` for details",
+   "21 vulnerabilities (19 moderate, 2 high)",
+   "To address issues that do not require attention, run:",
+   "  npm audit fix",
+   "To address all issues (including breaking changes), run:",
+   "  npm audit fix --force",
+   "Run `npm audit` for details.",
+   "npm warn install-scripts 1 package has install scripts not yet covered by allowScripts:",
+   "npm warn install-scripts   @parcel/watcher@2.6.0 (install: node scripts/build-from-source.js)",
+   "npm warn install-scripts",
+   "npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow."
+  ],
+  "test · Run npx tsc --noEmit": [
+   "$ npx tsc --noEmit"
+  ],
+  "test · Run npm test": [
+   "$ npm test",
+   "> order-bot-nest@1.0.0 test",
+   "> jest",
+   "PASS src/api/telegram/keyboards.spec.ts",
+   "PASS src/api/telegram/phone.spec.ts",
+   "PASS src/api/telegram/texts.spec.ts",
+   "PASS src/api/app.controller.spec.ts",
+   "PASS src/api/order/order.service.spec.ts",
+   "Test Suites: 5 passed, 5 total",
+   "Tests:       25 passed, 25 total",
+   "Snapshots:   0 total",
+   "Time:        1.031 s",
+   "Ran all test suites."
+  ],
+  "test · Run npm run build": [
+   "$ npm run build",
+   "> order-bot-nest@1.0.0 build",
+   "> nest build"
+  ],
+  "test · Post Run actions/setup-node@v4": [
+   "Post job cleanup.",
+   "(node:2371) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.",
+   "(Use `node --trace-deprecation ...` to show where the warning was created)",
+   "Cache hit occurred on the primary key node-cache-Linux-x64-npm-ccb2b15dd267c884b0610f9549734f2a266074ea2630c8be582139d289f32d79, not saving cache."
+  ],
+  "test · Post Run actions/checkout@v4": [
+   "Post job cleanup.",
+   "[command]/usr/bin/git version",
+   "git version 2.56.1",
+   "Temporarily overriding HOME='/home/runner/work/_temp/bd2e2348-8f01-4630-aa11-f97aea5506f6' before making global git config changes",
+   "Adding repository directory to the temporary git global config as a safe directory",
+   "[command]/usr/bin/git config --global --add safe.directory /home/runner/work/OrderBotNest/OrderBotNest",
+   "[command]/usr/bin/git config --local --name-only --get-regexp core\\.sshCommand",
+   "[command]/usr/bin/git submodule foreach --recursive sh -c \"git config --local --name-only --get-regexp 'core\\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\"",
+   "[command]/usr/bin/git config --local --name-only --get-regexp http\\.https\\:\\/\\/github\\.com\\/\\.extraheader",
+   "http.https://github.com/.extraheader",
+   "[command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader",
+   "[command]/usr/bin/git submodule foreach --recursive sh -c \"git config --local --name-only --get-regexp 'http\\.https\\:\\/\\/github\\.com\\/\\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\"",
+   "[command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\\.gitdir:",
+   "[command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url"
+  ],
+  "test · Complete job": [
+   "Cleaning up orphan processes",
+   "##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+  ],
+  "smoke · Set up job": [
+   "Current runner version: '2.338.2'",
+   "Hosted Compute Agent",
+   "Version: 20261111.635",
+   "Commit: b8a594ea514ff44cadb5342986c68b1eac6e22ed",
+   "Build Date: 2026-11-11T01:49:01Z",
+   "Worker ID: {90cd9bef-ad99-4f12-bf1c-29bbc9b3076e}",
+   "Region: eastus2",
+   "Cloud: Azure",
+   "Ubuntu",
+   "26.04.1",
+   "LTS",
+   "Image: ubuntu-26.04",
+   "Version: 20261116.202.1",
+   "Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261116.202/images/ubuntu/Ubuntu2604-Readme.md",
+   "Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261116.202",
+   "Contents: read",
+   "Metadata: read",
+   "Packages: read",
+   "Secret source: Actions",
+   "Cache mode: write",
+   "Prepare workflow directory",
+   "Prepare all required actions",
+   "Getting action download info",
+   "Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)",
+   "Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)",
+   "Complete job name: smoke"
+  ],
+  "smoke · Run actions/checkout@v4": [
+   "with:",
+   "  repository: Azizbekcrypto/OrderBotNest",
+   "  token: ***",
+   "  ssh-strict: true",
+   "  ssh-user: git",
+   "  persist-credentials: true",
+   "  clean: true",
+   "  sparse-checkout-cone-mode: true",
+   "  fetch-depth: 1",
+   "  fetch-tags: false",
+   "  show-progress: true",
+   "  lfs: false",
+   "  submodules: false",
+   "  set-safe-directory: true",
+   "  allow-unsafe-pr-checkout: false",
+   "Syncing repository: Azizbekcrypto/OrderBotNest",
+   "Working directory is '/home/runner/work/OrderBotNest/OrderBotNest'",
+   "[command]/usr/bin/git version",
+   "git version 2.56.1",
+   "Temporarily overriding HOME='/home/runner/work/_temp/c7cf961c-e64e-4a4e-92c6-41f47c44674c' before making global git config changes",
+   "Adding repository directory to the temporary git global config as a safe directory",
+   "[command]/usr/bin/git config --global --add safe.directory /home/runner/work/OrderBotNest/OrderBotNest",
+   "Deleting the contents of '/home/runner/work/OrderBotNest/OrderBotNest'",
+   "[command]/usr/bin/git init /home/runner/work/OrderBotNest/OrderBotNest",
+   "hint: Using 'master' as the name for the initial branch. This default branch name",
+   "hint: will change to \"main\" in Git 3.0. To configure the initial branch name",
+   "hint: to use in all of your new repositories, which will suppress this warning,",
+   "hint: call:",
+   "hint:",
+   "hint: \tgit config --global init.defaultBranch <name>",
+   "hint:",
+   "hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and",
+   "hint: 'development'. The just-created branch can be renamed via this command:",
+   "hint:",
+   "hint: \tgit branch -m <name>",
+   "hint:",
+   "hint: Disable this message with \"git config set advice.defaultBranchName false\"",
+   "Initialized empty Git repository in /home/runner/work/OrderBotNest/OrderBotNest/.git/",
+   "[command]/usr/bin/git remote add origin https://github.com/Azizbekcrypto/OrderBotNest",
+   "[command]/usr/bin/git config --local gc.auto 0",
+   "[command]/usr/bin/git config --local --name-only --get-regexp core\\.sshCommand",
+   "[command]/usr/bin/git submodule foreach --recursive sh -c \"git config --local --name-only --get-regexp 'core\\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\"",
+   "[command]/usr/bin/git config --local --name-only --get-regexp http\\.https\\:\\/\\/github\\.com\\/\\.extraheader",
+   "[command]/usr/bin/git submodule foreach --recursive sh -c \"git config --local --name-only --get-regexp 'http\\.https\\:\\/\\/github\\.com\\/\\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\"",
+   "[command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\\.gitdir:",
+   "[command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url",
+   "[command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***",
+   "[command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +e949645f9c5d8377efc202b0b049bb0d9a69c8ed:refs/remotes/origin/ci-sinov",
+   "From https://github.com/Azizbekcrypto/OrderBotNest",
+   " * [new ref]         e949645f9c5d8377efc202b0b049bb0d9a69c8ed -> origin/ci-sinov",
+   "[command]/usr/bin/git sparse-checkout disable",
+   "[command]/usr/bin/git config --local --unset-all extensions.worktreeConfig",
+   "[command]/usr/bin/git checkout --progress --force -B ci-sinov refs/remotes/origin/ci-sinov",
+   "Switched to a new branch 'ci-sinov'",
+   "branch 'ci-sinov' set up to track 'origin/ci-sinov'.",
+   "[command]/usr/bin/git log -1 --format=%H",
+   "e949645f9c5d8377efc202b0b049bb0d9a69c8ed"
+  ],
+  "smoke · Run actions/setup-node@v4": [
+   "with:",
+   "  node-version: 24",
+   "  cache: npm",
+   "  always-auth: false",
+   "  check-latest: false",
+   "  token: ***",
+   "(node:2468) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.",
+   "Found in cache @ /opt/hostedtoolcache/node/24.22.3/x64",
+   "(Use `node --trace-deprecation ...` to show where the warning was created)",
+   "node: v24.22.3",
+   "npm: 11.19.1",
+   "yarn: 1.22.22",
+   "[command]/opt/hostedtoolcache/node/24.22.3/x64/bin/npm config get cache",
+   "/home/runner/.npm",
+   "Cache hit for: node-cache-Linux-x64-npm-ccb2b15dd267c884b0610f9549734f2a266074ea2630c8be582139d289f32d79",
+   "(node:2468) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.",
+   "Received 36237216 of 36237216 (100.0%), 112.9 MBs/sec",
+   "Cache Size: ~35 MB (36237216 B)",
+   "[command]/usr/bin/tar -xf /home/runner/work/_temp/d6d87c8f-44b8-4ff3-92bc-debc43b7e922/cache.tzst -P -C /home/runner/work/OrderBotNest/OrderBotNest --use-compress-program unzstd",
+   "Cache restored successfully",
+   "Cache restored from key: node-cache-Linux-x64-npm-ccb2b15dd267c884b0610f9549734f2a266074ea2630c8be582139d289f32d79"
+  ],
+  "smoke · Run npm ci": [
+   "$ npm ci",
+   "npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me",
+   "added 633 packages, and audited 634 packages in 8s",
+   "133 packages are looking for funding",
+   "  run `npm fund` for details",
+   "21 vulnerabilities (19 moderate, 2 high)",
+   "To address issues that do not require attention, run:",
+   "  npm audit fix",
+   "To address all issues (including breaking changes), run:",
+   "  npm audit fix --force",
+   "Run `npm audit` for details.",
+   "npm warn install-scripts 1 package has install scripts not yet covered by allowScripts:",
+   "npm warn install-scripts   @parcel/watcher@2.6.0 (install: node scripts/build-from-source.js)",
+   "npm warn install-scripts",
+   "npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow."
+  ],
+  "smoke · PostgreSQL vaqtincha ko'tarish": [
+   "docker run -d --name pg-smoke -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=shop -p 5432:5432 postgres:16",
+   "Unable to find image 'postgres:16' locally",
+   "16: Pulling from library/postgres",
+   "1be8baae3c53: Pulling fs layer",
+   "9be9d0609035: Pulling fs layer",
+   "111f378001d9: Pulling fs layer",
+   "72bd85048465: Pulling fs layer",
+   "cc2ed79b34db: Pulling fs layer",
+   "3b9319a24e33: Pulling fs layer",
+   "cfa3776983f1: Pulling fs layer",
+   "46e4f78fd254: Pulling fs layer",
+   "34ff39ac908b: Pulling fs layer",
+   "91d82016f303: Pulling fs layer",
+   "c362828e9ca3: Pulling fs layer",
+   "40748add9f4f: Pulling fs layer",
+   "e91b6b814ba6: Pulling fs layer",
+   "9be9d0609035: Download complete",
+   "111f378001d9: Download complete",
+   "cc2ed79b34db: Download complete",
+   "72bd85048465: Download complete",
+   "cfa3776983f1: Download complete",
+   "40748add9f4f: Download complete",
+   "46e4f78fd254: Download complete",
+   "1be8baae3c53: Download complete",
+   "34ff39ac908b: Download complete",
+   "91d82016f303: Download complete",
+   "c362828e9ca3: Download complete",
+   "e91b6b814ba6: Download complete",
+   "3b9319a24e33: Download complete",
+   "7aa47411d7c7: Download complete",
+   "636bc81cf18f: Download complete",
+   "40748add9f4f: Pull complete",
+   "1be8baae3c53: Pull complete",
+   "e91b6b814ba6: Pull complete",
+   "46e4f78fd254: Pull complete",
+   "111f378001d9: Pull complete",
+   "9be9d0609035: Pull complete",
+   "72bd85048465: Pull complete",
+   "c362828e9ca3: Pull complete",
+   "3b9319a24e33: Pull complete",
+   "cc2ed79b34db: Pull complete",
+   "34ff39ac908b: Pull complete",
+   "91d82016f303: Pull complete",
+   "cfa3776983f1: Pull complete",
+   "Digest: sha256:07abc3f43c9395b0bdbbab36bc25ddb0e8d83cd4fcafb5fb7d6abe14ff156dd8",
+   "Status: Downloaded newer image for postgres:16",
+   "900dda9c6088dafdffa2fb4fd8227003f32330cb7032ee04065f8b309f441485"
+  ],
+  "smoke · PostgreSQL tayyorligini kutish": [
+   "for i in $(seq 1 30); do",
+   "  if docker exec pg-smoke pg_isready -h 127.0.0.1 -U postgres -q; then",
+   "    echo \"PostgreSQL tayyor\"",
+   "    exit 0",
+   "  fi",
+   "  sleep 2",
+   "done",
+   "echo \"PostgreSQL 60 soniyada tayyor bo'lmadi\"",
+   "docker logs pg-smoke",
+   "exit 1",
+   "PostgreSQL tayyor"
+  ],
+  "smoke · Smoke (Telegram'siz)": [
+   "npm run smoke",
+   "env:",
+   "  DATABASE_URL: ***localhost:5432/shop",
+   "> order-bot-nest@1.0.0 smoke",
+   "> node scripts/smoke.js",
+   "== build ==",
+   "== vaqtinchalik baza: shop_smoke ==",
+   "Telegram bot ulandi",
+   "  katalogda 6 ta mahsulot",
+   "— restart: har qadam alohida jarayonda (server haqiqatan qayta ishga tushadi)",
+   "  ✓ telefon kutish restartdan o'tdi → «Buyurtma #1 qabul qilindi!»",
+   "  ✓ savat restartdan o'tdi → «Savat:»",
+   "  ✓ buyurtma restartdan o'tdi → «#1 · Aziza · 120 000 so'm · 🆕 Yangi»",
+   "— race: 1 ta Planshet, 5 mijoz bir vaqtda (3 raund); keyin ikki marta bekor",
+   "Telegram bot ulandi",
+   "  rad etilgan mijoz: «Buyurtma berilmadi: Planshet: omborda faqat 0 ta qoldi»",
+   "  ✓ ortiqcha sotilmadi (sotildi/ombor): 1/0  1/0  1/0",
+   "  ✓ ikki marta bir vaqtda bekor — ombor bir marta qaytdi: 0 → 1",
+   "NATIJA: 5/5 ✓"
+  ],
+  "smoke · PostgreSQL to'xtatish": [
+   "docker rm -f pg-smoke || true",
+   "pg-smoke"
+  ],
+  "smoke · Post Run actions/setup-node@v4": [
+   "Post job cleanup.",
+   "(node:3025) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.",
+   "(Use `node --trace-deprecation ...` to show where the warning was created)",
+   "Cache hit occurred on the primary key node-cache-Linux-x64-npm-ccb2b15dd267c884b0610f9549734f2a266074ea2630c8be582139d289f32d79, not saving cache."
+  ],
+  "smoke · Post Run actions/checkout@v4": [
+   "Post job cleanup.",
+   "[command]/usr/bin/git version",
+   "git version 2.56.1",
+   "Temporarily overriding HOME='/home/runner/work/_temp/23030c63-1f3b-451a-ab7f-16c87a78d014' before making global git config changes",
+   "Adding repository directory to the temporary git global config as a safe directory",
+   "[command]/usr/bin/git config --global --add safe.directory /home/runner/work/OrderBotNest/OrderBotNest",
+   "[command]/usr/bin/git config --local --name-only --get-regexp core\\.sshCommand",
+   "[command]/usr/bin/git submodule foreach --recursive sh -c \"git config --local --name-only --get-regexp 'core\\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\"",
+   "[command]/usr/bin/git config --local --name-only --get-regexp http\\.https\\:\\/\\/github\\.com\\/\\.extraheader",
+   "http.https://github.com/.extraheader",
+   "[command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader",
+   "[command]/usr/bin/git submodule foreach --recursive sh -c \"git config --local --name-only --get-regexp 'http\\.https\\:\\/\\/github\\.com\\/\\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\"",
+   "[command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\\.gitdir:",
+   "[command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url"
+  ],
+  "smoke · Complete job": [
+   "Cleaning up orphan processes",
+   "##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+  ]
+ }
+};
 const KOD_PROMPT1 = "OrderBotNest'da `npm run smoke` buyrug'i bor — Telegram'siz tekshiruv, unga PostgreSQL kerak (DATABASE_URL). GitHub Actions workflow'iga shu smoke'ni ham qo'shib ber: har push'da testlar va smoke yursin.";
 const KOD_PROMPT2 = "Loyiha: OrderBotNest (NestJS + Telegraf + TypeORM), .github/workflows/ci.yml bor (job test: checkout · setup-node · npm ci · npx tsc --noEmit · npm test · npm run build). npm run smoke — Telegram'siz tekshiruv (scripts/smoke.js), unga ishlayotgan PostgreSQL va DATABASE_URL kerak; smoke <baza>_smoke bazasini o'zi ochib o'chiradi. Vazifa: ci.ymlga ikkinchi job smoke qo'sh: needs: test; services: postgres (image: postgres:18, POSTGRES_PASSWORD: postgres, POSTGRES_DB: shop, ports: 5432:5432, pg_isready healthcheck); qadamlar: checkout, setup-node (node-version — mening raqamim, cache: npm), npm ci, npm run smoke (env: DATABASE_URL: postgresql://postgres:postgres@localhost:5432/shop). Secret ishlatma — konteyner. Boshqa fayllarga tegma. Javobda faylning to'liq matni.";
 const KOD_TXT_36B = "$ gh pr view 1\ntitle:\tci: smoke job (PostgreSQL xizmati) va README badge\nstate:\tOPEN\nauthor:\tAzizbekcrypto (Azizbek)\nlabels:\t\nassignees:\t\nreviewers:\t\nprojects:\t\nmilestone:\t\nnumber:\t1\nurl:\thttps://github.com/Azizbekcrypto/OrderBotNest/pull/1\nadditions:\t29\ndeletions:\t1\nauto-merge:\tdisabled\n--\nLentaga ikkinchi job: `smoke` — `services: postgres:18`, `DATABASE_URL` secret'dan, `npm run smoke`. README'da lenta nishoni (badge). CI/CD-2 mentor darsi uchun (F-1104-21).\n\n$ gh pr checks 1\nsmoke\tpass\t39s\thttps://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41845936594/job/126629568615\t\nsmoke\tpass\t35s\thttps://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41846225069/job/126630675440\t\ntest\tpass\t24s\thttps://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41845936594/job/126629310338\t\ntest\tpass\t20s\thttps://github.com/Azizbekcrypto/OrderBotNest/actions/runs/41846225069/job/126630420521\t\n\n## API: pulls/1\n{\"base\":\"main\",\"head\":\"lenta-smoke\",\"html_url\":\"https://github.com/Azizbekcrypto/OrderBotNest/pull/1\",\"mergeable\":true,\"mergeable_state\":\"clean\",\"number\":1,\"state\":\"open\",\"title\":\"ci: smoke job (PostgreSQL xizmati) va README badge\"}";
 const KOD_TXT_00 = "$ gh secret list -R Azizbekcrypto/OrderBotNest\n\n# bor=0 · qiymat (foydalanuvchi yaratsa): postgresql://postgres:postgres@localhost:5432/shop";
-const KOD = { CI_START: KOD_CI_START, CI_DONE: KOD_CI_DONE, README_BADGE: KOD_README_BADGE, SMOKE_URL: KOD_SMOKE_URL, SMOKE_DB: KOD_SMOKE_DB, PKG_SMOKE: KOD_PKG_SMOKE, YML_1_MATRIX: KOD_YML_1_MATRIX, YML_2_MATRIX_FAIL_FAST_FALSE: KOD_YML_2_MATRIX_FAIL_FAST_FALSE, YML_3_SMOKE_SERVICES: KOD_YML_3_SMOKE_SERVICES, YML_4_SMOKE_SECRET_XATO: KOD_YML_4_SMOKE_SECRET_XATO, YML_5_SECRET_ECHO: KOD_YML_5_SECRET_ECHO, YML_AI1: KOD_YML_AI1, YML_AI2: KOD_YML_AI2, OUT: { '00': KOD_OUT_00, '09': KOD_OUT_09, 'v1-01': KOD_OUT_V1_01, 'v1-02': KOD_OUT_V1_02, 'v1-03': KOD_OUT_V1_03, 'v1-04': KOD_OUT_V1_04 }, RUNS: { 'c1-10': KOD_RUNS_C1_10, 'c1-11': KOD_RUNS_C1_11, 'c1-15': KOD_RUNS_C1_15, 'c1-18': KOD_RUNS_C1_18, '30': KOD_RUNS_30, '31': KOD_RUNS_31, '32': KOD_RUNS_32, '33': KOD_RUNS_33, '35': KOD_RUNS_35, '36': KOD_RUNS_36, '37': KOD_RUNS_37, '40': KOD_RUNS_40, '41': KOD_RUNS_41 }, PROMPT1: KOD_PROMPT1, PROMPT2: KOD_PROMPT2, TXT_36B: KOD_TXT_36B, TXT_00: KOD_TXT_00 };
+const KOD = { CI_START: KOD_CI_START, CI_DONE: KOD_CI_DONE, README_BADGE: KOD_README_BADGE, SMOKE_URL: KOD_SMOKE_URL, SMOKE_DB: KOD_SMOKE_DB, PKG_SMOKE: KOD_PKG_SMOKE, YML_1_MATRIX: KOD_YML_1_MATRIX, YML_2_MATRIX_FAIL_FAST_FALSE: KOD_YML_2_MATRIX_FAIL_FAST_FALSE, YML_3_SMOKE_SERVICES: KOD_YML_3_SMOKE_SERVICES, YML_4_SMOKE_SECRET_XATO: KOD_YML_4_SMOKE_SECRET_XATO, YML_5_SECRET_ECHO: KOD_YML_5_SECRET_ECHO, YML_AI1: KOD_YML_AI1, YML_AI2: KOD_YML_AI2, OUT: { '00': KOD_OUT_00, '09': KOD_OUT_09, 'v1-01': KOD_OUT_V1_01, 'v1-02': KOD_OUT_V1_02, 'v1-03': KOD_OUT_V1_03, 'v1-04': KOD_OUT_V1_04 }, RUNS: { 'c1-10': KOD_RUNS_C1_10, 'c1-11': KOD_RUNS_C1_11, 'c1-15': KOD_RUNS_C1_15, 'c1-18': KOD_RUNS_C1_18, '30': KOD_RUNS_30, '31': KOD_RUNS_31, '32': KOD_RUNS_32, '33': KOD_RUNS_33, '35': KOD_RUNS_35, '36': KOD_RUNS_36, '37': KOD_RUNS_37, '40': KOD_RUNS_40, '41': KOD_RUNS_41, '42': KOD_RUNS_42, '43': KOD_RUNS_43 }, PROMPT1: KOD_PROMPT1, PROMPT2: KOD_PROMPT2, TXT_36B: KOD_TXT_36B, TXT_00: KOD_TXT_00 };
 
 // ============================================================
 //  CI/CD-2 MATNLARI — AVTO: feedback/F-1029-02-mentor-kurs/dev/cicd2-matn.py (manba: 24-CICD2-mentor-v2.md, M41)
@@ -8412,7 +9593,7 @@ const MDT = {
  "5": {
   "type": "MCRetry",
   "kicker": "Tekshiruv 1",
-  "eyebrow": "Tekshiruv · 1 / 4",
+  "eyebrow": "Tekshiruv · 1 / 5",
   "title": "Run qizil. Annotatsiyada faqat Process completed with exit code 1. — npm test qadamida. Sababni qayerdan o'qiysiz?",
   "q": "Qizil run'ni o'qishni ko'rdingiz, endi tekshirib olaylik. Birinchi tekshiruv. Run qizil, annotatsiyada faqat process completed with exit code one, npm test qadamida. Qaysi test yiqilganini qayerdan o'qiysiz? Variantni tanlang.",
   "ok": "To'g'ri. Qizil qadamni bosasiz: npm test. Logda Jest'ning to'liq chiqishi: FAIL, qaysi test, kutilgan va kelgan, o'ttiz yettinchi satr. Annotatsiya faqat qadamni ko'rsatdi, chunki Jest error belgisi bilan yozmaydi. Demak, annotatsiya manzil, log esa sabab; lokalda qayta yurgizish shart emas.",
@@ -8600,7 +9781,7 @@ const MDT = {
  "10": {
   "type": "MCRetry",
   "kicker": "Tekshiruv 2",
-  "eyebrow": "Tekshiruv · 2 / 4",
+  "eyebrow": "Tekshiruv · 2 / 5",
   "title": "matrix [22, 24], fail-fast yozilmagan. test (22) 10-soniyada yiqildi, test (24) hali tscda. test (24) bilan nima bo'ladi?",
   "q": "Matrix'ni ko'rdingiz, endi tekshirib olaylik. Ikkinchi tekshiruv. Matrix yigirma ikki va yigirma to'rt, fail fast yozilmagan. Test yigirma ikki o'ninchi soniyada yiqildi, test yigirma to'rt hali tsc'da. Yigirma to'rt bilan nima bo'ladi? Variantni tanlang.",
   "ok": "To'g'ri. Fail fast yozilmasa, u true: bitta mashina yiqilishi bilan GitHub qolganini bekor qiladi, cancelled. Yigirma to'rt tsc'da to'xtatildi, natijasi noma'lum. To'liq javob kerak bo'lsa, fail fast false yoziladi. Demak, matrix'da cancelled ko'rsangiz, bu o'sha job'ning xatosi emas, boshqasining yiqilgani.",
@@ -8796,7 +9977,7 @@ const MDT = {
  "15": {
   "type": "LineCheck",
   "kicker": "Tekshiruv 3",
-  "eyebrow": "Tekshiruv · 3 / 4 — qaysi satr xato?",
+  "eyebrow": "Tekshiruv · 3 / 5 — qaysi satr xato?",
   "title": "Bu ci.yml bilan smoke job qizil: «DATABASE_URL topilmadi». Postgres ko'tarildi, healthcheck o'tdi. Sababchi satrni toping",
   "q": "Secret nomini ko'rdingiz, endi o'zingiz toping. Uchinchi tekshiruv. Bu ci yml bilan smoke job qizil: DATABASE URL topilmadi. Postgres ko'tarildi, healthcheck o'tdi. Bo'lakda bitta satr noto'g'ri secret nomiga murojaat qiladi. O'sha satrni bosing.",
   "ok": "To'g'ri. Secrets DATABSE URL: E harfi tushib qolgan. GitHub bunday secret'ni topmadi, lekin xato bermadi, bo'sh qiymat berdi. Smoke bo'sh manzil bilan ishga tushdi va o'zi to'xtadi: DATABASE URL topilmadi. Ekranda tuzatilgan satr. Demak, secret bilan bog'liq xatoni avval nomdan qidiring.",
@@ -8834,27 +10015,27 @@ const MDT = {
  "17": {
   "type": "Lesson",
   "kicker": "5-bosqich · AI",
-  "title": "Yangi ko'nikma davomi: ikki AI'ga bitta prompt — «smoke'ni ham qo'sh, unga PostgreSQL kerak»; ikkalasi services: postgres yozdi va lentada birinchi urinishda yashil",
+  "title": "Yangi ko'nikma davomi: ikki AI'ga bitta vazifa ikki xil topshiriq bilan — to'rttala workflow lentada birinchi urinishda yashil; endi o'qiymiz",
   "seg": [
    [
     "a",
-    "Yana AI bosqichi: <b>prompt — «smoke'ni ham qo'sh, unga PostgreSQL kerak»</b>, services so'zi yo'q",
-    "CI/CD-1 dagi kabi oxirgi bosqich AI bilan. Prompt: OrderBotNest'da npm run smoke bor, unga PostgreSQL kerak, DATABASE URL. Workflow'ga shu smoke'ni ham qo'shib ber. Services, konteyner, healthcheck, secret, bu so'zlar promptda yo'q. Har AI loyihaning alohida nusxasida, mavjud ci yml bilan."
+    "Yana AI bosqichi: <b>smoke'ni AI qo'shadi, siz qabul qilasiz</b> — bitta vazifa, ikki topshiriq",
+    "CI/CD-1 dagi kabi oxirgi bosqich AI bilan. Biz ikki xil AI'ga bitta vazifani ikki xil topshiriq bilan berdik: mavjud ci yml'ga smoke'ni qo'shish, unga PostgreSQL kerak. Har AI loyihaning alohida nusxasida ishladi."
    ],
    [
     "b",
-    "Ikkalasi <b><code>services: postgres:18</code>, healthcheck, <code>POSTGRES_DB: shop</code></b> yozdi — README'dagi versiyadan",
-    "Ikkalasi ham services postgres o'n sakkiz yozdi, README'dagi versiyadan. Parol, baza nomi shop, port, va healthcheck pg is ready. Smoke qadami build'dan keyin, env'ida DATABASE URL. Birinchisi env'ni faqat smoke qadamiga, ikkinchisi butun job'ga berdi."
+    "Ikki topshiriq: <b>oddiy</b> — «smoke'ni ham qo'sh»; <b>CI tilida</b> — alohida job, faqat test yashil bo'lsa, job ichida vaqtinchalik baza",
+    "Birinchi topshiriq oddiy: smoke'ni ham qo'shib ber, unga PostgreSQL kerak. Ikkinchisi CI tilida: smoke alohida job bo'lsin va faqat testlar yashil bo'lsa yursin, PostgreSQL job ichida vaqtinchalik ko'tarilsin, DATABASE URL faqat smoke qadamiga. Services, needs, secret, bu so'zlar ikkala topshiriqda ham yo'q."
    ],
    [
     "c",
-    "Lentada: <b>ikkalasi birinchi urinishda yashil</b> — <code>Initialize containers</code>, <code>NATIJA: 5/5 ✓</code>",
-    "Ikkalasini ham sinov tarmog'iga push qildik. Ikkalasi yashil: initialize containers, Postgres ko'tarildi, npm run smoke, natija besh besh. CI/CD-1 dagidan farqli, bu safar AI birinchi urinishda to'g'ri qildi. Nega shunday, hozir ko'ramiz."
+    "Oddiy: <b>smoke oxirgi qadam</b>, <code>services: postgres:18</code> · CI tilida: <b>alohida job, <code>needs: test</code></b>; 2-AI bazani <code>docker run</code> bilan, versiya 16",
+    "Natija. Oddiy topshiriqda ikkalasi services postgres o'n sakkiz yozdi, README'dagi versiyadan, smoke'ni esa oxirgi qadam qildi. CI tilidagi topshiriqda ikkalasi smoke'ni alohida job qildi, needs test bilan. Birinchisi yana services yozdi. Ikkinchisi bazani qadam ichida docker run bilan ko'tardi, versiyasi o'n olti."
    ],
    [
     "d",
-    "Xulosa: AI <b>secret ishlatmadi — to'g'ri</b> («konteyner — sir emas»); yashil, lekin tekshiruv hali oldinda",
-    "Xulosa: ikkala AI secret ishlatmadi va birinchisi sababini yozdi: konteyner paroli faqat job ichida, sir emas. To'g'ri fikr. Ikkalasi yashil. Lekin yashil hali qabul emas: keyingi ekranda to'rt savol bilan o'qiymiz."
+    "Lentada: <b>to'rttalasi birinchi urinishda yashil</b> — smoke <code>NATIJA: 5/5 ✓</code>",
+    "To'rttalasini ham sinov tarmog'iga push qildik. Hammasi yashil, smoke natijasi besh besh. CI/CD-1 dagidan farqli, bu safar AI birinchi urinishda ishlaydigan fayl yozdi. Nega shunday, va yashil bo'lsa ham nimani tekshirish kerak, hozir ko'ramiz."
    ]
   ]
  },
@@ -8870,8 +10051,8 @@ const MDT = {
    ],
    [
     "b",
-    "Ikki farq: <b><code>env</code> qayerda</b> — 1-AI faqat smoke qadamida (torroq, yaxshi), 2-AI butun job'ga; smoke alohida job emas",
-    "Ikkalasini solishtiring. Birinchi AI DATABASE URL'ni faqat smoke qadamiga berdi, ikkinchisi butun job'ga: ikkalasi ishlaydi, torrog'i yaxshiroq. Ikkalasi smoke'ni alohida job qilmadi, oxirgi qadam qildi: ishlaydi, lekin test qizil bo'lsa ham Postgres ko'tariladi. Tavsiyada needs test bilan alohida job."
+    "Ikki farq: <b><code>env</code> qayerda</b> — 1-AI faqat smoke qadamida (torroq, yaxshi), 2-AI butun job'ga; oddiy topshiriqda smoke alohida job emas",
+    "Ikkalasini solishtiring. Birinchi AI DATABASE URL'ni faqat smoke qadamiga berdi, ikkinchisi butun job'ga: ikkalasi ishlaydi, torrog'i yaxshiroq. Oddiy topshiriqda ikkalasi smoke'ni oxirgi qadam qildi: ishlaydi, lekin test qizil bo'lsa ham Postgres ko'tariladi. CI tilidagi topshiriqda esa alohida job, needs test bilan, tavsiyadagidek."
    ],
    [
     "c",
@@ -8888,7 +10069,7 @@ const MDT = {
  "19": {
   "type": "MCRetry",
   "kicker": "Tekshiruv 4",
-  "eyebrow": "Tekshiruv · 4 / 4",
+  "eyebrow": "Tekshiruv · 4 / 5",
   "title": "AI services: postgres yozdi va DATABASE_URL: postgresql://postgres:postgres@localhost:5432/shop ni yml'da ochiq qoldirdi. Bu xatomi?",
   "q": "AI workflow'ini ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. AI services postgres yozdi va DATABASE URL'ni, parol postgres bilan, yml'da ochiq qoldirdi. Bu xatomi? Variantni tanlang.",
   "ok": "To'g'ri. Bu konteyner job bilan ochiladi va job bilan o'chadi, unga tashqaridan hech kim ulanolmaydi, parol hech narsani ochmaydi. Secret tashqi resurs uchun: haqiqiy baza, bot tokeni. Demak, secret kerakmi deb so'raganda, bu qiymat job'dan tashqarida nimani ochadi, deb so'rang.",
@@ -9474,6 +10655,13 @@ const CSS3 = `
 .c1-code .n{font:800 20px ${MONO};text-align:center}
 .c1-code .t{font-size:13.5px;line-height:1.4}
 .c1-code .t code{font:12px ${MONO};color:${T.ink2}}
+.c1-res{width:100%;border-collapse:separate;border-spacing:0 6px;font-size:13.5px}
+.c1-res th{font:700 12px ${SANS};color:${T.ink2};text-align:left;padding:4px 10px}
+.c1-res td{padding:9px 12px;background:${T.paper};border-top:1px solid ${T.line};border-bottom:1px solid ${T.line};vertical-align:top;line-height:1.45;color:${T.ink}}
+.c1-res td:first-child{border-left:1px solid ${T.line};border-radius:10px 0 0 10px;font-weight:700;white-space:nowrap}
+.c1-res td:last-child{border-right:1px solid ${T.line};border-radius:0 10px 10px 0}
+.c1-res b{font-weight:600}.c1-res b.ok{color:${T.green}}
+.c1-res code{font:12px ${MONO};background:#EEF0F4;padding:1px 5px;border-radius:5px}
 .c1-stage{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .c1-stage>div{border:2px solid var(--c);border-radius:14px;padding:14px;background:${T.paper};transition:opacity .35s}
 .c1-stage h4{margin:0 0 4px;font:800 14px ${SANS};color:var(--c)}
@@ -9717,6 +10905,52 @@ const P7 = mkPractice(7, [[], [0, 1], [2, 3], []]);
 function ScreenP7(p) { return <Practice p={p} S={P7.S} steps={P7.steps} trouble={P7.trouble} proof={P7.proof} tree={FILES()} />; }
 
 // ============================================================
+//  20 (saytda) · Tekshiruv 5 — 2-AI (CI tilida): qaysi satr lentani loyihadagidan boshqa bazada sinaydi (F-1125-01, M56; MD «## AI-T5»)
+//  Matn shu yerda (generator o'qimaydi), RU — t(). Haqiqiy kod: feedback/F-1029-02-mentor-kurs/manba/cicd2v2-ai/p2/ai2/.github/workflows/ci.yml
+//  17–29 va 42–45 (aynan, dasturda ko'chirilgan; 30–41 kutish sikli «…»). Run 43 (GitHub) yashil — PostgreSQL 16 da; README: PostgreSQL 18.
+//  Tuzatish yurgizilgan: smoke PostgreSQL 18.4 da 5/5 (p2/ai2/smoke-pg18-lokal.txt); GitHub'da postgres:18 — run 42 (1-AI fayli). Explorer yo'q (M61-3).
+// ============================================================
+const LC5_SRC = [
+  [17, "  smoke:"],
+  [18, "    needs: test"],
+  [19, "    runs-on: ubuntu-latest"],
+  [20, "    steps:"],
+  [21, "      - uses: actions/checkout@v4"],
+  [22, "      - uses: actions/setup-node@v4"],
+  [23, "        with:"],
+  [24, "          node-version: 24"],
+  [25, "          cache: npm"],
+  [26, "      - run: npm ci"],
+  [27, "      - name: PostgreSQL vaqtincha ko'tarish"],
+  [28, "        run: |"],
+  [29, "          docker run -d --name pg-smoke -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=shop -p 5432:5432 postgres:16"],
+  [42, "      - name: Smoke (Telegram'siz)"],
+  [43, "        run: npm run smoke"],
+  [44, "        env:"],
+  [45, "          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/shop"],
+];
+// 29-satr 1280 da uzun (113 belgi) — o'zgarmaydi, faqat ekran tor bo'lsa keyingi qatorga o'tadi (M61-3: postgres:16 ko'rinsin)
+const WRAP = (h) => '<span style="white-space:pre-wrap;overflow-wrap:anywhere">' + h + '</span>';
+const LC5_LINES = (() => { const a = LC5_SRC.map(([n, s]) => ({ n, h: !s ? '' : n === 29 ? WRAP(yamlLine(s)) : yamlLine(s) })); a.splice(13, 0, { n: '', h: '<span class="cm">…</span>' }); return a; })();
+const LC5_TARGET = LC5_LINES.findIndex((l) => l.n === 29);
+const LC5_FIXED = LC5_LINES.flatMap((l) => (l.n === 29 ? [{ ...l, n: '', gone: true }, { n: 29, neu: true, h: WRAP(yamlLine(LC5_SRC.find(([n]) => n === 29)[1].replace('postgres:16', 'postgres:18'))) }] : [l]));
+const LC5_RUN = () => [
+  { n: '', h: t('<span class="p">lokal · PostgreSQL 18.4</span> · npm run smoke → <span class="ok">NATIJA: 5/5 ✓</span>', '<span class="p">локально · PostgreSQL 18.4</span> · npm run smoke → <span class="ok">NATIJA: 5/5 ✓</span>') },
+  { n: '', h: t('<span class="p">GitHub · run 42</span> (1-AI, services: postgres:18) · <span class="ok">success</span>, smoke 5/5', '<span class="p">GitHub · run 42</span> (1-й AI, services: postgres:18) · <span class="ok">success</span>, smoke 5/5') },
+];
+function ScreenAI5(p) {
+  return <LineCheck {...p} kicker={t('Tekshiruv 5', 'Проверка 5')} eyebrow={t('Tekshiruv · 5 / 5 — qaysi satr?', 'Проверка · 5 / 5 — какая строка?')}
+    title={t("Run 43 yashil, lekin loyiha PostgreSQL 18 da. 2-AI faylining qaysi satri lentani boshqa versiyada sinaydi?", 'Run 43 зелёный, но проект на PostgreSQL 18. Какая строка файла 2-го AI проверяет на конвейере другую версию?')}
+    task={t("Qoida: lenta loyihadagi bilan bir xil muhitni sinaydi (CI/CD-1 dagi <code>node-version</code> kabi). README: «NestJS + Telegraf + TypeORM + <b>PostgreSQL 18</b>». Bu 2-AI ning CI tilidagi topshiriqdagi smoke job'i; run 43 yashil, smoke 5/5. <b>Qaysi satr bazani boshqa versiyada ko'taradi? Bosing.</b>", 'Правило: конвейер проверяет ту же среду, что и проект (как <code>node-version</code> в CI/CD-1). README: «NestJS + Telegraf + TypeORM + <b>PostgreSQL 18</b>». Это smoke job 2-го AI по заданию на языке CI; run 43 зелёный, smoke 5/5. <b>Какая строка поднимает базу другой версии? Нажмите.</b>')}
+    q={t("Beshinchi, oxirgi tekshiruv. Bu ikkinchi AI CI tilidagi topshiriqda yozgan smoke job'i, github papkasidagi workflows ichidagi ci yml. Run qirq uch yashil, smoke besh besh. Lekin loyiha README'sida PostgreSQL o'n sakkiz. Qaysi satr lentadagi bazani boshqa versiyada ko'taradi? O'sha satrni bosing.", 'Пятая, последняя проверка. Это smoke job, который второй AI написал по заданию на языке CI, файл ci yml в папке workflows внутри github. Run сорок три зелёный, smoke пять из пяти. Но в README проекта PostgreSQL восемнадцать. Какая строка поднимает базу на конвейере в другой версии? Нажмите на неё.')}
+    file={t('.github/workflows/ci.yml · 2-AI, CI tilida (smoke job)', '.github/workflows/ci.yml · 2-й AI, на языке CI (smoke job)')} lines={LC5_LINES} target={LC5_TARGET}
+    fixed={LC5_FIXED} fixedExtra={[{ file: t('tuzatilgandan keyin — haqiqiy', 'после исправления — настоящий'), lines: LC5_RUN() }]}
+    ok={t("To'g'ri. Yigirma to'qqizinchi satr bazani postgres o'n olti bilan ko'taradi. Run yashil, lekin lenta loyihadagi o'n sakkiz emas, boshqa versiyani sinadi. CI/CD-1 dagi node version kabi: yashil, lekin boshqa muhitda. O'n sakkizga o'zgartirdik: smoke o'n sakkizda ham besh besh. Demak, AI yozgan versiya raqamini README yoki loyiha bilan solishtiring.", 'Верно. Двадцать девятая строка поднимает базу на postgres шестнадцать. Run зелёный, но конвейер проверил не восемнадцатую версию проекта, а другую. Как node version в CI/CD-1: зелёный, но в другой среде. Мы поменяли на восемнадцать: smoke и на восемнадцатой пять из пяти. Значит, номер версии, который написал AI, сверяйте с README или проектом.')}
+    okShort={<span dangerouslySetInnerHTML={html(t("29-satr: <code>postgres:16</code> — README'da PostgreSQL 18. Run 43 yashil, lekin boshqa versiyada. <code>postgres:18</code> bilan smoke 5/5 (lokal, PostgreSQL 18.4) va run 42 ham yashil.", 'Строка 29: <code>postgres:16</code> — в README PostgreSQL 18. Run 43 зелёный, но на другой версии. С <code>postgres:18</code> smoke 5/5 (локально, PostgreSQL 18.4), run 42 тоже зелёный.'))} />}
+    hint={t("Bu satr job nomi, qadam nomi, buyruq yoki muhit o'zgaruvchisi haqida. Bazani ko'taradigan satrni toping va oxiridagi raqamga qarang.", 'Эта строка про имя job, имя шага, команду или переменную окружения. Найдите строку, которая поднимает базу, и посмотрите на число в конце.')} />;
+}
+
+// ============================================================
 //  8 · matrix: bitta fayl, ikki Node — fail-fast 24 ni bekor qildi (run 30)
 // ============================================================
 const L8_22 = runLog('30', 'Run npm ci', (l) => /^\$|EUSAGE|Missing:/.test(l), 'test (22)');
@@ -9930,21 +11164,31 @@ function Screen16(p) {
 // ============================================================
 //  17 · AI smoke workflow yozdi — ikki to'plam, ikkalasi yashil (run 40, 41)
 // ============================================================
+// 26.11 (F-1125-01, M56 — Nest-1 darajasi): 2-topshiriq CI tilida (cicd2v2-ai/p2-prompt.txt aynan; natija p2/, GitHub run 42, 43 — ruxsat bilan ci-sinov)
+const P2_CI2 = "OrderBotNest'dagi .github/workflows/ci.yml ga smoke'ni qo'sh (npm run smoke — Telegram'siz tekshiruv, unga PostgreSQL kerak, DATABASE_URL orqali). Smoke alohida job bo'lsin va faqat testlar job'i yashil bo'lsa yursin. PostgreSQL job ichida vaqtinchalik ko'tarilsin, tayyor bo'lgach smoke boshlansin. DATABASE_URL faqat smoke qadamiga berilsin. Mavjud job'ni buzma, boshqa fayllarga tegma. Qaysi fayl o'zgargani va nimani qanday tekshirganingni yoz.";
+// t() chizish paytida — funksiya (modul yuklanganda til hali o'rnatilmagan). Satr soni — diff-stat (insertions)
+const RES17 = () => [
+  [t('1-AI (kuchli model)', '1-й AI (сильная модель)'), <>+20 {t('satr', 'строк')} · <code>services: postgres:18</code> · {t('smoke oxirgi qadam', 'smoke — последний шаг')}</>, <>+32 {t('satr', 'строки')} · <code>needs: test</code> · <code>services: postgres:18</code> + healthcheck</>],
+  [t('2-AI (kuchsizroq model)', '2-й AI (модель слабее)'), <>+17 {t('satr', 'строк')} · <code>services: postgres:18</code> · <code>env</code> {t("butun job'ga", 'на весь job')}</>, <>+33 {t('satr', 'строки')} · <code>needs: test</code> · <code>docker run … postgres:16</code> + {t('kutish sikli', 'цикл ожидания')}</>],
+  [t('Lentada', 'На конвейере'), <>run 40, 41 · <b className="ok">{t('yashil', 'зелёный')}</b> · smoke 5/5</>, <>run 42, 43 · <b className="ok">{t('yashil', 'зелёный')}</b> · smoke 5/5</>],
+];
 const S17 = mkS(17, [{ v: 'stage' }, { v: 'prompt' }, { v: 'cards' }, { v: 'runs' }]);
 function Screen17(p) {
   return <Lesson p={p} S={S17} scene={({ seg }) => <>
     {(seg.v === 'stage' || seg.v === 'prompt') && <div className="c1-stage">
       <div style={{ '--c': T.ink3, opacity: 0.45 }}><h4>{t("1–4-bosqich · siz", "Этапы 1–4 · вы")}</h4><p>{t("run'ni o'qish · cache · matrix · services + smoke · secret", "чтение run · cache · matrix · services + smoke · secret")}</p></div>
-      <div style={{ '--c': C1.ai }}><h4>{t("5-bosqich · AI yozadi, siz qabul qilasiz", "Этап 5 · пишет AI, вы принимаете")}</h4><p>{t("bitta prompt → ikki workflow → haqiqiy lentada sinov", "один промпт → два workflow → проверка в настоящем конвейере")}</p></div>
+      <div style={{ '--c': C1.ai }}><h4>{t("5-bosqich · AI yozadi, siz qabul qilasiz", "Этап 5 · пишет AI, вы принимаете")}</h4><p>{t("bitta vazifa, ikki topshiriq → to'rt workflow → haqiqiy lentada sinov", "одна задача, два задания → четыре workflow → проверка в настоящем конвейере")}</p></div>
     </div>}
-    {seg.v === 'prompt' && <AiReply who={t("Prompt — ikkala AI'ga bir xil", "Промпт — одинаковый для обоих AI")} prompt={KOD.PROMPT1} tag={t("ishorasiz: services, konteyner, healthcheck, secret yo'q", "без подсказок: нет services, контейнера, healthcheck, secret")} />}
-    {seg.v === 'cards' && <div className="pg-two">
-      <AiReply who={t("1-AI (kuchli model)", "1-й AI (сильная модель)")} said={<><code>ci.yml</code>{t(" +20 satr: ", " +20 строк: ")}<code>services: postgres:18</code> + <code>pg_isready</code> healthcheck · <code>POSTGRES_DB: shop</code> · <code>npm run smoke</code>{t(" build'dan keyin · ", " после build · ")}<b>{t("env faqat smoke qadamida", "env только в шаге smoke")}</b>{t(" · 3 izoh («build ikki marta»)", " · 3 пояснения («build дважды»)")}</>} />
-      <AiReply who={t("2-AI (kuchsizroq model)", "2-й AI (модель слабее)")} said={<><code>ci.yml</code>{t(" +17 satr: xuddi shu services va healthcheck · ", " +17 строк: те же services и healthcheck · ")}<b>{t("env job darajasida", "env на уровне job")}</b>{t(" (hamma qadamga) · smoke oxirida · izohsiz", " (во все шаги) · smoke в конце · без пояснений")}</>} />
+    {seg.v === 'prompt' && <div className="pg-two">
+      <AiReply who={t("1-topshiriq · oddiy", "1-е задание · простое")} prompt={KOD.PROMPT1} tag={t("haqiqiy yurgizish · 04.11", "настоящий запуск · 04.11")} />
+      <AiReply who={t("2-topshiriq · CI tilida", "2-е задание · на языке CI")} prompt={P2_CI2} tag={t("haqiqiy yurgizish · 26.11", "настоящий запуск · 26.11")} hl />
     </div>}
+    {seg.v === 'cards' && <div className="mk-light" style={{ padding: 12 }}><table className="c1-res"><thead><tr><th />
+      <th>{t("1-topshiriq · oddiy", "1-е задание · простое")}</th><th>{t("2-topshiriq · CI tilida", "2-е задание · на языке CI")}</th></tr></thead>
+      <tbody>{RES17().map(([who, a, b]) => <tr key={who}><td>{who}</td><td>{a}</td><td>{b}</td></tr>)}</tbody></table></div>}
     {seg.v === 'runs' && <div className="pg-two c1-small"><RunView k="40" ann={null} only={/Initialize|npm ci|npm run smoke|Stop/} hlStep="Run npm run smoke" /><RunView k="41" ann={null} only={/Initialize|npm ci|npm run smoke|Stop/} hlStep="Run npm run smoke" /></div>}
     {/* F-1120-02 (M51): xulosada darsning rasmi — ikkala AI lentasi: services konteyneri, smoke yashil; secret ishlatilmadi (run 40, 41) */}
-    {seg.v === 'runs' && <div className="mk-light" style={{ padding: 12 }}><BotMap loc={DB_ALL} on={[...CI_ON, 'db', 'products', 'users', 'carts', 'orders']} dbLabel={DB_SVC} jest={{ name: 'AI ×2', steps: [['1-AI · smoke', 'ok'], ['2-AI · smoke', 'ok']], res: 'pass', get badge() { return t('tekshiruv oldinda', 'проверка впереди'); } }} max={0.85} tag={t("AI secret ishlatmadi — to'g'ri: konteyner — sir emas; yashil, lekin tekshiruv hali oldinda", 'AI не взял secret — верно: контейнер не секрет; зелёный, но проверка впереди')} /></div>}
+    {seg.v === 'runs' && <div className="mk-light" style={{ padding: 12 }}><BotMap loc={DB_ALL} on={[...CI_ON, 'db', 'products', 'users', 'carts', 'orders']} dbLabel={DB_SVC} jest={{ name: 'AI ×2 × 2', steps: [['1-AI · oddiy', 'ok'], ['2-AI · oddiy', 'ok'], ['1-AI · CI tilida', 'ok'], ['2-AI · CI tilida', 'ok']], res: 'pass', get badge() { return t('tekshiruv oldinda', 'проверка впереди'); } }} max={0.85} tag={t("AI secret ishlatmadi — to'g'ri: konteyner — sir emas; yashil, lekin tekshiruv hali oldinda", 'AI не взял secret — верно: контейнер не секрет; зелёный, но проверка впереди')} /></div>}
   </>} />;
 }
 
@@ -10271,7 +11515,7 @@ function Cover({ onStart, resume }) {
     </div></div>
   );
 }
-const SCREENS = [Screen1, Screen2, Screen3, Screen4, Screen5, Screen6, ScreenP7, Screen8, Screen9, Screen10, ScreenP11, Screen12, Screen13, Screen14, Screen15, Screen16, Screen17, Screen18, Screen19, ScreenP20, Screen21, Screen22, Screen23, Screen24, Screen25];
+const SCREENS = [Screen1, Screen2, Screen3, Screen4, Screen5, Screen6, ScreenP7, Screen8, Screen9, Screen10, ScreenP11, Screen12, Screen13, Screen14, Screen15, Screen16, Screen17, Screen18, Screen19, ScreenAI5, ScreenP20, Screen21, Screen22, Screen23, Screen24, Screen25]; // F-1125-01: ScreenAI5 (Tekshiruv 5) — saytda 20-ekran; MD 20–25 saytda 21–26 (M57)
 const PRACTICE_COUNT = [ScreenP7, ScreenP11, ScreenP20].filter((S) => SCREENS.includes(S)).length; // 26.11 (F-1125-01): havola bo'yicha — build (minify) funksiya nomini qisqartiradi, nom bo'yicha son 0 chiqib passed doim false edi
 export default function GithubActionsMentorLesson({ studentName, lang = 'uz', onFinished, startAt }) {
   setLang(lang);
@@ -10351,7 +11595,7 @@ ru(SUM25, [
   { t: 'Pull request: ветка → PR → run pull_request → checks → merge → run в main; badge в README. Workflow smoke от AI: если опора (ci.yml) верна, AI тоже верен; четыре вопроса: services + healthcheck · доходит ли env · порядок · нужен ли secret' },
 ]);
 RU_S.TITLE = 'Внутри GitHub Actions: от красного run до PR';
-RU_S.COVER = ['Всего около 1 часа 15–30 минут: озвучка ~25 минут · три практики 50–65 минут · 4 проверки · самопроверка 8 вопросов. После экрана 11 можно сделать перерыв', 'Нужно: урок для менторов CI/CD-1 (в вашем репозитории на GitHub ci.yml и зелёный run) · Node.js 20+ · VS Code · AI-помощник. База и токен бота не нужны — Postgres поднимается в конвейере контейнером', 'Проект: github.com/Azizbekcrypto/OrderBotNest — начинаете с тега cicd2-start (= cicd1-done); каждый run — из настоящего GitHub Actions'];
+RU_S.COVER = ['Всего около 1 часа 15–30 минут: озвучка ~25 минут · три практики 50–65 минут · 5 проверок · самопроверка 8 вопросов. После экрана 11 можно сделать перерыв', 'Нужно: урок для менторов CI/CD-1 (в вашем репозитории на GitHub ci.yml и зелёный run) · Node.js 20+ · VS Code · AI-помощник. База и токен бота не нужны — Postgres поднимается в конвейере контейнером', 'Проект: github.com/Azizbekcrypto/OrderBotNest — начинаете с тега cicd2-start (= cicd1-done); каждый run — из настоящего GitHub Actions'];
 RU_S.FIN_INTRO = 'Вы всё посмотрели, теперь проверьте себя. Итоговый тест, восемь вопросов: job и машина, checkout, чтение красного, cache, fail fast, services, имя secret и pull request. На каждый вопрос одна попытка, после ответа откроются верный ответ и пояснение. Шесть и больше — урок усвоен. Если меньше, вернитесь к указанным экранам и пройдите тест заново.';
 RU_S.FIN_PASS = 'Урок усвоен. Теперь, если ученик скажет «у меня конвейер красный», вы вместе спуститесь в job, шаг и лог.';
 RU_S.NEXT_T = 'WebSocket: живая панель';
@@ -10497,7 +11741,7 @@ const RU_MDT = {
  },
  "5": {
   "kicker": "Проверка 1",
-  "eyebrow": "Проверка · 1 / 4",
+  "eyebrow": "Проверка · 1 / 5",
   "title": "Run красный. В аннотации только Process completed with exit code 1. — на шаге npm test. Где прочитаете причину?",
   "q": "Вы видели, как читать красный run, теперь проверим. Первая проверка. Run красный, в аннотации только process completed with exit code one, на шаге npm test. Где прочитаете, какой тест упал? Выберите вариант.",
   "ok": "Верно. Нажимаете на красный шаг: npm test. В логе полный вывод Jest: FAIL, какой тест, что ожидалось и что пришло, тридцать седьмая строка. Аннотация показала только шаг, потому что Jest не пишет со знаком error. Значит, аннотация — адрес, а лог — причина; перезапускать локально не нужно.",
@@ -10661,7 +11905,7 @@ const RU_MDT = {
  },
  "10": {
   "kicker": "Проверка 2",
-  "eyebrow": "Проверка · 2 / 4",
+  "eyebrow": "Проверка · 2 / 5",
   "title": "matrix [22, 24], fail-fast не написан. test (22) упал на 10-й секунде, test (24) ещё в tsc. Что будет с test (24)?",
   "q": "Вы видели matrix, теперь проверим. Вторая проверка. Matrix двадцать два и двадцать четыре, fail fast не написан. Test двадцать два упал на десятой секунде, test двадцать четыре ещё в tsc. Что будет с двадцать четыре? Выберите вариант.",
   "ok": "Верно. Если fail fast не написан, он true: как только одна машина упала, GitHub отменяет остальные, cancelled. Двадцать четыре остановлен в tsc, результат неизвестен. Если нужен полный ответ, пишется fail fast false. Значит, если в matrix видите cancelled, это не ошибка этой job, а падение другой.",
@@ -10829,7 +12073,7 @@ const RU_MDT = {
  },
  "15": {
   "kicker": "Проверка 3",
-  "eyebrow": "Проверка · 3 / 4 — какая строка с ошибкой?",
+  "eyebrow": "Проверка · 3 / 5 — какая строка с ошибкой?",
   "title": "С этим ci.yml job smoke красная: «DATABASE_URL topilmadi». Postgres поднялся, healthcheck прошёл. Найдите строку-виновника",
   "q": "Вы видели имя secret, теперь найдите сами. Третья проверка. С этим ci yml job smoke красная: DATABASE URL не найден. Postgres поднялся, healthcheck прошёл. Одна строка во фрагменте обращается к secret с неверным именем. Нажмите на эту строку.",
   "ok": "Верно. Secrets DATABSE URL: пропала буква E. GitHub такой secret не нашёл, но ошибку не дал, а дал пустое значение. Smoke запустился с пустым адресом и сам остановился: DATABASE URL не найден. На экране исправленная строка. Значит, ошибку, связанную с secret, сначала ищите в имени.",
@@ -10861,23 +12105,23 @@ const RU_MDT = {
  },
  "17": {
   "kicker": "Этап 5 · AI",
-  "title": "Продолжение нового навыка: двум AI один промпт — «добавь и smoke, ему нужен PostgreSQL»; оба написали services: postgres и в конвейере зелёные с первой попытки",
+  "title": "Продолжение нового навыка: двум AI одна задача двумя разными заданиями — все четыре workflow зелёные с первой попытки; теперь читаем",
   "seg": {
    "a": [
-    "Снова этап AI: <b>промпт — «добавь и smoke, ему нужен PostgreSQL»</b>, слова services нет",
-    "Как в CI/CD-1, последний этап — с AI. Промпт: в OrderBotNest есть npm run smoke, ему нужен PostgreSQL, DATABASE URL. Добавь в workflow и этот smoke. Services, контейнер, healthcheck, secret — этих слов в промпте нет. Каждый AI — в отдельной копии проекта, с существующим ci yml."
+    "Снова этап AI: <b>smoke добавляет AI, вы принимаете</b> — одна задача, два задания",
+    "Как и в CI/CD-1, последний этап — с AI. Мы дали двум разным AI одну задачу двумя разными заданиями: добавить smoke в существующий ci yml, ему нужен PostgreSQL. Каждый AI работал в отдельной копии проекта."
    ],
    "b": [
-    "Оба написали <b><code>services: postgres:18</code>, healthcheck, <code>POSTGRES_DB: shop</code></b> — по версии из README",
-    "Оба написали services postgres восемнадцать, по версии из README. Пароль, имя базы shop, порт и healthcheck pg is ready. Шаг smoke после build, в его env DATABASE URL. Первый дал env только шагу smoke, второй — всей job."
+    "Два задания: <b>простое</b> — «добавь и smoke»; <b>на языке CI</b> — отдельная job, только если тест зелёный, временная база внутри job",
+    "Первое задание простое: добавь и smoke, ему нужен PostgreSQL. Второе — на языке CI: smoke отдельной job и только если job тестов зелёная, PostgreSQL временно поднимается внутри job, DATABASE URL — только шагу smoke. Слов services, needs, secret нет ни в одном задании."
    ],
    "c": [
-    "В конвейере: <b>оба зелёные с первой попытки</b> — <code>Initialize containers</code>, <code>NATIJA: 5/5 ✓</code>",
-    "Оба мы отправили push в тестовую ветку. Оба зелёные: initialize containers, Postgres поднят, npm run smoke, итог пять из пяти. В отличие от CI/CD-1, на этот раз AI сделал правильно с первой попытки. Почему так, сейчас увидим."
+    "Простое: <b>smoke — последний шаг</b>, <code>services: postgres:18</code> · на языке CI: <b>отдельная job, <code>needs: test</code></b>; 2-й AI поднимает базу через <code>docker run</code>, версия 16",
+    "Результат. По простому заданию оба написали services postgres восемнадцать, из README, а smoke сделали последним шагом. По заданию на языке CI оба сделали smoke отдельной job с needs test. Первый снова написал services. Второй поднял базу внутри шага через docker run, версии шестнадцать."
    ],
    "d": [
-    "Итог: AI <b>не использовал secret — и это верно</b> («контейнер — не секрет»); зелёный, но проверка ещё впереди",
-    "Итог: оба AI не использовали secret, и первый написал причину: пароль контейнера только внутри job, это не секрет. Верная мысль. Оба зелёные. Но зелёный — ещё не приём: на следующем экране прочитаем по четырём вопросам."
+    "На конвейере: <b>все четыре зелёные с первой попытки</b> — smoke <code>NATIJA: 5/5 ✓</code>",
+    "Все четыре мы запушили в тестовую ветку. Все зелёные, итог smoke пять из пяти. В отличие от CI/CD-1, на этот раз AI с первой попытки написал рабочий файл. Почему так и что проверять, даже если зелёный, — сейчас увидим."
    ]
   }
  },
@@ -10890,8 +12134,8 @@ const RU_MDT = {
     "В CI/CD-1 AI написал workflow с нуля и поставил node двадцать два — красный. На этот раз в репозитории был ваш ci yml, с node двадцать четыре. AI его изменил, а не писал с нуля. Если опора правильная, AI тоже продолжает правильно. Поэтому сначала пишите сами, потом давайте AI."
    ],
    "b": [
-    "Две разницы: <b>где <code>env</code></b> — 1-й AI только в шаге smoke (уже, лучше), 2-й AI на всю job; smoke не отдельная job",
-    "Сравните оба. Первый AI дал DATABASE URL только шагу smoke, второй — всей job: работают оба, но чем уже, тем лучше. Оба сделали smoke не отдельной job, а последним шагом: работает, но Postgres поднимается, даже если test красный. В рекомендации — отдельная job с needs test."
+    "Две разницы: <b>где <code>env</code></b> — 1-й AI только на шаге smoke (уже, лучше), 2-й — на всю job; в простом задании smoke не отдельная job",
+    "Сравните оба. Первый AI дал DATABASE URL только шагу smoke, второй — всей job: работают оба, но чем уже, тем лучше. В простом задании оба сделали smoke последним шагом: работает, но Postgres поднимается, даже если test красный. В задании на языке CI — отдельная job с needs test, как в рекомендации."
    ],
    "c": [
     "1-й AI сам заметил: <b>внутри smoke снова <code>nest build</code> — build дважды</b>; читайте пояснения AI",
@@ -10905,7 +12149,7 @@ const RU_MDT = {
  },
  "19": {
   "kicker": "Проверка 4",
-  "eyebrow": "Проверка · 4 / 4",
+  "eyebrow": "Проверка · 4 / 5",
   "title": "AI написал services: postgres и оставил DATABASE_URL: postgresql://postgres:postgres@localhost:5432/shop в yml открыто. Это ошибка?",
   "q": "Вы видели workflow от AI, теперь проверим. Четвёртая проверка. AI написал services postgres и оставил DATABASE URL, с паролем postgres, открытым в yml. Это ошибка? Выберите вариант.",
   "ok": "Верно. Этот контейнер открывается вместе с job и выключается вместе с job, снаружи к нему никто не подключится, пароль ничего не открывает. Secret — для внешнего ресурса: настоящая база, токен бота. Значит, спрашивая, нужен ли secret, спросите: что это значение открывает за пределами job?",

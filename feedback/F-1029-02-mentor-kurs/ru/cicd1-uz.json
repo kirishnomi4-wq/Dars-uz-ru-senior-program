@@ -239,7 +239,7 @@
  "18.seg.c.key": "Oddiy: <b><code>node-version: 22</code>, <code>tsc</code> va <code>build</code> yo'q</b> · CI tilida: <b>Node 24.18 — <code>node -v</code> ni o'zi yurgizdi</b>, to'rt bosqich",
  "18.seg.c.voice": "Natija. Oddiy topshiriqda ikkalasi to'g'ri ko'rinadigan fayl yozdi: checkout, setup node, npm si ay, npm test. Lekin node version yigirma ikki, mashinani so'ramadi, tsc ham, build ham yo'q. CI tilidagi topshiriqda ikkalasi node minus v ni o'zi yurgizib, yigirma to'rt nuqta o'n sakkiz yozdi, to'rt bosqichning hammasi bor.",
  "18.seg.d.key": "Xulosa: <b>to'g'ri ko'ringan fayl hali tekshiruv emas</b> — lentaga qo'yib ko'ramiz",
- "18.seg.d.voice": "Xulosa: to'g'ri ko'ringan workflow hali tekshiruv emas. Oddiy topshiriqdagi ikkala faylni OrderBotNest'ning sinov tarmog'iga push qildik, CI tilidagilarni lokal lentada yurgizdik. Natija keyingi ekranda.",
+ "18.seg.d.voice": "Xulosa: to'g'ri ko'ringan workflow hali tekshiruv emas. To'rttala faylni OrderBotNest'ning sinov tarmog'iga push qildik. CI tilidagilar birinchi urinishda yashil, run yigirma ikki va yigirma uch. Oddiy topshiriqdagilar qanday chiqqanini keyingi ekranda ko'ramiz.",
  "19.kicker": "5-bosqich · ichida",
  "19.title": "Ikkala AI workflow'i lentada qizil — npm ci, o'sha Missing: webpack… from lock file; faqat node-version tuzatilsa yashil, lekin tur xatosi baribir o'tadi",
  "19.seg.a.key": "Run 19 va 20: <b>ikkalasi qizil, <code>npm ci</code> qadamida</b> — 17-ekrandagi o'sha xato",

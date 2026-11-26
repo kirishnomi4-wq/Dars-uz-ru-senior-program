@@ -1,0 +1,15 @@
+# 2-AI (Haiku) CI/CD-2 p2: smoke qadami PostgreSQL 18 da (lokal, vaqtinchalik klaster; lentada postgres:16 o'rniga 18 bo'lsa nima bo'lishini ko'rsatish uchun) · 26.11
+$ DATABASE_URL=postgresql://postgres:postgres@localhost:5432/shop npm run smoke   # lokal: 127.0.0.1:5439, PostgreSQL 18.4
+— restart: har qadam alohida jarayonda (server haqiqatan qayta ishga tushadi)
+  ✓ telefon kutish restartdan o'tdi → «Buyurtma #1 qabul qilindi!»
+  ✓ savat restartdan o'tdi → «Savat:»
+  ✓ buyurtma restartdan o'tdi → «#1 · Aziza · 120 000 so'm · 🆕 Yangi»
+
+— race: 1 ta Planshet, 5 mijoz bir vaqtda (3 raund); keyin ikki marta bekor
+Telegram bot ulandi
+  rad etilgan mijoz: «Buyurtma berilmadi: Planshet: omborda faqat 0 ta qoldi»
+  ✓ ortiqcha sotilmadi (sotildi/ombor): 1/0  1/0  1/0
+  ✓ ikki marta bir vaqtda bekor — ombor bir marta qaytdi: 0 → 1
+
+NATIJA: 5/5 ✓
+[chiqish kodi yozilmadi — zsh PIPESTATUS bo'sh; natija — yuqoridagi «NATIJA: 5/5 ✓» qatori]
