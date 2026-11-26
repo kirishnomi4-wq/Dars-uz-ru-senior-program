@@ -1,6 +1,8 @@
 # F-1125-01 · Mentor Nest-1 darsini kuchaytirish — DAVOM
 
-## ▶▶▶ YANGI SEANS SHU YERDAN (26.11 kunduzi — 1-savol A va 2-savol A bajarildi, saytda n0r62ebwh; qaror sahifasi v7 javobi kutilmoqda)
+## ▶▶▶ YANGI SEANS SHU YERDAN (26.11 kech — Jest-2 va Telegraf + PG saytda gsxmq0whz; qaror sahifasi v8 javobi kutilmoqda)
+
+**26.11 kech:** foydalanuvchi «davom et» → **Telegraf + PG ✓** (agentsiz: 25-ekran «Tekshiruv 5» — 2-AI migratsiyasi 28-satr, FK yo'q; PostgreSQL'da yurgizilgan `orderbot-ai2/p1/07-fk-*`), commit 6110581d, deploy **gsxmq0whz**, e2e saytda `passed: true`. Jest-2 RU jadvali xatosi (modul darajasidagi `t()`) tuzatildi. **Qaror sahifasi v8** — 2 savol: 1) Jest-1: `toBeTruthy` tekshiruvini (20-ekran) LineCheck'ga aylantirish — tavsiya A; 2) CI/CD-1 → CI/CD-2 → WS-1 → WS-2 → Webhook: har biriga 2 agent — tavsiya A. **Agentlar yuborilmagan — javob kutilmoqda.** Generator `tungi-qa/sahifa/qur-v8.py <deploy>`.
 
 **Foydalanuvchi javobi (qaror sahifasi v6):** 1) A — tuzat · 2) A — hozir, izoh «Faqat me'yor» (AskUserQuestion bilan aniqlashtirildi: hayotiy misol yo'q, AI bo'limi Nest-1 dagidek); birinchi dars — Jest-2.
 - **1-savol (M61):** Nest-1 23–25, Nest-2 20, Jest-1 14, Jest-2 2/8, PG-2 18 — 1280×720 UZ/RU, 1600, 1920 → 0 (matn/ovozga tegilmadi; `mk-zich` faqat past ekranda; Jest-1 14 terminali oyna ichida).

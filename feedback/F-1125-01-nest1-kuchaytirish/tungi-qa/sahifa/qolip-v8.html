@@ -1,0 +1,103 @@
+<title>Mentor kursi qarorlari</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+/*CSS*/
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Mentor kursi · 26.11.2026 kech</span>
+    <h1>Telegraf + PG tayyor, ikki savol</h1>
+    <p class="lead">Saytda: coddycamp-mentor-kurs.vercel.app (deploy <code>__DEPLOY__</code>). Push qilinmagan. Siz «davom et» dedingiz, kurs tartibida keyingi dars Telegraf + PG edi. Undan keyingi qadamlar uchun ikki qaroringiz kerak.</p>
+  </header>
+
+  <section class="done" aria-labelledby="d1h">
+    <h2 id="d1h">Telegraf + PG · yangi 25-ekran «Tekshiruv 5»</h2>
+    <ul class="plain">
+      <li>Bu darsda ikki xil topshiriq 04.11 dan beri bor edi, shuning uchun agent kerak bo'lmadi.</li>
+      <li><b>AI'ning haqiqiy satri.</b> 2-AI oddiy topshiriqda migratsiya yozgan. Unda savat jadvali mijozga bog'lanmagan (28-satr, buyurtmalarda ham — 36-satr). Darsning o'z yechimida bu bog'lanish bor. Mentor shu satrni o'zi bosib topadi.</li>
+      <li><b>Haqiqiy bazada sinaldi</b> (PostgreSQL 18). AI yozganidek: yo'q mijozga savat qatori yozildi, mijoz o'chirilganda savati qoldi. Bitta satr tuzatilgach: xato chiqdi, savat ham o'chdi.</li>
+      <li>Tekshiruv: to'liq o'tish (ovoz bilan) UZ va RU, saytda ham — <code>passed: true</code>, tekshiruvlar 5 ta. Ekran xatosi 0, 1280/1600/1920 da kesilish 0. Dars 29 ekran.</li>
+    </ul>
+    <p class="small">Saytda: <a href="https://coddycamp-mentor-kurs.vercel.app/?dars=tgpg-01&amp;s=24" target="_blank" rel="noopener">25-ekran</a> (satrni o'zingiz bosing) · ruschasi <a href="https://coddycamp-mentor-kurs.vercel.app/?dars=tgpg-01&amp;s=24&amp;lang=ru" target="_blank" rel="noopener">25-ekran RU</a>.</p>
+    <div class="figs">
+      <figure><img alt="Telegraf + PG 25-ekran: 2-AI migratsiyasi, 28-satr tuzatilgan va psql natijasi" src="IMG:tg-25-tekshiruv"><figcaption><b>Telegraf + PG · 25-ekran.</b> 28-satr, tuzatish va bazadagi haqiqiy natija.</figcaption></figure>
+      <div class="note"><b>Mening xatoyim, tuzatildi.</b> Jest-2 20-ekrandagi natija jadvali ruschada o'zbekcha chiqardi. Ovoz va boshqa matnlar to'g'ri edi. Saytda 1,5 soatcha shunday turdi, hozir tuzatilgan. Sababi texnik: matn fayl yuklanganda, til hali tanlanmasdan hisoblangan. Bu tuzoq etalonga yozildi.</div>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="q1h">
+    <span class="tag">1-savol · Jest-1</span>
+    <h2 id="q1h">Jest-1 da «satrni bosing» qanday bo'lsin?</h2>
+    <ul class="plain">
+      <li>Jest-1 da AI kodidagi haqiqiy zaif satr bitta: 1-AI testi status matnini faqat «bo'sh emasmi» deb tekshiradi (<code>toBeTruthy</code>, 45-satr). Kimdir «Bekor qilingan» ni «Yangi» ga o'zgartirsa, 36 test yashil qoladi. Biz buni sinab ko'rganmiz.</li>
+      <li>Bu satr 20-ekrandagi «Tekshiruv 4» da allaqachon bor. Lekin u yerda mentor satr bosmaydi: «test nima deydi?» degan savolga variant tanlaydi.</li>
+      <li>AI'ning boshqa xatosi («<code> </code> bilan yozdim» degan, faylda ko'rinmas belgi turibdi) ekranda ko'rinmaydi. Mentor uni ko'z bilan topa olmaydi, shuning uchun u satr bosish uchun yaramaydi.</li>
+    </ul>
+    <div class="figs">
+      <figure><img alt="Jest-1 20-ekran: Tekshiruv 4, AI testining toBeTruthy satri va variantlar" src="IMG:jest1-20"><figcaption><b>Jest-1 · 20-ekran hozir.</b> Variant tanlanadi, satr bosilmaydi.</figcaption></figure>
+    </div>
+    <div class="opts" role="radiogroup" aria-labelledby="q1h">
+      <label class="opt"><input type="radio" name="q1" id="q1a" value="A — 20-ekranni satr bosishga aylantir"><span><span class="t">A · 20-ekrandagi tekshiruvni «satrni bosing» ga aylantiraman <span class="rec">tavsiya</span></span><span class="d">Yangi ekran qo'shilmaydi. O'sha 45-satr: «36 test yashil qoldi, qaysi satr o'zgarishni sezmadi?» Javobdan keyin haqiqiy natija (36 passed) va aniq tekshiruv bilan tuzatish ko'rsatiladi. Ovoz va RU yangilanadi.</span></span></label>
+      <label class="opt"><input type="radio" name="q1" id="q1b" value="B — alohida Tekshiruv 5 qo'sh"><span><span class="t">B · Yangi «Tekshiruv 5» qo'shaman, 20-ekran qoladi</span><span class="d">Mentor bir satrni ikki marta ko'radi: avval variant bilan, keyin bosib.</span></span></label>
+      <label class="opt"><input type="radio" name="q1" id="q1c" value="C — Jest-1 ga tegma"><span><span class="t">C · Jest-1 ga tegmaymiz</span><span class="d">AI satri bilan tekshiruv bor, faqat turi boshqa. Qoidada Jest-1 ni shunday deb yozaman.</span></span></label>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="q2h">
+    <span class="tag">2-savol · agentlar</span>
+    <h2 id="q2h">Qolgan 5 darsga agentlarni yuboraymi?</h2>
+    <ul class="plain">
+      <li>Darslar kurs tartibida: CI/CD-1 → CI/CD-2 → WebSocket-1 → WebSocket-2 → Webhook. Ularda ikkinchi topshiriq (mavzu tilida) yo'q, uni haqiqiy AI'da yurgizish kerak.</li>
+      <li>Har darsga 2 agent kerak: 1-AI kuchli model, 2-AI kuchsizroq model (Jest-2 dagi kabi). Ular faqat vaqtinchalik loyiha nusxasida ishlaydi, dars fayllariga tegmaydi.</li>
+      <li>Bitta dars taxminan 1–1,5 soat oladi: agentlar, sinov, qurish, ovoz va deploy. Har dars saytga chiqadi.</li>
+    </ul>
+    <div class="opts" role="radiogroup" aria-labelledby="q2h">
+      <label class="opt"><input type="radio" name="q2" id="q2a" value="A — ruxsat, darsma-dars"><span><span class="t">A · Ha, 5 darsga ruxsat, darsma-dars <span class="rec">tavsiya</span></span><span class="d">Hammasi bo'lib 10 agent. Har dars tugagach saytga chiqadi, men keyingisiga o'taman. Xato chiqsa, to'xtab sizga aytaman.</span></span></label>
+      <label class="opt"><input type="radio" name="q2" id="q2b" value="B — har darsdan oldin so'ra"><span><span class="t">B · Har darsdan oldin alohida so'rang</span><span class="d">Har dars oldidan agentlarga qayta ruxsat so'rayman. Sekinroq, lekin har qadamni ko'rib borasiz.</span></span></label>
+      <label class="opt"><input type="radio" name="q2" id="q2c" value="C — hozircha to'xta"><span><span class="t">C · Hozircha to'xtang</span><span class="d">Jest-2 va Telegraf + PG ni mentor ko'rgandan keyin davom etamiz.</span></span></label>
+    </div>
+  </section>
+
+  <section class="block answer" aria-labelledby="ah">
+    <span class="tag">Javob</span>
+    <h2 id="ah">Javobni nusxalash</h2>
+    <label for="izoh" class="small">Izoh (ixtiyoriy)</label>
+    <textarea id="izoh" placeholder="Masalan: 2-savol A, lekin Webhook ni oxiriga qoldiring"></textarea>
+    <div id="out"></div>
+    <button class="copy" id="copyBtn" type="button">Javobni nusxalash</button>
+    <span id="copied" hidden>Nusxalandi. Chatga qo'ying.</span>
+  </section>
+</div>
+
+<script>
+(function () {
+  var out = document.getElementById('out');
+  var izoh = document.getElementById('izoh');
+  var copied = document.getElementById('copied');
+  function val(name) { var el = document.querySelector('input[name="' + name + '"]:checked'); return el ? el.value : '—'; }
+  function text() {
+    var s = 'Mentor kursi — javob\n1) Jest-1: ' + val('q1') + '\n2) Qolgan 5 dars, agentlar: ' + val('q2');
+    var z = izoh.value.trim();
+    if (z) s += '\nIzoh: ' + z;
+    return s;
+  }
+  function render() { out.textContent = text(); copied.hidden = true; }
+  document.querySelectorAll('input[type="radio"]').forEach(function (r) { r.addEventListener('change', render); });
+  izoh.addEventListener('input', render);
+  render();
+  document.getElementById('copyBtn').addEventListener('click', function () {
+    var t = text();
+    function fallback() {
+      var range = document.createRange(); range.selectNodeContents(out);
+      var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
+      copied.textContent = 'Matn belgilandi — Ctrl+C bilan nusxalang.'; copied.hidden = false;
+    }
+    try {
+      navigator.clipboard.writeText(t).then(function () { copied.textContent = "Nusxalandi. Chatga qo'ying."; copied.hidden = false; }, fallback);
+    } catch (e) { fallback(); }
+  });
+})();
+</script>
